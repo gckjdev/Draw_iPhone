@@ -52,7 +52,6 @@
 						<double key="IBUIContentEdgeInsets.left">0.0</double>
 						<double key="IBUIContentEdgeInsets.right">0.0</double>
 						<string key="IBUITitleShadowOffset">{0, 1}</string>
-						<string key="IBUINormalTitle">settings</string>
 						<object class="NSColor" key="IBUIHighlightedTitleColor" id="28250351">
 							<int key="NSColorSpace">3</int>
 							<bytes key="NSWhite">MQA</bytes>

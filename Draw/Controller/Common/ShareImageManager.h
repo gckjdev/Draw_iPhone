@@ -147,6 +147,7 @@
 - (UIImage*)checkInMenuImage;
 
 - (UIImage *)shareDrawButtonImage;
+- (UIImage *)defaultBoardImage;
 
 - (void)saveFeedImage:(UIImage *)image
     withImageName:(NSString *)imageName 

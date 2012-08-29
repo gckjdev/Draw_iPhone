@@ -248,16 +248,17 @@ static DrawDataService* _defaultDrawDataService = nil;
              isMyPaint:(BOOL)isMyPaint
                   word:(NSString*)word
                  image:(UIImage*)image
-        viewController:(PPViewController*)viewController
+              delegate:(id<DrawDataServiceDelegate>)delegate
 {
     
     if (actionList.count == 0) {
         PPDebug(@"actionList has no object");        
     }
-    
+/*    
     if ([DrawAction isDrawActionListBlank:actionList]) {
         return;
     }
+ */
     time_t aTime = time(0);
     NSString* imageName = [NSString stringWithFormat:@"%d.png", aTime];
     if (image!=nil) 
@@ -274,18 +275,19 @@ static DrawDataService* _defaultDrawDataService = nil;
             NSData* imageData = UIImagePNGRepresentation(image);
             BOOL result=[imageData writeToFile:uniquePath atomically:YES];
             PPDebug(@"<DrawGameService> save image to path:%@ result:%d , canRead:%d", uniquePath, result, [[NSFileManager defaultManager] fileExistsAtPath:uniquePath]);
+            if (result) {
+                NSData* drawActionListData = [NSKeyedArchiver archivedDataWithRootObject:actionList];
+               result = [[MyPaintManager defaultManager ] createMyPaintWithImage:imageName 
+                                                                    data:drawActionListData 
+                                                              drawUserId:userId
+                                                        drawUserNickName:nickName 
+                                                                drawByMe:isMyPaint
+                                                                drawWord:word];                
+            }
             
             dispatch_async(dispatch_get_main_queue(), ^{
-                if (result) {                    
-                    NSData* drawActionListData = [NSKeyedArchiver archivedDataWithRootObject:actionList];
-                    [[MyPaintManager defaultManager ] createMyPaintWithImage:imageName 
-                                                                        data:drawActionListData 
-                                                                  drawUserId:userId
-                                                            drawUserNickName:nickName 
-                                                                    drawByMe:isMyPaint
-                                                                    drawWord:word];
-                    
-                    [viewController popupMessage:NSLS(@"kSaveImageOK") title:nil];
+                if (delegate && [delegate respondsToSelector:@selector(didSaveOpus:)]) {
+                    [delegate didSaveOpus:result];
                 }
             });
         });

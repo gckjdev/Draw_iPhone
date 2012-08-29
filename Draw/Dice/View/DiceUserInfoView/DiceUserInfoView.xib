@@ -98,7 +98,7 @@
 							</object>
 							<object class="IBUILabel" id="821928283">
 								<reference key="NSNextResponder" ref="215313039"/>
-								<int key="NSvFlags">301</int>
+								<int key="NSvFlags">319</int>
 								<string key="NSFrame">{{115, 26}, {125, 24}}</string>
 								<reference key="NSSuperview" ref="215313039"/>
 								<reference key="NSWindow"/>
@@ -130,7 +130,7 @@
 							</object>
 							<object class="IBUILabel" id="533340619">
 								<reference key="NSNextResponder" ref="215313039"/>
-								<int key="NSvFlags">301</int>
+								<int key="NSvFlags">319</int>
 								<string key="NSFrame">{{115, 56}, {63, 20}}</string>
 								<reference key="NSSuperview" ref="215313039"/>
 								<reference key="NSWindow"/>
@@ -162,7 +162,7 @@
 							</object>
 							<object class="IBUILabel" id="273470397">
 								<reference key="NSNextResponder" ref="215313039"/>
-								<int key="NSvFlags">301</int>
+								<int key="NSvFlags">319</int>
 								<string key="NSFrame">{{115, 85}, {125, 21}}</string>
 								<reference key="NSSuperview" ref="215313039"/>
 								<reference key="NSWindow"/>
@@ -187,7 +187,7 @@
 							</object>
 							<object class="IBUIImageView" id="209270839">
 								<reference key="NSNextResponder" ref="215313039"/>
-								<int key="NSvFlags">301</int>
+								<int key="NSvFlags">319</int>
 								<string key="NSFrame">{{177, 117}, {63, 21}}</string>
 								<reference key="NSSuperview" ref="215313039"/>
 								<reference key="NSWindow"/>
@@ -198,7 +198,7 @@
 							</object>
 							<object class="IBUIButton" id="472840128">
 								<reference key="NSNextResponder" ref="215313039"/>
-								<int key="NSvFlags">301</int>
+								<int key="NSvFlags">319</int>
 								<string key="NSFrame">{{20, 114}, {75, 28}}</string>
 								<reference key="NSSuperview" ref="215313039"/>
 								<reference key="NSWindow"/>
@@ -223,7 +223,7 @@
 							</object>
 							<object class="IBUILabel" id="501469967">
 								<reference key="NSNextResponder" ref="215313039"/>
-								<int key="NSvFlags">301</int>
+								<int key="NSvFlags">319</int>
 								<string key="NSFrame">{{20, 114}, {75, 28}}</string>
 								<reference key="NSSuperview" ref="215313039"/>
 								<reference key="NSWindow"/>
@@ -251,7 +251,7 @@
 							</object>
 							<object class="IBUILabel" id="448182002">
 								<reference key="NSNextResponder" ref="215313039"/>
-								<int key="NSvFlags">301</int>
+								<int key="NSvFlags">319</int>
 								<string key="NSFrame">{{115, 117}, {32, 21}}</string>
 								<reference key="NSSuperview" ref="215313039"/>
 								<reference key="NSWindow"/>
@@ -273,7 +273,7 @@
 							</object>
 							<object class="IBUIView" id="36105668">
 								<reference key="NSNextResponder" ref="215313039"/>
-								<int key="NSvFlags">301</int>
+								<int key="NSvFlags">319</int>
 								<string key="NSFrame">{{20, 26}, {75, 75}}</string>
 								<reference key="NSSuperview" ref="215313039"/>
 								<reference key="NSWindow"/>
@@ -534,7 +534,7 @@
 				<string key="54.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="6.CustomClassName">HKGirlFontLabel</string>
 				<string key="6.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<string key="7.CustomClassName">FontLabel</string>
+				<string key="7.CustomClassName">HKGirlFontLabel</string>
 				<string key="7.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="8.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="9.CustomClassName">FontButton</string>

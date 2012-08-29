@@ -117,11 +117,11 @@
 								<reference key="IBUIHighlightedTitleColor" ref="74671699"/>
 								<reference key="IBUINormalTitleColor" ref="256703508"/>
 								<reference key="IBUINormalTitleShadowColor" ref="74671699"/>
-								<object class="IBUIFontDescription" key="IBUIFontDescription" id="856413099">
+								<object class="IBUIFontDescription" key="IBUIFontDescription" id="843843157">
 									<int key="type">2</int>
 									<double key="pointSize">30</double>
 								</object>
-								<object class="NSFont" key="IBUIFont" id="692035376">
+								<object class="NSFont" key="IBUIFont" id="884057918">
 									<string key="NSName">Helvetica-Bold</string>
 									<double key="NSSize">30</double>
 									<int key="NSfFlags">16</int>
@@ -132,7 +132,6 @@
 								<int key="NSvFlags">319</int>
 								<string key="NSFrame">{{304, 220}, {162, 72}}</string>
 								<reference key="NSSuperview" ref="613159573"/>
-								<reference key="NSNextKeyView"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<int key="IBUIContentHorizontalAlignment">0</int>
@@ -142,8 +141,8 @@
 								<reference key="IBUIHighlightedTitleColor" ref="74671699"/>
 								<reference key="IBUINormalTitleColor" ref="256703508"/>
 								<reference key="IBUINormalTitleShadowColor" ref="74671699"/>
-								<reference key="IBUIFontDescription" ref="856413099"/>
-								<reference key="IBUIFont" ref="692035376"/>
+								<reference key="IBUIFontDescription" ref="843843157"/>
+								<reference key="IBUIFont" ref="884057918"/>
 							</object>
 							<object class="IBUILabel" id="417008969">
 								<reference key="NSNextResponder" ref="613159573"/>
@@ -174,7 +173,7 @@
 								</object>
 							</object>
 						</array>
-						<string key="NSFrame">{{133.5, 350.5}, {500, 302}}</string>
+						<string key="NSFrame">{{133.5, 232}, {500, 302}}</string>
 						<reference key="NSSuperview" ref="123595793"/>
 						<reference key="NSNextKeyView" ref="892798174"/>
 						<object class="NSColor" key="IBUIBackgroundColor" id="553214630">

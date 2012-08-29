@@ -22,63 +22,103 @@
 #import "CommonMessageCenter.h"
 #import "AccountService.h"
 
+
+@interface FeedbackController()
+
+@property (assign, nonatomic) int rowOfShare;
+@property (assign, nonatomic) int rowOfAddWords;
+@property (assign, nonatomic) int rowOfReportBug;
+@property (assign, nonatomic) int rowOfFeedback;
+@property (assign, nonatomic) int rowOfMoreApp;
+@property (assign, nonatomic) int rowOfGiveReview;
+@property (assign, nonatomic) int rowOfAbout;
+@property (assign, nonatomic) int numberOfRows;
+
+@end
+
+
 @implementation FeedbackController
 @synthesize dataTableView;
 @synthesize TitleLabel;
 @synthesize backgroundImageView;
 
+@synthesize rowOfShare;
+@synthesize rowOfAddWords;
+@synthesize rowOfReportBug;
+@synthesize rowOfFeedback;
+@synthesize rowOfMoreApp;
+@synthesize rowOfGiveReview;
+@synthesize rowOfAbout;
+@synthesize numberOfRows;
 
 
 #pragma mark - Table dataSource ,table view delegate
-enum {
-    SHARE = 0,
-    ADD_WORDS,
-    REPORT_BUG,
-    FEEDBACK,
-    MORE_APP,
-    GIVE_REVIEW,
-    ABOUT,
-    FEEDBACK_COUNT
-};
+//enum {
+//    SHARE = 0,
+//    ADD_WORDS,
+//    REPORT_BUG,
+//    FEEDBACK,
+//    MORE_APP,
+//    GIVE_REVIEW,
+//    ABOUT,
+//    FEEDBACK_COUNT
+//};
+
+#define DRAW_TABLE_HEIGHT   ([DeviceDetection isIPAD] ? 700 : 350)
+#define DICE_TABLE_HEIGHT   ([DeviceDetection isIPAD] ? 600 : 300)
+
+- (void)initRowNumber
+{
+    if (isDrawApp()) {
+        rowOfShare = 0;
+        rowOfAddWords = 1;
+        rowOfReportBug = 2;
+        rowOfFeedback = 3;
+        rowOfMoreApp = 4;
+        rowOfGiveReview = 5;
+        rowOfAbout = 6;
+        numberOfRows = 7;
+        
+        dataTableView.frame = CGRectMake(dataTableView.frame.origin.x, dataTableView.frame.origin.y, dataTableView.frame.size.width, DRAW_TABLE_HEIGHT);
+    }else if (isDiceApp()) {
+        rowOfShare = 0;
+        rowOfReportBug = 1;
+        rowOfFeedback = 2;
+        rowOfMoreApp = 3;
+        rowOfGiveReview = 4;
+        rowOfAbout = 5;
+        numberOfRows = 6;
+        
+        rowOfAddWords = -1;
+        dataTableView.frame = CGRectMake(dataTableView.frame.origin.x, dataTableView.frame.origin.y, dataTableView.frame.size.width, DICE_TABLE_HEIGHT);
+    }
+}
 
 - (void)initCell:(UITableViewCell*)aCell withIndex:(int)anIndex
 {
     [aCell.textLabel setTextColor:[UIColor colorWithRed:0x6c/255.0 green:0x31/255.0 blue:0x08/255.0 alpha:1.0]];
-    switch (anIndex) {
-        case SHARE: {
-            
-            NSString* message = [NSString stringWithFormat:NSLS(@"kCoinsForShareToFriends"), [ConfigManager getShareFriendReward]];            
-            message = [NSString stringWithFormat:@"%@ (%@)", NSLS(@"kShare_to_friends"), message];
-            [aCell.textLabel setText:message];
-        }
-            break;
-        case REPORT_BUG: {
-            [aCell.textLabel setText:NSLS(@"kReport_problems")];
-        }
-            break;
-        case FEEDBACK: {
-            [aCell.textLabel setText:NSLS(@"kGive_some_advice")];
-        }
-            break;
-        case ABOUT: {
-            [aCell.textLabel setText:NSLS(@"kAbout_us")];
-        }
-            break;
-        case MORE_APP: {
-            [aCell.textLabel setText:NSLS(@"kMore_apps")];
-        }
-            break;
-        case GIVE_REVIEW: {
-            [aCell.textLabel setText:NSLS(@"kGive_a_5-star_review")];
-        }
-            break;
-        case ADD_WORDS: {
-            [aCell.textLabel setText:NSLS(@"kAddWords")];
-        }
-            break;
-        default:
-            break;
-    }
+    
+    if (anIndex == rowOfShare) {
+        NSString* message = [NSString stringWithFormat:NSLS(@"kCoinsForShareToFriends"), [ConfigManager getShareFriendReward]];            
+        message = [NSString stringWithFormat:@"%@ (%@)", NSLS(@"kShare_to_friends"), message];
+        [aCell.textLabel setText:message];
+    } 
+    else if (anIndex == rowOfAddWords) {
+        [aCell.textLabel setText:NSLS(@"kAddWords")];
+    } 
+    else if (anIndex == rowOfReportBug) {
+        [aCell.textLabel setText:NSLS(@"kReport_problems")];
+    } else if (anIndex == rowOfFeedback) {
+        [aCell.textLabel setText:NSLS(@"kGive_some_advice")];
+    } else if (anIndex == rowOfMoreApp) {
+        [aCell.textLabel setText:NSLS(@"kMore_apps")];
+    } else if (anIndex == rowOfGiveReview) {
+        [aCell.textLabel setText:NSLS(@"kGive_a_5-star_review")];
+    } else if (anIndex == rowOfAbout) {
+        [aCell.textLabel setText:NSLS(@"kAbout_us")];
+    } 
+    
+    
     if ([DeviceDetection isIPAD]) {
         [aCell.textLabel setFont:[UIFont systemFontOfSize:32]];
     } else {
@@ -114,24 +154,41 @@ enum {
     if (buttonIndex == actionSheet.cancelButtonIndex) {
         return;
     }
+    
+    
+    NSString *shareBodyModel =nil;
+    if (isDrawApp()) {
+        shareBodyModel = NSLS(@"kShare_message_body");
+    }else if (isDiceApp()) {
+        shareBodyModel = NSLS(@"kDice_share_message_body");
+    }
+    
+    NSString *shareBody = [NSString stringWithFormat:shareBodyModel, NSLocalizedStringFromTable(@"CFBundleDisplayName", @"InfoPlist", @""),[UIUtils getAppLink:[ConfigManager appId]]];
+    
     switch (buttonIndex) {
         case SHARE_VIA_SMS: {
-            [self sendSms:nil body:[NSString stringWithFormat:NSLS(@"kShare_message_body"), NSLocalizedStringFromTable(@"CFBundleDisplayName", @"InfoPlist", @""),[UIUtils getAppLink:[ConfigManager appId]]]];
+            [self sendSms:nil body:shareBody];
         } break;
         case SHARE_VIA_EMAIL: {
-            [self sendEmailTo:nil ccRecipients:nil bccRecipients:nil subject:NSLS(@"kEmail_subject") body:[NSString stringWithFormat:NSLS(@"kShare_message_body"), NSLocalizedStringFromTable(@"CFBundleDisplayName", @"InfoPlist", @""),[UIUtils getAppLink:[ConfigManager appId]]] isHTML:NO delegate:self];
+            NSString *emailSubject = nil;
+            if (isDrawApp()) {
+                emailSubject = NSLS(@"kEmail_subject");
+            }else if (isDiceApp()) {
+                emailSubject = NSLS(@"kDice_email_subject");
+            }
+            [self sendEmailTo:nil ccRecipients:nil bccRecipients:nil subject:emailSubject body:shareBody isHTML:NO delegate:self];
         } break;
         case SHARE_VIA_FACEBOOK: {
             if ([[UserManager defaultManager] hasBindSinaWeibo]){
-                [[SinaSNSService defaultService] publishWeibo:[NSString stringWithFormat:NSLS(@"kShare_message_body"), NSLocalizedStringFromTable(@"CFBundleDisplayName", @"InfoPlist", @""),[UIUtils getAppLink:[ConfigManager appId]]] delegate:self];
+                [[SinaSNSService defaultService] publishWeibo:shareBody delegate:self];
             }
             
             if ([[UserManager defaultManager] hasBindQQWeibo]){
-                [[QQWeiboService defaultService] publishWeibo:[NSString stringWithFormat:NSLS(@"kShare_message_body"), NSLocalizedStringFromTable(@"CFBundleDisplayName", @"InfoPlist", @""),[UIUtils getAppLink:[ConfigManager appId]]] delegate:self];
+                [[QQWeiboService defaultService] publishWeibo:shareBody delegate:self];
             }
             
             if ([[UserManager defaultManager] hasBindFacebook]){
-                [[FacebookSNSService defaultService] publishWeibo:[NSString stringWithFormat:NSLS(@"kShare_message_body"), NSLocalizedStringFromTable(@"CFBundleDisplayName", @"InfoPlist", @""),[UIUtils getAppLink:[ConfigManager appId]]] delegate:self];
+                [[FacebookSNSService defaultService] publishWeibo:shareBody delegate:self];
             } 
         } break;
         default:
@@ -141,82 +198,82 @@ enum {
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    switch (indexPath.row) {
-        case SHARE: {
-            UIActionSheet* shareOptions = [[UIActionSheet alloc] initWithTitle:NSLS(@"kShare_Options") 
-                                                                      delegate:self 
-                                                             cancelButtonTitle:nil 
-                                                        destructiveButtonTitle:NSLS(@"kShare_via_SMS") 
-                                                             otherButtonTitles:NSLS(@"kShare_via_Email"), 
-                                           nil];
-            
-            int shareCount = 2;
-            
-            if ([[UserManager defaultManager] hasBindSinaWeibo]){
-                shareCount ++;
-                [shareOptions addButtonWithTitle:NSLS(@"kShare_via_Sina_weibo")];
-            }
-            
-            if ([[UserManager defaultManager] hasBindQQWeibo]){
-                shareCount ++;
-                [shareOptions addButtonWithTitle:NSLS(@"kShare_via_tencent_weibo")];
-            }
-            
-            if ([[UserManager defaultManager] hasBindFacebook]){
-                shareCount ++;
-                [shareOptions addButtonWithTitle:NSLS(@"kShare_via_Facebook")];
-            } 
-            
-            if (![DeviceDetection isIPAD]) {
-                [shareOptions addButtonWithTitle:NSLS(@"kCancel")];
-                [shareOptions setCancelButtonIndex:shareCount];
-            }
-            [shareOptions showInView:self.view];
-            [shareOptions release];
+    if (indexPath.row == rowOfShare) {
+        UIActionSheet* shareOptions = [[UIActionSheet alloc] initWithTitle:NSLS(@"kShare_Options") 
+                                                                  delegate:self 
+                                                         cancelButtonTitle:nil 
+                                                    destructiveButtonTitle:NSLS(@"kShare_via_SMS") 
+                                                         otherButtonTitles:NSLS(@"kShare_via_Email"), 
+                                       nil];
+        
+        int shareCount = 2;
+        
+        if ([[UserManager defaultManager] hasBindSinaWeibo]){
+            shareCount ++;
+            [shareOptions addButtonWithTitle:NSLS(@"kShare_via_Sina_weibo")];
         }
-            break;
-        case FEEDBACK: {
-            ReportController* rc = [[ReportController alloc] initWithType:SUBMIT_FEEDBACK];
-            [self.navigationController pushViewController:rc animated:YES];
-            [rc release];
-        } break;
-        case REPORT_BUG: {
-            ReportController* rc = [[ReportController alloc] initWithType:SUBMIT_BUG];
-            [self.navigationController pushViewController:rc animated:YES];
-            [rc release];
+        
+        if ([[UserManager defaultManager] hasBindQQWeibo]){
+            shareCount ++;
+            [shareOptions addButtonWithTitle:NSLS(@"kShare_via_tencent_weibo")];
         }
-            break;
-        case ABOUT: {
-            AboutUsController* rc = [[AboutUsController alloc] init];
-            [self.navigationController pushViewController:rc animated:YES];
-            [rc release];
+        
+        if ([[UserManager defaultManager] hasBindFacebook]){
+            shareCount ++;
+            [shareOptions addButtonWithTitle:NSLS(@"kShare_via_Facebook")];
+        } 
+        
+        if (![DeviceDetection isIPAD]) {
+            [shareOptions addButtonWithTitle:NSLS(@"kCancel")];
+            [shareOptions setCancelButtonIndex:shareCount];
         }
-            break;
-        case MORE_APP: {
-            UFPController* rc = [[UFPController alloc] init];
-            [self.navigationController pushViewController:rc animated:YES];
-            [rc release];
-        }
-            break;
-        case GIVE_REVIEW: {
-            [UIUtils gotoReview:[ConfigManager appId]];
-        }
-            break;
-        case ADD_WORDS: {
-            ReportController* rc = [[ReportController alloc] initWithType:ADD_WORD];
-            [self.navigationController pushViewController:rc animated:YES];
-            [rc release];
-        }
-            break;
-        default:
-            break;
+        [shareOptions showInView:self.view];
+        [shareOptions release];
+    } 
+    
+    else if (indexPath.row  == rowOfAddWords) {
+        ReportController* rc = [[ReportController alloc] initWithType:ADD_WORD];
+        [self.navigationController pushViewController:rc animated:YES];
+        [rc release];
+    } 
+    
+    else if (indexPath.row  == rowOfReportBug) {
+        ReportController* rc = [[ReportController alloc] initWithType:SUBMIT_BUG];
+        [self.navigationController pushViewController:rc animated:YES];
+        [rc release];
     }
+    
+    else if (indexPath.row  == rowOfFeedback) {
+        ReportController* rc = [[ReportController alloc] initWithType:SUBMIT_FEEDBACK];
+        [self.navigationController pushViewController:rc animated:YES];
+        [rc release];
+    } 
+    
+    else if (indexPath.row  == rowOfMoreApp) {
+        UFPController* rc = [[UFPController alloc] init];
+        [self.navigationController pushViewController:rc animated:YES];
+        [rc release];
+    } 
+    
+    else if (indexPath.row  == rowOfGiveReview) {
+        PPDebug(@"<FeedbackController>appId :%@", [ConfigManager appId]);
+        [UIUtils gotoReview:[ConfigManager appId]];
+    } 
+    
+    else if (indexPath.row  == rowOfAbout) {
+        AboutUsController* rc = [[AboutUsController alloc] init];
+        [self.navigationController pushViewController:rc animated:YES];
+        [rc release];
+    } 
+    
+    
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return FEEDBACK_COUNT;
+    //return FEEDBACK_COUNT;
+    return  numberOfRows;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -261,6 +318,9 @@ enum {
     
     [super viewDidLoad];
     [self.TitleLabel setText:NSLS(@"kFeedback")];
+    
+    
+    [self initRowNumber];
     // Do any additional setup after loading the view from its nib.
 }
 

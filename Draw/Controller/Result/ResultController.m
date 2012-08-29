@@ -394,7 +394,7 @@
     if (self.adView == nil){
         self.adView = [[AdService defaultService] createAdInView:self 
                                                            frame:CGRectMake(0, 47, 320, 50) 
-                                                       iPadFrame:CGRectMake(224, 780, 320, 50)
+                                                       iPadFrame:CGRectMake(0, 800, 320, 50)
                                                          useLmAd:NO];   
     }        
 }
@@ -528,12 +528,31 @@
                                           actionName:DB_FIELD_ACTION_SAVE_TIMES];
     }
     
-    [[ShareService defaultService] shareWithImage:_image drawUserId:_drawUserId isDrawByMe:_isMyPaint drawWord:wordText];    
+    [[ShareService defaultService] shareWithImage:_image
+                                       drawUserId:_drawUserId 
+                                       isDrawByMe:_isMyPaint
+                                         drawWord:wordText];    
     
-    [[DrawDataService defaultService] saveActionList:self.drawActionList userId:_drawUserId nickName:_drawUserNickName isMyPaint:_isMyPaint word:self.wordText image:_image viewController:self];
+    [[DrawDataService defaultService] saveActionList:self.drawActionList 
+                                              userId:_drawUserId 
+                                            nickName:_drawUserNickName 
+                                           isMyPaint:_isMyPaint 
+                                                word:self.wordText 
+                                               image:_image 
+                                            delegate:self];
     self.saveButton.enabled = NO;
     self.saveButton.selected = YES;
 }
+
+- (void)didSaveOpus:(BOOL)succ
+{
+    if (succ) {
+        [self popupMessage:NSLS(@"kSaveOpusOK") title:nil];
+    }else{
+        [self popupMessage:NSLS(@"kSaveImageFail") title:nil];
+    }
+}
+
 
 - (IBAction)clickExitButton:(id)sender {
     

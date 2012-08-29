@@ -16,6 +16,7 @@
 @implementation AboutUsController
 @synthesize aboutTitle;
 @synthesize contentTextView;
+@synthesize backgroundImageView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -29,6 +30,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self.backgroundImageView setImage:[UIImage imageNamed:[GameApp background]]];
+    
     [self.aboutTitle setText:NSLS(@"kAbout_us_title")];
     NSString *infoString =  @"Program By\n\
 -------------------------------\n\
@@ -56,6 +59,7 @@ Roy He\n\
 {
     [self setAboutTitle:nil];
     [self setContentTextView:nil];
+    [self setBackgroundImageView:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -70,6 +74,7 @@ Roy He\n\
 - (void)dealloc {
     [aboutTitle release];
     [contentTextView release];
+    [backgroundImageView release];
     [super dealloc];
 }
 @end

@@ -240,12 +240,6 @@
 		A4D3B15B1560E4B50013C882 /* ExpressionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A4D3B1591560E4B50013C882 /* ExpressionManager.m */; };
 		A4D3B15E1560E4F80013C882 /* MessageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A4D3B15D1560E4F80013C882 /* MessageManager.m */; };
 		A4EBF02E1575CB0700B088A0 /* message_popup@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4EBF02D1575CB0700B088A0 /* message_popup@2x.png */; };
-		A4EF825415EDAD720014643F /* callDice_2_1_F.m4a in Resources */ = {isa = PBXBuildFile; fileRef = A4EF824E15EDAD720014643F /* callDice_2_1_F.m4a */; };
-		A4EF825515EDAD720014643F /* callDice_2_1_M.m4a in Resources */ = {isa = PBXBuildFile; fileRef = A4EF824F15EDAD720014643F /* callDice_2_1_M.m4a */; };
-		A4EF825615EDAD720014643F /* callDice_2_2_F.m4a in Resources */ = {isa = PBXBuildFile; fileRef = A4EF825015EDAD720014643F /* callDice_2_2_F.m4a */; };
-		A4EF825715EDAD720014643F /* callDice_2_2_M.m4a in Resources */ = {isa = PBXBuildFile; fileRef = A4EF825115EDAD720014643F /* callDice_2_2_M.m4a */; };
-		A4EF825815EDAD720014643F /* callDice_2_3_F.m4a in Resources */ = {isa = PBXBuildFile; fileRef = A4EF825215EDAD720014643F /* callDice_2_3_F.m4a */; };
-		A4EF825915EDAD720014643F /* callDice_2_3_M.m4a in Resources */ = {isa = PBXBuildFile; fileRef = A4EF825315EDAD720014643F /* callDice_2_3_M.m4a */; };
 		C20118F115B69312001C56A6 /* h_shop@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C20118F015B69312001C56A6 /* h_shop@2x.png */; };
 		C20D4B1115DE45B100074885 /* CommonDiceDialog.xib in Resources */ = {isa = PBXBuildFile; fileRef = C20D4B1015DE45B100074885 /* CommonDiceDialog.xib */; };
 		C20D4B2515E1D78800074885 /* CommonInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = C20D4B2415E1D78800074885 /* CommonInfoView.m */; };
@@ -774,6 +768,10 @@
 		CA4FF001152AEFDF00F0AC88 /* ColorGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = CA4FF000152AEFDF00F0AC88 /* ColorGroup.m */; };
 		CA4FF00A152AF21900F0AC88 /* ColorShopCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA4FF008152AF21900F0AC88 /* ColorShopCell.m */; };
 		CA4FF00B152AF21900F0AC88 /* ColorShopCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA4FF009152AF21900F0AC88 /* ColorShopCell.xib */; };
+		CA501C4815ECFB0600D41161 /* FeedDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA501C4615ECFB0600D41161 /* FeedDetailCell.m */; };
+		CA501C4915ECFB0600D41161 /* UserInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA501C4715ECFB0600D41161 /* UserInfoCell.xib */; };
+		CA501C4B15ECFE6400D41161 /* CommentHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA501C4A15ECFE6400D41161 /* CommentHeaderView.xib */; };
+		CA501C4D15ECFEE200D41161 /* DrawInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA501C4C15ECFEE100D41161 /* DrawInfoCell.xib */; };
 		CA50A01515B938B700CAB603 /* UserStatusService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA50A01415B9389600CAB603 /* UserStatusService.m */; };
 		CA50A01715BA5BF400CAB603 /* ResultController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA50A01615BA5BF300CAB603 /* ResultController~ipad.xib */; };
 		CA51816D15A2D79700AD5A78 /* CustomStatueBar.m in Sources */ = {isa = PBXBuildFile; fileRef = CA51816C15A2D79700AD5A78 /* CustomStatueBar.m */; };
@@ -1025,6 +1023,7 @@
 		EA18012E15E77DA100DF9440 /* ChatViewCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA18012D15E77DA100DF9440 /* ChatViewCell~ipad.xib */; };
 		EA18147115E2427C00CAF901 /* DiceRoomListCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA18146F15E2427C00CAF901 /* DiceRoomListCell~ipad.xib */; };
 		EA18147215E2427C00CAF901 /* DiceRoomListController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA18147015E2427C00CAF901 /* DiceRoomListController~ipad.xib */; };
+		EA6916BE15ECCF4C0001CB5A /* DiceSettingView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA6916BD15ECCF4C0001CB5A /* DiceSettingView~ipad.xib */; };
 		EA9A315315E9D5CE0059288A /* DiceHelpView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA9A315215E9D5CE0059288A /* DiceHelpView~ipad.xib */; };
 		EAA6A13115CA23550094B122 /* DicesResultView.m in Sources */ = {isa = PBXBuildFile; fileRef = EAA6A12F15CA23550094B122 /* DicesResultView.m */; };
 		EAE0D145155FB72400827DF9 /* no_s@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EAE0D143155FB72400827DF9 /* no_s@2x.png */; };
@@ -1402,12 +1401,6 @@
 		A4D3B15C1560E4F80013C882 /* MessageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageManager.h; sourceTree = "<group>"; };
 		A4D3B15D1560E4F80013C882 /* MessageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageManager.m; sourceTree = "<group>"; };
 		A4EBF02D1575CB0700B088A0 /* message_popup@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "message_popup@2x.png"; sourceTree = "<group>"; };
-		A4EF824E15EDAD720014643F /* callDice_2_1_F.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = callDice_2_1_F.m4a; sourceTree = "<group>"; };
-		A4EF824F15EDAD720014643F /* callDice_2_1_M.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = callDice_2_1_M.m4a; sourceTree = "<group>"; };
-		A4EF825015EDAD720014643F /* callDice_2_2_F.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = callDice_2_2_F.m4a; sourceTree = "<group>"; };
-		A4EF825115EDAD720014643F /* callDice_2_2_M.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = callDice_2_2_M.m4a; sourceTree = "<group>"; };
-		A4EF825215EDAD720014643F /* callDice_2_3_F.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = callDice_2_3_F.m4a; sourceTree = "<group>"; };
-		A4EF825315EDAD720014643F /* callDice_2_3_M.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = callDice_2_3_M.m4a; sourceTree = "<group>"; };
 		C20118F015B69312001C56A6 /* h_shop@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "h_shop@2x.png"; path = "Images/h_shop@2x.png"; sourceTree = "<group>"; };
 		C20D4B1015DE45B100074885 /* CommonDiceDialog.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommonDiceDialog.xib; sourceTree = "<group>"; };
 		C20D4B2315E1D78800074885 /* CommonInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonInfoView.h; sourceTree = "<group>"; };
@@ -2252,6 +2245,11 @@
 		CA4FF007152AF21900F0AC88 /* ColorShopCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorShopCell.h; sourceTree = "<group>"; };
 		CA4FF008152AF21900F0AC88 /* ColorShopCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorShopCell.m; sourceTree = "<group>"; };
 		CA4FF009152AF21900F0AC88 /* ColorShopCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ColorShopCell.xib; sourceTree = "<group>"; };
+		CA501C4515ECFB0600D41161 /* FeedDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedDetailCell.h; sourceTree = "<group>"; };
+		CA501C4615ECFB0600D41161 /* FeedDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedDetailCell.m; sourceTree = "<group>"; };
+		CA501C4715ECFB0600D41161 /* UserInfoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserInfoCell.xib; sourceTree = "<group>"; };
+		CA501C4A15ECFE6400D41161 /* CommentHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommentHeaderView.xib; sourceTree = "<group>"; };
+		CA501C4C15ECFEE100D41161 /* DrawInfoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DrawInfoCell.xib; sourceTree = "<group>"; };
 		CA50A01315B9388A00CAB603 /* UserStatusService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserStatusService.h; sourceTree = "<group>"; };
 		CA50A01415B9389600CAB603 /* UserStatusService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserStatusService.m; sourceTree = "<group>"; };
 		CA50A01615BA5BF300CAB603 /* ResultController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ResultController~ipad.xib"; sourceTree = "<group>"; };
@@ -2653,6 +2651,7 @@
 		EA18012D15E77DA100DF9440 /* ChatViewCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ChatViewCell~ipad.xib"; sourceTree = "<group>"; };
 		EA18146F15E2427C00CAF901 /* DiceRoomListCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "DiceRoomListCell~ipad.xib"; sourceTree = "<group>"; };
 		EA18147015E2427C00CAF901 /* DiceRoomListController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "DiceRoomListController~ipad.xib"; sourceTree = "<group>"; };
+		EA6916BD15ECCF4C0001CB5A /* DiceSettingView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "DiceSettingView~ipad.xib"; sourceTree = "<group>"; };
 		EA9A315215E9D5CE0059288A /* DiceHelpView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "DiceHelpView~ipad.xib"; sourceTree = "<group>"; };
 		EAA6A12E15CA23550094B122 /* DicesResultView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DicesResultView.h; sourceTree = "<group>"; };
 		EAA6A12F15CA23550094B122 /* DicesResultView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DicesResultView.m; sourceTree = "<group>"; };
@@ -5435,6 +5434,22 @@
 			path = StoreKit;
 			sourceTree = "<group>";
 		};
+		CA501C4415ECFAAB00D41161 /* FeedDetailCells */ = {
+			isa = PBXGroup;
+			children = (
+				CAD95C5F15889664006EAC41 /* CommentCell.h */,
+				CAD95C6015889665006EAC41 /* CommentCell.m */,
+				CAD95C6115889665006EAC41 /* CommentCell.xib */,
+				CA7BB846158F210900F38626 /* CommentCell~ipad.xib */,
+				CA501C4515ECFB0600D41161 /* FeedDetailCell.h */,
+				CA501C4615ECFB0600D41161 /* FeedDetailCell.m */,
+				CA501C4715ECFB0600D41161 /* UserInfoCell.xib */,
+				CA501C4C15ECFEE100D41161 /* DrawInfoCell.xib */,
+				CA501C4A15ECFE6400D41161 /* CommentHeaderView.xib */,
+			);
+			name = FeedDetailCells;
+			sourceTree = "<group>";
+		};
 		CA51816A15A2D79700AD5A78 /* CustomStatueBar */ = {
 			isa = PBXGroup;
 			children = (
@@ -5758,6 +5773,7 @@
 		CA7C7E111587237B00406BFB /* Feed */ = {
 			isa = PBXGroup;
 			children = (
+				CA501C4415ECFAAB00D41161 /* FeedDetailCells */,
 				CA7C7E12158723AE00406BFB /* FeedController.h */,
 				CA7C7E13158723AE00406BFB /* FeedController.m */,
 				CA7C7E14158723AE00406BFB /* FeedController.xib */,
@@ -5770,10 +5786,6 @@
 				CAD95C5B15889611006EAC41 /* FeedCell.m */,
 				CAD95C5C15889611006EAC41 /* FeedCell.xib */,
 				CA7BB847158F210900F38626 /* FeedCell~ipad.xib */,
-				CAD95C5F15889664006EAC41 /* CommentCell.h */,
-				CAD95C6015889665006EAC41 /* CommentCell.m */,
-				CAD95C6115889665006EAC41 /* CommentCell.xib */,
-				CA7BB846158F210900F38626 /* CommentCell~ipad.xib */,
 				CA04B160159AE47E00D7ACD1 /* UserFeedController.h */,
 				CA04B161159AE47E00D7ACD1 /* UserFeedController.m */,
 				CA04B162159AE47F00D7ACD1 /* UserFeedController.xib */,
@@ -6225,6 +6237,7 @@
 				CACF87A115EB4D2D003FA6B6 /* DiceSettingView.h */,
 				CACF87A215EB4D2D003FA6B6 /* DiceSettingView.m */,
 				CACF87A315EB4D2D003FA6B6 /* DiceSettingView.xib */,
+				EA6916BD15ECCF4C0001CB5A /* DiceSettingView~ipad.xib */,
 			);
 			path = DiceSettingView;
 			sourceTree = "<group>";
@@ -6411,12 +6424,6 @@
 		EA177C3315E62AA10083E4B9 /* voice */ = {
 			isa = PBXGroup;
 			children = (
-				A4EF824E15EDAD720014643F /* callDice_2_1_F.m4a */,
-				A4EF824F15EDAD720014643F /* callDice_2_1_M.m4a */,
-				A4EF825015EDAD720014643F /* callDice_2_2_F.m4a */,
-				A4EF825115EDAD720014643F /* callDice_2_2_M.m4a */,
-				A4EF825215EDAD720014643F /* callDice_2_3_F.m4a */,
-				A4EF825315EDAD720014643F /* callDice_2_3_M.m4a */,
 				EA177C3415E62AA10083E4B9 /* message_1_F.m4a */,
 				EA177C3515E62AA10083E4B9 /* message_2_F.m4a */,
 				EA177C3615E62AA10083E4B9 /* message_3_F.m4a */,
@@ -7089,12 +7096,10 @@
 				CACF878E15EB4543003FA6B6 /* audio_on@2x.png in Resources */,
 				CACF878F15EB4543003FA6B6 /* audio_off@2x.png in Resources */,
 				CACF87A515EB4D2D003FA6B6 /* DiceSettingView.xib in Resources */,
-				A4EF825415EDAD720014643F /* callDice_2_1_F.m4a in Resources */,
-				A4EF825515EDAD720014643F /* callDice_2_1_M.m4a in Resources */,
-				A4EF825615EDAD720014643F /* callDice_2_2_F.m4a in Resources */,
-				A4EF825715EDAD720014643F /* callDice_2_2_M.m4a in Resources */,
-				A4EF825815EDAD720014643F /* callDice_2_3_F.m4a in Resources */,
-				A4EF825915EDAD720014643F /* callDice_2_3_M.m4a in Resources */,
+				EA6916BE15ECCF4C0001CB5A /* DiceSettingView~ipad.xib in Resources */,
+				CA501C4915ECFB0600D41161 /* UserInfoCell.xib in Resources */,
+				CA501C4B15ECFE6400D41161 /* CommentHeaderView.xib in Resources */,
+				CA501C4D15ECFEE200D41161 /* DrawInfoCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7595,6 +7600,7 @@
 				CA67B87A15E89B42002050DB /* SweetCandyApp.m in Sources */,
 				CA67B87D15E89FB0002050DB /* GameApp.m in Sources */,
 				CACF87A415EB4D2D003FA6B6 /* DiceSettingView.m in Sources */,
+				CA501C4815ECFB0600D41161 /* FeedDetailCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

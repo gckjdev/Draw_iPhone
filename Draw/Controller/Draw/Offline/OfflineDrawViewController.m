@@ -577,7 +577,7 @@ enum{
                                                isMyPaint:YES    
                                                     word:[_word text]
                                                    image:[drawView createImage]
-                                          viewController:self];
+                                                delegate:self];
 
         
         UIViewController *superController = [self superFeedDetailController];
@@ -619,13 +619,20 @@ enum{
                                                isMyPaint:YES    
                                                     word:[_word text]
                                                    image:[drawView createImage]
-                                          viewController:self];
+                                                delegate:self];
         [self quit];
     }
 }
 
 
-
+- (void)didSaveOpus:(BOOL)succ
+{
+    if (succ) {
+        [self popupMessage:NSLS(@"kSaveOpusOK") title:nil];
+    }else{
+        [self popupMessage:NSLS(@"kSaveImageFail") title:nil];
+    }
+}
 
 
 - (void)didStartedTouch:(Paint *)paint

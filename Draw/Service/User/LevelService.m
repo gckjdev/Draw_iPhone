@@ -19,7 +19,7 @@
 
 #define KEY_LEVEL           @"USER_KEY_LEVEL"
 #define KEY_EXP             @"USER_KEY_EXPERIENCE"
-#define MAX_LEVEL           50
+#define MAX_LEVEL           99
 #define FIRST_LEVEL_EXP     60
 #define EXP_INC_RATE        1.08
 
@@ -61,6 +61,9 @@ static LevelService* _defaultLevelService;
     for (int i = 0; i <= MAX_LEVEL; i++) {
         if (i <= 5) {            
             lastLevelUpExp = FIRST_LEVEL_EXP*i;
+            exp = exp+lastLevelUpExp;
+        } else if (i > 90) {
+            lastLevelUpExp = (int)lastLevelUpExp*2;
             exp = exp+lastLevelUpExp;
         } else {
             lastLevelUpExp = (int)lastLevelUpExp*EXP_INC_RATE;

@@ -25,13 +25,9 @@
 #import "DiceImageManager.h"
 #import "FontButton.h"
 
-#define RUN_OUT_TIME 0.2
-#define RUN_IN_TIME 0.4
-
 @implementation DiceUserInfoView
 @synthesize backgroundImageView;
 @synthesize mask;
-@synthesize contentView;
 @synthesize userName;
 @synthesize snsTagImageView;
 @synthesize genderLabel;
@@ -55,7 +51,6 @@
 - (void)dealloc {
     [backgroundImageView release];
     [mask release];
-    [contentView release];
     [userName release];
     [snsTagImageView release];
     [genderLabel release];
@@ -77,8 +72,6 @@
 
 }
 
-#define AVATAR_FRAME [DeviceDetection isIPAD]?CGRectMake(43, 100, 100, 91):CGRectMake(18, 46, 42, 42)
-#define LEVEL_LABEL_FRAME [DeviceDetection isIPAD]?CGRectMake(0, 0, 30, 21):CGRectMake(0, 0, 60, 45)
 - (void)initAvatar
 {
 
@@ -176,34 +169,6 @@
     
 }
 
-- (void)initViewWithPBGameUser:(PBGameUser*)aUser
-{  
-//    NSString* nickName = nil;
-//    aUser.snsUsersList
-//    if (aUser.nickName && [aUser.nickName length] != 0) {
-//        nickName = aUser.nickName;
-//    }
-//    else if (aFriend.sinaNick && [aFriend.sinaNick length] != 0){
-//        nickName = aFriend.sinaNick;
-//    }
-//    else if (aFriend.qqNick && [aFriend.qqNick length] != 0){
-//        nickName = aFriend.qqNick;
-//    }
-//    else if (aFriend.facebookNick && [aFriend.facebookNick length] != 0){
-//        nickName = aFriend.facebookNick;
-//    }
-    
-    [self initViewWithUserId:aUser.userId 
-                    nickName:aUser.nickName 
-                      avatar:aUser.avatar 
-                      gender:(aUser.gender?@"m":@"f")
-                    location:aUser.location 
-                       level:aUser.userLevel
-                     hasSina:NO
-                       hasQQ:NO
-                 hasFacebook:NO 
-     ];
-}
 
 - (void)initViewWithUserId:(NSString*)aUserId 
                   nickName:(NSString*)nickName 
@@ -245,6 +210,22 @@
     return view;
 }
 
++ (void)showUser:(PBGameUser*)aUser 
+      infoInView:(PPViewController*)superController
+{
+    NSString* aGender = aUser.gender?@"m":@"f";
+    [self showUser:aUser.userId 
+          nickName:aUser.nickName 
+            avatar:aUser.avatar 
+            gender:aGender 
+          location:aUser.location 
+             level:aUser.userLevel 
+           hasSina:NO 
+             hasQQ:NO 
+       hasFacebook:NO 
+        infoInView:superController];
+}
+
 
 + (void)showUser:(NSString*)userId 
         nickName:(NSString*)nickName 
@@ -276,26 +257,9 @@
     
 }
 
-- (void)startRunOutAnimation
-{
-    CAAnimation *runOut = [AnimationManager scaleAnimationWithFromScale:1 toScale:0.1 duration:RUN_OUT_TIME delegate:self removeCompeleted:NO];
-    [runOut setValue:@"runOut" forKey:@"AnimationKey"];
-    [self.contentView.layer addAnimation:runOut forKey:@"runOut"];
-    
-}
-
-- (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag
-{
-    NSString* value = [anim valueForKey:@"AnimationKey"];
-    if ([value isEqualToString:@"runOut"]) {
-        [self setHidden:YES];
-        [self removeFromSuperview];
-    }
-}
-
 - (IBAction)clickMask:(id)sender
 {
-    [self startRunOutAnimation];
+    [self disappear];
 }
 
 - (IBAction)clickFollowButton:(id)sender
@@ -365,7 +329,7 @@
     }
     [self resetUserInfo];
     [self.superViewController hideActivity];
-    [self.superViewController.view addSubview:self];
+    [self showInView:self.superViewController.view];
 }
 
 

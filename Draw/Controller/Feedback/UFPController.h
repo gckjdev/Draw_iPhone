@@ -16,4 +16,5 @@
 @property (retain, nonatomic) IBOutlet UILabel *titleLabel;
 @property (retain, nonatomic) IBOutlet UMUFPTableView* mTableView;
 @property (retain, nonatomic) NSArray* mPromoterDatas;
+@property (retain, nonatomic) IBOutlet UIImageView *backgroundImageView;
 @end

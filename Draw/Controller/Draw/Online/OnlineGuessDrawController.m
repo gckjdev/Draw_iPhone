@@ -230,7 +230,7 @@
             
             NSString *ans = [self getAnswer];
             if ([ans length] == [self.word.text length]) {
-                [self commitAnswer:ans];;
+                [self commitAnswer:ans];
             } 
         }
     }
