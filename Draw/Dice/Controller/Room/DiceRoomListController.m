@@ -76,7 +76,7 @@
 {
     if ([_accountService getBalance] <= DICE_THRESHOLD_COIN) {
         CommonDialog* dialog = [CommonDialog createDialogWithTitle:nil message:NSLS(@"kCoinsNotEnough") style:CommonDialogStyleDoubleButton delegate:self theme:CommonDialogThemeDice];
-        [dialog showInView:self];
+        [dialog showInView:self.view];
         return NO;
     }
     return YES;
@@ -135,10 +135,12 @@
 
 - (void)connectServer
 {
+    NSString* address = [ConfigManager defaultDiceServer];
+    int port = [ConfigManager defaultDicePort];
     
     //TODO: set server address from config manager
-    [[DiceGameService defaultService] setServerAddress:@"106.187.89.232"];
-    [[DiceGameService defaultService] setServerPort:8018];
+    [[DiceGameService defaultService] setServerAddress:address];
+    [[DiceGameService defaultService] setServerPort:port];
     
     
 //    [[DiceGameService defaultService] setServerAddress:@"192.168.1.198"];
