@@ -16,7 +16,7 @@
 		<string>new_icon_ipad2.png</string>
 	</array>
 	<key>CFBundleIdentifier</key>
-	<string>com.orange.draw</string>
+	<string>com.orange.dice</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
@@ -42,6 +42,8 @@
 	<string>4.3</string>
 	<key>CFChannelId</key>
 	<string>91</string>
+	<key>CFWordBaseVersion</key>
+	<integer>1</integer>
 	<key>Icon files Draw</key>
 	<array>
 		<string>57.png</string>
@@ -64,7 +66,5 @@
 		<string>UIInterfaceOrientationLandscapeRight</string>
 		<string>UIInterfaceOrientationPortraitUpsideDown</string>
 	</array>
-	<key>CFWordBaseVersion</key>
-	<integer>1</integer>
 </dict>
 </plist>

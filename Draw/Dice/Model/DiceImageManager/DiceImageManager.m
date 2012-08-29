@@ -200,7 +200,7 @@ static DiceImageManager *_defaultManager = nil;
 }
 - (UIImage *)helpBackgroundImage
 {
-    return [UIImage imageNamed:@"dice_help_bg.png"];
+    return [UIImage strectchableImageName:@"dice_help_bg.png" leftCapWidth:50 topCapHeight:50];
 }
 - (UIImage *)inputBackgroundImage
 {
@@ -248,5 +248,12 @@ static DiceImageManager *_defaultManager = nil;
 {
     return [UIImage imageNamed:@"audio_off.png"];
 }
-
+- (UIImage *)maleImage
+{
+    return [UIImage imageNamed:@"maleImage.png"];
+}
+- (UIImage *)femaleImage
+{
+    return [UIImage imageNamed:@"femaleImage.png"];
+}
 @end

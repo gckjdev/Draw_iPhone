@@ -322,7 +322,10 @@ static AdService* _defaultService;
 
 - (NSString *)adMoGoApplicationKey
 {
-    return @"ad29f0cf8361452db392ffdef8057eff";
+    return [GameApp mangoAdPublisherId];
+    
+//    return @"ad29f0cf8361452db392ffdef8057eff";
+    
     
 //    return @"d5d65eff49774712aa2aeef656b4c600"; // DoMob Test ID
 }
@@ -504,13 +507,13 @@ static AdService* _defaultService;
     [AderSDK setDelegate:self];    
     if ([DeviceDetection isIPAD]){
         [AderSDK startAdService:superView
-                          appID:@"3b47607e44f94d7c948c83b7e6eb800e" 
+                          appID:[GameApp aderAdPublisherId] // @"3b47607e44f94d7c948c83b7e6eb800e" 
                         adFrame:iPadFrame 
                           model:MODEL_RELEASE];
     }
     else{
         [AderSDK startAdService:superView
-                          appID:@"3b47607e44f94d7c948c83b7e6eb800e" 
+                          appID:[GameApp aderAdPublisherId] // @"3b47607e44f94d7c948c83b7e6eb800e" 
                         adFrame:frame 
                           model:MODEL_RELEASE];
     }
@@ -592,7 +595,10 @@ static AdService* _defaultService;
         return [self createMangoAdInView:superViewContoller.view frame:frame iPadFrame:iPadFrame];
     }
     
-    return [self createLmAdInView:superViewContoller.view appId:@"eb4ce4f0a0f1f49b6b29bf4c838a5147" frame:frame iPadFrame:iPadFrame];
+    return [self createLmAdInView:superViewContoller.view 
+                            appId:[GameApp lmAdPublisherId] //@"eb4ce4f0a0f1f49b6b29bf4c838a5147" 
+                            frame:frame 
+                        iPadFrame:iPadFrame];
             
     // Create LM Ad View
 //    UIView* superView = superViewContoller.view;
