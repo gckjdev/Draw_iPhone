@@ -115,12 +115,12 @@ NSString* GlobalGetBoardServerURL()
                                @"open.aiff", nil];
     NSArray* diceArray = [[DiceSoundManager defaultManager] diceSoundNameArray];
 
-    if (isDrawApp()){
-        [[AudioManager defaultManager] initSounds:drawSoundArray];        
-    }
-    else{
+//    if (isDrawApp()){
+//        [[AudioManager defaultManager] initSounds:drawSoundArray];        
+//    }
+//    else{
         [[AudioManager defaultManager] initSounds:[drawSoundArray arrayByAddingObjectsFromArray:diceArray]];        
-    }
+//    }
         
     // init mob click 
     [MobClick startWithAppkey:[GameApp umengId]

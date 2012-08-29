@@ -296,6 +296,30 @@
                               sessionId:sessionId];
 }
 
+- (BOOL)joinGameRequestWithCondiction:(BOOL (^)(void))condiction
+{
+    BOOL flag = condiction();
+    if (flag ==  YES) {
+        [self joinGameRequest];
+    }
+    
+    return flag; 
+}
+
+
+- (BOOL)joinGameRequest:(long)sessionId condiction:(BOOL (^)(void))condiction
+{
+    BOOL flag = condiction();
+    if (flag ==  YES) {
+        [self joinGameRequest:sessionId];
+    }
+    
+    return flag; 
+}
+
+
+
+
 - (CommonGameSession*)createSession
 {    
     PPDebug(@"<createSession> NOT IMPLEMENTED YET");

@@ -129,6 +129,7 @@
         _accountService = [AccountService defaultService];
         _audioManager = [AudioManager defaultManager];
         _expressionManager = [ExpressionManager defaultManager];
+        _soundManager = [DiceSoundManager defaultManager];
     }
     
     return self;
@@ -980,6 +981,10 @@
     }
     
     [_diceService callDice:dice count:count wilds:_usingWilds];
+    BOOL gender = [[_userManager toPBGameUser] gender]; 
+    [_soundManager callNumber:_diceService.lastCallDiceCount
+                         dice:_diceService.lastCallDice 
+                       gender:gender];
 }
 
 - (void)didSelectDice:(PBDice *)dice count:(int)count
@@ -1018,8 +1023,11 @@
     }
 
     [self updateDiceSelecetedView];
-            
     [self popupCallDiceView];
+    BOOL gender = [[_diceService.diceSession getUserByUserId:_diceService.lastCallUserId] gender]; 
+    [_soundManager callNumber:_diceService.lastCallDiceCount
+                         dice:_diceService.lastCallDice 
+                       gender:gender];
 }
 
 

@@ -59,6 +59,8 @@
    shouldReloadData:(BOOL)shouldReloadData;
 - (void)joinGameRequest;
 - (void)joinGameRequest:(long)sessionId;
+- (BOOL)joinGameRequestWithCondiction:(BOOL (^)(void))condiction;
+- (BOOL)joinGameRequest:(long)sessionId condiction:(BOOL (^)(void))condiction;
 
 - (void)quitGame;
 
