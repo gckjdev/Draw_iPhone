@@ -47,6 +47,11 @@
         return nil;
     }
     
+    DiceHelpView *diceHelpView = (DiceHelpView *)[topLevelObjects objectAtIndex:0];
+    
+    [diceHelpView.gameRulesButton.fontLable setText:NSLS(@"kDiceGameRules")];
+    [diceHelpView.itemsUsageButton.fontLable setText:NSLS(@"kDicePropDescription")];
+    
     return [topLevelObjects objectAtIndex:0];;
 }
 

@@ -769,8 +769,10 @@
 
 /*********************** 大话骰子国际化字符串开始 *************************/
 
-"kOpenDice" = "Challenge";
-"kScrambleToOpenDice" = "Challenge";
+"kOpenDice" = "Cha";
+"kScrambleToOpenDice" = "Cha";
+"kOpenDiceMessage" = "Challenge";
+"kScrambleToOpenDiceMessage" = "Challenge";
 
 "kWaittingForNextTurn" = "Watting...";
 "kGameBegin" = "Game begin...";
@@ -813,6 +815,11 @@
 
 "kDiceShop" = "Dice Shop";
 "kNotEnoughCoinToContinue" = "You have no enough coin to continue game";
+
+"kDiceRoomListTitle" = "Liar Dice";
+"kDiceGameRules"= "Game Rules";
+"kDicePropDescription" = "Prop";
+"kDiceWilds" = "W";
 
 /*********************** 大话骰子国际化字符串结束 *************************/
 

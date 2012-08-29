@@ -153,11 +153,11 @@ static DicePopupViewManager *_instance = nil;
     NSString *message = @"";
     switch (openType) {
         case 0:
-            message = NSLS(@"kOpenDice");
+            message = NSLS(@"kOpenDiceMessage");
             break;
             
         case 1:
-            message = NSLS(@"kScrambleToOpenDice");
+            message = NSLS(@"kScrambleToOpenDiceMessage");
             break;
             
         case 2:

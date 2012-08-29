@@ -158,14 +158,16 @@
     
     [super viewDidLoad];    
     
-    self.menuPanel = [MenuPanel menuPanelWithController:self];
+    self.menuPanel = [MenuPanel menuPanelWithController:self 
+                                            gameAppType:GameAppTypeDraw];
     
     self.menuPanel.center = [DeviceDetection isIPAD] ? CGPointMake(384, 686) : CGPointMake(160, 306);
     
     [self.view insertSubview:self.menuPanel atIndex:0];
 
     
-    self.bottomMenuPanel = [BottomMenuPanel panelWithController:self];
+    self.bottomMenuPanel = [BottomMenuPanel panelWithController:self
+                                                    gameAppType:GameAppTypeDraw];
     
     self.bottomMenuPanel.center = [DeviceDetection isIPAD] ? CGPointMake(384, 961) : CGPointMake(160, 438);
     

@@ -59,10 +59,20 @@
 #define DICE_BACKGROUND         @"dice_room_background@2x.png"
 #define CANDY_BACKGROUND        @""
 
+
+typedef enum {
+    GameAppTypeUnknow = 0,
+    GameAppTypeCandy = 1,
+    GameAppTypeDraw = 2,
+    GameAppTypeDice = 3
+    
+}GameAppType;
+
 #define GameApp                 (getGameApp())
 
 extern NSObject<GameAppProtocol>* getGameApp();
 extern BOOL isDrawApp();
 extern BOOL isDiceApp();
+extern GameAppType gameAppType();
 
 #endif

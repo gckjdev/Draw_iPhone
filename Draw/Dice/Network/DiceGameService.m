@@ -14,6 +14,7 @@
 #import "UserManager.h"
 #import "ConfigManager.h"
 #import "GameMessage.pb.h"
+#import "ItemType.h"
 
 @implementation DiceGameService
 
@@ -149,12 +150,8 @@ static DiceGameService* _defaultService;
 - (void)handleUseItemResponse:(GameMessage *)message
 {
     if (message.resultCode == 0) {
-        PPDebug(@"[改]userId = %@", message.userId);
-        PPDebug(@"[改]myId = %@", self.session.userId);
-
-        [self changeDiceList:message.userId diceList:message.useItemResponse.dicesList];
-        for (PBDice *dice in message.useItemResponse.dicesList) {
-            PPDebug(@"[改]dices = %d", dice.dice);
+        if (message.useItemResponse.itemId == ItemTypeRollAgain) {
+            [self changeDiceList:message.userId diceList:message.useItemResponse.dicesList];
         }
         [self postNotification:NOTIFICATION_USE_ITEM_RESPONSE message:message];
     }
@@ -293,7 +290,7 @@ static DiceGameService* _defaultService;
     return self.diceSession.openDiceUserId;
 }
 
-- (int)openType
+- (OpenType)openType
 {
     return self.diceSession.openType;
 }
@@ -305,15 +302,16 @@ static DiceGameService* _defaultService;
 
 
 
-- (void)openDice:(int)multiple
+//- (void)openDice:(int)multiple
+- (void)openDice
 {
     PPDebug(@"****************** ME OPEN DICE **********************");
     
-    int openType = [self.user.userId isEqualToString:self.diceSession.currentPlayUserId] ? 0 : 1;
+    OpenType openType = [self.user.userId isEqualToString:self.diceSession.currentPlayUserId] ? OpenTypeNormal : OpenTypeScramble;
     
-    if (multiple >= 2) {
-        openType = 2;
-    }
+//    if (multiple >= 2) {
+//        openType = 2;
+//    }
     
     self.diceSession.openDiceUserId = self.user.userId;
     self.diceSession.openType = openType;
@@ -321,7 +319,7 @@ static DiceGameService* _defaultService;
     [(DiceNetworkClient *)_networkClient sendOpenDiceRequest:self.user.userId
                                                    sessionId:self.session.sessionId
                                                     openType:openType
-                                                    multiple:multiple]; 
+                                                    multiple:1]; 
 }
 
 @end

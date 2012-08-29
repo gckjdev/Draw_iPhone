@@ -8,6 +8,12 @@
 
 #import "CommonGameSession.h"
 
+typedef enum {
+    OpenTypeNormal = 0,
+    OpenTypeScramble = 1,
+    OpenTypeCut = 2,
+}OpenType;
+
 @interface DiceGameSession : CommonGameSession
 
 @property (retain, nonatomic) NSMutableDictionary *userDiceList;
@@ -17,7 +23,7 @@
 @property (assign, nonatomic) int lastCallDiceCount;
 
 @property (retain, nonatomic) NSString* openDiceUserId;
-@property (assign, nonatomic) int openType;
+@property (assign, nonatomic) OpenType openType;
 
 @property (retain, nonatomic) NSDictionary *gameResult;
 
