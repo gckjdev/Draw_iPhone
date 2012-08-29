@@ -281,4 +281,23 @@
     return [MobClickUtils getIntValueByKey:@"LIAR_DICE_EXP" defaultValue:5];
 }
 
++ (int)getDiceFleeCoin
+{
+    return [MobClickUtils getIntValueByKey:@"DICE_FLEE_COIN_COIN" defaultValue:200];
+}
++ (int)getDiceThresholdCoin
+{
+    return [MobClickUtils getIntValueByKey:@"DICE_THRESHOLD_COIN" defaultValue:400];
+}
+
++ (NSString*)defaultDiceServer
+{
+    return [MobClickUtils getStringValueByKey:@"DICE_SERVER_ADDRESS" defaultValue:@"106.187.89.232"];
+}
+
++ (int)defaultDicePort
+{
+    return [MobClickUtils getIntValueByKey:@"DICE_SERVER_PORT" defaultValue:8018];
+}
+
 @end
