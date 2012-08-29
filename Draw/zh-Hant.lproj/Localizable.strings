@@ -767,6 +767,9 @@
 
 "kOpenDice" = "開";
 "kScrambleToOpenDice" = "搶開";
+"kOpenDiceMessage" = "開";
+"kScrambleToOpenDiceMessage" = "搶開";
+
 "kWaittingForNextTurn" = "等待下輪...";
 "kGameBegin" = "遊戲開始了...";
 "kNearBy" = "附近";
@@ -806,7 +809,14 @@
 "kJoining" = "正在進入房間";
 "kCreatingRoom" = "正在創建房間";
 "kDiceShop" = "歡樂大話骰子商店";
+
+"kDiceRoomListTitle" = "歡樂大話骰";
+"kDiceGameRules"= "遊戲規則";
+"kDicePropDescription" = "道具說明";
+"kDiceWilds" = "齋";
+
 "kNotEnoughCoinToContinue" = "你的金幣太少，不能繼續遊戲了";
+
 /*********************** 大话骰子国际化字符串结束 *************************/
 
 

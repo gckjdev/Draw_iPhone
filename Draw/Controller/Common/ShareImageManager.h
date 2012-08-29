@@ -139,16 +139,20 @@
 - (UIImage*)shopImage;
 
 //bottom menus image
-- (UIImage *)settingsMenuImage;
-- (UIImage *)opusMenuImage;
-- (UIImage*)friendMenuImage;
-- (UIImage *)chatMenuImage;
-- (UIImage *)feedbackMenuImage;
 - (UIImage*)checkInMenuImage;
+- (UIImage *)opusMenuImage;
+
+- (UIImage *)settingsMenuImageForGameAppType:(GameAppType)gameAppType;
+- (UIImage*)friendMenuImageForGameAppType:(GameAppType)gameAppType;
+- (UIImage *)chatMenuImageForGameAppType:(GameAppType)gameAppType;
+- (UIImage *)feedbackMenuImageForGameAppType:(GameAppType)gameAppType;
+- (UIImage *)bottomPanelBGForGameAppType:(GameAppType)gameAppType;
 
 - (UIImage *)shareDrawButtonImage;
 - (UIImage *)defaultBoardImage;
 
+
+#pragma mark - Feed Image manager.
 - (void)saveFeedImage:(UIImage *)image
     withImageName:(NSString *)imageName 
              asyn:(BOOL)asyn;

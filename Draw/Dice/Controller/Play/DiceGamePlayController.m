@@ -142,6 +142,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.wildsLabel.text = NSLS(@"kDiceWilds");
+    self.wildsFlagButton.fontLable.text = NSLS(@"kDiceWilds");
     self.itemsBoxButton.enabled = NO;
 
     self.gameBeginNoteLabel.hidden = YES;
@@ -473,7 +475,7 @@
 - (IBAction)clickRunAwayButton:(id)sender {
     if (![_diceService.diceSession isMeAByStander]) {
         CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kQuitGameAlertTitle") 
-                                                           message:[NSString stringWithFormat:NSLS(@"kDedutCoinQuitGameAlertMessage"), 200]//200--set by config manager later 
+                                                           message:[NSString stringWithFormat:NSLS(@"kDedutCoinQuitGameAlertMessage"), [ConfigManager getDiceFleeCoin]] 
                                                              style:CommonDialogStyleDoubleButton 
                                                           delegate:self theme:CommonDialogThemeDice];
         [dialog showInView:self.view];

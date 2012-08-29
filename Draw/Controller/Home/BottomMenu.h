@@ -18,5 +18,6 @@
                               title:(NSString *)title
                               badge:(NSInteger)badge;
 
-+ (BottomMenu *)bottomMenuWithType:(MenuButtonType)type;
++ (BottomMenu *)bottomMenuWithType:(MenuButtonType)type 
+                       gameAppType:(GameAppType)gameAppType;
 @end
