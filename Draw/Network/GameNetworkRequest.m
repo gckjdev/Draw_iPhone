@@ -1224,7 +1224,7 @@
         NSString* str = [NSString stringWithString:baseURL];         
         
         str = [str stringByAddQueryParameter:METHOD value:METHOD_SYND_LEVEL_EXP];
-        str = [str stringByAddQueryParameter:PARA_APPID value:gameId];  // set app ID to game here for level sync
+        str = [str stringByAddQueryParameter:PARA_APPID value:appId];
         str = [str stringByAddQueryParameter:PARA_GAME_ID value:gameId];
         str = [str stringByAddQueryParameter:PARA_USERID value:userId];
         str = [str stringByAddQueryParameter:PARA_LEVEL intValue:level];
