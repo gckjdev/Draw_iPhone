@@ -38,8 +38,8 @@
     [super dealloc];
 }
 
-#define MENU_PANEL_WIDTH ([DeviceDetection isIPAD] ? 768 : 320)
-#define MENU_PANEL_HEIGHT ([DeviceDetection isIPAD] ? 120 : 50)
+#define BOTTOM_MENU_PANEL_WIDTH ([DeviceDetection isIPAD] ? 768 : 320)
+//#define MENU_PANEL_HEIGHT ([DeviceDetection isIPAD] ? 120 : 43)
 static const NSInteger ROW_NUMBER = 5;
 
 
@@ -48,7 +48,7 @@ static const NSInteger ROW_NUMBER = 5;
     BOOL isIPAD = [DeviceDetection isIPAD];
     CGFloat xStart = isIPAD ? 12 : 6;
     CGFloat y = 0;//isIPAD ? 0 : 2;
-    CGFloat xSpace = ((MENU_PANEL_WIDTH - 2 *xStart) - ROW_NUMBER * BOTTOM_MENU_WIDTH)/ (ROW_NUMBER - 1);   
+    CGFloat xSpace = ((BOTTOM_MENU_PANEL_WIDTH - 2 *xStart) - ROW_NUMBER * BOTTOM_MENU_WIDTH)/ (ROW_NUMBER - 1);   
     CGFloat x = index *(xSpace + BOTTOM_MENU_WIDTH) + xStart;
     
     return CGRectMake(x, y, BOTTOM_MENU_WIDTH, BOTTOM_MENU_HEIGHT);
@@ -60,7 +60,6 @@ static const NSInteger ROW_NUMBER = 5;
     for (int i = BottomMenuTypeBase; i < BottomMenuTypeEnd; ++ i, ++ number) {
         BottomMenu *menu = [BottomMenu bottomMenuWithType:i];
         menu.frame = [self frameForMenuIndex:number];
-//        [menu setBadgeNumber:number];
         [self addSubview:menu];
         menu.delegate = self;
     }

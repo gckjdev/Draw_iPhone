@@ -56,6 +56,9 @@
     PenView *_willBuyPen;
     ShareImageManager *shareImageManager;
     MyPaint *_draft;
+    
+    NSInteger _unDraftPaintCount;
+//    NSTimer *_draftTimer;
 
 }
 
@@ -65,6 +68,12 @@
 - (void)initPens;
 - (void)initDrawView;
 
+/*
+- (void)restartDraftTimer;
+- (void)stopDraftTimer;
+- (void)handleDraftTimer:(NSTimer *)theTimer;
+*/
+- (void)saveDraft;
 @end
 
 
@@ -336,6 +345,8 @@ enum{
     [self initSubmitButton];
     pickEraserView.hidden = NO;
     [self.view bringSubviewToFront:pickEraserView];
+    _unDraftPaintCount = 0;
+//    [self restartDraftTimer];
 }
 
 
@@ -550,6 +561,7 @@ enum{
 
     }
     else if (dialog.tag == DIALOG_TAG_ESCAPE ){
+        [self saveDraft];
         [self quit];
     }else if(dialog.tag == BUY_CONFIRM_TAG){
         [[AccountService defaultService] buyItem:_willBuyPen.penType itemCount:1 itemCoins:_willBuyPen.price];
@@ -640,6 +652,17 @@ enum{
     [self disMissAllPickViews:YES];
 }
 
+#define DRAFT_PAINT_COUNT 10
+
+- (void)didDrawedPaint:(Paint *)paint
+{
+    ++ _unDraftPaintCount;
+    if (_unDraftPaintCount >= DRAFT_PAINT_COUNT) {
+        [self saveDraft];        
+        _unDraftPaintCount = 0;
+    }
+}
+
 - (void)didCreateDraw:(int)resultCode
 {
     [self hideActivity];
@@ -662,16 +685,47 @@ enum{
 
 
 
-#pragma mark - Actions
 
-- (IBAction)clickDraftButton:(id)sender {
-    
+#pragma makr - Draft
+/*
+- (void)restartDraftTimer
+{
+    [self stopDraftTimer];
+    _draftTimer = [NSTimer scheduledTimerWithTimeInterval:DRAFT_TIMER_INTERVAL
+                                                   target:self
+                                                 selector:@selector(handleDraftTimer:)
+                                                 userInfo:nil 
+                                                  repeats:YES];
+}
+- (void)stopDraftTimer
+{
+    if (_draftTimer && [_draftTimer isValid]) {
+        [_draftTimer invalidate];
+    }
+    _draftTimer = nil;
+}
+- (void)handleDraftTimer:(NSTimer *)theTimer
+{
+    [self saveDraft];
+}
+
+ */
+- (void)saveDraft
+{
+    PPDebug(@"<OfflineDrawViewController> start to save draft.");
     if (self.draft) {
         //delete the old draft.
         [[MyPaintManager defaultManager] deleteMyPaint:self.draft];
     }    
     UIImage *image = [drawView createImage];
-    self.draft = [[MyPaintManager defaultManager] createDraft:image data:drawView.drawActionList language:languageType drawWord:self.word.text level:self.word.level];
+    self.draft = [[MyPaintManager defaultManager] createDraft:image data:drawView.drawActionList language:languageType drawWord:self.word.text level:self.word.level];    
+}
+
+#pragma mark - Actions
+
+- (IBAction)clickDraftButton:(id)sender {
+    
+    [self saveDraft];
     [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kSaveSucc") delayTime:1.5 isSuccessful:YES];
 }
 
@@ -766,7 +820,7 @@ enum{
             [delegate didClickBack];
         }
     }else {
-        CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kQuitGameAlertTitle") message:NSLS(@"kQuitGameAlertMessage") style:CommonDialogStyleDoubleButton delegate:self];
+        CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kQuitDrawAlertTitle") message:NSLS(@"kQuitDrawAlertMessage") style:CommonDialogStyleDoubleButton delegate:self];
         dialog.tag = DIALOG_TAG_ESCAPE;
         [dialog showInView:self.view];
     }
