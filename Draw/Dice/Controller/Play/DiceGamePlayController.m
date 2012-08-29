@@ -471,7 +471,7 @@
 - (IBAction)clickRunAwayButton:(id)sender {
     if (![_diceService.diceSession isMeAByStander]) {
         CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kQuitGameAlertTitle") 
-                                                           message:[NSString stringWithFormat:NSLS(@"kDedutCoinQuitGameAlertMessage"), 200]//200--set by config manager later 
+                                                           message:[NSString stringWithFormat:NSLS(@"kDedutCoinQuitGameAlertMessage"), [ConfigManager getDiceFleeCoin]] 
                                                              style:CommonDialogStyleDoubleButton 
                                                           delegate:self theme:CommonDialogThemeDice];
         [dialog showInView:self.view];

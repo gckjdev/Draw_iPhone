@@ -141,7 +141,11 @@
 
 }
 
-
+- (void)showInView:(UIView *)view
+{
+    [super showInView:view];
+    [self.targetTextField becomeFirstResponder];
+}
 
 //- (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag
 //{
