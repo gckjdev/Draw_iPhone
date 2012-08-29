@@ -945,7 +945,10 @@
 - (void)useItem:(int)itemId itemName:(NSString *)itemName userId:(NSString *)userId
 {
     [_diceService userItem:itemId];
-    [self showItemAnimationOnUser:userId itemName:itemName];
+    
+    if (itemId != ItemTypeCut) {
+        [self showItemAnimationOnUser:userId itemName:itemName];
+    }
 }
 
 
