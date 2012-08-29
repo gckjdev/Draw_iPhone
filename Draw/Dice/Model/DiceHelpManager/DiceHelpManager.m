@@ -12,8 +12,13 @@
 
 #define FILENAME_OF_HELP_ZIP                @"help.zip"
 
-#define HTML_FILE_NAME_GAME_RULES @"help/dice/gameRules.html"
-#define HTML_FILE_NAME_ITMES_USAGE @"help/dice/itemsUsage.html"
+#define ZHS_HTML_FILE_NAME_GAME_RULES @"help/dice/gameRules_zhs.html"
+#define ZHT_HTML_FILE_NAME_GAME_RULES @"help/dice/gameRules_zht.html"
+#define EN_HTML_FILE_NAME_GAME_RULES  @"help/dice/gameRules_en.html"
+
+#define ZHS_HTML_FILE_NAME_ITMES_USAGE @"help/dice/itemsUsage_zhs.html"
+#define ZHT_HTML_FILE_NAME_ITMES_USAGE @"help/dice/itemsUsage_zht.html"
+#define EN_HTML_FILE_NAME_ITMES_USAGE  @"help/dice/itemsUsage_en.html"
 
 static DiceHelpManager* _shareManager;
 
@@ -84,13 +89,35 @@ static DiceHelpManager* _shareManager;
 }
 
 - (NSString *)gameRulesHtmlFilePath
-{
-    return [[FileUtil getAppHomeDir] stringByAppendingPathComponent:HTML_FILE_NAME_GAME_RULES];
+{    
+    NSString *fileName = nil;
+    if ([LocaleUtils isChinese]) {
+        if ([LocaleUtils isTraditionalChinese]) {
+            fileName = ZHT_HTML_FILE_NAME_GAME_RULES;
+        }else {
+            fileName = ZHS_HTML_FILE_NAME_GAME_RULES;
+        }
+    }else {
+        fileName = EN_HTML_FILE_NAME_GAME_RULES;
+    }
+    
+    return [[FileUtil getAppHomeDir] stringByAppendingPathComponent:fileName];
 }
 
 - (NSString *)itemsUsageHtmlFilePath
 {
-    return [[FileUtil getAppHomeDir] stringByAppendingPathComponent:HTML_FILE_NAME_ITMES_USAGE]; 
+    NSString *fileName = nil;
+    if ([LocaleUtils isChinese]) {
+        if ([LocaleUtils isTraditionalChinese]) {
+            fileName = ZHT_HTML_FILE_NAME_ITMES_USAGE;
+        }else {
+            fileName = ZHS_HTML_FILE_NAME_ITMES_USAGE;
+        }
+    }else {
+        fileName = EN_HTML_FILE_NAME_ITMES_USAGE;
+    }
+    
+    return [[FileUtil getAppHomeDir] stringByAppendingPathComponent:fileName]; 
 }
 
 

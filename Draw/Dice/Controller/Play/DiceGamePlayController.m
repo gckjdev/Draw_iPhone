@@ -303,19 +303,21 @@
 {    
     UIButton *button = (UIButton *)[self.view viewWithTag:TAG_TOOL_BUTTON];
     button.selected = NO;
+    
+    [self useItem:item.type itemName:item.itemName userId:_userManager.userId];
 
-    switch (item.type) {
-        case ItemTypeRollAgain:
-            [self useItem:item.type itemName:item.itemName userId:_userManager.userId];
-            break;
-            
-        case ItemTypeCut:
-            [self openDice:2];
-            break;
-            
-        default:
-            break;
-    }
+//    switch (item.type) {
+//        case ItemTypeRollAgain:
+//            [self useItem:item.type itemName:item.itemName userId:_userManager.userId];
+//            break;
+//            
+//        case ItemTypeCut:
+//            [self openDice:2];
+//            break;
+//            
+//        default:
+//            break;
+//    }
     
     [_accountService consumeItem:item.type amount:1]; 
 }
@@ -927,7 +929,6 @@
 
 -(void)openDiceSuccess
 {
-//    [self disableAllDiceOperationButtons];
     [self popupOpenDiceView];  
 }
 
@@ -949,7 +950,7 @@
     [self clearAllReciprocol];
     [self disableAllDiceOperationButtons];
     [self popupOpenDiceView];  
-    BOOL gender = [[_diceService.diceSession getUserByUserId:_diceService.lastCallUserId] gender]; 
+    BOOL gender = [[_diceService.diceSession getUserByUserId:_diceService.openDiceUserId] gender]; 
     [_soundManager openDice:gender];
 }
 
@@ -1185,7 +1186,7 @@
 {
     [self popupMessageView:content onUser:userId];
     
-    BOOL gender = [[_diceService.diceSession getUserByUserId:_diceService.lastCallUserId] gender]; 
+    BOOL gender = [[_diceService.diceSession getUserByUserId:userId] gender]; 
     [[DiceSoundManager defaultManager] playVoiceById:contentVoiceId.intValue gender:gender];
 }
 
@@ -1231,8 +1232,6 @@
                                    playTimeInterval:0.2] autorelease];
     
     [self.view addSubview:view];
-
-//    [view performSelector:@selector(removeFromSuperview) withObject:nil afterDelay:6.0];
     
     [UIView animateWithDuration:1 delay:6.0 options:UIViewAnimationCurveLinear animations:^{
         view.alpha = 0;
