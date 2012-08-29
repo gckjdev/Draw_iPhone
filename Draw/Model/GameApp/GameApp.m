@@ -39,3 +39,17 @@ BOOL isDiceApp()
 {
     return ([[GameApp gameId] isEqualToString:DICE_GAME_ID]);    
 }
+
+GameAppType gameAppType()
+{
+    if ([[GameApp gameId] isEqualToString:DRAW_GAME_ID]) {
+        return GameAppTypeDraw;
+    } 
+    if ([[GameApp gameId] isEqualToString:DICE_GAME_ID]) {
+        return GameAppTypeDice;
+    } 
+    if ([[GameApp gameId] isEqualToString:CANDY_GAME_ID]) {
+        return GameAppTypeCandy;
+    } 
+    return GameAppTypeUnknow;
+}
