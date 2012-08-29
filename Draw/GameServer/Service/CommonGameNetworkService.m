@@ -56,11 +56,11 @@
     [self clearDisconnectTimer];
     
     if ([self isConnected] == NO){
-        PPDebug(@"<startDisconnectTimer> but server not connected");
+        PPDebug(@"%@ <startDisconnectTimer> but server not connected", [self description]);
         return;
     }
     
-    PPDebug(@"Set disconnect timer after %d seconds", DISCONNECT_TIMER_INTERVAL);
+    PPDebug(@"%@ Set disconnect timer after %d seconds", [self description], DISCONNECT_TIMER_INTERVAL);
     
     _disconnectTimer = [NSTimer scheduledTimerWithTimeInterval:DISCONNECT_TIMER_INTERVAL 
                                                         target:self 
@@ -73,7 +73,7 @@
 - (void)clearDisconnectTimer
 {
     if (_disconnectTimer){
-        PPDebug(@"Clear disconnect timer");
+        PPDebug(@"%@ Clear disconnect timer", [self description]);
         if ([_disconnectTimer isValid]){
             [_disconnectTimer invalidate];
         }
@@ -84,7 +84,7 @@
 
 - (void)handleDisconnect:(NSTimer*)theTimer
 {
-    PPDebug(@"Fire disconnect timer");
+    PPDebug(@"%@ Fire disconnect timer", [self description]);
     [self disconnectServer];
 }
 

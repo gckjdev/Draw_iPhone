@@ -729,7 +729,7 @@
         NSString* str = [NSString stringWithString:baseURL];       
         
         str = [str stringByAddQueryParameter:METHOD value:METHOD_DEVICELOGIN];
-        str = [str stringByAddQueryParameter:PARA_APPID value:gameId];//modify by kira, tempely use for get correct level info
+        str = [str stringByAddQueryParameter:PARA_APPID value:appId];
         str = [str stringByAddQueryParameter:PARA_GAME_ID value:gameId];
         str = [str stringByAddQueryParameter:PARA_DEVICEID value:deviceId];
         str = [str stringByAddQueryParameter:PARA_DEVICETOKEN value:deviceToken];
