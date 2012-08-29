@@ -129,6 +129,7 @@
         _accountService = [AccountService defaultService];
         _audioManager = [AudioManager defaultManager];
         _expressionManager = [ExpressionManager defaultManager];
+        _soundManager = [DiceSoundManager defaultManager];
     }
     
     return self;
@@ -935,6 +936,8 @@
     [self disableAllDiceOperationButtons];
     [self clearAllReciprocol];
     [_diceService openDice:1];
+    BOOL gender = [[_userManager toPBGameUser] gender]; 
+    [_soundManager openDice:gender];
 }
 
 - (IBAction)clickOpenDiceButton:(id)sender {
@@ -946,6 +949,8 @@
     [self clearAllReciprocol];
     [self disableAllDiceOperationButtons];
     [self popupOpenDiceView];  
+    BOOL gender = [[_diceService.diceSession getUserByUserId:_diceService.lastCallUserId] gender]; 
+    [_soundManager openDice:gender];
 }
 
 
@@ -980,6 +985,10 @@
     }
     
     [_diceService callDice:dice count:count wilds:_usingWilds];
+    BOOL gender = [[_userManager toPBGameUser] gender]; 
+    [_soundManager callNumber:_diceService.lastCallDiceCount
+                         dice:_diceService.lastCallDice 
+                       gender:gender];
 }
 
 - (void)didSelectDice:(PBDice *)dice count:(int)count
@@ -1018,8 +1027,11 @@
     }
 
     [self updateDiceSelecetedView];
-            
     [self popupCallDiceView];
+    BOOL gender = [[_diceService.diceSession getUserByUserId:_diceService.lastCallUserId] gender]; 
+    [_soundManager callNumber:_diceService.lastCallDiceCount
+                         dice:_diceService.lastCallDice 
+                       gender:gender];
 }
 
 
@@ -1173,7 +1185,8 @@
 {
     [self popupMessageView:content onUser:userId];
     
-    [[DiceSoundManager defaultManager] playVoiceById:contentVoiceId.intValue gender:NO];
+    BOOL gender = [[_diceService.diceSession getUserByUserId:_diceService.lastCallUserId] gender]; 
+    [[DiceSoundManager defaultManager] playVoiceById:contentVoiceId.intValue gender:gender];
 }
 
 - (void)someoneSendExpression:(NSString *)expressionId userId:(NSString *)userId
@@ -1190,8 +1203,8 @@
     [_diceService chatWithContent:message.content contentVoiceId:[NSString stringWithFormat:@"%d", message.voiceId]];
     
     // TODO: Play voice here;
-    [[DiceSoundManager defaultManager] playVoiceById:message.voiceId gender:NO];
-    
+    BOOL gender = [[_userManager toPBGameUser] gender];     
+    [[DiceSoundManager defaultManager] playVoiceById:message.voiceId gender:gender];
 }
 
 - (void)didClickExepression:(NSString *)key

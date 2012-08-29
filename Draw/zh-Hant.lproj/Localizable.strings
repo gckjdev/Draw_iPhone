@@ -67,6 +67,10 @@
 "kCancel" = "取消";
 "kQuitGameAlertMessage" = "確定要退出遊戲嗎?";
 "kQuitGameAlertTitle" = "退出遊戲";
+
+"kQuitDrawAlertMessage" = "退出繪畫後，未完成的作品將保存在草稿箱，以後可以繼續編輯。確定要退出嗎？";
+"kQuitDrawAlertTitle" = "退出繪畫";
+
 "kDedutCoinQuitGameAlertMessage" = "遊戲進行中，如果這時退出遊戲，系統將會扣除%d個金幣哦。";
 "kNoCoinQuitGameAlertMessage" = "逃跑需要扣除金幣，你的賬戶餘額不足，現在不能退出遊戲哦！";
 
@@ -773,6 +777,8 @@
 
 "kRollAgain" = "搖";
 "kCut" = "劈";
+"kRollAgainDescription" = "使用該道具可以重搖一次骰子。";
+"kCutDescription" = "使用該道具則立刻開骰，並且賭註加倍，即贏家可以獲取雙倍金幣，輸家需要扣除雙倍金幣。";
 
 "kMoreRoom" = "更多...";
 "kMoreRoomLoading" = "加載中...";
@@ -799,6 +805,7 @@
 
 "kJoining" = "正在進入房間";
 "kCreatingRoom" = "正在創建房間";
+"kDiceShop" = "歡樂大話骰子商店";
 
 /*********************** 大话骰子国际化字符串结束 *************************/
 

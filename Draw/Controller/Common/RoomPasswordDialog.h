@@ -16,6 +16,7 @@
 @property (retain, nonatomic) IBOutlet UILabel *roomNameLabel;
 @property (retain, nonatomic) IBOutlet UILabel *passwordLabel;
 @property (assign, nonatomic) BOOL isPasswordOptional;
+@property (retain, nonatomic) IBOutlet UIImageView *contentBackground;
 
 
 + (RoomPasswordDialog *)dialogWith:(NSString *)title 

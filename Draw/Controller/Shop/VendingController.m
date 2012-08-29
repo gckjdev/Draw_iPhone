@@ -54,6 +54,8 @@ static VendingController* staticVendingController = nil;
 @synthesize coinsButton;
 @synthesize buyCoinButton;
 @synthesize outItem;
+@synthesize titleLabel;
+@synthesize titleImageView;
 
 - (void)dealloc {
     [itemListScrollView release];
@@ -61,6 +63,8 @@ static VendingController* staticVendingController = nil;
     [buyCoinButton release];
     [_itemList release];
     [outItem release];
+    [titleLabel release];
+    [titleImageView release];
     [super dealloc];
     
 }
@@ -275,8 +279,7 @@ static VendingController* staticVendingController = nil;
         } else {
             [CommonItemInfoView showItem:item infoInView:self];
         }
-    }
-    
+    }    
 }
 
 #define FALLING_TIME    0.05
@@ -369,10 +372,23 @@ static VendingController* staticVendingController = nil;
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         if ([ConfigManager isProVersion]){
-            _itemList = [[NSMutableArray alloc] initWithObjects:[Item tips], [Item colors], [Item tomato], [Item flower], [Item iceCreamPen], [Item brushPen], [Item featherPen], [Item waterPen], [Item rollAgain], [Item cut], nil];            
+            if (isDrawApp()) {
+                _itemList = [[NSMutableArray alloc] initWithObjects:[Item tips], [Item colors], [Item tomato], [Item flower], [Item iceCreamPen], [Item brushPen], [Item featherPen], [Item waterPen], nil]; 
+            }
+            
+            if (isDiceApp()) {
+                _itemList = [[NSMutableArray alloc] initWithObjects:[Item rollAgain], [Item cut], nil];       
+            }
         }
         else{
-            _itemList = [[NSMutableArray alloc] initWithObjects:[Item removeAd], [Item tips], [Item colors], [Item tomato], [Item flower], [Item iceCreamPen], [Item brushPen], [Item featherPen], [Item waterPen], [Item rollAgain], [Item cut], nil];
+            if (isDrawApp()) {
+                _itemList = [[NSMutableArray alloc] initWithObjects:[Item removeAd], [Item tips], [Item colors], [Item tomato], [Item flower], [Item iceCreamPen], [Item brushPen], [Item featherPen], [Item waterPen], nil];
+            }
+            
+            if (isDiceApp()) {
+                _itemList = [[NSMutableArray alloc] initWithObjects:[Item rollAgain], [Item cut], nil];
+            }
+
         }
     }
     return self;
@@ -384,6 +400,9 @@ static VendingController* staticVendingController = nil;
     [self initTitles];
     [self initButtons];
     [self createItemList];
+    self.titleImageView.hidden = !isDrawApp();
+    self.titleLabel.hidden = !isDiceApp();
+    self.titleLabel.text = NSLS(@"kDiceShop");
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -393,6 +412,8 @@ static VendingController* staticVendingController = nil;
     [self setCoinsButton:nil];
     [self setBuyCoinButton:nil];
     [self setOutItem:nil];
+    [self setTitleLabel:nil];
+    [self setTitleImageView:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;

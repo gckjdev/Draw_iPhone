@@ -9,6 +9,7 @@
 #import "PPViewController.h"
 #import "ColorShopView.h"
 #import "CommonItemInfoView.h"
+#import "HKGirlFontLabel.h"
 
 @interface VendingController : PPViewController <ColorShopViewDelegate, CommonItemInfoViewDelegate>{
     NSMutableArray* _itemList;
@@ -17,6 +18,8 @@
 @property (retain, nonatomic) IBOutlet UIButton *coinsButton;
 @property (retain, nonatomic) IBOutlet UIButton *buyCoinButton;
 @property (retain, nonatomic) IBOutlet UIImageView *outItem;
+@property (retain, nonatomic) IBOutlet HKGirlFontLabel *titleLabel;
+@property (retain, nonatomic) IBOutlet UIImageView *titleImageView;
 
 + (VendingController *)instance;
 - (UINavigationController *)topNavigationController;

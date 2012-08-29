@@ -249,6 +249,27 @@
     [self.drawImage setImage:_image];
 }
 
+- (int)calExp
+{
+    switch (_resultType) {
+        case OnlineDraw: {
+            return DRAWER_EXP;
+        }break;
+        case OnlineGuess: {
+            return NORMAL_EXP;
+        }break;
+        case OfflineGuess: {
+            return OFFLINE_GUESS_EXP;
+        }break;
+        case FeedGuess: {
+            return OFFLINE_GUESS_EXP;
+        }break;
+        default:
+            break;
+    }
+    return 0;
+}
+
 - (void)initScore
 {
     //init score
@@ -263,11 +284,7 @@
 
     //init experience.
     NSInteger exp = 0;
-    if (_isMyPaint) {
-        exp = DRAWER_EXP;
-    }else{
-        exp = NORMAL_EXP;
-    }
+    exp = [self calExp];
     [[LevelService defaultService] addExp:exp delegate:self];
     [self.experienceLabel setText:[NSString stringWithFormat:@"+ %d",exp]];
 }

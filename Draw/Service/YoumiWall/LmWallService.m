@@ -14,7 +14,7 @@
 #import "AdService.h"
 #import "UserManager.h"
 
-#define IPHONE_WALL_ID      @"ed21340370b99ad5bd2a5e304e3ea6c4"
+//#define IPHONE_WALL_ID     ([GameApp lmWallId])  //@"ed21340370b99ad5bd2a5e304e3ea6c4"
 
 @implementation LmWallService
 
@@ -37,7 +37,7 @@ static LmWallService* _defaultService;
     PPDebug(@"<LmmobAdWallSDK> GetAdWallWithEntranceID");
 //    [[LmmobAdWallSDK defaultSDK] GetAdWallWithEntranceID:IPHONE_WALL_ID AndDelegate:self];
     
-    self.adWallView = [[[immobView alloc] initWithAdUnitID:IPHONE_WALL_ID] autorelease];
+    self.adWallView = [[[immobView alloc] initWithAdUnitID:[GameApp lmwallId]] autorelease];
     
     //此属性针对多账户用户，主要用于区分不同账户下的积分
     if ([[UserManager defaultManager] hasUser]){
@@ -70,7 +70,7 @@ static LmWallService* _defaultService;
     
     PPDebug(@"<LmmobAdWallSDK> ScoreQuery");    
     NSString* userId = [[UserManager defaultManager] userId];
-    [self.adWallView immobViewQueryScoreWithAdUnitID:IPHONE_WALL_ID WithAccountID:userId];
+    [self.adWallView immobViewQueryScoreWithAdUnitID:[GameApp lmwallId] WithAccountID:userId];
 }
 
 - (void)show:(UIViewController*)viewController
@@ -202,7 +202,7 @@ static LmWallService* _defaultService;
     [[AccountService defaultService] chargeAccount:score source:LmAppReward];
     
 //    [[LmmobAdWallSDK defaultSDK] ScoreSubstract:score];
-    [self.adWallView immobViewReducscore:score WithAdUnitID:IPHONE_WALL_ID];
+    [self.adWallView immobViewReducscore:score WithAdUnitID:[GameApp lmwallId]];
 
     BOOL isForRemoveAd = NO;
     if ([self isWallForRemoveAd]){

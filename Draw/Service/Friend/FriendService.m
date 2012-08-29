@@ -46,32 +46,32 @@ FriendService* globalGetFriendService()
                                                                  type:type
                                                            startIndex:0 
                                                              endIndex:5000];             
+        if (output.resultCode == ERROR_SUCCESS){
+            PPDebug(@"<FriendService> findFriends success!");
+            
+            NSArray* userList = [output.jsonDataDict objectForKey:PARA_USERS];
+            if ([userList count] != 0 || type == FAN) {
+                [[FriendManager defaultManager] deleteAllFriends:type];
+            }
+            
+            [[FriendManager defaultManager] createFriendsByJsonArray:userList];
+        }else {
+            PPDebug(@"<FriendService> findFriends Failed!");
+            return ;
+        }
+        NSArray * friendList= nil;
+        if (type == FOLLOW) {
+            friendList = [[FriendManager defaultManager] findAllFollowFriends];
+        }else if (type == FAN){
+            friendList = [[FriendManager defaultManager] findAllFanFriends];
+        }
         
+
         dispatch_async(dispatch_get_main_queue(), ^{
             //[viewController hideActivity];
-            
-            if (output.resultCode == ERROR_SUCCESS){
-                PPDebug(@"<FriendService> findFriends success!");
-                
-                NSArray* userList = [output.jsonDataDict objectForKey:PARA_USERS];
-                if ([userList count] != 0 || type == FAN) {
-                    [[FriendManager defaultManager] deleteAllFriends:type];
-                }
-                
-                [[FriendManager defaultManager] createFriendsByJsonArray:userList];
-            }else {
-                PPDebug(@"<FriendService> findFriends Failed!");
-            }
-            
             if ([viewController respondsToSelector:@selector(didfindFriendsByType:friendList:result:)]){
-                NSArray * friendList= nil;
-                if (type == FOLLOW) {
-                    friendList = [[FriendManager defaultManager] findAllFollowFriends];
-                }else if (type == FAN){
-                    friendList = [[FriendManager defaultManager] findAllFanFriends];
-                }
                 [viewController didfindFriendsByType:type friendList:friendList result:output.resultCode];
-            }
+            }            
         }); 
     });
 }

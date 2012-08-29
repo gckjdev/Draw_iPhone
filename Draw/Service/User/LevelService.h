@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "CommonService.h"
+#import "ConfigManager.h"
 
 enum {
     SYNC = 0,
@@ -15,10 +16,11 @@ enum {
     AWARD = 2
 };
 
-#define OFFLINE_DRAW_EXP    10
-#define NORMAL_EXP          10
-#define DRAWER_EXP          15
-#define LIAR_DICE_EXP       5
+#define OFFLINE_DRAW_EXP    ([ConfigManager getOffLineDrawExp])
+#define OFFLINE_GUESS_EXP   ([ConfigManager getOffLineGuessExp])
+#define NORMAL_EXP          ([ConfigManager getOnLineGuessExp])
+#define DRAWER_EXP          ([ConfigManager getOnLineDrawExp])
+#define LIAR_DICE_EXP       ([ConfigManager getLiarDiceExp])
 
 //#define REWARD_EXP  5
 
