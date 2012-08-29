@@ -386,8 +386,10 @@
         self.myDiceListHolderView.hidden = YES;
     }
     
+    NSArray *diceList = [[[_diceService diceSession] userDiceList] objectForKey:userId];
+    
     DicesResultView *resultView = [self resultViewOfUser:userId];
-    [resultView setDices:[[[_diceService diceSession] userDiceList] objectForKey:userId] resultDice:_diceService.lastCallDice wilds:_diceService.diceSession.wilds];
+    [resultView setDices:diceList resultDice:_diceService.lastCallDice wilds:_diceService.diceSession.wilds];
     [resultView showAnimation:self.view.center];
     resultView.delegate = self;
 }
@@ -975,7 +977,14 @@
 - (void)playOpenDiceVoice
 {   
     BOOL gender = [[_diceService.diceSession getUserByUserId:_diceService.openDiceUserId] gender]; 
-    [_soundManager openDice:gender];
+    
+    if (_diceService.openType == OpenTypeNormal) {
+        [_soundManager openDice:gender];
+    }else if (_diceService.openType == OpenTypeScramble) {
+        [_soundManager scrambleOpen:gender];
+    }else if (_diceService.openType == OpenTypeCut) {
+        // TODO: play cut voice.
+    }
 }
 
 

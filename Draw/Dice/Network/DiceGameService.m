@@ -14,6 +14,7 @@
 #import "UserManager.h"
 #import "ConfigManager.h"
 #import "GameMessage.pb.h"
+#import "ItemType.h"
 
 @implementation DiceGameService
 
@@ -149,12 +150,8 @@ static DiceGameService* _defaultService;
 - (void)handleUseItemResponse:(GameMessage *)message
 {
     if (message.resultCode == 0) {
-        PPDebug(@"[改]userId = %@", message.userId);
-        PPDebug(@"[改]myId = %@", self.session.userId);
-
-        [self changeDiceList:message.userId diceList:message.useItemResponse.dicesList];
-        for (PBDice *dice in message.useItemResponse.dicesList) {
-            PPDebug(@"[改]dices = %d", dice.dice);
+        if (message.useItemResponse.itemId == ItemTypeRollAgain) {
+            [self changeDiceList:message.userId diceList:message.useItemResponse.dicesList];
         }
         [self postNotification:NOTIFICATION_USE_ITEM_RESPONSE message:message];
     }
