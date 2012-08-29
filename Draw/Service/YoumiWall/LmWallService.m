@@ -34,9 +34,10 @@ static LmWallService* _defaultService;
 
 - (void)prepareWallService
 {
-    PPDebug(@"<LmmobAdWallSDK> GetAdWallWithEntranceID");
 //    [[LmmobAdWallSDK defaultSDK] GetAdWallWithEntranceID:IPHONE_WALL_ID AndDelegate:self];
-    
+
+    PPDebug(@"<LmmobAdWallSDK> init with ID %@", [GameApp lmwallId]);
+
     self.adWallView = [[[immobView alloc] initWithAdUnitID:[GameApp lmwallId]] autorelease];
     
     //此属性针对多账户用户，主要用于区分不同账户下的积分

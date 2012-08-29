@@ -69,6 +69,15 @@
     [super dealloc];
 }
 
+- (BOOL)isAbleToGetIn
+{
+    if ([_accountService getBalance] <= 400) {
+        [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kNotEnoughCoin") delayTime:1 isHappy:NO];
+        return NO;
+    }
+    return YES;
+}
+
 - (void)refreshRooms:(id)sender
 {
     [[DiceGameService defaultService] getRoomList:0 count:ROOMS_COUNT_PER_PAGE shouldReloadData:YES];
@@ -124,12 +133,12 @@
 {
     
     //TODO: set server address from config manager
-    [[DiceGameService defaultService] setServerAddress:@"106.187.89.232"];
-    [[DiceGameService defaultService] setServerPort:8018];
+//    [[DiceGameService defaultService] setServerAddress:@"106.187.89.232"];
+//    [[DiceGameService defaultService] setServerPort:8018];
     
     
-//    [[DiceGameService defaultService] setServerAddress:@"192.168.1.7"];
-//    [[DiceGameService defaultService] setServerPort:8080];
+    [[DiceGameService defaultService] setServerAddress:@"192.168.1.198"];
+    [[DiceGameService defaultService] setServerPort:8080];
     [[DiceGameService defaultService] connectServer:self];
     [self showActivityWithText:NSLS(@"kConnecting")];
     _isJoiningDice = NO;    
@@ -276,7 +285,8 @@
     {
         _isJoiningDice = YES;
         [[DiceGameService defaultService] joinGameRequest:self.currentSession.sessionId condiction:^BOOL{
-            return [_accountService getBalance] >= 200;
+            //return [_accountService getBalance] >= 200;
+            return [self isAbleToGetIn];
         }];
         [self showActivityWithText:NSLS(@"kJoining")];
     } else {
@@ -303,20 +313,22 @@
     _isJoiningDice = YES;
     [self showActivityWithText:NSLS(@"kJoiningGame")];
     [_diceGameService joinGameRequestWithCondiction:^BOOL{
-        return [_accountService getBalance] >= 200;
+        return [self isAbleToGetIn];
     }];
 }
 
 - (IBAction)creatRoom:(id)sender
 {
-    RoomPasswordDialog *inputDialog = [RoomPasswordDialog dialogWith:NSLS(@"kCreateRoom") 
-                                                            delegate:self 
-                                                               theme:CommonDialogThemeDice];
-    inputDialog.targetTextField.text = [[UserManager defaultManager] defaultUserRoomName];
-    inputDialog.targetTextField.placeholder = NSLS(@"kInputWordPlaceholder");
-    inputDialog.passwordField.placeholder = NSLS(@"kDiceEnterPassword");
-    [inputDialog showInView:self.view];
-    inputDialog.tag = CREATE_ROOM_DIALOG_TAG;
+    if ([self isAbleToGetIn]) {
+        RoomPasswordDialog *inputDialog = [RoomPasswordDialog dialogWith:NSLS(@"kCreateRoom") 
+                                                                delegate:self 
+                                                                   theme:CommonDialogThemeDice];
+        inputDialog.targetTextField.text = [[UserManager defaultManager] defaultUserRoomName];
+        inputDialog.targetTextField.placeholder = NSLS(@"kInputWordPlaceholder");
+        inputDialog.passwordField.placeholder = NSLS(@"kDiceEnterPassword");
+        [inputDialog showInView:self.view];
+        inputDialog.tag = CREATE_ROOM_DIALOG_TAG;
+    }
     
 }
 - (IBAction)clickAll:(id)sender
