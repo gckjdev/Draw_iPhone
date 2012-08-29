@@ -9,11 +9,17 @@
 //#import "MenuPanel.h"
 #import "BottomMenu.h"
 @interface BottomMenuPanel : UIView<MenuButtonDelegate>
-
+{
+    GameAppType _gameAppType;
+}
 
 @property (retain, nonatomic) UIViewController *controller;
+@property (assign, nonatomic) GameAppType gameAppType;
 
-+ (BottomMenuPanel *)panelWithController:(UIViewController *)controller;
+@property (retain, nonatomic) IBOutlet UIImageView *panelBgImage;
+
++ (BottomMenuPanel *)panelWithController:(UIViewController *)controller 
+                             gameAppType:(GameAppType)gameAppType;
 - (void)loadMenu;
 - (BottomMenu *)getMenuButtonByType:(MenuButtonType)type;
 - (void)setMenuBadge:(NSInteger)badge forMenuType:(MenuButtonType)type;

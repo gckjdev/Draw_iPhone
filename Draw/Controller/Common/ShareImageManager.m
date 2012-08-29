@@ -8,10 +8,8 @@
 
 #import "ShareImageManager.h"
 #import "UIImageUtil.h"
-#import "LocaleUtils.h"
-#import "DeviceDetection.h"
-#import "PPDebug.h"
 #import "FileUtil.h"
+
 
 @implementation ShareImageManager
 
@@ -453,7 +451,10 @@ static UIImage* _whitePaperImage;
 
 - (UIImage *)defaultBoardImage
 {
-    return [UIImage imageNamed:@"default_board.png"];
+    if (isDiceApp()) {
+        return [UIImage imageNamed:@"dice_default_board.png"];       
+    }
+    return [UIImage imageNamed:@"draw_default_board.png"];    
 }
 
 #pragma mark - menu button image
@@ -483,30 +484,61 @@ static UIImage* _whitePaperImage;
 }
 
 //for bottom menu image.
-- (UIImage *)settingsMenuImage
-{
-    return [self fixedImageNamed:@"small_setting"];
-}
+
+
 - (UIImage *)opusMenuImage
 {
     return [self fixedImageNamed:@"small_share"];    
 }
-- (UIImage*)friendMenuImage
-{
-    return [self fixedImageNamed:@"small_friend_manager"];
-}
-- (UIImage *)chatMenuImage
-{
-    return [self fixedImageNamed:@"small_chat"];
-}
-- (UIImage *)feedbackMenuImage
-{
-    return [self fixedImageNamed:@"small_feedback"];
-}
+
 - (UIImage*)checkInMenuImage
 {
     return [self fixedImageNamed:@"small_sign"];
 }
+
+- (UIImage *)pickToolBackground
+{
+    return [UIImage strectchableImageName:@"popuptools_bg.png"];    
+}
+
+
+- (UIImage *)settingsMenuImageForGameAppType:(GameAppType)gameAppType
+{
+    if (gameAppType == GameAppTypeDraw) {
+        return [self fixedImageNamed:@"small_setting"]; 
+    }
+    return [self fixedImageNamed:@"bm_setting"];
+}
+- (UIImage *)friendMenuImageForGameAppType:(GameAppType)gameAppType
+{
+    if (gameAppType == GameAppTypeDraw) {
+        return [self fixedImageNamed:@"small_friend_manager"]; 
+    }
+    return [self fixedImageNamed:@"bm_friend"];
+}
+- (UIImage *)chatMenuImageForGameAppType:(GameAppType)gameAppType
+{
+    if (gameAppType == GameAppTypeDraw) {
+        return [self fixedImageNamed:@"small_chat"]; 
+    }
+    return [self fixedImageNamed:@"bm_chat"];
+}
+- (UIImage *)feedbackMenuImageForGameAppType:(GameAppType)gameAppType
+{
+    if (gameAppType == GameAppTypeDraw) {
+        return [self fixedImageNamed:@"small_feedback"]; 
+    }
+    return [self fixedImageNamed:@"bm_feedback"];
+}
+
+- (UIImage *)bottomPanelBGForGameAppType:(GameAppType)gameAppType
+{
+    if (gameAppType == GameAppTypeDraw) {
+        return [UIImage imageNamed:@"bottom_menubg.png"]; 
+    }
+    return [UIImage imageNamed:@"dice_bottom_bg.png"]; 
+}
+
 
 
 #pragma mark - save and get temp image.
@@ -538,10 +570,6 @@ static UIImage* _whitePaperImage;
 }
 
 
-- (UIImage *)pickToolBackground
-{
-    return [UIImage strectchableImageName:@"popuptools_bg.png"];    
-}
 
 
 - (void)saveFeedImage:(UIImage *)image 

@@ -21,6 +21,7 @@
 #import "CommonMessageCenter.h"
 #import "DiceColorManager.h"
 #import "AccountService.h"
+#import "ConfigManager.h"
 
 #define KEY_GAME_MESSAGE @"KEY_GAME_MESSAGE"
 #define ROOMS_COUNT_PER_PAGE  20
@@ -29,6 +30,8 @@
 
 #define CREATE_ROOM_DIALOG_TAG  120120824
 #define ENTER_ROOM_DIALOG_TAG   220120824
+
+#define DICE_THRESHOLD_COIN ([ConfigManager getDiceThresholdCoin])
 
 @interface DiceRoomListController ()
 {
@@ -67,6 +70,16 @@
     PPRelease(_currentSession);
     [helpButton release];
     [super dealloc];
+}
+
+- (BOOL)isAbleToGetIn
+{
+    if ([_accountService getBalance] <= DICE_THRESHOLD_COIN) {
+        CommonDialog* dialog = [CommonDialog createDialogWithTitle:nil message:NSLS(@"kCoinsNotEnough") style:CommonDialogStyleDoubleButton delegate:self theme:CommonDialogThemeDice];
+        [dialog showInView:self.view];
+        return NO;
+    }
+    return YES;
 }
 
 - (void)refreshRooms:(id)sender
@@ -122,13 +135,15 @@
 
 - (void)connectServer
 {
+    NSString* address = [ConfigManager defaultDiceServer];
+    int port = [ConfigManager defaultDicePort];
     
     //TODO: set server address from config manager
-    [[DiceGameService defaultService] setServerAddress:@"106.187.89.232"];
-    [[DiceGameService defaultService] setServerPort:8018];
+    [[DiceGameService defaultService] setServerAddress:address];
+    [[DiceGameService defaultService] setServerPort:port];
     
     
-//    [[DiceGameService defaultService] setServerAddress:@"192.168.1.7"];
+//    [[DiceGameService defaultService] setServerAddress:@"192.168.1.198"];
 //    [[DiceGameService defaultService] setServerPort:8080];
     [[DiceGameService defaultService] connectServer:self];
     [self showActivityWithText:NSLS(@"kConnecting")];
@@ -277,7 +292,8 @@
     {
         _isJoiningDice = YES;
         [[DiceGameService defaultService] joinGameRequest:self.currentSession.sessionId condiction:^BOOL{
-            return [_accountService getBalance] >= 200;
+            //return [_accountService getBalance] >= 200;
+            return [self isAbleToGetIn];
         }];
         [self showActivityWithText:NSLS(@"kJoining")];
     } else {
@@ -295,7 +311,7 @@
 
 #pragma mark - Button action
 
-- (IBAction)clickBack:(id)sender {
+- (IBAction)clickBackButton:(id)sender {
     [[DiceGameService defaultService] quitGame];
     [self.navigationController popViewControllerAnimated:YES];
 }
@@ -304,20 +320,22 @@
     _isJoiningDice = YES;
     [self showActivityWithText:NSLS(@"kJoiningGame")];
     [_diceGameService joinGameRequestWithCondiction:^BOOL{
-        return [_accountService getBalance] >= 200;
+        return [self isAbleToGetIn];
     }];
 }
 
 - (IBAction)creatRoom:(id)sender
 {
-    RoomPasswordDialog *inputDialog = [RoomPasswordDialog dialogWith:NSLS(@"kCreateRoom") 
-                                                            delegate:self 
-                                                               theme:CommonDialogThemeDice];
-    inputDialog.targetTextField.text = [[UserManager defaultManager] defaultUserRoomName];
-    inputDialog.targetTextField.placeholder = NSLS(@"kInputWordPlaceholder");
-    inputDialog.passwordField.placeholder = NSLS(@"kDiceEnterPassword");
-    [inputDialog showInView:self.view];
-    inputDialog.tag = CREATE_ROOM_DIALOG_TAG;
+    if ([self isAbleToGetIn]) {
+        RoomPasswordDialog *inputDialog = [RoomPasswordDialog dialogWith:NSLS(@"kCreateRoom") 
+                                                                delegate:self 
+                                                                   theme:CommonDialogThemeDice];
+        inputDialog.targetTextField.text = [[UserManager defaultManager] defaultUserRoomName];
+        inputDialog.targetTextField.placeholder = NSLS(@"kInputWordPlaceholder");
+        inputDialog.passwordField.placeholder = NSLS(@"kDiceEnterPassword");
+        [inputDialog showInView:self.view];
+        inputDialog.tag = CREATE_ROOM_DIALOG_TAG;
+    }
     
 }
 - (IBAction)clickAll:(id)sender
@@ -399,6 +417,16 @@
 - (void)didHelpViewHide
 {
     helpButton.selected = NO;
+}
+
+#pragma mark - common dialog delegate
+- (void)clickOk:(CommonDialog *)dialog
+{
+    
+}
+- (void)clickBack:(CommonDialog *)dialog
+{
+    
 }
 
 @end

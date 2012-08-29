@@ -833,5 +833,7 @@
 "kDicePropDescription" = "道具说明";
 "kDiceWilds" = "斋";
 
+"kNotEnoughCoinToContinue" = "你的金币太少，不能继续游戏了";
+
 /*********************** 大话骰子国际化字符串结束 *************************/
 

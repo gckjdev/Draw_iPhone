@@ -21,6 +21,8 @@
 #import "GifView.h"
 #import "DiceSoundManager.h"
 #import "DiceSettingView.h"
+#import "ConfigManager.h"
+#import "CommonMessageCenter.h"
 
 #define AVATAR_TAG_OFFSET   8000
 #define NICKNAME_TAG_OFFSET 1100
@@ -34,6 +36,8 @@
 #define DURATION_SHOW_GAIN_COINS 3
 
 #define DURATION_ROLL_BELL 1
+
+#define DICE_THRESHOLD_COIN ([ConfigManager getDiceThresholdCoin])
 
 @interface DiceGamePlayController ()
 
@@ -305,19 +309,21 @@
 {    
     UIButton *button = (UIButton *)[self.view viewWithTag:TAG_TOOL_BUTTON];
     button.selected = NO;
+    
+    [self useItem:item.type itemName:item.itemName userId:_userManager.userId];
 
-    switch (item.type) {
-        case ItemTypeRollAgain:
-            [self useItem:item.type itemName:item.itemName userId:_userManager.userId];
-            break;
-            
-        case ItemTypeCut:
-            [self openDice:2];
-            break;
-            
-        default:
-            break;
-    }
+//    switch (item.type) {
+//        case ItemTypeRollAgain:
+//            [self useItem:item.type itemName:item.itemName userId:_userManager.userId];
+//            break;
+//            
+//        case ItemTypeCut:
+//            [self openDice:2];
+//            break;
+//            
+//        default:
+//            break;
+//    }
     
     [_accountService consumeItem:item.type amount:1]; 
 }
@@ -428,12 +434,16 @@
             
             [_levelService addExp:LIAR_DICE_EXP delegate:self];
 
+            /*
             if (result.gainCoins > 0) {
                 [_accountService chargeAccount:result.gainCoins source:LiarDiceWinType];
             }else{
                 [_accountService deductAccount:abs(result.gainCoins) source:LiarDiceWinType];
             }
-            self.myCoinsLabel.text = [NSString stringWithFormat:@"x%d",[_accountService getBalance]];
+            */
+            
+            [_accountService syncAccount:self forceServer:YES];
+            
         }
     }
 }
@@ -917,6 +927,18 @@
     }
 }
 
+#pragma mark - Account Delegate
+
+// Sync Account Delegate
+- (void)didSyncFinish
+{
+    self.myCoinsLabel.text = [NSString stringWithFormat:@"x%d",[_accountService getBalance]];  
+    if ([_accountService getBalance] < DICE_THRESHOLD_COIN) {
+        [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kNotEnoughCoinToContinue") delayTime:1.5 isHappy:NO];
+        [self quitDiceGame];
+    }
+}
+
 #pragma mark - use item animations
 - (void)useItem:(int)itemId itemName:(NSString *)itemName userId:(NSString *)userId
 {
@@ -929,7 +951,6 @@
 
 -(void)openDiceSuccess
 {
-//    [self disableAllDiceOperationButtons];
     [self popupOpenDiceView];  
 }
 

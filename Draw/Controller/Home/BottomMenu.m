@@ -55,20 +55,21 @@
 
             
 + (UIImage *)imageForMenuButtonType:(MenuButtonType)type
+                       gameAppType:(GameAppType)gameAppType
 {
     
     ShareImageManager *imageManager = [ShareImageManager defaultManager];
     switch (type) {
         case MenuButtonTypeSettings:
-            return [imageManager settingsMenuImage];
+            return [imageManager settingsMenuImageForGameAppType:gameAppType];
         case MenuButtonTypeOpus:
             return [imageManager opusMenuImage];
         case MenuButtonTypeFriend:
-            return [imageManager friendMenuImage];
+            return [imageManager friendMenuImageForGameAppType:gameAppType];
         case MenuButtonTypeChat:
-            return [imageManager chatMenuImage];
+            return [imageManager chatMenuImageForGameAppType:gameAppType];
         case MenuButtonTypeFeedback:
-            return [imageManager feedbackMenuImage];
+            return [imageManager feedbackMenuImageForGameAppType:gameAppType];
         case MenuButtonTypeCheckIn:
             return [imageManager checkInMenuImage];
         default:
@@ -78,8 +79,10 @@
 }
 
 + (BottomMenu *)bottomMenuWithType:(MenuButtonType)type
+                       gameAppType:(GameAppType)gameAppType
 {
-    UIImage *image = [BottomMenu imageForMenuButtonType:type];
+    UIImage *image = [BottomMenu imageForMenuButtonType:type gameAppType:gameAppType];
+    
     NSString *title = nil;//[BottomMenu titleForMenuButtonType:type];
     
     BottomMenu *menu = [BottomMenu bottomMenuWithImage:image 

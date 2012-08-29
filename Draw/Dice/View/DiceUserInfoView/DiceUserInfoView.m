@@ -241,7 +241,7 @@
      hasFacebook:(BOOL)didHasFacebook
       infoInView:(PPViewController*)superController
 {
-    if (![[[UserManager defaultManager] userId] isEqualToString:userId]) {
+    if (![[UserManager defaultManager] isMe:userId]) {
         DiceUserInfoView* view = [DiceUserInfoView createUserInfoView];
         [view initViewWithUserId:userId 
                         nickName:nickName 

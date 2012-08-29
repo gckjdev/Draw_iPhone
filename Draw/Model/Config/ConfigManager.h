@@ -87,4 +87,10 @@ typedef enum{
 + (int)getOffLineDrawExp;
 + (int)getOffLineGuessExp;
 + (int)getLiarDiceExp;
+
++ (int)getDiceFleeCoin;
++ (int)getDiceThresholdCoin;
+
++ (NSString*)defaultDiceServer;
++ (int)defaultDicePort;
 @end
