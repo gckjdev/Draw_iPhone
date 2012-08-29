@@ -295,7 +295,6 @@
     {
         _isJoiningDice = YES;
         [[DiceGameService defaultService] joinGameRequest:self.currentSession.sessionId condiction:^BOOL{
-            //return [_accountService getBalance] >= 200;
             return [self isAbleToGetIn];
         }];
         [self showActivityWithText:NSLS(@"kJoining")];

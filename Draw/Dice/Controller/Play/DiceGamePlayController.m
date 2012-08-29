@@ -1173,7 +1173,7 @@
 - (void)clickOk:(CommonDialog *)dialog
 {
     [self quitDiceGame];
-    [[AccountService defaultService] deductAccount:200 source:LiarDiceFleeType];
+    [[AccountService defaultService] deductAccount:[ConfigManager getDiceFleeCoin] source:LiarDiceFleeType];
 }
 
 - (void)clickBack:(CommonDialog *)dialog
