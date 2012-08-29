@@ -82,7 +82,7 @@ static const NSInteger MENU_NUMBER_PER_PAGE = 6;
     
     int *list = getMainMenuTypeListByGameAppType(self.gameAppType);
     while (list != NULL && (*list) != MenuButtonTypeEnd) {
-        MenuButton *menu = [MenuButton menuButtonWithType:(*list)];
+        MenuButton *menu = [MenuButton menuButtonWithType:(*list) gameAppType:self.gameAppType];
         menu.frame = [self frameForMenuIndex:number++];
         [self.scrollView addSubview:menu];
         menu.delegate = self;
