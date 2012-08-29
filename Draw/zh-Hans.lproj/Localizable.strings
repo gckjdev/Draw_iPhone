@@ -67,6 +67,11 @@
 "kCancel" = "取消";
 "kQuitGameAlertMessage" = "确定要退出游戏吗?";
 "kQuitGameAlertTitle" = "退出游戏";
+
+"kQuitDrawAlertMessage" = "退出绘画后，未完成的作品将保存在草稿箱，以后可以继续编辑。确定要退出吗？";
+"kQuitDrawAlertTitle" = "退出绘画";
+
+
 "kDedutCoinQuitGameAlertMessage" = "游戏进行中，如果这时退出游戏，系统将会扣除%d个金币哦。";
 "kNoCoinQuitGameAlertMessage" = "逃跑需要扣除金币，你的账户余额不足，现在不能退出游戏哦！";
 

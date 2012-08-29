@@ -51,5 +51,6 @@
 - (UIImage *)diceMusicOffImage;
 - (UIImage *)diceAudioOnImage;
 - (UIImage *)diceAudioOffImage;
-
+- (UIImage *)maleImage;
+- (UIImage *)femaleImage;
 @end

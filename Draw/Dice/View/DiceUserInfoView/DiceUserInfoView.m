@@ -26,6 +26,7 @@
 #import "FontButton.h"
 
 @implementation DiceUserInfoView
+@synthesize genderImageView;
 @synthesize backgroundImageView;
 @synthesize mask;
 @synthesize userName;
@@ -64,6 +65,7 @@
     [userId release];
     [levelLabel release];
     [avatar release];
+    [genderImageView release];
     [super dealloc];
 }
 
@@ -116,8 +118,9 @@
 
 - (void)initGender
 {
-    NSString* gender = [@"m" isEqualToString:self.userGender]?NSLS(@"kMale"):NSLS(@"kFemale");
-    [self.genderLabel setText:gender];
+    UIImage* genderImage = [@"m" isEqualToString:self.userGender]?[[DiceImageManager defaultManager] maleImage]:[[DiceImageManager defaultManager] femaleImage];
+//    [self.genderLabel setText:gender];
+    [self.genderImageView setImage:genderImage];
 }
 
 - (void)initSNSInfo

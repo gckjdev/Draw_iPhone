@@ -30,6 +30,7 @@
            hasQQ:(BOOL)didHasQQ 
      hasFacebook:(BOOL)didHasFacebook
       infoInView:(PPViewController*)superController;
+@property (retain, nonatomic) IBOutlet UIImageView *genderImageView;
 @property (retain, nonatomic) IBOutlet UIImageView *backgroundImageView;
 @property (retain, nonatomic) IBOutlet UIButton *mask;
 @property (retain, nonatomic) IBOutlet UILabel *userName;
