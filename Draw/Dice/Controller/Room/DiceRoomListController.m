@@ -22,6 +22,7 @@
 #import "DiceColorManager.h"
 #import "AccountService.h"
 #import "ConfigManager.h"
+#import "CoinShopController.h"
 
 #define KEY_GAME_MESSAGE @"KEY_GAME_MESSAGE"
 #define ROOMS_COUNT_PER_PAGE  20
@@ -75,7 +76,7 @@
 - (BOOL)isAbleToGetIn
 {
     if ([_accountService getBalance] <= DICE_THRESHOLD_COIN) {
-        CommonDialog* dialog = [CommonDialog createDialogWithTitle:nil message:NSLS(@"kCoinsNotEnough") style:CommonDialogStyleDoubleButton delegate:self theme:CommonDialogThemeDice];
+        CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"kNotEnoughCoin") message:NSLS(@"kCoinsNotEnough") style:CommonDialogStyleDoubleButton delegate:self theme:CommonDialogThemeDice];
         [dialog showInView:self.view];
         return NO;
     }
@@ -422,7 +423,8 @@
 #pragma mark - common dialog delegate
 - (void)clickOk:(CommonDialog *)dialog
 {
-    
+    CoinShopController* controller = [[[CoinShopController alloc] init] autorelease];
+    [self.navigationController pushViewController:controller animated:YES]; 
 }
 - (void)clickBack:(CommonDialog *)dialog
 {

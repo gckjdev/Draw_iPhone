@@ -429,21 +429,10 @@
         PBUserResult *result = [[_diceService gameResult] objectForKey:userId];
         DiceAvatarView *avatar = [self avatarViewOfUser:userId];
         [avatar rewardCoins:result.gainCoins duration:DURATION_SHOW_GAIN_COINS];
-        
-        if ([_userManager isMe:userId]) {
-            
-            [_levelService addExp:LIAR_DICE_EXP delegate:self];
+        [_levelService addExp:LIAR_DICE_EXP delegate:self];
 
-            /*
-            if (result.gainCoins > 0) {
-                [_accountService chargeAccount:result.gainCoins source:LiarDiceWinType];
-            }else{
-                [_accountService deductAccount:abs(result.gainCoins) source:LiarDiceWinType];
-            }
-            */
-            
+        if ([_userManager isMe:userId]) { 
             [_accountService syncAccount:self forceServer:YES];
-            
         }
     }
 }
