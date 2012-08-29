@@ -20,6 +20,7 @@
 #import "GameConstants.pb.h"
 #import "CommonMessageCenter.h"
 #import "DiceColorManager.h"
+#import "AccountService.h"
 
 #define KEY_GAME_MESSAGE @"KEY_GAME_MESSAGE"
 #define ROOMS_COUNT_PER_PAGE  20
@@ -30,6 +31,9 @@
 #define ENTER_ROOM_DIALOG_TAG   220120824
 
 @interface DiceRoomListController ()
+{
+    AccountService *_accountService;
+}
 
 @end
 
@@ -182,6 +186,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    _accountService = [AccountService defaultService];
    
     _diceGameService = [DiceGameService defaultService];
     // Do any additional setup after loading the view from its nib.
@@ -266,7 +272,9 @@
     self.currentSession = [[DiceGameService defaultService] sessionInRoom:indexPath.row];
     if (self.currentSession.password == nil || self.currentSession.password.length <= 0) {
         _isJoiningDice = YES;
-        [[DiceGameService defaultService] joinGameRequest:self.currentSession.sessionId];
+        [[DiceGameService defaultService] joinGameRequest:self.currentSession.sessionId condiction:^BOOL{
+            return [_accountService getBalance] >= 200;
+        }];
         [self showActivityWithText:NSLS(@"kJoining")];
     } else {
         InputDialog *inputDialog = [InputDialog dialogWith:NSLS(@"kPassword") 
@@ -291,7 +299,9 @@
 - (IBAction)clickFastEntryButton:(id)sender {    
     _isJoiningDice = YES;
     [self showActivityWithText:NSLS(@"kJoiningGame")];
-    [_diceGameService joinGameRequest];
+    [_diceGameService joinGameRequestWithCondiction:^BOOL{
+        return [_accountService getBalance] >= 200;
+    }];
 }
 
 - (IBAction)creatRoom:(id)sender
@@ -360,7 +370,6 @@
             [self popupMessage:NSLS(@"kPsdNotMatch") title:nil];
         }
     }
-    
 }
 - (void)didClickCancel:(InputDialog *)dialog
 {
