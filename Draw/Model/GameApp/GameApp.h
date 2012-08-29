@@ -20,7 +20,7 @@
 #define DRAW_APP_ID             @"513819630"
 #define DRAW_PRO_APP_ID         @"541354772"
 #define DICE_PRO_APP_ID         @"test"
-#define DICE_APP_ID             @"541354772"
+#define DICE_APP_ID             @"557072001"
 #define CANDY_APP_ID            @"test"
 
 // game ID
@@ -35,13 +35,13 @@
 
 // Lm Ad Wall ID
 #define DRAW_LM_WALL_ID         @"ed21340370b99ad5bd2a5e304e3ea6c4"
-#define DICE_LM_WALL_ID         @"ed21340370b99ad5bd2a5e304e3ea6c4"
-#define CANDY_LM_WALL_ID        @"ed21340370b99ad5bd2a5e304e3ea6c4"
+#define DICE_LM_WALL_ID         @"e1533257a9cd82ab88fe853d71bd11c5"
+#define CANDY_LM_WALL_ID        @"ed21340370b99ad5bd2a5e304e3ea6c4" // TO BE CHANGED
 
 // Lm Ad ID
 #define DRAW_LM_AD_ID           @"eb4ce4f0a0f1f49b6b29bf4c838a5147"
 #define DICE_LM_AD_ID           @"eb4ce4f0a0f1f49b6b29bf4c838a5147"
-#define CANDY_LM_AD_ID          @"eb4ce4f0a0f1f49b6b29bf4c838a5147"
+#define CANDY_LM_AD_ID          @"eb4ce4f0a0f1f49b6b29bf4c838a5147" // TO BE CHANGED
 
 // Ader Ad ID
 #define DRAW_ADER_AD_ID         @"3b47607e44f94d7c948c83b7e6eb800e"
