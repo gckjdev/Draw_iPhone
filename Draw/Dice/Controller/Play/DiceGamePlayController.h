@@ -25,6 +25,7 @@
 #import "ItemService.h"
 #import "ChatView.h"
 #import "ExpressionManager.h"
+#import "DiceSoundManager.h"
 
 @class DiceGameService;
 
@@ -39,6 +40,7 @@
     AudioManager *_audioManager;
 //    ItemService *_itemService;
     ExpressionManager *_expressionManager;
+    DiceSoundManager *_soundManager;
     BOOL _usingWilds;
 }
 

@@ -18,4 +18,9 @@
 // image resources
 - (NSString*)background;
 
+- (NSString*)lmwallId;
+- (NSString*)lmAdPublisherId;
+- (NSString*)aderAdPublisherId;
+- (NSString*)mangoAdPublisherId;
+
 @end

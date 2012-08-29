@@ -20,7 +20,7 @@
 #define DRAW_APP_ID             @"513819630"
 #define DRAW_PRO_APP_ID         @"541354772"
 #define DICE_PRO_APP_ID         @"test"
-#define DICE_APP_ID             @"541354772"
+#define DICE_APP_ID             @"557072001"
 #define CANDY_APP_ID            @"test"
 
 // game ID
@@ -31,7 +31,29 @@
 // Umeng ID
 #define DRAW_UMENG_ID           @"4f83980852701565c500003a"
 #define DICE_UMENG_ID           @"503b13225270150f45000059"
-#define CANDY_UMENG_ID          @"4f83980852701565c500003a"
+#define CANDY_UMENG_ID          @"4f83980852701565c500003a" // TO BE CHANGED
+
+// Lm Ad Wall ID
+#define DRAW_LM_WALL_ID         @"ed21340370b99ad5bd2a5e304e3ea6c4"
+#define DICE_LM_WALL_ID         @"e1533257a9cd82ab88fe853d71bd11c5"
+#define CANDY_LM_WALL_ID        @"ed21340370b99ad5bd2a5e304e3ea6c4" // TO BE CHANGED
+
+// Lm Ad ID
+#define DRAW_LM_AD_ID           @"eb4ce4f0a0f1f49b6b29bf4c838a5147"
+#define DICE_LM_AD_ID           @"eb4ce4f0a0f1f49b6b29bf4c838a5147"
+#define CANDY_LM_AD_ID          @"eb4ce4f0a0f1f49b6b29bf4c838a5147" // TO BE CHANGED
+
+// Ader Ad ID
+#define DRAW_ADER_AD_ID         @"3b47607e44f94d7c948c83b7e6eb800e"
+#define DICE_ADER_AD_ID         @"661f38bed5974599abfad68e6ef402a3"
+#define CANDY_ADER_AD_ID        @"3b47607e44f94d7c948c83b7e6eb800e" // TO BE CHANGED
+
+// Mango Ad ID
+#define DRAW_MANGO_AD_ID        @"ad29f0cf8361452db392ffdef8057eff"
+#define DICE_MANGO_AD_ID        @"65d242132f684a798194044936c6133a"
+#define CANDY_MANGO_AD_ID       @"ad29f0cf8361452db392ffdef8057eff" // TO BE CHANGED
+
+// Lm Ad ID
 
 #define DRAW_BACKGROUND         @"wood_bg@2x.png"
 #define DICE_BACKGROUND         @"dice_room_background@2x.png"

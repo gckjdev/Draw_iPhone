@@ -49,8 +49,8 @@
 
 NSString* GlobalGetServerURL()
 {    
-    return [ConfigManager getAPIServerURL];
-//    return @"http://192.168.1.10:8000/api/i?";    
+//    return [ConfigManager getAPIServerURL];
+    return @"http://192.168.1.198:8000/api/i?";    
 }
 
 NSString* GlobalGetTrafficServerURL()
@@ -115,12 +115,12 @@ NSString* GlobalGetBoardServerURL()
                                @"open.aiff", nil];
     NSArray* diceArray = [[DiceSoundManager defaultManager] diceSoundNameArray];
 
-    if (isDrawApp()){
-        [[AudioManager defaultManager] initSounds:drawSoundArray];        
-    }
-    else{
+//    if (isDrawApp()){
+//        [[AudioManager defaultManager] initSounds:drawSoundArray];        
+//    }
+//    else{
         [[AudioManager defaultManager] initSounds:[drawSoundArray arrayByAddingObjectsFromArray:diceArray]];        
-    }
+//    }
         
     // init mob click 
     [MobClick startWithAppkey:[GameApp umengId]
@@ -145,9 +145,11 @@ NSString* GlobalGetBoardServerURL()
     
     // Push Setup
     BOOL isAskBindDevice = NO;
-    if (![self isPushNotificationEnable]){
-        isAskBindDevice = YES;
-        [self bindDevice];
+    if (isDiceApp() == NO){ // Disable Push Notification For Liar Dice        
+        if (![self isPushNotificationEnable]){
+            isAskBindDevice = YES;
+            [self bindDevice];
+        }
     }
     
     // Ask For Review

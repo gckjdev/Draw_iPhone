@@ -89,8 +89,6 @@
 
     [[AudioManager defaultManager] setIsSoundOn:YES];
     [[AudioManager defaultManager] saveSoundSettings];
-
-
 }
 
 - (IBAction)clickAudioOffButton:(id)sender {

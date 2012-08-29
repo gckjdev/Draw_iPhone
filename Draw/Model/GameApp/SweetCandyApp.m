@@ -35,5 +35,24 @@
     return CANDY_BACKGROUND;
 }
 
+- (NSString*)lmwallId
+{
+    return CANDY_LM_WALL_ID;
+}
+
+- (NSString*)lmAdPublisherId
+{
+    return CANDY_LM_AD_ID;
+}
+
+- (NSString*)aderAdPublisherId
+{
+    return CANDY_ADER_AD_ID;
+}
+
+- (NSString*)mangoAdPublisherId
+{
+    return CANDY_MANGO_AD_ID;
+}
 
 @end
