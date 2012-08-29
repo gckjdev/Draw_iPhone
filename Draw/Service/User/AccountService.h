@@ -27,6 +27,7 @@
 @optional
 - (void)didFinishBuyProduct:(int)resultCode;
 - (void)didProcessingBuyProduct;
+- (void)didSyncFinish;
 
 @end
 
@@ -43,6 +44,8 @@
 - (int)getBalance;
 
 - (void)syncAccountAndItem;
+
+- (void)syncAccount:(id<AccountServiceDelegate>)delegate forceServer:(BOOL)forceServer;
 
 - (void)buyCoin:(PriceModel*)price;
 

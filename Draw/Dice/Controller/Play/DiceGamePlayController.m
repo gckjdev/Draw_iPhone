@@ -426,12 +426,16 @@
             
             [_levelService addExp:LIAR_DICE_EXP delegate:self];
 
+            /*
             if (result.gainCoins > 0) {
                 [_accountService chargeAccount:result.gainCoins source:LiarDiceWinType];
             }else{
                 [_accountService deductAccount:abs(result.gainCoins) source:LiarDiceWinType];
             }
-            self.myCoinsLabel.text = [NSString stringWithFormat:@"x%d",[_accountService getBalance]];
+            */
+            
+            [_accountService syncAccount:self forceServer:YES];
+            
         }
     }
 }
@@ -913,6 +917,14 @@
             self.openDiceButton.fontLable.text = NSLS(@"kScrambleToOpenDice");
         }
     }
+}
+
+#pragma mark - Account Delegate
+
+// Sync Account Delegate
+- (void)didSyncFinish
+{
+    self.myCoinsLabel.text = [NSString stringWithFormat:@"x%d",[_accountService getBalance]];    
 }
 
 #pragma mark - use item animations
