@@ -790,6 +790,8 @@
 
 "kRollAgain" = "摇";
 "kCut" = "劈";
+"kRollAgainDescription" = "使用该道具可以重摇一次骰子。";
+"kCutDescription" = "使用该道具则立刻开骰，并且赌注加倍，即赢家可以获取双倍金币，输家需要扣除双倍金币。";
 
 "kMoreRoom" = "更多...";
 "kMoreRoomLoading" = "加载中...";
@@ -816,6 +818,8 @@
 
 "kJoining" = "正在进入房间";
 "kCreatingRoom" = "正在创建房间";
+"kDiceShop" = "欢乐大话骰子商店";
+
 
 /*********************** 大话骰子国际化字符串结束 *************************/
 

@@ -777,7 +777,9 @@
 
 
 "kRollAgain" = "reroll";
+"kRollAgainDescription" = "use this item to roll dice again to change your dices.";
 "kCut" = "cut";
+"kCutDescription" = "for twice coins.";
 
 "kMoreRoom" = "More...";
 "kMoreRoomLoading" = "Loading...";
@@ -804,6 +806,8 @@
 
 "kJoining" = "Entering the room";
 "kCreatingRoom" = "Creating the room";
+
+"kDiceShop" = "Dice Shop";
 
 /*********************** 大话骰子国际化字符串结束 *************************/
 
