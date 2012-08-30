@@ -73,6 +73,39 @@
     [super dealloc];
 }
 
+- (void)checkAndJoinGame:(int)sessionId
+{
+    _isJoiningDice = YES;
+    [[DiceGameService defaultService] joinGameRequest:sessionId 
+                                           condiction:^BOOL{
+        if ([self meetJoinGameCondiction]) {
+            [self showActivityWithText:NSLS(@"kJoiningGame")];
+            return YES;
+        };
+        return NO;
+    }];
+}
+
+- (void)checkAndJoinGame
+{
+    _isJoiningDice = YES;
+    [_diceGameService joinGameRequestWithCondiction:^BOOL{
+        if ([self meetJoinGameCondiction]) {
+            [self showActivityWithText:NSLS(@"kJoiningGame")];
+            return YES;
+        };
+        return NO;
+    }];
+}
+
+- (void)createRoomWithName:(NSString*)targetText 
+                  password:(NSString*)password
+{
+    _isJoiningDice = YES;
+    [_diceGameService createRoomWithName:targetText password:password];
+    [self showActivityWithText:NSLS(@"kCreatingRoom")];
+}
+
 - (BOOL)meetJoinGameCondiction
 {
     if ([_accountService getBalance] <= DICE_THRESHOLD_COIN) {
@@ -290,15 +323,7 @@
         || self.currentSession.password.length <= 0 
         || [[UserManager defaultManager] isMe:self.currentSession.createBy]) 
     {
-        _isJoiningDice = YES;
-        [[DiceGameService defaultService] joinGameRequest:self.currentSession.sessionId condiction:^BOOL{
-            if ([self meetJoinGameCondiction]) {
-                [self showActivityWithText:NSLS(@"kJoiningGame")];
-                return YES;
-            };
-            return NO;
-        }];
-        [self showActivityWithText:NSLS(@"kJoining")];
+        [self checkAndJoinGame:self.currentSession.sessionId];
     } else {
         InputDialog *inputDialog = [InputDialog dialogWith:NSLS(@"kPassword") 
                                                   delegate:self 
@@ -320,14 +345,7 @@
 }
 
 - (IBAction)clickFastEntryButton:(id)sender {    
-    _isJoiningDice = YES;
-    [_diceGameService joinGameRequestWithCondiction:^BOOL{
-        if ([self meetJoinGameCondiction]) {
-            [self showActivityWithText:NSLS(@"kJoiningGame")];
-            return YES;
-        };
-        return NO;
-    }];
+    [self checkAndJoinGame];
 }
 
 - (IBAction)creatRoom:(id)sender
@@ -385,16 +403,13 @@
 {
     if (dialog.tag == CREATE_ROOM_DIALOG_TAG) {
         NSString *password = ((RoomPasswordDialog *)dialog).passwordField.text;
-        [_diceGameService createRoomWithName:targetText password:password];
-        _isJoiningDice = YES;
-        [self showActivityWithText:NSLS(@"kCreatingRoom")];
+        [self createRoomWithName:targetText 
+                        password:password];
     }
     
     if (dialog.tag == ENTER_ROOM_DIALOG_TAG) {
         if ([self.currentSession.password isEqualToString:targetText]) {
-            _isJoiningDice = YES;
-            [[DiceGameService defaultService] joinGameRequest:_currentSession.sessionId];
-            [self showActivityWithText:NSLS(@"kJoining")];
+            [self checkAndJoinGame:self.currentSession.sessionId];
         } else {
             [self popupMessage:NSLS(@"kPsdNotMatch") title:nil];
         }
