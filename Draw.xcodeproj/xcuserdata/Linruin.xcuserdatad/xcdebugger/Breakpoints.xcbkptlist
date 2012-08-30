@@ -21,24 +21,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Draw/Dice/Controller/Play/DiceGamePlayController.m"
-         timestampString = "367990668.094509"
+         timestampString = "367992517.965862"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "90"
-         endingLineNumber = "90"
-         landmarkName = "-dealloc"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "Yes"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "Draw/Dice/Controller/Room/DiceRoomListController.m"
-         timestampString = "367990953.799005"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "64"
-         endingLineNumber = "64"
+         startingLineNumber = "91"
+         endingLineNumber = "91"
          landmarkName = "-dealloc"
          landmarkType = "5">
       </FileBreakpoint>

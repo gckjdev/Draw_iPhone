@@ -11,14 +11,13 @@
 #import "ItemManager.h"
 #import "DiceImageManager.h"
 #import "LocaleUtils.h"
-#import "HKGirlFontLabel.h"
 
 @implementation Item (DiceItem)
 
 + (Item*)rollAgain
 {
     return [[[Item alloc] initWithType:ItemTypeRollAgain 
-                                 image:nil
+                                 image:[[DiceImageManager defaultManager] diceToolRollAgainImage]
                                   name:NSLS(@"kRollAgain")
                            description:NSLS(@"kRollAgainDescription") 
                       buyAmountForOnce:10 
@@ -30,7 +29,7 @@
 + (Item*)cut
 {
     return [[[Item alloc] initWithType:ItemTypeCut 
-                                 image:nil
+                                 image:[[DiceImageManager defaultManager] diceToolCutImage]
                                   name:NSLS(@"kCut")
                            description:NSLS(@"kCutDescription") 
                       buyAmountForOnce:10

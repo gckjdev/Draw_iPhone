@@ -8,6 +8,8 @@
 
 #import "DiceImageManager.h"
 #import "UIImageUtil.h"
+#import "HKGirlFontLabel.h"
+#import "LocaleUtils.h"
 
 static DiceImageManager *_defaultManager = nil;
 
@@ -255,5 +257,36 @@ static DiceImageManager *_defaultManager = nil;
 - (UIImage *)femaleImage
 {
     return [UIImage imageNamed:@"femaleImage.png"];
+}
+
+- (UIImage *)diceToolCutImage
+{
+    UIImage* backgroundImage = [self toolsItemBgImage];
+    HKGirlFontLabel* label = [[[HKGirlFontLabel alloc] initWithFrame:CGRectMake(backgroundImage.size.width*0.2, 
+                                                                                backgroundImage.size.width*0.1, 
+                                                                                backgroundImage.size.width*0.6, 
+                                                                                backgroundImage.size.height*0.6) 
+                                                           pointSize:40]
+                              autorelease];
+    
+    [label setText:NSLS(@"kCut")];
+    
+    return [UIImage creatImageByImage:backgroundImage withLabel:label];
+}
+
+- (UIImage *)diceToolRollAgainImage
+{
+    UIImage* backgroundImage = [self toolsItemBgImage];
+    HKGirlFontLabel* label = [[[HKGirlFontLabel alloc] initWithFrame:CGRectMake(backgroundImage.size.width*0.2, 
+                                                                                backgroundImage.size.width*0.1, 
+                                                                                backgroundImage.size.width*0.6, 
+                                                                                backgroundImage.size.height*0.6) 
+                                                           pointSize:40] //这里的40没什么意义，只需要弄一个很大的fontsize然后自适应
+                              autorelease];
+    
+
+    [label setText:NSLS(@"kRollAgain")];
+
+    return [UIImage creatImageByImage:backgroundImage withLabel:label];
 }
 @end

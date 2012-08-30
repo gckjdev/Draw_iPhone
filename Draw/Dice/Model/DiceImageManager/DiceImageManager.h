@@ -53,4 +53,7 @@
 - (UIImage *)diceAudioOffImage;
 - (UIImage *)maleImage;
 - (UIImage *)femaleImage;
+
+- (UIImage *)diceToolCutImage;
+- (UIImage *)diceToolRollAgainImage;
 @end
