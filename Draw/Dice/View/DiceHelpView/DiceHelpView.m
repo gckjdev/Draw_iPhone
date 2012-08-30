@@ -28,9 +28,6 @@
 @synthesize gameRulesButton;
 @synthesize itemsUsageButton;
 
-
-
-
 - (void)dealloc {
     [webView release];
     [gameRulesButton release];
@@ -47,12 +44,7 @@
         return nil;
     }
     
-    DiceHelpView *diceHelpView = (DiceHelpView *)[topLevelObjects objectAtIndex:0];
-    
-    [diceHelpView.gameRulesButton.fontLable setText:NSLS(@"kDiceGameRules")];
-    [diceHelpView.itemsUsageButton.fontLable setText:NSLS(@"kDicePropDescription")];
-    
-    return [topLevelObjects objectAtIndex:0];;
+    return [topLevelObjects objectAtIndex:0];
 }
 
 - (void)initialize
@@ -64,6 +56,9 @@
     gameRulesButton.selected = YES;
     itemsUsageButton.selected = NO;
     
+    [self.gameRulesButton.fontLable setText:NSLS(@"kDiceGameRules")];
+    [self.itemsUsageButton.fontLable setText:NSLS(@"kDicePropDescription")];
+    
     [self loadHtmlFile:[_helpManager gameRulesHtmlFilePath]];
 }
 
@@ -72,7 +67,7 @@
     srand((unsigned)time(0)); 
     int ran_num = rand() % 3; 
     
-    return ran_num;
+    return ran_num + 1;
 }
 
 - (void)showInView:(UIView *)view
