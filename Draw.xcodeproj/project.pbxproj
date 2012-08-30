@@ -182,7 +182,6 @@
 		A4A01BDE15D8AF67002FE86D /* dice_create_room@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4A01B9E15D8AF67002FE86D /* dice_create_room@2x.png */; };
 		A4A01BDF15D8AF67002FE86D /* dice_gray_safa@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4A01B9F15D8AF67002FE86D /* dice_gray_safa@2x.png */; };
 		A4A01BE015D8AF67002FE86D /* dice_green_safa@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4A01BA015D8AF67002FE86D /* dice_green_safa@2x.png */; };
-		A4A01BE115D8AF67002FE86D /* dice_help@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4A01BA115D8AF67002FE86D /* dice_help@2x.png */; };
 		A4A01BE215D8AF67002FE86D /* dice_line@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4A01BA215D8AF67002FE86D /* dice_line@2x.png */; };
 		A4A01BE315D8AF67002FE86D /* dice_play@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4A01BA315D8AF67002FE86D /* dice_play@2x.png */; };
 		A4A01BE415D8AF67002FE86D /* dice_room_background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4A01BA415D8AF67002FE86D /* dice_room_background@2x.png */; };
@@ -1500,6 +1499,9 @@
 		CAC25C4015EF0740007456FA /* MenuPanel~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAC25C3415EF0740007456FA /* MenuPanel~ipad.xib */; };
 		CAC25C4315EF078B007456FA /* DiceMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAC25C4115EF078B007456FA /* DiceMenu.xib */; };
 		CAC25C4415EF078B007456FA /* DiceMenu~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAC25C4215EF078B007456FA /* DiceMenu~ipad.xib */; };
+		CAC25C6915EF20FB007456FA /* DiceHomeController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC25C6715EF20FB007456FA /* DiceHomeController.m */; };
+		CAC25C6A15EF20FB007456FA /* DiceHomeController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAC25C6815EF20FB007456FA /* DiceHomeController.xib */; };
+		CAC25C6C15EF2D02007456FA /* DiceHomeController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAC25C6B15EF2D01007456FA /* DiceHomeController~ipad.xib */; };
 		CAC4DCE215450E8F00A42CF2 /* StoreKitUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC4DCE115450E8F00A42CF2 /* StoreKitUtils.m */; };
 		CAC4DCE81545286C00A42CF2 /* TransactionReceiptManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC4DCE71545286B00A42CF2 /* TransactionReceiptManager.m */; };
 		CAC4DCEB154542A200A42CF2 /* TransactionReceipt.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC4DCEA154542A200A42CF2 /* TransactionReceipt.m */; };
@@ -1563,6 +1565,7 @@
 		EA18012E15E77DA100DF9440 /* ChatViewCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA18012D15E77DA100DF9440 /* ChatViewCell~ipad.xib */; };
 		EA18147115E2427C00CAF901 /* DiceRoomListCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA18146F15E2427C00CAF901 /* DiceRoomListCell~ipad.xib */; };
 		EA18147215E2427C00CAF901 /* DiceRoomListController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA18147015E2427C00CAF901 /* DiceRoomListController~ipad.xib */; };
+		EA24D35415EF1EFC008581A2 /* dice_room_help@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA24D35315EF1EFC008581A2 /* dice_room_help@2x.png */; };
 		EA6916BE15ECCF4C0001CB5A /* DiceSettingView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA6916BD15ECCF4C0001CB5A /* DiceSettingView~ipad.xib */; };
 		EA9A315315E9D5CE0059288A /* DiceHelpView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA9A315215E9D5CE0059288A /* DiceHelpView~ipad.xib */; };
 		EAA6A13115CA23550094B122 /* DicesResultView.m in Sources */ = {isa = PBXBuildFile; fileRef = EAA6A12F15CA23550094B122 /* DicesResultView.m */; };
@@ -1861,7 +1864,6 @@
 		A4A01B9E15D8AF67002FE86D /* dice_create_room@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dice_create_room@2x.png"; sourceTree = "<group>"; };
 		A4A01B9F15D8AF67002FE86D /* dice_gray_safa@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dice_gray_safa@2x.png"; sourceTree = "<group>"; };
 		A4A01BA015D8AF67002FE86D /* dice_green_safa@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dice_green_safa@2x.png"; sourceTree = "<group>"; };
-		A4A01BA115D8AF67002FE86D /* dice_help@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dice_help@2x.png"; sourceTree = "<group>"; };
 		A4A01BA215D8AF67002FE86D /* dice_line@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dice_line@2x.png"; sourceTree = "<group>"; };
 		A4A01BA315D8AF67002FE86D /* dice_play@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dice_play@2x.png"; sourceTree = "<group>"; };
 		A4A01BA415D8AF67002FE86D /* dice_room_background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dice_room_background@2x.png"; sourceTree = "<group>"; };
@@ -3632,6 +3634,10 @@
 		CAC25C3415EF0740007456FA /* MenuPanel~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "MenuPanel~ipad.xib"; sourceTree = "<group>"; };
 		CAC25C4115EF078B007456FA /* DiceMenu.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DiceMenu.xib; sourceTree = "<group>"; };
 		CAC25C4215EF078B007456FA /* DiceMenu~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "DiceMenu~ipad.xib"; sourceTree = "<group>"; };
+		CAC25C6615EF20FB007456FA /* DiceHomeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiceHomeController.h; sourceTree = "<group>"; };
+		CAC25C6715EF20FB007456FA /* DiceHomeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiceHomeController.m; sourceTree = "<group>"; };
+		CAC25C6815EF20FB007456FA /* DiceHomeController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DiceHomeController.xib; sourceTree = "<group>"; };
+		CAC25C6B15EF2D01007456FA /* DiceHomeController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "DiceHomeController~ipad.xib"; sourceTree = "<group>"; };
 		CAC4DCE015450E8F00A42CF2 /* StoreKitUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoreKitUtils.h; sourceTree = "<group>"; };
 		CAC4DCE115450E8F00A42CF2 /* StoreKitUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoreKitUtils.m; sourceTree = "<group>"; };
 		CAC4DCE61545286B00A42CF2 /* TransactionReceiptManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransactionReceiptManager.h; sourceTree = "<group>"; };
@@ -3731,6 +3737,7 @@
 		EA18012D15E77DA100DF9440 /* ChatViewCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ChatViewCell~ipad.xib"; sourceTree = "<group>"; };
 		EA18146F15E2427C00CAF901 /* DiceRoomListCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "DiceRoomListCell~ipad.xib"; sourceTree = "<group>"; };
 		EA18147015E2427C00CAF901 /* DiceRoomListController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "DiceRoomListController~ipad.xib"; sourceTree = "<group>"; };
+		EA24D35315EF1EFC008581A2 /* dice_room_help@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dice_room_help@2x.png"; sourceTree = "<group>"; };
 		EA6916BD15ECCF4C0001CB5A /* DiceSettingView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "DiceSettingView~ipad.xib"; sourceTree = "<group>"; };
 		EA9A315215E9D5CE0059288A /* DiceHelpView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "DiceHelpView~ipad.xib"; sourceTree = "<group>"; };
 		EAA6A12E15CA23550094B122 /* DicesResultView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DicesResultView.h; sourceTree = "<group>"; };
@@ -4202,12 +4209,12 @@
 		A4A01B9B15D8AF67002FE86D /* room */ = {
 			isa = PBXGroup;
 			children = (
+				EA24D35315EF1EFC008581A2 /* dice_room_help@2x.png */,
 				A4A01B9C15D8AF67002FE86D /* dice_back@2x.png */,
 				A4A01B9D15D8AF67002FE86D /* dice_blue_safa@2x.png */,
 				A4A01B9E15D8AF67002FE86D /* dice_create_room@2x.png */,
 				A4A01B9F15D8AF67002FE86D /* dice_gray_safa@2x.png */,
 				A4A01BA015D8AF67002FE86D /* dice_green_safa@2x.png */,
-				A4A01BA115D8AF67002FE86D /* dice_help@2x.png */,
 				A4A01BA215D8AF67002FE86D /* dice_line@2x.png */,
 				A4A01BA315D8AF67002FE86D /* dice_play@2x.png */,
 				A4A01BA415D8AF67002FE86D /* dice_room_background@2x.png */,
@@ -4267,6 +4274,7 @@
 		A4B763EF15C28F8E003B4E72 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				CAC25C6515EF20CD007456FA /* Home */,
 				A4B763F015C28F8E003B4E72 /* Play */,
 				A4B763F415C28F8E003B4E72 /* Room */,
 			);
@@ -7366,6 +7374,17 @@
 			path = Panel;
 			sourceTree = "<group>";
 		};
+		CAC25C6515EF20CD007456FA /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				CAC25C6615EF20FB007456FA /* DiceHomeController.h */,
+				CAC25C6715EF20FB007456FA /* DiceHomeController.m */,
+				CAC25C6815EF20FB007456FA /* DiceHomeController.xib */,
+				CAC25C6B15EF2D01007456FA /* DiceHomeController~ipad.xib */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
 		CACF87A015EB4D2D003FA6B6 /* DiceSettingView */ = {
 			isa = PBXGroup;
 			children = (
@@ -8652,7 +8671,6 @@
 				A4A01BDE15D8AF67002FE86D /* dice_create_room@2x.png in Resources */,
 				A4A01BDF15D8AF67002FE86D /* dice_gray_safa@2x.png in Resources */,
 				A4A01BE015D8AF67002FE86D /* dice_green_safa@2x.png in Resources */,
-				A4A01BE115D8AF67002FE86D /* dice_help@2x.png in Resources */,
 				A4A01BE215D8AF67002FE86D /* dice_line@2x.png in Resources */,
 				A4A01BE315D8AF67002FE86D /* dice_play@2x.png in Resources */,
 				A4A01BE415D8AF67002FE86D /* dice_room_background@2x.png in Resources */,
@@ -9300,6 +9318,9 @@
 				CAC25C4015EF0740007456FA /* MenuPanel~ipad.xib in Resources */,
 				CAC25C4315EF078B007456FA /* DiceMenu.xib in Resources */,
 				CAC25C4415EF078B007456FA /* DiceMenu~ipad.xib in Resources */,
+				EA24D35415EF1EFC008581A2 /* dice_room_help@2x.png in Resources */,
+				CAC25C6A15EF20FB007456FA /* DiceHomeController.xib in Resources */,
+				CAC25C6C15EF2D02007456FA /* DiceHomeController~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -9801,6 +9822,7 @@
 				CAC25C3815EF0740007456FA /* MenuButton.m in Sources */,
 				CAC25C3B15EF0740007456FA /* BottomMenuPanel.m in Sources */,
 				CAC25C3E15EF0740007456FA /* MenuPanel.m in Sources */,
+				CAC25C6915EF20FB007456FA /* DiceHomeController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

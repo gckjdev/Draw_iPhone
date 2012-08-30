@@ -23,6 +23,10 @@
 #import "ConfigManager.h"
 #import "ShareImageManager.h"
 
+
+//dice
+#import "DiceRoomListController.h"
+
 @implementation MenuPanel
 @synthesize versionLabel = _versionLabel;
 @synthesize scrollView = _scrollView;
@@ -110,7 +114,7 @@ static const NSInteger MENU_NUMBER_PER_PAGE = 6;
         MenuButton *menu = [MenuButton menuButtonWithType:(*list) gameAppType:self.gameAppType];
         [self updateFrameForMenu:menu atIndex:number++];
         [self.scrollView addSubview:menu];
-        [menu setBadgeNumber:number];
+//        [menu setBadgeNumber:number];
         menu.delegate = self;
         list++;
     }
@@ -240,6 +244,35 @@ static const NSInteger MENU_NUMBER_PER_PAGE = 6;
             [vc release];
         }
             break;
+
+            
+        case MenuButtonTypeDiceShop:
+        {
+            VendingController* vc = [[VendingController alloc] init];
+            [_controller.navigationController pushViewController:vc animated:YES];
+            [vc release];
+        }
+            break;
+        case MenuButtonTypeDiceStart:
+        {
+            PPDebug(@"<didClickMenuButton> dice Start. XiaoTao DO IT!");
+            //TODO 实现点击快速开始大话骰的响应事件， delegate神马的都交给_controller去处理            
+        }
+            break;
+        case MenuButtonTypeDiceRoom:
+        {
+            DiceRoomListController* vc = [[[DiceRoomListController alloc] init] autorelease];
+            [_controller.navigationController pushViewController:vc animated:YES];
+        }
+            break;
+        case MenuButtonTypeDiceHelp:
+        {
+            DiceHelpView *view = [DiceHelpView createDiceHelpView];
+            [view showInView:_controller.view];
+        }
+            break;
+
+            
         default:
             break;
     }

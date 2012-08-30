@@ -76,7 +76,7 @@
     while (list != NULL && (*list) != MenuButtonTypeEnd) {
         MenuButtonType type = *list;
         BottomMenu *menu = [BottomMenu bottomMenuWithType:type gameAppType:self.gameAppType];
-        [menu setBadgeNumber:index];
+//        [menu setBadgeNumber:index];
         menu.frame = [self frameForMenuIndex:index number:[self menuNumber]];
         [self addSubview:menu];
         menu.delegate = self;
