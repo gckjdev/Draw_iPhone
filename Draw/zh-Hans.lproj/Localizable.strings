@@ -835,5 +835,10 @@
 
 "kNotEnoughCoinToContinue" = "你的金币太少，不能继续游戏了";
 
+"kDiceMenuStart" = "快速开始"; 
+"kDiceMenuHelp" = "游戏帮助"; 
+"kDiceMenuRoom" = "游戏大厅"; 
+"kDiceMenuShop" = "道具商店"; 
+
 /*********************** 大话骰子国际化字符串结束 *************************/
 

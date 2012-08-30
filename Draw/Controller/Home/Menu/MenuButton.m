@@ -17,12 +17,25 @@
 @synthesize delegate = _delegate;
 @synthesize gameAppType = _gameAppType;
 
+- (void)updateImage:(UIImage *)image 
+              tilte:(NSString *)title 
+              badge:(NSInteger)badge
+{
+    [_button setImage:image forState:UIControlStateNormal];
+    [_title setText:title];
+    [self setBadgeNumber:badge];
+}
+
+
+
 + (MenuButton *)menuButtonWithImage:(UIImage *)image 
                               title:(NSString *)title
-                              badge:(NSInteger)badge
-{
+                              badge:(NSInteger)badge 
+                        gameAppType:(GameAppType)type
 
-    static NSString *identifier = @"MenuButton";
+{
+    NSString *identifier = (type == GameAppTypeDraw) ?  @"MenuButton" : @"DiceMenu";
+//    static NSString *identifier = @"MenuButton";
     NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:identifier owner:self options:nil];
     if (topLevelObjects == nil || [topLevelObjects count] <= 0){
         return nil;
@@ -32,14 +45,6 @@
     
     return  menuButton;
 
-}
-- (void)updateImage:(UIImage *)image 
-              tilte:(NSString *)title 
-              badge:(NSInteger)badge
-{
-    [_button setImage:image forState:UIControlStateNormal];
-    [_title setText:title];
-    [self setBadgeNumber:badge];
 }
 
 
@@ -61,13 +66,13 @@
             return NSLS(@"kShop"); 
             
         case MenuButtonTypeDiceStart:
-            return NSLS(@"kDiceStart"); 
+            return NSLS(@"kDiceMenuStart"); 
         case MenuButtonTypeDiceHelp:
-            return NSLS(@"kHelp"); 
+            return NSLS(@"kDiceMenuHelp"); 
         case MenuButtonTypeDiceRoom:
-            return NSLS(@"kRoom"); 
+            return NSLS(@"kDiceMenuRoom"); 
         case MenuButtonTypeDiceShop:
-            return NSLS(@"kShop"); 
+            return NSLS(@"kDiceMenuShop"); 
         default:
             return nil;
     }
@@ -122,7 +127,8 @@
     NSString *title = [MenuButton titleForMenuButtonType:type];
     MenuButton *menu = [MenuButton menuButtonWithImage:image 
                                                  title:title 
-                                                 badge:0];
+                                                 badge:0 
+                                           gameAppType:gameAppType];
     [menu setType:type];
     menu.button.tag = type;
     [menu.button addTarget:menu action:@selector(handleClick:) forControlEvents:UIControlEventTouchUpInside];

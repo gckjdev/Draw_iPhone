@@ -14,10 +14,6 @@
 #define BOTTOM_MENU_HEIGHT ([DeviceDetection isIPAD] ? 86 : 43)
 
 
-+ (BottomMenu *)bottomMenuWithImage:(UIImage *)image 
-                              title:(NSString *)title
-                              badge:(NSInteger)badge;
-
 + (BottomMenu *)bottomMenuWithType:(MenuButtonType)type 
                        gameAppType:(GameAppType)gameAppType;
 @end
