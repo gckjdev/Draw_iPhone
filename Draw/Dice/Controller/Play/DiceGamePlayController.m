@@ -92,7 +92,6 @@
     [[AdService defaultService] clearAdView:_adView];
     [self setAdView:nil];
     
-//    [playingUserList release];
     [_adView release];
     [myLevelLabel release];
     [myCoinsLabel release];
@@ -465,10 +464,12 @@
 
 - (IBAction)clickRunAwayButton:(id)sender {
     if (![_diceService.diceSession isMeAByStander]) {
+        NSString *message = [NSString stringWithFormat:NSLS(@"kDedutCoinQuitGameAlertMessage"), [ConfigManager getDiceFleeCoin]];
         CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kQuitGameAlertTitle") 
-                                                           message:[NSString stringWithFormat:NSLS(@"kDedutCoinQuitGameAlertMessage"), [ConfigManager getDiceFleeCoin]] 
+                                                           message:message
                                                              style:CommonDialogStyleDoubleButton 
-                                                          delegate:self theme:CommonDialogThemeDice];
+                                                          delegate:self
+                                                             theme:CommonDialogThemeDice];
         [dialog showInView:self.view];
     } else {
         [self quitDiceGame];
