@@ -332,7 +332,7 @@ static DiceGameService* _defaultService;
 - (void)getDiceServerList
 {
     NSMutableArray* serverList = [[[NSMutableArray alloc] init] autorelease];
-    NSString* serverListString = [ConfigManager getFacetimeServerListString];
+    NSString* serverListString = [ConfigManager getDiceServerListString];
     NSArray* serverStringArray = [serverListString componentsSeparatedByString:SERVER_LIST_SEPERATOR];
     for (NSString* serverString in serverStringArray) {
         NSArray* array = [serverString componentsSeparatedByString:SERVER_PORT_SEPERATOR];
