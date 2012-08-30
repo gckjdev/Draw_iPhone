@@ -478,13 +478,42 @@ static UIImage* _whitePaperImage;
 {
     return [self fixedImageNamed:@"h_feed"];
 }
+
 - (UIImage*)shopImage
 {
-    return [self fixedImageNamed:@"h_shop"];
+    return [self fixedImageNamed:@"h_shop"]; 
 }
 
-//for bottom menu image.
+- (UIImage *)pickToolBackground
+{
+    return [UIImage strectchableImageName:@"popuptools_bg.png"];    
+}
 
+//for dice main menu
+- (UIImage*)diceShopImage
+{
+    return [self fixedImageNamed:@"dice_shop"]; 
+}
+
+
+- (UIImage *)diceStartMenuImage
+{
+    return [self fixedImageNamed:@"dice_start"];    
+}
+
+- (UIImage*)diceRoomMenuImage
+{
+    return [self fixedImageNamed:@"dice_room"];
+}
+
+- (UIImage *)diceHelpMenuImage
+{
+    return [self fixedImageNamed:@"dice_help"];    
+}
+
+
+
+//for bottom menu image.
 
 - (UIImage *)opusMenuImage
 {
@@ -496,10 +525,6 @@ static UIImage* _whitePaperImage;
     return [self fixedImageNamed:@"small_sign"];
 }
 
-- (UIImage *)pickToolBackground
-{
-    return [UIImage strectchableImageName:@"popuptools_bg.png"];    
-}
 
 
 - (UIImage *)settingsMenuImageForGameAppType:(GameAppType)gameAppType
@@ -539,6 +564,14 @@ static UIImage* _whitePaperImage;
     return [UIImage imageNamed:@"dice_bottom_bg.png"]; 
 }
 
+
+- (UIImage *)mainMenuPanelBGForGameAppType:(GameAppType)gameAppType
+{
+    if (gameAppType == GameAppTypeDraw) {
+        return [UIImage imageNamed:@"main_menubg"];        
+    }
+    return [UIImage imageNamed:@"dice_home_bg"];        
+}
 
 
 #pragma mark - save and get temp image.

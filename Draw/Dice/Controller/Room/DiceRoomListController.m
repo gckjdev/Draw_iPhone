@@ -22,6 +22,7 @@
 #import "DiceColorManager.h"
 #import "AccountService.h"
 #import "ConfigManager.h"
+#import "CoinShopController.h"
 
 #define KEY_GAME_MESSAGE @"KEY_GAME_MESSAGE"
 #define ROOMS_COUNT_PER_PAGE  20
@@ -75,7 +76,7 @@
 - (BOOL)isAbleToGetIn
 {
     if ([_accountService getBalance] <= DICE_THRESHOLD_COIN) {
-        CommonDialog* dialog = [CommonDialog createDialogWithTitle:nil message:NSLS(@"kCoinsNotEnough") style:CommonDialogStyleDoubleButton delegate:self theme:CommonDialogThemeDice];
+        CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"kNotEnoughCoin") message:NSLS(@"kCoinsNotEnough") style:CommonDialogStyleDoubleButton delegate:self theme:CommonDialogThemeDice];
         [dialog showInView:self.view];
         return NO;
     }
@@ -138,16 +139,17 @@
     NSString* address = [ConfigManager defaultDiceServer];
     int port = [ConfigManager defaultDicePort];
     
-    //TODO: set server address from config manager
-    [[DiceGameService defaultService] setServerAddress:@"106.187.89.232"];
-    [[DiceGameService defaultService] setServerPort:8018];
 //    [[DiceGameService defaultService] setServerAddress:address];
 //    [[DiceGameService defaultService] setServerPort:port];
-//
-//    
-//    
+    
+
+    // Internet Test Server
+    [[DiceGameService defaultService] setServerAddress:@"106.187.89.232"];
+    [[DiceGameService defaultService] setServerPort:8018];
+
 //    [[DiceGameService defaultService] setServerAddress:@"192.168.1.198"];
 //    [[DiceGameService defaultService] setServerPort:8080];
+
     [[DiceGameService defaultService] connectServer:self];
     [self showActivityWithText:NSLS(@"kConnecting")];
     _isJoiningDice = NO;    
@@ -424,7 +426,8 @@
 #pragma mark - common dialog delegate
 - (void)clickOk:(CommonDialog *)dialog
 {
-    
+    CoinShopController* controller = [[[CoinShopController alloc] init] autorelease];
+    [self.navigationController pushViewController:controller animated:YES]; 
 }
 - (void)clickBack:(CommonDialog *)dialog
 {

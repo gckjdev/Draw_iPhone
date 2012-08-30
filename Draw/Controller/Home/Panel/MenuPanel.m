@@ -21,6 +21,7 @@
 #import "StringUtil.h"
 #import "LevelService.h"
 #import "ConfigManager.h"
+#import "ShareImageManager.h"
 
 @implementation MenuPanel
 @synthesize versionLabel = _versionLabel;
@@ -28,6 +29,7 @@
 @synthesize pageControl = _pageControl;
 @synthesize controller = _controller;
 @synthesize gameAppType = _gameAppType;
+@synthesize bgImageView = _bgImageView;
 
 + (MenuPanel *)menuPanelWithController:(UIViewController *)controller
                            gameAppType:(GameAppType)gameAppType
@@ -53,19 +55,22 @@
 #define MENU_PANEL_HEIGHT ([DeviceDetection isIPAD] ? 467 : 224)
 static const NSInteger MENU_NUMBER_PER_PAGE = 6;
 
+#define MENU_NUMBER_PER_PAGE ((self.gameAppType == GameAppTypeDraw) ? 6 : 4)
+#define MENU_NUMBER_ROW_NUMBER ((self.gameAppType == GameAppTypeDraw) ? 3 : 2)
+
 - (CGRect)frameForMenuIndex:(NSInteger)index
 {
 
     BOOL isIPAD = [DeviceDetection isIPAD];
-    static const NSInteger ROW_NUMBER = 3;
+
     CGFloat xStart = isIPAD ? 32 : 15;
     CGFloat yStart = isIPAD ? 30 : 22;
     int page = index / MENU_NUMBER_PER_PAGE;   
     
-    NSInteger row = (index % MENU_NUMBER_PER_PAGE) / ROW_NUMBER;
-    NSInteger numberInRow = index % ROW_NUMBER;
+    NSInteger row = (index % MENU_NUMBER_PER_PAGE) / MENU_NUMBER_ROW_NUMBER;
+    NSInteger numberInRow = index % MENU_NUMBER_ROW_NUMBER;
     
-    CGFloat xSpace = ((MENU_PANEL_WIDTH - 2 *xStart) - ROW_NUMBER * MENU_BUTTON_WIDTH)/ (ROW_NUMBER - 1);    
+    CGFloat xSpace = ((MENU_PANEL_WIDTH - 2 *xStart) - MENU_NUMBER_ROW_NUMBER * MENU_BUTTON_WIDTH)/ (MENU_NUMBER_ROW_NUMBER - 1);    
     CGFloat ySpace = (MENU_PANEL_HEIGHT - 2 *yStart - 2 * MENU_BUTTON_HEIGHT);
     
     CGFloat y = row * (ySpace + MENU_BUTTON_HEIGHT) + yStart;
@@ -79,10 +84,12 @@ static const NSInteger MENU_NUMBER_PER_PAGE = 6;
 - (void)loadMenu
 {
     int number = 0;
+    UIImage * bgImage = [[ShareImageManager defaultManager] mainMenuPanelBGForGameAppType:self.gameAppType];
+    [self.bgImageView setImage:bgImage];
     
     int *list = getMainMenuTypeListByGameAppType(self.gameAppType);
     while (list != NULL && (*list) != MenuButtonTypeEnd) {
-        MenuButton *menu = [MenuButton menuButtonWithType:(*list)];
+        MenuButton *menu = [MenuButton menuButtonWithType:(*list) gameAppType:self.gameAppType];
         menu.frame = [self frameForMenuIndex:number++];
         [self.scrollView addSubview:menu];
         menu.delegate = self;
@@ -90,8 +97,12 @@ static const NSInteger MENU_NUMBER_PER_PAGE = 6;
     }
     [self.scrollView setContentSize:CGSizeMake((number / MENU_NUMBER_PER_PAGE)  * MENU_PANEL_WIDTH, MENU_PANEL_HEIGHT)];
     
-    [self.versionLabel setText:[NSString stringWithFormat:@"Ver %@", 
-                                [ConfigManager currentVersion]]];
+    if (self.gameAppType == GameAppTypeDraw) {
+        [self.versionLabel setText:[NSString stringWithFormat:@"Ver %@", 
+                                    [ConfigManager currentVersion]]];        
+    }else{
+        [self.versionLabel setHidden:YES];
+    }
 
 }
 
@@ -245,6 +256,7 @@ static const NSInteger MENU_NUMBER_PER_PAGE = 6;
     PPRelease(_scrollView);
     PPRelease(_pageControl);
     PPRelease(_controller);
+    [_bgImageView release];
     [super dealloc];
 }
 @end

@@ -41,7 +41,7 @@
 #import "LmWallService.h"
 #import "UserStatusService.h"
 #import "FacetimeService.h"
-//#import "DiceGameService.h"
+#import "DiceGameService.h"
 //#import "DiceFontManager.h"
 #import "WordManager.h"
 #import "DiceFontManager.h"
@@ -49,8 +49,8 @@
 
 NSString* GlobalGetServerURL()
 {    
-    return [ConfigManager getAPIServerURL];
-//    return @"http://192.168.1.198:8000/api/i?";    
+//    return [ConfigManager getAPIServerURL];
+    return @"http://192.168.1.198:8000/api/i?";    
 }
 
 NSString* GlobalGetTrafficServerURL()
@@ -145,11 +145,9 @@ NSString* GlobalGetBoardServerURL()
     
     // Push Setup
     BOOL isAskBindDevice = NO;
-    if (isDiceApp() == NO){ // Disable Push Notification For Liar Dice        
-        if (![self isPushNotificationEnable]){
-            isAskBindDevice = YES;
-            [self bindDevice];
-        }
+    if (![self isPushNotificationEnable]){
+        isAskBindDevice = YES;
+        [self bindDevice];
     }
     
     // Ask For Review
@@ -249,6 +247,7 @@ NSString* GlobalGetBoardServerURL()
     
     [[RouterService defaultService] stopUpdateTimer];
     [[DrawGameService defaultService] startDisconnectTimer];
+    [[DiceGameService defaultService] startDisconnectTimer];
     [self.networkDetector stop];
 }
 
@@ -300,9 +299,17 @@ NSString* GlobalGetBoardServerURL()
      Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
      */
     
-    [[YoumiWallService defaultService] queryPoints];
-    [[LmWallService defaultService] queryScore];
+    if ([ConfigManager wallEnabled]){
+        if ([ConfigManager useLmWall]){
+            [[LmWallService defaultService] queryScore];            
+        }
+        else{
+            [[YoumiWallService defaultService] queryPoints];
+        }
+    }
+    
     [[DrawGameService defaultService] clearDisconnectTimer];
+    [[DiceGameService defaultService] clearDisconnectTimer];
     [self.networkDetector start];     
     
     [[UserStatusService defaultService] start];
@@ -343,11 +350,6 @@ NSString* GlobalGetBoardServerURL()
 #pragma mark - Device Notification Delegate
 
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
-	
-    //	if ([application enabledRemoteNotificationTypes] == UIRemoteNotificationTypeNone){
-    //        [UIUtils alert:@"?±‰??®Ê?????•Â??®È???????Ôº??Ë¥?¥≠?©Ê?????•Â??ΩÊ?Ê≥??Â∏∏‰Ωø??];
-    //		return;
-    //	}
 	
     // Get a hex string from the device token with no spaces or < >	
 	[self saveDeviceToken:deviceToken];    
@@ -422,9 +424,9 @@ NSString* GlobalGetBoardServerURL()
     if([resp isKindOfClass:[SendMessageToWXResp class]])
     {
         if (resp.errCode == WXSuccess){
-            PPDebug(@"sucdess");
+            PPDebug(@"<onResp> weixin response success");
         }else {
-            PPDebug(@"faile");
+            PPDebug(@"<onResp> weixin response fail");
         }
     }
 }

@@ -15,6 +15,7 @@
 @synthesize title = _title;
 @synthesize type = _type;
 @synthesize delegate = _delegate;
+@synthesize gameAppType = _gameAppType;
 
 + (MenuButton *)menuButtonWithImage:(UIImage *)image 
                               title:(NSString *)title
@@ -57,14 +58,24 @@
         case MenuButtonTypeTimeline:
             return NSLS(@"kFeed");
         case MenuButtonTypeShop:
-            return NSLS(@"kShop");            
+            return NSLS(@"kShop"); 
+            
+        case MenuButtonTypeDiceStart:
+            return NSLS(@"kDiceStart"); 
+        case MenuButtonTypeDiceHelp:
+            return NSLS(@"kHelp"); 
+        case MenuButtonTypeDiceRoom:
+            return NSLS(@"kRoom"); 
+        case MenuButtonTypeDiceShop:
+            return NSLS(@"kShop"); 
         default:
             return nil;
     }
     
 }
 
-+ (UIImage *)imageForMenuButtonType:(MenuButtonType)type
++ (UIImage *)imageForMenuButtonType:(MenuButtonType)type 
+                        gameAppType:(GameAppType)gameAppType
 {
     
     ShareImageManager *imageManager = [ShareImageManager defaultManager];
@@ -81,6 +92,15 @@
             return [imageManager timelineImage];
         case MenuButtonTypeShop:
             return [imageManager shopImage];
+            //dice
+        case MenuButtonTypeDiceStart:
+            return [imageManager diceStartMenuImage];
+        case MenuButtonTypeDiceShop:
+            return [imageManager diceShopImage];
+        case MenuButtonTypeDiceHelp:
+            return [imageManager diceHelpMenuImage];
+        case MenuButtonTypeDiceRoom:
+            return [imageManager diceRoomMenuImage];
         default:
             return nil;
     }
@@ -94,9 +114,11 @@
     }
 }
 
-+ (MenuButton *)menuButtonWithType:(MenuButtonType)type
++ (MenuButton *)menuButtonWithType:(MenuButtonType)type 
+                       gameAppType:(GameAppType)gameAppType
+
 {
-    UIImage *image = [MenuButton imageForMenuButtonType:type];
+    UIImage *image = [MenuButton imageForMenuButtonType:type gameAppType:gameAppType];
     NSString *title = [MenuButton titleForMenuButtonType:type];
     MenuButton *menu = [MenuButton menuButtonWithImage:image 
                                                  title:title 
@@ -152,10 +174,10 @@ int *drawMainMenuTypeList()
 int *diceMainMenuTypeList()
 {
     static int list[] = {    
-        MenuButtonTypeStart,   
-        MenuButtonTypeRoom,   
-        MenuButtonTypeHelp,   
-        MenuButtonTypeShop,   
+        MenuButtonTypeDiceStart,   
+        MenuButtonTypeDiceRoom,   
+        MenuButtonTypeDiceHelp,   
+        MenuButtonTypeDiceShop,   
         //must add the end mark.
         MenuButtonTypeEnd
     };

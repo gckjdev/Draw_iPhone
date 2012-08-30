@@ -88,6 +88,7 @@ static DicePopupViewManager *_instance = nil;
 - (void)dismissCallDiceView
 {
     [_callDiceView dismissAnimated:YES];
+    self.callDiceView = nil;
 }
 
 - (void)popupItemListAtView:(UIView *)atView 
@@ -119,6 +120,7 @@ static DicePopupViewManager *_instance = nil;
 - (void)dismissItemListView
 {
     [_diceItemListView dismissAnimated:YES];
+    self.diceItemListView = nil;
 }
 
 - (void)popupMessage:(NSString *)message
@@ -182,6 +184,7 @@ static DicePopupViewManager *_instance = nil;
 - (void)dismissOpenDiceView
 {
     [_openDiceView dismissAnimated:YES];
+    self.openDiceView = nil;
 }
 
 - (void)popupChatViewAtView:(UIView *)atView
@@ -201,6 +204,7 @@ static DicePopupViewManager *_instance = nil;
 - (void)dismissChatView
 {
     [_chatView dismissAnimated:YES];
+    self.chatView = nil;
 }
 
 @end

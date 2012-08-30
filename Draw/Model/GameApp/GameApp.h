@@ -19,7 +19,7 @@
 // App ID
 #define DRAW_APP_ID             @"513819630"
 #define DRAW_PRO_APP_ID         @"541354772"
-#define DICE_PRO_APP_ID         @"test"
+#define DICE_PRO_APP_ID         @"557072001"
 #define DICE_APP_ID             @"557072001"
 #define CANDY_APP_ID            @"test"
 

@@ -130,6 +130,10 @@
 - (UIImage *)unloadBg;
 - (UIImage*)backButtonImage;
 
+- (UIImage *)diceStartMenuImage;
+- (UIImage*)diceRoomMenuImage;
+- (UIImage *)diceHelpMenuImage;
+
 //menu button
 - (UIImage *)onlinePlayImage;
 - (UIImage *)offlineDrawImage;
@@ -137,6 +141,7 @@
 - (UIImage *)friendPlayImage;
 - (UIImage *)timelineImage;
 - (UIImage*)shopImage;
+- (UIImage*)diceShopImage;
 
 //bottom menus image
 - (UIImage*)checkInMenuImage;
@@ -147,6 +152,8 @@
 - (UIImage *)chatMenuImageForGameAppType:(GameAppType)gameAppType;
 - (UIImage *)feedbackMenuImageForGameAppType:(GameAppType)gameAppType;
 - (UIImage *)bottomPanelBGForGameAppType:(GameAppType)gameAppType;
+- (UIImage *)mainMenuPanelBGForGameAppType:(GameAppType)gameAppType;
+
 
 - (UIImage *)shareDrawButtonImage;
 - (UIImage *)defaultBoardImage;

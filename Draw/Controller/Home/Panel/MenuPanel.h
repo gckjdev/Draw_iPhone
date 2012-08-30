@@ -19,6 +19,7 @@
 @property (retain, nonatomic) IBOutlet UIPageControl *pageControl;
 @property (retain, nonatomic) HomeController *controller;
 @property (assign, nonatomic) GameAppType gameAppType;
+@property (retain, nonatomic) IBOutlet UIImageView *bgImageView;
 
 + (MenuPanel *)menuPanelWithController:(UIViewController *)controller
                            gameAppType:(GameAppType)gameAppType;
