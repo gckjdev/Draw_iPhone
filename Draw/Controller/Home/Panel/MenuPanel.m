@@ -255,8 +255,9 @@ static const NSInteger MENU_NUMBER_PER_PAGE = 6;
             break;
         case MenuButtonTypeDiceStart:
         {
-            PPDebug(@"<didClickMenuButton> dice Start. XiaoTao DO IT!");
-            //TODO 实现点击快速开始大话骰的响应事件， delegate神马的都交给_controller去处理            
+            if ([_controller respondsToSelector:@selector(connectServer)]){
+                [_controller performSelector:@selector(connectServer)];
+            }
         }
             break;
         case MenuButtonTypeDiceRoom:

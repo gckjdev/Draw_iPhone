@@ -19,10 +19,9 @@
 - (UIImage *)blueSafaImage;
 - (UIImage *)diceImageWithDice:(int)dice;
 - (UIImage *)openDiceImageWithDice:(int)dice;
-- (UIImage *)toolBackground;
+- (UIImage *)toolBackgroundImage;
 - (UIImage *)toolEnableCountBackground;
 - (UIImage *)toolDisableCountBackground;
-- (UIImage *)toolBackgroundImage;
 
 - (UIImage *)diceCountBtnBgImage;
 - (UIImage *)diceCountSelectedBtnBgImage;
@@ -53,4 +52,9 @@
 - (UIImage *)diceAudioOffImage;
 - (UIImage *)maleImage;
 - (UIImage *)femaleImage;
+
+- (UIImage *)diceToolCutImage;
+- (UIImage *)diceToolRollAgainImage;
+- (UIImage *)diceToolCutImageForShop;
+- (UIImage *)diceToolRollAgainImageForShop;
 @end

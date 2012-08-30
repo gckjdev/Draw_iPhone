@@ -464,7 +464,7 @@
 }
 
 - (IBAction)clickRunAwayButton:(id)sender {
-    if (![_diceService.diceSession isMeAByStander]) {
+    if (![_diceService.diceSession isMeAByStander] && (_diceService.diceSession.gameState == GameStatePlaying)) {
         NSString *message = [NSString stringWithFormat:NSLS(@"kDedutCoinQuitGameAlertMessage"), [ConfigManager getDiceFleeCoin]];
         CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kQuitGameAlertTitle") 
                                                            message:message

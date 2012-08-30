@@ -32,7 +32,7 @@
 #define CREATE_ROOM_DIALOG_TAG  120120824
 #define ENTER_ROOM_DIALOG_TAG   220120824
 
-#define DICE_THRESHOLD_COIN ([ConfigManager getDiceThresholdCoin])
+
 
 @interface DiceRoomListController ()
 {
@@ -139,19 +139,19 @@
     NSString* address = [ConfigManager defaultDiceServer];
     int port = [ConfigManager defaultDicePort];
     
-//    [[DiceGameService defaultService] setServerAddress:address];
-//    [[DiceGameService defaultService] setServerPort:port];
+    [[DiceGameService defaultService] setServerAddress:address];
+    [[DiceGameService defaultService] setServerPort:port];
     
 
     // Internet Test Server
-    [[DiceGameService defaultService] setServerAddress:@"106.187.89.232"];
-    [[DiceGameService defaultService] setServerPort:8018];
+//    [[DiceGameService defaultService] setServerAddress:@"106.187.89.232"];
+//    [[DiceGameService defaultService] setServerPort:8018];
 
 //    [[DiceGameService defaultService] setServerAddress:@"192.168.1.198"];
 //    [[DiceGameService defaultService] setServerPort:8080];
 
     [[DiceGameService defaultService] connectServer:self];
-    [self showActivityWithText:NSLS(@"kConnecting")];
+    [self showActivityWithText:NSLS(@"kConnectingServer")];
     _isJoiningDice = NO;    
 }
 

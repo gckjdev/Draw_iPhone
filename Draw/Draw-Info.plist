@@ -32,6 +32,15 @@
 		<dict>
 			<key>CFBundleURLSchemes</key>
 			<array>
+				<string>fb451387761588871</string>
+			</array>
+		</dict>
+	</array>
+	<key>URL types Draw</key>
+	<array>
+		<dict>
+			<key>CFBundleURLSchemes</key>
+			<array>
 				<string>fb352182988165711</string>
 				<string>gckjcchh</string>
 				<string>wx427a2f57bc4456d1</string>

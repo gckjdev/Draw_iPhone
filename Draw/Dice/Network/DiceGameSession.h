@@ -14,6 +14,11 @@ typedef enum {
     OpenTypeCut = 2,
 }OpenType;
 
+typedef enum {
+    GameStateGameOver = 0,
+    GameStatePlaying = 1,
+}DiceGameState;
+
 @interface DiceGameSession : CommonGameSession
 
 @property (retain, nonatomic) NSMutableDictionary *userDiceList;
@@ -29,6 +34,7 @@ typedef enum {
 
 @property (assign, nonatomic) BOOL wilds;
 @property (nonatomic, assign) BOOL isMeAByStander;
+@property (assign, nonatomic) DiceGameState gameState;
 
 - (void)reset;
 

@@ -808,7 +808,7 @@
 
 "kJoining" = "正在進入房間";
 "kCreatingRoom" = "正在創建房間";
-"kDiceShop" = "歡樂大話骰子商店";
+"kDiceShop" = "歡樂大話骰商店";
 
 "kDiceRoomListTitle" = "歡樂大話骰";
 "kDiceGameRules"= "遊戲規則";
@@ -822,6 +822,8 @@
 "kDiceMenuHelp" = "遊戲幫助";
 "kDiceMenuRoom" = "遊戲大廳";
 "kDiceMenuShop" = "道具商店";
+
+"kCoinsNotEnoughAndEnterShop" = "你當前的金幣少於%d，玩不了一局遊戲了，現在就買些金幣？";
 
 /*********************** 大话骰子国际化字符串结束 *************************/
 

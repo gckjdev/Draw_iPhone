@@ -69,6 +69,7 @@ static LevelService* _defaultLevelService;
             lastLevelUpExp = (int)lastLevelUpExp*EXP_INC_RATE;
             exp = exp+lastLevelUpExp;
         }
+//        PPDebug(@"current level--%d, level up need %f day", i, lastLevelUpExp/(OFFLINE_DRAW_EXP*6*120.0));
         [self.levelMap addObject:[NSNumber numberWithLong:exp]];
         
     }

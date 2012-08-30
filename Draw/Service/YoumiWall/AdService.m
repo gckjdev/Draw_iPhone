@@ -545,18 +545,22 @@ static AdService* _defaultService;
 //    return nil;
 //}
 
-- (UIView*)createAdInView:(UIView*)superView
-                    frame:(CGRect)frame 
-                iPadFrame:(CGRect)iPadFrame
-{
-    return [self createAderAdInView:superView frame:frame iPadFrame:iPadFrame];
-}
+//- (UIView*)createAdInView:(UIView*)superView
+//                    frame:(CGRect)frame 
+//                iPadFrame:(CGRect)iPadFrame
+//{
+//    return [self createAderAdInView:superView frame:frame iPadFrame:iPadFrame];
+//}
 
 - (UIView*)createLmAdInView:(UIView*)superView
                       appId:(NSString*)appId
                       frame:(CGRect)frame 
                   iPadFrame:(CGRect)iPadFrame
 {
+    if (frame.size.height == 0 && frame.size.width == 0 && [DeviceDetection isIPAD] == NO){
+        return nil;
+    }
+    
     // Create LM Ad View
     immobView* adView = nil;
     adView = [[[immobView alloc] initWithAdUnitID:appId] autorelease];
@@ -575,6 +579,31 @@ static AdService* _defaultService;
     [adView immobViewDisplay];        
     return adView;    
 }
+
+- (UIView*)createAdInView:(UIView*)superView
+                    frame:(CGRect)frame 
+                iPadFrame:(CGRect)iPadFrame
+{        
+    PPDebug(@"<createAdView>");
+    
+    if ([self isShowAd] == NO){
+        return nil;
+    }
+    
+    if ([self isShowAderAd] == YES){
+        return [self createAderAdInView:superView frame:frame iPadFrame:iPadFrame];
+    }
+    
+    if ([self isShowLmAd] == NO){
+        return [self createMangoAdInView:superView frame:frame iPadFrame:iPadFrame];
+    }
+    
+    return [self createLmAdInView:superView
+                            appId:[GameApp lmAdPublisherId] //@"eb4ce4f0a0f1f49b6b29bf4c838a5147" 
+                            frame:frame 
+                        iPadFrame:iPadFrame];            
+}
+
 
 - (UIView*)createAdInView:(UIViewController*)superViewContoller
                     frame:(CGRect)frame 
@@ -598,30 +627,7 @@ static AdService* _defaultService;
     return [self createLmAdInView:superViewContoller.view 
                             appId:[GameApp lmAdPublisherId] //@"eb4ce4f0a0f1f49b6b29bf4c838a5147" 
                             frame:frame 
-                        iPadFrame:iPadFrame];
-            
-    // Create LM Ad View
-//    UIView* superView = superViewContoller.view;
-//    LmmobAdBannerView* adView = nil;
-//    adView = [[[LmmobAdBannerView alloc] initWithFrame:frame] autorelease];
-//    adView.adPositionIdString = @"eb4ce4f0a0f1f49b6b29bf4c838a5147";
-//    adView.specId = 0;
-//    adView.rootViewController = [HomeController defaultInstance];
-//    
-//    if ([DeviceDetection isIPAD]){
-//        [adView setFrame:iPadFrame];
-//    }
-//    else{
-//        [adView setFrame:frame];
-//    }
-//    
-//    adView.tag = AD_VIEW_TAG;
-//    adView.appVersionString = [UIUtils getAppVersion];
-//    adView.delegate = self;
-//    adView.autoRefreshAdTimeOfSeconds = 30;
-//    [superView addSubview:adView];    
-//    [adView requestBannerAd];        
-//    return adView;
+                        iPadFrame:iPadFrame];            
 }
 
 - (UIView*)createAdInView:(UIView*)superView
@@ -645,7 +651,15 @@ static AdService* _defaultService;
     }
 }
 
-
+- (UIView*)createLmAdInView:(UIView*)superView
+                      frame:(CGRect)frame 
+                  iPadFrame:(CGRect)iPadFrame
+{
+    return [self createLmAdInView:superView
+                            appId:[GameApp lmAdPublisherId] //@"eb4ce4f0a0f1f49b6b29bf4c838a5147" 
+                            frame:frame 
+                        iPadFrame:iPadFrame];
+}
 
 
 @end

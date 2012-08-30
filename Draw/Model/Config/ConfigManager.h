@@ -23,6 +23,7 @@ typedef enum{
     EnableNot = 3
 }ChatVoiceEnable;
 
+#define DICE_THRESHOLD_COIN ([ConfigManager getDiceThresholdCoin])
 
 @interface ConfigManager : NSObject
 
@@ -91,6 +92,5 @@ typedef enum{
 + (int)getDiceFleeCoin;
 + (int)getDiceThresholdCoin;
 
-+ (NSString*)defaultDiceServer;
-+ (int)defaultDicePort;
++ (NSString*)getDiceServerListString;
 @end

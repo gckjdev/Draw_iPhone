@@ -20,6 +20,7 @@
 @property (retain, nonatomic) IBOutlet UIImageView *outItem;
 @property (retain, nonatomic) IBOutlet HKGirlFontLabel *titleLabel;
 @property (retain, nonatomic) IBOutlet UIImageView *titleImageView;
+@property (retain, nonatomic) IBOutlet UIImageView *bgImageView;
 
 + (VendingController *)instance;
 - (UINavigationController *)topNavigationController;
