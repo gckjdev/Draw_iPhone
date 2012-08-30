@@ -17,10 +17,20 @@
 
 // image resources
 - (NSString*)background;
+- (NSString*)defaultBroadImage;
 
 - (NSString*)lmwallId;
 - (NSString*)lmAdPublisherId;
 - (NSString*)aderAdPublisherId;
 - (NSString*)mangoAdPublisherId;
+
+- (NSString*)sinaAppKey;
+- (NSString*)sinaAppSecret;
+
+- (NSString*)qqAppKey;
+- (NSString*)qqAppSecret;
+
+- (NSString*)facebookAppKey;
+- (NSString*)facebookAppSecret;
 
 @end

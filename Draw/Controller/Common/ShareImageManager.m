@@ -451,10 +451,7 @@ static UIImage* _whitePaperImage;
 
 - (UIImage *)defaultBoardImage
 {
-    if (isDiceApp()) {
-        return [UIImage imageNamed:@"dice_default_board.png"];       
-    }
-    return [UIImage imageNamed:@"draw_default_board.png"];    
+    return [UIImage imageNamed:[GameApp defaultBroadImage]];
 }
 
 #pragma mark - menu button image

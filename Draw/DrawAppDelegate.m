@@ -46,6 +46,7 @@
 #import "WordManager.h"
 #import "DiceFontManager.h"
 #import "DiceSoundManager.h"
+#import "DiceHomeController.h"
 
 NSString* GlobalGetServerURL()
 {    
@@ -76,9 +77,11 @@ NSString* GlobalGetBoardServerURL()
 @synthesize reviewRequest = _reviewRequest;
 @synthesize networkDetector = _networkDetector;
 @synthesize chatDetailController = _chatDetailController;
+@synthesize diceHomeController = _diceHomeController;
 
 - (void)dealloc
 {
+    [_diceHomeController release];
     [_reviewRequest release];
     [_homeController release];
     [_roomController release];
@@ -129,19 +132,21 @@ NSString* GlobalGetBoardServerURL()
     [MobClick updateOnlineConfig];
     
     // Init SNS Service
-    [[SinaSNSService defaultService] setAppKey:@"2831348933" 
-                                        Secret:@"ff89c2f5667b0199ee7a8bad6c44b265"];
-    [[QQWeiboService defaultService] setAppKey:@"801123669" 
-                                        Secret:@"30169d80923b984109ee24ade9914a5c"];        
-    [[FacebookSNSService defaultService] setAppId:@"352182988165711" 
-                                           appKey:@"352182988165711" 
-                                           Secret:@"51c65d7fbef9858a5d8bc60014d33ce2"];
+    [[SinaSNSService defaultService] setAppKey:[GameApp sinaAppKey]         // @"2831348933" 
+                                        Secret:[GameApp sinaAppSecret]];    // @"ff89c2f5667b0199ee7a8bad6c44b265"];
+    [[QQWeiboService defaultService] setAppKey:[GameApp qqAppKey]           // @"801123669" 
+                                        Secret:[GameApp qqAppSecret]];      // @"30169d80923b984109ee24ade9914a5c"];        
+    [[FacebookSNSService defaultService] setAppId:[GameApp facebookAppKey]  //@"352182988165711" 
+                                           appKey:[GameApp facebookAppKey]  //@"352182988165711" 
+                                        Secret:[GameApp facebookAppSecret]]; //@"51c65d7fbef9858a5d8bc60014d33ce2"];
     
     
     // Init Account Service and Sync Balance and Item
     [[AccountService defaultService] syncAccountAndItem];
     
-    [[RouterService defaultService] fetchServerListAtBackground];    
+    if (isDrawApp()){
+        [[RouterService defaultService] fetchServerListAtBackground];    
+    }
     
     // Push Setup
     BOOL isAskBindDevice = NO;
@@ -159,7 +164,15 @@ NSString* GlobalGetBoardServerURL()
     }
 
     // Init Home Controller As Root View Controller
-    self.homeController = [[[HomeController alloc] init] autorelease];     
+    PPViewController* rootController = nil;
+    if (isDiceApp()){
+        self.diceHomeController = [[[DiceHomeController alloc] init] autorelease];
+        rootController = _diceHomeController;
+    }
+    else{
+        self.homeController = [[[HomeController alloc] init] autorelease];     
+        rootController = _homeController;
+    }
     
     NSDictionary *userInfo = [launchOptions objectForKey:UIApplicationLaunchOptionsRemoteNotificationKey];
     NotificationType type = [NotificationManager typeForUserInfo:userInfo];
@@ -168,13 +181,13 @@ NSString* GlobalGetBoardServerURL()
     self.homeController.notificationType = type;
     
     UINavigationController* navigationController = [[[UINavigationController alloc] 
-                                                     initWithRootViewController:self.homeController] 
+                                                     initWithRootViewController:rootController] 
                                                     autorelease];
     navigationController.navigationBarHidden = YES;
 
     // Try Fetch User Data By Device Id
     if ([[UserManager defaultManager] hasUser] == NO){
-        [[UserService defaultService] loginByDeviceWithViewController:self.homeController];
+        [[UserService defaultService] loginByDeviceWithViewController:rootController];
     }
 
 
@@ -208,10 +221,8 @@ NSString* GlobalGetBoardServerURL()
     //sync level details
     [[LevelService defaultService] syncExpAndLevel:SYNC];
     
-
     [WordManager unZipFiles];
-    [DiceFontManager unZipFiles];
-    
+    [DiceFontManager unZipFiles];    
     return YES;
 }
 
