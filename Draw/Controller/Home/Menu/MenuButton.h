@@ -19,9 +19,10 @@ typedef enum{
     MenuButtonTypeShop,   
     
     //for dice.
-    MenuButtonTypeStart,
-    MenuButtonTypeRoom,
-    MenuButtonTypeHelp,
+    MenuButtonTypeDiceStart,
+    MenuButtonTypeDiceRoom,
+    MenuButtonTypeDiceHelp,
+    MenuButtonTypeDiceShop,       
     
     //for bottom menu
     
@@ -67,16 +68,18 @@ extern int *getBottomMenuTypeListByGameAppType(GameAppType type);
 
 + (MenuButton *)menuButtonWithImage:(UIImage *)image 
                               title:(NSString *)title
-                              badge:(NSInteger)badge;
+                              badge:(NSInteger)badge 
+                        gameAppType:(GameAppType)gameAppType;
+
+
++ (MenuButton *)menuButtonWithType:(MenuButtonType)type 
+                       gameAppType:(GameAppType)gameAppType;
+
+- (void)setBadgeNumber:(NSInteger)badge;
 
 - (void)updateImage:(UIImage *)image 
               tilte:(NSString *)title 
               badge:(NSInteger)badge;
-
-+ (MenuButton *)menuButtonWithType:(MenuButtonType)type 
-                       gameAppType:(GameAppType)gameAppType;
-- (void)setBadgeNumber:(NSInteger)badge;
-
 
 
 @end

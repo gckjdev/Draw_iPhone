@@ -14,9 +14,9 @@
 
 + (BottomMenu *)bottomMenuWithImage:(UIImage *)image 
                               title:(NSString *)title
-                              badge:(NSInteger)badge
+                              badge:(NSInteger)badge 
+                        gameAppType:(GameAppType)type
 {
-    
     static NSString *identifier = @"BottomMenu";
     NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:identifier owner:self options:nil];
     if (topLevelObjects == nil || [topLevelObjects count] <= 0){
@@ -87,7 +87,7 @@
     
     BottomMenu *menu = [BottomMenu bottomMenuWithImage:image 
                                                  title:title 
-                                                 badge:0];
+                                                 badge:0 gameAppType:gameAppType];
     [menu setType:type];
     menu.button.tag = type;
     [menu.button addTarget:menu action:@selector(handleClick:) forControlEvents:UIControlEventTouchUpInside];

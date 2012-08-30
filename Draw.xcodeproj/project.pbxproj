@@ -182,7 +182,6 @@
 		A4A01BDE15D8AF67002FE86D /* dice_create_room@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4A01B9E15D8AF67002FE86D /* dice_create_room@2x.png */; };
 		A4A01BDF15D8AF67002FE86D /* dice_gray_safa@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4A01B9F15D8AF67002FE86D /* dice_gray_safa@2x.png */; };
 		A4A01BE015D8AF67002FE86D /* dice_green_safa@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4A01BA015D8AF67002FE86D /* dice_green_safa@2x.png */; };
-		A4A01BE115D8AF67002FE86D /* dice_help@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4A01BA115D8AF67002FE86D /* dice_help@2x.png */; };
 		A4A01BE215D8AF67002FE86D /* dice_line@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4A01BA215D8AF67002FE86D /* dice_line@2x.png */; };
 		A4A01BE315D8AF67002FE86D /* dice_play@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4A01BA315D8AF67002FE86D /* dice_play@2x.png */; };
 		A4A01BE415D8AF67002FE86D /* dice_room_background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4A01BA415D8AF67002FE86D /* dice_room_background@2x.png */; };
@@ -1243,19 +1242,7 @@
 		CA2F81EC15C0D995002038A6 /* FacetimeNetworkClient.m in Sources */ = {isa = PBXBuildFile; fileRef = CA2F81EB15C0D995002038A6 /* FacetimeNetworkClient.m */; };
 		CA2F81F015C0D9B8002038A6 /* FacetimeMainController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA2F81EE15C0D9B8002038A6 /* FacetimeMainController.m */; };
 		CA2F81F115C0D9B8002038A6 /* FacetimeMainController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA2F81EF15C0D9B8002038A6 /* FacetimeMainController.xib */; };
-		CA30949915E5D5960083A7A3 /* MenuButton.m in Sources */ = {isa = PBXBuildFile; fileRef = CA30949715E5D5950083A7A3 /* MenuButton.m */; };
-		CA30949A15E5D5960083A7A3 /* MenuButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA30949815E5D5960083A7A3 /* MenuButton.xib */; };
-		CA30949E15E5D5C60083A7A3 /* MenuPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = CA30949C15E5D5C60083A7A3 /* MenuPanel.m */; };
-		CA30949F15E5D5C60083A7A3 /* MenuPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA30949D15E5D5C60083A7A3 /* MenuPanel.xib */; };
-		CA3094A215E5D6000083A7A3 /* MenuButton~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA3094A015E5D6000083A7A3 /* MenuButton~ipad.xib */; };
-		CA3094A315E5D6000083A7A3 /* MenuPanel~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA3094A115E5D6000083A7A3 /* MenuPanel~ipad.xib */; };
 		CA3094A515E5E8110083A7A3 /* h_play@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA3094A415E5E8110083A7A3 /* h_play@2x.png */; };
-		CA3094E915E64B3B0083A7A3 /* BottomMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3094E715E64B3A0083A7A3 /* BottomMenu.m */; };
-		CA3094EA15E64B3B0083A7A3 /* BottomMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA3094E815E64B3A0083A7A3 /* BottomMenu.xib */; };
-		CA3094EE15E653B90083A7A3 /* BottomMenuPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3094EC15E653AA0083A7A3 /* BottomMenuPanel.m */; };
-		CA3094EF15E653B90083A7A3 /* BottomMenuPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA3094ED15E653AD0083A7A3 /* BottomMenuPanel.xib */; };
-		CA3094F215E66A430083A7A3 /* BottomMenu~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA3094F015E66A3E0083A7A3 /* BottomMenu~ipad.xib */; };
-		CA3094F315E66A430083A7A3 /* BottomMenuPanel~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA3094F115E66A400083A7A3 /* BottomMenuPanel~ipad.xib */; };
 		CA31D8291561F70E00199A24 /* RoomPasswordDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = CA31D8271561F70D00199A24 /* RoomPasswordDialog.m */; };
 		CA31D82A1561F70E00199A24 /* RoomPasswordDialog.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA31D8281561F70D00199A24 /* RoomPasswordDialog.xib */; };
 		CA31D82C1561F72C00199A24 /* RoomPasswordDialog~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA31D82B1561F72C00199A24 /* RoomPasswordDialog~ipad.xib */; };
@@ -1487,17 +1474,34 @@
 		CAC108AA1575E3AE00703613 /* pen5@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAC108A51575E3AE00703613 /* pen5@2x.png */; };
 		CAC13242154C23E5000A8C8F /* MobClickUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC13241154C23E5000A8C8F /* MobClickUtils.m */; };
 		CAC13246154C28C8000A8C8F /* ConfigManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC13245154C28C8000A8C8F /* ConfigManager.m */; };
-		CAC25BF115EDF9FD007456FA /* dice_bottom_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = CAC25BE915EDF9FD007456FA /* dice_bottom_bg.png */; };
-		CAC25BF215EDF9FD007456FA /* dice_default_board.png in Resources */ = {isa = PBXBuildFile; fileRef = CAC25BEA15EDF9FD007456FA /* dice_default_board.png */; };
-		CAC25BF315EDF9FD007456FA /* dice_help.png in Resources */ = {isa = PBXBuildFile; fileRef = CAC25BEB15EDF9FD007456FA /* dice_help.png */; };
-		CAC25BF415EDF9FD007456FA /* dice_home_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = CAC25BEC15EDF9FD007456FA /* dice_home_bg.png */; };
-		CAC25BF515EDF9FD007456FA /* dice_room.png in Resources */ = {isa = PBXBuildFile; fileRef = CAC25BED15EDF9FD007456FA /* dice_room.png */; };
-		CAC25BF615EDF9FD007456FA /* dice_shop.png in Resources */ = {isa = PBXBuildFile; fileRef = CAC25BEE15EDF9FD007456FA /* dice_shop.png */; };
-		CAC25BF715EDF9FD007456FA /* dice_start.png in Resources */ = {isa = PBXBuildFile; fileRef = CAC25BEF15EDF9FD007456FA /* dice_start.png */; };
+		CAC25BF115EDF9FD007456FA /* dice_bottom_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAC25BE915EDF9FD007456FA /* dice_bottom_bg@2x.png */; };
+		CAC25BF215EDF9FD007456FA /* dice_default_board@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAC25BEA15EDF9FD007456FA /* dice_default_board@2x.png */; };
+		CAC25BF315EDF9FD007456FA /* dice_help@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAC25BEB15EDF9FD007456FA /* dice_help@2x.png */; };
+		CAC25BF415EDF9FD007456FA /* dice_home_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAC25BEC15EDF9FD007456FA /* dice_home_bg@2x.png */; };
+		CAC25BF515EDF9FD007456FA /* dice_room@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAC25BED15EDF9FD007456FA /* dice_room@2x.png */; };
+		CAC25BF615EDF9FD007456FA /* dice_shop@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAC25BEE15EDF9FD007456FA /* dice_shop@2x.png */; };
+		CAC25BF715EDF9FD007456FA /* dice_start@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAC25BEF15EDF9FD007456FA /* dice_start@2x.png */; };
 		CAC25BFF15EDFB8A007456FA /* bm_feedback@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAC25BFB15EDFB8A007456FA /* bm_feedback@2x.png */; };
 		CAC25C0015EDFB8A007456FA /* bm_friend@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAC25BFC15EDFB8A007456FA /* bm_friend@2x.png */; };
 		CAC25C0115EDFB8A007456FA /* bm_chat@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAC25BFD15EDFB8A007456FA /* bm_chat@2x.png */; };
 		CAC25C0215EDFB8A007456FA /* bm_setting@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAC25BFE15EDFB8A007456FA /* bm_setting@2x.png */; };
+		CAC25C3515EF0740007456FA /* BottomMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC25C2515EF0740007456FA /* BottomMenu.m */; };
+		CAC25C3615EF0740007456FA /* BottomMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAC25C2615EF0740007456FA /* BottomMenu.xib */; };
+		CAC25C3715EF0740007456FA /* BottomMenu~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAC25C2715EF0740007456FA /* BottomMenu~ipad.xib */; };
+		CAC25C3815EF0740007456FA /* MenuButton.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC25C2915EF0740007456FA /* MenuButton.m */; };
+		CAC25C3915EF0740007456FA /* MenuButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAC25C2A15EF0740007456FA /* MenuButton.xib */; };
+		CAC25C3A15EF0740007456FA /* MenuButton~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAC25C2B15EF0740007456FA /* MenuButton~ipad.xib */; };
+		CAC25C3B15EF0740007456FA /* BottomMenuPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC25C2E15EF0740007456FA /* BottomMenuPanel.m */; };
+		CAC25C3C15EF0740007456FA /* BottomMenuPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAC25C2F15EF0740007456FA /* BottomMenuPanel.xib */; };
+		CAC25C3D15EF0740007456FA /* BottomMenuPanel~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAC25C3015EF0740007456FA /* BottomMenuPanel~ipad.xib */; };
+		CAC25C3E15EF0740007456FA /* MenuPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC25C3215EF0740007456FA /* MenuPanel.m */; };
+		CAC25C3F15EF0740007456FA /* MenuPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAC25C3315EF0740007456FA /* MenuPanel.xib */; };
+		CAC25C4015EF0740007456FA /* MenuPanel~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAC25C3415EF0740007456FA /* MenuPanel~ipad.xib */; };
+		CAC25C4315EF078B007456FA /* DiceMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAC25C4115EF078B007456FA /* DiceMenu.xib */; };
+		CAC25C4415EF078B007456FA /* DiceMenu~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAC25C4215EF078B007456FA /* DiceMenu~ipad.xib */; };
+		CAC25C6915EF20FB007456FA /* DiceHomeController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC25C6715EF20FB007456FA /* DiceHomeController.m */; };
+		CAC25C6A15EF20FB007456FA /* DiceHomeController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAC25C6815EF20FB007456FA /* DiceHomeController.xib */; };
+		CAC25C6C15EF2D02007456FA /* DiceHomeController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAC25C6B15EF2D01007456FA /* DiceHomeController~ipad.xib */; };
 		CAC4DCE215450E8F00A42CF2 /* StoreKitUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC4DCE115450E8F00A42CF2 /* StoreKitUtils.m */; };
 		CAC4DCE81545286C00A42CF2 /* TransactionReceiptManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC4DCE71545286B00A42CF2 /* TransactionReceiptManager.m */; };
 		CAC4DCEB154542A200A42CF2 /* TransactionReceipt.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC4DCEA154542A200A42CF2 /* TransactionReceipt.m */; };
@@ -1561,6 +1565,7 @@
 		EA18012E15E77DA100DF9440 /* ChatViewCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA18012D15E77DA100DF9440 /* ChatViewCell~ipad.xib */; };
 		EA18147115E2427C00CAF901 /* DiceRoomListCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA18146F15E2427C00CAF901 /* DiceRoomListCell~ipad.xib */; };
 		EA18147215E2427C00CAF901 /* DiceRoomListController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA18147015E2427C00CAF901 /* DiceRoomListController~ipad.xib */; };
+		EA24D35415EF1EFC008581A2 /* dice_room_help@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA24D35315EF1EFC008581A2 /* dice_room_help@2x.png */; };
 		EA6916BE15ECCF4C0001CB5A /* DiceSettingView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA6916BD15ECCF4C0001CB5A /* DiceSettingView~ipad.xib */; };
 		EA9A315315E9D5CE0059288A /* DiceHelpView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA9A315215E9D5CE0059288A /* DiceHelpView~ipad.xib */; };
 		EAA6A13115CA23550094B122 /* DicesResultView.m in Sources */ = {isa = PBXBuildFile; fileRef = EAA6A12F15CA23550094B122 /* DicesResultView.m */; };
@@ -1859,7 +1864,6 @@
 		A4A01B9E15D8AF67002FE86D /* dice_create_room@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dice_create_room@2x.png"; sourceTree = "<group>"; };
 		A4A01B9F15D8AF67002FE86D /* dice_gray_safa@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dice_gray_safa@2x.png"; sourceTree = "<group>"; };
 		A4A01BA015D8AF67002FE86D /* dice_green_safa@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dice_green_safa@2x.png"; sourceTree = "<group>"; };
-		A4A01BA115D8AF67002FE86D /* dice_help@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dice_help@2x.png"; sourceTree = "<group>"; };
 		A4A01BA215D8AF67002FE86D /* dice_line@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dice_line@2x.png"; sourceTree = "<group>"; };
 		A4A01BA315D8AF67002FE86D /* dice_play@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dice_play@2x.png"; sourceTree = "<group>"; };
 		A4A01BA415D8AF67002FE86D /* dice_room_background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dice_room_background@2x.png"; sourceTree = "<group>"; };
@@ -3216,23 +3220,7 @@
 		CA2F81ED15C0D9B8002038A6 /* FacetimeMainController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FacetimeMainController.h; sourceTree = "<group>"; };
 		CA2F81EE15C0D9B8002038A6 /* FacetimeMainController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FacetimeMainController.m; sourceTree = "<group>"; };
 		CA2F81EF15C0D9B8002038A6 /* FacetimeMainController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FacetimeMainController.xib; sourceTree = "<group>"; };
-		CA30949615E5D5950083A7A3 /* MenuButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuButton.h; sourceTree = "<group>"; };
-		CA30949715E5D5950083A7A3 /* MenuButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuButton.m; sourceTree = "<group>"; };
-		CA30949815E5D5960083A7A3 /* MenuButton.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MenuButton.xib; sourceTree = "<group>"; };
-		CA30949B15E5D5C60083A7A3 /* MenuPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuPanel.h; sourceTree = "<group>"; };
-		CA30949C15E5D5C60083A7A3 /* MenuPanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuPanel.m; sourceTree = "<group>"; };
-		CA30949D15E5D5C60083A7A3 /* MenuPanel.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MenuPanel.xib; sourceTree = "<group>"; };
-		CA3094A015E5D6000083A7A3 /* MenuButton~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "MenuButton~ipad.xib"; sourceTree = "<group>"; };
-		CA3094A115E5D6000083A7A3 /* MenuPanel~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "MenuPanel~ipad.xib"; sourceTree = "<group>"; };
 		CA3094A415E5E8110083A7A3 /* h_play@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "h_play@2x.png"; path = "Images/h_play@2x.png"; sourceTree = "<group>"; };
-		CA3094E615E64B390083A7A3 /* BottomMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BottomMenu.h; sourceTree = "<group>"; };
-		CA3094E715E64B3A0083A7A3 /* BottomMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BottomMenu.m; sourceTree = "<group>"; };
-		CA3094E815E64B3A0083A7A3 /* BottomMenu.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BottomMenu.xib; sourceTree = "<group>"; };
-		CA3094EB15E653A70083A7A3 /* BottomMenuPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BottomMenuPanel.h; sourceTree = "<group>"; };
-		CA3094EC15E653AA0083A7A3 /* BottomMenuPanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BottomMenuPanel.m; sourceTree = "<group>"; };
-		CA3094ED15E653AD0083A7A3 /* BottomMenuPanel.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BottomMenuPanel.xib; sourceTree = "<group>"; };
-		CA3094F015E66A3E0083A7A3 /* BottomMenu~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "BottomMenu~ipad.xib"; sourceTree = "<group>"; };
-		CA3094F115E66A400083A7A3 /* BottomMenuPanel~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "BottomMenuPanel~ipad.xib"; sourceTree = "<group>"; };
 		CA31D8261561F70D00199A24 /* RoomPasswordDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoomPasswordDialog.h; sourceTree = "<group>"; };
 		CA31D8271561F70D00199A24 /* RoomPasswordDialog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoomPasswordDialog.m; sourceTree = "<group>"; };
 		CA31D8281561F70D00199A24 /* RoomPasswordDialog.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RoomPasswordDialog.xib; sourceTree = "<group>"; };
@@ -3617,17 +3605,39 @@
 		CAC13241154C23E5000A8C8F /* MobClickUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MobClickUtils.m; sourceTree = "<group>"; };
 		CAC13244154C28C8000A8C8F /* ConfigManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConfigManager.h; sourceTree = "<group>"; };
 		CAC13245154C28C8000A8C8F /* ConfigManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConfigManager.m; sourceTree = "<group>"; };
-		CAC25BE915EDF9FD007456FA /* dice_bottom_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dice_bottom_bg.png; sourceTree = "<group>"; };
-		CAC25BEA15EDF9FD007456FA /* dice_default_board.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dice_default_board.png; sourceTree = "<group>"; };
-		CAC25BEB15EDF9FD007456FA /* dice_help.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dice_help.png; sourceTree = "<group>"; };
-		CAC25BEC15EDF9FD007456FA /* dice_home_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dice_home_bg.png; sourceTree = "<group>"; };
-		CAC25BED15EDF9FD007456FA /* dice_room.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dice_room.png; sourceTree = "<group>"; };
-		CAC25BEE15EDF9FD007456FA /* dice_shop.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dice_shop.png; sourceTree = "<group>"; };
-		CAC25BEF15EDF9FD007456FA /* dice_start.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dice_start.png; sourceTree = "<group>"; };
+		CAC25BE915EDF9FD007456FA /* dice_bottom_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dice_bottom_bg@2x.png"; sourceTree = "<group>"; };
+		CAC25BEA15EDF9FD007456FA /* dice_default_board@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dice_default_board@2x.png"; sourceTree = "<group>"; };
+		CAC25BEB15EDF9FD007456FA /* dice_help@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dice_help@2x.png"; sourceTree = "<group>"; };
+		CAC25BEC15EDF9FD007456FA /* dice_home_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dice_home_bg@2x.png"; sourceTree = "<group>"; };
+		CAC25BED15EDF9FD007456FA /* dice_room@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dice_room@2x.png"; sourceTree = "<group>"; };
+		CAC25BEE15EDF9FD007456FA /* dice_shop@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dice_shop@2x.png"; sourceTree = "<group>"; };
+		CAC25BEF15EDF9FD007456FA /* dice_start@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dice_start@2x.png"; sourceTree = "<group>"; };
 		CAC25BFB15EDFB8A007456FA /* bm_feedback@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bm_feedback@2x.png"; sourceTree = "<group>"; };
 		CAC25BFC15EDFB8A007456FA /* bm_friend@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bm_friend@2x.png"; sourceTree = "<group>"; };
 		CAC25BFD15EDFB8A007456FA /* bm_chat@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bm_chat@2x.png"; sourceTree = "<group>"; };
 		CAC25BFE15EDFB8A007456FA /* bm_setting@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bm_setting@2x.png"; sourceTree = "<group>"; };
+		CAC25C2415EF0740007456FA /* BottomMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BottomMenu.h; sourceTree = "<group>"; };
+		CAC25C2515EF0740007456FA /* BottomMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BottomMenu.m; sourceTree = "<group>"; };
+		CAC25C2615EF0740007456FA /* BottomMenu.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BottomMenu.xib; sourceTree = "<group>"; };
+		CAC25C2715EF0740007456FA /* BottomMenu~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "BottomMenu~ipad.xib"; sourceTree = "<group>"; };
+		CAC25C2815EF0740007456FA /* MenuButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuButton.h; sourceTree = "<group>"; };
+		CAC25C2915EF0740007456FA /* MenuButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuButton.m; sourceTree = "<group>"; };
+		CAC25C2A15EF0740007456FA /* MenuButton.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MenuButton.xib; sourceTree = "<group>"; };
+		CAC25C2B15EF0740007456FA /* MenuButton~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "MenuButton~ipad.xib"; sourceTree = "<group>"; };
+		CAC25C2D15EF0740007456FA /* BottomMenuPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BottomMenuPanel.h; sourceTree = "<group>"; };
+		CAC25C2E15EF0740007456FA /* BottomMenuPanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BottomMenuPanel.m; sourceTree = "<group>"; };
+		CAC25C2F15EF0740007456FA /* BottomMenuPanel.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BottomMenuPanel.xib; sourceTree = "<group>"; };
+		CAC25C3015EF0740007456FA /* BottomMenuPanel~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "BottomMenuPanel~ipad.xib"; sourceTree = "<group>"; };
+		CAC25C3115EF0740007456FA /* MenuPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuPanel.h; sourceTree = "<group>"; };
+		CAC25C3215EF0740007456FA /* MenuPanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuPanel.m; sourceTree = "<group>"; };
+		CAC25C3315EF0740007456FA /* MenuPanel.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MenuPanel.xib; sourceTree = "<group>"; };
+		CAC25C3415EF0740007456FA /* MenuPanel~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "MenuPanel~ipad.xib"; sourceTree = "<group>"; };
+		CAC25C4115EF078B007456FA /* DiceMenu.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DiceMenu.xib; sourceTree = "<group>"; };
+		CAC25C4215EF078B007456FA /* DiceMenu~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "DiceMenu~ipad.xib"; sourceTree = "<group>"; };
+		CAC25C6615EF20FB007456FA /* DiceHomeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiceHomeController.h; sourceTree = "<group>"; };
+		CAC25C6715EF20FB007456FA /* DiceHomeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiceHomeController.m; sourceTree = "<group>"; };
+		CAC25C6815EF20FB007456FA /* DiceHomeController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DiceHomeController.xib; sourceTree = "<group>"; };
+		CAC25C6B15EF2D01007456FA /* DiceHomeController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "DiceHomeController~ipad.xib"; sourceTree = "<group>"; };
 		CAC4DCE015450E8F00A42CF2 /* StoreKitUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoreKitUtils.h; sourceTree = "<group>"; };
 		CAC4DCE115450E8F00A42CF2 /* StoreKitUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoreKitUtils.m; sourceTree = "<group>"; };
 		CAC4DCE61545286B00A42CF2 /* TransactionReceiptManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransactionReceiptManager.h; sourceTree = "<group>"; };
@@ -3727,6 +3737,7 @@
 		EA18012D15E77DA100DF9440 /* ChatViewCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ChatViewCell~ipad.xib"; sourceTree = "<group>"; };
 		EA18146F15E2427C00CAF901 /* DiceRoomListCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "DiceRoomListCell~ipad.xib"; sourceTree = "<group>"; };
 		EA18147015E2427C00CAF901 /* DiceRoomListController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "DiceRoomListController~ipad.xib"; sourceTree = "<group>"; };
+		EA24D35315EF1EFC008581A2 /* dice_room_help@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dice_room_help@2x.png"; sourceTree = "<group>"; };
 		EA6916BD15ECCF4C0001CB5A /* DiceSettingView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "DiceSettingView~ipad.xib"; sourceTree = "<group>"; };
 		EA9A315215E9D5CE0059288A /* DiceHelpView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "DiceHelpView~ipad.xib"; sourceTree = "<group>"; };
 		EAA6A12E15CA23550094B122 /* DicesResultView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DicesResultView.h; sourceTree = "<group>"; };
@@ -4198,12 +4209,12 @@
 		A4A01B9B15D8AF67002FE86D /* room */ = {
 			isa = PBXGroup;
 			children = (
+				EA24D35315EF1EFC008581A2 /* dice_room_help@2x.png */,
 				A4A01B9C15D8AF67002FE86D /* dice_back@2x.png */,
 				A4A01B9D15D8AF67002FE86D /* dice_blue_safa@2x.png */,
 				A4A01B9E15D8AF67002FE86D /* dice_create_room@2x.png */,
 				A4A01B9F15D8AF67002FE86D /* dice_gray_safa@2x.png */,
 				A4A01BA015D8AF67002FE86D /* dice_green_safa@2x.png */,
-				A4A01BA115D8AF67002FE86D /* dice_help@2x.png */,
 				A4A01BA215D8AF67002FE86D /* dice_line@2x.png */,
 				A4A01BA315D8AF67002FE86D /* dice_play@2x.png */,
 				A4A01BA415D8AF67002FE86D /* dice_room_background@2x.png */,
@@ -4263,6 +4274,7 @@
 		A4B763EF15C28F8E003B4E72 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				CAC25C6515EF20CD007456FA /* Home */,
 				A4B763F015C28F8E003B4E72 /* Play */,
 				A4B763F415C28F8E003B4E72 /* Room */,
 			);
@@ -6079,26 +6091,12 @@
 		CA1041F41509BC8700F60C03 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				CAC25C2315EF0740007456FA /* Menu */,
+				CAC25C2C15EF0740007456FA /* Panel */,
 				CA1041F51509BC9700F60C03 /* HomeController.h */,
 				CA1041F61509BC9700F60C03 /* HomeController.m */,
 				CA1041F71509BC9700F60C03 /* HomeController.xib */,
 				CAA361DA15529F530081D3EB /* HomeController~ipad.xib */,
-				CA30949615E5D5950083A7A3 /* MenuButton.h */,
-				CA30949715E5D5950083A7A3 /* MenuButton.m */,
-				CA30949815E5D5960083A7A3 /* MenuButton.xib */,
-				CA3094A015E5D6000083A7A3 /* MenuButton~ipad.xib */,
-				CA3094E615E64B390083A7A3 /* BottomMenu.h */,
-				CA3094E715E64B3A0083A7A3 /* BottomMenu.m */,
-				CA3094E815E64B3A0083A7A3 /* BottomMenu.xib */,
-				CA3094F015E66A3E0083A7A3 /* BottomMenu~ipad.xib */,
-				CA30949B15E5D5C60083A7A3 /* MenuPanel.h */,
-				CA30949C15E5D5C60083A7A3 /* MenuPanel.m */,
-				CA30949D15E5D5C60083A7A3 /* MenuPanel.xib */,
-				CA3094A115E5D6000083A7A3 /* MenuPanel~ipad.xib */,
-				CA3094EB15E653A70083A7A3 /* BottomMenuPanel.h */,
-				CA3094EC15E653AA0083A7A3 /* BottomMenuPanel.m */,
-				CA3094ED15E653AD0083A7A3 /* BottomMenuPanel.xib */,
-				CA3094F115E66A400083A7A3 /* BottomMenuPanel~ipad.xib */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -7314,13 +7312,13 @@
 		CAC25BE815EDF9FD007456FA /* home */ = {
 			isa = PBXGroup;
 			children = (
-				CAC25BE915EDF9FD007456FA /* dice_bottom_bg.png */,
-				CAC25BEA15EDF9FD007456FA /* dice_default_board.png */,
-				CAC25BEB15EDF9FD007456FA /* dice_help.png */,
-				CAC25BEC15EDF9FD007456FA /* dice_home_bg.png */,
-				CAC25BED15EDF9FD007456FA /* dice_room.png */,
-				CAC25BEE15EDF9FD007456FA /* dice_shop.png */,
-				CAC25BEF15EDF9FD007456FA /* dice_start.png */,
+				CAC25BE915EDF9FD007456FA /* dice_bottom_bg@2x.png */,
+				CAC25BEA15EDF9FD007456FA /* dice_default_board@2x.png */,
+				CAC25BEB15EDF9FD007456FA /* dice_help@2x.png */,
+				CAC25BEC15EDF9FD007456FA /* dice_home_bg@2x.png */,
+				CAC25BED15EDF9FD007456FA /* dice_room@2x.png */,
+				CAC25BEE15EDF9FD007456FA /* dice_shop@2x.png */,
+				CAC25BEF15EDF9FD007456FA /* dice_start@2x.png */,
 			);
 			path = home;
 			sourceTree = "<group>";
@@ -7342,6 +7340,49 @@
 				CAC25BFE15EDFB8A007456FA /* bm_setting@2x.png */,
 			);
 			path = BottomMenu;
+			sourceTree = "<group>";
+		};
+		CAC25C2315EF0740007456FA /* Menu */ = {
+			isa = PBXGroup;
+			children = (
+				CAC25C2415EF0740007456FA /* BottomMenu.h */,
+				CAC25C2515EF0740007456FA /* BottomMenu.m */,
+				CAC25C2615EF0740007456FA /* BottomMenu.xib */,
+				CAC25C2715EF0740007456FA /* BottomMenu~ipad.xib */,
+				CAC25C4115EF078B007456FA /* DiceMenu.xib */,
+				CAC25C4215EF078B007456FA /* DiceMenu~ipad.xib */,
+				CAC25C2815EF0740007456FA /* MenuButton.h */,
+				CAC25C2915EF0740007456FA /* MenuButton.m */,
+				CAC25C2A15EF0740007456FA /* MenuButton.xib */,
+				CAC25C2B15EF0740007456FA /* MenuButton~ipad.xib */,
+			);
+			path = Menu;
+			sourceTree = "<group>";
+		};
+		CAC25C2C15EF0740007456FA /* Panel */ = {
+			isa = PBXGroup;
+			children = (
+				CAC25C2D15EF0740007456FA /* BottomMenuPanel.h */,
+				CAC25C2E15EF0740007456FA /* BottomMenuPanel.m */,
+				CAC25C2F15EF0740007456FA /* BottomMenuPanel.xib */,
+				CAC25C3015EF0740007456FA /* BottomMenuPanel~ipad.xib */,
+				CAC25C3115EF0740007456FA /* MenuPanel.h */,
+				CAC25C3215EF0740007456FA /* MenuPanel.m */,
+				CAC25C3315EF0740007456FA /* MenuPanel.xib */,
+				CAC25C3415EF0740007456FA /* MenuPanel~ipad.xib */,
+			);
+			path = Panel;
+			sourceTree = "<group>";
+		};
+		CAC25C6515EF20CD007456FA /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				CAC25C6615EF20FB007456FA /* DiceHomeController.h */,
+				CAC25C6715EF20FB007456FA /* DiceHomeController.m */,
+				CAC25C6815EF20FB007456FA /* DiceHomeController.xib */,
+				CAC25C6B15EF2D01007456FA /* DiceHomeController~ipad.xib */,
+			);
+			path = Home;
 			sourceTree = "<group>";
 		};
 		CACF87A015EB4D2D003FA6B6 /* DiceSettingView */ = {
@@ -8630,7 +8671,6 @@
 				A4A01BDE15D8AF67002FE86D /* dice_create_room@2x.png in Resources */,
 				A4A01BDF15D8AF67002FE86D /* dice_gray_safa@2x.png in Resources */,
 				A4A01BE015D8AF67002FE86D /* dice_green_safa@2x.png in Resources */,
-				A4A01BE115D8AF67002FE86D /* dice_help@2x.png in Resources */,
 				A4A01BE215D8AF67002FE86D /* dice_line@2x.png in Resources */,
 				A4A01BE315D8AF67002FE86D /* dice_play@2x.png in Resources */,
 				A4A01BE415D8AF67002FE86D /* dice_room_background@2x.png in Resources */,
@@ -8692,20 +8732,12 @@
 				CAE8B15115E4A24F0098A565 /* BoardPanel~ipad.xib in Resources */,
 				CAE8B15315E4A2570098A565 /* EntryController~ipad.xib in Resources */,
 				C213096815E4BD830072A18E /* dice_quit_btn@2x.png in Resources */,
-				CA30949A15E5D5960083A7A3 /* MenuButton.xib in Resources */,
-				CA30949F15E5D5C60083A7A3 /* MenuPanel.xib in Resources */,
-				CA3094A215E5D6000083A7A3 /* MenuButton~ipad.xib in Resources */,
-				CA3094A315E5D6000083A7A3 /* MenuPanel~ipad.xib in Resources */,
 				CA3094A515E5E8110083A7A3 /* h_play@2x.png in Resources */,
 				A42C522015E6215F001D8208 /* face_embarrass.gif in Resources */,
 				A42C522115E6215F001D8208 /* face_proud.gif in Resources */,
 				A42C522215E6215F001D8208 /* face_smile.gif in Resources */,
 				A42C522315E6215F001D8208 /* face_wry.gif in Resources */,
 				A42C523715E62B82001D8208 /* face_anger.gif in Resources */,
-				CA3094EA15E64B3B0083A7A3 /* BottomMenu.xib in Resources */,
-				CA3094EF15E653B90083A7A3 /* BottomMenuPanel.xib in Resources */,
-				CA3094F215E66A430083A7A3 /* BottomMenu~ipad.xib in Resources */,
-				CA3094F315E66A430083A7A3 /* BottomMenuPanel~ipad.xib in Resources */,
 				CA3F9E8F15E7848300669A1F /* draw_default_board@2x.png in Resources */,
 				CA3F9E9215E7848700669A1F /* main_top@2x.png in Resources */,
 				A42C528715E756CF001D8208 /* DiceHelpView.xib in Resources */,
@@ -9265,17 +9297,30 @@
 				A4EF8ACF15EDD8C90014643F /* callDice_11_1_F.m4a in Resources */,
 				A4EF8AD015EDD8C90014643F /* callDice_11_2_F.m4a in Resources */,
 				A4EF8AD115EDD8C90014643F /* callDice_11_3_F.m4a in Resources */,
-				CAC25BF115EDF9FD007456FA /* dice_bottom_bg.png in Resources */,
-				CAC25BF215EDF9FD007456FA /* dice_default_board.png in Resources */,
-				CAC25BF315EDF9FD007456FA /* dice_help.png in Resources */,
-				CAC25BF415EDF9FD007456FA /* dice_home_bg.png in Resources */,
-				CAC25BF515EDF9FD007456FA /* dice_room.png in Resources */,
-				CAC25BF615EDF9FD007456FA /* dice_shop.png in Resources */,
-				CAC25BF715EDF9FD007456FA /* dice_start.png in Resources */,
+				CAC25BF115EDF9FD007456FA /* dice_bottom_bg@2x.png in Resources */,
+				CAC25BF215EDF9FD007456FA /* dice_default_board@2x.png in Resources */,
+				CAC25BF315EDF9FD007456FA /* dice_help@2x.png in Resources */,
+				CAC25BF415EDF9FD007456FA /* dice_home_bg@2x.png in Resources */,
+				CAC25BF515EDF9FD007456FA /* dice_room@2x.png in Resources */,
+				CAC25BF615EDF9FD007456FA /* dice_shop@2x.png in Resources */,
+				CAC25BF715EDF9FD007456FA /* dice_start@2x.png in Resources */,
 				CAC25BFF15EDFB8A007456FA /* bm_feedback@2x.png in Resources */,
 				CAC25C0015EDFB8A007456FA /* bm_friend@2x.png in Resources */,
 				CAC25C0115EDFB8A007456FA /* bm_chat@2x.png in Resources */,
 				CAC25C0215EDFB8A007456FA /* bm_setting@2x.png in Resources */,
+				CAC25C3615EF0740007456FA /* BottomMenu.xib in Resources */,
+				CAC25C3715EF0740007456FA /* BottomMenu~ipad.xib in Resources */,
+				CAC25C3915EF0740007456FA /* MenuButton.xib in Resources */,
+				CAC25C3A15EF0740007456FA /* MenuButton~ipad.xib in Resources */,
+				CAC25C3C15EF0740007456FA /* BottomMenuPanel.xib in Resources */,
+				CAC25C3D15EF0740007456FA /* BottomMenuPanel~ipad.xib in Resources */,
+				CAC25C3F15EF0740007456FA /* MenuPanel.xib in Resources */,
+				CAC25C4015EF0740007456FA /* MenuPanel~ipad.xib in Resources */,
+				CAC25C4315EF078B007456FA /* DiceMenu.xib in Resources */,
+				CAC25C4415EF078B007456FA /* DiceMenu~ipad.xib in Resources */,
+				EA24D35415EF1EFC008581A2 /* dice_room_help@2x.png in Resources */,
+				CAC25C6A15EF20FB007456FA /* DiceHomeController.xib in Resources */,
+				CAC25C6C15EF2D02007456FA /* DiceHomeController~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -9758,13 +9803,9 @@
 				C20D4B2515E1D78800074885 /* CommonInfoView.m in Sources */,
 				A40FEEDE15E22E1300A88C57 /* ChatView.m in Sources */,
 				A4AB18F315E359B90097CC7A /* ChatViewCell.m in Sources */,
-				CA30949915E5D5960083A7A3 /* MenuButton.m in Sources */,
-				CA30949E15E5D5C60083A7A3 /* MenuPanel.m in Sources */,
 				A42C520615E614D2001D8208 /* DiceChatMessage.m in Sources */,
 				A42C520715E614D2001D8208 /* DiceChatMsgManager.m in Sources */,
 				A42C520B15E614E5001D8208 /* DiceSoundManager.m in Sources */,
-				CA3094E915E64B3B0083A7A3 /* BottomMenu.m in Sources */,
-				CA3094EE15E653B90083A7A3 /* BottomMenuPanel.m in Sources */,
 				C21309D615E73A590072A18E /* UIGlossyButton.m in Sources */,
 				C21309D715E73A590072A18E /* UIView+LayerEffects.m in Sources */,
 				A42C528615E756CF001D8208 /* DiceHelpView.m in Sources */,
@@ -9777,6 +9818,11 @@
 				CA67B87D15E89FB0002050DB /* GameApp.m in Sources */,
 				CACF87A415EB4D2D003FA6B6 /* DiceSettingView.m in Sources */,
 				CA501C4815ECFB0600D41161 /* FeedDetailCell.m in Sources */,
+				CAC25C3515EF0740007456FA /* BottomMenu.m in Sources */,
+				CAC25C3815EF0740007456FA /* MenuButton.m in Sources */,
+				CAC25C3B15EF0740007456FA /* BottomMenuPanel.m in Sources */,
+				CAC25C3E15EF0740007456FA /* MenuPanel.m in Sources */,
+				CAC25C6915EF20FB007456FA /* DiceHomeController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

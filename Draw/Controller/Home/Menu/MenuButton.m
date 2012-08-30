@@ -17,12 +17,25 @@
 @synthesize delegate = _delegate;
 @synthesize gameAppType = _gameAppType;
 
+- (void)updateImage:(UIImage *)image 
+              tilte:(NSString *)title 
+              badge:(NSInteger)badge
+{
+    [_button setImage:image forState:UIControlStateNormal];
+    [_title setText:title];
+    [self setBadgeNumber:badge];
+}
+
+
+
 + (MenuButton *)menuButtonWithImage:(UIImage *)image 
                               title:(NSString *)title
-                              badge:(NSInteger)badge
-{
+                              badge:(NSInteger)badge 
+                        gameAppType:(GameAppType)type
 
-    static NSString *identifier = @"MenuButton";
+{
+    NSString *identifier = (type == GameAppTypeDraw) ?  @"MenuButton" : @"DiceMenu";
+//    static NSString *identifier = @"MenuButton";
     NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:identifier owner:self options:nil];
     if (topLevelObjects == nil || [topLevelObjects count] <= 0){
         return nil;
@@ -32,14 +45,6 @@
     
     return  menuButton;
 
-}
-- (void)updateImage:(UIImage *)image 
-              tilte:(NSString *)title 
-              badge:(NSInteger)badge
-{
-    [_button setImage:image forState:UIControlStateNormal];
-    [_title setText:title];
-    [self setBadgeNumber:badge];
 }
 
 
@@ -59,13 +64,15 @@
             return NSLS(@"kFeed");
         case MenuButtonTypeShop:
             return NSLS(@"kShop"); 
-        case MenuButtonTypeStart:
-            return NSLS(@"kStart"); 
-        case MenuButtonTypeHelp:
-            return NSLS(@"kHelp"); 
-        case MenuButtonTypeRoom:
-            return NSLS(@"kRoom"); 
-
+            
+        case MenuButtonTypeDiceStart:
+            return NSLS(@"kDiceMenuStart"); 
+        case MenuButtonTypeDiceHelp:
+            return NSLS(@"kDiceMenuHelp"); 
+        case MenuButtonTypeDiceRoom:
+            return NSLS(@"kDiceMenuRoom"); 
+        case MenuButtonTypeDiceShop:
+            return NSLS(@"kDiceMenuShop"); 
         default:
             return nil;
     }
@@ -89,12 +96,15 @@
         case MenuButtonTypeTimeline:
             return [imageManager timelineImage];
         case MenuButtonTypeShop:
-            return [imageManager shopImageForGameAppType:gameAppType];
-        case MenuButtonTypeStart:
+            return [imageManager shopImage];
+            //dice
+        case MenuButtonTypeDiceStart:
             return [imageManager diceStartMenuImage];
-        case MenuButtonTypeHelp:
+        case MenuButtonTypeDiceShop:
+            return [imageManager diceShopImage];
+        case MenuButtonTypeDiceHelp:
             return [imageManager diceHelpMenuImage];
-        case MenuButtonTypeRoom:
+        case MenuButtonTypeDiceRoom:
             return [imageManager diceRoomMenuImage];
         default:
             return nil;
@@ -117,7 +127,8 @@
     NSString *title = [MenuButton titleForMenuButtonType:type];
     MenuButton *menu = [MenuButton menuButtonWithImage:image 
                                                  title:title 
-                                                 badge:0];
+                                                 badge:0 
+                                           gameAppType:gameAppType];
     [menu setType:type];
     menu.button.tag = type;
     [menu.button addTarget:menu action:@selector(handleClick:) forControlEvents:UIControlEventTouchUpInside];
@@ -169,10 +180,10 @@ int *drawMainMenuTypeList()
 int *diceMainMenuTypeList()
 {
     static int list[] = {    
-        MenuButtonTypeStart,   
-        MenuButtonTypeRoom,   
-        MenuButtonTypeHelp,   
-        MenuButtonTypeShop,   
+        MenuButtonTypeDiceStart,   
+        MenuButtonTypeDiceRoom,   
+        MenuButtonTypeDiceHelp,   
+        MenuButtonTypeDiceShop,   
         //must add the end mark.
         MenuButtonTypeEnd
     };

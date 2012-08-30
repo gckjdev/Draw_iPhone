@@ -11,6 +11,7 @@
 #import "ItemManager.h"
 #import "DiceImageManager.h"
 #import "LocaleUtils.h"
+#import "HKGirlFontLabel.h"
 
 @implementation Item (DiceItem)
 
@@ -37,6 +38,17 @@
                                 amount:[[ItemManager defaultManager] amountForItem:ItemTypeCut]] autorelease];
 }
 
-
+//- (UIView *)itemViewItemName:(NSString *)itemName
+//{
+//    CGRect frame = CGRectMake(0, 0, 34, 38);
+//    UIImageView *view = [[[UIImageView alloc] initWithFrame:frame] autorelease];
+//    view.image = [[DiceImageManager defaultManager] toolsItemBgImage];
+//    HKGirlFontLabel *label = [[[HKGirlFontLabel alloc] initWithFrame:CGRectMake(0, 0, 22, 24)] autorelease];
+//    label.center = view.center;
+//    label.text = itemName;
+//    
+//    [view addSubview:label];
+//    return view;
+//}
 
 @end
