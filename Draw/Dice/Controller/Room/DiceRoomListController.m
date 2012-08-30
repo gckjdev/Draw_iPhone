@@ -139,13 +139,13 @@
     NSString* address = [ConfigManager defaultDiceServer];
     int port = [ConfigManager defaultDicePort];
     
-//    [[DiceGameService defaultService] setServerAddress:address];
-//    [[DiceGameService defaultService] setServerPort:port];
+    [[DiceGameService defaultService] setServerAddress:address];
+    [[DiceGameService defaultService] setServerPort:port];
     
 
     // Internet Test Server
-    [[DiceGameService defaultService] setServerAddress:@"106.187.89.232"];
-    [[DiceGameService defaultService] setServerPort:8018];
+//    [[DiceGameService defaultService] setServerAddress:@"106.187.89.232"];
+//    [[DiceGameService defaultService] setServerPort:8018];
 
 //    [[DiceGameService defaultService] setServerAddress:@"192.168.1.198"];
 //    [[DiceGameService defaultService] setServerPort:8080];

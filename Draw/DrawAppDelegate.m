@@ -129,19 +129,21 @@ NSString* GlobalGetBoardServerURL()
     [MobClick updateOnlineConfig];
     
     // Init SNS Service
-    [[SinaSNSService defaultService] setAppKey:@"2831348933" 
-                                        Secret:@"ff89c2f5667b0199ee7a8bad6c44b265"];
-    [[QQWeiboService defaultService] setAppKey:@"801123669" 
-                                        Secret:@"30169d80923b984109ee24ade9914a5c"];        
-    [[FacebookSNSService defaultService] setAppId:@"352182988165711" 
-                                           appKey:@"352182988165711" 
-                                           Secret:@"51c65d7fbef9858a5d8bc60014d33ce2"];
+    [[SinaSNSService defaultService] setAppKey:[GameApp sinaAppKey]         // @"2831348933" 
+                                        Secret:[GameApp sinaAppSecret]];    // @"ff89c2f5667b0199ee7a8bad6c44b265"];
+    [[QQWeiboService defaultService] setAppKey:[GameApp qqAppKey]           // @"801123669" 
+                                        Secret:[GameApp qqAppSecret]];      // @"30169d80923b984109ee24ade9914a5c"];        
+    [[FacebookSNSService defaultService] setAppId:[GameApp facebookAppKey]  //@"352182988165711" 
+                                           appKey:[GameApp facebookAppKey]  //@"352182988165711" 
+                                        Secret:[GameApp facebookAppSecret]]; //@"51c65d7fbef9858a5d8bc60014d33ce2"];
     
     
     // Init Account Service and Sync Balance and Item
     [[AccountService defaultService] syncAccountAndItem];
     
-    [[RouterService defaultService] fetchServerListAtBackground];    
+    if (isDrawApp()){
+        [[RouterService defaultService] fetchServerListAtBackground];    
+    }
     
     // Push Setup
     BOOL isAskBindDevice = NO;
@@ -208,10 +210,8 @@ NSString* GlobalGetBoardServerURL()
     //sync level details
     [[LevelService defaultService] syncExpAndLevel:SYNC];
     
-
     [WordManager unZipFiles];
-    [DiceFontManager unZipFiles];
-    
+    [DiceFontManager unZipFiles];    
     return YES;
 }
 
