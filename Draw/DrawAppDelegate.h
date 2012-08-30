@@ -19,6 +19,7 @@
 @class HomeController;
 @class NetworkDetector;
 @class ChatDetailController;
+@class DiceHomeController;
 
 @interface DrawAppDelegate : PPApplication <UIApplicationDelegate, CommonNetworkClientDelegate, WXApiDelegate, ReviewRequestDelegate> {
 
@@ -31,6 +32,7 @@
 
 @property (nonatomic, retain) RoomController *roomController;
 @property (nonatomic, retain) HomeController *homeController;
+@property (nonatomic, retain) DiceHomeController *diceHomeController;
 @property (nonatomic, retain) NetworkDetector *networkDetector;
 
 @property (nonatomic, retain) ChatDetailController *chatDetailController;

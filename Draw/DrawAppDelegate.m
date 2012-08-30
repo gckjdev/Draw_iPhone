@@ -46,6 +46,7 @@
 #import "WordManager.h"
 #import "DiceFontManager.h"
 #import "DiceSoundManager.h"
+#import "DiceHomeController.h"
 
 NSString* GlobalGetServerURL()
 {    
@@ -76,9 +77,11 @@ NSString* GlobalGetBoardServerURL()
 @synthesize reviewRequest = _reviewRequest;
 @synthesize networkDetector = _networkDetector;
 @synthesize chatDetailController = _chatDetailController;
+@synthesize diceHomeController = _diceHomeController;
 
 - (void)dealloc
 {
+    [_diceHomeController release];
     [_reviewRequest release];
     [_homeController release];
     [_roomController release];
@@ -161,7 +164,15 @@ NSString* GlobalGetBoardServerURL()
     }
 
     // Init Home Controller As Root View Controller
-    self.homeController = [[[HomeController alloc] init] autorelease];     
+    PPViewController* rootController = nil;
+    if (isDiceApp()){
+        self.diceHomeController = [[[DiceHomeController alloc] init] autorelease];
+        rootController = _diceHomeController;
+    }
+    else{
+        self.homeController = [[[HomeController alloc] init] autorelease];     
+        rootController = _homeController;
+    }
     
     NSDictionary *userInfo = [launchOptions objectForKey:UIApplicationLaunchOptionsRemoteNotificationKey];
     NotificationType type = [NotificationManager typeForUserInfo:userInfo];
@@ -170,13 +181,13 @@ NSString* GlobalGetBoardServerURL()
     self.homeController.notificationType = type;
     
     UINavigationController* navigationController = [[[UINavigationController alloc] 
-                                                     initWithRootViewController:self.homeController] 
+                                                     initWithRootViewController:rootController] 
                                                     autorelease];
     navigationController.navigationBarHidden = YES;
 
     // Try Fetch User Data By Device Id
     if ([[UserManager defaultManager] hasUser] == NO){
-        [[UserService defaultService] loginByDeviceWithViewController:self.homeController];
+        [[UserService defaultService] loginByDeviceWithViewController:rootController];
     }
 
 
