@@ -19,12 +19,12 @@
 #define SERVER_LIST_SEPERATOR   @"$"
 #define SERVER_PORT_SEPERATOR   @":"
 
-@interface Server : NSObject 
+@interface DiceServer : NSObject 
 @property (nonatomic, retain) NSString* address;
 @property (nonatomic, assign) int port;
 @end
 
-@implementation Server
+@implementation DiceServer
 @synthesize address;
 @synthesize port;
 - (void)dealloc
@@ -352,7 +352,7 @@ static DiceGameService* _defaultService;
     for (NSString* serverString in serverStringArray) {
         NSArray* array = [serverString componentsSeparatedByString:SERVER_PORT_SEPERATOR];
         if (array.count == 2) {
-            Server* server = [[Server alloc] init];
+            DiceServer* server = [[DiceServer alloc] init];
             server.address = [array objectAtIndex:0];
             server.port = ((NSString*)[array objectAtIndex:1]).intValue;
             [serverList addObject:server];
@@ -360,7 +360,7 @@ static DiceGameService* _defaultService;
         }  
     }
     if (serverList.count > 0) {
-        Server* serv = [serverList objectAtIndex:rand()%serverList.count];
+        DiceServer* serv = [serverList objectAtIndex:rand()%serverList.count];
         self.serverAddress = serv.address;
         self.serverPort = serv.port;
     }
