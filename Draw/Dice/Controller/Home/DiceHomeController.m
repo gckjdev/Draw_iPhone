@@ -209,11 +209,7 @@
 
 - (void)connectServer
 {
-    NSString* address = [ConfigManager defaultDiceServer];
-    int port = [ConfigManager defaultDicePort];
-    
-    [[DiceGameService defaultService] setServerAddress:address];
-    [[DiceGameService defaultService] setServerPort:port];
+
     
     _isTryJoinGame = YES;    
 
