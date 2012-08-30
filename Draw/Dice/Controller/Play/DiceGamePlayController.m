@@ -1228,7 +1228,7 @@
 
 - (void)someoneSendExpression:(NSString *)expressionId userId:(NSString *)userId
 {
-    [self playExpression:expressionId userId:userId];
+    [self showExpression:expressionId userId:userId];
 }
 
 - (void)didClickMessage:(DiceChatMessage *)message
@@ -1251,10 +1251,10 @@
     [_diceService chatWithExpression:key];
     
     // TODO: Popup image for expression.
-    [self playExpression:key userId:_userManager.userId];
+    [self showExpression:key userId:_userManager.userId];
 }
 
-- (void)playExpression:(NSString *)key userId:(NSString *)userId
+- (void)showExpression:(NSString *)key userId:(NSString *)userId
 {
     DiceAvatarView *avatar = [self avatarViewOfUser:userId];
     NSString *filePath = [_expressionManager gifPathForExpression:key];
