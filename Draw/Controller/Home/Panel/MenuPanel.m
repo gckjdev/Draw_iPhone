@@ -65,7 +65,8 @@ static const NSInteger MENU_NUMBER_PER_PAGE = 6;
 
     CGFloat xStart = isIPAD ? 32 : 15;
     CGFloat yStart = isIPAD ? 30 : 22;
-    int page = index / MENU_NUMBER_PER_PAGE;   
+
+    NSInteger page = index / MENU_NUMBER_PER_PAGE;   
     
     NSInteger row = (index % MENU_NUMBER_PER_PAGE) / MENU_NUMBER_ROW_NUMBER;
     NSInteger numberInRow = index % MENU_NUMBER_ROW_NUMBER;
@@ -81,17 +82,35 @@ static const NSInteger MENU_NUMBER_PER_PAGE = 6;
 }
 
 
+- (void)updateFrameForMenu:(MenuButton *)menu atIndex:(NSInteger)index
+{
+    CGFloat width = menu.frame.size.width;
+    CGFloat height = menu.frame.size.height;
+    NSInteger row = (index % MENU_NUMBER_PER_PAGE) / MENU_NUMBER_ROW_NUMBER;
+    NSInteger numberInRow = index % MENU_NUMBER_ROW_NUMBER;
+    NSInteger page = index / MENU_NUMBER_PER_PAGE;   
+    
+    CGFloat y = row *  height;
+    
+    CGFloat x = page * self.frame.size.width;
+    x += numberInRow * width;
+    menu.frame = CGRectMake(x, y, width, height);
+
+}
+
 - (void)loadMenu
 {
     int number = 0;
-    UIImage * bgImage = [[ShareImageManager defaultManager] mainMenuPanelBGForGameAppType:self.gameAppType];
+    UIImage * bgImage = [[ShareImageManager defaultManager]
+                         mainMenuPanelBGForGameAppType:self.gameAppType];
     [self.bgImageView setImage:bgImage];
     
     int *list = getMainMenuTypeListByGameAppType(self.gameAppType);
     while (list != NULL && (*list) != MenuButtonTypeEnd) {
         MenuButton *menu = [MenuButton menuButtonWithType:(*list) gameAppType:self.gameAppType];
-        menu.frame = [self frameForMenuIndex:number++];
+        [self updateFrameForMenu:menu atIndex:number++];
         [self.scrollView addSubview:menu];
+        [menu setBadgeNumber:number];
         menu.delegate = self;
         list++;
     }
