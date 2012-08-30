@@ -8,7 +8,7 @@
 		<string key="IBDocument.HIToolboxVersion">569.00</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-			<string key="NS.object.0">1179</string>
+			<string key="NS.object.0">1181</string>
 		</object>
 		<array key="IBDocument.IntegratedClassDependencies">
 			<string>IBUITableView</string>
@@ -42,6 +42,7 @@
 						<int key="NSvFlags">292</int>
 						<string key="NSFrameSize">{320, 25}</string>
 						<reference key="NSSuperview" ref="191373211"/>
+						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="593478916"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<object class="NSColor" key="IBUIBackgroundColor" id="939517727">
@@ -55,6 +56,7 @@
 						<int key="NSvFlags">292</int>
 						<string key="NSFrameSize">{320, 44}</string>
 						<reference key="NSSuperview" ref="191373211"/>
+						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="1040265043"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
@@ -69,6 +71,7 @@
 						<int key="NSvFlags">274</int>
 						<string key="NSFrame">{{0, 53}, {325, 347}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
+						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="1014349498"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<object class="NSColor" key="IBUIBackgroundColor">
@@ -89,6 +92,7 @@
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{15, 416}, {141, 37}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
+						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="559490614"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
@@ -121,6 +125,7 @@
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{164, 416}, {142, 37}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
+						<reference key="NSWindow"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -139,6 +144,7 @@
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{9, 7}, {28, 28}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
+						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="1066337925"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
@@ -170,6 +176,7 @@
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{285, 7}, {28, 28}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
+						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="475084378"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
@@ -184,7 +191,7 @@
 						<reference key="IBUINormalTitleShadowColor" ref="34952312"/>
 						<object class="NSCustomResource" key="IBUINormalBackgroundImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">dice_help@2x.png</string>
+							<string key="NSResourceName">dice_room_help@2x.png</string>
 						</object>
 						<reference key="IBUIFontDescription" ref="998522132"/>
 						<reference key="IBUIFont" ref="963098249"/>
@@ -194,6 +201,7 @@
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{72, 2}, {181, 37}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
+						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="300350547"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
@@ -215,6 +223,7 @@
 						<int key="NSvFlags">-2147483356</int>
 						<string key="NSFrame">{{20, 53}, {90, 29}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
+						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="631429947"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
@@ -241,6 +250,7 @@
 						<int key="NSvFlags">-2147483356</int>
 						<string key="NSFrame">{{110, 53}, {100, 29}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
+						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="1042008344"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
@@ -267,6 +277,7 @@
 						<int key="NSvFlags">-2147483356</int>
 						<string key="NSFrame">{{210, 53}, {90, 29}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
+						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="657927610"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
@@ -290,6 +301,7 @@
 				</array>
 				<string key="NSFrame">{{0, 20}, {320, 460}}</string>
 				<reference key="NSSuperview"/>
+				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="648573712"/>
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">3</int>
@@ -593,6 +605,7 @@
 						<string key="createRoomButton">FontButton</string>
 						<string key="fastEntryButton">FontButton</string>
 						<string key="friendRoomButton">FontButton</string>
+						<string key="helpButton">UIButton</string>
 						<string key="nearByRoomButton">FontButton</string>
 						<string key="titleFontButton">FontButton</string>
 					</dictionary>
@@ -612,6 +625,10 @@
 						<object class="IBToOneOutletInfo" key="friendRoomButton">
 							<string key="name">friendRoomButton</string>
 							<string key="candidateClassName">FontButton</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="helpButton">
+							<string key="name">helpButton</string>
+							<string key="candidateClassName">UIButton</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="nearByRoomButton">
 							<string key="name">nearByRoomButton</string>
@@ -682,8 +699,8 @@
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
 			<string key="dice_back@2x.png">{57, 57}</string>
-			<string key="dice_help@2x.png">{57, 57}</string>
 			<string key="dice_room_header@2x.png">{640, 94}</string>
+			<string key="dice_room_help@2x.png">{16, 16}</string>
 			<string key="dice_tabcenter_select@2x.png">{184, 59}</string>
 			<string key="dice_tabcenter_unselect@2x.png">{184, 59}</string>
 			<string key="dice_tableft_selected@2x.png">{184, 59}</string>
@@ -691,6 +708,6 @@
 			<string key="dice_tabright_selected@2x.png">{184, 59}</string>
 			<string key="dice_tabright_unselect@2x.png">{184, 59}</string>
 		</dictionary>
-		<string key="IBCocoaTouchPluginVersion">1179</string>
+		<string key="IBCocoaTouchPluginVersion">1181</string>
 	</data>
 </archive>
