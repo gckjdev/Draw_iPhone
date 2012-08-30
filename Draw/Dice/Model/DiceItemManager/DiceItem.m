@@ -12,36 +12,12 @@
 #import "DiceImageManager.h"
 #import "LocaleUtils.h"
 
-#import "UIImageUtil.h"
-
-#import "HKGirlFontLabel.h"
-
 @implementation Item (DiceItem)
-
-+ (UIImage *)createItemImageByType:(ItemType)type
-{
-    UIImage* backgroundImage = [[DiceImageManager defaultManager] toolsItemBgImage];
-    HKGirlFontLabel* label = [[[HKGirlFontLabel alloc] initWithFrame:CGRectMake(backgroundImage.size.width*0.2, 
-                                                                                backgroundImage.size.width*0.1, 
-                                                                                backgroundImage.size.width*0.6, 
-                                                                                backgroundImage.size.height*0.6) 
-                                                           pointSize:40] autorelease];
-    
-    if (type == ItemTypeRollAgain) {
-        [label setText:NSLS(@"kRollAgain")];
-    }
-    
-    if (type == ItemTypeCut) {
-        [label setText:NSLS(@"kCut")];
-    }
-    
-    return [UIImage creatImageByImage:backgroundImage withLabel:label];
-}
 
 + (Item*)rollAgain
 {
     return [[[Item alloc] initWithType:ItemTypeRollAgain 
-                                 image:[Item createItemImageByType:ItemTypeRollAgain]
+                                 image:[[DiceImageManager defaultManager] diceToolRollAgainImage]
                                   name:NSLS(@"kRollAgain")
                            description:NSLS(@"kRollAgainDescription") 
                       buyAmountForOnce:10 
@@ -53,7 +29,7 @@
 + (Item*)cut
 {
     return [[[Item alloc] initWithType:ItemTypeCut 
-                                 image:[Item createItemImageByType:ItemTypeCut]
+                                 image:[[DiceImageManager defaultManager] diceToolCutImage]
                                   name:NSLS(@"kCut")
                            description:NSLS(@"kCutDescription") 
                       buyAmountForOnce:10

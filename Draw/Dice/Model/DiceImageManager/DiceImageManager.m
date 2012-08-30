@@ -266,7 +266,8 @@ static DiceImageManager *_defaultManager = nil;
                                                                                 backgroundImage.size.width*0.1, 
                                                                                 backgroundImage.size.width*0.6, 
                                                                                 backgroundImage.size.height*0.6) 
-                                                           pointSize:40] autorelease];
+                                                           pointSize:40]
+                              autorelease];
     
     [label setText:NSLS(@"kCut")];
     
@@ -280,7 +281,8 @@ static DiceImageManager *_defaultManager = nil;
                                                                                 backgroundImage.size.width*0.1, 
                                                                                 backgroundImage.size.width*0.6, 
                                                                                 backgroundImage.size.height*0.6) 
-                                                           pointSize:40] autorelease];
+                                                           pointSize:40] //这里的40没什么意义，只需要弄一个很大的fontsize然后自适应
+                              autorelease];
     
 
     [label setText:NSLS(@"kRollAgain")];
