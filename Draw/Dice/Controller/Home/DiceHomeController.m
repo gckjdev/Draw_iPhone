@@ -224,9 +224,12 @@
     [self hideActivity];
         
     if (_isTryJoinGame){
-        [self showActivityWithText:NSLS(@"kJoiningGame")];
         [[DiceGameService defaultService] joinGameRequestWithCondiction:^BOOL{
-            return [self meetJoinGameCondiction];
+            if ([self meetJoinGameCondiction]) {
+                [self showActivityWithText:NSLS(@"kJoiningGame")];
+                return YES;
+            };
+            return NO;
         }];
     }    
 }

@@ -317,9 +317,12 @@
 
 - (IBAction)clickFastEntryButton:(id)sender {    
     _isJoiningDice = YES;
-    [self showActivityWithText:NSLS(@"kJoiningGame")];
     [_diceGameService joinGameRequestWithCondiction:^BOOL{
-        return [self meetJoinGameCondiction];
+        if ([self meetJoinGameCondiction]) {
+            [self showActivityWithText:NSLS(@"kJoiningGame")];
+            return YES;
+        };
+        return NO;
     }];
 }
 
