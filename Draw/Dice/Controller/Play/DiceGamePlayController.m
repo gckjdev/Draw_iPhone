@@ -88,7 +88,6 @@
 
 
 - (void)dealloc {
-    [self quitDiceGame];
     
     [[AdService defaultService] clearAdView:_adView];
     [self setAdView:nil];
