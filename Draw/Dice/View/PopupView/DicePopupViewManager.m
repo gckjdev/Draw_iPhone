@@ -120,7 +120,6 @@ static DicePopupViewManager *_instance = nil;
 - (void)dismissItemListView
 {
     [_diceItemListView dismissAnimated:YES];
-    self.diceItemListView = nil;
 }
 
 - (void)popupMessage:(NSString *)message
@@ -204,7 +203,6 @@ static DicePopupViewManager *_instance = nil;
 - (void)dismissChatView
 {
     [_chatView dismissAnimated:YES];
-    self.chatView = nil;
 }
 
 @end
