@@ -11,9 +11,10 @@
 
 
 typedef enum {
-	AnimationTypeCaseInCaseOut = 0,
-	AnimationTypeUpToDown = 1,
-    AnimationTypeLeftToRight =2,
+    AnimationTypeNone = 0,
+	AnimationTypeCaseInCaseOut = 1,
+	AnimationTypeUpToDown = 2,
+    AnimationTypeLeftToRight =3,
 } AnimationType;
 
 
