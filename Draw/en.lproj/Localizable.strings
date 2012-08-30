@@ -775,7 +775,7 @@
 "kScrambleToOpenDiceMessage" = "Challenge";
 
 "kWaittingForNextTurn" = "Watting...";
-"kGameBegin" = "Game begin...";
+"kGameBegin" = "Game start...";
 "kNearBy" = "NearBy";
 "kWhoseRoom" = "%@'s room";
 
@@ -790,15 +790,15 @@
 "kMoreRoom" = "More...";
 "kMoreRoomLoading" = "Loading...";
 
-"kNoMatterWhatYouCallIWillOpen" = "No matter what you call, I will open";
+"kNoMatterWhatYouCallIWillOpen" = "No matter what, I will open";
 "kDoYouDareToOpen" = "Do you dare to open";
-"kBelieveItOrNotAnywayIBelieved" = "Believe it or not, anyway, I believed";
+"kBelieveItOrNotAnywayIBelieved" = "Believe it or not, I believed";
 "kAttentionWilds" = "Attention for wilds";
-"kDontGoAndPlayMore" = "Don't go, stay and play for a while";
+"kDontGoAndPlayMore" = "Don't go, play for a while";
 "kCheatMeNotSoEasy" = "Cheat Me? Not so easy";
 "kYouAreFooled" = "Ha ha, you are fooled";
 "kIWantToGoSeeUNextTime" = "I want to go, see you next time";
-"kFastEntry" = "QuickGame";
+"kFastEntry" = "Quick Start";
 "kDiceEnterPassword" = "room password(optional)";
 
 "kDiceFeedbackTips" = "Welcome to join QQ group:228119679,and follow the official Weibo @欢乐大话骰";

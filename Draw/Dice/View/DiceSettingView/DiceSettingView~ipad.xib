@@ -61,7 +61,7 @@
 								<string key="NSFrame">{{0, 12}, {468, 274}}</string>
 								<reference key="NSSuperview" ref="508497296"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView" ref="822624363"/>
+								<reference key="NSNextKeyView" ref="1002384597"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<object class="NSColor" key="IBUIBackgroundColor" id="355140580">
 									<int key="NSColorSpace">3</int>
@@ -73,7 +73,7 @@
 							<object class="IBUIButton" id="86814219">
 								<reference key="NSNextResponder" ref="508497296"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{165, 62}, {114, 58}}</string>
+								<string key="NSFrame">{{165, 61}, {115, 59}}</string>
 								<reference key="NSSuperview" ref="508497296"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="913161315"/>
@@ -88,6 +88,7 @@
 									<int key="NSColorSpace">3</int>
 									<bytes key="NSWhite">MQA</bytes>
 								</object>
+								<reference key="IBUISelectedTitleColor" ref="606137313"/>
 								<reference key="IBUINormalTitleColor" ref="972111789"/>
 								<object class="NSColor" key="IBUINormalTitleShadowColor" id="564934272">
 									<int key="NSColorSpace">3</int>
@@ -101,20 +102,20 @@
 									<string key="NSClassName">NSImage</string>
 									<string key="NSResourceName">settingleft_unselect@2x.png</string>
 								</object>
-								<object class="IBUIFontDescription" key="IBUIFontDescription" id="333461892">
+								<object class="IBUIFontDescription" key="IBUIFontDescription" id="574286514">
 									<int key="type">2</int>
-									<double key="pointSize">30</double>
+									<double key="pointSize">32</double>
 								</object>
-								<object class="NSFont" key="IBUIFont" id="365893817">
+								<object class="NSFont" key="IBUIFont" id="727347198">
 									<string key="NSName">Helvetica-Bold</string>
-									<double key="NSSize">30</double>
+									<double key="NSSize">32</double>
 									<int key="NSfFlags">16</int>
 								</object>
 							</object>
 							<object class="IBUIButton" id="957507765">
 								<reference key="NSNextResponder" ref="508497296"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{165, 177}, {114, 58}}</string>
+								<string key="NSFrame">{{165, 176}, {115, 59}}</string>
 								<reference key="NSSuperview" ref="508497296"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="965759838"/>
@@ -126,12 +127,13 @@
 								<int key="IBUIContentVerticalAlignment">0</int>
 								<string key="IBUINormalTitle">ON</string>
 								<reference key="IBUIHighlightedTitleColor" ref="606137313"/>
+								<reference key="IBUISelectedTitleColor" ref="606137313"/>
 								<reference key="IBUINormalTitleColor" ref="972111789"/>
 								<reference key="IBUINormalTitleShadowColor" ref="564934272"/>
 								<reference key="IBUISelectedBackgroundImage" ref="388087122"/>
 								<reference key="IBUINormalBackgroundImage" ref="1004713936"/>
-								<reference key="IBUIFontDescription" ref="333461892"/>
-								<reference key="IBUIFont" ref="365893817"/>
+								<reference key="IBUIFontDescription" ref="574286514"/>
+								<reference key="IBUIFont" ref="727347198"/>
 							</object>
 							<object class="IBUIImageView" id="918709087">
 								<reference key="NSNextResponder" ref="508497296"/>
@@ -146,7 +148,7 @@
 								<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 								<object class="NSCustomResource" key="IBUIImage">
 									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">music_on@2x.png</string>
+									<string key="NSResourceName">audio_on@2x.png</string>
 								</object>
 							</object>
 							<object class="IBUIImageView" id="822624363">
@@ -162,13 +164,13 @@
 								<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 								<object class="NSCustomResource" key="IBUIImage">
 									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">audio_on@2x.png</string>
+									<string key="NSResourceName">music_on@2x.png</string>
 								</object>
 							</object>
 							<object class="IBUIButton" id="965759838">
 								<reference key="NSNextResponder" ref="508497296"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{279, 177}, {114, 58}}</string>
+								<string key="NSFrame">{{279, 176}, {115, 59}}</string>
 								<reference key="NSSuperview" ref="508497296"/>
 								<reference key="NSWindow"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
@@ -179,6 +181,7 @@
 								<int key="IBUIContentVerticalAlignment">0</int>
 								<string key="IBUINormalTitle">OFF</string>
 								<reference key="IBUIHighlightedTitleColor" ref="606137313"/>
+								<reference key="IBUISelectedTitleColor" ref="606137313"/>
 								<reference key="IBUINormalTitleColor" ref="972111789"/>
 								<reference key="IBUINormalTitleShadowColor" ref="564934272"/>
 								<object class="NSCustomResource" key="IBUISelectedBackgroundImage" id="33920400">
@@ -189,16 +192,16 @@
 									<string key="NSClassName">NSImage</string>
 									<string key="NSResourceName">settingright_unselect@2x.png</string>
 								</object>
-								<reference key="IBUIFontDescription" ref="333461892"/>
-								<reference key="IBUIFont" ref="365893817"/>
+								<reference key="IBUIFontDescription" ref="574286514"/>
+								<reference key="IBUIFont" ref="727347198"/>
 							</object>
 							<object class="IBUIButton" id="913161315">
 								<reference key="NSNextResponder" ref="508497296"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{279, 62}, {114, 58}}</string>
+								<string key="NSFrame">{{279, 61}, {115, 59}}</string>
 								<reference key="NSSuperview" ref="508497296"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView" ref="1002384597"/>
+								<reference key="NSNextKeyView" ref="918709087"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<reference key="IBUIBackgroundColor" ref="355140580"/>
 								<bool key="IBUIOpaque">NO</bool>
@@ -207,12 +210,13 @@
 								<int key="IBUIContentVerticalAlignment">0</int>
 								<string key="IBUINormalTitle">OFF</string>
 								<reference key="IBUIHighlightedTitleColor" ref="606137313"/>
+								<reference key="IBUISelectedTitleColor" ref="606137313"/>
 								<reference key="IBUINormalTitleColor" ref="972111789"/>
 								<reference key="IBUINormalTitleShadowColor" ref="564934272"/>
 								<reference key="IBUISelectedBackgroundImage" ref="33920400"/>
 								<reference key="IBUINormalBackgroundImage" ref="180973061"/>
-								<reference key="IBUIFontDescription" ref="333461892"/>
-								<reference key="IBUIFont" ref="365893817"/>
+								<reference key="IBUIFontDescription" ref="574286514"/>
+								<reference key="IBUIFont" ref="727347198"/>
 							</object>
 							<object class="IBUIButton" id="1002384597">
 								<reference key="NSNextResponder" ref="508497296"/>
@@ -220,7 +224,7 @@
 								<string key="NSFrame">{{441, -1}, {54, 54}}</string>
 								<reference key="NSSuperview" ref="508497296"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView" ref="918709087"/>
+								<reference key="NSNextKeyView" ref="822624363"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<reference key="IBUIBackgroundColor" ref="355140580"/>
 								<bool key="IBUIOpaque">NO</bool>
@@ -238,8 +242,15 @@
 									<string key="NSClassName">NSImage</string>
 									<string key="NSResourceName">dice_close_btn@2x.png</string>
 								</object>
-								<reference key="IBUIFontDescription" ref="333461892"/>
-								<reference key="IBUIFont" ref="365893817"/>
+								<object class="IBUIFontDescription" key="IBUIFontDescription">
+									<int key="type">2</int>
+									<double key="pointSize">30</double>
+								</object>
+								<object class="NSFont" key="IBUIFont">
+									<string key="NSName">Helvetica-Bold</string>
+									<double key="NSSize">30</double>
+									<int key="NSfFlags">16</int>
+								</object>
 							</object>
 						</array>
 						<string key="NSFrame">{{137, 355}, {494, 314}}</string>
@@ -326,6 +337,14 @@
 						<reference key="destination" ref="918709087"/>
 					</object>
 					<int key="connectionID">32</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">closeButton</string>
+						<reference key="source" ref="84930225"/>
+						<reference key="destination" ref="1002384597"/>
+					</object>
+					<int key="connectionID">38</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
@@ -474,21 +493,26 @@
 				<string key="17.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="18.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="19.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+				<string key="20.CustomClassName">FontButton</string>
 				<string key="20.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<real value="2" key="20.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
+				<string key="21.CustomClassName">FontButton</string>
 				<string key="21.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<real value="2" key="21.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
+				<string key="22.CustomClassName">FontButton</string>
 				<string key="22.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<real value="2" key="22.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
+				<string key="23.CustomClassName">FontButton</string>
 				<string key="23.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<real value="2" key="23.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
+				<string key="24.CustomClassName">FontButton</string>
 				<string key="24.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 			</dictionary>
 			<dictionary class="NSMutableDictionary" key="unlocalizedProperties"/>
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">37</int>
+			<int key="maxID">38</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -516,12 +540,13 @@
 					<string key="superclassName">CommonInfoView</string>
 					<dictionary class="NSMutableDictionary" key="outlets">
 						<string key="audioImageView">UIImageView</string>
-						<string key="audioOffButton">UIButton</string>
-						<string key="audioOnButton">UIButton</string>
+						<string key="audioOffButton">FontButton</string>
+						<string key="audioOnButton">FontButton</string>
 						<string key="bgImageView">UIImageView</string>
+						<string key="closeButton">FontButton</string>
 						<string key="musicImageView">UIImageView</string>
-						<string key="musicOffButton">UIButton</string>
-						<string key="musicOnButton">UIButton</string>
+						<string key="musicOffButton">FontButton</string>
+						<string key="musicOnButton">FontButton</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
 						<object class="IBToOneOutletInfo" key="audioImageView">
@@ -530,15 +555,19 @@
 						</object>
 						<object class="IBToOneOutletInfo" key="audioOffButton">
 							<string key="name">audioOffButton</string>
-							<string key="candidateClassName">UIButton</string>
+							<string key="candidateClassName">FontButton</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="audioOnButton">
 							<string key="name">audioOnButton</string>
-							<string key="candidateClassName">UIButton</string>
+							<string key="candidateClassName">FontButton</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="bgImageView">
 							<string key="name">bgImageView</string>
 							<string key="candidateClassName">UIImageView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="closeButton">
+							<string key="name">closeButton</string>
+							<string key="candidateClassName">FontButton</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="musicImageView">
 							<string key="name">musicImageView</string>
@@ -546,16 +575,32 @@
 						</object>
 						<object class="IBToOneOutletInfo" key="musicOffButton">
 							<string key="name">musicOffButton</string>
-							<string key="candidateClassName">UIButton</string>
+							<string key="candidateClassName">FontButton</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="musicOnButton">
 							<string key="name">musicOnButton</string>
-							<string key="candidateClassName">UIButton</string>
+							<string key="candidateClassName">FontButton</string>
 						</object>
 					</dictionary>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
 						<string key="minorKey">./Classes/DiceSettingView.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">FontButton</string>
+					<string key="superclassName">UIGlossyButton</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/FontButton.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">UIGlossyButton</string>
+					<string key="superclassName">UIButton</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/UIGlossyButton.h</string>
 					</object>
 				</object>
 			</array>
