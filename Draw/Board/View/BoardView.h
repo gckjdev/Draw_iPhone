@@ -26,6 +26,7 @@ WillHandleJumpURL:(NSURL *)URL;
 {
     Board *_board;
     id<BoardViewDelegate> _delegate;
+    NSMutableArray *_adViewList;
 }
 
 @property(nonatomic, retain)Board *board;
@@ -34,6 +35,8 @@ WillHandleJumpURL:(NSURL *)URL;
 + (BoardView *)createBoardView:(Board *)board;
 - (id)initWithBoard:(Board *)board;
 
+//used by subclass to clear ad view
+- (void)clearAllAdView;
 
 //override by subclass;
 - (void)loadView;
