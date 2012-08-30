@@ -12,22 +12,7 @@
 #import "GameMessage.pb.h"
 #import "PPDebug.h"
 #import "ConfigManager.h"
-
-@interface Server : NSObject 
-@property (nonatomic, retain) NSString* address;
-@property (nonatomic, assign) int port;
-@end
-
-@implementation Server
-@synthesize address;
-@synthesize port;
-- (void)dealloc
-{
-    [address release];
-    [super dealloc];
-}
-
-@end
+#import "GCServer.h"
 
 @implementation FacetimeService
 @synthesize connectionDelegate = _connectionDelegate;
@@ -71,7 +56,7 @@ static FacetimeService *_defaultService;
     for (NSString* serverString in serverStringArray) {
         NSArray* array = [serverString componentsSeparatedByString:@":"];
         if (array.count == 2) {
-            Server* server = [[Server alloc] init];
+            GCServer* server = [[GCServer alloc] init];
             server.address = [array objectAtIndex:0];
             server.port = ((NSString*)[array objectAtIndex:1]).intValue;
             [serverList addObject:server];
@@ -79,7 +64,7 @@ static FacetimeService *_defaultService;
         }  
     }
     if (serverList.count > 0) {
-        Server* serv = [serverList objectAtIndex:rand()%serverList.count];
+        GCServer* serv = [serverList objectAtIndex:rand()%serverList.count];
         self.serverAddress = serv.address;
         self.serverPort = serv.port;
     }

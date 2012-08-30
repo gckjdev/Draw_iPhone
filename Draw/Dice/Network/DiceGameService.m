@@ -15,25 +15,10 @@
 #import "ConfigManager.h"
 #import "GameMessage.pb.h"
 #import "ItemType.h"
+#import "GCServer.h"
 
 #define SERVER_LIST_SEPERATOR   @"$"
 #define SERVER_PORT_SEPERATOR   @":"
-
-@interface DiceServer : NSObject 
-@property (nonatomic, retain) NSString* address;
-@property (nonatomic, assign) int port;
-@end
-
-@implementation DiceServer
-@synthesize address;
-@synthesize port;
-- (void)dealloc
-{
-    [address release];
-    [super dealloc];
-}
-
-@end
 
 @implementation DiceGameService
 
@@ -352,7 +337,7 @@ static DiceGameService* _defaultService;
     for (NSString* serverString in serverStringArray) {
         NSArray* array = [serverString componentsSeparatedByString:SERVER_PORT_SEPERATOR];
         if (array.count == 2) {
-            DiceServer* server = [[DiceServer alloc] init];
+            GCServer* server = [[GCServer alloc] init];
             server.address = [array objectAtIndex:0];
             server.port = ((NSString*)[array objectAtIndex:1]).intValue;
             [serverList addObject:server];
@@ -360,7 +345,7 @@ static DiceGameService* _defaultService;
         }  
     }
     if (serverList.count > 0) {
-        DiceServer* serv = [serverList objectAtIndex:rand()%serverList.count];
+        GCServer* serv = [serverList objectAtIndex:rand()%serverList.count];
         self.serverAddress = serv.address;
         self.serverPort = serv.port;
     }
