@@ -292,7 +292,11 @@
     {
         _isJoiningDice = YES;
         [[DiceGameService defaultService] joinGameRequest:self.currentSession.sessionId condiction:^BOOL{
-            return [self meetJoinGameCondiction];
+            if ([self meetJoinGameCondiction]) {
+                [self showActivityWithText:NSLS(@"kJoiningGame")];
+                return YES;
+            };
+            return NO;
         }];
         [self showActivityWithText:NSLS(@"kJoining")];
     } else {
