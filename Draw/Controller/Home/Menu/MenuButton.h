@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+@class HKGirlFontLabel;
 
 typedef enum{
     
@@ -61,7 +62,7 @@ extern int *getBottomMenuTypeListByGameAppType(GameAppType type);
 }
 @property (retain, nonatomic) IBOutlet UIButton *badge;
 @property (retain, nonatomic) IBOutlet UIButton *button;
-@property (retain, nonatomic) IBOutlet UILabel *title;
+@property (retain, nonatomic) IBOutlet HKGirlFontLabel *title;
 @property (assign, nonatomic) MenuButtonType type;
 @property (assign, nonatomic) id<MenuButtonDelegate> delegate;
 @property (assign, nonatomic) GameAppType gameAppType;
