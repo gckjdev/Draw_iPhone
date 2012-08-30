@@ -33,8 +33,20 @@
     return self;
 }
 
+- (void)clearAllAdView
+{
+    for (UIView* view in _adViewList){
+        [[AdService defaultService] clearAdView:view];
+    }
+
+    [_adViewList removeAllObjects];
+}
+
 - (void)dealloc
 {
+    [self clearAllAdView];
+    
+    PPRelease(_adViewList);
     PPRelease(_board);
     [super dealloc];
     
@@ -104,13 +116,29 @@
     [self addSubview:imageView];
     [imageView release];
     
-    [[AdService defaultService] createAdInView:self 
-                                adPlatformType:AdPlatformLm
-                                 adPublisherId:@"eb4ce4f0a0f1f49b6b29bf4c838a5147"
-                                         frame:CGRectMake(0, 0, 320, 50) 
-                                     iPadFrame:CGRectMake((768-320)/2, 0, 320, 50)];
-
+    [self clearAllAdView];
     
+    if ([[AdService defaultService] isShowAd]){
+        UIView* adView1 = [[AdService defaultService] createAdInView:self 
+                                                               frame:CGRectMake(0, 0, 320, 50) 
+                                                           iPadFrame:CGRectMake(30, 40, 320, 50)];
+        
+        [_adViewList addObject:adView1];
+        
+//        if ([DeviceDetection isIPAD]){
+//            UIView* adView2 = [[AdService defaultService] createLmAdInView:self 
+//                                                                     frame:CGRectMake(0, 0, 0, 0) 
+//                                                                 iPadFrame:CGRectMake(320+30+10, 40, 320, 50)];
+//            
+//            [_adViewList addObject:adView2];
+//            
+//        }
+    }    
+}
+
+- (void)dealloc
+{
+    [super dealloc];
 }
 
 @end

@@ -114,7 +114,7 @@ static const NSInteger MENU_NUMBER_PER_PAGE = 6;
         MenuButton *menu = [MenuButton menuButtonWithType:(*list) gameAppType:self.gameAppType];
         [self updateFrameForMenu:menu atIndex:number++];
         [self.scrollView addSubview:menu];
-        [menu setBadgeNumber:number];
+//        [menu setBadgeNumber:number];
         menu.delegate = self;
         list++;
     }
@@ -255,9 +255,8 @@ static const NSInteger MENU_NUMBER_PER_PAGE = 6;
             break;
         case MenuButtonTypeDiceStart:
         {
-            VendingController* vc = [[VendingController alloc] init];
-            [_controller.navigationController pushViewController:vc animated:YES];
-            [vc release];
+            PPDebug(@"<didClickMenuButton> dice Start. XiaoTao DO IT!");
+            //TODO 实现点击快速开始大话骰的响应事件， delegate神马的都交给_controller去处理            
         }
             break;
         case MenuButtonTypeDiceRoom:

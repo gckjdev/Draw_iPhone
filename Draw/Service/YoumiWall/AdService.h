@@ -47,18 +47,6 @@ typedef enum
                 iPadFrame:(CGRect)iPadFrame
                   useLmAd:(BOOL)useLmAd;
 
-//- (UIView*)createAdInView:(UIView*)superView
-//                    frame:(CGRect)frame 
-//                iPadFrame:(CGRect)iPadFrame;
-//
-//- (UIView*)createAderAdInView:(UIView*)superView
-//                        appId:(NSString*)appId
-//                        frame:(CGRect)frame 
-//                    iPadFrame:(CGRect)iPadFrame;
-//
-//- (UIView*)createLmAdInView:(UIView*)superView
-//                      frame:(CGRect)frame 
-//                  iPadFrame:(CGRect)iPadFrame;
 
 - (UIView*)createAdInView:(UIView*)superView
            adPlatformType:(AdPlatformType)adPlatformType
@@ -66,10 +54,15 @@ typedef enum
                     frame:(CGRect)frame 
                 iPadFrame:(CGRect)iPadFrame;
 
+- (UIView*)createAdInView:(UIView*)superView
+                    frame:(CGRect)frame 
+                iPadFrame:(CGRect)iPadFrame;
 
+- (UIView*)createLmAdInView:(UIView*)superView
+                      frame:(CGRect)frame 
+                  iPadFrame:(CGRect)iPadFrame;
 
 @property (nonatomic, retain) PPViewController* viewController;
-//@property (nonatomic, retain) UIViewController* adSuperViewController;
-//@property (nonatomic, retain) LmmobAdBannerView* adView;
+
 
 @end

@@ -55,4 +55,41 @@
     return CANDY_MANGO_AD_ID;
 }
 
+- (NSString*)defaultBroadImage
+{
+    return @"";
+}
+
+
+- (NSString*)sinaAppKey
+{
+    return @"2831348933";    
+}
+
+- (NSString*)sinaAppSecret
+{
+    return @"ff89c2f5667b0199ee7a8bad6c44b265";    
+}
+
+- (NSString*)qqAppKey
+{
+    return @"801123669";    
+}
+
+- (NSString*)qqAppSecret
+{
+    return @"30169d80923b984109ee24ade9914a5c";    
+}
+
+- (NSString*)facebookAppKey
+{
+    return @"352182988165711";    
+}
+
+- (NSString*)facebookAppSecret
+{
+    return @"51c65d7fbef9858a5d8bc60014d33ce2";
+}
+
+
 @end

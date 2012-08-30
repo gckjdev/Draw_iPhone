@@ -55,5 +55,41 @@
     return DICE_MANGO_AD_ID;
 }
 
+- (NSString*)defaultBroadImage
+{
+    return @"dice_default_board.png";
+}
+
+
+- (NSString*)sinaAppKey
+{
+    return @"562852192";    
+}
+
+- (NSString*)sinaAppSecret
+{
+    return @"6271c4259ae38213ddf6f8b1b6ba7766";    
+}
+
+- (NSString*)qqAppKey
+{
+    return @"801229596";    
+}
+
+- (NSString*)qqAppSecret
+{
+    return @"967bcfd366aa27e542f00db52ef5981d";    
+}
+
+- (NSString*)facebookAppKey
+{
+    return @"451387761588871";    
+}
+
+- (NSString*)facebookAppSecret
+{
+    return @"46326b19b15b3d3ab095035079a92b92";
+}
+
 
 @end

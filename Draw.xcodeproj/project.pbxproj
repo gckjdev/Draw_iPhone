@@ -1499,6 +1499,9 @@
 		CAC25C4015EF0740007456FA /* MenuPanel~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAC25C3415EF0740007456FA /* MenuPanel~ipad.xib */; };
 		CAC25C4315EF078B007456FA /* DiceMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAC25C4115EF078B007456FA /* DiceMenu.xib */; };
 		CAC25C4415EF078B007456FA /* DiceMenu~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAC25C4215EF078B007456FA /* DiceMenu~ipad.xib */; };
+		CAC25C6915EF20FB007456FA /* DiceHomeController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC25C6715EF20FB007456FA /* DiceHomeController.m */; };
+		CAC25C6A15EF20FB007456FA /* DiceHomeController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAC25C6815EF20FB007456FA /* DiceHomeController.xib */; };
+		CAC25C6C15EF2D02007456FA /* DiceHomeController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAC25C6B15EF2D01007456FA /* DiceHomeController~ipad.xib */; };
 		CAC4DCE215450E8F00A42CF2 /* StoreKitUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC4DCE115450E8F00A42CF2 /* StoreKitUtils.m */; };
 		CAC4DCE81545286C00A42CF2 /* TransactionReceiptManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC4DCE71545286B00A42CF2 /* TransactionReceiptManager.m */; };
 		CAC4DCEB154542A200A42CF2 /* TransactionReceipt.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC4DCEA154542A200A42CF2 /* TransactionReceipt.m */; };
@@ -3631,6 +3634,10 @@
 		CAC25C3415EF0740007456FA /* MenuPanel~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "MenuPanel~ipad.xib"; sourceTree = "<group>"; };
 		CAC25C4115EF078B007456FA /* DiceMenu.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DiceMenu.xib; sourceTree = "<group>"; };
 		CAC25C4215EF078B007456FA /* DiceMenu~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "DiceMenu~ipad.xib"; sourceTree = "<group>"; };
+		CAC25C6615EF20FB007456FA /* DiceHomeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiceHomeController.h; sourceTree = "<group>"; };
+		CAC25C6715EF20FB007456FA /* DiceHomeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiceHomeController.m; sourceTree = "<group>"; };
+		CAC25C6815EF20FB007456FA /* DiceHomeController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DiceHomeController.xib; sourceTree = "<group>"; };
+		CAC25C6B15EF2D01007456FA /* DiceHomeController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "DiceHomeController~ipad.xib"; sourceTree = "<group>"; };
 		CAC4DCE015450E8F00A42CF2 /* StoreKitUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoreKitUtils.h; sourceTree = "<group>"; };
 		CAC4DCE115450E8F00A42CF2 /* StoreKitUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoreKitUtils.m; sourceTree = "<group>"; };
 		CAC4DCE61545286B00A42CF2 /* TransactionReceiptManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransactionReceiptManager.h; sourceTree = "<group>"; };
@@ -4267,6 +4274,7 @@
 		A4B763EF15C28F8E003B4E72 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				CAC25C6515EF20CD007456FA /* Home */,
 				A4B763F015C28F8E003B4E72 /* Play */,
 				A4B763F415C28F8E003B4E72 /* Room */,
 			);
@@ -7366,6 +7374,17 @@
 			path = Panel;
 			sourceTree = "<group>";
 		};
+		CAC25C6515EF20CD007456FA /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				CAC25C6615EF20FB007456FA /* DiceHomeController.h */,
+				CAC25C6715EF20FB007456FA /* DiceHomeController.m */,
+				CAC25C6815EF20FB007456FA /* DiceHomeController.xib */,
+				CAC25C6B15EF2D01007456FA /* DiceHomeController~ipad.xib */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
 		CACF87A015EB4D2D003FA6B6 /* DiceSettingView */ = {
 			isa = PBXGroup;
 			children = (
@@ -9300,6 +9319,8 @@
 				CAC25C4315EF078B007456FA /* DiceMenu.xib in Resources */,
 				CAC25C4415EF078B007456FA /* DiceMenu~ipad.xib in Resources */,
 				EA24D35415EF1EFC008581A2 /* dice_room_help@2x.png in Resources */,
+				CAC25C6A15EF20FB007456FA /* DiceHomeController.xib in Resources */,
+				CAC25C6C15EF2D02007456FA /* DiceHomeController~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -9801,6 +9822,7 @@
 				CAC25C3815EF0740007456FA /* MenuButton.m in Sources */,
 				CAC25C3B15EF0740007456FA /* BottomMenuPanel.m in Sources */,
 				CAC25C3E15EF0740007456FA /* MenuPanel.m in Sources */,
+				CAC25C6915EF20FB007456FA /* DiceHomeController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
