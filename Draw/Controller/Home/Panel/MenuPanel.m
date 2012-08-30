@@ -56,7 +56,7 @@
 #pragma mark load menu
 
 #define MENU_PANEL_WIDTH ([DeviceDetection isIPAD] ? 768 : 320)
-#define MENU_PANEL_HEIGHT ([DeviceDetection isIPAD] ? 467 : 224)
+#define MENU_PANEL_HEIGHT ([DeviceDetection isIPAD] ? 468 : 224)
 static const NSInteger MENU_NUMBER_PER_PAGE = 6;
 
 #define MENU_NUMBER_PER_PAGE ((self.gameAppType == GameAppTypeDraw) ? 6 : 4)

@@ -39,7 +39,7 @@
 					<object class="IBUIScrollView" id="1059163907">
 						<reference key="NSNextResponder" ref="74285547"/>
 						<int key="NSvFlags">274</int>
-						<string key="NSFrameSize">{768, 447}</string>
+						<string key="NSFrameSize">{768, 448}</string>
 						<reference key="NSSuperview" ref="74285547"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="144810561"/>
@@ -57,7 +57,6 @@
 						<string key="NSFrame">{{0, 400}, {768, 36}}</string>
 						<reference key="NSSuperview" ref="74285547"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<int key="IBUIContentHorizontalAlignment">0</int>
@@ -66,7 +65,7 @@
 						<int key="IBUINumberOfPages">3</int>
 					</object>
 				</array>
-				<string key="NSFrameSize">{768, 447}</string>
+				<string key="NSFrameSize">{768, 448}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="1059163907"/>
