@@ -114,7 +114,7 @@ static const NSInteger MENU_NUMBER_PER_PAGE = 6;
         MenuButton *menu = [MenuButton menuButtonWithType:(*list) gameAppType:self.gameAppType];
         [self updateFrameForMenu:menu atIndex:number++];
         [self.scrollView addSubview:menu];
-        [menu setBadgeNumber:number];
+//        [menu setBadgeNumber:number];
         menu.delegate = self;
         list++;
     }
