@@ -41,7 +41,7 @@
 					<object class="IBUIImageView" id="916930061">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">274</int>
-						<string key="NSFrameSize">{768, 467}</string>
+						<string key="NSFrameSize">{768, 468}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="929335144"/>
@@ -55,7 +55,7 @@
 					<object class="IBUIScrollView" id="670953276">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">268</int>
-						<string key="NSFrameSize">{768, 467}</string>
+						<string key="NSFrame">{{0, 1}, {768, 467}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="916930061"/>
@@ -73,7 +73,7 @@
 					<object class="IBUILabel" id="510618203">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">319</int>
-						<string key="NSFrame">{{653, 436}, {110, 27}}</string>
+						<string key="NSFrame">{{653, 437}, {110, 27}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<bool key="IBUIOpaque">NO</bool>
@@ -120,7 +120,7 @@
 						<int key="IBUINumberOfPages">3</int>
 					</object>
 				</array>
-				<string key="NSFrameSize">{768, 467}</string>
+				<string key="NSFrameSize">{768, 468}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="670953276"/>
