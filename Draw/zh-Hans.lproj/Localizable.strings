@@ -817,7 +817,7 @@
 
 "kDiceFeedbackTips" = "欢迎加入欢乐大话骰QQ群:228119679, 关注官方微博 @欢乐大话骰";
 
-"kDiceRoom" = "欢乐大话骰%d号房";
+"kDiceRoom" = "欢乐大话%d号房";
 
 "kWaitingForMoreUsers" = "等待更多用户...";
 
@@ -839,6 +839,8 @@
 "kDiceMenuHelp" = "游戏帮助"; 
 "kDiceMenuRoom" = "游戏大厅"; 
 "kDiceMenuShop" = "道具商店"; 
+
+"kCoinsNotEnoughAndEnterShop" = "你当前的金币少于%d，玩不了一局游戏了，现在就买些金币？";
 
 /*********************** 大话骰子国际化字符串结束 *************************/
 

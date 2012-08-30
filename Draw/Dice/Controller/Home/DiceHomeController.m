@@ -13,6 +13,12 @@
 #import "MenuPanel.h"
 #import "BoardService.h"
 #import "BoardManager.h"
+#import "CommonGameNetworkService.h"
+#import "DiceGamePlayController.h"
+#import "StringUtil.h"
+#import "UserManager.h"
+#import "DiceGameService.h"
+#import "CoinShopController.h"
 
 @interface DiceHomeController()
 {
@@ -23,6 +29,8 @@
 }
 
 - (void)updateBoardPanelWithBoards:(NSArray *)boards;
+- (void)registerDiceGameNotification;
+
 @end
 
 @implementation DiceHomeController
@@ -71,12 +79,24 @@
 #pragma mark - View lifecycle
 
 - (void)viewDidLoad
-{
+{    
     [super viewDidLoad];
     [self loadBoards];
     [self loadMainMenu];
     [self loadBottomMenu];
 
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [self registerDiceGameNotification];    
+    [super viewDidAppear:animated];
+}
+
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [self unregisterAllNotifications];
+    [super viewDidDisappear:animated];
 }
 
 - (void)viewDidUnload
@@ -129,6 +149,112 @@
         [_boardPanel setBoardList:boards];
         [self.view addSubview:_boardPanel];  
     }
+    
+}
+
+#pragma mark - Game Notification
+
+- (void)registerDiceGameNotificationWithName:(NSString *)name 
+                                  usingBlock:(void (^)(NSNotification *note))block
+{
+    [self registerNotificationWithName:name 
+                                object:nil 
+                                 queue:[NSOperationQueue mainQueue] 
+                            usingBlock:block];
+}
+
+- (void)registerDiceGameNotification
+{
+    [self registerDiceGameNotificationWithName:NOTIFICATION_JOIN_GAME_RESPONSE usingBlock:^(NSNotification *note) {
+        PPDebug(@"<%@> NOTIFICATION_JOIN_GAME_RESPONSE", [self description]); 
+        [self hideActivity];
+        if(_isTryJoinGame) {
+            GameMessage* message = [CommonGameNetworkService userInfoToMessage:[note userInfo]];
+            if ([message resultCode] == GameResultCodeSuccess){
+                DiceGamePlayController *controller = [[[DiceGamePlayController alloc] init] autorelease];
+                [self.navigationController pushViewController:controller animated:YES];
+            }
+            else{
+                // TODO show error info here
+                PPDebug(@"JOIN GAME FAIL, ResultCode=%d", [message resultCode]);
+            }
+
+            // clear join dice flag
+            _isTryJoinGame = NO; 
+        }
+    }];
+    
+}
+
+- (void)unregisterDiceGameNotification
+{        
+    [self unregisterAllNotifications];
+}
+
+
+- (BOOL)meetJoinGameCondiction
+{
+    if ([[AccountService defaultService] getBalance] <= DICE_THRESHOLD_COIN) {
+        NSString* message = [NSString stringWithFormat:NSLS(@"kCoinsNotEnoughAndEnterShop"), DICE_THRESHOLD_COIN];
+        CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"kNotEnoughCoin") 
+                                                           message:message
+                                                             style:CommonDialogStyleDoubleButton 
+                                                          delegate:self 
+                                                             theme:CommonDialogThemeDice];
+        [dialog showInView:self.view];
+        return NO;
+    }
+    return YES;
+}
+
+- (void)connectServer
+{
+    NSString* address = [ConfigManager defaultDiceServer];
+    int port = [ConfigManager defaultDicePort];
+    
+    [[DiceGameService defaultService] setServerAddress:address];
+    [[DiceGameService defaultService] setServerPort:port];
+    
+    _isTryJoinGame = YES;    
+
+    [[DiceGameService defaultService] connectServer:self];
+    [self showActivityWithText:NSLS(@"kConnectingServer")];
+}
+
+- (void)didConnected
+{
+    PPDebug(@"%@ <didConnected>", [self description]);
+    
+    [self hideActivity];
+        
+    if (_isTryJoinGame){
+        [self showActivityWithText:NSLS(@"kJoiningGame")];
+        [[DiceGameService defaultService] joinGameRequestWithCondiction:^BOOL{
+            return [self meetJoinGameCondiction];
+        }];
+    }    
+}
+
+- (void)didBroken
+{
+    _isTryJoinGame = NO;
+    PPDebug(@"%@ <didBroken>", [self description]);
+    [self hideActivity];
+    
+    [self popupUnhappyMessage:NSLS(@"kNetworkBroken") title:@""];
+    [self.navigationController popToRootViewControllerAnimated:NO];
+    
+}
+
+#pragma mark - common dialog delegate
+- (void)clickOk:(CommonDialog *)dialog
+{
+    CoinShopController* controller = [[[CoinShopController alloc] init] autorelease];
+    [self.navigationController pushViewController:controller animated:YES]; 
+}
+
+- (void)clickBack:(CommonDialog *)dialog
+{
     
 }
 
