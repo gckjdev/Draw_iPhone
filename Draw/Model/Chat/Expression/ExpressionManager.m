@@ -78,10 +78,7 @@ static ExpressionManager *_instance = nil;
     NSArray *subStr = [value componentsSeparatedByString:@"."];
     return [[NSBundle mainBundle] pathForResource:[subStr objectAtIndex:0] ofType:@"gif"];
 }
-//- (NSArray *)allValues
-//{
-//    return [_expressionDictionary allValues];
-//}
+
 
 
 @end

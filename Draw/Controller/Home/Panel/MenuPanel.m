@@ -23,6 +23,10 @@
 #import "ConfigManager.h"
 #import "ShareImageManager.h"
 
+
+//dice
+#import "DiceRoomListController.h"
+
 @implementation MenuPanel
 @synthesize versionLabel = _versionLabel;
 @synthesize scrollView = _scrollView;
@@ -65,7 +69,8 @@ static const NSInteger MENU_NUMBER_PER_PAGE = 6;
 
     CGFloat xStart = isIPAD ? 32 : 15;
     CGFloat yStart = isIPAD ? 30 : 22;
-    int page = index / MENU_NUMBER_PER_PAGE;   
+
+    NSInteger page = index / MENU_NUMBER_PER_PAGE;   
     
     NSInteger row = (index % MENU_NUMBER_PER_PAGE) / MENU_NUMBER_ROW_NUMBER;
     NSInteger numberInRow = index % MENU_NUMBER_ROW_NUMBER;
@@ -81,17 +86,35 @@ static const NSInteger MENU_NUMBER_PER_PAGE = 6;
 }
 
 
+- (void)updateFrameForMenu:(MenuButton *)menu atIndex:(NSInteger)index
+{
+    CGFloat width = menu.frame.size.width;
+    CGFloat height = menu.frame.size.height;
+    NSInteger row = (index % MENU_NUMBER_PER_PAGE) / MENU_NUMBER_ROW_NUMBER;
+    NSInteger numberInRow = index % MENU_NUMBER_ROW_NUMBER;
+    NSInteger page = index / MENU_NUMBER_PER_PAGE;   
+    
+    CGFloat y = row *  height;
+    
+    CGFloat x = page * self.frame.size.width;
+    x += numberInRow * width;
+    menu.frame = CGRectMake(x, y, width, height);
+
+}
+
 - (void)loadMenu
 {
     int number = 0;
-    UIImage * bgImage = [[ShareImageManager defaultManager] mainMenuPanelBGForGameAppType:self.gameAppType];
+    UIImage * bgImage = [[ShareImageManager defaultManager]
+                         mainMenuPanelBGForGameAppType:self.gameAppType];
     [self.bgImageView setImage:bgImage];
     
     int *list = getMainMenuTypeListByGameAppType(self.gameAppType);
     while (list != NULL && (*list) != MenuButtonTypeEnd) {
         MenuButton *menu = [MenuButton menuButtonWithType:(*list) gameAppType:self.gameAppType];
-        menu.frame = [self frameForMenuIndex:number++];
+        [self updateFrameForMenu:menu atIndex:number++];
         [self.scrollView addSubview:menu];
+//        [menu setBadgeNumber:number];
         menu.delegate = self;
         list++;
     }
@@ -221,6 +244,35 @@ static const NSInteger MENU_NUMBER_PER_PAGE = 6;
             [vc release];
         }
             break;
+
+            
+        case MenuButtonTypeDiceShop:
+        {
+            VendingController* vc = [[VendingController alloc] init];
+            [_controller.navigationController pushViewController:vc animated:YES];
+            [vc release];
+        }
+            break;
+        case MenuButtonTypeDiceStart:
+        {
+            PPDebug(@"<didClickMenuButton> dice Start. XiaoTao DO IT!");
+            //TODO 实现点击快速开始大话骰的响应事件， delegate神马的都交给_controller去处理            
+        }
+            break;
+        case MenuButtonTypeDiceRoom:
+        {
+            DiceRoomListController* vc = [[[DiceRoomListController alloc] init] autorelease];
+            [_controller.navigationController pushViewController:vc animated:YES];
+        }
+            break;
+        case MenuButtonTypeDiceHelp:
+        {
+            DiceHelpView *view = [DiceHelpView createDiceHelpView];
+            [view showInView:_controller.view];
+        }
+            break;
+
+            
         default:
             break;
     }

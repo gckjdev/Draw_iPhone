@@ -65,9 +65,14 @@
 #import "BottomMenuPanel.h"
 #import "BoardManager.h"
 
+#import "DiceHomeController.h"
+
 @interface HomeController()
 {
     BoardPanel *_boardPanel;
+    NSTimeInterval interval;
+    BOOL hasGetLocalBoardList;
+
 }
 - (void)playBackgroundMusic;
 - (void)enterNextControllerWityType:(NotificationType) type;
@@ -128,16 +133,42 @@
 }
 
 
-- (void)viewDidLoad
-{        
-    
-    
+- (void)loadBoards
+{
+    hasGetLocalBoardList = NO;
+    interval = 1;
     Board *defaultBoard = [Board defaultBoard];
     NSArray *borads = [NSArray arrayWithObject:defaultBoard];
     PPDebug(@"<viewDidLoad> update Board Panel With Default Boards ");
     [self updateBoardPanelWithBoards:borads];
     
-    [[BoardService defaultService] getBoardsWithDelegate:self];
+    [[BoardService defaultService] getBoardsWithDelegate:self];    
+}
+
+- (void)loadMainMenu
+{
+    self.menuPanel = [MenuPanel menuPanelWithController:self 
+                                            gameAppType:GameAppTypeDraw];
+    
+    self.menuPanel.center = [DeviceDetection isIPAD] ? CGPointMake(384, 686) : CGPointMake(160, 306);
+    
+    [self.view insertSubview:self.menuPanel atIndex:0];
+
+}
+
+- (void)loadBottomMenu
+{
+    self.bottomMenuPanel = [BottomMenuPanel panelWithController:self
+                                                    gameAppType:GameAppTypeDraw];
+    
+    self.bottomMenuPanel.center = [DeviceDetection isIPAD] ? CGPointMake(384, 961) : CGPointMake(160, 438);
+    
+    [self.view addSubview:_bottomMenuPanel];
+}
+
+
+- (void)viewDidLoad
+{        
     
 //    self.facetimeButton.hidden = YES;
 //    self.diceButton.hidden = YES;
@@ -155,25 +186,10 @@
 //                                                     useLmAd:YES];
     
     
-    
     [super viewDidLoad];    
-    
-    self.menuPanel = [MenuPanel menuPanelWithController:self 
-                                            gameAppType:GameAppTypeDraw];
-    
-    self.menuPanel.center = [DeviceDetection isIPAD] ? CGPointMake(384, 686) : CGPointMake(160, 306);
-    
-    [self.view insertSubview:self.menuPanel atIndex:0];
-
-    
-    self.bottomMenuPanel = [BottomMenuPanel panelWithController:self
-                                                    gameAppType:GameAppTypeDraw];
-    
-    self.bottomMenuPanel.center = [DeviceDetection isIPAD] ? CGPointMake(384, 961) : CGPointMake(160, 438);
-    
-    [self.view addSubview:_bottomMenuPanel];
-
-    
+    [self loadMainMenu];
+    [self loadBottomMenu];
+    [self loadBoards];
     [self playBackgroundMusic];
     
     // set text
@@ -636,7 +652,7 @@
 }
 - (IBAction)room:(id)sender
 {
-    DiceRoomListController* vc = [[[DiceRoomListController alloc] init] autorelease];
+    DiceHomeController* vc = [[[DiceHomeController alloc] init] autorelease];
     [self.navigationController pushViewController:vc animated:YES];
 }
 
@@ -649,11 +665,9 @@
 }
 
 
-#define BOARD_PANEL_TAG 201208241
+//#define BOARD_PANEL_TAG 201208241
 #pragma mark - board service delegate
 
-NSTimeInterval interval = 1;
-BOOL hasGetLocalBoardList = NO;
 - (void)updateBoardList:(NSTimer *)theTimer
 {
     interval *= 2;
@@ -690,9 +704,8 @@ BOOL hasGetLocalBoardList = NO;
 - (void)updateBoardPanelWithBoards:(NSArray *)boards
 {
     if ([boards count] != 0) {
-        [[self.view viewWithTag:BOARD_PANEL_TAG] removeFromSuperview];
+        [_boardPanel removeFromSuperview];
         _boardPanel = [BoardPanel boardPanelWithController:self];
-        _boardPanel.tag = BOARD_PANEL_TAG;
         [_boardPanel setBoardList:boards];
         [self.view addSubview:_boardPanel];  
     }

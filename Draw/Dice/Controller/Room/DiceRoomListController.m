@@ -73,7 +73,7 @@
     [super dealloc];
 }
 
-- (BOOL)isAbleToGetIn
+- (BOOL)meetJoinGameCondiction
 {
     if ([_accountService getBalance] <= DICE_THRESHOLD_COIN) {
         CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"kNotEnoughCoin") message:NSLS(@"kCoinsNotEnough") style:CommonDialogStyleDoubleButton delegate:self theme:CommonDialogThemeDice];
@@ -297,7 +297,7 @@
     {
         _isJoiningDice = YES;
         [[DiceGameService defaultService] joinGameRequest:self.currentSession.sessionId condiction:^BOOL{
-            return [self isAbleToGetIn];
+            return [self meetJoinGameCondiction];
         }];
         [self showActivityWithText:NSLS(@"kJoining")];
     } else {
@@ -324,13 +324,13 @@
     _isJoiningDice = YES;
     [self showActivityWithText:NSLS(@"kJoiningGame")];
     [_diceGameService joinGameRequestWithCondiction:^BOOL{
-        return [self isAbleToGetIn];
+        return [self meetJoinGameCondiction];
     }];
 }
 
 - (IBAction)creatRoom:(id)sender
 {
-    if ([self isAbleToGetIn]) {
+    if ([self meetJoinGameCondiction]) {
         RoomPasswordDialog *inputDialog = [RoomPasswordDialog dialogWith:NSLS(@"kCreateRoom") 
                                                                 delegate:self 
                                                                    theme:CommonDialogThemeDice];
