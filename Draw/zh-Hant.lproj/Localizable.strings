@@ -781,7 +781,7 @@
 "kRollAgain" = "搖";
 "kCut" = "劈";
 "kRollAgainDescription" = "使用該道具可以重搖一次骰子。";
-"kCutDescription" = "使用該道具則立刻開骰，並且賭註加倍，即贏家可以獲取雙倍金幣，輸家需要扣除雙倍金幣。";
+"kCutDescription" = "使用該道具則立刻開骰，並且賭註加倍。";
 
 "kMoreRoom" = "更多...";
 "kMoreRoomLoading" = "加載中...";

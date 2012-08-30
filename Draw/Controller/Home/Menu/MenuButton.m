@@ -59,13 +59,15 @@
             return NSLS(@"kFeed");
         case MenuButtonTypeShop:
             return NSLS(@"kShop"); 
-        case MenuButtonTypeStart:
-            return NSLS(@"kStart"); 
-        case MenuButtonTypeHelp:
+            
+        case MenuButtonTypeDiceStart:
+            return NSLS(@"kDiceStart"); 
+        case MenuButtonTypeDiceHelp:
             return NSLS(@"kHelp"); 
-        case MenuButtonTypeRoom:
+        case MenuButtonTypeDiceRoom:
             return NSLS(@"kRoom"); 
-
+        case MenuButtonTypeDiceShop:
+            return NSLS(@"kShop"); 
         default:
             return nil;
     }
@@ -89,12 +91,15 @@
         case MenuButtonTypeTimeline:
             return [imageManager timelineImage];
         case MenuButtonTypeShop:
-            return [imageManager shopImageForGameAppType:gameAppType];
-        case MenuButtonTypeStart:
+            return [imageManager shopImage];
+            //dice
+        case MenuButtonTypeDiceStart:
             return [imageManager diceStartMenuImage];
-        case MenuButtonTypeHelp:
+        case MenuButtonTypeDiceShop:
+            return [imageManager diceShopImage];
+        case MenuButtonTypeDiceHelp:
             return [imageManager diceHelpMenuImage];
-        case MenuButtonTypeRoom:
+        case MenuButtonTypeDiceRoom:
             return [imageManager diceRoomMenuImage];
         default:
             return nil;
@@ -169,10 +174,10 @@ int *drawMainMenuTypeList()
 int *diceMainMenuTypeList()
 {
     static int list[] = {    
-        MenuButtonTypeStart,   
-        MenuButtonTypeRoom,   
-        MenuButtonTypeHelp,   
-        MenuButtonTypeShop,   
+        MenuButtonTypeDiceStart,   
+        MenuButtonTypeDiceRoom,   
+        MenuButtonTypeDiceHelp,   
+        MenuButtonTypeDiceShop,   
         //must add the end mark.
         MenuButtonTypeEnd
     };

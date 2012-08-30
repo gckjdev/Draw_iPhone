@@ -19,9 +19,10 @@ typedef enum{
     MenuButtonTypeShop,   
     
     //for dice.
-    MenuButtonTypeStart,
-    MenuButtonTypeRoom,
-    MenuButtonTypeHelp,
+    MenuButtonTypeDiceStart,
+    MenuButtonTypeDiceRoom,
+    MenuButtonTypeDiceHelp,
+    MenuButtonTypeDiceShop,       
     
     //for bottom menu
     
