@@ -200,7 +200,7 @@
     self.waittingForNextTurnNoteLabel.text = ([_diceService.diceSession.userList count] == 1) ? NSLS(@"kWaitingForMoreUsers") : NSLS(@"kWaittingForNextTurn");
     self.adView = [[AdService defaultService] createAdInView:self                  
                                                        frame:CGRectMake(0, 0, 320, 50) 
-                                                   iPadFrame:CGRectMake(224, 0, 320, 50)
+                                                   iPadFrame:CGRectMake(448, 0, 320, 50)
                                                      useLmAd:YES];
 }
 
