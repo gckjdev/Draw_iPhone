@@ -71,6 +71,7 @@ static DiceGameService* _defaultService;
 {
     [self.diceSession reset];
     self.diceSession.isMeAByStander = NO;
+    self.diceSession.gameState = GameStatePlaying;
 
     NSMutableArray* newUserList = [NSMutableArray array];
     
@@ -132,6 +133,7 @@ static DiceGameService* _defaultService;
 
 - (void)handleGameOverNotificationRequest:(GameMessage *)message
 {
+    self.diceSession.gameState = GameStateGameOver;
     NSMutableDictionary *resultDic= [NSMutableDictionary dictionary];
     for(PBUserResult *result in [[[message gameOverNotificationRequest] gameResult] userResultList])
     {

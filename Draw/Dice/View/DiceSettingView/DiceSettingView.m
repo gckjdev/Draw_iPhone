@@ -48,17 +48,11 @@
     
     audioOnButton.selected = [[AudioManager defaultManager] isSoundOn];
     audioOffButton.selected = ![[AudioManager defaultManager] isSoundOn];
-    
-//    musicOnButton.fontLable.text = @"ON";
-//    musicOffButton.fontLable.text = @"OFF";
-//    audioOnButton.fontLable.text = @"ON";
-//    audioOffButton.fontLable.text = @"OFF";
-//    closeButton.fontLable.text = @"X";
-//
-//    musicOnButton.fontLable.textColor = [UIColor whiteColor];
-//    musicOffButton.fontLable.textColor = [UIColor whiteColor];
-//    audioOnButton.fontLable.textColor = [UIColor whiteColor];
-//    audioOffButton.fontLable.textColor = [UIColor whiteColor];
+
+    musicOnButton.fontLable.textColor = [[AudioManager defaultManager] isMusicOn] ? [UIColor whiteColor] : [UIColor blackColor];
+    musicOffButton.fontLable.textColor = [[AudioManager defaultManager] isMusicOn] ? [UIColor blackColor] : [UIColor whiteColor];
+    audioOnButton.fontLable.textColor = [[AudioManager defaultManager] isSoundOn] ? [UIColor whiteColor] : [UIColor blackColor];
+    audioOffButton.fontLable.textColor = [[AudioManager defaultManager] isSoundOn] ? [UIColor blackColor] : [UIColor whiteColor];
     
     [view addSubview:self];
     [self appear];
@@ -81,6 +75,8 @@
     musicOnButton.selected = YES;
     musicOffButton.selected = NO;
     musicImageView.image = [[DiceImageManager defaultManager] diceMusicOnImage];
+    musicOnButton.fontLable.textColor = [UIColor whiteColor];
+    musicOffButton.fontLable.textColor = [UIColor blackColor];
     
     [[AudioManager defaultManager] setIsMusicOn:YES];
     [[AudioManager defaultManager] saveSoundSettings];
@@ -90,7 +86,9 @@
     musicOnButton.selected = NO;
     musicOffButton.selected = YES;
     musicImageView.image = [[DiceImageManager defaultManager] diceMusicOffImage];
-
+    musicOnButton.fontLable.textColor = [UIColor blackColor];
+    musicOffButton.fontLable.textColor = [UIColor whiteColor];
+    
     [[AudioManager defaultManager] setIsMusicOn:NO];
     [[AudioManager defaultManager] saveSoundSettings];
 }
@@ -99,7 +97,9 @@
     audioOnButton.selected = YES;
     audioOffButton.selected = NO;
     audioImageView.image = [[DiceImageManager defaultManager] diceAudioOnImage];
-
+    audioOnButton.fontLable.textColor = [UIColor whiteColor];
+    audioOffButton.fontLable.textColor = [UIColor blackColor];
+    
     [[AudioManager defaultManager] setIsSoundOn:YES];
     [[AudioManager defaultManager] saveSoundSettings];
 }
@@ -108,7 +108,9 @@
     audioOnButton.selected = NO;
     audioOffButton.selected = YES;
     audioImageView.image = [[DiceImageManager defaultManager] diceAudioOffImage];
-
+    audioOnButton.fontLable.textColor = [UIColor blackColor];
+    audioOffButton.fontLable.textColor = [UIColor whiteColor];
+    
     [[AudioManager defaultManager] setIsSoundOn:NO];
     [[AudioManager defaultManager] saveSoundSettings];
 }

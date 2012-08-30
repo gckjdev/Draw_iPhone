@@ -56,6 +56,7 @@ static VendingController* staticVendingController = nil;
 @synthesize outItem;
 @synthesize titleLabel;
 @synthesize titleImageView;
+@synthesize bgImageView;
 
 - (void)dealloc {
     [itemListScrollView release];
@@ -65,6 +66,7 @@ static VendingController* staticVendingController = nil;
     [outItem release];
     [titleLabel release];
     [titleImageView release];
+    [bgImageView release];
     [super dealloc];
     
 }
@@ -403,6 +405,7 @@ static VendingController* staticVendingController = nil;
     self.titleImageView.hidden = !isDrawApp();
     self.titleLabel.hidden = !isDiceApp();
     self.titleLabel.text = NSLS(@"kDiceShop");
+    self.bgImageView.image = [UIImage imageNamed:[GameApp background]];
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -414,6 +417,7 @@ static VendingController* staticVendingController = nil;
     [self setOutItem:nil];
     [self setTitleLabel:nil];
     [self setTitleImageView:nil];
+    [self setBgImageView:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
