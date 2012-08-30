@@ -281,7 +281,7 @@ static DiceImageManager *_defaultManager = nil;
                                                                                 backgroundImage.size.width*0.1, 
                                                                                 backgroundImage.size.width*0.6, 
                                                                                 backgroundImage.size.height*0.6) 
-                                                           pointSize:40] //这里的40没什么意义，只需要弄一个很大的fontsize然后自适应
+                                                           pointSize:40] //here just need a big big pointsize
                               autorelease];
     
 
@@ -289,4 +289,18 @@ static DiceImageManager *_defaultManager = nil;
 
     return [UIImage creatImageByImage:backgroundImage withLabel:label];
 }
+
+- (UIImage *)diceToolCutImageForShop
+{
+    return [UIImage shrinkImage:[self diceToolCutImage] 
+                       withRate:0.8];
+}
+
+- (UIImage *)diceToolRollAgainImageForShop
+{
+    return [UIImage shrinkImage:[self diceToolRollAgainImage] 
+                       withRate:0.8];
+}
+
+
 @end

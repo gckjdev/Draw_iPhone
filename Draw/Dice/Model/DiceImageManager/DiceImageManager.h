@@ -56,4 +56,6 @@
 
 - (UIImage *)diceToolCutImage;
 - (UIImage *)diceToolRollAgainImage;
+- (UIImage *)diceToolCutImageForShop;
+- (UIImage *)diceToolRollAgainImageForShop;
 @end
