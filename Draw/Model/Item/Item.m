@@ -13,6 +13,7 @@
 #import "ItemManager.h"
 #import "ShoppingManager.h"
 #import "ConfigManager.h"
+#import "DiceImageManager.h"
 
 @implementation Item
 @synthesize amount = _amount;
@@ -103,6 +104,10 @@
             return manager.quillPen;
         case WaterPen:
             return manager.waterPen;
+        case ItemTypeRollAgain: 
+            return [[DiceImageManager defaultManager] diceToolRollAgainImageForShop];
+        case ItemTypeCut: 
+            return [[DiceImageManager defaultManager] diceToolCutImageForShop];
         default:
             return nil;
     }    

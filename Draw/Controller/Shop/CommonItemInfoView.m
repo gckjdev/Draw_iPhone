@@ -16,6 +16,7 @@
 #import "DeviceDetection.h"
 #import "AdService.h"
 #import "PPViewController.h"
+#import "DiceImageManager.h"
 
 #define RUN_OUT_TIME 0.2
 #define RUN_IN_TIME 0.4
@@ -57,7 +58,12 @@
 
 - (void)initView
 {
-    [self.backgroundImageView setImage:[ShareImageManager defaultManager].friendDetailBgImage];
+    if (isDrawApp()) {
+        [self.backgroundImageView setImage:[ShareImageManager defaultManager].friendDetailBgImage];
+    }
+    if (isDiceApp()) {
+        [self.backgroundImageView setImage:[[DiceImageManager defaultManager] popupBackgroundImage]];
+    }
     [self.cancelButton setBackgroundImage:[ShareImageManager defaultManager].orangeImage forState:UIControlStateNormal];
     [self.buyButton setBackgroundImage:[ShareImageManager defaultManager].greenImage forState:UIControlStateNormal];
     [self.cancelButton setTitle:NSLS(@"kCancel") forState:UIControlStateNormal];

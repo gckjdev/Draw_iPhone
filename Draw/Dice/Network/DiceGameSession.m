@@ -20,6 +20,7 @@
 @synthesize gameResult = _gameResult;
 @synthesize wilds = _wilds;
 @synthesize isMeAByStander = _isMeAByStander;
+@synthesize gameState = _gameState;
 
 - (void)dealloc{
     PPRelease(_userDiceList);
@@ -50,6 +51,7 @@
     self.gameResult = nil;
     self.wilds = false;
     self.isMeAByStander = YES;
+    self.gameState = GameStateGameOver;
 }
 
 @end

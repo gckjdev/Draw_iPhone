@@ -16,6 +16,25 @@
 #import "GameMessage.pb.h"
 #import "ItemType.h"
 
+#define SERVER_LIST_SEPERATOR   @"$"
+#define SERVER_PORT_SEPERATOR   @":"
+
+@interface Server : NSObject 
+@property (nonatomic, retain) NSString* address;
+@property (nonatomic, assign) int port;
+@end
+
+@implementation Server
+@synthesize address;
+@synthesize port;
+- (void)dealloc
+{
+    [address release];
+    [super dealloc];
+}
+
+@end
+
 @implementation DiceGameService
 
 static DiceGameService* _defaultService;
@@ -24,6 +43,7 @@ static DiceGameService* _defaultService;
 {
     if (_defaultService == nil){
         _defaultService = [[DiceGameService alloc] init];
+        [_defaultService getDiceServerList];
     }
     
     return _defaultService;
@@ -51,6 +71,7 @@ static DiceGameService* _defaultService;
 {
     [self.diceSession reset];
     self.diceSession.isMeAByStander = NO;
+    self.diceSession.gameState = GameStatePlaying;
 
     NSMutableArray* newUserList = [NSMutableArray array];
     
@@ -112,6 +133,7 @@ static DiceGameService* _defaultService;
 
 - (void)handleGameOverNotificationRequest:(GameMessage *)message
 {
+    self.diceSession.gameState = GameStateGameOver;
     NSMutableDictionary *resultDic= [NSMutableDictionary dictionary];
     for(PBUserResult *result in [[[message gameOverNotificationRequest] gameResult] userResultList])
     {
@@ -320,6 +342,28 @@ static DiceGameService* _defaultService;
                                                    sessionId:self.session.sessionId
                                                     openType:openType
                                                     multiple:1]; 
+}
+
+- (void)getDiceServerList
+{
+    NSMutableArray* serverList = [[[NSMutableArray alloc] init] autorelease];
+    NSString* serverListString = [ConfigManager getFacetimeServerListString];
+    NSArray* serverStringArray = [serverListString componentsSeparatedByString:SERVER_LIST_SEPERATOR];
+    for (NSString* serverString in serverStringArray) {
+        NSArray* array = [serverString componentsSeparatedByString:SERVER_PORT_SEPERATOR];
+        if (array.count == 2) {
+            Server* server = [[Server alloc] init];
+            server.address = [array objectAtIndex:0];
+            server.port = ((NSString*)[array objectAtIndex:1]).intValue;
+            [serverList addObject:server];
+            [server release];
+        }  
+    }
+    if (serverList.count > 0) {
+        Server* serv = [serverList objectAtIndex:rand()%serverList.count];
+        self.serverAddress = serv.address;
+        self.serverPort = serv.port;
+    }
 }
 
 @end

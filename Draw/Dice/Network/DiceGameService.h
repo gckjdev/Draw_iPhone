@@ -18,6 +18,8 @@
 + (DiceGameService*)defaultService;
 - (DiceGameSession*)diceSession;
 
+- (void)getDiceServerList;
+
 - (NSArray *)myDiceList;
 
 - (NSString *)lastCallUserId;
