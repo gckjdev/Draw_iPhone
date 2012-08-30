@@ -123,7 +123,7 @@
 "kTakePhoto" = "Take Photo";
 
 "kConnectingServer" = "Connecting Server...";
-"kJoiningGame" = "Joinging Game...";
+"kJoiningGame" = "Joining Game...";
 "kNetworkFailure" = "Fail to send request, please check your network availability";
 
 "kJoinGameSucc" = "Join Game Successfully.";
@@ -823,10 +823,11 @@
 
 
 "kDiceMenuStart" = "Start"; 
-"kDiceMenuHelp" = "Help"; 
+"kDiceMenuHelp" = "Game Help"; 
 "kDiceMenuRoom" = "Room"; 
 "kDiceMenuShop" = "Shop"; 
 
+"kCoinsNotEnoughAndEnterShop" = "Your coins are not enough. Want to buy some now?";
 
 /*********************** 大话骰子国际化字符串结束 *************************/
 

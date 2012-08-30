@@ -32,7 +32,7 @@
 #define CREATE_ROOM_DIALOG_TAG  120120824
 #define ENTER_ROOM_DIALOG_TAG   220120824
 
-#define DICE_THRESHOLD_COIN ([ConfigManager getDiceThresholdCoin])
+
 
 @interface DiceRoomListController ()
 {
@@ -151,7 +151,7 @@
 //    [[DiceGameService defaultService] setServerPort:8080];
 
     [[DiceGameService defaultService] connectServer:self];
-    [self showActivityWithText:NSLS(@"kConnecting")];
+    [self showActivityWithText:NSLS(@"kConnectingServer")];
     _isJoiningDice = NO;    
 }
 

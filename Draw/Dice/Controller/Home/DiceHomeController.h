@@ -8,18 +8,23 @@
 
 #import "PPViewController.h"
 #import "BoardService.h"
+#import "CommonDialog.h"
+#import "DiceGameService.h"
 
 @class MenuPanel;
 @class BottomMenuPanel;
 
-@interface DiceHomeController : PPViewController<BoardServiceDelegate>
+@interface DiceHomeController : PPViewController<BoardServiceDelegate, CommonDialogDelegate>
 {
     MenuPanel *_menuPanel;
     BottomMenuPanel *_bottomMenuPanel;
 
+    BOOL _isTryJoinGame;
 }
 
 @property (retain, nonatomic) MenuPanel *menuPanel;
 @property (retain, nonatomic) BottomMenuPanel *bottomMenuPanel;
+
+- (void)connectServer;
 
 @end
