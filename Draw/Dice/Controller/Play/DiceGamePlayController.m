@@ -23,6 +23,7 @@
 #import "DiceSettingView.h"
 #import "ConfigManager.h"
 #import "CommonMessageCenter.h"
+#import "UIViewUtils.h"
 
 #define AVATAR_TAG_OFFSET   8000
 #define NICKNAME_TAG_OFFSET 1100
@@ -92,7 +93,6 @@
     [[AdService defaultService] clearAdView:_adView];
     [self setAdView:nil];
     
-//    [playingUserList release];
     [_adView release];
     [myLevelLabel release];
     [myCoinsLabel release];
@@ -465,10 +465,12 @@
 
 - (IBAction)clickRunAwayButton:(id)sender {
     if (![_diceService.diceSession isMeAByStander]) {
+        NSString *message = [NSString stringWithFormat:NSLS(@"kDedutCoinQuitGameAlertMessage"), [ConfigManager getDiceFleeCoin]];
         CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kQuitGameAlertTitle") 
-                                                           message:[NSString stringWithFormat:NSLS(@"kDedutCoinQuitGameAlertMessage"), [ConfigManager getDiceFleeCoin]] 
+                                                           message:message
                                                              style:CommonDialogStyleDoubleButton 
-                                                          delegate:self theme:CommonDialogThemeDice];
+                                                          delegate:self
+                                                             theme:CommonDialogThemeDice];
         [dialog showInView:self.view];
     } else {
         [self quitDiceGame];
@@ -867,6 +869,7 @@
     self.itemsBoxButton.enabled = YES;
     [[self selfBellView] setHidden:YES];
     
+    [myDiceListHolderView removeAllSubviews];
     DiceShowView *diceShowView = [[[DiceShowView alloc] initWithFrame:CGRectZero dices:[_diceService myDiceList] userInterAction:NO] autorelease];
     [myDiceListHolderView addSubview:diceShowView];
     
@@ -1227,7 +1230,7 @@
 
 - (void)someoneSendExpression:(NSString *)expressionId userId:(NSString *)userId
 {
-    [self playExpression:expressionId userId:userId];
+    [self showExpression:expressionId userId:userId];
 }
 
 - (void)didClickMessage:(DiceChatMessage *)message
@@ -1250,10 +1253,10 @@
     [_diceService chatWithExpression:key];
     
     // TODO: Popup image for expression.
-    [self playExpression:key userId:_userManager.userId];
+    [self showExpression:key userId:_userManager.userId];
 }
 
-- (void)playExpression:(NSString *)key userId:(NSString *)userId
+- (void)showExpression:(NSString *)key userId:(NSString *)userId
 {
     DiceAvatarView *avatar = [self avatarViewOfUser:userId];
     NSString *filePath = [_expressionManager gifPathForExpression:key];

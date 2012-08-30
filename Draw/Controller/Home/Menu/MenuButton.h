@@ -68,11 +68,9 @@ extern int *getBottomMenuTypeListByGameAppType(GameAppType type);
 
 + (MenuButton *)menuButtonWithImage:(UIImage *)image 
                               title:(NSString *)title
-                              badge:(NSInteger)badge;
+                              badge:(NSInteger)badge 
+                        gameAppType:(GameAppType)gameAppType;
 
-- (void)updateImage:(UIImage *)image 
-              tilte:(NSString *)title 
-              badge:(NSInteger)badge;
 
 + (MenuButton *)menuButtonWithType:(MenuButtonType)type 
                        gameAppType:(GameAppType)gameAppType;

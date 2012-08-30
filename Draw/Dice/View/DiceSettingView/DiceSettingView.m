@@ -22,6 +22,7 @@
 @synthesize musicOffButton;
 @synthesize audioOnButton;
 @synthesize audioOffButton;
+@synthesize closeButton;
 
 + (id)createDiceSettingView
 {
@@ -48,6 +49,17 @@
     audioOnButton.selected = [[AudioManager defaultManager] isSoundOn];
     audioOffButton.selected = ![[AudioManager defaultManager] isSoundOn];
     
+//    musicOnButton.fontLable.text = @"ON";
+//    musicOffButton.fontLable.text = @"OFF";
+//    audioOnButton.fontLable.text = @"ON";
+//    audioOffButton.fontLable.text = @"OFF";
+//    closeButton.fontLable.text = @"X";
+//
+//    musicOnButton.fontLable.textColor = [UIColor whiteColor];
+//    musicOffButton.fontLable.textColor = [UIColor whiteColor];
+//    audioOnButton.fontLable.textColor = [UIColor whiteColor];
+//    audioOffButton.fontLable.textColor = [UIColor whiteColor];
+    
     [view addSubview:self];
     [self appear];
 }
@@ -61,6 +73,7 @@
     [audioOffButton release];
     [musicImageView release];
     [audioImageView release];
+    [closeButton release];
     [super dealloc];
 }
 
