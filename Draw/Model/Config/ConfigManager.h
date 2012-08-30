@@ -91,6 +91,5 @@ typedef enum{
 + (int)getDiceFleeCoin;
 + (int)getDiceThresholdCoin;
 
-+ (NSString*)defaultDiceServer;
-+ (int)defaultDicePort;
++ (NSString*)getDiceServerListString;
 @end

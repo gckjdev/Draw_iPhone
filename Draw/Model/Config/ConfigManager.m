@@ -290,14 +290,9 @@
     return [MobClickUtils getIntValueByKey:@"DICE_THRESHOLD_COIN" defaultValue:400];
 }
 
-+ (NSString*)defaultDiceServer
++ (NSString*)getDiceServerListString
 {
-    return [MobClickUtils getStringValueByKey:@"DICE_SERVER_ADDRESS" defaultValue:@"106.187.89.232"];
-}
-
-+ (int)defaultDicePort
-{
-    return [MobClickUtils getIntValueByKey:@"DICE_SERVER_PORT" defaultValue:8018];
+    return [MobClickUtils getStringValueByKey:@"DICE_SERVER_LIST" defaultValue:@"106.187.89.232:8018"];
 }
 
 @end
