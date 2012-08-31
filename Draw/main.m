@@ -15,3 +15,27 @@ int main(int argc, char *argv[])
     [pool release];
     return retVal;
 }
+
+/*
+ 
+ Release Notes
+ 
+ － 检查所有URL是否正确设置为正式服务器的URL
+ － 检查广告是否被屏蔽
+ 
+ Info Plist
+ － 修改Bundle ID
+ － 修改URL Scheme
+ － 修改Icon
+ － 修改CFChannelID
+ 
+ Resource
+ － 删除Resource文件
+ 
+ InfoPlist.strings
+ － 修改应用名称
+ 
+ Test
+ － 
+ 
+*/
