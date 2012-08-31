@@ -783,15 +783,15 @@
 
 
 "kRollAgain" = "reroll";
-"kRollAgainDescription" = "use this item to roll dice again to change your dices.";
+"kRollAgainDescription" = "Use this item to roll dice again and change your dices.";
 "kCut" = "cut";
-"kCutDescription" = "for twice coins.";
+"kCutDescription" = "For double coins.";
 
 "kMoreRoom" = "More...";
 "kMoreRoomLoading" = "Loading...";
 
-"kNoMatterWhatYouCallIWillOpen" = "No matter what, I will open";
-"kDoYouDareToOpen" = "Do you dare to open";
+"kNoMatterWhatYouCallIWillOpen" = "I will challenge you in any case.";
+"kDoYouDareToOpen" = "Bite me";
 "kBelieveItOrNotAnywayIBelieved" = "Believe it or not, I believed";
 "kAttentionWilds" = "Attention for wilds";
 "kDontGoAndPlayMore" = "Don't go, play for a while";
