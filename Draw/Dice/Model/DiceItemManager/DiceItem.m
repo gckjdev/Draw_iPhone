@@ -18,7 +18,8 @@
 {
     return [[[Item alloc] initWithType:ItemTypeRollAgain 
                                  image:[[DiceImageManager defaultManager] diceToolRollAgainImage]
-                                  name:NSLS(@"kRollAgain")
+                                  name:NSLS(@"kItemRollAgain")
+                             shortName:NSLS(@"kRollAgain")
                            description:NSLS(@"kRollAgainDescription") 
                       buyAmountForOnce:10 
                                  price:[[ShoppingManager defaultManager] getRollAgainPrice] 
@@ -30,7 +31,8 @@
 {
     return [[[Item alloc] initWithType:ItemTypeCut 
                                  image:[[DiceImageManager defaultManager] diceToolCutImage]
-                                  name:NSLS(@"kCut")
+                                  name:NSLS(@"kItemCut")
+                             shortName:NSLS(@"kCut")
                            description:NSLS(@"kCutDescription") 
                       buyAmountForOnce:10
                                  price:[[ShoppingManager defaultManager] getCutPrice] 

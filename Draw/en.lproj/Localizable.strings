@@ -781,11 +781,12 @@
 
 "kSessionFull" = "Room is full";
 
-
+"kItemRollAgain" = "reroll item";
+"kItemCut" = "cut item";
 "kRollAgain" = "reroll";
-"kRollAgainDescription" = "Use this item to roll dice again and change your dices.";
+"kRollAgainDescription" = "Use 【reroll】 item to roll dice again and change your dices.";
 "kCut" = "cut";
-"kCutDescription" = "For double coins.";
+"kCutDescription" = "Use 【cut】 item for double coins.";
 
 "kMoreRoom" = "More...";
 "kMoreRoomLoading" = "Loading...";
