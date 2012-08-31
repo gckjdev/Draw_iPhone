@@ -61,7 +61,7 @@
     self.menuPanel = [MenuPanel menuPanelWithController:self 
                                             gameAppType:GameAppTypeDice];
     
-    self.menuPanel.center = [DeviceDetection isIPAD] ? CGPointMake(384, 686) : CGPointMake(160, 306);
+    self.menuPanel.center = [DeviceDetection isIPAD] ? CGPointMake(384, 682) : CGPointMake(160, 304);
     
     [self.view insertSubview:self.menuPanel atIndex:0];
     
@@ -72,7 +72,7 @@
     self.bottomMenuPanel = [BottomMenuPanel panelWithController:self
                                                     gameAppType:GameAppTypeDice];
     
-    self.bottomMenuPanel.center = [DeviceDetection isIPAD] ? CGPointMake(384, 961) : CGPointMake(160, 439);
+    self.bottomMenuPanel.center = [DeviceDetection isIPAD] ? CGPointMake(384, 960) : CGPointMake(160, 439);
     
     [self.view addSubview:_bottomMenuPanel];
 }
@@ -224,9 +224,12 @@
     [self hideActivity];
         
     if (_isTryJoinGame){
-        [self showActivityWithText:NSLS(@"kJoiningGame")];
         [[DiceGameService defaultService] joinGameRequestWithCondiction:^BOOL{
-            return [self meetJoinGameCondiction];
+            if ([self meetJoinGameCondiction]) {
+                [self showActivityWithText:NSLS(@"kJoiningGame")];
+                return YES;
+            };
+            return NO;
         }];
     }    
 }

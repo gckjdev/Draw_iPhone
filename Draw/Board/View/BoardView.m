@@ -21,7 +21,7 @@
 #define BOARD_WIDTH ([DeviceDetection isIPAD]? 768.0 : 320.0)
 #define SCREEN_WIDTH ([DeviceDetection isIPAD]? 768.0 : 320.0)
 
-#define BOARD_HEIGHT ([DeviceDetection isIPAD]? 447.0 : 193.0)
+#define BOARD_HEIGHT ([DeviceDetection isIPAD]? 448.0 : 193.0)
 #define BOARD_FRAME CGRectMake((SCREEN_WIDTH - BOARD_WIDTH)/2.0, 0, BOARD_WIDTH, BOARD_HEIGHT)
 
 - (id)initWithBoard:(Board *)board
