@@ -292,14 +292,32 @@ static DiceImageManager *_defaultManager = nil;
 
 - (UIImage *)diceToolCutImageForShop
 {
-    return [UIImage shrinkImage:[self diceToolCutImage] 
-                       withRate:0.8];
+    UIImage* backgroundImage = [UIImage imageNamed:@"shop_bell.png"];
+    HKGirlFontLabel* label = [[[HKGirlFontLabel alloc] initWithFrame:CGRectMake(backgroundImage.size.width*0.25, 
+                                                                                backgroundImage.size.width*0.15, 
+                                                                                backgroundImage.size.width*0.5, 
+                                                                                backgroundImage.size.height*0.5) 
+                                                           pointSize:40]
+                              autorelease];
+    
+    [label setText:NSLS(@"kCut")];
+    
+    return [UIImage creatImageByImage:backgroundImage withLabel:label];
 }
 
 - (UIImage *)diceToolRollAgainImageForShop
 {
-    return [UIImage shrinkImage:[self diceToolRollAgainImage] 
-                       withRate:0.8];
+    UIImage* backgroundImage = [UIImage imageNamed:@"shop_bell.png"];
+    HKGirlFontLabel* label = [[[HKGirlFontLabel alloc] initWithFrame:CGRectMake(backgroundImage.size.width*0.25, 
+                                                                                backgroundImage.size.width*0.15, 
+                                                                                backgroundImage.size.width*0.5, 
+                                                                                backgroundImage.size.height*0.5) 
+                                                           pointSize:40]
+                              autorelease];
+    
+    [label setText:NSLS(@"kCut")];
+    
+    return [UIImage creatImageByImage:backgroundImage withLabel:label];
 }
 
 
