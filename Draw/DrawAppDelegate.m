@@ -35,7 +35,7 @@
 #import "FriendService.h"
 #import "UIUtils.h"
 #import "LevelService.h"
-#import "YoumiWallService.h"
+//#import "YoumiWallService.h"
 #import "ChatDetailController.h"
 #import "NotificationManager.h"
 #import "LmWallService.h"
@@ -314,9 +314,9 @@ NSString* GlobalGetBoardServerURL()
         if ([ConfigManager useLmWall]){
             [[LmWallService defaultService] queryScore];            
         }
-        else{
-            [[YoumiWallService defaultService] queryPoints];
-        }
+//        else{
+//            [[YoumiWallService defaultService] queryPoints];
+//        }
     }
     
     [[DrawGameService defaultService] clearDisconnectTimer];

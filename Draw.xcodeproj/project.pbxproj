@@ -1401,15 +1401,7 @@
 		CAA8D29315AAE02000EE67E4 /* tools_wood.png in Resources */ = {isa = PBXBuildFile; fileRef = CAA8D29215AAE02000EE67E4 /* tools_wood.png */; };
 		CAA9C427159BF41B00398EC5 /* ShareService.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA9C426159BF41B00398EC5 /* ShareService.m */; };
 		CAA9C435159CA97100398EC5 /* LmWallService.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA9C434159CA97100398EC5 /* LmWallService.m */; };
-		CAAE4A761578FD5C0012F6B8 /* libYouMi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CAAE4A721578FD5C0012F6B8 /* libYouMi.a */; };
-		CAAE4A7E157908EB0012F6B8 /* YoumiWallController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAE4A7C157908EB0012F6B8 /* YoumiWallController.m */; };
-		CAAE4A7F157908EB0012F6B8 /* YoumiWallController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAAE4A7D157908EB0012F6B8 /* YoumiWallController.xib */; };
 		CAAE4A8315790F480012F6B8 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = CAAE4A8215790F480012F6B8 /* libsqlite3.dylib */; };
-		CAAE4A871579131F0012F6B8 /* YoumiWallCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAE4A851579131E0012F6B8 /* YoumiWallCell.m */; };
-		CAAE4A881579131F0012F6B8 /* YoumiWallCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAAE4A861579131E0012F6B8 /* YoumiWallCell.xib */; };
-		CAAE4A8C1579B82D0012F6B8 /* YoumiWallService.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAE4A8B1579B82D0012F6B8 /* YoumiWallService.m */; };
-		CAAE4A8E1579C62D0012F6B8 /* YoumiWallController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAAE4A8D1579C6270012F6B8 /* YoumiWallController~ipad.xib */; };
-		CAAE4A901579C6440012F6B8 /* YoumiWallCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAAE4A8F1579C6430012F6B8 /* YoumiWallCell~ipad.xib */; };
 		CAB15E8515AD41C300502106 /* PickColorView.m in Sources */ = {isa = PBXBuildFile; fileRef = CAB15E7E15AD41C300502106 /* PickColorView.m */; };
 		CAB15E8615AD41C300502106 /* PickEraserView.m in Sources */ = {isa = PBXBuildFile; fileRef = CAB15E8015AD41C300502106 /* PickEraserView.m */; };
 		CAB15E8715AD41C300502106 /* PickPenView.m in Sources */ = {isa = PBXBuildFile; fileRef = CAB15E8215AD41C300502106 /* PickPenView.m */; };
@@ -3525,21 +3517,7 @@
 		CAA9C426159BF41B00398EC5 /* ShareService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareService.m; sourceTree = "<group>"; };
 		CAA9C433159CA97100398EC5 /* LmWallService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LmWallService.h; sourceTree = "<group>"; };
 		CAA9C434159CA97100398EC5 /* LmWallService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LmWallService.m; sourceTree = "<group>"; };
-		CAAE4A721578FD5C0012F6B8 /* libYouMi.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libYouMi.a; sourceTree = "<group>"; };
-		CAAE4A731578FD5C0012F6B8 /* YouMiWall.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YouMiWall.h; sourceTree = "<group>"; };
-		CAAE4A741578FD5C0012F6B8 /* YouMiWallAppModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YouMiWallAppModel.h; sourceTree = "<group>"; };
-		CAAE4A751578FD5C0012F6B8 /* YouMiWallDelegateProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YouMiWallDelegateProtocol.h; sourceTree = "<group>"; };
-		CAAE4A7B157908EB0012F6B8 /* YoumiWallController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YoumiWallController.h; sourceTree = "<group>"; };
-		CAAE4A7C157908EB0012F6B8 /* YoumiWallController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YoumiWallController.m; sourceTree = "<group>"; };
-		CAAE4A7D157908EB0012F6B8 /* YoumiWallController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YoumiWallController.xib; sourceTree = "<group>"; };
 		CAAE4A8215790F480012F6B8 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
-		CAAE4A841579131D0012F6B8 /* YoumiWallCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YoumiWallCell.h; sourceTree = "<group>"; };
-		CAAE4A851579131E0012F6B8 /* YoumiWallCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YoumiWallCell.m; sourceTree = "<group>"; };
-		CAAE4A861579131E0012F6B8 /* YoumiWallCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YoumiWallCell.xib; sourceTree = "<group>"; };
-		CAAE4A8A1579B82D0012F6B8 /* YoumiWallService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YoumiWallService.h; sourceTree = "<group>"; };
-		CAAE4A8B1579B82D0012F6B8 /* YoumiWallService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YoumiWallService.m; sourceTree = "<group>"; };
-		CAAE4A8D1579C6270012F6B8 /* YoumiWallController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "YoumiWallController~ipad.xib"; sourceTree = "<group>"; };
-		CAAE4A8F1579C6430012F6B8 /* YoumiWallCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "YoumiWallCell~ipad.xib"; sourceTree = "<group>"; };
 		CAB15E7D15AD41C300502106 /* PickColorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PickColorView.h; sourceTree = "<group>"; };
 		CAB15E7E15AD41C300502106 /* PickColorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PickColorView.m; sourceTree = "<group>"; };
 		CAB15E7F15AD41C300502106 /* PickEraserView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PickEraserView.h; sourceTree = "<group>"; };
@@ -3812,7 +3790,6 @@
 				C2F947CE1533D8BF0034C895 /* libUMUFP.a in Frameworks */,
 				A35793101574BD670007B2C0 /* libWeChatSDK.a in Frameworks */,
 				A38894A415778B1200764158 /* iFlyTTS.framework in Frameworks */,
-				CAAE4A761578FD5C0012F6B8 /* libYouMi.a in Frameworks */,
 				CAA1AF8C159DB00B00504C98 /* libAdMoGo.a in Frameworks */,
 				CAA1AFBB159EAA5900504C98 /* libAderSDK.a in Frameworks */,
 				CAA1AFBD159EAA5900504C98 /* libGoogleAdMobAds.a in Frameworks */,
@@ -5925,14 +5902,6 @@
 				CA4FF008152AF21900F0AC88 /* ColorShopCell.m */,
 				CA4FF009152AF21900F0AC88 /* ColorShopCell.xib */,
 				A42D90401553803D0023AF32 /* ColorShopCell~ipad.xib */,
-				CAAE4A7B157908EB0012F6B8 /* YoumiWallController.h */,
-				CAAE4A7C157908EB0012F6B8 /* YoumiWallController.m */,
-				CAAE4A7D157908EB0012F6B8 /* YoumiWallController.xib */,
-				CAAE4A8D1579C6270012F6B8 /* YoumiWallController~ipad.xib */,
-				CAAE4A841579131D0012F6B8 /* YoumiWallCell.h */,
-				CAAE4A851579131E0012F6B8 /* YoumiWallCell.m */,
-				CAAE4A861579131E0012F6B8 /* YoumiWallCell.xib */,
-				CAAE4A8F1579C6430012F6B8 /* YoumiWallCell~ipad.xib */,
 				C24339FC15AAB01C00325A76 /* VendingController.h */,
 				C24339FD15AAB01D00325A76 /* VendingController.m */,
 				C24339FE15AAB02000325A76 /* VendingController.xib */,
@@ -6728,7 +6697,6 @@
 				A4AC51B215C7BFF00041DC86 /* FontLabel */,
 				C2F48C9C15C681BA005C4D72 /* DACircularProgress */,
 				CAA1AA40159DADB900504C98 /* MangoAd */,
-				CAAE4A711578FD5C0012F6B8 /* YoumiSDK */,
 				A388949115778B1200764158 /* iFly */,
 				A357930C1574BD670007B2C0 /* WeixinSDK */,
 				C2F947BE1533D8BF0034C895 /* MobClick */,
@@ -7218,23 +7186,9 @@
 			path = Share;
 			sourceTree = "<group>";
 		};
-		CAAE4A711578FD5C0012F6B8 /* YoumiSDK */ = {
-			isa = PBXGroup;
-			children = (
-				CAAE4A721578FD5C0012F6B8 /* libYouMi.a */,
-				CAAE4A731578FD5C0012F6B8 /* YouMiWall.h */,
-				CAAE4A741578FD5C0012F6B8 /* YouMiWallAppModel.h */,
-				CAAE4A751578FD5C0012F6B8 /* YouMiWallDelegateProtocol.h */,
-			);
-			name = YoumiSDK;
-			path = "../../Common_iPhone_20/3PP-SDK/YoumiSDK";
-			sourceTree = "<group>";
-		};
 		CAAE4A891579B8180012F6B8 /* Ad */ = {
 			isa = PBXGroup;
 			children = (
-				CAAE4A8A1579B82D0012F6B8 /* YoumiWallService.h */,
-				CAAE4A8B1579B82D0012F6B8 /* YoumiWallService.m */,
 				CAA9C433159CA97100398EC5 /* LmWallService.h */,
 				CAA9C434159CA97100398EC5 /* LmWallService.m */,
 				CAA1AA3D159D78C200504C98 /* AdService.h */,
@@ -8485,10 +8439,6 @@
 				CAC108A81575E3AE00703613 /* pen3@2x.png in Resources */,
 				CAC108A91575E3AE00703613 /* pen4@2x.png in Resources */,
 				CAC108AA1575E3AE00703613 /* pen5@2x.png in Resources */,
-				CAAE4A7F157908EB0012F6B8 /* YoumiWallController.xib in Resources */,
-				CAAE4A881579131F0012F6B8 /* YoumiWallCell.xib in Resources */,
-				CAAE4A8E1579C62D0012F6B8 /* YoumiWallController~ipad.xib in Resources */,
-				CAAE4A901579C6440012F6B8 /* YoumiWallCell~ipad.xib in Resources */,
 				CA22DCD3157CAFFD009C95CB /* ResultController.xib in Resources */,
 				CA22DCEE157CB00A009C95CB /* OnlineDrawViewController.xib in Resources */,
 				CA22DCEF157CB00A009C95CB /* OnlineDrawViewController~ipad.xib in Resources */,
@@ -9716,9 +9666,6 @@
 				A461C9281565E3700076FD9C /* ChatMessageView.m in Sources */,
 				C246F3581577633B003C284F /* LevelService.m in Sources */,
 				A38894AE15778B3200764158 /* SpeechService.m in Sources */,
-				CAAE4A7E157908EB0012F6B8 /* YoumiWallController.m in Sources */,
-				CAAE4A871579131F0012F6B8 /* YoumiWallCell.m in Sources */,
-				CAAE4A8C1579B82D0012F6B8 /* YoumiWallService.m in Sources */,
 				A3598489157C7B2700745BAB /* CustomWordManager.m in Sources */,
 				A359848C157C977100745BAB /* CustomWord.m in Sources */,
 				CA22DCD2157CAFFD009C95CB /* ResultController.m in Sources */,

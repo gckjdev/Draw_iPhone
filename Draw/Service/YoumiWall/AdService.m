@@ -19,8 +19,8 @@
 #import "AdMoGoView.h"
 #import "UserManager.h"
 #import "HomeController.h"
-#import "YoumiWallService.h"
-#import "YoumiWallController.h"
+//#import "YoumiWallService.h"
+//#import "YoumiWallController.h"
 
 #define ASK_REMOVE_AD_BY_WALL       101
 #define ASK_REMOVE_AD_BY_IAP        102
@@ -191,12 +191,12 @@ static AdService* _defaultService;
         [MobClick event:@"SHOW_LM_WALL"];
         [[LmWallService defaultService] show:_viewController isForRemoveAd:YES];
     }
-    else{
-        [MobClick event:@"SHOW_YOUMI_WALL"];
-        YoumiWallController* controller = [[YoumiWallController alloc] init];
-        [_viewController.navigationController pushViewController:controller animated:YES];
-        [controller release];
-    }
+//    else{
+//        [MobClick event:@"SHOW_YOUMI_WALL"];
+//        YoumiWallController* controller = [[YoumiWallController alloc] init];
+//        [_viewController.navigationController pushViewController:controller animated:YES];
+//        [controller release];
+//    }
 }
 
 #pragma mark - Account Service Delegate
