@@ -130,7 +130,7 @@
         
         UIButton *tooButton = [self itemButton:toolButtonFrame 
                                            tag:toolButtonTag
-                                         title:item.itemName 
+                                         title:item.shortName 
                                          count:[NSNumber numberWithInt:[_itemManager amountForItem:item.type]]];        
         [self addSubview:tooButton];
     }

@@ -20,6 +20,7 @@
 @synthesize type = _type;
 @synthesize itemImage = _itemImage;
 @synthesize itemName = _itemName;
+@synthesize shortName = _shortName;
 @synthesize itemDescription = _itemDescription;
 @synthesize buyAmountForOnce;
 @synthesize price;
@@ -27,6 +28,7 @@
 - (void)dealloc
 {
     [_itemName release];
+    [_shortName release];
     [_itemImage release];
     [_itemDescription release];
     [super dealloc];
@@ -73,6 +75,29 @@
         self.type = type;
         self.itemImage = anImage;
         self.itemName = aName;
+        self.itemDescription = aDescription;
+        self.buyAmountForOnce = amount;
+        self.price = aPrice;
+        self.amount = currentAmount;
+    }
+    return self;
+}
+
+- (id)initWithType:(ItemType)type 
+             image:(UIImage*)anImage 
+              name:(NSString*)aName 
+         shortName:(NSString*)shortName
+       description:(NSString*)aDescription 
+  buyAmountForOnce:(int)amount 
+             price:(int)aPrice 
+            amount:(int)currentAmount
+{
+    self = [super init];
+    if(self){
+        self.type = type;
+        self.itemImage = anImage;
+        self.itemName = aName;
+        self.shortName = shortName;
         self.itemDescription = aDescription;
         self.buyAmountForOnce = amount;
         self.price = aPrice;

@@ -1453,6 +1453,7 @@
 		CAC25CD315F0A0EA007456FA /* dice_default_board_ad@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAC25CD515F0A0EA007456FA /* dice_default_board_ad@2x.png */; };
 		CAC25CDC15F0A1FF007456FA /* dice_default_board@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAC25CDE15F0A1FF007456FA /* dice_default_board@2x.png */; };
 		CAC25CE115F0A243007456FA /* dice_bottom_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAC25CE015F0A23E007456FA /* dice_bottom_bg@2x.png */; };
+		CAC25D0515F0C72F007456FA /* revoke@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAC25D0415F0C72B007456FA /* revoke@2x.png */; };
 		CAC4DCE215450E8F00A42CF2 /* StoreKitUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC4DCE115450E8F00A42CF2 /* StoreKitUtils.m */; };
 		CAC4DCE81545286C00A42CF2 /* TransactionReceiptManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC4DCE71545286B00A42CF2 /* TransactionReceiptManager.m */; };
 		CAC4DCEB154542A200A42CF2 /* TransactionReceipt.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC4DCEA154542A200A42CF2 /* TransactionReceipt.m */; };
@@ -3598,6 +3599,7 @@
 		CAC25CDD15F0A1FF007456FA /* en */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = en; path = "en.lproj/dice_default_board@2x.png"; sourceTree = "<group>"; };
 		CAC25CDF15F0A20E007456FA /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "zh-Hans"; path = "zh-Hans.lproj/dice_default_board@2x.png"; sourceTree = "<group>"; };
 		CAC25CE015F0A23E007456FA /* dice_bottom_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dice_bottom_bg@2x.png"; sourceTree = "<group>"; };
+		CAC25D0415F0C72B007456FA /* revoke@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "revoke@2x.png"; sourceTree = "<group>"; };
 		CAC4DCE015450E8F00A42CF2 /* StoreKitUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoreKitUtils.h; sourceTree = "<group>"; };
 		CAC4DCE115450E8F00A42CF2 /* StoreKitUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoreKitUtils.m; sourceTree = "<group>"; };
 		CAC4DCE61545286B00A42CF2 /* TransactionReceiptManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransactionReceiptManager.h; sourceTree = "<group>"; };
@@ -8091,6 +8093,7 @@
 		EA856C3315F0A65700178323 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				CAC25D0415F0C72B007456FA /* revoke@2x.png */,
 				EA856C3415F0A65700178323 /* add_color@2x.png */,
 				EA856C3515F0A65700178323 /* back@2x.png */,
 				EA856C3615F0A65700178323 /* bigCoin@2x.png */,
@@ -9362,6 +9365,7 @@
 				EA856CA315F0A65700178323 /* wood_bg2@2x.png in Resources */,
 				EA856CA415F0A65700178323 /* wood_bg@2x.png in Resources */,
 				EA856CA515F0A65700178323 /* wood_button@2x.png in Resources */,
+				CAC25D0515F0C72F007456FA /* revoke@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

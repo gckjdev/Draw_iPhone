@@ -306,7 +306,7 @@
     UIButton *button = (UIButton *)[self.view viewWithTag:TAG_TOOL_BUTTON];
     button.selected = NO;
     
-    [self useItem:item.type itemName:item.itemName userId:_userManager.userId];
+    [self useItem:item.type itemName:item.shortName userId:_userManager.userId];
     
     [_accountService consumeItem:item.type amount:1]; 
 }
