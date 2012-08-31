@@ -824,7 +824,8 @@
 "kDiceMenuShop" = "道具商店";
 
 "kCoinsNotEnoughAndEnterShop" = "你當前的金幣少於%d，玩不了一局遊戲了，現在就買些金幣？";
-
+"kToolCut" = "劈";
+"kToolRollAgain" = "搖";
 /*********************** 大话骰子国际化字符串结束 *************************/
 
 

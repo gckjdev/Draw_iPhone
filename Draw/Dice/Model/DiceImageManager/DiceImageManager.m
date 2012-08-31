@@ -261,63 +261,73 @@ static DiceImageManager *_defaultManager = nil;
 
 - (UIImage *)diceToolCutImage
 {
-    UIImage* backgroundImage = [self toolsItemBgImage];
-    HKGirlFontLabel* label = [[[HKGirlFontLabel alloc] initWithFrame:CGRectMake(backgroundImage.size.width*0.2, 
-                                                                                backgroundImage.size.width*0.1, 
-                                                                                backgroundImage.size.width*0.6, 
-                                                                                backgroundImage.size.height*0.6) 
-                                                           pointSize:40]
+    UIImage* backgroundImage = [UIImage imageNamed:@"tools_bell_bg@2x.png"];
+    float width = backgroundImage.size.width;
+    float height = backgroundImage.size.height;
+    HKGirlFontLabel* label = [[[HKGirlFontLabel alloc] initWithFrame:CGRectMake(width*0.2, 
+                                                                                width*0.1, 
+                                                                                width*0.6, 
+                                                                                height*0.6) 
+                                                           pointSize:80]
                               autorelease];
     
-    [label setText:NSLS(@"kCut")];
+    [label setText:NSLS(@"kToolCut")];
     
     return [UIImage creatImageByImage:backgroundImage withLabel:label];
 }
 
 - (UIImage *)diceToolRollAgainImage
 {
-    UIImage* backgroundImage = [self toolsItemBgImage];
-    HKGirlFontLabel* label = [[[HKGirlFontLabel alloc] initWithFrame:CGRectMake(backgroundImage.size.width*0.2, 
-                                                                                backgroundImage.size.width*0.1, 
-                                                                                backgroundImage.size.width*0.6, 
-                                                                                backgroundImage.size.height*0.6) 
-                                                           pointSize:40] //here just need a big big pointsize
+    UIImage* backgroundImage = [UIImage imageNamed:@"tools_bell_bg@2x.png"];
+    float width = backgroundImage.size.width;
+    float height = backgroundImage.size.height;
+    HKGirlFontLabel* label = [[[HKGirlFontLabel alloc] initWithFrame:CGRectMake(width*0.2, 
+                                                                                width*0.1, 
+                                                                                width*0.6, 
+                                                                                height*0.6) 
+                                                           pointSize:80] //here just need a big big pointsize
                               autorelease];
     
 
-    [label setText:NSLS(@"kRollAgain")];
+    [label setText:NSLS(@"kToolRollAgain")];
 
     return [UIImage creatImageByImage:backgroundImage withLabel:label];
 }
 
 - (UIImage *)diceToolCutImageForShop
 {
-    UIImage* backgroundImage = [UIImage imageNamed:@"shop_bell.png"];
-    HKGirlFontLabel* label = [[[HKGirlFontLabel alloc] initWithFrame:CGRectMake(backgroundImage.size.width*0.25, 
-                                                                                backgroundImage.size.width*0.15, 
-                                                                                backgroundImage.size.width*0.5, 
-                                                                                backgroundImage.size.height*0.5) 
-                                                           pointSize:40]
-                              autorelease];
-    
-    [label setText:NSLS(@"kCut")];
-    
-    return [UIImage creatImageByImage:backgroundImage withLabel:label];
+    return [UIImage shrinkImage:[self diceToolCutImage] withRate:0.8];
+//    UIImage* backgroundImage = [UIImage imageNamed:@"shop_bell@2x.png"];
+//    float width = backgroundImage.size.width;
+//    float height = backgroundImage.size.height;
+//    HKGirlFontLabel* label = [[[HKGirlFontLabel alloc] initWithFrame:CGRectMake(width*0.2, 
+//                                                                                width*0.1, 
+//                                                                                width*0.6, 
+//                                                                                height*0.6) 
+//                                                           pointSize:80]
+//                              autorelease];
+//    
+//    [label setText:NSLS(@"kToolCut")];
+//    
+//    return [UIImage creatImageByImage:backgroundImage withLabel:label];
 }
 
 - (UIImage *)diceToolRollAgainImageForShop
 {
-    UIImage* backgroundImage = [UIImage imageNamed:@"shop_bell.png"];
-    HKGirlFontLabel* label = [[[HKGirlFontLabel alloc] initWithFrame:CGRectMake(backgroundImage.size.width*0.25, 
-                                                                                backgroundImage.size.width*0.15, 
-                                                                                backgroundImage.size.width*0.5, 
-                                                                                backgroundImage.size.height*0.5) 
-                                                           pointSize:40]
-                              autorelease];
-    
-    [label setText:NSLS(@"kCut")];
-    
-    return [UIImage creatImageByImage:backgroundImage withLabel:label];
+    return [UIImage shrinkImage:[self diceToolRollAgainImage] withRate:0.8];
+//    UIImage* backgroundImage = [UIImage imageNamed:@"shop_bell@2x.png"];
+//    float width = backgroundImage.size.width;
+//    float height = backgroundImage.size.height;
+//    HKGirlFontLabel* label = [[[HKGirlFontLabel alloc] initWithFrame:CGRectMake(width*0.2, 
+//                                                                                width*0.1, 
+//                                                                                width*0.6, 
+//                                                                                height*0.6) 
+//                                                           pointSize:80]
+//                              autorelease];
+//    
+//    [label setText:NSLS(@"kToolRollAgain")];
+//    
+//    return [UIImage creatImageByImage:backgroundImage withLabel:label];
 }
 
 
