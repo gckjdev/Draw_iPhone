@@ -798,6 +798,7 @@
 		C22585CD15EDC9B5009D686D /* femaleImage.png in Resources */ = {isa = PBXBuildFile; fileRef = C22585CB15EDC9B5009D686D /* femaleImage.png */; };
 		C22585CE15EDC9B5009D686D /* maleImage.png in Resources */ = {isa = PBXBuildFile; fileRef = C22585CC15EDC9B5009D686D /* maleImage.png */; };
 		C225866E15EF5AA4009D686D /* GCServer.m in Sources */ = {isa = PBXBuildFile; fileRef = C225866D15EF5AA4009D686D /* GCServer.m */; };
+		C225867015EF7673009D686D /* shop_bell@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C225866F15EF7673009D686D /* shop_bell@2x.png */; };
 		C23163A415577B8E00AC132B /* correct.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C23163A115577B8E00AC132B /* correct.mp3 */; };
 		C24339FF15AAB02400325A76 /* VendingController.m in Sources */ = {isa = PBXBuildFile; fileRef = C24339FD15AAB01D00325A76 /* VendingController.m */; };
 		C2433A0015AAB02400325A76 /* VendingController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C24339FE15AAB02000325A76 /* VendingController.xib */; };
@@ -2508,6 +2509,7 @@
 		C22585CC15EDC9B5009D686D /* maleImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = maleImage.png; sourceTree = "<group>"; };
 		C225866C15EF5AA4009D686D /* GCServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCServer.h; sourceTree = "<group>"; };
 		C225866D15EF5AA4009D686D /* GCServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCServer.m; sourceTree = "<group>"; };
+		C225866F15EF7673009D686D /* shop_bell@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "shop_bell@2x.png"; sourceTree = "<group>"; };
 		C23163A115577B8E00AC132B /* correct.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = correct.mp3; sourceTree = "<group>"; };
 		C24339FC15AAB01C00325A76 /* VendingController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VendingController.h; sourceTree = "<group>"; };
 		C24339FD15AAB01D00325A76 /* VendingController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VendingController.m; sourceTree = "<group>"; };
@@ -4136,6 +4138,7 @@
 		A4A01B7015D8AF67002FE86D /* game */ = {
 			isa = PBXGroup;
 			children = (
+				C225866F15EF7673009D686D /* shop_bell@2x.png */,
 				CACF878015EB4543003FA6B6 /* settingright_unselect@2x.png */,
 				CACF878115EB4543003FA6B6 /* settingright_selected@2x.png */,
 				CACF878215EB4543003FA6B6 /* settingleft_unselect@2x.png */,
@@ -9334,6 +9337,7 @@
 				EA24D35415EF1EFC008581A2 /* dice_room_help@2x.png in Resources */,
 				CAC25C6A15EF20FB007456FA /* DiceHomeController.xib in Resources */,
 				CAC25C6C15EF2D02007456FA /* DiceHomeController~ipad.xib in Resources */,
+				C225867015EF7673009D686D /* shop_bell@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
