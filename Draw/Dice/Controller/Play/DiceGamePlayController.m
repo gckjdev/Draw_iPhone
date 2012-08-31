@@ -1156,9 +1156,9 @@
     if (!self.chatButton.selected) {
         self.chatButton.selected = YES;
         [_popupView popupChatViewAtView:[self selfAvatarView] 
-                                        inView:self.view 
-                                  aboveSubView:self.popupLevel3View
-                                     deleagate:self];
+                                 inView:self.view 
+                           aboveSubView:self.popupLevel3View
+                              deleagate:self];
     }else {
         [_popupView dismissChatView];
     }

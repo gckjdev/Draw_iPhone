@@ -51,8 +51,6 @@
     [_popTipView release];
     [_bgImageView release];
     [_expressionsHolderView release];
-    [_messagesHolderView release];
-//    [_timer release];
     [super dealloc];
 }
 
