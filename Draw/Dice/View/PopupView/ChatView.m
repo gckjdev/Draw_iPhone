@@ -29,7 +29,7 @@
 }
 
 @property (retain, nonatomic) CMPopTipView *popTipView;
-@property (retain, nonatomic) NSTimer *timer;
+//@property (retain, nonatomic) NSTimer *timer;
 
 @end
 
@@ -42,7 +42,7 @@
 @synthesize expressionsHolderView = _expressionsHolderView;
 @synthesize messagesHolderView = _messagesHolderView;
 @synthesize popTipView = _popTipView;
-@synthesize timer = _timer;
+//@synthesize timer = _timer;
 
 - (void)dealloc
 {
@@ -51,10 +51,9 @@
     [_popTipView release];
     [_bgImageView release];
     [_expressionsHolderView release];
-    [_messagesHolderView release];
-    [_timer release];
     [super dealloc];
 }
+
 
 + (id)createChatView
 {
@@ -114,7 +113,7 @@
      pointDirection:(PointDirection)pointDirection
 {
     [self dismissAnimated:YES];
-    [self createTimer];
+//    [self createTimer];
     self.popTipView = [[[CMPopTipView alloc] initWithCustomView:self needBubblePath:NO] autorelease];
     _popTipView.delegate = self;
     _popTipView.backgroundColor = [UIColor clearColor];
@@ -238,29 +237,32 @@
 
 #pragma mark - Timer manage
 
-- (void)createTimer
-{
-    [self killTimer];
-    
-    self.timer = [NSTimer scheduledTimerWithTimeInterval:5.0
-                                                  target:self 
-                                                selector:@selector(handleTimer:)
-                                                userInfo:nil 
-                                                 repeats:NO];
-}
-
-- (void)killTimer
-{
-    if ([_timer isValid]) {
-        [_timer invalidate];        
-    }
-    self.timer = nil;
-}
-
-- (void)handleTimer:(NSTimer *)timer
-{
-    [self dismissAnimated:YES];
-}
+//- (void)createTimer
+//{
+//    [self killTimer];
+//    
+//    PPDebug(@"self count: %d", self.retainCount);
+//    self.timer = [NSTimer scheduledTimerWithTimeInterval:5.0
+//                                                  target:self 
+//                                                selector:@selector(handleTimer:)
+//                                                userInfo:nil 
+//                                                 repeats:NO];
+//    
+//    PPDebug(@"self count: %d", self.retainCount);
+//}
+//
+//- (void)killTimer
+//{
+//    if ([_timer isValid]) {
+//        [_timer invalidate];        
+//    }
+//    self.timer = nil;
+//}
+//
+//- (void)handleTimer:(NSTimer *)timer
+//{
+//    [self dismissAnimated:YES];
+//}
 
 
 @end

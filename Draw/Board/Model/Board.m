@@ -27,8 +27,8 @@
     
     BoardType type = [(NSNumber *)[dict objectForKey:PARA_TYPE] intValue];
     switch (type) {
-        case BoardTypeAd:
-            return [[[AdBoard alloc] initWithDictionary:dict] autorelease];
+//        case BoardTypeAd:
+//            return [[[AdBoard alloc] initWithDictionary:dict] autorelease];
         case BoardTypeWeb:
             return [[[WebBoard alloc] initWithDictionary:dict] autorelease];
         case BoardTypeImage:
@@ -104,63 +104,6 @@
 
 @end
 
-
-
-@implementation AdBoard
-@synthesize adList = _adList;
-@synthesize number = _number;
-
-- (id)initWithDictionary:(NSDictionary *)dict
-{
-    self = [super initWithDictionary:dict];
-    if (self) {
-    
-        self.number = [(NSNumber *)[dict objectForKey:PARA_AD_NUMBER] intValue];
-        NSArray *adList = [dict objectForKey:PARA_ADLIST];
-        NSMutableArray *temp = [NSMutableArray array];
-        for (NSDictionary *subDict in adList) {
-            
-            //sure it is a dict
-            if ([subDict respondsToSelector:@selector(objectForKey:)]) {
-                AdObject *ad= [[AdObject alloc] initWithDict:subDict];
-                [temp addObject:ad];
-            }
-        }
-        self.adList = temp;
-    }
-    return self;
-}
-
-#define CODE_KEY_NUMBER @"number"
-#define CODE_KEY_AD_LIST @"adList"
-
-
-- (void)encodeWithCoder:(NSCoder *)aCoder
-{
-    [super encodeWithCoder:aCoder];
-    [aCoder encodeInteger:_number forKey:CODE_KEY_NUMBER];
-    [aCoder encodeObject:_adList forKey:CODE_KEY_AD_LIST];
-
-}
-- (id)initWithCoder:(NSCoder *)aDecoder
-{
-    self = [super initWithCoder:aDecoder];
-    if (self) {
-        self.number = [aDecoder decodeIntegerForKey:CODE_KEY_NUMBER];
-        self.adList = [aDecoder decodeObjectForKey:CODE_KEY_AD_LIST];
-    }
-    return self;
-}
-
-
-
-- (void)dealloc
-{
-    PPRelease(_adList);
-    [super dealloc];
-}
-
-@end
 
 
 @implementation WebBoard
@@ -258,7 +201,10 @@
 
 @implementation ImageBoard
 @synthesize imageUrl = _imageUrl;
+@synthesize adImageUrl = _adImageUrl;
 @synthesize clickUrl = _clickUrl;
+@synthesize platform = _platform;
+@synthesize publishId = _publishId;
 
 - (id)initWithDictionary:(NSDictionary *)dict
 {
@@ -266,6 +212,10 @@
     if (self) {
         self.imageUrl = [dict objectForKey:PARA_IMAGE_URL];
         self.clickUrl = [dict objectForKey:PARA_IMAGE_CLICK_URL];
+        self.platform = [(NSNumber *)[dict objectForKey:PARA_AD_PLATFORM] integerValue];
+        self.publishId = [dict objectForKey:PARA_AD_PUBLISH_ID];
+        self.adImageUrl = [dict objectForKey:PARA_AD_IMAGE_URL];
+
     }
     return self;
 }
@@ -273,20 +223,28 @@
 
 #define CODE_KEY_IMAGE_URL @"imageURL"
 #define CODE_KEY_CLICK_URL @"clickURL"
+#define CODE_KEY_PLATFORM @"platform"
+#define CODE_KEY_PUBLIC_ID @"publicId"
+#define CODE_KEY_AD_IMAGE_URL @"adImageURL"
 
 - (void)encodeWithCoder:(NSCoder *)aCoder
 {
     [super encodeWithCoder:aCoder];
     [aCoder encodeObject:_imageUrl forKey:CODE_KEY_IMAGE_URL];
+    [aCoder encodeObject:_adImageUrl forKey:CODE_KEY_AD_IMAGE_URL];
     [aCoder encodeObject:_clickUrl forKey:CODE_KEY_CLICK_URL];
-    
+    [aCoder encodeInteger:_platform forKey:CODE_KEY_PLATFORM];
+    [aCoder encodeObject:_publishId forKey:CODE_KEY_PUBLIC_ID];
 }
 - (id)initWithCoder:(NSCoder *)aDecoder
 {
     self = [super initWithCoder:aDecoder];
     if (self) {
         self.imageUrl = [aDecoder decodeObjectForKey:CODE_KEY_IMAGE_URL];
+        self.adImageUrl = [aDecoder decodeObjectForKey:CODE_KEY_AD_IMAGE_URL];
         self.clickUrl = [aDecoder decodeObjectForKey:CODE_KEY_CLICK_URL];
+        self.platform = [aDecoder decodeIntegerForKey:CODE_KEY_PLATFORM];
+        self.publishId = [aDecoder decodeObjectForKey:CODE_KEY_PUBLIC_ID];
     }
     return self;
 }
@@ -295,52 +253,14 @@
 - (void)dealloc
 {
     PPRelease(_imageUrl);
+    PPRelease(_adImageUrl);
     PPRelease(_clickUrl);
-    [super dealloc];
-}
-
-@end
-
-
-@implementation AdObject
-
-@synthesize platform = _platform;
-@synthesize publishId = _publishId;
-
-- (id)initWithDict:(NSDictionary *)dict
-{
-    self = [super init];
-    if (self) {
-        
-        self.platform = [(NSNumber *)[dict objectForKey:PARA_AD_PLATFORM] integerValue];
-        self.publishId = [dict objectForKey:PARA_AD_PUBLISH_ID];
-    }
-    return self;
-}
-
-#define CODE_KEY_PLATFORM @"platform"
-#define CODE_KEY_PUBLIC_ID @"publicId"
-
-- (void)encodeWithCoder:(NSCoder *)aCoder
-{
-    [aCoder encodeInteger:_platform forKey:CODE_KEY_PLATFORM];
-    [aCoder encodeObject:_publishId forKey:CODE_KEY_PUBLIC_ID];
-}
-- (id)initWithCoder:(NSCoder *)aDecoder
-{
-    self = [super init];
-    if (self) {
-        self.platform = [aDecoder decodeIntegerForKey:CODE_KEY_PLATFORM];
-        self.publishId = [aDecoder decodeObjectForKey:CODE_KEY_PUBLIC_ID];
-    }
-    return self;
-}
-
-- (void)dealloc
-{
     PPRelease(_publishId);
     [super dealloc];
 }
 
 @end
+
+
+
 

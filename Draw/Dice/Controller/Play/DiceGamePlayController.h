@@ -33,7 +33,6 @@
 @interface DiceGamePlayController : PPViewController <DiceItemListViewDelegate, DiceSelectedViewDelegate, DiceAvatarViewDelegate, DicesResultViewAnimationDelegate, LevelServiceDelegate, CommonDialogDelegate, ChatViewDelegate, AccountServiceDelegate> {
     DiceGameService*  _diceService;
     UserManager *_userManager;
-    DicePopupViewManager *_popupViewManager;
     DiceImageManager *_imageManager;
     LevelService *_levelService;
     AccountService *_accountService;
@@ -41,7 +40,6 @@
 //    ItemService *_itemService;
     ExpressionManager *_expressionManager;
     DiceSoundManager *_soundManager;
-    BOOL _usingWilds;
 }
 
 @property (retain, nonatomic) IBOutlet FontLabel *myLevelLabel;

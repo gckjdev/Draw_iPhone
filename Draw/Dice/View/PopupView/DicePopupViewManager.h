@@ -13,7 +13,7 @@
 
 @interface DicePopupViewManager : NSObject
 
-+ (id)defaultManager;
+//+ (id)defaultManager;
 
 - (void)popupCallDiceViewWithDice:(int)dice
                             count:(int)count

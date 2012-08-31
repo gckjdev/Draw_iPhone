@@ -18,7 +18,7 @@
 // image resources
 - (NSString*)background;
 - (NSString*)defaultBroadImage;
-
+- (NSString*)defaultAdBoardImage;
 - (NSString*)lmwallId;
 - (NSString*)lmAdPublisherId;
 - (NSString*)aderAdPublisherId;

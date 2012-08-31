@@ -30,7 +30,7 @@
     BOOL _userInteraction;
 }
 
-@property (retain, nonatomic) NSTimer *timer;
+//@property (retain, nonatomic) NSTimer *timer;
 @property (assign, nonatomic) UIView *superView;
 
 @property (retain, nonatomic) CMPopTipView *popView;
@@ -45,7 +45,7 @@
 
 @synthesize delegate = _delegate;
 
-@synthesize timer = _timer;
+//@synthesize timer = _timer;
 @synthesize superView = _superView;
 
 @synthesize popView = _popView;
@@ -56,8 +56,7 @@
 
 - (void)dealloc
 {
-    [_timer release];
-//    [_superView release];
+//    [_timer release];
     [_popView release];
     [_scrollView release];
     [_pageControl release];
@@ -183,29 +182,29 @@
 
 #pragma mark - Timer manage
 
-- (void)createTimer
-{
-    [self killTimer];
-    
-    self.timer = [NSTimer scheduledTimerWithTimeInterval:3.0
-                                                  target:self 
-                                                selector:@selector(handleTimer:)
-                                                userInfo:nil 
-                                                 repeats:NO];
-}
-
-- (void)killTimer
-{
-    if ([_timer isValid]) {
-        [_timer invalidate];        
-    }
-    self.timer = nil;
-}
-
-- (void)handleTimer:(NSTimer *)timer
-{
-    [self.popView dismissAnimated:YES];
-}
+//- (void)createTimer
+//{
+//    [self killTimer];
+//    
+//    self.timer = [NSTimer scheduledTimerWithTimeInterval:3.0
+//                                                  target:self 
+//                                                selector:@selector(handleTimer:)
+//                                                userInfo:nil 
+//                                                 repeats:NO];
+//}
+//
+//- (void)killTimer
+//{
+//    if ([_timer isValid]) {
+//        [_timer invalidate];        
+//    }
+//    self.timer = nil;
+//}
+//
+//- (void)handleTimer:(NSTimer *)timer
+//{
+//    [self.popView dismissAnimated:YES];
+//}
 
 #pragma mark -
 #pragma mark UIScrollViewDelegate stuff
@@ -269,7 +268,7 @@
 
 - (void)clickCountSelectedButton:(id)sender
 {    
-    [self createTimer];
+//    [self createTimer];
     [self.popView dismissAnimated:YES];
     
     self.curSelecetedDiceCountBtn = (UIButton *)sender;

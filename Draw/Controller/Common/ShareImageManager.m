@@ -454,6 +454,12 @@ static UIImage* _whitePaperImage;
     return [UIImage imageNamed:[GameApp defaultBroadImage]];
 }
 
+- (UIImage *)defaultAdBoardImage
+{
+    return [UIImage imageNamed:[GameApp defaultAdBoardImage]];
+}
+
+
 #pragma mark - menu button image
 - (UIImage *)onlinePlayImage
 {

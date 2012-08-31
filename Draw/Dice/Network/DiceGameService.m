@@ -81,7 +81,7 @@ static DiceGameService* _defaultService;
     
     // Init lastCallDice when game begin.
     self.diceSession.lastCallDice = 2;
-    self.diceSession.lastCallDiceCount = [[self session] playingUserCount] - 1;
+    self.diceSession.lastCallDiceCount = [[self session] playingUserCount];
     
     [self postNotification:NOTIFICATION_ROLL_DICE_END message:message];
 }

@@ -48,4 +48,6 @@
 - (UIImage*)createImage;
 - (void)setDrawEnabled:(BOOL)enabled;
 - (BOOL)isViewBlank;
+- (BOOL)canRevoke;
+- (void)revoke;
 @end
