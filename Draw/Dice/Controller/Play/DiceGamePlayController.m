@@ -149,11 +149,8 @@
 
     self.gameBeginNoteLabel.hidden = YES;
     self.gameBeginNoteLabel.text = NSLS(@"kGameBegin");
-//    self.gameBeginNoteLabel.textColor = [UIColor colorWithRed:1.0 green:69.0/255.0 blue:246.0/255.0 alpha:1.0];
-    
     self.gameBeginNoteLabel.textColor = [UIColor yellowColor];
 
-    
     [_audioManager setBackGroundMusicWithName:@"dice.m4a"];
     [_audioManager backgroundMusicStart];
     self.myLevelLabel.text = [NSString stringWithFormat:@"LV:%d",_levelService.level];;
@@ -166,7 +163,6 @@
     [[UIApplication sharedApplication] 
      setStatusBarStyle:UIStatusBarStyleBlackOpaque animated:NO];
     
-    //_roomNameLabel.text = @"1号房间";
     NSString* aRoomName = [[[DiceGameService defaultService] session] roomName];
     if (aRoomName == nil || aRoomName.length <= 0) {
         aRoomName = [NSString stringWithFormat:@"%d", [[[DiceGameService defaultService] session] sessionId]];
@@ -202,7 +198,6 @@
                                                    iPadFrame:CGRectMake(448, 0, 320, 50)
                                                      useLmAd:YES];
 }
-
 
 - (void)viewDidUnload
 {
@@ -442,7 +437,6 @@
 
 - (void)clearGameResult
 {
-    _usingWilds = NO;
     self.wildsButton.selected = NO;
     [self dismissAllPopupViews];
     
@@ -990,20 +984,22 @@
 
 - (void)userUseWilds
 {
-    _usingWilds = YES;
     self.wildsButton.selected = YES;
     self.wildsButton.enabled = NO;
     self.wildsFlagButton.hidden = NO;
 }
 
 - (IBAction)clickWildsButton:(id)sender {
-    [self userUseWilds];
-
+    self.wildsButton.selected = !self.wildsButton.selected;
 }
 
 - (void)callDiceSuccess
 {
     [self popupCallDiceView];
+    
+    if (_diceService.diceSession.wilds) {
+        [self userUseWilds];
+    }
 }
 
 -(void)callDice:(int)dice count:(int)count
@@ -1013,10 +1009,11 @@
     [_diceSelectedView dismiss];
     
     if (dice == 1 || count == _diceService.session.playingUserCount) {
-        [self userUseWilds];
+        [_diceService callDice:dice count:count wilds:YES];
+    }else {
+        [_diceService callDice:dice count:count wilds:self.wildsButton.selected];
     }
     
-    [_diceService callDice:dice count:count wilds:_usingWilds];
     [self playCallDiceVoice];
 }
 
