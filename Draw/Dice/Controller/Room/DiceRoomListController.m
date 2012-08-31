@@ -170,11 +170,11 @@
 - (void)connectServer
 {
     // Internet Test Server
-//    [[DiceGameService defaultService] setServerAddress:@"106.187.89.232"];
-//    [[DiceGameService defaultService] setServerPort:8018];
+    [[DiceGameService defaultService] setServerAddress:@"106.187.89.232"];
+    [[DiceGameService defaultService] setServerPort:8018];
 
-    [[DiceGameService defaultService] setServerAddress:@"192.168.1.9"];
-    [[DiceGameService defaultService] setServerPort:8080];
+//    [[DiceGameService defaultService] setServerAddress:@"192.168.1.9"];
+//    [[DiceGameService defaultService] setServerPort:8080];
 
     [[DiceGameService defaultService] connectServer:self];
     [self showActivityWithText:NSLS(@"kRefreshingRoomList")];

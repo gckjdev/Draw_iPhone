@@ -41,6 +41,9 @@
 #define DICE_THRESHOLD_COIN ([ConfigManager getDiceThresholdCoin])
 
 @interface DiceGamePlayController ()
+{
+    BOOL _gamePlaying;
+}
 
 @property (retain, nonatomic) DiceSelectedView *diceSelectedView;
 @property (retain, nonatomic) NSEnumerator *enumerator;
@@ -145,9 +148,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.popupView = [[[DicePopupViewManager alloc] init] autorelease];
 
-    
+    self.popupView = [[[DicePopupViewManager alloc] init] autorelease];
     self.wildsLabel.text = NSLS(@"kDiceWilds");
     self.wildsFlagButton.fontLable.text = NSLS(@"kDiceWilds");
     self.itemsBoxButton.enabled = NO;
@@ -197,7 +199,7 @@
     
     [self registerDiceGameNotifications];    
     
-    self.waittingForNextTurnNoteLabel.text = ([_diceService.diceSession.userList count] == 1) ? NSLS(@"kWaitingForMoreUsers") : NSLS(@"kWaittingForNextTurn");
+    self.waittingForNextTurnNoteLabel.text = (_gamePlaying) ?  NSLS(@"kWaittingForNextTurn") : NSLS(@"kWaitingForMoreUsers");
     self.adView = [[AdService defaultService] createAdInView:self                  
                                                        frame:CGRectMake(0, 0, 320, 50) 
                                                    iPadFrame:CGRectMake(448, 0, 320, 50)
@@ -585,9 +587,7 @@
 
     
     [self registerDiceGameNotificationWithName:NOTIFICATION_ROOM 
-                            usingBlock:^(NSNotification *notification) {    
-
-         
+                            usingBlock:^(NSNotification *notification) {
          [self roomChanged];
      }];
         
@@ -807,6 +807,7 @@
 
 - (void)rollDiceBegin
 {
+    _gamePlaying = YES;
     [self clearGameResult];
     self.waittingForNextTurnNoteLabel.hidden = YES;
     [self showBeginNoteAnimation];
@@ -881,11 +882,15 @@
 // Sync Account Delegate
 - (void)didSyncFinish
 {
-    self.myCoinsLabel.text = [NSString stringWithFormat:@"x%d",[_accountService getBalance]];  
+    self.myCoinsLabel.text = [NSString stringWithFormat:@"x%d",[_accountService getBalance]];
+    _gamePlaying = NO;
+    
     if ([_accountService getBalance] < DICE_THRESHOLD_COIN) {
         [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kNotEnoughCoinToContinue") delayTime:1.5 isHappy:NO];
         [self quitDiceGame];
     }
+    
+    [self updateWaittingForNextTurnNotLabel];
 }
 
 #pragma mark - use item animations
@@ -1110,8 +1115,12 @@
 - (void)roomChanged
 {
     [self updateAllPlayersAvatar];
-    
-    if ([_diceService.diceSession.userList count] == 1) {
+    [self updateWaittingForNextTurnNotLabel];
+}
+
+- (void)updateWaittingForNextTurnNotLabel
+{
+    if ([_diceService.diceSession.userList count] == 1 && !_gamePlaying) {
         self.waittingForNextTurnNoteLabel.text = NSLS(@"kWaitingForMoreUsers");
         self.waittingForNextTurnNoteLabel.hidden = NO;
     }
