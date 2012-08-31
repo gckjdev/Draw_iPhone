@@ -14,7 +14,7 @@
 
 
 #define SIZE  (([DeviceDetection isIPAD]) ? 27*2 : 27)
-#define MIN_WIDTH  (([DeviceDetection isIPAD]) ? 5 * 2 : 5)
+#define MIN_WIDTH  (([DeviceDetection isIPAD]) ? 3 * 2 : 3)
 
 + (id)viewWithWidth:(CGFloat)width
 {
