@@ -149,11 +149,8 @@
 
     self.gameBeginNoteLabel.hidden = YES;
     self.gameBeginNoteLabel.text = NSLS(@"kGameBegin");
-//    self.gameBeginNoteLabel.textColor = [UIColor colorWithRed:1.0 green:69.0/255.0 blue:246.0/255.0 alpha:1.0];
-    
     self.gameBeginNoteLabel.textColor = [UIColor yellowColor];
 
-    
     [_audioManager setBackGroundMusicWithName:@"dice.m4a"];
     [_audioManager backgroundMusicStart];
     self.myLevelLabel.text = [NSString stringWithFormat:@"LV:%d",_levelService.level];;
@@ -166,7 +163,6 @@
     [[UIApplication sharedApplication] 
      setStatusBarStyle:UIStatusBarStyleBlackOpaque animated:NO];
     
-    //_roomNameLabel.text = @"1号房间";
     NSString* aRoomName = [[[DiceGameService defaultService] session] roomName];
     if (aRoomName == nil || aRoomName.length <= 0) {
         aRoomName = [NSString stringWithFormat:@"%d", [[[DiceGameService defaultService] session] sessionId]];
@@ -201,8 +197,9 @@
                                                        frame:CGRectMake(0, 0, 320, 50) 
                                                    iPadFrame:CGRectMake(448, 0, 320, 50)
                                                      useLmAd:YES];
+    
+    [self updateAllPlayersAvatar];
 }
-
 
 - (void)viewDidUnload
 {
@@ -233,13 +230,6 @@
     [self setPopupLevel3View:nil];
     [super viewDidUnload];
 }
-
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
-    [self updateAllPlayersAvatar];
-}
-
 
 #define TAG_TOOL_BUTTON 12080101
 - (IBAction)clickToolButton:(id)sender {
@@ -312,19 +302,6 @@
     button.selected = NO;
     
     [self useItem:item.type itemName:item.itemName userId:_userManager.userId];
-
-//    switch (item.type) {
-//        case ItemTypeRollAgain:
-//            [self useItem:item.type itemName:item.itemName userId:_userManager.userId];
-//            break;
-//            
-//        case ItemTypeCut:
-//            [self openDice:2];
-//            break;
-//            
-//        default:
-//            break;
-//    }
     
     [_accountService consumeItem:item.type amount:1]; 
 }
@@ -442,7 +419,6 @@
 
 - (void)clearGameResult
 {
-    _usingWilds = NO;
     self.wildsButton.selected = NO;
     [self dismissAllPopupViews];
     
@@ -599,39 +575,13 @@
 - (void)registerDiceGameNotifications
 {    
     [self registerDiceGameNotificationWithName:NOTIFICATION_JOIN_GAME_RESPONSE 
-                                    usingBlock:^(NSNotification *notification) {                       
+                                    usingBlock:^(NSNotification *notification) {                    
                                     }];
 
     
     [self registerDiceGameNotificationWithName:NOTIFICATION_ROOM 
                             usingBlock:^(NSNotification *notification) {    
-                                
-//         GameMessage* message = [CommonGameNetworkService userInfoToMessage:[notification userInfo]];
-//         RoomNotificationRequest* roomNotification = [message roomNotificationRequest];
-//         
-//         if ([roomNotification sessionsChangedList]){
-//             for (PBGameSessionChanged* sessionChanged in [roomNotification sessionsChangedList]){
-//                 int sessionId = [sessionChanged sessionId];
-//                 if (sessionId == _diceService.session.sessionId){
-//                     // split notification
-//                     PBGameSessionChanged* changeData = sessionChanged;
-//                     if ([changeData usersAddedList]){
-//                         for (PBGameUser* user in [changeData usersAddedList]){
-//                             // has new user
-//                             
-//                         }
-//                     }
-//                     
-//                     if ([changeData userIdsDeletedList]){
-//                         for (NSString* userId in [changeData userIdsDeletedList]){
-//                             // has deleted user
-//                             [self clearUserResult:userId];
-//                         }
-//                     }
-//                     
-//                 }
-//             }
-//         }
+
          
          [self roomChanged];
      }];
@@ -720,8 +670,6 @@
                                     }];
 }
 
-
-
 - (void)someoneChangeDice
 {
     if (_diceService.diceSession.isMeAByStander) {
@@ -732,7 +680,8 @@
 - (void)showOtherBells
 {
     for (PBGameUser *user in _diceService.diceSession.playingUserList) {
-        [[self bellViewOfUser:user.userId] setHidden:NO];
+        UIView *bell = [self bellViewOfUser:user.userId];
+        bell.hidden = NO;
     }
 }
 
@@ -990,20 +939,22 @@
 
 - (void)userUseWilds
 {
-    _usingWilds = YES;
     self.wildsButton.selected = YES;
     self.wildsButton.enabled = NO;
     self.wildsFlagButton.hidden = NO;
 }
 
 - (IBAction)clickWildsButton:(id)sender {
-    [self userUseWilds];
-
+    self.wildsButton.selected = !self.wildsButton.selected;
 }
 
 - (void)callDiceSuccess
 {
     [self popupCallDiceView];
+    
+    if (_diceService.diceSession.wilds) {
+        [self userUseWilds];
+    }
 }
 
 -(void)callDice:(int)dice count:(int)count
@@ -1013,10 +964,11 @@
     [_diceSelectedView dismiss];
     
     if (dice == 1 || count == _diceService.session.playingUserCount) {
-        [self userUseWilds];
+        [_diceService callDice:dice count:count wilds:YES];
+    }else {
+        [_diceService callDice:dice count:count wilds:self.wildsButton.selected];
     }
     
-    [_diceService callDice:dice count:count wilds:_usingWilds];
     [self playCallDiceVoice];
 }
 

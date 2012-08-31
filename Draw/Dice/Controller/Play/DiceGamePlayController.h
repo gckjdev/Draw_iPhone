@@ -41,7 +41,6 @@
 //    ItemService *_itemService;
     ExpressionManager *_expressionManager;
     DiceSoundManager *_soundManager;
-    BOOL _usingWilds;
 }
 
 @property (retain, nonatomic) IBOutlet FontLabel *myLevelLabel;
