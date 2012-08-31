@@ -22,6 +22,13 @@ typedef enum
 
 @class PPViewController;
 
+@protocol AdServiceDelegate <NSObject>
+
+@optional
+- (void)adLoad:(UIView*)adView;
+
+@end
+
 @interface AdService : NSObject<UIAlertViewDelegate, AccountServiceDelegate, immobViewDelegate, AdMoGoDelegate, AderDelegateProtocal>
 {
 //    LmmobAdBannerView   *_adView;

@@ -774,7 +774,7 @@
 "kOpenDiceMessage" = "Challenge";
 "kScrambleToOpenDiceMessage" = "Challenge";
 
-"kWaittingForNextTurn" = "Watting...";
+"kWaittingForNextTurn" = "Waiting...";
 "kGameBegin" = "Game start...";
 "kNearBy" = "NearBy";
 "kWhoseRoom" = "%@'s room";
@@ -784,9 +784,9 @@
 "kItemRollAgain" = "reroll item";
 "kItemCut" = "cut item";
 "kRollAgain" = "reroll";
-"kRollAgainDescription" = "Use 【reroll】 item to roll dice again and change your dices.";
+"kRollAgainDescription" = "Use 【Reroll】 item to roll dice again and change your dices. Good luck!";
 "kCut" = "cut";
-"kCutDescription" = "Use 【cut】 item for double coins.";
+"kCutDescription" = "Use 【Cut】 item for double coins.";
 
 "kMoreRoom" = "More...";
 "kMoreRoomLoading" = "Loading...";
@@ -806,7 +806,7 @@
 
 "kDiceRoom" = "Liar Dice Room %d";
 
-"kWaitingForMoreUsers" = "Watting for more player...";
+"kWaitingForMoreUsers" = "Waiting for more player...";
 
 "kDice_share_message_body" = "I found a very funny game recently. Its name is '%@'.\nHere is the AppStore download URL:\n%@";
 "kDice_email_subject" = "Share a funny iOS game - Liar Dice";
@@ -820,18 +820,17 @@
 "kDiceRoomListTitle" = "Liar Dice";
 "kDiceGameRules"= "Game Rules";
 "kDicePropDescription" = "Prop";
-"kDiceWilds" = "W";
+"kDiceWilds" = " W ";
 
-
-"kDiceMenuStart" = "Start"; 
-"kDiceMenuHelp" = "Help"; 
-"kDiceMenuRoom" = "Room"; 
-"kDiceMenuShop" = "Shop"; 
+"kDiceMenuStart" = "START"; 
+"kDiceMenuHelp" = "HELP"; 
+"kDiceMenuRoom" = "ROOM"; 
+"kDiceMenuShop" = "SHOP"; 
 
 "kCoinsNotEnoughAndEnterShop" = "Your coins are not enough. Buy some now?";
 "kToolCut" = "R";
 "kToolRollAgain" = "C";
 
-"kRefreshingRoomList" = "Reshing room list...";
+"kRefreshingRoomList" = "Loading room list...";
 /*********************** 大话骰子国际化字符串结束 *************************/
 
