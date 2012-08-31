@@ -23,6 +23,7 @@
 @property(nonatomic, assign)NSInteger amount;
 @property (nonatomic, retain) UIImage* itemImage;
 @property (nonatomic, retain) NSString* itemName;
+@property (nonatomic, retain) NSString* shortName;
 @property (nonatomic, retain) NSString* itemDescription;
 @property (nonatomic, assign) int buyAmountForOnce;
 @property (nonatomic, assign) int price;
@@ -35,6 +36,16 @@
   buyAmountForOnce:(int)amount 
              price:(int)aPrice 
             amount:(int)currentAmount;
+
+- (id)initWithType:(ItemType)type 
+             image:(UIImage*)anImage 
+              name:(NSString*)aName 
+         shortName:(NSString*)shortName
+       description:(NSString*)aDescription 
+  buyAmountForOnce:(int)amount 
+             price:(int)aPrice 
+            amount:(int)currentAmount;
+
 + (Item *)itemWithType:(ItemType)type amount:(NSInteger)amount;
 + (Item*)tomato;
 + (Item*)flower;
