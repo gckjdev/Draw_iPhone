@@ -33,7 +33,6 @@
 @interface DiceGamePlayController : PPViewController <DiceItemListViewDelegate, DiceSelectedViewDelegate, DiceAvatarViewDelegate, DicesResultViewAnimationDelegate, LevelServiceDelegate, CommonDialogDelegate, ChatViewDelegate, AccountServiceDelegate> {
     DiceGameService*  _diceService;
     UserManager *_userManager;
-    DicePopupViewManager *_popupViewManager;
     DiceImageManager *_imageManager;
     LevelService *_levelService;
     AccountService *_accountService;

@@ -20,13 +20,13 @@
          shouldBeEnabled = "Yes"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
-         filePath = "Draw/GameServer/Service/CommonGameNetworkService.m"
-         timestampString = "368076040.783451"
+         filePath = "Draw/Dice/Controller/Play/DiceGamePlayController.m"
+         timestampString = "368091842.1712"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "226"
-         endingLineNumber = "226"
-         landmarkName = "-handleChatRequest:"
+         startingLineNumber = "93"
+         endingLineNumber = "93"
+         landmarkName = "-dealloc"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

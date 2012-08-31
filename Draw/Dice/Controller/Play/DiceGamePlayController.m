@@ -44,6 +44,7 @@
 
 @property (retain, nonatomic) DiceSelectedView *diceSelectedView;
 @property (retain, nonatomic) NSEnumerator *enumerator;
+@property (retain, nonatomic) DicePopupViewManager *popupView;
 
 - (DiceAvatarView *)selfAvatarView;
 - (DiceAvatarView*)avatarViewOfUser:(NSString*)userId;
@@ -85,6 +86,7 @@
 @synthesize popupLevel1View = _popupLevel1View;
 @synthesize popupLevel2View = _popupLevel2View;
 @synthesize popupLevel3View = _popupLevel3View;
+@synthesize popupView = _popupView;
 
 
 - (void)dealloc {
@@ -119,6 +121,7 @@
     [_popupLevel1View release];
     [_popupLevel2View release];
     [_popupLevel3View release];
+    [_popupView release];
     [super dealloc];
 }
 
@@ -128,7 +131,6 @@
     if (self) {
         _diceService = [DiceGameService defaultService];
         _userManager = [UserManager defaultManager];
-        _popupViewManager = [DicePopupViewManager defaultManager];
         _imageManager = [DiceImageManager defaultManager];
         _levelService = [LevelService defaultService];
         _accountService = [AccountService defaultService];
@@ -143,6 +145,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.popupView = [[[DicePopupViewManager alloc] init] autorelease];
+
+    
     self.wildsLabel.text = NSLS(@"kDiceWilds");
     self.wildsFlagButton.fontLable.text = NSLS(@"kDiceWilds");
     self.itemsBoxButton.enabled = NO;
@@ -238,13 +243,13 @@
     button.selected = !button.selected;
     
     if (button.selected) {
-        [_popupViewManager popupItemListAtView:button 
+        [_popupView popupItemListAtView:button 
                                         inView:self.view
                                   aboveSubView:self.popupLevel3View
                                       duration:0
                                       delegate:self];
     } else {
-        [_popupViewManager dismissItemListView];
+        [_popupView dismissItemListView];
     }
 }
 
@@ -410,7 +415,7 @@
         DiceAvatarView *avatar = [self avatarViewOfUser:userId];
         [avatar rewardCoins:result.gainCoins duration:DURATION_SHOW_GAIN_COINS];
         [_levelService addExp:LIAR_DICE_EXP delegate:self];
-
+        self.myLevelLabel.text = [NSString stringWithFormat:@"LV:%d",_levelService.level];
         if ([_userManager isMe:userId]) { 
             [_accountService syncAccount:self forceServer:YES];
         }
@@ -433,9 +438,9 @@
 
 - (void)dismissAllPopupViews
 {
-    [_popupViewManager dismissCallDiceView];
-    [_popupViewManager dismissOpenDiceView];
-    [_popupViewManager dismissItemListView];
+    [_popupView dismissCallDiceView];
+    [_popupView dismissOpenDiceView];
+    [_popupView dismissItemListView];
 }
 
 - (IBAction)clickRunAwayButton:(id)sender {
@@ -770,7 +775,7 @@
     self.openDiceButton.hidden = YES;
     self.wildsButton.enabled = NO;
     self.plusOneButton.enabled = NO;
-    [_popupViewManager disableCutItem];
+    [_popupView disableCutItem];
     [self.diceSelectedView disableUserInteraction];
 }
 
@@ -779,7 +784,7 @@
     self.openDiceButton.hidden = NO;
     self.wildsButton.enabled = YES;
     self.plusOneButton.enabled = YES;
-    [_popupViewManager enableCutItem];
+    [_popupView enableCutItem];
     [self.diceSelectedView enableUserInteraction];
 }
 
@@ -844,13 +849,13 @@
         // 没人叫过骰子不能开。
         if (_diceService.diceSession.lastCallDiceUserId == nil) {
             self.openDiceButton.hidden = YES;
-            [_popupViewManager disableCutItem];
+            [_popupView disableCutItem];
         }
         
         // 不能开自己叫的骰子。
         if (_diceService.diceSession.lastCallDiceUserId != nil && [_userManager isMe:_diceService.diceSession.lastCallDiceUserId]) {
             self.openDiceButton.hidden = YES;
-            [_popupViewManager disableCutItem];
+            [_popupView disableCutItem];
         }
         
         if (_diceService.diceSession.lastCallDiceCount >= _diceService.diceSession.playingUserCount*5) {
@@ -865,7 +870,7 @@
             && ![_userManager isMe:_diceService.diceSession.lastCallDiceUserId]) {
 //            self.openDiceButton.enabled = YES;
             self.openDiceButton.hidden = NO;
-            [_popupViewManager enableCutItem];
+            [_popupView enableCutItem];
             self.openDiceButton.fontLable.text = NSLS(@"kScrambleToOpenDice");
         }
     }
@@ -1023,7 +1028,7 @@
 
 - (void)gameOver;
 {
-    [_popupViewManager dismissItemListView];
+    [_popupView dismissItemListView];
     self.itemsBoxButton.enabled = NO;
     [self clearAllReciprocol];
     
@@ -1070,7 +1075,7 @@
     
     PointDirection pointDirection = [self popupDirectionWithUserAvatarViewTag:userAvatarView.tag];
     
-    [_popupViewManager popupOpenDiceViewWithOpenType:_diceService.openType
+    [_popupView popupOpenDiceViewWithOpenType:_diceService.openType
                                               atView:userAvatarView 
                                               inView:self.view
                                         aboveSubView:self.popupLevel1View
@@ -1083,7 +1088,7 @@
     
     PointDirection pointDirection = [self popupDirectionWithUserAvatarViewTag:atView.tag];
     
-    [_popupViewManager popupCallDiceViewWithDice:_diceService.lastCallDice
+    [_popupView popupCallDiceViewWithDice:_diceService.lastCallDice
                                            count:_diceService.lastCallDiceCount
                                           atView:atView
                                           inView:self.view
@@ -1095,7 +1100,7 @@
 - (void)popupMessageView:(NSString *)message onUser:(NSString *)userId 
 {
     DiceAvatarView *view = [self avatarViewOfUser:userId];
-    [_popupViewManager popupMessage:message 
+    [_popupView popupMessage:message 
                              atView:view
                              inView:self.view
                        aboveSubView:self.popupLevel2View
@@ -1150,12 +1155,12 @@
 - (IBAction)clickChatButton:(id)sender {
     if (!self.chatButton.selected) {
         self.chatButton.selected = YES;
-        [_popupViewManager popupChatViewAtView:[self selfAvatarView] 
+        [_popupView popupChatViewAtView:[self selfAvatarView] 
                                         inView:self.view 
                                   aboveSubView:self.popupLevel3View
                                      deleagate:self];
     }else {
-        [_popupViewManager dismissChatView];
+        [_popupView dismissChatView];
     }
 }
 
@@ -1187,7 +1192,7 @@
 - (void)didClickMessage:(DiceChatMessage *)message
 {
     self.chatButton.selected = NO;
-    [_popupViewManager dismissChatView];
+    [_popupView dismissChatView];
     
     [self popupMessageView:message.content onUser:[_userManager userId]];
     [_diceService chatWithContent:message.content contentVoiceId:[NSString stringWithFormat:@"%d", message.voiceId]];
@@ -1199,7 +1204,7 @@
 {
     PPDebug(@"didClickExepression:%@", key);
     self.chatButton.selected = NO;
-    [_popupViewManager dismissChatView];
+    [_popupView dismissChatView];
     
     [_diceService chatWithExpression:key];
     
