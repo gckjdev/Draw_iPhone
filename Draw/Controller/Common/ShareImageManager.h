@@ -157,7 +157,7 @@
 
 - (UIImage *)shareDrawButtonImage;
 - (UIImage *)defaultBoardImage;
-
+- (UIImage *)defaultAdBoardImage;
 
 #pragma mark - Feed Image manager.
 - (void)saveFeedImage:(UIImage *)image

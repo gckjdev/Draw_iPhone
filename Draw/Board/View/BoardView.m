@@ -7,7 +7,7 @@
 //
 
 #import "BoardView.h"
-#import "AdBoardView.h"
+//#import "AdBoardView.h"
 #import "WebBoardView.h"
 #import "ImageBoardView.h"
 #import "JumpHandler.h"
@@ -57,8 +57,8 @@
         return nil;
     }
     switch (board.type) {
-        case BoardTypeAd:
-            return [[[AdBoardView alloc] initWithBoard:board] autorelease];
+//        case BoardTypeAd:
+//            return [[[AdBoardView alloc] initWithBoard:board] autorelease];
         case BoardTypeWeb:
             return [[[WebBoardView alloc] initWithBoard:board] autorelease];
         case BoardTypeImage:
@@ -112,28 +112,24 @@
 {
     [super loadView];
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:self.bounds];
-    [imageView setImage:[[ShareImageManager defaultManager] defaultBoardImage]];
     [self addSubview:imageView];
     [imageView release];
     
     [self clearAllAdView];
     
+    
+    UIImage *image = nil;
     if ([[AdService defaultService] isShowAd]){
         UIView* adView1 = [[AdService defaultService] createAdInView:self 
                                                                frame:CGRectMake(0, 0, 320, 50) 
                                                            iPadFrame:CGRectMake(30, 40, 320, 50)];
         
         [_adViewList addObject:adView1];
-        
-//        if ([DeviceDetection isIPAD]){
-//            UIView* adView2 = [[AdService defaultService] createLmAdInView:self 
-//                                                                     frame:CGRectMake(0, 0, 0, 0) 
-//                                                                 iPadFrame:CGRectMake(320+30+10, 40, 320, 50)];
-//            
-//            [_adViewList addObject:adView2];
-//            
-//        }
-    }    
+        image = [[ShareImageManager defaultManager] defaultAdBoardImage];
+    }else{
+        image = [[ShareImageManager defaultManager] defaultBoardImage];
+    }
+    [imageView setImage:image];
 }
 
 - (void)dealloc

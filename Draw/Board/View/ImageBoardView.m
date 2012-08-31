@@ -9,7 +9,7 @@
 #import "ImageBoardView.h"
 #import "HJManagedImageV.h"
 #import "PPApplication.h"
-
+#import "AdService.h"
 @interface ImageBoardView()
 {
     HJManagedImageV *_imageView;
@@ -82,6 +82,26 @@
     if ([self.board isKindOfClass:[ImageBoard class]]) {
         ImageBoard *board = (ImageBoard *)self.board;
         NSString *imageUrl = board.imageUrl;
+        
+        if ([[AdService defaultService] isShowAd]) {
+            imageUrl = board.adImageUrl;
+            
+            [self clearAllAdView];
+            
+            if ([[AdService defaultService] isShowAd]){
+                UIView* adView1 = [[AdService defaultService]
+                                   createAdInView:self 
+                                   adPlatformType:board.platform 
+                                   adPublisherId:board.publishId
+                                   frame:CGRectMake(0, 0, 320, 50) 
+                                   iPadFrame:CGRectMake(30, 40, 320, 50)];
+                
+                [_adViewList addObject:adView1];
+            }
+            
+        }else{
+            imageUrl = board.imageUrl;
+        }
         PPDebug(@"<ImageBoard> load view, image url = %@", imageUrl);
         [_imageView setUrl:[NSURL URLWithString:imageUrl]];        
     }

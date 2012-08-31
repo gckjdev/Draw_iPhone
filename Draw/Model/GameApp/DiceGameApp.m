@@ -60,6 +60,10 @@
     return @"dice_default_board.png";
 }
 
+- (NSString *)defaultAdBoardImage
+{
+    return @"dice_default_board_ad.png";
+}
 
 - (NSString*)sinaAppKey
 {
