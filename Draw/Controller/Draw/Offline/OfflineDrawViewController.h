@@ -68,6 +68,7 @@
 @property (retain, nonatomic) DrawColor* eraserColor;
 @property (retain, nonatomic) DrawColor* bgColor;
 - (IBAction)clickDraftButton:(id)sender;
+- (IBAction)clickRevokeButton:(id)sender;
 
 - (IBAction)changeBackground:(id)sender;
 + (void)startDraw:(Word *)word fromController:(UIViewController*)fromController;
