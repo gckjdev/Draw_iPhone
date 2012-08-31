@@ -179,7 +179,7 @@
 //    [[DiceGameService defaultService] setServerPort:8080];
 
     [[DiceGameService defaultService] connectServer:self];
-    [self showActivityWithText:NSLS(@"kConnectingServer")];
+    [self showActivityWithText:NSLS(@"kRefreshingRoomList")];
     _isJoiningDice = NO;    
 }
 

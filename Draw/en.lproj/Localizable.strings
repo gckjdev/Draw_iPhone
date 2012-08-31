@@ -830,5 +830,7 @@
 "kCoinsNotEnoughAndEnterShop" = "Your coins are not enough. Want to buy some now?";
 "kToolCut" = "R";
 "kToolRollAgain" = "C";
+
+"kRefreshingRoomList" = "Reshing room list...";
 /*********************** 大话骰子国际化字符串结束 *************************/
 

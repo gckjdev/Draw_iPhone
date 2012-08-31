@@ -197,6 +197,8 @@
                                                        frame:CGRectMake(0, 0, 320, 50) 
                                                    iPadFrame:CGRectMake(448, 0, 320, 50)
                                                      useLmAd:YES];
+    
+    [self updateAllPlayersAvatar];
 }
 
 - (void)viewDidUnload
@@ -228,13 +230,6 @@
     [self setPopupLevel3View:nil];
     [super viewDidUnload];
 }
-
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
-    [self updateAllPlayersAvatar];
-}
-
 
 #define TAG_TOOL_BUTTON 12080101
 - (IBAction)clickToolButton:(id)sender {
@@ -307,19 +302,6 @@
     button.selected = NO;
     
     [self useItem:item.type itemName:item.itemName userId:_userManager.userId];
-
-//    switch (item.type) {
-//        case ItemTypeRollAgain:
-//            [self useItem:item.type itemName:item.itemName userId:_userManager.userId];
-//            break;
-//            
-//        case ItemTypeCut:
-//            [self openDice:2];
-//            break;
-//            
-//        default:
-//            break;
-//    }
     
     [_accountService consumeItem:item.type amount:1]; 
 }
@@ -593,39 +575,13 @@
 - (void)registerDiceGameNotifications
 {    
     [self registerDiceGameNotificationWithName:NOTIFICATION_JOIN_GAME_RESPONSE 
-                                    usingBlock:^(NSNotification *notification) {                       
+                                    usingBlock:^(NSNotification *notification) {                    
                                     }];
 
     
     [self registerDiceGameNotificationWithName:NOTIFICATION_ROOM 
                             usingBlock:^(NSNotification *notification) {    
-                                
-//         GameMessage* message = [CommonGameNetworkService userInfoToMessage:[notification userInfo]];
-//         RoomNotificationRequest* roomNotification = [message roomNotificationRequest];
-//         
-//         if ([roomNotification sessionsChangedList]){
-//             for (PBGameSessionChanged* sessionChanged in [roomNotification sessionsChangedList]){
-//                 int sessionId = [sessionChanged sessionId];
-//                 if (sessionId == _diceService.session.sessionId){
-//                     // split notification
-//                     PBGameSessionChanged* changeData = sessionChanged;
-//                     if ([changeData usersAddedList]){
-//                         for (PBGameUser* user in [changeData usersAddedList]){
-//                             // has new user
-//                             
-//                         }
-//                     }
-//                     
-//                     if ([changeData userIdsDeletedList]){
-//                         for (NSString* userId in [changeData userIdsDeletedList]){
-//                             // has deleted user
-//                             [self clearUserResult:userId];
-//                         }
-//                     }
-//                     
-//                 }
-//             }
-//         }
+
          
          [self roomChanged];
      }];
@@ -714,8 +670,6 @@
                                     }];
 }
 
-
-
 - (void)someoneChangeDice
 {
     if (_diceService.diceSession.isMeAByStander) {
@@ -726,7 +680,8 @@
 - (void)showOtherBells
 {
     for (PBGameUser *user in _diceService.diceSession.playingUserList) {
-        [[self bellViewOfUser:user.userId] setHidden:NO];
+        UIView *bell = [self bellViewOfUser:user.userId];
+        bell.hidden = NO;
     }
 }
 
