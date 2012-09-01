@@ -57,12 +57,12 @@
 
 - (NSString*)defaultBroadImage
 {
-    return @"dice_default_board.png";
+    return @"dice_default_board.jpg";
 }
 
 - (NSString *)defaultAdBoardImage
 {
-    return @"dice_default_board_ad.png";
+    return @"dice_default_board_ad.jpg";
 }
 
 - (NSString*)sinaAppKey
