@@ -63,6 +63,7 @@
 @property (retain, nonatomic) IBOutlet ColorView *colorButton;
 @property (retain, nonatomic) Word *word;
 @property (retain, nonatomic) IBOutlet UILabel *titleLabel;
+@property (retain, nonatomic) IBOutlet UIButton *draftButton;
 @property (assign, nonatomic) id<OfflineDrawDelegate> delegate;
 @property (retain, nonatomic) NSString *targetUid;
 @property (retain, nonatomic) DrawColor* eraserColor;
