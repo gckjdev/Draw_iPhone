@@ -29,7 +29,7 @@
 
 @end
 
-static DicePopupViewManager *_instance = nil;
+//static DicePopupViewManager *_instance = nil;
 
 @implementation DicePopupViewManager
 
@@ -47,14 +47,14 @@ static DicePopupViewManager *_instance = nil;
     [super dealloc];
 }
 
-+ (id)defaultManager
-{
-    if (_instance == nil) {
-        _instance = [[DicePopupViewManager alloc] init];
-    }
-    
-    return _instance;
-}
+//+ (id)defaultManager
+//{
+//    if (_instance == nil) {
+//        _instance = [[DicePopupViewManager alloc] init];
+//    }
+//    
+//    return _instance;
+//}
 
 - (id)init
 {

@@ -316,8 +316,6 @@
 
 - (void)connectServer
 {
-
-    
     _isTryJoinGame = YES;    
 
     [[DiceGameService defaultService] connectServer:self];

@@ -36,6 +36,15 @@ int main(int argc, char *argv[])
  － 修改应用名称
  
  Test
- － 
+ － iPhone
+ － iPad
+ － iPhone 4.3
+ 
+ 注册
+ 设置
+ 快速开始
+ 房间进入
+ 帮助
+ 商店购买
  
 */

@@ -11,8 +11,8 @@
 typedef enum{    
     BoardTypeDefault = 1,
     BoardTypeWeb = 2,
-    BoardTypeAd = 3,
-    BoardTypeImage = 4    
+    BoardTypeImage = 3,
+//    BoardTypeImage = 4    
 }BoardType;
 
 typedef enum{    
@@ -53,16 +53,6 @@ typedef enum{
 @end
 
 
-
-@interface AdBoard : Board {
-    NSInteger _number;
-    NSArray *_adList;
-}
-@property(nonatomic, retain)NSArray *adList;
-@property(nonatomic, assign)NSInteger number;
-
-@end
-
 @interface WebBoard : Board {
     WebType _webType;
     NSString * _localUrl;
@@ -81,23 +71,20 @@ typedef enum{
 
 @interface ImageBoard : Board {
     NSString * _imageUrl;
+    NSString * _adImageUrl;
     NSString *_clickUrl;
-}
-@property(nonatomic, retain)NSString *imageUrl;
-@property(nonatomic, retain)NSString *clickUrl;
-
-@end
-
-
-#pragma mark - an inner class used for AdBoard
-
-@interface AdObject : NSObject{
     NSInteger _platform;
     NSString *_publishId;
+
 }
+@property(nonatomic, retain)NSString *imageUrl;
+@property(nonatomic, retain)NSString *adImageUrl;
+@property(nonatomic, retain)NSString *clickUrl;
 @property(nonatomic, assign)NSInteger platform;
 @property(nonatomic, retain)NSString *publishId;
 
-- (id)initWithDict:(NSDictionary *)dict;
+
 @end
+
+
 

@@ -60,6 +60,11 @@
     return @"draw_default_board.png";
 }
 
+- (NSString*)defaultAdBoardImage
+{
+    //TODO use the correct board image.
+    return @"draw_default_board.png";
+}
 - (NSString*)sinaAppKey
 {
     return @"2831348933";    

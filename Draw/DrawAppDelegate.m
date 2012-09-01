@@ -35,7 +35,7 @@
 #import "FriendService.h"
 #import "UIUtils.h"
 #import "LevelService.h"
-#import "YoumiWallService.h"
+//#import "YoumiWallService.h"
 #import "ChatDetailController.h"
 #import "NotificationManager.h"
 #import "LmWallService.h"
@@ -50,8 +50,8 @@
 
 NSString* GlobalGetServerURL()
 {    
-//    return [ConfigManager getAPIServerURL];
-    return @"http://192.168.1.198:8000/api/i?";    
+    return [ConfigManager getAPIServerURL];
+//    return @"http://192.168.1.198:8000/api/i?";    
 }
 
 NSString* GlobalGetTrafficServerURL()
@@ -314,9 +314,9 @@ NSString* GlobalGetBoardServerURL()
         if ([ConfigManager useLmWall]){
             [[LmWallService defaultService] queryScore];            
         }
-        else{
-            [[YoumiWallService defaultService] queryPoints];
-        }
+//        else{
+//            [[YoumiWallService defaultService] queryPoints];
+//        }
     }
     
     [[DrawGameService defaultService] clearDisconnectTimer];

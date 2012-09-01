@@ -729,6 +729,12 @@ enum{
     [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kSaveSucc") delayTime:1.5 isSuccessful:YES];
 }
 
+- (IBAction)clickRevokeButton:(id)sender {
+    if ([drawView canRevoke]) {
+        [drawView revoke];
+    }
+}
+
 - (IBAction)changeBackground:(id)sender {
     BOOL show = pickBGColorView.dismiss;
     [self disMissAllPickViews:YES];

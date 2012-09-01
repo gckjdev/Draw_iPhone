@@ -158,7 +158,7 @@
         ([LocaleUtils isChina] == YES || 
          [LocaleUtils isOtherChina] == YES)){   
             
-        if ([MobClickUtils getIntValueByKey:@"ENABLE_WALL" defaultValue:0] == 1){            
+        if ([MobClickUtils getIntValueByKey:@"ENABLE_WALL" defaultValue:1] == 1){            
             return YES;
         }            
         else{

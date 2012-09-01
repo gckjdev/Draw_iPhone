@@ -796,10 +796,12 @@
 "kWhoseRoom" = "%@的房间";
 "kSessionFull" = "房间已满";
 
-"kRollAgain" = "摇";
+"kItemRollAgain" = "重摇道具";
+"kItemCut" = "劈道具";
+"kRollAgain" = "搖";
 "kCut" = "劈";
-"kRollAgainDescription" = "使用该道具可以重摇一次骰子。";
-"kCutDescription" = "使用该道具则立刻开骰，并且赌注加倍。";
+"kRollAgainDescription" = "使用【重摇】道具可以重摇一次骰子。";
+"kCutDescription" = "使用【劈】道具则立刻开骰，并且赌注翻倍。";
 
 "kMoreRoom" = "更多...";
 "kMoreRoomLoading" = "加载中...";
@@ -844,5 +846,8 @@
 
 "kToolCut" = "劈";
 "kToolRollAgain" = "摇";
+
+"kRefreshingRoomList" = "刷新房间列表...";
+
 /*********************** 大话骰子国际化字符串结束 *************************/
 

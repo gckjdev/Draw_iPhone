@@ -774,30 +774,31 @@
 "kOpenDiceMessage" = "Challenge";
 "kScrambleToOpenDiceMessage" = "Challenge";
 
-"kWaittingForNextTurn" = "Watting...";
+"kWaittingForNextTurn" = "Waiting...";
 "kGameBegin" = "Game start...";
 "kNearBy" = "NearBy";
 "kWhoseRoom" = "%@'s room";
 
 "kSessionFull" = "Room is full";
 
-
+"kItemRollAgain" = "reroll item";
+"kItemCut" = "cut item";
 "kRollAgain" = "reroll";
-"kRollAgainDescription" = "use this item to roll dice again to change your dices.";
+"kRollAgainDescription" = "Use 【Reroll】 item to roll dice again and change your dices. Good luck!";
 "kCut" = "cut";
-"kCutDescription" = "for twice coins.";
+"kCutDescription" = "Use 【Cut】 item for double coins.";
 
 "kMoreRoom" = "More...";
 "kMoreRoomLoading" = "Loading...";
 
-"kNoMatterWhatYouCallIWillOpen" = "No matter what, I will open";
-"kDoYouDareToOpen" = "Do you dare to open";
-"kBelieveItOrNotAnywayIBelieved" = "Believe it or not, I believed";
+"kNoMatterWhatYouCallIWillOpen" = "I will challenge you in any case.";
+"kDoYouDareToOpen" = "Bite me";
+"kBelieveItOrNotAnywayIBelieved" = "I believe it, whether you believe it or not.";
 "kAttentionWilds" = "Attention for wilds";
 "kDontGoAndPlayMore" = "Don't go, play for a while";
-"kCheatMeNotSoEasy" = "Cheat Me? Not so easy";
+"kCheatMeNotSoEasy" = "Trick Me? Not so easy";
 "kYouAreFooled" = "Ha ha, you are fooled";
-"kIWantToGoSeeUNextTime" = "I want to go, see you next time";
+"kIWantToGoSeeUNextTime" = "I gonna go, see you next time";
 "kFastEntry" = "Quick Start";
 "kDiceEnterPassword" = "room password(optional)";
 
@@ -805,7 +806,7 @@
 
 "kDiceRoom" = "Liar Dice Room %d";
 
-"kWaitingForMoreUsers" = "Watting for more player...";
+"kWaitingForMoreUsers" = "Waiting for more player...";
 
 "kDice_share_message_body" = "I found a very funny game recently. Its name is '%@'.\nHere is the AppStore download URL:\n%@";
 "kDice_email_subject" = "Share a funny iOS game - Liar Dice";
@@ -814,21 +815,22 @@
 "kCreatingRoom" = "Creating the room";
 
 "kDiceShop" = "Liar Dice Shop";
-"kNotEnoughCoinToContinue" = "You have no enough coin to continue game";
+"kNotEnoughCoinToContinue" = "You have not enough coin to continue.";
 
 "kDiceRoomListTitle" = "Liar Dice";
 "kDiceGameRules"= "Game Rules";
 "kDicePropDescription" = "Prop";
-"kDiceWilds" = "W";
+"kDiceWilds" = " W ";
 
+"kDiceMenuStart" = "START"; 
+"kDiceMenuHelp" = "HELP"; 
+"kDiceMenuRoom" = "ROOM"; 
+"kDiceMenuShop" = "SHOP"; 
 
-"kDiceMenuStart" = "Start"; 
-"kDiceMenuHelp" = "Help"; 
-"kDiceMenuRoom" = "Room"; 
-"kDiceMenuShop" = "Shop"; 
-
-"kCoinsNotEnoughAndEnterShop" = "Your coins are not enough. Want to buy some now?";
+"kCoinsNotEnoughAndEnterShop" = "Your coins are not enough. Buy some now?";
 "kToolCut" = "R";
 "kToolRollAgain" = "C";
+
+"kRefreshingRoomList" = "Loading room list...";
 /*********************** 大话骰子国际化字符串结束 *************************/
 

@@ -246,6 +246,17 @@
     return img;
 }
 
+- (BOOL)canRevoke
+{
+    return [_drawActionList count] > 0;
+}
+- (void)revoke
+{
+    if ([self canRevoke]) {
+        [_drawActionList removeLastObject];
+        [self setNeedsDisplay];        
+    }
+}
 
 - (BOOL)isViewBlank
 {

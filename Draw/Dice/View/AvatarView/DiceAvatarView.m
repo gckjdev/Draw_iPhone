@@ -292,6 +292,7 @@
 //    [_rewardView.layer addAnimation:raise forKey:@"raise"];
     
     [_rewardCoinLabel setText:[NSString stringWithFormat:@"%+d",coinsCount]];
+    _rewardCoinLabel.textColor = (coinsCount >= 0) ? [UIColor redColor] : [UIColor greenColor];
     _rewardView.center = CGPointMake(self.frame.size.width/2, self.frame.size.height + _rewardView.frame.size.height);
     _rewardView.alpha = 1;
      _rewardView.hidden = NO;
