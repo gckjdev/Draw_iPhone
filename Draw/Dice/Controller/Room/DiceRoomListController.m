@@ -165,10 +165,10 @@
 - (void)connectServer
 {
     // Internet Test Server
-    [[DiceGameService defaultService] setServerAddress:@"106.187.89.232"];
-    [[DiceGameService defaultService] setServerPort:8018];
+//    [[DiceGameService defaultService] setServerAddress:@"106.187.89.232"];
+//    [[DiceGameService defaultService] setServerPort:8018];
 
-//    [[DiceGameService defaultService] setServerAddress:@"192.168.1.9"];
+//    [[DiceGameService defaultService] setServerAddress:@"192.168.1.198"];
 //    [[DiceGameService defaultService] setServerPort:8080];
 
     [[DiceGameService defaultService] connectServer:self];
@@ -465,10 +465,8 @@
 
 - (void)showWall
 {        
-    if ([ConfigManager useLmWall]){    
-        [UIUtils alertWithTitle:@"免费金币获取提示" msg:@"下载免费应用即可获取金币！下载完应用一定要打开才可以获得奖励哦！"];
-        [[LmWallService defaultService] show:self];
-    }
+    [UIUtils alertWithTitle:@"免费金币获取提示" msg:@"下载免费应用即可获取金币！下载完应用一定要打开才可以获得奖励哦！"];
+    [[LmWallService defaultService] show:self];
 }
 
 @end

@@ -47,17 +47,17 @@ static DiceFontManager *_defaultManager = nil;
 
 + (void)unZipFiles
 {
-    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-    if (queue == NULL) {
-        queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0);
-    }
+//    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+//    if (queue == NULL) {
+//        queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0);
+//    }
+//    
+//    if (queue == NULL) {
+//        PPDebug(@"error:<DiceFontManager> fail to get queue");
+//        return;
+//    }
     
-    if (queue == NULL) {
-        PPDebug(@"error:<DiceFontManager> fail to get queue");
-        return;
-    }
-    
-    dispatch_async(queue, ^{
+//    dispatch_async(queue, ^{
         
         if ([DiceFontManager isExistsFontFile]){
             PPDebug(@"<DiceFontManager>: font file is exists");
@@ -94,7 +94,8 @@ static DiceFontManager *_defaultManager = nil;
             PPDebug(@"<DiceFontManager>:unZipFiles successfully");
         }
         [FileUtil removeFile:zipPath];
-    });
+    
+//    });
     
 }
 
