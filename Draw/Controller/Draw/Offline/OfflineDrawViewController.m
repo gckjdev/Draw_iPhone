@@ -88,6 +88,7 @@
 @synthesize colorButton;
 @synthesize word = _word;
 @synthesize titleLabel;
+@synthesize draftButton;
 @synthesize delegate;
 @synthesize targetUid = _targetUid;
 @synthesize eraserColor = _eraserColor;
@@ -144,6 +145,7 @@
     //    [autoReleasePool drain];
     //    autoReleasePool = nil;
     
+    [draftButton release];
     [super dealloc];
 }
 
@@ -332,6 +334,13 @@ enum{
     [self.submitButton setBackgroundImage:[shareImageManager orangeImage] forState:UIControlStateNormal];
 }
 
+- (void)initDraftButton
+{
+    if (targetType == TypeGraffiti) {
+        self.draftButton.hidden = YES;
+    }
+}
+
 #pragma mark - View lifecycle
 
 - (void)viewDidLoad
@@ -343,6 +352,7 @@ enum{
     [self initPens];
     [self initWordLabel];
     [self initSubmitButton];
+    [self initDraftButton];
     pickEraserView.hidden = NO;
     [self.view bringSubviewToFront:pickEraserView];
     _unDraftPaintCount = 0;
@@ -363,6 +373,7 @@ enum{
     [self setColorButton:nil];
     [self setTitleLabel:nil];
     [self setSubmitButton:nil];
+    [self setDraftButton:nil];
     [super viewDidUnload];
 }
 

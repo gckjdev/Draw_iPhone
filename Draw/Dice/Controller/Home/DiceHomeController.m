@@ -20,13 +20,24 @@
 #import "DiceGameService.h"
 #import "CoinShopController.h"
 #import "AdService.h"
+#import "TimeUtils.h"
+#import "AccountService.h"
+#import "AnimationManager.h"
+#import "CommonMessageCenter.h"
+#import "CMPopTipView.h"
+#import "DiceConfigManager.h"
+#import "ConfigManager.h"
+#import "LmWallService.h"
+
+#define KEY_LAST_AWARD_DATE     @"last_award_day"
+
+#define AWARD_DICE_TAG      20120901
 
 @interface DiceHomeController()
 {
     BoardPanel *_boardPanel;
     NSTimeInterval interval;
     BOOL hasGetLocalBoardList;
-
 }
 
 - (void)updateBoardPanelWithBoards:(NSArray *)boards;
@@ -77,6 +88,12 @@
     
     [self.view addSubview:_bottomMenuPanel];
 }
+
+- (void)playBGM
+{
+    [[AudioManager defaultManager] setBackGroundMusicWithName:@"dice.m4a"];
+    [[AudioManager defaultManager] backgroundMusicStart];
+}
 #pragma mark - View lifecycle
 
 - (void)viewDidLoad
@@ -87,6 +104,8 @@
 //    [self loadBoards];
     [self loadMainMenu];
     [self loadBottomMenu];
+    [self playBGM];
+    [self checkIn];
 
 }
 
@@ -158,6 +177,111 @@
     
 }
 
+#pragma mark - code for rolling award dice
+
+- (void)clickDice:(id)sender
+{
+    UIButton* btn = (UIButton*)sender;
+    [[CommonMessageCenter defaultCenter] postMessageWithText:[NSString stringWithFormat:@"you pick up %d coin",_awardDicePoint] delayTime:2 isHappy:YES];
+    [btn removeFromSuperview];
+}
+
+- (void)updateTimer:(id)sender
+{
+    UIButton* btn = (UIButton*)[self.view viewWithTag:AWARD_DICE_TAG];
+    _awardDicePoint = rand()%6+1;
+    UIImage* image = [UIImage imageNamed:[NSString stringWithFormat:@"open_bell_%dbig.png", _awardDicePoint]];
+    [btn setImage:image forState:UIControlStateNormal];
+}
+
+- (void)startRollDiceTimer
+{
+    _rollAwardDiceTimer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(updateTimer:) userInfo:nil repeats:YES];
+}
+
+- (void)killRollDiceTimer
+{
+    if (_rollAwardDiceTimer) {
+        if ([_rollAwardDiceTimer isValid]) {
+            [_rollAwardDiceTimer invalidate];
+        }
+        _rollAwardDiceTimer = nil;
+    }
+}
+
+- (void)rollAwardDice
+{
+    UIButton* diceBtn = [[[UIButton alloc] initWithFrame:CGRectMake(0, 0, 50, 55)] autorelease];
+    [diceBtn setCenter:CGPointMake(self.view.frame.size.width-50, self.view.frame.size.height-50)];
+    [self.view addSubview:diceBtn];
+    [diceBtn addTarget:self action:@selector(clickDice:) forControlEvents:UIControlEventTouchUpInside];
+    diceBtn.tag = AWARD_DICE_TAG;
+    CAAnimation* rolling = [AnimationManager rotationAnimationWithRoundCount:50 duration:2.5];
+    rolling.removedOnCompletion = NO;
+    rolling.delegate = self;
+    [diceBtn.layer addAnimation:rolling forKey:@""];
+    
+    CAKeyframeAnimation *pathAnimation = [CAKeyframeAnimation animationWithKeyPath:@"position"];
+    pathAnimation.calculationMode = kCAAnimationPaced;
+    pathAnimation.fillMode = kCAFillModeForwards;
+    pathAnimation.removedOnCompletion = NO;
+    CGPoint endPoint = CGPointMake(self.view.frame.size.width-50, self.view.frame.size.height-50);
+    CGMutablePathRef curvedPath = CGPathCreateMutable();
+    CGPathMoveToPoint(curvedPath, NULL, self.view.frame.size.width/4, 100);
+    CGPathAddCurveToPoint(curvedPath, NULL, endPoint.x*0.6, 0, endPoint.x*0.75, 0, endPoint.x, endPoint.y);
+
+    pathAnimation.path = curvedPath;
+    CGPathRelease(curvedPath);
+    pathAnimation.duration = 2.5;
+    pathAnimation.delegate = self;
+    
+    [diceBtn.layer addAnimation:pathAnimation forKey:@""];
+    
+    
+    [self startRollDiceTimer];
+}
+
+- (int)checkIn
+{  
+    
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    //TODO:the code below must be recover after test finish
+//    NSDate* lastCheckInDate = [userDefaults objectForKey:KEY_LAST_AWARD_DATE];
+//    if (lastCheckInDate != nil && isLocalToday(lastCheckInDate)){
+//        // already check in, return -1
+//        PPDebug(@"<checkIn> but already do it today... come tomorrow :-)");
+//        return -1;
+//    }
+    
+    // random get some coins
+    int coins = 0;
+    PPDebug(@"<checkIn> got %d coins", coins);
+    [self rollAwardDice]; 
+    
+    // update check in today flag
+    [userDefaults setObject:[NSDate date] forKey:KEY_LAST_AWARD_DATE];
+    [userDefaults synchronize];    
+    return coins;
+}
+
+#pragma mark - animation delegate
+- (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag
+{
+    [self killRollDiceTimer];
+    
+    HKGirlFontLabel* label = [[[HKGirlFontLabel alloc] initWithFrame:CGRectMake(0, 0, 50, 25) pointSize:13] autorelease];
+    [label setText:NSLS(@"kClickMe")];
+    CMPopTipView* view = [[[CMPopTipView alloc] initWithCustomView:label needBubblePath:NO] autorelease];
+    [view setBackgroundColor:[UIColor yellowColor]];
+    [view presentPointingAtView:[self.view viewWithTag:AWARD_DICE_TAG] inView:self.view animated:YES];
+    [UIView animateWithDuration:4 animations:^{
+        view.alpha = 0;
+    } completion:^(BOOL finished) {
+        [view removeFromSuperview];
+    }];
+}
+
+
 #pragma mark - Game Notification
 
 - (void)registerDiceGameNotificationWithName:(NSString *)name 
@@ -197,20 +321,14 @@
     [self unregisterAllNotifications];
 }
 
-
-- (BOOL)meetJoinGameCondiction
+- (void)showCoinsNotEnoughView
 {
-    if ([[AccountService defaultService] getBalance] <= DICE_THRESHOLD_COIN) {
-        NSString* message = [NSString stringWithFormat:NSLS(@"kCoinsNotEnoughAndEnterShop"), DICE_THRESHOLD_COIN];
-        CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"kNotEnoughCoin") 
-                                                           message:message
-                                                             style:CommonDialogStyleDoubleButton 
-                                                          delegate:self 
-                                                             theme:CommonDialogThemeDice];
-        [dialog showInView:self.view];
-        return NO;
-    }
-    return YES;
+    CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"kNotEnoughCoin") 
+                                                       message:[DiceConfigManager coinsNotEnoughNote]
+                                                         style:CommonDialogStyleDoubleButton 
+                                                      delegate:self 
+                                                         theme:CommonDialogThemeDice];
+    [dialog showInView:self.view];
 }
 
 - (void)connectServer
@@ -229,11 +347,13 @@
         
     if (_isTryJoinGame){
         [[DiceGameService defaultService] joinGameRequestWithCondiction:^BOOL{
-            if ([self meetJoinGameCondiction]) {
+            if ([DiceConfigManager meetJoinGameCondiction]) {
                 [self showActivityWithText:NSLS(@"kJoiningGame")];
                 return YES;
-            };
-            return NO;
+            }else {
+                [self showCoinsNotEnoughView];
+                return NO;
+            }
         }];
     }    
 }
@@ -252,13 +372,26 @@
 #pragma mark - common dialog delegate
 - (void)clickOk:(CommonDialog *)dialog
 {
-    CoinShopController* controller = [[[CoinShopController alloc] init] autorelease];
-    [self.navigationController pushViewController:controller animated:YES]; 
+    if ([ConfigManager wallEnabled]) {
+        [self showWall];
+    }else {
+        CoinShopController* controller = [[[CoinShopController alloc] init] autorelease];
+        [self.navigationController pushViewController:controller animated:YES]; 
+    }
 }
 
 - (void)clickBack:(CommonDialog *)dialog
 {
     
 }
+
+- (void)showWall
+{        
+    if ([ConfigManager useLmWall]){    
+        [UIUtils alertWithTitle:@"免费金币获取提示" msg:@"下载免费应用即可获取金币！下载完应用一定要打开才可以获得奖励哦！"];
+        [[LmWallService defaultService] show:self];
+    }
+}
+
 
 @end

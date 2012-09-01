@@ -26,6 +26,7 @@
 #import "CommonUserInfoView.h"
 #import "ConfigManager.h"
 #import "NotificationManager.h"
+#import "DiceUserInfoView.h"
 
 @interface MyFriendsController ()
 
@@ -309,7 +310,22 @@
                              withRowAnimation:UITableViewRowAnimationFade];
             editButton.hidden = ([_selectedSet count] == 0);
         } else {
-            [CommonUserInfoView showUser:friend infoInView:self];
+            if (isDrawApp()) {
+                [CommonUserInfoView showUser:friend infoInView:self];
+            }
+            if (isDiceApp()) {
+                [DiceUserInfoView showUser:friend.friendUserId 
+                                  nickName:friend.nickName 
+                                    avatar:friend.avatar 
+                                    gender:friend.gender
+                                  location:friend.location 
+                                     level:friend.level.intValue 
+                                   hasSina:(friend.sinaId != nil) 
+                                     hasQQ:(friend.qqId != nil) 
+                               hasFacebook:(friend.facebookId != nil) 
+                                infoInView:self];
+            }
+            
         }
     }
 }

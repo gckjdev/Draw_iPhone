@@ -18,8 +18,9 @@
 {
     MenuPanel *_menuPanel;
     BottomMenuPanel *_bottomMenuPanel;
-
+    NSTimer* _rollAwardDiceTimer;
     BOOL _isTryJoinGame;
+    int _awardDicePoint;
 }
 
 @property (retain, nonatomic) MenuPanel *menuPanel;
