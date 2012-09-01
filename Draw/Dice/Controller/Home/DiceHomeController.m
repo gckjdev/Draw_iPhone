@@ -23,6 +23,7 @@
 #import "AccountService.h"
 #import "AnimationManager.h"
 #import "CommonMessageCenter.h"
+#import "CMPopTipView.h"
 
 #define KEY_LAST_AWARD_DATE     @"last_award_day"
 
@@ -168,6 +169,8 @@
     
 }
 
+#pragma mark - code for rolling award dice
+
 - (void)clickDice:(id)sender
 {
     UIButton* btn = (UIButton*)sender;
@@ -234,6 +237,7 @@
 {  
     
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    //TODO:the code below must be recover after test finish
 //    NSDate* lastCheckInDate = [userDefaults objectForKey:KEY_LAST_AWARD_DATE];
 //    if (lastCheckInDate != nil && isLocalToday(lastCheckInDate)){
 //        // already check in, return -1
@@ -256,6 +260,17 @@
 - (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag
 {
     [self killRollDiceTimer];
+    
+    HKGirlFontLabel* label = [[[HKGirlFontLabel alloc] initWithFrame:CGRectMake(0, 0, 50, 25) pointSize:13] autorelease];
+    [label setText:NSLS(@"kClickMe")];
+    CMPopTipView* view = [[[CMPopTipView alloc] initWithCustomView:label needBubblePath:NO] autorelease];
+    [view setBackgroundColor:[UIColor yellowColor]];
+    [view presentPointingAtView:[self.view viewWithTag:AWARD_DICE_TAG] inView:self.view animated:YES];
+    [UIView animateWithDuration:4 animations:^{
+        view.alpha = 0;
+    } completion:^(BOOL finished) {
+        [view removeFromSuperview];
+    }];
 }
 
 
