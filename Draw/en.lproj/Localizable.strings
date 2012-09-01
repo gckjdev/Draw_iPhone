@@ -827,7 +827,9 @@
 "kDiceMenuRoom" = "ROOM"; 
 "kDiceMenuShop" = "SHOP"; 
 
-"kCoinsNotEnoughAndEnterShop" = "Your coins are not enough. Buy some now?";
+"kCoinsNotEnoughAndEnterCoinsShop" = "Your coins are not enough. Buy some now?";
+"kCoinsNotEnoughAndGetFreeCoins" = "Your coins are not enough. get some free coins now?";
+
 "kToolCut" = "R";
 "kToolRollAgain" = "C";
 

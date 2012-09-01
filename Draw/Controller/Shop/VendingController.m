@@ -234,12 +234,6 @@ static VendingController* staticVendingController = nil;
         [UIUtils alertWithTitle:@"免费金币获取提示" msg:@"下载免费应用即可获取金币！下载完应用一定要打开才可以获得奖励哦！"];
         [[LmWallService defaultService] show:self];
     }
-//    else{
-//        [MobClick event:@"SHOW_YOUMI_WALL"];
-//        YoumiWallController* controller = [[YoumiWallController alloc] init];
-//        [self.navigationController pushViewController:controller animated:YES];
-//        [controller release];
-//    }
 }
 
 - (IBAction)clickBack:(id)sender

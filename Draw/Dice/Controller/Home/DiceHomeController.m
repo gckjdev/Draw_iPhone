@@ -24,6 +24,9 @@
 #import "AnimationManager.h"
 #import "CommonMessageCenter.h"
 #import "CMPopTipView.h"
+#import "DiceConfigManager.h"
+#import "ConfigManager.h"
+#import "LmWallService.h"
 
 #define KEY_LAST_AWARD_DATE     @"last_award_day"
 
@@ -34,7 +37,6 @@
     BoardPanel *_boardPanel;
     NSTimeInterval interval;
     BOOL hasGetLocalBoardList;
-
 }
 
 - (void)updateBoardPanelWithBoards:(NSArray *)boards;
@@ -313,20 +315,14 @@
     [self unregisterAllNotifications];
 }
 
-
-- (BOOL)meetJoinGameCondiction
+- (void)showCoinsNotEnoughView
 {
-    if ([[AccountService defaultService] getBalance] <= DICE_THRESHOLD_COIN) {
-        NSString* message = [NSString stringWithFormat:NSLS(@"kCoinsNotEnoughAndEnterShop"), DICE_THRESHOLD_COIN];
-        CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"kNotEnoughCoin") 
-                                                           message:message
-                                                             style:CommonDialogStyleDoubleButton 
-                                                          delegate:self 
-                                                             theme:CommonDialogThemeDice];
-        [dialog showInView:self.view];
-        return NO;
-    }
-    return YES;
+    CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"kNotEnoughCoin") 
+                                                       message:[DiceConfigManager coinsNotEnoughNote]
+                                                         style:CommonDialogStyleDoubleButton 
+                                                      delegate:self 
+                                                         theme:CommonDialogThemeDice];
+    [dialog showInView:self.view];
 }
 
 - (void)connectServer
@@ -345,11 +341,13 @@
         
     if (_isTryJoinGame){
         [[DiceGameService defaultService] joinGameRequestWithCondiction:^BOOL{
-            if ([self meetJoinGameCondiction]) {
+            if ([DiceConfigManager meetJoinGameCondiction]) {
                 [self showActivityWithText:NSLS(@"kJoiningGame")];
                 return YES;
-            };
-            return NO;
+            }else {
+                [self showCoinsNotEnoughView];
+                return NO;
+            }
         }];
     }    
 }
@@ -368,13 +366,26 @@
 #pragma mark - common dialog delegate
 - (void)clickOk:(CommonDialog *)dialog
 {
-    CoinShopController* controller = [[[CoinShopController alloc] init] autorelease];
-    [self.navigationController pushViewController:controller animated:YES]; 
+    if ([ConfigManager wallEnabled]) {
+        [self showWall];
+    }else {
+        CoinShopController* controller = [[[CoinShopController alloc] init] autorelease];
+        [self.navigationController pushViewController:controller animated:YES]; 
+    }
 }
 
 - (void)clickBack:(CommonDialog *)dialog
 {
     
 }
+
+- (void)showWall
+{        
+    if ([ConfigManager useLmWall]){    
+        [UIUtils alertWithTitle:@"免费金币获取提示" msg:@"下载免费应用即可获取金币！下载完应用一定要打开才可以获得奖励哦！"];
+        [[LmWallService defaultService] show:self];
+    }
+}
+
 
 @end

@@ -10,4 +10,7 @@
 
 @interface DiceConfigManager : NSObject
 
++ (BOOL)meetJoinGameCondiction;
++ (NSString *)coinsNotEnoughNote;
+
 @end
