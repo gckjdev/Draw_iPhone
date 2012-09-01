@@ -19,6 +19,7 @@
 #import "UserManager.h"
 #import "DiceGameService.h"
 #import "CoinShopController.h"
+#import "AdService.h"
 #import "TimeUtils.h"
 #import "AccountService.h"
 #import "AnimationManager.h"
@@ -97,8 +98,10 @@
 
 - (void)viewDidLoad
 {    
+    [[AdService defaultService] setViewController:self];
+    
     [super viewDidLoad];
-    [self loadBoards];
+//    [self loadBoards];
     [self loadMainMenu];
     [self loadBottomMenu];
     [self playBGM];
@@ -108,6 +111,9 @@
 
 - (void)viewDidAppear:(BOOL)animated
 {
+    [[AdService defaultService] setViewController:self];    
+    [self loadBoards];
+
     [self registerDiceGameNotification];    
     [super viewDidAppear:animated];
 }

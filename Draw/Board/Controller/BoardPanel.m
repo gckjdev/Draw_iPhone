@@ -70,6 +70,7 @@
     for (Board *board in boardList) {
         BoardView *boardView = [BoardView createBoardView:board];
         if (boardView) {
+            boardView.viewController = self.controller;
             boardView.delegate = self;
             boardView.frame = [self frameForIndex:i ++ boardView:boardView];
             [boardView loadView];

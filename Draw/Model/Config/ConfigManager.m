@@ -172,7 +172,7 @@
 
 + (BOOL)useLmWall
 {
-    return ([MobClickUtils getIntValueByKey:@"WALL_TYPE" defaultValue:1] == 1);
+    return ([MobClickUtils getIntValueByKey:@"WALL_TYPE" defaultValue:2] == 1);
 }
 
 + (BOOL)removeAdByIAP
