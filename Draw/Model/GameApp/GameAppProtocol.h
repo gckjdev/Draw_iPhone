@@ -23,6 +23,7 @@
 - (NSString*)lmAdPublisherId;
 - (NSString*)aderAdPublisherId;
 - (NSString*)mangoAdPublisherId;
+- (NSString*)wanpuAdPublisherId;
 
 - (NSString*)sinaAppKey;
 - (NSString*)sinaAppSecret;
@@ -32,5 +33,7 @@
 
 - (NSString*)facebookAppKey;
 - (NSString*)facebookAppSecret;
+
+
 
 @end

@@ -17,6 +17,7 @@
 @implementation BoardView
 @synthesize board = _board;
 @synthesize delegate = _delegate;
+@synthesize viewController = _viewController;
 
 #define BOARD_WIDTH ([DeviceDetection isIPAD]? 768.0 : 320.0)
 #define SCREEN_WIDTH ([DeviceDetection isIPAD]? 768.0 : 320.0)
@@ -46,6 +47,8 @@
 {
     [self clearAllAdView];
     
+    _delegate = nil;
+    PPRelease(_viewController);
     PPRelease(_adViewList);
     PPRelease(_board);
     [super dealloc];
@@ -120,11 +123,14 @@
     
     UIImage *image = nil;
     if ([[AdService defaultService] isShowAd]){
-        UIView* adView1 = [[AdService defaultService] createAdInView:self 
+        UIView* adView1 = [[AdService defaultService] createAdInView:self                                                          
                                                                frame:CGRectMake(0, 0, 320, 50) 
                                                            iPadFrame:CGRectMake(30, 40, 320, 50)];
         
-        [_adViewList addObject:adView1];
+        if (adView1 != nil){
+            [_adViewList addObject:adView1];
+        }
+        
         image = [[ShareImageManager defaultManager] defaultAdBoardImage];
     }else{
         image = [[ShareImageManager defaultManager] defaultBoardImage];

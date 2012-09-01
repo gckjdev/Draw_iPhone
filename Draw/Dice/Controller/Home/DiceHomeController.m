@@ -19,6 +19,7 @@
 #import "UserManager.h"
 #import "DiceGameService.h"
 #import "CoinShopController.h"
+#import "AdService.h"
 
 @interface DiceHomeController()
 {
@@ -80,8 +81,10 @@
 
 - (void)viewDidLoad
 {    
+    [[AdService defaultService] setViewController:self];
+    
     [super viewDidLoad];
-    [self loadBoards];
+//    [self loadBoards];
     [self loadMainMenu];
     [self loadBottomMenu];
 
@@ -89,6 +92,9 @@
 
 - (void)viewDidAppear:(BOOL)animated
 {
+    [[AdService defaultService] setViewController:self];    
+    [self loadBoards];
+
     [self registerDiceGameNotification];    
     [super viewDidAppear:animated];
 }

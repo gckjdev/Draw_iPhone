@@ -94,7 +94,6 @@
 
 - (void)dealloc {
     
-    [[AdService defaultService] clearAdView:_adView];
     [self setAdView:nil];
     
     [_adView release];
@@ -739,6 +738,8 @@
 
 - (void)quitDiceGame
 {
+    [[AdService defaultService] clearAdView:_adView];
+    
     [self clearAllReciprocol];
     [self clearAllPlayersAvatar];
     [self clearAllResultViews];

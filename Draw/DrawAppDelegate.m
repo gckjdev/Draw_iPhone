@@ -311,12 +311,7 @@ NSString* GlobalGetBoardServerURL()
      */
     
     if ([ConfigManager wallEnabled]){
-        if ([ConfigManager useLmWall]){
-            [[LmWallService defaultService] queryScore];            
-        }
-//        else{
-//            [[YoumiWallService defaultService] queryPoints];
-//        }
+        [[LmWallService defaultService] queryScore];            
     }
     
     [[DrawGameService defaultService] clearDisconnectTimer];
