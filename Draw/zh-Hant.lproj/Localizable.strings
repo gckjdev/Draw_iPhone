@@ -825,7 +825,9 @@
 "kDiceMenuRoom" = "遊戲大廳";
 "kDiceMenuShop" = "道具商店";
 
-"kCoinsNotEnoughAndEnterShop" = "你當前的金幣少於%d，玩不了一局遊戲了，現在就買些金幣？";
+"kCoinsNotEnoughAndEnterCoinsShop" = "你當前的金幣少於%d，玩不了一局遊戲了，現在就買些金幣?";
+"kCoinsNotEnoughAndGetFreeCoins" = "你當前的金幣少於%d，玩不了一局遊戲了，現在獲取一些免費金幣?";
+
 "kToolCut" = "劈";
 "kToolRollAgain" = "搖";
 

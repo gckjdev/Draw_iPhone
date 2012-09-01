@@ -95,5 +95,9 @@
     return @"51c65d7fbef9858a5d8bc60014d33ce2";
 }
 
+- (NSString*)wanpuAdPublisherId
+{
+    return @"ad40c6b004a6aba16e3ad2daac9bee9b";
+}
 
 @end

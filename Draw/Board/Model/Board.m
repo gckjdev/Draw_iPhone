@@ -10,14 +10,15 @@
 #import "PPDebug.h"
 #import "BoardNetworkConstant.h"
 #import "FileUtil.h"
+#import "PPViewController.h"
 
 @implementation Board
+
 @synthesize type = _type;
 @synthesize status = _status;
 @synthesize index = _index;
 @synthesize version = _version;
 @synthesize boardId = _boardId;
-
 
 +(Board *)createBoardWithDictionary:(NSDictionary *)dict
 {

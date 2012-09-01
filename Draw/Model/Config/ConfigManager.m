@@ -172,7 +172,7 @@
 
 + (BOOL)useLmWall
 {
-    return ([MobClickUtils getIntValueByKey:@"WALL_TYPE" defaultValue:1] == 1);
+    return ([MobClickUtils getIntValueByKey:@"WALL_TYPE" defaultValue:2] == 1);
 }
 
 + (BOOL)removeAdByIAP
@@ -287,7 +287,7 @@
 }
 + (int)getDiceThresholdCoin
 {
-    return [MobClickUtils getIntValueByKey:@"DICE_THRESHOLD_COIN" defaultValue:400];
+    return [MobClickUtils getIntValueByKey:@"DICE_THRESHOLD_COIN" defaultValue:999999];
 }
 
 + (NSString*)getDiceServerListString

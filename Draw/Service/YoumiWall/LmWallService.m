@@ -13,6 +13,7 @@
 #import "UIUtils.h"
 #import "AdService.h"
 #import "UserManager.h"
+#import "ConfigManager.h"
 
 //#define IPHONE_WALL_ID     ([GameApp lmWallId])  //@"ed21340370b99ad5bd2a5e304e3ea6c4"
 
@@ -34,8 +35,8 @@ static LmWallService* _defaultService;
 
 - (void)prepareWallService
 {
-//    [[LmmobAdWallSDK defaultSDK] GetAdWallWithEntranceID:IPHONE_WALL_ID AndDelegate:self];
-
+    [AdService defaultService]; // Call This To Init WANPU SDK
+    
     PPDebug(@"<LmmobAdWallSDK> init with ID %@", [GameApp lmwallId]);
 
     self.adWallView = [[[immobView alloc] initWithAdUnitID:[GameApp lmwallId]] autorelease];
@@ -66,24 +67,32 @@ static LmWallService* _defaultService;
 {
     if ([[UserManager defaultManager] hasUser] == NO)
         return;
-    
-//    [[LmmobAdWallSDK defaultSDK] ScoreQuery];
-    
-    PPDebug(@"<LmmobAdWallSDK> ScoreQuery");    
-    NSString* userId = [[UserManager defaultManager] userId];
-    [self.adWallView immobViewQueryScoreWithAdUnitID:[GameApp lmwallId] WithAccountID:userId];
+     
+    if ([ConfigManager useLmWall]){
+        PPDebug(@"<LmmobAdWallSDK> ScoreQuery");    
+        NSString* userId = [[UserManager defaultManager] userId];
+        [self.adWallView immobViewQueryScoreWithAdUnitID:[GameApp lmwallId] WithAccountID:userId];
+    }
+    else{
+        PPDebug(@"<WanpuWall> ScoreQuery");    
+        [AppConnect getPoints];
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getUpdatedPoints:) name:WAPS_GET_POINTS_SUCCESS object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getUpdatedPointsFailed:) name:WAPS_GET_POINTS_FAILED object:nil];
+    }
 }
 
 - (void)show:(UIViewController*)viewController
 {        
-    [MobClick event:@"SHOW_LM_WALL"];
-    
-    _viewController = viewController;
-    [self.adWallView immobViewRequest];    
-    
-//    if([[LmmobAdWallSDK defaultSDK] lmmob]){
-//        [_viewController presentModalViewController:[[LmmobAdWallSDK defaultSDK] lmmob] animated:YES];
-//    }    
+    if ([ConfigManager useLmWall]){    
+        [MobClick event:@"SHOW_LM_WALL"];    
+        _viewController = viewController;
+        [self.adWallView immobViewRequest];         
+    }
+    else{
+        [MobClick event:@"SHOW_WP_WALL"];    
+        [AppConnect showOffers];
+    }
 }
 
 - (void)setWallForRemoveAd
@@ -111,100 +120,18 @@ static LmWallService* _defaultService;
     [self show:viewController];        
 }
 
-
-
-/**
- *email phone sms等所需要
- *返回当前添加immobView的ViewController
- */
-- (UIViewController *)immobViewController{    
-    return _viewController;
-}
-
-/**
- *根据广告的状态来决定当前广告是否展示到当前界面上 AdReady 
- *YES  当前广告可用
- *NO   当前广告不可用
- */
-- (void) immobViewDidReceiveAd:(BOOL)AdReady{
-    PPDebug(@"<immobViewDidReceiveAd> AdReady=%d", AdReady);
-    if (AdReady){
-        [_viewController.view addSubview:self.adWallView];
-        [self.adWallView immobViewDisplay];
-    }
-    
-}
-
-
-
-///*! 
-// @method      LmmobAdWallSDK:DismissAdWall:
-// 
-// @abstract    广告墙返回按钮的事件
-// 
-// @param
-// sdk          sdk == [LmmobAdWallSDK defaultSDK]
-// 
-// @param
-// result       YES
-// */
-//-(void)LmmobAdWallSDK:(LmmobAdWallSDK *)sdk DismissAdWall:(BOOL)result
-//{
-//    PPDebug(@"<LmmobAdWallSDK> DismissAdWall, result=%d", result);
-//    if (sdk.lmmob) {
-//        [_viewController dismissModalViewControllerAnimated:YES];
-//    }
-//}
-
-
-///*! 
-// @method      LmmobAdWallSDK:AdWallisON:
-// 
-// @abstract    [[LmmobAdWallSDK defaultSDK] GetAdWallWithEntranceID:AndDelegate:]方法的回调
-// 
-// @param
-// sdk          sdk == [LmmobAdWallSDK defaultSDK]
-// 
-// @param
-// result         广告墙开关值
-// */
-//-(void)LmmobAdWallSDK:(LmmobAdWallSDK *)sdk AdWallisON:(BOOL)result
-//{
-//    PPDebug(@"<LmmobAdWallSDK> AdWallisON, result=%d", result);
-//    [[LmmobAdWallSDK defaultSDK] ScoreQuery];
-//}
-
-
-/*! 
- @method      LmmobAdWallSDK:UserScore:ScoreUpdated:
- 
- @abstract    [[LmmobAdWallSDK defaultSDK] ScoreSubstract:]的回调
- 
- @param
- sdk          sdk == [LmmobAdWallSDK defaultSDK]
- 
- @param
- score        用户积分值,double
- result       更新用户积分是否成功
- */
-//-(void)LmmobAdWallSDK:(LmmobAdWallSDK *)sdk UserScore:(double)score ScoreUpdated:(BOOL)result
-
-/**
- *查询积分接口回调
- */
-- (void) immobViewQueryScore:(NSUInteger)score WithMessage:(NSString *)returnMessage
+- (void)handleScoreAdded:(int)score
 {
-    PPDebug(@"<LmmobAdWallSDK> UserQueryScore, score=%d, message=%@", score, returnMessage);
-    
-    if (score <= 0.0f)
-        return;
-    
     // charge account
     [[AccountService defaultService] chargeAccount:score source:LmAppReward];
     
-//    [[LmmobAdWallSDK defaultSDK] ScoreSubstract:score];
-    [self.adWallView immobViewReducscore:score WithAdUnitID:[GameApp lmwallId]];
-
+    if ([ConfigManager useLmWall]){
+        [self.adWallView immobViewReducscore:score WithAdUnitID:[GameApp lmwallId]];
+    }
+    else{
+        [AppConnect spendPoints:score];
+    }
+    
     BOOL isForRemoveAd = NO;
     if ([self isWallForRemoveAd]){
         [[AdService defaultService] setAdDisable];
@@ -231,48 +158,45 @@ static LmWallService* _defaultService;
                                           otherButtonTitles:nil];
     
     [alert show];
-    [alert release];
+    [alert release];    
+}
+
+/**
+ *email phone sms等所需要
+ *返回当前添加immobView的ViewController
+ */
+- (UIViewController *)immobViewController{    
+    return _viewController;
+}
+
+/**
+ *根据广告的状态来决定当前广告是否展示到当前界面上 AdReady 
+ *YES  当前广告可用
+ *NO   当前广告不可用
+ */
+- (void) immobViewDidReceiveAd:(BOOL)AdReady{
+    PPDebug(@"<immobViewDidReceiveAd> AdReady=%d", AdReady);
+    if (AdReady){
+        [_viewController.view addSubview:self.adWallView];
+        [self.adWallView immobViewDisplay];
+    }
     
+}
+
+- (void) immobViewQueryScore:(NSUInteger)score WithMessage:(NSString *)returnMessage
+{
+    PPDebug(@"<LmmobAdWallSDK> UserQueryScore, score=%d, message=%@", score, returnMessage);
     
+    if (score <= 0.0f)
+        return;
+    
+    [self handleScoreAdded:score];
 }
 
 - (void) immobViewReducscore:(BOOL)status WithMessage:(NSString *)message
 {
     PPDebug(@"<ReduceScore> status=%d, message=%@", status, message);
 }
-
-///*! 
-// @method      LmmobAdWallSDK:BannerAdRemoved:
-// 
-// @abstract    [[LmmobAdWallSDK defaultSDK] RemoveBannerAd]的回调
-// 
-// @param
-// sdk          sdk == [LmmobAdWallSDK defaultSDK]
-// 
-// @param
-// result       Banner广告是否永久移除成功/关闭关联的广告位是否成功
-// */
-//-(void)LmmobAdWallSDK:(LmmobAdWallSDK *)sdk BannerAdRemoved:(BOOL)result
-//{
-//    PPDebug(@"<LmmobAdWallSDK> BannerAdRemoved, result=%d", result);
-//    
-//}
-//
-///*! 
-// @method      LmmobAdWallSDK:didFailedWithNetError:
-// 
-// @abstract    [[LmmobAdWallSDK defaultSDK] RemoveBannerAd]的回调
-// 
-// @param
-// sdk          sdk == [LmmobAdWallSDK defaultSDK]
-// 
-// @param
-// error        网络错误返回信息
-// */
-//-(void)LmmobAdWallSDK:(LmmobAdWallSDK *)sdk didFailedWithNetError:(NSError *)error
-//{
-//    PPDebug(@"<LmmobAdWallSDK> BannerAdRemoved, error=%@", [error description]);    
-//}
 
 - (void) immobView: (immobView*) immobView didFailReceiveimmobViewWithError: (NSInteger) errorCode{
     PPDebug(@"<didFailReceiveimmobViewWithError> errorCode:%i",errorCode);
@@ -281,6 +205,25 @@ static LmWallService* _defaultService;
 - (void) onDismissScreen:(immobView *)immobView{
     PPDebug(@"<onDismissScreen> immobView");
     _viewController = nil;
+}
+
+#pragma mark - Wap Pu Wall For Query Points
+//获取积分成功处理方法:
+-(void)getUpdatedPoints:(NSNotification*)notifyObj{
+    WapsUserPoints *userPoints = notifyObj.object;
+    NSString *pointsName=[userPoints getPointsName];
+    int pointsValue=[userPoints getPointsValue];
+    
+    PPDebug(@"Wappu SDK <getUpdatedPoints> success, name=%@, points=%d", 
+            pointsName, pointsValue);
+    if (pointsValue <= 0)
+        return;
+
+    [self handleScoreAdded:pointsValue];
+}
+//获取积分失败处理方法:
+-(void)getUpdatedPointsFailed:(NSNotification*)notifyObj{
+    PPDebug(@"Wappu SDK <getUpdatedPoints> failure, info=%@", [notifyObj.object description]);
 }
 
 @end

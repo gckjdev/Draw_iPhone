@@ -10,6 +10,8 @@
 #import "Board.h"
 
 @class BoardView;
+@class PPViewController;
+
 @protocol BoardViewDelegate <NSObject>
 
 @optional 
@@ -31,6 +33,7 @@ WillHandleJumpURL:(NSURL *)URL;
 
 @property(nonatomic, retain)Board *board;
 @property(nonatomic, assign)id<BoardViewDelegate>delegate;
+@property(nonatomic, retain)UIViewController *viewController;
 
 + (BoardView *)createBoardView:(Board *)board;
 - (id)initWithBoard:(Board *)board;

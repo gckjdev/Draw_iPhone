@@ -12,6 +12,7 @@
 #import "RoomPasswordDialog.h"
 #import "DiceHelpView.h"
 #import "CommonDialog.h"
+#import "DiceConfigManager.h"
 
 @class FontButton;
 @class PBGameSession;
@@ -21,6 +22,7 @@
     DiceGameService* _diceGameService;
     PBGameSession* _currentSession;
     NSTimer* _refreshRoomTimer;
+    
     BOOL firstLoad;
 }
 @property (retain, nonatomic) IBOutlet FontButton *titleFontButton;
