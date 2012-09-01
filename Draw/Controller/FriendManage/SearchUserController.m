@@ -20,6 +20,7 @@
 #import "CommonDialog.h"
 #import "FriendCell.h"
 #import "CommonUserInfoView.h"
+#import "DiceUserInfoView.h"
 
 @interface SearchUserController ()
 
@@ -140,16 +141,30 @@
     ((sinaNick != nil)?sinaNick:
      ((qqNick != nil)?qqNick:
       ((facebookId!=nil)?facebookId:nil)));//just find any avalible nickname if possible
-    [CommonUserInfoView showUser:[userDic objectForKey:PARA_USERID] 
-                        nickName:nick 
-                          avatar:[userDic objectForKey:PARA_AVATAR] 
-                          gender:[userDic objectForKey:PARA_GENDER] 
-                        location:[userDic objectForKey:PARA_LOCATION] 
-                           level:level  
-                         hasSina:(sinaNick != nil)
-                           hasQQ:(qqNick != nil)
-                     hasFacebook:(facebookId != nil)
-                      infoInView:self];
+    if (isDrawApp()) {
+        [CommonUserInfoView showUser:[userDic objectForKey:PARA_USERID] 
+                            nickName:nick 
+                              avatar:[userDic objectForKey:PARA_AVATAR] 
+                              gender:[userDic objectForKey:PARA_GENDER] 
+                            location:[userDic objectForKey:PARA_LOCATION] 
+                               level:level  
+                             hasSina:(sinaNick != nil)
+                               hasQQ:(qqNick != nil)
+                         hasFacebook:(facebookId != nil)
+                          infoInView:self];
+    }
+    if (isDiceApp()) {
+        [DiceUserInfoView showUser:[userDic objectForKey:PARA_USERID] 
+                            nickName:nick 
+                              avatar:[userDic objectForKey:PARA_AVATAR] 
+                              gender:[userDic objectForKey:PARA_GENDER] 
+                            location:[userDic objectForKey:PARA_LOCATION] 
+                               level:level  
+                             hasSina:(sinaNick != nil)
+                               hasQQ:(qqNick != nil)
+                         hasFacebook:(facebookId != nil)
+                          infoInView:self];
+    }
 
 }
 
