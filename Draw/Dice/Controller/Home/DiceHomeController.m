@@ -19,6 +19,14 @@
 #import "UserManager.h"
 #import "DiceGameService.h"
 #import "CoinShopController.h"
+#import "TimeUtils.h"
+#import "AccountService.h"
+#import "AnimationManager.h"
+#import "CommonMessageCenter.h"
+
+#define KEY_LAST_AWARD_DATE     @"last_award_day"
+
+#define AWARD_DICE_TAG      20120901
 
 @interface DiceHomeController()
 {
@@ -76,6 +84,12 @@
     
     [self.view addSubview:_bottomMenuPanel];
 }
+
+- (void)playBGM
+{
+    [[AudioManager defaultManager] setBackGroundMusicWithName:@"dice.m4a"];
+    [[AudioManager defaultManager] backgroundMusicStart];
+}
 #pragma mark - View lifecycle
 
 - (void)viewDidLoad
@@ -84,6 +98,8 @@
     [self loadBoards];
     [self loadMainMenu];
     [self loadBottomMenu];
+    [self playBGM];
+    [self checkIn];
 
 }
 
@@ -151,6 +167,97 @@
     }
     
 }
+
+- (void)clickDice:(id)sender
+{
+    UIButton* btn = (UIButton*)sender;
+    [[CommonMessageCenter defaultCenter] postMessageWithText:[NSString stringWithFormat:@"you pick up %d coin",_awardDicePoint] delayTime:2 isHappy:YES];
+    [btn removeFromSuperview];
+}
+
+- (void)updateTimer:(id)sender
+{
+    UIButton* btn = (UIButton*)[self.view viewWithTag:AWARD_DICE_TAG];
+    _awardDicePoint = rand()%6+1;
+    UIImage* image = [UIImage imageNamed:[NSString stringWithFormat:@"open_bell_%dbig.png", _awardDicePoint]];
+    [btn setImage:image forState:UIControlStateNormal];
+}
+
+- (void)startRollDiceTimer
+{
+    _rollAwardDiceTimer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(updateTimer:) userInfo:nil repeats:YES];
+}
+
+- (void)killRollDiceTimer
+{
+    if (_rollAwardDiceTimer) {
+        if ([_rollAwardDiceTimer isValid]) {
+            [_rollAwardDiceTimer invalidate];
+        }
+        _rollAwardDiceTimer = nil;
+    }
+}
+
+- (void)rollAwardDice
+{
+    UIButton* diceBtn = [[[UIButton alloc] initWithFrame:CGRectMake(0, 0, 50, 55)] autorelease];
+    [diceBtn setCenter:CGPointMake(self.view.frame.size.width-50, self.view.frame.size.height-50)];
+    [self.view addSubview:diceBtn];
+    [diceBtn addTarget:self action:@selector(clickDice:) forControlEvents:UIControlEventTouchUpInside];
+    diceBtn.tag = AWARD_DICE_TAG;
+    CAAnimation* rolling = [AnimationManager rotationAnimationWithRoundCount:50 duration:2.5];
+    rolling.removedOnCompletion = NO;
+    rolling.delegate = self;
+    [diceBtn.layer addAnimation:rolling forKey:@""];
+    
+    CAKeyframeAnimation *pathAnimation = [CAKeyframeAnimation animationWithKeyPath:@"position"];
+    pathAnimation.calculationMode = kCAAnimationPaced;
+    pathAnimation.fillMode = kCAFillModeForwards;
+    pathAnimation.removedOnCompletion = NO;
+    CGPoint endPoint = CGPointMake(self.view.frame.size.width-50, self.view.frame.size.height-50);
+    CGMutablePathRef curvedPath = CGPathCreateMutable();
+    CGPathMoveToPoint(curvedPath, NULL, self.view.frame.size.width/4, 100);
+    CGPathAddCurveToPoint(curvedPath, NULL, endPoint.x*0.6, 0, endPoint.x*0.75, 0, endPoint.x, endPoint.y);
+
+    pathAnimation.path = curvedPath;
+    CGPathRelease(curvedPath);
+    pathAnimation.duration = 2.5;
+    pathAnimation.delegate = self;
+    
+    [diceBtn.layer addAnimation:pathAnimation forKey:@""];
+    
+    
+    [self startRollDiceTimer];
+}
+
+- (int)checkIn
+{  
+    
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+//    NSDate* lastCheckInDate = [userDefaults objectForKey:KEY_LAST_AWARD_DATE];
+//    if (lastCheckInDate != nil && isLocalToday(lastCheckInDate)){
+//        // already check in, return -1
+//        PPDebug(@"<checkIn> but already do it today... come tomorrow :-)");
+//        return -1;
+//    }
+    
+    // random get some coins
+    int coins = 0;
+    PPDebug(@"<checkIn> got %d coins", coins);
+    [self rollAwardDice]; 
+    
+    // update check in today flag
+    [userDefaults setObject:[NSDate date] forKey:KEY_LAST_AWARD_DATE];
+    [userDefaults synchronize];    
+    return coins;
+}
+
+#pragma mark - animation delegate
+- (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag
+{
+    [self killRollDiceTimer];
+}
+
 
 #pragma mark - Game Notification
 

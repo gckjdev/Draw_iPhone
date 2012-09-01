@@ -157,9 +157,10 @@
     self.gameBeginNoteLabel.hidden = YES;
     self.gameBeginNoteLabel.text = NSLS(@"kGameBegin");
     self.gameBeginNoteLabel.textColor = [UIColor yellowColor];
+    
+//    [_audioManager setBackGroundMusicWithName:@"dice.m4a"];
+//    [_audioManager backgroundMusicStart];
 
-    [_audioManager setBackGroundMusicWithName:@"dice.m4a"];
-    [_audioManager backgroundMusicStart];
     self.myLevelLabel.text = [NSString stringWithFormat:@"LV:%d",_levelService.level];;
     self.myCoinsLabel.text = [NSString stringWithFormat:@"x%d",[_accountService getBalance]];
     
@@ -746,7 +747,7 @@
     [[DiceGameService defaultService] quitGame];
     [self unregisterAllNotifications];
     [self.navigationController popViewControllerAnimated:YES];
-    [_audioManager backgroundMusicStop];
+    //[_audioManager backgroundMusicStop];
 }
 
 #pragma mark - DiceAvatarViewDelegate
@@ -757,9 +758,6 @@
     }
     
 }
-
-
-
 
 #pragma mark - User actions.
 
