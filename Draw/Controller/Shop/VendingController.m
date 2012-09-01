@@ -371,7 +371,7 @@ static VendingController* staticVendingController = nil;
             }
             
             if (isDiceApp()) {
-                _itemList = [[NSMutableArray alloc] initWithObjects:[Item rollAgain], [Item cut], nil];       
+                _itemList = [[NSMutableArray alloc] initWithObjects:[Item removeAd], [Item rollAgain], [Item cut], nil];       
             }
         }
         else{
@@ -380,7 +380,7 @@ static VendingController* staticVendingController = nil;
             }
             
             if (isDiceApp()) {
-                _itemList = [[NSMutableArray alloc] initWithObjects:[Item rollAgain], [Item cut], nil];
+                _itemList = [[NSMutableArray alloc] initWithObjects:[Item removeAd], [Item rollAgain], [Item cut], nil];
             }
 
         }
