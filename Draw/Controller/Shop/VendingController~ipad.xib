@@ -400,7 +400,7 @@
 						<string key="NSFrame">{{225.5, 16}, {317, 66}}</string>
 						<reference key="NSSuperview" ref="945896182"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="493068356"/>
+						<reference key="NSNextKeyView" ref="556538896"/>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 						<object class="NSCustomResource" key="IBUIImage">
@@ -473,6 +473,7 @@
 						<string key="NSFrame">{{556, 908}, {196, 65}}</string>
 						<reference key="NSSuperview" ref="945896182"/>
 						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 						<int key="IBUIContentHorizontalAlignment">0</int>
@@ -481,19 +482,19 @@
 						<string key="IBUINormalTitle">购买金币</string>
 						<reference key="IBUIHighlightedTitleColor" ref="386189625"/>
 						<reference key="IBUINormalTitleColor" ref="386189625"/>
-						<object class="NSColor" key="IBUINormalTitleShadowColor">
+						<object class="NSColor" key="IBUINormalTitleShadowColor" id="552811058">
 							<int key="NSColorSpace">3</int>
 							<bytes key="NSWhite">MAA</bytes>
 						</object>
-						<object class="NSCustomResource" key="IBUINormalBackgroundImage">
+						<object class="NSCustomResource" key="IBUINormalBackgroundImage" id="93436148">
 							<string key="NSClassName">NSImage</string>
 							<string key="NSResourceName">orange_button@2x.png</string>
 						</object>
-						<object class="IBUIFontDescription" key="IBUIFontDescription">
+						<object class="IBUIFontDescription" key="IBUIFontDescription" id="584560656">
 							<int key="type">2</int>
 							<double key="pointSize">28</double>
 						</object>
-						<object class="NSFont" key="IBUIFont">
+						<object class="NSFont" key="IBUIFont" id="920710995">
 							<string key="NSName">Helvetica-Bold</string>
 							<double key="NSSize">28</double>
 							<int key="NSfFlags">16</int>
@@ -537,6 +538,26 @@
 							<double key="NSSize">44</double>
 							<int key="NSfFlags">16</int>
 						</object>
+					</object>
+					<object class="IBUIButton" id="556538896">
+						<reference key="NSNextResponder" ref="945896182"/>
+						<int key="NSvFlags">319</int>
+						<string key="NSFrame">{{610, 14}, {142, 65}}</string>
+						<reference key="NSSuperview" ref="945896182"/>
+						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView" ref="493068356"/>
+						<bool key="IBUIOpaque">NO</bool>
+						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
+						<int key="IBUIContentHorizontalAlignment">0</int>
+						<int key="IBUIContentVerticalAlignment">0</int>
+						<string key="IBUITitleShadowOffset">{0, 1}</string>
+						<string key="IBUINormalTitle">购买金币</string>
+						<reference key="IBUIHighlightedTitleColor" ref="386189625"/>
+						<reference key="IBUINormalTitleColor" ref="386189625"/>
+						<reference key="IBUINormalTitleShadowColor" ref="552811058"/>
+						<reference key="IBUINormalBackgroundImage" ref="93436148"/>
+						<reference key="IBUIFontDescription" ref="584560656"/>
+						<reference key="IBUIFont" ref="920710995"/>
 					</object>
 				</array>
 				<string key="NSFrameSize">{768, 1004}</string>
@@ -620,6 +641,14 @@
 					<int key="connectionID">81</int>
 				</object>
 				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">coinsShopButton</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="556538896"/>
+					</object>
+					<int key="connectionID">84</int>
+				</object>
+				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">buyCoin:</string>
 						<reference key="source" ref="470260798"/>
@@ -645,6 +674,24 @@
 						<int key="IBEventType">7</int>
 					</object>
 					<int key="connectionID">76</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">buyCoin:</string>
+						<reference key="source" ref="556538896"/>
+						<reference key="destination" ref="372490531"/>
+						<int key="IBEventType">7</int>
+					</object>
+					<int key="connectionID">83</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">clickCoinsShopButton:</string>
+						<reference key="source" ref="556538896"/>
+						<reference key="destination" ref="372490531"/>
+						<int key="IBEventType">7</int>
+					</object>
+					<int key="connectionID">85</int>
 				</object>
 			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -680,6 +727,7 @@
 							<reference ref="424085961"/>
 							<reference ref="594593148"/>
 							<reference ref="587755882"/>
+							<reference ref="556538896"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -857,6 +905,11 @@
 						<reference key="object" ref="594593148"/>
 						<reference key="parent" ref="945896182"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">82</int>
+						<reference key="object" ref="556538896"/>
+						<reference key="parent" ref="945896182"/>
+					</object>
 				</array>
 			</object>
 			<dictionary class="NSMutableDictionary" key="flattenedProperties">
@@ -897,12 +950,13 @@
 				<string key="69.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="78.CustomClassName">HKGirlFontLabel</string>
 				<string key="78.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+				<string key="82.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 			</dictionary>
 			<dictionary class="NSMutableDictionary" key="unlocalizedProperties"/>
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">81</int>
+			<int key="maxID">85</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -937,6 +991,7 @@
 						<string key="bgImageView">UIImageView</string>
 						<string key="buyCoinButton">UIButton</string>
 						<string key="coinsButton">UIButton</string>
+						<string key="coinsShopButton">UIButton</string>
 						<string key="itemListScrollView">UIScrollView</string>
 						<string key="outItem">UIImageView</string>
 						<string key="titleImageView">UIImageView</string>
@@ -953,6 +1008,10 @@
 						</object>
 						<object class="IBToOneOutletInfo" key="coinsButton">
 							<string key="name">coinsButton</string>
+							<string key="candidateClassName">UIButton</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="coinsShopButton">
+							<string key="name">coinsShopButton</string>
 							<string key="candidateClassName">UIButton</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="itemListScrollView">

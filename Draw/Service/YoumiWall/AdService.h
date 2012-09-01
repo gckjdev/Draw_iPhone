@@ -12,12 +12,14 @@
 #import "AderSDK.h"
 #import "AderDelegateProtocal.h"
 #import "AdMoGoView.h"
+#import "WapsOffer/AppConnect.h"
 
 typedef enum
 {
     AdPlatformLm = 1,
     AdPlatformAder,
-    AdPlatformMango
+    AdPlatformMango,
+    AdPlatformWanpu
 } AdPlatformType;
 
 @class PPViewController;
@@ -49,7 +51,7 @@ typedef enum
 - (void)clearAdView:(UIView*)adView;
 //- (void)pauseAdView:(UIView*)adView;
 //- (void)resumeAdView:(UIView*)adView;
-- (UIView*)createAdInView:(UIViewController*)superViewContoller
+- (UIView*)createAdInView:(PPViewController*)superViewContoller
                     frame:(CGRect)frame 
                 iPadFrame:(CGRect)iPadFrame
                   useLmAd:(BOOL)useLmAd;
@@ -68,6 +70,10 @@ typedef enum
 - (UIView*)createLmAdInView:(UIView*)superView
                       frame:(CGRect)frame 
                   iPadFrame:(CGRect)iPadFrame;
+
+- (UIView*)createWanpuAdInView:(UIView*)superView
+                         frame:(CGRect)frame 
+                     iPadFrame:(CGRect)iPadFrame;
 
 @property (nonatomic, retain) PPViewController* viewController;
 

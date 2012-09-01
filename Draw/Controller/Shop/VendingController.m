@@ -57,6 +57,7 @@ static VendingController* staticVendingController = nil;
 @synthesize titleLabel;
 @synthesize titleImageView;
 @synthesize bgImageView;
+@synthesize coinsShopButton;
 
 - (void)dealloc {
     [itemListScrollView release];
@@ -67,6 +68,7 @@ static VendingController* staticVendingController = nil;
     [titleLabel release];
     [titleImageView release];
     [bgImageView release];
+    [coinsShopButton release];
     [super dealloc];
     
 }
@@ -90,6 +92,7 @@ static VendingController* staticVendingController = nil;
 - (void)initButtons
 {
     [self.buyCoinButton setBackgroundImage:[ShareImageManager defaultManager].orangeImage forState:UIControlStateNormal];
+    [self.coinsShopButton setBackgroundImage:[ShareImageManager defaultManager].orangeImage forState:UIControlStateNormal];
     NSString* buyCoinButtonTitle;
     if ([ConfigManager wallEnabled]) {
         buyCoinButtonTitle = NSLS(@"kFreeCoins");
@@ -230,16 +233,8 @@ static VendingController* staticVendingController = nil;
 
 - (void)showWall
 {        
-    if ([ConfigManager useLmWall]){    
-        [UIUtils alertWithTitle:@"免费金币获取提示" msg:@"下载免费应用即可获取金币！下载完应用一定要打开才可以获得奖励哦！"];
-        [[LmWallService defaultService] show:self];
-    }
-//    else{
-//        [MobClick event:@"SHOW_YOUMI_WALL"];
-//        YoumiWallController* controller = [[YoumiWallController alloc] init];
-//        [self.navigationController pushViewController:controller animated:YES];
-//        [controller release];
-//    }
+    [UIUtils alertWithTitle:@"免费金币获取提示" msg:@"下载免费应用即可获取金币！下载完应用一定要打开才可以获得奖励哦！"];
+    [[LmWallService defaultService] show:self];
 }
 
 - (IBAction)clickBack:(id)sender
@@ -262,6 +257,10 @@ static VendingController* staticVendingController = nil;
         [self.navigationController pushViewController:controller animated:YES];
     }
     
+}
+- (IBAction)clickCoinsShopButton:(id)sender {
+    CoinShopController* controller = [[[CoinShopController alloc] init] autorelease];
+    [self.navigationController pushViewController:controller animated:YES];
 }
 
 - (void)clickItemButton:(id)sender
@@ -379,7 +378,7 @@ static VendingController* staticVendingController = nil;
             }
             
             if (isDiceApp()) {
-                _itemList = [[NSMutableArray alloc] initWithObjects:[Item rollAgain], [Item cut], nil];       
+                _itemList = [[NSMutableArray alloc] initWithObjects:[Item removeAd], [Item rollAgain], [Item cut], nil];       
             }
         }
         else{
@@ -388,7 +387,7 @@ static VendingController* staticVendingController = nil;
             }
             
             if (isDiceApp()) {
-                _itemList = [[NSMutableArray alloc] initWithObjects:[Item rollAgain], [Item cut], nil];
+                _itemList = [[NSMutableArray alloc] initWithObjects:[Item removeAd], [Item rollAgain], [Item cut], nil];
             }
 
         }
@@ -406,6 +405,11 @@ static VendingController* staticVendingController = nil;
     self.titleLabel.hidden = !isDiceApp();
     self.titleLabel.text = NSLS(@"kDiceShop");
     self.bgImageView.image = [UIImage imageNamed:[GameApp background]];
+    
+    self.coinsShopButton.hidden = YES;
+    if (isDiceApp() && [ConfigManager wallEnabled]) {
+        self.coinsShopButton.hidden = NO;
+    }
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -418,6 +422,7 @@ static VendingController* staticVendingController = nil;
     [self setTitleLabel:nil];
     [self setTitleImageView:nil];
     [self setBgImageView:nil];
+    [self setCoinsShopButton:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;

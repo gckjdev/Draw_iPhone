@@ -94,7 +94,6 @@
 
 - (void)dealloc {
     
-    [[AdService defaultService] clearAdView:_adView];
     [self setAdView:nil];
     
     [_adView release];
@@ -374,8 +373,10 @@
         self.myDiceListHolderView.hidden = YES;
     }
     
-    NSArray *diceList = [[[_diceService diceSession] userDiceList] objectForKey:userId];
+    UIView *bell = [self bellViewOfUser:userId];
+    bell.hidden = YES;
     
+    NSArray *diceList = [[[_diceService diceSession] userDiceList] objectForKey:userId];
     DicesResultView *resultView = [self resultViewOfUser:userId];
     [resultView setDices:diceList resultDice:_diceService.lastCallDice wilds:_diceService.diceSession.wilds];
     [resultView showAnimation:self.view.center];
@@ -740,6 +741,8 @@
 
 - (void)quitDiceGame
 {
+    [[AdService defaultService] clearAdView:_adView];
+    
     [self clearAllReciprocol];
     [self clearAllPlayersAvatar];
     [self clearAllResultViews];
@@ -1036,7 +1039,7 @@
     [self clearAllReciprocol];
     
     // Hidden views.
-    [self hideAllBellViews];
+//    [self hideAllBellViews];
     //self.myDiceListHolderView.hidden = YES;
     
     self.resultDiceCountLabel.text = @"0";

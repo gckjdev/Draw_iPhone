@@ -23,6 +23,7 @@
 #import "AccountService.h"
 #import "ConfigManager.h"
 #import "CoinShopController.h"
+#import "LmWallService.h"
 
 #define KEY_GAME_MESSAGE @"KEY_GAME_MESSAGE"
 #define ROOMS_COUNT_PER_PAGE  20
@@ -78,11 +79,13 @@
     _isJoiningDice = YES;
     [[DiceGameService defaultService] joinGameRequest:sessionId 
                                            condiction:^BOOL{
-        if ([self meetJoinGameCondiction]) {
+        if ([DiceConfigManager meetJoinGameCondiction]) {
             [self showActivityWithText:NSLS(@"kJoiningGame")];
             return YES;
-        };
-        return NO;
+        }else {
+            [self showCoinsNotEnoughView];
+            return NO;
+        }
     }];
 }
 
@@ -90,11 +93,13 @@
 {
     _isJoiningDice = YES;
     [_diceGameService joinGameRequestWithCondiction:^BOOL{
-        if ([self meetJoinGameCondiction]) {
+        if ([DiceConfigManager meetJoinGameCondiction]) {
             [self showActivityWithText:NSLS(@"kJoiningGame")];
             return YES;
-        };
-        return NO;
+        }else {
+            [self showCoinsNotEnoughView];
+            return NO;
+        }
     }];
 }
 
@@ -104,16 +109,6 @@
     _isJoiningDice = YES;
     [_diceGameService createRoomWithName:targetText password:password];
     [self showActivityWithText:NSLS(@"kCreatingRoom")];
-}
-
-- (BOOL)meetJoinGameCondiction
-{
-    if ([_accountService getBalance] <= DICE_THRESHOLD_COIN) {
-        CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"kNotEnoughCoin") message:NSLS(@"kCoinsNotEnough") style:CommonDialogStyleDoubleButton delegate:self theme:CommonDialogThemeDice];
-        [dialog showInView:self.view];
-        return NO;
-    }
-    return YES;
 }
 
 - (void)refreshRooms:(id)sender
@@ -173,8 +168,10 @@
 //    [[DiceGameService defaultService] setServerAddress:@"106.187.89.232"];
 //    [[DiceGameService defaultService] setServerPort:8018];
 
-    [[DiceGameService defaultService] setServerAddress:@"192.168.1.4"];
-    [[DiceGameService defaultService] setServerPort:8080];
+
+//    [[DiceGameService defaultService] setServerAddress:@"192.168.1.198"];
+//    [[DiceGameService defaultService] setServerPort:8080];
+
 
     [[DiceGameService defaultService] connectServer:self];
     [self showActivityWithText:NSLS(@"kRefreshingRoomList")];
@@ -348,18 +345,32 @@
 
 - (IBAction)creatRoom:(id)sender
 {
-    if ([self meetJoinGameCondiction]) {
-        RoomPasswordDialog *inputDialog = [RoomPasswordDialog dialogWith:NSLS(@"kCreateRoom") 
-                                                                delegate:self 
-                                                                   theme:CommonDialogThemeDice];
-        inputDialog.targetTextField.text = [[UserManager defaultManager] defaultUserRoomName];
-        inputDialog.targetTextField.placeholder = NSLS(@"kInputWordPlaceholder");
-        inputDialog.passwordField.placeholder = NSLS(@"kDiceEnterPassword");
-        [inputDialog showInView:self.view];
-        inputDialog.tag = CREATE_ROOM_DIALOG_TAG;
+    if ([DiceConfigManager meetJoinGameCondiction]) {
+        [self showCreateRoomView];
+    }else {
+        [self showCoinsNotEnoughView];
     }
-    
 }
+
+- (void)showCreateRoomView
+{
+    RoomPasswordDialog *inputDialog = [RoomPasswordDialog dialogWith:NSLS(@"kCreateRoom") 
+                                                            delegate:self 
+                                                               theme:CommonDialogThemeDice];
+    inputDialog.targetTextField.text = [[UserManager defaultManager] defaultUserRoomName];
+    inputDialog.targetTextField.placeholder = NSLS(@"kInputWordPlaceholder");
+    inputDialog.passwordField.placeholder = NSLS(@"kDiceEnterPassword");
+    [inputDialog showInView:self.view];
+    inputDialog.tag = CREATE_ROOM_DIALOG_TAG;
+}
+
+- (void)showCoinsNotEnoughView
+{
+    CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"kNotEnoughCoin") message:[DiceConfigManager coinsNotEnoughNote] style:CommonDialogStyleDoubleButton delegate:self theme:CommonDialogThemeDice];
+    [dialog showInView:self.view];
+}
+
+
 - (IBAction)clickAll:(id)sender
 {
     [self.allRoomButton setSelected:YES];
@@ -441,12 +452,23 @@
 #pragma mark - common dialog delegate
 - (void)clickOk:(CommonDialog *)dialog
 {
-    CoinShopController* controller = [[[CoinShopController alloc] init] autorelease];
-    [self.navigationController pushViewController:controller animated:YES]; 
+    if ([ConfigManager wallEnabled]) {
+        [self showWall];
+    }else {
+        CoinShopController* controller = [[[CoinShopController alloc] init] autorelease];
+        [self.navigationController pushViewController:controller animated:YES]; 
+    }
 }
+
 - (void)clickBack:(CommonDialog *)dialog
 {
     
+}
+
+- (void)showWall
+{        
+    [UIUtils alertWithTitle:@"免费金币获取提示" msg:@"下载免费应用即可获取金币！下载完应用一定要打开才可以获得奖励哦！"];
+    [[LmWallService defaultService] show:self];
 }
 
 @end

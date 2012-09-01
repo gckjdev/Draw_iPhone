@@ -172,7 +172,7 @@
 
 + (BOOL)useLmWall
 {
-    return ([MobClickUtils getIntValueByKey:@"WALL_TYPE" defaultValue:1] == 1);
+    return ([MobClickUtils getIntValueByKey:@"WALL_TYPE" defaultValue:2] == 1);
 }
 
 + (BOOL)removeAdByIAP
@@ -264,18 +264,22 @@
 {
     return [MobClickUtils getIntValueByKey:@"ONLINE_DRAW_EXP" defaultValue:15];
 }
+
 + (int)getOnLineGuessExp
 {
     return [MobClickUtils getIntValueByKey:@"ONLINE_GUESS_EXP" defaultValue:10];
 }
+
 + (int)getOffLineDrawExp
 {
     return [MobClickUtils getIntValueByKey:@"OFFLINE_DRAW_EXP" defaultValue:15];
 }
+
 + (int)getOffLineGuessExp
 {
     return [MobClickUtils getIntValueByKey:@"OFFLINE_GUESS_EXP" defaultValue:2];
 }
+
 + (int)getLiarDiceExp
 {
     return [MobClickUtils getIntValueByKey:@"LIAR_DICE_EXP" defaultValue:5];
@@ -285,9 +289,10 @@
 {
     return [MobClickUtils getIntValueByKey:@"DICE_FLEE_COIN_COIN" defaultValue:200];
 }
+
 + (int)getDiceThresholdCoin
 {
-    return [MobClickUtils getIntValueByKey:@"DICE_THRESHOLD_COIN" defaultValue:400];
+    return [MobClickUtils getIntValueByKey:@"DICE_THRESHOLD_COIN" defaultValue:200];
 }
 
 + (NSString*)getDiceServerListString

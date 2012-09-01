@@ -113,6 +113,7 @@
 		A455F8CB1585D21400CA5743 /* grayArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A455F8C01585D21400CA5743 /* grayArrow@2x.png */; };
 		A455F8CC1585D21400CA5743 /* whiteArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = A455F8C11585D21400CA5743 /* whiteArrow.png */; };
 		A455F8CD1585D21400CA5743 /* whiteArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A455F8C21585D21400CA5743 /* whiteArrow@2x.png */; };
+		A45BC60E15F1C4F80003DDDC /* DiceConfigManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A45BC60D15F1C4F80003DDDC /* DiceConfigManager.m */; };
 		A45BF5E215D231A000CDD5C2 /* DiceFontManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A45BF5E115D231A000CDD5C2 /* DiceFontManager.m */; };
 		A45E8CD515C77F8E0089E240 /* DiceAvatarView.m in Sources */ = {isa = PBXBuildFile; fileRef = A45E8CD415C77F8E0089E240 /* DiceAvatarView.m */; };
 		A45E8CD915C77F960089E240 /* DiceView.m in Sources */ = {isa = PBXBuildFile; fileRef = A45E8CD815C77F960089E240 /* DiceView.m */; };
@@ -1441,8 +1442,8 @@
 		CAC25C6A15EF20FB007456FA /* DiceHomeController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAC25C6815EF20FB007456FA /* DiceHomeController.xib */; };
 		CAC25C6C15EF2D02007456FA /* DiceHomeController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAC25C6B15EF2D01007456FA /* DiceHomeController~ipad.xib */; };
 		CAC25CCD15F09ECF007456FA /* dice_shop@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAC25CCF15F09ECF007456FA /* dice_shop@2x.png */; };
-		CAC25CD315F0A0EA007456FA /* dice_default_board_ad@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAC25CD515F0A0EA007456FA /* dice_default_board_ad@2x.png */; };
-		CAC25CDC15F0A1FF007456FA /* dice_default_board@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAC25CDE15F0A1FF007456FA /* dice_default_board@2x.png */; };
+		CAC25CD315F0A0EA007456FA /* dice_default_board_ad@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CAC25CD515F0A0EA007456FA /* dice_default_board_ad@2x.jpg */; };
+		CAC25CDC15F0A1FF007456FA /* dice_default_board@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CAC25CDE15F0A1FF007456FA /* dice_default_board@2x.jpg */; };
 		CAC25CE115F0A243007456FA /* dice_bottom_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAC25CE015F0A23E007456FA /* dice_bottom_bg@2x.png */; };
 		CAC25D0515F0C72F007456FA /* revoke@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAC25D0415F0C72B007456FA /* revoke@2x.png */; };
 		CAC4DCE215450E8F00A42CF2 /* StoreKitUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC4DCE115450E8F00A42CF2 /* StoreKitUtils.m */; };
@@ -1459,6 +1460,7 @@
 		CACF878F15EB4543003FA6B6 /* audio_off@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CACF878715EB4543003FA6B6 /* audio_off@2x.png */; };
 		CACF87A415EB4D2D003FA6B6 /* DiceSettingView.m in Sources */ = {isa = PBXBuildFile; fileRef = CACF87A215EB4D2D003FA6B6 /* DiceSettingView.m */; };
 		CACF87A515EB4D2D003FA6B6 /* DiceSettingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CACF87A315EB4D2D003FA6B6 /* DiceSettingView.xib */; };
+		CAD12A9815F19F12003B8E6A /* WapsOffer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAD12A9615F19F12003B8E6A /* WapsOffer.framework */; };
 		CAD6EACF15805D780004A483 /* DrawManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CAD6EACE15805D780004A483 /* DrawManager.m */; };
 		CAD95C5D15889612006EAC41 /* FeedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CAD95C5B15889611006EAC41 /* FeedCell.m */; };
 		CAD95C5E15889612006EAC41 /* FeedCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAD95C5C15889611006EAC41 /* FeedCell.xib */; };
@@ -1784,6 +1786,8 @@
 		A455F8C01585D21400CA5743 /* grayArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "grayArrow@2x.png"; sourceTree = "<group>"; };
 		A455F8C11585D21400CA5743 /* whiteArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = whiteArrow.png; sourceTree = "<group>"; };
 		A455F8C21585D21400CA5743 /* whiteArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "whiteArrow@2x.png"; sourceTree = "<group>"; };
+		A45BC60C15F1C4F80003DDDC /* DiceConfigManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiceConfigManager.h; sourceTree = "<group>"; };
+		A45BC60D15F1C4F80003DDDC /* DiceConfigManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiceConfigManager.m; sourceTree = "<group>"; };
 		A45BF5E015D231A000CDD5C2 /* DiceFontManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiceFontManager.h; sourceTree = "<group>"; };
 		A45BF5E115D231A000CDD5C2 /* DiceFontManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiceFontManager.m; sourceTree = "<group>"; };
 		A45E8CD315C77F8E0089E240 /* DiceAvatarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiceAvatarView.h; sourceTree = "<group>"; };
@@ -3570,11 +3574,11 @@
 		CAC25C6815EF20FB007456FA /* DiceHomeController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DiceHomeController.xib; sourceTree = "<group>"; };
 		CAC25C6B15EF2D01007456FA /* DiceHomeController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "DiceHomeController~ipad.xib"; sourceTree = "<group>"; };
 		CAC25CCE15F09ECF007456FA /* en */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = en; path = "en.lproj/dice_shop@2x.png"; sourceTree = "<group>"; };
-		CAC25CD415F0A0EA007456FA /* en */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = en; path = "en.lproj/dice_default_board_ad@2x.png"; sourceTree = "<group>"; };
-		CAC25CD615F0A117007456FA /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "zh-Hans"; path = "zh-Hans.lproj/dice_default_board_ad@2x.png"; sourceTree = "<group>"; };
+		CAC25CD415F0A0EA007456FA /* en */ = {isa = PBXFileReference; name = en; path = "en.lproj/dice_default_board_ad@2x.jpg"; sourceTree = "<group>"; };
+		CAC25CD615F0A117007456FA /* zh-Hans */ = {isa = PBXFileReference; name = "zh-Hans"; path = "zh-Hans.lproj/dice_default_board_ad@2x.jpg"; sourceTree = "<group>"; };
 		CAC25CD715F0A169007456FA /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "zh-Hans"; path = "zh-Hans.lproj/dice_shop@2x.png"; sourceTree = "<group>"; };
-		CAC25CDD15F0A1FF007456FA /* en */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = en; path = "en.lproj/dice_default_board@2x.png"; sourceTree = "<group>"; };
-		CAC25CDF15F0A20E007456FA /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "zh-Hans"; path = "zh-Hans.lproj/dice_default_board@2x.png"; sourceTree = "<group>"; };
+		CAC25CDD15F0A1FF007456FA /* en */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = en; path = "en.lproj/dice_default_board@2x.jpg"; sourceTree = "<group>"; };
+		CAC25CDF15F0A20E007456FA /* zh-Hans */ = {isa = PBXFileReference; name = "zh-Hans"; path = "zh-Hans.lproj/dice_default_board@2x.jpg"; sourceTree = "<group>"; };
 		CAC25CE015F0A23E007456FA /* dice_bottom_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dice_bottom_bg@2x.png"; sourceTree = "<group>"; };
 		CAC25D0415F0C72B007456FA /* revoke@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "revoke@2x.png"; sourceTree = "<group>"; };
 		CAC4DCE015450E8F00A42CF2 /* StoreKitUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoreKitUtils.h; sourceTree = "<group>"; };
@@ -3596,6 +3600,7 @@
 		CACF87A115EB4D2D003FA6B6 /* DiceSettingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiceSettingView.h; sourceTree = "<group>"; };
 		CACF87A215EB4D2D003FA6B6 /* DiceSettingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiceSettingView.m; sourceTree = "<group>"; };
 		CACF87A315EB4D2D003FA6B6 /* DiceSettingView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DiceSettingView.xib; sourceTree = "<group>"; };
+		CAD12A9615F19F12003B8E6A /* WapsOffer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = WapsOffer.framework; sourceTree = "<group>"; };
 		CAD18C83156B9125003ADDC0 /* MainDataModel 5.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "MainDataModel 5.xcdatamodel"; sourceTree = "<group>"; };
 		CAD6EACD15805D780004A483 /* DrawManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawManager.h; sourceTree = "<group>"; };
 		CAD6EACE15805D780004A483 /* DrawManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawManager.m; sourceTree = "<group>"; };
@@ -3794,6 +3799,7 @@
 				CAA1AFBB159EAA5900504C98 /* libAderSDK.a in Frameworks */,
 				CAA1AFBD159EAA5900504C98 /* libGoogleAdMobAds.a in Frameworks */,
 				CA67B8A515EB1FCD002050DB /* immobSDK.framework in Frameworks */,
+				CAD12A9815F19F12003B8E6A /* WapsOffer.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4046,6 +4052,15 @@
 				A455F8C21585D21400CA5743 /* whiteArrow@2x.png */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		A45BC60815F1C4DF0003DDDC /* DiceConfigManager */ = {
+			isa = PBXGroup;
+			children = (
+				A45BC60C15F1C4F80003DDDC /* DiceConfigManager.h */,
+				A45BC60D15F1C4F80003DDDC /* DiceConfigManager.m */,
+			);
+			path = DiceConfigManager;
 			sourceTree = "<group>";
 		};
 		A45BF5DF15D231A000CDD5C2 /* DiceFontManager */ = {
@@ -4304,6 +4319,7 @@
 		A4B763FB15C28F8E003B4E72 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				A45BC60815F1C4DF0003DDDC /* DiceConfigManager */,
 				A48E827115E871BB002DB480 /* DiceHelpManager */,
 				C21309F815E774000072A18E /* DiceColorManager */,
 				A42C520815E614E5001D8208 /* DiceSoundManager */,
@@ -6691,6 +6707,7 @@
 		CA745D281503B1B500600024 /* Draw */ = {
 			isa = PBXGroup;
 			children = (
+				CAD12A9415F19F0F003B8E6A /* WAPS_IOS_1.0.2 */,
 				CA103B391509A56000F60C03 /* Core */,
 				CA67B8A215EB1FCD002050DB /* LmmobSDK */,
 				C21309D115E73A590072A18E /* UIGlossyButton */,
@@ -7239,8 +7256,8 @@
 			isa = PBXGroup;
 			children = (
 				CAC25CE015F0A23E007456FA /* dice_bottom_bg@2x.png */,
-				CAC25CD515F0A0EA007456FA /* dice_default_board_ad@2x.png */,
-				CAC25CDE15F0A1FF007456FA /* dice_default_board@2x.png */,
+				CAC25CD515F0A0EA007456FA /* dice_default_board_ad@2x.jpg */,
+				CAC25CDE15F0A1FF007456FA /* dice_default_board@2x.jpg */,
 				CAC25BEB15EDF9FD007456FA /* dice_help@2x.png */,
 				CAC25BEC15EDF9FD007456FA /* dice_home_bg@2x.png */,
 				CAC25BED15EDF9FD007456FA /* dice_room@2x.png */,
@@ -7322,6 +7339,15 @@
 				EA6916BD15ECCF4C0001CB5A /* DiceSettingView~ipad.xib */,
 			);
 			path = DiceSettingView;
+			sourceTree = "<group>";
+		};
+		CAD12A9415F19F0F003B8E6A /* WAPS_IOS_1.0.2 */ = {
+			isa = PBXGroup;
+			children = (
+				CAD12A9615F19F12003B8E6A /* WapsOffer.framework */,
+			);
+			name = WAPS_IOS_1.0.2;
+			path = "../../Common_iPhone_20/3PP-SDK/WAPS_IOS_1.0.2";
 			sourceTree = "<group>";
 		};
 		CAE0C8941591A2D5008CDA62 /* Notification */ = {
@@ -9231,7 +9257,7 @@
 				A4EF8ACF15EDD8C90014643F /* callDice_11_1_F.m4a in Resources */,
 				A4EF8AD015EDD8C90014643F /* callDice_11_2_F.m4a in Resources */,
 				A4EF8AD115EDD8C90014643F /* callDice_11_3_F.m4a in Resources */,
-				CAC25CDC15F0A1FF007456FA /* dice_default_board@2x.png in Resources */,
+				CAC25CDC15F0A1FF007456FA /* dice_default_board@2x.jpg in Resources */,
 				CAC25BF315EDF9FD007456FA /* dice_help@2x.png in Resources */,
 				CAC25BF415EDF9FD007456FA /* dice_home_bg@2x.png in Resources */,
 				CAC25BF515EDF9FD007456FA /* dice_room@2x.png in Resources */,
@@ -9255,7 +9281,7 @@
 				CAC25C6A15EF20FB007456FA /* DiceHomeController.xib in Resources */,
 				CAC25C6C15EF2D02007456FA /* DiceHomeController~ipad.xib in Resources */,
 				C225867015EF7673009D686D /* shop_bell@2x.png in Resources */,
-				CAC25CD315F0A0EA007456FA /* dice_default_board_ad@2x.png in Resources */,
+				CAC25CD315F0A0EA007456FA /* dice_default_board_ad@2x.jpg in Resources */,
 				CAC25CE115F0A243007456FA /* dice_bottom_bg@2x.png in Resources */,
 				EA856C6D15F0A65700178323 /* add_color@2x.png in Resources */,
 				EA856C6E15F0A65700178323 /* back@2x.png in Resources */,
@@ -9816,6 +9842,7 @@
 				CAC25C3E15EF0740007456FA /* MenuPanel.m in Sources */,
 				CAC25C6915EF20FB007456FA /* DiceHomeController.m in Sources */,
 				C225866E15EF5AA4009D686D /* GCServer.m in Sources */,
+				A45BC60E15F1C4F80003DDDC /* DiceConfigManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -9978,22 +10005,22 @@
 			name = "dice_shop@2x.png";
 			sourceTree = "<group>";
 		};
-		CAC25CD515F0A0EA007456FA /* dice_default_board_ad@2x.png */ = {
+		CAC25CD515F0A0EA007456FA /* dice_default_board_ad@2x.jpg */ = {
 			isa = PBXVariantGroup;
 			children = (
 				CAC25CD415F0A0EA007456FA /* en */,
 				CAC25CD615F0A117007456FA /* zh-Hans */,
 			);
-			name = "dice_default_board_ad@2x.png";
+			name = "dice_default_board_ad@2x.jpg";
 			sourceTree = "<group>";
 		};
-		CAC25CDE15F0A1FF007456FA /* dice_default_board@2x.png */ = {
+		CAC25CDE15F0A1FF007456FA /* dice_default_board@2x.jpg */ = {
 			isa = PBXVariantGroup;
 			children = (
 				CAC25CDD15F0A1FF007456FA /* en */,
 				CAC25CDF15F0A20E007456FA /* zh-Hans */,
 			);
-			name = "dice_default_board@2x.png";
+			name = "dice_default_board@2x.jpg";
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -10066,6 +10093,7 @@
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/LmmobAdWallSDK\"",
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/LmmobSDK\"",
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/MangoAd/AdsMOGO_iOS_SDK_1.1.9/AdsMoGoLib/AdNetworkLibs/MobWin\"",
+					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/WAPS_IOS_1.0.2\"",
 				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -10127,6 +10155,7 @@
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/LmmobAdWallSDK\"",
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/LmmobSDK\"",
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/MangoAd/AdsMOGO_iOS_SDK_1.1.9/AdsMoGoLib/AdNetworkLibs/MobWin\"",
+					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/WAPS_IOS_1.0.2\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Draw/Draw-Prefix.pch";

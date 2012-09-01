@@ -19,13 +19,19 @@
 #import "UserManager.h"
 #import "DiceGameService.h"
 #import "CoinShopController.h"
+#import "AdService.h"
 #import "TimeUtils.h"
 #import "AccountService.h"
 #import "AnimationManager.h"
 #import "CommonMessageCenter.h"
 #import "CMPopTipView.h"
+
 #import "ConfigManager.h"
-#import "DrawUtils.h"
+
+#import "DiceConfigManager.h"
+#import "ConfigManager.h"
+#import "LmWallService.h"
+
 
 #define KEY_LAST_AWARD_DATE     @"last_award_day"
 
@@ -40,7 +46,6 @@
     BoardPanel *_boardPanel;
     NSTimeInterval interval;
     BOOL hasGetLocalBoardList;
-
 }
 
 - (void)updateBoardPanelWithBoards:(NSArray *)boards;
@@ -101,8 +106,10 @@
 
 - (void)viewDidLoad
 {    
+    [[AdService defaultService] setViewController:self];
+    
     [super viewDidLoad];
-    [self loadBoards];
+//    [self loadBoards];
     [self loadMainMenu];
     [self loadBottomMenu];
     [self playBGM];
@@ -112,6 +119,9 @@
 
 - (void)viewDidAppear:(BOOL)animated
 {
+    [[AdService defaultService] setViewController:self];    
+    [self loadBoards];
+
     [self registerDiceGameNotification];    
     [super viewDidAppear:animated];
 }
@@ -354,26 +364,26 @@
     [self unregisterAllNotifications];
 }
 
-
-- (BOOL)meetJoinGameCondiction
+- (void)showCoinsNotEnoughView
 {
-    if ([[AccountService defaultService] getBalance] <= DICE_THRESHOLD_COIN) {
-        NSString* message = [NSString stringWithFormat:NSLS(@"kCoinsNotEnoughAndEnterShop"), DICE_THRESHOLD_COIN];
-        CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"kNotEnoughCoin") 
-                                                           message:message
-                                                             style:CommonDialogStyleDoubleButton 
-                                                          delegate:self 
-                                                             theme:CommonDialogThemeDice];
-        [dialog showInView:self.view];
-        return NO;
-    }
-    return YES;
+    CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"kNotEnoughCoin") 
+                                                       message:[DiceConfigManager coinsNotEnoughNote]
+                                                         style:CommonDialogStyleDoubleButton 
+                                                      delegate:self 
+                                                         theme:CommonDialogThemeDice];
+    [dialog showInView:self.view];
 }
 
 - (void)connectServer
 {
     _isTryJoinGame = YES;    
 
+//    [[DiceGameService defaultService] setServerAddress:@"192.168.1.198"];
+//    [[DiceGameService defaultService] setServerPort:8080];
+    
+    [[DiceGameService defaultService] setServerAddress:@"106.187.89.232"];
+    [[DiceGameService defaultService] setServerPort:8018];
+    
     [[DiceGameService defaultService] connectServer:self];
     [self showActivityWithText:NSLS(@"kConnectingServer")];
 }
@@ -386,11 +396,13 @@
         
     if (_isTryJoinGame){
         [[DiceGameService defaultService] joinGameRequestWithCondiction:^BOOL{
-            if ([self meetJoinGameCondiction]) {
+            if ([DiceConfigManager meetJoinGameCondiction]) {
                 [self showActivityWithText:NSLS(@"kJoiningGame")];
                 return YES;
-            };
-            return NO;
+            }else {
+                [self showCoinsNotEnoughView];
+                return NO;
+            }
         }];
     }    
 }
@@ -409,13 +421,24 @@
 #pragma mark - common dialog delegate
 - (void)clickOk:(CommonDialog *)dialog
 {
-    CoinShopController* controller = [[[CoinShopController alloc] init] autorelease];
-    [self.navigationController pushViewController:controller animated:YES]; 
+    if ([ConfigManager wallEnabled]) {
+        [self showWall];
+    }else {
+        CoinShopController* controller = [[[CoinShopController alloc] init] autorelease];
+        [self.navigationController pushViewController:controller animated:YES]; 
+    }
 }
 
 - (void)clickBack:(CommonDialog *)dialog
 {
     
 }
+
+- (void)showWall
+{        
+    [UIUtils alertWithTitle:@"免费金币获取提示" msg:@"下载免费应用即可获取金币！下载完应用一定要打开才可以获得奖励哦！"];
+    [[LmWallService defaultService] show:self];
+}
+
 
 @end
