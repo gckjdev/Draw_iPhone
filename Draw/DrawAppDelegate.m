@@ -101,6 +101,12 @@ NSString* GlobalGetBoardServerURL()
     
     application.applicationIconBadgeNumber = 0;
     
+    if (isDrawApp()) {
+        [WordManager unZipFiles];
+    } else if (isDiceApp()){
+        [DiceFontManager unZipFiles]; 
+    }
+    
     [self initImageCacheManager];
     
     if (isDiceApp() == NO){
@@ -220,9 +226,7 @@ NSString* GlobalGetBoardServerURL()
     
     //sync level details
     [[LevelService defaultService] syncExpAndLevel:SYNC];
-    
-    [WordManager unZipFiles];
-    [DiceFontManager unZipFiles];    
+       
     return YES;
 }
 
