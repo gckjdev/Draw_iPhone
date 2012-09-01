@@ -21,6 +21,7 @@
     NSTimer* _rollAwardDiceTimer;
     BOOL _isTryJoinGame;
     int _awardDicePoint;
+    UITapGestureRecognizer *_tapGestureRecognizer;
 }
 
 @property (retain, nonatomic) MenuPanel *menuPanel;

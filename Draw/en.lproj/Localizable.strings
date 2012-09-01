@@ -832,5 +832,7 @@
 "kToolRollAgain" = "C";
 
 "kRefreshingRoomList" = "Loading room list...";
+
+"kDailyAwardCoin" = "You got %d coins";
 /*********************** 大话骰子国际化字符串结束 *************************/
 

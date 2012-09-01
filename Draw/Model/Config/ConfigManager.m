@@ -295,4 +295,14 @@
     return [MobClickUtils getStringValueByKey:@"DICE_SERVER_LIST" defaultValue:@"106.187.89.232:8018"];
 }
 
++ (int)getDailyGiftCoin
+{
+    return [MobClickUtils getIntValueByKey:@"DAILY_GIFT_COIN" defaultValue:200];
+}
+
++ (int)getDailyGiftCoinIncre
+{
+    return [MobClickUtils getIntValueByKey:@"DAILY_GIFT_COIN_INCRE" defaultValue:100];
+}
+
 @end
