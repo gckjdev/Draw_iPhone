@@ -28,7 +28,6 @@ static DiceGameService* _defaultService;
 {
     if (_defaultService == nil){
         _defaultService = [[DiceGameService alloc] init];
-        [_defaultService getDiceServerList];
     }
     
     return _defaultService;
@@ -37,7 +36,7 @@ static DiceGameService* _defaultService;
 - (id)init
 {
     self = [super init];
-    
+    [self getDiceServerList];
     _gameId = DICE_GAME_ID;
     _networkClient = [[DiceNetworkClient alloc] init];
     [_networkClient setDelegate:self]; 
