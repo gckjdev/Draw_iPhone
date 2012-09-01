@@ -335,6 +335,9 @@
 {
     _isTryJoinGame = YES;    
 
+    [[DiceGameService defaultService] setServerAddress:@"192.168.1.198"];
+    [[DiceGameService defaultService] setServerPort:8080];
+    
     [[DiceGameService defaultService] connectServer:self];
     [self showActivityWithText:NSLS(@"kConnectingServer")];
 }
