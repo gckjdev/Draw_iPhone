@@ -68,6 +68,7 @@ typedef enum {
           createData:(NSDate *)createDate 
             feedUser:(FeedUser*)feedUser;
 
+- (BOOL)showAnswer;
 - (BOOL)isMyFeed;
 - (BOOL)isDrawType;
 - (BOOL)isGuessType;

@@ -12,11 +12,21 @@
 #import "FeedService.h"
 #import "ShowDrawView.h"
 
+@protocol DrawInfoCellDelegate <NSObject>
+
+@optional
+- (void)didUpdateShowView;
+
+@end
+
 @interface DrawInfoCell : PPTableViewCell<FeedServiceDelegate, ShowDrawViewDelegate>
 {
+    id<DrawInfoCellDelegate> _delegate;
     DrawFeed *_feed;
     ShowDrawView *_showView;
 }
+
+@property (assign, nonatomic) id<DrawInfoCellDelegate> delegate;
 @property (retain, nonatomic) IBOutlet UIView *drawBG;
 @property (retain, nonatomic) DrawFeed *feed;
 @property (retain, nonatomic) ShowDrawView *showView;

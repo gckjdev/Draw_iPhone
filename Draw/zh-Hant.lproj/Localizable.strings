@@ -580,8 +580,7 @@
 "kCorrect" = "猜對了！";
 "kSending" = "發送中...";
 "kNoCommentTips" = "還沒有人評論";
-"kFeedDetail" = "%@的畫";
-
+"kFeedDetail" = "猜畫詳情";
 "kCommentFail" = "評論失敗";
 
 "kBlankDrawMessage" = "不能提交空白的畫哦，至少得畫幾筆吧？";

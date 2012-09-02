@@ -13,13 +13,20 @@
 #import "CommentCell.h"
 #import "CommentFeed.h"
 #import "TableTabManager.h"
+#import "CommonUserInfoView.h"
+#import "OfflineGuessDrawController.h"
 
 @implementation ShowFeedController
 @synthesize titleLabel = _titleLabel;
+@synthesize guessButton = _guessButton;
+@synthesize saveButton = _saveButton;
+@synthesize commentButton = _commentButton;
+@synthesize flowerButton = _flowerButton;
+@synthesize tomatoButton = _tomatoButton;
 @synthesize feed = _feed;
 @synthesize userCell = _userCell;
 @synthesize drawCell = _drawCell;
-
+@synthesize commentHeader = _commentHeader;
 
 typedef enum{
     
@@ -36,7 +43,13 @@ typedef enum{
     PPRelease(_drawCell);
     PPRelease(_userCell);
     PPRelease(_tabManager);
+    PPRelease(_commentHeader);
     [_titleLabel release];
+    [_guessButton release];
+    [_saveButton release];
+    [_commentButton release];
+    [_flowerButton release];
+    [_tomatoButton release];
     [super dealloc];
 }
 
@@ -54,6 +67,48 @@ typedef enum{
     return self;
 }
 
+enum{
+  ActionTagGuess = 100,
+  ActionTagComment, 
+  ActionTagSave,
+  ActionTagFlower,
+  ActionTagTomato,
+  ActionTagEnd,
+};
+
+#define SCREEN_WIDTH ([DeviceDetection isIPAD] ? 768 : 320)
+#define ACTION_BUTTON_Y 422
+- (void)updateActionButtons
+{
+    //data is nil
+    NSInteger start = ActionTagGuess;
+    NSInteger count = ActionTagEnd - start;
+    if (self.feed.drawData == nil) {
+        
+    }else if ([self.feed showAnswer]) {
+    //mine or correct
+        start = ActionTagComment;
+        self.guessButton.hidden = YES;
+        count --;
+    }else{
+        self.guessButton.hidden = NO;
+    }
+    
+    CGFloat width = self.guessButton.frame.size.width;
+    CGFloat space = (SCREEN_WIDTH - (count * width)) / (count + 1);
+    CGFloat x = space;
+    CGFloat y = ACTION_BUTTON_Y;
+    
+    for (NSInteger tag = start; tag < ActionTagEnd; ++ tag) {
+        UIButton *button = (UIButton *)[self.view viewWithTag:tag];
+        button.frame = CGRectMake(x, y, width, width);
+        button.enabled = YES;
+        x += width + space;
+    }
+    //can guess
+    
+
+}
 
 #pragma mark - table view delegate.
 
@@ -149,18 +204,48 @@ typedef enum{
 }
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    return (section == SectionCommentInfo) ? [CommentHeaderView createCommentHeaderView:self] : nil;
+    if(section == SectionCommentInfo)
+    {
+        if (self.commentHeader == nil) {
+            self.commentHeader = [CommentHeaderView createCommentHeaderView:self];
+            [self.commentHeader setViewInfo:self.feed];
+        }
+        return self.commentHeader;
+    }
+    return nil;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    switch (indexPath.section) {
+        case SectionUserInfo:
+            [CommonUserInfoView showUser:self.feed.author.userId 
+                                nickName:nil 
+                                  avatar:nil 
+                                  gender:nil 
+                                location:nil 
+                                   level:1
+                                 hasSina:NO 
+                                   hasQQ:NO 
+                             hasFacebook:NO 
+                              infoInView:self];
+
+            break;
+            
+        default:
+            break;
+    }
 }
 
 #pragma mark update views
 - (void)updateTitle
 {
     NSString *title = nil;
-    if ([self.feed isMyOpus]) {
-        title = [NSString stringWithFormat:NSLS(@"kMyDrawing"),
+    if ([self.feed showAnswer]) {
+        title = [NSString stringWithFormat:NSLS(@"[%@]"),
                  self.feed.wordText];        
     }else{
-        title = [NSString stringWithFormat:NSLS(@"kFeedDetail"),_feed.feedUser.nickName];
+        title = [NSString stringWithFormat:NSLS(@"kFeedDetail")];
     }
     [self.titleLabel setText:title];
 }
@@ -170,6 +255,16 @@ typedef enum{
     [[FeedService defaultService] getOpusCommentList:self.feed.feedId offset:0 limit:20 delegate:self];
 }
 
+
+#pragma mark - cell delegate
+- (void)didUpdateShowView
+{
+    //update the times
+    [self.commentHeader setViewInfo:self.feed];
+    //update the action buttons
+    [self updateActionButtons];
+    [self updateTitle];
+}
 
 #pragma mark - feed service delegate
 
@@ -205,12 +300,35 @@ typedef enum{
 }
 
 
-#pragma mark - Action
+#pragma mark - Click Actions
 - (IBAction)clickBackButton:(id)sender {
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+- (IBAction)clickActionButton:(id)sender {
+    UIButton *button = (UIButton *)sender;
+    if (button == self.guessButton) {
+        //enter guess controller
+        OfflineGuessDrawController *controller = [OfflineGuessDrawController startOfflineGuess:self.feed fromController:self];        
 
+    }else if(button == self.commentButton){
+        //enter comment controller
+    }else if(button == self.saveButton){
+        //save
+    }else if(button == self.flowerButton){
+        //send a flower
+    }else if(button == self.tomatoButton){
+        //send a tomato
+    }else{
+        //no action
+    }
+    
+}
+
+- (IBAction)clickRefresh:(id)sender {
+    [self.drawCell setCellInfo:self.feed];
+    [self updateTitle];
+}
 #pragma mark - override methods.
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -234,6 +352,7 @@ typedef enum{
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self updateActionButtons];
     [self updateTitle];
     [self updateCommentList:FeedTypeComment];
 }
@@ -241,6 +360,11 @@ typedef enum{
 - (void)viewDidUnload
 {
     [self setTitleLabel:nil];
+    [self setGuessButton:nil];
+    [self setSaveButton:nil];
+    [self setCommentButton:nil];
+    [self setFlowerButton:nil];
+    [self setTomatoButton:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -251,5 +375,7 @@ typedef enum{
     // Return YES for supported orientations
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
+
+
 
 @end

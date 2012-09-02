@@ -23,8 +23,9 @@
 @synthesize drawBG;
 @synthesize feed = _feed;
 @synthesize showView = _showView;
+@synthesize delegate = _delegate;
 
-+ (id)createCell:(id)delegate
++ (id)createCell:(id<DrawInfoCellDelegate>)delegate
 {
     NSString* cellId = [self getCellIdentifier];
     //    NSLog(@"cellId = %@", cellId);
@@ -164,6 +165,9 @@
         [self updateShowView:feed];
 //        [self updateActionButton:feed];
         [self updateTime:feed];
+        if (self.delegate && [self.delegate respondsToSelector:@selector(didUpdateShowView)]) {
+            [self.delegate didUpdateShowView];
+        }
     }else{
         [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kGetFeedFail") delayTime:1 isHappy:NO];
     }

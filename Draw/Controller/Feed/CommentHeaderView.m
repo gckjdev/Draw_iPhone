@@ -28,6 +28,24 @@
 - (void)setViewInfo:(DrawFeed *)feed
 {
     
+    //    猜画:3 | 评论:2 | 鲜花:2 | 番茄:1 
+    
+    //    if (feed.guessTimes == 0) {
+    //        [self.guessStatLabel setText:NSLS(@"kNoGuess")];
+    //    }else{
+    //    猜画:3 | 猜对:2 | 评论:2 | 鲜花:2 | 番茄:1 | 保存:1
+    NSInteger guessTimes = feed.guessTimes;
+
+    NSInteger correctTimes = feed.correctTimes;
+//    NSInteger commentTimes = feed.correctTimes;
+    NSInteger flowerTimes = feed.flowerTimes;
+    NSInteger tomatoTimes = feed.tomatoTimes;
+    //    NSInteger saveTimes = feed.saveTimes;
+    
+    
+    NSString *desc = [NSString stringWithFormat:NSLS(@"kGuessDetailStat"),guessTimes, correctTimes,flowerTimes,tomatoTimes];
+    UILabel *label = (UILabel *)[self viewWithTag:100];
+    [label setText:desc]; 
 }
 + (CGFloat)getHeight
 {

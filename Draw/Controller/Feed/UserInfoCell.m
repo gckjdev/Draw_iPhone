@@ -50,6 +50,7 @@
     
     self.avatarView = [[[AvatarView alloc] initWithUrlString:avatar frame:frame gender:gender level:0] autorelease];
     [(AvatarView *)self.avatarView setUserId:userId];
+    [self.avatarView setUserInteractionEnabled:NO];
     [self addSubview:self.avatarView];
 //    self.avatarView.delegate = self;
     
