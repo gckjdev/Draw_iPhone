@@ -180,7 +180,11 @@
         [_boardPanel removeFromSuperview];
         _boardPanel = [BoardPanel boardPanelWithController:self];
         [_boardPanel setBoardList:boards];
-        [self.view addSubview:_boardPanel];  
+        [self.view addSubview:_boardPanel]; 
+        UIView* awardButton = [self.view viewWithTag:AWARD_DICE_TAG];
+        if (awardButton) {
+            [self.view bringSubviewToFront:awardButton];
+        }
     }
     
 }
