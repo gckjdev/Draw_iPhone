@@ -8,6 +8,8 @@
 
 #import "CommonMessageCenter.h"
 #import "DiceImageManager.h"
+#import "HKGirlFontLabel.h"
+#import "LocaleUtils.h"
 
 typedef enum {
     CommonMessageViewThemeDraw = 0,
@@ -31,7 +33,7 @@ CommonMessageViewTheme globalGetTheme() {
 	UIImage *_image;
 }
 @property (retain, nonatomic) IBOutlet UIImageView *faceImageView;
-@property (retain, nonatomic) IBOutlet UILabel *messageLabel;
+@property (retain, nonatomic) IBOutlet HKGirlFontLabel *messageLabel;
 @property (retain, nonatomic) IBOutlet UIImageView* messageBackgroundView;
 
 - (id) init;
@@ -97,6 +99,12 @@ CommonMessageViewTheme globalGetTheme() {
         return nil;
     }
     CommonMessageView* view =  (CommonMessageView*)[topLevelObjects objectAtIndex:0];
+    view.messageLabel.numberOfLines = 5;
+    if ([LocaleUtils isChinese]) {
+        [view.messageLabel setLineBreakMode:UILineBreakModeCharacterWrap];
+    } else {
+        [view.messageLabel setLineBreakMode:UILineBreakModeWordWrap];
+    }
     return view;
 }
 

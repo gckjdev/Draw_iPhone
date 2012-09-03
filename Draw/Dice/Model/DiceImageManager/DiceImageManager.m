@@ -272,6 +272,8 @@ static DiceImageManager *_defaultManager = nil;
                               autorelease];
     
     [label setText:NSLS(@"kToolCut")];
+    [label setShadowColor:[UIColor whiteColor]];
+    [label setShadowOffset:CGSizeMake(0, 1)];
     
     return [UIImage creatImageByImage:backgroundImage withLabel:label];
 }
@@ -290,6 +292,8 @@ static DiceImageManager *_defaultManager = nil;
     
 
     [label setText:NSLS(@"kToolRollAgain")];
+    [label setShadowColor:[UIColor whiteColor]];
+    [label setShadowOffset:CGSizeMake(0, 1)];
 
     return [UIImage creatImageByImage:backgroundImage withLabel:label];
 }

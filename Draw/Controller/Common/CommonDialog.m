@@ -11,7 +11,7 @@
 #import "LocaleUtils.h"
 #import "DiceImageManager.h"
 #import "FontButton.h"
-
+#import "LocaleUtils.h"
 
 #define COMMON_DIALOG_THEME_DRAW    @"CommonDialog"
 #define COMMON_DIALOG_THEME_DICE    @"CommonDiceDialog"
@@ -48,7 +48,13 @@
         case CommonDialogThemeDice: {
             //init the button
             [self.messageLabel setNumberOfLines:5];
-            [self.messageLabel setLineBreakMode:UILineBreakModeCharacterWrap];
+            
+            if ([LocaleUtils isChinese]) {
+                [self.messageLabel setLineBreakMode:UILineBreakModeCharacterWrap];
+            }else {
+                [self.messageLabel setLineBreakMode:UILineBreakModeWordWrap];
+            }
+ 
             [self.backButton.fontLable setText:NSLS(@"kCancel")];
             [self.oKButton.fontLable setText:NSLS(@"kOK")];
 

@@ -213,7 +213,9 @@
     
     [self updateAllPlayersAvatar];
     
-    [self startAdHideTimer];
+    if ([DeviceDetection isIPAD] == NO){
+        [self startAdHideTimer];
+    }
 }
 
 - (void)viewDidUnload
@@ -1241,7 +1243,7 @@
                                            filePath:filePath
                                    playTimeInterval:0.2] autorelease];
     
-    [self.view addSubview:view];
+    [self.view insertSubview:view aboveSubview:avatar];
     
     [UIView animateWithDuration:1 delay:6.0 options:UIViewAnimationCurveLinear animations:^{
         view.alpha = 0;
