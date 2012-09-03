@@ -837,5 +837,7 @@
 "kRefreshingRoomList" = "Loading room list...";
 
 "kDailyAwardCoin" = "You got %d coins";
+"kDiceUpgradeMsg" = "Congratulations!You upgraded to level %d, [cut] +%d";
+"kDiceDegradeMsg" = "You play terribly, now degrade to level %d";
 /*********************** 大话骰子国际化字符串结束 *************************/
 

@@ -73,6 +73,7 @@ typedef enum{
 + (int)getFollowWeiboReward;
 
 + (int)flowerAwardFordLevelUp;
++ (int)diceCutAwardForLevelUp;
 
 + (NSString*)getRecommendAppLinkZh;
 + (NSString*)getRecommendAppLinkZht;
