@@ -54,7 +54,7 @@
     int count = [self.drawActionList count];
     while (count > 0) {
         DrawAction *action = [self.drawActionList objectAtIndex:--count];
-        if ([action isDrawAction]) {
+        if ([action isCleanAction]) {
             _startDrawActionIndex = count+1;
             return;
         }else if ([action isChnageBackAction]) {
@@ -140,7 +140,6 @@
         if ([drawAction isDrawAction]) {        
             Paint *paint = drawAction.paint;
             [self drawPaint:paint];
-            
         }
     }
 }
@@ -152,7 +151,7 @@
         CGColorRef color = _currentDrawAction.paint.color.CGColor;
         CGFloat width = _currentDrawAction.paint.width;
         [self drawPoint:width color:color];
-        [_curImage release];
+        PPRelease(_curImage);
     }
 }
 
