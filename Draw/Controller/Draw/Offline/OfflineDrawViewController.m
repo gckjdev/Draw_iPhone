@@ -302,6 +302,7 @@ enum{
     if (self.draft) {
         NSArray* drawActionList = [NSKeyedUnarchiver unarchiveObjectWithData:self.draft.data];
         [drawView setDrawActionList:[NSMutableArray arrayWithArray:drawActionList]];
+        [drawView show];
     }
     [self.view insertSubview:drawView aboveSubview:paperView];
     self.bgColor = self.eraserColor = [DrawColor whiteColor];
@@ -314,7 +315,6 @@ enum{
     }else {
         self.wordButton.hidden = NO;
         NSString *wordText = self.word.text;
-        //= [NSString stringWithFormat:NSLS(@"kDrawWord"),self.word.text];
         [self.wordButton setTitle:wordText forState:UIControlStateNormal];
     }
 }
@@ -583,9 +583,9 @@ enum{
         [pickPenView updatePenViews];
     }else if(dialog.tag == DIALOG_TAG_CHANGE_BACK)
     {
-        DrawAction *action = [DrawAction 
-                              changeBackgroundActionWithColor:self.bgColor];
-        [drawView addAction:action];
+//        DrawAction *action = [DrawAction 
+//                              changeBackgroundActionWithColor:self.bgColor];
+        [drawView addChangeBackAction:self.bgColor];
         self.eraserColor = self.bgColor;
         if (drawView.penType == Eraser) {
             drawView.lineColor = self.eraserColor;
