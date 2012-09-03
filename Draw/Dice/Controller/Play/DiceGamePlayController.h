@@ -40,7 +40,11 @@
 //    ItemService *_itemService;
     ExpressionManager *_expressionManager;
     DiceSoundManager *_soundManager;
+    
+    int hideAdCounter;
 }
+
+@property (retain, nonatomic) NSTimer *adHideTimer;
 
 @property (retain, nonatomic) IBOutlet FontLabel *myLevelLabel;
 @property (retain, nonatomic) IBOutlet FontLabel *myCoinsLabel;

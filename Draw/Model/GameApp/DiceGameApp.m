@@ -7,6 +7,7 @@
 //
 
 #import "DiceGameApp.h"
+#import "MobClickUtils.h"
 
 @implementation DiceGameApp
 
@@ -98,6 +99,11 @@
 - (NSString*)wanpuAdPublisherId
 {
     return @"56355897c0bb3c956585f2e7ab2950af";
+}
+
+- (NSString*)removeAdProductId
+{
+    return [MobClickUtils getStringValueByKey:@"AD_IAP_ID" defaultValue:@"com.orange.dice.removead"];    
 }
 
 @end
