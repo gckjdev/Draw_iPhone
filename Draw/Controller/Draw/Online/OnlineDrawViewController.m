@@ -481,9 +481,7 @@ enum{
         [pickPenView updatePenViews];
     }else if(dialog.tag == DIALOG_TAG_CHANGE_BACK)
     {
-        DrawAction *action = [DrawAction 
-                              changeBackgroundActionWithColor:self.bgColor];
-        [drawView addAction:action];
+        DrawAction *action = [drawView addChangeBackAction:self.bgColor];
         self.eraserColor = self.bgColor;
         if (drawView.penType == Eraser) {
             drawView.lineColor = self.eraserColor;

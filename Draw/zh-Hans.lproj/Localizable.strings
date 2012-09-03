@@ -595,7 +595,7 @@
 "kCorrect" = "猜对了！";
 "kSending" = "发送中...";
 "kNoCommentTips" = "还没有人评论";
-"kFeedDetail" = "%@的画";
+"kFeedDetail" = "猜画详情";
 
 "kCommentFail" = "评论失败";
 "kBlankDrawTitle" = "空白的画";
@@ -849,6 +849,9 @@
 "kToolRollAgain" = "摇";
 
 "kRefreshingRoomList" = "刷新房间列表...";
-
+"kDailyAwardCoin" = "恭喜你捡到了%d个金币哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈";
+"kDiceUpgradeMsg" = "恭喜！您刚刚升到第%d级, 【劈】+%d";
+"kDiceDegradeMsg" = "噢，你玩得太不认真了，都降到%d级了";
+"kClickMe" = "点我一下";
 /*********************** 大话骰子国际化字符串结束 *************************/
 

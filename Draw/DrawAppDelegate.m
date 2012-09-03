@@ -47,6 +47,7 @@
 #import "DiceFontManager.h"
 #import "DiceSoundManager.h"
 #import "DiceHomeController.h"
+#import "DiceHelpManager.h"
 
 NSString* GlobalGetServerURL()
 {    
@@ -62,8 +63,8 @@ NSString* GlobalGetTrafficServerURL()
 
 NSString* GlobalGetBoardServerURL()
 {
-//    return [ConfigManager getTrafficAPIServerURL];
-    return @"http://192.167.1.123:8100/api/i?";    
+    return [ConfigManager getTrafficAPIServerURL];
+//    return @"http://192.167.1.123:8100/api/i?";    
 }
 
 
@@ -105,6 +106,7 @@ NSString* GlobalGetBoardServerURL()
         [WordManager unZipFiles];
     } else if (isDiceApp()){
         [DiceFontManager unZipFiles]; 
+        [[DiceHelpManager defaultManager] unzipHelpFiles];
     }
     
     [self initImageCacheManager];

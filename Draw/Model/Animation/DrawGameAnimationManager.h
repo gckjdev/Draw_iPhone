@@ -15,14 +15,21 @@
 @interface DrawGameAnimationManager : NSObject
 
 + (void)showThrowTomato:(UIImageView*)tomatoImageView 
-       animInController:(UIViewController*)superController;
+       animInController:(UIViewController*)superController 
+                rolling:(BOOL)rolling;
+
 + (void)showThrowFlower:(UIImageView*)flowerImageView 
-       animInController:(UIViewController*)superController;
+       animInController:(UIViewController*)superController
+                rolling:(BOOL)rolling;
+
 + (void)showReceiveFlower:(UIImageView*)flowerImageView 
     animationInController:(UIViewController*)viewController;
+
 + (void)showReceiveTomato:(UIImageView*)tomatoImageView  
     animaitonInController:(UIViewController*)viewController;
+
 + (void)showBuyItem:(UIImageView*)itemImageView  
+
    animInController:(UIViewController*)viewController;
 
 + (void)animation:(CAAnimation*)anim didStopWithFlag:(BOOL)flag;

@@ -22,9 +22,10 @@ typedef enum{
 	FeedTypeComment = 3, 
 	FeedTypeRepost = 4,
     FeedTypeDrawToUser = 5,
+    
 	FeedTypeFlower = ItemTypeFlower,
 	FeedTypeTomato = ItemTypeTomato,
-    
+    FeedTypeOnlyComment = 8
     
 }FeedType;
 
@@ -67,6 +68,7 @@ typedef enum {
           createData:(NSDate *)createDate 
             feedUser:(FeedUser*)feedUser;
 
+- (BOOL)showAnswer;
 - (BOOL)isMyFeed;
 - (BOOL)isDrawType;
 - (BOOL)isGuessType;

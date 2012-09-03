@@ -73,6 +73,7 @@ typedef enum{
 + (int)getFollowWeiboReward;
 
 + (int)flowerAwardFordLevelUp;
++ (int)diceCutAwardForLevelUp;
 
 + (NSString*)getRecommendAppLinkZh;
 + (NSString*)getRecommendAppLinkZht;
@@ -93,4 +94,7 @@ typedef enum{
 + (int)getDiceThresholdCoin;
 
 + (NSString*)getDiceServerListString;
+
++ (int)getDailyGiftCoin;
++ (int)getDailyGiftCoinIncre;
 @end

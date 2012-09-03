@@ -25,19 +25,29 @@
 #import "AnimationManager.h"
 #import "CommonMessageCenter.h"
 #import "CMPopTipView.h"
+
+#import "ConfigManager.h"
+
 #import "DiceConfigManager.h"
 #import "ConfigManager.h"
 #import "LmWallService.h"
 
+
 #define KEY_LAST_AWARD_DATE     @"last_award_day"
 
+#define DAILY_GIFT_COIN [ConfigManager getDailyGiftCoin]
+#define DAILY_GIFT_COIN_INCRE   [ConfigManager getDailyGiftCoinIncre]
+
 #define AWARD_DICE_TAG      20120901
+#define AWARD_DICE_START_POINT CGPointMake(0, 0)
+#define AWARD_DICE_SIZE ([DeviceDetection isIPAD]?CGSizeMake(100, 110):CGSizeMake(50, 55))
 
 @interface DiceHomeController()
 {
     BoardPanel *_boardPanel;
     NSTimeInterval interval;
     BOOL hasGetLocalBoardList;
+    
 }
 
 - (void)updateBoardPanelWithBoards:(NSArray *)boards;
@@ -55,6 +65,7 @@
     PPRelease(_menuPanel);
     PPRelease(_bottomMenuPanel);
     [super dealloc];
+    
 }
 
 - (void)loadBoards
@@ -172,18 +183,54 @@
         [_boardPanel removeFromSuperview];
         _boardPanel = [BoardPanel boardPanelWithController:self];
         [_boardPanel setBoardList:boards];
-        [self.view addSubview:_boardPanel];  
+        [self.view addSubview:_boardPanel]; 
+        UIView* awardButton = [self.view viewWithTag:AWARD_DICE_TAG];
+        if (awardButton) {
+            [self.view bringSubviewToFront:awardButton];
+        }
     }
     
 }
 
 #pragma mark - code for rolling award dice
 
-- (void)clickDice:(id)sender
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch {
+    //CGPoint pointInView = [touch locationInView:gestureRecognizer.view];
+    if ( [gestureRecognizer isMemberOfClass:[UITapGestureRecognizer class]] ) {
+        CGPoint aPoint = [touch locationInView:self.view];
+        UIButton* btn = (UIButton*)[self.view viewWithTag:AWARD_DICE_TAG];
+        CGPoint bPoint = [(CALayer*)btn.layer.presentationLayer position];
+        if (abs((aPoint.x-bPoint.x)) < 50 && abs((aPoint.y - bPoint.y)) < 50) {
+            return YES;
+        }
+        [btn.layer removeAllAnimations];
+        [btn removeFromSuperview];
+        return NO;
+    } 
+
+    return NO;
+}
+
+- (int)calCoinByPoint:(int)point
 {
-    UIButton* btn = (UIButton*)sender;
-    [[CommonMessageCenter defaultCenter] postMessageWithText:[NSString stringWithFormat:@"you pick up %d coin",_awardDicePoint] delayTime:2 isHappy:YES];
-    [btn removeFromSuperview];
+    if (point == 1) {
+        return DAILY_GIFT_COIN + 5*DAILY_GIFT_COIN_INCRE;
+    }
+    return DAILY_GIFT_COIN+(point-1)*DAILY_GIFT_COIN_INCRE;
+}
+
+- (void)clickAwardDice:(UITapGestureRecognizer*)sender
+{
+    CGPoint aPoint = [sender locationInView:self.view];
+    UIButton* btn = (UIButton*)[self.view viewWithTag:AWARD_DICE_TAG];
+    CGPoint bPoint = [(CALayer*)btn.layer.presentationLayer position];
+    if (abs((aPoint.x-bPoint.x)) < 50 && abs((aPoint.y - bPoint.y)) < 50) {
+        [[CommonMessageCenter defaultCenter] postMessageWithText:[NSString stringWithFormat:NSLS(@"kDailyAwardCoin"),[self calCoinByPoint:_awardDicePoint]] delayTime:2 isHappy:YES];
+        [btn removeFromSuperview];
+        [_tapGestureRecognizer setEnabled:NO];
+    }
+
+    
 }
 
 - (void)updateTimer:(id)sender
@@ -192,6 +239,12 @@
     _awardDicePoint = rand()%6+1;
     UIImage* image = [UIImage imageNamed:[NSString stringWithFormat:@"open_bell_%dbig.png", _awardDicePoint]];
     [btn setImage:image forState:UIControlStateNormal];
+//    CGPoint aPoint = ((CALayer*)[btn.layer presentationLayer]).position;
+//    CGPoint aPoint = btn.layer.presentationLayer.
+//    PPDebug(@"dice pos = (%f, %f)",aPoint.x, aPoint.y);
+//    CAKeyframeAnimation* anim = (CAKeyframeAnimation*)[btn.layer animationForKey:@"bb"];
+    
+        
 }
 
 - (void)startRollDiceTimer
@@ -211,32 +264,56 @@
 
 - (void)rollAwardDice
 {
-    UIButton* diceBtn = [[[UIButton alloc] initWithFrame:CGRectMake(0, 0, 50, 55)] autorelease];
-    [diceBtn setCenter:CGPointMake(self.view.frame.size.width-50, self.view.frame.size.height-50)];
+    UIButton* diceBtn = [[[UIButton alloc] initWithFrame:CGRectMake(0, 
+                                                                    0, 
+                                                                    AWARD_DICE_SIZE.width, 
+                                                                    AWARD_DICE_SIZE.height)] 
+                         autorelease];
+    //[diceBtn setCenter:CGPointMake(self.view.frame.size.width-50, self.view.frame.size.height-50)];
     [self.view addSubview:diceBtn];
-    [diceBtn addTarget:self action:@selector(clickDice:) forControlEvents:UIControlEventTouchUpInside];
+    //[diceBtn addTarget:self action:@selector(clickAwardDice:) forControlEvents:UIControlEventTouchUpInside];
     diceBtn.tag = AWARD_DICE_TAG;
-    CAAnimation* rolling = [AnimationManager rotationAnimationWithRoundCount:50 duration:2.5];
+    CAAnimation* rolling = [AnimationManager rotationAnimationWithRoundCount:-50 duration:25];
     rolling.removedOnCompletion = NO;
     rolling.delegate = self;
-    [diceBtn.layer addAnimation:rolling forKey:@""];
+    [diceBtn.layer addAnimation:rolling forKey:@"roll"];
     
-    CAKeyframeAnimation *pathAnimation = [CAKeyframeAnimation animationWithKeyPath:@"position"];
-    pathAnimation.calculationMode = kCAAnimationPaced;
-    pathAnimation.fillMode = kCAFillModeForwards;
-    pathAnimation.removedOnCompletion = NO;
-    CGPoint endPoint = CGPointMake(self.view.frame.size.width-50, self.view.frame.size.height-50);
-    CGMutablePathRef curvedPath = CGPathCreateMutable();
-    CGPathMoveToPoint(curvedPath, NULL, self.view.frame.size.width/4, 100);
-    CGPathAddCurveToPoint(curvedPath, NULL, endPoint.x*0.6, 0, endPoint.x*0.75, 0, endPoint.x, endPoint.y);
-
-    pathAnimation.path = curvedPath;
-    CGPathRelease(curvedPath);
-    pathAnimation.duration = 2.5;
-    pathAnimation.delegate = self;
+//    CAKeyframeAnimation *pathAnimation = [CAKeyframeAnimation animationWithKeyPath:@"position"];
+//    pathAnimation.calculationMode = kCAAnimationPaced;
+//    pathAnimation.fillMode = kCAFillModeForwards;
+//    pathAnimation.removedOnCompletion = NO;
+////    CGPoint endPoint = CGPointMake(self.view.frame.size.width-50, self.view.frame.size.height-50);
+//    CGMutablePathRef curvedPath = CGPathCreateMutable();
+//    CGPathMoveToPoint(curvedPath, NULL, self.view.frame.size.width/4, 100);
+////    CGPathAddCurveToPoint(curvedPath, NULL, endPoint.x*0.6, 0, endPoint.x*0.75, 0, endPoint.x, endPoint.y);
+//
+//    pathAnimation.path = curvedPath;
+//    CGPathRelease(curvedPath);
+//    pathAnimation.duration = 2.5;
+//    pathAnimation.delegate = self;
+//    
+//    CGPoint startPoint = AWARD_DICE_START_POINT;
+    CGPoint points[6];
+    float diceWidth = AWARD_DICE_SIZE.width;
+    float diceHeight = AWARD_DICE_SIZE.height;
+    float screenWidth = self.view.frame.size.width;
+    float screenHeight = self.view.frame.size.height;
+    points[0] = AWARD_DICE_START_POINT;
+    points[1] = CGPointMake(screenWidth - diceWidth/3, 
+                            rand()%(int)(screenHeight - diceHeight) + diceHeight/2);
+    points[2] = CGPointMake(rand()%(int)(screenWidth - diceWidth) + diceWidth/2, 
+                            screenHeight - diceHeight/3);
+    points[3] = CGPointMake(diceWidth/3, 
+                            rand()%(int)(screenHeight - diceHeight) + diceHeight/2);
+    points[4] = CGPointMake(rand()%(int)(screenWidth - diceWidth) + diceWidth/2, 
+                            diceHeight/3);
+    points[5] = CGPointMake(rand()%(int)(screenWidth - diceWidth) + diceWidth/2, 
+                            rand()%(int)(screenHeight - diceHeight) + diceHeight/2);
     
-    [diceBtn.layer addAnimation:pathAnimation forKey:@""];
+    CAKeyframeAnimation* pathAnimation = [AnimationManager pathByPoins:points count:6 duration:25 delegate:self];
     
+    [diceBtn.layer addAnimation:pathAnimation forKey:@"move"];
+    [diceBtn setCenter:points[5]];
     
     [self startRollDiceTimer];
 }
@@ -256,6 +333,10 @@
     // random get some coins
     int coins = 0;
     PPDebug(@"<checkIn> got %d coins", coins);
+    _tapGestureRecognizer = [[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickAwardDice:)] autorelease];   
+    _tapGestureRecognizer.delegate = self;
+    _tapGestureRecognizer.numberOfTapsRequired = 1;
+    [self.view addGestureRecognizer:_tapGestureRecognizer];
     [self rollAwardDice]; 
     
     // update check in today flag
@@ -269,16 +350,19 @@
 {
     [self killRollDiceTimer];
     
-    HKGirlFontLabel* label = [[[HKGirlFontLabel alloc] initWithFrame:CGRectMake(0, 0, 50, 25) pointSize:13] autorelease];
-    [label setText:NSLS(@"kClickMe")];
-    CMPopTipView* view = [[[CMPopTipView alloc] initWithCustomView:label needBubblePath:NO] autorelease];
-    [view setBackgroundColor:[UIColor yellowColor]];
-    [view presentPointingAtView:[self.view viewWithTag:AWARD_DICE_TAG] inView:self.view animated:YES];
-    [UIView animateWithDuration:4 animations:^{
-        view.alpha = 0;
-    } completion:^(BOOL finished) {
-        [view removeFromSuperview];
-    }];
+    if (flag) {
+        HKGirlFontLabel* label = [[[HKGirlFontLabel alloc] initWithFrame:CGRectMake(0, 0, 50, 25) pointSize:11] autorelease];
+        [label setText:NSLS(@"kClickMe")];
+        CMPopTipView* view = [[[CMPopTipView alloc] initWithCustomView:label needBubblePath:NO] autorelease];
+        [view setBackgroundColor:[UIColor yellowColor]];
+        [view presentPointingAtView:[self.view viewWithTag:AWARD_DICE_TAG] inView:self.view animated:YES];
+        [UIView animateWithDuration:4 animations:^{
+            view.alpha = 0;
+        } completion:^(BOOL finished) {
+            [view removeFromSuperview];
+        }];
+    }
+    
 }
 
 
@@ -334,12 +418,6 @@
 - (void)connectServer
 {
     _isTryJoinGame = YES;    
-
-//    [[DiceGameService defaultService] setServerAddress:@"192.168.1.198"];
-//    [[DiceGameService defaultService] setServerPort:8080];
-    
-    [[DiceGameService defaultService] setServerAddress:@"106.187.89.232"];
-    [[DiceGameService defaultService] setServerPort:8018];
     
     [[DiceGameService defaultService] connectServer:self];
     [self showActivityWithText:NSLS(@"kConnectingServer")];

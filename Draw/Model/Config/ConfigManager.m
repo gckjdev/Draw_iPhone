@@ -219,6 +219,11 @@
     return [MobClickUtils getIntValueByKey:@"REWARD_FLOWER_FOR_LVL_UP" defaultValue:2];
 }
 
++ (int)diceCutAwardForLevelUp
+{
+    return [MobClickUtils getIntValueByKey:@"REWARD_CUT_FOR_LVL_UP" defaultValue:2];
+}
+
 + (NSString*)getRecommendAppLinkZh
 {
     return [MobClickUtils getStringValueByKey:@"ENGLISH_RECOMMEND_APP" defaultValue:@"http://you100.me:8080/dat/app_zh.txt"];
@@ -298,7 +303,17 @@
 
 + (NSString*)getDiceServerListString
 {
-    return [MobClickUtils getStringValueByKey:@"DICE_SERVER_LIST" defaultValue:@"106.187.89.232:8018"];
+    return [MobClickUtils getStringValueByKey:@"DICE_SERVER_LIST" defaultValue:@"58.215.189.146:8018"];
+}
+
++ (int)getDailyGiftCoin
+{
+    return [MobClickUtils getIntValueByKey:@"DAILY_GIFT_COIN" defaultValue:200];
+}
+
++ (int)getDailyGiftCoinIncre
+{
+    return [MobClickUtils getIntValueByKey:@"DAILY_GIFT_COIN_INCRE" defaultValue:100];
 }
 
 @end

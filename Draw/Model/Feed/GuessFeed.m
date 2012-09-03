@@ -115,4 +115,16 @@
     return self.drawFeed.author;
 }
 
+- (BOOL)showAnswer
+{
+    if([self.drawFeed showAnswer]){
+        return YES;
+    }
+    if ([self isMyFeed] && [self correct]){
+        return YES;
+    }
+    return NO;
+}
+
+
 @end

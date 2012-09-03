@@ -14,13 +14,14 @@
 @class MenuPanel;
 @class BottomMenuPanel;
 
-@interface DiceHomeController : PPViewController<BoardServiceDelegate, CommonDialogDelegate>
+@interface DiceHomeController : PPViewController<BoardServiceDelegate, CommonDialogDelegate, UIGestureRecognizerDelegate>
 {
     MenuPanel *_menuPanel;
     BottomMenuPanel *_bottomMenuPanel;
     NSTimer* _rollAwardDiceTimer;
     BOOL _isTryJoinGame;
     int _awardDicePoint;
+    UITapGestureRecognizer *_tapGestureRecognizer;
 }
 
 @property (retain, nonatomic) MenuPanel *menuPanel;

@@ -581,7 +581,7 @@
 "kCorrect" = "Correct!";
 "kSending" = "Sending...";
 "kNoCommentTips" = "No Comments";
-"kFeedDetail" = "%@'s Drawing";
+"kFeedDetail" = "Drawing Detail";
 
 "kCommentFail" = "Failed to Comment";
 
@@ -775,7 +775,7 @@
 "kScrambleToOpenDiceMessage" = "Challenge";
 
 "kWaittingForNextTurn" = "Waiting...";
-"kGameBegin" = "Game start...";
+"kGameBegin" = "Game starts...";
 "kNearBy" = "NearBy";
 "kWhoseRoom" = "%@'s room";
 
@@ -807,7 +807,7 @@
 
 "kDiceRoom" = "Liar Dice Room %d";
 
-"kWaitingForMoreUsers" = "Waiting for more players...";
+"kWaitingForMoreUsers" = "Waiting...";
 
 "kDice_share_message_body" = "I found a very funny game recently. Its name is '%@'.\nHere is the AppStore download URL:\n%@";
 "kDice_email_subject" = "Share a funny iOS game - Liar Dice";
@@ -819,8 +819,8 @@
 "kNotEnoughCoinToContinue" = "You have not enough coin to continue.";
 
 "kDiceRoomListTitle" = "Liar Dice";
-"kDiceGameRules"= "Game Rules";
-"kDicePropDescription" = "Prop";
+"kDiceGameRules"= "Rule";
+"kDicePropDescription" = "Item";
 "kDiceWilds" = " W ";
 
 "kDiceMenuStart" = "START"; 
@@ -831,9 +831,14 @@
 "kCoinsNotEnoughAndEnterCoinsShop" = "Your coins are not enough. Buy some now?";
 "kCoinsNotEnoughAndGetFreeCoins" = "Your coins are not enough. get some free coins now?";
 
-"kToolCut" = "R";
-"kToolRollAgain" = "C";
+"kToolCut" = "C";
+"kToolRollAgain" = "R";
 
 "kRefreshingRoomList" = "Loading room list...";
+
+"kDailyAwardCoin" = "You got %d coins";
+"kDiceUpgradeMsg" = "Congratulations!You upgraded to level %d, [cut] +%d";
+"kDiceDegradeMsg" = "You play terribly, now degrade to level %d";
+"kClickMe" = "Click me!";
 /*********************** 大话骰子国际化字符串结束 *************************/
 
