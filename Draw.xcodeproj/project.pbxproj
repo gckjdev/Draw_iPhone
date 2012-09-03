@@ -3574,11 +3574,11 @@
 		CAC25C6815EF20FB007456FA /* DiceHomeController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DiceHomeController.xib; sourceTree = "<group>"; };
 		CAC25C6B15EF2D01007456FA /* DiceHomeController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "DiceHomeController~ipad.xib"; sourceTree = "<group>"; };
 		CAC25CCE15F09ECF007456FA /* en */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = en; path = "en.lproj/dice_shop@2x.png"; sourceTree = "<group>"; };
-		CAC25CD415F0A0EA007456FA /* en */ = {isa = PBXFileReference; name = en; path = "en.lproj/dice_default_board_ad@2x.jpg"; sourceTree = "<group>"; };
-		CAC25CD615F0A117007456FA /* zh-Hans */ = {isa = PBXFileReference; name = "zh-Hans"; path = "zh-Hans.lproj/dice_default_board_ad@2x.jpg"; sourceTree = "<group>"; };
+		CAC25CD415F0A0EA007456FA /* en */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = en; path = "en.lproj/dice_default_board_ad@2x.jpg"; sourceTree = "<group>"; };
+		CAC25CD615F0A117007456FA /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "zh-Hans"; path = "zh-Hans.lproj/dice_default_board_ad@2x.jpg"; sourceTree = "<group>"; };
 		CAC25CD715F0A169007456FA /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "zh-Hans"; path = "zh-Hans.lproj/dice_shop@2x.png"; sourceTree = "<group>"; };
 		CAC25CDD15F0A1FF007456FA /* en */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = en; path = "en.lproj/dice_default_board@2x.jpg"; sourceTree = "<group>"; };
-		CAC25CDF15F0A20E007456FA /* zh-Hans */ = {isa = PBXFileReference; name = "zh-Hans"; path = "zh-Hans.lproj/dice_default_board@2x.jpg"; sourceTree = "<group>"; };
+		CAC25CDF15F0A20E007456FA /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "zh-Hans"; path = "zh-Hans.lproj/dice_default_board@2x.jpg"; sourceTree = "<group>"; };
 		CAC25CE015F0A23E007456FA /* dice_bottom_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dice_bottom_bg@2x.png"; sourceTree = "<group>"; };
 		CAC25D0415F0C72B007456FA /* revoke@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "revoke@2x.png"; sourceTree = "<group>"; };
 		CAC4DCE015450E8F00A42CF2 /* StoreKitUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoreKitUtils.h; sourceTree = "<group>"; };
