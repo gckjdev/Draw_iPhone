@@ -832,6 +832,8 @@
 
 "kRefreshingRoomList" = "刷新房間列表...";
 "kDailyAwardCoin" = "恭喜您見到了%d個金幣";
+"kDiceUpgradeMsg" = "恭喜！您剛剛升到第 %d級，【劈】＋%d";
+"kDiceDegradeMsg" = "噢，你玩得太不認真了，都降到%d級了";
 /*********************** 大话骰子国际化字符串结束 *************************/
 
 
