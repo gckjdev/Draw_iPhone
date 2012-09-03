@@ -1244,6 +1244,13 @@
 		CA421601152196B900FAA008 /* AccountService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA421600152196B900FAA008 /* AccountService.m */; };
 		CA4216031521973A00FAA008 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA4216021521973A00FAA008 /* StoreKit.framework */; };
 		CA4216281522A0F400FAA008 /* SKProduct+LocalizedPrice.m in Sources */ = {isa = PBXBuildFile; fileRef = CA4216271522A0F400FAA008 /* SKProduct+LocalizedPrice.m */; };
+		CA42E3C015F4615A00790B3C /* CommentHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA42E3B815F4615A00790B3C /* CommentHeaderView.m */; };
+		CA42E3C115F4615A00790B3C /* DrawInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA42E3BA15F4615A00790B3C /* DrawInfoCell.m */; };
+		CA42E3C215F4615A00790B3C /* ShowFeedController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA42E3BC15F4615A00790B3C /* ShowFeedController.m */; };
+		CA42E3C315F4615A00790B3C /* ShowFeedController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA42E3BD15F4615A00790B3C /* ShowFeedController.xib */; };
+		CA42E3C415F4615A00790B3C /* UserInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA42E3BF15F4615A00790B3C /* UserInfoCell.m */; };
+		CA42E3CA15F4617A00790B3C /* TableTab.m in Sources */ = {isa = PBXBuildFile; fileRef = CA42E3C715F4617A00790B3C /* TableTab.m */; };
+		CA42E3CB15F4617A00790B3C /* TableTabManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA42E3C915F4617A00790B3C /* TableTabManager.m */; };
 		CA4FF001152AEFDF00F0AC88 /* ColorGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = CA4FF000152AEFDF00F0AC88 /* ColorGroup.m */; };
 		CA4FF00A152AF21900F0AC88 /* ColorShopCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA4FF008152AF21900F0AC88 /* ColorShopCell.m */; };
 		CA4FF00B152AF21900F0AC88 /* ColorShopCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA4FF009152AF21900F0AC88 /* ColorShopCell.xib */; };
@@ -3257,6 +3264,19 @@
 		CA4216021521973A00FAA008 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		CA4216261522A0F400FAA008 /* SKProduct+LocalizedPrice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SKProduct+LocalizedPrice.h"; sourceTree = "<group>"; };
 		CA4216271522A0F400FAA008 /* SKProduct+LocalizedPrice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SKProduct+LocalizedPrice.m"; sourceTree = "<group>"; };
+		CA42E3B715F4615A00790B3C /* CommentHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentHeaderView.h; sourceTree = "<group>"; };
+		CA42E3B815F4615A00790B3C /* CommentHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentHeaderView.m; sourceTree = "<group>"; };
+		CA42E3B915F4615A00790B3C /* DrawInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawInfoCell.h; sourceTree = "<group>"; };
+		CA42E3BA15F4615A00790B3C /* DrawInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawInfoCell.m; sourceTree = "<group>"; };
+		CA42E3BB15F4615A00790B3C /* ShowFeedController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowFeedController.h; sourceTree = "<group>"; };
+		CA42E3BC15F4615A00790B3C /* ShowFeedController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowFeedController.m; sourceTree = "<group>"; };
+		CA42E3BD15F4615A00790B3C /* ShowFeedController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShowFeedController.xib; sourceTree = "<group>"; };
+		CA42E3BE15F4615A00790B3C /* UserInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfoCell.h; sourceTree = "<group>"; };
+		CA42E3BF15F4615A00790B3C /* UserInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfoCell.m; sourceTree = "<group>"; };
+		CA42E3C615F4617A00790B3C /* TableTab.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableTab.h; sourceTree = "<group>"; };
+		CA42E3C715F4617A00790B3C /* TableTab.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableTab.m; sourceTree = "<group>"; };
+		CA42E3C815F4617A00790B3C /* TableTabManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableTabManager.h; sourceTree = "<group>"; };
+		CA42E3C915F4617A00790B3C /* TableTabManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableTabManager.m; sourceTree = "<group>"; };
 		CA4AF8C015D23A4E00734FAC /* MainDataModel 7.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "MainDataModel 7.xcdatamodel"; sourceTree = "<group>"; };
 		CA4F066F1546F66500A38C84 /* MainDataModel 3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "MainDataModel 3.xcdatamodel"; sourceTree = "<group>"; };
 		CA4FEFFF152AEFDF00F0AC88 /* ColorGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorGroup.h; sourceTree = "<group>"; };
@@ -6467,9 +6487,29 @@
 			path = StoreKit;
 			sourceTree = "<group>";
 		};
+		CA42E3C515F4617A00790B3C /* TableTab */ = {
+			isa = PBXGroup;
+			children = (
+				CA42E3C615F4617A00790B3C /* TableTab.h */,
+				CA42E3C715F4617A00790B3C /* TableTab.m */,
+				CA42E3C815F4617A00790B3C /* TableTabManager.h */,
+				CA42E3C915F4617A00790B3C /* TableTabManager.m */,
+			);
+			path = TableTab;
+			sourceTree = "<group>";
+		};
 		CA501C4415ECFAAB00D41161 /* FeedDetailCells */ = {
 			isa = PBXGroup;
 			children = (
+				CA42E3B715F4615A00790B3C /* CommentHeaderView.h */,
+				CA42E3B815F4615A00790B3C /* CommentHeaderView.m */,
+				CA42E3B915F4615A00790B3C /* DrawInfoCell.h */,
+				CA42E3BA15F4615A00790B3C /* DrawInfoCell.m */,
+				CA42E3BB15F4615A00790B3C /* ShowFeedController.h */,
+				CA42E3BC15F4615A00790B3C /* ShowFeedController.m */,
+				CA42E3BD15F4615A00790B3C /* ShowFeedController.xib */,
+				CA42E3BE15F4615A00790B3C /* UserInfoCell.h */,
+				CA42E3BF15F4615A00790B3C /* UserInfoCell.m */,
 				CAD95C5F15889664006EAC41 /* CommentCell.h */,
 				CAD95C6015889665006EAC41 /* CommentCell.m */,
 				CAD95C6115889665006EAC41 /* CommentCell.xib */,
@@ -7417,6 +7457,7 @@
 		CAECE0291503B25500BC2404 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				CA42E3C515F4617A00790B3C /* TableTab */,
 				CA67B86A15E89AAC002050DB /* GameApp */,
 				C2E90FE815BD44DA00828562 /* Recommend */,
 				C2BBCE1715B001F1006A13A6 /* Animation */,
@@ -9337,6 +9378,7 @@
 				EA856CA515F0A65700178323 /* wood_button@2x.png in Resources */,
 				CAC25D0515F0C72F007456FA /* revoke@2x.png in Resources */,
 				EA20E14E15F1AFCC00F4EFF6 /* TraditionalChineseWord.strings in Resources */,
+				CA42E3C315F4615A00790B3C /* ShowFeedController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -9837,6 +9879,12 @@
 				CAC25C6915EF20FB007456FA /* DiceHomeController.m in Sources */,
 				C225866E15EF5AA4009D686D /* GCServer.m in Sources */,
 				A45BC60E15F1C4F80003DDDC /* DiceConfigManager.m in Sources */,
+				CA42E3C015F4615A00790B3C /* CommentHeaderView.m in Sources */,
+				CA42E3C115F4615A00790B3C /* DrawInfoCell.m in Sources */,
+				CA42E3C215F4615A00790B3C /* ShowFeedController.m in Sources */,
+				CA42E3C415F4615A00790B3C /* UserInfoCell.m in Sources */,
+				CA42E3CA15F4617A00790B3C /* TableTab.m in Sources */,
+				CA42E3CB15F4617A00790B3C /* TableTabManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
