@@ -89,14 +89,25 @@
             [self clearAllAdView];
             
             if ([[AdService defaultService] isShowAd]){
-                UIView* adView1 = [[AdService defaultService]
+                UIView* adView1 = nil;
+                if (board.platform == AdPlatformAuto){
+                    adView1 = [[AdService defaultService]
+                               createAdInView:self 
+                               frame:CGRectMake(0, 0, 320, 50) 
+                               iPadFrame:CGRectMake(30, 40, 320, 50)];                
+                }
+                else{
+                    adView1 = [[AdService defaultService]
                                    createAdInView:self 
                                    adPlatformType:board.platform 
                                    adPublisherId:board.publishId
                                    frame:CGRectMake(0, 0, 320, 50) 
                                    iPadFrame:CGRectMake(30, 40, 320, 50)];
+                }
                 
-                [_adViewList addObject:adView1];
+                if (adView1 != nil){
+                    [_adViewList addObject:adView1];
+                }
             }
             
         }else{

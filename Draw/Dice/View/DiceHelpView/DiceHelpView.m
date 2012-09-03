@@ -207,6 +207,10 @@
 - (void)loadHtmlFile:(NSString *)filePath
 {
     NSURL *url = [NSURL fileURLWithPath:filePath];
+    if (url == nil){
+        PPDebug(@"<DiceHelpView> loadHtmlFile but URL nil, filePath=%@", filePath);
+        return;
+    }
     
     // Request from a url, load request to web view.
     NSURLRequest *request = [NSURLRequest requestWithURL:url];

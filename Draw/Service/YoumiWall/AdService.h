@@ -16,6 +16,7 @@
 
 typedef enum
 {
+    AdPlatformAuto = 0,
     AdPlatformLm = 1,
     AdPlatformAder,
     AdPlatformMango,
