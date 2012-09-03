@@ -132,6 +132,7 @@
 								<nil key="IBUIHighlightedColor"/>
 								<int key="IBUIBaselineAdjustment">0</int>
 								<float key="IBUIMinimumFontSize">10</float>
+								<int key="IBUITextAlignment">2</int>
 								<object class="IBUIFontDescription" key="IBUIFontDescription">
 									<int key="type">1</int>
 									<double key="pointSize">25</double>
@@ -203,6 +204,7 @@
 								<int key="NSvFlags">319</int>
 								<string key="NSFrame">{{398, 394}, {192, 65}}</string>
 								<reference key="NSSuperview" ref="889029020"/>
+								<reference key="NSNextKeyView"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
 								<string key="targetRuntimeIdentifier">IBIPadFramework</string>
@@ -503,7 +505,6 @@
 						<array class="NSMutableArray" key="children">
 							<reference ref="566096017"/>
 							<reference ref="1042869567"/>
-							<reference ref="661194072"/>
 							<reference ref="364029254"/>
 							<reference ref="291528773"/>
 							<reference ref="940388026"/>
@@ -512,6 +513,7 @@
 							<reference ref="978718182"/>
 							<reference ref="284324708"/>
 							<reference ref="297121548"/>
+							<reference ref="661194072"/>
 						</array>
 						<reference key="parent" ref="444008462"/>
 					</object>
