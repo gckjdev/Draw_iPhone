@@ -104,12 +104,16 @@
     UIImageView* item = [[[UIImageView alloc] initWithFrame:ITEM_FRAME] autorelease];
     [self.view addSubview:item];
     [item setImage:toolView.imageView.image];
+    item.center = self.view.center;
+    
     if (toolView.itemType == ItemTypeTomato) {
-        [DrawGameAnimationManager showThrowTomato:item animInController:self];
-    }
-    if (toolView.itemType == ItemTypeFlower) {
-        [DrawGameAnimationManager showThrowFlower:item animInController:self];
-
+        [DrawGameAnimationManager showThrowTomato:item 
+                                 animInController:self
+                                          rolling:NO];
+    }else if (toolView.itemType == ItemTypeFlower) {
+        [DrawGameAnimationManager showThrowFlower:item
+                                 animInController:self 
+                                          rolling:NO];
     }
 }
 
@@ -706,11 +710,11 @@
     [self throwTool:toolView];
     
     // send request for item usage and award
-    [[ItemService defaultService] sendItemAward:toolView.itemType 
-                                   targetUserId:_draw.userId 
-                                      isOffline:YES
-                                     feedOpusId:_opusId
-                                     feedAuthor:_authorId];    
+//    [[ItemService defaultService] sendItemAward:toolView.itemType 
+//                                   targetUserId:_draw.userId 
+//                                      isOffline:YES
+//                                     feedOpusId:_opusId
+//                                     feedAuthor:_authorId];    
     
     [toolView decreaseNumber];
     if (--_maxFlower <= 0) {
@@ -726,11 +730,11 @@
     [self throwTool:toolView];
     
     // send request for item usage and award
-    [[ItemService defaultService] sendItemAward:toolView.itemType 
-                                   targetUserId:_draw.userId 
-                                      isOffline:YES
-                                     feedOpusId:_opusId
-                                     feedAuthor:_authorId];    
+//    [[ItemService defaultService] sendItemAward:toolView.itemType 
+//                                   targetUserId:_draw.userId 
+//                                      isOffline:YES
+//                                     feedOpusId:_opusId
+//                                     feedAuthor:_authorId];    
     
     [toolView decreaseNumber];
     if (--_maxTomato <= 0) {
@@ -742,14 +746,14 @@
 #pragma mark - click tool delegate
 - (void)didPickedPickView:(PickView *)pickView toolView:(ToolView *)toolView
 {
-    NSInteger amout = [[ItemManager defaultManager] amountForItem:toolView.itemType];
-    if(amout <= 0){
-        //TODO go the shopping page.
-        CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kNoItemTitle") message:NSLS(@"kNoItemMessage") style:CommonDialogStyleDoubleButton delegate:self];
-        dialog.tag = ITEM_TAG_OFFSET + toolView.itemType;
-        [dialog showInView:self.view];
-        return;
-    }
+//    NSInteger amout = [[ItemManager defaultManager] amountForItem:toolView.itemType];
+//    if(amout <= 0){
+//        //TODO go the shopping page.
+//        CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kNoItemTitle") message:NSLS(@"kNoItemMessage") style:CommonDialogStyleDoubleButton delegate:self];
+//        dialog.tag = ITEM_TAG_OFFSET + toolView.itemType;
+//        [dialog showInView:self.view];
+//        return;
+//    }
     BOOL flag = NO;
     if (toolView.itemType == ItemTypeTips) {
         flag = [self bomb:toolView];
@@ -760,11 +764,11 @@
     {
         flag = [self throwTomato:toolView];
     }
-    if (flag) {
-        [[AccountService defaultService] consumeItem:ItemTypeTips 
-                                              amount:toolView.itemType];        
-        [toolView decreaseNumber];
-    }
+//    if (flag) {
+//        [[AccountService defaultService] consumeItem:ItemTypeTips 
+//                                              amount:toolView.itemType];        
+//        [toolView decreaseNumber];
+//    }
 
 }
 

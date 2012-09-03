@@ -43,6 +43,7 @@
 #import "ItemService.h"
 #import "VendingController.h"
 #import "Feed.h"
+#import "ShowFeedController.h"
 
 #define CONTINUE_TIME 10
 
@@ -484,12 +485,13 @@
         return;
         
     // send request
+    
     [[ItemService defaultService] sendItemAward:toolView.itemType
                                    targetUserId:_drawUserId
                                       isOffline:[self isOffline] 
                                      feedOpusId:_feed.feedId
                                      feedAuthor:_feed.author.userId];  
-
+     
     // update UI
     [self setUpAndDownButtonEnabled:NO];
     [toolView decreaseNumber];
@@ -574,7 +576,9 @@
 - (IBAction)clickExitButton:(id)sender {
     
     UIViewController *viewController = [self superViewControllerForClass:[FeedDetailController class]];
-    
+    if (viewController == nil) {
+        viewController = [self superViewControllerForClass:[ShowFeedController class]];
+    }
     if (viewController) {
         [self.navigationController popToViewController:viewController animated:YES];
     }else{
@@ -626,6 +630,7 @@
 #define ITEM_TAG_OFFSET 20120728
 - (BOOL)throwItem:(ToolView*)toolView
 {
+    
     if([[ItemManager defaultManager] hasEnoughItem:toolView.itemType] == NO){
         //TODO go the shopping page.
         CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kNoItemTitle") message:NSLS(@"kNoItemMessage") style:CommonDialogStyleDoubleButton delegate:self];
@@ -633,14 +638,14 @@
         [dialog showInView:self.view];
         return NO;
     }
-    UIImageView* item = [[[UIImageView alloc] initWithFrame:ITEM_FRAME] autorelease];
+    UIImageView* item = [[[UIImageView alloc] initWithFrame:toolView.frame] autorelease];
     [self.view addSubview:item];
     [item setImage:toolView.imageView.image];
     if (toolView.itemType == ItemTypeTomato) {
-        [DrawGameAnimationManager showThrowTomato:item animInController:self];
+        [DrawGameAnimationManager showThrowTomato:item animInController:self rolling:YES];
     }
     if (toolView.itemType == ItemTypeFlower) {
-        [DrawGameAnimationManager showThrowFlower:item animInController:self];
+        [DrawGameAnimationManager showThrowFlower:item animInController:self rolling:YES];
     }
     return YES;
 }

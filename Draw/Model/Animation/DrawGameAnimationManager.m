@@ -15,8 +15,9 @@
 #define THROW_ITEM_TAG  20120713
 #define RECIEVE_ITEM_TAG    120120713
 
-#define THROWING_TIME   2
-#define ROATE_RATE      10
+#define THROWING_TIME   1.5
+#define MISSING_TIME   1.5
+#define ROATE_RATE      6
 
 #define REWARD_EXP 5
 #define REWARD_COINS 3
@@ -34,22 +35,27 @@
 
 @implementation DrawGameAnimationManager
 
+
+
 + (CAAnimationGroup*)createThrowItemAnimation:(UIImageView*)ItemImageView inViewController:(UIViewController*)viewController
 {
-    [ItemImageView setFrame:CGRectMake(0, 0, ItemImageView.frame.size.width*2, ItemImageView.frame.size.height*2)];
-    CGPoint startPoint = CGPointMake(viewController.view.frame.size.width/2, viewController.view.frame.size.height);
-    CGPoint endPoint = CGPointMake(viewController.view.center.x-RADIUS+(rand()%(2*RADIUS)), viewController.view.center.y-(rand()%RADIUS));
+    CGPoint startPoint = ItemImageView.center;
+    CGPoint endPoint = viewController.view.center;
     [ItemImageView setCenter:endPoint];
-    
+    CAMediaTimingFunction *timming = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut];
+
     CAAnimation* rolling = [AnimationManager rotationAnimationWithRoundCount:ROATE_RATE*THROWING_TIME duration:THROWING_TIME];
     CAAnimation* throw = [AnimationManager translationAnimationFrom:startPoint to:endPoint duration:THROWING_TIME];
+
     throw.removedOnCompletion = NO;
-    CAAnimation* zoom = [AnimationManager scaleAnimationWithScale:0.01 duration:THROWING_TIME delegate:viewController removeCompeleted:NO];
     
-    CAAnimation* enlarge = [AnimationManager scaleAnimationWithFromScale:0.01 toScale:1 duration:1 delegate:viewController removeCompeleted:NO];
-    enlarge.beginTime = THROWING_TIME;
-    CAAnimation* miss = [AnimationManager missingAnimationWithDuration:1];
-    miss.beginTime = THROWING_TIME;
+    CAAnimation* enlarge = [AnimationManager scaleAnimationWithFromScale:1 toScale:5 duration:MISSING_TIME delegate:viewController removeCompeleted:NO];
+    
+    CAAnimation* miss = [AnimationManager missingAnimationWithDuration:MISSING_TIME];
+    
+    enlarge.beginTime =  miss.beginTime = THROWING_TIME;
+    
+    enlarge.timingFunction = miss.timingFunction = throw.timingFunction = rolling.timingFunction = timming;
     
     //method2:放入动画数组，统一处理！
     CAAnimationGroup* animGroup    = [CAAnimationGroup animation];
@@ -58,11 +64,11 @@
     animGroup.delegate = viewController;
     
     animGroup.removedOnCompletion = NO;
-    animGroup.duration             = THROWING_TIME+1;
+    animGroup.duration             = THROWING_TIME+MISSING_TIME;
     animGroup.timingFunction      = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];    
     animGroup.repeatCount         = 1;//FLT_MAX;  //"forever";
     animGroup.fillMode             = kCAFillModeForwards;
-    animGroup.animations             = [NSArray arrayWithObjects:rolling, throw, zoom, enlarge, miss,nil];
+    animGroup.animations             = [NSArray arrayWithObjects:rolling, throw, enlarge, miss,nil];
     return animGroup;
     //[animGroup setValue:key forKey:DRAW_ANIM];
     //对视图自身的层添加组动画
@@ -70,17 +76,32 @@
 }
 
 
+
+
 + (void)showThrowTomato:(UIImageView*)tomatoImageView 
        animInController:(UIViewController*)superController
+                rolling:(BOOL)rolling
 {
-    CAAnimationGroup* animationGroup = [DrawGameAnimationManager createThrowItemAnimation:tomatoImageView inViewController:superController];
+    CAAnimationGroup* animationGroup = nil;
+    if (rolling) {
+      animationGroup =  [DrawGameAnimationManager createThrowItemAnimation:tomatoImageView inViewController:superController];        
+    }else{
+        animationGroup = [AnimationManager scaleMissAnimation:MISSING_TIME scale:4 delegate:superController];
+    }
     [animationGroup setValue:ANIM_KEY_THROW_TOMATO forKey:DRAW_ANIM];
     [tomatoImageView.layer addAnimation:animationGroup forKey:ANIM_GROUP];
 }
 + (void)showThrowFlower:(UIImageView*)flowerImageView 
        animInController:(UIViewController*)superController
+                rolling:(BOOL)rolling
 {
-    CAAnimationGroup* animationGroup = [DrawGameAnimationManager createThrowItemAnimation:flowerImageView inViewController:superController];
+    
+    CAAnimationGroup* animationGroup = nil;
+    if (rolling) {
+        animationGroup =  [DrawGameAnimationManager createThrowItemAnimation:flowerImageView inViewController:superController];        
+    }else{
+        animationGroup = [AnimationManager scaleMissAnimation:MISSING_TIME scale:4 delegate:superController];
+    }
     [animationGroup setValue:ANIM_KEY_SEND_FLOWER forKey:DRAW_ANIM];
     [flowerImageView.layer addAnimation:animationGroup forKey:ANIM_GROUP];
 }

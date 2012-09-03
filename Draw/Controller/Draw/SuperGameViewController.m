@@ -416,10 +416,10 @@
     [self.view addSubview:item];
     [item setImage:toolView.imageView.image];
     if (toolView.itemType == ItemTypeTomato) {
-        [DrawGameAnimationManager showThrowTomato:item animInController:self];
+        [DrawGameAnimationManager showThrowTomato:item animInController:self rolling:NO];
     }
     if (toolView.itemType == ItemTypeFlower) {
-        [DrawGameAnimationManager showThrowFlower:item animInController:self];
+        [DrawGameAnimationManager showThrowFlower:item animInController:self rolling:NO];
     }
 }
 
