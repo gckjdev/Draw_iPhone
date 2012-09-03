@@ -76,5 +76,6 @@
 + (CGFloat )decompressIntLineWidth:(NSInteger)intLineWidth;
 
 
++ (CGPoint)midPoint1:(CGPoint)p1 point2:(CGPoint) p2;
 
 @end

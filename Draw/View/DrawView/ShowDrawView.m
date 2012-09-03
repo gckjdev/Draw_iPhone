@@ -7,15 +7,10 @@
 //
 
 #import "ShowDrawView.h"
-#import "Paint.h"
-#import "DrawColor.h"
-#import "DrawUtils.h"
-#import "DrawAction.h"
 #import <QuartzCore/QuartzCore.h>
 #import "UIImageExt.h"
 #import "UIImageUtil.h"
 #import "PenView.h"
-#import "PPDebug.h"
 
 #define DEFAULT_PLAY_SPEED (1/30.0)
 #define DEFAULT_SIMPLING_DISTANCE (5.0)
@@ -24,7 +19,7 @@
 @implementation ShowDrawView
 @synthesize playSpeed= _playSpeed;
 @synthesize delegate = _delegate;
-@synthesize drawActionList = _drawActionList;
+
 @synthesize status = _status;
 @synthesize playTimer = _playTimer;
 #pragma mark Action Funtion
@@ -32,15 +27,14 @@
 
 - (DrawAction *)playingAction
 {
-    if (playingActionIndex >= 0 && playingActionIndex < [self.drawActionList count]) {
-        return [self.drawActionList objectAtIndex:playingActionIndex];
+    if (_playingActionIndex >= 0 && _playingActionIndex < [self.drawActionList count]) {
+        return [self.drawActionList objectAtIndex:_playingActionIndex];
     }
     return nil;
 }
 
 - (void)cleanAllActions
 {
-    [self.drawActionList removeAllObjects];
     [self setStatus:Stop];
     
     // Add by Benson
@@ -49,18 +43,18 @@
     }
     
     self.playTimer = nil;
-    playingActionIndex = 0;
-    playingPointIndex = 0;
-    startPlayIndex = 0;
+    _playingActionIndex = 0;
+    _playingPointIndex = 0;
+    _startPlayIndex = 0;
     _showDraw = NO;
-    [self setNeedsDisplay];    
+    [super cleanAllActions];
 }
 
 
 - (void)playFromDrawActionIndex:(NSInteger)index
 {
-    playingActionIndex = index;
-    playingPointIndex = 0;
+    _playingActionIndex = index;
+    _playingPointIndex = 0;
     self.status = Playing;
     [self setNeedsDisplay];
 }
@@ -119,7 +113,7 @@
             if (pen.hidden) {
                 pen.hidden = NO;                
             }
-            if (playingPointIndex == 0 && pen.penType != currentAction.paint.penType) {                
+            if (_playingPointIndex == 0 && pen.penType != currentAction.paint.penType) {                
                 [pen setPenType:currentAction.paint.penType];
                 if ([pen isRightDownRotate]) {
                     [pen.layer setTransform:CATransform3DMakeRotation(-0.8, 0, 0, 1)];        
@@ -127,7 +121,7 @@
                     [pen.layer setTransform:CATransform3DMakeRotation(0.8, 0, 0, 1)];        
                 }
             }
-            CGPoint point = [currentAction.paint pointAtIndex:playingPointIndex];
+            CGPoint point = [currentAction.paint pointAtIndex:_playingPointIndex];
             if (![DrawUtils isIllegalPoint:point]) {
                 if ([pen isRightDownRotate]) {
                     pen.center = CGPointMake(point.x + pen.frame.size.width / 3.1, point.y + pen.frame.size.height / 3.3);                    
@@ -139,18 +133,18 @@
     }
     
     if (self.delegate && [self.delegate respondsToSelector:@selector(didPlayDrawView:AtActionIndex:pointIndex:)]) {
-        [self.delegate didPlayDrawView:self AtActionIndex:playingActionIndex 
-                            pointIndex:playingPointIndex];
+        [self.delegate didPlayDrawView:self AtActionIndex:_playingActionIndex 
+                            pointIndex:_playingPointIndex];
     }
     
-    playingPointIndex ++;
-    if (playingPointIndex < [currentAction pointCount]) {
+    _playingPointIndex ++;
+    if (_playingPointIndex < [currentAction pointCount]) {
         //can play this action
     }else{
         //play next action
-        playingPointIndex = 0;
-        playingActionIndex ++;
-        if ([self.drawActionList count] > playingActionIndex) {
+        _playingPointIndex = 0;
+        _playingActionIndex ++;
+        if ([self.drawActionList count] > _playingActionIndex) {
         }else{
             //illegal
             _status = Stop;
@@ -303,7 +297,7 @@
     CGContextRef context = UIGraphicsGetCurrentContext(); 
     CGContextSetLineCap(context, kCGLineCapRound);
 
-    for (int j = startPlayIndex; j < self.drawActionList.count; ++ j) {
+    for (int j = _startPlayIndex; j < self.drawActionList.count; ++ j) {
         
         DrawAction *drawAction = [self.drawActionList objectAtIndex:j];
         if (drawAction.type == DRAW_ACTION_TYPE_DRAW) { //if is draw action 
@@ -331,7 +325,7 @@
                     }
                 }
                 //if is playing then play the next frame
-                if (self.status == Playing && j == playingActionIndex && i == playingPointIndex) {
+                if (self.status == Playing && j == _playingActionIndex && i == _playingPointIndex) {
                     CGContextStrokePath(context);            
                     self.playTimer = [NSTimer scheduledTimerWithTimeInterval:_playSpeed target:self selector:@selector(nextFrame:) userInfo:nil repeats:NO];
                     return;
@@ -340,11 +334,11 @@
         }else{ // if is clean action 
             //if is playing then play the next frame
             //is the last action
-            startPlayIndex = j + 1;
-            if (playingActionIndex == [self.drawActionList count] - 1) {
+            _startPlayIndex = j + 1;
+            if (_playingActionIndex == [self.drawActionList count] - 1) {
                 self.playTimer = [NSTimer scheduledTimerWithTimeInterval:0 target:self selector:@selector(cleanFrame:) userInfo:nil repeats:NO];
             }else{
-                if (self.status == Playing && j == playingActionIndex) {
+                if (self.status == Playing && j == _playingActionIndex) {
                     CGContextStrokePath(context);            
                     self.playTimer = [NSTimer scheduledTimerWithTimeInterval:_playSpeed target:self selector:@selector(nextFrame:) userInfo:nil repeats:NO];
                     return;
@@ -366,13 +360,6 @@
     UIImage *img = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     return img;
-}
-
-- (UIImage *)createImageWithScale:(CGFloat)scale
-{
-    UIImage *image = [self createImage];
-    UIImage* frame = [[self createImage] imageByScalingAndCroppingForSize:CGSizeMake(image.size.width * scale, image.size.height * scale)];
-    return frame;
 }
 
 - (BOOL)isViewBlank
