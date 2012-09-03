@@ -219,6 +219,11 @@
     return [MobClickUtils getIntValueByKey:@"REWARD_FLOWER_FOR_LVL_UP" defaultValue:2];
 }
 
++ (int)diceCutAwardForLevelUp
+{
+    return [MobClickUtils getIntValueByKey:@"REWARD_CUT_FOR_LVL_UP" defaultValue:2];
+}
+
 + (NSString*)getRecommendAppLinkZh
 {
     return [MobClickUtils getStringValueByKey:@"ENGLISH_RECOMMEND_APP" defaultValue:@"http://you100.me:8080/dat/app_zh.txt"];

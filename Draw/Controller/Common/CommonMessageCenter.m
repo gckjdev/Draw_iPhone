@@ -7,6 +7,22 @@
 //
 
 #import "CommonMessageCenter.h"
+#import "DiceImageManager.h"
+
+typedef enum {
+    CommonMessageViewThemeDraw = 0,
+    CommonMessageViewThemeDice = 1
+}CommonMessageViewTheme;
+
+CommonMessageViewTheme globalGetTheme() {
+    if (isDrawApp()) {
+        return CommonMessageViewThemeDraw;
+    }
+    if (isDiceApp()) {
+        return CommonMessageViewThemeDice;
+    }
+    return CommonMessageViewThemeDraw;
+}
 
 #pragma mark -
 @interface CommonMessageView : UIView {
@@ -16,12 +32,13 @@
 }
 @property (retain, nonatomic) IBOutlet UIImageView *faceImageView;
 @property (retain, nonatomic) IBOutlet UILabel *messageLabel;
+@property (retain, nonatomic) IBOutlet UIImageView* messageBackgroundView;
 
 - (id) init;
 - (void) setMessageText:(NSString*)str;
 - (void) setImage:(UIImage*)image;
 - (BOOL) isIPAD;
-+ (CommonMessageView*)createMessageView;
++ (CommonMessageView*)createMessageViewByTheme:(CommonMessageViewTheme)theme;
 @end
 
 
@@ -29,6 +46,7 @@
 @implementation CommonMessageView
 @synthesize faceImageView = _faceImageView;
 @synthesize messageLabel = _messageLabel;
+@synthesize messageBackgroundView = _messageBackgroundView;
 
 - (BOOL) isIPAD
 {
@@ -47,7 +65,28 @@
 	[_image release];
     [_faceImageView release];
     [_messageLabel release];
+    [_messageLabel release];
 	[super dealloc];
+}
+
+- (void)initByTheme:(CommonMessageViewTheme)theme
+{
+    switch (theme) {
+        case CommonMessageViewThemeDraw: {
+            
+        }break;
+        case CommonMessageViewThemeDice: {
+            [self.messageBackgroundView setImage:[DiceImageManager defaultManager].popupBackgroundImage];
+        }break;
+        default:
+            break;
+    }
+}
++ (CommonMessageView*)createMessageViewByTheme:(CommonMessageViewTheme)theme
+{
+    CommonMessageView* view = [self createMessageView];
+    [view initByTheme:theme];
+    return view;
 }
 
 + (CommonMessageView*)createMessageView
@@ -64,7 +103,7 @@
 + (CommonMessageView*)createMessageViewWithText:(NSString*)text 
                                         isHappy:(BOOL)isHappy
 {
-    CommonMessageView* view = [CommonMessageView createMessageView];
+    CommonMessageView* view = [CommonMessageView createMessageViewByTheme:globalGetTheme()];
     [view.messageLabel setText:text];
     if (isHappy) {
         [view.faceImageView setImage:[UIImage imageNamed:@"face_smile.png"]];
@@ -136,7 +175,7 @@
 	if(!(self=[super init])) return nil;
 	
 	_messages = [[NSMutableArray alloc] init];
-	_messageView = [[CommonMessageView createMessageView] retain];
+	_messageView = [[CommonMessageView createMessageViewByTheme:globalGetTheme()] retain];
 	_active = NO;
 	
 	
