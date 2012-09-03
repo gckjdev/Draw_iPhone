@@ -55,6 +55,9 @@
 - (void)disableAllDiceOperationButtons;
 - (void)enableAllDiceOperationButtons;
 
+- (void)clearAdHideTimer;
+- (void)startAdHideTimer;
+
 //- (void)popResultViewOnAvatarView:(UIView*)view
 //                         duration:(CFTimeInterval)duration 
 //                       coinsCount:(int)coinsCount;
@@ -90,11 +93,14 @@
 @synthesize popupLevel2View = _popupLevel2View;
 @synthesize popupLevel3View = _popupLevel3View;
 @synthesize popupView = _popupView;
+@synthesize adHideTimer = _adHideTimer;
 
 
 - (void)dealloc {
     
     [self setAdView:nil];
+    
+    [self clearAdHideTimer];
     
     [_adView release];
     [myLevelLabel release];
@@ -206,6 +212,8 @@
                                                      useLmAd:YES];
     
     [self updateAllPlayersAvatar];
+    
+    [self startAdHideTimer];
 }
 
 - (void)viewDidUnload
@@ -1240,6 +1248,57 @@
     } completion:^(BOOL finished) {
         [view removeFromSuperview];
     }];
+}
+
+#pragma mark - Ad Hide Timer 
+
+- (void)handleAdHideTimer:(id)sender
+{
+    hideAdCounter ++;    
+
+    // TODO add animation here
+    [UIView animateWithDuration:2 animations:^{
+        if (hideAdCounter % 2 == 0){
+            self.adView.alpha = 0;
+        }
+        else{
+            self.adView.alpha = 1.0;
+        }
+    } completion:^(BOOL finished) {
+        if (hideAdCounter % 2 == 0){
+            [self.adView setHidden:YES];
+        }
+        else{
+            [self.adView setHidden:NO];
+        }
+        
+    }];    
+    
+    [self startAdHideTimer];
+}
+
+
+
+- (void)clearAdHideTimer
+{
+    if (_adHideTimer != nil){
+        if ([_adHideTimer isValid]){
+            [_adHideTimer invalidate];
+        }
+
+        self.adHideTimer = nil;
+    }
+}
+
+#define HIDE_AD_TIMER_INTERVAL  5
+
+- (void)startAdHideTimer
+{
+    if ([[AdService defaultService] isShowAd] == NO)
+        return;
+    
+    [self clearAdHideTimer];
+    self.adHideTimer = [NSTimer scheduledTimerWithTimeInterval:HIDE_AD_TIMER_INTERVAL target:self selector:@selector(handleAdHideTimer:) userInfo:nil repeats:NO];
 }
 
 @end

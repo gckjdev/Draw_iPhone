@@ -34,6 +34,6 @@
 - (NSString*)facebookAppKey;
 - (NSString*)facebookAppSecret;
 
-
+- (NSString*)removeAdProductId;
 
 @end

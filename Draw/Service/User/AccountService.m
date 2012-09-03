@@ -25,6 +25,7 @@
 #import "ConfigManager.h"
 #import "UserService.h"
 #import "LevelService.h"
+#import "AdService.h"
 
 #define DRAW_IAP_PRODUCT_ID_PREFIX @"com.orange."
 
@@ -60,6 +61,15 @@ static AccountService* _defaultAccountService;
 }
 
 #pragma mark - methods for buy coins and items
+
+- (void)buyRemoveAd
+{
+    // send request to Apple IAP Server and wait for result
+    NSString* productId = [GameApp removeAdProductId];
+    PPDebug(@"<buyRemoveAd> on productId=%@", productId);        
+    SKPayment *payment = [SKPayment paymentWithProductIdentifier:productId];
+    [[SKPaymentQueue defaultQueue] addPayment:payment];    
+}
 
 - (void)buyCoin:(PriceModel*)price
 {
@@ -120,6 +130,11 @@ static AccountService* _defaultAccountService;
 - (void)provideContent:(NSString*)productId
 {
     PPDebug(@"<provideContent> productId = %@", productId);    
+    
+    if ([productId isEqualToString:[GameApp removeAdProductId]]){
+        // Remove Ad IAP
+        [[AdService defaultService] setAdDisable];
+    }
     
     // update UI here    
     int resultCode = PAYMENT_SUCCESS;
