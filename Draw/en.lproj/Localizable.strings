@@ -831,13 +831,14 @@
 "kCoinsNotEnoughAndEnterCoinsShop" = "Your coins are not enough. Buy some now?";
 "kCoinsNotEnoughAndGetFreeCoins" = "Your coins are not enough. get some free coins now?";
 
-"kToolCut" = "R";
-"kToolRollAgain" = "C";
+"kToolCut" = "C";
+"kToolRollAgain" = "R";
 
 "kRefreshingRoomList" = "Loading room list...";
 
 "kDailyAwardCoin" = "You got %d coins";
 "kDiceUpgradeMsg" = "Congratulations!You upgraded to level %d, [cut] +%d";
 "kDiceDegradeMsg" = "You play terribly, now degrade to level %d";
+"kClickMe" = "Click me!";
 /*********************** 大话骰子国际化字符串结束 *************************/
 
