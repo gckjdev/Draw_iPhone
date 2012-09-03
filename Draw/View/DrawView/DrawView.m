@@ -15,6 +15,32 @@
 #import "PPDebug.h"
 
 
+typedef enum{
+    
+    DrawRectTypeLine = 1,//touch draw
+    DrawRectTypeClean = 2,//clean the screen
+    DrawRectTypeRedraw = 3,//show the previous action list
+    DrawRectTypeChangeBack = 4,//show the previous action list
+    
+}DrawRectType;
+
+@interface DrawView()
+{
+//    BOOL _drawFullRect;
+    DrawRectType _drawRectType;
+    CGPoint _currentPoint;
+    CGPoint _previousPoint1;
+    CGPoint _previousPoint2;
+    UIImage *_curImage;
+    
+    CGColorRef _changeBackColor;
+}
+#pragma mark Private Helper function
+
+CGPoint midPoint(CGPoint p1, CGPoint p2);
+- (void)drawPaint:(Paint *)paint;
+@end
+
 #define DEFAULT_PLAY_SPEED (1/40.0)
 #define DEFAULT_SIMPLING_DISTANCE (5.0)
 #define DEFAULT_LINE_WIDTH (2.0 * 1.414)
@@ -30,26 +56,53 @@
 
 #pragma mark Action Funtion
 
+CGPoint midPoint(CGPoint p1, CGPoint p2)
+{
+    return CGPointMake((p1.x + p2.x) * 0.5, (p1.y + p2.y) * 0.5);
+}
+
+- (void)resetStartIndex
+{
+    int count = [self.drawActionList count];
+    while (count > 0) {
+        DrawAction *action = [self.drawActionList objectAtIndex:--count];
+        if (action && action.type == DRAW_ACTION_TYPE_CLEAN) {
+            startDrawActionIndex = count+1;
+            return;
+        }else if ([action isChnageBackAction]) {
+            startDrawActionIndex = count;
+            _changeBackColor = action.paint.color.CGColor;
+            return;
+        }
+    }
+    startDrawActionIndex = 0;
+}
 
 - (void)addCleanAction
 {
     DrawAction *cleanAction = [DrawAction actionWithType:DRAW_ACTION_TYPE_CLEAN paint:nil];
-    [self addAction:cleanAction];
-//    pen.hidden = YES;
-}
-- (void)addAction:(DrawAction *)drawAction
-{
-    [self.drawActionList addObject:drawAction];
-    if (drawAction.type == DRAW_ACTION_TYPE_CLEAN) {
-        startDrawActionIndex = [self.drawActionList count];
-    }
+    [self.drawActionList addObject:cleanAction];
+    startDrawActionIndex = [self.drawActionList count];
+    _drawRectType = DrawRectTypeClean;
     [self setNeedsDisplay];
+}
+
+- (DrawAction *)addChangeBackAction:(DrawColor *)color
+{
+    DrawAction *action = [DrawAction changeBackgroundActionWithColor:color];
+    _changeBackColor = color.CGColor;
+    [self.drawActionList addObject:action];
+    startDrawActionIndex = [self.drawActionList count] - 1;
+    _drawRectType = DrawRectTypeChangeBack;
+    [self setNeedsDisplay];
+    return action;
 }
 
 - (void)clearAllActions
 {
     [self.drawActionList removeAllObjects];
     startDrawActionIndex = 0;
+    _drawRectType = DrawRectTypeClean;
     [self setNeedsDisplay];
 }
 
@@ -70,52 +123,12 @@
         if (point.x >= self.bounds.size.width && point.y >= self.bounds.size.height) {
             return;
         }
-        point.x = MAX(point.x, 0);
-        point.y = MAX(point.y, 0);
-        point.x = MIN(point.x, self.bounds.size.width);
-        point.y = MIN(point.y, self.bounds.size.height);
-        
-        CGPoint lastPoint = ILLEGAL_POINT;
-        if ([self.drawActionList count] != 0) {
-            //simpling the point distance
-            Paint *paint = [drawAction paint];
-            NSInteger index = paint.pointCount - 1;
-            if (index >= 0) {
-                lastPoint = [paint pointAtIndex:index];
-                if ([DrawUtils distanceBetweenPoint:lastPoint point2:point] <= _simplingDistance) {
-                    return;
-                }
-            }
-        }
-        
         [drawAction.paint addPoint:point];   
-            
-        if (![DrawUtils isIllegalPoint:lastPoint]) {
-            CGRect rect = [DrawUtils constructWithPoint1:lastPoint point2:point edgeWidth:_lineWidth];        
-            [self setNeedsDisplayInRect:rect];
-        }else{
-            [self setNeedsDisplay];
-        }
-        
-//        if (pen.hidden) {
-//            pen.hidden = NO;
-//        }
-//        if ([pen isRightDownRotate]) {
-//            pen.center = CGPointMake(point.x + pen.frame.size.width / 3.1, point.y + pen.frame.size.height / 3.3);                    
-//        }else{
-//            pen.center = CGPointMake(point.x + pen.frame.size.width / 2.5, point.y - pen.frame.size.height / 4.3);                                        
-//        }
     }
 }
 - (void)setPenType:(ItemType)penType
 {
-//    pen.penType = penType;
     _penType = penType;
-//    if ([pen isRightDownRotate]) {
-//        [pen.layer setTransform:CATransform3DMakeRotation(-0.8, 0, 0, 1)];        
-//    }else{
-//        [pen.layer setTransform:CATransform3DMakeRotation(0.8, 0, 0, 1)];        
-//    }
 }
 
 - (BOOL)isEventLegal:(UIEvent *)event
@@ -134,24 +147,37 @@
     }    
     return ILLEGAL_POINT;
 }
+
+- (void)addNewPaint
+{
+    Paint *currentPaint = [Paint paintWithWidth:self.lineWidth color:self.lineColor penType:_penType];
+    _currentDrawAction = [DrawAction actionWithType:DRAW_ACTION_TYPE_DRAW paint:currentPaint];
+    [self.drawActionList addObject:_currentDrawAction];
+
+}
+
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-        if ([self isEventLegal:event]) {
+    
+    if ([self isEventLegal:event]) {
+        UITouch *touch = [touches anyObject];
+        _previousPoint1 = [touch previousLocationInView:self];
+        _previousPoint2 = [touch previousLocationInView:self];
         CGPoint point = [self touchPoint:event];
-        Paint *currentPaint = [Paint paintWithWidth:self.lineWidth color:self.lineColor penType:_penType];
-        _currentDrawAction = [DrawAction actionWithType:DRAW_ACTION_TYPE_DRAW paint:currentPaint];
-        [self.drawActionList addObject:_currentDrawAction];
-        [self addPoint:point toDrawAction:_currentDrawAction];
-        if (self.delegate && [self.delegate respondsToSelector:@selector(didStartedTouch:)]) {
-            [self.delegate didStartedTouch:currentPaint];
+        if (![DrawUtils isIllegalPoint:point]) {
+            _currentPoint = point;
+            [self addNewPaint];
+            if (self.delegate && [self.delegate 
+                                  respondsToSelector:@selector(didStartedTouch:)]) {
+                [self.delegate didStartedTouch:_currentDrawAction.paint];
+            }
+            [self touchesMoved:touches withEvent:event];
         }
+        
     }    
 }
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
     if ([self isEventLegal:event]) {
-        CGPoint point = [self touchPoint:event];
-        [self addPoint:point toDrawAction:_currentDrawAction];
-        
         if (self.delegate && [self.delegate respondsToSelector:@selector(didDrawedPaint:)]) {
             [self.delegate didDrawedPaint:_currentDrawAction.paint];
         }
@@ -160,6 +186,41 @@
 
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
     if ([self isEventLegal:event]) {
+        
+        UITouch *touch  = [touches anyObject];
+        
+        _previousPoint2  = _previousPoint1;
+        _previousPoint1  = [touch previousLocationInView:self];
+        _currentPoint    = [touch locationInView:self];
+        
+        // calculate mid point
+        CGPoint mid1    = midPoint(_previousPoint1, _previousPoint2); 
+        CGPoint mid2    = midPoint(_currentPoint, _previousPoint1);
+        
+        CGMutablePathRef path = CGPathCreateMutable();
+        CGPathMoveToPoint(path, NULL, mid1.x, mid1.y);
+        CGPathAddQuadCurveToPoint(path, NULL, _previousPoint1.x, _previousPoint1.y, mid2.x, mid2.y);
+        CGRect bounds = CGPathGetBoundingBox(path);
+        CGPathRelease(path);
+        
+        CGRect drawBox = bounds;
+        
+        //Pad our values so the bounding box respects our line width
+        drawBox.origin.x        -= self.lineWidth * 2;
+        drawBox.origin.y        -= self.lineWidth * 2;
+        drawBox.size.width      += self.lineWidth * 4;
+        drawBox.size.height     += self.lineWidth * 4;
+        
+        UIGraphicsBeginImageContext(drawBox.size);
+        [self.layer renderInContext:UIGraphicsGetCurrentContext()];
+        _curImage = UIGraphicsGetImageFromCurrentImageContext();
+        [_curImage retain];
+        UIGraphicsEndImageContext();
+        
+        _drawRectType = DrawRectTypeLine;
+        [self setNeedsDisplayInRect:drawBox];
+
+        
         CGPoint point = [self touchPoint:event];
         [self addPoint:point toDrawAction:_currentDrawAction];
     }
@@ -178,12 +239,6 @@
         _drawActionList = [[NSMutableArray alloc] init];
         self.backgroundColor = [UIColor whiteColor];        
         startDrawActionIndex = 0;
-        
-//        pen = [[PenView alloc] initWithPenType:Pencil];
-//        pen.hidden = YES;
-//        pen.userInteractionEnabled = NO;
-//        pen.layer.transform = CATransform3DMakeRotation(-0.8, 0, 0, 1);
-//        [self addSubview:pen];
     }
     
     
@@ -194,44 +249,100 @@
 {
     PPRelease(_drawActionList);
     PPRelease(_lineColor);
-//    PPRelease(pen);
     [super dealloc];
 }
 
 #pragma mark drawRect
 
+- (void)drawPoint:(CGFloat)width color:(CGColorRef)cgColor
+{
+    CGPoint mid1 = midPoint(_previousPoint1, _previousPoint2); 
+    CGPoint mid2 = midPoint(_currentPoint, _previousPoint1);
+    
+    CGContextRef context = UIGraphicsGetCurrentContext(); 
+    
+    [self.layer renderInContext:context];
+    
+    CGContextMoveToPoint(context, mid1.x, mid1.y);
+    CGContextAddQuadCurveToPoint(context, _previousPoint1.x, _previousPoint1.y, mid2.x, mid2.y); 
+    CGContextSetLineCap(context, kCGLineCapRound);
+    CGContextSetLineWidth(context, width);
+//    PPDebug(@"drawPoint width = %f", width);
+    
+    CGContextSetStrokeColorWithColor(context, cgColor);
+    
+    CGContextStrokePath(context);
+
+}
+
+- (void)drawPaint:(Paint *)paint
+{ 
+//    CGContextRef context = UIGraphicsGetCurrentContext(); 
+    if ([paint pointCount] != 0) {
+        _currentPoint = _previousPoint1 = _previousPoint2 = [paint pointAtIndex:0];
+//        CGPoint mid1 = midPoint(_previousPoint1, _previousPoint2); 
+//        CGContextMoveToPoint(context, mid1.x, mid1.y);
+//        CGContextSetLineCap(context, kCGLineCapRound);
+//        CGContextSetLineWidth(context, paint.width);
+//        CGContextSetStrokeColorWithColor(context, paint.color.CGColor);
+
+    }
+    for (int i = 0; i < [paint pointCount]; ++ i) {
+        _currentPoint = [paint pointAtIndex:i];
+        [self drawPoint:paint.width color:paint.color.CGColor];
+//        [self drawPoint:paint.width color:paint.color.CGColor];
+        
+//        CGPoint mid1 = midPoint(_previousPoint1, _previousPoint2); 
+//        CGPoint mid2 = midPoint(_currentPoint, _previousPoint1);
+    
+//        [self.layer renderInContext:context];
+        
+//        CGContextAddQuadCurveToPoint(context, _previousPoint1.x, _previousPoint1.y, mid2.x, mid2.y); 
+        _previousPoint2 = _previousPoint1;
+        _previousPoint1 = _currentPoint;
+    }
+//    CGContextStrokePath(context);
+}
+
+- (void)drawRectRedraw:(CGRect)rect
+{
+    for (int j = startDrawActionIndex; j < self.drawActionList.count; ++ j) {
+        DrawAction *drawAction = [self.drawActionList objectAtIndex:j];
+        if (drawAction.type == DRAW_ACTION_TYPE_DRAW) {        
+            Paint *paint = drawAction.paint;
+            [self drawPaint:paint];
+
+        }
+    }
+}
+
 - (void)drawRect:(CGRect)rect
 {
     
-    CGContextRef context = UIGraphicsGetCurrentContext(); 
-//    CGContextSetLineCap(context, kCGLineCapRound);
-    
-    
-    for (int j = startDrawActionIndex; j < self.drawActionList.count; ++ j) {
-        
-        DrawAction *drawAction = [self.drawActionList objectAtIndex:j];
-        Paint *paint = drawAction.paint;
-        if (drawAction.type == DRAW_ACTION_TYPE_DRAW) { //if is draw action 
-            CGContextSetStrokeColorWithColor(context, paint.color.CGColor);
-            CGContextSetFillColorWithColor(context, paint.color.CGColor);
-            
-            UIBezierPath *path;
-            path = [UIBezierPath bezierPath];
-            for (int i = 0; i < [paint pointCount]; ++ i) {
-                CGPoint point = [paint pointAtIndex:i];
-                if (i == 0) {
-                    [path moveToPoint:point];
-                    [path setLineWidth:paint.width];
-                    [path setLineCapStyle:kCGLineCapRound];
-                    [path setLineJoinStyle:kCGLineJoinRound];
-                }
-                [path addLineToPoint:point];
-            }
-            [path stroke];
+    switch (_drawRectType) {
+        case DrawRectTypeLine:
+        {
+            [_curImage drawAtPoint:CGPointMake(0, 0)];
+            [self drawPoint:self.lineWidth color:self.lineColor.CGColor];
+            [super drawRect:rect];
+            [_curImage release];
         }
-        
-        
-    }
+            break;
+        case DrawRectTypeRedraw:
+            [self drawRectRedraw:rect];
+            break;
+        case DrawRectTypeChangeBack:
+        {
+            CGContextRef context = UIGraphicsGetCurrentContext(); 
+            CGContextSetFillColorWithColor(context, _changeBackColor);
+            CGContextFillRect(context, self.bounds);
+        }
+            break;
+        case DrawRectTypeClean:
+
+        default:
+            break;
+    }    
 }
 
 
@@ -254,6 +365,8 @@
 {
     if ([self canRevoke]) {
         [_drawActionList removeLastObject];
+        [self resetStartIndex];
+        _drawRectType = DrawRectTypeRedraw;
         [self setNeedsDisplay];        
     }
 }
@@ -264,5 +377,10 @@
 }
 
 
-
+- (void)show
+{
+    [self resetStartIndex];
+    _drawRectType = DrawRectTypeRedraw;
+    [self setNeedsDisplay];
+}
 @end

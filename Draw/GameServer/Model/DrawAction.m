@@ -67,6 +67,12 @@
     return [DrawAction actionWithType:DRAW_ACTION_TYPE_DRAW paint:paint];
 }
 
+- (BOOL)isChnageBackAction
+{
+    //for changing from integer to float.
+    return self.paint.width > BACK_GROUND_WIDTH - 10;
+}
+
 - (void)encodeWithCoder:(NSCoder *)aCoder
 {
     [aCoder encodeObject:self.paint forKey:@"paint"];

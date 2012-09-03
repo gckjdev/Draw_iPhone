@@ -32,7 +32,7 @@
     CGFloat _lineWidth;
     DrawColor* _lineColor;    
     ItemType _penType;
-//    PenView *pen;
+    
 }
 
 @property (nonatomic, retain) NSMutableArray *drawActionList;
@@ -44,10 +44,11 @@
 
 - (void)clearAllActions; //remove all the actions
 - (void)addCleanAction;
-- (void)addAction:(DrawAction *)drawAction;
-- (UIImage*)createImage;
+- (DrawAction *)addChangeBackAction:(DrawColor *)color;
+- (void)show;
 - (void)setDrawEnabled:(BOOL)enabled;
 - (BOOL)isViewBlank;
 - (BOOL)canRevoke;
 - (void)revoke;
+- (UIImage*)createImage;
 @end
