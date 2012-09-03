@@ -740,7 +740,7 @@
 
 "kLoadingComments" = "Loading comments...";
 
-"kNotEnoughCoin" = "You don't have enough coin";
+"kNotEnoughCoin" = "Coins not enough";
 
 
 "kParsingData" = "Parsing data...";
@@ -783,9 +783,9 @@
 
 "kItemRollAgain" = "Reroll";
 "kItemCut" = "Cut";
-"kRollAgain" = "reroll";
+"kRollAgain" = "R";
+"kCut" = "C";
 "kRollAgainDescription" = "Use 【Reroll】 item to roll dice again and change your dices. Good luck!";
-"kCut" = "cut";
 "kCutDescription" = "Use 【Cut】 item for double coins.";
 
 "kMoreRoom" = "More...";
