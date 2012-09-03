@@ -819,8 +819,8 @@
 "kNotEnoughCoinToContinue" = "You have not enough coin to continue.";
 
 "kDiceRoomListTitle" = "Liar Dice";
-"kDiceGameRules"= "Game Rules";
-"kDicePropDescription" = "Prop";
+"kDiceGameRules"= "Rule";
+"kDicePropDescription" = "Item";
 "kDiceWilds" = " W ";
 
 "kDiceMenuStart" = "START"; 

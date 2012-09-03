@@ -213,7 +213,9 @@
     
     [self updateAllPlayersAvatar];
     
-    [self startAdHideTimer];
+    if ([DeviceDetection isIPAD] == NO){
+        [self startAdHideTimer];
+    }
 }
 
 - (void)viewDidUnload
