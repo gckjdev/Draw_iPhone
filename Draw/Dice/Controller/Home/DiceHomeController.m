@@ -187,6 +187,23 @@
 
 #pragma mark - code for rolling award dice
 
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch {
+    //CGPoint pointInView = [touch locationInView:gestureRecognizer.view];
+    if ( [gestureRecognizer isMemberOfClass:[UITapGestureRecognizer class]] ) {
+        CGPoint aPoint = [touch locationInView:self.view];
+        UIButton* btn = (UIButton*)[self.view viewWithTag:AWARD_DICE_TAG];
+        CGPoint bPoint = [(CALayer*)btn.layer.presentationLayer position];
+        if (abs((aPoint.x-bPoint.x)) < 50 && abs((aPoint.y - bPoint.y)) < 50) {
+            return YES;
+        }
+        [btn.layer removeAllAnimations];
+        [btn removeFromSuperview];
+        return NO;
+    } 
+
+    return NO;
+}
+
 - (int)calCoinByPoint:(int)point
 {
     if (point == 1) {
@@ -296,7 +313,8 @@
     // random get some coins
     int coins = 0;
     PPDebug(@"<checkIn> got %d coins", coins);
-    _tapGestureRecognizer = [[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickAwardDice:)] autorelease];    
+    _tapGestureRecognizer = [[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickAwardDice:)] autorelease];   
+    _tapGestureRecognizer.delegate = self;
     _tapGestureRecognizer.numberOfTapsRequired = 1;
     [self.view addGestureRecognizer:_tapGestureRecognizer];
     [self rollAwardDice]; 
@@ -312,16 +330,19 @@
 {
     [self killRollDiceTimer];
     
-    HKGirlFontLabel* label = [[[HKGirlFontLabel alloc] initWithFrame:CGRectMake(0, 0, 50, 25) pointSize:13] autorelease];
-    [label setText:NSLS(@"kClickMe")];
-    CMPopTipView* view = [[[CMPopTipView alloc] initWithCustomView:label needBubblePath:NO] autorelease];
-    [view setBackgroundColor:[UIColor yellowColor]];
-    [view presentPointingAtView:[self.view viewWithTag:AWARD_DICE_TAG] inView:self.view animated:YES];
-    [UIView animateWithDuration:4 animations:^{
-        view.alpha = 0;
-    } completion:^(BOOL finished) {
-        [view removeFromSuperview];
-    }];
+    if (flag) {
+        HKGirlFontLabel* label = [[[HKGirlFontLabel alloc] initWithFrame:CGRectMake(0, 0, 50, 25) pointSize:11] autorelease];
+        [label setText:NSLS(@"kClickMe")];
+        CMPopTipView* view = [[[CMPopTipView alloc] initWithCustomView:label needBubblePath:NO] autorelease];
+        [view setBackgroundColor:[UIColor yellowColor]];
+        [view presentPointingAtView:[self.view viewWithTag:AWARD_DICE_TAG] inView:self.view animated:YES];
+        [UIView animateWithDuration:4 animations:^{
+            view.alpha = 0;
+        } completion:^(BOOL finished) {
+            [view removeFromSuperview];
+        }];
+    }
+    
 }
 
 
