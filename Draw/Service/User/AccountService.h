@@ -49,6 +49,8 @@
 
 - (void)buyCoin:(PriceModel*)price;
 
+- (void)buyRemoveAd;
+
 - (void)chargeAccount:(int)amount 
                source:(BalanceSourceType)source 
         transactionId:(NSString*)transactionId

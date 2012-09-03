@@ -7,6 +7,7 @@
 //
 
 #import "DrawGameApp.h"
+#import "MobClickUtils.h"
 
 @implementation DrawGameApp
 
@@ -98,6 +99,11 @@
 - (NSString*)wanpuAdPublisherId
 {
     return @"ad40c6b004a6aba16e3ad2daac9bee9b";
+}
+
+- (NSString*)removeAdProductId
+{
+    return [MobClickUtils getStringValueByKey:@"AD_IAP_ID" defaultValue:@"com.orange.draw.removead"];
 }
 
 @end

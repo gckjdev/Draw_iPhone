@@ -7,6 +7,7 @@
 //
 
 #import "DrawGameProApp.h"
+#import "MobClickUtils.h"
 
 @implementation DrawGameProApp
 
@@ -20,6 +21,9 @@
     return YES;
 }
 
-
+- (NSString*)removeAdProductId
+{
+    return [MobClickUtils getStringValueByKey:@"AD_IAP_ID" defaultValue:@"com.orange.drawpro.removead"];
+}
 
 @end
