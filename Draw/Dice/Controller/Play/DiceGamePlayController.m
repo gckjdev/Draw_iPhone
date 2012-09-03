@@ -952,6 +952,7 @@
         [_soundManager scrambleOpen:gender];
     }else if (_diceService.openType == OpenTypeCut) {
         // TODO: play cut voice.
+        [_soundManager cutDice:gender];
     }
 }
 
@@ -1018,6 +1019,12 @@
     }else {
         [self callDice:_diceService.diceSession.lastCallDice count:(_diceService.diceSession.lastCallDiceCount + 1)];
     }
+}
+
+- (void)playPlusOneVoice
+{
+    BOOL gender = [[_diceService.diceSession getUserByUserId:_diceService.lastCallUserId] gender]; 
+    [_soundManager plusOne:gender];
 }
 
 - (void)someoneCallDice
@@ -1159,6 +1166,7 @@
 {
     HKGirlFontLabel *label = [[[HKGirlFontLabel alloc] initWithFrame:CGRectMake(0, 0, 70, 70) pointSize:50] autorelease];
     label.text = itemName;
+    label.textAlignment = UITextAlignmentCenter;
     label.center = self.view.center;
     
     [self.view addSubview:label];
@@ -1195,6 +1203,8 @@
                     userId:(NSString *)userId
 {
     [self popupMessageView:content onUser:userId];
+    
+    
     [self playMessageVoice:userId contentVoiceId:contentVoiceId.intValue];
 }
 
@@ -1239,11 +1249,13 @@
     if (filePath == nil) {
         return;
     }
-    GifView* view = [[[GifView alloc] initWithFrame:avatar.frame
+    CGRect frame = CGRectMake(0, 0, avatar.frame.size.width, avatar.frame.size.height);
+    GifView* view = [[[GifView alloc] initWithFrame:frame
                                            filePath:filePath
                                    playTimeInterval:0.2] autorelease];
     
-    [self.view insertSubview:view aboveSubview:avatar];
+    view.userInteractionEnabled = NO;
+    [avatar addSubview:view];
     
     [UIView animateWithDuration:1 delay:6.0 options:UIViewAnimationCurveLinear animations:^{
         view.alpha = 0;

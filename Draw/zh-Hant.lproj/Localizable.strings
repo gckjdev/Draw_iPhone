@@ -783,6 +783,7 @@
 "kCut" = "劈";
 "kRollAgainDescription" = "使用【重搖】道具可以重搖一次骰子。";
 "kCutDescription" = "使用【劈】道具則立刻開骰，並且賭註翻倍。";
+"kCutMessage" = "劈";
 
 "kMoreRoom" = "更多...";
 "kMoreRoomLoading" = "加載中...";

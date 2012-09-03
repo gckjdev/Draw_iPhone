@@ -798,10 +798,11 @@
 
 "kItemRollAgain" = "重摇";
 "kItemCut" = "劈骰";
-"kRollAgain" = "搖";
+"kRollAgain" = "摇";
 "kCut" = "劈";
 "kRollAgainDescription" = "使用【重摇】道具可以重摇一次骰子。";
 "kCutDescription" = "使用【劈骰】道具则立刻开骰，并且赌注翻倍。";
+"kCutMessage" = "劈";
 
 "kMoreRoom" = "更多...";
 "kMoreRoomLoading" = "加载中...";

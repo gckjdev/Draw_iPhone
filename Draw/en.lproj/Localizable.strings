@@ -787,6 +787,7 @@
 "kCut" = "C";
 "kRollAgainDescription" = "Use 【Reroll】 item to roll dice again and change your dices. Good luck!";
 "kCutDescription" = "Use 【Cut】 item for double coins.";
+"kCutMessage" = "Cut";
 
 "kMoreRoom" = "More...";
 "kMoreRoomLoading" = "Loading...";

@@ -160,7 +160,7 @@
             break;
             
         case 2:
-            message = NSLS(@"kCut");
+            message = NSLS(@"kCutMessage");
             break;
             
         default:
