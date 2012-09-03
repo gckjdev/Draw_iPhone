@@ -118,6 +118,19 @@
     return [defaultManager isMe:self.author.userId];
 }
 
+- (BOOL)showAnswer
+{
+    if ([self isMyOpus]) {
+        return YES;
+    }
+    if ([self hasGuessed])
+    {
+        return YES;
+    }
+    return NO;
+}
+
+
 - (BOOL) hasGuessed
 {
     UserManager *defaultManager  = [UserManager defaultManager];

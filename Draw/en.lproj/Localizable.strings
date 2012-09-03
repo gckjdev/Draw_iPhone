@@ -581,7 +581,7 @@
 "kCorrect" = "Correct!";
 "kSending" = "Sending...";
 "kNoCommentTips" = "No Comments";
-"kFeedDetail" = "%@'s Drawing";
+"kFeedDetail" = "Drawing Detail";
 
 "kCommentFail" = "Failed to Comment";
 

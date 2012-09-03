@@ -12,6 +12,8 @@
 
 + (DiceHelpManager*)defaultManager;
 
+- (void)unzipHelpFiles;
+
 - (NSString *)gameRulesHtmlFilePath;
 - (NSString *)itemsUsageHtmlFilePath;
 

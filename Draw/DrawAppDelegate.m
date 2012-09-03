@@ -47,6 +47,7 @@
 #import "DiceFontManager.h"
 #import "DiceSoundManager.h"
 #import "DiceHomeController.h"
+#import "DiceHelpManager.h"
 
 NSString* GlobalGetServerURL()
 {    
@@ -105,6 +106,7 @@ NSString* GlobalGetBoardServerURL()
         [WordManager unZipFiles];
     } else if (isDiceApp()){
         [DiceFontManager unZipFiles]; 
+        [[DiceHelpManager defaultManager] unzipHelpFiles];
     }
     
     [self initImageCacheManager];

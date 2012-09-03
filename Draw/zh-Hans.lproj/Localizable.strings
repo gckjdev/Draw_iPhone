@@ -595,7 +595,7 @@
 "kCorrect" = "猜对了！";
 "kSending" = "发送中...";
 "kNoCommentTips" = "还没有人评论";
-"kFeedDetail" = "%@的画";
+"kFeedDetail" = "猜画详情";
 
 "kCommentFail" = "评论失败";
 "kBlankDrawTitle" = "空白的画";

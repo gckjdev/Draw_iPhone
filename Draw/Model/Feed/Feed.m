@@ -112,4 +112,9 @@
     }
     return _desc;
 }
+
+- (BOOL)showAnswer
+{
+    return NO;
+}
 @end

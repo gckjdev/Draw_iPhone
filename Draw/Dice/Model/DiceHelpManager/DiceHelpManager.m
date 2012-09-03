@@ -34,58 +34,41 @@ static DiceHelpManager* _shareManager;
     return _shareManager;
 }
 
-- (id)init
+- (BOOL)isExistsFile
 {
-    if (self = [super init]) {
-        [self loadHelpFiles];
-    }
-    
-    return self;
-}
-
-- (void)loadHelpFiles
-{
-    [self copyFileFromBndleToAppDir];
-    
-    BOOL overwrite = NO;
-    if ([self checkForUpdate]) {
-        overwrite = YES;
-        [self downloadHelpFiles];
-    }
-    
-    [self unzipHelpFiles:overwrite];
-}
-
-- (BOOL)checkForUpdate
-{
-    return NO;
-}
-
-- (void)downloadHelpFiles
-{
-    return ;
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    return [fileManager fileExistsAtPath:[self gameRulesHtmlFilePath]];
 }
 
 - (void)copyFileFromBndleToAppDir
 {
     // copy file from bundle to zip dir
-    PPDebug(@"copy defalut app.dat from bundle to app dir");
-    
     [FileUtil copyFileFromBundleToAppDir:FILENAME_OF_HELP_ZIP
                                   appDir:[FileUtil getAppHomeDir]
                                overwrite:NO];
-
 }
 
-- (void)unzipHelpFiles:(BOOL)overwrite
+- (void)unzipHelpFiles
 {
+    if ([self isExistsFile]) {
+        return;
+    }
+    
+    [self copyFileFromBndleToAppDir];
+    
     NSString *helpZipFilePath = [[FileUtil getAppHomeDir] stringByAppendingPathComponent:FILENAME_OF_HELP_ZIP];
     
-    [SSZipArchive unzipFileAtPath:helpZipFilePath 
-                    toDestination:[FileUtil getAppHomeDir] 
-                        overwrite:overwrite 
-                         password:nil 
-                            error:nil];
+    PPDebug(@"<DiceHelpManager> start unzip");
+    
+    if ([SSZipArchive unzipFileAtPath:helpZipFilePath 
+                        toDestination:[FileUtil getAppHomeDir] 
+                            overwrite:YES 
+                             password:nil 
+                                error:nil]) {
+        PPDebug(@"<DiceHelpManager> unzip successfully");
+    } else {
+        PPDebug(@"<DiceHelpManager> unzip fail");
+    }
 }
 
 - (NSString *)gameRulesHtmlFilePath
