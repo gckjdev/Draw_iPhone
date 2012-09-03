@@ -40,12 +40,14 @@
 
 #define AWARD_DICE_TAG      20120901
 #define AWARD_DICE_START_POINT CGPointMake(0, 0)
+#define AWARD_DICE_SIZE ([DeviceDetection isIPAD]?CGSizeMake(100, 110):CGSizeMake(50, 55))
 
 @interface DiceHomeController()
 {
     BoardPanel *_boardPanel;
     NSTimeInterval interval;
     BOOL hasGetLocalBoardList;
+    
 }
 
 - (void)updateBoardPanelWithBoards:(NSArray *)boards;
@@ -63,6 +65,7 @@
     PPRelease(_menuPanel);
     PPRelease(_bottomMenuPanel);
     [super dealloc];
+    
 }
 
 - (void)loadBoards
@@ -261,12 +264,16 @@
 
 - (void)rollAwardDice
 {
-    UIButton* diceBtn = [[[UIButton alloc] initWithFrame:CGRectMake(0, 0, 50, 55)] autorelease];
-    [diceBtn setCenter:CGPointMake(self.view.frame.size.width-50, self.view.frame.size.height-50)];
+    UIButton* diceBtn = [[[UIButton alloc] initWithFrame:CGRectMake(0, 
+                                                                    0, 
+                                                                    AWARD_DICE_SIZE.width, 
+                                                                    AWARD_DICE_SIZE.height)] 
+                         autorelease];
+    //[diceBtn setCenter:CGPointMake(self.view.frame.size.width-50, self.view.frame.size.height-50)];
     [self.view addSubview:diceBtn];
     //[diceBtn addTarget:self action:@selector(clickAwardDice:) forControlEvents:UIControlEventTouchUpInside];
     diceBtn.tag = AWARD_DICE_TAG;
-    CAAnimation* rolling = [AnimationManager rotationAnimationWithRoundCount:50 duration:25];
+    CAAnimation* rolling = [AnimationManager rotationAnimationWithRoundCount:-50 duration:25];
     rolling.removedOnCompletion = NO;
     rolling.delegate = self;
     [diceBtn.layer addAnimation:rolling forKey:@"roll"];
@@ -287,12 +294,21 @@
 //    
 //    CGPoint startPoint = AWARD_DICE_START_POINT;
     CGPoint points[6];
+    float diceWidth = AWARD_DICE_SIZE.width;
+    float diceHeight = AWARD_DICE_SIZE.height;
+    float screenWidth = self.view.frame.size.width;
+    float screenHeight = self.view.frame.size.height;
     points[0] = AWARD_DICE_START_POINT;
-    points[1] = CGPointMake(self.view.frame.size.width, rand()%(int)self.view.frame.size.height);
-    points[2] = CGPointMake(rand()%(int)self.view.frame.size.width, self.view.frame.size.height);
-    points[3] = CGPointMake(0, rand()%(int)self.view.frame.size.height);
-    points[4] = CGPointMake(rand()%(int)self.view.frame.size.width, 0);
-    points[5] = CGPointMake(rand()%(int)self.view.frame.size.width, rand()%(int)self.view.frame.size.height);
+    points[1] = CGPointMake(screenWidth - diceWidth/3, 
+                            rand()%(int)(screenHeight - diceHeight) + diceHeight/2);
+    points[2] = CGPointMake(rand()%(int)(screenWidth - diceWidth) + diceWidth/2, 
+                            screenHeight - diceHeight/3);
+    points[3] = CGPointMake(diceWidth/3, 
+                            rand()%(int)(screenHeight - diceHeight) + diceHeight/2);
+    points[4] = CGPointMake(rand()%(int)(screenWidth - diceWidth) + diceWidth/2, 
+                            diceHeight/3);
+    points[5] = CGPointMake(rand()%(int)(screenWidth - diceWidth) + diceWidth/2, 
+                            rand()%(int)(screenHeight - diceHeight) + diceHeight/2);
     
     CAKeyframeAnimation* pathAnimation = [AnimationManager pathByPoins:points count:6 duration:25 delegate:self];
     
