@@ -16,6 +16,8 @@
 }
 - (void)gotoPage:(NSInteger)page animated:(BOOL)animated;
 - (void)handleTimer:(NSTimer *)theTimer;
+- (void)refreshBoardViewInPage:(NSInteger)page;
+
 @end
 
 @implementation BoardPanel
@@ -75,7 +77,11 @@
             [_boardViews addObject:boardView];
         }
     }
-    [self.pageControl setNumberOfPages:i];
+    [self.pageControl setNumberOfPages:i];        
+    if (i > 0){
+        [self refreshBoardViewInPage:0];
+    }
+    
     if (i > 1) {
         [self restartTimer];
     }
@@ -188,7 +194,7 @@
         return;
     }
     
-    PPDebug(@"<BoardPanel>gotoPage page=%d", page);
+    PPDebug(@"<BoardPanel> gotoPage page=%d", page);
     self.pageControl.currentPage = page;
     CGPoint offset = [self offsetForPage];
     [self.scrollView setContentOffset:offset animated:animated];

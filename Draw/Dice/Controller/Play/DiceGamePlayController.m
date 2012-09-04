@@ -751,6 +751,7 @@
 {
     [[AdService defaultService] clearAdView:_adView];
     
+    [self clearAdHideTimer];
     [self clearAllReciprocol];
     [self clearAllPlayersAvatar];
     [self clearAllResultViews];

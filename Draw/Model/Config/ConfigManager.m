@@ -302,7 +302,7 @@
 
 + (NSString*)getDiceServerListString
 {
-    return [MobClickUtils getStringValueByKey:@"DICE_SERVER_LIST" defaultValue:@"58.215.189.146:8018"];
+    return [MobClickUtils getStringValueByKey:@"DICE_SERVER_LIST" defaultValue:@"58.215.164.153:8018"];
 }
 
 + (int)getDailyGiftCoin

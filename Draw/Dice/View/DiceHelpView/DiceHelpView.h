@@ -10,6 +10,8 @@
 #import "FontButton.h"
 
 
+#define DICE_HELP_VIEW_TAG      2012090488
+
 typedef enum {
     AnimationTypeNone = 0,
 	AnimationTypeCaseInCaseOut = 1,

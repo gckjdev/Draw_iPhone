@@ -8,16 +8,22 @@
 
 #import "BoardManager.h"
 #import "PPDebug.h"
+#import "Board.h"
 
 BoardManager *_staticBoardManager = nil;
 
 @interface BoardManager()
 {
-    NSMutableArray *_BoardList;
+    
 }
+
+- (NSArray *)getLocalBoardList;
+
 @end
 
 @implementation BoardManager
+
+@synthesize boardList = _boardList;
 
 + (BoardManager *)defaultManager
 {
@@ -31,19 +37,24 @@ BoardManager *_staticBoardManager = nil;
 {
     self = [super init];
     if (self) {
-        _BoardList = [[NSMutableArray alloc] init];
+        _boardList = [[NSMutableArray alloc] init];
+        
+        // load data from local board list
+        NSArray* localBoardList = [self getLocalBoardList];
+        if (localBoardList){
+            [_boardList addObjectsFromArray:localBoardList];
+        }
+        else{
+            // if no local data, load from default board
+            [_boardList addObject:[Board defaultBoard]];
+        }
     }
     return self;
 }
 
-//- (NSArray *)BoardList
-//{
-//    return _BoardList;
-//}
-
 - (void)dealloc
 {
-    PPRelease(_BoardList);
+    PPRelease(_boardList);
     [super dealloc];
 }
 
@@ -61,16 +72,19 @@ BoardManager *_staticBoardManager = nil;
     PPDebug(@"get Local board list = nil");
     return nil;
 }
-- (void)saveBoardList:(NSArray *)boardList
+
+- (void)saveBoardList:(NSArray *)newBoardList
 {
-    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-    dispatch_async(queue, ^{
-        NSData* reData = [NSKeyedArchiver archivedDataWithRootObject:boardList];
-        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-        [defaults setObject:reData forKey:BOARD_LIST_KEY];
-        [defaults synchronize];
-        PPDebug(@"save boardList!, count = %d",[boardList count]);
-    });
+    NSData* reData = [NSKeyedArchiver archivedDataWithRootObject:newBoardList];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:reData forKey:BOARD_LIST_KEY];
+    [defaults synchronize];
+    PPDebug(@"save boardList!, new board count = %d",[newBoardList count]);
+    
+    if ([newBoardList count] > 0){
+        [_boardList removeAllObjects];
+        [_boardList addObjectsFromArray:newBoardList];
+    }
 }
 
 

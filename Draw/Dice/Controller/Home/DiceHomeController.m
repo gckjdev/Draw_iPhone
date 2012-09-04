@@ -31,6 +31,7 @@
 #import "DiceConfigManager.h"
 #import "ConfigManager.h"
 #import "LmWallService.h"
+#import "DiceHelpView.h"
 
 
 #define KEY_LAST_AWARD_DATE     @"last_award_day"
@@ -38,7 +39,7 @@
 #define DAILY_GIFT_COIN [ConfigManager getDailyGiftCoin]
 #define DAILY_GIFT_COIN_INCRE   [ConfigManager getDailyGiftCoinIncre]
 
-#define AWARD_DICE_TAG      20120901
+#define AWARD_DICE_TAG      2012090101
 #define AWARD_DICE_START_POINT CGPointMake(0, 0)
 #define AWARD_DICE_SIZE ([DeviceDetection isIPAD]?CGSizeMake(100, 110):CGSizeMake(50, 55))
 #define AWARD_TIPS_FONT ([DeviceDetection isIPAD]?22:11)
@@ -54,6 +55,7 @@
 - (void)updateBoardPanelWithBoards:(NSArray *)boards;
 - (void)registerDiceGameNotification;
 - (void)showWall;
+- (void)checkIn;
 
 @end
 
@@ -72,16 +74,17 @@
 
 - (void)loadBoards:(BOOL)localOnly
 {    
-    hasGetLocalBoardList = NO;
-    interval = 1;
-    Board *defaultBoard = [Board defaultBoard];
-    NSArray *borads = [NSArray arrayWithObject:defaultBoard];
-    PPDebug(@"<viewDidLoad> update Board Panel With Default Boards ");
-    [self updateBoardPanelWithBoards:borads];
+//    hasGetLocalBoardList = NO;
+//    interval = 1;
+//    Board *defaultBoard = [Board defaultBoard];
+//    NSArray *borads = [NSArray arrayWithObject:defaultBoard];
+//    PPDebug(@"<viewDidLoad> update Board Panel With Default Boards ");
+
+    [self updateBoardPanelWithBoards:[[BoardManager defaultManager] boardList]];
     
-    if (localOnly == NO){
-        [[BoardService defaultService] getBoardsWithDelegate:self];    
-    }
+//    if (localOnly == NO){
+//        [[BoardService defaultService] getBoardsWithDelegate:self];    
+//    }
 }
 - (void)loadMainMenu
 {
@@ -112,7 +115,7 @@
 #pragma mark - View lifecycle
 
 - (void)viewDidLoad
-{    
+{        
     [[AdService defaultService] setViewController:self];
     
     [super viewDidLoad];
@@ -127,13 +130,7 @@
 {
     [[AdService defaultService] setViewController:self];    
 
-    if (_boardPanel == nil){
-        [self loadBoards:YES];
-    }
-    else{
-        [self loadBoards:NO];
-    }
-
+    [self loadBoards:YES];    
     [self registerDiceGameNotification];    
     [super viewDidAppear:animated];
 }
@@ -160,32 +157,32 @@
     interval *= 2;
     if (interval < NSTimeIntervalSince1970) {
         PPDebug(@"<updateBoardList> timeinterval = %f", interval);
-        [[BoardService defaultService] getBoardsWithDelegate:self];        
+        [[BoardService defaultService] syncBoards];
     }
 }
 
 - (void)didGetBoards:(NSArray *)boards 
           resultCode:(NSInteger)resultCode
 {
-    if (resultCode == 0) {
-        PPDebug(@"<didGetBoards> update Board Panel With Remote Boards ");
-        [self updateBoardPanelWithBoards:boards];
-        [[BoardManager defaultManager] saveBoardList:boards];
-    }else {
-        //start timer to fetch. use the local
-        if(!hasGetLocalBoardList){
-            NSArray * boardList = [[BoardManager defaultManager] 
-                                   getLocalBoardList];
-            hasGetLocalBoardList = YES;
-            PPDebug(@"<didGetBoards> update Board Panel With Local Boards ");
-            [self updateBoardPanelWithBoards:boardList];
-        }
-        [NSTimer scheduledTimerWithTimeInterval:interval target:self 
-                                       selector:@selector(updateBoardList:)
-                                       userInfo:nil
-                                        repeats:NO];
-        //start timer to fetch. use the local
-    }
+//    if (resultCode == 0) {
+//        PPDebug(@"<didGetBoards> update Board Panel With Remote Boards ");
+//        [self updateBoardPanelWithBoards:boards];
+//        [[BoardManager defaultManager] saveBoardList:boards];
+//    }else {
+//        //start timer to fetch. use the local
+//        if(!hasGetLocalBoardList){
+//            NSArray * boardList = [[BoardManager defaultManager] 
+//                                   getLocalBoardList];
+//            hasGetLocalBoardList = YES;
+//            PPDebug(@"<didGetBoards> update Board Panel With Local Boards ");
+//            [self updateBoardPanelWithBoards:boardList];
+//        }
+//        [NSTimer scheduledTimerWithTimeInterval:interval target:self 
+//                                       selector:@selector(updateBoardList:)
+//                                       userInfo:nil
+//                                        repeats:NO];
+//        //start timer to fetch. use the local
+//    }
 }
 
 - (void)updateBoardPanelWithBoards:(NSArray *)boards
@@ -205,6 +202,11 @@
         UIView* awardButton = [self.view viewWithTag:AWARD_DICE_TAG];
         if (awardButton) {
             [self.view bringSubviewToFront:awardButton];
+        }
+        
+        UIView* helpView = [self.view viewWithTag:DICE_HELP_VIEW_TAG];
+        if (helpView){
+            [self.view bringSubviewToFront:helpView];
         }
     }
     
@@ -430,13 +432,13 @@
         }
     }];
     
-    [self registerNotificationWithName:@"" // TODO set right name here
+    [self registerNotificationWithName:BOARD_UPDATE_NOTIFICATION // TODO set right name here
                                 object:nil
                                  queue:[NSOperationQueue mainQueue]
                             usingBlock:^(NSNotification *note) {
                                 
                                 // TODO reload board here
-                                
+                                [self updateBoardPanelWithBoards:[[BoardManager defaultManager] boardList]];
                                 
                             }];    
     
