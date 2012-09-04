@@ -297,7 +297,6 @@
 
 + (int)getDiceThresholdCoin
 {
-    return 1700;
     return [MobClickUtils getIntValueByKey:@"DICE_THRESHOLD_COIN" defaultValue:200];
 }
 
