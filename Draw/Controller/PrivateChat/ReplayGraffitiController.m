@@ -17,11 +17,14 @@
 @implementation ReplayGraffitiController
 @synthesize titleLabel = _titleLabel;
 @synthesize drawActionList = _drawActionList;
+@synthesize showDrawView = _showDrawView;
 
 - (void)dealloc
 {
+    [_showDrawView stop];
+    PPRelease(_showDrawView);
+    PPRelease(_titleLabel);
     PPRelease(_drawActionList);
-    [_titleLabel release];
     [super dealloc];
 }
 
@@ -41,12 +44,6 @@
     NSMutableArray *scaleActionList = nil;
     
     scaleActionList = [NSMutableArray arrayWithArray:drawActionList];
-    //    if ([DeviceDetection isIPAD]) {
-    //        scaleActionList = [DrawAction scaleActionList:drawActionList 
-    //                                               xScale:IPAD_WIDTH_SCALE 
-    //                                               yScale:IPAD_HEIGHT_SCALE];
-    //    }
-
     [showDrawView setDrawActionList:scaleActionList]; 
     [showDrawView setShowPenHidden:NO];
     
@@ -59,11 +56,11 @@
     [super viewDidLoad];
     [self.titleLabel setText:NSLS(@"kGraffitiMessage")];
     
-    ShowDrawView *showDrawView = [self createShowDrawView:_drawActionList];
-    showDrawView.center = self.view.center;
-    [showDrawView setPlaySpeed:1.0/30.0];
-    [showDrawView play];
-    [self.view addSubview:showDrawView];
+    self.showDrawView = [self createShowDrawView:_drawActionList];
+    self.showDrawView.center = self.view.center;
+    [self.showDrawView setPlaySpeed:1.0/30.0];
+    [self.view addSubview:self.showDrawView];
+    [self.showDrawView play];
 }
 
 - (void)viewDidUnload

@@ -42,7 +42,7 @@ static DiceSoundManager* shareManager;
 - (NSArray*)diceSoundNameArray
 {
     NSMutableArray* soundNames = [[[NSMutableArray alloc] init] autorelease];
-    
+
 //    for (int i = 1; i <= 6; i ++) {
 //        for (int j = 1; j <= 30; j ++) {
 //            [soundNames addObject:[self creatCallDiceName:j 
@@ -67,6 +67,7 @@ static DiceSoundManager* shareManager;
 //    
 //    [soundNames addObject:[NSString stringWithFormat:@"plusOne_%@%@.m4a", MALE, [LocaleUtils isChinese]?LANGUAGE_CHINESE:LANGUAGE_ENGLISH]];
 //    [soundNames addObject:[NSString stringWithFormat:@"plusOne_%@%@.m4a", FEMALE, [LocaleUtils isChinese]?LANGUAGE_CHINESE:LANGUAGE_ENGLISH]];
+
 
     return soundNames;
 }
@@ -108,7 +109,7 @@ static DiceSoundManager* shareManager;
                gender:(BOOL)gender
 {
     NSString* name = [self getMessageSoundNameById:messageId];
-    [[AudioManager defaultManager] playSoundByName:[NSString stringWithFormat:@"%@_%@%@.m4a", name, gender?MALE:FEMALE,[LocaleUtils isChinese]?LANGUAGE_CHINESE:LANGUAGE_ENGLISH]];
+    [[AudioManager defaultManager] playSoundByName:[NSString stringWithFormat:@"%@_%@%@.m4a", name, gender?MALE:FEMALE, [LocaleUtils isChinese]?LANGUAGE_CHINESE:LANGUAGE_ENGLISH]];
 }
 
 @end

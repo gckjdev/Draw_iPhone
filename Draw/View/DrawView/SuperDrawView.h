@@ -14,6 +14,7 @@
 #import "ItemType.h"
 
 typedef enum{
+    DrawRectTypeNo = 0,
     DrawRectTypeLine = 1,//touch draw
     DrawRectTypeClean = 2,//clean the screen
     DrawRectTypeRedraw = 3,//show the previous action list
@@ -24,7 +25,7 @@ typedef enum{
 
 @class DrawColor;
 @class DrawAction;
-//@class PenView;
+
 
 @interface SuperDrawView : UIView
 {
@@ -41,6 +42,7 @@ typedef enum{
 }
 
 @property (nonatomic, retain) NSMutableArray *drawActionList;
+@property (nonatomic, retain) UIImage *curImage;
 
 //public method
 - (BOOL)isViewBlank;

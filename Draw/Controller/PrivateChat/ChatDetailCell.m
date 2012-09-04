@@ -42,15 +42,17 @@
 @synthesize avatarButton;
 
 - (void)dealloc {
-    [avatarView release];
-    [bubbleImageView release];
-    [timeLabel release];
-    [contentTextView release];
-    [graffitiView release];
-    [enlargeButton release];
-    [nicknameLabel release];
-    [avatarBackgroundImageView release];
-    [avatarButton release];
+    
+    [graffitiView stop];
+    PPRelease(avatarView);
+    PPRelease(bubbleImageView);
+    PPRelease(timeLabel);
+    PPRelease(contentTextView);
+    PPRelease(graffitiView);
+    PPRelease(enlargeButton);
+    PPRelease(nicknameLabel);
+    PPRelease(avatarBackgroundImageView);
+    PPRelease(avatarButton);
     [super dealloc];
 }
 
@@ -242,6 +244,7 @@
         graffitiView.frame = CGRectMake(graffitiView.frame.origin.x+BUBBLE_TIP_WIDTH+IMAGE_BORDER_X, 0.5*SPACE_Y+IMAGE_BORDER_Y, IMAGE_WIDTH_MAX, multiple *IMAGE_WIDTH_MAX);
         graffitiView.layer.cornerRadius = 4;
         graffitiView.layer.masksToBounds = YES;
+        [graffitiView show];
         
         //set button frame
         enlargeButton.frame = graffitiView.frame;

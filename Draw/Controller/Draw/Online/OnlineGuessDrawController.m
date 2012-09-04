@@ -60,7 +60,7 @@
     moveButton = nil;
     _shopController = nil;
     lastScaleTarget = nil;
-    
+    [showView stop];
     PPRelease(_candidateString);
     PPRelease(showView);
     PPRelease(drawBackground);
@@ -544,6 +544,7 @@
 
     NSInteger gainCoin = [[message notification] turnGainCoins];
     [showView setShowPenHidden:YES];
+    [showView show];
     UIImage *image = [showView createImage];
     
     NSString* drawUserId = [[[drawGameService session] currentTurn] lastPlayUserId];
@@ -565,7 +566,7 @@
         [self.navigationController pushViewController:rc animated:YES];
     }
     [rc release]; 
-    
+//    [showView stop];
 }
 
 - (void)didReceiveRank:(NSNumber*)rank fromUserId:(NSString*)userId

@@ -28,9 +28,10 @@ WillHandleJumpURL:(NSURL *)URL;
 {
     Board *_board;
     id<BoardViewDelegate> _delegate;
-    NSMutableArray *_adViewList;
+    UIView *_adView;
 }
 
+@property(nonatomic, retain)UIView *adView;
 @property(nonatomic, retain)Board *board;
 @property(nonatomic, assign)id<BoardViewDelegate>delegate;
 @property(nonatomic, retain)UIViewController *viewController;
@@ -42,6 +43,7 @@ WillHandleJumpURL:(NSURL *)URL;
 - (void)clearAllAdView;
 
 //override by subclass;
+- (void)viewWillAppear;
 - (void)loadView;
 - (void)innerJump:(NSURL *)URL;
 
@@ -52,6 +54,6 @@ WillHandleJumpURL:(NSURL *)URL;
 @end
 
 @interface DefaultBoardView : BoardView {
-    
+
 }
 @end

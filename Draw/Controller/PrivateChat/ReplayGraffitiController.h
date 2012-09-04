@@ -8,9 +8,13 @@
 
 #import "PPViewController.h"
 
+@class ShowDrawView;
 @interface ReplayGraffitiController : PPViewController
+{
+    ShowDrawView *_showDrawView;
+}
 @property (retain, nonatomic) IBOutlet UILabel *titleLabel;
-
+@property (retain, nonatomic) ShowDrawView *showDrawView;
 - (id)initWithDrawActionList:(NSArray *)drawActionList;
 
 @end

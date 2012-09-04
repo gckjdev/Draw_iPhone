@@ -58,14 +58,12 @@
 #define BOARD_VIEW_BASE_TAG 100
 - (void)setBoardList:(NSArray *)boardList
 {
-    /*
-    for (BoardView *boardView in [scrollView subviews]) {
-        if ([boardView isKindOfClass:[BoardView class]]) {
-            [boardView removeFromSuperview];
-        }
-    }*/
     [scrollView setContentSize:CGSizeMake([boardList count] * PAGE_WIDTH, PAGE_HEIGHT)];
-        
+    if (_boardViews == nil) {
+        _boardViews = [[NSMutableArray alloc] init];
+    }
+    [_boardViews removeAllObjects];
+    
     int i = 0;
     for (Board *board in boardList) {
         BoardView *boardView = [BoardView createBoardView:board];
@@ -76,12 +74,21 @@
             [boardView loadView];
             boardView.tag = BOARD_VIEW_BASE_TAG + i;
             [self.scrollView addSubview:boardView];
+            [_boardViews addObject:boardView];
         }
     }
     [self.pageControl setNumberOfPages:i];
     if (i > 1) {
         [self restartTimer];
     }
+}
+
+- (BoardView *)boardViewInPage:(NSInteger)page
+{
+    if (page >= 0 && page < [_boardViews count]) {
+        return [_boardViews objectAtIndex:page];
+    }
+    return nil;
 }
 
 #pragma mark - Timer
@@ -137,7 +144,11 @@
     return [URL.scheme isEqualToString:BOARD_SCHEME_BOARD];
 }
 
-
+- (void)refreshBoardViewInPage:(NSInteger)page
+{
+    BoardView *boardView = [self boardViewInPage:page];
+    [boardView viewWillAppear];
+}
 
 #pragma mark - scrollView delegate
 
@@ -163,6 +174,7 @@
     self.pageControl.currentPage = [self pageForOffset];    
     PPDebug(@"scrollViewDidEndDecelerating, page = %d", self.pageControl.currentPage);    
     [self restartTimer];
+    [self refreshBoardViewInPage:self.pageControl.currentPage];
 }
 
 - (void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView
@@ -176,14 +188,16 @@
     self.pageControl.currentPage = page;
     CGPoint offset = [self offsetForPage];
     [self.scrollView setContentOffset:offset animated:animated];
+    [self refreshBoardViewInPage:page];
 }
 - (IBAction)changePage:(id)sender {
     [self.scrollView setContentOffset:[self offsetForPage] animated:YES];
+    [self refreshBoardViewInPage:self.pageControl.currentPage];
 }
 - (void)dealloc {
     PPRelease(scrollView);
     PPRelease(_controller);
-    [pageControl release];
+    PPRelease(pageControl);
     [super dealloc];
 }
 @end
