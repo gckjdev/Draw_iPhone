@@ -34,41 +34,9 @@ static DiceHelpManager* _shareManager;
     return _shareManager;
 }
 
-- (BOOL)isExistsFile
-{
-    NSFileManager *fileManager = [NSFileManager defaultManager];
-    return [fileManager fileExistsAtPath:[self gameRulesHtmlFilePath]];
-}
-
-- (void)copyFileFromBndleToAppDir
-{
-    // copy file from bundle to zip dir
-    [FileUtil copyFileFromBundleToAppDir:FILENAME_OF_HELP_ZIP
-                                  appDir:[FileUtil getAppHomeDir]
-                               overwrite:NO];
-}
-
 - (void)unzipHelpFiles
 {
-    if ([self isExistsFile]) {
-        return;
-    }
-    
-    [self copyFileFromBndleToAppDir];
-    
-    NSString *helpZipFilePath = [[FileUtil getAppHomeDir] stringByAppendingPathComponent:FILENAME_OF_HELP_ZIP];
-    
-    PPDebug(@"<DiceHelpManager> start unzip");
-    
-    if ([SSZipArchive unzipFileAtPath:helpZipFilePath 
-                        toDestination:[FileUtil getAppHomeDir] 
-                            overwrite:YES 
-                             password:nil 
-                                error:nil]) {
-        PPDebug(@"<DiceHelpManager> unzip successfully");
-    } else {
-        PPDebug(@"<DiceHelpManager> unzip fail");
-    }
+    [FileUtil unzipFile:FILENAME_OF_HELP_ZIP];
 }
 
 - (NSString *)gameRulesHtmlFilePath
