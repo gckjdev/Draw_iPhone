@@ -20,4 +20,11 @@
 @property (retain, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (retain, nonatomic) UIViewController *controller;
 @property (retain, nonatomic) IBOutlet UIPageControl *pageControl;
+
+// call this before release the panel or view disappear
+- (void)stopTimer;
+
+// call this when view didappear
+- (void)restartTimer;
+
 @end

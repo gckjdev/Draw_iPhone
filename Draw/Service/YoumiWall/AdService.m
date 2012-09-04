@@ -376,6 +376,7 @@ static AdService* _defaultService;
     [adView removeFromSuperview];
     
     if ([adView isKindOfClass:[AdMoGoView class]]){
+        [((AdMoGoView*)adView) pauseAdRequest];
         ((AdMoGoView*)adView).delegate = nil;
     }
     else if ([adView isKindOfClass:[immobView class]]){
