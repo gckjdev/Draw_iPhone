@@ -41,9 +41,6 @@
 #define DICE_THRESHOLD_COIN ([ConfigManager getDiceThresholdCoin])
 
 @interface DiceGamePlayController ()
-{
-    BOOL _gamePlaying;
-}
 
 @property (retain, nonatomic) DiceSelectedView *diceSelectedView;
 @property (retain, nonatomic) NSEnumerator *enumerator;
@@ -371,14 +368,7 @@
     
     NSString *userId = [_enumerator nextObject];
     
-    if (userId == nil) {
-        if (!_diceService.diceSession.isMeAByStander) {
-            [_levelService addExp:LIAR_DICE_EXP delegate:self];
-        }
-        [self showUserGainCoins];
-    }else {
-        [self showUserDice:userId];
-    }
+    [self showUserDice:userId];
 }
 
 - (void)showUserDice:(NSString *)userId
@@ -427,7 +417,12 @@
 
 - (void)showUserGainCoins
 {
-    // TODO: show user gainCoins.
+    // Add Exp
+    if (!_diceService.diceSession.isMeAByStander) {
+        [_levelService addExp:LIAR_DICE_EXP delegate:self];
+    }
+    
+    // Show user gainCoins.
     for (NSString *userId in [[_diceService gameResult] allKeys]) {
         PBUserResult *result = [[_diceService gameResult] objectForKey:userId];
         DiceAvatarView *avatar = [self avatarViewOfUser:userId];
@@ -821,7 +816,6 @@
 
 - (void)rollDiceBegin
 {
-    _gamePlaying = YES;
     [self clearGameResult];
     self.waittingForNextTurnNoteLabel.hidden = YES;
     [self showBeginNoteAnimation];
@@ -897,7 +891,6 @@
 - (void)didSyncFinish
 {
     self.myCoinsLabel.text = [NSString stringWithFormat:@"x%d",[_accountService getBalance]];
-    _gamePlaying = NO;
     
     if ([_accountService getBalance] < DICE_THRESHOLD_COIN) {
         [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kNotEnoughCoinToContinue") delayTime:1.5 isHappy:NO];
@@ -1141,14 +1134,14 @@
 
 - (void)updateWaittingForNextTurnNotLabel
 {
-    if (!_gamePlaying) {
-        if ([_diceService.diceSession.userList count] > 1) {
-            self.waittingForNextTurnNoteLabel.text = NSLS(@"kWaittingForNextTurn");
-            self.waittingForNextTurnNoteLabel.hidden = NO;
-        }else {
-            self.waittingForNextTurnNoteLabel.text = NSLS(@"kWaitingForMoreUsers");
-            self.waittingForNextTurnNoteLabel.hidden = NO;
-        }
+    if ([_diceService.diceSession.userList count] == 1) {
+        self.waittingForNextTurnNoteLabel.text = NSLS(@"kWaitingForMoreUsers");
+        self.waittingForNextTurnNoteLabel.hidden = NO;
+    }
+    
+    if ([_diceService.diceSession.userList count] > 1 && _diceService.diceSession.isMeAByStander) {
+        self.waittingForNextTurnNoteLabel.text = NSLS(@"kWaittingForNextTurn");
+        self.waittingForNextTurnNoteLabel.hidden = NO;
     }
 }
 
