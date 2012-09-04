@@ -77,5 +77,12 @@
 	</array>
 	<key>UILaunchImageFile</key>
 	<string>DiceDefault.jpg</string>
+	<key>Icon files Dice</key>
+	<array>
+		<string>dice_icon_57.png</string>
+		<string>dice_icon_57@2x.png</string>
+		<string>dice_icon_50.png</string>
+		<string>dice_icon_72.png</string>
+	</array>
 </dict>
 </plist>

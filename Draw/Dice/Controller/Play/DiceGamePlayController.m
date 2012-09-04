@@ -205,7 +205,8 @@
     
     [self registerDiceGameNotifications];    
     
-    self.waittingForNextTurnNoteLabel.text = (_gamePlaying) ?  NSLS(@"kWaittingForNextTurn") : NSLS(@"kWaitingForMoreUsers");
+    [self updateWaittingForNextTurnNotLabel];
+    
     self.adView = [[AdService defaultService] createAdInView:self                  
                                                        frame:CGRectMake(0, 0, 320, 50) 
                                                    iPadFrame:CGRectMake(448, 0, 320, 50)
@@ -1140,9 +1141,14 @@
 
 - (void)updateWaittingForNextTurnNotLabel
 {
-    if ([_diceService.diceSession.userList count] == 1 && !_gamePlaying) {
-        self.waittingForNextTurnNoteLabel.text = NSLS(@"kWaitingForMoreUsers");
-        self.waittingForNextTurnNoteLabel.hidden = NO;
+    if (!_gamePlaying) {
+        if ([_diceService.diceSession.userList count] > 1) {
+            self.waittingForNextTurnNoteLabel.text = NSLS(@"kWaittingForNextTurn");
+            self.waittingForNextTurnNoteLabel.hidden = NO;
+        }else {
+            self.waittingForNextTurnNoteLabel.text = NSLS(@"kWaitingForMoreUsers");
+            self.waittingForNextTurnNoteLabel.hidden = NO;
+        }
     }
 }
 
@@ -1205,8 +1211,6 @@
                     userId:(NSString *)userId
 {
     [self popupMessageView:content onUser:userId];
-    
-    
     [self playMessageVoice:userId contentVoiceId:contentVoiceId.intValue];
 }
 
