@@ -42,31 +42,32 @@ static DiceSoundManager* shareManager;
 - (NSArray*)diceSoundNameArray
 {
     NSMutableArray* soundNames = [[[NSMutableArray alloc] init] autorelease];
-    
-    for (int i = 1; i <= 6; i ++) {
-        for (int j = 1; j <= 30; j ++) {
-            [soundNames addObject:[self creatCallDiceName:j 
-                                                     dice:i 
-                                                   gender:YES]];
-            [soundNames addObject:[self creatCallDiceName:j 
-                                                     dice:i 
-                                                   gender:NO]];
-        }
-    }
-    for (int i = 1; i <= 9; i ++) {
-        [soundNames addObject:[NSString stringWithFormat:@"%@_%d_%@%@.m4a", MESSAGE_BASE_NAME, i , MALE, [LocaleUtils isChinese]?LANGUAGE_CHINESE:LANGUAGE_ENGLISH]];
-        [soundNames addObject:[NSString stringWithFormat:@"%@_%d_%@%@.m4a", MESSAGE_BASE_NAME, i ,FEMALE, [LocaleUtils isChinese]?LANGUAGE_CHINESE:LANGUAGE_ENGLISH]];
-    }
-    [soundNames addObject:[NSString stringWithFormat:@"openDice_%@%@.m4a", MALE, [LocaleUtils isChinese]?LANGUAGE_CHINESE:LANGUAGE_ENGLISH]];
-    [soundNames addObject:[NSString stringWithFormat:@"openDice_%@%@.m4a", FEMALE, [LocaleUtils isChinese]?LANGUAGE_CHINESE:LANGUAGE_ENGLISH]];
-    [soundNames addObject:[NSString stringWithFormat:@"scrambleToOpenDice_%@%@.m4a", MALE, [LocaleUtils isChinese]?LANGUAGE_CHINESE:LANGUAGE_ENGLISH]];
-    [soundNames addObject:[NSString stringWithFormat:@"scrambleToOpenDice_%@%@.m4a", FEMALE, [LocaleUtils isChinese]?LANGUAGE_CHINESE:LANGUAGE_ENGLISH]];
-    
-    [soundNames addObject:[NSString stringWithFormat:@"cutDice_%@%@.m4a", MALE, [LocaleUtils isChinese]?LANGUAGE_CHINESE:LANGUAGE_ENGLISH]];
-    [soundNames addObject:[NSString stringWithFormat:@"cutDice_%@%@.m4a", FEMALE, [LocaleUtils isChinese]?LANGUAGE_CHINESE:LANGUAGE_ENGLISH]];
-    
-    [soundNames addObject:[NSString stringWithFormat:@"plusOne_%@%@.m4a", MALE, [LocaleUtils isChinese]?LANGUAGE_CHINESE:LANGUAGE_ENGLISH]];
-    [soundNames addObject:[NSString stringWithFormat:@"plusOne_%@%@.m4a", FEMALE, [LocaleUtils isChinese]?LANGUAGE_CHINESE:LANGUAGE_ENGLISH]];
+
+//    for (int i = 1; i <= 6; i ++) {
+//        for (int j = 1; j <= 30; j ++) {
+//            [soundNames addObject:[self creatCallDiceName:j 
+//                                                     dice:i 
+//                                                   gender:YES]];
+//            [soundNames addObject:[self creatCallDiceName:j 
+//                                                     dice:i 
+//                                                   gender:NO]];
+//        }
+//    }
+//    for (int i = 1; i <= 9; i ++) {
+//        [soundNames addObject:[NSString stringWithFormat:@"%@_%d_%@%@.m4a", MESSAGE_BASE_NAME, i , MALE, [LocaleUtils isChinese]?LANGUAGE_CHINESE:LANGUAGE_ENGLISH]];
+//        [soundNames addObject:[NSString stringWithFormat:@"%@_%d_F%@%@.m4a", MESSAGE_BASE_NAME, i ,FEMALE, [LocaleUtils isChinese]?LANGUAGE_CHINESE:LANGUAGE_ENGLISH]];
+//    }
+//    [soundNames addObject:[NSString stringWithFormat:@"openDice_%@%@.m4a", MALE, [LocaleUtils isChinese]?LANGUAGE_CHINESE:LANGUAGE_ENGLISH]];
+//    [soundNames addObject:[NSString stringWithFormat:@"openDice_%@%@.m4a", FEMALE, [LocaleUtils isChinese]?LANGUAGE_CHINESE:LANGUAGE_ENGLISH]];
+//    [soundNames addObject:[NSString stringWithFormat:@"scrambleToOpenDice_%@%@.m4a", MALE, [LocaleUtils isChinese]?LANGUAGE_CHINESE:LANGUAGE_ENGLISH]];
+//    [soundNames addObject:[NSString stringWithFormat:@"scrambleToOpenDice_%@%@.m4a", FEMALE, [LocaleUtils isChinese]?LANGUAGE_CHINESE:LANGUAGE_ENGLISH]];
+//    
+//    [soundNames addObject:[NSString stringWithFormat:@"cutDice_%@%@.m4a", MALE, [LocaleUtils isChinese]?LANGUAGE_CHINESE:LANGUAGE_ENGLISH]];
+//    [soundNames addObject:[NSString stringWithFormat:@"cutDice_%@%@.m4a", FEMALE, [LocaleUtils isChinese]?LANGUAGE_CHINESE:LANGUAGE_ENGLISH]];
+//    
+//    [soundNames addObject:[NSString stringWithFormat:@"plusOne_%@%@.m4a", MALE, [LocaleUtils isChinese]?LANGUAGE_CHINESE:LANGUAGE_ENGLISH]];
+//    [soundNames addObject:[NSString stringWithFormat:@"plusOne_%@%@.m4a", FEMALE, [LocaleUtils isChinese]?LANGUAGE_CHINESE:LANGUAGE_ENGLISH]];
+
 
     return soundNames;
 }
