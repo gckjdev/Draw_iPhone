@@ -18,6 +18,7 @@
 #import "FriendManager.h"
 #import "ChatMessage.h"
 #import "CommonUserInfoView.h"
+#import "DiceUserInfoView.h"
 
 #import "UserManager.h"
 
@@ -321,16 +322,31 @@
 - (void)didClickAvatar:(NSIndexPath *)aIndexPath
 {
     MessageTotal *messageTotal = [dataList objectAtIndex:aIndexPath.row];
-    [CommonUserInfoView showUser:messageTotal.friendUserId 
-                        nickName:messageTotal.friendNickName 
-                          avatar:messageTotal.friendAvatar 
-                          gender:messageTotal.friendGender 
-                        location:nil 
-                           level:1
-                         hasSina:NO 
-                           hasQQ:NO 
-                     hasFacebook:NO 
-                      infoInView:self];
+    
+    if (isDrawApp()) {
+        [CommonUserInfoView showUser:messageTotal.friendUserId 
+                            nickName:messageTotal.friendNickName 
+                              avatar:messageTotal.friendAvatar 
+                              gender:messageTotal.friendGender 
+                            location:nil 
+                               level:1
+                             hasSina:NO 
+                               hasQQ:NO 
+                         hasFacebook:NO 
+                          infoInView:self];
+    }
+    if (isDiceApp()) {
+        [DiceUserInfoView showUser:messageTotal.friendUserId 
+                            nickName:messageTotal.friendNickName 
+                              avatar:messageTotal.friendAvatar 
+                              gender:messageTotal.friendGender 
+                            location:nil 
+                               level:1
+                             hasSina:NO 
+                               hasQQ:NO 
+                         hasFacebook:NO 
+                          infoInView:self];
+    }
 }
 
 
