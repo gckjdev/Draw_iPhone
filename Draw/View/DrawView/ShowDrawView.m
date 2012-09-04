@@ -152,6 +152,7 @@
             _playingActionIndex++;
             _playingPointIndex = 0;
             _drawRectType = DrawRectTypeChangeBack;
+            _changeBackColor = _currentDrawAction.paint.color.CGColor;
             [self setNeedsDisplay];            
         }else if([_currentDrawAction isDrawAction] &&
                  [_currentDrawAction pointCount] > 0){
