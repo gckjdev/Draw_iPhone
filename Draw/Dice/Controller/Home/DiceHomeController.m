@@ -405,6 +405,8 @@
                                 object:nil 
                                  queue:[NSOperationQueue mainQueue] 
                             usingBlock:block];
+    
+
 }
 
 - (void)registerDiceGameNotification
@@ -427,6 +429,16 @@
             _isTryJoinGame = NO; 
         }
     }];
+    
+    [self registerNotificationWithName:@"" // TODO set right name here
+                                object:nil
+                                 queue:[NSOperationQueue mainQueue]
+                            usingBlock:^(NSNotification *note) {
+                                
+                                // TODO reload board here
+                                
+                                
+                            }];    
     
 }
 
