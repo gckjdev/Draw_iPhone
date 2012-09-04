@@ -13,7 +13,6 @@
 
 + (NSString *)fontDir;
 + (NSString *)fontPath;
-+ (BOOL)isExistsFontFile;
 + (void)unZipFiles;
 
 
