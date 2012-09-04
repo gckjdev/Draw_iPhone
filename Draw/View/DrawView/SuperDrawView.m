@@ -54,7 +54,7 @@
     int count = [self.drawActionList count];
     while (count > 0) {
         DrawAction *action = [self.drawActionList objectAtIndex:--count];
-        if (action && action.type == DRAW_ACTION_TYPE_CLEAN) {
+        if ([action isCleanAction]) {
             _startDrawActionIndex = count+1;
             return;
         }else if ([action isChnageBackAction]) {
@@ -137,22 +137,21 @@
 {
     for (int j = _startDrawActionIndex; j < self.drawActionList.count; ++ j) {
         DrawAction *drawAction = [self.drawActionList objectAtIndex:j];
-        if (drawAction.type == DRAW_ACTION_TYPE_DRAW) {        
+        if ([drawAction isDrawAction]) {        
             Paint *paint = drawAction.paint;
             [self drawPaint:paint];
-            
         }
     }
 }
 
 - (void)drawRectLine:(CGRect)rect
 {
-    if (_currentDrawAction && _currentDrawAction.type == DRAW_ACTION_TYPE_DRAW) {
+    if ([_currentDrawAction isDrawAction]) {
         [_curImage drawAtPoint:CGPointMake(0, 0)];
         CGColorRef color = _currentDrawAction.paint.color.CGColor;
         CGFloat width = _currentDrawAction.paint.width;
         [self drawPoint:width color:color];
-        [_curImage release];
+        PPRelease(_curImage);
     }
 }
 

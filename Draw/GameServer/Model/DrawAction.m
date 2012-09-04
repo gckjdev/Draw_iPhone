@@ -73,6 +73,16 @@
     return self.paint.width > BACK_GROUND_WIDTH - 10;
 }
 
+- (BOOL)isCleanAction
+{
+    return self.type == DRAW_ACTION_TYPE_CLEAN;
+}
+
+- (BOOL)isDrawAction
+{
+    return self.type == DRAW_ACTION_TYPE_DRAW;
+}
+
 - (void)encodeWithCoder:(NSCoder *)aCoder
 {
     [aCoder encodeObject:self.paint forKey:@"paint"];

@@ -31,12 +31,14 @@ typedef enum{
 @interface ShowDrawView : SuperDrawView<UIGestureRecognizerDelegate>
 {
     NSTimer *_playTimer;
+    
     NSInteger _playingActionIndex;
     NSInteger _playingPointIndex;
-    NSInteger _startPlayIndex;
+    
+//    NSInteger _startPlayIndex;
     BOOL _showPenHidden;
     PenView *pen;
-    BOOL _showDraw;
+//    BOOL _showDraw;
 }
 
 @property(nonatomic, assign) double playSpeed; //default is 1/30.0;

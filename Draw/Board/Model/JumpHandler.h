@@ -24,6 +24,7 @@ typedef enum{
 
 #define BOARD_SCHEME_BOARD @"tgb"
 #define BOARD_SCHEME_HTTP @"http"
+#define BOARD_SCHEME_HTTPS @"https"
 #define BOARD_SCHEME_FILE @"file"
 #define BOARD_SCHEME_TEL @"tel"
 #define BOARD_SCHEME_SMS @"sms"

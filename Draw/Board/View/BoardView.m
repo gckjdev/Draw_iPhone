@@ -83,7 +83,7 @@
 - (void)innerJump:(NSURL *)URL
 {
     //should be override by the sub classes.   
-    if ([URL.scheme isEqualToString:BOARD_SCHEME_TEL] || [URL.scheme isEqualToString:BOARD_SCHEME_SMS]) {
+    if ([URL.scheme isEqualToString:BOARD_SCHEME_TEL] || [URL.scheme isEqualToString:BOARD_SCHEME_SMS] || [URL.scheme isEqualToString:BOARD_SCHEME_HTTP] || [URL.scheme isEqualToString:BOARD_SCHEME_HTTPS]) {
         PPDebug(@"share application open URL = %@", URL);
         [[UIApplication sharedApplication] openURL:URL];
     }

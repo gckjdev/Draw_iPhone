@@ -50,4 +50,5 @@ typedef enum{
 
 //use for sub classes
 - (void)resetStartIndex;
+- (void)drawPoint:(CGFloat)width color:(CGColorRef)cgColor;
 @end
