@@ -751,7 +751,7 @@
 "kCommitOpusMessage" = "你確定要提交作品嗎？";
 "kGuessDetailStat" = "猜過:%d | 猜對:%d | 鮮花:%d | 番茄:%d";
 "kLatestFeed" = "最新";
-
+"kCustomMusic" = "自定義音樂";
 
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
@@ -783,6 +783,7 @@
 "kCut" = "劈";
 "kRollAgainDescription" = "使用【重搖】道具可以重搖一次骰子。";
 "kCutDescription" = "使用【劈】道具則立刻開骰，並且賭註翻倍。";
+"kCutMessage" = "劈";
 
 "kMoreRoom" = "更多...";
 "kMoreRoomLoading" = "加載中...";

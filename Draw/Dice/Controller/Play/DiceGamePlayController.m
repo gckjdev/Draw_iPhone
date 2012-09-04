@@ -371,6 +371,9 @@
     NSString *userId = [_enumerator nextObject];
     
     if (userId == nil) {
+        if (!_diceService.diceSession.isMeAByStander) {
+            [_levelService addExp:LIAR_DICE_EXP delegate:self];
+        }
         [self showUserGainCoins];
     }else {
         [self showUserDice:userId];
@@ -428,7 +431,6 @@
         PBUserResult *result = [[_diceService gameResult] objectForKey:userId];
         DiceAvatarView *avatar = [self avatarViewOfUser:userId];
         [avatar rewardCoins:result.gainCoins duration:DURATION_SHOW_GAIN_COINS];
-        [_levelService addExp:LIAR_DICE_EXP delegate:self];
         self.myLevelLabel.text = [NSString stringWithFormat:@"LV:%d",_levelService.level];
         if ([_userManager isMe:userId]) { 
             [_accountService syncAccount:self forceServer:YES];
@@ -952,6 +954,7 @@
         [_soundManager scrambleOpen:gender];
     }else if (_diceService.openType == OpenTypeCut) {
         // TODO: play cut voice.
+        [_soundManager cutDice:gender];
     }
 }
 
@@ -1018,6 +1021,12 @@
     }else {
         [self callDice:_diceService.diceSession.lastCallDice count:(_diceService.diceSession.lastCallDiceCount + 1)];
     }
+}
+
+- (void)playPlusOneVoice
+{
+    BOOL gender = [[_diceService.diceSession getUserByUserId:_diceService.lastCallUserId] gender]; 
+    [_soundManager plusOne:gender];
 }
 
 - (void)someoneCallDice
@@ -1159,6 +1168,7 @@
 {
     HKGirlFontLabel *label = [[[HKGirlFontLabel alloc] initWithFrame:CGRectMake(0, 0, 70, 70) pointSize:50] autorelease];
     label.text = itemName;
+    label.textAlignment = UITextAlignmentCenter;
     label.center = self.view.center;
     
     [self.view addSubview:label];
@@ -1195,6 +1205,8 @@
                     userId:(NSString *)userId
 {
     [self popupMessageView:content onUser:userId];
+    
+    
     [self playMessageVoice:userId contentVoiceId:contentVoiceId.intValue];
 }
 
@@ -1239,11 +1251,13 @@
     if (filePath == nil) {
         return;
     }
-    GifView* view = [[[GifView alloc] initWithFrame:avatar.frame
+    CGRect frame = CGRectMake(0, 0, avatar.frame.size.width, avatar.frame.size.height);
+    GifView* view = [[[GifView alloc] initWithFrame:frame
                                            filePath:filePath
                                    playTimeInterval:0.2] autorelease];
     
-    [self.view insertSubview:view aboveSubview:avatar];
+    view.userInteractionEnabled = NO;
+    [avatar addSubview:view];
     
     [UIView animateWithDuration:1 delay:6.0 options:UIViewAnimationCurveLinear animations:^{
         view.alpha = 0;

@@ -7,6 +7,7 @@
 //
 
 #import "MessageView.h"
+#import "StringUtil.h"
 
 #define DEFAULT_BG_COLOR [UIColor colorWithRed:255./255. green:234./255. blue:80./255. alpha:0.4]
 
@@ -48,13 +49,15 @@
       textAlignment:(UITextAlignment)textAlignment
 {
     CGSize withSize = CGSizeMake(MESSAGE_MAX_WIDTH, MAXFLOAT);
-    CGSize size = [message sizeWithFont:[UIFont systemFontOfSize:pointSize] constrainedToSize:withSize lineBreakMode:UILineBreakModeWordWrap];
+    UILineBreakMode mode = [LocaleUtils isChinese] ? UILineBreakModeCharacterWrap : UILineBreakModeWordWrap;
+    
+    CGSize size = [message sizeWithFont:[UIFont systemFontOfSize:pointSize] constrainedToSize:withSize lineBreakMode:mode];
     size.width = (size.width < MESSAGE_MIN_WIDTH) ? MESSAGE_MIN_WIDTH : size.width;
-    size.width += 6;
+    size.width = size.width * 1.1;
     CGRect rect = CGRectMake(frame.origin.x, frame.origin.y, size.width, size.height);
     if (self = [self initWithFrame:rect fontName:fontName pointSize:pointSize]) {
         self.text = message;
-        self.lineBreakMode = UILineBreakModeWordWrap;
+        self.lineBreakMode = mode;
         self.textAlignment = textAlignment;
         self.numberOfLines = 0;
         self.backgroundColor = [UIColor clearColor];

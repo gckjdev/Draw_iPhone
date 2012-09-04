@@ -19,14 +19,14 @@
 @synthesize serverPort = _serverPort;
 @synthesize roomList = _roomList;
 @synthesize session = _session;
-@synthesize user = _user;
+//@synthesize user = _user;
 
 - (void)dealloc
 {    
     [self clearDisconnectTimer];
     [_serverAddress release];
     
-    PPRelease(_user);
+//    PPRelease(_user);
     PPRelease(_session);
     PPRelease(_serverAddress);   
     PPRelease(_roomList);
@@ -45,6 +45,11 @@
 //    _networkClient = [[CommonGameNetworkClient alloc] init];
 //    [_networkClient setDelegate:self]; 
     return self;
+}
+
+- (NSString*)userId
+{
+    return [[UserManager defaultManager] userId];
 }
 
 #pragma mark - Connect & Disconnect Handling
@@ -162,7 +167,7 @@
         if ([message resultCode] == 0){
             PBGameSession* pbSession = [[message joinGameResponse] gameSession];
             self.session = [self createSession];
-            [_session fromPBGameSession:pbSession userId:[self.user userId]];
+            [_session fromPBGameSession:pbSession userId:[self userId]];
             PPDebug(@"<handleJoinGameResponse> Create Session = %@", [self.session description]);
 
             // TODO update online user
@@ -203,7 +208,7 @@
         if ([message resultCode] == 0){
             PBGameSession* pbSession = [[message createRoomResponse] gameSession];
             self.session = [self createSession];
-            [_session fromPBGameSession:pbSession userId:[self.user userId]];
+            [_session fromPBGameSession:pbSession userId:[self userId]];
             PPDebug(@"<handleCreateRoomResponse> Create Session = %@", [self.session description]);
             
             // TODO update online user
@@ -283,15 +288,15 @@
 - (void)joinGameRequest
 {
     PPDebug(@"[SEND] JoinGameRequest");
-    self.user = [[UserManager defaultManager] toPBGameUser];
-    [_networkClient sendJoinGameRequest:_user gameId:_gameId];
+    PBGameUser* user = [[UserManager defaultManager] toPBGameUser];
+    [_networkClient sendJoinGameRequest:user gameId:_gameId];
 }
 
 - (void)joinGameRequest:(long)sessionId 
 {
     PPDebug(@"[SEND] JoinGameRequest");
-    self.user = [[UserManager defaultManager] toPBGameUser];
-    [_networkClient sendJoinGameRequest:[[UserManager defaultManager] toPBGameUser] 
+    PBGameUser* user = [[UserManager defaultManager] toPBGameUser];
+    [_networkClient sendJoinGameRequest:user
                                  gameId:_gameId 
                               sessionId:sessionId];
 }
@@ -398,7 +403,7 @@
                             contentVoiceId:contentVoiceId 
                               expressionId:nil 
                                  sessionId:self.session.sessionId 
-                                    userId:self.user.userId];
+                                    userId:[self userId]];
 }
 
 - (void)chatWithExpression:(NSString *)expression
@@ -407,7 +412,7 @@
                             contentVoiceId:nil 
                               expressionId:expression 
                                  sessionId:self.session.sessionId 
-                                    userId:self.user.userId];
+                                    userId:[self userId]];
 }
 
 

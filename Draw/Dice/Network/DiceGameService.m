@@ -235,7 +235,7 @@ static DiceGameService* _defaultService;
 
 - (NSArray *)myDiceList
 {
-    return [self.diceSession.userDiceList objectForKey:self.user.userId];
+    return [self.diceSession.userDiceList objectForKey:[self userId]];
 }
 
 - (void)callDice:(int)dice count:(int)count wilds:(BOOL)wilds
@@ -243,7 +243,7 @@ static DiceGameService* _defaultService;
     PPDebug(@"****************** ME CALL DICE: %d * %d %@ **********************", count, dice, wilds?@"斋":@"");
     
     // Update Model.
-    self.diceSession.lastCallDiceUserId = self.user.userId;
+    self.diceSession.lastCallDiceUserId = [self userId];
     self.diceSession.lastCallDice = dice;
     self.diceSession.lastCallDiceCount = count;
     self.diceSession.wilds = wilds;
@@ -259,7 +259,7 @@ static DiceGameService* _defaultService;
 - (void)userItem:(int)itemId
 {
     // Send command.
-    [(DiceNetworkClient *)_networkClient sendUserItemRequest:self.user.userId 
+    [(DiceNetworkClient *)_networkClient sendUserItemRequest:[self userId] 
                                                    sessionId:self.session.sessionId
                                                       itemId:itemId]; 
 }
@@ -313,16 +313,16 @@ static DiceGameService* _defaultService;
 {
     PPDebug(@"****************** ME OPEN DICE **********************");
     
-    OpenType openType = [self.user.userId isEqualToString:self.diceSession.currentPlayUserId] ? OpenTypeNormal : OpenTypeScramble;
+    OpenType openType = [[self userId] isEqualToString:self.diceSession.currentPlayUserId] ? OpenTypeNormal : OpenTypeScramble;
     
 //    if (multiple >= 2) {
 //        openType = 2;
 //    }
     
-    self.diceSession.openDiceUserId = self.user.userId;
+    self.diceSession.openDiceUserId = [self userId];
     self.diceSession.openType = openType;
     
-    [(DiceNetworkClient *)_networkClient sendOpenDiceRequest:self.user.userId
+    [(DiceNetworkClient *)_networkClient sendOpenDiceRequest:[self userId]
                                                    sessionId:self.session.sessionId
                                                     openType:openType
                                                     multiple:1]; 

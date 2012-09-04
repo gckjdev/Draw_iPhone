@@ -85,6 +85,7 @@
         
         if ([[AdService defaultService] isShowAd]) {
             imageUrl = board.adImageUrl;
+
         }else{
             imageUrl = board.imageUrl;
         }
@@ -103,12 +104,24 @@
     if ([[AdService defaultService] isShowAd]){
 //        UIView *superView = [_adView superview];
 //        if (superView!= self) {
-            PPDebug(@"image board refresh adview");
-            [self clearAllAdView];
-            self.adView = [[AdService defaultService] createAdInView:self                                                          
-                                                           frame:CGRectMake(0, 0, 320, 50) 
-                                                       iPadFrame:CGRectMake(30, 40, 320, 50)];            
-//        }
+        PPDebug(@"image board refresh adview");
+        [self clearAllAdView];
+        ImageBoard *board = (ImageBoard *)self.board;
+        
+        if (board.platform == AdPlatformAuto){
+            self.adView = [[AdService defaultService]
+                       createAdInView:self 
+                       frame:CGRectMake(0, 0, 320, 50) 
+                       iPadFrame:CGRectMake(30, 40, 320, 50)];                
+        }
+        else{
+            self.adView  = [[AdService defaultService]
+                       createAdInView:self 
+                       adPlatformType:board.platform 
+                       adPublisherId:board.publishId
+                       frame:CGRectMake(0, 0, 320, 50) 
+                       iPadFrame:CGRectMake(30, 40, 320, 50)];
+        }
     }
 }
 @end

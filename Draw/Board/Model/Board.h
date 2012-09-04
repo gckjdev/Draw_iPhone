@@ -29,7 +29,6 @@ typedef enum{
     
 }WebType;
 
-
 @interface Board : NSObject<NSCoding>
 {
     NSInteger _index;//the index on the board.

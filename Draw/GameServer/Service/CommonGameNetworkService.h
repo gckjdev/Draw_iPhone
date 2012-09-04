@@ -44,7 +44,7 @@
 @property (nonatomic, assign) int            serverPort;
 @property (nonatomic, retain) NSMutableArray *roomList;
 @property (nonatomic, retain) CommonGameSession *session;
-@property (nonatomic, retain) PBGameUser        *user;
+//@property (nonatomic, retain) PBGameUser        *user;
 
 - (BOOL)isConnected;
 - (void)connectServer:(id<CommonGameServiceDelegate>)delegate;
@@ -79,5 +79,7 @@
 
 - (void)chatWithContent:(NSString *)chatMsg contentVoiceId:(NSString *)contentVoiceId;
 - (void)chatWithExpression:(NSString *)expression;
+
+- (NSString*)userId;
 
 @end

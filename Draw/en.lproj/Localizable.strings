@@ -756,7 +756,7 @@
 
 "kCommitOpusTitle"  = "Submit drawing";
 "kCommitOpusMessage"  = "Are you sure to submit the drawing?";
-
+"kCustomMusic" = "Custom Music";
 
 
 /*********************** 猜猜画画国际化字符串结束 *************************/
@@ -787,6 +787,7 @@
 "kCut" = "C";
 "kRollAgainDescription" = "Use 【Reroll】 item to roll dice again and change your dices. Good luck!";
 "kCutDescription" = "Use 【Cut】 item for double coins.";
+"kCutMessage" = "Cut";
 
 "kMoreRoom" = "More...";
 "kMoreRoomLoading" = "Loading...";

@@ -127,8 +127,8 @@ enum {
     
     //section sound
     rowOfSoundSwitcher = 0;
-    rowOfMusicSettings = 1;
-    rowOfVolumeSetting = 2;
+    rowOfVolumeSetting = 1;
+    rowOfMusicSettings = 2;
     //rowOfChatVoice = 3;
     rowsInSectionSound = 3;
     
@@ -204,6 +204,7 @@ enum {
     userManager = [UserManager defaultManager];
     self.tempEmail = [userManager email];
     isSoundOn = [AudioManager defaultManager].isSoundOn;
+    isMusicOn = [AudioManager defaultManager].isMusicOn;
 
 
     ShareImageManager *imageManager = [ShareImageManager defaultManager];
@@ -280,13 +281,22 @@ enum {
         return 0;
     }
 }
-#define SWITCHER_TAG 20120505
-#define SLIDER_TAG 20120528
+#define SOUND_SWITCHER_TAG 20120505
+#define MUSIC_SWITCHER_TAG 20120528
 - (void)clickSoundSwitcher:(id)sender
 {
     UIButton* btn = (UIButton*)sender;
     btn.selected = !btn.selected;
     isSoundOn = !btn.selected;
+    [[AudioManager defaultManager] setIsSoundOn:isSoundOn];
+}
+
+- (void)clickMusicSwitcher:(id)sender
+{
+    UIButton* btn = (UIButton*)sender;
+    btn.selected = !btn.selected;
+    isMusicOn = !btn.selected;
+    [[AudioManager defaultManager] setIsMusicOn:isMusicOn];
 }
 
 - (int)guessLevelToButtonIndex:(GuessLevel)level
@@ -319,28 +329,28 @@ enum {
         
         UIButton* btn = [[UIButton alloc] initWithFrame:CGRectMake(220, 3.5, 70, 37)];
         [cell addSubview:btn];
-        [btn setTag:SWITCHER_TAG];
+        [btn setTag:SOUND_SWITCHER_TAG];
         [btn setHidden:YES];
         [btn release];
         
-        UISlider* slider = [[UISlider alloc] initWithFrame:CGRectMake(100, 5, 184, 37)];
-        [slider setValue:[[AudioManager defaultManager] volume]];
-        [cell addSubview:slider];
-        [slider setTag:SLIDER_TAG];
-        [slider setHidden:YES];
-        [slider release];
+//        UIButton* bgmButton = [[UIButton alloc] initWithFrame:CGRectMake(220, 3.5, 70, 37)];
+//        [slider setValue:[[AudioManager defaultManager] volume]];
+//        [cell addSubview:slider];
+//        [slider setTag:SLIDER_TAG];
+//        [slider setHidden:YES];
+//        [slider release];
         
     }
     
     NSInteger section = indexPath.section;
     NSInteger row = indexPath.row;
-    UIView* btn = [cell viewWithTag:SWITCHER_TAG];
+    UIView* btn = [cell viewWithTag:SOUND_SWITCHER_TAG];
     if (btn) {
         [btn setHidden:YES];   
     }        
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    UISlider* slider = (UISlider*)[cell viewWithTag:SLIDER_TAG];
-    [slider setHidden:YES];
+//    UISlider* slider = (UISlider*)[cell viewWithTag:SLIDER_TAG];
+//    [slider setHidden:YES];
     
     cell.textLabel.text = @"";
     cell.detailTextLabel.text = @"";
@@ -392,7 +402,7 @@ enum {
         if(row == rowOfSoundSwitcher) 
         {
             [cell.textLabel setText:NSLS(@"kSound")];
-            UIButton* btn = (UIButton*)[cell viewWithTag:SWITCHER_TAG];
+            UIButton* btn = (UIButton*)[cell viewWithTag:SOUND_SWITCHER_TAG];
             if (btn) {
                 [btn setHidden:NO];   
             }
@@ -414,18 +424,31 @@ enum {
             cell.accessoryType = UITableViewCellAccessoryNone;
             [cell.detailTextLabel setText:nil];
         }else if (row == rowOfMusicSettings) {
-            [cell.textLabel setText:NSLS(@"kBackgroundMusic")];
+            [cell.textLabel setText:NSLS(@"kCustomMusic")];
             [cell.detailTextLabel setHidden:YES];
         } else if (row == rowOfVolumeSetting) {
-            [cell.textLabel setText:NSLS(@"kVolume")];
-            [cell.detailTextLabel setHidden:YES];
-            UISlider* slider = (UISlider*)[cell viewWithTag:SLIDER_TAG];
-            [slider addTarget:self action:@selector(changeVolume:) forControlEvents:UIControlEventValueChanged];
-            cell.accessoryType = UITableViewCellAccessoryNone;
-            [slider setHidden:NO];
-            if ([DeviceDetection isIPAD]) {
-                [slider setFrame:CGRectMake(148*2, 5*2, 184*2, 37*2)];
+            [cell.textLabel setText:NSLS(@"kBackgroundMusic")];
+            UIButton* btn = (UIButton*)[cell viewWithTag:SOUND_SWITCHER_TAG];
+            if (btn) {
+                [btn setHidden:NO];   
             }
+            [btn.titleLabel setFont:[UIFont systemFontOfSize:12]];
+            if ([DeviceDetection isIPAD]) {
+                btn.frame = CGRectMake(266*2, 3.5*2, 70*2, 37*2);
+                [btn.titleLabel setFont:[UIFont systemFontOfSize:24]];
+            }
+            [btn setBackgroundImage:[UIImage imageNamed:@"volume_on.png"] forState:UIControlStateNormal];
+            [btn setTitle:NSLS(@"kON") forState:UIControlStateNormal];
+            [btn setBackgroundImage:[UIImage imageNamed:@"volume_off.png"] forState:UIControlStateSelected];
+            [btn setTitle:NSLS(@"kOFF") forState:UIControlStateSelected];
+            [btn.titleLabel setTextAlignment:UITextAlignmentCenter];
+            [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+            [btn setTitleColor:[UIColor blackColor] forState:UIControlStateSelected];        
+            [btn addTarget:self action:@selector(clickMusicSwitcher:) forControlEvents:UIControlEventTouchUpInside];
+            
+            [btn setSelected:!isMusicOn];
+            cell.accessoryType = UITableViewCellAccessoryNone;
+            [cell.detailTextLabel setText:nil];
         } 
 //        else if (row == rowOfChatVoice) {
 //            [cell.textLabel setText:NSLS(@"kChatVoice")];
@@ -772,9 +795,9 @@ enum {
 
 - (BOOL)isLocalChanged
 { 
-    UISlider* slider = (UISlider*)[self.view viewWithTag:SLIDER_TAG];
+//    UISlider* slider = (UISlider*)[self.view viewWithTag:SLIDER_TAG];
     BOOL localChanged = (languageType != [userManager getLanguageType]) 
-    || (guessLevel != [ConfigManager guessDifficultLevel] || ([userManager gender] != nil && ![self.gender isEqualToString:[userManager gender]]) || [AudioManager defaultManager].isSoundOn != isSoundOn || [AudioManager defaultManager].volume != slider.value);
+    || (guessLevel != [ConfigManager guessDifficultLevel] || ([userManager gender] != nil && ![self.gender isEqualToString:[userManager gender]]));
     return localChanged;
 }
 
@@ -786,8 +809,6 @@ enum {
         [userManager setLanguageType:languageType];
         [ConfigManager setGuessDifficultLevel:guessLevel];
         [userManager setGender:self.gender];
-        [[AudioManager defaultManager] setIsSoundOn:isSoundOn];
-        [[AudioManager defaultManager] saveSoundSettings];
         //[ConfigManager setChatVoiceEnable:chatVoice];
         if (!hasEdited) {
             [self popupHappyMessage:NSLS(@"kUpdateUserSucc") title:@""];            
@@ -806,6 +827,7 @@ enum {
     }else if(!localChanged){
         [self popupHappyMessage:NSLS(@"kNoUpdate") title:nil];
     }
+    [[AudioManager defaultManager] saveSoundSettings];
 }
 
 - (IBAction)clickAvatar:(id)sender {

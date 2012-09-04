@@ -17,6 +17,9 @@
             gender:(BOOL)gender;
 - (void)openDice:(BOOL)gender;
 - (void)scrambleOpen:(BOOL)gender;
+- (void)cutDice:(BOOL)gender;
+- (void)plusOne:(BOOL)gender;
+
 - (void)playVoiceById:(int)messageId 
                gender:(BOOL)gender;
 

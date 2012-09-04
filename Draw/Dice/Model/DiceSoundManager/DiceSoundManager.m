@@ -8,10 +8,16 @@
 
 #import "DiceSoundManager.h"
 #import "AudioManager.h"
+#import "LocaleUtils.h"
 
 #define CALL_DICE_BASE_NAME     @"callDice"
 #define MESSAGE_BASE_NAME       @"message"
 #define SOUND_SUFFIX            @"m4a"
+#define LANGUAGE_ENGLISH        @"_EN"
+#define LANGUAGE_CHINESE        @""
+
+#define FEMALE                  @"F"
+#define MALE                    @"M"
 
 static DiceSoundManager* shareManager;
 
@@ -30,7 +36,7 @@ static DiceSoundManager* shareManager;
                           dice:(int)dice 
                         gender:(BOOL)gender
 {
-    return [NSString stringWithFormat:@"%@_%d_%d_%@.%@",CALL_DICE_BASE_NAME, number, dice, gender?@"M":@"F", SOUND_SUFFIX];
+    return [NSString stringWithFormat:@"%@_%d_%d_%@%@.%@",CALL_DICE_BASE_NAME, number, dice, gender?MALE:FEMALE, [LocaleUtils isChinese]?LANGUAGE_CHINESE:LANGUAGE_ENGLISH, SOUND_SUFFIX];
 }
 
 - (NSArray*)diceSoundNameArray
@@ -48,13 +54,19 @@ static DiceSoundManager* shareManager;
         }
     }
     for (int i = 1; i <= 9; i ++) {
-        [soundNames addObject:[NSString stringWithFormat:@"%@_%d_M.m4a", MESSAGE_BASE_NAME, i ]];
-        [soundNames addObject:[NSString stringWithFormat:@"%@_%d_F.m4a", MESSAGE_BASE_NAME, i ]];
+        [soundNames addObject:[NSString stringWithFormat:@"%@_%d_%@%@.m4a", MESSAGE_BASE_NAME, i , MALE, [LocaleUtils isChinese]?LANGUAGE_CHINESE:LANGUAGE_ENGLISH]];
+        [soundNames addObject:[NSString stringWithFormat:@"%@_%d_%@%@.m4a", MESSAGE_BASE_NAME, i ,FEMALE, [LocaleUtils isChinese]?LANGUAGE_CHINESE:LANGUAGE_ENGLISH]];
     }
-    [soundNames addObject:@"openDice_M.m4a"];
-    [soundNames addObject:@"openDice_F.m4a"];
-    [soundNames addObject:@"scrambleToOpenDice_M.m4a"];
-    [soundNames addObject:@"scrambleToOpenDice_F.m4a"];
+    [soundNames addObject:[NSString stringWithFormat:@"openDice_%@%@.m4a", MALE, [LocaleUtils isChinese]?LANGUAGE_CHINESE:LANGUAGE_ENGLISH]];
+    [soundNames addObject:[NSString stringWithFormat:@"openDice_%@%@.m4a", FEMALE, [LocaleUtils isChinese]?LANGUAGE_CHINESE:LANGUAGE_ENGLISH]];
+    [soundNames addObject:[NSString stringWithFormat:@"scrambleToOpenDice_%@%@.m4a", MALE, [LocaleUtils isChinese]?LANGUAGE_CHINESE:LANGUAGE_ENGLISH]];
+    [soundNames addObject:[NSString stringWithFormat:@"scrambleToOpenDice_%@%@.m4a", FEMALE, [LocaleUtils isChinese]?LANGUAGE_CHINESE:LANGUAGE_ENGLISH]];
+    
+    [soundNames addObject:[NSString stringWithFormat:@"cutDice_%@%@.m4a", MALE, [LocaleUtils isChinese]?LANGUAGE_CHINESE:LANGUAGE_ENGLISH]];
+    [soundNames addObject:[NSString stringWithFormat:@"cutDice_%@%@.m4a", FEMALE, [LocaleUtils isChinese]?LANGUAGE_CHINESE:LANGUAGE_ENGLISH]];
+    
+    [soundNames addObject:[NSString stringWithFormat:@"plusOne_%@%@.m4a", MALE, [LocaleUtils isChinese]?LANGUAGE_CHINESE:LANGUAGE_ENGLISH]];
+    [soundNames addObject:[NSString stringWithFormat:@"plusOne_%@%@.m4a", FEMALE, [LocaleUtils isChinese]?LANGUAGE_CHINESE:LANGUAGE_ENGLISH]];
 
     return soundNames;
 }
@@ -67,35 +79,36 @@ static DiceSoundManager* shareManager;
 
 - (void)openDice:(BOOL)gender
 {
-    if (gender) {
-        [[AudioManager defaultManager] playSoundByName:@"openDice_M.m4a"];
-    } else {
-        [[AudioManager defaultManager] playSoundByName:@"openDice_F.m4a"];
-    }
+    [[AudioManager defaultManager] playSoundByName:[NSString stringWithFormat:@"openDice_%@%@.m4a", gender?MALE:FEMALE,[LocaleUtils isChinese]?LANGUAGE_CHINESE:LANGUAGE_ENGLISH]];
+
 }
 - (void)scrambleOpen:(BOOL)gender
 {
-    if (gender) {
-        [[AudioManager defaultManager] playSoundByName:@"scrambleToOpenDice_M.m4a"];
-    } else {
-        [[AudioManager defaultManager] playSoundByName:@"scrambleToOpenDice_F.m4a"];
-    }
+    [[AudioManager defaultManager] playSoundByName:[NSString stringWithFormat:@"scrambleToOpenDice_%@%@.m4a", gender?MALE:FEMALE, [LocaleUtils isChinese]?LANGUAGE_CHINESE:LANGUAGE_ENGLISH]];
+}
+
+- (void)cutDice:(BOOL)gender
+{
+    [[AudioManager defaultManager] playSoundByName:[NSString stringWithFormat:@"cutDice_%@%@.m4a", gender?MALE:FEMALE, [LocaleUtils isChinese]?LANGUAGE_CHINESE:LANGUAGE_ENGLISH]];
+  
+}
+
+- (void)plusOne:(BOOL)gender
+{
+    [[AudioManager defaultManager] playSoundByName:[NSString stringWithFormat:@"pluseOne_%@%@.m4a", gender?MALE:FEMALE, [LocaleUtils isChinese]?LANGUAGE_CHINESE:LANGUAGE_ENGLISH]];
+
 }
 
 - (NSString*)getMessageSoundNameById:(int)messageId
 {
-    return [NSString stringWithFormat:@"%@_%d",MESSAGE_BASE_NAME, messageId];
+    return [NSString stringWithFormat:[NSString stringWithFormat:@"%@_%d%@",MESSAGE_BASE_NAME, messageId, [LocaleUtils isChinese]?LANGUAGE_CHINESE:LANGUAGE_ENGLISH]];
 }
 
 - (void)playVoiceById:(int)messageId 
                gender:(BOOL)gender
 {
     NSString* name = [self getMessageSoundNameById:messageId];
-    if (gender) {
-        [[AudioManager defaultManager] playSoundByName:[NSString stringWithFormat:@"%@_M.m4a", name]];
-    } else {
-        [[AudioManager defaultManager] playSoundByName:[NSString stringWithFormat:@"%@_F.m4a", name]];
-    }
+    [[AudioManager defaultManager] playSoundByName:[NSString stringWithFormat:@"%@_%@%@.m4a", name, gender?MALE:FEMALE,[LocaleUtils isChinese]?LANGUAGE_CHINESE:LANGUAGE_ENGLISH]];
 }
 
 @end
