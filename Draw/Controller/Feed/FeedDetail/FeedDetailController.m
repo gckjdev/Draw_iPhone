@@ -211,6 +211,9 @@
 
 - (void)updateDrawView:(DrawFeed *)feed
 {
+    [self.drawView stop];
+    PPRelease(_drawView);
+    
     self.drawView = [[[ShowDrawView alloc] initWithFrame:SHOW_DRAW_VIEW_FRAME] autorelease];
     self.drawView.playSpeed = 1.0/36.0;
     [self.drawView setShowPenHidden:YES];
@@ -368,6 +371,7 @@
 - (void)dealloc {
     
     [_drawView cleanAllActions];
+    [_drawView stop];
     _drawView.delegate = nil;
     self.feed.drawData = nil;
     PPRelease(_feed);

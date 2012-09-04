@@ -46,13 +46,12 @@
     self.playTimer = nil;
     _playingActionIndex = 0;
     _playingPointIndex = 0;
-//    _startPlayIndex = 0;
-//    _showDraw = NO;
     [super cleanAllActions];
 }
 
 - (void)startTimer
 {
+    PPDebug(@"ShowDrawView startTimer");
     self.playTimer = [NSTimer scheduledTimerWithTimeInterval:self.playSpeed target:self selector:@selector(handleTimer:) userInfo:nil repeats:NO];
 }
 
@@ -90,6 +89,7 @@
 
 - (void)drawPoint
 {
+    PPDebug(@"ShowDrawView draw Point");
     // calculate mid point
     
     CGPoint mid1 = [DrawUtils midPoint1:_previousPoint1
@@ -113,19 +113,27 @@
     drawBox.origin.y        -= lineWidth * 2;
     drawBox.size.width      += lineWidth * 4;
     drawBox.size.height     += lineWidth * 4;
-    
+
+//    if (pen.hidden == NO) {
+//        pen.hidden = YES;
+//    }
+
     UIGraphicsBeginImageContext(drawBox.size);
     [self.layer renderInContext:UIGraphicsGetCurrentContext()];
-    _curImage = UIGraphicsGetImageFromCurrentImageContext();
-    [_curImage retain];
+    self.curImage = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     
+//    if (![self isShowPenHidden]) {
+//        pen.hidden = NO;
+//        [self movePen];
+//    }
     _drawRectType = DrawRectTypeLine;
     [self setNeedsDisplayInRect:drawBox];
 }
 
 - (void)handleTimer:(NSTimer *)timer
 {
+    PPDebug(@"showDrawView handleTimer, timer = %@",[timer description]);
     _currentDrawAction = [self playingAction];
     if (_currentDrawAction && self.status == Playing) {
         
@@ -147,7 +155,8 @@
             [self setNeedsDisplay];            
         }else if([_currentDrawAction isDrawAction] &&
                  [_currentDrawAction pointCount] > 0){
-//            [self movePen];
+
+
             //set the points
             if (_playingPointIndex == 0) {
                 _previousPoint1 = _previousPoint2 = _currentPoint = [_currentDrawAction.paint pointAtIndex:_playingPointIndex];
@@ -156,7 +165,6 @@
                 _previousPoint1 = _currentPoint;
                 _currentPoint = [_currentDrawAction.paint pointAtIndex:_playingPointIndex];
             }
-            
             [self drawPoint];
             
             if (++_playingPointIndex >= [_currentDrawAction pointCount]) {
@@ -164,14 +172,18 @@
                 _playingPointIndex = 0;
             }
 
-
+//            [self movePen];
         }else{
             
         }
         [self startTimer];
     }else{
+//        [self stop];
         [self setStatus:Stop];
         self.playTimer = nil;
+        if (self.delegate && [self.delegate respondsToSelector:@selector(didPlayDrawView:)]) {
+            [self.delegate didPlayDrawView:self];
+        }
     }
     
 }
@@ -188,9 +200,14 @@
 {
     [self playFromDrawActionIndex:0];
 }
-
+- (void)stop
+{
+    self.status = Stop;
+    _drawRectType = DrawRectTypeNo; 
+}
 - (void)show
 {
+    PPDebug(@"<ShowDrawView> show");
     self.status = Stop;
     [super show];
 }
@@ -256,7 +273,8 @@
 - (void)dealloc
 {
     PPDebug(@"%@ dealloc", [self description]);
-    
+    _status = Stop;
+    [self stop];
     // Add by Benson
     if ([_playTimer isValid]){
         PPDebug(@"<Debug> ShowDRawView Clear Play Timer");

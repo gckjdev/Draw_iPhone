@@ -27,7 +27,7 @@
 @synthesize timeLabel;
 @synthesize drawImageView;
 @synthesize avatarView = _avatarView;
-
+@synthesize showView = _showView;
 @synthesize feed = _feed;
 
 #define AVATAR_VIEW_FRAME ([DeviceDetection isIPAD] ?  CGRectMake(12, 20, 83, 82) : CGRectMake(5, 9, 35, 36))
@@ -161,7 +161,12 @@
     [mi.loadingWheel stopAnimating];    
 }
 
-
+- (void)cleanShowView
+{
+    [self.showView stop];
+    [self.showView removeFromSuperview];
+    [self setShowView:nil];
+}
 - (void)updateDrawView:(Feed *)feed
 {
     DrawFeed *drawFeed = nil;
@@ -184,21 +189,25 @@
             [self.drawImageView showLoadingWheel];
             [self.drawImageView setImage:image];
         }else if(drawFeed.drawData){
+            [self cleanShowView];
+            
             Draw *draw = drawFeed.drawData;
             CGRect normalFrame = DRAW_VIEW_FRAME;
             CGRect currentFrame = self.drawImageView.frame;
 
             CGFloat xScale = currentFrame.size.width / normalFrame.size.width;
             CGFloat yScale = currentFrame.size.height / normalFrame.size.height;        
-            ShowDrawView *showView = [[ShowDrawView alloc] initWithFrame:self.drawImageView.frame];
-            showView.drawActionList = [DrawAction scaleActionList:draw.drawActionList xScale:xScale yScale:yScale];
-            [self addSubview:showView];
-            [showView release];
-            drawFeed.drawImage = [showView createImage];
+            self.showView = [[ShowDrawView alloc] initWithFrame:self.drawImageView.frame];
+            self.showView.drawActionList = [DrawAction scaleActionList:draw.drawActionList xScale:xScale yScale:yScale];
+            [self addSubview:self.showView];
+            [self.showView show];
+            drawFeed.drawImage = [self.showView createImage];
             //save image.
             [[ShareImageManager defaultManager] saveFeedImage:drawFeed.drawImage withImageName:[self opusIdForFeed:feed] asyn:YES];
             [self.drawImageView setImage:drawFeed.drawImage];
-            [showView removeFromSuperview];
+            
+            [self cleanShowView];
+//            [self.showView removeFromSuperview];
             drawFeed.drawData = nil;
         }
         [GlobalGetImageCache() manage:self.drawImageView];
@@ -238,6 +247,8 @@
     PPRelease(_avatarView);
     PPRelease(_feed);
     PPRelease(drawImageView);
+    [_showView stop];
+    PPRelease(_showView);
     [super dealloc];
 }
 @end

@@ -18,10 +18,13 @@
 
 @implementation SuperDrawView
 @synthesize drawActionList = _drawActionList;
+@synthesize curImage = _curImage;
 
 - (void)dealloc
 {
+    PPDebug(@"%@ dealloc", [self description]);
     PPRelease(_drawActionList);
+    PPRelease(_curImage);
     [super dealloc];
 }
 
@@ -80,7 +83,12 @@
     CGRect rect = self.frame;
     UIGraphicsBeginImageContext(rect.size);
     CGContextRef context = UIGraphicsGetCurrentContext();
-    [self.layer renderInContext:context];
+    if ([self retainCount] > 0) {
+        [self.layer renderInContext:context];        
+    }else{
+        return nil;
+    }
+
     UIImage *img = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     return img;
@@ -109,8 +117,18 @@
 
     CGContextRef context = UIGraphicsGetCurrentContext(); 
     
-    [self.layer renderInContext:context];
+    if (context == NULL) {
+        PPDebug(@"context = NULL");
+    }
     
+    PPDebug(@"super draw view retain count = %d", [self retainCount]);
+    if ([self retainCount] > 4) {
+        PPDebug(@"retain count > 4");
+    }
+
+
+    [self.layer renderInContext:context];
+//    
     CGContextMoveToPoint(context, mid1.x, mid1.y);
     CGContextAddQuadCurveToPoint(context, _previousPoint1.x, _previousPoint1.y, mid2.x, mid2.y); 
     CGContextSetLineCap(context, kCGLineCapRound);
@@ -122,22 +140,45 @@
 
 - (void)drawPaint:(Paint *)paint
 { 
+    PPDebug(@"<SuperDrawView> draw paint");
+    
+    CGContextRef context = UIGraphicsGetCurrentContext(); 
+    CGContextSetStrokeColorWithColor(context, paint.color.CGColor);
+    CGContextSetFillColorWithColor(context, paint.color.CGColor);
+
+    CGContextSetLineWidth(context, paint.width);    
+
     if ([paint pointCount] != 0) {
-        _currentPoint = _previousPoint1 = _previousPoint2 = [paint pointAtIndex:0];
+        
+        _currentPoint = _previousPoint2 = _previousPoint1 = [paint pointAtIndex:0];
+        CGPoint mid1 = [DrawUtils midPoint1:_previousPoint1
+                                     point2:_previousPoint2];
+        CGContextMoveToPoint(context, mid1.x, mid1.y);
+        for (int i = 0; i < [paint pointCount]; ++ i) {
+            _currentPoint = [paint pointAtIndex:i];            
+            
+            CGPoint mid2 = [DrawUtils midPoint1:_currentPoint
+                                         point2:_previousPoint1];
+            CGContextAddQuadCurveToPoint(context, _previousPoint1.x, _previousPoint1.y, mid2.x, mid2.y); 
+            CGContextSetLineCap(context, kCGLineCapRound);
+            
+            _previousPoint2 = _previousPoint1;
+            _previousPoint1 = _currentPoint;
+        }
+        CGContextStrokePath(context);
+    }else{
+        return;
     }
-    for (int i = 0; i < [paint pointCount]; ++ i) {
-        _currentPoint = [paint pointAtIndex:i];
-        [self drawPoint:paint.width color:paint.color.CGColor];
-        _previousPoint2 = _previousPoint1;
-        _previousPoint1 = _currentPoint;
-    }
+
+
 }
 
 - (void)drawRectRedraw:(CGRect)rect
 {
+    PPDebug(@"<SuperDrawView> drawRectRedraw");
     for (int j = _startDrawActionIndex; j < self.drawActionList.count; ++ j) {
         DrawAction *drawAction = [self.drawActionList objectAtIndex:j];
-        if ([drawAction isDrawAction]) {        
+        if ([drawAction isDrawAction]) {      
             Paint *paint = drawAction.paint;
             [self drawPaint:paint];
         }
@@ -146,12 +187,12 @@
 
 - (void)drawRectLine:(CGRect)rect
 {
+    PPDebug(@"<SuperDrawView> draw line");
     if ([_currentDrawAction isDrawAction]) {
-        [_curImage drawAtPoint:CGPointMake(0, 0)];
+        [self.curImage drawAtPoint:CGPointMake(0, 0)];
         CGColorRef color = _currentDrawAction.paint.color.CGColor;
         CGFloat width = _currentDrawAction.paint.width;
         [self drawPoint:width color:color];
-        PPRelease(_curImage);
     }
 }
 
@@ -171,6 +212,7 @@
         }
         case DrawRectTypeChangeBack:
         {
+            PPDebug(@"<SuperDrawView> change back");
             CGContextRef context = UIGraphicsGetCurrentContext(); 
             CGContextSetFillColorWithColor(context, _changeBackColor);
             CGContextFillRect(context, self.bounds);
