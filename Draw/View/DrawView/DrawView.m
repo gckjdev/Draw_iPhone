@@ -47,10 +47,10 @@
 - (DrawAction *)addChangeBackAction:(DrawColor *)color
 {
     DrawAction *action = [DrawAction changeBackgroundActionWithColor:color];
-    _changeBackColor = color.CGColor;
     [self.drawActionList addObject:action];
     _startDrawActionIndex = [self.drawActionList count] - 1;
     _drawRectType = DrawRectTypeChangeBack;
+    _changeBackColor = color.CGColor;
     [self setNeedsDisplay];
     return action;
 }
