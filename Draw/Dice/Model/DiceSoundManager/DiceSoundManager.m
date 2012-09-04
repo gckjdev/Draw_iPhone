@@ -108,7 +108,7 @@ static DiceSoundManager* shareManager;
                gender:(BOOL)gender
 {
     NSString* name = [self getMessageSoundNameById:messageId];
-    [[AudioManager defaultManager] playSoundByName:[NSString stringWithFormat:@"%@_%@%@.m4a", name, gender?MALE:FEMALE,[LocaleUtils isChinese]?LANGUAGE_CHINESE:LANGUAGE_ENGLISH]];
+    [[AudioManager defaultManager] playSoundByName:[NSString stringWithFormat:@"%@_%@%@.m4a", name, gender?MALE:FEMALE, [LocaleUtils isChinese]?LANGUAGE_CHINESE:LANGUAGE_ENGLISH]];
 }
 
 @end

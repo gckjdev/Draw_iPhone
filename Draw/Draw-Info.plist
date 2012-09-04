@@ -75,5 +75,7 @@
 		<string>UIInterfaceOrientationLandscapeRight</string>
 		<string>UIInterfaceOrientationPortraitUpsideDown</string>
 	</array>
+	<key>UILaunchImageFile</key>
+	<string>DiceDefault.jpg</string>
 </dict>
 </plist>

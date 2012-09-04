@@ -230,6 +230,7 @@
 		A4C259F215F50D56002A7C03 /* plusOne_M.m4a in Resources */ = {isa = PBXBuildFile; fileRef = A4C259F015F50D56002A7C03 /* plusOne_M.m4a */; };
 		A4C259F515F50D6A002A7C03 /* cutDice_F.m4a in Resources */ = {isa = PBXBuildFile; fileRef = A4C259F315F50D6A002A7C03 /* cutDice_F.m4a */; };
 		A4C259F615F50D6A002A7C03 /* cutDice_M.m4a in Resources */ = {isa = PBXBuildFile; fileRef = A4C259F415F50D6A002A7C03 /* cutDice_M.m4a */; };
+		A4C25A2215F5D787002A7C03 /* DiceDefault.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A4C25A2115F5D787002A7C03 /* DiceDefault.jpg */; };
 		A4C516A915DE40A800E4F735 /* DiceItemListView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4C516A815DE40A800E4F735 /* DiceItemListView.m */; };
 		A4C516AF15DE40F100E4F735 /* DiceItem.m in Sources */ = {isa = PBXBuildFile; fileRef = A4C516AC15DE40F100E4F735 /* DiceItem.m */; };
 		A4C516B015DE40F100E4F735 /* DiceItemManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A4C516AE15DE40F100E4F735 /* DiceItemManager.m */; };
@@ -1717,6 +1718,7 @@
 		A4C259F015F50D56002A7C03 /* plusOne_M.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = plusOne_M.m4a; sourceTree = "<group>"; };
 		A4C259F315F50D6A002A7C03 /* cutDice_F.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = cutDice_F.m4a; sourceTree = "<group>"; };
 		A4C259F415F50D6A002A7C03 /* cutDice_M.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = cutDice_M.m4a; sourceTree = "<group>"; };
+		A4C25A2115F5D787002A7C03 /* DiceDefault.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = DiceDefault.jpg; sourceTree = "<group>"; };
 		A4C516A715DE40A800E4F735 /* DiceItemListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiceItemListView.h; sourceTree = "<group>"; };
 		A4C516A815DE40A800E4F735 /* DiceItemListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiceItemListView.m; sourceTree = "<group>"; };
 		A4C516AB15DE40F100E4F735 /* DiceItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiceItem.h; sourceTree = "<group>"; };
@@ -3710,6 +3712,7 @@
 		A4A01B6F15D8AF67002FE86D /* image */ = {
 			isa = PBXGroup;
 			children = (
+				A4C25A2115F5D787002A7C03 /* DiceDefault.jpg */,
 				CAC25BE815EDF9FD007456FA /* home */,
 				C213093015E37BA80072A18E /* common */,
 				A4A01B7015D8AF67002FE86D /* game */,
@@ -8504,6 +8507,7 @@
 				A4C259F215F50D56002A7C03 /* plusOne_M.m4a in Resources */,
 				A4C259F515F50D6A002A7C03 /* cutDice_F.m4a in Resources */,
 				A4C259F615F50D6A002A7C03 /* cutDice_M.m4a in Resources */,
+				A4C25A2215F5D787002A7C03 /* DiceDefault.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
