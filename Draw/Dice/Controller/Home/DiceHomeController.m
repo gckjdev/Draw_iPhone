@@ -324,6 +324,10 @@
 
 - (int)checkIn
 {  
+    if ([[UserManager defaultManager] hasUser] == NO){
+        // no user yet, don't show award dice button, add by Benson
+        return;
+    }    
     
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     //TODO:the code below must be recover after test finish
@@ -428,8 +432,8 @@
 {
     _isTryJoinGame = YES;    
     
-    [[DiceGameService defaultService] connectServer:self];
     [self showActivityWithText:NSLS(@"kConnectingServer")];
+    [[DiceGameService defaultService] connectServer:self];
 }
 
 - (void)didConnected

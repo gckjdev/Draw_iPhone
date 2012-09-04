@@ -36,7 +36,7 @@
 			</array>
 		</dict>
 	</array>
-	<key>URL types Draw</key>
+	<key>CFURLDraw</key>
 	<array>
 		<dict>
 			<key>CFBundleURLSchemes</key>
