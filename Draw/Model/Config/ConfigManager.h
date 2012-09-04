@@ -97,4 +97,6 @@ typedef enum{
 
 + (int)getDailyGiftCoin;
 + (int)getDailyGiftCoinIncre;
+
++ (NSString*)getAwardItemImageName:(int)dicePoint;
 @end
