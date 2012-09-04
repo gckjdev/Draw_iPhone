@@ -46,6 +46,8 @@ typedef enum{
 @property(nonatomic, assign) NSInteger status;
 @property(nonatomic, retain) NSTimer *playTimer;    // Add By Benson
 
+- (void)play;
+- (void)stop;
 - (void)playFromDrawActionIndex:(NSInteger)index;
 - (void)addDrawAction:(DrawAction *)action play:(BOOL)play;
 - (void)setShowPenHidden:(BOOL)showPenHidden;

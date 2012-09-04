@@ -55,7 +55,7 @@ static DiceSoundManager* shareManager;
     }
     for (int i = 1; i <= 9; i ++) {
         [soundNames addObject:[NSString stringWithFormat:@"%@_%d_%@%@.m4a", MESSAGE_BASE_NAME, i , MALE, [LocaleUtils isChinese]?LANGUAGE_CHINESE:LANGUAGE_ENGLISH]];
-        [soundNames addObject:[NSString stringWithFormat:@"%@_%d_F%@%@.m4a", MESSAGE_BASE_NAME, i ,FEMALE, [LocaleUtils isChinese]?LANGUAGE_CHINESE:LANGUAGE_ENGLISH]];
+        [soundNames addObject:[NSString stringWithFormat:@"%@_%d_%@%@.m4a", MESSAGE_BASE_NAME, i ,FEMALE, [LocaleUtils isChinese]?LANGUAGE_CHINESE:LANGUAGE_ENGLISH]];
     }
     [soundNames addObject:[NSString stringWithFormat:@"openDice_%@%@.m4a", MALE, [LocaleUtils isChinese]?LANGUAGE_CHINESE:LANGUAGE_ENGLISH]];
     [soundNames addObject:[NSString stringWithFormat:@"openDice_%@%@.m4a", FEMALE, [LocaleUtils isChinese]?LANGUAGE_CHINESE:LANGUAGE_ENGLISH]];

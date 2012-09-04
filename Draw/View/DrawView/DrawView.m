@@ -168,8 +168,7 @@
         
         UIGraphicsBeginImageContext(drawBox.size);
         [self.layer renderInContext:UIGraphicsGetCurrentContext()];
-        _curImage = UIGraphicsGetImageFromCurrentImageContext();
-        [_curImage retain];
+        self.curImage = UIGraphicsGetImageFromCurrentImageContext();
         UIGraphicsEndImageContext();
         
         _drawRectType = DrawRectTypeLine;
@@ -202,6 +201,7 @@
 
 - (void)dealloc
 {
+    PPDebug(@"%@ dealloc", [self description]);
     PPRelease(_drawActionList);
     PPRelease(_lineColor);
     [super dealloc];

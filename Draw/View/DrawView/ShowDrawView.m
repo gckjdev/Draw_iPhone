@@ -53,6 +53,7 @@
 
 - (void)startTimer
 {
+    PPDebug(@"ShowDrawView startTimer");
     self.playTimer = [NSTimer scheduledTimerWithTimeInterval:self.playSpeed target:self selector:@selector(handleTimer:) userInfo:nil repeats:NO];
 }
 
@@ -90,6 +91,7 @@
 
 - (void)drawPoint
 {
+    PPDebug(@"ShowDrawView draw Point");
     // calculate mid point
     
     CGPoint mid1 = [DrawUtils midPoint1:_previousPoint1
@@ -116,8 +118,7 @@
     
     UIGraphicsBeginImageContext(drawBox.size);
     [self.layer renderInContext:UIGraphicsGetCurrentContext()];
-    _curImage = UIGraphicsGetImageFromCurrentImageContext();
-    [_curImage retain];
+    self.curImage = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     
     _drawRectType = DrawRectTypeLine;
@@ -126,6 +127,7 @@
 
 - (void)handleTimer:(NSTimer *)timer
 {
+    PPDebug(@"showDrawView handleTimer, timer = %@",[timer description]);
     _currentDrawAction = [self playingAction];
     if (_currentDrawAction && self.status == Playing) {
         
@@ -170,6 +172,7 @@
         }
         [self startTimer];
     }else{
+//        [self stop];
         [self setStatus:Stop];
         self.playTimer = nil;
     }
@@ -188,9 +191,14 @@
 {
     [self playFromDrawActionIndex:0];
 }
-
+- (void)stop
+{
+    self.status = Stop;
+    _drawRectType = DrawRectTypeNo; 
+}
 - (void)show
 {
+    PPDebug(@"<ShowDrawView> show");
     self.status = Stop;
     [super show];
 }
@@ -256,7 +264,8 @@
 - (void)dealloc
 {
     PPDebug(@"%@ dealloc", [self description]);
-    
+    _status = Stop;
+    [self stop];
     // Add by Benson
     if ([_playTimer isValid]){
         PPDebug(@"<Debug> ShowDRawView Clear Play Timer");

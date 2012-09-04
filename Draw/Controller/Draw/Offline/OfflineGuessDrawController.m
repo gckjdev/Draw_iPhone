@@ -85,7 +85,7 @@
     moveButton = nil;
     _shopController = nil;
     lastScaleTarget = nil;
-    
+    [showView stop];
     PPRelease(_candidateString);
 //    PPRelease(toolView);
     PPRelease(showView);
@@ -682,7 +682,7 @@
         [[UserManager defaultManager] guessCorrectOpus:_opusId];
         [self.navigationController pushViewController:result animated:YES];
         [result release];
-        
+//        [showView stop];
     }else{
         [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kGuessWrong") delayTime:1 isHappy:NO];
         [[AudioManager defaultManager] playSoundById:WRONG];

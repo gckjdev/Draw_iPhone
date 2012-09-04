@@ -22,7 +22,7 @@
 #define CALL_DICE_VIEW_HEIGHT DICE_VIEW_HEIGHT
 
 #define COUNT_LABEL_WIDTH_1     ([DeviceDetection isIPAD] ? 30 : 15 )
-#define COUNT_LABEL_WIDTH_2     ([DeviceDetection isIPAD] ? 48 : 24 )
+#define COUNT_LABEL_WIDTH_2     ([DeviceDetection isIPAD] ? 60 : 30 )
 #define SYMBOL_LABEL_WIDTH      ([DeviceDetection isIPAD] ? 24 : 12 )
 
 #define CALL_DICE_POPUP_VIEW_BG_COLOR [UIColor colorWithRed:255./255. green:234./255. blue:80./255. alpha:0.4]

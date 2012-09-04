@@ -18,6 +18,7 @@
 @synthesize board = _board;
 @synthesize delegate = _delegate;
 @synthesize viewController = _viewController;
+@synthesize adView = _adView;
 
 #define BOARD_WIDTH ([DeviceDetection isIPAD]? 768.0 : 320.0)
 #define SCREEN_WIDTH ([DeviceDetection isIPAD]? 768.0 : 320.0)
@@ -36,20 +37,16 @@
 
 - (void)clearAllAdView
 {
-    for (UIView* view in _adViewList){
-        [[AdService defaultService] clearAdView:view];
-    }
-
-    [_adViewList removeAllObjects];
+    [[AdService defaultService] clearAdView:_adView];
+    self.adView = nil;
 }
 
 - (void)dealloc
 {
     [self clearAllAdView];
-    
+    PPRelease(_adView);
     _delegate = nil;
     PPRelease(_viewController);
-    PPRelease(_adViewList);
     PPRelease(_board);
     [super dealloc];
     
@@ -77,6 +74,7 @@
 - (void)loadView
 {
     //should be override by the sub classes.
+    [self viewWillAppear];
 }
 
 
@@ -106,6 +104,11 @@
     return YES;
 }
 
+- (void)viewWillAppear
+{
+    PPDebug(@"super board view will appear");
+}
+
 @end
 
 
@@ -113,7 +116,6 @@
 
 - (void)loadView
 {
-    [super loadView];
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:self.bounds];
     [self addSubview:imageView];
     [imageView release];
@@ -123,19 +125,28 @@
     
     UIImage *image = nil;
     if ([[AdService defaultService] isShowAd]){
-        UIView* adView1 = [[AdService defaultService] createAdInView:self                                                          
-                                                               frame:CGRectMake(0, 0, 320, 50) 
-                                                           iPadFrame:CGRectMake(30, 40, 320, 50)];
-        
-        if (adView1 != nil){
-            [_adViewList addObject:adView1];
-        }
-        
         image = [[ShareImageManager defaultManager] defaultAdBoardImage];
     }else{
         image = [[ShareImageManager defaultManager] defaultBoardImage];
     }
     [imageView setImage:image];
+    [super loadView];
+}
+
+- (void)viewWillAppear
+{
+    PPDebug(@"default board view will appear");
+    if ([[AdService defaultService] isShowAd]){
+//        UIView *superView = [_adView superview];
+//        if (superView!= self) {
+            PPDebug(@"default board refresh adview");
+            
+            [self clearAllAdView];
+            self.adView = [[AdService defaultService] createAdInView:self                                                          
+                                                           frame:CGRectMake(0, 0, 320, 50) 
+                                                       iPadFrame:CGRectMake(30, 40, 320, 50)];            
+//        }
+    }
 }
 
 - (void)dealloc

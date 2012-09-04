@@ -20,7 +20,8 @@
 
 @interface ChatCell()
 
-- (ShowDrawView *)createShowDrawView:(NSArray *)drawActionList scale:(CGFloat)scale;
+- (ShowDrawView *)createShowDrawView:(NSArray *)drawActionList 
+                               scale:(CGFloat)scale;
 - (IBAction)clickAvatar:(id)sender;
 
 @end
