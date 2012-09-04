@@ -166,6 +166,7 @@
         drawBox.size.width      += self.lineWidth * 4;
         drawBox.size.height     += self.lineWidth * 4;
         
+        
         UIGraphicsBeginImageContext(drawBox.size);
         [self.layer renderInContext:UIGraphicsGetCurrentContext()];
         self.curImage = UIGraphicsGetImageFromCurrentImageContext();

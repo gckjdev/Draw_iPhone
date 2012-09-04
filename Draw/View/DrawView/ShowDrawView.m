@@ -46,8 +46,6 @@
     self.playTimer = nil;
     _playingActionIndex = 0;
     _playingPointIndex = 0;
-//    _startPlayIndex = 0;
-//    _showDraw = NO;
     [super cleanAllActions];
 }
 
@@ -115,12 +113,20 @@
     drawBox.origin.y        -= lineWidth * 2;
     drawBox.size.width      += lineWidth * 4;
     drawBox.size.height     += lineWidth * 4;
-    
+
+//    if (pen.hidden == NO) {
+//        pen.hidden = YES;
+//    }
+
     UIGraphicsBeginImageContext(drawBox.size);
     [self.layer renderInContext:UIGraphicsGetCurrentContext()];
     self.curImage = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     
+//    if (![self isShowPenHidden]) {
+//        pen.hidden = NO;
+//        [self movePen];
+//    }
     _drawRectType = DrawRectTypeLine;
     [self setNeedsDisplayInRect:drawBox];
 }
@@ -149,7 +155,8 @@
             [self setNeedsDisplay];            
         }else if([_currentDrawAction isDrawAction] &&
                  [_currentDrawAction pointCount] > 0){
-//            [self movePen];
+
+
             //set the points
             if (_playingPointIndex == 0) {
                 _previousPoint1 = _previousPoint2 = _currentPoint = [_currentDrawAction.paint pointAtIndex:_playingPointIndex];
@@ -158,7 +165,6 @@
                 _previousPoint1 = _currentPoint;
                 _currentPoint = [_currentDrawAction.paint pointAtIndex:_playingPointIndex];
             }
-            
             [self drawPoint];
             
             if (++_playingPointIndex >= [_currentDrawAction pointCount]) {
@@ -166,7 +172,7 @@
                 _playingPointIndex = 0;
             }
 
-
+//            [self movePen];
         }else{
             
         }
@@ -175,6 +181,9 @@
 //        [self stop];
         [self setStatus:Stop];
         self.playTimer = nil;
+        if (self.delegate && [self.delegate respondsToSelector:@selector(didPlayDrawView:)]) {
+            [self.delegate didPlayDrawView:self];
+        }
     }
     
 }
