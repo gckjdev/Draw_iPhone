@@ -35,14 +35,14 @@
 @interface FeedCell : PPTableViewCell<AvatarViewDelegate, FeedManagerDelegate, HJManagedImageVDelegate>
 {
     AvatarView *_avatarView;
-//    ShowDrawView *_drawView;
+    ShowDrawView *_showView;
 }
 @property (retain, nonatomic) IBOutlet UILabel *guessStatLabel;
 @property (retain, nonatomic) IBOutlet UILabel *descLabel;
 @property (retain, nonatomic) IBOutlet UILabel *userNameLabel;
 @property (retain, nonatomic) IBOutlet UILabel *timeLabel;
 @property (retain, nonatomic) IBOutlet HJManagedImageV *drawImageView;
-
+@property (retain, nonatomic) ShowDrawView *showView;
 @property (retain, nonatomic) AvatarView *avatarView;
 @property (retain, nonatomic) Feed *feed;
 - (void)setCellInfo:(Feed *)feed;

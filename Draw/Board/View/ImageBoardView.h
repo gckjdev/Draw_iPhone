@@ -10,7 +10,7 @@
 
 @interface ImageBoardView : BoardView<UIGestureRecognizerDelegate>
 {
-    
+
 }
 
 - (id)initWithBoard:(Board *)board;

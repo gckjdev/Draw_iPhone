@@ -34,11 +34,12 @@
 
 
 - (void)dealloc {
-    [avatarImage release];
-    [nickNameLabel release];
-    [showDrawView release];
-    [playbackButton release];
-    [wordLabel release];
+    [showDrawView stop];
+    PPRelease(avatarImage);
+    PPRelease(nickNameLabel);
+    PPRelease(showDrawView);
+    PPRelease(playbackButton);
+    PPRelease(wordLabel);
     [super dealloc];
 }
 

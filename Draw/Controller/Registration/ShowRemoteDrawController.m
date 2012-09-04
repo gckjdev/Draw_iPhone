@@ -99,8 +99,8 @@
     
     
     [self.holderView addSubview:showDrawView];
-    showDrawView.playSpeed = 2/40.0;
-    [showDrawView play];
+//    showDrawView.playSpeed = 2/40.0;
+    [showDrawView show];
     [showDrawView release];
     
     

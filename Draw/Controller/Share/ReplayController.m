@@ -90,6 +90,7 @@
     PPRelease(_showHolderView);
     PPRelease(_wordLabel);
     PPRelease(_playEndButton);
+    [_replayView stop];
     PPRelease(_replayView);
     [super dealloc];
 }

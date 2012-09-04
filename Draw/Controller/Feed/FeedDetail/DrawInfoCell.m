@@ -178,12 +178,14 @@
 }
 
 - (void)dealloc {
-    [drawImage release];
-    [actionButton release];
-    [timeLabel release];
-    [loadingActivity release];
+    [_showView stop];
+    PPRelease(_showView);
+    PPRelease(drawImage);
+    PPRelease(actionButton);
+    PPRelease(timeLabel);
+    PPRelease(loadingActivity);
     PPRelease(_feed);
-    [drawBG release];
+    PPRelease(drawBG);
     [super dealloc];
 }
 @end
