@@ -371,6 +371,9 @@
     NSString *userId = [_enumerator nextObject];
     
     if (userId == nil) {
+        if (!_diceService.diceSession.isMeAByStander) {
+            [_levelService addExp:LIAR_DICE_EXP delegate:self];
+        }
         [self showUserGainCoins];
     }else {
         [self showUserDice:userId];
@@ -428,7 +431,6 @@
         PBUserResult *result = [[_diceService gameResult] objectForKey:userId];
         DiceAvatarView *avatar = [self avatarViewOfUser:userId];
         [avatar rewardCoins:result.gainCoins duration:DURATION_SHOW_GAIN_COINS];
-        [_levelService addExp:LIAR_DICE_EXP delegate:self];
         self.myLevelLabel.text = [NSString stringWithFormat:@"LV:%d",_levelService.level];
         if ([_userManager isMe:userId]) { 
             [_accountService syncAccount:self forceServer:YES];
