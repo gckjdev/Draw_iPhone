@@ -309,52 +309,90 @@ enum {
     return buttonIndex + 2;
 }
 
+- (void)initSwitcher:(UIButton*)btn
+{
+    [btn.titleLabel setFont:[UIFont systemFontOfSize:12]];
+    if ([DeviceDetection isIPAD]) {
+        btn.frame = CGRectMake(266*2, 3.5*2, 70*2, 37*2);
+        [btn.titleLabel setFont:[UIFont systemFontOfSize:24]];
+    }
+    [btn setBackgroundImage:[UIImage imageNamed:@"volume_on.png"] forState:UIControlStateNormal];
+    [btn setTitle:NSLS(@"kON") forState:UIControlStateNormal];
+    [btn setBackgroundImage:[UIImage imageNamed:@"volume_off.png"] forState:UIControlStateSelected];
+    [btn setTitle:NSLS(@"kOFF") forState:UIControlStateSelected];
+    [btn.titleLabel setTextAlignment:UITextAlignmentCenter];
+    [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [btn setTitleColor:[UIColor blackColor] forState:UIControlStateSelected]; 
+}
+
+- (UITableViewCell*)createCellByIdentifier:(NSString*)cellIdentifier
+{
+    UITableViewCell* cell;
+    cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellIdentifier]autorelease];
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    
+    int fontSize = 15;
+    if ([DeviceDetection isIPAD]) {
+        [cell.textLabel setFont:[UIFont systemFontOfSize:fontSize*2]];
+        [cell.detailTextLabel setFont:[UIFont systemFontOfSize:fontSize*2]];
+    }else {
+        [cell.textLabel setFont:[UIFont systemFontOfSize:fontSize]];
+        [cell.detailTextLabel setFont:[UIFont systemFontOfSize:fontSize]];
+    }
+    [cell.textLabel setTextColor:[UIColor brownColor]];
+    
+    UIButton* btn = [[UIButton alloc] initWithFrame:CGRectMake(220, 3.5, 70, 37)];
+    [cell addSubview:btn];
+    [self initSwitcher:btn];
+    [btn setTag:SOUND_SWITCHER_TAG];
+    
+    [btn release];
+    
+    UIButton* mBtn = [[UIButton alloc] initWithFrame:CGRectMake(220, 3.5, 70, 37)];
+    [cell addSubview:mBtn];
+    [self initSwitcher:mBtn];
+    [mBtn setTag:MUSIC_SWITCHER_TAG];
+    
+    [mBtn release];
+    
+    //        UIButton* bgmButton = [[UIButton alloc] initWithFrame:CGRectMake(220, 3.5, 70, 37)];
+    //        [slider setValue:[[AudioManager defaultManager] volume]];
+    //        [cell addSubview:slider];
+    //        [slider setTag:SLIDER_TAG];
+    //        [slider setHidden:YES];
+    //        [slider release];
+    return cell;
+}
+
+- (void)resetCell:(UITableViewCell*)cell
+{
+    UIView* btn = [cell viewWithTag:SOUND_SWITCHER_TAG];
+    if (btn) {
+        [btn setHidden:YES];  
+    } 
+    UIView* mBtn = [cell viewWithTag:MUSIC_SWITCHER_TAG];
+    if (mBtn) {
+        [mBtn setHidden:YES];   
+    }
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    //    UISlider* slider = (UISlider*)[cell viewWithTag:SLIDER_TAG];
+    //    [slider setHidden:YES];
+    
+    cell.textLabel.text = @"";
+    cell.detailTextLabel.text = @"";
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *cellIdentifier = @"SettingCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellIdentifier]autorelease];
-        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-        
-        int fontSize = 15;
-        if ([DeviceDetection isIPAD]) {
-            [cell.textLabel setFont:[UIFont systemFontOfSize:fontSize*2]];
-            [cell.detailTextLabel setFont:[UIFont systemFontOfSize:fontSize*2]];
-        }else {
-            [cell.textLabel setFont:[UIFont systemFontOfSize:fontSize]];
-            [cell.detailTextLabel setFont:[UIFont systemFontOfSize:fontSize]];
-        }
-        [cell.textLabel setTextColor:[UIColor brownColor]];
-        
-        UIButton* btn = [[UIButton alloc] initWithFrame:CGRectMake(220, 3.5, 70, 37)];
-        [cell addSubview:btn];
-        [btn setTag:SOUND_SWITCHER_TAG];
-        [btn setHidden:YES];
-        [btn release];
-        
-//        UIButton* bgmButton = [[UIButton alloc] initWithFrame:CGRectMake(220, 3.5, 70, 37)];
-//        [slider setValue:[[AudioManager defaultManager] volume]];
-//        [cell addSubview:slider];
-//        [slider setTag:SLIDER_TAG];
-//        [slider setHidden:YES];
-//        [slider release];
-        
+        cell = [self createCellByIdentifier:cellIdentifier];        
     }
-    
+    [self resetCell:cell];
     NSInteger section = indexPath.section;
     NSInteger row = indexPath.row;
-    UIView* btn = [cell viewWithTag:SOUND_SWITCHER_TAG];
-    if (btn) {
-        [btn setHidden:YES];   
-    }        
-    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-//    UISlider* slider = (UISlider*)[cell viewWithTag:SLIDER_TAG];
-//    [slider setHidden:YES];
-    
-    cell.textLabel.text = @"";
-    cell.detailTextLabel.text = @"";
-    
+
     if (section == SECTION_USER) {
         if (row == rowOfPassword) {
             [cell.textLabel setText:NSLS(@"kPassword")];      
@@ -402,24 +440,9 @@ enum {
         if(row == rowOfSoundSwitcher) 
         {
             [cell.textLabel setText:NSLS(@"kSound")];
-            UIButton* btn = (UIButton*)[cell viewWithTag:SOUND_SWITCHER_TAG];
-            if (btn) {
-                [btn setHidden:NO];   
-            }
-            [btn.titleLabel setFont:[UIFont systemFontOfSize:12]];
-            if ([DeviceDetection isIPAD]) {
-                btn.frame = CGRectMake(266*2, 3.5*2, 70*2, 37*2);
-                [btn.titleLabel setFont:[UIFont systemFontOfSize:24]];
-            }
-            [btn setBackgroundImage:[UIImage imageNamed:@"volume_on.png"] forState:UIControlStateNormal];
-            [btn setTitle:NSLS(@"kON") forState:UIControlStateNormal];
-            [btn setBackgroundImage:[UIImage imageNamed:@"volume_off.png"] forState:UIControlStateSelected];
-            [btn setTitle:NSLS(@"kOFF") forState:UIControlStateSelected];
-            [btn.titleLabel setTextAlignment:UITextAlignmentCenter];
-            [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-            [btn setTitleColor:[UIColor blackColor] forState:UIControlStateSelected];        
+            UIButton* btn = (UIButton*)[cell viewWithTag:SOUND_SWITCHER_TAG];  
+            btn.hidden = NO;
             [btn addTarget:self action:@selector(clickSoundSwitcher:) forControlEvents:UIControlEventTouchUpInside];
-            
             [btn setSelected:!isSoundOn];
             cell.accessoryType = UITableViewCellAccessoryNone;
             [cell.detailTextLabel setText:nil];
@@ -428,24 +451,9 @@ enum {
             [cell.detailTextLabel setHidden:YES];
         } else if (row == rowOfVolumeSetting) {
             [cell.textLabel setText:NSLS(@"kBackgroundMusic")];
-            UIButton* btn = (UIButton*)[cell viewWithTag:SOUND_SWITCHER_TAG];
-            if (btn) {
-                [btn setHidden:NO];   
-            }
-            [btn.titleLabel setFont:[UIFont systemFontOfSize:12]];
-            if ([DeviceDetection isIPAD]) {
-                btn.frame = CGRectMake(266*2, 3.5*2, 70*2, 37*2);
-                [btn.titleLabel setFont:[UIFont systemFontOfSize:24]];
-            }
-            [btn setBackgroundImage:[UIImage imageNamed:@"volume_on.png"] forState:UIControlStateNormal];
-            [btn setTitle:NSLS(@"kON") forState:UIControlStateNormal];
-            [btn setBackgroundImage:[UIImage imageNamed:@"volume_off.png"] forState:UIControlStateSelected];
-            [btn setTitle:NSLS(@"kOFF") forState:UIControlStateSelected];
-            [btn.titleLabel setTextAlignment:UITextAlignmentCenter];
-            [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-            [btn setTitleColor:[UIColor blackColor] forState:UIControlStateSelected];        
+            UIButton* btn = (UIButton*)[cell viewWithTag:MUSIC_SWITCHER_TAG];
+            btn.hidden = NO;
             [btn addTarget:self action:@selector(clickMusicSwitcher:) forControlEvents:UIControlEventTouchUpInside];
-            
             [btn setSelected:!isMusicOn];
             cell.accessoryType = UITableViewCellAccessoryNone;
             [cell.detailTextLabel setText:nil];

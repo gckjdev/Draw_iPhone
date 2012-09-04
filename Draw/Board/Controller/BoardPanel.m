@@ -15,9 +15,7 @@
     NSTimer *_timer;
 }
 - (void)gotoPage:(NSInteger)page animated:(BOOL)animated;
-- (void)restartTimer;
 - (void)handleTimer:(NSTimer *)theTimer;
-- (void)stopTimer;
 @end
 
 @implementation BoardPanel
@@ -185,16 +183,26 @@
 
 - (void)gotoPage:(NSInteger)page animated:(BOOL)animated
 {
+    if (page == self.pageControl.currentPage){
+        // the same page, don't need to take any action
+        return;
+    }
+    
+    PPDebug(@"<BoardPanel>gotoPage page=%d", page);
     self.pageControl.currentPage = page;
     CGPoint offset = [self offsetForPage];
     [self.scrollView setContentOffset:offset animated:animated];
     [self refreshBoardViewInPage:page];
 }
 - (IBAction)changePage:(id)sender {
+    PPDebug(@"<BoardPanel>changePage to %d", self.pageControl.currentPage);
     [self.scrollView setContentOffset:[self offsetForPage] animated:YES];
     [self refreshBoardViewInPage:self.pageControl.currentPage];
 }
 - (void)dealloc {
+    
+    [self stopTimer];
+    
     PPRelease(scrollView);
     PPRelease(_controller);
     PPRelease(pageControl);

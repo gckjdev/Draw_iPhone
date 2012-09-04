@@ -37,7 +37,10 @@
 
 - (void)clearAllAdView
 {
-    [[AdService defaultService] clearAdView:_adView];
+    if (_adView){
+        [[AdService defaultService] clearAdView:_adView];
+    }
+    
     self.adView = nil;
 }
 

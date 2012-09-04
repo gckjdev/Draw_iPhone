@@ -53,6 +53,7 @@
 
 - (void)updateBoardPanelWithBoards:(NSArray *)boards;
 - (void)registerDiceGameNotification;
+- (void)showWall;
 
 @end
 
@@ -69,8 +70,8 @@
     
 }
 
-- (void)loadBoards
-{
+- (void)loadBoards:(BOOL)localOnly
+{    
     hasGetLocalBoardList = NO;
     interval = 1;
     Board *defaultBoard = [Board defaultBoard];
@@ -78,7 +79,9 @@
     PPDebug(@"<viewDidLoad> update Board Panel With Default Boards ");
     [self updateBoardPanelWithBoards:borads];
     
-    [[BoardService defaultService] getBoardsWithDelegate:self];    
+    if (localOnly == NO){
+        [[BoardService defaultService] getBoardsWithDelegate:self];    
+    }
 }
 - (void)loadMainMenu
 {
@@ -113,7 +116,6 @@
     [[AdService defaultService] setViewController:self];
     
     [super viewDidLoad];
-//    [self loadBoards];
     [self loadMainMenu];
     [self loadBottomMenu];
     [self playBGM];
@@ -124,7 +126,13 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [[AdService defaultService] setViewController:self];    
-    [self loadBoards];
+
+    if (_boardPanel == nil){
+        [self loadBoards:YES];
+    }
+    else{
+        [self loadBoards:NO];
+    }
 
     [self registerDiceGameNotification];    
     [super viewDidAppear:animated];
@@ -132,6 +140,8 @@
 
 - (void)viewDidDisappear:(BOOL)animated
 {
+    [_boardPanel stopTimer];
+    
     [self unregisterAllNotifications];
     [super viewDidDisappear:animated];
 }
@@ -181,10 +191,17 @@
 - (void)updateBoardPanelWithBoards:(NSArray *)boards
 {
     if ([boards count] != 0) {
+        
+        // remove old board
+        [_boardPanel stopTimer];
         [_boardPanel removeFromSuperview];
+        
+        // create new board and show it
         _boardPanel = [BoardPanel boardPanelWithController:self];
         [_boardPanel setBoardList:boards];
         [self.view addSubview:_boardPanel]; 
+        
+        // if there are other views, bring them to front if needed
         UIView* awardButton = [self.view viewWithTag:AWARD_DICE_TAG];
         if (awardButton) {
             [self.view bringSubviewToFront:awardButton];
@@ -324,6 +341,10 @@
 
 - (int)checkIn
 {  
+    if ([[UserManager defaultManager] hasUser] == NO){
+        // no user yet, don't show award dice button, add by Benson
+        return -1;
+    }    
     
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     //TODO:the code below must be recover after test finish
@@ -384,6 +405,8 @@
                                 object:nil 
                                  queue:[NSOperationQueue mainQueue] 
                             usingBlock:block];
+    
+
 }
 
 - (void)registerDiceGameNotification
@@ -407,6 +430,16 @@
         }
     }];
     
+    [self registerNotificationWithName:@"" // TODO set right name here
+                                object:nil
+                                 queue:[NSOperationQueue mainQueue]
+                            usingBlock:^(NSNotification *note) {
+                                
+                                // TODO reload board here
+                                
+                                
+                            }];    
+    
 }
 
 - (void)unregisterDiceGameNotification
@@ -428,8 +461,8 @@
 {
     _isTryJoinGame = YES;    
     
-    [[DiceGameService defaultService] connectServer:self];
     [self showActivityWithText:NSLS(@"kConnectingServer")];
+    [[DiceGameService defaultService] connectServer:self];
 }
 
 - (void)didConnected
