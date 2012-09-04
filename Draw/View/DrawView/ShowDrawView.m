@@ -7,15 +7,11 @@
 //
 
 #import "ShowDrawView.h"
-#import "Paint.h"
-#import "DrawColor.h"
-#import "DrawUtils.h"
-#import "DrawAction.h"
 #import <QuartzCore/QuartzCore.h>
 #import "UIImageExt.h"
 #import "UIImageUtil.h"
 #import "PenView.h"
-#import "PPDebug.h"
+#import "Paint.h"
 
 #define DEFAULT_PLAY_SPEED (1/30.0)
 #define DEFAULT_SIMPLING_DISTANCE (5.0)
@@ -24,7 +20,7 @@
 @implementation ShowDrawView
 @synthesize playSpeed= _playSpeed;
 @synthesize delegate = _delegate;
-@synthesize drawActionList = _drawActionList;
+
 @synthesize status = _status;
 @synthesize playTimer = _playTimer;
 #pragma mark Action Funtion
@@ -32,15 +28,14 @@
 
 - (DrawAction *)playingAction
 {
-    if (playingActionIndex >= 0 && playingActionIndex < [self.drawActionList count]) {
-        return [self.drawActionList objectAtIndex:playingActionIndex];
+    if (_playingActionIndex >= 0 && _playingActionIndex < [self.drawActionList count]) {
+        return [self.drawActionList objectAtIndex:_playingActionIndex];
     }
     return nil;
 }
 
 - (void)cleanAllActions
 {
-    [self.drawActionList removeAllObjects];
     [self setStatus:Stop];
     
     // Add by Benson
@@ -49,20 +44,144 @@
     }
     
     self.playTimer = nil;
-    playingActionIndex = 0;
-    playingPointIndex = 0;
-    startPlayIndex = 0;
-    _showDraw = NO;
-    [self setNeedsDisplay];    
+    _playingActionIndex = 0;
+    _playingPointIndex = 0;
+//    _startPlayIndex = 0;
+//    _showDraw = NO;
+    [super cleanAllActions];
 }
 
+- (void)startTimer
+{
+    self.playTimer = [NSTimer scheduledTimerWithTimeInterval:self.playSpeed target:self selector:@selector(handleTimer:) userInfo:nil repeats:NO];
+}
+
+- (void)movePen
+{
+    if (!_showPenHidden) {
+        if ([_currentDrawAction isCleanAction] || 
+            [_currentDrawAction isChnageBackAction]) {
+            if (pen.hidden == NO) {
+                pen.hidden = YES;                
+            }
+        }else{
+            if (pen.hidden) {
+                pen.hidden = NO;                
+            }
+            if (_playingPointIndex == 0 && pen.penType != _currentDrawAction.paint.penType) {                
+                [pen setPenType:_currentDrawAction.paint.penType];
+                if ([pen isRightDownRotate]) {
+                    [pen.layer setTransform:CATransform3DMakeRotation(-0.8, 0, 0, 1)];        
+                }else{
+                    [pen.layer setTransform:CATransform3DMakeRotation(0.8, 0, 0, 1)];        
+                }
+            }
+            CGPoint point = [_currentDrawAction.paint pointAtIndex:_playingPointIndex];
+            if (![DrawUtils isIllegalPoint:point]) {
+                if ([pen isRightDownRotate]) {
+                    pen.center = CGPointMake(point.x + pen.frame.size.width / 3.1, point.y + pen.frame.size.height / 3.3);                    
+                }else{
+                    pen.center = CGPointMake(point.x + pen.frame.size.width / 2.5, point.y - pen.frame.size.height / 4.3);                                        
+                }
+            }
+        }
+    }
+}
+
+- (void)drawPoint
+{
+    // calculate mid point
+    
+    CGPoint mid1 = [DrawUtils midPoint1:_previousPoint1
+                                 point2:_previousPoint2];
+    
+    CGPoint mid2 = [DrawUtils midPoint1:_currentPoint
+                                 point2:_previousPoint1];
+    
+    CGMutablePathRef path = CGPathCreateMutable();
+    CGPathMoveToPoint(path, NULL, mid1.x, mid1.y);
+    CGPathAddQuadCurveToPoint(path, NULL, _previousPoint1.x, _previousPoint1.y, mid2.x, mid2.y);
+    CGRect bounds = CGPathGetBoundingBox(path);
+    CGPathRelease(path);
+    
+    CGRect drawBox = bounds;
+    
+    CGFloat lineWidth = [_currentDrawAction.paint width];
+    
+    //Pad our values so the bounding box respects our line width
+    drawBox.origin.x        -= lineWidth * 2;
+    drawBox.origin.y        -= lineWidth * 2;
+    drawBox.size.width      += lineWidth * 4;
+    drawBox.size.height     += lineWidth * 4;
+    
+    UIGraphicsBeginImageContext(drawBox.size);
+    [self.layer renderInContext:UIGraphicsGetCurrentContext()];
+    _curImage = UIGraphicsGetImageFromCurrentImageContext();
+    [_curImage retain];
+    UIGraphicsEndImageContext();
+    
+    _drawRectType = DrawRectTypeLine;
+    [self setNeedsDisplayInRect:drawBox];
+}
+
+- (void)handleTimer:(NSTimer *)timer
+{
+    _currentDrawAction = [self playingAction];
+    if (_currentDrawAction && self.status == Playing) {
+        
+        if (self.delegate && [self.delegate respondsToSelector:@selector(didPlayDrawView:AtActionIndex:pointIndex:)]) {
+            [self.delegate didPlayDrawView:self AtActionIndex:_playingActionIndex 
+                                pointIndex:_playingPointIndex];
+        }
+
+        
+        if ([_currentDrawAction isCleanAction]) {
+            _playingActionIndex++;
+            _playingPointIndex = 0;
+            _drawRectType = DrawRectTypeClean;
+            [self setNeedsDisplay];
+        }else if([_currentDrawAction isChnageBackAction]){
+            _playingActionIndex++;
+            _playingPointIndex = 0;
+            _drawRectType = DrawRectTypeChangeBack;
+            [self setNeedsDisplay];            
+        }else if([_currentDrawAction isDrawAction] &&
+                 [_currentDrawAction pointCount] > 0){
+//            [self movePen];
+            //set the points
+            if (_playingPointIndex == 0) {
+                _previousPoint1 = _previousPoint2 = _currentPoint = [_currentDrawAction.paint pointAtIndex:_playingPointIndex];
+            }else{
+                _previousPoint2 = _previousPoint1;
+                _previousPoint1 = _currentPoint;
+                _currentPoint = [_currentDrawAction.paint pointAtIndex:_playingPointIndex];
+            }
+            
+            [self drawPoint];
+            
+            if (++_playingPointIndex >= [_currentDrawAction pointCount]) {
+                _playingActionIndex++;
+                _playingPointIndex = 0;
+            }
+
+
+        }else{
+            
+        }
+        [self startTimer];
+    }else{
+        [self setStatus:Stop];
+        self.playTimer = nil;
+    }
+    
+}
 
 - (void)playFromDrawActionIndex:(NSInteger)index
 {
-    playingActionIndex = index;
-    playingPointIndex = 0;
+    _playingActionIndex = index;
+    _playingPointIndex = 0;
     self.status = Playing;
-    [self setNeedsDisplay];
+    [self startTimer];
 }
 
 - (void)play
@@ -72,9 +191,8 @@
 
 - (void)show
 {
-    _showDraw = YES;
     self.status = Stop;
-    [self setNeedsDisplay];
+    [super show];
 }
 - (void)addDrawAction:(DrawAction *)action play:(BOOL)play
 {
@@ -87,84 +205,10 @@
         }
     }else{
         [self.drawActionList addObject:action];
-        [self setNeedsDisplay];
+        [self show];
     }
 }
 
-
-#pragma mark function called by player
-
-- (void)cleanFrame:(NSTimer *)theTimer
-{
-    PPDebug(@"<Debug> Show Draw View Clean Frame Timer");
-    
-    self.status = Stop;
-    pen.hidden = YES;
-    [self setNeedsDisplay];
-    if (self.delegate && [self.delegate respondsToSelector:@selector(didPlayDrawView:)]) {
-        [self.delegate didPlayDrawView:self];
-    }
-}
-
-- (void)nextFrame:(NSTimer *)theTimer;
-{       
-//    PPDebug(@"<Debug> Show Draw View For Next Frame");
-    DrawAction *currentAction = [self playingAction];
-    if (!_showPenHidden) {
-        if (currentAction.type == DRAW_ACTION_TYPE_CLEAN) {
-            if (pen.hidden == NO) {
-                pen.hidden = YES;                
-            }
-        }else{
-            if (pen.hidden) {
-                pen.hidden = NO;                
-            }
-            if (playingPointIndex == 0 && pen.penType != currentAction.paint.penType) {                
-                [pen setPenType:currentAction.paint.penType];
-                if ([pen isRightDownRotate]) {
-                    [pen.layer setTransform:CATransform3DMakeRotation(-0.8, 0, 0, 1)];        
-                }else{
-                    [pen.layer setTransform:CATransform3DMakeRotation(0.8, 0, 0, 1)];        
-                }
-            }
-            CGPoint point = [currentAction.paint pointAtIndex:playingPointIndex];
-            if (![DrawUtils isIllegalPoint:point]) {
-                if ([pen isRightDownRotate]) {
-                    pen.center = CGPointMake(point.x + pen.frame.size.width / 3.1, point.y + pen.frame.size.height / 3.3);                    
-                }else{
-                    pen.center = CGPointMake(point.x + pen.frame.size.width / 2.5, point.y - pen.frame.size.height / 4.3);                                        
-                }
-            }
-        }
-    }
-    
-    if (self.delegate && [self.delegate respondsToSelector:@selector(didPlayDrawView:AtActionIndex:pointIndex:)]) {
-        [self.delegate didPlayDrawView:self AtActionIndex:playingActionIndex 
-                            pointIndex:playingPointIndex];
-    }
-    
-    playingPointIndex ++;
-    if (playingPointIndex < [currentAction pointCount]) {
-        //can play this action
-    }else{
-        //play next action
-        playingPointIndex = 0;
-        playingActionIndex ++;
-        if ([self.drawActionList count] > playingActionIndex) {
-        }else{
-            //illegal
-            _status = Stop;
-            if (self.delegate && [self.delegate respondsToSelector:@selector(didPlayDrawView:)]) {
-                [self.delegate didPlayDrawView:self];
-            }
-            return;
-        }
-    }
-    [self setNeedsDisplay];
-    
-    
-    
-}
 
 - (void)performTapGuesture:(UITapGestureRecognizer *)tap
 {
@@ -237,148 +281,6 @@
     return  ans;
 }
 
-
-
-
-#pragma mark drawRect
-
-- (void)drawShowRect:(CGRect)rect
-{
-    if ([self.drawActionList count ] == 0) {
-        return;
-    }
-    CGContextRef context = UIGraphicsGetCurrentContext(); 
-    CGContextSetLineCap(context, kCGLineCapRound);
-    CGContextSetLineJoin(context, kCGLineJoinRound);
-    int index = -1;
-    int i = 0;
-    for (DrawAction *drawAction in self.drawActionList) {
-        if (drawAction.type == DRAW_ACTION_TYPE_CLEAN) {
-            index = i;
-        }
-        ++ i;
-    }
-    index ++;
-    
-    for (int j = index; j < [self.drawActionList count]; ++ j) {
-        DrawAction *drawAction = [self.drawActionList objectAtIndex:j];
-        Paint *paint = drawAction.paint;
-        CGContextSetStrokeColorWithColor(context, paint.color.CGColor);
-        CGContextSetLineWidth(context, paint.width);
-        for (i = 0; i < [paint pointCount]; ++ i) {
-            CGPoint point = [paint pointAtIndex:i];
-            if ([paint pointCount] == 1) {
-                //if tap gesture, draw a circle
-                CGContextSetFillColorWithColor(context, paint.color.CGColor);
-                CGFloat r = paint.width / 2;
-                CGFloat x = point.x - r;
-                CGFloat y = point.y - r;
-                CGFloat width = paint.width;
-                CGRect rect = CGRectMake(x, y, width, width);
-                CGContextFillEllipseInRect(context, rect);
-            }else{
-                //if is pan gesture, draw a line.
-                if (i == 0) {
-                    CGContextMoveToPoint(context, point.x, point.y);   
-                }else{
-                    CGContextAddLineToPoint(context, point.x, point.y);
-                }
-            }
-        }
-        CGContextStrokePath(context); 
-    }
-    
-    _showDraw = NO;
-    
-}
-
-- (void)drawRect:(CGRect)rect
-{
-    
-    if (_showDraw) {
-        [self drawShowRect:rect];
-        return;
-    }
-    
-    CGContextRef context = UIGraphicsGetCurrentContext(); 
-    CGContextSetLineCap(context, kCGLineCapRound);
-
-    for (int j = startPlayIndex; j < self.drawActionList.count; ++ j) {
-        
-        DrawAction *drawAction = [self.drawActionList objectAtIndex:j];
-        if (drawAction.type == DRAW_ACTION_TYPE_DRAW) { //if is draw action 
-            Paint *paint = drawAction.paint;
-            CGContextSetStrokeColorWithColor(context, paint.color.CGColor);
-            CGContextSetLineWidth(context, paint.width);
-            for (int i = 0; i < [paint pointCount]; ++ i) {
-                CGPoint point = [paint pointAtIndex:i];
-                if ([paint pointCount] == 1) {
-                    //if tap gesture, draw a circle
-                    CGContextSetFillColorWithColor(context, paint.color.CGColor);
-                    CGFloat r = paint.width / 2;
-                    CGFloat x = point.x - r;
-                    CGFloat y = point.y - r;
-                    CGFloat width = paint.width;
-                    CGRect rect = CGRectMake(x, y, width, width);
-                    CGContextFillEllipseInRect(context, rect);
-                }else{
-                    //if is pan gesture, draw a line.
-                    if (i == 0) {
-                        CGContextMoveToPoint(context, point.x, point.y);   
-                    }else{
-                        CGContextAddLineToPoint(context, point.x, point.y);
-                        CGContextSetLineJoin(context, kCGLineJoinRound);
-                    }
-                }
-                //if is playing then play the next frame
-                if (self.status == Playing && j == playingActionIndex && i == playingPointIndex) {
-                    CGContextStrokePath(context);            
-                    self.playTimer = [NSTimer scheduledTimerWithTimeInterval:_playSpeed target:self selector:@selector(nextFrame:) userInfo:nil repeats:NO];
-                    return;
-                }
-            }
-        }else{ // if is clean action 
-            //if is playing then play the next frame
-            //is the last action
-            startPlayIndex = j + 1;
-            if (playingActionIndex == [self.drawActionList count] - 1) {
-                self.playTimer = [NSTimer scheduledTimerWithTimeInterval:0 target:self selector:@selector(cleanFrame:) userInfo:nil repeats:NO];
-            }else{
-                if (self.status == Playing && j == playingActionIndex) {
-                    CGContextStrokePath(context);            
-                    self.playTimer = [NSTimer scheduledTimerWithTimeInterval:_playSpeed target:self selector:@selector(nextFrame:) userInfo:nil repeats:NO];
-                    return;
-                }
-            }
-        }
-        CGContextStrokePath(context); 
-    }
-}
-
-
-- (UIImage*)createImage
-{
-    pen.hidden = YES;
-    CGRect rect = self.frame;
-    UIGraphicsBeginImageContext(rect.size);
-    CGContextRef context = UIGraphicsGetCurrentContext();
-    [self.layer renderInContext:context];
-    UIImage *img = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    return img;
-}
-
-- (UIImage *)createImageWithScale:(CGFloat)scale
-{
-    UIImage *image = [self createImage];
-    UIImage* frame = [[self createImage] imageByScalingAndCroppingForSize:CGSizeMake(image.size.width * scale, image.size.height * scale)];
-    return frame;
-}
-
-- (BOOL)isViewBlank
-{
-    return [DrawAction isDrawActionListBlank:self.drawActionList];
-}
 
 - (void)setShowPenHidden:(BOOL)showPenHidden
 {

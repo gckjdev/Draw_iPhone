@@ -7,10 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "DrawUtils.h"
-#import "Paint.h"
-#import "PenView.h"
-#import "ItemType.h"
+#import "SuperDrawView.h"
 
 @protocol DrawViewDelegate <NSObject>
 
@@ -20,35 +17,28 @@
 
 @end
 
-@class DrawColor;
-@class DrawAction;
-@class PenView;
 
-@interface DrawView : UIView<UIGestureRecognizerDelegate>
+@interface DrawView : SuperDrawView<UIGestureRecognizerDelegate>
 {
-    NSMutableArray *_drawActionList;
-    DrawAction *_currentDrawAction;
-    NSInteger startDrawActionIndex;
     CGFloat _lineWidth;
     DrawColor* _lineColor;    
     ItemType _penType;
     
 }
 
-@property (nonatomic, retain) NSMutableArray *drawActionList;
+//@property (nonatomic, retain) NSMutableArray *drawActionList;
 @property(nonatomic, assign) CGFloat lineWidth; //default is 5.0
 @property(nonatomic, retain) DrawColor* lineColor; //default is black
 @property(nonatomic, assign) CGFloat simplingDistance; //default is 4.0 * 1.414
 @property(nonatomic, assign) id<DrawViewDelegate>delegate;
 @property(nonatomic, assign) ItemType penType;
 
-- (void)clearAllActions; //remove all the actions
+
 - (void)addCleanAction;
 - (DrawAction *)addChangeBackAction:(DrawColor *)color;
-- (void)show;
 - (void)setDrawEnabled:(BOOL)enabled;
-- (BOOL)isViewBlank;
 - (BOOL)canRevoke;
-- (void)revoke;
-- (UIImage*)createImage;
+
+//- (void)revoke;
+//- (void)clearAllActions; //remove all the actions
 @end

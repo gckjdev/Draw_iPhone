@@ -7,8 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "DrawUtils.h"
-#import "Paint.h"
+#import "SuperDrawView.h"
 
 typedef enum{
     Stop = 0x1,
@@ -25,37 +24,32 @@ typedef enum{
 
 @end
 
-@class DrawColor;
-@class DrawAction;
+//@class DrawColor;
+//@class DrawAction;
 @class PenView;
 
-@interface ShowDrawView : UIView<UIGestureRecognizerDelegate>
+@interface ShowDrawView : SuperDrawView<UIGestureRecognizerDelegate>
 {
-    NSMutableArray *_drawActionList;
     NSTimer *_playTimer;
-    NSInteger playingActionIndex;
-    NSInteger playingPointIndex;
-    NSInteger startPlayIndex;
+    
+    NSInteger _playingActionIndex;
+    NSInteger _playingPointIndex;
+    
+//    NSInteger _startPlayIndex;
     BOOL _showPenHidden;
     PenView *pen;
-    BOOL _showDraw;
+//    BOOL _showDraw;
 }
 
-@property (nonatomic, retain) NSMutableArray *drawActionList;
 @property(nonatomic, assign) double playSpeed; //default is 1/30.0;
 @property(nonatomic, assign) id<ShowDrawViewDelegate>delegate;
 @property(nonatomic, assign) NSInteger status;
 @property(nonatomic, retain) NSTimer *playTimer;    // Add By Benson
 
 - (void)playFromDrawActionIndex:(NSInteger)index;
-- (void)play;
-- (void)show; //should call after add all the drawActions
-- (UIImage *)createImage;
-- (UIImage *)createImageWithScale:(CGFloat)scale;
 - (void)addDrawAction:(DrawAction *)action play:(BOOL)play;
-- (void)cleanAllActions;
-- (BOOL)isViewBlank;
 - (void)setShowPenHidden:(BOOL)showPenHidden;
+
 - (BOOL)isShowPenHidden;
 
 @end

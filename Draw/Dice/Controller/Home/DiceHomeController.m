@@ -41,6 +41,7 @@
 #define AWARD_DICE_TAG      20120901
 #define AWARD_DICE_START_POINT CGPointMake(0, 0)
 #define AWARD_DICE_SIZE ([DeviceDetection isIPAD]?CGSizeMake(100, 110):CGSizeMake(50, 55))
+#define AWARD_TIPS_FONT ([DeviceDetection isIPAD]?22:11)
 
 @interface DiceHomeController()
 {
@@ -233,34 +234,34 @@
     
 }
 
-- (void)updateTimer:(id)sender
-{
-    UIButton* btn = (UIButton*)[self.view viewWithTag:AWARD_DICE_TAG];
-    _awardDicePoint = rand()%6+1;
-    UIImage* image = [UIImage imageNamed:[NSString stringWithFormat:@"open_bell_%dbig.png", _awardDicePoint]];
-    [btn setImage:image forState:UIControlStateNormal];
-//    CGPoint aPoint = ((CALayer*)[btn.layer presentationLayer]).position;
-//    CGPoint aPoint = btn.layer.presentationLayer.
-//    PPDebug(@"dice pos = (%f, %f)",aPoint.x, aPoint.y);
-//    CAKeyframeAnimation* anim = (CAKeyframeAnimation*)[btn.layer animationForKey:@"bb"];
-    
-        
-}
+//- (void)updateTimer:(id)sender
+//{
+//    UIButton* btn = (UIButton*)[self.view viewWithTag:AWARD_DICE_TAG];
+//    _awardDicePoint = rand()%6+1;
+//    UIImage* image = [UIImage imageNamed:[NSString stringWithFormat:@"open_bell_%dbig.png", _awardDicePoint]];
+//    [btn setImage:image forState:UIControlStateNormal];
+////    CGPoint aPoint = ((CALayer*)[btn.layer presentationLayer]).position;
+////    CGPoint aPoint = btn.layer.presentationLayer.
+////    PPDebug(@"dice pos = (%f, %f)",aPoint.x, aPoint.y);
+////    CAKeyframeAnimation* anim = (CAKeyframeAnimation*)[btn.layer animationForKey:@"bb"];
+//    
+//        
+//}
 
-- (void)startRollDiceTimer
-{
-    _rollAwardDiceTimer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(updateTimer:) userInfo:nil repeats:YES];
-}
-
-- (void)killRollDiceTimer
-{
-    if (_rollAwardDiceTimer) {
-        if ([_rollAwardDiceTimer isValid]) {
-            [_rollAwardDiceTimer invalidate];
-        }
-        _rollAwardDiceTimer = nil;
-    }
-}
+//- (void)startRollDiceTimer
+//{
+//    _rollAwardDiceTimer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(updateTimer:) userInfo:nil repeats:YES];
+//}
+//
+//- (void)killRollDiceTimer
+//{
+//    if (_rollAwardDiceTimer) {
+//        if ([_rollAwardDiceTimer isValid]) {
+//            [_rollAwardDiceTimer invalidate];
+//        }
+//        _rollAwardDiceTimer = nil;
+//    }
+//}
 
 - (void)rollAwardDice
 {
@@ -269,6 +270,9 @@
                                                                     AWARD_DICE_SIZE.width, 
                                                                     AWARD_DICE_SIZE.height)] 
                          autorelease];
+    _awardDicePoint = rand()%6 + 1;
+    UIImage* image = [UIImage imageNamed:[ConfigManager getAwardItemImageName:_awardDicePoint]];
+    [diceBtn setImage:image forState:UIControlStateNormal];
     //[diceBtn setCenter:CGPointMake(self.view.frame.size.width-50, self.view.frame.size.height-50)];
     [self.view addSubview:diceBtn];
     //[diceBtn addTarget:self action:@selector(clickAwardDice:) forControlEvents:UIControlEventTouchUpInside];
@@ -314,8 +318,8 @@
     
     [diceBtn.layer addAnimation:pathAnimation forKey:@"move"];
     [diceBtn setCenter:points[5]];
-    
-    [self startRollDiceTimer];
+//    
+//    [self startRollDiceTimer];
 }
 
 - (int)checkIn
@@ -323,12 +327,12 @@
     
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     //TODO:the code below must be recover after test finish
-//    NSDate* lastCheckInDate = [userDefaults objectForKey:KEY_LAST_AWARD_DATE];
-//    if (lastCheckInDate != nil && isLocalToday(lastCheckInDate)){
-//        // already check in, return -1
-//        PPDebug(@"<checkIn> but already do it today... come tomorrow :-)");
-//        return -1;
-//    }
+    NSDate* lastCheckInDate = [userDefaults objectForKey:KEY_LAST_AWARD_DATE];
+    if (lastCheckInDate != nil && isLocalToday(lastCheckInDate)){
+        // already check in, return -1
+        PPDebug(@"<checkIn> but already do it today... come tomorrow :-)");
+        return -1;
+    }
     
     // random get some coins
     int coins = 0;
@@ -348,18 +352,23 @@
 #pragma mark - animation delegate
 - (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag
 {
-    [self killRollDiceTimer];
-    
+//    [self killRollDiceTimer];
+//    
     if (flag) {
-        HKGirlFontLabel* label = [[[HKGirlFontLabel alloc] initWithFrame:CGRectMake(0, 0, 50, 25) pointSize:11] autorelease];
+        UIButton* btn = (UIButton*)[self.view viewWithTag:AWARD_DICE_TAG];
+        HKGirlFontLabel* label = [[[HKGirlFontLabel alloc] initWithFrame:CGRectMake(0, 0, AWARD_DICE_SIZE.width, AWARD_DICE_SIZE.height/2) pointSize:AWARD_TIPS_FONT] autorelease];
         [label setText:NSLS(@"kClickMe")];
         CMPopTipView* view = [[[CMPopTipView alloc] initWithCustomView:label needBubblePath:NO] autorelease];
         [view setBackgroundColor:[UIColor yellowColor]];
         [view presentPointingAtView:[self.view viewWithTag:AWARD_DICE_TAG] inView:self.view animated:YES];
         [UIView animateWithDuration:4 animations:^{
             view.alpha = 0;
+            if (btn)
+                btn.alpha = 0;
         } completion:^(BOOL finished) {
             [view removeFromSuperview];
+            if (btn)
+                [btn removeFromSuperview];
         }];
     }
     

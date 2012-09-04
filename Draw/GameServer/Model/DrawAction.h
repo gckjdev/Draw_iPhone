@@ -50,4 +50,6 @@ typedef enum {
 + (double)calculateSpeed:(NSArray *)actionList defaultSpeed:(double)defaultSpeed maxSecond:(NSInteger)second;
 
 - (BOOL)isChnageBackAction;
+- (BOOL)isCleanAction;
+- (BOOL)isDrawAction;
 @end

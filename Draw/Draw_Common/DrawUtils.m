@@ -158,5 +158,9 @@
     return intLineWidth % PEN_TYPE;
 }
 
++ (CGPoint)midPoint1:(CGPoint)p1 point2:(CGPoint) p2
+{
+    return CGPointMake((p1.x + p2.x) * 0.5, (p1.y + p2.y) * 0.5);
+}
 
 @end
