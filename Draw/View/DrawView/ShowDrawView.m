@@ -57,6 +57,9 @@
 
 - (void)movePen
 {
+    if (pen.superview == nil) {
+        [self.superview addSubview:pen];
+    }
     if (!_showPenHidden) {
         if ([_currentDrawAction isCleanAction] || 
             [_currentDrawAction isChnageBackAction]) {
@@ -78,6 +81,12 @@
             CGPoint point = [_currentDrawAction.paint pointAtIndex:_playingPointIndex];
             if (![DrawUtils isIllegalPoint:point]) {
                 if ([pen isRightDownRotate]) {
+                    CGFloat xOffset = self.frame.origin.x - self.superview.frame.origin.x;        
+                    CGFloat yOffset = self.frame.origin.y - self.superview.frame.origin.y;
+                    
+                    point.x += xOffset;
+                    point.y += yOffset;
+                    
                     pen.center = CGPointMake(point.x + pen.frame.size.width / 3.1, point.y + pen.frame.size.height / 3.3);                    
                 }else{
                     pen.center = CGPointMake(point.x + pen.frame.size.width / 2.5, point.y - pen.frame.size.height / 4.3);                                        
@@ -114,19 +123,11 @@
     drawBox.size.width      += lineWidth * 4;
     drawBox.size.height     += lineWidth * 4;
 
-//    if (pen.hidden == NO) {
-//        pen.hidden = YES;
-//    }
-
     UIGraphicsBeginImageContext(drawBox.size);
     [self.layer renderInContext:UIGraphicsGetCurrentContext()];
     self.curImage = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     
-//    if (![self isShowPenHidden]) {
-//        pen.hidden = NO;
-//        [self movePen];
-//    }
     _drawRectType = DrawRectTypeLine;
     [self setNeedsDisplayInRect:drawBox];
 }
@@ -152,11 +153,11 @@
             _playingActionIndex++;
             _playingPointIndex = 0;
             _drawRectType = DrawRectTypeChangeBack;
+            _changeBackColor = _currentDrawAction.paint.color.CGColor;
             [self setNeedsDisplay];            
         }else if([_currentDrawAction isDrawAction] &&
                  [_currentDrawAction pointCount] > 0){
-
-
+            [self movePen];
             //set the points
             if (_playingPointIndex == 0) {
                 _previousPoint1 = _previousPoint2 = _currentPoint = [_currentDrawAction.paint pointAtIndex:_playingPointIndex];
@@ -171,16 +172,14 @@
                 _playingActionIndex++;
                 _playingPointIndex = 0;
             }
-
-//            [self movePen];
         }else{
             
         }
         [self startTimer];
     }else{
-//        [self stop];
         [self setStatus:Stop];
         self.playTimer = nil;
+        pen.hidden = YES;
         if (self.delegate && [self.delegate respondsToSelector:@selector(didPlayDrawView:)]) {
             [self.delegate didPlayDrawView:self];
         }
@@ -265,7 +264,7 @@
         pen.hidden = YES;
         pen.userInteractionEnabled = NO;
         pen.layer.transform = CATransform3DMakeRotation(-0.8, 0, 0, 1);
-        [self addSubview:pen];
+        [self.superview addSubview:pen];
     }
     return self;
 }
