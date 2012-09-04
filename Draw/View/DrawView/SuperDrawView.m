@@ -143,46 +143,33 @@
     PPDebug(@"<SuperDrawView> draw paint");
     
     CGContextRef context = UIGraphicsGetCurrentContext(); 
-
-
     CGContextSetStrokeColorWithColor(context, paint.color.CGColor);
     CGContextSetFillColorWithColor(context, paint.color.CGColor);
 
+    CGContextSetLineWidth(context, paint.width);    
+
     if ([paint pointCount] != 0) {
-        UIBezierPath *path = [UIBezierPath bezierPath];
-        [path setLineWidth:paint.width];
-        [path setLineCapStyle:kCGLineCapRound];
-        [path setLineJoinStyle:kCGLineJoinRound];
         
         _currentPoint = _previousPoint2 = _previousPoint1 = [paint pointAtIndex:0];
         CGPoint mid1 = [DrawUtils midPoint1:_previousPoint1
                                      point2:_previousPoint2];
-
-        [path moveToPoint:_currentPoint];
-        
+        CGContextMoveToPoint(context, mid1.x, mid1.y);
         for (int i = 0; i < [paint pointCount]; ++ i) {
             _currentPoint = [paint pointAtIndex:i];            
             
             CGPoint mid2 = [DrawUtils midPoint1:_currentPoint
                                          point2:_previousPoint1];
-
-//            [path addQuadCurveToPoint:_previousPoint1 controlPoint:mid2];
-            [path addLineToPoint:_currentPoint];
+            CGContextAddQuadCurveToPoint(context, _previousPoint1.x, _previousPoint1.y, mid2.x, mid2.y); 
+            CGContextSetLineCap(context, kCGLineCapRound);
+            
             _previousPoint2 = _previousPoint1;
             _previousPoint1 = _currentPoint;
         }
-        [path stroke];
+        CGContextStrokePath(context);
     }else{
         return;
     }
 
-    
-        
-        
-        
-//        [self drawPoint:paint.width color:paint.color.CGColor];
-//        _previousPoint2 = _previousPoint1;
-//        _previousPoint1 = _currentPoint;
 
 }
 
@@ -202,7 +189,7 @@
 {
     PPDebug(@"<SuperDrawView> draw line");
     if ([_currentDrawAction isDrawAction]) {
-        [_curImage drawAtPoint:CGPointMake(0, 0)];
+        [self.curImage drawAtPoint:CGPointMake(0, 0)];
         CGColorRef color = _currentDrawAction.paint.color.CGColor;
         CGFloat width = _currentDrawAction.paint.width;
         [self drawPoint:width color:color];
