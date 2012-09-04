@@ -308,12 +308,17 @@
 
 + (int)getDailyGiftCoin
 {
-    return [MobClickUtils getIntValueByKey:@"DAILY_GIFT_COIN" defaultValue:200];
+    return [MobClickUtils getIntValueByKey:@"DAILY_GIFT_COIN" defaultValue:50];
 }
 
 + (int)getDailyGiftCoinIncre
 {
-    return [MobClickUtils getIntValueByKey:@"DAILY_GIFT_COIN_INCRE" defaultValue:100];
+    return [MobClickUtils getIntValueByKey:@"DAILY_GIFT_COIN_INCRE" defaultValue:20];
+}
+
++ (NSString*)getAwardItemImageName:(int)dicePoint
+{
+    return [MobClickUtils getStringValueByKey:@"AWARD_ITEM_IMAGE" defaultValue:[NSString stringWithFormat:@"open_bell_%dbig.png", dicePoint]];
 }
 
 @end
