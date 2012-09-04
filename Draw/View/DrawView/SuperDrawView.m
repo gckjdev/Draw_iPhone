@@ -120,15 +120,14 @@
     if (context == NULL) {
         PPDebug(@"context = NULL");
     }
+//    PPDebug(@"super draw view retain count = %d", [self retainCount]);
     
-    PPDebug(@"super draw view retain count = %d", [self retainCount]);
-    if ([self retainCount] > 4) {
-        PPDebug(@"retain count > 4");
+    if ([self retainCount] > 10) {
+        PPDebug(@"retain count > 10");
     }
 
 
     [self.layer renderInContext:context];
-//    
     CGContextMoveToPoint(context, mid1.x, mid1.y);
     CGContextAddQuadCurveToPoint(context, _previousPoint1.x, _previousPoint1.y, mid2.x, mid2.y); 
     CGContextSetLineCap(context, kCGLineCapRound);

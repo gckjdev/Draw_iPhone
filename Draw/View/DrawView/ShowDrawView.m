@@ -51,7 +51,7 @@
 
 - (void)startTimer
 {
-    PPDebug(@"ShowDrawView startTimer");
+//    PPDebug(@"ShowDrawView startTimer");
     self.playTimer = [NSTimer scheduledTimerWithTimeInterval:self.playSpeed target:self selector:@selector(handleTimer:) userInfo:nil repeats:NO];
 }
 
@@ -98,7 +98,7 @@
 
 - (void)drawPoint
 {
-    PPDebug(@"ShowDrawView draw Point");
+//    PPDebug(@"ShowDrawView draw Point");
     // calculate mid point
     
     CGPoint mid1 = [DrawUtils midPoint1:_previousPoint1
@@ -134,7 +134,7 @@
 
 - (void)handleTimer:(NSTimer *)timer
 {
-    PPDebug(@"showDrawView handleTimer, timer = %@",[timer description]);
+//    PPDebug(@"showDrawView handleTimer, timer = %@",[timer description]);
     _currentDrawAction = [self playingAction];
     if (_currentDrawAction && self.status == Playing) {
         
@@ -197,10 +197,12 @@
 
 - (void)play
 {
+    PPDebug(@"<ShowDrawView> play");
     [self playFromDrawActionIndex:0];
 }
 - (void)stop
 {
+    PPDebug(@"<ShowDrawView> stop");
     self.status = Stop;
     _drawRectType = DrawRectTypeNo; 
 }
