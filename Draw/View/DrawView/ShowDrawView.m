@@ -80,13 +80,11 @@
             }
             CGPoint point = [_currentDrawAction.paint pointAtIndex:_playingPointIndex];
             if (![DrawUtils isIllegalPoint:point]) {
-                if ([pen isRightDownRotate]) {
-                    CGFloat xOffset = self.frame.origin.x - self.superview.frame.origin.x;        
-                    CGFloat yOffset = self.frame.origin.y - self.superview.frame.origin.y;
-                    
-                    point.x += xOffset;
-                    point.y += yOffset;
-                    
+                CGFloat xOffset = self.frame.origin.x - self.superview.frame.origin.x;        
+                CGFloat yOffset = self.frame.origin.y - self.superview.frame.origin.y;                
+                point.x += xOffset;
+                point.y += yOffset;
+                if ([pen isRightDownRotate]) {                    
                     pen.center = CGPointMake(point.x + pen.frame.size.width / 3.1, point.y + pen.frame.size.height / 3.3);                    
                 }else{
                     pen.center = CGPointMake(point.x + pen.frame.size.width / 2.5, point.y - pen.frame.size.height / 4.3);                                        
@@ -122,6 +120,7 @@
     drawBox.origin.y        -= lineWidth * 2;
     drawBox.size.width      += lineWidth * 4;
     drawBox.size.height     += lineWidth * 4;
+    
 
     UIGraphicsBeginImageContext(drawBox.size);
     [self.layer renderInContext:UIGraphicsGetCurrentContext()];
@@ -134,6 +133,8 @@
 
 - (void)handleTimer:(NSTimer *)timer
 {
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
 //    PPDebug(@"showDrawView handleTimer, timer = %@",[timer description]);
     _currentDrawAction = [self playingAction];
     if (_currentDrawAction && self.status == Playing) {
@@ -184,7 +185,7 @@
             [self.delegate didPlayDrawView:self];
         }
     }
-    
+    });
 }
 
 - (void)playFromDrawActionIndex:(NSInteger)index

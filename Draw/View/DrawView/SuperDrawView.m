@@ -20,6 +20,12 @@
 @synthesize drawActionList = _drawActionList;
 @synthesize curImage = _curImage;
 
+
+//CGPoint midPoint(CGPoint p1, CGPoint p2)
+//{
+//    return CGPointMake((p1.x + p2.x) * 0.5, (p1.y + p2.y) * 0.5);
+//}
+
 - (void)dealloc
 {
     PPDebug(@"%@ dealloc", [self description]);
@@ -33,6 +39,7 @@
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
+//        self.backgroundColor = [UIColor whiteColor];
     }
     return self;
 }
@@ -186,14 +193,17 @@
 
 - (void)drawRectLine:(CGRect)rect
 {
-    PPDebug(@"<SuperDrawView> draw line");
+    PPDebug(@"<SuperDrawView> draw line,rect = %@",NSStringFromCGRect(rect));
+    
     if ([_currentDrawAction isDrawAction]) {
-        [self.curImage drawAtPoint:CGPointMake(0, 0)];
+        [_curImage drawAtPoint:CGPointMake(0, 0)];
         CGColorRef color = _currentDrawAction.paint.color.CGColor;
         CGFloat width = _currentDrawAction.paint.width;
         [self drawPoint:width color:color];
+        [super drawRect:rect];
     }
 }
+
 
 - (void)drawRect:(CGRect)rect
 {
@@ -201,17 +211,19 @@
     switch (_drawRectType) {
         case DrawRectTypeLine:
         {
+            PPDebug(@"<SuperDrawView> drawRectLine");
             [self drawRectLine:rect];
         }
             break;
         case DrawRectTypeRedraw:
         {
+            PPDebug(@"<SuperDrawView> drawRectRedraw");
             [self drawRectRedraw:rect];
             break;
         }
         case DrawRectTypeChangeBack:
         {
-            PPDebug(@"<SuperDrawView> change back");
+            PPDebug(@"<SuperDrawView> DrawRectTypeChangeBack");
             CGContextRef context = UIGraphicsGetCurrentContext(); 
             CGContextSetFillColorWithColor(context, _changeBackColor);
             CGContextFillRect(context, self.bounds);
