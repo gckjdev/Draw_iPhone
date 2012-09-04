@@ -328,7 +328,7 @@ static AdService* _defaultService;
 
 - (BOOL)isShowAd
 {    
-//    return YES;    
+    return YES;    
     
     if ([ConfigManager isProVersion])
         return NO;
@@ -491,7 +491,7 @@ static AdService* _defaultService;
     PPDebug(@"<createWanpuAdInView> at view %@", [superView description]);
     
     UIView* view = [AppConnect getDisplayAdView];
-    [view removeFromSuperview];
+//    [view removeFromSuperview];
     
     if ([DeviceDetection isIPAD]){
         [AppConnect displayAd:_viewController showX:0 showY:iPadFrame.origin.y-1];
@@ -502,7 +502,7 @@ static AdService* _defaultService;
         
     // hack Wanpu Ad View here, remove it from its super view and add into the right view we want
     view = [AppConnect getDisplayAdView];
-    [view removeFromSuperview];
+//    [view removeFromSuperview];
     
     if ([DeviceDetection isIPAD]){
         view.frame = iPadFrame;
