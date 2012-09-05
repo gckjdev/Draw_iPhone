@@ -71,6 +71,10 @@ typedef enum{
 @interface ImageBoard : Board {
     NSString * _imageUrl;
     NSString * _adImageUrl;
+
+    NSString * _cnImageUrl;
+    NSString * _cnAdImageUrl;
+        
     NSString *_clickUrl;
     NSInteger _platform;
     NSString *_publishId;
@@ -78,6 +82,9 @@ typedef enum{
 }
 @property(nonatomic, retain)NSString *imageUrl;
 @property(nonatomic, retain)NSString *adImageUrl;
+@property(nonatomic, retain)NSString *cnImageUrl;
+@property(nonatomic, retain)NSString *cnAdImageUrl;
+
 @property(nonatomic, retain)NSString *clickUrl;
 @property(nonatomic, assign)NSInteger platform;
 @property(nonatomic, retain)NSString *publishId;

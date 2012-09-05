@@ -33,6 +33,10 @@
 @synthesize simplingDistance = _simplingDistance;
 @synthesize penType = _penType;
 
+//CGPoint midPoint(CGPoint p1, CGPoint p2)
+//{
+//    return CGPointMake((p1.x + p2.x) * 0.5, (p1.y + p2.y) * 0.5);
+//}
 
 
 - (void)addCleanAction
@@ -108,35 +112,29 @@
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    UITouch *touch = [touches anyObject];
     
-    if ([self isEventLegal:event]) {
-        UITouch *touch = [touches anyObject];
-        _previousPoint1 = [touch previousLocationInView:self];
-        _previousPoint2 = [touch previousLocationInView:self];
-        CGPoint point = [self touchPoint:event];
-        if (![DrawUtils isIllegalPoint:point]) {
-            _currentPoint = point;
-            [self addNewPaint];
-            if (self.delegate && [self.delegate 
-                                  respondsToSelector:@selector(didStartedTouch:)]) {
-                [self.delegate didStartedTouch:_currentDrawAction.paint];
-            }
-            [self touchesMoved:touches withEvent:event];
-        }
-        
-    }    
-}
-
-- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
-    if ([self isEventLegal:event]) {
-        if (self.delegate && [self.delegate respondsToSelector:@selector(didDrawedPaint:)]) {
-            [self.delegate didDrawedPaint:_currentDrawAction.paint];
-        }
+    _previousPoint1 = [touch previousLocationInView:self];
+    _previousPoint2 = [touch previousLocationInView:self];
+    _currentPoint = [touch locationInView:self];
+    [self addNewPaint];
+    [self touchesMoved:touches withEvent:event];
+    if (self.delegate && [self.delegate 
+                            respondsToSelector:@selector(didStartedTouch:)]) {
+            [self.delegate didStartedTouch:_currentDrawAction.paint];
     }
 }
 
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
+
+    if (self.delegate && [self.delegate respondsToSelector:@selector(didDrawedPaint:)]) {
+        [self.delegate didDrawedPaint:_currentDrawAction.paint];
+    }
+}
+
+
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
-    if ([self isEventLegal:event]) {
+
         
         UITouch *touch  = [touches anyObject];
         
@@ -161,25 +159,34 @@
         CGRect drawBox = bounds;
         
         //Pad our values so the bounding box respects our line width
-        drawBox.origin.x        -= self.lineWidth * 2;
-        drawBox.origin.y        -= self.lineWidth * 2;
-        drawBox.size.width      += self.lineWidth * 4;
-        drawBox.size.height     += self.lineWidth * 4;
+        drawBox.origin.x        -= self.lineWidth * 2.0;
+        drawBox.origin.y        -= self.lineWidth * 2.0;
+        drawBox.size.width      += self.lineWidth * 4.0;
+        drawBox.size.height     += self.lineWidth * 4.0;
         
         
         UIGraphicsBeginImageContext(drawBox.size);
         [self.layer renderInContext:UIGraphicsGetCurrentContext()];
         self.curImage = UIGraphicsGetImageFromCurrentImageContext();
+
         UIGraphicsEndImageContext();
         
+        NSLog(@"setNeedsDisplayInRect rect = %@",NSStringFromCGRect(drawBox));
+        
         _drawRectType = DrawRectTypeLine;
+        
         [self setNeedsDisplayInRect:drawBox];
 
         
-        CGPoint point = [self touchPoint:event];
-        [self addPoint:point toDrawAction:_currentDrawAction];
-    }
+        [self addPoint:_currentPoint toDrawAction:_currentDrawAction];
+
 }
+- (void)drawRect:(CGRect)rect
+{
+    [super drawRect:rect];
+}
+
+
 
 #pragma mark Constructor & Destructor
 
@@ -192,7 +199,7 @@
         self.lineWidth = DEFAULT_LINE_WIDTH;
         self.simplingDistance = DEFAULT_SIMPLING_DISTANCE;
         _drawActionList = [[NSMutableArray alloc] init];
-        self.backgroundColor = [UIColor whiteColor];        
+        self.backgroundColor = [UIColor clearColor];        
         _startDrawActionIndex = 0;
     }
     
