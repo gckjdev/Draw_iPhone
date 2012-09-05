@@ -226,8 +226,6 @@
 		A4B7640B15C28F8E003B4E72 /* DiceNetworkClient.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B7640015C28F8E003B4E72 /* DiceNetworkClient.m */; };
 		A4B7648C15C382D6003B4E72 /* DiceImageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B7648B15C382D6003B4E72 /* DiceImageManager.m */; };
 		A4C1123915D4B621009B3E8D /* DiceAnimationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A4C1123815D4B621009B3E8D /* DiceAnimationManager.m */; };
-		A4C259F115F50D56002A7C03 /* plusOne_F.m4a in Resources */ = {isa = PBXBuildFile; fileRef = A4C259EF15F50D56002A7C03 /* plusOne_F.m4a */; };
-		A4C259F215F50D56002A7C03 /* plusOne_M.m4a in Resources */ = {isa = PBXBuildFile; fileRef = A4C259F015F50D56002A7C03 /* plusOne_M.m4a */; };
 		A4C259F515F50D6A002A7C03 /* cutDice_F.m4a in Resources */ = {isa = PBXBuildFile; fileRef = A4C259F315F50D6A002A7C03 /* cutDice_F.m4a */; };
 		A4C259F615F50D6A002A7C03 /* cutDice_M.m4a in Resources */ = {isa = PBXBuildFile; fileRef = A4C259F415F50D6A002A7C03 /* cutDice_M.m4a */; };
 		A4C25A2315F5F20E002A7C03 /* DiceDefault.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A4C25A2515F5F20E002A7C03 /* DiceDefault.jpg */; };
@@ -1719,8 +1717,6 @@
 		A4B7648B15C382D6003B4E72 /* DiceImageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiceImageManager.m; sourceTree = "<group>"; };
 		A4C1123715D4B621009B3E8D /* DiceAnimationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiceAnimationManager.h; sourceTree = "<group>"; };
 		A4C1123815D4B621009B3E8D /* DiceAnimationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiceAnimationManager.m; sourceTree = "<group>"; };
-		A4C259EF15F50D56002A7C03 /* plusOne_F.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = plusOne_F.m4a; sourceTree = "<group>"; };
-		A4C259F015F50D56002A7C03 /* plusOne_M.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = plusOne_M.m4a; sourceTree = "<group>"; };
 		A4C259F315F50D6A002A7C03 /* cutDice_F.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = cutDice_F.m4a; sourceTree = "<group>"; };
 		A4C259F415F50D6A002A7C03 /* cutDice_M.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = cutDice_M.m4a; sourceTree = "<group>"; };
 		A4C25A2415F5F20E002A7C03 /* en */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = en; path = en.lproj/DiceDefault.jpg; sourceTree = "<group>"; };
@@ -7164,8 +7160,6 @@
 			children = (
 				A4C259F315F50D6A002A7C03 /* cutDice_F.m4a */,
 				A4C259F415F50D6A002A7C03 /* cutDice_M.m4a */,
-				A4C259EF15F50D56002A7C03 /* plusOne_F.m4a */,
-				A4C259F015F50D56002A7C03 /* plusOne_M.m4a */,
 				A4EF86A615EDD8C70014643F /* message_1_M.m4a */,
 				A4EF86A715EDD8C70014643F /* message_2_M.m4a */,
 				A4EF86A815EDD8C70014643F /* message_3_M.m4a */,
@@ -8528,8 +8522,6 @@
 				CA42E3EA15F4633100790B3C /* FeedDetailController~ipad.xib in Resources */,
 				CA42E3EC15F4633100790B3C /* ShowFeedController.xib in Resources */,
 				CA42E3EE15F4633100790B3C /* UserInfoCell.xib in Resources */,
-				A4C259F115F50D56002A7C03 /* plusOne_F.m4a in Resources */,
-				A4C259F215F50D56002A7C03 /* plusOne_M.m4a in Resources */,
 				A4C259F515F50D6A002A7C03 /* cutDice_F.m4a in Resources */,
 				A4C259F615F50D6A002A7C03 /* cutDice_M.m4a in Resources */,
 				A4C25A2315F5F20E002A7C03 /* DiceDefault.jpg in Resources */,
