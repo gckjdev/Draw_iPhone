@@ -1593,10 +1593,10 @@
 		A4C25A2615F5F217002A7C03 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "zh-Hans"; path = "zh-Hans.lproj/DiceDefault.jpg"; sourceTree = "<group>"; };
 		A4C25A2A15F5F3B3002A7C03 /* en */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = en; path = en.lproj/DiceDefault_ipad.jpg; sourceTree = "<group>"; };
 		A4C25A2C15F5F3BA002A7C03 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "zh-Hans"; path = "zh-Hans.lproj/DiceDefault_ipad.jpg"; sourceTree = "<group>"; };
-		A4C25A2E15F5F8C6002A7C03 /* dice_icon_50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dice_icon_50.png; sourceTree = "<group>"; };
-		A4C25A2F15F5F8C6002A7C03 /* dice_icon_57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dice_icon_57.png; sourceTree = "<group>"; };
-		A4C25A3015F5F8C6002A7C03 /* dice_icon_57@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dice_icon_57@2x.png"; sourceTree = "<group>"; };
-		A4C25A3115F5F8C6002A7C03 /* dice_icon_72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dice_icon_72.png; sourceTree = "<group>"; };
+		A4C25A2E15F5F8C6002A7C03 /* dice_icon_50.png */ = {isa = PBXFileReference; explicitFileType = image.icns; path = dice_icon_50.png; sourceTree = "<group>"; };
+		A4C25A2F15F5F8C6002A7C03 /* dice_icon_57.png */ = {isa = PBXFileReference; explicitFileType = image.icns; path = dice_icon_57.png; sourceTree = "<group>"; };
+		A4C25A3015F5F8C6002A7C03 /* dice_icon_57@2x.png */ = {isa = PBXFileReference; explicitFileType = image.icns; path = "dice_icon_57@2x.png"; sourceTree = "<group>"; };
+		A4C25A3115F5F8C6002A7C03 /* dice_icon_72.png */ = {isa = PBXFileReference; explicitFileType = image.icns; path = dice_icon_72.png; sourceTree = "<group>"; };
 		A4C516A715DE40A800E4F735 /* DiceItemListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiceItemListView.h; sourceTree = "<group>"; };
 		A4C516A815DE40A800E4F735 /* DiceItemListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiceItemListView.m; sourceTree = "<group>"; };
 		A4C516AB15DE40F100E4F735 /* DiceItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiceItem.h; sourceTree = "<group>"; };
@@ -2731,9 +2731,9 @@
 		CA67B8A915EB292E002050DB /* EventKitUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKitUI.framework; path = System/Library/Frameworks/EventKitUI.framework; sourceTree = SDKROOT; };
 		CA6D351F15F71574004DC293 /* bottom_menubg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bottom_menubg@2x.png"; sourceTree = "<group>"; };
 		CA6D352015F71574004DC293 /* small_setting@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "small_setting@2x.png"; sourceTree = "<group>"; };
-		CA6D353315F71918004DC293 /* en */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = en; path = "en.lproj/clean_ad@2x.png"; sourceTree = "<group>"; };
-		CA6D353515F71921004DC293 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "zh-Hans"; path = "zh-Hans.lproj/clean_ad@2x.png"; sourceTree = "<group>"; };
-		CA6D353715F71927004DC293 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "zh-Hant"; path = "zh-Hant.lproj/clean_ad@2x.png"; sourceTree = "<group>"; };
+		CA6D353315F71918004DC293 /* en */ = {isa = PBXFileReference; explicitFileType = image.icns; name = en; path = "en.lproj/clean_ad@2x.png"; sourceTree = "<group>"; };
+		CA6D353515F71921004DC293 /* zh-Hans */ = {isa = PBXFileReference; explicitFileType = image.icns; name = "zh-Hans"; path = "zh-Hans.lproj/clean_ad@2x.png"; sourceTree = "<group>"; };
+		CA6D353715F71927004DC293 /* zh-Hant */ = {isa = PBXFileReference; explicitFileType = image.icns; name = "zh-Hant"; path = "zh-Hant.lproj/clean_ad@2x.png"; sourceTree = "<group>"; };
 		CA6D353915F71984004DC293 /* wood_pallets@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wood_pallets@2x.png"; sourceTree = "<group>"; };
 		CA6D353A15F71984004DC293 /* tool@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tool@2x.png"; sourceTree = "<group>"; };
 		CA6D353D15F71B10004DC293 /* buyitems_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "buyitems_bg@2x.png"; sourceTree = "<group>"; };
@@ -8636,6 +8636,7 @@
 				);
 				CODE_SIGN_IDENTITY = "iPhone Developer: Lingzhe Peng (4JW9JNLMWA)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Lingzhe Peng (4JW9JNLMWA)";
+				COMPRESS_PNG_FILES = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
@@ -8664,6 +8665,7 @@
 				);
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Lingzhe Peng";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Lingzhe Peng";
+				COMPRESS_PNG_FILES = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_VERSION = "";
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;

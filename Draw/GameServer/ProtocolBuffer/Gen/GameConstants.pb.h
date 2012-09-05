@@ -106,6 +106,7 @@ typedef enum {
   GameResultCodeErrorNoDrawData = 301,
   GameResultCodeErrorDiceAlreadyOpen = 401,
   GameResultCodeErrorUserAlreadyCallDice = 402,
+  GameResultCodeErrorDiceOpenSelf = 403,
   GameResultCodeErrorUnknownItem = 501,
   GameResultCodeErrorSystemHandlerNotFound = 910,
   GameResultCodeErrorSystemException = 911,
