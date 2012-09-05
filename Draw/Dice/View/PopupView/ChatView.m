@@ -91,7 +91,7 @@
 
 - (void)addExpressionsToView:(UIView *)view pageIndex:(int)pageIndex
 {
-    NSArray *allKeys = [_expressionManager allKeys]; 
+    NSArray *allKeys = [_expressionManager allKeys];
     
     int start = pageIndex * EXPRESSION_COUNT_PER_PAGE;
     int end = MIN((pageIndex + 1) * EXPRESSION_COUNT_PER_PAGE, [allKeys count]);

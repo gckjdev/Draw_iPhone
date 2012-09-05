@@ -824,7 +824,8 @@
 
 "kWaitingForMoreUsers" = "等待更多用户...";
 
-"kDice_share_message_body" = "你还以为大话骰只能在夜店玩吗？隆重推荐一款手机版的大话骰——《%@》！不要再等待！不要再犹豫了！赶紧下载！\n%@";
+"kDice_share_message_body" = "亲爱的朋友，今天向您隆重推出一款全新的多人在线游戏——《%@》。这款游戏可以说是目前最好玩的大话骰游戏，马上下载试玩吧。\n%@";
+
 "kDice_email_subject" = "分享［欢乐大话骰］移动版游戏";
 
 "kJoining" = "正在进入房间";

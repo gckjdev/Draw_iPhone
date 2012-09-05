@@ -25,6 +25,8 @@ static ExpressionManager *_instance = nil;
 @interface ExpressionManager ()
 {
     NSDictionary *_expressionDictionary;
+    NSArray *_keys;
+    NSArray *_values;
 }
 @end
 
@@ -43,10 +45,10 @@ static ExpressionManager *_instance = nil;
 {
     self = [super init];
     if (self) {
-        NSArray *keys = [NSArray arrayWithObjects:KEY_SMILE, KEY_PROUD, KEY_EMBARRASS, KEY_WRY, KEY_ANGER, nil];
-        NSArray *values = [NSArray arrayWithObjects:VALUE_SMILE, VALUE_PROUD, VALUE_EMBARRASS, VALUE_WRY, VALUE_ANGER, nil];
+        _keys = [[NSArray arrayWithObjects:KEY_SMILE, KEY_PROUD, KEY_EMBARRASS, KEY_WRY, KEY_ANGER, nil] retain];
+        _values = [[NSArray arrayWithObjects:VALUE_SMILE, VALUE_PROUD, VALUE_EMBARRASS, VALUE_WRY, VALUE_ANGER, nil] retain];
 
-        _expressionDictionary = [[NSDictionary dictionaryWithObjects:values forKeys:keys] retain];
+        _expressionDictionary = [[NSDictionary dictionaryWithObjects:_values forKeys:_keys] retain];
     }
     
     return self;
@@ -55,6 +57,8 @@ static ExpressionManager *_instance = nil;
 - (void)dealloc
 {
     [_expressionDictionary release]; 
+    [_keys release];
+    [_values release];
     [super dealloc];
 }
 
@@ -68,7 +72,7 @@ static ExpressionManager *_instance = nil;
 
 - (NSArray *)allKeys
 {
-    return [_expressionDictionary allKeys];
+    return _keys;
 }
 
 
