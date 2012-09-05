@@ -31,7 +31,7 @@
 #import "StableView.h"
 #import "ChatMessageView.h"
 #import "WordManager.h"
-#import "SpeechService.h"
+//#import "SpeechService.h"
 
 #define MAX_CHANGE_ROOM_PER_DAY     5
 
@@ -160,7 +160,7 @@
 
 - (void)viewDidDisappear:(BOOL)animated
 {
-    [[SpeechService defaultService] cancel];
+//    [[SpeechService defaultService] cancel];
     [self resetStartTimer];
     [self hideActivity];
     [self clearUnPopupMessages];
@@ -643,9 +643,9 @@
     
     //add by haodong
     if ([content hasPrefix:NORMAL_CHAT]) {
-         NSString *readText = [content stringByReplacingOccurrencesOfString:NORMAL_CHAT withString:NSLS(@"")];
-        BOOL gender = [[[[DrawGameService defaultService] session] getUserByUserId:[message userId]] gender];
-        [[SpeechService defaultService] play:readText gender:gender];
+//         NSString *readText = [content stringByReplacingOccurrencesOfString:NORMAL_CHAT withString:NSLS(@"")];
+//        BOOL gender = [[[[DrawGameService defaultService] session] getUserByUserId:[message userId]] gender];
+//        [[SpeechService defaultService] play:readText gender:gender];
     }
     
     
@@ -1009,8 +1009,8 @@
 - (void)didSelectMessage:(NSString *)message toUser:(NSString *)userNickName
 {
     //add by haodong
-    BOOL gender = [[UserManager defaultManager] isUserMale];
-    [[SpeechService defaultService] play:message gender:gender];
+//    BOOL gender = [[UserManager defaultManager] isUserMale];
+//    [[SpeechService defaultService] play:message gender:gender];
     
     if ([message isEqualToString:NSLS(@"kWaitABit")] || [message isEqualToString:NSLS(@"kQuickQuick")]){
         [self clickProlongStart:nil];
