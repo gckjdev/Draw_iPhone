@@ -22,11 +22,10 @@
 @interface HomeController : PPViewController<DrawGameServiceDelegate, RouterServiceDelegate, CommonDialogDelegate,DrawDataServiceDelegate, UserServiceDelegate,BoardServiceDelegate>
 {
     BOOL        _isTryJoinGame;  
-    BOOL        _isJoiningDice;
     UserManager *_userManager;
 }
 
-@property (retain, nonatomic) IBOutlet UIButton *diceButton;
+
 @property (retain, nonatomic) MenuPanel *menuPanel;
 @property (retain, nonatomic) BottomMenuPanel *bottomMenuPanel;
 
@@ -51,7 +50,7 @@
                          from:(UIViewController *)viewController;
 
 - (void)updateBadgeWithUserInfo:(NSDictionary *)userInfo;
-- (IBAction)clickAnnounce:(id)sender;
+
 
 - (void)enterShareFromWeixin;
 @end
