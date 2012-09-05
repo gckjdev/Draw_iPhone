@@ -148,8 +148,8 @@
     tipsLabel.hidden = YES;
     dataTableView.hidden = YES;
     
-    [self loadMyFollow];
     [self loadMyFans];
+    [self loadMyFollow];
 }
 
 - (void)viewDidAppear:(BOOL)animated
