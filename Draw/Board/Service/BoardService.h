@@ -8,6 +8,8 @@
 
 #import "CommonService.h"
 
+#define BOARD_UPDATE_NOTIFICATION   @"BOARD_UPDATE_NOTIFICATION"
+
 @protocol BoardServiceDelegate <NSObject>
 
 @optional
@@ -18,9 +20,11 @@
 
 @interface BoardService : CommonService
 {
-    
+    NSTimer             *_loadBoardTimer;
+    NSMutableArray      *_boards;
 }
 
 + (BoardService *)defaultService;
-- (void)getBoardsWithDelegate:(id<BoardServiceDelegate>)delegate;
+- (void)syncBoards;
+
 @end

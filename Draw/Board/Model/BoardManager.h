@@ -12,11 +12,12 @@
 {
     
 }
+
+@property (nonatomic, retain) NSMutableArray   *boardList;
+
 + (BoardManager *)defaultManager;
 
-//- (NSArray *)BoardList;
 
-- (NSArray *)getLocalBoardList;
 - (void)saveBoardList:(NSArray *)boardList;
 
 @end

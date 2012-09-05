@@ -48,6 +48,7 @@
 #import "DiceSoundManager.h"
 #import "DiceHomeController.h"
 #import "DiceHelpManager.h"
+#import "BoardService.h"
 
 NSString* GlobalGetServerURL()
 {    
@@ -63,8 +64,8 @@ NSString* GlobalGetTrafficServerURL()
 
 NSString* GlobalGetBoardServerURL()
 {
-//    return [ConfigManager getTrafficAPIServerURL];
-    return @"http://192.168.1.198:8100/api/i?";    
+    return [ConfigManager getTrafficAPIServerURL];
+//    return @"http://192.168.1.198:8100/api/i?";    
 }
 
 
@@ -228,7 +229,7 @@ NSString* GlobalGetBoardServerURL()
     
     //sync level details
     [[LevelService defaultService] syncExpAndLevel:SYNC];
-       
+    
     return YES;
 }
 
@@ -315,6 +316,8 @@ NSString* GlobalGetBoardServerURL()
     /*
      Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
      */
+    
+    [[BoardService defaultService] syncBoards];
     
     if ([ConfigManager wallEnabled]){
         [[LmWallService defaultService] queryScore];            

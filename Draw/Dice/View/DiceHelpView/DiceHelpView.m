@@ -44,7 +44,9 @@
         return nil;
     }
     
-    return [topLevelObjects objectAtIndex:0];
+    UIView* view = [topLevelObjects objectAtIndex:0];
+    view.tag = DICE_HELP_VIEW_TAG;
+    return view;
 }
 
 - (void)initialize
