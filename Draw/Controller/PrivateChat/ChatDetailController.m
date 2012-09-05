@@ -24,6 +24,7 @@
 #import "ChatDetailCell.h"
 #import "CommonMessageCenter.h"
 #import "CommonUserInfoView.h"
+#import "DiceUserInfoView.h"
 
 @interface ChatDetailController ()
 
@@ -548,29 +549,58 @@
     NSString *fromUserId = message.from;
     
     if ([fromUserId isEqualToString:[[UserManager defaultManager] userId]]) {
-
-        [CommonUserInfoView showUser:[[UserManager defaultManager] userId]
-                            nickName:[[UserManager defaultManager] nickName]
-                              avatar:[[UserManager defaultManager] avatarURL]
-                              gender:[[UserManager defaultManager] gender]
-                            location:nil 
-                               level:1
-                             hasSina:NO 
-                               hasQQ:NO 
-                         hasFacebook:NO 
-                          infoInView:self];
+        if (isDrawApp()) {
+            [CommonUserInfoView showUser:[[UserManager defaultManager] userId]
+                                nickName:[[UserManager defaultManager] nickName]
+                                  avatar:[[UserManager defaultManager] avatarURL]
+                                  gender:[[UserManager defaultManager] gender]
+                                location:nil 
+                                   level:1
+                                 hasSina:NO 
+                                   hasQQ:NO 
+                             hasFacebook:NO 
+                              infoInView:self];
+        }
+        if (isDiceApp()) {
+            [DiceUserInfoView showUser:[[UserManager defaultManager] userId]
+                                nickName:[[UserManager defaultManager] nickName]
+                                  avatar:[[UserManager defaultManager] avatarURL]
+                                  gender:[[UserManager defaultManager] gender]
+                                location:nil 
+                                   level:1
+                                 hasSina:NO 
+                                   hasQQ:NO 
+                             hasFacebook:NO 
+                              infoInView:self];
+        }
+        
         
     } else if ([fromUserId isEqualToString:self.friendUserId]) {
-        [CommonUserInfoView showUser:self.friendUserId
-                            nickName:self.friendNickname 
-                              avatar:self.friendAvatar 
-                              gender:self.friendGender
-                            location:nil 
-                               level:1
-                             hasSina:NO 
-                               hasQQ:NO 
-                         hasFacebook:NO 
-                          infoInView:self];
+        if (isDrawApp()) {
+            [CommonUserInfoView showUser:self.friendUserId
+                                nickName:self.friendNickname 
+                                  avatar:self.friendAvatar 
+                                  gender:self.friendGender
+                                location:nil 
+                                   level:1
+                                 hasSina:NO 
+                                   hasQQ:NO 
+                             hasFacebook:NO 
+                              infoInView:self];
+        }
+        if (isDiceApp()) {
+            [DiceUserInfoView showUser:self.friendUserId
+                                nickName:self.friendNickname 
+                                  avatar:self.friendAvatar 
+                                  gender:self.friendGender
+                                location:nil 
+                                   level:1
+                                 hasSina:NO 
+                                   hasQQ:NO 
+                             hasFacebook:NO 
+                              infoInView:self];
+        }
+        
     }
 }
 
