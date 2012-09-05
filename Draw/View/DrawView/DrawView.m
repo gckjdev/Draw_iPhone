@@ -112,6 +112,8 @@
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    
+    PPDebug(@"touch began");
     UITouch *touch = [touches anyObject];
     
     _previousPoint1 = [touch previousLocationInView:self];
@@ -126,7 +128,8 @@
 }
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
-
+    PPDebug(@"touch end");
+    [self touchesMoved:touches withEvent:event];
     if (self.delegate && [self.delegate respondsToSelector:@selector(didDrawedPaint:)]) {
         [self.delegate didDrawedPaint:_currentDrawAction.paint];
     }
@@ -135,50 +138,50 @@
 
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
 
-        
-        UITouch *touch  = [touches anyObject];
-        
-        _previousPoint2  = _previousPoint1;
-        _previousPoint1  = [touch previousLocationInView:self];
-        _currentPoint    = [touch locationInView:self];
-        
-        // calculate mid point
-        
-        CGPoint mid1 = [DrawUtils midPoint1:_previousPoint1
-                                     point2:_previousPoint2];
-        
-        CGPoint mid2 = [DrawUtils midPoint1:_currentPoint
-                                     point2:_previousPoint1];
-                
-        CGMutablePathRef path = CGPathCreateMutable();
-        CGPathMoveToPoint(path, NULL, mid1.x, mid1.y);
-        CGPathAddQuadCurveToPoint(path, NULL, _previousPoint1.x, _previousPoint1.y, mid2.x, mid2.y);
-        CGRect bounds = CGPathGetBoundingBox(path);
-        CGPathRelease(path);
-        
-        CGRect drawBox = bounds;
-        
-        //Pad our values so the bounding box respects our line width
-        drawBox.origin.x        -= self.lineWidth * 2.0;
-        drawBox.origin.y        -= self.lineWidth * 2.0;
-        drawBox.size.width      += self.lineWidth * 4.0;
-        drawBox.size.height     += self.lineWidth * 4.0;
-        
-        
-        UIGraphicsBeginImageContext(drawBox.size);
-        [self.layer renderInContext:UIGraphicsGetCurrentContext()];
-        self.curImage = UIGraphicsGetImageFromCurrentImageContext();
+    
+    UITouch *touch  = [touches anyObject];
+    
+    _previousPoint2  = _previousPoint1;
+    _previousPoint1  = _currentPoint;
+    _currentPoint    = [touch locationInView:self];
+    
+    // calculate mid point
+    
+    CGPoint mid1 = [DrawUtils midPoint1:_previousPoint1
+                                 point2:_previousPoint2];
+    
+    CGPoint mid2 = [DrawUtils midPoint1:_currentPoint
+                                 point2:_previousPoint1];
+            
+    CGMutablePathRef path = CGPathCreateMutable();
+    CGPathMoveToPoint(path, NULL, mid1.x, mid1.y);
+    CGPathAddQuadCurveToPoint(path, NULL, _previousPoint1.x, _previousPoint1.y, mid2.x, mid2.y);
+    CGRect bounds = CGPathGetBoundingBox(path);
+    CGPathRelease(path);
+    
+    CGRect drawBox = bounds;
+    
+    //Pad our values so the bounding box respects our line width
+    drawBox.origin.x        -= self.lineWidth * 1.0;
+    drawBox.origin.y        -= self.lineWidth * 1.0;
+    drawBox.size.width      += self.lineWidth * 2.0;
+    drawBox.size.height     += self.lineWidth * 2.0;
+    
+    
+    UIGraphicsBeginImageContext(drawBox.size);
+    [self.layer renderInContext:UIGraphicsGetCurrentContext()];
+    self.curImage = UIGraphicsGetImageFromCurrentImageContext();
 
-        UIGraphicsEndImageContext();
-        
-        NSLog(@"setNeedsDisplayInRect rect = %@",NSStringFromCGRect(drawBox));
-        
-        _drawRectType = DrawRectTypeLine;
-        
-        [self setNeedsDisplayInRect:drawBox];
-
-        
-        [self addPoint:_currentPoint toDrawAction:_currentDrawAction];
+    UIGraphicsEndImageContext();
+    
+    PPDebug(@"mid1=%@,mid2=%@", NSStringFromCGPoint(mid1),NSStringFromCGPoint(mid2));
+    NSLog(@"setNeedsDisplayInRect rect = %@",NSStringFromCGRect(drawBox));
+    
+    _drawRectType = DrawRectTypeLine;
+    
+    [self setNeedsDisplayInRect:drawBox];
+    
+    [self addPoint:_currentPoint toDrawAction:_currentDrawAction];
 
 }
 - (void)drawRect:(CGRect)rect

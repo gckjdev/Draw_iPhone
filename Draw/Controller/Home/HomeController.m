@@ -53,7 +53,6 @@
 
 #import "FacetimeMainController.h"
 
-#import "EntryController.h"
 
 #import "BoardPanel.h"
 #import "MenuPanel.h"
@@ -156,9 +155,6 @@
 
 - (void)viewDidLoad
 {        
-    
-//    self.facetimeButton.hidden = YES;
-//    self.diceButton.hidden = YES;
     if ([ConfigManager isShowRecommendApp]){
         self.recommendButton.hidden = NO;
     }
@@ -166,17 +162,10 @@
         self.recommendButton.hidden = YES;
     }
     
-    
-//    self.adView = [[AdService defaultService] createAdInView:self                  
-//                                                       frame:CGRectMake(0, 0, 320, 50) 
-//                                                   iPadFrame:CGRectMake(43, 60, 320, 50)
-//                                                     useLmAd:YES];
-    
-    
     [super viewDidLoad];    
     [self loadMainMenu];
     [self loadBottomMenu];
-    [self loadBoards];
+//    [self loadBoards];
     [self playBackgroundMusic];
     
     // set text
@@ -245,21 +234,7 @@
     [[DrawGameService defaultService] registerObserver:self];
     [super viewDidAppear:animated];
 
-//    if (self.adView == nil){    
-//        self.adView = [[AdService defaultService] createAdInView:self                  
-//                                                           frame:CGRectMake(0, 0, 320, 50) 
-//                                                       iPadFrame:CGRectMake(65, 800, 320, 50)
-//                                                         useLmAd:YES];
-//    }
-//    else{
-//        if ([[AdService defaultService] isShowAd] == NO){
-//            [_adView removeFromSuperview];
-//            
-//            if ([DeviceDetection isIPAD]){
-//                [self.recommendButton setFrame:CGRectMake(65, self.recommendButton.frame.origin.y, self.recommendButton.frame.size.width, self.recommendButton.frame.size.height)];
-//            }
-//        }
-//    }
+
 }
 
 - (void)viewDidDisappear:(BOOL)animated

@@ -394,8 +394,12 @@
 
 - (void)didBroken
 {
-    //TODO: handle network broken here
-    [self.navigationController popViewControllerAnimated:YES];
+    PPDebug(@"%@ <didBroken>", [self description]);
+    [self hideActivity];
+    
+    [self popupUnhappyMessage:NSLS(@"kNetworkBroken") title:@""];
+    [self.navigationController popToRootViewControllerAnimated:NO];
+    
 }
 
 #pragma makr - inputDialog delegate

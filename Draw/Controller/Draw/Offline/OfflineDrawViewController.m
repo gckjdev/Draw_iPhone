@@ -723,6 +723,9 @@ enum{
  */
 - (void)saveDraft
 {
+    if (targetType == TypeGraffiti) {
+        return;
+    }
     PPDebug(@"<OfflineDrawViewController> start to save draft.");
     if (self.draft) {
         //delete the old draft.
