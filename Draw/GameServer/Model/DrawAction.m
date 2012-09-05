@@ -192,6 +192,11 @@
     }
     return nil;
 }
+- (BOOL)point1:(CGPoint)p1 isEqualPoint2:(CGPoint)p2
+{
+    return p1.x == p2.x && p1.y == p2.y; 
+}
+
 - (NSArray *)intPointListWithXScale:(CGFloat)xScale 
                              yScale:(CGFloat)yScale
 {
@@ -200,7 +205,7 @@
     int i = 0;
     for (NSValue *pointValue in _paint.pointList) {
         CGPoint point = [pointValue CGPointValue];
-        if (i ++ == 0 || [DrawUtils distanceBetweenPoint:lastPoint point2:point] > 2) 
+        if (i ++ == 0 || ![self point1:lastPoint isEqualPoint2:point]) 
         {
             CGPoint tempPoint = point;
             tempPoint = CGPointMake(point.x / xScale, point.y / yScale);

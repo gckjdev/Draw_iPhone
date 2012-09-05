@@ -66,18 +66,30 @@
     self.userInteractionEnabled = enabled;
 }
 
+- (CGFloat)correctValue:(CGFloat)value max:(CGFloat)max min:(CGFloat)min
+{
+    if (value < min) 
+        return min;
+    if(value > max)
+        return max;
+    return value;
+}
+
 #pragma mark Gesture Handler
 - (void)addPoint:(CGPoint)point toDrawAction:(DrawAction *)drawAction
 {    
     if (drawAction) {
         
-        if (point.x <= 0 && point.y <= 0) {
-            return;
-        }
-        
-        if (point.x >= self.bounds.size.width && point.y >= self.bounds.size.height) {
-            return;
-        }
+//        if (point.x <= 0 || point.y <= 0) {
+//            return;
+//        }
+//        
+//        if (point.x >= self.bounds.size.width || point.y >= self.bounds.size.height) {
+//            return;
+//        }
+        point.x = [self correctValue:point.x max:self.bounds.size.width min:0];
+        point.y = [self correctValue:point.y max:self.bounds.size.height min:0];
+        PPDebug(@"add point = %@", NSStringFromCGPoint(point));
         [drawAction.paint addPoint:point];   
     }
 }
@@ -174,8 +186,8 @@
 
     UIGraphicsEndImageContext();
     
-    PPDebug(@"mid1=%@,mid2=%@", NSStringFromCGPoint(mid1),NSStringFromCGPoint(mid2));
-    NSLog(@"setNeedsDisplayInRect rect = %@",NSStringFromCGRect(drawBox));
+//    PPDebug(@"mid1=%@,mid2=%@", NSStringFromCGPoint(mid1),NSStringFromCGPoint(mid2));
+//    PPDebug(@"setNeedsDisplayInRect rect = %@",NSStringFromCGRect(drawBox));
     
     _drawRectType = DrawRectTypeLine;
     

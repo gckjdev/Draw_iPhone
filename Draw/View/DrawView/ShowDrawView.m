@@ -130,8 +130,8 @@
     _drawRectType = DrawRectTypeLine;
     
     
-    PPDebug(@"mid1=%@,mid2=%@", NSStringFromCGPoint(mid1),NSStringFromCGPoint(mid2));
-    NSLog(@"setNeedsDisplayInRect rect = %@",NSStringFromCGRect(drawBox));
+//    PPDebug(@"mid1=%@,mid2=%@", NSStringFromCGPoint(mid1),NSStringFromCGPoint(mid2));
+//    PPDebug(@"setNeedsDisplayInRect rect = %@",NSStringFromCGRect(drawBox));
     [self setNeedsDisplayInRect:drawBox];
 }
 
@@ -171,6 +171,7 @@
                 _previousPoint1 = _currentPoint;
                 _currentPoint = [_currentDrawAction.paint pointAtIndex:_playingPointIndex];
             }
+            PPDebug(@"action Index = %d, pointIndex = %d, point = %@",_playingActionIndex, _playingPointIndex,NSStringFromCGPoint(_currentPoint));
             [self drawPoint];
             
             if (++_playingPointIndex >= [_currentDrawAction pointCount]) {
