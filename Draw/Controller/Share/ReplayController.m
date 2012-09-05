@@ -141,9 +141,9 @@
     double speed = [DrawAction calculateSpeed:self.replayView.drawActionList defaultSpeed:1.0/40.0 maxSecond:30];
     self.replayView.playSpeed = speed;
 
-    
+    _replayView.delegate = self;    
     if (_replayForCreateGif){
-        _replayView.delegate = self;
+        
         [self.shareButton setHidden:YES];
         [self.backButton setHidden:YES];
     }
@@ -193,24 +193,28 @@
 
 - (void)didPlayDrawView:(ShowDrawView *)showDrawView
 {
-    UIImage *image = [showDrawView createImage];
-    UIImageWriteToSavedPhotosAlbum(image, nil, nil, NULL);
-    [self hideActivity];
-    [self.backButton setHidden:NO];
-    [self.shareButton setHidden:NO];
-    // create gif files here
-    if (_gifImages == nil || [_gifImages count] == 0){
-        [self popupMessage:NSLS(@"kFailCreateGIF") title:nil];
-    }
-    else{
-        self.tempGIFFilePath = [NSString stringWithFormat:@"%@/%@.gif", NSTemporaryDirectory(), [NSString GetUUID]];
-        [GifManager createGifToPath:self.tempGIFFilePath byImages:_gifImages];
-        if ([[NSFileManager defaultManager] fileExistsAtPath:self.tempGIFFilePath] == NO){
+    if (_replayForCreateGif){
+        UIImage *image = [showDrawView createImage];
+        UIImageWriteToSavedPhotosAlbum(image, nil, nil, NULL);
+        [self hideActivity];
+        [self.backButton setHidden:NO];
+        [self.shareButton setHidden:NO];
+        // create gif files here
+        if (_gifImages == nil || [_gifImages count] == 0){
             [self popupMessage:NSLS(@"kFailCreateGIF") title:nil];
         }
         else{
-            [self clickShareButton:nil];
+            self.tempGIFFilePath = [NSString stringWithFormat:@"%@/%@.gif", NSTemporaryDirectory(), [NSString GetUUID]];
+            [GifManager createGifToPath:self.tempGIFFilePath byImages:_gifImages];
+            if ([[NSFileManager defaultManager] fileExistsAtPath:self.tempGIFFilePath] == NO){
+                [self popupMessage:NSLS(@"kFailCreateGIF") title:nil];
+            }
+            else{
+                [self clickShareButton:nil];
+            }
         }
+    }else{
+        self.playEndButton.hidden = YES;
     }
 }
 
@@ -226,35 +230,37 @@
 
 - (void)didPlayDrawView:(ShowDrawView *)showDrawView AtActionIndex:(NSInteger)actionIndex pointIndex:(NSInteger)pointIndex
 {
-    NSInteger actionCount = [showDrawView.drawActionList count];
-    
-    if (showDrawView.tag == REPLAY_TAG) {
-        if (actionIndex < actionCount && actionIndex >= 0) {
-            DrawAction *action = [showDrawView.drawActionList objectAtIndex:actionIndex];
-            NSInteger pointCount = [action pointCount];
-            if (pointCount < 1) {
-                return;
-            }
-            
-            if (pointCount < POINT_COUNT_PER_FRAME) {
-                if (pointIndex == pointCount - 1) {
-                    [self createImageAndSave:showDrawView];
-                    NSLog(@"action Index: %d; point index: %d",actionIndex,pointIndex);
-                }
-                return;
-            }
-            
-            if (pointIndex == pointCount - 1) 
-            {
-                NSLog(@"action Index: %d; point index: %d",actionIndex,pointIndex);
-                [self createImageAndSave:showDrawView];
-            }else if((pointIndex % POINT_COUNT_PER_FRAME) == (POINT_COUNT_PER_FRAME - 1 ) && (pointIndex + POINT_COUNT_PER_FRAME / 2) < pointCount)
-            {
-                NSLog(@"action Index: %d; point index: %d",actionIndex,pointIndex);
-                [self createImageAndSave:showDrawView];
-            }
-        }
+    if (_replayForCreateGif) {
+        NSInteger actionCount = [showDrawView.drawActionList count];
         
+        if (showDrawView.tag == REPLAY_TAG) {
+            if (actionIndex < actionCount && actionIndex >= 0) {
+                DrawAction *action = [showDrawView.drawActionList objectAtIndex:actionIndex];
+                NSInteger pointCount = [action pointCount];
+                if (pointCount < 1) {
+                    return;
+                }
+                
+                if (pointCount < POINT_COUNT_PER_FRAME) {
+                    if (pointIndex == pointCount - 1) {
+                        [self createImageAndSave:showDrawView];
+                        NSLog(@"action Index: %d; point index: %d",actionIndex,pointIndex);
+                    }
+                    return;
+                }
+                
+                if (pointIndex == pointCount - 1) 
+                {
+                    NSLog(@"action Index: %d; point index: %d",actionIndex,pointIndex);
+                    [self createImageAndSave:showDrawView];
+                }else if((pointIndex % POINT_COUNT_PER_FRAME) == (POINT_COUNT_PER_FRAME - 1 ) && (pointIndex + POINT_COUNT_PER_FRAME / 2) < pointCount)
+                {
+                    NSLog(@"action Index: %d; point index: %d",actionIndex,pointIndex);
+                    [self createImageAndSave:showDrawView];
+                }
+            }
+            
+        }        
     }
 }
 
