@@ -193,7 +193,7 @@
 
 - (void)drawRectLine:(CGRect)rect
 {
-    PPDebug(@"<SuperDrawView> draw line,rect = %@",NSStringFromCGRect(rect));
+//    PPDebug(@"<SuperDrawView> draw line,rect = %@",NSStringFromCGRect(rect));
     
     if ([_currentDrawAction isDrawAction]) {
         [_curImage drawAtPoint:CGPointMake(0, 0)];
@@ -211,7 +211,7 @@
     switch (_drawRectType) {
         case DrawRectTypeLine:
         {
-            PPDebug(@"<SuperDrawView> drawRectLine");
+//            PPDebug(@"<SuperDrawView> drawRectLine");
             [self drawRectLine:rect];
         }
             break;
