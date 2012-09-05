@@ -18,7 +18,6 @@
 #import "ChatMessageView.h"
 #import "ExpressionManager.h"
 #import "GameMessage.pb.h"
-#import "SpeechService.h"
 #import "DrawGameAnimationManager.h"
 #import "ItemManager.h"
 #import "LevelService.h"
@@ -111,7 +110,7 @@
 
 - (void)viewDidDisappear:(BOOL)animated
 {
-    [[SpeechService defaultService] cancel];
+//    [[SpeechService defaultService] cancel];
     [_privateChatController dismiss:NO];
     [_groupChatController dismiss:NO];
     [drawGameService unregisterObserver:self];
@@ -304,7 +303,7 @@
     drawGameService.showDelegate = nil;
     drawGameService.drawDelegate = nil;
     [drawGameService unregisterObserver:self];
-    [[SpeechService defaultService] cancel];
+//    [[SpeechService defaultService] cancel];
 }
 
 - (void)didReceiveGuessWord:(NSString*)wordText 
@@ -330,9 +329,9 @@
     
     //add by haodong
     if ([content hasPrefix:NORMAL_CHAT]) {
-        NSString *readText = [content stringByReplacingOccurrencesOfString:NORMAL_CHAT withString:NSLS(@"")];
-        BOOL gender = [[[[DrawGameService defaultService] session] getUserByUserId:[message userId]] gender];
-        [[SpeechService defaultService] play:readText gender:gender];
+//        NSString *readText = [content stringByReplacingOccurrencesOfString:NORMAL_CHAT withString:NSLS(@"")];
+//        BOOL gender = [[[[DrawGameService defaultService] session] getUserByUserId:[message userId]] gender];
+//        [[SpeechService defaultService] play:readText gender:gender];
     }
     
     
@@ -383,8 +382,8 @@
 - (void)didSelectMessage:(NSString*)message toUser:(NSString *)userNickName
 {
     //add by haodong
-    BOOL gender = [[UserManager defaultManager] isUserMale];
-    [[SpeechService defaultService] play:message gender:gender];
+//    BOOL gender = [[UserManager defaultManager] isUserMale];
+//    [[SpeechService defaultService] play:message gender:gender];
     
     NSString *title = [NSString stringWithFormat:NSLS(@"kSayToXXX"), userNickName];
     [self showChatMessageViewOnUser:[[DrawGameService defaultService] userId] title:title message:message];
