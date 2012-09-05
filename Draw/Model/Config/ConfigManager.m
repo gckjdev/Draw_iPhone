@@ -202,6 +202,9 @@
 
 + (int)getShareFriendReward
 {
+    if (isDiceApp()) {
+        return [MobClickUtils getIntValueByKey:@"SHARE_DICE_AWARD_COIN" defaultValue:100];
+    }
     return [MobClickUtils getIntValueByKey:@"REWARD_SHARE_APP" defaultValue:10];
 }
 

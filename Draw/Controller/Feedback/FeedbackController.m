@@ -165,39 +165,69 @@ enum {
     
     NSString *shareBody = [NSString stringWithFormat:shareBodyModel, NSLocalizedStringFromTable(@"CFBundleDisplayName", @"InfoPlist", @""),[UIUtils getAppLink:[ConfigManager appId]]];
     
-    switch (buttonIndex) {
-        case SHARE_VIA_SMS: {
-            [self sendSms:nil body:shareBody];
-        } break;
-        case SHARE_VIA_EMAIL: {
-            NSString *emailSubject = nil;
-            if (isDrawApp()) {
-                emailSubject = NSLS(@"kEmail_subject");
-            }else if (isDiceApp()) {
-                emailSubject = NSLS(@"kDice_email_subject");
-            }
-            [self sendEmailTo:nil ccRecipients:nil bccRecipients:nil subject:emailSubject body:shareBody isHTML:NO delegate:self];
-        } break;
-        case SHARE_VIA_FACEBOOK: {
-            if ([[UserManager defaultManager] hasBindSinaWeibo]){
-                [[SinaSNSService defaultService] publishWeibo:shareBody delegate:self];
-            }
-            
-            if ([[UserManager defaultManager] hasBindQQWeibo]){
-                [[QQWeiboService defaultService] publishWeibo:shareBody delegate:self];
-            }
-            
-            if ([[UserManager defaultManager] hasBindFacebook]){
-                [[FacebookSNSService defaultService] publishWeibo:shareBody delegate:self];
-            } 
-        } break;
-        default:
-            break;
+    if (buttonIndex == buttonIndexSMS) {
+        [self sendSms:nil body:shareBody];
+    } else if (buttonIndex == buttonIndexEmail) {
+        NSString *emailSubject = nil;
+        if (isDrawApp()) {
+            emailSubject = NSLS(@"kEmail_subject");
+        }else if (isDiceApp()) {
+            emailSubject = NSLS(@"kDice_email_subject");
+        }
+        [self sendEmailTo:nil ccRecipients:nil bccRecipients:nil subject:emailSubject body:shareBody isHTML:NO delegate:self];
+    } else if (buttonIndex == buttonIndexSinaWeibo) {
+        if ([[UserManager defaultManager] hasBindSinaWeibo]){
+            [[SinaSNSService defaultService] publishWeibo:shareBody delegate:self];
+        }
+    } else if (buttonIndex == buttonIndexQQWeibo) {
+        if ([[UserManager defaultManager] hasBindQQWeibo]){
+            [[QQWeiboService defaultService] publishWeibo:shareBody delegate:self];
+        }
+    } else if (buttonIndex == buttonIndexFacebook) {
+        if ([[UserManager defaultManager] hasBindFacebook]){
+            [[FacebookSNSService defaultService] publishWeibo:shareBody delegate:self];
+        }
     }
+    
+//    switch (buttonIndex) {
+//        case SHARE_VIA_SMS: {
+//            [self sendSms:nil body:shareBody];
+//        } break;
+//        case SHARE_VIA_EMAIL: {
+//            NSString *emailSubject = nil;
+//            if (isDrawApp()) {
+//                emailSubject = NSLS(@"kEmail_subject");
+//            }else if (isDiceApp()) {
+//                emailSubject = NSLS(@"kDice_email_subject");
+//            }
+//            [self sendEmailTo:nil ccRecipients:nil bccRecipients:nil subject:emailSubject body:shareBody isHTML:NO delegate:self];
+//        } break;
+//        case SHARE_VIA_FACEBOOK: {
+//            if ([[UserManager defaultManager] hasBindSinaWeibo]){
+//                [[SinaSNSService defaultService] publishWeibo:shareBody delegate:self];
+//            }
+//            
+//            if ([[UserManager defaultManager] hasBindQQWeibo]){
+//                [[QQWeiboService defaultService] publishWeibo:shareBody delegate:self];
+//            }
+//            
+//            if ([[UserManager defaultManager] hasBindFacebook]){
+//                [[FacebookSNSService defaultService] publishWeibo:shareBody delegate:self];
+//            } 
+//        } break;
+//        default:
+//            break;
+//    }
+//
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    buttonIndexSMS = 0;
+    buttonIndexEmail = 1;
+    buttonIndexSinaWeibo = -1;
+    buttonIndexQQWeibo = -1;
+    buttonIndexFacebook = -1;
     if (indexPath.row == rowOfShare) {
         UIActionSheet* shareOptions = [[UIActionSheet alloc] initWithTitle:NSLS(@"kShare_Options") 
                                                                   delegate:self 
@@ -209,16 +239,19 @@ enum {
         int shareCount = 2;
         
         if ([[UserManager defaultManager] hasBindSinaWeibo]){
+            buttonIndexSinaWeibo = shareCount;
             shareCount ++;
             [shareOptions addButtonWithTitle:NSLS(@"kShare_via_Sina_weibo")];
         }
         
         if ([[UserManager defaultManager] hasBindQQWeibo]){
+            buttonIndexQQWeibo = shareCount;
             shareCount ++;
             [shareOptions addButtonWithTitle:NSLS(@"kShare_via_tencent_weibo")];
         }
         
         if ([[UserManager defaultManager] hasBindFacebook]){
+            buttonIndexFacebook = shareCount;
             shareCount ++;
             [shareOptions addButtonWithTitle:NSLS(@"kShare_via_Facebook")];
         } 
