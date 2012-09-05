@@ -10,9 +10,9 @@
 #import "DeviceDetection.h"
 
 #define ILLEGAL_POINT CGPointMake(-100000, -100000)
-#define IPAD_SCALE 2.4
-#define IPAD_WIDTH_SCALE 2.4
-#define IPAD_HEIGHT_SCALE 2.18
+#define IPAD_SCALE 2.4013
+#define IPAD_WIDTH_SCALE 2.4013
+#define IPAD_HEIGHT_SCALE 2.18125
 #define DRAW_VIEW_FRAME_IPAD CGRectMake(18, 106, 730, 698)
 #define DRAW_VIEW_FRAME_IPHONE CGRectMake(8, 46, 304, 320)
 

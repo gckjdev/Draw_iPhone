@@ -24,6 +24,7 @@
 #import "ChatDetailCell.h"
 #import "CommonMessageCenter.h"
 #import "CommonUserInfoView.h"
+#import "DiceUserInfoView.h"
 
 @interface ChatDetailController ()
 
@@ -126,15 +127,6 @@
     
     [self changeTableSize:NO duration:0];
     
-    //update for dice no graffit
-    if (isDiceApp()) {
-        graffitiButton.hidden = YES;
-        if ([DeviceDetection isIPAD]) {
-            sendButton.frame = CGRectMake(sendButton.frame.origin.x, sendButton.frame.origin.y, 144*2, sendButton.frame.size.height);
-        }else {
-            sendButton.frame = CGRectMake(sendButton.frame.origin.x, sendButton.frame.origin.y, 120, sendButton.frame.size.height);
-        }
-    }
 }
 
 
@@ -557,29 +549,58 @@
     NSString *fromUserId = message.from;
     
     if ([fromUserId isEqualToString:[[UserManager defaultManager] userId]]) {
-
-        [CommonUserInfoView showUser:[[UserManager defaultManager] userId]
-                            nickName:[[UserManager defaultManager] nickName]
-                              avatar:[[UserManager defaultManager] avatarURL]
-                              gender:[[UserManager defaultManager] gender]
-                            location:nil 
-                               level:1
-                             hasSina:NO 
-                               hasQQ:NO 
-                         hasFacebook:NO 
-                          infoInView:self];
+        if (isDrawApp()) {
+            [CommonUserInfoView showUser:[[UserManager defaultManager] userId]
+                                nickName:[[UserManager defaultManager] nickName]
+                                  avatar:[[UserManager defaultManager] avatarURL]
+                                  gender:[[UserManager defaultManager] gender]
+                                location:nil 
+                                   level:1
+                                 hasSina:NO 
+                                   hasQQ:NO 
+                             hasFacebook:NO 
+                              infoInView:self];
+        }
+        if (isDiceApp()) {
+            [DiceUserInfoView showUser:[[UserManager defaultManager] userId]
+                                nickName:[[UserManager defaultManager] nickName]
+                                  avatar:[[UserManager defaultManager] avatarURL]
+                                  gender:[[UserManager defaultManager] gender]
+                                location:nil 
+                                   level:1
+                                 hasSina:NO 
+                                   hasQQ:NO 
+                             hasFacebook:NO 
+                              infoInView:self];
+        }
+        
         
     } else if ([fromUserId isEqualToString:self.friendUserId]) {
-        [CommonUserInfoView showUser:self.friendUserId
-                            nickName:self.friendNickname 
-                              avatar:self.friendAvatar 
-                              gender:self.friendGender
-                            location:nil 
-                               level:1
-                             hasSina:NO 
-                               hasQQ:NO 
-                         hasFacebook:NO 
-                          infoInView:self];
+        if (isDrawApp()) {
+            [CommonUserInfoView showUser:self.friendUserId
+                                nickName:self.friendNickname 
+                                  avatar:self.friendAvatar 
+                                  gender:self.friendGender
+                                location:nil 
+                                   level:1
+                                 hasSina:NO 
+                                   hasQQ:NO 
+                             hasFacebook:NO 
+                              infoInView:self];
+        }
+        if (isDiceApp()) {
+            [DiceUserInfoView showUser:self.friendUserId
+                                nickName:self.friendNickname 
+                                  avatar:self.friendAvatar 
+                                  gender:self.friendGender
+                                location:nil 
+                                   level:1
+                                 hasSina:NO 
+                                   hasQQ:NO 
+                             hasFacebook:NO 
+                              infoInView:self];
+        }
+        
     }
 }
 

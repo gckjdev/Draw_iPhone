@@ -116,10 +116,10 @@
     CGFloat lineWidth = [_currentDrawAction.paint width];
     
     //Pad our values so the bounding box respects our line width
-    drawBox.origin.x        -= lineWidth * 2;
-    drawBox.origin.y        -= lineWidth * 2;
-    drawBox.size.width      += lineWidth * 4;
-    drawBox.size.height     += lineWidth * 4;
+    drawBox.origin.x        -= lineWidth * 1;
+    drawBox.origin.y        -= lineWidth * 1;
+    drawBox.size.width      += lineWidth * 2;
+    drawBox.size.height     += lineWidth * 2;
     
 
     UIGraphicsBeginImageContext(drawBox.size);
@@ -128,6 +128,10 @@
     UIGraphicsEndImageContext();
     
     _drawRectType = DrawRectTypeLine;
+    
+    
+//    PPDebug(@"mid1=%@,mid2=%@", NSStringFromCGPoint(mid1),NSStringFromCGPoint(mid2));
+//    PPDebug(@"setNeedsDisplayInRect rect = %@",NSStringFromCGRect(drawBox));
     [self setNeedsDisplayInRect:drawBox];
 }
 
@@ -167,6 +171,7 @@
                 _previousPoint1 = _currentPoint;
                 _currentPoint = [_currentDrawAction.paint pointAtIndex:_playingPointIndex];
             }
+            PPDebug(@"action Index = %d, pointIndex = %d, point = %@",_playingActionIndex, _playingPointIndex,NSStringFromCGPoint(_currentPoint));
             [self drawPoint];
             
             if (++_playingPointIndex >= [_currentDrawAction pointCount]) {

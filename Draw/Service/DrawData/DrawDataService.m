@@ -105,7 +105,7 @@ static DrawDataService* _defaultDrawDataService = nil;
 
     NSArray *pointList = nil;
     if ([DeviceDetection isIPAD]) {
-        pointList = [drawAction intPointListWithXScale:IPAD_WIDTH_SCALE yScale:IPAD_WIDTH_SCALE];
+        pointList = [drawAction intPointListWithXScale:IPAD_WIDTH_SCALE yScale:IPAD_HEIGHT_SCALE];
     }else{
         pointList = [drawAction intPointListWithXScale:1 yScale:1];
     }
