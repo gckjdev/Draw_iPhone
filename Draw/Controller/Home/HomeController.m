@@ -52,26 +52,19 @@
 #import "RecommendedAppsController.h"
 
 #import "FacetimeMainController.h"
-#import "DiceRoomListController.h"
-#import "DiceGamePlayController.h"
-
-#import "DiceGameService.h"
-#import "DiceNotification.h"
 
 #import "EntryController.h"
-//#import "BoardView.h"
+
 #import "BoardPanel.h"
 #import "MenuPanel.h"
 #import "BottomMenuPanel.h"
 #import "BoardManager.h"
 
-#import "DiceHomeController.h"
 
 @interface HomeController()
 {
     BoardPanel *_boardPanel;
     NSTimeInterval interval;
-    BOOL hasGetLocalBoardList;
 
 }
 - (void)playBackgroundMusic;
@@ -83,7 +76,6 @@
 
 @implementation HomeController
 @synthesize facetimeButton = _facetimeButton;
-@synthesize diceButton = _diceButton;
 
 //@synthesize adView = _adView;
 @synthesize recommendButton = _recommendButton;
@@ -135,14 +127,9 @@
 
 - (void)loadBoards
 {
-    hasGetLocalBoardList = NO;
-    interval = 1;
-    Board *defaultBoard = [Board defaultBoard];
-    NSArray *borads = [NSArray arrayWithObject:defaultBoard];
-    PPDebug(@"<viewDidLoad> update Board Panel With Default Boards ");
+    NSArray *borads = [[BoardManager defaultManager] boardList];
     [self updateBoardPanelWithBoards:borads];
-    
-    [[BoardService defaultService] getBoardsWithDelegate:self];    
+
 }
 
 - (void)loadMainMenu
@@ -218,7 +205,7 @@
 
 }
 
-- (void)registerDiceGameNotificationWithName:(NSString *)name 
+- (void)registerDrawGameNotificationWithName:(NSString *)name 
                                   usingBlock:(void (^)(NSNotification *note))block
 {
     PPDebug(@"<%@> name", [self description]);         
@@ -229,31 +216,29 @@
                             usingBlock:block];
 }
 
-- (void)registerDiceGameNotification
-{
-    [self registerDiceGameNotificationWithName:NOTIFICATION_JOIN_GAME_RESPONSE usingBlock:^(NSNotification *note) {
-        PPDebug(@"<HomeController> NOTIFICATION_JOIN_GAME_RESPONSE"); 
-        if(_isJoiningDice) {
-            DiceGamePlayController *controller = [[[DiceGamePlayController alloc] init] autorelease];
-            [self.navigationController pushViewController:controller animated:YES];
-            _isJoiningDice = NO; 
-        }
-    }];
-    
-    [self registerDiceGameNotificationWithName:NOTIFICATION_ROOM usingBlock:^(NSNotification *note) {
-        PPDebug(@"<HomeController> NOTIFICATION_ROOM");
-    }];
+- (void)registerDrawGameNotification
+{    
+    [self registerNotificationWithName:BOARD_UPDATE_NOTIFICATION // TODO set right name here
+                                object:nil
+                                 queue:[NSOperationQueue mainQueue]
+                            usingBlock:^(NSNotification *note) {
+                                
+                                // TODO reload board here
+                                [self updateBoardPanelWithBoards:[[BoardManager defaultManager] boardList]];
+                                
+                            }];    
+
     
 }
 
-- (void)unregisterDiceGameNotification
+- (void)unregisterDrawGameNotification
 {        
     [self unregisterAllNotifications];
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {    
-    [self registerDiceGameNotification];
+    [self registerDrawGameNotification];
     
     [[UserService defaultService] getStatistic:self];   
     [UIApplication sharedApplication].idleTimerDisabled = NO;
@@ -279,7 +264,7 @@
 
 - (void)viewDidDisappear:(BOOL)animated
 {
-    [self unregisterDiceGameNotification];
+    [self unregisterDrawGameNotification];
     
     [self hideActivity];
     [[DrawGameService defaultService] unregisterObserver:self];
@@ -293,7 +278,6 @@
     
     [self setRecommendButton:nil];
     [self setFacetimeButton:nil];
-    [self setDiceButton:nil];
     [self setMenuPanel:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
@@ -522,7 +506,6 @@
 - (void)dealloc {
     PPRelease(_recommendButton);
     PPRelease(_facetimeButton);
-    PPRelease(_diceButton);
     PPRelease(_menuPanel);
     PPRelease(_bottomMenuPanel);
 //    PPRelease(_adView);
@@ -624,82 +607,19 @@
 
 }
 
-- (IBAction)clickAnnounce:(id)sender {
-    EntryController  *ec = [[EntryController alloc] init];
-    [self.navigationController pushViewController:ec animated:YES];
-    [ec release];
-}
-
-- (IBAction)clickDice:(id)sender
-{
-//    DiceRoomListController *controller = [[[DiceRoomListController alloc] init] autorelease];
-//    DiceGamePlayController *controller = [[[DiceGamePlayController alloc] init] autorelease];
-//    [self.navigationController pushViewController:controller animated:YES];
-    
-    _isTryJoinGame = YES;
-    
-//    [[DiceGameService defaultService] setServerAddress:@"192.168.1.198"];
-
-//    [[DiceGameService defaultService] setServerAddress:@"192.168.1.7"];
-//    [[DiceGameService defaultService] setServerPort:8018];
-    
-    [[DiceGameService defaultService] setServerAddress:@"106.187.89.232"];
-//    [[DiceGameService defaultService] setServerPort:8080];
-    [[DiceGameService defaultService] setServerPort:8018];
-    
-    [[DiceGameService defaultService] connectServer:self];
-    _isJoiningDice = YES;
-}
-- (IBAction)room:(id)sender
-{
-    DiceHomeController* vc = [[[DiceHomeController alloc] init] autorelease];
-    [self.navigationController pushViewController:vc animated:YES];
-}
 
 - (IBAction)clickFacetime:(id)sender
 {
     FacetimeMainController* vc = [[[FacetimeMainController alloc] init] autorelease];
     [self.navigationController pushViewController:vc animated:YES];
     
-    [[DiceGameService defaultService] joinGameRequest];
+//    [[DiceGameService defaultService] joinGameRequest];
 }
 
 
 //#define BOARD_PANEL_TAG 201208241
 #pragma mark - board service delegate
 
-- (void)updateBoardList:(NSTimer *)theTimer
-{
-    interval *= 2;
-    if (interval < NSTimeIntervalSince1970) {
-        PPDebug(@"<updateBoardList> timeinterval = %f", interval);
-        [[BoardService defaultService] getBoardsWithDelegate:self];        
-    }
-}
-
-- (void)didGetBoards:(NSArray *)boards 
-          resultCode:(NSInteger)resultCode
-{
-    if (resultCode == 0) {
-        PPDebug(@"<didGetBoards> update Board Panel With Remote Boards ");
-        [self updateBoardPanelWithBoards:boards];
-        [[BoardManager defaultManager] saveBoardList:boards];
-    }else {
-        //start timer to fetch. use the local
-        if(!hasGetLocalBoardList){
-            NSArray * boardList = [[BoardManager defaultManager] 
-                                   getLocalBoardList];
-            hasGetLocalBoardList = YES;
-            PPDebug(@"<didGetBoards> update Board Panel With Local Boards ");
-            [self updateBoardPanelWithBoards:boardList];
-        }
-        [NSTimer scheduledTimerWithTimeInterval:interval target:self 
-                                       selector:@selector(updateBoardList:)
-                                       userInfo:nil
-                                        repeats:NO];
-        //start timer to fetch. use the local
-    }
-}
 
 - (void)updateBoardPanelWithBoards:(NSArray *)boards
 {
