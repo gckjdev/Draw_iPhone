@@ -207,6 +207,9 @@
 @synthesize platform = _platform;
 @synthesize publishId = _publishId;
 
+@synthesize cnImageUrl = _cnImageUrl;
+@synthesize cnAdImageUrl = _cnAdImageUrl;
+
 - (id)initWithDictionary:(NSDictionary *)dict
 {
     self = [super initWithDictionary:dict];
@@ -216,6 +219,9 @@
         self.platform = [(NSNumber *)[dict objectForKey:PARA_AD_PLATFORM] integerValue];
         self.publishId = [dict objectForKey:PARA_AD_PUBLISH_ID];
         self.adImageUrl = [dict objectForKey:PARA_AD_IMAGE_URL];
+            
+        self.cnImageUrl = [dict objectForKey:PARA_CN_IMAGE_URL];        
+        self.cnAdImageUrl = [dict objectForKey:PARA_CN_AD_IMAGE_URL];
 
     }
     return self;
@@ -228,6 +234,10 @@
 #define CODE_KEY_PUBLIC_ID @"publicId"
 #define CODE_KEY_AD_IMAGE_URL @"adImageURL"
 
+#define CODE_KEY_CN_IMAGE_URL @"CNImageURL"
+#define CODE_KEY_CN_AD_IMAGE_URL @"CNAdImageURL"
+
+
 - (void)encodeWithCoder:(NSCoder *)aCoder
 {
     [super encodeWithCoder:aCoder];
@@ -236,6 +246,10 @@
     [aCoder encodeObject:_clickUrl forKey:CODE_KEY_CLICK_URL];
     [aCoder encodeInteger:_platform forKey:CODE_KEY_PLATFORM];
     [aCoder encodeObject:_publishId forKey:CODE_KEY_PUBLIC_ID];
+    
+    //cn image
+    [aCoder encodeObject:_cnImageUrl forKey:CODE_KEY_CN_IMAGE_URL];
+    [aCoder encodeObject:_cnAdImageUrl forKey:CODE_KEY_CN_AD_IMAGE_URL];    
 }
 - (id)initWithCoder:(NSCoder *)aDecoder
 {
@@ -246,6 +260,9 @@
         self.clickUrl = [aDecoder decodeObjectForKey:CODE_KEY_CLICK_URL];
         self.platform = [aDecoder decodeIntegerForKey:CODE_KEY_PLATFORM];
         self.publishId = [aDecoder decodeObjectForKey:CODE_KEY_PUBLIC_ID];
+        //cn image
+        self.cnImageUrl = [aDecoder decodeObjectForKey:CODE_KEY_CN_IMAGE_URL];
+        self.cnAdImageUrl = [aDecoder decodeObjectForKey:CODE_KEY_CN_AD_IMAGE_URL];
     }
     return self;
 }
@@ -257,6 +274,8 @@
     PPRelease(_adImageUrl);
     PPRelease(_clickUrl);
     PPRelease(_publishId);
+    PPRelease(_cnAdImageUrl);
+    PPRelease(_cnImageUrl);
     [super dealloc];
 }
 

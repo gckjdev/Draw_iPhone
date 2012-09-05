@@ -20,4 +20,7 @@
 #define PARA_REMOTE_URL @"ru"
 #define PARA_IMAGE_CLICK_URL @"icu"
 
+#define PARA_CN_AD_IMAGE_URL @"caiu"
+#define PARA_CN_IMAGE_URL @"ciu"
+
 #define METHOD_GETBOARDLIST @"gbl"
