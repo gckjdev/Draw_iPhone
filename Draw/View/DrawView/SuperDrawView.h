@@ -39,6 +39,7 @@ typedef enum{
     CGPoint _previousPoint2;
     UIImage *_curImage;
     CGColorRef _changeBackColor;
+    
 }
 
 @property (nonatomic, retain) NSMutableArray *drawActionList;

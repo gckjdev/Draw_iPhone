@@ -124,10 +124,17 @@
     self.dataList = [[ChatMessageManager defaultManager] findMessagesByFriendUserId:_friendUserId];
     [self findAllMessages];
     
-    DrawAppDelegate *drawAppDelegate = (DrawAppDelegate *)[[UIApplication sharedApplication] delegate];
-    drawAppDelegate.chatDetailController = self;
-    
     [self changeTableSize:NO duration:0];
+    
+    //update for dice no graffit
+    if (isDiceApp()) {
+        graffitiButton.hidden = YES;
+        if ([DeviceDetection isIPAD]) {
+            sendButton.frame = CGRectMake(sendButton.frame.origin.x, sendButton.frame.origin.y, 144*2, sendButton.frame.size.height);
+        }else {
+            sendButton.frame = CGRectMake(sendButton.frame.origin.x, sendButton.frame.origin.y, 120, sendButton.frame.size.height);
+        }
+    }
 }
 
 
@@ -149,6 +156,9 @@
 {
     //not reload data
     //PPDebug(@"ChatDetailController viewDidAppear");
+    
+    DrawAppDelegate *drawAppDelegate = (DrawAppDelegate *)[[UIApplication sharedApplication] delegate];
+    drawAppDelegate.chatDetailController = self;
 }
 
 

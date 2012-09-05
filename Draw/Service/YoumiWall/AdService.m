@@ -492,7 +492,7 @@ static AdService* _defaultService;
     PPDebug(@"<createWanpuAdInView> at view %@", [superView description]);
     
     UIView* view = [AppConnect getDisplayAdView];
-//    [view removeFromSuperview];
+    [view removeFromSuperview];
     
     if ([DeviceDetection isIPAD]){
         [AppConnect displayAd:_viewController showX:0 showY:iPadFrame.origin.y-1];

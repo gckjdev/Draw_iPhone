@@ -84,10 +84,17 @@
         NSString *imageUrl = board.imageUrl;
         
         if ([[AdService defaultService] isShowAd]) {
-            imageUrl = board.adImageUrl;
-
+            if ([LocaleUtils isChinese]) {
+                imageUrl = board.cnAdImageUrl;
+            }else{
+                imageUrl = board.adImageUrl;
+            }
         }else{
-            imageUrl = board.imageUrl;
+            if ([LocaleUtils isChinese]) {
+                imageUrl = board.cnImageUrl;
+            }else{
+                imageUrl = board.imageUrl;
+            }
         }
         PPDebug(@"<ImageBoard> load view, image url = %@", imageUrl);
         [_imageView setUrl:[NSURL URLWithString:imageUrl]];        
