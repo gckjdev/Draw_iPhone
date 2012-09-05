@@ -661,8 +661,11 @@ static UserService* _defaultUserService;
 
                 [[QQWeiboService defaultService] saveToken:qqAccessToken secret:qqAccessSecret];
                 
-                [[FriendService defaultService] findFriendsByType:FOLLOW viewController:nil];
-                [[FriendService defaultService] findFriendsByType:FAN viewController:nil];
+                if (isDiceApp() == NO){
+                    [[FriendService defaultService] findFriendsByType:FOLLOW viewController:nil];
+                    [[FriendService defaultService] findFriendsByType:FAN viewController:nil];
+                }
+                
                 [[LevelService defaultService] setLevel:levelSring.intValue];
                 [[LevelService defaultService] setExperience:expSring.intValue];
                 
