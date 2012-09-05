@@ -126,15 +126,6 @@
     
     [self changeTableSize:NO duration:0];
     
-    //update for dice no graffit
-    if (isDiceApp()) {
-        graffitiButton.hidden = YES;
-        if ([DeviceDetection isIPAD]) {
-            sendButton.frame = CGRectMake(sendButton.frame.origin.x, sendButton.frame.origin.y, 144*2, sendButton.frame.size.height);
-        }else {
-            sendButton.frame = CGRectMake(sendButton.frame.origin.x, sendButton.frame.origin.y, 120, sendButton.frame.size.height);
-        }
-    }
 }
 
 
