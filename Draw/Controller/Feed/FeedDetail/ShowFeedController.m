@@ -16,6 +16,8 @@
 #import "CommonUserInfoView.h"
 #import "OfflineGuessDrawController.h"
 #import "CommentController.h"
+#import "ShareService.h"
+#import "Draw.h"
 
 @implementation ShowFeedController
 @synthesize titleLabel = _titleLabel;
@@ -315,11 +317,27 @@ enum{
 
     }else if(button == self.commentButton){
         //enter comment controller
-        CommentController *cc = [[CommentController alloc] init];
+        CommentController *cc = [[CommentController alloc] initWithFeed:self.feed];
         [self presentModalViewController:cc animated:YES];
         [cc release];
     }else if(button == self.saveButton){
         //save
+        UIImage *image = [self.drawCell.showView createImage];
+        
+        [[ShareService defaultService] shareWithImage:image 
+                                           drawUserId:_feed.feedUser.userId
+                                           isDrawByMe:[_feed isMyOpus] 
+                                             drawWord:_feed.wordText];    
+        
+        [[DrawDataService defaultService] saveActionList:_feed.drawData.drawActionList 
+                                                  userId:_feed.feedUser.userId
+                                                nickName:_feed.feedUser.nickName
+                                               isMyPaint:[_feed isMyOpus] 
+                                                    word:_feed.wordText
+                                                   image:image
+                                                delegate:self];
+        button.userInteractionEnabled = NO;
+        
     }else if(button == self.flowerButton){
         //send a flower
     }else if(button == self.tomatoButton){
@@ -334,6 +352,20 @@ enum{
     [self.drawCell setCellInfo:self.feed];
     [self updateTitle];
 }
+
+#pragma mark draw data service delegate
+- (void)didSaveOpus:(BOOL)succ
+{
+    self.saveButton.userInteractionEnabled = YES;
+    if (succ) {
+        self.saveButton.enabled = NO;
+        [self popupMessage:NSLS(@"kSaveOpusOK") title:nil];
+    }else{
+        [self popupMessage:NSLS(@"kSaveImageFail") title:nil];
+    }
+}
+
+
 #pragma mark - override methods.
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {

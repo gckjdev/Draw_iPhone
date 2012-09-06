@@ -182,13 +182,13 @@
             
         }
         [self startTimer];
-    }else{
-        [self setStatus:Stop];
-        self.playTimer = nil;
-        pen.hidden = YES;
+    }else if(_status != Stop){
         if (self.delegate && [self.delegate respondsToSelector:@selector(didPlayDrawView:)]) {
             [self.delegate didPlayDrawView:self];
         }
+        [self setStatus:Stop];
+        self.playTimer = nil;
+        pen.hidden = YES;
     }
     });
 }

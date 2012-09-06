@@ -8,17 +8,28 @@
 
 #import "CommentController.h"
 #import "ShareImageManager.h"
+#import "CommonMessageCenter.h"
 
 @implementation CommentController
 @synthesize contentView;
 @synthesize inputBGView;
 @synthesize titleLabel;
+@synthesize feed = _feed;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+    }
+    return self;
+}
+
+- (id)initWithFeed:(DrawFeed *)feed
+{
+    self = [super init];
+    if (self) {
+        self.feed = feed;
     }
     return self;
 }
@@ -68,6 +79,30 @@
 }
 
 
+- (void)sendComment
+{
+    NSString *msg = contentView.text;
+    if ([msg length] != 0) {
+        [self showActivityWithText:NSLS(@"kSending")];
+        FeedService *_feedService = [FeedService defaultService];
+        [_feedService commentOpus:_feed.feedId author:_feed.feedUser.userId comment:msg delegate:self];        
+    }
+
+}
+
+#pragma mark feed service delegate
+- (void)didCommentOpus:(NSString *)opusId commentFeedId:(NSString *)commentFeedId comment:(NSString *)comment resultCode:(NSInteger)resultCode
+{
+    [self hideActivity];
+    if (resultCode == 0) {
+        [self.contentView setText:nil];
+        [self dismissModalViewControllerAnimated:YES];
+    }else{
+        [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kCommentFail") delayTime:1 isHappy:NO];
+        PPDebug(@"comment fail: opusId = %@, comment = %@", opusId, comment);        
+    }
+}
+
 #pragma mark - key board rect
 
 #define BG_CONTENT_SPACE 3
@@ -92,12 +127,11 @@
 
 #pragma mark - text view delegate
 
-
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text  
 {  
     
     if ([text isEqualToString:@"\n"]) {  
-        PPDebug(@"did click done button");
+        [self sendComment];
         return NO;  
     }  
     return YES;  

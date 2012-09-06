@@ -7,14 +7,19 @@
 //
 
 #import "PPViewController.h"
+#import "FeedService.h"
 
-@interface CommentController : PPViewController<UITextViewDelegate>
+@class DrawFeed;
+@interface CommentController : PPViewController<UITextViewDelegate, FeedServiceDelegate>
 {
-    
+    DrawFeed *_feed;
 }
 @property (retain, nonatomic) IBOutlet UITextView *contentView;
 @property (retain, nonatomic) IBOutlet UIImageView *inputBGView;
 @property (retain, nonatomic) IBOutlet UILabel *titleLabel;
+@property (retain, nonatomic) DrawFeed *feed;
+
+- (id)initWithFeed:(DrawFeed *)feed;
 - (IBAction)clickBack:(id)sender;
 
 @end

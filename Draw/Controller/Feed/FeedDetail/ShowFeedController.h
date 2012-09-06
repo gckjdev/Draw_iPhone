@@ -8,6 +8,7 @@
 
 #import "PPTableViewController.h"
 #import "FeedService.h"
+#import "DrawDataService.h"
 
 @class Feed;
 @class DrawFeed;
@@ -17,7 +18,7 @@
 @class TableTab;
 @class TableTabManager;
 
-@interface ShowFeedController : PPTableViewController<FeedServiceDelegate>
+@interface ShowFeedController : PPTableViewController<FeedServiceDelegate, DrawDataServiceDelegate>
 {
     DrawFeed *_feed;
     UserInfoCell *_userCell;
