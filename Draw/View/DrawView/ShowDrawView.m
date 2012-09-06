@@ -116,10 +116,10 @@
     CGFloat lineWidth = [_currentDrawAction.paint width];
     
     //Pad our values so the bounding box respects our line width
-    drawBox.origin.x        -= lineWidth * 1;
-    drawBox.origin.y        -= lineWidth * 1;
-    drawBox.size.width      += lineWidth * 2;
-    drawBox.size.height     += lineWidth * 2;
+    drawBox.origin.x        -= lineWidth * 0.8;
+    drawBox.origin.y        -= lineWidth * 0.8;
+    drawBox.size.width      += lineWidth * 1.5;
+    drawBox.size.height     += lineWidth * 1.5;
     
 
     UIGraphicsBeginImageContext(drawBox.size);
@@ -171,7 +171,7 @@
                 _previousPoint1 = _currentPoint;
                 _currentPoint = [_currentDrawAction.paint pointAtIndex:_playingPointIndex];
             }
-            PPDebug(@"action Index = %d, pointIndex = %d, point = %@",_playingActionIndex, _playingPointIndex,NSStringFromCGPoint(_currentPoint));
+//            PPDebug(@"action Index = %d, pointIndex = %d, point = %@",_playingActionIndex, _playingPointIndex,NSStringFromCGPoint(_currentPoint));
             [self drawPoint];
             
             if (++_playingPointIndex >= [_currentDrawAction pointCount]) {

@@ -141,7 +141,7 @@
     CGContextSetLineWidth(context, width);    
     CGContextSetStrokeColorWithColor(context, cgColor);
     CGContextStrokePath(context);
-    
+    self.curImage = nil;
 }
 
 - (void)drawPaint:(Paint *)paint
