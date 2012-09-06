@@ -207,7 +207,7 @@
         self.lineWidth = DEFAULT_LINE_WIDTH;
         self.simplingDistance = DEFAULT_SIMPLING_DISTANCE;
         _drawActionList = [[NSMutableArray alloc] init];
-        self.backgroundColor = [UIColor clearColor];        
+        self.backgroundColor = [UIColor whiteColor];        
         _startDrawActionIndex = 0;
     }
     

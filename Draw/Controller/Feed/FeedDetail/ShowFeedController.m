@@ -264,6 +264,7 @@ enum{
     //update the action buttons
     [self updateActionButtons];
     [self updateTitle];
+//    [self hideActivity];
 }
 
 #pragma mark - feed service delegate
@@ -355,6 +356,7 @@ enum{
     [self updateActionButtons];
     [self updateTitle];
     [self updateCommentList:FeedTypeComment];
+//    [self showActivityWithText:NSLS(@"kLoading")];
 }
 
 - (void)viewDidUnload

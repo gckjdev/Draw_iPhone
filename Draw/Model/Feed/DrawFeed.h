@@ -52,6 +52,7 @@ typedef enum{
 - (void)incCorrectTimes;
 - (NSInteger)guessTimes;
 - (NSInteger)matchTimes;
+- (NSInteger)commentTimes;
 - (NSInteger)saveTimes;
 - (NSInteger)correctTimes;
 - (NSInteger)flowerTimes;

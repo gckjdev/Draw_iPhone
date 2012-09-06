@@ -182,6 +182,12 @@
 {
     return [self timesForType:FeedTimesTypeCorrect];    
 }
+
+- (NSInteger)commentTimes
+{
+    return [self timesForType:FeedTimesTypeComment];    
+}
+
 - (NSInteger)saveTimes
 {
     return [self timesForType:FeedTimesTypeSave];

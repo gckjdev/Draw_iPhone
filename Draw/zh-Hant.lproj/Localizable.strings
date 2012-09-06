@@ -753,6 +753,12 @@
 "kLatestFeed" = "最新";
 "kCustomMusic" = "自定義音樂";
 
+
+"kCommentTimes" = "評論(%d)";
+"kGuessTimes" = "猜畫(%d)";
+"kFlowerTimes" = "鮮花(%d)";
+"kTomatoTimes" = "番茄(%d)";
+
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 

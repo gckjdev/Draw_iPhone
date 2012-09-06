@@ -14,13 +14,13 @@
 #import "DrawAction.h"
 #import "TimeUtils.h"
 #import <QuartzCore/QuartzCore.h>
+#import "HJManagedImageV.h"
+#import "PPApplication.h"
 
 @implementation DrawInfoCell
 @synthesize drawImage;
 @synthesize timeLabel;
-@synthesize actionButton;
 @synthesize loadingActivity;
-@synthesize drawBG;
 @synthesize feed = _feed;
 @synthesize showView = _showView;
 @synthesize delegate = _delegate;
@@ -71,60 +71,29 @@
 
 
 - (void)setCellInfo:(DrawFeed *)feed
-{
-    self.drawBG.layer.cornerRadius = 7.0;
-    self.drawBG.layer.masksToBounds = YES;
-    self.drawBG.center = self.drawImage.center;
-    
-    self.actionButton.hidden = YES;
+{    
     [self setFeed:feed];
+    _getTimes = 1;
     [[FeedService defaultService] getFeedByFeedId:feed.feedId delegate:self];
     [self updateTime:self.feed];
-}
-
-
-
-#define ACTION_TAG_GUESS 2012070201
-#define ACTION_TAG_CHALLENGE 2012070202
-
-- (void)updateActionButton:(DrawFeed *)feed
-{
-    if (feed.drawData == nil) {
-        self.actionButton.hidden = YES;
-        return;
-    }
-    
-    ShareImageManager* imageManager = [ShareImageManager defaultManager];
-    self.actionButton.hidden = NO;
-    [self.actionButton setBackgroundImage:[imageManager greenImage] forState:UIControlStateNormal];
-    self.actionButton.userInteractionEnabled = YES;
-    self.actionButton.selected = NO;
-    
-    
-    ActionType type = feed.actionType;
-    if (type == ActionTypeGuess) {
-        [self.actionButton setTitle:NSLS(@"kIGuessAction") forState:UIControlStateNormal];
-        self.actionButton.tag = ACTION_TAG_GUESS;
-        self.actionButton.hidden = NO;
-    }else if(type == ActionTypeChallenge)
-    {
-        [self.actionButton setTitle:NSLS(@"kChallenge") forState:UIControlStateNormal];        
-        self.actionButton.tag = ACTION_TAG_CHALLENGE;
-        self.actionButton.hidden = NO;
+        
+    [self.drawImage clear];
+    if (feed.drawImage) {
+        [self.drawImage setImage:feed.drawImage];
+    }else if (feed.drawImageUrl) {
+        [self.drawImage setUrl:[NSURL URLWithString:feed.drawImageUrl]];
     }else{
-        self.actionButton.hidden = YES;
+        UIImage *defaultImage = [[ShareImageManager defaultManager] unloadBg];
+        [self.drawImage setImage:defaultImage];
     }
-    
+    [GlobalGetImageCache() manage:self.drawImage];
 }
+
 
 - (void)updateShowView:(DrawFeed *)feed
 {
     
-//    self.drawImage.layer.cornerRadius = 10.0;
-//    self.drawImage.layer.masksToBounds = YES;
-
-    CGRect frame = self.drawImage.frame;
-    
+    CGRect frame = self.drawImage.frame;    
     self.showView = [[[ShowDrawView alloc] initWithFrame:frame] autorelease];
     self.showView.playSpeed = 1.0/36.0;
     [self.showView setShowPenHidden:YES];
@@ -145,47 +114,41 @@
         self.showView.drawActionList = [DrawAction scaleActionList:_feed.drawData.drawActionList xScale:xScale yScale:yScale];
     }
     [self.showView show]; 
-//    [self.drawBG setCenter:self.showView.center];
-//    self.showView.layer.cornerRadius = 10.0;
-//    self.showView.layer.masksToBounds = YES;
-    
-//    self.showView.tag = SHOW_VIEW_TAG_SMALL;
-//    [self setShowshowView:SHOW_DRAW_VIEW_FRAME animated:NO];
+    [self.drawImage removeFromSuperview];
+    self.drawImage = nil;
 }
 
-
-
+#define TRY_GET_FEED_TIMES 3
 - (void)didGetFeed:(DrawFeed *)feed
         resultCode:(NSInteger)resultCode
 {
     if (resultCode == 0 && feed != nil) {        
+        
         PPDebug(@"get draw feed succ: feedId = %@",feed.feedId);
         self.feed.timesSet = feed.timesSet;
         self.feed.drawData = feed.drawData;
         [self updateShowView:feed];
-//        [self updateActionButton:feed];
         [self updateTime:feed];
         if (self.delegate && [self.delegate respondsToSelector:@selector(didUpdateShowView)]) {
             [self.delegate didUpdateShowView];
         }
-    }else{
-        [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kGetFeedFail") delayTime:1 isHappy:NO];
+    }else if(resultCode != 0){
+        if (_getTimes < TRY_GET_FEED_TIMES) {
+            [[FeedService defaultService] getFeedByFeedId:feed.feedId delegate:self];
+            _getTimes ++;            
+        }else{
+            PPDebug(@"warnning:<didGetFeed> fail to get feed, feed id = %@",feed.feedId);
+        }
     }
-}
-- (void)didClickShowDrawView:(ShowDrawView *)showDrawView
-{
-    
 }
 
 - (void)dealloc {
     [_showView stop];
     PPRelease(_showView);
     PPRelease(drawImage);
-    PPRelease(actionButton);
     PPRelease(timeLabel);
     PPRelease(loadingActivity);
     PPRelease(_feed);
-    PPRelease(drawBG);
     [super dealloc];
 }
 @end

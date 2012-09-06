@@ -12,6 +12,7 @@
 #import "FeedService.h"
 #import "ShowDrawView.h"
 
+@class HJManagedImageV;
 @protocol DrawInfoCellDelegate <NSObject>
 
 @optional
@@ -24,15 +25,14 @@
     id<DrawInfoCellDelegate> _delegate;
     DrawFeed *_feed;
     ShowDrawView *_showView;
+    NSInteger _getTimes;
 }
 
 @property (assign, nonatomic) id<DrawInfoCellDelegate> delegate;
-@property (retain, nonatomic) IBOutlet UIView *drawBG;
 @property (retain, nonatomic) DrawFeed *feed;
 @property (retain, nonatomic) ShowDrawView *showView;
-@property (retain, nonatomic) IBOutlet UIImageView *drawImage;
+@property (retain, nonatomic) IBOutlet HJManagedImageV *drawImage;
 @property (retain, nonatomic) IBOutlet UILabel *timeLabel;
-@property (retain, nonatomic) IBOutlet UIButton *actionButton;
 @property (retain, nonatomic) IBOutlet UIActivityIndicatorView *loadingActivity;
 - (void)setCellInfo:(DrawFeed *)feed;
 + (NSString*)getCellIdentifier;

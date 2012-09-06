@@ -25,7 +25,7 @@
 - (id)initWithPBFeed:(PBFeed *)pbFeed;
 - (NSInteger)guessTimes;
 - (NSInteger)correctTimes;
-
+- (NSInteger)commentTimes;
 - (NSInteger)matchTimes;
 - (NSInteger)saveTimes;
 - (NSInteger)flowerTimes;

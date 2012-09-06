@@ -93,6 +93,11 @@
     return _drawFeed.correctTimes;
 }
 
+- (NSInteger)commentTimes
+{
+    return _drawFeed.commentTimes;
+}
+
 - (NSInteger)matchTimes
 {
     return _drawFeed.matchTimes;
