@@ -15,6 +15,7 @@
 #import "TableTabManager.h"
 #import "CommonUserInfoView.h"
 #import "OfflineGuessDrawController.h"
+#import "CommentController.h"
 
 @implementation ShowFeedController
 @synthesize titleLabel = _titleLabel;
@@ -310,10 +311,13 @@ enum{
     UIButton *button = (UIButton *)sender;
     if (button == self.guessButton) {
         //enter guess controller
-        OfflineGuessDrawController *controller = [OfflineGuessDrawController startOfflineGuess:self.feed fromController:self];        
+        [OfflineGuessDrawController startOfflineGuess:self.feed fromController:self];        
 
     }else if(button == self.commentButton){
         //enter comment controller
+        CommentController *cc = [[CommentController alloc] init];
+        [self presentModalViewController:cc animated:YES];
+        [cc release];
     }else if(button == self.saveButton){
         //save
     }else if(button == self.flowerButton){
