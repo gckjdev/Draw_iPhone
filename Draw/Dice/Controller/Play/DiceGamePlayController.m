@@ -692,6 +692,14 @@
                                                                  userId:message.userId];
                                         }
                                     }];
+    [self registerDiceGameNotificationWithName:UIApplicationWillEnterForegroundNotification usingBlock:^(NSNotification *note) {
+        PPDebug(@"<DiceGamePlayController> Disconnected from server");
+        if (![_diceService isConnected]) {
+            [self popupUnhappyMessage:NSLS(@"kNetworkBroken") title:@""];
+            [self quitDiceGame];
+            
+        }
+    }];
 }
 
 - (void)someoneChangeDice
