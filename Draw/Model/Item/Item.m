@@ -158,6 +158,10 @@
             return NSLS(@"kQuill"); 
         case WaterPen:
             return NSLS(@"kWaterPen");
+        case ItemTypeRollAgain:
+            return NSLS(@"kRollAgain");
+        case ItemTypeCut:
+            return NSLS(@"kCut");
         default:
             return nil;
     }
