@@ -283,11 +283,13 @@
 - (void)someoneUseItem:(NSString *)userId
                 itemId:(int)itemId;
 {
+    if (itemId != ItemTypeCut) {
+        [self showItemNameAnimationOnUser:userId itemName:[Item nameForItemType:itemId]];
+    }
+    
     switch (itemId) {
         case ItemTypeRollAgain:
-            // TODO: Show item animation here;
             [self rollUserBell:userId];
-            [self showItemAnimationOnUser:userId itemName:NSLS(@"kRollAgain")];
             break;
             
         default:
@@ -298,6 +300,12 @@
 
 - (void)useItemSuccess:(int)itemId
 {
+    [_accountService consumeItem:itemId amount:1]; 
+    
+    if (itemId != ItemTypeCut) {
+        [self showItemNameAnimationOnUser:_userManager.userId itemName:[Item nameForItemType:itemId]];
+    }
+
     switch (itemId) {
         case ItemTypeRollAgain:
             [self rollDiceAgain];
@@ -320,8 +328,6 @@
     button.selected = NO;
     
     [self useItem:item.type itemName:item.shortName userId:_userManager.userId];
-    
-    [_accountService consumeItem:item.type amount:1]; 
 }
 
 - (NSArray *)getSortedUserIdListBeginWithOpenUser
@@ -908,10 +914,7 @@
 - (void)useItem:(int)itemId itemName:(NSString *)itemName userId:(NSString *)userId
 {
     [_diceService userItem:itemId];
-    
-    if (itemId != ItemTypeCut) {
-        [self showItemAnimationOnUser:userId itemName:itemName];
-    }
+
 }
 
 
@@ -920,6 +923,7 @@
 -(void)openDiceSuccess
 {
     [self popupOpenDiceView];  
+    [self playOpenDiceVoice];
 }
 
 - (void)openDice
@@ -928,7 +932,6 @@
     [self clearAllReciprocol];
     [_diceSelectedView dismiss];
     [_diceService openDice];
-    [self playOpenDiceVoice];
 }
 
 - (IBAction)clickOpenDiceButton:(id)sender {
@@ -979,6 +982,8 @@
     if (_diceService.diceSession.wilds) {
         [self userUseWilds];
     }
+    
+    [self playCallDiceVoice];
 }
 
 -(void)callDice:(int)dice count:(int)count
@@ -992,8 +997,6 @@
     }else {
         [_diceService callDice:dice count:count wilds:self.wildsButton.selected];
     }
-    
-    [self playCallDiceVoice];
 }
 
 - (void)didSelectDice:(PBDice *)dice count:(int)count
@@ -1169,7 +1172,7 @@
 }
 
 #pragma mark - Item animations.
-- (void)showItemAnimationOnUser:(NSString*)userId itemName:(NSString *)itemName
+- (void)showItemNameAnimationOnUser:(NSString*)userId itemName:(NSString *)itemName
 {
     HKGirlFontLabel *label = [[[HKGirlFontLabel alloc] initWithFrame:CGRectMake(0, 0, 70, 70) pointSize:50] autorelease];
     label.text = itemName;

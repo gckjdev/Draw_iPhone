@@ -11,9 +11,12 @@
 //#import "LocaleUtils.h"
 //#import "DiceItem.h"
 //
-//
 //@implementation ItemManager (DiceItemManager)
 //
+//- (NSArray *)itemList
+//{
+//    return [NSArray arrayWithObjects:[Item rollAgain], [Item cut], nil];
+//}
 //
 //
 //
