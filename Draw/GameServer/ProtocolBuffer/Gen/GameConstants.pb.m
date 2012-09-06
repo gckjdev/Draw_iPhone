@@ -126,6 +126,7 @@ BOOL GameResultCodeIsValidValue(GameResultCode value) {
     case GameResultCodeErrorNoDrawData:
     case GameResultCodeErrorDiceAlreadyOpen:
     case GameResultCodeErrorUserAlreadyCallDice:
+    case GameResultCodeErrorDiceOpenSelf:
     case GameResultCodeErrorUnknownItem:
     case GameResultCodeErrorSystemHandlerNotFound:
     case GameResultCodeErrorSystemException:
