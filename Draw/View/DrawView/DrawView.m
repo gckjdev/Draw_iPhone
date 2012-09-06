@@ -80,16 +80,9 @@
 {    
     if (drawAction) {
         
-//        if (point.x <= 0 || point.y <= 0) {
-//            return;
-//        }
-//        
-//        if (point.x >= self.bounds.size.width || point.y >= self.bounds.size.height) {
-//            return;
-//        }
         point.x = [self correctValue:point.x max:self.bounds.size.width min:0];
         point.y = [self correctValue:point.y max:self.bounds.size.height min:0];
-        PPDebug(@"add point = %@", NSStringFromCGPoint(point));
+//        PPDebug(@"add point = %@", NSStringFromCGPoint(point));
         [drawAction.paint addPoint:point];   
     }
 }
@@ -125,7 +118,7 @@
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     
-    PPDebug(@"touch began");
+//    PPDebug(@"touch began");
     UITouch *touch = [touches anyObject];
     
     _previousPoint1 = [touch previousLocationInView:self];
@@ -140,7 +133,7 @@
 }
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
-    PPDebug(@"touch end");
+//    PPDebug(@"touch end");
     [self touchesMoved:touches withEvent:event];
     if (self.delegate && [self.delegate respondsToSelector:@selector(didDrawedPaint:)]) {
         [self.delegate didDrawedPaint:_currentDrawAction.paint];
@@ -174,10 +167,10 @@
     CGRect drawBox = bounds;
     
     //Pad our values so the bounding box respects our line width
-    drawBox.origin.x        -= self.lineWidth * 1.0;
-    drawBox.origin.y        -= self.lineWidth * 1.0;
-    drawBox.size.width      += self.lineWidth * 2.0;
-    drawBox.size.height     += self.lineWidth * 2.0;
+    drawBox.origin.x        -= self.lineWidth * 0.8;
+    drawBox.origin.y        -= self.lineWidth * 0.8;
+    drawBox.size.width      += self.lineWidth * 1.5;
+    drawBox.size.height     += self.lineWidth * 1.5;
     
     
     UIGraphicsBeginImageContext(drawBox.size);
