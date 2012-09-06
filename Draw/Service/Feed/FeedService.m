@@ -134,7 +134,8 @@ static FeedService *_staticFeedService = nil;
     });
 }
 
-- (void)getOpusCommentList:(NSString *)opusId
+- (void)getOpusCommentList:(NSString *)opusId 
+                      type:(int)type
                     offset:(NSInteger)offset 
                      limit:(NSInteger)limit 
                   delegate:(id<FeedServiceDelegate>)delegate
@@ -142,7 +143,11 @@ static FeedService *_staticFeedService = nil;
     dispatch_async(workingQueue, ^{
         
         CommonNetworkOutput* output = [GameNetworkRequest 
-                                       getFeedCommentListWithProtocolBuffer:TRAFFIC_SERVER_URL opusId:opusId offset:offset limit:limit];
+                                       getFeedCommentListWithProtocolBuffer:TRAFFIC_SERVER_URL
+                                       opusId:opusId 
+                                       type:type 
+                                       offset:offset 
+                                       limit:limit];
         NSArray *list = nil;
         NSInteger resultCode = output.resultCode;
         if (resultCode == ERROR_SUCCESS){
@@ -153,8 +158,8 @@ static FeedService *_staticFeedService = nil;
         }
         
         dispatch_async(dispatch_get_main_queue(), ^{
-            if (delegate && [delegate respondsToSelector:@selector(didGetFeedCommentList:opusId:resultCode:)]) {
-                [delegate didGetFeedCommentList:list opusId:opusId resultCode:resultCode];
+            if (delegate && [delegate respondsToSelector:@selector(didGetFeedCommentList:opusId:type:resultCode:)]) {
+                [delegate didGetFeedCommentList:list opusId:opusId type:type resultCode:resultCode];
             }            
         });
     });

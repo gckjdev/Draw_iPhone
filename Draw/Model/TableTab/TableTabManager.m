@@ -19,8 +19,8 @@
     if(self){
         _tabList = [[NSMutableArray alloc] init];
         NSInteger i = 0;
-        for (NSString *tabID in tabIDs) {
-            TableTab *tab = [TableTab tabWithID:tabID 
+        for (NSNumber *tabID in tabIDs) {
+            TableTab *tab = [TableTab tabWithID:tabID.integerValue
                                           index:i++ 
                                          offset:0 
                                           limit:limit
@@ -47,10 +47,10 @@
     }
     return [_tabList objectAtIndex:index];
 }
-- (TableTab *)tabForID:(NSString *)tabID
+- (TableTab *)tabForID:(NSInteger)tabID
 {
     for (TableTab *tab in _tabList) {
-        if ([tab.tabID isEqualToString:tabID]) {
+        if (tab.tabID == tabID) {
             return tab;
         }
     }
@@ -71,5 +71,27 @@
     [self.currentTab setCurrentTab:NO];
     [tab setCurrentTab:YES];
 }
+
+- (NSArray *)dataListForTabID:(NSInteger)tabID
+{
+    return [[self tabForID:tabID] dataList];
+}
+- (void)setDataList:(NSArray *)list ForTabID:(NSInteger)tabID
+{
+    TableTab *tab = [self tabForID:tabID];
+    if ([list count] == 0) {
+        [tab.dataList removeAllObjects];
+    }else{
+        tab.dataList = [NSMutableArray arrayWithArray:list];
+    }
+}
+- (void)addDataList:(NSArray *)list toTab:(NSInteger)tabID
+{
+    TableTab *tab = [self tabForID:tabID];
+    if ([list count] != 0) {
+        [tab.dataList addObjectsFromArray:list];
+    }
+}
+
 
 @end

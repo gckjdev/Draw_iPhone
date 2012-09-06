@@ -27,7 +27,8 @@
 
 
 - (void)didGetFeedCommentList:(NSArray *)feedList 
-                       opusId:(NSString *)opusId 
+                       opusId:(NSString *)opusId
+                         type:(int)type
                    resultCode:(NSInteger)resultCode;
 
 - (void)didCommentOpus:(NSString *)opusId
@@ -71,10 +72,11 @@
               limit:(NSInteger)limit 
            delegate:(PPViewController<FeedServiceDelegate> *)delegate;
 
-- (void)getOpusCommentList:(NSString *)opusId
-             offset:(NSInteger)offset 
-              limit:(NSInteger)limit 
-           delegate:(id<FeedServiceDelegate>)delegate;
+- (void)getOpusCommentList:(NSString *)opusId 
+                      type:(int)type
+                    offset:(NSInteger)offset 
+                     limit:(NSInteger)limit 
+                  delegate:(id<FeedServiceDelegate>)delegate;
 
 - (void)getFeedByFeedId:(NSString *)feedId 
                delegate:(id<FeedServiceDelegate>)delegate;

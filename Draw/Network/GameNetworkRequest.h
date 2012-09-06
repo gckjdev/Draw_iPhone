@@ -293,7 +293,8 @@
                                                  lang:(NSInteger)lang;
 
 + (CommonNetworkOutput*)getFeedCommentListWithProtocolBuffer:(NSString*)baseURL 
-                                                      opusId:(NSString *)opusId 
+                                                      opusId:(NSString *)opusId
+                                                        type:(int)type
                                                       offset:(NSInteger)offset
                                                        limit:(NSInteger)limit;
 

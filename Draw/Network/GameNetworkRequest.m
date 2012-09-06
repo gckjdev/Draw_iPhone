@@ -1673,9 +1673,10 @@
 }
 
 + (CommonNetworkOutput*)getFeedCommentListWithProtocolBuffer:(NSString*)baseURL 
-                                               opusId:(NSString *)opusId 
-                                               offset:(NSInteger)offset
-                                                limit:(NSInteger)limit
+                                                      opusId:(NSString *)opusId
+                                                        type:(int)type
+                                                      offset:(NSInteger)offset
+                                                       limit:(NSInteger)limit
 {
     CommonNetworkOutput* output = [[[CommonNetworkOutput alloc] init] autorelease];
     
@@ -1691,6 +1692,7 @@
         str = [str stringByAddQueryParameter:PARA_FORMAT value:FINDDRAW_FORMAT_PROTOCOLBUFFER];
         str = [str stringByAddQueryParameter:PARA_APPID value:[ConfigManager appId]];
         str = [str stringByAddQueryParameter:PARA_RETURN_ITEM intValue:1];
+        str = [str stringByAddQueryParameter:PARA_TYPE intValue:type];
         
         return str;
     };

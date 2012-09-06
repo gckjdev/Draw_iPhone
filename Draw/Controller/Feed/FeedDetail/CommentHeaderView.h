@@ -16,6 +16,15 @@
 
 @end
 
+typedef enum{
+    CommentTypeNO = -100,
+    CommentTypeGuess = 2,
+    CommentTypeComment = 3,
+    CommentTypeFlower = 6,
+    CommentTypeTomato = 7,
+}CommentType;
+
+
 @interface CommentHeaderView : UIView
 {
     NSInteger _currentType;
