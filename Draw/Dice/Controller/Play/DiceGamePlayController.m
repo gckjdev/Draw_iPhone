@@ -94,7 +94,8 @@
 
 
 - (void)dealloc {
-    
+    [UIApplication sharedApplication].idleTimerDisabled=NO;
+
     [self setAdView:nil];
     
     [self clearAdHideTimer];
@@ -150,7 +151,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
+    
+    [UIApplication sharedApplication].idleTimerDisabled=YES;
+    
     self.popupView = [[[DicePopupViewManager alloc] init] autorelease];
     self.wildsLabel.text = NSLS(@"kDiceWilds");
     self.wildsFlagButton.fontLable.text = NSLS(@"kDiceWilds");
@@ -923,6 +926,7 @@
 {
     [self disableAllDiceOperationButtons];
     [self clearAllReciprocol];
+    [_diceSelectedView dismiss];
     [_diceService openDice];
     [self playOpenDiceVoice];
 }
@@ -935,6 +939,7 @@
 {
     [self clearAllReciprocol];
     [self disableAllDiceOperationButtons];
+    [_diceSelectedView dismiss];
     [self popupOpenDiceView];  
     [self playOpenDiceVoice];
 }
