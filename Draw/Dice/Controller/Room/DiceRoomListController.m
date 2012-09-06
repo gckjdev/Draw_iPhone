@@ -210,6 +210,12 @@
 //        [[DiceGameService defaultService] getRoomList:0 count:_diceGameService.roomList.count shouldReloadData:YES];
 //
 //    }];
+    [self registerDiceGameNotificationWithName:UIApplicationWillEnterForegroundNotification usingBlock:^(NSNotification *note) {
+        PPDebug(@"<DiceRoomListController> Disconnected from server");
+        if (![[DiceGameService defaultService] isConnected]) {
+            [self didBroken];
+        }
+    }];
 
 }
 
@@ -266,9 +272,8 @@
 
 - (void)viewDidAppear:(BOOL)animated
 {
-    [super viewDidAppear:animated];
     [self registerDiceRoomNotification];    
-    
+    [super viewDidAppear:animated];    
     [self connectServer];
 }
 
