@@ -54,6 +54,9 @@ typedef enum{
 - (void)updateFeedTimesFromDict:(NSDictionary *)dict;
 - (void)setTimes:(NSInteger)times forType:(FeedTimesType)type;
 
+- (void)incTimesForType:(NSInteger)type;
+- (void)decTimesForType:(NSInteger)type;
+
 - (NSInteger)guessTimes;
 - (NSInteger)matchTimes;
 - (NSInteger)commentTimes;

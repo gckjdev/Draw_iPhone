@@ -118,7 +118,6 @@ enum{
 
 - (void)reloadCommentSection
 {
-    
     NSIndexSet *indexSet = [NSIndexSet indexSetWithIndex:SectionCommentInfo];
     [self.dataTableView reloadSections:indexSet withRowAnimation:UITableViewRowAnimationFade];
 }
@@ -257,6 +256,7 @@ enum{
             self.commentHeader = [CommentHeaderView createCommentHeaderView:self];
             [self.commentHeader setViewInfo:self.feed];
         }
+        [self.commentHeader updateTimes:self.feed];
         return self.commentHeader;
     }
     return nil;
@@ -309,6 +309,20 @@ enum{
         [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kDeleteFail") delayTime:1.5 isHappy:NO];
         return;
     }
+    
+    if (feed.feedType == FeedTypeComment) {
+        [self.feed decTimesForType:FeedTimesTypeComment];
+    }else if(feed.feedType == FeedTypeGuess)
+    {
+        [self.feed decTimesForType:FeedTimesTypeGuess];
+    }else if(feed.feedType == FeedTypeFlower)
+    {
+        [self.feed decTimesForType:FeedTimesTypeFlower];
+    }else if(feed.feedType == FeedTypeTomato)
+    {
+        [self.feed decTimesForType:FeedTimesTypeTomato];
+    }
+    
     NSMutableArray *list = [[_tabManager currentTab] dataList];
     [list removeObject:feed];
     [self reloadCommentSection];

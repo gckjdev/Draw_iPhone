@@ -143,7 +143,7 @@
 {
     return self.feedUser;
 }
-- (void)incTimesForType:(NSInteger)type;
+- (void)incTimesForType:(NSInteger)type
 {
     for (FeedTimes *feedTimes in self.timesSet) {
         if (feedTimes.type == type) {
@@ -152,8 +152,15 @@
     }
 }
 
-
-- (NSInteger)timesForType:(NSInteger)type;
+- (void)decTimesForType:(NSInteger)type
+{
+    for (FeedTimes *feedTimes in self.timesSet) {
+        if (feedTimes.type == type) {
+            feedTimes.times --;
+        }
+    }    
+}
+- (NSInteger)timesForType:(NSInteger)type
 {
     for (FeedTimes *feedTimes in self.timesSet) {
         if (feedTimes.type == type) {
