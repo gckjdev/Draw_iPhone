@@ -54,7 +54,7 @@
 
 #pragma mark - Connect & Disconnect Handling
 
-#define DISCONNECT_TIMER_INTERVAL   10
+#define DISCONNECT_TIMER_INTERVAL   30
 
 - (void)startDisconnectTimer
 {

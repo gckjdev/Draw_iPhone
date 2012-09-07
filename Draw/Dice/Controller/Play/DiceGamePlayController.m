@@ -696,8 +696,7 @@
         PPDebug(@"<DiceGamePlayController> Disconnected from server");
         if (![_diceService isConnected]) {
             [self popupUnhappyMessage:NSLS(@"kNetworkBroken") title:@""];
-            [self quitDiceGame];
-            
+            [self quitDiceGame];            
         }
     }];
 }
