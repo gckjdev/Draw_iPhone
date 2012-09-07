@@ -21,6 +21,7 @@
 #import "MobClickUtils.h"
 #import "CommonUserInfoView.h"
 #import "NotificationManager.h"
+#import "ShowFeedController.h"
 
 #pragma mark - Class FeedListState
 @interface FeedListState : NSObject {
@@ -396,9 +397,15 @@
         PPDebug(@"warnning:<FeedController> feedId = %@ is illegal feed, cannot set the detail", feed.feedId);
         return;
     }
-    FeedDetailController *feedDetailController = [[FeedDetailController alloc] initWithFeed:drawFeed];
+//    FeedDetailController *feedDetailController = [[FeedDetailController alloc] initWithFeed:drawFeed];
+//    [self.navigationController pushViewController:feedDetailController animated:YES];
+//    [feedDetailController release];
+
+    ShowFeedController *feedDetailController = [[ShowFeedController alloc] initWithFeed:drawFeed];
     [self.navigationController pushViewController:feedDetailController animated:YES];
     [feedDetailController release];
+
+    
     //enter the detail feed contrller
 }
 

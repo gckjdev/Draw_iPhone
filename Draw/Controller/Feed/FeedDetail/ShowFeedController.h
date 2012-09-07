@@ -9,6 +9,9 @@
 #import "PPTableViewController.h"
 #import "FeedService.h"
 #import "DrawDataService.h"
+#import "CommonDialog.h"
+#import "DrawGameAnimationManager.h"
+#import "CommentHeaderView.h"
 
 @class Feed;
 @class DrawFeed;
@@ -17,15 +20,15 @@
 @class CommentHeaderView;
 @class TableTab;
 @class TableTabManager;
+//@class ToolView;
 
-@interface ShowFeedController : PPTableViewController<FeedServiceDelegate, DrawDataServiceDelegate>
+@interface ShowFeedController : PPTableViewController<FeedServiceDelegate, DrawDataServiceDelegate,CommonDialogDelegate, CommentHeaderViewDelegate>
 {
     DrawFeed *_feed;
     UserInfoCell *_userCell;
     DrawInfoCell *_drawCell;
     CommentHeaderView *_commentHeader;
     TableTabManager *_tabManager;
-    NSInteger _startIndex;
 }
 @property (retain, nonatomic) IBOutlet UILabel *titleLabel;
 @property (retain, nonatomic) IBOutlet UIButton *guessButton;
