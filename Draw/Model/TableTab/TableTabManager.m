@@ -12,18 +12,22 @@
 @implementation TableTabManager
 
 - (id)initWithTabIDList:(NSArray *)tabIDs 
+         noDataDescList:(NSArray *)noDataList
                   limit:(NSInteger)limit 
-        currentTabIndex:(NSInteger)index
+        currentTabIndex:(NSInteger)index;
 {
     self = [super init];
     if(self){
         _tabList = [[NSMutableArray alloc] init];
         NSInteger i = 0;
         for (NSNumber *tabID in tabIDs) {
+            NSString *desc = (i < [noDataList count] ? 
+                              [noDataList objectAtIndex:i] : nil);
             TableTab *tab = [TableTab tabWithID:tabID.integerValue
                                           index:i++ 
                                          offset:0 
-                                          limit:limit
+                                          limit:limit 
+                                     noDataDesc:desc
                                     hasMoreData:YES 
                                    isCurrentTab:NO];
             [_tabList addObject:tab];

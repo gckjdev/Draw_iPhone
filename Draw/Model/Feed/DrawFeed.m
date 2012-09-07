@@ -9,6 +9,8 @@
 #import "DrawFeed.h"
 #import "Draw.h"
 #import "ShareImageManager.h"
+#import "GameNetworkConstants.h"
+
 
 @implementation DrawFeed
 
@@ -218,6 +220,35 @@
     }
     return ActionTypeHidden;
 }
+
+- (void)setTimes:(NSInteger)times forType:(FeedTimesType)type
+{
+    for (FeedTimes *feedTime in _timesSet) {
+        if (feedTime.type == type) {
+            feedTime.times = times;
+            return;
+        }
+    }
+}
+
+- (void)updateTimesWithType:(FeedTimesType)type 
+                        key:(NSString *)key 
+                     inDict:(NSDictionary *)dict
+{
+    NSNumber *times = [dict objectForKey:key];
+    [self setTimes:times.integerValue forType:type];
+}
+
+- (void)updateFeedTimesFromDict:(NSDictionary *)dict
+{
+    [self updateTimesWithType:FeedTimesTypeComment key:PARA_COMMENT_TIMES inDict:dict];
+    [self updateTimesWithType:FeedTimesTypeGuess key:PARA_GUESS_TIMES inDict:dict];
+    [self updateTimesWithType:FeedTimesTypeCorrect key:PARA_CORRECT_TIMES inDict:dict];
+    [self updateTimesWithType:FeedTimesTypeFlower key:PARA_FLOWER_TIMES inDict:dict];
+    [self updateTimesWithType:FeedTimesTypeTomato key:PARA_TOMATO_TIMES inDict:dict];
+    [self updateTimesWithType:FeedTimesTypeSave key:PARA_SAVE_TIMES inDict:dict];
+}
+
 - (void)dealloc
 {
     PPRelease(_drawImage);    

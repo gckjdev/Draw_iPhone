@@ -50,12 +50,12 @@ typedef enum{
     PPRelease(_userCell);
     PPRelease(_tabManager);
     PPRelease(_commentHeader);
-    [_titleLabel release];
-    [_guessButton release];
-    [_saveButton release];
-    [_commentButton release];
-    [_flowerButton release];
-    [_tomatoButton release];
+    PPRelease(_titleLabel);
+    PPRelease(_guessButton);
+    PPRelease(_saveButton);
+    PPRelease(_commentButton);
+    PPRelease(_flowerButton);
+    PPRelease(_tomatoButton);
     [super dealloc];
 }
 
@@ -65,10 +65,6 @@ typedef enum{
     if(self)
     {
         self.feed = feed;
-        NSArray *array = [NSArray arrayWithObjects:@"comment", nil];
-        _tabManager = [[TableTabManager alloc] initWithTabIDList:array 
-                                                           limit:20 
-                                                 currentTabIndex:0];
     }
     return self;
 }
@@ -89,9 +85,8 @@ enum{
     //data is nil
     NSInteger start = ActionTagGuess;
     NSInteger count = ActionTagEnd - start;
-    if (self.feed.drawData == nil) {
-        
-    }else if ([self.feed showAnswer]) {
+    
+    if ([self.feed showAnswer]) {
     //mine or correct
         start = ActionTagComment;
         self.guessButton.hidden = YES;
@@ -111,8 +106,14 @@ enum{
         button.enabled = YES;
         x += width + space;
     }
-    //can guess
+    self.saveButton.enabled = !_didSave;
     
+    if (self.feed.drawData == nil) {
+        for (NSInteger tag = ActionTagGuess; tag < ActionTagEnd; ++ tag) {
+            UIButton *button = (UIButton *)[self.view viewWithTag:tag];            
+            button.enabled = NO;
+        }
+    }
 }
 
 #pragma mark - table view delegate.
@@ -142,6 +143,18 @@ enum{
         UITableViewCell *cell = [self.dataTableView dequeueReusableCellWithIdentifier:identifier];
         if (cell == nil) {
             cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier]autorelease];
+        }
+        if (row == 0) {
+            [cell.textLabel setTextAlignment:UITextAlignmentCenter];
+            [cell.textLabel setFont:[UIFont systemFontOfSize:13]];
+            TableTab *tab = [_tabManager currentTab];
+            if (tab.status == TableTabStatusLoading) {
+                [cell.textLabel setText:NSLS(@"kLoading")];
+            }else if(tab.status == TableTabStatusLoaded){
+                [cell.textLabel setText:tab.noDataDesc];
+            }
+        }else{
+            [cell.textLabel setText:nil];
         }
         return cell; 
     }
@@ -264,6 +277,39 @@ enum{
 }
 
 
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    DrawFeed *feed = [self.dataList objectAtIndex:indexPath.row];
+    [self showActivityWithText:NSLS(@"kDeleting")];
+    [[FeedService defaultService] deleteFeed:feed delegate:self];
+}
+
+-(BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.row < [self.dataList count]) {
+        DrawFeed *feed = [self.dataList objectAtIndex:indexPath.row];
+        return [feed isMyFeed]|| [self.feed isMyOpus];        
+    }
+    return NO;
+}
+
+- (void)didDeleteFeed:(DrawFeed *)feed resultCode:(NSInteger)resultCode;
+
+{
+    [self hideActivity];
+    if (resultCode != 0) {
+        [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kDeleteFail") delayTime:1.5 isHappy:NO];
+        return;
+    }
+    NSInteger row = [self.dataList indexOfObject:feed];
+    NSIndexPath *path = [NSIndexPath indexPathForRow:row inSection:SectionCommentInfo];    
+
+    NSMutableArray *list = [[_tabManager currentTab] dataList];
+    [list removeObject:feed];
+    [self.dataTableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:path] withRowAnimation:UITableViewRowAnimationFade];
+}
+
+
 #pragma mark update views
 - (void)updateTitle
 {
@@ -283,20 +329,23 @@ enum{
 {
     //update the times
     [self.commentHeader setViewInfo:self.feed];
+    
     //update the action buttons
     [self updateActionButtons];
     [self updateTitle];
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [self didUpdateShowView];
+}
+
 - (void)reloadCommentSection
 {
-//    CGPoint offset = [self.dataTableView contentOffset];
     
     NSIndexSet *indexSet = [NSIndexSet indexSetWithIndex:SectionCommentInfo];
     [self.dataTableView reloadSections:indexSet withRowAnimation:UITableViewRowAnimationFade];
-//    [self.dataTableView setContentOffset:offset];
-//    self.dataTableView scro
-//    self.dataTableView 
 }
 
 #pragma mark - feed service delegate
@@ -309,10 +358,11 @@ enum{
 //    [self hideActivity];
     [self dataSourceDidFinishLoadingMoreData];
     [self dataSourceDidFinishLoadingMoreData];
+    
+    TableTab *tab = [_tabManager tabForID:type];
     if (resultCode == 0) {
         
         PPDebug(@"<didGetFeedCommentList>get feed(%@)  succ!", opusId);
-        TableTab *tab = [_tabManager tabForID:type];
         [tab setStatus:TableTabStatusLoaded];
         NSInteger count = [feedList count];
         if (count == 0) {
@@ -330,6 +380,9 @@ enum{
         }
         [self reloadCommentSection];
     }else{
+        if (tab.offset == 0) {
+            [tab setStatus:TableTabStatusUnload];
+        }
         PPDebug(@"<didGetFeedCommentList>get feed(%@)  fail!", opusId);
     }
 }
@@ -436,17 +489,13 @@ enum{
     
 }
 
-- (IBAction)clickRefresh:(id)sender {
-    [self.drawCell setCellInfo:self.feed];
-    [self updateTitle];
-}
-
 #pragma mark draw data service delegate
 - (void)didSaveOpus:(BOOL)succ
 {
     self.saveButton.userInteractionEnabled = YES;
     if (succ) {
         self.saveButton.enabled = NO;
+        _didSave = YES;
         [self popupMessage:NSLS(@"kSaveOpusOK") title:nil];
     }else{
         [self popupMessage:NSLS(@"kSaveImageFail") title:nil];
@@ -504,6 +553,27 @@ enum{
     // Release any cached data, images, etc that aren't in use.
 }
 
+- (void)initTabs
+{
+    NSArray *tabIDs = [NSArray arrayWithObjects:
+                       [NSNumber numberWithInteger:CommentTypeComment],
+                       [NSNumber numberWithInteger:CommentTypeGuess],
+                       [NSNumber numberWithInteger:CommentTypeFlower],
+                       [NSNumber numberWithInteger:CommentTypeTomato], nil];
+    
+    NSArray *tabNoDataDescList = [NSArray arrayWithObjects:NSLS(@"kNoComments"),
+                                  NSLS(@"kNoGuesses"),
+                                  NSLS(@"kNoFlowers"),
+                                  NSLS(@"kNoTomatos"), nil];
+    
+    _tabManager = [[TableTabManager alloc] initWithTabIDList:tabIDs 
+                                              noDataDescList:tabNoDataDescList 
+                                                       limit:12 
+                                             currentTabIndex:CommentTypeGuess];
+    
+    [self didSelectCommentType:CommentTypeComment];
+}
+
 #pragma mark - View lifecycle
 
 - (void)viewDidLoad
@@ -513,15 +583,7 @@ enum{
     [super viewDidLoad];
     [self updateActionButtons];
     [self updateTitle];
-    
-    NSArray *tabIDs = [NSArray arrayWithObjects:
-                       [NSNumber numberWithInteger:CommentTypeComment],
-                       [NSNumber numberWithInteger:CommentTypeGuess],
-                       [NSNumber numberWithInteger:CommentTypeFlower],
-                       [NSNumber numberWithInteger:CommentTypeTomato], nil];
-    
-    _tabManager = [[TableTabManager alloc] initWithTabIDList:tabIDs limit:12 currentTabIndex:1];
-    [self didSelectCommentType:CommentTypeComment];
+    [self initTabs];
 }
 
 - (void)viewDidUnload
@@ -541,6 +603,26 @@ enum{
 {
     // Return YES for supported orientations
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
+
+- (IBAction)clickRefresh:(id)sender {
+    if (self.feed.drawData == nil) {
+        [_drawCell setCellInfo:_feed];
+    }
+    
+    //update times
+    [[FeedService defaultService] updateFeedTimes:self.feed delegate:self];
+    
+    TableTab *tab = [_tabManager currentTab];
+    tab.offset = 0;
+    [self updateCommentListForTab:tab];
+}
+- (void)didUpdateFeedTimes:(DrawFeed *)feed 
+                resultCode:(NSInteger)resultCode
+{
+    if (resultCode == 0) {
+        [_commentHeader updateTimes:feed];
+    }
 }
 
 

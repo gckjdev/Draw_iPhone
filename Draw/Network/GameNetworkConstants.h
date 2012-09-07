@@ -118,6 +118,16 @@
 #define METHOD_GET_FEED_LIST  @"gfl"
 #define METHOD_ACTION_ON_OPUS  @"aoo"
 #define METHOD_GET_FEED_COMMENT_LIST @"gfc"
+#define METHOD_GET_OUPS_TIMES @"got"
+
+#define PARA_COMMENT_TIMES @"cmt"
+#define PARA_GUESS_TIMES @"gt"
+#define PARA_CORRECT_TIMES @"crt"
+#define PARA_FLOWER_TIMES @"ft"
+#define PARA_TOMATO_TIMES @"tt"
+#define PARA_SAVE_TIMES @"st"
+
+
 
 #define ACTION_TYPE_GUESS    2
 #define ACTION_TYPE_COMMENT  3

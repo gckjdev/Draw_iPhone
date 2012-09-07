@@ -323,6 +323,10 @@
                                 appId:(NSString *)appId 
                                userId:(NSString *)userId;
 
++ (CommonNetworkOutput*)getOpusTimes:(NSString*)baseURL 
+                               appId:(NSString *)appId 
+                              feedId:(NSString *)feedId;
+
 + (CommonNetworkOutput*)deleteMessage:(NSString*)baseURL 
                                 appId:(NSString*)appId
                                userId:(NSString*)userId

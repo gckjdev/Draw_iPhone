@@ -25,7 +25,10 @@ typedef enum{
     BOOL _currentTab;
     NSMutableArray *_dataList;
     TableTabStatus _status;
+    NSString *_noDataDesc;
 }
+
+@property(nonatomic, retain)NSString *noDataDesc;
 @property(nonatomic, assign)TableTabStatus status;
 @property(nonatomic, assign)NSInteger tabID;
 @property(nonatomic, assign)NSInteger index;
@@ -40,6 +43,7 @@ typedef enum{
               index:(NSInteger)index
              offset:(NSInteger)offset
               limit:(NSInteger)limit 
+         noDataDesc:(NSString *)noDataDesc
         hasMoreData:(BOOL)hasMoreData 
        isCurrentTab:(BOOL)isCurrentTab;
 
@@ -47,6 +51,7 @@ typedef enum{
               index:(NSInteger)index
              offset:(NSInteger)offset
               limit:(NSInteger)limit 
+         noDataDesc:(NSString *)noDataDesc
         hasMoreData:(BOOL)hasMoreData 
        isCurrentTab:(BOOL)isCurrentTab;
 

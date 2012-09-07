@@ -15,6 +15,7 @@
 }
 
 - (id)initWithTabIDList:(NSArray *)tabIDs 
+         noDataDescList:(NSArray *)noDataList
                   limit:(NSInteger)limit 
         currentTabIndex:(NSInteger)index;
 
