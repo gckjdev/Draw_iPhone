@@ -1284,6 +1284,11 @@
 		CADD7FDD1511BAAB0075C739 /* DrawGameService.m in Sources */ = {isa = PBXBuildFile; fileRef = CADD7FDC1511BAAB0075C739 /* DrawGameService.m */; };
 		CADD804D15138C690075C739 /* UserManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CADD804C15138C690075C739 /* UserManager.m */; };
 		CADD8050151397870075C739 /* UINavigationController+UINavigationControllerAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = CADD804F151397870075C739 /* UINavigationController+UINavigationControllerAdditions.m */; };
+		CADF7E3D15F9F47F0018F0B6 /* CommentController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CADF7E3815F9F4720018F0B6 /* CommentController~ipad.xib */; };
+		CADF7E3E15F9F47F0018F0B6 /* CommentHeaderView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CADF7E3915F9F4740018F0B6 /* CommentHeaderView~ipad.xib */; };
+		CADF7E3F15F9F47F0018F0B6 /* DrawInfoCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CADF7E3A15F9F4770018F0B6 /* DrawInfoCell~ipad.xib */; };
+		CADF7E4015F9F47F0018F0B6 /* ShowFeedController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CADF7E3B15F9F4790018F0B6 /* ShowFeedController~ipad.xib */; };
+		CADF7E4115F9F47F0018F0B6 /* UserInfoCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CADF7E3C15F9F47A0018F0B6 /* UserInfoCell~ipad.xib */; };
 		CAE0C8971591A2ED008CDA62 /* NotificationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE0C8961591A2ED008CDA62 /* NotificationManager.m */; };
 		CAE2CABE151B2ECA0062ED37 /* Account.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE2CABD151B2ECA0062ED37 /* Account.m */; };
 		CAE2CAC1151B2F7C0062ED37 /* Item.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE2CAC0151B2F7C0062ED37 /* Item.m */; };
@@ -3237,6 +3242,11 @@
 		CADD804C15138C690075C739 /* UserManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserManager.m; sourceTree = "<group>"; };
 		CADD804E151397870075C739 /* UINavigationController+UINavigationControllerAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+UINavigationControllerAdditions.h"; sourceTree = "<group>"; };
 		CADD804F151397870075C739 /* UINavigationController+UINavigationControllerAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+UINavigationControllerAdditions.m"; sourceTree = "<group>"; };
+		CADF7E3815F9F4720018F0B6 /* CommentController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "CommentController~ipad.xib"; sourceTree = "<group>"; };
+		CADF7E3915F9F4740018F0B6 /* CommentHeaderView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "CommentHeaderView~ipad.xib"; sourceTree = "<group>"; };
+		CADF7E3A15F9F4770018F0B6 /* DrawInfoCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "DrawInfoCell~ipad.xib"; sourceTree = "<group>"; };
+		CADF7E3B15F9F4790018F0B6 /* ShowFeedController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ShowFeedController~ipad.xib"; sourceTree = "<group>"; };
+		CADF7E3C15F9F47A0018F0B6 /* UserInfoCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "UserInfoCell~ipad.xib"; sourceTree = "<group>"; };
 		CAE0C8951591A2ED008CDA62 /* NotificationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotificationManager.h; sourceTree = "<group>"; };
 		CAE0C8961591A2ED008CDA62 /* NotificationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotificationManager.m; sourceTree = "<group>"; };
 		CAE23C6E153E9E9A00F52497 /* MainDataModel 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "MainDataModel 2.xcdatamodel"; sourceTree = "<group>"; };
@@ -5895,6 +5905,7 @@
 		CA42E3CC15F4633100790B3C /* FeedDetail */ = {
 			isa = PBXGroup;
 			children = (
+				CADF7E3C15F9F47A0018F0B6 /* UserInfoCell~ipad.xib */,
 				CA42E3CD15F4633100790B3C /* CommentCell.h */,
 				CA42E3CE15F4633100790B3C /* CommentCell.m */,
 				CA42E3CF15F4633100790B3C /* CommentCell.xib */,
@@ -5902,18 +5913,22 @@
 				CA42E3D115F4633100790B3C /* CommentHeaderView.h */,
 				CA42E3D215F4633100790B3C /* CommentHeaderView.m */,
 				CA42E3D315F4633100790B3C /* CommentHeaderView.xib */,
+				CADF7E3915F9F4740018F0B6 /* CommentHeaderView~ipad.xib */,
 				CA42E3D415F4633100790B3C /* DrawInfoCell.h */,
 				CA42E3D515F4633100790B3C /* DrawInfoCell.m */,
 				CA42E3D615F4633100790B3C /* DrawInfoCell.xib */,
+				CADF7E3A15F9F4770018F0B6 /* DrawInfoCell~ipad.xib */,
 				CA42E3DB15F4633100790B3C /* ShowFeedController.h */,
 				CA42E3DC15F4633100790B3C /* ShowFeedController.m */,
 				CA42E3DD15F4633100790B3C /* ShowFeedController.xib */,
+				CADF7E3B15F9F4790018F0B6 /* ShowFeedController~ipad.xib */,
 				CA42E3DE15F4633100790B3C /* UserInfoCell.h */,
 				CA42E3DF15F4633100790B3C /* UserInfoCell.m */,
 				CA42E3E015F4633100790B3C /* UserInfoCell.xib */,
 				CAA8260D15F8871800E35C9E /* CommentController.h */,
 				CAA8260E15F8872600E35C9E /* CommentController.m */,
 				CAA8260F15F8874700E35C9E /* CommentController.xib */,
+				CADF7E3815F9F4720018F0B6 /* CommentController~ipad.xib */,
 			);
 			path = FeedDetail;
 			sourceTree = "<group>";
@@ -8514,6 +8529,11 @@
 				CAA8260B15F8404C00E35C9E /* pushMessage.mp3 in Resources */,
 				CAA8260C15F8404C00E35C9E /* wrong.wav in Resources */,
 				CAA8261115F8875400E35C9E /* CommentController.xib in Resources */,
+				CADF7E3D15F9F47F0018F0B6 /* CommentController~ipad.xib in Resources */,
+				CADF7E3E15F9F47F0018F0B6 /* CommentHeaderView~ipad.xib in Resources */,
+				CADF7E3F15F9F47F0018F0B6 /* DrawInfoCell~ipad.xib in Resources */,
+				CADF7E4015F9F47F0018F0B6 /* ShowFeedController~ipad.xib in Resources */,
+				CADF7E4115F9F47F0018F0B6 /* UserInfoCell~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
