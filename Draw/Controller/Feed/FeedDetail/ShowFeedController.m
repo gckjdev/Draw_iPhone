@@ -116,6 +116,13 @@ enum{
     }
 }
 
+- (void)reloadCommentSection
+{
+    
+    NSIndexSet *indexSet = [NSIndexSet indexSetWithIndex:SectionCommentInfo];
+    [self.dataTableView reloadSections:indexSet withRowAnimation:UITableViewRowAnimationFade];
+}
+
 #pragma mark - table view delegate.
 
 - (UITableViewCell *)cellForUserInfoSection
@@ -280,7 +287,7 @@ enum{
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    DrawFeed *feed = [self.dataList objectAtIndex:indexPath.row];
+    CommentFeed *feed = [self.dataList objectAtIndex:indexPath.row];
     [self showActivityWithText:NSLS(@"kDeleting")];
     [[FeedService defaultService] deleteFeed:feed delegate:self];
 }
@@ -294,20 +301,18 @@ enum{
     return NO;
 }
 
-- (void)didDeleteFeed:(DrawFeed *)feed resultCode:(NSInteger)resultCode;
-
+- (void)didDeleteFeed:(Feed *)feed
+           resultCode:(NSInteger)resultCode
 {
     [self hideActivity];
     if (resultCode != 0) {
         [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kDeleteFail") delayTime:1.5 isHappy:NO];
         return;
     }
-    NSInteger row = [self.dataList indexOfObject:feed];
-    NSIndexPath *path = [NSIndexPath indexPathForRow:row inSection:SectionCommentInfo];    
-
     NSMutableArray *list = [[_tabManager currentTab] dataList];
     [list removeObject:feed];
-    [self.dataTableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:path] withRowAnimation:UITableViewRowAnimationFade];
+    [self reloadCommentSection];
+
 }
 
 
@@ -342,12 +347,7 @@ enum{
     [self didUpdateShowView];
 }
 
-- (void)reloadCommentSection
-{
-    
-    NSIndexSet *indexSet = [NSIndexSet indexSetWithIndex:SectionCommentInfo];
-    [self.dataTableView reloadSections:indexSet withRowAnimation:UITableViewRowAnimationFade];
-}
+
 
 #pragma mark - feed service delegate
 
