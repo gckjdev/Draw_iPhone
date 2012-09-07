@@ -479,6 +479,7 @@
                 [self showActivityWithText:NSLS(@"kJoiningGame")];
                 return YES;
             }else {
+                [[DiceGameService defaultService] disconnectServer];
                 [self showCoinsNotEnoughView];
                 return NO;
             }
