@@ -20,8 +20,12 @@
 
 - (NSArray *)tabList;
 - (TableTab *)tabAtIndex:(NSInteger)index;
-- (TableTab *)tabForID:(NSString *)tabID;
+- (TableTab *)tabForID:(NSInteger)tabID;
 
 - (TableTab *)currentTab;
 - (void)setCurrentTab:(TableTab *)tab;
+
+- (NSArray *)dataListForTabID:(NSInteger)tabID;
+- (void)setDataList:(NSArray *)list ForTabID:(NSInteger)tabID;
+- (void)addDataList:(NSArray *)list toTab:(NSInteger)tabID;
 @end

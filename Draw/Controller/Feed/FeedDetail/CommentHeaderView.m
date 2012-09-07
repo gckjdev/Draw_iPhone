@@ -11,13 +11,6 @@
 @implementation CommentHeaderView
 @synthesize delegate = _delegate;
 
-typedef enum{
-    CommentTypeNO = -100,
-    CommentTypeGuess = 2,
-    CommentTypeComment = 3,
-    CommentTypeFlower = 6,
-    CommentTypeTomato = 7,
-}CommentType;
 
 #define CHANGE_TIMES 100
 

@@ -23,6 +23,7 @@
 @property (retain, nonatomic) IBOutlet UILabel *nickNameLabel;
 @property (retain, nonatomic) IBOutlet UIImageView *itemImage;
 
+@property (retain, nonatomic) IBOutlet UIView *splitLine;
 + (CGFloat)getCellHeight:(CommentFeed *)feed;
 - (void)setCellInfo:(CommentFeed *)feed;
 

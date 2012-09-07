@@ -8,31 +8,42 @@
 
 #import <Foundation/Foundation.h>
 
+
+typedef enum{
+    TableTabStatusUnload = 1,
+    TableTabStatusLoading = 2,
+    TableTabStatusLoaded = 3,
+}TableTabStatus;
+
 @interface TableTab : NSObject
 {
-    NSString *_tabID;
+    NSInteger _tabID;
     NSInteger _index;
     NSInteger _offset;
     NSInteger _limit;
     BOOL _hasMoreData;
     BOOL _currentTab;
+    NSMutableArray *_dataList;
+    TableTabStatus _status;
 }
-
-@property(nonatomic, retain)NSString *tabID;
+@property(nonatomic, assign)TableTabStatus status;
+@property(nonatomic, assign)NSInteger tabID;
 @property(nonatomic, assign)NSInteger index;
 @property(nonatomic, assign)NSInteger offset;
 @property(nonatomic, assign)NSInteger limit;
 @property(nonatomic, assign)BOOL hasMoreData;
 @property(nonatomic, assign, getter = isCurrentTab)BOOL currentTab;
+@property(nonatomic, retain)NSMutableArray *dataList;
 
-- (id)initWithTabID:(NSString *)tabID
+
+- (id)initWithTabID:(NSInteger)tabID
               index:(NSInteger)index
              offset:(NSInteger)offset
               limit:(NSInteger)limit 
         hasMoreData:(BOOL)hasMoreData 
        isCurrentTab:(BOOL)isCurrentTab;
 
-+ (TableTab *)tabWithID:(NSString *)tabID
++ (TableTab *)tabWithID:(NSInteger)tabID
               index:(NSInteger)index
              offset:(NSInteger)offset
               limit:(NSInteger)limit 

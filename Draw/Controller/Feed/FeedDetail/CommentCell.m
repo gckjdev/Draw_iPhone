@@ -21,6 +21,7 @@
 @synthesize timeLabel;
 @synthesize nickNameLabel;
 @synthesize itemImage;
+@synthesize splitLine;
 
 + (id)createCell:(id)delegate
 {
@@ -122,7 +123,9 @@
     [self.commentLabel setText:[NSString stringWithFormat:@"%@", comment]];
     [self.commentLabel setFont:font];
     
-    
+    CGFloat y = CGRectGetMaxY(self.frame) - 0.5;
+    CGFloat x = splitLine.center.x;
+    splitLine.center = CGPointMake(x, y);
 }
 
 
@@ -131,7 +134,8 @@
     PPRelease(commentLabel);
     PPRelease(timeLabel);
     PPRelease(nickNameLabel);
-    [itemImage release];
+    PPRelease(itemImage);
+    PPRelease(splitLine);
     [super dealloc];
 }
 

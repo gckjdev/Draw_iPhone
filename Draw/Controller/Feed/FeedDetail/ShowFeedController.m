@@ -7,7 +7,6 @@
 //
 
 #import "ShowFeedController.h"
-#import "CommentHeaderView.h"
 #import "DrawInfoCell.h"
 #import "UserInfoCell.h"
 #import "CommentCell.h"
@@ -18,6 +17,10 @@
 #import "CommentController.h"
 #import "ShareService.h"
 #import "Draw.h"
+#import "StableView.h"
+#import "ItemManager.h"
+#import "ItemService.h"
+#import "ShareImageManager.h"
 
 @implementation ShowFeedController
 @synthesize titleLabel = _titleLabel;
@@ -110,7 +113,6 @@ enum{
     }
     //can guess
     
-
 }
 
 #pragma mark - table view delegate.
@@ -135,6 +137,15 @@ enum{
 }
 - (UITableViewCell *)cellForCommentInfoAtRow:(NSInteger)row
 {
+    if (row >= [self.dataList count]) {
+        NSString * identifier = @"emptyCell";
+        UITableViewCell *cell = [self.dataTableView dequeueReusableCellWithIdentifier:identifier];
+        if (cell == nil) {
+            cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier]autorelease];
+        }
+        return cell; 
+    }
+
     NSString * identifier = [CommentCell getCellIdentifier];
     CommentCell *cell = [self.dataTableView dequeueReusableCellWithIdentifier:identifier];
     if (cell == nil) {
@@ -166,6 +177,11 @@ enum{
     }
 }
 
+- (NSArray *)dataList
+{
+    return [[_tabManager currentTab] dataList];
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     switch (section) {
@@ -173,6 +189,10 @@ enum{
         case SectionDrawInfo:
             return 1;
         case SectionCommentInfo:
+            self.noMoreData = ![[_tabManager currentTab] hasMoreData];
+            if ([self.dataList count] < 7) {
+                return 7;
+            }
             return [self.dataList count];
         default:
             return 0;
@@ -193,6 +213,9 @@ enum{
             return [DrawInfoCell getCellHeight];
         case SectionCommentInfo:
         {
+            if (indexPath.row >= [self.dataList count]) {
+                return 44;
+            }
             CommentFeed *feed = [self.dataList objectAtIndex:indexPath.row];
             CGFloat height = [CommentCell getCellHeight:feed];
             return height;
@@ -240,6 +263,7 @@ enum{
     }
 }
 
+
 #pragma mark update views
 - (void)updateTitle
 {
@@ -253,11 +277,6 @@ enum{
     [self.titleLabel setText:title];
 }
 
-- (void)updateCommentList:(FeedType)type
-{
-    [[FeedService defaultService] getOpusCommentList:self.feed.feedId offset:0 limit:20 delegate:self];
-}
-
 
 #pragma mark - cell delegate
 - (void)didUpdateShowView
@@ -267,42 +286,106 @@ enum{
     //update the action buttons
     [self updateActionButtons];
     [self updateTitle];
-//    [self hideActivity];
+}
+
+- (void)reloadCommentSection
+{
+//    CGPoint offset = [self.dataTableView contentOffset];
+    
+    NSIndexSet *indexSet = [NSIndexSet indexSetWithIndex:SectionCommentInfo];
+    [self.dataTableView reloadSections:indexSet withRowAnimation:UITableViewRowAnimationFade];
+//    [self.dataTableView setContentOffset:offset];
+//    self.dataTableView scro
+//    self.dataTableView 
 }
 
 #pragma mark - feed service delegate
 
 - (void)didGetFeedCommentList:(NSArray *)feedList 
                        opusId:(NSString *)opusId 
+                         type:(int)type
                    resultCode:(NSInteger)resultCode
 {
-    [self dataSourceDidFinishLoadingNewData];   
+//    [self hideActivity];
+    [self dataSourceDidFinishLoadingMoreData];
     [self dataSourceDidFinishLoadingMoreData];
     if (resultCode == 0) {
-        NSInteger count = [feedList count];
-        self.noMoreData = (count == 0);        
+        
         PPDebug(@"<didGetFeedCommentList>get feed(%@)  succ!", opusId);
-        if (_startIndex == 0) {
-            self.dataList = feedList;
+        TableTab *tab = [_tabManager tabForID:type];
+        [tab setStatus:TableTabStatusLoaded];
+        NSInteger count = [feedList count];
+        if (count == 0) {
+            tab.hasMoreData = NO;
+            self.noMoreData = YES;
         }else{
-            NSMutableArray *array = [NSMutableArray array];
-            if ([self.dataList count] != 0) {
-                [array  addObjectsFromArray:self.dataList];
+            self.noMoreData = NO;
+            tab.hasMoreData = YES;
+            if (tab.offset == 0) {
+                [_tabManager setDataList:feedList ForTabID:type];
+            }else{
+                [_tabManager addDataList:feedList toTab:type];
             }
-            if ([feedList count] != 0) {
-                [array addObjectsFromArray:feedList];
-            }      
-            self.dataList = array;
+            tab.offset += count;
         }
-        NSIndexSet *indexSet = [NSIndexSet indexSetWithIndex:SectionCommentInfo];
-        [self.dataTableView reloadSections:indexSet withRowAnimation:UITableViewRowAnimationFade];
-        _startIndex += count;
+        [self reloadCommentSection];
     }else{
         PPDebug(@"<didGetFeedCommentList>get feed(%@)  fail!", opusId);
     }
-//    [noCommentTipsLabel setText:NSLS(@"kNoCommentTips")];
 }
 
+#define ITEM_TAG_OFFSET 20120728
+
+- (void)throwItem:(Item *)item
+{
+    
+    if (item.amount <= 0) {
+        CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kNoItemTitle") message:NSLS(@"kNoItemMessage") style:CommonDialogStyleDoubleButton delegate:self];
+        dialog.tag = ITEM_TAG_OFFSET + item.type;
+        [dialog showInView:self.view];
+
+    }else{
+        //throw animation
+        [[ItemService defaultService] sendItemAward:item.type
+                                       targetUserId:_feed.author.userId
+                                          isOffline:YES
+                                         feedOpusId:_feed.feedId
+                                         feedAuthor:_feed.author.userId];
+        
+        ShareImageManager *imageManager = [ShareImageManager defaultManager];
+        if (item.type == ItemTypeFlower) {
+            UIImageView* itemView = [[[UIImageView alloc] initWithFrame:self.flowerButton.frame] autorelease];
+            [itemView setImage:[imageManager flower]];
+            [self.view addSubview:itemView];
+            [DrawGameAnimationManager showThrowFlower:itemView animInController:self rolling:YES];
+        }else{
+            UIImageView* itemView = [[[UIImageView alloc] initWithFrame:self.tomatoButton.frame] autorelease];
+            [itemView setImage:[imageManager tomato]];
+            [self.view addSubview:itemView];
+            [DrawGameAnimationManager showThrowTomato:itemView animInController:self rolling:YES];            
+        }
+    }
+}
+
+- (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag
+{
+    [DrawGameAnimationManager animation:anim didStopWithFlag:flag];
+}
+
+
+- (void)clickOk:(CommonDialog *)dialog
+{
+    switch (dialog.tag) {
+        case (ItemTypeTomato + ITEM_TAG_OFFSET): {
+            [CommonItemInfoView showItem:[Item tomato] infoInView:self];
+        } break;
+        case (ItemTypeFlower + ITEM_TAG_OFFSET): {
+            [CommonItemInfoView showItem:[Item flower] infoInView:self];
+        } break;
+        default:
+            break;
+    }    
+}
 
 #pragma mark - Click Actions
 - (IBAction)clickBackButton:(id)sender {
@@ -339,9 +422,14 @@ enum{
         button.userInteractionEnabled = NO;
         
     }else if(button == self.flowerButton){
+        Item *item = [Item flower];
+        [self throwItem:item];
         //send a flower
     }else if(button == self.tomatoButton){
         //send a tomato
+        Item *item = [Item tomato];
+        [self throwItem:item];
+
     }else{
         //no action
     }
@@ -363,6 +451,38 @@ enum{
     }else{
         [self popupMessage:NSLS(@"kSaveImageFail") title:nil];
     }
+}
+
+#pragma mark comment header delegate
+
+- (void)updateCommentListForTab:(TableTab *)tab
+{
+    [[FeedService defaultService] getOpusCommentList:_feed.feedId 
+                                                type:tab.tabID 
+                                              offset:tab.offset 
+                                               limit:tab.limit 
+                                            delegate:self];     
+    tab.status = TableTabStatusLoading;
+//    [self showActivityWithText:NSLS(@"kLoading")];
+}
+
+- (void)didSelectCommentType:(int)type
+{
+    TableTab *tab = [_tabManager tabForID:type];
+    if (tab.isCurrentTab) {
+        return;
+    }
+    [_tabManager setCurrentTab:tab];
+    if (tab.status == TableTabStatusUnload) {
+        [self updateCommentListForTab:tab];
+    }
+    [self reloadCommentSection];
+}
+
+- (void)loadMoreTableViewDataSource
+{
+    TableTab *tab = [_tabManager currentTab];
+    [self updateCommentListForTab:tab];
 }
 
 
@@ -388,11 +508,20 @@ enum{
 
 - (void)viewDidLoad
 {
+    
+    [self setSupportRefreshFooter:YES];
     [super viewDidLoad];
     [self updateActionButtons];
     [self updateTitle];
-    [self updateCommentList:FeedTypeComment];
-//    [self showActivityWithText:NSLS(@"kLoading")];
+    
+    NSArray *tabIDs = [NSArray arrayWithObjects:
+                       [NSNumber numberWithInteger:CommentTypeComment],
+                       [NSNumber numberWithInteger:CommentTypeGuess],
+                       [NSNumber numberWithInteger:CommentTypeFlower],
+                       [NSNumber numberWithInteger:CommentTypeTomato], nil];
+    
+    _tabManager = [[TableTabManager alloc] initWithTabIDList:tabIDs limit:12 currentTabIndex:1];
+    [self didSelectCommentType:CommentTypeComment];
 }
 
 - (void)viewDidUnload

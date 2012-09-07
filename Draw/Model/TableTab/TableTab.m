@@ -9,20 +9,23 @@
 #import "TableTab.h"
 
 @implementation TableTab
+
+@synthesize status = _status;
 @synthesize tabID = _tabID;
 @synthesize index = _index;
 @synthesize offset = _offset;
 @synthesize limit= _limit;
 @synthesize hasMoreData = _hasMoreData;
 @synthesize currentTab = _currentTab;
+@synthesize dataList = _dataList;
 
 - (void)dealloc
 {
-    PPRelease(_tabID);
+    PPRelease(_dataList);
     [super dealloc];
 }
 
-- (id)initWithTabID:(NSString *)tabID
+- (id)initWithTabID:(NSInteger)tabID
               index:(NSInteger)index
              offset:(NSInteger)offset
               limit:(NSInteger)limit 
@@ -37,11 +40,13 @@
         self.limit = limit;
         self.hasMoreData = hasMoreData;
         self.currentTab = isCurrentTab;
+        self.dataList = [NSMutableArray array];
+        self.status = TableTabStatusUnload;
     }
     return self;
 }
 
-+ (TableTab *)tabWithID:(NSString *)tabID
++ (TableTab *)tabWithID:(NSInteger)tabID
                   index:(NSInteger)index
                  offset:(NSInteger)offset
                   limit:(NSInteger)limit 
