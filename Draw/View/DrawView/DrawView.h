@@ -29,7 +29,6 @@
 //@property (nonatomic, retain) NSMutableArray *drawActionList;
 @property(nonatomic, assign) CGFloat lineWidth; //default is 5.0
 @property(nonatomic, retain) DrawColor* lineColor; //default is black
-@property(nonatomic, assign) CGFloat simplingDistance; //default is 4.0 * 1.414
 @property(nonatomic, assign) id<DrawViewDelegate>delegate;
 @property(nonatomic, assign) ItemType penType;
 

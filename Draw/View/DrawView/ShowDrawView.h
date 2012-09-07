@@ -43,7 +43,7 @@ typedef enum{
 
 @property(nonatomic, assign) double playSpeed; //default is 1/30.0;
 @property(nonatomic, assign) id<ShowDrawViewDelegate>delegate;
-@property(nonatomic, assign) NSInteger status;
+@property(nonatomic, assign) DrawViewStatus status;
 @property(nonatomic, retain) NSTimer *playTimer;    // Add By Benson
 
 - (void)play;
