@@ -146,6 +146,7 @@
 - (void)viewDidUnload
 {
     [super viewDidUnload];
+    _boardPanel = nil;
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
 }
@@ -239,13 +240,20 @@
     return DAILY_GIFT_COIN+(point-1)*DAILY_GIFT_COIN_INCRE;
 }
 
+- (void)awardCoin
+{
+    int awardCoins = [self calCoinByPoint:_awardDicePoint];
+    [[CommonMessageCenter defaultCenter] postMessageWithText:[NSString stringWithFormat:NSLS(@"kDailyAwardCoin"),awardCoins] delayTime:2 isHappy:YES];
+    [[AccountService defaultService] chargeAccount:awardCoins source:LiarDiceDailyAward];
+}
+
 - (void)clickAwardDice:(UITapGestureRecognizer*)sender
 {
     CGPoint aPoint = [sender locationInView:self.view];
     UIButton* btn = (UIButton*)[self.view viewWithTag:AWARD_DICE_TAG];
     CGPoint bPoint = [(CALayer*)btn.layer.presentationLayer position];
-    if (abs((aPoint.x-bPoint.x)) < 50 && abs((aPoint.y - bPoint.y)) < 50) {
-        [[CommonMessageCenter defaultCenter] postMessageWithText:[NSString stringWithFormat:NSLS(@"kDailyAwardCoin"),[self calCoinByPoint:_awardDicePoint]] delayTime:2 isHappy:YES];
+    if (abs((aPoint.x-bPoint.x)) < AWARD_DICE_SIZE.width/2 && abs((aPoint.y - bPoint.y)) < AWARD_DICE_SIZE.height/2) {
+        [self awardCoin];
         [btn removeFromSuperview];
         [_tapGestureRecognizer setEnabled:NO];
     }
@@ -341,11 +349,11 @@
 //    [self startRollDiceTimer];
 }
 
-- (int)checkIn
+- (void)checkIn
 {  
     if ([[UserManager defaultManager] hasUser] == NO){
         // no user yet, don't show award dice button, add by Benson
-        return -1;
+        return;
     }    
     
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
@@ -354,7 +362,7 @@
     if (lastCheckInDate != nil && isLocalToday(lastCheckInDate)){
         // already check in, return -1
         PPDebug(@"<checkIn> but already do it today... come tomorrow :-)");
-        return -1;
+        return;
     }
     
     // random get some coins
@@ -369,7 +377,6 @@
     // update check in today flag
     [userDefaults setObject:[NSDate date] forKey:KEY_LAST_AWARD_DATE];
     [userDefaults synchronize];    
-    return coins;
 }
 
 #pragma mark - animation delegate
