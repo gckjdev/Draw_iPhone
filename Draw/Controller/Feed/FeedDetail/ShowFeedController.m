@@ -79,7 +79,7 @@ enum{
 };
 
 #define SCREEN_WIDTH ([DeviceDetection isIPAD] ? 768 : 320)
-#define ACTION_BUTTON_Y 422
+#define ACTION_BUTTON_Y ([DeviceDetection isIPAD] ? 921 : 422)
 - (void)updateActionButtons
 {
     //data is nil
