@@ -105,7 +105,7 @@
     [self setFeed:feed];
     [self updateTime:self.feed];
     
-    if (feed.drawData) {
+    if (feed.drawData && self.showView) {
         [self updateShowView:feed];
         return;
     }
@@ -115,16 +115,16 @@
     [[FeedService defaultService] getFeedByFeedId:feed.feedId delegate:self];
     
     
-    [self.drawImage clear];
-    if (feed.drawImage) {
-        [self.drawImage setImage:feed.drawImage];
-    }else if (feed.drawImageUrl) {
-        [self.drawImage setUrl:[NSURL URLWithString:feed.drawImageUrl]];
-    }else{
+//    [self.drawImage clear];
+//    if (feed.drawImage) {
+//        [self.drawImage setImage:feed.drawImage];
+//    }else if (feed.drawImageUrl) {
+//        [self.drawImage setUrl:[NSURL URLWithString:feed.drawImageUrl]];
+//    }else{
         UIImage *defaultImage = [[ShareImageManager defaultManager] unloadBg];
         [self.drawImage setImage:defaultImage];
-    }
-    [GlobalGetImageCache() manage:self.drawImage];
+//    }
+//    [GlobalGetImageCache() manage:self.drawImage];
 }
 
 #define TRY_GET_FEED_TIMES 3
