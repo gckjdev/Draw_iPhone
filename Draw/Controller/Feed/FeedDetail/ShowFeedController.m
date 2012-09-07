@@ -156,6 +156,7 @@ enum{
         }else{
             [cell.textLabel setText:nil];
         }
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell; 
     }
 
