@@ -775,10 +775,10 @@
 "kLatestFeed" = "最新";
 "kCustomMusic" = "自定义音乐";
 
-"kCommentTimes" = "评论(%d)";
-"kGuessTimes" = "猜画(%d)";
-"kFlowerTimes" = "鲜花(%d)";
-"kTomatoTimes" = "番茄(%d)";
+"kCommentTimes" = "评论 (%d)";
+"kGuessTimes" = "猜画 (%d)";
+"kFlowerTimes" = "鲜花 (%d)";
+"kTomatoTimes" = "番茄 (%d)";
 
 "kNoComments" = "咦！还没人评论，赶紧抢沙发！";
 "kNoGuesses" = "咦！还没人猜，赶紧抢沙发！";

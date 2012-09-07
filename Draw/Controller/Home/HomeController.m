@@ -232,6 +232,7 @@
     [[UserService defaultService] getStatistic:self];   
     [UIApplication sharedApplication].idleTimerDisabled = NO;
     [[DrawGameService defaultService] registerObserver:self];
+    [self loadBoards];
     [super viewDidAppear:animated];
 
 
