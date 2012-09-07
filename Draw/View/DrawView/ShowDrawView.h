@@ -48,6 +48,8 @@ typedef enum{
 
 - (void)play;
 - (void)stop;
+- (void)pause;
+- (void)resume;
 - (void)playFromDrawActionIndex:(NSInteger)index;
 - (void)addDrawAction:(DrawAction *)action play:(BOOL)play;
 - (void)setShowPenHidden:(BOOL)showPenHidden;

@@ -530,6 +530,18 @@
 
 #pragma mark - View lifecycle
 
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [showView pause];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [showView resume];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -551,15 +563,6 @@
     _maxFlower = MAX_FLOWER_CAN_THROW;
     _maxTomato = MAX_TOMATO_CAN_THROW;
 }
-
-
-- (void)viewDidAppear:(BOOL)animated
-{
-//    [self updateBomb];
-    [super viewDidAppear:animated];
-}
-
-
 
 - (void)viewDidDisappear:(BOOL)animated
 {

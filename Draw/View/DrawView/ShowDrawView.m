@@ -212,12 +212,41 @@
     self.status = Stop;
     _drawRectType = DrawRectTypeNo; 
 }
+
+
+- (void)stopTimer
+{
+    if([_playTimer isValid])
+    {
+        [_playTimer invalidate];
+    }
+    _playTimer = nil;
+}
+
 - (void)show
 {
     PPDebug(@"<ShowDrawView> show");
     self.status = Stop;
+    [self stopTimer];
     [super show];
 }
+- (void)pause
+{
+    PPDebug(@"<ShowDrawView> pause");
+    [self stopTimer];
+}
+
+
+- (void)resume
+{
+    PPDebug(@"<ShowDrawView> resume");
+    if (![_playTimer isValid]) {
+        [self stopTimer];
+        [self startTimer];        
+    }
+}
+
+
 - (void)addDrawAction:(DrawAction *)action play:(BOOL)play
 {
     if (play) {

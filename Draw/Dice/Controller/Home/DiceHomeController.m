@@ -138,7 +138,7 @@
 - (void)viewDidDisappear:(BOOL)animated
 {
     [_boardPanel stopTimer];
-    
+    [_boardPanel clearAds];
     [self unregisterAllNotifications];
     [super viewDidDisappear:animated];
 }
@@ -448,6 +448,16 @@
                                 [self updateBoardPanelWithBoards:[[BoardManager defaultManager] boardList]];
                                 
                             }];    
+    
+    [self registerNotificationWithName:UIApplicationDidEnterBackgroundNotification
+                                object:nil
+                                 queue:[NSOperationQueue mainQueue]
+                            usingBlock:^(NSNotification *note) {
+                                
+                                //clear the ad.
+                                [_boardPanel clearAds];
+                                
+                            }]; 
     
 }
 
