@@ -54,9 +54,10 @@
 						<reference key="NSNextResponder" ref="74285547"/>
 						<int key="NSvFlags">1316</int>
 						<object class="NSPSMatrix" key="NSFrameMatrix"/>
-						<string key="NSFrame">{{0, 162}, {320, 36}}</string>
+						<string key="NSFrame">{{110, 162}, {100, 36}}</string>
 						<reference key="NSSuperview" ref="74285547"/>
 						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<int key="IBUIContentHorizontalAlignment">0</int>

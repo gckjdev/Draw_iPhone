@@ -125,6 +125,18 @@
 }
 - (void)setViewInfo:(DrawFeed *)feed
 {
+    [self updateTimes:feed];
+    [self updateSplitLines];
+    _currentType = CommentTypeNO;
+    [self clickButton:[self buttonWithType:CommentTypeComment]];
+}
++ (CGFloat)getHeight
+{
+    return 37;
+}
+
+- (void)updateTimes:(DrawFeed *)feed
+{
     [self updateButtonWithType:CommentTypeComment 
                          times:feed.commentTimes 
                         format:NSLS(@"kCommentTimes")];
@@ -140,15 +152,6 @@
     [self updateButtonWithType:CommentTypeTomato
                          times:feed.tomatoTimes 
                         format:NSLS(@"kTomatoTimes")];
-    
-
-    [self updateSplitLines];
-    _currentType = CommentTypeNO;
-    [self clickButton:[self buttonWithType:CommentTypeComment]];
-}
-+ (CGFloat)getHeight
-{
-    return 37;
 }
 
 @end

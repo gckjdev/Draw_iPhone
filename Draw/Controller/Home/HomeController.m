@@ -232,18 +232,19 @@
     [[UserService defaultService] getStatistic:self];   
     [UIApplication sharedApplication].idleTimerDisabled = NO;
     [[DrawGameService defaultService] registerObserver:self];
+    [self loadBoards];
     [super viewDidAppear:animated];
-
 
 }
 
 - (void)viewDidDisappear:(BOOL)animated
 {
     [self unregisterDrawGameNotification];
-    
+    [_boardPanel clearAds];
     [self hideActivity];
     [[DrawGameService defaultService] unregisterObserver:self];
     [super viewDidDisappear:animated];
+    
 }
 
 - (void)viewDidUnload

@@ -44,6 +44,7 @@ WillHandleJumpURL:(NSURL *)URL;
 
 //override by subclass;
 - (void)viewWillAppear;
+- (void)viewDidDisappear;
 - (void)loadView;
 - (void)innerJump:(NSURL *)URL;
 

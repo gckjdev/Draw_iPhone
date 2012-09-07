@@ -35,7 +35,7 @@
 #import "CommonMessageCenter.h"
 #import "FeedController.h"
 #import "SelectWordController.h"
-#import "FeedDetailController.h"
+#import "ShowFeedController.h"
 #import "MyPaintManager.h"
 #import "UserManager.h"
 #import "DrawDataService.h"
@@ -502,11 +502,11 @@ enum{
 #pragma mark - Common Dialog Delegate
 
 
-- (FeedDetailController *)superFeedDetailController
+- (ShowFeedController *)superShowFeedController
 {
     for (UIViewController *controller in self.navigationController.viewControllers) {
-        if ([controller isKindOfClass:[FeedDetailController class]]) {
-            return (FeedDetailController *)controller;
+        if ([controller isKindOfClass:[ShowFeedController class]]) {
+            return (ShowFeedController *)controller;
         }
     }
     return nil;
@@ -536,7 +536,7 @@ enum{
 
 - (void)quit
 {
-    UIViewController *superController = [self superFeedDetailController];
+    UIViewController *superController = [self superShowFeedController];
     if (superController == nil) {
         superController = [self superFeedController];
     }
@@ -603,9 +603,9 @@ enum{
                                                 delegate:self];
 
         
-        UIViewController *superController = [self superFeedDetailController];
+        UIViewController *superController = [self superShowFeedController];
         if (superController == nil) {
-            superController = [self superFeedDetailController];
+            superController = [self superFeedController];
         }
         
         //if come from feed detail controller

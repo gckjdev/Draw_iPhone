@@ -36,7 +36,7 @@
 #import "AccountManager.h"
 #import "CoinShopController.h"
 #import "FeedController.h"
-#import "FeedDetailController.h"
+#import "ShowFeedController.h"
 #import "CommonUserInfoView.h"
 #import "FeedService.h"
 #import "DrawGameAnimationManager.h"
@@ -616,33 +616,15 @@
                 [[DrawDataService defaultService] guessDraw:_guessWords opusId:_opusId opusCreatorUid:_authorId isCorrect:NO score:0 delegate:nil];            
                 [self updateFeed:NO];
             }
-            UIViewController *feedDetail = [self superViewControllerForClass:[FeedDetailController class]];
-            if (feedDetail) {
-                [self.navigationController popToViewController:feedDetail animated:YES];
+            UIViewController *showFeed = [self superViewControllerForClass:[ShowFeedController class]];
+            if (showFeed) {
+                [self.navigationController popToViewController:showFeed animated:YES];
             }else{
                 [HomeController returnRoom:self];        
             }
             break;
     }
-    //run away
-//    if (dialog.tag == SHOP_DIALOG_TAG) {
-//        VendingController *itemShop = [VendingController instance];
-//        [self.navigationController pushViewController:itemShop animated:YES];
-//        _shopController = itemShop;
-//    }else if(dialog.tag == QUIT_DIALOG_TAG){
-//
-//        //if have no words, don't send the action.
-//        if ([_guessWords count] != 0) {
-//            [[DrawDataService defaultService] guessDraw:_guessWords opusId:_opusId opusCreatorUid:_draw.userId isCorrect:NO score:0 delegate:nil];            
-//            [self updateFeed:NO];
-//        }
-//        UIViewController *feedDetail = [self superViewControllerForClass:[FeedDetailController class]];
-//        if (feedDetail) {
-//            [self.navigationController popToViewController:feedDetail animated:YES];
-//        }else{
-//            [HomeController returnRoom:self];        
-//        }
-//    }
+
 }
 - (void)clickBack:(CommonDialog *)dialog
 {

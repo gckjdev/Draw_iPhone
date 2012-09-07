@@ -70,26 +70,6 @@
 }
 
 
-- (void)setCellInfo:(DrawFeed *)feed
-{    
-    [self setFeed:feed];
-    _getTimes = 1;
-    [[FeedService defaultService] getFeedByFeedId:feed.feedId delegate:self];
-    [self updateTime:self.feed];
-        
-    [self.drawImage clear];
-    if (feed.drawImage) {
-        [self.drawImage setImage:feed.drawImage];
-    }else if (feed.drawImageUrl) {
-        [self.drawImage setUrl:[NSURL URLWithString:feed.drawImageUrl]];
-    }else{
-        UIImage *defaultImage = [[ShareImageManager defaultManager] unloadBg];
-        [self.drawImage setImage:defaultImage];
-    }
-    [GlobalGetImageCache() manage:self.drawImage];
-}
-
-
 - (void)updateShowView:(DrawFeed *)feed
 {
     
@@ -116,6 +96,35 @@
     [self.showView show]; 
     [self.drawImage removeFromSuperview];
     self.drawImage = nil;
+}
+
+
+
+- (void)setCellInfo:(DrawFeed *)feed
+{    
+    [self setFeed:feed];
+    [self updateTime:self.feed];
+    
+    if (feed.drawData && self.showView) {
+        [self updateShowView:feed];
+        return;
+    }
+    
+    _getTimes = 1;
+    
+    [[FeedService defaultService] getFeedByFeedId:feed.feedId delegate:self];
+    
+    
+//    [self.drawImage clear];
+//    if (feed.drawImage) {
+//        [self.drawImage setImage:feed.drawImage];
+//    }else if (feed.drawImageUrl) {
+//        [self.drawImage setUrl:[NSURL URLWithString:feed.drawImageUrl]];
+//    }else{
+        UIImage *defaultImage = [[ShareImageManager defaultManager] unloadBg];
+        [self.drawImage setImage:defaultImage];
+//    }
+//    [GlobalGetImageCache() manage:self.drawImage];
 }
 
 #define TRY_GET_FEED_TIMES 3

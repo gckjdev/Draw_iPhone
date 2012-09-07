@@ -27,7 +27,6 @@
 #import "AnimationManager.h"
 #import "CommonMessageCenter.h"
 #import "FeedController.h"
-#import "FeedDetailController.h"
 #import "OfflineGuessDrawController.h"
 #import "DrawDataService.h"
 #import "ShareService.h"
@@ -58,7 +57,7 @@
 
 @interface ResultController()
 
-//- (BOOL)fromFeedDetailController;
+//- (BOOL)fromShowFeedController;
 //- (BOOL)fromFeedController;
 - (BOOL)throwItem:(ToolView*)toolView;
 - (void)receiveFlower;
@@ -201,9 +200,9 @@
 }
 
 
-- (BOOL)fromFeedDetailController
+- (BOOL)fromShowFeedController
 {
-    return [self hasSuperViewControllerForClass:[FeedDetailController class]];
+    return [self hasSuperViewControllerForClass:[ShowFeedController class]];
 }
 //- (BOOL)fromFeedController
 //{
@@ -216,7 +215,7 @@
 
 - (void)initResultType
 {
-    if([self fromFeedDetailController]){
+    if([self fromShowFeedController]){
         _resultType = FeedGuess;
         [self.backButton setImage:[ShareImageManager defaultManager].backButtonImage forState:UIControlStateNormal];
         [self.backButton setCenter:CGPointMake(self.view.frame.size.width - self.backButton.center.x, self.backButton.center.y)];
@@ -575,10 +574,8 @@
 
 - (IBAction)clickExitButton:(id)sender {
     
-    UIViewController *viewController = [self superViewControllerForClass:[FeedDetailController class]];
-    if (viewController == nil) {
-        viewController = [self superViewControllerForClass:[ShowFeedController class]];
-    }
+    UIViewController *viewController = [self superViewControllerForClass:[ShowFeedController class]];
+    
     if (viewController) {
         [self.navigationController popToViewController:viewController animated:YES];
     }else{

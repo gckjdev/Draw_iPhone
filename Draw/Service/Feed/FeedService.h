@@ -48,6 +48,8 @@
 - (void)didGetFeed:(DrawFeed *)feed 
         resultCode:(NSInteger)resultCode;
 
+- (void)didUpdateFeedTimes:(DrawFeed *)feed 
+                resultCode:(NSInteger)resultCode;
 @end
 
 @interface FeedService : CommonService
@@ -104,5 +106,6 @@
            author:(NSString *)author   
          delegate:(id<FeedServiceDelegate>)delegate;
 
-
+- (void)updateFeedTimes:(DrawFeed *)feed
+               delegate:(id<FeedServiceDelegate>)delegate;
 @end

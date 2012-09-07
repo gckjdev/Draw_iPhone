@@ -50,6 +50,10 @@ typedef enum{
 - (BOOL) hasGuessed;
 - (void)incGuessTimes;
 - (void)incCorrectTimes;
+
+- (void)updateFeedTimesFromDict:(NSDictionary *)dict;
+- (void)setTimes:(NSInteger)times forType:(FeedTimesType)type;
+
 - (NSInteger)guessTimes;
 - (NSInteger)matchTimes;
 - (NSInteger)commentTimes;

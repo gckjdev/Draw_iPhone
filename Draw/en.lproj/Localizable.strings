@@ -764,6 +764,10 @@
 "kFlowerTimes" = "Flower(%d)";
 "kTomatoTimes" = "Tomato(%d)";
 
+"kNoComments" = "No comment yet, to be the first?";
+"kNoGuesses" = "No one guess yet, to be the first?";
+"kNoFlowers" = "Send a flower, if you like it.";
+"kNoTomatos" = "Throw a tomato, if you hate it.";
 
 /*********************** 猜猜画画国际化字符串结束 *************************/
 

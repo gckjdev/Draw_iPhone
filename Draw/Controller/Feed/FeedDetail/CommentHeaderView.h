@@ -34,5 +34,6 @@ typedef enum{
 + (id)createCommentHeaderView:(id)delegate;
 - (void)setViewInfo:(DrawFeed *)feed;
 + (CGFloat)getHeight;
+- (void)updateTimes:(DrawFeed *)feed;
 @end
 

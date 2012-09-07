@@ -55,7 +55,6 @@ typedef enum{
 @property(nonatomic, assign)NSInteger type;
 @property(nonatomic, assign)NSInteger times;
 
-
 - (id)initWithPbFeedTimes:(PBFeedTimes *)pbFeedTimes;
 - (id)initWithType:(NSInteger)type times:(NSInteger)times;
 

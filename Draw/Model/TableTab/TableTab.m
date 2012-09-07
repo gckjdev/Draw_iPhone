@@ -18,10 +18,12 @@
 @synthesize hasMoreData = _hasMoreData;
 @synthesize currentTab = _currentTab;
 @synthesize dataList = _dataList;
+@synthesize noDataDesc = _noDataDesc;
 
 - (void)dealloc
 {
     PPRelease(_dataList);
+    PPRelease(_noDataDesc);
     [super dealloc];
 }
 
@@ -29,6 +31,7 @@
               index:(NSInteger)index
              offset:(NSInteger)offset
               limit:(NSInteger)limit 
+         noDataDesc:(NSString *)noDataDesc
         hasMoreData:(BOOL)hasMoreData 
        isCurrentTab:(BOOL)isCurrentTab
 {
@@ -40,6 +43,7 @@
         self.limit = limit;
         self.hasMoreData = hasMoreData;
         self.currentTab = isCurrentTab;
+        self.noDataDesc = noDataDesc;
         self.dataList = [NSMutableArray array];
         self.status = TableTabStatusUnload;
     }
@@ -50,6 +54,7 @@
                   index:(NSInteger)index
                  offset:(NSInteger)offset
                   limit:(NSInteger)limit 
+             noDataDesc:(NSString *)noDataDesc
             hasMoreData:(BOOL)hasMoreData 
            isCurrentTab:(BOOL)isCurrentTab
 {
@@ -57,6 +62,7 @@
                                       index:index 
                                      offset:offset 
                                       limit:limit 
+                                 noDataDesc:noDataDesc
                                 hasMoreData:hasMoreData 
                                isCurrentTab:isCurrentTab] autorelease];
 }

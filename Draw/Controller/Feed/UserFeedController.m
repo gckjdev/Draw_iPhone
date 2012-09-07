@@ -10,8 +10,8 @@
 #import "ShareImageManager.h"
 #import "FeedManager.h"
 #import "CommonMessageCenter.h"
-#import "FeedDetailController.h"
 #import "MobClickUtils.h"
+#import "ShowFeedController.h"
 
 @interface UserFeedController()
 {   NSInteger _opusStartIndex;
@@ -335,10 +335,9 @@
         return;
     }
     
-    FeedDetailController *feedDetailController = [[FeedDetailController alloc] initWithFeed:drawFeed];
-    
-    [self.navigationController pushViewController:feedDetailController animated:YES];
-    [feedDetailController release];
+    ShowFeedController *sfc = [[ShowFeedController alloc] initWithFeed:drawFeed];
+    [self.navigationController pushViewController:sfc animated:YES];
+    [sfc release];
     //enter the detail feed contrller
 }
 

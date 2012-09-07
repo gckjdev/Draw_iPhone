@@ -273,6 +273,26 @@ static FeedService *_staticFeedService = nil;
 }
 
 
+- (void)updateFeedTimes:(DrawFeed *)feed
+               delegate:(id<FeedServiceDelegate>)delegate
+{
+    NSString *feedId = feed.feedId;
+    NSString *appId = [GameApp appId];
+    dispatch_async(workingQueue, ^{
+        CommonNetworkOutput* output = [GameNetworkRequest getOpusTimes:TRAFFIC_SERVER_URL appId:appId feedId:feedId];
+        if (output.resultCode == 0) {
+            [feed updateFeedTimesFromDict:output.jsonDataDict];
+        }        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (delegate && [delegate respondsToSelector:@selector(didUpdateFeedTimes:resultCode:)]) {
+                [delegate didUpdateFeedTimes:feed resultCode:output.resultCode];
+            }
+        });
+    });
+
+}
+
+
 - (void)throwFlowerToOpus:(NSString *)opusId 
                    author:(NSString *)author  
                  delegate:(id<FeedServiceDelegate>)delegate

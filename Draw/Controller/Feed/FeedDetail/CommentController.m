@@ -50,6 +50,7 @@
     ShareImageManager *manager = [ShareImageManager defaultManager];
     [self.inputBGView setImage:[manager inputImage]];
     [self.titleLabel setText:NSLS(@"kComment")];
+    [self.contentView becomeFirstResponder];
 }
 
 - (void)viewDidUnload

@@ -410,7 +410,7 @@ AAgACAAIAAEAAQABAAE</bytes>
 					<object class="IBUIButton" id="943438689">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{275, 5}, {35, 35}}</string>
+						<string key="NSFrame">{{263, 7}, {50, 30}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="745717694"/>
@@ -418,6 +418,10 @@ AAgACAAIAAEAAQABAAE</bytes>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<int key="IBUIContentHorizontalAlignment">0</int>
 						<int key="IBUIContentVerticalAlignment">0</int>
+						<double key="IBUIContentEdgeInsets.top">0.0</double>
+						<double key="IBUIContentEdgeInsets.bottom">0.0</double>
+						<double key="IBUIContentEdgeInsets.left">14</double>
+						<double key="IBUIContentEdgeInsets.right">6</double>
 						<reference key="IBUIHighlightedTitleColor" ref="466568067"/>
 						<object class="NSColor" key="IBUINormalTitleColor">
 							<int key="NSColorSpace">1</int>

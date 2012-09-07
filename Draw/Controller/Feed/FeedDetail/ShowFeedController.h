@@ -29,6 +29,7 @@
     DrawInfoCell *_drawCell;
     CommentHeaderView *_commentHeader;
     TableTabManager *_tabManager;
+    BOOL _didSave;
 }
 @property (retain, nonatomic) IBOutlet UILabel *titleLabel;
 @property (retain, nonatomic) IBOutlet UIButton *guessButton;

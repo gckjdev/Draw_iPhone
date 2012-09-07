@@ -938,9 +938,6 @@
 		CA42E3E515F4633100790B3C /* CommentHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA42E3D315F4633100790B3C /* CommentHeaderView.xib */; };
 		CA42E3E615F4633100790B3C /* DrawInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA42E3D515F4633100790B3C /* DrawInfoCell.m */; };
 		CA42E3E715F4633100790B3C /* DrawInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA42E3D615F4633100790B3C /* DrawInfoCell.xib */; };
-		CA42E3E815F4633100790B3C /* FeedDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA42E3D815F4633100790B3C /* FeedDetailController.m */; };
-		CA42E3E915F4633100790B3C /* FeedDetailController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA42E3D915F4633100790B3C /* FeedDetailController.xib */; };
-		CA42E3EA15F4633100790B3C /* FeedDetailController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA42E3DA15F4633100790B3C /* FeedDetailController~ipad.xib */; };
 		CA42E3EB15F4633100790B3C /* ShowFeedController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA42E3DC15F4633100790B3C /* ShowFeedController.m */; };
 		CA42E3EC15F4633100790B3C /* ShowFeedController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA42E3DD15F4633100790B3C /* ShowFeedController.xib */; };
 		CA42E3ED15F4633100790B3C /* UserInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA42E3DF15F4633100790B3C /* UserInfoCell.m */; };
@@ -1291,14 +1288,10 @@
 		CAE2CABE151B2ECA0062ED37 /* Account.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE2CABD151B2ECA0062ED37 /* Account.m */; };
 		CAE2CAC1151B2F7C0062ED37 /* Item.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE2CAC0151B2F7C0062ED37 /* Item.m */; };
 		CAE8B15115E4A24F0098A565 /* BoardPanel~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAE8B15015E4A24E0098A565 /* BoardPanel~ipad.xib */; };
-		CAE8B15315E4A2570098A565 /* EntryController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAE8B15215E4A2560098A565 /* EntryController~ipad.xib */; };
-		CAEECDA815DDEEF700FA5A2A /* EntryController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEECD9315DDEEF700FA5A2A /* EntryController.m */; };
-		CAEECDA915DDEEF700FA5A2A /* EntryController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAEECD9415DDEEF700FA5A2A /* EntryController.xib */; };
 		CAEECDAA15DDEEF700FA5A2A /* Board.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEECD9715DDEEF700FA5A2A /* Board.m */; };
 		CAEECDAB15DDEEF700FA5A2A /* BoardManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEECD9915DDEEF700FA5A2A /* BoardManager.m */; };
 		CAEECDAC15DDEEF700FA5A2A /* BoardNetwork.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEECD9C15DDEEF700FA5A2A /* BoardNetwork.m */; };
 		CAEECDAD15DDEEF700FA5A2A /* BoardService.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEECDA015DDEEF700FA5A2A /* BoardService.m */; };
-		CAEECDAE15DDEEF700FA5A2A /* AdBoardView.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEECDA315DDEEF700FA5A2A /* AdBoardView.m */; };
 		CAEECDAF15DDEEF700FA5A2A /* BoardView.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEECDA515DDEEF700FA5A2A /* BoardView.m */; };
 		CAEECDB015DDEEF700FA5A2A /* WebBoardView.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEECDA715DDEEF700FA5A2A /* WebBoardView.m */; };
 		CAEECDE015DE28AB00FA5A2A /* ImageBoardView.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEECDDF15DE28A800FA5A2A /* ImageBoardView.m */; };
@@ -2756,10 +2749,6 @@
 		CA42E3D415F4633100790B3C /* DrawInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawInfoCell.h; sourceTree = "<group>"; };
 		CA42E3D515F4633100790B3C /* DrawInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawInfoCell.m; sourceTree = "<group>"; };
 		CA42E3D615F4633100790B3C /* DrawInfoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DrawInfoCell.xib; sourceTree = "<group>"; };
-		CA42E3D715F4633100790B3C /* FeedDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedDetailController.h; sourceTree = "<group>"; };
-		CA42E3D815F4633100790B3C /* FeedDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedDetailController.m; sourceTree = "<group>"; };
-		CA42E3D915F4633100790B3C /* FeedDetailController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FeedDetailController.xib; sourceTree = "<group>"; };
-		CA42E3DA15F4633100790B3C /* FeedDetailController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "FeedDetailController~ipad.xib"; sourceTree = "<group>"; };
 		CA42E3DB15F4633100790B3C /* ShowFeedController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowFeedController.h; sourceTree = "<group>"; };
 		CA42E3DC15F4633100790B3C /* ShowFeedController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowFeedController.m; sourceTree = "<group>"; };
 		CA42E3DD15F4633100790B3C /* ShowFeedController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShowFeedController.xib; sourceTree = "<group>"; };
@@ -3258,12 +3247,8 @@
 		CAE57D27153BD77F00C4C63A /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		CAE57D2B153BD7B000C4C63A /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		CAE8B15015E4A24E0098A565 /* BoardPanel~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = "BoardPanel~ipad.xib"; path = "Draw/Board/Controller/BoardPanel~ipad.xib"; sourceTree = SOURCE_ROOT; };
-		CAE8B15215E4A2560098A565 /* EntryController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "EntryController~ipad.xib"; sourceTree = "<group>"; };
 		CAEECCD115DB46AD00FA5A2A /* MainDataModel 8.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "MainDataModel 8.xcdatamodel"; sourceTree = "<group>"; };
 		CAEECCD215DBB0B000FA5A2A /* MainDataModel 9.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "MainDataModel 9.xcdatamodel"; sourceTree = "<group>"; };
-		CAEECD9215DDEEF700FA5A2A /* EntryController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EntryController.h; sourceTree = "<group>"; };
-		CAEECD9315DDEEF700FA5A2A /* EntryController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EntryController.m; sourceTree = "<group>"; };
-		CAEECD9415DDEEF700FA5A2A /* EntryController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EntryController.xib; sourceTree = "<group>"; };
 		CAEECD9615DDEEF700FA5A2A /* Board.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Board.h; sourceTree = "<group>"; };
 		CAEECD9715DDEEF700FA5A2A /* Board.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Board.m; sourceTree = "<group>"; };
 		CAEECD9815DDEEF700FA5A2A /* BoardManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoardManager.h; sourceTree = "<group>"; };
@@ -3272,8 +3257,6 @@
 		CAEECD9C15DDEEF700FA5A2A /* BoardNetwork.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoardNetwork.m; sourceTree = "<group>"; };
 		CAEECD9F15DDEEF700FA5A2A /* BoardService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoardService.h; sourceTree = "<group>"; };
 		CAEECDA015DDEEF700FA5A2A /* BoardService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoardService.m; sourceTree = "<group>"; };
-		CAEECDA215DDEEF700FA5A2A /* AdBoardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdBoardView.h; sourceTree = "<group>"; };
-		CAEECDA315DDEEF700FA5A2A /* AdBoardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdBoardView.m; sourceTree = "<group>"; };
 		CAEECDA415DDEEF700FA5A2A /* BoardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoardView.h; sourceTree = "<group>"; };
 		CAEECDA515DDEEF700FA5A2A /* BoardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoardView.m; sourceTree = "<group>"; };
 		CAEECDA615DDEEF700FA5A2A /* WebBoardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebBoardView.h; sourceTree = "<group>"; };
@@ -5922,10 +5905,6 @@
 				CA42E3D415F4633100790B3C /* DrawInfoCell.h */,
 				CA42E3D515F4633100790B3C /* DrawInfoCell.m */,
 				CA42E3D615F4633100790B3C /* DrawInfoCell.xib */,
-				CA42E3D715F4633100790B3C /* FeedDetailController.h */,
-				CA42E3D815F4633100790B3C /* FeedDetailController.m */,
-				CA42E3D915F4633100790B3C /* FeedDetailController.xib */,
-				CA42E3DA15F4633100790B3C /* FeedDetailController~ipad.xib */,
 				CA42E3DB15F4633100790B3C /* ShowFeedController.h */,
 				CA42E3DC15F4633100790B3C /* ShowFeedController.m */,
 				CA42E3DD15F4633100790B3C /* ShowFeedController.xib */,
@@ -7082,10 +7061,6 @@
 		CAEECD9115DDEEF700FA5A2A /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				CAEECD9215DDEEF700FA5A2A /* EntryController.h */,
-				CAEECD9315DDEEF700FA5A2A /* EntryController.m */,
-				CAEECD9415DDEEF700FA5A2A /* EntryController.xib */,
-				CAE8B15215E4A2560098A565 /* EntryController~ipad.xib */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -7138,8 +7113,6 @@
 				CAE8B15015E4A24E0098A565 /* BoardPanel~ipad.xib */,
 				CAEECDA415DDEEF700FA5A2A /* BoardView.h */,
 				CAEECDA515DDEEF700FA5A2A /* BoardView.m */,
-				CAEECDA215DDEEF700FA5A2A /* AdBoardView.h */,
-				CAEECDA315DDEEF700FA5A2A /* AdBoardView.m */,
 				CAEECDA615DDEEF700FA5A2A /* WebBoardView.h */,
 				CAEECDA715DDEEF700FA5A2A /* WebBoardView.m */,
 				CAEECDDE15DE28A600FA5A2A /* ImageBoardView.h */,
@@ -7948,7 +7921,6 @@
 				A4A01C3415D8EBFD002FE86D /* dice.m4a in Resources */,
 				C296872C15DCE03F006968BA /* DiceItemInfoView.xib in Resources */,
 				C296872E15DCE03F006968BA /* DiceUserInfoView.xib in Resources */,
-				CAEECDA915DDEEF700FA5A2A /* EntryController.xib in Resources */,
 				C20D4B1115DE45B100074885 /* CommonDiceDialog.xib in Resources */,
 				CAEECE1515DF8D5200FA5A2A /* BoardPanel.xib in Resources */,
 				C20D4B2715E21C0400074885 /* DiceInputDialog.xib in Resources */,
@@ -7970,7 +7942,6 @@
 				C213094215E393320072A18E /* DicePassWordDialog~ipad.xib in Resources */,
 				C213094415E393410072A18E /* DiceRoomPasswordDialog~ipad.xib in Resources */,
 				CAE8B15115E4A24F0098A565 /* BoardPanel~ipad.xib in Resources */,
-				CAE8B15315E4A2570098A565 /* EntryController~ipad.xib in Resources */,
 				C213096815E4BD830072A18E /* dice_quit_btn@2x.png in Resources */,
 				A42C522015E6215F001D8208 /* face_embarrass.gif in Resources */,
 				A42C522115E6215F001D8208 /* face_proud.gif in Resources */,
@@ -8395,8 +8366,6 @@
 				CA42E3E315F4633100790B3C /* CommentCell~ipad.xib in Resources */,
 				CA42E3E515F4633100790B3C /* CommentHeaderView.xib in Resources */,
 				CA42E3E715F4633100790B3C /* DrawInfoCell.xib in Resources */,
-				CA42E3E915F4633100790B3C /* FeedDetailController.xib in Resources */,
-				CA42E3EA15F4633100790B3C /* FeedDetailController~ipad.xib in Resources */,
 				CA42E3EC15F4633100790B3C /* ShowFeedController.xib in Resources */,
 				CA42E3EE15F4633100790B3C /* UserInfoCell.xib in Resources */,
 				A4C259F515F50D6A002A7C03 /* cutDice_F.m4a in Resources */,
@@ -9003,12 +8972,10 @@
 				A47FF99E15DB9ADB00EE8125 /* DiceItemService.m in Sources */,
 				C296872B15DCE03F006968BA /* DiceItemInfoView.m in Sources */,
 				C296872D15DCE03F006968BA /* DiceUserInfoView.m in Sources */,
-				CAEECDA815DDEEF700FA5A2A /* EntryController.m in Sources */,
 				CAEECDAA15DDEEF700FA5A2A /* Board.m in Sources */,
 				CAEECDAB15DDEEF700FA5A2A /* BoardManager.m in Sources */,
 				CAEECDAC15DDEEF700FA5A2A /* BoardNetwork.m in Sources */,
 				CAEECDAD15DDEEF700FA5A2A /* BoardService.m in Sources */,
-				CAEECDAE15DDEEF700FA5A2A /* AdBoardView.m in Sources */,
 				CAEECDAF15DDEEF700FA5A2A /* BoardView.m in Sources */,
 				CAEECDB015DDEEF700FA5A2A /* WebBoardView.m in Sources */,
 				CAEECDE015DE28AB00FA5A2A /* ImageBoardView.m in Sources */,
@@ -9047,7 +9014,6 @@
 				CA42E3E115F4633100790B3C /* CommentCell.m in Sources */,
 				CA42E3E415F4633100790B3C /* CommentHeaderView.m in Sources */,
 				CA42E3E615F4633100790B3C /* DrawInfoCell.m in Sources */,
-				CA42E3E815F4633100790B3C /* FeedDetailController.m in Sources */,
 				CA42E3EB15F4633100790B3C /* ShowFeedController.m in Sources */,
 				CA42E3ED15F4633100790B3C /* UserInfoCell.m in Sources */,
 				CAACE19915F499E6002EB53A /* SuperDrawView.m in Sources */,
@@ -9286,8 +9252,8 @@
 					armv7,
 					armv6,
 				);
-				CODE_SIGN_IDENTITY = "iPhone Developer: Lingzhe Peng (4JW9JNLMWA)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Lingzhe Peng (4JW9JNLMWA)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COMPRESS_PNG_FILES = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -9301,8 +9267,8 @@
 					"../Common_iPhone_20/3PP-SDK/QWeiboSDK4iOS/**",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
-				PROVISIONING_PROFILE = "8C9352B7-156B-47AF-AA40-39E4517161A8";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "8C9352B7-156B-47AF-AA40-39E4517161A8";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -9315,8 +9281,8 @@
 					armv7,
 					armv6,
 				);
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Lingzhe Peng";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Lingzhe Peng";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COMPRESS_PNG_FILES = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_VERSION = "";
@@ -9328,8 +9294,8 @@
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
-				PROVISIONING_PROFILE = "15D57303-26BC-4ED9-8C04-7F886B871932";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "15D57303-26BC-4ED9-8C04-7F886B871932";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -9339,8 +9305,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Lingzhe Peng (4JW9JNLMWA)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Lingzhe Peng (4JW9JNLMWA)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -9391,8 +9357,8 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "8C9352B7-156B-47AF-AA40-39E4517161A8";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "8C9352B7-156B-47AF-AA40-39E4517161A8";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -9401,8 +9367,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Lingzhe Peng";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Lingzhe Peng";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -9452,8 +9418,8 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "15D57303-26BC-4ED9-8C04-7F886B871932";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "15D57303-26BC-4ED9-8C04-7F886B871932";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;
 			};

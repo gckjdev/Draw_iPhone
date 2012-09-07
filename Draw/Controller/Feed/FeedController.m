@@ -14,7 +14,6 @@
 #import "ShareImageManager.h"
 #import "FeedCell.h"
 #import "CommonMessageCenter.h"
-#import "FeedDetailController.h"
 #import "OfflineGuessDrawController.h"
 #import "SelectWordController.h"
 #import "UserFeedController.h"
@@ -397,13 +396,9 @@
         PPDebug(@"warnning:<FeedController> feedId = %@ is illegal feed, cannot set the detail", feed.feedId);
         return;
     }
-//    FeedDetailController *feedDetailController = [[FeedDetailController alloc] initWithFeed:drawFeed];
-//    [self.navigationController pushViewController:feedDetailController animated:YES];
-//    [feedDetailController release];
-
-    ShowFeedController *feedDetailController = [[ShowFeedController alloc] initWithFeed:drawFeed];
-    [self.navigationController pushViewController:feedDetailController animated:YES];
-    [feedDetailController release];
+    ShowFeedController *sfc = [[ShowFeedController alloc] initWithFeed:drawFeed];
+    [self.navigationController pushViewController:sfc animated:YES];
+    [sfc release];
 
     
     //enter the detail feed contrller

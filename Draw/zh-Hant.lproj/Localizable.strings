@@ -754,10 +754,15 @@
 "kCustomMusic" = "自定義音樂";
 
 
-"kCommentTimes" = "評論(%d)";
-"kGuessTimes" = "猜畫(%d)";
-"kFlowerTimes" = "鮮花(%d)";
-"kTomatoTimes" = "番茄(%d)";
+"kCommentTimes" = "評論 (%d)";
+"kGuessTimes" = "猜畫 (%d)";
+"kFlowerTimes" = "鮮花 (%d)";
+"kTomatoTimes" = "番茄 (%d)";
+
+"kNoComments" = "咦！還沒人評論，趕緊搶沙發！";
+"kNoGuesses" = "咦！還沒人猜，趕緊搶沙發！";
+"kNoFlowers" = "畫得很好？送TA一朵花吧。";
+"kNoTomatos" = "畫得很爛？請盡情扔番茄。";
 
 /*********************** 猜猜画画国际化字符串结束 *************************/
 

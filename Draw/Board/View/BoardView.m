@@ -112,6 +112,10 @@
     PPDebug(@"super board view will appear");
 }
 
+- (void)viewDidDisappear
+{
+    PPDebug(@"super board view did disappear");
+}
 @end
 
 
