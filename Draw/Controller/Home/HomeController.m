@@ -235,16 +235,16 @@
     [self loadBoards];
     [super viewDidAppear:animated];
 
-
 }
 
 - (void)viewDidDisappear:(BOOL)animated
 {
     [self unregisterDrawGameNotification];
-    
+    [_boardPanel clearAds];
     [self hideActivity];
     [[DrawGameService defaultService] unregisterObserver:self];
     [super viewDidDisappear:animated];
+    
 }
 
 - (void)viewDidUnload

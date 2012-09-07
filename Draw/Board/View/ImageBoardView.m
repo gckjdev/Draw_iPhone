@@ -131,4 +131,10 @@
         }
     }
 }
+
+- (void)viewDidDisappear
+{
+    [[AdService defaultService] clearAdView:self.adView];
+}
+
 @end

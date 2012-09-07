@@ -200,6 +200,13 @@
     [self.scrollView setContentOffset:offset animated:animated];
     [self refreshBoardViewInPage:page];
 }
+
+- (void)clearAds
+{
+    for (BoardView *boardView in _boardViews) {
+        [boardView viewDidDisappear];
+    }
+}
 - (IBAction)changePage:(id)sender {
     PPDebug(@"<BoardPanel>changePage to %d", self.pageControl.currentPage);
     [self.scrollView setContentOffset:[self offsetForPage] animated:YES];

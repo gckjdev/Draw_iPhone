@@ -27,4 +27,6 @@
 // call this when view didappear
 - (void)restartTimer;
 
+- (void)clearAds;
+
 @end

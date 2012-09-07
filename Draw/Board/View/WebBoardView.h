@@ -15,5 +15,4 @@
 
 - (id)initWithBoard:(Board *)board;
 - (void)loadView;
-
 @end

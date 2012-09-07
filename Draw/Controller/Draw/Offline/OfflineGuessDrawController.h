@@ -89,7 +89,7 @@
 //the feed should be draw type
 - (id)initWithFeed:(Feed *)feed;
 //+ (void)startOfflineGuess:(UIViewController *)fromController;
-+ (OfflineGuessDrawController *)startOfflineGuess:(Feed *)feed 
++ (OfflineGuessDrawController *)startOfflineGuess:(DrawFeed *)feed 
                                    fromController:(UIViewController *)fromController;
 @end
 
