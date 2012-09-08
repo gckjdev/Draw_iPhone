@@ -478,7 +478,10 @@ enum{
         [cc release];
     }else if(button == self.saveButton){
         //save
-        UIImage *image = [self.drawCell.showView createImage];
+        UIImage *image = self.feed.largeImage;
+        if(image == nil){
+           image =  [self.drawCell.showView createImage];   
+        }
         
         [[ShareService defaultService] shareWithImage:image 
                                            drawUserId:_feed.feedUser.userId
