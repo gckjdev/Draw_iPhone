@@ -19,6 +19,7 @@
 @synthesize drawImage = _drawImage;
 @synthesize drawData = _drawData;
 @synthesize wordText = _wordText;
+@synthesize largeImage = _largeImage;
 
 - (void)initTimeList:(NSArray *)feedTimesList
 {
@@ -263,6 +264,7 @@
     PPRelease(_wordText);    
     PPRelease(_drawImageUrl);
     PPRelease(_timesSet);    
+    PPRelease(_largeImage);
     [super dealloc];
 }
 

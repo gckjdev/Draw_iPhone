@@ -11,8 +11,8 @@
 #import "DrawFeed.h"
 #import "FeedService.h"
 #import "ShowDrawView.h"
+#import "HJManagedImageV.h"
 
-@class HJManagedImageV;
 @protocol DrawInfoCellDelegate <NSObject>
 
 @optional
@@ -20,7 +20,7 @@
 
 @end
 
-@interface DrawInfoCell : PPTableViewCell<FeedServiceDelegate, ShowDrawViewDelegate>
+@interface DrawInfoCell : PPTableViewCell<FeedServiceDelegate, ShowDrawViewDelegate, HJManagedImageVDelegate>
 {
     id<DrawInfoCellDelegate> _delegate;
     DrawFeed *_feed;

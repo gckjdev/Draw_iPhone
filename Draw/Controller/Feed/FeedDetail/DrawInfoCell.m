@@ -73,9 +73,8 @@
 }
 
 
-- (void)updateShowView:(DrawFeed *)feed
+- (void)showDrawView:(DrawFeed *)feed
 {
-    
     CGRect frame = self.drawImage.frame;    
     self.showView = [[[ShowDrawView alloc] initWithFrame:frame] autorelease];
     self.showView.playSpeed = 1.0/36.0;
@@ -97,11 +96,38 @@
         self.showView.drawActionList = [DrawAction scaleActionList:_feed.drawData.drawActionList xScale:xScale yScale:yScale];
     }
     [self.showView show]; 
-    feed.drawImage = [self.showView createImage];
-    [self.drawImage setImage:feed.drawImage];
+    self.feed.largeImage = [self.showView createImage];
+    [self.drawImage setImage:self.feed.largeImage];
+
+    //remove the show view after create the image.
+    [self.showView removeFromSuperview];
+    self.showView = nil;
 }
 
+- (void)updateShowView:(DrawFeed *)feed
+{
+    [self.drawImage setCallbackOnSetImage:self];
+    if ([feed.drawImageUrl length] != 0) {
+        
+        [self.drawImage clear];
+        
+        //if the draw image is not null
+        [self.drawImage setCallbackOnSetImage:self];
+        [self.drawImage setUrl:[NSURL URLWithString:feed.drawImageUrl]];
+        
+        [GlobalGetImageCache() manage:self.drawImage];
+        return;
+    }
+    [self showDrawView:feed];
 
+}
+
+-(void) managedImageSet:(HJManagedImageV*)mi
+{
+    PPDebug(@"<managedImageSet>: set large image");
+    self.feed.largeImage = mi.image;
+    [self.loadingActivity stopAnimating];
+}
 
 - (void)setCellInfo:(DrawFeed *)feed
 {    
