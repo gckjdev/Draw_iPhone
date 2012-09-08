@@ -144,7 +144,7 @@ enum{
 }
 
 #define SPACE_CELL_FONT_SIZE ([DeviceDetection isIPAD] ? 26 : 13)
-#define SPACE_CELL_FONT_HEIGHT ([DeviceDetection isIPAD] ? 88 : 44)
+#define SPACE_CELL_FONT_HEIGHT ([DeviceDetection isIPAD] ? 110 : 44)
 #define SPACE_CELL_COUNT 7
 
 - (UITableViewCell *)cellForCommentInfoAtRow:(NSInteger)row
