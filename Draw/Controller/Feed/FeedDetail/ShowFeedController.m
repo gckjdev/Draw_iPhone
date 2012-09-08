@@ -142,6 +142,11 @@ enum{
     return self.drawCell;
 
 }
+
+#define SPACE_CELL_FONT_SIZE ([DeviceDetection isIPAD] ? 26 : 13)
+#define SPACE_CELL_FONT_HEIGHT ([DeviceDetection isIPAD] ? 88 : 44)
+#define SPACE_CELL_COUNT 7
+
 - (UITableViewCell *)cellForCommentInfoAtRow:(NSInteger)row
 {
     if (row >= [self.dataList count]) {
@@ -152,7 +157,7 @@ enum{
         }
         if (row == 0) {
             [cell.textLabel setTextAlignment:UITextAlignmentCenter];
-            [cell.textLabel setFont:[UIFont systemFontOfSize:13]];
+            [cell.textLabel setFont:[UIFont systemFontOfSize:SPACE_CELL_FONT_SIZE]];
             TableTab *tab = [_tabManager currentTab];
             if (tab.status == TableTabStatusLoading) {
                 [cell.textLabel setText:NSLS(@"kLoading")];
@@ -210,8 +215,8 @@ enum{
             return 1;
         case SectionCommentInfo:
             self.noMoreData = ![[_tabManager currentTab] hasMoreData];
-            if ([self.dataList count] < 7) {
-                return 7;
+            if ([self.dataList count] < SPACE_CELL_COUNT) {
+                return SPACE_CELL_COUNT;
             }
             return [self.dataList count];
         default:
@@ -234,7 +239,7 @@ enum{
         case SectionCommentInfo:
         {
             if (indexPath.row >= [self.dataList count]) {
-                return 44;
+                return SPACE_CELL_FONT_HEIGHT;
             }
             CommentFeed *feed = [self.dataList objectAtIndex:indexPath.row];
             CGFloat height = [CommentCell getCellHeight:feed];

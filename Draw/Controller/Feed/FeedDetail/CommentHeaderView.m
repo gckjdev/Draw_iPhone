@@ -82,7 +82,7 @@
     UIButton *previousButton = [self previousButtonWithType:type];
     CGFloat x = BUTTON_START;
     if (previousButton) {
-        x = previousButton.frame.origin.x + previousButton.frame.size.width;
+        x =  CGRectGetMaxX(previousButton.frame);
     }
     CGFloat width = size.width + ADD_WIDTH;
     UIButton *button = [self buttonWithType:type];
