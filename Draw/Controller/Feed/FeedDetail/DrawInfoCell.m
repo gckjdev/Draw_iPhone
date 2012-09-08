@@ -146,6 +146,7 @@
 
 - (void)dealloc {
     [_showView stop];
+    self.feed.drawData = nil;
     PPRelease(_showView);
     PPRelease(drawImage);
     PPRelease(timeLabel);
