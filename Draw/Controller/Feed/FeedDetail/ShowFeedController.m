@@ -21,6 +21,7 @@
 #import "ItemManager.h"
 #import "ItemService.h"
 #import "ShareImageManager.h"
+#import "CommonMessageCenter.h"
 
 @implementation ShowFeedController
 @synthesize titleLabel = _titleLabel;
@@ -483,6 +484,8 @@ enum{
            image =  [self.drawCell.showView createImage];   
         }
         
+        [self showActivityWithText:NSLS(@"kSaving")];
+        
         [[ShareService defaultService] shareWithImage:image 
                                            drawUserId:_feed.feedUser.userId
                                            isDrawByMe:[_feed isMyOpus] 
@@ -515,13 +518,14 @@ enum{
 #pragma mark draw data service delegate
 - (void)didSaveOpus:(BOOL)succ
 {
+    [self hideActivity];
     self.saveButton.userInteractionEnabled = YES;
     if (succ) {
         self.saveButton.enabled = NO;
         _didSave = YES;
-        [self popupMessage:NSLS(@"kSaveOpusOK") title:nil];
+        [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kSaveOpusOK") delayTime:1.5 isHappy:YES];
     }else{
-        [self popupMessage:NSLS(@"kSaveImageFail") title:nil];
+        [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kSaveImageFail") delayTime:1.5 isHappy:NO];
     }
 }
 

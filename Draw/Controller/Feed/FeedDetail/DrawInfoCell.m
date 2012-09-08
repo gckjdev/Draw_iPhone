@@ -107,18 +107,22 @@
 - (void)updateShowView:(DrawFeed *)feed
 {
     [self.drawImage setCallbackOnSetImage:self];
-    if ([feed.drawImageUrl length] != 0) {
-        
+    
+    if (self.feed.largeImage) {
         [self.drawImage clear];
-        
+        [self.drawImage setImage:self.feed.largeImage];
+        [GlobalGetImageCache() manage:self.drawImage];
+    }else if ([feed.drawImageUrl length] != 0) {
+        [self.drawImage clear];
         //if the draw image is not null
         [self.drawImage setCallbackOnSetImage:self];
         [self.drawImage setUrl:[NSURL URLWithString:feed.drawImageUrl]];
         
         [GlobalGetImageCache() manage:self.drawImage];
         return;
+    }else{
+        [self showDrawView:feed];
     }
-    [self showDrawView:feed];
 
 }
 

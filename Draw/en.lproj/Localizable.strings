@@ -76,6 +76,7 @@
 "kContinue" = "Next [%d]";
 "kExit" = "Exit";
 "kSave" = "Save";
+"kSaving" = "Saving...";
 "kTurnResult" = "Result of turn";
 "kBuyColor" = "Color Shop";
 "kConnectionRecover" = "Connection Recover";
