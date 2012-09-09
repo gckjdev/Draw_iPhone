@@ -261,7 +261,7 @@ AAgACAAIAAEAAQABAAE</bytes>
 					<object class="IBUIButton" id="33311402">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">301</int>
-						<string key="NSFrame">{{340, 921}, {86, 78}}</string>
+						<string key="NSFrame">{{340, 916}, {87, 87}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="608461199"/>
@@ -280,7 +280,7 @@ AAgACAAIAAEAAQABAAE</bytes>
 						<reference key="IBUINormalTitleShadowColor" ref="378313143"/>
 						<object class="NSCustomResource" key="IBUINormalImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">reply@2x.png</string>
+							<string key="NSResourceName">detail_save@2x.png</string>
 						</object>
 						<object class="IBUIFontDescription" key="IBUIFontDescription">
 							<int key="type">2</int>
@@ -295,7 +295,7 @@ AAgACAAIAAEAAQABAAE</bytes>
 					<object class="IBUIButton" id="470753644">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">301</int>
-						<string key="NSFrame">{{194, 921}, {86, 78}}</string>
+						<string key="NSFrame">{{194, 916}, {87, 87}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="33311402"/>
@@ -314,7 +314,7 @@ AAgACAAIAAEAAQABAAE</bytes>
 						<reference key="IBUINormalTitleShadowColor" ref="378313143"/>
 						<object class="NSCustomResource" key="IBUINormalImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">save@2x.png</string>
+							<string key="NSResourceName">detail_comment@2x.png</string>
 						</object>
 						<reference key="IBUIFontDescription" ref="326453671"/>
 						<reference key="IBUIFont" ref="823780608"/>
@@ -322,7 +322,7 @@ AAgACAAIAAEAAQABAAE</bytes>
 					<object class="IBUIButton" id="608461199">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">301</int>
-						<string key="NSFrame">{{487, 921}, {86, 78}}</string>
+						<string key="NSFrame">{{487, 916}, {87, 87}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="789324363"/>
@@ -332,7 +332,6 @@ AAgACAAIAAEAAQABAAE</bytes>
 						<bool key="IBUIEnabled">NO</bool>
 						<int key="IBUIContentHorizontalAlignment">0</int>
 						<int key="IBUIContentVerticalAlignment">0</int>
-						<string key="IBUINormalTitle">flower</string>
 						<reference key="IBUIHighlightedTitleColor" ref="466568067"/>
 						<object class="NSColor" key="IBUINormalTitleColor">
 							<int key="NSColorSpace">1</int>
@@ -341,7 +340,7 @@ AAgACAAIAAEAAQABAAE</bytes>
 						<reference key="IBUINormalTitleShadowColor" ref="378313143"/>
 						<object class="NSCustomResource" key="IBUINormalImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">flower@2x.png</string>
+							<string key="NSResourceName">detail_flower@2x.png</string>
 						</object>
 						<object class="IBUIFontDescription" key="IBUIFontDescription" id="824289444">
 							<int key="type">2</int>
@@ -356,7 +355,7 @@ AAgACAAIAAEAAQABAAE</bytes>
 					<object class="IBUIButton" id="789324363">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">301</int>
-						<string key="NSFrame">{{633, 921}, {86, 78}}</string>
+						<string key="NSFrame">{{633, 916}, {87, 87}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView"/>
@@ -375,7 +374,7 @@ AAgACAAIAAEAAQABAAE</bytes>
 						<reference key="IBUINormalTitleShadowColor" ref="378313143"/>
 						<object class="NSCustomResource" key="IBUINormalImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">tomato@2x.png</string>
+							<string key="NSResourceName">detail_tomato@2x.png</string>
 						</object>
 						<reference key="IBUIFontDescription" ref="824289444"/>
 						<reference key="IBUIFont" ref="539193566"/>
@@ -383,7 +382,7 @@ AAgACAAIAAEAAQABAAE</bytes>
 					<object class="IBUIButton" id="535934834">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">301</int>
-						<string key="NSFrame">{{48, 921}, {86, 78}}</string>
+						<string key="NSFrame">{{48, 916}, {87, 87}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="470753644"/>
@@ -402,7 +401,7 @@ AAgACAAIAAEAAQABAAE</bytes>
 						<reference key="IBUINormalTitleShadowColor" ref="378313143"/>
 						<object class="NSCustomResource" key="IBUINormalImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">h_guess@2x.png</string>
+							<string key="NSResourceName">detail_guess@2x.png</string>
 						</object>
 						<reference key="IBUIFontDescription" ref="326453671"/>
 						<reference key="IBUIFont" ref="823780608"/>
@@ -615,11 +614,11 @@ AAgACAAIAAEAAQABAAE</bytes>
 							<reference ref="150974079"/>
 							<reference ref="535934834"/>
 							<reference ref="789324363"/>
-							<reference ref="608461199"/>
 							<reference ref="470753644"/>
 							<reference ref="33311402"/>
 							<reference ref="604703104"/>
 							<reference ref="943438689"/>
+							<reference ref="608461199"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -833,15 +832,15 @@ AAgACAAIAAEAAQABAAE</bytes>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
 			<string key="back@2x.png">{74, 74}</string>
 			<string key="bottom_menubg@2x.png">{640, 86}</string>
-			<string key="flower@2x.png">{122, 122}</string>
-			<string key="h_guess@2x.png">{134, 134}</string>
+			<string key="detail_comment@2x.png">{72, 72}</string>
+			<string key="detail_flower@2x.png">{72, 72}</string>
+			<string key="detail_guess@2x.png">{72, 72}</string>
+			<string key="detail_save@2x.png">{72, 72}</string>
+			<string key="detail_tomato@2x.png">{72, 72}</string>
 			<string key="light_yellow_bg@2x.png">{640, 960}</string>
 			<string key="paper@2x.png">{640, 960}</string>
 			<string key="paperclip@2x.png">{388, 79}</string>
 			<string key="refresh@2x.png">{74, 74}</string>
-			<string key="reply@2x.png">{72, 72}</string>
-			<string key="save@2x.png">{72, 72}</string>
-			<string key="tomato@2x.png">{122, 122}</string>
 			<string key="topwood@2x.png">{640, 99}</string>
 		</dictionary>
 		<string key="IBCocoaTouchPluginVersion">933</string>
