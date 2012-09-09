@@ -655,7 +655,7 @@
         UIImage *image = self.feed.largeImage;
         if (image == nil) {
             [self.showView show];            
-            [showView createImage];
+            image = [showView createImage];
             NSData *data = UIImageJPEGRepresentation(image, 0.6);
             image = [UIImage imageWithData:data];            
         }
