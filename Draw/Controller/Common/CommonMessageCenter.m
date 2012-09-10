@@ -11,6 +11,8 @@
 #import "HKGirlFontLabel.h"
 #import "LocaleUtils.h"
 
+#define MESSAGE_FONT_SIZE ([DeviceDetection isIPAD]?24:12)
+
 typedef enum {
     CommonMessageViewThemeDraw = 0,
     CommonMessageViewThemeDice = 1
@@ -75,7 +77,7 @@ CommonMessageViewTheme globalGetTheme() {
 {
     switch (theme) {
         case CommonMessageViewThemeDraw: {
-            
+            [self.messageLabel setFont:[UIFont systemFontOfSize:MESSAGE_FONT_SIZE]];
         }break;
         case CommonMessageViewThemeDice: {
             [self.messageBackgroundView setImage:[DiceImageManager defaultManager].popupBackgroundImage];
