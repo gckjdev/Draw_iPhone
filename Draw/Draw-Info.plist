@@ -76,7 +76,7 @@
 		<string>UIInterfaceOrientationPortraitUpsideDown</string>
 	</array>
 	<key>UILaunchImageFile~iphone</key>
-	<string>Default.jpg</string>
+	<string>Default.png</string>
 	<key>UILaunchImageFile~ipad</key>
 	<string>Default-Portrait.png</string>
 	<key>CFBundleIconFiles</key>
