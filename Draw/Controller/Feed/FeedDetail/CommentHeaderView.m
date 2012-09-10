@@ -127,8 +127,9 @@
 {
     [self updateTimes:feed];
     [self updateSplitLines];
-    _currentType = CommentTypeNO;
-    [self clickButton:[self buttonWithType:CommentTypeComment]];
+    if (_currentType == CommentTypeNO) {
+        [self clickButton:[self buttonWithType:CommentTypeComment]];        
+    }
 }
 + (CGFloat)getHeight
 {
