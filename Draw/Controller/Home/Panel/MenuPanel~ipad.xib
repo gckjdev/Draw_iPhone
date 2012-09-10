@@ -44,12 +44,12 @@
 						<string key="NSFrameSize">{768, 468}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="929335144"/>
+						<reference key="NSNextKeyView" ref="670953276"/>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<object class="NSCustomResource" key="IBUIImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">main_menubg@2x.png</string>
+							<string key="NSResourceName">main_menubg@2x.jpg</string>
 						</object>
 					</object>
 					<object class="IBUIScrollView" id="670953276">
@@ -58,7 +58,7 @@
 						<string key="NSFrame">{{0, 1}, {768, 467}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="916930061"/>
+						<reference key="NSNextKeyView" ref="929335144"/>
 						<object class="NSColor" key="IBUIBackgroundColor">
 							<int key="NSColorSpace">3</int>
 							<bytes key="NSWhite">MCAwAA</bytes>
@@ -76,6 +76,7 @@
 						<string key="NSFrame">{{653, 437}, {110, 27}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
 						<int key="IBUIContentMode">7</int>
@@ -123,7 +124,7 @@
 				<string key="NSFrameSize">{768, 468}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
-				<reference key="NSNextKeyView" ref="670953276"/>
+				<reference key="NSNextKeyView" ref="916930061"/>
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">3</int>
 					<bytes key="NSWhite">MQA</bytes>
@@ -309,7 +310,7 @@
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<object class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="NS.key.0">main_menubg@2x.png</string>
+			<string key="NS.key.0">main_menubg@2x.jpg</string>
 			<string key="NS.object.0">{640, 447}</string>
 		</object>
 		<string key="IBCocoaTouchPluginVersion">933</string>

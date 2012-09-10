@@ -49,7 +49,7 @@
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<object class="NSCustomResource" key="IBUIImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">main_menubg@2x.png</string>
+							<string key="NSResourceName">main_menubg@2x.jpg</string>
 						</object>
 					</object>
 					<object class="IBUILabel" id="608382220">
@@ -58,6 +58,7 @@
 						<string key="NSFrame">{{274, 211}, {46, 12}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
 						<int key="IBUIContentMode">7</int>
@@ -90,7 +91,7 @@
 					<object class="IBUIScrollView" id="979056741">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">268</int>
-						<string key="NSFrame">{{0, 2}, {320, 224}}</string>
+						<string key="NSFrame">{{0, 2}, {320, 226}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="771539766"/>
@@ -300,7 +301,7 @@
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<object class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="NS.key.0">main_menubg@2x.png</string>
+			<string key="NS.key.0">main_menubg@2x.jpg</string>
 			<string key="NS.object.0">{640, 447}</string>
 		</object>
 		<string key="IBCocoaTouchPluginVersion">933</string>
