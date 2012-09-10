@@ -63,7 +63,7 @@
     [tip setBackgroundColor:[UIColor clearColor]];
     [tip setTextAlignment:UITextAlignmentCenter];
     [tip setFont:[UIFont systemFontOfSize:TIP_FONT_SIZE]];
-    NSString *title = (type == PickColorViewTypePen) ? NSLS(@"kPickPen") :NSLS(@"kPickBG");
+    NSString *title = (type == PickColorViewTypePen) ? NSLS(@"kPickPenColor") :NSLS(@"kPickBGColor");
     [tip setText:title];
     [self addSubview:tip];
     [tip release];
