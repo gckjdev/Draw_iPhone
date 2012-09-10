@@ -31,6 +31,8 @@ typedef enum{
 }
 @property(nonatomic, assign)id delegate;
 - (IBAction)clickButton:(id)sender;
+- (void)setSeletType:(CommentType)type;
+- (CommentType)seletedType;
 + (id)createCommentHeaderView:(id)delegate;
 - (void)setViewInfo:(DrawFeed *)feed;
 + (CGFloat)getHeight;

@@ -33,14 +33,7 @@
 
 - (IBAction)clickButton:(id)sender {
     UIButton *button = (UIButton *)sender;
-    UIButton *b1 = [self buttonWithType:_currentType];
-    [b1 setSelected:NO];
-    [button setSelected:YES];
-    _currentType = button.tag;
-    
-    if (self.delegate && [self.delegate respondsToSelector:@selector(didSelectCommentType:)]) {
-        [self.delegate didSelectCommentType:_currentType];
-    }
+    [self setSeletType:button.tag];
 }
 
 
@@ -57,6 +50,25 @@
     CommentHeaderView *view = [topLevelObjects objectAtIndex:0];
     view.delegate = delegate;
     return view;
+}
+- (void)setSeletType:(CommentType)type
+{
+    if (_currentType == type) {
+        return;
+    }
+    UIButton *button = [self buttonWithType:type];
+    UIButton *b1 = [self buttonWithType:_currentType];
+    [b1 setSelected:NO];
+    [button setSelected:YES];
+
+    _currentType = type;
+    if (self.delegate && [self.delegate respondsToSelector:@selector(didSelectCommentType:)]) {
+        [self.delegate didSelectCommentType:_currentType];
+    }
+}
+- (CommentType)seletedType
+{
+    return _currentType;
 }
 
 
@@ -127,9 +139,6 @@
 {
     [self updateTimes:feed];
     [self updateSplitLines];
-    if (_currentType == CommentTypeNO) {
-        [self clickButton:[self buttonWithType:CommentTypeComment]];        
-    }
 }
 + (CGFloat)getHeight
 {
