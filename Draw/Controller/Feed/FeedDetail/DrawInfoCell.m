@@ -140,14 +140,13 @@
     
     if (feed.drawData) {
         return;
-    }
-    
+    }    
     _getTimes = 1;
     
     [[FeedService defaultService] getFeedByFeedId:feed.feedId delegate:self];
     
-    UIImage *defaultImage = [[ShareImageManager defaultManager] unloadBg];
-    [self.drawImage setImage:defaultImage];
+//    UIImage *defaultImage = [[ShareImageManager defaultManager] unloadBg];
+//    [self.drawImage setImage:defaultImage];
 }
 
 #define TRY_GET_FEED_TIMES 3

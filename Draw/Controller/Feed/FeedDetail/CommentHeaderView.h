@@ -17,7 +17,7 @@
 @end
 
 typedef enum{
-    CommentTypeNO = -100,
+    CommentTypeNO = 0,
     CommentTypeGuess = 2,
     CommentTypeComment = 3,
     CommentTypeFlower = 6,

@@ -606,11 +606,18 @@
 //#define BOARD_PANEL_TAG 201208241
 #pragma mark - board service delegate
 
-
+- (void)cleanBoardPanel
+{
+    for (UIView *view in self.view.subviews) {
+        if ([view isKindOfClass:[BoardPanel class]]) {
+            [view removeFromSuperview];
+        }
+    }
+}
 - (void)updateBoardPanelWithBoards:(NSArray *)boards
 {
     if ([boards count] != 0) {
-        [_boardPanel removeFromSuperview];
+        [self cleanBoardPanel];
         _boardPanel = [BoardPanel boardPanelWithController:self];
         [_boardPanel setBoardList:boards];
         [self.view addSubview:_boardPanel];  

@@ -56,7 +56,7 @@
 #pragma mark load menu
 
 #define MENU_PANEL_WIDTH ([DeviceDetection isIPAD] ? 768 : 320)
-#define MENU_PANEL_HEIGHT ([DeviceDetection isIPAD] ? 468 : 224)
+#define MENU_PANEL_HEIGHT ([DeviceDetection isIPAD] ? 468 : 226)
 static const NSInteger MENU_NUMBER_PER_PAGE = 6;
 
 #define MENU_NUMBER_PER_PAGE ((self.gameAppType == GameAppTypeDraw) ? 6 : 4)
@@ -105,9 +105,9 @@ static const NSInteger MENU_NUMBER_PER_PAGE = 6;
 - (void)loadMenu
 {
     int number = 0;
-    UIImage * bgImage = [[ShareImageManager defaultManager]
-                         mainMenuPanelBGForGameAppType:self.gameAppType];
-    [self.bgImageView setImage:bgImage];
+//    UIImage * bgImage = [[ShareImageManager defaultManager]
+//                         mainMenuPanelBGForGameAppType:self.gameAppType];
+//    [self.bgImageView setImage:bgImage];
     
     int *list = getMainMenuTypeListByGameAppType(self.gameAppType);
     while (list != NULL && (*list) != MenuButtonTypeEnd) {
