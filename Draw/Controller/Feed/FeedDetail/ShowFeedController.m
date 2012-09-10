@@ -403,6 +403,7 @@ enum{
     }else{
         if (tab.offset == 0) {
             [tab setStatus:TableTabStatusUnload];
+            [tab setHasMoreData:NO];
         }
         PPDebug(@"<didGetFeedCommentList>get feed(%@)  fail!", opusId);
     }
