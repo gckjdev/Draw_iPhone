@@ -118,8 +118,8 @@
     //Pad our values so the bounding box respects our line width
     drawBox.origin.x        -= lineWidth * 0.8;
     drawBox.origin.y        -= lineWidth * 0.8;
-    drawBox.size.width      += lineWidth * 1.5;
-    drawBox.size.height     += lineWidth * 1.5;
+    drawBox.size.width      += lineWidth * 1.6;
+    drawBox.size.height     += lineWidth * 1.6;
     
 
     UIGraphicsBeginImageContext(drawBox.size);
@@ -212,12 +212,41 @@
     self.status = Stop;
     _drawRectType = DrawRectTypeNo; 
 }
+
+
+- (void)stopTimer
+{
+    if([_playTimer isValid])
+    {
+        [_playTimer invalidate];
+    }
+    _playTimer = nil;
+}
+
 - (void)show
 {
     PPDebug(@"<ShowDrawView> show");
     self.status = Stop;
+    [self stopTimer];
     [super show];
 }
+- (void)pause
+{
+    PPDebug(@"<ShowDrawView> pause");
+    [self stopTimer];
+}
+
+
+- (void)resume
+{
+    PPDebug(@"<ShowDrawView> resume");
+    if (![_playTimer isValid]) {
+        [self stopTimer];
+        [self startTimer];        
+    }
+}
+
+
 - (void)addDrawAction:(DrawAction *)action play:(BOOL)play
 {
     if (play) {

@@ -215,9 +215,18 @@
                                 // TODO reload board here
                                 [self updateBoardPanelWithBoards:[[BoardManager defaultManager] boardList]];
                                 
-                            }];    
-
+                            }];  
     
+    [self registerNotificationWithName:UIApplicationDidEnterBackgroundNotification
+                                object:nil
+                                 queue:[NSOperationQueue mainQueue]
+                            usingBlock:^(NSNotification *note) {
+                                PPDebug(@"enter background and clear ads.");
+                                //clear the ad.
+                                [_boardPanel clearAds];
+                                [_boardPanel stopTimer];                                
+                                
+                            }]; 
 }
 
 - (void)unregisterDrawGameNotification
@@ -241,6 +250,7 @@
 {
     [self unregisterDrawGameNotification];
     [_boardPanel clearAds];
+    [_boardPanel stopTimer];
     [self hideActivity];
     [[DrawGameService defaultService] unregisterObserver:self];
     [super viewDidDisappear:animated];

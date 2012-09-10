@@ -30,7 +30,6 @@
 @synthesize lineColor = _lineColor;
 @synthesize lineWidth = _lineWidth;
 @synthesize delegate = _delegate;
-@synthesize simplingDistance = _simplingDistance;
 @synthesize penType = _penType;
 
 //CGPoint midPoint(CGPoint p1, CGPoint p2)
@@ -169,8 +168,8 @@
     //Pad our values so the bounding box respects our line width
     drawBox.origin.x        -= self.lineWidth * 0.8;
     drawBox.origin.y        -= self.lineWidth * 0.8;
-    drawBox.size.width      += self.lineWidth * 1.5;
-    drawBox.size.height     += self.lineWidth * 1.5;
+    drawBox.size.width      += self.lineWidth * 1.6;
+    drawBox.size.height     += self.lineWidth * 1.6;
     
     
     UIGraphicsBeginImageContext(drawBox.size);
@@ -205,7 +204,6 @@
         
         self.lineColor = [DrawColor blackColor];
         self.lineWidth = DEFAULT_LINE_WIDTH;
-        self.simplingDistance = DEFAULT_SIMPLING_DISTANCE;
         _drawActionList = [[NSMutableArray alloc] init];
         self.backgroundColor = [UIColor whiteColor];        
         _startDrawActionIndex = 0;

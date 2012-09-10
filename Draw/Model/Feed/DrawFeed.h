@@ -25,16 +25,19 @@ typedef enum{
     NSString *_wordText;
     NSString *_drawImageUrl;
     NSSet *_timesSet;
-
+    UIImage *_largeImage;
 }
 
-@property (nonatomic, retain) UIImage *drawImage;;
+
+@property (nonatomic, retain) UIImage *drawImage;
+@property (nonatomic, retain) UIImage *largeImage;
 @property (nonatomic, retain) NSString *wordText;
 @property (nonatomic, retain) Draw *drawData;
 @property (nonatomic, retain) NSString *drawImageUrl;
 @property (nonatomic, retain) NSSet *timesSet;
 
 - (id)initWithPBFeed:(PBFeed *)pbFeed;
+
 - (id)initWithFeedId:(NSString *)feedId
               userId:(NSString *)userId 
             nickName:(NSString *)nickName 
@@ -53,6 +56,9 @@ typedef enum{
 
 - (void)updateFeedTimesFromDict:(NSDictionary *)dict;
 - (void)setTimes:(NSInteger)times forType:(FeedTimesType)type;
+
+- (void)incTimesForType:(NSInteger)type;
+- (void)decTimesForType:(NSInteger)type;
 
 - (NSInteger)guessTimes;
 - (NSInteger)matchTimes;

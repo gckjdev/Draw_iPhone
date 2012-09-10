@@ -47,6 +47,9 @@
 
 + (CGFloat)getCellHeight
 {
+    if ([DeviceDetection isIPAD]) {
+        return 750.0f;
+    }
     return 321.0f;
 }
 
@@ -70,9 +73,8 @@
 }
 
 
-- (void)updateShowView:(DrawFeed *)feed
+- (void)showDrawView:(DrawFeed *)feed
 {
-    
     CGRect frame = self.drawImage.frame;    
     self.showView = [[[ShowDrawView alloc] initWithFrame:frame] autorelease];
     self.showView.playSpeed = 1.0/36.0;
@@ -94,19 +96,49 @@
         self.showView.drawActionList = [DrawAction scaleActionList:_feed.drawData.drawActionList xScale:xScale yScale:yScale];
     }
     [self.showView show]; 
-    [self.drawImage removeFromSuperview];
-    self.drawImage = nil;
+    self.feed.largeImage = [self.showView createImage];
+    [self.drawImage setImage:self.feed.largeImage];
+
+    //remove the show view after create the image.
+    [self.showView removeFromSuperview];
+    self.showView = nil;
 }
 
+- (void)updateShowView:(DrawFeed *)feed
+{
+    [self.drawImage setCallbackOnSetImage:self];
+    
+    if (self.feed.largeImage) {
+        [self.drawImage clear];
+        [self.drawImage setImage:self.feed.largeImage];
+        [GlobalGetImageCache() manage:self.drawImage];
+    }else if ([feed.drawImageUrl length] != 0) {
+        [self.drawImage clear];
+        //if the draw image is not null
+        [self.drawImage setCallbackOnSetImage:self];
+        [self.drawImage setUrl:[NSURL URLWithString:feed.drawImageUrl]];
+        
+        [GlobalGetImageCache() manage:self.drawImage];
+        return;
+    }else{
+        [self showDrawView:feed];
+    }
 
+}
+
+-(void) managedImageSet:(HJManagedImageV*)mi
+{
+    PPDebug(@"<managedImageSet>: set large image");
+    self.feed.largeImage = mi.image;
+    [self.loadingActivity stopAnimating];
+}
 
 - (void)setCellInfo:(DrawFeed *)feed
 {    
     [self setFeed:feed];
     [self updateTime:self.feed];
     
-    if (feed.drawData && self.showView) {
-        [self updateShowView:feed];
+    if (feed.drawData) {
         return;
     }
     
@@ -114,17 +146,8 @@
     
     [[FeedService defaultService] getFeedByFeedId:feed.feedId delegate:self];
     
-    
-//    [self.drawImage clear];
-//    if (feed.drawImage) {
-//        [self.drawImage setImage:feed.drawImage];
-//    }else if (feed.drawImageUrl) {
-//        [self.drawImage setUrl:[NSURL URLWithString:feed.drawImageUrl]];
-//    }else{
-        UIImage *defaultImage = [[ShareImageManager defaultManager] unloadBg];
-        [self.drawImage setImage:defaultImage];
-//    }
-//    [GlobalGetImageCache() manage:self.drawImage];
+    UIImage *defaultImage = [[ShareImageManager defaultManager] unloadBg];
+    [self.drawImage setImage:defaultImage];
 }
 
 #define TRY_GET_FEED_TIMES 3
@@ -153,6 +176,7 @@
 
 - (void)dealloc {
     [_showView stop];
+    self.feed.drawData = nil;
     PPRelease(_showView);
     PPRelease(drawImage);
     PPRelease(timeLabel);

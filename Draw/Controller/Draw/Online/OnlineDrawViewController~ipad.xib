@@ -380,7 +380,6 @@
 						<string key="NSFrame">{{648, 923}, {74, 74}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 						<int key="IBUIContentHorizontalAlignment">0</int>
@@ -421,7 +420,7 @@
 					<object class="IBUIButton" id="124815000">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{403, 813}, {61, 68}}</string>
+						<string key="NSFrame">{{388, 809}, {80, 80}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="459239458"/>
@@ -895,7 +894,7 @@
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="change_bg@2x.png">{61, 68}</string>
+			<string key="change_bg@2x.png">{122, 122}</string>
 			<string key="clean@2x.png">{55, 66}</string>
 			<string key="eraser@2x.png">{42, 67}</string>
 			<string key="group_message@2x.png">{74, 74}</string>

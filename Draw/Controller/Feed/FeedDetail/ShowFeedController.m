@@ -21,6 +21,7 @@
 #import "ItemManager.h"
 #import "ItemService.h"
 #import "ShareImageManager.h"
+#import "CommonMessageCenter.h"
 
 @implementation ShowFeedController
 @synthesize titleLabel = _titleLabel;
@@ -79,7 +80,7 @@ enum{
 };
 
 #define SCREEN_WIDTH ([DeviceDetection isIPAD] ? 768 : 320)
-#define ACTION_BUTTON_Y 422
+#define ACTION_BUTTON_Y ([DeviceDetection isIPAD] ? 921 : 422)
 - (void)updateActionButtons
 {
     //data is nil
@@ -116,6 +117,12 @@ enum{
     }
 }
 
+- (void)reloadCommentSection
+{
+    NSIndexSet *indexSet = [NSIndexSet indexSetWithIndex:SectionCommentInfo];
+    [self.dataTableView reloadSections:indexSet withRowAnimation:UITableViewRowAnimationFade];
+}
+
 #pragma mark - table view delegate.
 
 - (UITableViewCell *)cellForUserInfoSection
@@ -136,6 +143,11 @@ enum{
     return self.drawCell;
 
 }
+
+#define SPACE_CELL_FONT_SIZE ([DeviceDetection isIPAD] ? 26 : 13)
+#define SPACE_CELL_FONT_HEIGHT ([DeviceDetection isIPAD] ? 110 : 44)
+#define SPACE_CELL_COUNT 7
+
 - (UITableViewCell *)cellForCommentInfoAtRow:(NSInteger)row
 {
     if (row >= [self.dataList count]) {
@@ -146,7 +158,7 @@ enum{
         }
         if (row == 0) {
             [cell.textLabel setTextAlignment:UITextAlignmentCenter];
-            [cell.textLabel setFont:[UIFont systemFontOfSize:13]];
+            [cell.textLabel setFont:[UIFont systemFontOfSize:SPACE_CELL_FONT_SIZE]];
             TableTab *tab = [_tabManager currentTab];
             if (tab.status == TableTabStatusLoading) {
                 [cell.textLabel setText:NSLS(@"kLoading")];
@@ -204,8 +216,8 @@ enum{
             return 1;
         case SectionCommentInfo:
             self.noMoreData = ![[_tabManager currentTab] hasMoreData];
-            if ([self.dataList count] < 7) {
-                return 7;
+            if ([self.dataList count] < SPACE_CELL_COUNT) {
+                return SPACE_CELL_COUNT;
             }
             return [self.dataList count];
         default:
@@ -228,7 +240,7 @@ enum{
         case SectionCommentInfo:
         {
             if (indexPath.row >= [self.dataList count]) {
-                return 44;
+                return SPACE_CELL_FONT_HEIGHT;
             }
             CommentFeed *feed = [self.dataList objectAtIndex:indexPath.row];
             CGFloat height = [CommentCell getCellHeight:feed];
@@ -250,6 +262,7 @@ enum{
             self.commentHeader = [CommentHeaderView createCommentHeaderView:self];
             [self.commentHeader setViewInfo:self.feed];
         }
+        [self.commentHeader updateTimes:self.feed];
         return self.commentHeader;
     }
     return nil;
@@ -280,7 +293,7 @@ enum{
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    DrawFeed *feed = [self.dataList objectAtIndex:indexPath.row];
+    CommentFeed *feed = [self.dataList objectAtIndex:indexPath.row];
     [self showActivityWithText:NSLS(@"kDeleting")];
     [[FeedService defaultService] deleteFeed:feed delegate:self];
 }
@@ -294,20 +307,32 @@ enum{
     return NO;
 }
 
-- (void)didDeleteFeed:(DrawFeed *)feed resultCode:(NSInteger)resultCode;
-
+- (void)didDeleteFeed:(Feed *)feed
+           resultCode:(NSInteger)resultCode
 {
     [self hideActivity];
     if (resultCode != 0) {
         [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kDeleteFail") delayTime:1.5 isHappy:NO];
         return;
     }
-    NSInteger row = [self.dataList indexOfObject:feed];
-    NSIndexPath *path = [NSIndexPath indexPathForRow:row inSection:SectionCommentInfo];    
-
+    
+    if (feed.feedType == FeedTypeComment) {
+        [self.feed decTimesForType:FeedTimesTypeComment];
+    }else if(feed.feedType == FeedTypeGuess)
+    {
+        [self.feed decTimesForType:FeedTimesTypeGuess];
+    }else if(feed.feedType == FeedTypeFlower)
+    {
+        [self.feed decTimesForType:FeedTimesTypeFlower];
+    }else if(feed.feedType == FeedTypeTomato)
+    {
+        [self.feed decTimesForType:FeedTimesTypeTomato];
+    }
+    
     NSMutableArray *list = [[_tabManager currentTab] dataList];
     [list removeObject:feed];
-    [self.dataTableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:path] withRowAnimation:UITableViewRowAnimationFade];
+    [self reloadCommentSection];
+
 }
 
 
@@ -342,12 +367,7 @@ enum{
     [self didUpdateShowView];
 }
 
-- (void)reloadCommentSection
-{
-    
-    NSIndexSet *indexSet = [NSIndexSet indexSetWithIndex:SectionCommentInfo];
-    [self.dataTableView reloadSections:indexSet withRowAnimation:UITableViewRowAnimationFade];
-}
+
 
 #pragma mark - feed service delegate
 
@@ -459,7 +479,12 @@ enum{
         [cc release];
     }else if(button == self.saveButton){
         //save
-        UIImage *image = [self.drawCell.showView createImage];
+        UIImage *image = self.feed.largeImage;
+        if(image == nil){
+           image =  [self.drawCell.showView createImage];   
+        }
+        
+        [self showActivityWithText:NSLS(@"kSaving")];
         
         [[ShareService defaultService] shareWithImage:image 
                                            drawUserId:_feed.feedUser.userId
@@ -493,13 +518,14 @@ enum{
 #pragma mark draw data service delegate
 - (void)didSaveOpus:(BOOL)succ
 {
+    [self hideActivity];
     self.saveButton.userInteractionEnabled = YES;
     if (succ) {
         self.saveButton.enabled = NO;
         _didSave = YES;
-        [self popupMessage:NSLS(@"kSaveOpusOK") title:nil];
+        [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kSaveOpusOK") delayTime:1.5 isHappy:YES];
     }else{
-        [self popupMessage:NSLS(@"kSaveImageFail") title:nil];
+        [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kSaveImageFail") delayTime:1.5 isHappy:NO];
     }
 }
 

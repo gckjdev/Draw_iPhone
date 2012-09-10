@@ -19,6 +19,7 @@
 @synthesize drawImage = _drawImage;
 @synthesize drawData = _drawData;
 @synthesize wordText = _wordText;
+@synthesize largeImage = _largeImage;
 
 - (void)initTimeList:(NSArray *)feedTimesList
 {
@@ -143,7 +144,7 @@
 {
     return self.feedUser;
 }
-- (void)incTimesForType:(NSInteger)type;
+- (void)incTimesForType:(NSInteger)type
 {
     for (FeedTimes *feedTimes in self.timesSet) {
         if (feedTimes.type == type) {
@@ -152,8 +153,15 @@
     }
 }
 
-
-- (NSInteger)timesForType:(NSInteger)type;
+- (void)decTimesForType:(NSInteger)type
+{
+    for (FeedTimes *feedTimes in self.timesSet) {
+        if (feedTimes.type == type) {
+            feedTimes.times --;
+        }
+    }    
+}
+- (NSInteger)timesForType:(NSInteger)type
 {
     for (FeedTimes *feedTimes in self.timesSet) {
         if (feedTimes.type == type) {
@@ -256,6 +264,7 @@
     PPRelease(_wordText);    
     PPRelease(_drawImageUrl);
     PPRelease(_timesSet);    
+    PPRelease(_largeImage);
     [super dealloc];
 }
 

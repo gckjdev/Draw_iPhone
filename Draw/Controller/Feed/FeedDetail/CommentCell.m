@@ -46,11 +46,11 @@
 #define COMMENT_FONT_SIZE ([DeviceDetection isIPAD] ? 11*2 : 11)
 #define COMMENT_SPACE ([DeviceDetection isIPAD] ? 20 : 10)
 #define COMMENT_BASE_X ([DeviceDetection isIPAD] ? 102 : 44)
-#define COMMENT_BASE_Y ([DeviceDetection isIPAD] ? 64 : 30)
+#define COMMENT_BASE_Y ([DeviceDetection isIPAD] ? 55 : 30)
 
-#define COMMENT_ITEM_HEIGHT ([DeviceDetection isIPAD] ? 120 : 60)
+#define COMMENT_ITEM_HEIGHT ([DeviceDetection isIPAD] ? 110 : 60)
 
-#define AVATAR_VIEW_FRAME [DeviceDetection isIPAD] ? CGRectMake(11, 14, 71, 74) : CGRectMake(5, 9, 31, 32)
+#define AVATAR_VIEW_FRAME [DeviceDetection isIPAD] ? CGRectMake(12, 10, 74, 77) : CGRectMake(5, 9, 31, 32)
 
 
 + (CGFloat)getCellHeight:(CommentFeed *)feed

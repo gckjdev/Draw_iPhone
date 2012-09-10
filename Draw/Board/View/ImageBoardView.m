@@ -134,7 +134,9 @@
 
 - (void)viewDidDisappear
 {
-    [[AdService defaultService] clearAdView:self.adView];
+//    [[AdService defaultService] clearAdView:self.adView];
+    PPDebug(@"image board viewDidDisappear, clear all ad view");
+    [self clearAllAdView];
 }
 
 @end

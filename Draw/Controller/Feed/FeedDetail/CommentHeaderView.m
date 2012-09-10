@@ -75,14 +75,14 @@
     }
 }
 
-#define ADD_WIDTH 10
-#define BUTTON_START 2
+#define ADD_WIDTH ([DeviceDetection isIPAD] ? 24 : 10) 
+#define BUTTON_START ([DeviceDetection isIPAD] ? 6 : 2) 
 - (void)updateButtonFrameWityType:(CommentType)type size:(CGSize)size
 {
     UIButton *previousButton = [self previousButtonWithType:type];
     CGFloat x = BUTTON_START;
     if (previousButton) {
-        x = previousButton.frame.origin.x + previousButton.frame.size.width;
+        x =  CGRectGetMaxX(previousButton.frame);
     }
     CGFloat width = size.width + ADD_WIDTH;
     UIButton *button = [self buttonWithType:type];
@@ -132,6 +132,9 @@
 }
 + (CGFloat)getHeight
 {
+    if ([DeviceDetection isIPAD]) {
+        return 70;
+    }
     return 37;
 }
 

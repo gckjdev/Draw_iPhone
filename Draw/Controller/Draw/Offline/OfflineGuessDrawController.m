@@ -530,6 +530,18 @@
 
 #pragma mark - View lifecycle
 
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [showView pause];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [showView resume];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -551,15 +563,6 @@
     _maxFlower = MAX_FLOWER_CAN_THROW;
     _maxTomato = MAX_TOMATO_CAN_THROW;
 }
-
-
-- (void)viewDidAppear:(BOOL)animated
-{
-//    [self updateBomb];
-    [super viewDidAppear:animated];
-}
-
-
 
 - (void)viewDidDisappear:(BOOL)animated
 {
@@ -639,20 +642,23 @@
     
     //alter if the word is correct
     if ([answer isEqualToString:self.word.text]) {
-        if ([self.showView status] != Stop) {
-            [self.showView show];            
-        }
+//        if ([self.showView status] != Stop) {
 
-        
+//        }
+
         [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kGuessCorrect") delayTime:1 isHappy:YES];
         [[AudioManager defaultManager] playSoundById:BINGO];
         [self setWordButtonsEnabled:NO];
     
         NSInteger score = [_draw.word score]; // * [ConfigManager guessDifficultLevel];
         
-        UIImage *image = [showView createImage];
-        NSData *data = UIImageJPEGRepresentation(image, 0.6);
-        image = [UIImage imageWithData:data];
+        UIImage *image = self.feed.largeImage;
+        if (image == nil) {
+            [self.showView show];            
+            image = [showView createImage];
+            NSData *data = UIImageJPEGRepresentation(image, 0.6);
+            image = [UIImage imageWithData:data];            
+        }
         
         ResultController *result = [[ResultController alloc] initWithImage:image drawUserId:_draw.userId drawUserNickName:_draw.nickName wordText:_draw.word.text score:score correct:YES isMyPaint:NO drawActionList:_draw.drawActionList feed:self.feed];
         
@@ -664,7 +670,8 @@
         [[UserManager defaultManager] guessCorrectOpus:_opusId];
         [self.navigationController pushViewController:result animated:YES];
         [result release];
-//        [showView stop];
+        [self.showView stop];
+
     }else{
         [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kGuessWrong") delayTime:1 isHappy:NO];
         [[AudioManager defaultManager] playSoundById:WRONG];
