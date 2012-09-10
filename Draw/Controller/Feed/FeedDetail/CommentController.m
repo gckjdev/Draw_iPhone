@@ -106,17 +106,18 @@
 
 #pragma mark - key board rect
 
-#define BG_CONTENT_SPACE 3
-#define KEYBOARD_BG_SPACE 20
+#define BG_CONTENT_SPACE ([DeviceDetection isIPAD] ?  5.0 : 3.0)
+#define KEYBOARD_BG_SPACE ([DeviceDetection isIPAD] ? 50.0 : 30.0)
 
 - (void)keyboardWillShowWithRect:(CGRect)keyboardRect
 {
     //update the text view
     CGFloat end = CGRectGetMinY(keyboardRect);
-    CGFloat bgHeight = end - CGRectGetMinY(self.inputBGView.frame) - KEYBOARD_BG_SPACE;
-    CGFloat contentHeiht = bgHeight - BG_CONTENT_SPACE;
-    
     CGRect frame = self.inputBGView.frame;
+    CGFloat bgStartY = CGRectGetMinY(frame);
+    CGFloat bgHeight = end - bgStartY - KEYBOARD_BG_SPACE;
+    CGFloat contentHeiht = bgHeight - BG_CONTENT_SPACE;
+
     self.inputBGView.frame = CGRectMake(CGRectGetMinX(frame), CGRectGetMinY(frame), CGRectGetWidth(frame), bgHeight);
 
     frame = self.contentView.frame;
