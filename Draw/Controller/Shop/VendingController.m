@@ -374,7 +374,7 @@ static VendingController* staticVendingController = nil;
     if (self) {
         if ([ConfigManager isProVersion]){
             if (isDrawApp()) {
-                _itemList = [[NSMutableArray alloc] initWithObjects:[Item tips], [Item colors], [Item tomato], [Item flower], [Item iceCreamPen], [Item brushPen], [Item featherPen], [Item waterPen], nil]; 
+                _itemList = [[NSMutableArray alloc] initWithObjects:[Item tips], [Item colors], [Item tomato], [Item flower], nil]; 
             }
             
             if (isDiceApp()) {
