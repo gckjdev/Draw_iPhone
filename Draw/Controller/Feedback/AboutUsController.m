@@ -8,6 +8,7 @@
 
 #import "AboutUsController.h"
 #import "LocaleUtils.h"
+#import "ConfigManager.h"
 
 @interface AboutUsController ()
 
@@ -45,12 +46,12 @@ Haodong\n\
 Designed By\n\
 -------------------------------\n\
 Roy He\n\
+Old13\n\
 \n\
 \n\
 ";
-    NSDictionary *infoDict = [[NSBundle mainBundle] infoDictionary];  
-    NSString *currentVersion = [infoDict objectForKey:@"CFBundleVersion"];
-    infoString = [infoString stringByAppendingFormat:@"App Version : %@" ,currentVersion];
+ 
+    infoString = [infoString stringByAppendingFormat:@"App Version : %@" ,[ConfigManager currentVersion]];
     
     contentTextView.text = infoString;
 }

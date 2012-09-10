@@ -31,9 +31,9 @@
 
 #define ADD_BUTTON_FRAME ([DeviceDetection isIPAD] ? CGRectMake(0, 0, 32 * 2, 34 * 2) : CGRectMake(0, 0, 32, 34))
 
-#define ADD_BUTTON_CENTER_PEN ([DeviceDetection isIPAD] ? CGPointMake(592,258.8) : CGPointMake(264, 105))
+#define ADD_BUTTON_CENTER_PEN ([DeviceDetection isIPAD] ? CGPointMake(592,258.9) : CGPointMake(264, 105))
 
-#define ADD_BUTTON_CENTER_BG ([DeviceDetection isIPAD] ? CGPointMake(536.8,258.8) : CGPointMake(216, 105))
+#define ADD_BUTTON_CENTER_BG ([DeviceDetection isIPAD] ? CGPointMake(536.8,258.9) : CGPointMake(216, 105))
 
 #define INSERT_INDEX 5
 #define COLOR_SIZE 14
@@ -52,6 +52,24 @@
     [colorViewArray release];
     [super dealloc];
 }
+
+#define TIP_Y ([DeviceDetection isIPAD] ? -2 : -7)
+#define TIP_WIDTH ([DeviceDetection isIPAD] ? 40 : 15)
+#define TIP_FONT_SIZE ([DeviceDetection isIPAD] ? 24 : 12)
+
+- (void)setTips:(PickColorViewType)type
+{
+    UILabel *tip = [[UILabel alloc] initWithFrame:CGRectMake(0, TIP_Y, CGRectGetWidth(self.frame), TIP_WIDTH)];
+    [tip setBackgroundColor:[UIColor clearColor]];
+    [tip setTextAlignment:UITextAlignmentCenter];
+    [tip setFont:[UIFont systemFontOfSize:TIP_FONT_SIZE]];
+    NSString *title = (type == PickColorViewTypePen) ? NSLS(@"kPickPen") :NSLS(@"kPickBG");
+    [tip setText:title];
+    [self addSubview:tip];
+    [tip release];
+
+}
+
 - (id)initWithFrame:(CGRect)frame type:(PickColorViewType)type
 {
     self = [super initWithFrame:frame];
@@ -92,7 +110,7 @@
             }
             [self updatePickColorView];
         }
-
+        [self setTips:type];
     }
     return self;
 }
@@ -135,9 +153,8 @@
 #define BUTTON_COUNT_PER_ROW 5
 
 #define PEN_STATR_X ([DeviceDetection isIPAD] ? 58 * 2: 50)
-#define STATR_Y 0
-
-#define BG_STATR_X STATR_Y
+#define START_Y ([DeviceDetection isIPAD] ? 40 : 9)
+#define BG_STATR_X 0
 
 - (void)updatePickColorView
 {
@@ -161,9 +178,9 @@
     }else{
         
     }
-    CGFloat baseY = STATR_Y;            
+    CGFloat baseY = START_Y;            
     CGFloat w = self.frame.size.width - baseX;
-    CGFloat h = self.frame.size.height;
+    CGFloat h = self.frame.size.height - START_Y;
     CGFloat spaceX = (w - [ColorView widthForScale:ColorViewScaleSmall] 
                       * BUTTON_COUNT_PER_ROW) / (BUTTON_COUNT_PER_ROW - 1);
 
