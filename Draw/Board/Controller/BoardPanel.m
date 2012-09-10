@@ -204,7 +204,14 @@
 - (void)clearAds
 {
     for (BoardView *boardView in _boardViews) {
-        [boardView viewDidDisappear];
+        @try {
+            [boardView viewDidDisappear];
+        }
+        @catch (NSException *exception) {
+            PPDebug(@"<clearAds> but catch exception=%@", [exception description]);
+        }
+        @finally {
+        }
     }
 }
 - (IBAction)changePage:(id)sender {

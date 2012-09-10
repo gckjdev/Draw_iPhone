@@ -349,7 +349,7 @@ static AdService* _defaultService;
     // create view
     adView = [AdMoGoView requestAdMoGoViewWithDelegate:self 
                                              AndAdType:AdViewTypeNormalBanner
-                                           ExpressMode:YES];            
+                                           ExpressMode:NO];            
     
     // set view frame
     if ([DeviceDetection isIPAD]){
@@ -372,16 +372,24 @@ static AdService* _defaultService;
 
 - (void)clearAdView:(UIView*)adView
 {
-    PPDebug(@"<clearAdView>");
-    [adView removeFromSuperview];
     
-    if ([adView isKindOfClass:[AdMoGoView class]]){
-        [((AdMoGoView*)adView) pauseAdRequest];
-        ((AdMoGoView*)adView).delegate = nil;
+    @try {
+        PPDebug(@"<clearAdView>");
+        [adView removeFromSuperview];
+        
+        if ([adView isKindOfClass:[AdMoGoView class]]){
+            [((AdMoGoView*)adView) pauseAdRequest];
+            ((AdMoGoView*)adView).delegate = nil;
+        }
+        else if ([adView isKindOfClass:[immobView class]]){
+            ((immobView*)adView).delegate = nil;  
+        }            
     }
-    else if ([adView isKindOfClass:[immobView class]]){
-        ((immobView*)adView).delegate = nil;  
-    }    
+    @catch (NSException *exception) {
+        PPDebug(@"<clearAdView> catch exception=%@", [exception description]);
+    }
+    @finally {
+    }
 
 }
 

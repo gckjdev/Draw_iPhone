@@ -212,7 +212,6 @@
                                  queue:[NSOperationQueue mainQueue]
                             usingBlock:^(NSNotification *note) {
                                 
-                                // TODO reload board here
                                 [self updateBoardPanelWithBoards:[[BoardManager defaultManager] boardList]];
                                 
                             }];  

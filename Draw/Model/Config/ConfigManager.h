@@ -23,6 +23,11 @@ typedef enum{
     EnableNot = 3
 }ChatVoiceEnable;
 
+typedef enum{
+    WallTypeLimei = 1,
+    WallTypeWanpu = 2
+}WallType;
+
 #define DICE_THRESHOLD_COIN ([ConfigManager getDiceThresholdCoin])
 
 @interface ConfigManager : NSObject
@@ -99,4 +104,7 @@ typedef enum{
 + (int)getDailyGiftCoinIncre;
 
 + (NSString*)getAwardItemImageName:(int)dicePoint;
+
++ (WallType)wallType;
+
 @end

@@ -175,6 +175,11 @@
     return ([MobClickUtils getIntValueByKey:@"WALL_TYPE" defaultValue:2] == 1);
 }
 
++ (WallType)wallType
+{
+    return ([MobClickUtils getIntValueByKey:@"NEW_WALL_TYPE" defaultValue:WallTypeWanpu] == 1);
+}
+
 + (BOOL)removeAdByIAP
 {
     return ([MobClickUtils getIntValueByKey:@"DEL_AD_TYPE" defaultValue:0] == 1);

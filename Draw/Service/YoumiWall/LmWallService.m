@@ -87,14 +87,23 @@ static LmWallService* _defaultService;
 
 - (void)show:(UIViewController*)viewController
 {        
-    if ([ConfigManager useLmWall]){    
-        [MobClick event:@"SHOW_LM_WALL"];    
-        _viewController = viewController;
-        [self.adWallView immobViewRequest];         
-    }
-    else{
-        [MobClick event:@"SHOW_WP_WALL"];    
-        [AppConnect showOffers];
+    switch ([ConfigManager wallType]) {
+        case WallTypeLimei:
+        {
+            [MobClick event:@"SHOW_LM_WALL"];    
+            _viewController = viewController;
+            [self.adWallView immobViewRequest];         
+            
+        }
+            break;
+            
+        case WallTypeWanpu:
+        default:
+        {
+            [MobClick event:@"SHOW_WP_WALL"];    
+            [AppConnect showOffers];            
+        }
+            break;
     }
 }
 

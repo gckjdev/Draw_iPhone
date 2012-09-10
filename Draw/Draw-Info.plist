@@ -24,10 +24,10 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>0.5</string>
+	<string>4.3</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
-	<key>CFBundleURLTypes</key>
+	<key>URL types Dice</key>
 	<array>
 		<dict>
 			<key>CFBundleURLSchemes</key>
@@ -36,7 +36,7 @@
 			</array>
 		</dict>
 	</array>
-	<key>CFURLDraw</key>
+	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
 			<key>CFBundleURLSchemes</key>
@@ -48,7 +48,7 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>0.5</string>
+	<string>4.3</string>
 	<key>CFChannelId</key>
 	<string>91</string>
 	<key>CFWordBaseVersion</key>
