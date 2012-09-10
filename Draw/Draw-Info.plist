@@ -75,9 +75,9 @@
 		<string>UIInterfaceOrientationLandscapeRight</string>
 		<string>UIInterfaceOrientationPortraitUpsideDown</string>
 	</array>
-	<key>UILaunchImageFile~iphone</key>
+	<key>Launch image (iPhone) Dice</key>
 	<string>DiceDefault.jpg</string>
-	<key>UILaunchImageFile~ipad</key>
+	<key>Launch image (iPad) Dice</key>
 	<string>DiceDefault_ipad.jpg</string>
 	<key>Icon files Dice</key>
 	<array>
