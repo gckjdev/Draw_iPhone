@@ -8,8 +8,17 @@
 
 #import <Foundation/Foundation.h>
 
+@class DiceGamePlayController;
+
 @interface CommonDiceItemAction : NSObject
 
-+ (void)showNameAnimation;
+- (id)initWithController:(DiceGamePlayController *)controller
+                    view:(UIView *)view;
+
+- (void)showNameAnimation:(NSString*)userId
+                 itemName:(NSString *)itemName;
+
+- (BOOL)isShowNameAnimation;
+- (void)hanleItemResponse:(int)itemType;
 
 @end
