@@ -304,10 +304,6 @@
 {
     [_accountService consumeItem:itemId amount:1]; 
     
-    if (itemId != ItemTypeCut){
-        [self showItemNameAnimationOnUser:_userManager.userId itemName:[Item nameForItemType:itemId]];
-    }
-    
     if (itemId != ItemTypeCut) {
         [self showItemNameAnimationOnUser:_userManager.userId itemName:[Item nameForItemType:itemId]];
     }
