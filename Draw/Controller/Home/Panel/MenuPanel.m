@@ -35,8 +35,7 @@
 @synthesize gameAppType = _gameAppType;
 @synthesize bgImageView = _bgImageView;
 
-+ (MenuPanel *)menuPanelWithController:(UIViewController *)controller
-                           gameAppType:(GameAppType)gameAppType
++ (MenuPanel *)menuPanelWithController:(UIViewController<MenuButtonDelegate> *)controller gameAppType:(GameAppType)gameAppType
 {
     static NSString *identifier = @"MenuPanel";
     NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:identifier owner:self options:nil];
@@ -105,17 +104,16 @@ static const NSInteger MENU_NUMBER_PER_PAGE = 6;
 - (void)loadMenu
 {
     int number = 0;
-//    UIImage * bgImage = [[ShareImageManager defaultManager]
-//                         mainMenuPanelBGForGameAppType:self.gameAppType];
-//    [self.bgImageView setImage:bgImage];
+    UIImage * bgImage = [[ShareImageManager defaultManager]
+                         mainMenuPanelBGForGameAppType:self.gameAppType];
+    [self.bgImageView setImage:bgImage];
     
     int *list = getMainMenuTypeListByGameAppType(self.gameAppType);
     while (list != NULL && (*list) != MenuButtonTypeEnd) {
         MenuButton *menu = [MenuButton menuButtonWithType:(*list) gameAppType:self.gameAppType];
         [self updateFrameForMenu:menu atIndex:number++];
         [self.scrollView addSubview:menu];
-//        [menu setBadgeNumber:number];
-        menu.delegate = self;
+        menu.delegate = self.controller;
         list++;
     }
     [self.scrollView setContentSize:CGSizeMake((number / MENU_NUMBER_PER_PAGE)  * MENU_PANEL_WIDTH, MENU_PANEL_HEIGHT)];
@@ -145,157 +143,6 @@ static const NSInteger MENU_NUMBER_PER_PAGE = 6;
     [[self getMenuButtonByType:type] setBadgeNumber:badge];
 }
 
-
-#pragma mark handle the register
-
-- (BOOL)isRegistered
-{
-    return [[UserManager defaultManager] hasUser];
-}
-
-- (void)toRegister
-{
-    RegisterUserController *ruc = [[RegisterUserController alloc] init];
-    [_controller.navigationController pushViewController:ruc animated:YES];
-    [ruc release];
-}
-
-
-#pragma menu button delegate
-
-- (void)didClickMenuButton:(MenuButton *)menuButton
-{
-    PPDebug(@"menu button type = %d", menuButton.type);
-    if (![self isRegistered]) {
-        [self toRegister];
-        return;
-    }
-    
-    MenuButtonType type = menuButton.type;
-    switch (type) {
-        case MenuButtonTypeOnlinePlay:
-        {
-            
-            UserManager *_userManager = [UserManager defaultManager];
-            [_controller showActivityWithText:NSLS(@"kJoiningGame")];
-            NSString* userId = [_userManager userId];
-            NSString* nickName = [_userManager nickName];
-            
-            if (userId == nil){
-                userId = [NSString GetUUID];
-            }
-            
-            if (nickName == nil){
-                nickName = NSLS(@"guest");
-            }
-            
-            if ([[DrawGameService defaultService] isConnected]){        
-                [[DrawGameService defaultService] joinGame:userId
-                                                  nickName:nickName
-                                                    avatar:[_userManager avatarURL]
-                                                    gender:[_userManager isUserMale]
-                                                  location:[_userManager location]  
-                                                 userLevel:[[LevelService defaultService] level]
-                                            guessDiffLevel:[ConfigManager guessDifficultLevel]
-                                               snsUserData:[_userManager snsUserData]];    
-            }
-            else{
-                
-                [_controller showActivityWithText:NSLS(@"kConnectingServer")];        
-                [[RouterService defaultService] tryFetchServerList:_controller];        
-            }
-
-        }
-            
-            break;
-        case MenuButtonTypeOfflineDraw:
-        {
-            SelectWordController *sc = [[SelectWordController alloc] initWithType:OfflineDraw];
-            [_controller.navigationController pushViewController:sc animated:YES];
-            [sc release];
-        }
-            break;
-        case MenuButtonTypeOfflineGuess:
-        {
-            [_controller showActivityWithText:NSLS(@"kLoading")];
-            [[DrawDataService defaultService] matchDraw:_controller];
-        }
-            break;
-        case MenuButtonTypeFriendPlay:
-        {
-            FriendRoomController *frc = [[FriendRoomController alloc] init];
-            [_controller.navigationController pushViewController:frc animated:YES];
-            [frc release];
-            [self setMenuBadge:0 forMenuType:type];
-        }
-            break;
-        case MenuButtonTypeTimeline:
-        {
-            FeedController *fc = [[FeedController alloc] init];
-            [_controller.navigationController pushViewController:fc animated:YES];
-            [fc release];
-            [self setMenuBadge:0 forMenuType:type];
-        }
-            break;
-        case MenuButtonTypeShop:
-        {
-            VendingController* vc = [[VendingController alloc] init];
-            [_controller.navigationController pushViewController:vc animated:YES];
-            [vc release];
-        }
-            break;
-
-            
-        case MenuButtonTypeDiceShop:
-        {
-            VendingController* vc = [[VendingController alloc] init];
-            [_controller.navigationController pushViewController:vc animated:YES];
-            [vc release];
-        }
-            break;
-        case MenuButtonTypeDiceStart:
-        {
-            if ([_controller respondsToSelector:@selector(connectServer)]){
-                [_controller performSelector:@selector(connectServer)];
-            }
-        }
-            break;
-        case MenuButtonTypeDiceRoom:
-        {
-            DiceRoomListController* vc = [[[DiceRoomListController alloc] init] autorelease];
-            [_controller.navigationController pushViewController:vc animated:YES];
-        }
-            break;
-        case MenuButtonTypeDiceHelp:
-        {
-            DiceHelpView *view = [DiceHelpView createDiceHelpView];
-            [view showInView:_controller.view];
-        }
-            break;
-
-            
-        default:
-            break;
-    }
-}
-/*
-#pragma mark scrollView Delegate
-
-- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
-{
-        PPDebug(@"<BoardPanel>scrollViewWillBeginDragging");
-}
-
-- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
-{
-    PPDebug(@"scrollViewDidEndDecelerating, page = %d", self.pageControl.currentPage);    
-}
-
-- (void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView
-{
-    PPDebug(@"<BoardPanel>scrollViewDidEndScrollingAnimation");
-}
-*/
 
 #pragma mark page control
 - (IBAction)changePage:(id)sender {

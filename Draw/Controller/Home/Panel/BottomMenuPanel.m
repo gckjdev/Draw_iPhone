@@ -21,8 +21,7 @@
 @synthesize panelBgImage = _panelBgImage;
 @synthesize gameAppType = _gameAppType;
 
-+ (BottomMenuPanel *)panelWithController:(UIViewController *)controller 
-                             gameAppType:(GameAppType)gameAppType
++ (BottomMenuPanel *)panelWithController:(UIViewController<MenuButtonDelegate> *)controller gameAppType:(GameAppType)gameAppType
 {
     static NSString *identifier = @"BottomMenuPanel";
     NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:identifier owner:self options:nil];
@@ -76,10 +75,9 @@
     while (list != NULL && (*list) != MenuButtonTypeEnd) {
         MenuButtonType type = *list;
         BottomMenu *menu = [BottomMenu bottomMenuWithType:type gameAppType:self.gameAppType];
-//        [menu setBadgeNumber:index];
         menu.frame = [self frameForMenuIndex:index number:[self menuNumber]];
         [self addSubview:menu];
-        menu.delegate = self;
+        menu.delegate = _controller;
         ++ index;        
         ++ list;
     }
@@ -101,99 +99,6 @@
     [[self getMenuButtonByType:type] setBadgeNumber:badge];
 }
 
-
-#pragma mark handle the register
-
-- (BOOL)isRegistered
-{
-    return [[UserManager defaultManager] hasUser];
-}
-
-- (void)toRegister
-{
-    RegisterUserController *ruc = [[RegisterUserController alloc] init];
-    [_controller.navigationController pushViewController:ruc animated:YES];
-    [ruc release];
-}
-
-
-#pragma menu button delegate
-
-- (void)didClickMenuButton:(MenuButton *)menuButton
-{
-    PPDebug(@"menu button type = %d", menuButton.type);
-    if (![self isRegistered]) {
-        [self toRegister];
-        return;
-    }
-    
-    MenuButtonType type = menuButton.type;
-    switch (type) {
-        case MenuButtonTypeSettings:
-        {
-            UserSettingController *settings = [[UserSettingController alloc] init];
-            [_controller.navigationController pushViewController:settings animated:YES];
-            [settings release];
-        }
-            
-            break;
-        case MenuButtonTypeOpus:
-        {   
-            ShareController* share = [[ShareController alloc] init ];
-            [_controller.navigationController pushViewController:share animated:YES];
-            [share release];
-
-        }
-            break;
-        case MenuButtonTypeFriend:
-        {
-            MyFriendsController *mfc = [[MyFriendsController alloc] init];
-            [_controller.navigationController pushViewController:mfc animated:YES];
-            [mfc release];
-            [self setMenuBadge:0 forMenuType:MenuButtonTypeFriend];
-        }
-            break;
-        case MenuButtonTypeChat:
-        {
-            ChatListController *controller = [[ChatListController alloc] init];
-            [_controller.navigationController pushViewController:controller animated:YES];
-            [controller release];
-            
-            [self setMenuBadge:0 forMenuType:type];
-
-        }
-            break;
-        case MenuButtonTypeFeedback:
-        {
-            FeedbackController* feedBack = [[FeedbackController alloc] init];
-            [_controller.navigationController pushViewController:feedBack animated:YES];
-            [feedBack release];
-
-        }
-            break;
-        case MenuButtonTypeCheckIn:
-        {
-//            int coins = [[AccountService defaultService] checkIn];
-//            NSString* message = nil;
-//            if (coins > 0){        
-//                message = [NSString stringWithFormat:NSLS(@"kCheckInMessage"), coins];
-//            }
-//            else{
-//                message = NSLS(@"kCheckInAlreadyToday");
-//            }
-//            CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"kCheckInTitle") 
-//                                                               message:message
-//                                                                 style:CommonDialogStyleSingleButton 
-//                                                              delegate:_controller];    
-//            
-//            [dialog showInView:_controller.view];
-
-        }
-            break;
-        default:
-            break;
-    }
-}
 
 
 @end

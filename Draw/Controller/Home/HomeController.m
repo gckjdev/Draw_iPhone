@@ -38,7 +38,7 @@
 #import "WordManager.h"
 #import "MyFriendsController.h"
 #import "RegisterUserController.h"
-
+#import "FeedController.h"
 
 #import "OfflineGuessDrawController.h"
 #import "SelectWordController.h"
@@ -623,4 +623,140 @@
     }
 
 }
+
+
+#pragma mark - Button Menu delegate
+
+- (void)didClickMenuButton:(MenuButton *)menuButton
+{
+    PPDebug(@"menu button type = %d", menuButton.type);
+    if (![self isRegistered]) {
+        [self toRegister];
+        return;
+    }
+    
+    MenuButtonType type = menuButton.type;
+    switch (type) {
+        case MenuButtonTypeOnlinePlay:
+        {
+            [self showActivityWithText:NSLS(@"kJoiningGame")];
+            NSString* userId = [_userManager userId];
+            NSString* nickName = [_userManager nickName];
+            
+            if (userId == nil){
+                userId = [NSString GetUUID];
+            }
+            
+            if (nickName == nil){
+                nickName = NSLS(@"guest");
+            }
+            
+            if ([[DrawGameService defaultService] isConnected]){        
+                [[DrawGameService defaultService] joinGame:userId
+                                                  nickName:nickName
+                                                    avatar:[_userManager avatarURL]
+                                                    gender:[_userManager isUserMale]
+                                                  location:[_userManager location]  
+                                                 userLevel:[[LevelService defaultService] level]
+                                            guessDiffLevel:[ConfigManager guessDifficultLevel]
+                                               snsUserData:[_userManager snsUserData]];    
+            }
+            else{
+                
+                [self showActivityWithText:NSLS(@"kConnectingServer")];        
+                [[RouterService defaultService] tryFetchServerList:self];        
+            }
+            
+        }
+            
+            break;
+        case MenuButtonTypeOfflineDraw:
+        {
+            SelectWordController *sc = [[SelectWordController alloc] initWithType:OfflineDraw];
+            [self.navigationController pushViewController:sc animated:YES];
+            [sc release];
+        }
+            break;
+        case MenuButtonTypeOfflineGuess:
+        {
+            [self showActivityWithText:NSLS(@"kLoading")];
+            [[DrawDataService defaultService] matchDraw:self];
+        }
+            break;
+        case MenuButtonTypeFriendPlay:
+        {
+            FriendRoomController *frc = [[FriendRoomController alloc] init];
+            [self.navigationController pushViewController:frc animated:YES];
+            [frc release];
+            [_menuPanel setMenuBadge:0 forMenuType:type];
+        }
+            break;
+        case MenuButtonTypeTimeline:
+        {
+            FeedController *fc = [[FeedController alloc] init];
+            [self.navigationController pushViewController:fc animated:YES];
+            [fc release];
+            [_menuPanel setMenuBadge:0 forMenuType:type];
+        }
+            break;
+        case MenuButtonTypeShop:
+        {
+            VendingController* vc = [[VendingController alloc] init];
+            [self.navigationController pushViewController:vc animated:YES];
+            [vc release];
+        }
+            break;
+            
+        
+        //For Bottom Menus
+        case MenuButtonTypeSettings:
+        {
+            UserSettingController *settings = [[UserSettingController alloc] init];
+            [self.navigationController pushViewController:settings animated:YES];
+            [settings release];
+        }
+            
+            break;
+        case MenuButtonTypeOpus:
+        {   
+            ShareController* share = [[ShareController alloc] init ];
+            [self.navigationController pushViewController:share animated:YES];
+            [share release];
+            
+        }
+            break;
+        case MenuButtonTypeFriend:
+        {
+            MyFriendsController *mfc = [[MyFriendsController alloc] init];
+            [self.navigationController pushViewController:mfc animated:YES];
+            [mfc release];
+            [_bottomMenuPanel setMenuBadge:0 forMenuType:MenuButtonTypeFriend];
+        }
+            break;
+        case MenuButtonTypeChat:
+        {
+            ChatListController *controller = [[ChatListController alloc] init];
+            [self.navigationController pushViewController:controller animated:YES];
+            [controller release];
+            
+            [_bottomMenuPanel setMenuBadge:0 forMenuType:type];
+            
+        }
+            break;
+        case MenuButtonTypeFeedback:
+        {
+            FeedbackController* feedBack = [[FeedbackController alloc] init];
+            [self.navigationController pushViewController:feedBack animated:YES];
+            [feedBack release];
+            
+        }
+            break;
+        case MenuButtonTypeCheckIn:
+
+        default:
+            break;
+    }
+
+}
+
 @end
