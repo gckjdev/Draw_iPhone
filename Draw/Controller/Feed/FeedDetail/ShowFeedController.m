@@ -652,7 +652,8 @@ enum{
                 resultCode:(NSInteger)resultCode
 {
     if (resultCode == 0) {
-        [_commentHeader updateTimes:feed];
+//        [_commentHeader updateTimes:feed];
+        [_commentHeader setViewInfo:feed];
     }
 }
 
