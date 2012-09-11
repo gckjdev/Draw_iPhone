@@ -921,7 +921,6 @@
 - (void)useItem:(int)itemId itemName:(NSString *)itemName userId:(NSString *)userId
 {
     [_diceService userItem:itemId];
-
 }
 
 
