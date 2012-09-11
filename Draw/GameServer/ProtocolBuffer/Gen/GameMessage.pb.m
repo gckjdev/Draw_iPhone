@@ -2431,6 +2431,7 @@ static OpenDiceResponse* defaultOpenDiceResponseInstance = nil;
 
 @interface UseItemRequest ()
 @property int32_t itemId;
+@property int32_t extendTime;
 @end
 
 @implementation UseItemRequest
@@ -2442,12 +2443,20 @@ static OpenDiceResponse* defaultOpenDiceResponseInstance = nil;
   hasItemId_ = !!value;
 }
 @synthesize itemId;
+- (BOOL) hasExtendTime {
+  return !!hasExtendTime_;
+}
+- (void) setHasExtendTime:(BOOL) value {
+  hasExtendTime_ = !!value;
+}
+@synthesize extendTime;
 - (void) dealloc {
   [super dealloc];
 }
 - (id) init {
   if ((self = [super init])) {
     self.itemId = 0;
+    self.extendTime = 0;
   }
   return self;
 }
@@ -2473,6 +2482,9 @@ static UseItemRequest* defaultUseItemRequestInstance = nil;
   if (self.hasItemId) {
     [output writeInt32:1 value:self.itemId];
   }
+  if (self.hasExtendTime) {
+    [output writeInt32:100 value:self.extendTime];
+  }
   [self.unknownFields writeToCodedOutputStream:output];
 }
 - (int32_t) serializedSize {
@@ -2484,6 +2496,9 @@ static UseItemRequest* defaultUseItemRequestInstance = nil;
   size = 0;
   if (self.hasItemId) {
     size += computeInt32Size(1, self.itemId);
+  }
+  if (self.hasExtendTime) {
+    size += computeInt32Size(100, self.extendTime);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -2563,6 +2578,9 @@ static UseItemRequest* defaultUseItemRequestInstance = nil;
   if (other.hasItemId) {
     [self setItemId:other.itemId];
   }
+  if (other.hasExtendTime) {
+    [self setExtendTime:other.extendTime];
+  }
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }
@@ -2588,6 +2606,10 @@ static UseItemRequest* defaultUseItemRequestInstance = nil;
         [self setItemId:[input readInt32]];
         break;
       }
+      case 800: {
+        [self setExtendTime:[input readInt32]];
+        break;
+      }
     }
   }
 }
@@ -2605,6 +2627,22 @@ static UseItemRequest* defaultUseItemRequestInstance = nil;
 - (UseItemRequest_Builder*) clearItemId {
   result.hasItemId = NO;
   result.itemId = 0;
+  return self;
+}
+- (BOOL) hasExtendTime {
+  return result.hasExtendTime;
+}
+- (int32_t) extendTime {
+  return result.extendTime;
+}
+- (UseItemRequest_Builder*) setExtendTime:(int32_t) value {
+  result.hasExtendTime = YES;
+  result.extendTime = value;
+  return self;
+}
+- (UseItemRequest_Builder*) clearExtendTime {
+  result.hasExtendTime = NO;
+  result.extendTime = 0;
   return self;
 }
 @end
@@ -5666,6 +5704,7 @@ static RollDiceEndNotificationResponse* defaultRollDiceEndNotificationResponseIn
 @interface NextPlayerStartNotificationRequest ()
 @property (retain) NSString* currentPlayUserId;
 @property (retain) NSString* nextPlayUserId;
+@property int32_t expiredTime;
 @end
 
 @implementation NextPlayerStartNotificationRequest
@@ -5684,6 +5723,13 @@ static RollDiceEndNotificationResponse* defaultRollDiceEndNotificationResponseIn
   hasNextPlayUserId_ = !!value;
 }
 @synthesize nextPlayUserId;
+- (BOOL) hasExpiredTime {
+  return !!hasExpiredTime_;
+}
+- (void) setHasExpiredTime:(BOOL) value {
+  hasExpiredTime_ = !!value;
+}
+@synthesize expiredTime;
 - (void) dealloc {
   self.currentPlayUserId = nil;
   self.nextPlayUserId = nil;
@@ -5693,6 +5739,7 @@ static RollDiceEndNotificationResponse* defaultRollDiceEndNotificationResponseIn
   if ((self = [super init])) {
     self.currentPlayUserId = @"";
     self.nextPlayUserId = @"";
+    self.expiredTime = 0;
   }
   return self;
 }
@@ -5724,6 +5771,9 @@ static NextPlayerStartNotificationRequest* defaultNextPlayerStartNotificationReq
   if (self.hasNextPlayUserId) {
     [output writeString:2 value:self.nextPlayUserId];
   }
+  if (self.hasExpiredTime) {
+    [output writeInt32:3 value:self.expiredTime];
+  }
   [self.unknownFields writeToCodedOutputStream:output];
 }
 - (int32_t) serializedSize {
@@ -5738,6 +5788,9 @@ static NextPlayerStartNotificationRequest* defaultNextPlayerStartNotificationReq
   }
   if (self.hasNextPlayUserId) {
     size += computeStringSize(2, self.nextPlayUserId);
+  }
+  if (self.hasExpiredTime) {
+    size += computeInt32Size(3, self.expiredTime);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -5820,6 +5873,9 @@ static NextPlayerStartNotificationRequest* defaultNextPlayerStartNotificationReq
   if (other.hasNextPlayUserId) {
     [self setNextPlayUserId:other.nextPlayUserId];
   }
+  if (other.hasExpiredTime) {
+    [self setExpiredTime:other.expiredTime];
+  }
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }
@@ -5847,6 +5903,10 @@ static NextPlayerStartNotificationRequest* defaultNextPlayerStartNotificationReq
       }
       case 18: {
         [self setNextPlayUserId:[input readString]];
+        break;
+      }
+      case 24: {
+        [self setExpiredTime:[input readInt32]];
         break;
       }
     }
@@ -5882,6 +5942,22 @@ static NextPlayerStartNotificationRequest* defaultNextPlayerStartNotificationReq
 - (NextPlayerStartNotificationRequest_Builder*) clearNextPlayUserId {
   result.hasNextPlayUserId = NO;
   result.nextPlayUserId = @"";
+  return self;
+}
+- (BOOL) hasExpiredTime {
+  return result.hasExpiredTime;
+}
+- (int32_t) expiredTime {
+  return result.expiredTime;
+}
+- (NextPlayerStartNotificationRequest_Builder*) setExpiredTime:(int32_t) value {
+  result.hasExpiredTime = YES;
+  result.expiredTime = value;
+  return self;
+}
+- (NextPlayerStartNotificationRequest_Builder*) clearExpiredTime {
+  result.hasExpiredTime = NO;
+  result.expiredTime = 0;
   return self;
 }
 @end

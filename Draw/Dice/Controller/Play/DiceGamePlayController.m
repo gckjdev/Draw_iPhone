@@ -96,6 +96,8 @@
 - (void)dealloc {
     [UIApplication sharedApplication].idleTimerDisabled=NO;
 
+    [self unregisterAllNotifications];
+
     [self setAdView:nil];
     
     [self clearAdHideTimer];
@@ -921,7 +923,6 @@
 - (void)useItem:(int)itemId itemName:(NSString *)itemName userId:(NSString *)userId
 {
     [_diceService userItem:itemId];
-
 }
 
 

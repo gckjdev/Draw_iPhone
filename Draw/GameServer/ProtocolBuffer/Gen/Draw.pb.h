@@ -18,6 +18,8 @@
 @class PBGameSession_Builder;
 @class PBGameUser;
 @class PBGameUser_Builder;
+@class PBKeyValue;
+@class PBKeyValue_Builder;
 @class PBMessage;
 @class PBMessageStat;
 @class PBMessageStat_Builder;

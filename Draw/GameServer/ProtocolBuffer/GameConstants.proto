@@ -201,3 +201,8 @@ enum GameChatType {
   CHAT_PRIVATE = 1;
 }
 
+enum DiceGameRuleType {
+    NORMAL = 0;
+    HIGH = 1;
+    SUPER_HIGH = 2;
+}

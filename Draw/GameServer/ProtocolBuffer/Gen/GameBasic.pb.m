@@ -19,6 +19,226 @@ static PBExtensionRegistry* extensionRegistry = nil;
 }
 @end
 
+@interface PBKeyValue ()
+@property (retain) NSString* name;
+@property (retain) NSString* value;
+@end
+
+@implementation PBKeyValue
+
+- (BOOL) hasName {
+  return !!hasName_;
+}
+- (void) setHasName:(BOOL) value {
+  hasName_ = !!value;
+}
+@synthesize name;
+- (BOOL) hasValue {
+  return !!hasValue_;
+}
+- (void) setHasValue:(BOOL) value {
+  hasValue_ = !!value;
+}
+@synthesize value;
+- (void) dealloc {
+  self.name = nil;
+  self.value = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.name = @"";
+    self.value = @"";
+  }
+  return self;
+}
+static PBKeyValue* defaultPBKeyValueInstance = nil;
++ (void) initialize {
+  if (self == [PBKeyValue class]) {
+    defaultPBKeyValueInstance = [[PBKeyValue alloc] init];
+  }
+}
++ (PBKeyValue*) defaultInstance {
+  return defaultPBKeyValueInstance;
+}
+- (PBKeyValue*) defaultInstance {
+  return defaultPBKeyValueInstance;
+}
+- (BOOL) isInitialized {
+  if (!self.hasName) {
+    return NO;
+  }
+  return YES;
+}
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
+  if (self.hasName) {
+    [output writeString:1 value:self.name];
+  }
+  if (self.hasValue) {
+    [output writeString:2 value:self.value];
+  }
+  [self.unknownFields writeToCodedOutputStream:output];
+}
+- (int32_t) serializedSize {
+  int32_t size = memoizedSerializedSize;
+  if (size != -1) {
+    return size;
+  }
+
+  size = 0;
+  if (self.hasName) {
+    size += computeStringSize(1, self.name);
+  }
+  if (self.hasValue) {
+    size += computeStringSize(2, self.value);
+  }
+  size += self.unknownFields.serializedSize;
+  memoizedSerializedSize = size;
+  return size;
+}
++ (PBKeyValue*) parseFromData:(NSData*) data {
+  return (PBKeyValue*)[[[PBKeyValue builder] mergeFromData:data] build];
+}
++ (PBKeyValue*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBKeyValue*)[[[PBKeyValue builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+}
++ (PBKeyValue*) parseFromInputStream:(NSInputStream*) input {
+  return (PBKeyValue*)[[[PBKeyValue builder] mergeFromInputStream:input] build];
+}
++ (PBKeyValue*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBKeyValue*)[[[PBKeyValue builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (PBKeyValue*) parseFromCodedInputStream:(PBCodedInputStream*) input {
+  return (PBKeyValue*)[[[PBKeyValue builder] mergeFromCodedInputStream:input] build];
+}
++ (PBKeyValue*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBKeyValue*)[[[PBKeyValue builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (PBKeyValue_Builder*) builder {
+  return [[[PBKeyValue_Builder alloc] init] autorelease];
+}
++ (PBKeyValue_Builder*) builderWithPrototype:(PBKeyValue*) prototype {
+  return [[PBKeyValue builder] mergeFrom:prototype];
+}
+- (PBKeyValue_Builder*) builder {
+  return [PBKeyValue builder];
+}
+@end
+
+@interface PBKeyValue_Builder()
+@property (retain) PBKeyValue* result;
+@end
+
+@implementation PBKeyValue_Builder
+@synthesize result;
+- (void) dealloc {
+  self.result = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.result = [[[PBKeyValue alloc] init] autorelease];
+  }
+  return self;
+}
+- (PBGeneratedMessage*) internalGetResult {
+  return result;
+}
+- (PBKeyValue_Builder*) clear {
+  self.result = [[[PBKeyValue alloc] init] autorelease];
+  return self;
+}
+- (PBKeyValue_Builder*) clone {
+  return [PBKeyValue builderWithPrototype:result];
+}
+- (PBKeyValue*) defaultInstance {
+  return [PBKeyValue defaultInstance];
+}
+- (PBKeyValue*) build {
+  [self checkInitialized];
+  return [self buildPartial];
+}
+- (PBKeyValue*) buildPartial {
+  PBKeyValue* returnMe = [[result retain] autorelease];
+  self.result = nil;
+  return returnMe;
+}
+- (PBKeyValue_Builder*) mergeFrom:(PBKeyValue*) other {
+  if (other == [PBKeyValue defaultInstance]) {
+    return self;
+  }
+  if (other.hasName) {
+    [self setName:other.name];
+  }
+  if (other.hasValue) {
+    [self setValue:other.value];
+  }
+  [self mergeUnknownFields:other.unknownFields];
+  return self;
+}
+- (PBKeyValue_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
+  return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
+}
+- (PBKeyValue_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
+  while (YES) {
+    int32_t tag = [input readTag];
+    switch (tag) {
+      case 0:
+        [self setUnknownFields:[unknownFields build]];
+        return self;
+      default: {
+        if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
+          [self setUnknownFields:[unknownFields build]];
+          return self;
+        }
+        break;
+      }
+      case 10: {
+        [self setName:[input readString]];
+        break;
+      }
+      case 18: {
+        [self setValue:[input readString]];
+        break;
+      }
+    }
+  }
+}
+- (BOOL) hasName {
+  return result.hasName;
+}
+- (NSString*) name {
+  return result.name;
+}
+- (PBKeyValue_Builder*) setName:(NSString*) value {
+  result.hasName = YES;
+  result.name = value;
+  return self;
+}
+- (PBKeyValue_Builder*) clearName {
+  result.hasName = NO;
+  result.name = @"";
+  return self;
+}
+- (BOOL) hasValue {
+  return result.hasValue;
+}
+- (NSString*) value {
+  return result.value;
+}
+- (PBKeyValue_Builder*) setValue:(NSString*) value {
+  result.hasValue = YES;
+  result.value = value;
+  return self;
+}
+- (PBKeyValue_Builder*) clearValue {
+  result.hasValue = NO;
+  result.value = @"";
+  return self;
+}
+@end
+
 @interface PBSNSUser ()
 @property int32_t type;
 @property (retain) NSString* userId;
@@ -373,6 +593,7 @@ static PBSNSUser* defaultPBSNSUserInstance = nil;
 @property int32_t seatId;
 @property BOOL isPlaying;
 @property BOOL isTakenOver;
+@property (retain) NSMutableArray* mutableAttributesList;
 @end
 
 @implementation PBGameUser
@@ -463,6 +684,7 @@ static PBSNSUser* defaultPBSNSUserInstance = nil;
 - (void) setIsTakenOver:(BOOL) value {
   isTakenOver_ = !!value;
 }
+@synthesize mutableAttributesList;
 - (void) dealloc {
   self.userId = nil;
   self.nickName = nil;
@@ -470,6 +692,7 @@ static PBSNSUser* defaultPBSNSUserInstance = nil;
   self.mutableSnsUsersList = nil;
   self.location = nil;
   self.facetimeId = nil;
+  self.mutableAttributesList = nil;
   [super dealloc];
 }
 - (id) init {
@@ -506,6 +729,13 @@ static PBGameUser* defaultPBGameUserInstance = nil;
   id value = [mutableSnsUsersList objectAtIndex:index];
   return value;
 }
+- (NSArray*) attributesList {
+  return mutableAttributesList;
+}
+- (PBKeyValue*) attributesAtIndex:(int32_t) index {
+  id value = [mutableAttributesList objectAtIndex:index];
+  return value;
+}
 - (BOOL) isInitialized {
   if (!self.hasUserId) {
     return NO;
@@ -514,6 +744,11 @@ static PBGameUser* defaultPBGameUserInstance = nil;
     return NO;
   }
   for (PBSNSUser* element in self.snsUsersList) {
+    if (!element.isInitialized) {
+      return NO;
+    }
+  }
+  for (PBKeyValue* element in self.attributesList) {
     if (!element.isInitialized) {
       return NO;
     }
@@ -553,6 +788,9 @@ static PBGameUser* defaultPBGameUserInstance = nil;
   }
   if (self.hasIsTakenOver) {
     [output writeBool:21 value:self.isTakenOver];
+  }
+  for (PBKeyValue* element in self.attributesList) {
+    [output writeMessage:22 value:element];
   }
   [self.unknownFields writeToCodedOutputStream:output];
 }
@@ -595,6 +833,9 @@ static PBGameUser* defaultPBGameUserInstance = nil;
   }
   if (self.hasIsTakenOver) {
     size += computeBoolSize(21, self.isTakenOver);
+  }
+  for (PBKeyValue* element in self.attributesList) {
+    size += computeMessageSize(22, element);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -707,6 +948,12 @@ static PBGameUser* defaultPBGameUserInstance = nil;
   if (other.hasIsTakenOver) {
     [self setIsTakenOver:other.isTakenOver];
   }
+  if (other.mutableAttributesList.count > 0) {
+    if (result.mutableAttributesList == nil) {
+      result.mutableAttributesList = [NSMutableArray array];
+    }
+    [result.mutableAttributesList addObjectsFromArray:other.mutableAttributesList];
+  }
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }
@@ -772,6 +1019,12 @@ static PBGameUser* defaultPBGameUserInstance = nil;
       }
       case 168: {
         [self setIsTakenOver:[input readBool]];
+        break;
+      }
+      case 178: {
+        PBKeyValue_Builder* subBuilder = [PBKeyValue builder];
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self addAttributes:[subBuilder buildPartial]];
         break;
       }
     }
@@ -966,6 +1219,35 @@ static PBGameUser* defaultPBGameUserInstance = nil;
   result.isTakenOver = NO;
   return self;
 }
+- (NSArray*) attributesList {
+  if (result.mutableAttributesList == nil) { return [NSArray array]; }
+  return result.mutableAttributesList;
+}
+- (PBKeyValue*) attributesAtIndex:(int32_t) index {
+  return [result attributesAtIndex:index];
+}
+- (PBGameUser_Builder*) replaceAttributesAtIndex:(int32_t) index with:(PBKeyValue*) value {
+  [result.mutableAttributesList replaceObjectAtIndex:index withObject:value];
+  return self;
+}
+- (PBGameUser_Builder*) addAllAttributes:(NSArray*) values {
+  if (result.mutableAttributesList == nil) {
+    result.mutableAttributesList = [NSMutableArray array];
+  }
+  [result.mutableAttributesList addObjectsFromArray:values];
+  return self;
+}
+- (PBGameUser_Builder*) clearAttributesList {
+  result.mutableAttributesList = nil;
+  return self;
+}
+- (PBGameUser_Builder*) addAttributes:(PBKeyValue*) value {
+  if (result.mutableAttributesList == nil) {
+    result.mutableAttributesList = [NSMutableArray array];
+  }
+  [result.mutableAttributesList addObject:value];
+  return self;
+}
 @end
 
 @interface PBGameSession ()
@@ -979,6 +1261,7 @@ static PBGameUser* defaultPBGameUserInstance = nil;
 @property (retain) NSString* currentPlayUserId;
 @property (retain) NSString* nextPlayUserId;
 @property (retain) NSString* password;
+@property int32_t ruleType;
 @property (retain) NSMutableArray* mutableUsersList;
 @end
 
@@ -1054,6 +1337,13 @@ static PBGameUser* defaultPBGameUserInstance = nil;
   hasPassword_ = !!value;
 }
 @synthesize password;
+- (BOOL) hasRuleType {
+  return !!hasRuleType_;
+}
+- (void) setHasRuleType:(BOOL) value {
+  hasRuleType_ = !!value;
+}
+@synthesize ruleType;
 @synthesize mutableUsersList;
 - (void) dealloc {
   self.gameId = nil;
@@ -1078,6 +1368,7 @@ static PBGameUser* defaultPBGameUserInstance = nil;
     self.currentPlayUserId = @"";
     self.nextPlayUserId = @"";
     self.password = @"";
+    self.ruleType = 0;
   }
   return self;
 }
@@ -1145,6 +1436,9 @@ static PBGameSession* defaultPBGameSessionInstance = nil;
   if (self.hasPassword) {
     [output writeString:10 value:self.password];
   }
+  if (self.hasRuleType) {
+    [output writeInt32:11 value:self.ruleType];
+  }
   for (PBGameUser* element in self.usersList) {
     [output writeMessage:50 value:element];
   }
@@ -1186,6 +1480,9 @@ static PBGameSession* defaultPBGameSessionInstance = nil;
   }
   if (self.hasPassword) {
     size += computeStringSize(10, self.password);
+  }
+  if (self.hasRuleType) {
+    size += computeInt32Size(11, self.ruleType);
   }
   for (PBGameUser* element in self.usersList) {
     size += computeMessageSize(50, element);
@@ -1295,6 +1592,9 @@ static PBGameSession* defaultPBGameSessionInstance = nil;
   if (other.hasPassword) {
     [self setPassword:other.password];
   }
+  if (other.hasRuleType) {
+    [self setRuleType:other.ruleType];
+  }
   if (other.mutableUsersList.count > 0) {
     if (result.mutableUsersList == nil) {
       result.mutableUsersList = [NSMutableArray array];
@@ -1360,6 +1660,10 @@ static PBGameSession* defaultPBGameSessionInstance = nil;
       }
       case 82: {
         [self setPassword:[input readString]];
+        break;
+      }
+      case 88: {
+        [self setRuleType:[input readInt32]];
         break;
       }
       case 402: {
@@ -1529,6 +1833,22 @@ static PBGameSession* defaultPBGameSessionInstance = nil;
 - (PBGameSession_Builder*) clearPassword {
   result.hasPassword = NO;
   result.password = @"";
+  return self;
+}
+- (BOOL) hasRuleType {
+  return result.hasRuleType;
+}
+- (int32_t) ruleType {
+  return result.ruleType;
+}
+- (PBGameSession_Builder*) setRuleType:(int32_t) value {
+  result.hasRuleType = YES;
+  result.ruleType = value;
+  return self;
+}
+- (PBGameSession_Builder*) clearRuleType {
+  result.hasRuleType = NO;
+  result.ruleType = 0;
   return self;
 }
 - (NSArray*) usersList {
