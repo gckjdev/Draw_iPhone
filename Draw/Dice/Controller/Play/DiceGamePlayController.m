@@ -24,6 +24,7 @@
 #import "ConfigManager.h"
 #import "CommonMessageCenter.h"
 #import "UIViewUtils.h"
+#import "CommonDiceItemAction.h"
 
 #define AVATAR_TAG_OFFSET   8000
 #define NICKNAME_TAG_OFFSET 1100
@@ -54,11 +55,8 @@
 
 - (void)clearAdHideTimer;
 - (void)startAdHideTimer;
-
-//- (void)popResultViewOnAvatarView:(UIView*)view
-//                         duration:(CFTimeInterval)duration 
-//                       coinsCount:(int)coinsCount;
 - (void)quitDiceGame;
+
 @end
 
 @implementation DiceGamePlayController
@@ -164,9 +162,6 @@
     self.gameBeginNoteLabel.hidden = YES;
     self.gameBeginNoteLabel.text = NSLS(@"kGameBegin");
     self.gameBeginNoteLabel.textColor = [UIColor yellowColor];
-    
-//    [_audioManager setBackGroundMusicWithName:@"dice.m4a"];
-//    [_audioManager backgroundMusicStart];
 
     self.myLevelLabel.text = [NSString stringWithFormat:@"LV:%d",_levelService.level];;
     self.myCoinsLabel.text = [NSString stringWithFormat:@"x%d",[_accountService getBalance]];
@@ -265,56 +260,6 @@
                                       delegate:self];
     } else {
         [_popupView dismissItemListView];
-    }
-}
-
-- (void)rollDiceAgain
-{
-    self.myDiceListHolderView.hidden = YES;
-    
-    // TODO: Reduce item and sync to server.
-    
-    // TODO: Show animations.
-    [self rollUserBell:_userManager.userId];
-    
-    // TODO: Update myDiceList view.
-    [self performSelector:@selector(rollDiceEnd) withObject:nil afterDelay:1];
-}
-
-
-- (void)someoneUseItem:(NSString *)userId
-                itemId:(int)itemId;
-{
-    if (itemId != ItemTypeCut) {
-        [self showItemNameAnimationOnUser:userId itemName:[Item nameForItemType:itemId]];
-    }
-    
-    switch (itemId) {
-        case ItemTypeRollAgain:
-            [self rollUserBell:userId];
-            break;
-            
-        default:
-            break;
-    }
-}
-
-
-- (void)useItemSuccess:(int)itemId
-{
-    [_accountService consumeItem:itemId amount:1]; 
-    
-    if (itemId != ItemTypeCut) {
-        [self showItemNameAnimationOnUser:_userManager.userId itemName:[Item nameForItemType:itemId]];
-    }
-
-    switch (itemId) {
-        case ItemTypeRollAgain:
-            [self rollDiceAgain];
-            break;
-            
-        default:
-            break;
     }
 }
 
@@ -571,13 +516,6 @@
     }
 }
 
-- (void)rollUserBell:(NSString *)userId
-{
-    UIView *bell = [self bellViewOfUser:userId];
-    bell.hidden = NO;
-    [bell.layer addAnimation:[AnimationManager shakeLeftAndRightFrom:10 to:10 repeatCount:10 duration:1] forKey:@"shake"];
-}
-
 - (void)clearAllReciprocol
 {
     for (int i = 1; i <= MAX_PLAYER_COUNT; i ++) {
@@ -667,9 +605,11 @@
     [self registerDiceGameNotificationWithName:NOTIFICATION_USE_ITEM_REQUEST
                                     usingBlock:^(NSNotification *notification) {  
                                         GameMessage *message = [CommonGameNetworkService userInfoToMessage:notification.userInfo];
-                                        PPDebug(@"[改]user:%@ use item %d.", message.userId, message.useItemRequest.itemId);
-                                        [self someoneUseItem:message.userId 
-                                                      itemId:message.useItemRequest.itemId];         
+                                        
+                                        [CommonDiceItemAction handleItemRequest:message.useItemRequest.itemId 
+                                                                         userId:message.userId 
+                                                                     controller:self
+                                                                           view:self.view];      
                                     }];
 
     
@@ -677,7 +617,9 @@
                                     usingBlock:^(NSNotification *notification) {    
                                         GameMessage *message = [CommonGameNetworkService userInfoToMessage:notification.userInfo];
                                         if (message.resultCode == 0) {
-                                            [self useItemSuccess:message.useItemResponse.itemId];         
+                                            [CommonDiceItemAction handleItemResponse:message.useItemResponse.itemId 
+                                                                          controller:self
+                                                                                view:self.view];
                                         }
                                     }];
     
@@ -1068,15 +1010,10 @@
     self.itemsBoxButton.enabled = NO;
     [self clearAllReciprocol];
     
-    // Hidden views.
-//    [self hideAllBellViews];
-    //self.myDiceListHolderView.hidden = YES;
-    
     self.resultDiceCountLabel.text = @"0";
     self.resultDiceImageView.image = [_imageManager diceImageWithDice:_diceService.lastCallDice];
     self.resultHolderView.hidden = NO;
     
-    // Show view.
     [self showGameResult];
 }
 
@@ -1183,25 +1120,6 @@
     
 }
 
-#pragma mark - Item animations.
-- (void)showItemNameAnimationOnUser:(NSString*)userId itemName:(NSString *)itemName
-{
-    HKGirlFontLabel *label = [[[HKGirlFontLabel alloc] initWithFrame:CGRectMake(0, 0, 70, 70) pointSize:50] autorelease];
-    label.text = itemName;
-    label.textAlignment = UITextAlignmentCenter;
-    label.center = self.view.center;
-    
-    [self.view addSubview:label];
-    
-    [UIView animateWithDuration:1 delay:0 options:UIViewAnimationCurveEaseInOut animations:^{
-        label.center = [[self bellViewOfUser:userId] center];
-        label.transform = CGAffineTransformMakeScale(0.3, 0.3);
-        label.alpha = 0.3;
-    } completion:^(BOOL finished) {
-        [label removeFromSuperview];
-    }];
-}
-
 - (IBAction)clickChatButton:(id)sender {
     if (!self.chatButton.selected) {
         self.chatButton.selected = YES;
@@ -1258,7 +1176,6 @@
     
     [_diceService chatWithExpression:key];
     
-    // TODO: Popup image for expression.
     [self showExpression:key userId:_userManager.userId];
 }
 
@@ -1290,7 +1207,6 @@
 {
     hideAdCounter ++;    
 
-    // TODO add animation here
     [UIView animateWithDuration:2 animations:^{
         if (hideAdCounter % 2 == 0){
             self.adView.alpha = 0;

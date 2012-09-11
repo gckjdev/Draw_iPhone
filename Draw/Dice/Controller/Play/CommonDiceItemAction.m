@@ -10,6 +10,7 @@
 #import "HKGirlFontLabel.h"
 #import "DiceGamePlayController.h"
 #import "AccountService.h"
+#import "RollAgainItemAction.h"
 
 @interface CommonDiceItemAction ()
 {
@@ -22,6 +23,19 @@
 
 @synthesize itemType = _itemType;
 @synthesize userManager = _userManager;
+
++ (CommonDiceItemAction *)createDiceItemActionWithItemType:(int)itemType
+{
+    switch (itemType) {
+        case ItemTypeRollAgain:
+            return [[[RollAgainItemAction alloc] initWithItemType:itemType] autorelease];
+            break;
+            
+        default:
+            return nil;
+            break;
+    }
+}
 
 - (id)initWithItemType:(int)itemType
 {
@@ -55,14 +69,36 @@
     }];
 }
 
-- (void)hanleItemResponse:(DiceGamePlayController *)controller
-        view:(UIView *)view
++ (void)handleItemResponse:(int)itemType
+                controller:(DiceGamePlayController *)controller
+                      view:(UIView *)view
 {
-    [_accountService consumeItem:[self itemType] amount:1]; 
+    CommonDiceItemAction *action = [CommonDiceItemAction createDiceItemActionWithItemType:itemType];
+    
+    [action handleItemResponse:controller
+                          view:view];
+}
+
++ (void)handleItemRequest:(int)itemType
+                   userId:(NSString *)userId
+               controller:(DiceGamePlayController *)controller
+                     view:(UIView *)view
+{
+    CommonDiceItemAction *action = [CommonDiceItemAction createDiceItemActionWithItemType:itemType];
+    
+    [action handleItemRequest:userId
+                   controller:controller 
+                         view:view];
+}
+
+- (void)handleItemResponse:(DiceGamePlayController *)controller
+                      view:(UIView *)view
+{
+    [_accountService consumeItem:_itemType amount:1]; 
     
     if ([self isShowNameAnimation]) {
         [self showNameAnimation:_userManager.userId
-                       itemType:[self itemType]
+                       itemType:_itemType
                      controller:controller
                            view:view];
     }
@@ -70,13 +106,13 @@
     [self useItemSuccess:controller view:view ];
 }
 
-- (void)hanleItemRequest:(NSString *)userId
-              controller:(DiceGamePlayController *)controller
-                    view:(UIView *)view
+- (void)handleItemRequest:(NSString *)userId
+               controller:(DiceGamePlayController *)controller
+                     view:(UIView *)view
 {
     if ([self isShowNameAnimation]) {
         [self showNameAnimation:userId 
-                       itemType:[self itemType] 
+                       itemType:_itemType
                      controller:controller
                            view:view];
     }
@@ -85,11 +121,6 @@
 }
 
 // Left to be realize for sub class.
-- (int)itemType
-{
-    return 0;
-}
-
 - (BOOL)isShowNameAnimation
 {
     return YES;

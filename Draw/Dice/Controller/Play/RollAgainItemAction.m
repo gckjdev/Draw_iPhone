@@ -12,11 +12,6 @@
 
 @implementation RollAgainItemAction
 
-- (int)itemType
-{
-    return ItemTypeRollAgain;
-}
-
 - (BOOL)isShowNameAnimation
 {
     return YES;
@@ -43,7 +38,7 @@
 {
     controller.myDiceListHolderView.hidden = YES;
     [self rollUserBell:_userManager.userId controller:controller];
-    [self performSelector:@selector(rollDiceEnd) withObject:nil afterDelay:1];
+    [controller performSelector:@selector(rollDiceEnd) withObject:nil afterDelay:1];
 }
 
 - (void)rollUserBell:(NSString *)userId

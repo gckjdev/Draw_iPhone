@@ -20,18 +20,18 @@
 @property (assign, nonatomic) int itemType;
 @property (assign, nonatomic) UserManager *userManager;
 
-- (id)initWithItemType:(int)itemType;
++ (CommonDiceItemAction *)createDiceItemActionWithItemType:(int)itemType;
 
-- (void)hanleItemResponse:(DiceGamePlayController *)controller
++ (void)handleItemResponse:(int)itemType
+                controller:(DiceGamePlayController *)controller
+                      view:(UIView *)view;
+
++ (void)handleItemRequest:(int)itemType
+                   userId:(NSString *)userId
+               controller:(DiceGamePlayController *)controller
                      view:(UIView *)view;
 
-- (void)hanleItemRequest:(NSString *)userId
-              controller:(DiceGamePlayController *)controller
-                    view:(UIView *)view;
-
 // Left to be realize for sub class.
-- (int)itemType;
-
 - (BOOL)isShowNameAnimation;
 
 - (void)useItemSuccess:(DiceGamePlayController *)controller
