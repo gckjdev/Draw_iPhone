@@ -24,6 +24,7 @@
 #import "DiceColorManager.h"
 #import "DiceImageManager.h"
 #import "FontButton.h"
+#import "ChatDetailController.h"
 
 @implementation DiceUserInfoView
 @synthesize genderImageView;
@@ -38,6 +39,7 @@
 @synthesize targetFriend = _targetFriend;
 @synthesize superViewController = _superViewController;
 @synthesize avatar;
+@synthesize chatButton;
 @synthesize userId;
 @synthesize userAvatar;
 @synthesize userNickName;
@@ -66,6 +68,7 @@
     [levelLabel release];
     [avatar release];
     [genderImageView release];
+    [chatButton release];
     [super dealloc];
 }
 
@@ -84,6 +87,8 @@
 - (void)initButton
 {
     [self.followUserButton setRoyButtonWithColor:[DiceColorManager dialogRedColor]];
+    [self.chatButton setRoyButtonWithColor:[DiceColorManager dialoggreenColor]];
+    [self.chatButton.fontLable setText:NSLS(@"kChatToHim")];
 }
 
 - (void)initLevelAndName
@@ -260,6 +265,39 @@
     
 }
 
++ (void)showUser:(NSString*)userId 
+        nickName:(NSString*)nickName 
+          avatar:(NSString*)avatar 
+          gender:(NSString*)aGender 
+        location:(NSString*)location 
+           level:(int)level
+         hasSina:(BOOL)didHasSina 
+           hasQQ:(BOOL)didHasQQ 
+     hasFacebook:(BOOL)didHasFacebook
+infoInView:(PPViewController*)superController 
+         canChat:(BOOL)canChat
+{
+    if (![[UserManager defaultManager] isMe:userId]) {
+        DiceUserInfoView* view = [DiceUserInfoView createUserInfoView];
+        [view initViewWithUserId:userId 
+                        nickName:nickName 
+                          avatar:avatar 
+                          gender:aGender 
+                        location:location 
+                           level:level
+                         hasSina:didHasSina 
+                           hasQQ:didHasQQ 
+                     hasFacebook:didHasFacebook];
+        view.superViewController = superController;
+        [view.chatButton setHidden:!canChat];
+        [superController showActivityWithText:NSLS(@"kQuerying")];
+        [[UserService defaultService] getUserSimpleInfoByUserId:userId delegate:view];
+        //[superController.view addSubview:view];
+    }
+    
+}
+
+
 - (IBAction)clickMask:(id)sender
 {
     [self disappear];
@@ -344,6 +382,26 @@
     }
     return self;
 }
+
+- (IBAction)talkToHim:(id)sender
+{
+    if ([self.superViewController isKindOfClass:[ChatDetailController class]]) {
+        ChatDetailController *currentController = (ChatDetailController *)self.superViewController;
+        if ([currentController.friendUserId isEqualToString:self.userId])
+        {
+            [self clickMask:mask];
+        }
+    }
+    else {
+        ChatDetailController *controller = [[ChatDetailController alloc] initWithFriendUserId:self.userId
+                                                                               friendNickname:self.userNickName
+                                                                                 friendAvatar:self.userAvatar
+                                                                                 friendGender:self.userGender];
+        [self.superViewController.navigationController pushViewController:controller animated:YES];
+        [controller release];
+    }
+}
+
 
 /*
 // Only override drawRect: if you perform custom drawing.

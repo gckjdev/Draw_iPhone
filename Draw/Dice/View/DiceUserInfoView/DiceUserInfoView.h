@@ -30,6 +30,17 @@
            hasQQ:(BOOL)didHasQQ 
      hasFacebook:(BOOL)didHasFacebook
       infoInView:(PPViewController*)superController;
++ (void)showUser:(NSString*)userId 
+        nickName:(NSString*)nickName 
+          avatar:(NSString*)avatar 
+          gender:(NSString*)aGender 
+        location:(NSString*)location 
+           level:(int)level
+         hasSina:(BOOL)didHasSina 
+           hasQQ:(BOOL)didHasQQ 
+     hasFacebook:(BOOL)didHasFacebook
+      infoInView:(PPViewController*)superController 
+         canChat:(BOOL)canChat;
 @property (retain, nonatomic) IBOutlet UIImageView *genderImageView;
 @property (retain, nonatomic) IBOutlet UIImageView *backgroundImageView;
 @property (retain, nonatomic) IBOutlet UIButton *mask;
@@ -52,5 +63,6 @@
 @property (retain, nonatomic) IBOutlet UILabel *levelLabel;
 @property (assign, nonatomic) PPViewController* superViewController;
 @property (retain, nonatomic) IBOutlet DiceAvatarView *avatar;
+@property (retain, nonatomic) IBOutlet FontButton *chatButton;
 
 @end
