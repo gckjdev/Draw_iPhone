@@ -65,8 +65,9 @@ message OpenDiceResponse {
 }
 
 message UseItemRequest {
-//  required PBGameItem item = 10;                // 使用的道具
   required int32 itemId = 1;
+  
+  optional int32 extendTime = 100;                // 加时或减时道具，设定的新时长（秒）
 }
 
 message UseItemResponse {
@@ -99,7 +100,7 @@ message JoinGameRequest {
   optional string location = 15;
   optional int32 userLevel = 16;
 
-  optional PBGameUser user = 100;          // 统一协议接口
+  optional PBGameUser user = 100;          // 统一协议接口    
   
 }
 
@@ -152,6 +153,7 @@ message RollDiceEndNotificationResponse{
 message NextPlayerStartNotificationRequest {
   required string currentPlayUserId = 1;
   required string nextPlayUserId = 2;
+  optional int32  expiredTime = 3;              // 游戏玩家需要在指定时间内做出响应，0表示使用默认值，－1表示不限制
 }
 
 message NextPlayerStartNotificationResponse {

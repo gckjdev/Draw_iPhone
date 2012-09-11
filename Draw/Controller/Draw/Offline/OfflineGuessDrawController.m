@@ -510,7 +510,7 @@
         double speed = [DrawAction calculateSpeed:self.showView.drawActionList defaultSpeed:1.0/40.0 maxSecond:30];
         self.showView.playSpeed = speed;
 //        [self.showView play];
-        [NSTimer scheduledTimerWithTimeInterval:2 target:self selector:@selector(startPlay:) userInfo:nil repeats:NO];
+        [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(startPlay:) userInfo:nil repeats:NO];
     }
     
     AvatarView *avatar = [[AvatarView alloc] initWithUrlString:_draw.avatar type:Guesser gender:YES level:1];
@@ -706,11 +706,11 @@
     [self throwTool:toolView];
     
     // send request for item usage and award
-//    [[ItemService defaultService] sendItemAward:toolView.itemType 
-//                                   targetUserId:_draw.userId 
-//                                      isOffline:YES
-//                                     feedOpusId:_opusId
-//                                     feedAuthor:_authorId];    
+    [[ItemService defaultService] sendItemAward:toolView.itemType 
+                                   targetUserId:_draw.userId 
+                                      isOffline:YES
+                                     feedOpusId:_opusId
+                                     feedAuthor:_authorId];    
     
     [toolView decreaseNumber];
     if (--_maxFlower <= 0) {
@@ -726,11 +726,11 @@
     [self throwTool:toolView];
     
     // send request for item usage and award
-//    [[ItemService defaultService] sendItemAward:toolView.itemType 
-//                                   targetUserId:_draw.userId 
-//                                      isOffline:YES
-//                                     feedOpusId:_opusId
-//                                     feedAuthor:_authorId];    
+    [[ItemService defaultService] sendItemAward:toolView.itemType 
+                                   targetUserId:_draw.userId 
+                                      isOffline:YES
+                                     feedOpusId:_opusId
+                                     feedAuthor:_authorId];    
     
     [toolView decreaseNumber];
     if (--_maxTomato <= 0) {
@@ -742,14 +742,14 @@
 #pragma mark - click tool delegate
 - (void)didPickedPickView:(PickView *)pickView toolView:(ToolView *)toolView
 {
-//    NSInteger amout = [[ItemManager defaultManager] amountForItem:toolView.itemType];
-//    if(amout <= 0){
-//        //TODO go the shopping page.
-//        CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kNoItemTitle") message:NSLS(@"kNoItemMessage") style:CommonDialogStyleDoubleButton delegate:self];
-//        dialog.tag = ITEM_TAG_OFFSET + toolView.itemType;
-//        [dialog showInView:self.view];
-//        return;
-//    }
+    NSInteger amout = [[ItemManager defaultManager] amountForItem:toolView.itemType];
+    if(amout <= 0){
+        //TODO go the shopping page.
+        CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kNoItemTitle") message:NSLS(@"kNoItemMessage") style:CommonDialogStyleDoubleButton delegate:self];
+        dialog.tag = ITEM_TAG_OFFSET + toolView.itemType;
+        [dialog showInView:self.view];
+        return;
+    }
     BOOL flag = NO;
     if (toolView.itemType == ItemTypeTips) {
         flag = [self bomb:toolView];
@@ -760,11 +760,11 @@
     {
         flag = [self throwTomato:toolView];
     }
-//    if (flag) {
-//        [[AccountService defaultService] consumeItem:ItemTypeTips 
-//                                              amount:toolView.itemType];        
-//        [toolView decreaseNumber];
-//    }
+    if (flag) {
+        [[AccountService defaultService] consumeItem:ItemTypeTips 
+                                              amount:toolView.itemType];        
+        [toolView decreaseNumber];
+    }
 
 }
 

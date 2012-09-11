@@ -96,6 +96,8 @@
 - (void)dealloc {
     [UIApplication sharedApplication].idleTimerDisabled=NO;
 
+    [self unregisterAllNotifications];
+
     [self setAdView:nil];
     
     [self clearAdHideTimer];
@@ -791,7 +793,7 @@
 - (void)didClickOnAvatar:(DiceAvatarView*)view
 {
     if (view.userId) {
-        [DiceUserInfoView showUser:view.userId nickName:nil avatar:nil gender:nil location:nil level:0 hasSina:NO hasQQ:NO hasFacebook:NO infoInView:self];
+        [DiceUserInfoView showUser:view.userId nickName:nil avatar:nil gender:nil location:nil level:0 hasSina:NO hasQQ:NO hasFacebook:NO infoInView:self canChat:NO];
     }
     
 }
@@ -1161,11 +1163,15 @@
     if ([_diceService.diceSession.userList count] == 1) {
         self.waittingForNextTurnNoteLabel.text = NSLS(@"kWaitingForMoreUsers");
         self.waittingForNextTurnNoteLabel.hidden = NO;
-    }
-    
-    if ([_diceService.diceSession.userList count] > 1 && _diceService.diceSession.isMeAByStander) {
-        self.waittingForNextTurnNoteLabel.text = NSLS(@"kWaittingForNextTurn");
-        self.waittingForNextTurnNoteLabel.hidden = NO;
+    }else if ([_diceService.diceSession.userList count] > 1 && _diceService.diceSession.isMeAByStander) {
+        PBGameUser* user = (PBGameUser*)[_diceService.diceSession.userList objectAtIndex:0];
+        if (user.isPlaying) {
+            self.waittingForNextTurnNoteLabel.text = NSLS(@"kWaittingForNextTurn");
+            self.waittingForNextTurnNoteLabel.hidden = NO;
+        } else {
+            self.waittingForNextTurnNoteLabel.text = NSLS(@"kWaitingForStart");
+            self.waittingForNextTurnNoteLabel.hidden = NO;
+        }
     }
 }
 

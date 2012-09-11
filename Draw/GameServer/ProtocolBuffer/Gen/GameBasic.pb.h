@@ -10,6 +10,8 @@
 @class PBGameSession_Builder;
 @class PBGameUser;
 @class PBGameUser_Builder;
+@class PBKeyValue;
+@class PBKeyValue_Builder;
 @class PBMessage;
 @class PBMessageStat;
 @class PBMessageStat_Builder;
@@ -21,6 +23,63 @@
 }
 + (PBExtensionRegistry*) extensionRegistry;
 + (void) registerAllExtensions:(PBMutableExtensionRegistry*) registry;
+@end
+
+@interface PBKeyValue : PBGeneratedMessage {
+@private
+  BOOL hasName_:1;
+  BOOL hasValue_:1;
+  NSString* name;
+  NSString* value;
+}
+- (BOOL) hasName;
+- (BOOL) hasValue;
+@property (readonly, retain) NSString* name;
+@property (readonly, retain) NSString* value;
+
++ (PBKeyValue*) defaultInstance;
+- (PBKeyValue*) defaultInstance;
+
+- (BOOL) isInitialized;
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
+- (PBKeyValue_Builder*) builder;
++ (PBKeyValue_Builder*) builder;
++ (PBKeyValue_Builder*) builderWithPrototype:(PBKeyValue*) prototype;
+
++ (PBKeyValue*) parseFromData:(NSData*) data;
++ (PBKeyValue*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBKeyValue*) parseFromInputStream:(NSInputStream*) input;
++ (PBKeyValue*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBKeyValue*) parseFromCodedInputStream:(PBCodedInputStream*) input;
++ (PBKeyValue*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+@end
+
+@interface PBKeyValue_Builder : PBGeneratedMessage_Builder {
+@private
+  PBKeyValue* result;
+}
+
+- (PBKeyValue*) defaultInstance;
+
+- (PBKeyValue_Builder*) clear;
+- (PBKeyValue_Builder*) clone;
+
+- (PBKeyValue*) build;
+- (PBKeyValue*) buildPartial;
+
+- (PBKeyValue_Builder*) mergeFrom:(PBKeyValue*) other;
+- (PBKeyValue_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (PBKeyValue_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+
+- (BOOL) hasName;
+- (NSString*) name;
+- (PBKeyValue_Builder*) setName:(NSString*) value;
+- (PBKeyValue_Builder*) clearName;
+
+- (BOOL) hasValue;
+- (NSString*) value;
+- (PBKeyValue_Builder*) setValue:(NSString*) value;
+- (PBKeyValue_Builder*) clearValue;
 @end
 
 @interface PBSNSUser : PBGeneratedMessage {
@@ -130,6 +189,7 @@
   NSString* location;
   NSString* facetimeId;
   NSMutableArray* mutableSnsUsersList;
+  NSMutableArray* mutableAttributesList;
 }
 - (BOOL) hasUserId;
 - (BOOL) hasNickName;
@@ -153,6 +213,8 @@
 - (BOOL) isTakenOver;
 - (NSArray*) snsUsersList;
 - (PBSNSUser*) snsUsersAtIndex:(int32_t) index;
+- (NSArray*) attributesList;
+- (PBKeyValue*) attributesAtIndex:(int32_t) index;
 
 + (PBGameUser*) defaultInstance;
 - (PBGameUser*) defaultInstance;
@@ -244,6 +306,13 @@
 - (BOOL) isTakenOver;
 - (PBGameUser_Builder*) setIsTakenOver:(BOOL) value;
 - (PBGameUser_Builder*) clearIsTakenOver;
+
+- (NSArray*) attributesList;
+- (PBKeyValue*) attributesAtIndex:(int32_t) index;
+- (PBGameUser_Builder*) replaceAttributesAtIndex:(int32_t) index with:(PBKeyValue*) value;
+- (PBGameUser_Builder*) addAttributes:(PBKeyValue*) value;
+- (PBGameUser_Builder*) addAllAttributes:(NSArray*) values;
+- (PBGameUser_Builder*) clearAttributesList;
 @end
 
 @interface PBGameSession : PBGeneratedMessage {
@@ -251,6 +320,7 @@
   BOOL hasSessionId_:1;
   BOOL hasCreateTime_:1;
   BOOL hasStatus_:1;
+  BOOL hasRuleType_:1;
   BOOL hasGameId_:1;
   BOOL hasName_:1;
   BOOL hasCreateBy_:1;
@@ -261,6 +331,7 @@
   int64_t sessionId;
   int32_t createTime;
   int32_t status;
+  int32_t ruleType;
   NSString* gameId;
   NSString* name;
   NSString* createBy;
@@ -280,6 +351,7 @@
 - (BOOL) hasCurrentPlayUserId;
 - (BOOL) hasNextPlayUserId;
 - (BOOL) hasPassword;
+- (BOOL) hasRuleType;
 @property (readonly, retain) NSString* gameId;
 @property (readonly) int64_t sessionId;
 @property (readonly, retain) NSString* name;
@@ -290,6 +362,7 @@
 @property (readonly, retain) NSString* currentPlayUserId;
 @property (readonly, retain) NSString* nextPlayUserId;
 @property (readonly, retain) NSString* password;
+@property (readonly) int32_t ruleType;
 - (NSArray*) usersList;
 - (PBGameUser*) usersAtIndex:(int32_t) index;
 
@@ -376,6 +449,11 @@
 - (NSString*) password;
 - (PBGameSession_Builder*) setPassword:(NSString*) value;
 - (PBGameSession_Builder*) clearPassword;
+
+- (BOOL) hasRuleType;
+- (int32_t) ruleType;
+- (PBGameSession_Builder*) setRuleType:(int32_t) value;
+- (PBGameSession_Builder*) clearRuleType;
 
 - (NSArray*) usersList;
 - (PBGameUser*) usersAtIndex:(int32_t) index;
