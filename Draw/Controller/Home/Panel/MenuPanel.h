@@ -9,20 +9,20 @@
 #import <UIKit/UIKit.h>
 #import "MenuButton.h"
 
-@class HomeController;
 @interface MenuPanel : UIView<UIScrollViewDelegate, MenuButtonDelegate>
 {
     GameAppType _gameAppType;
+    UIViewController<MenuButtonDelegate>  *_controller;
 }
 @property (retain, nonatomic) IBOutlet UILabel *versionLabel;
 @property (retain, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (retain, nonatomic) IBOutlet UIPageControl *pageControl;
-@property (retain, nonatomic) HomeController *controller;
+@property (retain, nonatomic) UIViewController<MenuButtonDelegate> *controller;
 @property (assign, nonatomic) GameAppType gameAppType;
 @property (retain, nonatomic) IBOutlet UIImageView *bgImageView;
 
-+ (MenuPanel *)menuPanelWithController:(UIViewController *)controller
-                           gameAppType:(GameAppType)gameAppType;
++ (MenuPanel *)menuPanelWithController:(UIViewController<MenuButtonDelegate> *)controller gameAppType:(GameAppType)gameAppType;
+
 - (IBAction)changePage:(id)sender;
 - (void)loadMenu;
 - (MenuButton *)getMenuButtonByType:(MenuButtonType)type;
