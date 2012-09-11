@@ -55,6 +55,9 @@
 - (void)clearAdHideTimer;
 - (void)startAdHideTimer;
 
+- (void)showDestroyWildsAnim;
+- (void)showWildsAnim;
+
 //- (void)popResultViewOnAvatarView:(UIView*)view
 //                         duration:(CFTimeInterval)duration 
 //                       coinsCount:(int)coinsCount;
@@ -976,7 +979,7 @@
 {
     self.wildsButton.selected = YES;
     self.wildsButton.enabled = NO;
-    self.wildsFlagButton.hidden = NO;
+    [self showWildsAnim];
 }
 
 - (IBAction)clickWildsButton:(id)sender {
@@ -989,6 +992,8 @@
     
     if (_diceService.diceSession.wilds) {
         [self userUseWilds];
+    } else if (self.wildsFlagButton.hidden == NO){
+        [self showDestroyWildsAnim];
     }
     
     [self playCallDiceVoice];
@@ -1002,7 +1007,9 @@
     
     if (dice == 1 || count == _diceService.session.playingUserCount) {
         [_diceService callDice:dice count:count wilds:YES];
-    }else {
+    }else if (count >= _diceService.lastCallDiceCount) {
+        [_diceService callDice:dice count:count wilds:NO];
+    } else{
         [_diceService callDice:dice count:count wilds:self.wildsButton.selected];
     }
 }
@@ -1044,8 +1051,11 @@
 {   
     [self clearAllReciprocol];
     
+    
     if (_diceService.diceSession.wilds) {
         [self userUseWilds];
+    } else if (self.wildsFlagButton.hidden == NO) {
+        [self showDestroyWildsAnim];
     }
 
     [self updateDiceSelecetedView];
@@ -1334,5 +1344,28 @@
     [self clearAdHideTimer];
     self.adHideTimer = [NSTimer scheduledTimerWithTimeInterval:HIDE_AD_TIMER_INTERVAL target:self selector:@selector(handleAdHideTimer:) userInfo:nil repeats:NO];
 }
+
+- (void)showDestroyWildsAnim
+{
+    [UIView animateWithDuration:1 animations:^{
+        self.wildsFlagButton.transform = CGAffineTransformMakeScale(2, 2);
+    } completion:^(BOOL finished) {
+        [UIView animateWithDuration:1 animations:^{
+             self.wildsFlagButton.transform = CGAffineTransformMakeScale(0, 0);
+        } completion:^(BOOL finished) {
+            self.wildsFlagButton.hidden = YES;
+        }];
+    }];
+}
+
+- (void)showWildsAnim
+{
+    self.wildsFlagButton.hidden = NO;
+    CAAnimation* enlarge = [AnimationManager scaleAnimationWithFromScale:1 toScale:3 duration:1 delegate:self removeCompeleted:NO];
+    
+    enlarge.autoreverses = YES;
+    [self.wildsFlagButton.layer addAnimation:enlarge forKey:@"enlarge"];
+}
+
 
 @end
