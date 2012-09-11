@@ -10,11 +10,12 @@
 #import "BoardService.h"
 #import "CommonDialog.h"
 #import "DiceGameService.h"
+#import "MenuButton.h"
 
 @class MenuPanel;
 @class BottomMenuPanel;
 
-@interface DiceHomeController : PPViewController<BoardServiceDelegate, CommonDialogDelegate, UIGestureRecognizerDelegate>
+@interface DiceHomeController : PPViewController<BoardServiceDelegate, CommonDialogDelegate, UIGestureRecognizerDelegate,MenuButtonDelegate>
 {
     MenuPanel *_menuPanel;
     BottomMenuPanel *_bottomMenuPanel;

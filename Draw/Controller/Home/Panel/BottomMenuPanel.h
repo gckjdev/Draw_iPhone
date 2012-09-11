@@ -13,13 +13,12 @@
     GameAppType _gameAppType;
 }
 
-@property (retain, nonatomic) UIViewController *controller;
+@property (retain, nonatomic) UIViewController<MenuButtonDelegate> *controller;
 @property (assign, nonatomic) GameAppType gameAppType;
 
 @property (retain, nonatomic) IBOutlet UIImageView *panelBgImage;
 
-+ (BottomMenuPanel *)panelWithController:(UIViewController *)controller 
-                             gameAppType:(GameAppType)gameAppType;
++ (BottomMenuPanel *)panelWithController:(UIViewController<MenuButtonDelegate> *)controller gameAppType:(GameAppType)gameAppType;
 - (void)loadMenu;
 - (BottomMenu *)getMenuButtonByType:(MenuButtonType)type;
 - (void)setMenuBadge:(NSInteger)badge forMenuType:(MenuButtonType)type;
