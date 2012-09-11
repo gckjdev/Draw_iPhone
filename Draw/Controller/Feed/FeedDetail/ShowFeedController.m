@@ -258,10 +258,6 @@ enum{
 {
     if(section == SectionCommentInfo)
     {
-        if (self.commentHeader == nil) {
-            self.commentHeader = [CommentHeaderView createCommentHeaderView:self];
-            [self.commentHeader setViewInfo:self.feed];
-        }
         [self.commentHeader updateTimes:self.feed];
         return self.commentHeader;
     }
@@ -364,7 +360,8 @@ enum{
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    [self didUpdateShowView];
+//    [self didUpdateShowView];
+    [self clickRefresh:nil];
 }
 
 
@@ -433,11 +430,13 @@ enum{
             [itemView setImage:[imageManager flower]];
             [self.view addSubview:itemView];
             [DrawGameAnimationManager showThrowFlower:itemView animInController:self rolling:YES];
+            [_commentHeader setSeletType:CommentTypeFlower];
         }else{
             UIImageView* itemView = [[[UIImageView alloc] initWithFrame:self.tomatoButton.frame] autorelease];
             [itemView setImage:[imageManager tomato]];
             [self.view addSubview:itemView];
-            [DrawGameAnimationManager showThrowTomato:itemView animInController:self rolling:YES];            
+            [DrawGameAnimationManager showThrowTomato:itemView animInController:self rolling:YES];         
+            [_commentHeader setSeletType:CommentTypeTomato];
         }
     }
 }
@@ -445,6 +444,7 @@ enum{
 - (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag
 {
     [DrawGameAnimationManager animation:anim didStopWithFlag:flag];
+    [self clickRefresh:nil];
 }
 
 
@@ -472,12 +472,13 @@ enum{
     if (button == self.guessButton) {
         //enter guess controller
         [OfflineGuessDrawController startOfflineGuess:self.feed fromController:self];        
-
+            [_commentHeader setSeletType:CommentTypeGuess];
     }else if(button == self.commentButton){
         //enter comment controller
         CommentController *cc = [[CommentController alloc] initWithFeed:self.feed];
         [self presentModalViewController:cc animated:YES];
         [cc release];
+        [_commentHeader setSeletType:CommentTypeComment];       
     }else if(button == self.saveButton){
         //save
         UIImage *image = self.feed.largeImage;
@@ -509,7 +510,6 @@ enum{
         //send a tomato
         Item *item = [Item tomato];
         [self throwItem:item];
-
     }else{
         //no action
     }
@@ -540,7 +540,6 @@ enum{
                                                limit:tab.limit 
                                             delegate:self];     
     tab.status = TableTabStatusLoading;
-//    [self showActivityWithText:NSLS(@"kLoading")];
 }
 
 - (void)didSelectCommentType:(int)type
@@ -597,9 +596,13 @@ enum{
     _tabManager = [[TableTabManager alloc] initWithTabIDList:tabIDs 
                                               noDataDescList:tabNoDataDescList 
                                                        limit:12 
-                                             currentTabIndex:CommentTypeGuess];
+                                             currentTabIndex:-1];
     
-    [self didSelectCommentType:CommentTypeComment];
+    self.commentHeader = [CommentHeaderView createCommentHeaderView:self];
+    [self.commentHeader setViewInfo:self.feed];
+
+    [_commentHeader setSeletType:CommentTypeComment];
+    
 }
 
 #pragma mark - View lifecycle
