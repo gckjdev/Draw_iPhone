@@ -7,18 +7,38 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "UserManager.h"
 
 @class DiceGamePlayController;
 
 @interface CommonDiceItemAction : NSObject
+{
+    UserManager *_userManager;
+    int _itemType;
+}
 
-- (id)initWithController:(DiceGamePlayController *)controller
+@property (assign, nonatomic) int itemType;
+@property (assign, nonatomic) UserManager *userManager;
+
+- (id)initWithItemType:(int)itemType;
+
+- (void)hanleItemResponse:(DiceGamePlayController *)controller
+                     view:(UIView *)view;
+
+- (void)hanleItemRequest:(NSString *)userId
+              controller:(DiceGamePlayController *)controller
                     view:(UIView *)view;
 
-- (void)showNameAnimation:(NSString*)userId
-                 itemName:(NSString *)itemName;
+// Left to be realize for sub class.
+- (int)itemType;
 
 - (BOOL)isShowNameAnimation;
-- (void)hanleItemResponse:(int)itemType;
+
+- (void)useItemSuccess:(DiceGamePlayController *)controller
+                  view:(UIView *)view;
+
+- (void)someoneUseItem:(NSString *)userId
+            controller:(DiceGamePlayController *)controller
+                  view:(UIView *)view;
 
 @end

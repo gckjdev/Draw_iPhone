@@ -7,7 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "CommonDiceItemAction.h"
 
-@interface RollAgainItemAction : NSObject
+@interface RollAgainItemAction : CommonDiceItemAction
+
 
 @end

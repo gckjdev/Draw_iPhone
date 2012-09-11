@@ -9,47 +9,45 @@
 #import "CommonDiceItemAction.h"
 #import "HKGirlFontLabel.h"
 #import "DiceGamePlayController.h"
-#import "UserManager.h"
+#import "AccountService.h"
 
 @interface CommonDiceItemAction ()
 {
-    UserManager *_userManager;
+    AccountService *_accountService;
 }
-
-@property (assign, nonatomic) DiceGamePlayController *controller;
-@property (assign, nonatomic) UIView *view;
 
 @end
 
 @implementation CommonDiceItemAction
 
-@synthesize controller = _controller;
-@synthesize view = _view;
+@synthesize itemType = _itemType;
+@synthesize userManager = _userManager;
 
-- (id)initWithController:(DiceGamePlayController *)controller
-                    view:(UIView *)view
+- (id)initWithItemType:(int)itemType
 {
     if (self = [super init]) {
-        self.controller = controller;
-        self.view = view;
-        _userManager = [UserManager defaultManager];
+        self.itemType = itemType;
+        self.userManager = [UserManager defaultManager];
+        _accountService = [AccountService defaultService];
     }
     
     return self;
 }
 
 - (void)showNameAnimation:(NSString*)userId
-                 itemName:(NSString *)itemName
+                 itemType:(int)itemType
+               controller:(DiceGamePlayController *)controller
+                     view:(UIView *)view
 {
     HKGirlFontLabel *label = [[[HKGirlFontLabel alloc] initWithFrame:CGRectMake(0, 0, 70, 70) pointSize:50] autorelease];
-    label.text = itemName;
+    label.text = [Item nameForItemType:itemType];
     label.textAlignment = UITextAlignmentCenter;
-    label.center = self.view.center;
+    label.center = view.center;
     
-    [self.view addSubview:label];
+    [view addSubview:label];
     
     [UIView animateWithDuration:1 delay:0 options:UIViewAnimationCurveEaseInOut animations:^{
-        label.center = [[_controller bellViewOfUser:userId] center];
+        label.center = [[controller bellViewOfUser:userId] center];
         label.transform = CGAffineTransformMakeScale(0.3, 0.3);
         label.alpha = 0.3;
     } completion:^(BOOL finished) {
@@ -57,12 +55,55 @@
     }];
 }
 
+- (void)hanleItemResponse:(DiceGamePlayController *)controller
+        view:(UIView *)view
+{
+    [_accountService consumeItem:[self itemType] amount:1]; 
+    
+    if ([self isShowNameAnimation]) {
+        [self showNameAnimation:_userManager.userId
+                       itemType:[self itemType]
+                     controller:controller
+                           view:view];
+    }
+    
+    [self useItemSuccess:controller view:view ];
+}
+
+- (void)hanleItemRequest:(NSString *)userId
+              controller:(DiceGamePlayController *)controller
+                    view:(UIView *)view
+{
+    if ([self isShowNameAnimation]) {
+        [self showNameAnimation:userId 
+                       itemType:[self itemType] 
+                     controller:controller
+                           view:view];
+    }
+    
+    [self someoneUseItem:userId controller:controller view:view];
+}
+
+// Left to be realize for sub class.
+- (int)itemType
+{
+    return 0;
+}
+
 - (BOOL)isShowNameAnimation
 {
     return YES;
 }
 
-- (void)hanleItemResponse:(int)itemType
+- (void)useItemSuccess:(DiceGamePlayController *)controller
+                  view:(UIView *)view
+{
+    return;
+}
+
+- (void)someoneUseItem:(NSString *)userId
+            controller:(DiceGamePlayController *)controller
+                  view:(UIView *)view
 {
     return;
 }

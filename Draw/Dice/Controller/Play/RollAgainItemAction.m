@@ -7,7 +7,51 @@
 //
 
 #import "RollAgainItemAction.h"
+#import "DiceGamePlayController.h"
+#import "AnimationManager.h"
 
 @implementation RollAgainItemAction
+
+- (int)itemType
+{
+    return ItemTypeRollAgain;
+}
+
+- (BOOL)isShowNameAnimation
+{
+    return YES;
+}
+
+- (void)useItemSuccess:(DiceGamePlayController *)controller
+                  view:(UIView *)view
+{
+    [self rollDiceAgain:controller view:view];
+    return;
+}
+
+- (void)someoneUseItem:(NSString *)userId
+            controller:(DiceGamePlayController *)controller
+                  view:(UIView *)view
+{
+    [self rollUserBell:userId controller:controller];
+    return;
+}
+
+
+- (void)rollDiceAgain:(DiceGamePlayController *)controller
+                 view:(UIView *)view
+{
+    controller.myDiceListHolderView.hidden = YES;
+    [self rollUserBell:_userManager.userId controller:controller];
+    [self performSelector:@selector(rollDiceEnd) withObject:nil afterDelay:1];
+}
+
+- (void)rollUserBell:(NSString *)userId
+          controller:(DiceGamePlayController *)controller
+{
+    UIView *bell = [controller bellViewOfUser:userId];
+    bell.hidden = NO;
+    [bell.layer addAnimation:[AnimationManager shakeLeftAndRightFrom:10 to:10 repeatCount:10 duration:1] forKey:@"shake"];
+}
 
 @end
