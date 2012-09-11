@@ -157,3 +157,13 @@ BOOL GameChatTypeIsValidValue(GameChatType value) {
       return NO;
   }
 }
+BOOL DiceGameRuleTypeIsValidValue(DiceGameRuleType value) {
+  switch (value) {
+    case DiceGameRuleTypeNormal:
+    case DiceGameRuleTypeHigh:
+    case DiceGameRuleTypeSuperHigh:
+      return YES;
+    default:
+      return NO;
+  }
+}

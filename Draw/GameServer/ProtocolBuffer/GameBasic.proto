@@ -5,6 +5,11 @@ package game;
 option java_package = "com.orange.network.game.protocol.model";
 option java_outer_classname = "GameBasicProtos";
 
+message PBKeyValue{
+  required string name = 1;
+  optional string value = 2;
+}
+
 message PBSNSUser {
   required int32  type = 1;
   required string userId = 2;
@@ -27,6 +32,8 @@ message PBGameUser {
      
   optional bool isPlaying = 20 [default=true];                 // 用户是否参与当前游戏，默认为true
   optional bool isTakenOver = 21 [default=false];               // 用户是否被系统接管，默认为false
+  
+  repeated PBKeyValue attributes = 22;                       // 其他属性，用于不同游戏个性化的参数传递，如用户骰子
 }
 
 message PBGameSession {
@@ -40,6 +47,9 @@ message PBGameSession {
   optional string currentPlayUserId = 8;        // 当前轮到的用户（如画画的用户）
   optional string nextPlayUserId = 9;           // 下一个要轮到的用户（如画画的用户）     
   optional string password = 10;                // 房间密码（为空表示没有密码）
+  
+  
+    optional int32 ruleType = 11 [default=0];                // 游戏规则类型，不同游戏不同，大话骰参照DiceGameRuleType定义
      
   repeated PBGameUser users = 50;               // 用户列表
 }

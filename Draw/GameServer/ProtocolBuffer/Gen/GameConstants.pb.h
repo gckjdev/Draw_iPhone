@@ -132,6 +132,14 @@ typedef enum {
 
 BOOL GameChatTypeIsValidValue(GameChatType value);
 
+typedef enum {
+  DiceGameRuleTypeNormal = 0,
+  DiceGameRuleTypeHigh = 1,
+  DiceGameRuleTypeSuperHigh = 2,
+} DiceGameRuleType;
+
+BOOL DiceGameRuleTypeIsValidValue(DiceGameRuleType value);
+
 
 @interface GameConstantsRoot : NSObject {
 }
