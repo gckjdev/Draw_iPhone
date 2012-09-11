@@ -490,6 +490,12 @@
 //    [toolView setEnabled:enabled];
 }
 
+- (void)startPlay:(NSTimer *)theTimer
+{
+    PPDebug(@"<startPlay>");
+    [self.showView play];
+}
+
 - (void)updateDrawInfo
 {
 
@@ -503,7 +509,8 @@
         [self.showView setDrawActionList:list];
         double speed = [DrawAction calculateSpeed:self.showView.drawActionList defaultSpeed:1.0/40.0 maxSecond:30];
         self.showView.playSpeed = speed;
-        [self.showView play];
+//        [self.showView play];
+        [NSTimer scheduledTimerWithTimeInterval:2 target:self selector:@selector(startPlay:) userInfo:nil repeats:NO];
     }
     
     AvatarView *avatar = [[AvatarView alloc] initWithUrlString:_draw.avatar type:Guesser gender:YES level:1];
