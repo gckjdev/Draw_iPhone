@@ -67,6 +67,8 @@
 @class PBGameSession_Builder;
 @class PBGameUser;
 @class PBGameUser_Builder;
+@class PBKeyValue;
+@class PBKeyValue_Builder;
 @class PBMessage;
 @class PBMessageStat;
 @class PBMessageStat_Builder;
@@ -733,10 +735,14 @@
 @interface UseItemRequest : PBGeneratedMessage {
 @private
   BOOL hasItemId_:1;
+  BOOL hasExtendTime_:1;
   int32_t itemId;
+  int32_t extendTime;
 }
 - (BOOL) hasItemId;
+- (BOOL) hasExtendTime;
 @property (readonly) int32_t itemId;
+@property (readonly) int32_t extendTime;
 
 + (UseItemRequest*) defaultInstance;
 - (UseItemRequest*) defaultInstance;
@@ -776,6 +782,11 @@
 - (int32_t) itemId;
 - (UseItemRequest_Builder*) setItemId:(int32_t) value;
 - (UseItemRequest_Builder*) clearItemId;
+
+- (BOOL) hasExtendTime;
+- (int32_t) extendTime;
+- (UseItemRequest_Builder*) setExtendTime:(int32_t) value;
+- (UseItemRequest_Builder*) clearExtendTime;
 @end
 
 @interface UseItemResponse : PBGeneratedMessage {
@@ -1521,15 +1532,19 @@
 
 @interface NextPlayerStartNotificationRequest : PBGeneratedMessage {
 @private
+  BOOL hasExpiredTime_:1;
   BOOL hasCurrentPlayUserId_:1;
   BOOL hasNextPlayUserId_:1;
+  int32_t expiredTime;
   NSString* currentPlayUserId;
   NSString* nextPlayUserId;
 }
 - (BOOL) hasCurrentPlayUserId;
 - (BOOL) hasNextPlayUserId;
+- (BOOL) hasExpiredTime;
 @property (readonly, retain) NSString* currentPlayUserId;
 @property (readonly, retain) NSString* nextPlayUserId;
+@property (readonly) int32_t expiredTime;
 
 + (NextPlayerStartNotificationRequest*) defaultInstance;
 - (NextPlayerStartNotificationRequest*) defaultInstance;
@@ -1574,6 +1589,11 @@
 - (NSString*) nextPlayUserId;
 - (NextPlayerStartNotificationRequest_Builder*) setNextPlayUserId:(NSString*) value;
 - (NextPlayerStartNotificationRequest_Builder*) clearNextPlayUserId;
+
+- (BOOL) hasExpiredTime;
+- (int32_t) expiredTime;
+- (NextPlayerStartNotificationRequest_Builder*) setExpiredTime:(int32_t) value;
+- (NextPlayerStartNotificationRequest_Builder*) clearExpiredTime;
 @end
 
 @interface NextPlayerStartNotificationResponse : PBGeneratedMessage {

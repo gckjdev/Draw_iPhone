@@ -96,6 +96,8 @@
 - (void)dealloc {
     [UIApplication sharedApplication].idleTimerDisabled=NO;
 
+    [self unregisterAllNotifications];
+
     [self setAdView:nil];
     
     [self clearAdHideTimer];
