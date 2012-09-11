@@ -33,6 +33,14 @@
 #import "LmWallService.h"
 #import "DiceHelpView.h"
 
+#import "RegisterUserController.h"
+
+#import "VendingController.h"
+#import "DiceRoomListController.h"
+#import "UserSettingController.h"
+#import "MyFriendsController.h"
+#import "ChatListController.h"
+#import "FeedbackController.h"
 
 #define KEY_LAST_AWARD_DATE     @"last_award_day"
 
@@ -537,5 +545,97 @@
     [[LmWallService defaultService] show:self];
 }
 
+
+#pragma mark - Button Menu delegate
+
+- (BOOL)isRegistered
+{
+    return [[UserManager defaultManager] hasUser];
+}
+
+- (void)toRegister
+{
+    RegisterUserController *ruc = [[RegisterUserController alloc] init];
+    [self.navigationController pushViewController:ruc animated:YES];
+    [ruc release];
+}
+
+- (void)didClickMenuButton:(MenuButton *)menuButton
+{
+    PPDebug(@"menu button type = %d", menuButton.type);
+    if (![self isRegistered]) {
+        [self toRegister];
+        return;
+    }
+    
+    MenuButtonType type = menuButton.type;
+    switch (type) {
+        case MenuButtonTypeDiceShop:
+        {
+            VendingController* vc = [[VendingController alloc] init];
+            [self.navigationController pushViewController:vc animated:YES];
+            [vc release];
+        }
+            break;
+        case MenuButtonTypeDiceStart:
+        {
+            if ([self respondsToSelector:@selector(connectServer)]){
+                [self performSelector:@selector(connectServer)];
+            }
+        }
+            break;
+        case MenuButtonTypeDiceRoom:
+        {
+            DiceRoomListController* vc = [[[DiceRoomListController alloc] init] autorelease];
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+            break;
+        case MenuButtonTypeDiceHelp:
+        {
+            DiceHelpView *view = [DiceHelpView createDiceHelpView];
+            [view showInView:self.view];
+        }
+            break;
+            //For Bottom Menus
+        case MenuButtonTypeSettings:
+        {
+            UserSettingController *settings = [[UserSettingController alloc] init];
+            [self.navigationController pushViewController:settings animated:YES];
+            [settings release];
+        }
+            break;
+        case MenuButtonTypeFriend:
+        {
+            MyFriendsController *mfc = [[MyFriendsController alloc] init];
+            [self.navigationController pushViewController:mfc animated:YES];
+            [mfc release];
+            [_bottomMenuPanel setMenuBadge:0 forMenuType:MenuButtonTypeFriend];
+        }
+            break;
+        case MenuButtonTypeChat:
+        {
+            ChatListController *controller = [[ChatListController alloc] init];
+            [self.navigationController pushViewController:controller animated:YES];
+            [controller release];
+            
+            [_bottomMenuPanel setMenuBadge:0 forMenuType:type];
+            
+        }
+            break;
+        case MenuButtonTypeFeedback:
+        {
+            FeedbackController* feedBack = [[FeedbackController alloc] init];
+            [self.navigationController pushViewController:feedBack animated:YES];
+            [feedBack release];
+            
+        }
+            break;
+        case MenuButtonTypeCheckIn:
+            
+        default:
+            break;
+    }
+    
+}
 
 @end
