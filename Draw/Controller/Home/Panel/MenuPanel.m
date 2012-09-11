@@ -105,9 +105,9 @@ static const NSInteger MENU_NUMBER_PER_PAGE = 6;
 - (void)loadMenu
 {
     int number = 0;
-//    UIImage * bgImage = [[ShareImageManager defaultManager]
-//                         mainMenuPanelBGForGameAppType:self.gameAppType];
-//    [self.bgImageView setImage:bgImage];
+    UIImage * bgImage = [[ShareImageManager defaultManager]
+                         mainMenuPanelBGForGameAppType:self.gameAppType];
+    [self.bgImageView setImage:bgImage];
     
     int *list = getMainMenuTypeListByGameAppType(self.gameAppType);
     while (list != NULL && (*list) != MenuButtonTypeEnd) {
