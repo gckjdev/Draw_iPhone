@@ -77,6 +77,7 @@
 		A42C523715E62B82001D8208 /* face_anger.gif in Resources */ = {isa = PBXBuildFile; fileRef = A42C523615E62B82001D8208 /* face_anger.gif */; };
 		A42C528615E756CF001D8208 /* DiceHelpView.m in Sources */ = {isa = PBXBuildFile; fileRef = A42C528415E756CF001D8208 /* DiceHelpView.m */; };
 		A42C528715E756CF001D8208 /* DiceHelpView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A42C528515E756CF001D8208 /* DiceHelpView.xib */; };
+		A42C93C915FF28D60090D6B6 /* CommonDiceItemAction.m in Sources */ = {isa = PBXBuildFile; fileRef = A42C93C815FF28D60090D6B6 /* CommonDiceItemAction.m */; };
 		A42D90431553803D0023AF32 /* CoinShopController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A42D903F1553803D0023AF32 /* CoinShopController~ipad.xib */; };
 		A42D90441553803D0023AF32 /* ColorShopCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A42D90401553803D0023AF32 /* ColorShopCell~ipad.xib */; };
 		A42D90451553803D0023AF32 /* ItemShopController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A42D90411553803D0023AF32 /* ItemShopController~ipad.xib */; };
@@ -1538,6 +1539,8 @@
 		A42C528315E756CF001D8208 /* DiceHelpView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiceHelpView.h; sourceTree = "<group>"; };
 		A42C528415E756CF001D8208 /* DiceHelpView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiceHelpView.m; sourceTree = "<group>"; };
 		A42C528515E756CF001D8208 /* DiceHelpView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DiceHelpView.xib; sourceTree = "<group>"; };
+		A42C93C715FF28D60090D6B6 /* CommonDiceItemAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonDiceItemAction.h; sourceTree = "<group>"; };
+		A42C93C815FF28D60090D6B6 /* CommonDiceItemAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonDiceItemAction.m; sourceTree = "<group>"; };
 		A42D903F1553803D0023AF32 /* CoinShopController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "CoinShopController~ipad.xib"; sourceTree = "<group>"; };
 		A42D90401553803D0023AF32 /* ColorShopCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ColorShopCell~ipad.xib"; sourceTree = "<group>"; };
 		A42D90411553803D0023AF32 /* ItemShopController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ItemShopController~ipad.xib"; sourceTree = "<group>"; };
@@ -3884,6 +3887,8 @@
 				A4B763F115C28F8E003B4E72 /* DiceGamePlayController.h */,
 				A4B763F215C28F8E003B4E72 /* DiceGamePlayController.m */,
 				A4B763F315C28F8E003B4E72 /* DiceGamePlayController.xib */,
+				A42C93C715FF28D60090D6B6 /* CommonDiceItemAction.h */,
+				A42C93C815FF28D60090D6B6 /* CommonDiceItemAction.m */,
 			);
 			path = Play;
 			sourceTree = "<group>";
@@ -9080,6 +9085,7 @@
 				CA42E3ED15F4633100790B3C /* UserInfoCell.m in Sources */,
 				CAACE19915F499E6002EB53A /* SuperDrawView.m in Sources */,
 				CAA8261015F8875400E35C9E /* CommentController.m in Sources */,
+				A42C93C915FF28D60090D6B6 /* CommonDiceItemAction.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

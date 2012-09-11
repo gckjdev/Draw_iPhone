@@ -302,6 +302,15 @@
 {
     [_accountService consumeItem:itemId amount:1]; 
     
+    itemAction = [self getItemAction:itemId];
+    
+    if ([itemAction isShowNameWhenSuccess]){
+        [self showItemNameAnimationOnUser:_userManager.userId itemName:[Item nameForItemType:itemId]];
+    }
+    
+    [itemAction handleUseItemResponse];
+    
+    
     if (itemId != ItemTypeCut) {
         [self showItemNameAnimationOnUser:_userManager.userId itemName:[Item nameForItemType:itemId]];
     }
