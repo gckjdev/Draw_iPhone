@@ -786,6 +786,8 @@
 "kScrambleToOpenDiceMessage" = "Challenge";
 
 "kWaittingForNextTurn" = "Waiting...";
+"kWaitingForMoreUsers" = "Waiting...";
+"kWaitingForStart" = "Waiting...";
 "kGameBegin" = "Game starts...";
 "kNearBy" = "NearBy";
 "kWhoseRoom" = "%@'s room";

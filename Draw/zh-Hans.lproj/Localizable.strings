@@ -804,6 +804,8 @@
 "kScrambleToOpenDiceMessage" = "抢开";
 
 "kWaittingForNextTurn" = "等待下轮...";
+"kWaitingForMoreUsers" = "等待更多用户...";
+"kWaitingForStart" = "等待游戏开始...";
 "kGameBegin" = "游戏开始了...";
 "kNearBy" = "附近";
 "kWhoseRoom" = "%@的房间";
@@ -835,7 +837,7 @@
 
 "kDiceRoom" = "欢乐大话%d号房";
 
-"kWaitingForMoreUsers" = "等待更多用户...";
+
 
 "kDice_share_message_body" = "亲爱的朋友，今天向您隆重推出一款全新的多人在线游戏——《%@》。这款游戏可以说是目前最好玩的大话骰游戏，马上下载试玩吧。\n%@";
 
