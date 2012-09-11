@@ -7,9 +7,38 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "UserManager.h"
+
+@class DiceGamePlayController;
 
 @interface CommonDiceItemAction : NSObject
+{
+    UserManager *_userManager;
+    int _itemType;
+}
 
-+ (void)showNameAnimation;
+@property (assign, nonatomic) int itemType;
+@property (assign, nonatomic) UserManager *userManager;
+
++ (CommonDiceItemAction *)createDiceItemActionWithItemType:(int)itemType;
+
++ (void)handleItemResponse:(int)itemType
+                controller:(DiceGamePlayController *)controller
+                      view:(UIView *)view;
+
++ (void)handleItemRequest:(int)itemType
+                   userId:(NSString *)userId
+               controller:(DiceGamePlayController *)controller
+                     view:(UIView *)view;
+
+// Left to be realize for sub class.
+- (BOOL)isShowNameAnimation;
+
+- (void)useItemSuccess:(DiceGamePlayController *)controller
+                  view:(UIView *)view;
+
+- (void)someoneUseItem:(NSString *)userId
+            controller:(DiceGamePlayController *)controller
+                  view:(UIView *)view;
 
 @end
