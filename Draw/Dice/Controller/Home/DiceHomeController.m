@@ -245,7 +245,7 @@
     if (point == 1) {
         return DAILY_GIFT_COIN + 5*DAILY_GIFT_COIN_INCRE;
     }
-    return DAILY_GIFT_COIN+(point-1)*DAILY_GIFT_COIN_INCRE;
+    return DAILY_GIFT_COIN+(point-2)*DAILY_GIFT_COIN_INCRE;
 }
 
 - (void)awardCoin
