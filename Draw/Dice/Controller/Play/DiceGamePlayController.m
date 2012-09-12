@@ -918,6 +918,12 @@
     [self showWildsAnim];
 }
 
+- (void)destroyWilds
+{
+    self.wildsButton.selected = NO;
+    [self showDestroyWildsAnim];
+}
+
 - (IBAction)clickWildsButton:(id)sender {
     self.wildsButton.selected = !self.wildsButton.selected;
 }
@@ -929,7 +935,7 @@
     if (_diceService.diceSession.wilds) {
         [self userUseWilds];
     } else if (self.wildsFlagButton.hidden == NO){
-        [self showDestroyWildsAnim];
+        [self destroyWilds];
     }
     
     [self playCallDiceVoice];
@@ -943,7 +949,7 @@
     
     if (dice == 1 || count == _diceService.session.playingUserCount) {
         [_diceService callDice:dice count:count wilds:YES];
-    }else if (count >= _diceService.lastCallDiceCount) {
+    }else if (count >= _diceService.lastCallDiceCount*2) {
         [_diceService callDice:dice count:count wilds:NO];
     } else{
         [_diceService callDice:dice count:count wilds:self.wildsButton.selected];
@@ -987,11 +993,10 @@
 {   
     [self clearAllReciprocol];
     
-    
     if (_diceService.diceSession.wilds) {
         [self userUseWilds];
     } else if (self.wildsFlagButton.hidden == NO) {
-        [self showDestroyWildsAnim];
+        [self destroyWilds];
     }
 
     [self updateDiceSelecetedView];
@@ -1257,12 +1262,15 @@
 
 - (void)showDestroyWildsAnim
 {
-    [UIView animateWithDuration:1 animations:^{
-        self.wildsFlagButton.transform = CGAffineTransformMakeScale(2, 2);
+    self.wildsFlagButton.transform = CGAffineTransformMakeScale(1, 1);
+    [UIView animateWithDuration:0.5 delay:0 options:UIViewAnimationCurveEaseInOut animations:^{
+        self.wildsFlagButton.transform = CGAffineTransformMakeScale(1.5, 1.5);
     } completion:^(BOOL finished) {
-        [UIView animateWithDuration:1 animations:^{
-             self.wildsFlagButton.transform = CGAffineTransformMakeScale(0, 0);
+        //self.wildsFlagButton.transform = CGAffineTransformMakeScale(1.5, 1.5);
+        [UIView animateWithDuration:1 delay:0.5 options:UIViewAnimationCurveEaseInOut animations:^{
+            self.wildsFlagButton.transform = CGAffineTransformMakeScale(0.01, 5);
         } completion:^(BOOL finished) {
+            self.wildsFlagButton.transform = CGAffineTransformMakeScale(0.01, 0.01);
             self.wildsFlagButton.hidden = YES;
         }];
     }];
@@ -1270,11 +1278,15 @@
 
 - (void)showWildsAnim
 {
-    self.wildsFlagButton.hidden = NO;
-    CAAnimation* enlarge = [AnimationManager scaleAnimationWithFromScale:1 toScale:3 duration:1 delegate:self removeCompeleted:NO];
+    if (self.wildsFlagButton.hidden == YES) {
+        self.wildsFlagButton.hidden = NO;
+        CAAnimation* enlarge = [AnimationManager scaleAnimationWithFromScale:1 toScale:3 duration:0.5 delegate:self removeCompeleted:NO];
+        
+        enlarge.autoreverses = YES;
+        enlarge.repeatCount = 2;
+        [self.wildsFlagButton.layer addAnimation:enlarge forKey:@"enlarge"];
+    }
     
-    enlarge.autoreverses = YES;
-    [self.wildsFlagButton.layer addAnimation:enlarge forKey:@"enlarge"];
 }
 
 
