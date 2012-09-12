@@ -183,7 +183,7 @@
 - (BOOL)canEableItemButton:(ItemType)itemType 
 {
     NSNumber *count = [NSNumber numberWithInt:[_itemManager amountForItem:itemType]];
-    if ([count intValue] <= 0) {
+    if ([count intValue] <= 0 || _diceGameService.diceSession.isMeAByStander) {
         return NO;
     }
     
@@ -195,7 +195,7 @@
     switch (itemType) {
         case ItemTypeCut:
         case ItemTypeDoubleKill:
-            if (isMyTurn && _diceGameService.lastCallUserId != nil 
+            if (_diceGameService.lastCallUserId != nil 
                 && ![_userManager isMe:_diceGameService.lastCallUserId])
             {
                 enabled = YES;
@@ -224,16 +224,6 @@
     }
 
     return enabled;
-}
-
-- (BOOL)canUseCutOrDoubleKillItem
-{
-    if (_diceGameService.lastCallUserId != nil 
-        && ![_userManager isMe:_diceGameService.lastCallUserId]) {
-        return YES;
-    }else {
-        return NO;
-    }
 }
 
 - (void)clickToolButton:(id)sender

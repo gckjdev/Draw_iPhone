@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "Dice.pb.h"
+#import "GameConstants.pb.h"
 
 #define ANIMATION_GROUP_MOVE_TO_CENTER @"ANIMATION_GROUP_MOVE_TO_CENTER"
 #define ANIMATION_GROUP_STAY @"ANIMATION_GROUP_STAY"
