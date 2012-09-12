@@ -13,6 +13,13 @@
 //    Kit = 2
 //}ItemType;
 
+#define MATCH_SECECE
+
+//typedef enum {
+//    MyTurn = 0x1, 
+//    GamePlaying = 0x11
+//}UseScene;
+
 @interface Item : NSObject<NSCoding>
 {
     ItemType _type;
@@ -27,6 +34,7 @@
 @property (nonatomic, retain) NSString* itemDescription;
 @property (nonatomic, assign) int buyAmountForOnce;
 @property (nonatomic, assign) int price;
+//@property (nonatomic, assign) UseScene useScene;
 
 - (id)initWithType:(ItemType)type amount:(NSInteger)amount;
 - (id)initWithType:(ItemType)type 
@@ -45,6 +53,9 @@
   buyAmountForOnce:(int)amount 
              price:(int)aPrice 
             amount:(int)currentAmount;
+//          useScene:(UseScene)useScene;
+
+//- (BOOL)canUseInScene:(UseScene)scene;
 
 + (Item *)itemWithType:(ItemType)type amount:(NSInteger)amount;
 + (Item*)tomato;
@@ -62,6 +73,5 @@
 + (NSString *)descriptionForItemType:(ItemType)type;
 + (NSString *)actionNameForItemType:(ItemType)type;
 + (BOOL)isItemCountable:(ItemType)type;
-
 
 @end

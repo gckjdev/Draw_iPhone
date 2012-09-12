@@ -8,17 +8,20 @@
 
 #import <Foundation/Foundation.h>
 #import "UserManager.h"
+#import "DiceGameService.h"
 
 @class DiceGamePlayController;
 
 @interface CommonDiceItemAction : NSObject
 {
-    UserManager *_userManager;
     int _itemType;
+    UserManager *_userManager;
+    DiceGameService *_gameService;
 }
 
 @property (assign, nonatomic) int itemType;
 @property (assign, nonatomic) UserManager *userManager;
+@property (assign, nonatomic) DiceGameService *gameService;
 
 + (CommonDiceItemAction *)createDiceItemActionWithItemType:(int)itemType;
 

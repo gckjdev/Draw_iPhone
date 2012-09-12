@@ -23,6 +23,7 @@
 
 @synthesize itemType = _itemType;
 @synthesize userManager = _userManager;
+@synthesize gameService = _gameService;
 
 + (CommonDiceItemAction *)createDiceItemActionWithItemType:(int)itemType
 {
