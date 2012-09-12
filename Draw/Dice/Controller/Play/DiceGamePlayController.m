@@ -51,7 +51,6 @@
 - (DiceAvatarView*)avatarViewOfUser:(NSString*)userId;
 
 - (void)disableAllDiceOperationButtons;
-- (void)enableAllDiceOperationButtons;
 
 - (void)clearAdHideTimer;
 - (void)startAdHideTimer;
@@ -261,10 +260,10 @@
     
     if (button.selected) {
         [_popupView popupItemListAtView:button 
-                                        inView:self.view
-                                  aboveSubView:self.popupLevel3View
-                                      duration:0
-                                      delegate:self];
+                                 inView:self.view
+                           aboveSubView:self.popupLevel3View
+                               duration:0
+                               delegate:self];
     } else {
         [_popupView dismissItemListView];
     }
@@ -752,17 +751,7 @@
     self.openDiceButton.hidden = YES;
     self.wildsButton.enabled = NO;
     self.plusOneButton.enabled = NO;
-    [_popupView disableCutItem];
     [self.diceSelectedView disableUserInteraction];
-}
-
-- (void)enableAllDiceOperationButtons
-{
-    self.openDiceButton.hidden = NO;
-    self.wildsButton.enabled = YES;
-    self.plusOneButton.enabled = YES;
-    [_popupView enableCutItem];
-    [self.diceSelectedView enableUserInteraction];
 }
 
 #define CENTER_GAME_BEGIN_NOTE_START  ([DeviceDetection isIPAD] ? CGPointMake(384, 578): CGPointMake(160, 265))
@@ -812,44 +801,45 @@
     
     NSString *currentPlayUserId = _diceService.session.currentPlayUserId;
     [[self avatarViewOfUser:currentPlayUserId] startReciprocol:USER_THINK_TIME_INTERVAL];
+    
+    // 如果自己是旁观者，则在这里返回。
+    if (_diceService.diceSession.isMeAByStander) {
+        return;
+    }
         
     if ([_userManager isMe:currentPlayUserId])
-    {        
-        [self enableAllDiceOperationButtons];
-        
+    {                        
+        self.openDiceButton.fontLable.text = NSLS(@"kOpenDice");
+
+        // 根据实际叫斋情况判断是否使能斋按钮。
         self.wildsButton.enabled = !_diceService.diceSession.wilds;
+        
+        // 根据上次叫骰结果判断是否使能+1按钮。
+        self.plusOneButton.enabled = (_diceService.lastCallDiceCount >= _diceService.diceSession.playingUserCount*5) ? NO : YES;
+        
+        // 使能叫骰选择区域
         [self.diceSelectedView enableUserInteraction];
         
- 
-        self.openDiceButton.fontLable.text = NSLS(@"kOpenDice");
-                
-        // 没人叫过骰子不能开。
-        if (_diceService.diceSession.lastCallDiceUserId == nil) {
-            self.openDiceButton.hidden = YES;
-            [_popupView disableCutItem];
-        }
-        
-        // 不能开自己叫的骰子。
-        if (_diceService.diceSession.lastCallDiceUserId != nil && [_userManager isMe:_diceService.diceSession.lastCallDiceUserId]) {
-            self.openDiceButton.hidden = YES;
-            [_popupView disableCutItem];
-        }
-        
-        if (_diceService.diceSession.lastCallDiceCount >= _diceService.diceSession.playingUserCount*5) {
-            self.plusOneButton.enabled = NO;
-        }
+        // 更新道具列表
+        [_popupView updateItemListView];
+
     }else {
-        [self disableAllDiceOperationButtons];
+        self.openDiceButton.fontLable.text = NSLS(@"kScrambleToOpenDice");
         
-        // 不是旁观者，有人叫过骰子，而且不是自己叫的骰子，才能开
-        if (!_diceService.diceSession.isMeAByStander && 
-            _diceService.diceSession.lastCallDiceUserId != nil 
-            && ![_userManager isMe:_diceService.diceSession.lastCallDiceUserId]) {
-//            self.openDiceButton.enabled = YES;
-            self.openDiceButton.hidden = NO;
-            [_popupView enableCutItem];
-            self.openDiceButton.fontLable.text = NSLS(@"kScrambleToOpenDice");
-        }
+        // 不是自己的回合，把下面的按钮全部disable.
+        self.wildsButton.enabled = NO;
+        self.plusOneButton.enabled = NO;
+        [self.diceSelectedView disableUserInteraction];
+                
+        [_popupView updateItemListView];
+    }
+    
+    // 如果有人叫过，而且叫的人不是自己，则可以显示开按钮。
+    if (_diceService.lastCallUserId != nil 
+        && ![_userManager isMe:_diceService.lastCallUserId]) {
+        self.openDiceButton.hidden = NO;
+    }else {
+        self.openDiceButton.hidden = YES;
     }
 }
 
