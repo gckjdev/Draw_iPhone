@@ -1278,7 +1278,7 @@
     } completion:^(BOOL finished) {
         //self.wildsFlagButton.transform = CGAffineTransformMakeScale(1.5, 1.5);
         [UIView animateWithDuration:1 delay:0.5 options:UIViewAnimationCurveEaseInOut animations:^{
-            self.wildsFlagButton.transform = CGAffineTransformMakeScale(0.01, 5);
+            self.wildsFlagButton.transform = CGAffineTransformMakeScale(0.01, 15);
         } completion:^(BOOL finished) {
             self.wildsFlagButton.transform = CGAffineTransformMakeScale(0.01, 0.01);
             self.wildsFlagButton.hidden = YES;
