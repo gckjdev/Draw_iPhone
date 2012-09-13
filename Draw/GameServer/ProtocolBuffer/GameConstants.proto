@@ -173,7 +173,7 @@ enum GameResultCode {
     
   // item erros
   ERROR_UNKNOWN_ITEM = 501;
-    
+  ERROR_EXCESS_TIME_LIMIT = 502;    
 
 
   // system errors
