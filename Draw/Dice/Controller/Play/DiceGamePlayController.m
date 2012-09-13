@@ -344,7 +344,11 @@
     
     NSArray *diceList = [[[_diceService diceSession] userDiceList] objectForKey:userId];
     DicesResultView *resultView = [self resultViewOfUser:userId];
-    [resultView setDices:diceList resultDice:_diceService.lastCallDice wilds:_diceService.diceSession.wilds];
+    [resultView setDices:diceList
+              resultDice:_diceService.lastCallDice
+                   wilds:_diceService.diceSession.wilds
+                ruleType:DiceGameRuleTypeHigh];
+    
     [resultView showAnimation:self.view.center];
     resultView.delegate = self;
 }

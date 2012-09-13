@@ -14,6 +14,8 @@
 #define ANIMATION_GROUP_STAY @"ANIMATION_GROUP_STAY"
 #define ANIMATION_GROUP_MOVE_BACK @"ANIMATION_GROUP_MOVE_BACK"
 
+
+
 @protocol DicesResultViewAnimationDelegate <NSObject>
 
 @optional
@@ -32,7 +34,8 @@
 
 - (void)setDices:(NSArray *)diceList
       resultDice:(int)resultDice
-           wilds:(BOOL)wilds;
+           wilds:(BOOL)wilds
+        ruleType:(DiceGameRuleType)ruleType;
 
 - (void)showAnimation:(CGPoint)center;
 

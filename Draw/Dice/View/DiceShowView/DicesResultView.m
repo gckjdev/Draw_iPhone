@@ -36,12 +36,19 @@
 #define FACTOR_DICE_ZOOMIN 2
 
 
-
+typedef enum{
+    NormalDice = 0,
+    SnakeDice = 1,
+    WaiDice = 2,
+    NetDice = 3
+}DiceResultType;
 
 @interface DicesResultView ()
 {
     CGPoint _originCenter;
     CGPoint _targetCenter;
+    DiceResultType _resultType;
+    int _resultDiceCount;
 }
 
 @end
@@ -118,11 +125,62 @@
     return (UIButton *)[self viewWithTag:TAG_OFFSET_DICE + index];
 }
 
+- (void)adjustDiceResultType:(NSArray *)diceList
+                  resultDice:(int)resultDice
+                       wilds:(BOOL)wilds
+                    ruleType:(DiceGameRuleType)ruleType
+{
+    int arr[10] = {0};
+    
+    for (PBDice *dice in diceList) {
+        arr[dice.dice] ++;
+    }
+    
+    int count = 0;
+    for (int i = 0; i < 10; i ++) {
+        if (arr[i] != 0) {
+            count ++;
+        } 
+    }
+    
+    _resultDiceCount = arr[resultDice] + ((resultDice == 1) ? 0 : (wilds ? 0 : arr[1]));
+
+    if (ruleType == DiceGameRuleTypeNormal) {
+        _resultType = NormalDice;
+    }else if ((ruleType == DiceGameRuleTypeHigh) || (ruleType == DiceGameRuleTypeSuperHigh)) {
+        if (count == 1) {
+            if (_resultDiceCount == 5) {
+                _resultType = NetDice;
+                _resultDiceCount = 7;
+            }
+        }else if (count == 2) {
+            if (_resultDiceCount == 5) {
+                _resultType = WaiDice;
+                _resultDiceCount = 6;
+            }
+        }else if (count == 5) {
+            _resultType = SnakeDice;
+            _resultDiceCount = 0;
+        }else {
+            _resultType = NormalDice;
+        }
+    }
+    
+    
+}
+
 - (void)setDices:(NSArray *)diceList
       resultDice:(int)resultDice
            wilds:(BOOL)wilds
+        ruleType:(DiceGameRuleType)ruleType
 {
     [self clearDices];
+    
+    [self adjustDiceResultType:diceList
+                    resultDice:(int)resultDice
+                         wilds:(BOOL)wilds 
+                      ruleType:ruleType];
+    
     self.hidden = NO;
     
     DiceImageManager *imageManage = [DiceImageManager defaultManager];
@@ -135,6 +193,8 @@
 
         [[self diceViewOfIndex:index] setImage:defaultImage forState:UIControlStateNormal];
         [[self diceViewOfIndex:index] setImage:selectedImage forState:UIControlStateSelected];
+        
+        
         
         // 叫斋之后，1就不能当其他骰子用了。
         if (wilds && dice.dice == 1) {
@@ -149,6 +209,10 @@
         if (dice.dice == resultDice) {
             [[self diceViewOfIndex:index] setSelected:YES];
         }
+        
+        if (_resultType == SnakeDice) {
+            [[self diceViewOfIndex:index] setSelected:NO];
+        }
 
         index ++;
         if (index > 5) {
@@ -160,13 +224,14 @@
 - (NSArray *)selectedDiceViews
 {
     NSMutableArray *array = [NSMutableArray array];
+
     for (int index = 0; index < 5; index ++) {
         UIButton *diceView = [self diceViewOfIndex:index];
         if (diceView.selected == YES) {
             [array addObject:diceView];
         }
     }
-    
+            
     return array;
 }
 
@@ -178,7 +243,7 @@
         self.center = center;
         self.transform = CGAffineTransformMakeScale(FACTOR_RESULT_ZOOMIN, FACTOR_RESULT_ZOOMIN);
     } completion:^(BOOL finished) {
-        [_delegate stayDidStart:[[self selectedDiceViews] count]];
+        [_delegate stayDidStart:_resultDiceCount];
         [UIView animateWithDuration:DURATION_STAY delay:DURATION_MOVE_TO_CENTER options:UIViewAnimationCurveEaseInOut animations:^{
             [self showResultDiceAnimation];
         } completion:^(BOOL finished) {
@@ -186,10 +251,9 @@
                 self.center = _originCenter;
                 self.transform = CGAffineTransformMakeScale(1, 1);
             } completion:^(BOOL finished) {
-                [_delegate moveBackDidStop:[[self selectedDiceViews] count]];
+                [_delegate moveBackDidStop:_resultDiceCount];
             }];
         }];
-
     }];
 }
 
