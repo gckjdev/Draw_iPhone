@@ -181,7 +181,6 @@
         [_delegate stayDidStart:[[self selectedDiceViews] count]];
         [UIView animateWithDuration:DURATION_STAY delay:DURATION_MOVE_TO_CENTER options:UIViewAnimationCurveEaseInOut animations:^{
             [self showResultDiceAnimation];
-            
         } completion:^(BOOL finished) {
             [UIView animateWithDuration:DURATION_MOVE_TO_BACK delay:DURATION_STAY options:UIViewAnimationCurveEaseInOut animations:^{
                 self.center = _originCenter;
@@ -189,42 +188,34 @@
             } completion:^(BOOL finished) {
                 [_delegate moveBackDidStop:[[self selectedDiceViews] count]];
             }];
-            
         }];
 
     }];
-    
-
-    
-
-    
-    
-//    [self moveToPoint:_targetCenter];
 }
 
-- (void)animationDidStart:(CAAnimation *)anim
-{
-    if (anim == [self.layer animationForKey:ANIMATION_GROUP_MOVE_TO_CENTER]) {
-        PPDebug(@"ANIMATION_GROUP_MOVE_TO_CENTER start");
-        if ([_delegate respondsToSelector:@selector(moveToCenterDidStart:)]) {
-            [_delegate moveToCenterDidStart:[[self selectedDiceViews] count]];
-        }
-    }
-    
-    if (anim == [self.layer animationForKey:ANIMATION_GROUP_STAY]) {
-        PPDebug(@"ANIMATION_GROUP_STAY start");
-        if ([_delegate respondsToSelector:@selector(stayDidStart:)]) {
-            [_delegate stayDidStart:[[self selectedDiceViews] count]];
-        }
-    }
-    
-    if (anim == [self.layer animationForKey:ANIMATION_GROUP_MOVE_BACK]) {
-        PPDebug(@"ANIMATION_GROUP_MOVE_BACK start");
-        if ([_delegate respondsToSelector:@selector(moveBackDidStart:)]) {
-            [_delegate moveBackDidStart:[[self selectedDiceViews] count]];
-        }
-    }
-}
+//- (void)animationDidStart:(CAAnimation *)anim
+//{
+//    if (anim == [self.layer animationForKey:ANIMATION_GROUP_MOVE_TO_CENTER]) {
+//        PPDebug(@"ANIMATION_GROUP_MOVE_TO_CENTER start");
+//        if ([_delegate respondsToSelector:@selector(moveToCenterDidStart:)]) {
+//            [_delegate moveToCenterDidStart:[[self selectedDiceViews] count]];
+//        }
+//    }
+//    
+//    if (anim == [self.layer animationForKey:ANIMATION_GROUP_STAY]) {
+//        PPDebug(@"ANIMATION_GROUP_STAY start");
+//        if ([_delegate respondsToSelector:@selector(stayDidStart:)]) {
+//            [_delegate stayDidStart:[[self selectedDiceViews] count]];
+//        }
+//    }
+//    
+//    if (anim == [self.layer animationForKey:ANIMATION_GROUP_MOVE_BACK]) {
+//        PPDebug(@"ANIMATION_GROUP_MOVE_BACK start");
+//        if ([_delegate respondsToSelector:@selector(moveBackDidStart:)]) {
+//            [_delegate moveBackDidStart:[[self selectedDiceViews] count]];
+//        }
+//    }
+//}
 
 - (CAAnimationGroup *)animationGroupWithArray:(NSArray *)animations
                                      duration:(int)duration
@@ -240,86 +231,86 @@
     return groupAnimation;
 }
 
-- (void)moveToPoint:(CGPoint)point
-{
-    // 移到桌子中央动画
-    CAAnimation *moveToScreenCenter = [AnimationManager translationAnimationFrom:_originCenter to:_targetCenter duration:DURATION_MOVE_TO_CENTER];
-    CAAnimation *zoomIn = [AnimationManager scaleAnimationWithScale:FACTOR_RESULT_ZOOMIN duration:DURATION_MOVE_TO_CENTER delegate:self removeCompeleted:NO];
-    
-    // 添加到animation group中.
-    NSArray *animations = [NSArray arrayWithObjects:moveToScreenCenter, zoomIn, nil];
-    CAAnimationGroup *moveToPointCenterGroup = [self animationGroupWithArray:animations
-                                                                    duration:DURATION_MOVE_TO_CENTER
-                                                         removedOnCompletion:NO
-                                                                    delegate:self];
-    
-    //对视图自身的层,添加组动画
-    [self.layer addAnimation:moveToPointCenterGroup forKey:ANIMATION_GROUP_MOVE_TO_CENTER];    
-}
+//- (void)moveToPoint:(CGPoint)point
+//{
+//    // 移到桌子中央动画
+//    CAAnimation *moveToScreenCenter = [AnimationManager translationAnimationFrom:_originCenter to:_targetCenter duration:DURATION_MOVE_TO_CENTER];
+//    CAAnimation *zoomIn = [AnimationManager scaleAnimationWithScale:FACTOR_RESULT_ZOOMIN duration:DURATION_MOVE_TO_CENTER delegate:self removeCompeleted:NO];
+//    
+//    // 添加到animation group中.
+//    NSArray *animations = [NSArray arrayWithObjects:moveToScreenCenter, zoomIn, nil];
+//    CAAnimationGroup *moveToPointCenterGroup = [self animationGroupWithArray:animations
+//                                                                    duration:DURATION_MOVE_TO_CENTER
+//                                                         removedOnCompletion:NO
+//                                                                    delegate:self];
+//    
+//    //对视图自身的层,添加组动画
+//    [self.layer addAnimation:moveToPointCenterGroup forKey:ANIMATION_GROUP_MOVE_TO_CENTER];    
+//}
 
-- (void)stayStill
-{
-    // 停顿动画
-    CAAnimation *stayPoint = [AnimationManager translationAnimationFrom:_targetCenter to:_targetCenter duration:DURATION_STAY];
-    CAAnimation *stayScale = [AnimationManager scaleAnimationWithFromScale:FACTOR_RESULT_ZOOMIN toScale:FACTOR_RESULT_ZOOMIN duration:DURATION_STAY delegate:nil removeCompeleted:NO];
-    
-    // 添加到animation group中.
-    NSArray *animations = [NSArray arrayWithObjects:stayPoint, stayScale, nil];
-    CAAnimationGroup *stayGroup = [self animationGroupWithArray:animations
-                                                       duration:DURATION_STAY
-                                            removedOnCompletion:NO
-                                                       delegate:self];
-    
-    //对视图自身的层,添加组动画
-    [self.layer addAnimation:stayGroup forKey:ANIMATION_GROUP_STAY];
-}
+//- (void)stayStill
+//{
+//    // 停顿动画
+//    CAAnimation *stayPoint = [AnimationManager translationAnimationFrom:_targetCenter to:_targetCenter duration:DURATION_STAY];
+//    CAAnimation *stayScale = [AnimationManager scaleAnimationWithFromScale:FACTOR_RESULT_ZOOMIN toScale:FACTOR_RESULT_ZOOMIN duration:DURATION_STAY delegate:nil removeCompeleted:NO];
+//    
+//    // 添加到animation group中.
+//    NSArray *animations = [NSArray arrayWithObjects:stayPoint, stayScale, nil];
+//    CAAnimationGroup *stayGroup = [self animationGroupWithArray:animations
+//                                                       duration:DURATION_STAY
+//                                            removedOnCompletion:NO
+//                                                       delegate:self];
+//    
+//    //对视图自身的层,添加组动画
+//    [self.layer addAnimation:stayGroup forKey:ANIMATION_GROUP_STAY];
+//}
 
-- (void)moveBack
-{
-    // 移回原位动画
-    CAAnimation *moveBack = [AnimationManager translationAnimationFrom:_targetCenter to:_originCenter duration:DURATION_MOVE_TO_BACK];
-    CAAnimation *zoomOut = [AnimationManager scaleAnimationWithFromScale:FACTOR_RESULT_ZOOMIN toScale:1 duration:DURATION_STAY delegate:nil removeCompeleted:NO];
-    
-    // 添加到animation group中.
-    NSArray *animations = [NSArray arrayWithObjects:moveBack, zoomOut,nil];
-    CAAnimationGroup *moveBackGroup = [self animationGroupWithArray:animations
-                                                           duration:DURATION_MOVE_TO_BACK  
-                                                removedOnCompletion:NO
-                                                           delegate:self];
-    
-    //对视图自身的层,添加组动画
-    [self.layer addAnimation:moveBackGroup forKey:ANIMATION_GROUP_MOVE_BACK];
-}
+//- (void)moveBack
+//{
+//    // 移回原位动画
+//    CAAnimation *moveBack = [AnimationManager translationAnimationFrom:_targetCenter to:_originCenter duration:DURATION_MOVE_TO_BACK];
+//    CAAnimation *zoomOut = [AnimationManager scaleAnimationWithFromScale:FACTOR_RESULT_ZOOMIN toScale:1 duration:DURATION_STAY delegate:nil removeCompeleted:NO];
+//    
+//    // 添加到animation group中.
+//    NSArray *animations = [NSArray arrayWithObjects:moveBack, zoomOut,nil];
+//    CAAnimationGroup *moveBackGroup = [self animationGroupWithArray:animations
+//                                                           duration:DURATION_MOVE_TO_BACK  
+//                                                removedOnCompletion:NO
+//                                                           delegate:self];
+//    
+//    //对视图自身的层,添加组动画
+//    [self.layer addAnimation:moveBackGroup forKey:ANIMATION_GROUP_MOVE_BACK];
+//}
 
-- (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag
-{
-    if (anim == [self.layer animationForKey:ANIMATION_GROUP_MOVE_TO_CENTER]) {
-        PPDebug(@"ANIMATION_GROUP_MOVE_TO_CENTER end");
-        
-        [self showResultDiceAnimation];
-        [self stayStill];
-        
-        if ([_delegate respondsToSelector:@selector(moveToCenterDidStop:)]) {
-            [_delegate moveToCenterDidStop:[[self selectedDiceViews] count]];
-        }
-    }
-    
-    if (anim == [self.layer animationForKey:ANIMATION_GROUP_STAY]) {
-        PPDebug(@"ANIMATION_GROUP_STAY end");
-        if ([_delegate respondsToSelector:@selector(stayDidStop:)]) {
-            [_delegate stayDidStop:[[self selectedDiceViews] count]];
-        }
-        
-        [self moveBack];
-    }
-    
-    if (anim == [self.layer animationForKey:ANIMATION_GROUP_MOVE_BACK]) {
-        PPDebug(@"ANIMATION_GROUP_MOVE_BACK end");
-        if ([_delegate respondsToSelector:@selector(moveBackDidStop:)]) {
-            [_delegate moveBackDidStop:[[self selectedDiceViews] count]];
-        }
-    }
-}
+//- (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag
+//{
+//    if (anim == [self.layer animationForKey:ANIMATION_GROUP_MOVE_TO_CENTER]) {
+//        PPDebug(@"ANIMATION_GROUP_MOVE_TO_CENTER end");
+//        
+//        [self showResultDiceAnimation];
+//        [self stayStill];
+//        
+//        if ([_delegate respondsToSelector:@selector(moveToCenterDidStop:)]) {
+//            [_delegate moveToCenterDidStop:[[self selectedDiceViews] count]];
+//        }
+//    }
+//    
+//    if (anim == [self.layer animationForKey:ANIMATION_GROUP_STAY]) {
+//        PPDebug(@"ANIMATION_GROUP_STAY end");
+//        if ([_delegate respondsToSelector:@selector(stayDidStop:)]) {
+//            [_delegate stayDidStop:[[self selectedDiceViews] count]];
+//        }
+//        
+//        [self moveBack];
+//    }
+//    
+//    if (anim == [self.layer animationForKey:ANIMATION_GROUP_MOVE_BACK]) {
+//        PPDebug(@"ANIMATION_GROUP_MOVE_BACK end");
+//        if ([_delegate respondsToSelector:@selector(moveBackDidStop:)]) {
+//            [_delegate moveBackDidStop:[[self selectedDiceViews] count]];
+//        }
+//    }
+//}
 
 
 - (void)showResultDiceAnimation

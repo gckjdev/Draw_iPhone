@@ -26,6 +26,7 @@
 #import "ChatView.h"
 #import "ExpressionManager.h"
 #import "DiceSoundManager.h"
+#import "DiceItemManager.h"
 
 @class DiceGameService;
 
@@ -70,4 +71,8 @@
 @property (retain, nonatomic) IBOutlet UIView *popupLevel1View;
 @property (retain, nonatomic) IBOutlet UIView *popupLevel2View;
 @property (retain, nonatomic) IBOutlet UIView *popupLevel3View;
+
+- (UIView *)bellViewOfUser:(NSString *)userId;
+
+
 @end

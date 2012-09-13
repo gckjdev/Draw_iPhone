@@ -77,6 +77,9 @@
 		A42C523715E62B82001D8208 /* face_anger.gif in Resources */ = {isa = PBXBuildFile; fileRef = A42C523615E62B82001D8208 /* face_anger.gif */; };
 		A42C528615E756CF001D8208 /* DiceHelpView.m in Sources */ = {isa = PBXBuildFile; fileRef = A42C528415E756CF001D8208 /* DiceHelpView.m */; };
 		A42C528715E756CF001D8208 /* DiceHelpView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A42C528515E756CF001D8208 /* DiceHelpView.xib */; };
+		A42C93C915FF28D60090D6B6 /* CommonDiceItemAction.m in Sources */ = {isa = PBXBuildFile; fileRef = A42C93C815FF28D60090D6B6 /* CommonDiceItemAction.m */; };
+		A42C93E015FF344D0090D6B6 /* RollAgainItemAction.m in Sources */ = {isa = PBXBuildFile; fileRef = A42C93DF15FF344D0090D6B6 /* RollAgainItemAction.m */; };
+		A42C93E616001FB90090D6B6 /* PeekItemAction.m in Sources */ = {isa = PBXBuildFile; fileRef = A42C93E516001FB90090D6B6 /* PeekItemAction.m */; };
 		A42D90431553803D0023AF32 /* CoinShopController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A42D903F1553803D0023AF32 /* CoinShopController~ipad.xib */; };
 		A42D90441553803D0023AF32 /* ColorShopCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A42D90401553803D0023AF32 /* ColorShopCell~ipad.xib */; };
 		A42D90451553803D0023AF32 /* ItemShopController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A42D90411553803D0023AF32 /* ItemShopController~ipad.xib */; };
@@ -577,6 +580,8 @@
 		C28207E31552D974006FBB0F /* AudioManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C28207E21552D974006FBB0F /* AudioManager.m */; };
 		C284E87F1531D89800DD5B77 /* AboutUsController.m in Sources */ = {isa = PBXBuildFile; fileRef = C284E87D1531D89800DD5B77 /* AboutUsController.m */; };
 		C284E8801531D89800DD5B77 /* AboutUsController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C284E87E1531D89800DD5B77 /* AboutUsController.xib */; };
+		C28E7BEE1601836400F4B6A5 /* PostponeItemAction.m in Sources */ = {isa = PBXBuildFile; fileRef = C28E7BED1601836300F4B6A5 /* PostponeItemAction.m */; };
+		C28E7BF11601839300F4B6A5 /* UrgeItemAction.m in Sources */ = {isa = PBXBuildFile; fileRef = C28E7BF01601839300F4B6A5 /* UrgeItemAction.m */; };
 		C296872B15DCE03F006968BA /* DiceItemInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = C296872115DCE03F006968BA /* DiceItemInfoView.m */; };
 		C296872C15DCE03F006968BA /* DiceItemInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C296872215DCE03F006968BA /* DiceItemInfoView.xib */; };
 		C296872D15DCE03F006968BA /* DiceUserInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = C296872515DCE03F006968BA /* DiceUserInfoView.m */; };
@@ -1192,11 +1197,6 @@
 		CAA8259015F8404B00E35C9E /* Default-Portrait.png in Resources */ = {isa = PBXBuildFile; fileRef = CAA824FB15F8404B00E35C9E /* Default-Portrait.png */; };
 		CAA8259115F8404B00E35C9E /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = CAA824FD15F8404B00E35C9E /* Default.png */; };
 		CAA8259215F8404B00E35C9E /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAA824FF15F8404B00E35C9E /* Default@2x.png */; };
-		CAA8259315F8404B00E35C9E /* 50.png in Resources */ = {isa = PBXBuildFile; fileRef = CAA8250215F8404B00E35C9E /* 50.png */; };
-		CAA8259415F8404B00E35C9E /* 512.png in Resources */ = {isa = PBXBuildFile; fileRef = CAA8250315F8404B00E35C9E /* 512.png */; };
-		CAA8259515F8404B00E35C9E /* 57.png in Resources */ = {isa = PBXBuildFile; fileRef = CAA8250415F8404B00E35C9E /* 57.png */; };
-		CAA8259615F8404B00E35C9E /* 57@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAA8250515F8404B00E35C9E /* 57@2x.png */; };
-		CAA8259715F8404B00E35C9E /* 72.png in Resources */ = {isa = PBXBuildFile; fileRef = CAA8250615F8404B00E35C9E /* 72.png */; };
 		CAA8259815F8404B00E35C9E /* new_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = CAA8250715F8404B00E35C9E /* new_icon.png */; };
 		CAA8259915F8404B00E35C9E /* new_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAA8250815F8404B00E35C9E /* new_icon@2x.png */; };
 		CAA8259A15F8404C00E35C9E /* new_icon_ipad1.png in Resources */ = {isa = PBXBuildFile; fileRef = CAA8250915F8404B00E35C9E /* new_icon_ipad1.png */; };
@@ -1538,6 +1538,12 @@
 		A42C528315E756CF001D8208 /* DiceHelpView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiceHelpView.h; sourceTree = "<group>"; };
 		A42C528415E756CF001D8208 /* DiceHelpView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiceHelpView.m; sourceTree = "<group>"; };
 		A42C528515E756CF001D8208 /* DiceHelpView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DiceHelpView.xib; sourceTree = "<group>"; };
+		A42C93C715FF28D60090D6B6 /* CommonDiceItemAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonDiceItemAction.h; sourceTree = "<group>"; };
+		A42C93C815FF28D60090D6B6 /* CommonDiceItemAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonDiceItemAction.m; sourceTree = "<group>"; };
+		A42C93DE15FF344D0090D6B6 /* RollAgainItemAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RollAgainItemAction.h; sourceTree = "<group>"; };
+		A42C93DF15FF344D0090D6B6 /* RollAgainItemAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RollAgainItemAction.m; sourceTree = "<group>"; };
+		A42C93E416001FB80090D6B6 /* PeekItemAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PeekItemAction.h; sourceTree = "<group>"; };
+		A42C93E516001FB90090D6B6 /* PeekItemAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PeekItemAction.m; sourceTree = "<group>"; };
 		A42D903F1553803D0023AF32 /* CoinShopController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "CoinShopController~ipad.xib"; sourceTree = "<group>"; };
 		A42D90401553803D0023AF32 /* ColorShopCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ColorShopCell~ipad.xib"; sourceTree = "<group>"; };
 		A42D90411553803D0023AF32 /* ItemShopController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ItemShopController~ipad.xib"; sourceTree = "<group>"; };
@@ -2097,6 +2103,10 @@
 		C284E87C1531D89800DD5B77 /* AboutUsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutUsController.h; sourceTree = "<group>"; };
 		C284E87D1531D89800DD5B77 /* AboutUsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutUsController.m; sourceTree = "<group>"; };
 		C284E87E1531D89800DD5B77 /* AboutUsController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AboutUsController.xib; sourceTree = "<group>"; };
+		C28E7BEC1601836200F4B6A5 /* PostponeItemAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostponeItemAction.h; sourceTree = "<group>"; };
+		C28E7BED1601836300F4B6A5 /* PostponeItemAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostponeItemAction.m; sourceTree = "<group>"; };
+		C28E7BEF1601839200F4B6A5 /* UrgeItemAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UrgeItemAction.h; sourceTree = "<group>"; };
+		C28E7BF01601839300F4B6A5 /* UrgeItemAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UrgeItemAction.m; sourceTree = "<group>"; };
 		C296872015DCE03F006968BA /* DiceItemInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiceItemInfoView.h; sourceTree = "<group>"; };
 		C296872115DCE03F006968BA /* DiceItemInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiceItemInfoView.m; sourceTree = "<group>"; };
 		C296872215DCE03F006968BA /* DiceItemInfoView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DiceItemInfoView.xib; sourceTree = "<group>"; };
@@ -3111,11 +3121,6 @@
 		CAA824FC15F8404B00E35C9E /* en */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = en; path = "en.lproj/Default-Portrait.png"; sourceTree = "<group>"; };
 		CAA824FE15F8404B00E35C9E /* en */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = en; path = en.lproj/Default.png; sourceTree = "<group>"; };
 		CAA8250015F8404B00E35C9E /* en */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = en; path = "en.lproj/Default@2x.png"; sourceTree = "<group>"; };
-		CAA8250215F8404B00E35C9E /* 50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 50.png; sourceTree = "<group>"; };
-		CAA8250315F8404B00E35C9E /* 512.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 512.png; sourceTree = "<group>"; };
-		CAA8250415F8404B00E35C9E /* 57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 57.png; sourceTree = "<group>"; };
-		CAA8250515F8404B00E35C9E /* 57@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "57@2x.png"; sourceTree = "<group>"; };
-		CAA8250615F8404B00E35C9E /* 72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 72.png; sourceTree = "<group>"; };
 		CAA8250715F8404B00E35C9E /* new_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = new_icon.png; sourceTree = "<group>"; };
 		CAA8250815F8404B00E35C9E /* new_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "new_icon@2x.png"; sourceTree = "<group>"; };
 		CAA8250915F8404B00E35C9E /* new_icon_ipad1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = new_icon_ipad1.png; sourceTree = "<group>"; };
@@ -3884,6 +3889,16 @@
 				A4B763F115C28F8E003B4E72 /* DiceGamePlayController.h */,
 				A4B763F215C28F8E003B4E72 /* DiceGamePlayController.m */,
 				A4B763F315C28F8E003B4E72 /* DiceGamePlayController.xib */,
+				A42C93C715FF28D60090D6B6 /* CommonDiceItemAction.h */,
+				A42C93C815FF28D60090D6B6 /* CommonDiceItemAction.m */,
+				A42C93DE15FF344D0090D6B6 /* RollAgainItemAction.h */,
+				A42C93DF15FF344D0090D6B6 /* RollAgainItemAction.m */,
+				A42C93E416001FB80090D6B6 /* PeekItemAction.h */,
+				A42C93E516001FB90090D6B6 /* PeekItemAction.m */,
+				C28E7BEC1601836200F4B6A5 /* PostponeItemAction.h */,
+				C28E7BED1601836300F4B6A5 /* PostponeItemAction.m */,
+				C28E7BEF1601839200F4B6A5 /* UrgeItemAction.h */,
+				C28E7BF01601839300F4B6A5 /* UrgeItemAction.m */,
 			);
 			path = Play;
 			sourceTree = "<group>";
@@ -6831,11 +6846,6 @@
 		CAA8250115F8404B00E35C9E /* Icons */ = {
 			isa = PBXGroup;
 			children = (
-				CAA8250215F8404B00E35C9E /* 50.png */,
-				CAA8250315F8404B00E35C9E /* 512.png */,
-				CAA8250415F8404B00E35C9E /* 57.png */,
-				CAA8250515F8404B00E35C9E /* 57@2x.png */,
-				CAA8250615F8404B00E35C9E /* 72.png */,
 				CAA8250715F8404B00E35C9E /* new_icon.png */,
 				CAA8250815F8404B00E35C9E /* new_icon@2x.png */,
 				CAA8250915F8404B00E35C9E /* new_icon_ipad1.png */,
@@ -8450,11 +8460,6 @@
 				CAA8259015F8404B00E35C9E /* Default-Portrait.png in Resources */,
 				CAA8259115F8404B00E35C9E /* Default.png in Resources */,
 				CAA8259215F8404B00E35C9E /* Default@2x.png in Resources */,
-				CAA8259315F8404B00E35C9E /* 50.png in Resources */,
-				CAA8259415F8404B00E35C9E /* 512.png in Resources */,
-				CAA8259515F8404B00E35C9E /* 57.png in Resources */,
-				CAA8259615F8404B00E35C9E /* 57@2x.png in Resources */,
-				CAA8259715F8404B00E35C9E /* 72.png in Resources */,
 				CAA8259815F8404B00E35C9E /* new_icon.png in Resources */,
 				CAA8259915F8404B00E35C9E /* new_icon@2x.png in Resources */,
 				CAA8259A15F8404C00E35C9E /* new_icon_ipad1.png in Resources */,
@@ -9080,6 +9085,11 @@
 				CA42E3ED15F4633100790B3C /* UserInfoCell.m in Sources */,
 				CAACE19915F499E6002EB53A /* SuperDrawView.m in Sources */,
 				CAA8261015F8875400E35C9E /* CommentController.m in Sources */,
+				A42C93C915FF28D60090D6B6 /* CommonDiceItemAction.m in Sources */,
+				A42C93E015FF344D0090D6B6 /* RollAgainItemAction.m in Sources */,
+				A42C93E616001FB90090D6B6 /* PeekItemAction.m in Sources */,
+				C28E7BEE1601836400F4B6A5 /* PostponeItemAction.m in Sources */,
+				C28E7BF11601839300F4B6A5 /* UrgeItemAction.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

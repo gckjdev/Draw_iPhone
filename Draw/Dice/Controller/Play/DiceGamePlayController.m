@@ -24,6 +24,7 @@
 #import "ConfigManager.h"
 #import "CommonMessageCenter.h"
 #import "UIViewUtils.h"
+#import "CommonDiceItemAction.h"
 
 #define AVATAR_TAG_OFFSET   8000
 #define NICKNAME_TAG_OFFSET 1100
@@ -50,15 +51,18 @@
 - (DiceAvatarView*)avatarViewOfUser:(NSString*)userId;
 
 - (void)disableAllDiceOperationButtons;
-- (void)enableAllDiceOperationButtons;
 
 - (void)clearAdHideTimer;
 - (void)startAdHideTimer;
+
+- (void)showDestroyWildsAnim;
+- (void)showWildsAnim;
 
 //- (void)popResultViewOnAvatarView:(UIView*)view
 //                         duration:(CFTimeInterval)duration 
 //                       coinsCount:(int)coinsCount;
 - (void)quitDiceGame;
+
 @end
 
 @implementation DiceGamePlayController
@@ -164,9 +168,6 @@
     self.gameBeginNoteLabel.hidden = YES;
     self.gameBeginNoteLabel.text = NSLS(@"kGameBegin");
     self.gameBeginNoteLabel.textColor = [UIColor yellowColor];
-    
-//    [_audioManager setBackGroundMusicWithName:@"dice.m4a"];
-//    [_audioManager backgroundMusicStart];
 
     self.myLevelLabel.text = [NSString stringWithFormat:@"LV:%d",_levelService.level];;
     self.myCoinsLabel.text = [NSString stringWithFormat:@"x%d",[_accountService getBalance]];
@@ -259,62 +260,12 @@
     
     if (button.selected) {
         [_popupView popupItemListAtView:button 
-                                        inView:self.view
-                                  aboveSubView:self.popupLevel3View
-                                      duration:0
-                                      delegate:self];
+                                 inView:self.view
+                           aboveSubView:self.popupLevel3View
+                               duration:0
+                               delegate:self];
     } else {
         [_popupView dismissItemListView];
-    }
-}
-
-- (void)rollDiceAgain
-{
-    self.myDiceListHolderView.hidden = YES;
-    
-    // TODO: Reduce item and sync to server.
-    
-    // TODO: Show animations.
-    [self rollUserBell:_userManager.userId];
-    
-    // TODO: Update myDiceList view.
-    [self performSelector:@selector(rollDiceEnd) withObject:nil afterDelay:1];
-}
-
-
-- (void)someoneUseItem:(NSString *)userId
-                itemId:(int)itemId;
-{
-    if (itemId != ItemTypeCut) {
-        [self showItemNameAnimationOnUser:userId itemName:[Item nameForItemType:itemId]];
-    }
-    
-    switch (itemId) {
-        case ItemTypeRollAgain:
-            [self rollUserBell:userId];
-            break;
-            
-        default:
-            break;
-    }
-}
-
-
-- (void)useItemSuccess:(int)itemId
-{
-    [_accountService consumeItem:itemId amount:1]; 
-    
-    if (itemId != ItemTypeCut) {
-        [self showItemNameAnimationOnUser:_userManager.userId itemName:[Item nameForItemType:itemId]];
-    }
-
-    switch (itemId) {
-        case ItemTypeRollAgain:
-            [self rollDiceAgain];
-            break;
-            
-        default:
-            break;
     }
 }
 
@@ -571,13 +522,6 @@
     }
 }
 
-- (void)rollUserBell:(NSString *)userId
-{
-    UIView *bell = [self bellViewOfUser:userId];
-    bell.hidden = NO;
-    [bell.layer addAnimation:[AnimationManager shakeLeftAndRightFrom:10 to:10 repeatCount:10 duration:1] forKey:@"shake"];
-}
-
 - (void)clearAllReciprocol
 {
     for (int i = 1; i <= MAX_PLAYER_COUNT; i ++) {
@@ -667,9 +611,11 @@
     [self registerDiceGameNotificationWithName:NOTIFICATION_USE_ITEM_REQUEST
                                     usingBlock:^(NSNotification *notification) {  
                                         GameMessage *message = [CommonGameNetworkService userInfoToMessage:notification.userInfo];
-                                        PPDebug(@"[改]user:%@ use item %d.", message.userId, message.useItemRequest.itemId);
-                                        [self someoneUseItem:message.userId 
-                                                      itemId:message.useItemRequest.itemId];         
+                                        
+                                        [CommonDiceItemAction handleItemRequest:message.useItemRequest.itemId 
+                                                                         userId:message.userId 
+                                                                     controller:self
+                                                                           view:self.view];      
                                     }];
 
     
@@ -677,7 +623,9 @@
                                     usingBlock:^(NSNotification *notification) {    
                                         GameMessage *message = [CommonGameNetworkService userInfoToMessage:notification.userInfo];
                                         if (message.resultCode == 0) {
-                                            [self useItemSuccess:message.useItemResponse.itemId];         
+                                            [CommonDiceItemAction handleItemResponse:message.useItemResponse.itemId 
+                                                                          controller:self
+                                                                                view:self.view];
                                         }
                                     }];
     
@@ -784,7 +732,7 @@
 - (void)didClickOnAvatar:(DiceAvatarView*)view
 {
     if (view.userId) {
-        [DiceUserInfoView showUser:view.userId nickName:nil avatar:nil gender:nil location:nil level:0 hasSina:NO hasQQ:NO hasFacebook:NO infoInView:self];
+        [DiceUserInfoView showUser:view.userId nickName:nil avatar:nil gender:nil location:nil level:0 hasSina:NO hasQQ:NO hasFacebook:NO infoInView:self canChat:NO];
     }
     
 }
@@ -803,17 +751,7 @@
     self.openDiceButton.hidden = YES;
     self.wildsButton.enabled = NO;
     self.plusOneButton.enabled = NO;
-    [_popupView disableCutItem];
     [self.diceSelectedView disableUserInteraction];
-}
-
-- (void)enableAllDiceOperationButtons
-{
-    self.openDiceButton.hidden = NO;
-    self.wildsButton.enabled = YES;
-    self.plusOneButton.enabled = YES;
-    [_popupView enableCutItem];
-    [self.diceSelectedView enableUserInteraction];
 }
 
 #define CENTER_GAME_BEGIN_NOTE_START  ([DeviceDetection isIPAD] ? CGPointMake(384, 578): CGPointMake(160, 265))
@@ -863,44 +801,45 @@
     
     NSString *currentPlayUserId = _diceService.session.currentPlayUserId;
     [[self avatarViewOfUser:currentPlayUserId] startReciprocol:USER_THINK_TIME_INTERVAL];
+    
+    // 如果自己是旁观者，则在这里返回。
+    if (_diceService.diceSession.isMeAByStander) {
+        return;
+    }
         
     if ([_userManager isMe:currentPlayUserId])
-    {        
-        [self enableAllDiceOperationButtons];
-        
+    {                        
+        self.openDiceButton.fontLable.text = NSLS(@"kOpenDice");
+
+        // 根据实际叫斋情况判断是否使能斋按钮。
         self.wildsButton.enabled = !_diceService.diceSession.wilds;
+        
+        // 根据上次叫骰结果判断是否使能+1按钮。
+        self.plusOneButton.enabled = (_diceService.lastCallDiceCount >= _diceService.diceSession.playingUserCount*5) ? NO : YES;
+        
+        // 使能叫骰选择区域
         [self.diceSelectedView enableUserInteraction];
         
- 
-        self.openDiceButton.fontLable.text = NSLS(@"kOpenDice");
-                
-        // 没人叫过骰子不能开。
-        if (_diceService.diceSession.lastCallDiceUserId == nil) {
-            self.openDiceButton.hidden = YES;
-            [_popupView disableCutItem];
-        }
-        
-        // 不能开自己叫的骰子。
-        if (_diceService.diceSession.lastCallDiceUserId != nil && [_userManager isMe:_diceService.diceSession.lastCallDiceUserId]) {
-            self.openDiceButton.hidden = YES;
-            [_popupView disableCutItem];
-        }
-        
-        if (_diceService.diceSession.lastCallDiceCount >= _diceService.diceSession.playingUserCount*5) {
-            self.plusOneButton.enabled = NO;
-        }
+        // 更新道具列表
+        [_popupView updateItemListView];
+
     }else {
-        [self disableAllDiceOperationButtons];
+        self.openDiceButton.fontLable.text = NSLS(@"kScrambleToOpenDice");
         
-        // 不是旁观者，有人叫过骰子，而且不是自己叫的骰子，才能开
-        if (!_diceService.diceSession.isMeAByStander && 
-            _diceService.diceSession.lastCallDiceUserId != nil 
-            && ![_userManager isMe:_diceService.diceSession.lastCallDiceUserId]) {
-//            self.openDiceButton.enabled = YES;
-            self.openDiceButton.hidden = NO;
-            [_popupView enableCutItem];
-            self.openDiceButton.fontLable.text = NSLS(@"kScrambleToOpenDice");
-        }
+        // 不是自己的回合，把下面的按钮全部disable.
+        self.wildsButton.enabled = NO;
+        self.plusOneButton.enabled = NO;
+        [self.diceSelectedView disableUserInteraction];
+                
+        [_popupView updateItemListView];
+    }
+    
+    // 如果有人叫过，而且叫的人不是自己，则可以显示开按钮。
+    if (_diceService.lastCallUserId != nil 
+        && ![_userManager isMe:_diceService.lastCallUserId]) {
+        self.openDiceButton.hidden = NO;
+    }else {
+        self.openDiceButton.hidden = YES;
     }
 }
 
@@ -976,7 +915,13 @@
 {
     self.wildsButton.selected = YES;
     self.wildsButton.enabled = NO;
-    self.wildsFlagButton.hidden = NO;
+    [self showWildsAnim];
+}
+
+- (void)destroyWilds
+{
+    self.wildsButton.selected = NO;
+    [self showDestroyWildsAnim];
 }
 
 - (IBAction)clickWildsButton:(id)sender {
@@ -989,6 +934,8 @@
     
     if (_diceService.diceSession.wilds) {
         [self userUseWilds];
+    } else if (self.wildsFlagButton.hidden == NO){
+        [self destroyWilds];
     }
     
     [self playCallDiceVoice];
@@ -1002,7 +949,9 @@
     
     if (dice == 1 || count == _diceService.session.playingUserCount) {
         [_diceService callDice:dice count:count wilds:YES];
-    }else {
+    }else if (count >= _diceService.lastCallDiceCount*2) {
+        [_diceService callDice:dice count:count wilds:NO];
+    } else{
         [_diceService callDice:dice count:count wilds:self.wildsButton.selected];
     }
 }
@@ -1046,6 +995,8 @@
     
     if (_diceService.diceSession.wilds) {
         [self userUseWilds];
+    } else if (self.wildsFlagButton.hidden == NO) {
+        [self destroyWilds];
     }
 
     [self updateDiceSelecetedView];
@@ -1068,15 +1019,10 @@
     self.itemsBoxButton.enabled = NO;
     [self clearAllReciprocol];
     
-    // Hidden views.
-//    [self hideAllBellViews];
-    //self.myDiceListHolderView.hidden = YES;
-    
     self.resultDiceCountLabel.text = @"0";
     self.resultDiceImageView.image = [_imageManager diceImageWithDice:_diceService.lastCallDice];
     self.resultHolderView.hidden = NO;
     
-    // Show view.
     [self showGameResult];
 }
 
@@ -1154,11 +1100,17 @@
     if ([_diceService.diceSession.userList count] == 1) {
         self.waittingForNextTurnNoteLabel.text = NSLS(@"kWaitingForMoreUsers");
         self.waittingForNextTurnNoteLabel.hidden = NO;
-    }
-    
-    if ([_diceService.diceSession.userList count] > 1 && _diceService.diceSession.isMeAByStander) {
-        self.waittingForNextTurnNoteLabel.text = NSLS(@"kWaittingForNextTurn");
-        self.waittingForNextTurnNoteLabel.hidden = NO;
+    }else if ([_diceService.diceSession.userList count] > 1 && _diceService.diceSession.isMeAByStander) {
+        PBGameUser* user = (PBGameUser*)[_diceService.diceSession.userList objectAtIndex:0];
+        if (user.isPlaying) {
+            self.waittingForNextTurnNoteLabel.text = NSLS(@"kWaittingForNextTurn");
+            self.waittingForNextTurnNoteLabel.hidden = NO;
+        } else {
+            self.waittingForNextTurnNoteLabel.text = NSLS(@"kWaitingForStart");
+            self.waittingForNextTurnNoteLabel.hidden = NO;
+        }
+    } else {
+        self.waittingForNextTurnNoteLabel.text = NSLS(@"kWaitingForStart");
     }
 }
 
@@ -1177,25 +1129,6 @@
 - (void)clickBack:(CommonDialog *)dialog
 {
     
-}
-
-#pragma mark - Item animations.
-- (void)showItemNameAnimationOnUser:(NSString*)userId itemName:(NSString *)itemName
-{
-    HKGirlFontLabel *label = [[[HKGirlFontLabel alloc] initWithFrame:CGRectMake(0, 0, 70, 70) pointSize:50] autorelease];
-    label.text = itemName;
-    label.textAlignment = UITextAlignmentCenter;
-    label.center = self.view.center;
-    
-    [self.view addSubview:label];
-    
-    [UIView animateWithDuration:1 delay:0 options:UIViewAnimationCurveEaseInOut animations:^{
-        label.center = [[self bellViewOfUser:userId] center];
-        label.transform = CGAffineTransformMakeScale(0.3, 0.3);
-        label.alpha = 0.3;
-    } completion:^(BOOL finished) {
-        [label removeFromSuperview];
-    }];
 }
 
 - (IBAction)clickChatButton:(id)sender {
@@ -1254,7 +1187,6 @@
     
     [_diceService chatWithExpression:key];
     
-    // TODO: Popup image for expression.
     [self showExpression:key userId:_userManager.userId];
 }
 
@@ -1286,7 +1218,6 @@
 {
     hideAdCounter ++;    
 
-    // TODO add animation here
     [UIView animateWithDuration:2 animations:^{
         if (hideAdCounter % 2 == 0){
             self.adView.alpha = 0;
@@ -1330,5 +1261,35 @@
     [self clearAdHideTimer];
     self.adHideTimer = [NSTimer scheduledTimerWithTimeInterval:HIDE_AD_TIMER_INTERVAL target:self selector:@selector(handleAdHideTimer:) userInfo:nil repeats:NO];
 }
+
+- (void)showDestroyWildsAnim
+{
+    self.wildsFlagButton.transform = CGAffineTransformMakeScale(1, 1);
+    [UIView animateWithDuration:0.5 delay:0 options:UIViewAnimationCurveEaseInOut animations:^{
+        self.wildsFlagButton.transform = CGAffineTransformMakeScale(1.5, 1.5);
+    } completion:^(BOOL finished) {
+        //self.wildsFlagButton.transform = CGAffineTransformMakeScale(1.5, 1.5);
+        [UIView animateWithDuration:1 delay:0.5 options:UIViewAnimationCurveEaseInOut animations:^{
+            self.wildsFlagButton.transform = CGAffineTransformMakeScale(0.01, 15);
+        } completion:^(BOOL finished) {
+            self.wildsFlagButton.transform = CGAffineTransformMakeScale(0.01, 0.01);
+            self.wildsFlagButton.hidden = YES;
+        }];
+    }];
+}
+
+- (void)showWildsAnim
+{
+    if (self.wildsFlagButton.hidden == YES) {
+        self.wildsFlagButton.hidden = NO;
+        CAAnimation* enlarge = [AnimationManager scaleAnimationWithFromScale:1 toScale:3 duration:0.5 delegate:self removeCompeleted:NO];
+        
+        enlarge.autoreverses = YES;
+        enlarge.repeatCount = 2;
+        [self.wildsFlagButton.layer addAnimation:enlarge forKey:@"enlarge"];
+    }
+    
+}
+
 
 @end

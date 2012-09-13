@@ -47,15 +47,6 @@
     [super dealloc];
 }
 
-//+ (id)defaultManager
-//{
-//    if (_instance == nil) {
-//        _instance = [[DicePopupViewManager alloc] init];
-//    }
-//    
-//    return _instance;
-//}
-
 - (id)init
 {
     if (self = [super init]) {
@@ -92,14 +83,15 @@
 }
 
 - (void)popupItemListAtView:(UIView *)atView 
-               inView:(UIView *)inView
-          aboveSubView:(UIView *)siblingSubview
-             duration:(int)duration
-             delegate:(id<DiceItemListViewDelegate>)delegate 
+                     inView:(UIView *)inView
+               aboveSubView:(UIView *)siblingSubview
+                   duration:(int)duration
+                   delegate:(id<DiceItemListViewDelegate>)delegate 
 {
     _diceItemListView.delegate = delegate;
     
-    [_diceItemListView update];
+    [_diceItemListView updateView];
+    
     [_diceItemListView popupAtView:atView
                             inView:inView 
                       aboveSubView:siblingSubview
@@ -107,14 +99,11 @@
                           animated:YES];
 }
 
-- (void)enableCutItem
+- (void)updateItemListView
 {
-    [_diceItemListView enableCutItem];
-}
-
-- (void)disableCutItem
-{
-    [_diceItemListView disableCutItem];
+    if ([_diceItemListView isPopup]) {
+        [_diceItemListView updateView];
+    }
 }
 
 - (void)dismissItemListView
