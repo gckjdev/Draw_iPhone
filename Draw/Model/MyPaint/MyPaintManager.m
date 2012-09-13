@@ -255,11 +255,6 @@ static MyPaintManager* _defaultManager;
     NSArray* array = [dataManager execute:requestName];
     for (MyPaint* paint in array){
         [paint setDeleteFlag:[NSNumber numberWithBool:YES]];
-//        NSString *imagePath = paint.image;
-//        BOOL flag = [dataManager del:paint];     
-//        if (flag) {
-//            [self deletePaintImage:imagePath sync:NO];
-//        }
     }
     [dataManager save];    
     return YES;
