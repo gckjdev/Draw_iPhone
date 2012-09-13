@@ -159,9 +159,9 @@ BOOL GameChatTypeIsValidValue(GameChatType value) {
 }
 BOOL DiceGameRuleTypeIsValidValue(DiceGameRuleType value) {
   switch (value) {
-    case DiceGameRuleTypeNormal:
-    case DiceGameRuleTypeHigh:
-    case DiceGameRuleTypeSuperHigh:
+    case DiceGameRuleTypeRuleNormal:
+    case DiceGameRuleTypeRuleHigh:
+    case DiceGameRuleTypeRuleSuperHigh:
       return YES;
     default:
       return NO;

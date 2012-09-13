@@ -14,6 +14,8 @@
 #define ANIMATION_GROUP_STAY @"ANIMATION_GROUP_STAY"
 #define ANIMATION_GROUP_MOVE_BACK @"ANIMATION_GROUP_MOVE_BACK"
 
+
+
 @protocol DicesResultViewAnimationDelegate <NSObject>
 
 @optional
@@ -30,10 +32,6 @@
 
 @property (assign, nonatomic) id<DicesResultViewAnimationDelegate> delegate;
 
-- (void)setDices:(NSArray *)diceList
-      resultDice:(int)resultDice
-           wilds:(BOOL)wilds;
-
-- (void)showAnimation:(CGPoint)center;
+- (void)showUserResult:(NSString *)userId toCenter:(CGPoint)center;
 
 @end

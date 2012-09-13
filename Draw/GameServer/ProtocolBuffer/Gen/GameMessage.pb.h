@@ -50,6 +50,8 @@
 @class OpenDiceResponse;
 @class OpenDiceResponse_Builder;
 @class PBDice;
+@class PBDiceFinalCount;
+@class PBDiceFinalCount_Builder;
 @class PBDiceGameResult;
 @class PBDiceGameResult_Builder;
 @class PBDice_Builder;
@@ -916,33 +918,35 @@
 
 @interface JoinGameRequest : PBGeneratedMessage {
 @private
-  BOOL hasGender_:1;
   BOOL hasIsRobot_:1;
+  BOOL hasGender_:1;
   BOOL hasSessionToBeChange_:1;
+  BOOL hasRuleType_:1;
   BOOL hasUserLevel_:1;
-  BOOL hasAutoNew_:1;
   BOOL hasGuessDifficultLevel_:1;
   BOOL hasTargetSessionId_:1;
-  BOOL hasLocation_:1;
-  BOOL hasRoomName_:1;
-  BOOL hasRoomId_:1;
+  BOOL hasAutoNew_:1;
   BOOL hasAvatar_:1;
   BOOL hasNickName_:1;
+  BOOL hasRoomId_:1;
+  BOOL hasRoomName_:1;
+  BOOL hasLocation_:1;
   BOOL hasGameId_:1;
   BOOL hasUserId_:1;
   BOOL hasUser_:1;
-  BOOL gender_:1;
   BOOL isRobot_:1;
+  BOOL gender_:1;
   int64_t sessionToBeChange;
+  int32_t ruleType;
   int32_t userLevel;
-  int32_t autoNew;
   int32_t guessDifficultLevel;
   int32_t targetSessionId;
-  NSString* location;
-  NSString* roomName;
-  NSString* roomId;
+  int32_t autoNew;
   NSString* avatar;
   NSString* nickName;
+  NSString* roomId;
+  NSString* roomName;
+  NSString* location;
   NSString* gameId;
   NSString* userId;
   PBGameUser* user;
@@ -964,6 +968,7 @@
 - (BOOL) hasLocation;
 - (BOOL) hasUserLevel;
 - (BOOL) hasUser;
+- (BOOL) hasRuleType;
 @property (readonly, retain) NSString* userId;
 @property (readonly, retain) NSString* gameId;
 @property (readonly) int32_t autoNew;
@@ -979,6 +984,7 @@
 @property (readonly, retain) NSString* location;
 @property (readonly) int32_t userLevel;
 @property (readonly, retain) PBGameUser* user;
+@property (readonly) int32_t ruleType;
 - (NSArray*) excludeSessionIdList;
 - (int64_t) excludeSessionIdAtIndex:(int32_t) index;
 - (NSArray*) snsUsersList;
@@ -1108,6 +1114,11 @@
 - (JoinGameRequest_Builder*) setUserBuilder:(PBGameUser_Builder*) builderForValue;
 - (JoinGameRequest_Builder*) mergeUser:(PBGameUser*) value;
 - (JoinGameRequest_Builder*) clearUser;
+
+- (BOOL) hasRuleType;
+- (int32_t) ruleType;
+- (JoinGameRequest_Builder*) setRuleType:(int32_t) value;
+- (JoinGameRequest_Builder*) clearRuleType;
 @end
 
 @interface JoinGameResponse : PBGeneratedMessage {
