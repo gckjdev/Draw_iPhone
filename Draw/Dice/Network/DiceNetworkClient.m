@@ -103,5 +103,27 @@
     
     [self sendData:[gameMessage data]];  
 }
+- (void)sendUserItemRequest:(NSString*)userId
+                  sessionId:(int)sessionId
+                     itemId:(int)itemId 
+                 extendTime:(int)extendTime
+{
+    UseItemRequest_Builder *useItemRequestBuilder = [[[UseItemRequest_Builder alloc] init] autorelease];
+    [useItemRequestBuilder setItemId:itemId];
+    [useItemRequestBuilder setExtendTime:extendTime];
+    UseItemRequest *useItemRequest = [useItemRequestBuilder build];
+    
+    GameMessage_Builder *messageBuilder = [[[GameMessage_Builder alloc] init] autorelease];
+    [messageBuilder setCommand:GameCommandTypeUseItemRequest];
+    [messageBuilder setMessageId:[self generateMessageId]];
+    [messageBuilder setUserId:userId];
+    [messageBuilder setSessionId:sessionId];
+    
+    [messageBuilder setUseItemRequest:useItemRequest];
+    
+    GameMessage* gameMessage = [messageBuilder build];
+    
+    [self sendData:[gameMessage data]];  
+}
 
 @end

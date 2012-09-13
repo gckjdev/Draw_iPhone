@@ -144,6 +144,16 @@
     progressView.progress = progress;
 }
 
+- (CGFloat)getCurrentProgress
+{
+    return progressView.progress;
+}
+
+- (void)setCurrentProgress:(CGFloat)progress
+{
+    _currentProgress = progress;
+}
+
 - (void)setProgressHidden:(BOOL)hidden
 {
     [UIView beginAnimations:@"" context:nil];
@@ -185,6 +195,23 @@
     _timer = [NSTimer scheduledTimerWithTimeInterval:(reciprocolTime*PROGRESS_UPDATE_TIME) target:self selector:@selector(updateTimer:) userInfo:nil repeats:YES];
 }
 
+- (void)startReciprocol:(CFTimeInterval)reciprocolTime 
+           fromProgress:(float)progress
+{
+    if (progress > 0) {
+        _currentProgress = MIN(1, progress);
+        _reciprocolTime = reciprocolTime;
+        if (_timer != nil){
+            if ([_timer isValid]){
+                [_timer invalidate];
+            }
+            _timer = nil;
+        }
+        _timer = [NSTimer scheduledTimerWithTimeInterval:(reciprocolTime*PROGRESS_UPDATE_TIME) target:self selector:@selector(updateTimer:) userInfo:nil repeats:YES];
+    }
+    
+}
+
 - (void)stopReciprocol
 {
     [_timer invalidate];
@@ -204,6 +231,7 @@
 - (void)updateTimer:(id)sender
 {
     _currentProgress -= PROGRESS_UPDATE_TIME;
+    PPDebug(@"current progress is now ---- %f",_currentProgress);
     if (_currentProgress <= 0) {
         [self stopReciprocol];
         if (_delegate && [_delegate respondsToSelector:@selector(reciprocalEnd:)]) {

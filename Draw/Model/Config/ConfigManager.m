@@ -311,8 +311,8 @@
 + (NSString*)getDiceServerListString
 {
 
-//    return @"192.168.1.198:8080";
-    return [MobClickUtils getStringValueByKey:@"DICE_SERVER_LIST" defaultValue:@"58.215.164.153:8018"];
+    return @"192.168.1.11:8080";
+//    return [MobClickUtils getStringValueByKey:@"DICE_SERVER_LIST" defaultValue:@"58.215.164.153:8018"];
 
 }
 
@@ -329,6 +329,15 @@
 + (NSString*)getAwardItemImageName:(int)dicePoint
 {
     return [MobClickUtils getStringValueByKey:@"AWARD_ITEM_IMAGE" defaultValue:[NSString stringWithFormat:@"open_bell_%dbig.png", dicePoint]];
+}
+
++ (int)getPostponeTime
+{
+    return [MobClickUtils getIntValueByKey:@"POSTPONE_TIME" defaultValue:15];
+}
++ (int)getUrgeTime
+{
+    return [MobClickUtils getIntValueByKey:@"URGE_TIME" defaultValue:5];
 }
 
 @end

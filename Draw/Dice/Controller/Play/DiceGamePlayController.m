@@ -25,6 +25,8 @@
 #import "CommonMessageCenter.h"
 #import "UIViewUtils.h"
 #import "CommonDiceItemAction.h"
+#import "PostponeItemAction.h"
+#import "UrgeItemAction.h"
 
 #define AVATAR_TAG_OFFSET   8000
 #define NICKNAME_TAG_OFFSET 1100
@@ -33,7 +35,7 @@
 
 #define MAX_PLAYER_COUNT    6
 
-#define USER_THINK_TIME_INTERVAL 15
+
 
 #define DURATION_SHOW_GAIN_COINS 3
 
@@ -47,8 +49,7 @@
 @property (retain, nonatomic) NSEnumerator *enumerator;
 @property (retain, nonatomic) DicePopupViewManager *popupView;
 
-- (DiceAvatarView *)selfAvatarView;
-- (DiceAvatarView*)avatarViewOfUser:(NSString*)userId;
+
 
 - (void)disableAllDiceOperationButtons;
 
@@ -1289,6 +1290,20 @@
         [self.wildsFlagButton.layer addAnimation:enlarge forKey:@"enlarge"];
     }
     
+}
+
+- (IBAction)clickPostpone:(id)sender
+{
+    int postponeTime = [ConfigManager getPostponeTime];
+    [_diceService userTimeItem:ItemTypeIncTime 
+                          time:postponeTime];
+}
+
+- (IBAction)clickUrge:(id)sender
+{
+    int urgeTime = [ConfigManager getUrgeTime];
+    [_diceService userTimeItem:ItemTypeIncTime 
+                          time:urgeTime];
 }
 
 

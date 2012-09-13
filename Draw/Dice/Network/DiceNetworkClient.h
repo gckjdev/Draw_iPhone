@@ -32,4 +32,8 @@
 - (void)sendUserItemRequest:(NSString*)userId
                   sessionId:(int)sessionId
                      itemId:(int)itemId;
+- (void)sendUserItemRequest:(NSString*)userId
+                  sessionId:(int)sessionId
+                     itemId:(int)itemId 
+                 extendTime:(int)extendTime;
 @end

@@ -264,6 +264,16 @@ static DiceGameService* _defaultService;
                                                       itemId:itemId]; 
 }
 
+- (void)userTimeItem:(int)itemId 
+                time:(int)time
+{
+    // Send command.
+    [(DiceNetworkClient *)_networkClient sendUserItemRequest:[self userId] 
+                                                   sessionId:self.session.sessionId
+                                                      itemId:itemId 
+                                                  extendTime:time]; 
+}
+
 
 
 - (void)changeDiceList:(NSString *)userId diceList:(NSArray *)diceList
