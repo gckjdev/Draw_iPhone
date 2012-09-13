@@ -6,9 +6,17 @@ package game;
 option java_package = "com.orange.network.game.protocol.model";
 option java_outer_classname = "DiceProtos";
 
+enum PBDiceType{
+  DICE_NORMAL = 0;
+  DICE_SNAKE = 1;            // 蛇骰
+  DICE_NET = 2;              // 全骰 or 净骰
+  DICE_WAI = 3;              // 围骰
+}
+
 message PBDice {
   optional int32 diceId = 1;
-  required int32 dice = 2;           
+  required int32 dice = 2;     
+  optional PBDiceType type = 3 [default=DICE_NORMAL];      // 新增
 }
 
 message PBUserDice
@@ -23,8 +31,16 @@ message PBUserResult {
   required int32 gainCoins = 5;             // 获得的金币
 }
 
+message PBDiceFinalCount{                           // 指示每个用户最终符合开骰的点数
+  required string userId = 1;
+  required PBDiceType type = 2 [default=DICE_NORMAL];    
+  required int32 finalDiceCount = 3;                // 最后实际符合开的骰子的点数                       
+};
+
 message PBDiceGameResult {
   repeated PBUserResult userResult = 1;
   optional int32 openType = 2[default=0];           // 开0，抢开1
+  
+  repeated PBDiceFinalCount finalCount = 3;         // 所有用户最终符合开骰的点数
 }
 

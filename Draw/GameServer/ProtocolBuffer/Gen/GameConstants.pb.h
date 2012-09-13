@@ -133,9 +133,9 @@ typedef enum {
 BOOL GameChatTypeIsValidValue(GameChatType value);
 
 typedef enum {
-  DiceGameRuleTypeNormal = 0,
-  DiceGameRuleTypeHigh = 1,
-  DiceGameRuleTypeSuperHigh = 2,
+  DiceGameRuleTypeRuleNormal = 0,
+  DiceGameRuleTypeRuleHigh = 1,
+  DiceGameRuleTypeRuleSuperHigh = 2,
 } DiceGameRuleType;
 
 BOOL DiceGameRuleTypeIsValidValue(DiceGameRuleType value);

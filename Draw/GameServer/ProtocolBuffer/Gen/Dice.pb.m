@@ -20,9 +20,21 @@ static PBExtensionRegistry* extensionRegistry = nil;
 }
 @end
 
+BOOL PBDiceTypeIsValidValue(PBDiceType value) {
+  switch (value) {
+    case PBDiceTypeDiceNormal:
+    case PBDiceTypeDiceSnake:
+    case PBDiceTypeDiceNet:
+    case PBDiceTypeDiceWai:
+      return YES;
+    default:
+      return NO;
+  }
+}
 @interface PBDice ()
 @property int32_t diceId;
 @property int32_t dice;
+@property PBDiceType type;
 @end
 
 @implementation PBDice
@@ -41,6 +53,13 @@ static PBExtensionRegistry* extensionRegistry = nil;
   hasDice_ = !!value;
 }
 @synthesize dice;
+- (BOOL) hasType {
+  return !!hasType_;
+}
+- (void) setHasType:(BOOL) value {
+  hasType_ = !!value;
+}
+@synthesize type;
 - (void) dealloc {
   [super dealloc];
 }
@@ -48,6 +67,7 @@ static PBExtensionRegistry* extensionRegistry = nil;
   if ((self = [super init])) {
     self.diceId = 0;
     self.dice = 0;
+    self.type = PBDiceTypeDiceNormal;
   }
   return self;
 }
@@ -76,6 +96,9 @@ static PBDice* defaultPBDiceInstance = nil;
   if (self.hasDice) {
     [output writeInt32:2 value:self.dice];
   }
+  if (self.hasType) {
+    [output writeEnum:3 value:self.type];
+  }
   [self.unknownFields writeToCodedOutputStream:output];
 }
 - (int32_t) serializedSize {
@@ -90,6 +113,9 @@ static PBDice* defaultPBDiceInstance = nil;
   }
   if (self.hasDice) {
     size += computeInt32Size(2, self.dice);
+  }
+  if (self.hasType) {
+    size += computeEnumSize(3, self.type);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -172,6 +198,9 @@ static PBDice* defaultPBDiceInstance = nil;
   if (other.hasDice) {
     [self setDice:other.dice];
   }
+  if (other.hasType) {
+    [self setType:other.type];
+  }
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }
@@ -199,6 +228,15 @@ static PBDice* defaultPBDiceInstance = nil;
       }
       case 16: {
         [self setDice:[input readInt32]];
+        break;
+      }
+      case 24: {
+        int32_t value = [input readEnum];
+        if (PBDiceTypeIsValidValue(value)) {
+          [self setType:value];
+        } else {
+          [unknownFields mergeVarintField:3 value:value];
+        }
         break;
       }
     }
@@ -234,6 +272,22 @@ static PBDice* defaultPBDiceInstance = nil;
 - (PBDice_Builder*) clearDice {
   result.hasDice = NO;
   result.dice = 0;
+  return self;
+}
+- (BOOL) hasType {
+  return result.hasType;
+}
+- (PBDiceType) type {
+  return result.type;
+}
+- (PBDice_Builder*) setType:(PBDiceType) value {
+  result.hasType = YES;
+  result.type = value;
+  return self;
+}
+- (PBDice_Builder*) clearType {
+  result.hasType = NO;
+  result.type = PBDiceTypeDiceNormal;
   return self;
 }
 @end
@@ -749,9 +803,278 @@ static PBUserResult* defaultPBUserResultInstance = nil;
 }
 @end
 
+@interface PBDiceFinalCount ()
+@property (retain) NSString* userId;
+@property PBDiceType type;
+@property int32_t finalDiceCount;
+@end
+
+@implementation PBDiceFinalCount
+
+- (BOOL) hasUserId {
+  return !!hasUserId_;
+}
+- (void) setHasUserId:(BOOL) value {
+  hasUserId_ = !!value;
+}
+@synthesize userId;
+- (BOOL) hasType {
+  return !!hasType_;
+}
+- (void) setHasType:(BOOL) value {
+  hasType_ = !!value;
+}
+@synthesize type;
+- (BOOL) hasFinalDiceCount {
+  return !!hasFinalDiceCount_;
+}
+- (void) setHasFinalDiceCount:(BOOL) value {
+  hasFinalDiceCount_ = !!value;
+}
+@synthesize finalDiceCount;
+- (void) dealloc {
+  self.userId = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.userId = @"";
+    self.type = PBDiceTypeDiceNormal;
+    self.finalDiceCount = 0;
+  }
+  return self;
+}
+static PBDiceFinalCount* defaultPBDiceFinalCountInstance = nil;
++ (void) initialize {
+  if (self == [PBDiceFinalCount class]) {
+    defaultPBDiceFinalCountInstance = [[PBDiceFinalCount alloc] init];
+  }
+}
++ (PBDiceFinalCount*) defaultInstance {
+  return defaultPBDiceFinalCountInstance;
+}
+- (PBDiceFinalCount*) defaultInstance {
+  return defaultPBDiceFinalCountInstance;
+}
+- (BOOL) isInitialized {
+  if (!self.hasUserId) {
+    return NO;
+  }
+  if (!self.hasType) {
+    return NO;
+  }
+  if (!self.hasFinalDiceCount) {
+    return NO;
+  }
+  return YES;
+}
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
+  if (self.hasUserId) {
+    [output writeString:1 value:self.userId];
+  }
+  if (self.hasType) {
+    [output writeEnum:2 value:self.type];
+  }
+  if (self.hasFinalDiceCount) {
+    [output writeInt32:3 value:self.finalDiceCount];
+  }
+  [self.unknownFields writeToCodedOutputStream:output];
+}
+- (int32_t) serializedSize {
+  int32_t size = memoizedSerializedSize;
+  if (size != -1) {
+    return size;
+  }
+
+  size = 0;
+  if (self.hasUserId) {
+    size += computeStringSize(1, self.userId);
+  }
+  if (self.hasType) {
+    size += computeEnumSize(2, self.type);
+  }
+  if (self.hasFinalDiceCount) {
+    size += computeInt32Size(3, self.finalDiceCount);
+  }
+  size += self.unknownFields.serializedSize;
+  memoizedSerializedSize = size;
+  return size;
+}
++ (PBDiceFinalCount*) parseFromData:(NSData*) data {
+  return (PBDiceFinalCount*)[[[PBDiceFinalCount builder] mergeFromData:data] build];
+}
++ (PBDiceFinalCount*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBDiceFinalCount*)[[[PBDiceFinalCount builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+}
++ (PBDiceFinalCount*) parseFromInputStream:(NSInputStream*) input {
+  return (PBDiceFinalCount*)[[[PBDiceFinalCount builder] mergeFromInputStream:input] build];
+}
++ (PBDiceFinalCount*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBDiceFinalCount*)[[[PBDiceFinalCount builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (PBDiceFinalCount*) parseFromCodedInputStream:(PBCodedInputStream*) input {
+  return (PBDiceFinalCount*)[[[PBDiceFinalCount builder] mergeFromCodedInputStream:input] build];
+}
++ (PBDiceFinalCount*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBDiceFinalCount*)[[[PBDiceFinalCount builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (PBDiceFinalCount_Builder*) builder {
+  return [[[PBDiceFinalCount_Builder alloc] init] autorelease];
+}
++ (PBDiceFinalCount_Builder*) builderWithPrototype:(PBDiceFinalCount*) prototype {
+  return [[PBDiceFinalCount builder] mergeFrom:prototype];
+}
+- (PBDiceFinalCount_Builder*) builder {
+  return [PBDiceFinalCount builder];
+}
+@end
+
+@interface PBDiceFinalCount_Builder()
+@property (retain) PBDiceFinalCount* result;
+@end
+
+@implementation PBDiceFinalCount_Builder
+@synthesize result;
+- (void) dealloc {
+  self.result = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.result = [[[PBDiceFinalCount alloc] init] autorelease];
+  }
+  return self;
+}
+- (PBGeneratedMessage*) internalGetResult {
+  return result;
+}
+- (PBDiceFinalCount_Builder*) clear {
+  self.result = [[[PBDiceFinalCount alloc] init] autorelease];
+  return self;
+}
+- (PBDiceFinalCount_Builder*) clone {
+  return [PBDiceFinalCount builderWithPrototype:result];
+}
+- (PBDiceFinalCount*) defaultInstance {
+  return [PBDiceFinalCount defaultInstance];
+}
+- (PBDiceFinalCount*) build {
+  [self checkInitialized];
+  return [self buildPartial];
+}
+- (PBDiceFinalCount*) buildPartial {
+  PBDiceFinalCount* returnMe = [[result retain] autorelease];
+  self.result = nil;
+  return returnMe;
+}
+- (PBDiceFinalCount_Builder*) mergeFrom:(PBDiceFinalCount*) other {
+  if (other == [PBDiceFinalCount defaultInstance]) {
+    return self;
+  }
+  if (other.hasUserId) {
+    [self setUserId:other.userId];
+  }
+  if (other.hasType) {
+    [self setType:other.type];
+  }
+  if (other.hasFinalDiceCount) {
+    [self setFinalDiceCount:other.finalDiceCount];
+  }
+  [self mergeUnknownFields:other.unknownFields];
+  return self;
+}
+- (PBDiceFinalCount_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
+  return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
+}
+- (PBDiceFinalCount_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
+  while (YES) {
+    int32_t tag = [input readTag];
+    switch (tag) {
+      case 0:
+        [self setUnknownFields:[unknownFields build]];
+        return self;
+      default: {
+        if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
+          [self setUnknownFields:[unknownFields build]];
+          return self;
+        }
+        break;
+      }
+      case 10: {
+        [self setUserId:[input readString]];
+        break;
+      }
+      case 16: {
+        int32_t value = [input readEnum];
+        if (PBDiceTypeIsValidValue(value)) {
+          [self setType:value];
+        } else {
+          [unknownFields mergeVarintField:2 value:value];
+        }
+        break;
+      }
+      case 24: {
+        [self setFinalDiceCount:[input readInt32]];
+        break;
+      }
+    }
+  }
+}
+- (BOOL) hasUserId {
+  return result.hasUserId;
+}
+- (NSString*) userId {
+  return result.userId;
+}
+- (PBDiceFinalCount_Builder*) setUserId:(NSString*) value {
+  result.hasUserId = YES;
+  result.userId = value;
+  return self;
+}
+- (PBDiceFinalCount_Builder*) clearUserId {
+  result.hasUserId = NO;
+  result.userId = @"";
+  return self;
+}
+- (BOOL) hasType {
+  return result.hasType;
+}
+- (PBDiceType) type {
+  return result.type;
+}
+- (PBDiceFinalCount_Builder*) setType:(PBDiceType) value {
+  result.hasType = YES;
+  result.type = value;
+  return self;
+}
+- (PBDiceFinalCount_Builder*) clearType {
+  result.hasType = NO;
+  result.type = PBDiceTypeDiceNormal;
+  return self;
+}
+- (BOOL) hasFinalDiceCount {
+  return result.hasFinalDiceCount;
+}
+- (int32_t) finalDiceCount {
+  return result.finalDiceCount;
+}
+- (PBDiceFinalCount_Builder*) setFinalDiceCount:(int32_t) value {
+  result.hasFinalDiceCount = YES;
+  result.finalDiceCount = value;
+  return self;
+}
+- (PBDiceFinalCount_Builder*) clearFinalDiceCount {
+  result.hasFinalDiceCount = NO;
+  result.finalDiceCount = 0;
+  return self;
+}
+@end
+
 @interface PBDiceGameResult ()
 @property (retain) NSMutableArray* mutableUserResultList;
 @property int32_t openType;
+@property (retain) NSMutableArray* mutableFinalCountList;
 @end
 
 @implementation PBDiceGameResult
@@ -764,8 +1087,10 @@ static PBUserResult* defaultPBUserResultInstance = nil;
   hasOpenType_ = !!value;
 }
 @synthesize openType;
+@synthesize mutableFinalCountList;
 - (void) dealloc {
   self.mutableUserResultList = nil;
+  self.mutableFinalCountList = nil;
   [super dealloc];
 }
 - (id) init {
@@ -793,8 +1118,20 @@ static PBDiceGameResult* defaultPBDiceGameResultInstance = nil;
   id value = [mutableUserResultList objectAtIndex:index];
   return value;
 }
+- (NSArray*) finalCountList {
+  return mutableFinalCountList;
+}
+- (PBDiceFinalCount*) finalCountAtIndex:(int32_t) index {
+  id value = [mutableFinalCountList objectAtIndex:index];
+  return value;
+}
 - (BOOL) isInitialized {
   for (PBUserResult* element in self.userResultList) {
+    if (!element.isInitialized) {
+      return NO;
+    }
+  }
+  for (PBDiceFinalCount* element in self.finalCountList) {
     if (!element.isInitialized) {
       return NO;
     }
@@ -807,6 +1144,9 @@ static PBDiceGameResult* defaultPBDiceGameResultInstance = nil;
   }
   if (self.hasOpenType) {
     [output writeInt32:2 value:self.openType];
+  }
+  for (PBDiceFinalCount* element in self.finalCountList) {
+    [output writeMessage:3 value:element];
   }
   [self.unknownFields writeToCodedOutputStream:output];
 }
@@ -822,6 +1162,9 @@ static PBDiceGameResult* defaultPBDiceGameResultInstance = nil;
   }
   if (self.hasOpenType) {
     size += computeInt32Size(2, self.openType);
+  }
+  for (PBDiceFinalCount* element in self.finalCountList) {
+    size += computeMessageSize(3, element);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -907,6 +1250,12 @@ static PBDiceGameResult* defaultPBDiceGameResultInstance = nil;
   if (other.hasOpenType) {
     [self setOpenType:other.openType];
   }
+  if (other.mutableFinalCountList.count > 0) {
+    if (result.mutableFinalCountList == nil) {
+      result.mutableFinalCountList = [NSMutableArray array];
+    }
+    [result.mutableFinalCountList addObjectsFromArray:other.mutableFinalCountList];
+  }
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }
@@ -936,6 +1285,12 @@ static PBDiceGameResult* defaultPBDiceGameResultInstance = nil;
       }
       case 16: {
         [self setOpenType:[input readInt32]];
+        break;
+      }
+      case 26: {
+        PBDiceFinalCount_Builder* subBuilder = [PBDiceFinalCount builder];
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self addFinalCount:[subBuilder buildPartial]];
         break;
       }
     }
@@ -984,6 +1339,35 @@ static PBDiceGameResult* defaultPBDiceGameResultInstance = nil;
 - (PBDiceGameResult_Builder*) clearOpenType {
   result.hasOpenType = NO;
   result.openType = 0;
+  return self;
+}
+- (NSArray*) finalCountList {
+  if (result.mutableFinalCountList == nil) { return [NSArray array]; }
+  return result.mutableFinalCountList;
+}
+- (PBDiceFinalCount*) finalCountAtIndex:(int32_t) index {
+  return [result finalCountAtIndex:index];
+}
+- (PBDiceGameResult_Builder*) replaceFinalCountAtIndex:(int32_t) index with:(PBDiceFinalCount*) value {
+  [result.mutableFinalCountList replaceObjectAtIndex:index withObject:value];
+  return self;
+}
+- (PBDiceGameResult_Builder*) addAllFinalCount:(NSArray*) values {
+  if (result.mutableFinalCountList == nil) {
+    result.mutableFinalCountList = [NSMutableArray array];
+  }
+  [result.mutableFinalCountList addObjectsFromArray:values];
+  return self;
+}
+- (PBDiceGameResult_Builder*) clearFinalCountList {
+  result.mutableFinalCountList = nil;
+  return self;
+}
+- (PBDiceGameResult_Builder*) addFinalCount:(PBDiceFinalCount*) value {
+  if (result.mutableFinalCountList == nil) {
+    result.mutableFinalCountList = [NSMutableArray array];
+  }
+  [result.mutableFinalCountList addObject:value];
   return self;
 }
 @end
