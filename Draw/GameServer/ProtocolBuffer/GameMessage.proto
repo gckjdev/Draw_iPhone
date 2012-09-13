@@ -67,7 +67,7 @@ message OpenDiceResponse {
 message UseItemRequest {
   required int32 itemId = 1;
   
-  optional int32 extendTime = 100;                // 加时或减时道具，设定的新时长（秒）
+  optional int32 extendTime = 100;                // 加时或减时道具，设定的新时长（秒），相对值
 }
 
 message UseItemResponse {
@@ -100,7 +100,8 @@ message JoinGameRequest {
   optional string location = 15;
   optional int32 userLevel = 16;
 
-  optional PBGameUser user = 100;          // 统一协议接口    
+  optional PBGameUser user = 100;          // 统一协议接口
+    optional int32 ruleType = 101;                   // 加入游戏的规则类型
   
 }
 

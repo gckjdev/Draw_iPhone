@@ -50,17 +50,13 @@ BOOL PBDiceTypeIsValidValue(PBDiceType value);
 @private
   BOOL hasDiceId_:1;
   BOOL hasDice_:1;
-  BOOL hasType_:1;
   int32_t diceId;
   int32_t dice;
-  PBDiceType type;
 }
 - (BOOL) hasDiceId;
 - (BOOL) hasDice;
-- (BOOL) hasType;
 @property (readonly) int32_t diceId;
 @property (readonly) int32_t dice;
-@property (readonly) PBDiceType type;
 
 + (PBDice*) defaultInstance;
 - (PBDice*) defaultInstance;
@@ -105,21 +101,20 @@ BOOL PBDiceTypeIsValidValue(PBDiceType value);
 - (int32_t) dice;
 - (PBDice_Builder*) setDice:(int32_t) value;
 - (PBDice_Builder*) clearDice;
-
-- (BOOL) hasType;
-- (PBDiceType) type;
-- (PBDice_Builder*) setType:(PBDiceType) value;
-- (PBDice_Builder*) clearType;
 @end
 
 @interface PBUserDice : PBGeneratedMessage {
 @private
   BOOL hasUserId_:1;
+  BOOL hasType_:1;
   NSString* userId;
+  PBDiceType type;
   NSMutableArray* mutableDicesList;
 }
 - (BOOL) hasUserId;
+- (BOOL) hasType;
 @property (readonly, retain) NSString* userId;
+@property (readonly) PBDiceType type;
 - (NSArray*) dicesList;
 - (PBDice*) dicesAtIndex:(int32_t) index;
 
@@ -168,6 +163,11 @@ BOOL PBDiceTypeIsValidValue(PBDiceType value);
 - (PBUserDice_Builder*) addDices:(PBDice*) value;
 - (PBUserDice_Builder*) addAllDices:(NSArray*) values;
 - (PBUserDice_Builder*) clearDicesList;
+
+- (BOOL) hasType;
+- (PBDiceType) type;
+- (PBUserDice_Builder*) setType:(PBDiceType) value;
+- (PBUserDice_Builder*) clearType;
 @end
 
 @interface PBUserResult : PBGeneratedMessage {
