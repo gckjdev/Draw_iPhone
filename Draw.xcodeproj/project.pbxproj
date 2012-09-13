@@ -580,6 +580,8 @@
 		C28207E31552D974006FBB0F /* AudioManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C28207E21552D974006FBB0F /* AudioManager.m */; };
 		C284E87F1531D89800DD5B77 /* AboutUsController.m in Sources */ = {isa = PBXBuildFile; fileRef = C284E87D1531D89800DD5B77 /* AboutUsController.m */; };
 		C284E8801531D89800DD5B77 /* AboutUsController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C284E87E1531D89800DD5B77 /* AboutUsController.xib */; };
+		C28E7BEE1601836400F4B6A5 /* PostponeItemAction.m in Sources */ = {isa = PBXBuildFile; fileRef = C28E7BED1601836300F4B6A5 /* PostponeItemAction.m */; };
+		C28E7BF11601839300F4B6A5 /* UrgeItemAction.m in Sources */ = {isa = PBXBuildFile; fileRef = C28E7BF01601839300F4B6A5 /* UrgeItemAction.m */; };
 		C296872B15DCE03F006968BA /* DiceItemInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = C296872115DCE03F006968BA /* DiceItemInfoView.m */; };
 		C296872C15DCE03F006968BA /* DiceItemInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C296872215DCE03F006968BA /* DiceItemInfoView.xib */; };
 		C296872D15DCE03F006968BA /* DiceUserInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = C296872515DCE03F006968BA /* DiceUserInfoView.m */; };
@@ -2101,6 +2103,10 @@
 		C284E87C1531D89800DD5B77 /* AboutUsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutUsController.h; sourceTree = "<group>"; };
 		C284E87D1531D89800DD5B77 /* AboutUsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutUsController.m; sourceTree = "<group>"; };
 		C284E87E1531D89800DD5B77 /* AboutUsController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AboutUsController.xib; sourceTree = "<group>"; };
+		C28E7BEC1601836200F4B6A5 /* PostponeItemAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostponeItemAction.h; sourceTree = "<group>"; };
+		C28E7BED1601836300F4B6A5 /* PostponeItemAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostponeItemAction.m; sourceTree = "<group>"; };
+		C28E7BEF1601839200F4B6A5 /* UrgeItemAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UrgeItemAction.h; sourceTree = "<group>"; };
+		C28E7BF01601839300F4B6A5 /* UrgeItemAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UrgeItemAction.m; sourceTree = "<group>"; };
 		C296872015DCE03F006968BA /* DiceItemInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiceItemInfoView.h; sourceTree = "<group>"; };
 		C296872115DCE03F006968BA /* DiceItemInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiceItemInfoView.m; sourceTree = "<group>"; };
 		C296872215DCE03F006968BA /* DiceItemInfoView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DiceItemInfoView.xib; sourceTree = "<group>"; };
@@ -3889,6 +3895,10 @@
 				A42C93DF15FF344D0090D6B6 /* RollAgainItemAction.m */,
 				A42C93E416001FB80090D6B6 /* PeekItemAction.h */,
 				A42C93E516001FB90090D6B6 /* PeekItemAction.m */,
+				C28E7BEC1601836200F4B6A5 /* PostponeItemAction.h */,
+				C28E7BED1601836300F4B6A5 /* PostponeItemAction.m */,
+				C28E7BEF1601839200F4B6A5 /* UrgeItemAction.h */,
+				C28E7BF01601839300F4B6A5 /* UrgeItemAction.m */,
 			);
 			path = Play;
 			sourceTree = "<group>";
@@ -9078,6 +9088,8 @@
 				A42C93C915FF28D60090D6B6 /* CommonDiceItemAction.m in Sources */,
 				A42C93E015FF344D0090D6B6 /* RollAgainItemAction.m in Sources */,
 				A42C93E616001FB90090D6B6 /* PeekItemAction.m in Sources */,
+				C28E7BEE1601836400F4B6A5 /* PostponeItemAction.m in Sources */,
+				C28E7BF11601839300F4B6A5 /* UrgeItemAction.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

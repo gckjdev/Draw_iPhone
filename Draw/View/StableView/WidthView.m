@@ -7,14 +7,67 @@
 //
 
 #import "WidthView.h"
-#import "DeviceDetection.h"
 @implementation WidthView
 
 @synthesize width = _width;
 
 
+
+#define WIDTH_COUNT 4
+#define DEFAULT_WIDTH 10
++ (NSInteger *)widthValues
+{
+    static NSInteger iPhoneList[] = {20,10,5,2};
+    static NSInteger iPadList[] = {30,20,6,2};
+    return [DeviceDetection isIPAD] ? iPadList : iPhoneList;
+}
+
++ (NSInteger *)showWidthValues
+{
+    static NSInteger iPhoneList[] = {21,16,8,4};
+    static NSInteger iPadList[] = {36,25,12,5};
+    return [DeviceDetection isIPAD] ? iPadList : iPhoneList;
+}
+
++ (NSInteger)defaultWidth
+{
+    NSInteger *values = [WidthView widthValues];
+    return values[2];
+}
+
++ (NSInteger)showWidthForValue:(NSInteger)value
+{
+    NSInteger *values = [WidthView widthValues];
+    int i = 0;
+    for (; i < WIDTH_COUNT; ++ i) {
+        if(value == values[i])
+        {
+            break;
+        }
+    }
+    if (i <= WIDTH_COUNT) {
+        NSInteger *showValues = [WidthView showWidthValues];
+        return showValues[i];
+    }
+    return DEFAULT_WIDTH;
+}
+
+
++ (NSMutableArray *)widthArray
+{
+    NSInteger *values = [WidthView widthValues];
+    NSMutableArray *array = [NSMutableArray array];
+    for (int i = 0; i < WIDTH_COUNT; ++ i) {
+        NSInteger value = values[i];
+        NSNumber *number = [NSNumber numberWithInt:value];
+        [array addObject:number];
+    }
+    return array;
+}
+
+
 #define SIZE  (([DeviceDetection isIPAD]) ? 27*2 : 27)
-#define MIN_WIDTH  (([DeviceDetection isIPAD]) ? 3 * 2 : 3)
+//#define MIN_WIDTH  (([DeviceDetection isIPAD]) ? 4 : 2)
 
 + (id)viewWithWidth:(CGFloat)width
 {
@@ -57,9 +110,7 @@
     }
 
     CGFloat showWidth = self.width;
-    if (showWidth < MIN_WIDTH) {
-        showWidth = MIN_WIDTH;
-    }
+    showWidth = [WidthView showWidthForValue:showWidth];
     CGFloat x = (SIZE - showWidth) / 2;
     CGRect r = CGRectMake(x, x, showWidth, showWidth);
     CGContextFillEllipseInRect(context, r);
@@ -77,4 +128,6 @@
 {
     return SIZE;
 }
+
+
 @end
