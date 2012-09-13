@@ -630,6 +630,14 @@
 
 
 "kPDUM" = "%@給你畫了一幅畫，趕緊去猜猜TA畫了些什麼。";
+
+//add after 4.5
+"kPCM" = "%@評論了你的[%@]: %@";
+"kPRCM" = "%@回复你說:%@";
+"kPSF" = "%@給你畫的[%@]送了一朵鮮花。";
+"kPTT" = "%@給你畫的[%@]扔了一個番茄。";
+
+
 "kDrawToUserDesc" = "畫了一幅 [%@] 給%@。";
 "kDrawToUserNoWordDesc" = "畫了一幅畫給%@。";
 "kHisFriend" = "TA好友";
