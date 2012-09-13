@@ -628,6 +628,12 @@
 
 "kPDUM" = "%@ draws a drawing to you. Hurry to guess!";
 
+//add after 4.5
+"kPCM" = "%@ comment your[%@]: %@";
+"kPRCM" = "%@ reply to you: %@";
+"kPSF" = "%@ send a flower to your [%@].";
+"kPTT" = "%@ throw a tomato to your [%@].";
+
 
 "kDrawToUserDesc" = "Drew a picture: [%@] to %@.";
 "kDrawToUserNoWordDesc" = "Drew a picture to %@.";

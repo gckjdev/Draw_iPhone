@@ -29,8 +29,8 @@
                aboveSubView:(UIView *)siblingSubview
                    duration:(int)duration
                    delegate:(id<DiceItemListViewDelegate>)delegate;
-- (void)enableCutItem;
-- (void)disableCutItem;
+
+- (void)updateItemListView;
 - (void)dismissItemListView;   
 
 

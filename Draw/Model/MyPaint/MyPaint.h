@@ -21,8 +21,8 @@
 @property (nonatomic, retain) NSString * drawUserId;
 @property (nonatomic, retain) NSString * drawWord;
 @property (nonatomic, retain) NSData * drawThumbnailData;
-@property (nonatomic, assign) NSInteger language;
-@property (nonatomic, assign) NSInteger level;
+@property (nonatomic, retain) NSNumber *language;
+@property (nonatomic, retain) NSNumber *level;
 
 @property (nonatomic, retain) UIImage *thumbImage;
 

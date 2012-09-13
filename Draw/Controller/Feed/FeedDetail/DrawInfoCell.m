@@ -112,7 +112,7 @@
         [self.drawImage clear];
         [self.drawImage setImage:self.feed.largeImage];
         [GlobalGetImageCache() manage:self.drawImage];
-    }else if ([feed.drawImageUrl length] != 0) {
+    }else if ([feed.drawImageUrl length] != 0 && ![DeviceDetection isIPAD]) {
         [self.drawImage clear];
         //if the draw image is not null
         [self.drawImage setCallbackOnSetImage:self];

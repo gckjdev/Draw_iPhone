@@ -11,27 +11,14 @@
 
 @implementation PickEraserView
 
-
-#define MIN_WIDTH ([DeviceDetection isIPAD] ? 2 : 2)
-
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
-        widthArray  = [[NSMutableArray alloc] init];
+//        widthArray  = [[NSMutableArray alloc] init];
+        widthArray = [[WidthView widthArray] retain];
         self.userInteractionEnabled = YES;
-        
-        if ([DeviceDetection isIPAD]) {
-            [widthArray addObject:[NSNumber numberWithInt:21 * 2]];
-            [widthArray addObject:[NSNumber numberWithInt:14 * 2]];
-            [widthArray addObject:[NSNumber numberWithInt:7 * 2]];
-        }else{
-            [widthArray addObject:[NSNumber numberWithInt:21]];
-            [widthArray addObject:[NSNumber numberWithInt:14]];
-            [widthArray addObject:[NSNumber numberWithInt:7]];
-        }
-        [widthArray addObject:[NSNumber numberWithInt:MIN_WIDTH]];
         [self updateLineViews];
     }
     return self;
@@ -90,7 +77,7 @@
         y += [WidthView height] + space;
     }
 
-    WidthView *view = (WidthView *)[self viewWithTag:MIN_WIDTH];
+    WidthView *view = (WidthView *)[self viewWithTag:[WidthView defaultWidth]];
     [self selectWidthButton:view];
 }
 
