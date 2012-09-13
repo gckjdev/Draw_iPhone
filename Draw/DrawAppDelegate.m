@@ -50,6 +50,8 @@
 #import "DiceHelpManager.h"
 #import "BoardService.h"
 
+
+#import "MyPaintManager.h"
 NSString* GlobalGetServerURL()
 {    
     return [ConfigManager getAPIServerURL];
@@ -224,6 +226,7 @@ NSString* GlobalGetBoardServerURL()
     [self performSelector:@selector(showNews) withObject:nil afterDelay:1.5];
     
     [[FriendManager defaultManager] removeAllDeletedFriends];
+    [[MyPaintManager defaultManager] removeAlldeletedPaints];
 
 //    [HomeController defaultInstance].hasRemoveNotification = YES;//(obj != nil);
     

@@ -232,16 +232,34 @@ static MyPaintManager* _defaultManager;
 }
 
 
+- (void)removeAlldeletedPaints
+{
+    CoreDataManager* dataManager =[CoreDataManager defaultManager];
+    NSArray* array = [dataManager execute:@"findAllDeletedPaints"];
+    
+    PPDebug(@"<removeAlldeletedPaints> count = %d", [array count]);
+    
+    for (MyPaint* paint in array){
+        [paint setDeleteFlag:[NSNumber numberWithBool:YES]];
+        //remove the image path.
+        [self deletePaintImage:paint.image sync:YES];
+        //delete data        
+        [dataManager del:paint];
+    }
+    [dataManager save];    
+}
+
 - (BOOL)deletePaintsByRquestName:(NSString *)requestName
 {
     CoreDataManager* dataManager =[CoreDataManager defaultManager];
     NSArray* array = [dataManager execute:requestName];
     for (MyPaint* paint in array){
-        NSString *imagePath = paint.image;
-        BOOL flag = [dataManager del:paint];     
-        if (flag) {
-            [self deletePaintImage:imagePath sync:NO];
-        }
+        [paint setDeleteFlag:[NSNumber numberWithBool:YES]];
+//        NSString *imagePath = paint.image;
+//        BOOL flag = [dataManager del:paint];     
+//        if (flag) {
+//            [self deletePaintImage:imagePath sync:NO];
+//        }
     }
     [dataManager save];    
     return YES;
@@ -287,19 +305,20 @@ static MyPaintManager* _defaultManager;
 
 - (BOOL)deleteMyPaint:(MyPaint*)paint
 {
-    NSString *paintImage = paint.image;
+//    NSString *paintImage = paint.image;
     CoreDataManager* dataManager =[CoreDataManager defaultManager];
-    NSLog(@"<deleteMyPaint> before del");
-    [dataManager del:paint];
+    [paint setDeleteFlag:[NSNumber numberWithBool:YES]];
+//    NSLog(@"<deleteMyPaint> before del");
+//    [dataManager del:paint];
     
     NSLog(@"<deleteMyPaint> before save");
     BOOL result = [dataManager save];
     
-    NSLog(@"<deleteMyPaint> after save, result = %d",result);
-    
-    if (result) {
-        [self deletePaintImage:paintImage sync:YES];
-    }
+//    NSLog(@"<deleteMyPaint> after save, result = %d",result);
+//    
+//    if (result) {
+//        [self deletePaintImage:paintImage sync:YES];
+//    }
     return result;
 }
 
