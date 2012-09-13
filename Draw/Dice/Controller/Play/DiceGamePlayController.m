@@ -1109,6 +1109,8 @@
             self.waittingForNextTurnNoteLabel.text = NSLS(@"kWaitingForStart");
             self.waittingForNextTurnNoteLabel.hidden = NO;
         }
+    } else {
+        self.waittingForNextTurnNoteLabel.text = NSLS(@"kWaitingForStart");
     }
 }
 
