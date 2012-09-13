@@ -343,11 +343,9 @@
     UIView *bell = [self bellViewOfUser:userId];
     bell.hidden = YES;
     
-    NSArray *diceList = [[[_diceService diceSession] userDiceList] objectForKey:userId];
     DicesResultView *resultView = [self resultViewOfUser:userId];
-    [resultView setDices:diceList resultDice:_diceService.lastCallDice wilds:_diceService.diceSession.wilds];
-    [resultView showAnimation:self.view.center];
     resultView.delegate = self;
+    [resultView showUserResult:userId toCenter:self.view.center];
 }
 
 - (void)stayDidStart:(int)resultDiceCount

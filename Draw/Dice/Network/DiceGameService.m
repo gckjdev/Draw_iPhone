@@ -125,6 +125,12 @@ static DiceGameService* _defaultService;
     }
     self.diceSession.gameResult = resultDic;
     
+    NSMutableDictionary *finalDic = [NSMutableDictionary dictionary];
+    for (PBDiceFinalCount *finalCount in [[[message gameOverNotificationRequest] gameResult] finalCountList]) {
+        [finalDic setObject:finalCount forKey:finalCount.userId];
+    }
+    self.diceSession.finalCount = finalDic;
+    
     [self postNotification:NOTIFICATION_GAME_OVER_REQUEST message:message];
 }
 

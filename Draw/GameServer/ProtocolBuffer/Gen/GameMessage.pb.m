@@ -3194,6 +3194,7 @@ static UserDiceNotification* defaultUserDiceNotificationInstance = nil;
 @property (retain) NSString* location;
 @property int32_t userLevel;
 @property (retain) PBGameUser* user;
+@property int32_t ruleType;
 @end
 
 @implementation JoinGameRequest
@@ -3315,6 +3316,13 @@ static UserDiceNotification* defaultUserDiceNotificationInstance = nil;
   hasUser_ = !!value;
 }
 @synthesize user;
+- (BOOL) hasRuleType {
+  return !!hasRuleType_;
+}
+- (void) setHasRuleType:(BOOL) value {
+  hasRuleType_ = !!value;
+}
+@synthesize ruleType;
 - (void) dealloc {
   self.userId = nil;
   self.gameId = nil;
@@ -3345,6 +3353,7 @@ static UserDiceNotification* defaultUserDiceNotificationInstance = nil;
     self.location = @"";
     self.userLevel = 0;
     self.user = [PBGameUser defaultInstance];
+    self.ruleType = 0;
   }
   return self;
 }
@@ -3448,6 +3457,9 @@ static JoinGameRequest* defaultJoinGameRequestInstance = nil;
   if (self.hasUser) {
     [output writeMessage:100 value:self.user];
   }
+  if (self.hasRuleType) {
+    [output writeInt32:101 value:self.ruleType];
+  }
   [self.unknownFields writeToCodedOutputStream:output];
 }
 - (int32_t) serializedSize {
@@ -3512,6 +3524,9 @@ static JoinGameRequest* defaultJoinGameRequestInstance = nil;
   }
   if (self.hasUser) {
     size += computeMessageSize(100, self.user);
+  }
+  if (self.hasRuleType) {
+    size += computeInt32Size(101, self.ruleType);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -3645,6 +3660,9 @@ static JoinGameRequest* defaultJoinGameRequestInstance = nil;
   if (other.hasUser) {
     [self mergeUser:other.user];
   }
+  if (other.hasRuleType) {
+    [self setRuleType:other.ruleType];
+  }
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }
@@ -3739,6 +3757,10 @@ static JoinGameRequest* defaultJoinGameRequestInstance = nil;
         }
         [input readMessage:subBuilder extensionRegistry:extensionRegistry];
         [self setUser:[subBuilder buildPartial]];
+        break;
+      }
+      case 808: {
+        [self setRuleType:[input readInt32]];
         break;
       }
     }
@@ -4056,6 +4078,22 @@ static JoinGameRequest* defaultJoinGameRequestInstance = nil;
 - (JoinGameRequest_Builder*) clearUser {
   result.hasUser = NO;
   result.user = [PBGameUser defaultInstance];
+  return self;
+}
+- (BOOL) hasRuleType {
+  return result.hasRuleType;
+}
+- (int32_t) ruleType {
+  return result.ruleType;
+}
+- (JoinGameRequest_Builder*) setRuleType:(int32_t) value {
+  result.hasRuleType = YES;
+  result.ruleType = value;
+  return self;
+}
+- (JoinGameRequest_Builder*) clearRuleType {
+  result.hasRuleType = NO;
+  result.ruleType = 0;
   return self;
 }
 @end

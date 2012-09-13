@@ -11,6 +11,7 @@
 #import "DiceImageManager.h"
 #import "DeviceDetection.h"
 #import "AnimationManager.h"
+#import "DiceGameService.h"
 
 
 #define TAG_OFFSET_BOTTOM      110
@@ -35,13 +36,12 @@
 #define FACTOR_RESULT_ZOOMIN 1.4
 #define FACTOR_DICE_ZOOMIN 2
 
-
-
-
 @interface DicesResultView ()
 {
     CGPoint _originCenter;
     CGPoint _targetCenter;
+    PBDiceType _diceType;
+    int _finalDiceCount;
 }
 
 @end
@@ -104,6 +104,7 @@
             
             [self addSubview:diceView];
         }
+        
     }
     return self;
 }
@@ -118,11 +119,56 @@
     return (UIButton *)[self viewWithTag:TAG_OFFSET_DICE + index];
 }
 
-- (void)setDices:(NSArray *)diceList
-      resultDice:(int)resultDice
-           wilds:(BOOL)wilds
+//- (void)adjustDiceResultType:(NSArray *)diceList
+//                  resultDice:(int)resultDice
+//                       wilds:(BOOL)wilds
+//                    ruleType:(DiceGameRuleType)ruleType
+//{
+//    int arr[10] = {0};
+//    
+//    for (PBDice *dice in diceList) {
+//        arr[dice.dice] ++;
+//    }
+//    
+//    int count = 0;
+//    for (int i = 0; i < 10; i ++) {
+//        if (arr[i] != 0) {
+//            count ++;
+//        } 
+//    }
+//    
+//    _resultDiceCount = arr[resultDice] + ((resultDice == 1) ? 0 : (wilds ? 0 : arr[1]));
+//
+//    if (ruleType == DiceGameRuleTypeNormal) {
+//        _resultType = NormalDice;
+//    }else if ((ruleType == DiceGameRuleTypeHigh) || (ruleType == DiceGameRuleTypeSuperHigh)) {
+//        if (count == 1) {
+//            if (_resultDiceCount == 5) {
+//                _resultType = NetDice;
+//                _resultDiceCount = 7;
+//            }
+//        }else if (count == 2) {
+//            if (_resultDiceCount == 5) {
+//                _resultType = WaiDice;
+//                _resultDiceCount = 6;
+//            }
+//        }else if (count == 5) {
+//            _resultType = SnakeDice;
+//            _resultDiceCount = 0;
+//        }else {
+//            _resultType = NormalDice;
+//        }
+//    }
+//    
+//    
+//}
+
+- (void)setDicesWithDiceList:(NSArray *)diceList
+                       wilds:(BOOL)wilds 
+                  resultDice:(int)resultDice
 {
     [self clearDices];
+    
     self.hidden = NO;
     
     DiceImageManager *imageManage = [DiceImageManager defaultManager];
@@ -135,6 +181,8 @@
 
         [[self diceViewOfIndex:index] setImage:defaultImage forState:UIControlStateNormal];
         [[self diceViewOfIndex:index] setImage:selectedImage forState:UIControlStateSelected];
+        
+        
         
         // 叫斋之后，1就不能当其他骰子用了。
         if (wilds && dice.dice == 1) {
@@ -149,6 +197,10 @@
         if (dice.dice == resultDice) {
             [[self diceViewOfIndex:index] setSelected:YES];
         }
+        
+        if (_diceType == PBDiceTypeDiceSnake) {
+            [[self diceViewOfIndex:index] setSelected:NO];
+        }
 
         index ++;
         if (index > 5) {
@@ -160,25 +212,39 @@
 - (NSArray *)selectedDiceViews
 {
     NSMutableArray *array = [NSMutableArray array];
+
     for (int index = 0; index < 5; index ++) {
         UIButton *diceView = [self diceViewOfIndex:index];
         if (diceView.selected == YES) {
             [array addObject:diceView];
         }
     }
-    
+            
     return array;
 }
 
-- (void)showAnimation:(CGPoint)center
+- (void)showUserResult:(NSString *)userId toCenter:(CGPoint)center
 {
+    DiceGameSession *diceSession = [[DiceGameService defaultService] diceSession];
+    NSArray *diceList = [[diceSession userDiceList] objectForKey:userId];
+    BOOL wilds = diceSession.wilds;
+    int resultDice = diceSession.lastCallDice;
+    
+    PBDiceFinalCount *finalCount = [diceSession.finalCount objectForKey:userId];
+    _diceType = finalCount.type;
+    _finalDiceCount = finalCount.finalDiceCount;
+    
+    [self setDicesWithDiceList:diceList 
+                         wilds:wilds
+                    resultDice:resultDice];
+    
     _targetCenter = center;
             
     [UIView animateWithDuration:DURATION_MOVE_TO_CENTER delay:0 options:UIViewAnimationCurveEaseInOut animations:^{
         self.center = center;
         self.transform = CGAffineTransformMakeScale(FACTOR_RESULT_ZOOMIN, FACTOR_RESULT_ZOOMIN);
     } completion:^(BOOL finished) {
-        [_delegate stayDidStart:[[self selectedDiceViews] count]];
+        [_delegate stayDidStart:_finalDiceCount];
         [UIView animateWithDuration:DURATION_STAY delay:DURATION_MOVE_TO_CENTER options:UIViewAnimationCurveEaseInOut animations:^{
             [self showResultDiceAnimation];
         } completion:^(BOOL finished) {
@@ -186,10 +252,9 @@
                 self.center = _originCenter;
                 self.transform = CGAffineTransformMakeScale(1, 1);
             } completion:^(BOOL finished) {
-                [_delegate moveBackDidStop:[[self selectedDiceViews] count]];
+                [_delegate moveBackDidStop:_finalDiceCount];
             }];
         }];
-
     }];
 }
 

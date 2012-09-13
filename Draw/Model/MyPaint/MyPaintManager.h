@@ -37,6 +37,10 @@
                 drawWord:(NSString*)drawWord 
                    level:(WordLevel)level;
 
+- (BOOL)updateDraft:(MyPaint *)draft 
+              image:(UIImage *)image
+               data:(NSMutableArray*)drawActionList;
+
 
 - (MyPaint *)latestDraft;
 
@@ -67,4 +71,5 @@
 - (void)savePhoto:(NSString*)filePath;
 - (BOOL)save;
 - (BOOL)deleteMyPaint:(MyPaint *)paint;
+
 @end

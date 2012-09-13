@@ -73,7 +73,7 @@
 - (void)stopDraftTimer;
 - (void)handleDraftTimer:(NSTimer *)theTimer;
 */
-- (void)saveDraft;
+- (void)saveDraft:(BOOL)showResult;
 @end
 
 
@@ -177,9 +177,10 @@
     self = [super init];
     if (self) {
         self.draft = draft;
-        self.word = [Word wordWithText:draft.drawWord level:draft.level];
+        self.word = [Word wordWithText:draft.drawWord level:draft.level.intValue];
         shareImageManager = [ShareImageManager defaultManager];
-        languageType = draft.language;
+        languageType = draft.language.intValue;
+        PPDebug(@"draft word lelve = %@, language = %@", draft.level,draft.language);
     }
     return self;
 }
@@ -572,7 +573,7 @@ enum{
 
     }
     else if (dialog.tag == DIALOG_TAG_ESCAPE ){
-        [self saveDraft];
+        [self saveDraft:NO];
         [self quit];
     }else if(dialog.tag == BUY_CONFIRM_TAG){
         [[AccountService defaultService] buyItem:_willBuyPen.penType itemCount:1 itemCoins:_willBuyPen.price];
@@ -663,14 +664,16 @@ enum{
     [self disMissAllPickViews:YES];
 }
 
-#define DRAFT_PAINT_COUNT 10
+#define DRAFT_PAINT_COUNT 15
 
 - (void)didDrawedPaint:(Paint *)paint
 {
+    if (targetType == TypeGraffiti) {
+        return;
+    }
     ++ _unDraftPaintCount;
     if (_unDraftPaintCount >= DRAFT_PAINT_COUNT) {
-        [self saveDraft];        
-        _unDraftPaintCount = 0;
+        [self saveDraft:NO];        
     }
 }
 
@@ -685,8 +688,11 @@ enum{
         
         [[LevelService defaultService] addExp:OFFLINE_DRAW_EXP delegate:self];
         if (self.draft) {
-            [[MyPaintManager defaultManager] deleteMyPaint:self.draft];
+            MyPaint *temp = self.draft;
             self.draft = nil;
+            NSLog(@"before delete draft, temp = %@",[temp description]);
+            [[MyPaintManager defaultManager] deleteMyPaint:temp];
+
         }
         
     }else{
@@ -721,26 +727,65 @@ enum{
 }
 
  */
-- (void)saveDraft
+- (void)saveDraft:(BOOL)showResult
 {
+//due to unknow bugs, ignore the code below.
+    
+//    return;
+    
     if (targetType == TypeGraffiti) {
         return;
     }
     PPDebug(@"<OfflineDrawViewController> start to save draft.");
-    if (self.draft) {
-        //delete the old draft.
-        [[MyPaintManager defaultManager] deleteMyPaint:self.draft];
-    }    
-    UIImage *image = [drawView createImage];
-    self.draft = [[MyPaintManager defaultManager] createDraft:image data:drawView.drawActionList language:languageType drawWord:self.word.text level:self.word.level];    
+    _unDraftPaintCount = 0;
+
+    UIImage *image = [drawView createImage];    
+    
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    
+    __block BOOL result = NO;
+    dispatch_async(queue, ^{
+        @try {
+            if (self.draft) {
+                NSLog(@"<Draw Log>update old draft");
+                result = [[MyPaintManager defaultManager] updateDraft:self.draft 
+                                                       image:image
+                                                        data:drawView.drawActionList];
+            }else{    
+                self.draft = [[MyPaintManager defaultManager] createDraft:image data:drawView.drawActionList language:languageType drawWord:self.word.text level:self.word.level]; 
+                if (self.draft) {
+                    result = YES;
+                }else{
+                    result = NO;
+                }
+            }
+        }
+        @catch (NSException *exception) {
+            NSLog(@"saveDraft: Caught %@: %@", [exception name], [exception reason]);
+        }
+        @finally {
+            
+        }
+        
+
+        
+        if (showResult) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                NSString *message = result ? NSLS(@"kSaveSucc") :  NSLS(@"kSaveFail");
+                [[CommonMessageCenter defaultCenter] postMessageWithText:message delayTime:1.5 isSuccessful:result];
+
+            });
+        }
+        
+    });
+    
 }
 
 #pragma mark - Actions
 
 - (IBAction)clickDraftButton:(id)sender {
     
-    [self saveDraft];
-    [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kSaveSucc") delayTime:1.5 isSuccessful:YES];
+    [self saveDraft:YES];
 }
 
 - (IBAction)clickRevokeButton:(id)sender {

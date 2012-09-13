@@ -22,17 +22,20 @@
     DiceGameService* _diceGameService;
     PBGameSession* _currentSession;
     NSTimer* _refreshRoomTimer;
-    
     BOOL firstLoad;
 }
+
+- (id)initWithRuleType:(DiceGameRuleType)ruleType;
+
+
 @property (retain, nonatomic) IBOutlet FontButton *titleFontButton;
 @property (retain, nonatomic) IBOutlet UIButton *helpButton;
-
 @property (retain, nonatomic) IBOutlet FontButton *createRoomButton;
 @property (retain, nonatomic) IBOutlet FontButton *fastEntryButton;
 @property (retain, nonatomic) IBOutlet FontButton *allRoomButton;
 @property (retain, nonatomic) IBOutlet FontButton *friendRoomButton;
 @property (retain, nonatomic) IBOutlet FontButton *nearByRoomButton;
-
 @property (retain, nonatomic) PBGameSession* currentSession;
+
+
 @end
