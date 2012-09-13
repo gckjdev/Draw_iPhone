@@ -50,6 +50,8 @@
 @class OpenDiceResponse;
 @class OpenDiceResponse_Builder;
 @class PBDice;
+@class PBDiceFinalCount;
+@class PBDiceFinalCount_Builder;
 @class PBDiceGameResult;
 @class PBDiceGameResult_Builder;
 @class PBDice_Builder;

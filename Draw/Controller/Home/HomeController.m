@@ -280,13 +280,13 @@
 {
     switch (type) {
         case NotificationTypeFeed:
-            [self.menuPanel didClickMenuButton:[self.menuPanel getMenuButtonByType:MenuButtonTypeTimeline]];
+            [self didClickMenuButton:[self.menuPanel getMenuButtonByType:MenuButtonTypeTimeline]];
             break;
         case NotificationTypeRoom:
-            [self.menuPanel didClickMenuButton:[self.menuPanel getMenuButtonByType:MenuButtonTypeFriendPlay]];
+            [self didClickMenuButton:[self.menuPanel getMenuButtonByType:MenuButtonTypeFriendPlay]];
             break;
         case NotificationTypeMessage:
-            [self.bottomMenuPanel didClickMenuButton:[self.bottomMenuPanel getMenuButtonByType:MenuButtonTypeChat]];
+            [self didClickMenuButton:[self.bottomMenuPanel getMenuButtonByType:MenuButtonTypeChat]];
             
             break;
         default:

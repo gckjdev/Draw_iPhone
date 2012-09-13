@@ -24,6 +24,7 @@
 @synthesize itemDescription = _itemDescription;
 @synthesize buyAmountForOnce;
 @synthesize price;
+//@synthesize useScene = _useScene;
 
 - (void)dealloc
 {
@@ -91,6 +92,7 @@
   buyAmountForOnce:(int)amount 
              price:(int)aPrice 
             amount:(int)currentAmount
+//          useScene:(UseScene)useScene
 {
     self = [super init];
     if(self){
@@ -102,9 +104,19 @@
         self.buyAmountForOnce = amount;
         self.price = aPrice;
         self.amount = currentAmount;
+//        self.useScene = useScene;
     }
     return self;
 }
+
+//- (BOOL)canUseInScene:(UseScene)scene
+//{
+//    if (_useScene == (scene && _useScene)) {
+//        return YES;
+//    }
+//    
+//    return NO;
+//}
 
 
 +(UIImage *)imageForItemType:(ItemType)type
@@ -328,6 +340,7 @@
                                  price:[[ShoppingManager defaultManager] getPenPrice] 
                                 amount:[[ItemManager defaultManager] amountForItem:WaterPen]] autorelease];
 }
+
 
 
 

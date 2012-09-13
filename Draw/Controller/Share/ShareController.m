@@ -326,8 +326,11 @@
 #pragma mark - Common Dialog Delegate
 - (void)clickOk:(CommonDialog *)dialog
 {
+    
+    MyPaint* currentPaint = self.selectedPaint;
+    self.selectedPaint = nil;
     if (dialog.tag == DELETE){
-        MyPaint* currentPaint = self.selectedPaint;
+
         if (currentPaint == nil) {
             return;
         }
@@ -346,7 +349,7 @@
             }
         }
         [[MyPaintManager defaultManager] deleteMyPaint:currentPaint];
-        self.selectedPaint = nil;
+//        self.selectedPaint = nil;
     }
     else if (dialog.tag == DELETE_ALL){
         _allOffset = 0;

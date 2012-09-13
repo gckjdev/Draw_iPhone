@@ -5,6 +5,8 @@
 #import "GameBasic.pb.h"
 
 @class PBDice;
+@class PBDiceFinalCount;
+@class PBDiceFinalCount_Builder;
 @class PBDiceGameResult;
 @class PBDiceGameResult_Builder;
 @class PBDice_Builder;
@@ -28,6 +30,15 @@
 @class PBUserDice_Builder;
 @class PBUserResult;
 @class PBUserResult_Builder;
+typedef enum {
+  PBDiceTypeDiceNormal = 0,
+  PBDiceTypeDiceSnake = 1,
+  PBDiceTypeDiceNet = 2,
+  PBDiceTypeDiceWai = 3,
+} PBDiceType;
+
+BOOL PBDiceTypeIsValidValue(PBDiceType value);
+
 
 @interface DiceRoot : NSObject {
 }
@@ -39,13 +50,17 @@
 @private
   BOOL hasDiceId_:1;
   BOOL hasDice_:1;
+  BOOL hasType_:1;
   int32_t diceId;
   int32_t dice;
+  PBDiceType type;
 }
 - (BOOL) hasDiceId;
 - (BOOL) hasDice;
+- (BOOL) hasType;
 @property (readonly) int32_t diceId;
 @property (readonly) int32_t dice;
+@property (readonly) PBDiceType type;
 
 + (PBDice*) defaultInstance;
 - (PBDice*) defaultInstance;
@@ -90,6 +105,11 @@
 - (int32_t) dice;
 - (PBDice_Builder*) setDice:(int32_t) value;
 - (PBDice_Builder*) clearDice;
+
+- (BOOL) hasType;
+- (PBDiceType) type;
+- (PBDice_Builder*) setType:(PBDiceType) value;
+- (PBDice_Builder*) clearType;
 @end
 
 @interface PBUserDice : PBGeneratedMessage {
@@ -216,16 +236,85 @@
 - (PBUserResult_Builder*) clearGainCoins;
 @end
 
+@interface PBDiceFinalCount : PBGeneratedMessage {
+@private
+  BOOL hasFinalDiceCount_:1;
+  BOOL hasUserId_:1;
+  BOOL hasType_:1;
+  int32_t finalDiceCount;
+  NSString* userId;
+  PBDiceType type;
+}
+- (BOOL) hasUserId;
+- (BOOL) hasType;
+- (BOOL) hasFinalDiceCount;
+@property (readonly, retain) NSString* userId;
+@property (readonly) PBDiceType type;
+@property (readonly) int32_t finalDiceCount;
+
++ (PBDiceFinalCount*) defaultInstance;
+- (PBDiceFinalCount*) defaultInstance;
+
+- (BOOL) isInitialized;
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
+- (PBDiceFinalCount_Builder*) builder;
++ (PBDiceFinalCount_Builder*) builder;
++ (PBDiceFinalCount_Builder*) builderWithPrototype:(PBDiceFinalCount*) prototype;
+
++ (PBDiceFinalCount*) parseFromData:(NSData*) data;
++ (PBDiceFinalCount*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBDiceFinalCount*) parseFromInputStream:(NSInputStream*) input;
++ (PBDiceFinalCount*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBDiceFinalCount*) parseFromCodedInputStream:(PBCodedInputStream*) input;
++ (PBDiceFinalCount*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+@end
+
+@interface PBDiceFinalCount_Builder : PBGeneratedMessage_Builder {
+@private
+  PBDiceFinalCount* result;
+}
+
+- (PBDiceFinalCount*) defaultInstance;
+
+- (PBDiceFinalCount_Builder*) clear;
+- (PBDiceFinalCount_Builder*) clone;
+
+- (PBDiceFinalCount*) build;
+- (PBDiceFinalCount*) buildPartial;
+
+- (PBDiceFinalCount_Builder*) mergeFrom:(PBDiceFinalCount*) other;
+- (PBDiceFinalCount_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (PBDiceFinalCount_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+
+- (BOOL) hasUserId;
+- (NSString*) userId;
+- (PBDiceFinalCount_Builder*) setUserId:(NSString*) value;
+- (PBDiceFinalCount_Builder*) clearUserId;
+
+- (BOOL) hasType;
+- (PBDiceType) type;
+- (PBDiceFinalCount_Builder*) setType:(PBDiceType) value;
+- (PBDiceFinalCount_Builder*) clearType;
+
+- (BOOL) hasFinalDiceCount;
+- (int32_t) finalDiceCount;
+- (PBDiceFinalCount_Builder*) setFinalDiceCount:(int32_t) value;
+- (PBDiceFinalCount_Builder*) clearFinalDiceCount;
+@end
+
 @interface PBDiceGameResult : PBGeneratedMessage {
 @private
   BOOL hasOpenType_:1;
   int32_t openType;
   NSMutableArray* mutableUserResultList;
+  NSMutableArray* mutableFinalCountList;
 }
 - (BOOL) hasOpenType;
 @property (readonly) int32_t openType;
 - (NSArray*) userResultList;
 - (PBUserResult*) userResultAtIndex:(int32_t) index;
+- (NSArray*) finalCountList;
+- (PBDiceFinalCount*) finalCountAtIndex:(int32_t) index;
 
 + (PBDiceGameResult*) defaultInstance;
 - (PBDiceGameResult*) defaultInstance;
@@ -272,5 +361,12 @@
 - (int32_t) openType;
 - (PBDiceGameResult_Builder*) setOpenType:(int32_t) value;
 - (PBDiceGameResult_Builder*) clearOpenType;
+
+- (NSArray*) finalCountList;
+- (PBDiceFinalCount*) finalCountAtIndex:(int32_t) index;
+- (PBDiceGameResult_Builder*) replaceFinalCountAtIndex:(int32_t) index with:(PBDiceFinalCount*) value;
+- (PBDiceGameResult_Builder*) addFinalCount:(PBDiceFinalCount*) value;
+- (PBDiceGameResult_Builder*) addAllFinalCount:(NSArray*) values;
+- (PBDiceGameResult_Builder*) clearFinalCountList;
 @end
 

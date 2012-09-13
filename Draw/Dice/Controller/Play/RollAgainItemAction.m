@@ -21,7 +21,6 @@
                   view:(UIView *)view
 {
     [self rollDiceAgain:controller view:view];
-    return;
 }
 
 - (void)someoneUseItem:(NSString *)userId
@@ -29,7 +28,6 @@
                   view:(UIView *)view
 {
     [self rollUserBell:userId controller:controller];
-    return;
 }
 
 

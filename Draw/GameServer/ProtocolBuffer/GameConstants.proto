@@ -202,7 +202,7 @@ enum GameChatType {
 }
 
 enum DiceGameRuleType {
-    NORMAL = 0;
-    HIGH = 1;
-    SUPER_HIGH = 2;
+    RULE_NORMAL = 0;
+    RULE_HIGH = 1;
+    RULE_SUPER_HIGH = 2;
 }
