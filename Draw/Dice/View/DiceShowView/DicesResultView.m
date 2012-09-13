@@ -11,6 +11,7 @@
 #import "DiceImageManager.h"
 #import "DeviceDetection.h"
 #import "AnimationManager.h"
+#import "DiceGameService.h"
 
 
 #define TAG_OFFSET_BOTTOM      110
@@ -35,20 +36,12 @@
 #define FACTOR_RESULT_ZOOMIN 1.4
 #define FACTOR_DICE_ZOOMIN 2
 
-
-typedef enum{
-    NormalDice = 0,
-    SnakeDice = 1,
-    WaiDice = 2,
-    NetDice = 3
-}DiceResultType;
-
 @interface DicesResultView ()
 {
     CGPoint _originCenter;
     CGPoint _targetCenter;
-    DiceResultType _resultType;
-    int _resultDiceCount;
+    PBDiceType _diceType;
+    int _finalDiceCount;
 }
 
 @end
@@ -111,6 +104,7 @@ typedef enum{
             
             [self addSubview:diceView];
         }
+        
     }
     return self;
 }
@@ -125,61 +119,55 @@ typedef enum{
     return (UIButton *)[self viewWithTag:TAG_OFFSET_DICE + index];
 }
 
-- (void)adjustDiceResultType:(NSArray *)diceList
+//- (void)adjustDiceResultType:(NSArray *)diceList
+//                  resultDice:(int)resultDice
+//                       wilds:(BOOL)wilds
+//                    ruleType:(DiceGameRuleType)ruleType
+//{
+//    int arr[10] = {0};
+//    
+//    for (PBDice *dice in diceList) {
+//        arr[dice.dice] ++;
+//    }
+//    
+//    int count = 0;
+//    for (int i = 0; i < 10; i ++) {
+//        if (arr[i] != 0) {
+//            count ++;
+//        } 
+//    }
+//    
+//    _resultDiceCount = arr[resultDice] + ((resultDice == 1) ? 0 : (wilds ? 0 : arr[1]));
+//
+//    if (ruleType == DiceGameRuleTypeNormal) {
+//        _resultType = NormalDice;
+//    }else if ((ruleType == DiceGameRuleTypeHigh) || (ruleType == DiceGameRuleTypeSuperHigh)) {
+//        if (count == 1) {
+//            if (_resultDiceCount == 5) {
+//                _resultType = NetDice;
+//                _resultDiceCount = 7;
+//            }
+//        }else if (count == 2) {
+//            if (_resultDiceCount == 5) {
+//                _resultType = WaiDice;
+//                _resultDiceCount = 6;
+//            }
+//        }else if (count == 5) {
+//            _resultType = SnakeDice;
+//            _resultDiceCount = 0;
+//        }else {
+//            _resultType = NormalDice;
+//        }
+//    }
+//    
+//    
+//}
+
+- (void)setDicesWithDiceList:(NSArray *)diceList
+                       wilds:(BOOL)wilds 
                   resultDice:(int)resultDice
-                       wilds:(BOOL)wilds
-                    ruleType:(DiceGameRuleType)ruleType
-{
-    int arr[10] = {0};
-    
-    for (PBDice *dice in diceList) {
-        arr[dice.dice] ++;
-    }
-    
-    int count = 0;
-    for (int i = 0; i < 10; i ++) {
-        if (arr[i] != 0) {
-            count ++;
-        } 
-    }
-    
-    _resultDiceCount = arr[resultDice] + ((resultDice == 1) ? 0 : (wilds ? 0 : arr[1]));
-
-    if (ruleType == DiceGameRuleTypeNormal) {
-        _resultType = NormalDice;
-    }else if ((ruleType == DiceGameRuleTypeHigh) || (ruleType == DiceGameRuleTypeSuperHigh)) {
-        if (count == 1) {
-            if (_resultDiceCount == 5) {
-                _resultType = NetDice;
-                _resultDiceCount = 7;
-            }
-        }else if (count == 2) {
-            if (_resultDiceCount == 5) {
-                _resultType = WaiDice;
-                _resultDiceCount = 6;
-            }
-        }else if (count == 5) {
-            _resultType = SnakeDice;
-            _resultDiceCount = 0;
-        }else {
-            _resultType = NormalDice;
-        }
-    }
-    
-    
-}
-
-- (void)setDices:(NSArray *)diceList
-      resultDice:(int)resultDice
-           wilds:(BOOL)wilds
-        ruleType:(DiceGameRuleType)ruleType
 {
     [self clearDices];
-    
-    [self adjustDiceResultType:diceList
-                    resultDice:(int)resultDice
-                         wilds:(BOOL)wilds 
-                      ruleType:ruleType];
     
     self.hidden = NO;
     
@@ -210,7 +198,7 @@ typedef enum{
             [[self diceViewOfIndex:index] setSelected:YES];
         }
         
-        if (_resultType == SnakeDice) {
+        if (_diceType == PBDiceTypeDiceSnake) {
             [[self diceViewOfIndex:index] setSelected:NO];
         }
 
@@ -235,15 +223,28 @@ typedef enum{
     return array;
 }
 
-- (void)showAnimation:(CGPoint)center
+- (void)showUserResult:(NSString *)userId toCenter:(CGPoint)center
 {
+    DiceGameSession *diceSession = [[DiceGameService defaultService] diceSession];
+    NSArray *diceList = [[diceSession userDiceList] objectForKey:userId];
+    BOOL wilds = diceSession.wilds;
+    int resultDice = diceSession.lastCallDice;
+    
+    PBDiceFinalCount *finalCount = [diceSession.finalCount objectForKey:userId];
+    _diceType = finalCount.type;
+    _finalDiceCount = finalCount.finalDiceCount;
+    
+    [self setDicesWithDiceList:diceList 
+                         wilds:wilds
+                    resultDice:resultDice];
+    
     _targetCenter = center;
             
     [UIView animateWithDuration:DURATION_MOVE_TO_CENTER delay:0 options:UIViewAnimationCurveEaseInOut animations:^{
         self.center = center;
         self.transform = CGAffineTransformMakeScale(FACTOR_RESULT_ZOOMIN, FACTOR_RESULT_ZOOMIN);
     } completion:^(BOOL finished) {
-        [_delegate stayDidStart:_resultDiceCount];
+        [_delegate stayDidStart:_finalDiceCount];
         [UIView animateWithDuration:DURATION_STAY delay:DURATION_MOVE_TO_CENTER options:UIViewAnimationCurveEaseInOut animations:^{
             [self showResultDiceAnimation];
         } completion:^(BOOL finished) {
@@ -251,7 +252,7 @@ typedef enum{
                 self.center = _originCenter;
                 self.transform = CGAffineTransformMakeScale(1, 1);
             } completion:^(BOOL finished) {
-                [_delegate moveBackDidStop:_resultDiceCount];
+                [_delegate moveBackDidStop:_finalDiceCount];
             }];
         }];
     }];

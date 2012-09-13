@@ -18,6 +18,7 @@
 @synthesize openDiceUserId = _openDiceUserId;
 @synthesize openType = _openType;
 @synthesize gameResult = _gameResult;
+@synthesize finalCount = _finalCount;
 @synthesize wilds = _wilds;
 @synthesize isMeAByStander = _isMeAByStander;
 @synthesize gameState = _gameState;
@@ -27,6 +28,7 @@
     PPRelease(_lastCallDiceUserId);
     PPRelease(_openDiceUserId);
     PPRelease(_gameResult);
+    PPRelease(_finalCount);
     [super dealloc];
 }
 
@@ -49,6 +51,7 @@
     self.openDiceUserId = nil;
     self.openType = OpenTypeNormal;
     self.gameResult = nil;
+    self.finalCount = nil;
     self.wilds = false;
     self.isMeAByStander = YES;
     self.gameState = GameStateGameOver;
