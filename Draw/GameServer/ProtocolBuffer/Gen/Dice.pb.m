@@ -34,7 +34,6 @@ BOOL PBDiceTypeIsValidValue(PBDiceType value) {
 @interface PBDice ()
 @property int32_t diceId;
 @property int32_t dice;
-@property PBDiceType type;
 @end
 
 @implementation PBDice
@@ -53,13 +52,6 @@ BOOL PBDiceTypeIsValidValue(PBDiceType value) {
   hasDice_ = !!value;
 }
 @synthesize dice;
-- (BOOL) hasType {
-  return !!hasType_;
-}
-- (void) setHasType:(BOOL) value {
-  hasType_ = !!value;
-}
-@synthesize type;
 - (void) dealloc {
   [super dealloc];
 }
@@ -67,7 +59,6 @@ BOOL PBDiceTypeIsValidValue(PBDiceType value) {
   if ((self = [super init])) {
     self.diceId = 0;
     self.dice = 0;
-    self.type = PBDiceTypeDiceNormal;
   }
   return self;
 }
@@ -96,9 +87,6 @@ static PBDice* defaultPBDiceInstance = nil;
   if (self.hasDice) {
     [output writeInt32:2 value:self.dice];
   }
-  if (self.hasType) {
-    [output writeEnum:3 value:self.type];
-  }
   [self.unknownFields writeToCodedOutputStream:output];
 }
 - (int32_t) serializedSize {
@@ -113,9 +101,6 @@ static PBDice* defaultPBDiceInstance = nil;
   }
   if (self.hasDice) {
     size += computeInt32Size(2, self.dice);
-  }
-  if (self.hasType) {
-    size += computeEnumSize(3, self.type);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -198,9 +183,6 @@ static PBDice* defaultPBDiceInstance = nil;
   if (other.hasDice) {
     [self setDice:other.dice];
   }
-  if (other.hasType) {
-    [self setType:other.type];
-  }
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }
@@ -228,15 +210,6 @@ static PBDice* defaultPBDiceInstance = nil;
       }
       case 16: {
         [self setDice:[input readInt32]];
-        break;
-      }
-      case 24: {
-        int32_t value = [input readEnum];
-        if (PBDiceTypeIsValidValue(value)) {
-          [self setType:value];
-        } else {
-          [unknownFields mergeVarintField:3 value:value];
-        }
         break;
       }
     }
@@ -274,27 +247,12 @@ static PBDice* defaultPBDiceInstance = nil;
   result.dice = 0;
   return self;
 }
-- (BOOL) hasType {
-  return result.hasType;
-}
-- (PBDiceType) type {
-  return result.type;
-}
-- (PBDice_Builder*) setType:(PBDiceType) value {
-  result.hasType = YES;
-  result.type = value;
-  return self;
-}
-- (PBDice_Builder*) clearType {
-  result.hasType = NO;
-  result.type = PBDiceTypeDiceNormal;
-  return self;
-}
 @end
 
 @interface PBUserDice ()
 @property (retain) NSString* userId;
 @property (retain) NSMutableArray* mutableDicesList;
+@property PBDiceType type;
 @end
 
 @implementation PBUserDice
@@ -307,6 +265,13 @@ static PBDice* defaultPBDiceInstance = nil;
 }
 @synthesize userId;
 @synthesize mutableDicesList;
+- (BOOL) hasType {
+  return !!hasType_;
+}
+- (void) setHasType:(BOOL) value {
+  hasType_ = !!value;
+}
+@synthesize type;
 - (void) dealloc {
   self.userId = nil;
   self.mutableDicesList = nil;
@@ -315,6 +280,7 @@ static PBDice* defaultPBDiceInstance = nil;
 - (id) init {
   if ((self = [super init])) {
     self.userId = @"";
+    self.type = PBDiceTypeDiceNormal;
   }
   return self;
 }
@@ -355,6 +321,9 @@ static PBUserDice* defaultPBUserDiceInstance = nil;
   for (PBDice* element in self.dicesList) {
     [output writeMessage:2 value:element];
   }
+  if (self.hasType) {
+    [output writeEnum:3 value:self.type];
+  }
   [self.unknownFields writeToCodedOutputStream:output];
 }
 - (int32_t) serializedSize {
@@ -369,6 +338,9 @@ static PBUserDice* defaultPBUserDiceInstance = nil;
   }
   for (PBDice* element in self.dicesList) {
     size += computeMessageSize(2, element);
+  }
+  if (self.hasType) {
+    size += computeEnumSize(3, self.type);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -454,6 +426,9 @@ static PBUserDice* defaultPBUserDiceInstance = nil;
     }
     [result.mutableDicesList addObjectsFromArray:other.mutableDicesList];
   }
+  if (other.hasType) {
+    [self setType:other.type];
+  }
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }
@@ -483,6 +458,15 @@ static PBUserDice* defaultPBUserDiceInstance = nil;
         PBDice_Builder* subBuilder = [PBDice builder];
         [input readMessage:subBuilder extensionRegistry:extensionRegistry];
         [self addDices:[subBuilder buildPartial]];
+        break;
+      }
+      case 24: {
+        int32_t value = [input readEnum];
+        if (PBDiceTypeIsValidValue(value)) {
+          [self setType:value];
+        } else {
+          [unknownFields mergeVarintField:3 value:value];
+        }
         break;
       }
     }
@@ -531,6 +515,22 @@ static PBUserDice* defaultPBUserDiceInstance = nil;
     result.mutableDicesList = [NSMutableArray array];
   }
   [result.mutableDicesList addObject:value];
+  return self;
+}
+- (BOOL) hasType {
+  return result.hasType;
+}
+- (PBDiceType) type {
+  return result.type;
+}
+- (PBUserDice_Builder*) setType:(PBDiceType) value {
+  result.hasType = YES;
+  result.type = value;
+  return self;
+}
+- (PBUserDice_Builder*) clearType {
+  result.hasType = NO;
+  result.type = PBDiceTypeDiceNormal;
   return self;
 }
 @end

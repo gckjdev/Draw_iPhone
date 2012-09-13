@@ -16,13 +16,13 @@ enum PBDiceType{
 message PBDice {
   optional int32 diceId = 1;
   required int32 dice = 2;     
-  optional PBDiceType type = 3 [default=DICE_NORMAL];      // 新增
 }
 
 message PBUserDice
 {
   required string userId = 1;
   repeated PBDice dices = 2;
+  optional PBDiceType type = 3 [default=DICE_NORMAL];      // 新增
 }
 
 message PBUserResult {
