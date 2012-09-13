@@ -586,7 +586,7 @@
             break;
         case MenuButtonTypeDiceRoom:
         {
-            DiceRoomListController* vc = [[[DiceRoomListController alloc] init] autorelease];
+            DiceRoomListController* vc = [[[DiceRoomListController alloc] initWithRuleType:DiceGameRuleTypeRuleNormal] autorelease];
             [self.navigationController pushViewController:vc animated:YES];
         }
             break;
