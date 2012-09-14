@@ -556,6 +556,14 @@
     [self.navigationController pushViewController:ruc animated:YES];
     [ruc release];
 }
+- (IBAction)didClickHight:(id)sender {
+    DiceRoomListController* vc = [[[DiceRoomListController alloc] initWithRuleType:DiceGameRuleTypeRuleHigh] autorelease];
+    [self.navigationController pushViewController:vc animated:YES];
+}
+- (IBAction)didClickSuperHight:(id)sender {
+    DiceRoomListController* vc = [[[DiceRoomListController alloc] initWithRuleType:DiceGameRuleTypeRuleSuperHigh] autorelease];
+    [self.navigationController pushViewController:vc animated:YES];
+}
 
 - (void)didClickMenuButton:(MenuButton *)menuButton
 {
