@@ -231,11 +231,9 @@
 - (void)updateTimer:(id)sender
 {
     _currentProgress -= PROGRESS_UPDATE_TIME;
-    PPDebug(@"current progress is now ---- %f",_currentProgress);
     if (_currentProgress <= 0) {
         [self stopReciprocol];
         if (_delegate && [_delegate respondsToSelector:@selector(reciprocalEnd:)]) {
-            PPDebug(@"<test>stop, delegate = %@ , avatar = %@",[_delegate description], [self description]);
             [_delegate reciprocalEnd:self];
         }
         return;

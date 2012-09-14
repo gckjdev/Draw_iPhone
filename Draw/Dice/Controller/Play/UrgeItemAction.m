@@ -9,13 +9,16 @@
 #import "UrgeItemAction.h"
 #import "ItemType.h"
 #import "ConfigManager.h"
+#import "DiceGamePlayController.h"
 
 @implementation UrgeItemAction
 
 - (void)urge:(DiceGamePlayController*)controller 
         view:(UIView*)view 
 {
-    
+    PBGameUser* user = [_gameService.diceSession getNextSeatPlayerByUserId:_gameService.userId];
+    PPDebug(@"urge user <%@> sitting at %d", user.nickName, user.seatId);
+    [controller urgeUser:user.userId];
 }
 
 - (BOOL)isShowNameAnimation
@@ -33,7 +36,7 @@
             controller:(DiceGamePlayController *)controller
                   view:(UIView *)view
 {
-    
+    [controller urgeUser:[_gameService.session getNextSeatPlayerByUserId:userId].userId];
 }
 
 

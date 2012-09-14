@@ -43,6 +43,7 @@
 //    ItemService *_itemService;
     ExpressionManager *_expressionManager;
     DiceSoundManager *_soundManager;
+    NSMutableSet* _urgedUser;
     
     int hideAdCounter;
 }
@@ -77,5 +78,6 @@
 - (UIView *)bellViewOfUser:(NSString *)userId;
 - (DiceAvatarView *)selfAvatarView;
 - (DiceAvatarView*)avatarViewOfUser:(NSString*)userId;
+- (void)urgeUser:(NSString*)userId;
 
 @end

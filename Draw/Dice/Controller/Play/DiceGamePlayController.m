@@ -135,6 +135,7 @@
     [_popupLevel2View release];
     [_popupLevel3View release];
     [_popupView release];
+    [_urgedUser release];
     [super dealloc];
 }
 
@@ -150,6 +151,7 @@
         _audioManager = [AudioManager defaultManager];
         _expressionManager = [ExpressionManager defaultManager];
         _soundManager = [DiceSoundManager defaultManager];
+        _urgedUser = [[NSMutableSet alloc] init];
     }
     
     return self;
@@ -794,12 +796,24 @@
     myDiceListHolderView.hidden = NO;
 }
 
+- (void)userPreStart:(NSString*)userId
+{
+    if ([_urgedUser containsObject:userId]) {
+        [[self avatarViewOfUser:userId] startReciprocol:USER_THINK_TIME_INTERVAL - [ConfigManager getUrgeTime] 
+                                                      fromProgress:(1 - (float)(USER_THINK_TIME_INTERVAL-[ConfigManager getUrgeTime])/USER_THINK_TIME_INTERVAL)];
+        [_urgedUser removeObject:userId];
+    } else {
+        [[self avatarViewOfUser:userId] startReciprocol:USER_THINK_TIME_INTERVAL];
+    }
+}
+
 - (void)nextPlayerStart
 {
     [self clearAllReciprocol];
     
     NSString *currentPlayUserId = _diceService.session.currentPlayUserId;
-    [[self avatarViewOfUser:currentPlayUserId] startReciprocol:USER_THINK_TIME_INTERVAL];
+    [self userPreStart:currentPlayUserId];
+    
     
     // 如果自己是旁观者，则在这里返回。
     if (_diceService.diceSession.isMeAByStander) {
@@ -1300,8 +1314,13 @@
 - (IBAction)clickUrge:(id)sender
 {
     int urgeTime = [ConfigManager getUrgeTime];
-    [_diceService userTimeItem:ItemTypeIncTime 
+    [_diceService userTimeItem:ItemTypeDecTime 
                           time:urgeTime];
+}
+
+- (void)urgeUser:(NSString*)userId
+{
+    [_urgedUser addObject:userId];
 }
 
 
