@@ -22,6 +22,7 @@
 @dynamic draft;
 @dynamic language;
 @dynamic level;
+@dynamic deleteFlag;
 
 
 @synthesize thumbImage;

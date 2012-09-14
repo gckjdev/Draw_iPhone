@@ -328,14 +328,14 @@
 {
     
     MyPaint* currentPaint = self.selectedPaint;
-    self.selectedPaint = nil;
+//    self.selectedPaint = nil;
     if (dialog.tag == DELETE){
 
         if (currentPaint == nil) {
             return;
         }
 
-        if (currentPaint.draft) {
+        if (currentPaint.draft.boolValue) {
             _draftOffset --;
             [_drafts removeObject:currentPaint];
         }else{        
@@ -349,7 +349,7 @@
             }
         }
         [[MyPaintManager defaultManager] deleteMyPaint:currentPaint];
-//        self.selectedPaint = nil;
+        self.selectedPaint = nil;
     }
     else if (dialog.tag == DELETE_ALL){
         _allOffset = 0;
