@@ -28,8 +28,6 @@ typedef enum{
     WallTypeWanpu = 2
 }WallType;
 
-#define DICE_THRESHOLD_COIN ([ConfigManager getDiceThresholdCoin])
-
 @interface ConfigManager : NSObject
 
 + (int)getBalanceDeviation;
@@ -96,7 +94,10 @@ typedef enum{
 + (int)getLiarDiceExp;
 
 + (int)getDiceFleeCoin;
-+ (int)getDiceThresholdCoin;
+
++ (int)getDiceThresholdCoinWithNormalRule;
++ (int)getDiceThresholdCoinWithHightRule;
++ (int)getDiceThresholdCoinWithSuperHightRule;
 
 + (NSString*)getDiceServerListString;
 

@@ -25,6 +25,7 @@
 #import "CommonMessageCenter.h"
 #import "UIViewUtils.h"
 #import "CommonDiceItemAction.h"
+#import "DiceConfigManager.h"
 #import "PostponeItemAction.h"
 #import "UrgeItemAction.h"
 
@@ -41,9 +42,11 @@
 
 #define DURATION_ROLL_BELL 1
 
-#define DICE_THRESHOLD_COIN ([ConfigManager getDiceThresholdCoin])
-
 @interface DiceGamePlayController ()
+{
+    int hideAdCounter;
+    DiceGameRuleType _ruleType;
+}
 
 @property (retain, nonatomic) DiceSelectedView *diceSelectedView;
 @property (retain, nonatomic) NSEnumerator *enumerator;
@@ -139,7 +142,7 @@
     [super dealloc];
 }
 
-- (id)init
+- (id)initWIthRuleType:(DiceGameRuleType)ruleType
 {
     self = [super init];
     if (self) {
@@ -151,6 +154,7 @@
         _audioManager = [AudioManager defaultManager];
         _expressionManager = [ExpressionManager defaultManager];
         _soundManager = [DiceSoundManager defaultManager];
+        _ruleType = ruleType;
         _urgedUser = [[NSMutableSet alloc] init];
     }
     
@@ -863,7 +867,7 @@
 {
     self.myCoinsLabel.text = [NSString stringWithFormat:@"x%d",[_accountService getBalance]];
     
-    if ([_accountService getBalance] < DICE_THRESHOLD_COIN) {
+    if (![DiceConfigManager meetJoinGameCondictionWithRuleType:_ruleType]) {
         [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kNotEnoughCoinToContinue") delayTime:1.5 isHappy:NO];
         [self quitDiceGame];
     }

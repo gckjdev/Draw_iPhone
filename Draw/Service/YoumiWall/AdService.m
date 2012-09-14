@@ -86,7 +86,6 @@ static AdService* _defaultService;
 
 - (int)getAderAdPercentage
 {
-//    return 0;
     return [MobClickUtils getIntValueByKey:@"ADER_AD_PERCENTAGE" defaultValue:100];    
 }
 

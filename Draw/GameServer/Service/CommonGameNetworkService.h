@@ -57,16 +57,28 @@
 - (void)getRoomList:(int)startIndex 
               count:(int)count 
    shouldReloadData:(BOOL)shouldReloadData;
+
 - (void)joinGameRequest;
+- (void)joinGameRequestWithRuleType:(int)ruleType;
+//- (BOOL)joinGameRequestWithRuleType:(int)ruleType
+//                         condiction:(BOOL (^)(void))condiction;
+
 - (void)joinGameRequest:(long)sessionId;
-- (BOOL)joinGameRequestWithCondiction:(BOOL (^)(void))condiction;
-- (BOOL)joinGameRequest:(long)sessionId condiction:(BOOL (^)(void))condiction;
+- (void)joinGameRequest:(long)sessionId ruleType:(int)ruleType;
+//- (BOOL)joinGameRequest:(long)sessionId
+//               ruleType:(int)ruleType
+//             condiction:(BOOL (^)(void))condiction;
 
 - (void)quitGame;
 
 - (CommonGameSession*)createSession;
+
 - (void)createRoomWithName:(NSString*)name 
                   password:(NSString*)password;
+
+- (void)createRoomWithName:(NSString*)name 
+                  password:(NSString *)password
+                  ruleType:(int)ruleType;
 
 + (GameMessage*)userInfoToMessage:(NSDictionary*)userInfo;
 + (NSDictionary*)messageToUserInfo:(GameMessage*)message;

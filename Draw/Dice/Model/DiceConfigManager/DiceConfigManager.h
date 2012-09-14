@@ -10,7 +10,7 @@
 
 @interface DiceConfigManager : NSObject
 
-+ (BOOL)meetJoinGameCondiction;
-+ (NSString *)coinsNotEnoughNote;
++ (BOOL)meetJoinGameCondictionWithRuleType:(int)ruleType;
++ (NSString *)coinsNotEnoughNoteWithRuleType:(int)ruleType;
 
 @end

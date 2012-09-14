@@ -448,6 +448,7 @@ static GetRoomsResponse* defaultGetRoomsResponseInstance = nil;
 @property (retain) PBGameUser* user;
 @property (retain) NSString* roomName;
 @property (retain) NSString* password;
+@property int32_t ruleType;
 @end
 
 @implementation CreateRoomRequest
@@ -480,6 +481,13 @@ static GetRoomsResponse* defaultGetRoomsResponseInstance = nil;
   hasPassword_ = !!value;
 }
 @synthesize password;
+- (BOOL) hasRuleType {
+  return !!hasRuleType_;
+}
+- (void) setHasRuleType:(BOOL) value {
+  hasRuleType_ = !!value;
+}
+@synthesize ruleType;
 - (void) dealloc {
   self.gameId = nil;
   self.user = nil;
@@ -493,6 +501,7 @@ static GetRoomsResponse* defaultGetRoomsResponseInstance = nil;
     self.user = [PBGameUser defaultInstance];
     self.roomName = @"";
     self.password = @"";
+    self.ruleType = 0;
   }
   return self;
 }
@@ -536,6 +545,9 @@ static CreateRoomRequest* defaultCreateRoomRequestInstance = nil;
   if (self.hasPassword) {
     [output writeString:4 value:self.password];
   }
+  if (self.hasRuleType) {
+    [output writeInt32:5 value:self.ruleType];
+  }
   [self.unknownFields writeToCodedOutputStream:output];
 }
 - (int32_t) serializedSize {
@@ -556,6 +568,9 @@ static CreateRoomRequest* defaultCreateRoomRequestInstance = nil;
   }
   if (self.hasPassword) {
     size += computeStringSize(4, self.password);
+  }
+  if (self.hasRuleType) {
+    size += computeInt32Size(5, self.ruleType);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -644,6 +659,9 @@ static CreateRoomRequest* defaultCreateRoomRequestInstance = nil;
   if (other.hasPassword) {
     [self setPassword:other.password];
   }
+  if (other.hasRuleType) {
+    [self setRuleType:other.ruleType];
+  }
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }
@@ -684,6 +702,10 @@ static CreateRoomRequest* defaultCreateRoomRequestInstance = nil;
       }
       case 34: {
         [self setPassword:[input readString]];
+        break;
+      }
+      case 40: {
+        [self setRuleType:[input readInt32]];
         break;
       }
     }
@@ -765,6 +787,22 @@ static CreateRoomRequest* defaultCreateRoomRequestInstance = nil;
 - (CreateRoomRequest_Builder*) clearPassword {
   result.hasPassword = NO;
   result.password = @"";
+  return self;
+}
+- (BOOL) hasRuleType {
+  return result.hasRuleType;
+}
+- (int32_t) ruleType {
+  return result.ruleType;
+}
+- (CreateRoomRequest_Builder*) setRuleType:(int32_t) value {
+  result.hasRuleType = YES;
+  result.ruleType = value;
+  return self;
+}
+- (CreateRoomRequest_Builder*) clearRuleType {
+  result.hasRuleType = NO;
+  result.ruleType = 0;
   return self;
 }
 @end
