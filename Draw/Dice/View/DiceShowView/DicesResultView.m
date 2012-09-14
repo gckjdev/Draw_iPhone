@@ -12,7 +12,7 @@
 #import "DeviceDetection.h"
 #import "AnimationManager.h"
 #import "DiceGameService.h"
-
+#import "HKGirlFontLabel.h"
 
 #define TAG_OFFSET_BOTTOM      110
 #define TAG_OFFSET_DICE  1001
@@ -137,7 +137,7 @@
 //        } 
 //    }
 //    
-//    _resultDiceCount = arr[resultDice] + ((resultDice == 1) ? 0 : (wilds ? 0 : arr[1]));
+//    _resultDiceCount = arr[resultDice] + wilds ? 0 : arr[1];
 //
 //    if (ruleType == DiceGameRuleTypeNormal) {
 //        _resultType = NormalDice;
@@ -377,9 +377,41 @@
 //    }
 //}
 
+- (NSString *)diceTypeString
+{
+    NSString *str;
+    switch (_diceType) {
+        case PBDiceTypeDiceSnake:
+            str = NSLS(@"kDiceSnake"); 
+            break;
+            
+        case PBDiceTypeDiceNet:
+            str = NSLS(@"kDiceNet");
+            
+        case PBDiceTypeDiceWai:
+            str = NSLS(@"kDiceWai");
+            
+        default:
+            break;
+    }
+    
+    return str;
+}
 
 - (void)showResultDiceAnimation
 {
+    NSString *str = [self diceTypeString];
+    if (str != nil) {
+        HKGirlFontLabel *label = [[[HKGirlFontLabel alloc] initWithFrame:CGRectMake(0, 0, 100, 30) pointSize:20] autorelease];
+        label.text = str;
+        
+    }
+    
+
+    
+    
+    
+    
     for (UIButton *diceView in [self selectedDiceViews]) {
         
         CAAnimation *zoomIn1 = [AnimationManager scaleAnimationWithScale:FACTOR_DICE_ZOOMIN duration:DURATION_STAY/4.0 delegate:self removeCompeleted:NO];

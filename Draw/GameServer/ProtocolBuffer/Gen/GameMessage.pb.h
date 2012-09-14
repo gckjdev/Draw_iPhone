@@ -230,10 +230,12 @@
 
 @interface CreateRoomRequest : PBGeneratedMessage {
 @private
+  BOOL hasRuleType_:1;
   BOOL hasGameId_:1;
   BOOL hasRoomName_:1;
   BOOL hasPassword_:1;
   BOOL hasUser_:1;
+  int32_t ruleType;
   NSString* gameId;
   NSString* roomName;
   NSString* password;
@@ -243,10 +245,12 @@
 - (BOOL) hasUser;
 - (BOOL) hasRoomName;
 - (BOOL) hasPassword;
+- (BOOL) hasRuleType;
 @property (readonly, retain) NSString* gameId;
 @property (readonly, retain) PBGameUser* user;
 @property (readonly, retain) NSString* roomName;
 @property (readonly, retain) NSString* password;
+@property (readonly) int32_t ruleType;
 
 + (CreateRoomRequest*) defaultInstance;
 - (CreateRoomRequest*) defaultInstance;
@@ -303,6 +307,11 @@
 - (NSString*) password;
 - (CreateRoomRequest_Builder*) setPassword:(NSString*) value;
 - (CreateRoomRequest_Builder*) clearPassword;
+
+- (BOOL) hasRuleType;
+- (int32_t) ruleType;
+- (CreateRoomRequest_Builder*) setRuleType:(int32_t) value;
+- (CreateRoomRequest_Builder*) clearRuleType;
 @end
 
 @interface CreateRoomResponse : PBGeneratedMessage {

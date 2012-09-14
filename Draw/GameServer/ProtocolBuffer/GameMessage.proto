@@ -24,6 +24,8 @@ message CreateRoomRequest {
   required PBGameUser user = 2;
   required string roomName = 3;                 // 房间名
     optional string password = 4;                         // 房间密码
+    
+    optional int32 ruleType = 5;                            // 房间规则类型
 }
 
 message CreateRoomResponse {

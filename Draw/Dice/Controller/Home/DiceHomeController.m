@@ -434,7 +434,7 @@
         if(_isTryJoinGame) {
             GameMessage* message = [CommonGameNetworkService userInfoToMessage:[note userInfo]];
             if ([message resultCode] == GameResultCodeSuccess){
-                DiceGamePlayController *controller = [[[DiceGamePlayController alloc] init] autorelease];
+                DiceGamePlayController *controller = [[[DiceGamePlayController alloc] initWIthRuleType:DiceGameRuleTypeRuleNormal] autorelease];
                 [self.navigationController pushViewController:controller animated:YES];
             }
             else{
@@ -477,7 +477,7 @@
 - (void)showCoinsNotEnoughView
 {
     CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"kNotEnoughCoin") 
-                                                       message:[DiceConfigManager coinsNotEnoughNote]
+                                                       message:[DiceConfigManager coinsNotEnoughNoteWithRuleType:DiceGameRuleTypeRuleNormal]
                                                          style:CommonDialogStyleDoubleButton 
                                                       delegate:self 
                                                          theme:CommonDialogThemeDice];
@@ -499,17 +499,14 @@
     [self hideActivity];
         
     if (_isTryJoinGame){
-        [[DiceGameService defaultService] joinGameRequestWithCondiction:^BOOL{
-            if ([DiceConfigManager meetJoinGameCondiction]) {
-                [self showActivityWithText:NSLS(@"kJoiningGame")];
-                return YES;
-            }else {
-                [[DiceGameService defaultService] disconnectServer];
-                [self showCoinsNotEnoughView];
-                return NO;
-            }
-        }];
-    }    
+        if ([DiceConfigManager meetJoinGameCondictionWithRuleType:DiceGameRuleTypeRuleNormal]) {
+            [self showActivityWithText:NSLS(@"kJoiningGame")];
+            [[DiceGameService defaultService] joinGameRequestWithRuleType:DiceGameRuleTypeRuleNormal];
+        }else {
+            [[DiceGameService defaultService] disconnectServer];
+            [self showCoinsNotEnoughView];
+        }
+    }   
 }
 
 - (void)didBroken
