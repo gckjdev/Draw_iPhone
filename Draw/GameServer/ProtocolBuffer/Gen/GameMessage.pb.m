@@ -244,17 +244,26 @@ static GetRoomsRequest* defaultGetRoomsRequestInstance = nil;
 
 @interface GetRoomsResponse ()
 @property (retain) NSMutableArray* mutableSessionsList;
+@property int32_t ruleType;
 @end
 
 @implementation GetRoomsResponse
 
 @synthesize mutableSessionsList;
+- (BOOL) hasRuleType {
+  return !!hasRuleType_;
+}
+- (void) setHasRuleType:(BOOL) value {
+  hasRuleType_ = !!value;
+}
+@synthesize ruleType;
 - (void) dealloc {
   self.mutableSessionsList = nil;
   [super dealloc];
 }
 - (id) init {
   if ((self = [super init])) {
+    self.ruleType = 0;
   }
   return self;
 }
@@ -289,6 +298,9 @@ static GetRoomsResponse* defaultGetRoomsResponseInstance = nil;
   for (PBGameSession* element in self.sessionsList) {
     [output writeMessage:1 value:element];
   }
+  if (self.hasRuleType) {
+    [output writeInt32:2 value:self.ruleType];
+  }
   [self.unknownFields writeToCodedOutputStream:output];
 }
 - (int32_t) serializedSize {
@@ -300,6 +312,9 @@ static GetRoomsResponse* defaultGetRoomsResponseInstance = nil;
   size = 0;
   for (PBGameSession* element in self.sessionsList) {
     size += computeMessageSize(1, element);
+  }
+  if (self.hasRuleType) {
+    size += computeInt32Size(2, self.ruleType);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -382,6 +397,9 @@ static GetRoomsResponse* defaultGetRoomsResponseInstance = nil;
     }
     [result.mutableSessionsList addObjectsFromArray:other.mutableSessionsList];
   }
+  if (other.hasRuleType) {
+    [self setRuleType:other.ruleType];
+  }
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }
@@ -407,6 +425,10 @@ static GetRoomsResponse* defaultGetRoomsResponseInstance = nil;
         PBGameSession_Builder* subBuilder = [PBGameSession builder];
         [input readMessage:subBuilder extensionRegistry:extensionRegistry];
         [self addSessions:[subBuilder buildPartial]];
+        break;
+      }
+      case 16: {
+        [self setRuleType:[input readInt32]];
         break;
       }
     }
@@ -439,6 +461,22 @@ static GetRoomsResponse* defaultGetRoomsResponseInstance = nil;
     result.mutableSessionsList = [NSMutableArray array];
   }
   [result.mutableSessionsList addObject:value];
+  return self;
+}
+- (BOOL) hasRuleType {
+  return result.hasRuleType;
+}
+- (int32_t) ruleType {
+  return result.ruleType;
+}
+- (GetRoomsResponse_Builder*) setRuleType:(int32_t) value {
+  result.hasRuleType = YES;
+  result.ruleType = value;
+  return self;
+}
+- (GetRoomsResponse_Builder*) clearRuleType {
+  result.hasRuleType = NO;
+  result.ruleType = 0;
   return self;
 }
 @end

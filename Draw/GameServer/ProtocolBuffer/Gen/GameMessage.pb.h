@@ -181,8 +181,12 @@
 
 @interface GetRoomsResponse : PBGeneratedMessage {
 @private
+  BOOL hasRuleType_:1;
+  int32_t ruleType;
   NSMutableArray* mutableSessionsList;
 }
+- (BOOL) hasRuleType;
+@property (readonly) int32_t ruleType;
 - (NSArray*) sessionsList;
 - (PBGameSession*) sessionsAtIndex:(int32_t) index;
 
@@ -226,6 +230,11 @@
 - (GetRoomsResponse_Builder*) addSessions:(PBGameSession*) value;
 - (GetRoomsResponse_Builder*) addAllSessions:(NSArray*) values;
 - (GetRoomsResponse_Builder*) clearSessionsList;
+
+- (BOOL) hasRuleType;
+- (int32_t) ruleType;
+- (GetRoomsResponse_Builder*) setRuleType:(int32_t) value;
+- (GetRoomsResponse_Builder*) clearRuleType;
 @end
 
 @interface CreateRoomRequest : PBGeneratedMessage {
