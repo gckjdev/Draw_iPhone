@@ -35,6 +35,8 @@
 - (void)openDice;
 
 - (void)userItem:(int)itemId;
+- (void)userTimeItem:(int)itemId 
+                time:(int)time;
 - (void)changeDiceList:(NSString *)userId diceList:(NSArray *)diceList;
 
 @end

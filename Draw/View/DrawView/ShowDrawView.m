@@ -116,10 +116,10 @@
     CGFloat lineWidth = [_currentDrawAction.paint width];
     
     //Pad our values so the bounding box respects our line width
-    drawBox.origin.x        -= lineWidth * 0.8;
-    drawBox.origin.y        -= lineWidth * 0.8;
-    drawBox.size.width      += lineWidth * 1.6;
-    drawBox.size.height     += lineWidth * 1.6;
+    drawBox.origin.x        -= lineWidth * 1;
+    drawBox.origin.y        -= lineWidth * 1;
+    drawBox.size.width      += lineWidth * 2;
+    drawBox.size.height     += lineWidth * 2;
     
 
     UIGraphicsBeginImageContext(drawBox.size);

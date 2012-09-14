@@ -31,6 +31,8 @@ typedef enum {
 @property (assign, nonatomic) OpenType openType;
 
 @property (retain, nonatomic) NSDictionary *gameResult;
+@property (retain, nonatomic) NSDictionary *finalCount;
+
 
 @property (assign, nonatomic) BOOL wilds;
 @property (nonatomic, assign) BOOL isMeAByStander;

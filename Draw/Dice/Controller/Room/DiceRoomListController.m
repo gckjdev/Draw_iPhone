@@ -38,6 +38,7 @@
 @interface DiceRoomListController ()
 {
     AccountService *_accountService;
+    DiceGameRuleType _ruleType;
 }
 
 @end
@@ -54,10 +55,14 @@
 @synthesize nearByRoomButton;
 @synthesize currentSession = _currentSession;
 
-- (id)init
+- (id)initWithRuleType:(DiceGameRuleType)ruleType
 {
     self = [super init];
-    firstLoad = YES;
+    if (self) {
+        firstLoad = YES;
+        _ruleType = ruleType;
+    }
+    
     return self;
 }
 

@@ -582,6 +582,8 @@
 		C284E8801531D89800DD5B77 /* AboutUsController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C284E87E1531D89800DD5B77 /* AboutUsController.xib */; };
 		C28E7BEE1601836400F4B6A5 /* PostponeItemAction.m in Sources */ = {isa = PBXBuildFile; fileRef = C28E7BED1601836300F4B6A5 /* PostponeItemAction.m */; };
 		C28E7BF11601839300F4B6A5 /* UrgeItemAction.m in Sources */ = {isa = PBXBuildFile; fileRef = C28E7BF01601839300F4B6A5 /* UrgeItemAction.m */; };
+		C28E7C081602DAC600F4B6A5 /* DoubleKillItemAction.m in Sources */ = {isa = PBXBuildFile; fileRef = C28E7C071602DAC600F4B6A5 /* DoubleKillItemAction.m */; };
+		C28E7C0B1602DCF900F4B6A5 /* TurtleItemAction.m in Sources */ = {isa = PBXBuildFile; fileRef = C28E7C0A1602DCF700F4B6A5 /* TurtleItemAction.m */; };
 		C296872B15DCE03F006968BA /* DiceItemInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = C296872115DCE03F006968BA /* DiceItemInfoView.m */; };
 		C296872C15DCE03F006968BA /* DiceItemInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C296872215DCE03F006968BA /* DiceItemInfoView.xib */; };
 		C296872D15DCE03F006968BA /* DiceUserInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = C296872515DCE03F006968BA /* DiceUserInfoView.m */; };
@@ -2107,6 +2109,10 @@
 		C28E7BED1601836300F4B6A5 /* PostponeItemAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostponeItemAction.m; sourceTree = "<group>"; };
 		C28E7BEF1601839200F4B6A5 /* UrgeItemAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UrgeItemAction.h; sourceTree = "<group>"; };
 		C28E7BF01601839300F4B6A5 /* UrgeItemAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UrgeItemAction.m; sourceTree = "<group>"; };
+		C28E7C061602DAC600F4B6A5 /* DoubleKillItemAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DoubleKillItemAction.h; sourceTree = "<group>"; };
+		C28E7C071602DAC600F4B6A5 /* DoubleKillItemAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DoubleKillItemAction.m; sourceTree = "<group>"; };
+		C28E7C091602DCF700F4B6A5 /* TurtleItemAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TurtleItemAction.h; sourceTree = "<group>"; };
+		C28E7C0A1602DCF700F4B6A5 /* TurtleItemAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TurtleItemAction.m; sourceTree = "<group>"; };
 		C296872015DCE03F006968BA /* DiceItemInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiceItemInfoView.h; sourceTree = "<group>"; };
 		C296872115DCE03F006968BA /* DiceItemInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiceItemInfoView.m; sourceTree = "<group>"; };
 		C296872215DCE03F006968BA /* DiceItemInfoView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DiceItemInfoView.xib; sourceTree = "<group>"; };
@@ -3255,6 +3261,7 @@
 		CAE2CABD151B2ECA0062ED37 /* Account.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Account.m; sourceTree = "<group>"; };
 		CAE2CABF151B2F7C0062ED37 /* Item.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Item.h; sourceTree = "<group>"; };
 		CAE2CAC0151B2F7C0062ED37 /* Item.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Item.m; sourceTree = "<group>"; };
+		CAE32603160199AA00AD77C3 /* MainDataModel 10.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "MainDataModel 10.xcdatamodel"; sourceTree = "<group>"; };
 		CAE57D27153BD77F00C4C63A /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		CAE57D2B153BD7B000C4C63A /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		CAE8B15015E4A24E0098A565 /* BoardPanel~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = "BoardPanel~ipad.xib"; path = "Draw/Board/Controller/BoardPanel~ipad.xib"; sourceTree = SOURCE_ROOT; };
@@ -3899,6 +3906,10 @@
 				C28E7BED1601836300F4B6A5 /* PostponeItemAction.m */,
 				C28E7BEF1601839200F4B6A5 /* UrgeItemAction.h */,
 				C28E7BF01601839300F4B6A5 /* UrgeItemAction.m */,
+				C28E7C061602DAC600F4B6A5 /* DoubleKillItemAction.h */,
+				C28E7C071602DAC600F4B6A5 /* DoubleKillItemAction.m */,
+				C28E7C091602DCF700F4B6A5 /* TurtleItemAction.h */,
+				C28E7C0A1602DCF700F4B6A5 /* TurtleItemAction.m */,
 			);
 			path = Play;
 			sourceTree = "<group>";
@@ -9090,6 +9101,8 @@
 				A42C93E616001FB90090D6B6 /* PeekItemAction.m in Sources */,
 				C28E7BEE1601836400F4B6A5 /* PostponeItemAction.m in Sources */,
 				C28E7BF11601839300F4B6A5 /* UrgeItemAction.m in Sources */,
+				C28E7C081602DAC600F4B6A5 /* DoubleKillItemAction.m in Sources */,
+				C28E7C0B1602DCF900F4B6A5 /* TurtleItemAction.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -9575,6 +9588,7 @@
 		CA1377271524598700B5790B /* MainDataModel.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				CAE32603160199AA00AD77C3 /* MainDataModel 10.xcdatamodel */,
 				CAEECCD215DBB0B000FA5A2A /* MainDataModel 9.xcdatamodel */,
 				CAEECCD115DB46AD00FA5A2A /* MainDataModel 8.xcdatamodel */,
 				CA4AF8C015D23A4E00734FAC /* MainDataModel 7.xcdatamodel */,
@@ -9585,7 +9599,7 @@
 				CAE23C6E153E9E9A00F52497 /* MainDataModel 2.xcdatamodel */,
 				CA1377281524598700B5790B /* MainDataModel.xcdatamodel */,
 			);
-			currentVersion = CAEECCD215DBB0B000FA5A2A /* MainDataModel 9.xcdatamodel */;
+			currentVersion = CAE32603160199AA00AD77C3 /* MainDataModel 10.xcdatamodel */;
 			path = MainDataModel.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

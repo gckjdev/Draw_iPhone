@@ -32,11 +32,6 @@
 
 @property (assign, nonatomic) id<DicesResultViewAnimationDelegate> delegate;
 
-- (void)setDices:(NSArray *)diceList
-      resultDice:(int)resultDice
-           wilds:(BOOL)wilds
-        ruleType:(DiceGameRuleType)ruleType;
-
-- (void)showAnimation:(CGPoint)center;
+- (void)showUserResult:(NSString *)userId toCenter:(CGPoint)center;
 
 @end

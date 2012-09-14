@@ -83,14 +83,14 @@ static MyPaintManager* _defaultManager;
     NSString *imageName = [self writeImage:image];
     if (imageName) {
         if (![imageName isEqualToString:draft.image]) {
-            NSLog(@"<updateDraft> delete old image");
+//            NSLog(@"<updateDraft> delete old image");
             [self deletePaintImage:draft.image sync:YES];            
         }
         NSData* data = [NSKeyedArchiver archivedDataWithRootObject:drawActionList];
         draft.data = data;
         draft.image = imageName;
         CoreDataManager* dataManager = GlobalGetCoreDataManager();
-        NSLog(@"<update draft> before save, draft = %@",draft);
+//        NSLog(@"<update draft> before save, draft = %@",draft);
         return [dataManager save];        
     }
 
@@ -108,7 +108,7 @@ static MyPaintManager* _defaultManager;
                    level:(WordLevel)level
 {
     
-    NSLog(@"<Draw Log>createDraft");
+//    NSLog(@"<Draw Log>createDraft");
     
     NSString *imageName = [self writeImage:image];
     if (imageName) {
@@ -117,11 +117,11 @@ static MyPaintManager* _defaultManager;
 
         CoreDataManager* dataManager = GlobalGetCoreDataManager();
         
-        NSLog(@"<Draw Log>createDraft insert new draft");
+//        NSLog(@"<Draw Log>createDraft insert new draft");
         
         MyPaint* newMyPaint = [dataManager insert:@"MyPaint"];
         
-        NSLog(@"<Draw Log>createDraft set attributes");
+//        NSLog(@"<Draw Log>createDraft set attributes");
         
         [newMyPaint setData:data];
         [newMyPaint setImage:imageName];
@@ -132,26 +132,26 @@ static MyPaintManager* _defaultManager;
         [newMyPaint setCreateDate:[NSDate date]];
         [newMyPaint setDrawWord:drawWord];
         
-        NSLog(@"<Draw Log>before set Lanauge,  %@", [newMyPaint description]);
+//        NSLog(@"<Draw Log>before set Lanauge,  %@", [newMyPaint description]);
         
         [newMyPaint setLanguage:[NSNumber numberWithInt:language]];
         
-        NSLog(@"<Draw Log>before set level,  %@", [newMyPaint description]);
+//        NSLog(@"<Draw Log>before set level,  %@", [newMyPaint description]);
         
         [newMyPaint setLevel:[NSNumber numberWithInt:level]];
         
         PPDebug(@"<createDraftWithImage> %@", [newMyPaint description]);
         
-        NSLog(@"<Draw Log>createDraft before save draft, new Paint = %@",newMyPaint);
+//        NSLog(@"<Draw Log>createDraft before save draft, new Paint = %@",newMyPaint);
         
         BOOL result = [dataManager save];
         
-        NSLog(@"<Draw Log>createDraft saved!, result = %d",result);
+//        NSLog(@"<Draw Log>createDraft saved!, result = %d",result);
             
         if (result) {
             return newMyPaint;
         }else{
-            PPDebug(@"<createDraft>:fail to create draft, word = %@", drawWord);
+//            PPDebug(@"<createDraft>:fail to create draft, word = %@", drawWord);
             return nil;
         }
     }
@@ -232,16 +232,40 @@ static MyPaintManager* _defaultManager;
 }
 
 
+- (void)removeAlldeletedPaints
+{
+    CoreDataManager* dataManager =[CoreDataManager defaultManager];
+    NSArray* array = [dataManager execute:@"findAllDeletedPaints"];
+    
+    PPDebug(@"<removeAlldeletedPaints> count = %d", [array count]);
+    
+    @try {
+        for (MyPaint* paint in array){
+            [paint setDeleteFlag:[NSNumber numberWithBool:YES]];
+            //remove the image path.
+            [self deletePaintImage:paint.image sync:YES];
+//            NSLog(@"<removeAlldeletedPaints> paint = %@",[paint description]);
+            //delete data        
+            [dataManager del:paint];
+        }
+        [dataManager save];    
+
+    }
+    @catch (NSException *exception) {
+        NSLog(@"exception: %@, reason: %@",[exception description], [exception reason]);
+    }
+    @finally {
+        
+    }
+    
+}
+
 - (BOOL)deletePaintsByRquestName:(NSString *)requestName
 {
     CoreDataManager* dataManager =[CoreDataManager defaultManager];
     NSArray* array = [dataManager execute:requestName];
     for (MyPaint* paint in array){
-        NSString *imagePath = paint.image;
-        BOOL flag = [dataManager del:paint];     
-        if (flag) {
-            [self deletePaintImage:imagePath sync:NO];
-        }
+        [paint setDeleteFlag:[NSNumber numberWithBool:YES]];
     }
     [dataManager save];    
     return YES;
@@ -266,40 +290,48 @@ static MyPaintManager* _defaultManager;
 - (void)deletePaintImage:(NSString *)paintImage sync:(BOOL)sync
 {
     dispatch_block_t block = ^{
-        NSString* image = [NSString stringWithString:[MyPaintManager getMyPaintImagePathByCapacityPath:paintImage]];
-        if ([[NSFileManager defaultManager] fileExistsAtPath:image]) {
-            [[NSFileManager defaultManager] removeItemAtPath:image error:nil];
-            PPDebug(@"<deleteMyPaints> remove image at %@", image);
-        }        
+        @try {
+            NSString* image = [NSString stringWithString:[MyPaintManager getMyPaintImagePathByCapacityPath:paintImage]];
+            if ([[NSFileManager defaultManager] fileExistsAtPath:image]) {
+                [[NSFileManager defaultManager] removeItemAtPath:image error:nil];
+                PPDebug(@"<deleteMyPaints> remove image at %@", image);
+            }        
+        }
+        @catch (NSException *exception) {
+//            NSLog(@"<deletePaintImage> caught Exception: %@, reason: %@",[exception description],[exception reason]);
+        }
+        @finally {
+            
+        }    
     };
     
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     if (!sync && queue != NULL){
         dispatch_async(queue, block);
     }else{
-        NSString* image = [NSString stringWithString:[MyPaintManager getMyPaintImagePathByCapacityPath:paintImage]];
-        if ([[NSFileManager defaultManager] fileExistsAtPath:image]) {
-            [[NSFileManager defaultManager] removeItemAtPath:image error:nil];
-            PPDebug(@"<deleteMyPaints> remove image at %@", image);
-        }        
+        @try {
+            NSString* image = [NSString stringWithString:[MyPaintManager getMyPaintImagePathByCapacityPath:paintImage]];
+            if ([[NSFileManager defaultManager] fileExistsAtPath:image]) {
+                [[NSFileManager defaultManager] removeItemAtPath:image error:nil];
+                PPDebug(@"<deleteMyPaints> remove image at %@", image);
+            }        
+        }
+        @catch (NSException *exception) {
+//            NSLog(@"<deletePaintImage> caught Exception: %@, reason: %@",[exception description],[exception reason]);
+        }
+        @finally {
+            
+        }
     }
 }
 
 - (BOOL)deleteMyPaint:(MyPaint*)paint
 {
-    NSString *paintImage = paint.image;
     CoreDataManager* dataManager =[CoreDataManager defaultManager];
-    NSLog(@"<deleteMyPaint> before del");
-    [dataManager del:paint];
-    
-    NSLog(@"<deleteMyPaint> before save");
+    [paint setDeleteFlag:[NSNumber numberWithBool:YES]];
+//    NSLog(@"<deleteMyPaint> before save");
     BOOL result = [dataManager save];
     
-    NSLog(@"<deleteMyPaint> after save, result = %d",result);
-    
-    if (result) {
-        [self deletePaintImage:paintImage sync:YES];
-    }
     return result;
 }
 
@@ -331,7 +363,7 @@ static MyPaintManager* _defaultManager;
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
                                                          NSUserDomainMask, YES);
     if (!paths || [paths count] == 0) {
-        NSLog(@"Document directory not found!");
+//        NSLog(@"Document directory not found!");
         return nil;
     }
     NSString *imgName = imageName;
@@ -340,10 +372,10 @@ static MyPaintManager* _defaultManager;
     dir = [dir stringByAppendingPathComponent:MY_PAINT_IMAGE_DIR];
     BOOL flag = [FileUtil createDir:dir];
     if (flag == NO) {
-        PPDebug(@"<MyPaintManager> create dir fail. dir = %@",dir);
+//        PPDebug(@"<MyPaintManager> create dir fail. dir = %@",dir);
     }
     NSString *uniquePath=[dir stringByAppendingPathComponent:imgName];
-    NSLog(@"construct path = %@",uniquePath);
+//    NSLog(@"construct path = %@",uniquePath);
     return uniquePath;
 }
 

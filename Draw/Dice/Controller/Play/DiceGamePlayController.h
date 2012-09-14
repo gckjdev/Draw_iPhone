@@ -28,6 +28,8 @@
 #import "DiceSoundManager.h"
 #import "DiceItemManager.h"
 
+#define USER_THINK_TIME_INTERVAL 15
+
 @class DiceGameService;
 
 
@@ -41,6 +43,7 @@
 //    ItemService *_itemService;
     ExpressionManager *_expressionManager;
     DiceSoundManager *_soundManager;
+    NSMutableSet* _urgedUser;
     
     int hideAdCounter;
 }
@@ -73,6 +76,8 @@
 @property (retain, nonatomic) IBOutlet UIView *popupLevel3View;
 
 - (UIView *)bellViewOfUser:(NSString *)userId;
-
+- (DiceAvatarView *)selfAvatarView;
+- (DiceAvatarView*)avatarViewOfUser:(NSString*)userId;
+- (void)urgeUser:(NSString*)userId;
 
 @end
