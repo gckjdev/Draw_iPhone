@@ -10,28 +10,54 @@
 #import "AccountService.h"
 #import "CommonDialog.h"
 #import "ConfigManager.h"
-
-#define DICE_THRESHOLD_COIN ([ConfigManager getDiceThresholdCoin])
+#import "GameConstants.pb.h"
 
 @implementation DiceConfigManager
 
-
-+ (BOOL)meetJoinGameCondiction
++ (int)getThresholdCoins:(int)ruleType
 {
-    if ([[AccountService defaultService] getBalance] <= DICE_THRESHOLD_COIN) {
+    int thresholdCoins;
+    switch (ruleType) {
+        case DiceGameRuleTypeRuleNormal:
+            thresholdCoins = [ConfigManager getDiceThresholdCoinWithNormalRule];
+            break;
+            
+        case DiceGameRuleTypeRuleHigh:
+            thresholdCoins = [ConfigManager getDiceThresholdCoinWithHightRule];
+            break;
+            
+        case DiceGameRuleTypeRuleSuperHigh:
+            thresholdCoins = [ConfigManager getDiceThresholdCoinWithSuperHightRule];
+            break;
+            
+        default:
+            
+            break;
+    }
+    
+    return thresholdCoins;
+}
+
++ (BOOL)meetJoinGameCondictionWithRuleType:(int)ruleType
+{
+    int thresholdCoins = [self getThresholdCoins:ruleType];
+    
+    if ([[AccountService defaultService] getBalance] <= thresholdCoins) {
         return NO;
     }else {
         return YES;
     }
 }
 
-+ (NSString *)coinsNotEnoughNote
++ (NSString *)coinsNotEnoughNoteWithRuleType:(int)ruleType
 {
     NSString* message;
+    int thresholdCoins = [self getThresholdCoins:ruleType];
+
     if ([ConfigManager wallEnabled]) {
-        message = [NSString stringWithFormat:NSLS(@"kCoinsNotEnoughAndGetFreeCoins"), DICE_THRESHOLD_COIN];
+        message = [NSString stringWithFormat:NSLS(@"kCoinsNotEnoughAndGetFreeCoins"), thresholdCoins];
     }else {
-        message = [NSString stringWithFormat:NSLS(@"kCoinsNotEnoughAndEnterCoinsShop"), DICE_THRESHOLD_COIN];
+        message = [NSString stringWithFormat:NSLS(@"kCoinsNotEnoughAndEnterCoinsShop"), thresholdCoins];
     }
     
     return message;

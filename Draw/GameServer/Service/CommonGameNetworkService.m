@@ -292,6 +292,15 @@
     [_networkClient sendJoinGameRequest:user gameId:_gameId];
 }
 
+- (void)joinGameRequestWithRuleType:(int)ruleType
+{
+    PPDebug(@"[SEND] JoinGameRequest");
+    PBGameUser* user = [[UserManager defaultManager] toPBGameUser];
+    [_networkClient sendJoinGameRequest:user 
+                                 gameId:_gameId
+                               ruleType:ruleType];
+}
+
 - (void)joinGameRequest:(long)sessionId 
 {
     PPDebug(@"[SEND] JoinGameRequest");
@@ -301,26 +310,38 @@
                               sessionId:sessionId];
 }
 
-- (BOOL)joinGameRequestWithCondiction:(BOOL (^)(void))condiction
+- (void)joinGameRequest:(long)sessionId ruleType:(int)ruleType
 {
-    BOOL flag = condiction();
-    if (flag ==  YES) {
-        [self joinGameRequest];
-    }
-    
-    return flag; 
+    PPDebug(@"[SEND] JoinGameRequest");
+    PBGameUser* user = [[UserManager defaultManager] toPBGameUser];
+    [_networkClient sendJoinGameRequest:user
+                                 gameId:_gameId 
+                              sessionId:sessionId 
+                               ruleType:ruleType];
 }
 
+//- (BOOL)joinGameRequestWithRuleType:(int)ruleType
+//                         condiction:(BOOL (^)(void))condiction
+//{
+//    BOOL flag = condiction();
+//    if (flag ==  YES) {
+//        [self joinGameRequestWithRuleType:ruleType];
+//    }
+//    
+//    return flag; 
+//}
 
-- (BOOL)joinGameRequest:(long)sessionId condiction:(BOOL (^)(void))condiction
-{
-    BOOL flag = condiction();
-    if (flag ==  YES) {
-        [self joinGameRequest:sessionId];
-    }
-    
-    return flag; 
-}
+//- (BOOL)joinGameRequest:(long)sessionId
+//               ruleType:(int)ruleType
+//             condiction:(BOOL (^)(void))condiction
+//{
+//    BOOL flag = condiction();
+//    if (flag ==  YES) {
+//        [self joinGameRequest:sessionId ruleType:ruleType];
+//    }
+//    
+//    return flag; 
+//}
 
 
 
@@ -338,6 +359,17 @@
                                      name:name 
                                    gameId:_gameId 
                                  password:password];
+}
+
+- (void)createRoomWithName:(NSString*)name 
+                  password:(NSString *)password
+                  ruleType:(int)ruleType
+{
+    [_networkClient sendCreateRoomRequest:[[UserManager defaultManager] toPBGameUser] 
+                                     name:name 
+                                   gameId:_gameId 
+                                 password:password
+                                 ruleType:ruleType];
 }
 
 - (void)registerRoomsNotification:(NSArray*)sessionIdList

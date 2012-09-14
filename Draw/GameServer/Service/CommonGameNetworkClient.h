@@ -24,18 +24,40 @@
 - (void)sendGetRoomsRequest:(NSString*)userId 
                  startIndex:(int)index 
                       count:(int)count;
-- (void)sendJoinGameRequest:(PBGameUser*)user gameId:(NSString*)gameId;
+
+- (void)sendJoinGameRequest:(PBGameUser*)user
+                     gameId:(NSString*)gameId;
+
+- (void)sendJoinGameRequest:(PBGameUser*)user 
+                     gameId:(NSString*)gameId
+                   ruleType:(int)ruleType;
+
 - (void)sendJoinGameRequest:(PBGameUser*)user 
                      gameId:(NSString*)gameId 
                   sessionId:(long)sessionId;
+
+- (void)sendJoinGameRequest:(PBGameUser*)user 
+                     gameId:(NSString*)gameId 
+                  sessionId:(long)sessionId
+                   ruleType:(int)ruleType;
+
 - (int)generateMessageId;
+
 - (void)sendSimpleMessage:(int)command
                    userId:(NSString*)userId 
                 sessionId:(long)sessionId;
+
 - (void)sendCreateRoomRequest:(PBGameUser*)user
                          name:(NSString*)roomName 
                        gameId:(NSString*)gameId 
                      password:(NSString*)password;
+
+- (void)sendCreateRoomRequest:(PBGameUser*)user
+                         name:(NSString*)roomName 
+                       gameId:(NSString*)gameId 
+                     password:(NSString *)password
+                     ruleType:(int)ruleType;
+
 - (void)sendRegisterRoomsNotificationRequest:(NSArray*)sessionList 
                                       userId:(NSString*)userId;
 - (void)sendUnRegisterRoomsNotificationRequest:(NSArray*)sessionList 

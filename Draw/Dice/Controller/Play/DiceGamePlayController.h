@@ -38,15 +38,11 @@
     LevelService *_levelService;
     AccountService *_accountService;
     AudioManager *_audioManager;
-//    ItemService *_itemService;
     ExpressionManager *_expressionManager;
-    DiceSoundManager *_soundManager;
-    
-    int hideAdCounter;
+    DiceSoundManager *_soundManager;    
 }
 
 @property (retain, nonatomic) NSTimer *adHideTimer;
-
 @property (retain, nonatomic) IBOutlet FontLabel *myLevelLabel;
 @property (retain, nonatomic) IBOutlet FontLabel *myCoinsLabel;
 @property (retain, nonatomic) IBOutlet UIView *myDiceListHolderView;
@@ -71,6 +67,8 @@
 @property (retain, nonatomic) IBOutlet UIView *popupLevel1View;
 @property (retain, nonatomic) IBOutlet UIView *popupLevel2View;
 @property (retain, nonatomic) IBOutlet UIView *popupLevel3View;
+
+- (id)initWIthRuleType:(DiceGameRuleType)ruleType;
 
 - (UIView *)bellViewOfUser:(NSString *)userId;
 
