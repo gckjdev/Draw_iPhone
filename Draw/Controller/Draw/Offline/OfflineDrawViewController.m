@@ -573,7 +573,9 @@ enum{
 
     }
     else if (dialog.tag == DIALOG_TAG_ESCAPE ){
-        [self saveDraft:NO];
+        if ([drawView.drawActionList count] > 0) {
+            [self saveDraft:NO];            
+        }
         [self quit];
     }else if(dialog.tag == BUY_CONFIRM_TAG){
         [[AccountService defaultService] buyItem:_willBuyPen.penType itemCount:1 itemCoins:_willBuyPen.price];
@@ -688,11 +690,9 @@ enum{
         
         [[LevelService defaultService] addExp:OFFLINE_DRAW_EXP delegate:self];
         if (self.draft) {
-            MyPaint *temp = self.draft;
+            NSLog(@"before delete draft, temp = %@",[self.draft description]);
+            [[MyPaintManager defaultManager] deleteMyPaint:self.draft];
             self.draft = nil;
-            NSLog(@"before delete draft, temp = %@",[temp description]);
-            [[MyPaintManager defaultManager] deleteMyPaint:temp];
-
         }
         
     }else{
@@ -741,44 +741,36 @@ enum{
 
     UIImage *image = [drawView createImage];    
     
-    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-    
-    __block BOOL result = NO;
-    dispatch_async(queue, ^{
-        @try {
+    BOOL result = NO;
+
+    @try {
+        if (self.draft) {
+            NSLog(@"<Draw Log>update old draft");
+            result = [[MyPaintManager defaultManager] updateDraft:self.draft 
+                                                   image:image
+                                                    data:drawView.drawActionList];
+        }else{    
+            self.draft = [[MyPaintManager defaultManager] createDraft:image data:drawView.drawActionList language:languageType drawWord:self.word.text level:self.word.level]; 
             if (self.draft) {
-                NSLog(@"<Draw Log>update old draft");
-                result = [[MyPaintManager defaultManager] updateDraft:self.draft 
-                                                       image:image
-                                                        data:drawView.drawActionList];
-            }else{    
-                self.draft = [[MyPaintManager defaultManager] createDraft:image data:drawView.drawActionList language:languageType drawWord:self.word.text level:self.word.level]; 
-                if (self.draft) {
-                    result = YES;
-                }else{
-                    result = NO;
-                }
+                result = YES;
+            }else{
+                result = NO;
             }
         }
-        @catch (NSException *exception) {
-            NSLog(@"saveDraft: Caught %@: %@", [exception name], [exception reason]);
-        }
-        @finally {
+        if (showResult) {
+            NSString *message = result ? NSLS(@"kSaveSucc") :  NSLS(@"kSaveFail");
+            [[CommonMessageCenter defaultCenter] postMessageWithText:message delayTime:1.5 isSuccessful:result];
             
         }
-        
 
+    }
+    @catch (NSException *exception) {
+        NSLog(@"saveDraft: Caught %@: %@", [exception name], [exception reason]);
+    }
+    @finally {
         
-        if (showResult) {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                NSString *message = result ? NSLS(@"kSaveSucc") :  NSLS(@"kSaveFail");
-                [[CommonMessageCenter defaultCenter] postMessageWithText:message delayTime:1.5 isSuccessful:result];
-
-            });
-        }
+    }
         
-    });
-    
 }
 
 #pragma mark - Actions
@@ -885,7 +877,13 @@ enum{
             [delegate didClickBack];
         }
     }else {
-        CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kQuitDrawAlertTitle") message:NSLS(@"kQuitDrawAlertMessage") style:CommonDialogStyleDoubleButton delegate:self];
+        CommonDialog *dialog = nil;
+        if ([drawView.drawActionList count] == 0) {
+            dialog = [CommonDialog createDialogWithTitle:NSLS(@"kQuitGameAlertTitle") message:NSLS(@"kQuitGameAlertMessage") style:CommonDialogStyleDoubleButton delegate:self];
+        }else{
+            dialog = [CommonDialog createDialogWithTitle:NSLS(@"kQuitDrawAlertTitle") message:NSLS(@"kQuitDrawAlertMessage") style:CommonDialogStyleDoubleButton delegate:self];
+        }
+        
         dialog.tag = DIALOG_TAG_ESCAPE;
         [dialog showInView:self.view];
     }

@@ -26,6 +26,8 @@
 #import "UIViewUtils.h"
 #import "CommonDiceItemAction.h"
 #import "DiceConfigManager.h"
+#import "PostponeItemAction.h"
+#import "UrgeItemAction.h"
 
 #define AVATAR_TAG_OFFSET   8000
 #define NICKNAME_TAG_OFFSET 1100
@@ -34,7 +36,7 @@
 
 #define MAX_PLAYER_COUNT    6
 
-#define USER_THINK_TIME_INTERVAL 15
+
 
 #define DURATION_SHOW_GAIN_COINS 3
 
@@ -50,8 +52,7 @@
 @property (retain, nonatomic) NSEnumerator *enumerator;
 @property (retain, nonatomic) DicePopupViewManager *popupView;
 
-- (DiceAvatarView *)selfAvatarView;
-- (DiceAvatarView*)avatarViewOfUser:(NSString*)userId;
+
 
 - (void)disableAllDiceOperationButtons;
 
@@ -137,6 +138,7 @@
     [_popupLevel2View release];
     [_popupLevel3View release];
     [_popupView release];
+    [_urgedUser release];
     [super dealloc];
 }
 
@@ -153,6 +155,7 @@
         _expressionManager = [ExpressionManager defaultManager];
         _soundManager = [DiceSoundManager defaultManager];
         _ruleType = ruleType;
+        _urgedUser = [[NSMutableSet alloc] init];
     }
     
     return self;
@@ -797,12 +800,24 @@
     myDiceListHolderView.hidden = NO;
 }
 
+- (void)userPreStart:(NSString*)userId
+{
+    if ([_urgedUser containsObject:userId]) {
+        [[self avatarViewOfUser:userId] startReciprocol:USER_THINK_TIME_INTERVAL - [ConfigManager getUrgeTime] 
+                                                      fromProgress:(1 - (float)(USER_THINK_TIME_INTERVAL-[ConfigManager getUrgeTime])/USER_THINK_TIME_INTERVAL)];
+        [_urgedUser removeObject:userId];
+    } else {
+        [[self avatarViewOfUser:userId] startReciprocol:USER_THINK_TIME_INTERVAL];
+    }
+}
+
 - (void)nextPlayerStart
 {
     [self clearAllReciprocol];
     
     NSString *currentPlayUserId = _diceService.session.currentPlayUserId;
-    [[self avatarViewOfUser:currentPlayUserId] startReciprocol:USER_THINK_TIME_INTERVAL];
+    [self userPreStart:currentPlayUserId];
+    
     
     // 如果自己是旁观者，则在这里返回。
     if (_diceService.diceSession.isMeAByStander) {
@@ -1291,6 +1306,25 @@
         [self.wildsFlagButton.layer addAnimation:enlarge forKey:@"enlarge"];
     }
     
+}
+
+- (IBAction)clickPostpone:(id)sender
+{
+    int postponeTime = [ConfigManager getPostponeTime];
+    [_diceService userTimeItem:ItemTypeIncTime 
+                          time:postponeTime];
+}
+
+- (IBAction)clickUrge:(id)sender
+{
+    int urgeTime = [ConfigManager getUrgeTime];
+    [_diceService userTimeItem:ItemTypeDecTime 
+                          time:urgeTime];
+}
+
+- (void)urgeUser:(NSString*)userId
+{
+    [_urgedUser addObject:userId];
 }
 
 

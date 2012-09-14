@@ -65,11 +65,15 @@
                  delegate:(id<MyPaintManagerDelegate>)delegate;
 
 
+//set delete flag.
 - (BOOL)deleteMyPaint:(MyPaint*)paint;
 - (BOOL)deleteAllPaints:(BOOL)onlyDrawnByMe;
 - (BOOL)deleteAllDrafts;
 - (void)savePhoto:(NSString*)filePath;
 - (BOOL)save;
 - (BOOL)deleteMyPaint:(MyPaint *)paint;
+
+//real remove.
+- (void)removeAlldeletedPaints;
 
 @end

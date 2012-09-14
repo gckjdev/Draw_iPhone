@@ -108,4 +108,6 @@ typedef enum{
 
 + (WallType)wallType;
 
++ (int)getPostponeTime;
++ (int)getUrgeTime;
 @end

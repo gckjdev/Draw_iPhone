@@ -32,6 +32,7 @@
 
 - (NSString *)getNickNameByUserId:(NSString *)userId;
 - (PBGameUser *)getUserByUserId:(NSString *)userId;
+- (PBGameUser *)getNextSeatPlayerByUserId:(NSString*)userId;
 
 - (void)updateSession:(PBGameSessionChanged*)changeData;
 

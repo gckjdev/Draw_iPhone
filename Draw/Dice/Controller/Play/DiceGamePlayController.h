@@ -28,6 +28,8 @@
 #import "DiceSoundManager.h"
 #import "DiceItemManager.h"
 
+#define USER_THINK_TIME_INTERVAL 15
+
 @class DiceGameService;
 
 
@@ -39,7 +41,8 @@
     AccountService *_accountService;
     AudioManager *_audioManager;
     ExpressionManager *_expressionManager;
-    DiceSoundManager *_soundManager;    
+    DiceSoundManager *_soundManager;
+    NSMutableSet* _urgedUser;
 }
 
 @property (retain, nonatomic) NSTimer *adHideTimer;
@@ -71,6 +74,8 @@
 - (id)initWIthRuleType:(DiceGameRuleType)ruleType;
 
 - (UIView *)bellViewOfUser:(NSString *)userId;
-
+- (DiceAvatarView *)selfAvatarView;
+- (DiceAvatarView*)avatarViewOfUser:(NSString*)userId;
+- (void)urgeUser:(NSString*)userId;
 
 @end

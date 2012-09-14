@@ -403,7 +403,8 @@
     NSString *str = [self diceTypeString];
     if (str != nil) {
         HKGirlFontLabel *label = [[[HKGirlFontLabel alloc] initWithFrame:CGRectMake(0, 0, 100, 30) pointSize:20] autorelease];
-
+        label.text = str;
+        
     }
     
 
