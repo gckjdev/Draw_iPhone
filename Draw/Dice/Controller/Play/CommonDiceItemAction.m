@@ -11,6 +11,8 @@
 #import "DiceGamePlayController.h"
 #import "AccountService.h"
 #import "RollAgainItemAction.h"
+#import "PostponeItemAction.h"
+#import "UrgeItemAction.h"
 
 @interface CommonDiceItemAction ()
 {
@@ -31,7 +33,12 @@
         case ItemTypeRollAgain:
             return [[[RollAgainItemAction alloc] initWithItemType:itemType] autorelease];
             break;
-            
+        case ItemTypeIncTime:
+            return [[[PostponeItemAction alloc] initWithItemType:itemType] autorelease];
+            break;
+        case ItemTypeDecTime:
+            return [[[UrgeItemAction alloc] initWithItemType:itemType] autorelease];
+            break;
         default:
             return nil;
             break;

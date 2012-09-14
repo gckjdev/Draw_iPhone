@@ -235,6 +235,30 @@
     return [_deletedUserList objectForKey:userId];
 }
 
+- (PBGameUser *)getNextSeatPlayerByUserId:(NSString*)userId
+{
+    PPDebug(@"<test> get next user");
+    NSArray* userArray = [self.userList sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+        PBGameUser* user1 = (PBGameUser*)obj1;
+        PBGameUser* user2 = (PBGameUser*)obj2;
+        if (user1.seatId > user2.seatId) {
+            return NSOrderedAscending;
+        } else if (user1.seatId < user2.seatId) {
+            return NSOrderedDescending;
+        } else {
+            return NSOrderedSame;
+        }
+    }];
+    for (int i = 0; i < userArray.count; i ++) {
+        PBGameUser* user = (PBGameUser*)[userArray objectAtIndex:i];
+        
+        if ([user.userId isEqualToString:userId] && [user isPlaying]) {
+            return (PBGameUser*)[self.userList objectAtIndex:(i+1)%userArray.count];
+        }
+    }
+    return nil;
+}
+
 - (void)updateSession:(PBGameSessionChanged*)changeData
 {
     if ([[changeData currentPlayUserId] length] > 0){
