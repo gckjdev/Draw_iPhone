@@ -39,6 +39,54 @@
                                 amount:[[ItemManager defaultManager] amountForItem:ItemTypeCut]] autorelease];
 }
 
++ (Item*)postpone
+{
+    return [[[Item alloc] initWithType:ItemTypeIncTime 
+                                 image:[[DiceImageManager defaultManager] postponeImage]
+                                  name:NSLS(@"kItemPostpone")
+                             shortName:NSLS(@"kPostpone")
+                           description:NSLS(@"kPostponeDescription") 
+                      buyAmountForOnce:10
+                                 price:[[ShoppingManager defaultManager] getCutPrice] 
+                                amount:[[ItemManager defaultManager] amountForItem:ItemTypeIncTime]] autorelease];
+}
+
++ (Item*)urge
+{
+    return [[[Item alloc] initWithType:ItemTypeDecTime 
+                                 image:[[DiceImageManager defaultManager] urgeImage]
+                                  name:NSLS(@"kItemUrge")
+                             shortName:NSLS(@"kUrge")
+                           description:NSLS(@"kUrgeDescription") 
+                      buyAmountForOnce:10
+                                 price:[[ShoppingManager defaultManager] getCutPrice] 
+                                amount:[[ItemManager defaultManager] amountForItem:ItemTypeDecTime]] autorelease];
+}
+
++ (Item*)doubleKill
+{
+    return [[[Item alloc] initWithType:ItemTypeDoubleKill 
+                                 image:[[DiceImageManager defaultManager] doubleKillImage]
+                                  name:NSLS(@"kItemDoubleKill")
+                             shortName:NSLS(@"kDoubleKil")
+                           description:NSLS(@"kDoubleKillDescription") 
+                      buyAmountForOnce:10
+                                 price:[[ShoppingManager defaultManager] getCutPrice] 
+                                amount:[[ItemManager defaultManager] amountForItem:ItemTypeDoubleKill]] autorelease];
+}
+
++ (Item*)turtle
+{
+    return [[[Item alloc] initWithType:ItemTypeSkip 
+                                 image:[[DiceImageManager defaultManager] turtleImage]
+                                  name:NSLS(@"kItemTurtle")
+                             shortName:NSLS(@"kTurtle")
+                           description:NSLS(@"kTurtleDescription") 
+                      buyAmountForOnce:10
+                                 price:[[ShoppingManager defaultManager] getCutPrice] 
+                                amount:[[ItemManager defaultManager] amountForItem:ItemTypeSkip]] autorelease];
+}
+
 //- (UIView *)itemViewItemName:(NSString *)itemName
 //{
 //    CGRect frame = CGRectMake(0, 0, 34, 38);

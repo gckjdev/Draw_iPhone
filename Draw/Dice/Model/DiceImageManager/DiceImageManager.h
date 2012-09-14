@@ -57,4 +57,10 @@
 - (UIImage *)diceToolRollAgainImage;
 - (UIImage *)diceToolCutImageForShop;
 - (UIImage *)diceToolRollAgainImageForShop;
+
+- (UIImage *)postponeImage;
+- (UIImage *)urgeImage;
+- (UIImage *)doubleKillImage;
+- (UIImage *)turtleImage;
+- (UIImage*)toShopImage:(UIImage*)image;
 @end

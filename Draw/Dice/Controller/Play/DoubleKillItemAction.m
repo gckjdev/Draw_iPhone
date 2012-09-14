@@ -10,4 +10,22 @@
 
 @implementation DoubleKillItemAction
 
+- (BOOL)isShowNameAnimation
+{
+    return YES;
+}
+
+- (void)useItemSuccess:(DiceGamePlayController *)controller
+                  view:(UIView *)view
+{
+    
+}
+
+- (void)someoneUseItem:(NSString *)userId
+            controller:(DiceGamePlayController *)controller
+                  view:(UIView *)view
+{
+    
+}
+
 @end
