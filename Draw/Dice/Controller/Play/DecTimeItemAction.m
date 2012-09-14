@@ -1,18 +1,17 @@
 //
-//  UrgeItemAction.m
+//  DecTimeItemAction.m
 //  Draw
 //
-//  Created by Orange on 12-9-13.
+//  Created by Orange on 12-9-14.
 //  Copyright (c) 2012年 __MyCompanyName__. All rights reserved.
 //
 
-#import "UrgeItemAction.h"
+#import "DecTimeItemAction.h"
 #import "ItemType.h"
 #import "ConfigManager.h"
 #import "DiceGamePlayController.h"
 
-@implementation UrgeItemAction
-
+@implementation DecTimeItemAction
 - (void)urge:(DiceGamePlayController*)controller 
         view:(UIView*)view 
 {
@@ -38,6 +37,4 @@
 {
     [controller urgeUser:[_gameService.session getNextSeatPlayerByUserId:userId].userId];
 }
-
-
 @end

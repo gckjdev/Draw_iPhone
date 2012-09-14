@@ -108,6 +108,7 @@ typedef enum {
   GameResultCodeErrorUserAlreadyCallDice = 402,
   GameResultCodeErrorDiceOpenSelf = 403,
   GameResultCodeErrorUnknownItem = 501,
+  GameResultCodeErrorExcessTimeLimit = 502,
   GameResultCodeErrorSystemHandlerNotFound = 910,
   GameResultCodeErrorSystemException = 911,
 } GameResultCode;

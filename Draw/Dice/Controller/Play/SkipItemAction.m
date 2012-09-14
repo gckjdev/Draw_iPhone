@@ -1,15 +1,14 @@
 //
-//  DoubleKillItemAction.m
+//  SkipItemAction.m
 //  Draw
 //
 //  Created by Orange on 12-9-14.
 //  Copyright (c) 2012年 __MyCompanyName__. All rights reserved.
 //
 
-#import "DoubleKillItemAction.h"
+#import "SkipItemAction.h"
 
-@implementation DoubleKillItemAction
-
+@implementation SkipItemAction
 - (BOOL)isShowNameAnimation
 {
     return YES;
@@ -27,5 +26,4 @@
 {
     
 }
-
 @end

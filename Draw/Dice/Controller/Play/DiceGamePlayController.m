@@ -26,8 +26,7 @@
 #import "UIViewUtils.h"
 #import "CommonDiceItemAction.h"
 #import "DiceConfigManager.h"
-#import "PostponeItemAction.h"
-#import "UrgeItemAction.h"
+
 
 #define AVATAR_TAG_OFFSET   8000
 #define NICKNAME_TAG_OFFSET 1100

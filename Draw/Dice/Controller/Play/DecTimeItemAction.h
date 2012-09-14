@@ -1,13 +1,13 @@
 //
-//  TurtleItemAction.m
+//  DecTimeItemAction.h
 //  Draw
 //
 //  Created by Orange on 12-9-14.
 //  Copyright (c) 2012年 __MyCompanyName__. All rights reserved.
 //
 
-#import "TurtleItemAction.h"
+#import "CommonDiceItemAction.h"
 
-@implementation TurtleItemAction
+@interface DecTimeItemAction : CommonDiceItemAction
 
 @end

@@ -11,8 +11,10 @@
 #import "DiceGamePlayController.h"
 #import "AccountService.h"
 #import "RollAgainItemAction.h"
-#import "PostponeItemAction.h"
-#import "UrgeItemAction.h"
+#import "IncTimeItemAction.h"
+#import "DecTimeItemAction.h"
+#import "DoubleKillItemAction.h"
+#import "SkipItemAction.h"
 
 @interface CommonDiceItemAction ()
 {
@@ -34,10 +36,16 @@
             return [[[RollAgainItemAction alloc] initWithItemType:itemType] autorelease];
             break;
         case ItemTypeIncTime:
-            return [[[PostponeItemAction alloc] initWithItemType:itemType] autorelease];
+            return [[[IncTimeItemAction alloc] initWithItemType:itemType] autorelease];
             break;
         case ItemTypeDecTime:
-            return [[[UrgeItemAction alloc] initWithItemType:itemType] autorelease];
+            return [[[DecTimeItemAction alloc] initWithItemType:itemType] autorelease];
+            break;
+        case ItemTypeDoubleKill:
+            return [[[DoubleKillItemAction alloc] initWithItemType:itemType] autorelease];
+            break;
+        case ItemTypeSkip:
+            return [[[SkipItemAction alloc] initWithItemType:itemType] autorelease];
             break;
         default:
             return nil;

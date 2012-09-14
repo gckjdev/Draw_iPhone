@@ -1,18 +1,18 @@
 //
-//  PostponeItemAction.m
+//  IncTimeItemAction.m
 //  Draw
 //
-//  Created by Orange on 12-9-13.
+//  Created by Orange on 12-9-14.
 //  Copyright (c) 2012年 __MyCompanyName__. All rights reserved.
 //
 
-#import "PostponeItemAction.h"
+#import "IncTimeItemAction.h"
 #import "ItemType.h"
 #import "ConfigManager.h"
 #import "DiceAvatarView.h"
 #import "DiceGamePlayController.h"
 
-@implementation PostponeItemAction
+@implementation IncTimeItemAction
 
 - (void)postponeAvatar:(DiceAvatarView*)avatar 
 {

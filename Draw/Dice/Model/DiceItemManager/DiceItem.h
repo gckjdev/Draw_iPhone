@@ -13,5 +13,8 @@
 
 + (Item*)rollAgain;
 + (Item*)cut;
-
++ (Item*)postpone;
++ (Item*)urge;
++ (Item*)doubleKill;
++ (Item*)turtle;
 @end
