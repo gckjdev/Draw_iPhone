@@ -13,12 +13,15 @@
 #import "UserManager.h"
 #import "CommonGameSession.h"
 
+
+
 @implementation CommonGameNetworkService
 
 @synthesize serverAddress = _serverAddress;
 @synthesize serverPort = _serverPort;
 @synthesize roomList = _roomList;
 @synthesize session = _session;
+@synthesize serverStringList = _serverStringList;
 //@synthesize user = _user;
 
 - (void)dealloc
@@ -33,15 +36,17 @@
     
     [_networkClient disconnect];
     PPRelease(_networkClient);
+    [_serverStringList release];
     [super dealloc];
 }
 
 - (id)init
 {
     self = [super init];
+    if (self) {
+        _roomList = [[NSMutableArray alloc] init];
+    }
 
-    _roomList = [[NSMutableArray alloc] init];
-    
 //    _networkClient = [[CommonGameNetworkClient alloc] init];
 //    [_networkClient setDelegate:self]; 
     return self;
@@ -98,13 +103,40 @@
     return [_networkClient isConnected];
 }
 
+- (void)dispatchServer
+{
+    if (_serverStringList == nil) {
+        return;
+    }
+    
+    NSArray *serverStringArray = [_serverStringList componentsSeparatedByString:SERVER_LIST_SEPERATOR];
+    NSString *serverString = [serverStringArray objectAtIndex:rand()%serverStringArray.count];
+    
+    NSArray *arr = [serverString componentsSeparatedByString:SERVER_PORT_SEPERATOR];
+    if ([arr count] == 2) {
+        self.serverAddress = [arr objectAtIndex:0];
+        self.serverPort = [[arr objectAtIndex:1] intValue];
+    }else {
+        PPDebug(@"ERROR: Service %@ is not valid(format error)", serverString);
+    }
+}
+
 - (void)connectServer:(id<CommonGameServiceDelegate>)connectionDelegate
 {
     _connectionDelegate = connectionDelegate;
     
     [self clearDisconnectTimer];
     [_networkClient setDelegate:self];
+    
+    self.serverStringList = [self gameServerListString];
+    [self dispatchServer];
+    
     [_networkClient start:_serverAddress port:_serverPort];        
+}
+
+- (NSString *)gameServerListString
+{
+    return nil;
 }
 
 - (void)disconnectServer
@@ -292,14 +324,14 @@
     [_networkClient sendJoinGameRequest:user gameId:_gameId];
 }
 
-- (void)joinGameRequestWithRuleType:(int)ruleType
-{
-    PPDebug(@"[SEND] JoinGameRequest");
-    PBGameUser* user = [[UserManager defaultManager] toPBGameUser];
-    [_networkClient sendJoinGameRequest:user 
-                                 gameId:_gameId
-                               ruleType:ruleType];
-}
+//- (void)joinGameRequestWithRuleType:(int)ruleType
+//{
+//    PPDebug(@"[SEND] JoinGameRequest");
+//    PBGameUser* user = [[UserManager defaultManager] toPBGameUser];
+//    [_networkClient sendJoinGameRequest:user 
+//                                 gameId:_gameId
+//                               ruleType:ruleType];
+//}
 
 - (void)joinGameRequest:(long)sessionId 
 {
@@ -310,38 +342,19 @@
                               sessionId:sessionId];
 }
 
-- (void)joinGameRequest:(long)sessionId ruleType:(int)ruleType
-{
-    PPDebug(@"[SEND] JoinGameRequest");
-    PBGameUser* user = [[UserManager defaultManager] toPBGameUser];
-    [_networkClient sendJoinGameRequest:user
-                                 gameId:_gameId 
-                              sessionId:sessionId 
-                               ruleType:ruleType];
-}
-
-//- (BOOL)joinGameRequestWithRuleType:(int)ruleType
-//                         condiction:(BOOL (^)(void))condiction
+//- (void)joinGameRequest:(long)sessionId ruleType:(int)ruleType
 //{
-//    BOOL flag = condiction();
-//    if (flag ==  YES) {
-//        [self joinGameRequestWithRuleType:ruleType];
-//    }
-//    
-//    return flag; 
+//    PPDebug(@"[SEND] JoinGameRequest");
+//    PBGameUser* user = [[UserManager defaultManager] toPBGameUser];
+//    [_networkClient sendJoinGameRequest:user
+//                                 gameId:_gameId 
+//                              sessionId:sessionId 
+//                               ruleType:ruleType];
 //}
 
-//- (BOOL)joinGameRequest:(long)sessionId
-//               ruleType:(int)ruleType
-//             condiction:(BOOL (^)(void))condiction
-//{
-//    BOOL flag = condiction();
-//    if (flag ==  YES) {
-//        [self joinGameRequest:sessionId ruleType:ruleType];
-//    }
-//    
-//    return flag; 
-//}
+
+
+
 
 
 
@@ -361,16 +374,16 @@
                                  password:password];
 }
 
-- (void)createRoomWithName:(NSString*)name 
-                  password:(NSString *)password
-                  ruleType:(int)ruleType
-{
-    [_networkClient sendCreateRoomRequest:[[UserManager defaultManager] toPBGameUser] 
-                                     name:name 
-                                   gameId:_gameId 
-                                 password:password
-                                 ruleType:ruleType];
-}
+//- (void)createRoomWithName:(NSString*)name 
+//                  password:(NSString *)password
+//                  ruleType:(int)ruleType
+//{
+//    [_networkClient sendCreateRoomRequest:[[UserManager defaultManager] toPBGameUser] 
+//                                     name:name 
+//                                   gameId:_gameId 
+//                                 password:password
+//                                 ruleType:ruleType];
+//}
 
 - (void)registerRoomsNotification:(NSArray*)sessionIdList
 {

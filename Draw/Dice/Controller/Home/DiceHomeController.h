@@ -28,6 +28,6 @@
 @property (retain, nonatomic) MenuPanel *menuPanel;
 @property (retain, nonatomic) BottomMenuPanel *bottomMenuPanel;
 
-- (void)connectServer;
+- (void)connectServer:(DiceGameRuleType)ruleType;
 
 @end
