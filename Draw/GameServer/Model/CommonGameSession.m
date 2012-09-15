@@ -30,6 +30,7 @@
 @synthesize status = _status;
 @synthesize roundNumber = _roundNumber;
 @synthesize currentPlayUserId = _currentPlayUserId;
+@synthesize ruleType = _ruleType;
 
 - (void)dealloc
 {
@@ -77,6 +78,7 @@
         [self.userList addObject:user];
     }
     
+    self.ruleType = pbSession.ruleType;
     // set turn information
 //    [session.currentTurn setRound:1];
 //    [session.currentTurn setNextPlayUserId:[pbSession nextPlayUserId]];

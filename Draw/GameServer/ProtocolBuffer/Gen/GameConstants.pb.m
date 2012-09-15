@@ -128,6 +128,7 @@ BOOL GameResultCodeIsValidValue(GameResultCode value) {
     case GameResultCodeErrorUserAlreadyCallDice:
     case GameResultCodeErrorDiceOpenSelf:
     case GameResultCodeErrorUnknownItem:
+    case GameResultCodeErrorExcessTimeLimit:
     case GameResultCodeErrorSystemHandlerNotFound:
     case GameResultCodeErrorSystemException:
       return YES;

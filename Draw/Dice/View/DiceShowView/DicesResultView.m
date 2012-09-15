@@ -402,9 +402,21 @@
 {
     NSString *str = [self diceTypeString];
     if (str != nil) {
-        HKGirlFontLabel *label = [[[HKGirlFontLabel alloc] initWithFrame:CGRectMake(0, 0, 100, 30) pointSize:20] autorelease];
+        HKGirlFontLabel *label = [[[HKGirlFontLabel alloc] initWithFrame:CGRectMake(0, 0, 100, 100) pointSize:20] autorelease];
+        label.textAlignment = UITextAlignmentCenter;
+        label.center = self.center;
         label.text = str;
-        
+        [self addSubview:label];
+
+        [UIView animateWithDuration:DURATION_STAY/2 delay:0 options:UIViewAnimationCurveEaseIn animations:^{
+            label.frame = self.bounds;
+        } completion:^(BOOL finished) {
+            [UIView animateWithDuration:DURATION_STAY/2 delay:DURATION_STAY/2 options:UIViewAnimationCurveEaseIn animations:^{
+                label.alpha = 0;
+            } completion:^(BOOL finished) {
+                [label removeFromSuperview];
+            }];
+        }];
     }
     
     for (UIButton *diceView in [self selectedDiceViews]) {

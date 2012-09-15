@@ -17,12 +17,13 @@
 #import "ItemType.h"
 #import "GCServer.h"
 
-#define SERVER_LIST_SEPERATOR   @"$"
-#define SERVER_PORT_SEPERATOR   @":"
+
 
 @implementation DiceGameService
 
 static DiceGameService* _defaultService;
+
+@synthesize ruleType = _ruleType;
 
 + (DiceGameService*)defaultService
 {
@@ -36,11 +37,10 @@ static DiceGameService* _defaultService;
 - (id)init
 {
     self = [super init];
-    [self getDiceServerList];
     _gameId = DICE_GAME_ID;
     _networkClient = [[DiceNetworkClient alloc] init];
     [_networkClient setDelegate:self]; 
-    
+    _ruleType = DiceGameRuleTypeRuleNormal;
     return self;
 }
 
@@ -322,18 +322,11 @@ static DiceGameService* _defaultService;
     return self.diceSession.gameResult;
 }
 
-
-
-//- (void)openDice:(int)multiple
 - (void)openDice
 {
     PPDebug(@"****************** ME OPEN DICE **********************");
     
     OpenType openType = [[self userId] isEqualToString:self.diceSession.currentPlayUserId] ? OpenTypeNormal : OpenTypeScramble;
-    
-//    if (multiple >= 2) {
-//        openType = 2;
-//    }
     
     self.diceSession.openDiceUserId = [self userId];
     self.diceSession.openType = openType;
@@ -344,26 +337,33 @@ static DiceGameService* _defaultService;
                                                     multiple:1]; 
 }
 
-- (void)getDiceServerList
+- (void)setRuleType:(DiceGameRuleType)ruleType
 {
-    NSMutableArray* serverList = [[[NSMutableArray alloc] init] autorelease];
-    NSString* serverListString = [ConfigManager getDiceServerListString];
-    NSArray* serverStringArray = [serverListString componentsSeparatedByString:SERVER_LIST_SEPERATOR];
-    for (NSString* serverString in serverStringArray) {
-        NSArray* array = [serverString componentsSeparatedByString:SERVER_PORT_SEPERATOR];
-        if (array.count == 2) {
-            GCServer* server = [[GCServer alloc] init];
-            server.address = [array objectAtIndex:0];
-            server.port = ((NSString*)[array objectAtIndex:1]).intValue;
-            [serverList addObject:server];
-            [server release];
-        }  
-    }
-    if (serverList.count > 0) {
-        GCServer* serv = [serverList objectAtIndex:rand()%serverList.count];
-        self.serverAddress = serv.address;
-        self.serverPort = serv.port;
-    }
+    _ruleType = ruleType;
 }
+
+- (NSString *)gameServerStringList
+{
+    NSString *str = nil;
+    switch (_ruleType) {
+        case DiceGameRuleTypeRuleNormal:
+            str = [ConfigManager getDiceServerListStringWithNormal];
+            break;
+            
+        case DiceGameRuleTypeRuleHigh:
+            str = [ConfigManager getDiceServerListStringWithNormal];
+            break;
+            
+        case DiceGameRuleTypeRuleSuperHigh:
+            str = [ConfigManager getDiceServerListStringWithNormal];
+            break;
+            
+        default:
+            break;
+    }
+    
+    return str;
+}
+
 
 @end

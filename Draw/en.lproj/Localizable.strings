@@ -863,5 +863,16 @@
 "kDiceUpgradeMsg" = "Congratulations!You upgraded to level %d, [cut] +%d";
 "kDiceDegradeMsg" = "You play terribly, now degrade to level %d";
 "kClickMe" = "Click me!";
+
+"kDiceSnake" = "Snake";
+"kDiceNet" = "Net";
+"kDiceWai" = "Wai";
+
+
+"kDiceMenuHappyRoom" = "Happy Room";
+"kDiceMenuHighRoom" = "High Room";
+"kDiceMenuSuperHighRoom" = "Super High Room";
+
+
 /*********************** 大话骰子国际化字符串结束 *************************/
 

@@ -58,8 +58,8 @@
 #define MENU_PANEL_HEIGHT ([DeviceDetection isIPAD] ? 468 : 226)
 static const NSInteger MENU_NUMBER_PER_PAGE = 6;
 
-#define MENU_NUMBER_PER_PAGE ((self.gameAppType == GameAppTypeDraw) ? 6 : 4)
-#define MENU_NUMBER_ROW_NUMBER ((self.gameAppType == GameAppTypeDraw) ? 3 : 2)
+#define MENU_NUMBER_PER_PAGE ((self.gameAppType == GameAppTypeDraw) ? 6 : 6)
+#define MENU_NUMBER_ROW_NUMBER ((self.gameAppType == GameAppTypeDraw) ? 3 : 3)
 
 - (CGRect)frameForMenuIndex:(NSInteger)index
 {

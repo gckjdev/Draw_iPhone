@@ -42,7 +42,7 @@
 {
     int thresholdCoins = [self getThresholdCoins:ruleType];
     
-    if ([[AccountService defaultService] getBalance] <= thresholdCoins) {
+    if ([[AccountService defaultService] getBalance] < thresholdCoins) {
         return NO;
     }else {
         return YES;

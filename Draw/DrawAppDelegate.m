@@ -54,8 +54,9 @@
 #import "MyPaintManager.h"
 NSString* GlobalGetServerURL()
 {    
-    return [ConfigManager getAPIServerURL];
+//    return [ConfigManager getAPIServerURL];
 //    return @"http://192.168.1.198:8000/api/i?";    
+    return @"http://192.168.1.10:8000/api/i?";    
 }
 
 NSString* GlobalGetTrafficServerURL()

@@ -16,6 +16,9 @@
 #define NOTIFICATION_ROOM                       @"NOTIFICATION_ROOM"
 #define NOTIFICAIION_CHAT_REQUEST               @"NOTIFICAIION_CHAT_REQUEST"
 
+#define SERVER_LIST_SEPERATOR   @"$"
+#define SERVER_PORT_SEPERATOR   @":"
+
 
 @class PBGameSession;
 
@@ -37,17 +40,21 @@
     
     NSString                        *_gameId;
     NSMutableArray                  *_roomList;
-
 }
 
-@property (nonatomic, retain) NSString       *serverAddress;
-@property (nonatomic, assign) int            serverPort;
-@property (nonatomic, retain) NSMutableArray *roomList;
-@property (nonatomic, retain) CommonGameSession *session;
+@property (nonatomic, retain) NSString              *serverStringList;
+@property (nonatomic, retain) NSString              *serverAddress;
+@property (nonatomic, assign) int                   serverPort;
+@property (nonatomic, retain) NSMutableArray        *roomList;
+@property (nonatomic, retain) CommonGameSession     *session;
 //@property (nonatomic, retain) PBGameUser        *user;
 
 - (BOOL)isConnected;
 - (void)connectServer:(id<CommonGameServiceDelegate>)delegate;
+
+// Left to Sub Class to implementation.
+- (NSString *)gameServerListString;
+
 - (void)disconnectServer;
 
 - (void)startDisconnectTimer;
@@ -59,15 +66,10 @@
    shouldReloadData:(BOOL)shouldReloadData;
 
 - (void)joinGameRequest;
-- (void)joinGameRequestWithRuleType:(int)ruleType;
-//- (BOOL)joinGameRequestWithRuleType:(int)ruleType
-//                         condiction:(BOOL (^)(void))condiction;
+//- (void)joinGameRequestWithRuleType:(int)ruleType;
 
 - (void)joinGameRequest:(long)sessionId;
-- (void)joinGameRequest:(long)sessionId ruleType:(int)ruleType;
-//- (BOOL)joinGameRequest:(long)sessionId
-//               ruleType:(int)ruleType
-//             condiction:(BOOL (^)(void))condiction;
+//- (void)joinGameRequest:(long)sessionId ruleType:(int)ruleType;
 
 - (void)quitGame;
 
@@ -76,9 +78,9 @@
 - (void)createRoomWithName:(NSString*)name 
                   password:(NSString*)password;
 
-- (void)createRoomWithName:(NSString*)name 
-                  password:(NSString *)password
-                  ruleType:(int)ruleType;
+//- (void)createRoomWithName:(NSString*)name 
+//                  password:(NSString *)password
+//                  ruleType:(int)ruleType;
 
 + (GameMessage*)userInfoToMessage:(NSDictionary*)userInfo;
 + (NSDictionary*)messageToUserInfo:(GameMessage*)message;

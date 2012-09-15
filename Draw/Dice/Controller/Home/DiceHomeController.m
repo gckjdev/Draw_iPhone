@@ -99,7 +99,7 @@
     self.menuPanel = [MenuPanel menuPanelWithController:self 
                                             gameAppType:GameAppTypeDice];
     
-    self.menuPanel.center = [DeviceDetection isIPAD] ? CGPointMake(384, 682) : CGPointMake(160, 304);
+    self.menuPanel.center = [DeviceDetection isIPAD] ? CGPointMake(384, 686) : CGPointMake(160, 306);
     
     [self.view insertSubview:self.menuPanel atIndex:0];
     
@@ -110,7 +110,7 @@
     self.bottomMenuPanel = [BottomMenuPanel panelWithController:self
                                                     gameAppType:GameAppTypeDice];
     
-    self.bottomMenuPanel.center = [DeviceDetection isIPAD] ? CGPointMake(384, 960) : CGPointMake(160, 439);
+    self.bottomMenuPanel.center = [DeviceDetection isIPAD] ? CGPointMake(384, 961) : CGPointMake(160, 438);
     
     [self.view addSubview:_bottomMenuPanel];
 }
@@ -434,7 +434,7 @@
         if(_isTryJoinGame) {
             GameMessage* message = [CommonGameNetworkService userInfoToMessage:[note userInfo]];
             if ([message resultCode] == GameResultCodeSuccess){
-                DiceGamePlayController *controller = [[[DiceGamePlayController alloc] initWIthRuleType:DiceGameRuleTypeRuleNormal] autorelease];
+                DiceGamePlayController *controller = [[[DiceGamePlayController alloc] init] autorelease];
                 [self.navigationController pushViewController:controller animated:YES];
             }
             else{
@@ -484,11 +484,12 @@
     [dialog showInView:self.view];
 }
 
-- (void)connectServer
+- (void)connectServer:(DiceGameRuleType)ruleType
 {
     _isTryJoinGame = YES;    
     
     [self showActivityWithText:NSLS(@"kConnectingServer")];
+    [[DiceGameService defaultService] setRuleType:ruleType];
     [[DiceGameService defaultService] connectServer:self];
 }
 
@@ -501,7 +502,7 @@
     if (_isTryJoinGame){
         if ([DiceConfigManager meetJoinGameCondictionWithRuleType:DiceGameRuleTypeRuleNormal]) {
             [self showActivityWithText:NSLS(@"kJoiningGame")];
-            [[DiceGameService defaultService] joinGameRequestWithRuleType:DiceGameRuleTypeRuleNormal];
+            [[DiceGameService defaultService] joinGameRequest];
         }else {
             [[DiceGameService defaultService] disconnectServer];
             [self showCoinsNotEnoughView];
@@ -576,17 +577,32 @@
             break;
         case MenuButtonTypeDiceStart:
         {
-            if ([self respondsToSelector:@selector(connectServer)]){
-                [self performSelector:@selector(connectServer)];
+            if ([self respondsToSelector:@selector(connectServer:)]){
+                [self connectServer:DiceGameRuleTypeRuleNormal];
             }
         }
             break;
-        case MenuButtonTypeDiceRoom:
+        case MenuButtonTypeDiceHappyRoom:
         {
             DiceRoomListController* vc = [[[DiceRoomListController alloc] initWithRuleType:DiceGameRuleTypeRuleNormal] autorelease];
             [self.navigationController pushViewController:vc animated:YES];
         }
             break;
+            
+        case MenuButtonTypeDiceHighRoom:
+        {
+            DiceRoomListController* vc = [[[DiceRoomListController alloc] initWithRuleType:DiceGameRuleTypeRuleNormal] autorelease];
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+            break;
+        case MenuButtonTypeDiceSuperHighRoom:
+        {
+            DiceRoomListController* vc = [[[DiceRoomListController alloc] initWithRuleType:DiceGameRuleTypeRuleNormal] autorelease];
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+            break;
+
+            
         case MenuButtonTypeDiceHelp:
         {
             DiceHelpView *view = [DiceHelpView createDiceHelpView];

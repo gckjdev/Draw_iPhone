@@ -71,7 +71,7 @@
 @property (retain, nonatomic) IBOutlet UIView *popupLevel2View;
 @property (retain, nonatomic) IBOutlet UIView *popupLevel3View;
 
-- (id)initWIthRuleType:(DiceGameRuleType)ruleType;
+//- (id)initWIthRuleType:(DiceGameRuleType)ruleType;
 
 - (UIView *)bellViewOfUser:(NSString *)userId;
 - (DiceAvatarView *)selfAvatarView;
