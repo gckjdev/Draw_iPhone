@@ -237,13 +237,12 @@
 
 - (PBGameUser *)getNextSeatPlayerByUserId:(NSString*)userId
 {
-    PPDebug(@"<test> get next user");
     NSArray* userArray = [self.userList sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
         PBGameUser* user1 = (PBGameUser*)obj1;
         PBGameUser* user2 = (PBGameUser*)obj2;
-        if (user1.seatId > user2.seatId) {
+        if (user1.seatId < user2.seatId) {
             return NSOrderedAscending;
-        } else if (user1.seatId < user2.seatId) {
+        } else if (user1.seatId > user2.seatId) {
             return NSOrderedDescending;
         } else {
             return NSOrderedSame;
@@ -251,9 +250,11 @@
     }];
     for (int i = 0; i < userArray.count; i ++) {
         PBGameUser* user = (PBGameUser*)[userArray objectAtIndex:i];
-        
+        PPDebug(@"<test> number %d user is %@, sitting on %d", i, user.nickName, user.seatId);
         if ([user.userId isEqualToString:userId] && [user isPlaying]) {
-            return (PBGameUser*)[self.userList objectAtIndex:(i+1)%userArray.count];
+            PBGameUser* nextUser = (PBGameUser*)[self.userList objectAtIndex:(i+1)%userArray.count];
+            PPDebug(@"next user is %@ sitting on %d", nextUser.nickName, nextUser.seatId);
+            return nextUser;
         }
     }
     return nil;

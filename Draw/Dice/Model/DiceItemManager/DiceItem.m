@@ -87,6 +87,18 @@
                                 amount:[[ItemManager defaultManager] amountForItem:ItemTypeSkip]] autorelease];
 }
 
++ (Item*)diceRobot
+{
+    return [[[Item alloc] initWithType:ItemTypeDiceRobot 
+                                 image:[[DiceImageManager defaultManager] diceRobotImage]
+                                  name:NSLS(@"kItemDiceRobot")
+                             shortName:NSLS(@"kDiceRobot")
+                           description:NSLS(@"kDiceRobotDescription") 
+                      buyAmountForOnce:10
+                                 price:[[ShoppingManager defaultManager] getCutPrice] 
+                                amount:[[ItemManager defaultManager] amountForItem:ItemTypeDiceRobot]] autorelease];
+}
+
 //- (UIView *)itemViewItemName:(NSString *)itemName
 //{
 //    CGRect frame = CGRectMake(0, 0, 34, 38);

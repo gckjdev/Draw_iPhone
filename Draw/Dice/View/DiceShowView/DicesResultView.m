@@ -379,7 +379,7 @@
 
 - (NSString *)diceTypeString
 {
-    NSString *str;
+    NSString *str = nil;
     switch (_diceType) {
         case PBDiceTypeDiceSnake:
             str = NSLS(@"kDiceSnake"); 
@@ -406,11 +406,6 @@
         label.text = str;
         
     }
-    
-
-    
-    
-    
     
     for (UIButton *diceView in [self selectedDiceViews]) {
         

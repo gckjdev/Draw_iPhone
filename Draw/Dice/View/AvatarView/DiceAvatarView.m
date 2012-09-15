@@ -37,6 +37,7 @@
     [_rewardCoinLabel release];
     [_rewardCoinView release];
     [_rewardView release];
+    [_clockView release];
     [super dealloc];
 }
 
@@ -372,6 +373,26 @@
 - (void)setGestureRecognizerEnable:(BOOL)enable
 {
     self.userInteractionEnabled = enable;
+}
+
+- (void)addFlyClockOnMyHead
+{
+    if (_clockView == nil) {
+        _clockView = [[UIImageView alloc] initWithImage:[DiceImageManager defaultManager].urgeImage];
+        float clockWidth = self.frame.size.width * 0.5;
+        float clockHeight = self.frame.size.height * 0.5;
+        
+        [_clockView setFrame:CGRectMake(self.frame.size.width*0.25, -clockHeight, clockWidth, clockHeight)];
+        [self addSubview:_clockView];
+    }
+    [_clockView setHidden:NO];
+}
+
+- (void)removeFlyClockOnMyHead
+{
+    if (_clockView) {
+        [_clockView setHidden:YES];
+    }
 }
 
 /*
