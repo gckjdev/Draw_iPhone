@@ -916,7 +916,12 @@
 #pragma mark - use item animations
 - (void)useItem:(int)itemId itemName:(NSString *)itemName userId:(NSString *)userId
 {
-    [_diceService userItem:itemId];
+    
+    if (itemId == ItemTypeIncTime) {
+        [_diceService userTimeItem:ItemTypeIncTime time:[ConfigManager getPostponeTime]];
+    } else {
+        [_diceService userItem:itemId];
+    }
 }
 
 
@@ -1348,20 +1353,6 @@
     
 }
 
-- (IBAction)clickPostpone:(id)sender
-{
-    int postponeTime = [ConfigManager getPostponeTime];
-    [_diceService userTimeItem:ItemTypeIncTime 
-                          time:postponeTime];
-}
-
-- (IBAction)clickUrge:(id)sender
-{
-    int urgeTime = [ConfigManager getUrgeTime];
-    [_diceService userTimeItem:ItemTypeDecTime 
-                          time:urgeTime];
-}
-
 - (void)urgeUser:(NSString*)userId
 {
     [_urgedUser addObject:userId];
@@ -1369,10 +1360,6 @@
     [avatar addFlyClockOnMyHead];
 }
 
-- (IBAction)clickSkip:(id)sender
-{
-    [_diceService userItem:ItemTypeSkip];
-}
 
 
 
