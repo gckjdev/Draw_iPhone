@@ -11,27 +11,25 @@
 #import "DiceGameSession.h"
 #import "Dice.pb.h"
 #import "DiceNetworkClient.h"
-
+#import "GameConstants.pb.h"
 
 @interface DiceGameService : CommonGameNetworkService
 
+@property (assign, nonatomic) DiceGameRuleType ruleType;
+
 + (DiceGameService*)defaultService;
+
 - (DiceGameSession*)diceSession;
 
-- (void)getDiceServerList;
-
 - (NSArray *)myDiceList;
-
 - (NSString *)lastCallUserId;
 - (int)lastCallDice;
 - (int)lastCallDiceCount;
 - (NSString *)openDiceUserId;
 - (OpenType)openType;
-
 - (NSDictionary *)gameResult;
 
 - (void)callDice:(int)dice count:(int)count wilds:(BOOL)wilds;
-//- (void)openDice:(int)multiple;
 - (void)openDice;
 
 - (void)userItem:(int)itemId;

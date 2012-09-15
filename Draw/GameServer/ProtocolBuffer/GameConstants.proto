@@ -120,6 +120,7 @@ enum GameCommandType {
   LOCAL_PLAY_USER_QUIT = 311;
   LOCAL_CALL_DICE = 312;
   LOCAL_OPEN_DICE = 313;
+  LOCAL_USER_SKIP = 314;
   
   
   // For Dahuatou: service -------> client

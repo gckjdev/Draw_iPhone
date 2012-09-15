@@ -318,10 +318,20 @@
     return [MobClickUtils getIntValueByKey:@"DICE_THRESHOLD_COIN_SUPER_HIGHT" defaultValue:10000];
 }
 
-+ (NSString*)getDiceServerListString
++ (NSString*)getDiceServerListStringWithNormal
 {
     return @"192.168.1.10:8080";
 //    return [MobClickUtils getStringValueByKey:@"DICE_SERVER_LIST" defaultValue:@"58.215.164.153:8018"];
+}
+
++ (NSString *)getDiceServerListStringWithHightRule
+{
+    return [MobClickUtils getStringValueByKey:@"DICE_SERVER_LIST_HIGHT" defaultValue:@"58.215.164.153:8018"];
+}
+
++ (NSString *)getDiceServerListStringWithSuperHightRule
+{
+    return [MobClickUtils getStringValueByKey:@"DICE_SERVER_LIST_SUPER_HIGHT" defaultValue:@"58.215.164.153:8018"];
 }
 
 + (int)getDailyGiftCoin
