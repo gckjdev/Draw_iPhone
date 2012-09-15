@@ -570,10 +570,10 @@ static UIImage* _whitePaperImage;
 
 - (UIImage *)mainMenuPanelBGForGameAppType:(GameAppType)gameAppType
 {
-    if (gameAppType == GameAppTypeDraw) {
+//    if (gameAppType == GameAppTypeDraw) {
         return [UIImage imageNamed:@"main_menubg"];        
-    }
-    return [UIImage imageNamed:@"dice_home_bg"];        
+//    }
+//    return [UIImage imageNamed:@"dice_home_bg"];        
 }
 
 

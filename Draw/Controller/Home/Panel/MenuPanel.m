@@ -58,8 +58,8 @@
 #define MENU_PANEL_HEIGHT ([DeviceDetection isIPAD] ? 468 : 226)
 static const NSInteger MENU_NUMBER_PER_PAGE = 6;
 
-#define MENU_NUMBER_PER_PAGE ((self.gameAppType == GameAppTypeDraw) ? 6 : 4)
-#define MENU_NUMBER_ROW_NUMBER ((self.gameAppType == GameAppTypeDraw) ? 3 : 2)
+#define MENU_NUMBER_PER_PAGE ((self.gameAppType == GameAppTypeDraw) ? 6 : 6)
+#define MENU_NUMBER_ROW_NUMBER ((self.gameAppType == GameAppTypeDraw) ? 3 : 3)
 
 - (CGRect)frameForMenuIndex:(NSInteger)index
 {
@@ -75,7 +75,7 @@ static const NSInteger MENU_NUMBER_PER_PAGE = 6;
     NSInteger numberInRow = index % MENU_NUMBER_ROW_NUMBER;
     
     CGFloat xSpace = ((MENU_PANEL_WIDTH - 2 *xStart) - MENU_NUMBER_ROW_NUMBER * MENU_BUTTON_WIDTH)/ (MENU_NUMBER_ROW_NUMBER - 1);    
-    CGFloat ySpace = (MENU_PANEL_HEIGHT - 2 *yStart - 2 * MENU_BUTTON_HEIGHT);
+    CGFloat ySpace = (MENU_PANEL_HEIGHT - 1.5 *yStart - 2 * MENU_BUTTON_HEIGHT);
     
     CGFloat y = row * (ySpace + MENU_BUTTON_HEIGHT) + yStart;
     CGFloat x = page * self.frame.size.width;

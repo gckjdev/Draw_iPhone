@@ -21,10 +21,12 @@ typedef enum{
     
     //for dice.
     MenuButtonTypeDiceStart,
-    MenuButtonTypeDiceRoom,
+    MenuButtonTypeDiceHappyRoom,
+    MenuButtonTypeDiceHighRoom,
+    MenuButtonTypeDiceSuperHighRoom,
     MenuButtonTypeDiceHelp,
     MenuButtonTypeDiceShop,       
-    
+//    MenuButtonTypeDiceRoom,    
     //for bottom menu
     
     MenuButtonTypeSettings = 200,   
