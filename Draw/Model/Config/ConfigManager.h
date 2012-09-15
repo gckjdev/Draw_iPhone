@@ -107,6 +107,7 @@ typedef enum{
 + (NSString*)getAwardItemImageName:(int)dicePoint;
 
 + (WallType)wallType;
++ (BOOL)isEnableAd;
 
 + (int)getPostponeTime;
 + (int)getUrgeTime;

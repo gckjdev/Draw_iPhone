@@ -20,6 +20,11 @@
     return [[GameApp appId] isEqualToString:DICE_APP_ID];
 }
 
++ (BOOL)isEnableAd
+{
+    return [MobClickUtils getBoolValueByKey:@"ENABLE_AD" defaultValue:YES];
+}
+
 + (BOOL)isProVersion
 {
     return [GameApp disableAd];
