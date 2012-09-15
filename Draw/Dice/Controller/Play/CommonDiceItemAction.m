@@ -59,6 +59,7 @@
         self.itemType = itemType;
         self.userManager = [UserManager defaultManager];
         _accountService = [AccountService defaultService];
+        _gameService = [DiceGameService defaultService];
     }
     
     return self;

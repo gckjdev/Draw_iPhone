@@ -52,6 +52,8 @@ BOOL GameCommandTypeIsValidValue(GameCommandType value) {
     case GameCommandTypeRegisterRoomsNotificationResponse:
     case GameCommandTypeUnregisterRoomsNotificationRequest:
     case GameCommandTypeUnregisterRoomsNotificationResponse:
+    case GameCommandTypeSerachRoomRequest:
+    case GameCommandTypeSearchRoomResponse:
     case GameCommandTypeCallDiceRequest:
     case GameCommandTypeCallDiceResponse:
     case GameCommandTypeOpenDiceRequest:
@@ -92,6 +94,7 @@ BOOL GameCommandTypeIsValidValue(GameCommandType value) {
     case GameCommandTypeLocalPlayUserQuit:
     case GameCommandTypeLocalCallDice:
     case GameCommandTypeLocalOpenDice:
+    case GameCommandTypeLocalUserSkip:
     case GameCommandTypeRoomNotificationRequest:
     case GameCommandTypeRoomNotificationResponse:
     case GameCommandTypeRollDiceBeginNotificationRequest:

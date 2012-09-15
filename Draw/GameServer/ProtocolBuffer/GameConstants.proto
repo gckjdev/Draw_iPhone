@@ -60,6 +60,9 @@ enum GameCommandType {
   
   UNREGISTER_ROOMS_NOTIFICATION_REQUEST = 609;      // 取消通知
   UNREGISTER_ROOMS_NOTIFICATION_RESPONSE = 610;
+
+  SERACH_ROOM_REQUEST = 611;
+  SEARCH_ROOM_RESPONSE = 612;
   
   CALL_DICE_REQUEST = 621;                          // 叫骰
   CALL_DICE_RESPONSE = 622;
@@ -120,6 +123,7 @@ enum GameCommandType {
   LOCAL_PLAY_USER_QUIT = 311;
   LOCAL_CALL_DICE = 312;
   LOCAL_OPEN_DICE = 313;
+  LOCAL_USER_SKIP = 314;
   
   
   // For Dahuatou: service -------> client

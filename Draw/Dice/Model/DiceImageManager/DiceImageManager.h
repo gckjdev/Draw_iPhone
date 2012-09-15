@@ -62,5 +62,6 @@
 - (UIImage *)urgeImage;
 - (UIImage *)doubleKillImage;
 - (UIImage *)turtleImage;
+- (UIImage *)diceRobotImage;
 - (UIImage*)toShopImage:(UIImage*)image;
 @end
