@@ -23,6 +23,7 @@
 @property (nonatomic, assign) int status;
 @property (nonatomic, assign) NSInteger roundNumber;
 @property (nonatomic, retain) NSString *currentPlayUserId;
+@property (nonatomic, assign) int ruleType;
 
 - (void)fromPBGameSession:(PBGameSession*)pbSession userId:(NSString*)userId;
 

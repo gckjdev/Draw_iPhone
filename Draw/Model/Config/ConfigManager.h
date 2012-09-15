@@ -99,7 +99,7 @@ typedef enum{
 + (int)getDiceThresholdCoinWithHightRule;
 + (int)getDiceThresholdCoinWithSuperHightRule;
 
-+ (NSString*)getDiceServerListString;
++ (NSString*)getDiceServerListStringWithNormal;
 
 + (int)getDailyGiftCoin;
 + (int)getDailyGiftCoinIncre;

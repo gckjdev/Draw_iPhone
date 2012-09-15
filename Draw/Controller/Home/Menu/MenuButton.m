@@ -34,7 +34,7 @@
                         gameAppType:(GameAppType)type
 
 {
-    NSString *identifier = (type == GameAppTypeDraw) ?  @"MenuButton" : @"DiceMenu";
+    NSString *identifier = (type == GameAppTypeDraw) ?  @"MenuButton" : @"MenuButton";
 //    static NSString *identifier = @"MenuButton";
     NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:identifier owner:self options:nil];
     if (topLevelObjects == nil || [topLevelObjects count] <= 0){
@@ -69,8 +69,16 @@
             return NSLS(@"kDiceMenuStart"); 
         case MenuButtonTypeDiceHelp:
             return NSLS(@"kDiceMenuHelp"); 
-        case MenuButtonTypeDiceRoom:
-            return NSLS(@"kDiceMenuRoom"); 
+            
+        case MenuButtonTypeDiceHappyRoom:
+            return NSLS(@"kDiceMenuHappyRoom"); 
+        case MenuButtonTypeDiceHighRoom:
+            return NSLS(@"kDiceMenuHighRoom"); 
+        case MenuButtonTypeDiceSuperHighRoom:
+            return NSLS(@"kDiceMenuSuperHighRoom"); 
+            
+//        case MenuButtonTypeDiceRoom:
+//            return NSLS(@"kDiceMenuRoom"); 
         case MenuButtonTypeDiceShop:
             return NSLS(@"kDiceMenuShop"); 
         default:
@@ -104,7 +112,9 @@
             return [imageManager diceShopImage];
         case MenuButtonTypeDiceHelp:
             return [imageManager diceHelpMenuImage];
-        case MenuButtonTypeDiceRoom:
+        case MenuButtonTypeDiceHappyRoom:
+        case MenuButtonTypeDiceHighRoom:
+        case MenuButtonTypeDiceSuperHighRoom:
             return [imageManager diceRoomMenuImage];
         default:
             return nil;
@@ -180,8 +190,11 @@ int *drawMainMenuTypeList()
 int *diceMainMenuTypeList()
 {
     static int list[] = {    
-        MenuButtonTypeDiceStart,   
-        MenuButtonTypeDiceRoom,   
+        MenuButtonTypeDiceStart,  
+        
+        MenuButtonTypeDiceHappyRoom,
+        MenuButtonTypeDiceHighRoom,
+        MenuButtonTypeDiceSuperHighRoom,
         MenuButtonTypeDiceHelp,   
         MenuButtonTypeDiceShop,   
         //must add the end mark.

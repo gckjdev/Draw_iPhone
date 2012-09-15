@@ -66,6 +66,16 @@
     return self;
 }
 
+//- (id)init
+//{
+//    self = [super init];
+//    if (self) {
+//        firstLoad = YES;
+//    }
+//    
+//    return self;
+//}
+
 - (void)dealloc {
     [self clearRefreshRoomsTimer];
     [createRoomButton release];
@@ -82,10 +92,9 @@
 - (void)checkAndJoinGame:(int)sessionId
 {
     _isJoiningDice = YES;
-    if ([DiceConfigManager meetJoinGameCondictionWithRuleType:_ruleType]) {
+    if ([DiceConfigManager meetJoinGameCondictionWithRuleType:_diceGameService.ruleType]) {
         [self showActivityWithText:NSLS(@"kJoiningGame")];
-        [[DiceGameService defaultService] joinGameRequest:sessionId
-                                                 ruleType:_ruleType];
+        [[DiceGameService defaultService] joinGameRequest:sessionId];
     }else {
         [self showCoinsNotEnoughView];
     }
@@ -94,9 +103,9 @@
 - (void)checkAndJoinGame
 {
     _isJoiningDice = YES;
-    if ([DiceConfigManager meetJoinGameCondictionWithRuleType:_ruleType]) {
+    if ([DiceConfigManager meetJoinGameCondictionWithRuleType:_diceGameService.ruleType]) {
         [self showActivityWithText:NSLS(@"kJoiningGame")];
-        [_diceGameService joinGameRequestWithRuleType:_ruleType];
+        [_diceGameService joinGameRequest];
     }else {
         [self showCoinsNotEnoughView];
     }
@@ -106,7 +115,7 @@
                   password:(NSString*)password
 {
     _isJoiningDice = YES;
-    [_diceGameService createRoomWithName:targetText password:password ruleType:_ruleType];
+    [_diceGameService createRoomWithName:targetText password:password];
     [self showActivityWithText:NSLS(@"kCreatingRoom")];
 }
 
@@ -155,7 +164,7 @@
 {
     [self hideActivity];
     if(_isJoiningDice) {
-        DiceGamePlayController *controller = [[[DiceGamePlayController alloc] initWIthRuleType:_ruleType] autorelease];
+        DiceGamePlayController *controller = [[[DiceGamePlayController alloc] init] autorelease];
         [self.navigationController pushViewController:controller animated:YES];
         _isJoiningDice = NO; 
     }
@@ -164,6 +173,7 @@
 - (void)connectServer
 {
     // Internet Test Server
+    [[DiceGameService defaultService] setRuleType:_ruleType];
     [[DiceGameService defaultService] connectServer:self];
     [self showActivityWithText:NSLS(@"kRefreshingRoomList")];
     _isJoiningDice = NO;    
@@ -341,7 +351,7 @@
 
 - (IBAction)creatRoom:(id)sender
 {
-    if ([DiceConfigManager meetJoinGameCondictionWithRuleType:_ruleType]) {
+    if ([DiceConfigManager meetJoinGameCondictionWithRuleType:_diceGameService.ruleType]) {
         [self showCreateRoomView];
     }else {
         [self showCoinsNotEnoughView];
@@ -362,7 +372,7 @@
 
 - (void)showCoinsNotEnoughView
 {
-    CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"kNotEnoughCoin") message:[DiceConfigManager coinsNotEnoughNoteWithRuleType:_ruleType] style:CommonDialogStyleDoubleButton delegate:self theme:CommonDialogThemeDice];
+    CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"kNotEnoughCoin") message:[DiceConfigManager coinsNotEnoughNoteWithRuleType:_diceGameService.ruleType] style:CommonDialogStyleDoubleButton delegate:self theme:CommonDialogThemeDice];
     [dialog showInView:self.view];
 }
 

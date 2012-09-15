@@ -434,7 +434,7 @@
         if(_isTryJoinGame) {
             GameMessage* message = [CommonGameNetworkService userInfoToMessage:[note userInfo]];
             if ([message resultCode] == GameResultCodeSuccess){
-                DiceGamePlayController *controller = [[[DiceGamePlayController alloc] initWIthRuleType:DiceGameRuleTypeRuleNormal] autorelease];
+                DiceGamePlayController *controller = [[[DiceGamePlayController alloc] init] autorelease];
                 [self.navigationController pushViewController:controller animated:YES];
             }
             else{
@@ -484,11 +484,12 @@
     [dialog showInView:self.view];
 }
 
-- (void)connectServer
+- (void)connectServer:(DiceGameRuleType)ruleType
 {
     _isTryJoinGame = YES;    
     
     [self showActivityWithText:NSLS(@"kConnectingServer")];
+    [[DiceGameService defaultService] setRuleType:ruleType];
     [[DiceGameService defaultService] connectServer:self];
 }
 
@@ -501,7 +502,7 @@
     if (_isTryJoinGame){
         if ([DiceConfigManager meetJoinGameCondictionWithRuleType:DiceGameRuleTypeRuleNormal]) {
             [self showActivityWithText:NSLS(@"kJoiningGame")];
-            [[DiceGameService defaultService] joinGameRequestWithRuleType:DiceGameRuleTypeRuleNormal];
+            [[DiceGameService defaultService] joinGameRequest];
         }else {
             [[DiceGameService defaultService] disconnectServer];
             [self showCoinsNotEnoughView];
@@ -556,14 +557,6 @@
     [self.navigationController pushViewController:ruc animated:YES];
     [ruc release];
 }
-- (IBAction)didClickHight:(id)sender {
-    DiceRoomListController* vc = [[[DiceRoomListController alloc] initWithRuleType:DiceGameRuleTypeRuleHigh] autorelease];
-    [self.navigationController pushViewController:vc animated:YES];
-}
-- (IBAction)didClickSuperHight:(id)sender {
-    DiceRoomListController* vc = [[[DiceRoomListController alloc] initWithRuleType:DiceGameRuleTypeRuleSuperHigh] autorelease];
-    [self.navigationController pushViewController:vc animated:YES];
-}
 
 - (void)didClickMenuButton:(MenuButton *)menuButton
 {
@@ -584,17 +577,32 @@
             break;
         case MenuButtonTypeDiceStart:
         {
-            if ([self respondsToSelector:@selector(connectServer)]){
-                [self performSelector:@selector(connectServer)];
+            if ([self respondsToSelector:@selector(connectServer:)]){
+                [self connectServer:DiceGameRuleTypeRuleNormal];
             }
         }
             break;
-        case MenuButtonTypeDiceRoom:
+        case MenuButtonTypeDiceHappyRoom:
         {
             DiceRoomListController* vc = [[[DiceRoomListController alloc] initWithRuleType:DiceGameRuleTypeRuleNormal] autorelease];
             [self.navigationController pushViewController:vc animated:YES];
         }
             break;
+            
+        case MenuButtonTypeDiceHighRoom:
+        {
+            DiceRoomListController* vc = [[[DiceRoomListController alloc] initWithRuleType:DiceGameRuleTypeRuleNormal] autorelease];
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+            break;
+        case MenuButtonTypeDiceSuperHighRoom:
+        {
+            DiceRoomListController* vc = [[[DiceRoomListController alloc] initWithRuleType:DiceGameRuleTypeRuleNormal] autorelease];
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+            break;
+
+            
         case MenuButtonTypeDiceHelp:
         {
             DiceHelpView *view = [DiceHelpView createDiceHelpView];

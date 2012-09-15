@@ -44,7 +44,7 @@
 @interface DiceGamePlayController ()
 {
     int hideAdCounter;
-    DiceGameRuleType _ruleType;
+//    DiceGameRuleType _ruleType;
 }
 
 @property (retain, nonatomic) DiceSelectedView *diceSelectedView;
@@ -141,7 +141,26 @@
     [super dealloc];
 }
 
-- (id)initWIthRuleType:(DiceGameRuleType)ruleType
+//- (id)initWIthRuleType:(DiceGameRuleType)ruleType
+//{
+//    self = [super init];
+//    if (self) {
+//        _diceService = [DiceGameService defaultService];
+//        _userManager = [UserManager defaultManager];
+//        _imageManager = [DiceImageManager defaultManager];
+//        _levelService = [LevelService defaultService];
+//        _accountService = [AccountService defaultService];
+//        _audioManager = [AudioManager defaultManager];
+//        _expressionManager = [ExpressionManager defaultManager];
+//        _soundManager = [DiceSoundManager defaultManager];
+//        _ruleType = ruleType;
+//        _urgedUser = [[NSMutableSet alloc] init];
+//    }
+//    
+//    return self;
+//}
+
+- (id)init
 {
     self = [super init];
     if (self) {
@@ -153,7 +172,6 @@
         _audioManager = [AudioManager defaultManager];
         _expressionManager = [ExpressionManager defaultManager];
         _soundManager = [DiceSoundManager defaultManager];
-        _ruleType = ruleType;
         _urgedUser = [[NSMutableSet alloc] init];
     }
     
@@ -866,7 +884,7 @@
 {
     self.myCoinsLabel.text = [NSString stringWithFormat:@"x%d",[_accountService getBalance]];
     
-    if (![DiceConfigManager meetJoinGameCondictionWithRuleType:_ruleType]) {
+    if (![DiceConfigManager meetJoinGameCondictionWithRuleType:_diceService.ruleType]) {
         [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kNotEnoughCoinToContinue") delayTime:1.5 isHappy:NO];
         [self quitDiceGame];
     }
