@@ -26,6 +26,7 @@ static PBExtensionRegistry* extensionRegistry = nil;
 @interface GetRoomsRequest ()
 @property (retain) NSString* gameId;
 @property int32_t roomType;
+@property (retain) NSString* keyword;
 @end
 
 @implementation GetRoomsRequest
@@ -44,14 +45,23 @@ static PBExtensionRegistry* extensionRegistry = nil;
   hasRoomType_ = !!value;
 }
 @synthesize roomType;
+- (BOOL) hasKeyword {
+  return !!hasKeyword_;
+}
+- (void) setHasKeyword:(BOOL) value {
+  hasKeyword_ = !!value;
+}
+@synthesize keyword;
 - (void) dealloc {
   self.gameId = nil;
+  self.keyword = nil;
   [super dealloc];
 }
 - (id) init {
   if ((self = [super init])) {
     self.gameId = @"";
     self.roomType = 0;
+    self.keyword = @"";
   }
   return self;
 }
@@ -80,6 +90,9 @@ static GetRoomsRequest* defaultGetRoomsRequestInstance = nil;
   if (self.hasRoomType) {
     [output writeInt32:3 value:self.roomType];
   }
+  if (self.hasKeyword) {
+    [output writeString:4 value:self.keyword];
+  }
   [self.unknownFields writeToCodedOutputStream:output];
 }
 - (int32_t) serializedSize {
@@ -94,6 +107,9 @@ static GetRoomsRequest* defaultGetRoomsRequestInstance = nil;
   }
   if (self.hasRoomType) {
     size += computeInt32Size(3, self.roomType);
+  }
+  if (self.hasKeyword) {
+    size += computeStringSize(4, self.keyword);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -176,6 +192,9 @@ static GetRoomsRequest* defaultGetRoomsRequestInstance = nil;
   if (other.hasRoomType) {
     [self setRoomType:other.roomType];
   }
+  if (other.hasKeyword) {
+    [self setKeyword:other.keyword];
+  }
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }
@@ -203,6 +222,10 @@ static GetRoomsRequest* defaultGetRoomsRequestInstance = nil;
       }
       case 24: {
         [self setRoomType:[input readInt32]];
+        break;
+      }
+      case 34: {
+        [self setKeyword:[input readString]];
         break;
       }
     }
@@ -238,6 +261,22 @@ static GetRoomsRequest* defaultGetRoomsRequestInstance = nil;
 - (GetRoomsRequest_Builder*) clearRoomType {
   result.hasRoomType = NO;
   result.roomType = 0;
+  return self;
+}
+- (BOOL) hasKeyword {
+  return result.hasKeyword;
+}
+- (NSString*) keyword {
+  return result.keyword;
+}
+- (GetRoomsRequest_Builder*) setKeyword:(NSString*) value {
+  result.hasKeyword = YES;
+  result.keyword = value;
+  return self;
+}
+- (GetRoomsRequest_Builder*) clearKeyword {
+  result.hasKeyword = NO;
+  result.keyword = @"";
   return self;
 }
 @end

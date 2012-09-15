@@ -130,13 +130,17 @@
 @private
   BOOL hasRoomType_:1;
   BOOL hasGameId_:1;
+  BOOL hasKeyword_:1;
   int32_t roomType;
   NSString* gameId;
+  NSString* keyword;
 }
 - (BOOL) hasGameId;
 - (BOOL) hasRoomType;
+- (BOOL) hasKeyword;
 @property (readonly, retain) NSString* gameId;
 @property (readonly) int32_t roomType;
+@property (readonly, retain) NSString* keyword;
 
 + (GetRoomsRequest*) defaultInstance;
 - (GetRoomsRequest*) defaultInstance;
@@ -181,6 +185,11 @@
 - (int32_t) roomType;
 - (GetRoomsRequest_Builder*) setRoomType:(int32_t) value;
 - (GetRoomsRequest_Builder*) clearRoomType;
+
+- (BOOL) hasKeyword;
+- (NSString*) keyword;
+- (GetRoomsRequest_Builder*) setKeyword:(NSString*) value;
+- (GetRoomsRequest_Builder*) clearKeyword;
 @end
 
 @interface GetRoomsResponse : PBGeneratedMessage {
