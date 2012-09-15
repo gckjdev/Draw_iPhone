@@ -8,6 +8,7 @@
 
 #import "DiceGameSession.h"
 #import "PPDebug.h"
+#import "GameConstants.pb.h"
 
 @implementation DiceGameSession
 
@@ -22,6 +23,7 @@
 @synthesize wilds = _wilds;
 @synthesize isMeAByStander = _isMeAByStander;
 @synthesize gameState = _gameState;
+@synthesize callCount = _callCount;
 
 - (void)dealloc{
     PPRelease(_userDiceList);
@@ -42,6 +44,15 @@
     return self;
 }
 
+- (int)ante
+{
+    int ante = 100;
+    if (self.ruleType == DiceGameRuleTypeRuleSuperHigh) {
+        ante = 50 * (_callCount + 1);
+    }
+    return ante;
+}
+
 - (void)reset
 {
     [self.userDiceList removeAllObjects];
@@ -55,6 +66,7 @@
     self.wilds = false;
     self.isMeAByStander = YES;
     self.gameState = GameStateGameOver;
+    self.callCount = 0;
 }
 
 @end

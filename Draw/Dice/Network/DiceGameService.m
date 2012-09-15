@@ -89,16 +89,22 @@ static DiceGameService* _defaultService;
 {
     self.diceSession.lastCallDiceUserId = message.userId;
     self.diceSession.lastCallDice = message.callDiceRequest.dice;
-    self.diceSession.lastCallDiceCount = message.callDiceRequest.num;    
+    self.diceSession.lastCallDiceCount = message.callDiceRequest.num;
     if ([message.callDiceRequest hasWilds]) {
         self.diceSession.wilds = message.callDiceRequest.wilds;
     }
-        
+    
+    self.diceSession.callCount ++;
+
     [self postNotification:NOTIFICATION_CALL_DICE_REQUEST message:message];
 }
 
 - (void)handleCallDiceResponse:(GameMessage *)message
 {
+    if (message.resultCode == 0) {
+        self.diceSession.callCount ++;
+    }
+
     [self postNotification:NOTIFICATION_CALL_DICE_RESPONSE message:message];
 }
 
@@ -337,32 +343,29 @@ static DiceGameService* _defaultService;
                                                     multiple:1]; 
 }
 
-- (void)setRuleType:(DiceGameRuleType)ruleType
+- (void)initServerListString
 {
-    _ruleType = ruleType;
-}
-
-- (NSString *)gameServerStringList
-{
-    NSString *str = nil;
     switch (_ruleType) {
         case DiceGameRuleTypeRuleNormal:
-            str = [ConfigManager getDiceServerListStringWithNormal];
+            self.serverStringList = [ConfigManager getDiceServerListStringWithNormal];
             break;
             
         case DiceGameRuleTypeRuleHigh:
-            str = [ConfigManager getDiceServerListStringWithNormal];
+            self.serverStringList = [ConfigManager getDiceServerListStringWithHightRule];
             break;
             
         case DiceGameRuleTypeRuleSuperHigh:
-            str = [ConfigManager getDiceServerListStringWithNormal];
+            self.serverStringList = [ConfigManager getDiceServerListStringWithSuperHightRule];
             break;
             
         default:
             break;
     }
-    
-    return str;
+}
+
+- (int)ante
+{
+    return [self.diceSession ante];
 }
 
 
