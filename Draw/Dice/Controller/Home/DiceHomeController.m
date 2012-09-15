@@ -582,12 +582,27 @@
             }
         }
             break;
-        case MenuButtonTypeDiceRoom:
+        case MenuButtonTypeDiceHappyRoom:
         {
             DiceRoomListController* vc = [[[DiceRoomListController alloc] initWithRuleType:DiceGameRuleTypeRuleNormal] autorelease];
             [self.navigationController pushViewController:vc animated:YES];
         }
             break;
+            
+        case MenuButtonTypeDiceHighRoom:
+        {
+            DiceRoomListController* vc = [[[DiceRoomListController alloc] initWithRuleType:DiceGameRuleTypeRuleNormal] autorelease];
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+            break;
+        case MenuButtonTypeDiceSuperHighRoom:
+        {
+            DiceRoomListController* vc = [[[DiceRoomListController alloc] initWithRuleType:DiceGameRuleTypeRuleNormal] autorelease];
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+            break;
+
+            
         case MenuButtonTypeDiceHelp:
         {
             DiceHelpView *view = [DiceHelpView createDiceHelpView];

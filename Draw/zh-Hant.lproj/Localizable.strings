@@ -865,6 +865,11 @@
 "kDiceSnake" = "蛇骰";
 "kDiceNet" = "凈骰";
 "kDiceWai" = "圍骰";
+
+"kDiceMenuHappyRoom" = "歡樂場";
+"kDiceMenuHighRoom" = "勁爆場";
+"kDiceMenuSuperHighRoom" = "超爆場";
+
 /*********************** 大话骰子国际化字符串结束 *************************/
 
 

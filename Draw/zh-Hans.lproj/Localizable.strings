@@ -885,3 +885,6 @@
 
 /*********************** 大话骰子国际化字符串结束 *************************/
 
+"kDiceMenuHappyRoom" = "欢乐场";
+"kDiceMenuHighRoom" = "劲爆场";
+"kDiceMenuSuperHighRoom" = "超爆场";
