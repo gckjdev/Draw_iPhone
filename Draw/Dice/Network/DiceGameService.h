@@ -20,7 +20,6 @@
 + (DiceGameService*)defaultService;
 
 - (DiceGameSession*)diceSession;
-
 - (NSArray *)myDiceList;
 - (NSString *)lastCallUserId;
 - (int)lastCallDice;
@@ -36,5 +35,7 @@
 - (void)userTimeItem:(int)itemId 
                 time:(int)time;
 - (void)changeDiceList:(NSString *)userId diceList:(NSArray *)diceList;
+
+- (int)ante;
 
 @end

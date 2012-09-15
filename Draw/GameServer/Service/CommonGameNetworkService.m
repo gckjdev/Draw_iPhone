@@ -128,7 +128,7 @@
     [self clearDisconnectTimer];
     [_networkClient setDelegate:self];
     
-    self.serverStringList = [self gameServerListString];
+    [self initServerListString];
     [self dispatchServer];
     
     [_networkClient start:_serverAddress port:_serverPort];        

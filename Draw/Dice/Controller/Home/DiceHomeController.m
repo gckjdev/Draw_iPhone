@@ -591,17 +591,16 @@
             
         case MenuButtonTypeDiceHighRoom:
         {
-            DiceRoomListController* vc = [[[DiceRoomListController alloc] initWithRuleType:DiceGameRuleTypeRuleNormal] autorelease];
+            DiceRoomListController* vc = [[[DiceRoomListController alloc] initWithRuleType:DiceGameRuleTypeRuleHigh] autorelease];
             [self.navigationController pushViewController:vc animated:YES];
         }
             break;
         case MenuButtonTypeDiceSuperHighRoom:
         {
-            DiceRoomListController* vc = [[[DiceRoomListController alloc] initWithRuleType:DiceGameRuleTypeRuleNormal] autorelease];
+            DiceRoomListController* vc = [[[DiceRoomListController alloc] initWithRuleType:DiceGameRuleTypeRuleSuperHigh] autorelease];
             [self.navigationController pushViewController:vc animated:YES];
         }
             break;
-
             
         case MenuButtonTypeDiceHelp:
         {

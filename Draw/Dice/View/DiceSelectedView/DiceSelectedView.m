@@ -93,12 +93,13 @@
 
 - (void)setLastCallDice:(int)lastCallDice
       lastCallDiceCount:(int)lastCallDiceCount
-       playingUserCount:(int)playingUserCount;
+       playingUserCount:(int)playingUserCount
+               ruleType:(DiceGameRuleType)ruleType
 {
     _lastCallDice = (lastCallDice < 1 || lastCallDice > 6) ? 1 : lastCallDice;
     
     _start = (lastCallDice == 1) ? (lastCallDiceCount + 1) : lastCallDiceCount;
-    _end = playingUserCount * 5;
+    _end = playingUserCount * (ruleType==PBDiceTypeDiceNormal ? 5 : 7);
     
     // For protest
     _start = (_start < playingUserCount) ? playingUserCount : _start;

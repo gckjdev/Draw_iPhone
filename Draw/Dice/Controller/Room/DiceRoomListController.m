@@ -307,7 +307,7 @@
         cell = [DiceRoomListCell createCell:[DiceRoomListCell getCellIdentifier]];
     }
     PBGameSession* session = [[DiceGameService defaultService].roomList objectAtIndex:indexPath.row];
-    [cell setCellInfo:session];
+    [cell setCellInfo:session ruleType:_ruleType];
     return cell;
 }
 

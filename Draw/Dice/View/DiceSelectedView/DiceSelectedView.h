@@ -10,6 +10,7 @@
 #import "UICustomPageControl.h"
 #import "DiceShowView.h"
 #import "CMPopTipView.h"
+#import "GameConstants.pb.h"
 
 @protocol DiceSelectedViewDelegate <NSObject>
 
@@ -26,7 +27,8 @@
 
 - (void)setLastCallDice:(int)lastCallDice
       lastCallDiceCount:(int)lastCallDiceCount
-       playingUserCount:(int)playingUserCount;
+       playingUserCount:(int)playingUserCount
+               ruleType:(DiceGameRuleType)ruleType;
 
 - (void)disableUserInteraction;
 - (void)enableUserInteraction;

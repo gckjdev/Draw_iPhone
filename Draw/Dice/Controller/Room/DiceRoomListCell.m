@@ -34,10 +34,30 @@
     return HEIGHT_DICE_ROOM_LIST_CELL;
 }
 
-- (void)setCellInfo:(PBGameSession *)session
+- (NSString *)roomName:(DiceGameRuleType)ruleType sessionId:(int)sessionId
+{
+    NSString *name = nil;
+    switch (ruleType) {
+        case DiceGameRuleTypeRuleNormal:
+            name = [NSString stringWithFormat:NSLS(@"kDiceHappyRoom"), sessionId];
+            break;
+        case DiceGameRuleTypeRuleHigh:
+            name = [NSString stringWithFormat:NSLS(@"kDiceHighRoom"), sessionId];
+            break;
+        case DiceGameRuleTypeRuleSuperHigh:
+            name = [NSString stringWithFormat:NSLS(@"kDiceSuperHighRoom"), sessionId];
+            break;
+        default:
+            break;
+    }
+    
+    return name;
+}
+
+- (void)setCellInfo:(PBGameSession *)session ruleType:(DiceGameRuleType)ruleType;
 {
     if (session.name == nil || session.name.length <= 0) {
-        [self.roomNameLabel setText:[NSString stringWithFormat:NSLS(@"kDiceRoom"), session.sessionId]];
+        [self.roomNameLabel setText:[self roomName:ruleType sessionId:session.sessionId]];
     } else {
         [self.roomNameLabel setText:session.name];
     }

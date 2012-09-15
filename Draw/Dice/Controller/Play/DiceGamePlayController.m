@@ -96,6 +96,8 @@
 @synthesize popupLevel1View = _popupLevel1View;
 @synthesize popupLevel2View = _popupLevel2View;
 @synthesize popupLevel3View = _popupLevel3View;
+@synthesize anteLabel = _anteLabel;
+@synthesize anteView = _anteView;
 @synthesize popupView = _popupView;
 @synthesize adHideTimer = _adHideTimer;
 
@@ -138,6 +140,8 @@
     [_popupLevel3View release];
     [_popupView release];
     [_urgedUser release];
+    [_anteLabel release];
+    [_anteView release];
     [super dealloc];
 }
 
@@ -229,7 +233,9 @@
     self.wildsFlagButton.hidden = YES;
     self.resultHolderView.hidden = YES;
     self.openDiceButton.hidden = YES;
-    
+    self.anteView.hidden = YES;
+    self.anteLabel.text = [NSString stringWithFormat:@"%d", _diceService.ante]; 
+
     [self registerDiceGameNotifications];    
     
     [self updateWaittingForNextTurnNotLabel];
@@ -273,6 +279,8 @@
     [self setPopupLevel1View:nil];
     [self setPopupLevel2View:nil];
     [self setPopupLevel3View:nil];
+    [self setAnteLabel:nil];
+    [self setAnteView:nil];
     [super viewDidUnload];
 }
 
@@ -430,6 +438,7 @@
     
     self.resultHolderView.hidden = YES;
     self.wildsFlagButton.hidden = YES;
+    self.anteView.hidden = YES;
 }
 
 - (void)dismissAllPopupViews
@@ -765,7 +774,8 @@
 {
     [_diceSelectedView setLastCallDice:_diceService.lastCallDice 
                      lastCallDiceCount:_diceService.lastCallDiceCount 
-                      playingUserCount:_diceService.diceSession.playingUserCount];
+                      playingUserCount:_diceService.diceSession.playingUserCount
+                              ruleType:_diceService.ruleType];
 }
 
 - (void)disableAllDiceOperationButtons
@@ -808,6 +818,9 @@
 - (void)rollDiceEnd
 {
     self.itemsBoxButton.enabled = YES;
+    self.anteLabel.text = [NSString stringWithFormat:@"%d", _diceService.ante]; 
+    self.anteView.hidden = NO;
+    
     [[self selfBellView] setHidden:YES];
     
     [myDiceListHolderView removeAllSubviews];
@@ -965,7 +978,8 @@
 - (void)callDiceSuccess
 {
     [self popupCallDiceView];
-    
+    self.anteLabel.text = [NSString stringWithFormat:@"%d", _diceService.ante]; 
+
     if (_diceService.diceSession.wilds) {
         [self userUseWilds];
     } else if (self.wildsFlagButton.hidden == NO){
@@ -1026,6 +1040,7 @@
 - (void)someoneCallDice
 {   
     [self clearAllReciprocol];
+    self.anteLabel.text = [NSString stringWithFormat:@"%d", _diceService.ante]; 
     
     if (_diceService.diceSession.wilds) {
         [self userUseWilds];
