@@ -817,12 +817,20 @@
     myDiceListHolderView.hidden = NO;
 }
 
+- (void)removeUrgedUser:(NSString*)userId
+{
+    [_urgedUser removeObject:userId];
+    DiceAvatarView* avatar = [self avatarViewOfUser:userId];
+    [avatar removeFlyClockOnMyHead];
+}
+
 - (void)userPreStart:(NSString*)userId
 {
     if ([_urgedUser containsObject:userId]) {
         [[self avatarViewOfUser:userId] startReciprocol:USER_THINK_TIME_INTERVAL - [ConfigManager getUrgeTime] 
                                                       fromProgress:(1 - (float)(USER_THINK_TIME_INTERVAL-[ConfigManager getUrgeTime])/USER_THINK_TIME_INTERVAL)];
-        [_urgedUser removeObject:userId];
+        [self removeUrgedUser:userId];
+        
     } else {
         [[self avatarViewOfUser:userId] startReciprocol:USER_THINK_TIME_INTERVAL];
     }
@@ -1342,7 +1350,15 @@
 - (void)urgeUser:(NSString*)userId
 {
     [_urgedUser addObject:userId];
+    DiceAvatarView* avatar = [self avatarViewOfUser:userId];
+    [avatar addFlyClockOnMyHead];
 }
+
+- (IBAction)clickSkip:(id)sender
+{
+    [_diceService userItem:ItemTypeSkip];
+}
+
 
 
 @end

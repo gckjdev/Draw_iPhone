@@ -122,6 +122,7 @@
 +(UIImage *)imageForItemType:(ItemType)type
 {
     ShareImageManager* manager = [ShareImageManager defaultManager];
+    DiceImageManager* diceManager = [DiceImageManager defaultManager];
     switch (type) {
         case ItemTypeFlower:
             return manager.flower;
@@ -142,9 +143,19 @@
         case WaterPen:
             return manager.waterPen;
         case ItemTypeRollAgain: 
-            return [[DiceImageManager defaultManager] diceToolRollAgainImageForShop];
+            return [diceManager toShopImage:diceManager.diceToolRollAgainImage];
         case ItemTypeCut: 
-            return [[DiceImageManager defaultManager] diceToolCutImageForShop];
+            return [diceManager toShopImage:diceManager.diceToolCutImage];
+        case ItemTypeIncTime:
+            return [diceManager toShopImage:diceManager.postponeImage];
+        case ItemTypeDecTime:
+            return [diceManager toShopImage:diceManager.urgeImage];
+        case ItemTypeSkip:
+            return [diceManager toShopImage:diceManager.turtleImage];
+        case ItemTypeDoubleKill:
+            return [diceManager toShopImage:diceManager.doubleKillImage];
+        case ItemTypeDiceRobot:
+            return [diceManager toShopImage:diceManager.diceRobotImage];
         default:
             return nil;
     }    
@@ -223,7 +234,16 @@
 
 + (BOOL)isItemCountable:(ItemType)type
 {
-    if(type == ItemTypeTomato || type == ItemTypeFlower || type == ItemTypeTips || type == ItemTypeRollAgain || type == ItemTypeCut)
+    if(type == ItemTypeTomato 
+       || type == ItemTypeFlower 
+       || type == ItemTypeTips 
+       || type == ItemTypeRollAgain 
+       || type == ItemTypeCut 
+       || type == ItemTypeIncTime 
+       || type == ItemTypeDecTime 
+       || type == ItemTypeSkip 
+       || type == ItemTypeDoubleKill 
+       || type == ItemTypeDiceRobot)
         return YES;
     return NO;
 }

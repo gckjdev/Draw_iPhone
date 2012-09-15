@@ -411,6 +411,27 @@ static DiceImageManager *_defaultManager = nil;
     return [UIImage creatImageByImage:backgroundImage withLabel:label];
 }
 
+- (UIImage *)diceRobotImage
+{
+    UIImage* backgroundImage = [UIImage imageNamed:@"tools_bell_bg@2x.png"];
+    float width = backgroundImage.size.width;
+    float height = backgroundImage.size.height;
+    HKGirlFontLabel* label = [[[HKGirlFontLabel alloc] initWithFrame:CGRectMake(width*0.2, 
+                                                                                width*0.1, 
+                                                                                width*0.6, 
+                                                                                height*0.6) 
+                                                           pointSize:80] //here just need a big big pointsize
+                              autorelease];
+    
+    
+    [label setText:NSLS(@"助")];
+    [label setShadowColor:[UIColor whiteColor]];
+    [label setShadowOffset:CGSizeMake(0, 1)];
+    
+    return [UIImage creatImageByImage:backgroundImage withLabel:label];
+}
+
+
 - (UIImage*)toShopImage:(UIImage*)image
 {
     return [UIImage shrinkImage:image withRate:0.8];

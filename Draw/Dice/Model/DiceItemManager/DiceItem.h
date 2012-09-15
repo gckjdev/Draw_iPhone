@@ -17,4 +17,5 @@
 + (Item*)urge;
 + (Item*)doubleKill;
 + (Item*)turtle;
++ (Item*)diceRobot;
 @end
