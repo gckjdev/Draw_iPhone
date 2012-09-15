@@ -53,7 +53,7 @@
 - (void)connectServer:(id<CommonGameServiceDelegate>)delegate;
 
 // Left to Sub Class to implementation.
-- (NSString *)gameServerListString;
+- (void)initServerListString;
 
 - (void)disconnectServer;
 

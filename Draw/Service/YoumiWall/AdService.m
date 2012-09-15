@@ -331,6 +331,10 @@ static AdService* _defaultService;
     
     if ([ConfigManager isProVersion])
         return NO;
+    
+    if ([ConfigManager isEnableAd] == NO){
+        return NO;
+    }
 
     return _isShowAd;
 }
