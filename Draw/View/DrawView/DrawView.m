@@ -67,7 +67,25 @@
 @synthesize lineWidth = _lineWidth;
 @synthesize delegate = _delegate;
 @synthesize penType = _penType;
+@synthesize revocationSupported = _revocationSupported;
 
+
+- (void)addRevocationImage
+{
+    if (_revokeImageList == nil) {
+        _revokeImageList = [[NSMutableArray alloc] init];
+    }
+    UIImage *image = [self createImage];
+    if ([_revokeImageList count] >= REVOKE_CACHE_COUNT) {
+        [_revokeImageList removeObjectAtIndex:0];
+    }
+    if (image) {
+        NSInteger index = [_drawActionList count] - 1;
+        RevokeImage *rImage = [RevokeImage revokeImageWithImage:image index:index];
+        [_revokeImageList addObject:rImage];
+        PPDebug(@"<addRevocationImage>add new revoke image, at index = %d",index);
+    }
+}
 - (NSInteger)currentRevokeImageIndex
 {
     RevokeImage *rImage = [_revokeImageList lastObject];
@@ -81,6 +99,7 @@
     _startDrawActionIndex = [self.drawActionList count];
     _drawRectType = DrawRectTypeClean;
     [self setNeedsDisplay];
+//    [self addRevocationImage];
 }
 
 - (DrawAction *)addChangeBackAction:(DrawColor *)color
@@ -91,6 +110,7 @@
     _drawRectType = DrawRectTypeChangeBack;
     _changeBackColor = color.CGColor;
     [self setNeedsDisplay];
+//    [self addRevocationImage];
     return action;
 }
 
@@ -173,23 +193,14 @@
         [self.delegate didDrawedPaint:_currentDrawAction.paint];
     }
     
+    if (![self isRevocationSupported]) {
+        return;
+    }
+    
     //save revoke image
     if ([_drawActionList count] - [self currentRevokeImageIndex] >= 
         REVOKE_PAINT_COUNT) {
-
-        if (_revokeImageList == nil) {
-            _revokeImageList = [[NSMutableArray alloc] init];
-        }
-        
-        UIImage *image = [self createImage];
-        if ([_revokeImageList count] >= REVOKE_CACHE_COUNT) {
-            [_revokeImageList removeObjectAtIndex:0];
-        }
-        if (image) {
-            NSInteger index = [_drawActionList count] - 1;
-            RevokeImage *rImage = [RevokeImage revokeImageWithImage:image index:index];
-            [_revokeImageList addObject:rImage];
-        }
+        [self addRevocationImage];
     }
 }
 
@@ -303,10 +314,16 @@
     RevokeImage *rImage = [_revokeImageList lastObject];
     [rImage.image drawInRect:self.bounds];
     int j = [self currentRevokeImageIndex];
-    PPDebug(@"_revoke paint index = %d", j);
     for (; j < self.drawActionList.count; ++ j) {
         DrawAction *drawAction = [self.drawActionList objectAtIndex:j];
-        if ([drawAction isDrawAction]) {      
+        CGContextRef context = UIGraphicsGetCurrentContext();
+        if ([drawAction isCleanAction]) {
+            CGContextSetFillColorWithColor(context, self.backgroundColor.CGColor);
+            CGContextFillRect(context, self.bounds);
+        }else if([drawAction isChangeBackAction]){
+            CGContextSetFillColorWithColor(context, drawAction.paint.color.CGColor);
+            CGContextFillRect(context, self.bounds);
+        }else if ([drawAction isDrawAction]) {      
             Paint *paint = drawAction.paint;
             [self drawPaint:paint];
         }

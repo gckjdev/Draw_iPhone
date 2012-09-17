@@ -62,7 +62,7 @@
     }
     if (!_showPenHidden) {
         if ([_currentDrawAction isCleanAction] || 
-            [_currentDrawAction isChnageBackAction]) {
+            [_currentDrawAction isChangeBackAction]) {
             if (pen.hidden == NO) {
                 pen.hidden = YES;                
             }
@@ -154,7 +154,7 @@
             _playingPointIndex = 0;
             _drawRectType = DrawRectTypeClean;
             [self setNeedsDisplay];
-        }else if([_currentDrawAction isChnageBackAction]){
+        }else if([_currentDrawAction isChangeBackAction]){
             _playingActionIndex++;
             _playingPointIndex = 0;
             _drawRectType = DrawRectTypeChangeBack;
