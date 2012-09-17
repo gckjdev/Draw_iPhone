@@ -28,7 +28,7 @@
 - (void)setLastCallDice:(int)lastCallDice
       lastCallDiceCount:(int)lastCallDiceCount
        playingUserCount:(int)playingUserCount
-               ruleType:(DiceGameRuleType)ruleType;
+           maxCallCount:(int)maxCallCount;
 
 - (void)disableUserInteraction;
 - (void)enableUserInteraction;

@@ -44,15 +44,6 @@
     return self;
 }
 
-- (int)ante
-{
-    int ante = 100;
-    if (self.ruleType == DiceGameRuleTypeRuleSuperHigh) {
-        ante = 50 * (_callCount + 1);
-    }
-    return ante;
-}
-
 - (void)reset
 {
     [self.userDiceList removeAllObjects];

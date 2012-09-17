@@ -35,7 +35,10 @@
                      view:(UIView *)view;
 
 // Left to be realize for sub class.
-- (BOOL)isShowNameAnimation;
+- (void)showItemAnimation:(NSString*)userId
+                 itemType:(int)itemType
+               controller:(DiceGamePlayController *)controller
+                     view:(UIView *)view;
 
 - (void)useItemSuccess:(DiceGamePlayController *)controller
                   view:(UIView *)view;

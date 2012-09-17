@@ -39,5 +39,10 @@
 
 - (NSInteger)getRollAgainPrice;
 - (NSInteger)getCutPrice;
+- (NSInteger)getPeekPrice;
+- (NSInteger)getPostPonePrice;
+- (NSInteger)getUrgePrice;
+- (NSInteger)getTurtlePrice;
+- (NSInteger)getDiceRobotPrice;
 
 @end

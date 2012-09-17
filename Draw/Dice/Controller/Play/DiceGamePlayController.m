@@ -775,7 +775,7 @@
     [_diceSelectedView setLastCallDice:_diceService.lastCallDice 
                      lastCallDiceCount:_diceService.lastCallDiceCount 
                       playingUserCount:_diceService.diceSession.playingUserCount
-                              ruleType:_diceService.ruleType];
+                          maxCallCount:_diceService.maxCallCount];
 }
 
 - (void)disableAllDiceOperationButtons
@@ -870,7 +870,7 @@
         self.wildsButton.enabled = !_diceService.diceSession.wilds;
         
         // 根据上次叫骰结果判断是否使能+1按钮。
-        self.plusOneButton.enabled = (_diceService.lastCallDiceCount >= _diceService.diceSession.playingUserCount*5) ? NO : YES;
+        self.plusOneButton.enabled = (_diceService.lastCallDiceCount >= _diceService.maxCallCount) ? NO : YES;
         
         // 使能叫骰选择区域
         [self.diceSelectedView enableUserInteraction];
@@ -1032,7 +1032,7 @@
 {
     [self clearAllReciprocol];
 
-    if (_diceService.diceSession.lastCallDiceCount >= _diceService.diceSession.playingUserCount*5) {
+    if (_diceService.lastCallDiceCount >= _diceService.maxCallCount) {
         [self openDice];
     }else {
         [self callDice:_diceService.diceSession.lastCallDice count:(_diceService.diceSession.lastCallDiceCount + 1)];

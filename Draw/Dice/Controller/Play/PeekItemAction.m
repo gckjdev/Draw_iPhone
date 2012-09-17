@@ -13,9 +13,12 @@
 @implementation PeekItemAction
 
 // Left to be realize for sub class.
-- (BOOL)isShowNameAnimation
+- (void)showItemAnimation:(NSString *)userId 
+                 itemType:(int)itemType 
+               controller:(DiceGamePlayController *)controller
+                     view:(UIView *)view
 {
-    return YES;
+    
 }
 
 - (void)useItemSuccess:(DiceGamePlayController *)controller
