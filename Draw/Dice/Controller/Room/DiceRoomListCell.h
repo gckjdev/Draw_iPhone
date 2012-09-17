@@ -9,12 +9,14 @@
 #import <UIKit/UIKit.h>
 #import "PPTableViewCell.h"
 #import "DiceAvatarView.h"
+#import "GameConstants.pb.h"
+
 @class PBGameSession;
 
 @interface DiceRoomListCell : PPTableViewCell <DiceAvatarViewDelegate>
 
 @property (retain, nonatomic) IBOutlet UILabel *roomNameLabel;
-- (void)setCellInfo:(PBGameSession *)session;
+- (void)setCellInfo:(PBGameSession *)session ruleType:(DiceGameRuleType)ruleType;
 @property (retain, nonatomic) IBOutlet UIImageView *backgroundImageView;
 
 @end

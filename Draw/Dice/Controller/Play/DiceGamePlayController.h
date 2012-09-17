@@ -70,6 +70,8 @@
 @property (retain, nonatomic) IBOutlet UIView *popupLevel1View;
 @property (retain, nonatomic) IBOutlet UIView *popupLevel2View;
 @property (retain, nonatomic) IBOutlet UIView *popupLevel3View;
+@property (retain, nonatomic) IBOutlet UILabel *anteLabel;
+@property (retain, nonatomic) IBOutlet UIView *anteView;
 
 //- (id)initWIthRuleType:(DiceGameRuleType)ruleType;
 

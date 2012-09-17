@@ -10,15 +10,10 @@
 #import "ItemType.h"
 #import "ConfigManager.h"
 #import "DiceGamePlayController.h"
+#import "UserManager.h"
+#import "DiceAvatarView.h"
 
 @implementation DecTimeItemAction
-- (void)urge:(DiceGamePlayController*)controller 
-        view:(UIView*)view 
-{
-    PBGameUser* user = [_gameService.diceSession getNextSeatPlayerByUserId:_gameService.userId];
-    PPDebug(@"urge user <%@> sitting at %d", user.nickName, user.seatId);
-    [controller urgeUser:user.userId];
-}
 
 - (BOOL)isShowNameAnimation
 {
@@ -28,13 +23,17 @@
 - (void)useItemSuccess:(DiceGamePlayController *)controller
                   view:(UIView *)view
 {
-    [self urge:controller view:view];
+    [controller urgeUser:[_gameService.session getNextSeatPlayerByUserId:_userManager.userId].userId];
 }
 
 - (void)someoneUseItem:(NSString *)userId
             controller:(DiceGamePlayController *)controller
                   view:(UIView *)view
 {
-    [controller urgeUser:[_gameService.session getNextSeatPlayerByUserId:userId].userId];
+
+    PBGameUser* itemTarget = [_gameService.session getNextSeatPlayerByUserId:userId];
+//    PBGameUser* itemUser = [_gameService.session getUserByUserId:userId];
+//    PPDebug(@"<test> %@(sit at %d) use an urge item, urge user %@(sit ad %d)", itemUser.nickName, itemUser.seatId,  itemTarget.nickName, itemTarget.seatId);
+    [controller urgeUser:itemTarget.userId];
 }
 @end

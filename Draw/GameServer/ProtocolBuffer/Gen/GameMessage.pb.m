@@ -26,6 +26,7 @@ static PBExtensionRegistry* extensionRegistry = nil;
 @interface GetRoomsRequest ()
 @property (retain) NSString* gameId;
 @property int32_t roomType;
+@property (retain) NSString* keyword;
 @end
 
 @implementation GetRoomsRequest
@@ -44,14 +45,23 @@ static PBExtensionRegistry* extensionRegistry = nil;
   hasRoomType_ = !!value;
 }
 @synthesize roomType;
+- (BOOL) hasKeyword {
+  return !!hasKeyword_;
+}
+- (void) setHasKeyword:(BOOL) value {
+  hasKeyword_ = !!value;
+}
+@synthesize keyword;
 - (void) dealloc {
   self.gameId = nil;
+  self.keyword = nil;
   [super dealloc];
 }
 - (id) init {
   if ((self = [super init])) {
     self.gameId = @"";
     self.roomType = 0;
+    self.keyword = @"";
   }
   return self;
 }
@@ -80,6 +90,9 @@ static GetRoomsRequest* defaultGetRoomsRequestInstance = nil;
   if (self.hasRoomType) {
     [output writeInt32:3 value:self.roomType];
   }
+  if (self.hasKeyword) {
+    [output writeString:4 value:self.keyword];
+  }
   [self.unknownFields writeToCodedOutputStream:output];
 }
 - (int32_t) serializedSize {
@@ -94,6 +107,9 @@ static GetRoomsRequest* defaultGetRoomsRequestInstance = nil;
   }
   if (self.hasRoomType) {
     size += computeInt32Size(3, self.roomType);
+  }
+  if (self.hasKeyword) {
+    size += computeStringSize(4, self.keyword);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -176,6 +192,9 @@ static GetRoomsRequest* defaultGetRoomsRequestInstance = nil;
   if (other.hasRoomType) {
     [self setRoomType:other.roomType];
   }
+  if (other.hasKeyword) {
+    [self setKeyword:other.keyword];
+  }
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }
@@ -203,6 +222,10 @@ static GetRoomsRequest* defaultGetRoomsRequestInstance = nil;
       }
       case 24: {
         [self setRoomType:[input readInt32]];
+        break;
+      }
+      case 34: {
+        [self setKeyword:[input readString]];
         break;
       }
     }
@@ -238,6 +261,22 @@ static GetRoomsRequest* defaultGetRoomsRequestInstance = nil;
 - (GetRoomsRequest_Builder*) clearRoomType {
   result.hasRoomType = NO;
   result.roomType = 0;
+  return self;
+}
+- (BOOL) hasKeyword {
+  return result.hasKeyword;
+}
+- (NSString*) keyword {
+  return result.keyword;
+}
+- (GetRoomsRequest_Builder*) setKeyword:(NSString*) value {
+  result.hasKeyword = YES;
+  result.keyword = value;
+  return self;
+}
+- (GetRoomsRequest_Builder*) clearKeyword {
+  result.hasKeyword = NO;
+  result.keyword = @"";
   return self;
 }
 @end
@@ -1044,6 +1083,423 @@ static CreateRoomResponse* defaultCreateRoomResponseInstance = nil;
 - (CreateRoomResponse_Builder*) clearGameSession {
   result.hasGameSession = NO;
   result.gameSession = [PBGameSession defaultInstance];
+  return self;
+}
+@end
+
+@interface SearchRoomRequest ()
+@property (retain) NSString* keyword;
+@property int32_t rangeType;
+@end
+
+@implementation SearchRoomRequest
+
+- (BOOL) hasKeyword {
+  return !!hasKeyword_;
+}
+- (void) setHasKeyword:(BOOL) value {
+  hasKeyword_ = !!value;
+}
+@synthesize keyword;
+- (BOOL) hasRangeType {
+  return !!hasRangeType_;
+}
+- (void) setHasRangeType:(BOOL) value {
+  hasRangeType_ = !!value;
+}
+@synthesize rangeType;
+- (void) dealloc {
+  self.keyword = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.keyword = @"";
+    self.rangeType = 0;
+  }
+  return self;
+}
+static SearchRoomRequest* defaultSearchRoomRequestInstance = nil;
++ (void) initialize {
+  if (self == [SearchRoomRequest class]) {
+    defaultSearchRoomRequestInstance = [[SearchRoomRequest alloc] init];
+  }
+}
++ (SearchRoomRequest*) defaultInstance {
+  return defaultSearchRoomRequestInstance;
+}
+- (SearchRoomRequest*) defaultInstance {
+  return defaultSearchRoomRequestInstance;
+}
+- (BOOL) isInitialized {
+  return YES;
+}
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
+  if (self.hasKeyword) {
+    [output writeString:1 value:self.keyword];
+  }
+  if (self.hasRangeType) {
+    [output writeInt32:2 value:self.rangeType];
+  }
+  [self.unknownFields writeToCodedOutputStream:output];
+}
+- (int32_t) serializedSize {
+  int32_t size = memoizedSerializedSize;
+  if (size != -1) {
+    return size;
+  }
+
+  size = 0;
+  if (self.hasKeyword) {
+    size += computeStringSize(1, self.keyword);
+  }
+  if (self.hasRangeType) {
+    size += computeInt32Size(2, self.rangeType);
+  }
+  size += self.unknownFields.serializedSize;
+  memoizedSerializedSize = size;
+  return size;
+}
++ (SearchRoomRequest*) parseFromData:(NSData*) data {
+  return (SearchRoomRequest*)[[[SearchRoomRequest builder] mergeFromData:data] build];
+}
++ (SearchRoomRequest*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (SearchRoomRequest*)[[[SearchRoomRequest builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+}
++ (SearchRoomRequest*) parseFromInputStream:(NSInputStream*) input {
+  return (SearchRoomRequest*)[[[SearchRoomRequest builder] mergeFromInputStream:input] build];
+}
++ (SearchRoomRequest*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (SearchRoomRequest*)[[[SearchRoomRequest builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (SearchRoomRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input {
+  return (SearchRoomRequest*)[[[SearchRoomRequest builder] mergeFromCodedInputStream:input] build];
+}
++ (SearchRoomRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (SearchRoomRequest*)[[[SearchRoomRequest builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (SearchRoomRequest_Builder*) builder {
+  return [[[SearchRoomRequest_Builder alloc] init] autorelease];
+}
++ (SearchRoomRequest_Builder*) builderWithPrototype:(SearchRoomRequest*) prototype {
+  return [[SearchRoomRequest builder] mergeFrom:prototype];
+}
+- (SearchRoomRequest_Builder*) builder {
+  return [SearchRoomRequest builder];
+}
+@end
+
+@interface SearchRoomRequest_Builder()
+@property (retain) SearchRoomRequest* result;
+@end
+
+@implementation SearchRoomRequest_Builder
+@synthesize result;
+- (void) dealloc {
+  self.result = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.result = [[[SearchRoomRequest alloc] init] autorelease];
+  }
+  return self;
+}
+- (PBGeneratedMessage*) internalGetResult {
+  return result;
+}
+- (SearchRoomRequest_Builder*) clear {
+  self.result = [[[SearchRoomRequest alloc] init] autorelease];
+  return self;
+}
+- (SearchRoomRequest_Builder*) clone {
+  return [SearchRoomRequest builderWithPrototype:result];
+}
+- (SearchRoomRequest*) defaultInstance {
+  return [SearchRoomRequest defaultInstance];
+}
+- (SearchRoomRequest*) build {
+  [self checkInitialized];
+  return [self buildPartial];
+}
+- (SearchRoomRequest*) buildPartial {
+  SearchRoomRequest* returnMe = [[result retain] autorelease];
+  self.result = nil;
+  return returnMe;
+}
+- (SearchRoomRequest_Builder*) mergeFrom:(SearchRoomRequest*) other {
+  if (other == [SearchRoomRequest defaultInstance]) {
+    return self;
+  }
+  if (other.hasKeyword) {
+    [self setKeyword:other.keyword];
+  }
+  if (other.hasRangeType) {
+    [self setRangeType:other.rangeType];
+  }
+  [self mergeUnknownFields:other.unknownFields];
+  return self;
+}
+- (SearchRoomRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
+  return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
+}
+- (SearchRoomRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
+  while (YES) {
+    int32_t tag = [input readTag];
+    switch (tag) {
+      case 0:
+        [self setUnknownFields:[unknownFields build]];
+        return self;
+      default: {
+        if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
+          [self setUnknownFields:[unknownFields build]];
+          return self;
+        }
+        break;
+      }
+      case 10: {
+        [self setKeyword:[input readString]];
+        break;
+      }
+      case 16: {
+        [self setRangeType:[input readInt32]];
+        break;
+      }
+    }
+  }
+}
+- (BOOL) hasKeyword {
+  return result.hasKeyword;
+}
+- (NSString*) keyword {
+  return result.keyword;
+}
+- (SearchRoomRequest_Builder*) setKeyword:(NSString*) value {
+  result.hasKeyword = YES;
+  result.keyword = value;
+  return self;
+}
+- (SearchRoomRequest_Builder*) clearKeyword {
+  result.hasKeyword = NO;
+  result.keyword = @"";
+  return self;
+}
+- (BOOL) hasRangeType {
+  return result.hasRangeType;
+}
+- (int32_t) rangeType {
+  return result.rangeType;
+}
+- (SearchRoomRequest_Builder*) setRangeType:(int32_t) value {
+  result.hasRangeType = YES;
+  result.rangeType = value;
+  return self;
+}
+- (SearchRoomRequest_Builder*) clearRangeType {
+  result.hasRangeType = NO;
+  result.rangeType = 0;
+  return self;
+}
+@end
+
+@interface SearchRoomResponse ()
+@property (retain) NSMutableArray* mutableSessionsList;
+@end
+
+@implementation SearchRoomResponse
+
+@synthesize mutableSessionsList;
+- (void) dealloc {
+  self.mutableSessionsList = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+  }
+  return self;
+}
+static SearchRoomResponse* defaultSearchRoomResponseInstance = nil;
++ (void) initialize {
+  if (self == [SearchRoomResponse class]) {
+    defaultSearchRoomResponseInstance = [[SearchRoomResponse alloc] init];
+  }
+}
++ (SearchRoomResponse*) defaultInstance {
+  return defaultSearchRoomResponseInstance;
+}
+- (SearchRoomResponse*) defaultInstance {
+  return defaultSearchRoomResponseInstance;
+}
+- (NSArray*) sessionsList {
+  return mutableSessionsList;
+}
+- (PBGameSession*) sessionsAtIndex:(int32_t) index {
+  id value = [mutableSessionsList objectAtIndex:index];
+  return value;
+}
+- (BOOL) isInitialized {
+  for (PBGameSession* element in self.sessionsList) {
+    if (!element.isInitialized) {
+      return NO;
+    }
+  }
+  return YES;
+}
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
+  for (PBGameSession* element in self.sessionsList) {
+    [output writeMessage:1 value:element];
+  }
+  [self.unknownFields writeToCodedOutputStream:output];
+}
+- (int32_t) serializedSize {
+  int32_t size = memoizedSerializedSize;
+  if (size != -1) {
+    return size;
+  }
+
+  size = 0;
+  for (PBGameSession* element in self.sessionsList) {
+    size += computeMessageSize(1, element);
+  }
+  size += self.unknownFields.serializedSize;
+  memoizedSerializedSize = size;
+  return size;
+}
++ (SearchRoomResponse*) parseFromData:(NSData*) data {
+  return (SearchRoomResponse*)[[[SearchRoomResponse builder] mergeFromData:data] build];
+}
++ (SearchRoomResponse*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (SearchRoomResponse*)[[[SearchRoomResponse builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+}
++ (SearchRoomResponse*) parseFromInputStream:(NSInputStream*) input {
+  return (SearchRoomResponse*)[[[SearchRoomResponse builder] mergeFromInputStream:input] build];
+}
++ (SearchRoomResponse*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (SearchRoomResponse*)[[[SearchRoomResponse builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (SearchRoomResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input {
+  return (SearchRoomResponse*)[[[SearchRoomResponse builder] mergeFromCodedInputStream:input] build];
+}
++ (SearchRoomResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (SearchRoomResponse*)[[[SearchRoomResponse builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (SearchRoomResponse_Builder*) builder {
+  return [[[SearchRoomResponse_Builder alloc] init] autorelease];
+}
++ (SearchRoomResponse_Builder*) builderWithPrototype:(SearchRoomResponse*) prototype {
+  return [[SearchRoomResponse builder] mergeFrom:prototype];
+}
+- (SearchRoomResponse_Builder*) builder {
+  return [SearchRoomResponse builder];
+}
+@end
+
+@interface SearchRoomResponse_Builder()
+@property (retain) SearchRoomResponse* result;
+@end
+
+@implementation SearchRoomResponse_Builder
+@synthesize result;
+- (void) dealloc {
+  self.result = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.result = [[[SearchRoomResponse alloc] init] autorelease];
+  }
+  return self;
+}
+- (PBGeneratedMessage*) internalGetResult {
+  return result;
+}
+- (SearchRoomResponse_Builder*) clear {
+  self.result = [[[SearchRoomResponse alloc] init] autorelease];
+  return self;
+}
+- (SearchRoomResponse_Builder*) clone {
+  return [SearchRoomResponse builderWithPrototype:result];
+}
+- (SearchRoomResponse*) defaultInstance {
+  return [SearchRoomResponse defaultInstance];
+}
+- (SearchRoomResponse*) build {
+  [self checkInitialized];
+  return [self buildPartial];
+}
+- (SearchRoomResponse*) buildPartial {
+  SearchRoomResponse* returnMe = [[result retain] autorelease];
+  self.result = nil;
+  return returnMe;
+}
+- (SearchRoomResponse_Builder*) mergeFrom:(SearchRoomResponse*) other {
+  if (other == [SearchRoomResponse defaultInstance]) {
+    return self;
+  }
+  if (other.mutableSessionsList.count > 0) {
+    if (result.mutableSessionsList == nil) {
+      result.mutableSessionsList = [NSMutableArray array];
+    }
+    [result.mutableSessionsList addObjectsFromArray:other.mutableSessionsList];
+  }
+  [self mergeUnknownFields:other.unknownFields];
+  return self;
+}
+- (SearchRoomResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
+  return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
+}
+- (SearchRoomResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
+  while (YES) {
+    int32_t tag = [input readTag];
+    switch (tag) {
+      case 0:
+        [self setUnknownFields:[unknownFields build]];
+        return self;
+      default: {
+        if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
+          [self setUnknownFields:[unknownFields build]];
+          return self;
+        }
+        break;
+      }
+      case 10: {
+        PBGameSession_Builder* subBuilder = [PBGameSession builder];
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self addSessions:[subBuilder buildPartial]];
+        break;
+      }
+    }
+  }
+}
+- (NSArray*) sessionsList {
+  if (result.mutableSessionsList == nil) { return [NSArray array]; }
+  return result.mutableSessionsList;
+}
+- (PBGameSession*) sessionsAtIndex:(int32_t) index {
+  return [result sessionsAtIndex:index];
+}
+- (SearchRoomResponse_Builder*) replaceSessionsAtIndex:(int32_t) index with:(PBGameSession*) value {
+  [result.mutableSessionsList replaceObjectAtIndex:index withObject:value];
+  return self;
+}
+- (SearchRoomResponse_Builder*) addAllSessions:(NSArray*) values {
+  if (result.mutableSessionsList == nil) {
+    result.mutableSessionsList = [NSMutableArray array];
+  }
+  [result.mutableSessionsList addObjectsFromArray:values];
+  return self;
+}
+- (SearchRoomResponse_Builder*) clearSessionsList {
+  result.mutableSessionsList = nil;
+  return self;
+}
+- (SearchRoomResponse_Builder*) addSessions:(PBGameSession*) value {
+  if (result.mutableSessionsList == nil) {
+    result.mutableSessionsList = [NSMutableArray array];
+  }
+  [result.mutableSessionsList addObject:value];
   return self;
 }
 @end
@@ -9621,6 +10077,8 @@ static FacetimeChatResponse* defaultFacetimeChatResponseInstance = nil;
 @property (retain) GetRoomsResponse* getRoomsResponse;
 @property (retain) CreateRoomRequest* createRoomRequest;
 @property (retain) CreateRoomResponse* createRoomResponse;
+@property (retain) SearchRoomRequest* searchRoomRequest;
+@property (retain) SearchRoomResponse* searchRoomResponse;
 @property (retain) RoomNotificationRequest* roomNotificationRequest;
 @property (retain) RollDiceEndNotificationRequest* rollDiceEndNotificationRequest;
 @property (retain) CallDiceRequest* callDiceRequest;
@@ -9817,6 +10275,20 @@ static FacetimeChatResponse* defaultFacetimeChatResponseInstance = nil;
   hasCreateRoomResponse_ = !!value;
 }
 @synthesize createRoomResponse;
+- (BOOL) hasSearchRoomRequest {
+  return !!hasSearchRoomRequest_;
+}
+- (void) setHasSearchRoomRequest:(BOOL) value {
+  hasSearchRoomRequest_ = !!value;
+}
+@synthesize searchRoomRequest;
+- (BOOL) hasSearchRoomResponse {
+  return !!hasSearchRoomResponse_;
+}
+- (void) setHasSearchRoomResponse:(BOOL) value {
+  hasSearchRoomResponse_ = !!value;
+}
+@synthesize searchRoomResponse;
 - (BOOL) hasRoomNotificationRequest {
   return !!hasRoomNotificationRequest_;
 }
@@ -9955,6 +10427,8 @@ static FacetimeChatResponse* defaultFacetimeChatResponseInstance = nil;
   self.getRoomsResponse = nil;
   self.createRoomRequest = nil;
   self.createRoomResponse = nil;
+  self.searchRoomRequest = nil;
+  self.searchRoomResponse = nil;
   self.roomNotificationRequest = nil;
   self.rollDiceEndNotificationRequest = nil;
   self.callDiceRequest = nil;
@@ -9999,6 +10473,8 @@ static FacetimeChatResponse* defaultFacetimeChatResponseInstance = nil;
     self.getRoomsResponse = [GetRoomsResponse defaultInstance];
     self.createRoomRequest = [CreateRoomRequest defaultInstance];
     self.createRoomResponse = [CreateRoomResponse defaultInstance];
+    self.searchRoomRequest = [SearchRoomRequest defaultInstance];
+    self.searchRoomResponse = [SearchRoomResponse defaultInstance];
     self.roomNotificationRequest = [RoomNotificationRequest defaultInstance];
     self.rollDiceEndNotificationRequest = [RollDiceEndNotificationRequest defaultInstance];
     self.callDiceRequest = [CallDiceRequest defaultInstance];
@@ -10080,6 +10556,11 @@ static GameMessage* defaultGameMessageInstance = nil;
   }
   if (self.hasCreateRoomResponse) {
     if (!self.createRoomResponse.isInitialized) {
+      return NO;
+    }
+  }
+  if (self.hasSearchRoomResponse) {
+    if (!self.searchRoomResponse.isInitialized) {
       return NO;
     }
   }
@@ -10190,6 +10671,12 @@ static GameMessage* defaultGameMessageInstance = nil;
   }
   if (self.hasCreateRoomResponse) {
     [output writeMessage:104 value:self.createRoomResponse];
+  }
+  if (self.hasSearchRoomRequest) {
+    [output writeMessage:105 value:self.searchRoomRequest];
+  }
+  if (self.hasSearchRoomResponse) {
+    [output writeMessage:106 value:self.searchRoomResponse];
   }
   if (self.hasRoomNotificationRequest) {
     [output writeMessage:107 value:self.roomNotificationRequest];
@@ -10325,6 +10812,12 @@ static GameMessage* defaultGameMessageInstance = nil;
   }
   if (self.hasCreateRoomResponse) {
     size += computeMessageSize(104, self.createRoomResponse);
+  }
+  if (self.hasSearchRoomRequest) {
+    size += computeMessageSize(105, self.searchRoomRequest);
+  }
+  if (self.hasSearchRoomResponse) {
+    size += computeMessageSize(106, self.searchRoomResponse);
   }
   if (self.hasRoomNotificationRequest) {
     size += computeMessageSize(107, self.roomNotificationRequest);
@@ -10526,6 +11019,12 @@ static GameMessage* defaultGameMessageInstance = nil;
   }
   if (other.hasCreateRoomResponse) {
     [self mergeCreateRoomResponse:other.createRoomResponse];
+  }
+  if (other.hasSearchRoomRequest) {
+    [self mergeSearchRoomRequest:other.searchRoomRequest];
+  }
+  if (other.hasSearchRoomResponse) {
+    [self mergeSearchRoomResponse:other.searchRoomResponse];
   }
   if (other.hasRoomNotificationRequest) {
     [self mergeRoomNotificationRequest:other.roomNotificationRequest];
@@ -10787,6 +11286,24 @@ static GameMessage* defaultGameMessageInstance = nil;
         }
         [input readMessage:subBuilder extensionRegistry:extensionRegistry];
         [self setCreateRoomResponse:[subBuilder buildPartial]];
+        break;
+      }
+      case 842: {
+        SearchRoomRequest_Builder* subBuilder = [SearchRoomRequest builder];
+        if (self.hasSearchRoomRequest) {
+          [subBuilder mergeFrom:self.searchRoomRequest];
+        }
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self setSearchRoomRequest:[subBuilder buildPartial]];
+        break;
+      }
+      case 850: {
+        SearchRoomResponse_Builder* subBuilder = [SearchRoomResponse builder];
+        if (self.hasSearchRoomResponse) {
+          [subBuilder mergeFrom:self.searchRoomResponse];
+        }
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self setSearchRoomResponse:[subBuilder buildPartial]];
         break;
       }
       case 858: {
@@ -11543,6 +12060,66 @@ static GameMessage* defaultGameMessageInstance = nil;
 - (GameMessage_Builder*) clearCreateRoomResponse {
   result.hasCreateRoomResponse = NO;
   result.createRoomResponse = [CreateRoomResponse defaultInstance];
+  return self;
+}
+- (BOOL) hasSearchRoomRequest {
+  return result.hasSearchRoomRequest;
+}
+- (SearchRoomRequest*) searchRoomRequest {
+  return result.searchRoomRequest;
+}
+- (GameMessage_Builder*) setSearchRoomRequest:(SearchRoomRequest*) value {
+  result.hasSearchRoomRequest = YES;
+  result.searchRoomRequest = value;
+  return self;
+}
+- (GameMessage_Builder*) setSearchRoomRequestBuilder:(SearchRoomRequest_Builder*) builderForValue {
+  return [self setSearchRoomRequest:[builderForValue build]];
+}
+- (GameMessage_Builder*) mergeSearchRoomRequest:(SearchRoomRequest*) value {
+  if (result.hasSearchRoomRequest &&
+      result.searchRoomRequest != [SearchRoomRequest defaultInstance]) {
+    result.searchRoomRequest =
+      [[[SearchRoomRequest builderWithPrototype:result.searchRoomRequest] mergeFrom:value] buildPartial];
+  } else {
+    result.searchRoomRequest = value;
+  }
+  result.hasSearchRoomRequest = YES;
+  return self;
+}
+- (GameMessage_Builder*) clearSearchRoomRequest {
+  result.hasSearchRoomRequest = NO;
+  result.searchRoomRequest = [SearchRoomRequest defaultInstance];
+  return self;
+}
+- (BOOL) hasSearchRoomResponse {
+  return result.hasSearchRoomResponse;
+}
+- (SearchRoomResponse*) searchRoomResponse {
+  return result.searchRoomResponse;
+}
+- (GameMessage_Builder*) setSearchRoomResponse:(SearchRoomResponse*) value {
+  result.hasSearchRoomResponse = YES;
+  result.searchRoomResponse = value;
+  return self;
+}
+- (GameMessage_Builder*) setSearchRoomResponseBuilder:(SearchRoomResponse_Builder*) builderForValue {
+  return [self setSearchRoomResponse:[builderForValue build]];
+}
+- (GameMessage_Builder*) mergeSearchRoomResponse:(SearchRoomResponse*) value {
+  if (result.hasSearchRoomResponse &&
+      result.searchRoomResponse != [SearchRoomResponse defaultInstance]) {
+    result.searchRoomResponse =
+      [[[SearchRoomResponse builderWithPrototype:result.searchRoomResponse] mergeFrom:value] buildPartial];
+  } else {
+    result.searchRoomResponse = value;
+  }
+  result.hasSearchRoomResponse = YES;
+  return self;
+}
+- (GameMessage_Builder*) clearSearchRoomResponse {
+  result.hasSearchRoomResponse = NO;
+  result.searchRoomResponse = [SearchRoomResponse defaultInstance];
   return self;
 }
 - (BOOL) hasRoomNotificationRequest {

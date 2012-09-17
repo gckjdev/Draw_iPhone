@@ -43,6 +43,7 @@ typedef enum {
     HKGirlFontLabel* _rewardCoinLabel;
     UIImage* _originAvatar;
     BOOL _isBlackAndWhite;
+    UIImageView* _clockView;
     
 }
 
@@ -79,6 +80,9 @@ typedef enum {
 - (void)setGestureRecognizerEnable:(BOOL)enable;
 
 - (CGFloat)getCurrentProgress;
+
+- (void)addFlyClockOnMyHead;
+- (void)removeFlyClockOnMyHead;
 @property(nonatomic, assign) NSInteger score;
 @property(nonatomic, retain) NSString *userId;
 @property(nonatomic, assign) id<DiceAvatarViewDelegate> delegate;

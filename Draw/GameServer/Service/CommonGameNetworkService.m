@@ -128,7 +128,7 @@
     [self clearDisconnectTimer];
     [_networkClient setDelegate:self];
     
-    self.serverStringList = [self gameServerListString];
+    [self initServerListString];
     [self dispatchServer];
     
     [_networkClient start:_serverAddress port:_serverPort];        
@@ -401,6 +401,10 @@
 
 - (void)quitGame
 {
+    if (_session != nil){
+        NSString* userId = [[UserManager defaultManager] userId];
+        [_networkClient sendQuitGameRequest:userId sessionId:_session.sessionId];
+    }
     [self disconnectServer];
 }
 

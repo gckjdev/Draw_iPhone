@@ -847,6 +847,7 @@
 
 
 
+
 "kDice_share_message_body" = "亲爱的朋友，今天向您隆重推出一款全新的多人在线游戏——《%@》。这款游戏可以说是目前最好玩的大话骰游戏，马上下载试玩吧。\n%@";
 
 "kDice_email_subject" = "分享［欢乐大话骰］移动版游戏";
@@ -883,8 +884,14 @@
 "kDiceNet" = "净骰";
 "kDiceWai" = "围骰";
 
-/*********************** 大话骰子国际化字符串结束 *************************/
 
 "kDiceMenuHappyRoom" = "欢乐场";
 "kDiceMenuHighRoom" = "劲爆场";
 "kDiceMenuSuperHighRoom" = "超爆场";
+
+"kDiceHappyRoom" = "欢乐场%d号房";
+"kDiceHighRoom" = "劲爆场%d号房";
+"kDiceSuperHighRoom" = "超爆场%d号房";
+
+/*********************** 大话骰子国际化字符串结束 *************************/
+

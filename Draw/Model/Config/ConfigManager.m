@@ -20,6 +20,11 @@
     return [[GameApp appId] isEqualToString:DICE_APP_ID];
 }
 
++ (BOOL)isEnableAd
+{
+    return [MobClickUtils getBoolValueByKey:@"ENABLE_AD" defaultValue:YES];
+}
+
 + (BOOL)isProVersion
 {
     return [GameApp disableAd];
@@ -315,22 +320,24 @@
 
 + (int)getDiceThresholdCoinWithSuperHightRule
 {
-    return [MobClickUtils getIntValueByKey:@"DICE_THRESHOLD_COIN_SUPER_HIGHT" defaultValue:10000];
+    return [MobClickUtils getIntValueByKey:@"DICE_THRESHOLD_COIN_SUPER_HIGHT" defaultValue:10];
 }
 
 + (NSString*)getDiceServerListStringWithNormal
 {
-    return @"192.168.1.10:8080";
+    return @"192.168.1.15:8080";
 //    return [MobClickUtils getStringValueByKey:@"DICE_SERVER_LIST" defaultValue:@"58.215.164.153:8018"];
 }
 
 + (NSString *)getDiceServerListStringWithHightRule
 {
+    return @"192.168.1.6:8081";
     return [MobClickUtils getStringValueByKey:@"DICE_SERVER_LIST_HIGHT" defaultValue:@"58.215.164.153:8018"];
 }
 
 + (NSString *)getDiceServerListStringWithSuperHightRule
 {
+    return @"192.168.1.6:8082";
     return [MobClickUtils getStringValueByKey:@"DICE_SERVER_LIST_SUPER_HIGHT" defaultValue:@"58.215.164.153:8018"];
 }
 

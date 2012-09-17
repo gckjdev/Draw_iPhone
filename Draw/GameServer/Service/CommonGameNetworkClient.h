@@ -41,6 +41,9 @@
                   sessionId:(long)sessionId
                    ruleType:(int)ruleType;
 
+- (void)sendQuitGameRequest:(NSString*)userId
+                  sessionId:(int)sessionId;
+
 - (int)generateMessageId;
 
 - (void)sendSimpleMessage:(int)command

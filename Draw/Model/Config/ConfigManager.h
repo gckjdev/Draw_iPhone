@@ -100,6 +100,8 @@ typedef enum{
 + (int)getDiceThresholdCoinWithSuperHightRule;
 
 + (NSString*)getDiceServerListStringWithNormal;
++ (NSString *)getDiceServerListStringWithHightRule;
++ (NSString *)getDiceServerListStringWithSuperHightRule;
 
 + (int)getDailyGiftCoin;
 + (int)getDailyGiftCoinIncre;
@@ -107,6 +109,7 @@ typedef enum{
 + (NSString*)getAwardItemImageName:(int)dicePoint;
 
 + (WallType)wallType;
++ (BOOL)isEnableAd;
 
 + (int)getPostponeTime;
 + (int)getUrgeTime;

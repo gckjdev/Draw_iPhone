@@ -97,6 +97,10 @@
 @class RoomNotificationRequest_Builder;
 @class RoomNotificationResponse;
 @class RoomNotificationResponse_Builder;
+@class SearchRoomRequest;
+@class SearchRoomRequest_Builder;
+@class SearchRoomResponse;
+@class SearchRoomResponse_Builder;
 @class SendDrawDataRequest;
 @class SendDrawDataRequest_Builder;
 @class SendDrawDataResponse;
@@ -126,13 +130,17 @@
 @private
   BOOL hasRoomType_:1;
   BOOL hasGameId_:1;
+  BOOL hasKeyword_:1;
   int32_t roomType;
   NSString* gameId;
+  NSString* keyword;
 }
 - (BOOL) hasGameId;
 - (BOOL) hasRoomType;
+- (BOOL) hasKeyword;
 @property (readonly, retain) NSString* gameId;
 @property (readonly) int32_t roomType;
+@property (readonly, retain) NSString* keyword;
 
 + (GetRoomsRequest*) defaultInstance;
 - (GetRoomsRequest*) defaultInstance;
@@ -177,6 +185,11 @@
 - (int32_t) roomType;
 - (GetRoomsRequest_Builder*) setRoomType:(int32_t) value;
 - (GetRoomsRequest_Builder*) clearRoomType;
+
+- (BOOL) hasKeyword;
+- (NSString*) keyword;
+- (GetRoomsRequest_Builder*) setKeyword:(NSString*) value;
+- (GetRoomsRequest_Builder*) clearKeyword;
 @end
 
 @interface GetRoomsResponse : PBGeneratedMessage {
@@ -371,6 +384,112 @@
 - (CreateRoomResponse_Builder*) setGameSessionBuilder:(PBGameSession_Builder*) builderForValue;
 - (CreateRoomResponse_Builder*) mergeGameSession:(PBGameSession*) value;
 - (CreateRoomResponse_Builder*) clearGameSession;
+@end
+
+@interface SearchRoomRequest : PBGeneratedMessage {
+@private
+  BOOL hasRangeType_:1;
+  BOOL hasKeyword_:1;
+  int32_t rangeType;
+  NSString* keyword;
+}
+- (BOOL) hasKeyword;
+- (BOOL) hasRangeType;
+@property (readonly, retain) NSString* keyword;
+@property (readonly) int32_t rangeType;
+
++ (SearchRoomRequest*) defaultInstance;
+- (SearchRoomRequest*) defaultInstance;
+
+- (BOOL) isInitialized;
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
+- (SearchRoomRequest_Builder*) builder;
++ (SearchRoomRequest_Builder*) builder;
++ (SearchRoomRequest_Builder*) builderWithPrototype:(SearchRoomRequest*) prototype;
+
++ (SearchRoomRequest*) parseFromData:(NSData*) data;
++ (SearchRoomRequest*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (SearchRoomRequest*) parseFromInputStream:(NSInputStream*) input;
++ (SearchRoomRequest*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (SearchRoomRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input;
++ (SearchRoomRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+@end
+
+@interface SearchRoomRequest_Builder : PBGeneratedMessage_Builder {
+@private
+  SearchRoomRequest* result;
+}
+
+- (SearchRoomRequest*) defaultInstance;
+
+- (SearchRoomRequest_Builder*) clear;
+- (SearchRoomRequest_Builder*) clone;
+
+- (SearchRoomRequest*) build;
+- (SearchRoomRequest*) buildPartial;
+
+- (SearchRoomRequest_Builder*) mergeFrom:(SearchRoomRequest*) other;
+- (SearchRoomRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (SearchRoomRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+
+- (BOOL) hasKeyword;
+- (NSString*) keyword;
+- (SearchRoomRequest_Builder*) setKeyword:(NSString*) value;
+- (SearchRoomRequest_Builder*) clearKeyword;
+
+- (BOOL) hasRangeType;
+- (int32_t) rangeType;
+- (SearchRoomRequest_Builder*) setRangeType:(int32_t) value;
+- (SearchRoomRequest_Builder*) clearRangeType;
+@end
+
+@interface SearchRoomResponse : PBGeneratedMessage {
+@private
+  NSMutableArray* mutableSessionsList;
+}
+- (NSArray*) sessionsList;
+- (PBGameSession*) sessionsAtIndex:(int32_t) index;
+
++ (SearchRoomResponse*) defaultInstance;
+- (SearchRoomResponse*) defaultInstance;
+
+- (BOOL) isInitialized;
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
+- (SearchRoomResponse_Builder*) builder;
++ (SearchRoomResponse_Builder*) builder;
++ (SearchRoomResponse_Builder*) builderWithPrototype:(SearchRoomResponse*) prototype;
+
++ (SearchRoomResponse*) parseFromData:(NSData*) data;
++ (SearchRoomResponse*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (SearchRoomResponse*) parseFromInputStream:(NSInputStream*) input;
++ (SearchRoomResponse*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (SearchRoomResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input;
++ (SearchRoomResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+@end
+
+@interface SearchRoomResponse_Builder : PBGeneratedMessage_Builder {
+@private
+  SearchRoomResponse* result;
+}
+
+- (SearchRoomResponse*) defaultInstance;
+
+- (SearchRoomResponse_Builder*) clear;
+- (SearchRoomResponse_Builder*) clone;
+
+- (SearchRoomResponse*) build;
+- (SearchRoomResponse*) buildPartial;
+
+- (SearchRoomResponse_Builder*) mergeFrom:(SearchRoomResponse*) other;
+- (SearchRoomResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (SearchRoomResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+
+- (NSArray*) sessionsList;
+- (PBGameSession*) sessionsAtIndex:(int32_t) index;
+- (SearchRoomResponse_Builder*) replaceSessionsAtIndex:(int32_t) index with:(PBGameSession*) value;
+- (SearchRoomResponse_Builder*) addSessions:(PBGameSession*) value;
+- (SearchRoomResponse_Builder*) addAllSessions:(NSArray*) values;
+- (SearchRoomResponse_Builder*) clearSessionsList;
 @end
 
 @interface RegisterRoomsNotificationRequest : PBGeneratedMessage {
@@ -2476,9 +2595,10 @@
   BOOL hasStartOffset_:1;
   BOOL hasRound_:1;
   BOOL hasOnlineUserCount_:1;
-  BOOL hasUserId_:1;
-  BOOL hasToUserId_:1;
   BOOL hasCurrentPlayUserId_:1;
+  BOOL hasToUserId_:1;
+  BOOL hasUserId_:1;
+  BOOL hasSearchRoomResponse_:1;
   BOOL hasRoomNotificationRequest_:1;
   BOOL hasRollDiceEndNotificationRequest_:1;
   BOOL hasCallDiceRequest_:1;
@@ -2509,6 +2629,7 @@
   BOOL hasGetRoomsResponse_:1;
   BOOL hasCreateRoomRequest_:1;
   BOOL hasCreateRoomResponse_:1;
+  BOOL hasSearchRoomRequest_:1;
   BOOL hasCompleteReason_:1;
   BOOL hasResultCode_:1;
   BOOL hasCommand_:1;
@@ -2518,9 +2639,10 @@
   int32_t startOffset;
   int32_t round;
   int32_t onlineUserCount;
-  NSString* userId;
-  NSString* toUserId;
   NSString* currentPlayUserId;
+  NSString* toUserId;
+  NSString* userId;
+  SearchRoomResponse* searchRoomResponse;
   RoomNotificationRequest* roomNotificationRequest;
   RollDiceEndNotificationRequest* rollDiceEndNotificationRequest;
   CallDiceRequest* callDiceRequest;
@@ -2551,6 +2673,7 @@
   GetRoomsResponse* getRoomsResponse;
   CreateRoomRequest* createRoomRequest;
   CreateRoomResponse* createRoomResponse;
+  SearchRoomRequest* searchRoomRequest;
   GameCompleteReason completeReason;
   GameResultCode resultCode;
   GameCommandType command;
@@ -2580,6 +2703,8 @@
 - (BOOL) hasGetRoomsResponse;
 - (BOOL) hasCreateRoomRequest;
 - (BOOL) hasCreateRoomResponse;
+- (BOOL) hasSearchRoomRequest;
+- (BOOL) hasSearchRoomResponse;
 - (BOOL) hasRoomNotificationRequest;
 - (BOOL) hasRollDiceEndNotificationRequest;
 - (BOOL) hasCallDiceRequest;
@@ -2622,6 +2747,8 @@
 @property (readonly, retain) GetRoomsResponse* getRoomsResponse;
 @property (readonly, retain) CreateRoomRequest* createRoomRequest;
 @property (readonly, retain) CreateRoomResponse* createRoomResponse;
+@property (readonly, retain) SearchRoomRequest* searchRoomRequest;
+@property (readonly, retain) SearchRoomResponse* searchRoomResponse;
 @property (readonly, retain) RoomNotificationRequest* roomNotificationRequest;
 @property (readonly, retain) RollDiceEndNotificationRequest* rollDiceEndNotificationRequest;
 @property (readonly, retain) CallDiceRequest* callDiceRequest;
@@ -2828,6 +2955,20 @@
 - (GameMessage_Builder*) setCreateRoomResponseBuilder:(CreateRoomResponse_Builder*) builderForValue;
 - (GameMessage_Builder*) mergeCreateRoomResponse:(CreateRoomResponse*) value;
 - (GameMessage_Builder*) clearCreateRoomResponse;
+
+- (BOOL) hasSearchRoomRequest;
+- (SearchRoomRequest*) searchRoomRequest;
+- (GameMessage_Builder*) setSearchRoomRequest:(SearchRoomRequest*) value;
+- (GameMessage_Builder*) setSearchRoomRequestBuilder:(SearchRoomRequest_Builder*) builderForValue;
+- (GameMessage_Builder*) mergeSearchRoomRequest:(SearchRoomRequest*) value;
+- (GameMessage_Builder*) clearSearchRoomRequest;
+
+- (BOOL) hasSearchRoomResponse;
+- (SearchRoomResponse*) searchRoomResponse;
+- (GameMessage_Builder*) setSearchRoomResponse:(SearchRoomResponse*) value;
+- (GameMessage_Builder*) setSearchRoomResponseBuilder:(SearchRoomResponse_Builder*) builderForValue;
+- (GameMessage_Builder*) mergeSearchRoomResponse:(SearchRoomResponse*) value;
+- (GameMessage_Builder*) clearSearchRoomResponse;
 
 - (BOOL) hasRoomNotificationRequest;
 - (RoomNotificationRequest*) roomNotificationRequest;

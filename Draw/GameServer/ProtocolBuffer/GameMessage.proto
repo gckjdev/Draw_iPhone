@@ -13,6 +13,7 @@ option java_outer_classname = "GameMessageProtos";
 message GetRoomsRequest {
   required string gameId = 2;                   // 游戏ID，比如你画我猜为：draw
   optional int32 roomType = 3;                  // 0表示所有房间，1表示好友房间
+  optional string keyword = 4;
     
 }
 
@@ -33,6 +34,16 @@ message CreateRoomRequest {
 message CreateRoomResponse {
   required PBGameSession gameSession = 1;
 }
+
+message SearchRoomRequest{
+  optional string keyword = 1;
+  optional int32  rangeType = 2[default=0];            // 0: 所有；1：好友
+}
+
+message SearchRoomResponse{
+  repeated PBGameSession sessions = 1;   
+}
+
 
 message RegisterRoomsNotificationRequest {
   repeated int32 sessionIds = 2[packed=true];
@@ -295,6 +306,9 @@ message GameMessage {
   
   optional CreateRoomRequest createRoomRequest= 103;
   optional CreateRoomResponse createRoomResponse= 104;
+  
+  optional SearchRoomRequest searchRoomRequest = 105;
+  optional SearchRoomResponse searchRoomResponse = 106;  
   
   optional RoomNotificationRequest roomNotificationRequest = 107;
   

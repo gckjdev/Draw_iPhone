@@ -50,7 +50,7 @@
 - (id)init
 {
     if (self = [super init]) {
-        self.itemList = [NSArray arrayWithObjects:[Item cut], [Item rollAgain], nil];
+        self.itemList = [NSArray arrayWithObjects:[Item cut], [Item rollAgain], [Item postpone], [Item urge], [Item turtle], [Item doubleKill], [Item diceRobot], nil];
         _itemManager = [ItemManager defaultManager];
         _diceGameService = [DiceGameService defaultService];
         _userManager = [UserManager defaultManager];
@@ -126,11 +126,11 @@
                     item:(Item*)item
 {
     
-    NSString *title = item.shortName;
+    //NSString *title = item.shortName;
     
     FontButton *buttonTemp = [[[FontButton alloc] initWithFrame:frame fontName:[[DiceFontManager defaultManager] fontName] pointSize:FONT_SIZE_BUTTON] autorelease];
-    [buttonTemp setBackgroundImage:[[DiceImageManager defaultManager] toolsItemBgImage] forState:UIControlStateNormal];
-    buttonTemp.fontLable.text = title;
+    [buttonTemp setBackgroundImage:item.itemImage forState:UIControlStateNormal];
+    //buttonTemp.fontLable.text = title;
     buttonTemp.fontLable.frame = CGRectOffset(buttonTemp.fontLable.frame, 0, Y_OFFSET_TITLE);
     [buttonTemp addTarget:self action:@selector(clickToolButton:) forControlEvents:UIControlEventTouchUpInside];
     buttonTemp.tag = tag;
