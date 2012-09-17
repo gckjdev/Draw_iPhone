@@ -918,7 +918,10 @@
 {
     
     if (itemId == ItemTypeIncTime) {
-        [_diceService userTimeItem:ItemTypeIncTime time:[ConfigManager getPostponeTime]];
+        DiceAvatarView* selfAvatar = (DiceAvatarView*)[self selfAvatarView];
+        float incTime =MIN(USER_THINK_TIME_INTERVAL*(1-selfAvatar.getCurrentProgress), [ConfigManager getPostponeTime]);
+        [_diceService userTimeItem:ItemTypeIncTime time:incTime];
+        PPDebug(@"<test> I use item and delay time for %f", incTime);
     } else {
         [_diceService userItem:itemId];
     }

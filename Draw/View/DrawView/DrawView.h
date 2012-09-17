@@ -24,6 +24,9 @@
     DrawColor* _lineColor;    
     ItemType _penType;
     
+    //for revoke
+//    NSInteger _revokePaintIndex;
+    NSMutableArray *_revokeImageList;
 }
 
 //@property (nonatomic, retain) NSMutableArray *drawActionList;

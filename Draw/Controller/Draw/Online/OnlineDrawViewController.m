@@ -164,10 +164,10 @@
 #pragma mark - Update Data
 
 enum{
-    BLACK_COLOR = 0,
+    YELLOW_COLOR = 0,
     RED_COLOR = 1,  
     BLUE_COLOR,
-    YELLOW_COLOR,
+    BLACK_COLOR,
     COLOR_COUNT
 };
 

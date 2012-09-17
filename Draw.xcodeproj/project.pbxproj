@@ -584,6 +584,7 @@
 		C28E7C0E1602E5B200F4B6A5 /* IncTimeItemAction.m in Sources */ = {isa = PBXBuildFile; fileRef = C28E7C0D1602E5B100F4B6A5 /* IncTimeItemAction.m */; };
 		C28E7C111602E5E000F4B6A5 /* DecTimeItemAction.m in Sources */ = {isa = PBXBuildFile; fileRef = C28E7C101602E5DD00F4B6A5 /* DecTimeItemAction.m */; };
 		C28E7C141602E5FC00F4B6A5 /* SkipItemAction.m in Sources */ = {isa = PBXBuildFile; fileRef = C28E7C131602E5F900F4B6A5 /* SkipItemAction.m */; };
+		C2916CC01606B9DD00B0996E /* DiceRobotManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C2916CBF1606B9DD00B0996E /* DiceRobotManager.m */; };
 		C296872B15DCE03F006968BA /* DiceItemInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = C296872115DCE03F006968BA /* DiceItemInfoView.m */; };
 		C296872C15DCE03F006968BA /* DiceItemInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C296872215DCE03F006968BA /* DiceItemInfoView.xib */; };
 		C296872D15DCE03F006968BA /* DiceUserInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = C296872515DCE03F006968BA /* DiceUserInfoView.m */; };
@@ -2113,6 +2114,8 @@
 		C28E7C101602E5DD00F4B6A5 /* DecTimeItemAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DecTimeItemAction.m; sourceTree = "<group>"; };
 		C28E7C121602E5F800F4B6A5 /* SkipItemAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SkipItemAction.h; sourceTree = "<group>"; };
 		C28E7C131602E5F900F4B6A5 /* SkipItemAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SkipItemAction.m; sourceTree = "<group>"; };
+		C2916CBE1606B9DD00B0996E /* DiceRobotManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiceRobotManager.h; sourceTree = "<group>"; };
+		C2916CBF1606B9DD00B0996E /* DiceRobotManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiceRobotManager.m; sourceTree = "<group>"; };
 		C296872015DCE03F006968BA /* DiceItemInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiceItemInfoView.h; sourceTree = "<group>"; };
 		C296872115DCE03F006968BA /* DiceItemInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiceItemInfoView.m; sourceTree = "<group>"; };
 		C296872215DCE03F006968BA /* DiceItemInfoView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DiceItemInfoView.xib; sourceTree = "<group>"; };
@@ -3932,6 +3935,7 @@
 		A4B763FB15C28F8E003B4E72 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				C2916CBD1606B9C300B0996E /* DiceRobotManager */,
 				A45BC60815F1C4DF0003DDDC /* DiceConfigManager */,
 				A48E827115E871BB002DB480 /* DiceHelpManager */,
 				C21309F815E774000072A18E /* DiceColorManager */,
@@ -4141,6 +4145,15 @@
 				C28207E21552D974006FBB0F /* AudioManager.m */,
 			);
 			path = Audio;
+			sourceTree = "<group>";
+		};
+		C2916CBD1606B9C300B0996E /* DiceRobotManager */ = {
+			isa = PBXGroup;
+			children = (
+				C2916CBE1606B9DD00B0996E /* DiceRobotManager.h */,
+				C2916CBF1606B9DD00B0996E /* DiceRobotManager.m */,
+			);
+			path = DiceRobotManager;
 			sourceTree = "<group>";
 		};
 		C296871F15DCE03F006968BA /* DiceItemInfoView */ = {
@@ -9103,6 +9116,7 @@
 				C28E7C0E1602E5B200F4B6A5 /* IncTimeItemAction.m in Sources */,
 				C28E7C111602E5E000F4B6A5 /* DecTimeItemAction.m in Sources */,
 				C28E7C141602E5FC00F4B6A5 /* SkipItemAction.m in Sources */,
+				C2916CC01606B9DD00B0996E /* DiceRobotManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
