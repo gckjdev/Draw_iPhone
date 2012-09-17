@@ -37,5 +37,6 @@
 - (void)changeDiceList:(NSString *)userId diceList:(NSArray *)diceList;
 
 - (int)ante;
+- (int)maxCallCount;
 
 @end

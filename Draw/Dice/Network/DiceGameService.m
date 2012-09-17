@@ -365,8 +365,21 @@ static DiceGameService* _defaultService;
 
 - (int)ante
 {
-    return [self.diceSession ante];
+    int ante = 100;
+    if (self.diceSession.ruleType == DiceGameRuleTypeRuleSuperHigh) {
+        ante = 50 * (self.diceSession.callCount + 1);
+    }
+    
+    return ante;
 }
 
+- (int)maxCallCount
+{
+    if (self.diceSession.ruleType == DiceGameRuleTypeRuleNormal) {
+        return self.session.playingUserCount * 5;
+    }else {
+        return self.session.playingUserCount * 7;
+    }
+}
 
 @end

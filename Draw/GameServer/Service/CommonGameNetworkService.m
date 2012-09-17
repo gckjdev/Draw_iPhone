@@ -134,9 +134,8 @@
     [_networkClient start:_serverAddress port:_serverPort];        
 }
 
-- (NSString *)gameServerListString
+- (void)initServerListString
 {
-    return nil;
 }
 
 - (void)disconnectServer

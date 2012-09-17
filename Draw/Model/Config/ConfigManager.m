@@ -320,24 +320,25 @@
 
 + (int)getDiceThresholdCoinWithSuperHightRule
 {
-    return [MobClickUtils getIntValueByKey:@"DICE_THRESHOLD_COIN_SUPER_HIGHT" defaultValue:10];
+//    return [MobClickUtils getIntValueByKey:@"DICE_THRESHOLD_COIN_SUPER_HIGHT" defaultValue:10];
+    return [MobClickUtils getIntValueByKey:@"DICE_THRESHOLD_COIN_SUPER_HIGHT" defaultValue:10000];
 }
 
 + (NSString*)getDiceServerListStringWithNormal
 {
-    return @"192.168.1.15:8080";
-//    return [MobClickUtils getStringValueByKey:@"DICE_SERVER_LIST" defaultValue:@"58.215.164.153:8018"];
+//    return @"192.168.1.15:8080";
+    return [MobClickUtils getStringValueByKey:@"DICE_SERVER_LIST" defaultValue:@"58.215.164.153:8018"];
 }
 
 + (NSString *)getDiceServerListStringWithHightRule
 {
-    return @"192.168.1.6:8081";
+//    return @"192.168.1.15:8081";
     return [MobClickUtils getStringValueByKey:@"DICE_SERVER_LIST_HIGHT" defaultValue:@"58.215.164.153:8018"];
 }
 
 + (NSString *)getDiceServerListStringWithSuperHightRule
 {
-    return @"192.168.1.6:8082";
+//    return @"192.168.1.15:8082";
     return [MobClickUtils getStringValueByKey:@"DICE_SERVER_LIST_SUPER_HIGHT" defaultValue:@"58.215.164.153:8018"];
 }
 

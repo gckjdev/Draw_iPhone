@@ -12,9 +12,25 @@
 
 @implementation RollAgainItemAction
 
-- (BOOL)isShowNameAnimation
+- (void)showItemAnimation:(NSString *)userId 
+                 itemType:(int)itemType 
+               controller:(DiceGamePlayController *)controller
+                     view:(UIView *)view
 {
-    return YES;
+    HKGirlFontLabel *label = [[[HKGirlFontLabel alloc] initWithFrame:CGRectMake(0, 0, 70, 70) pointSize:50] autorelease];
+    label.text = [Item nameForItemType:itemType];
+    label.textAlignment = UITextAlignmentCenter;
+    label.center = view.center;
+    
+    [view addSubview:label];
+    
+    [UIView animateWithDuration:1 delay:0 options:UIViewAnimationCurveEaseInOut animations:^{
+        label.center = [[controller bellViewOfUser:userId] center];
+        label.transform = CGAffineTransformMakeScale(0.3, 0.3);
+        label.alpha = 0.3;
+    } completion:^(BOOL finished) {
+        [label removeFromSuperview];
+    }];
 }
 
 - (void)useItemSuccess:(DiceGamePlayController *)controller

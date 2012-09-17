@@ -13,9 +13,10 @@
 
 + (Item*)rollAgain;
 + (Item*)cut;
++ (Item *)peek;
 + (Item*)postpone;
 + (Item*)urge;
-+ (Item*)doubleKill;
+//+ (Item*)doubleKill;
 + (Item*)turtle;
 + (Item*)diceRobot;
 @end

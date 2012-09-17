@@ -156,6 +156,8 @@
             return [diceManager toShopImage:diceManager.doubleKillImage];
         case ItemTypeDiceRobot:
             return [diceManager toShopImage:diceManager.diceRobotImage];
+        case ItemTypePeek:
+            return [diceManager toShopImage:diceManager.peekImage];
         default:
             return nil;
     }    
@@ -243,7 +245,8 @@
        || type == ItemTypeDecTime 
        || type == ItemTypeSkip 
        || type == ItemTypeDoubleKill 
-       || type == ItemTypeDiceRobot)
+       || type == ItemTypeDiceRobot
+       || type == ItemTypePeek)
         return YES;
     return NO;
 }

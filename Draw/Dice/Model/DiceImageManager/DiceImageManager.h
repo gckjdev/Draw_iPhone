@@ -58,6 +58,7 @@
 - (UIImage *)diceToolCutImageForShop;
 - (UIImage *)diceToolRollAgainImageForShop;
 
+- (UIImage *)peekImage;
 - (UIImage *)postponeImage;
 - (UIImage *)urgeImage;
 - (UIImage *)doubleKillImage;

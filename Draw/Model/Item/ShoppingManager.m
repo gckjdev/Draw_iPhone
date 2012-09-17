@@ -181,6 +181,11 @@ static ShoppingManager *staticShoppingManager = nil;
 #define DEFAULT_TIPS_PRICE      400
 #define DEFAULT_ROLL_AGAIN_PRICE 800
 #define DEFAULT_CUT_PRICE       500
+#define DEFAULT_PEEK_PRICE       500
+#define DEFAULT_POST_PONE_PRICE  500
+#define DEFAULT_URGE_PRICE       500
+#define DEFAULT_TURTLE_PRICE     500
+#define DEFAULT_DICE_ROBOT_PRICE 500
 
 - (NSInteger)getColorPrice
 {
@@ -230,6 +235,65 @@ static ShoppingManager *staticShoppingManager = nil;
     return retPrice;
 }
 
+- (NSInteger)getPeekPrice
+{
+    NSString* price = [MobClick getConfigParams:@"PEEK_PRICE"];
+    if (price == nil) {
+        PPDebug(@"<getPeekPrice>: price is nil, return default price = %d",DEFAULT_PEEK_PRICE);
+        return DEFAULT_PEEK_PRICE;
+    }
+    NSInteger retPrice = [price integerValue];
+    PPDebug(@"<getCutPrice>: price string = %@,price value = %d",price,retPrice);
+    return retPrice;
+}
+
+- (NSInteger)getPostPonePrice
+{
+    NSString* price = [MobClick getConfigParams:@"POST_PONE_PRICE"];
+    if (price == nil) {
+        PPDebug(@"<getPostPonePrice>: price is nil, return default price = %d",DEFAULT_POST_PONE_PRICE);
+        return DEFAULT_POST_PONE_PRICE;
+    }
+    NSInteger retPrice = [price integerValue];
+    PPDebug(@"<getPostPonePrice>: price string = %@,price value = %d",price,retPrice);
+    return retPrice;
+}
+
+- (NSInteger)getUrgePrice
+{
+    NSString* price = [MobClick getConfigParams:@"URGE_PRICE"];
+    if (price == nil) {
+        PPDebug(@"<getUrgePrice>: price is nil, return default price = %d",DEFAULT_URGE_PRICE);
+        return DEFAULT_URGE_PRICE;
+    }
+    NSInteger retPrice = [price integerValue];
+    PPDebug(@"<getUrgePrice>: price string = %@,price value = %d",price,retPrice);
+    return retPrice;
+}
+
+- (NSInteger)getTurtlePrice
+{
+    NSString* price = [MobClick getConfigParams:@"TURTLE_PRICE"];
+    if (price == nil) {
+        PPDebug(@"<getTurtlePrice>: price is nil, return default price = %d",DEFAULT_TURTLE_PRICE);
+        return DEFAULT_TURTLE_PRICE;
+    }
+    NSInteger retPrice = [price integerValue];
+    PPDebug(@"<getTurtlePrice>: price string = %@,price value = %d",price,retPrice);
+    return retPrice;
+}
+
+- (NSInteger)getDiceRobotPrice
+{
+    NSString* price = [MobClick getConfigParams:@"DICE_ROBOT_PRICE"];
+    if (price == nil) {
+        PPDebug(@"<getDiceRobotPrice>: price is nil, return default price = %d",DEFAULT_DICE_ROBOT_PRICE);
+        return DEFAULT_DICE_ROBOT_PRICE;
+    }
+    NSInteger retPrice = [price integerValue];
+    PPDebug(@"<getDiceRobotPrice>: price string = %@,price value = %d",price,retPrice);
+    return retPrice;
+}
 
 - (NSInteger)getTomatoPrice
 {
