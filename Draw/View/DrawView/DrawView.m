@@ -9,7 +9,39 @@
 #import "DrawView.h"
 #import <QuartzCore/QuartzCore.h>
 
+#pragma mark - revoke image.
+@interface RevokeImage : NSObject {
+    NSInteger _index;
+    UIImage *_image;
+}
+@property(nonatomic, assign)NSInteger index;
+@property(nonatomic, retain)UIImage *image;
++ (RevokeImage *)revokeImageWithImage:(UIImage *)image 
+                                index:(NSInteger)index;
+@end
 
+@implementation RevokeImage
+@synthesize index = _index;
+@synthesize image = _image;
+- (void)dealloc
+{
+    PPDebug(@"%@ dealloc", [self description]);
+    PPRelease(_image);
+    [super dealloc];
+}
+
++ (RevokeImage *)revokeImageWithImage:(UIImage *)image 
+                                index:(NSInteger)index
+{
+    RevokeImage *rImage = [[[RevokeImage alloc] init] autorelease];
+    rImage.image = image;
+    rImage.index = index;
+    return rImage;
+}
+
+@end
+
+#pragma mark - draw view implementation
 
 @interface DrawView()
 {
@@ -18,12 +50,16 @@
 
 }
 #pragma mark Private Helper function
+- (void)revokeRect:(CGRect)rect;
 
 @end
 
 #define DEFAULT_PLAY_SPEED (1/40.0)
 #define DEFAULT_SIMPLING_DISTANCE (5.0)
 #define DEFAULT_LINE_WIDTH (2.0 * 1.414)
+
+#define REVOKE_PAINT_COUNT 10
+#define REVOKE_CACHE_COUNT 10
 
 @implementation DrawView
 
@@ -32,11 +68,11 @@
 @synthesize delegate = _delegate;
 @synthesize penType = _penType;
 
-//CGPoint midPoint(CGPoint p1, CGPoint p2)
-//{
-//    return CGPointMake((p1.x + p2.x) * 0.5, (p1.y + p2.y) * 0.5);
-//}
-
+- (NSInteger)currentRevokeImageIndex
+{
+    RevokeImage *rImage = [_revokeImageList lastObject];
+    return rImage.index;
+}
 
 - (void)addCleanAction
 {
@@ -132,10 +168,28 @@
 }
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
-//    PPDebug(@"touch end");
     [self touchesMoved:touches withEvent:event];
     if (self.delegate && [self.delegate respondsToSelector:@selector(didDrawedPaint:)]) {
         [self.delegate didDrawedPaint:_currentDrawAction.paint];
+    }
+    
+    //save revoke image
+    if ([_drawActionList count] - [self currentRevokeImageIndex] >= 
+        REVOKE_PAINT_COUNT) {
+
+        if (_revokeImageList == nil) {
+            _revokeImageList = [[NSMutableArray alloc] init];
+        }
+        
+        UIImage *image = [self createImage];
+        if ([_revokeImageList count] >= REVOKE_CACHE_COUNT) {
+            [_revokeImageList removeObjectAtIndex:0];
+        }
+        if (image) {
+            NSInteger index = [_drawActionList count] - 1;
+            RevokeImage *rImage = [RevokeImage revokeImageWithImage:image index:index];
+            [_revokeImageList addObject:rImage];
+        }
     }
 }
 
@@ -177,10 +231,7 @@
     self.curImage = UIGraphicsGetImageFromCurrentImageContext();
 
     UIGraphicsEndImageContext();
-    
-//    PPDebug(@"mid1=%@,mid2=%@", NSStringFromCGPoint(mid1),NSStringFromCGPoint(mid2));
-//    PPDebug(@"setNeedsDisplayInRect rect = %@",NSStringFromCGRect(drawBox));
-    
+        
     _drawRectType = DrawRectTypeLine;
     
     [self setNeedsDisplayInRect:drawBox];
@@ -191,6 +242,9 @@
 - (void)drawRect:(CGRect)rect
 {
     [super drawRect:rect];
+    if (_drawRectType == DrawRectTypeRevoke) {
+        [self revokeRect:rect];
+    }
 }
 
 
@@ -217,6 +271,7 @@
 {
     PPDebug(@"%@ dealloc", [self description]);
     PPRelease(_drawActionList);
+    PPRelease(_revokeImageList);
     PPRelease(_lineColor);
     [super dealloc];
 }
@@ -233,9 +288,28 @@
 {
     if ([self canRevoke]) {
         [_drawActionList removeLastObject];
-        [self resetStartIndex];
-        _drawRectType = DrawRectTypeRedraw;
+        if ([self currentRevokeImageIndex] >= [_drawActionList count]) {
+            [_revokeImageList removeLastObject];
+        }
+        _drawRectType = DrawRectTypeRevoke;
         [self setNeedsDisplay];        
+    }
+}
+
+
+
+- (void)revokeRect:(CGRect)rect
+{
+    RevokeImage *rImage = [_revokeImageList lastObject];
+    [rImage.image drawInRect:self.bounds];
+    int j = [self currentRevokeImageIndex];
+    PPDebug(@"_revoke paint index = %d", j);
+    for (; j < self.drawActionList.count; ++ j) {
+        DrawAction *drawAction = [self.drawActionList objectAtIndex:j];
+        if ([drawAction isDrawAction]) {      
+            Paint *paint = drawAction.paint;
+            [self drawPaint:paint];
+        }
     }
 }
 
