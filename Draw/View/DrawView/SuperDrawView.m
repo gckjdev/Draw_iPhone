@@ -26,6 +26,8 @@
 //    return CGPointMake((p1.x + p2.x) * 0.5, (p1.y + p2.y) * 0.5);
 //}
 
+
+
 - (void)dealloc
 {
     PPDebug(@"%@ dealloc", [self description]);
@@ -67,7 +69,7 @@
         if ([action isCleanAction]) {
             _startDrawActionIndex = count+1;
             return;
-        }else if ([action isChnageBackAction]) {
+        }else if ([action isChangeBackAction]) {
             _startDrawActionIndex = count;
             _changeBackColor = action.paint.color.CGColor;
             return;
@@ -204,6 +206,25 @@
     }
 }
 
+//- (void)revokeRect:(CGRect)rect
+//{
+//    UIImage *image = [_revokeImageList lastObject];
+//    [image drawInRect:rect];
+//    int j = 0;
+//    NSInteger count = [_revokeImageList count];
+//    if (count!= 0) {
+//        j = [_drawActionList count] / count;
+//        j = count * REVOKE_PAINT_COUNT;
+//    }
+//    for (; j < self.drawActionList.count; ++ j) {
+//        DrawAction *drawAction = [self.drawActionList objectAtIndex:j];
+//        if ([drawAction isDrawAction]) {      
+//            Paint *paint = drawAction.paint;
+//            [self drawPaint:paint];
+//        }
+//    }
+//
+//}
 
 - (void)drawRect:(CGRect)rect
 {
@@ -227,6 +248,13 @@
             CGContextRef context = UIGraphicsGetCurrentContext(); 
             CGContextSetFillColorWithColor(context, _changeBackColor);
             CGContextFillRect(context, self.bounds);
+        }
+            break;
+            
+        case DrawRectTypeRevoke:
+        {
+            PPDebug(@"<SuperDrawView> DrawRectTypeRevoke");
+            [self revokeRect:rect];
         }
             break;
         case DrawRectTypeClean:

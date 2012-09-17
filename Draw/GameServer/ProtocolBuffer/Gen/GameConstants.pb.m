@@ -58,6 +58,8 @@ BOOL GameCommandTypeIsValidValue(GameCommandType value) {
     case GameCommandTypeCallDiceResponse:
     case GameCommandTypeOpenDiceRequest:
     case GameCommandTypeOpenDiceResponse:
+    case GameCommandTypeBetDiceRequest:
+    case GameCommandTypeBetDiceResponse:
     case GameCommandTypeUseItemRequest:
     case GameCommandTypeUseItemResponse:
     case GameCommandTypeUserJoinNotificationRequest:
@@ -119,6 +121,7 @@ BOOL GameResultCodeIsValidValue(GameResultCode value) {
     case GameResultCodeErrorUserCannotStartGame:
     case GameResultCodeErrorUserNotInSession:
     case GameResultCodeErrorUserNotCurrentPlayUser:
+    case GameResultCodeErrorCurrentPlayUserNull:
     case GameResultCodeErrorNoSessionId:
     case GameResultCodeErrorNextStateNotFound:
     case GameResultCodeErrorSessionidNull:

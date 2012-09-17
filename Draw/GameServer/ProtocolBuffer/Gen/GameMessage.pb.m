@@ -26,6 +26,7 @@ static PBExtensionRegistry* extensionRegistry = nil;
 @interface GetRoomsRequest ()
 @property (retain) NSString* gameId;
 @property int32_t roomType;
+@property (retain) NSString* keyword;
 @end
 
 @implementation GetRoomsRequest
@@ -44,14 +45,23 @@ static PBExtensionRegistry* extensionRegistry = nil;
   hasRoomType_ = !!value;
 }
 @synthesize roomType;
+- (BOOL) hasKeyword {
+  return !!hasKeyword_;
+}
+- (void) setHasKeyword:(BOOL) value {
+  hasKeyword_ = !!value;
+}
+@synthesize keyword;
 - (void) dealloc {
   self.gameId = nil;
+  self.keyword = nil;
   [super dealloc];
 }
 - (id) init {
   if ((self = [super init])) {
     self.gameId = @"";
     self.roomType = 0;
+    self.keyword = @"";
   }
   return self;
 }
@@ -80,6 +90,9 @@ static GetRoomsRequest* defaultGetRoomsRequestInstance = nil;
   if (self.hasRoomType) {
     [output writeInt32:3 value:self.roomType];
   }
+  if (self.hasKeyword) {
+    [output writeString:4 value:self.keyword];
+  }
   [self.unknownFields writeToCodedOutputStream:output];
 }
 - (int32_t) serializedSize {
@@ -94,6 +107,9 @@ static GetRoomsRequest* defaultGetRoomsRequestInstance = nil;
   }
   if (self.hasRoomType) {
     size += computeInt32Size(3, self.roomType);
+  }
+  if (self.hasKeyword) {
+    size += computeStringSize(4, self.keyword);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -176,6 +192,9 @@ static GetRoomsRequest* defaultGetRoomsRequestInstance = nil;
   if (other.hasRoomType) {
     [self setRoomType:other.roomType];
   }
+  if (other.hasKeyword) {
+    [self setKeyword:other.keyword];
+  }
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }
@@ -203,6 +222,10 @@ static GetRoomsRequest* defaultGetRoomsRequestInstance = nil;
       }
       case 24: {
         [self setRoomType:[input readInt32]];
+        break;
+      }
+      case 34: {
+        [self setKeyword:[input readString]];
         break;
       }
     }
@@ -238,6 +261,22 @@ static GetRoomsRequest* defaultGetRoomsRequestInstance = nil;
 - (GetRoomsRequest_Builder*) clearRoomType {
   result.hasRoomType = NO;
   result.roomType = 0;
+  return self;
+}
+- (BOOL) hasKeyword {
+  return result.hasKeyword;
+}
+- (NSString*) keyword {
+  return result.keyword;
+}
+- (GetRoomsRequest_Builder*) setKeyword:(NSString*) value {
+  result.hasKeyword = YES;
+  result.keyword = value;
+  return self;
+}
+- (GetRoomsRequest_Builder*) clearKeyword {
+  result.hasKeyword = NO;
+  result.keyword = @"";
   return self;
 }
 @end
@@ -3143,6 +3182,7 @@ static UseItemRequest* defaultUseItemRequestInstance = nil;
 @interface UseItemResponse ()
 @property int32_t itemId;
 @property (retain) NSMutableArray* mutableDicesList;
+@property (retain) PBDiceAction* action;
 @end
 
 @implementation UseItemResponse
@@ -3155,13 +3195,22 @@ static UseItemRequest* defaultUseItemRequestInstance = nil;
 }
 @synthesize itemId;
 @synthesize mutableDicesList;
+- (BOOL) hasAction {
+  return !!hasAction_;
+}
+- (void) setHasAction:(BOOL) value {
+  hasAction_ = !!value;
+}
+@synthesize action;
 - (void) dealloc {
   self.mutableDicesList = nil;
+  self.action = nil;
   [super dealloc];
 }
 - (id) init {
   if ((self = [super init])) {
     self.itemId = 0;
+    self.action = [PBDiceAction defaultInstance];
   }
   return self;
 }
@@ -3193,6 +3242,11 @@ static UseItemResponse* defaultUseItemResponseInstance = nil;
       return NO;
     }
   }
+  if (self.hasAction) {
+    if (!self.action.isInitialized) {
+      return NO;
+    }
+  }
   return YES;
 }
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
@@ -3201,6 +3255,9 @@ static UseItemResponse* defaultUseItemResponseInstance = nil;
   }
   for (PBDice* element in self.dicesList) {
     [output writeMessage:20 value:element];
+  }
+  if (self.hasAction) {
+    [output writeMessage:21 value:self.action];
   }
   [self.unknownFields writeToCodedOutputStream:output];
 }
@@ -3216,6 +3273,9 @@ static UseItemResponse* defaultUseItemResponseInstance = nil;
   }
   for (PBDice* element in self.dicesList) {
     size += computeMessageSize(20, element);
+  }
+  if (self.hasAction) {
+    size += computeMessageSize(21, self.action);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -3301,6 +3361,9 @@ static UseItemResponse* defaultUseItemResponseInstance = nil;
     }
     [result.mutableDicesList addObjectsFromArray:other.mutableDicesList];
   }
+  if (other.hasAction) {
+    [self mergeAction:other.action];
+  }
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }
@@ -3330,6 +3393,15 @@ static UseItemResponse* defaultUseItemResponseInstance = nil;
         PBDice_Builder* subBuilder = [PBDice builder];
         [input readMessage:subBuilder extensionRegistry:extensionRegistry];
         [self addDices:[subBuilder buildPartial]];
+        break;
+      }
+      case 170: {
+        PBDiceAction_Builder* subBuilder = [PBDiceAction builder];
+        if (self.hasAction) {
+          [subBuilder mergeFrom:self.action];
+        }
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self setAction:[subBuilder buildPartial]];
         break;
       }
     }
@@ -3378,6 +3450,36 @@ static UseItemResponse* defaultUseItemResponseInstance = nil;
     result.mutableDicesList = [NSMutableArray array];
   }
   [result.mutableDicesList addObject:value];
+  return self;
+}
+- (BOOL) hasAction {
+  return result.hasAction;
+}
+- (PBDiceAction*) action {
+  return result.action;
+}
+- (UseItemResponse_Builder*) setAction:(PBDiceAction*) value {
+  result.hasAction = YES;
+  result.action = value;
+  return self;
+}
+- (UseItemResponse_Builder*) setActionBuilder:(PBDiceAction_Builder*) builderForValue {
+  return [self setAction:[builderForValue build]];
+}
+- (UseItemResponse_Builder*) mergeAction:(PBDiceAction*) value {
+  if (result.hasAction &&
+      result.action != [PBDiceAction defaultInstance]) {
+    result.action =
+      [[[PBDiceAction builderWithPrototype:result.action] mergeFrom:value] buildPartial];
+  } else {
+    result.action = value;
+  }
+  result.hasAction = YES;
+  return self;
+}
+- (UseItemResponse_Builder*) clearAction {
+  result.hasAction = NO;
+  result.action = [PBDiceAction defaultInstance];
   return self;
 }
 @end
@@ -6613,6 +6715,407 @@ static NextPlayerStartNotificationResponse* defaultNextPlayerStartNotificationRe
   return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
 }
 - (NextPlayerStartNotificationResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
+  while (YES) {
+    int32_t tag = [input readTag];
+    switch (tag) {
+      case 0:
+        [self setUnknownFields:[unknownFields build]];
+        return self;
+      default: {
+        if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
+          [self setUnknownFields:[unknownFields build]];
+          return self;
+        }
+        break;
+      }
+    }
+  }
+}
+@end
+
+@interface BetDiceRequest ()
+@property int32_t option;
+@property int32_t ante;
+@property Float32 odds;
+@end
+
+@implementation BetDiceRequest
+
+- (BOOL) hasOption {
+  return !!hasOption_;
+}
+- (void) setHasOption:(BOOL) value {
+  hasOption_ = !!value;
+}
+@synthesize option;
+- (BOOL) hasAnte {
+  return !!hasAnte_;
+}
+- (void) setHasAnte:(BOOL) value {
+  hasAnte_ = !!value;
+}
+@synthesize ante;
+- (BOOL) hasOdds {
+  return !!hasOdds_;
+}
+- (void) setHasOdds:(BOOL) value {
+  hasOdds_ = !!value;
+}
+@synthesize odds;
+- (void) dealloc {
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.option = 0;
+    self.ante = 0;
+    self.odds = 0;
+  }
+  return self;
+}
+static BetDiceRequest* defaultBetDiceRequestInstance = nil;
++ (void) initialize {
+  if (self == [BetDiceRequest class]) {
+    defaultBetDiceRequestInstance = [[BetDiceRequest alloc] init];
+  }
+}
++ (BetDiceRequest*) defaultInstance {
+  return defaultBetDiceRequestInstance;
+}
+- (BetDiceRequest*) defaultInstance {
+  return defaultBetDiceRequestInstance;
+}
+- (BOOL) isInitialized {
+  if (!self.hasOption) {
+    return NO;
+  }
+  if (!self.hasAnte) {
+    return NO;
+  }
+  if (!self.hasOdds) {
+    return NO;
+  }
+  return YES;
+}
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
+  if (self.hasOption) {
+    [output writeInt32:1 value:self.option];
+  }
+  if (self.hasAnte) {
+    [output writeInt32:2 value:self.ante];
+  }
+  if (self.hasOdds) {
+    [output writeFloat:3 value:self.odds];
+  }
+  [self.unknownFields writeToCodedOutputStream:output];
+}
+- (int32_t) serializedSize {
+  int32_t size = memoizedSerializedSize;
+  if (size != -1) {
+    return size;
+  }
+
+  size = 0;
+  if (self.hasOption) {
+    size += computeInt32Size(1, self.option);
+  }
+  if (self.hasAnte) {
+    size += computeInt32Size(2, self.ante);
+  }
+  if (self.hasOdds) {
+    size += computeFloatSize(3, self.odds);
+  }
+  size += self.unknownFields.serializedSize;
+  memoizedSerializedSize = size;
+  return size;
+}
++ (BetDiceRequest*) parseFromData:(NSData*) data {
+  return (BetDiceRequest*)[[[BetDiceRequest builder] mergeFromData:data] build];
+}
++ (BetDiceRequest*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (BetDiceRequest*)[[[BetDiceRequest builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+}
++ (BetDiceRequest*) parseFromInputStream:(NSInputStream*) input {
+  return (BetDiceRequest*)[[[BetDiceRequest builder] mergeFromInputStream:input] build];
+}
++ (BetDiceRequest*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (BetDiceRequest*)[[[BetDiceRequest builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (BetDiceRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input {
+  return (BetDiceRequest*)[[[BetDiceRequest builder] mergeFromCodedInputStream:input] build];
+}
++ (BetDiceRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (BetDiceRequest*)[[[BetDiceRequest builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (BetDiceRequest_Builder*) builder {
+  return [[[BetDiceRequest_Builder alloc] init] autorelease];
+}
++ (BetDiceRequest_Builder*) builderWithPrototype:(BetDiceRequest*) prototype {
+  return [[BetDiceRequest builder] mergeFrom:prototype];
+}
+- (BetDiceRequest_Builder*) builder {
+  return [BetDiceRequest builder];
+}
+@end
+
+@interface BetDiceRequest_Builder()
+@property (retain) BetDiceRequest* result;
+@end
+
+@implementation BetDiceRequest_Builder
+@synthesize result;
+- (void) dealloc {
+  self.result = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.result = [[[BetDiceRequest alloc] init] autorelease];
+  }
+  return self;
+}
+- (PBGeneratedMessage*) internalGetResult {
+  return result;
+}
+- (BetDiceRequest_Builder*) clear {
+  self.result = [[[BetDiceRequest alloc] init] autorelease];
+  return self;
+}
+- (BetDiceRequest_Builder*) clone {
+  return [BetDiceRequest builderWithPrototype:result];
+}
+- (BetDiceRequest*) defaultInstance {
+  return [BetDiceRequest defaultInstance];
+}
+- (BetDiceRequest*) build {
+  [self checkInitialized];
+  return [self buildPartial];
+}
+- (BetDiceRequest*) buildPartial {
+  BetDiceRequest* returnMe = [[result retain] autorelease];
+  self.result = nil;
+  return returnMe;
+}
+- (BetDiceRequest_Builder*) mergeFrom:(BetDiceRequest*) other {
+  if (other == [BetDiceRequest defaultInstance]) {
+    return self;
+  }
+  if (other.hasOption) {
+    [self setOption:other.option];
+  }
+  if (other.hasAnte) {
+    [self setAnte:other.ante];
+  }
+  if (other.hasOdds) {
+    [self setOdds:other.odds];
+  }
+  [self mergeUnknownFields:other.unknownFields];
+  return self;
+}
+- (BetDiceRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
+  return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
+}
+- (BetDiceRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
+  while (YES) {
+    int32_t tag = [input readTag];
+    switch (tag) {
+      case 0:
+        [self setUnknownFields:[unknownFields build]];
+        return self;
+      default: {
+        if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
+          [self setUnknownFields:[unknownFields build]];
+          return self;
+        }
+        break;
+      }
+      case 8: {
+        [self setOption:[input readInt32]];
+        break;
+      }
+      case 16: {
+        [self setAnte:[input readInt32]];
+        break;
+      }
+      case 29: {
+        [self setOdds:[input readFloat]];
+        break;
+      }
+    }
+  }
+}
+- (BOOL) hasOption {
+  return result.hasOption;
+}
+- (int32_t) option {
+  return result.option;
+}
+- (BetDiceRequest_Builder*) setOption:(int32_t) value {
+  result.hasOption = YES;
+  result.option = value;
+  return self;
+}
+- (BetDiceRequest_Builder*) clearOption {
+  result.hasOption = NO;
+  result.option = 0;
+  return self;
+}
+- (BOOL) hasAnte {
+  return result.hasAnte;
+}
+- (int32_t) ante {
+  return result.ante;
+}
+- (BetDiceRequest_Builder*) setAnte:(int32_t) value {
+  result.hasAnte = YES;
+  result.ante = value;
+  return self;
+}
+- (BetDiceRequest_Builder*) clearAnte {
+  result.hasAnte = NO;
+  result.ante = 0;
+  return self;
+}
+- (BOOL) hasOdds {
+  return result.hasOdds;
+}
+- (Float32) odds {
+  return result.odds;
+}
+- (BetDiceRequest_Builder*) setOdds:(Float32) value {
+  result.hasOdds = YES;
+  result.odds = value;
+  return self;
+}
+- (BetDiceRequest_Builder*) clearOdds {
+  result.hasOdds = NO;
+  result.odds = 0;
+  return self;
+}
+@end
+
+@interface BetDiceResponse ()
+@end
+
+@implementation BetDiceResponse
+
+- (void) dealloc {
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+  }
+  return self;
+}
+static BetDiceResponse* defaultBetDiceResponseInstance = nil;
++ (void) initialize {
+  if (self == [BetDiceResponse class]) {
+    defaultBetDiceResponseInstance = [[BetDiceResponse alloc] init];
+  }
+}
++ (BetDiceResponse*) defaultInstance {
+  return defaultBetDiceResponseInstance;
+}
+- (BetDiceResponse*) defaultInstance {
+  return defaultBetDiceResponseInstance;
+}
+- (BOOL) isInitialized {
+  return YES;
+}
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
+  [self.unknownFields writeToCodedOutputStream:output];
+}
+- (int32_t) serializedSize {
+  int32_t size = memoizedSerializedSize;
+  if (size != -1) {
+    return size;
+  }
+
+  size = 0;
+  size += self.unknownFields.serializedSize;
+  memoizedSerializedSize = size;
+  return size;
+}
++ (BetDiceResponse*) parseFromData:(NSData*) data {
+  return (BetDiceResponse*)[[[BetDiceResponse builder] mergeFromData:data] build];
+}
++ (BetDiceResponse*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (BetDiceResponse*)[[[BetDiceResponse builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+}
++ (BetDiceResponse*) parseFromInputStream:(NSInputStream*) input {
+  return (BetDiceResponse*)[[[BetDiceResponse builder] mergeFromInputStream:input] build];
+}
++ (BetDiceResponse*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (BetDiceResponse*)[[[BetDiceResponse builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (BetDiceResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input {
+  return (BetDiceResponse*)[[[BetDiceResponse builder] mergeFromCodedInputStream:input] build];
+}
++ (BetDiceResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (BetDiceResponse*)[[[BetDiceResponse builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (BetDiceResponse_Builder*) builder {
+  return [[[BetDiceResponse_Builder alloc] init] autorelease];
+}
++ (BetDiceResponse_Builder*) builderWithPrototype:(BetDiceResponse*) prototype {
+  return [[BetDiceResponse builder] mergeFrom:prototype];
+}
+- (BetDiceResponse_Builder*) builder {
+  return [BetDiceResponse builder];
+}
+@end
+
+@interface BetDiceResponse_Builder()
+@property (retain) BetDiceResponse* result;
+@end
+
+@implementation BetDiceResponse_Builder
+@synthesize result;
+- (void) dealloc {
+  self.result = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.result = [[[BetDiceResponse alloc] init] autorelease];
+  }
+  return self;
+}
+- (PBGeneratedMessage*) internalGetResult {
+  return result;
+}
+- (BetDiceResponse_Builder*) clear {
+  self.result = [[[BetDiceResponse alloc] init] autorelease];
+  return self;
+}
+- (BetDiceResponse_Builder*) clone {
+  return [BetDiceResponse builderWithPrototype:result];
+}
+- (BetDiceResponse*) defaultInstance {
+  return [BetDiceResponse defaultInstance];
+}
+- (BetDiceResponse*) build {
+  [self checkInitialized];
+  return [self buildPartial];
+}
+- (BetDiceResponse*) buildPartial {
+  BetDiceResponse* returnMe = [[result retain] autorelease];
+  self.result = nil;
+  return returnMe;
+}
+- (BetDiceResponse_Builder*) mergeFrom:(BetDiceResponse*) other {
+  if (other == [BetDiceResponse defaultInstance]) {
+    return self;
+  }
+  [self mergeUnknownFields:other.unknownFields];
+  return self;
+}
+- (BetDiceResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
+  return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
+}
+- (BetDiceResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
   PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
   while (YES) {
     int32_t tag = [input readTag];
@@ -10053,6 +10556,8 @@ static FacetimeChatResponse* defaultFacetimeChatResponseInstance = nil;
 @property (retain) UnRegisterRoomsNotificationRequest* unRegisterRoomsNotificationRequest;
 @property (retain) UnRegisterRoomsNotificationResponse* unRegisterRoomsNotificationResponse;
 @property (retain) UserDiceNotification* userDiceNotification;
+@property (retain) BetDiceRequest* betDiceRequest;
+@property (retain) BetDiceResponse* betDiceResponse;
 @property (retain) UseItemRequest* useItemRequest;
 @property (retain) UseItemResponse* useItemResponse;
 @property int32_t startOffset;
@@ -10341,6 +10846,20 @@ static FacetimeChatResponse* defaultFacetimeChatResponseInstance = nil;
   hasUserDiceNotification_ = !!value;
 }
 @synthesize userDiceNotification;
+- (BOOL) hasBetDiceRequest {
+  return !!hasBetDiceRequest_;
+}
+- (void) setHasBetDiceRequest:(BOOL) value {
+  hasBetDiceRequest_ = !!value;
+}
+@synthesize betDiceRequest;
+- (BOOL) hasBetDiceResponse {
+  return !!hasBetDiceResponse_;
+}
+- (void) setHasBetDiceResponse:(BOOL) value {
+  hasBetDiceResponse_ = !!value;
+}
+@synthesize betDiceResponse;
 - (BOOL) hasUseItemRequest {
   return !!hasUseItemRequest_;
 }
@@ -10403,6 +10922,8 @@ static FacetimeChatResponse* defaultFacetimeChatResponseInstance = nil;
   self.unRegisterRoomsNotificationRequest = nil;
   self.unRegisterRoomsNotificationResponse = nil;
   self.userDiceNotification = nil;
+  self.betDiceRequest = nil;
+  self.betDiceResponse = nil;
   self.useItemRequest = nil;
   self.useItemResponse = nil;
   [super dealloc];
@@ -10449,6 +10970,8 @@ static FacetimeChatResponse* defaultFacetimeChatResponseInstance = nil;
     self.unRegisterRoomsNotificationRequest = [UnRegisterRoomsNotificationRequest defaultInstance];
     self.unRegisterRoomsNotificationResponse = [UnRegisterRoomsNotificationResponse defaultInstance];
     self.userDiceNotification = [UserDiceNotification defaultInstance];
+    self.betDiceRequest = [BetDiceRequest defaultInstance];
+    self.betDiceResponse = [BetDiceResponse defaultInstance];
     self.useItemRequest = [UseItemRequest defaultInstance];
     self.useItemResponse = [UseItemResponse defaultInstance];
     self.startOffset = 0;
@@ -10542,6 +11065,11 @@ static GameMessage* defaultGameMessageInstance = nil;
   }
   if (self.hasUserDiceNotification) {
     if (!self.userDiceNotification.isInitialized) {
+      return NO;
+    }
+  }
+  if (self.hasBetDiceRequest) {
+    if (!self.betDiceRequest.isInitialized) {
       return NO;
     }
   }
@@ -10677,6 +11205,12 @@ static GameMessage* defaultGameMessageInstance = nil;
   }
   if (self.hasUserDiceNotification) {
     [output writeMessage:121 value:self.userDiceNotification];
+  }
+  if (self.hasBetDiceRequest) {
+    [output writeMessage:123 value:self.betDiceRequest];
+  }
+  if (self.hasBetDiceResponse) {
+    [output writeMessage:124 value:self.betDiceResponse];
   }
   if (self.hasUseItemRequest) {
     [output writeMessage:131 value:self.useItemRequest];
@@ -10818,6 +11352,12 @@ static GameMessage* defaultGameMessageInstance = nil;
   }
   if (self.hasUserDiceNotification) {
     size += computeMessageSize(121, self.userDiceNotification);
+  }
+  if (self.hasBetDiceRequest) {
+    size += computeMessageSize(123, self.betDiceRequest);
+  }
+  if (self.hasBetDiceResponse) {
+    size += computeMessageSize(124, self.betDiceResponse);
   }
   if (self.hasUseItemRequest) {
     size += computeMessageSize(131, self.useItemRequest);
@@ -11025,6 +11565,12 @@ static GameMessage* defaultGameMessageInstance = nil;
   }
   if (other.hasUserDiceNotification) {
     [self mergeUserDiceNotification:other.userDiceNotification];
+  }
+  if (other.hasBetDiceRequest) {
+    [self mergeBetDiceRequest:other.betDiceRequest];
+  }
+  if (other.hasBetDiceResponse) {
+    [self mergeBetDiceResponse:other.betDiceResponse];
   }
   if (other.hasUseItemRequest) {
     [self mergeUseItemRequest:other.useItemRequest];
@@ -11382,6 +11928,24 @@ static GameMessage* defaultGameMessageInstance = nil;
         }
         [input readMessage:subBuilder extensionRegistry:extensionRegistry];
         [self setUserDiceNotification:[subBuilder buildPartial]];
+        break;
+      }
+      case 986: {
+        BetDiceRequest_Builder* subBuilder = [BetDiceRequest builder];
+        if (self.hasBetDiceRequest) {
+          [subBuilder mergeFrom:self.betDiceRequest];
+        }
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self setBetDiceRequest:[subBuilder buildPartial]];
+        break;
+      }
+      case 994: {
+        BetDiceResponse_Builder* subBuilder = [BetDiceResponse builder];
+        if (self.hasBetDiceResponse) {
+          [subBuilder mergeFrom:self.betDiceResponse];
+        }
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self setBetDiceResponse:[subBuilder buildPartial]];
         break;
       }
       case 1050: {
@@ -12471,6 +13035,66 @@ static GameMessage* defaultGameMessageInstance = nil;
 - (GameMessage_Builder*) clearUserDiceNotification {
   result.hasUserDiceNotification = NO;
   result.userDiceNotification = [UserDiceNotification defaultInstance];
+  return self;
+}
+- (BOOL) hasBetDiceRequest {
+  return result.hasBetDiceRequest;
+}
+- (BetDiceRequest*) betDiceRequest {
+  return result.betDiceRequest;
+}
+- (GameMessage_Builder*) setBetDiceRequest:(BetDiceRequest*) value {
+  result.hasBetDiceRequest = YES;
+  result.betDiceRequest = value;
+  return self;
+}
+- (GameMessage_Builder*) setBetDiceRequestBuilder:(BetDiceRequest_Builder*) builderForValue {
+  return [self setBetDiceRequest:[builderForValue build]];
+}
+- (GameMessage_Builder*) mergeBetDiceRequest:(BetDiceRequest*) value {
+  if (result.hasBetDiceRequest &&
+      result.betDiceRequest != [BetDiceRequest defaultInstance]) {
+    result.betDiceRequest =
+      [[[BetDiceRequest builderWithPrototype:result.betDiceRequest] mergeFrom:value] buildPartial];
+  } else {
+    result.betDiceRequest = value;
+  }
+  result.hasBetDiceRequest = YES;
+  return self;
+}
+- (GameMessage_Builder*) clearBetDiceRequest {
+  result.hasBetDiceRequest = NO;
+  result.betDiceRequest = [BetDiceRequest defaultInstance];
+  return self;
+}
+- (BOOL) hasBetDiceResponse {
+  return result.hasBetDiceResponse;
+}
+- (BetDiceResponse*) betDiceResponse {
+  return result.betDiceResponse;
+}
+- (GameMessage_Builder*) setBetDiceResponse:(BetDiceResponse*) value {
+  result.hasBetDiceResponse = YES;
+  result.betDiceResponse = value;
+  return self;
+}
+- (GameMessage_Builder*) setBetDiceResponseBuilder:(BetDiceResponse_Builder*) builderForValue {
+  return [self setBetDiceResponse:[builderForValue build]];
+}
+- (GameMessage_Builder*) mergeBetDiceResponse:(BetDiceResponse*) value {
+  if (result.hasBetDiceResponse &&
+      result.betDiceResponse != [BetDiceResponse defaultInstance]) {
+    result.betDiceResponse =
+      [[[BetDiceResponse builderWithPrototype:result.betDiceResponse] mergeFrom:value] buildPartial];
+  } else {
+    result.betDiceResponse = value;
+  }
+  result.hasBetDiceResponse = YES;
+  return self;
+}
+- (GameMessage_Builder*) clearBetDiceResponse {
+  result.hasBetDiceResponse = NO;
+  result.betDiceResponse = [BetDiceResponse defaultInstance];
   return self;
 }
 - (BOOL) hasUseItemRequest {

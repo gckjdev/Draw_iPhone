@@ -19,6 +19,7 @@ typedef enum{
     DrawRectTypeClean = 2,//clean the screen
     DrawRectTypeRedraw = 3,//show the previous action list
     DrawRectTypeChangeBack = 4,//show the previous action list
+    DrawRectTypeRevoke = 5,//show the previous action list
     
 }DrawRectType;
 
@@ -40,6 +41,7 @@ typedef enum{
     UIImage *_curImage;
     CGColorRef _changeBackColor;
     
+
 }
 
 @property (nonatomic, retain) NSMutableArray *drawActionList;
@@ -54,4 +56,6 @@ typedef enum{
 //use for sub classes
 - (void)resetStartIndex;
 - (void)drawPoint:(CGFloat)width color:(CGColorRef)cgColor;
+
+- (void)drawPaint:(Paint *)paint;
 @end

@@ -24,6 +24,9 @@
     DrawColor* _lineColor;    
     ItemType _penType;
     
+    //for revoke
+//    NSInteger _revokePaintIndex;
+    NSMutableArray *_revokeImageList;
 }
 
 //@property (nonatomic, retain) NSMutableArray *drawActionList;
@@ -31,7 +34,7 @@
 @property(nonatomic, retain) DrawColor* lineColor; //default is black
 @property(nonatomic, assign) id<DrawViewDelegate>delegate;
 @property(nonatomic, assign) ItemType penType;
-
+@property(nonatomic, assign, getter = isRevocationSupported) BOOL revocationSupported;
 
 - (void)addCleanAction;
 - (DrawAction *)addChangeBackAction:(DrawColor *)color;

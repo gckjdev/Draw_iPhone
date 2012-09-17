@@ -249,10 +249,10 @@
 #pragma mark - Update Data
 
 enum{
-    BLACK_COLOR = 0,
+    YELLOW_COLOR = 0,
     RED_COLOR = 1,  
     BLUE_COLOR,
-    YELLOW_COLOR,
+    BLACK_COLOR,
     COLOR_COUNT
 };
 
@@ -299,6 +299,7 @@ enum{
     UIView *paperView = [self.view viewWithTag:PAPER_VIEW_TAG];
     drawView = [[DrawView alloc] initWithFrame:DRAW_VIEW_FRAME];   
     [drawView setDrawEnabled:YES];
+    [drawView setRevocationSupported:[DeviceDetection isIPAD]];
     drawView.delegate = self;
     if (self.draft) {
         NSArray* drawActionList = [NSKeyedUnarchiver unarchiveObjectWithData:self.draft.data];
