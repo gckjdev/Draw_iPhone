@@ -8,6 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
-@interface DiceRobotManager : NSObject
+@interface DiceRobotManager : NSObject {
+    // What each player last calls
+    NSMutableDictionary* lastCall;
+    // Does player change his/her dice, compared to last round?
+    NSMutableDictionary* changeDiceValue;
+}
 
 @end
