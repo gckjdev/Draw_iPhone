@@ -7,6 +7,10 @@
 #import "Dice.pb.h"
 #import "GameConstants.pb.h"
 
+@class BetDiceRequest;
+@class BetDiceRequest_Builder;
+@class BetDiceResponse;
+@class BetDiceResponse_Builder;
 @class CallDiceRequest;
 @class CallDiceRequest_Builder;
 @class CallDiceResponse;
@@ -50,6 +54,8 @@
 @class OpenDiceResponse;
 @class OpenDiceResponse_Builder;
 @class PBDice;
+@class PBDiceAction;
+@class PBDiceAction_Builder;
 @class PBDiceFinalCount;
 @class PBDiceFinalCount_Builder;
 @class PBDiceGameResult;
@@ -931,11 +937,15 @@
 @interface UseItemResponse : PBGeneratedMessage {
 @private
   BOOL hasItemId_:1;
+  BOOL hasAction_:1;
   int32_t itemId;
+  PBDiceAction* action;
   NSMutableArray* mutableDicesList;
 }
 - (BOOL) hasItemId;
+- (BOOL) hasAction;
 @property (readonly) int32_t itemId;
+@property (readonly, retain) PBDiceAction* action;
 - (NSArray*) dicesList;
 - (PBDice*) dicesAtIndex:(int32_t) index;
 
@@ -984,6 +994,13 @@
 - (UseItemResponse_Builder*) addDices:(PBDice*) value;
 - (UseItemResponse_Builder*) addAllDices:(NSArray*) values;
 - (UseItemResponse_Builder*) clearDicesList;
+
+- (BOOL) hasAction;
+- (PBDiceAction*) action;
+- (UseItemResponse_Builder*) setAction:(PBDiceAction*) value;
+- (UseItemResponse_Builder*) setActionBuilder:(PBDiceAction_Builder*) builderForValue;
+- (UseItemResponse_Builder*) mergeAction:(PBDiceAction*) value;
+- (UseItemResponse_Builder*) clearAction;
 @end
 
 @interface UserDiceNotification : PBGeneratedMessage {
@@ -1781,6 +1798,111 @@
 - (NextPlayerStartNotificationResponse_Builder*) mergeFrom:(NextPlayerStartNotificationResponse*) other;
 - (NextPlayerStartNotificationResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
 - (NextPlayerStartNotificationResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+@end
+
+@interface BetDiceRequest : PBGeneratedMessage {
+@private
+  BOOL hasOdds_:1;
+  BOOL hasOption_:1;
+  BOOL hasAnte_:1;
+  Float32 odds;
+  int32_t option;
+  int32_t ante;
+}
+- (BOOL) hasOption;
+- (BOOL) hasAnte;
+- (BOOL) hasOdds;
+@property (readonly) int32_t option;
+@property (readonly) int32_t ante;
+@property (readonly) Float32 odds;
+
++ (BetDiceRequest*) defaultInstance;
+- (BetDiceRequest*) defaultInstance;
+
+- (BOOL) isInitialized;
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
+- (BetDiceRequest_Builder*) builder;
++ (BetDiceRequest_Builder*) builder;
++ (BetDiceRequest_Builder*) builderWithPrototype:(BetDiceRequest*) prototype;
+
++ (BetDiceRequest*) parseFromData:(NSData*) data;
++ (BetDiceRequest*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (BetDiceRequest*) parseFromInputStream:(NSInputStream*) input;
++ (BetDiceRequest*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (BetDiceRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input;
++ (BetDiceRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+@end
+
+@interface BetDiceRequest_Builder : PBGeneratedMessage_Builder {
+@private
+  BetDiceRequest* result;
+}
+
+- (BetDiceRequest*) defaultInstance;
+
+- (BetDiceRequest_Builder*) clear;
+- (BetDiceRequest_Builder*) clone;
+
+- (BetDiceRequest*) build;
+- (BetDiceRequest*) buildPartial;
+
+- (BetDiceRequest_Builder*) mergeFrom:(BetDiceRequest*) other;
+- (BetDiceRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (BetDiceRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+
+- (BOOL) hasOption;
+- (int32_t) option;
+- (BetDiceRequest_Builder*) setOption:(int32_t) value;
+- (BetDiceRequest_Builder*) clearOption;
+
+- (BOOL) hasAnte;
+- (int32_t) ante;
+- (BetDiceRequest_Builder*) setAnte:(int32_t) value;
+- (BetDiceRequest_Builder*) clearAnte;
+
+- (BOOL) hasOdds;
+- (Float32) odds;
+- (BetDiceRequest_Builder*) setOdds:(Float32) value;
+- (BetDiceRequest_Builder*) clearOdds;
+@end
+
+@interface BetDiceResponse : PBGeneratedMessage {
+@private
+}
+
++ (BetDiceResponse*) defaultInstance;
+- (BetDiceResponse*) defaultInstance;
+
+- (BOOL) isInitialized;
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
+- (BetDiceResponse_Builder*) builder;
++ (BetDiceResponse_Builder*) builder;
++ (BetDiceResponse_Builder*) builderWithPrototype:(BetDiceResponse*) prototype;
+
++ (BetDiceResponse*) parseFromData:(NSData*) data;
++ (BetDiceResponse*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (BetDiceResponse*) parseFromInputStream:(NSInputStream*) input;
++ (BetDiceResponse*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (BetDiceResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input;
++ (BetDiceResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+@end
+
+@interface BetDiceResponse_Builder : PBGeneratedMessage_Builder {
+@private
+  BetDiceResponse* result;
+}
+
+- (BetDiceResponse*) defaultInstance;
+
+- (BetDiceResponse_Builder*) clear;
+- (BetDiceResponse_Builder*) clone;
+
+- (BetDiceResponse*) build;
+- (BetDiceResponse*) buildPartial;
+
+- (BetDiceResponse_Builder*) mergeFrom:(BetDiceResponse*) other;
+- (BetDiceResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (BetDiceResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
 @interface GameOverNotificationRequest : PBGeneratedMessage {
@@ -2598,7 +2720,6 @@
   BOOL hasCurrentPlayUserId_:1;
   BOOL hasToUserId_:1;
   BOOL hasUserId_:1;
-  BOOL hasSearchRoomResponse_:1;
   BOOL hasRoomNotificationRequest_:1;
   BOOL hasRollDiceEndNotificationRequest_:1;
   BOOL hasCallDiceRequest_:1;
@@ -2612,6 +2733,8 @@
   BOOL hasUnRegisterRoomsNotificationRequest_:1;
   BOOL hasUnRegisterRoomsNotificationResponse_:1;
   BOOL hasUserDiceNotification_:1;
+  BOOL hasBetDiceRequest_:1;
+  BOOL hasBetDiceResponse_:1;
   BOOL hasUseItemRequest_:1;
   BOOL hasUseItemResponse_:1;
   BOOL hasJoinGameRequest_:1;
@@ -2630,6 +2753,7 @@
   BOOL hasCreateRoomRequest_:1;
   BOOL hasCreateRoomResponse_:1;
   BOOL hasSearchRoomRequest_:1;
+  BOOL hasSearchRoomResponse_:1;
   BOOL hasCompleteReason_:1;
   BOOL hasResultCode_:1;
   BOOL hasCommand_:1;
@@ -2642,7 +2766,6 @@
   NSString* currentPlayUserId;
   NSString* toUserId;
   NSString* userId;
-  SearchRoomResponse* searchRoomResponse;
   RoomNotificationRequest* roomNotificationRequest;
   RollDiceEndNotificationRequest* rollDiceEndNotificationRequest;
   CallDiceRequest* callDiceRequest;
@@ -2656,6 +2779,8 @@
   UnRegisterRoomsNotificationRequest* unRegisterRoomsNotificationRequest;
   UnRegisterRoomsNotificationResponse* unRegisterRoomsNotificationResponse;
   UserDiceNotification* userDiceNotification;
+  BetDiceRequest* betDiceRequest;
+  BetDiceResponse* betDiceResponse;
   UseItemRequest* useItemRequest;
   UseItemResponse* useItemResponse;
   JoinGameRequest* joinGameRequest;
@@ -2674,6 +2799,7 @@
   CreateRoomRequest* createRoomRequest;
   CreateRoomResponse* createRoomResponse;
   SearchRoomRequest* searchRoomRequest;
+  SearchRoomResponse* searchRoomResponse;
   GameCompleteReason completeReason;
   GameResultCode resultCode;
   GameCommandType command;
@@ -2718,6 +2844,8 @@
 - (BOOL) hasUnRegisterRoomsNotificationRequest;
 - (BOOL) hasUnRegisterRoomsNotificationResponse;
 - (BOOL) hasUserDiceNotification;
+- (BOOL) hasBetDiceRequest;
+- (BOOL) hasBetDiceResponse;
 - (BOOL) hasUseItemRequest;
 - (BOOL) hasUseItemResponse;
 - (BOOL) hasStartOffset;
@@ -2762,6 +2890,8 @@
 @property (readonly, retain) UnRegisterRoomsNotificationRequest* unRegisterRoomsNotificationRequest;
 @property (readonly, retain) UnRegisterRoomsNotificationResponse* unRegisterRoomsNotificationResponse;
 @property (readonly, retain) UserDiceNotification* userDiceNotification;
+@property (readonly, retain) BetDiceRequest* betDiceRequest;
+@property (readonly, retain) BetDiceResponse* betDiceResponse;
 @property (readonly, retain) UseItemRequest* useItemRequest;
 @property (readonly, retain) UseItemResponse* useItemResponse;
 @property (readonly) int32_t startOffset;
@@ -3060,6 +3190,20 @@
 - (GameMessage_Builder*) setUserDiceNotificationBuilder:(UserDiceNotification_Builder*) builderForValue;
 - (GameMessage_Builder*) mergeUserDiceNotification:(UserDiceNotification*) value;
 - (GameMessage_Builder*) clearUserDiceNotification;
+
+- (BOOL) hasBetDiceRequest;
+- (BetDiceRequest*) betDiceRequest;
+- (GameMessage_Builder*) setBetDiceRequest:(BetDiceRequest*) value;
+- (GameMessage_Builder*) setBetDiceRequestBuilder:(BetDiceRequest_Builder*) builderForValue;
+- (GameMessage_Builder*) mergeBetDiceRequest:(BetDiceRequest*) value;
+- (GameMessage_Builder*) clearBetDiceRequest;
+
+- (BOOL) hasBetDiceResponse;
+- (BetDiceResponse*) betDiceResponse;
+- (GameMessage_Builder*) setBetDiceResponse:(BetDiceResponse*) value;
+- (GameMessage_Builder*) setBetDiceResponseBuilder:(BetDiceResponse_Builder*) builderForValue;
+- (GameMessage_Builder*) mergeBetDiceResponse:(BetDiceResponse*) value;
+- (GameMessage_Builder*) clearBetDiceResponse;
 
 - (BOOL) hasUseItemRequest;
 - (UseItemRequest*) useItemRequest;

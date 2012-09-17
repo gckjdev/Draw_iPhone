@@ -88,6 +88,8 @@ message UseItemRequest {
 message UseItemResponse {
   required int32 itemId = 1;
   repeated PBDice dices = 20;
+  
+  optional PBDiceAction action = 21;            // 建议返回的行动
 }
 
 message UserDiceNotification {
@@ -173,6 +175,16 @@ message NextPlayerStartNotificationRequest {
 }
 
 message NextPlayerStartNotificationResponse {
+}
+
+
+message BetDiceRequest {
+  required int32  option = 1;       // 0: 开家赢； 1：开家输
+  required int32  ante = 2;         // 底注
+  required float  odds = 3;         // 赔率
+}
+
+message BetDiceResponse {
 }
 
 message GameOverNotificationRequest {
@@ -330,6 +342,9 @@ message GameMessage {
   optional UnRegisterRoomsNotificationResponse unRegisterRoomsNotificationResponse = 120; 
   
   optional UserDiceNotification userDiceNotification = 121;
+
+  optional BetDiceRequest betDiceRequest = 123;
+  optional BetDiceResponse betDiceResponse = 124;
 
   optional UseItemRequest useItemRequest = 131;
   optional UseItemResponse useItemResponse = 132;  

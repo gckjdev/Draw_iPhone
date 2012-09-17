@@ -44,3 +44,10 @@ message PBDiceGameResult {
   repeated PBDiceFinalCount finalCount = 3;         // 所有用户最终符合开骰的点数
 }
 
+message PBDiceAction {
+  required int32 type = 1;                     // 0：叫；2：开
+  optional int32 num = 2;                      // 叫的骰子数量
+  optional int32 dice = 3;                     // 叫的骰子点
+  optional bool wilds = 4[default=false];      // 是否叫斋     
+}
+

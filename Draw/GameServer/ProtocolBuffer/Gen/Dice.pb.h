@@ -5,6 +5,8 @@
 #import "GameBasic.pb.h"
 
 @class PBDice;
+@class PBDiceAction;
+@class PBDiceAction_Builder;
 @class PBDiceFinalCount;
 @class PBDiceFinalCount_Builder;
 @class PBDiceGameResult;
@@ -368,5 +370,80 @@ BOOL PBDiceTypeIsValidValue(PBDiceType value);
 - (PBDiceGameResult_Builder*) addFinalCount:(PBDiceFinalCount*) value;
 - (PBDiceGameResult_Builder*) addAllFinalCount:(NSArray*) values;
 - (PBDiceGameResult_Builder*) clearFinalCountList;
+@end
+
+@interface PBDiceAction : PBGeneratedMessage {
+@private
+  BOOL hasWilds_:1;
+  BOOL hasType_:1;
+  BOOL hasNum_:1;
+  BOOL hasDice_:1;
+  BOOL wilds_:1;
+  int32_t type;
+  int32_t num;
+  int32_t dice;
+}
+- (BOOL) hasType;
+- (BOOL) hasNum;
+- (BOOL) hasDice;
+- (BOOL) hasWilds;
+@property (readonly) int32_t type;
+@property (readonly) int32_t num;
+@property (readonly) int32_t dice;
+- (BOOL) wilds;
+
++ (PBDiceAction*) defaultInstance;
+- (PBDiceAction*) defaultInstance;
+
+- (BOOL) isInitialized;
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
+- (PBDiceAction_Builder*) builder;
++ (PBDiceAction_Builder*) builder;
++ (PBDiceAction_Builder*) builderWithPrototype:(PBDiceAction*) prototype;
+
++ (PBDiceAction*) parseFromData:(NSData*) data;
++ (PBDiceAction*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBDiceAction*) parseFromInputStream:(NSInputStream*) input;
++ (PBDiceAction*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBDiceAction*) parseFromCodedInputStream:(PBCodedInputStream*) input;
++ (PBDiceAction*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+@end
+
+@interface PBDiceAction_Builder : PBGeneratedMessage_Builder {
+@private
+  PBDiceAction* result;
+}
+
+- (PBDiceAction*) defaultInstance;
+
+- (PBDiceAction_Builder*) clear;
+- (PBDiceAction_Builder*) clone;
+
+- (PBDiceAction*) build;
+- (PBDiceAction*) buildPartial;
+
+- (PBDiceAction_Builder*) mergeFrom:(PBDiceAction*) other;
+- (PBDiceAction_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (PBDiceAction_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+
+- (BOOL) hasType;
+- (int32_t) type;
+- (PBDiceAction_Builder*) setType:(int32_t) value;
+- (PBDiceAction_Builder*) clearType;
+
+- (BOOL) hasNum;
+- (int32_t) num;
+- (PBDiceAction_Builder*) setNum:(int32_t) value;
+- (PBDiceAction_Builder*) clearNum;
+
+- (BOOL) hasDice;
+- (int32_t) dice;
+- (PBDiceAction_Builder*) setDice:(int32_t) value;
+- (PBDiceAction_Builder*) clearDice;
+
+- (BOOL) hasWilds;
+- (BOOL) wilds;
+- (PBDiceAction_Builder*) setWilds:(BOOL) value;
+- (PBDiceAction_Builder*) clearWilds;
 @end
 

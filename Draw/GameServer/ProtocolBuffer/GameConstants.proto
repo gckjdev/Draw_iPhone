@@ -70,8 +70,12 @@ enum GameCommandType {
   OPEN_DICE_REQUEST = 623;                          // 开骰
   OPEN_DICE_RESPONSE = 624;                   
   
+  BET_DICE_REQUEST = 625;
+  BET_DICE_RESPONSE = 626;
+  
   USE_ITEM_REQUEST = 631;                           // 使用道具
   USE_ITEM_RESPONSE = 632;        
+  
   
   // server --> client
   
@@ -156,6 +160,7 @@ enum GameResultCode {
   ERROR_USER_CANNOT_START_GAME = 101;
   ERROR_USER_NOT_IN_SESSION = 102;
   ERROR_USER_NOT_CURRENT_PLAY_USER = 103;
+  ERROR_CURRENT_PLAY_USER_NULL = 104;
     
   // session errors
   ERROR_NO_SESSION_ID = 200;
