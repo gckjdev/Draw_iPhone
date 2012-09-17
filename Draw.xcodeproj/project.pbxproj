@@ -670,9 +670,6 @@
 		CA02B52815AC241800B2A3E2 /* ItemService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA02B52715AC241800B2A3E2 /* ItemService.m */; };
 		CA0378231553696100CF41E3 /* SelectWordCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA0378211553696100CF41E3 /* SelectWordCell~ipad.xib */; };
 		CA0378241553696100CF41E3 /* SelectWordController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA0378221553696100CF41E3 /* SelectWordController~ipad.xib */; };
-		CA04B163159AE47F00D7ACD1 /* UserFeedController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA04B161159AE47E00D7ACD1 /* UserFeedController.m */; };
-		CA04B164159AE47F00D7ACD1 /* UserFeedController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA04B162159AE47F00D7ACD1 /* UserFeedController.xib */; };
-		CA04B166159AE4D900D7ACD1 /* UserFeedController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA04B165159AE4D900D7ACD1 /* UserFeedController~ipad.xib */; };
 		CA051DC31546802D00D0A00A /* DrawView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA051DB01546802D00D0A00A /* DrawView.m */; };
 		CA051DC41546802D00D0A00A /* ShowDrawView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA051DB21546802D00D0A00A /* ShowDrawView.m */; };
 		CA051DC61546802D00D0A00A /* ColorView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA051DB91546802D00D0A00A /* ColorView.m */; };
@@ -940,17 +937,6 @@
 		CA4216281522A0F400FAA008 /* SKProduct+LocalizedPrice.m in Sources */ = {isa = PBXBuildFile; fileRef = CA4216271522A0F400FAA008 /* SKProduct+LocalizedPrice.m */; };
 		CA42E3CA15F4617A00790B3C /* TableTab.m in Sources */ = {isa = PBXBuildFile; fileRef = CA42E3C715F4617A00790B3C /* TableTab.m */; };
 		CA42E3CB15F4617A00790B3C /* TableTabManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA42E3C915F4617A00790B3C /* TableTabManager.m */; };
-		CA42E3E115F4633100790B3C /* CommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA42E3CE15F4633100790B3C /* CommentCell.m */; };
-		CA42E3E215F4633100790B3C /* CommentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA42E3CF15F4633100790B3C /* CommentCell.xib */; };
-		CA42E3E315F4633100790B3C /* CommentCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA42E3D015F4633100790B3C /* CommentCell~ipad.xib */; };
-		CA42E3E415F4633100790B3C /* CommentHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA42E3D215F4633100790B3C /* CommentHeaderView.m */; };
-		CA42E3E515F4633100790B3C /* CommentHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA42E3D315F4633100790B3C /* CommentHeaderView.xib */; };
-		CA42E3E615F4633100790B3C /* DrawInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA42E3D515F4633100790B3C /* DrawInfoCell.m */; };
-		CA42E3E715F4633100790B3C /* DrawInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA42E3D615F4633100790B3C /* DrawInfoCell.xib */; };
-		CA42E3EB15F4633100790B3C /* ShowFeedController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA42E3DC15F4633100790B3C /* ShowFeedController.m */; };
-		CA42E3EC15F4633100790B3C /* ShowFeedController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA42E3DD15F4633100790B3C /* ShowFeedController.xib */; };
-		CA42E3ED15F4633100790B3C /* UserInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA42E3DF15F4633100790B3C /* UserInfoCell.m */; };
-		CA42E3EE15F4633100790B3C /* UserInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA42E3E015F4633100790B3C /* UserInfoCell.xib */; };
 		CA4FF001152AEFDF00F0AC88 /* ColorGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = CA4FF000152AEFDF00F0AC88 /* ColorGroup.m */; };
 		CA4FF00A152AF21900F0AC88 /* ColorShopCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA4FF008152AF21900F0AC88 /* ColorShopCell.m */; };
 		CA4FF00B152AF21900F0AC88 /* ColorShopCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA4FF009152AF21900F0AC88 /* ColorShopCell.xib */; };
@@ -1028,13 +1014,9 @@
 		CA745D4D1503B1B500600024 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CA745D4B1503B1B500600024 /* InfoPlist.strings */; };
 		CA745D501503B1B500600024 /* DrawTests.h in Resources */ = {isa = PBXBuildFile; fileRef = CA745D4F1503B1B500600024 /* DrawTests.h */; };
 		CA745D521503B1B500600024 /* DrawTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CA745D511503B1B500600024 /* DrawTests.m */; };
-		CA7BB849158F210A00F38626 /* FeedCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA7BB847158F210900F38626 /* FeedCell~ipad.xib */; };
 		CA7C7E041587213100406BFB /* Feed.m in Sources */ = {isa = PBXBuildFile; fileRef = CA7C7E031587213100406BFB /* Feed.m */; };
 		CA7C7E071587214300406BFB /* FeedManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA7C7E061587214300406BFB /* FeedManager.m */; };
 		CA7C7E0B158721B200406BFB /* FeedService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA7C7E0A158721B200406BFB /* FeedService.m */; };
-		CA7C7E15158723AE00406BFB /* FeedController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA7C7E13158723AE00406BFB /* FeedController.m */; };
-		CA7C7E16158723AE00406BFB /* FeedController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA7C7E14158723AE00406BFB /* FeedController.xib */; };
-		CA7C7E18158723DE00406BFB /* FeedController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA7C7E17158723DE00406BFB /* FeedController~ipad.xib */; };
 		CA82847215D637930016CD43 /* ioapi.c in Sources */ = {isa = PBXBuildFile; fileRef = CA82846815D637930016CD43 /* ioapi.c */; };
 		CA82847315D637930016CD43 /* mztools.c in Sources */ = {isa = PBXBuildFile; fileRef = CA82846A15D637930016CD43 /* mztools.c */; };
 		CA82847415D637930016CD43 /* unzip.c in Sources */ = {isa = PBXBuildFile; fileRef = CA82846C15D637930016CD43 /* unzip.c */; };
@@ -1042,6 +1024,40 @@
 		CA82847615D637930016CD43 /* SSZipArchive.m in Sources */ = {isa = PBXBuildFile; fileRef = CA82847115D637930016CD43 /* SSZipArchive.m */; };
 		CA89737516071335003A95F7 /* Contest.m in Sources */ = {isa = PBXBuildFile; fileRef = CA89737416071335003A95F7 /* Contest.m */; };
 		CA89737816071345003A95F7 /* ContestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA89737716071345003A95F7 /* ContestManager.m */; };
+		CA8974291607230E003A95F7 /* CommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA8973F81607230E003A95F7 /* CommentCell.m */; };
+		CA89742A1607230E003A95F7 /* CommentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA8973F91607230E003A95F7 /* CommentCell.xib */; };
+		CA89742B1607230E003A95F7 /* CommentCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA8973FA1607230E003A95F7 /* CommentCell~ipad.xib */; };
+		CA89742C1607230E003A95F7 /* CommentHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA8973FC1607230E003A95F7 /* CommentHeaderView.m */; };
+		CA89742D1607230E003A95F7 /* CommentHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA8973FD1607230E003A95F7 /* CommentHeaderView.xib */; };
+		CA89742E1607230E003A95F7 /* CommentHeaderView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA8973FE1607230E003A95F7 /* CommentHeaderView~ipad.xib */; };
+		CA89742F1607230E003A95F7 /* DrawInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA8974001607230E003A95F7 /* DrawInfoCell.m */; };
+		CA8974301607230E003A95F7 /* DrawInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA8974011607230E003A95F7 /* DrawInfoCell.xib */; };
+		CA8974311607230E003A95F7 /* DrawInfoCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA8974021607230E003A95F7 /* DrawInfoCell~ipad.xib */; };
+		CA8974321607230E003A95F7 /* FeedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA8974041607230E003A95F7 /* FeedCell.m */; };
+		CA8974331607230E003A95F7 /* FeedCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA8974051607230E003A95F7 /* FeedCell.xib */; };
+		CA8974341607230E003A95F7 /* FeedCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA8974061607230E003A95F7 /* FeedCell~ipad.xib */; };
+		CA8974351607230E003A95F7 /* UserInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA8974081607230E003A95F7 /* UserInfoCell.m */; };
+		CA8974361607230E003A95F7 /* UserInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA8974091607230E003A95F7 /* UserInfoCell.xib */; };
+		CA8974371607230E003A95F7 /* UserInfoCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA89740A1607230E003A95F7 /* UserInfoCell~ipad.xib */; };
+		CA8974381607230E003A95F7 /* FeedController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA89740C1607230E003A95F7 /* FeedController.m */; };
+		CA8974391607230E003A95F7 /* FeedController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA89740D1607230E003A95F7 /* FeedController.xib */; };
+		CA89743A1607230E003A95F7 /* FeedController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA89740E1607230E003A95F7 /* FeedController~ipad.xib */; };
+		CA89743B1607230E003A95F7 /* CommentController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA8974111607230E003A95F7 /* CommentController.m */; };
+		CA89743C1607230E003A95F7 /* CommentController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA8974121607230E003A95F7 /* CommentController.xib */; };
+		CA89743D1607230E003A95F7 /* CommentController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA8974131607230E003A95F7 /* CommentController~ipad.xib */; };
+		CA89743E1607230E003A95F7 /* FeedDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA8974151607230E003A95F7 /* FeedDetailController.m */; };
+		CA89743F1607230E003A95F7 /* FeedDetailController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA8974161607230E003A95F7 /* FeedDetailController.xib */; };
+		CA8974401607230E003A95F7 /* FeedDetailController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA8974171607230E003A95F7 /* FeedDetailController~ipad.xib */; };
+		CA8974411607230E003A95F7 /* ShowFeedController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA8974191607230E003A95F7 /* ShowFeedController.m */; };
+		CA8974421607230E003A95F7 /* ShowFeedController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA89741A1607230E003A95F7 /* ShowFeedController.xib */; };
+		CA8974431607230E003A95F7 /* ShowFeedController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA89741B1607230E003A95F7 /* ShowFeedController~ipad.xib */; };
+		CA8974441607230E003A95F7 /* HotController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA89741E1607230E003A95F7 /* HotController.m */; };
+		CA8974451607230E003A95F7 /* HotController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA89741F1607230E003A95F7 /* HotController.xib */; };
+		CA8974461607230E003A95F7 /* MyFeedController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA8974221607230E003A95F7 /* MyFeedController.m */; };
+		CA8974471607230E003A95F7 /* MyFeedController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA8974231607230E003A95F7 /* MyFeedController.xib */; };
+		CA8974481607230E003A95F7 /* UserFeedController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA8974261607230E003A95F7 /* UserFeedController.m */; };
+		CA8974491607230E003A95F7 /* UserFeedController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA8974271607230E003A95F7 /* UserFeedController.xib */; };
+		CA89744A1607230E003A95F7 /* UserFeedController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA8974281607230E003A95F7 /* UserFeedController~ipad.xib */; };
 		CA8D602A1531C98400E016ED /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA8D602C1531C98400E016ED /* Default@2x.png */; };
 		CA8D60631531EC5500E016ED /* ReplayController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA8D60611531EC5500E016ED /* ReplayController.m */; };
 		CA8D60641531EC5500E016ED /* ReplayController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA8D60621531EC5500E016ED /* ReplayController.xib */; };
@@ -1215,8 +1231,6 @@
 		CAA8260A15F8404C00E35C9E /* oowrong.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CAA8258815F8404B00E35C9E /* oowrong.mp3 */; };
 		CAA8260B15F8404C00E35C9E /* pushMessage.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CAA8258915F8404B00E35C9E /* pushMessage.mp3 */; };
 		CAA8260C15F8404C00E35C9E /* wrong.wav in Resources */ = {isa = PBXBuildFile; fileRef = CAA8258A15F8404B00E35C9E /* wrong.wav */; };
-		CAA8261015F8875400E35C9E /* CommentController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA8260E15F8872600E35C9E /* CommentController.m */; };
-		CAA8261115F8875400E35C9E /* CommentController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAA8260F15F8874700E35C9E /* CommentController.xib */; };
 		CAA9C427159BF41B00398EC5 /* ShareService.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA9C426159BF41B00398EC5 /* ShareService.m */; };
 		CAA9C435159CA97100398EC5 /* LmWallService.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA9C434159CA97100398EC5 /* LmWallService.m */; };
 		CAACE19915F499E6002EB53A /* SuperDrawView.m in Sources */ = {isa = PBXBuildFile; fileRef = CAACE19815F499E6002EB53A /* SuperDrawView.m */; };
@@ -1277,8 +1291,6 @@
 		CACF87A515EB4D2D003FA6B6 /* DiceSettingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CACF87A315EB4D2D003FA6B6 /* DiceSettingView.xib */; };
 		CAD12A9815F19F12003B8E6A /* WapsOffer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAD12A9615F19F12003B8E6A /* WapsOffer.framework */; };
 		CAD6EACF15805D780004A483 /* DrawManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CAD6EACE15805D780004A483 /* DrawManager.m */; };
-		CAD95C5D15889612006EAC41 /* FeedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CAD95C5B15889611006EAC41 /* FeedCell.m */; };
-		CAD95C5E15889612006EAC41 /* FeedCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAD95C5C15889611006EAC41 /* FeedCell.xib */; };
 		CAD9C7121574CCFA00F2C8E1 /* fireworks1.png in Resources */ = {isa = PBXBuildFile; fileRef = CAD9C7101574CCF900F2C8E1 /* fireworks1.png */; };
 		CAD9C7131574CCFA00F2C8E1 /* fireworks2.png in Resources */ = {isa = PBXBuildFile; fileRef = CAD9C7111574CCFA00F2C8E1 /* fireworks2.png */; };
 		CAD9C7151574D02A00F2C8E1 /* snow.png in Resources */ = {isa = PBXBuildFile; fileRef = CAD9C7141574D02A00F2C8E1 /* snow.png */; };
@@ -1288,11 +1300,6 @@
 		CADD7FDD1511BAAB0075C739 /* DrawGameService.m in Sources */ = {isa = PBXBuildFile; fileRef = CADD7FDC1511BAAB0075C739 /* DrawGameService.m */; };
 		CADD804D15138C690075C739 /* UserManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CADD804C15138C690075C739 /* UserManager.m */; };
 		CADD8050151397870075C739 /* UINavigationController+UINavigationControllerAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = CADD804F151397870075C739 /* UINavigationController+UINavigationControllerAdditions.m */; };
-		CADF7E3D15F9F47F0018F0B6 /* CommentController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CADF7E3815F9F4720018F0B6 /* CommentController~ipad.xib */; };
-		CADF7E3E15F9F47F0018F0B6 /* CommentHeaderView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CADF7E3915F9F4740018F0B6 /* CommentHeaderView~ipad.xib */; };
-		CADF7E3F15F9F47F0018F0B6 /* DrawInfoCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CADF7E3A15F9F4770018F0B6 /* DrawInfoCell~ipad.xib */; };
-		CADF7E4015F9F47F0018F0B6 /* ShowFeedController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CADF7E3B15F9F4790018F0B6 /* ShowFeedController~ipad.xib */; };
-		CADF7E4115F9F47F0018F0B6 /* UserInfoCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CADF7E3C15F9F47A0018F0B6 /* UserInfoCell~ipad.xib */; };
 		CAE0C8971591A2ED008CDA62 /* NotificationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE0C8961591A2ED008CDA62 /* NotificationManager.m */; };
 		CAE2CABE151B2ECA0062ED37 /* Account.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE2CABD151B2ECA0062ED37 /* Account.m */; };
 		CAE2CAC1151B2F7C0062ED37 /* Item.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE2CAC0151B2F7C0062ED37 /* Item.m */; };
@@ -2260,10 +2267,6 @@
 		CA02B52715AC241800B2A3E2 /* ItemService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemService.m; sourceTree = "<group>"; };
 		CA0378211553696100CF41E3 /* SelectWordCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "SelectWordCell~ipad.xib"; sourceTree = "<group>"; };
 		CA0378221553696100CF41E3 /* SelectWordController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "SelectWordController~ipad.xib"; sourceTree = "<group>"; };
-		CA04B160159AE47E00D7ACD1 /* UserFeedController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserFeedController.h; sourceTree = "<group>"; };
-		CA04B161159AE47E00D7ACD1 /* UserFeedController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserFeedController.m; sourceTree = "<group>"; };
-		CA04B162159AE47F00D7ACD1 /* UserFeedController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserFeedController.xib; sourceTree = "<group>"; };
-		CA04B165159AE4D900D7ACD1 /* UserFeedController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "UserFeedController~ipad.xib"; sourceTree = "<group>"; };
 		CA051DAF1546802D00D0A00A /* DrawView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawView.h; sourceTree = "<group>"; };
 		CA051DB01546802D00D0A00A /* DrawView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawView.m; sourceTree = "<group>"; };
 		CA051DB11546802D00D0A00A /* ShowDrawView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowDrawView.h; sourceTree = "<group>"; };
@@ -2765,22 +2768,6 @@
 		CA42E3C715F4617A00790B3C /* TableTab.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableTab.m; sourceTree = "<group>"; };
 		CA42E3C815F4617A00790B3C /* TableTabManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableTabManager.h; sourceTree = "<group>"; };
 		CA42E3C915F4617A00790B3C /* TableTabManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableTabManager.m; sourceTree = "<group>"; };
-		CA42E3CD15F4633100790B3C /* CommentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentCell.h; sourceTree = "<group>"; };
-		CA42E3CE15F4633100790B3C /* CommentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentCell.m; sourceTree = "<group>"; };
-		CA42E3CF15F4633100790B3C /* CommentCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommentCell.xib; sourceTree = "<group>"; };
-		CA42E3D015F4633100790B3C /* CommentCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "CommentCell~ipad.xib"; sourceTree = "<group>"; };
-		CA42E3D115F4633100790B3C /* CommentHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentHeaderView.h; sourceTree = "<group>"; };
-		CA42E3D215F4633100790B3C /* CommentHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentHeaderView.m; sourceTree = "<group>"; };
-		CA42E3D315F4633100790B3C /* CommentHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommentHeaderView.xib; sourceTree = "<group>"; };
-		CA42E3D415F4633100790B3C /* DrawInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawInfoCell.h; sourceTree = "<group>"; };
-		CA42E3D515F4633100790B3C /* DrawInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawInfoCell.m; sourceTree = "<group>"; };
-		CA42E3D615F4633100790B3C /* DrawInfoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DrawInfoCell.xib; sourceTree = "<group>"; };
-		CA42E3DB15F4633100790B3C /* ShowFeedController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowFeedController.h; sourceTree = "<group>"; };
-		CA42E3DC15F4633100790B3C /* ShowFeedController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowFeedController.m; sourceTree = "<group>"; };
-		CA42E3DD15F4633100790B3C /* ShowFeedController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShowFeedController.xib; sourceTree = "<group>"; };
-		CA42E3DE15F4633100790B3C /* UserInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfoCell.h; sourceTree = "<group>"; };
-		CA42E3DF15F4633100790B3C /* UserInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfoCell.m; sourceTree = "<group>"; };
-		CA42E3E015F4633100790B3C /* UserInfoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserInfoCell.xib; sourceTree = "<group>"; };
 		CA4AF8C015D23A4E00734FAC /* MainDataModel 7.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "MainDataModel 7.xcdatamodel"; sourceTree = "<group>"; };
 		CA4F066F1546F66500A38C84 /* MainDataModel 3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "MainDataModel 3.xcdatamodel"; sourceTree = "<group>"; };
 		CA4FEFFF152AEFDF00F0AC88 /* ColorGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorGroup.h; sourceTree = "<group>"; };
@@ -2899,17 +2886,12 @@
 		CA745D4E1503B1B500600024 /* DrawTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DrawTests-Prefix.pch"; sourceTree = "<group>"; };
 		CA745D4F1503B1B500600024 /* DrawTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DrawTests.h; sourceTree = "<group>"; };
 		CA745D511503B1B500600024 /* DrawTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DrawTests.m; sourceTree = "<group>"; };
-		CA7BB847158F210900F38626 /* FeedCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "FeedCell~ipad.xib"; sourceTree = "<group>"; };
 		CA7C7E021587213100406BFB /* Feed.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Feed.h; sourceTree = "<group>"; };
 		CA7C7E031587213100406BFB /* Feed.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Feed.m; sourceTree = "<group>"; };
 		CA7C7E051587214300406BFB /* FeedManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedManager.h; sourceTree = "<group>"; };
 		CA7C7E061587214300406BFB /* FeedManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedManager.m; sourceTree = "<group>"; };
 		CA7C7E09158721B200406BFB /* FeedService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedService.h; sourceTree = "<group>"; };
 		CA7C7E0A158721B200406BFB /* FeedService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedService.m; sourceTree = "<group>"; };
-		CA7C7E12158723AE00406BFB /* FeedController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedController.h; sourceTree = "<group>"; };
-		CA7C7E13158723AE00406BFB /* FeedController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedController.m; sourceTree = "<group>"; };
-		CA7C7E14158723AE00406BFB /* FeedController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FeedController.xib; sourceTree = "<group>"; };
-		CA7C7E17158723DE00406BFB /* FeedController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "FeedController~ipad.xib"; sourceTree = "<group>"; };
 		CA82846715D637930016CD43 /* crypt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = crypt.h; sourceTree = "<group>"; };
 		CA82846815D637930016CD43 /* ioapi.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ioapi.c; sourceTree = "<group>"; };
 		CA82846915D637930016CD43 /* ioapi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ioapi.h; sourceTree = "<group>"; };
@@ -2925,6 +2907,52 @@
 		CA89737416071335003A95F7 /* Contest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Contest.m; sourceTree = "<group>"; };
 		CA89737616071345003A95F7 /* ContestManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContestManager.h; sourceTree = "<group>"; };
 		CA89737716071345003A95F7 /* ContestManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContestManager.m; sourceTree = "<group>"; };
+		CA8973F71607230E003A95F7 /* CommentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentCell.h; sourceTree = "<group>"; };
+		CA8973F81607230E003A95F7 /* CommentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentCell.m; sourceTree = "<group>"; };
+		CA8973F91607230E003A95F7 /* CommentCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommentCell.xib; sourceTree = "<group>"; };
+		CA8973FA1607230E003A95F7 /* CommentCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "CommentCell~ipad.xib"; sourceTree = "<group>"; };
+		CA8973FB1607230E003A95F7 /* CommentHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentHeaderView.h; sourceTree = "<group>"; };
+		CA8973FC1607230E003A95F7 /* CommentHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentHeaderView.m; sourceTree = "<group>"; };
+		CA8973FD1607230E003A95F7 /* CommentHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommentHeaderView.xib; sourceTree = "<group>"; };
+		CA8973FE1607230E003A95F7 /* CommentHeaderView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "CommentHeaderView~ipad.xib"; sourceTree = "<group>"; };
+		CA8973FF1607230E003A95F7 /* DrawInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawInfoCell.h; sourceTree = "<group>"; };
+		CA8974001607230E003A95F7 /* DrawInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawInfoCell.m; sourceTree = "<group>"; };
+		CA8974011607230E003A95F7 /* DrawInfoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DrawInfoCell.xib; sourceTree = "<group>"; };
+		CA8974021607230E003A95F7 /* DrawInfoCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "DrawInfoCell~ipad.xib"; sourceTree = "<group>"; };
+		CA8974031607230E003A95F7 /* FeedCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedCell.h; sourceTree = "<group>"; };
+		CA8974041607230E003A95F7 /* FeedCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedCell.m; sourceTree = "<group>"; };
+		CA8974051607230E003A95F7 /* FeedCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FeedCell.xib; sourceTree = "<group>"; };
+		CA8974061607230E003A95F7 /* FeedCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "FeedCell~ipad.xib"; sourceTree = "<group>"; };
+		CA8974071607230E003A95F7 /* UserInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfoCell.h; sourceTree = "<group>"; };
+		CA8974081607230E003A95F7 /* UserInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfoCell.m; sourceTree = "<group>"; };
+		CA8974091607230E003A95F7 /* UserInfoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserInfoCell.xib; sourceTree = "<group>"; };
+		CA89740A1607230E003A95F7 /* UserInfoCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "UserInfoCell~ipad.xib"; sourceTree = "<group>"; };
+		CA89740B1607230E003A95F7 /* FeedController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedController.h; sourceTree = "<group>"; };
+		CA89740C1607230E003A95F7 /* FeedController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedController.m; sourceTree = "<group>"; };
+		CA89740D1607230E003A95F7 /* FeedController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FeedController.xib; sourceTree = "<group>"; };
+		CA89740E1607230E003A95F7 /* FeedController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "FeedController~ipad.xib"; sourceTree = "<group>"; };
+		CA8974101607230E003A95F7 /* CommentController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentController.h; sourceTree = "<group>"; };
+		CA8974111607230E003A95F7 /* CommentController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentController.m; sourceTree = "<group>"; };
+		CA8974121607230E003A95F7 /* CommentController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommentController.xib; sourceTree = "<group>"; };
+		CA8974131607230E003A95F7 /* CommentController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "CommentController~ipad.xib"; sourceTree = "<group>"; };
+		CA8974141607230E003A95F7 /* FeedDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedDetailController.h; sourceTree = "<group>"; };
+		CA8974151607230E003A95F7 /* FeedDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedDetailController.m; sourceTree = "<group>"; };
+		CA8974161607230E003A95F7 /* FeedDetailController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FeedDetailController.xib; sourceTree = "<group>"; };
+		CA8974171607230E003A95F7 /* FeedDetailController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "FeedDetailController~ipad.xib"; sourceTree = "<group>"; };
+		CA8974181607230E003A95F7 /* ShowFeedController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowFeedController.h; sourceTree = "<group>"; };
+		CA8974191607230E003A95F7 /* ShowFeedController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowFeedController.m; sourceTree = "<group>"; };
+		CA89741A1607230E003A95F7 /* ShowFeedController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShowFeedController.xib; sourceTree = "<group>"; };
+		CA89741B1607230E003A95F7 /* ShowFeedController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ShowFeedController~ipad.xib"; sourceTree = "<group>"; };
+		CA89741D1607230E003A95F7 /* HotController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HotController.h; sourceTree = "<group>"; };
+		CA89741E1607230E003A95F7 /* HotController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HotController.m; sourceTree = "<group>"; };
+		CA89741F1607230E003A95F7 /* HotController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HotController.xib; sourceTree = "<group>"; };
+		CA8974211607230E003A95F7 /* MyFeedController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyFeedController.h; sourceTree = "<group>"; };
+		CA8974221607230E003A95F7 /* MyFeedController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyFeedController.m; sourceTree = "<group>"; };
+		CA8974231607230E003A95F7 /* MyFeedController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyFeedController.xib; sourceTree = "<group>"; };
+		CA8974251607230E003A95F7 /* UserFeedController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserFeedController.h; sourceTree = "<group>"; };
+		CA8974261607230E003A95F7 /* UserFeedController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserFeedController.m; sourceTree = "<group>"; };
+		CA8974271607230E003A95F7 /* UserFeedController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserFeedController.xib; sourceTree = "<group>"; };
+		CA8974281607230E003A95F7 /* UserFeedController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "UserFeedController~ipad.xib"; sourceTree = "<group>"; };
 		CA8D60601531EC5500E016ED /* ReplayController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReplayController.h; sourceTree = "<group>"; };
 		CA8D60611531EC5500E016ED /* ReplayController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReplayController.m; sourceTree = "<group>"; };
 		CA8D60621531EC5500E016ED /* ReplayController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReplayController.xib; sourceTree = "<group>"; };
@@ -3152,9 +3180,6 @@
 		CAA8258B15F8404B00E35C9E /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "zh-Hans"; path = "zh-Hans.lproj/Default-Portrait.png"; sourceTree = "<group>"; };
 		CAA8258C15F8404B00E35C9E /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "zh-Hans"; path = "zh-Hans.lproj/Default.png"; sourceTree = "<group>"; };
 		CAA8258D15F8404B00E35C9E /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "zh-Hans"; path = "zh-Hans.lproj/Default@2x.png"; sourceTree = "<group>"; };
-		CAA8260D15F8871800E35C9E /* CommentController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentController.h; sourceTree = "<group>"; };
-		CAA8260E15F8872600E35C9E /* CommentController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentController.m; sourceTree = "<group>"; };
-		CAA8260F15F8874700E35C9E /* CommentController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommentController.xib; sourceTree = "<group>"; };
 		CAA9C425159BF41B00398EC5 /* ShareService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareService.h; sourceTree = "<group>"; };
 		CAA9C426159BF41B00398EC5 /* ShareService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareService.m; sourceTree = "<group>"; };
 		CAA9C433159CA97100398EC5 /* LmWallService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LmWallService.h; sourceTree = "<group>"; };
@@ -3241,9 +3266,6 @@
 		CAD18C83156B9125003ADDC0 /* MainDataModel 5.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "MainDataModel 5.xcdatamodel"; sourceTree = "<group>"; };
 		CAD6EACD15805D780004A483 /* DrawManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawManager.h; sourceTree = "<group>"; };
 		CAD6EACE15805D780004A483 /* DrawManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawManager.m; sourceTree = "<group>"; };
-		CAD95C5A15889611006EAC41 /* FeedCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedCell.h; sourceTree = "<group>"; };
-		CAD95C5B15889611006EAC41 /* FeedCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedCell.m; sourceTree = "<group>"; };
-		CAD95C5C15889611006EAC41 /* FeedCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FeedCell.xib; sourceTree = "<group>"; };
 		CAD9C7101574CCF900F2C8E1 /* fireworks1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fireworks1.png; sourceTree = "<group>"; };
 		CAD9C7111574CCFA00F2C8E1 /* fireworks2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fireworks2.png; sourceTree = "<group>"; };
 		CAD9C7141574D02A00F2C8E1 /* snow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = snow.png; sourceTree = "<group>"; };
@@ -3258,11 +3280,6 @@
 		CADD804C15138C690075C739 /* UserManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserManager.m; sourceTree = "<group>"; };
 		CADD804E151397870075C739 /* UINavigationController+UINavigationControllerAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+UINavigationControllerAdditions.h"; sourceTree = "<group>"; };
 		CADD804F151397870075C739 /* UINavigationController+UINavigationControllerAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+UINavigationControllerAdditions.m"; sourceTree = "<group>"; };
-		CADF7E3815F9F4720018F0B6 /* CommentController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "CommentController~ipad.xib"; sourceTree = "<group>"; };
-		CADF7E3915F9F4740018F0B6 /* CommentHeaderView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "CommentHeaderView~ipad.xib"; sourceTree = "<group>"; };
-		CADF7E3A15F9F4770018F0B6 /* DrawInfoCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "DrawInfoCell~ipad.xib"; sourceTree = "<group>"; };
-		CADF7E3B15F9F4790018F0B6 /* ShowFeedController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ShowFeedController~ipad.xib"; sourceTree = "<group>"; };
-		CADF7E3C15F9F47A0018F0B6 /* UserInfoCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "UserInfoCell~ipad.xib"; sourceTree = "<group>"; };
 		CAE0C8951591A2ED008CDA62 /* NotificationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotificationManager.h; sourceTree = "<group>"; };
 		CAE0C8961591A2ED008CDA62 /* NotificationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotificationManager.m; sourceTree = "<group>"; };
 		CAE23C6E153E9E9A00F52497 /* MainDataModel 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "MainDataModel 2.xcdatamodel"; sourceTree = "<group>"; };
@@ -5943,37 +5960,6 @@
 			path = TableTab;
 			sourceTree = "<group>";
 		};
-		CA42E3CC15F4633100790B3C /* FeedDetail */ = {
-			isa = PBXGroup;
-			children = (
-				CA42E3CD15F4633100790B3C /* CommentCell.h */,
-				CA42E3CE15F4633100790B3C /* CommentCell.m */,
-				CA42E3CF15F4633100790B3C /* CommentCell.xib */,
-				CA42E3D015F4633100790B3C /* CommentCell~ipad.xib */,
-				CA42E3D115F4633100790B3C /* CommentHeaderView.h */,
-				CA42E3D215F4633100790B3C /* CommentHeaderView.m */,
-				CA42E3D315F4633100790B3C /* CommentHeaderView.xib */,
-				CADF7E3915F9F4740018F0B6 /* CommentHeaderView~ipad.xib */,
-				CA42E3D415F4633100790B3C /* DrawInfoCell.h */,
-				CA42E3D515F4633100790B3C /* DrawInfoCell.m */,
-				CA42E3D615F4633100790B3C /* DrawInfoCell.xib */,
-				CADF7E3A15F9F4770018F0B6 /* DrawInfoCell~ipad.xib */,
-				CA42E3DB15F4633100790B3C /* ShowFeedController.h */,
-				CA42E3DC15F4633100790B3C /* ShowFeedController.m */,
-				CA42E3DD15F4633100790B3C /* ShowFeedController.xib */,
-				CADF7E3B15F9F4790018F0B6 /* ShowFeedController~ipad.xib */,
-				CA42E3DE15F4633100790B3C /* UserInfoCell.h */,
-				CA42E3DF15F4633100790B3C /* UserInfoCell.m */,
-				CA42E3E015F4633100790B3C /* UserInfoCell.xib */,
-				CADF7E3C15F9F47A0018F0B6 /* UserInfoCell~ipad.xib */,
-				CAA8260D15F8871800E35C9E /* CommentController.h */,
-				CAA8260E15F8872600E35C9E /* CommentController.m */,
-				CAA8260F15F8874700E35C9E /* CommentController.xib */,
-				CADF7E3815F9F4720018F0B6 /* CommentController~ipad.xib */,
-			);
-			path = FeedDetail;
-			sourceTree = "<group>";
-		};
 		CA51816A15A2D79700AD5A78 /* CustomStatueBar */ = {
 			isa = PBXGroup;
 			children = (
@@ -6293,26 +6279,6 @@
 			path = Feed;
 			sourceTree = "<group>";
 		};
-		CA7C7E111587237B00406BFB /* Feed */ = {
-			isa = PBXGroup;
-			children = (
-				CA42E3CC15F4633100790B3C /* FeedDetail */,
-				CA7C7E12158723AE00406BFB /* FeedController.h */,
-				CA7C7E13158723AE00406BFB /* FeedController.m */,
-				CA7C7E14158723AE00406BFB /* FeedController.xib */,
-				CA7C7E17158723DE00406BFB /* FeedController~ipad.xib */,
-				CAD95C5A15889611006EAC41 /* FeedCell.h */,
-				CAD95C5B15889611006EAC41 /* FeedCell.m */,
-				CAD95C5C15889611006EAC41 /* FeedCell.xib */,
-				CA7BB847158F210900F38626 /* FeedCell~ipad.xib */,
-				CA04B160159AE47E00D7ACD1 /* UserFeedController.h */,
-				CA04B161159AE47E00D7ACD1 /* UserFeedController.m */,
-				CA04B162159AE47F00D7ACD1 /* UserFeedController.xib */,
-				CA04B165159AE4D900D7ACD1 /* UserFeedController~ipad.xib */,
-			);
-			path = Feed;
-			sourceTree = "<group>";
-		};
 		CA82846515D6378E0016CD43 /* ssziparchive */ = {
 			isa = PBXGroup;
 			children = (
@@ -6349,6 +6315,99 @@
 				CA89737716071345003A95F7 /* ContestManager.m */,
 			);
 			path = Contest;
+			sourceTree = "<group>";
+		};
+		CA8973F51607230E003A95F7 /* Feed */ = {
+			isa = PBXGroup;
+			children = (
+				CA8973F61607230E003A95F7 /* Cell */,
+				CA89740B1607230E003A95F7 /* FeedController.h */,
+				CA89740C1607230E003A95F7 /* FeedController.m */,
+				CA89740D1607230E003A95F7 /* FeedController.xib */,
+				CA89740E1607230E003A95F7 /* FeedController~ipad.xib */,
+				CA89740F1607230E003A95F7 /* FeedDetail */,
+				CA89741C1607230E003A95F7 /* Hot */,
+				CA8974201607230E003A95F7 /* Mine */,
+				CA8974241607230E003A95F7 /* User */,
+			);
+			path = Feed;
+			sourceTree = "<group>";
+		};
+		CA8973F61607230E003A95F7 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				CA8973F71607230E003A95F7 /* CommentCell.h */,
+				CA8973F81607230E003A95F7 /* CommentCell.m */,
+				CA8973F91607230E003A95F7 /* CommentCell.xib */,
+				CA8973FA1607230E003A95F7 /* CommentCell~ipad.xib */,
+				CA8973FB1607230E003A95F7 /* CommentHeaderView.h */,
+				CA8973FC1607230E003A95F7 /* CommentHeaderView.m */,
+				CA8973FD1607230E003A95F7 /* CommentHeaderView.xib */,
+				CA8973FE1607230E003A95F7 /* CommentHeaderView~ipad.xib */,
+				CA8973FF1607230E003A95F7 /* DrawInfoCell.h */,
+				CA8974001607230E003A95F7 /* DrawInfoCell.m */,
+				CA8974011607230E003A95F7 /* DrawInfoCell.xib */,
+				CA8974021607230E003A95F7 /* DrawInfoCell~ipad.xib */,
+				CA8974031607230E003A95F7 /* FeedCell.h */,
+				CA8974041607230E003A95F7 /* FeedCell.m */,
+				CA8974051607230E003A95F7 /* FeedCell.xib */,
+				CA8974061607230E003A95F7 /* FeedCell~ipad.xib */,
+				CA8974071607230E003A95F7 /* UserInfoCell.h */,
+				CA8974081607230E003A95F7 /* UserInfoCell.m */,
+				CA8974091607230E003A95F7 /* UserInfoCell.xib */,
+				CA89740A1607230E003A95F7 /* UserInfoCell~ipad.xib */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		CA89740F1607230E003A95F7 /* FeedDetail */ = {
+			isa = PBXGroup;
+			children = (
+				CA8974101607230E003A95F7 /* CommentController.h */,
+				CA8974111607230E003A95F7 /* CommentController.m */,
+				CA8974121607230E003A95F7 /* CommentController.xib */,
+				CA8974131607230E003A95F7 /* CommentController~ipad.xib */,
+				CA8974141607230E003A95F7 /* FeedDetailController.h */,
+				CA8974151607230E003A95F7 /* FeedDetailController.m */,
+				CA8974161607230E003A95F7 /* FeedDetailController.xib */,
+				CA8974171607230E003A95F7 /* FeedDetailController~ipad.xib */,
+				CA8974181607230E003A95F7 /* ShowFeedController.h */,
+				CA8974191607230E003A95F7 /* ShowFeedController.m */,
+				CA89741A1607230E003A95F7 /* ShowFeedController.xib */,
+				CA89741B1607230E003A95F7 /* ShowFeedController~ipad.xib */,
+			);
+			path = FeedDetail;
+			sourceTree = "<group>";
+		};
+		CA89741C1607230E003A95F7 /* Hot */ = {
+			isa = PBXGroup;
+			children = (
+				CA89741D1607230E003A95F7 /* HotController.h */,
+				CA89741E1607230E003A95F7 /* HotController.m */,
+				CA89741F1607230E003A95F7 /* HotController.xib */,
+			);
+			path = Hot;
+			sourceTree = "<group>";
+		};
+		CA8974201607230E003A95F7 /* Mine */ = {
+			isa = PBXGroup;
+			children = (
+				CA8974211607230E003A95F7 /* MyFeedController.h */,
+				CA8974221607230E003A95F7 /* MyFeedController.m */,
+				CA8974231607230E003A95F7 /* MyFeedController.xib */,
+			);
+			path = Mine;
+			sourceTree = "<group>";
+		};
+		CA8974241607230E003A95F7 /* User */ = {
+			isa = PBXGroup;
+			children = (
+				CA8974251607230E003A95F7 /* UserFeedController.h */,
+				CA8974261607230E003A95F7 /* UserFeedController.m */,
+				CA8974271607230E003A95F7 /* UserFeedController.xib */,
+				CA8974281607230E003A95F7 /* UserFeedController~ipad.xib */,
+			);
+			path = User;
 			sourceTree = "<group>";
 		};
 		CA96E264150DD55400292335 /* GameServer */ = {
@@ -7103,8 +7162,8 @@
 		CAECE0271503B25500BC2404 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				CA8973F51607230E003A95F7 /* Feed */,
 				C2E90FD915BD3F2C00828562 /* Recommend */,
-				CA7C7E111587237B00406BFB /* Feed */,
 				CA22DCCD157CAFFC009C95CB /* Result */,
 				EAF5AFCD155E2DB4008CD8EE /* MusicSettings */,
 				A30A28441580C2AE006CA3CC /* PrivateChat */,
@@ -7904,20 +7963,14 @@
 				A455F8CB1585D21400CA5743 /* grayArrow@2x.png in Resources */,
 				A455F8CC1585D21400CA5743 /* whiteArrow.png in Resources */,
 				A455F8CD1585D21400CA5743 /* whiteArrow@2x.png in Resources */,
-				CA7C7E16158723AE00406BFB /* FeedController.xib in Resources */,
-				CA7C7E18158723DE00406BFB /* FeedController~ipad.xib in Resources */,
 				A387F098158853EF00DC7C5D /* SelectChatFriendController.xib in Resources */,
 				A387F099158853EF00DC7C5D /* SelectChatFriendController~ipad.xib in Resources */,
-				CAD95C5E15889612006EAC41 /* FeedCell.xib in Resources */,
 				EA01D157158BAB1600920A64 /* ReplayGraffitiController.xib in Resources */,
 				EA01D158158BAB1600920A64 /* ReplayGraffitiController~ipad.xib in Resources */,
-				CA7BB849158F210A00F38626 /* FeedCell~ipad.xib in Resources */,
 				A3DE094015908AB700E2C746 /* ChatDetailCell.xib in Resources */,
 				A3DE094115908AB700E2C746 /* ChatDetailCell~ipad.xib in Resources */,
 				C2615A9F1597FBEC00CEEC66 /* CommonUserInfoView.xib in Resources */,
 				C2615AA11597FC0C00CEEC66 /* CommonUserInfoView~ipad.xib in Resources */,
-				CA04B164159AE47F00D7ACD1 /* UserFeedController.xib in Resources */,
-				CA04B166159AE4D900D7ACD1 /* UserFeedController~ipad.xib in Resources */,
 				CAA1AF7F159DB00B00504C98 /* adsmogo_adclose@2x.png in Resources */,
 				CAA1AF80159DB00B00504C98 /* adsmogo_bannerbg@2x.png in Resources */,
 				CAA1AF81159DB00B00504C98 /* adsmogo_btnbg@2x.png in Resources */,
@@ -8472,12 +8525,6 @@
 				EA856CA415F0A65700178323 /* wood_bg@2x.png in Resources */,
 				EA856CA515F0A65700178323 /* wood_button@2x.png in Resources */,
 				CAC25D0515F0C72F007456FA /* revoke@2x.png in Resources */,
-				CA42E3E215F4633100790B3C /* CommentCell.xib in Resources */,
-				CA42E3E315F4633100790B3C /* CommentCell~ipad.xib in Resources */,
-				CA42E3E515F4633100790B3C /* CommentHeaderView.xib in Resources */,
-				CA42E3E715F4633100790B3C /* DrawInfoCell.xib in Resources */,
-				CA42E3EC15F4633100790B3C /* ShowFeedController.xib in Resources */,
-				CA42E3EE15F4633100790B3C /* UserInfoCell.xib in Resources */,
 				A4C259F515F50D6A002A7C03 /* cutDice_F.m4a in Resources */,
 				A4C259F615F50D6A002A7C03 /* cutDice_M.m4a in Resources */,
 				A4C25A2315F5F20E002A7C03 /* DiceDefault.jpg in Resources */,
@@ -8515,12 +8562,6 @@
 				CAA8260A15F8404C00E35C9E /* oowrong.mp3 in Resources */,
 				CAA8260B15F8404C00E35C9E /* pushMessage.mp3 in Resources */,
 				CAA8260C15F8404C00E35C9E /* wrong.wav in Resources */,
-				CAA8261115F8875400E35C9E /* CommentController.xib in Resources */,
-				CADF7E3D15F9F47F0018F0B6 /* CommentController~ipad.xib in Resources */,
-				CADF7E3E15F9F47F0018F0B6 /* CommentHeaderView~ipad.xib in Resources */,
-				CADF7E3F15F9F47F0018F0B6 /* DrawInfoCell~ipad.xib in Resources */,
-				CADF7E4015F9F47F0018F0B6 /* ShowFeedController~ipad.xib in Resources */,
-				CADF7E4115F9F47F0018F0B6 /* UserInfoCell~ipad.xib in Resources */,
 				CA97EBBD15FCE43E008F756B /* dark_wood_bg@2x.png in Resources */,
 				CA97EBBE15FCE43E008F756B /* easy@2x.png in Resources */,
 				CA97EBBF15FCE43E008F756B /* finish@2x.png in Resources */,
@@ -8623,6 +8664,28 @@
 				CA97EC2615FCE43E008F756B /* toolbox@2x.png in Resources */,
 				CA97EC2715FCE43E008F756B /* tools_cart@2x.png in Resources */,
 				CA27083A15FEEC390073B623 /* main_menubg@2x.png in Resources */,
+				CA89742A1607230E003A95F7 /* CommentCell.xib in Resources */,
+				CA89742B1607230E003A95F7 /* CommentCell~ipad.xib in Resources */,
+				CA89742D1607230E003A95F7 /* CommentHeaderView.xib in Resources */,
+				CA89742E1607230E003A95F7 /* CommentHeaderView~ipad.xib in Resources */,
+				CA8974301607230E003A95F7 /* DrawInfoCell.xib in Resources */,
+				CA8974311607230E003A95F7 /* DrawInfoCell~ipad.xib in Resources */,
+				CA8974331607230E003A95F7 /* FeedCell.xib in Resources */,
+				CA8974341607230E003A95F7 /* FeedCell~ipad.xib in Resources */,
+				CA8974361607230E003A95F7 /* UserInfoCell.xib in Resources */,
+				CA8974371607230E003A95F7 /* UserInfoCell~ipad.xib in Resources */,
+				CA8974391607230E003A95F7 /* FeedController.xib in Resources */,
+				CA89743A1607230E003A95F7 /* FeedController~ipad.xib in Resources */,
+				CA89743C1607230E003A95F7 /* CommentController.xib in Resources */,
+				CA89743D1607230E003A95F7 /* CommentController~ipad.xib in Resources */,
+				CA89743F1607230E003A95F7 /* FeedDetailController.xib in Resources */,
+				CA8974401607230E003A95F7 /* FeedDetailController~ipad.xib in Resources */,
+				CA8974421607230E003A95F7 /* ShowFeedController.xib in Resources */,
+				CA8974431607230E003A95F7 /* ShowFeedController~ipad.xib in Resources */,
+				CA8974451607230E003A95F7 /* HotController.xib in Resources */,
+				CA8974471607230E003A95F7 /* MyFeedController.xib in Resources */,
+				CA8974491607230E003A95F7 /* UserFeedController.xib in Resources */,
+				CA89744A1607230E003A95F7 /* UserFeedController~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -8993,17 +9056,14 @@
 				CA7C7E041587213100406BFB /* Feed.m in Sources */,
 				CA7C7E071587214300406BFB /* FeedManager.m in Sources */,
 				CA7C7E0B158721B200406BFB /* FeedService.m in Sources */,
-				CA7C7E15158723AE00406BFB /* FeedController.m in Sources */,
 				A3431E801587279D002E0E81 /* ChatMessage.m in Sources */,
 				A3431E811587279D002E0E81 /* ChatMessageManager.m in Sources */,
 				A387F097158853EF00DC7C5D /* SelectChatFriendController.m in Sources */,
-				CAD95C5D15889612006EAC41 /* FeedCell.m in Sources */,
 				A3CA09AB158A21DA009C7EB0 /* ChatMessageUtil.m in Sources */,
 				EA01D156158BAB1600920A64 /* ReplayGraffitiController.m in Sources */,
 				A3DE093F15908AB700E2C746 /* ChatDetailCell.m in Sources */,
 				CAE0C8971591A2ED008CDA62 /* NotificationManager.m in Sources */,
 				C2615A9D1597FBB900CEEC66 /* CommonUserInfoView.m in Sources */,
-				CA04B163159AE47F00D7ACD1 /* UserFeedController.m in Sources */,
 				CAA9C427159BF41B00398EC5 /* ShareService.m in Sources */,
 				CAA9C435159CA97100398EC5 /* LmWallService.m in Sources */,
 				C2D9A504159D4C4100794B24 /* CommonSnsInfoView.m in Sources */,
@@ -9120,13 +9180,7 @@
 				A45BC60E15F1C4F80003DDDC /* DiceConfigManager.m in Sources */,
 				CA42E3CA15F4617A00790B3C /* TableTab.m in Sources */,
 				CA42E3CB15F4617A00790B3C /* TableTabManager.m in Sources */,
-				CA42E3E115F4633100790B3C /* CommentCell.m in Sources */,
-				CA42E3E415F4633100790B3C /* CommentHeaderView.m in Sources */,
-				CA42E3E615F4633100790B3C /* DrawInfoCell.m in Sources */,
-				CA42E3EB15F4633100790B3C /* ShowFeedController.m in Sources */,
-				CA42E3ED15F4633100790B3C /* UserInfoCell.m in Sources */,
 				CAACE19915F499E6002EB53A /* SuperDrawView.m in Sources */,
-				CAA8261015F8875400E35C9E /* CommentController.m in Sources */,
 				A42C93C915FF28D60090D6B6 /* CommonDiceItemAction.m in Sources */,
 				A42C93E015FF344D0090D6B6 /* RollAgainItemAction.m in Sources */,
 				A42C93E616001FB90090D6B6 /* PeekItemAction.m in Sources */,
@@ -9137,6 +9191,18 @@
 				C2916CC01606B9DD00B0996E /* DiceRobotManager.m in Sources */,
 				CA89737516071335003A95F7 /* Contest.m in Sources */,
 				CA89737816071345003A95F7 /* ContestManager.m in Sources */,
+				CA8974291607230E003A95F7 /* CommentCell.m in Sources */,
+				CA89742C1607230E003A95F7 /* CommentHeaderView.m in Sources */,
+				CA89742F1607230E003A95F7 /* DrawInfoCell.m in Sources */,
+				CA8974321607230E003A95F7 /* FeedCell.m in Sources */,
+				CA8974351607230E003A95F7 /* UserInfoCell.m in Sources */,
+				CA8974381607230E003A95F7 /* FeedController.m in Sources */,
+				CA89743B1607230E003A95F7 /* CommentController.m in Sources */,
+				CA89743E1607230E003A95F7 /* FeedDetailController.m in Sources */,
+				CA8974411607230E003A95F7 /* ShowFeedController.m in Sources */,
+				CA8974441607230E003A95F7 /* HotController.m in Sources */,
+				CA8974461607230E003A95F7 /* MyFeedController.m in Sources */,
+				CA8974481607230E003A95F7 /* UserFeedController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
