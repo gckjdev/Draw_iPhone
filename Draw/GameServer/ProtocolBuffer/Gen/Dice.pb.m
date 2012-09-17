@@ -1372,3 +1372,302 @@ static PBDiceGameResult* defaultPBDiceGameResultInstance = nil;
 }
 @end
 
+@interface PBDiceAction ()
+@property int32_t type;
+@property int32_t num;
+@property int32_t dice;
+@property BOOL wilds;
+@end
+
+@implementation PBDiceAction
+
+- (BOOL) hasType {
+  return !!hasType_;
+}
+- (void) setHasType:(BOOL) value {
+  hasType_ = !!value;
+}
+@synthesize type;
+- (BOOL) hasNum {
+  return !!hasNum_;
+}
+- (void) setHasNum:(BOOL) value {
+  hasNum_ = !!value;
+}
+@synthesize num;
+- (BOOL) hasDice {
+  return !!hasDice_;
+}
+- (void) setHasDice:(BOOL) value {
+  hasDice_ = !!value;
+}
+@synthesize dice;
+- (BOOL) hasWilds {
+  return !!hasWilds_;
+}
+- (void) setHasWilds:(BOOL) value {
+  hasWilds_ = !!value;
+}
+- (BOOL) wilds {
+  return !!wilds_;
+}
+- (void) setWilds:(BOOL) value {
+  wilds_ = !!value;
+}
+- (void) dealloc {
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.type = 0;
+    self.num = 0;
+    self.dice = 0;
+    self.wilds = NO;
+  }
+  return self;
+}
+static PBDiceAction* defaultPBDiceActionInstance = nil;
++ (void) initialize {
+  if (self == [PBDiceAction class]) {
+    defaultPBDiceActionInstance = [[PBDiceAction alloc] init];
+  }
+}
++ (PBDiceAction*) defaultInstance {
+  return defaultPBDiceActionInstance;
+}
+- (PBDiceAction*) defaultInstance {
+  return defaultPBDiceActionInstance;
+}
+- (BOOL) isInitialized {
+  if (!self.hasType) {
+    return NO;
+  }
+  return YES;
+}
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
+  if (self.hasType) {
+    [output writeInt32:1 value:self.type];
+  }
+  if (self.hasNum) {
+    [output writeInt32:2 value:self.num];
+  }
+  if (self.hasDice) {
+    [output writeInt32:3 value:self.dice];
+  }
+  if (self.hasWilds) {
+    [output writeBool:4 value:self.wilds];
+  }
+  [self.unknownFields writeToCodedOutputStream:output];
+}
+- (int32_t) serializedSize {
+  int32_t size = memoizedSerializedSize;
+  if (size != -1) {
+    return size;
+  }
+
+  size = 0;
+  if (self.hasType) {
+    size += computeInt32Size(1, self.type);
+  }
+  if (self.hasNum) {
+    size += computeInt32Size(2, self.num);
+  }
+  if (self.hasDice) {
+    size += computeInt32Size(3, self.dice);
+  }
+  if (self.hasWilds) {
+    size += computeBoolSize(4, self.wilds);
+  }
+  size += self.unknownFields.serializedSize;
+  memoizedSerializedSize = size;
+  return size;
+}
++ (PBDiceAction*) parseFromData:(NSData*) data {
+  return (PBDiceAction*)[[[PBDiceAction builder] mergeFromData:data] build];
+}
++ (PBDiceAction*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBDiceAction*)[[[PBDiceAction builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+}
++ (PBDiceAction*) parseFromInputStream:(NSInputStream*) input {
+  return (PBDiceAction*)[[[PBDiceAction builder] mergeFromInputStream:input] build];
+}
++ (PBDiceAction*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBDiceAction*)[[[PBDiceAction builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (PBDiceAction*) parseFromCodedInputStream:(PBCodedInputStream*) input {
+  return (PBDiceAction*)[[[PBDiceAction builder] mergeFromCodedInputStream:input] build];
+}
++ (PBDiceAction*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBDiceAction*)[[[PBDiceAction builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (PBDiceAction_Builder*) builder {
+  return [[[PBDiceAction_Builder alloc] init] autorelease];
+}
++ (PBDiceAction_Builder*) builderWithPrototype:(PBDiceAction*) prototype {
+  return [[PBDiceAction builder] mergeFrom:prototype];
+}
+- (PBDiceAction_Builder*) builder {
+  return [PBDiceAction builder];
+}
+@end
+
+@interface PBDiceAction_Builder()
+@property (retain) PBDiceAction* result;
+@end
+
+@implementation PBDiceAction_Builder
+@synthesize result;
+- (void) dealloc {
+  self.result = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.result = [[[PBDiceAction alloc] init] autorelease];
+  }
+  return self;
+}
+- (PBGeneratedMessage*) internalGetResult {
+  return result;
+}
+- (PBDiceAction_Builder*) clear {
+  self.result = [[[PBDiceAction alloc] init] autorelease];
+  return self;
+}
+- (PBDiceAction_Builder*) clone {
+  return [PBDiceAction builderWithPrototype:result];
+}
+- (PBDiceAction*) defaultInstance {
+  return [PBDiceAction defaultInstance];
+}
+- (PBDiceAction*) build {
+  [self checkInitialized];
+  return [self buildPartial];
+}
+- (PBDiceAction*) buildPartial {
+  PBDiceAction* returnMe = [[result retain] autorelease];
+  self.result = nil;
+  return returnMe;
+}
+- (PBDiceAction_Builder*) mergeFrom:(PBDiceAction*) other {
+  if (other == [PBDiceAction defaultInstance]) {
+    return self;
+  }
+  if (other.hasType) {
+    [self setType:other.type];
+  }
+  if (other.hasNum) {
+    [self setNum:other.num];
+  }
+  if (other.hasDice) {
+    [self setDice:other.dice];
+  }
+  if (other.hasWilds) {
+    [self setWilds:other.wilds];
+  }
+  [self mergeUnknownFields:other.unknownFields];
+  return self;
+}
+- (PBDiceAction_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
+  return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
+}
+- (PBDiceAction_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
+  while (YES) {
+    int32_t tag = [input readTag];
+    switch (tag) {
+      case 0:
+        [self setUnknownFields:[unknownFields build]];
+        return self;
+      default: {
+        if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
+          [self setUnknownFields:[unknownFields build]];
+          return self;
+        }
+        break;
+      }
+      case 8: {
+        [self setType:[input readInt32]];
+        break;
+      }
+      case 16: {
+        [self setNum:[input readInt32]];
+        break;
+      }
+      case 24: {
+        [self setDice:[input readInt32]];
+        break;
+      }
+      case 32: {
+        [self setWilds:[input readBool]];
+        break;
+      }
+    }
+  }
+}
+- (BOOL) hasType {
+  return result.hasType;
+}
+- (int32_t) type {
+  return result.type;
+}
+- (PBDiceAction_Builder*) setType:(int32_t) value {
+  result.hasType = YES;
+  result.type = value;
+  return self;
+}
+- (PBDiceAction_Builder*) clearType {
+  result.hasType = NO;
+  result.type = 0;
+  return self;
+}
+- (BOOL) hasNum {
+  return result.hasNum;
+}
+- (int32_t) num {
+  return result.num;
+}
+- (PBDiceAction_Builder*) setNum:(int32_t) value {
+  result.hasNum = YES;
+  result.num = value;
+  return self;
+}
+- (PBDiceAction_Builder*) clearNum {
+  result.hasNum = NO;
+  result.num = 0;
+  return self;
+}
+- (BOOL) hasDice {
+  return result.hasDice;
+}
+- (int32_t) dice {
+  return result.dice;
+}
+- (PBDiceAction_Builder*) setDice:(int32_t) value {
+  result.hasDice = YES;
+  result.dice = value;
+  return self;
+}
+- (PBDiceAction_Builder*) clearDice {
+  result.hasDice = NO;
+  result.dice = 0;
+  return self;
+}
+- (BOOL) hasWilds {
+  return result.hasWilds;
+}
+- (BOOL) wilds {
+  return result.wilds;
+}
+- (PBDiceAction_Builder*) setWilds:(BOOL) value {
+  result.hasWilds = YES;
+  result.wilds = value;
+  return self;
+}
+- (PBDiceAction_Builder*) clearWilds {
+  result.hasWilds = NO;
+  result.wilds = NO;
+  return self;
+}
+@end
+
