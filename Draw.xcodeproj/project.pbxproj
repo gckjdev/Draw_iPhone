@@ -1040,6 +1040,8 @@
 		CA82847415D637930016CD43 /* unzip.c in Sources */ = {isa = PBXBuildFile; fileRef = CA82846C15D637930016CD43 /* unzip.c */; };
 		CA82847515D637930016CD43 /* zip.c in Sources */ = {isa = PBXBuildFile; fileRef = CA82846E15D637930016CD43 /* zip.c */; };
 		CA82847615D637930016CD43 /* SSZipArchive.m in Sources */ = {isa = PBXBuildFile; fileRef = CA82847115D637930016CD43 /* SSZipArchive.m */; };
+		CA89737516071335003A95F7 /* Contest.m in Sources */ = {isa = PBXBuildFile; fileRef = CA89737416071335003A95F7 /* Contest.m */; };
+		CA89737816071345003A95F7 /* ContestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA89737716071345003A95F7 /* ContestManager.m */; };
 		CA8D602A1531C98400E016ED /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA8D602C1531C98400E016ED /* Default@2x.png */; };
 		CA8D60631531EC5500E016ED /* ReplayController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA8D60611531EC5500E016ED /* ReplayController.m */; };
 		CA8D60641531EC5500E016ED /* ReplayController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA8D60621531EC5500E016ED /* ReplayController.xib */; };
@@ -2919,6 +2921,10 @@
 		CA82846F15D637930016CD43 /* zip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zip.h; sourceTree = "<group>"; };
 		CA82847015D637930016CD43 /* SSZipArchive.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSZipArchive.h; sourceTree = "<group>"; };
 		CA82847115D637930016CD43 /* SSZipArchive.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSZipArchive.m; sourceTree = "<group>"; };
+		CA89737316071335003A95F7 /* Contest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Contest.h; sourceTree = "<group>"; };
+		CA89737416071335003A95F7 /* Contest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Contest.m; sourceTree = "<group>"; };
+		CA89737616071345003A95F7 /* ContestManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContestManager.h; sourceTree = "<group>"; };
+		CA89737716071345003A95F7 /* ContestManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContestManager.m; sourceTree = "<group>"; };
 		CA8D60601531EC5500E016ED /* ReplayController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReplayController.h; sourceTree = "<group>"; };
 		CA8D60611531EC5500E016ED /* ReplayController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReplayController.m; sourceTree = "<group>"; };
 		CA8D60621531EC5500E016ED /* ReplayController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReplayController.xib; sourceTree = "<group>"; };
@@ -6334,6 +6340,17 @@
 			path = minizip;
 			sourceTree = "<group>";
 		};
+		CA8973721607131B003A95F7 /* Contest */ = {
+			isa = PBXGroup;
+			children = (
+				CA89737316071335003A95F7 /* Contest.h */,
+				CA89737416071335003A95F7 /* Contest.m */,
+				CA89737616071345003A95F7 /* ContestManager.h */,
+				CA89737716071345003A95F7 /* ContestManager.m */,
+			);
+			path = Contest;
+			sourceTree = "<group>";
+		};
 		CA96E264150DD55400292335 /* GameServer */ = {
 			isa = PBXGroup;
 			children = (
@@ -7111,6 +7128,7 @@
 		CAECE0291503B25500BC2404 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				CA8973721607131B003A95F7 /* Contest */,
 				CA42E3C515F4617A00790B3C /* TableTab */,
 				CA67B86A15E89AAC002050DB /* GameApp */,
 				C2E90FE815BD44DA00828562 /* Recommend */,
@@ -9117,6 +9135,8 @@
 				C28E7C111602E5E000F4B6A5 /* DecTimeItemAction.m in Sources */,
 				C28E7C141602E5FC00F4B6A5 /* SkipItemAction.m in Sources */,
 				C2916CC01606B9DD00B0996E /* DiceRobotManager.m in Sources */,
+				CA89737516071335003A95F7 /* Contest.m in Sources */,
+				CA89737816071345003A95F7 /* ContestManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
