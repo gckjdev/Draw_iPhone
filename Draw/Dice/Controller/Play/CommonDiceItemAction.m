@@ -16,6 +16,7 @@
 #import "DoubleKillItemAction.h"
 #import "SkipItemAction.h"
 #import "PeekItemAction.h"
+#import "DiceRobotItemAction.h"
 
 @interface CommonDiceItemAction ()
 {
@@ -49,6 +50,9 @@
             break;
         case ItemTypeSkip:
             return [[[SkipItemAction alloc] initWithItemType:itemType] autorelease];
+            break;
+        case ItemTypeDiceRobot:
+            return [[[DiceRobotItemAction alloc] initWithItemType:itemType] autorelease];
             break;
         default:
             return nil;

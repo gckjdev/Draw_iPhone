@@ -874,6 +874,15 @@
 "kDiceHighRoom" = "勁爆場%d號房";
 "kDiceSuperHighRoom" = "超爆場%d號房";
 
+
+"kBetViewTitle" = "賺一把(%d)";
+"kBetNote" = "玩家【%@】開骰了，你要下註賺一把嗎？";
+"kAnte" = "底註";
+"kAnteCoins" = "%d";
+"kWin" = "TA赢";
+"kLose" = "TA輸";
+"kOdds" = "%d賠%d";
+
 /*********************** 大话骰子国际化字符串结束 *************************/
 
 

@@ -85,6 +85,20 @@
 		A42D90451553803D0023AF32 /* ItemShopController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A42D90411553803D0023AF32 /* ItemShopController~ipad.xib */; };
 		A42D90461553803D0023AF32 /* ShoppingCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A42D90421553803D0023AF32 /* ShoppingCell~ipad.xib */; };
 		A42D9048155380760023AF32 /* ColorShopView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A42D9047155380760023AF32 /* ColorShopView~ipad.xib */; };
+		A43A64AB16084CA100F35978 /* face_crasy.gif in Resources */ = {isa = PBXBuildFile; fileRef = A43A64A316084CA100F35978 /* face_crasy.gif */; };
+		A43A64AC16084CA100F35978 /* face_cry.gif in Resources */ = {isa = PBXBuildFile; fileRef = A43A64A416084CA100F35978 /* face_cry.gif */; };
+		A43A64AD16084CA100F35978 /* face_happy.gif in Resources */ = {isa = PBXBuildFile; fileRef = A43A64A516084CA100F35978 /* face_happy.gif */; };
+		A43A64AE16084CA100F35978 /* face_lovely.gif in Resources */ = {isa = PBXBuildFile; fileRef = A43A64A616084CA100F35978 /* face_lovely.gif */; };
+		A43A64AF16084CA100F35978 /* face_randy.gif in Resources */ = {isa = PBXBuildFile; fileRef = A43A64A716084CA100F35978 /* face_randy.gif */; };
+		A43A64B016084CA100F35978 /* face_shock.gif in Resources */ = {isa = PBXBuildFile; fileRef = A43A64A816084CA100F35978 /* face_shock.gif */; };
+		A43A64B116084CA100F35978 /* face_shy.gif in Resources */ = {isa = PBXBuildFile; fileRef = A43A64A916084CA100F35978 /* face_shy.gif */; };
+		A43A64B216084CA100F35978 /* face_sleep.gif in Resources */ = {isa = PBXBuildFile; fileRef = A43A64AA16084CA100F35978 /* face_sleep.gif */; };
+		A43A64B916084E7E00F35978 /* DiceBetView.m in Sources */ = {isa = PBXBuildFile; fileRef = A43A64B816084E7E00F35978 /* DiceBetView.m */; };
+		A43A64BB16084EA000F35978 /* DiceBetView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A43A64BA16084EA000F35978 /* DiceBetView.xib */; };
+		A43A64C01608518F00F35978 /* clean_input@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A43A64BE1608518B00F35978 /* clean_input@2x.png */; };
+		A43A64C11608518F00F35978 /* lose@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A43A64BF1608518D00F35978 /* lose@2x.png */; };
+		A43A64C41608591E00F35978 /* room_search@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A43A64C21608591A00F35978 /* room_search@2x.png */; };
+		A43A64C51608591E00F35978 /* win@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A43A64C31608591C00F35978 /* win@2x.png */; };
 		A44AD68D15CD149D001666AA /* MessageView.m in Sources */ = {isa = PBXBuildFile; fileRef = A44AD68C15CD149D001666AA /* MessageView.m */; };
 		A44DDF4115C64528005609F6 /* DiceShowView.m in Sources */ = {isa = PBXBuildFile; fileRef = A44DDF4015C64528005609F6 /* DiceShowView.m */; };
 		A44DDF4415C669E0005609F6 /* Dice.pb.m in Sources */ = {isa = PBXBuildFile; fileRef = A44DDF4315C669DF005609F6 /* Dice.pb.m */; };
@@ -564,6 +578,7 @@
 		C22585CE15EDC9B5009D686D /* maleImage.png in Resources */ = {isa = PBXBuildFile; fileRef = C22585CC15EDC9B5009D686D /* maleImage.png */; };
 		C225866E15EF5AA4009D686D /* GCServer.m in Sources */ = {isa = PBXBuildFile; fileRef = C225866D15EF5AA4009D686D /* GCServer.m */; };
 		C225867015EF7673009D686D /* shop_bell@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C225866F15EF7673009D686D /* shop_bell@2x.png */; };
+		C22E21871608664F00DE3035 /* DiceRobotItemAction.m in Sources */ = {isa = PBXBuildFile; fileRef = C22E21861608664F00DE3035 /* DiceRobotItemAction.m */; };
 		C24339FF15AAB02400325A76 /* VendingController.m in Sources */ = {isa = PBXBuildFile; fileRef = C24339FD15AAB01D00325A76 /* VendingController.m */; };
 		C2433A0015AAB02400325A76 /* VendingController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C24339FE15AAB02000325A76 /* VendingController.xib */; };
 		C2433A0215AAB06D00325A76 /* VendingController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2433A0115AAB06C00325A76 /* VendingController~ipad.xib */; };
@@ -1561,6 +1576,21 @@
 		A42D90411553803D0023AF32 /* ItemShopController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ItemShopController~ipad.xib"; sourceTree = "<group>"; };
 		A42D90421553803D0023AF32 /* ShoppingCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ShoppingCell~ipad.xib"; sourceTree = "<group>"; };
 		A42D9047155380760023AF32 /* ColorShopView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ColorShopView~ipad.xib"; sourceTree = "<group>"; };
+		A43A64A316084CA100F35978 /* face_crasy.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = face_crasy.gif; sourceTree = "<group>"; };
+		A43A64A416084CA100F35978 /* face_cry.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = face_cry.gif; sourceTree = "<group>"; };
+		A43A64A516084CA100F35978 /* face_happy.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = face_happy.gif; sourceTree = "<group>"; };
+		A43A64A616084CA100F35978 /* face_lovely.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = face_lovely.gif; sourceTree = "<group>"; };
+		A43A64A716084CA100F35978 /* face_randy.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = face_randy.gif; sourceTree = "<group>"; };
+		A43A64A816084CA100F35978 /* face_shock.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = face_shock.gif; sourceTree = "<group>"; };
+		A43A64A916084CA100F35978 /* face_shy.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = face_shy.gif; sourceTree = "<group>"; };
+		A43A64AA16084CA100F35978 /* face_sleep.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = face_sleep.gif; sourceTree = "<group>"; };
+		A43A64B716084E7E00F35978 /* DiceBetView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiceBetView.h; sourceTree = "<group>"; };
+		A43A64B816084E7E00F35978 /* DiceBetView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiceBetView.m; sourceTree = "<group>"; };
+		A43A64BA16084EA000F35978 /* DiceBetView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DiceBetView.xib; sourceTree = "<group>"; };
+		A43A64BE1608518B00F35978 /* clean_input@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "clean_input@2x.png"; sourceTree = "<group>"; };
+		A43A64BF1608518D00F35978 /* lose@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "lose@2x.png"; sourceTree = "<group>"; };
+		A43A64C21608591A00F35978 /* room_search@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "room_search@2x.png"; sourceTree = "<group>"; };
+		A43A64C31608591C00F35978 /* win@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "win@2x.png"; sourceTree = "<group>"; };
 		A44AD68B15CD149C001666AA /* MessageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageView.h; sourceTree = "<group>"; };
 		A44AD68C15CD149D001666AA /* MessageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageView.m; sourceTree = "<group>"; };
 		A44DDF2A15C62B18005609F6 /* NotificationName.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NotificationName.h; sourceTree = "<group>"; };
@@ -2090,6 +2120,8 @@
 		C225866C15EF5AA4009D686D /* GCServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCServer.h; sourceTree = "<group>"; };
 		C225866D15EF5AA4009D686D /* GCServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCServer.m; sourceTree = "<group>"; };
 		C225866F15EF7673009D686D /* shop_bell@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "shop_bell@2x.png"; sourceTree = "<group>"; };
+		C22E21851608664F00DE3035 /* DiceRobotItemAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiceRobotItemAction.h; sourceTree = "<group>"; };
+		C22E21861608664F00DE3035 /* DiceRobotItemAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiceRobotItemAction.m; sourceTree = "<group>"; };
 		C24339FC15AAB01C00325A76 /* VendingController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VendingController.h; sourceTree = "<group>"; };
 		C24339FD15AAB01D00325A76 /* VendingController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VendingController.m; sourceTree = "<group>"; };
 		C24339FE15AAB02000325A76 /* VendingController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VendingController.xib; sourceTree = "<group>"; };
@@ -3574,6 +3606,16 @@
 			path = DiceHelpView;
 			sourceTree = "<group>";
 		};
+		A43A64B616084E6B00F35978 /* DiceBetView */ = {
+			isa = PBXGroup;
+			children = (
+				A43A64B716084E7E00F35978 /* DiceBetView.h */,
+				A43A64B816084E7E00F35978 /* DiceBetView.m */,
+				A43A64BA16084EA000F35978 /* DiceBetView.xib */,
+			);
+			path = DiceBetView;
+			sourceTree = "<group>";
+		};
 		A44DDF3B15C64482005609F6 /* DiceSelectedView */ = {
 			isa = PBXGroup;
 			children = (
@@ -3766,6 +3808,18 @@
 		A4A01B7015D8AF67002FE86D /* game */ = {
 			isa = PBXGroup;
 			children = (
+				A43A64C21608591A00F35978 /* room_search@2x.png */,
+				A43A64C31608591C00F35978 /* win@2x.png */,
+				A43A64BE1608518B00F35978 /* clean_input@2x.png */,
+				A43A64BF1608518D00F35978 /* lose@2x.png */,
+				A43A64A316084CA100F35978 /* face_crasy.gif */,
+				A43A64A416084CA100F35978 /* face_cry.gif */,
+				A43A64A516084CA100F35978 /* face_happy.gif */,
+				A43A64A616084CA100F35978 /* face_lovely.gif */,
+				A43A64A716084CA100F35978 /* face_randy.gif */,
+				A43A64A816084CA100F35978 /* face_shock.gif */,
+				A43A64A916084CA100F35978 /* face_shy.gif */,
+				A43A64AA16084CA100F35978 /* face_sleep.gif */,
 				C225866F15EF7673009D686D /* shop_bell@2x.png */,
 				CACF878015EB4543003FA6B6 /* settingright_unselect@2x.png */,
 				CACF878115EB4543003FA6B6 /* settingright_selected@2x.png */,
@@ -3936,6 +3990,8 @@
 				C28E7C101602E5DD00F4B6A5 /* DecTimeItemAction.m */,
 				C28E7C121602E5F800F4B6A5 /* SkipItemAction.h */,
 				C28E7C131602E5F900F4B6A5 /* SkipItemAction.m */,
+				C22E21851608664F00DE3035 /* DiceRobotItemAction.h */,
+				C22E21861608664F00DE3035 /* DiceRobotItemAction.m */,
 			);
 			path = Play;
 			sourceTree = "<group>";
@@ -3998,6 +4054,7 @@
 		A4B7640315C28F8E003B4E72 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				A43A64B616084E6B00F35978 /* DiceBetView */,
 				CACF87A015EB4D2D003FA6B6 /* DiceSettingView */,
 				A42C528215E756CF001D8208 /* DiceHelpView */,
 				C296871F15DCE03F006968BA /* DiceItemInfoView */,
@@ -8686,6 +8743,19 @@
 				CA8974471607230E003A95F7 /* MyFeedController.xib in Resources */,
 				CA8974491607230E003A95F7 /* UserFeedController.xib in Resources */,
 				CA89744A1607230E003A95F7 /* UserFeedController~ipad.xib in Resources */,
+				A43A64AB16084CA100F35978 /* face_crasy.gif in Resources */,
+				A43A64AC16084CA100F35978 /* face_cry.gif in Resources */,
+				A43A64AD16084CA100F35978 /* face_happy.gif in Resources */,
+				A43A64AE16084CA100F35978 /* face_lovely.gif in Resources */,
+				A43A64AF16084CA100F35978 /* face_randy.gif in Resources */,
+				A43A64B016084CA100F35978 /* face_shock.gif in Resources */,
+				A43A64B116084CA100F35978 /* face_shy.gif in Resources */,
+				A43A64B216084CA100F35978 /* face_sleep.gif in Resources */,
+				A43A64BB16084EA000F35978 /* DiceBetView.xib in Resources */,
+				A43A64C01608518F00F35978 /* clean_input@2x.png in Resources */,
+				A43A64C11608518F00F35978 /* lose@2x.png in Resources */,
+				A43A64C41608591E00F35978 /* room_search@2x.png in Resources */,
+				A43A64C51608591E00F35978 /* win@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -9203,6 +9273,8 @@
 				CA8974441607230E003A95F7 /* HotController.m in Sources */,
 				CA8974461607230E003A95F7 /* MyFeedController.m in Sources */,
 				CA8974481607230E003A95F7 /* UserFeedController.m in Sources */,
+				A43A64B916084E7E00F35978 /* DiceBetView.m in Sources */,
+				C22E21871608664F00DE3035 /* DiceRobotItemAction.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -26,6 +26,7 @@
 #import "UIViewUtils.h"
 #import "CommonDiceItemAction.h"
 #import "DiceConfigManager.h"
+#import "CallDiceView.h"
 
 
 #define AVATAR_TAG_OFFSET   8000
@@ -40,6 +41,8 @@
 #define DURATION_SHOW_GAIN_COINS 3
 
 #define DURATION_ROLL_BELL 1
+
+#define ROBOT_CALL_TIPS_DIALOG_TAG  20120918
 
 @interface DiceGamePlayController ()
 {
@@ -176,6 +179,7 @@
         _audioManager = [AudioManager defaultManager];
         _expressionManager = [ExpressionManager defaultManager];
         _soundManager = [DiceSoundManager defaultManager];
+        _robotManager = [DiceRobotManager defaultManager];
         _urgedUser = [[NSMutableSet alloc] init];
     }
     
@@ -815,6 +819,19 @@
 
 }
 
+- (void)tellDiceToRobot:(NSArray*)list
+{
+    [_robotManager newRound:_diceService.diceSession.playingUserCount];
+    int diceList[5];
+    for (int i = 0; i < 5; i ++) {
+        if (i < _diceService.myDiceList.count) {
+            diceList[i] = ((PBDice*)[_diceService.myDiceList objectAtIndex:i]).dice;
+        }
+    }
+    [_robotManager introspectRobotDices:diceList];
+   // [self.roomNameLabel setText:nil];
+}
+
 - (void)rollDiceEnd
 {
     self.itemsBoxButton.enabled = YES;
@@ -828,6 +845,8 @@
     [myDiceListHolderView addSubview:diceShowView];
     
     myDiceListHolderView.hidden = NO;
+    
+    [self tellDiceToRobot:[_diceService myDiceList]];
 }
 
 - (void)removeUrgedUser:(NSString*)userId
@@ -849,6 +868,31 @@
     }
 }
 
+- (void)robotMakeDecitions
+{
+    int userCount = _diceService.diceSession.playingUserCount;
+    int lastCallDice = _diceService.diceSession.lastCallDice;
+    int lastCallDiceCount = _diceService.diceSession.lastCallDiceCount;
+    NSString* lastCallUserId = _diceService.diceSession.lastCallDiceUserId;
+    BOOL isWild = _diceService.diceSession.wilds;
+    
+    int diceList[5];
+    for (int i = 0; i < 5; i ++) {
+        if (i < _diceService.myDiceList.count) {
+            diceList[i] = ((PBDice*)[_diceService.myDiceList objectAtIndex:i]).dice;
+        }
+    }
+    
+    
+    if (_diceService.lastCallUserId == nil) {
+        [_robotManager initialCall:_diceService.diceSession.playingUserCount];
+
+    } else {
+        [_robotManager updateDecitionByPlayerCount:userCount userId:lastCallUserId number:lastCallDiceCount dice:lastCallDice isWild:isWild myDiceList:diceList];
+    }
+    
+}
+
 - (void)nextPlayerStart
 {
     [self clearAllReciprocol];
@@ -865,6 +909,8 @@
     if ([_userManager isMe:currentPlayUserId])
     {                        
         self.openDiceButton.fontLable.text = NSLS(@"kOpenDice");
+        
+        [self robotMakeDecitions];
 
         // 根据实际叫斋情况判断是否使能斋按钮。
         self.wildsButton.enabled = !_diceService.diceSession.wilds;
@@ -916,6 +962,9 @@
 #pragma mark - use item animations
 - (void)useItem:(int)itemId itemName:(NSString *)itemName userId:(NSString *)userId
 {
+    if(itemId == ItemTypeDiceRobot) {
+        [self showRobotDecition];
+    }
     
     if (itemId == ItemTypeIncTime) {
         DiceAvatarView* selfAvatar = (DiceAvatarView*)[self selfAvatarView];
@@ -1187,6 +1236,14 @@
 #pragma mark - common dialog delegate
 - (void)clickOk:(CommonDialog *)dialog
 {
+    if (dialog.tag == ROBOT_CALL_TIPS_DIALOG_TAG) {
+        if (_robotManager.result.shouldOpen) {
+            [self openDice];
+        } else {
+            [self callDice:_robotManager.result.dice count:_robotManager.result.diceCount];
+        }
+        return;
+    }
     [self quitDiceGame];
     [[AccountService defaultService] deductAccount:[ConfigManager getDiceFleeCoin] source:LiarDiceFleeType];
 }
@@ -1204,13 +1261,15 @@
                            aboveSubView:self.popupLevel3View
                               deleagate:self];
     }else {
+        self.chatButton.selected = NO;
         [_popupView dismissChatView];
     }
 }
 
-- (void)didChatViewDismiss
+- (void)didClickCloseButton
 {
     self.chatButton.selected = NO;
+    [_popupView dismissChatView];
 }
 
 
@@ -1258,14 +1317,7 @@
 - (void)showExpression:(NSString *)key userId:(NSString *)userId
 {
     DiceAvatarView *avatar = [self avatarViewOfUser:userId];
-    NSString *filePath = [_expressionManager gifPathForExpression:key];
-    if (filePath == nil) {
-        return;
-    }
-    CGRect frame = CGRectMake(0, 0, avatar.frame.size.width, avatar.frame.size.height);
-    GifView* view = [[[GifView alloc] initWithFrame:frame
-                                           filePath:filePath
-                                   playTimeInterval:0.2] autorelease];
+    GifView* view = [_expressionManager gifExpressionForKey:key frame:avatar.bounds];
     
     view.userInteractionEnabled = NO;
     [avatar addSubview:view];
@@ -1363,7 +1415,26 @@
     [avatar addFlyClockOnMyHead];
 }
 
+- (void)showRobotDecition
+{
+    CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"kCallTips") 
+                                                       message:nil 
+                                                         style:CommonDialogStyleDoubleButton 
+                                                      delegate:self 
+                                                         theme:CommonDialogThemeDice];
+    dialog.tag = ROBOT_CALL_TIPS_DIALOG_TAG;
+    if (_robotManager.result.shouldOpen) {
+        [dialog.messageLabel setText:NSLS(@"kOpen")];
+    } else {
+        CallDiceView* view = [[CallDiceView alloc] initWithDice:_robotManager.result.dice count:_robotManager.result.diceCount];
+        [dialog.contentView addSubview:view];
+        [view setFrame:CGRectMake(0, 0, dialog.contentView.frame.size.width*0.5, dialog.contentView.frame.size.height*0.5)];
+        [view setCenter:CGPointMake(dialog.contentView.frame.size.width/2, dialog.contentView.frame.size.height/2)];
+        
+    }
+    [dialog showInView:self.view];
 
+}
 
 
 @end

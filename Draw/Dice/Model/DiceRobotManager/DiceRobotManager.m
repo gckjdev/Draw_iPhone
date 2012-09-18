@@ -8,6 +8,26 @@
 
 #import "DiceRobotManager.h"
 
+@implementation DiceResult
+@synthesize dice;
+@synthesize diceCount;
+@synthesize isWild;
+@synthesize shouldOpen;
+
+- (void)reset
+{
+    self.dice = 0;
+    self.diceCount = 0;
+    self.shouldOpen = NO;
+    self.isWild = NO;
+}
+
+@end
+
+@interface DiceRobotManager ()
+- (void)initialCall:(int)playerCount;
+@end
+
 /*
  *   多项式分布概率数组, 每一项表示n个骰子出现
  *  x个y的概率(忽略了机器人自己的5个骰子).y可以是
@@ -86,176 +106,189 @@ double  benchmark[5];//{INI_BENCHMARK[0], INI_BENCHMARK[1], INI_BENCHMARK[2], IN
 //		private int[] honesty = {INIHONESTY,INIHONESTY,INIHONESTY,INIHONESTY,INIHONESTY};
 
 // The current this game in
-//int round;
-//// How many games the robot wins
-//int winGame;
-//// How many games the robot loses
-//int loseGame;
-//// Last Game playercount, it is 2 in the beginning.
-//int lastPlayerCount = 2;
-//
-//// A flag to indicate whether giving up calling.
-//BOOL giveUpCalling = NO;
-//
-//// An array where we put what to call.
-//// index 0: the number of dices
-//// index 1: which dice
-//// index 2: is wild ?
-//static int IDX_NUM_OF_DICE 		= 0;
-//static int IDX_DICE_FACE_VALUE = 1;
-//static int IDX_CALL_WILD 		= 2;
-//int whatToCall[] = {0, 0, 0};
-//int lastRoundCall[] = {0, 0, 0};
-//
-//
-//
-///* Introspection of robot's dices, set by introspectRobotDices method.
-// * index 0: any dice of 4 or 5 instances ? 1 for yes, 0 for no.
-// * index 1: which dice has 4/5 instances ? Only set if index 1 is 1.
-// * index 2: any dice of 3 instances ? 1 for yes, 0 for no.
-// * index 3: which dice has 3 instances ? Only set if index 3 is 1.
-// * index 4: any dice of 2 instances ? 1 for yes, 0 for no.
-// * index 5: which dice has 3 instances ? Only set if index 5 is 1.
-// * index 6: same as index 6(There may be two dices of 2 instances).
-// * index 7: distributed uniformly.  
-// */
-//static int NUM_MORE_THAN_FOUR 	= 0;
-//static int DICE_MORE_THAN_FOUR = 1;
-//static int NUM_OF_THREE 			= 2;
-//static int DICE_OF_THREE 		= 3;
-//static int NUM_OF_TWO 			= 4;
-//static int DICE_OF_TWO 			= 5;
-//static int ANOTHER_DICE_OF_TWO = 6;
-//static int DISTRIBUTE_UNIFORMLY= 7;
-//int introspection[] = {0, 0, 0, 0, 0, 0, 0, 0};
-//
-//// How dose robot's dices distribute?
-//static int DICE_VALUE_ONE 	= 1;
-//static int DICE_VALUE_TWO 	= 2;
-//static int DICE_VALUE_THREE = 3;
-//static int DICE_VALUE_FOUR 	= 4;
-//static int DICE_VALUE_FIVE 	= 5;
-//static int DICE_VALUE_SIX 	= 6;
-//int distribution[] = {0, 0, 0, 0, 0, 0};
-//
-//// Is it safe for robot to call?
-//BOOL safe = YES;
-//// Does robot lie?
-//BOOL lying = NO;
-//// If lie, what dice it lie?
-//int lieDice = 0;
-//
-//// In one game, we limit robot to only send one callwild message.
-////		private boolean hasSendCallWilds = false;
-//
-//
-//// For chat.
+int globalRound;
+// How many games the robot wins
+int winGame;
+// How many games the robot loses
+int loseGame;
+// Last Game playercount, it is 2 in the beginning.
+int lastPlayerCount = 2;
+
+// A flag to indicate whether giving up calling.
+BOOL giveUpCalling = NO;
+
+// An array where we put what to call.
+// index 0: the number of dices
+// index 1: which dice
+// index 2: is wild ?
+static int IDX_NUM_OF_DICE 		= 0;
+static int IDX_DICE_FACE_VALUE = 1;
+static int IDX_CALL_WILD 		= 2;
+int whatToCall[] = {0, 0, 0};
+int lastRoundCall[] = {0, 0, 0};
+
+
+
+/* Introspection of robot's dices, set by introspectRobotDices method.
+ * index 0: any dice of 4 or 5 instances ? 1 for yes, 0 for no.
+ * index 1: which dice has 4/5 instances ? Only set if index 1 is 1.
+ * index 2: any dice of 3 instances ? 1 for yes, 0 for no.
+ * index 3: which dice has 3 instances ? Only set if index 3 is 1.
+ * index 4: any dice of 2 instances ? 1 for yes, 0 for no.
+ * index 5: which dice has 3 instances ? Only set if index 5 is 1.
+ * index 6: same as index 6(There may be two dices of 2 instances).
+ * index 7: distributed uniformly.  
+ */
+static int NUM_MORE_THAN_FOUR 	= 0;
+static int DICE_MORE_THAN_FOUR = 1;
+static int NUM_OF_THREE 			= 2;
+static int DICE_OF_THREE 		= 3;
+static int NUM_OF_TWO 			= 4;
+static int DICE_OF_TWO 			= 5;
+static int ANOTHER_DICE_OF_TWO = 6;
+static int DISTRIBUTE_UNIFORMLY= 7;
+int introspection[] = {0, 0, 0, 0, 0, 0, 0, 0};
+
+// How dose robot's dices distribute?
+static int DICE_VALUE_ONE 	= 1;
+static int DICE_VALUE_TWO 	= 2;
+static int DICE_VALUE_THREE = 3;
+static int DICE_VALUE_FOUR 	= 4;
+static int DICE_VALUE_FIVE 	= 5;
+static int DICE_VALUE_SIX 	= 6;
+int distribution[] = {0, 0, 0, 0, 0, 0};
+
+// Is it safe for robot to call?
+BOOL safe = YES;
+// Does robot lie?
+BOOL lying = NO;
+// If lie, what dice it lie?
+int lieDice = 0;
+
+// In one game, we limit robot to only send one callwild message.
+//		private boolean hasSendCallWilds = false;
+
+
+// For chat.
 //static int TEXT = 1;
 //static int EXPRESSION = 2;
-///*
-// * index 0 : chatContent
-// * index 1 : chatVoidId
-// * index 2 : contentType: TEXT or EXPRESSION
-// */
-////static int IDX_CONTENT 		= 0;
-////static int IDX_CONTENTID 	= 1;
-////static int IDX_CONTNET_TYPE = 2;
-////private String[ ] whatToChat = {"关注我吧。","1", "1"};
-////private boolean setChat = false;
-//
-//
-//
+/*
+ * index 0 : chatContent
+ * index 1 : chatVoidId
+ * index 2 : contentType: TEXT or EXPRESSION
+ */
+//static int IDX_CONTENT 		= 0;
+//static int IDX_CONTENTID 	= 1;
+//static int IDX_CONTNET_TYPE = 2;
+//private String[ ] whatToChat = {"关注我吧。","1", "1"};
+//private boolean setChat = false;
+
+void reset(int array[], int count)
+{
+    for ( int i = 0; i< count; i++) {
+        array[i] = 0 ;
+    }
+}
+
+static DiceRobotManager* shareInstance;
+
 @implementation DiceRobotManager
-//
-//- (void)resetBenchmark {
-//    benchmark[0] = INI_BENCHMARK[0]; benchmark[1] = INI_BENCHMARK[1]; benchmark[2] = INI_BENCHMARK[2];
-//    benchmark[3] = INI_BENCHMARK[3]; benchmark[4] = INI_BENCHMARK[4];
-//}
-//
-//- (void)reset(int inputArray[])
-//{
-//    
-//}
-//
-//
-//- (void)reset(int array[]) {
+@synthesize result = _result;
+
+- (void)dealloc
+{
+    [_result release];
+    [super dealloc];
+}
+
++ (DiceRobotManager*)defaultManager
+{
+    if (shareInstance == nil) {
+        shareInstance = [[DiceRobotManager alloc] init];
+    }
+    return shareInstance;
+}
+
+- (id)init
+{
+    self = [super init];
+    if (self) {
+        _result = [[DiceResult alloc] init];
+    }
+    return self;
+}
+
+- (void)newRound:(int)playerCount
+{
+    [self balanceAndReset:playerCount];
+    [lastCall removeAllObjects];
+    [changeDiceValue removeAllObjects];
+}
+
+- (void)resetBenchmark {
+    benchmark[0] = INI_BENCHMARK[0]; benchmark[1] = INI_BENCHMARK[1]; benchmark[2] = INI_BENCHMARK[2];
+    benchmark[3] = INI_BENCHMARK[3]; benchmark[4] = INI_BENCHMARK[4];
+}
+
+//- (void)reset(NSArray* array) {
 //    for ( int i = 0; i< array.length; i++) {
 //        array[i] = 0 ;
 //    }
 //}
-//
+
 //public DiceRobotIntelligence() {
 //    intelligence = HIGHEST_IQ;
 //    round = 0;
 //    winGame = 0;
 //    loseGame = 0;
 //}
-//
-//// Mainly adjust robot's IQ and the probability benchmark.
-//public void balanceAndReset(int playerCount, boolean robotWinThisGame) {
-//    
-//    double tmp = 0.0;
-//    
-//    if ( robotWinThisGame ) {
-//        winGame++;
-//        intelligence = HIGHEST_IQ / Math.pow(ACCELERATOR_FACTOR, winGame);
-//        if ( playerCount == lastPlayerCount ) {
-//            tmp = benchmark[playerCount-2] / intelligence;
-//            benchmark[playerCount-2] = ( tmp > 0.6 ? 0.6 : tmp );
-//        } else {
-//            resetBenchmark();
-//        }
-//        loseGame = 0;
-//    } else {
-//        loseGame++;
-//        if ( intelligence * Math.pow(ACCELERATOR_FACTOR, loseGame) > HIGHEST_IQ)
-//            intelligence = HIGHEST_IQ;
-//        else 
-//            intelligence *= Math.pow(ACCELERATOR_FACTOR, loseGame);
-//        if ( playerCount == lastPlayerCount ) {
-//            tmp = benchmark[playerCount-2] / intelligence;
-//            benchmark[playerCount-2] = (tmp > 0.6 ? 0.6 : tmp);
-//        } else {
-//            resetBenchmark();
-//        }
-//        winGame = 0;
-//    }
-//    lastPlayerCount = playerCount;
-//    round = 0;
-//    giveUpCalling = false;
-//    safe = true;
-//    lying = false;
-//    lieDice = 0;
-//    setChat = false;
-//    //			hasSendCallWilds = false;
-//    reset(whatToCall);
-//    reset(introspection);
-//    reset(distribution);
-//}
-//
-//public boolean canOpenDice(int playerCount,String userId, int num, int dice, boolean isWild) {
-//    
-//    boolean canOpen = false;
-//    
-//    int notWild = (isWild == false? 1 : 0);
-//    // How many "dice" robot have.
-//    int numOfDice = distribution[dice-1] + distribution[DICE_VALUE_ONE-1] * notWild;
-//    int difference = num - numOfDice;
-//    
-//    Integer diceInteger = new Integer(dice);
-//    if ( lastCall.containsKey(userId) == false ) {
-//        lastCall.put(userId, diceInteger);
-//        changeDiceValue.put(userId, new Boolean(false));
-//    } else {
-//        if ( lastCall.get(userId).equals(diceInteger) == false ) {
-//            changeDiceValue.put(userId, new Boolean(true));
-//            lastCall.put(userId, diceInteger);
-//        } else {
-//            changeDiceValue.put(userId, new Boolean(false));
-//        }
-//    }
-//    
-//    // Make a decision...
+
+// Mainly adjust robot's IQ and the probability benchmark.
+- (void) balanceAndReset:(int)playerCount{
+    
+    [self resetBenchmark];
+    winGame = 0;
+    lastPlayerCount = playerCount;
+    globalRound = 0;
+    giveUpCalling = NO;
+    safe = YES;
+    lying = NO;
+    lieDice = 0;
+    //			hasSendCallWilds = false;
+    reset(whatToCall,3);
+    reset(introspection,8);
+    reset(distribution,6);
+}
+
+- (BOOL)canOpenDice:(int)playerCount 
+             userId:(NSString*)userId
+             number:(int)num 
+               dice:(int)dice 
+             isWild:(BOOL)isWild {
+    
+    BOOL canOpen = NO;
+    
+    int notWild = (isWild == NO? 1 : 0);
+    // How many "dice" robot have.
+    int numOfDice = distribution[dice-1] + ((dice == DICE_VALUE_ONE)?0:distribution[DICE_VALUE_ONE-1] * notWild);
+    int difference = num - numOfDice;
+    
+    NSNumber* diceInteger = [NSNumber numberWithInt:dice];
+    if ( [lastCall objectForKey:userId] == nil ) {
+        [lastCall setObject:diceInteger forKey:userId];
+        [changeDiceValue setObject:[NSNumber numberWithBool:NO] forKey:userId];
+    } else {
+        if ( ![(NSNumber*)[lastCall objectForKey:userId] isEqualToNumber:diceInteger ]) {
+            [changeDiceValue setObject:[NSNumber numberWithBool:YES] forKey:userId];
+            //changeDiceValue.put(userId, new Boolean(true));
+            [lastCall setObject:diceInteger forKey:userId];
+            //lastCall.put(userId, diceInteger);
+        } else {
+            [changeDiceValue setObject:[NSNumber numberWithBool:NO] forKey:userId];
+        }
+    }
+    
+    // Make a decision...
 //    if ( intelligence < IQ_THRESHOLD ) {
 //        canOpen = ((int)HIGHEST_IQ/intelligence >= 2 && difference > UNSAFE_DIFFERENCE[playerCount-2] ? true : false);
 //        if(canOpen) {
@@ -264,61 +297,61 @@ double  benchmark[5];//{INI_BENCHMARK[0], INI_BENCHMARK[1], INI_BENCHMARK[2], IN
 //        }
 //        return canOpen;
 //    }
-//    
-//    // Ok, below starts hard work, since robot is quite smart ^_^
-//    // lying means robot call a dice value that it even doesn't have one!
-//    if ( lying && dice == lieDice && difference >= UNSAFE_DIFFERENCE[playerCount-2]) {
-//        canOpen = RandomUtils.nextInt(2) == 1? true : false;
-//        logger.info("Robot is lying and player is fooled,open!");
-//        //					setChatContent(TEXT,chatContent.getContent(DiceRobotChatContent.VoiceContent.YOU_ARE_FOOL));
-//        setChatContent(EXPRESSION, chatContent.getExpression(DiceRobotChatContent.Expression.PROUND));
-//        return canOpen;
-//    }
-//    
-//    // If difference <= 0, of course robot won't chanllenge.
-//    if ( difference > 0 ) {
-//        if ( difference > UNSAFE_DIFFERENCE[playerCount-2] ) {
-//            canOpen = true;
-//            logger.info("Call to much, open!");
-//        }
-//        // Distributed uniformly & quantity is too big, it's not safe to call.
-//        else if ( introspection[DISTRIBUTE_UNIFORMLY] == 1 && difference >= UNSAFE_DIFFERENCE[playerCount-2]) {
-//            canOpen = true;
-//            logger.info("Distributed uniformly & call too much, open!");
-//        }
-//        else if ( probability[BASE[playerCount-2] + difference]  < benchmark[playerCount-2] ) {
-//            if ( round <= 2 ){
-//                canOpen = ( difference > UNSAFE_DIFFERENCE[playerCount-2] ?  true : false );
-//                if (canOpen)
-//                    logger.info("round <=2, call too much, open!");
-//            }
-//            if (round == 2 || round == 3) {
-//                if ( changeDiceValue.get(userId) == true) {
-//                    canOpen = (round + RandomUtils.nextInt(2) > 2 ? true : false);
-//                    if(canOpen) {
-//                        logger.info("round 2 or round 3, player changes dice face value, he/she may be cheating, open!");
-//                        //								setChatContent(TEXT,chatContent.getContent(DiceRobotChatContent.VoiceContent.DONT_FOOL_ME));	
-//                        return canOpen;
-//                    }
-//                }
-//                if ( difference >= UNSAFE_DIFFERENCE[playerCount-2] ) {
-//                    canOpen = (round + RandomUtils.nextInt(2) > 2 ? true : false);
-//                    if(canOpen)
-//                        logger.info("round 2 or round 3, call too much, open!");
-//                }
-//                else if ( !safe ){
-//                    canOpen = (RandomUtils.nextInt(2) == 1 ? true : false );
-//                    if(canOpen)
-//                        logger.info("Not safe, open!");
-//                }
-//            }
-//            else if ( round > 4) {
-//                canOpen = true;
-//                logger.info("Too much round, calling is dangerous, open!");
-//            }
-//        }	
-//    }
-//    // For chat
+    
+    // Ok, below starts hard work, since robot is quite smart ^_^
+    // lying means robot call a dice value that it even doesn't have one!
+    if ( lying && dice == lieDice && difference >= UNSAFE_DIFFERENCE[playerCount-2]) {
+        canOpen = (rand()%2 == 1)? YES : NO;
+        PPDebug(@"Robot is lying and player is fooled,open!");
+        //					setChatContent(TEXT,chatContent.getContent(DiceRobotChatContent.VoiceContent.YOU_ARE_FOOL));
+        //setChatContent(EXPRESSION, chatContent.getExpression(DiceRobotChatContent.Expression.PROUND));
+        return canOpen;
+    }
+    
+    // If difference <= 0, of course robot won't chanllenge.
+    if ( difference > 0 ) {
+        if ( difference > UNSAFE_DIFFERENCE[playerCount-2] ) {
+            canOpen = YES;
+            PPDebug(@"Call to much, open!");
+        }
+        // Distributed uniformly & quantity is too big, it's not safe to call.
+        else if ( introspection[DISTRIBUTE_UNIFORMLY] == 1 && difference >= UNSAFE_DIFFERENCE[playerCount-2]) {
+            canOpen = YES;
+            PPDebug(@"Distributed uniformly & call too much, open!");
+        }
+        else if ( probability[BASE[playerCount-2] + difference]  < benchmark[playerCount-2] ) {
+            if ( globalRound <= 2 ){
+                canOpen = ( difference > UNSAFE_DIFFERENCE[playerCount-2] ?  YES : NO );
+                if (canOpen)
+                    PPDebug(@"round <=2, call too much, open!");
+            }
+            if (globalRound == 2 || globalRound == 3) {
+                if ( ((NSNumber*)[changeDiceValue objectForKey:userId]).boolValue) {
+                    canOpen = (((globalRound + rand()%2) > 2)?YES :NO);
+                    if(canOpen) {
+                        PPDebug(@"round 2 or round 3, player changes dice face value, he/she may be cheating, open!");
+                        //								setChatContent(TEXT,chatContent.getContent(DiceRobotChatContent.VoiceContent.DONT_FOOL_ME));	
+                        return canOpen;
+                    }
+                }
+                if ( difference >= UNSAFE_DIFFERENCE[playerCount-2] ) {
+                    canOpen = (globalRound + rand()%2 > 2 ? YES : NO);
+                    if(canOpen)
+                        PPDebug(@"round 2 or round 3, call too much, open!");
+                }
+                else if ( !safe ){
+                    canOpen = (rand()%2 == 1 ? YES : NO );
+                    if(canOpen)
+                        PPDebug(@"Not safe, open!");
+                }
+            }
+            else if ( globalRound > 4) {
+                canOpen = true;
+                PPDebug(@"Too much round, calling is dangerous, open!");
+            }
+        }	
+    }
+    // For chat
 //    if (canOpen == true && RandomUtils.nextInt(3) == 1) {
 //        //				setChatContent(TEXT,chatContent.getContent(DiceRobotChatContent.VoiceContent.BELIEVE_IT));
 //        if ( RandomUtils.nextInt(2) == 0 )
@@ -326,47 +359,51 @@ double  benchmark[5];//{INI_BENCHMARK[0], INI_BENCHMARK[1], INI_BENCHMARK[2], IN
 //        else 
 //            setChatContent(EXPRESSION, chatContent.getExpression(DiceRobotChatContent.Expression.PROUND));
 //    } 
-//    
-//    
-//    return canOpen;
-//}
-//
-//
-//public void decideWhatToCall(int playerCount,int num, int dice, boolean isWild, int[] robotDices) {
-//    
-//    int tmp = 0;
-//    
-//    giveUpCalling = false;
-//    whatToCall[IDX_NUM_OF_DICE] = 0;
-//    whatToCall[IDX_DICE_FACE_VALUE] = 0;
-//    whatToCall[IDX_CALL_WILD] = 0;
-//    
-//    // We are first to call 
-//    if ( num == -1 || dice == -1) {
-//        intialCall(playerCount);
-//        return;
-//    }
-//    
-//    // Just adding one even exceeds the limit, we should not call. 
-//    if ( num + 1 >= playerCount * 5 ) {
-//        giveUpCalling = true;
-//        return ;
-//    }
-//    
-//    logger.info("Now the IQ is " + intelligence);
-//    logger.info("Now the playerCount is " + playerCount);
-//    logger.info("Now the benchmark is " + benchmark[playerCount-2]);
-//    logger.info("Current round is Round " + (round +1) );
-//    
-//    int notWild = (isWild == false? 1 : 0);
-//    // How many "dice" robot have.
-//    int numOfDice = distribution[dice-1] + distribution[DICE_VALUE_ONE-1] * notWild;
-//    int difference = num - numOfDice;
-//    
-//    
-//    // Make decision...
-//    if (isWild){
-//        // Not so intelligent, just add 1
+    
+    
+    return canOpen;
+}
+
+
+- (void) decideWhatToCall:(int)playerCount 
+                   number:(int)num 
+                     dice:(int)dice 
+                   isWild:(BOOL)isWild 
+                   myDice:(int[])robotDices 
+{
+    
+    int tmp = 0;
+    
+    giveUpCalling = false;
+    whatToCall[IDX_NUM_OF_DICE] = 0;
+    whatToCall[IDX_DICE_FACE_VALUE] = 0;
+    whatToCall[IDX_CALL_WILD] = 0;
+    
+    // We are first to call 
+    if ( num == -1 || dice == -1) {
+        [self initialCall:playerCount];
+        return;
+    }
+    
+    // Just adding one even exceeds the limit, we should not call. 
+    if ( num + 1 >= playerCount * 5 ) {
+        giveUpCalling = true;
+        return ;
+    }
+    
+    PPDebug(@"Now the playerCount is %d", playerCount);
+    PPDebug(@"Now the benchmark is %f ", benchmark[playerCount-2]);
+    PPDebug(@"Current round is Round is %d ", (globalRound +1));
+    
+    int notWild = (isWild == NO? 1 : 0);
+    // How many "dice" robot have.
+    int numOfDice = distribution[dice-1] + ((dice == DICE_VALUE_ONE)?0:distribution[DICE_VALUE_ONE-1] * notWild);
+    int difference = num - numOfDice;
+    
+    
+    // Make decision...
+    if (isWild){
+        // Not so intelligent, just add 1
 //        if ( intelligence < IQ_THRESHOLD ){
 //            if (num + 1 - distribution[dice-1] <= UNSAFE_DIFFERENCE[playerCount-2] ) {
 //                recordCall(num+1, dice,1, playerCount);
@@ -379,216 +416,270 @@ double  benchmark[5];//{INI_BENCHMARK[0], INI_BENCHMARK[1], INI_BENCHMARK[2], IN
 //                return;
 //            }
 //        }
-//        // Quite smart, do some deep thought.
-//        else {
-//            // We don't have as many dices as called.
-//            if ( difference > 0 ) {
-//                for( int i= 0; i < distribution.length; i++ ) {
-//                    if ( i + 1 > dice && distribution[i] >= difference ) {
-//                        recordCall(num + (dice == DICE_VALUE_ONE ? 1 : 0), i+1, 1,playerCount);
-//                        round++;
-//                        logger.info("<DiceRobotIntelligence> isWild & smart, change dice, call"
-//                                    + whatToCall[IDX_NUM_OF_DICE]  + " X " + whatToCall[IDX_DICE_FACE_VALUE] );
-//                        return;
-//                    }
-//                    else if ( i+1 <= dice && distribution[i] > difference ){
-//                        recordCall(num + 1, i+1, 1,playerCount);
-//                        round++;
-//                        logger.info("<DiceRobotIntelligence> isWild & smart, change dice, call"
-//                                    + whatToCall[IDX_NUM_OF_DICE]  + " X " + whatToCall[IDX_DICE_FACE_VALUE] );
-//                        return;
-//                    }
-//                }
-//                // round+1 is current round, if current round is 3, it must be true,
-//                // if current round is 2, it is 50% true. 
-//                if ( difference+1 < UNSAFE_DIFFERENCE[playerCount-2] && (round == 0 || round + 1 + RandomUtils.nextInt(2) > 2) ){
-//                    recordCall(num+1, dice,1,playerCount);
-//                    safe = false;
-//                    logger.info("<DiceRobotIntelligence> isWild & smart, just add one, call "
-//                                + whatToCall[IDX_NUM_OF_DICE]  + " X " + whatToCall[IDX_DICE_FACE_VALUE] );
-//                } else {
-//                    logger.info("<DiceRobotIntelligence> isWild &  smart, but not safe to call, give up calling");
-//                    giveUpCalling = true;
-//                    round++;
-//                    return;
-//                }
-//            } 
-//            // We have more dices than that called.
-//            else {
-//                // Some dice has more than 4 instances...
-//                if ( introspection[NUM_MORE_THAN_FOUR] == 1 ) {
-//                    recordCall((introspection[DICE_MORE_THAN_FOUR] > dice && dice != DICE_VALUE_ONE ? num : num +1),
-//                               introspection[DICE_MORE_THAN_FOUR], 1,playerCount);
-//                    logger.info("<DiceRobotIntelligence> isWild & smart, "+introspection[DICE_MORE_THAN_FOUR] 
-//                                + "has more than 4 instances, so change dice to " + introspection[DICE_MORE_THAN_FOUR]+
-//                                ", call "+ whatToCall[IDX_NUM_OF_DICE] + " X " + whatToCall[IDX_DICE_FACE_VALUE]);
-//                    // Some dice has 3 instances...
-//                } else if ( introspection[NUM_OF_THREE] == 1 ) {
-//                    recordCall((introspection[DICE_OF_THREE] > dice && dice != DICE_VALUE_ONE? num : num +1),
-//                               introspection[DICE_OF_THREE], 1,playerCount);
-//                    logger.info("<DiceRobotIntelligence> isWild & smart, "+introspection[DICE_OF_THREE] 
-//                                + "has 3 instances, so change dice to " + introspection[DICE_OF_THREE]+
-//                                ", call "+ whatToCall[IDX_NUM_OF_DICE] + " X " + whatToCall[IDX_DICE_FACE_VALUE]);
-//                }
-//                else {
-//                    recordCall(num+1, dice, 1, playerCount);
-//                    safe = false;
-//                    logger.info("<DiceRobotIntelligence> isWild &  smart, just add one, call "
-//                                + whatToCall[IDX_NUM_OF_DICE]  + " X " + whatToCall[IDX_DICE_FACE_VALUE] );
-//                }
-//            }
-//        }
-//    } // end of if(isWilds) 
-//    // Not wild~
-//    else {
+        // Quite smart, do some deep thought.
+        
+        // We don't have as many dices as called.
+        if ( difference > 0 ) {
+            for( int i= 0; i < 6; i++ ) {
+                if ( i + 1 > dice && distribution[i] >= difference ) {
+                    [self recordCall:num + (dice == DICE_VALUE_ONE ? 1 : 0) 
+                                dice:i+1 
+                              isWild:1 
+                         playerCount:playerCount];
+                    //recordCall(num + (dice == DICE_VALUE_ONE ? 1 : 0), i+1, 1,playerCount);
+                    globalRound++;
+                    PPDebug(@"<DiceRobotIntelligence> isWild & smart, change dice, call %d X %d "
+                                ,whatToCall[IDX_NUM_OF_DICE]  ,whatToCall[IDX_DICE_FACE_VALUE] );
+                    return;
+                }
+                else if ( i+1 <= dice && distribution[i] > difference ){
+                    [self recordCall:num+1 
+                                dice:i+1 
+                              isWild:1 
+                         playerCount:playerCount];
+                    //recordCall(num + 1, i+1, 1,playerCount);
+                    globalRound++;
+                    PPDebug(@"<DiceRobotIntelligence> isWild & smart, change dice, call %d X %d"
+                                , whatToCall[IDX_NUM_OF_DICE], whatToCall[IDX_DICE_FACE_VALUE] );
+                    return;
+                }
+            }
+            // round+1 is current round, if current round is 3, it must be true,
+            // if current round is 2, it is 50% true. 
+            if ( difference+1 < UNSAFE_DIFFERENCE[playerCount-2] && (globalRound == 0 || (globalRound + 1 + rand()%2) > 2) ){
+                [self recordCall:num+1 dice:dice isWild:1 playerCount:playerCount];
+                //recordCall(num+1, dice,1,playerCount);
+                safe = NO;
+                PPDebug(@"<DiceRobotIntelligence> isWild & smart, just add one, call %d X %d"
+                            ,whatToCall[IDX_NUM_OF_DICE], whatToCall[IDX_DICE_FACE_VALUE] );
+            } else {
+                PPDebug(@"<DiceRobotIntelligence> isWild &  smart, but not safe to call, give up calling");
+                giveUpCalling = true;
+                globalRound++;
+                return;
+            }
+        } 
+        // We have more dices than that called.
+        else {
+            // Some dice has more than 4 instances...
+            if ( introspection[NUM_MORE_THAN_FOUR] == 1 ) {
+                [self recordCall:(introspection[DICE_MORE_THAN_FOUR] > dice && dice != DICE_VALUE_ONE ? num : num +1) 
+                            dice:introspection[DICE_MORE_THAN_FOUR] 
+                          isWild:1 
+                     playerCount:playerCount];
+                //recordCall((introspection[DICE_MORE_THAN_FOUR] > dice && dice != DICE_VALUE_ONE ? num : num +1),
+                          // introspection[DICE_MORE_THAN_FOUR], 1,playerCount);
+                PPDebug(@"<DiceRobotIntelligence> isWild & smart, %d has more than 4 instances, so change dice to %d, call %d X %d", introspection[DICE_MORE_THAN_FOUR], introspection[DICE_MORE_THAN_FOUR], whatToCall[IDX_NUM_OF_DICE], whatToCall[IDX_DICE_FACE_VALUE]);
+                //PPDebug("<DiceRobotIntelligence> isWild & smart, "+introspection[DICE_MORE_THAN_FOUR] 
+                //            + "has more than 4 instances, so change dice to " + introspection[DICE_MORE_THAN_FOUR]+
+                //            ", call "+ whatToCall[IDX_NUM_OF_DICE] + " X " + whatToCall[IDX_DICE_FACE_VALUE]);
+                // Some dice has 3 instances...
+            } else if ( introspection[NUM_OF_THREE] == 1 ) {
+                [self recordCall:(introspection[DICE_OF_THREE] > dice && dice != DICE_VALUE_ONE? num : num +1) 
+                            dice:introspection[DICE_OF_THREE] 
+                          isWild:1 
+                     playerCount:playerCount];
+                //recordCall((introspection[DICE_OF_THREE] > dice && dice != DICE_VALUE_ONE? num : num +1),
+                //           introspection[DICE_OF_THREE], 1,playerCount);
+                PPDebug(@"<DiceRobotIntelligence> isWild & smart, %d has more than 4 instances, so change dice to %d, call %d X %d", introspection[DICE_OF_THREE], introspection[DICE_OF_THREE], whatToCall[IDX_NUM_OF_DICE], whatToCall[IDX_DICE_FACE_VALUE]);
+//                PPDebug(@"<DiceRobotIntelligence> isWild & smart, "+introspection[DICE_OF_THREE] 
+//                            + "has 3 instances, so change dice to " + introspection[DICE_OF_THREE]+
+//                            ", call "+ whatToCall[IDX_NUM_OF_DICE] + " X " + whatToCall[IDX_DICE_FACE_VALUE]);
+            }
+            else {
+                [self recordCall:num+1 
+                            dice:dice 
+                          isWild:1 
+                     playerCount:playerCount];
+                //recordCall(num+1, dice, 1, playerCount);
+                safe = NO;
+                PPDebug(@"<DiceRobotIntelligence> isWild &  smart, just add one, call %d X %d "
+                            , whatToCall[IDX_NUM_OF_DICE], whatToCall[IDX_DICE_FACE_VALUE] );
+            }
+        }
+        
+    } // end of if(isWilds) 
+    // Not wild~
+    else {
 //        int quotient = (int)(IQ_THRESHOLD/intelligence);
 //        int extra = (num > playerCount*5* 2/3)? 0 : 
 //        (quotient ==0 ? 0 : (quotient > 3 ? 1+RandomUtils.nextInt(2) + (playerCount/3) : (3 + playerCount/4 )/(round+1)+ RandomUtils.nextInt(2))); 
-//        // Does robot have more than 3 ONEs?
-//        if ( distribution[DICE_VALUE_ONE-1] >= 3 ){
-//            // YES, call ONE(auto wild)
-//            if ( num <= DiceMeanValue[playerCount-2] + distribution[DICE_VALUE_ONE-1] && probability[BASE[playerCount-2] + num] > benchmark[playerCount-2] ) {
-//                recordCall(num + extra, 1, 1, playerCount);
-//                safe = false;
-//                logger.info("<DiceRobotIntelligence> Not Wild & " + (intelligence< IQ_THRESHOLD? "not ":"")+ "smart, many ONEs, call one! Call "
+        // Does robot have more than 3 ONEs?
+        if ( distribution[DICE_VALUE_ONE-1] >= 3 ){
+            // YES, call ONE(auto wild)
+            if ( num <= DiceMeanValue[playerCount-2] + distribution[DICE_VALUE_ONE-1] && probability[BASE[playerCount-2] + num] > benchmark[playerCount-2] ) {
+                [self recordCall:num dice:1 isWild:1 playerCount:playerCount];
+                //recordCall(num + extra, 1, 1, playerCount);
+                safe = NO;
+                PPDebug(@"<DiceRobotIntelligence> Not Wild & , many ONEs, call one! Call %d X %d"
+                        , whatToCall[IDX_NUM_OF_DICE], dice);
+//                PPDebug(@"<DiceRobotIntelligence> Not Wild & " + (intelligence< IQ_THRESHOLD? "not ":"")+ "smart, many ONEs, call one! Call "
 //                            + whatToCall[IDX_NUM_OF_DICE]  + " X " + dice );
-//            } else {
-//                // YES, but the num is some little big, call wilds is not safe,
-//                // we should be careful.
-//                // 3 X 1 + 2 X ?
-//                if ( introspection[NUM_OF_TWO] == 1) {
+            } else {
+                // YES, but the num is some little big, call wilds is not safe,
+                // we should be careful.
+                // 3 X 1 + 2 X ?
+                if ( introspection[NUM_OF_TWO] == 1) {
+                    [self recordCall:(dice > introspection[DICE_OF_TWO] ? num+1 : num) 
+                                dice:introspection[DICE_OF_TWO] 
+                              isWild:0 
+                         playerCount:playerCount];
 //                    recordCall((dice > introspection[DICE_OF_TWO] ? num+1 : num)+extra, introspection[DICE_OF_TWO], 0, playerCount);
-//                    safe = false;
-//                    logger.info("<DiceRobotIntelligence> Not Wild & " + (intelligence< IQ_THRESHOLD? "not ":"")+ "smart, many ONEs & has dice of 2 instances, call "
-//                                + whatToCall[IDX_NUM_OF_DICE]  + " X " + whatToCall[IDX_DICE_FACE_VALUE]);
-//                }
-//                else {
-//                    tmp = probability[BASE[playerCount-2] + num + 2] > benchmark[playerCount-2]? num + 2 : num + 1;
-//                    recordCall(tmp+extra, dice, 0, playerCount);
-//                    logger.info("<DiceRobotIntelligence> Not Wild & " + (intelligence< IQ_THRESHOLD? "not ":"")+ "smart, many ONEs, but not safe to call wilds, call "
-//                                + whatToCall[IDX_NUM_OF_DICE]  + " X " + dice );
-//                }
-//            }
-//            
-//        } 
-//        // We have any dice of more than 4 instances, change dice...
-//        else if ( introspection[NUM_MORE_THAN_FOUR] == 1 ) {
+                    safe = NO;
+                    PPDebug(@"<DiceRobotIntelligence> Not Wild &  many ONEs & has dice of 2 instances, call %d X %d"
+                                , whatToCall[IDX_NUM_OF_DICE], whatToCall[IDX_DICE_FACE_VALUE]);
+                }
+                else {
+                    tmp = probability[BASE[playerCount-2] + num + 2] > benchmark[playerCount-2]? num + 2 : num + 1;
+                    [self recordCall:tmp 
+                                dice:dice 
+                              isWild:0 
+                         playerCount:playerCount];
+                    //recordCall(tmp+extra, dice, 0, playerCount);
+                    PPDebug(@"<DiceRobotIntelligence> Not Wild &  many ONEs & has dice of 2 instances, call %d X %d"
+                            , whatToCall[IDX_NUM_OF_DICE], whatToCall[IDX_DICE_FACE_VALUE]);
+                }
+            }
+            
+        } 
+        // We have any dice of more than 4 instances, change dice...
+        else if ( introspection[NUM_MORE_THAN_FOUR] == 1 ) {
+            [self recordCall:(dice >= introspection[DICE_MORE_THAN_FOUR] ? num + 1 : num) 
+                        dice:introspection[DICE_MORE_THAN_FOUR] 
+                      isWild:0 
+                 playerCount:playerCount];
 //            recordCall((dice >= introspection[DICE_MORE_THAN_FOUR] ? num + 1 : num)+extra, introspection[DICE_MORE_THAN_FOUR], 0, playerCount);
-//            logger.info("<DiceRobotIntelligence> Not Wild & " + (intelligence< IQ_THRESHOLD? "not ":"")+ "smart, has more than 4 "+introspection[DICE_MORE_THAN_FOUR]+
+            PPDebug(@"<DiceRobotIntelligence> Not Wild & has more than 4 %d, so change dice to %d, call %d X %d",introspection[DICE_MORE_THAN_FOUR], introspection[DICE_MORE_THAN_FOUR], whatToCall[IDX_NUM_OF_DICE] 
+                    , whatToCall[IDX_DICE_FACE_VALUE]);
+//            PPDebug(@"<DiceRobotIntelligence> Not Wild & has more than 4 "+introspection[DICE_MORE_THAN_FOUR]+
 //                        ", so change dice to " + introspection[DICE_MORE_THAN_FOUR]+", call "+ whatToCall[IDX_NUM_OF_DICE] 
 //                        + " X " + whatToCall[IDX_DICE_FACE_VALUE]);
-//        }
-//        // We have dice of 3 instances...(not ONE, otherwise this branch won't be executed)
-//        else if ( introspection[NUM_OF_THREE] == 1 ){ //&& distribution[DICE_VALUE_ONE-1] == 2) {
+        }
+        // We have dice of 3 instances...(not ONE, otherwise this branch won't be executed)
+        else if ( introspection[NUM_OF_THREE] == 1 ){ //&& distribution[DICE_VALUE_ONE-1] == 2) {
+            [self recordCall:num+1 dice:introspection[DICE_OF_THREE] isWild:0 playerCount:playerCount];
 //            recordCall(num + 1+extra, introspection[DICE_OF_THREE], 0, playerCount);
-//            logger.info("<DiceRobotIntelligence> Not Wild & " + (intelligence< IQ_THRESHOLD? "not ":"")+ "smart, has 3 "+introspection[DICE_OF_THREE]+ " & 2 ONEs, call "
+            PPDebug(@"<DiceRobotIntelligence> Not Wild &  has 3 %d & 2 ONEs, call %d X %d", introspection[DICE_OF_THREE],
+                     whatToCall[IDX_NUM_OF_DICE], whatToCall[IDX_DICE_FACE_VALUE]);
+//            PPDebug(@"<DiceRobotIntelligence> Not Wild &  has 3 "+introspection[DICE_OF_THREE]+ " & 2 ONEs, call "
 //                        + whatToCall[IDX_NUM_OF_DICE]  + " X " + whatToCall[IDX_DICE_FACE_VALUE]);
-//        }
-//        // We have dice of 2 intances...
-//        else if ( introspection[NUM_OF_TWO] == 1) {
-//            if (introspection[ANOTHER_DICE_OF_TWO] != 0  ) {
-//                if ( introspection[ANOTHER_DICE_OF_TWO] == DICE_VALUE_ONE || introspection[DICE_OF_TWO] == DICE_VALUE_ONE) {
-//                    if ( introspection[ANOTHER_DICE_OF_TWO] == DICE_VALUE_ONE ) {
+        }
+        // We have dice of 2 intances...
+        else if ( introspection[NUM_OF_TWO] == 1) {
+            if (introspection[ANOTHER_DICE_OF_TWO] != 0  ) {
+                if ( introspection[ANOTHER_DICE_OF_TWO] == DICE_VALUE_ONE || introspection[DICE_OF_TWO] == DICE_VALUE_ONE) {
+                    if ( introspection[ANOTHER_DICE_OF_TWO] == DICE_VALUE_ONE ) {
+                        [self recordCall:num + (introspection[DICE_OF_TWO]> dice ? 0 : 1) dice:introspection[DICE_OF_TWO] isWild:0 playerCount:playerCount];
 //                        recordCall(num + (introspection[DICE_OF_TWO]> dice ? 0 : 1)+extra,introspection[DICE_OF_TWO], 0, playerCount);
-//                    } else {
+                    } else {
+                        [self recordCall:num + (introspection[ANOTHER_DICE_OF_TWO]> dice ? 0 : 1) dice:introspection[ANOTHER_DICE_OF_TWO] isWild:0 playerCount:playerCount];
 //                        recordCall(num + (introspection[ANOTHER_DICE_OF_TWO]> dice ? 0 : 1)+extra,introspection[ANOTHER_DICE_OF_TWO], 0, playerCount);
-//                    }
+                    }
+                    PPDebug(@"<DiceRobotIntelligence> Not Wild &  has 2 X %d and 2 X 1, call %d X %d", introspection[DICE_OF_TWO], whatToCall[IDX_NUM_OF_DICE], whatToCall[IDX_DICE_FACE_VALUE]);
 //                    logger.info("<DiceRobotIntelligence> Not Wild & " + (intelligence< IQ_THRESHOLD? "not ":"")+ "smart, has 2 X "+introspection[DICE_OF_TWO]+ " and 2 X 1, call "
 //                                + whatToCall[IDX_NUM_OF_DICE]  + " X " + whatToCall[IDX_DICE_FACE_VALUE]);
-//                    round++;
-//                    return;
-//                }
-//                else if ( introspection[ANOTHER_DICE_OF_TWO] > dice ) {
+                    globalRound++;
+                    return;
+                }
+                else if ( introspection[ANOTHER_DICE_OF_TWO] > dice ) {
+                    [self recordCall:num dice:introspection[ANOTHER_DICE_OF_TWO] isWild:0 playerCount:playerCount];
 //                    recordCall(num+extra, introspection[ANOTHER_DICE_OF_TWO], 0, playerCount);
-//                }
-//                else if ( introspection[DICE_OF_TWO] > dice ) {
+                }
+                else if ( introspection[DICE_OF_TWO] > dice ) {
+                    [self recordCall:num dice:introspection[DICE_OF_TWO] isWild:0 playerCount:playerCount];
 //                    recordCall(num+extra, introspection[DICE_OF_TWO], 0, playerCount);
-//                }
-//                else if ( num+1 - distribution[introspection[ANOTHER_DICE_OF_TWO]-1] - distribution[DICE_VALUE_ONE-1] < UNSAFE_DIFFERENCE[playerCount-2] ) {
+                }
+                else if ( num+1 - distribution[introspection[ANOTHER_DICE_OF_TWO]-1] - distribution[DICE_VALUE_ONE-1] < UNSAFE_DIFFERENCE[playerCount-2] ) {
+                    [self recordCall:num+1 dice:introspection[ANOTHER_DICE_OF_TWO] isWild:0 playerCount:playerCount];
 //                    recordCall(num+1+extra, introspection[ANOTHER_DICE_OF_TWO], 0, playerCount);
-//                }
-//                else if ( num+1 - distribution[introspection[DICE_OF_TWO]-1] - distribution[DICE_VALUE_ONE-1] < UNSAFE_DIFFERENCE[playerCount-2] ) {
+                }
+                else if ( num+1 - distribution[introspection[DICE_OF_TWO]-1] - distribution[DICE_VALUE_ONE-1] < UNSAFE_DIFFERENCE[playerCount-2] ) {
+                    [self recordCall:num+1 dice:introspection[DICE_OF_TWO] isWild:0 playerCount:playerCount];
 //                    recordCall(num+1+extra, introspection[DICE_OF_TWO], 0, playerCount);
-//                }
-//                else {
-//                    giveUpCalling = true;
-//                    logger.info("<DiceRobotIntelligence> Not Wild & " + (intelligence< IQ_THRESHOLD? "not ":"")+ 
-//                                "smart,has 2 instances of dice, but not safe to call, give up calling");
-//                    return;
-//                }
-//                logger.info("<DiceRobotIntelligence> Not Wild & " + (intelligence< IQ_THRESHOLD? "not ":"")+ "smart, has 2 X "+introspection[ANOTHER_DICE_OF_TWO]+ ", call "
-//                            + whatToCall[IDX_NUM_OF_DICE]  + " X " + whatToCall[IDX_DICE_FACE_VALUE]);
-//            } 
-//            else {
-//                if ( introspection[DICE_OF_TWO] == DICE_VALUE_ONE ) {
-//                    for ( int i = 1; i <= distribution.length; i++ ) {
-//                        if ( distribution[i-1] == 1 && probability[BASE[playerCount-2] + num+1-(introspection[DICE_OF_TWO]+1)] > benchmark[playerCount-2]) {
+                }
+                else {
+                    giveUpCalling = YES;
+                    PPDebug(@"<DiceRobotIntelligence> Not Wild & has 2 instances of dice, but not safe to call, give up calling");
+                    return;
+                }
+                PPDebug(@"<DiceRobotIntelligence> Not Wild &  has 2 X %d, call %d X %d", introspection[ANOTHER_DICE_OF_TWO], whatToCall[IDX_NUM_OF_DICE], whatToCall[IDX_DICE_FACE_VALUE]);
+            } 
+            else {
+                if ( introspection[DICE_OF_TWO] == DICE_VALUE_ONE ) {
+                    for ( int i = 1; i <= 6; i++ ) {
+                        if ( distribution[i-1] == 1 && probability[BASE[playerCount-2] + num+1-(introspection[DICE_OF_TWO]+1)] > benchmark[playerCount-2]) {
+                            [self recordCall:num+1 dice:introspection[DICE_OF_TWO] isWild:0 playerCount:playerCount];
 //                            recordCall(num+1+extra, introspection[DICE_OF_TWO], 0, playerCount);
-//                            logger.info("<DiceRobotIntelligence> Not Wild & " + (intelligence< IQ_THRESHOLD? "not ":"")+ "smart,has 2 X 1, call "
-//                                        + whatToCall[IDX_NUM_OF_DICE]  + " X " + whatToCall[IDX_DICE_FACE_VALUE]);
-//                            round++;
-//                            return;
-//                        }
-//                    }
+                            PPDebug(@"<DiceRobotIntelligence> Not Wild & has 2 X 1, call %d X %d"
+                                        , whatToCall[IDX_NUM_OF_DICE], whatToCall[IDX_DICE_FACE_VALUE]);
+                            globalRound++;
+                            return;
+                        }
+                    }
+                    [self recordCall:num+1 dice:dice isWild:0 playerCount:playerCount];
 //                    recordCall(num+1+extra, dice, 0, playerCount);
-//                    logger.info("<DiceRobotIntelligence> Not Wild & " + (intelligence< IQ_THRESHOLD? "not ":"")+ "smart, has 2 X 1, call "
-//                                + whatToCall[IDX_NUM_OF_DICE]  + " X " + whatToCall[IDX_DICE_FACE_VALUE]);
-//                }
-//                else if ( introspection[DICE_OF_TWO] > dice ) {
+                    PPDebug(@"<DiceRobotIntelligence> Not Wild & has 2 X 1, call %d X %d"
+                                , whatToCall[IDX_NUM_OF_DICE], whatToCall[IDX_DICE_FACE_VALUE]);
+                }
+                else if ( introspection[DICE_OF_TWO] > dice ) {
+                    [self recordCall:num dice:introspection[DICE_OF_TWO] isWild:0 playerCount:playerCount];
 //                    recordCall(num+extra, introspection[DICE_OF_TWO], 0, playerCount);
-//                }
-//                else if ( num+1 - distribution[introspection[DICE_OF_TWO]-1] - distribution[DICE_VALUE_ONE-1] < UNSAFE_DIFFERENCE[playerCount-2] ) {
+                }
+                else if ( num+1 - distribution[introspection[DICE_OF_TWO]-1] - distribution[DICE_VALUE_ONE-1] < UNSAFE_DIFFERENCE[playerCount-2] ) {
+                    [self recordCall:num+1 dice:introspection[DICE_OF_TWO] isWild:0 playerCount:playerCount];
 //                    recordCall(num+1+extra, introspection[DICE_OF_TWO], 0, playerCount);
-//                }
-//                else {
-//                    giveUpCalling = true;
-//                    logger.info("<DiceRobotIntelligence> Not Wild & " + (intelligence< IQ_THRESHOLD? "not ":"")+ 
-//                                "smart,has 2 X "+introspection[DICE_OF_TWO]+ ", but not safe to call, give up calling");
-//                    return;
-//                }
-//                logger.info("<DiceRobotIntelligence> Not Wild & " + (intelligence< IQ_THRESHOLD? "not ":"")+ 
-//                            "smart, has 2 X "+introspection[ANOTHER_DICE_OF_TWO]+ ", call "
-//                            + whatToCall[IDX_NUM_OF_DICE]  + " X " + whatToCall[IDX_DICE_FACE_VALUE]);
-//            }
-//            
-//        }
-//        // We have our dices distributed uniformly,do a safe call.
-//        else {
+                }
+                else {
+                    giveUpCalling = YES;
+                    PPDebug(@"<DiceRobotIntelligence> Not Wild & has 2 X %d, but not safe to call, give up calling", introspection[DICE_OF_TWO]);
+                    return;
+                }
+                PPDebug(@"<DiceRobotIntelligence> Not Wild &  has 2 X %d, call %d X %d", introspection[ANOTHER_DICE_OF_TWO],
+                            whatToCall[IDX_NUM_OF_DICE], whatToCall[IDX_DICE_FACE_VALUE]);
+            }
+            
+        }
+        // We have our dices distributed uniformly,do a safe call.
+        else {
+            [self recordCall:num+1 dice:dice isWild:0 playerCount:playerCount];
 //            recordCall(num + 1 + extra, dice, 0, playerCount);
-//            logger.info("<DiceRobotIntelligence> Not Wild & " + (intelligence< IQ_THRESHOLD? "not ":"")+ "smart,dices distributed uniformly, just do a safe call , call "
-//                        + whatToCall[IDX_NUM_OF_DICE]  + " X " + whatToCall[IDX_DICE_FACE_VALUE] );
-//        }
-//    } // end of not Wild
-//    
-//    round++;
-//}
-//
-//// Record what robot wants to call
-//private void recordCall(int num, int dice, int isWild,int playerCount) {
-//    
-//    // We should avoid call the same as last round
-//    // (eg: robot calls 3x4, player calls 3x1, robot may call 3x4 again, which is not permitted)
-//    // Just add the quantity by one
-//    if ( lastRoundCall[IDX_NUM_OF_DICE] == num && lastRoundCall[IDX_DICE_FACE_VALUE] == dice  ) {
-//        num++;
-//    }
-//    
-//    whatToCall[IDX_NUM_OF_DICE] = lastRoundCall[IDX_NUM_OF_DICE] = num;
-//    whatToCall[IDX_DICE_FACE_VALUE] = lastRoundCall[IDX_DICE_FACE_VALUE] = dice;
-//    // If callNum is the same as playerCount , auto wild,
-//    // If dice is ONE,no doubt it is  wild.  
-//    if ( whatToCall[IDX_NUM_OF_DICE] == playerCount || whatToCall[IDX_DICE_FACE_VALUE] == DICE_VALUE_ONE) {
-//        whatToCall[IDX_CALL_WILD] = lastRoundCall[IDX_CALL_WILD] = 1;
-//    } else {
-//        whatToCall[IDX_CALL_WILD] = lastRoundCall[IDX_CALL_WILD] = isWild;
-//    }
-//    //		if ( whatToCall[IDX_CALL_WILD] == 1 && hasSendCallWilds == false && RandomUtils.nextInt(2) == 1) {
-//    //			logger.info("*****Robot call wilds! Set chat content*****");
-//    //			setChatContent(TEXT,chatContent.getContent(DiceRobotChatContent.VoiceContent.CALL_WILDS));
-//    //			hasSendCallWilds = true;
-//    //		} else if ( RandomUtils.nextInt(4) == 1 && safe == true ) {
-//    //			setChatContent(TEXT,chatContent.getContent(DiceRobotChatNot Wild &  smartContent.VoiceContent.BITE_ME));
-//    //		}
+            PPDebug(@"<DiceRobotIntelligence> Not Wild & ,dices distributed uniformly, just do a safe call , call %d X %d"
+                        ,whatToCall[IDX_NUM_OF_DICE], whatToCall[IDX_DICE_FACE_VALUE]);
+        }
+    } // end of not Wild
+    
+    globalRound++;
+}
+
+// Record what robot wants to call
+- (void)recordCall:(int)num 
+              dice:(int)dice 
+            isWild:(int)isWild 
+       playerCount:(int)playerCount {
+    
+    // We should avoid call the same as last round
+    // (eg: robot calls 3x4, player calls 3x1, robot may call 3x4 again, which is not permitted)
+    // Just add the quantity by one
+    if ( lastRoundCall[IDX_NUM_OF_DICE] == num && lastRoundCall[IDX_DICE_FACE_VALUE] == dice  ) {
+        num++;
+    }
+    
+    whatToCall[IDX_NUM_OF_DICE] = lastRoundCall[IDX_NUM_OF_DICE] = num;
+    whatToCall[IDX_DICE_FACE_VALUE] = lastRoundCall[IDX_DICE_FACE_VALUE] = dice;
+    // If callNum is the same as playerCount , auto wild,
+    // If dice is ONE,no doubt it is  wild.  
+    if ( whatToCall[IDX_NUM_OF_DICE] == playerCount || whatToCall[IDX_DICE_FACE_VALUE] == DICE_VALUE_ONE) {
+        whatToCall[IDX_CALL_WILD] = lastRoundCall[IDX_CALL_WILD] = 1;
+    } else {
+        whatToCall[IDX_CALL_WILD] = lastRoundCall[IDX_CALL_WILD] = isWild;
+    }
+    //		if ( whatToCall[IDX_CALL_WILD] == 1 && hasSendCallWilds == false && RandomUtils.nextInt(2) == 1) {
+    //			logger.info("*****Robot call wilds! Set chat content*****");
+    //			setChatContent(TEXT,chatContent.getContent(DiceRobotChatContent.VoiceContent.CALL_WILDS));
+    //			hasSendCallWilds = true;
+    //		} else if ( RandomUtils.nextInt(4) == 1 && safe == true ) {
+    //			setChatContent(TEXT,chatContent.getContent(DiceRobotChatNot Wild &  smartContent.VoiceContent.BITE_ME));
+    //		}
 //    if ( RandomUtils.nextInt(3) == 1 ) {
 //        if ( safe == true ) {
 //            setChatContent(EXPRESSION, chatContent.getExpression(DiceRobotChatContent.Expression.PROUND));
@@ -600,13 +691,13 @@ double  benchmark[5];//{INI_BENCHMARK[0], INI_BENCHMARK[1], INI_BENCHMARK[2], IN
 //            setChatContent(EXPRESSION, chatContent.getExpression(DiceRobotChatContent.Expression.EMBARRASS));
 //        }
 //    }
-//}
-//
-//// Robot initiates the call.
-//private void intialCall(int playerCount) {
-//    
-//    int tmp = (RandomUtils.nextInt(5) == 0? 0 : 1);
-//    
+}
+
+// Robot initiates the call.
+- (void)initialCall:(int)playerCount {
+    
+    int tmp = (rand()%5 == 0? 0 : 1);
+    
 //    if ( intelligence < IQ_THRESHOLD) {
 //        recordCall( playerCount + tmp, 1+RandomUtils.nextInt(6), 0, playerCount );
 //        safe = false;
@@ -617,63 +708,72 @@ double  benchmark[5];//{INI_BENCHMARK[0], INI_BENCHMARK[1], INI_BENCHMARK[2], IN
 //            lieDice  = whatToCall[IDX_DICE_FACE_VALUE];
 //        }
 //    }
-//    // Smart...
+    // Smart...
 //    else {
-//        // Does robot have more than 3 ONEs?
-//        if ( distribution[DICE_VALUE_ONE-1] >= 3 ){
-//            if ( RandomUtils.nextInt(2) == 1 ) {
+        // Does robot have more than 3 ONEs?
+        if ( distribution[DICE_VALUE_ONE-1] >= 3 ){
+            if ( rand()%2 == 1 ) {
+                [self recordCall:playerCount dice:DICE_VALUE_ONE isWild:1 playerCount:playerCount];
 //                recordCall(distribution[DICE_VALUE_ONE-1], DICE_VALUE_ONE, 1, playerCount);
-//                safe = false;
-//            } else {
-//                recordCall(distribution[DICE_VALUE_ONE-1], RandomUtils.nextInt(5)+2, 0, playerCount);
-//                safe = false;
-//            } 
-//            logger.info("<intialCall> Initially,smart, has more than 3 ONEs,just call ONE or do a random call , call "
-//						+ whatToCall[IDX_NUM_OF_DICE]  + " X " + whatToCall[IDX_DICE_FACE_VALUE] );
-//        }
-//        else if ( introspection[NUM_MORE_THAN_FOUR] == 1 ) {
+                safe = NO;
+            } else {
+                [self recordCall:playerCount+tmp dice:rand()%5+2 isWild:0 playerCount:playerCount];
+//                recordCall(distribution[DICE_VALUE_ONE-1], rand()%5+2, 0, playerCount);
+                safe = false;
+            } 
+            PPDebug(@"<intialCall> Initially,smart, has more than 3 ONEs,just call ONE or do a random call , call %d X %d"
+						, whatToCall[IDX_NUM_OF_DICE], whatToCall[IDX_DICE_FACE_VALUE] );
+        }
+        else if ( introspection[NUM_MORE_THAN_FOUR] == 1 ) {
+            [self recordCall:playerCount+tmp dice:introspection[DICE_MORE_THAN_FOUR] isWild:0 playerCount:playerCount];
 //            recordCall(distribution[introspection[DICE_MORE_THAN_FOUR]-1], introspection[DICE_MORE_THAN_FOUR], 0, playerCount);
-//            logger.info("<intialCall> Initial call,has more than 4 " + introspection[DICE_MORE_THAN_FOUR]+
-//						", so call "+ whatToCall[IDX_NUM_OF_DICE] + " X " + whatToCall[IDX_DICE_FACE_VALUE]);
-//        }
-//        else if ( introspection[NUM_OF_THREE] == 1) {
+            PPDebug(@"<intialCall> Initial call,has more than 4 %d, so call %d X %d", introspection[DICE_MORE_THAN_FOUR], whatToCall[IDX_NUM_OF_DICE], whatToCall[IDX_DICE_FACE_VALUE]);
+        }
+        else if ( introspection[NUM_OF_THREE] == 1) {
+            [self recordCall:playerCount+tmp dice:introspection[DICE_OF_THREE] isWild:rand()%2 playerCount:playerCount];
 //            recordCall(3, introspection[DICE_OF_THREE], RandomUtils.nextInt(2), playerCount);
-//            logger.info("<intialCall> Initial call,has 3 " + introspection[DICE_OF_THREE]+
-//						", so call "+ whatToCall[IDX_NUM_OF_DICE] + " X " + whatToCall[IDX_DICE_FACE_VALUE]);
-//        }
-//        else if ( introspection[NUM_OF_TWO] == 1 ){
-//            if ( introspection[ANOTHER_DICE_OF_TWO] != 0 ) {
-//                recordCall(2 + (introspection[ANOTHER_DICE_OF_TWO] != DICE_VALUE_ONE ? distribution[DICE_VALUE_ONE-1] : 0), 
+            PPDebug(@"<intialCall> Initial call,has 3 %d, so call %d X %d",introspection[DICE_OF_THREE], whatToCall[IDX_NUM_OF_DICE], whatToCall[IDX_DICE_FACE_VALUE]);
+        }
+        else if ( introspection[NUM_OF_TWO] == 1 ){
+            if ( introspection[ANOTHER_DICE_OF_TWO] != 0 ) {
+                int quantity = 2 + (introspection[ANOTHER_DICE_OF_TWO] != DICE_VALUE_ONE ? distribution[DICE_VALUE_ONE-1] : 0); 
+//                recordCall( (quantity >= playerCount ? quantity : playerCount+1), 
 //                           introspection[ANOTHER_DICE_OF_TWO], 0, playerCount);
-//            }
-//            else {
-//                recordCall(2 + (introspection[DICE_OF_TWO] != DICE_VALUE_ONE ? distribution[DICE_VALUE_ONE-1] :0),
+                [self recordCall:(quantity >= playerCount ? quantity : playerCount+1) dice:introspection[ANOTHER_DICE_OF_TWO] isWild:0 playerCount:playerCount];
+            }
+            else {
+                int quantity = 2 + (introspection[DICE_OF_TWO] != DICE_VALUE_ONE ? distribution[DICE_VALUE_ONE-1] : 0);
+//                recordCall((quantity >= playerCount ? quantity : playerCount+1) ,
 //                           introspection[DICE_OF_TWO], 0, playerCount);
-//            }
-//            logger.info("<intialCall> Initial call,has dice of 2 instances, so call "
-//						+ whatToCall[IDX_NUM_OF_DICE] + " X " + whatToCall[IDX_DICE_FACE_VALUE]);
-//        }
-//        else {
+                [self recordCall:(quantity >= playerCount ? quantity : playerCount+1) dice:introspection[DICE_OF_TWO] isWild:0 playerCount:playerCount];
+            }
+            PPDebug(@"<intialCall> Initial call,has dice of 2 instances, so call %d X %d"
+						, whatToCall[IDX_NUM_OF_DICE], whatToCall[IDX_DICE_FACE_VALUE]);
+        }
+        else {
+            [self recordCall:playerCount + tmp dice:2+rand()%5 isWild:(rand()%10 == 1? 1 : 0) playerCount:playerCount];
 //            recordCall(playerCount + tmp, 2 + RandomUtils.nextInt(5), (RandomUtils.nextInt(10) == 1? 1 : 0), playerCount);
-//            safe = false;
-//            logger.info("<intialCall> Initially, smart,dices distributed uniformly,  do a random call , call "
-//						+ whatToCall[IDX_NUM_OF_DICE]  + " X " + whatToCall[IDX_DICE_FACE_VALUE]);
-//            if ( distribution[whatToCall[IDX_DICE_FACE_VALUE]-1] == 0 ) {
-//                lying  = true;
-//                lieDice  = whatToCall[IDX_DICE_FACE_VALUE];
-//            }
-//        }
+            safe = NO;
+            PPDebug(@"<intialCall> Initially, smart,dices distributed uniformly,  do a random call , call %d X %d"
+						,whatToCall[IDX_NUM_OF_DICE], whatToCall[IDX_DICE_FACE_VALUE]);
+            if ( distribution[whatToCall[IDX_DICE_FACE_VALUE]-1] == 0 ) {
+                lying  = YES;
+                lieDice  = whatToCall[IDX_DICE_FACE_VALUE];
+            }
+        }
 //    }
-//    round++;
-//}
-//
-//public boolean giveUpCall() {
-//    return giveUpCalling;
-//}
-//
-//public int[] getWhatTocall() {
+    globalRound++;
+    
+    [self updateResult];
+}
+
+- (BOOL)giveUpCall {
+    return giveUpCalling;
+}
+
+//-(int[])getWhatTocall{
 //    
-//    int[] result = {0, 0, 0};
+//    int result[3] = {0, 0, 0};
 //    
 //    result[IDX_NUM_OF_DICE] = whatToCall[IDX_NUM_OF_DICE];
 //    result[IDX_DICE_FACE_VALUE] = whatToCall[IDX_DICE_FACE_VALUE];
@@ -681,65 +781,91 @@ double  benchmark[5];//{INI_BENCHMARK[0], INI_BENCHMARK[1], INI_BENCHMARK[2], IN
 //    
 //    return result;
 //}
-//
-//
-//public void introspectRobotDices(int[] robotDices) {
-//    
-//    logger.info("robot's Dices are: "+ robotDices[0]+", " +robotDices[1]
-//                +", " + robotDices[2]+", "+ robotDices[3]+", " +
-//                robotDices[4]);
-//    
-//    for ( int i= 0; i < robotDices.length;i++ ) {
-//        switch (robotDices[i]) {
-//            case DICE_VALUE_ONE:
-//                distribution[DICE_VALUE_ONE-1]++;
-//                break;
-//            case DICE_VALUE_TWO:
-//                distribution[DICE_VALUE_TWO-1]++;
-//                break;
-//            case DICE_VALUE_THREE:
-//                distribution[DICE_VALUE_THREE-1]++;
-//                break;
-//            case DICE_VALUE_FOUR:
-//                distribution[DICE_VALUE_FOUR-1]++;
-//                break;
-//            case DICE_VALUE_FIVE:
-//                distribution[DICE_VALUE_FIVE-1]++;
-//                break;
-//            case DICE_VALUE_SIX:
-//                distribution[DICE_VALUE_SIX-1]++;
-//                break;
-//            default:
-//                break;
-//        }
-//        
-//    }
-//    for (int i = 0;i < distribution.length; i++) {
-//        if ( distribution[i] >= 4 ) {
-//            introspection[NUM_MORE_THAN_FOUR] = 1;
-//            introspection[DICE_MORE_THAN_FOUR] = i+1;
-//        } 
-//        else if ( distribution[i] == 3 ) {
-//            introspection[NUM_OF_THREE] = 1;
-//            introspection[DICE_OF_THREE] = i+1;
-//        }
-//        else if ( distribution[i] == 2 ) {
-//            introspection[NUM_OF_TWO] = 1;
-//            if ( introspection[DICE_OF_TWO] == 0 ) {
-//                introspection[DICE_OF_TWO] = i+1;
-//            }
-//            else {
-//                introspection[ANOTHER_DICE_OF_TWO] = i+1;
-//            }
-//        }
-//        
-//    }// end of for
-//    
-//    if ( introspection[NUM_MORE_THAN_FOUR] == 0 && introspection[NUM_OF_THREE] == 0 && introspection[NUM_OF_TWO] == 0) {
-//        introspection[DISTRIBUTE_UNIFORMLY] = 1;
-//    }
-//}
-//
+
+- (void)updateResult
+{
+    self.result.dice = whatToCall[IDX_DICE_FACE_VALUE];
+    self.result.diceCount = whatToCall[IDX_NUM_OF_DICE];
+    self.result.isWild = (whatToCall[IDX_CALL_WILD] == 1);
+}
+
+
+- (void)introspectRobotDices:(int[])robotDices {
+    
+    PPDebug(@"robot's Dices are: %d-%d-%d-%d-%d", robotDices[0], robotDices[1], robotDices[2], robotDices[3], robotDices[4]);
+    
+    for ( int i= 0; i < 5;i++ ) {
+        switch (robotDices[i]) {
+            case 1:
+                distribution[DICE_VALUE_ONE-1]++;
+                break;
+            case 2:
+                distribution[DICE_VALUE_TWO-1]++;
+                break;
+            case 3:
+                distribution[DICE_VALUE_THREE-1]++;
+                break;
+            case 4:
+                distribution[DICE_VALUE_FOUR-1]++;
+                break;
+            case 5:
+                distribution[DICE_VALUE_FIVE-1]++;
+                break;
+            case 6:
+                distribution[DICE_VALUE_SIX-1]++;
+                break;
+            default:
+                break;
+        }
+        
+    }
+    for (int i = 0;i < 6; i++) {
+        if ( distribution[i] >= 4 ) {
+            introspection[NUM_MORE_THAN_FOUR] = 1;
+            introspection[DICE_MORE_THAN_FOUR] = i+1;
+        } 
+        else if ( distribution[i] == 3 ) {
+            introspection[NUM_OF_THREE] = 1;
+            introspection[DICE_OF_THREE] = i+1;
+        }
+        else if ( distribution[i] == 2 ) {
+            introspection[NUM_OF_TWO] = 1;
+            if ( introspection[DICE_OF_TWO] == 0 ) {
+                introspection[DICE_OF_TWO] = i+1;
+            }
+            else {
+                introspection[ANOTHER_DICE_OF_TWO] = i+1;
+            }
+        }
+        
+    }// end of for
+    
+    if ( introspection[NUM_MORE_THAN_FOUR] == 0 && introspection[NUM_OF_THREE] == 0 && introspection[NUM_OF_TWO] == 0) {
+        introspection[DISTRIBUTE_UNIFORMLY] = 1;
+    }
+}
+
+- (void)updateDecitionByPlayerCount:(int)playerCount 
+                             userId:(NSString*)userId 
+                             number:(int)num 
+                               dice:(int)dice 
+                             isWild:(BOOL)isWild 
+                         myDiceList:(int[])myDiceList
+{
+    [self.result reset];
+    if ([self canOpenDice:playerCount userId:userId number:num dice:dice isWild:isWild]) {
+        self.result.shouldOpen = YES;
+    } else {
+        [self decideWhatToCall:playerCount number:num dice:dice isWild:isWild myDice:myDiceList];
+        if (giveUpCalling) {
+            self.result.shouldOpen = YES;
+        } else {
+            self.result.shouldOpen = NO;
+            [self updateResult];
+        }
+    }
+}
+
 //public boolean hasSetChat() {
 //    return setChat;
 //}

@@ -40,6 +40,7 @@
 @synthesize delegate = _delegate;
 @synthesize bgImageView = _bgImageView;
 @synthesize expressionsHolderView = _expressionsHolderView;
+@synthesize pageController = _pageController;
 @synthesize messagesHolderView = _messagesHolderView;
 @synthesize popTipView = _popTipView;
 //@synthesize timer = _timer;
@@ -50,7 +51,7 @@
     [_messagesHolderView release];
     [_popTipView release];
     [_bgImageView release];
-    [_expressionsHolderView release];
+    [_pageController release];
     [super dealloc];
 }
 
@@ -63,7 +64,7 @@
         return nil;
     }
     
-    return [topLevelObjects objectAtIndex:0];;
+    return [topLevelObjects objectAtIndex:0];
 }
 
 - (void)loadContent
@@ -71,14 +72,18 @@
     _expressionManager = [ExpressionManager defaultManager];
     _messageManager = [DiceChatMsgManager defaultManager];
     _bgImageView.image = [[DiceImageManager defaultManager] popupBackgroundImage];
-    
+    self.pageController.hidesForSinglePage = YES;
+    self.pageController.defersCurrentPageDisplay = YES;
     [self addExpressions];
 }
 
 - (void)addExpressions
 {
-    int expsCount = [[_expressionManager allKeys] count];
+    int expsCount = [[_expressionManager allGifKeys] count];
     int pageCount = expsCount / 5 + (expsCount % 5 == 0 ? 0 : 1);
+    
+    _expressionsHolderView.pagingEnabled = YES;
+    _expressionsHolderView.contentSize = CGSizeMake(_expressionsHolderView.frame.size.width * pageCount, _expressionsHolderView.frame.size.height);
     
     CGRect frame;
     for (int i = 0; i < pageCount; i ++) {
@@ -91,7 +96,7 @@
 
 - (void)addExpressionsToView:(UIView *)view pageIndex:(int)pageIndex
 {
-    NSArray *allKeys = [_expressionManager allKeys];
+    NSArray *allKeys = [_expressionManager allGifKeys];
     
     int start = pageIndex * EXPRESSION_COUNT_PER_PAGE;
     int end = MIN((pageIndex + 1) * EXPRESSION_COUNT_PER_PAGE, [allKeys count]);
@@ -137,21 +142,12 @@
                         key:(NSString *)key
 {
     UIButton *button = [[[UIButton alloc] initWithFrame:frame] autorelease];
-
-    NSString *filePath = [_expressionManager gifPathForExpression:key];
-    GifView *view;
-    if (filePath != nil) {
-//        [button setBackgroundImage:[[DiceImageManager defaultManager] diceExpressionBgImage] forState:UIControlStateNormal];
-        
-        CGRect expframe = CGRectMake(0, 0, WIDTH_EXPRESSION, HEIGHT_EXPRESSION);
-        view = [[[GifView alloc] initWithFrame:expframe
-                                      filePath:filePath
-                              playTimeInterval:0.2] autorelease];
-        view.userInteractionEnabled = NO;
-        view.center = CGPointMake(button.frame.size.width/2, button.frame.size.height/2);
-        
-        [button addSubview:view];
-    }
+    
+    CGRect expframe = CGRectMake(0, 0, WIDTH_EXPRESSION, HEIGHT_EXPRESSION);
+    GifView *view = [_expressionManager gifExpressionForKey:key frame:expframe];
+    view.userInteractionEnabled = NO;
+    view.center = CGPointMake(button.frame.size.width/2, button.frame.size.height/2);
+    [button addSubview:view];
     
     [button setTitle:key forState:UIControlStateSelected];
     button.titleLabel.textColor = [UIColor clearColor];
@@ -195,24 +191,25 @@
 
 #pragma mark -
 #pragma mark UIScrollViewDelegate stuff
-//- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
-//{
-//    /* we switch page at %50 across */
-//    CGFloat pageWidth = scrollView.frame.size.width;
-//    int page = floor((scrollView.contentOffset.x - pageWidth/2)/pageWidth +1);
-//    _pageControl.currentPage = page;
-//}
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
+{
+    /* we switch page at %50 across */
+    CGFloat pageWidth = scrollView.frame.size.width;
+    int page = floor((scrollView.contentOffset.x - pageWidth/2)/pageWidth +1);
+    self.pageController.currentPage = page;
+}
 
 #pragma mark -
 #pragma mark PageControl stuff
-- (void)currentPageDidChange:(int)newPage;
-{
-    // Change the scroll view 
-    CGRect frame = self.frame;
-    frame.origin.x  = frame.size.width * newPage;
-    frame.origin.y = 0;
-    [_expressionsHolderView scrollRectToVisible:frame animated:YES];
-}
+
+//- (void)updateCurrentPageDisplay
+//{
+//    // Change the scroll view 
+//    CGRect frame = self.frame;
+//    frame.origin.x  = frame.size.width * self.pageController.currentPage;
+//    frame.origin.y = 0;
+//    [_expressionsHolderView scrollRectToVisible:frame animated:YES]; 
+//}
 
 #pragma mark - ChatViewCellDelegate
 - (void)didClickMessage:(DiceChatMessage *)message
@@ -222,17 +219,10 @@
     }
 }
 
-
-- (void)popTipViewWasDismissedByCallingDismissAnimatedMethod:(CMPopTipView *)popTipView
-{
-    if ([_delegate respondsToSelector:@selector(didChatViewDismiss)]) {
-        [_delegate didChatViewDismiss];
-    }
-}
-
 - (IBAction)clickCloseButton:(id)sender {
-    [self dismissAnimated:YES];
-
+    if ([_delegate respondsToSelector:@selector(didClickCloseButton)]) {
+        [_delegate didClickCloseButton];
+    }
 }
 
 #pragma mark - Timer manage
