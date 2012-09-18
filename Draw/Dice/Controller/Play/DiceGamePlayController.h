@@ -28,13 +28,14 @@
 #import "DiceSoundManager.h"
 #import "DiceItemManager.h"
 #import "DiceRobotManager.h"
+#import "DiceBetView.h"
 
 #define USER_THINK_TIME_INTERVAL 15
 
 @class DiceGameService;
 
 
-@interface DiceGamePlayController : PPViewController <DiceItemListViewDelegate, DiceSelectedViewDelegate, DiceAvatarViewDelegate, DicesResultViewAnimationDelegate, LevelServiceDelegate, CommonDialogDelegate, ChatViewDelegate, AccountServiceDelegate> {
+@interface DiceGamePlayController : PPViewController <DiceItemListViewDelegate, DiceSelectedViewDelegate, DiceAvatarViewDelegate, DicesResultViewAnimationDelegate, LevelServiceDelegate, CommonDialogDelegate, ChatViewDelegate, AccountServiceDelegate, DiceBetViewDelegate> {
     DiceGameService*  _diceService;
     UserManager *_userManager;
     DiceImageManager *_imageManager;

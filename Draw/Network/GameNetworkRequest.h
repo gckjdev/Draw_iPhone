@@ -359,4 +359,12 @@
                               status:(int)status;
 
 + (CommonNetworkOutput*)getRecommendApp:(NSString*)baseURL;
+
++ (CommonNetworkOutput*)getContests:(NSString*)baseURL
+                              appId:(NSString*)appId
+                             userId:(NSString*)userId
+                               type:(NSInteger)type
+                             offset:(NSInteger)offset
+                             limit:(NSInteger)limit
+                           language:(NSInteger)language;
 @end
