@@ -578,6 +578,7 @@
 		C22585CE15EDC9B5009D686D /* maleImage.png in Resources */ = {isa = PBXBuildFile; fileRef = C22585CC15EDC9B5009D686D /* maleImage.png */; };
 		C225866E15EF5AA4009D686D /* GCServer.m in Sources */ = {isa = PBXBuildFile; fileRef = C225866D15EF5AA4009D686D /* GCServer.m */; };
 		C225867015EF7673009D686D /* shop_bell@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C225866F15EF7673009D686D /* shop_bell@2x.png */; };
+		C22E21871608664F00DE3035 /* DiceRobotItemAction.m in Sources */ = {isa = PBXBuildFile; fileRef = C22E21861608664F00DE3035 /* DiceRobotItemAction.m */; };
 		C24339FF15AAB02400325A76 /* VendingController.m in Sources */ = {isa = PBXBuildFile; fileRef = C24339FD15AAB01D00325A76 /* VendingController.m */; };
 		C2433A0015AAB02400325A76 /* VendingController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C24339FE15AAB02000325A76 /* VendingController.xib */; };
 		C2433A0215AAB06D00325A76 /* VendingController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2433A0115AAB06C00325A76 /* VendingController~ipad.xib */; };
@@ -2119,6 +2120,8 @@
 		C225866C15EF5AA4009D686D /* GCServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCServer.h; sourceTree = "<group>"; };
 		C225866D15EF5AA4009D686D /* GCServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCServer.m; sourceTree = "<group>"; };
 		C225866F15EF7673009D686D /* shop_bell@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "shop_bell@2x.png"; sourceTree = "<group>"; };
+		C22E21851608664F00DE3035 /* DiceRobotItemAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiceRobotItemAction.h; sourceTree = "<group>"; };
+		C22E21861608664F00DE3035 /* DiceRobotItemAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiceRobotItemAction.m; sourceTree = "<group>"; };
 		C24339FC15AAB01C00325A76 /* VendingController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VendingController.h; sourceTree = "<group>"; };
 		C24339FD15AAB01D00325A76 /* VendingController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VendingController.m; sourceTree = "<group>"; };
 		C24339FE15AAB02000325A76 /* VendingController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VendingController.xib; sourceTree = "<group>"; };
@@ -3987,6 +3990,8 @@
 				C28E7C101602E5DD00F4B6A5 /* DecTimeItemAction.m */,
 				C28E7C121602E5F800F4B6A5 /* SkipItemAction.h */,
 				C28E7C131602E5F900F4B6A5 /* SkipItemAction.m */,
+				C22E21851608664F00DE3035 /* DiceRobotItemAction.h */,
+				C22E21861608664F00DE3035 /* DiceRobotItemAction.m */,
 			);
 			path = Play;
 			sourceTree = "<group>";
@@ -9269,6 +9274,7 @@
 				CA8974461607230E003A95F7 /* MyFeedController.m in Sources */,
 				CA8974481607230E003A95F7 /* UserFeedController.m in Sources */,
 				A43A64B916084E7E00F35978 /* DiceBetView.m in Sources */,
+				C22E21871608664F00DE3035 /* DiceRobotItemAction.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

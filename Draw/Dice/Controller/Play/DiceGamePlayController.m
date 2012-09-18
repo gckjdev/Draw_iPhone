@@ -962,6 +962,9 @@
 #pragma mark - use item animations
 - (void)useItem:(int)itemId itemName:(NSString *)itemName userId:(NSString *)userId
 {
+    if(itemId == ItemTypeDiceRobot) {
+        [self showRobotDecition];
+    }
     
     if (itemId == ItemTypeIncTime) {
         DiceAvatarView* selfAvatar = (DiceAvatarView*)[self selfAvatarView];
@@ -1233,6 +1236,14 @@
 #pragma mark - common dialog delegate
 - (void)clickOk:(CommonDialog *)dialog
 {
+    if (dialog.tag == ROBOT_CALL_TIPS_DIALOG_TAG) {
+        if (_robotManager.result.shouldOpen) {
+            [self openDice];
+        } else {
+            [self callDice:_robotManager.result.dice count:_robotManager.result.diceCount];
+        }
+        return;
+    }
     [self quitDiceGame];
     [[AccountService defaultService] deductAccount:[ConfigManager getDiceFleeCoin] source:LiarDiceFleeType];
 }
@@ -1416,9 +1427,12 @@
         [dialog.messageLabel setText:NSLS(@"kOpen")];
     } else {
         CallDiceView* view = [[CallDiceView alloc] initWithDice:_robotManager.result.dice count:_robotManager.result.diceCount];
-        [dialog addSubview:view];
-        [view setCenter:CGPointMake(dialog.frame.size.width/2, dialog.frame.size.height/2)];
+        [dialog.contentView addSubview:view];
+        [view setFrame:CGRectMake(0, 0, dialog.contentView.frame.size.width*0.5, dialog.contentView.frame.size.height*0.5)];
+        [view setCenter:CGPointMake(dialog.contentView.frame.size.width/2, dialog.contentView.frame.size.height/2)];
+        
     }
+    [dialog showInView:self.view];
 
 }
 
