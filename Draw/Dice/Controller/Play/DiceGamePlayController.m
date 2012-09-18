@@ -1261,13 +1261,15 @@
                            aboveSubView:self.popupLevel3View
                               deleagate:self];
     }else {
+        self.chatButton.selected = NO;
         [_popupView dismissChatView];
     }
 }
 
-- (void)didChatViewDismiss
+- (void)didClickCloseButton
 {
     self.chatButton.selected = NO;
+    [_popupView dismissChatView];
 }
 
 
@@ -1315,14 +1317,7 @@
 - (void)showExpression:(NSString *)key userId:(NSString *)userId
 {
     DiceAvatarView *avatar = [self avatarViewOfUser:userId];
-    NSString *filePath = [_expressionManager gifPathForExpression:key];
-    if (filePath == nil) {
-        return;
-    }
-    CGRect frame = CGRectMake(0, 0, avatar.frame.size.width, avatar.frame.size.height);
-    GifView* view = [[[GifView alloc] initWithFrame:frame
-                                           filePath:filePath
-                                   playTimeInterval:0.2] autorelease];
+    GifView* view = [_expressionManager gifExpressionForKey:key frame:avatar.bounds];
     
     view.userInteractionEnabled = NO;
     [avatar addSubview:view];

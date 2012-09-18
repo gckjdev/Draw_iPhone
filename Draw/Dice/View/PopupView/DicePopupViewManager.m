@@ -50,8 +50,6 @@
 - (id)init
 {
     if (self = [super init]) {
-        self.chatView = [ChatView createChatView];
-        [self.chatView loadContent];
         self.diceItemListView = [[[DiceItemListView alloc] init] autorelease];
     }
     
@@ -180,6 +178,9 @@
                aboveSubView:(UIView *)siblingSubview
                   deleagate:(id<ChatViewDelegate>)delegate;
 {
+    self.chatView = [ChatView createChatView];
+    [self.chatView loadContent];
+    
     _chatView.delegate = delegate;
 
     [_chatView popupAtView:atView 
@@ -192,6 +193,7 @@
 - (void)dismissChatView
 {
     [_chatView dismissAnimated:YES];
+    self.chatView = nil;
 }
 
 @end

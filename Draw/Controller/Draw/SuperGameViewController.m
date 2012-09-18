@@ -338,7 +338,7 @@
     if (chatType == GameChatTypeChatGroup) {
         if ([content hasPrefix:EXPRESSION_CHAT]) {
             NSString *key = [content stringByReplacingOccurrencesOfString:EXPRESSION_CHAT withString:NSLS(@"")];
-            UIImage *image = [[ExpressionManager defaultManager] expressionForKey:key];  
+            UIImage *image = [[ExpressionManager defaultManager] pngExpressionForKey:key];  
             [self showChatMessageViewOnUser:[message userId] title:NSLS(@"kSayToAll") expression:image];
         }else if ([content hasPrefix:NORMAL_CHAT]) {
             NSString *msg = [content stringByReplacingOccurrencesOfString:NORMAL_CHAT withString:NSLS(@"")];
@@ -347,7 +347,7 @@
     }else {
         if ([content hasPrefix:EXPRESSION_CHAT]) {
             NSString *key = [content stringByReplacingOccurrencesOfString:EXPRESSION_CHAT withString:NSLS(@"")];
-            UIImage *image = [[ExpressionManager defaultManager] expressionForKey:key]; 
+            UIImage *image = [[ExpressionManager defaultManager] pngExpressionForKey:key]; 
             [self showChatMessageViewOnUser:[message userId] title:NSLS(@"kSayToYou") expression:image];
         }else if ([content hasPrefix:NORMAL_CHAT]) {
             NSString *msg = [content stringByReplacingOccurrencesOfString:NORMAL_CHAT withString:NSLS(@"")];
