@@ -10,4 +10,7 @@
 
 @interface ContestManager : NSObject
 
++ (ContestManager *)defaultManager;
+- (NSArray *)parseContestList:(NSArray *)jsonArray;
+
 @end

@@ -33,13 +33,10 @@ typedef enum{
     ContestStatus _status;
     NSInteger _participantCount;
     NSInteger _opusCount;
-    
-    NSString *_topicDesc;
-    NSString *_awardDesc;
-    NSString *_ruleDesc;
 
     NSString *_title;
-    NSString *_imageUrl;
+    NSString *_contestUrl;
+    NSString *_statementUrl;
 
 }
 
@@ -53,13 +50,10 @@ typedef enum{
 @property(nonatomic, assign) NSInteger participantCount;
 @property(nonatomic, assign) NSInteger opusCount;
 @property(nonatomic, retain) NSString *title;
-@property(nonatomic, retain) NSString *imageUrl;
+@property(nonatomic, retain) NSString *contestUrl;
+@property(nonatomic, retain) NSString *statementUrl;
 
-//desc info
-@property(nonatomic, retain) NSString *topicDesc;
-@property(nonatomic, retain) NSString *awardDesc;
-@property(nonatomic, retain) NSString *ruleDesc;
-
-
+- (id)initWithDict:(NSDictionary *)dict;
++ (Contest *)contestWithDict:(NSDictionary *)dict;
 
 @end

@@ -26,6 +26,7 @@
 #import "UIViewUtils.h"
 #import "CommonDiceItemAction.h"
 #import "DiceConfigManager.h"
+#import "CallDiceView.h"
 
 
 #define AVATAR_TAG_OFFSET   8000
@@ -40,6 +41,8 @@
 #define DURATION_SHOW_GAIN_COINS 3
 
 #define DURATION_ROLL_BELL 1
+
+#define ROBOT_CALL_TIPS_DIALOG_TAG  20120918
 
 @interface DiceGamePlayController ()
 {
@@ -883,24 +886,10 @@
     
     if (_diceService.lastCallUserId == nil) {
         [_robotManager initialCall:_diceService.diceSession.playingUserCount];
-        DiceResult* result = [_robotManager getWhatToCall];
-       // [self.roomNameLabel setText:[NSString stringWithFormat:@"should call %d X %d (%d)", result.diceCount, result.dice, result.isWild?1:0]];
+
     } else {
-        
-        if ([_robotManager canOpenDice:userCount userId:lastCallUserId number:lastCallDiceCount dice:lastCallDice isWild:isWild]) {
-            //[self.roomNameLabel setText:@"可以开"];
-        } else {
-            [_robotManager decideWhatToCall:userCount number:lastCallDiceCount dice:lastCallDice isWild:isWild myDice:diceList];
-            if ([_robotManager giveUpCall]) {
-                //[self.roomNameLabel setText:@"可以开"];
-            } else {
-                DiceResult* result = [_robotManager getWhatToCall];
-                //[self.roomNameLabel setText:[NSString stringWithFormat:@"should call %d X %d (%d)", result.diceCount, result.dice, result.isWild?1:0]];
-            }
-        }
+        [_robotManager updateDecitionByPlayerCount:userCount userId:lastCallUserId number:lastCallDiceCount dice:lastCallDice isWild:isWild myDiceList:diceList];
     }
-    
-    
     
 }
 
@@ -973,6 +962,9 @@
 #pragma mark - use item animations
 - (void)useItem:(int)itemId itemName:(NSString *)itemName userId:(NSString *)userId
 {
+    if(itemId == ItemTypeDiceRobot) {
+        [self showRobotDecition];
+    }
     
     if (itemId == ItemTypeIncTime) {
         DiceAvatarView* selfAvatar = (DiceAvatarView*)[self selfAvatarView];
@@ -1271,6 +1263,14 @@
 #pragma mark - common dialog delegate
 - (void)clickOk:(CommonDialog *)dialog
 {
+    if (dialog.tag == ROBOT_CALL_TIPS_DIALOG_TAG) {
+        if (_robotManager.result.shouldOpen) {
+            [self openDice];
+        } else {
+            [self callDice:_robotManager.result.dice count:_robotManager.result.diceCount];
+        }
+        return;
+    }
     [self quitDiceGame];
     [[AccountService defaultService] deductAccount:[ConfigManager getDiceFleeCoin] source:LiarDiceFleeType];
 }
@@ -1441,5 +1441,27 @@
     DiceAvatarView* avatar = [self avatarViewOfUser:userId];
     [avatar addFlyClockOnMyHead];
 }
+
+- (void)showRobotDecition
+{
+    CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"kCallTips") 
+                                                       message:nil 
+                                                         style:CommonDialogStyleDoubleButton 
+                                                      delegate:self 
+                                                         theme:CommonDialogThemeDice];
+    dialog.tag = ROBOT_CALL_TIPS_DIALOG_TAG;
+    if (_robotManager.result.shouldOpen) {
+        [dialog.messageLabel setText:NSLS(@"kOpen")];
+    } else {
+        CallDiceView* view = [[CallDiceView alloc] initWithDice:_robotManager.result.dice count:_robotManager.result.diceCount];
+        [dialog.contentView addSubview:view];
+        [view setFrame:CGRectMake(0, 0, dialog.contentView.frame.size.width*0.5, dialog.contentView.frame.size.height*0.5)];
+        [view setCenter:CGPointMake(dialog.contentView.frame.size.width/2, dialog.contentView.frame.size.height/2)];
+        
+    }
+    [dialog showInView:self.view];
+
+}
+
 
 @end

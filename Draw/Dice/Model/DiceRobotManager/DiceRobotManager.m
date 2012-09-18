@@ -12,6 +12,15 @@
 @synthesize dice;
 @synthesize diceCount;
 @synthesize isWild;
+@synthesize shouldOpen;
+
+- (void)reset
+{
+    self.dice = 0;
+    self.diceCount = 0;
+    self.shouldOpen = NO;
+    self.isWild = NO;
+}
 
 @end
 
@@ -184,6 +193,13 @@ void reset(int array[], int count)
 static DiceRobotManager* shareInstance;
 
 @implementation DiceRobotManager
+@synthesize result = _result;
+
+- (void)dealloc
+{
+    [_result release];
+    [super dealloc];
+}
 
 + (DiceRobotManager*)defaultManager
 {
@@ -191,6 +207,15 @@ static DiceRobotManager* shareInstance;
         shareInstance = [[DiceRobotManager alloc] init];
     }
     return shareInstance;
+}
+
+- (id)init
+{
+    self = [super init];
+    if (self) {
+        _result = [[DiceResult alloc] init];
+    }
+    return self;
 }
 
 - (void)newRound:(int)playerCount
@@ -738,6 +763,8 @@ static DiceRobotManager* shareInstance;
         }
 //    }
     globalRound++;
+    
+    [self updateResult];
 }
 
 - (BOOL)giveUpCall {
@@ -755,13 +782,11 @@ static DiceRobotManager* shareInstance;
 //    return result;
 //}
 
-- (DiceResult*)getWhatToCall
+- (void)updateResult
 {
-    DiceResult* result = [[[DiceResult alloc] init] autorelease];
-    result.dice = whatToCall[IDX_DICE_FACE_VALUE];
-    result.diceCount = whatToCall[IDX_NUM_OF_DICE];
-    result.isWild = (whatToCall[IDX_CALL_WILD] == 1);
-    return result;
+    self.result.dice = whatToCall[IDX_DICE_FACE_VALUE];
+    self.result.diceCount = whatToCall[IDX_NUM_OF_DICE];
+    self.result.isWild = (whatToCall[IDX_CALL_WILD] == 1);
 }
 
 
@@ -817,6 +842,27 @@ static DiceRobotManager* shareInstance;
     
     if ( introspection[NUM_MORE_THAN_FOUR] == 0 && introspection[NUM_OF_THREE] == 0 && introspection[NUM_OF_TWO] == 0) {
         introspection[DISTRIBUTE_UNIFORMLY] = 1;
+    }
+}
+
+- (void)updateDecitionByPlayerCount:(int)playerCount 
+                             userId:(NSString*)userId 
+                             number:(int)num 
+                               dice:(int)dice 
+                             isWild:(BOOL)isWild 
+                         myDiceList:(int[])myDiceList
+{
+    [self.result reset];
+    if ([self canOpenDice:playerCount userId:userId number:num dice:dice isWild:isWild]) {
+        self.result.shouldOpen = YES;
+    } else {
+        [self decideWhatToCall:playerCount number:num dice:dice isWild:isWild myDice:myDiceList];
+        if (giveUpCalling) {
+            self.result.shouldOpen = YES;
+        } else {
+            self.result.shouldOpen = NO;
+            [self updateResult];
+        }
     }
 }
 

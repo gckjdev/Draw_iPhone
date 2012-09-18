@@ -82,5 +82,6 @@
 - (DiceAvatarView *)selfAvatarView;
 - (DiceAvatarView*)avatarViewOfUser:(NSString*)userId;
 - (void)urgeUser:(NSString*)userId;
+- (void)showRobotDecition;
 
 @end

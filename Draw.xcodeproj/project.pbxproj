@@ -578,6 +578,7 @@
 		C22585CE15EDC9B5009D686D /* maleImage.png in Resources */ = {isa = PBXBuildFile; fileRef = C22585CC15EDC9B5009D686D /* maleImage.png */; };
 		C225866E15EF5AA4009D686D /* GCServer.m in Sources */ = {isa = PBXBuildFile; fileRef = C225866D15EF5AA4009D686D /* GCServer.m */; };
 		C225867015EF7673009D686D /* shop_bell@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C225866F15EF7673009D686D /* shop_bell@2x.png */; };
+		C22E21871608664F00DE3035 /* DiceRobotItemAction.m in Sources */ = {isa = PBXBuildFile; fileRef = C22E21861608664F00DE3035 /* DiceRobotItemAction.m */; };
 		C24339FF15AAB02400325A76 /* VendingController.m in Sources */ = {isa = PBXBuildFile; fileRef = C24339FD15AAB01D00325A76 /* VendingController.m */; };
 		C2433A0015AAB02400325A76 /* VendingController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C24339FE15AAB02000325A76 /* VendingController.xib */; };
 		C2433A0215AAB06D00325A76 /* VendingController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2433A0115AAB06C00325A76 /* VendingController~ipad.xib */; };
@@ -1072,6 +1073,9 @@
 		CA8974481607230E003A95F7 /* UserFeedController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA8974261607230E003A95F7 /* UserFeedController.m */; };
 		CA8974491607230E003A95F7 /* UserFeedController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA8974271607230E003A95F7 /* UserFeedController.xib */; };
 		CA89744A1607230E003A95F7 /* UserFeedController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA8974281607230E003A95F7 /* UserFeedController~ipad.xib */; };
+		CA89747E16087699003A95F7 /* ContestService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA89747D16087699003A95F7 /* ContestService.m */; };
+		CA89748316087BE2003A95F7 /* ContestController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA89748116087BE2003A95F7 /* ContestController.m */; };
+		CA89748416087BE2003A95F7 /* ContestController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA89748216087BE2003A95F7 /* ContestController.xib */; };
 		CA8D602A1531C98400E016ED /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA8D602C1531C98400E016ED /* Default@2x.png */; };
 		CA8D60631531EC5500E016ED /* ReplayController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA8D60611531EC5500E016ED /* ReplayController.m */; };
 		CA8D60641531EC5500E016ED /* ReplayController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA8D60621531EC5500E016ED /* ReplayController.xib */; };
@@ -2119,6 +2123,8 @@
 		C225866C15EF5AA4009D686D /* GCServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCServer.h; sourceTree = "<group>"; };
 		C225866D15EF5AA4009D686D /* GCServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCServer.m; sourceTree = "<group>"; };
 		C225866F15EF7673009D686D /* shop_bell@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "shop_bell@2x.png"; sourceTree = "<group>"; };
+		C22E21851608664F00DE3035 /* DiceRobotItemAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiceRobotItemAction.h; sourceTree = "<group>"; };
+		C22E21861608664F00DE3035 /* DiceRobotItemAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiceRobotItemAction.m; sourceTree = "<group>"; };
 		C24339FC15AAB01C00325A76 /* VendingController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VendingController.h; sourceTree = "<group>"; };
 		C24339FD15AAB01D00325A76 /* VendingController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VendingController.m; sourceTree = "<group>"; };
 		C24339FE15AAB02000325A76 /* VendingController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VendingController.xib; sourceTree = "<group>"; };
@@ -2982,6 +2988,11 @@
 		CA8974261607230E003A95F7 /* UserFeedController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserFeedController.m; sourceTree = "<group>"; };
 		CA8974271607230E003A95F7 /* UserFeedController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserFeedController.xib; sourceTree = "<group>"; };
 		CA8974281607230E003A95F7 /* UserFeedController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "UserFeedController~ipad.xib"; sourceTree = "<group>"; };
+		CA89747C16087699003A95F7 /* ContestService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContestService.h; sourceTree = "<group>"; };
+		CA89747D16087699003A95F7 /* ContestService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContestService.m; sourceTree = "<group>"; };
+		CA89748016087BE2003A95F7 /* ContestController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContestController.h; sourceTree = "<group>"; };
+		CA89748116087BE2003A95F7 /* ContestController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContestController.m; sourceTree = "<group>"; };
+		CA89748216087BE2003A95F7 /* ContestController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContestController.xib; sourceTree = "<group>"; };
 		CA8D60601531EC5500E016ED /* ReplayController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReplayController.h; sourceTree = "<group>"; };
 		CA8D60611531EC5500E016ED /* ReplayController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReplayController.m; sourceTree = "<group>"; };
 		CA8D60621531EC5500E016ED /* ReplayController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReplayController.xib; sourceTree = "<group>"; };
@@ -3987,6 +3998,8 @@
 				C28E7C101602E5DD00F4B6A5 /* DecTimeItemAction.m */,
 				C28E7C121602E5F800F4B6A5 /* SkipItemAction.h */,
 				C28E7C131602E5F900F4B6A5 /* SkipItemAction.m */,
+				C22E21851608664F00DE3035 /* DiceRobotItemAction.h */,
+				C22E21861608664F00DE3035 /* DiceRobotItemAction.m */,
 			);
 			path = Play;
 			sourceTree = "<group>";
@@ -4570,6 +4583,7 @@
 		CA103B371509A55000F60C03 /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				CA89747B16087678003A95F7 /* Contest */,
 				C2F48BCE15BE4484005C4D72 /* Recommend */,
 				CA02B52515AC240700B2A3E2 /* Item */,
 				CAA9C424159BF40A00398EC5 /* Share */,
@@ -6462,6 +6476,25 @@
 			path = User;
 			sourceTree = "<group>";
 		};
+		CA89747B16087678003A95F7 /* Contest */ = {
+			isa = PBXGroup;
+			children = (
+				CA89747C16087699003A95F7 /* ContestService.h */,
+				CA89747D16087699003A95F7 /* ContestService.m */,
+			);
+			path = Contest;
+			sourceTree = "<group>";
+		};
+		CA89747F16087BBD003A95F7 /* Contest */ = {
+			isa = PBXGroup;
+			children = (
+				CA89748016087BE2003A95F7 /* ContestController.h */,
+				CA89748116087BE2003A95F7 /* ContestController.m */,
+				CA89748216087BE2003A95F7 /* ContestController.xib */,
+			);
+			path = Contest;
+			sourceTree = "<group>";
+		};
 		CA96E264150DD55400292335 /* GameServer */ = {
 			isa = PBXGroup;
 			children = (
@@ -7214,6 +7247,7 @@
 		CAECE0271503B25500BC2404 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				CA89747F16087BBD003A95F7 /* Contest */,
 				CA8973F51607230E003A95F7 /* Feed */,
 				C2E90FD915BD3F2C00828562 /* Recommend */,
 				CA22DCCD157CAFFC009C95CB /* Result */,
@@ -8751,6 +8785,7 @@
 				A43A64C11608518F00F35978 /* lose@2x.png in Resources */,
 				A43A64C41608591E00F35978 /* room_search@2x.png in Resources */,
 				A43A64C51608591E00F35978 /* win@2x.png in Resources */,
+				CA89748416087BE2003A95F7 /* ContestController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -9269,6 +9304,9 @@
 				CA8974461607230E003A95F7 /* MyFeedController.m in Sources */,
 				CA8974481607230E003A95F7 /* UserFeedController.m in Sources */,
 				A43A64B916084E7E00F35978 /* DiceBetView.m in Sources */,
+				C22E21871608664F00DE3035 /* DiceRobotItemAction.m in Sources */,
+				CA89747E16087699003A95F7 /* ContestService.m in Sources */,
+				CA89748316087BE2003A95F7 /* ContestController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

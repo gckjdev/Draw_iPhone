@@ -7,6 +7,7 @@
 //
 
 #import "Contest.h"
+#import "GameNetworkConstants.h"
 
 @implementation Contest
 @synthesize contestId = _contestId;
@@ -17,13 +18,9 @@
 @synthesize status = _status;
 @synthesize participantCount = _participantCount;
 @synthesize opusCount = _opusCount;
-@synthesize imageUrl = _imageUrl;
+@synthesize contestUrl = _contestUrl;
 @synthesize title = _title;
-
-@synthesize topicDesc = _topicDesc;
-@synthesize awardDesc = _awardDesc;
-@synthesize ruleDesc = _ruleDesc;
-
+@synthesize statementUrl = _statementUrl;
 
 - (void)dealloc
 {
@@ -32,12 +29,51 @@
     PPRelease(_endDate);
     PPRelease(_version);
     PPRelease(_title);
-    PPRelease(_imageUrl);
+    PPRelease(_contestUrl);
+    PPRelease(_statementUrl);
     
-    PPRelease(_topicDesc);
-    PPRelease(_ruleDesc);
-    PPRelease(_awardDesc);
     [super dealloc];
+}
+
+/*
+ 
+ {"dat":[{"tp":3,"tt":"猜猜画画11月赛","cid":"505835e6036496eb500bb46d","sd":1348390246,"ed":1348822246,"cu":"http://www.drawlively.com","su":"http://www.drawlively.com","oc":376,"pc":227,"lm":{"lvl":5,"oc":0}}],"ret":0}
+ 
+ */
+
+- (NSInteger)intValueForKey:(NSString *)key inDict:(NSDictionary *)dict
+{
+    NSString *obj = [dict objectForKey:key];
+    return [obj integerValue];
+}
+
+- (id)initWithDict:(NSDictionary *)dict
+{       
+    self = [super init];
+    if (self) {
+        self.contestId = [dict objectForKey:PARA_CONTESTID];
+        self.contestUrl = [dict objectForKey:PARA_CONTEST_URL];
+        self.statementUrl = [dict objectForKey:PARA_STATEMENT_URL];
+        self.title = [dict objectForKey:PARA_TITLE];
+        
+        self.opusCount = [self intValueForKey:PARA_OPUS_COUNT inDict:dict];
+        self.participantCount = [self intValueForKey:PARA_PARTICIPANT_COUNT inDict:dict];        
+        self.type = [self intValueForKey:PARA_TYPE inDict:dict];
+        
+        NSInteger startDate = [self intValueForKey:PARA_START_DATE inDict:dict];
+        NSInteger endDate = [self intValueForKey:PARA_START_DATE inDict:dict];
+        self.startDate = [NSDate dateWithTimeIntervalSince1970:startDate];
+        self.endDate = [NSDate dateWithTimeIntervalSince1970:endDate];
+        
+//        self.startDate
+    }
+    return  self;
+}
+
++ (Contest *)contestWithDict:(NSDictionary *)dict
+{
+    Contest *contest = [[[Contest alloc] initWithDict:dict] autorelease];
+    return contest;
 }
 
 @end
