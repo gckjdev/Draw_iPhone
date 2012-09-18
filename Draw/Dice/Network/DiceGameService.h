@@ -39,4 +39,8 @@
 - (int)ante;
 - (int)maxCallCount;
 
+- (void)betOpenUserWin:(BOOL)win
+                  ante:(int)ante
+                  odds:(float)odds;
+
 @end

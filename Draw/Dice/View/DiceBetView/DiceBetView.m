@@ -12,15 +12,21 @@
 @interface DiceBetView()
 {
     int _second;
+    id<DiceBetViewDelegate> _delegate;
+    int _ante;
+    CGFloat _winOdds;
+    CGFloat _loseOdds;
 }
 
 @property (retain, nonatomic) NSTimer *timer;
+@property (assign, nonatomic) id<DiceBetViewDelegate> delegate;
 
 @end
 
 
 @implementation DiceBetView
 @synthesize timer = _timer;
+@synthesize delegate = _delegate;
 @synthesize bgImageView;
 @synthesize titleLabel;
 @synthesize noteLabel;
@@ -30,6 +36,8 @@
 @synthesize winOddsLabel;
 @synthesize loseLabel;
 @synthesize loseOddsLabel;
+@synthesize betWinButton;
+@synthesize betLoseButton;
 
 - (void)dealloc {
     [_timer release];
@@ -43,6 +51,8 @@
     [loseLabel release];
     [loseOddsLabel release];
     [bgImageView release];
+    [betWinButton release];
+    [betLoseButton release];
     [super dealloc];
 }
 
@@ -61,8 +71,9 @@
           duration:(int)duration
           openUser:(NSString *)nickName
               ante:(int)ante
-           winOdds:(CGFloat)windOdds
-          loseOdds:(CGFloat)loseOdds
+           winOdds:(float)windOdds
+          loseOdds:(float)loseOdds
+          delegate:(id<DiceBetViewDelegate>)delegate
 {
     DiceBetView *betView = [DiceBetView createDiceBetView];
     [betView initWithDuration:duration 
@@ -70,8 +81,11 @@
                          ante:ante
                       winOdds:windOdds 
                      loseOdds:loseOdds];
+    betView.center = view.center;
+    betView.delegate = delegate;
     [view addSubview:betView];
 }
+
 
 - (void)initWithDuration:(int)duration
                 openUser:(NSString *)nickName
@@ -79,6 +93,7 @@
                  winOdds:(CGFloat)windOdds
                 loseOdds:(CGFloat)loseOdds
 {
+    [self createTimer];
     _second = duration;
     bgImageView.image = [[DiceImageManager defaultManager] popupBackgroundImage];
     
@@ -90,6 +105,9 @@
     loseLabel.text = NSLS(@"kLose");
     winOddsLabel.text = NSLS(@"kOdds");
     loseOddsLabel.text = NSLS(@"kOdds");
+    _ante = ante;
+    _winOdds = windOdds;
+    _loseOdds = loseOdds;
 }
 
 - (IBAction)clickCloseButton:(id)sender {
@@ -97,6 +115,30 @@
     [self removeFromSuperview];
 }
 
+- (IBAction)clickBetWinButton:(id)sender {
+    [self killTimer];
+
+    if ([_delegate respondsToSelector:@selector(didBetOpenUserWin:ante:odds:)]) {
+        [_delegate didBetOpenUserWin:YES
+                                ante:_ante 
+                                odds:_winOdds];
+    }
+    
+    [self removeFromSuperview];
+}
+
+- (IBAction)clickBetLoseButton:(id)sender {
+    [self killTimer];
+    
+    if ([_delegate respondsToSelector:@selector(didBetOpenUserWin:ante:odds:)]) {
+        [_delegate didBetOpenUserWin:NO 
+                                ante:_ante
+                                odds:_loseOdds];
+    }
+    
+    [self removeFromSuperview];
+    
+}
 #pragma mark - Timer manage
 
 - (void)createTimer

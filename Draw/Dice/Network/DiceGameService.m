@@ -180,6 +180,14 @@ static DiceGameService* _defaultService;
     [self postNotification:NOTIFICATION_USE_ITEM_REQUEST message:message];
 }
 
+- (void)handleBetDiceRequest:(GameMessage *)message
+{
+}
+
+- (void)handleBetDiceResponse:(GameMessage *)message
+{
+}
+
 - (void)handleCustomMessage:(GameMessage*)message
 {
     switch ([message command]){
@@ -226,6 +234,14 @@ static DiceGameService* _defaultService;
             
         case GameCommandTypeUseItemRequest:
             [self handleUseItemRequest:message];
+            break;
+            
+        case GameCommandTypeBetDiceRequest:
+            [self handleBetDiceRequest:message];
+            break;
+            
+        case GameCommandTypeBetDiceResponse:
+            [self handleBetDiceResponse:message];
             break;
             
             
@@ -380,6 +396,25 @@ static DiceGameService* _defaultService;
     }else {
         return self.session.playingUserCount * 7;
     }
+}
+
+- (void)betOpenUserWin:(BOOL)win
+                  ante:(int)ante
+                  odds:(float)odds
+{
+    int option;
+    if (win) {
+        option = 0;
+    }else {
+        option = 1;
+    }
+    
+    [(DiceNetworkClient *)_networkClient sendBetDiceRequest:[self userId]
+                                                  sessionId:self.session.sessionId
+                                                     option:option
+                                                       ante:ante
+                                                       odds:odds]; 
+
 }
 
 @end
