@@ -26,6 +26,7 @@
 #import "UIViewUtils.h"
 #import "CommonDiceItemAction.h"
 #import "DiceConfigManager.h"
+#import "CallDiceView.h"
 
 
 #define AVATAR_TAG_OFFSET   8000
@@ -40,6 +41,8 @@
 #define DURATION_SHOW_GAIN_COINS 3
 
 #define DURATION_ROLL_BELL 1
+
+#define ROBOT_CALL_TIPS_DIALOG_TAG  20120918
 
 @interface DiceGamePlayController ()
 {
@@ -883,24 +886,10 @@
     
     if (_diceService.lastCallUserId == nil) {
         [_robotManager initialCall:_diceService.diceSession.playingUserCount];
-        DiceResult* result = [_robotManager getWhatToCall];
-       // [self.roomNameLabel setText:[NSString stringWithFormat:@"should call %d X %d (%d)", result.diceCount, result.dice, result.isWild?1:0]];
+
     } else {
-        
-        if ([_robotManager canOpenDice:userCount userId:lastCallUserId number:lastCallDiceCount dice:lastCallDice isWild:isWild]) {
-            //[self.roomNameLabel setText:@"可以开"];
-        } else {
-            [_robotManager decideWhatToCall:userCount number:lastCallDiceCount dice:lastCallDice isWild:isWild myDice:diceList];
-            if ([_robotManager giveUpCall]) {
-                //[self.roomNameLabel setText:@"可以开"];
-            } else {
-                DiceResult* result = [_robotManager getWhatToCall];
-                //[self.roomNameLabel setText:[NSString stringWithFormat:@"should call %d X %d (%d)", result.diceCount, result.dice, result.isWild?1:0]];
-            }
-        }
+        [_robotManager updateDecitionByPlayerCount:userCount userId:lastCallUserId number:lastCallDiceCount dice:lastCallDice isWild:isWild myDiceList:diceList];
     }
-    
-    
     
 }
 
@@ -1415,7 +1404,23 @@
     [avatar addFlyClockOnMyHead];
 }
 
+- (void)showRobotDecition
+{
+    CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"kCallTips") 
+                                                       message:nil 
+                                                         style:CommonDialogStyleDoubleButton 
+                                                      delegate:self 
+                                                         theme:CommonDialogThemeDice];
+    dialog.tag = ROBOT_CALL_TIPS_DIALOG_TAG;
+    if (_robotManager.result.shouldOpen) {
+        [dialog.messageLabel setText:NSLS(@"kOpen")];
+    } else {
+        CallDiceView* view = [[CallDiceView alloc] initWithDice:_robotManager.result.dice count:_robotManager.result.diceCount];
+        [dialog addSubview:view];
+        [view setCenter:CGPointMake(dialog.frame.size.width/2, dialog.frame.size.height/2)];
+    }
 
+}
 
 
 @end
