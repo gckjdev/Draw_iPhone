@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "UICustomPageControl.h"
 #import "ChatViewCell.h"
 #import "CMPopTipView.h"
 
@@ -15,19 +14,21 @@
 @protocol ChatViewDelegate <NSObject>
 
 @optional
-- (void)didChatViewDismiss;
+- (void)didClickCloseButton;
 - (void)didClickExepression:(NSString *)key;
 - (void)didClickMessage:(DiceChatMessage *)message;
 
 @end
 
 
-@interface ChatView : UIView <UITableViewDataSource, UITableViewDelegate, UICustomPageControlDelegate, ChatViewCellDelegate, CMPopTipViewDelegate>
+@interface ChatView : UIView <UITableViewDataSource, UITableViewDelegate, ChatViewCellDelegate, CMPopTipViewDelegate>
 
 @property (assign, nonatomic) id<ChatViewDelegate> delegate;
 
 @property (retain, nonatomic) IBOutlet UIImageView *bgImageView;
 @property (retain, nonatomic) IBOutlet UIScrollView *expressionsHolderView;
+@property (retain, nonatomic) IBOutlet UIPageControl *pageController;
+
 @property (retain, nonatomic) IBOutlet UITableView *messagesHolderView;
 
 + (id)createChatView;

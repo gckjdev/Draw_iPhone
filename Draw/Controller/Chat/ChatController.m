@@ -274,7 +274,7 @@
     [self.view removeFromSuperview];
 
     NSString *key = [(UIButton*)sender titleForState:UIControlStateNormal];
-    UIImage *expression = [[ExpressionManager defaultManager] expressionForKey:key];
+    UIImage *expression = [[ExpressionManager defaultManager] pngExpressionForKey:key];
     
     if (chatControllerDelegate && [chatControllerDelegate respondsToSelector:@selector(didSelectExpression:toUser:)]) {
         NSString *nickName = [self getUserNickName:_chatType userId:_selectedUserId];
@@ -375,14 +375,14 @@
 {
     float edge = (expressionScrollView.frame.size.width - NUM_EXPRESSION_IN_ONE_PAGE*WIDTH_EXPRESSION)/6;
     
-    NSArray *expressions = [[ExpressionManager defaultManager] allKeys];
+    NSArray *expressions = [[ExpressionManager defaultManager] allPngKeys];
     [expressionScrollView setContentSize:CGSizeMake(expressionScrollView.frame.size.width+1, 0)];
     expressionScrollView.showsVerticalScrollIndicator = NO;
     expressionScrollView.showsHorizontalScrollIndicator = NO;
     
     int i = 0;
     for (NSString *key in expressions) {
-        UIImage *image = [[ExpressionManager defaultManager] expressionForKey:key];
+        UIImage *image = [[ExpressionManager defaultManager] pngExpressionForKey:key];
         UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(edge+(WIDTH_EXPRESSION+edge)*i, expressionScrollView.frame.size.height/2-HEIGHT_EXPRESSION/2, WIDTH_EXPRESSION, HEIGHT_EXPRESSION)];
         button.tag = TAG_EXPRESSION_BUTTON+i++;
         [button setBackgroundImage:image forState:UIControlStateNormal];
