@@ -93,6 +93,12 @@
 		A43A64B016084CA100F35978 /* face_shock.gif in Resources */ = {isa = PBXBuildFile; fileRef = A43A64A816084CA100F35978 /* face_shock.gif */; };
 		A43A64B116084CA100F35978 /* face_shy.gif in Resources */ = {isa = PBXBuildFile; fileRef = A43A64A916084CA100F35978 /* face_shy.gif */; };
 		A43A64B216084CA100F35978 /* face_sleep.gif in Resources */ = {isa = PBXBuildFile; fileRef = A43A64AA16084CA100F35978 /* face_sleep.gif */; };
+		A43A64B916084E7E00F35978 /* DiceBetView.m in Sources */ = {isa = PBXBuildFile; fileRef = A43A64B816084E7E00F35978 /* DiceBetView.m */; };
+		A43A64BB16084EA000F35978 /* DiceBetView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A43A64BA16084EA000F35978 /* DiceBetView.xib */; };
+		A43A64C01608518F00F35978 /* clean_input@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A43A64BE1608518B00F35978 /* clean_input@2x.png */; };
+		A43A64C11608518F00F35978 /* lose@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A43A64BF1608518D00F35978 /* lose@2x.png */; };
+		A43A64C41608591E00F35978 /* room_search@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A43A64C21608591A00F35978 /* room_search@2x.png */; };
+		A43A64C51608591E00F35978 /* win@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A43A64C31608591C00F35978 /* win@2x.png */; };
 		A44AD68D15CD149D001666AA /* MessageView.m in Sources */ = {isa = PBXBuildFile; fileRef = A44AD68C15CD149D001666AA /* MessageView.m */; };
 		A44DDF4115C64528005609F6 /* DiceShowView.m in Sources */ = {isa = PBXBuildFile; fileRef = A44DDF4015C64528005609F6 /* DiceShowView.m */; };
 		A44DDF4415C669E0005609F6 /* Dice.pb.m in Sources */ = {isa = PBXBuildFile; fileRef = A44DDF4315C669DF005609F6 /* Dice.pb.m */; };
@@ -1577,6 +1583,13 @@
 		A43A64A816084CA100F35978 /* face_shock.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = face_shock.gif; sourceTree = "<group>"; };
 		A43A64A916084CA100F35978 /* face_shy.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = face_shy.gif; sourceTree = "<group>"; };
 		A43A64AA16084CA100F35978 /* face_sleep.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = face_sleep.gif; sourceTree = "<group>"; };
+		A43A64B716084E7E00F35978 /* DiceBetView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiceBetView.h; sourceTree = "<group>"; };
+		A43A64B816084E7E00F35978 /* DiceBetView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiceBetView.m; sourceTree = "<group>"; };
+		A43A64BA16084EA000F35978 /* DiceBetView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DiceBetView.xib; sourceTree = "<group>"; };
+		A43A64BE1608518B00F35978 /* clean_input@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "clean_input@2x.png"; sourceTree = "<group>"; };
+		A43A64BF1608518D00F35978 /* lose@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "lose@2x.png"; sourceTree = "<group>"; };
+		A43A64C21608591A00F35978 /* room_search@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "room_search@2x.png"; sourceTree = "<group>"; };
+		A43A64C31608591C00F35978 /* win@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "win@2x.png"; sourceTree = "<group>"; };
 		A44AD68B15CD149C001666AA /* MessageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageView.h; sourceTree = "<group>"; };
 		A44AD68C15CD149D001666AA /* MessageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageView.m; sourceTree = "<group>"; };
 		A44DDF2A15C62B18005609F6 /* NotificationName.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NotificationName.h; sourceTree = "<group>"; };
@@ -3590,6 +3603,16 @@
 			path = DiceHelpView;
 			sourceTree = "<group>";
 		};
+		A43A64B616084E6B00F35978 /* DiceBetView */ = {
+			isa = PBXGroup;
+			children = (
+				A43A64B716084E7E00F35978 /* DiceBetView.h */,
+				A43A64B816084E7E00F35978 /* DiceBetView.m */,
+				A43A64BA16084EA000F35978 /* DiceBetView.xib */,
+			);
+			path = DiceBetView;
+			sourceTree = "<group>";
+		};
 		A44DDF3B15C64482005609F6 /* DiceSelectedView */ = {
 			isa = PBXGroup;
 			children = (
@@ -3782,6 +3805,10 @@
 		A4A01B7015D8AF67002FE86D /* game */ = {
 			isa = PBXGroup;
 			children = (
+				A43A64C21608591A00F35978 /* room_search@2x.png */,
+				A43A64C31608591C00F35978 /* win@2x.png */,
+				A43A64BE1608518B00F35978 /* clean_input@2x.png */,
+				A43A64BF1608518D00F35978 /* lose@2x.png */,
 				A43A64A316084CA100F35978 /* face_crasy.gif */,
 				A43A64A416084CA100F35978 /* face_cry.gif */,
 				A43A64A516084CA100F35978 /* face_happy.gif */,
@@ -4022,6 +4049,7 @@
 		A4B7640315C28F8E003B4E72 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				A43A64B616084E6B00F35978 /* DiceBetView */,
 				CACF87A015EB4D2D003FA6B6 /* DiceSettingView */,
 				A42C528215E756CF001D8208 /* DiceHelpView */,
 				C296871F15DCE03F006968BA /* DiceItemInfoView */,
@@ -8718,6 +8746,11 @@
 				A43A64B016084CA100F35978 /* face_shock.gif in Resources */,
 				A43A64B116084CA100F35978 /* face_shy.gif in Resources */,
 				A43A64B216084CA100F35978 /* face_sleep.gif in Resources */,
+				A43A64BB16084EA000F35978 /* DiceBetView.xib in Resources */,
+				A43A64C01608518F00F35978 /* clean_input@2x.png in Resources */,
+				A43A64C11608518F00F35978 /* lose@2x.png in Resources */,
+				A43A64C41608591E00F35978 /* room_search@2x.png in Resources */,
+				A43A64C51608591E00F35978 /* win@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -9235,6 +9268,7 @@
 				CA8974441607230E003A95F7 /* HotController.m in Sources */,
 				CA8974461607230E003A95F7 /* MyFeedController.m in Sources */,
 				CA8974481607230E003A95F7 /* UserFeedController.m in Sources */,
+				A43A64B916084E7E00F35978 /* DiceBetView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
