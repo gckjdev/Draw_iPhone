@@ -61,11 +61,17 @@
         self.type = [self intValueForKey:PARA_TYPE inDict:dict];
         
         NSInteger startDate = [self intValueForKey:PARA_START_DATE inDict:dict];
-        NSInteger endDate = [self intValueForKey:PARA_START_DATE inDict:dict];
+        NSInteger endDate = [self intValueForKey:PARA_END_DATE inDict:dict];
         self.startDate = [NSDate dateWithTimeIntervalSince1970:startDate];
         self.endDate = [NSDate dateWithTimeIntervalSince1970:endDate];
         
-//        self.startDate
+        if ([self.startDate timeIntervalSinceNow] > 0) {
+            self.status = ContestStatusPending;
+        }else if([self.endDate timeIntervalSinceNow] < 0){
+            self.status = ContestStatusPassed;
+        }else {
+            self.status = ContestStatusRunning;
+        }
     }
     return  self;
 }

@@ -7,6 +7,8 @@
 //
 
 #import "ContestController.h"
+#import "Contest.h"
+#import "ConfigManager.h"
 
 @implementation ContestController
 
@@ -32,7 +34,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    _contestService = [ContestService  defaultService];
+    [_contestService getContestListWithType:ContestListTypeAll offset:0 limit:12 delegate:self];
 }
 
 - (void)viewDidUnload
@@ -48,4 +51,18 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
+
+
+#pragma mark contest service delegate
+
+- (void)didGetContestList:(NSArray *)contestList 
+                     type:(ContestListType)type 
+               resultCode:(NSInteger)code
+{
+    PPDebug(@"didGetContestList, type = %d, code = %d, contestList = %@", type,code,contestList);
+}
+
+- (IBAction)clickBackButton:(id)sender {
+    [self.navigationController popViewControllerAnimated:YES];
+}
 @end

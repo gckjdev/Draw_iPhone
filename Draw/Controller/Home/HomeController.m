@@ -60,6 +60,8 @@
 #import "BoardManager.h"
 
 
+#import "ContestController.h"
+
 @interface HomeController()
 {
     BoardPanel *_boardPanel;
@@ -590,6 +592,12 @@
     
 
 
+}
+
+- (IBAction)clickContestButton:(id)sender {
+    ContestController *cc = [[ContestController alloc] init];
+    [self.navigationController pushViewController:cc animated:YES];
+    [cc release];
 }
 
 
