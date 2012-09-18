@@ -176,6 +176,7 @@
         _audioManager = [AudioManager defaultManager];
         _expressionManager = [ExpressionManager defaultManager];
         _soundManager = [DiceSoundManager defaultManager];
+        _robotManager = [DiceRobotManager defaultManager];
         _urgedUser = [[NSMutableSet alloc] init];
     }
     
@@ -815,6 +816,19 @@
 
 }
 
+- (void)tellDiceToRobot:(NSArray*)list
+{
+    [_robotManager newRound:_diceService.diceSession.playingUserCount];
+    int diceList[5];
+    for (int i = 0; i < 5; i ++) {
+        if (i < _diceService.myDiceList.count) {
+            diceList[i] = ((PBDice*)[_diceService.myDiceList objectAtIndex:i]).dice;
+        }
+    }
+    [_robotManager introspectRobotDices:diceList];
+   // [self.roomNameLabel setText:nil];
+}
+
 - (void)rollDiceEnd
 {
     self.itemsBoxButton.enabled = YES;
@@ -828,6 +842,8 @@
     [myDiceListHolderView addSubview:diceShowView];
     
     myDiceListHolderView.hidden = NO;
+    
+    [self tellDiceToRobot:[_diceService myDiceList]];
 }
 
 - (void)removeUrgedUser:(NSString*)userId
@@ -849,6 +865,45 @@
     }
 }
 
+- (void)robotMakeDecitions
+{
+    int userCount = _diceService.diceSession.playingUserCount;
+    int lastCallDice = _diceService.diceSession.lastCallDice;
+    int lastCallDiceCount = _diceService.diceSession.lastCallDiceCount;
+    NSString* lastCallUserId = _diceService.diceSession.lastCallDiceUserId;
+    BOOL isWild = _diceService.diceSession.wilds;
+    
+    int diceList[5];
+    for (int i = 0; i < 5; i ++) {
+        if (i < _diceService.myDiceList.count) {
+            diceList[i] = ((PBDice*)[_diceService.myDiceList objectAtIndex:i]).dice;
+        }
+    }
+    
+    
+    if (_diceService.lastCallUserId == nil) {
+        [_robotManager initialCall:_diceService.diceSession.playingUserCount];
+        DiceResult* result = [_robotManager getWhatToCall];
+       // [self.roomNameLabel setText:[NSString stringWithFormat:@"should call %d X %d (%d)", result.diceCount, result.dice, result.isWild?1:0]];
+    } else {
+        
+        if ([_robotManager canOpenDice:userCount userId:lastCallUserId number:lastCallDiceCount dice:lastCallDice isWild:isWild]) {
+            //[self.roomNameLabel setText:@"可以开"];
+        } else {
+            [_robotManager decideWhatToCall:userCount number:lastCallDiceCount dice:lastCallDice isWild:isWild myDice:diceList];
+            if ([_robotManager giveUpCall]) {
+                //[self.roomNameLabel setText:@"可以开"];
+            } else {
+                DiceResult* result = [_robotManager getWhatToCall];
+                //[self.roomNameLabel setText:[NSString stringWithFormat:@"should call %d X %d (%d)", result.diceCount, result.dice, result.isWild?1:0]];
+            }
+        }
+    }
+    
+    
+    
+}
+
 - (void)nextPlayerStart
 {
     [self clearAllReciprocol];
@@ -865,6 +920,8 @@
     if ([_userManager isMe:currentPlayUserId])
     {                        
         self.openDiceButton.fontLable.text = NSLS(@"kOpenDice");
+        
+        [self robotMakeDecitions];
 
         // 根据实际叫斋情况判断是否使能斋按钮。
         self.wildsButton.enabled = !_diceService.diceSession.wilds;
