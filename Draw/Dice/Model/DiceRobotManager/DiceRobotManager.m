@@ -221,6 +221,7 @@ static DiceRobotManager* shareInstance;
 - (void)newRound:(int)playerCount
 {
     [self balanceAndReset:playerCount];
+    [self.result reset];
     [lastCall removeAllObjects];
     [changeDiceValue removeAllObjects];
 }

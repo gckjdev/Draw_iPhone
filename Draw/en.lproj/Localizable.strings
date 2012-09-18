@@ -886,5 +886,11 @@
 "kLose" = "Lose";
 "kOdds" = "%d:%d";
 
+"kCallTips" = "Suggestion";
+"kJustOpen" = "Just open it!";
+
+"kDoItLikeThis" = "Do it";
+"kThinkMyself" = "Cancel";
+
 /*********************** 大话骰子国际化字符串结束 *************************/
 
