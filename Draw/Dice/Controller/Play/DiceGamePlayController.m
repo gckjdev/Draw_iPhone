@@ -1012,6 +1012,8 @@
     [_diceSelectedView dismiss];
     [self popupOpenDiceView];  
     [self playOpenDiceVoice];
+    
+    [self showBetView];
 }
 
 - (void)playOpenDiceVoice
@@ -1236,6 +1238,31 @@
     }
 }
 
+- (void)showBetView
+{
+    if (_diceService.diceSession.isMeAByStander 
+        || [[_userManager userId] isEqualToString:_diceService.openDiceUserId]
+        || [[_userManager userId] isEqualToString:_diceService.lastCallUserId]) {
+        return;
+    }
+    
+    NSString *nickName = [_diceService.session getNickNameByUserId:_diceService.openDiceUserId];
+    [DiceBetView showInView:self.view 
+                   duration:5 
+                   openUser:nickName 
+                       ante:100 
+                    winOdds:1.0 
+                   loseOdds:1.0 
+                   delegate:self];
+}
+
+- (void)didBetOpenUserWin:(BOOL)win ante:(int)ante odds:(float)odds
+{
+    PPDebug(@"Bet %@, ante:%d, odds:%f", win?@"win":@"lose", ante, odds);
+    [_diceService betOpenUserWin:win ante:ante odds:odds];
+}
+
+
 - (IBAction)clickSettingButton:(id)sender {
     DiceSettingView *settingView = [DiceSettingView createDiceSettingView];
     [settingView showInView:self.view];
@@ -1414,8 +1441,5 @@
     DiceAvatarView* avatar = [self avatarViewOfUser:userId];
     [avatar addFlyClockOnMyHead];
 }
-
-
-
 
 @end
