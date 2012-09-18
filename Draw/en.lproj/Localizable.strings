@@ -878,5 +878,13 @@
 "kDiceHighRoom" = "High Room %d";
 "kDiceSuperHighRoom" = "Super High %d";
 
+"kBetViewTitle" = "Bet(%d)";
+"kBetNote" = "Player【%@】challenge, would you bet?";
+"kAnte" = "Ante";
+"kAnteCoins" = "%d";
+"kWin" = "Win";
+"kLose" = "Lose";
+"kOdds" = "%d:%d";
+
 /*********************** 大话骰子国际化字符串结束 *************************/
 
