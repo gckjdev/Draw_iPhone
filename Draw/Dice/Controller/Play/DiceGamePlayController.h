@@ -27,6 +27,7 @@
 #import "ExpressionManager.h"
 #import "DiceSoundManager.h"
 #import "DiceItemManager.h"
+#import "DiceRobotManager.h"
 
 #define USER_THINK_TIME_INTERVAL 15
 
@@ -42,6 +43,7 @@
     AudioManager *_audioManager;
     ExpressionManager *_expressionManager;
     DiceSoundManager *_soundManager;
+    DiceRobotManager* _robotManager;
     NSMutableSet* _urgedUser;
 }
 
