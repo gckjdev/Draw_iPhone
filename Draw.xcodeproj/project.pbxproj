@@ -605,6 +605,9 @@
 		C296872C15DCE03F006968BA /* DiceItemInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C296872215DCE03F006968BA /* DiceItemInfoView.xib */; };
 		C296872D15DCE03F006968BA /* DiceUserInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = C296872515DCE03F006968BA /* DiceUserInfoView.m */; };
 		C296872E15DCE03F006968BA /* DiceUserInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C296872615DCE03F006968BA /* DiceUserInfoView.xib */; };
+		C297078116099DB600BE0789 /* CommonSearchView.m in Sources */ = {isa = PBXBuildFile; fileRef = C297078016099DB600BE0789 /* CommonSearchView.m */; };
+		C297078316099EC500BE0789 /* CommonSearchView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C297078216099EC500BE0789 /* CommonSearchView.xib */; };
+		C297078516099EEC00BE0789 /* CommonSearchView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C297078416099EEC00BE0789 /* CommonSearchView~ipad.xib */; };
 		C29A300715CA16AC00BD0B73 /* CustomLabelUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = C29A300615CA16AC00BD0B73 /* CustomLabelUtil.m */; };
 		C29A300B15CA17FE00BD0B73 /* HKGirlFontLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = C29A300A15CA17FE00BD0B73 /* HKGirlFontLabel.m */; };
 		C29B8A211563B02000B9707D /* CommonMessageCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = C29B8A1F1563B02000B9707D /* CommonMessageCenter.m */; };
@@ -2170,6 +2173,10 @@
 		C296872415DCE03F006968BA /* DiceUserInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiceUserInfoView.h; sourceTree = "<group>"; };
 		C296872515DCE03F006968BA /* DiceUserInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiceUserInfoView.m; sourceTree = "<group>"; };
 		C296872615DCE03F006968BA /* DiceUserInfoView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DiceUserInfoView.xib; sourceTree = "<group>"; };
+		C297077F16099DB600BE0789 /* CommonSearchView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonSearchView.h; sourceTree = "<group>"; };
+		C297078016099DB600BE0789 /* CommonSearchView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonSearchView.m; sourceTree = "<group>"; };
+		C297078216099EC500BE0789 /* CommonSearchView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommonSearchView.xib; sourceTree = "<group>"; };
+		C297078416099EEC00BE0789 /* CommonSearchView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "CommonSearchView~ipad.xib"; sourceTree = "<group>"; };
 		C29A300515CA16AC00BD0B73 /* CustomLabelUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomLabelUtil.h; sourceTree = "<group>"; };
 		C29A300615CA16AC00BD0B73 /* CustomLabelUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomLabelUtil.m; sourceTree = "<group>"; };
 		C29A300915CA17FE00BD0B73 /* HKGirlFontLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HKGirlFontLabel.h; path = FontLabel/HKGirlFontLabel.h; sourceTree = "<group>"; };
@@ -3769,6 +3776,10 @@
 				A4AC51F815C911750041DC86 /* FontButton.m */,
 				A45E8CD715C77F960089E240 /* DiceView.h */,
 				A45E8CD815C77F960089E240 /* DiceView.m */,
+				C297077F16099DB600BE0789 /* CommonSearchView.h */,
+				C297078016099DB600BE0789 /* CommonSearchView.m */,
+				C297078216099EC500BE0789 /* CommonSearchView.xib */,
+				C297078416099EEC00BE0789 /* CommonSearchView~ipad.xib */,
 			);
 			path = CommonView;
 			sourceTree = "<group>";
@@ -8799,6 +8810,8 @@
 				CA89748416087BE2003A95F7 /* ContestController.xib in Resources */,
 				A43A64D71609595700F35978 /* DiceBetView~ipad.xib in Resources */,
 				CA3F2EA9160967B80059667B /* ContestView.xib in Resources */,
+				C297078316099EC500BE0789 /* CommonSearchView.xib in Resources */,
+				C297078516099EEC00BE0789 /* CommonSearchView~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -9321,6 +9334,7 @@
 				CA89747E16087699003A95F7 /* ContestService.m in Sources */,
 				CA89748316087BE2003A95F7 /* ContestController.m in Sources */,
 				CA3F2EA8160967B80059667B /* ContestView.m in Sources */,
+				C297078116099DB600BE0789 /* CommonSearchView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
