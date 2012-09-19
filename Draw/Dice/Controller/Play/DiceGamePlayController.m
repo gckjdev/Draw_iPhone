@@ -1464,14 +1464,25 @@
                                                          theme:CommonDialogThemeDice];
     dialog.tag = ROBOT_CALL_TIPS_DIALOG_TAG;
     if (_robotManager.result.shouldOpen) {
-        [dialog.messageLabel setText:NSLS(@"kOpen")];
+        [dialog.messageLabel setText:NSLS(@"kJustOpen")];
     } else {
         CallDiceView* view = [[CallDiceView alloc] initWithDice:_robotManager.result.dice count:_robotManager.result.diceCount];
         [dialog.contentView addSubview:view];
-        [view setFrame:CGRectMake(0, 0, dialog.contentView.frame.size.width*0.5, dialog.contentView.frame.size.height*0.5)];
         [view setCenter:CGPointMake(dialog.contentView.frame.size.width/2, dialog.contentView.frame.size.height/2)];
+        if (_robotManager.result.isWild) {
+            FontButton* btn = [[[FontButton alloc] initWithFrame:self.wildsFlagButton.frame] autorelease];
+            [btn setBackgroundImage:[UIImage imageNamed:@"zhai_bg.png"] forState:UIControlStateNormal];
+            [btn.fontLable setText:NSLS(@"kDiceWilds")];
+            [btn setTitle:NSLS(@"kDiceWilds") forState:UIControlStateNormal];
+            [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+            [dialog.contentView addSubview:btn];
+            [btn setCenter:CGPointMake(view.frame.origin.x - btn.frame.size.width, view.center.y)];
+            
+        }
         
     }
+    [dialog.oKButton.fontLable setText:NSLS(@"kDoItLikeThis")];
+    [dialog.backButton.fontLable setText:NSLS(@"kThinkMyself")];
     [dialog showInView:self.view];
 
 }

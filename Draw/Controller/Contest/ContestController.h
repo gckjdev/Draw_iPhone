@@ -7,7 +7,13 @@
 //
 
 #import "PPTableViewController.h"
+#import "ContestService.h"
 
-@interface ContestController : PPTableViewController
+@interface ContestController : PPTableViewController<ContestServiceDelegate>
+{
+    ContestService *_contestService;
+}
+
+- (IBAction)clickBackButton:(id)sender;
 
 @end
