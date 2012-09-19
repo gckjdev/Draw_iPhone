@@ -6,8 +6,8 @@
 //  Copyright (c) 2012年 __MyCompanyName__. All rights reserved.
 //
 
-#import "PPViewController.h"
+#import "CommonTabController.h"
 
-@interface HotController : PPViewController
+@interface HotController : CommonTabController
 
 @end
