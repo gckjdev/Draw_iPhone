@@ -12,31 +12,31 @@
 #define KEY_PNG_SMILE @"[smile]"
 #define VALUE_PNG_SMILE @"face_smile.png"
 
-#define KEY_GIF_SMILE @"@smile@"
+#define KEY_GIF_SMILE @"[smile]"            //兼容老版本
 #define VALUE_GIF_SMILE @"face_smile.gif"
 
 #define KEY_PNG_PROUD @"[proud]"
 #define VALUE_PNG_PROUD @"face_proud.png"
 
-#define KEY_GIF_PROUD @"@proud@"
+#define KEY_GIF_PROUD @"[proud]"
 #define VALUE_GIF_PROUD @"face_proud.gif"
 
 #define KEY_PNG_EMBARRASS @"[embarrass]"
 #define VALUE_PNG_EMBARRASS @"face_embarrass.png"
 
-#define KEY_GIF_EMBARRASS @"@embarrass@"
+#define KEY_GIF_EMBARRASS @"[embarrass]"
 #define VALUE_GIF_EMBARRASS @"face_embarrass.gif"
 
 #define KEY_PNG_WRY @"[wry]"
 #define VALUE_PNG_WRY @"face_wry.png"
 
-#define KEY_GIF_WRY @"@wry@"
+#define KEY_GIF_WRY @"[wry]"
 #define VALUE_GIF_WRY @"face_wry.gif"
 
 #define KEY_PNG_ANGER @"[anger]"
 #define VALUE_PNG_ANGER @"face_anger.png"
 
-#define KEY_GIF_ANGER @"@anger@"
+#define KEY_GIF_ANGER @"[anger]"
 #define VALUE_GIF_ANGER @"face_anger.gif"
 
 
