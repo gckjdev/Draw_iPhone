@@ -1460,7 +1460,8 @@
             FontButton* btn = [[[FontButton alloc] initWithFrame:self.wildsFlagButton.frame] autorelease];
             [btn setBackgroundImage:[UIImage imageNamed:@"zhai_bg.png"] forState:UIControlStateNormal];
             [btn.fontLable setText:NSLS(@"kDiceWilds")];
-            [btn.fontLable setTextColor:[UIColor blackColor]];
+            [btn setTitle:NSLS(@"kDiceWilds") forState:UIControlStateNormal];
+            [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
             [dialog.contentView addSubview:btn];
             [btn setCenter:CGPointMake(view.frame.origin.x - btn.frame.size.width, view.center.y)];
             
