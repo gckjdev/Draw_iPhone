@@ -75,6 +75,7 @@
 @property (retain, nonatomic) IBOutlet UIView *popupLevel3View;
 @property (retain, nonatomic) IBOutlet UILabel *anteLabel;
 @property (retain, nonatomic) IBOutlet UIView *anteView;
+@property (retain, nonatomic) IBOutlet HKGirlFontLabel *waitForPlayerBetLabel;
 
 //- (id)initWIthRuleType:(DiceGameRuleType)ruleType;
 
