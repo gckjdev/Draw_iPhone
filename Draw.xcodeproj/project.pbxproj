@@ -942,6 +942,8 @@
 		CA3B56E31514CB7D00A93137 /* GamePlayResult.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3B56E21514CB7D00A93137 /* GamePlayResult.m */; };
 		CA3B56E61514CB9400A93137 /* GameUserComment.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3B56E51514CB9300A93137 /* GameUserComment.m */; };
 		CA3B56E91514D41F00A93137 /* DrawAction.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3B56E81514D41E00A93137 /* DrawAction.m */; };
+		CA3F2EA8160967B80059667B /* ContestView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3F2EA6160967B80059667B /* ContestView.m */; };
+		CA3F2EA9160967B80059667B /* ContestView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA3F2EA7160967B80059667B /* ContestView.xib */; };
 		CA41C944152010FF00013DC8 /* ItemShopController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA41C942152010FF00013DC8 /* ItemShopController.m */; };
 		CA41C945152010FF00013DC8 /* ItemShopController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA41C943152010FF00013DC8 /* ItemShopController.xib */; };
 		CA41C9491520179100013DC8 /* ShoppingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA41C9471520179000013DC8 /* ShoppingCell.m */; };
@@ -2786,6 +2788,9 @@
 		CA3B56E51514CB9300A93137 /* GameUserComment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameUserComment.m; sourceTree = "<group>"; };
 		CA3B56E71514D41E00A93137 /* DrawAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawAction.h; sourceTree = "<group>"; };
 		CA3B56E81514D41E00A93137 /* DrawAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawAction.m; sourceTree = "<group>"; };
+		CA3F2EA5160967B80059667B /* ContestView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContestView.h; sourceTree = "<group>"; };
+		CA3F2EA6160967B80059667B /* ContestView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContestView.m; sourceTree = "<group>"; };
+		CA3F2EA7160967B80059667B /* ContestView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContestView.xib; sourceTree = "<group>"; };
 		CA41C941152010FF00013DC8 /* ItemShopController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemShopController.h; sourceTree = "<group>"; };
 		CA41C942152010FF00013DC8 /* ItemShopController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemShopController.m; sourceTree = "<group>"; };
 		CA41C943152010FF00013DC8 /* ItemShopController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ItemShopController.xib; sourceTree = "<group>"; };
@@ -6494,6 +6499,9 @@
 				CA89748016087BE2003A95F7 /* ContestController.h */,
 				CA89748116087BE2003A95F7 /* ContestController.m */,
 				CA89748216087BE2003A95F7 /* ContestController.xib */,
+				CA3F2EA5160967B80059667B /* ContestView.h */,
+				CA3F2EA6160967B80059667B /* ContestView.m */,
+				CA3F2EA7160967B80059667B /* ContestView.xib */,
 			);
 			path = Contest;
 			sourceTree = "<group>";
@@ -8790,6 +8798,7 @@
 				A43A64C51608591E00F35978 /* win@2x.png in Resources */,
 				CA89748416087BE2003A95F7 /* ContestController.xib in Resources */,
 				A43A64D71609595700F35978 /* DiceBetView~ipad.xib in Resources */,
+				CA3F2EA9160967B80059667B /* ContestView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -9311,6 +9320,7 @@
 				C22E21871608664F00DE3035 /* DiceRobotItemAction.m in Sources */,
 				CA89747E16087699003A95F7 /* ContestService.m in Sources */,
 				CA89748316087BE2003A95F7 /* ContestController.m in Sources */,
+				CA3F2EA8160967B80059667B /* ContestView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
