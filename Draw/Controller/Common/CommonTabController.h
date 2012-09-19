@@ -8,6 +8,35 @@
 
 #import "PPTableViewController.h"
 
-@interface CommonTabController : PPTableViewController
+@class TableTabManager;
+@class TableTab;
 
+
+@protocol CommonTabControllerDelegate <NSObject>
+
+@required
+- (NSInteger)tabCount; //default 1
+- (NSInteger)currentTabIndex; //default 0
+- (NSInteger)fetchDataLimitForTabIndex:(NSInteger)index; //default 20
+- (NSInteger)tabIDforIndex:(NSInteger)index;
+
+@optional
+- (NSString *)tabNoDataTipsforIndex:(NSInteger)index;
+
+@end
+
+@interface CommonTabController : PPTableViewController<CommonTabControllerDelegate>
+{
+    TableTabManager *_tabManager;
+}
+
+
+//used by the sub class.
+- (NSMutableArray *)tabDataList;
+- (TableTab *)currentTab;
+- (void)startToLoadNewDataForTabID:(NSInteger)tabID;
+- (void)finishLoadDataForTabID:(NSInteger)tabID resultList:(NSArray *)list;
+- (void)failLoadDataForTabID:(NSInteger)tabID;
+
+//- (void)startToLoadNewDataForTabID:(NSInteger)tabID;
 @end

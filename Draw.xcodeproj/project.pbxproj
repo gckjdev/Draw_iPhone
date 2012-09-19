@@ -954,7 +954,12 @@
 		CA3F2ED81609BCFB0059667B /* ContestOpusController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3F2ED61609BCFB0059667B /* ContestOpusController.m */; };
 		CA3F2ED91609BCFB0059667B /* ContestOpusController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA3F2ED71609BCFB0059667B /* ContestOpusController.xib */; };
 		CA3F2F1F1609BDCA0059667B /* CommonTabController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3F2F1D1609BDCA0059667B /* CommonTabController.m */; };
-		CA3F2F201609BDCA0059667B /* CommonTabController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA3F2F1E1609BDCA0059667B /* CommonTabController.xib */; };
+		CA3F2F241609CC020059667B /* RankFirstCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3F2F221609CC020059667B /* RankFirstCell.m */; };
+		CA3F2F251609CC020059667B /* RankFirstCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA3F2F231609CC020059667B /* RankFirstCell.xib */; };
+		CA3F2F291609CC280059667B /* RankSecondCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3F2F271609CC280059667B /* RankSecondCell.m */; };
+		CA3F2F2A1609CC280059667B /* RankSecondCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA3F2F281609CC280059667B /* RankSecondCell.xib */; };
+		CA3F2F2E1609CC3F0059667B /* RankNormalCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3F2F2C1609CC3E0059667B /* RankNormalCell.m */; };
+		CA3F2F2F1609CC3F0059667B /* RankNormalCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA3F2F2D1609CC3E0059667B /* RankNormalCell.xib */; };
 		CA41C944152010FF00013DC8 /* ItemShopController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA41C942152010FF00013DC8 /* ItemShopController.m */; };
 		CA41C945152010FF00013DC8 /* ItemShopController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA41C943152010FF00013DC8 /* ItemShopController.xib */; };
 		CA41C9491520179100013DC8 /* ShoppingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA41C9471520179000013DC8 /* ShoppingCell.m */; };
@@ -2817,7 +2822,15 @@
 		CA3F2ED71609BCFB0059667B /* ContestOpusController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContestOpusController.xib; sourceTree = "<group>"; };
 		CA3F2F1C1609BDCA0059667B /* CommonTabController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonTabController.h; sourceTree = "<group>"; };
 		CA3F2F1D1609BDCA0059667B /* CommonTabController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonTabController.m; sourceTree = "<group>"; };
-		CA3F2F1E1609BDCA0059667B /* CommonTabController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommonTabController.xib; sourceTree = "<group>"; };
+		CA3F2F211609CC020059667B /* RankFirstCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RankFirstCell.h; sourceTree = "<group>"; };
+		CA3F2F221609CC020059667B /* RankFirstCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RankFirstCell.m; sourceTree = "<group>"; };
+		CA3F2F231609CC020059667B /* RankFirstCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RankFirstCell.xib; sourceTree = "<group>"; };
+		CA3F2F261609CC270059667B /* RankSecondCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RankSecondCell.h; sourceTree = "<group>"; };
+		CA3F2F271609CC280059667B /* RankSecondCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RankSecondCell.m; sourceTree = "<group>"; };
+		CA3F2F281609CC280059667B /* RankSecondCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RankSecondCell.xib; sourceTree = "<group>"; };
+		CA3F2F2B1609CC3E0059667B /* RankNormalCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RankNormalCell.h; sourceTree = "<group>"; };
+		CA3F2F2C1609CC3E0059667B /* RankNormalCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RankNormalCell.m; sourceTree = "<group>"; };
+		CA3F2F2D1609CC3E0059667B /* RankNormalCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RankNormalCell.xib; sourceTree = "<group>"; };
 		CA41C941152010FF00013DC8 /* ItemShopController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemShopController.h; sourceTree = "<group>"; };
 		CA41C942152010FF00013DC8 /* ItemShopController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemShopController.m; sourceTree = "<group>"; };
 		CA41C943152010FF00013DC8 /* ItemShopController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ItemShopController.xib; sourceTree = "<group>"; };
@@ -5569,7 +5582,6 @@
 				C2615AA01597FC0B00CEEC66 /* CommonUserInfoView~ipad.xib */,
 				CA3F2F1C1609BDCA0059667B /* CommonTabController.h */,
 				CA3F2F1D1609BDCA0059667B /* CommonTabController.m */,
-				CA3F2F1E1609BDCA0059667B /* CommonTabController.xib */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -6503,6 +6515,15 @@
 				CA89741D1607230E003A95F7 /* HotController.h */,
 				CA89741E1607230E003A95F7 /* HotController.m */,
 				CA89741F1607230E003A95F7 /* HotController.xib */,
+				CA3F2F211609CC020059667B /* RankFirstCell.h */,
+				CA3F2F221609CC020059667B /* RankFirstCell.m */,
+				CA3F2F231609CC020059667B /* RankFirstCell.xib */,
+				CA3F2F261609CC270059667B /* RankSecondCell.h */,
+				CA3F2F271609CC280059667B /* RankSecondCell.m */,
+				CA3F2F281609CC280059667B /* RankSecondCell.xib */,
+				CA3F2F2B1609CC3E0059667B /* RankNormalCell.h */,
+				CA3F2F2C1609CC3E0059667B /* RankNormalCell.m */,
+				CA3F2F2D1609CC3E0059667B /* RankNormalCell.xib */,
 			);
 			path = Hot;
 			sourceTree = "<group>";
@@ -8855,7 +8876,9 @@
 				CA3F2ECE1609B3050059667B /* StatementView.xib in Resources */,
 				CA3F2ED31609B3360059667B /* StatementController.xib in Resources */,
 				CA3F2ED91609BCFB0059667B /* ContestOpusController.xib in Resources */,
-				CA3F2F201609BDCA0059667B /* CommonTabController.xib in Resources */,
+				CA3F2F251609CC020059667B /* RankFirstCell.xib in Resources */,
+				CA3F2F2A1609CC280059667B /* RankSecondCell.xib in Resources */,
+				CA3F2F2F1609CC3F0059667B /* RankNormalCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -9383,6 +9406,9 @@
 				CA3F2ED21609B3360059667B /* StatementController.m in Sources */,
 				CA3F2ED81609BCFB0059667B /* ContestOpusController.m in Sources */,
 				CA3F2F1F1609BDCA0059667B /* CommonTabController.m in Sources */,
+				CA3F2F241609CC020059667B /* RankFirstCell.m in Sources */,
+				CA3F2F291609CC280059667B /* RankSecondCell.m in Sources */,
+				CA3F2F2E1609CC3F0059667B /* RankNormalCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
