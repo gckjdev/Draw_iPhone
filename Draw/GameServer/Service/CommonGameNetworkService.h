@@ -64,6 +64,12 @@
 - (void)getRoomList:(int)startIndex 
               count:(int)count 
    shouldReloadData:(BOOL)shouldReloadData;
+- (void)getRoomList:(int)startIndex 
+              count:(int)count 
+   shouldReloadData:(BOOL)shouldReloadData 
+           roomType:(int)type 
+            keyword:(NSString*)keyword 
+             gameId:(NSString*)gameId;
 
 - (void)joinGameRequest;
 //- (void)joinGameRequestWithRuleType:(int)ruleType;
