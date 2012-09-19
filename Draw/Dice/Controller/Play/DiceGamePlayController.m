@@ -44,10 +44,12 @@
 
 #define ROBOT_CALL_TIPS_DIALOG_TAG  20120918
 
+#define DURATION_PLAYER_BET 5
+
 @interface DiceGamePlayController ()
 {
     int hideAdCounter;
-//    DiceGameRuleType _ruleType;
+    int _second;
 }
 
 @property (retain, nonatomic) DiceSelectedView *diceSelectedView;
@@ -101,6 +103,7 @@
 @synthesize popupLevel3View = _popupLevel3View;
 @synthesize anteLabel = _anteLabel;
 @synthesize anteView = _anteView;
+@synthesize waitForPlayerBetLabel = _waitForPlayerBetLabel;
 @synthesize popupView = _popupView;
 @synthesize adHideTimer = _adHideTimer;
 
@@ -145,6 +148,7 @@
     [_urgedUser release];
     [_anteLabel release];
     [_anteView release];
+    [_waitForPlayerBetLabel release];
     [super dealloc];
 }
 
@@ -239,6 +243,7 @@
     self.openDiceButton.hidden = YES;
     self.anteView.hidden = YES;
     self.anteLabel.text = [NSString stringWithFormat:@"%d", _diceService.ante]; 
+    self.waitForPlayerBetLabel.hidden = YES;
 
     [self registerDiceGameNotifications];    
     
@@ -285,6 +290,7 @@
     [self setPopupLevel3View:nil];
     [self setAnteLabel:nil];
     [self setAnteView:nil];
+    [self setWaitForPlayerBetLabel:nil];
     [super viewDidUnload];
 }
 
@@ -1128,11 +1134,12 @@
                        gender:gender];
 }
 
-
 - (void)gameOver;
 {
     [_popupView dismissItemListView];
     self.itemsBoxButton.enabled = NO;
+    [self killTimer];
+    self.waitForPlayerBetLabel.hidden = YES;
     [self clearAllReciprocol];
     
     self.resultDiceCountLabel.text = @"0";
@@ -1232,15 +1239,21 @@
 
 - (void)showBetView
 {
-    if (_diceService.diceSession.isMeAByStander 
-        || [[_userManager userId] isEqualToString:_diceService.openDiceUserId]
-        || [[_userManager userId] isEqualToString:_diceService.lastCallUserId]) {
+    if (_diceService.diceSession.isMeAByStander) {
         return;
+    }
+    
+    if ([[_userManager userId] isEqualToString:_diceService.openDiceUserId]
+        || [[_userManager userId] isEqualToString:_diceService.lastCallUserId]) {
+        self.waitForPlayerBetLabel.hidden = NO;
+        _second = DURATION_PLAYER_BET;
+        self.waitForPlayerBetLabel.text = [NSString stringWithFormat:NSLS(@"kWaitForPlayerBet"), _second];
+        [self createTimer];
     }
     
     NSString *nickName = [_diceService.session getNickNameByUserId:_diceService.openDiceUserId];
     [DiceBetView showInView:self.view 
-                   duration:5 
+                   duration:DURATION_PLAYER_BET 
                    openUser:nickName 
                        ante:100 
                     winOdds:1.0 
@@ -1463,5 +1476,40 @@
 
 }
 
+
+#pragma mark - Timer manage
+
+- (void)createTimer
+{
+    [self killTimer];
+    
+    PPDebug(@"self count: %d", self.retainCount);
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:1.0
+                                                  target:self 
+                                                selector:@selector(handleTimer:)
+                                                userInfo:nil 
+                                                 repeats:YES];
+    
+    PPDebug(@"self count: %d", self.retainCount);
+}
+
+- (void)killTimer
+{
+    if ([timer isValid]) {
+        [timer invalidate];        
+    }
+    self.timer = nil;
+}
+
+- (void)handleTimer:(NSTimer *)timer
+{
+    _second--;
+    
+    self.waitForPlayerBetLabel.text = [NSString stringWithFormat:NSLS(@"kWaitForPlayerBet"), _second];    
+    if (_second <= 0) {
+        [self killTimer];
+        self.waitForPlayerBetLabel.hidden = YES;
+    }
+}
 
 @end
