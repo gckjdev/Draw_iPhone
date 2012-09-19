@@ -376,24 +376,32 @@
     [dialog showInView:self.view];
 }
 
+- (void)refreshRoomsByFilter:(RoomFilter)filter
+{
+    [[DiceGameService defaultService] getRoomList:0 count:ROOMS_COUNT_PER_PAGE shouldReloadData:YES roomType:filter keyword:nil gameId:[ConfigManager gameId]];
+}
+
 
 - (IBAction)clickAll:(id)sender
 {
     [self.allRoomButton setSelected:YES];
     [self.friendRoomButton setSelected:NO];
     [self.nearByRoomButton setSelected:NO];
+    [self refreshRoomsByFilter:(RoomFilter)allRoom];
 }
 - (IBAction)clickFriendRoom:(id)sender
 {
     [self.allRoomButton setSelected:NO];
     [self.friendRoomButton setSelected:YES];
     [self.nearByRoomButton setSelected:NO];
+    [self refreshRoomsByFilter:(RoomFilter)friendRoom];
 }
 - (IBAction)clickNearBy:(id)sender
 {
     [self.allRoomButton setSelected:NO];
     [self.friendRoomButton setSelected:NO];
     [self.nearByRoomButton setSelected:YES];
+    [self refreshRoomsByFilter:(RoomFilter)nearByRoom];
 }
 
 #pragma mark - CommonGameServiceDelegate

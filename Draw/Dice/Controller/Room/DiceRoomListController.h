@@ -14,6 +14,12 @@
 #import "CommonDialog.h"
 #import "DiceConfigManager.h"
 
+typedef enum {
+    allRoom = 0,
+    friendRoom = 1,
+    nearByRoom = 2
+}RoomFilter;
+
 @class FontButton;
 @class PBGameSession;
 
