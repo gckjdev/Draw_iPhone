@@ -947,6 +947,14 @@
 		CA3B56E91514D41F00A93137 /* DrawAction.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3B56E81514D41E00A93137 /* DrawAction.m */; };
 		CA3F2EA8160967B80059667B /* ContestView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3F2EA6160967B80059667B /* ContestView.m */; };
 		CA3F2EA9160967B80059667B /* ContestView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA3F2EA7160967B80059667B /* ContestView.xib */; };
+		CA3F2ECD1609B3050059667B /* StatementView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3F2ECB1609B3040059667B /* StatementView.m */; };
+		CA3F2ECE1609B3050059667B /* StatementView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA3F2ECC1609B3050059667B /* StatementView.xib */; };
+		CA3F2ED21609B3360059667B /* StatementController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3F2ED01609B3350059667B /* StatementController.m */; };
+		CA3F2ED31609B3360059667B /* StatementController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA3F2ED11609B3350059667B /* StatementController.xib */; };
+		CA3F2ED81609BCFB0059667B /* ContestOpusController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3F2ED61609BCFB0059667B /* ContestOpusController.m */; };
+		CA3F2ED91609BCFB0059667B /* ContestOpusController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA3F2ED71609BCFB0059667B /* ContestOpusController.xib */; };
+		CA3F2F1F1609BDCA0059667B /* CommonTabController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3F2F1D1609BDCA0059667B /* CommonTabController.m */; };
+		CA3F2F201609BDCA0059667B /* CommonTabController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA3F2F1E1609BDCA0059667B /* CommonTabController.xib */; };
 		CA41C944152010FF00013DC8 /* ItemShopController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA41C942152010FF00013DC8 /* ItemShopController.m */; };
 		CA41C945152010FF00013DC8 /* ItemShopController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA41C943152010FF00013DC8 /* ItemShopController.xib */; };
 		CA41C9491520179100013DC8 /* ShoppingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA41C9471520179000013DC8 /* ShoppingCell.m */; };
@@ -2798,6 +2806,18 @@
 		CA3F2EA5160967B80059667B /* ContestView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContestView.h; sourceTree = "<group>"; };
 		CA3F2EA6160967B80059667B /* ContestView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContestView.m; sourceTree = "<group>"; };
 		CA3F2EA7160967B80059667B /* ContestView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContestView.xib; sourceTree = "<group>"; };
+		CA3F2ECA1609B3040059667B /* StatementView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatementView.h; sourceTree = "<group>"; };
+		CA3F2ECB1609B3040059667B /* StatementView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatementView.m; sourceTree = "<group>"; };
+		CA3F2ECC1609B3050059667B /* StatementView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StatementView.xib; sourceTree = "<group>"; };
+		CA3F2ECF1609B3350059667B /* StatementController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatementController.h; sourceTree = "<group>"; };
+		CA3F2ED01609B3350059667B /* StatementController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatementController.m; sourceTree = "<group>"; };
+		CA3F2ED11609B3350059667B /* StatementController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StatementController.xib; sourceTree = "<group>"; };
+		CA3F2ED51609BCFB0059667B /* ContestOpusController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContestOpusController.h; sourceTree = "<group>"; };
+		CA3F2ED61609BCFB0059667B /* ContestOpusController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContestOpusController.m; sourceTree = "<group>"; };
+		CA3F2ED71609BCFB0059667B /* ContestOpusController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContestOpusController.xib; sourceTree = "<group>"; };
+		CA3F2F1C1609BDCA0059667B /* CommonTabController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonTabController.h; sourceTree = "<group>"; };
+		CA3F2F1D1609BDCA0059667B /* CommonTabController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonTabController.m; sourceTree = "<group>"; };
+		CA3F2F1E1609BDCA0059667B /* CommonTabController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommonTabController.xib; sourceTree = "<group>"; };
 		CA41C941152010FF00013DC8 /* ItemShopController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemShopController.h; sourceTree = "<group>"; };
 		CA41C942152010FF00013DC8 /* ItemShopController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemShopController.m; sourceTree = "<group>"; };
 		CA41C943152010FF00013DC8 /* ItemShopController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ItemShopController.xib; sourceTree = "<group>"; };
@@ -5547,6 +5567,9 @@
 				C2615A9C1597FBB800CEEC66 /* CommonUserInfoView.m */,
 				C2615A9E1597FBEB00CEEC66 /* CommonUserInfoView.xib */,
 				C2615AA01597FC0B00CEEC66 /* CommonUserInfoView~ipad.xib */,
+				CA3F2F1C1609BDCA0059667B /* CommonTabController.h */,
+				CA3F2F1D1609BDCA0059667B /* CommonTabController.m */,
+				CA3F2F1E1609BDCA0059667B /* CommonTabController.xib */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -6021,6 +6044,16 @@
 				CA65C216152DE52E00462C96 /* FacebookSNSService.m */,
 			);
 			path = Service;
+			sourceTree = "<group>";
+		};
+		CA3F2ED41609BCC90059667B /* Opus */ = {
+			isa = PBXGroup;
+			children = (
+				CA3F2ED51609BCFB0059667B /* ContestOpusController.h */,
+				CA3F2ED61609BCFB0059667B /* ContestOpusController.m */,
+				CA3F2ED71609BCFB0059667B /* ContestOpusController.xib */,
+			);
+			path = Opus;
 			sourceTree = "<group>";
 		};
 		CA4216251522A0E800FAA008 /* StoreKit */ = {
@@ -6507,12 +6540,19 @@
 		CA89747F16087BBD003A95F7 /* Contest */ = {
 			isa = PBXGroup;
 			children = (
+				CA3F2ED41609BCC90059667B /* Opus */,
 				CA89748016087BE2003A95F7 /* ContestController.h */,
 				CA89748116087BE2003A95F7 /* ContestController.m */,
 				CA89748216087BE2003A95F7 /* ContestController.xib */,
 				CA3F2EA5160967B80059667B /* ContestView.h */,
 				CA3F2EA6160967B80059667B /* ContestView.m */,
 				CA3F2EA7160967B80059667B /* ContestView.xib */,
+				CA3F2ECA1609B3040059667B /* StatementView.h */,
+				CA3F2ECB1609B3040059667B /* StatementView.m */,
+				CA3F2ECC1609B3050059667B /* StatementView.xib */,
+				CA3F2ECF1609B3350059667B /* StatementController.h */,
+				CA3F2ED01609B3350059667B /* StatementController.m */,
+				CA3F2ED11609B3350059667B /* StatementController.xib */,
 			);
 			path = Contest;
 			sourceTree = "<group>";
@@ -8812,6 +8852,10 @@
 				CA3F2EA9160967B80059667B /* ContestView.xib in Resources */,
 				C297078316099EC500BE0789 /* CommonSearchView.xib in Resources */,
 				C297078516099EEC00BE0789 /* CommonSearchView~ipad.xib in Resources */,
+				CA3F2ECE1609B3050059667B /* StatementView.xib in Resources */,
+				CA3F2ED31609B3360059667B /* StatementController.xib in Resources */,
+				CA3F2ED91609BCFB0059667B /* ContestOpusController.xib in Resources */,
+				CA3F2F201609BDCA0059667B /* CommonTabController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -9335,6 +9379,10 @@
 				CA89748316087BE2003A95F7 /* ContestController.m in Sources */,
 				CA3F2EA8160967B80059667B /* ContestView.m in Sources */,
 				C297078116099DB600BE0789 /* CommonSearchView.m in Sources */,
+				CA3F2ECD1609B3050059667B /* StatementView.m in Sources */,
+				CA3F2ED21609B3360059667B /* StatementController.m in Sources */,
+				CA3F2ED81609BCFB0059667B /* ContestOpusController.m in Sources */,
+				CA3F2F1F1609BDCA0059667B /* CommonTabController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

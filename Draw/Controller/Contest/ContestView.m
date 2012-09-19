@@ -25,22 +25,13 @@
 + (id)createContestView:(id)delegate
 {
     NSString* identifier = @"ContestView";
-    //    NSLog(@"cellId = %@", cellId);
     NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:identifier owner:self options:nil];
-    // Grab a pointer to the first object (presumably the custom cell, as that's all the XIB should contain).  
     if (topLevelObjects == nil || [topLevelObjects count] <= 0){
         NSLog(@"create %@ but cannot find view object from Nib", identifier);
         return nil;
     }
     ContestView *view = [topLevelObjects objectAtIndex:0];
     view.delegate = delegate;
-//    
-    ShareImageManager *imageManager = [ShareImageManager defaultManager];
-    [view.opusButton setBackgroundImage:[imageManager orangeImage] forState:UIControlStateNormal];
-    [view.joinButton setBackgroundImage:[imageManager greenImage] forState:UIControlStateNormal];
-    [view.detailButton setBackgroundImage:[imageManager normalButtonImage] forState:UIControlStateNormal];
-    [view.bgView setImage:[imageManager normalButtonImage]];
-
     return view;
 }
 
@@ -89,7 +80,11 @@
                            contest.participantCount];
     [self.joinButton setTitle:joinTitle forState:UIControlStateNormal];
     
-    
+    ShareImageManager *imageManager = [ShareImageManager defaultManager];
+    [self.opusButton setBackgroundImage:[imageManager orangeImage] forState:UIControlStateNormal];
+    [self.joinButton setBackgroundImage:[imageManager greenImage] forState:UIControlStateNormal];
+    [self.detailButton setBackgroundImage:[imageManager normalButtonImage] forState:UIControlStateNormal];
+    [self.bgView setImage:[imageManager normalButtonImage]];
 }
 
 - (void)refreshRequest

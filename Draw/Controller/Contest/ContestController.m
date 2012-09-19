@@ -9,6 +9,7 @@
 #import "ContestController.h"
 #import "Contest.h"
 #import "ConfigManager.h"
+#import "StatementView.h"
 
 @implementation ContestController
 @synthesize scrollView = _scrollView;
@@ -150,6 +151,9 @@
              onDetailButton:(Contest *)contest
 {
     PPDebug(@"click detail button");
+    StatementView *state = [StatementView createStatementView:self];
+    [state setViewInfo:contest];
+    [state showInView:self.view];
 }
 
 - (void)dealloc {
