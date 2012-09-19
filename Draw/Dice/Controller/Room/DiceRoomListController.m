@@ -25,6 +25,7 @@
 #import "CoinShopController.h"
 #import "LmWallService.h"
 
+
 #define KEY_GAME_MESSAGE @"KEY_GAME_MESSAGE"
 #define ROOMS_COUNT_PER_PAGE  20
 
@@ -388,6 +389,7 @@
     [self.friendRoomButton setSelected:NO];
     [self.nearByRoomButton setSelected:NO];
     [self refreshRoomsByFilter:(RoomFilter)allRoom];
+    _currentRoomType = allRoom;
 }
 - (IBAction)clickFriendRoom:(id)sender
 {
@@ -395,6 +397,7 @@
     [self.friendRoomButton setSelected:YES];
     [self.nearByRoomButton setSelected:NO];
     [self refreshRoomsByFilter:(RoomFilter)friendRoom];
+    _currentRoomType = friendRoom;
 }
 - (IBAction)clickNearBy:(id)sender
 {
@@ -402,6 +405,7 @@
     [self.friendRoomButton setSelected:NO];
     [self.nearByRoomButton setSelected:YES];
     [self refreshRoomsByFilter:(RoomFilter)nearByRoom];
+    _currentRoomType = nearByRoom;
 }
 
 #pragma mark - CommonGameServiceDelegate
@@ -487,6 +491,32 @@
 {        
     [UIUtils alertWithTitle:@"免费金币获取提示" msg:@"下载免费应用即可获取金币！下载完应用一定要打开才可以获得奖励哦！"];
     [[LmWallService defaultService] show:self];
+}
+
+#pragma mark - common info view delegate
+- (void)infoViewDidDisappear
+{
+    _searchView = nil;
+}
+
+#pragma mark - CommonSearchViewDelegate
+
+- (void)willSearch:(NSString *)keywords byView:(CommonSearchView *)view
+{
+    [[DiceGameService defaultService] getRoomList:0 count:ROOMS_COUNT_PER_PAGE shouldReloadData:YES roomType:_currentRoomType keyword:keywords gameId:[ConfigManager gameId]];
+    [self showActivityWithText:NSLS(@"kSearching")];
+}
+
+- (IBAction)clickSearch:(id)sender
+{
+    if (_searchView) {
+        [_searchView disappear];
+    } else {
+        _searchView = [CommonSearchView showInView:self.view 
+                                           byTheme:CommonSearchViewThemeDice 
+                                           atPoint:CGPointMake(self.view.center.x, self.friendRoomButton.center.y) 
+                                          delegate:self];
+    }
 }
 
 @end

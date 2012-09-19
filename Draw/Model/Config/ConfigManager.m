@@ -326,7 +326,7 @@
 
 + (NSString*)getDiceServerListStringWithNormal
 {
-    return @"192.168.1.198:8080";
+//    return @"192.168.1.198:8080";
     return [MobClickUtils getStringValueByKey:@"DICE_SERVER_LIST" defaultValue:@"58.215.164.153:8018"];
 }
 
