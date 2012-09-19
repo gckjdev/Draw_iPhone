@@ -19,7 +19,7 @@
 - (NSInteger)currentTabIndex; //default 0
 - (NSInteger)fetchDataLimitForTabIndex:(NSInteger)index; //default 20
 - (NSInteger)tabIDforIndex:(NSInteger)index;
-
+- (NSString *)tabTitleforIndex:(NSInteger)index;
 @optional
 - (NSString *)tabNoDataTipsforIndex:(NSInteger)index;
 

@@ -143,7 +143,11 @@
 
 - (NSString *)tabNoDataTipsforIndex:(NSInteger)index
 {
-    return NSLS(@"kNoData");
+    return nil;
+}
+- (NSString *)tabTitleforIndex:(NSInteger)index
+{
+    return nil;
 }
 
 @end

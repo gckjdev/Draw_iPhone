@@ -26,6 +26,7 @@ typedef enum{
     NSMutableArray *_dataList;
     TableTabStatus _status;
     NSString *_noDataDesc;
+    NSString *_title;
 }
 
 @property(nonatomic, retain)NSString *noDataDesc;

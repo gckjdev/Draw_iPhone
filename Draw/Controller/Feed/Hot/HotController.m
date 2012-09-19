@@ -48,4 +48,35 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
+
+#pragma mark common tab controller
+
+- (NSInteger)tabCount
+{
+    return 1;
+}
+- (NSInteger)currentTabIndex
+{
+    return 0;
+}
+- (NSInteger)fetchDataLimitForTabIndex:(NSInteger)index
+{
+    return 20;
+}
+- (NSInteger)tabIDforIndex:(NSInteger)index
+{
+    return index;
+}
+
+- (NSString *)tabNoDataTipsforIndex:(NSInteger)index
+{
+    return NSLS(@"kNoData");
+}
+
+- (NSString *)tabTitleforIndex:(NSInteger)index
+{
+    return nil;
+}
+
+
 @end

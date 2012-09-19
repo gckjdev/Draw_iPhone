@@ -6,8 +6,20 @@
 //  Copyright (c) 2012年 __MyCompanyName__. All rights reserved.
 //
 
-#import "PPTableViewController.h"
+#import "PPTableViewCell.h"
 
-@interface RankFirstCell : PPTableViewController
+@class HJManagedImageV;
+@class DrawFeed;
+@interface RankFirstCell : PPTableViewCell
+{
+    DrawFeed *_feed;
+}
+
+@property (retain, nonatomic) IBOutlet HJManagedImageV *drawImage;
+@property (retain, nonatomic) IBOutlet UILabel *drawTitle;
+@property (retain, nonatomic) IBOutlet UILabel *drawAutor;
+@property (retain, nonatomic) DrawFeed *feed;
+
+- (void)setCellInfo:(DrawFeed *)feed;
 
 @end
