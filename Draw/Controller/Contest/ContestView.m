@@ -7,12 +7,22 @@
 //
 
 #import "ContestView.h"
+#import "Contest.h"
+//#import <QuartzCore/QuartzCore.h>
+#import "ShareImageManager.h"
 
 @implementation ContestView
+
 @synthesize delegate = _delegate;
 @synthesize contest = _contest;
 
-+ (id)createCommentHeaderView:(id)delegate
+@synthesize webView = _webView;
+@synthesize opusButton = _opusButton;
+@synthesize detailButton = _detailButton;
+@synthesize joinButton = _joinButton;
+@synthesize bgView = _bgView;
+
++ (id)createContestView:(id)delegate
 {
     NSString* identifier = @"ContestView";
     //    NSLog(@"cellId = %@", cellId);
@@ -24,19 +34,95 @@
     }
     ContestView *view = [topLevelObjects objectAtIndex:0];
     view.delegate = delegate;
+//    
+    ShareImageManager *imageManager = [ShareImageManager defaultManager];
+    [view.opusButton setBackgroundImage:[imageManager orangeImage] forState:UIControlStateNormal];
+    [view.joinButton setBackgroundImage:[imageManager greenImage] forState:UIControlStateNormal];
+    [view.detailButton setBackgroundImage:[imageManager normalButtonImage] forState:UIControlStateNormal];
+    [view.bgView setImage:[imageManager normalButtonImage]];
+
     return view;
 }
 
 - (void)dealloc
 {
     PPRelease(_contest);
+    PPRelease(_joinButton);
+    PPRelease(_opusButton);
+    PPRelease(_detailButton);
+    PPRelease(_webView);
+    PPRelease(_bgView);
     [super dealloc];
+}
+
+- (IBAction)clickOpusButton:(id)sender {
+    if (self.delegate && [self.delegate respondsToSelector:@selector(didClickContestView:onOpusButton:)]) {
+        [self.delegate didClickContestView:self onOpusButton:self.contest];
+    }
+}
+
+- (IBAction)clickDetailButton:(id)sender {
+    if (self.delegate && [self.delegate respondsToSelector:@selector(didClickContestView:onDetailButton:)]) {
+        [self.delegate didClickContestView:self onDetailButton:self.contest];
+    }
+}
+
+- (IBAction)clickJoinButton:(id)sender {
+    if (self.delegate && [self.delegate respondsToSelector:@selector(didClickContestView:onJoinButton:)]) {
+        [self.delegate didClickContestView:self onJoinButton:self.contest];
+    }
 }
 
 - (void)setViewInfo:(Contest *)contest
 {
-    self.contest = contest;
-    //update the view info.
+    
+//    [(UIScrollView *) [[self.webView subviews] objectAtIndex:0] setBounces:NO];
+    self.contest = contest;    
+    [self refreshRequest];
+    [self.webView.scrollView setScrollEnabled:NO];
+    //set count
+    NSString *opusTitle = [NSString stringWithFormat:NSLS(@"kOpusCount"),
+                           contest.opusCount];
+    [self.opusButton setTitle:opusTitle forState:UIControlStateNormal];
+    
+    NSString *joinTitle = [NSString stringWithFormat:NSLS(@"kJoinCount"),
+                           contest.participantCount];
+    [self.joinButton setTitle:joinTitle forState:UIControlStateNormal];
+    
+    
 }
+
+- (void)refreshRequest
+{
+    
+    NSURLRequest *request = [NSURLRequest requestWithURL:
+                             [NSURL URLWithString:self.contest.contestUrl]];
+
+//    NSURLRequest *request = [NSURLRequest requestWithURL:
+//                             [NSURL URLWithString:self.contest.contestUrl] 
+//                                             cachePolicy:NSURLRequestUseProtocolCachePolicy 
+//                                         timeoutInterval:60];
+    [self.webView loadRequest:request];
+}
+
++ (CGFloat)getViewWidth
+{
+    return [DeviceDetection isIPAD] ? 600 : 320;
+}
++ (CGFloat)getViewHeight
+{
+    return [DeviceDetection isIPAD] ? 900 : 360;
+}
+
+#pragma mark - web view delegate
+- (void)webViewDidFinishLoad:(UIWebView *)webView
+{
+    PPDebug(@"<webViewDidFinishLoad>");
+}
+- (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
+{
+    PPDebug(@"<didFailLoadWithError>, error = %@",error);
+}
+
 
 @end
