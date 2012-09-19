@@ -13,6 +13,8 @@
 #import "DiceHelpView.h"
 #import "CommonDialog.h"
 #import "DiceConfigManager.h"
+#import "CommonSearchView.h"
+
 
 typedef enum {
     allRoom = 0,
@@ -22,13 +24,16 @@ typedef enum {
 
 @class FontButton;
 @class PBGameSession;
+@class CommonSearchView;
 
-@interface DiceRoomListController : PPTableViewController<CommonGameServiceDelegate, InputDialogDelegate, DiceHelpViewDelegate, CommonDialogDelegate> {
+@interface DiceRoomListController : PPTableViewController<CommonGameServiceDelegate, InputDialogDelegate, DiceHelpViewDelegate, CommonDialogDelegate, CommonSearchViewDelegate, CommonInfoViewDelegate> {
     BOOL _isJoiningDice;
     DiceGameService* _diceGameService;
     PBGameSession* _currentSession;
     NSTimer* _refreshRoomTimer;
     BOOL firstLoad;
+    int _currentRoomType;
+    CommonSearchView* _searchView;
 }
 
 - (id)initWithRuleType:(DiceGameRuleType)ruleType;
