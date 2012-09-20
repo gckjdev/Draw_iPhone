@@ -362,6 +362,8 @@ enum{
     [super viewDidAppear:animated];
 //    [self didUpdateShowView];
     [self clickRefresh:nil];
+    [self updateTitle];    
+    [self updateActionButtons];
 }
 
 

@@ -39,6 +39,19 @@
     return self;
 }
 
+- (id)init
+{
+    self = [super init];
+    if (self) {
+        _tabList = [[NSMutableArray array] retain];
+    }
+    return self;
+}
+- (void)addTab:(TableTab *)tab
+{
+    [_tabList addObject:tab];
+}
+
 - (NSArray *)tabList
 {
     return _tabList;

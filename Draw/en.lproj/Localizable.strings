@@ -779,6 +779,9 @@
 "kPickPenColor" = "Pen Color Selection";
 "kPickBGColor" = "Background Color Selection";
 
+
+"kOpusCount" = "Opus(%d)";
+"kJoinCount" = "Join(%d)";
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 
