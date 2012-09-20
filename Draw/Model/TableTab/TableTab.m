@@ -19,16 +19,19 @@
 @synthesize currentTab = _currentTab;
 @synthesize dataList = _dataList;
 @synthesize noDataDesc = _noDataDesc;
+@synthesize title = _title;
 
 - (void)dealloc
 {
     PPRelease(_dataList);
     PPRelease(_noDataDesc);
+    PPRelease(_title);
     [super dealloc];
 }
 
 - (id)initWithTabID:(NSInteger)tabID
               index:(NSInteger)index
+              title:(NSString *)title
              offset:(NSInteger)offset
               limit:(NSInteger)limit 
          noDataDesc:(NSString *)noDataDesc
@@ -39,6 +42,7 @@
     if (self) {
         self.tabID = tabID;
         self.index = index;
+        self.title = title;
         self.offset = offset;
         self.limit = limit;
         self.hasMoreData = hasMoreData;
@@ -51,7 +55,8 @@
 }
 
 + (TableTab *)tabWithID:(NSInteger)tabID
-                  index:(NSInteger)index
+                  index:(NSInteger)index 
+                  title:(NSString *)title
                  offset:(NSInteger)offset
                   limit:(NSInteger)limit 
              noDataDesc:(NSString *)noDataDesc
@@ -60,6 +65,7 @@
 {
     return [[[TableTab alloc] initWithTabID:tabID 
                                       index:index 
+                                      title:title
                                      offset:offset 
                                       limit:limit 
                                  noDataDesc:noDataDesc

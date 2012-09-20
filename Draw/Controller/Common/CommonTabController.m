@@ -10,6 +10,8 @@
 #import "TableTabManager.h"
 
 @implementation CommonTabController
+@synthesize titleLabel = _titleLabel;
+@synthesize noDataTipLabl = _noDataTipLabl;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -31,6 +33,8 @@
 - (void)dealloc
 {
     PPRelease(_tabManager);
+    PPRelease(_titleLabel);
+    PPRelease(_noDataTipLabl);
     [super dealloc];
 }
 
@@ -44,7 +48,16 @@
         NSInteger tabID = [self tabIDforIndex:i];
         NSInteger limit = [self fetchDataLimitForTabIndex:i];
         NSString *noDataDesc = [self tabNoDataTipsforIndex:i];
-        TableTab *tab = [TableTab tabWithID:tabID index:0 offset:0 limit:limit noDataDesc:noDataDesc hasMoreData:YES isCurrentTab:NO];
+        NSString *title = [self tabTitleforIndex:i];
+        TableTab *tab = [TableTab tabWithID:tabID 
+                                      index:i 
+                                      title:title 
+                                     offset:0 
+                                      limit:limit
+                                 noDataDesc:noDataDesc 
+                                hasMoreData:YES 
+                               isCurrentTab:NO];
+        
         [_tabManager addTab:tab];
     }
     [[_tabManager tabAtIndex:currentTabIndex] setCurrentTab:YES];
@@ -54,6 +67,8 @@
 
 - (void)viewDidLoad
 {
+    [self setSupportRefreshHeader:YES];
+    [self setSupportRefreshFooter:YES];
     [super viewDidLoad];
     [self initTabs];
 }
@@ -61,6 +76,8 @@
 - (void)viewDidUnload
 {
     [super viewDidUnload];
+    [self setTitleLabel:nil];
+    [self setNoDataTipLabl:nil];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
 }
@@ -69,6 +86,25 @@
 {
     // Return YES for supported orientations
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
+
+- (IBAction)clickBackButton:(id)sender
+{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (IBAction)clickTabButton:(id)sender
+{
+    UIButton *button = (UIButton *)sender;
+    [self.currentTabButton setSelected:NO];
+    [button setSelected:YES];
+    TableTab *tab = [_tabManager tabForID:button.tag];
+    [_tabManager setCurrentTab:tab];
+    [self.dataTableView reloadData];
+    if (tab.status == TableTabStatusUnload) {
+        [self startToLoadDataForTabID:tab.tabID];
+        [self serviceLoadDataForTabID:tab.tabID];
+    }
 }
 
 #pragma mark - methods used by sub classes
@@ -82,28 +118,53 @@
     return [_tabManager currentTab];
 }
 
+- (UIButton *)tabButtonWithTabID:(NSInteger)tabID
+{
+    return (UIButton *)[self.view viewWithTag:tabID];        
+}
 
-- (void)startToLoadNewDataForTabID:(NSInteger)tabID
+
+- (UIButton *)currentTabButton
+{
+    TableTab *tab = [self currentTab];
+    if (tab) {
+        return [self tabButtonWithTabID:tab.tabID];
+    }
+    return nil;
+}
+
+- (void)startToLoadDataForTabID:(NSInteger)tabID
 {
     TableTab * tab = [_tabManager tabForID:tabID];
     tab.status = TableTabStatusLoading;
-    tab.offset = 0;
 }
 
 - (void)finishLoadDataForTabID:(NSInteger)tabID resultList:(NSArray *)list
 {
+    [self dataSourceDidFinishLoadingNewData];   
+    [self dataSourceDidFinishLoadingMoreData];
+
     TableTab * tab = [_tabManager tabForID:tabID];
     if ([list count] == 0) {
         tab.hasMoreData = NO;
     }else{
         tab.hasMoreData = YES;        
+        if (tab.offset == 0) {
+            [tab.dataList removeAllObjects];
+        }
         [tab.dataList addObjectsFromArray:list];
         tab.offset += [tab.dataList count];
     }
     tab.status = TableTabStatusLoaded;
+    if (tab.isCurrentTab) {
+        [self.dataTableView reloadData];
+    }
 }
 - (void)failLoadDataForTabID:(NSInteger)tabID
 {
+    [self dataSourceDidFinishLoadingNewData];   
+    [self dataSourceDidFinishLoadingMoreData];
+
     TableTab * tab = [_tabManager tabForID:tabID];
     if ([tab.dataList count] == 0) {
         tab.status = TableTabStatusUnload;
@@ -119,6 +180,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     NSInteger count = [[self tabDataList] count];
+    self.noMoreData = !self.currentTab.hasMoreData;
     return count;
 }
 
@@ -150,4 +212,26 @@
     return nil;
 }
 
+
+- (void)serviceLoadDataForTabID:(NSInteger)tabID
+{
+    
+}
+
+#pragma mark - refresh header & footer delegate
+- (void)reloadTableViewDataSource
+{
+    TableTab *tab = self.currentTab;
+    tab.status = TableTabStatusUnload;
+    tab.offset = 0;
+    [self startToLoadDataForTabID:tab.tabID];
+    [self serviceLoadDataForTabID:tab.tabID];
+}
+
+- (void)loadMoreTableViewDataSource
+{
+    TableTab *tab = self.currentTab;
+    [self startToLoadDataForTabID:tab.tabID];
+    [self serviceLoadDataForTabID:tab.tabID];
+}
 @end

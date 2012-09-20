@@ -54,6 +54,7 @@
 - (void)updateBadgeWithUserInfo:(NSDictionary *)userInfo;
 
 - (IBAction)clickContestButton:(id)sender;
+- (IBAction)clickRankButton:(id)sender;
 
 - (void)enterShareFromWeixin;
 @end

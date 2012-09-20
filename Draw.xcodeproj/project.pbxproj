@@ -658,6 +658,12 @@
 		C2A09758152ECCB5006535F7 /* GifManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C2A09757152ECCB5006535F7 /* GifManager.m */; };
 		C2A0975B152ECD31006535F7 /* GifView.m in Sources */ = {isa = PBXBuildFile; fileRef = C2A0975A152ECD30006535F7 /* GifView.m */; };
 		C2A09762152ECDEA006535F7 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2A09761152ECDEA006535F7 /* ImageIO.framework */; };
+		C2B002A1160B0EF300AC5F3B /* CustomDiceSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2B0029F160B0EF300AC5F3B /* CustomDiceSettingViewController.m */; };
+		C2B002A2160B0EF300AC5F3B /* CustomDiceSettingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2B002A0160B0EF300AC5F3B /* CustomDiceSettingViewController.xib */; };
+		C2B002A5160B134F00AC5F3B /* CustomDiceSettingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C2B002A4160B134F00AC5F3B /* CustomDiceSettingCell.m */; };
+		C2B002A7160B136600AC5F3B /* CustomDiceSettingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2B002A6160B136600AC5F3B /* CustomDiceSettingCell.xib */; };
+		C2B002A9160B137700AC5F3B /* CustomDiceSettingCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2B002A8160B137700AC5F3B /* CustomDiceSettingCell~ipad.xib */; };
+		C2B002AB160B139300AC5F3B /* CustomDiceSettingViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2B002AA160B139200AC5F3B /* CustomDiceSettingViewController~ipad.xib */; };
 		C2B3E932155373C400CCF52C /* FeedbackController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2B3E931155373C400CCF52C /* FeedbackController~ipad.xib */; };
 		C2B3E934155373CC00CCF52C /* ReportController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2B3E933155373CC00CCF52C /* ReportController~ipad.xib */; };
 		C2B3E936155373D500CCF52C /* AboutUsController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2B3E935155373D500CCF52C /* AboutUsController~ipad.xib */; };
@@ -2288,6 +2294,14 @@
 		C2A09759152ECD30006535F7 /* GifView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GifView.h; sourceTree = "<group>"; };
 		C2A0975A152ECD30006535F7 /* GifView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GifView.m; sourceTree = "<group>"; };
 		C2A09761152ECDEA006535F7 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
+		C2B0029E160B0EF300AC5F3B /* CustomDiceSettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomDiceSettingViewController.h; sourceTree = "<group>"; };
+		C2B0029F160B0EF300AC5F3B /* CustomDiceSettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomDiceSettingViewController.m; sourceTree = "<group>"; };
+		C2B002A0160B0EF300AC5F3B /* CustomDiceSettingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomDiceSettingViewController.xib; sourceTree = "<group>"; };
+		C2B002A3160B134F00AC5F3B /* CustomDiceSettingCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomDiceSettingCell.h; sourceTree = "<group>"; };
+		C2B002A4160B134F00AC5F3B /* CustomDiceSettingCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomDiceSettingCell.m; sourceTree = "<group>"; };
+		C2B002A6160B136600AC5F3B /* CustomDiceSettingCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomDiceSettingCell.xib; sourceTree = "<group>"; };
+		C2B002A8160B137700AC5F3B /* CustomDiceSettingCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "CustomDiceSettingCell~ipad.xib"; sourceTree = "<group>"; };
+		C2B002AA160B139200AC5F3B /* CustomDiceSettingViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "CustomDiceSettingViewController~ipad.xib"; sourceTree = "<group>"; };
 		C2B3E931155373C400CCF52C /* FeedbackController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "FeedbackController~ipad.xib"; sourceTree = "<group>"; };
 		C2B3E933155373CC00CCF52C /* ReportController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ReportController~ipad.xib"; sourceTree = "<group>"; };
 		C2B3E935155373D500CCF52C /* AboutUsController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "AboutUsController~ipad.xib"; sourceTree = "<group>"; };
@@ -4056,6 +4070,7 @@
 		A4B763EF15C28F8E003B4E72 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				C2B0029D160B0EC500AC5F3B /* Settings */,
 				CAC25C6515EF20CD007456FA /* Home */,
 				A4B763F015C28F8E003B4E72 /* Play */,
 				A4B763F415C28F8E003B4E72 /* Room */,
@@ -4538,6 +4553,21 @@
 				C2A09736152E979C006535F7 /* BitmapScaleManipulator.m */,
 			);
 			path = Manipulators;
+			sourceTree = "<group>";
+		};
+		C2B0029D160B0EC500AC5F3B /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				C2B0029E160B0EF300AC5F3B /* CustomDiceSettingViewController.h */,
+				C2B0029F160B0EF300AC5F3B /* CustomDiceSettingViewController.m */,
+				C2B002A0160B0EF300AC5F3B /* CustomDiceSettingViewController.xib */,
+				C2B002AA160B139200AC5F3B /* CustomDiceSettingViewController~ipad.xib */,
+				C2B002A3160B134F00AC5F3B /* CustomDiceSettingCell.h */,
+				C2B002A4160B134F00AC5F3B /* CustomDiceSettingCell.m */,
+				C2B002A6160B136600AC5F3B /* CustomDiceSettingCell.xib */,
+				C2B002A8160B137700AC5F3B /* CustomDiceSettingCell~ipad.xib */,
+			);
+			path = Settings;
 			sourceTree = "<group>";
 		};
 		C2BBCE1715B001F1006A13A6 /* Animation */ = {
@@ -8964,6 +8994,10 @@
 				C29707BF160AC14900BE0789 /* ag_b6.png in Resources */,
 				A4AF0A66160AFF9700650C21 /* lose_face@2x.png in Resources */,
 				A4AF0A67160AFF9700650C21 /* win_face@2x.png in Resources */,
+				C2B002A2160B0EF300AC5F3B /* CustomDiceSettingViewController.xib in Resources */,
+				C2B002A7160B136600AC5F3B /* CustomDiceSettingCell.xib in Resources */,
+				C2B002A9160B137700AC5F3B /* CustomDiceSettingCell~ipad.xib in Resources */,
+				C2B002AB160B139300AC5F3B /* CustomDiceSettingViewController~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -9495,6 +9529,8 @@
 				CA3F2F291609CC280059667B /* RankSecondCell.m in Sources */,
 				CA3F2F2E1609CC3F0059667B /* RankNormalCell.m in Sources */,
 				C29707C5160ADBEC00BE0789 /* CustomDiceManager.m in Sources */,
+				C2B002A1160B0EF300AC5F3B /* CustomDiceSettingViewController.m in Sources */,
+				C2B002A5160B134F00AC5F3B /* CustomDiceSettingCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

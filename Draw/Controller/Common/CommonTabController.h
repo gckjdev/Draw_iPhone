@@ -20,9 +20,12 @@
 - (NSInteger)fetchDataLimitForTabIndex:(NSInteger)index; //default 20
 - (NSInteger)tabIDforIndex:(NSInteger)index;
 - (NSString *)tabTitleforIndex:(NSInteger)index;
+- (void)serviceLoadDataForTabID:(NSInteger)tabID;
+
 @optional
 - (NSString *)tabNoDataTipsforIndex:(NSInteger)index;
 
+//- (void)startToLoadDataForTabID:(NSInteger)tabID;
 @end
 
 @interface CommonTabController : PPTableViewController<CommonTabControllerDelegate>
@@ -31,10 +34,19 @@
 }
 
 
+//common xib and action
+@property(nonatomic, retain)IBOutlet UILabel *titleLabel;
+@property(nonatomic, retain)IBOutlet UILabel *noDataTipLabl;
+- (IBAction)clickBackButton:(id)sender;
+- (IBAction)clickTabButton:(id)sender;
+
 //used by the sub class.
 - (NSMutableArray *)tabDataList;
 - (TableTab *)currentTab;
-- (void)startToLoadNewDataForTabID:(NSInteger)tabID;
+- (UIButton *)currentTabButton;
+- (UIButton *)tabButtonWithTabID:(NSInteger)tabID;
+- (void)startToLoadDataForTabID:(NSInteger)tabID;
+
 - (void)finishLoadDataForTabID:(NSInteger)tabID resultList:(NSArray *)list;
 - (void)failLoadDataForTabID:(NSInteger)tabID;
 
