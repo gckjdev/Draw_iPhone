@@ -38,10 +38,11 @@ typedef enum{
 @property(nonatomic, assign)BOOL hasMoreData;
 @property(nonatomic, assign, getter = isCurrentTab)BOOL currentTab;
 @property(nonatomic, retain)NSMutableArray *dataList;
-
+@property(nonatomic, retain)NSString *title;
 
 - (id)initWithTabID:(NSInteger)tabID
               index:(NSInteger)index
+              title:(NSString *)title
              offset:(NSInteger)offset
               limit:(NSInteger)limit 
          noDataDesc:(NSString *)noDataDesc
@@ -49,7 +50,8 @@ typedef enum{
        isCurrentTab:(BOOL)isCurrentTab;
 
 + (TableTab *)tabWithID:(NSInteger)tabID
-              index:(NSInteger)index
+              index:(NSInteger)index       
+              title:(NSString *)title
              offset:(NSInteger)offset
               limit:(NSInteger)limit 
          noDataDesc:(NSString *)noDataDesc

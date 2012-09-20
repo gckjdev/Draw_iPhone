@@ -14,7 +14,8 @@
     NSMutableArray *_tabList;
 }
 
-- (id)initWithTabIDList:(NSArray *)tabIDs 
+- (id)initWithTabIDList:(NSArray *)tabIDs
+              titleList:(NSArray *)titleList 
          noDataDescList:(NSArray *)noDataList
                   limit:(NSInteger)limit 
         currentTabIndex:(NSInteger)index;

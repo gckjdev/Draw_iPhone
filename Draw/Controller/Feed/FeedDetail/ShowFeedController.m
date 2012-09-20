@@ -595,7 +595,8 @@ enum{
                                   NSLS(@"kNoFlowers"),
                                   NSLS(@"kNoTomatos"), nil];
     
-    _tabManager = [[TableTabManager alloc] initWithTabIDList:tabIDs 
+    _tabManager = [[TableTabManager alloc] initWithTabIDList:tabIDs
+                                                   titleList:nil
                                               noDataDescList:tabNoDataDescList 
                                                        limit:12 
                                              currentTabIndex:-1];

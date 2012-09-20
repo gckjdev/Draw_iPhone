@@ -7,45 +7,48 @@
 //
 
 #import "RankSecondCell.h"
+#import "HJManagedImageV.h"
+#import "PPApplication.h"
 
 @implementation RankSecondCell
+@synthesize secondDrawImage;
+@synthesize thirdDrawImage;
+@synthesize secondTitle;
+@synthesize secondAuthor;
+@synthesize thirdTitle;
+@synthesize thirdAuthor;
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
++ (id)createCell:(id)delegate
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
+    NSString* cellId = [self getCellIdentifier];
+    NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:cellId owner:self options:nil];
+    if (topLevelObjects == nil || [topLevelObjects count] <= 0){
+        NSLog(@"create %@ but cannot find cell object from Nib", cellId);
+        return nil;
     }
-    return self;
-}
-
-- (void)didReceiveMemoryWarning
-{
-    // Releases the view if it doesn't have a superview.
-    [super didReceiveMemoryWarning];
     
-    // Release any cached data, images, etc that aren't in use.
+    ((PPTableViewCell*)[topLevelObjects objectAtIndex:0]).delegate = delegate;
+    
+    return [topLevelObjects objectAtIndex:0];
 }
 
-#pragma mark - View lifecycle
-
-- (void)viewDidLoad
++ (NSString*)getCellIdentifier
 {
-    [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    return @"RankSecondCell";
 }
 
-- (void)viewDidUnload
++ (CGFloat)getCellHeight
 {
-    [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
+    return 167.0f;
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+- (void)dealloc {
+    [secondDrawImage release];
+    [thirdDrawImage release];
+    [secondTitle release];
+    [secondAuthor release];
+    [thirdTitle release];
+    [thirdAuthor release];
+    [super dealloc];
 }
-
 @end
