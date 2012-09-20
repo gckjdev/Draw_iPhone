@@ -462,5 +462,13 @@ static DiceImageManager *_defaultManager = nil;
     return [UIImage shrinkImage:image withRate:0.8];
 }
 
+- (UIImage *)betResultImage:(BOOL)win
+{
+    if (win) {
+        return [UIImage imageNamed:@"win_face@2x.png"];
+    }else {
+        return [UIImage imageNamed:@"lose_face@2x.png"];
+    }
+}
 
 @end

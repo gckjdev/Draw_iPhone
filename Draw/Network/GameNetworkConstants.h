@@ -14,11 +14,11 @@
 
 #define STRING_SEPERATOR @"$"
 
-#define SHARE_KEY @"NetworkRequestShareKey"
+//#define SHARE_KEY @"NetworkRequestShareKey"
 
 // method name
 
-#define METHOD @"m"
+#define METHOD @"m1"                    // set by Benson, use m1 for security
 #define METHOD_TEST @"test"
 #define METHOD_ONLINESTATUS @"srpt"
 #define METHOD_REGISTRATION @"reg"

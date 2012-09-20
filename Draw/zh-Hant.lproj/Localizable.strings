@@ -882,15 +882,15 @@
 "kBetViewTitle" = "賺一把(%d)";
 "kBetNote" = "玩家【%@】開骰了，你要下註賺一把嗎？";
 "kAnte" = "底註";
-"kAnteCoins" = "%d";
 "kWin" = "TA赢";
 "kLose" = "TA輸";
-"kOdds" = "%d賠%d";
+"kOdds" = "1賠%.2f";
 
 "kCallTips" = "叫骰建議";
 "kJustOpen" = "開它吧!";
 "kDoItLikeThis" = "就這樣";
 "kThinkMyself" = "自己來";
+"kWaitForPlayerBet" = "等待玩家下註(%d)";
 
 /*********************** 大话骰子国际化字符串结束 *************************/
 

@@ -8,6 +8,7 @@
 
 #import "DiceBetView.h"
 #import "DiceImageManager.h"
+#import "LocaleUtils.h"
 
 @interface DiceBetView()
 {
@@ -71,7 +72,7 @@
           duration:(int)duration
           openUser:(NSString *)nickName
               ante:(int)ante
-           winOdds:(float)windOdds
+           winOdds:(float)winOdds
           loseOdds:(float)loseOdds
           delegate:(id<DiceBetViewDelegate>)delegate
 {
@@ -79,18 +80,24 @@
     [betView initWithDuration:duration 
                      openUser:nickName 
                          ante:ante
-                      winOdds:windOdds 
+                      winOdds:winOdds 
                      loseOdds:loseOdds];
-    betView.center = view.center;
+    betView.center = CGPointMake(view.center.x, view.center.y + view.frame.size.height/4);
     betView.delegate = delegate;
+    betView.alpha = 0;
     [view addSubview:betView];
+    
+    betView.userInteractionEnabled = YES;
+    [UIView animateWithDuration:1 animations:^{
+        betView.alpha = 1;
+    }];
 }
 
 
 - (void)initWithDuration:(int)duration
                 openUser:(NSString *)nickName
                     ante:(int)ante
-                 winOdds:(CGFloat)windOdds
+                 winOdds:(CGFloat)winOdds
                 loseOdds:(CGFloat)loseOdds
 {
     [self createTimer];
@@ -99,20 +106,42 @@
     
     titleLabel.text = [NSString stringWithFormat:NSLS(@"kBetViewTitle"), _second];
     noteLabel.text = [NSString stringWithFormat:NSLS(@"kBetNote"), nickName];
+    noteLabel.numberOfLines = 0;
+    if ([LocaleUtils isChina]) {
+        noteLabel.lineBreakMode = UILineBreakModeCharacterWrap;
+    }else {
+        noteLabel.lineBreakMode = UILineBreakModeWordWrap;
+    }
     anteLabel.text = NSLS(@"kAnte");
-    anteCoinsLabel.text = [NSString stringWithFormat:NSLS(@"kAnteCoins"), ante];
+    anteCoinsLabel.text = [NSString stringWithFormat:@"%d", ante];
     winLabel.text = NSLS(@"kWin");
     loseLabel.text = NSLS(@"kLose");
-    winOddsLabel.text = NSLS(@"kOdds");
-    loseOddsLabel.text = NSLS(@"kOdds");
+    
+    winOddsLabel.text = [NSString stringWithFormat:NSLS(@"kOdds"), winOdds];
+    winOddsLabel.textColor = [UIColor redColor];
+    loseOddsLabel.text = [NSString stringWithFormat:NSLS(@"kOdds"), loseOdds];
+    loseOddsLabel.textColor = [UIColor redColor];
     _ante = ante;
-    _winOdds = windOdds;
+    _winOdds = winOdds;
     _loseOdds = loseOdds;
+    
+    [betWinButton setRoyButtonWithColor:[UIColor yellowColor]];
+    [betLoseButton setRoyButtonWithColor:[UIColor yellowColor]];
+}
+
+- (void)dismiss
+{
+    self.userInteractionEnabled= NO;
+    [UIView animateWithDuration:0.5 delay:0 options:UIViewAnimationCurveEaseIn animations:^{
+        self.alpha = 0;
+    } completion:^(BOOL finished) {
+        [self removeFromSuperview];
+    }];
 }
 
 - (IBAction)clickCloseButton:(id)sender {
     [self killTimer];
-    [self removeFromSuperview];
+    [self dismiss];
 }
 
 - (IBAction)clickBetWinButton:(id)sender {
@@ -124,7 +153,7 @@
                                 odds:_winOdds];
     }
     
-    [self removeFromSuperview];
+    [self dismiss];
 }
 
 - (IBAction)clickBetLoseButton:(id)sender {
@@ -136,7 +165,7 @@
                                 odds:_loseOdds];
     }
     
-    [self removeFromSuperview];
+    [self dismiss];
     
 }
 #pragma mark - Timer manage
@@ -171,9 +200,10 @@
 
     if (_second <= 0) {
         [self killTimer];
-        [self removeFromSuperview];
+        [self dismiss];
     }
 }
+
 
 
 @end

@@ -900,16 +900,17 @@
 "kBetViewTitle" = "赚一把(%d)";
 "kBetNote" = "玩家【%@】开骰了，你要下注赚一把吗？";
 "kAnte" = "底注";
-"kAnteCoins" = "%d";
 "kWin" = "TA赢";
 "kLose" = "TA输";
-"kOdds" = "%d赔%d";
+"kOdds" = "1赔%.2f";
 
 "kCallTips" = "叫骰建议";
 "kJustOpen" = "开它吧!";
 
 "kDoItLikeThis" = "就这样";
 "kThinkMyself" = "自己来";
+
+"kWaitForPlayerBet" = "等待玩家下注(%d)";
 
 /*********************** 大话骰子国际化字符串结束 *************************/
 
