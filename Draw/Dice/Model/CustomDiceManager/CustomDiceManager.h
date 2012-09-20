@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "DiceItem.h"
 
+
 @interface CustomDiceManager : NSObject
 
 - (ItemType)getMyDiceType;
@@ -22,5 +23,5 @@
 - (NSString*)getImagePrefixByType:(ItemType)type;
 
 - (NSArray*)myCustomDiceList;
-
++ (CustomDiceManager*)defaultManager;
 @end

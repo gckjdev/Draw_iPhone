@@ -9,6 +9,7 @@
 #import "CustomDiceManager.h"
 #import "ItemManager.h"
 #import "DiceImageManager.h"
+#import "DiceItem.h"
 
 #define SHOW_DICE_FLAG  @"a"
 #define OPEN_DICE_FLAG  @"b"
@@ -17,8 +18,18 @@
 
 #define MY_DICE_TYPE @"MY_DICE_TYPE"
 
+static CustomDiceManager* shareInstance;
+
 
 @implementation CustomDiceManager
+
++ (CustomDiceManager*)defaultManager
+{
+    if (shareInstance == nil) {
+        shareInstance = [[CustomDiceManager alloc] init];
+    }
+    return shareInstance;
+}
 
 - (ItemType)getMyDiceType
 {
@@ -75,7 +86,7 @@
     NSMutableArray* array = [[[NSMutableArray alloc] initWithCapacity:(ItemTypeCustomDiceEnd-ItemTypeCustomDiceStart)] autorelease];
     for (int i = ItemTypeCustomDiceStart+1; i < ItemTypeCustomDiceEnd; i ++) {
         if ([[ItemManager defaultManager] amountForItem:i] >= 1) {
-            [array addObject:[NSNumber numberWithInt:i]];
+            [array addObject:[Item diceItemForItemType:i]];
         }
     }
     return array;

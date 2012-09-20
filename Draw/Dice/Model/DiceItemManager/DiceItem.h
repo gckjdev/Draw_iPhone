@@ -20,4 +20,5 @@
 + (Item*)turtle;
 + (Item*)diceRobot;
 + (Item*)patriotDice;
++ (Item*)diceItemForItemType:(ItemType)type;
 @end

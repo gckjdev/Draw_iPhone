@@ -7,11 +7,13 @@
 //
 
 #import "CustomDiceSettingCell.h"
+#import "DiceItem.h"
 
 @implementation CustomDiceSettingCell
 @synthesize DiceImageView;
 @synthesize DiceTitleLabel;
 @synthesize DiceDescriptionLabel;
+
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -21,6 +23,26 @@
     }
     return self;
 }
+
+#define HEIGHT_DICE_ROOM_LIST_CELL  ([DeviceDetection isIPAD] ? 204: 102)
+
++ (CGFloat)getCellHeight
+{
+    return HEIGHT_DICE_ROOM_LIST_CELL;
+}
+
+- (void)setCellInfo:(Item*)item
+{
+    [self.DiceImageView setImage:item.itemImage];
+    [self.DiceTitleLabel setText:item.itemName];
+    [self.DiceDescriptionLabel setText:item.itemDescription];
+}
+
++ (NSString*)getCellIdentifier
+{
+    return @"CustomDiceSettingCell";
+}
+
 
 /*
 // Only override drawRect: if you perform custom drawing.

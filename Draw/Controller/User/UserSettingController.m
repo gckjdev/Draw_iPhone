@@ -123,6 +123,8 @@ enum {
         }
     } else if (isDiceApp()) {
         rowsInSectionGuessWord = 0;
+        rowOfCustomDice = 3;
+        rowsInSectionUser = 4; //add custom dice 
     }
 
     
@@ -414,6 +416,8 @@ enum {
         {
             [cell.textLabel setText:NSLS(@"kNickname")];           
             [cell.detailTextLabel setText:nicknameLabel.text];            
+        } else if (row == rowOfCustomDice) {
+            [cell.textLabel setText:NSLS(@"kCustomDice")];
         }
     }else if (section == SECTION_GUESSWORD) {
         if(row == rowOfLanguage)
@@ -595,6 +599,9 @@ enum {
             dialog.tag = DIALOG_TAG_NICKNAME;
             [dialog setTargetText:nicknameLabel.text];
             [dialog showInView:self.view];
+        } else if (row == rowOfCustomDice){
+            CustomDiceSettingViewController* controller = [[[CustomDiceSettingViewController alloc] init] autorelease];
+            [self.navigationController pushViewController:controller animated:YES];
         }
     
     }else if (section == SECTION_GUESSWORD) {
