@@ -881,16 +881,17 @@
 "kBetViewTitle" = "Bet(%d)";
 "kBetNote" = "Player【%@】challenge, would you bet?";
 "kAnte" = "Ante";
-"kAnteCoins" = "%d";
 "kWin" = "Win";
 "kLose" = "Lose";
-"kOdds" = "%d:%d";
+"kOdds" = "1:%.2f";
 
 "kCallTips" = "Suggestion";
 "kJustOpen" = "Just open it!";
 
 "kDoItLikeThis" = "Do it";
 "kThinkMyself" = "Cancel";
+
+"kWaitForPlayerBet" = "Waitting for player bet(%d)";
 
 /*********************** 大话骰子国际化字符串结束 *************************/
 

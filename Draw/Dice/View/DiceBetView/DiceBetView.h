@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "HKGirlFontLabel.h"
+#import "UIGlossyButton.h"
 
 @protocol DiceBetViewDelegate <NSObject>
         
@@ -29,14 +30,14 @@
 @property (retain, nonatomic) IBOutlet HKGirlFontLabel *winOddsLabel;
 @property (retain, nonatomic) IBOutlet HKGirlFontLabel *loseLabel;
 @property (retain, nonatomic) IBOutlet HKGirlFontLabel *loseOddsLabel;
-@property (retain, nonatomic) IBOutlet UIButton *betWinButton;
-@property (retain, nonatomic) IBOutlet UIButton *betLoseButton;
+@property (retain, nonatomic) IBOutlet UIGlossyButton *betWinButton;
+@property (retain, nonatomic) IBOutlet UIGlossyButton *betLoseButton;
 
 + (void)showInView:(UIView *)view
           duration:(int)duration
           openUser:(NSString *)nickName
               ante:(int)ante
-           winOdds:(float)windOdds
+           winOdds:(float)winOdds
           loseOdds:(float)loseOdds
           delegate:(id<DiceBetViewDelegate>)delegate;
 

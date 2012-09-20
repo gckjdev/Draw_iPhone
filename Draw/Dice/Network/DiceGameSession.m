@@ -24,6 +24,7 @@
 @synthesize isMeAByStander = _isMeAByStander;
 @synthesize gameState = _gameState;
 @synthesize callCount = _callCount;
+@synthesize betWin = _betWin;
 
 - (void)dealloc{
     PPRelease(_userDiceList);
@@ -58,6 +59,7 @@
     self.isMeAByStander = YES;
     self.gameState = GameStateGameOver;
     self.callCount = 0;
+    self.betWin = NO;
 }
 
 @end
