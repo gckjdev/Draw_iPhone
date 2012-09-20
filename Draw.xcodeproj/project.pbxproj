@@ -620,6 +620,7 @@
 		C29707BD160AC14900BE0789 /* ag_b4.png in Resources */ = {isa = PBXBuildFile; fileRef = C29707B1160AC14900BE0789 /* ag_b4.png */; };
 		C29707BE160AC14900BE0789 /* ag_b5.png in Resources */ = {isa = PBXBuildFile; fileRef = C29707B2160AC14900BE0789 /* ag_b5.png */; };
 		C29707BF160AC14900BE0789 /* ag_b6.png in Resources */ = {isa = PBXBuildFile; fileRef = C29707B3160AC14900BE0789 /* ag_b6.png */; };
+		C29707C5160ADBEC00BE0789 /* CustomDiceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C29707C4160ADBEC00BE0789 /* CustomDiceManager.m */; };
 		C29A300715CA16AC00BD0B73 /* CustomLabelUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = C29A300615CA16AC00BD0B73 /* CustomLabelUtil.m */; };
 		C29A300B15CA17FE00BD0B73 /* HKGirlFontLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = C29A300A15CA17FE00BD0B73 /* HKGirlFontLabel.m */; };
 		C29B8A211563B02000B9707D /* CommonMessageCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = C29B8A1F1563B02000B9707D /* CommonMessageCenter.m */; };
@@ -2214,6 +2215,8 @@
 		C29707B1160AC14900BE0789 /* ag_b4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ag_b4.png; sourceTree = "<group>"; };
 		C29707B2160AC14900BE0789 /* ag_b5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ag_b5.png; sourceTree = "<group>"; };
 		C29707B3160AC14900BE0789 /* ag_b6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ag_b6.png; sourceTree = "<group>"; };
+		C29707C3160ADBEC00BE0789 /* CustomDiceManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomDiceManager.h; sourceTree = "<group>"; };
+		C29707C4160ADBEC00BE0789 /* CustomDiceManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomDiceManager.m; sourceTree = "<group>"; };
 		C29A300515CA16AC00BD0B73 /* CustomLabelUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomLabelUtil.h; sourceTree = "<group>"; };
 		C29A300615CA16AC00BD0B73 /* CustomLabelUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomLabelUtil.m; sourceTree = "<group>"; };
 		C29A300915CA17FE00BD0B73 /* HKGirlFontLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HKGirlFontLabel.h; path = FontLabel/HKGirlFontLabel.h; sourceTree = "<group>"; };
@@ -4099,6 +4102,7 @@
 		A4B763FB15C28F8E003B4E72 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				C29707C2160ADBD200BE0789 /* CustomDiceManager */,
 				C2916CBD1606B9C300B0996E /* DiceRobotManager */,
 				A45BC60815F1C4DF0003DDDC /* DiceConfigManager */,
 				A48E827115E871BB002DB480 /* DiceHelpManager */,
@@ -4367,6 +4371,15 @@
 				C29707B3160AC14900BE0789 /* ag_b6.png */,
 			);
 			path = AiGuoShai;
+			sourceTree = "<group>";
+		};
+		C29707C2160ADBD200BE0789 /* CustomDiceManager */ = {
+			isa = PBXGroup;
+			children = (
+				C29707C3160ADBEC00BE0789 /* CustomDiceManager.h */,
+				C29707C4160ADBEC00BE0789 /* CustomDiceManager.m */,
+			);
+			path = CustomDiceManager;
 			sourceTree = "<group>";
 		};
 		C29A300815CA176400BD0B73 /* FontLabel */ = {
@@ -9473,6 +9486,7 @@
 				CA3F2F241609CC020059667B /* RankFirstCell.m in Sources */,
 				CA3F2F291609CC280059667B /* RankSecondCell.m in Sources */,
 				CA3F2F2E1609CC3F0059667B /* RankNormalCell.m in Sources */,
+				C29707C5160ADBEC00BE0789 /* CustomDiceManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
