@@ -58,10 +58,13 @@
 - (UIImage *)diceToolCutImageForShop;
 - (UIImage *)diceToolRollAgainImageForShop;
 
+- (UIImage *)peekImage;
 - (UIImage *)postponeImage;
 - (UIImage *)urgeImage;
 - (UIImage *)doubleKillImage;
 - (UIImage *)turtleImage;
 - (UIImage *)diceRobotImage;
 - (UIImage*)toShopImage:(UIImage*)image;
+
+- (UIImage *)betResultImage:(BOOL)win;
 @end

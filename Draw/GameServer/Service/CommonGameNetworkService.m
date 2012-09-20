@@ -134,9 +134,8 @@
     [_networkClient start:_serverAddress port:_serverPort];        
 }
 
-- (NSString *)gameServerListString
+- (void)initServerListString
 {
-    return nil;
 }
 
 - (void)disconnectServer
@@ -303,7 +302,9 @@
     [_networkClient sendGetRoomsRequest:userId];
 }
 
-- (void)getRoomList:(int)startIndex count:(int)count shouldReloadData:(BOOL)shouldReloadData
+- (void)getRoomList:(int)startIndex 
+              count:(int)count 
+   shouldReloadData:(BOOL)shouldReloadData
 {
     NSString* userId = [[UserManager defaultManager] userId];
     if (userId == nil){
@@ -315,6 +316,28 @@
     [_networkClient sendGetRoomsRequest:userId 
                              startIndex:startIndex 
                                   count:count];
+}
+
+- (void)getRoomList:(int)startIndex 
+              count:(int)count 
+   shouldReloadData:(BOOL)shouldReloadData 
+           roomType:(int)type 
+            keyword:(NSString*)keyword 
+             gameId:(NSString*)gameId
+{
+    NSString* userId = [[UserManager defaultManager] userId];
+    if (userId == nil){
+        return;
+    }
+    //    if (shouldReloadData) {
+    //        [self.roomList removeAllObjects];
+    //    }
+    [_networkClient sendGetRoomsRequest:userId 
+                             startIndex:startIndex 
+                                  count:count 
+                               roomType:type 
+                                keyword:keyword 
+                                 gameId:gameId];
 }
 
 - (void)joinGameRequest

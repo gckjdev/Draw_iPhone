@@ -39,6 +39,18 @@
                                 amount:[[ItemManager defaultManager] amountForItem:ItemTypeCut]] autorelease];
 }
 
++ (Item *)peek
+{
+    return [[[Item alloc] initWithType:ItemTypePeek
+                                 image:[[DiceImageManager defaultManager] peekImage]
+                                  name:NSLS(@"kItemPeek")
+                             shortName:NSLS(@"kPeek")
+                           description:NSLS(@"kPeekDescription") 
+                      buyAmountForOnce:10
+                                 price:[[ShoppingManager defaultManager] getPeekPrice] 
+                                amount:[[ItemManager defaultManager] amountForItem:ItemTypePeek]] autorelease];
+}
+
 + (Item*)postpone
 {
     return [[[Item alloc] initWithType:ItemTypeIncTime 
@@ -47,7 +59,7 @@
                              shortName:NSLS(@"kPostpone")
                            description:NSLS(@"kPostponeDescription") 
                       buyAmountForOnce:10
-                                 price:[[ShoppingManager defaultManager] getCutPrice] 
+                                 price:[[ShoppingManager defaultManager] getPostPonePrice] 
                                 amount:[[ItemManager defaultManager] amountForItem:ItemTypeIncTime]] autorelease];
 }
 
@@ -59,21 +71,21 @@
                              shortName:NSLS(@"kUrge")
                            description:NSLS(@"kUrgeDescription") 
                       buyAmountForOnce:10
-                                 price:[[ShoppingManager defaultManager] getCutPrice] 
+                                 price:[[ShoppingManager defaultManager] getUrgePrice] 
                                 amount:[[ItemManager defaultManager] amountForItem:ItemTypeDecTime]] autorelease];
 }
 
-+ (Item*)doubleKill
-{
-    return [[[Item alloc] initWithType:ItemTypeDoubleKill 
-                                 image:[[DiceImageManager defaultManager] doubleKillImage]
-                                  name:NSLS(@"kItemDoubleKill")
-                             shortName:NSLS(@"kDoubleKil")
-                           description:NSLS(@"kDoubleKillDescription") 
-                      buyAmountForOnce:10
-                                 price:[[ShoppingManager defaultManager] getCutPrice] 
-                                amount:[[ItemManager defaultManager] amountForItem:ItemTypeDoubleKill]] autorelease];
-}
+//+ (Item*)doubleKill
+//{
+//    return [[[Item alloc] initWithType:ItemTypeDoubleKill 
+//                                 image:[[DiceImageManager defaultManager] doubleKillImage]
+//                                  name:NSLS(@"kItemDoubleKill")
+//                             shortName:NSLS(@"kDoubleKil")
+//                           description:NSLS(@"kDoubleKillDescription") 
+//                      buyAmountForOnce:10
+//                                 price:[[ShoppingManager defaultManager] getCutPrice] 
+//                                amount:[[ItemManager defaultManager] amountForItem:ItemTypeDoubleKill]] autorelease];
+//}
 
 + (Item*)turtle
 {
@@ -83,7 +95,7 @@
                              shortName:NSLS(@"kTurtle")
                            description:NSLS(@"kTurtleDescription") 
                       buyAmountForOnce:10
-                                 price:[[ShoppingManager defaultManager] getCutPrice] 
+                                 price:[[ShoppingManager defaultManager] getTurtlePrice] 
                                 amount:[[ItemManager defaultManager] amountForItem:ItemTypeSkip]] autorelease];
 }
 
@@ -95,7 +107,7 @@
                              shortName:NSLS(@"kDiceRobot")
                            description:NSLS(@"kDiceRobotDescription") 
                       buyAmountForOnce:10
-                                 price:[[ShoppingManager defaultManager] getCutPrice] 
+                                 price:[[ShoppingManager defaultManager] getDiceRobotPrice] 
                                 amount:[[ItemManager defaultManager] amountForItem:ItemTypeDiceRobot]] autorelease];
 }
 

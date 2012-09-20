@@ -7,14 +7,16 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "GifView.h"
 
 @interface ExpressionManager : NSObject
 
 + (ExpressionManager *)defaultManager;
-- (UIImage *)expressionForKey:(NSString*)key;
-- (NSArray *)allKeys;
-- (NSString *)gifPathForExpression:(NSString *)key;
 
-//- (NSArray *)allValues;
+- (NSArray *)allPngKeys;
+- (NSArray *)allGifKeys;
+
+- (UIImage *)pngExpressionForKey:(NSString*)key;
+- (GifView *)gifExpressionForKey:(NSString *)key frame:(CGRect)frame;
 
 @end

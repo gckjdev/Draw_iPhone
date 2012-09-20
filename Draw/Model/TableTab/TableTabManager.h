@@ -19,6 +19,9 @@
                   limit:(NSInteger)limit 
         currentTabIndex:(NSInteger)index;
 
+
+- (id)init;
+- (void)addTab:(TableTab *)tab;
 - (NSArray *)tabList;
 - (TableTab *)tabAtIndex:(NSInteger)index;
 - (TableTab *)tabForID:(NSInteger)tabID;

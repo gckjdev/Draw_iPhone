@@ -27,13 +27,15 @@
 #import "ExpressionManager.h"
 #import "DiceSoundManager.h"
 #import "DiceItemManager.h"
+#import "DiceRobotManager.h"
+#import "DiceBetView.h"
 
 #define USER_THINK_TIME_INTERVAL 15
 
 @class DiceGameService;
 
 
-@interface DiceGamePlayController : PPViewController <DiceItemListViewDelegate, DiceSelectedViewDelegate, DiceAvatarViewDelegate, DicesResultViewAnimationDelegate, LevelServiceDelegate, CommonDialogDelegate, ChatViewDelegate, AccountServiceDelegate> {
+@interface DiceGamePlayController : PPViewController <DiceItemListViewDelegate, DiceSelectedViewDelegate, DiceAvatarViewDelegate, DicesResultViewAnimationDelegate, LevelServiceDelegate, CommonDialogDelegate, ChatViewDelegate, AccountServiceDelegate, DiceBetViewDelegate> {
     DiceGameService*  _diceService;
     UserManager *_userManager;
     DiceImageManager *_imageManager;
@@ -42,6 +44,7 @@
     AudioManager *_audioManager;
     ExpressionManager *_expressionManager;
     DiceSoundManager *_soundManager;
+    DiceRobotManager* _robotManager;
     NSMutableSet* _urgedUser;
 }
 
@@ -70,8 +73,10 @@
 @property (retain, nonatomic) IBOutlet UIView *popupLevel1View;
 @property (retain, nonatomic) IBOutlet UIView *popupLevel2View;
 @property (retain, nonatomic) IBOutlet UIView *popupLevel3View;
+@property (retain, nonatomic) IBOutlet HKGirlFontLabel *anteNoteLabel;
 @property (retain, nonatomic) IBOutlet UILabel *anteLabel;
 @property (retain, nonatomic) IBOutlet UIView *anteView;
+@property (retain, nonatomic) IBOutlet HKGirlFontLabel *waitForPlayerBetLabel;
 
 //- (id)initWIthRuleType:(DiceGameRuleType)ruleType;
 
@@ -79,5 +84,6 @@
 - (DiceAvatarView *)selfAvatarView;
 - (DiceAvatarView*)avatarViewOfUser:(NSString*)userId;
 - (void)urgeUser:(NSString*)userId;
+- (void)showRobotDecition;
 
 @end

@@ -69,7 +69,7 @@
         if ([action isCleanAction]) {
             _startDrawActionIndex = count+1;
             return;
-        }else if ([action isChnageBackAction]) {
+        }else if ([action isChangeBackAction]) {
             _startDrawActionIndex = count;
             _changeBackColor = action.paint.color.CGColor;
             return;

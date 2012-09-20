@@ -67,7 +67,7 @@
     return [DrawAction actionWithType:DRAW_ACTION_TYPE_DRAW paint:paint];
 }
 
-- (BOOL)isChnageBackAction
+- (BOOL)isChangeBackAction
 {
     //for changing from integer to float.
     return self.paint.width > BACK_GROUND_WIDTH - 10;

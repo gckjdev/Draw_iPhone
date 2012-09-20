@@ -29,10 +29,6 @@
 #define FRAME_DICE_4(scale)    (([DeviceDetection isIPAD]) ? CGRectMake(18*scale, 48*scale, WIDTH_DICE(scale), WIDTH_DICE(scale)) : CGRectMake(9*scale, 24*scale, WIDTH_DICE(scale), WIDTH_DICE(scale)) )
 #define FRAME_DICE_5(scale)    (([DeviceDetection isIPAD]) ? CGRectMake(48*scale, 48*scale, WIDTH_DICE(scale), WIDTH_DICE(scale)) : CGRectMake(24*scale, 24*scale, WIDTH_DICE(scale), WIDTH_DICE(scale)) )
 
-#define DURATION_MOVE_TO_CENTER 0.75
-#define DURATION_MOVE_TO_BACK 0.75
-#define DURATION_STAY 2
-
 #define FACTOR_RESULT_ZOOMIN 1.4
 #define FACTOR_DICE_ZOOMIN 2
 

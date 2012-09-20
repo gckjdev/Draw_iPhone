@@ -425,6 +425,15 @@
 #define PARA_APP_ULR        @"url"
 
 
+//for draw contest
+#define METHOD_GET_CONTEST_LIST @"gcl"
+#define PARA_CONTESTID @"cid"
+#define PARA_CONTEST_URL @"cu"
+#define PARA_STATEMENT_URL @"su"
+#define PARA_OPUS_COUNT @"oc"
+#define PARA_PARTICIPANT_COUNT @"pc"
+#define PARA_LIMIT @"lm"
+
 
 #define FINDDRAW_FORMAT_PROTOCOLBUFFER @"pb"
 

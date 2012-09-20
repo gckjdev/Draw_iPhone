@@ -795,6 +795,10 @@
 "kPickPenColor" = "选择画笔颜色";
 "kPickBGColor" = "选择背景颜色";
 
+"kOpusCount" = "作品(%d)";
+"kJoinCount" = "参加(%d)";
+
+
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 
@@ -892,6 +896,21 @@
 "kDiceHappyRoom" = "欢乐场%d号房";
 "kDiceHighRoom" = "劲爆场%d号房";
 "kDiceSuperHighRoom" = "超爆场%d号房";
+
+"kBetViewTitle" = "赚一把(%d)";
+"kBetNote" = "玩家【%@】开骰了，你要下注赚一把吗？";
+"kAnte" = "底注";
+"kWin" = "TA赢";
+"kLose" = "TA输";
+"kOdds" = "1赔%.2f";
+
+"kCallTips" = "叫骰建议";
+"kJustOpen" = "开它吧!";
+
+"kDoItLikeThis" = "就这样";
+"kThinkMyself" = "自己来";
+
+"kWaitForPlayerBet" = "等待玩家下注(%d)";
 
 /*********************** 大话骰子国际化字符串结束 *************************/
 

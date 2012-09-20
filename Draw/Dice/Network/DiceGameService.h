@@ -37,5 +37,11 @@
 - (void)changeDiceList:(NSString *)userId diceList:(NSArray *)diceList;
 
 - (int)ante;
+- (int)maxCallCount;
+
+- (void)betOpenUserWin:(BOOL)win
+                  ante:(int)ante;
+
+- (CGFloat)oddsForWin:(BOOL)win;
 
 @end

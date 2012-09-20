@@ -9,9 +9,12 @@
 #import "SkipItemAction.h"
 
 @implementation SkipItemAction
-- (BOOL)isShowNameAnimation
+- (void)showItemAnimation:(NSString *)userId 
+                 itemType:(int)itemType 
+               controller:(DiceGamePlayController *)controller
+                     view:(UIView *)view
 {
-    return YES;
+    return;
 }
 
 - (void)useItemSuccess:(DiceGamePlayController *)controller
@@ -26,4 +29,5 @@
 {
     
 }
+
 @end

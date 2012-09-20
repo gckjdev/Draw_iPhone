@@ -103,9 +103,8 @@ static DiceGameService* _defaultService;
 {
     if (message.resultCode == 0) {
         self.diceSession.callCount ++;
+        [self postNotification:NOTIFICATION_CALL_DICE_RESPONSE message:message];
     }
-
-    [self postNotification:NOTIFICATION_CALL_DICE_RESPONSE message:message];
 }
 
 - (void)handleOpenDiceRequest:(GameMessage*)message
@@ -118,7 +117,9 @@ static DiceGameService* _defaultService;
 
 - (void)handleOpenDiceResponse:(GameMessage*)message
 {
-    [self postNotification:NOTIFICATION_OPEN_DICE_RESPONSE message:message];
+    if (message.resultCode == 0) {
+        [self postNotification:NOTIFICATION_OPEN_DICE_RESPONSE message:message];
+    }
 }
 
 - (void)handleGameOverNotificationRequest:(GameMessage *)message
@@ -180,6 +181,18 @@ static DiceGameService* _defaultService;
     [self postNotification:NOTIFICATION_USE_ITEM_REQUEST message:message];
 }
 
+- (void)handleBetDiceRequest:(GameMessage *)message
+{
+    [self postNotification:NOTIFICATION_BET_DICE_REQUEST message:message];
+}
+
+- (void)handleBetDiceResponse:(GameMessage *)message
+{
+    if (message.resultCode == 0) {
+        [self postNotification:NOTIFICATION_BET_DICE_RESPONSE message:message];
+    }
+}
+
 - (void)handleCustomMessage:(GameMessage*)message
 {
     switch ([message command]){
@@ -226,6 +239,14 @@ static DiceGameService* _defaultService;
             
         case GameCommandTypeUseItemRequest:
             [self handleUseItemRequest:message];
+            break;
+            
+        case GameCommandTypeBetDiceRequest:
+            [self handleBetDiceRequest:message];
+            break;
+            
+        case GameCommandTypeBetDiceResponse:
+            [self handleBetDiceResponse:message];
             break;
             
             
@@ -365,7 +386,206 @@ static DiceGameService* _defaultService;
 
 - (int)ante
 {
-    return [self.diceSession ante];
+    int ante = 100;
+    if (self.diceSession.ruleType == DiceGameRuleTypeRuleSuperHigh) {
+        ante = 50 * (self.diceSession.callCount + 1);
+    }
+    
+    return ante;
+}
+
+- (int)maxCallCount
+{
+    if (self.diceSession.ruleType == DiceGameRuleTypeRuleNormal) {
+        return self.session.playingUserCount * 5;
+    }else {
+        return self.session.playingUserCount * 7;
+    }
+}
+
+- (void)betOpenUserWin:(BOOL)win
+                  ante:(int)ante
+{
+    int option;
+    if (win) {
+        option = 0;
+    }else {
+        option = 1;
+    }
+    
+    self.diceSession.betWin = win;
+    
+    CGFloat odds = [self oddsForWin:win];
+    
+    [(DiceNetworkClient *)_networkClient sendBetDiceRequest:[self userId]
+                                                  sessionId:self.session.sessionId
+                                                     option:option
+                                                       ante:ante
+                                                       odds:odds]; 
+
+}
+
+
+
+/***********************  Odds cal **************************/
+
+#define NUM_ODDS 90
+
+
+CGFloat WinAndNotWildOdds[] = {
+    /********** Win & Not wild  ***********/
+    /***** For 3  players(15 dices) *****/
+	100,     50,      25,      12.5,    6.25,   
+    3,       1.5,     0.75,    0.32,    0.15,   
+    0.07,    0.03,   0.02,     0.02,     0.01,   
+    /***** For 4  players(20 dices) *****/
+	100,     75,      50,      25,      12.5,   
+    6.25,    3.0,     1.5,     1.2,     1.1,   
+    1.0,     0.8,     0.4,     0.2,     0.12,   
+    0.07,    0.03,   0.02,     0.02,     0.01,   
+    /***** For 5  players(25 dices) *****/
+	100,     80,      55,      25.0,    12.5,   
+    6.25,    3.0,     2.0,     1.8,     1.6,   
+    1.4,     1.2,     1.0,     0.8,     0.6,   
+    0.5,     0.4,     0.3,     0.2,     0.12,   
+    0.07,    0.03,    0.02,    0.02,    0.01,   
+    /***** For 6  players(30 dices) *****/
+	100,     80,      60,      40,      20,   
+    12.5,    6.25,    3.0,     2.5,     2.2,   
+    2.0,     1.6,     1.5,     1.2,     1.0,   
+    0.9,     0.8,     0.7,     0.6,     0.5,   
+    0.4,     0.3,     0.2,     0.15,     0.12,   
+    0.07,    0.03,    0.02,    0.02,    0.01,   
+};
+
+CGFloat LoseAndNotWildOdds[] = {
+    /********** Lose & Not wild  ***********/
+    /***** For 3  players(15 dices) *****/
+    0.01,   0.02,   0.04,   0.08,   0.16,   
+    0.33,   0.67,   1.33,   3.32,   6.67,   
+    14.3,   33.3,   50.0,   75.0,   100,   
+    
+    /***** For 4  players(20 dices) *****/
+ 	0.01,   0.02,   0.02,   0.04,   0.08,   
+    0.16,   0.33,   0.67,   0.83,   0.91,   
+    1.00,   1.25,   2.50,   5.00,   8.33,   
+    14.3,   33.3,   50.0,   75.0,   100,    
+    
+    /***** For 5  players(25 dices) *****/
+    0.01,   0.01,   0.02,   0.04,   0.08,   
+    0.16,   0.33,   0.5,    0.56,   0.63,   
+    0.71,   0.83,   1.00,   1.25,   1.67,   
+    2.00,   2.50,   3.33,   5.00,   8.33,   
+    14.3,   33.3,   50.0,   75.0,   100,    
+    
+    /***** For 6  players(30 dices) *****/
+    0.01,   0.01,   0.02,   0.02,   0.05,   
+    0.04,   0.16,   0.33,   0.40,   0.45,   
+    0.50,   0.63,   0.67,   0.83,   1.00,   
+    1.11,   1.25,   1.43,   1.67,   2.00,   
+    2.5,    3.33,   5.00,   6.67,   8.33,   
+    14.3,   33.3,   50.0,   75.0,   100,    
+};
+
+//CGFloat WinAndWildOdds[] = {
+//    /********** Win &  Wild ***********/
+//    /***** For 3  players(15 dices) *****/
+//	100,    75.0,   50.0,   25.0,   12.5,   
+//    6.00,   3.00,   1.50,   0.60,   0.30,   
+//    0.15,   0.06,   0.04,   0.02,   0.01,   
+//    /***** For 4  players(20 dices) *****/
+//	100,    80.0,   65.0,   50.0,   25.0,   
+//    12.5,   6.00,   3.00,   2.40,   2.20,   
+//    2.00,   1.60,   0.80,   0.40,   0.24,   
+//    0.14,   0.06,   0.04,   0.02,   0.01,   
+//    /***** For 5  players(25 dices) *****/
+//	100,    88.0,   75.0,   50.0,   25.0,   
+//    12.5,   6.00,   4.00,   3.60,   3.20,   
+//    2.80,   2.40,   2.00,   1.60,   1.20,   
+//    1.00,   0.80,   0.60,   0.40,   0.24,   
+//    0.14,   0.06,   0.04,   0.02,   0.01,   
+//    /***** For 6  players(30 dices) *****/
+//	100,    80.0,   60.0,   50.0,   40.0,   
+//    25.0,   12.5,   6.00,   5.00,   4.40,   
+//    4.00,   3.20,   3.00,   2.40,   2.00,   
+//    1.80,   1.60,   1.40,   1.20,   1.00,   
+//    0.80,   0.60,   0.40,   0.30,   0.24,   
+//    0.14,   0.06,   0.04,   0.02,   0.01,    
+//};
+//
+//CGFloat LoseAndWildOdds[] = {
+//    /********** Lose & Wild  ***********/
+//    /***** For 3  players(15 dices) *****/
+//    0.01,   0.02,   0.04,   0.08,   0.16,   
+//    0.33,   0.67,   1.33,   3.32,   6.67,   
+//    14.3,   33.3,   50.0,   75.0,   100,   
+//    
+//    /***** For 4  players(20 dices) *****/
+// 	0.01,   0.02,   0.02,   0.04,   0.08,   
+//    0.16,   0.33,   0.67,   0.83,   0.91,   
+//    1.00,   1.25,   2.50,   5.00,   8.33,   
+//    14.3,   33.3,   50.0,   75.0,   100,    
+//    
+//    /***** For 5  players(25 dices) *****/
+//    0.01,   0.01,   0.02,   0.04,   0.08,   
+//    0.16,   0.33,   0.5,    0.56,   0.63,   
+//    0.71,   0.83,   1.00,   1.25,   1.67,   
+//    2.00,   2.50,   3.33,   5.00,   8.33,   
+//    14.3,   33.3,   50.0,   75.0,   100,    
+//    
+//    /***** For 6  players(30 dices) *****/
+//    0.01,   0.01,   0.02,   0.02,   0.05,   
+//    0.04,   0.16,   0.33,   0.40,   0.45,   
+//    0.50,   0.63,   0.67,   0.83,   1.00,   
+//    1.11,   1.25,   1.43,   1.67,   2.00,   
+//    2.5,    3.33,   5.00,   6.67,   8.33,   
+//    14.3,   33.3,   50.0,   75.0,   100,   
+//};
+
+
+CGFloat *oddsAddr(bool win)
+{
+    if (win) {
+        return WinAndNotWildOdds;
+    }else 
+        return LoseAndNotWildOdds;
+}
+
+
+- (CGFloat)oddsForWin:(BOOL)win
+{
+    CGFloat *oddsArr = oddsAddr(win);
+    int baseAddr = [self baseAddr:self.diceSession.playingUserCount];
+    
+    int oddsAddress = baseAddr + self.lastCallDiceCount - 1;
+    if (oddsAddress >= 90 || oddsAddress < 0) {
+        return 0.0;
+    }
+    
+    return oddsArr[oddsAddress] * (self.diceSession.wilds ? 2 : 1);
+}
+
+- (int)baseAddr:(int)playerCount
+{
+    int baseAddr = 0;
+    switch (playerCount) {
+        case 3:
+            baseAddr = 0;
+            break;
+        case 4:
+            baseAddr = 15;
+            break;
+        case 5:
+            baseAddr = 35;
+            break;
+        case 6:
+            baseAddr = 60;
+            break;
+        default:
+            break;
+    }
+    
+    return baseAddr;
 }
 
 

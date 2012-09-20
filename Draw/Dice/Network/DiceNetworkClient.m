@@ -103,6 +103,32 @@
     
     [self sendData:[gameMessage data]];  
 }
+
+- (void)sendBetDiceRequest:(NSString*)userId
+                    sessionId:(int)sessionId
+                    option:(int)option
+                      ante:(int)ante
+                      odds:(float)odds
+{
+    BetDiceRequest_Builder *betDiceRequestBuilder = [[[BetDiceRequest_Builder alloc] init] autorelease];
+    [betDiceRequestBuilder setOption:option];
+    [betDiceRequestBuilder setAnte:ante];
+    [betDiceRequestBuilder setOdds:odds];
+    BetDiceRequest *betDiceRequest = [betDiceRequestBuilder build];
+    
+    GameMessage_Builder *messageBuilder = [[[GameMessage_Builder alloc] init] autorelease];
+    [messageBuilder setCommand:GameCommandTypeBetDiceRequest];
+    [messageBuilder setMessageId:[self generateMessageId]];
+    [messageBuilder setUserId:userId];
+    [messageBuilder setSessionId:sessionId];
+    
+    [messageBuilder setBetDiceRequest:betDiceRequest];
+    
+    GameMessage* gameMessage = [messageBuilder build];
+    
+    [self sendData:[gameMessage data]];  
+}
+
 - (void)sendUserItemRequest:(NSString*)userId
                   sessionId:(int)sessionId
                      itemId:(int)itemId 

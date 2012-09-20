@@ -26,6 +26,7 @@
 #import "UIViewUtils.h"
 #import "CommonDiceItemAction.h"
 #import "DiceConfigManager.h"
+#import "CallDiceView.h"
 
 
 #define AVATAR_TAG_OFFSET   8000
@@ -35,16 +36,18 @@
 
 #define MAX_PLAYER_COUNT    6
 
-
-
 #define DURATION_SHOW_GAIN_COINS 3
 
 #define DURATION_ROLL_BELL 1
 
+#define ROBOT_CALL_TIPS_DIALOG_TAG  20120918
+
+#define DURATION_PLAYER_BET 5
+
 @interface DiceGamePlayController ()
 {
     int hideAdCounter;
-//    DiceGameRuleType _ruleType;
+    int _second;
 }
 
 @property (retain, nonatomic) DiceSelectedView *diceSelectedView;
@@ -96,8 +99,10 @@
 @synthesize popupLevel1View = _popupLevel1View;
 @synthesize popupLevel2View = _popupLevel2View;
 @synthesize popupLevel3View = _popupLevel3View;
+@synthesize anteNoteLabel = _anteNoteLabel;
 @synthesize anteLabel = _anteLabel;
 @synthesize anteView = _anteView;
+@synthesize waitForPlayerBetLabel = _waitForPlayerBetLabel;
 @synthesize popupView = _popupView;
 @synthesize adHideTimer = _adHideTimer;
 
@@ -140,8 +145,10 @@
     [_popupLevel3View release];
     [_popupView release];
     [_urgedUser release];
+    [_anteNoteLabel release];
     [_anteLabel release];
     [_anteView release];
+    [_waitForPlayerBetLabel release];
     [super dealloc];
 }
 
@@ -176,6 +183,7 @@
         _audioManager = [AudioManager defaultManager];
         _expressionManager = [ExpressionManager defaultManager];
         _soundManager = [DiceSoundManager defaultManager];
+        _robotManager = [DiceRobotManager defaultManager];
         _urgedUser = [[NSMutableSet alloc] init];
     }
     
@@ -199,6 +207,8 @@
 
     self.myLevelLabel.text = [NSString stringWithFormat:@"LV:%d",_levelService.level];;
     self.myCoinsLabel.text = [NSString stringWithFormat:@"x%d",[_accountService getBalance]];
+    
+    self.anteNoteLabel.text = NSLS(@"kAnte");
     
     self.view.backgroundColor = [UIColor blackColor];
     self.wildsLabel.textColor = [UIColor whiteColor];
@@ -235,6 +245,8 @@
     self.openDiceButton.hidden = YES;
     self.anteView.hidden = YES;
     self.anteLabel.text = [NSString stringWithFormat:@"%d", _diceService.ante]; 
+    self.waitForPlayerBetLabel.hidden = YES;
+    self.waitForPlayerBetLabel.textColor = [UIColor yellowColor];
 
     [self registerDiceGameNotifications];    
     
@@ -279,8 +291,10 @@
     [self setPopupLevel1View:nil];
     [self setPopupLevel2View:nil];
     [self setPopupLevel3View:nil];
+    [self setAnteNoteLabel:nil];
     [self setAnteLabel:nil];
     [self setAnteView:nil];
+    [self setWaitForPlayerBetLabel:nil];
     [super viewDidUnload];
 }
 
@@ -610,10 +624,7 @@
     
     [self registerDiceGameNotificationWithName:NOTIFICATION_CALL_DICE_RESPONSE
                                     usingBlock:^(NSNotification *notification) {
-                                        GameMessage *message = [CommonGameNetworkService userInfoToMessage:notification.userInfo];
-                                        if (message.resultCode == 0) {
-                                            [self callDiceSuccess];
-                                        }
+                                        [self callDiceSuccess];
                                     }];
     
     [self registerDiceGameNotificationWithName:NOTIFICATION_OPEN_DICE_REQUEST
@@ -623,10 +634,19 @@
     
     [self registerDiceGameNotificationWithName:NOTIFICATION_OPEN_DICE_RESPONSE
                                     usingBlock:^(NSNotification *notification) { 
+                                        [self openDiceSuccess];
+                                    }];
+    
+    [self registerDiceGameNotificationWithName:NOTIFICATION_BET_DICE_REQUEST
+                                    usingBlock:^(NSNotification *notification) {
                                         GameMessage *message = [CommonGameNetworkService userInfoToMessage:notification.userInfo];
-                                        if (message.resultCode == 0) {
-                                            [self openDiceSuccess];
-                                        }
+                                        BOOL win = !message.betDiceRequest.option;
+                                        [self someoneBetDice:message.userId win:win];         
+                                    }];
+    
+    [self registerDiceGameNotificationWithName:NOTIFICATION_BET_DICE_RESPONSE
+                                    usingBlock:^(NSNotification *notification) {
+                                        [self betDiceSuccess];
                                     }];
     
     [self registerDiceGameNotificationWithName:NOTIFICATION_GAME_OVER_REQUEST
@@ -653,11 +673,9 @@
     [self registerDiceGameNotificationWithName:NOTIFICATION_USE_ITEM_RESPONSE
                                     usingBlock:^(NSNotification *notification) {    
                                         GameMessage *message = [CommonGameNetworkService userInfoToMessage:notification.userInfo];
-                                        if (message.resultCode == 0) {
-                                            [CommonDiceItemAction handleItemResponse:message.useItemResponse.itemId 
-                                                                          controller:self
-                                                                                view:self.view];
-                                        }
+                                        [CommonDiceItemAction handleItemResponse:message.useItemResponse.itemId 
+                                                                      controller:self
+                                                                            view:self.view];
                                     }];
     
     [self registerDiceGameNotificationWithName:NOTIFICAIION_CHAT_REQUEST
@@ -775,7 +793,7 @@
     [_diceSelectedView setLastCallDice:_diceService.lastCallDice 
                      lastCallDiceCount:_diceService.lastCallDiceCount 
                       playingUserCount:_diceService.diceSession.playingUserCount
-                              ruleType:_diceService.ruleType];
+                          maxCallCount:_diceService.maxCallCount];
 }
 
 - (void)disableAllDiceOperationButtons
@@ -815,6 +833,19 @@
 
 }
 
+- (void)tellDiceToRobot:(NSArray*)list
+{
+    [_robotManager newRound:_diceService.diceSession.playingUserCount];
+    int diceList[5];
+    for (int i = 0; i < 5; i ++) {
+        if (i < _diceService.myDiceList.count) {
+            diceList[i] = ((PBDice*)[_diceService.myDiceList objectAtIndex:i]).dice;
+        }
+    }
+    [_robotManager introspectRobotDices:diceList];
+   // [self.roomNameLabel setText:nil];
+}
+
 - (void)rollDiceEnd
 {
     self.itemsBoxButton.enabled = YES;
@@ -828,6 +859,8 @@
     [myDiceListHolderView addSubview:diceShowView];
     
     myDiceListHolderView.hidden = NO;
+    
+    [self tellDiceToRobot:[_diceService myDiceList]];
 }
 
 - (void)removeUrgedUser:(NSString*)userId
@@ -849,6 +882,31 @@
     }
 }
 
+- (void)robotMakeDecitions
+{
+    int userCount = _diceService.diceSession.playingUserCount;
+    int lastCallDice = _diceService.diceSession.lastCallDice;
+    int lastCallDiceCount = _diceService.diceSession.lastCallDiceCount;
+    NSString* lastCallUserId = _diceService.diceSession.lastCallDiceUserId;
+    BOOL isWild = _diceService.diceSession.wilds;
+    
+    int diceList[5];
+    for (int i = 0; i < 5; i ++) {
+        if (i < _diceService.myDiceList.count) {
+            diceList[i] = ((PBDice*)[_diceService.myDiceList objectAtIndex:i]).dice;
+        }
+    }
+    
+    
+    if (_diceService.lastCallUserId == nil) {
+        [_robotManager initialCall:_diceService.diceSession.playingUserCount];
+
+    } else {
+        [_robotManager updateDecitionByPlayerCount:userCount userId:lastCallUserId number:lastCallDiceCount dice:lastCallDice isWild:isWild myDiceList:diceList];
+    }
+    
+}
+
 - (void)nextPlayerStart
 {
     [self clearAllReciprocol];
@@ -865,12 +923,14 @@
     if ([_userManager isMe:currentPlayUserId])
     {                        
         self.openDiceButton.fontLable.text = NSLS(@"kOpenDice");
+        
+        [self robotMakeDecitions];
 
         // 根据实际叫斋情况判断是否使能斋按钮。
         self.wildsButton.enabled = !_diceService.diceSession.wilds;
         
         // 根据上次叫骰结果判断是否使能+1按钮。
-        self.plusOneButton.enabled = (_diceService.lastCallDiceCount >= _diceService.diceSession.playingUserCount*5) ? NO : YES;
+        self.plusOneButton.enabled = (_diceService.lastCallDiceCount >= _diceService.maxCallCount) ? NO : YES;
         
         // 使能叫骰选择区域
         [self.diceSelectedView enableUserInteraction];
@@ -916,6 +976,9 @@
 #pragma mark - use item animations
 - (void)useItem:(int)itemId itemName:(NSString *)itemName userId:(NSString *)userId
 {
+    if(itemId == ItemTypeDiceRobot) {
+        [self showRobotDecition];
+    }
     
     if (itemId == ItemTypeIncTime) {
         DiceAvatarView* selfAvatar = (DiceAvatarView*)[self selfAvatarView];
@@ -934,6 +997,8 @@
 {
     [self popupOpenDiceView];  
     [self playOpenDiceVoice];
+    
+    [self showWaitForPlayerBetNote];
 }
 
 - (void)openDice
@@ -955,6 +1020,8 @@
     [_diceSelectedView dismiss];
     [self popupOpenDiceView];  
     [self playOpenDiceVoice];
+    
+    [self showBetView];
 }
 
 - (void)playOpenDiceVoice
@@ -1040,7 +1107,7 @@
 {
     [self clearAllReciprocol];
 
-    if (_diceService.diceSession.lastCallDiceCount >= _diceService.diceSession.playingUserCount*5) {
+    if (_diceService.lastCallDiceCount >= _diceService.maxCallCount) {
         [self openDice];
     }else {
         [self callDice:_diceService.diceSession.lastCallDice count:(_diceService.diceSession.lastCallDiceCount + 1)];
@@ -1077,11 +1144,12 @@
                        gender:gender];
 }
 
-
 - (void)gameOver;
 {
     [_popupView dismissItemListView];
     self.itemsBoxButton.enabled = NO;
+    [self killTimer];
+    self.waitForPlayerBetLabel.hidden = YES;
     [self clearAllReciprocol];
     
     self.resultDiceCountLabel.text = @"0";
@@ -1179,6 +1247,49 @@
     }
 }
 
+- (void)showWaitForPlayerBetNote
+{
+    _second = DURATION_PLAYER_BET;
+    
+    self.waitForPlayerBetLabel.text = [NSString stringWithFormat:NSLS(@"kWaitForPlayerBet"), _second];
+    self.waitForPlayerBetLabel.alpha = 0;
+    self.waitForPlayerBetLabel.hidden = NO;
+    [UIView animateWithDuration:1 animations:^{
+        self.waitForPlayerBetLabel.alpha = 1;
+    }];
+    
+    [self createTimer];
+}
+
+- (void)showBetView
+{
+    if (_diceService.diceSession.isMeAByStander) {
+        return;
+    }
+    
+    if ([[_userManager userId] isEqualToString:_diceService.lastCallUserId]
+        || [[_userManager userId] isEqualToString:_diceService.openDiceUserId]) {
+        [self showWaitForPlayerBetNote];
+        return;
+    }
+    
+    NSString *nickName = [_diceService.session getNickNameByUserId:_diceService.openDiceUserId];
+    [DiceBetView showInView:self.view 
+                   duration:DURATION_PLAYER_BET 
+                   openUser:nickName 
+                       ante:100 
+                    winOdds:[_diceService oddsForWin:YES] 
+                   loseOdds:[_diceService oddsForWin:NO]
+                   delegate:self];
+}
+
+- (void)didBetOpenUserWin:(BOOL)win ante:(int)ante odds:(float)odds
+{
+    PPDebug(@"Bet %@, ante:%d, odds:%f", win?@"win":@"lose", ante, odds);
+    [_diceService betOpenUserWin:win ante:ante];
+}
+
+
 - (IBAction)clickSettingButton:(id)sender {
     DiceSettingView *settingView = [DiceSettingView createDiceSettingView];
     [settingView showInView:self.view];
@@ -1187,6 +1298,14 @@
 #pragma mark - common dialog delegate
 - (void)clickOk:(CommonDialog *)dialog
 {
+    if (dialog.tag == ROBOT_CALL_TIPS_DIALOG_TAG) {
+        if (_robotManager.result.shouldOpen) {
+            [self openDice];
+        } else {
+            [self callDice:_robotManager.result.dice count:_robotManager.result.diceCount];
+        }
+        return;
+    }
     [self quitDiceGame];
     [[AccountService defaultService] deductAccount:[ConfigManager getDiceFleeCoin] source:LiarDiceFleeType];
 }
@@ -1204,13 +1323,15 @@
                            aboveSubView:self.popupLevel3View
                               deleagate:self];
     }else {
+        self.chatButton.selected = NO;
         [_popupView dismissChatView];
     }
 }
 
-- (void)didChatViewDismiss
+- (void)didClickCloseButton
 {
     self.chatButton.selected = NO;
+    [_popupView dismissChatView];
 }
 
 
@@ -1258,14 +1379,7 @@
 - (void)showExpression:(NSString *)key userId:(NSString *)userId
 {
     DiceAvatarView *avatar = [self avatarViewOfUser:userId];
-    NSString *filePath = [_expressionManager gifPathForExpression:key];
-    if (filePath == nil) {
-        return;
-    }
-    CGRect frame = CGRectMake(0, 0, avatar.frame.size.width, avatar.frame.size.height);
-    GifView* view = [[[GifView alloc] initWithFrame:frame
-                                           filePath:filePath
-                                   playTimeInterval:0.2] autorelease];
+    GifView* view = [_expressionManager gifExpressionForKey:key frame:avatar.bounds];
     
     view.userInteractionEnabled = NO;
     [avatar addSubview:view];
@@ -1363,7 +1477,101 @@
     [avatar addFlyClockOnMyHead];
 }
 
+- (void)showRobotDecition
+{
+    CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"kCallTips") 
+                                                       message:nil 
+                                                         style:CommonDialogStyleDoubleButton 
+                                                      delegate:self 
+                                                         theme:CommonDialogThemeDice];
+    dialog.tag = ROBOT_CALL_TIPS_DIALOG_TAG;
+    if (_robotManager.result.shouldOpen) {
+        [dialog.messageLabel setText:NSLS(@"kJustOpen")];
+    } else {
+        CallDiceView* view = [[CallDiceView alloc] initWithDice:_robotManager.result.dice count:_robotManager.result.diceCount];
+        [dialog.contentView addSubview:view];
+        [view setCenter:CGPointMake(dialog.contentView.frame.size.width/2, dialog.contentView.frame.size.height/2)];
+        if (_robotManager.result.isWild) {
+            FontButton* btn = [[[FontButton alloc] initWithFrame:self.wildsFlagButton.frame] autorelease];
+            [btn setBackgroundImage:[UIImage imageNamed:@"zhai_bg.png"] forState:UIControlStateNormal];
+            [btn.fontLable setText:NSLS(@"kDiceWilds")];
+            [btn setTitle:NSLS(@"kDiceWilds") forState:UIControlStateNormal];
+            [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+            [dialog.contentView addSubview:btn];
+            [btn setCenter:CGPointMake(view.frame.origin.x - btn.frame.size.width, view.center.y)];
+            
+        }
+        
+    }
+    [dialog.oKButton.fontLable setText:NSLS(@"kDoItLikeThis")];
+    [dialog.backButton.fontLable setText:NSLS(@"kThinkMyself")];
+    [dialog showInView:self.view];
 
+}
+
+
+#pragma mark - Timer manage
+
+- (void)createTimer
+{
+    [self killTimer];
+    
+    PPDebug(@"self count: %d", self.retainCount);
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:1.0
+                                                  target:self 
+                                                selector:@selector(handleTimer:)
+                                                userInfo:nil 
+                                                 repeats:YES];
+    
+    PPDebug(@"self count: %d", self.retainCount);
+}
+
+- (void)killTimer
+{
+    if ([timer isValid]) {
+        [timer invalidate];        
+    }
+    self.timer = nil;
+}
+
+- (void)handleTimer:(NSTimer *)timer
+{
+    _second--;
+    
+    self.waitForPlayerBetLabel.text = [NSString stringWithFormat:NSLS(@"kWaitForPlayerBet"), _second];    
+    if (_second <= 0) {
+        [self killTimer];
+        self.waitForPlayerBetLabel.hidden = YES;
+    }
+}
+
+- (void)showUserBetResult:(NSString *)userId win:(BOOL)win
+{
+    DiceAvatarView *myAvatarView = [self avatarViewOfUser:userId];
+    
+    UIImageView *imageView = [[[UIImageView alloc] initWithFrame:myAvatarView.bounds] autorelease];
+    imageView.image = [_imageManager betResultImage:win];
+    CGFloat duration = DURATION_PLAYER_BET/2 + _diceService.diceSession.playingUserCount*DURATION_SHOW_RESULT_PER_PLAYER;
+    imageView.userInteractionEnabled = NO;
+    [myAvatarView addSubview:imageView];
+    
+    [imageView performSelector:@selector(removeFromSuperview) withObject:nil afterDelay:duration];
+//    [UIView animateWithDuration:duration delay:0  options:UIViewAnimationOptionCurveLinear animations:^{
+//        
+//    } completion:^(BOOL finished) {
+//        [imageView removeFromSuperview];
+//    }];
+}
+
+- (void)betDiceSuccess
+{
+    [self showUserBetResult:_userManager.userId win:_diceService.diceSession.betWin];
+}
+
+- (void)someoneBetDice:(NSString *)userId win:(BOOL)win
+{
+    [self showUserBetResult:userId win:win];
+}   
 
 
 @end

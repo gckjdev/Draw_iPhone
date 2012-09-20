@@ -222,13 +222,12 @@
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<int key="IBUIContentHorizontalAlignment">0</int>
 								<int key="IBUIContentVerticalAlignment">0</int>
-								<string key="IBUINormalTitle">X</string>
 								<reference key="IBUIHighlightedTitleColor" ref="566338797"/>
 								<reference key="IBUINormalTitleColor" ref="775592760"/>
 								<reference key="IBUINormalTitleShadowColor" ref="519780770"/>
 								<object class="NSCustomResource" key="IBUINormalBackgroundImage">
 									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">dice_close_btn@2x.png</string>
+									<string key="NSResourceName">clean_input@2x.png</string>
 								</object>
 								<reference key="IBUIFontDescription" ref="419181507"/>
 								<reference key="IBUIFont" ref="200879936"/>
@@ -253,6 +252,22 @@
 		</array>
 		<object class="IBObjectContainer" key="IBDocument.Objects">
 			<array class="NSMutableArray" key="connectionRecords">
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">musicImageView</string>
+						<reference key="source" ref="937784318"/>
+						<reference key="destination" ref="290649107"/>
+					</object>
+					<int key="connectionID">29</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">audioImageView</string>
+						<reference key="source" ref="937784318"/>
+						<reference key="destination" ref="312623812"/>
+					</object>
+					<int key="connectionID">30</int>
+				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">bgImageView</string>
@@ -300,22 +315,6 @@
 						<reference key="destination" ref="889012136"/>
 					</object>
 					<int key="connectionID">27</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">musicImageView</string>
-						<reference key="source" ref="937784318"/>
-						<reference key="destination" ref="290649107"/>
-					</object>
-					<int key="connectionID">29</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">audioImageView</string>
-						<reference key="source" ref="937784318"/>
-						<reference key="destination" ref="312623812"/>
-					</object>
-					<int key="connectionID">30</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
@@ -400,6 +399,11 @@
 						<reference key="parent" ref="0"/>
 					</object>
 					<object class="IBObjectRecord">
+						<int key="objectID">28</int>
+						<reference key="object" ref="985781082"/>
+						<reference key="parent" ref="937784318"/>
+					</object>
+					<object class="IBObjectRecord">
 						<int key="objectID">26</int>
 						<reference key="object" ref="889012136"/>
 						<array class="NSMutableArray" key="children">
@@ -413,6 +417,16 @@
 							<reference ref="290649107"/>
 						</array>
 						<reference key="parent" ref="937784318"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">6</int>
+						<reference key="object" ref="290649107"/>
+						<reference key="parent" ref="889012136"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">5</int>
+						<reference key="object" ref="312623812"/>
+						<reference key="parent" ref="889012136"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">4</int>
@@ -430,16 +444,6 @@
 						<reference key="parent" ref="889012136"/>
 					</object>
 					<object class="IBObjectRecord">
-						<int key="objectID">5</int>
-						<reference key="object" ref="312623812"/>
-						<reference key="parent" ref="889012136"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">6</int>
-						<reference key="object" ref="290649107"/>
-						<reference key="parent" ref="889012136"/>
-					</object>
-					<object class="IBObjectRecord">
 						<int key="objectID">9</int>
 						<reference key="object" ref="720099629"/>
 						<reference key="parent" ref="889012136"/>
@@ -453,11 +457,6 @@
 						<int key="objectID">15</int>
 						<reference key="object" ref="566736714"/>
 						<reference key="parent" ref="889012136"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">28</int>
-						<reference key="object" ref="985781082"/>
-						<reference key="parent" ref="937784318"/>
 					</object>
 				</array>
 			</object>
@@ -504,7 +503,7 @@
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
 			<string key="audio_on@2x.png">{81, 75}</string>
-			<string key="dice_close_btn@2x.png">{63, 63}</string>
+			<string key="clean_input@2x.png">{57, 57}</string>
 			<string key="music_on@2x.png">{81, 75}</string>
 			<string key="settingleft_selected@2x.png">{115, 59}</string>
 			<string key="settingleft_unselect@2x.png">{115, 59}</string>

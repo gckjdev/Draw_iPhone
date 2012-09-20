@@ -15,6 +15,8 @@
 #import "DecTimeItemAction.h"
 #import "DoubleKillItemAction.h"
 #import "SkipItemAction.h"
+#import "PeekItemAction.h"
+#import "DiceRobotItemAction.h"
 
 @interface CommonDiceItemAction ()
 {
@@ -35,6 +37,8 @@
         case ItemTypeRollAgain:
             return [[[RollAgainItemAction alloc] initWithItemType:itemType] autorelease];
             break;
+        case ItemTypePeek:
+            return [[[PeekItemAction alloc] initWithItemType:itemType] autorelease];
         case ItemTypeIncTime:
             return [[[IncTimeItemAction alloc] initWithItemType:itemType] autorelease];
             break;
@@ -46,6 +50,9 @@
             break;
         case ItemTypeSkip:
             return [[[SkipItemAction alloc] initWithItemType:itemType] autorelease];
+            break;
+        case ItemTypeDiceRobot:
+            return [[[DiceRobotItemAction alloc] initWithItemType:itemType] autorelease];
             break;
         default:
             return nil;
@@ -63,27 +70,6 @@
     }
     
     return self;
-}
-
-- (void)showNameAnimation:(NSString*)userId
-                 itemType:(int)itemType
-               controller:(DiceGamePlayController *)controller
-                     view:(UIView *)view
-{
-    HKGirlFontLabel *label = [[[HKGirlFontLabel alloc] initWithFrame:CGRectMake(0, 0, 70, 70) pointSize:50] autorelease];
-    label.text = [Item nameForItemType:itemType];
-    label.textAlignment = UITextAlignmentCenter;
-    label.center = view.center;
-    
-    [view addSubview:label];
-    
-    [UIView animateWithDuration:1 delay:0 options:UIViewAnimationCurveEaseInOut animations:^{
-        label.center = [[controller bellViewOfUser:userId] center];
-        label.transform = CGAffineTransformMakeScale(0.3, 0.3);
-        label.alpha = 0.3;
-    } completion:^(BOOL finished) {
-        [label removeFromSuperview];
-    }];
 }
 
 + (void)handleItemResponse:(int)itemType
@@ -113,12 +99,7 @@
 {
     [_accountService consumeItem:_itemType amount:1]; 
     
-    if ([self isShowNameAnimation]) {
-        [self showNameAnimation:_userManager.userId
-                       itemType:_itemType
-                     controller:controller
-                           view:view];
-    }
+    [self showItemAnimation:_userManager.userId itemType:_itemType controller:controller view:view];
     
     [self useItemSuccess:controller view:view ];
 }
@@ -127,20 +108,18 @@
                controller:(DiceGamePlayController *)controller
                      view:(UIView *)view
 {
-    if ([self isShowNameAnimation]) {
-        [self showNameAnimation:userId 
-                       itemType:_itemType
-                     controller:controller
-                           view:view];
-    }
+    [self showItemAnimation:userId itemType:_itemType controller:controller view:view];
     
     [self someoneUseItem:userId controller:controller view:view];
 }
 
 // Left to be realize for sub class.
-- (BOOL)isShowNameAnimation
+- (void)showItemAnimation:(NSString*)userId
+                 itemType:(int)itemType
+               controller:(DiceGamePlayController *)controller
+                     view:(UIView *)view
 {
-    return YES;
+    return;
 }
 
 - (void)useItemSuccess:(DiceGamePlayController *)controller

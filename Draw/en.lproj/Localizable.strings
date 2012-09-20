@@ -779,6 +779,9 @@
 "kPickPenColor" = "Pen Color Selection";
 "kPickBGColor" = "Background Color Selection";
 
+
+"kOpusCount" = "Opus(%d)";
+"kJoinCount" = "Join(%d)";
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 
@@ -877,6 +880,21 @@
 "kDiceHappyRoom" = "Happy Room %d";
 "kDiceHighRoom" = "High Room %d";
 "kDiceSuperHighRoom" = "Super High %d";
+
+"kBetViewTitle" = "Bet(%d)";
+"kBetNote" = "Player【%@】challenge, would you bet?";
+"kAnte" = "Ante";
+"kWin" = "Win";
+"kLose" = "Lose";
+"kOdds" = "1:%.2f";
+
+"kCallTips" = "Suggestion";
+"kJustOpen" = "Just open it!";
+
+"kDoItLikeThis" = "Do it";
+"kThinkMyself" = "Cancel";
+
+"kWaitForPlayerBet" = "Waitting for player bet(%d)";
 
 /*********************** 大话骰子国际化字符串结束 *************************/
 

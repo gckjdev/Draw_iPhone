@@ -24,6 +24,12 @@
 - (void)sendGetRoomsRequest:(NSString*)userId 
                  startIndex:(int)index 
                       count:(int)count;
+- (void)sendGetRoomsRequest:(NSString*)userId 
+                 startIndex:(int)index 
+                      count:(int)count 
+                   roomType:(int)type 
+                    keyword:(NSString*)keyword 
+                     gameId:(NSString*)gameId;
 
 - (void)sendJoinGameRequest:(PBGameUser*)user
                      gameId:(NSString*)gameId;

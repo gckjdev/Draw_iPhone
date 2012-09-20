@@ -33,13 +33,13 @@ typedef enum {
 @property (retain, nonatomic) NSDictionary *gameResult;
 @property (retain, nonatomic) NSDictionary *finalCount;
 
-
 @property (assign, nonatomic) BOOL wilds;
 @property (nonatomic, assign) BOOL isMeAByStander;
 @property (assign, nonatomic) DiceGameState gameState;
 @property (assign, nonatomic) int callCount;
 
+@property (assign, nonatomic) BOOL betWin;
+
 - (void)reset;
-- (int)ante;
 
 @end
