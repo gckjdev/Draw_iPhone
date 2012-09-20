@@ -137,6 +137,7 @@ BOOL GameResultCodeIsValidValue(GameResultCode value) {
     case GameResultCodeErrorExcessTimeLimit:
     case GameResultCodeErrorSystemHandlerNotFound:
     case GameResultCodeErrorSystemException:
+    case GameResultCodeErrorSystemSecurityCheck:
       return YES;
     default:
       return NO;

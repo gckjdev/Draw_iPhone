@@ -2712,15 +2712,16 @@
 @interface GameMessage : PBGeneratedMessage {
 @private
   BOOL hasSessionId_:1;
-  BOOL hasMaxCount_:1;
-  BOOL hasMessageId_:1;
   BOOL hasStartOffset_:1;
+  BOOL hasMessageId_:1;
+  BOOL hasTimeStamp_:1;
   BOOL hasRound_:1;
+  BOOL hasMaxCount_:1;
   BOOL hasOnlineUserCount_:1;
   BOOL hasCurrentPlayUserId_:1;
   BOOL hasToUserId_:1;
   BOOL hasUserId_:1;
-  BOOL hasRoomNotificationRequest_:1;
+  BOOL hasMac_:1;
   BOOL hasRollDiceEndNotificationRequest_:1;
   BOOL hasCallDiceRequest_:1;
   BOOL hasCallDiceResponse_:1;
@@ -2754,19 +2755,21 @@
   BOOL hasCreateRoomResponse_:1;
   BOOL hasSearchRoomRequest_:1;
   BOOL hasSearchRoomResponse_:1;
+  BOOL hasRoomNotificationRequest_:1;
   BOOL hasCompleteReason_:1;
   BOOL hasResultCode_:1;
   BOOL hasCommand_:1;
   int64_t sessionId;
-  int32_t maxCount;
-  int32_t messageId;
   int32_t startOffset;
+  int32_t messageId;
+  int32_t timeStamp;
   int32_t round;
+  int32_t maxCount;
   int32_t onlineUserCount;
   NSString* currentPlayUserId;
   NSString* toUserId;
   NSString* userId;
-  RoomNotificationRequest* roomNotificationRequest;
+  NSString* mac;
   RollDiceEndNotificationRequest* rollDiceEndNotificationRequest;
   CallDiceRequest* callDiceRequest;
   CallDiceResponse* callDiceResponse;
@@ -2800,6 +2803,7 @@
   CreateRoomResponse* createRoomResponse;
   SearchRoomRequest* searchRoomRequest;
   SearchRoomResponse* searchRoomResponse;
+  RoomNotificationRequest* roomNotificationRequest;
   GameCompleteReason completeReason;
   GameResultCode resultCode;
   GameCommandType command;
@@ -2850,6 +2854,8 @@
 - (BOOL) hasUseItemResponse;
 - (BOOL) hasStartOffset;
 - (BOOL) hasMaxCount;
+- (BOOL) hasTimeStamp;
+- (BOOL) hasMac;
 @property (readonly) GameCommandType command;
 @property (readonly) int32_t messageId;
 @property (readonly) GameResultCode resultCode;
@@ -2896,6 +2902,8 @@
 @property (readonly, retain) UseItemResponse* useItemResponse;
 @property (readonly) int32_t startOffset;
 @property (readonly) int32_t maxCount;
+@property (readonly) int32_t timeStamp;
+@property (readonly, retain) NSString* mac;
 
 + (GameMessage*) defaultInstance;
 - (GameMessage*) defaultInstance;
@@ -3228,6 +3236,16 @@
 - (int32_t) maxCount;
 - (GameMessage_Builder*) setMaxCount:(int32_t) value;
 - (GameMessage_Builder*) clearMaxCount;
+
+- (BOOL) hasTimeStamp;
+- (int32_t) timeStamp;
+- (GameMessage_Builder*) setTimeStamp:(int32_t) value;
+- (GameMessage_Builder*) clearTimeStamp;
+
+- (BOOL) hasMac;
+- (NSString*) mac;
+- (GameMessage_Builder*) setMac:(NSString*) value;
+- (GameMessage_Builder*) clearMac;
 @end
 
 @interface DataQueryResponse : PBGeneratedMessage {

@@ -10,7 +10,11 @@
 #import "CommonNetworkClient.h"
 #import "GameConstants.pb.h"
 
+#define PROTOCOL_BUFFER_SHARE_KEY       @"pb_share_key"
+
 @class PBGameUser;
+@class GameMessage;
+@class GameMessage_Builder;
 
 @interface CommonGameNetworkClient : CommonNetworkClient<CommonNetworkClientDelegate>
 {
@@ -51,6 +55,8 @@
                   sessionId:(int)sessionId;
 
 - (int)generateMessageId;
+
+- (GameMessage*)build:(GameMessage_Builder*)builder;
 
 - (void)sendSimpleMessage:(int)command
                    userId:(NSString*)userId 

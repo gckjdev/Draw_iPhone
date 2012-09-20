@@ -31,7 +31,7 @@
     
     [messageBuilder setCallDiceRequest:callDiceRequest];
     
-    GameMessage* gameMessage = [messageBuilder build];
+    GameMessage* gameMessage = [self build:messageBuilder];
     
     [self sendData:[gameMessage data]];  
 }
@@ -55,7 +55,7 @@
 //    
 //    [messageBuilder setCallDiceRequest:callDiceRequest];
 //    
-//    GameMessage* gameMessage = [messageBuilder build];
+//    GameMessage* gameMessage = [self build:messageBuilder];
 //    
 //    [self sendData:[gameMessage data]];  
 //}
@@ -78,7 +78,7 @@
     
     [messageBuilder setOpenDiceRequest:openDiceRequest];
     
-    GameMessage* gameMessage = [messageBuilder build];
+    GameMessage* gameMessage = [self build:messageBuilder];
     
     [self sendData:[gameMessage data]];  
 }
@@ -99,7 +99,7 @@
     
     [messageBuilder setUseItemRequest:useItemRequest];
     
-    GameMessage* gameMessage = [messageBuilder build];
+    GameMessage* gameMessage = [self build:messageBuilder];
     
     [self sendData:[gameMessage data]];  
 }
@@ -124,7 +124,7 @@
     
     [messageBuilder setBetDiceRequest:betDiceRequest];
     
-    GameMessage* gameMessage = [messageBuilder build];
+    GameMessage* gameMessage = [self build:messageBuilder];
     
     [self sendData:[gameMessage data]];  
 }
@@ -147,7 +147,7 @@
     
     [messageBuilder setUseItemRequest:useItemRequest];
     
-    GameMessage* gameMessage = [messageBuilder build];
+    GameMessage* gameMessage = [self build:messageBuilder];
     
     [self sendData:[gameMessage data]];  
 }
