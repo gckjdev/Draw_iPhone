@@ -193,6 +193,8 @@ static CommonGameNetworkClient* _defaultGameNetworkClient;
     [getRoomsRequestBuilder setRoomType:type];
     [getRoomsRequestBuilder setKeyword:keyword];
     
+    [messageBuilder setGetRoomsRequest:[getRoomsRequestBuilder build]];
+    
     GameMessage* gameMessage = [messageBuilder build];
     [self sendData:[gameMessage data]]; 
 }

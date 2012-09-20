@@ -38,6 +38,8 @@ typedef enum {
 @property (assign, nonatomic) DiceGameState gameState;
 @property (assign, nonatomic) int callCount;
 
+@property (assign, nonatomic) BOOL betWin;
+
 - (void)reset;
 
 @end

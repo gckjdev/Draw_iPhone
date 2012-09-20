@@ -32,6 +32,7 @@
     if (self) {
         // Initialization code
         [self setBackgroundColor:[UIColor clearColor]];
+        
     }
     return self;
 }
@@ -43,7 +44,8 @@
 //        PPDebug(@"font size = %f", self.font.pointSize);
         self = [super initWithFrame:self.frame
                            fontName:[[DiceFontManager defaultManager] fontName] 
-                          pointSize:self.font.pointSize];  
+                          pointSize:self.font.pointSize];
+        
         
         [self setBackgroundColor:[UIColor clearColor]];
     }

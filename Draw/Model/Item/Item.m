@@ -158,6 +158,8 @@
             return [diceManager toShopImage:diceManager.diceRobotImage];
         case ItemTypePeek:
             return [diceManager toShopImage:diceManager.peekImage];
+        case ItemTypeCustomDicePatriotDice:
+            return [diceManager toShopImage:diceManager.patriotDiceImage];
         default:
             return nil;
     }    

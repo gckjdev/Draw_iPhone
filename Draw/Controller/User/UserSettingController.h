@@ -34,6 +34,7 @@
     NSInteger rowOfMusicSettings;
     NSInteger rowOfVolumeSetting;
     //NSInteger rowOfChatVoice;
+    NSInteger rowOfCustomDice;
     
     NSInteger rowsInSectionUser;
     NSInteger rowsInSectionGuessWord;

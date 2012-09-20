@@ -218,6 +218,8 @@
 		A4AC51C215C7BFF10041DC86 /* ZFont.m in Sources */ = {isa = PBXBuildFile; fileRef = A4AC51BD15C7BFF10041DC86 /* ZFont.m */; };
 		A4AC51EB15C9111C0041DC86 /* DiceSelectedView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4AC51EA15C9111C0041DC86 /* DiceSelectedView.m */; };
 		A4AC51F915C911750041DC86 /* FontButton.m in Sources */ = {isa = PBXBuildFile; fileRef = A4AC51F815C911750041DC86 /* FontButton.m */; };
+		A4AF0A66160AFF9700650C21 /* lose_face@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4AF0A64160AFF9700650C21 /* lose_face@2x.png */; };
+		A4AF0A67160AFF9700650C21 /* win_face@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4AF0A65160AFF9700650C21 /* win_face@2x.png */; };
 		A4B763A215C25208003B4E72 /* Draw.proto in Resources */ = {isa = PBXBuildFile; fileRef = A4B763A015C25208003B4E72 /* Draw.proto */; };
 		A4B763A315C25208003B4E72 /* Dice.proto in Resources */ = {isa = PBXBuildFile; fileRef = A4B763A115C25208003B4E72 /* Dice.proto */; };
 		A4B763A815C25218003B4E72 /* Draw.pb.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B763A515C25218003B4E72 /* Draw.pb.m */; };
@@ -608,6 +610,19 @@
 		C297078116099DB600BE0789 /* CommonSearchView.m in Sources */ = {isa = PBXBuildFile; fileRef = C297078016099DB600BE0789 /* CommonSearchView.m */; };
 		C297078316099EC500BE0789 /* CommonSearchView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C297078216099EC500BE0789 /* CommonSearchView.xib */; };
 		C297078516099EEC00BE0789 /* CommonSearchView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C297078416099EEC00BE0789 /* CommonSearchView~ipad.xib */; };
+		C29707B4160AC14900BE0789 /* ag_a1.png in Resources */ = {isa = PBXBuildFile; fileRef = C29707A8160AC14900BE0789 /* ag_a1.png */; };
+		C29707B5160AC14900BE0789 /* ag_a2.png in Resources */ = {isa = PBXBuildFile; fileRef = C29707A9160AC14900BE0789 /* ag_a2.png */; };
+		C29707B6160AC14900BE0789 /* ag_a3.png in Resources */ = {isa = PBXBuildFile; fileRef = C29707AA160AC14900BE0789 /* ag_a3.png */; };
+		C29707B7160AC14900BE0789 /* ag_a4.png in Resources */ = {isa = PBXBuildFile; fileRef = C29707AB160AC14900BE0789 /* ag_a4.png */; };
+		C29707B8160AC14900BE0789 /* ag_a5.png in Resources */ = {isa = PBXBuildFile; fileRef = C29707AC160AC14900BE0789 /* ag_a5.png */; };
+		C29707B9160AC14900BE0789 /* ag_a6.png in Resources */ = {isa = PBXBuildFile; fileRef = C29707AD160AC14900BE0789 /* ag_a6.png */; };
+		C29707BA160AC14900BE0789 /* ag_b1.png in Resources */ = {isa = PBXBuildFile; fileRef = C29707AE160AC14900BE0789 /* ag_b1.png */; };
+		C29707BB160AC14900BE0789 /* ag_b2.png in Resources */ = {isa = PBXBuildFile; fileRef = C29707AF160AC14900BE0789 /* ag_b2.png */; };
+		C29707BC160AC14900BE0789 /* ag_b3.png in Resources */ = {isa = PBXBuildFile; fileRef = C29707B0160AC14900BE0789 /* ag_b3.png */; };
+		C29707BD160AC14900BE0789 /* ag_b4.png in Resources */ = {isa = PBXBuildFile; fileRef = C29707B1160AC14900BE0789 /* ag_b4.png */; };
+		C29707BE160AC14900BE0789 /* ag_b5.png in Resources */ = {isa = PBXBuildFile; fileRef = C29707B2160AC14900BE0789 /* ag_b5.png */; };
+		C29707BF160AC14900BE0789 /* ag_b6.png in Resources */ = {isa = PBXBuildFile; fileRef = C29707B3160AC14900BE0789 /* ag_b6.png */; };
+		C29707C5160ADBEC00BE0789 /* CustomDiceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C29707C4160ADBEC00BE0789 /* CustomDiceManager.m */; };
 		C29A300715CA16AC00BD0B73 /* CustomLabelUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = C29A300615CA16AC00BD0B73 /* CustomLabelUtil.m */; };
 		C29A300B15CA17FE00BD0B73 /* HKGirlFontLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = C29A300A15CA17FE00BD0B73 /* HKGirlFontLabel.m */; };
 		C29B8A211563B02000B9707D /* CommonMessageCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = C29B8A1F1563B02000B9707D /* CommonMessageCenter.m */; };
@@ -643,6 +658,12 @@
 		C2A09758152ECCB5006535F7 /* GifManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C2A09757152ECCB5006535F7 /* GifManager.m */; };
 		C2A0975B152ECD31006535F7 /* GifView.m in Sources */ = {isa = PBXBuildFile; fileRef = C2A0975A152ECD30006535F7 /* GifView.m */; };
 		C2A09762152ECDEA006535F7 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2A09761152ECDEA006535F7 /* ImageIO.framework */; };
+		C2B002A1160B0EF300AC5F3B /* CustomDiceSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2B0029F160B0EF300AC5F3B /* CustomDiceSettingViewController.m */; };
+		C2B002A2160B0EF300AC5F3B /* CustomDiceSettingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2B002A0160B0EF300AC5F3B /* CustomDiceSettingViewController.xib */; };
+		C2B002A5160B134F00AC5F3B /* CustomDiceSettingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C2B002A4160B134F00AC5F3B /* CustomDiceSettingCell.m */; };
+		C2B002A7160B136600AC5F3B /* CustomDiceSettingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2B002A6160B136600AC5F3B /* CustomDiceSettingCell.xib */; };
+		C2B002A9160B137700AC5F3B /* CustomDiceSettingCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2B002A8160B137700AC5F3B /* CustomDiceSettingCell~ipad.xib */; };
+		C2B002AB160B139300AC5F3B /* CustomDiceSettingViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2B002AA160B139200AC5F3B /* CustomDiceSettingViewController~ipad.xib */; };
 		C2B3E932155373C400CCF52C /* FeedbackController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2B3E931155373C400CCF52C /* FeedbackController~ipad.xib */; };
 		C2B3E934155373CC00CCF52C /* ReportController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2B3E933155373CC00CCF52C /* ReportController~ipad.xib */; };
 		C2B3E936155373D500CCF52C /* AboutUsController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2B3E935155373D500CCF52C /* AboutUsController~ipad.xib */; };
@@ -1762,6 +1783,8 @@
 		A4AC51EA15C9111C0041DC86 /* DiceSelectedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiceSelectedView.m; sourceTree = "<group>"; };
 		A4AC51F715C911750041DC86 /* FontButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FontButton.h; sourceTree = "<group>"; };
 		A4AC51F815C911750041DC86 /* FontButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FontButton.m; sourceTree = "<group>"; };
+		A4AF0A64160AFF9700650C21 /* lose_face@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "lose_face@2x.png"; sourceTree = "<group>"; };
+		A4AF0A65160AFF9700650C21 /* win_face@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "win_face@2x.png"; sourceTree = "<group>"; };
 		A4B763A015C25208003B4E72 /* Draw.proto */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Draw.proto; sourceTree = "<group>"; };
 		A4B763A115C25208003B4E72 /* Dice.proto */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Dice.proto; sourceTree = "<group>"; };
 		A4B763A415C25218003B4E72 /* Draw.pb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Draw.pb.h; sourceTree = "<group>"; };
@@ -2190,6 +2213,20 @@
 		C297078016099DB600BE0789 /* CommonSearchView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonSearchView.m; sourceTree = "<group>"; };
 		C297078216099EC500BE0789 /* CommonSearchView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommonSearchView.xib; sourceTree = "<group>"; };
 		C297078416099EEC00BE0789 /* CommonSearchView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "CommonSearchView~ipad.xib"; sourceTree = "<group>"; };
+		C29707A8160AC14900BE0789 /* ag_a1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ag_a1.png; sourceTree = "<group>"; };
+		C29707A9160AC14900BE0789 /* ag_a2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ag_a2.png; sourceTree = "<group>"; };
+		C29707AA160AC14900BE0789 /* ag_a3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ag_a3.png; sourceTree = "<group>"; };
+		C29707AB160AC14900BE0789 /* ag_a4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ag_a4.png; sourceTree = "<group>"; };
+		C29707AC160AC14900BE0789 /* ag_a5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ag_a5.png; sourceTree = "<group>"; };
+		C29707AD160AC14900BE0789 /* ag_a6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ag_a6.png; sourceTree = "<group>"; };
+		C29707AE160AC14900BE0789 /* ag_b1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ag_b1.png; sourceTree = "<group>"; };
+		C29707AF160AC14900BE0789 /* ag_b2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ag_b2.png; sourceTree = "<group>"; };
+		C29707B0160AC14900BE0789 /* ag_b3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ag_b3.png; sourceTree = "<group>"; };
+		C29707B1160AC14900BE0789 /* ag_b4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ag_b4.png; sourceTree = "<group>"; };
+		C29707B2160AC14900BE0789 /* ag_b5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ag_b5.png; sourceTree = "<group>"; };
+		C29707B3160AC14900BE0789 /* ag_b6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ag_b6.png; sourceTree = "<group>"; };
+		C29707C3160ADBEC00BE0789 /* CustomDiceManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomDiceManager.h; sourceTree = "<group>"; };
+		C29707C4160ADBEC00BE0789 /* CustomDiceManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomDiceManager.m; sourceTree = "<group>"; };
 		C29A300515CA16AC00BD0B73 /* CustomLabelUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomLabelUtil.h; sourceTree = "<group>"; };
 		C29A300615CA16AC00BD0B73 /* CustomLabelUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomLabelUtil.m; sourceTree = "<group>"; };
 		C29A300915CA17FE00BD0B73 /* HKGirlFontLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HKGirlFontLabel.h; path = FontLabel/HKGirlFontLabel.h; sourceTree = "<group>"; };
@@ -2257,6 +2294,14 @@
 		C2A09759152ECD30006535F7 /* GifView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GifView.h; sourceTree = "<group>"; };
 		C2A0975A152ECD30006535F7 /* GifView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GifView.m; sourceTree = "<group>"; };
 		C2A09761152ECDEA006535F7 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
+		C2B0029E160B0EF300AC5F3B /* CustomDiceSettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomDiceSettingViewController.h; sourceTree = "<group>"; };
+		C2B0029F160B0EF300AC5F3B /* CustomDiceSettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomDiceSettingViewController.m; sourceTree = "<group>"; };
+		C2B002A0160B0EF300AC5F3B /* CustomDiceSettingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomDiceSettingViewController.xib; sourceTree = "<group>"; };
+		C2B002A3160B134F00AC5F3B /* CustomDiceSettingCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomDiceSettingCell.h; sourceTree = "<group>"; };
+		C2B002A4160B134F00AC5F3B /* CustomDiceSettingCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomDiceSettingCell.m; sourceTree = "<group>"; };
+		C2B002A6160B136600AC5F3B /* CustomDiceSettingCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomDiceSettingCell.xib; sourceTree = "<group>"; };
+		C2B002A8160B137700AC5F3B /* CustomDiceSettingCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "CustomDiceSettingCell~ipad.xib"; sourceTree = "<group>"; };
+		C2B002AA160B139200AC5F3B /* CustomDiceSettingViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "CustomDiceSettingViewController~ipad.xib"; sourceTree = "<group>"; };
 		C2B3E931155373C400CCF52C /* FeedbackController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "FeedbackController~ipad.xib"; sourceTree = "<group>"; };
 		C2B3E933155373CC00CCF52C /* ReportController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ReportController~ipad.xib"; sourceTree = "<group>"; };
 		C2B3E935155373D500CCF52C /* AboutUsController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "AboutUsController~ipad.xib"; sourceTree = "<group>"; };
@@ -3855,6 +3900,7 @@
 		A4A01B6F15D8AF67002FE86D /* image */ = {
 			isa = PBXGroup;
 			children = (
+				C29707A6160AC14900BE0789 /* beautifulDice */,
 				A4C25A2B15F5F3B3002A7C03 /* DiceDefault_ipad.jpg */,
 				A4C25A2515F5F20E002A7C03 /* DiceDefault.jpg */,
 				CAC25BE815EDF9FD007456FA /* home */,
@@ -3868,6 +3914,8 @@
 		A4A01B7015D8AF67002FE86D /* game */ = {
 			isa = PBXGroup;
 			children = (
+				A4AF0A64160AFF9700650C21 /* lose_face@2x.png */,
+				A4AF0A65160AFF9700650C21 /* win_face@2x.png */,
 				A43A64C21608591A00F35978 /* room_search@2x.png */,
 				A43A64C31608591C00F35978 /* win@2x.png */,
 				A43A64BE1608518B00F35978 /* clean_input@2x.png */,
@@ -4022,6 +4070,7 @@
 		A4B763EF15C28F8E003B4E72 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				C2B0029D160B0EC500AC5F3B /* Settings */,
 				CAC25C6515EF20CD007456FA /* Home */,
 				A4B763F015C28F8E003B4E72 /* Play */,
 				A4B763F415C28F8E003B4E72 /* Room */,
@@ -4074,6 +4123,7 @@
 		A4B763FB15C28F8E003B4E72 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				C29707C2160ADBD200BE0789 /* CustomDiceManager */,
 				C2916CBD1606B9C300B0996E /* DiceRobotManager */,
 				A45BC60815F1C4DF0003DDDC /* DiceConfigManager */,
 				A48E827115E871BB002DB480 /* DiceHelpManager */,
@@ -4317,6 +4367,42 @@
 			path = DiceUserInfoView;
 			sourceTree = "<group>";
 		};
+		C29707A6160AC14900BE0789 /* beautifulDice */ = {
+			isa = PBXGroup;
+			children = (
+				C29707A7160AC14900BE0789 /* AiGuoShai */,
+			);
+			path = beautifulDice;
+			sourceTree = "<group>";
+		};
+		C29707A7160AC14900BE0789 /* AiGuoShai */ = {
+			isa = PBXGroup;
+			children = (
+				C29707A8160AC14900BE0789 /* ag_a1.png */,
+				C29707A9160AC14900BE0789 /* ag_a2.png */,
+				C29707AA160AC14900BE0789 /* ag_a3.png */,
+				C29707AB160AC14900BE0789 /* ag_a4.png */,
+				C29707AC160AC14900BE0789 /* ag_a5.png */,
+				C29707AD160AC14900BE0789 /* ag_a6.png */,
+				C29707AE160AC14900BE0789 /* ag_b1.png */,
+				C29707AF160AC14900BE0789 /* ag_b2.png */,
+				C29707B0160AC14900BE0789 /* ag_b3.png */,
+				C29707B1160AC14900BE0789 /* ag_b4.png */,
+				C29707B2160AC14900BE0789 /* ag_b5.png */,
+				C29707B3160AC14900BE0789 /* ag_b6.png */,
+			);
+			path = AiGuoShai;
+			sourceTree = "<group>";
+		};
+		C29707C2160ADBD200BE0789 /* CustomDiceManager */ = {
+			isa = PBXGroup;
+			children = (
+				C29707C3160ADBEC00BE0789 /* CustomDiceManager.h */,
+				C29707C4160ADBEC00BE0789 /* CustomDiceManager.m */,
+			);
+			path = CustomDiceManager;
+			sourceTree = "<group>";
+		};
 		C29A300815CA176400BD0B73 /* FontLabel */ = {
 			isa = PBXGroup;
 			children = (
@@ -4467,6 +4553,21 @@
 				C2A09736152E979C006535F7 /* BitmapScaleManipulator.m */,
 			);
 			path = Manipulators;
+			sourceTree = "<group>";
+		};
+		C2B0029D160B0EC500AC5F3B /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				C2B0029E160B0EF300AC5F3B /* CustomDiceSettingViewController.h */,
+				C2B0029F160B0EF300AC5F3B /* CustomDiceSettingViewController.m */,
+				C2B002A0160B0EF300AC5F3B /* CustomDiceSettingViewController.xib */,
+				C2B002AA160B139200AC5F3B /* CustomDiceSettingViewController~ipad.xib */,
+				C2B002A3160B134F00AC5F3B /* CustomDiceSettingCell.h */,
+				C2B002A4160B134F00AC5F3B /* CustomDiceSettingCell.m */,
+				C2B002A6160B136600AC5F3B /* CustomDiceSettingCell.xib */,
+				C2B002A8160B137700AC5F3B /* CustomDiceSettingCell~ipad.xib */,
+			);
+			path = Settings;
 			sourceTree = "<group>";
 		};
 		C2BBCE1715B001F1006A13A6 /* Animation */ = {
@@ -8879,6 +8980,24 @@
 				CA3F2F251609CC020059667B /* RankFirstCell.xib in Resources */,
 				CA3F2F2A1609CC280059667B /* RankSecondCell.xib in Resources */,
 				CA3F2F2F1609CC3F0059667B /* RankNormalCell.xib in Resources */,
+				C29707B4160AC14900BE0789 /* ag_a1.png in Resources */,
+				C29707B5160AC14900BE0789 /* ag_a2.png in Resources */,
+				C29707B6160AC14900BE0789 /* ag_a3.png in Resources */,
+				C29707B7160AC14900BE0789 /* ag_a4.png in Resources */,
+				C29707B8160AC14900BE0789 /* ag_a5.png in Resources */,
+				C29707B9160AC14900BE0789 /* ag_a6.png in Resources */,
+				C29707BA160AC14900BE0789 /* ag_b1.png in Resources */,
+				C29707BB160AC14900BE0789 /* ag_b2.png in Resources */,
+				C29707BC160AC14900BE0789 /* ag_b3.png in Resources */,
+				C29707BD160AC14900BE0789 /* ag_b4.png in Resources */,
+				C29707BE160AC14900BE0789 /* ag_b5.png in Resources */,
+				C29707BF160AC14900BE0789 /* ag_b6.png in Resources */,
+				A4AF0A66160AFF9700650C21 /* lose_face@2x.png in Resources */,
+				A4AF0A67160AFF9700650C21 /* win_face@2x.png in Resources */,
+				C2B002A2160B0EF300AC5F3B /* CustomDiceSettingViewController.xib in Resources */,
+				C2B002A7160B136600AC5F3B /* CustomDiceSettingCell.xib in Resources */,
+				C2B002A9160B137700AC5F3B /* CustomDiceSettingCell~ipad.xib in Resources */,
+				C2B002AB160B139300AC5F3B /* CustomDiceSettingViewController~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -9409,6 +9528,9 @@
 				CA3F2F241609CC020059667B /* RankFirstCell.m in Sources */,
 				CA3F2F291609CC280059667B /* RankSecondCell.m in Sources */,
 				CA3F2F2E1609CC3F0059667B /* RankNormalCell.m in Sources */,
+				C29707C5160ADBEC00BE0789 /* CustomDiceManager.m in Sources */,
+				C2B002A1160B0EF300AC5F3B /* CustomDiceSettingViewController.m in Sources */,
+				C2B002A5160B134F00AC5F3B /* CustomDiceSettingCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
