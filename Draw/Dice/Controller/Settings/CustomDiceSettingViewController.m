@@ -23,6 +23,11 @@
     return self;
 }
 
+- (IBAction)clickBackButton:(id)sender
+{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];

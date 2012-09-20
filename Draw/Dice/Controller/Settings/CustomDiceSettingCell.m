@@ -9,6 +9,9 @@
 #import "CustomDiceSettingCell.h"
 
 @implementation CustomDiceSettingCell
+@synthesize DiceImageView;
+@synthesize DiceTitleLabel;
+@synthesize DiceDescriptionLabel;
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -28,4 +31,10 @@
 }
 */
 
+- (void)dealloc {
+    [DiceImageView release];
+    [DiceTitleLabel release];
+    [DiceDescriptionLabel release];
+    [super dealloc];
+}
 @end

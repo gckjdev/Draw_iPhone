@@ -28,6 +28,7 @@
 #import "FacebookSNSService.h"
 #import "GameNetworkConstants.h"
 #import "AdService.h"
+#import "CustomDiceSettingViewController.h"
 
 enum{
     SECTION_USER = 0,

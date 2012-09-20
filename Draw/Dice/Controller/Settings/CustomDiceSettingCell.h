@@ -9,5 +9,8 @@
 #import "PPTableViewCell.h"
 
 @interface CustomDiceSettingCell : PPTableViewCell
+@property (retain, nonatomic) IBOutlet UIImageView *DiceImageView;
+@property (retain, nonatomic) IBOutlet UILabel *DiceTitleLabel;
+@property (retain, nonatomic) IBOutlet UILabel *DiceDescriptionLabel;
 
 @end
