@@ -7,7 +7,20 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "DiceItem.h"
 
 @interface CustomDiceManager : NSObject
+
+- (ItemType)getMyDiceType;
+- (void)setMyDiceType:(ItemType)type;
+
+- (UIImage*)diceImageForType:(ItemType)type 
+                        dice:(int)dice;
+- (UIImage*)openDiceImageForType:(ItemType)type 
+                            dice:(int)dice;
+
+- (NSString*)getImagePrefixByType:(ItemType)type;
+
+- (NSArray*)myCustomDiceList;
 
 @end

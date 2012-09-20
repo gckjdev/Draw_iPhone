@@ -45,4 +45,6 @@
 - (NSInteger)getTurtlePrice;
 - (NSInteger)getDiceRobotPrice;
 
+- (NSInteger)getPatriotDicePrice;
+
 @end
