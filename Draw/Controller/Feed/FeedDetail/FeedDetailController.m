@@ -253,11 +253,6 @@
 
 }
 
-
-
-
-
-
 #define COMMENT_COUNT 12
 - (void)updateCommentList
 {

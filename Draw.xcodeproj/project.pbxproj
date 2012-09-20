@@ -220,6 +220,7 @@
 		A4AC51F915C911750041DC86 /* FontButton.m in Sources */ = {isa = PBXBuildFile; fileRef = A4AC51F815C911750041DC86 /* FontButton.m */; };
 		A4AF0A66160AFF9700650C21 /* lose_face@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4AF0A64160AFF9700650C21 /* lose_face@2x.png */; };
 		A4AF0A67160AFF9700650C21 /* win_face@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4AF0A65160AFF9700650C21 /* win_face@2x.png */; };
+		A4AF0A6A160B025300650C21 /* ReverseItemAction.m in Sources */ = {isa = PBXBuildFile; fileRef = A4AF0A69160B025300650C21 /* ReverseItemAction.m */; };
 		A4B763A215C25208003B4E72 /* Draw.proto in Resources */ = {isa = PBXBuildFile; fileRef = A4B763A015C25208003B4E72 /* Draw.proto */; };
 		A4B763A315C25208003B4E72 /* Dice.proto in Resources */ = {isa = PBXBuildFile; fileRef = A4B763A115C25208003B4E72 /* Dice.proto */; };
 		A4B763A815C25218003B4E72 /* Draw.pb.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B763A515C25218003B4E72 /* Draw.pb.m */; };
@@ -1779,6 +1780,8 @@
 		A4AC51F815C911750041DC86 /* FontButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FontButton.m; sourceTree = "<group>"; };
 		A4AF0A64160AFF9700650C21 /* lose_face@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "lose_face@2x.png"; sourceTree = "<group>"; };
 		A4AF0A65160AFF9700650C21 /* win_face@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "win_face@2x.png"; sourceTree = "<group>"; };
+		A4AF0A68160B025300650C21 /* ReverseItemAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReverseItemAction.h; sourceTree = "<group>"; };
+		A4AF0A69160B025300650C21 /* ReverseItemAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReverseItemAction.m; sourceTree = "<group>"; };
 		A4B763A015C25208003B4E72 /* Draw.proto */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Draw.proto; sourceTree = "<group>"; };
 		A4B763A115C25208003B4E72 /* Dice.proto */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Dice.proto; sourceTree = "<group>"; };
 		A4B763A415C25218003B4E72 /* Draw.pb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Draw.pb.h; sourceTree = "<group>"; };
@@ -4086,6 +4089,8 @@
 				C28E7C131602E5F900F4B6A5 /* SkipItemAction.m */,
 				C22E21851608664F00DE3035 /* DiceRobotItemAction.h */,
 				C22E21861608664F00DE3035 /* DiceRobotItemAction.m */,
+				A4AF0A68160B025300650C21 /* ReverseItemAction.h */,
+				A4AF0A69160B025300650C21 /* ReverseItemAction.m */,
 			);
 			path = Play;
 			sourceTree = "<group>";
@@ -9495,6 +9500,7 @@
 				CA3F2F291609CC280059667B /* RankSecondCell.m in Sources */,
 				CA3F2F2E1609CC3F0059667B /* RankNormalCell.m in Sources */,
 				C29707C5160ADBEC00BE0789 /* CustomDiceManager.m in Sources */,
+				A4AF0A6A160B025300650C21 /* ReverseItemAction.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

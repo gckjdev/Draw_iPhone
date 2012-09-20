@@ -1277,7 +1277,7 @@
     [DiceBetView showInView:self.view 
                    duration:DURATION_PLAYER_BET 
                    openUser:nickName 
-                       ante:100 
+                       ante:[_diceService betAnte]
                     winOdds:[_diceService oddsForWin:YES] 
                    loseOdds:[_diceService oddsForWin:NO]
                    delegate:self];
@@ -1286,7 +1286,7 @@
 - (void)didBetOpenUserWin:(BOOL)win ante:(int)ante odds:(float)odds
 {
     PPDebug(@"Bet %@, ante:%d, odds:%f", win?@"win":@"lose", ante, odds);
-    [_diceService betOpenUserWin:win ante:ante];
+    [_diceService betOpenUserWin:win];
 }
 
 

@@ -403,8 +403,30 @@ static DiceGameService* _defaultService;
     }
 }
 
+- (int)betAnte
+{
+    int betAnte;
+    switch (_ruleType) {
+        case DiceGameRuleTypeRuleNormal:
+            betAnte = [ConfigManager getBetAnteWithNormalRule];
+            break;
+            
+        case DiceGameRuleTypeRuleHigh:
+            betAnte = [ConfigManager getBetAnteWithHighRule];
+            break;
+            
+        case DiceGameRuleTypeRuleSuperHigh:
+            betAnte = [ConfigManager getBetAnteWithSuperHighRule];
+            break;
+            
+        default:
+            break;
+    }
+    
+    return betAnte;
+}
+
 - (void)betOpenUserWin:(BOOL)win
-                  ante:(int)ante
 {
     int option;
     if (win) {
@@ -420,12 +442,10 @@ static DiceGameService* _defaultService;
     [(DiceNetworkClient *)_networkClient sendBetDiceRequest:[self userId]
                                                   sessionId:self.session.sessionId
                                                      option:option
-                                                       ante:ante
+                                                       ante:[self betAnte]
                                                        odds:odds]; 
 
 }
-
-
 
 /***********************  Odds cal **************************/
 
