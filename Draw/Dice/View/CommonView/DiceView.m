@@ -8,6 +8,7 @@
 
 #import "DiceView.h"
 #import "DiceImageManager.h"
+#import "CustomDiceManager.h"
 
 @interface DiceView ()
 {
@@ -34,7 +35,7 @@
     if (self) {
         // Initialization code
         
-        [self setImage:[[DiceImageManager defaultManager] diceImageWithDice:pbDice.dice] forState:UIControlStateNormal];
+        [self setImage:[[CustomDiceManager defaultManager] myDiceImage:pbDice.dice] forState:UIControlStateNormal];
         _diceId = pbDice.diceId;
         _dice = pbDice.dice;
         
@@ -52,7 +53,7 @@
     if (self) {
         // Initialization code
         
-        [self setImage:[[DiceImageManager defaultManager] diceImageWithDice:dice] forState:UIControlStateNormal];
+        [self setImage:[[CustomDiceManager defaultManager] myDiceImage:dice] forState:UIControlStateNormal];
         _dice = dice;
         
         self.seletedBgImageView = [[[UIImageView alloc] initWithFrame:self.bounds] autorelease];
@@ -71,7 +72,7 @@
 - (void)setDice:(int)dice
 {
     _dice = dice;
-    [self setImage:[[DiceImageManager defaultManager] diceImageWithDice:_dice] forState:UIControlStateNormal];
+    [self setImage:[[CustomDiceManager defaultManager] myDiceImage:_dice] forState:UIControlStateNormal];
     
 }
 

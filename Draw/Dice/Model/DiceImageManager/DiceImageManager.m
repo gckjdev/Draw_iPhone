@@ -90,7 +90,7 @@ static DiceImageManager *_defaultManager = nil;
     return image;
 }
 
-- (UIImage *)openDiceImageWithDice:(int)dice
+- (UIImage *)openDiceImageWithDice:(int)dice 
 {
     UIImage *image = nil;
     
@@ -124,6 +124,24 @@ static DiceImageManager *_defaultManager = nil;
     }
     
     return image;
+}
+
+- (UIImage*)customDiceImageWithDiceName:(NSString*)name 
+                                   dice:(int)dice
+{
+    if (name == nil || [name isEqualToString:@""]) {
+        return [self diceImageWithDice:dice];
+    }
+    return [UIImage imageNamed:[NSString stringWithFormat:@"dice_%@_%d.png", name, dice]];
+}
+
+- (UIImage*)customOpenDiceImageWithDiceName:(NSString*)name 
+                                       dice:(int)dice
+{
+    if (name == nil || [name isEqualToString:@""]) {
+        return [self openDiceImageWithDice:dice];
+    }
+    return [UIImage imageNamed:[NSString stringWithFormat:@"openDice_%@_%d.png", name, dice]];
 }
 
 - (UIImage *)toolBackgroundImage

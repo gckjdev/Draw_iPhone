@@ -9,19 +9,31 @@
 #import <Foundation/Foundation.h>
 #import "DiceItem.h"
 
+typedef enum {
+    CustomDiceTypeDefault = 0,
+    CustomDiceTypePatriot,
+    CustomDiceTypeCount
+}CustomDiceType;
+
 
 @interface CustomDiceManager : NSObject
 
-- (ItemType)getMyDiceType;
-- (void)setMyDiceType:(ItemType)type;
+- (CustomDiceType)getMyDiceType;
+- (void)setMyDiceType:(CustomDiceType)type;
+- (void)setMyDiceTypeByItemType:(ItemType)type;
 
 - (UIImage*)diceImageForType:(ItemType)type 
                         dice:(int)dice;
 - (UIImage*)openDiceImageForType:(ItemType)type 
                             dice:(int)dice;
 
+- (UIImage*)myDiceImage:(int)dice;
+- (UIImage*)myOpenDiceImage:(int)dice;
+
 - (NSString*)getImagePrefixByType:(ItemType)type;
 
 - (NSArray*)myCustomDiceList;
 + (CustomDiceManager*)defaultManager;
+
++ (CustomDiceType)itemTypeToCustomDiceType:(ItemType)type;
 @end
