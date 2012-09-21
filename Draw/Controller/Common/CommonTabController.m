@@ -153,7 +153,7 @@
             [tab.dataList removeAllObjects];
         }
         [tab.dataList addObjectsFromArray:list];
-        tab.offset += [tab.dataList count];
+        tab.offset = [tab.dataList count];
     }
     tab.status = TableTabStatusLoaded;
     if (tab.isCurrentTab) {

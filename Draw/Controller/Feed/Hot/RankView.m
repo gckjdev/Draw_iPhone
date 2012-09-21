@@ -10,13 +10,16 @@
 #import "HJManagedImageV.h"
 #import "PPApplication.h"
 #import "DrawFeed.h"
+#import "ShowDrawView.h"
+#import "DrawUtils.h"
+#import "Draw.h"
 
 @implementation RankView
 @synthesize delegate = _delegate;
 @synthesize title = _title;
 @synthesize author = _author;
 @synthesize drawImage = _drawImage;
-
+@synthesize feed = _feed;
 
 
 
@@ -47,9 +50,10 @@
 }
 
 - (void)dealloc {
-    [_title release];
-    [_author release];
-    [_drawImage release];
+    PPRelease(_feed);
+    PPRelease(_title);
+    PPRelease(_author);
+    PPRelease(_drawImage);
     [super dealloc];
 }
 
@@ -60,12 +64,49 @@
         self.hidden = YES;
         return;
     }
+    self.feed = feed;
     [self.drawImage clear];
-    [self.drawImage setUrl:[NSURL URLWithString:feed.drawImageUrl]];
-    [GlobalGetImageCache() manage:self.drawImage];
-    
+    if(feed.drawImage){
+        [self.drawImage setImage:feed.drawImage];
+    }else if ([feed.drawImageUrl length] != 0) {
+        [self.drawImage setUrl:[NSURL URLWithString:feed.drawImageUrl]];
+    }else{
+        PPDebug(@"<setViewInfo> show draw view. feedId=%@,word=%@", 
+                feed.feedId,feed.wordText);
+        
+        ShowDrawView *showView = [[ShowDrawView alloc] initWithFrame:self.drawImage.frame];
+        CGFloat xScale = self.bounds.size.width / DRAW_VIEW_FRAME.size.width;
+        CGFloat yScale = self.bounds.size.height / DRAW_VIEW_FRAME.size.height;
+        NSMutableArray *list = [DrawAction scaleActionList:feed.drawData.drawActionList xScale:xScale yScale:yScale];
+        [showView setDrawActionList:list];
+        [self insertSubview:showView aboveSubview:self.drawImage];
+        [showView release];
+        [showView show];
+        UIImage *image = [showView createImage];
+        [self.drawImage setImage:image];
+        feed.drawImage = image;
+        [showView removeFromSuperview];
+        feed.drawData = nil;
+
+    }
+    [GlobalGetImageCache() manage:self.drawImage];            
     [self.title setText:feed.wordText];
     [self.author setText:feed.feedUser.nickName];
+    
+    
+    //add a button.
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+    button.frame = self.bounds;
+    [button addTarget:self action:@selector(clickRankView:) forControlEvents:UIControlEventTouchUpInside];
+    [self addSubview:button];
+}
+
+- (void)clickRankView:(id)sender
+{
+    if (self.delegate && 
+        [self.delegate respondsToSelector:@selector(didClickRankView:)]) {
+        [self.delegate didClickRankView:self];
+    }
 }
 
 + (CGFloat)heightForRankViewType:(RankViewType)type
@@ -76,7 +117,7 @@
         case RankViewTypeSecond:
             return [DeviceDetection isIPAD] ? 167 : 167;
         case RankViewTypeNormal:
-            return [DeviceDetection isIPAD] ? 109 : 109;
+            return [DeviceDetection isIPAD] ? 110 : 110;
         default:
             return 0;
     }
@@ -90,7 +131,7 @@
         case RankViewTypeSecond:
             return [DeviceDetection isIPAD] ? 159 : 159;
         case RankViewTypeNormal:
-            return [DeviceDetection isIPAD] ? 105 : 105;
+            return [DeviceDetection isIPAD] ? 106 : 106;
         default:
             return 0;
     }
