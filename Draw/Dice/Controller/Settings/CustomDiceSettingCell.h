@@ -18,6 +18,6 @@
 
 + (CGFloat)getCellHeight;
 - (void)setCellInfo:(Item*)item;
-
+- (void)setDefault;
 
 @end

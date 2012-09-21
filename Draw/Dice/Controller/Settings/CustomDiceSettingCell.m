@@ -8,6 +8,7 @@
 
 #import "CustomDiceSettingCell.h"
 #import "DiceItem.h"
+#import "DiceImageManager.h"
 
 @implementation CustomDiceSettingCell
 @synthesize DiceImageView;
@@ -24,7 +25,7 @@
     return self;
 }
 
-#define HEIGHT_DICE_ROOM_LIST_CELL  ([DeviceDetection isIPAD] ? 204: 102)
+#define HEIGHT_DICE_ROOM_LIST_CELL  ([DeviceDetection isIPAD] ? 114: 57)
 
 + (CGFloat)getCellHeight
 {
@@ -36,6 +37,13 @@
     [self.DiceImageView setImage:item.itemImage];
     [self.DiceTitleLabel setText:item.itemName];
     [self.DiceDescriptionLabel setText:item.itemDescription];
+}
+
+- (void)setDefault
+{
+    [self.DiceImageView setImage:[[DiceImageManager defaultManager] diceImageWithDice:1]];
+    [self.DiceTitleLabel setText:NSLS(@"kDefault")];
+    [self.DiceDescriptionLabel setText:nil];
 }
 
 + (NSString*)getCellIdentifier
