@@ -9,7 +9,6 @@
 #import "HotController.h"
 #import "TableTabManager.h"
 #import "ShareImageManager.h"
-#import "RankFirstCell.h"
 
 typedef enum{
 
@@ -90,21 +89,23 @@ typedef enum{
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return [RankFirstCell getCellHeight];
+//    return [RankFirstCell getCellHeight];
+    return 0;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)theTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSString *CellIdentifier = [RankFirstCell getCellIdentifier];
-    RankFirstCell *cell = [theTableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil) {
-        cell = [RankFirstCell createCell:self];
-    }
-    cell.indexPath = indexPath;
-    cell.accessoryType = UITableViewCellAccessoryNone;
-    DrawFeed *feed = [self.tabDataList objectAtIndex:indexPath.row];
-    [cell setCellInfo:feed];
-    return cell;
-    
+//    NSString *CellIdentifier = [RankFirstCell getCellIdentifier];
+//    RankFirstCell *cell = [theTableView dequeueReusableCellWithIdentifier:CellIdentifier];
+//    if (cell == nil) {
+//        cell = [RankFirstCell createCell:self];
+//    }
+//    cell.indexPath = indexPath;
+//    cell.accessoryType = UITableViewCellAccessoryNone;
+//    DrawFeed *feed = [self.tabDataList objectAtIndex:indexPath.row];
+//    [cell setCellInfo:feed];
+//    return cell;
+
+    return nil;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section

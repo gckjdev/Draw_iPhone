@@ -910,6 +910,10 @@
 		CA13773015245AE700B5790B /* MyPaintManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA13772F15245AE600B5790B /* MyPaintManager.m */; };
 		CA1377EF1525A2D700B5790B /* ShareImageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1377EE1525A2D700B5790B /* ShareImageManager.m */; };
 		CA1377F21525A7CB00B5790B /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = CA1377F01525A7CB00B5790B /* Localizable.strings */; };
+		CA1656FF160C032800E433BE /* RankView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1656FD160C032600E433BE /* RankView.m */; };
+		CA165700160C032800E433BE /* RankView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA1656FE160C032700E433BE /* RankView.xib */; };
+		CA165704160C037800E433BE /* RankFirstView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA165703160C037600E433BE /* RankFirstView.xib */; };
+		CA165706160C044800E433BE /* RankSecondView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA165705160C044700E433BE /* RankSecondView.xib */; };
 		CA18D3FF15CFACD3001B421A /* FeedClasses.m in Sources */ = {isa = PBXBuildFile; fileRef = CA18D3FE15CFACD3001B421A /* FeedClasses.m */; };
 		CA18D40215CFB230001B421A /* DrawFeed.m in Sources */ = {isa = PBXBuildFile; fileRef = CA18D40115CFB230001B421A /* DrawFeed.m */; };
 		CA18D40515CFB242001B421A /* GuessFeed.m in Sources */ = {isa = PBXBuildFile; fileRef = CA18D40415CFB242001B421A /* GuessFeed.m */; };
@@ -975,12 +979,6 @@
 		CA3F2ED81609BCFB0059667B /* ContestOpusController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3F2ED61609BCFB0059667B /* ContestOpusController.m */; };
 		CA3F2ED91609BCFB0059667B /* ContestOpusController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA3F2ED71609BCFB0059667B /* ContestOpusController.xib */; };
 		CA3F2F1F1609BDCA0059667B /* CommonTabController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3F2F1D1609BDCA0059667B /* CommonTabController.m */; };
-		CA3F2F241609CC020059667B /* RankFirstCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3F2F221609CC020059667B /* RankFirstCell.m */; };
-		CA3F2F251609CC020059667B /* RankFirstCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA3F2F231609CC020059667B /* RankFirstCell.xib */; };
-		CA3F2F291609CC280059667B /* RankSecondCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3F2F271609CC280059667B /* RankSecondCell.m */; };
-		CA3F2F2A1609CC280059667B /* RankSecondCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA3F2F281609CC280059667B /* RankSecondCell.xib */; };
-		CA3F2F2E1609CC3F0059667B /* RankNormalCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3F2F2C1609CC3E0059667B /* RankNormalCell.m */; };
-		CA3F2F2F1609CC3F0059667B /* RankNormalCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA3F2F2D1609CC3E0059667B /* RankNormalCell.xib */; };
 		CA41C944152010FF00013DC8 /* ItemShopController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA41C942152010FF00013DC8 /* ItemShopController.m */; };
 		CA41C945152010FF00013DC8 /* ItemShopController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA41C943152010FF00013DC8 /* ItemShopController.xib */; };
 		CA41C9491520179100013DC8 /* ShoppingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA41C9471520179000013DC8 /* ShoppingCell.m */; };
@@ -2756,6 +2754,11 @@
 		CA1377F11525A7CB00B5790B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		CA1377F31525A80200B5790B /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		CA1377F41525A80D00B5790B /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		CA1656FC160C032500E433BE /* RankView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RankView.h; sourceTree = "<group>"; };
+		CA1656FD160C032600E433BE /* RankView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RankView.m; sourceTree = "<group>"; };
+		CA1656FE160C032700E433BE /* RankView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RankView.xib; sourceTree = "<group>"; };
+		CA165703160C037600E433BE /* RankFirstView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RankFirstView.xib; sourceTree = "<group>"; };
+		CA165705160C044700E433BE /* RankSecondView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RankSecondView.xib; sourceTree = "<group>"; };
 		CA18D3FD15CFACD3001B421A /* FeedClasses.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedClasses.h; sourceTree = "<group>"; };
 		CA18D3FE15CFACD3001B421A /* FeedClasses.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedClasses.m; sourceTree = "<group>"; };
 		CA18D40015CFB230001B421A /* DrawFeed.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawFeed.h; sourceTree = "<group>"; };
@@ -2867,15 +2870,6 @@
 		CA3F2ED71609BCFB0059667B /* ContestOpusController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContestOpusController.xib; sourceTree = "<group>"; };
 		CA3F2F1C1609BDCA0059667B /* CommonTabController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonTabController.h; sourceTree = "<group>"; };
 		CA3F2F1D1609BDCA0059667B /* CommonTabController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonTabController.m; sourceTree = "<group>"; };
-		CA3F2F211609CC020059667B /* RankFirstCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RankFirstCell.h; sourceTree = "<group>"; };
-		CA3F2F221609CC020059667B /* RankFirstCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RankFirstCell.m; sourceTree = "<group>"; };
-		CA3F2F231609CC020059667B /* RankFirstCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RankFirstCell.xib; sourceTree = "<group>"; };
-		CA3F2F261609CC270059667B /* RankSecondCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RankSecondCell.h; sourceTree = "<group>"; };
-		CA3F2F271609CC280059667B /* RankSecondCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RankSecondCell.m; sourceTree = "<group>"; };
-		CA3F2F281609CC280059667B /* RankSecondCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RankSecondCell.xib; sourceTree = "<group>"; };
-		CA3F2F2B1609CC3E0059667B /* RankNormalCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RankNormalCell.h; sourceTree = "<group>"; };
-		CA3F2F2C1609CC3E0059667B /* RankNormalCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RankNormalCell.m; sourceTree = "<group>"; };
-		CA3F2F2D1609CC3E0059667B /* RankNormalCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RankNormalCell.xib; sourceTree = "<group>"; };
 		CA41C941152010FF00013DC8 /* ItemShopController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemShopController.h; sourceTree = "<group>"; };
 		CA41C942152010FF00013DC8 /* ItemShopController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemShopController.m; sourceTree = "<group>"; };
 		CA41C943152010FF00013DC8 /* ItemShopController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ItemShopController.xib; sourceTree = "<group>"; };
@@ -6616,15 +6610,11 @@
 				CA89741D1607230E003A95F7 /* HotController.h */,
 				CA89741E1607230E003A95F7 /* HotController.m */,
 				CA89741F1607230E003A95F7 /* HotController.xib */,
-				CA3F2F211609CC020059667B /* RankFirstCell.h */,
-				CA3F2F221609CC020059667B /* RankFirstCell.m */,
-				CA3F2F231609CC020059667B /* RankFirstCell.xib */,
-				CA3F2F261609CC270059667B /* RankSecondCell.h */,
-				CA3F2F271609CC280059667B /* RankSecondCell.m */,
-				CA3F2F281609CC280059667B /* RankSecondCell.xib */,
-				CA3F2F2B1609CC3E0059667B /* RankNormalCell.h */,
-				CA3F2F2C1609CC3E0059667B /* RankNormalCell.m */,
-				CA3F2F2D1609CC3E0059667B /* RankNormalCell.xib */,
+				CA1656FC160C032500E433BE /* RankView.h */,
+				CA1656FD160C032600E433BE /* RankView.m */,
+				CA1656FE160C032700E433BE /* RankView.xib */,
+				CA165703160C037600E433BE /* RankFirstView.xib */,
+				CA165705160C044700E433BE /* RankSecondView.xib */,
 			);
 			path = Hot;
 			sourceTree = "<group>";
@@ -8977,9 +8967,6 @@
 				CA3F2ECE1609B3050059667B /* StatementView.xib in Resources */,
 				CA3F2ED31609B3360059667B /* StatementController.xib in Resources */,
 				CA3F2ED91609BCFB0059667B /* ContestOpusController.xib in Resources */,
-				CA3F2F251609CC020059667B /* RankFirstCell.xib in Resources */,
-				CA3F2F2A1609CC280059667B /* RankSecondCell.xib in Resources */,
-				CA3F2F2F1609CC3F0059667B /* RankNormalCell.xib in Resources */,
 				C29707B4160AC14900BE0789 /* ag_a1.png in Resources */,
 				C29707B5160AC14900BE0789 /* ag_a2.png in Resources */,
 				C29707B6160AC14900BE0789 /* ag_a3.png in Resources */,
@@ -8998,6 +8985,9 @@
 				C2B002A7160B136600AC5F3B /* CustomDiceSettingCell.xib in Resources */,
 				C2B002A9160B137700AC5F3B /* CustomDiceSettingCell~ipad.xib in Resources */,
 				C2B002AB160B139300AC5F3B /* CustomDiceSettingViewController~ipad.xib in Resources */,
+				CA165700160C032800E433BE /* RankView.xib in Resources */,
+				CA165704160C037800E433BE /* RankFirstView.xib in Resources */,
+				CA165706160C044800E433BE /* RankSecondView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -9525,12 +9515,10 @@
 				CA3F2ED21609B3360059667B /* StatementController.m in Sources */,
 				CA3F2ED81609BCFB0059667B /* ContestOpusController.m in Sources */,
 				CA3F2F1F1609BDCA0059667B /* CommonTabController.m in Sources */,
-				CA3F2F241609CC020059667B /* RankFirstCell.m in Sources */,
-				CA3F2F291609CC280059667B /* RankSecondCell.m in Sources */,
-				CA3F2F2E1609CC3F0059667B /* RankNormalCell.m in Sources */,
 				C29707C5160ADBEC00BE0789 /* CustomDiceManager.m in Sources */,
 				C2B002A1160B0EF300AC5F3B /* CustomDiceSettingViewController.m in Sources */,
 				C2B002A5160B134F00AC5F3B /* CustomDiceSettingCell.m in Sources */,
+				CA1656FF160C032800E433BE /* RankView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
