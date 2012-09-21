@@ -14,7 +14,7 @@
 #define SHOW_DICE_FLAG  @"a"
 #define OPEN_DICE_FLAG  @"b"
 
-#define IMAGE_PREFIX_PATRIOT    @"ag_"
+#define IMAGE_PREFIX_PATRIOT    @"ag"
 
 #define MY_DICE_TYPE @"MY_DICE_TYPE"
 
@@ -31,7 +31,17 @@ static CustomDiceManager* shareInstance;
     return shareInstance;
 }
 
-- (ItemType)getMyDiceType
++ (CustomDiceType)itemTypeToCustomDiceType:(ItemType)type
+{
+    switch (type) {
+        case ItemTypeCustomDicePatriotDice:
+            return CustomDiceTypePatriot;
+        default:
+            return CustomDiceTypeDefault;
+    }
+}
+
+- (CustomDiceType)getMyDiceType
 {
     NSUserDefaults* userDefault = [NSUserDefaults standardUserDefaults];
     NSNumber* type = (NSNumber*)[userDefault objectForKey:MY_DICE_TYPE];
@@ -41,7 +51,7 @@ static CustomDiceManager* shareInstance;
     return ItemTypeCustomDiceStart;
 }
 
-- (void)setMyDiceType:(ItemType)type
+- (void)setMyDiceType:(CustomDiceType)type
 {
     NSUserDefaults* userDefault = [NSUserDefaults standardUserDefaults];
     NSNumber* aType = [NSNumber numberWithInt:type];
@@ -49,12 +59,18 @@ static CustomDiceManager* shareInstance;
     [userDefault synchronize];
 }
 
+- (void)setMyDiceTypeByItemType:(ItemType)type
+{
+    [self setMyDiceType:[CustomDiceManager itemTypeToCustomDiceType:type]];
+}
+
 - (UIImage*)diceImageForType:(ItemType)type 
                         dice:(int)dice
 {
     NSString* prefix = [self getImagePrefixByType:type];
     if (prefix) {
-        return [UIImage imageNamed:[NSString stringWithFormat:@"%@%@%d", prefix, SHOW_DICE_FLAG, dice]];
+        return [[DiceImageManager defaultManager] customDiceImageWithDiceName:prefix 
+                                                                         dice:dice];
     } else {
         return [[DiceImageManager defaultManager] diceImageWithDice:dice];
     }
@@ -65,10 +81,20 @@ static CustomDiceManager* shareInstance;
 {
     NSString* prefix = [self getImagePrefixByType:type];
     if (prefix) {
-        return [UIImage imageNamed:[NSString stringWithFormat:@"%@%@%d", prefix, OPEN_DICE_FLAG, dice]];
+        return [[DiceImageManager defaultManager] customOpenDiceImageWithDiceName:prefix 
+                                                                             dice:dice];
     } else {
-        return [[DiceImageManager defaultManager] diceImageWithDice:dice];
+        return [[DiceImageManager defaultManager] openDiceImageWithDice:dice];
     }
+}
+
+- (UIImage*)myDiceImage:(int)dice
+{
+    return [self diceImageForType:[self getMyDiceType] dice:dice];
+}
+- (UIImage*)myOpenDiceImage:(int)dice
+{
+    return [self openDiceImageForType:[self getMyDiceType] dice:dice];
 }
 
 - (NSString*)getImagePrefixByType:(ItemType)type

@@ -65,7 +65,7 @@
     cell.accessoryType = UITableViewCellAccessoryNone;
     if (indexPath.row == 0) {
         [cell setDefault];
-        if ([[CustomDiceManager defaultManager] getMyDiceType] == ItemTypeCustomDiceStart) {
+        if ([[CustomDiceManager defaultManager] getMyDiceType] == CustomDiceTypeDefault) {
             cell.accessoryType = UITableViewCellAccessoryCheckmark;
         }
     }
@@ -73,7 +73,7 @@
     if (indexPath.row-1 < self.dataList.count && indexPath.row > 0) {
         Item* item = (Item*)[self.dataList objectAtIndex:(indexPath.row-1)];
         [cell setCellInfo:item];
-        if ([[CustomDiceManager defaultManager] getMyDiceType] == item.type) {
+        if ([[CustomDiceManager defaultManager] getMyDiceType] == [CustomDiceManager itemTypeToCustomDiceType:item.type]) {
             cell.accessoryType = UITableViewCellAccessoryCheckmark;
         }
 
@@ -90,11 +90,11 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.row == 0) {
-        [[CustomDiceManager defaultManager] setMyDiceType:ItemTypeCustomDiceStart];
+        [[CustomDiceManager defaultManager] setMyDiceTypeByItemType:ItemTypeCustomDiceStart];
     } else {
         if (indexPath.row-1 < self.dataList.count) {
             Item* item = (Item*)[self.dataList objectAtIndex:(indexPath.row-1)];
-            [[CustomDiceManager defaultManager] setMyDiceType:item.type];
+            [[CustomDiceManager defaultManager] setMyDiceTypeByItemType:item.type];
         }
     }
     [self.dataTableView reloadData];

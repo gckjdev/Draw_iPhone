@@ -71,4 +71,9 @@
 
 - (UIImage *)betResultImage:(BOOL)win;
 
+- (UIImage*)customDiceImageWithDiceName:(NSString*)name 
+                                   dice:(int)dice;
+- (UIImage*)customOpenDiceImageWithDiceName:(NSString*)name 
+                                       dice:(int)dice;
+
 @end
