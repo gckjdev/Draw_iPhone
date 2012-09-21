@@ -378,7 +378,7 @@ static VendingController* staticVendingController = nil;
             }
             
             if (isDiceApp()) {
-                _itemList = [[NSMutableArray alloc] initWithObjects:[Item removeAd], [Item rollAgain], [Item cut], [Item peek], [Item postpone], [Item urge], [Item turtle], [Item diceRobot], nil];       
+                _itemList = [[NSMutableArray alloc] initWithObjects:[Item removeAd], [Item rollAgain], [Item cut], [Item peek], [Item postpone], [Item urge], [Item turtle], [Item diceRobot], [Item patriotDice], nil];       
             }
         }
         else{
@@ -387,7 +387,7 @@ static VendingController* staticVendingController = nil;
             }
             
             if (isDiceApp()) {
-                _itemList = [[NSMutableArray alloc] initWithObjects:[Item removeAd], [Item rollAgain], [Item cut], [Item peek], [Item postpone], [Item urge], [Item turtle], [Item diceRobot], nil];
+                _itemList = [[NSMutableArray alloc] initWithObjects:[Item removeAd], [Item rollAgain], [Item cut], [Item peek], [Item postpone], [Item urge], [Item turtle], [Item diceRobot], [Item patriotDice], nil];
             }
 
         }

@@ -117,6 +117,7 @@ typedef enum {
   GameResultCodeErrorExcessTimeLimit = 502,
   GameResultCodeErrorSystemHandlerNotFound = 910,
   GameResultCodeErrorSystemException = 911,
+  GameResultCodeErrorSystemSecurityCheck = 912,
 } GameResultCode;
 
 BOOL GameResultCodeIsValidValue(GameResultCode value);

@@ -11,10 +11,11 @@
 
 @implementation TableTabManager
 
-- (id)initWithTabIDList:(NSArray *)tabIDs 
+- (id)initWithTabIDList:(NSArray *)tabIDs
+              titleList:(NSArray *)titleList 
          noDataDescList:(NSArray *)noDataList
                   limit:(NSInteger)limit 
-        currentTabIndex:(NSInteger)index;
+        currentTabIndex:(NSInteger)index
 {
     self = [super init];
     if(self){
@@ -23,8 +24,12 @@
         for (NSNumber *tabID in tabIDs) {
             NSString *desc = (i < [noDataList count] ? 
                               [noDataList objectAtIndex:i] : nil);
+            NSString *title = (i < [titleList count] ? 
+                              [noDataList objectAtIndex:i] : nil);
+
             TableTab *tab = [TableTab tabWithID:tabID.integerValue
                                           index:i++ 
+                                          title:title
                                          offset:0 
                                           limit:limit 
                                      noDataDesc:desc

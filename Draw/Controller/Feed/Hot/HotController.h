@@ -7,7 +7,10 @@
 //
 
 #import "CommonTabController.h"
+#import "FeedService.h"
 
-@interface HotController : CommonTabController
-
+@interface HotController : CommonTabController<FeedServiceDelegate>
+{
+    
+}
 @end

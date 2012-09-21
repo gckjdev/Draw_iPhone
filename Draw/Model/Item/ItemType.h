@@ -38,7 +38,12 @@ typedef enum
     ItemTypeSkip = 2008,
     ItemTypeDoubleKill = 2009,
     ItemTypeDiceFlower = 2010,
-    ItemTypeDiceTomato = 2011
+    ItemTypeDiceTomato = 2011,
+    
+    //custom dice start here
+    ItemTypeCustomDiceStart = 2500,
+    ItemTypeCustomDicePatriotDice,
+    ItemTypeCustomDiceEnd
 
     
 }ItemType;

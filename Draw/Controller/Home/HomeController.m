@@ -61,6 +61,7 @@
 
 
 #import "ContestController.h"
+#import "HotController.h"
 
 @interface HomeController()
 {
@@ -598,6 +599,12 @@
     ContestController *cc = [[ContestController alloc] init];
     [self.navigationController pushViewController:cc animated:YES];
     [cc release];
+}
+
+- (IBAction)clickRankButton:(id)sender {
+    HotController *hc = [[HotController alloc] init];
+    [self.navigationController pushViewController:hc animated:YES];
+    [hc release];
 }
 
 

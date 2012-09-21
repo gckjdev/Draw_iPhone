@@ -343,4 +343,16 @@ static ShoppingManager *staticShoppingManager = nil;
     return retPrice;
 }
 
+- (NSInteger)getPatriotDicePrice
+{
+    NSString* price = [MobClick getConfigParams:@"DICE_PATRIOT_DICE_PRICE"];
+    if (price == nil) {
+        PPDebug(@"<getPatriotDicePrice>: price is nil, return default price = %d",DEFAULT_DICE_ROBOT_PRICE);
+        return DEFAULT_DICE_ROBOT_PRICE;
+    }
+    NSInteger retPrice = [price integerValue];
+    PPDebug(@"<getPatriotDicePrice>: price string = %@,price value = %d",price,retPrice);
+    return retPrice;
+}
+
 @end

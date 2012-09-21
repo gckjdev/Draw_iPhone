@@ -111,6 +111,29 @@
                                 amount:[[ItemManager defaultManager] amountForItem:ItemTypeDiceRobot]] autorelease];
 }
 
++ (Item*)patriotDice
+{
+    return [[[Item alloc] initWithType:ItemTypeCustomDicePatriotDice 
+                                 image:[[DiceImageManager defaultManager] patriotDiceImage]
+                                  name:NSLS(@"kITemPatriotDice")
+                             shortName:NSLS(@"kPatriotDice")
+                           description:NSLS(@"kPatriotDiceDescription") 
+                      buyAmountForOnce:1
+                                 price:[[ShoppingManager defaultManager] getPatriotDicePrice] 
+                                amount:[[ItemManager defaultManager] amountForItem:ItemTypeCustomDicePatriotDice]] autorelease];
+}
+
++ (Item*)diceItemForItemType:(ItemType)type
+{
+    switch (type) {
+        case ItemTypeCustomDicePatriotDice:
+            return [Item patriotDice];
+        default:
+            break;
+    }
+    return nil;
+}
+
 //- (UIView *)itemViewItemName:(NSString *)itemName
 //{
 //    CGRect frame = CGRectMake(0, 0, 34, 38);

@@ -1250,6 +1250,10 @@
 
 - (void)showWaitForPlayerBetNote
 {
+    if (_diceService.diceSession.playingUserCount <= 2) {
+        return;
+    }
+    
     _second = DURATION_PLAYER_BET;
     
     self.waitForPlayerBetLabel.text = [NSString stringWithFormat:NSLS(@"kWaitForPlayerBet"), _second];

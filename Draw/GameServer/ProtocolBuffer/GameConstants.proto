@@ -188,6 +188,7 @@ enum GameResultCode {
   // system errors
   ERROR_SYSTEM_HANDLER_NOT_FOUND = 910;
   ERROR_SYSTEM_EXCEPTION = 911;
+  ERROR_SYSTEM_SECURITY_CHECK = 912;
   
 }
 

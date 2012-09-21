@@ -10562,6 +10562,8 @@ static FacetimeChatResponse* defaultFacetimeChatResponseInstance = nil;
 @property (retain) UseItemResponse* useItemResponse;
 @property int32_t startOffset;
 @property int32_t maxCount;
+@property int32_t timeStamp;
+@property (retain) NSString* mac;
 @end
 
 @implementation GameMessage
@@ -10888,6 +10890,20 @@ static FacetimeChatResponse* defaultFacetimeChatResponseInstance = nil;
   hasMaxCount_ = !!value;
 }
 @synthesize maxCount;
+- (BOOL) hasTimeStamp {
+  return !!hasTimeStamp_;
+}
+- (void) setHasTimeStamp:(BOOL) value {
+  hasTimeStamp_ = !!value;
+}
+@synthesize timeStamp;
+- (BOOL) hasMac {
+  return !!hasMac_;
+}
+- (void) setHasMac:(BOOL) value {
+  hasMac_ = !!value;
+}
+@synthesize mac;
 - (void) dealloc {
   self.userId = nil;
   self.toUserId = nil;
@@ -10926,6 +10942,7 @@ static FacetimeChatResponse* defaultFacetimeChatResponseInstance = nil;
   self.betDiceResponse = nil;
   self.useItemRequest = nil;
   self.useItemResponse = nil;
+  self.mac = nil;
   [super dealloc];
 }
 - (id) init {
@@ -10976,6 +10993,8 @@ static FacetimeChatResponse* defaultFacetimeChatResponseInstance = nil;
     self.useItemResponse = [UseItemResponse defaultInstance];
     self.startOffset = 0;
     self.maxCount = 0;
+    self.timeStamp = 0;
+    self.mac = @"";
   }
   return self;
 }
@@ -11224,6 +11243,12 @@ static GameMessage* defaultGameMessageInstance = nil;
   if (self.hasMaxCount) {
     [output writeInt32:1001 value:self.maxCount];
   }
+  if (self.hasTimeStamp) {
+    [output writeInt32:1010 value:self.timeStamp];
+  }
+  if (self.hasMac) {
+    [output writeString:1011 value:self.mac];
+  }
   [self.unknownFields writeToCodedOutputStream:output];
 }
 - (int32_t) serializedSize {
@@ -11370,6 +11395,12 @@ static GameMessage* defaultGameMessageInstance = nil;
   }
   if (self.hasMaxCount) {
     size += computeInt32Size(1001, self.maxCount);
+  }
+  if (self.hasTimeStamp) {
+    size += computeInt32Size(1010, self.timeStamp);
+  }
+  if (self.hasMac) {
+    size += computeStringSize(1011, self.mac);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -11583,6 +11614,12 @@ static GameMessage* defaultGameMessageInstance = nil;
   }
   if (other.hasMaxCount) {
     [self setMaxCount:other.maxCount];
+  }
+  if (other.hasTimeStamp) {
+    [self setTimeStamp:other.timeStamp];
+  }
+  if (other.hasMac) {
+    [self setMac:other.mac];
   }
   [self mergeUnknownFields:other.unknownFields];
   return self;
@@ -11972,6 +12009,14 @@ static GameMessage* defaultGameMessageInstance = nil;
       }
       case 8008: {
         [self setMaxCount:[input readInt32]];
+        break;
+      }
+      case 8080: {
+        [self setTimeStamp:[input readInt32]];
+        break;
+      }
+      case 8090: {
+        [self setMac:[input readString]];
         break;
       }
     }
@@ -13187,6 +13232,38 @@ static GameMessage* defaultGameMessageInstance = nil;
 - (GameMessage_Builder*) clearMaxCount {
   result.hasMaxCount = NO;
   result.maxCount = 0;
+  return self;
+}
+- (BOOL) hasTimeStamp {
+  return result.hasTimeStamp;
+}
+- (int32_t) timeStamp {
+  return result.timeStamp;
+}
+- (GameMessage_Builder*) setTimeStamp:(int32_t) value {
+  result.hasTimeStamp = YES;
+  result.timeStamp = value;
+  return self;
+}
+- (GameMessage_Builder*) clearTimeStamp {
+  result.hasTimeStamp = NO;
+  result.timeStamp = 0;
+  return self;
+}
+- (BOOL) hasMac {
+  return result.hasMac;
+}
+- (NSString*) mac {
+  return result.mac;
+}
+- (GameMessage_Builder*) setMac:(NSString*) value {
+  result.hasMac = YES;
+  result.mac = value;
+  return self;
+}
+- (GameMessage_Builder*) clearMac {
+  result.hasMac = NO;
+  result.mac = @"";
   return self;
 }
 @end

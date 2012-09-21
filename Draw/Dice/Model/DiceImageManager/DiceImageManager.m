@@ -451,6 +451,11 @@ static DiceImageManager *_defaultManager = nil;
     return [UIImage creatImageByImage:backgroundImage withLabel:label];
 }
 
+- (UIImage*)patriotDiceImage
+{
+    return [UIImage imageNamed:@"ag_a1.png"];
+}
+
 
 - (UIImage*)toShopImage:(UIImage*)image
 {

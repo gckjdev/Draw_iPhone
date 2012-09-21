@@ -10,6 +10,7 @@
 #import "GameMessage.pb.h"
 #import "LogUtil.h"
 #import "GameConstants.h"
+#import "StringUtil.h"
 
 @implementation CommonGameNetworkClient
 
@@ -64,6 +65,20 @@ static CommonGameNetworkClient* _defaultGameNetworkClient;
     return _messageIdIndex;
 }
 
+#pragma mark - Build Message With MAC
+
+- (GameMessage*)build:(GameMessage_Builder*)builder
+{
+    [builder setTimeStamp:time(0)];
+    NSString* strForEncode = [NSString stringWithFormat:@"%d%d", 
+                              [builder messageId], [builder timeStamp]];
+    
+    [builder setMac:[strForEncode encodeMD5Base64:PROTOCOL_BUFFER_SHARE_KEY]]; 
+
+    PPDebug(@"[TEST] PB MAC=%@", [builder mac]);    
+    return [builder build];
+}
+
 #pragma mark - Send Message
 
 - (void)sendSimpleMessage:(int)command
@@ -76,7 +91,7 @@ static CommonGameNetworkClient* _defaultGameNetworkClient;
     [messageBuilder setUserId:userId];
     [messageBuilder setSessionId:sessionId];
     
-    GameMessage* gameMessage = [messageBuilder build];
+    GameMessage* gameMessage = [self build:messageBuilder];
     [self sendData:[gameMessage data]];                
 }
 
@@ -99,7 +114,7 @@ static CommonGameNetworkClient* _defaultGameNetworkClient;
     }
     
     [messageBuilder setRegisterRoomsNotificationRequest:[request_builder build]];
-    GameMessage* gameMessage = [messageBuilder build];
+    GameMessage* gameMessage = [self build:messageBuilder];
     [self sendData:[gameMessage data]];   
 }
 
@@ -118,7 +133,7 @@ static CommonGameNetworkClient* _defaultGameNetworkClient;
     
     [messageBuilder setUnRegisterRoomsNotificationRequest:[request_builder build]];
     
-    GameMessage* gameMessage = [messageBuilder build];
+    GameMessage* gameMessage = [self build:messageBuilder];
     [self sendData:[gameMessage data]];   
 }
 
@@ -151,7 +166,7 @@ static CommonGameNetworkClient* _defaultGameNetworkClient;
 
     [messageBuilder setChatRequest:chatRequest];
     
-    GameMessage *gameMessage = [messageBuilder build];
+    GameMessage *gameMessage = [self build:messageBuilder];
     [self sendData:[gameMessage data]];
 }
 
@@ -169,7 +184,7 @@ static CommonGameNetworkClient* _defaultGameNetworkClient;
     [messageBuilder setStartOffset:index];
     [messageBuilder setMaxCount:count];
     
-    GameMessage* gameMessage = [messageBuilder build];
+    GameMessage* gameMessage = [self build:messageBuilder];
     [self sendData:[gameMessage data]]; 
 }
 
@@ -193,7 +208,8 @@ static CommonGameNetworkClient* _defaultGameNetworkClient;
     [getRoomsRequestBuilder setRoomType:type];
     [getRoomsRequestBuilder setKeyword:keyword];
     
-    GameMessage* gameMessage = [messageBuilder build];
+    [messageBuilder setGetRoomsRequest:[getRoomsRequestBuilder build]];    
+    GameMessage* gameMessage = [self build:messageBuilder];
     [self sendData:[gameMessage data]]; 
 }
 
@@ -215,7 +231,7 @@ static CommonGameNetworkClient* _defaultGameNetworkClient;
     CreateRoomRequest* request = [requestBuilder build];
     [messageBuilder setCreateRoomRequest:request];
     
-    GameMessage* gameMessage = [messageBuilder build];
+    GameMessage* gameMessage = [self build:messageBuilder];
     [self sendData:[gameMessage data]]; 
 }
 
@@ -239,7 +255,7 @@ static CommonGameNetworkClient* _defaultGameNetworkClient;
     CreateRoomRequest* request = [requestBuilder build];
     [messageBuilder setCreateRoomRequest:request];
     
-    GameMessage* gameMessage = [messageBuilder build];
+    GameMessage* gameMessage = [self build:messageBuilder];
     [self sendData:[gameMessage data]]; 
 }
 
@@ -261,7 +277,7 @@ static CommonGameNetworkClient* _defaultGameNetworkClient;
     [messageBuilder setMessageId:[self generateMessageId]];
     [messageBuilder setJoinGameRequest:[requestBuilder build]];
     
-    GameMessage* gameMessage = [messageBuilder build];
+    GameMessage* gameMessage = [self build:messageBuilder];
     [self sendData:[gameMessage data]];    
 }
 
@@ -286,7 +302,7 @@ static CommonGameNetworkClient* _defaultGameNetworkClient;
     [messageBuilder setMessageId:[self generateMessageId]];
     [messageBuilder setJoinGameRequest:[requestBuilder build]];
     
-    GameMessage* gameMessage = [messageBuilder build];
+    GameMessage* gameMessage = [self build:messageBuilder];
     [self sendData:[gameMessage data]];    
 }
 
@@ -311,7 +327,7 @@ static CommonGameNetworkClient* _defaultGameNetworkClient;
     [messageBuilder setSessionId:sessionId];
     [messageBuilder setJoinGameRequest:[requestBuilder build]];
     
-    GameMessage* gameMessage = [messageBuilder build];
+    GameMessage* gameMessage = [self build:messageBuilder];
     [self sendData:[gameMessage data]];    
 }
 
@@ -338,7 +354,7 @@ static CommonGameNetworkClient* _defaultGameNetworkClient;
     [messageBuilder setSessionId:sessionId];
     [messageBuilder setJoinGameRequest:[requestBuilder build]];
     
-    GameMessage* gameMessage = [messageBuilder build];
+    GameMessage* gameMessage = [self build:messageBuilder];
     [self sendData:[gameMessage data]];    
 }
 

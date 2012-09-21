@@ -66,6 +66,9 @@
 - (UIImage *)diceRobotImage;
 - (UIImage*)toShopImage:(UIImage*)image;
 
+
+- (UIImage*)patriotDiceImage;
+
 - (UIImage *)betResultImage:(BOOL)win;
 
 @end

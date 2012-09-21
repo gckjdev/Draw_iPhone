@@ -38,7 +38,7 @@
 
 + (CGFloat)getCellHeight
 {
-    return [DeviceDetection isIPAD] ? 400 : 200;
+    return [DeviceDetection isIPAD] ? 300 : 137;
 }
 
 - (void)setCellInfo:(DrawFeed *)feed
