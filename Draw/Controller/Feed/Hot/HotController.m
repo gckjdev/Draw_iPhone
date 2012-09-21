@@ -9,6 +9,7 @@
 #import "HotController.h"
 #import "TableTabManager.h"
 #import "ShareImageManager.h"
+#import "RankView.h"
 
 typedef enum{
 
@@ -89,23 +90,108 @@ typedef enum{
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-//    return [RankFirstCell getCellHeight];
-    return 0;
+    if (indexPath.row == 0) {
+        return [RankView heightForRankViewType:RankViewTypeFirst];
+    }else if(indexPath.row == 1){
+        return [RankView heightForRankViewType:RankViewTypeSecond];
+    }
+    return [RankView heightForRankViewType:RankViewTypeNormal];
+}
+
+- (void)clearCellSubViews:(UITableViewCell *)cell{
+    for (UIView *view in cell.contentView.subviews) {
+        if ([view isKindOfClass:[RankView class]]) {
+            [view removeFromSuperview];
+        }
+    }    
+}
+
+- (void)setFirstRankCell:(UITableViewCell *)cell WithFeed:(DrawFeed *)feed
+{
+    RankView *view = [RankView createRankView:self type:RankViewTypeFirst];
+    [view setViewInfo:feed];
+    [cell.contentView addSubview:view];
+}
+
+- (void)setSencodRankCell:(UITableViewCell *)cell 
+                WithFeed1:(DrawFeed *)feed1 
+                    feed2:(DrawFeed *)feed2
+{
+    RankView *view1 = [RankView createRankView:self type:RankViewTypeSecond];
+    [view1 setViewInfo:feed1];
+    RankView *view2 = [RankView createRankView:self type:RankViewTypeSecond];
+    [view2 setViewInfo:feed2];
+    [cell.contentView addSubview:view1];
+    [cell.contentView addSubview:view2];
+    
+    CGFloat x2 = (CGRectGetWidth(cell.frame) -  [RankView widthForRankViewType:RankViewTypeSecond]);
+    view2.frame = CGRectMake(x2, 0, view2.frame.size.width, view2.frame.size.height);
+}
+
+
+#define NORMAL_CELL_VIEW_NUMBER 3
+
+- (void)setNormalRankCell:(UITableViewCell *)cell 
+                WithFeeds:(NSArray *)feeds
+{
+    CGFloat width = [RankView widthForRankViewType:RankViewTypeNormal];
+    CGFloat height = [RankView heightForRankViewType:RankViewTypeNormal];
+    CGFloat space = (cell.frame.size.width - NORMAL_CELL_VIEW_NUMBER * width)/ (NORMAL_CELL_VIEW_NUMBER - 1);
+    CGFloat x = 0;
+    CGFloat y = 0;
+    for (DrawFeed *feed in feeds) {
+        RankView *rankView = [RankView createRankView:self type:RankViewTypeNormal];
+        [rankView setViewInfo:feed];
+        [cell.contentView addSubview:rankView];
+        rankView.frame = CGRectMake(x, y, width, height);
+        x += width + space;
+    }
+}
+
+
+- (NSObject *)saveGetObjectForIndex:(NSInteger)index
+{
+    NSArray *list = [self tabDataList];
+    if (index < 0 || index >= [list count]) {
+        return nil;
+    }
+    return [list objectAtIndex:index];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)theTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-//    NSString *CellIdentifier = [RankFirstCell getCellIdentifier];
-//    RankFirstCell *cell = [theTableView dequeueReusableCellWithIdentifier:CellIdentifier];
-//    if (cell == nil) {
-//        cell = [RankFirstCell createCell:self];
-//    }
-//    cell.indexPath = indexPath;
-//    cell.accessoryType = UITableViewCellAccessoryNone;
-//    DrawFeed *feed = [self.tabDataList objectAtIndex:indexPath.row];
-//    [cell setCellInfo:feed];
-//    return cell;
+    
+    
+    NSString *CellIdentifier = @"RankCell";//[RankFirstCell getCellIdentifier];
+    UITableViewCell *cell = [theTableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    
+    if (cell == nil) {
+        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+    }else{
+        [self clearCellSubViews:cell];
+    }
 
-    return nil;
+    cell.accessoryType = UITableViewCellAccessoryNone;
+    TableTab *tab = [self currentTab];
+    if (tab.tabID == RankTypeHot) {
+        if (indexPath.row == 0) {
+            DrawFeed *feed = (DrawFeed *)[self saveGetObjectForIndex:0];  
+            [self setFirstRankCell:cell WithFeed:feed];
+        }else if(indexPath.row == 1){
+            DrawFeed *feed1 = (DrawFeed *)[self saveGetObjectForIndex:1];  
+            DrawFeed *feed2 = (DrawFeed *)[self saveGetObjectForIndex:2];            
+            [self setSencodRankCell:cell WithFeed1:feed1 feed2:feed2];
+        }else{
+            NSInteger startIndex = ((indexPath.row - 1) * NORMAL_CELL_VIEW_NUMBER);
+//            NSMutableArray *list
+        }        
+    }else if(tab.tabID == RankTypeNew){
+        
+    }
+    
+
+    return cell;
+
+
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section

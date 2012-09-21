@@ -7,11 +7,15 @@
 //
 
 #import "RankView.h"
+#import "HJManagedImageV.h"
+#import "PPApplication.h"
+#import "DrawFeed.h"
 
 @implementation RankView
 @synthesize delegate = _delegate;
 @synthesize title = _title;
 @synthesize author = _author;
+@synthesize drawImage = _drawImage;
 
 
 
@@ -45,7 +49,23 @@
 - (void)dealloc {
     [_title release];
     [_author release];
+    [_drawImage release];
     [super dealloc];
+}
+
+
+- (void)setViewInfo:(DrawFeed *)feed
+{
+    if (feed == nil) {
+        self.hidden = YES;
+        return;
+    }
+    [self.drawImage clear];
+    [self.drawImage setUrl:[NSURL URLWithString:feed.drawImageUrl]];
+    [GlobalGetImageCache() manage:self.drawImage];
+    
+    [self.title setText:feed.wordText];
+    [self.author setText:feed.feedUser.nickName];
 }
 
 + (CGFloat)heightForRankViewType:(RankViewType)type
@@ -57,6 +77,20 @@
             return [DeviceDetection isIPAD] ? 167 : 167;
         case RankViewTypeNormal:
             return [DeviceDetection isIPAD] ? 109 : 109;
+        default:
+            return 0;
+    }
+}
+
++ (CGFloat)widthForRankViewType:(RankViewType)type
+{
+    switch (type) {
+        case RankViewTypeFirst:
+            return [DeviceDetection isIPAD] ? 320 : 320;
+        case RankViewTypeSecond:
+            return [DeviceDetection isIPAD] ? 159 : 159;
+        case RankViewTypeNormal:
+            return [DeviceDetection isIPAD] ? 105 : 105;
         default:
             return 0;
     }
