@@ -42,7 +42,6 @@
 
 - (void)dealloc {
     [_timer release];
-
     [titleLabel release];
     [noteLabel release];
     [anteLabel release];

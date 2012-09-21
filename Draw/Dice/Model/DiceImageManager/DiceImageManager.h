@@ -67,4 +67,5 @@
 - (UIImage*)toShopImage:(UIImage*)image;
 
 - (UIImage *)betResultImage:(BOOL)win;
+
 @end
