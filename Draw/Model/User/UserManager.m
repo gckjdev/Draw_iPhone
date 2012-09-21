@@ -791,6 +791,28 @@ sinaAccessTokenSecret:(NSString*)sinaAccessTokenSecret
     return [builder build];
 }
 
+- (PBGameUser*)toPBGameUserWithKeyValues:(NSArray*)keyValueArray
+{
+    if ([self hasUser] == NO)
+        return nil;
+    
+    // return a PBGame User structure here
+    PBGameUser_Builder* builder = [[[PBGameUser_Builder alloc] init] autorelease];
+    [builder setUserId:[self userId]];
+    [builder setNickName:[self nickName]];    
+    [builder setAvatar:[self avatarURL]];
+    
+    [builder setLocation:[self location]];
+    [builder setGender:[self.gender isEqualToString:@"m"]];
+    [builder setFacetimeId:[self facetimeId]];
+    for (PBKeyValue* kValue in keyValueArray) {
+        [builder addAttributes:kValue];
+    }
+    // TODO add other parameters
+    
+    return [builder build];
+}
+
 - (NSString*)defaultUserRoomName
 {
     return [NSString stringWithFormat:NSLS(@"kWhoseRoom"),self.nickName];

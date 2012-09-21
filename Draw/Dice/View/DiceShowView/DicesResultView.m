@@ -160,6 +160,7 @@
 //    
 //}
 
+
 - (void)setDicesWithDiceList:(NSArray *)diceList
                        wilds:(BOOL)wilds 
                   resultDice:(int)resultDice
@@ -173,7 +174,7 @@
 - (void)setDicesWithDiceList:(NSArray *)diceList
                        wilds:(BOOL)wilds 
                   resultDice:(int)resultDice 
-                    diceType:(int)diceType
+                    diceType:(CustomDiceType)diceType
 {
     [self clearDices];
     

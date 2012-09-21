@@ -22,15 +22,15 @@ typedef enum {
 - (void)setMyDiceType:(CustomDiceType)type;
 - (void)setMyDiceTypeByItemType:(ItemType)type;
 
-- (UIImage*)diceImageForType:(ItemType)type 
+- (UIImage*)diceImageForType:(CustomDiceType)type 
                         dice:(int)dice;
-- (UIImage*)openDiceImageForType:(ItemType)type 
+- (UIImage*)openDiceImageForType:(CustomDiceType)type 
                             dice:(int)dice;
 
 - (UIImage*)myDiceImage:(int)dice;
 - (UIImage*)myOpenDiceImage:(int)dice;
 
-- (NSString*)getImagePrefixByType:(ItemType)type;
+- (NSString*)getImagePrefixByType:(CustomDiceType)type;
 
 - (NSArray*)myCustomDiceList;
 + (CustomDiceManager*)defaultManager;

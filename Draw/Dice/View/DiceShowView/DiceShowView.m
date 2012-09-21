@@ -56,7 +56,7 @@
             CGRect rect = CGRectMake((EDGE_WIDTH + DICE_VIEW_WIDTH) * i++, 0, DICE_VIEW_WIDTH, DICE_VIEW_HEIGHT);     
 
             DiceView *diceView = [[[DiceView alloc] initWithFrame:rect 
-                                                           pbDice:dice] autorelease];
+                                                           pbDice:dice customDiceType:[[CustomDiceManager defaultManager] getMyDiceType]] autorelease];
             [self.diceViews addObject:diceView];
             
             if (userInterAction) {
