@@ -9,5 +9,6 @@
 #import "UserManager.h"
 
 @interface UserManager (DiceUserManager)
+- (PBGameUser*)toDicePBGameUser;
 
 @end
