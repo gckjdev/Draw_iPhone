@@ -159,6 +159,10 @@
 - (UIImage *)defaultBoardImage;
 - (UIImage *)defaultAdBoardImage;
 
+
+- (UIImage *)rightImage;
+- (UIImage *)myPaintImage;
+
 #pragma mark - Feed Image manager.
 - (void)saveFeedImage:(UIImage *)image
     withImageName:(NSString *)imageName 

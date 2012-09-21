@@ -459,6 +459,15 @@ static UIImage* _whitePaperImage;
     return [UIImage imageNamed:[GameApp defaultAdBoardImage]];
 }
 
+- (UIImage *)rightImage
+{
+    return [UIImage strectchableImageName:@"right.png"];
+}
+- (UIImage *)myPaintImage
+{
+    return [UIImage strectchableImageName:@"print_tipbig.png"];
+}
+
 
 #pragma mark - menu button image
 - (UIImage *)onlinePlayImage

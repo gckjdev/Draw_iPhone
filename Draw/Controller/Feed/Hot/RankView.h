@@ -42,5 +42,6 @@ typedef enum{
 + (CGFloat)heightForRankViewType:(RankViewType)type;
 + (CGFloat)widthForRankViewType:(RankViewType)type;
 - (void)setViewInfo:(DrawFeed *)feed;
+@property (retain, nonatomic) IBOutlet UIImageView *drawFlag;
 
 @end

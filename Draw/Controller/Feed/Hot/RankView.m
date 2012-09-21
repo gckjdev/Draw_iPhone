@@ -13,8 +13,10 @@
 #import "ShowDrawView.h"
 #import "DrawUtils.h"
 #import "Draw.h"
+#import "ShareImageManager.h"
 
 @implementation RankView
+@synthesize drawFlag = _drawFlag;
 @synthesize delegate = _delegate;
 @synthesize title = _title;
 @synthesize author = _author;
@@ -54,6 +56,7 @@
     PPRelease(_title);
     PPRelease(_author);
     PPRelease(_drawImage);
+    [_drawFlag release];
     [super dealloc];
 }
 
@@ -66,6 +69,7 @@
     }
     self.feed = feed;
     [self.drawImage clear];
+    [self.drawImage setImage:[[ShareImageManager defaultManager] unloadBg]];
     if(feed.drawImage){
         [self.drawImage setImage:feed.drawImage];
     }else if ([feed.drawImageUrl length] != 0) {
@@ -89,10 +93,23 @@
         feed.drawData = nil;
 
     }
-    [GlobalGetImageCache() manage:self.drawImage];            
-    [self.title setText:feed.wordText];
-    [self.author setText:feed.feedUser.nickName];
+    [GlobalGetImageCache() manage:self.drawImage];  
     
+    if (feed.showAnswer) {
+        [self.title setText:feed.wordText];        
+    }else{
+        self.title.hidden = YES;
+    }
+
+    if ([feed isMyOpus]) {
+        self.drawFlag.image = [[ShareImageManager defaultManager] myPaintImage];
+    }else if ([feed hasGuessed]) {
+        self.drawFlag.image = [[ShareImageManager defaultManager] rightImage];
+    }else{
+        self.drawFlag.hidden = YES;
+    }
+    
+    [self.author setText:feed.feedUser.nickName];
     
     //add a button.
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
