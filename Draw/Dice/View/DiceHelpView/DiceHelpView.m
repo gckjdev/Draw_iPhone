@@ -27,12 +27,14 @@
 @synthesize webView;
 @synthesize gameRulesButton;
 @synthesize itemsUsageButton;
+@synthesize indicator;
 
 - (void)dealloc {
     [webView release];
     [gameRulesButton release];
     [itemsUsageButton release];
     [bgImageView release];
+    [indicator release];
     [super dealloc];
 }
 
@@ -57,6 +59,7 @@
     webView.delegate = self;
     gameRulesButton.selected = YES;
     itemsUsageButton.selected = NO;
+    indicator.hidesWhenStopped = YES;
     
     [self.gameRulesButton.fontLable setText:NSLS(@"kDiceGameRules")];
     [self.itemsUsageButton.fontLable setText:NSLS(@"kDicePropDescription")];
@@ -227,17 +230,20 @@
 {
     return YES;
 }
+
 - (void)webViewDidStartLoad:(UIWebView *)webView
 {
-    
+    [indicator startAnimating];
 }
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView
 {
+    [indicator stopAnimating];
 }
 
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
 {
+    [indicator stopAnimating];
 }
 
 

@@ -463,6 +463,7 @@
 }
 
 - (IBAction)clickRunAwayButton:(id)sender {
+    [self killTimer];
     if (![_diceService.diceSession isMeAByStander] && (_diceService.diceSession.gameState == GameStatePlaying)) {
         NSString *message = [NSString stringWithFormat:NSLS(@"kDedutCoinQuitGameAlertMessage"), [ConfigManager getDiceFleeCoin]];
         CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kQuitGameAlertTitle") 
@@ -1249,6 +1250,10 @@
 
 - (void)showWaitForPlayerBetNote
 {
+    if (_diceService.diceSession.playingUserCount <= 2) {
+        return;
+    }
+    
     _second = DURATION_PLAYER_BET;
     
     self.waitForPlayerBetLabel.text = [NSString stringWithFormat:NSLS(@"kWaitForPlayerBet"), _second];
@@ -1277,7 +1282,7 @@
     [DiceBetView showInView:self.view 
                    duration:DURATION_PLAYER_BET 
                    openUser:nickName 
-                       ante:100 
+                       ante:[_diceService betAnte]
                     winOdds:[_diceService oddsForWin:YES] 
                    loseOdds:[_diceService oddsForWin:NO]
                    delegate:self];
@@ -1286,7 +1291,7 @@
 - (void)didBetOpenUserWin:(BOOL)win ante:(int)ante odds:(float)odds
 {
     PPDebug(@"Bet %@, ante:%d, odds:%f", win?@"win":@"lose", ante, odds);
-    [_diceService betOpenUserWin:win ante:ante];
+    [_diceService betOpenUserWin:win];
 }
 
 

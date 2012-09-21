@@ -332,14 +332,29 @@
 
 + (NSString *)getDiceServerListStringWithHightRule
 {
-    return @"192.168.1.9:8081";
+    return @"192.168.1.10:8081";
     return [MobClickUtils getStringValueByKey:@"DICE_SERVER_LIST_HIGHT" defaultValue:@"58.215.164.153:8018"];
 }
 
 + (NSString *)getDiceServerListStringWithSuperHightRule
 {
-    return @"192.168.1.9:8082";
+    return @"192.168.1.10:8082";
     return [MobClickUtils getStringValueByKey:@"DICE_SERVER_LIST_SUPER_HIGHT" defaultValue:@"58.215.164.153:8018"];
+}
+
++ (int)getBetAnteWithNormalRule
+{
+    return [MobClickUtils getIntValueByKey:@"DICE_BET_ANTE_COIN_NORMAL" defaultValue:100];
+}
+
++ (int)getBetAnteWithHighRule
+{
+    return [MobClickUtils getIntValueByKey:@"DICE_BET_ANTE_COIN_HIGH" defaultValue:150];
+}
+
++ (int)getBetAnteWithSuperHighRule
+{
+    return [MobClickUtils getIntValueByKey:@"DICE_BET_ANTE_COIN_SUPER_HIGH" defaultValue:300];
 }
 
 + (int)getDailyGiftCoin
@@ -361,9 +376,11 @@
 {
     return [MobClickUtils getIntValueByKey:@"POSTPONE_TIME" defaultValue:15];
 }
+
 + (int)getUrgeTime
 {
     return [MobClickUtils getIntValueByKey:@"URGE_TIME" defaultValue:5];
 }
+
 
 @end

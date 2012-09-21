@@ -13,6 +13,7 @@
 #import "AnimationManager.h"
 #import "DiceGameService.h"
 #import "HKGirlFontLabel.h"
+#import "CustomDiceManager.h"
 
 #define TAG_OFFSET_BOTTOM      110
 #define TAG_OFFSET_DICE  1001
@@ -163,18 +164,30 @@
                        wilds:(BOOL)wilds 
                   resultDice:(int)resultDice
 {
+    [self setDicesWithDiceList:diceList 
+                         wilds:wilds 
+                    resultDice:resultDice 
+                      diceType:[[CustomDiceManager defaultManager] getMyDiceType]];
+}
+
+- (void)setDicesWithDiceList:(NSArray *)diceList
+                       wilds:(BOOL)wilds 
+                  resultDice:(int)resultDice 
+                    diceType:(int)diceType
+{
     [self clearDices];
     
     self.hidden = NO;
     
     DiceImageManager *imageManage = [DiceImageManager defaultManager];
+    CustomDiceManager *customDiceManager = [CustomDiceManager defaultManager];
     [[self buttonView] setImage:[imageManage diceBottomImage]];
     
     int index = 0;
     for (PBDice *dice in diceList) {
-        UIImage *defaultImage = [imageManage openDiceImageWithDice:dice.dice];
-        UIImage *selectedImage = [imageManage openDiceImageWithDice:dice.dice];
-
+        UIImage *defaultImage = [customDiceManager openDiceImageForType:diceType dice:dice.dice];
+        UIImage *selectedImage = [customDiceManager openDiceImageForType:diceType dice:dice.dice];
+        
         [[self diceViewOfIndex:index] setImage:defaultImage forState:UIControlStateNormal];
         [[self diceViewOfIndex:index] setImage:selectedImage forState:UIControlStateSelected];
         
@@ -197,7 +210,7 @@
         if (_diceType == PBDiceTypeDiceSnake) {
             [[self diceViewOfIndex:index] setSelected:NO];
         }
-
+        
         index ++;
         if (index > 5) {
             break;

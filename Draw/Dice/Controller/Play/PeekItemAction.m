@@ -18,7 +18,10 @@
                controller:(DiceGamePlayController *)controller
                      view:(UIView *)view
 {
-    
+    [self showGifViewOnUserAvatar:userId
+                          gifFile:@"eye.gif"
+                       controller:controller
+                             view:view];
 }
 
 - (void)useItemSuccess:(DiceGamePlayController *)controller
@@ -31,7 +34,6 @@
             controller:(DiceGamePlayController *)controller
                   view:(UIView *)view
 {
-    
 }
 
 - (void)peekOtherUserDice:(DiceGamePlayController *)controller
