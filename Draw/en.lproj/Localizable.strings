@@ -782,6 +782,22 @@
 
 "kOpusCount" = "Opus(%d)";
 "kJoinCount" = "Join(%d)";
+
+
+"kContest" = "Contest";
+"kRank" = "Rank";
+"kNoRankPlayer" = "No ranking player yet.";
+"kNoRankHistory" = "No history rank yet";
+"kNoRankHot" = "No hot rank yet";
+"kNoRankNew" = "No new rank yet";
+"kNoData" = "No data.";
+
+"kRankPlayer" = "Player";
+"kRankHistory" = "History";
+"kRankHot" = "Hot";
+"kRankNew" = "New";
+
+
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 

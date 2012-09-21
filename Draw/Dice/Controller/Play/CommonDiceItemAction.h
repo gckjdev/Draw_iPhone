@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import "UserManager.h"
 #import "DiceGameService.h"
+#import "GifView.h"
+#import "DiceAvatarView.h"
 
 @class DiceGamePlayController;
 
@@ -33,6 +35,11 @@
                    userId:(NSString *)userId
                controller:(DiceGamePlayController *)controller
                      view:(UIView *)view;
+
+- (void)showGifViewOnUserAvatar:(NSString *)userId
+                        gifFile:(NSString *)gifFile
+                     controller:(DiceGamePlayController *)controller
+                           view:(UIView *)view;
 
 // Left to be realize for sub class.
 - (void)showItemAnimation:(NSString*)userId

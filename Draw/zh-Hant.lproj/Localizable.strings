@@ -780,6 +780,20 @@
 "kOpusCount" = "作品(%d)";
 "kJoinCount" = "參加(%d)";
 
+
+"kContest" = "比賽";
+"kRank" = "排行榜";
+"kNoRankPlayer" = "暫時沒有達人榜數據。";
+"kNoRankHistory" = "暫時沒有總榜數據。";
+"kNoRankHot" = "暫時沒有熱榜數據。";
+"kNoRankNew" = "暫時沒有最新數據。";
+"kNoData" = "暫時沒有數據。";
+
+"kRankPlayer" = "達人";
+"kRankHistory" = "總榜";
+"kRankHot" = "熱榜";
+"kRankNew" = "最新";
+
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 

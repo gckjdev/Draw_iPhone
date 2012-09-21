@@ -103,6 +103,10 @@ typedef enum{
 + (NSString *)getDiceServerListStringWithHightRule;
 + (NSString *)getDiceServerListStringWithSuperHightRule;
 
++ (int)getBetAnteWithNormalRule;
++ (int)getBetAnteWithHighRule;
++ (int)getBetAnteWithSuperHighRule;
+
 + (int)getDailyGiftCoin;
 + (int)getDailyGiftCoinIncre;
 

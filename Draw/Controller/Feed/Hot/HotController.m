@@ -9,7 +9,7 @@
 #import "HotController.h"
 #import "TableTabManager.h"
 #import "ShareImageManager.h"
-#import "RankView.h"
+#import "ShowFeedController.h"
 
 typedef enum{
 
@@ -70,6 +70,7 @@ typedef enum{
 {
     [super viewDidLoad];    
     [self initTabButtons];
+    [self.titleLabel setText:NSLS(@"kRank")];
 }
 
 - (void)viewDidUnload
@@ -90,12 +91,15 @@ typedef enum{
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.row == 0) {
-        return [RankView heightForRankViewType:RankViewTypeFirst];
-    }else if(indexPath.row == 1){
-        return [RankView heightForRankViewType:RankViewTypeSecond];
+    
+    if (self.currentTab.tabID == RankTypeHot) {
+        if (indexPath.row == 0) {
+            return [RankView heightForRankViewType:RankViewTypeFirst]+1;
+        }else if(indexPath.row == 1){
+            return [RankView heightForRankViewType:RankViewTypeSecond]+1;
+        }        
     }
-    return [RankView heightForRankViewType:RankViewTypeNormal];
+    return [RankView heightForRankViewType:RankViewTypeNormal]+1;
 }
 
 - (void)clearCellSubViews:(UITableViewCell *)cell{
@@ -170,6 +174,7 @@ typedef enum{
         [self clearCellSubViews:cell];
     }
 
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.accessoryType = UITableViewCellAccessoryNone;
     TableTab *tab = [self currentTab];
     if (tab.tabID == RankTypeHot) {
@@ -182,22 +187,48 @@ typedef enum{
             [self setSencodRankCell:cell WithFeed1:feed1 feed2:feed2];
         }else{
             NSInteger startIndex = ((indexPath.row - 1) * NORMAL_CELL_VIEW_NUMBER);
-//            NSMutableArray *list
+            NSMutableArray *list = [NSMutableArray array];
+            for (NSInteger i = startIndex; i < startIndex+NORMAL_CELL_VIEW_NUMBER; ++ i) {
+                NSObject *object = [self saveGetObjectForIndex:i];
+                if (object) {
+                    [list addObject:object];
+                }
+            }
+            PPDebug(@"startIndex = %d,list count = %d",startIndex,[list count]);
+            [self setNormalRankCell:cell WithFeeds:list];
         }        
     }else if(tab.tabID == RankTypeNew){
+        NSInteger startIndex = (indexPath.row * NORMAL_CELL_VIEW_NUMBER);
+        NSMutableArray *list = [NSMutableArray array];
+        PPDebug(@"startIndex = %d",startIndex);
+        for (NSInteger i = startIndex; i < startIndex+NORMAL_CELL_VIEW_NUMBER; ++ i) {
+            NSObject *object = [self saveGetObjectForIndex:i];
+            if (object) {
+                [list addObject:object];
+            }
+        }
+        [self setNormalRankCell:cell WithFeeds:list];
         
     }
     
-
     return cell;
-
-
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     NSInteger count = [[self tabDataList] count];
+    
+    
     TableTab *tab = self.currentTab;
+    
+    if (count == 0 && tab.status == TableTabStatusLoaded) {
+        self.tipsLabel.hidden = YES;
+    }else{
+        self.tipsLabel.hidden = NO;
+        [self.tipsLabel setText:tab.noDataDesc];
+    }
+
+    
     self.noMoreData = !tab.hasMoreData;
     switch (tab.tabID) {
         case RankTypeHot:
@@ -237,7 +268,7 @@ typedef enum{
 }
 - (NSInteger)fetchDataLimitForTabIndex:(NSInteger)index
 {
-    return 3;
+    return 24;
 }
 - (NSInteger)tabIDforIndex:(NSInteger)index
 {
@@ -281,6 +312,7 @@ typedef enum{
           feedListType:(FeedListType)type 
             resultCode:(NSInteger)resultCode
 {
+    PPDebug(@"<didGetFeedList> list count = %d ", [feedList count]);
     [self hideActivity];
     if (resultCode == 0) {
         [self finishLoadDataForTabID:type resultList:feedList];
@@ -289,5 +321,13 @@ typedef enum{
     }
 }
 
+
+#pragma mark Rank View delegate
+- (void)didClickRankView:(RankView *)rankView
+{
+    ShowFeedController *sc = [[ShowFeedController alloc] initWithFeed:rankView.feed];
+    [self.navigationController pushViewController:sc animated:YES];
+    [sc release];
+}
 
 @end

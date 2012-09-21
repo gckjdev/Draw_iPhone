@@ -113,6 +113,44 @@
     [self someoneUseItem:userId controller:controller view:view];
 }
 
+- (void)showGifViewOnUserAvatar:(NSString *)userId
+                    gifFile:(NSString *)gifFile
+                     controller:(DiceGamePlayController *)controller
+                           view:(UIView *)view
+{
+    DiceAvatarView *avatarView = [controller avatarViewOfUser:userId];
+    GifView *gifView = [self gifViewFromBundleFile:gifFile frame:avatarView.bounds];
+    
+    gifView.userInteractionEnabled = NO;
+    [avatarView addSubview:gifView];
+    
+    [UIView animateWithDuration:1 delay:3.0 options:UIViewAnimationCurveLinear animations:^{
+        gifView.alpha = 0;
+    } completion:^(BOOL finished) {
+        [avatarView removeFromSuperview];
+    }];
+}
+
+- (GifView *)gifViewFromBundleFile:(NSString *)fileName frame:(CGRect)frame
+{
+    NSArray *array = [fileName componentsSeparatedByString:@"."];
+    if ([array count] < 2) {
+        return nil;
+    }
+    NSString *path = [[NSBundle mainBundle] pathForResource:[array objectAtIndex:0] 
+                                                     ofType:[array objectAtIndex:1]];
+    
+    if (path == nil) {
+        return nil;
+    }
+    
+    GifView* view = [[[GifView alloc] initWithFrame:frame
+                                           filePath:path
+                                   playTimeInterval:0.2] autorelease];
+    
+    return view;
+}
+
 // Left to be realize for sub class.
 - (void)showItemAnimation:(NSString*)userId
                  itemType:(int)itemType
