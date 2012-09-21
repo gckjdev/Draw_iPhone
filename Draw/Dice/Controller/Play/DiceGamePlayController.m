@@ -27,6 +27,7 @@
 #import "CommonDiceItemAction.h"
 #import "DiceConfigManager.h"
 #import "CallDiceView.h"
+#import "CustomDiceManager.h"
 
 
 #define AVATAR_TAG_OFFSET   8000
@@ -184,6 +185,7 @@
         _expressionManager = [ExpressionManager defaultManager];
         _soundManager = [DiceSoundManager defaultManager];
         _robotManager = [DiceRobotManager defaultManager];
+        _customDicemanager = [CustomDiceManager defaultManager];
         _urgedUser = [[NSMutableSet alloc] init];
     }
     
@@ -381,6 +383,7 @@
 
 - (void)showUserDice:(NSString *)userId
 {
+    PBGameUser* pbUser = [_diceService.session getUserByUserId:userId];
     if ([_userManager isMe:userId]) {
         self.myDiceListHolderView.hidden = YES;
     }
@@ -391,6 +394,7 @@
     DicesResultView *resultView = [self resultViewOfUser:userId];
     resultView.delegate = self;
     [resultView showUserResult:userId toCenter:self.view.center];
+    
 }
 
 - (void)stayDidStart:(int)resultDiceCount
@@ -1153,7 +1157,7 @@
     [self clearAllReciprocol];
     
     self.resultDiceCountLabel.text = @"0";
-    self.resultDiceImageView.image = [_imageManager diceImageWithDice:_diceService.lastCallDice];
+    self.resultDiceImageView.image = [_customDicemanager diceImageForType:[_customDicemanager getMyDiceType] dice:_diceService.lastCallDice];
     self.resultHolderView.hidden = NO;
     
     [self showGameResult];

@@ -8,11 +8,19 @@
 
 #import <UIKit/UIKit.h>
 #import "Dice.pb.h"
+#import "CustomDiceManager.h"
 
 @interface DiceView : UIButton
 
 @property (retain, nonatomic) UIImageView *seletedBgImageView;
 
+- (id)initWithFrame:(CGRect)frame 
+             pbDice:(PBDice *)pbDice 
+     customDiceType:(CustomDiceType)type;
+
+- (id)initWithFrame:(CGRect)frame 
+               dice:(int)dice 
+     customDiceType:(CustomDiceType)type;
 
 - (id)initWithFrame:(CGRect)frame 
              pbDice:(PBDice *)pbDice;

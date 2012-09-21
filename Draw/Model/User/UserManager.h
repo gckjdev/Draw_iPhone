@@ -145,6 +145,7 @@ sinaAccessTokenSecret:(NSString*)accessTokenSecret
 - (void)setFacebookId:(NSString*)facebookId nickName:(NSString*)nickName;
 
 - (PBGameUser*)toPBGameUser;
+- (PBGameUser*)toPBGameUserWithKeyValues:(NSArray*)keyValueArray;
 
 - (BOOL)hasFollowWeibo;
 - (void)followWeibo;

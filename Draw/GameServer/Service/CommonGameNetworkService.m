@@ -347,6 +347,12 @@
     [_networkClient sendJoinGameRequest:user gameId:_gameId];
 }
 
+- (void)joinGameRequestWithCustomUser:(PBGameUser*)customSelfUser
+{
+    PPDebug(@"[SEND] JoinGameRequest");
+    [_networkClient sendJoinGameRequest:customSelfUser gameId:_gameId];
+}
+
 //- (void)joinGameRequestWithRuleType:(int)ruleType
 //{
 //    PPDebug(@"[SEND] JoinGameRequest");
@@ -361,6 +367,14 @@
     PPDebug(@"[SEND] JoinGameRequest");
     PBGameUser* user = [[UserManager defaultManager] toPBGameUser];
     [_networkClient sendJoinGameRequest:user
+                                 gameId:_gameId 
+                              sessionId:sessionId];
+}
+
+- (void)joinGameRequest:(long)sessionId customSelfUser:(PBGameUser*)customSelfUser
+{
+    PPDebug(@"[SEND] JoinGameRequest");
+    [_networkClient sendJoinGameRequest:customSelfUser
                                  gameId:_gameId 
                               sessionId:sessionId];
 }
