@@ -10,6 +10,7 @@
 #import "Dice.pb.h"
 #import "DiceItemListView.h"
 #import "ChatView.h"
+#import "CustomDiceManager.h"
 
 @interface DicePopupViewManager : NSObject
 
@@ -21,6 +22,13 @@
                            inView:(UIView *)inView
                      aboveSubView:(UIView *)siblingSubview
                    pointDirection:(PointDirection)pointDirection;
+- (void)popupCallDiceViewWithDice:(int)dice
+                            count:(int)count
+                           atView:(UIView *)atView
+                           inView:(UIView *)inView
+                     aboveSubView:(UIView *)siblingSubview
+                   pointDirection:(PointDirection)pointDirection 
+                   customDiceType:(CustomDiceType)type;
 
 - (void)dismissCallDiceView;
 

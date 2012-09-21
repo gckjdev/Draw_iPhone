@@ -72,9 +72,11 @@
              gameId:(NSString*)gameId;
 
 - (void)joinGameRequest;
+- (void)joinGameRequestWithCustomUser:(PBGameUser*)customSelfUser;
 //- (void)joinGameRequestWithRuleType:(int)ruleType;
 
 - (void)joinGameRequest:(long)sessionId;
+- (void)joinGameRequest:(long)sessionId customSelfUser:(PBGameUser*)customSelfUser;
 //- (void)joinGameRequest:(long)sessionId ruleType:(int)ruleType;
 
 - (void)quitGame;

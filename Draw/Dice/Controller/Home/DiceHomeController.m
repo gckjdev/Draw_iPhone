@@ -16,7 +16,7 @@
 #import "CommonGameNetworkService.h"
 #import "DiceGamePlayController.h"
 #import "StringUtil.h"
-#import "UserManager.h"
+#import "UserManager+DiceUserManager.h"
 #import "DiceGameService.h"
 #import "CoinShopController.h"
 #import "AdService.h"
@@ -41,6 +41,7 @@
 #import "MyFriendsController.h"
 #import "ChatListController.h"
 #import "FeedbackController.h"
+
 
 #define KEY_LAST_AWARD_DATE     @"last_award_day"
 
@@ -502,7 +503,7 @@
     if (_isTryJoinGame){
         if ([DiceConfigManager meetJoinGameCondictionWithRuleType:DiceGameRuleTypeRuleNormal]) {
             [self showActivityWithText:NSLS(@"kJoiningGame")];
-            [[DiceGameService defaultService] joinGameRequest];
+            [[DiceGameService defaultService] joinGameRequestWithCustomUser:[[UserManager defaultManager] toDicePBGameUser]];
         }else {
             [[DiceGameService defaultService] disconnectServer];
             [self showCoinsNotEnoughView];

@@ -9,6 +9,10 @@
 #import <Foundation/Foundation.h>
 #import "DiceItem.h"
 
+#define CUSTOM_DICE @"CUSTOM_DICE"
+
+@class PBGameUser;
+
 typedef enum {
     CustomDiceTypeDefault = 0,
     CustomDiceTypePatriot,
@@ -36,4 +40,5 @@ typedef enum {
 + (CustomDiceManager*)defaultManager;
 
 + (CustomDiceType)itemTypeToCustomDiceType:(ItemType)type;
++ (CustomDiceType)getUserDiceTypeByPBGameUser:(PBGameUser*)pbUser;
 @end

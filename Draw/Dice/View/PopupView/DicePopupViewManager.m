@@ -61,17 +61,34 @@
                            atView:(UIView *)atView
                            inView:(UIView *)inView
                      aboveSubView:(UIView *)siblingSubview
-                   pointDirection:(PointDirection)pointDirection
+                   pointDirection:(PointDirection)pointDirection 
+                   customDiceType:(CustomDiceType)type
 {
     [_callDiceView dismissAnimated:YES];
     
-    self.callDiceView = [[[CallDiceView alloc] initWithDice:dice count:count] autorelease];
+    self.callDiceView = [[[CallDiceView alloc] initWithDice:dice count:count customDiceType:type] autorelease];
     
     [_callDiceView popupAtView:atView 
                         inView:inView
                   aboveSubView:siblingSubview
                       animated:YES
                 pointDirection:pointDirection];
+}
+
+- (void)popupCallDiceViewWithDice:(int)dice
+                            count:(int)count
+                           atView:(UIView *)atView
+                           inView:(UIView *)inView
+                     aboveSubView:(UIView *)siblingSubview
+                   pointDirection:(PointDirection)pointDirection
+{
+    [self popupCallDiceViewWithDice:dice 
+                              count:count 
+                             atView:atView 
+                             inView:inView 
+                       aboveSubView:siblingSubview 
+                     pointDirection:pointDirection 
+                     customDiceType:CustomDiceTypeDefault];
 }
 
 - (void)dismissCallDiceView

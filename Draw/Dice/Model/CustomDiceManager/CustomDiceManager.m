@@ -10,6 +10,7 @@
 #import "ItemManager.h"
 #import "DiceImageManager.h"
 #import "DiceItem.h"
+#import "GameBasic.pb.h"
 
 #define SHOW_DICE_FLAG  @"a"
 #define OPEN_DICE_FLAG  @"b"
@@ -39,6 +40,16 @@ static CustomDiceManager* shareInstance;
         default:
             return CustomDiceTypeDefault;
     }
+}
+
++ (CustomDiceType)getUserDiceTypeByPBGameUser:(PBGameUser*)pbUser
+{
+    for (PBKeyValue* kValue in pbUser.attributesList) {
+        if ([kValue.name isEqualToString:CUSTOM_DICE]) {
+            return kValue.value.intValue;
+        }
+    }
+    return CustomDiceTypeDefault;
 }
 
 - (CustomDiceType)getMyDiceType

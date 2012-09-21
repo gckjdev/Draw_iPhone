@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "Dice.pb.h"
 #import "GameConstants.pb.h"
+#import "CustomDiceManager.h"
 
 #define ANIMATION_GROUP_MOVE_TO_CENTER @"ANIMATION_GROUP_MOVE_TO_CENTER"
 #define ANIMATION_GROUP_STAY @"ANIMATION_GROUP_STAY"
@@ -36,6 +37,6 @@
 
 @property (assign, nonatomic) id<DicesResultViewAnimationDelegate> delegate;
 
-- (void)showUserResult:(NSString *)userId toCenter:(CGPoint)center;
+- (void)showUserResult:(NSString *)userId toCenter:(CGPoint)center customDiceType:(CustomDiceType)type;
 
 @end

@@ -10,7 +10,7 @@
 #import "DiceImageManager.h"
 #import "DiceRoomListCell.h"
 #import "CommonGameNetworkClient.h"
-#import "UserManager.h"
+#import "UserManager+DiceUserManager.h"
 #import "NotificationName.h"
 #import "DiceGameService.h"
 #import "DiceNotification.h"
@@ -95,7 +95,7 @@
     _isJoiningDice = YES;
     if ([DiceConfigManager meetJoinGameCondictionWithRuleType:_diceGameService.ruleType]) {
         [self showActivityWithText:NSLS(@"kJoiningGame")];
-        [[DiceGameService defaultService] joinGameRequest:sessionId];
+        [[DiceGameService defaultService] joinGameRequest:sessionId customSelfUser:[[UserManager defaultManager] toDicePBGameUser]];
     }else {
         [self showCoinsNotEnoughView];
     }
@@ -106,7 +106,7 @@
     _isJoiningDice = YES;
     if ([DiceConfigManager meetJoinGameCondictionWithRuleType:_diceGameService.ruleType]) {
         [self showActivityWithText:NSLS(@"kJoiningGame")];
-        [_diceGameService joinGameRequest];
+        [_diceGameService joinGameRequestWithCustomUser:[[UserManager defaultManager] toDicePBGameUser]];
     }else {
         [self showCoinsNotEnoughView];
     }
