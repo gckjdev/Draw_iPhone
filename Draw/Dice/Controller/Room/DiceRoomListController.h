@@ -34,6 +34,7 @@ typedef enum {
     BOOL firstLoad;
     int _currentRoomType;
     CommonSearchView* _searchView;
+    BOOL _isRefreshing;
 }
 
 - (id)initWithRuleType:(DiceGameRuleType)ruleType;

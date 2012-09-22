@@ -905,6 +905,10 @@
 "kDoItLikeThis" = "就這樣";
 "kThinkMyself" = "自己來";
 "kWaitForPlayerBet" = "等待玩家下註(%d)";
+"kCustomDice" = "個性化骰子";
+"kItemPatriotDice" = "愛國骰";
+"kPatriotDice" = "愛國骰";
+"kPatriotDiceDescription" = "紅旗飄揚，揚我國威！釣魚島是中國的！";
 
 /*********************** 大话骰子国际化字符串结束 *************************/
 

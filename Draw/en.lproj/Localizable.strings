@@ -912,5 +912,11 @@
 
 "kWaitForPlayerBet" = "Waitting for player bet(%d)";
 
+"kCustomDice" = "Custom Dice";
+"kItemPatriotDice" = "patriotic dice";
+"kPatriotDice" = "patriotic dice";
+"kPatriotDiceDescription" = "red flags flying, Yang Wei of China! Diaoyu Islands are China's";
+
+
 /*********************** 大话骰子国际化字符串结束 *************************/
 
