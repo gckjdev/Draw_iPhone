@@ -57,10 +57,10 @@
         [UIView animateWithDuration:1 delay:0 options:UIViewAnimationCurveEaseInOut animations:^{
             diceView.alpha = 1;
         } completion:^(BOOL finished) {
-            [UIView animateWithDuration:3 delay:0 options:UIViewAnimationCurveEaseInOut animations:^{
+            [UIView animateWithDuration:1 delay:1 options:UIViewAnimationCurveEaseInOut animations:^{
                 diceView.alpha = 1;
             } completion:^(BOOL finished) {
-                [UIView animateWithDuration:1 delay:0 options:UIViewAnimationCurveEaseInOut animations:^{
+                [UIView animateWithDuration:1 delay:2 options:UIViewAnimationCurveEaseInOut animations:^{
                     diceView.alpha = 0;
                 } completion:^(BOOL finished) {
                     [diceView removeFromSuperview];

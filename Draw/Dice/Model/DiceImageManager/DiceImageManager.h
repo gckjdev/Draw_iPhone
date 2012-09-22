@@ -64,6 +64,9 @@
 - (UIImage *)doubleKillImage;
 - (UIImage *)turtleImage;
 - (UIImage *)diceRobotImage;
+- (UIImage *)reverseImage;
+
+
 - (UIImage*)toShopImage:(UIImage*)image;
 
 

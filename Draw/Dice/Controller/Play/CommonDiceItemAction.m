@@ -153,7 +153,7 @@
     [UIView animateWithDuration:1 delay:3.0 options:UIViewAnimationCurveLinear animations:^{
         gifView.alpha = 0;
     } completion:^(BOOL finished) {
-        [avatarView removeFromSuperview];
+        [gifView removeFromSuperview];
     }];
 }
 

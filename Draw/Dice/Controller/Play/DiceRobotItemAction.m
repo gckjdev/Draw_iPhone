@@ -23,7 +23,10 @@
                controller:(DiceGamePlayController *)controller
                      view:(UIView *)view
 {
-    
+    [self showGifViewOnUserAvatar:userId
+                          gifFile:@"diceRobot.gif"
+                       controller:controller
+                             view:view];
 }
 
 - (void)useItemSuccess:(DiceGamePlayController *)controller

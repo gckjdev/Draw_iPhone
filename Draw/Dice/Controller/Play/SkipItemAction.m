@@ -20,7 +20,10 @@
                controller:(DiceGamePlayController *)controller
                      view:(UIView *)view
 {
-    return;
+    [self showGifViewOnUserAvatar:userId
+                          gifFile:@"tortoise.gif"
+                       controller:controller
+                             view:view];
 }
 
 - (void)useItemSuccess:(DiceGamePlayController *)controller

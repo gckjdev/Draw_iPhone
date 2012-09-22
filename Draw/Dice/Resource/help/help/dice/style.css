@@ -12,29 +12,14 @@ body {
 	margin: 0;
 }
 #content .toollist {
-	font-size: 40px;
+	font-size: 30px;
 	text-shadow: 0 1px 0 #EFEFEF;
-	padding: 30px 10px 30px 0px;
+	padding: 30px 10px 30px 99px;
 	border-bottom:1px solid #857f36;
 	box-shadow: 0px 1px 0 #EFEFEF;
-	margin: 0 10px;
-}
-.bell_bg {
-	width:70px;
-	height:77px;
-	display:block;
-	float: left;
-	background-image:url(images/bell.png);
+	background-position: 15px 30px;
 	background-repeat: no-repeat;
-	text-shadow: 0 1px 0 #fff;
-	color: #000;
-	padding-top: 6px;
-    text-align: center;
-	font-size: 40px;
-}
-.bell_detail {
-	display: block;
-	padding-left: 85px;
+	margin: 0 10px;
 }
 hr {
 	background-color: #857f36;
@@ -43,17 +28,42 @@ hr {
 	height: 1px;
 	margin: 30px 0;
 }
+.pi {
+	background-image:url(images/pi.png);
+}
+.yao {
+	background-image:url(images/yao.png);
+}
+.kan {
+	background-image:url(images/kan.png);
+}
+.yan {
+	background-image:url(images/yan.png);
+}
+.cui {
+	background-image:url(images/cui.png);
+}
+.gui {
+	background-image:url(images/gui.png);
+}
+.ni {
+	background-image:url(images/ni.png);
+}
+.zhu {
+	background-image:url(images/zhu.png);
+}
 
 #content .explain {
-	font-size: 40px;
+	font-size: 30px;
 	text-shadow: 0 1px 0 #EFEFEF;
-	padding: 40px 10px 30px 25px;
+	padding: 30px 10px 30px 10px;
 }
 .explain ul li {
 	list-style:outside decimal;
 	margin-bottom: 15px;
 }
 .explain ul li ul {
+	padding-left: 18px;
 }
 .explain ul li ul li {
 	list-style:disc;
