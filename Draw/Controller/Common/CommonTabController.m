@@ -107,6 +107,11 @@
     }
 }
 
+- (IBAction)clickRefreshButton:(id)sender
+{
+    [self reloadTableViewDataSource];
+}
+
 #pragma mark - methods used by sub classes
 
 - (NSMutableArray *)tabDataList
@@ -153,7 +158,7 @@
             [tab.dataList removeAllObjects];
         }
         [tab.dataList addObjectsFromArray:list];
-        tab.offset += [tab.dataList count];
+        tab.offset = [tab.dataList count];
     }
     tab.status = TableTabStatusLoaded;
     if (tab.isCurrentTab) {
@@ -196,7 +201,7 @@
 }
 - (NSInteger)fetchDataLimitForTabIndex:(NSInteger)index
 {
-    return 20;
+    return 18;
 }
 - (NSInteger)tabIDforIndex:(NSInteger)index
 {
@@ -226,6 +231,8 @@
     tab.offset = 0;
     [self startToLoadDataForTabID:tab.tabID];
     [self serviceLoadDataForTabID:tab.tabID];
+    CGRect beginRect = CGRectMake(0, 0, 1, 1);
+    [self.dataTableView scrollRectToVisible:beginRect animated:YES];
 }
 
 - (void)loadMoreTableViewDataSource

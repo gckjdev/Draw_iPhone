@@ -798,6 +798,28 @@
 "kOpusCount" = "作品(%d)";
 "kJoinCount" = "参加(%d)";
 
+"kContest" = "比赛";
+"kRank" = "排行榜";
+"kNoRankPlayer" = "暂时没有达人榜数据。";
+"kNoRankHistory" = "暂时没有总榜数据。";
+"kNoRankHot" = "暂时没有热榜数据。";
+"kNoRankNew" = "暂时没有最新数据。";
+"kNoData" = "暂时没有数据。";
+
+"kRankPlayer" = "达人";
+"kRankHistory" = "总榜";
+"kRankHot" = "热榜";
+"kRankNew" = "最新";
+"kDrawToMe" = "画给我";
+
+
+"kNoMyFeed" = "你还没有动态，去画一幅画或猜一幅画？";
+"kNoMyOpus" = "你还没有作品，去画一幅画？";
+"kNoMyComment" = "还没有人评论过你的评论。";
+"kNoDrawToMe" = "还没有人画过画给你，先画一幅给别人？";
+
+"kUserNoFeed" = "%@ 还没有动态。";
+"kUserNoOpus" = "%@ 还没有作品。";
 
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
@@ -911,6 +933,12 @@
 "kThinkMyself" = "自己来";
 
 "kWaitForPlayerBet" = "等待玩家下注(%d)";
+"kCustomDice" = "自定义骰子";
+
+"kDefault" = "默认";
+"kItemPatriotDice" = "爱国骰";
+"kPatriotDice" = "爱国骰";
+"kPatriotDiceDescription" = "红旗飘扬，扬我国威！钓鱼岛是中国的！";
 
 /*********************** 大话骰子国际化字符串结束 *************************/
 

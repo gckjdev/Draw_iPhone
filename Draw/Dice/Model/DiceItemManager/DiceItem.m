@@ -115,7 +115,7 @@
 {
     return [[[Item alloc] initWithType:ItemTypeCustomDicePatriotDice 
                                  image:[[DiceImageManager defaultManager] patriotDiceImage]
-                                  name:NSLS(@"kITemPatriotDice")
+                                  name:NSLS(@"kItemPatriotDice")
                              shortName:NSLS(@"kPatriotDice")
                            description:NSLS(@"kPatriotDiceDescription") 
                       buyAmountForOnce:1

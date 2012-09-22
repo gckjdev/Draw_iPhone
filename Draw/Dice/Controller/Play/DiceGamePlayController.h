@@ -33,6 +33,7 @@
 #define USER_THINK_TIME_INTERVAL 15
 
 @class DiceGameService;
+@class CustomDiceManager;
 
 
 @interface DiceGamePlayController : PPViewController <DiceItemListViewDelegate, DiceSelectedViewDelegate, DiceAvatarViewDelegate, DicesResultViewAnimationDelegate, LevelServiceDelegate, CommonDialogDelegate, ChatViewDelegate, AccountServiceDelegate, DiceBetViewDelegate> {
@@ -45,6 +46,7 @@
     ExpressionManager *_expressionManager;
     DiceSoundManager *_soundManager;
     DiceRobotManager* _robotManager;
+    CustomDiceManager* _customDicemanager;
     NSMutableSet* _urgedUser;
 }
 

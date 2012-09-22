@@ -62,6 +62,7 @@
 
 #import "ContestController.h"
 #import "HotController.h"
+#import "MyFeedController.h"
 
 @interface HomeController()
 {
@@ -605,6 +606,12 @@
     HotController *hc = [[HotController alloc] init];
     [self.navigationController pushViewController:hc animated:YES];
     [hc release];
+}
+
+- (IBAction)clickMyFeed:(id)sender {
+    MyFeedController *myFeedController = [[MyFeedController alloc] init];
+    [self.navigationController pushViewController:myFeedController animated:YES];
+    [myFeedController release];
 }
 
 

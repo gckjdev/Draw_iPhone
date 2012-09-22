@@ -10,7 +10,7 @@
 #import "DiceImageManager.h"
 #import "DiceRoomListCell.h"
 #import "CommonGameNetworkClient.h"
-#import "UserManager.h"
+#import "UserManager+DiceUserManager.h"
 #import "NotificationName.h"
 #import "DiceGameService.h"
 #import "DiceNotification.h"
@@ -95,7 +95,7 @@
     _isJoiningDice = YES;
     if ([DiceConfigManager meetJoinGameCondictionWithRuleType:_diceGameService.ruleType]) {
         [self showActivityWithText:NSLS(@"kJoiningGame")];
-        [[DiceGameService defaultService] joinGameRequest:sessionId];
+        [[DiceGameService defaultService] joinGameRequest:sessionId customSelfUser:[[UserManager defaultManager] toDicePBGameUser]];
     }else {
         [self showCoinsNotEnoughView];
     }
@@ -106,7 +106,7 @@
     _isJoiningDice = YES;
     if ([DiceConfigManager meetJoinGameCondictionWithRuleType:_diceGameService.ruleType]) {
         [self showActivityWithText:NSLS(@"kJoiningGame")];
-        [_diceGameService joinGameRequest];
+        [_diceGameService joinGameRequestWithCustomUser:[[UserManager defaultManager] toDicePBGameUser]];
     }else {
         [self showCoinsNotEnoughView];
     }
@@ -147,7 +147,17 @@
     [_refreshRoomTimer retain];
 }
 
+- (void)pauseRefreshingRooms
+{
+    _isRefreshing = NO;
+    [self clearRefreshRoomsTimer];
+}
 
+- (void)continueRefreshingRooms
+{
+    _isRefreshing = YES;
+    [self startRefreshRoomsTimer];
+}
 
 - (void)getRoomsFinished
 {
@@ -158,7 +168,10 @@
     //[[DiceGameService defaultService] registerRoomsNotification:service.roomList]; //don register room notification here
     //self.noMoreData = YES;
     //[self dataSourceDidFinishLoadingMoreData];
-    [self startRefreshRoomsTimer];
+    if (_isRefreshing) {
+        [self startRefreshRoomsTimer];
+    }
+    
 }
 
 - (void)joinGame
@@ -259,6 +272,8 @@
     [self.nearByRoomButton.fontLable setText:NSLS(@"kNearBy")];
     [self.createRoomButton.fontLable setText:NSLS(@"kCreateRoom")];
     [self.fastEntryButton.fontLable setText:NSLS(@"kFastEntry")];
+    
+    _isRefreshing = YES;
         
 //    [[NSNotificationCenter defaultCenter] addObserver:self
 //                                             selector:@selector(roomsDidUpdate:)
@@ -497,6 +512,7 @@
 - (void)infoViewDidDisappear
 {
     _searchView = nil;
+    [self continueRefreshingRooms];
 }
 
 #pragma mark - CommonSearchViewDelegate
@@ -505,6 +521,7 @@
 {
     [[DiceGameService defaultService] getRoomList:0 count:ROOMS_COUNT_PER_PAGE shouldReloadData:YES roomType:_currentRoomType keyword:keywords gameId:[ConfigManager gameId]];
     [self showActivityWithText:NSLS(@"kSearching")];
+    [self pauseRefreshingRooms];
 }
 
 - (IBAction)clickSearch:(id)sender

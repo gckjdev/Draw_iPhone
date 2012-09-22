@@ -6,8 +6,13 @@
 //  Copyright (c) 2012年 __MyCompanyName__. All rights reserved.
 //
 
-#import "PPViewController.h"
 
-@interface MyFeedController : PPViewController
+#import "CommonTabController.h"
+#import "FeedService.h"
+#import "RankView.h"
 
+@interface MyFeedController : CommonTabController<FeedServiceDelegate,RankViewDelegate>
+{
+    
+}
 @end

@@ -780,6 +780,28 @@
 "kOpusCount" = "作品(%d)";
 "kJoinCount" = "參加(%d)";
 
+
+"kContest" = "比賽";
+"kRank" = "排行榜";
+"kNoRankPlayer" = "暫時沒有達人榜數據。";
+"kNoRankHistory" = "暫時沒有總榜數據。";
+"kNoRankHot" = "暫時沒有熱榜數據。";
+"kNoRankNew" = "暫時沒有最新數據。";
+"kNoData" = "暫時沒有數據。";
+
+"kRankPlayer" = "達人";
+"kRankHistory" = "總榜";
+"kRankHot" = "熱榜";
+"kRankNew" = "最新";
+"kDrawToMe" = "畫給我";
+
+"kNoMyFeed" = "你還沒有動態，去畫一幅畫或猜一幅畫？";
+"kNoMyOpus" = "你還沒有作品，去畫一幅畫？";
+"kNoMyComment" = "還沒有人評論過你的評論。";
+"kNoDrawToMe" = "還沒有人畫過畫給你，先畫一幅給別人？";
+
+"kUserNoFeed" = "%@ 還沒有動態。";
+"kUserNoOpus" = "%@ 還沒有作品。";
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 
@@ -891,6 +913,10 @@
 "kDoItLikeThis" = "就這樣";
 "kThinkMyself" = "自己來";
 "kWaitForPlayerBet" = "等待玩家下註(%d)";
+"kCustomDice" = "個性化骰子";
+"kItemPatriotDice" = "愛國骰";
+"kPatriotDice" = "愛國骰";
+"kPatriotDiceDescription" = "紅旗飄揚，揚我國威！釣魚島是中國的！";
 
 /*********************** 大话骰子国际化字符串结束 *************************/
 

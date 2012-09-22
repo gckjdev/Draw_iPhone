@@ -27,6 +27,7 @@
 #import "CommonDiceItemAction.h"
 #import "DiceConfigManager.h"
 #import "CallDiceView.h"
+#import "CustomDiceManager.h"
 
 
 #define AVATAR_TAG_OFFSET   8000
@@ -184,6 +185,7 @@
         _expressionManager = [ExpressionManager defaultManager];
         _soundManager = [DiceSoundManager defaultManager];
         _robotManager = [DiceRobotManager defaultManager];
+        _customDicemanager = [CustomDiceManager defaultManager];
         _urgedUser = [[NSMutableSet alloc] init];
     }
     
@@ -381,6 +383,9 @@
 
 - (void)showUserDice:(NSString *)userId
 {
+    PBGameUser* pbUser = [_diceService.session getUserByUserId:userId];
+    CustomDiceType type = [CustomDiceManager getUserDiceTypeByPBGameUser:pbUser];
+    
     if ([_userManager isMe:userId]) {
         self.myDiceListHolderView.hidden = YES;
     }
@@ -390,7 +395,8 @@
     
     DicesResultView *resultView = [self resultViewOfUser:userId];
     resultView.delegate = self;
-    [resultView showUserResult:userId toCenter:self.view.center];
+    [resultView showUserResult:userId toCenter:self.view.center customDiceType:type];
+    
 }
 
 - (void)stayDidStart:(int)resultDiceCount
@@ -1154,7 +1160,7 @@
     [self clearAllReciprocol];
     
     self.resultDiceCountLabel.text = @"0";
-    self.resultDiceImageView.image = [_imageManager diceImageWithDice:_diceService.lastCallDice];
+    self.resultDiceImageView.image = [_customDicemanager diceImageForType:[_customDicemanager getMyDiceType] dice:_diceService.lastCallDice];
     self.resultHolderView.hidden = NO;
     
     [self showGameResult];
@@ -1201,6 +1207,8 @@
 - (void)popupCallDiceView
 {
     UIView *atView = [_userManager isMe:_diceService.lastCallUserId] ? myDiceListHolderView : [self avatarViewOfUser:_diceService.lastCallUserId];
+    PBGameUser* pbUser = [_diceService.session getUserByUserId:_diceService.lastCallUserId];
+    CustomDiceType type = [CustomDiceManager getUserDiceTypeByPBGameUser:pbUser];
     
     PointDirection pointDirection = [self popupDirectionWithUserAvatarViewTag:atView.tag];
     
@@ -1209,7 +1217,7 @@
                                           atView:atView
                                           inView:self.view
                                     aboveSubView:self.popupLevel1View
-                                  pointDirection:pointDirection];
+                                  pointDirection:pointDirection customDiceType:type];
 
 }
 

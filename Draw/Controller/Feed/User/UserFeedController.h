@@ -10,19 +10,17 @@
 #import "PPTableViewController.h"
 #import "FeedCell.h"
 #import "FeedService.h"
+#import "CommonTabController.h"
+#import "RankView.h"
 
-@interface UserFeedController : PPTableViewController<FeedServiceDelegate>
+@interface UserFeedController : CommonTabController<FeedServiceDelegate, RankViewDelegate>
 {
-    
+    NSString *_userId;
+    NSString *_nickName;
 }
-@property (retain, nonatomic) IBOutlet UILabel *noFeedTipsLabel;
-@property (retain, nonatomic) IBOutlet UILabel *titleLabel;
-@property (retain, nonatomic) IBOutlet UIButton *opusButton;
-@property (retain, nonatomic) IBOutlet UIButton *feedButton;
 
+@property(nonatomic, retain)NSString *userId;
+@property(nonatomic, retain)NSString *nickName;
 - (id)initWithUserId:(NSString *)userId nickName:(NSString *)nickName;
-- (IBAction)clickBackButton:(id)sender;
-- (IBAction)clickRefreshButton:(id)sender;
-- (IBAction)clickTabButton:(id)sender;
 
 @end

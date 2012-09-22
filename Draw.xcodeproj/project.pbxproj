@@ -652,6 +652,7 @@
 		C2B002D1160C126C00AC5F3B /* openDice_ag_4.png in Resources */ = {isa = PBXBuildFile; fileRef = C2B002C5160C126C00AC5F3B /* openDice_ag_4.png */; };
 		C2B002D2160C126C00AC5F3B /* openDice_ag_5.png in Resources */ = {isa = PBXBuildFile; fileRef = C2B002C6160C126C00AC5F3B /* openDice_ag_5.png */; };
 		C2B002D3160C126C00AC5F3B /* openDice_ag_6.png in Resources */ = {isa = PBXBuildFile; fileRef = C2B002C7160C126C00AC5F3B /* openDice_ag_6.png */; };
+		C2B002EC160C4FA000AC5F3B /* UserManager+DiceUserManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C2B002EB160C4FA000AC5F3B /* UserManager+DiceUserManager.m */; };
 		C2B3E932155373C400CCF52C /* FeedbackController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2B3E931155373C400CCF52C /* FeedbackController~ipad.xib */; };
 		C2B3E934155373CC00CCF52C /* ReportController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2B3E933155373CC00CCF52C /* ReportController~ipad.xib */; };
 		C2B3E936155373D500CCF52C /* AboutUsController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2B3E935155373D500CCF52C /* AboutUsController~ipad.xib */; };
@@ -2277,6 +2278,8 @@
 		C2B002C5160C126C00AC5F3B /* openDice_ag_4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = openDice_ag_4.png; sourceTree = "<group>"; };
 		C2B002C6160C126C00AC5F3B /* openDice_ag_5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = openDice_ag_5.png; sourceTree = "<group>"; };
 		C2B002C7160C126C00AC5F3B /* openDice_ag_6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = openDice_ag_6.png; sourceTree = "<group>"; };
+		C2B002EA160C4FA000AC5F3B /* UserManager+DiceUserManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UserManager+DiceUserManager.h"; sourceTree = "<group>"; };
+		C2B002EB160C4FA000AC5F3B /* UserManager+DiceUserManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UserManager+DiceUserManager.m"; sourceTree = "<group>"; };
 		C2B3E931155373C400CCF52C /* FeedbackController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "FeedbackController~ipad.xib"; sourceTree = "<group>"; };
 		C2B3E933155373CC00CCF52C /* ReportController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ReportController~ipad.xib"; sourceTree = "<group>"; };
 		C2B3E935155373D500CCF52C /* AboutUsController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "AboutUsController~ipad.xib"; sourceTree = "<group>"; };
@@ -4083,6 +4086,7 @@
 		A4B763FB15C28F8E003B4E72 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				C2B002E9160C4FA000AC5F3B /* DiceUserManager */,
 				C29707C2160ADBD200BE0789 /* CustomDiceManager */,
 				C2916CBD1606B9C300B0996E /* DiceRobotManager */,
 				A45BC60815F1C4DF0003DDDC /* DiceConfigManager */,
@@ -4528,6 +4532,15 @@
 				C2B002A8160B137700AC5F3B /* CustomDiceSettingCell~ipad.xib */,
 			);
 			path = Settings;
+			sourceTree = "<group>";
+		};
+		C2B002E9160C4FA000AC5F3B /* DiceUserManager */ = {
+			isa = PBXGroup;
+			children = (
+				C2B002EA160C4FA000AC5F3B /* UserManager+DiceUserManager.h */,
+				C2B002EB160C4FA000AC5F3B /* UserManager+DiceUserManager.m */,
+			);
+			path = DiceUserManager;
 			sourceTree = "<group>";
 		};
 		C2BBCE1715B001F1006A13A6 /* Animation */ = {
@@ -9473,6 +9486,7 @@
 				C2B002A5160B134F00AC5F3B /* CustomDiceSettingCell.m in Sources */,
 				CA1656FF160C032800E433BE /* RankView.m in Sources */,
 				A4DF0556160C25B400246A40 /* ReverseItemAction.m in Sources */,
+				C2B002EC160C4FA000AC5F3B /* UserManager+DiceUserManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

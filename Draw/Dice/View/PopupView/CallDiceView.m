@@ -13,6 +13,7 @@
 #import "FontLabel.h"
 #import "DiceFontManager.h"
 
+
 #define DICE_VIEW_WIDTH     ([DeviceDetection isIPAD] ? 56 : 28 )
 #define DICE_VIEW_HEIGHT    ([DeviceDetection isIPAD] ? 58 : 29 )
 
@@ -53,15 +54,15 @@
     [super dealloc];
 }
 
-- (id)initWithDice:(int)dice count:(int)count
+- (id)initWithDice:(int)dice count:(int)count customDiceType:(CustomDiceType)type
 {
     int countLableWidth = (count > 9) ? COUNT_LABEL_WIDTH_2 : COUNT_LABEL_WIDTH_1;
     self = [super initWithFrame:CGRectMake(0, 0, DICE_VIEW_WIDTH + countLableWidth + SYMBOL_LABEL_WIDTH, CALL_DICE_VIEW_HEIGHT)];
     if (self) {
         // Initialization code
-
+        
         self.diceView = [[[DiceView alloc] initWithFrame:CGRectMake(countLableWidth + SYMBOL_LABEL_WIDTH, 0, DICE_VIEW_WIDTH, DICE_VIEW_HEIGHT)   
-                                                     dice:dice] autorelease];
+                                                    dice:dice customDiceType:type] autorelease];
         _diceView.userInteractionEnabled = NO;
         
         self.countLabel = [[[FontLabel alloc] initWithFrame:CGRectMake(0, 0, countLableWidth, CALL_DICE_VIEW_HEIGHT) fontName:[[DiceFontManager defaultManager] fontName] pointSize:SIZE_FONT_COUNT] autorelease];
@@ -80,6 +81,12 @@
     }
     
     return self;
+}
+
+
+- (id)initWithDice:(int)dice count:(int)count
+{
+    return [self initWithDice:dice count:count customDiceType:CustomDiceTypeDefault];
 }
 
 - (void)popupAtView:(UIView *)view

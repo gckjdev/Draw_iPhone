@@ -10,6 +10,7 @@
 #import "ItemManager.h"
 #import "DiceImageManager.h"
 #import "DiceItem.h"
+#import "GameBasic.pb.h"
 
 #define SHOW_DICE_FLAG  @"a"
 #define OPEN_DICE_FLAG  @"b"
@@ -41,6 +42,16 @@ static CustomDiceManager* shareInstance;
     }
 }
 
++ (CustomDiceType)getUserDiceTypeByPBGameUser:(PBGameUser*)pbUser
+{
+    for (PBKeyValue* kValue in pbUser.attributesList) {
+        if ([kValue.name isEqualToString:CUSTOM_DICE]) {
+            return kValue.value.intValue;
+        }
+    }
+    return CustomDiceTypeDefault;
+}
+
 - (CustomDiceType)getMyDiceType
 {
     NSUserDefaults* userDefault = [NSUserDefaults standardUserDefaults];
@@ -64,7 +75,7 @@ static CustomDiceManager* shareInstance;
     [self setMyDiceType:[CustomDiceManager itemTypeToCustomDiceType:type]];
 }
 
-- (UIImage*)diceImageForType:(ItemType)type 
+- (UIImage*)diceImageForType:(CustomDiceType)type 
                         dice:(int)dice
 {
     NSString* prefix = [self getImagePrefixByType:type];
@@ -76,7 +87,7 @@ static CustomDiceManager* shareInstance;
     }
 }
 
-- (UIImage*)openDiceImageForType:(ItemType)type 
+- (UIImage*)openDiceImageForType:(CustomDiceType)type 
                             dice:(int)dice
 {
     NSString* prefix = [self getImagePrefixByType:type];
@@ -97,10 +108,10 @@ static CustomDiceManager* shareInstance;
     return [self openDiceImageForType:[self getMyDiceType] dice:dice];
 }
 
-- (NSString*)getImagePrefixByType:(ItemType)type
+- (NSString*)getImagePrefixByType:(CustomDiceType)type
 {
     switch (type) {
-        case ItemTypeCustomDicePatriotDice:
+        case CustomDiceTypePatriot:
             return IMAGE_PREFIX_PATRIOT;
         default:
             return nil;

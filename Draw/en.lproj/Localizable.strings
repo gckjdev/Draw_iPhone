@@ -782,6 +782,30 @@
 
 "kOpusCount" = "Opus(%d)";
 "kJoinCount" = "Join(%d)";
+
+
+"kContest" = "Contest";
+"kRank" = "Rank";
+"kNoRankPlayer" = "No ranking player yet.";
+"kNoRankHistory" = "No history rank yet";
+"kNoRankHot" = "No hot rank yet";
+"kNoRankNew" = "No new rank yet";
+"kNoData" = "No data.";
+
+"kRankPlayer" = "Player";
+"kRankHistory" = "History";
+"kRankHot" = "Hot";
+"kRankNew" = "New";
+"kDrawToMe" = "@Me";
+
+"kNoMyFeed" = "No Feeds. Try to draw and guess?";
+"kNoMyOpus" = "No Opus. Try to draw one?";
+"kNoMyComment" = "No Comment.";
+"kNoDrawToMe" = "No one draw to you.";
+
+"kUserNoFeed" = "%@ has no feeds.";
+"kUserNoOpus" = "%@ has no opus.";
+
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 
@@ -895,6 +919,12 @@
 "kThinkMyself" = "Cancel";
 
 "kWaitForPlayerBet" = "Waitting for player bet(%d)";
+
+"kCustomDice" = "Custom Dice";
+"kItemPatriotDice" = "patriotic dice";
+"kPatriotDice" = "patriotic dice";
+"kPatriotDiceDescription" = "red flags flying, Yang Wei of China! Diaoyu Islands are China's";
+
 
 /*********************** 大话骰子国际化字符串结束 *************************/
 

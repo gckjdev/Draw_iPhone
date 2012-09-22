@@ -9,6 +9,14 @@
 #import <UIKit/UIKit.h>
 
 
+@class RankView;
+
+@protocol RankViewDelegate <NSObject>
+@optional
+- (void)didClickRankView:(RankView *)rankView;
+
+@end
+
 typedef enum{
      RankViewTypeFirst = 1,
      RankViewTypeSecond = 2,
@@ -17,18 +25,23 @@ typedef enum{
 
 @class DrawFeed;
 @class HJManagedImageV;
+@class ShowDrawView;
+
 @interface RankView : UIView
 {
-    
+    DrawFeed *_feed;
 }
 
 @property(nonatomic, assign)id delegate;
 @property (retain, nonatomic) IBOutlet UILabel *title;
 @property (retain, nonatomic) IBOutlet UILabel *author;
 @property (retain, nonatomic) IBOutlet HJManagedImageV *drawImage;
+@property (retain, nonatomic) DrawFeed *feed;
 
 + (id)createRankView:(id)delegate type:(RankViewType)type;
 + (CGFloat)heightForRankViewType:(RankViewType)type;
 + (CGFloat)widthForRankViewType:(RankViewType)type;
 - (void)setViewInfo:(DrawFeed *)feed;
+@property (retain, nonatomic) IBOutlet UIImageView *drawFlag;
+
 @end
