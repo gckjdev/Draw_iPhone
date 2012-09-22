@@ -796,7 +796,7 @@
 "kRankHistory" = "History";
 "kRankHot" = "Hot";
 "kRankNew" = "New";
-
+"kDrawToMe" = "@Me";
 
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
