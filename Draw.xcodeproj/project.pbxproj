@@ -235,6 +235,11 @@
 		A4D3B15E1560E4F80013C882 /* MessageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A4D3B15D1560E4F80013C882 /* MessageManager.m */; };
 		A4DF0556160C25B400246A40 /* ReverseItemAction.m in Sources */ = {isa = PBXBuildFile; fileRef = A4DF0555160C25B400246A40 /* ReverseItemAction.m */; };
 		A4DF0589160D735E00246A40 /* CutItemAction.m in Sources */ = {isa = PBXBuildFile; fileRef = A4DF0588160D735E00246A40 /* CutItemAction.m */; };
+		A4DF058F160D9EB500246A40 /* delay@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4DF058A160D9EB500246A40 /* delay@2x.png */; };
+		A4DF0590160D9EB500246A40 /* eye@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4DF058B160D9EB500246A40 /* eye@2x.png */; };
+		A4DF0591160D9EB500246A40 /* hurryup@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4DF058C160D9EB500246A40 /* hurryup@2x.png */; };
+		A4DF0592160D9EB500246A40 /* reverse@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4DF058D160D9EB500246A40 /* reverse@2x.png */; };
+		A4DF0593160D9EB500246A40 /* tortoise@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4DF058E160D9EB500246A40 /* tortoise@2x.png */; };
 		A4EF88BC15EDD8C90014643F /* message_1_M.m4a in Resources */ = {isa = PBXBuildFile; fileRef = A4EF86A615EDD8C70014643F /* message_1_M.m4a */; };
 		A4EF88BD15EDD8C90014643F /* message_2_M.m4a in Resources */ = {isa = PBXBuildFile; fileRef = A4EF86A715EDD8C70014643F /* message_2_M.m4a */; };
 		A4EF88BE15EDD8C90014643F /* message_3_M.m4a in Resources */ = {isa = PBXBuildFile; fileRef = A4EF86A815EDD8C70014643F /* message_3_M.m4a */; };
@@ -1805,6 +1810,11 @@
 		A4DF0555160C25B400246A40 /* ReverseItemAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReverseItemAction.m; sourceTree = "<group>"; };
 		A4DF0587160D735E00246A40 /* CutItemAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CutItemAction.h; sourceTree = "<group>"; };
 		A4DF0588160D735E00246A40 /* CutItemAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CutItemAction.m; sourceTree = "<group>"; };
+		A4DF058A160D9EB500246A40 /* delay@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "delay@2x.png"; sourceTree = "<group>"; };
+		A4DF058B160D9EB500246A40 /* eye@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "eye@2x.png"; sourceTree = "<group>"; };
+		A4DF058C160D9EB500246A40 /* hurryup@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hurryup@2x.png"; sourceTree = "<group>"; };
+		A4DF058D160D9EB500246A40 /* reverse@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "reverse@2x.png"; sourceTree = "<group>"; };
+		A4DF058E160D9EB500246A40 /* tortoise@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tortoise@2x.png"; sourceTree = "<group>"; };
 		A4EF86A615EDD8C70014643F /* message_1_M.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = message_1_M.m4a; sourceTree = "<group>"; };
 		A4EF86A715EDD8C70014643F /* message_2_M.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = message_2_M.m4a; sourceTree = "<group>"; };
 		A4EF86A815EDD8C70014643F /* message_3_M.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = message_3_M.m4a; sourceTree = "<group>"; };
@@ -3891,6 +3901,11 @@
 		A4A01B7015D8AF67002FE86D /* game */ = {
 			isa = PBXGroup;
 			children = (
+				A4DF058A160D9EB500246A40 /* delay@2x.png */,
+				A4DF058B160D9EB500246A40 /* eye@2x.png */,
+				A4DF058C160D9EB500246A40 /* hurryup@2x.png */,
+				A4DF058D160D9EB500246A40 /* reverse@2x.png */,
+				A4DF058E160D9EB500246A40 /* tortoise@2x.png */,
 				A4AF0A64160AFF9700650C21 /* lose_face@2x.png */,
 				A4AF0A65160AFF9700650C21 /* win_face@2x.png */,
 				A43A64C21608591A00F35978 /* room_search@2x.png */,
@@ -8959,6 +8974,11 @@
 				C2B002D1160C126C00AC5F3B /* openDice_ag_4.png in Resources */,
 				C2B002D2160C126C00AC5F3B /* openDice_ag_5.png in Resources */,
 				C2B002D3160C126C00AC5F3B /* openDice_ag_6.png in Resources */,
+				A4DF058F160D9EB500246A40 /* delay@2x.png in Resources */,
+				A4DF0590160D9EB500246A40 /* eye@2x.png in Resources */,
+				A4DF0591160D9EB500246A40 /* hurryup@2x.png in Resources */,
+				A4DF0592160D9EB500246A40 /* reverse@2x.png in Resources */,
+				A4DF0593160D9EB500246A40 /* tortoise@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
