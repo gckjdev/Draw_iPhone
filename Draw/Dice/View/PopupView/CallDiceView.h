@@ -9,11 +9,12 @@
 #import <UIKit/UIKit.h>
 #import "Dice.pb.h"
 #import "CMPopTipView.h"
+#import "CustomDiceManager.h"
 
 @interface CallDiceView : UIView
 
 - (id)initWithDice:(int)dice count:(int)count;
-
+- (id)initWithDice:(int)dice count:(int)count customDiceType:(CustomDiceType)type;
 //- (void)setDice:(int)dice count:(int)count;
 
 - (void)popupAtView:(UIView *)view

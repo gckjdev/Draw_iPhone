@@ -13,7 +13,7 @@
 #import "AnimationManager.h"
 #import "DiceGameService.h"
 #import "HKGirlFontLabel.h"
-#import "CustomDiceManager.h"
+
 
 #define TAG_OFFSET_BOTTOM      110
 #define TAG_OFFSET_DICE  1001
@@ -233,7 +233,7 @@
     return array;
 }
 
-- (void)showUserResult:(NSString *)userId toCenter:(CGPoint)center
+- (void)showUserResult:(NSString *)userId toCenter:(CGPoint)center customDiceType:(CustomDiceType)type
 {
     DiceGameSession *diceSession = [[DiceGameService defaultService] diceSession];
     NSArray *diceList = [[diceSession userDiceList] objectForKey:userId];
@@ -246,7 +246,7 @@
     
     [self setDicesWithDiceList:diceList 
                          wilds:wilds
-                    resultDice:resultDice];
+                    resultDice:resultDice diceType:type];
     
     _targetCenter = center;
             
