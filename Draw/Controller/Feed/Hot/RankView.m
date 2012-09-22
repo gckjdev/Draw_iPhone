@@ -90,8 +90,9 @@
         [self.drawImage setImage:image];
         feed.drawImage = image;
         [showView removeFromSuperview];
-        feed.drawData = nil;
-
+        feed.drawData = nil;        
+        
+        [[ShareImageManager defaultManager] saveFeedImage:image withImageName:feed.feedId asyn:YES];
     }
     [GlobalGetImageCache() manage:self.drawImage];  
     

@@ -39,6 +39,7 @@
 @property(nonatomic, retain)IBOutlet UILabel *noDataTipLabl;
 - (IBAction)clickBackButton:(id)sender;
 - (IBAction)clickTabButton:(id)sender;
+- (IBAction)clickRefreshButton:(id)sender;
 
 //used by the sub class.
 - (NSMutableArray *)tabDataList;

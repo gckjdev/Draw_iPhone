@@ -798,6 +798,14 @@
 "kRankNew" = "New";
 "kDrawToMe" = "@Me";
 
+"kNoMyFeed" = "No Feeds. Try to draw and guess?";
+"kNoMyOpus" = "No Opus. Try to draw one?";
+"kNoMyComment" = "No Comment.";
+"kNoDrawToMe" = "No one draw to you.";
+
+"kUserNoFeed" = "%@ has no feeds.";
+"kUserNoOpus" = "%@ has no opus.";
+
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 

@@ -14,7 +14,7 @@
 
 
 typedef enum{
-    MyTypeFeed = FeedListTypeMy,
+    MyTypeFeed = FeedListTypeAll,
     MyTypeOpus = FeedListTypeUserOpus,
     MyTypeComment = FeedListTypeComment,
     MyTypeDrawToMe = FeedListTypeDrawToMe,
@@ -214,11 +214,24 @@ typedef enum{
     }
 }
 
+- (void)updateSeparator:(NSInteger)dataCount
+{
+    MyType type = self.currentTab.tabID;
+    if (type == MyTypeOpus || type == MyTypeDrawToMe) {
+        [self.dataTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+    }else{
+        if (dataCount == 0) {
+            [self.dataTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];            
+        }else{
+            [self.dataTableView setSeparatorStyle:UITableViewCellSeparatorStyleSingleLine];            
+        }
+    }
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     NSInteger count = [[self tabDataList] count];
-    
-    
+    [self updateSeparator:count];
     TableTab *tab = self.currentTab;
     
     if (count == 0 && tab.status == TableTabStatusLoaded) {
@@ -260,7 +273,7 @@ typedef enum{
 }
 - (NSInteger)fetchDataLimitForTabIndex:(NSInteger)index
 {
-    return 3;
+    return 12;
 }
 - (NSInteger)tabIDforIndex:(NSInteger)index
 {
@@ -293,7 +306,7 @@ typedef enum{
         NSInteger limit = tab.limit;
         switch (tabID) {
             case MyTypeFeed:
-                [feedService getFeedList:FeedListTypeMy
+                [feedService getFeedList:FeedListTypeAll
                                   offset:offset
                                    limit:limit
                                 delegate:self];
