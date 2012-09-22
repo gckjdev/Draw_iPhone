@@ -29,7 +29,7 @@
 #define KEY_GAME_MESSAGE @"KEY_GAME_MESSAGE"
 #define ROOMS_COUNT_PER_PAGE  20
 
-#define REFRESH_ROOMS_TIME_INTERVAL 200000000
+#define REFRESH_ROOMS_TIME_INTERVAL 2
 
 #define CREATE_ROOM_DIALOG_TAG  120120824
 #define ENTER_ROOM_DIALOG_TAG   220120824
@@ -147,7 +147,17 @@
     [_refreshRoomTimer retain];
 }
 
+- (void)pauseRefreshingRooms
+{
+    _isRefreshing = NO;
+    [self clearRefreshRoomsTimer];
+}
 
+- (void)continueRefreshingRooms
+{
+    _isRefreshing = YES;
+    [self startRefreshRoomsTimer];
+}
 
 - (void)getRoomsFinished
 {
@@ -158,7 +168,10 @@
     //[[DiceGameService defaultService] registerRoomsNotification:service.roomList]; //don register room notification here
     //self.noMoreData = YES;
     //[self dataSourceDidFinishLoadingMoreData];
-    [self startRefreshRoomsTimer];
+    if (_isRefreshing) {
+        [self startRefreshRoomsTimer];
+    }
+    
 }
 
 - (void)joinGame
@@ -259,6 +272,8 @@
     [self.nearByRoomButton.fontLable setText:NSLS(@"kNearBy")];
     [self.createRoomButton.fontLable setText:NSLS(@"kCreateRoom")];
     [self.fastEntryButton.fontLable setText:NSLS(@"kFastEntry")];
+    
+    _isRefreshing = YES;
         
 //    [[NSNotificationCenter defaultCenter] addObserver:self
 //                                             selector:@selector(roomsDidUpdate:)
@@ -497,6 +512,7 @@
 - (void)infoViewDidDisappear
 {
     _searchView = nil;
+    [self continueRefreshingRooms];
 }
 
 #pragma mark - CommonSearchViewDelegate
@@ -505,6 +521,7 @@
 {
     [[DiceGameService defaultService] getRoomList:0 count:ROOMS_COUNT_PER_PAGE shouldReloadData:YES roomType:_currentRoomType keyword:keywords gameId:[ConfigManager gameId]];
     [self showActivityWithText:NSLS(@"kSearching")];
+    [self pauseRefreshingRooms];
 }
 
 - (IBAction)clickSearch:(id)sender

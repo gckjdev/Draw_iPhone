@@ -933,6 +933,12 @@
 "kThinkMyself" = "自己来";
 
 "kWaitForPlayerBet" = "等待玩家下注(%d)";
+"kCustomDice" = "自定义骰子";
+
+"kDefault" = "默认";
+"kItemPatriotDice" = "爱国骰";
+"kPatriotDice" = "爱国骰";
+"kPatriotDiceDescription" = "红旗飘扬，扬我国威！钓鱼岛是中国的！";
 
 /*********************** 大话骰子国际化字符串结束 *************************/
 
