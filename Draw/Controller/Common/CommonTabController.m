@@ -150,13 +150,14 @@
     [self dataSourceDidFinishLoadingMoreData];
 
     TableTab * tab = [_tabManager tabForID:tabID];
+    if (tab.offset == 0) {
+        [tab.dataList removeAllObjects];
+    }
+
     if ([list count] == 0) {
         tab.hasMoreData = NO;
     }else{
         tab.hasMoreData = YES;        
-        if (tab.offset == 0) {
-            [tab.dataList removeAllObjects];
-        }
         [tab.dataList addObjectsFromArray:list];
         tab.offset = [tab.dataList count];
     }

@@ -248,10 +248,9 @@ typedef enum{
     TableTab *tab = self.currentTab;
     
     if (count == 0 && tab.status == TableTabStatusLoaded) {
-        self.tipsLabel.hidden = NO;
-        [self.tipsLabel setText:tab.noDataDesc];
-        [self.view bringSubviewToFront:self.tipsLabel];
-        
+        self.noDataTipLabl.hidden = NO;
+        [self.noDataTipLabl setText:tab.noDataDesc];
+        [self.view bringSubviewToFront:self.noDataTipLabl];
     }else{
         self.tipsLabel.hidden = YES;
     }
@@ -323,7 +322,7 @@ typedef enum{
                 break;
             case UserTypeOpus:
             {
-                [feedService getUserOpusList:_userId offset:offset limit:limit delegate:self];
+                [feedService getUserOpusList:_userId offset:offset limit:limit type:FeedListTypeUserOpus delegate:self];
             }
             default:
                 break;

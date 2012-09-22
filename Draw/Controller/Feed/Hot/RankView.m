@@ -131,9 +131,9 @@
 {
     switch (type) {
         case RankViewTypeFirst:
-            return [DeviceDetection isIPAD] ? 137 : 137;
+            return [DeviceDetection isIPAD] ? 137 : 123;
         case RankViewTypeSecond:
-            return [DeviceDetection isIPAD] ? 167 : 167;
+            return [DeviceDetection isIPAD] ? 167 : 139;
         case RankViewTypeNormal:
             return [DeviceDetection isIPAD] ? 110 : 110;
         default:

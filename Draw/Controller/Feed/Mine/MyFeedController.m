@@ -235,11 +235,11 @@ typedef enum{
     TableTab *tab = self.currentTab;
     
     if (count == 0 && tab.status == TableTabStatusLoaded) {
-        self.tipsLabel.hidden = NO;
-        [self.tipsLabel setText:tab.noDataDesc];
-        [self.view bringSubviewToFront:self.tipsLabel];
+        self.noDataTipLabl.hidden = NO;
+        [self.noDataTipLabl setText:tab.noDataDesc];
+        [self.view bringSubviewToFront:self.noDataTipLabl];
     }else{
-        self.tipsLabel.hidden = YES;
+        self.noDataTipLabl.hidden = YES;
     }
     
     
@@ -312,10 +312,24 @@ typedef enum{
                                 delegate:self];
                 break;
             case MyTypeOpus:
+            {
+                NSString *userId = [[UserManager defaultManager] userId];
+                [feedService getUserOpusList:userId
+                                      offset:offset
+                                       limit:limit 
+                                        type:FeedListTypeUserOpus 
+                                    delegate:self];
+            }
+                break;
+
             case MyTypeDrawToMe: //for test
             {
                 NSString *userId = [[UserManager defaultManager] userId];
-                [feedService getUserOpusList:userId offset:offset limit:limit delegate:self];
+                [feedService getUserOpusList:userId
+                                      offset:offset 
+                                       limit:limit 
+                                        type:FeedListTypeDrawToMe
+                                    delegate:self];
             }
             default:
                 break;
