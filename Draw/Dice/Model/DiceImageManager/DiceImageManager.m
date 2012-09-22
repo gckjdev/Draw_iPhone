@@ -485,7 +485,7 @@ static DiceImageManager *_defaultManager = nil;
 
 - (UIImage*)toShopImage:(UIImage*)image
 {
-    return [UIImage shrinkImage:image withRate:0.8];
+    return image;//[UIImage shrinkImage:image withRate:0.8];
 }
 
 - (UIImage *)betResultImage:(BOOL)win
