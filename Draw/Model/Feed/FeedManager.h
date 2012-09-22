@@ -25,6 +25,13 @@ typedef enum{
     FeedListTypeUserOpus = 5,
     FeedListTypeLatest = 6,
     
+    //add 2012.9.21
+    FeedListTypeDrawToMe = 7,
+    FeedListTypeComment = 8,
+    FeedListTypeHistoryRank = 9,
+    FeedListTypeTopPlayer = 10,
+    
+    
 }FeedListType;
 
 

@@ -13,10 +13,10 @@
 
 typedef enum{
 
-    RankTypePlayer = 100,
-    RankTypeHistory = 101,
-    RankTypeHot = 3,
-    RankTypeNew = 6,
+    RankTypePlayer = FeedListTypeTopPlayer,
+    RankTypeHistory = FeedListTypeHistoryRank,
+    RankTypeHot = FeedListTypeHot,
+    RankTypeNew = FeedListTypeLatest,
     
 }RankType;
 
