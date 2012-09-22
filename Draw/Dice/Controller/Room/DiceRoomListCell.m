@@ -12,6 +12,7 @@
 #import "DiceImageManager.h"
 #import "PPDebug.h"
 
+
 #define TAG_USER_VIEW 101
 
 @interface DiceRoomListCell ()
@@ -21,6 +22,7 @@
 @implementation DiceRoomListCell
 @synthesize backgroundImageView;
 @synthesize roomNameLabel;
+@synthesize delegate = _delegate;
 
 + (NSString *)getCellIdentifier
 {
@@ -80,6 +82,13 @@
     [roomNameLabel release];
     [backgroundImageView release];
     [super dealloc];
+}
+
+- (void)didClickOnAvatar:(DiceAvatarView *)view
+{
+    if (_delegate && [_delegate respondsToSelector:@selector(didQueryUser:)]) {
+        [_delegate didQueryUser:view.userId];
+    }
 }
 
     
