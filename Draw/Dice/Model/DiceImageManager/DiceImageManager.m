@@ -479,7 +479,66 @@ static DiceImageManager *_defaultManager = nil;
 
 - (UIImage*)patriotDiceImage
 {
-    return [UIImage imageNamed:@"ag_a1.png"];
+    return [UIImage imageNamed:@"openDice_ag_1.png"];
+}
+
+- (UIImage*)goldenDiceImage
+{
+    return [UIImage imageNamed:@"openDice_golden_1.png"];
+}
+
+
+- (UIImage*)woodDiceImage
+{
+    return [UIImage imageNamed:@"openDice_wood_1.png"];
+}
+
+
+- (UIImage*)blueCrystalDiceImage
+{
+    return [UIImage imageNamed:@"openDice_blueCrystal_1.png"];
+}
+
+
+- (UIImage*)pinkCrystalDiceImage
+{
+    return [UIImage imageNamed:@"openDice_pinkCrystal_1.png"];
+}
+
+
+- (UIImage*)greenCrystalDiceImage
+{
+    return [UIImage imageNamed:@"openDice_greenCrystal_1.png"];
+}
+
+
+- (UIImage*)purpleCrystalDiceImage
+{
+    return [UIImage imageNamed:@"openDice_purpleCrystal_1.png"];
+}
+
+
+- (UIImage*)blueDiamondDiceImage
+{
+    return [UIImage imageNamed:@"openDice_blueDiamond_1.png"];
+}
+
+
+- (UIImage*)pinkDiamondDiceImage
+{
+    return [UIImage imageNamed:@"openDice_pinkDiamond_1.png"];
+}
+
+
+- (UIImage*)greenDiamondDiceImage
+{
+    return [UIImage imageNamed:@"openDice_greenDiamond_1.png"];
+}
+
+
+- (UIImage*)purpleDiamondDiceImage
+{
+    return [UIImage imageNamed:@"openDice_purpleDiamond_1.png"];
 }
 
 

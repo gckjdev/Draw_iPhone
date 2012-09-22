@@ -43,6 +43,16 @@ typedef enum
     //custom dice start here
     ItemTypeCustomDiceStart = 2500,
     ItemTypeCustomDicePatriotDice,
+    ItemTypeCustomDiceGoldenDice,
+    ItemTypeCustomDiceWoodDice,
+    ItemTypeCustomDiceBlueCrystalDice,
+    ItemTypeCustomDicePinkCrystalDice,
+    ItemTypeCustomDiceGreenCrystalDice,
+    ItemTypeCustomDicePurpleCrystalDice,
+    ItemTypeCustomDiceBlueDiamondDice,
+    ItemTypeCustomDicePinkDiamondDice,
+    ItemTypeCustomDiceGreenDiamondDice,
+    ItemTypeCustomDicePurpleDiamondDice,
     ItemTypeCustomDiceEnd
 
     

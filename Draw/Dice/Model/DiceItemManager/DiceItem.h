@@ -21,4 +21,15 @@
 + (Item*)diceRobot;
 + (Item*)patriotDice;
 + (Item*)diceItemForItemType:(ItemType)type;
+
++ (Item*)goldenDice;
++ (Item*)woodDice;
++ (Item*)blueCrystalDice;
++ (Item*)pinkCrystalDice;
++ (Item*)greenCrystalDice;
++ (Item*)purpleCrystalDice;
++ (Item*)blueDiamondDice;
++ (Item*)pinkDiamondDice;
++ (Item*)greenDiamondDice;
++ (Item*)purpleDiamondDice;
 @end
