@@ -11,6 +11,7 @@
 #import "DiceGameService.h"
 #import "GifView.h"
 #import "DiceAvatarView.h"
+#import "ItemManager.h"
 
 @class DiceGamePlayController;
 
@@ -19,6 +20,7 @@
     int _itemType;
     UserManager *_userManager;
     DiceGameService *_gameService;
+    ItemManager *_itemManager;
 }
 
 @property (assign, nonatomic) int itemType;
@@ -42,6 +44,8 @@
                            view:(UIView *)view;
 
 // Left to be realize for sub class.
+- (BOOL)useScene;
+
 - (void)showItemAnimation:(NSString*)userId
                  itemType:(int)itemType
                controller:(DiceGamePlayController *)controller
