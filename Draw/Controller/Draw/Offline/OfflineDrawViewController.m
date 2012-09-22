@@ -562,9 +562,9 @@ enum{
         [self showActivityWithText:NSLS(@"kSending")];
         self.submitButton.userInteractionEnabled = NO;
         UIImage *image = [drawView createImage];
-        if ([DeviceDetection isIPAD]) {
-            image = [image imageByScalingAndCroppingForSize:DRAW_VIEW_FRAME_IPHONE.size];
-        }            
+//        if ([DeviceDetection isIPAD]) {
+//            image = [image imageByScalingAndCroppingForSize:DRAW_VIEW_FRAME_IPHONE.size];
+//        }            
         [[DrawDataService defaultService] createOfflineDraw:drawView.drawActionList 
                                                       image:image 
                                                    drawWord:self.word 
@@ -667,7 +667,7 @@ enum{
     [self disMissAllPickViews:YES];
 }
 
-#define DRAFT_PAINT_COUNT 15
+#define DRAFT_PAINT_COUNT 25
 
 - (void)didDrawedPaint:(Paint *)paint
 {

@@ -66,7 +66,8 @@
 
 - (void)getUserOpusList:(NSString *)userId
                  offset:(NSInteger)offset 
-                  limit:(NSInteger)limit 
+                  limit:(NSInteger)limit
+                   type:(FeedListType)type
                delegate:(PPViewController<FeedServiceDelegate> *)delegate;
 
 - (void)getFeedList:(FeedListType)feedListType 

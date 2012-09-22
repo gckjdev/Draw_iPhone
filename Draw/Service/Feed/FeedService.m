@@ -103,7 +103,8 @@ static FeedService *_staticFeedService = nil;
 
 - (void)getUserOpusList:(NSString *)userId
                  offset:(NSInteger)offset 
-                  limit:(NSInteger)limit 
+                  limit:(NSInteger)limit
+                   type:(FeedListType)type
                delegate:(PPViewController<FeedServiceDelegate> *)delegate
 {
     dispatch_async(workingQueue, ^{
@@ -111,7 +112,7 @@ static FeedService *_staticFeedService = nil;
         CommonNetworkOutput* output = [GameNetworkRequest 
                                        getFeedListWithProtocolBuffer:TRAFFIC_SERVER_URL 
                                        userId:userId 
-                                       feedListType:FeedListTypeUserOpus
+                                       feedListType:type
                                        offset:offset 
                                        limit:limit 
                                        lang:UnknowType];
@@ -128,7 +129,10 @@ static FeedService *_staticFeedService = nil;
         PPDebug(@"<FeedService> parse data finish, start display the views.");        
         dispatch_async(dispatch_get_main_queue(), ^{
             if (delegate && [delegate respondsToSelector:@selector(didGetFeedList:targetUser:type:resultCode:)]) {
-                [delegate didGetFeedList:list targetUser:userId type:FeedListTypeUserOpus resultCode:resultCode];
+                [delegate didGetFeedList:list 
+                              targetUser:userId
+                                    type:type
+                              resultCode:resultCode];
             }
         });
     });

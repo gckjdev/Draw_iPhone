@@ -222,10 +222,11 @@ typedef enum{
     TableTab *tab = self.currentTab;
     
     if (count == 0 && tab.status == TableTabStatusLoaded) {
-        self.tipsLabel.hidden = YES;
+        self.noDataTipLabl.hidden = NO;
+        [self.noDataTipLabl setText:tab.noDataDesc];
+        [self.view bringSubviewToFront:self.noDataTipLabl];
     }else{
-        self.tipsLabel.hidden = NO;
-        [self.tipsLabel setText:tab.noDataDesc];
+        self.noDataTipLabl.hidden = YES;
     }
 
     
