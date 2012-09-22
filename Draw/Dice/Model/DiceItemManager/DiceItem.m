@@ -123,11 +123,152 @@
                                 amount:[[ItemManager defaultManager] amountForItem:ItemTypeCustomDicePatriotDice]] autorelease];
 }
 
++ (Item*)goldenDice
+{
+    return [[[Item alloc] initWithType:ItemTypeCustomDiceGoldenDice 
+                                 image:[[DiceImageManager defaultManager] goldenDiceImage]
+                                  name:NSLS(@"kItemGoldenDice")
+                             shortName:NSLS(@"kGoldenDice")
+                           description:NSLS(@"kGoldenDiceDescription") 
+                      buyAmountForOnce:1
+                                 price:[[ShoppingManager defaultManager] getPatriotDicePrice] 
+                                amount:[[ItemManager defaultManager] amountForItem:ItemTypeCustomDiceGoldenDice]] autorelease];
+}
+
++ (Item*)woodDice
+{
+    return [[[Item alloc] initWithType:ItemTypeCustomDiceWoodDice 
+                                 image:[[DiceImageManager defaultManager] woodDiceImage]
+                                  name:NSLS(@"kItemWoodDice")
+                             shortName:NSLS(@"kWoodDice")
+                           description:NSLS(@"kWoodDiceDescription") 
+                      buyAmountForOnce:1
+                                 price:[[ShoppingManager defaultManager] getPatriotDicePrice] 
+                                amount:[[ItemManager defaultManager] amountForItem:ItemTypeCustomDiceWoodDice]] autorelease];
+}
+
++ (Item*)blueCrystalDice
+{
+    return [[[Item alloc] initWithType:ItemTypeCustomDiceBlueCrystalDice
+                                 image:[[DiceImageManager defaultManager] blueCrystalDiceImage]
+                                  name:NSLS(@"kItemBlueCrystalDice")
+                             shortName:NSLS(@"kBlueCrystalDice")
+                           description:NSLS(@"kBlueCrystalDiceDescription") 
+                      buyAmountForOnce:1
+                                 price:[[ShoppingManager defaultManager] getPatriotDicePrice] 
+                                amount:[[ItemManager defaultManager] amountForItem:ItemTypeCustomDiceBlueCrystalDice]] autorelease];
+}
+
++ (Item*)pinkCrystalDice
+{
+    return [[[Item alloc] initWithType:ItemTypeCustomDicePinkCrystalDice
+                                 image:[[DiceImageManager defaultManager] pinkCrystalDiceImage]
+                                  name:NSLS(@"kItemPinkCrystalDice")
+                             shortName:NSLS(@"kPinkCrystalDice")
+                           description:NSLS(@"kPinkCrystalDiceDescription") 
+                      buyAmountForOnce:1
+                                 price:[[ShoppingManager defaultManager] getPatriotDicePrice] 
+                                amount:[[ItemManager defaultManager] amountForItem:ItemTypeCustomDicePinkCrystalDice]] autorelease];
+}
+
++ (Item*)greenCrystalDice
+{
+    return [[[Item alloc] initWithType:ItemTypeCustomDiceGreenCrystalDice
+                                 image:[[DiceImageManager defaultManager] greenCrystalDiceImage]
+                                  name:NSLS(@"kItemGreenCrystalDice")
+                             shortName:NSLS(@"kGreenCrystalDice")
+                           description:NSLS(@"kGreenCrystalDiceDescription") 
+                      buyAmountForOnce:1
+                                 price:[[ShoppingManager defaultManager] getPatriotDicePrice] 
+                                amount:[[ItemManager defaultManager] amountForItem:ItemTypeCustomDiceGreenCrystalDice]] autorelease];
+}
+
++ (Item*)purpleCrystalDice
+{
+    return [[[Item alloc] initWithType:ItemTypeCustomDicePurpleCrystalDice
+                                 image:[[DiceImageManager defaultManager] purpleCrystalDiceImage]
+                                  name:NSLS(@"kItemPurpleCrystalDice")
+                             shortName:NSLS(@"kPurpleCrystalDice")
+                           description:NSLS(@"kPurpleCrystalDiceDescription") 
+                      buyAmountForOnce:1
+                                 price:[[ShoppingManager defaultManager] getPatriotDicePrice] 
+                                amount:[[ItemManager defaultManager] amountForItem:ItemTypeCustomDicePurpleCrystalDice]] autorelease];
+}
+
++ (Item*)blueDiamondDice
+{
+    return [[[Item alloc] initWithType:ItemTypeCustomDiceBlueDiamondDice
+                                 image:[[DiceImageManager defaultManager] blueDiamondDiceImage]
+                                  name:NSLS(@"kItemBlueDiamondDice")
+                             shortName:NSLS(@"kBlueDiamondDice")
+                           description:NSLS(@"kBlueDiamondDiceDescription") 
+                      buyAmountForOnce:1
+                                 price:[[ShoppingManager defaultManager] getPatriotDicePrice] 
+                                amount:[[ItemManager defaultManager] amountForItem:ItemTypeCustomDiceBlueDiamondDice]] autorelease];
+}
+
++ (Item*)pinkDiamondDice
+{
+    return [[[Item alloc] initWithType:ItemTypeCustomDicePinkDiamondDice
+                                 image:[[DiceImageManager defaultManager] pinkDiamondDiceImage]
+                                  name:NSLS(@"kItemPinkDiamondDice")
+                             shortName:NSLS(@"kPinkDiamondDice")
+                           description:NSLS(@"kPinkDiamondDiceDescription") 
+                      buyAmountForOnce:1
+                                 price:[[ShoppingManager defaultManager] getPatriotDicePrice] 
+                                amount:[[ItemManager defaultManager] amountForItem:ItemTypeCustomDicePinkDiamondDice]] autorelease];
+}
+
++ (Item*)greenDiamondDice
+{
+    return [[[Item alloc] initWithType:ItemTypeCustomDiceGreenDiamondDice
+                                 image:[[DiceImageManager defaultManager] greenDiamondDiceImage]
+                                  name:NSLS(@"kItemGreenDiamondDice")
+                             shortName:NSLS(@"kGreenDiamondDice")
+                           description:NSLS(@"kGreenDiamondDiceDescription") 
+                      buyAmountForOnce:1
+                                 price:[[ShoppingManager defaultManager] getPatriotDicePrice] 
+                                amount:[[ItemManager defaultManager] amountForItem:ItemTypeCustomDiceGreenDiamondDice]] autorelease];
+}
+
++ (Item*)purpleDiamondDice
+{
+    return [[[Item alloc] initWithType:ItemTypeCustomDicePurpleDiamondDice
+                                 image:[[DiceImageManager defaultManager] purpleDiamondDiceImage]
+                                  name:NSLS(@"kItemPurpleDiamondDice")
+                             shortName:NSLS(@"kPurpleDiamondDice")
+                           description:NSLS(@"kPurpleDiamondDiceDescription") 
+                      buyAmountForOnce:1
+                                 price:[[ShoppingManager defaultManager] getPatriotDicePrice] 
+                                amount:[[ItemManager defaultManager] amountForItem:ItemTypeCustomDicePurpleDiamondDice]] autorelease];
+}
+        
+
 + (Item*)diceItemForItemType:(ItemType)type
 {
     switch (type) {
         case ItemTypeCustomDicePatriotDice:
             return [Item patriotDice];
+        case ItemTypeCustomDiceGoldenDice:
+            return [Item goldenDice];
+        case ItemTypeCustomDiceWoodDice:
+            return [Item woodDice];
+        case ItemTypeCustomDiceBlueCrystalDice:
+            return [Item blueCrystalDice];
+        case ItemTypeCustomDicePinkCrystalDice:
+            return [Item pinkCrystalDice];
+        case ItemTypeCustomDiceGreenCrystalDice:
+            return [Item greenCrystalDice];
+        case ItemTypeCustomDicePurpleCrystalDice:
+            return [Item purpleCrystalDice];
+        case ItemTypeCustomDiceBlueDiamondDice:
+            return [Item blueDiamondDice];
+        case ItemTypeCustomDicePinkDiamondDice:
+            return [Item pinkDiamondDice];
+        case ItemTypeCustomDiceGreenDiamondDice:
+            return [Item greenDiamondDice];
+        case ItemTypeCustomDicePurpleDiamondDice:
+            return [Item purpleDiamondDice];
         default:
             break;
     }

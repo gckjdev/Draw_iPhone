@@ -182,14 +182,37 @@
 
 #pragma mark table view delegate
 
+//
+//- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+//{
+//    NSInteger count = [[self tabDataList] count];
+//    self.noMoreData = !self.currentTab.hasMoreData;
+//    return count;
+//}
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     NSInteger count = [[self tabDataList] count];
-    self.noMoreData = !self.currentTab.hasMoreData;
+    
+    TableTab *tab = self.currentTab;
+    
+    if (tab.status == TableTabStatusLoading) {
+        [self showActivityWithText:NSLS(@"kLoading")];
+    }else{
+        [self hideActivity];        
+    }
+    
+    if (count == 0 && tab.status == TableTabStatusLoaded) {
+        self.noDataTipLabl.hidden = NO;
+        [self.noDataTipLabl setText:tab.noDataDesc];
+        [self.view bringSubviewToFront:self.noDataTipLabl];
+    }else{
+        self.noDataTipLabl.hidden = YES;
+    }
+    
+    self.noMoreData = !tab.hasMoreData;
     return count;
 }
-
 #pragma mark tab controller delegate
 
 - (NSInteger)tabCount

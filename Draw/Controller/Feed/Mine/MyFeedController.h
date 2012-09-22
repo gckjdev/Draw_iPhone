@@ -10,8 +10,9 @@
 #import "CommonTabController.h"
 #import "FeedService.h"
 #import "RankView.h"
+#import "FeedCell.h"
 
-@interface MyFeedController : CommonTabController<FeedServiceDelegate,RankViewDelegate>
+@interface MyFeedController : CommonTabController<FeedServiceDelegate,RankViewDelegate, FeedCellDelegate>
 {
     
 }

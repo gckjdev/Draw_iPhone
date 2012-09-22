@@ -11,8 +11,8 @@
 #import "ShareImageManager.h"
 #import "ShowFeedController.h"
 #import "FeedCell.h"
-
-
+#import "CommonUserInfoView.h"
+#import "CommonMessageCenter.h"
 typedef enum{
     MyTypeFeed = FeedListTypeAll,
     MyTypeOpus = FeedListTypeUserOpus,
@@ -230,21 +230,9 @@ typedef enum{
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    NSInteger count = [[self tabDataList] count];
+    NSInteger count = [super tableView:tableView numberOfRowsInSection:section];
     [self updateSeparator:count];
-    TableTab *tab = self.currentTab;
-    
-    if (count == 0 && tab.status == TableTabStatusLoaded) {
-        self.noDataTipLabl.hidden = NO;
-        [self.noDataTipLabl setText:tab.noDataDesc];
-        [self.view bringSubviewToFront:self.noDataTipLabl];
-    }else{
-        self.noDataTipLabl.hidden = YES;
-    }
-    
-    
-    self.noMoreData = !tab.hasMoreData;
-    switch (tab.tabID) {
+    switch (self.currentTab.tabID) {
         case MyTypeFeed:
         case MyTypeComment:
             return count;
@@ -260,6 +248,38 @@ typedef enum{
     }
 }
 
+- (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    PPDebug(@"<willSelectRowAtIndexPath>");
+    return indexPath;
+}
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+    if (self.currentTab.tabID != MyTypeFeed && indexPath.row > [self.tabDataList count])
+        return;
+    
+    Feed *feed = [self.tabDataList objectAtIndex:indexPath.row];
+    
+    if (feed.opusStatus == OPusStatusDelete) {
+        [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kOpusDelete") delayTime:1.5 isHappy:NO];
+        return;
+    }
+    DrawFeed *drawFeed = nil;
+    if (feed.isDrawType) {
+        drawFeed = (DrawFeed *)feed;
+    }else if(feed.isGuessType){
+        drawFeed = [(GuessFeed *)feed drawFeed];
+    }else{
+        PPDebug(@"warnning:<FeedController> feedId = %@ is illegal feed, cannot set the detail", feed.feedId);
+        return;
+    }
+    ShowFeedController *sfc = [[ShowFeedController alloc] initWithFeed:drawFeed];
+    [self.navigationController pushViewController:sfc animated:YES];
+    [sfc release];
+        
+    //enter the detail feed contrller
+}
 
 #pragma mark common tab controller
 
@@ -377,4 +397,23 @@ typedef enum{
     [sc release];
 }
 
+#pragma mark feed cell delegate
+- (void)didClickAvatar:(NSString *)userId 
+              nickName:(NSString *)nickName 
+                gender:(BOOL)gender 
+           atIndexPath:(NSIndexPath *)indexPath
+{
+    
+    NSString* genderString = gender?@"m":@"f";
+    [CommonUserInfoView showUser:userId 
+                        nickName:nickName 
+                          avatar:nil 
+                          gender:genderString 
+                        location:nil 
+                           level:1
+                         hasSina:NO 
+                           hasQQ:NO 
+                     hasFacebook:NO 
+                      infoInView:self];
+}
 @end
