@@ -216,22 +216,9 @@ typedef enum{
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    NSInteger count = [[self tabDataList] count];
+    NSInteger count = [super tableView:tableView numberOfRowsInSection:section];
     
-    
-    TableTab *tab = self.currentTab;
-    
-    if (count == 0 && tab.status == TableTabStatusLoaded) {
-        self.noDataTipLabl.hidden = NO;
-        [self.noDataTipLabl setText:tab.noDataDesc];
-        [self.view bringSubviewToFront:self.noDataTipLabl];
-    }else{
-        self.noDataTipLabl.hidden = YES;
-    }
-
-    
-    self.noMoreData = !tab.hasMoreData;
-    switch (tab.tabID) {
+    switch (self.currentTab.tabID) {
         case RankTypeHot:
         case RankTypeHistory:
             if (count <= 1) {
@@ -244,9 +231,7 @@ typedef enum{
                 }else{
                     return count / 3 + 2;
                 }
-                
             }
-            
         default:
             if (count %3 == 0) {
                 return count/3;

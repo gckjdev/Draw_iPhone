@@ -11,8 +11,8 @@
 #import "ShareImageManager.h"
 #import "ShowFeedController.h"
 #import "FeedCell.h"
-
-
+#import "CommonMessageCenter.h"
+#import "CommonUserInfoView.h"
 typedef enum{
     UserTypeFeed = FeedListTypeUserFeed,
     UserTypeOpus = FeedListTypeUserOpus,    
@@ -241,23 +241,10 @@ typedef enum{
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    NSInteger count = [[self tabDataList] count];
+    NSInteger count = [super tableView:tableView numberOfRowsInSection:section];
     
     [self updateSeparator:count];
-    
-    TableTab *tab = self.currentTab;
-    
-    if (count == 0 && tab.status == TableTabStatusLoaded) {
-        self.noDataTipLabl.hidden = NO;
-        [self.noDataTipLabl setText:tab.noDataDesc];
-        [self.view bringSubviewToFront:self.noDataTipLabl];
-    }else{
-        self.tipsLabel.hidden = YES;
-    }
-    
-    
-    self.noMoreData = !tab.hasMoreData;
-    switch (tab.tabID) {
+    switch (self.currentTab.tabID) {
         case UserTypeFeed:
             return count;
         case UserTypeOpus:
@@ -269,6 +256,34 @@ typedef enum{
         default:
             return 0;
     }
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+    if (self.currentTab.tabID != UserTypeFeed && indexPath.row > [self.tabDataList count])
+        return;
+    
+    Feed *feed = [self.tabDataList objectAtIndex:indexPath.row];
+    
+    if (feed.opusStatus == OPusStatusDelete) {
+        [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kOpusDelete") delayTime:1.5 isHappy:NO];
+        return;
+    }
+    DrawFeed *drawFeed = nil;
+    if (feed.isDrawType) {
+        drawFeed = (DrawFeed *)feed;
+    }else if(feed.isGuessType){
+        drawFeed = [(GuessFeed *)feed drawFeed];
+    }else{
+        PPDebug(@"warnning:<FeedController> feedId = %@ is illegal feed, cannot set the detail", feed.feedId);
+        return;
+    }
+    ShowFeedController *sfc = [[ShowFeedController alloc] initWithFeed:drawFeed];
+    [self.navigationController pushViewController:sfc animated:YES];
+    [sfc release];
+    
+    //enter the detail feed contrller
 }
 
 
@@ -369,5 +384,6 @@ typedef enum{
     [self.navigationController pushViewController:sc animated:YES];
     [sc release];
 }
+
 
 @end
