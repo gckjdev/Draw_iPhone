@@ -22,24 +22,23 @@ typedef enum {
 @interface DiceGameSession : CommonGameSession
 
 @property (retain, nonatomic) NSMutableDictionary *userDiceList;
-
 @property (retain, nonatomic) NSString *lastCallDiceUserId;
 @property (assign, nonatomic) int lastCallDice;
 @property (assign, nonatomic) int lastCallDiceCount;
-
 @property (retain, nonatomic) NSString* openDiceUserId;
 @property (assign, nonatomic) OpenType openType;
-
 @property (retain, nonatomic) NSDictionary *gameResult;
 @property (retain, nonatomic) NSDictionary *finalCount;
-
 @property (assign, nonatomic) BOOL wilds;
 @property (nonatomic, assign) BOOL isMeAByStander;
 @property (assign, nonatomic) DiceGameState gameState;
 @property (assign, nonatomic) int callCount;
-
 @property (assign, nonatomic) BOOL betWin;
+@property (retain, nonatomic) NSMutableDictionary *itemUseCountDic;
 
 - (void)reset;
+
+- (void)increaseItemUseCount:(int)itemType;
+- (int)itemUseCount:(int)itemType;
 
 @end

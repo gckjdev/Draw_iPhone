@@ -15,6 +15,7 @@
 #import "UIViewUtils.h"
 #import "DiceGameService.h"
 #import "UserManager.h"
+#import "CommonDiceItemAction.h"
 
 #define TAG_OFFSET_ITEM_BUTTON 201208
 #define TAG_ITEM_COUNT_LABEL 158
@@ -182,48 +183,49 @@
 
 - (BOOL)canEableItemButton:(ItemType)itemType 
 {
-    NSNumber *count = [NSNumber numberWithInt:[_itemManager amountForItem:itemType]];
-    if ([count intValue] <= 0 || _diceGameService.diceSession.isMeAByStander) {
-        return NO;
-    }
-    
-    BOOL enabled;
-
-    NSString *currentPlayUserId = _diceGameService.session.currentPlayUserId;
-    BOOL isMyTurn = [_userManager isMe:currentPlayUserId];
-    
-    switch (itemType) {
-        case ItemTypeCut:
-        case ItemTypeDoubleKill:
-            if (_diceGameService.lastCallUserId != nil 
-                && ![_userManager isMe:_diceGameService.lastCallUserId])
-            {
-                enabled = YES;
-            }else {
-                enabled = NO;
-            }
-            
-            break;
-            
-        case ItemTypeIncTime:
-        case ItemTypeDecTime:
-        case ItemTypeReverse:
-        case ItemTypeDiceRobot:
-        case ItemTypeSkip:
-            if (isMyTurn) {
-                enabled = YES;
-            }else {
-                enabled = NO;
-            }
-
-            break;
-            
-        default:
-            enabled = YES;
-            break;
-    }
-
-    return enabled;
+    return [CommonDiceItemAction meetUseScene:itemType];
+//    NSNumber *count = [NSNumber numberWithInt:[_itemManager amountForItem:itemType]];
+//    if ([count intValue] <= 0 || _diceGameService.diceSession.isMeAByStander) {
+//        return NO;
+//    }
+//    
+//    BOOL enabled;
+//
+//    NSString *currentPlayUserId = _diceGameService.session.currentPlayUserId;
+//    BOOL isMyTurn = [_userManager isMe:currentPlayUserId];
+//    
+//    switch (itemType) {
+//        case ItemTypeCut:
+//        case ItemTypeDoubleKill:
+//            if (_diceGameService.lastCallUserId != nil 
+//                && ![_userManager isMe:_diceGameService.lastCallUserId])
+//            {
+//                enabled = YES;  
+//            }else {
+//                enabled = NO;
+//            }
+//            
+//            break;
+//            
+//        case ItemTypeIncTime:
+//        case ItemTypeDecTime:
+//        case ItemTypeReverse:
+//        case ItemTypeDiceRobot:
+//        case ItemTypeSkip:
+//            if (isMyTurn) {
+//                enabled = YES;
+//            }else {
+//                enabled = NO;
+//            }
+//
+//            break;
+//            
+//        default:
+//            enabled = YES;
+//            break;
+//    }
+//
+//    return enabled;
 }
 
 - (void)clickToolButton:(id)sender

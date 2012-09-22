@@ -31,6 +31,7 @@
 #import "DiceBetView.h"
 
 #define USER_THINK_TIME_INTERVAL 15
+#define ROBOT_CALL_TIPS_DIALOG_TAG  20120918
 
 @class DiceGameService;
 @class CustomDiceManager;

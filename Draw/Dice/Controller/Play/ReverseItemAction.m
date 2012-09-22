@@ -10,6 +10,11 @@
 
 @implementation ReverseItemAction
 
+- (BOOL)useScene
+{
+    return [self isMyTurn];
+}
+
 - (void)showItemAnimation:(NSString *)userId 
                  itemType:(int)itemType 
                controller:(DiceGamePlayController *)controller

@@ -25,6 +25,7 @@
 @synthesize gameState = _gameState;
 @synthesize callCount = _callCount;
 @synthesize betWin = _betWin;
+@synthesize itemUseCountDic = _itemUseCountDic;
 
 - (void)dealloc{
     PPRelease(_userDiceList);
@@ -32,6 +33,7 @@
     PPRelease(_openDiceUserId);
     PPRelease(_gameResult);
     PPRelease(_finalCount);
+    PPRelease(_itemUseCountDic);
     [super dealloc];
 }
 
@@ -39,15 +41,33 @@
 {
     if (self = [super init]) {
         self.userDiceList = [NSMutableDictionary dictionary];
+        self.itemUseCountDic = [NSMutableDictionary dictionary];
         [self reset];
     }
     
     return self;
 }
 
+- (void)increaseItemUseCount:(int)itemType
+{
+    NSNumber *item = [NSNumber numberWithInt:itemType];
+    NSNumber *itemUseCount = [_itemUseCountDic objectForKey:item];
+
+    int count = [itemUseCount intValue] + 1;
+    [_itemUseCountDic setObject:[NSNumber numberWithInt:count] forKey:item];
+}
+
+- (int)itemUseCount:(int)itemType
+{
+    NSNumber *item = [NSNumber numberWithInt:itemType];
+    NSNumber *itemUseCount = [_itemUseCountDic objectForKey:item];
+    return [itemUseCount intValue];
+}
+
 - (void)reset
 {
     [self.userDiceList removeAllObjects];
+    [self.itemUseCountDic removeAllObjects];
     self.lastCallDiceUserId = nil;    
     self.lastCallDice = 0;
     self.lastCallDiceCount = 0;

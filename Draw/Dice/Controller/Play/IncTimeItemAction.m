@@ -14,6 +14,11 @@
 
 @implementation IncTimeItemAction
 
+- (BOOL)useScene
+{
+    return [self isMyTurn] && ([_gameService.diceSession itemUseCount:_itemType] < 1);
+}
+
 - (void)postponeAvatar:(DiceAvatarView*)avatar 
 {
     float postponeTime = [ConfigManager getPostponeTime];
@@ -49,6 +54,15 @@
 {
     DiceAvatarView* avatar = [controller avatarViewOfUser:userId];
     [self postponeAvatar:avatar];
+}
+
+- (void)useItem:(DiceGamePlayController *)controller
+           view:(UIView *)view
+{
+    DiceAvatarView* selfAvatar = (DiceAvatarView*)[controller selfAvatarView];
+    float incTime =MIN(USER_THINK_TIME_INTERVAL*(1-selfAvatar.getCurrentProgress), [ConfigManager getPostponeTime]);
+    [_gameService userTimeItem:ItemTypeIncTime time:incTime];
+    PPDebug(@"<test> I use item and delay time for %f", incTime);
 }
 
 

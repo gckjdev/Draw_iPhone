@@ -41,7 +41,6 @@
 
 #define DURATION_ROLL_BELL 1
 
-#define ROBOT_CALL_TIPS_DIALOG_TAG  20120918
 
 #define DURATION_PLAYER_BET 5
 
@@ -327,8 +326,9 @@
 {    
     UIButton *button = (UIButton *)[self.view viewWithTag:TAG_TOOL_BUTTON];
     button.selected = NO;
+    [CommonDiceItemAction useItem:item.type controller:self view:self.view];
     
-    [self useItem:item.type itemName:item.shortName userId:_userManager.userId];
+//    [self useItem:item.type itemName:item.shortName userId:_userManager.userId];
 }
 
 - (NSArray *)getSortedUserIdListBeginWithOpenUser
@@ -980,22 +980,22 @@
     [self updateWaittingForNextTurnNotLabel];
 }
 
-#pragma mark - use item animations
-- (void)useItem:(int)itemId itemName:(NSString *)itemName userId:(NSString *)userId
-{
-    if(itemId == ItemTypeDiceRobot) {
-        [self showRobotDecition];
-    }
-    
-    if (itemId == ItemTypeIncTime) {
-        DiceAvatarView* selfAvatar = (DiceAvatarView*)[self selfAvatarView];
-        float incTime =MIN(USER_THINK_TIME_INTERVAL*(1-selfAvatar.getCurrentProgress), [ConfigManager getPostponeTime]);
-        [_diceService userTimeItem:ItemTypeIncTime time:incTime];
-        PPDebug(@"<test> I use item and delay time for %f", incTime);
-    } else {
-        [_diceService userItem:itemId];
-    }
-}
+//#pragma mark - use item animations
+//- (void)useItem:(int)itemId itemName:(NSString *)itemName userId:(NSString *)userId
+//{
+//    if(itemId == ItemTypeDiceRobot) {
+//        [self showRobotDecition];
+//    }
+//    
+//    if (itemId == ItemTypeIncTime) {
+//        DiceAvatarView* selfAvatar = (DiceAvatarView*)[self selfAvatarView];
+//        float incTime =MIN(USER_THINK_TIME_INTERVAL*(1-selfAvatar.getCurrentProgress), [ConfigManager getPostponeTime]);
+//        [_diceService userTimeItem:ItemTypeIncTime time:incTime];
+//        PPDebug(@"<test> I use item and delay time for %f", incTime);
+//    } else {
+//        [_diceService userItem:itemId];
+//    }
+//}
 
 
 #pragma mark- Buttons action

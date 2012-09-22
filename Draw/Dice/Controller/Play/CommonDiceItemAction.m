@@ -17,6 +17,7 @@
 #import "SkipItemAction.h"
 #import "PeekItemAction.h"
 #import "DiceRobotItemAction.h"
+#import "CutItemAction.h"
 
 @interface CommonDiceItemAction ()
 {
@@ -34,6 +35,10 @@
 + (CommonDiceItemAction *)createDiceItemActionWithItemType:(int)itemType
 {
     switch (itemType) {
+        case ItemTypeCut:
+            return [[[CutItemAction alloc] initWithItemType:itemType] autorelease];
+            break;
+            
         case ItemTypeRollAgain:
             return [[[RollAgainItemAction alloc] initWithItemType:itemType] autorelease];
             break;
@@ -73,14 +78,34 @@
     return self;
 }
 
++ (BOOL)meetUseScene:(int)itemType
+{
+    CommonDiceItemAction *action = [CommonDiceItemAction createDiceItemActionWithItemType:itemType];
+    return [action meetUseScene];
+}
+
++ (void)useItem:(int)itemType
+     controller:(DiceGamePlayController *)controller
+           view:(UIView *)view
+{
+    CommonDiceItemAction *action = [CommonDiceItemAction createDiceItemActionWithItemType:itemType];
+    [action useItem:controller view:view];
+
+    if (![action waitForResponse]) {
+        [self handleItemResponse:itemType controller:controller view:view];
+    }
+}
+
 + (void)handleItemResponse:(int)itemType
                 controller:(DiceGamePlayController *)controller
                       view:(UIView *)view
 {
     CommonDiceItemAction *action = [CommonDiceItemAction createDiceItemActionWithItemType:itemType];
     
-    [action handleItemResponse:controller
-                          view:view];
+    if ([action waitForResponse]) {
+        [action handleItemResponse:controller
+                              view:view];
+    }
 }
 
 + (void)handleItemRequest:(int)itemType
@@ -132,6 +157,13 @@
     }];
 }
 
+- (BOOL)isMyTurn
+{    
+    NSString *currentPlayUserId = _gameService.session.currentPlayUserId;
+    BOOL isMyTurn = [_userManager isMe:currentPlayUserId];
+    return isMyTurn;
+}
+
 - (GifView *)gifViewFromBundleFile:(NSString *)fileName frame:(CGRect)frame
 {
     NSArray *array = [fileName componentsSeparatedByString:@"."];
@@ -155,7 +187,11 @@
 - (BOOL)meetUseScene
 {
     NSNumber *count = [NSNumber numberWithInt:[_itemManager amountForItem:_itemType]];
-    if ([count intValue] <= 0 || _gameService.diceSession.isMeAByStander) {
+    if ([count intValue] <= 0 || _gameService.diceSession.isMeAByStander ) {
+        return NO;
+    }
+    
+    if (!_gameService.diceSession.isMeAByStander && _gameService.diceSession.openDiceUserId != nil) {
         return NO;
     }
     
@@ -168,6 +204,17 @@
 - (BOOL)useScene
 {
     return YES;
+}
+
+- (BOOL)waitForResponse
+{
+    return YES;
+}
+
+- (void)useItem:(DiceGamePlayController *)controller
+           view:(UIView *)view
+{
+    [self.gameService userItem:_itemType];
 }
 
 - (void)showItemAnimation:(NSString*)userId
