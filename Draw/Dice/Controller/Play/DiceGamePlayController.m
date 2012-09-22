@@ -221,7 +221,7 @@
     if (aRoomName == nil || aRoomName.length <= 0) {
         aRoomName = [NSString stringWithFormat:@"%d", [[[DiceGameService defaultService] session] sessionId]];
     }
-    _roomNameLabel.text = [NSString stringWithFormat:NSLS(@"kRoomName"), aRoomName]; ;
+    _roomNameLabel.text = aRoomName;
     
     myCoinsLabel.textColor = [UIColor whiteColor];
     myLevelLabel.textColor = [UIColor whiteColor];

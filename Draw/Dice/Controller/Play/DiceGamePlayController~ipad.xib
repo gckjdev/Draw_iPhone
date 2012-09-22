@@ -1091,7 +1091,7 @@
 					<object class="IBUIButton" id="949709745">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{20, 817}, {58, 62}}</string>
+						<string key="NSFrame">{{20, 799}, {80, 85}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSNextKeyView" ref="955984777"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
@@ -1105,9 +1105,9 @@
 							<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
 						</object>
 						<reference key="IBUINormalTitleShadowColor" ref="993610026"/>
-						<object class="NSCustomResource" key="IBUINormalBackgroundImage">
+						<object class="NSCustomResource" key="IBUINormalImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">message_icon@2x.png</string>
+							<string key="NSResourceName">message_icon.png</string>
 						</object>
 						<object class="IBUIFontDescription" key="IBUIFontDescription">
 							<int key="type">2</int>
@@ -1122,7 +1122,7 @@
 					<object class="IBUIButton" id="652872974">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">319</int>
-						<string key="NSFrame">{{638, 809}, {69, 67}}</string>
+						<string key="NSFrame">{{638, 794}, {90, 96}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSNextKeyView" ref="995947714"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
@@ -1138,11 +1138,11 @@
 						<reference key="IBUINormalTitleShadowColor" ref="993610026"/>
 						<object class="NSCustomResource" key="IBUISelectedImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">tools_open_icon@2x.png</string>
+							<string key="NSResourceName">tools_open_icon.png</string>
 						</object>
 						<object class="NSCustomResource" key="IBUINormalImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">tools_icon@2x.png</string>
+							<string key="NSResourceName">tools_icon.png</string>
 						</object>
 						<reference key="IBUIFontDescription" ref="258757715"/>
 						<reference key="IBUIFont" ref="367342349"/>
@@ -1542,13 +1542,13 @@
 							<reference ref="766166392"/>
 							<reference ref="601170448"/>
 							<reference ref="812422611"/>
-							<reference ref="949709745"/>
 							<reference ref="598396230"/>
 							<reference ref="655695074"/>
 							<reference ref="437347424"/>
 							<reference ref="812687370"/>
 							<reference ref="856261204"/>
 							<reference ref="625174196"/>
+							<reference ref="949709745"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -1875,6 +1875,7 @@
 				<string key="105.CustomClassName">HKGirlFontLabel</string>
 				<string key="105.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="110.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+				<real value="0.0" key="110.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
 				<string key="113.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="114.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="115.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -1984,13 +1985,13 @@
 			<string key="gameroom_bg@2x.png">{640, 960}</string>
 			<string key="left_bottom_circle@2x.png">{84, 92}</string>
 			<string key="left_bottom_circleon@2x.png">{84, 92}</string>
-			<string key="message_icon@2x.png">{58, 63}</string>
+			<string key="message_icon.png">{16, 16}</string>
 			<string key="open@2x.png">{67, 60}</string>
 			<string key="right_bottom_circle@2x.png">{84, 92}</string>
 			<string key="right_bottom_circleon@2x.png">{84, 92}</string>
 			<string key="table@2x.png">{640, 852}</string>
-			<string key="tools_icon@2x.png">{58, 63}</string>
-			<string key="tools_open_icon@2x.png">{103, 72}</string>
+			<string key="tools_icon.png">{16, 16}</string>
+			<string key="tools_open_icon.png">{16, 16}</string>
 			<string key="zhai_bg@2x.png">{72, 71}</string>
 		</dictionary>
 		<string key="IBCocoaTouchPluginVersion">1181</string>

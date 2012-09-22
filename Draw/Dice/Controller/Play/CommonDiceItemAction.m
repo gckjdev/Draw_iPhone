@@ -67,6 +67,7 @@
         self.userManager = [UserManager defaultManager];
         _accountService = [AccountService defaultService];
         _gameService = [DiceGameService defaultService];
+        _itemManager = [ItemManager defaultManager];
     }
     
     return self;
@@ -151,7 +152,24 @@
     return view;
 }
 
+- (BOOL)meetUseScene
+{
+    NSNumber *count = [NSNumber numberWithInt:[_itemManager amountForItem:_itemType]];
+    if ([count intValue] <= 0 || _gameService.diceSession.isMeAByStander) {
+        return NO;
+    }
+    
+    return [self useScene];
+}
+
+
 // Left to be realize for sub class.
+
+- (BOOL)useScene
+{
+    return YES;
+}
+
 - (void)showItemAnimation:(NSString*)userId
                  itemType:(int)itemType
                controller:(DiceGamePlayController *)controller
