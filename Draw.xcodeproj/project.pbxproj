@@ -234,6 +234,12 @@
 		A4D3B15B1560E4B50013C882 /* ExpressionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A4D3B1591560E4B50013C882 /* ExpressionManager.m */; };
 		A4D3B15E1560E4F80013C882 /* MessageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A4D3B15D1560E4F80013C882 /* MessageManager.m */; };
 		A4DF0556160C25B400246A40 /* ReverseItemAction.m in Sources */ = {isa = PBXBuildFile; fileRef = A4DF0555160C25B400246A40 /* ReverseItemAction.m */; };
+		A4DF0589160D735E00246A40 /* CutItemAction.m in Sources */ = {isa = PBXBuildFile; fileRef = A4DF0588160D735E00246A40 /* CutItemAction.m */; };
+		A4DF058F160D9EB500246A40 /* delay@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4DF058A160D9EB500246A40 /* delay@2x.png */; };
+		A4DF0590160D9EB500246A40 /* eye@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4DF058B160D9EB500246A40 /* eye@2x.png */; };
+		A4DF0591160D9EB500246A40 /* hurryup@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4DF058C160D9EB500246A40 /* hurryup@2x.png */; };
+		A4DF0592160D9EB500246A40 /* reverse@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4DF058D160D9EB500246A40 /* reverse@2x.png */; };
+		A4DF0593160D9EB500246A40 /* tortoise@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4DF058E160D9EB500246A40 /* tortoise@2x.png */; };
 		A4EF88BC15EDD8C90014643F /* message_1_M.m4a in Resources */ = {isa = PBXBuildFile; fileRef = A4EF86A615EDD8C70014643F /* message_1_M.m4a */; };
 		A4EF88BD15EDD8C90014643F /* message_2_M.m4a in Resources */ = {isa = PBXBuildFile; fileRef = A4EF86A715EDD8C70014643F /* message_2_M.m4a */; };
 		A4EF88BE15EDD8C90014643F /* message_3_M.m4a in Resources */ = {isa = PBXBuildFile; fileRef = A4EF86A815EDD8C70014643F /* message_3_M.m4a */; };
@@ -1802,6 +1808,13 @@
 		A4D3B15D1560E4F80013C882 /* MessageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageManager.m; sourceTree = "<group>"; };
 		A4DF0554160C25B400246A40 /* ReverseItemAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReverseItemAction.h; sourceTree = "<group>"; };
 		A4DF0555160C25B400246A40 /* ReverseItemAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReverseItemAction.m; sourceTree = "<group>"; };
+		A4DF0587160D735E00246A40 /* CutItemAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CutItemAction.h; sourceTree = "<group>"; };
+		A4DF0588160D735E00246A40 /* CutItemAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CutItemAction.m; sourceTree = "<group>"; };
+		A4DF058A160D9EB500246A40 /* delay@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "delay@2x.png"; sourceTree = "<group>"; };
+		A4DF058B160D9EB500246A40 /* eye@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "eye@2x.png"; sourceTree = "<group>"; };
+		A4DF058C160D9EB500246A40 /* hurryup@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hurryup@2x.png"; sourceTree = "<group>"; };
+		A4DF058D160D9EB500246A40 /* reverse@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "reverse@2x.png"; sourceTree = "<group>"; };
+		A4DF058E160D9EB500246A40 /* tortoise@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tortoise@2x.png"; sourceTree = "<group>"; };
 		A4EF86A615EDD8C70014643F /* message_1_M.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = message_1_M.m4a; sourceTree = "<group>"; };
 		A4EF86A715EDD8C70014643F /* message_2_M.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = message_2_M.m4a; sourceTree = "<group>"; };
 		A4EF86A815EDD8C70014643F /* message_3_M.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = message_3_M.m4a; sourceTree = "<group>"; };
@@ -3888,6 +3901,11 @@
 		A4A01B7015D8AF67002FE86D /* game */ = {
 			isa = PBXGroup;
 			children = (
+				A4DF058A160D9EB500246A40 /* delay@2x.png */,
+				A4DF058B160D9EB500246A40 /* eye@2x.png */,
+				A4DF058C160D9EB500246A40 /* hurryup@2x.png */,
+				A4DF058D160D9EB500246A40 /* reverse@2x.png */,
+				A4DF058E160D9EB500246A40 /* tortoise@2x.png */,
 				A4AF0A64160AFF9700650C21 /* lose_face@2x.png */,
 				A4AF0A65160AFF9700650C21 /* win_face@2x.png */,
 				A43A64C21608591A00F35978 /* room_search@2x.png */,
@@ -4042,8 +4060,6 @@
 		A4B763F015C28F8E003B4E72 /* Play */ = {
 			isa = PBXGroup;
 			children = (
-				A4DF0554160C25B400246A40 /* ReverseItemAction.h */,
-				A4DF0555160C25B400246A40 /* ReverseItemAction.m */,
 				C20D4B4E15E3274E00074885 /* DiceGamePlayController~ipad.xib */,
 				A4B763F115C28F8E003B4E72 /* DiceGamePlayController.h */,
 				A4B763F215C28F8E003B4E72 /* DiceGamePlayController.m */,
@@ -4052,6 +4068,8 @@
 				A42C93C815FF28D60090D6B6 /* CommonDiceItemAction.m */,
 				A42C93DE15FF344D0090D6B6 /* RollAgainItemAction.h */,
 				A42C93DF15FF344D0090D6B6 /* RollAgainItemAction.m */,
+				A4DF0587160D735E00246A40 /* CutItemAction.h */,
+				A4DF0588160D735E00246A40 /* CutItemAction.m */,
 				A42C93E416001FB80090D6B6 /* PeekItemAction.h */,
 				A42C93E516001FB90090D6B6 /* PeekItemAction.m */,
 				C28E7C061602DAC600F4B6A5 /* DoubleKillItemAction.h */,
@@ -4064,6 +4082,8 @@
 				C28E7C131602E5F900F4B6A5 /* SkipItemAction.m */,
 				C22E21851608664F00DE3035 /* DiceRobotItemAction.h */,
 				C22E21861608664F00DE3035 /* DiceRobotItemAction.m */,
+				A4DF0554160C25B400246A40 /* ReverseItemAction.h */,
+				A4DF0555160C25B400246A40 /* ReverseItemAction.m */,
 			);
 			path = Play;
 			sourceTree = "<group>";
@@ -8954,6 +8974,11 @@
 				C2B002D1160C126C00AC5F3B /* openDice_ag_4.png in Resources */,
 				C2B002D2160C126C00AC5F3B /* openDice_ag_5.png in Resources */,
 				C2B002D3160C126C00AC5F3B /* openDice_ag_6.png in Resources */,
+				A4DF058F160D9EB500246A40 /* delay@2x.png in Resources */,
+				A4DF0590160D9EB500246A40 /* eye@2x.png in Resources */,
+				A4DF0591160D9EB500246A40 /* hurryup@2x.png in Resources */,
+				A4DF0592160D9EB500246A40 /* reverse@2x.png in Resources */,
+				A4DF0593160D9EB500246A40 /* tortoise@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -9487,6 +9512,7 @@
 				CA1656FF160C032800E433BE /* RankView.m in Sources */,
 				A4DF0556160C25B400246A40 /* ReverseItemAction.m in Sources */,
 				C2B002EC160C4FA000AC5F3B /* UserManager+DiceUserManager.m in Sources */,
+				A4DF0589160D735E00246A40 /* CutItemAction.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

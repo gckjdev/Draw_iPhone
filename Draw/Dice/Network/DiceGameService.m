@@ -295,6 +295,8 @@ static DiceGameService* _defaultService;
     [(DiceNetworkClient *)_networkClient sendUserItemRequest:[self userId] 
                                                    sessionId:self.session.sessionId
                                                       itemId:itemId]; 
+    
+    [self.diceSession increaseItemUseCount:itemId];
 }
 
 - (void)userTimeItem:(int)itemId 
@@ -305,9 +307,9 @@ static DiceGameService* _defaultService;
                                                    sessionId:self.session.sessionId
                                                       itemId:itemId 
                                                   extendTime:time]; 
+    
+    [self.diceSession increaseItemUseCount:itemId];
 }
-
-
 
 - (void)changeDiceList:(NSString *)userId diceList:(NSArray *)diceList
 {

@@ -15,6 +15,11 @@
 
 @implementation DecTimeItemAction
 
+- (BOOL)useScene
+{
+    return [self isMyTurn] && ([_gameService.diceSession itemUseCount:_itemType] < 1);
+}
+
 - (void)showItemAnimation:(NSString *)userId 
                  itemType:(int)itemType 
                controller:(DiceGamePlayController *)controller
