@@ -26,4 +26,15 @@
     return enabled;
 }
 
+- (void)showItemAnimation:(NSString *)userId 
+                 itemType:(int)itemType 
+               controller:(DiceGamePlayController *)controller
+                     view:(UIView *)view
+{
+    [self showGifViewOnUserAvatar:userId
+                          gifFile:@"cut.gif"
+                       controller:controller
+                             view:view];
+}
+
 @end
