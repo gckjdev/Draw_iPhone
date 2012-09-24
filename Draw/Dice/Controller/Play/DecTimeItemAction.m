@@ -25,7 +25,10 @@
                controller:(DiceGamePlayController *)controller
                      view:(UIView *)view
 {
-    return;
+    [self showGifViewOnUserAvatar:userId
+                          gifFile:@"hurryup.gif"
+                       controller:controller
+                             view:view];
 }
 
 - (void)useItemSuccess:(DiceGamePlayController *)controller

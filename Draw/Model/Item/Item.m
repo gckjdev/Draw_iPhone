@@ -160,6 +160,26 @@
             return [diceManager toShopImage:diceManager.peekImage];
         case ItemTypeCustomDicePatriotDice:
             return [diceManager toShopImage:diceManager.patriotDiceImage];
+        case ItemTypeCustomDiceGoldenDice:
+            return [diceManager toShopImage:diceManager.goldenDiceImage];
+        case ItemTypeCustomDiceWoodDice:
+            return [diceManager toShopImage:diceManager.woodDiceImage];
+        case ItemTypeCustomDiceBlueCrystalDice:
+            return [diceManager toShopImage:diceManager.blueCrystalDiceImage];
+        case ItemTypeCustomDicePinkCrystalDice:
+            return [diceManager toShopImage:diceManager.pinkCrystalDiceImage];
+        case ItemTypeCustomDiceGreenCrystalDice:
+            return [diceManager toShopImage:diceManager.greenCrystalDiceImage];
+        case ItemTypeCustomDicePurpleCrystalDice:
+            return [diceManager toShopImage:diceManager.purpleCrystalDiceImage];
+        case ItemTypeCustomDiceBlueDiamondDice:
+            return [diceManager toShopImage:diceManager.blueDiamondDiceImage];
+        case ItemTypeCustomDicePinkDiamondDice:
+            return [diceManager toShopImage:diceManager.pinkDiamondDiceImage];
+        case ItemTypeCustomDiceGreenDiamondDice:
+            return [diceManager toShopImage:diceManager.greenDiamondDiceImage];
+        case ItemTypeCustomDicePurpleDiamondDice:
+            return [diceManager toShopImage:diceManager.purpleDiamondDiceImage];
         default:
             return nil;
     }    

@@ -64,10 +64,23 @@
 - (UIImage *)doubleKillImage;
 - (UIImage *)turtleImage;
 - (UIImage *)diceRobotImage;
+- (UIImage *)reverseImage;
+
+
 - (UIImage*)toShopImage:(UIImage*)image;
 
 
 - (UIImage*)patriotDiceImage;
+- (UIImage*)goldenDiceImage;
+- (UIImage*)woodDiceImage;
+- (UIImage*)blueCrystalDiceImage;
+- (UIImage*)pinkCrystalDiceImage;
+- (UIImage*)greenCrystalDiceImage;
+- (UIImage*)purpleCrystalDiceImage;
+- (UIImage*)blueDiamondDiceImage;
+- (UIImage*)pinkDiamondDiceImage;
+- (UIImage*)greenDiamondDiceImage;
+- (UIImage*)purpleDiamondDiceImage;
 
 - (UIImage *)betResultImage:(BOOL)win;
 

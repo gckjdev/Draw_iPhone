@@ -16,6 +16,17 @@
 #define OPEN_DICE_FLAG  @"b"
 
 #define IMAGE_PREFIX_PATRIOT    @"ag"
+#define IMAGE_PREFIX_WOOD   @"wood"
+#define IMAGE_PREFIX_GOLDEN @"golden"
+#define IMAGE_PREFIX_BLUE_CRYSTAL   @"blueCrystal"
+#define IMAGE_PREFIX_PINK_CRYSTAL   @"pinkCrystal"
+#define IMAGE_PREFIX_PURPLE_CRYSTAL @"purpleCrystal"
+#define IMAGE_PREFIX_GREEN_CRYSTAL  @"greenCrystal"
+#define IMAGE_PREFIX_BLUE_DIAMOND   @"blueDiamond"
+#define IMAGE_PREFIX_PINK_DIAMOND   @"pinkDiamond"
+#define IMAGE_PREFIX_GREEN_DIAMOND  @"greenDiamond"
+#define IMAGE_PREFIX_PURPLE_DIAMOND @"purpleDiamond"
+
 
 #define MY_DICE_TYPE @"MY_DICE_TYPE"
 
@@ -34,12 +45,7 @@ static CustomDiceManager* shareInstance;
 
 + (CustomDiceType)itemTypeToCustomDiceType:(ItemType)type
 {
-    switch (type) {
-        case ItemTypeCustomDicePatriotDice:
-            return CustomDiceTypePatriot;
-        default:
-            return CustomDiceTypeDefault;
-    }
+    return CustomDiceTypeDefault + (type - ItemTypeCustomDiceStart);
 }
 
 + (CustomDiceType)getUserDiceTypeByPBGameUser:(PBGameUser*)pbUser
@@ -113,6 +119,26 @@ static CustomDiceManager* shareInstance;
     switch (type) {
         case CustomDiceTypePatriot:
             return IMAGE_PREFIX_PATRIOT;
+        case CustomDiceTypeWood:
+            return IMAGE_PREFIX_WOOD;
+        case CustomDiceTypeGolden:
+            return IMAGE_PREFIX_GOLDEN;
+        case CustomDiceTypeBlueCrystal:
+            return IMAGE_PREFIX_BLUE_CRYSTAL;
+        case CustomDiceTypePinkCrystal:
+            return IMAGE_PREFIX_PINK_CRYSTAL;
+        case CustomDiceTypeGreenCrystal:
+            return IMAGE_PREFIX_GREEN_CRYSTAL;
+        case CustomDiceTypePurpleCrystal:
+            return IMAGE_PREFIX_PURPLE_CRYSTAL;
+        case CustomDiceTypeBlueDiamond:
+            return IMAGE_PREFIX_BLUE_DIAMOND;
+        case CustomDiceTypePinkDiamond:
+            return IMAGE_PREFIX_PINK_DIAMOND;
+        case CustomDiceTypeGreenDiamond:
+            return IMAGE_PREFIX_GREEN_DIAMOND;
+        case CustomDiceTypePurpleDiamond:
+            return IMAGE_PREFIX_PURPLE_DIAMOND;
         default:
             return nil;
     }

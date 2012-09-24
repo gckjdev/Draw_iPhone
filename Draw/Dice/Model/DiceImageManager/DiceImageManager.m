@@ -319,173 +319,116 @@ static DiceImageManager *_defaultManager = nil;
 - (UIImage *)diceToolCutImageForShop
 {
     return [UIImage shrinkImage:[self diceToolCutImage] withRate:0.8];
-//    UIImage* backgroundImage = [UIImage imageNamed:@"shop_bell@2x.png"];
-//    float width = backgroundImage.size.width;
-//    float height = backgroundImage.size.height;
-//    HKGirlFontLabel* label = [[[HKGirlFontLabel alloc] initWithFrame:CGRectMake(width*0.2, 
-//                                                                                width*0.1, 
-//                                                                                width*0.6, 
-//                                                                                height*0.6) 
-//                                                           pointSize:80]
-//                              autorelease];
-//    
-//    [label setText:NSLS(@"kToolCut")];
-//    
-//    return [UIImage creatImageByImage:backgroundImage withLabel:label];
 }
 
 - (UIImage *)diceToolRollAgainImageForShop
 {
     return [UIImage shrinkImage:[self diceToolRollAgainImage] withRate:0.8];
-//    UIImage* backgroundImage = [UIImage imageNamed:@"shop_bell@2x.png"];
-//    float width = backgroundImage.size.width;
-//    float height = backgroundImage.size.height;
-//    HKGirlFontLabel* label = [[[HKGirlFontLabel alloc] initWithFrame:CGRectMake(width*0.2, 
-//                                                                                width*0.1, 
-//                                                                                width*0.6, 
-//                                                                                height*0.6) 
-//                                                           pointSize:80]
-//                              autorelease];
-//    
-//    [label setText:NSLS(@"kToolRollAgain")];
-//    
-//    return [UIImage creatImageByImage:backgroundImage withLabel:label];
 }
 
 - (UIImage *)peekImage
 {
     return [UIImage imageNamed:@"eye@2x.png"];
-//    UIImage* backgroundImage = [UIImage imageNamed:@"tools_bell_bg@2x.png"];
-//    float width = backgroundImage.size.width;
-//    float height = backgroundImage.size.height;
-//    HKGirlFontLabel* label = [[[HKGirlFontLabel alloc] initWithFrame:CGRectMake(width*0.2, 
-//                                                                                width*0.1, 
-//                                                                                width*0.6, 
-//                                                                                height*0.6) 
-//                                                           pointSize:80] //here just need a big big pointsize
-//                              autorelease];
-//    
-//    
-//    [label setText:NSLS(@"看")];
-//    [label setShadowColor:[UIColor whiteColor]];
-//    [label setShadowOffset:CGSizeMake(0, 1)];
-    
-//    return [UIImage creatImageByImage:backgroundImage withLabel:label];
 }
 
 - (UIImage *)postponeImage
 {
     return [UIImage imageNamed:@"delay@2x.png"];
 
-//    UIImage* backgroundImage = [UIImage imageNamed:@"tools_bell_bg@2x.png"];
-//    float width = backgroundImage.size.width;
-//    float height = backgroundImage.size.height;
-//    HKGirlFontLabel* label = [[[HKGirlFontLabel alloc] initWithFrame:CGRectMake(width*0.2, 
-//                                                                                width*0.1, 
-//                                                                                width*0.6, 
-//                                                                                height*0.6) 
-//                                                           pointSize:80] //here just need a big big pointsize
-//                              autorelease];
-//    
-//    
-//    [label setText:NSLS(@"延")];
-//    [label setShadowColor:[UIColor whiteColor]];
-//    [label setShadowOffset:CGSizeMake(0, 1)];
-//    
-//    return [UIImage creatImageByImage:backgroundImage withLabel:label];
 }
 - (UIImage *)urgeImage
 {
     return [UIImage imageNamed:@"hurryup@2x.png"];
-
-//    UIImage* backgroundImage = [UIImage imageNamed:@"tools_bell_bg@2x.png"];
-//    float width = backgroundImage.size.width;
-//    float height = backgroundImage.size.height;
-//    HKGirlFontLabel* label = [[[HKGirlFontLabel alloc] initWithFrame:CGRectMake(width*0.2, 
-//                                                                                width*0.1, 
-//                                                                                width*0.6, 
-//                                                                                height*0.6) 
-//                                                           pointSize:80] //here just need a big big pointsize
-//                              autorelease];
-//    
-//    
-//    [label setText:NSLS(@"催")];
-//    [label setShadowColor:[UIColor whiteColor]];
-//    [label setShadowOffset:CGSizeMake(0, 1)];
-//    
-//    return [UIImage creatImageByImage:backgroundImage withLabel:label];
 }
+
 - (UIImage *)doubleKillImage
 {
-    UIImage* backgroundImage = [UIImage imageNamed:@"tools_bell_bg@2x.png"];
-    float width = backgroundImage.size.width;
-    float height = backgroundImage.size.height;
-    HKGirlFontLabel* label = [[[HKGirlFontLabel alloc] initWithFrame:CGRectMake(width*0.2, 
-                                                                                width*0.1, 
-                                                                                width*0.6, 
-                                                                                height*0.6) 
-                                                           pointSize:80] //here just need a big big pointsize
-                              autorelease];
-    
-    
-    [label setText:NSLS(@"连")];
-    [label setShadowColor:[UIColor whiteColor]];
-    [label setShadowOffset:CGSizeMake(0, 1)];
-    
-    return [UIImage creatImageByImage:backgroundImage withLabel:label];
+    return nil;
 }
 
 - (UIImage *)turtleImage
 {
     return [UIImage imageNamed:@"tortoise@2x.png"];
+}
 
-//    UIImage* backgroundImage = [UIImage imageNamed:@"tools_bell_bg@2x.png"];
-//    float width = backgroundImage.size.width;
-//    float height = backgroundImage.size.height;
-//    HKGirlFontLabel* label = [[[HKGirlFontLabel alloc] initWithFrame:CGRectMake(width*0.2, 
-//                                                                                width*0.1, 
-//                                                                                width*0.6, 
-//                                                                                height*0.6) 
-//                                                           pointSize:80] //here just need a big big pointsize
-//                              autorelease];
-//    
-//    
-//    [label setText:NSLS(@"龟")];
-//    [label setShadowColor:[UIColor whiteColor]];
-//    [label setShadowOffset:CGSizeMake(0, 1)];
-//    
-//    return [UIImage creatImageByImage:backgroundImage withLabel:label];
+- (UIImage *)reverseImage
+{
+    return [UIImage imageNamed:@"reverse@2x.png"];
 }
 
 - (UIImage *)diceRobotImage
 {
-    UIImage* backgroundImage = [UIImage imageNamed:@"tools_bell_bg@2x.png"];
-    float width = backgroundImage.size.width;
-    float height = backgroundImage.size.height;
-    HKGirlFontLabel* label = [[[HKGirlFontLabel alloc] initWithFrame:CGRectMake(width*0.2, 
-                                                                                width*0.1, 
-                                                                                width*0.6, 
-                                                                                height*0.6) 
-                                                           pointSize:80] //here just need a big big pointsize
-                              autorelease];
-    
-    
-    [label setText:NSLS(@"助")];
-    [label setShadowColor:[UIColor whiteColor]];
-    [label setShadowOffset:CGSizeMake(0, 1)];
-    
-    return [UIImage creatImageByImage:backgroundImage withLabel:label];
+    return [UIImage imageNamed:@"diceRobot@2x.png"];
 }
 
 - (UIImage*)patriotDiceImage
 {
-    return [UIImage imageNamed:@"ag_a1.png"];
+    return [UIImage imageNamed:@"openDice_ag_1.png"];
+}
+
+- (UIImage*)goldenDiceImage
+{
+    return [UIImage imageNamed:@"openDice_golden_1.png"];
+}
+
+
+- (UIImage*)woodDiceImage
+{
+    return [UIImage imageNamed:@"openDice_wood_1.png"];
+}
+
+
+- (UIImage*)blueCrystalDiceImage
+{
+    return [UIImage imageNamed:@"openDice_blueCrystal_1.png"];
+}
+
+
+- (UIImage*)pinkCrystalDiceImage
+{
+    return [UIImage imageNamed:@"openDice_pinkCrystal_1.png"];
+}
+
+
+- (UIImage*)greenCrystalDiceImage
+{
+    return [UIImage imageNamed:@"openDice_greenCrystal_1.png"];
+}
+
+
+- (UIImage*)purpleCrystalDiceImage
+{
+    return [UIImage imageNamed:@"openDice_purpleCrystal_1.png"];
+}
+
+
+- (UIImage*)blueDiamondDiceImage
+{
+    return [UIImage imageNamed:@"openDice_blueDiamond_1.png"];
+}
+
+
+- (UIImage*)pinkDiamondDiceImage
+{
+    return [UIImage imageNamed:@"openDice_pinkDiamond_1.png"];
+}
+
+
+- (UIImage*)greenDiamondDiceImage
+{
+    return [UIImage imageNamed:@"openDice_greenDiamond_1.png"];
+}
+
+
+- (UIImage*)purpleDiamondDiceImage
+{
+    return [UIImage imageNamed:@"openDice_purpleDiamond_1.png"];
 }
 
 
 - (UIImage*)toShopImage:(UIImage*)image
 {
-    return [UIImage shrinkImage:image withRate:0.8];
+    return image;//[UIImage shrinkImage:image withRate:0.8];
 }
 
 - (UIImage *)betResultImage:(BOOL)win

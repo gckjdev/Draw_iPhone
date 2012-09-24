@@ -16,6 +16,16 @@
 typedef enum {
     CustomDiceTypeDefault = 0,
     CustomDiceTypePatriot,
+    CustomDiceTypeGolden,
+    CustomDiceTypeWood,
+    CustomDiceTypeBlueCrystal,
+    CustomDiceTypePinkCrystal,
+    CustomDiceTypeGreenCrystal,
+    CustomDiceTypePurpleCrystal,
+    CustomDiceTypeBlueDiamond,
+    CustomDiceTypePinkDiamond,
+    CustomDiceTypeGreenDiamond,
+    CustomDiceTypePurpleDiamond,
     CustomDiceTypeCount
 }CustomDiceType;
 
