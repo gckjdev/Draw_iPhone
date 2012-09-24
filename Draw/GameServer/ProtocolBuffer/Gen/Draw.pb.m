@@ -806,6 +806,387 @@ static PBFeedTimes* defaultPBFeedTimesInstance = nil;
 }
 @end
 
+@interface PBCommentInfo ()
+@property int32_t type;
+@property (retain) NSString* comment;
+@property (retain) NSString* actionId;
+@property (retain) NSString* actionUserId;
+@property (retain) NSString* actionNickName;
+@property (retain) NSString* actionSummary;
+@end
+
+@implementation PBCommentInfo
+
+- (BOOL) hasType {
+  return !!hasType_;
+}
+- (void) setHasType:(BOOL) value {
+  hasType_ = !!value;
+}
+@synthesize type;
+- (BOOL) hasComment {
+  return !!hasComment_;
+}
+- (void) setHasComment:(BOOL) value {
+  hasComment_ = !!value;
+}
+@synthesize comment;
+- (BOOL) hasActionId {
+  return !!hasActionId_;
+}
+- (void) setHasActionId:(BOOL) value {
+  hasActionId_ = !!value;
+}
+@synthesize actionId;
+- (BOOL) hasActionUserId {
+  return !!hasActionUserId_;
+}
+- (void) setHasActionUserId:(BOOL) value {
+  hasActionUserId_ = !!value;
+}
+@synthesize actionUserId;
+- (BOOL) hasActionNickName {
+  return !!hasActionNickName_;
+}
+- (void) setHasActionNickName:(BOOL) value {
+  hasActionNickName_ = !!value;
+}
+@synthesize actionNickName;
+- (BOOL) hasActionSummary {
+  return !!hasActionSummary_;
+}
+- (void) setHasActionSummary:(BOOL) value {
+  hasActionSummary_ = !!value;
+}
+@synthesize actionSummary;
+- (void) dealloc {
+  self.comment = nil;
+  self.actionId = nil;
+  self.actionUserId = nil;
+  self.actionNickName = nil;
+  self.actionSummary = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.type = 0;
+    self.comment = @"";
+    self.actionId = @"";
+    self.actionUserId = @"";
+    self.actionNickName = @"";
+    self.actionSummary = @"";
+  }
+  return self;
+}
+static PBCommentInfo* defaultPBCommentInfoInstance = nil;
++ (void) initialize {
+  if (self == [PBCommentInfo class]) {
+    defaultPBCommentInfoInstance = [[PBCommentInfo alloc] init];
+  }
+}
++ (PBCommentInfo*) defaultInstance {
+  return defaultPBCommentInfoInstance;
+}
+- (PBCommentInfo*) defaultInstance {
+  return defaultPBCommentInfoInstance;
+}
+- (BOOL) isInitialized {
+  if (!self.hasType) {
+    return NO;
+  }
+  if (!self.hasActionId) {
+    return NO;
+  }
+  if (!self.hasActionUserId) {
+    return NO;
+  }
+  return YES;
+}
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
+  if (self.hasType) {
+    [output writeInt32:1 value:self.type];
+  }
+  if (self.hasComment) {
+    [output writeString:2 value:self.comment];
+  }
+  if (self.hasActionId) {
+    [output writeString:3 value:self.actionId];
+  }
+  if (self.hasActionUserId) {
+    [output writeString:4 value:self.actionUserId];
+  }
+  if (self.hasActionNickName) {
+    [output writeString:5 value:self.actionNickName];
+  }
+  if (self.hasActionSummary) {
+    [output writeString:6 value:self.actionSummary];
+  }
+  [self.unknownFields writeToCodedOutputStream:output];
+}
+- (int32_t) serializedSize {
+  int32_t size = memoizedSerializedSize;
+  if (size != -1) {
+    return size;
+  }
+
+  size = 0;
+  if (self.hasType) {
+    size += computeInt32Size(1, self.type);
+  }
+  if (self.hasComment) {
+    size += computeStringSize(2, self.comment);
+  }
+  if (self.hasActionId) {
+    size += computeStringSize(3, self.actionId);
+  }
+  if (self.hasActionUserId) {
+    size += computeStringSize(4, self.actionUserId);
+  }
+  if (self.hasActionNickName) {
+    size += computeStringSize(5, self.actionNickName);
+  }
+  if (self.hasActionSummary) {
+    size += computeStringSize(6, self.actionSummary);
+  }
+  size += self.unknownFields.serializedSize;
+  memoizedSerializedSize = size;
+  return size;
+}
++ (PBCommentInfo*) parseFromData:(NSData*) data {
+  return (PBCommentInfo*)[[[PBCommentInfo builder] mergeFromData:data] build];
+}
++ (PBCommentInfo*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBCommentInfo*)[[[PBCommentInfo builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+}
++ (PBCommentInfo*) parseFromInputStream:(NSInputStream*) input {
+  return (PBCommentInfo*)[[[PBCommentInfo builder] mergeFromInputStream:input] build];
+}
++ (PBCommentInfo*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBCommentInfo*)[[[PBCommentInfo builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (PBCommentInfo*) parseFromCodedInputStream:(PBCodedInputStream*) input {
+  return (PBCommentInfo*)[[[PBCommentInfo builder] mergeFromCodedInputStream:input] build];
+}
++ (PBCommentInfo*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBCommentInfo*)[[[PBCommentInfo builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (PBCommentInfo_Builder*) builder {
+  return [[[PBCommentInfo_Builder alloc] init] autorelease];
+}
++ (PBCommentInfo_Builder*) builderWithPrototype:(PBCommentInfo*) prototype {
+  return [[PBCommentInfo builder] mergeFrom:prototype];
+}
+- (PBCommentInfo_Builder*) builder {
+  return [PBCommentInfo builder];
+}
+@end
+
+@interface PBCommentInfo_Builder()
+@property (retain) PBCommentInfo* result;
+@end
+
+@implementation PBCommentInfo_Builder
+@synthesize result;
+- (void) dealloc {
+  self.result = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.result = [[[PBCommentInfo alloc] init] autorelease];
+  }
+  return self;
+}
+- (PBGeneratedMessage*) internalGetResult {
+  return result;
+}
+- (PBCommentInfo_Builder*) clear {
+  self.result = [[[PBCommentInfo alloc] init] autorelease];
+  return self;
+}
+- (PBCommentInfo_Builder*) clone {
+  return [PBCommentInfo builderWithPrototype:result];
+}
+- (PBCommentInfo*) defaultInstance {
+  return [PBCommentInfo defaultInstance];
+}
+- (PBCommentInfo*) build {
+  [self checkInitialized];
+  return [self buildPartial];
+}
+- (PBCommentInfo*) buildPartial {
+  PBCommentInfo* returnMe = [[result retain] autorelease];
+  self.result = nil;
+  return returnMe;
+}
+- (PBCommentInfo_Builder*) mergeFrom:(PBCommentInfo*) other {
+  if (other == [PBCommentInfo defaultInstance]) {
+    return self;
+  }
+  if (other.hasType) {
+    [self setType:other.type];
+  }
+  if (other.hasComment) {
+    [self setComment:other.comment];
+  }
+  if (other.hasActionId) {
+    [self setActionId:other.actionId];
+  }
+  if (other.hasActionUserId) {
+    [self setActionUserId:other.actionUserId];
+  }
+  if (other.hasActionNickName) {
+    [self setActionNickName:other.actionNickName];
+  }
+  if (other.hasActionSummary) {
+    [self setActionSummary:other.actionSummary];
+  }
+  [self mergeUnknownFields:other.unknownFields];
+  return self;
+}
+- (PBCommentInfo_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
+  return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
+}
+- (PBCommentInfo_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
+  while (YES) {
+    int32_t tag = [input readTag];
+    switch (tag) {
+      case 0:
+        [self setUnknownFields:[unknownFields build]];
+        return self;
+      default: {
+        if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
+          [self setUnknownFields:[unknownFields build]];
+          return self;
+        }
+        break;
+      }
+      case 8: {
+        [self setType:[input readInt32]];
+        break;
+      }
+      case 18: {
+        [self setComment:[input readString]];
+        break;
+      }
+      case 26: {
+        [self setActionId:[input readString]];
+        break;
+      }
+      case 34: {
+        [self setActionUserId:[input readString]];
+        break;
+      }
+      case 42: {
+        [self setActionNickName:[input readString]];
+        break;
+      }
+      case 50: {
+        [self setActionSummary:[input readString]];
+        break;
+      }
+    }
+  }
+}
+- (BOOL) hasType {
+  return result.hasType;
+}
+- (int32_t) type {
+  return result.type;
+}
+- (PBCommentInfo_Builder*) setType:(int32_t) value {
+  result.hasType = YES;
+  result.type = value;
+  return self;
+}
+- (PBCommentInfo_Builder*) clearType {
+  result.hasType = NO;
+  result.type = 0;
+  return self;
+}
+- (BOOL) hasComment {
+  return result.hasComment;
+}
+- (NSString*) comment {
+  return result.comment;
+}
+- (PBCommentInfo_Builder*) setComment:(NSString*) value {
+  result.hasComment = YES;
+  result.comment = value;
+  return self;
+}
+- (PBCommentInfo_Builder*) clearComment {
+  result.hasComment = NO;
+  result.comment = @"";
+  return self;
+}
+- (BOOL) hasActionId {
+  return result.hasActionId;
+}
+- (NSString*) actionId {
+  return result.actionId;
+}
+- (PBCommentInfo_Builder*) setActionId:(NSString*) value {
+  result.hasActionId = YES;
+  result.actionId = value;
+  return self;
+}
+- (PBCommentInfo_Builder*) clearActionId {
+  result.hasActionId = NO;
+  result.actionId = @"";
+  return self;
+}
+- (BOOL) hasActionUserId {
+  return result.hasActionUserId;
+}
+- (NSString*) actionUserId {
+  return result.actionUserId;
+}
+- (PBCommentInfo_Builder*) setActionUserId:(NSString*) value {
+  result.hasActionUserId = YES;
+  result.actionUserId = value;
+  return self;
+}
+- (PBCommentInfo_Builder*) clearActionUserId {
+  result.hasActionUserId = NO;
+  result.actionUserId = @"";
+  return self;
+}
+- (BOOL) hasActionNickName {
+  return result.hasActionNickName;
+}
+- (NSString*) actionNickName {
+  return result.actionNickName;
+}
+- (PBCommentInfo_Builder*) setActionNickName:(NSString*) value {
+  result.hasActionNickName = YES;
+  result.actionNickName = value;
+  return self;
+}
+- (PBCommentInfo_Builder*) clearActionNickName {
+  result.hasActionNickName = NO;
+  result.actionNickName = @"";
+  return self;
+}
+- (BOOL) hasActionSummary {
+  return result.hasActionSummary;
+}
+- (NSString*) actionSummary {
+  return result.actionSummary;
+}
+- (PBCommentInfo_Builder*) setActionSummary:(NSString*) value {
+  result.hasActionSummary = YES;
+  result.actionSummary = value;
+  return self;
+}
+- (PBCommentInfo_Builder*) clearActionSummary {
+  result.hasActionSummary = NO;
+  result.actionSummary = @"";
+  return self;
+}
+@end
+
 @interface PBFeed ()
 @property (retain) NSString* feedId;
 @property (retain) NSString* userId;
@@ -817,12 +1198,14 @@ static PBFeedTimes* defaultPBFeedTimesInstance = nil;
 @property (retain) PBDraw* drawData;
 @property (retain) NSString* targetUserId;
 @property (retain) NSString* targetUserNickName;
+@property Float64 historyScore;
 @property (retain) NSString* opusId;
 @property BOOL isCorrect;
 @property int32_t score;
 @property (retain) NSMutableArray* mutableGuessWordsList;
 @property int32_t opusStatus;
 @property (retain) NSString* comment;
+@property (retain) PBCommentInfo* commentInfo;
 @property int32_t matchTimes;
 @property int32_t correctTimes;
 @property int32_t guessTimes;
@@ -834,6 +1217,8 @@ static PBFeedTimes* defaultPBFeedTimesInstance = nil;
 @property (retain) NSString* opusCreatorAvatar;
 @property (retain) NSString* opusWord;
 @property (retain) NSString* opusImage;
+@property (retain) NSString* contestId;
+@property Float64 contestScore;
 @end
 
 @implementation PBFeed
@@ -913,6 +1298,13 @@ static PBFeedTimes* defaultPBFeedTimesInstance = nil;
   hasTargetUserNickName_ = !!value;
 }
 @synthesize targetUserNickName;
+- (BOOL) hasHistoryScore {
+  return !!hasHistoryScore_;
+}
+- (void) setHasHistoryScore:(BOOL) value {
+  hasHistoryScore_ = !!value;
+}
+@synthesize historyScore;
 - (BOOL) hasOpusId {
   return !!hasOpusId_;
 }
@@ -954,6 +1346,13 @@ static PBFeedTimes* defaultPBFeedTimesInstance = nil;
   hasComment_ = !!value;
 }
 @synthesize comment;
+- (BOOL) hasCommentInfo {
+  return !!hasCommentInfo_;
+}
+- (void) setHasCommentInfo:(BOOL) value {
+  hasCommentInfo_ = !!value;
+}
+@synthesize commentInfo;
 - (BOOL) hasMatchTimes {
   return !!hasMatchTimes_;
 }
@@ -1030,6 +1429,20 @@ static PBFeedTimes* defaultPBFeedTimesInstance = nil;
   hasOpusImage_ = !!value;
 }
 @synthesize opusImage;
+- (BOOL) hasContestId {
+  return !!hasContestId_;
+}
+- (void) setHasContestId:(BOOL) value {
+  hasContestId_ = !!value;
+}
+@synthesize contestId;
+- (BOOL) hasContestScore {
+  return !!hasContestScore_;
+}
+- (void) setHasContestScore:(BOOL) value {
+  hasContestScore_ = !!value;
+}
+@synthesize contestScore;
 - (void) dealloc {
   self.feedId = nil;
   self.userId = nil;
@@ -1041,12 +1454,14 @@ static PBFeedTimes* defaultPBFeedTimesInstance = nil;
   self.opusId = nil;
   self.mutableGuessWordsList = nil;
   self.comment = nil;
+  self.commentInfo = nil;
   self.mutableFeedTimesList = nil;
   self.opusCreatorUserId = nil;
   self.opusCreatorNickName = nil;
   self.opusCreatorAvatar = nil;
   self.opusWord = nil;
   self.opusImage = nil;
+  self.contestId = nil;
   [super dealloc];
 }
 - (id) init {
@@ -1061,11 +1476,13 @@ static PBFeedTimes* defaultPBFeedTimesInstance = nil;
     self.drawData = [PBDraw defaultInstance];
     self.targetUserId = @"";
     self.targetUserNickName = @"";
+    self.historyScore = 0;
     self.opusId = @"";
     self.isCorrect = NO;
     self.score = 0;
     self.opusStatus = 0;
     self.comment = @"";
+    self.commentInfo = [PBCommentInfo defaultInstance];
     self.matchTimes = 0;
     self.correctTimes = 0;
     self.guessTimes = 0;
@@ -1076,6 +1493,8 @@ static PBFeedTimes* defaultPBFeedTimesInstance = nil;
     self.opusCreatorAvatar = @"";
     self.opusWord = @"";
     self.opusImage = @"";
+    self.contestId = @"";
+    self.contestScore = 0;
   }
   return self;
 }
@@ -1123,6 +1542,11 @@ static PBFeed* defaultPBFeedInstance = nil;
       return NO;
     }
   }
+  if (self.hasCommentInfo) {
+    if (!self.commentInfo.isInitialized) {
+      return NO;
+    }
+  }
   for (PBFeedTimes* element in self.feedTimesList) {
     if (!element.isInitialized) {
       return NO;
@@ -1161,6 +1585,9 @@ static PBFeed* defaultPBFeedInstance = nil;
   if (self.hasTargetUserNickName) {
     [output writeString:33 value:self.targetUserNickName];
   }
+  if (self.hasHistoryScore) {
+    [output writeDouble:34 value:self.historyScore];
+  }
   if (self.hasOpusId) {
     [output writeString:41 value:self.opusId];
   }
@@ -1178,6 +1605,9 @@ static PBFeed* defaultPBFeedInstance = nil;
   }
   if (self.hasComment) {
     [output writeString:51 value:self.comment];
+  }
+  if (self.hasCommentInfo) {
+    [output writeMessage:52 value:self.commentInfo];
   }
   if (self.hasMatchTimes) {
     [output writeInt32:61 value:self.matchTimes];
@@ -1211,6 +1641,12 @@ static PBFeed* defaultPBFeedInstance = nil;
   }
   if (self.hasOpusImage) {
     [output writeString:82 value:self.opusImage];
+  }
+  if (self.hasContestId) {
+    [output writeString:91 value:self.contestId];
+  }
+  if (self.hasContestScore) {
+    [output writeDouble:92 value:self.contestScore];
   }
   [self.unknownFields writeToCodedOutputStream:output];
 }
@@ -1251,6 +1687,9 @@ static PBFeed* defaultPBFeedInstance = nil;
   if (self.hasTargetUserNickName) {
     size += computeStringSize(33, self.targetUserNickName);
   }
+  if (self.hasHistoryScore) {
+    size += computeDoubleSize(34, self.historyScore);
+  }
   if (self.hasOpusId) {
     size += computeStringSize(41, self.opusId);
   }
@@ -1273,6 +1712,9 @@ static PBFeed* defaultPBFeedInstance = nil;
   }
   if (self.hasComment) {
     size += computeStringSize(51, self.comment);
+  }
+  if (self.hasCommentInfo) {
+    size += computeMessageSize(52, self.commentInfo);
   }
   if (self.hasMatchTimes) {
     size += computeInt32Size(61, self.matchTimes);
@@ -1306,6 +1748,12 @@ static PBFeed* defaultPBFeedInstance = nil;
   }
   if (self.hasOpusImage) {
     size += computeStringSize(82, self.opusImage);
+  }
+  if (self.hasContestId) {
+    size += computeStringSize(91, self.contestId);
+  }
+  if (self.hasContestScore) {
+    size += computeDoubleSize(92, self.contestScore);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -1412,6 +1860,9 @@ static PBFeed* defaultPBFeedInstance = nil;
   if (other.hasTargetUserNickName) {
     [self setTargetUserNickName:other.targetUserNickName];
   }
+  if (other.hasHistoryScore) {
+    [self setHistoryScore:other.historyScore];
+  }
   if (other.hasOpusId) {
     [self setOpusId:other.opusId];
   }
@@ -1432,6 +1883,9 @@ static PBFeed* defaultPBFeedInstance = nil;
   }
   if (other.hasComment) {
     [self setComment:other.comment];
+  }
+  if (other.hasCommentInfo) {
+    [self mergeCommentInfo:other.commentInfo];
   }
   if (other.hasMatchTimes) {
     [self setMatchTimes:other.matchTimes];
@@ -1468,6 +1922,12 @@ static PBFeed* defaultPBFeedInstance = nil;
   }
   if (other.hasOpusImage) {
     [self setOpusImage:other.opusImage];
+  }
+  if (other.hasContestId) {
+    [self setContestId:other.contestId];
+  }
+  if (other.hasContestScore) {
+    [self setContestScore:other.contestScore];
   }
   [self mergeUnknownFields:other.unknownFields];
   return self;
@@ -1535,6 +1995,10 @@ static PBFeed* defaultPBFeedInstance = nil;
         [self setTargetUserNickName:[input readString]];
         break;
       }
+      case 273: {
+        [self setHistoryScore:[input readDouble]];
+        break;
+      }
       case 330: {
         [self setOpusId:[input readString]];
         break;
@@ -1557,6 +2021,15 @@ static PBFeed* defaultPBFeedInstance = nil;
       }
       case 410: {
         [self setComment:[input readString]];
+        break;
+      }
+      case 418: {
+        PBCommentInfo_Builder* subBuilder = [PBCommentInfo builder];
+        if (self.hasCommentInfo) {
+          [subBuilder mergeFrom:self.commentInfo];
+        }
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self setCommentInfo:[subBuilder buildPartial]];
         break;
       }
       case 488: {
@@ -1603,6 +2076,14 @@ static PBFeed* defaultPBFeedInstance = nil;
       }
       case 658: {
         [self setOpusImage:[input readString]];
+        break;
+      }
+      case 730: {
+        [self setContestId:[input readString]];
+        break;
+      }
+      case 737: {
+        [self setContestScore:[input readDouble]];
         break;
       }
     }
@@ -1782,6 +2263,22 @@ static PBFeed* defaultPBFeedInstance = nil;
   result.targetUserNickName = @"";
   return self;
 }
+- (BOOL) hasHistoryScore {
+  return result.hasHistoryScore;
+}
+- (Float64) historyScore {
+  return result.historyScore;
+}
+- (PBFeed_Builder*) setHistoryScore:(Float64) value {
+  result.hasHistoryScore = YES;
+  result.historyScore = value;
+  return self;
+}
+- (PBFeed_Builder*) clearHistoryScore {
+  result.hasHistoryScore = NO;
+  result.historyScore = 0;
+  return self;
+}
 - (BOOL) hasOpusId {
   return result.hasOpusId;
 }
@@ -1891,6 +2388,36 @@ static PBFeed* defaultPBFeedInstance = nil;
 - (PBFeed_Builder*) clearComment {
   result.hasComment = NO;
   result.comment = @"";
+  return self;
+}
+- (BOOL) hasCommentInfo {
+  return result.hasCommentInfo;
+}
+- (PBCommentInfo*) commentInfo {
+  return result.commentInfo;
+}
+- (PBFeed_Builder*) setCommentInfo:(PBCommentInfo*) value {
+  result.hasCommentInfo = YES;
+  result.commentInfo = value;
+  return self;
+}
+- (PBFeed_Builder*) setCommentInfoBuilder:(PBCommentInfo_Builder*) builderForValue {
+  return [self setCommentInfo:[builderForValue build]];
+}
+- (PBFeed_Builder*) mergeCommentInfo:(PBCommentInfo*) value {
+  if (result.hasCommentInfo &&
+      result.commentInfo != [PBCommentInfo defaultInstance]) {
+    result.commentInfo =
+      [[[PBCommentInfo builderWithPrototype:result.commentInfo] mergeFrom:value] buildPartial];
+  } else {
+    result.commentInfo = value;
+  }
+  result.hasCommentInfo = YES;
+  return self;
+}
+- (PBFeed_Builder*) clearCommentInfo {
+  result.hasCommentInfo = NO;
+  result.commentInfo = [PBCommentInfo defaultInstance];
   return self;
 }
 - (BOOL) hasMatchTimes {
@@ -2080,6 +2607,38 @@ static PBFeed* defaultPBFeedInstance = nil;
 - (PBFeed_Builder*) clearOpusImage {
   result.hasOpusImage = NO;
   result.opusImage = @"";
+  return self;
+}
+- (BOOL) hasContestId {
+  return result.hasContestId;
+}
+- (NSString*) contestId {
+  return result.contestId;
+}
+- (PBFeed_Builder*) setContestId:(NSString*) value {
+  result.hasContestId = YES;
+  result.contestId = value;
+  return self;
+}
+- (PBFeed_Builder*) clearContestId {
+  result.hasContestId = NO;
+  result.contestId = @"";
+  return self;
+}
+- (BOOL) hasContestScore {
+  return result.hasContestScore;
+}
+- (Float64) contestScore {
+  return result.contestScore;
+}
+- (PBFeed_Builder*) setContestScore:(Float64) value {
+  result.hasContestScore = YES;
+  result.contestScore = value;
+  return self;
+}
+- (PBFeed_Builder*) clearContestScore {
+  result.hasContestScore = NO;
+  result.contestScore = 0;
   return self;
 }
 @end

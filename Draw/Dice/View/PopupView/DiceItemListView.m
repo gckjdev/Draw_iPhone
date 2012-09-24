@@ -51,7 +51,7 @@
 - (id)init
 {
     if (self = [super init]) {
-        self.itemList = [NSArray arrayWithObjects:[Item cut], [Item rollAgain], [Item peek], [Item postpone], [Item urge], [Item turtle], [Item diceRobot], nil];
+        self.itemList = [NSArray arrayWithObjects:[Item cut], [Item rollAgain], [Item peek], [Item postpone], [Item urge], [Item turtle], [Item diceRobot], [Item reverse], nil];
         _itemManager = [ItemManager defaultManager];
         _diceGameService = [DiceGameService defaultService];
         _userManager = [UserManager defaultManager];

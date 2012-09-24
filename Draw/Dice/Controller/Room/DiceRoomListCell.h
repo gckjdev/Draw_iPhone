@@ -12,11 +12,21 @@
 #import "GameConstants.pb.h"
 
 @class PBGameSession;
+@class PPViewController;
 
-@interface DiceRoomListCell : PPTableViewCell <DiceAvatarViewDelegate>
+@protocol DiceRoomListCellDelegate <NSObject>
+
+- (void)didQueryUser:(NSString*)userId;
+
+@end
+
+@interface DiceRoomListCell : PPTableViewCell <DiceAvatarViewDelegate> {
+    
+}
 
 @property (retain, nonatomic) IBOutlet UILabel *roomNameLabel;
 - (void)setCellInfo:(PBGameSession *)session ruleType:(DiceGameRuleType)ruleType;
 @property (retain, nonatomic) IBOutlet UIImageView *backgroundImageView;
+@property (assign, nonatomic) id<DiceRoomListCellDelegate> delegate;
 
 @end
