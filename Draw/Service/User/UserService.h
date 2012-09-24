@@ -32,6 +32,10 @@
                     QQNick:(NSString*)qqNick 
                       qqId:(NSString*)qqId
                 FacebookId:(NSString*)facebookId;
+
+- (void)didGetTopPlayerList:(NSArray *)playerList 
+                 resultCode:(NSInteger)resultCode;
+
 @end
 
 @interface UserService : CommonService
@@ -81,6 +85,6 @@
 - (void)getUserSimpleInfoByUserId:(NSString*)targetUserId 
                          delegate:(id<UserServiceDelegate>)delegate;
 
-
+- (void)getTopPlayer:(NSInteger)offset limit:(NSInteger)limit delegate:(id<UserServiceDelegate>)delegate;
 
 @end
