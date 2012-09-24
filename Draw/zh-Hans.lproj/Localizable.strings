@@ -938,7 +938,23 @@
 "kDefault" = "默认";
 "kItemPatriotDice" = "爱国骰";
 "kPatriotDice" = "爱国骰";
-"kPatriotDiceDescription" = "红旗飘扬，扬我国威！钓鱼岛是中国的！";
+"kPatriotDiceDescription" = "五星红旗背景的骰子，适用于各种爱国者。";
+
+"kItemGoldenDice" = "黄金骰";
+"kGoldenDice" = "黄金骰";
+"kGoldenDiceDescription" = "简洁尊贵，优雅大方的骰子外观，身份的象征，高富帅必备。";
+
+"kItemWoodDice" = "木骰";
+"kWoodDice" = "木骰";
+"kWoodDiceDescription" = "回归自然，以木质作为骰子背景，文艺青年专用。";
+
+"kItemCrystalDice" = "水晶骰";
+"kCrystalDice" = "水晶骰";
+"kCrystalDiceDescription" = "晶莹剔透的感觉，女生们的最爱。";
+
+"kItemDiamondDice" = "宝石骰";
+"kDiamondDice" = "宝石骰";
+"kDiamondDiceDescription" = "至坚至美者，非宝石莫属，象征瑰丽祥瑞，意义隽永，人人值得拥有哦～";
 
 /*********************** 大话骰子国际化字符串结束 *************************/
 
