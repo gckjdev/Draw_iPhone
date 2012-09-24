@@ -367,4 +367,11 @@
                              offset:(NSInteger)offset
                              limit:(NSInteger)limit
                            language:(NSInteger)language;
+
++ (CommonNetworkOutput*)getTopPalyerList:(NSString*)baseURL 
+                                   appId:(NSString*)appId 
+                                  gameId:(NSString*)gameId
+                                  offset:(NSInteger)offset
+                                   limit:(NSInteger)limit;
+
 @end

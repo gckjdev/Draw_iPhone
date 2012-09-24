@@ -2023,7 +2023,7 @@
     
     
     PPNetworkResponseBlock responseHandler = ^(NSDictionary *dict, CommonNetworkOutput *output) {
-        output.jsonDataDict = [dict objectForKey:RET_DATA];                
+        output.jsonDataArray = [dict objectForKey:RET_DATA];                
         return;
     }; 
     

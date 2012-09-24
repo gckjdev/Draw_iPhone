@@ -605,8 +605,14 @@
             
         case MenuButtonTypeDiceHelp:
         {
-            DiceHelpView *view = [DiceHelpView createDiceHelpView];
-            [view showInView:self.view];
+            UIView* helpView = [self.view viewWithTag:DICE_HELP_VIEW_TAG];
+            if (helpView){
+                [self.view bringSubviewToFront:helpView];
+            }
+            else{            
+                DiceHelpView *view = [DiceHelpView createDiceHelpView];
+                [view showInView:self.view];
+            }
         }
             break;
             //For Bottom Menus
