@@ -58,6 +58,7 @@ static VendingController* staticVendingController = nil;
 @synthesize titleImageView;
 @synthesize bgImageView;
 @synthesize coinsShopButton;
+@synthesize pageControl;
 
 - (void)dealloc {
     [itemListScrollView release];
@@ -69,6 +70,7 @@ static VendingController* staticVendingController = nil;
     [titleImageView release];
     [bgImageView release];
     [coinsShopButton release];
+    [pageControl release];
     [super dealloc];
     
 }
@@ -423,6 +425,7 @@ static VendingController* staticVendingController = nil;
     [self setTitleImageView:nil];
     [self setBgImageView:nil];
     [self setCoinsShopButton:nil];
+    [self setPageControl:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -467,6 +470,14 @@ static VendingController* staticVendingController = nil;
     
 }
 
-
+#pragma mark -
+#pragma mark UIScrollViewDelegate stuff
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
+{
+    /* we switch page at %50 across */
+    CGFloat pageWidth = scrollView.frame.size.width;
+    int page = floor((scrollView.contentOffset.x - pageWidth/2)/pageWidth +1);
+    self.pageControl.currentPage = page;
+}
 
 @end

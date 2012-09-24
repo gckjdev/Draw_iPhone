@@ -113,9 +113,11 @@
         case MenuButtonTypeDiceHelp:
             return [imageManager diceHelpMenuImage];
         case MenuButtonTypeDiceHappyRoom:
+            return [imageManager normalRoomMenuImage];
         case MenuButtonTypeDiceHighRoom:
+            return [imageManager highRoomMenuImage];
         case MenuButtonTypeDiceSuperHighRoom:
-            return [imageManager diceRoomMenuImage];
+            return [imageManager superHighRoomMenuImage];
         default:
             return nil;
     }

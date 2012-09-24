@@ -7,11 +7,13 @@
 //
 
 #import "DiceRobotDecisionView.h"
+#import "FontButton.h"
+
+#define COMMON_DIALOG_THEME_DRAW    @"CommonDialog"
+#define COMMON_DIALOG_THEME_DICE    @"CommonDiceDialog"
+#define WILDS_BUTTON_FRAME ([DeviceDetection isIPAD]?(CGRectMake(0, 0, 40, 40)):(CGRectMake(0, 0, 80, 80)))
 
 @implementation DiceRobotDecisionView
-@synthesize shouldOpen;
-@synthesize shouldCallDice;
-@synthesize shouldCallDiceCount;
 @synthesize wildsButton;
 @synthesize calldiceView = _calldiceView;
 
@@ -20,43 +22,71 @@
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
+        
     }
     return self;
 }
 
++ (DiceRobotDecisionView *)createDialogWithTheme:(CommonDialogTheme)theme
+{
+    DiceRobotDecisionView* view;
+    switch (theme) {
+        case CommonDialogThemeDice: {
+            view = (DiceRobotDecisionView*)[self createInfoViewByXibName:COMMON_DIALOG_THEME_DICE]; 
+        } break;
+        case CommonDialogThemeDraw: {
+            view = (DiceRobotDecisionView*)[self createInfoViewByXibName:COMMON_DIALOG_THEME_DRAW];
+        } break;
+        default:
+            PPDebug(@"<CommonDialog> theme %d do not exist",theme);
+            view = nil;
+    }   
+    return view;
+}
+
+
+
 + (DiceRobotDecisionView*)createDialogWithTitle:(NSString *)title 
-                               message:(NSString *)message 
-                                 style:(CommonDialogStyle)aStyle 
+                               message:(NSString *)message
                               delegate:(id<CommonDialogDelegate>)aDelegate 
                                  theme:(CommonDialogTheme)theme 
 {
-    DiceRobotDecisionView* view = (DiceRobotDecisionView*)[super createDialogWithTitle:title 
-                                                                               message:message 
-                                                                                 style:aStyle 
-                                                                              delegate:aDelegate 
-                                                                                 theme:theme];
+    DiceRobotDecisionView* view = (DiceRobotDecisionView*)[DiceRobotDecisionView createDialogWithTheme:theme];
+    [view initButtonsWithTheme:theme];
     
-//    view.calldiceView = [[CallDiceView alloc] initWithDice:_robotManager.result.dice count:_robotManager.result.diceCount];
-//    [_diceRobotDecision.contentView addSubview:view];
-//    [view setCenter:CGPointMake(_diceRobotDecision.contentView.frame.size.width/2, _diceRobotDecision.contentView.frame.size.height/2)];
+    view.calldiceView = [[[CallDiceView alloc] initWithDice:1 count:1] autorelease];
+    [view.contentView addSubview:view.calldiceView];
+    [view.calldiceView setCenter:CGPointMake(view.contentView.frame.size.width/2, view.contentView.frame.size.height/2)];
 //    
-//    FontButton* btn = [[[FontButton alloc] initWithFrame:self.wildsFlagButton.frame] autorelease];
-//    [btn setBackgroundImage:[UIImage imageNamed:@"zhai_bg.png"] forState:UIControlStateNormal];
-//    [btn.fontLable setText:NSLS(@"kDiceWilds")];
-//    [btn setTitle:NSLS(@"kDiceWilds") forState:UIControlStateNormal];
-//    [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-//    [_diceRobotDecision.contentView addSubview:btn];
-//    [btn setCenter:CGPointMake(view.frame.origin.x - btn.frame.size.width, view.center.y)];
-//    
-//    [_diceRobotDecision.oKButton.fontLable setText:NSLS(@"kDoItLikeThis")];
-//    [_diceRobotDecision.backButton.fontLable setText:NSLS(@"kThinkMyself")];
+    view.wildsButton = [[[FontButton alloc] initWithFrame:CGRectMake(0, 0, 50, 50)] autorelease];
+    [view.wildsButton setBackgroundImage:[UIImage imageNamed:@"zhai_bg.png"] forState:UIControlStateNormal];
+    [view.wildsButton.fontLable setText:NSLS(@"kDiceWilds")];
+    [view.wildsButton setTitle:NSLS(@"kDiceWilds") forState:UIControlStateNormal];
+    [view.wildsButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [view.contentView addSubview:view.wildsButton];
+    [view.wildsButton setCenter:CGPointMake(view.frame.origin.x - view.wildsButton.frame.size.width, view.center.y)];
+    
+    [view.oKButton.fontLable setText:NSLS(@"kDoItLikeThis")];
+    [view.backButton.fontLable setText:NSLS(@"kThinkMyself")];
+    return view;
 }
 
 - (void)setShouldOpen:(BOOL)shouldOpen 
                  dice:(int)dice 
-            diceCount:(int)diceCount
+            diceCount:(int)diceCount 
+              isWilds:(BOOL)isWilds
 {
-    
+    if (shouldOpen) {
+        [self.messageLabel setText:NSLS(@"kJustOpen")];
+        self.calldiceView.hidden = YES;
+        self.wildsButton.hidden = YES;
+    } else {
+        self.calldiceView.hidden = NO;
+        if (isWilds) {
+            self.wildsButton.hidden = NO;
+        }
+        [self.calldiceView setDice:dice count:diceCount];
+    }
 }
 
 - (void)dealloc

@@ -130,7 +130,9 @@
 - (UIImage*)backButtonImage;
 
 - (UIImage *)diceStartMenuImage;
-- (UIImage*)diceRoomMenuImage;
+- (UIImage*)normalRoomMenuImage;
+- (UIImage*)highRoomMenuImage;
+- (UIImage*)superHighRoomMenuImage;
 - (UIImage *)diceHelpMenuImage;
 
 //menu button

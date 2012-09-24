@@ -60,6 +60,7 @@
     gameRulesButton.selected = YES;
     itemsUsageButton.selected = NO;
     indicator.hidesWhenStopped = YES;
+    [indicator setActivityIndicatorViewStyle:UIActivityIndicatorViewStyleGray];
     
     [self.gameRulesButton.fontLable setText:NSLS(@"kDiceGameRules")];
     [self.itemsUsageButton.fontLable setText:NSLS(@"kDicePropDescription")];

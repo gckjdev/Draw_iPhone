@@ -153,6 +153,7 @@
     [_waitForPlayerBetLabel release];
     [_bgImageView release];
     [_tableImageView release];
+    [_diceRobotDecision release];
     [super dealloc];
 }
 
@@ -1053,7 +1054,7 @@
 {
     [self popupOpenDiceView];  
     [self playOpenDiceVoice];
-    [_popupView updateItemListView];
+    [_popupView dismissItemListView];
     [self showWaitForPlayerBetNote];
 }
 
@@ -1076,7 +1077,7 @@
     [_diceSelectedView dismiss];
     [self popupOpenDiceView];  
     [self playOpenDiceVoice];
-    [_popupView updateItemListView];
+    [_popupView dismissItemListView];
     [self showBetView];
 }
 
@@ -1542,19 +1543,19 @@
 
 - (void)showRobotDecision
 {
-    if (_diceRobotDecision == nil) {
-        _diceRobotDecision= [[CommonDialog createDialogWithTitle:NSLS(@"kCallTips") 
+
+    _diceRobotDecision= [CommonDialog createDialogWithTitle:NSLS(@"kCallTips") 
                                                            message:nil 
                                                              style:CommonDialogStyleDoubleButton 
                                                           delegate:self 
-                                                             theme:CommonDialogThemeDice] retain];
-        _diceRobotDecision.tag = ROBOT_CALL_TIPS_DIALOG_TAG;
-    }
+                                                             theme:CommonDialogThemeDice];
+    _diceRobotDecision.tag = ROBOT_CALL_TIPS_DIALOG_TAG;
+    
     
     if (_robotManager.result.shouldOpen) {
         [_diceRobotDecision.messageLabel setText:NSLS(@"kJustOpen")];
     } else {
-        CallDiceView* view = [[CallDiceView alloc] initWithDice:_robotManager.result.dice count:_robotManager.result.diceCount];
+        CallDiceView* view = [[[CallDiceView alloc] initWithDice:_robotManager.result.dice count:_robotManager.result.diceCount] autorelease];
         [_diceRobotDecision.contentView addSubview:view];
         [view setCenter:CGPointMake(_diceRobotDecision.contentView.frame.size.width/2, _diceRobotDecision.contentView.frame.size.height/2)];
         if (_robotManager.result.isWild) {
