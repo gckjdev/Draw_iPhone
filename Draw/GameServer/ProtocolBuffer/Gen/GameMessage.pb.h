@@ -53,6 +53,8 @@
 @class OpenDiceRequest_Builder;
 @class OpenDiceResponse;
 @class OpenDiceResponse_Builder;
+@class PBCommentInfo;
+@class PBCommentInfo_Builder;
 @class PBDice;
 @class PBDiceAction;
 @class PBDiceAction_Builder;

@@ -26,6 +26,17 @@ message PBFeedTimes{
   required int32 value = 2;
 }
 
+//表示评论的内容，用于评论的回复
+message PBCommentInfo
+{
+    required int32  type = 1;            //表示类型，例如是评论/回复评论/回复鲜花/回复番茄…  required
+    optional string comment = 2;         //评论的内容
+    required string actionId = 3;        //被评论的action的id               required
+    required string actionUserId = 4;    //被评论的action的用户uid
+    optional string actionNickName = 5;  //被评论的action的用户的nickName
+    optional string actionSummary = 6;   //action的简单摘要
+}
+
 message PBFeed {
   required string feedId = 1;
   required string userId = 2;
@@ -41,6 +52,7 @@ message PBFeed {
   optional PBDraw drawData = 31;
   optional string targetUserId = 32;
   optional string targetUserNickName = 33;
+  optional double historyScore = 34;    // 指示该作品的历史总得分
   
   // for user guess
   optional string opusId = 41;          // 猜作品的ID
@@ -50,7 +62,8 @@ message PBFeed {
   optional int32  opusStatus = 45;      // 猜作品的状态：0：正常；1：已删除
   
   // for user comment
-  optional string comment = 51;
+  optional string comment = 51;              // 旧版本使用comment字段，展示评论内容
+  optional PBCommentInfo commentInfo = 52;   // 新版本使用commentInfo结构，支持评论内容和被评论的内容
     
   // common data
   optional int32  matchTimes = 61;
@@ -69,5 +82,10 @@ message PBFeed {
   // for creator user & opus info
   optional string opusWord = 81;
   optional string opusImage = 82;  
+  
+  // for contest information
+  optional string contestId = 91;
+  optional double contestScore = 92;
+
 }
 
