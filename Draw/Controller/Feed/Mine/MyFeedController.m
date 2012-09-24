@@ -151,6 +151,7 @@ typedef enum{
         [cell.contentView addSubview:rankView];
         rankView.frame = CGRectMake(x, y, width, height);
         x += width + space;
+        rankView.drawFlag.hidden = YES;
     }
 }
 
@@ -279,6 +280,24 @@ typedef enum{
     [sfc release];
         
     //enter the detail feed contrller
+}
+
+
+#pragma mark - delete feed.
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    Feed *feed = [self.tabDataList objectAtIndex:indexPath.row];
+    [self showActivityWithText:NSLS(@"kDeleting")];
+    [[FeedService defaultService] deleteFeed:feed delegate:self];
+}
+
+-(BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (self.currentTab.tabID == MyTypeFeed) {
+        Feed *feed = [self.tabDataList objectAtIndex:indexPath.row];
+        return [feed isMyFeed];        
+    }
+    return false;
 }
 
 #pragma mark common tab controller
@@ -413,6 +432,8 @@ typedef enum{
         case ActionSheetIndexDelete:
         {
             PPDebug(@"Delete");
+            [self showActivityWithText:NSLS(@"kDeleting")];
+            [[FeedService defaultService] deleteFeed:_selectRanView.feed delegate:self];
         }
             break;
         case ActionSheetIndexDetail:
@@ -432,6 +453,17 @@ typedef enum{
 }
 
 
+- (void)didDeleteFeed:(Feed *)feed resultCode:(NSInteger)resultCode;
+
+{
+    [self hideActivity];
+    if (resultCode != 0) {
+        [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kDeleteFail") delayTime:1.5 isHappy:NO];
+        return;
+    }
+    [self finishDeleteData:feed ForTabID:self.currentTab.tabID];    
+}
+
 #pragma mark Rank View delegate
 - (void)didClickRankView:(RankView *)rankView
 {
@@ -442,13 +474,13 @@ typedef enum{
         [rankView setRankViewSelected:YES];
         
         UIActionSheet *actionSheet = [[UIActionSheet alloc]
-                                      initWithTitle:NSLS(@"kFeedOperation")
+                                      initWithTitle:NSLS(@"kOpusOperation")
                                       delegate:self 
                                       cancelButtonTitle:NSLS(@"kCancel") 
-                                      destructiveButtonTitle:NSLS(@"kDetail") 
+                                      destructiveButtonTitle:NSLS(@"kOpusDetail") 
                                       otherButtonTitles:NSLS(@"kDelete"), nil];
-        [actionSheet showInView:self.view];
         
+        [actionSheet showInView:self.view];
         [actionSheet release];
         
     }else{
