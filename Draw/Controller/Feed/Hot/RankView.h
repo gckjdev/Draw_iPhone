@@ -44,10 +44,12 @@ typedef enum{
 + (CGFloat)widthForRankViewType:(RankViewType)type;
 
 - (void)setViewInfo:(DrawFeed *)feed;
-- (void)setPlayerViewInfo:(TopPlayer *)player;
+
+- (void)updateViewInfoForMyOpus;
 
 - (IBAction)clickMaskView:(id)sender;
 - (void)setRankViewSelected:(BOOL)selected;
+
 
 @property (retain, nonatomic) IBOutlet UIImageView *drawFlag;
 @property (retain, nonatomic) IBOutlet UIButton *maskButton;

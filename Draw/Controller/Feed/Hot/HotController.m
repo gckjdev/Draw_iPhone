@@ -10,6 +10,7 @@
 #import "TableTabManager.h"
 #import "ShareImageManager.h"
 #import "ShowFeedController.h"
+#import "CommonUserInfoView.h"
 
 typedef enum{
 
@@ -104,7 +105,7 @@ typedef enum{
 
 - (void)clearCellSubViews:(UITableViewCell *)cell{
     for (UIView *view in cell.contentView.subviews) {
-        if ([view isKindOfClass:[RankView class]]) {
+        if ([view isKindOfClass:[RankView class]] || [view isKindOfClass:[TopPlayerView class]]) {
             [view removeFromSuperview];
         }
     }    
@@ -152,6 +153,26 @@ typedef enum{
     }
 }
 
+- (void)setTopPlayerCell:(UITableViewCell *)cell 
+             WithPlayers:(NSArray *)players isFirstRow:(BOOL)isFirstRow
+{
+    CGFloat width = [RankView widthForRankViewType:RankViewTypeNormal];
+    CGFloat height = [RankView heightForRankViewType:RankViewTypeNormal];
+    CGFloat space = (cell.frame.size.width - NORMAL_CELL_VIEW_NUMBER * width)/ (NORMAL_CELL_VIEW_NUMBER - 1);
+    CGFloat x = 0;
+    CGFloat y = 0;
+    NSInteger i = 0;
+    for (TopPlayer *player in players) {
+        TopPlayerView *playerView = [TopPlayerView createTopPlayerView:self];
+        [playerView setViewInfo:player];
+        if (isFirstRow) {
+            [playerView setRankFlag:i++];
+        }
+        [cell.contentView addSubview:playerView];
+        playerView.frame = CGRectMake(x, y, width, height);
+        x += width + space;
+    }
+}
 
 - (NSObject *)saveGetObjectForIndex:(NSInteger)index
 {
@@ -209,6 +230,17 @@ typedef enum{
         }
         [self setNormalRankCell:cell WithFeeds:list];
         
+    }else if(tab.tabID == RankTypePlayer){
+        NSInteger startIndex = (indexPath.row * NORMAL_CELL_VIEW_NUMBER);
+        NSMutableArray *list = [NSMutableArray array];
+        PPDebug(@"startIndex = %d",startIndex);
+        for (NSInteger i = startIndex; i < startIndex+NORMAL_CELL_VIEW_NUMBER; ++ i) {
+            NSObject *object = [self saveGetObjectForIndex:i];
+            if (object) {
+                [list addObject:object];
+            }
+        }
+        [self setTopPlayerCell:cell WithPlayers:list isFirstRow:NO];
     }
     
     return cell;
@@ -250,7 +282,7 @@ typedef enum{
 }
 - (NSInteger)currentTabIndex
 {
-    return 2;
+    return 0;
 }
 - (NSInteger)fetchDataLimitForTabIndex:(NSInteger)index
 {
@@ -283,12 +315,14 @@ typedef enum{
     [self showActivityWithText:NSLS(@"kLoading")];
     TableTab *tab = [_tabManager tabForID:tabID];
     if (tab) {
-        
         if (tabID == RankTypeNew) {
             [[FeedService defaultService] getFeedList:FeedListTypeLatest offset:tab.offset limit:tab.limit delegate:self];        
-        }else{
+        }else if(tabID == RankTypePlayer){
+            [[UserService defaultService] getTopPlayer:tab.offset limit:tab.limit delegate:self];
+        }else {
             [[FeedService defaultService] getFeedList:FeedListTypeHot offset:tab.offset limit:tab.limit delegate:self];        
         }
+
     }
 }
 
@@ -307,6 +341,17 @@ typedef enum{
     }
 }
 
+- (void)didGetTopPlayerList:(NSArray *)playerList 
+                 resultCode:(NSInteger)resultCode
+{
+    PPDebug(@"<didGetTopPlayerList> list count = %d ", [playerList count]);
+    [self hideActivity];
+    if (resultCode == 0) {
+        [self finishLoadDataForTabID:RankTypePlayer resultList:playerList];
+    }else{
+        [self failLoadDataForTabID:RankTypePlayer];
+    }
+}
 
 #pragma mark Rank View delegate
 - (void)didClickRankView:(RankView *)rankView
@@ -314,6 +359,23 @@ typedef enum{
     ShowFeedController *sc = [[ShowFeedController alloc] initWithFeed:rankView.feed];
     [self.navigationController pushViewController:sc animated:YES];
     [sc release];
+}
+
+
+- (void)didClickTopPlayerView:(TopPlayerView *)topPlayerView
+{
+    TopPlayer *player = topPlayerView.topPlayer;
+    NSString* genderString = player.gender?@"m":@"f";
+    [CommonUserInfoView showUser:player.userId 
+                        nickName:player.nickName 
+                          avatar:player.avatar 
+                          gender:genderString 
+                        location:nil 
+                           level:player.level
+                         hasSina:NO 
+                           hasQQ:NO 
+                     hasFacebook:NO 
+                      infoInView:self];
 }
 
 @end

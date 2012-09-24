@@ -288,6 +288,7 @@
       infoInView:(PPViewController*)superController
 {
     if (![[[UserManager defaultManager] userId] isEqualToString:userId]) {
+
         CommonUserInfoView* view = [CommonUserInfoView createUserInfoView];
         [view initViewWithUserId:userId 
                         nickName:nickName 

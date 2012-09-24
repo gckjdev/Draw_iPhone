@@ -342,7 +342,6 @@ static UIImage* _whitePaperImage;
 {
     return [UIImage strectchableImageName:@"friend_detail_bg.png"];
 }
-
 //for toolbox
 - (UIImage *)toolBoxImage
 {
@@ -461,7 +460,7 @@ static UIImage* _whitePaperImage;
 
 - (UIImage *)rightImage
 {
-    return [UIImage strectchableImageName:@"right.png"];
+    return [UIImage strectchableImageName:@"guessed@2x.png"];
 }
 - (UIImage *)myPaintImage
 {

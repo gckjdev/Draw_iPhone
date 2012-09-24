@@ -370,7 +370,8 @@
 
 + (CommonNetworkOutput*)getTopPalyerList:(NSString*)baseURL 
                                    appId:(NSString*)appId 
-                                  gameId:(NSString*)gameId
+                                  gameId:(NSString*)gameId 
+                                  userId:(NSString *)userId
                                   offset:(NSInteger)offset
                                    limit:(NSInteger)limit;
 

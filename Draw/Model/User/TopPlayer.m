@@ -27,11 +27,15 @@
         self.avatar = [dict objectForKey:PARA_AVATAR];
         self.userId = [dict objectForKey:PARA_USERID];
         self.level = [[dict objectForKey:PARA_LEVEL] integerValue];    
+        if (self.level < 1) {
+            self.level = 1;
+        }
         NSString *userGender = [dict objectForKey:PARA_GENDER];
         self.gender = [userGender isEqualToString:@"m"];
         self.opusCount = [[dict objectForKey:PARA_OPUS_COUNT] integerValue];        
     }
     return self;
 }
+
 
 @end

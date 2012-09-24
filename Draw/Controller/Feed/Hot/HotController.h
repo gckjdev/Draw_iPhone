@@ -9,8 +9,10 @@
 #import "CommonTabController.h"
 #import "FeedService.h"
 #import "RankView.h"
+#import "TopPlayerView.h"
+#import "UserService.h"
 
-@interface HotController : CommonTabController<FeedServiceDelegate,RankViewDelegate>
+@interface HotController : CommonTabController<FeedServiceDelegate,RankViewDelegate,TopPlayerViewDelegate,UserServiceDelegate>
 {
     
 }
