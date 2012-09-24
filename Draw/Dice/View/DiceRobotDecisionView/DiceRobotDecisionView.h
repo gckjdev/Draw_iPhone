@@ -8,13 +8,21 @@
 
 #import "CommonDialog.h"
 #import "CallDiceView.h"
+@class FontButton;
 
 @interface DiceRobotDecisionView : CommonDialog
 
-@property (assign, nonatomic) BOOL shouldOpen;
-@property (assign, nonatomic) int shouldCallDiceCount;
-@property (assign, nonatomic) int shouldCallDice;
 @property (retain, nonatomic) CallDiceView* calldiceView;
-@property (retain, nonatomic) UIButton* wildsButton;
+@property (retain, nonatomic) FontButton* wildsButton;
+
++ (DiceRobotDecisionView*)createDialogWithTitle:(NSString *)title 
+                                        message:(NSString *)message 
+                                       delegate:(id<CommonDialogDelegate>)aDelegate 
+                                          theme:(CommonDialogTheme)theme;
+
+- (void)setShouldOpen:(BOOL)shouldOpen 
+                 dice:(int)dice 
+            diceCount:(int)diceCount 
+              isWilds:(BOOL)isWilds;
 
 @end
