@@ -279,7 +279,7 @@ static DiceImageManager *_defaultManager = nil;
 
 - (UIImage *)diceToolCutImage
 {
-    return [UIImage imageNamed:@"cut.png"];
+    return [UIImage imageNamed:@"cut@2x.png"];
 
 //    UIImage* backgroundImage = [UIImage imageNamed:@"tools_bell_bg@2x.png"];
 //    float width = backgroundImage.size.width;
@@ -300,7 +300,7 @@ static DiceImageManager *_defaultManager = nil;
 
 - (UIImage *)diceToolRollAgainImage
 {
-    return [UIImage imageNamed:@"rollAgain.png"];
+    return [UIImage imageNamed:@"rollAgain@2x.png"];
 
 //    UIImage* backgroundImage = [UIImage imageNamed:@"tools_bell_bg@2x.png"];
 //    float width = backgroundImage.size.width;
@@ -443,6 +443,36 @@ static DiceImageManager *_defaultManager = nil;
     }else {
         return [UIImage imageNamed:@"lose_face@2x.png"];
     }
+}
+
+- (UIImage *)diceNormalRoomBgImage
+{
+    return [UIImage imageNamed:@"normal_room_bg.png"];
+}
+
+- (UIImage *)diceHighRoomBgImage
+{
+    return [UIImage imageNamed:@"high_room_bg.png"];
+}
+
+- (UIImage *)diceSuperHighRoomBgImage
+{
+    return [UIImage imageNamed:@"super_high_room_bg.png"];
+}
+
+- (UIImage *)diceNormalRoomTableImage
+{
+    return [UIImage imageNamed:@"normal_room_table.png"];
+}
+
+- (UIImage *)diceHighRoomTableImage
+{
+    return [UIImage imageNamed:@"high_room_table.png"];
+}
+
+- (UIImage *)diceSuperHighRoomTableImage
+{
+    return [UIImage imageNamed:@"super_high_room_table.png"];
 }
 
 @end

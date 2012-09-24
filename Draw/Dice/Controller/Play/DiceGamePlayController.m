@@ -104,6 +104,8 @@
 @synthesize anteView = _anteView;
 @synthesize waitForPlayerBetLabel = _waitForPlayerBetLabel;
 @synthesize popupView = _popupView;
+@synthesize bgImageView = _bgImageView;
+@synthesize tableImageView = _tableImageView;
 @synthesize adHideTimer = _adHideTimer;
 
 
@@ -149,6 +151,8 @@
     [_anteLabel release];
     [_anteView release];
     [_waitForPlayerBetLabel release];
+    [_bgImageView release];
+    [_tableImageView release];
     [super dealloc];
 }
 
@@ -191,12 +195,55 @@
     return self;
 }
 
+- (UIImage *)bgImage
+{
+    UIImage *image = nil;
+    switch (_diceService.ruleType) {
+        case DiceGameRuleTypeRuleNormal:
+            image = [_imageManager diceNormalRoomBgImage];
+            break;
+        case DiceGameRuleTypeRuleHigh:
+            image = [_imageManager diceHighRoomBgImage];
+            break;
+            
+        case DiceGameRuleTypeRuleSuperHigh:
+            image = [_imageManager diceSuperHighRoomBgImage];
+            break;
+        default:
+            break;
+    }
+    
+    return image;
+}
+
+- (UIImage *)tableImage
+{
+    UIImage *image = nil;
+    switch (_diceService.ruleType) {
+        case DiceGameRuleTypeRuleNormal:
+            image = [_imageManager diceNormalRoomTableImage];
+            break;
+        case DiceGameRuleTypeRuleHigh:
+            image = [_imageManager diceHighRoomTableImage];
+            break;
+            
+        case DiceGameRuleTypeRuleSuperHigh:
+            image = [_imageManager diceSuperHighRoomTableImage];
+            break;
+        default:
+            break;
+    }
+    
+    return image;
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.bgImageView.image = [self bgImage];
+    self.tableImageView.image = [self tableImage];
     
     [UIApplication sharedApplication].idleTimerDisabled=YES;
-    
     self.popupView = [[[DicePopupViewManager alloc] init] autorelease];
     self.wildsLabel.text = NSLS(@"kDiceWilds");
     self.wildsFlagButton.fontLable.text = NSLS(@"kDiceWilds");
@@ -296,6 +343,8 @@
     [self setAnteLabel:nil];
     [self setAnteView:nil];
     [self setWaitForPlayerBetLabel:nil];
+    [self setBgImageView:nil];
+    [self setTableImageView:nil];
     [super viewDidUnload];
 }
 
@@ -1112,6 +1161,7 @@
 
 - (void)takeOver
 {
+    [self hideRobotDecision];
     [self clearAllReciprocol];
 
     if (_diceService.lastCallDiceCount >= _diceService.maxCallCount) {
@@ -1490,36 +1540,46 @@
     [avatar addFlyClockOnMyHead];
 }
 
-- (void)showRobotDecition
+- (void)showRobotDecision
 {
-    CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"kCallTips") 
-                                                       message:nil 
-                                                         style:CommonDialogStyleDoubleButton 
-                                                      delegate:self 
-                                                         theme:CommonDialogThemeDice];
-    dialog.tag = ROBOT_CALL_TIPS_DIALOG_TAG;
+    if (_diceRobotDecision == nil) {
+        _diceRobotDecision= [[CommonDialog createDialogWithTitle:NSLS(@"kCallTips") 
+                                                           message:nil 
+                                                             style:CommonDialogStyleDoubleButton 
+                                                          delegate:self 
+                                                             theme:CommonDialogThemeDice] retain];
+        _diceRobotDecision.tag = ROBOT_CALL_TIPS_DIALOG_TAG;
+    }
+    
     if (_robotManager.result.shouldOpen) {
-        [dialog.messageLabel setText:NSLS(@"kJustOpen")];
+        [_diceRobotDecision.messageLabel setText:NSLS(@"kJustOpen")];
     } else {
         CallDiceView* view = [[CallDiceView alloc] initWithDice:_robotManager.result.dice count:_robotManager.result.diceCount];
-        [dialog.contentView addSubview:view];
-        [view setCenter:CGPointMake(dialog.contentView.frame.size.width/2, dialog.contentView.frame.size.height/2)];
+        [_diceRobotDecision.contentView addSubview:view];
+        [view setCenter:CGPointMake(_diceRobotDecision.contentView.frame.size.width/2, _diceRobotDecision.contentView.frame.size.height/2)];
         if (_robotManager.result.isWild) {
             FontButton* btn = [[[FontButton alloc] initWithFrame:self.wildsFlagButton.frame] autorelease];
             [btn setBackgroundImage:[UIImage imageNamed:@"zhai_bg.png"] forState:UIControlStateNormal];
             [btn.fontLable setText:NSLS(@"kDiceWilds")];
             [btn setTitle:NSLS(@"kDiceWilds") forState:UIControlStateNormal];
             [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-            [dialog.contentView addSubview:btn];
+            [_diceRobotDecision.contentView addSubview:btn];
             [btn setCenter:CGPointMake(view.frame.origin.x - btn.frame.size.width, view.center.y)];
             
         }
         
     }
-    [dialog.oKButton.fontLable setText:NSLS(@"kDoItLikeThis")];
-    [dialog.backButton.fontLable setText:NSLS(@"kThinkMyself")];
-    [dialog showInView:self.view];
+    [_diceRobotDecision.oKButton.fontLable setText:NSLS(@"kDoItLikeThis")];
+    [_diceRobotDecision.backButton.fontLable setText:NSLS(@"kThinkMyself")];
+    [_diceRobotDecision showInView:self.view];
 
+}
+
+- (void)hideRobotDecision
+{
+    if (_diceRobotDecision) {
+        [_diceRobotDecision disappear];
+    }
 }
 
 

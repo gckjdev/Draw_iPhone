@@ -899,13 +899,13 @@
 "kDiceWai" = "Wai";
 
 
-"kDiceMenuHappyRoom" = "Happy Room";
-"kDiceMenuHighRoom" = "High Room";
-"kDiceMenuSuperHighRoom" = "Super High Room";
+"kDiceMenuHappyRoom" = "Normal";
+"kDiceMenuHighRoom" = "Carnival";
+"kDiceMenuSuperHighRoom" = "Ultra Carniaval";
 
-"kDiceHappyRoom" = "Happy Room %d";
-"kDiceHighRoom" = "High Room %d";
-"kDiceSuperHighRoom" = "Super High %d";
+"kDiceHappyRoom" = "Normal Room %d";
+"kDiceHighRoom" = "Carnival Room %d";
+"kDiceSuperHighRoom" = "Ultra Carniaval %d";
 
 "kBetViewTitle" = "Bet(%d)";
 "kBetNote" = "Player【%@】challenge, would you bet?";
@@ -923,10 +923,25 @@
 "kWaitForPlayerBet" = "Waitting for player bet(%d)";
 
 "kCustomDice" = "Custom Dice";
-"kItemPatriotDice" = "patriotic dice";
-"kPatriotDice" = "patriotic dice";
-"kPatriotDiceDescription" = "red flags flying, Yang Wei of China! Diaoyu Islands are China's";
+"kItemPatriotDice" = "dragon ball dice";
+"kPatriotDice" = "dragon ball dice";
+"kPatriotDiceDescription" = "looks like dragon balls";
 
+"kItemGoldenDice" = "gold dice";
+"kGoldenDice" = "gold dice";
+"kGoldenDiceDescription" = "simple and noble, elegant and generous appearance of the dice, a status symbol, high rich handsome essential.";
+
+"kItemWoodDice" = "wooden dice";
+"kWoodDice" = "wooden dice";
+"kWoodDiceDescription" = "return to nature, as in wooden dice background, dedicated young artists.";
+
+"kItemCrystalDice" = "crystal dice";
+"kCrystalDice" = "crystal dice";
+"kCrystalDiceDescription" = "crystal clear sense, a favorite of the girls.";
+
+"kItemDiamondDice" = "gem dice";
+"kDiamondDice" = "gem dice";
+"kDiamondDiceDescription" = "and Kennedy to the United States, than precious stones, symbolizing magnificent auspicious meaningful sense, everyone worth having oh";
 
 /*********************** 大话骰子国际化字符串结束 *************************/
 
