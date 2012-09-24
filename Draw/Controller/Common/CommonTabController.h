@@ -23,6 +23,7 @@
 - (void)serviceLoadDataForTabID:(NSInteger)tabID;
 
 @optional
+- (void)serviceDeleteData:(NSObject *)data ForTabID:(NSInteger)tabID;
 - (NSString *)tabNoDataTipsforIndex:(NSInteger)index;
 
 //- (void)startToLoadDataForTabID:(NSInteger)tabID;
@@ -50,6 +51,6 @@
 
 - (void)finishLoadDataForTabID:(NSInteger)tabID resultList:(NSArray *)list;
 - (void)failLoadDataForTabID:(NSInteger)tabID;
-
+- (void)finishDeleteData:(NSObject *)data ForTabID:(NSInteger)tabID;
 //- (void)startToLoadNewDataForTabID:(NSInteger)tabID;
 @end

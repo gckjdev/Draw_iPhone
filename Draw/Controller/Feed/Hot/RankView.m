@@ -17,6 +17,7 @@
 
 @implementation RankView
 @synthesize drawFlag = _drawFlag;
+@synthesize maskButton = _maskButton;
 @synthesize delegate = _delegate;
 @synthesize title = _title;
 @synthesize author = _author;
@@ -48,6 +49,14 @@
     }
     RankView *view = [topLevelObjects objectAtIndex:0];
     view.delegate = delegate;
+    
+    UIImage *selectedImage = [[ShareImageManager defaultManager] 
+                              normalButtonImage];
+    [view.maskButton setBackgroundImage:selectedImage 
+                               forState:UIControlStateHighlighted];
+    [view.maskButton setBackgroundImage:selectedImage 
+                               forState:UIControlStateSelected];
+    [view.maskButton setAlpha:0.8];
     return view;
 }
 
@@ -57,6 +66,7 @@
     PPRelease(_author);
     PPRelease(_drawImage);
     [_drawFlag release];
+    [_maskButton release];
     [super dealloc];
 }
 
@@ -111,15 +121,15 @@
     }
     
     [self.author setText:feed.feedUser.nickName];
-    
-    //add a button.
-    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-    button.frame = self.bounds;
-    [button addTarget:self action:@selector(clickRankView:) forControlEvents:UIControlEventTouchUpInside];
-    [self addSubview:button];
+    [self setRankViewSelected:NO];
 }
 
-- (void)clickRankView:(id)sender
+- (void)setRankViewSelected:(BOOL)selected
+{
+    [self.maskButton setSelected:selected];
+}
+
+- (IBAction)clickMaskView:(id)sender
 {
     if (self.delegate && 
         [self.delegate respondsToSelector:@selector(didClickRankView:)]) {

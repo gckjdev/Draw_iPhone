@@ -71,7 +71,7 @@ typedef enum{
 {
     [super viewDidLoad];    
     [self initTabButtons];
-    [self.titleLabel setText:NSLS(@"kRank")];
+    [self.titleLabel setText:NSLS(@"kMine")];
 }
 
 - (void)viewDidUnload
@@ -389,12 +389,71 @@ typedef enum{
 }
 
 
+- (void)enterDetailFeed:(DrawFeed *)feed
+{
+    ShowFeedController *sc = [[ShowFeedController alloc] initWithFeed:feed];
+    [self.navigationController pushViewController:sc animated:YES];
+    [sc release];    
+}
+
+
+#pragma mark - action sheet delegate
+
+typedef enum{
+    ActionSheetIndexDetail = 0,
+    ActionSheetIndexDelete = 1,
+    ActionSheetIndexCancel,
+}ActionSheetIndex;
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    
+    DrawFeed *feed = _selectRanView.feed;
+    switch (buttonIndex) {
+        case ActionSheetIndexDelete:
+        {
+            PPDebug(@"Delete");
+        }
+            break;
+        case ActionSheetIndexDetail:
+        {
+            PPDebug(@"Detail");            
+            [self enterDetailFeed:feed];
+        }
+            break;
+        default:
+        {
+
+        }
+            break;
+    }
+    [_selectRanView setRankViewSelected:NO];
+    _selectRanView = nil;
+}
+
+
 #pragma mark Rank View delegate
 - (void)didClickRankView:(RankView *)rankView
 {
-    ShowFeedController *sc = [[ShowFeedController alloc] initWithFeed:rankView.feed];
-    [self.navigationController pushViewController:sc animated:YES];
-    [sc release];
+    TableTab *tab = [self currentTab];
+    if(tab.tabID == MyTypeOpus){
+        //action sheet
+        _selectRanView = rankView;
+        [rankView setRankViewSelected:YES];
+        
+        UIActionSheet *actionSheet = [[UIActionSheet alloc]
+                                      initWithTitle:NSLS(@"kFeedOperation")
+                                      delegate:self 
+                                      cancelButtonTitle:NSLS(@"kCancel") 
+                                      destructiveButtonTitle:NSLS(@"kDetail") 
+                                      otherButtonTitles:NSLS(@"kDelete"), nil];
+        [actionSheet showInView:self.view];
+        
+        [actionSheet release];
+        
+    }else{
+        [self enterDetailFeed:rankView.feed];
+    }
 }
 
 #pragma mark feed cell delegate

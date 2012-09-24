@@ -38,10 +38,15 @@ typedef enum{
 @property (retain, nonatomic) IBOutlet HJManagedImageV *drawImage;
 @property (retain, nonatomic) DrawFeed *feed;
 
+
 + (id)createRankView:(id)delegate type:(RankViewType)type;
 + (CGFloat)heightForRankViewType:(RankViewType)type;
 + (CGFloat)widthForRankViewType:(RankViewType)type;
-- (void)setViewInfo:(DrawFeed *)feed;
-@property (retain, nonatomic) IBOutlet UIImageView *drawFlag;
 
+- (void)setViewInfo:(DrawFeed *)feed;
+- (IBAction)clickMaskView:(id)sender;
+- (void)setRankViewSelected:(BOOL)selected;
+
+@property (retain, nonatomic) IBOutlet UIImageView *drawFlag;
+@property (retain, nonatomic) IBOutlet UIButton *maskButton;
 @end
