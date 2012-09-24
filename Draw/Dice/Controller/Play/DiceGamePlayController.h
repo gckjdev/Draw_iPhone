@@ -52,6 +52,8 @@
     CommonDialog* _diceRobotDecision;
     NSMutableSet* _urgedUser;
 }
+@property (retain, nonatomic) IBOutlet UIImageView *bgImageView;
+@property (retain, nonatomic) IBOutlet UIImageView *tableImageView;
 
 @property (retain, nonatomic) NSTimer *adHideTimer;
 @property (retain, nonatomic) IBOutlet FontLabel *myLevelLabel;
