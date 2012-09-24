@@ -259,8 +259,8 @@
 		A4903E55160EE631005A587F /* openDice_purpleCrystal_4.png in Resources */ = {isa = PBXBuildFile; fileRef = A4903E49160EE631005A587F /* openDice_purpleCrystal_4.png */; };
 		A4903E56160EE631005A587F /* openDice_purpleCrystal_5.png in Resources */ = {isa = PBXBuildFile; fileRef = A4903E4A160EE631005A587F /* openDice_purpleCrystal_5.png */; };
 		A4903E57160EE631005A587F /* openDice_purpleCrystal_6.png in Resources */ = {isa = PBXBuildFile; fileRef = A4903E4B160EE631005A587F /* openDice_purpleCrystal_6.png */; };
-		A4903E5A160FF4E0005A587F /* cut.png in Resources */ = {isa = PBXBuildFile; fileRef = A4903E58160FF4E0005A587F /* cut.png */; };
-		A4903E5B160FF4E0005A587F /* rollAgain.png in Resources */ = {isa = PBXBuildFile; fileRef = A4903E59160FF4E0005A587F /* rollAgain.png */; };
+		A4903E7616100838005A587F /* cut@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4903E7416100838005A587F /* cut@2x.png */; };
+		A4903E7716100838005A587F /* rollAgain@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4903E7516100838005A587F /* rollAgain@2x.png */; };
 		A4A01BB215D8AF67002FE86D /* bell_1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4A01B7115D8AF67002FE86D /* bell_1@2x.png */; };
 		A4A01BB315D8AF67002FE86D /* bell_2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4A01B7215D8AF67002FE86D /* bell_2@2x.png */; };
 		A4A01BB415D8AF67002FE86D /* bell_3@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4A01B7315D8AF67002FE86D /* bell_3@2x.png */; };
@@ -1937,8 +1937,8 @@
 		A4903E49160EE631005A587F /* openDice_purpleCrystal_4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = openDice_purpleCrystal_4.png; path = Draw/Dice/Resource/image/beautifulDice/purpleCrystal/openDice_purpleCrystal_4.png; sourceTree = SOURCE_ROOT; };
 		A4903E4A160EE631005A587F /* openDice_purpleCrystal_5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = openDice_purpleCrystal_5.png; path = Draw/Dice/Resource/image/beautifulDice/purpleCrystal/openDice_purpleCrystal_5.png; sourceTree = SOURCE_ROOT; };
 		A4903E4B160EE631005A587F /* openDice_purpleCrystal_6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = openDice_purpleCrystal_6.png; path = Draw/Dice/Resource/image/beautifulDice/purpleCrystal/openDice_purpleCrystal_6.png; sourceTree = SOURCE_ROOT; };
-		A4903E58160FF4E0005A587F /* cut.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cut.png; sourceTree = "<group>"; };
-		A4903E59160FF4E0005A587F /* rollAgain.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rollAgain.png; sourceTree = "<group>"; };
+		A4903E7416100838005A587F /* cut@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cut@2x.png"; sourceTree = "<group>"; };
+		A4903E7516100838005A587F /* rollAgain@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "rollAgain@2x.png"; sourceTree = "<group>"; };
 		A4A01B7115D8AF67002FE86D /* bell_1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bell_1@2x.png"; sourceTree = "<group>"; };
 		A4A01B7215D8AF67002FE86D /* bell_2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bell_2@2x.png"; sourceTree = "<group>"; };
 		A4A01B7315D8AF67002FE86D /* bell_3@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bell_3@2x.png"; sourceTree = "<group>"; };
@@ -4159,8 +4159,8 @@
 		A4A01B7015D8AF67002FE86D /* game */ = {
 			isa = PBXGroup;
 			children = (
-				A4903E58160FF4E0005A587F /* cut.png */,
-				A4903E59160FF4E0005A587F /* rollAgain.png */,
+				A4903E7416100838005A587F /* cut@2x.png */,
+				A4903E7516100838005A587F /* rollAgain@2x.png */,
 				A4903D4C160DC569005A587F /* delay.gif */,
 				A4903D4D160DC569005A587F /* diceRobot.gif */,
 				A4903D4E160DC569005A587F /* diceRobot@2x.png */,
@@ -9582,9 +9582,9 @@
 				A4903E55160EE631005A587F /* openDice_purpleCrystal_4.png in Resources */,
 				A4903E56160EE631005A587F /* openDice_purpleCrystal_5.png in Resources */,
 				A4903E57160EE631005A587F /* openDice_purpleCrystal_6.png in Resources */,
-				A4903E5A160FF4E0005A587F /* cut.png in Resources */,
-				A4903E5B160FF4E0005A587F /* rollAgain.png in Resources */,
 				C2CCD078160FFD55003E9F34 /* dice_purpleDiamond_1.png in Resources */,
+				A4903E7616100838005A587F /* cut@2x.png in Resources */,
+				A4903E7716100838005A587F /* rollAgain@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
