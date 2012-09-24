@@ -899,5 +899,10 @@ static UserService* _defaultUserService;
     });
 
 }
+- (void)getTopPlayer:(NSInteger)offset limit:(NSInteger)limit delegate:(id<UserServiceDelegate>)delegate
+{
+    NSString *appId = [ConfigManager appId];
+    NSString *gameId = [ConfigManager gameId];
+}
 
 @end
