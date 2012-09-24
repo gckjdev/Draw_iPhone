@@ -75,18 +75,6 @@
                                 amount:[[ItemManager defaultManager] amountForItem:ItemTypeDecTime]] autorelease];
 }
 
-//+ (Item*)doubleKill
-//{
-//    return [[[Item alloc] initWithType:ItemTypeDoubleKill 
-//                                 image:[[DiceImageManager defaultManager] doubleKillImage]
-//                                  name:NSLS(@"kItemDoubleKill")
-//                             shortName:NSLS(@"kDoubleKil")
-//                           description:NSLS(@"kDoubleKillDescription") 
-//                      buyAmountForOnce:10
-//                                 price:[[ShoppingManager defaultManager] getCutPrice] 
-//                                amount:[[ItemManager defaultManager] amountForItem:ItemTypeDoubleKill]] autorelease];
-//}
-
 + (Item*)turtle
 {
     return [[[Item alloc] initWithType:ItemTypeSkip 

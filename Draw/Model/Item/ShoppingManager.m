@@ -186,6 +186,13 @@ static ShoppingManager *staticShoppingManager = nil;
 #define DEFAULT_URGE_PRICE       500
 #define DEFAULT_TURTLE_PRICE     500
 #define DEFAULT_DICE_ROBOT_PRICE 500
+#define DEFAULT_REVERSE_PRICE    500
+
+#define DEFAULT_PATRIOT_DICE_PRICE  20000
+#define DEFAULT_GOLDEN_DICE_PRICE  20000
+#define DEFAULT_WOOD_DICE_PRICE  20000
+#define DEFAULT_CRYSAL_DICE_PRICE  20000
+#define DEFAULT_DIAMOND_DICE_PRICE  20000
 
 - (NSInteger)getColorPrice
 {
@@ -295,6 +302,18 @@ static ShoppingManager *staticShoppingManager = nil;
     return retPrice;
 }
 
+- (NSInteger)getReversePrice
+{
+    NSString* price = [MobClick getConfigParams:@"DICE_REVERSE_PRICE"];
+    if (price == nil) {
+        PPDebug(@"<getReversePrice>: price is nil, return default price = %d",DEFAULT_REVERSE_PRICE);
+        return DEFAULT_REVERSE_PRICE;
+    }
+    NSInteger retPrice = [price integerValue];
+    PPDebug(@"<getReversePrice>: price string = %@,price value = %d",price,retPrice);
+    return retPrice;
+}
+
 - (NSInteger)getTomatoPrice
 {
     NSString* price = [MobClick getConfigParams:@"TOMATO_PRICE"];
@@ -345,26 +364,65 @@ static ShoppingManager *staticShoppingManager = nil;
 
 - (NSInteger)getPatriotDicePrice
 {
-    NSString* price = [MobClick getConfigParams:@"DICE_PATRIOT_DICE_PRICE"];
+    NSString* price = [MobClick getConfigParams:@"PATRIOT_DICE_PRICE"];
     if (price == nil) {
-        PPDebug(@"<getPatriotDicePrice>: price is nil, return default price = %d",DEFAULT_DICE_ROBOT_PRICE);
-        return DEFAULT_DICE_ROBOT_PRICE;
+        PPDebug(@"<getPatriotDicePrice>: price is nil, return default price = %d",DEFAULT_PATRIOT_DICE_PRICE);
+        return DEFAULT_PATRIOT_DICE_PRICE;
     }
     NSInteger retPrice = [price integerValue];
     PPDebug(@"<getPatriotDicePrice>: price string = %@,price value = %d",price,retPrice);
     return retPrice;
 }
 
-- (NSInteger)getReversePrice
+- (NSInteger)getGoldenDicePrice
 {
-    NSString* price = [MobClick getConfigParams:@"DICE_REVERSE_PRICE"];
+    NSString* price = [MobClick getConfigParams:@"GOLDEN_DICE_PRICE"];
     if (price == nil) {
-        PPDebug(@"<getReversePrice>: price is nil, return default price = %d",DICE_REVERSE_PRICE);
-        return DICE_REVERSE_PRICE;
+        PPDebug(@"<getPatriotDicePrice>: price is nil, return default price = %d",DEFAULT_GOLDEN_DICE_PRICE);
+        return DEFAULT_GOLDEN_DICE_PRICE;
     }
     NSInteger retPrice = [price integerValue];
-    PPDebug(@"<getReversePrice>: price string = %@,price value = %d",price,retPrice);
+    PPDebug(@"<getPatriotDicePrice>: price string = %@,price value = %d",price,retPrice);
     return retPrice;
 }
+
+- (NSInteger)getWoodDicePrice
+{
+    NSString* price = [MobClick getConfigParams:@"WOOD_DICE_PRICE"];
+    if (price == nil) {
+        PPDebug(@"<getPatriotDicePrice>: price is nil, return default price = %d",DEFAULT_WOOD_DICE_PRICE);
+        return DEFAULT_WOOD_DICE_PRICE;
+    }
+    NSInteger retPrice = [price integerValue];
+    PPDebug(@"<getPatriotDicePrice>: price string = %@,price value = %d",price,retPrice);
+    return retPrice;
+}
+
+- (NSInteger)getCrystalDicePrice
+{
+    NSString* price = [MobClick getConfigParams:@"CRYSAL_DICE_PRICE"];
+    if (price == nil) {
+        PPDebug(@"<getPatriotDicePrice>: price is nil, return default price = %d",DEFAULT_CRYSAL_DICE_PRICE);
+        return DEFAULT_CRYSAL_DICE_PRICE;
+    }
+    NSInteger retPrice = [price integerValue];
+    PPDebug(@"<getPatriotDicePrice>: price string = %@,price value = %d",price,retPrice);
+    return retPrice;
+}
+
+
+- (NSInteger)getDiamondDicePrice
+{
+    NSString* price = [MobClick getConfigParams:@"DIAMOND_DICE_PRICE"];
+    if (price == nil) {
+        PPDebug(@"<getPatriotDicePrice>: price is nil, return default price = %d",DEFAULT_DIAMOND_DICE_PRICE);
+        return DEFAULT_DIAMOND_DICE_PRICE;
+    }
+    NSInteger retPrice = [price integerValue];
+    PPDebug(@"<getPatriotDicePrice>: price string = %@,price value = %d",price,retPrice);
+    return retPrice;
+}
+
+
 
 @end
