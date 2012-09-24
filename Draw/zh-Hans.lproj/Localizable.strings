@@ -855,6 +855,30 @@
 "kCutDescription" = "使用【劈骰】道具则立刻开骰，并且赌注翻倍。";
 "kCutMessage" = "劈";
 
+"kItemPeek" = "看";
+"kPeek" = "看";
+"kPeekDescription" = "使用【看】道具可以查看每一个玩家的一颗骰子。";
+
+"kItemPostpone" = "延时";
+"kPostpone" = "延时";
+"kPostponeDescription" = "使用【延时】道具可以为自己增加思考时间。";
+
+"kItemUrge" = "减时";
+"kUrge" = "减时";
+"kUrgeDescription"= "使用【减时】道具可以减少下家的思考时间。";
+
+"kItemTurtle" = "龟缩";
+"kTurtle" = "龟缩";
+"kTurtleDescription" = "使用【龟缩】道具可以跳过自己的叫骰回合，将风险转移给下家。";
+
+"kItemDiceRobot" = "智能管家";
+"kDiceRobot" = "智能管家";
+"kDiceRobotDescription" = "使用【智能管家】道具可以帮你计算出最合适的建议。";
+
+"kItemReverse" = "逆";
+"kReverse" = "逆";
+"kReverseDescription" = "使用【逆】道具可以改变游戏的方向。";
+
 "kMoreRoom" = "更多...";
 "kMoreRoomLoading" = "加载中...";
 
