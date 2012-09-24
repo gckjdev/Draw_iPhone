@@ -156,7 +156,7 @@
                              shortName:NSLS(@"kCrystalDice")
                            description:NSLS(@"kCrystalDiceDescription") 
                       buyAmountForOnce:1
-                                 price:[[ShoppingManager defaultManager] getBlueCrystalDicePrice] 
+                                 price:[[ShoppingManager defaultManager] getCrystalDicePrice] 
                                 amount:[[ItemManager defaultManager] amountForItem:ItemTypeCustomDiceBlueCrystalDice]] autorelease];
 }
 
@@ -168,7 +168,7 @@
                              shortName:NSLS(@"kCrystalDice")
                            description:NSLS(@"kCrystalDiceDescription") 
                       buyAmountForOnce:1
-                                 price:[[ShoppingManager defaultManager] getPinkCrystalDicePrice] 
+                                 price:[[ShoppingManager defaultManager] getCrystalDicePrice] 
                                 amount:[[ItemManager defaultManager] amountForItem:ItemTypeCustomDicePinkCrystalDice]] autorelease];
 }
 
@@ -180,7 +180,7 @@
                              shortName:NSLS(@"kCrystalDice")
                            description:NSLS(@"kCrystalDiceDescription") 
                       buyAmountForOnce:1
-                                 price:[[ShoppingManager defaultManager] getGreenCrystalDicePrice] 
+                                 price:[[ShoppingManager defaultManager] getCrystalDicePrice] 
                                 amount:[[ItemManager defaultManager] amountForItem:ItemTypeCustomDiceGreenCrystalDice]] autorelease];
 }
 
@@ -192,7 +192,7 @@
                              shortName:NSLS(@"kCrystalDice")
                            description:NSLS(@"kCrystalDiceDescription") 
                       buyAmountForOnce:1
-                                 price:[[ShoppingManager defaultManager] getPurpleCrystalDicePrice] 
+                                 price:[[ShoppingManager defaultManager] getCrystalDicePrice] 
                                 amount:[[ItemManager defaultManager] amountForItem:ItemTypeCustomDicePurpleCrystalDice]] autorelease];
 }
 
@@ -204,7 +204,7 @@
                              shortName:NSLS(@"kDiamondDice")
                            description:NSLS(@"kDiamondDiceDescription") 
                       buyAmountForOnce:1
-                                 price:[[ShoppingManager defaultManager] getBlueDiamondDicePrice] 
+                                 price:[[ShoppingManager defaultManager] getDiamondDicePrice] 
                                 amount:[[ItemManager defaultManager] amountForItem:ItemTypeCustomDiceBlueDiamondDice]] autorelease];
 }
 
@@ -216,7 +216,7 @@
                              shortName:NSLS(@"kDiamondDice")
                            description:NSLS(@"kDiamondDiceDescription") 
                       buyAmountForOnce:1
-                                 price:[[ShoppingManager defaultManager] getPinkDiamondPrice] 
+                                 price:[[ShoppingManager defaultManager] getDiamondDicePrice] 
                                 amount:[[ItemManager defaultManager] amountForItem:ItemTypeCustomDicePinkDiamondDice]] autorelease];
 }
 
@@ -228,7 +228,7 @@
                              shortName:NSLS(@"kDiamondDice")
                            description:NSLS(@"kDiamondDiceDescription") 
                       buyAmountForOnce:1
-                                 price:[[ShoppingManager defaultManager] getGreenDiamondDicePrice] 
+                                 price:[[ShoppingManager defaultManager] getDiamondDicePrice] 
                                 amount:[[ItemManager defaultManager] amountForItem:ItemTypeCustomDiceGreenDiamondDice]] autorelease];
 }
 
@@ -240,7 +240,7 @@
                              shortName:NSLS(@"kDiamondDice")
                            description:NSLS(@"kDiamondDiceDescription") 
                       buyAmountForOnce:1
-                                 price:[[ShoppingManager defaultManager] getPurpleDiamondDicePrice] 
+                                 price:[[ShoppingManager defaultManager] getDiamondDicePrice] 
                                 amount:[[ItemManager defaultManager] amountForItem:ItemTypeCustomDicePurpleDiamondDice]] autorelease];
 }
         
