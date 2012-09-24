@@ -35,6 +35,7 @@
 
 @class DiceGameService;
 @class CustomDiceManager;
+@class CommonDialog;
 
 
 @interface DiceGamePlayController : PPViewController <DiceItemListViewDelegate, DiceSelectedViewDelegate, DiceAvatarViewDelegate, DicesResultViewAnimationDelegate, LevelServiceDelegate, CommonDialogDelegate, ChatViewDelegate, AccountServiceDelegate, DiceBetViewDelegate> {
@@ -48,6 +49,7 @@
     DiceSoundManager *_soundManager;
     DiceRobotManager* _robotManager;
     CustomDiceManager* _customDicemanager;
+    CommonDialog* _diceRobotDecision;
     NSMutableSet* _urgedUser;
 }
 
@@ -87,6 +89,7 @@
 - (DiceAvatarView *)selfAvatarView;
 - (DiceAvatarView*)avatarViewOfUser:(NSString*)userId;
 - (void)urgeUser:(NSString*)userId;
-- (void)showRobotDecition;
+- (void)showRobotDecision;
+- (void)hideRobotDecision;
 
 @end
