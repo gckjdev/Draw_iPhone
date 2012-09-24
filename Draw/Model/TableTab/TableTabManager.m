@@ -94,7 +94,7 @@
     [tab setCurrentTab:YES];
 }
 
-- (NSArray *)dataListForTabID:(NSInteger)tabID
+- (NSMutableArray *)dataListForTabID:(NSInteger)tabID
 {
     return [[self tabForID:tabID] dataList];
 }

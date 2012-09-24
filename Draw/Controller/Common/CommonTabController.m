@@ -179,6 +179,12 @@
     }
 }
 
+- (void)finishDeleteData:(NSObject *)data ForTabID:(NSInteger)tabID
+{
+    NSMutableArray *list = [_tabManager dataListForTabID:tabID];
+    [list removeObject:data];
+    [self.dataTableView reloadData];
+}
 
 #pragma mark table view delegate
 
