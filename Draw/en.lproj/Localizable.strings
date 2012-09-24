@@ -583,7 +583,7 @@
 "kSending" = "Sending...";
 "kNoCommentTips" = "No Comments";
 "kFeedDetail" = "Drawing Detail";
-
+"kOpusDetail" = "Opus";
 "kCommentFail" = "Failed to Comment";
 
 "kBlankDrawTitle" = "Blank Drawing";
@@ -805,6 +805,8 @@
 
 "kUserNoFeed" = "%@ has no feeds.";
 "kUserNoOpus" = "%@ has no opus.";
+
+"kOpusOperation" = "Choose your operation";
 
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
