@@ -29,7 +29,7 @@
 #define KEY_GAME_MESSAGE @"KEY_GAME_MESSAGE"
 #define ROOMS_COUNT_PER_PAGE  20
 
-#define REFRESH_ROOMS_TIME_INTERVAL 2
+#define REFRESH_ROOMS_TIME_INTERVAL 200000000
 
 #define CREATE_ROOM_DIALOG_TAG  120120824
 #define ENTER_ROOM_DIALOG_TAG   220120824
@@ -209,25 +209,33 @@
     
     [self registerDiceGameNotificationWithName:NOTIFICAIION_CREATE_ROOM_RESPONSE usingBlock:^(NSNotification *note) {
         PPDebug(@"<DiceRoomListController> NOTIFICAIION_CREATE_ROOM_RESPONSE"); 
-        [self joinGame];
+        [self hideActivity];
+        GameMessage* message = [CommonGameNetworkService userInfoToMessage:note.userInfo];
+        if (message.resultCode == GameResultCodeSuccess) {
+            [self joinGame];
+        } else if (message.resultCode == GameResultCodeErrorSessionNameDuplicated) {
+            [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kRoomNameDuplicated") delayTime:2 isHappy:NO];
+        }else {
+            [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kJoinGameFailure") delayTime:1.5 isHappy:NO];
+        }
     }];
     
     [self registerDiceGameNotificationWithName:NOTIFICAIION_GET_ROOMS_RESPONSE usingBlock:^(NSNotification *note) {
         PPDebug(@"<DiceRoomListController> NOTIFICAIION_GET_ROOMS_RESPONSE"); 
-        [self getRoomsFinished];
+        GameMessage* message = [CommonGameNetworkService userInfoToMessage:note.userInfo];
+        if (message.resultCode == GameResultCodeSuccess) {
+            [self getRoomsFinished];
+        }
     }];
     [self registerDiceGameNotificationWithName:NOTIFICATION_JOIN_GAME_RESPONSE usingBlock:^(NSNotification *note) {
         PPDebug(@"<DiceRoomListController> NOTIFICATION_JOIN_GAME_RESPONSE");  
         [self hideActivity];
         GameMessage* message = [CommonGameNetworkService userInfoToMessage:note.userInfo];
-        if (message.resultCode == 0) {
+        if (message.resultCode == GameResultCodeSuccess) {
             [self joinGame];
         } else if (message.resultCode == GameResultCodeErrorSessionidFull) {
             [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kSessionFull") delayTime:1.5 isHappy:NO];
-        } else if (message.resultCode == GameResultCodeErrorSessionNameDuplicated) {
-            [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kRoomNameDuplicated") delayTime:2 isHappy:NO];
-            [self creatRoom:nil];
-        }else {
+        } else {
             [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kJoinGameFailure") delayTime:1.5 isHappy:NO];
         }
     }];
