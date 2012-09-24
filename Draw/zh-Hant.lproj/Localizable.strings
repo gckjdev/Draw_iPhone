@@ -582,6 +582,8 @@
 "kSending" = "發送中...";
 "kNoCommentTips" = "還沒有人評論";
 "kFeedDetail" = "猜畫詳情";
+"kOpusDetail" = "查看作品";
+
 "kCommentFail" = "評論失敗";
 
 "kBlankDrawMessage" = "不能提交空白的畫哦，至少得畫幾筆吧？";
@@ -802,6 +804,9 @@
 
 "kUserNoFeed" = "%@ 還沒有動態。";
 "kUserNoOpus" = "%@ 還沒有作品。";
+
+"kOpusOperation" = "請選擇你需要的操作";
+
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 
@@ -916,7 +921,23 @@
 "kCustomDice" = "個性化骰子";
 "kItemPatriotDice" = "愛國骰";
 "kPatriotDice" = "愛國骰";
-"kPatriotDiceDescription" = "紅旗飄揚，揚我國威！釣魚島是中國的！";
+"kPatriotDiceDescription" = "五星紅旗背景的骰子，適用於各種愛國者。";
+
+"kItemGoldenDice" = "黃金骰";
+"kGoldenDice" = "黃金骰";
+"kGoldenDiceDescription" = "簡潔尊貴，優雅大方的骰子外觀，身份的象徵，高富帥必備。";
+
+"kItemWoodDice" = "木骰";
+"kWoodDice" = "木骰";
+"kWoodDiceDescription" = "回歸自然，以木質作為骰子背景，文藝青年專用。";
+
+"kItemCrystalDice" = "水晶骰";
+"kCrystalDice" = "水晶骰";
+"kCrystalDiceDescription" = "晶瑩剔透的感覺，女生們的最愛。";
+
+"kItemDiamondDice" = "寶石骰";
+"kDiamondDice" = "寶石骰";
+"kDiamondDiceDescription" = "至堅至美者，非寶石莫屬，象徵瑰麗祥瑞，意義雋永，人人值得擁有哦～";
 
 /*********************** 大话骰子国际化字符串结束 *************************/
 

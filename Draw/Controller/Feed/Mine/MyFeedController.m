@@ -71,7 +71,7 @@ typedef enum{
 {
     [super viewDidLoad];    
     [self initTabButtons];
-    [self.titleLabel setText:NSLS(@"kRank")];
+    [self.titleLabel setText:NSLS(@"kMine")];
 }
 
 - (void)viewDidUnload
@@ -151,6 +151,7 @@ typedef enum{
         [cell.contentView addSubview:rankView];
         rankView.frame = CGRectMake(x, y, width, height);
         x += width + space;
+        rankView.drawFlag.hidden = YES;
     }
 }
 
@@ -281,6 +282,24 @@ typedef enum{
     //enter the detail feed contrller
 }
 
+
+#pragma mark - delete feed.
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    Feed *feed = [self.tabDataList objectAtIndex:indexPath.row];
+    [self showActivityWithText:NSLS(@"kDeleting")];
+    [[FeedService defaultService] deleteFeed:feed delegate:self];
+}
+
+-(BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (self.currentTab.tabID == MyTypeFeed) {
+        Feed *feed = [self.tabDataList objectAtIndex:indexPath.row];
+        return [feed isMyFeed];        
+    }
+    return false;
+}
+
 #pragma mark common tab controller
 
 - (NSInteger)tabCount
@@ -389,12 +408,84 @@ typedef enum{
 }
 
 
+- (void)enterDetailFeed:(DrawFeed *)feed
+{
+    ShowFeedController *sc = [[ShowFeedController alloc] initWithFeed:feed];
+    [self.navigationController pushViewController:sc animated:YES];
+    [sc release];    
+}
+
+
+#pragma mark - action sheet delegate
+
+typedef enum{
+    ActionSheetIndexDetail = 0,
+    ActionSheetIndexDelete = 1,
+    ActionSheetIndexCancel,
+}ActionSheetIndex;
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    
+    DrawFeed *feed = _selectRanView.feed;
+    switch (buttonIndex) {
+        case ActionSheetIndexDelete:
+        {
+            PPDebug(@"Delete");
+            [self showActivityWithText:NSLS(@"kDeleting")];
+            [[FeedService defaultService] deleteFeed:_selectRanView.feed delegate:self];
+        }
+            break;
+        case ActionSheetIndexDetail:
+        {
+            PPDebug(@"Detail");            
+            [self enterDetailFeed:feed];
+        }
+            break;
+        default:
+        {
+
+        }
+            break;
+    }
+    [_selectRanView setRankViewSelected:NO];
+    _selectRanView = nil;
+}
+
+
+- (void)didDeleteFeed:(Feed *)feed resultCode:(NSInteger)resultCode;
+
+{
+    [self hideActivity];
+    if (resultCode != 0) {
+        [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kDeleteFail") delayTime:1.5 isHappy:NO];
+        return;
+    }
+    [self finishDeleteData:feed ForTabID:self.currentTab.tabID];    
+}
+
 #pragma mark Rank View delegate
 - (void)didClickRankView:(RankView *)rankView
 {
-    ShowFeedController *sc = [[ShowFeedController alloc] initWithFeed:rankView.feed];
-    [self.navigationController pushViewController:sc animated:YES];
-    [sc release];
+    TableTab *tab = [self currentTab];
+    if(tab.tabID == MyTypeOpus){
+        //action sheet
+        _selectRanView = rankView;
+        [rankView setRankViewSelected:YES];
+        
+        UIActionSheet *actionSheet = [[UIActionSheet alloc]
+                                      initWithTitle:NSLS(@"kOpusOperation")
+                                      delegate:self 
+                                      cancelButtonTitle:NSLS(@"kCancel") 
+                                      destructiveButtonTitle:NSLS(@"kOpusDetail") 
+                                      otherButtonTitles:NSLS(@"kDelete"), nil];
+        
+        [actionSheet showInView:self.view];
+        [actionSheet release];
+        
+    }else{
+        [self enterDetailFeed:rankView.feed];
+    }
 }
 
 #pragma mark feed cell delegate

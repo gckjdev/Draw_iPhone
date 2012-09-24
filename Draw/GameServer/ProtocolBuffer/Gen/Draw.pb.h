@@ -4,6 +4,8 @@
 
 #import "GameBasic.pb.h"
 
+@class PBCommentInfo;
+@class PBCommentInfo_Builder;
 @class PBDraw;
 @class PBDrawAction;
 @class PBDrawAction_Builder;
@@ -220,57 +222,158 @@
 - (PBFeedTimes_Builder*) clearValue;
 @end
 
+@interface PBCommentInfo : PBGeneratedMessage {
+@private
+  BOOL hasType_:1;
+  BOOL hasComment_:1;
+  BOOL hasActionId_:1;
+  BOOL hasActionUserId_:1;
+  BOOL hasActionNickName_:1;
+  BOOL hasActionSummary_:1;
+  int32_t type;
+  NSString* comment;
+  NSString* actionId;
+  NSString* actionUserId;
+  NSString* actionNickName;
+  NSString* actionSummary;
+}
+- (BOOL) hasType;
+- (BOOL) hasComment;
+- (BOOL) hasActionId;
+- (BOOL) hasActionUserId;
+- (BOOL) hasActionNickName;
+- (BOOL) hasActionSummary;
+@property (readonly) int32_t type;
+@property (readonly, retain) NSString* comment;
+@property (readonly, retain) NSString* actionId;
+@property (readonly, retain) NSString* actionUserId;
+@property (readonly, retain) NSString* actionNickName;
+@property (readonly, retain) NSString* actionSummary;
+
++ (PBCommentInfo*) defaultInstance;
+- (PBCommentInfo*) defaultInstance;
+
+- (BOOL) isInitialized;
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
+- (PBCommentInfo_Builder*) builder;
++ (PBCommentInfo_Builder*) builder;
++ (PBCommentInfo_Builder*) builderWithPrototype:(PBCommentInfo*) prototype;
+
++ (PBCommentInfo*) parseFromData:(NSData*) data;
++ (PBCommentInfo*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBCommentInfo*) parseFromInputStream:(NSInputStream*) input;
++ (PBCommentInfo*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBCommentInfo*) parseFromCodedInputStream:(PBCodedInputStream*) input;
++ (PBCommentInfo*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+@end
+
+@interface PBCommentInfo_Builder : PBGeneratedMessage_Builder {
+@private
+  PBCommentInfo* result;
+}
+
+- (PBCommentInfo*) defaultInstance;
+
+- (PBCommentInfo_Builder*) clear;
+- (PBCommentInfo_Builder*) clone;
+
+- (PBCommentInfo*) build;
+- (PBCommentInfo*) buildPartial;
+
+- (PBCommentInfo_Builder*) mergeFrom:(PBCommentInfo*) other;
+- (PBCommentInfo_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (PBCommentInfo_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+
+- (BOOL) hasType;
+- (int32_t) type;
+- (PBCommentInfo_Builder*) setType:(int32_t) value;
+- (PBCommentInfo_Builder*) clearType;
+
+- (BOOL) hasComment;
+- (NSString*) comment;
+- (PBCommentInfo_Builder*) setComment:(NSString*) value;
+- (PBCommentInfo_Builder*) clearComment;
+
+- (BOOL) hasActionId;
+- (NSString*) actionId;
+- (PBCommentInfo_Builder*) setActionId:(NSString*) value;
+- (PBCommentInfo_Builder*) clearActionId;
+
+- (BOOL) hasActionUserId;
+- (NSString*) actionUserId;
+- (PBCommentInfo_Builder*) setActionUserId:(NSString*) value;
+- (PBCommentInfo_Builder*) clearActionUserId;
+
+- (BOOL) hasActionNickName;
+- (NSString*) actionNickName;
+- (PBCommentInfo_Builder*) setActionNickName:(NSString*) value;
+- (PBCommentInfo_Builder*) clearActionNickName;
+
+- (BOOL) hasActionSummary;
+- (NSString*) actionSummary;
+- (PBCommentInfo_Builder*) setActionSummary:(NSString*) value;
+- (PBCommentInfo_Builder*) clearActionSummary;
+@end
+
 @interface PBFeed : PBGeneratedMessage {
 @private
   BOOL hasOpusCreatorGender_:1;
   BOOL hasGender_:1;
   BOOL hasIsCorrect_:1;
-  BOOL hasActionType_:1;
-  BOOL hasCreateDate_:1;
+  BOOL hasContestScore_:1;
+  BOOL hasHistoryScore_:1;
   BOOL hasCommentTimes_:1;
   BOOL hasGuessTimes_:1;
-  BOOL hasScore_:1;
   BOOL hasCorrectTimes_:1;
-  BOOL hasOpusStatus_:1;
   BOOL hasMatchTimes_:1;
+  BOOL hasOpusStatus_:1;
+  BOOL hasScore_:1;
+  BOOL hasActionType_:1;
+  BOOL hasCreateDate_:1;
+  BOOL hasFeedId_:1;
+  BOOL hasContestId_:1;
   BOOL hasOpusImage_:1;
   BOOL hasOpusWord_:1;
   BOOL hasOpusCreatorAvatar_:1;
+  BOOL hasUserId_:1;
   BOOL hasOpusCreatorNickName_:1;
   BOOL hasOpusCreatorUserId_:1;
-  BOOL hasComment_:1;
-  BOOL hasOpusId_:1;
-  BOOL hasTargetUserNickName_:1;
-  BOOL hasTargetUserId_:1;
-  BOOL hasAvatar_:1;
   BOOL hasNickName_:1;
-  BOOL hasUserId_:1;
-  BOOL hasFeedId_:1;
+  BOOL hasAvatar_:1;
+  BOOL hasComment_:1;
+  BOOL hasTargetUserId_:1;
+  BOOL hasTargetUserNickName_:1;
+  BOOL hasOpusId_:1;
+  BOOL hasCommentInfo_:1;
   BOOL hasDrawData_:1;
   BOOL opusCreatorGender_:1;
   BOOL gender_:1;
   BOOL isCorrect_:1;
-  int32_t actionType;
-  int32_t createDate;
+  Float64 contestScore;
+  Float64 historyScore;
   int32_t commentTimes;
   int32_t guessTimes;
-  int32_t score;
   int32_t correctTimes;
-  int32_t opusStatus;
   int32_t matchTimes;
+  int32_t opusStatus;
+  int32_t score;
+  int32_t actionType;
+  int32_t createDate;
+  NSString* feedId;
+  NSString* contestId;
   NSString* opusImage;
   NSString* opusWord;
   NSString* opusCreatorAvatar;
+  NSString* userId;
   NSString* opusCreatorNickName;
   NSString* opusCreatorUserId;
-  NSString* comment;
-  NSString* opusId;
-  NSString* targetUserNickName;
-  NSString* targetUserId;
-  NSString* avatar;
   NSString* nickName;
-  NSString* userId;
-  NSString* feedId;
+  NSString* avatar;
+  NSString* comment;
+  NSString* targetUserId;
+  NSString* targetUserNickName;
+  NSString* opusId;
+  PBCommentInfo* commentInfo;
   PBDraw* drawData;
   NSMutableArray* mutableGuessWordsList;
   NSMutableArray* mutableFeedTimesList;
@@ -285,11 +388,13 @@
 - (BOOL) hasDrawData;
 - (BOOL) hasTargetUserId;
 - (BOOL) hasTargetUserNickName;
+- (BOOL) hasHistoryScore;
 - (BOOL) hasOpusId;
 - (BOOL) hasIsCorrect;
 - (BOOL) hasScore;
 - (BOOL) hasOpusStatus;
 - (BOOL) hasComment;
+- (BOOL) hasCommentInfo;
 - (BOOL) hasMatchTimes;
 - (BOOL) hasCorrectTimes;
 - (BOOL) hasGuessTimes;
@@ -300,6 +405,8 @@
 - (BOOL) hasOpusCreatorAvatar;
 - (BOOL) hasOpusWord;
 - (BOOL) hasOpusImage;
+- (BOOL) hasContestId;
+- (BOOL) hasContestScore;
 @property (readonly, retain) NSString* feedId;
 @property (readonly, retain) NSString* userId;
 @property (readonly) int32_t actionType;
@@ -310,11 +417,13 @@
 @property (readonly, retain) PBDraw* drawData;
 @property (readonly, retain) NSString* targetUserId;
 @property (readonly, retain) NSString* targetUserNickName;
+@property (readonly) Float64 historyScore;
 @property (readonly, retain) NSString* opusId;
 - (BOOL) isCorrect;
 @property (readonly) int32_t score;
 @property (readonly) int32_t opusStatus;
 @property (readonly, retain) NSString* comment;
+@property (readonly, retain) PBCommentInfo* commentInfo;
 @property (readonly) int32_t matchTimes;
 @property (readonly) int32_t correctTimes;
 @property (readonly) int32_t guessTimes;
@@ -325,6 +434,8 @@
 @property (readonly, retain) NSString* opusCreatorAvatar;
 @property (readonly, retain) NSString* opusWord;
 @property (readonly, retain) NSString* opusImage;
+@property (readonly, retain) NSString* contestId;
+@property (readonly) Float64 contestScore;
 - (NSArray*) guessWordsList;
 - (NSString*) guessWordsAtIndex:(int32_t) index;
 - (NSArray*) feedTimesList;
@@ -416,6 +527,11 @@
 - (PBFeed_Builder*) setTargetUserNickName:(NSString*) value;
 - (PBFeed_Builder*) clearTargetUserNickName;
 
+- (BOOL) hasHistoryScore;
+- (Float64) historyScore;
+- (PBFeed_Builder*) setHistoryScore:(Float64) value;
+- (PBFeed_Builder*) clearHistoryScore;
+
 - (BOOL) hasOpusId;
 - (NSString*) opusId;
 - (PBFeed_Builder*) setOpusId:(NSString*) value;
@@ -447,6 +563,13 @@
 - (NSString*) comment;
 - (PBFeed_Builder*) setComment:(NSString*) value;
 - (PBFeed_Builder*) clearComment;
+
+- (BOOL) hasCommentInfo;
+- (PBCommentInfo*) commentInfo;
+- (PBFeed_Builder*) setCommentInfo:(PBCommentInfo*) value;
+- (PBFeed_Builder*) setCommentInfoBuilder:(PBCommentInfo_Builder*) builderForValue;
+- (PBFeed_Builder*) mergeCommentInfo:(PBCommentInfo*) value;
+- (PBFeed_Builder*) clearCommentInfo;
 
 - (BOOL) hasMatchTimes;
 - (int32_t) matchTimes;
@@ -504,5 +627,15 @@
 - (NSString*) opusImage;
 - (PBFeed_Builder*) setOpusImage:(NSString*) value;
 - (PBFeed_Builder*) clearOpusImage;
+
+- (BOOL) hasContestId;
+- (NSString*) contestId;
+- (PBFeed_Builder*) setContestId:(NSString*) value;
+- (PBFeed_Builder*) clearContestId;
+
+- (BOOL) hasContestScore;
+- (Float64) contestScore;
+- (PBFeed_Builder*) setContestScore:(Float64) value;
+- (PBFeed_Builder*) clearContestScore;
 @end
 

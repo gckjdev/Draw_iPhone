@@ -30,7 +30,7 @@
 - (TableTab *)currentTab;
 - (void)setCurrentTab:(TableTab *)tab;
 
-- (NSArray *)dataListForTabID:(NSInteger)tabID;
+- (NSMutableArray *)dataListForTabID:(NSInteger)tabID;
 - (void)setDataList:(NSArray *)list ForTabID:(NSInteger)tabID;
 - (void)addDataList:(NSArray *)list toTab:(NSInteger)tabID;
 @end

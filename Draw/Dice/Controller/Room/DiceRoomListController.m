@@ -24,7 +24,7 @@
 #import "ConfigManager.h"
 #import "CoinShopController.h"
 #import "LmWallService.h"
-
+#import "DiceUserInfoView.h"
 
 #define KEY_GAME_MESSAGE @"KEY_GAME_MESSAGE"
 #define ROOMS_COUNT_PER_PAGE  20
@@ -324,6 +324,7 @@
     }
     PBGameSession* session = [[DiceGameService defaultService].roomList objectAtIndex:indexPath.row];
     [cell setCellInfo:session ruleType:_ruleType];
+    cell.delegate = self;
     return cell;
 }
 
@@ -534,6 +535,21 @@
                                            atPoint:CGPointMake(self.view.center.x, self.friendRoomButton.center.y) 
                                           delegate:self];
     }
+}
+
+#pragma mark - dice room list delegate
+- (void)didQueryUser:(NSString *)userId
+{
+    [DiceUserInfoView showUser:userId 
+                      nickName:nil 
+                        avatar:nil 
+                        gender:nil 
+                      location:nil 
+                         level:0 
+                       hasSina:NO 
+                         hasQQ:NO 
+                   hasFacebook:NO 
+                    infoInView:self canChat:NO];
 }
 
 @end
