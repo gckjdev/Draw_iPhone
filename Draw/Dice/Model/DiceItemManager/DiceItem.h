@@ -20,6 +20,8 @@
 + (Item*)turtle;
 + (Item*)diceRobot;
 + (Item*)patriotDice;
++ (Item*)reverse;
+
 + (Item*)diceItemForItemType:(ItemType)type;
 
 + (Item*)goldenDice;

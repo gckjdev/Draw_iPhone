@@ -75,18 +75,6 @@
                                 amount:[[ItemManager defaultManager] amountForItem:ItemTypeDecTime]] autorelease];
 }
 
-//+ (Item*)doubleKill
-//{
-//    return [[[Item alloc] initWithType:ItemTypeDoubleKill 
-//                                 image:[[DiceImageManager defaultManager] doubleKillImage]
-//                                  name:NSLS(@"kItemDoubleKill")
-//                             shortName:NSLS(@"kDoubleKil")
-//                           description:NSLS(@"kDoubleKillDescription") 
-//                      buyAmountForOnce:10
-//                                 price:[[ShoppingManager defaultManager] getCutPrice] 
-//                                amount:[[ItemManager defaultManager] amountForItem:ItemTypeDoubleKill]] autorelease];
-//}
-
 + (Item*)turtle
 {
     return [[[Item alloc] initWithType:ItemTypeSkip 
@@ -111,6 +99,19 @@
                                 amount:[[ItemManager defaultManager] amountForItem:ItemTypeDiceRobot]] autorelease];
 }
 
+
++ (Item*)reverse
+{
+    return [[[Item alloc] initWithType:ItemTypeReverse
+                                 image:[[DiceImageManager defaultManager] reverseImage]
+                                  name:NSLS(@"kItemReverse")
+                             shortName:NSLS(@"kReverse")
+                           description:NSLS(@"kReverseDescription") 
+                      buyAmountForOnce:1
+                                 price:[[ShoppingManager defaultManager] getReversePrice] 
+                                amount:[[ItemManager defaultManager] amountForItem:ItemTypeReverse]] autorelease];
+}
+
 + (Item*)patriotDice
 {
     return [[[Item alloc] initWithType:ItemTypeCustomDicePatriotDice 
@@ -131,7 +132,7 @@
                              shortName:NSLS(@"kGoldenDice")
                            description:NSLS(@"kGoldenDiceDescription") 
                       buyAmountForOnce:1
-                                 price:[[ShoppingManager defaultManager] getPatriotDicePrice] 
+                                 price:[[ShoppingManager defaultManager] getGoldenDicePrice] 
                                 amount:[[ItemManager defaultManager] amountForItem:ItemTypeCustomDiceGoldenDice]] autorelease];
 }
 
@@ -143,7 +144,7 @@
                              shortName:NSLS(@"kWoodDice")
                            description:NSLS(@"kWoodDiceDescription") 
                       buyAmountForOnce:1
-                                 price:[[ShoppingManager defaultManager] getPatriotDicePrice] 
+                                 price:[[ShoppingManager defaultManager] getWoodDicePrice] 
                                 amount:[[ItemManager defaultManager] amountForItem:ItemTypeCustomDiceWoodDice]] autorelease];
 }
 
@@ -155,7 +156,7 @@
                              shortName:NSLS(@"kBlueCrystalDice")
                            description:NSLS(@"kBlueCrystalDiceDescription") 
                       buyAmountForOnce:1
-                                 price:[[ShoppingManager defaultManager] getPatriotDicePrice] 
+                                 price:[[ShoppingManager defaultManager] getBlueCrystalDicePrice] 
                                 amount:[[ItemManager defaultManager] amountForItem:ItemTypeCustomDiceBlueCrystalDice]] autorelease];
 }
 
@@ -167,7 +168,7 @@
                              shortName:NSLS(@"kPinkCrystalDice")
                            description:NSLS(@"kPinkCrystalDiceDescription") 
                       buyAmountForOnce:1
-                                 price:[[ShoppingManager defaultManager] getPatriotDicePrice] 
+                                 price:[[ShoppingManager defaultManager] getPinkCrystalDicePrice] 
                                 amount:[[ItemManager defaultManager] amountForItem:ItemTypeCustomDicePinkCrystalDice]] autorelease];
 }
 
@@ -179,7 +180,7 @@
                              shortName:NSLS(@"kGreenCrystalDice")
                            description:NSLS(@"kGreenCrystalDiceDescription") 
                       buyAmountForOnce:1
-                                 price:[[ShoppingManager defaultManager] getPatriotDicePrice] 
+                                 price:[[ShoppingManager defaultManager] getGreenCrystalDicePrice] 
                                 amount:[[ItemManager defaultManager] amountForItem:ItemTypeCustomDiceGreenCrystalDice]] autorelease];
 }
 
@@ -191,7 +192,7 @@
                              shortName:NSLS(@"kPurpleCrystalDice")
                            description:NSLS(@"kPurpleCrystalDiceDescription") 
                       buyAmountForOnce:1
-                                 price:[[ShoppingManager defaultManager] getPatriotDicePrice] 
+                                 price:[[ShoppingManager defaultManager] getPurpleCrystalDicePrice] 
                                 amount:[[ItemManager defaultManager] amountForItem:ItemTypeCustomDicePurpleCrystalDice]] autorelease];
 }
 
@@ -203,7 +204,7 @@
                              shortName:NSLS(@"kBlueDiamondDice")
                            description:NSLS(@"kBlueDiamondDiceDescription") 
                       buyAmountForOnce:1
-                                 price:[[ShoppingManager defaultManager] getPatriotDicePrice] 
+                                 price:[[ShoppingManager defaultManager] getBlueDiamondDicePrice] 
                                 amount:[[ItemManager defaultManager] amountForItem:ItemTypeCustomDiceBlueDiamondDice]] autorelease];
 }
 
@@ -215,7 +216,7 @@
                              shortName:NSLS(@"kPinkDiamondDice")
                            description:NSLS(@"kPinkDiamondDiceDescription") 
                       buyAmountForOnce:1
-                                 price:[[ShoppingManager defaultManager] getPatriotDicePrice] 
+                                 price:[[ShoppingManager defaultManager] getPinkDiamondPrice] 
                                 amount:[[ItemManager defaultManager] amountForItem:ItemTypeCustomDicePinkDiamondDice]] autorelease];
 }
 
@@ -227,7 +228,7 @@
                              shortName:NSLS(@"kGreenDiamondDice")
                            description:NSLS(@"kGreenDiamondDiceDescription") 
                       buyAmountForOnce:1
-                                 price:[[ShoppingManager defaultManager] getPatriotDicePrice] 
+                                 price:[[ShoppingManager defaultManager] getGreenDiamondDicePrice] 
                                 amount:[[ItemManager defaultManager] amountForItem:ItemTypeCustomDiceGreenDiamondDice]] autorelease];
 }
 
@@ -239,7 +240,7 @@
                              shortName:NSLS(@"kPurpleDiamondDice")
                            description:NSLS(@"kPurpleDiamondDiceDescription") 
                       buyAmountForOnce:1
-                                 price:[[ShoppingManager defaultManager] getPatriotDicePrice] 
+                                 price:[[ShoppingManager defaultManager] getPurpleDiamondDicePrice] 
                                 amount:[[ItemManager defaultManager] amountForItem:ItemTypeCustomDicePurpleDiamondDice]] autorelease];
 }
         

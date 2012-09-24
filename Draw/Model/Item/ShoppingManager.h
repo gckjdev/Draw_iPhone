@@ -44,7 +44,13 @@
 - (NSInteger)getUrgePrice;
 - (NSInteger)getTurtlePrice;
 - (NSInteger)getDiceRobotPrice;
+- (NSInteger)getReversePrice;
 
 - (NSInteger)getPatriotDicePrice;
+- (NSInteger)getGoldenDicePrice;        
+- (NSInteger)getWoodDicePrice;                                     
+- (NSInteger)getCrystalDicePrice;                                       
+- (NSInteger)getDiamondDicePrice;          
+
 
 @end
