@@ -323,7 +323,7 @@
 						<int key="NSvFlags">319</int>
 						<string key="NSFrame">{{12, 510}, {204, 43}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
-						<reference key="NSNextKeyView" ref="992948796"/>
+						<reference key="NSNextKeyView" ref="625174196"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -818,6 +818,7 @@
 						<int key="NSvFlags">319</int>
 						<string key="NSFrame">{{700, 927}, {72, 69}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
+						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -969,7 +970,7 @@
 						<int key="NSvFlags">319</int>
 						<string key="NSFrame">{{225, 525}, {320, 56}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
-						<reference key="NSNextKeyView" ref="625174196"/>
+						<reference key="NSNextKeyView" ref="812687370"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -1063,7 +1064,7 @@
 						<int key="NSvFlags">319</int>
 						<string key="NSFrame">{{44, 561}, {96, 96}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
-						<reference key="NSNextKeyView" ref="812687370"/>
+						<reference key="NSNextKeyView" ref="992948796"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<object class="NSColor" key="IBUIBackgroundColor">
 							<int key="NSColorSpace">3</int>
@@ -1107,7 +1108,7 @@
 						<reference key="IBUINormalTitleShadowColor" ref="993610026"/>
 						<object class="NSCustomResource" key="IBUINormalImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">message_icon.png</string>
+							<string key="NSResourceName">message_icon@2x.png</string>
 						</object>
 						<object class="IBUIFontDescription" key="IBUIFontDescription">
 							<int key="type">2</int>
@@ -1138,11 +1139,11 @@
 						<reference key="IBUINormalTitleShadowColor" ref="993610026"/>
 						<object class="NSCustomResource" key="IBUISelectedImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">tools_open_icon.png</string>
+							<string key="NSResourceName">tools_open_icon@2x.png</string>
 						</object>
 						<object class="NSCustomResource" key="IBUINormalImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">tools_icon.png</string>
+							<string key="NSResourceName">tools_icon@2x.png</string>
 						</object>
 						<reference key="IBUIFontDescription" ref="258757715"/>
 						<reference key="IBUIFont" ref="367342349"/>
@@ -1423,6 +1424,22 @@
 						<reference key="destination" ref="185097585"/>
 					</object>
 					<int key="connectionID">139</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">bgImageView</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="24059974"/>
+					</object>
+					<int key="connectionID">140</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">tableImageView</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="533236745"/>
+					</object>
+					<int key="connectionID">141</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
@@ -1884,7 +1901,7 @@
 				<string key="121.CustomClassName">HKGirlFontLabel</string>
 				<string key="121.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="13.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<real value="2" key="13.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
+				<real value="0.0" key="13.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
 				<string key="133.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="134.CustomClassName">HKGirlFontLabel</string>
 				<string key="134.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -1966,7 +1983,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">139</int>
+			<int key="maxID">141</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes"/>
 		<int key="IBDocument.localizationMode">0</int>
@@ -1985,13 +2002,13 @@
 			<string key="gameroom_bg@2x.png">{640, 960}</string>
 			<string key="left_bottom_circle@2x.png">{84, 92}</string>
 			<string key="left_bottom_circleon@2x.png">{84, 92}</string>
-			<string key="message_icon.png">{16, 16}</string>
+			<string key="message_icon@2x.png">{58, 63}</string>
 			<string key="open@2x.png">{67, 60}</string>
 			<string key="right_bottom_circle@2x.png">{84, 92}</string>
 			<string key="right_bottom_circleon@2x.png">{84, 92}</string>
 			<string key="table@2x.png">{640, 852}</string>
-			<string key="tools_icon.png">{16, 16}</string>
-			<string key="tools_open_icon.png">{16, 16}</string>
+			<string key="tools_icon@2x.png">{58, 63}</string>
+			<string key="tools_open_icon@2x.png">{103, 72}</string>
 			<string key="zhai_bg@2x.png">{72, 71}</string>
 		</dictionary>
 		<string key="IBCocoaTouchPluginVersion">1181</string>
