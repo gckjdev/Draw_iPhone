@@ -224,7 +224,10 @@
             [self joinGame];
         } else if (message.resultCode == GameResultCodeErrorSessionidFull) {
             [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kSessionFull") delayTime:1.5 isHappy:NO];
-        } else {
+        } else if (message.resultCode == GameResultCodeErrorSessionNameDuplicated) {
+            [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kRoomNameDuplicated") delayTime:2 isHappy:NO];
+            [self creatRoom:nil];
+        }else {
             [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kJoinGameFailure") delayTime:1.5 isHappy:NO];
         }
     }];
