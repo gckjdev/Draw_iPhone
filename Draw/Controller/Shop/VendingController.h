@@ -22,6 +22,7 @@
 @property (retain, nonatomic) IBOutlet UIImageView *titleImageView;
 @property (retain, nonatomic) IBOutlet UIImageView *bgImageView;
 @property (retain, nonatomic) IBOutlet UIButton *coinsShopButton;
+@property (retain, nonatomic) IBOutlet UIPageControl *pageControl;
 
 + (VendingController *)instance;
 - (UINavigationController *)topNavigationController;
