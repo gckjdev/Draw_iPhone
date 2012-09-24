@@ -14,7 +14,7 @@
 #import "CommonDialog.h"
 #import "DiceConfigManager.h"
 #import "CommonSearchView.h"
-
+#import "DiceRoomListCell.h"
 
 typedef enum {
     allRoom = 0,
@@ -26,7 +26,7 @@ typedef enum {
 @class PBGameSession;
 @class CommonSearchView;
 
-@interface DiceRoomListController : PPTableViewController<CommonGameServiceDelegate, InputDialogDelegate, DiceHelpViewDelegate, CommonDialogDelegate, CommonSearchViewDelegate, CommonInfoViewDelegate> {
+@interface DiceRoomListController : PPTableViewController<CommonGameServiceDelegate, InputDialogDelegate, DiceHelpViewDelegate, CommonDialogDelegate, CommonSearchViewDelegate, CommonInfoViewDelegate, DiceRoomListCellDelegate> {
     BOOL _isJoiningDice;
     DiceGameService* _diceGameService;
     PBGameSession* _currentSession;
