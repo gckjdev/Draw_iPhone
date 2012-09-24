@@ -107,26 +107,34 @@
     [GlobalGetImageCache() manage:self.drawImage];  
     
     if (feed.showAnswer) {
-        [self.title setText:feed.wordText];        
+        NSString *answer = [NSString stringWithFormat:@" %@",feed.wordText];
+//        [self.author setText:author];
+        [self.title setText:answer];        
     }else{
         self.title.hidden = YES;
     }
 
-    if ([feed isMyOpus]) {
-        self.drawFlag.image = [[ShareImageManager defaultManager] myPaintImage];
-    }else if ([feed hasGuessed]) {
+    if ([feed hasGuessed]) {
+//        self.drawFlag.image = [[ShareImageManager defaultManager] myPaintImage];
+//    }else if ([feed hasGuessed]) {
         self.drawFlag.image = [[ShareImageManager defaultManager] rightImage];
     }else{
         self.drawFlag.hidden = YES;
     }
     
-    [self.author setText:feed.feedUser.nickName];
+    NSString *author = [NSString stringWithFormat:@" %@",feed.feedUser.nickName];
+    [self.author setText:author];
     [self setRankViewSelected:NO];
 }
 
-- (void)setPlayerViewInfo:(TopPlayer *)player
+- (void)updateViewInfoForMyOpus
 {
-    
+    self.title.frame = self.author.frame;
+    [self.title setText:self.feed.wordText];
+    self.title.hidden = NO;
+    self.author.hidden = YES;
+    self.drawFlag.hidden = YES;
+    [self.title setTextAlignment:UITextAlignmentCenter];
 }
 
 - (void)setRankViewSelected:(BOOL)selected

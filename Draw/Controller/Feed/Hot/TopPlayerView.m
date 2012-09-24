@@ -7,25 +7,99 @@
 //
 
 #import "TopPlayerView.h"
+#import "ShareImageManager.h"
+#import "PPApplication.h"
+#import "HJManagedImageV.h"
 
 @implementation TopPlayerView
+@synthesize avatar = _avatar;
+@synthesize nickName = _nickName;
+@synthesize levelInfo = _levelInfo;
+@synthesize maskButton = _maskButton;
+@synthesize topPlayer = _topPlayer;
+@synthesize delegate = _delegate;
 
-- (id)initWithFrame:(CGRect)frame
++ (id)createTopPlayerView:(id)delegate
 {
-    self = [super initWithFrame:frame];
-    if (self) {
-        // Initialization code
+    NSString* identifier = @"TopPlayerView";
+    NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:identifier owner:self options:nil];
+    if (topLevelObjects == nil || [topLevelObjects count] <= 0){
+        NSLog(@"create %@ but cannot find view object from Nib", identifier);
+        return nil;
     }
-    return self;
+    TopPlayerView *view = [topLevelObjects objectAtIndex:0];
+    view.delegate = delegate;
+    
+    UIImage *selectedImage = [[ShareImageManager defaultManager] 
+                              normalButtonImage];
+    [view.maskButton setBackgroundImage:selectedImage 
+                               forState:UIControlStateHighlighted];
+    [view.maskButton setBackgroundImage:selectedImage 
+                               forState:UIControlStateSelected];
+    [view.maskButton setAlpha:0.8];
+    return view;
 }
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect
+
+
+- (void)setViewInfo:(TopPlayer *)player
 {
-    // Drawing code
-}
-*/
+    if (player == nil) {
+        self.hidden = YES;
+        return;
+    }
+    self.topPlayer = player;
 
+    [self.avatar clear];
+    if([_topPlayer.avatar length] != 0){
+        [self.avatar setUrl:[NSURL URLWithString:_topPlayer.avatar]];
+    } else{
+        UIImage *image = nil;
+        if (player.gender) {
+            image = [[ShareImageManager defaultManager] maleDefaultAvatarImage];
+        }else{
+            image = [[ShareImageManager defaultManager] femaleDefaultAvatarImage];
+        }
+        [self.avatar setImage:image];
+    }
+    [GlobalGetImageCache() manage:self.avatar];
+    if (player.nickName) {
+        NSString *nick = [NSString stringWithFormat:@" %@",player.nickName];
+        //        [self.author setText:author];
+        [self.nickName setText:nick];        
+    }else{
+        self.nickName.hidden = YES;
+    }
+
+    NSString *level = nil;
+    NSString *genderString = player.gender ? NSLS(@"kMale") :NSLS(@"kFemale");
+    
+    level = [NSString stringWithFormat:@" %@  LV.%d",genderString, player.level];
+    [self.levelInfo setText:level];
+}
+
+- (void)setRankFlag:(NSInteger)rank
+{
+    
+}
+
+- (void)setViewSeleted:(BOOL)selected
+{
+    self.maskButton.selected = selected;
+}
+
+- (IBAction)clickPlayerView:(id)sender {
+    if(self.delegate && [self.delegate respondsToSelector:@selector(didClickTopPlayerView:)]){
+        [self.delegate didClickTopPlayerView:self];
+    }
+}
+
+- (void)dealloc {
+    PPRelease(_maskButton);
+    PPRelease(_nickName);
+    PPRelease(_levelInfo);
+    PPRelease(_topPlayer);
+    PPRelease(_avatar);
+    [super dealloc];
+}
 @end

@@ -2004,7 +2004,8 @@
 
 + (CommonNetworkOutput*)getTopPalyerList:(NSString*)baseURL 
                                     appId:(NSString*)appId 
-                                   gameId:(NSString*)gameId
+                                  gameId:(NSString*)gameId 
+                                  userId:(NSString *)userId
                                    offset:(NSInteger)offset
                                     limit:(NSInteger)limit
 {
@@ -2016,8 +2017,9 @@
         str = [str stringByAddQueryParameter:METHOD value:METHOD_GET_TOP_PLAYERS];
         str = [str stringByAddQueryParameter:PARA_APPID value:appId];
         str = [str stringByAddQueryParameter:PARA_GAME_ID value:gameId];
+        str = [str stringByAddQueryParameter:PARA_USERID value:userId];
         str = [str stringByAddQueryParameter:PARA_OFFSET intValue:offset];
-        str = [str stringByAddQueryParameter:PARA_COUNT intValue:offset];
+        str = [str stringByAddQueryParameter:PARA_COUNT intValue:limit];
         return str;
     };
     

@@ -43,7 +43,7 @@
 						<string key="NSFrame">{{0, -14}, {159, 167}}</string>
 						<reference key="NSSuperview" ref="438232853"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="85732061"/>
+						<reference key="NSNextKeyView" ref="222187398"/>
 						<object class="NSColor" key="IBUIBackgroundColor">
 							<int key="NSColorSpace">3</int>
 							<bytes key="NSWhite">MQA</bytes>
@@ -60,21 +60,25 @@
 						<string key="NSFrame">{{130, 0}, {30, 32}}</string>
 						<reference key="NSSuperview" ref="438232853"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="222187398"/>
+						<reference key="NSNextKeyView" ref="604947316"/>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<object class="NSCustomResource" key="IBUIImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">print_tip@2x.png</string>
+							<string key="NSResourceName">guessed@2x.png</string>
 						</object>
 					</object>
 					<object class="IBUILabel" id="604947316">
 						<reference key="NSNextResponder" ref="438232853"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{8, 100}, {104, 21}}</string>
+						<string key="NSFrame">{{0, 103}, {159, 18}}</string>
 						<reference key="NSSuperview" ref="438232853"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="79997521"/>
+						<object class="NSColor" key="IBUIBackgroundColor" id="345453348">
+							<int key="NSColorSpace">3</int>
+							<bytes key="NSWhite">MCAwLjUAA</bytes>
+						</object>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
 						<int key="IBUIContentMode">7</int>
@@ -106,9 +110,11 @@
 					<object class="IBUILabel" id="79997521">
 						<reference key="NSNextResponder" ref="438232853"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{8, 120}, {142, 21}}</string>
+						<string key="NSFrame">{{0, 121}, {159, 18}}</string>
 						<reference key="NSSuperview" ref="438232853"/>
 						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView"/>
+						<reference key="IBUIBackgroundColor" ref="345453348"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
 						<int key="IBUIContentMode">7</int>
@@ -137,7 +143,7 @@
 						<string key="NSFrameSize">{159, 139}</string>
 						<reference key="NSSuperview" ref="438232853"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="604947316"/>
+						<reference key="NSNextKeyView" ref="85732061"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<int key="IBUIContentHorizontalAlignment">0</int>
@@ -369,8 +375,8 @@
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<object class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="NS.key.0">print_tip@2x.png</string>
-			<string key="NS.object.0">{32, 34}</string>
+			<string key="NS.key.0">guessed@2x.png</string>
+			<string key="NS.object.0">{46, 49}</string>
 		</object>
 		<string key="IBCocoaTouchPluginVersion">933</string>
 	</data>
