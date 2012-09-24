@@ -24,5 +24,6 @@
      pointDirection:(PointDirection)pointDirection;
 
 - (void)dismissAnimated:(BOOL)animated;
-
+- (void)setDice:(int)dice 
+          count:(int)count;
 @end

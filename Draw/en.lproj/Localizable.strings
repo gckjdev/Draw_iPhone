@@ -840,6 +840,30 @@
 "kCutDescription" = "Use 【Cut】 item for double coins.";
 "kCutMessage" = "Cut";
 
+"kItemPeek" = "Peek";
+"kPeek" = "Peek";
+"kPeekDescription" = "Use 【Peek】 you can peek one dice of each player.";
+
+"kItemPostpone" = "Postpone";
+"kPostpone" = "Postpone";
+"kPostponeDescription" = "Use 【Postpone】 get more time before should make a bid or challenge.";
+
+"kItemUrge" = "Urge";
+"kUrge" = "Urge";
+"kUrgeDescription"= "Use 【Peek】 contrast to MoreTime, cut off 5 seconds from next player.";
+
+"kItemTurtle" = "Turtle";
+"kTurtle" = "Turtle";
+"kTurtleDescription" = "Use 【Peek】 yield your chance if you feel not safe to bid or challenge.";
+
+"kItemDiceRobot" = "Smart butler";
+"kDiceRobot" = "Smart butler";
+"kDiceRobotDescription" = "Use 【Smart butler】 the game system will give your advice.";
+
+"kItemReverse" = "Reverse";
+"kReverse" = "Reverse";
+"kReverseDescription" = "Use 【Reverse】 can reverse the play order,which is clockwise by default.";
+
 "kMoreRoom" = "More...";
 "kMoreRoomLoading" = "Loading...";
 
@@ -929,19 +953,19 @@
 
 "kItemGoldenDice" = "gold dice";
 "kGoldenDice" = "gold dice";
-"kGoldenDiceDescription" = "simple and noble, elegant and generous appearance of the dice, a status symbol, high rich handsome essential.";
+"kGoldenDiceDescription" = "with appearance of elegence and dignity, it is really a symbol of status.";
 
 "kItemWoodDice" = "wooden dice";
 "kWoodDice" = "wooden dice";
-"kWoodDiceDescription" = "return to nature, as in wooden dice background, dedicated young artists.";
+"kWoodDiceDescription" = "Made of wood, back to nature and purity";
 
 "kItemCrystalDice" = "crystal dice";
 "kCrystalDice" = "crystal dice";
-"kCrystalDiceDescription" = "crystal clear sense, a favorite of the girls.";
+"kCrystalDiceDescription" = "Glittering and translucent, appealing to girls.;
 
 "kItemDiamondDice" = "gem dice";
 "kDiamondDice" = "gem dice";
-"kDiamondDiceDescription" = "and Kennedy to the United States, than precious stones, symbolizing magnificent auspicious meaningful sense, everyone worth having oh";
+"kDiamondDiceDescription" = "Upmost solid and gorgeous, the symbol of auspiciousness and meaningfulness";
 
 /*********************** 大话骰子国际化字符串结束 *************************/
 

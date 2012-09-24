@@ -129,6 +129,7 @@ BOOL GameResultCodeIsValidValue(GameResultCode value) {
     case GameResultCodeErrorSessionNotStart:
     case GameResultCodeErrorNoSessionAvailable:
     case GameResultCodeErrorSessionidFull:
+    case GameResultCodeErrorSessionNameDuplicated:
     case GameResultCodeErrorNoDrawData:
     case GameResultCodeErrorDiceAlreadyOpen:
     case GameResultCodeErrorUserAlreadyCallDice:

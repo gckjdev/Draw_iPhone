@@ -279,7 +279,7 @@ static DiceImageManager *_defaultManager = nil;
 
 - (UIImage *)diceToolCutImage
 {
-    return [UIImage imageNamed:@"cut.png"];
+    return [UIImage imageNamed:@"cut@2x.png"];
 
 //    UIImage* backgroundImage = [UIImage imageNamed:@"tools_bell_bg@2x.png"];
 //    float width = backgroundImage.size.width;
@@ -300,7 +300,7 @@ static DiceImageManager *_defaultManager = nil;
 
 - (UIImage *)diceToolRollAgainImage
 {
-    return [UIImage imageNamed:@"rollAgain.png"];
+    return [UIImage imageNamed:@"rollAgain@2x.png"];
 
 //    UIImage* backgroundImage = [UIImage imageNamed:@"tools_bell_bg@2x.png"];
 //    float width = backgroundImage.size.width;

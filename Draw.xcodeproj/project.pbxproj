@@ -806,6 +806,7 @@
 		C2C1BF4515A2A9B6001A2BFC /* UIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C2C1BF4415A2A9B6001A2BFC /* UIManager.m */; };
 		C2CCD078160FFD55003E9F34 /* dice_purpleDiamond_1.png in Resources */ = {isa = PBXBuildFile; fileRef = C2CCD077160FFD55003E9F34 /* dice_purpleDiamond_1.png */; };
 		C2D9A504159D4C4100794B24 /* CommonSnsInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = C2D9A503159D4C4100794B24 /* CommonSnsInfoView.m */; };
+		C2DD4F0D1610412500556CC7 /* DiceRobotDecisionView.m in Sources */ = {isa = PBXBuildFile; fileRef = C2DD4F0C1610412500556CC7 /* DiceRobotDecisionView.m */; };
 		C2E5241915218E21008913CC /* AnimationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C2E5241815218E21008913CC /* AnimationManager.m */; };
 		C2E662611521B91900487601 /* ReportController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2E6625F1521B91900487601 /* ReportController.m */; };
 		C2E662621521B91900487601 /* ReportController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2E662601521B91900487601 /* ReportController.xib */; };
@@ -1363,6 +1364,7 @@
 		CA97EC2715FCE43E008F756B /* tools_cart@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA97EBB615FCE43E008F756B /* tools_cart@2x.png */; };
 		CA99D3E815332A2D00477383 /* NSURL+QAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = CA99D3E615332A2D00477383 /* NSURL+QAdditions.m */; };
 		CA9AA976150F423C009D1CB6 /* DrawUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = CA9AA975150F423C009D1CB6 /* DrawUtils.m */; };
+		CA9B4EC016103726008C6A97 /* TopPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = CA9B4EBF16103726008C6A97 /* TopPlayer.m */; };
 		CA9C8CBD15E0D94A006E447B /* XQueryComponents.m in Sources */ = {isa = PBXBuildFile; fileRef = CA9C8CBC15E0D94A006E447B /* XQueryComponents.m */; };
 		CA9C8CC015E0DE88006E447B /* JumpHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = CA9C8CBF15E0DE88006E447B /* JumpHandler.m */; };
 		CAA0E6A615147DFF00FD8C3E /* Word.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA0E6A515147DFF00FD8C3E /* Word.m */; };
@@ -2579,6 +2581,8 @@
 		C2CCD077160FFD55003E9F34 /* dice_purpleDiamond_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = dice_purpleDiamond_1.png; path = Draw/Dice/Resource/image/beautifulDice/purpleDiamond/dice_purpleDiamond_1.png; sourceTree = SOURCE_ROOT; };
 		C2D9A502159D4C4100794B24 /* CommonSnsInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonSnsInfoView.h; sourceTree = "<group>"; };
 		C2D9A503159D4C4100794B24 /* CommonSnsInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonSnsInfoView.m; sourceTree = "<group>"; };
+		C2DD4F0B1610412500556CC7 /* DiceRobotDecisionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiceRobotDecisionView.h; sourceTree = "<group>"; };
+		C2DD4F0C1610412500556CC7 /* DiceRobotDecisionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiceRobotDecisionView.m; sourceTree = "<group>"; };
 		C2E5241715218E21008913CC /* AnimationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnimationManager.h; sourceTree = "<group>"; };
 		C2E5241815218E21008913CC /* AnimationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnimationManager.m; sourceTree = "<group>"; };
 		C2E6625E1521B91900487601 /* ReportController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReportController.h; sourceTree = "<group>"; };
@@ -3478,6 +3482,8 @@
 		CA99D3E715332A2D00477383 /* NSURL+QAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURL+QAdditions.h"; sourceTree = "<group>"; };
 		CA9AA974150F423C009D1CB6 /* DrawUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawUtils.h; sourceTree = "<group>"; };
 		CA9AA975150F423C009D1CB6 /* DrawUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawUtils.m; sourceTree = "<group>"; };
+		CA9B4EBE16103726008C6A97 /* TopPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TopPlayer.h; sourceTree = "<group>"; };
+		CA9B4EBF16103726008C6A97 /* TopPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopPlayer.m; sourceTree = "<group>"; };
 		CA9C8CBB15E0D94A006E447B /* XQueryComponents.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XQueryComponents.h; sourceTree = "<group>"; };
 		CA9C8CBC15E0D94A006E447B /* XQueryComponents.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XQueryComponents.m; sourceTree = "<group>"; };
 		CA9C8CBE15E0DE88006E447B /* JumpHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JumpHandler.h; sourceTree = "<group>"; };
@@ -4431,6 +4437,7 @@
 		A4B7640315C28F8E003B4E72 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				C2DD4F0A1610412500556CC7 /* DiceRobotDecisionView */,
 				A43A64B616084E6B00F35978 /* DiceBetView */,
 				CACF87A015EB4D2D003FA6B6 /* DiceSettingView */,
 				A42C528215E756CF001D8208 /* DiceHelpView */,
@@ -5072,6 +5079,15 @@
 			);
 			name = gloden;
 			path = "../../../../../../../Users/orange/Downloads/骰子/gloden";
+			sourceTree = "<group>";
+		};
+		C2DD4F0A1610412500556CC7 /* DiceRobotDecisionView */ = {
+			isa = PBXGroup;
+			children = (
+				C2DD4F0B1610412500556CC7 /* DiceRobotDecisionView.h */,
+				C2DD4F0C1610412500556CC7 /* DiceRobotDecisionView.m */,
+			);
+			path = DiceRobotDecisionView;
 			sourceTree = "<group>";
 		};
 		C2E90FD915BD3F2C00828562 /* Recommend */ = {
@@ -6352,6 +6368,8 @@
 			children = (
 				CADD804B15138C690075C739 /* UserManager.h */,
 				CADD804C15138C690075C739 /* UserManager.m */,
+				CA9B4EBE16103726008C6A97 /* TopPlayer.h */,
+				CA9B4EBF16103726008C6A97 /* TopPlayer.m */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -10143,6 +10161,8 @@
 				A4DF0556160C25B400246A40 /* ReverseItemAction.m in Sources */,
 				C2B002EC160C4FA000AC5F3B /* UserManager+DiceUserManager.m in Sources */,
 				A4DF0589160D735E00246A40 /* CutItemAction.m in Sources */,
+				CA9B4EC016103726008C6A97 /* TopPlayer.m in Sources */,
+				C2DD4F0D1610412500556CC7 /* DiceRobotDecisionView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
