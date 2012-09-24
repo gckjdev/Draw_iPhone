@@ -26,7 +26,7 @@ typedef enum{
 @class DrawFeed;
 @class HJManagedImageV;
 @class ShowDrawView;
-
+@class TopPlayer;
 @interface RankView : UIView
 {
     DrawFeed *_feed;
@@ -44,6 +44,8 @@ typedef enum{
 + (CGFloat)widthForRankViewType:(RankViewType)type;
 
 - (void)setViewInfo:(DrawFeed *)feed;
+- (void)setPlayerViewInfo:(TopPlayer *)player;
+
 - (IBAction)clickMaskView:(id)sender;
 - (void)setRankViewSelected:(BOOL)selected;
 

@@ -25,6 +25,7 @@
 #import "UserService.h"
 #import "QQWeiboService.h"
 #import "ConfigManager.h"
+#import "TopPlayer.h"
 
 @implementation UserService
 
@@ -901,8 +902,30 @@ static UserService* _defaultUserService;
 }
 - (void)getTopPlayer:(NSInteger)offset limit:(NSInteger)limit delegate:(id<UserServiceDelegate>)delegate
 {
-    NSString *appId = [ConfigManager appId];
-    NSString *gameId = [ConfigManager gameId];
+    dispatch_async(workingQueue, ^{
+        NSString *appId = [ConfigManager appId];
+        NSString *gameId = [ConfigManager gameId];
+        CommonNetworkOutput* output = [GameNetworkRequest getTopPalyerList:SERVER_URL appId:appId gameId:gameId offset:offset limit:limit];
+
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            NSMutableArray *topPlayerList = nil;
+            if (output.resultCode == ERROR_SUCCESS) {
+                topPlayerList = [NSMutableArray array];
+                for (NSDictionary *dict in output.jsonDataArray) {
+                    if ([dict isKindOfClass:[NSDictionary class]]) {
+                        TopPlayer *topPlayer = [[TopPlayer alloc] initWithDict:dict];                        
+                        [topPlayerList addObject:topPlayer];
+                    }
+                }
+            }            
+            if (delegate && [delegate respondsToSelector:@selector(didGetTopPlayerList:resultCode:)]) {
+                [delegate didGetTopPlayerList:topPlayerList 
+                                   resultCode:output.resultCode];
+            }
+        });
+    });
+    
 }
 
 @end
