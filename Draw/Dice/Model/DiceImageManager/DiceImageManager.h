@@ -89,4 +89,15 @@
 - (UIImage*)customOpenDiceImageWithDiceName:(NSString*)name 
                                        dice:(int)dice;
 
+
+
+- (UIImage *)diceNormalRoomBgImage;
+- (UIImage *)diceHighRoomBgImage;
+- (UIImage *)diceSuperHighRoomBgImage;
+
+- (UIImage *)diceNormalRoomTableImage;
+- (UIImage *)diceHighRoomTableImage;
+- (UIImage *)diceSuperHighRoomTableImage;
+
+
 @end

@@ -247,6 +247,29 @@
     [self unregisterAllNotifications];                                               
 }
 
+- (NSString *)title
+{
+    NSString *title = nil;
+    switch (_ruleType) {
+        case DiceGameRuleTypeRuleNormal:
+            title = NSLS(@"kDiceMenuHappyRoom");
+            break;
+            
+        case DiceGameRuleTypeRuleHigh:
+            title = NSLS(@"kDiceMenuHighRoom");
+            break;
+            
+        case DiceGameRuleTypeRuleSuperHigh:
+            title = NSLS(@"kDiceMenuSuperHighRoom");
+            break;     
+            
+        default:
+            break;
+    }
+    
+    return title;
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -266,7 +289,7 @@
     [self.friendRoomButton.fontLable setTextColor:[UIColor whiteColor]]; 
     [self.nearByRoomButton.fontLable setTextColor:[UIColor whiteColor]]; 
     
-    [self.titleFontButton.fontLable setText:NSLS(@"kDiceRoomListTitle")];
+    [self.titleFontButton.fontLable setText:[self title]];
     [self.allRoomButton.fontLable setText:NSLS(@"kAll")];
     [self.friendRoomButton.fontLable setText:NSLS(@"kFriend")];
     [self.nearByRoomButton.fontLable setText:NSLS(@"kNearBy")];

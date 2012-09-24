@@ -897,13 +897,13 @@
 "kDiceWai" = "Wai";
 
 
-"kDiceMenuHappyRoom" = "Happy Room";
-"kDiceMenuHighRoom" = "High Room";
-"kDiceMenuSuperHighRoom" = "Super High Room";
+"kDiceMenuHappyRoom" = "Normal";
+"kDiceMenuHighRoom" = "Carnival";
+"kDiceMenuSuperHighRoom" = "Ultra Carniaval";
 
-"kDiceHappyRoom" = "Happy Room %d";
-"kDiceHighRoom" = "High Room %d";
-"kDiceSuperHighRoom" = "Super High %d";
+"kDiceHappyRoom" = "Normal Room %d";
+"kDiceHighRoom" = "Carnival Room %d";
+"kDiceSuperHighRoom" = "Ultra Carniaval %d";
 
 "kBetViewTitle" = "Bet(%d)";
 "kBetNote" = "Player【%@】challenge, would you bet?";

@@ -104,6 +104,8 @@
 @synthesize anteView = _anteView;
 @synthesize waitForPlayerBetLabel = _waitForPlayerBetLabel;
 @synthesize popupView = _popupView;
+@synthesize bgImageView = _bgImageView;
+@synthesize tableImageView = _tableImageView;
 @synthesize adHideTimer = _adHideTimer;
 
 
@@ -149,6 +151,8 @@
     [_anteLabel release];
     [_anteView release];
     [_waitForPlayerBetLabel release];
+    [_bgImageView release];
+    [_tableImageView release];
     [super dealloc];
 }
 
@@ -191,12 +195,55 @@
     return self;
 }
 
+- (UIImage *)bgImage
+{
+    UIImage *image = nil;
+    switch (_diceService.ruleType) {
+        case DiceGameRuleTypeRuleNormal:
+            image = [_imageManager diceNormalRoomBgImage];
+            break;
+        case DiceGameRuleTypeRuleHigh:
+            image = [_imageManager diceHighRoomBgImage];
+            break;
+            
+        case DiceGameRuleTypeRuleSuperHigh:
+            image = [_imageManager diceSuperHighRoomBgImage];
+            break;
+        default:
+            break;
+    }
+    
+    return image;
+}
+
+- (UIImage *)tableImage
+{
+    UIImage *image = nil;
+    switch (_diceService.ruleType) {
+        case DiceGameRuleTypeRuleNormal:
+            image = [_imageManager diceNormalRoomTableImage];
+            break;
+        case DiceGameRuleTypeRuleHigh:
+            image = [_imageManager diceHighRoomTableImage];
+            break;
+            
+        case DiceGameRuleTypeRuleSuperHigh:
+            image = [_imageManager diceSuperHighRoomTableImage];
+            break;
+        default:
+            break;
+    }
+    
+    return image;
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.bgImageView.image = [self bgImage];
+    self.tableImageView.image = [self tableImage];
     
     [UIApplication sharedApplication].idleTimerDisabled=YES;
-    
     self.popupView = [[[DicePopupViewManager alloc] init] autorelease];
     self.wildsLabel.text = NSLS(@"kDiceWilds");
     self.wildsFlagButton.fontLable.text = NSLS(@"kDiceWilds");
@@ -296,6 +343,8 @@
     [self setAnteLabel:nil];
     [self setAnteView:nil];
     [self setWaitForPlayerBetLabel:nil];
+    [self setBgImageView:nil];
+    [self setTableImageView:nil];
     [super viewDidUnload];
 }
 
