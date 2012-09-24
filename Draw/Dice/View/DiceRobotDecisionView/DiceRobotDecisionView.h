@@ -7,7 +7,14 @@
 //
 
 #import "CommonDialog.h"
+#import "CallDiceView.h"
 
 @interface DiceRobotDecisionView : CommonDialog
+
+@property (assign, nonatomic) BOOL shouldOpen;
+@property (assign, nonatomic) int shouldCallDiceCount;
+@property (assign, nonatomic) int shouldCallDice;
+@property (retain, nonatomic) CallDiceView* calldiceView;
+@property (retain, nonatomic) UIButton* wildsButton;
 
 @end
