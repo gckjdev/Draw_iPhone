@@ -513,9 +513,19 @@ static UIImage* _whitePaperImage;
     return [self fixedImageNamed:@"dice_start"];    
 }
 
-- (UIImage*)diceRoomMenuImage
+- (UIImage*)normalRoomMenuImage
 {
-    return [self fixedImageNamed:@"dice_room"];
+    return [self fixedImageNamed:@"normal_room"];
+}
+
+- (UIImage*)highRoomMenuImage
+{
+    return [self fixedImageNamed:@"high_room"];
+}
+
+- (UIImage*)superHighRoomMenuImage
+{
+    return [self fixedImageNamed:@"super_high_room"];
 }
 
 - (UIImage *)diceHelpMenuImage

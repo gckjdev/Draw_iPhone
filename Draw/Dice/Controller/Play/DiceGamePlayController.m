@@ -1053,7 +1053,7 @@
 {
     [self popupOpenDiceView];  
     [self playOpenDiceVoice];
-    [_popupView updateItemListView];
+    [_popupView dismissItemListView];
     [self showWaitForPlayerBetNote];
 }
 
@@ -1076,7 +1076,7 @@
     [_diceSelectedView dismiss];
     [self popupOpenDiceView];  
     [self playOpenDiceVoice];
-    [_popupView updateItemListView];
+    [_popupView dismissItemListView];
     [self showBetView];
 }
 

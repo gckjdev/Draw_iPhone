@@ -320,41 +320,40 @@
 
 + (int)getDiceThresholdCoinWithSuperHightRule
 {
-    return [MobClickUtils getIntValueByKey:@"DICE_THRESHOLD_COIN_SUPER_HIGHT" defaultValue:10];
     return [MobClickUtils getIntValueByKey:@"DICE_THRESHOLD_COIN_SUPER_HIGHT" defaultValue:10000];
 }
 
 + (NSString*)getDiceServerListStringWithNormal
 {
-    return @"192.168.1.9:8080";
-//    return [MobClickUtils getStringValueByKey:@"DICE_SERVER_LIST" defaultValue:@"58.215.164.153:8018"];
+    return @"58.215.172.169:8080";
+    return [MobClickUtils getStringValueByKey:@"DICE_SERVER_LIST" defaultValue:@"58.215.164.153:8018"];
 }
 
 + (NSString *)getDiceServerListStringWithHightRule
 {
-    return @"192.168.1.10:8081";
+    return @"58.215.172.169:8081";
     return [MobClickUtils getStringValueByKey:@"DICE_SERVER_LIST_HIGHT" defaultValue:@"58.215.164.153:8018"];
 }
 
 + (NSString *)getDiceServerListStringWithSuperHightRule
 {
-    return @"192.168.1.10:8082";
+    return @"58.215.172.169:8082";
     return [MobClickUtils getStringValueByKey:@"DICE_SERVER_LIST_SUPER_HIGHT" defaultValue:@"58.215.164.153:8018"];
 }
 
 + (int)getBetAnteWithNormalRule
 {
-    return [MobClickUtils getIntValueByKey:@"DICE_BET_ANTE_COIN_NORMAL" defaultValue:100];
+    return [MobClickUtils getIntValueByKey:@"DICE_BET_ANTE_COIN_NORMAL" defaultValue:50];
 }
 
 + (int)getBetAnteWithHighRule
 {
-    return [MobClickUtils getIntValueByKey:@"DICE_BET_ANTE_COIN_HIGH" defaultValue:150];
+    return [MobClickUtils getIntValueByKey:@"DICE_BET_ANTE_COIN_HIGH" defaultValue:100];
 }
 
 + (int)getBetAnteWithSuperHighRule
 {
-    return [MobClickUtils getIntValueByKey:@"DICE_BET_ANTE_COIN_SUPER_HIGH" defaultValue:300];
+    return [MobClickUtils getIntValueByKey:@"DICE_BET_ANTE_COIN_SUPER_HIGH" defaultValue:200];
 }
 
 + (int)getDailyGiftCoin
