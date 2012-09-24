@@ -310,7 +310,9 @@ typedef enum{
 - (NSString *)tabNoDataTipsforIndex:(NSInteger)index
 {
     
-    NSString *tabDesc[] = {NSLS(@"kUserNoOpus"),NSLS(@"kUserNoFeed")};
+    NSString *noOpus = [NSString stringWithFormat:NSLS(@"kUserNoOpus"),self.nickName];
+    NSString *noFeed = [NSString stringWithFormat:NSLS(@"kUserNoFeed"),self.nickName];    
+    NSString *tabDesc[] = {noOpus,noFeed};
     
     return tabDesc[index];
 }
