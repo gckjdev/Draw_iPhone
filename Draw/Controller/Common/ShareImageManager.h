@@ -104,7 +104,6 @@
 
 - (UIImage *)friendDetailBgImage;
 
-
 //for tool
 - (UIImage *)toolBoxImage;
 

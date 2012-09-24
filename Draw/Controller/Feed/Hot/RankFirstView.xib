@@ -43,7 +43,7 @@
 						<string key="NSFrame">{{0, -107}, {320, 337}}</string>
 						<reference key="NSSuperview" ref="739775627"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="632110959"/>
+						<reference key="NSNextKeyView" ref="611828136"/>
 						<object class="NSColor" key="IBUIBackgroundColor">
 							<int key="NSColorSpace">3</int>
 							<bytes key="NSWhite">MQA</bytes>
@@ -60,7 +60,7 @@
 						<string key="NSFrame">{{11, 72}, {104, 21}}</string>
 						<reference key="NSSuperview" ref="739775627"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="611828136"/>
+						<reference key="NSNextKeyView" ref="263779115"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
 						<int key="IBUIContentMode">7</int>
@@ -121,7 +121,7 @@
 					<object class="IBUIImageView" id="632110959">
 						<reference key="NSNextResponder" ref="739775627"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{280, 0}, {40, 40}}</string>
+						<string key="NSFrame">{{280, 0}, {36, 39}}</string>
 						<reference key="NSSuperview" ref="739775627"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="522488179"/>
@@ -129,7 +129,7 @@
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<object class="NSCustomResource" key="IBUIImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">print_tip@2x.png</string>
+							<string key="NSResourceName">guessed@2x.png</string>
 						</object>
 					</object>
 					<object class="IBUIButton" id="611828136">
@@ -138,7 +138,7 @@
 						<string key="NSFrameSize">{320, 123}</string>
 						<reference key="NSSuperview" ref="739775627"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="263779115"/>
+						<reference key="NSNextKeyView" ref="632110959"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<int key="IBUIContentHorizontalAlignment">0</int>
@@ -371,8 +371,8 @@
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<object class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="NS.key.0">print_tip@2x.png</string>
-			<string key="NS.object.0">{32, 34}</string>
+			<string key="NS.key.0">guessed@2x.png</string>
+			<string key="NS.object.0">{46, 49}</string>
 		</object>
 		<string key="IBCocoaTouchPluginVersion">933</string>
 	</data>

@@ -845,6 +845,11 @@
 		CA051DCE1546808500D0A00A /* ColorShopView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA051DCC1546808500D0A00A /* ColorShopView.m */; };
 		CA051DCF1546808500D0A00A /* ColorShopView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA051DCD1546808500D0A00A /* ColorShopView.xib */; };
 		CA06BE4315522F3000B94FB1 /* SuperGameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA06BE4215522F2F00B94FB1 /* SuperGameViewController.m */; };
+		CA0A2CA5161045C400F66400 /* h_top@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA0A2CA3161045C400F66400 /* h_top@2x.png */; };
+		CA0A2CA6161045C400F66400 /* h_match@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA0A2CA4161045C400F66400 /* h_match@2x.png */; };
+		CA0A2CA9161045FC00F66400 /* guessed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA0A2CA8161045FC00F66400 /* guessed@2x.png */; };
+		CA0A2CAB161046D300F66400 /* TopPlayerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA0A2CAA161046D300F66400 /* TopPlayerView.xib */; };
+		CA0A2CAE1610473800F66400 /* TopPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0A2CAD1610473800F66400 /* TopPlayerView.m */; };
 		CA0CB74F155CB037009C8EE6 /* FriendRoomController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0CB74D155CB037009C8EE6 /* FriendRoomController.m */; };
 		CA0CB750155CB037009C8EE6 /* FriendRoomController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA0CB74E155CB037009C8EE6 /* FriendRoomController.xib */; };
 		CA0CB754155CB04D009C8EE6 /* SearchRoomController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0CB752155CB04D009C8EE6 /* SearchRoomController.m */; };
@@ -2643,6 +2648,12 @@
 		CA051DCD1546808500D0A00A /* ColorShopView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ColorShopView.xib; sourceTree = "<group>"; };
 		CA06BE4115522F2F00B94FB1 /* SuperGameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SuperGameViewController.h; sourceTree = "<group>"; };
 		CA06BE4215522F2F00B94FB1 /* SuperGameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SuperGameViewController.m; sourceTree = "<group>"; };
+		CA0A2CA3161045C400F66400 /* h_top@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "h_top@2x.png"; sourceTree = "<group>"; };
+		CA0A2CA4161045C400F66400 /* h_match@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "h_match@2x.png"; sourceTree = "<group>"; };
+		CA0A2CA8161045FC00F66400 /* guessed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "guessed@2x.png"; sourceTree = "<group>"; };
+		CA0A2CAA161046D300F66400 /* TopPlayerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TopPlayerView.xib; sourceTree = "<group>"; };
+		CA0A2CAC1610473800F66400 /* TopPlayerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TopPlayerView.h; sourceTree = "<group>"; };
+		CA0A2CAD1610473800F66400 /* TopPlayerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopPlayerView.m; sourceTree = "<group>"; };
 		CA0CB74C155CB037009C8EE6 /* FriendRoomController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendRoomController.h; sourceTree = "<group>"; };
 		CA0CB74D155CB037009C8EE6 /* FriendRoomController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendRoomController.m; sourceTree = "<group>"; };
 		CA0CB74E155CB037009C8EE6 /* FriendRoomController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FriendRoomController.xib; sourceTree = "<group>"; };
@@ -5199,6 +5210,14 @@
 			path = SynthesisView;
 			sourceTree = "<group>";
 		};
+		CA0A2CA7161045E600F66400 /* flag */ = {
+			isa = PBXGroup;
+			children = (
+				CA0A2CA8161045FC00F66400 /* guessed@2x.png */,
+			);
+			path = flag;
+			sourceTree = "<group>";
+		};
 		CA0CB767155CB75F009C8EE6 /* Room */ = {
 			isa = PBXGroup;
 			children = (
@@ -7109,6 +7128,9 @@
 				CA1656FE160C032700E433BE /* RankView.xib */,
 				CA165703160C037600E433BE /* RankFirstView.xib */,
 				CA165705160C044700E433BE /* RankSecondView.xib */,
+				CA0A2CAC1610473800F66400 /* TopPlayerView.h */,
+				CA0A2CAD1610473800F66400 /* TopPlayerView.m */,
+				CA0A2CAA161046D300F66400 /* TopPlayerView.xib */,
 			);
 			path = Hot;
 			sourceTree = "<group>";
@@ -7272,6 +7294,7 @@
 		CA97EB3E15FCE43E008F756B /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				CA0A2CA7161045E600F66400 /* flag */,
 				CA97EB3F15FCE43E008F756B /* background */,
 				CA97EB5F15FCE43E008F756B /* button */,
 				CA97EB6A15FCE43E008F756B /* detail */,
@@ -7378,6 +7401,8 @@
 		CA97EB8315FCE43E008F756B /* menu */ = {
 			isa = PBXGroup;
 			children = (
+				CA0A2CA3161045C400F66400 /* h_top@2x.png */,
+				CA0A2CA4161045C400F66400 /* h_match@2x.png */,
 				CA97EB8415FCE43E008F756B /* feedback@2x.png */,
 				CA97EB8515FCE43E008F756B /* h_coin@2x.png */,
 				CA97EB8615FCE43E008F756B /* h_draw@2x.png */,
@@ -9603,6 +9628,10 @@
 				C2CCD078160FFD55003E9F34 /* dice_purpleDiamond_1.png in Resources */,
 				A4903E7616100838005A587F /* cut@2x.png in Resources */,
 				A4903E7716100838005A587F /* rollAgain@2x.png in Resources */,
+				CA0A2CA5161045C400F66400 /* h_top@2x.png in Resources */,
+				CA0A2CA6161045C400F66400 /* h_match@2x.png in Resources */,
+				CA0A2CA9161045FC00F66400 /* guessed@2x.png in Resources */,
+				CA0A2CAB161046D300F66400 /* TopPlayerView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -10139,6 +10168,7 @@
 				A4DF0589160D735E00246A40 /* CutItemAction.m in Sources */,
 				CA9B4EC016103726008C6A97 /* TopPlayer.m in Sources */,
 				C2DD4F0D1610412500556CC7 /* DiceRobotDecisionView.m in Sources */,
+				CA0A2CAE1610473800F66400 /* TopPlayerView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
