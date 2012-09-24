@@ -124,6 +124,11 @@
     [self setRankViewSelected:NO];
 }
 
+- (void)setPlayerViewInfo:(TopPlayer *)player
+{
+    
+}
+
 - (void)setRankViewSelected:(BOOL)selected
 {
     [self.maskButton setSelected:selected];

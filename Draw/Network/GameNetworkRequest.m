@@ -2001,6 +2001,39 @@
                          responseHandler:responseHandler
                                   output:output];
 }
+
++ (CommonNetworkOutput*)getTopPalyerList:(NSString*)baseURL 
+                                    appId:(NSString*)appId 
+                                   gameId:(NSString*)gameId
+                                   offset:(NSInteger)offset
+                                    limit:(NSInteger)limit
+{
+    CommonNetworkOutput* output = [[[CommonNetworkOutput alloc] init] autorelease];
+    
+    ConstructURLBlock constructURLHandler = ^NSString *(NSString *baseURL) {        
+        // set input parameters
+        NSString* str = [NSString stringWithString:baseURL];               
+        str = [str stringByAddQueryParameter:METHOD value:METHOD_GET_TOP_PLAYERS];
+        str = [str stringByAddQueryParameter:PARA_APPID value:appId];
+        str = [str stringByAddQueryParameter:PARA_GAME_ID value:gameId];
+        str = [str stringByAddQueryParameter:PARA_OFFSET intValue:offset];
+        str = [str stringByAddQueryParameter:PARA_COUNT intValue:offset];
+        return str;
+    };
+    
+    
+    PPNetworkResponseBlock responseHandler = ^(NSDictionary *dict, CommonNetworkOutput *output) {
+        output.jsonDataArray = [dict objectForKey:RET_DATA];                
+        return;
+    }; 
+    
+    return [PPNetworkRequest sendRequest:baseURL
+                     constructURLHandler:constructURLHandler
+                         responseHandler:responseHandler
+                                  output:output];
+}
+
+
 + (CommonNetworkOutput*)deleteFeed:(NSString*)baseURL 
                              appId:(NSString*)appId
                             feedId:(NSString*)feedId 

@@ -155,6 +155,8 @@
 #define METHOD_DELETE_FEED @"delf"
 #define METHOD_GET_RECOMMEND_APP    @"gra"
 
+#define METHOD_GET_TOP_PLAYERS @"gtpl"
+
 //game parameters
 
 #define PARA_SHOPPING_TYPE @"pt"

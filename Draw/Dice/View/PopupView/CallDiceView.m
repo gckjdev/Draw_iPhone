@@ -114,5 +114,12 @@
     self.popTipView = nil;
 }
 
+- (void)setDice:(int)dice 
+          count:(int)count
+{
+    [self.diceView setDice:dice];
+   _countLabel.text = [NSString stringWithFormat:NSLS(@"%d"), count]; 
+}
+
 
 @end
