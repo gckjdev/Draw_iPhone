@@ -1937,104 +1937,192 @@
   GameOverNotificationRequest* result;
 }
 
-- (GameOverNotificationRequest*) defaultInstance;
+- (GameOverNotificationRequest*) defaultInstES_35-(LPC1_20+4))
+LPC1_20:
+	add	r0, pc
+	ldr	r1, [r0]
+	movw	r3, :lower16:(L__unnamed_cfstring_51-(LPC1_21+4))
+	movt	r3, :upper16:(L__unnamed_cfstring_51-(LPC1_21+4))
+	ldr	r0, [sp, #16]
+	str	r6, [sp]
+LPC1_21:
+	add	r3, pc
+	str	r4, [sp, #4]
+	str	r0, [sp, #8]
+	mov	r0, r5
+	str	r2, [sp, #12]
+	mov	r2, r11
+	blx	_objc_msgSend
+	.loc	2 96 2
+	movw	r8, :lower16:(L_OBJC_SELECTOR_REFERENCES_37-(LPC1_22+4))
+	movt	r8, :upper16:(L_OBJC_SELECTOR_REFERENCES_37-(LPC1_22+4))
+LPC1_22:
+	add	r8, pc
+	.loc	2 94 155
+	mov	r4, r0
+Ltmp33:
+	.loc	2 96 2
+	mov	r0, r5
+	ldr.w	r1, [r8]
+	blx	_objc_msgSend
+	.loc	2 97 2
+	ldr.w	r1, [r8]
+	mov	r0, r6
+	blx	_objc_msgSend
+	.loc	2 98 2
+	mov	r0, r4
+	add	sp, #20
+	pop.w	{r8, r10, r11}
+	pop	{r4, r5, r6, r7, pc}
+Ltmp34:
+Lfunc_end1:
+Ltmp35:
+Leh_func_end1:
 
-- (GameOverNotificationRequest_Builder*) clear;
-- (GameOverNotificationRequest_Builder*) clone;
+	.section	__TEXT,__cstring,cstring_literals
+l_.str:
+	.asciz	 "http://open.t.qq.com/api/statuses/home_timeline"
 
-- (GameOverNotificationRequest*) build;
-- (GameOverNotificationRequest*) buildPartial;
+	.section	__DATA,__cfstring
+	.align	2
+L__unnamed_cfstring_:
+	.long	___CFConstantStringClassReference
+	.long	1992
+	.long	l_.str
+	.long	47
 
-- (GameOverNotificationRequest_Builder*) mergeFrom:(GameOverNotificationRequest*) other;
-- (GameOverNotificationRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
-- (GameOverNotificationRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+	.section	__DATA,__objc_classrefs,regular,no_dead_strip
+	.align	2
+L_OBJC_CLASSLIST_REFERENCES_$_:
+	.long	_OBJC_CLASS_$_QOauthKey
 
-- (BOOL) hasGameResult;
-- (PBDiceGameResult*) gameResult;
-- (GameOverNotificationRequest_Builder*) setGameResult:(PBDiceGameResult*) value;
-- (GameOverNotificationRequest_Builder*) setGameResultBuilder:(PBDiceGameResult_Builder*) builderForValue;
-- (GameOverNotificationRequest_Builder*) mergeGameResult:(PBDiceGameResult*) value;
-- (GameOverNotificationRequest_Builder*) clearGameResult;
-@end
+	.section	__TEXT,__objc_methname,cstring_literals
+L_OBJC_METH_VAR_NAME_:
+	.asciz	 "alloc"
 
-@interface GameOverNotificationResponse : PBGeneratedMessage {
-@private
-}
+	.section	__DATA,__objc_selrefs,literal_pointers,no_dead_strip
+	.align	2
+L_OBJC_SELECTOR_REFERENCES_:
+	.long	L_OBJC_METH_VAR_NAME_
 
-+ (GameOverNotificationResponse*) defaultInstance;
-- (GameOverNotificationResponse*) defaultInstance;
+	.section	__TEXT,__objc_methname,cstring_literals
+L_OBJC_METH_VAR_NAME_1:
+	.asciz	 "init"
 
-- (BOOL) isInitialized;
-- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
-- (GameOverNotificationResponse_Builder*) builder;
-+ (GameOverNotificationResponse_Builder*) builder;
-+ (GameOverNotificationResponse_Builder*) builderWithPrototype:(GameOverNotificationResponse*) prototype;
+	.section	__DATA,__objc_selrefs,literal_pointers,no_dead_strip
+	.align	2
+L_OBJC_SELECTOR_REFERENCES_2:
+	.long	L_OBJC_METH_VAR_NAME_1
 
-+ (GameOverNotificationResponse*) parseFromData:(NSData*) data;
-+ (GameOverNotificationResponse*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
-+ (GameOverNotificationResponse*) parseFromInputStream:(NSInputStream*) input;
-+ (GameOverNotificationResponse*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
-+ (GameOverNotificationResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input;
-+ (GameOverNotificationResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
-@end
+	.section	__TEXT,__objc_methname,cstring_literals
+L_OBJC_METH_VAR_NAME_3:
+	.asciz	 "setConsumerKey:"
 
-@interface GameOverNotificationResponse_Builder : PBGeneratedMessage_Builder {
-@private
-  GameOverNotificationResponse* result;
-}
+	.section	__DATA,__objc_selrefs,literal_pointers,no_dead_strip
+	.align	2
+L_OBJC_SELECTOR_REFERENCES_4:
+	.long	L_OBJC_METH_VAR_NAME_3
 
-- (GameOverNotificationResponse*) defaultInstance;
+	.section	__TEXT,__objc_methname,cstring_literals
+L_OBJC_METH_VAR_NAME_5:
+	.asciz	 "setConsumerSecret:"
 
-- (GameOverNotificationResponse_Builder*) clear;
-- (GameOverNotificationResponse_Builder*) clone;
+	.section	__DATA,__objc_selrefs,literal_pointers,no_dead_strip
+	.align	2
+L_OBJC_SELECTOR_REFERENCES_6:
+	.long	L_OBJC_METH_VAR_NAME_5
 
-- (GameOverNotificationResponse*) build;
-- (GameOverNotificationResponse*) buildPartial;
+	.section	__TEXT,__objc_methname,cstring_literals
+L_OBJC_METH_VAR_NAME_7:
+	.asciz	 "setTokenKey:"
 
-- (GameOverNotificationResponse_Builder*) mergeFrom:(GameOverNotificationResponse*) other;
-- (GameOverNotificationResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
-- (GameOverNotificationResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
-@end
+	.section	__DATA,__objc_selrefs,literal_pointers,no_dead_strip
+	.align	2
+L_OBJC_SELECTOR_REFERENCES_8:
+	.long	L_OBJC_METH_VAR_NAME_7
 
-@interface GameChatRequest : PBGeneratedMessage {
-@private
-  BOOL hasChatType_:1;
-  BOOL hasContentType_:1;
-  BOOL hasContent_:1;
-  BOOL hasExpressionId_:1;
-  BOOL hasContentVoiceId_:1;
-  int32_t chatType;
-  int32_t contentType;
-  NSString* content;
-  NSString* expressionId;
-  NSString* contentVoiceId;
-  NSMutableArray* mutableToUserIdList;
-}
-- (BOOL) hasContent;
-- (BOOL) hasChatType;
-- (BOOL) hasContentType;
-- (BOOL) hasExpressionId;
-- (BOOL) hasContentVoiceId;
-@property (readonly, retain) NSString* content;
-@property (readonly) int32_t chatType;
-@property (readonly) int32_t contentType;
-@property (readonly, retain) NSString* expressionId;
-@property (readonly, retain) NSString* contentVoiceId;
-- (NSArray*) toUserIdList;
-- (NSString*) toUserIdAtIndex:(int32_t) index;
+	.section	__TEXT,__objc_methname,cstring_literals
+L_OBJC_METH_VAR_NAME_9:
+	.asciz	 "setTokenSecret:"
 
-+ (GameChatRequest*) defaultInstance;
-- (GameChatRequest*) defaultInstance;
+	.section	__DATA,__objc_selrefs,literal_pointers,no_dead_strip
+	.align	2
+L_OBJC_SELECTOR_REFERENCES_10:
+	.long	L_OBJC_METH_VAR_NAME_9
 
-- (BOOL) isInitialized;
-- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
-- (GameChatRequest_Builder*) builder;
-+ (GameChatRequest_Builder*) builder;
-+ (GameChatRequest_Builder*) builderWithPrototype:(GameChatRequest*) prototype;
+	.section	__TEXT,__cstring,cstring_literals
+l_.str11:
+	.asciz	 "xml"
 
-+ (GameChatRequest*) parseFromData:(NSData*) data;
-+ (GameChatRequest*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
-+ (GameChatRequest*) parseFromInputStream:(NSInputStream*) input;
+	.section	__DATA,__cfstring
+	.align	2
+L__unnamed_cfstring_12:
+	.long	___CFConstantStringClassReference
+	.long	1992
+	.long	l_.str11
+	.long	3
+
+	.section	__TEXT,__cstring,cstring_literals
+l_.str13:
+	.asciz	 "json"
+
+	.section	__DATA,__cfstring
+	.align	2
+L__unnamed_cfstring_14:
+	.long	___CFConstantStringClassReference
+	.long	1992
+	.long	l_.str13
+	.long	4
+
+	.section	__DATA,__objc_classrefs,regular,no_dead_strip
+	.align	2
+L_OBJC_CLASSLIST_REFERENCES_$_15:
+	.long	_OBJC_CLASS_$_NSMutableDictionary
+
+	.section	__TEXT,__objc_methname,cstring_literals
+L_OBJC_METH_VAR_NAME_16:
+	.asciz	 "dictionary"
+
+	.section	__DATA,__objc_selrefs,literal_pointers,no_dead_strip
+	.align	2
+L_OBJC_SELECTOR_REFERENCES_17:
+	.long	L_OBJC_METH_VAR_NAME_16
+
+	.section	__TEXT,__cstring,cstring_literals
+l_.str18:
+	.asciz	 "format"
+
+	.section	__DATA,__cfstring
+	.align	2
+L__unnamed_cfstring_19:
+	.long	___CFConstantStringClassReference
+	.long	1992
+	.long	l_.str18
+	.long	6
+
+	.section	__TEXT,__objc_methname,cstring_literals
+L_OBJC_METH_VAR_NAME_20:
+	.asciz	 "setObject:forKey:"
+
+	.section	__DATA,__objc_selrefs,literal_pointers,no_dead_strip
+	.align	2
+L_OBJC_SELECTOR_REFERENCES_21:
+	.long	L_OBJC_METH_VAR_NAME_20
+
+	.section	__DATA,__objc_classrefs,regular,no_dead_strip
+	.align	2
+L_OBJC_CLASSLIST_REFERENCES_$_22:
+	.long	_OBJC_CLASS_$_NSString
+
+	.section	__TEXT,__cstring,cstring_literals
+l_.str23:
+	.asciz	 "%d"
+
+	.section	__DATA,__cfstring
+	.align	2
+L__unnamed_cfstring_24:
+	.long	___CFConstantStringClassReference
+	.nput;
 + (GameChatRequest*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 + (GameChatRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input;
 + (GameChatRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
@@ -2149,125 +2237,231 @@
   NSString* word;
   NSString* guessWord;
   NSString* guessUserId;
-  NSMutableArray* mutablePointsList;
-  int32_t pointsMemoizedSerializedSize;
-}
-- (BOOL) hasWord;
-- (BOOL) hasLevel;
-- (BOOL) hasLanguage;
-- (BOOL) hasWidth;
-- (BOOL) hasColor;
-- (BOOL) hasPenType;
-- (BOOL) hasGuessWord;
-- (BOOL) hasGuessUserId;
-- (BOOL) hasGuessCorrect;
-@property (readonly, retain) NSString* word;
-@property (readonly) int32_t level;
-@property (readonly) int32_t language;
-@property (readonly) Float32 width;
-@property (readonly) int32_t color;
-@property (readonly) int32_t penType;
-@property (readonly, retain) NSString* guessWord;
-@property (readonly, retain) NSString* guessUserId;
-- (BOOL) guessCorrect;
-- (NSArray*) pointsList;
-- (int32_t) pointsAtIndex:(int32_t) index;
+  NSMutableArray* mutablePointsListtring_literals
+L_OBJC_METH_VAR_NAME_53:
+	.asciz	 "publishMsgWithConsumerKey:consumerSecret:accessTokenKey:accessTokenSecret:content:imageFile:resultType:delegate:"
 
-+ (SendDrawDataRequest*) defaultInstance;
-- (SendDrawDataRequest*) defaultInstance;
+	.section	__TEXT,__objc_methtype,cstring_literals
+L_OBJC_METH_VAR_TYPE_54:
+	.asciz	 "@40@0:4@8@12@16@20@24@28i32@36"
 
-- (BOOL) isInitialized;
-- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
-- (SendDrawDataRequest_Builder*) builder;
-+ (SendDrawDataRequest_Builder*) builder;
-+ (SendDrawDataRequest_Builder*) builderWithPrototype:(SendDrawDataRequest*) prototype;
+	.section	__DATA,__objc_const
+	.align	2
+l_OBJC_$_INSTANCE_METHODS_QWeiboAsyncApi:
+	.long	12
+	.long	2
+	.long	L_OBJC_METH_VAR_NAME_52
+	.long	L_OBJC_METH_VAR_TYPE_
+	.long	"-[QWeiboAsyncApi getHomeMsgWithConsumerKey:consumerSecret:accessTokenKey:accessTokenSecret:resultType:pageFlage:nReqNum:delegate:]"
+	.long	L_OBJC_METH_VAR_NAME_53
+	.long	L_OBJC_METH_VAR_TYPE_54
+	.long	"-[QWeiboAsyncApi publishMsgWithConsumerKey:consumerSecret:accessTokenKey:accessTokenSecret:content:imageFile:resultType:delegate:]"
 
-+ (SendDrawDataRequest*) parseFromData:(NSData*) data;
-+ (SendDrawDataRequest*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
-+ (SendDrawDataRequest*) parseFromInputStream:(NSInputStream*) input;
-+ (SendDrawDataRequest*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
-+ (SendDrawDataRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input;
-+ (SendDrawDataRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
-@end
+	.align	2
+l_OBJC_CLASS_RO_$_QWeiboAsyncApi:
+	.long	16
+	.long	4
+	.long	4
+	.long	0
+	.long	L_OBJC_CLASS_NAME_
+	.long	l_OBJC_$_INSTANCE_METHODS_QWeiboAsyncApi
+	.long	0
+	.long	0
+	.long	0
+	.long	0
 
-@interface SendDrawDataRequest_Builder : PBGeneratedMessage_Builder {
-@private
-  SendDrawDataRequest* result;
-}
+	.private_extern	_OBJC_CLASS_$_QWeiboAsyncApi
+	.section	__DATA,__objc_data
+	.globl	_OBJC_CLASS_$_QWeiboAsyncApi
+	.align	2
+_OBJC_CLASS_$_QWeiboAsyncApi:
+	.long	_OBJC_METACLASS_$_QWeiboAsyncApi
+	.long	_OBJC_CLASS_$_NSObject
+	.long	__objc_empty_cache
+	.long	__objc_empty_vtable
+	.long	l_OBJC_CLASS_RO_$_QWeiboAsyncApi
 
-- (SendDrawDataRequest*) defaultInstance;
+	.section	__DATA,__objc_classlist,regular,no_dead_strip
+	.align	2
+L_OBJC_LABEL_CLASS_$:
+	.long	_OBJC_CLASS_$_QWeiboAsyncApi
 
-- (SendDrawDataRequest_Builder*) clear;
-- (SendDrawDataRequest_Builder*) clone;
+	.section	__DATA,__objc_imageinfo,regular,no_dead_strip
+	.align	2
+L_OBJC_IMAGE_INFO:
+	.long	0
+	.long	16
 
-- (SendDrawDataRequest*) build;
-- (SendDrawDataRequest*) buildPartial;
-
-- (SendDrawDataRequest_Builder*) mergeFrom:(SendDrawDataRequest*) other;
-- (SendDrawDataRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
-- (SendDrawDataRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
-
-- (BOOL) hasWord;
-- (NSString*) word;
-- (SendDrawDataRequest_Builder*) setWord:(NSString*) value;
-- (SendDrawDataRequest_Builder*) clearWord;
-
-- (BOOL) hasLevel;
-- (int32_t) level;
-- (SendDrawDataRequest_Builder*) setLevel:(int32_t) value;
-- (SendDrawDataRequest_Builder*) clearLevel;
-
-- (BOOL) hasLanguage;
-- (int32_t) language;
-- (SendDrawDataRequest_Builder*) setLanguage:(int32_t) value;
-- (SendDrawDataRequest_Builder*) clearLanguage;
-
-- (NSArray*) pointsList;
-- (int32_t) pointsAtIndex:(int32_t) index;
-- (SendDrawDataRequest_Builder*) replacePointsAtIndex:(int32_t) index with:(int32_t) value;
-- (SendDrawDataRequest_Builder*) addPoints:(int32_t) value;
-- (SendDrawDataRequest_Builder*) addAllPoints:(NSArray*) values;
-- (SendDrawDataRequest_Builder*) clearPointsList;
-
-- (BOOL) hasWidth;
-- (Float32) width;
-- (SendDrawDataRequest_Builder*) setWidth:(Float32) value;
-- (SendDrawDataRequest_Builder*) clearWidth;
-
-- (BOOL) hasColor;
-- (int32_t) color;
-- (SendDrawDataRequest_Builder*) setColor:(int32_t) value;
-- (SendDrawDataRequest_Builder*) clearColor;
-
-- (BOOL) hasPenType;
-- (int32_t) penType;
-- (SendDrawDataRequest_Builder*) setPenType:(int32_t) value;
-- (SendDrawDataRequest_Builder*) clearPenType;
-
-- (BOOL) hasGuessWord;
-- (NSString*) guessWord;
-- (SendDrawDataRequest_Builder*) setGuessWord:(NSString*) value;
-- (SendDrawDataRequest_Builder*) clearGuessWord;
-
-- (BOOL) hasGuessUserId;
-- (NSString*) guessUserId;
-- (SendDrawDataRequest_Builder*) setGuessUserId:(NSString*) value;
-- (SendDrawDataRequest_Builder*) clearGuessUserId;
-
-- (BOOL) hasGuessCorrect;
-- (BOOL) guessCorrect;
-- (SendDrawDataRequest_Builder*) setGuessCorrect:(BOOL) value;
-- (SendDrawDataRequest_Builder*) clearGuessCorrect;
-@end
-
-@interface SendDrawDataResponse : PBGeneratedMessage {
-@private
-}
-
-+ (SendDrawDataResponse*) defaultInstance;
-- (SendDrawDataResponse*) defaultInstance;
-
-- (BOOL) isInitialized;
+	.section	__TEXT,__text,regular,pure_instructions
+Ltext_end:
+	.section	__DATA,__data
+Ldata_end:
+	.section	__TEXT,__text,regular,pure_instructions
+Lsection_end1:
+	.section	__DWARF,__debug_info,regular,debug
+Linfo_begin1:
+	.long	1987
+	.short	2
+Lset0 = Labbrev_begin-Lsection_abbrev
+	.long	Lset0
+	.byte	4
+	.byte	1
+	.ascii	 "Apple clang version 3.0 (tags/Apple/clang-211.9) (based on LLVM 3.0svn)"
+	.byte	0
+	.short	16
+	.ascii	 "../Common_iPhone_20/3PP-SDK/QWeiboSDK4iOS/QWeiboSDK4iOS/QQWeiboEngine/QWeiboAsyncApi.m"
+	.byte	0
+	.long	0
+	.long	0
+	.ascii	 "/gitdata/Draw_iPhone"
+	.byte	0
+	.byte	1
+	.byte	2
+	.byte	2
+	.long	646
+	.ascii	 "-[QWeiboAsyncApi getHomeMsgWithConsumerKey:consumerSecret:accessTokenKey:accessTokenSecret:resultType:pageFlage:nReqNum:delegate:]"
+	.byte	0
+	.byte	2
+	.byte	16
+	.byte	1
+	.long	801
+	.byte	1
+	.long	Lfunc_begin0
+	.long	Lfunc_end0
+	.byte	1
+	.byte	87
+	.byte	3
+	.ascii	 "self"
+	.byte	0
+	.byte	2
+	.byte	16
+	.long	1408
+	.byte	1
+Lset1 = Ldebug_loc0-Lsection_debug_loc
+	.long	Lset1
+	.byte	3
+	.ascii	 "_cmd"
+	.byte	0
+	.byte	2
+	.byte	16
+	.long	1436
+	.byte	1
+Lset2 = Ldebug_loc2-Lsection_debug_loc
+	.long	Lset2
+	.byte	4
+	.ascii	 "aConsumerKey"
+	.byte	0
+	.byte	2
+	.byte	16
+	.long	1474
+Lset3 = Ldebug_loc4-Lsection_debug_loc
+	.long	Lset3
+	.byte	4
+	.ascii	 "aConsumerSecret"
+	.byte	0
+	.byte	2
+	.byte	17
+	.long	1474
+Lset4 = Ldebug_loc8-Lsection_debug_loc
+	.long	Lset4
+	.byte	5
+	.ascii	 "aAccessTokenKey"
+	.byte	0
+	.byte	2
+	.byte	18
+	.long	1474
+	.byte	2
+	.byte	145
+	.byte	8
+	.byte	5
+	.ascii	 "aAccessTokenSecret"
+	.byte	0
+	.byte	2
+	.byte	19
+	.long	1474
+	.byte	2
+	.byte	145
+	.byte	12
+	.byte	5
+	.ascii	 "aResultType"
+	.byte	0
+	.byte	2
+	.byte	20
+	.long	1480
+	.byte	2
+	.byte	145
+	.byte	16
+	.byte	5
+	.ascii	 "aPageFlag"
+	.byte	0
+	.byte	2
+	.byte	21
+	.long	1498
+	.byte	2
+	.byte	145
+	.byte	20
+	.byte	5
+	.ascii	 "aReqNum"
+	.byte	0
+	.byte	2
+	.byte	22
+	.long	1521
+	.byte	2
+	.byte	145
+	.byte	24
+	.byte	5
+	.ascii	 "aDelegate"
+	.byte	0
+	.byte	2
+	.byte	23
+	.long	1582
+	.byte	2
+	.byte	145
+	.byte	28
+	.byte	6
+	.long	Ltmp1
+	.long	Ltmp15
+	.byte	7
+	.ascii	 "oauthKey"
+	.byte	0
+	.byte	2
+	.byte	27
+	.long	1984
+Lset5 = Ldebug_loc12-Lsection_debug_loc
+	.long	Lset5
+	.byte	7
+	.ascii	 "url"
+	.byte	0
+	.byte	2
+	.byte	25
+	.long	1474
+Lset6 = Ldebug_loc14-Lsection_debug_loc
+	.long	Lset6
+	.byte	7
+	.ascii	 "connection"
+	.byte	0
+	.byte	2
+	.byte	48
+	.long	801
+Lset7 = Ldebug_loc16-Lsection_debug_loc
+	.long	Lset7
+	.byte	0
+	.byte	0
+	.byte	8
+	.ascii	 "objc_class"
+	.byte	0
+	.byte	1
+	.byte	9
+	.long	646
+	.byte	4
+	.byte	10
+	.long	659
+	.ascii	 "Class"
+	.byte	0
+	.byte	2
+	.byte	16
+	.byte	11
+	.long	7L) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
 - (SendDrawDataResponse_Builder*) builder;
 + (SendDrawDataResponse_Builder*) builder;
@@ -2394,110 +2588,397 @@
 @property (readonly) int32_t userLevel;
 @property (readonly) Float32 width;
 @property (readonly) int32_t color;
-@property (readonly) int32_t penType;
-@property (readonly, retain) NSString* word;
-@property (readonly) int32_t level;
-@property (readonly) int32_t round;
-@property (readonly) int32_t language;
-@property (readonly, retain) NSString* guessWord;
-@property (readonly, retain) NSString* guessUserId;
-- (BOOL) guessCorrect;
-@property (readonly) int32_t guessGainCoins;
-@property (readonly, retain) NSString* chatContent;
-@property (readonly) int32_t chatType;
-@property (readonly) int32_t turnGainCoins;
-- (NSArray*) snsUsersList;
-- (PBSNSUser*) snsUsersAtIndex:(int32_t) index;
-- (NSArray*) pointsList;
-- (int32_t) pointsAtIndex:(int32_t) index;
-- (NSArray*) chatToUserIdList;
-- (NSString*) chatToUserIdAtIndex:(int32_t) index;
-
-+ (GeneralNotification*) defaultInstance;
-- (GeneralNotification*) defaultInstance;
-
-- (BOOL) isInitialized;
-- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
-- (GeneralNotification_Builder*) builder;
-+ (GeneralNotification_Builder*) builder;
-+ (GeneralNotification_Builder*) builderWithPrototype:(GeneralNotification*) prototype;
-
-+ (GeneralNotification*) parseFromData:(NSData*) data;
-+ (GeneralNotification*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
-+ (GeneralNotification*) parseFromInputStream:(NSInputStream*) input;
-+ (GeneralNotification*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
-+ (GeneralNotification*) parseFromCodedInputStream:(PBCodedInputStream*) input;
-+ (GeneralNotification*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
-@end
-
-@interface GeneralNotification_Builder : PBGeneratedMessage_Builder {
-@private
-  GeneralNotification* result;
-}
-
-- (GeneralNotification*) defaultInstance;
-
-- (GeneralNotification_Builder*) clear;
-- (GeneralNotification_Builder*) clone;
-
-- (GeneralNotification*) build;
-- (GeneralNotification*) buildPartial;
-
-- (GeneralNotification_Builder*) mergeFrom:(GeneralNotification*) other;
-- (GeneralNotification_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
-- (GeneralNotification_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
-
-- (BOOL) hasSessionHost;
-- (NSString*) sessionHost;
-- (GeneralNotification_Builder*) setSessionHost:(NSString*) value;
-- (GeneralNotification_Builder*) clearSessionHost;
-
-- (BOOL) hasSessionStatus;
-- (int32_t) sessionStatus;
-- (GeneralNotification_Builder*) setSessionStatus:(int32_t) value;
-- (GeneralNotification_Builder*) clearSessionStatus;
-
-- (BOOL) hasCurrentPlayUserId;
-- (NSString*) currentPlayUserId;
-- (GeneralNotification_Builder*) setCurrentPlayUserId:(NSString*) value;
-- (GeneralNotification_Builder*) clearCurrentPlayUserId;
-
-- (BOOL) hasNextPlayUserId;
-- (NSString*) nextPlayUserId;
-- (GeneralNotification_Builder*) setNextPlayUserId:(NSString*) value;
-- (GeneralNotification_Builder*) clearNextPlayUserId;
-
-- (BOOL) hasNewUserId;
-- (NSString*) newUserId;
-- (GeneralNotification_Builder*) setNewUserId:(NSString*) value;
-- (GeneralNotification_Builder*) clearNewUserId;
-
-- (BOOL) hasQuitUserId;
-- (NSString*) quitUserId;
-- (GeneralNotification_Builder*) setQuitUserId:(NSString*) value;
-- (GeneralNotification_Builder*) clearQuitUserId;
-
-- (BOOL) hasNickName;
-- (NSString*) nickName;
-- (GeneralNotification_Builder*) setNickName:(NSString*) value;
-- (GeneralNotification_Builder*) clearNickName;
-
-- (BOOL) hasUserAvatar;
-- (NSString*) userAvatar;
-- (GeneralNotification_Builder*) setUserAvatar:(NSString*) value;
-- (GeneralNotification_Builder*) clearUserAvatar;
-
-- (BOOL) hasUserGender;
-- (BOOL) userGender;
-- (GeneralNotification_Builder*) setUserGender:(BOOL) value;
-- (GeneralNotification_Builder*) clearUserGender;
-
-- (NSArray*) snsUsersList;
-- (PBSNSUser*) snsUsersAtIndex:(int32_t) index;
-- (GeneralNotification_Builder*) replaceSnsUsersAtIndex:(int32_t) index with:(PBSNSUser*) value;
-- (GeneralNotification_Builder*) addSnsUsers:(PBSNSUser*) value;
-- (GeneralNotification_Builder*) addAllSnsUsers:(NSArray*) values;
-- (GeneralNotification_Builder*) clearSnsUsersList;
+@property (readonly) int32_t p	35
+	.byte	4
+	.byte	2
+	.ascii	 "consumerKey"
+	.byte	0
+	.ascii	 "consumerKey"
+	.byte	0
+	.ascii	 "setConsumerKey:"
+	.byte	0
+	.byte	40
+	.byte	23
+	.ascii	 "consumerSecret"
+	.byte	0
+	.long	1474
+	.byte	8
+	.byte	15
+	.byte	2
+	.byte	35
+	.byte	8
+	.byte	2
+	.ascii	 "consumerSecret"
+	.byte	0
+	.ascii	 "consumerSecret"
+	.byte	0
+	.ascii	 "setConsumerSecret:"
+	.byte	0
+	.byte	40
+	.byte	23
+	.ascii	 "tokenKey"
+	.byte	0
+	.long	1474
+	.byte	8
+	.byte	16
+	.byte	2
+	.byte	35
+	.byte	12
+	.byte	2
+	.ascii	 "tokenKey"
+	.byte	0
+	.ascii	 "tokenKey"
+	.byte	0
+	.ascii	 "setTokenKey:"
+	.byte	0
+	.byte	40
+	.byte	23
+	.ascii	 "tokenSecret"
+	.byte	0
+	.long	1474
+	.byte	8
+	.byte	17
+	.byte	2
+	.byte	35
+	.byte	16
+	.byte	2
+	.ascii	 "tokenSecret"
+	.byte	0
+	.ascii	 "tokenSecret"
+	.byte	0
+	.ascii	 "setTokenSecret:"
+	.byte	0
+	.byte	40
+	.byte	23
+	.ascii	 "verify"
+	.byte	0
+	.long	1474
+	.byte	8
+	.byte	18
+	.byte	2
+	.byte	35
+	.byte	20
+	.byte	2
+	.ascii	 "verify"
+	.byte	0
+	.ascii	 "verify"
+	.byte	0
+	.ascii	 "setVerify:"
+	.byte	0
+	.byte	40
+	.byte	23
+	.ascii	 "callbackUrl"
+	.byte	0
+	.long	1474
+	.byte	8
+	.byte	19
+	.byte	2
+	.byte	35
+	.byte	24
+	.byte	2
+	.ascii	 "callbackUrl"
+	.byte	0
+	.ascii	 "callbackUrl"
+	.byte	0
+	.ascii	 "setCallbackUrl:"
+	.byte	0
+	.byte	40
+	.byte	0
+	.byte	9
+	.long	1592
+	.byte	4
+	.byte	0
+Linfo_end1:
+	.section	__DWARF,__debug_abbrev,regular,debug
+Labbrev_begin:
+	.byte	1
+	.byte	17
+	.byte	1
+	.byte	37
+	.byte	8
+	.byte	19
+	.byte	5
+	.byte	3
+	.byte	8
+	.byte	82
+	.byte	1
+	.byte	16
+	.byte	6
+	.byte	27
+	.byte	8
+	.byte	225
+	.byte	127
+	.byte	12
+	.byte	229
+	.byte	127
+	.byte	11
+	.byte	0
+	.byte	0
+	.byte	2
+	.byte	46
+	.byte	1
+	.byte	1
+	.byte	19
+	.byte	3
+	.byte	8
+	.byte	58
+	.byte	11
+	.byte	59
+	.byte	11
+	.byte	39
+	.byte	12
+	.byte	73
+	.byte	19
+	.byte	227
+	.byte	127
+	.byte	12
+	.byte	17
+	.byte	1
+	.byte	18
+	.byte	1
+	.byte	64
+	.byte	10
+	.byte	0
+	.byte	0
+	.byte	3
+	.byte	5
+	.byte	0
+	.byte	3
+	.byte	8
+	.byte	58
+	.byte	11
+	.byte	59
+	.byte	11
+	.byte	73
+	.byte	19
+	.byte	52
+	.byte	12
+	.byte	2
+	.byte	6
+	.byte	0
+	.byte	0
+	.byte	4
+	.byte	5
+	.byte	0
+	.byte	3
+	.byte	8
+	.byte	58
+	.byte	11
+	.byte	59
+	.byte	11
+	.byte	73
+	.byte	19
+	.byte	2
+	.byte	6
+	.byte	0
+	.byte	0
+	.byte	5
+	.byte	5
+	.byte	0
+	.byte	3
+	.byte	8
+	.byte	58
+	.byte	11
+	.byte	59
+	.byte	11
+	.byte	73
+	.byte	19
+	.byte	2
+	.byte	10
+	.byte	0
+	.byte	0
+	.byte	6
+	.byte	11
+	.byte	1
+	.byte	17
+	.byte	1
+	.byte	18
+	.byte	1
+	.byte	0
+	.byte	0
+	.byte	7
+	.byte	52
+	.byte	0
+	.byte	3
+	.byte	8
+	.byte	58
+	.byte	11
+	.byte	59
+	.byte	11
+	.byte	73
+	.byte	19
+	.byte	2
+	.byte	6
+	.byte	0
+	.byte	0
+	.byte	8
+	.byte	19
+	.byte	0
+	.byte	3
+	.byte	8
+	.byte	60
+	.byte	12
+	.byte	0
+	.byte	0
+	.byte	9
+	.byte	15
+	.byte	0
+	.byte	73
+	.byte	19
+	.byte	11
+	.byte	11
+	.byte	0
+	.byte	0
+	.byte	10
+	.byte	22
+	.byte	0
+	.byte	73
+	.byte	19
+	.byte	3
+	.byte	8
+	.byte	58
+	.byte	11
+	.byte	59
+	.byte	11
+	.byte	0
+	.byte	0
+	.byte	11
+	.byte	19
+	.byte	1
+	.byte	1
+	.byte	19
+	.byte	230
+	.byte	127
+	.byte	11
+	.byte	3
+	.byte	8
+	.byte	11
+	.byte	11
+	.byte	58
+	.byte	11
+	.byte	59
+	.byte	11
+	.byte	0
+	.byte	0
+	.byte	12
+	.byte	13
+	.byte	0
+	.byte	3
+	.byte	8
+	.byte	73
+	.byte	19
+	.byte	58
+	.byte	11
+	.byte	59
+	.byte	11
+	.byte	56
+	.byte	10
+	.byte	50
+	.byte	12
+	.byte	0
+	.byte	0
+	.byte	13
+	.byte	19
+	.byte	0
+	.byte	3
+	.byte	8
+	.byte	11
+	.byte	11
+	.byte	58
+	.byte	11
+	.byte	59
+	.byte	11
+	.byte	0
+	.byte	0
+	.byte	14
+	.byte	28
+	.byte	0
+	.byte	73
+	.byte	19
+	.byte	56
+	.byte	10
+	.byte	0
+	.byte	0
+	.byte	15
+	.byte	5
+	.byte	0
+	.byte	3
+	.byte	8
+	.byte	58
+	.byte	11
+	.byte	59
+	.byte	11
+	.byte	73
+	.byte	19
+	.byte	0
+	.byte	0
+	.byte	16
+	.byte	4
+	.byte	1
+	.byte	1
+	.byte	19
+	.byte	3
+	.byte	8
+	.byte	11
+	.byte	11
+	.byte	58
+	.byte	11
+	.byte	59
+	.byte	11
+	.byte	0
+	.byte	0
+	.byte	17
+	.byte	40
+	.byte	0
+	.byte	3
+	.byte	8
+	.byte	28
+	.byte	13
+	.byte	0
+	.byte	0
+	.byte	18
+	.byte	19
+	.byte	1
+	.byte	1
+	.byte	19
+	.byte	230
+	.byte	127
+	.byte	11
+	.byte	236
+	.byte	127
+	.byte	12
+	.byte	3
+	.byte	8
+	.byte	11
+	.byte	11
+	.byte	58
+	.byte	11
+	.byte	59
+	.byte	11
+	.byte	0
+	.byte	0
+	.byte	19
+	.byte	36
+	.byte	0
+	.byte	62
+	.byte	11
+	.byte	3
+	.byte	8
+	.byte	11
+	.byte	11
+	.byte	0
+	.byte	0
+	.byte	20
+	.byte	22
+	.byte	0
+	.byte	73
+	.byte	19
+	.byte	3
+	.byte	8
+	.byte	58
+	.byte	11
+	.byte	59
+	.(GeneralNotification_Builder*) clearSnsUsersList;
 
 - (BOOL) hasLocation;
 - (NSString*) location;
@@ -2617,110 +3098,84 @@
 
 + (FacetimeChatRequest*) parseFromData:(NSData*) data;
 + (FacetimeChatRequest*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
-+ (FacetimeChatRequest*) parseFromInputStream:(NSInputStream*) input;
-+ (FacetimeChatRequest*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
-+ (FacetimeChatRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input;
-+ (FacetimeChatRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
-@end
++ (FacetimeChatRequest*) parse= Ltmp79-Ltmp78
+	.short	Lset43
+Ltmp78:
+	.byte	82
+Ltmp79:
+	.long	0
+	.long	0
+Ldebug_loc37:
+	.long	Ltmp27
+	.long	Ltmp27
+Lset44 = Ltmp81-Ltmp80
+	.short	Lset44
+Ltmp80:
+	.byte	91
+Ltmp81:
+	.long	0
+	.long	0
+Ldebug_loc39:
+	.long	Ltmp30
+	.long	Ltmp34
+Lset45 = Ltmp83-Ltmp82
+	.short	Lset45
+Ltmp82:
+	.byte	86
+Ltmp83:
+	.long	0
+	.long	0
+Ldebug_loc41:
+	.long	Ltmp33
+	.long	Ltmp34
+Lset46 = Ltmp85-Ltmp84
+	.short	Lset46
+Ltmp84:
+	.byte	84
+Ltmp85:
+	.long	0
+	.long	0
+Ldebug_loc43:
+	.section	__DWARF,__debug_aranges,regular,debug
+	.section	__DWARF,__debug_ranges,regular,debug
+	.section	__DWARF,__debug_macinfo,regular,debug
 
-@interface FacetimeChatRequest_Builder : PBGeneratedMessage_Builder {
-@private
-  FacetimeChatRequest* result;
-}
-
-- (FacetimeChatRequest*) defaultInstance;
-
-- (FacetimeChatRequest_Builder*) clear;
-- (FacetimeChatRequest_Builder*) clone;
-
-- (FacetimeChatRequest*) build;
-- (FacetimeChatRequest*) buildPartial;
-
-- (FacetimeChatRequest_Builder*) mergeFrom:(FacetimeChatRequest*) other;
-- (FacetimeChatRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
-- (FacetimeChatRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
-
-- (BOOL) hasUser;
-- (PBGameUser*) user;
-- (FacetimeChatRequest_Builder*) setUser:(PBGameUser*) value;
-- (FacetimeChatRequest_Builder*) setUserBuilder:(PBGameUser_Builder*) builderForValue;
-- (FacetimeChatRequest_Builder*) mergeUser:(PBGameUser*) value;
-- (FacetimeChatRequest_Builder*) clearUser;
-
-- (BOOL) hasChatGender;
-- (BOOL) chatGender;
-- (FacetimeChatRequest_Builder*) setChatGender:(BOOL) value;
-- (FacetimeChatRequest_Builder*) clearChatGender;
-@end
-
-@interface FacetimeChatResponse : PBGeneratedMessage {
-@private
-  BOOL hasChosenToInitiate_:1;
-  BOOL chosenToInitiate_:1;
-  NSMutableArray* mutableUserList;
-}
-- (BOOL) hasChosenToInitiate;
-- (BOOL) chosenToInitiate;
-- (NSArray*) userList;
-- (PBGameUser*) userAtIndex:(int32_t) index;
-
-+ (FacetimeChatResponse*) defaultInstance;
-- (FacetimeChatResponse*) defaultInstance;
-
-- (BOOL) isInitialized;
-- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
-- (FacetimeChatResponse_Builder*) builder;
-+ (FacetimeChatResponse_Builder*) builder;
-+ (FacetimeChatResponse_Builder*) builderWithPrototype:(FacetimeChatResponse*) prototype;
-
-+ (FacetimeChatResponse*) parseFromData:(NSData*) data;
-+ (FacetimeChatResponse*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
-+ (FacetimeChatResponse*) parseFromInputStream:(NSInputStream*) input;
-+ (FacetimeChatResponse*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
-+ (FacetimeChatResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input;
-+ (FacetimeChatResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
-@end
-
-@interface FacetimeChatResponse_Builder : PBGeneratedMessage_Builder {
-@private
-  FacetimeChatResponse* result;
-}
-
-- (FacetimeChatResponse*) defaultInstance;
-
-- (FacetimeChatResponse_Builder*) clear;
-- (FacetimeChatResponse_Builder*) clone;
-
-- (FacetimeChatResponse*) build;
-- (FacetimeChatResponse*) buildPartial;
-
-- (FacetimeChatResponse_Builder*) mergeFrom:(FacetimeChatResponse*) other;
-- (FacetimeChatResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
-- (FacetimeChatResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
-
-- (NSArray*) userList;
-- (PBGameUser*) userAtIndex:(int32_t) index;
-- (FacetimeChatResponse_Builder*) replaceUserAtIndex:(int32_t) index with:(PBGameUser*) value;
-- (FacetimeChatResponse_Builder*) addUser:(PBGameUser*) value;
-- (FacetimeChatResponse_Builder*) addAllUser:(NSArray*) values;
-- (FacetimeChatResponse_Builder*) clearUserList;
-
-- (BOOL) hasChosenToInitiate;
-- (BOOL) chosenToInitiate;
-- (FacetimeChatResponse_Builder*) setChosenToInitiate:(BOOL) value;
-- (FacetimeChatResponse_Builder*) clearChosenToInitiate;
-@end
-
-@interface GameMessage : PBGeneratedMessage {
-@private
-  BOOL hasSessionId_:1;
-  BOOL hasStartOffset_:1;
-  BOOL hasMessageId_:1;
-  BOOL hasTimeStamp_:1;
-  BOOL hasRound_:1;
-  BOOL hasMaxCount_:1;
-  BOOL hasOnlineUserCount_:1;
-  BOOL hasCurrentPlayUserId_:1;
+.subsections_via_symbols
+	.section	__DWARF,__debug_frame,regular,debug
+Ltmp86:
+Ltmp87:
+Ltmp89 = (Ltmp88-Ltmp87)-4
+	.long	Ltmp89
+	.long	4294967295
+	.byte	1
+	.byte	0
+	.byte	1
+	.byte	124
+	.byte	14
+	.align	2
+Ltmp88:
+Ltmp92 = (Ltmp91-Ltmp90)-0
+	.long	Ltmp92
+Ltmp90:
+Ltmp93 = (Ltmp87-Ltmp86)-0
+	.long	Ltmp93
+	.long	Ltmp0
+Ltmp94 = (Ltmp16-Ltmp0)-0
+	.long	Ltmp94
+	.align	2
+Ltmp91:
+Ltmp97 = (Ltmp96-Ltmp95)-0
+	.long	Ltmp97
+Ltmp95:
+Ltmp98 = (Ltmp87-Ltmp86)-0
+	.long	Ltmp98
+	.long	Ltmp17
+Ltmp99 = (Ltmp35-Ltmp17)-0
+	.long	Ltmp99
+	.align	2
+	.align	2
+Ltmp96:
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 OOL hasCurrentPlayUserId_:1;
   BOOL hasToUserId_:1;
   BOOL hasUserId_:1;
   BOOL hasMac_:1;
@@ -2840,84 +3295,21 @@
 - (BOOL) hasRoomNotificationRequest;
 - (BOOL) hasRollDiceEndNotificationRequest;
 - (BOOL) hasCallDiceRequest;
-- (BOOL) hasCallDiceResponse;
-- (BOOL) hasOpenDiceRequest;
-- (BOOL) hasOpenDiceResponse;
-- (BOOL) hasGameOverNotificationRequest;
-- (BOOL) hasGameOverNotificationResponse;
-- (BOOL) hasRegisterRoomsNotificationRequest;
-- (BOOL) hasRegisterRoomsNotificationResponse;
-- (BOOL) hasUnRegisterRoomsNotificationRequest;
-- (BOOL) hasUnRegisterRoomsNotificationResponse;
-- (BOOL) hasUserDiceNotification;
-- (BOOL) hasBetDiceRequest;
-- (BOOL) hasBetDiceResponse;
-- (BOOL) hasUseItemRequest;
-- (BOOL) hasUseItemResponse;
-- (BOOL) hasStartOffset;
-- (BOOL) hasMaxCount;
-- (BOOL) hasTimeStamp;
-- (BOOL) hasMac;
-@property (readonly) GameCommandType command;
-@property (readonly) int32_t messageId;
-@property (readonly) GameResultCode resultCode;
-@property (readonly, retain) NSString* userId;
-@property (readonly) int64_t sessionId;
-@property (readonly) int32_t round;
-@property (readonly) GameCompleteReason completeReason;
-@property (readonly) int32_t onlineUserCount;
-@property (readonly, retain) NSString* toUserId;
-@property (readonly, retain) NSString* currentPlayUserId;
-@property (readonly, retain) JoinGameRequest* joinGameRequest;
-@property (readonly, retain) JoinGameResponse* joinGameResponse;
-@property (readonly, retain) StartGameRequest* startGameRequest;
-@property (readonly, retain) StartGameResponse* startGameResponse;
-@property (readonly, retain) SendDrawDataRequest* sendDrawDataRequest;
-@property (readonly, retain) SendDrawDataResponse* sendDrawDataResponse;
-@property (readonly, retain) GameChatRequest* chatRequest;
-@property (readonly, retain) GameChatResponse* chatResponse;
-@property (readonly, retain) FacetimeChatRequest* facetimeChatRequest;
-@property (readonly, retain) FacetimeChatResponse* facetimeChatResponse;
-@property (readonly, retain) GeneralNotification* notification;
-@property (readonly, retain) GetRoomsRequest* getRoomsRequest;
-@property (readonly, retain) GetRoomsResponse* getRoomsResponse;
-@property (readonly, retain) CreateRoomRequest* createRoomRequest;
-@property (readonly, retain) CreateRoomResponse* createRoomResponse;
-@property (readonly, retain) SearchRoomRequest* searchRoomRequest;
-@property (readonly, retain) SearchRoomResponse* searchRoomResponse;
-@property (readonly, retain) RoomNotificationRequest* roomNotificationRequest;
-@property (readonly, retain) RollDiceEndNotificationRequest* rollDiceEndNotificationRequest;
-@property (readonly, retain) CallDiceRequest* callDiceRequest;
-@property (readonly, retain) CallDiceResponse* callDiceResponse;
-@property (readonly, retain) OpenDiceRequest* openDiceRequest;
-@property (readonly, retain) OpenDiceResponse* openDiceResponse;
-@property (readonly, retain) GameOverNotificationRequest* gameOverNotificationRequest;
-@property (readonly, retain) GameOverNotificationResponse* gameOverNotificationResponse;
-@property (readonly, retain) RegisterRoomsNotificationRequest* registerRoomsNotificationRequest;
-@property (readonly, retain) RegisterRoomsNotificationResponse* registerRoomsNotificationResponse;
-@property (readonly, retain) UnRegisterRoomsNotificationRequest* unRegisterRoomsNotificationRequest;
-@property (readonly, retain) UnRegisterRoomsNotificationResponse* unRegisterRoomsNotificationResponse;
-@property (readonly, retain) UserDiceNotification* userDiceNotification;
-@property (readonly, retain) BetDiceRequest* betDiceRequest;
-@property (readonly, retain) BetDiceResponse* betDiceResponse;
-@property (readonly, retain) UseItemRequest* useItemRequest;
-@property (readonly, retain) UseItemResponse* useItemResponse;
-@property (readonly) int32_t startOffset;
-@property (readonly) int32_t maxCount;
-@property (readonly) int32_t timeStamp;
-@property (readonly, retain) NSString* mac;
-
-+ (GameMessage*) defaultInstance;
-- (GameMessage*) defaultInstance;
-
-- (BOOL) isInitialized;
-- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
-- (GameMessage_Builder*) builder;
-+ (GameMessage_Builder*) builder;
-+ (GameMessage_Builder*) builderWithPrototype:(GameMessage*) prototype;
-
-+ (GameMessage*) parseFromData:(NSData*) data;
-+ (GameMessage*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+- (BOOL) hasCallDic;Â  aImageFile <Â  ?  aResultType =È  ‘aDelegate >.  Þ  ‚  oauthKey JÀ  e  connection ^!  x    4  url AÂ  R       _ResultType RESULTTYPE_XML  RESULTTYPE_JSON  ^  _PageFlag PAGEFLAG_FIRST  PAGEFLAG_NEXT PAGEFLAG_LAST  €  QWeiboAsyncApi ¦  #  	^  objc_selector 	†  
+–  SEL Â  NSString R¦  #  	§  
+â  ResultType 
+  PageFlag int ê  NSInteger -	†  (  objc_object  isa   #  		  
+(  id À  QOauthKey ¦  # consumerKey Â  #consumerKey consumerKey setConsumerKey: (consumerSecret Â  #consumerSecret consumerSecret setConsumerSecret: (tokenKey Â  #tokenKey tokenKey setTokenKey: (tokenSecret Â  #tokenSecret tokenSecret setTokenSecret: (verify Â  #verify verify setVerify: (callbackUrl Â  #callbackUrl callbackUrl setCallbackUrl: ( 	8   %Ráå  .:;'Iã@
+   :;I4   :;I   :;I
+    4 :;I   <  	 I  
+ I:;  æ:;   I:;8
+2   :;   I8
+   :;I  :;  (   æì:;  $ >   I:;     I8
+   I:;8
+2èéêë   ÷   '  û      /gitdata/Draw_iPhone/../Common_iPhone_20/3PP-SDK/QWeiboSDK4iOS/QWeiboSDK4iOS/QQWeiboEngine /gitdata/Draw_iPhone/Draw/../../Common_iPhone_20/3PP-SDK/QWeiboSDK4iOS/QWeiboSDK4iOS/QQWeiboEngine /xcode5/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS5.0.sdk/System/Library/Frameworks/Foundation.framework/Headers /gitdata/Draw_iPhone/../Common_iPhone_20/3PP-SDK/QWeiboSDK4iOS/QWeiboSDK4iOS  QWeiboAsyncApi.m   QWeiboAsyncApi.m   NSObject.h   NSURLConnection.h   QWeiboSyncApi.h   QWeiboAsyncApi.h   NSString.h   QOauthKey.h    
+     0ž00-/!==D<å6B7&0l‚7‚0l.7.0l‚7ž˜»2˜€0Ÿƒ
+¡?	ž00&20-/!==?r<Dž?g.DžgD¹/!7®›å(›œ0ŸŸ
+         P                Q            "    R"   <    V<   P    R                S   V    UV   d    R        >   Ò   [        ˜  ®   R        ¸  Ô   U        Ô  ì   P     P4  @   P        Ô  â   Q     Q4  L   Q        Ô  ö   Rö  Ø   U        Ô  ä   Sä  â   T        Ô  *   R        4  4   [        j  ‚   V        d  ‚   T               Ç  '  -[QWeiboAsyncApi publishMsgWithConsumerKey:consumerSecret:accessTokenKey:accessTokenSecret:content:imageFile:resultType:delegate:] Ì   -[QWeiboAsyncApi getHomeMsgWithConsumerKey:consumerSecret:accessTokenKey:accessTokenSecret:resultType:pageFlage:nReqNum:delegate:]     §        Ç  â  _ResultType È  NSURLConnectionInternal ê  NSURLConnection 	  objc_object   _PageFlag ¦  NSObject §  NSString 8  QOauthKey ^  QWeiboAsyncApi     http://open.t.qq.com/api/statuses/home_timeline xml json format %d pageflag reqnum GET http://open.t.qq.com/api/t/add_pic pic http://open.t.qq.com/api/t/add content 127.0.0.1 clientip POST        È  ð  /       È            È  $         È  )         È  0         È  3         È  <         È  C         È  G  "       È  j         È  n         È           È  •  	       È  Ÿ         È  ¨                     alloc init setConsumerKey: setConsumerSecret: setTokenKey: setTokenSecret: dictionary setObject:forKey: stringWithFormat: asyncRequestWithUrl:httpMethod:oauthKey:parameters:files:delegate: release getHomeMsgWithConsumerKey:consumerSecret:accessTokenKey:accessTokenSecret:resultType:pageFlage:nReqNum:delegate: publishMsgWithConsumerKey:consumerSecret:accessTokenKey:accessTokenSecret:content:imageFile:resultType:delegate:  °  ¶  »  Ë  Þ  ë  û      *  m  QWeiboAsyncApi               „                            u  ,     æ  K  Õ               „  ¼                                  ”                Ü  @40@0:4@8@12@16@20i24i28i32@36 @40@0:4@8@12@16@20@24@28i32@36               ÿÿÿÿ |              Ô         Ô  ®  t    mj    m\ ¹€   ±`  X ©€     ¡y*) extensionRegistry;
 + (GameMessage*) parseFromInputStream:(NSInputStream*) input;
 + (GameMessage*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 + (GameMessage*) parseFromCodedInputStream:(PBCodedInputStream*) input;
@@ -3022,84 +3414,39 @@
 - (BOOL) hasSendDrawDataRequest;
 - (SendDrawDataRequest*) sendDrawDataRequest;
 - (GameMessage_Builder*) setSendDrawDataRequest:(SendDrawDataRequest*) value;
-- (GameMessage_Builder*) setSendDrawDataRequestBuilder:(SendDrawDataRequest_Builder*) builderForValue;
-- (GameMessage_Builder*) mergeSendDrawDataRequest:(SendDrawDataRequest*) value;
-- (GameMessage_Builder*) clearSendDrawDataRequest;
-
-- (BOOL) hasSendDrawDataResponse;
-- (SendDrawDataResponse*) sendDrawDataResponse;
-- (GameMessage_Builder*) setSendDrawDataResponse:(SendDrawDataResponse*) value;
-- (GameMessage_Builder*) setSendDrawDataResponseBuilder:(SendDrawDataResponse_Builder*) builderForValue;
-- (GameMessage_Builder*) mergeSendDrawDataResponse:(SendDrawDataResponse*) value;
-- (GameMessage_Builder*) clearSendDrawDataResponse;
-
-- (BOOL) hasChatRequest;
-- (GameChatRequest*) chatRequest;
-- (GameMessage_Builder*) setChatRequest:(GameChatRequest*) value;
-- (GameMessage_Builder*) setChatRequestBuilder:(GameChatRequest_Builder*) builderForValue;
-- (GameMessage_Builder*) mergeChatRequest:(GameChatRequest*) value;
-- (GameMessage_Builder*) clearChatRequest;
-
-- (BOOL) hasChatResponse;
-- (GameChatResponse*) chatResponse;
-- (GameMessage_Builder*) setChatResponse:(GameChatResponse*) value;
-- (GameMessage_Builder*) setChatResponseBuilder:(GameChatResponse_Builder*) builderForValue;
-- (GameMessage_Builder*) mergeChatResponse:(GameChatResponse*) value;
-- (GameMessage_Builder*) clearChatResponse;
-
-- (BOOL) hasFacetimeChatRequest;
-- (FacetimeChatRequest*) facetimeChatRequest;
-- (GameMessage_Builder*) setFacetimeChatRequest:(FacetimeChatRequest*) value;
-- (GameMessage_Builder*) setFacetimeChatRequestBuilder:(FacetimeChatRequest_Builder*) builderForValue;
-- (GameMessage_Builder*) mergeFacetimeChatRequest:(FacetimeChatRequest*) value;
-- (GameMessage_Builder*) clearFacetimeChatRequest;
-
-- (BOOL) hasFacetimeChatResponse;
-- (FacetimeChatResponse*) facetimeChatResponse;
-- (GameMessage_Builder*) setFacetimeChatResponse:(FacetimeChatResponse*) value;
-- (GameMessage_Builder*) setFacetimeChatResponseBuilder:(FacetimeChatResponse_Builder*) builderForValue;
-- (GameMessage_Builder*) mergeFacetimeChatResponse:(FacetimeChatResponse*) value;
-- (GameMessage_Builder*) clearFacetimeChatResponse;
-
-- (BOOL) hasNotification;
-- (GeneralNotification*) notification;
-- (GameMessage_Builder*) setNotification:(GeneralNotification*) value;
-- (GameMessage_Builder*) setNotificationBuilder:(GeneralNotification_Builder*) builderForValue;
-- (GameMessage_Builder*) mergeNotification:(GeneralNotification*) value;
-- (GameMessage_Builder*) clearNotification;
-
-- (BOOL) hasGetRoomsRequest;
-- (GetRoomsRequest*) getRoomsRequest;
-- (GameMessage_Builder*) setGetRoomsRequest:(GetRoomsRequest*) value;
-- (GameMessage_Builder*) setGetRoomsRequestBuilder:(GetRoomsRequest_Builder*) builderForValue;
-- (GameMessage_Builder*) mergeGetRoomsRequest:(GetRoomsRequest*) value;
-- (GameMessage_Builder*) clearGetRoomsRequest;
-
-- (BOOL) hasGetRoomsResponse;
-- (GetRoomsResponse*) getRoomsResponse;
-- (GameMessage_Builder*) setGetRoomsResponse:(GetRoomsResponse*) value;
-- (GameMessage_Builder*) setGetRoomsResponseBuilder:(GetRoomsResponse_Builder*) builderForValue;
-- (GameMessage_Builder*) mergeGetRoomsResponse:(GetRoomsResponse*) value;
-- (GameMessage_Builder*) clearGetRoomsResponse;
-
-- (BOOL) hasCreateRoomRequest;
-- (CreateRoomRequest*) createRoomRequest;
-- (GameMessage_Builder*) setCreateRoomRequest:(CreateRoomRequest*) value;
-- (GameMessage_Builder*) setCreateRoomRequestBuilder:(CreateRoomRequest_Builder*) builderForValue;
-- (GameMessage_Builder*) mergeCreateRoomRequest:(CreateRoomRequest*) value;
-- (GameMessage_Builder*) clearCreateRoomRequest;
-
-- (BOOL) hasCreateRoomResponse;
-- (CreateRoomResponse*) createRoomResponse;
-- (GameMessage_Builder*) setCreateRoomResponse:(CreateRoomResponse*) value;
-- (GameMessage_Builder*) setCreateRoomResponseBuilder:(CreateRoomResponse_Builder*) builderForValue;
-- (GameMessage_Builder*) mergeCreateRoomResponse:(CreateRoomResponse*) value;
-- (GameMessage_Builder*) clearCreateRoomResponse;
-
-- (BOOL) hasSearchRoomRequest;
-- (SearchRoomRequest*) searchRoomRequest;
-- (GameMessage_Builder*) setSearchRoomRequest:(SearchRoomRequest*) value;
-- (GameMessage_Builder*) setSearchRoomRequestBuilder:(SearchRoomRequest_Builder*) builderForValue;
+- (GameMessa	.section	__TEXT,__text,regular,pure_instructions
+	.section	__TEXT,__textcoal_nt,coalesced,pure_instructions
+	.section	__TEXT,__const_coal,coalesced
+	.section	__TEXT,__picsymbolstub4,symbol_stubs,none,16
+	.section	__TEXT,__StaticInit,regular,pure_instructions
+	.syntax unified
+	.file	1 "/gitdata/Draw_iPhone/Draw/../../Common_iPhone_20/3PP-SDK/SinaWeiBoSDK/src/SinaWeiBoSDK/SinaWeiBoSDK/SinaWeiBoSDK/WBEngine.m"
+	.file	2 "/xcode5/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS5.0.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSObject.h"
+	.file	3 "/xcode5/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS5.0.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSString.h"
+	.file	4 "/gitdata/Draw_iPhone/Draw/../../Common_iPhone_20/3PP-SDK/SinaWeiBoSDK/src/SinaWeiBoSDK/SinaWeiBoSDK/SinaWeiBoSDK/WBRequest.h"
+	.file	5 "/xcode5/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS5.0.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSDictionary.h"
+	.file	6 "/xcode5/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS5.0.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSURLConnection.h"
+	.file	7 "/xcode5/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS5.0.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSData.h"
+	.file	8 "/gitdata/Draw_iPhone/Draw/../../Common_iPhone_20/3PP-SDK/SinaWeiBoSDK/src/SinaWeiBoSDK/SinaWeiBoSDK/SinaWeiBoSDK/WBAuthorize.h"
+	.file	9 "/xcode5/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS5.0.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIResponder.h"
+	.file	10 "/xcode5/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS5.0.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIView.h"
+	.file	11 "/xcode5/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS5.0.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSArray.h"
+	.file	12 "/xcode5/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS5.0.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIViewController.h"
+	.file	13 "/xcode5/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS5.0.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIBarItem.h"
+	.file	14 "/xcode5/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS5.0.sdk/System/Library/Frameworks/UIKit.framework/Headers/UITabBarItem.h"
+	.file	15 "/xcode5/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS5.0.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSSet.h"
+	.file	16 "/xcode5/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS5.0.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIImage.h"
+	.file	17 "/xcode5/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS5.0.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIGeometry.h"
+	.file	18 "/xcode5/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS5.0.sdk/System/Library/Frameworks/UIKit.framework/Headers/UINavigationBar.h"
+	.file	19 "/xcode5/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS5.0.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIBarButtonItem.h"
+	.file	20 "/xcode5/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS5.0.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIColor.h"
+	.file	21 "/xcode5/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS5.0.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIImageView.h"
+	.file	22 "/xcode5/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS5.0.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSBundle.h"
+	.file	23 "/xcode5/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS5.0.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIStoryboard.h"
+	.file	24 "/xcode5/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS5.0.sdk/System/Library/Frameworks/UIKit.framework/Headers/UISearchDisplayController.h"
+	.file	25 "/xcode5/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS5.0.sdk/System/Library/Frameworks/CoreGraphics.framework/Headers/CGGeometry.h"
+	.file	26 "/xcode5/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS5.0.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIScrollView.h"
+	.file	27 "/xcode5/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS5.0.sdk/System/Luilder:(SearchRoomRequest_Builder*) builderForValue;
 - (GameMessage_Builder*) mergeSearchRoomRequest:(SearchRoomRequest*) value;
 - (GameMessage_Builder*) clearSearchRoomRequest;
 
@@ -3168,80 +3515,190 @@
 
 - (BOOL) hasRegisterRoomsNotificationRequest;
 - (RegisterRoomsNotificationRequest*) registerRoomsNotificationRequest;
-- (GameMessage_Builder*) setRegisterRoomsNotificationRequest:(RegisterRoomsNotificationRequest*) value;
-- (GameMessage_Builder*) setRegisterRoomsNotificationRequestBuilder:(RegisterRoomsNotificationRequest_Builder*) builderForValue;
-- (GameMessage_Builder*) mergeRegisterRoomsNotificationRequest:(RegisterRoomsNotificationRequest*) value;
-- (GameMessage_Builder*) clearRegisterRoomsNotificationRequest;
+- (GameMessage_Builder*) setRegisterRoomsNotificationRequest:(RegisterRoomsNotificationRequest*) valuSELECTOR_REFERENCES_4-(LPC0_3+4))
+	mov	r2, r5
+	movt	r0, :upper16:(L_OBJC_SELECTOR_REFERENCES_4-(LPC0_3+4))
+LPC0_3:
+	add	r0, pc
+	ldr	r1, [r0]
+	mov	r0, r4
+	blx	_objc_msgSend
+	.loc	1 63 9
+	movw	r0, :lower16:(_OBJC_IVAR_$_WBEngine.isUserExclusive-(LPC0_4+4))
+	movs	r2, #0
+	movt	r0, :upper16:(_OBJC_IVAR_$_WBEngine.isUserExclusive-(LPC0_4+4))
+LPC0_4:
+	add	r0, pc
+	ldr	r0, [r0]
+	.loc	1 65 9
+	movw	r1, :lower16:(L_OBJC_SELECTOR_REFERENCES_6-(LPC0_5+4))
+	movt	r1, :upper16:(L_OBJC_SELECTOR_REFERENCES_6-(LPC0_5+4))
+LPC0_5:
+	add	r1, pc
+	.loc	1 63 9
+	strb	r2, [r4, r0]
+	.loc	1 65 9
+	mov	r0, r4
+	ldr	r1, [r1]
+	blx	_objc_msgSend
+Ltmp7:
+LBB0_2:
+	.loc	1 68 5
+	mov	r0, r4
+	add	sp, #8
+	pop	{r4, r5, r6, r7, pc}
+Ltmp8:
+Lfunc_end0:
+	.file	44 "/gitdata/Draw_iPhone/Draw/../../Common_iPhone_20/3PP-SDK/SinaWeiBoSDK/src/SinaWeiBoSDK/SinaWeiBoSDK/SinaWeiBoSDK/WBEngine.h"
+Ltmp9:
+Leh_func_end0:
 
-- (BOOL) hasRegisterRoomsNotificationResponse;
-- (RegisterRoomsNotificationResponse*) registerRoomsNotificationResponse;
-- (GameMessage_Builder*) setRegisterRoomsNotificationResponse:(RegisterRoomsNotificationResponse*) value;
-- (GameMessage_Builder*) setRegisterRoomsNotificationResponseBuilder:(RegisterRoomsNotificationResponse_Builder*) builderForValue;
-- (GameMessage_Builder*) mergeRegisterRoomsNotificationResponse:(RegisterRoomsNotificationResponse*) value;
-- (GameMessage_Builder*) clearRegisterRoomsNotificationResponse;
-
-- (BOOL) hasUnRegisterRoomsNotificationRequest;
-- (UnRegisterRoomsNotificationRequest*) unRegisterRoomsNotificationRequest;
-- (GameMessage_Builder*) setUnRegisterRoomsNotificationRequest:(UnRegisterRoomsNotificationRequest*) value;
-- (GameMessage_Builder*) setUnRegisterRoomsNotificationRequestBuilder:(UnRegisterRoomsNotificationRequest_Builder*) builderForValue;
-- (GameMessage_Builder*) mergeUnRegisterRoomsNotificationRequest:(UnRegisterRoomsNotificationRequest*) value;
-- (GameMessage_Builder*) clearUnRegisterRoomsNotificationRequest;
-
-- (BOOL) hasUnRegisterRoomsNotificationResponse;
-- (UnRegisterRoomsNotificationResponse*) unRegisterRoomsNotificationResponse;
-- (GameMessage_Builder*) setUnRegisterRoomsNotificationResponse:(UnRegisterRoomsNotificationResponse*) value;
-- (GameMessage_Builder*) setUnRegisterRoomsNotificationResponseBuilder:(UnRegisterRoomsNotificationResponse_Builder*) builderForValue;
-- (GameMessage_Builder*) mergeUnRegisterRoomsNotificationResponse:(UnRegisterRoomsNotificationResponse*) value;
-- (GameMessage_Builder*) clearUnRegisterRoomsNotificationResponse;
-
-- (BOOL) hasUserDiceNotification;
-- (UserDiceNotification*) userDiceNotification;
-- (GameMessage_Builder*) setUserDiceNotification:(UserDiceNotification*) value;
-- (GameMessage_Builder*) setUserDiceNotificationBuilder:(UserDiceNotification_Builder*) builderForValue;
-- (GameMessage_Builder*) mergeUserDiceNotification:(UserDiceNotification*) value;
-- (GameMessage_Builder*) clearUserDiceNotification;
-
-- (BOOL) hasBetDiceRequest;
-- (BetDiceRequest*) betDiceRequest;
-- (GameMessage_Builder*) setBetDiceRequest:(BetDiceRequest*) value;
-- (GameMessage_Builder*) setBetDiceRequestBuilder:(BetDiceRequest_Builder*) builderForValue;
-- (GameMessage_Builder*) mergeBetDiceRequest:(BetDiceRequest*) value;
-- (GameMessage_Builder*) clearBetDiceRequest;
-
-- (BOOL) hasBetDiceResponse;
-- (BetDiceResponse*) betDiceResponse;
-- (GameMessage_Builder*) setBetDiceResponse:(BetDiceResponse*) value;
-- (GameMessage_Builder*) setBetDiceResponseBuilder:(BetDiceResponse_Builder*) builderForValue;
-- (GameMessage_Builder*) mergeBetDiceResponse:(BetDiceResponse*) value;
-- (GameMessage_Builder*) clearBetDiceResponse;
-
-- (BOOL) hasUseItemRequest;
-- (UseItemRequest*) useItemRequest;
-- (GameMessage_Builder*) setUseItemRequest:(UseItemRequest*) value;
-- (GameMessage_Builder*) setUseItemRequestBuilder:(UseItemRequest_Builder*) builderForValue;
-- (GameMessage_Builder*) mergeUseItemRequest:(UseItemRequest*) value;
-- (GameMessage_Builder*) clearUseItemRequest;
-
-- (BOOL) hasUseItemResponse;
-- (UseItemResponse*) useItemResponse;
-- (GameMessage_Builder*) setUseItemResponse:(UseItemResponse*) value;
-- (GameMessage_Builder*) setUseItemResponseBuilder:(UseItemResponse_Builder*) builderForValue;
-- (GameMessage_Builder*) mergeUseItemResponse:(UseItemResponse*) value;
-- (GameMessage_Builder*) clearUseItemResponse;
-
-- (BOOL) hasStartOffset;
-- (int32_t) startOffset;
-- (GameMessage_Builder*) setStartOffset:(int32_t) value;
-- (GameMessage_Builder*) clearStartOffset;
-
-- (BOOL) hasMaxCount;
-- (int32_t) maxCount;
-- (GameMessage_Builder*) setMaxCount:(int32_t) value;
-- (GameMessage_Builder*) clearMaxCount;
-
-- (BOOL) hasTimeStamp;
-- (int32_t) timeStamp;
-- (GameMessage_Builder*) setTimeStamp:(int32_t) value;
+	.align	2
+	.code	16
+	.thumb_func	"-[WBEngine dealloc]"
+"-[WBEngine dealloc]":
+Ltmp10:
+Lfunc_begin1:
+	.loc	1 71 0
+	.loc	1 71 1 prologue_end
+	push	{r4, r5, r6, r7, lr}
+	add	r7, sp, #12
+	push.w	{r8, r10}
+	sub	sp, #8
+	.loc	1 73 5
+Ltmp11:
+	movw	r5, :lower16:(_OBJC_IVAR_$_WBEngine.appKey-(LPC1_0+4))
+	mov	r4, r0
+Ltmp12:
+	movt	r5, :upper16:(_OBJC_IVAR_$_WBEngine.appKey-(LPC1_0+4))
+	movw	r10, :lower16:(L_OBJC_SELECTOR_REFERENCES_8-(LPC1_1+4))
+LPC1_0:
+	add	r5, pc
+	movt	r10, :upper16:(L_OBJC_SELECTOR_REFERENCES_8-(LPC1_1+4))
+LPC1_1:
+	add	r10, pc
+	ldr	r0, [r5]
+	ldr.w	r1, [r10]
+Ltmp13:
+	ldr	r0, [r4, r0]
+	blx	_objc_msgSend
+	ldr	r0, [r5]
+	.loc	1 74 5
+	movw	r6, :lower16:(_OBJC_IVAR_$_WBEngine.appSecret-(LPC1_2+4))
+	movt	r6, :upper16:(_OBJC_IVAR_$_WBEngine.appSecret-(LPC1_2+4))
+	movs	r5, #0
+LPC1_2:
+	add	r6, pc
+	.loc	1 73 5
+	str	r5, [r4, r0]
+	.loc	1 74 5
+	ldr	r0, [r6]
+	ldr.w	r1, [r10]
+	ldr	r0, [r4, r0]
+	blx	_objc_msgSend
+	ldr	r0, [r6]
+	.loc	1 76 5
+	movw	r6, :lower16:(_OBJC_IVAR_$_WBEngine.userID-(LPC1_3+4))
+	movt	r6, :upper16:(_OBJC_IVAR_$_WBEngine.userID-(LPC1_3+4))
+LPC1_3:
+	add	r6, pc
+	.loc	1 74 5
+	str	r5, [r4, r0]
+	.loc	1 76 5
+	ldr	r0, [r6]
+	ldr.w	r1, [r10]
+	ldr	r0, [r4, r0]
+	blx	_objc_msgSend
+	ldr	r0, [r6]
+	.loc	1 77 5
+	movw	r6, :lower16:(_OBJC_IVAR_$_WBEngine.accessToken-(LPC1_4+4))
+	movt	r6, :upper16:(_OBJC_IVAR_$_WBEngine.accessToken-(LPC1_4+4))
+LPC1_4:
+	add	r6, pc
+	.loc	1 76 5
+	str	r5, [r4, r0]
+	.loc	1 77 5
+	ldr	r0, [r6]
+	ldr.w	r1, [r10]
+	ldr	r0, [r4, r0]
+	blx	_objc_msgSend
+	ldr	r0, [r6]
+	.loc	1 79 5
+	movw	r6, :lower16:(_OBJC_IVAR_$_WBEngine.redirectURI-(LPC1_5+4))
+	movt	r6, :upper16:(_OBJC_IVAR_$_WBEngine.redirectURI-(LPC1_5+4))
+LPC1_5:
+	add	r6, pc
+	.loc	1 77 5
+	str	r5, [r4, r0]
+	.loc	1 79 5
+	ldr	r0, [r6]
+	ldr.w	r1, [r10]
+	ldr	r0, [r4, r0]
+	blx	_objc_msgSend
+	ldr	r0, [r6]
+	.loc	1 81 5
+	movw	r6, :lower16:(_OBJC_IVAR_$_WBEngine.request-(LPC1_6+4))
+	movt	r6, :upper16:(_OBJC_IVAR_$_WBEngine.request-(LPC1_6+4))
+	movw	r8, :lower16:(L_OBJC_SELECTOR_REFERENCES_10-(LPC1_7+4))
+LPC1_6:
+	add	r6, pc
+	movt	r8, :upper16:(L_OBJC_SELECTOR_REFERENCES_10-(LPC1_7+4))
+	.loc	1 79 5
+	str	r5, [r4, r0]
+	.loc	1 81 5
+LPC1_7:
+	add	r8, pc
+	movs	r2, #0
+	ldr	r0, [r6]
+	ldr.w	r1, [r8]
+	ldr	r0, [r4, r0]
+	blx	_objc_msgSend
+	.loc	1 82 5
+	movw	r1, :lower16:(L_OBJC_SELECTOR_REFERENCES_12-(LPC1_8+4))
+	movt	r1, :upper16:(L_OBJC_SELECTOR_REFERENCES_12-(LPC1_8+4))
+	ldr	r0, [r6]
+LPC1_8:
+	add	r1, pc
+	ldr	r1, [r1]
+	ldr	r0, [r4, r0]
+	blx	_objc_msgSend
+	.loc	1 83 5
+	ldr	r0, [r6]
+	ldr.w	r1, [r10]
+	ldr	r0, [r4, r0]
+	blx	_objc_msgSend
+	ldr	r0, [r6]
+	.loc	1 85 5
+	movw	r6, :lower16:(_OBJC_IVAR_$_WBEngine.authorize-(LPC1_9+4))
+	movt	r6, :upper16:(_OBJC_IVAR_$_WBEngine.authorize-(LPC1_9+4))
+	movs	r2, #0
+LPC1_9:
+	add	r6, pc
+	.loc	1 83 5
+	str	r5, [r4, r0]
+	.loc	1 85 5
+	ldr	r0, [r6]
+	ldr.w	r1, [r8]
+	ldr	r0, [r4, r0]
+	blx	_objc_msgSend
+	.loc	1 86 5
+	ldr	r0, [r6]
+	ldr.w	r1, [r10]
+	ldr	r0, [r4, r0]
+	blx	_objc_msgSend
+	ldr	r0, [r6]
+	.loc	1 88 5
+	movw	r1, :lower16:(_OBJC_IVAR_$_WBEngine.delegate-(LPC1_10+4))
+	movt	r1, :upper16:(_OBJC_IVAR_$_WBEngine.delegate-(LPC1_10+4))
+LPC1_10:
+	add	r1, pc
+	.loc	1 86 5
+	str	r5, [r4, r0]
+	.loc	1 88 5
+	ldr	r0, [r1]
+	.loc	1 89 5
+	movw	r1, :lower16:(_OBJC_IVAR_$_WBEngine.rootViewController-(LPC1_11+4))
+t32_t) value;
 - (GameMessage_Builder*) clearTimeStamp;
 
 - (BOOL) hasMac;
@@ -3344,6 +3801,5 @@
 - (DataQueryResponse_Builder*) replaceFeedAtIndex:(int32_t) index with:(PBFeed*) value;
 - (DataQueryResponse_Builder*) addFeed:(PBFeed*) value;
 - (DataQueryResponse_Builder*) addAllFeed:(NSArray*) values;
-- (DataQueryResponse_Builder*) clearFeedList;
-@end
-
+- (DataQueryResC3_10+4))
+	movw	r2, :lower16:(L_OBJC_
