@@ -32,4 +32,5 @@
 + (Item*)pinkDiamondDice;
 + (Item*)greenDiamondDice;
 + (Item*)purpleDiamondDice;
+
 @end
