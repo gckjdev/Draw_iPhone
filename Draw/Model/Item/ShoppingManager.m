@@ -355,4 +355,16 @@ static ShoppingManager *staticShoppingManager = nil;
     return retPrice;
 }
 
+- (NSInteger)getReversePrice
+{
+    NSString* price = [MobClick getConfigParams:@"DICE_REVERSE_PRICE"];
+    if (price == nil) {
+        PPDebug(@"<getReversePrice>: price is nil, return default price = %d",DICE_REVERSE_PRICE);
+        return DICE_REVERSE_PRICE;
+    }
+    NSInteger retPrice = [price integerValue];
+    PPDebug(@"<getReversePrice>: price string = %@,price value = %d",price,retPrice);
+    return retPrice;
+}
+
 @end

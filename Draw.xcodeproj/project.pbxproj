@@ -188,7 +188,6 @@
 		A4903DC5160EE58D005A587F /* openDice_pinkDiamond_4.png in Resources */ = {isa = PBXBuildFile; fileRef = A4903DB9160EE58D005A587F /* openDice_pinkDiamond_4.png */; };
 		A4903DC6160EE58D005A587F /* openDice_pinkDiamond_5.png in Resources */ = {isa = PBXBuildFile; fileRef = A4903DBA160EE58D005A587F /* openDice_pinkDiamond_5.png */; };
 		A4903DC7160EE58D005A587F /* openDice_pinkDiamond_6.png in Resources */ = {isa = PBXBuildFile; fileRef = A4903DBB160EE58D005A587F /* openDice_pinkDiamond_6.png */; };
-		A4903DC9160EE5B8005A587F /* dice_purpleDiamond_1.png in Resources */ = {isa = PBXBuildFile; fileRef = A4903DC8160EE5B8005A587F /* dice_purpleDiamond_1.png */; };
 		A4903DD5160EE5C3005A587F /* dice_purpleDiamond_2.png in Resources */ = {isa = PBXBuildFile; fileRef = A4903DCA160EE5C3005A587F /* dice_purpleDiamond_2.png */; };
 		A4903DD6160EE5C3005A587F /* dice_purpleDiamond_3.png in Resources */ = {isa = PBXBuildFile; fileRef = A4903DCB160EE5C3005A587F /* dice_purpleDiamond_3.png */; };
 		A4903DD7160EE5C3005A587F /* dice_purpleDiamond_4.png in Resources */ = {isa = PBXBuildFile; fileRef = A4903DCC160EE5C3005A587F /* dice_purpleDiamond_4.png */; };
@@ -262,6 +261,7 @@
 		A4903E57160EE631005A587F /* openDice_purpleCrystal_6.png in Resources */ = {isa = PBXBuildFile; fileRef = A4903E4B160EE631005A587F /* openDice_purpleCrystal_6.png */; };
 		A4903E5A160FF4E0005A587F /* cut.png in Resources */ = {isa = PBXBuildFile; fileRef = A4903E58160FF4E0005A587F /* cut.png */; };
 		A4903E5B160FF4E0005A587F /* rollAgain.png in Resources */ = {isa = PBXBuildFile; fileRef = A4903E59160FF4E0005A587F /* rollAgain.png */; };
+		A4903E5D160FFCEC005A587F /* dice_purpleDiamond_1.png in Resources */ = {isa = PBXBuildFile; fileRef = A4903E5C160FFCEC005A587F /* dice_purpleDiamond_1.png */; };
 		A4A01BB215D8AF67002FE86D /* bell_1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4A01B7115D8AF67002FE86D /* bell_1@2x.png */; };
 		A4A01BB315D8AF67002FE86D /* bell_2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4A01B7215D8AF67002FE86D /* bell_2@2x.png */; };
 		A4A01BB415D8AF67002FE86D /* bell_3@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4A01B7315D8AF67002FE86D /* bell_3@2x.png */; };
@@ -1866,7 +1866,6 @@
 		A4903DB9160EE58D005A587F /* openDice_pinkDiamond_4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = openDice_pinkDiamond_4.png; path = Draw/Dice/Resource/image/beautifulDice/pinkDiamond/openDice_pinkDiamond_4.png; sourceTree = SOURCE_ROOT; };
 		A4903DBA160EE58D005A587F /* openDice_pinkDiamond_5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = openDice_pinkDiamond_5.png; path = Draw/Dice/Resource/image/beautifulDice/pinkDiamond/openDice_pinkDiamond_5.png; sourceTree = SOURCE_ROOT; };
 		A4903DBB160EE58D005A587F /* openDice_pinkDiamond_6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = openDice_pinkDiamond_6.png; path = Draw/Dice/Resource/image/beautifulDice/pinkDiamond/openDice_pinkDiamond_6.png; sourceTree = SOURCE_ROOT; };
-		A4903DC8160EE5B8005A587F /* dice_purpleDiamond_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = dice_purpleDiamond_1.png; path = Draw/Dice/Resource/image/beautifulDice/purpleDiamond/dice_purpleDiamond_1.png; sourceTree = "<group>"; };
 		A4903DCA160EE5C3005A587F /* dice_purpleDiamond_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = dice_purpleDiamond_2.png; path = Draw/Dice/Resource/image/beautifulDice/purpleDiamond/dice_purpleDiamond_2.png; sourceTree = SOURCE_ROOT; };
 		A4903DCB160EE5C3005A587F /* dice_purpleDiamond_3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = dice_purpleDiamond_3.png; path = Draw/Dice/Resource/image/beautifulDice/purpleDiamond/dice_purpleDiamond_3.png; sourceTree = SOURCE_ROOT; };
 		A4903DCC160EE5C3005A587F /* dice_purpleDiamond_4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = dice_purpleDiamond_4.png; path = Draw/Dice/Resource/image/beautifulDice/purpleDiamond/dice_purpleDiamond_4.png; sourceTree = SOURCE_ROOT; };
@@ -1940,6 +1939,7 @@
 		A4903E4B160EE631005A587F /* openDice_purpleCrystal_6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = openDice_purpleCrystal_6.png; path = Draw/Dice/Resource/image/beautifulDice/purpleCrystal/openDice_purpleCrystal_6.png; sourceTree = SOURCE_ROOT; };
 		A4903E58160FF4E0005A587F /* cut.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cut.png; sourceTree = "<group>"; };
 		A4903E59160FF4E0005A587F /* rollAgain.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rollAgain.png; sourceTree = "<group>"; };
+		A4903E5C160FFCEC005A587F /* dice_purpleDiamond_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = dice_purpleDiamond_1.png; path = Draw/Dice/Resource/image/beautifulDice/purpleDiamond/dice_purpleDiamond_1.png; sourceTree = SOURCE_ROOT; };
 		A4A01B7115D8AF67002FE86D /* bell_1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bell_1@2x.png"; sourceTree = "<group>"; };
 		A4A01B7215D8AF67002FE86D /* bell_2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bell_2@2x.png"; sourceTree = "<group>"; };
 		A4A01B7315D8AF67002FE86D /* bell_3@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bell_3@2x.png"; sourceTree = "<group>"; };
@@ -4961,6 +4961,7 @@
 		C2CCCEA1160DA7BC003E9F34 /* purpleDiamond */ = {
 			isa = PBXGroup;
 			children = (
+				A4903E5C160FFCEC005A587F /* dice_purpleDiamond_1.png */,
 				A4903DCA160EE5C3005A587F /* dice_purpleDiamond_2.png */,
 				A4903DCB160EE5C3005A587F /* dice_purpleDiamond_3.png */,
 				A4903DCC160EE5C3005A587F /* dice_purpleDiamond_4.png */,
@@ -6829,7 +6830,6 @@
 		CA745D131503B1B400600024 = {
 			isa = PBXGroup;
 			children = (
-				A4903DC8160EE5B8005A587F /* dice_purpleDiamond_1.png */,
 				CA745D281503B1B500600024 /* Draw */,
 				CA745D481503B1B500600024 /* DrawTests */,
 				CA745D211503B1B500600024 /* Frameworks */,
@@ -9511,7 +9511,6 @@
 				A4903DC5160EE58D005A587F /* openDice_pinkDiamond_4.png in Resources */,
 				A4903DC6160EE58D005A587F /* openDice_pinkDiamond_5.png in Resources */,
 				A4903DC7160EE58D005A587F /* openDice_pinkDiamond_6.png in Resources */,
-				A4903DC9160EE5B8005A587F /* dice_purpleDiamond_1.png in Resources */,
 				A4903DD5160EE5C3005A587F /* dice_purpleDiamond_2.png in Resources */,
 				A4903DD6160EE5C3005A587F /* dice_purpleDiamond_3.png in Resources */,
 				A4903DD7160EE5C3005A587F /* dice_purpleDiamond_4.png in Resources */,
@@ -9585,6 +9584,7 @@
 				A4903E57160EE631005A587F /* openDice_purpleCrystal_6.png in Resources */,
 				A4903E5A160FF4E0005A587F /* cut.png in Resources */,
 				A4903E5B160FF4E0005A587F /* rollAgain.png in Resources */,
+				A4903E5D160FFCEC005A587F /* dice_purpleDiamond_1.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
