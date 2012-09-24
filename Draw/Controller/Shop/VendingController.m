@@ -21,6 +21,9 @@
 //#import "YoumiWallController.h"
 #import "LmWallService.h"
 #import "DiceItem.h"
+#import "FontButton.h"
+#import "CustomDiceManager.h"
+
 
 #define ITEM_COUNT_PER_LINE 3
 #define LINE_PER_PAGE       3
@@ -28,6 +31,10 @@
 #define PRICE_TAG_OFFSET 20120710
 #define ITEM_BUTTON_OFFSET  120120710
 #define PAGE_TAG_OFFSET      220120710
+
+#define ITEM_TIPS_DIALOG_TAG    20120924
+
+#define BOUGHT_ITEM @"boughtItem"
 
 #define FIRST_SHELF_FRAME   ([DeviceDetection isIPAD]?CGRectMake(12, 150, 712, 117):CGRectMake(5, 69, 297, 54))
 #define SHELF_SEPERATOR     ([DeviceDetection isIPAD]?240:110)
@@ -239,7 +246,7 @@ static VendingController* staticVendingController = nil;
     [[LmWallService defaultService] show:self];
 }
 
-- (IBAction)clickBack:(id)sender
+- (IBAction)clickBackButton:(id)sender
 {
     [self.navigationController popViewControllerAnimated:YES];
 }
@@ -466,6 +473,7 @@ static VendingController* staticVendingController = nil;
         [self.coinsButton setTitle:[NSString stringWithFormat:@"x %d",[AccountManager defaultManager].getBalance] forState:UIControlStateNormal];
         [self showBuyItemAnimation:anItem];
         [self refleshToolViewForItem:anItem];
+        [self showItemTips:anItem];
     }
     
 }
@@ -478,6 +486,37 @@ static VendingController* staticVendingController = nil;
     CGFloat pageWidth = scrollView.frame.size.width;
     int page = floor((scrollView.contentOffset.x - pageWidth/2)/pageWidth +1);
     self.pageControl.currentPage = page;
+}
+
+- (void)showItemTips:(Item*)anItem
+{
+    if (![[ItemManager defaultManager] hasShownItemTips:anItem.type]) {
+        CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"kItemTips") 
+                                                           message:[Item getItemTips:anItem.type] 
+                                                             style:CommonDialogStyleDoubleButton 
+                                                          delegate:self theme:CommonDialogThemeDice];
+        dialog.tag = ITEM_TIPS_DIALOG_TAG;
+        [dialog.oKButton.fontLable setText:NSLS(@"kNoMoreShowIt")];
+        [dialog.oKButton.fontLable setAdjustsFontSizeToFitWidth:YES];
+        [dialog.backButton.fontLable setText:NSLS(@"kOK")];
+        _currentBuyingItem = anItem.type;
+        [dialog showInView:self.view];
+    }
+    if ([Item isCustomDice:anItem.type]) {
+        [[CustomDiceManager defaultManager] setMyDiceTypeByItemType:anItem.type];
+    }
+    
+}
+
+#pragma mark - commondialog delegate
+- (void)clickOk:(CommonDialog *)dialog
+{
+    [[ItemManager defaultManager] didShowItemTips:_currentBuyingItem];
+}
+
+- (void)clickBack:(CommonDialog *)dialog
+{
+    
 }
 
 @end

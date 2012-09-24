@@ -10,9 +10,12 @@
 #import "ColorShopView.h"
 #import "CommonItemInfoView.h"
 #import "HKGirlFontLabel.h"
+#import "CommonDialog.h"
 
-@interface VendingController : PPViewController <ColorShopViewDelegate, CommonItemInfoViewDelegate>{
+
+@interface VendingController : PPViewController <ColorShopViewDelegate, CommonItemInfoViewDelegate, CommonDialogDelegate>{
     NSMutableArray* _itemList;
+    int _currentBuyingItem;
 }
 @property (retain, nonatomic) IBOutlet UIScrollView *itemListScrollView;
 @property (retain, nonatomic) IBOutlet UIButton *coinsButton;

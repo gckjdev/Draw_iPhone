@@ -50,5 +50,5 @@ typedef enum {
 - (void)setTitle:(NSString *)title;
 - (void)setMessage:(NSString *)message;
 - (void)initButtonsWithTheme:(CommonDialogTheme)theme;
-
++ (CommonDialogTheme)globalGetTheme;
 @end

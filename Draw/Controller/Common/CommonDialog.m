@@ -24,6 +24,17 @@
 @synthesize delegate = _delegate;
 @synthesize contentBackground = _contentBackground;
 @synthesize style = _style;
+
++ (CommonDialogTheme)globalGetTheme
+{
+    if (isDrawApp()) {
+        return CommonDialogThemeDraw;
+    }
+    if (isDiceApp()) {
+        return CommonDialogThemeDice;
+    }
+    return CommonDialogThemeDraw;
+}
 - (void)dealloc
 {
     _delegate = nil;
@@ -98,7 +109,7 @@
 {
     CommonDialog* view =  (CommonDialog*)[self createInfoViewByXibName:COMMON_DIALOG_THEME_DRAW];
     [view initButtonsWithStyle:aStyle];
-    [view initButtonsWithTheme:CommonDialogThemeDraw];
+    [view initButtonsWithTheme:[CommonDialog globalGetTheme]];
     [view appear];
     
     //init the button
