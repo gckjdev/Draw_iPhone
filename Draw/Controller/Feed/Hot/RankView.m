@@ -154,11 +154,11 @@
 {
     switch (type) {
         case RankViewTypeFirst:
-            return [DeviceDetection isIPAD] ? 137 : 123;
+            return [DeviceDetection isIPAD] ? 268 : 123;
         case RankViewTypeSecond:
-            return [DeviceDetection isIPAD] ? 167 : 139;
+            return [DeviceDetection isIPAD] ? 306 : 139;
         case RankViewTypeNormal:
-            return [DeviceDetection isIPAD] ? 110 : 110;
+            return [DeviceDetection isIPAD] ? 244 : 110;
         default:
             return 0;
     }
@@ -168,11 +168,11 @@
 {
     switch (type) {
         case RankViewTypeFirst:
-            return [DeviceDetection isIPAD] ? 320 : 320;
+            return [DeviceDetection isIPAD] ? 768 : 320;
         case RankViewTypeSecond:
-            return [DeviceDetection isIPAD] ? 159 : 159;
+            return [DeviceDetection isIPAD] ? 383 : 159;
         case RankViewTypeNormal:
-            return [DeviceDetection isIPAD] ? 106 : 106;
+            return [DeviceDetection isIPAD] ? 255 : 106;
         default:
             return 0;
     }
