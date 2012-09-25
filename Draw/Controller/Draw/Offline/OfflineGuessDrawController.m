@@ -652,7 +652,9 @@
 //        if ([self.showView status] != Stop) {
 
 //        }
-
+        if (_feed) {
+            _draw = self.feed.drawData;            
+        }
         [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kGuessCorrect") delayTime:1 isHappy:YES];
         [[AudioManager defaultManager] playSoundById:BINGO];
         [self setWordButtonsEnabled:NO];

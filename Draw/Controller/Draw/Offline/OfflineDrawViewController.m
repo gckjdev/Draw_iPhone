@@ -42,6 +42,7 @@
 #import "MyPaintManager.h"
 #import "UIImageExt.h"
 #import "ShareController.h"
+#import "Contest.h"
 
 @interface OfflineDrawViewController()
 {
@@ -93,6 +94,7 @@
 @synthesize targetUid = _targetUid;
 @synthesize eraserColor = _eraserColor;
 @synthesize bgColor = _bgColor;
+@synthesize contest = _contest;
 
 #define PAPER_VIEW_TAG 20120403 
 
@@ -123,6 +125,17 @@
 }
 
 
++ (void)startDrawWithContest:(Contest *)contest   
+              fromController:(UIViewController*)fromController
+{
+    OfflineDrawViewController *odc = [[OfflineDrawViewController alloc] initWithContest:contest];
+    [fromController.navigationController pushViewController:odc animated:YES];   
+    [odc release];
+    
+    PPDebug(@"<startDrawWithContest>: contest id = %@",contest.contestId);
+
+}
+
 - (void)dealloc
 {
     PPRelease(eraserButton);
@@ -142,6 +155,7 @@
     PPRelease(_eraserColor);
     PPRelease(pickBGColorView);
     PPRelease(_draft);
+    PPRelease(_contest);
     //    [autoReleasePool drain];
     //    autoReleasePool = nil;
     
@@ -164,12 +178,26 @@
 - (id)initWithWord:(Word *)word lang:(LanguageType)lang{
     self = [super init];
     if (self) {
-        //        autoReleasePool = [[NSAutoreleasePool alloc] init];
         self.word = word;
         languageType = lang;
         shareImageManager = [ShareImageManager defaultManager];
     }
     return self;
+}
+
+- (id)initWithContest:(Contest *)contest
+{
+ 
+    self = [super init];
+    if (self) {
+        self.contest = contest;
+        self.word = [Word wordWithText:NSLS(@"kContestOpus") level:WordLeveLMedium];
+        shareImageManager = [ShareImageManager defaultManager];
+        languageType = [[UserManager defaultManager] getLanguageType];
+        shareImageManager = [ShareImageManager defaultManager];
+    }
+    return self;
+        
 }
 
 - (id)initWithDraft:(MyPaint *)draft

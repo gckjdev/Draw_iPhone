@@ -13,6 +13,7 @@
 		<array key="IBDocument.IntegratedClassDependencies">
 			<string>IBUIWebView</string>
 			<string>IBUIButton</string>
+			<string>IBUIImageView</string>
 			<string>IBUIView</string>
 			<string>IBProxyObject</string>
 		</array>
@@ -36,11 +37,27 @@
 				<reference key="NSNextResponder"/>
 				<int key="NSvFlags">292</int>
 				<array class="NSMutableArray" key="NSSubviews">
+					<object class="IBUIImageView" id="379251647">
+						<reference key="NSNextResponder" ref="421994044"/>
+						<int key="NSvFlags">292</int>
+						<string key="NSFrame">{{15, 25}, {290, 405}}</string>
+						<reference key="NSSuperview" ref="421994044"/>
+						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView" ref="54689904"/>
+						<bool key="IBUIUserInteractionEnabled">NO</bool>
+						<string key="IBUIContentStretch">{{0.5, 0.5}, {0, 0}}</string>
+						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+						<object class="NSCustomResource" key="IBUIImage">
+							<string key="NSClassName">NSImage</string>
+							<string key="NSResourceName">contest_rule_bg@2x.png</string>
+						</object>
+					</object>
 					<object class="IBUIWebView" id="54689904">
 						<reference key="NSNextResponder" ref="421994044"/>
-						<int key="NSvFlags">274</int>
-						<string key="NSFrame">{{10, 20}, {300, 420}}</string>
+						<int key="NSvFlags">301</int>
+						<string key="NSFrame">{{20, 43}, {280, 380}}</string>
 						<reference key="NSSuperview" ref="421994044"/>
+						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="167940551"/>
 						<object class="NSColor" key="IBUIBackgroundColor">
 							<int key="NSColorSpace">1</int>
@@ -53,8 +70,9 @@
 					<object class="IBUIButton" id="167940551">
 						<reference key="NSNextResponder" ref="421994044"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{284, -5}, {49, 37}}</string>
+						<string key="NSFrame">{{276, 30}, {35, 35}}</string>
 						<reference key="NSSuperview" ref="421994044"/>
+						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -74,7 +92,7 @@
 						</object>
 						<object class="NSCustomResource" key="IBUINormalImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">delete@2x.png</string>
+							<string key="NSResourceName">contest_statement_close@2x.png</string>
 						</object>
 						<object class="IBUIFontDescription" key="IBUIFontDescription">
 							<int key="type">2</int>
@@ -89,10 +107,11 @@
 				</array>
 				<string key="NSFrameSize">{320, 460}</string>
 				<reference key="NSSuperview"/>
-				<reference key="NSNextKeyView" ref="54689904"/>
+				<reference key="NSWindow"/>
+				<reference key="NSNextKeyView" ref="379251647"/>
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">1</int>
-					<bytes key="NSRGB">MCAwIDAgMC42AA</bytes>
+					<bytes key="NSRGB">MC4yODIzNTI5NDEyIDAuMjc0NTA5ODAzOSAwLjI0NzA1ODgyMzUAA</bytes>
 				</object>
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 			</object>
@@ -141,18 +160,24 @@
 						<reference key="object" ref="421994044"/>
 						<array class="NSMutableArray" key="children">
 							<reference ref="54689904"/>
+							<reference ref="379251647"/>
 							<reference ref="167940551"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
 					<object class="IBObjectRecord">
-						<int key="objectID">5</int>
-						<reference key="object" ref="54689904"/>
+						<int key="objectID">6</int>
+						<reference key="object" ref="167940551"/>
 						<reference key="parent" ref="421994044"/>
 					</object>
 					<object class="IBObjectRecord">
-						<int key="objectID">6</int>
-						<reference key="object" ref="167940551"/>
+						<int key="objectID">9</int>
+						<reference key="object" ref="379251647"/>
+						<reference key="parent" ref="421994044"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">5</int>
+						<reference key="object" ref="54689904"/>
 						<reference key="parent" ref="421994044"/>
 					</object>
 				</array>
@@ -166,22 +191,56 @@
 				<string key="4.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="5.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="6.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+				<string key="9.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 			</dictionary>
 			<dictionary class="NSMutableDictionary" key="unlocalizedProperties"/>
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">8</int>
+			<int key="maxID">9</int>
 		</object>
-		<object class="IBClassDescriber" key="IBDocument.Classes"/>
+		<object class="IBClassDescriber" key="IBDocument.Classes">
+			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
+				<object class="IBPartialClassDescription">
+					<string key="className">StatementView</string>
+					<string key="superclassName">UIView</string>
+					<object class="NSMutableDictionary" key="actions">
+						<string key="NS.key.0">clickCloseButton:</string>
+						<string key="NS.object.0">id</string>
+					</object>
+					<object class="NSMutableDictionary" key="actionInfosByName">
+						<string key="NS.key.0">clickCloseButton:</string>
+						<object class="IBActionInfo" key="NS.object.0">
+							<string key="name">clickCloseButton:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+					</object>
+					<object class="NSMutableDictionary" key="outlets">
+						<string key="NS.key.0">webView</string>
+						<string key="NS.object.0">UIWebView</string>
+					</object>
+					<object class="NSMutableDictionary" key="toOneOutletInfosByName">
+						<string key="NS.key.0">webView</string>
+						<object class="IBToOneOutletInfo" key="NS.object.0">
+							<string key="name">webView</string>
+							<string key="candidateClassName">UIWebView</string>
+						</object>
+					</object>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/StatementView.h</string>
+					</object>
+				</object>
+			</array>
+		</object>
 		<int key="IBDocument.localizationMode">0</int>
 		<string key="IBDocument.TargetRuntimeIdentifier">IBCocoaTouchFramework</string>
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
-		<object class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="NS.key.0">delete@2x.png</string>
-			<string key="NS.object.0">{24, 24}</string>
-		</object>
+		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
+			<string key="contest_rule_bg@2x.png">{137, 83}</string>
+			<string key="contest_statement_close@2x.png">{73, 76}</string>
+		</dictionary>
 		<string key="IBCocoaTouchPluginVersion">933</string>
 	</data>
 </archive>
