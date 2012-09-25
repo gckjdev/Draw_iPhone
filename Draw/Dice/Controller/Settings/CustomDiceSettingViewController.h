@@ -9,5 +9,6 @@
 #import "PPTableViewController.h"
 
 @interface CustomDiceSettingViewController : PPTableViewController
+@property (retain, nonatomic) IBOutlet UIImageView *bgImageView;
 
 @end

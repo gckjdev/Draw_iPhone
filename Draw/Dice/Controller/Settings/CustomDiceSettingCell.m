@@ -25,7 +25,7 @@
     return self;
 }
 
-#define HEIGHT_DICE_ROOM_LIST_CELL  ([DeviceDetection isIPAD] ? 114: 57)
+#define HEIGHT_DICE_ROOM_LIST_CELL  ([DeviceDetection isIPAD] ? 140: 70)
 
 + (CGFloat)getCellHeight
 {

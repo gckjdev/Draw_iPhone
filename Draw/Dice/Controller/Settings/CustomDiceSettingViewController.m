@@ -15,6 +15,7 @@
 @end
 
 @implementation CustomDiceSettingViewController
+@synthesize bgImageView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -34,11 +35,16 @@
 {
     [super viewDidLoad];
     self.dataList = [[CustomDiceManager defaultManager] myCustomDiceList]; 
+    
+//    [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:[GameApp background]]]];
+    [self.bgImageView setImage:[UIImage imageNamed:[GameApp background]]];
+    [self.dataTableView setBackgroundView:nil];
     // Do any additional setup after loading the view from its nib.
 }
 
 - (void)viewDidUnload
 {
+    [self setBgImageView:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -100,4 +106,8 @@
     [self.dataTableView reloadData];
 }
 
+- (void)dealloc {
+    [bgImageView release];
+    [super dealloc];
+}
 @end

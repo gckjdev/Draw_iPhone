@@ -74,13 +74,13 @@ static LmWallService* _defaultService;
     if ([[UserManager defaultManager] hasUser] == NO)
         return;
      
-    if ([ConfigManager useLmWall]){
-        PPDebug(@"<LmmobAdWallSDK> ScoreQuery");    
+    if ([ConfigManager wallType] == WallTypeLimei){
         NSString* userId = [[UserManager defaultManager] userId];
+        PPDebug(@"<LmmobAdWallSDK> UserQueryScore");    
         [self.adWallView immobViewQueryScoreWithAdUnitID:[GameApp lmwallId] WithAccountID:userId];
     }
     else{
-        PPDebug(@"<WanpuWall> ScoreQuery");    
+        PPDebug(@"<WanpuWall> getPoints");    
         [AppConnect getPoints];        
     }
 }
@@ -137,8 +137,10 @@ static LmWallService* _defaultService;
     // charge account
     [[AccountService defaultService] chargeAccount:score source:LmAppReward];
     
-    if ([ConfigManager useLmWall]){
-        [self.adWallView immobViewReducscore:score WithAdUnitID:[GameApp lmwallId]];
+    NSString* userId = [[UserManager defaultManager] userId];
+    
+    if ([ConfigManager wallType] == WallTypeLimei){
+        [self.adWallView immobViewReduceScore:score WithAdUnitID:[GameApp lmwallId] WithAccountID:userId];
     }
     else{
         [AppConnect spendPoints:score];
@@ -186,13 +188,12 @@ static LmWallService* _defaultService;
  *YES  当前广告可用
  *NO   当前广告不可用
  */
-- (void) immobViewDidReceiveAd:(BOOL)AdReady{
-    PPDebug(@"<immobViewDidReceiveAd> AdReady=%d", AdReady);
-    if (AdReady){
+- (void) immobViewDidReceiveAd{
+    PPDebug(@"<immobViewDidReceiveAd>");
+    if ([self.adWallView isAdReady]){
         [_viewController.view addSubview:self.adWallView];
         [self.adWallView immobViewDisplay];
-    }
-    
+    }    
 }
 
 - (void) immobViewQueryScore:(NSUInteger)score WithMessage:(NSString *)returnMessage
@@ -205,7 +206,7 @@ static LmWallService* _defaultService;
     [self handleScoreAdded:score];
 }
 
-- (void) immobViewReducscore:(BOOL)status WithMessage:(NSString *)message
+- (void) immobViewReduceScore:(BOOL)status WithMessage:(NSString *)message
 {
     PPDebug(@"<ReduceScore> status=%d, message=%@", status, message);
 }

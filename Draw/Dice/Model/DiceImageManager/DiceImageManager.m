@@ -445,34 +445,34 @@ static DiceImageManager *_defaultManager = nil;
     }
 }
 
-- (UIImage *)diceNormalRoomBgImage
-{
-    return [UIImage imageNamed:@"normal_room_bg.png"];
-}
-
-- (UIImage *)diceHighRoomBgImage
-{
-    return [UIImage imageNamed:@"high_room_bg.png"];
-}
-
-- (UIImage *)diceSuperHighRoomBgImage
-{
-    return [UIImage imageNamed:@"super_high_room_bg.png"];
-}
+//- (UIImage *)diceNormalRoomBgImage
+//{
+//    return [UIImage imageNamed:@"normal_room_bg.png"];
+//}
+//
+//- (UIImage *)diceHighRoomBgImage
+//{
+//    return [UIImage imageNamed:@"high_room_bg.png"];
+//}
+//
+//- (UIImage *)diceSuperHighRoomBgImage
+//{
+//    return [UIImage imageNamed:@"super_high_room_bg.png"];
+//}
 
 - (UIImage *)diceNormalRoomTableImage
 {
-    return [UIImage imageNamed:@"normal_room_table.png"];
+    return [UIImage imageNamed:@"normal_room_table.jpg"];
 }
 
 - (UIImage *)diceHighRoomTableImage
 {
-    return [UIImage imageNamed:@"high_room_table.png"];
+    return [UIImage imageNamed:@"high_room_table.jpg"];
 }
 
 - (UIImage *)diceSuperHighRoomTableImage
 {
-    return [UIImage imageNamed:@"super_high_room_table.png"];
+    return [UIImage imageNamed:@"super_high_room_table.jpg"];
 }
 
 @end
