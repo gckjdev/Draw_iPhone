@@ -10,10 +10,12 @@
 #import "Contest.h"
 #import "ConfigManager.h"
 #import "StatementView.h"
+#import "StatementController.h"
 
 @implementation ContestController
 @synthesize scrollView = _scrollView;
 @synthesize pageControl = _pageControl;
+@synthesize titleLabel = _titleLabel;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -37,6 +39,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self.titleLabel setText:NSLS(@"kContest")];
     _contestViewList = [[NSMutableArray alloc] init];
     _contestService = [ContestService  defaultService];
     [_contestService getContestListWithType:ContestListTypeAll offset:0 limit:12 delegate:self];
@@ -46,6 +49,7 @@
 {
     [self setScrollView:nil];
     [self setPageControl:nil];
+    [self setTitleLabel:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -144,13 +148,14 @@
 - (void)didClickContestView:(ContestView *)contestView
                onJoinButton:(Contest *)contest
 {
-    PPDebug(@"click join button");    
+    StatementController *sc = [[StatementController alloc] initWithContest:contest];
+    [self.navigationController pushViewController:sc animated:YES];
+    [sc release];
 }
 
 - (void)didClickContestView:(ContestView *)contestView
              onDetailButton:(Contest *)contest
 {
-    PPDebug(@"click detail button");
     StatementView *state = [StatementView createStatementView:self];
     [state setViewInfo:contest];
     [state showInView:self.view];
@@ -160,6 +165,7 @@
     PPRelease(_scrollView);
     PPRelease(_pageControl);
     PPRelease(_contestViewList);
+    PPRelease(_titleLabel);
     [super dealloc];
 }
 @end

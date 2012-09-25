@@ -94,8 +94,9 @@ typedef enum{
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    NSInteger type = self.currentTab.tabID;
     
-    if (self.currentTab.tabID == RankTypeHot) {
+    if (type == RankTypeHot || type == RankTypeHistory) {
         if (indexPath.row == 0) {
             return [RankView heightForRankViewType:RankViewTypeFirst]+1;
         }else if(indexPath.row == 1){

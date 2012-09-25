@@ -31,11 +31,11 @@
 @property(nonatomic, assign)id<ContestViewDelegate>delegate;
 @property(nonatomic, retain)Contest *contest;
 @property (retain, nonatomic) IBOutlet UIWebView *webView;
-@property (retain, nonatomic) IBOutlet UIButton *opusButton;
-@property (retain, nonatomic) IBOutlet UIButton *detailButton;
-@property (retain, nonatomic) IBOutlet UIButton *joinButton;
 @property (retain, nonatomic) IBOutlet UIImageView *bgView;
 
+@property (retain, nonatomic) IBOutlet UILabel *opusLabel;
+@property (retain, nonatomic) IBOutlet UILabel *detailLabel;
+@property (retain, nonatomic) IBOutlet UILabel *joinLabel;
 
 + (id)createContestView:(id)delegate;
 + (CGFloat)getViewWidth;

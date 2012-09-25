@@ -277,6 +277,22 @@
     return NO;
 }
 
++ (BOOL)isCustomDice:(ItemType)type
+{
+    if (type > ItemTypeCustomDiceStart && type < ItemTypeCustomDiceEnd) {
+        return YES;
+    }
+    return NO;
+}
+
++ (NSString*)getItemTips:(ItemType)type
+{
+    if ([Item isCustomDice:type]) {
+        return NSLS(@"kCustomDiceTips");
+    }
+    return nil;
+}
+
 + (Item *)itemWithType:(ItemType)type amount:(NSInteger)amount
 {
     return [[[Item alloc] initWithType:type amount:amount]autorelease];

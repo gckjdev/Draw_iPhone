@@ -30,5 +30,8 @@
 + (int)awardAmountByItem:(int)itemType;
 + (int)awardExpByItem:(int)itemType;
 
+- (BOOL)hasShownItemTips:(ItemType)type;
+- (void)didShowItemTips:(ItemType)type;
+
 @end
 
