@@ -927,13 +927,13 @@
 "kDiceWai" = "Wai";
 
 
-"kDiceMenuHappyRoom" = "NORMAL";
+"kDiceMenuHappyRoom" = "HAPPY";
 "kDiceMenuHighRoom" = "CARNIVAL";
-"kDiceMenuSuperHighRoom" = "ULTRA CARNIAVAL";
+"kDiceMenuSuperHighRoom" = "CRAZY";
 
-"kDiceHappyRoom" = "Normal Room %d";
+"kDiceHappyRoom" = "Happy Room %d";
 "kDiceHighRoom" = "Carnival Room %d";
-"kDiceSuperHighRoom" = "Ultra Carniaval %d";
+"kDiceSuperHighRoom" = "Crazy Room %d";
 
 "kBetViewTitle" = "Bet(%d)";
 "kBetNote" = "Player【%@】challenge, would you bet?";
