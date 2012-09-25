@@ -950,6 +950,8 @@
 
 "kWaitForPlayerBet" = "Waitting for player bet(%d)";
 
+"kDefault" = "Default";
+
 "kCustomDice" = "Custom Dice";
 "kItemPatriotDice" = "dragon ball dice";
 "kPatriotDice" = "dragon ball dice";
@@ -971,5 +973,10 @@
 "kDiamondDice" = "gem dice";
 "kDiamondDiceDescription" = "Upmost solid and gorgeous, the symbol of auspiciousness and meaningfulness";
 
+"kNoMoreShowIt" = "No Remind";
+"kItemTips" = "Item Tips";
+"kCustomDiceTips" = "You can set you custom dice in user setting";
+
+"kSearchingRoom" = "Searching Room...";
 /*********************** 大话骰子国际化字符串结束 *************************/
 

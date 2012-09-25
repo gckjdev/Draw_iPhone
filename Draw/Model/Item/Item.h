@@ -73,5 +73,6 @@
 + (NSString *)descriptionForItemType:(ItemType)type;
 + (NSString *)actionNameForItemType:(ItemType)type;
 + (BOOL)isItemCountable:(ItemType)type;
-
++ (NSString*)getItemTips:(ItemType)type;
++ (BOOL)isCustomDice:(ItemType)type;
 @end

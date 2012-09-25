@@ -968,6 +968,11 @@
 "kDiamondDice" = "寶石骰";
 "kDiamondDiceDescription" = "至堅至美者，非寶石莫屬，象徵瑰麗祥瑞，意義雋永，人人值得擁有哦～";
 
+"kNoMoreShowIt" = "不再提醒";
+"kItemTips" = "道具提示";
+"kCustomDiceTips" = "你可以在”用戶設置“那裡更換你的個性化骰子";
+
+"kSearchingRoom" = "查找房間中...";
 /*********************** 大话骰子国际化字符串结束 *************************/
 
 

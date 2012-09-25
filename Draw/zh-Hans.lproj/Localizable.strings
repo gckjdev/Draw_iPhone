@@ -984,5 +984,10 @@
 "kDiamondDice" = "宝石骰";
 "kDiamondDiceDescription" = "至坚至美者，非宝石莫属，象征瑰丽祥瑞，意义隽永，人人值得拥有哦～";
 
+"kNoMoreShowIt" = "不再提醒";
+"kItemTips" = "道具提示";
+"kCustomDiceTips" = "你可以在“用户设置”那里更换你的个性化骰子";
+
+"kSearchingRoom" = "查找房间中...";
 /*********************** 大话骰子国际化字符串结束 *************************/
 
