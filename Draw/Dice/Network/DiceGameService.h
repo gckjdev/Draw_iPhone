@@ -42,5 +42,6 @@
 - (int)betAnte;
 - (void)betOpenUserWin:(BOOL)win;
 - (CGFloat)oddsForWin:(BOOL)win;
+- (NSString *)roomName;
 
 @end
