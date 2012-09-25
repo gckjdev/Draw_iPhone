@@ -906,7 +906,7 @@
 {
     if ([_urgedUser containsObject:userId]) {
         [[self avatarViewOfUser:userId] startReciprocol:USER_THINK_TIME_INTERVAL - [ConfigManager getUrgeTime] 
-                                                      fromProgress:(1 - (float)(USER_THINK_TIME_INTERVAL-[ConfigManager getUrgeTime])/USER_THINK_TIME_INTERVAL)];
+                                                      fromProgress:((float)(USER_THINK_TIME_INTERVAL-[ConfigManager getUrgeTime])/USER_THINK_TIME_INTERVAL)];
         [self removeUrgedUser:userId];
         
     } else {
