@@ -91,9 +91,9 @@
 
 
 
-- (UIImage *)diceNormalRoomBgImage;
-- (UIImage *)diceHighRoomBgImage;
-- (UIImage *)diceSuperHighRoomBgImage;
+//- (UIImage *)diceNormalRoomBgImage;
+//- (UIImage *)diceHighRoomBgImage;
+//- (UIImage *)diceSuperHighRoomBgImage;
 
 - (UIImage *)diceNormalRoomTableImage;
 - (UIImage *)diceHighRoomTableImage;
