@@ -972,5 +972,7 @@
 "kNoMoreShowIt" = "No Remind";
 "kItemTips" = "Item Tips";
 "kCustomDiceTips" = "You can set you custom dice in user setting";
+
+"kSearchingRoom" = "Searching Room...";
 /*********************** 大话骰子国际化字符串结束 *************************/
 

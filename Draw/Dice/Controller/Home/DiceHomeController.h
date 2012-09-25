@@ -15,7 +15,7 @@
 @class MenuPanel;
 @class BottomMenuPanel;
 
-@interface DiceHomeController : PPViewController<BoardServiceDelegate, CommonDialogDelegate, UIGestureRecognizerDelegate,MenuButtonDelegate>
+@interface DiceHomeController : PPViewController<BoardServiceDelegate, CommonDialogDelegate, UIGestureRecognizerDelegate,MenuButtonDelegate, CommonGameServiceDelegate>
 {
     MenuPanel *_menuPanel;
     BottomMenuPanel *_bottomMenuPanel;

@@ -440,6 +440,8 @@
     [self.nearByRoomButton setSelected:NO];
     [self refreshRoomsByFilter:(RoomFilter)allRoom];
     _currentRoomType = allRoom;
+    [self continueRefreshingRooms];
+    [self showActivityWithText:NSLS(@"kRefreshingRoomList")];
 }
 - (IBAction)clickFriendRoom:(id)sender
 {
@@ -448,6 +450,8 @@
     [self.nearByRoomButton setSelected:NO];
     [self refreshRoomsByFilter:(RoomFilter)friendRoom];
     _currentRoomType = friendRoom;
+    [self pauseRefreshingRooms];
+    [self showActivityWithText:NSLS(@"kSearchingRoom")];
 }
 - (IBAction)clickNearBy:(id)sender
 {
@@ -555,7 +559,7 @@
 - (void)willSearch:(NSString *)keywords byView:(CommonSearchView *)view
 {
     [[DiceGameService defaultService] getRoomList:0 count:ROOMS_COUNT_PER_PAGE shouldReloadData:YES roomType:_currentRoomType keyword:keywords gameId:[ConfigManager gameId]];
-    [self showActivityWithText:NSLS(@"kSearching")];
+    [self showActivityWithText:NSLS(@"kSearchingRoom")];
     [self pauseRefreshingRooms];
 }
 
