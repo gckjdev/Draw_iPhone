@@ -475,4 +475,6 @@ static DiceImageManager *_defaultManager = nil;
     return [UIImage imageNamed:@"super_high_room_table.jpg"];
 }
 
+
+
 @end

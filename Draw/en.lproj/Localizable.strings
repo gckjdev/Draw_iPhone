@@ -807,7 +807,11 @@
 "kUserNoOpus" = "%@ has no opus.";
 
 "kOpusOperation" = "Choose your operation";
+"kContest" = "Contest";
 
+"kStatement" = "Statement";
+"kDecline" = "Decline";
+"kAccept" = "Accept";
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 
@@ -923,13 +927,13 @@
 "kDiceWai" = "Wai";
 
 
-"kDiceMenuHappyRoom" = "Normal";
-"kDiceMenuHighRoom" = "Carnival";
-"kDiceMenuSuperHighRoom" = "Ultra Carniaval";
+"kDiceMenuHappyRoom" = "HAPPY";
+"kDiceMenuHighRoom" = "CARNIVAL";
+"kDiceMenuSuperHighRoom" = "CRAZY";
 
-"kDiceHappyRoom" = "Normal Room %d";
+"kDiceHappyRoom" = "Happy Room %d";
 "kDiceHighRoom" = "Carnival Room %d";
-"kDiceSuperHighRoom" = "Ultra Carniaval %d";
+"kDiceSuperHighRoom" = "Crazy Room %d";
 
 "kBetViewTitle" = "Bet(%d)";
 "kBetNote" = "Player【%@】challenge, would you bet?";
@@ -944,7 +948,9 @@
 "kDoItLikeThis" = "Do it";
 "kThinkMyself" = "Cancel";
 
-"kWaitForPlayerBet" = "Waitting for player bet(%d)";
+"kWaitForPlayerBet" = "Wait for betting(%d)";
+
+"kDefault" = "Default";
 
 "kCustomDice" = "Custom Dice";
 "kItemPatriotDice" = "dragon ball dice";
@@ -967,5 +973,10 @@
 "kDiamondDice" = "gem dice";
 "kDiamondDiceDescription" = "Upmost solid and gorgeous, the symbol of auspiciousness and meaningfulness";
 
+"kNoMoreShowIt" = "No Remind";
+"kItemTips" = "Item Tips";
+"kCustomDiceTips" = "You can set you custom dice in user setting";
+
+"kSearchingRoom" = "Searching Room...";
 /*********************** 大话骰子国际化字符串结束 *************************/
 

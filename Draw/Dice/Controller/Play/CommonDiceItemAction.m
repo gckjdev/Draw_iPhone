@@ -18,6 +18,7 @@
 #import "PeekItemAction.h"
 #import "DiceRobotItemAction.h"
 #import "CutItemAction.h"
+#import "ReverseItemAction.h"
 
 @interface CommonDiceItemAction ()
 {
@@ -58,6 +59,10 @@
             break;
         case ItemTypeDiceRobot:
             return [[[DiceRobotItemAction alloc] initWithItemType:itemType] autorelease];
+            break;
+            
+        case ItemTypeReverse:
+            return [[[ReverseItemAction alloc] initWithItemType:itemType] autorelease];
             break;
         default:
             return nil;

@@ -13,6 +13,8 @@
 #import "PPDebug.h"
 #import "ConfigManager.h"
 
+#define CUSTOM_DICE_TIPS    @"CustomDiceTips"
+
 ItemManager *staticItemManager = nil;
 
 ItemManager *GlobalGetItemManager()
@@ -150,6 +152,26 @@ ItemManager *GlobalGetItemManager()
         default:
             return 0;
     }    
+}
+
+- (BOOL)hasShownItemTips:(ItemType)type
+{
+    NSUserDefaults* userdefault = [NSUserDefaults standardUserDefaults];
+    if (type > ItemTypeCustomDiceStart && type < ItemTypeCustomDiceEnd) {
+        if ([userdefault objectForKey:CUSTOM_DICE_TIPS] == nil) {
+            return NO;
+        }
+    }
+    return YES;
+}
+
+- (void)didShowItemTips:(ItemType)type
+{
+    NSUserDefaults* userdefault = [NSUserDefaults standardUserDefaults];
+    if (type > ItemTypeCustomDiceStart && type < ItemTypeCustomDiceEnd) {
+        [userdefault setValue:[NSNumber numberWithBool:YES] forKey:CUSTOM_DICE_TIPS];
+    }
+    [userdefault synchronize];
 }
 
 

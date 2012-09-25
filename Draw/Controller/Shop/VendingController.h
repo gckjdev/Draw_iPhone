@@ -10,9 +10,13 @@
 #import "ColorShopView.h"
 #import "CommonItemInfoView.h"
 #import "HKGirlFontLabel.h"
+#import "UICustomPageControl.h"
+#import "CommonDialog.h"
 
-@interface VendingController : PPViewController <ColorShopViewDelegate, CommonItemInfoViewDelegate>{
+
+@interface VendingController : PPViewController <ColorShopViewDelegate, CommonItemInfoViewDelegate, CommonDialogDelegate>{
     NSMutableArray* _itemList;
+    int _currentBuyingItem;
 }
 @property (retain, nonatomic) IBOutlet UIScrollView *itemListScrollView;
 @property (retain, nonatomic) IBOutlet UIButton *coinsButton;
@@ -22,7 +26,7 @@
 @property (retain, nonatomic) IBOutlet UIImageView *titleImageView;
 @property (retain, nonatomic) IBOutlet UIImageView *bgImageView;
 @property (retain, nonatomic) IBOutlet UIButton *coinsShopButton;
-@property (retain, nonatomic) IBOutlet UIPageControl *pageControl;
+@property (retain, nonatomic) IBOutlet UICustomPageControl *pageControl;
 
 + (VendingController *)instance;
 - (UINavigationController *)topNavigationController;

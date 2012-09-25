@@ -10,17 +10,17 @@
 #import "Contest.h"
 //#import <QuartzCore/QuartzCore.h>
 #import "ShareImageManager.h"
-
+#import "UIButtonExt.h"
 @implementation ContestView
 
 @synthesize delegate = _delegate;
 @synthesize contest = _contest;
 
 @synthesize webView = _webView;
-@synthesize opusButton = _opusButton;
-@synthesize detailButton = _detailButton;
-@synthesize joinButton = _joinButton;
 @synthesize bgView = _bgView;
+@synthesize opusLabel = _opusLabel;
+@synthesize detailLabel = _detailLabel;
+@synthesize joinLabel = _joinLabel;
 
 + (id)createContestView:(id)delegate
 {
@@ -38,9 +38,9 @@
 - (void)dealloc
 {
     PPRelease(_contest);
-    PPRelease(_joinButton);
-    PPRelease(_opusButton);
-    PPRelease(_detailButton);
+    PPRelease(_joinLabel);
+    PPRelease(_opusLabel);
+    PPRelease(_detailLabel);
     PPRelease(_webView);
     PPRelease(_bgView);
     [super dealloc];
@@ -74,17 +74,12 @@
     //set count
     NSString *opusTitle = [NSString stringWithFormat:NSLS(@"kOpusCount"),
                            contest.opusCount];
-    [self.opusButton setTitle:opusTitle forState:UIControlStateNormal];
+    [self.opusLabel setText:opusTitle];
     
     NSString *joinTitle = [NSString stringWithFormat:NSLS(@"kJoinCount"),
                            contest.participantCount];
-    [self.joinButton setTitle:joinTitle forState:UIControlStateNormal];
-    
-    ShareImageManager *imageManager = [ShareImageManager defaultManager];
-    [self.opusButton setBackgroundImage:[imageManager orangeImage] forState:UIControlStateNormal];
-    [self.joinButton setBackgroundImage:[imageManager greenImage] forState:UIControlStateNormal];
-    [self.detailButton setBackgroundImage:[imageManager normalButtonImage] forState:UIControlStateNormal];
-    [self.bgView setImage:[imageManager normalButtonImage]];
+    [self.joinLabel setText:joinTitle];
+    [self.detailLabel setText:NSLS(@"kDetail")];
 }
 
 - (void)refreshRequest
@@ -93,10 +88,6 @@
     NSURLRequest *request = [NSURLRequest requestWithURL:
                              [NSURL URLWithString:self.contest.contestUrl]];
 
-//    NSURLRequest *request = [NSURLRequest requestWithURL:
-//                             [NSURL URLWithString:self.contest.contestUrl] 
-//                                             cachePolicy:NSURLRequestUseProtocolCachePolicy 
-//                                         timeoutInterval:60];
     [self.webView loadRequest:request];
 }
 
@@ -106,7 +97,7 @@
 }
 + (CGFloat)getViewHeight
 {
-    return [DeviceDetection isIPAD] ? 900 : 360;
+    return [DeviceDetection isIPAD] ? 900 : 390;
 }
 
 #pragma mark - web view delegate

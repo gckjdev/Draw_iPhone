@@ -9,6 +9,7 @@
 #import "PeekItemAction.h"
 #import "DiceView.h"
 #import "DiceGamePlayController.h"
+#import "DeviceDetection.h"
 
 @implementation PeekItemAction
 
@@ -47,7 +48,9 @@
         NSArray *diceList = [_gameService.diceSession.userDiceList objectForKey:user.userId];
         PBDice *dice = [diceList objectAtIndex:[self random]];
         
-        UIView *diceView = [[[DiceView alloc] initWithFrame:CGRectMake(0, 0, 24, 25) dice:dice.dice] autorelease];
+        CGRect frame = [DeviceDetection isIPAD] ? CGRectMake(0, 0, 48, 50) : CGRectMake(0, 0, 24, 25);
+        
+        UIView *diceView = [[[DiceView alloc] initWithFrame:frame dice:dice.dice] autorelease];
         UIView *bellView = [controller bellViewOfUser:user.userId];
         diceView.center = bellView.center;
         diceView.alpha = 0;

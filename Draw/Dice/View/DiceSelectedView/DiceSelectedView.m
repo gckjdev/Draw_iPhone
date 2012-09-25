@@ -84,6 +84,11 @@
         self.pageControl.hidesForSinglePage = YES;
         self.pageControl.delegate = self;
         
+        if ([DeviceDetection isIPAD]) {
+            self.pageControl.transform = CGAffineTransformMakeScale(1.7, 1.7);
+            self.pageControl.center = CGPointMake(self.center.x, self.pageControl.center.y);
+        }
+        
         [self addSubview:self.scrollView];
         [self addSubview:self.pageControl];
     }

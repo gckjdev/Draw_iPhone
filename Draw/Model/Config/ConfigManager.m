@@ -375,7 +375,7 @@
 
 + (int)getPostponeTime
 {
-    return [MobClickUtils getIntValueByKey:@"POSTPONE_TIME" defaultValue:15];
+    return [MobClickUtils getIntValueByKey:@"POSTPONE_TIME" defaultValue:10];
 }
 
 + (int)getUrgeTime

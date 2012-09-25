@@ -107,7 +107,7 @@
                                   name:NSLS(@"kItemReverse")
                              shortName:NSLS(@"kReverse")
                            description:NSLS(@"kReverseDescription") 
-                      buyAmountForOnce:1
+                      buyAmountForOnce:10
                                  price:[[ShoppingManager defaultManager] getReversePrice] 
                                 amount:[[ItemManager defaultManager] amountForItem:ItemTypeReverse]] autorelease];
 }
