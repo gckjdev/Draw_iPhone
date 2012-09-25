@@ -57,7 +57,7 @@
 					<object class="IBUIImageView" id="755244241">
 						<reference key="NSNextResponder" ref="438232853"/>
 						<int key="NSvFlags">274</int>
-						<string key="NSFrame">{{80, 0}, {25, 25}}</string>
+						<string key="NSFrame">{{80, 0}, {25, 28}}</string>
 						<reference key="NSSuperview" ref="438232853"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="604947316"/>
@@ -65,16 +65,20 @@
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<object class="NSCustomResource" key="IBUIImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">print_tip@2x.png</string>
+							<string key="NSResourceName">guessed@2x.png</string>
 						</object>
 					</object>
 					<object class="IBUILabel" id="604947316">
 						<reference key="NSNextResponder" ref="438232853"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{5, 65}, {100, 21}}</string>
+						<string key="NSFrame">{{0, 78}, {106, 16}}</string>
 						<reference key="NSSuperview" ref="438232853"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="79997521"/>
+						<object class="NSColor" key="IBUIBackgroundColor" id="756139186">
+							<int key="NSColorSpace">3</int>
+							<bytes key="NSWhite">MCAwLjUAA</bytes>
+						</object>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
 						<int key="IBUIContentMode">7</int>
@@ -106,10 +110,11 @@
 					<object class="IBUILabel" id="79997521">
 						<reference key="NSNextResponder" ref="438232853"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{5, 85}, {100, 21}}</string>
+						<string key="NSFrame">{{0, 94}, {106, 16}}</string>
 						<reference key="NSSuperview" ref="438232853"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView"/>
+						<reference key="IBUIBackgroundColor" ref="756139186"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
 						<int key="IBUIContentMode">7</int>
@@ -180,22 +185,6 @@
 			<array class="NSMutableArray" key="connectionRecords">
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">title</string>
-						<reference key="source" ref="438232853"/>
-						<reference key="destination" ref="604947316"/>
-					</object>
-					<int key="connectionID">7</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">author</string>
-						<reference key="source" ref="438232853"/>
-						<reference key="destination" ref="79997521"/>
-					</object>
-					<int key="connectionID">8</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">drawImage</string>
 						<reference key="source" ref="438232853"/>
 						<reference key="destination" ref="712693858"/>
@@ -217,6 +206,22 @@
 						<reference key="destination" ref="1042696260"/>
 					</object>
 					<int key="connectionID">13</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">title</string>
+						<reference key="source" ref="438232853"/>
+						<reference key="destination" ref="604947316"/>
+					</object>
+					<int key="connectionID">7</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">author</string>
+						<reference key="source" ref="438232853"/>
+						<reference key="destination" ref="79997521"/>
+					</object>
+					<int key="connectionID">8</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
@@ -252,10 +257,10 @@
 						<reference key="object" ref="438232853"/>
 						<array class="NSMutableArray" key="children">
 							<reference ref="712693858"/>
-							<reference ref="604947316"/>
-							<reference ref="79997521"/>
 							<reference ref="755244241"/>
 							<reference ref="1042696260"/>
+							<reference ref="604947316"/>
+							<reference ref="79997521"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -266,16 +271,6 @@
 						<reference key="parent" ref="438232853"/>
 					</object>
 					<object class="IBObjectRecord">
-						<int key="objectID">5</int>
-						<reference key="object" ref="604947316"/>
-						<reference key="parent" ref="438232853"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">6</int>
-						<reference key="object" ref="79997521"/>
-						<reference key="parent" ref="438232853"/>
-					</object>
-					<object class="IBObjectRecord">
 						<int key="objectID">10</int>
 						<reference key="object" ref="755244241"/>
 						<reference key="parent" ref="438232853"/>
@@ -283,6 +278,16 @@
 					<object class="IBObjectRecord">
 						<int key="objectID">12</int>
 						<reference key="object" ref="1042696260"/>
+						<reference key="parent" ref="438232853"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">5</int>
+						<reference key="object" ref="604947316"/>
+						<reference key="parent" ref="438232853"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">6</int>
+						<reference key="object" ref="79997521"/>
 						<reference key="parent" ref="438232853"/>
 					</object>
 				</array>
@@ -304,7 +309,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">14</int>
+			<int key="maxID">15</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -371,8 +376,8 @@
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<object class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="NS.key.0">print_tip@2x.png</string>
-			<string key="NS.object.0">{32, 34}</string>
+			<string key="NS.key.0">guessed@2x.png</string>
+			<string key="NS.object.0">{46, 49}</string>
 		</object>
 		<string key="IBCocoaTouchPluginVersion">933</string>
 	</data>

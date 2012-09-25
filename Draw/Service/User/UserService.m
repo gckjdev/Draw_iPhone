@@ -905,8 +905,15 @@ static UserService* _defaultUserService;
     dispatch_async(workingQueue, ^{
         NSString *appId = [ConfigManager appId];
         NSString *gameId = [ConfigManager gameId];
-        CommonNetworkOutput* output = [GameNetworkRequest getTopPalyerList:SERVER_URL appId:appId gameId:gameId offset:offset limit:limit];
-
+        NSString *userId = [[UserManager defaultManager] userId];
+        
+        CommonNetworkOutput* output = [GameNetworkRequest
+                                       getTopPalyerList:SERVER_URL
+                                       appId:appId
+                                       gameId:gameId 
+                                       userId:userId 
+                                       offset:offset 
+                                       limit:limit];
         
         dispatch_async(dispatch_get_main_queue(), ^{
             NSMutableArray *topPlayerList = nil;

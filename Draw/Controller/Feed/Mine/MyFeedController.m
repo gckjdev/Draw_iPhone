@@ -151,7 +151,10 @@ typedef enum{
         [cell.contentView addSubview:rankView];
         rankView.frame = CGRectMake(x, y, width, height);
         x += width + space;
-        rankView.drawFlag.hidden = YES;
+//        rankView.drawFlag.hidden = YES;
+        if (self.currentTab.tabID == MyTypeOpus) {
+            [rankView updateViewInfoForMyOpus];
+        }
     }
 }
 
@@ -487,6 +490,8 @@ typedef enum{
         [self enterDetailFeed:rankView.feed];
     }
 }
+
+
 
 #pragma mark feed cell delegate
 - (void)didClickAvatar:(NSString *)userId 

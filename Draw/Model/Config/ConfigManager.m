@@ -177,12 +177,14 @@
 
 + (BOOL)useLmWall
 {
+//    return YES;
     return ([MobClickUtils getIntValueByKey:@"WALL_TYPE" defaultValue:2] == 1);
 }
 
 + (WallType)wallType
 {
-    return ([MobClickUtils getIntValueByKey:@"NEW_WALL_TYPE" defaultValue:WallTypeWanpu] == 1);
+    return WallTypeLimei;
+//    return ([MobClickUtils getIntValueByKey:@"NEW_WALL_TYPE" defaultValue:WallTypeWanpu] == 1);
 }
 
 + (BOOL)removeAdByIAP
