@@ -923,9 +923,9 @@
 "kDiceWai" = "Wai";
 
 
-"kDiceMenuHappyRoom" = "Normal";
-"kDiceMenuHighRoom" = "Carnival";
-"kDiceMenuSuperHighRoom" = "Ultra Carniaval";
+"kDiceMenuHappyRoom" = "NORMAL";
+"kDiceMenuHighRoom" = "CARNIVAL";
+"kDiceMenuSuperHighRoom" = "ULTRA CARNIAVAL";
 
 "kDiceHappyRoom" = "Normal Room %d";
 "kDiceHighRoom" = "Carnival Room %d";
@@ -944,7 +944,7 @@
 "kDoItLikeThis" = "Do it";
 "kThinkMyself" = "Cancel";
 
-"kWaitForPlayerBet" = "Waitting for player bet(%d)";
+"kWaitForPlayerBet" = "Wait for betting(%d)";
 
 "kCustomDice" = "Custom Dice";
 "kItemPatriotDice" = "dragon ball dice";

@@ -13,6 +13,7 @@
 #import "DiceChatMsgManager.h"
 #import "GifView.h"
 #import "DiceImageManager.h"
+#import "ShareImageManager.h"
 
 #define WIDTH_EXPRESSION_VIEW   ([DeviceDetection isIPAD] ? 68: 34)
 #define HEIGHT_EXPRESSION_VIEW WIDTH_EXPRESSION_VIEW
@@ -74,7 +75,21 @@
     _bgImageView.image = [[DiceImageManager defaultManager] popupBackgroundImage];
     self.pageController.hidesForSinglePage = YES;
     self.pageController.defersCurrentPageDisplay = YES;
+    [self initCustomPageControl];
     [self addExpressions];
+}
+
+- (void)initCustomPageControl
+{
+    self.pageController.hidesForSinglePage = YES;
+    self.pageController.defersCurrentPageDisplay = YES;
+    
+    [self.pageController setPageIndicatorImageForCurrentPage:[[ShareImageManager defaultManager] pointForCurrentSelectedPage] forNotCurrentPage:[[ShareImageManager defaultManager] pointForUnSelectedPage]];
+    
+    if ([DeviceDetection isIPAD]) {
+        self.pageController.transform = CGAffineTransformMakeScale(2.0, 2.0);
+        self.pageController.center = CGPointMake(self.center.x, self.pageController.center.y);
+    }
 }
 
 - (void)addExpressions

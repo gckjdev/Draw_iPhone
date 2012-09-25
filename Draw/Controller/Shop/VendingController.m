@@ -397,6 +397,19 @@ static VendingController* staticVendingController = nil;
     return self;
 }
 
+- (void)initCustomPageControl
+{
+    self.pageControl.hidesForSinglePage = YES;
+    
+    [self.pageControl setPageIndicatorImageForCurrentPage:[[ShareImageManager defaultManager] pointForCurrentSelectedPage] forNotCurrentPage:[[ShareImageManager defaultManager] pointForUnSelectedPage]];
+    
+    if ([DeviceDetection isIPAD]) {
+        self.pageControl.transform = CGAffineTransformMakeScale(2.0, 2.0);
+        self.pageControl.center = CGPointMake(self.view.center.x, self.pageControl.center.y);
+    }
+}
+
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -412,8 +425,13 @@ static VendingController* staticVendingController = nil;
     if (isDiceApp() && [ConfigManager wallEnabled]) {
         self.coinsShopButton.hidden = NO;
     }
+    
+
+    [self initCustomPageControl];
+
     // Do any additional setup after loading the view from its nib.
 }
+
 
 - (void)viewDidUnload
 {
