@@ -8,7 +8,7 @@
 		<string key="IBDocument.HIToolboxVersion">569.00</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-			<string key="NS.object.0">1181</string>
+			<string key="NS.object.0">1179</string>
 		</object>
 		<array key="IBDocument.IntegratedClassDependencies">
 			<string>IBUITableViewCell</string>
@@ -42,18 +42,19 @@
 						<array class="NSMutableArray" key="NSSubviews">
 							<object class="IBUIImageView" id="254958883">
 								<reference key="NSNextResponder" ref="946753982"/>
-								<int key="NSvFlags">319</int>
+								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{20, 24}, {76, 91}}</string>
 								<reference key="NSSuperview" ref="946753982"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="232014887"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
+								<int key="IBUIContentMode">1</int>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 							</object>
 							<object class="IBUILabel" id="232014887">
 								<reference key="NSNextResponder" ref="946753982"/>
-								<int key="NSvFlags">319</int>
+								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{119, 15}, {177, 56}}</string>
 								<reference key="NSSuperview" ref="946753982"/>
 								<reference key="NSWindow"/>
@@ -87,7 +88,7 @@
 							</object>
 							<object class="IBUILabel" id="772317120">
 								<reference key="NSNextResponder" ref="946753982"/>
-								<int key="NSvFlags">319</int>
+								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{119, 71}, {495, 54}}</string>
 								<reference key="NSSuperview" ref="946753982"/>
 								<reference key="NSWindow"/>
@@ -292,6 +293,6 @@
 		</object>
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
-		<string key="IBCocoaTouchPluginVersion">1181</string>
+		<string key="IBCocoaTouchPluginVersion">1179</string>
 	</data>
 </archive>

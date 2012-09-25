@@ -96,5 +96,24 @@
     return @"ad40c6b004a6aba16e3ad2daac9bee9b";
 }
 
+- (NSString*)askFollowTitle
+{
+    return @"关注官方微博";    
+}
+
+- (NSString*)askFollowMessage
+{
+    return @"关注和收听官方微博，第一时间可以接收最新的消息";
+}
+
+- (NSString*)sinaWeiboId
+{
+    return @"猜猜画画手机版";
+}
+
+- (NSString*)qqWeiboId
+{
+    return @"drawlively";
+}
 
 @end

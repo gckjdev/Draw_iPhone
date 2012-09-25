@@ -714,12 +714,48 @@ enum {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
+- (void)askFollow
+{
+    id<UIAlertViewDelegate> delegate = nil;
+    switch (_currentLoginType){
+        case REGISTER_TYPE_QQ:
+        {
+            delegate = [QQWeiboService defaultService];            
+        }
+            break;
+        case REGISTER_TYPE_SINA:
+        {
+            delegate = [SinaSNSService defaultService];
+            
+        }
+            break;
+            
+        default:
+            break;
+    }
+    
+    if (delegate == nil)
+        return;
+    
+    alertView = [[[UIAlertView alloc] initWithTitle:[GameApp askFollowTitle] //@"关注猜猜画画吗" 
+                                           message:[GameApp askFollowMessage] //@"关注和收听官方微博" 
+                                          delegate:delegate 
+                                 cancelButtonTitle:@"不需要" 
+                                 otherButtonTitles:@"我试下", nil] autorelease];
+    [alertView show];
+}
+
+
+
 #pragma mark - SNS Delegate
 
 - (void)didLogin:(int)result userInfo:(NSDictionary*)userInfo
 {        
     if (result == 0){
         [[UserService defaultService] updateUserWithSNSUserInfo:[userManager userId] userInfo:userInfo viewController:self];
+        
+        // ask to follow user
+        [self askFollow];
     }
 
     self.navigationController.navigationBarHidden = YES;        

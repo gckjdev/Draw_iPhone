@@ -551,7 +551,10 @@
 - (void)infoViewDidDisappear
 {
     _searchView = nil;
-    [self continueRefreshingRooms];
+    if (_currentRoomType == allRoom) {
+        [self continueRefreshingRooms];
+    }
+    
 }
 
 #pragma mark - CommonSearchViewDelegate
