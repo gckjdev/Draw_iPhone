@@ -946,6 +946,8 @@
 
 "kWaitForPlayerBet" = "Waitting for player bet(%d)";
 
+"kDefault" = "Default";
+
 "kCustomDice" = "Custom Dice";
 "kItemPatriotDice" = "dragon ball dice";
 "kPatriotDice" = "dragon ball dice";
