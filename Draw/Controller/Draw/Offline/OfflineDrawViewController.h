@@ -28,6 +28,7 @@
 @class PickColorView;
 @class PickBackgroundColorView;
 @class MyPaint;
+@class Contest;
 
 @protocol OfflineDrawDelegate <NSObject>
 
@@ -47,6 +48,7 @@
     NSString*_targetUid;
     DrawColor *_bgColor;
     DrawColor *_eraserColor;
+    Contest *_contest;
 }
 
 - (IBAction)clickRedraw:(id)sender;
@@ -68,6 +70,8 @@
 @property (retain, nonatomic) NSString *targetUid;
 @property (retain, nonatomic) DrawColor* eraserColor;
 @property (retain, nonatomic) DrawColor* bgColor;
+@property (retain, nonatomic) Contest *contest;
+
 - (IBAction)clickDraftButton:(id)sender;
 - (IBAction)clickRevokeButton:(id)sender;
 
@@ -90,6 +94,9 @@
               lang:(LanguageType)lang 
          targetUid:(NSString *)targetUid;
 
+- (id)initWithContest:(Contest *)contest;
++ (void)startDrawWithContest:(Contest *)contest    
+   fromController:(UIViewController*)fromController;
 
 @end
 
