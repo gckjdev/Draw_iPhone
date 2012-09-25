@@ -106,4 +106,25 @@
     return [MobClickUtils getStringValueByKey:@"AD_IAP_ID" defaultValue:@"com.orange.dice.removead"];    
 }
 
+- (NSString*)askFollowTitle
+{
+    return @"关注官方微博";    
+}
+
+- (NSString*)askFollowMessage
+{
+    return @"关注和收听欢乐大话骰官方微博，第一时间可以接收最新的消息";
+}
+
+- (NSString*)sinaWeiboId
+{
+    return @"欢乐大话骰";
+}
+
+- (NSString*)qqWeiboId
+{
+    return @"liardice";
+}
+
+
 @end

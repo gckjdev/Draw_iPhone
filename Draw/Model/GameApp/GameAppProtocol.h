@@ -36,4 +36,9 @@
 
 - (NSString*)removeAdProductId;
 
+- (NSString*)askFollowTitle;
+- (NSString*)askFollowMessage;
+- (NSString*)sinaWeiboId;
+- (NSString*)qqWeiboId;
+
 @end

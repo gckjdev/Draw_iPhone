@@ -7,6 +7,7 @@
 //
 
 #import "BoardView.h"
+#import "UICustomPageControl.h"
 
 @interface BoardPanel : UIView<BoardViewDelegate, UIScrollViewDelegate>
 {
@@ -19,7 +20,7 @@
 
 @property (retain, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (retain, nonatomic) UIViewController *controller;
-@property (retain, nonatomic) IBOutlet UIPageControl *pageControl;
+@property (retain, nonatomic) IBOutlet UICustomPageControl *pageControl;
 
 // call this before release the panel or view disappear
 - (void)stopTimer;

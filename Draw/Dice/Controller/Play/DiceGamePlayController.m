@@ -242,11 +242,11 @@
     [[UIApplication sharedApplication] 
      setStatusBarStyle:UIStatusBarStyleBlackOpaque animated:NO];
     
-    NSString* aRoomName = [[[DiceGameService defaultService] session] roomName];
-    if (aRoomName == nil || aRoomName.length <= 0) {
-        aRoomName = [NSString stringWithFormat:@"%d", [[[DiceGameService defaultService] session] sessionId]];
-    }
-    _roomNameLabel.text = aRoomName;
+//    NSString* aRoomName = [[[DiceGameService defaultService] session] roomName];
+//    if (aRoomName == nil || aRoomName.length <= 0) {
+//        aRoomName = [NSString stringWithFormat:@"%d", [[[DiceGameService defaultService] session] sessionId]];
+//    }
+    _roomNameLabel.text = [_diceService roomName];
     
     myCoinsLabel.textColor = [UIColor whiteColor];
     myLevelLabel.textColor = [UIColor whiteColor];

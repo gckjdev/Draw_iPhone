@@ -701,6 +701,15 @@ static UIImage* _whitePaperImage;
     return [UIImage imageNamed:@"unloadbg.png"];
 }
 
+- (UIImage *)pointForCurrentSelectedPage
+{
+    return  [UIImage strectchableImageName:@"point_pic3.png"];
+}
+
+- (UIImage *)pointForUnSelectedPage
+{
+    return  [UIImage strectchableImageName:@"point_pic4.png"];
+}
 
 @end
 

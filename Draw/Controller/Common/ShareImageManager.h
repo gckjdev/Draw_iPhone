@@ -172,4 +172,8 @@
 - (UIImage *)getImageWithFeedId:(NSString *)feedId;
 - (void)clearFeedCache;
 
+
+- (UIImage *)pointForCurrentSelectedPage;
+- (UIImage *)pointForUnSelectedPage;
+
 @end

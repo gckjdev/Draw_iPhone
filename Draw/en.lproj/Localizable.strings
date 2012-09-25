@@ -927,13 +927,13 @@
 "kDiceWai" = "Wai";
 
 
-"kDiceMenuHappyRoom" = "Normal";
-"kDiceMenuHighRoom" = "Carnival";
-"kDiceMenuSuperHighRoom" = "Ultra Carniaval";
+"kDiceMenuHappyRoom" = "HAPPY";
+"kDiceMenuHighRoom" = "CARNIVAL";
+"kDiceMenuSuperHighRoom" = "CRAZY";
 
-"kDiceHappyRoom" = "Normal Room %d";
+"kDiceHappyRoom" = "Happy Room %d";
 "kDiceHighRoom" = "Carnival Room %d";
-"kDiceSuperHighRoom" = "Ultra Carniaval %d";
+"kDiceSuperHighRoom" = "Crazy Room %d";
 
 "kBetViewTitle" = "Bet(%d)";
 "kBetNote" = "Player【%@】challenge, would you bet?";
@@ -948,7 +948,7 @@
 "kDoItLikeThis" = "Do it";
 "kThinkMyself" = "Cancel";
 
-"kWaitForPlayerBet" = "Waitting for player bet(%d)";
+"kWaitForPlayerBet" = "Wait for betting(%d)";
 
 "kDefault" = "Default";
 

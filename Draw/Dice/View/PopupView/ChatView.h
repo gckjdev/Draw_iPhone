@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "ChatViewCell.h"
 #import "CMPopTipView.h"
-
+#import "UICustomPageControl.h"
 
 @protocol ChatViewDelegate <NSObject>
 
@@ -27,7 +27,7 @@
 
 @property (retain, nonatomic) IBOutlet UIImageView *bgImageView;
 @property (retain, nonatomic) IBOutlet UIScrollView *expressionsHolderView;
-@property (retain, nonatomic) IBOutlet UIPageControl *pageController;
+@property (retain, nonatomic) IBOutlet UICustomPageControl *pageController;
 
 @property (retain, nonatomic) IBOutlet UITableView *messagesHolderView;
 

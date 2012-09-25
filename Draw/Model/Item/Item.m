@@ -271,7 +271,8 @@
        || type == ItemTypeSkip 
        || type == ItemTypeDoubleKill 
        || type == ItemTypeDiceRobot
-       || type == ItemTypePeek)
+       || type == ItemTypePeek
+       || type == ItemTypeReverse)
         return YES;
     return NO;
 }

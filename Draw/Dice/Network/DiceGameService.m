@@ -616,5 +616,36 @@ CGFloat *oddsAddr(bool win)
     return baseAddr;
 }
 
+- (NSString *)defaultRoomName
+{
+    NSString *name = nil;
+    switch (_ruleType) {
+        case DiceGameRuleTypeRuleNormal:
+            name = [NSString stringWithFormat:NSLS(@"kDiceHappyRoom"),      self.diceSession.sessionId];
+            break;
+        case DiceGameRuleTypeRuleHigh:
+            name = [NSString stringWithFormat:NSLS(@"kDiceHighRoom"), self.diceSession.sessionId];
+            break;
+        case DiceGameRuleTypeRuleSuperHigh:
+            name = [NSString stringWithFormat:NSLS(@"kDiceSuperHighRoom"), self.diceSession.sessionId];
+            break;
+        default:
+            break;
+    }
+    
+    return name;
+}
+
+- (NSString *)roomName
+{
+    NSString *aRoomName = @"";
+    if (self.diceSession.roomName == nil || self.diceSession.roomName.length <= 0) {
+        aRoomName = [self defaultRoomName];
+    }else {
+        aRoomName = self.diceSession.roomName;
+    }
+    
+    return aRoomName;
+}
 
 @end

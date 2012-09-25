@@ -9,6 +9,8 @@
 #import "BoardPanel.h"
 #import "JumpHandler.h"
 #import "AnimationManager.h"
+#import "ShareImageManager.h"
+
 //#import <QuartzCore/QuartzCore.h>
 @interface BoardPanel()
 {
@@ -85,7 +87,22 @@
     if (i > 1) {
         [self restartTimer];
     }
+    
+    [self initCustomPageControl];
 }
+
+- (void)initCustomPageControl
+{
+    self.pageControl.hidesForSinglePage = YES;
+    
+    [self.pageControl setPageIndicatorImageForCurrentPage:[[ShareImageManager defaultManager] pointForCurrentSelectedPage] forNotCurrentPage:[[ShareImageManager defaultManager] pointForUnSelectedPage]];
+    
+    if ([DeviceDetection isIPAD]) {
+        self.pageControl.transform = CGAffineTransformMakeScale(2.0, 2.0);
+        self.pageControl.center = CGPointMake(self.center.x, self.pageControl.center.y);
+    }
+}
+
 
 - (BoardView *)boardViewInPage:(NSInteger)page
 {
