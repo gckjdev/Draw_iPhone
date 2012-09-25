@@ -21,6 +21,8 @@ typedef enum{
     
 }RankType;
 
+#define  HISTORY_RANK_NUMBER 120
+
 @implementation HotController
 //@synthesize titleLabel = _tipsLabel;
 
@@ -198,7 +200,7 @@ typedef enum{
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.accessoryType = UITableViewCellAccessoryNone;
     TableTab *tab = [self currentTab];
-    if (tab.tabID == RankTypeHot) {
+    if (tab.tabID == RankTypeHot || tab.tabID == RankTypeHistory) {
         if (indexPath.row == 0) {
             DrawFeed *feed = (DrawFeed *)[self saveGetObjectForIndex:0];  
             [self setFirstRankCell:cell WithFeed:feed];
@@ -250,7 +252,13 @@ typedef enum{
 {
     NSInteger count = [super tableView:tableView numberOfRowsInSection:section];
     
-    switch (self.currentTab.tabID) {
+    NSInteger type = self.currentTab.tabID;
+    if (type == RankTypeHistory || type == RankTypePlayer) {
+        if (HISTORY_RANK_NUMBER <= count) {
+            self.noMoreData = YES;            
+        }
+    }
+    switch (type) {
         case RankTypeHot:
         case RankTypeHistory:
             if (count <= 1) {
@@ -320,7 +328,7 @@ typedef enum{
         }else if(tabID == RankTypePlayer){
             [[UserService defaultService] getTopPlayer:tab.offset limit:tab.limit delegate:self];
         }else {
-            [[FeedService defaultService] getFeedList:FeedListTypeHot offset:tab.offset limit:tab.limit delegate:self];        
+            [[FeedService defaultService] getFeedList:tabID offset:tab.offset limit:tab.limit delegate:self];        
         }
 
     }
