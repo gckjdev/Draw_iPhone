@@ -43,7 +43,7 @@
 						<array class="NSMutableArray" key="NSSubviews">
 							<object class="IBUIImageView" id="997992109">
 								<reference key="NSNextResponder" ref="153973212"/>
-								<int key="NSvFlags">301</int>
+								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{12, 10}, {74, 77}}</string>
 								<reference key="NSSuperview" ref="153973212"/>
 								<reference key="NSWindow"/>
@@ -53,7 +53,7 @@
 							</object>
 							<object class="IBUILabel" id="318933844">
 								<reference key="NSNextResponder" ref="153973212"/>
-								<int key="NSvFlags">301</int>
+								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{100, 9}, {362, 32}}</string>
 								<reference key="NSSuperview" ref="153973212"/>
 								<reference key="NSWindow"/>
@@ -107,7 +107,7 @@
 							</object>
 							<object class="IBUILabel" id="319891268">
 								<reference key="NSNextResponder" ref="153973212"/>
-								<int key="NSvFlags">301</int>
+								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{100, 55}, {550, 46}}</string>
 								<reference key="NSSuperview" ref="153973212"/>
 								<reference key="NSWindow"/>
@@ -140,7 +140,6 @@
 								<string key="NSFrame">{{0, 109}, {724, 1}}</string>
 								<reference key="NSSuperview" ref="153973212"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView"/>
 								<reference key="IBUIBackgroundColor" ref="612205501"/>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 							</object>

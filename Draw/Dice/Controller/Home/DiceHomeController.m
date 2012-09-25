@@ -111,7 +111,7 @@
     self.bottomMenuPanel = [BottomMenuPanel panelWithController:self
                                                     gameAppType:GameAppTypeDice];
     
-    self.bottomMenuPanel.center = [DeviceDetection isIPAD] ? CGPointMake(384, 961) : CGPointMake(160, 438);
+    self.bottomMenuPanel.center = [DeviceDetection isIPAD] ? CGPointMake(384, 961) : CGPointMake(160, 440);
     
     [self.view addSubview:_bottomMenuPanel];
 }

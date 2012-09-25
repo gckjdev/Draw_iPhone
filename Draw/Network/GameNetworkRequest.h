@@ -232,7 +232,8 @@
                               lang:(NSInteger)lang
                               data:(NSData*)data 
                          imageData:(NSData *)imageData
-                         targetUid:(NSString *)targetUid;
+                         targetUid:(NSString *)targetUid
+                         contestId:(NSString *)contestId;
 
 + (CommonNetworkOutput*)guessOpus:(NSString*)baseURL
                             appId:(NSString*)appId
