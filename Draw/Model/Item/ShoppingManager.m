@@ -194,7 +194,7 @@ static ShoppingManager *staticShoppingManager = nil;
 #define DEFAULT_GOLDEN_DICE_PRICE  20000
 #define DEFAULT_WOOD_DICE_PRICE  20000
 #define DEFAULT_CRYSAL_DICE_PRICE  20000
-#define DEFAULT_DIAMOND_DICE_PRICE  15000
+#define DEFAULT_DIAMOND_DICE_PRICE  20000
 
 - (NSInteger)getColorPrice
 {
