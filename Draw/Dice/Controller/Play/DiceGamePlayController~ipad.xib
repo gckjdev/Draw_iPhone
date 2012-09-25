@@ -37,24 +37,10 @@
 				<reference key="NSNextResponder"/>
 				<int key="NSvFlags">274</int>
 				<array class="NSMutableArray" key="NSSubviews">
-					<object class="IBUIImageView" id="24059974">
-						<reference key="NSNextResponder" ref="191373211"/>
-						<int key="NSvFlags">274</int>
-						<string key="NSFrameSize">{768, 1004}</string>
-						<reference key="NSSuperview" ref="191373211"/>
-						<reference key="NSNextKeyView" ref="47110571"/>
-						<string key="NSReuseIdentifierKey">_NS:9</string>
-						<bool key="IBUIUserInteractionEnabled">NO</bool>
-						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-						<object class="NSCustomResource" key="IBUIImage">
-							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">gameroom_bg@2x.png</string>
-						</object>
-					</object>
 					<object class="IBUIImageView" id="533236745">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">314</int>
-						<string key="NSFrame">{{0, 74}, {768, 929}}</string>
+						<string key="NSFrameSize">{768, 1003}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSNextKeyView" ref="523760519"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
@@ -818,7 +804,6 @@
 						<int key="NSvFlags">319</int>
 						<string key="NSFrame">{{700, 927}, {72, 69}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
-						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -1218,7 +1203,7 @@
 				</array>
 				<string key="NSFrameSize">{768, 1004}</string>
 				<reference key="NSSuperview"/>
-				<reference key="NSNextKeyView" ref="24059974"/>
+				<reference key="NSNextKeyView"/>
 				<reference key="IBUIBackgroundColor" ref="629156704"/>
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 			</object>
@@ -1427,14 +1412,6 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">bgImageView</string>
-						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="24059974"/>
-					</object>
-					<int key="connectionID">140</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">tableImageView</string>
 						<reference key="source" ref="372490531"/>
 						<reference key="destination" ref="533236745"/>
@@ -1527,7 +1504,6 @@
 							<reference ref="878719699"/>
 							<reference ref="67261893"/>
 							<reference ref="685885680"/>
-							<reference ref="24059974"/>
 							<reference ref="523760519"/>
 							<reference ref="857334972"/>
 							<reference ref="456862904"/>
@@ -1659,11 +1635,6 @@
 					<object class="IBObjectRecord">
 						<int key="objectID">32</int>
 						<reference key="object" ref="857334972"/>
-						<reference key="parent" ref="191373211"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">35</int>
-						<reference key="object" ref="24059974"/>
 						<reference key="parent" ref="191373211"/>
 					</object>
 					<object class="IBObjectRecord">
@@ -1930,7 +1901,6 @@
 				<string key="31.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="32.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="33.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<string key="35.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="38.CustomClassName">DiceAvatarView</string>
 				<string key="38.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="40.CustomClassName">DiceAvatarView</string>
@@ -1999,7 +1969,6 @@
 			<string key="dice_bell@2x.png">{69, 86}</string>
 			<string key="dice_runaway@2x.png">{72, 71}</string>
 			<string key="dice_setting@2x.png">{72, 71}</string>
-			<string key="gameroom_bg@2x.png">{640, 960}</string>
 			<string key="left_bottom_circle@2x.png">{84, 92}</string>
 			<string key="left_bottom_circleon@2x.png">{84, 92}</string>
 			<string key="message_icon@2x.png">{58, 63}</string>

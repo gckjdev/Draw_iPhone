@@ -37,25 +37,10 @@
 				<reference key="NSNextResponder"/>
 				<int key="NSvFlags">274</int>
 				<array class="NSMutableArray" key="NSSubviews">
-					<object class="IBUIImageView" id="24059974">
-						<reference key="NSNextResponder" ref="191373211"/>
-						<int key="NSvFlags">274</int>
-						<string key="NSFrameSize">{320, 460}</string>
-						<reference key="NSSuperview" ref="191373211"/>
-						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="113126754"/>
-						<string key="NSReuseIdentifierKey">_NS:9</string>
-						<bool key="IBUIUserInteractionEnabled">NO</bool>
-						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-						<object class="NSCustomResource" key="IBUIImage">
-							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">gameroom_bg@2x.png</string>
-						</object>
-					</object>
 					<object class="IBUIImageView" id="533236745">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">314</int>
-						<string key="NSFrame">{{0, 34}, {320, 426}}</string>
+						<string key="NSFrameSize">{320, 460}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="47110571"/>
@@ -844,7 +829,6 @@
 						<string key="NSFrame">{{292, 425}, {30, 32}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -1266,7 +1250,7 @@
 				<string key="NSFrame">{{0, 20}, {320, 460}}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
-				<reference key="NSNextKeyView" ref="24059974"/>
+				<reference key="NSNextKeyView"/>
 				<reference key="IBUIBackgroundColor" ref="629156704"/>
 				<object class="IBUISimulatedStatusBarMetrics" key="IBUISimulatedStatusBarMetrics"/>
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -1484,14 +1468,6 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">bgImageView</string>
-						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="24059974"/>
-					</object>
-					<int key="connectionID">131</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">tableImageView</string>
 						<reference key="source" ref="372490531"/>
 						<reference key="destination" ref="533236745"/>
@@ -1583,7 +1559,6 @@
 							<reference ref="878719699"/>
 							<reference ref="67261893"/>
 							<reference ref="685885680"/>
-							<reference ref="24059974"/>
 							<reference ref="523760519"/>
 							<reference ref="958100818"/>
 							<reference ref="631524560"/>
@@ -1716,11 +1691,6 @@
 					<object class="IBObjectRecord">
 						<int key="objectID">32</int>
 						<reference key="object" ref="857334972"/>
-						<reference key="parent" ref="191373211"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">35</int>
-						<reference key="object" ref="24059974"/>
 						<reference key="parent" ref="191373211"/>
 					</object>
 					<object class="IBObjectRecord">
@@ -1986,7 +1956,6 @@
 				<string key="31.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="32.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="33.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<string key="35.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="38.CustomClassName">DiceAvatarView</string>
 				<string key="38.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="40.CustomClassName">DiceAvatarView</string>
@@ -2058,7 +2027,6 @@
 						<string key="anteLabel">UILabel</string>
 						<string key="anteNoteLabel">HKGirlFontLabel</string>
 						<string key="anteView">UIView</string>
-						<string key="bgImageView">UIImageView</string>
 						<string key="chatButton">UIButton</string>
 						<string key="diceCountSelectedHolderView">UIView</string>
 						<string key="gameBeginNoteLabel">HKGirlFontLabel</string>
@@ -2097,10 +2065,6 @@
 						<object class="IBToOneOutletInfo" key="anteView">
 							<string key="name">anteView</string>
 							<string key="candidateClassName">UIView</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="bgImageView">
-							<string key="name">bgImageView</string>
-							<string key="candidateClassName">UIImageView</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="chatButton">
 							<string key="name">chatButton</string>
@@ -2271,7 +2235,6 @@
 			<string key="dice_bell@2x.png">{69, 86}</string>
 			<string key="dice_runaway@2x.png">{72, 71}</string>
 			<string key="dice_setting@2x.png">{72, 71}</string>
-			<string key="gameroom_bg@2x.png">{16, 16}</string>
 			<string key="left_bottom_circle@2x.png">{84, 92}</string>
 			<string key="left_bottom_circleon@2x.png">{84, 92}</string>
 			<string key="message_icon.png">{16, 16}</string>
