@@ -812,6 +812,9 @@
 "kStatement" = "Statement";
 "kDecline" = "Decline";
 "kAccept" = "Accept";
+"kDetail" = "Detail";
+"kFailLoad" = "Fail to load data, please try it later.";
+"kContestOpus" = "Opus for contest";
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 

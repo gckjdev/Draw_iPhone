@@ -18,6 +18,7 @@
 
 @synthesize webView = _webView;
 @synthesize bgView = _bgView;
+@synthesize activity = _activity;
 @synthesize opusLabel = _opusLabel;
 @synthesize detailLabel = _detailLabel;
 @synthesize joinLabel = _joinLabel;
@@ -43,6 +44,7 @@
     PPRelease(_detailLabel);
     PPRelease(_webView);
     PPRelease(_bgView);
+    [_activity release];
     [super dealloc];
 }
 
@@ -104,6 +106,7 @@
 - (void)webViewDidFinishLoad:(UIWebView *)webView
 {
     PPDebug(@"<webViewDidFinishLoad>");
+    [self.activity stopAnimating];
 }
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
 {

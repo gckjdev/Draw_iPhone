@@ -157,7 +157,8 @@ static DrawDataService* _defaultDrawDataService = nil;
                     image:(UIImage *)image
                  drawWord:(Word*)drawWord
                  language:(LanguageType)language 
-                targetUid:(NSString *)targetUid
+                targetUid:(NSString *)targetUid 
+                contestId:(NSString *)contestId
                  delegate:(PPViewController<DrawDataServiceDelegate>*)viewController;
 {
 
@@ -190,7 +191,8 @@ static DrawDataService* _defaultDrawDataService = nil;
                                                                 lang:language                                      
                                                                 data:[draw data] 
                                                            imageData:imageData 
-                                                           targetUid:targetUid];
+                                                           targetUid:targetUid 
+                                                           contestId:contestId];
 
         dispatch_async(dispatch_get_main_queue(), ^{
             if ([viewController respondsToSelector:@selector(didCreateDraw:)]){

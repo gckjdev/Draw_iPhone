@@ -32,6 +32,7 @@
 @property(nonatomic, retain)Contest *contest;
 @property (retain, nonatomic) IBOutlet UIWebView *webView;
 @property (retain, nonatomic) IBOutlet UIImageView *bgView;
+@property (retain, nonatomic) IBOutlet UIActivityIndicatorView *activity;
 
 @property (retain, nonatomic) IBOutlet UILabel *opusLabel;
 @property (retain, nonatomic) IBOutlet UILabel *detailLabel;
