@@ -106,4 +106,24 @@
     return [MobClickUtils getStringValueByKey:@"AD_IAP_ID" defaultValue:@"com.orange.draw.removead"];
 }
 
+- (NSString*)askFollowTitle
+{
+    return @"关注官方微博";    
+}
+
+- (NSString*)askFollowMessage
+{
+    return @"关注和收听猜猜画画官方微博，第一时间可以看到唯美的猜猜画画作品";
+}
+
+- (NSString*)sinaWeiboId
+{
+    return @"猜猜画画手机版";
+}
+
+- (NSString*)qqWeiboId
+{
+    return @"drawlively";
+}
+
 @end

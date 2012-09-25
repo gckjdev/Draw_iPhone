@@ -588,10 +588,13 @@ static UIImage* _whitePaperImage;
 
 - (UIImage *)mainMenuPanelBGForGameAppType:(GameAppType)gameAppType
 {
-//    if (gameAppType == GameAppTypeDraw) {
+    if (gameAppType == GameAppTypeDraw) {
         return [UIImage imageNamed:@"main_menubg"];        
-//    }
-//    return [UIImage imageNamed:@"dice_home_bg"];        
+    }else if (gameAppType == GameAppTypeDice) {
+        return [UIImage imageNamed:@"dice_main_menubg"];        
+    }
+    
+    return nil;
 }
 
 
@@ -701,6 +704,15 @@ static UIImage* _whitePaperImage;
     return [UIImage imageNamed:@"unloadbg.png"];
 }
 
+- (UIImage *)pointForCurrentSelectedPage
+{
+    return  [UIImage strectchableImageName:@"point_pic3.png"];
+}
+
+- (UIImage *)pointForUnSelectedPage
+{
+    return  [UIImage strectchableImageName:@"point_pic4.png"];
+}
 
 @end
 

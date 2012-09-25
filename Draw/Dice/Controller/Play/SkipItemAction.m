@@ -12,7 +12,9 @@
 
 - (BOOL)useScene
 {
-    return [self isMyTurn];
+    return ([self isMyTurn] 
+            && ([_gameService.diceSession itemUseCount:_itemType] < 1)
+            && (_gameService.diceSession.playingUserCount > 2));
 }
 
 - (void)showItemAnimation:(NSString *)userId 

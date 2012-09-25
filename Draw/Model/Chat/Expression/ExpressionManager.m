@@ -98,33 +98,41 @@ static ExpressionManager *_instance = nil;
         _pngValues = [[NSArray arrayWithObjects:VALUE_PNG_SMILE, VALUE_PNG_PROUD, VALUE_PNG_EMBARRASS, VALUE_PNG_WRY, VALUE_PNG_ANGER, nil] retain];
         _pngExpressionDictionary = [[NSDictionary dictionaryWithObjects:_pngValues forKeys:_pngKeys] retain];
         
-        _gifKeys = [[NSArray arrayWithObjects:KEY_GIF_SMILE,
-                     KEY_GIF_PROUD,
-                     KEY_GIF_EMBARRASS,
-                     KEY_GIF_WRY, 
-                     KEY_GIF_ANGER,
+        _gifKeys = [[NSArray arrayWithObjects:
+                     KEY_GIF_SMILE,
                      KEY_GIF_HAPPY,
-                     KEY_GIF_CRASY, 
                      KEY_GIF_CRY, 
-                     KEY_GIF_LOVELY, 
+                     KEY_GIF_EMBARRASS,
+                     KEY_GIF_ANGER,
+
                      KEY_GIF_RANDY, 
-                     KEY_GIF_SHOCK,  
+                     KEY_GIF_SHOCK, 
                      KEY_GIF_SHY, 
                      KEY_GIF_SLEEP,
+                     KEY_GIF_CRASY, 
+
+                     KEY_GIF_PROUD,
+                     KEY_GIF_LOVELY, 
+                     KEY_GIF_WRY, 
+                     
                      nil] retain];
-        _gifValues = [[NSArray arrayWithObjects:VALUE_GIF_SMILE, 
-                       VALUE_GIF_PROUD,
-                       VALUE_GIF_EMBARRASS, 
-                       VALUE_GIF_WRY, 
-                       VALUE_GIF_ANGER, 
+        _gifValues = [[NSArray arrayWithObjects:
+                       VALUE_GIF_SMILE, 
                        VALUE_GIF_HAPPY,
-                       VALUE_GIF_CRASY,
                        VALUE_GIF_CRY,
-                       VALUE_GIF_LOVELY,
+                       VALUE_GIF_EMBARRASS, 
+                       VALUE_GIF_ANGER, 
+
                        VALUE_GIF_RANDY,
                        VALUE_GIF_SHOCK,
                        VALUE_GIF_SHY,
                        VALUE_GIF_SLEEP, 
+                       VALUE_GIF_CRASY,
+
+                       VALUE_GIF_PROUD,
+                       VALUE_GIF_LOVELY,
+                       VALUE_GIF_WRY, 
+                       
                        nil] retain];
         _gifExpressionDictionary = [[NSDictionary dictionaryWithObjects:_gifValues forKeys:_gifKeys] retain];
     }

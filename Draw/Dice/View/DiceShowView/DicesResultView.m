@@ -412,7 +412,9 @@
 {
     NSString *str = [self diceTypeString];
     if (str != nil) {
-        HKGirlFontLabel *label = [[[HKGirlFontLabel alloc] initWithFrame:CGRectMake(0, 0, 100, 100) pointSize:20] autorelease];
+        CGFloat pointSize = [DeviceDetection isIPAD] ? 40 : 20;
+        CGRect frame = [DeviceDetection isIPAD] ? CGRectMake(0, 0, 200, 200) : CGRectMake(0, 0, 100, 100);
+        HKGirlFontLabel *label = [[[HKGirlFontLabel alloc] initWithFrame:frame pointSize:pointSize] autorelease];
         label.textAlignment = UITextAlignmentCenter;
         label.center = self.center;
         label.text = str;

@@ -242,11 +242,11 @@
     [[UIApplication sharedApplication] 
      setStatusBarStyle:UIStatusBarStyleBlackOpaque animated:NO];
     
-    NSString* aRoomName = [[[DiceGameService defaultService] session] roomName];
-    if (aRoomName == nil || aRoomName.length <= 0) {
-        aRoomName = [NSString stringWithFormat:@"%d", [[[DiceGameService defaultService] session] sessionId]];
-    }
-    _roomNameLabel.text = aRoomName;
+//    NSString* aRoomName = [[[DiceGameService defaultService] session] roomName];
+//    if (aRoomName == nil || aRoomName.length <= 0) {
+//        aRoomName = [NSString stringWithFormat:@"%d", [[[DiceGameService defaultService] session] sessionId]];
+//    }
+    _roomNameLabel.text = [_diceService roomName];
     
     myCoinsLabel.textColor = [UIColor whiteColor];
     myLevelLabel.textColor = [UIColor whiteColor];
@@ -906,7 +906,7 @@
 {
     if ([_urgedUser containsObject:userId]) {
         [[self avatarViewOfUser:userId] startReciprocol:USER_THINK_TIME_INTERVAL - [ConfigManager getUrgeTime] 
-                                                      fromProgress:(1 - (float)(USER_THINK_TIME_INTERVAL-[ConfigManager getUrgeTime])/USER_THINK_TIME_INTERVAL)];
+                                                      fromProgress:((float)(USER_THINK_TIME_INTERVAL-[ConfigManager getUrgeTime])/USER_THINK_TIME_INTERVAL)];
         [self removeUrgedUser:userId];
         
     } else {
