@@ -408,7 +408,7 @@ AAgACAAIAAEAAQABAAE</bytes>
 					<object class="IBUIButton" id="943438689">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">301</int>
-						<string key="NSFrame">{{631, 15}, {120, 65}}</string>
+						<string key="NSFrame">{{633, 15}, {119, 65}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="745717694"/>
