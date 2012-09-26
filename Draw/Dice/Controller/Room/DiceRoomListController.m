@@ -55,6 +55,7 @@
 @synthesize friendRoomButton;
 @synthesize nearByRoomButton;
 @synthesize currentSession = _currentSession;
+@synthesize emptyListTips;
 
 - (id)initWithRuleType:(DiceGameRuleType)ruleType
 {
@@ -87,6 +88,7 @@
     [nearByRoomButton release];
     PPRelease(_currentSession);
     [helpButton release];
+    [emptyListTips release];
     [super dealloc];
 }
 
@@ -159,6 +161,21 @@
     [self startRefreshRoomsTimer];
 }
 
+- (void)updateRoomList
+{
+    self.emptyListTips.hidden = YES;
+    if (self.dataList.count < 1) {
+        self.emptyListTips.hidden = NO;
+        if (_currentRoomType == friendRoom) {
+            [self.emptyListTips setText:NSLS(@"kNoFriendRoom")];
+        }
+        if (_searchView) {
+            [self.emptyListTips setText:NSLS(@"kSearchEmpty")];
+        }
+    }
+}
+
+
 - (void)getRoomsFinished
 {
     [self hideActivity];
@@ -171,6 +188,7 @@
     if (_isRefreshing) {
         [self startRefreshRoomsTimer];
     }
+    [self updateRoomList];
     
 }
 
@@ -308,6 +326,7 @@
     [self.fastEntryButton.fontLable setText:NSLS(@"kFastEntry")];
     
     _isRefreshing = YES;
+    self.emptyListTips.hidden = YES;
         
 //    [[NSNotificationCenter defaultCenter] addObserver:self
 //                                             selector:@selector(roomsDidUpdate:)
@@ -324,6 +343,7 @@
     [self setFriendRoomButton:nil];
     [self setNearByRoomButton:nil];
     [self setHelpButton:nil];
+    [self setEmptyListTips:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;

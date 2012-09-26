@@ -48,6 +48,7 @@ typedef enum {
 @property (retain, nonatomic) IBOutlet FontButton *friendRoomButton;
 @property (retain, nonatomic) IBOutlet FontButton *nearByRoomButton;
 @property (retain, nonatomic) PBGameSession* currentSession;
+@property (retain, nonatomic) IBOutlet HKGirlFontLabel *emptyListTips;
 
 
 @end

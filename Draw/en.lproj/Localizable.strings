@@ -1014,6 +1014,9 @@
 
 "kHasBought" = "Already Has";
 "kRoomNameDuplicated" = "Room name duplicated.";
+
+"kSearchEmpty" = "No matched room";
+"kNoFriendRoom" = "No friend room";
 /*********************** 大话骰子国际化字符串结束 *************************/
 
 
