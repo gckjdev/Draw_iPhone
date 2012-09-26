@@ -79,6 +79,7 @@
 //}
 
 - (void)dealloc {
+    _searchView.disappearDelegate = nil;
     [self clearRefreshRoomsTimer];
     [createRoomButton release];
     [fastEntryButton release];
@@ -595,6 +596,9 @@
     _searchView = nil;
     if (_currentRoomType == allRoom) {
         [self continueRefreshingRooms];
+    }
+    if (_currentRoomType == friendRoom) {
+        [self clickFriendRoom:nil];
     }
     
 }
