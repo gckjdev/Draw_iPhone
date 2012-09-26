@@ -22,7 +22,7 @@
 
 - (NSString*)key
 {
-    return [NSString stringWithFormat:@"%@:%d", self.address, self.port];
+    return [NSString stringWithFormat:@"%@:%d", self.address, [self.port intValue]];
 }
 
 + (NSString*)keyWithServerAddress:(NSString*)address port:(int)port

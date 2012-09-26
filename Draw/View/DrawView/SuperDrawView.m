@@ -206,6 +206,11 @@
     }
 }
 
+- (void)revokeRect:(CGRect)rect
+{
+    PPDebug(@"<SuperDrawView> revokeRect. Should Not Call This!!!!!");
+}
+
 //- (void)revokeRect:(CGRect)rect
 //{
 //    UIImage *image = [_revokeImageList lastObject];

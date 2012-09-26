@@ -116,4 +116,20 @@
     return @"drawlively";
 }
 
+- (NSString*)defaultAdBoardImage
+{
+    return @"";
+}
+
+- (NSString*)removeAdProductId
+{
+    return @"";
+}
+
+//- (NSString*)defaultAdBoardImage
+//{
+//    return @"";
+//}
+
+
 @end

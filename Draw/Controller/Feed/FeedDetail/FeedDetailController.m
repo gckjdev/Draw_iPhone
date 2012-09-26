@@ -257,7 +257,9 @@
 - (void)updateCommentList
 {
 //    [self showActivityWithText:NSLS(@"kLoading")];
-    [_feedService getOpusCommentList:_feed.feedId offset:_startIndex limit:COMMENT_COUNT delegate:self];
+    
+    // rem by Benson since the file is no longer used
+//    [_feedService getOpusCommentList:_feed.feedId offset:_startIndex limit:COMMENT_COUNT delegate:self];
 }
 
 - (void)updateNoCommentLabel
