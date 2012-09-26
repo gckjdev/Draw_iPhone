@@ -24,9 +24,19 @@ static DiceImageManager *_defaultManager = nil;
     return _defaultManager;
 }
 
-- (UIImage *)roomListBgImage
+- (UIImage *)diceNormalRoomListBgImage
 {
-    return [UIImage imageNamed:@"dice_room_background.png"];
+    return [UIImage imageNamed:@"dice_room_background.jpg"];
+}
+
+- (UIImage *)diceHighRoomListBgImage
+{
+    return [UIImage imageNamed:@"dice_high_room_background.jpg"];
+}
+
+- (UIImage *)diceSuperHighRoomListBgImage
+{
+    return [UIImage imageNamed:@"dice_super_high_room_background.jpg"];
 }
 
 - (UIImage *)createRoomBtnBgImage

@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CommonInfoView.h"
 @class Item;
 @class PPViewController;
 
@@ -17,10 +18,13 @@
 
 @end
 
-@interface CommonItemInfoView : UIView
+@interface CommonItemInfoView : CommonInfoView
 
 + (void)showItem:(Item*)anItem 
       infoInView:(PPViewController*)superController;
++ (void)showItem:(Item*)anItem 
+      infoInView:(PPViewController<CommonItemInfoViewDelegate>*)superController 
+     canBuyAgain:(BOOL)canBuyAgain;
 
 @property (retain, nonatomic) IBOutlet UIImageView* backgroundImageView;
 @property (retain, nonatomic) IBOutlet UIButton *mask;

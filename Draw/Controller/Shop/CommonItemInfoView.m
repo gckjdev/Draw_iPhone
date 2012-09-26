@@ -72,7 +72,7 @@
     [self.coinLabel setText:NSLS(@"kCoins")];
 }
 
-- (void)initViewWithItem:(Item*)anItem
+- (void)initViewWithItem:(Item*)anItem canBuyAgain:(BOOL)canBuyAgain
 {  
     [self initView];
     self.currentItem = anItem;
@@ -81,13 +81,25 @@
     [self.itemTitle setText:anItem.itemName];
     if ([Item isItemCountable:anItem.type]) {
         [self.itemCountLabel setText:[NSString stringWithFormat:@"x %d",anItem.buyAmountForOnce]];
+    } else {
+        [self.itemTitle setFrame:CGRectMake(self.itemTitle.frame.origin.x, 
+                                            self.itemTitle.frame.origin.y, 
+                                            self.itemTitle.frame.size.width*2, 
+                                            self.itemTitle.frame.size.height)];
     }
     [self.coinCountLabel setText:[NSString stringWithFormat:@"%d",anItem.price]];
+    
+    if (!canBuyAgain) {
+        [self.cancelButton setFrame:CGRectMake(0, self.cancelButton.frame.origin.y, self.cancelButton.frame.size.width*2, self.cancelButton.frame.size.height)];
+        [self.cancelButton setCenter:CGPointMake(self.contentView.frame.size.width/2, self.cancelButton.center.y)];
+        self.buyButton.hidden = YES;
+        [self.cancelButton setTitle:NSLS(@"kHasBought") forState:UIControlStateNormal];
+    }
 
 }
 
 
-+ (CommonItemInfoView*)createUserInfoView
++ (CommonItemInfoView*)createItemInfoView
 {
     NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"CommonItemInfoView" owner:self options:nil];
     if (topLevelObjects == nil || [topLevelObjects count] <= 0){
@@ -96,42 +108,32 @@
     }
     CommonItemInfoView* view =  (CommonItemInfoView*)[topLevelObjects objectAtIndex:0];
     
-    CAAnimation *runIn = [AnimationManager scaleAnimationWithFromScale:0.1 toScale:1 duration:RUN_IN_TIME delegate:self removeCompeleted:NO];
-    [view.contentView.layer addAnimation:runIn forKey:@"runIn"];
-    
     return view;
 }
 
 + (void)showItem:(Item*)anItem 
       infoInView:(PPViewController<CommonItemInfoViewDelegate>*)superController
 {
-    CommonItemInfoView* view = [CommonItemInfoView createUserInfoView];
-    [view initViewWithItem:anItem];
+    CommonItemInfoView* view = [CommonItemInfoView createItemInfoView];
+    [view initViewWithItem:anItem canBuyAgain:YES];
     view.delegate = superController;
-    [superController.view addSubview:view];
+    [view showInView:superController.view];
 }
 
-
-- (void)startRunOutAnimation
++ (void)showItem:(Item*)anItem 
+      infoInView:(PPViewController<CommonItemInfoViewDelegate>*)superController 
+     canBuyAgain:(BOOL)canBuyAgain
 {
-    CAAnimation *runOut = [AnimationManager scaleAnimationWithFromScale:1 toScale:0.1 duration:RUN_OUT_TIME delegate:self removeCompeleted:NO];
-    [runOut setValue:@"runOut" forKey:@"AnimationKey"];
-    [self.contentView.layer addAnimation:runOut forKey:@"runOut"];
-    
+    CommonItemInfoView* view = [CommonItemInfoView createItemInfoView];
+    [view initViewWithItem:anItem canBuyAgain:canBuyAgain];
+    view.delegate = superController;
+    [view showInView:superController.view];
 }
 
-- (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag
-{
-    NSString* value = [anim valueForKey:@"AnimationKey"];
-    if ([value isEqualToString:@"runOut"]) {
-        [self setHidden:YES];
-        [self removeFromSuperview];
-    }
-}
 
 - (IBAction)clickMask:(id)sender
 {
-    [self startRunOutAnimation];
+    [self disappear];
 }
 
 - (IBAction)clickOK:(id)sender
@@ -149,12 +151,12 @@
         [_delegate didBuyItem:self.currentItem 
                        result:result];
     }
-    [self startRunOutAnimation];
+    [self disappear];
 }
 
 - (IBAction)clickCancel:(id)sender
 {
-    [self startRunOutAnimation];
+    [self disappear];
 }
 
 - (id)initWithFrame:(CGRect)frame

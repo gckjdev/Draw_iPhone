@@ -95,21 +95,21 @@
     
     [self addRemoteDraw];
     
-    if (isDrawApp()){
-        [[DrawDataService defaultService] findRecentDraw:self];
-    }
-    else{
-        [self.userIdTextField becomeFirstResponder];
-    }
+//    if (isDrawApp()){
+//        [[DrawDataService defaultService] findRecentDraw:self];
+//    }
+//    else{
+
+    [self.userIdTextField becomeFirstResponder];
+    
+//    }
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {    
     self.navigationController.navigationBarHidden = YES;
     [self hideActivity];
-    if (isDrawApp() == NO){
-        [self.userIdTextField becomeFirstResponder];
-    }
+    [self.userIdTextField becomeFirstResponder];
     
     [super viewDidAppear:animated];
 }

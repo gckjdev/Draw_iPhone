@@ -954,7 +954,7 @@
 "kOdds" = "1:%.2f";
 
 "kCallTips" = "Suggestion";
-"kJustOpen" = "Just open it!";
+"kJustOpen" = "Challenge!";
 
 "kDoItLikeThis" = "Do it";
 "kThinkMyself" = "Cancel";
@@ -964,31 +964,62 @@
 "kDefault" = "Default";
 
 "kCustomDice" = "Custom Dice";
-"kItemPatriotDice" = "dragon ball dice";
-"kPatriotDice" = "dragon ball dice";
-"kPatriotDiceDescription" = "looks like dragon balls";
 
-"kItemGoldenDice" = "gold dice";
-"kGoldenDice" = "gold dice";
-"kGoldenDiceDescription" = "with appearance of elegence and dignity, it is really a symbol of status.";
+"kItemPatriotDice" = "Dragon ball dice";
+"kPatriotDice" = "Dragon ball dice";
+"kPatriotDiceDescription" = "Looks like dragon balls.";
 
-"kItemWoodDice" = "wooden dice";
-"kWoodDice" = "wooden dice";
-"kWoodDiceDescription" = "Made of wood, back to nature and purity";
+"kItemGoldenDice" = "Golden dice";
+"kGoldenDice" = "Golden dice";
+"kGoldenDiceDescription" = "With appearance of elegence and dignity, it is really a symbol of status.";
 
-"kItemCrystalDice" = "crystal dice";
-"kCrystalDice" = "crystal dice";
-"kCrystalDiceDescription" = "Glittering and translucent, appealing to girls.";
+"kItemWoodDice" = "Chinese dice";
+"kWoodDice" = "Chinese dice";
+"kWoodDiceDescription" = "Made of wood, back to nature and purity.";
 
-"kItemDiamondDice" = "gem dice";
-"kDiamondDice" = "gem dice";
-"kDiamondDiceDescription" = "Upmost solid and gorgeous, the symbol of auspiciousness and meaningfulness";
+"kItemBlueCrystalDice" = "Blue crystal dice";
+"kBlueCrystalDice" = "Blue crystal dice";
+"kBlueCrystalDiceDescription" = "Glittering and translucent, appealing to girls.";
+
+"kItemPinkCrystalDice" = "Pink crystal dice";
+"kPinkCrystalDice" = "Pink crystal dice";
+"kPinkCrystalDiceDescription" = "Glittering and translucent, appealing to girls.";
+
+"kItemGreenCrystalDice" = "Green crystal dice";
+"kGreenCrystalDice" = "Green crystal dice";
+"kGreenCrystalDiceDescription" = "Glittering and translucent, appealing to girls.";
+
+"kItemPurpleCrystalDice" = "Purple crystal dice";
+"kPurpleCrystalDice" = "Purple crystal dice";
+"kPurpleCrystalDiceDescription" = "Glittering and translucent, appealing to girls.";
+
+"kItemBlueDiamondDice" = "Blue gem dice";
+"kBlueDiamondDice" = "Blue gem dice";
+"kBlueDiamondDiceDescription" = "Upmost solid and gorgeous, the symbol of auspiciousness and meaningfulness.";
+
+"kItemPinkDiamondDice" = "Pink gem dice";
+"kPinkDiamondDice" = "Pink gem dice";
+"kPinkDiamondDiceDescription" = "Upmost solid and gorgeous, the symbol of auspiciousness and meaningfulness.";
+
+"kItemGreenDiamondDice" = "Green gem dice";
+"kGreenDiamondDice" = "Green gem dice";
+"kGreenDiamondDiceDescription" = "Upmost solid and gorgeous, the symbol of auspiciousness and meaningfulness.";
+
+"kItemPurpleDiamondDice" = "Purple gem dice";
+"kPurpleDiamondDice" = "Purple gem dice";
+"kPurpleDiamondDiceDescription" = "Upmost solid and gorgeous, the symbol of auspiciousness and meaningfulness.";
 
 "kNoMoreShowIt" = "No Remind";
 "kItemTips" = "Item Tips";
-"kCustomDiceTips" = "You can set you custom dice in user setting";
+"kCustomDiceTips" = "You can set you custom dice in user setting.";
 
 "kSearchingRoom" = "Searching Room...";
+
+"kHasBought" = "Already Has";
+"kRoomNameDuplicated" = "Room name duplicated.";
+
+"kSearchEmpty" = "No matched room";
+"kNoFriendRoom" = "No friend room";
 /*********************** 大话骰子国际化字符串结束 *************************/
 
 

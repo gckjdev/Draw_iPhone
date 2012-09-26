@@ -318,8 +318,14 @@ static FeedService *_staticFeedService = nil;
     NSString* appId = [ConfigManager appId];    
     
     dispatch_async(workingQueue, ^{
-        CommonNetworkOutput* output = [GameNetworkRequest actionSaveOnOpus:TRAFFIC_SERVER_URL appId:appId userId:userId actionName:actionName opusId:opusId];
+        CommonNetworkOutput* output = [GameNetworkRequest actionSaveOnOpus:TRAFFIC_SERVER_URL
+                                                                     appId:appId
+                                                                    userId:userId
+                                                                actionName:actionName
+                                                                    opusId:opusId];
         
+        PPDebug(@"<actionSaveOpus> opusId=%@, action=%@, resultCode=%d",
+                opusId, actionName, output.resultCode);
         
 //        dispatch_async(dispatch_get_main_queue(), ^{
 //        });
