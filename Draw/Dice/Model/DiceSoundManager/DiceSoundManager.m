@@ -102,7 +102,9 @@ static DiceSoundManager* shareManager;
 
 - (NSString*)getMessageSoundNameById:(int)messageId
 {
-    return [NSString stringWithFormat:[NSString stringWithFormat:@"%@_%d%@",MESSAGE_BASE_NAME, messageId, [LocaleUtils isChinese]?LANGUAGE_CHINESE:LANGUAGE_ENGLISH]];
+    NSString* str = [NSString stringWithFormat:@"%@_%d%@",MESSAGE_BASE_NAME, messageId, [LocaleUtils isChinese]?LANGUAGE_CHINESE:LANGUAGE_ENGLISH];
+    return str;
+//    return [NSString stringWithFormat:str];
 }
 
 - (void)playVoiceById:(int)messageId 

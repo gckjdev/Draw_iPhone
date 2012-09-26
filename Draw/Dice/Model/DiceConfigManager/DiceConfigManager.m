@@ -18,9 +18,6 @@
 {
     int thresholdCoins;
     switch (ruleType) {
-        case DiceGameRuleTypeRuleNormal:
-            thresholdCoins = [ConfigManager getDiceThresholdCoinWithNormalRule];
-            break;
             
         case DiceGameRuleTypeRuleHigh:
             thresholdCoins = [ConfigManager getDiceThresholdCoinWithHightRule];
@@ -30,8 +27,9 @@
             thresholdCoins = [ConfigManager getDiceThresholdCoinWithSuperHightRule];
             break;
             
+        case DiceGameRuleTypeRuleNormal:
         default:
-            
+            thresholdCoins = [ConfigManager getDiceThresholdCoinWithNormalRule];
             break;
     }
     

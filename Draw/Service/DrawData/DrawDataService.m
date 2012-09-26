@@ -261,7 +261,7 @@ static DrawDataService* _defaultDrawDataService = nil;
         return;
     }
  */
-    time_t aTime = time(0);
+    int aTime = time(0);
     NSString* imageName = [NSString stringWithFormat:@"%d.png", aTime];
     if (image!=nil) 
     {

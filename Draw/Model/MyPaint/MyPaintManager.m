@@ -62,7 +62,7 @@ static MyPaintManager* _defaultManager;
 
 - (NSString *)writeImage:(UIImage *)image
 {
-    time_t aTime = time(0);
+    int aTime = time(0);
     NSString* imageName = [NSString stringWithFormat:@"%d.png", aTime];
     NSString *uniquePath=[MyPaintManager constructImagePath:imageName];
     NSData* imageData = UIImagePNGRepresentation(image);

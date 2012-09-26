@@ -133,6 +133,11 @@
     [self.loadingActivity stopAnimating];
 }
 
+-(void) managedImageCancelled:(HJManagedImageV*)mi
+{
+    
+}
+
 - (void)setCellInfo:(DrawFeed *)feed
 {    
     [self setFeed:feed];
