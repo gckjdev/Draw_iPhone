@@ -495,6 +495,16 @@ static UIImage* _whitePaperImage;
     return [self fixedImageNamed:@"h_shop"]; 
 }
 
+- (UIImage *)topImage
+{
+    return [self fixedImageNamed:@"h_top"];
+}
+
+- (UIImage*)contestImage
+{
+    return [self fixedImageNamed:@"h_match"]; 
+}
+
 - (UIImage *)pickToolBackground
 {
     return [UIImage strectchableImageName:@"popuptools_bg.png"];    
