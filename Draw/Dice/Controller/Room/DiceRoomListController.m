@@ -281,6 +281,27 @@
     return title;
 }
 
+- (UIImage *)bgImage
+{
+    switch (_ruleType) {
+        case DiceGameRuleTypeRuleNormal:
+            return [[DiceImageManager defaultManager] diceNormalRoomListBgImage];
+            break;
+            
+        case DiceGameRuleTypeRuleHigh:
+            return [[DiceImageManager defaultManager] diceHighRoomTableImage];
+            break;
+            
+        case DiceGameRuleTypeRuleSuperHigh:
+            return [[DiceImageManager defaultManager] diceSuperHighRoomTableImage];
+            break;
+            
+        default:
+            return nil;
+            break;
+    }
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -289,7 +310,7 @@
    
     _diceGameService = [DiceGameService defaultService];
     // Do any additional setup after loading the view from its nib.
-    self.view.backgroundColor = [UIColor colorWithPatternImage:[[DiceImageManager defaultManager] roomListBgImage]];
+    self.view.backgroundColor = [UIColor colorWithPatternImage:[self bgImage]];
     
     [createRoomButton setRoyButtonWithColor:[DiceColorManager dialoggreenColor]];
     
