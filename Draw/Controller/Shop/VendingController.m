@@ -276,9 +276,7 @@ static VendingController* staticVendingController = nil;
 {
     [self.outItem.layer removeAllAnimations];
     ToolView* button = (ToolView*)sender;
-    if (![Item isItemCountable:button.itemType] && button.alreadyHas) {
-        return;
-    }
+    BOOL canBuyAgain = [Item isItemCountable:button.itemType] || !button.alreadyHas;
     int itemIndex = button.tag-ITEM_BUTTON_OFFSET;
     if (itemIndex < _itemList.count) {
         Item* item = [_itemList objectAtIndex:itemIndex];
@@ -287,7 +285,7 @@ static VendingController* staticVendingController = nil;
             colorShop.delegate = self;
             [colorShop showInView:self.view animated:YES];
         } else {
-            [CommonItemInfoView showItem:item infoInView:self];
+            [CommonItemInfoView showItem:item infoInView:self canBuyAgain:canBuyAgain];
         }
     }    
 }
@@ -429,12 +427,14 @@ static VendingController* staticVendingController = nil;
     self.bgImageView.image = [UIImage imageNamed:[GameApp background]];
     
     self.coinsShopButton.hidden = YES;
+    
     if (isDiceApp() && [ConfigManager wallEnabled]) {
         self.coinsShopButton.hidden = NO;
     }
     
 
     [self initCustomPageControl];
+    [self.coinsButton.titleLabel setAdjustsFontSizeToFitWidth:YES];
 
     // Do any additional setup after loading the view from its nib.
 }

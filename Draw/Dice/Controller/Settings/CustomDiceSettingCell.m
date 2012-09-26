@@ -44,6 +44,7 @@
     [self.DiceImageView setImage:[[DiceImageManager defaultManager] diceImageWithDice:1]];
     [self.DiceTitleLabel setText:NSLS(@"kDefault")];
     [self.DiceDescriptionLabel setText:nil];
+    [self.DiceTitleLabel setCenter:CGPointMake(self.DiceTitleLabel.center.x, self.DiceImageView.center.y)];
 }
 
 + (NSString*)getCellIdentifier

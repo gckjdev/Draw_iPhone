@@ -13,7 +13,7 @@
 
 "kStart" = "開始遊戲";
 
-"kShop" = "商店";
+"kShop" = "道具商店";
 
 "kHomeShare" = "作品";
 
@@ -818,6 +818,7 @@
 "kFailLoad" = "獲取數據失敗，請稍後再試。";
 "kContestOpus" = "參賽作品";
 "kTop" = "排行榜";
+"kCanotSendToSelf" = "不能為自己的作品送鮮花或者扔番茄哦。";
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 
@@ -966,19 +967,45 @@
 "kWoodDice" = "木骰";
 "kWoodDiceDescription" = "回歸自然，以木質作為骰子背景，文藝青年專用。";
 
-"kItemCrystalDice" = "水晶骰";
-"kCrystalDice" = "水晶骰";
-"kCrystalDiceDescription" = "晶瑩剔透的感覺，女生們的最愛。";
+"kBlueItemCrystalDice" = "水晶骰";
+"kBlueCrystalDice" = "水晶骰";
+"kBlueCrystalDiceDescription" = "晶瑩剔透的感覺，女生們的最愛。";
 
-"kItemDiamondDice" = "寶石骰";
-"kDiamondDice" = "寶石骰";
-"kDiamondDiceDescription" = "至堅至美者，非寶石莫屬，象徵瑰麗祥瑞，意義雋永，人人值得擁有哦～";
+"kPinkItemCrystalDice" = "水晶骰";
+"kPinkCrystalDice" = "水晶骰";
+"kPinkCrystalDiceDescription" = "晶瑩剔透的感覺，女生們的最愛。";
+
+"kGreenItemCrystalDice" = "水晶骰";
+"kGreenCrystalDice" = "水晶骰";
+"kGreenCrystalDiceDescription" = "晶瑩剔透的感覺，女生們的最愛。";
+
+"kPurpleItemCrystalDice" = "水晶骰";
+"kPurpleCrystalDice" = "水晶骰";
+"kPurpleCrystalDiceDescription" = "晶瑩剔透的感覺，女生們的最愛。";
+
+"kBlueItemDiamondDice" = "寶石骰";
+"kBlueDiamondDice" = "寶石骰";
+"kBlueDiamondDiceDescription" = "至堅至美者，非寶石莫屬，象徵瑰麗祥瑞，意義雋永，人人值得擁有哦～";
+
+"kPinkItemDiamondDice" = "寶石骰";
+"kPinkDiamondDice" = "寶石骰";
+"kPinkDiamondDiceDescription" = "至堅至美者，非寶石莫屬，象徵瑰麗祥瑞，意義雋永，人人值得擁有哦～";
+
+"kGreenItemDiamondDice" = "寶石骰";
+"kGreenDiamondDice" = "寶石骰";
+"kGreenDiamondDiceDescription" = "至堅至美者，非寶石莫屬，象徵瑰麗祥瑞，意義雋永，人人值得擁有哦～";
+
+"kPurpleItemDiamondDice" = "寶石骰";
+"kPurpleDiamondDice" = "寶石骰";
+"kPurpleDiamondDiceDescription" = "至堅至美者，非寶石莫屬，象徵瑰麗祥瑞，意義雋永，人人值得擁有哦～";
 
 "kNoMoreShowIt" = "不再提醒";
 "kItemTips" = "道具提示";
 "kCustomDiceTips" = "你可以在”用戶設置“那裡更換你的個性化骰子";
 
 "kSearchingRoom" = "查找房間中...";
+"kHasBought" = "已購買";
+"kRoomNameDuplicated" = "這個房名已經被人用了，換一個吧。";
 /*********************** 大话骰子国际化字符串结束 *************************/
 
 

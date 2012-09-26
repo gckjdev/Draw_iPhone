@@ -164,7 +164,7 @@ typedef enum{
              WithPlayers:(NSArray *)players isFirstRow:(BOOL)isFirstRow
 {
     CGFloat width = [TopPlayerView getHeight];
-    CGFloat height = height;//[RankView heightForRankViewType:RankViewTypeNormal];
+    CGFloat height = [TopPlayerView getHeight];//[RankView heightForRankViewType:RankViewTypeNormal];
     CGFloat space = WIDTH_SPACE;;
     CGFloat x = 0;
     CGFloat y = 0;
@@ -295,7 +295,7 @@ typedef enum{
 }
 - (NSInteger)currentTabIndex
 {
-    return 0;
+    return 2;
 }
 - (NSInteger)fetchDataLimitForTabIndex:(NSInteger)index
 {
