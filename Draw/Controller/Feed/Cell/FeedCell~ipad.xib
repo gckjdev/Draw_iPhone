@@ -44,7 +44,7 @@
 							<object class="IBUIImageView" id="745456885">
 								<reference key="NSNextResponder" ref="703497056"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{31, 24}, {87, 89}}</string>
+								<string key="NSFrame">{{25, 23}, {87, 89}}</string>
 								<reference key="NSSuperview" ref="703497056"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="995215504"/>
@@ -159,7 +159,7 @@
 							<object class="IBUILabel" id="386031461">
 								<reference key="NSNextResponder" ref="703497056"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{547, 187}, {191, 48}}</string>
+								<string key="NSFrame">{{567, 187}, {191, 48}}</string>
 								<reference key="NSSuperview" ref="703497056"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="335828857"/>
@@ -181,10 +181,9 @@
 							<object class="IBUIView" id="335828857">
 								<reference key="NSNextResponder" ref="703497056"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{561, 18}, {162, 170}}</string>
+								<string key="NSFrame">{{581, 18}, {162, 170}}</string>
 								<reference key="NSSuperview" ref="703497056"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView"/>
 								<object class="NSColor" key="IBUIBackgroundColor">
 									<int key="NSColorSpace">3</int>
 									<bytes key="NSWhite">MQA</bytes>

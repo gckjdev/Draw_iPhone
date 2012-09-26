@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "MenuButton.h"
+#import "UICustomPageControl.h"
 
 @interface MenuPanel : UIView<UIScrollViewDelegate, MenuButtonDelegate>
 {
@@ -16,7 +17,7 @@
 }
 @property (retain, nonatomic) IBOutlet UILabel *versionLabel;
 @property (retain, nonatomic) IBOutlet UIScrollView *scrollView;
-@property (retain, nonatomic) IBOutlet UIPageControl *pageControl;
+@property (retain, nonatomic) IBOutlet UICustomPageControl *pageControl;
 @property (retain, nonatomic) UIViewController<MenuButtonDelegate> *controller;
 @property (assign, nonatomic) GameAppType gameAppType;
 @property (retain, nonatomic) IBOutlet UIImageView *bgImageView;

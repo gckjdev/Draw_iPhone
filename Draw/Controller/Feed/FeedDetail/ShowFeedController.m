@@ -417,6 +417,11 @@ enum{
 - (void)throwItem:(Item *)item
 {
     
+    if ([self.feed isMyOpus]) {
+        [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kCanotSendToSelf") delayTime:1.5 isHappy:YES];
+        return;
+    }
+    
     if (item.amount <= 0) {
         CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kNoItemTitle") message:NSLS(@"kNoItemMessage") style:CommonDialogStyleDoubleButton delegate:self];
         dialog.tag = ITEM_TAG_OFFSET + item.type;

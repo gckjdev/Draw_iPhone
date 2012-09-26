@@ -596,23 +596,6 @@
 
 }
 
-- (IBAction)clickContestButton:(id)sender {
-    ContestController *cc = [[ContestController alloc] init];
-    [self.navigationController pushViewController:cc animated:YES];
-    [cc release];
-}
-
-- (IBAction)clickRankButton:(id)sender {
-    HotController *hc = [[HotController alloc] init];
-    [self.navigationController pushViewController:hc animated:YES];
-    [hc release];
-}
-
-- (IBAction)clickMyFeed:(id)sender {
-    MyFeedController *myFeedController = [[MyFeedController alloc] init];
-    [self.navigationController pushViewController:myFeedController animated:YES];
-    [myFeedController release];
-}
 
 
 - (IBAction)clickFacetime:(id)sender
@@ -715,9 +698,13 @@
             break;
         case MenuButtonTypeTimeline:
         {
-            FeedController *fc = [[FeedController alloc] init];
-            [self.navigationController pushViewController:fc animated:YES];
-            [fc release];
+//            FeedController *fc = [[FeedController alloc] init];
+//            [self.navigationController pushViewController:fc animated:YES];
+//            [fc release];
+//            [_menuPanel setMenuBadge:0 forMenuType:type];
+            MyFeedController *myFeedController = [[MyFeedController alloc] init];
+            [self.navigationController pushViewController:myFeedController animated:YES];
+            [myFeedController release];
             [_menuPanel setMenuBadge:0 forMenuType:type];
         }
             break;
@@ -726,6 +713,18 @@
             VendingController* vc = [[VendingController alloc] init];
             [self.navigationController pushViewController:vc animated:YES];
             [vc release];
+        }
+        case MenuButtonTypeContest:
+        {
+            ContestController *cc = [[ContestController alloc] init];
+            [self.navigationController pushViewController:cc animated:YES];
+            [cc release];
+        }
+        case MenuButtonTypeTop:
+        {
+            HotController *hc = [[HotController alloc] init];
+            [self.navigationController pushViewController:hc animated:YES];
+            [hc release];
         }
             break;
             

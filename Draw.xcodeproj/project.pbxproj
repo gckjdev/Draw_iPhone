@@ -85,7 +85,6 @@
 		A42D90451553803D0023AF32 /* ItemShopController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A42D90411553803D0023AF32 /* ItemShopController~ipad.xib */; };
 		A42D90461553803D0023AF32 /* ShoppingCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A42D90421553803D0023AF32 /* ShoppingCell~ipad.xib */; };
 		A42D9048155380760023AF32 /* ColorShopView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A42D9047155380760023AF32 /* ColorShopView~ipad.xib */; };
-		A43A64AB16084CA100F35978 /* face_crasy.gif in Resources */ = {isa = PBXBuildFile; fileRef = A43A64A316084CA100F35978 /* face_crasy.gif */; };
 		A43A64AC16084CA100F35978 /* face_cry.gif in Resources */ = {isa = PBXBuildFile; fileRef = A43A64A416084CA100F35978 /* face_cry.gif */; };
 		A43A64AD16084CA100F35978 /* face_happy.gif in Resources */ = {isa = PBXBuildFile; fileRef = A43A64A516084CA100F35978 /* face_happy.gif */; };
 		A43A64AE16084CA100F35978 /* face_lovely.gif in Resources */ = {isa = PBXBuildFile; fileRef = A43A64A616084CA100F35978 /* face_lovely.gif */; };
@@ -1778,7 +1777,6 @@
 		A42D90411553803D0023AF32 /* ItemShopController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ItemShopController~ipad.xib"; sourceTree = "<group>"; };
 		A42D90421553803D0023AF32 /* ShoppingCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ShoppingCell~ipad.xib"; sourceTree = "<group>"; };
 		A42D9047155380760023AF32 /* ColorShopView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ColorShopView~ipad.xib"; sourceTree = "<group>"; };
-		A43A64A316084CA100F35978 /* face_crasy.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = face_crasy.gif; sourceTree = "<group>"; };
 		A43A64A416084CA100F35978 /* face_cry.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = face_cry.gif; sourceTree = "<group>"; };
 		A43A64A516084CA100F35978 /* face_happy.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = face_happy.gif; sourceTree = "<group>"; };
 		A43A64A616084CA100F35978 /* face_lovely.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = face_lovely.gif; sourceTree = "<group>"; };
@@ -4259,7 +4257,6 @@
 				A43A64C31608591C00F35978 /* win@2x.png */,
 				A43A64BE1608518B00F35978 /* clean_input@2x.png */,
 				A43A64BF1608518D00F35978 /* lose@2x.png */,
-				A43A64A316084CA100F35978 /* face_crasy.gif */,
 				A43A64A416084CA100F35978 /* face_cry.gif */,
 				A43A64A516084CA100F35978 /* face_happy.gif */,
 				A43A64A616084CA100F35978 /* face_lovely.gif */,
@@ -9546,7 +9543,6 @@
 				CA8974471607230E003A95F7 /* MyFeedController.xib in Resources */,
 				CA8974491607230E003A95F7 /* UserFeedController.xib in Resources */,
 				CA89744A1607230E003A95F7 /* UserFeedController~ipad.xib in Resources */,
-				A43A64AB16084CA100F35978 /* face_crasy.gif in Resources */,
 				A43A64AC16084CA100F35978 /* face_cry.gif in Resources */,
 				A43A64AD16084CA100F35978 /* face_happy.gif in Resources */,
 				A43A64AE16084CA100F35978 /* face_lovely.gif in Resources */,

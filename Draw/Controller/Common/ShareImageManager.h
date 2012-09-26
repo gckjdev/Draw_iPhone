@@ -143,6 +143,8 @@
 - (UIImage *)timelineImage;
 - (UIImage*)shopImage;
 - (UIImage*)diceShopImage;
+- (UIImage *)topImage;
+- (UIImage*)contestImage;
 
 //bottom menus image
 - (UIImage*)checkInMenuImage;

@@ -374,7 +374,15 @@ typedef enum{
                                         type:FeedListTypeDrawToMe
                                     delegate:self];
             }
+            case MyTypeComment:
+                //TODO finish the comment label.
+            {
+                [self.noDataTipLabl setText:@"功能尚未完成，先试试其他的吧。"];
+                self.currentTab.status = TableTabStatusLoaded;
+            }
             default:
+                
+                [self hideActivity];
                 break;
         }
         

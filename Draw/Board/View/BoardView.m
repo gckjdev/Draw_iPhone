@@ -131,7 +131,9 @@
     
     
     UIImage *image = nil;
-    if ([[AdService defaultService] isShowAd]){
+    BOOL isShowAd = [[AdService defaultService] isShowAd];
+    isShowAd = NO; // set by Benson to disable Ad in board  
+    if (isShowAd){
         image = [[ShareImageManager defaultManager] defaultAdBoardImage];
     }else{
         image = [[ShareImageManager defaultManager] defaultBoardImage];
@@ -143,16 +145,14 @@
 - (void)viewWillAppear
 {
     PPDebug(@"default board view will appear");
-    if ([[AdService defaultService] isShowAd]){
-//        UIView *superView = [_adView superview];
-//        if (superView!= self) {
-            PPDebug(@"default board refresh adview");
-            
+    BOOL isShowAd = [[AdService defaultService] isShowAd];
+    isShowAd = NO; // set by Benson to disable Ad in board  
+    if (isShowAd){
+            PPDebug(@"default board refresh adview");            
             [self clearAllAdView];
             self.adView = [[AdService defaultService] createAdInView:self                                                          
                                                            frame:CGRectMake(0, 0, 320, 50) 
                                                        iPadFrame:CGRectMake(30, 40, 320, 50)];            
-//        }
     }
 }
 
