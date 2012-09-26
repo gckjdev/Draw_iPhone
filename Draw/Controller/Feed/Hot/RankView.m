@@ -136,6 +136,14 @@
     self.drawFlag.hidden = YES;
     [self.title setTextAlignment:UITextAlignmentCenter];
 }
+- (void)updateViewInfoForUserOpus
+{
+    self.title.frame = self.author.frame;
+    [self.title setText:self.feed.wordText];
+    self.title.hidden = NO;
+    self.author.hidden = YES;
+    [self.title setTextAlignment:UITextAlignmentCenter];
+}
 
 - (void)setRankViewSelected:(BOOL)selected
 {
