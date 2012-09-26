@@ -783,7 +783,7 @@
 "kJoinCount" = "參加(%d)";
 
 
-"kContest" = "比賽";
+"kContest" = "畫畫比賽";
 "kRank" = "排行榜";
 "kNoRankPlayer" = "暫時沒有達人榜數據。";
 "kNoRankHistory" = "暫時沒有總榜數據。";
@@ -806,7 +806,6 @@
 "kUserNoOpus" = "%@ 還沒有作品。";
 
 "kOpusOperation" = "請選擇你需要的操作";
-"kContest" = "比賽";
 
 "kStatement" = "比賽聲明";
 "kDecline" = "拒絕";

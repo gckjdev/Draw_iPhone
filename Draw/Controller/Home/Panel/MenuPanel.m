@@ -58,31 +58,31 @@
 #define MENU_PANEL_HEIGHT ([DeviceDetection isIPAD] ? 468 : 226)
 //static const NSInteger MENU_NUMBER_PER_PAGE = 6;
 
-#define MENU_NUMBER_PER_PAGE ((self.gameAppType == GameAppTypeDraw) ? 6 : 6)
-#define MENU_NUMBER_ROW_NUMBER ((self.gameAppType == GameAppTypeDraw) ? 3 : 3)
-
-- (CGRect)frameForMenuIndex:(NSInteger)index
-{
-
-    BOOL isIPAD = [DeviceDetection isIPAD];
-
-    CGFloat xStart = isIPAD ? 32 : 15;
-    CGFloat yStart = isIPAD ? 30 : 22;
-
-    NSInteger page = index / MENU_NUMBER_PER_PAGE;   
-    
-    NSInteger row = (index % MENU_NUMBER_PER_PAGE) / MENU_NUMBER_ROW_NUMBER;
-    NSInteger numberInRow = index % MENU_NUMBER_ROW_NUMBER;
-    
-    CGFloat xSpace = ((MENU_PANEL_WIDTH - 2 *xStart) - MENU_NUMBER_ROW_NUMBER * MENU_BUTTON_WIDTH)/ (MENU_NUMBER_ROW_NUMBER - 1);    
-    CGFloat ySpace = (MENU_PANEL_HEIGHT - 2 *yStart - 2 * MENU_BUTTON_HEIGHT);
-    
-    CGFloat y = row * (ySpace + MENU_BUTTON_HEIGHT) + yStart;
-    CGFloat x = page * self.frame.size.width;
-    x += numberInRow *(xSpace + MENU_BUTTON_WIDTH) + xStart;
-    
-    return CGRectMake(x, y, MENU_BUTTON_WIDTH, MENU_BUTTON_HEIGHT);
-}
+#define MENU_NUMBER_PER_PAGE ((self.gameAppType == GameAppTypeDraw) ? 4 : 6)
+#define MENU_NUMBER_ROW_NUMBER ((self.gameAppType == GameAppTypeDraw) ? 2 : 3)
+//
+//- (CGRect)frameForMenuIndex:(NSInteger)index
+//{
+//
+//    BOOL isIPAD = [DeviceDetection isIPAD];
+//
+//    CGFloat xStart = isIPAD ? 32 : 15;
+//    CGFloat yStart = isIPAD ? 30 : 22;
+//
+//    NSInteger page = index / MENU_NUMBER_PER_PAGE;   
+//    
+//    NSInteger row = (index % MENU_NUMBER_PER_PAGE) / MENU_NUMBER_ROW_NUMBER;
+//    NSInteger numberInRow = index % MENU_NUMBER_ROW_NUMBER;
+//    
+//    CGFloat xSpace = ((MENU_PANEL_WIDTH - 2 *xStart) - MENU_NUMBER_ROW_NUMBER * MENU_BUTTON_WIDTH)/ (MENU_NUMBER_ROW_NUMBER - 1);    
+//    CGFloat ySpace = (MENU_PANEL_HEIGHT - 2 *yStart - 2 * MENU_BUTTON_HEIGHT);
+//    
+//    CGFloat y = row * (ySpace + MENU_BUTTON_HEIGHT) + yStart;
+//    CGFloat x = page * self.frame.size.width;
+//    x += numberInRow *(xSpace + MENU_BUTTON_WIDTH) + xStart;
+//    
+//    return CGRectMake(x, y, MENU_BUTTON_WIDTH, MENU_BUTTON_HEIGHT);
+//}
 
 
 - (void)updateFrameForMenu:(MenuButton *)menu atIndex:(NSInteger)index
