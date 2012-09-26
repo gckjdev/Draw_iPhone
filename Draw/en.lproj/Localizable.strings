@@ -813,8 +813,8 @@
 "kDecline" = "Decline";
 "kAccept" = "Accept";
 
-"kCoinsForFollowUs" = "+%d Coins";
-"kFollowUs" = "Follow Us";
+"kCoinsForFollowUs" = "+%d coins";
+"kFollowUs" = "Follow us";
 
 "kDetail" = "Detail";
 "kFailLoad" = "Fail to load data, please try it later.";
