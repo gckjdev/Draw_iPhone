@@ -308,11 +308,11 @@
             break;
             
         case DiceGameRuleTypeRuleHigh:
-            return [[DiceImageManager defaultManager] diceHighRoomTableImage];
+            return [[DiceImageManager defaultManager] diceHighRoomListBgImage];
             break;
             
         case DiceGameRuleTypeRuleSuperHigh:
-            return [[DiceImageManager defaultManager] diceSuperHighRoomTableImage];
+            return [[DiceImageManager defaultManager] diceSuperHighRoomListBgImage];
             break;
             
         default:

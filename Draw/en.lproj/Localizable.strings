@@ -965,15 +965,15 @@
 
 "kItemPatriotDice" = "Dragon ball dice";
 "kPatriotDice" = "Dragon ball dice";
-"kPatriotDiceDescription" = "looks like dragon balls";
+"kPatriotDiceDescription" = "Looks like dragon balls.";
 
 "kItemGoldenDice" = "Golden dice";
 "kGoldenDice" = "Golden dice";
-"kGoldenDiceDescription" = "with appearance of elegence and dignity, it is really a symbol of status.";
+"kGoldenDiceDescription" = "With appearance of elegence and dignity, it is really a symbol of status.";
 
 "kItemWoodDice" = "Chinese dice";
 "kWoodDice" = "Chinese dice";
-"kWoodDiceDescription" = "Made of wood, back to nature and purity";
+"kWoodDiceDescription" = "Made of wood, back to nature and purity.";
 
 "kItemBlueCrystalDice" = "Blue crystal dice";
 "kBlueCrystalDice" = "Blue crystal dice";
@@ -993,23 +993,23 @@
 
 "kItemBlueDiamondDice" = "Blue gem dice";
 "kBlueDiamondDice" = "Blue gem dice";
-"kBlueDiamondDiceDescription" = "Upmost solid and gorgeous, the symbol of auspiciousness and meaningfulness";
+"kBlueDiamondDiceDescription" = "Upmost solid and gorgeous, the symbol of auspiciousness and meaningfulness.";
 
 "kItemPinkDiamondDice" = "Pink gem dice";
 "kPinkDiamondDice" = "Pink gem dice";
-"kPinkDiamondDiceDescription" = "Upmost solid and gorgeous, the symbol of auspiciousness and meaningfulness";
+"kPinkDiamondDiceDescription" = "Upmost solid and gorgeous, the symbol of auspiciousness and meaningfulness.";
 
 "kItemGreenDiamondDice" = "Green gem dice";
 "kGreenDiamondDice" = "Green gem dice";
-"kGreenDiamondDiceDescription" = "Upmost solid and gorgeous, the symbol of auspiciousness and meaningfulness";
+"kGreenDiamondDiceDescription" = "Upmost solid and gorgeous, the symbol of auspiciousness and meaningfulness.";
 
 "kItemPurpleDiamondDice" = "Purple gem dice";
 "kPurpleDiamondDice" = "Purple gem dice";
-"kPurpleDiamondDiceDescription" = "Upmost solid and gorgeous, the symbol of auspiciousness and meaningfulness";
+"kPurpleDiamondDiceDescription" = "Upmost solid and gorgeous, the symbol of auspiciousness and meaningfulness.";
 
 "kNoMoreShowIt" = "No Remind";
 "kItemTips" = "Item Tips";
-"kCustomDiceTips" = "You can set you custom dice in user setting";
+"kCustomDiceTips" = "You can set you custom dice in user setting.";
 
 "kSearchingRoom" = "Searching Room...";
 
