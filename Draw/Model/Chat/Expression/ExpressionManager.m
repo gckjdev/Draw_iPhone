@@ -43,8 +43,8 @@
 #define KEY_GIF_HAPPY @"@happy@"
 #define VALUE_GIF_HAPPY @"face_happy.gif"
 
-#define KEY_GIF_CRASY @"@crasy@"
-#define VALUE_GIF_CRASY @"face_crasy.gif"
+#define KEY_GIF_CRAZY @"@crazy@"
+#define VALUE_GIF_CRAZY @"face_crazy.gif"
 
 #define KEY_GIF_CRY @"@cry@"
 #define VALUE_GIF_CRY @"face_cry.gif"
@@ -109,7 +109,7 @@ static ExpressionManager *_instance = nil;
                      KEY_GIF_SHOCK, 
                      KEY_GIF_SHY, 
                      KEY_GIF_SLEEP,
-                     KEY_GIF_CRASY, 
+                     KEY_GIF_CRAZY, 
 
                      KEY_GIF_PROUD,
                      KEY_GIF_LOVELY, 
@@ -127,7 +127,7 @@ static ExpressionManager *_instance = nil;
                        VALUE_GIF_SHOCK,
                        VALUE_GIF_SHY,
                        VALUE_GIF_SLEEP, 
-                       VALUE_GIF_CRASY,
+                       VALUE_GIF_CRAZY,
 
                        VALUE_GIF_PROUD,
                        VALUE_GIF_LOVELY,

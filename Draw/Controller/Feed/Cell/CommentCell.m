@@ -62,7 +62,7 @@
     UIFont *font = [UIFont systemFontOfSize:COMMENT_FONT_SIZE];
     CGSize commentSize = [comment sizeWithFont:font constrainedToSize:CGSizeMake(COMMENT_WIDTH, 10000000) lineBreakMode:UILineBreakModeCharacterWrap];
     CGFloat height = COMMENT_BASE_Y + COMMENT_SPACE + commentSize.height;
-    PPDebug(@"comment = %@,height = %f", comment,height);
+//    PPDebug(@"comment = %@,height = %f", comment,height);
     return height;
 }
 
@@ -127,7 +127,7 @@
     CGFloat y = COMMENT_BASE_Y + COMMENT_SPACE + commentSize.height - 0.5;
     CGFloat x = splitLine.center.x;
     splitLine.center = CGPointMake(x, y);
-    PPDebug(@"center = (%f,%f)",x,y);
+//    PPDebug(@"center = (%f,%f)",x,y);
 }
 
 

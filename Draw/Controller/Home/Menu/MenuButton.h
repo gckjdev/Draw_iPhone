@@ -18,6 +18,9 @@ typedef enum{
     MenuButtonTypeFriendPlay,   
     MenuButtonTypeTimeline,   
     MenuButtonTypeShop,   
+    MenuButtonTypeTop,
+    MenuButtonTypeContest,
+    
     
     //for dice.
     MenuButtonTypeDiceStart,

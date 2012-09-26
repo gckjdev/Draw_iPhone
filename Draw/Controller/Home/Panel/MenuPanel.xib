@@ -44,7 +44,7 @@
 						<string key="NSFrameSize">{320, 226}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="771539766"/>
+						<reference key="NSNextKeyView" ref="979056741"/>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<object class="NSCustomResource" key="IBUIImage">
@@ -94,6 +94,7 @@
 						<string key="NSFrame">{{0, 2}, {320, 226}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView" ref="771539766"/>
 						<object class="NSColor" key="IBUIBackgroundColor">
 							<int key="NSColorSpace">3</int>
 							<bytes key="NSWhite">MCAwAA</bytes>
@@ -107,7 +108,7 @@
 					</object>
 					<object class="IBUIPageControl" id="771539766">
 						<reference key="NSNextResponder" ref="191373211"/>
-						<int key="NSvFlags">-2147482332</int>
+						<int key="NSvFlags">1316</int>
 						<object class="NSPSMatrix" key="NSFrameMatrix"/>
 						<string key="NSFrame">{{141, 190}, {38, 36}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
@@ -240,6 +241,7 @@
 				<string key="4.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="5.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="6.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+				<string key="7.CustomClassName">UICustomPageControl</string>
 				<string key="7.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 			</dictionary>
 			<dictionary class="NSMutableDictionary" key="unlocalizedProperties"/>
@@ -266,7 +268,7 @@
 					</object>
 					<dictionary class="NSMutableDictionary" key="outlets">
 						<string key="bgImageView">UIImageView</string>
-						<string key="pageControl">UIPageControl</string>
+						<string key="pageControl">UICustomPageControl</string>
 						<string key="scrollView">UIScrollView</string>
 						<string key="versionLabel">UILabel</string>
 					</dictionary>
@@ -277,7 +279,7 @@
 						</object>
 						<object class="IBToOneOutletInfo" key="pageControl">
 							<string key="name">pageControl</string>
-							<string key="candidateClassName">UIPageControl</string>
+							<string key="candidateClassName">UICustomPageControl</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="scrollView">
 							<string key="name">scrollView</string>
@@ -291,6 +293,14 @@
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
 						<string key="minorKey">./Classes/MenuPanel.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">UICustomPageControl</string>
+					<string key="superclassName">UIPageControl</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/UICustomPageControl.h</string>
 					</object>
 				</object>
 			</array>
