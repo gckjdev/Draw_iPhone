@@ -119,4 +119,8 @@ typedef enum{
 + (int)getUrgeTime;
 
 + (int)getFollowReward;
+
++ (BOOL)isAutoSave; //default is no
++ (void)setAutoSave:(BOOL)isAutoSave;
+
 @end

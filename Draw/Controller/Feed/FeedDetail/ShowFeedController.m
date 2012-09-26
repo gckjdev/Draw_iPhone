@@ -300,6 +300,9 @@ enum{
 
 -(BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if (indexPath.section != SectionCommentInfo) {
+        return false;
+    }
     if (indexPath.row < [self.dataList count]) {
         DrawFeed *feed = [self.dataList objectAtIndex:indexPath.row];
         return [feed isMyFeed]|| [self.feed isMyOpus];        

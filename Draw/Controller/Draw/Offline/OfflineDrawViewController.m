@@ -390,6 +390,7 @@ enum{
     pickEraserView.hidden = NO;
     [self.view bringSubviewToFront:pickEraserView];
     _unDraftPaintCount = 0;
+    _isAutoSave = [ConfigManager isAutoSave];
 //    [self restartDraftTimer];
 }
 
@@ -604,7 +605,7 @@ enum{
 
     }
     else if (dialog.tag == DIALOG_TAG_ESCAPE ){
-        if ([drawView.drawActionList count] > 0) {
+        if ([drawView.drawActionList count] > 0 && _isAutoSave) {
             [self saveDraft:NO];            
         }
         [self quit];
@@ -697,13 +698,14 @@ enum{
     [self disMissAllPickViews:YES];
 }
 
-#define DRAFT_PAINT_COUNT 25
+#define DRAFT_PAINT_COUNT 2
 
 - (void)didDrawedPaint:(Paint *)paint
 {
-    if (targetType == TypeGraffiti) {
+    if (targetType == TypeGraffiti || !_isAutoSave) {
         return;
     }
+    
     ++ _unDraftPaintCount;
     if (_unDraftPaintCount >= DRAFT_PAINT_COUNT) {
         [self saveDraft:NO];        
@@ -734,40 +736,19 @@ enum{
 
 
 
-#pragma makr - Draft
-/*
-- (void)restartDraftTimer
-{
-    [self stopDraftTimer];
-    _draftTimer = [NSTimer scheduledTimerWithTimeInterval:DRAFT_TIMER_INTERVAL
-                                                   target:self
-                                                 selector:@selector(handleDraftTimer:)
-                                                 userInfo:nil 
-                                                  repeats:YES];
-}
-- (void)stopDraftTimer
-{
-    if (_draftTimer && [_draftTimer isValid]) {
-        [_draftTimer invalidate];
-    }
-    _draftTimer = nil;
-}
-- (void)handleDraftTimer:(NSTimer *)theTimer
-{
-    [self saveDraft];
-}
+#pragma mark - Draft
 
- */
 - (void)saveDraft:(BOOL)showResult
 {
 //due to unknow bugs, ignore the code below.
     
 //    return;
     
+    
     if (targetType == TypeGraffiti) {
         return;
     }
-    PPDebug(@"<OfflineDrawViewController> start to save draft.");
+    PPDebug(@"<OfflineDrawViewController> start to save draft. show result = %d",showResult);
     _unDraftPaintCount = 0;
 
     UIImage *image = [drawView createImage];    
@@ -909,10 +890,16 @@ enum{
         }
     }else {
         CommonDialog *dialog = nil;
-        if ([drawView.drawActionList count] == 0) {
-            dialog = [CommonDialog createDialogWithTitle:NSLS(@"kQuitGameAlertTitle") message:NSLS(@"kQuitGameAlertMessage") style:CommonDialogStyleDoubleButton delegate:self];
+        if ([drawView.drawActionList count] == 0 || !_isAutoSave) {
+            dialog = [CommonDialog createDialogWithTitle:NSLS(@"kQuitGameAlertTitle")
+                                                 message:NSLS(@"kQuitGameAlertMessage")
+                                                   style:CommonDialogStyleDoubleButton 
+                                                delegate:self];
         }else{
-            dialog = [CommonDialog createDialogWithTitle:NSLS(@"kQuitDrawAlertTitle") message:NSLS(@"kQuitDrawAlertMessage") style:CommonDialogStyleDoubleButton delegate:self];
+            dialog = [CommonDialog createDialogWithTitle:NSLS(@"kQuitDrawAlertTitle") 
+                                                 message:NSLS(@"kQuitDrawAlertMessage") 
+                                                   style:CommonDialogStyleDoubleButton 
+                                                delegate:self];
         }
         
         dialog.tag = DIALOG_TAG_ESCAPE;
