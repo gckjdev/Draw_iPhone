@@ -1022,5 +1022,9 @@
 "kSearchingRoom" = "查找房间中...";
 "kHasBought" = "已购买";
 "kRoomNameDuplicated" = "这个房名已经被人用了，换一个吧。";
+
+"kSearchEmpty" = "找不到匹配的房间";
+"kNoFriendRoom" = "暂时没有好友房间";
+
 /*********************** 大话骰子国际化字符串结束 *************************/
 
