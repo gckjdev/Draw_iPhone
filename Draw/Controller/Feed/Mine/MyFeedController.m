@@ -136,13 +136,14 @@ typedef enum{
 
 
 #define NORMAL_CELL_VIEW_NUMBER 3
-
+#define WIDTH_SPACE 1
 - (void)setNormalRankCell:(UITableViewCell *)cell 
                 WithFeeds:(NSArray *)feeds
 {
     CGFloat width = [RankView widthForRankViewType:RankViewTypeNormal];
     CGFloat height = [RankView heightForRankViewType:RankViewTypeNormal];
-    CGFloat space = (cell.frame.size.width - NORMAL_CELL_VIEW_NUMBER * width)/ (NORMAL_CELL_VIEW_NUMBER - 1);
+//    CGFloat space = (cell.frame.size.width - NORMAL_CELL_VIEW_NUMBER * width)/ (NORMAL_CELL_VIEW_NUMBER - 1);
+    CGFloat space =  WIDTH_SPACE;
     CGFloat x = 0;
     CGFloat y = 0;
     for (DrawFeed *feed in feeds) {

@@ -103,6 +103,9 @@ typedef enum{
             return [RankView heightForRankViewType:RankViewTypeSecond]+1;
         }        
     }
+    if (type == RankTypePlayer) {
+        return [TopPlayerView getHeight] + 1;
+    }
     return [RankView heightForRankViewType:RankViewTypeNormal]+1;
 }
 
@@ -156,12 +159,13 @@ typedef enum{
     }
 }
 
+#define WIDTH_SPACE 1
 - (void)setTopPlayerCell:(UITableViewCell *)cell 
              WithPlayers:(NSArray *)players isFirstRow:(BOOL)isFirstRow
 {
-    CGFloat width = [RankView widthForRankViewType:RankViewTypeNormal];
-    CGFloat height = [RankView heightForRankViewType:RankViewTypeNormal];
-    CGFloat space = (cell.frame.size.width - NORMAL_CELL_VIEW_NUMBER * width)/ (NORMAL_CELL_VIEW_NUMBER - 1);
+    CGFloat width = [TopPlayerView getHeight];
+    CGFloat height = height;//[RankView heightForRankViewType:RankViewTypeNormal];
+    CGFloat space = WIDTH_SPACE;;
     CGFloat x = 0;
     CGFloat y = 0;
     NSInteger i = 0;
