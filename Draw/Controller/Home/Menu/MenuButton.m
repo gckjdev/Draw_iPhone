@@ -8,6 +8,7 @@
 
 #import "MenuButton.h"
 #import "ShareImageManager.h"
+#import "MobClick.h"
 
 @implementation MenuButton
 @synthesize badge = _badge;
@@ -34,7 +35,7 @@
                         gameAppType:(GameAppType)type
 
 {
-    NSString *identifier = (type == GameAppTypeDraw) ?  @"MenuButton" : @"MenuButton";
+    NSString *identifier = (type == GameAppTypeDraw) ?  @"DiceMenu" : @"MenuButton";
 //    static NSString *identifier = @"MenuButton";
     NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:identifier owner:self options:nil];
     if (topLevelObjects == nil || [topLevelObjects count] <= 0){
@@ -135,6 +136,10 @@
 
 - (void)handleClick:(UIButton *)button
 {
+    [MobClick event:@"CLICK_MENU_BUTTON" 
+              label:[MenuButton titleForMenuButtonType:self.type] 
+                acc:1];
+    
     if (self.delegate && [self.delegate respondsToSelector:@selector(didClickMenuButton:)]) {
         [self.delegate didClickMenuButton:self];
     }
@@ -187,13 +192,15 @@
 int *drawMainMenuTypeList()
 {
     static int list[] = {    
-        MenuButtonTypeOnlinePlay,   
+ 
         MenuButtonTypeOfflineDraw,   
         MenuButtonTypeOfflineGuess,   
         MenuButtonTypeTimeline,   
         MenuButtonTypeTop,
-        MenuButtonTypeContest,
+        
+        MenuButtonTypeOnlinePlay,  
         MenuButtonTypeFriendPlay,   
+        MenuButtonTypeContest,
         MenuButtonTypeShop,    
         //must add the end mark.
         MenuButtonTypeEnd

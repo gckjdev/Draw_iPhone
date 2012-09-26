@@ -32,6 +32,9 @@
     
     UIImage *selectedImage = [[ShareImageManager defaultManager] 
                               normalButtonImage];
+//    view.maskButton = [UIButton buttonWithType:UIButtonTypeCustom];
+//    view.maskButton.frame = view.bounds;
+    [view addSubview:view.maskButton];
     [view.maskButton setBackgroundImage:selectedImage 
                                forState:UIControlStateHighlighted];
     [view.maskButton setBackgroundImage:selectedImage 
@@ -76,6 +79,8 @@
     
     level = [NSString stringWithFormat:@" %@  LV.%d",genderString, player.level];
     [self.levelInfo setText:level];
+    
+//    [self.maskButton addTarget:self action:@selector(didClickTopPlayerView:) forControlEvents:UIControlEventTouchUpInside];
 }
 
 - (void)setRankFlag:(NSInteger)rank
@@ -86,6 +91,7 @@
 - (void)setViewSeleted:(BOOL)selected
 {
     self.maskButton.selected = selected;
+    [self bringSubviewToFront:self.maskButton];
 }
 
 - (IBAction)clickPlayerView:(id)sender {

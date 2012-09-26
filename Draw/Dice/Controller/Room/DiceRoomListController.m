@@ -55,6 +55,7 @@
 @synthesize friendRoomButton;
 @synthesize nearByRoomButton;
 @synthesize currentSession = _currentSession;
+@synthesize emptyListTips;
 
 - (id)initWithRuleType:(DiceGameRuleType)ruleType
 {
@@ -78,6 +79,7 @@
 //}
 
 - (void)dealloc {
+    _searchView.disappearDelegate = nil;
     [self clearRefreshRoomsTimer];
     [createRoomButton release];
     [fastEntryButton release];
@@ -87,6 +89,7 @@
     [nearByRoomButton release];
     PPRelease(_currentSession);
     [helpButton release];
+    [emptyListTips release];
     [super dealloc];
 }
 
@@ -159,6 +162,21 @@
     [self startRefreshRoomsTimer];
 }
 
+- (void)updateRoomList
+{
+    self.emptyListTips.hidden = YES;
+    if (self.dataList.count < 1) {
+        self.emptyListTips.hidden = NO;
+        if (_currentRoomType == friendRoom) {
+            [self.emptyListTips setText:NSLS(@"kNoFriendRoom")];
+        }
+        if (_searchView) {
+            [self.emptyListTips setText:NSLS(@"kSearchEmpty")];
+        }
+    }
+}
+
+
 - (void)getRoomsFinished
 {
     [self hideActivity];
@@ -171,6 +189,7 @@
     if (_isRefreshing) {
         [self startRefreshRoomsTimer];
     }
+    [self updateRoomList];
     
 }
 
@@ -281,6 +300,27 @@
     return title;
 }
 
+- (UIImage *)bgImage
+{
+    switch (_ruleType) {
+        case DiceGameRuleTypeRuleNormal:
+            return [[DiceImageManager defaultManager] diceNormalRoomListBgImage];
+            break;
+            
+        case DiceGameRuleTypeRuleHigh:
+            return [[DiceImageManager defaultManager] diceHighRoomListBgImage];
+            break;
+            
+        case DiceGameRuleTypeRuleSuperHigh:
+            return [[DiceImageManager defaultManager] diceSuperHighRoomListBgImage];
+            break;
+            
+        default:
+            return nil;
+            break;
+    }
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -289,7 +329,7 @@
    
     _diceGameService = [DiceGameService defaultService];
     // Do any additional setup after loading the view from its nib.
-    self.view.backgroundColor = [UIColor colorWithPatternImage:[[DiceImageManager defaultManager] roomListBgImage]];
+    self.view.backgroundColor = [UIColor colorWithPatternImage:[self bgImage]];
     
     [createRoomButton setRoyButtonWithColor:[DiceColorManager dialoggreenColor]];
     
@@ -308,6 +348,7 @@
     [self.fastEntryButton.fontLable setText:NSLS(@"kFastEntry")];
     
     _isRefreshing = YES;
+    self.emptyListTips.hidden = YES;
         
 //    [[NSNotificationCenter defaultCenter] addObserver:self
 //                                             selector:@selector(roomsDidUpdate:)
@@ -324,6 +365,7 @@
     [self setFriendRoomButton:nil];
     [self setNearByRoomButton:nil];
     [self setHelpButton:nil];
+    [self setEmptyListTips:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -339,6 +381,7 @@
 - (void)viewDidDisappear:(BOOL)animated
 {
     [self unregisterDiceRoomNotification];
+    [_searchView disappear];
     [self clearRefreshRoomsTimer];
     [super viewDidDisappear:animated];
 }
@@ -553,6 +596,9 @@
     _searchView = nil;
     if (_currentRoomType == allRoom) {
         [self continueRefreshingRooms];
+    }
+    if (_currentRoomType == friendRoom) {
+        [self clickFriendRoom:nil];
     }
     
 }
