@@ -108,15 +108,12 @@
     
     if (feed.showAnswer) {
         NSString *answer = [NSString stringWithFormat:@" %@",feed.wordText];
-//        [self.author setText:author];
         [self.title setText:answer];        
     }else{
         self.title.hidden = YES;
     }
 
     if ([feed hasGuessed]) {
-//        self.drawFlag.image = [[ShareImageManager defaultManager] myPaintImage];
-//    }else if ([feed hasGuessed]) {
         self.drawFlag.image = [[ShareImageManager defaultManager] rightImage];
     }else{
         self.drawFlag.hidden = YES;
@@ -139,8 +136,9 @@
 - (void)updateViewInfoForUserOpus
 {
     self.title.frame = self.author.frame;
-    [self.title setText:self.feed.wordText];
-    self.title.hidden = NO;
+    if (self.feed.showAnswer) {
+        [self.title setText:self.feed.wordText];
+    }
     self.author.hidden = YES;
     [self.title setTextAlignment:UITextAlignmentCenter];
 }
