@@ -102,7 +102,7 @@
 
 + (CGFloat)getHeight
 {
-    return ([DeviceDetection isIPAD] ? 255 : 106);
+    return ([DeviceDetection isIPAD] ? 256 : 106);
 }
 
 - (void)dealloc {

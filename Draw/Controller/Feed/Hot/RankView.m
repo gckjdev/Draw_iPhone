@@ -122,6 +122,9 @@
     NSString *author = [NSString stringWithFormat:@" %@",feed.feedUser.nickName];
     [self.author setText:author];
     [self setRankViewSelected:NO];
+    
+    self.drawImage.center = self.center;
+    self.maskButton.frame = self.bounds;
 }
 
 - (void)updateViewInfoForMyOpus
@@ -176,9 +179,9 @@
         case RankViewTypeFirst:
             return [DeviceDetection isIPAD] ? 768 : 320;
         case RankViewTypeSecond:
-            return [DeviceDetection isIPAD] ? 383 : 159;
+            return [DeviceDetection isIPAD] ? 384 : 159;
         case RankViewTypeNormal:
-            return [DeviceDetection isIPAD] ? 255 : 106;
+            return [DeviceDetection isIPAD] ? 256 : 106;
         default:
             return 0;
     }
