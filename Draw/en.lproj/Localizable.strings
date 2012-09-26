@@ -981,5 +981,8 @@
 "kCustomDiceTips" = "You can set you custom dice in user setting";
 
 "kSearchingRoom" = "Searching Room...";
+
+"kHasBought" = "Already Has";
+"kRoomNameDuplicated" = "Room name duplicated.";
 /*********************** 大话骰子国际化字符串结束 *************************/
 
