@@ -30,6 +30,7 @@
 @synthesize commentButton = _commentButton;
 @synthesize flowerButton = _flowerButton;
 @synthesize tomatoButton = _tomatoButton;
+@synthesize replayButton = _replayButton;
 @synthesize feed = _feed;
 @synthesize userCell = _userCell;
 @synthesize drawCell = _drawCell;
@@ -57,6 +58,7 @@ typedef enum{
     PPRelease(_commentButton);
     PPRelease(_flowerButton);
     PPRelease(_tomatoButton);
+    [_replayButton release];
     [super dealloc];
 }
 
@@ -76,6 +78,7 @@ enum{
   ActionTagSave,
   ActionTagFlower,
   ActionTagTomato,
+  ActionTagRplay,
   ActionTagEnd,
 };
 
@@ -84,37 +87,39 @@ enum{
 - (void)updateActionButtons
 {
     //data is nil
-    NSInteger start = ActionTagGuess;
-    NSInteger count = ActionTagEnd - start;
+//    NSInteger start = ActionTagGuess;
+//    NSInteger count = ActionTagEnd - start;
+//    
+    self.guessButton.hidden = [self.feed showAnswer];
+    self.replayButton.hidden = !self.guessButton.hidden;
     
-    if ([self.feed showAnswer]) {
-    //mine or correct
-        start = ActionTagComment;
-        self.guessButton.hidden = YES;
-        count --;
-    }else{
-        self.guessButton.hidden = NO;
+//    if ([self.feed showAnswer]) {
+//
+//        start = ActionTagComment;
+//        self.guessButton.hidden = YES;
+//        self.replayButton.hidden = NO;
+//        count --;
+//    }else{
+//        self.replayButton.hidden = YES;
+//        self.guessButton.hidden = NO;
+//    }
+    
+//    CGFloat width = self.guessButton.frame.size.width;
+//    CGFloat space = (SCREEN_WIDTH - (count * width)) / (count + 1);
+//    CGFloat x = space;
+//    CGFloat y = ACTION_BUTTON_Y;
+//    
+//    for (NSInteger tag = start; tag < ActionTagEnd; ++ tag) {
+//        UIButton *button = (UIButton *)[self.view viewWithTag:tag];
+//        button.frame = CGRectMake(x, y, width, width);
+//        button.enabled = YES;
+//        x += width + space;
+//    }
+    for (NSInteger tag = ActionTagGuess; tag < ActionTagEnd; ++ tag) {
+        UIButton *button = (UIButton *)[self.view viewWithTag:tag];            
+        button.enabled = (self.feed.drawData != nil);
     }
-    
-    CGFloat width = self.guessButton.frame.size.width;
-    CGFloat space = (SCREEN_WIDTH - (count * width)) / (count + 1);
-    CGFloat x = space;
-    CGFloat y = ACTION_BUTTON_Y;
-    
-    for (NSInteger tag = start; tag < ActionTagEnd; ++ tag) {
-        UIButton *button = (UIButton *)[self.view viewWithTag:tag];
-        button.frame = CGRectMake(x, y, width, width);
-        button.enabled = YES;
-        x += width + space;
-    }
-    self.saveButton.enabled = !_didSave;
-    
-    if (self.feed.drawData == nil) {
-        for (NSInteger tag = ActionTagGuess; tag < ActionTagEnd; ++ tag) {
-            UIButton *button = (UIButton *)[self.view viewWithTag:tag];            
-            button.enabled = NO;
-        }
-    }
+    self.saveButton.enabled = !_didSave && self.feed.drawData != nil;
 }
 
 - (void)reloadCommentSection
@@ -640,6 +645,7 @@ enum{
     [self setCommentButton:nil];
     [self setFlowerButton:nil];
     [self setTomatoButton:nil];
+    [self setReplayButton:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;

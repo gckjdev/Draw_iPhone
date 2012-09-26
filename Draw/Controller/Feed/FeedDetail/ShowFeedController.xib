@@ -139,7 +139,7 @@
 						<string key="NSFrame">{{9, 53}, {302, 359}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
+						<reference key="NSNextKeyView" ref="604703104"/>
 						<reference key="IBUIBackgroundColor" ref="466568067"/>
 						<bool key="IBUIClipsSubviews">YES</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -345,6 +345,7 @@ AAgACAAIAAEAAQABAAE</bytes>
 						<string key="NSFrame">{{264, 421}, {38, 38}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<int key="IBUITag">104</int>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -371,7 +372,7 @@ AAgACAAIAAEAAQABAAE</bytes>
 						<string key="NSFrame">{{20, 422}, {36, 36}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="470753644"/>
+						<reference key="NSNextKeyView" ref="134472341"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<int key="IBUITag">100</int>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -388,6 +389,32 @@ AAgACAAIAAEAAQABAAE</bytes>
 						<object class="NSCustomResource" key="IBUINormalImage">
 							<string key="NSClassName">NSImage</string>
 							<string key="NSResourceName">detail_guess@2x.png</string>
+						</object>
+						<reference key="IBUIFontDescription" ref="326453671"/>
+						<reference key="IBUIFont" ref="823780608"/>
+					</object>
+					<object class="IBUIButton" id="134472341">
+						<reference key="NSNextResponder" ref="191373211"/>
+						<int key="NSvFlags">-2147483356</int>
+						<string key="NSFrame">{{20, 422}, {36, 36}}</string>
+						<reference key="NSSuperview" ref="191373211"/>
+						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView" ref="470753644"/>
+						<bool key="IBUIOpaque">NO</bool>
+						<int key="IBUITag">105</int>
+						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+						<int key="IBUIContentHorizontalAlignment">0</int>
+						<int key="IBUIContentVerticalAlignment">0</int>
+						<string key="IBUINormalTitle">replay</string>
+						<reference key="IBUIHighlightedTitleColor" ref="466568067"/>
+						<object class="NSColor" key="IBUINormalTitleColor">
+							<int key="NSColorSpace">1</int>
+							<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
+						</object>
+						<reference key="IBUINormalTitleShadowColor" ref="378313143"/>
+						<object class="NSCustomResource" key="IBUINormalImage">
+							<string key="NSClassName">NSImage</string>
+							<string key="NSResourceName">detail_replay@2x.png</string>
 						</object>
 						<reference key="IBUIFontDescription" ref="326453671"/>
 						<reference key="IBUIFont" ref="823780608"/>
@@ -502,6 +529,14 @@ AAgACAAIAAEAAQABAAE</bytes>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">replayButton</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="134472341"/>
+					</object>
+					<int key="connectionID">48</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">dataSource</string>
 						<reference key="source" ref="745717694"/>
 						<reference key="destination" ref="372490531"/>
@@ -579,6 +614,15 @@ AAgACAAIAAEAAQABAAE</bytes>
 					</object>
 					<int key="connectionID">42</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">clickActionButton:</string>
+						<reference key="source" ref="134472341"/>
+						<reference key="destination" ref="372490531"/>
+						<int key="IBEventType">7</int>
+					</object>
+					<int key="connectionID">47</int>
+				</object>
 			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<array key="orderedObjects">
@@ -605,6 +649,7 @@ AAgACAAIAAEAAQABAAE</bytes>
 							<reference ref="604703104"/>
 							<reference ref="943438689"/>
 							<reference ref="608461199"/>
+							<reference ref="134472341"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -685,6 +730,11 @@ AAgACAAIAAEAAQABAAE</bytes>
 						<reference key="object" ref="943438689"/>
 						<reference key="parent" ref="191373211"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">46</int>
+						<reference key="object" ref="134472341"/>
+						<reference key="parent" ref="191373211"/>
+					</object>
 				</array>
 			</object>
 			<dictionary class="NSMutableDictionary" key="flattenedProperties">
@@ -706,12 +756,13 @@ AAgACAAIAAEAAQABAAE</bytes>
 				<string key="28.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="29.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="30.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+				<string key="46.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 			</dictionary>
 			<dictionary class="NSMutableDictionary" key="unlocalizedProperties"/>
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">44</int>
+			<int key="maxID">48</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -768,6 +819,7 @@ AAgACAAIAAEAAQABAAE</bytes>
 						<string key="commentButton">UIButton</string>
 						<string key="flowerButton">UIButton</string>
 						<string key="guessButton">UIButton</string>
+						<string key="replayButton">UIButton</string>
 						<string key="saveButton">UIButton</string>
 						<string key="titleLabel">UILabel</string>
 						<string key="tomatoButton">UIButton</string>
@@ -783,6 +835,10 @@ AAgACAAIAAEAAQABAAE</bytes>
 						</object>
 						<object class="IBToOneOutletInfo" key="guessButton">
 							<string key="name">guessButton</string>
+							<string key="candidateClassName">UIButton</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="replayButton">
+							<string key="name">replayButton</string>
 							<string key="candidateClassName">UIButton</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="saveButton">
@@ -815,6 +871,7 @@ AAgACAAIAAEAAQABAAE</bytes>
 			<string key="detail_comment@2x.png">{72, 72}</string>
 			<string key="detail_flower@2x.png">{72, 72}</string>
 			<string key="detail_guess@2x.png">{72, 72}</string>
+			<string key="detail_replay@2x.png">{72, 72}</string>
 			<string key="detail_save@2x.png">{72, 72}</string>
 			<string key="detail_tomato@2x.png">{72, 72}</string>
 			<string key="light_yellow_bg@2x.png">{640, 960}</string>

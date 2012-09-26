@@ -815,7 +815,7 @@
 
 "kNoMyFeed" = "你还没有动态，去画一幅画或猜一幅画？";
 "kNoMyOpus" = "你还没有作品，去画一幅画？";
-"kNoMyComment" = "还没有人评论过你的评论。";
+"kNoMyComment" = "目前没有关于你的评论。";
 "kNoDrawToMe" = "还没有人画过画给你，先画一幅给别人？";
 
 "kUserNoFeed" = "%@ 还没有动态。";

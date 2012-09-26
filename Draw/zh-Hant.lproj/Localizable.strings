@@ -799,7 +799,7 @@
 
 "kNoMyFeed" = "你還沒有動態，去畫一幅畫或猜一幅畫？";
 "kNoMyOpus" = "你還沒有作品，去畫一幅畫？";
-"kNoMyComment" = "還沒有人評論過你的評論。";
+"kNoMyComment" = "目前沒有關於你的評論。";
 "kNoDrawToMe" = "還沒有人畫過畫給你，先畫一幅給別人？";
 
 "kUserNoFeed" = "%@ 還沒有動態。";

@@ -37,6 +37,7 @@
 @property (retain, nonatomic) IBOutlet UIButton *commentButton;
 @property (retain, nonatomic) IBOutlet UIButton *flowerButton;
 @property (retain, nonatomic) IBOutlet UIButton *tomatoButton;
+@property (retain, nonatomic) IBOutlet UIButton *replayButton;
 
 - (IBAction)clickActionButton:(id)sender;
 - (IBAction)clickRefresh:(id)sender;
