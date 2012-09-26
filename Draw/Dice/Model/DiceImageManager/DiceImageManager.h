@@ -12,7 +12,6 @@
 
 + (DiceImageManager*)defaultManager;
 
-- (UIImage *)roomListBgImage;
 - (UIImage *)createRoomBtnBgImage;
 - (UIImage *)graySafaImage;
 - (UIImage *)greenSafaImage;
@@ -94,6 +93,11 @@
 //- (UIImage *)diceNormalRoomBgImage;
 //- (UIImage *)diceHighRoomBgImage;
 //- (UIImage *)diceSuperHighRoomBgImage;
+
+- (UIImage *)diceNormalRoomListBgImage;
+- (UIImage *)diceHighRoomListBgImage;
+- (UIImage *)diceSuperHighRoomListBgImage;
+
 
 - (UIImage *)diceNormalRoomTableImage;
 - (UIImage *)diceHighRoomTableImage;
