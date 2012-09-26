@@ -83,7 +83,10 @@
         ImageBoard *board = (ImageBoard *)self.board;
         NSString *imageUrl = board.imageUrl;
         
-        if ([[AdService defaultService] isShowAd]) {
+        BOOL isShowAd = [[AdService defaultService] isShowAd];
+        isShowAd = NO; // set by Benson to disable Ad in board  
+        
+        if (isShowAd) {
             if ([LocaleUtils isChinese]) {
                 imageUrl = board.cnAdImageUrl;
             }else{
@@ -108,9 +111,11 @@
 - (void)viewWillAppear
 {
     PPDebug(@"image board view will appear");
-    if ([[AdService defaultService] isShowAd]){
-//        UIView *superView = [_adView superview];
-//        if (superView!= self) {
+    
+    BOOL isShowAd = [[AdService defaultService] isShowAd];
+    isShowAd = NO; // set by Benson to disable Ad in board  
+    
+    if (isShowAd){
         PPDebug(@"image board refresh adview");
         [self clearAllAdView];
         ImageBoard *board = (ImageBoard *)self.board;

@@ -8,6 +8,7 @@
 
 #import "MenuButton.h"
 #import "ShareImageManager.h"
+#import "MobClick.h"
 
 @implementation MenuButton
 @synthesize badge = _badge;
@@ -22,7 +23,7 @@
               badge:(NSInteger)badge
 {
     [_button setImage:image forState:UIControlStateNormal];
-    [_title setText:title];
+    [self.title setText:title];
     [self setBadgeNumber:badge];
 }
 
@@ -34,7 +35,7 @@
                         gameAppType:(GameAppType)type
 
 {
-    NSString *identifier = (type == GameAppTypeDraw) ?  @"MenuButton" : @"MenuButton";
+    NSString *identifier = (type == GameAppTypeDraw) ?  @"DiceMenu" : @"MenuButton";
 //    static NSString *identifier = @"MenuButton";
     NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:identifier owner:self options:nil];
     if (topLevelObjects == nil || [topLevelObjects count] <= 0){
@@ -64,6 +65,10 @@
             return NSLS(@"kFeed");
         case MenuButtonTypeShop:
             return NSLS(@"kShop"); 
+        case MenuButtonTypeTop:
+            return NSLS(@"kTop");
+        case MenuButtonTypeContest:
+            return NSLS(@"kContest"); 
             
         case MenuButtonTypeDiceStart:
             return NSLS(@"kDiceMenuStart"); 
@@ -104,7 +109,12 @@
         case MenuButtonTypeTimeline:
             return [imageManager timelineImage];
         case MenuButtonTypeShop:
-            return [imageManager shopImage];
+            return [imageManager shopImage];            
+        case MenuButtonTypeTop:
+            return [imageManager topImage];
+        case MenuButtonTypeContest:
+            return [imageManager contestImage];
+
             //dice
         case MenuButtonTypeDiceStart:
             return [imageManager diceStartMenuImage];
@@ -126,6 +136,10 @@
 
 - (void)handleClick:(UIButton *)button
 {
+    [MobClick event:@"CLICK_MENU_BUTTON" 
+              label:[MenuButton titleForMenuButtonType:self.type] 
+                acc:1];
+    
     if (self.delegate && [self.delegate respondsToSelector:@selector(didClickMenuButton:)]) {
         [self.delegate didClickMenuButton:self];
     }
@@ -160,6 +174,9 @@
     }
 }
 
+
+
+
 - (void)dealloc {
     PPRelease(_badge);
     PPRelease(_button);
@@ -175,13 +192,16 @@
 int *drawMainMenuTypeList()
 {
     static int list[] = {    
-        MenuButtonTypeOnlinePlay,   
+ 
         MenuButtonTypeOfflineDraw,   
         MenuButtonTypeOfflineGuess,   
-        MenuButtonTypeFriendPlay,   
         MenuButtonTypeTimeline,   
+        MenuButtonTypeTop,
+        
+        MenuButtonTypeOnlinePlay,  
+        MenuButtonTypeFriendPlay,   
+        MenuButtonTypeContest,
         MenuButtonTypeShop,    
-
         //must add the end mark.
         MenuButtonTypeEnd
     };
@@ -249,4 +269,6 @@ int *getBottomMenuTypeListByGameAppType(GameAppType type)
     }
     return diceBottomMenuTypeList();
 }
+
+
 

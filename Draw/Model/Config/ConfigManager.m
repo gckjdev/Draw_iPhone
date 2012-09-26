@@ -220,6 +220,14 @@
     return [MobClickUtils getIntValueByKey:@"REWARD_SHARE_APP" defaultValue:10];
 }
 
++ (int)getFollowReward
+{
+    if (isDiceApp()) {
+        return [MobClickUtils getIntValueByKey:@"FOLLOW_DICE_AWARD_COIN" defaultValue:1000];
+    }
+    return [MobClickUtils getIntValueByKey:@"FOLLOW_DRAW_AWARD_COIN" defaultValue:1000];    
+}
+
 + (int)getShareWeiboReward
 {
     return [MobClickUtils getIntValueByKey:@"REWARD_SHARE_WEIBO" defaultValue:10];
@@ -327,7 +335,7 @@
 
 + (NSString*)getDiceServerListStringWithNormal
 {
-    return @"58.215.172.169:8080";
+    return @"192.168.1.8:8080";
     return [MobClickUtils getStringValueByKey:@"DICE_SERVER_LIST" defaultValue:@"58.215.164.153:8018"];
 }
 

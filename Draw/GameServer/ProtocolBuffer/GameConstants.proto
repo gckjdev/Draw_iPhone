@@ -128,7 +128,7 @@ enum GameCommandType {
   LOCAL_CALL_DICE = 312;
   LOCAL_OPEN_DICE = 313;
   LOCAL_USER_SKIP = 314;
-  
+  LOCAL_ALL_USER_BET = 315; 
   
   // For Dahuatou: service -------> client
   ROOM_NOTIFICATION_REQUEST = 701;                      // 房间通知

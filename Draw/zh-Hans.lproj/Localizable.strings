@@ -798,7 +798,7 @@
 "kOpusCount" = "作品(%d)";
 "kJoinCount" = "参加(%d)";
 
-"kContest" = "比赛";
+"kContest" = "画画大赛";
 "kRank" = "排行榜";
 "kNoRankPlayer" = "暂时没有达人榜数据。";
 "kNoRankHistory" = "暂时没有总榜数据。";
@@ -822,14 +822,18 @@
 "kUserNoOpus" = "%@ 还没有作品。";
 
 "kOpusOperation" = "请选择你需要的操作";
-"kContest" = "比赛";
 
 "kStatement" = "比赛声明";
 "kDecline" = "拒绝";
 "kAccept" = "接受";
+
+"kCoinsForFollowUs" = "+%d金币";
+"kFollowUs" = "关注官方微博";
+
 "kDetail" = "详细";
 "kFailLoad" = "获取数据失败，请稍后再试。";
 "kContestOpus" = "参赛作品";
+"kTop" = "排行榜";
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 

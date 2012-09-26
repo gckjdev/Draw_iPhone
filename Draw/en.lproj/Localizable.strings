@@ -807,14 +807,18 @@
 "kUserNoOpus" = "%@ has no opus.";
 
 "kOpusOperation" = "Choose your operation";
-"kContest" = "Contest";
 
 "kStatement" = "Statement";
 "kDecline" = "Decline";
 "kAccept" = "Accept";
+
+"kCoinsForFollowUs" = "+%d coins";
+"kFollowUs" = "Follow us";
+
 "kDetail" = "Detail";
 "kFailLoad" = "Fail to load data, please try it later.";
 "kContestOpus" = "Opus for contest";
+"kTop" = "Top";
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 
@@ -1009,4 +1013,5 @@
 "kHasBought" = "Already Has";
 "kRoomNameDuplicated" = "Room name duplicated.";
 /*********************** 大话骰子国际化字符串结束 *************************/
+
 

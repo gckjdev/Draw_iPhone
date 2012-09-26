@@ -783,7 +783,7 @@
 "kJoinCount" = "參加(%d)";
 
 
-"kContest" = "比賽";
+"kContest" = "畫畫比賽";
 "kRank" = "排行榜";
 "kNoRankPlayer" = "暫時沒有達人榜數據。";
 "kNoRankHistory" = "暫時沒有總榜數據。";
@@ -806,14 +806,18 @@
 "kUserNoOpus" = "%@ 還沒有作品。";
 
 "kOpusOperation" = "請選擇你需要的操作";
-"kContest" = "比賽";
 
 "kStatement" = "比賽聲明";
 "kDecline" = "拒絕";
 "kAccept" = "接受";
+
+"kCoinsForFollowUs" = "+%d金幣";
+"kFollowUs" = "關注官方微博";
+
 "kDetail" = "詳細";
 "kFailLoad" = "獲取數據失敗，請稍後再試。";
 "kContestOpus" = "參賽作品";
+"kTop" = "排行榜";
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 

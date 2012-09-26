@@ -716,17 +716,15 @@ enum {
 
 - (void)askFollow
 {
-    id<UIAlertViewDelegate> delegate = nil;
     switch (_currentLoginType){
         case REGISTER_TYPE_QQ:
         {
-            delegate = [QQWeiboService defaultService];            
+            [[QQWeiboService defaultService] askFollow];            
         }
             break;
         case REGISTER_TYPE_SINA:
         {
-            delegate = [SinaSNSService defaultService];
-            
+            [[SinaSNSService defaultService] askFollow];                        
         }
             break;
             
@@ -734,15 +732,6 @@ enum {
             break;
     }
     
-    if (delegate == nil)
-        return;
-    
-    alertView = [[[UIAlertView alloc] initWithTitle:[GameApp askFollowTitle] //@"关注猜猜画画吗" 
-                                           message:[GameApp askFollowMessage] //@"关注和收听官方微博" 
-                                          delegate:delegate 
-                                 cancelButtonTitle:@"不需要" 
-                                 otherButtonTitles:@"我试下", nil] autorelease];
-    [alertView show];
 }
 
 
