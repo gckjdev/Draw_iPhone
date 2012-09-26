@@ -81,6 +81,11 @@
     [self.itemTitle setText:anItem.itemName];
     if ([Item isItemCountable:anItem.type]) {
         [self.itemCountLabel setText:[NSString stringWithFormat:@"x %d",anItem.buyAmountForOnce]];
+    } else {
+        [self.itemTitle setFrame:CGRectMake(self.itemTitle.frame.origin.x, 
+                                            self.itemTitle.frame.origin.y, 
+                                            self.itemTitle.frame.size.width*2, 
+                                            self.itemTitle.frame.size.height)];
     }
     [self.coinCountLabel setText:[NSString stringWithFormat:@"%d",anItem.price]];
     

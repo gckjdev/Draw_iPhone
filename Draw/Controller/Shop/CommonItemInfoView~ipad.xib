@@ -204,7 +204,6 @@
 								<int key="NSvFlags">319</int>
 								<string key="NSFrame">{{398, 394}, {192, 65}}</string>
 								<reference key="NSSuperview" ref="889029020"/>
-								<reference key="NSNextKeyView"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
 								<string key="targetRuntimeIdentifier">IBIPadFramework</string>
