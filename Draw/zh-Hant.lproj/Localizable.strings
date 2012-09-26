@@ -812,7 +812,7 @@
 "kDecline" = "拒絕";
 "kAccept" = "接受";
 
-"kCoinsForFollowUs" = "獎勵%d金幣";
+"kCoinsForFollowUs" = "+%d金幣";
 "kFollowUs" = "關注官方微博";
 
 "kDetail" = "詳細";
