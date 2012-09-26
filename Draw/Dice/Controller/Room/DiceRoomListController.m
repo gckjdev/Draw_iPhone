@@ -339,6 +339,7 @@
 - (void)viewDidDisappear:(BOOL)animated
 {
     [self unregisterDiceRoomNotification];
+    [_searchView disappear];
     [self clearRefreshRoomsTimer];
     [super viewDidDisappear:animated];
 }
