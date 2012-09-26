@@ -812,6 +812,10 @@
 "kStatement" = "Statement";
 "kDecline" = "Decline";
 "kAccept" = "Accept";
+
+"kCoinsForFollowUs" = "+%d Coins";
+"kFollowUs" = "Follow Us";
+
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 
@@ -979,4 +983,5 @@
 
 "kSearchingRoom" = "Searching Room...";
 /*********************** 大话骰子国际化字符串结束 *************************/
+
 

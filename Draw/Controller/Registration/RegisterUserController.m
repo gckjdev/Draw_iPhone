@@ -290,6 +290,19 @@
         else{
             [self.navigationController popToRootViewControllerAnimated:YES];            
         }
+        
+        switch (_currentLoginType) {
+            case REGISTER_TYPE_SINA:
+                [[SinaSNSService defaultService] askFollow];
+                break;
+            
+            case REGISTER_TYPE_QQ:
+                [[QQWeiboService defaultService] askFollow];
+                break;
+
+            default:
+                break;
+        }
     }
     else{        
         // do nothing here

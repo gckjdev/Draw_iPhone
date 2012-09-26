@@ -117,4 +117,6 @@ typedef enum{
 
 + (int)getPostponeTime;
 + (int)getUrgeTime;
+
++ (int)getFollowReward;
 @end
