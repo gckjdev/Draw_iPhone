@@ -195,6 +195,7 @@
         shareImageManager = [ShareImageManager defaultManager];
         languageType = [[UserManager defaultManager] getLanguageType];
         shareImageManager = [ShareImageManager defaultManager];
+        targetType = TypeContest;
     }
     return self;
         
@@ -345,6 +346,9 @@ enum{
     }else {
         self.wordButton.hidden = NO;
         NSString *wordText = self.word.text;
+        if (targetType == TypeContest) {
+            wordText = NSLS(@"kContestOpus");
+        }
         [self.wordButton setTitle:wordText forState:UIControlStateNormal];
     }
 }
@@ -590,14 +594,12 @@ enum{
         [self showActivityWithText:NSLS(@"kSending")];
         self.submitButton.userInteractionEnabled = NO;
         UIImage *image = [drawView createImage];
-//        if ([DeviceDetection isIPAD]) {
-//            image = [image imageByScalingAndCroppingForSize:DRAW_VIEW_FRAME_IPHONE.size];
-//        }            
         [[DrawDataService defaultService] createOfflineDraw:drawView.drawActionList 
                                                       image:image 
                                                    drawWord:self.word 
                                                    language:languageType 
                                                   targetUid:self.targetUid 
+                                                  contestId:_contest.contestId
                                                    delegate:self];
 
     }

@@ -828,6 +828,13 @@
 "kDecline" = "拒绝";
 "kAccept" = "接受";
 
+"kCoinsForFollowUs" = "+%d金币";
+"kFollowUs" = "关注官方微博";
+
+"kDetail" = "详细";
+"kFailLoad" = "获取数据失败，请稍后再试。";
+"kContestOpus" = "参赛作品";
+"kTop" = "排行榜";
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 

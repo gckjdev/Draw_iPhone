@@ -124,37 +124,15 @@ typedef enum{
     }    
 }
 
-- (void)setFirstRankCell:(UITableViewCell *)cell WithFeed:(DrawFeed *)feed
-{
-    RankView *view = [RankView createRankView:self type:RankViewTypeFirst];
-    [view setViewInfo:feed];
-    [cell.contentView addSubview:view];
-}
-
-- (void)setSencodRankCell:(UITableViewCell *)cell 
-                WithFeed1:(DrawFeed *)feed1 
-                    feed2:(DrawFeed *)feed2
-{
-    RankView *view1 = [RankView createRankView:self type:RankViewTypeSecond];
-    [view1 setViewInfo:feed1];
-    RankView *view2 = [RankView createRankView:self type:RankViewTypeSecond];
-    [view2 setViewInfo:feed2];
-    [cell.contentView addSubview:view1];
-    [cell.contentView addSubview:view2];
-    
-    CGFloat x2 = (CGRectGetWidth(cell.frame) -  [RankView widthForRankViewType:RankViewTypeSecond]);
-    view2.frame = CGRectMake(x2, 0, view2.frame.size.width, view2.frame.size.height);
-}
-
 
 #define NORMAL_CELL_VIEW_NUMBER 3
-
+#define WIDTH_SPACE 1
 - (void)setNormalRankCell:(UITableViewCell *)cell 
                 WithFeeds:(NSArray *)feeds
 {
     CGFloat width = [RankView widthForRankViewType:RankViewTypeNormal];
     CGFloat height = [RankView heightForRankViewType:RankViewTypeNormal];
-    CGFloat space = (cell.frame.size.width - NORMAL_CELL_VIEW_NUMBER * width)/ (NORMAL_CELL_VIEW_NUMBER - 1);
+    CGFloat space = WIDTH_SPACE;
     CGFloat x = 0;
     CGFloat y = 0;
     for (DrawFeed *feed in feeds) {

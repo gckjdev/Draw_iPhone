@@ -46,7 +46,7 @@
 #define COMMENT_FONT_SIZE ([DeviceDetection isIPAD] ? 11*2 : 11)
 #define COMMENT_SPACE ([DeviceDetection isIPAD] ? 20 : 10)
 #define COMMENT_BASE_X ([DeviceDetection isIPAD] ? 102 : 44)
-#define COMMENT_BASE_Y ([DeviceDetection isIPAD] ? 55 : 30)
+#define COMMENT_BASE_Y ([DeviceDetection isIPAD] ? 65 : 30)
 
 #define COMMENT_ITEM_HEIGHT ([DeviceDetection isIPAD] ? 110 : 60)
 
@@ -61,7 +61,8 @@
     NSString *comment = [feed comment];
     UIFont *font = [UIFont systemFontOfSize:COMMENT_FONT_SIZE];
     CGSize commentSize = [comment sizeWithFont:font constrainedToSize:CGSizeMake(COMMENT_WIDTH, 10000000) lineBreakMode:UILineBreakModeCharacterWrap];
-    int height = COMMENT_BASE_Y + COMMENT_SPACE + commentSize.height;
+    CGFloat height = COMMENT_BASE_Y + COMMENT_SPACE + commentSize.height;
+//    PPDebug(@"comment = %@,height = %f", comment,height);
     return height;
 }
 
@@ -123,9 +124,10 @@
     [self.commentLabel setText:[NSString stringWithFormat:@"%@", comment]];
     [self.commentLabel setFont:font];
     
-    CGFloat y = CGRectGetMaxY(self.frame) - 0.5;
+    CGFloat y = COMMENT_BASE_Y + COMMENT_SPACE + commentSize.height - 0.5;
     CGFloat x = splitLine.center.x;
     splitLine.center = CGPointMake(x, y);
+//    PPDebug(@"center = (%f,%f)",x,y);
 }
 
 

@@ -43,7 +43,8 @@
                     image:(UIImage *)image
                  drawWord:(Word*)drawWord
                  language:(LanguageType)language 
-                  targetUid:(NSString *)targetUid
+                targetUid:(NSString *)targetUid 
+                contestId:(NSString *)contestId
                  delegate:(PPViewController<DrawDataServiceDelegate>*)viewController;
 
 - (void)matchDraw:(PPViewController<DrawDataServiceDelegate>*)viewController;

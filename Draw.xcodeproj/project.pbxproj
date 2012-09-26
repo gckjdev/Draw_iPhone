@@ -1476,6 +1476,21 @@
 		CAC25CDC15F0A1FF007456FA /* dice_default_board@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CAC25CDE15F0A1FF007456FA /* dice_default_board@2x.jpg */; };
 		CAC25CE115F0A243007456FA /* dice_bottom_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAC25CE015F0A23E007456FA /* dice_bottom_bg@2x.png */; };
 		CAC25D0515F0C72F007456FA /* revoke@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAC25D0415F0C72B007456FA /* revoke@2x.png */; };
+		CAC371421611E6C4002CB837 /* RankFirstView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAC3713E1611E6C3002CB837 /* RankFirstView~ipad.xib */; };
+		CAC371431611E6C4002CB837 /* RankSecondView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAC3713F1611E6C3002CB837 /* RankSecondView~ipad.xib */; };
+		CAC371441611E6C4002CB837 /* RankView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAC371401611E6C3002CB837 /* RankView~ipad.xib */; };
+		CAC371451611E6C4002CB837 /* TopPlayerView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAC371411611E6C3002CB837 /* TopPlayerView~ipad.xib */; };
+		CAC371471611E73F002CB837 /* HotController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAC371461611E73F002CB837 /* HotController~ipad.xib */; };
+		CAC371491611E750002CB837 /* MyFeedController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAC371481611E750002CB837 /* MyFeedController~ipad.xib */; };
+		CAC3714B1611E856002CB837 /* ContestOpusController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAC3714A1611E855002CB837 /* ContestOpusController~ipad.xib */; };
+		CAC371501611E86B002CB837 /* ContestController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAC3714C1611E869002CB837 /* ContestController~ipad.xib */; };
+		CAC371511611E86B002CB837 /* ContestView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAC3714D1611E869002CB837 /* ContestView~ipad.xib */; };
+		CAC371521611E86B002CB837 /* StatementController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAC3714E1611E86A002CB837 /* StatementController~ipad.xib */; };
+		CAC371531611E86B002CB837 /* StatementView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAC3714F1611E86A002CB837 /* StatementView~ipad.xib */; };
+		CAC371581611F752002CB837 /* silver_cup@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAC371541611F752002CB837 /* silver_cup@2x.png */; };
+		CAC371591611F752002CB837 /* copper_cup@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAC371551611F752002CB837 /* copper_cup@2x.png */; };
+		CAC3715A1611F752002CB837 /* gold_cup@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAC371561611F752002CB837 /* gold_cup@2x.png */; };
+		CAC3715B1611F752002CB837 /* comment_reply@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAC371571611F752002CB837 /* comment_reply@2x.png */; };
 		CAC4DCE215450E8F00A42CF2 /* StoreKitUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC4DCE115450E8F00A42CF2 /* StoreKitUtils.m */; };
 		CAC4DCE81545286C00A42CF2 /* TransactionReceiptManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC4DCE71545286B00A42CF2 /* TransactionReceiptManager.m */; };
 		CAC4DCEB154542A200A42CF2 /* TransactionReceipt.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC4DCEA154542A200A42CF2 /* TransactionReceipt.m */; };
@@ -3665,6 +3680,21 @@
 		CAC25CDF15F0A20E007456FA /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "zh-Hans"; path = "zh-Hans.lproj/dice_default_board@2x.jpg"; sourceTree = "<group>"; };
 		CAC25CE015F0A23E007456FA /* dice_bottom_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dice_bottom_bg@2x.png"; sourceTree = "<group>"; };
 		CAC25D0415F0C72B007456FA /* revoke@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "revoke@2x.png"; sourceTree = "<group>"; };
+		CAC3713E1611E6C3002CB837 /* RankFirstView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "RankFirstView~ipad.xib"; sourceTree = "<group>"; };
+		CAC3713F1611E6C3002CB837 /* RankSecondView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "RankSecondView~ipad.xib"; sourceTree = "<group>"; };
+		CAC371401611E6C3002CB837 /* RankView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "RankView~ipad.xib"; sourceTree = "<group>"; };
+		CAC371411611E6C3002CB837 /* TopPlayerView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "TopPlayerView~ipad.xib"; sourceTree = "<group>"; };
+		CAC371461611E73F002CB837 /* HotController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = "HotController~ipad.xib"; path = "../Mine/HotController~ipad.xib"; sourceTree = "<group>"; };
+		CAC371481611E750002CB837 /* MyFeedController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "MyFeedController~ipad.xib"; sourceTree = "<group>"; };
+		CAC3714A1611E855002CB837 /* ContestOpusController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ContestOpusController~ipad.xib"; sourceTree = "<group>"; };
+		CAC3714C1611E869002CB837 /* ContestController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ContestController~ipad.xib"; sourceTree = "<group>"; };
+		CAC3714D1611E869002CB837 /* ContestView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ContestView~ipad.xib"; sourceTree = "<group>"; };
+		CAC3714E1611E86A002CB837 /* StatementController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "StatementController~ipad.xib"; sourceTree = "<group>"; };
+		CAC3714F1611E86A002CB837 /* StatementView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "StatementView~ipad.xib"; sourceTree = "<group>"; };
+		CAC371541611F752002CB837 /* silver_cup@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "silver_cup@2x.png"; sourceTree = "<group>"; };
+		CAC371551611F752002CB837 /* copper_cup@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "copper_cup@2x.png"; sourceTree = "<group>"; };
+		CAC371561611F752002CB837 /* gold_cup@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gold_cup@2x.png"; sourceTree = "<group>"; };
+		CAC371571611F752002CB837 /* comment_reply@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "comment_reply@2x.png"; sourceTree = "<group>"; };
 		CAC4DCE015450E8F00A42CF2 /* StoreKitUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoreKitUtils.h; sourceTree = "<group>"; };
 		CAC4DCE115450E8F00A42CF2 /* StoreKitUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoreKitUtils.m; sourceTree = "<group>"; };
 		CAC4DCE61545286B00A42CF2 /* TransactionReceiptManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransactionReceiptManager.h; sourceTree = "<group>"; };
@@ -5258,6 +5288,10 @@
 		CA0A2D0916117BB500F66400 /* flag */ = {
 			isa = PBXGroup;
 			children = (
+				CAC371541611F752002CB837 /* silver_cup@2x.png */,
+				CAC371551611F752002CB837 /* copper_cup@2x.png */,
+				CAC371561611F752002CB837 /* gold_cup@2x.png */,
+				CAC371571611F752002CB837 /* comment_reply@2x.png */,
 				CA0A2D0A16117BB500F66400 /* guessed@2x.png */,
 			);
 			path = flag;
@@ -6717,6 +6751,7 @@
 				CA3F2ED51609BCFB0059667B /* ContestOpusController.h */,
 				CA3F2ED61609BCFB0059667B /* ContestOpusController.m */,
 				CA3F2ED71609BCFB0059667B /* ContestOpusController.xib */,
+				CAC3714A1611E855002CB837 /* ContestOpusController~ipad.xib */,
 			);
 			path = Opus;
 			sourceTree = "<group>";
@@ -7164,9 +7199,14 @@
 		CA89741C1607230E003A95F7 /* Hot */ = {
 			isa = PBXGroup;
 			children = (
+				CAC3713E1611E6C3002CB837 /* RankFirstView~ipad.xib */,
+				CAC3713F1611E6C3002CB837 /* RankSecondView~ipad.xib */,
+				CAC371401611E6C3002CB837 /* RankView~ipad.xib */,
+				CAC371411611E6C3002CB837 /* TopPlayerView~ipad.xib */,
 				CA89741D1607230E003A95F7 /* HotController.h */,
 				CA89741E1607230E003A95F7 /* HotController.m */,
 				CA89741F1607230E003A95F7 /* HotController.xib */,
+				CAC371461611E73F002CB837 /* HotController~ipad.xib */,
 				CA1656FC160C032500E433BE /* RankView.h */,
 				CA1656FD160C032600E433BE /* RankView.m */,
 				CA1656FE160C032700E433BE /* RankView.xib */,
@@ -7182,6 +7222,7 @@
 		CA8974201607230E003A95F7 /* Mine */ = {
 			isa = PBXGroup;
 			children = (
+				CAC371481611E750002CB837 /* MyFeedController~ipad.xib */,
 				CA8974211607230E003A95F7 /* MyFeedController.h */,
 				CA8974221607230E003A95F7 /* MyFeedController.m */,
 				CA8974231607230E003A95F7 /* MyFeedController.xib */,
@@ -7212,6 +7253,10 @@
 		CA89747F16087BBD003A95F7 /* Contest */ = {
 			isa = PBXGroup;
 			children = (
+				CAC3714C1611E869002CB837 /* ContestController~ipad.xib */,
+				CAC3714D1611E869002CB837 /* ContestView~ipad.xib */,
+				CAC3714E1611E86A002CB837 /* StatementController~ipad.xib */,
+				CAC3714F1611E86A002CB837 /* StatementView~ipad.xib */,
 				CA3F2ED41609BCC90059667B /* Opus */,
 				CA89748016087BE2003A95F7 /* ContestController.h */,
 				CA89748116087BE2003A95F7 /* ContestController.m */,
@@ -9696,6 +9741,21 @@
 				A4903F07161191F4005A587F /* point_pic3@2x.png in Resources */,
 				A4903F08161191F4005A587F /* point_pic4@2x.png in Resources */,
 				A43E84D81611B791003A57F1 /* dice_main_menubg@2x.png in Resources */,
+				CAC371421611E6C4002CB837 /* RankFirstView~ipad.xib in Resources */,
+				CAC371431611E6C4002CB837 /* RankSecondView~ipad.xib in Resources */,
+				CAC371441611E6C4002CB837 /* RankView~ipad.xib in Resources */,
+				CAC371451611E6C4002CB837 /* TopPlayerView~ipad.xib in Resources */,
+				CAC371471611E73F002CB837 /* HotController~ipad.xib in Resources */,
+				CAC371491611E750002CB837 /* MyFeedController~ipad.xib in Resources */,
+				CAC3714B1611E856002CB837 /* ContestOpusController~ipad.xib in Resources */,
+				CAC371501611E86B002CB837 /* ContestController~ipad.xib in Resources */,
+				CAC371511611E86B002CB837 /* ContestView~ipad.xib in Resources */,
+				CAC371521611E86B002CB837 /* StatementController~ipad.xib in Resources */,
+				CAC371531611E86B002CB837 /* StatementView~ipad.xib in Resources */,
+				CAC371581611F752002CB837 /* silver_cup@2x.png in Resources */,
+				CAC371591611F752002CB837 /* copper_cup@2x.png in Resources */,
+				CAC3715A1611F752002CB837 /* gold_cup@2x.png in Resources */,
+				CAC3715B1611F752002CB837 /* comment_reply@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -10457,8 +10517,8 @@
 					armv7,
 					armv6,
 				);
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Lingzhe Peng (9WG829Y3AG)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Lingzhe Peng";
 				COMPRESS_PNG_FILES = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -10472,8 +10532,8 @@
 					"../Common_iPhone_20/3PP-SDK/QWeiboSDK4iOS/**",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
-				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				PROVISIONING_PROFILE = "47332EBD-8E91-478C-B497-FEA88B2C0C2A";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "71F47996-5EDE-4316-8BF3-4EA4DFF96536";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -10486,7 +10546,7 @@
 					armv7,
 					armv6,
 				);
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Lingzhe Peng";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Lingzhe Peng (9WG829Y3AG)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Lingzhe Peng";
 				COMPRESS_PNG_FILES = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -10499,7 +10559,7 @@
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
-				PROVISIONING_PROFILE = "71F47996-5EDE-4316-8BF3-4EA4DFF96536";
+				PROVISIONING_PROFILE = "47332EBD-8E91-478C-B497-FEA88B2C0C2A";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "71F47996-5EDE-4316-8BF3-4EA4DFF96536";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -10510,8 +10570,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Lingzhe Peng (9WG829Y3AG)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Lingzhe Peng (9WG829Y3AG)";
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -10562,8 +10622,8 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				PROVISIONING_PROFILE = "47332EBD-8E91-478C-B497-FEA88B2C0C2A";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "47332EBD-8E91-478C-B497-FEA88B2C0C2A";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -10572,8 +10632,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Lingzhe Peng";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Lingzhe Peng";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Lingzhe Peng (9WG829Y3AG)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Lingzhe Peng (9WG829Y3AG)";
 				COPY_PHASE_STRIP = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -10623,8 +10683,8 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "71F47996-5EDE-4316-8BF3-4EA4DFF96536";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "71F47996-5EDE-4316-8BF3-4EA4DFF96536";
+				PROVISIONING_PROFILE = "47332EBD-8E91-478C-B497-FEA88B2C0C2A";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "47332EBD-8E91-478C-B497-FEA88B2C0C2A";
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;
 			};

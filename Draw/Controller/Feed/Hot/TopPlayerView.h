@@ -39,5 +39,5 @@
 - (void)setRankFlag:(NSInteger)rank;
 - (void)setViewSeleted:(BOOL)selected;
 - (IBAction)clickPlayerView:(id)sender;
-
++ (CGFloat)getHeight;
 @end

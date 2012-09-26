@@ -13,9 +13,9 @@
 
 @implementation StatementController
 @synthesize contentView = _contentView;
+@synthesize declineLabel = _declineLabel;
+@synthesize acceptLabel = _acceptLabel;
 @synthesize titleLabel = _titleLabel;
-@synthesize declineButton = _declineButton;
-@synthesize acceptButton = _acceptButton;
 @synthesize contest = _contest;
 
 
@@ -23,8 +23,8 @@
 {
     PPRelease(_contest);
     PPRelease(_titleLabel);
-    PPRelease(_declineButton);
-    PPRelease(_acceptButton);
+    PPRelease(_acceptLabel);
+    PPRelease(_declineLabel);
     PPRelease(_contentView);
     [super dealloc];
 }
@@ -60,10 +60,8 @@
 - (void)initViews
 {
     [self.titleLabel setText:NSLS(@"kStatement")];
-    [self.declineButton setBackgroundImage:[[ShareImageManager defaultManager] redImage] forState:UIControlStateNormal];
-    [self.acceptButton setBackgroundImage:[[ShareImageManager defaultManager] greenImage] forState:UIControlStateNormal];
-    [self.declineButton setTitle:NSLS(@"kDecline") forState:UIControlStateNormal];
-    [self.acceptButton setTitle:NSLS(@"kAccept") forState:UIControlStateNormal];
+    [self.declineLabel setText:NSLS(@"kDecline")];
+    [self.acceptLabel setText:NSLS(@"kAccept")];
 }
 
 - (void)loadWebView
@@ -82,9 +80,9 @@
 - (void)viewDidUnload
 {
     [self setTitleLabel:nil];
-    [self setDeclineButton:nil];
-    [self setAcceptButton:nil];
     [self setContentView:nil];
+    [self setDeclineLabel:nil];
+    [self setAcceptLabel:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -101,6 +99,7 @@
 }
 
 - (IBAction)acceptButton:(id)sender {
-
+    [OfflineDrawViewController startDrawWithContest:self.contest
+                                     fromController:self];
 }
 @end

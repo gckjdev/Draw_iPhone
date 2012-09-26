@@ -179,34 +179,37 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">220</int>
+			<int key="maxID">227</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
 				<object class="IBPartialClassDescription">
 					<string key="className">HomeController</string>
 					<string key="superclassName">PPViewController</string>
-					<object class="NSMutableDictionary" key="actions">
-						<string key="NS.key.0">clickAnnounce:</string>
-						<string key="NS.object.0">id</string>
-					</object>
-					<object class="NSMutableDictionary" key="actionInfosByName">
-						<string key="NS.key.0">clickAnnounce:</string>
-						<object class="IBActionInfo" key="NS.object.0">
-							<string key="name">clickAnnounce:</string>
+					<dictionary class="NSMutableDictionary" key="actions">
+						<string key="clickContestButton:">id</string>
+						<string key="clickMyFeed:">id</string>
+						<string key="clickRankButton:">id</string>
+					</dictionary>
+					<dictionary class="NSMutableDictionary" key="actionInfosByName">
+						<object class="IBActionInfo" key="clickContestButton:">
+							<string key="name">clickContestButton:</string>
 							<string key="candidateClassName">id</string>
 						</object>
-					</object>
+						<object class="IBActionInfo" key="clickMyFeed:">
+							<string key="name">clickMyFeed:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="clickRankButton:">
+							<string key="name">clickRankButton:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+					</dictionary>
 					<dictionary class="NSMutableDictionary" key="outlets">
-						<string key="diceButton">UIButton</string>
 						<string key="facetimeButton">UIButton</string>
 						<string key="recommendButton">UIButton</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
-						<object class="IBToOneOutletInfo" key="diceButton">
-							<string key="name">diceButton</string>
-							<string key="candidateClassName">UIButton</string>
-						</object>
 						<object class="IBToOneOutletInfo" key="facetimeButton">
 							<string key="name">facetimeButton</string>
 							<string key="candidateClassName">UIButton</string>

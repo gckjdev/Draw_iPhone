@@ -33,6 +33,7 @@
 @property (assign, nonatomic) int rowOfGiveReview;
 @property (assign, nonatomic) int rowOfAbout;
 @property (assign, nonatomic) int numberOfRows;
+@property (assign, nonatomic) int rowOfFollow;
 
 @end
 
@@ -43,6 +44,7 @@
 @synthesize backgroundImageView;
 
 @synthesize rowOfShare;
+@synthesize rowOfFollow;
 @synthesize rowOfAddWords;
 @synthesize rowOfReportBug;
 @synthesize rowOfFeedback;
@@ -69,25 +71,28 @@
 
 - (void)initRowNumber
 {
+    int count = 0;
     if (isDrawApp()) {
-        rowOfShare = 0;
-        rowOfAddWords = 1;
-        rowOfReportBug = 2;
-        rowOfFeedback = 3;
-        rowOfMoreApp = 4;
-        rowOfGiveReview = 5;
-        rowOfAbout = 6;
-        numberOfRows = 7;
+        rowOfShare = count++;
+        rowOfFollow = count++;
+        rowOfAddWords = count++;
+        rowOfReportBug = count++;
+        rowOfFeedback = count++;
+        rowOfMoreApp = count++;
+        rowOfGiveReview = count++;
+        rowOfAbout = count++;
+        numberOfRows = count;
         
         dataTableView.frame = CGRectMake(dataTableView.frame.origin.x, dataTableView.frame.origin.y, dataTableView.frame.size.width, DRAW_TABLE_HEIGHT);
     }else if (isDiceApp()) {
-        rowOfShare = 0;
-        rowOfReportBug = 1;
-        rowOfFeedback = 2;
-        rowOfMoreApp = 3;
-        rowOfGiveReview = 4;
-        rowOfAbout = 5;
-        numberOfRows = 6;
+        rowOfShare = count++;
+        rowOfFollow = count++;
+        rowOfReportBug = count++;
+        rowOfFeedback = count++;
+        rowOfMoreApp = count++;
+        rowOfGiveReview = count++;
+        rowOfAbout = count++;
+        numberOfRows = count;
         
         rowOfAddWords = -1;
         dataTableView.frame = CGRectMake(dataTableView.frame.origin.x, dataTableView.frame.origin.y, dataTableView.frame.size.width, DICE_TABLE_HEIGHT);
@@ -101,6 +106,11 @@
     if (anIndex == rowOfShare) {
         NSString* message = [NSString stringWithFormat:NSLS(@"kCoinsForShareToFriends"), [ConfigManager getShareFriendReward]];            
         message = [NSString stringWithFormat:@"%@ (%@)", NSLS(@"kShare_to_friends"), message];
+        [aCell.textLabel setText:message];
+    } 
+    else if (anIndex == rowOfFollow) {
+        NSString* message = [NSString stringWithFormat:NSLS(@"kCoinsForFollowUs"), [ConfigManager getFollowReward]];            
+        message = [NSString stringWithFormat:@"%@ (%@)", NSLS(@"kFollowUs"), message];
         [aCell.textLabel setText:message];
     } 
     else if (anIndex == rowOfAddWords) {
@@ -270,6 +280,16 @@ enum {
         [rc release];
     } 
     
+    else if (indexPath.row == rowOfFollow){
+        if ([[UserManager defaultManager] hasBindQQWeibo]){
+            [[QQWeiboService defaultService] followUser:[GameApp qqWeiboId] delegate:self];
+        }
+        
+        if ([[UserManager defaultManager] hasBindSinaWeibo]){
+            [[SinaSNSService defaultService] followUser:[GameApp sinaWeiboId] delegate:self];
+        }
+    }
+    
     else if (indexPath.row  == rowOfReportBug) {
         ReportController* rc = [[ReportController alloc] initWithType:SUBMIT_BUG];
         [self.navigationController pushViewController:rc animated:YES];
@@ -374,4 +394,33 @@ enum {
     [backgroundImageView release];
     [super dealloc];
 }
+
+#pragma mark - SNS Delegate
+
+#define FOLLOW_SINA_KEY @"FOLLOW_SINA_KEY"
+#define FOLLOW_QQ_KEY   @"FOLLOW_QQ_KEY"
+
+- (void)didFollowUser:(int)result
+{
+    if (result != 0)
+        return;
+    
+    NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
+    BOOL hasRewardFollowSina = [userDefaults boolForKey:FOLLOW_SINA_KEY];
+    BOOL hasRewardFollowQQ = [userDefaults boolForKey:FOLLOW_QQ_KEY];
+    
+    if ([[UserManager defaultManager] hasBindSinaWeibo] && hasRewardFollowSina == NO){
+        [[AccountService defaultService] chargeAccount:[ConfigManager getFollowReward] source:FollowReward];
+        [userDefaults setBool:YES forKey:FOLLOW_SINA_KEY];
+        [userDefaults synchronize];
+    }
+    
+    if ([[UserManager defaultManager] hasBindQQWeibo] && hasRewardFollowQQ == NO){
+        [[AccountService defaultService] chargeAccount:[ConfigManager getFollowReward] source:FollowReward];        
+        [userDefaults setBool:YES forKey:FOLLOW_QQ_KEY];
+        [userDefaults synchronize];
+    }
+    
+}
+
 @end

@@ -239,11 +239,15 @@ enum{
             return [DrawInfoCell getCellHeight];
         case SectionCommentInfo:
         {
+            if (indexPath.row == 0) {
+                PPDebug(@"row = %d", indexPath.row);
+            }
             if (indexPath.row >= [self.dataList count]) {
                 return SPACE_CELL_FONT_HEIGHT;
             }
             CommentFeed *feed = [self.dataList objectAtIndex:indexPath.row];
             CGFloat height = [CommentCell getCellHeight:feed];
+            PPDebug(@"row = %d, height = %f", indexPath.row ,height);
             return height;
         }
         default:

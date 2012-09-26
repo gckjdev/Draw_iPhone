@@ -22,7 +22,7 @@
               badge:(NSInteger)badge
 {
     [_button setImage:image forState:UIControlStateNormal];
-    [_title setText:title];
+    [self.title setText:title];
     [self setBadgeNumber:badge];
 }
 
@@ -64,6 +64,10 @@
             return NSLS(@"kFeed");
         case MenuButtonTypeShop:
             return NSLS(@"kShop"); 
+        case MenuButtonTypeTop:
+            return NSLS(@"kTop");
+        case MenuButtonTypeContest:
+            return NSLS(@"kContest"); 
             
         case MenuButtonTypeDiceStart:
             return NSLS(@"kDiceMenuStart"); 
@@ -104,7 +108,12 @@
         case MenuButtonTypeTimeline:
             return [imageManager timelineImage];
         case MenuButtonTypeShop:
-            return [imageManager shopImage];
+            return [imageManager shopImage];            
+        case MenuButtonTypeTop:
+            return [imageManager topImage];
+        case MenuButtonTypeContest:
+            return [imageManager contestImage];
+
             //dice
         case MenuButtonTypeDiceStart:
             return [imageManager diceStartMenuImage];
@@ -160,6 +169,9 @@
     }
 }
 
+
+
+
 - (void)dealloc {
     PPRelease(_badge);
     PPRelease(_button);
@@ -178,10 +190,11 @@ int *drawMainMenuTypeList()
         MenuButtonTypeOnlinePlay,   
         MenuButtonTypeOfflineDraw,   
         MenuButtonTypeOfflineGuess,   
-        MenuButtonTypeFriendPlay,   
         MenuButtonTypeTimeline,   
+        MenuButtonTypeTop,
+        MenuButtonTypeContest,
+        MenuButtonTypeFriendPlay,   
         MenuButtonTypeShop,    
-
         //must add the end mark.
         MenuButtonTypeEnd
     };
@@ -249,4 +262,6 @@ int *getBottomMenuTypeListByGameAppType(GameAppType type)
     }
     return diceBottomMenuTypeList();
 }
+
+
 

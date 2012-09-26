@@ -56,7 +56,7 @@
 
 #define MENU_PANEL_WIDTH ([DeviceDetection isIPAD] ? 768 : 320)
 #define MENU_PANEL_HEIGHT ([DeviceDetection isIPAD] ? 468 : 226)
-static const NSInteger MENU_NUMBER_PER_PAGE = 6;
+//static const NSInteger MENU_NUMBER_PER_PAGE = 6;
 
 #define MENU_NUMBER_PER_PAGE ((self.gameAppType == GameAppTypeDraw) ? 6 : 6)
 #define MENU_NUMBER_ROW_NUMBER ((self.gameAppType == GameAppTypeDraw) ? 3 : 3)
@@ -101,6 +101,18 @@ static const NSInteger MENU_NUMBER_PER_PAGE = 6;
 
 }
 
+- (void)initCustomPageControl
+{
+    self.pageControl.hidesForSinglePage = YES;
+    
+    [self.pageControl setPageIndicatorImageForCurrentPage:[[ShareImageManager defaultManager] pointForCurrentSelectedPage] forNotCurrentPage:[[ShareImageManager defaultManager] pointForUnSelectedPage]];
+    
+    if ([DeviceDetection isIPAD]) {
+        self.pageControl.transform = CGAffineTransformMakeScale(2.0, 2.0);
+        self.pageControl.center = CGPointMake(self.center.x, self.pageControl.center.y);
+    }
+}
+
 - (void)loadMenu
 {
     int number = 0;
@@ -116,7 +128,22 @@ static const NSInteger MENU_NUMBER_PER_PAGE = 6;
         menu.delegate = self.controller;
         list++;
     }
-    [self.scrollView setContentSize:CGSizeMake((number / MENU_NUMBER_PER_PAGE)  * MENU_PANEL_WIDTH, MENU_PANEL_HEIGHT)];
+    
+//    NSInteger num = 1;
+    if (number % MENU_NUMBER_PER_PAGE == 0) {
+        number /= MENU_NUMBER_PER_PAGE;
+    }else{
+        number = (number / MENU_NUMBER_PER_PAGE) + 1;
+    }
+
+    if (number > 1) {
+        [self.pageControl setNumberOfPages:number];
+        [self initCustomPageControl];
+    }else{
+        [self.pageControl setHidden:YES];
+    }
+    
+    [self.scrollView setContentSize:CGSizeMake(number * MENU_PANEL_WIDTH, MENU_PANEL_HEIGHT)];
     
     if (self.gameAppType == GameAppTypeDraw) {
         [self.versionLabel setText:[NSString stringWithFormat:@"Ver %@", 
@@ -149,6 +176,14 @@ static const NSInteger MENU_NUMBER_PER_PAGE = 6;
     
 }
 
+#pragma mark UIScrollViewDelegate stuff
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
+{
+    /* we switch page at %50 across */
+    CGFloat pageWidth = scrollView.frame.size.width;
+    int page = floor((scrollView.contentOffset.x - pageWidth/2)/pageWidth +1);
+    self.pageControl.currentPage = page;
+}
 
 - (void)dealloc
 {

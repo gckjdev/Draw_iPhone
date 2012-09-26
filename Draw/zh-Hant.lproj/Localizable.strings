@@ -812,6 +812,13 @@
 "kDecline" = "拒絕";
 "kAccept" = "接受";
 
+"kCoinsForFollowUs" = "+%d金幣";
+"kFollowUs" = "關注官方微博";
+
+"kDetail" = "詳細";
+"kFailLoad" = "獲取數據失敗，請稍後再試。";
+"kContestOpus" = "參賽作品";
+"kTop" = "排行榜";
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 
