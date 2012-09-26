@@ -11,6 +11,7 @@
 #import "ConfigManager.h"
 #import "StatementView.h"
 #import "StatementController.h"
+#import "CommonMessageCenter.h"
 
 @implementation ContestController
 @synthesize scrollView = _scrollView;
@@ -43,6 +44,10 @@
     _contestViewList = [[NSMutableArray alloc] init];
     _contestService = [ContestService  defaultService];
     [_contestService getContestListWithType:ContestListTypeAll offset:0 limit:12 delegate:self];
+    [self showActivityWithText:NSLS(@"kLoading")];
+    
+//    UIColor *bgColor = [UIColor colorWithRed:245.0/255.0 green:240.0/255.0 blue:220./255. alpha:1.0];
+    [self.view setBackgroundColor:[UIColor darkGrayColor]];
 }
 
 - (void)viewDidUnload
@@ -89,10 +94,11 @@
         [self.scrollView addSubview:contestView];
         [_contestViewList addObject:contestView];
         [contestView setViewInfo:contest];
-//        [contestView refreshRequest];
     }
     [self.pageControl setNumberOfPages:count];
     [self.pageControl setCurrentPage:0];
+    
+//    [self.view bringSubviewToFront:self.pageControl];
 }
 
 - (void)updatePage
@@ -126,10 +132,14 @@
                      type:(ContestListType)type 
                resultCode:(NSInteger)code
 {
+
     PPDebug(@"didGetContestList, type = %d, code = %d, contestList = %@", type,code,contestList);
     if (code == 0) {
         [self updateScorollViewWithContestList:contestList];
+    }else{
+        [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kFailLoad") delayTime:1.5 isHappy:NO];
     }
+    [self hideActivity];
 }
 
 - (IBAction)clickBackButton:(id)sender {

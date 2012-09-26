@@ -816,6 +816,10 @@
 "kCoinsForFollowUs" = "+%d Coins";
 "kFollowUs" = "Follow Us";
 
+"kDetail" = "Detail";
+"kFailLoad" = "Fail to load data, please try it later.";
+"kContestOpus" = "Opus for contest";
+
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 
@@ -850,27 +854,27 @@
 
 "kItemPeek" = "Peek";
 "kPeek" = "Peek";
-"kPeekDescription" = "Use 【Peek】 you can peek one dice of each player.";
+"kPeekDescription" = "Use 【Peek】 to peek one dice of each player.";
 
 "kItemPostpone" = "Postpone";
 "kPostpone" = "Postpone";
-"kPostponeDescription" = "Use 【Postpone】 get more time before should make a bid or challenge.";
+"kPostponeDescription" = "Use 【Postpone】 to get more time before should make a bid or challenge.";
 
 "kItemUrge" = "Urge";
 "kUrge" = "Urge";
-"kUrgeDescription"= "Use 【Peek】 contrast to MoreTime, cut off 5 seconds from next player.";
+"kUrgeDescription"= "Use 【Urge】 to cut off 5 seconds from next player.";
 
 "kItemTurtle" = "Turtle";
 "kTurtle" = "Turtle";
-"kTurtleDescription" = "Use 【Peek】 yield your chance if you feel not safe to bid or challenge.";
+"kTurtleDescription" = "Use 【Turtle】 to yield your chance if you feel not safe to bid or challenge.";
 
 "kItemDiceRobot" = "Smart butler";
 "kDiceRobot" = "Smart butler";
-"kDiceRobotDescription" = "Use 【Smart butler】 the game system will give your advice.";
+"kDiceRobotDescription" = "Use 【Smart butler】 to ask for advice.";
 
 "kItemReverse" = "Reverse";
 "kReverse" = "Reverse";
-"kReverseDescription" = "Use 【Reverse】 can reverse the play order,which is clockwise by default.";
+"kReverseDescription" = "Use 【Reverse】 to reverse the play order, which is clockwise by default.";
 
 "kMoreRoom" = "More...";
 "kMoreRoomLoading" = "Loading...";

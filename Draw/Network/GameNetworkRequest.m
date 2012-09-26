@@ -1259,7 +1259,8 @@
                               lang:(NSInteger)lang
                               data:(NSData*)data 
                          imageData:(NSData *)imageData
-                         targetUid:(NSString *)targetUid
+                         targetUid:(NSString *)targetUid 
+                         contestId:(NSString *)contestId
 {
     CommonNetworkOutput* output = [[[CommonNetworkOutput alloc] init] autorelease];
     
@@ -1282,7 +1283,9 @@
         if ([targetUid length] != 0) {
             str = [str stringByAddQueryParameter:PARA_TARGETUSERID value:targetUid];            
         }
-        
+        if ([contestId length] != 0) {
+            str = [str stringByAddQueryParameter:PARA_CONTESTID value:contestId];                        
+        }
         str = [str stringByAddQueryParameter:PARA_APPID value:[ConfigManager appId]];
         
         return str;

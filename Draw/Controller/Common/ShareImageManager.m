@@ -588,10 +588,13 @@ static UIImage* _whitePaperImage;
 
 - (UIImage *)mainMenuPanelBGForGameAppType:(GameAppType)gameAppType
 {
-//    if (gameAppType == GameAppTypeDraw) {
+    if (gameAppType == GameAppTypeDraw) {
         return [UIImage imageNamed:@"main_menubg"];        
-//    }
-//    return [UIImage imageNamed:@"dice_home_bg"];        
+    }else if (gameAppType == GameAppTypeDice) {
+        return [UIImage imageNamed:@"dice_main_menubg"];        
+    }
+    
+    return nil;
 }
 
 

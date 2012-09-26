@@ -94,6 +94,11 @@
     }
 }
 
++ (CGFloat)getHeight
+{
+    return ([DeviceDetection isIPAD] ? 255 : 106);
+}
+
 - (void)dealloc {
     PPRelease(_maskButton);
     PPRelease(_nickName);
