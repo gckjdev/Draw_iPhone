@@ -327,6 +327,7 @@ static AdService* _defaultService;
 
 - (BOOL)isShowAd
 {    
+//    PPDebug(@"WARNING!!! isShowAd is forced to YES for testing!!!");
 //    return YES;    
     
     if ([ConfigManager isProVersion])
