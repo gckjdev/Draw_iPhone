@@ -962,15 +962,7 @@
 "kDefault" = "Default";
 
 "kCustomDice" = "Custom Dice";
-<<<<<<< HEAD
-"kItemPatriotDice" = "dragon ball dice";
-"kPatriotDice" = "dragon ball dice";
-"kPatriotDiceDescription" = "Looks like dragon balls";
 
-"kItemGoldenDice" = "gold dice";
-"kGoldenDice" = "gold dice";
-"kGoldenDiceDescription" = "With appearance of elegence and dignity, it is really a symbol of status.";
-=======
 "kItemPatriotDice" = "Dragon ball dice";
 "kPatriotDice" = "Dragon ball dice";
 "kPatriotDiceDescription" = "looks like dragon balls";
@@ -978,7 +970,6 @@
 "kItemGoldenDice" = "Golden dice";
 "kGoldenDice" = "Golden dice";
 "kGoldenDiceDescription" = "with appearance of elegence and dignity, it is really a symbol of status.";
->>>>>>> origin/master
 
 "kItemWoodDice" = "Chinese dice";
 "kWoodDice" = "Chinese dice";
