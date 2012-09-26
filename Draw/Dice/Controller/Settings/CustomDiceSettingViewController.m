@@ -9,6 +9,7 @@
 #import "CustomDiceSettingViewController.h"
 #import "CustomDiceSettingCell.h"
 #import "CustomDiceManager.h"
+#import "FontButton.h"
 
 @interface CustomDiceSettingViewController ()
 
@@ -16,6 +17,8 @@
 
 @implementation CustomDiceSettingViewController
 @synthesize bgImageView;
+@synthesize controllerTitle;
+
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -39,12 +42,16 @@
 //    [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:[GameApp background]]]];
     [self.bgImageView setImage:[UIImage imageNamed:[GameApp background]]];
     [self.dataTableView setBackgroundView:nil];
-    // Do any additional setup after loading the view from its nib.
+
+    [self.controllerTitle.fontLable setText:NSLS(@"kCustomDice")];
+    
 }
 
 - (void)viewDidUnload
 {
     [self setBgImageView:nil];
+    [self setControllerTitle:nil];
+    [self setControllerTitle:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -108,6 +115,8 @@
 
 - (void)dealloc {
     [bgImageView release];
+
+    [controllerTitle release];
     [super dealloc];
 }
 @end

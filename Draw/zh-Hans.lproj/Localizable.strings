@@ -978,13 +978,37 @@
 "kWoodDice" = "木骰";
 "kWoodDiceDescription" = "回归自然，以木质作为骰子背景，文艺青年专用。";
 
-"kItemCrystalDice" = "水晶骰";
-"kCrystalDice" = "水晶骰";
-"kCrystalDiceDescription" = "晶莹剔透的感觉，女生们的最爱。";
+"kBlueItemCrystalDice" = "蓝水晶骰";
+"kBlueCrystalDice" = "蓝水晶骰";
+"kBlueCrystalDiceDescription" = "晶莹剔透的感觉，女生们的最爱。";
 
-"kItemDiamondDice" = "宝石骰";
-"kDiamondDice" = "宝石骰";
-"kDiamondDiceDescription" = "至坚至美者，非宝石莫属，象征瑰丽祥瑞，意义隽永，人人值得拥有哦～";
+"kPinkItemCrystalDice" = "粉水晶骰";
+"kPinkCrystalDice" = "粉水晶骰";
+"kPinkCrystalDiceDescription" = "晶莹剔透的感觉，女生们的最爱。";
+
+"kGreenItemCrystalDice" = "绿水晶骰";
+"kGreenCrystalDice" = "绿水晶骰";
+"kGreenCrystalDiceDescription" = "晶莹剔透的感觉，女生们的最爱。";
+
+"kPurpleItemCrystalDice" = "紫水晶骰";
+"kPurpleCrystalDice" = "紫水晶骰";
+"kPurpleCrystalDiceDescription" = "晶莹剔透的感觉，女生们的最爱。";
+
+"kBlueItemDiamondDice" = "蓝宝石骰";
+"kBlueDiamondDice" = "蓝宝石骰";
+"kBlueDiamondDiceDescription" = "至坚至美者，非宝石莫属，象征瑰丽祥瑞，意义隽永，人人值得拥有哦～";
+
+"kPinkItemDiamondDice" = "粉宝石骰";
+"kPinkDiamondDice" = "粉宝石骰";
+"kPinkDiamondDiceDescription" = "至坚至美者，非宝石莫属，象征瑰丽祥瑞，意义隽永，人人值得拥有哦～";
+
+"kGreenItemDiamondDice" = "绿宝石骰";
+"kGreenDiamondDice" = "绿宝石骰";
+"kGreenDiamondDiceDescription" = "至坚至美者，非宝石莫属，象征瑰丽祥瑞，意义隽永，人人值得拥有哦～";
+
+"kPurpleItemDiamondDice" = "紫宝石骰";
+"kPurpleDiamondDice" = "紫宝石骰";
+"kPurpleDiamondDiceDescription" = "至坚至美者，非宝石莫属，象征瑰丽祥瑞，意义隽永，人人值得拥有哦～";
 
 "kNoMoreShowIt" = "不再提醒";
 "kItemTips" = "道具提示";

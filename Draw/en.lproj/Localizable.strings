@@ -956,25 +956,49 @@
 "kDefault" = "Default";
 
 "kCustomDice" = "Custom Dice";
-"kItemPatriotDice" = "dragon ball dice";
-"kPatriotDice" = "dragon ball dice";
+"kItemPatriotDice" = "Dragon ball dice";
+"kPatriotDice" = "Dragon ball dice";
 "kPatriotDiceDescription" = "looks like dragon balls";
 
-"kItemGoldenDice" = "gold dice";
-"kGoldenDice" = "gold dice";
+"kItemGoldenDice" = "Golden dice";
+"kGoldenDice" = "Golden dice";
 "kGoldenDiceDescription" = "with appearance of elegence and dignity, it is really a symbol of status.";
 
-"kItemWoodDice" = "wooden dice";
-"kWoodDice" = "wooden dice";
+"kItemWoodDice" = "Chinese dice";
+"kWoodDice" = "Chinese dice";
 "kWoodDiceDescription" = "Made of wood, back to nature and purity";
 
-"kItemCrystalDice" = "crystal dice";
-"kCrystalDice" = "crystal dice";
-"kCrystalDiceDescription" = "Glittering and translucent, appealing to girls.";
+"kItemBlueCrystalDice" = "Blue crystal dice";
+"kBlueCrystalDice" = "Blue crystal dice";
+"kBlueCrystalDiceDescription" = "Glittering and translucent, appealing to girls.";
 
-"kItemDiamondDice" = "gem dice";
-"kDiamondDice" = "gem dice";
-"kDiamondDiceDescription" = "Upmost solid and gorgeous, the symbol of auspiciousness and meaningfulness";
+"kItemPinkCrystalDice" = "Pink crystal dice";
+"kPinkCrystalDice" = "Pink crystal dice";
+"kPinkCrystalDiceDescription" = "Glittering and translucent, appealing to girls.";
+
+"kItemGreenCrystalDice" = "Green crystal dice";
+"kGreenCrystalDice" = "Green crystal dice";
+"kGreenCrystalDiceDescription" = "Glittering and translucent, appealing to girls.";
+
+"kItemPurpleCrystalDice" = "Purple crystal dice";
+"kPurpleCrystalDice" = "Purple crystal dice";
+"kPurpleCrystalDiceDescription" = "Glittering and translucent, appealing to girls.";
+
+"kItemBlueDiamondDice" = "Blue gem dice";
+"kBlueDiamondDice" = "Blue gem dice";
+"kBlueDiamondDiceDescription" = "Upmost solid and gorgeous, the symbol of auspiciousness and meaningfulness";
+
+"kItemPinkDiamondDice" = "Pink gem dice";
+"kPinkDiamondDice" = "Pink gem dice";
+"kPinkDiamondDiceDescription" = "Upmost solid and gorgeous, the symbol of auspiciousness and meaningfulness";
+
+"kItemGreenDiamondDice" = "Green gem dice";
+"kGreenDiamondDice" = "Green gem dice";
+"kGreenDiamondDiceDescription" = "Upmost solid and gorgeous, the symbol of auspiciousness and meaningfulness";
+
+"kItemPurpleDiamondDice" = "Purple gem dice";
+"kPurpleDiamondDice" = "Purple gem dice";
+"kPurpleDiamondDiceDescription" = "Upmost solid and gorgeous, the symbol of auspiciousness and meaningfulness";
 
 "kNoMoreShowIt" = "No Remind";
 "kItemTips" = "Item Tips";
