@@ -22,6 +22,7 @@
 #import "ItemService.h"
 #import "ShareImageManager.h"
 #import "CommonMessageCenter.h"
+#import "ReplayView.h"
 
 @implementation ShowFeedController
 @synthesize titleLabel = _titleLabel;
@@ -529,8 +530,12 @@ enum{
         //send a tomato
         Item *item = [Item tomato];
         [self throwItem:item];
+    }else if(button == self.replayButton){
+        ReplayView *replay = [ReplayView createReplayView:self];
+        [replay setViewInfo:self.feed];
+        [replay showInView:self.view];
     }else{
-        //no action
+        //NO action
     }
     
 }

@@ -42,17 +42,21 @@
     animation.delegate = self;
     animation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
     [animation setValue:MISS_ANIMATION_VALUE forKey:MISS_ANIMATION_KEY];
+    [animation setRemovedOnCompletion:YES];
     [self.layer addAnimation:animation forKey:nil];
+ 
 }
 
 - (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag
 {
-    if (flag) {
-        if ([[anim valueForKey:MISS_ANIMATION_KEY] isEqualToString:MISS_ANIMATION_VALUE]) {
-            PPDebug(@"<animationDidStop>: remove from view");
-            [self removeFromSuperview];
-        }
+
+    NSString *value = [anim valueForKey:MISS_ANIMATION_KEY];
+    if ([value isEqualToString:MISS_ANIMATION_VALUE]) 
+    {
+        PPDebug(@"<animationDidStop>: remove from view");
+        [self removeFromSuperview];
     }
+
 }
 
 - (void)setViewInfo:(Contest *)contest
@@ -70,9 +74,9 @@
                                                                        toScale:1 
                                                                       duration:ANIMATION_DURATION 
                                                                       delegate:nil 
-                                                              removeCompeleted:NO];
+                                                              removeCompeleted:YES];
     showAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-
     [self.layer addAnimation:showAnimation forKey:nil];
+    
 }
 @end

@@ -1525,6 +1525,9 @@
 		CAE2CABE151B2ECA0062ED37 /* Account.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE2CABD151B2ECA0062ED37 /* Account.m */; };
 		CAE2CAC1151B2F7C0062ED37 /* Item.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE2CAC0151B2F7C0062ED37 /* Item.m */; };
 		CAE8B15115E4A24F0098A565 /* BoardPanel~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAE8B15015E4A24E0098A565 /* BoardPanel~ipad.xib */; };
+		CAEE2B1E1613EA6F00CD9088 /* ReplayView.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEE2B1D1613EA6F00CD9088 /* ReplayView.m */; };
+		CAEE2B201613EAB400CD9088 /* ReplayView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAEE2B1F1613EAB400CD9088 /* ReplayView.xib */; };
+		CAEE2B221613EE5700CD9088 /* ReplayView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAEE2B211613EE5700CD9088 /* ReplayView~ipad.xib */; };
 		CAEECDAA15DDEEF700FA5A2A /* Board.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEECD9715DDEEF700FA5A2A /* Board.m */; };
 		CAEECDAB15DDEEF700FA5A2A /* BoardManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEECD9915DDEEF700FA5A2A /* BoardManager.m */; };
 		CAEECDAC15DDEEF700FA5A2A /* BoardNetwork.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEECD9C15DDEEF700FA5A2A /* BoardNetwork.m */; };
@@ -3753,6 +3756,10 @@
 		CAE57D27153BD77F00C4C63A /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		CAE57D2B153BD7B000C4C63A /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		CAE8B15015E4A24E0098A565 /* BoardPanel~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = "BoardPanel~ipad.xib"; path = "Draw/Board/Controller/BoardPanel~ipad.xib"; sourceTree = SOURCE_ROOT; };
+		CAEE2B1C1613EA6F00CD9088 /* ReplayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReplayView.h; sourceTree = "<group>"; };
+		CAEE2B1D1613EA6F00CD9088 /* ReplayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReplayView.m; sourceTree = "<group>"; };
+		CAEE2B1F1613EAB400CD9088 /* ReplayView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReplayView.xib; sourceTree = "<group>"; };
+		CAEE2B211613EE5700CD9088 /* ReplayView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ReplayView~ipad.xib"; sourceTree = "<group>"; };
 		CAEECCD115DB46AD00FA5A2A /* MainDataModel 8.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "MainDataModel 8.xcdatamodel"; sourceTree = "<group>"; };
 		CAEECCD215DBB0B000FA5A2A /* MainDataModel 9.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "MainDataModel 9.xcdatamodel"; sourceTree = "<group>"; };
 		CAEECD9615DDEEF700FA5A2A /* Board.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Board.h; sourceTree = "<group>"; };
@@ -7206,6 +7213,10 @@
 				CA8974191607230E003A95F7 /* ShowFeedController.m */,
 				CA89741A1607230E003A95F7 /* ShowFeedController.xib */,
 				CA89741B1607230E003A95F7 /* ShowFeedController~ipad.xib */,
+				CAEE2B1C1613EA6F00CD9088 /* ReplayView.h */,
+				CAEE2B1D1613EA6F00CD9088 /* ReplayView.m */,
+				CAEE2B1F1613EAB400CD9088 /* ReplayView.xib */,
+				CAEE2B211613EE5700CD9088 /* ReplayView~ipad.xib */,
 			);
 			path = FeedDetail;
 			sourceTree = "<group>";
@@ -7267,23 +7278,23 @@
 		CA89747F16087BBD003A95F7 /* Contest */ = {
 			isa = PBXGroup;
 			children = (
-				CAC3714C1611E869002CB837 /* ContestController~ipad.xib */,
-				CAC3714D1611E869002CB837 /* ContestView~ipad.xib */,
 				CAC3714E1611E86A002CB837 /* StatementController~ipad.xib */,
+				CAC3714C1611E869002CB837 /* ContestController~ipad.xib */,
 				CAC3714F1611E86A002CB837 /* StatementView~ipad.xib */,
+				CAC3714D1611E869002CB837 /* ContestView~ipad.xib */,
+				CA3F2ED11609B3350059667B /* StatementController.xib */,
+				CA89748216087BE2003A95F7 /* ContestController.xib */,
+				CA3F2ECC1609B3050059667B /* StatementView.xib */,
+				CA3F2EA7160967B80059667B /* ContestView.xib */,
 				CA3F2ED41609BCC90059667B /* Opus */,
 				CA89748016087BE2003A95F7 /* ContestController.h */,
 				CA89748116087BE2003A95F7 /* ContestController.m */,
-				CA89748216087BE2003A95F7 /* ContestController.xib */,
 				CA3F2EA5160967B80059667B /* ContestView.h */,
 				CA3F2EA6160967B80059667B /* ContestView.m */,
-				CA3F2EA7160967B80059667B /* ContestView.xib */,
 				CA3F2ECA1609B3040059667B /* StatementView.h */,
 				CA3F2ECB1609B3040059667B /* StatementView.m */,
-				CA3F2ECC1609B3050059667B /* StatementView.xib */,
 				CA3F2ECF1609B3350059667B /* StatementController.h */,
 				CA3F2ED01609B3350059667B /* StatementController.m */,
-				CA3F2ED11609B3350059667B /* StatementController.xib */,
 			);
 			path = Contest;
 			sourceTree = "<group>";
@@ -9776,6 +9787,8 @@
 				A43E85031612EFDC003A57F1 /* dice_tabright_selected_bak@2x.png in Resources */,
 				A43E85051612FE64003A57F1 /* face_crazy.gif in Resources */,
 				CA1D196A16131DDC00E9C81D /* detail_replay@2x.png in Resources */,
+				CAEE2B201613EAB400CD9088 /* ReplayView.xib in Resources */,
+				CAEE2B221613EE5700CD9088 /* ReplayView~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -10313,6 +10326,7 @@
 				CA9B4EC016103726008C6A97 /* TopPlayer.m in Sources */,
 				C2DD4F0D1610412500556CC7 /* DiceRobotDecisionView.m in Sources */,
 				CA0A2CAE1610473800F66400 /* TopPlayerView.m in Sources */,
+				CAEE2B1E1613EA6F00CD9088 /* ReplayView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
