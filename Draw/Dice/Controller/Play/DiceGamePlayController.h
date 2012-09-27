@@ -29,6 +29,7 @@
 #import "DiceItemManager.h"
 #import "DiceRobotManager.h"
 #import "DiceBetView.h"
+#import "CommonInfoView.h"
 
 #define USER_THINK_TIME_INTERVAL 15
 #define ROBOT_CALL_TIPS_DIALOG_TAG  20120918
@@ -38,7 +39,7 @@
 @class CommonDialog;
 
 
-@interface DiceGamePlayController : PPViewController <DiceItemListViewDelegate, DiceSelectedViewDelegate, DiceAvatarViewDelegate, DicesResultViewAnimationDelegate, LevelServiceDelegate, CommonDialogDelegate, ChatViewDelegate, AccountServiceDelegate, DiceBetViewDelegate> {
+@interface DiceGamePlayController : PPViewController <DiceItemListViewDelegate, DiceSelectedViewDelegate, DiceAvatarViewDelegate, DicesResultViewAnimationDelegate, LevelServiceDelegate, CommonDialogDelegate, ChatViewDelegate, AccountServiceDelegate, DiceBetViewDelegate, CommonInfoViewDelegate> {
     DiceGameService*  _diceService;
     UserManager *_userManager;
     DiceImageManager *_imageManager;

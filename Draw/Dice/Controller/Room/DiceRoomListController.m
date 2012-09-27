@@ -591,7 +591,7 @@
 }
 
 #pragma mark - common info view delegate
-- (void)infoViewDidDisappear
+- (void)infoViewDidDisappear:(CommonInfoView*)view
 {
     _searchView = nil;
     if (_currentRoomType == allRoom) {
