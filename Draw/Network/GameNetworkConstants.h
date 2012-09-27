@@ -18,7 +18,7 @@
 
 // method name
 
-#define METHOD @"m"                    // set by Benson, use m1 for security
+#define METHOD @"m1"                    // set by Benson, use m1 for security
 #define METHOD_TEST @"test"
 #define METHOD_ONLINESTATUS @"srpt"
 #define METHOD_REGISTRATION @"reg"
