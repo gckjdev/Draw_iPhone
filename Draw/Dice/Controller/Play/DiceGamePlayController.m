@@ -151,7 +151,6 @@
     [_anteView release];
     [_waitForPlayerBetLabel release];
     [_tableImageView release];
-    [_diceRobotDecision release];
     [super dealloc];
 }
 
