@@ -248,7 +248,7 @@ typedef enum{
                 [list addObject:object];
             }
         }
-        [self setTopPlayerCell:cell WithPlayers:list isFirstRow:NO];
+        [self setTopPlayerCell:cell WithPlayers:list isFirstRow:(indexPath.row == 0)];
     }
     
     return cell;
