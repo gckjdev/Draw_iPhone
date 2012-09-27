@@ -29,6 +29,7 @@
     NSInteger rowOfQQWeibo;
     NSInteger rowOfFacebook;
     NSInteger rowOfLevel;
+    NSInteger rowOfAutoSave;
     NSInteger rowOfCustomWord;
     NSInteger rowOfSoundSwitcher;
     NSInteger rowOfMusicSettings;
@@ -49,6 +50,7 @@
     BOOL avatarChanged;
     BOOL isSoundOn;
     BOOL isMusicOn;
+    BOOL isAutoSave;
 //    BOOL languageChanged;
     LanguageType languageType;
     GuessLevel guessLevel;

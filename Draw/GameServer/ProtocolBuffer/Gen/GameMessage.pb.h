@@ -883,13 +883,17 @@
 @private
   BOOL hasItemId_:1;
   BOOL hasExtendTime_:1;
+  BOOL hasDirection_:1;
   int32_t itemId;
   int32_t extendTime;
+  int32_t direction;
 }
 - (BOOL) hasItemId;
 - (BOOL) hasExtendTime;
+- (BOOL) hasDirection;
 @property (readonly) int32_t itemId;
 @property (readonly) int32_t extendTime;
+@property (readonly) int32_t direction;
 
 + (UseItemRequest*) defaultInstance;
 - (UseItemRequest*) defaultInstance;
@@ -934,6 +938,11 @@
 - (int32_t) extendTime;
 - (UseItemRequest_Builder*) setExtendTime:(int32_t) value;
 - (UseItemRequest_Builder*) clearExtendTime;
+
+- (BOOL) hasDirection;
+- (int32_t) direction;
+- (UseItemRequest_Builder*) setDirection:(int32_t) value;
+- (UseItemRequest_Builder*) clearDirection;
 @end
 
 @interface UseItemResponse : PBGeneratedMessage {
@@ -1700,18 +1709,22 @@
 @interface NextPlayerStartNotificationRequest : PBGeneratedMessage {
 @private
   BOOL hasExpiredTime_:1;
+  BOOL hasDirection_:1;
   BOOL hasCurrentPlayUserId_:1;
   BOOL hasNextPlayUserId_:1;
   int32_t expiredTime;
+  int32_t direction;
   NSString* currentPlayUserId;
   NSString* nextPlayUserId;
 }
 - (BOOL) hasCurrentPlayUserId;
 - (BOOL) hasNextPlayUserId;
 - (BOOL) hasExpiredTime;
+- (BOOL) hasDirection;
 @property (readonly, retain) NSString* currentPlayUserId;
 @property (readonly, retain) NSString* nextPlayUserId;
 @property (readonly) int32_t expiredTime;
+@property (readonly) int32_t direction;
 
 + (NextPlayerStartNotificationRequest*) defaultInstance;
 - (NextPlayerStartNotificationRequest*) defaultInstance;
@@ -1761,6 +1774,11 @@
 - (int32_t) expiredTime;
 - (NextPlayerStartNotificationRequest_Builder*) setExpiredTime:(int32_t) value;
 - (NextPlayerStartNotificationRequest_Builder*) clearExpiredTime;
+
+- (BOOL) hasDirection;
+- (int32_t) direction;
+- (NextPlayerStartNotificationRequest_Builder*) setDirection:(int32_t) value;
+- (NextPlayerStartNotificationRequest_Builder*) clearDirection;
 @end
 
 @interface NextPlayerStartNotificationResponse : PBGeneratedMessage {

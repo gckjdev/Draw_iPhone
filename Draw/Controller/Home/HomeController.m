@@ -714,12 +714,14 @@
             [self.navigationController pushViewController:vc animated:YES];
             [vc release];
         }
+            break;
         case MenuButtonTypeContest:
         {
             ContestController *cc = [[ContestController alloc] init];
             [self.navigationController pushViewController:cc animated:YES];
             [cc release];
         }
+            break;
         case MenuButtonTypeTop:
         {
             HotController *hc = [[HotController alloc] init];

@@ -141,6 +141,7 @@ typedef enum{
         [cell.contentView addSubview:rankView];
         rankView.frame = CGRectMake(x, y, width, height);
         x += width + space;
+        [rankView updateViewInfoForUserOpus];
     }
 }
 

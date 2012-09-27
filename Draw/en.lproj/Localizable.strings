@@ -821,6 +821,8 @@
 "kTop" = "Top";
 
 "kCanotSendToSelf" = "You can't send flower or tomato to your opus.";
+"kAutoSave" = "Auto Save";
+
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 

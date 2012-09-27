@@ -104,6 +104,7 @@
 		A43E85011612EFDC003A57F1 /* dice_room_background@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A43E84FD1612EFDC003A57F1 /* dice_room_background@2x.jpg */; };
 		A43E85021612EFDC003A57F1 /* dice_super_high_room_background.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A43E84FE1612EFDC003A57F1 /* dice_super_high_room_background.jpg */; };
 		A43E85031612EFDC003A57F1 /* dice_tabright_selected_bak@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A43E84FF1612EFDC003A57F1 /* dice_tabright_selected_bak@2x.png */; };
+		A43E85051612FE64003A57F1 /* face_crazy.gif in Resources */ = {isa = PBXBuildFile; fileRef = A43E85041612FE64003A57F1 /* face_crazy.gif */; };
 		A44AD68D15CD149D001666AA /* MessageView.m in Sources */ = {isa = PBXBuildFile; fileRef = A44AD68C15CD149D001666AA /* MessageView.m */; };
 		A44DDF4115C64528005609F6 /* DiceShowView.m in Sources */ = {isa = PBXBuildFile; fileRef = A44DDF4015C64528005609F6 /* DiceShowView.m */; };
 		A44DDF4415C669E0005609F6 /* Dice.pb.m in Sources */ = {isa = PBXBuildFile; fileRef = A44DDF4315C669DF005609F6 /* Dice.pb.m */; };
@@ -1069,6 +1070,7 @@
 		CA18D40815CFB25B001B421A /* CommentFeed.m in Sources */ = {isa = PBXBuildFile; fileRef = CA18D40715CFB25B001B421A /* CommentFeed.m */; };
 		CA18D40B15CFB31D001B421A /* DrawToUserFeed.m in Sources */ = {isa = PBXBuildFile; fileRef = CA18D40A15CFB31D001B421A /* DrawToUserFeed.m */; };
 		CA1B80F61512E26F00A457BA /* DrawColor.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1B80F51512E26F00A457BA /* DrawColor.m */; };
+		CA1D196A16131DDC00E9C81D /* detail_replay@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA1D196916131DDC00E9C81D /* detail_replay@2x.png */; };
 		CA22DCD2157CAFFD009C95CB /* ResultController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA22DCCF157CAFFD009C95CB /* ResultController.m */; };
 		CA22DCD3157CAFFD009C95CB /* ResultController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA22DCD0157CAFFD009C95CB /* ResultController.xib */; };
 		CA22DCED157CB00A009C95CB /* OnlineDrawViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA22DCE0157CB00A009C95CB /* OnlineDrawViewController.m */; };
@@ -1800,6 +1802,7 @@
 		A43E84FD1612EFDC003A57F1 /* dice_room_background@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "dice_room_background@2x.jpg"; sourceTree = "<group>"; };
 		A43E84FE1612EFDC003A57F1 /* dice_super_high_room_background.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = dice_super_high_room_background.jpg; sourceTree = "<group>"; };
 		A43E84FF1612EFDC003A57F1 /* dice_tabright_selected_bak@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dice_tabright_selected_bak@2x.png"; sourceTree = "<group>"; };
+		A43E85041612FE64003A57F1 /* face_crazy.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = face_crazy.gif; sourceTree = "<group>"; };
 		A44AD68B15CD149C001666AA /* MessageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageView.h; sourceTree = "<group>"; };
 		A44AD68C15CD149D001666AA /* MessageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageView.m; sourceTree = "<group>"; };
 		A44DDF2A15C62B18005609F6 /* NotificationName.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NotificationName.h; sourceTree = "<group>"; };
@@ -3088,6 +3091,7 @@
 		CA18D40A15CFB31D001B421A /* DrawToUserFeed.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawToUserFeed.m; sourceTree = "<group>"; };
 		CA1B80F41512E26F00A457BA /* DrawColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawColor.h; sourceTree = "<group>"; };
 		CA1B80F51512E26F00A457BA /* DrawColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawColor.m; sourceTree = "<group>"; };
+		CA1D196916131DDC00E9C81D /* detail_replay@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "detail_replay@2x.png"; sourceTree = "<group>"; };
 		CA22DCCE157CAFFD009C95CB /* ResultController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResultController.h; sourceTree = "<group>"; };
 		CA22DCCF157CAFFD009C95CB /* ResultController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResultController.m; sourceTree = "<group>"; };
 		CA22DCD0157CAFFD009C95CB /* ResultController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ResultController.xib; sourceTree = "<group>"; };
@@ -4240,6 +4244,7 @@
 		A4A01B7015D8AF67002FE86D /* game */ = {
 			isa = PBXGroup;
 			children = (
+				A43E85041612FE64003A57F1 /* face_crazy.gif */,
 				A4903EC616114DE2005A587F /* high_room_table@2x.jpg */,
 				A4903EC716114DE2005A587F /* normal_room_table@2x.jpg */,
 				A4903EC816114DE2005A587F /* super_high_room_table@2x.jpg */,
@@ -7478,6 +7483,7 @@
 		CA97EB6A15FCE43E008F756B /* detail */ = {
 			isa = PBXGroup;
 			children = (
+				CA1D196916131DDC00E9C81D /* detail_replay@2x.png */,
 				CA97EB6B15FCE43E008F756B /* detail_comment@2x.png */,
 				CA97EB6C15FCE43E008F756B /* detail_flower@2x.png */,
 				CA97EB6D15FCE43E008F756B /* detail_guess@2x.png */,
@@ -9768,6 +9774,8 @@
 				A43E85011612EFDC003A57F1 /* dice_room_background@2x.jpg in Resources */,
 				A43E85021612EFDC003A57F1 /* dice_super_high_room_background.jpg in Resources */,
 				A43E85031612EFDC003A57F1 /* dice_tabright_selected_bak@2x.png in Resources */,
+				A43E85051612FE64003A57F1 /* face_crazy.gif in Resources */,
+				CA1D196A16131DDC00E9C81D /* detail_replay@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -10559,7 +10567,7 @@
 					armv6,
 				);
 				CODE_SIGN_IDENTITY = "iPhone Developer: Lingzhe Peng (9WG829Y3AG)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Lingzhe Peng";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Lingzhe Peng (9WG829Y3AG)";
 				COMPRESS_PNG_FILES = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_VERSION = "";
@@ -10572,7 +10580,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				PROVISIONING_PROFILE = "47332EBD-8E91-478C-B497-FEA88B2C0C2A";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "71F47996-5EDE-4316-8BF3-4EA4DFF96536";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "47332EBD-8E91-478C-B497-FEA88B2C0C2A";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

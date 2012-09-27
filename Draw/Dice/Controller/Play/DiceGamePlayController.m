@@ -1516,6 +1516,21 @@
     [avatar addFlyClockOnMyHead];
 }
 
+- (BOOL)isValidDice:(int)dice count:(int)count
+{
+    int lastCallDice = (_diceService.lastCallDice < 1 || _diceService.lastCallDice > 6) ? 1 : _diceService.lastCallDice;
+    
+    int start = (lastCallDice == 1) ? (_diceService.lastCallDiceCount + 1) : _diceService.lastCallDiceCount;
+    int end = _diceService.maxCallCount;
+    
+    start = (start < _diceService.diceSession.playingUserCount) ? _diceService.diceSession.playingUserCount : start;
+    end = (end < 7) ? 7 : end;
+    if (dice <= 0 || dice > 6 || count < start || count > end) {
+        return NO;
+    }
+    return YES;
+}
+
 - (void)showRobotDecision
 {
 
@@ -1530,6 +1545,12 @@
     if (_robotManager.result.shouldOpen) {
         [_diceRobotDecision.messageLabel setText:NSLS(@"kJustOpen")];
     } else {
+        if (![self isValidDice:_robotManager.result.dice count:_robotManager.result.diceCount]) {
+            _robotManager.result.dice = _diceService.diceSession.lastCallDice;
+            _robotManager.result.diceCount = _diceService.diceSession.lastCallDiceCount + 1;
+            PPDebug(@"<DiceGamePlayController> robot compute wrong, just add one!");
+        }
+        
         CallDiceView* view = [[[CallDiceView alloc] initWithDice:_robotManager.result.dice count:_robotManager.result.diceCount] autorelease];
         [_diceRobotDecision.contentView addSubview:view];
         [view setCenter:CGPointMake(_diceRobotDecision.contentView.frame.size.width/2, _diceRobotDecision.contentView.frame.size.height/2)];

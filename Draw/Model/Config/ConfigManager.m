@@ -392,4 +392,18 @@
 }
 
 
+#define KEY_AUTO_SAVE @"AutoSave"
++ (BOOL)isAutoSave
+{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    return [defaults boolForKey:KEY_AUTO_SAVE];
+}
++ (void)setAutoSave:(BOOL)isAutoSave
+{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setBool:isAutoSave forKey:KEY_AUTO_SAVE];
+    [defaults synchronize];
+}
+
+
 @end
