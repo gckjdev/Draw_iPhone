@@ -93,5 +93,5 @@
 - (void)showRobotDecision;
 - (void)hideRobotDecision;
 - (void)clearAllUrgeUser;
-- (void)isUserUrged:(NSString*)userId;
+
 @end
