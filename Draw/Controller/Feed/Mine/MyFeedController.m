@@ -13,6 +13,8 @@
 #import "FeedCell.h"
 #import "CommonUserInfoView.h"
 #import "CommonMessageCenter.h"
+#import "CommonDialog.h"
+
 typedef enum{
     MyTypeFeed = FeedListTypeAll,
     MyTypeOpus = FeedListTypeUserOpus,
@@ -20,6 +22,10 @@ typedef enum{
     MyTypeDrawToMe = FeedListTypeDrawToMe,
     
 }MyType;
+
+@interface MyFeedController()
+- (void)alertDeleteConfirm;
+@end
 
 @implementation MyFeedController
 //@synthesize titleLabel = _tipsLabel;
@@ -290,9 +296,8 @@ typedef enum{
 #pragma mark - delete feed.
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    Feed *feed = [self.tabDataList objectAtIndex:indexPath.row];
-    [self showActivityWithText:NSLS(@"kDeleting")];
-    [[FeedService defaultService] deleteFeed:feed delegate:self];
+    _seletedFeed = [self.tabDataList objectAtIndex:indexPath.row];
+    [self alertDeleteConfirm];
 }
 
 -(BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
@@ -427,6 +432,27 @@ typedef enum{
     [sc release];    
 }
 
+- (void)alertDeleteConfirm
+{    
+    CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"kSure_delete") 
+                                                       message:NSLS(@"kAre_you_sure") 
+                                                         style:CommonDialogStyleDoubleButton 
+                                                        delegate:self];  
+    [dialog showInView:self.view];
+}
+
+- (void)clickOk:(CommonDialog *)dialog
+{
+    if (_seletedFeed) {
+        [self showActivityWithText:NSLS(@"kDeleting")];
+        [[FeedService defaultService] deleteFeed:_seletedFeed delegate:self];        
+    }
+    _seletedFeed = nil;
+}
+- (void)clickBack:(CommonDialog *)dialog
+{
+    _seletedFeed = nil;
+}
 
 #pragma mark - action sheet delegate
 
@@ -440,12 +466,12 @@ typedef enum{
 {
     
     DrawFeed *feed = _selectRanView.feed;
+    
     switch (buttonIndex) {
         case ActionSheetIndexDelete:
         {
-            PPDebug(@"Delete");
-            [self showActivityWithText:NSLS(@"kDeleting")];
-            [[FeedService defaultService] deleteFeed:_selectRanView.feed delegate:self];
+            _seletedFeed = feed;
+            [self alertDeleteConfirm];
         }
             break;
         case ActionSheetIndexDetail:

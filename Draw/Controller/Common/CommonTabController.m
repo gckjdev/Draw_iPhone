@@ -178,8 +178,8 @@
     }else{
         tab.status = TableTabStatusLoaded;
     }
-    [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kLoadingFail") 
-                                                   delayTime:1 
+    [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kLoadFail") 
+                                                   delayTime:1.5 
                                                      isHappy:NO];
 
 }

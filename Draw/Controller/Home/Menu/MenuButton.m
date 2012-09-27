@@ -200,7 +200,7 @@ int *drawMainMenuTypeList()
         
         MenuButtonTypeOnlinePlay,  
         MenuButtonTypeFriendPlay,   
-//        MenuButtonTypeContest,
+        MenuButtonTypeContest,
         MenuButtonTypeShop,    
         //must add the end mark.
         MenuButtonTypeEnd

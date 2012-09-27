@@ -84,7 +84,7 @@ typedef enum{
 {
     [super viewDidLoad];    
     [self initTabButtons];
-    [self.titleLabel setText:[NSString stringWithFormat:@"[%@]",_nickName]];
+    [self.titleLabel setText:[NSString stringWithFormat:@"%@",_nickName]];
 }
 
 - (void)viewDidUnload
