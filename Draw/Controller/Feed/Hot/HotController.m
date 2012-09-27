@@ -223,13 +223,13 @@ typedef enum{
                     [list addObject:object];
                 }
             }
-            PPDebug(@"startIndex = %d,list count = %d",startIndex,[list count]);
+//            PPDebug(@"startIndex = %d,list count = %d",startIndex,[list count]);
             [self setNormalRankCell:cell WithFeeds:list];
         }        
     }else if(tab.tabID == RankTypeNew){
         NSInteger startIndex = (indexPath.row * NORMAL_CELL_VIEW_NUMBER);
         NSMutableArray *list = [NSMutableArray array];
-        PPDebug(@"startIndex = %d",startIndex);
+//        PPDebug(@"startIndex = %d",startIndex);
         for (NSInteger i = startIndex; i < startIndex+NORMAL_CELL_VIEW_NUMBER; ++ i) {
             NSObject *object = [self saveGetObjectForIndex:i];
             if (object) {
@@ -241,14 +241,14 @@ typedef enum{
     }else if(tab.tabID == RankTypePlayer){
         NSInteger startIndex = (indexPath.row * NORMAL_CELL_VIEW_NUMBER);
         NSMutableArray *list = [NSMutableArray array];
-        PPDebug(@"startIndex = %d",startIndex);
+//        PPDebug(@"startIndex = %d",startIndex);
         for (NSInteger i = startIndex; i < startIndex+NORMAL_CELL_VIEW_NUMBER; ++ i) {
             NSObject *object = [self saveGetObjectForIndex:i];
             if (object) {
                 [list addObject:object];
             }
         }
-        [self setTopPlayerCell:cell WithPlayers:list isFirstRow:NO];
+        [self setTopPlayerCell:cell WithPlayers:list isFirstRow:(indexPath.row == 0)];
     }
     
     return cell;

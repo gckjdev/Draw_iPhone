@@ -12,6 +12,7 @@
 #import "CommonDialog.h"
 #import "DrawGameAnimationManager.h"
 #import "CommentHeaderView.h"
+#import "CommentCell.h"
 
 @class Feed;
 @class DrawFeed;
@@ -22,7 +23,7 @@
 @class TableTabManager;
 //@class ToolView;
 
-@interface ShowFeedController : PPTableViewController<FeedServiceDelegate, DrawDataServiceDelegate,CommonDialogDelegate, CommentHeaderViewDelegate>
+@interface ShowFeedController : PPTableViewController<FeedServiceDelegate, DrawDataServiceDelegate,CommonDialogDelegate, CommentHeaderViewDelegate, CommentCellDelegate>
 {
     DrawFeed *_feed;
     UserInfoCell *_userCell;

@@ -43,6 +43,7 @@
     animation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
     [animation setValue:MISS_ANIMATION_VALUE forKey:MISS_ANIMATION_KEY];
     [animation setRemovedOnCompletion:YES];
+    self.layer.opacity = 0;
     [self.layer addAnimation:animation forKey:nil];
  
 }

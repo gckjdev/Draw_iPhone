@@ -23,6 +23,7 @@
 #import "ShareImageManager.h"
 #import "CommonMessageCenter.h"
 #import "ReplayView.h"
+#import "CommentFeed.h"
 
 @implementation ShowFeedController
 @synthesize titleLabel = _titleLabel;
@@ -538,6 +539,11 @@ enum{
         //NO action
     }
     
+}
+#pragma mark - comment cell delegate
+- (void)didStartToReplyToFeed:(CommentFeed *)feed
+{
+    PPDebug(@"<didStartToReplyToFeed>, feed type = %d,comment = %@", feed.feedType,feed.comment);
 }
 
 #pragma mark draw data service delegate

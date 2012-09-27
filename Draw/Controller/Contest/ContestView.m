@@ -95,11 +95,11 @@
 
 + (CGFloat)getViewWidth
 {
-    return [DeviceDetection isIPAD] ? 600 : 320;
+    return [DeviceDetection isIPAD] ? 768 : 320;
 }
 + (CGFloat)getViewHeight
 {
-    return [DeviceDetection isIPAD] ? 900 : 390;
+    return [DeviceDetection isIPAD] ? 851 : 390;
 }
 
 #pragma mark - web view delegate

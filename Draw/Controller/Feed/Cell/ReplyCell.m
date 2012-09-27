@@ -6,7 +6,7 @@
 //  Copyright (c) 2012年 __MyCompanyName__. All rights reserved.
 //
 
-#import "CommentCell.h"
+#import "ReplyCell.h"
 #import "TimeUtils.h"
 #import "LocaleUtils.h"
 #import "DeviceDetection.h"
@@ -14,15 +14,14 @@
 #import "WordManager.h"
 #import "CommonUserInfoView.h"
 #import "ShareImageManager.h"
-#import "CommentFeed.h"
 
-@implementation CommentCell
+
+@implementation ReplyCell
 @synthesize commentLabel;
 @synthesize timeLabel;
 @synthesize nickNameLabel;
 @synthesize itemImage;
 @synthesize splitLine;
-@synthesize feed = _feed;
 
 + (id)createCell:(id)delegate
 {
@@ -43,7 +42,7 @@
 }
 
 
-#define COMMENT_WIDTH ([DeviceDetection isIPAD] ? 500 : 204)
+#define COMMENT_WIDTH ([DeviceDetection isIPAD] ? 550 : 209)
 #define COMMENT_FONT_SIZE ([DeviceDetection isIPAD] ? 11*2 : 11)
 #define COMMENT_SPACE ([DeviceDetection isIPAD] ? 20 : 10)
 #define COMMENT_BASE_X ([DeviceDetection isIPAD] ? 102 : 44)
@@ -53,13 +52,6 @@
 
 #define AVATAR_VIEW_FRAME [DeviceDetection isIPAD] ? CGRectMake(12, 10, 74, 77) : CGRectMake(5, 9, 31, 32)
 
-
-- (IBAction)clickReplyButton:(id)sender {
-    if (self.delegate && [self.delegate 
-                          respondsToSelector:@selector(didStartToReplyToFeed:)]) {
-        [self.delegate didStartToReplyToFeed:self.feed];
-    }
-}
 
 + (CGFloat)getCellHeight:(CommentFeed *)feed
 {
@@ -79,8 +71,6 @@
 - (void)setCellInfo:(CommentFeed *)feed;
 {
     //set avatar
-    self.feed = feed;
-    
     FeedUser *author = feed.author;
     [_avatarView removeFromSuperview];
     _avatarView = [[AvatarView alloc] initWithUrlString:author.avatar 

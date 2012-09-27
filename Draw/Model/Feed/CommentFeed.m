@@ -83,43 +83,6 @@
     return self;
 }
 
-- (id)initWithCommentFeedId:(NSString *)feedId 
-                 opusStatus:(OpusStatus)status 
-                 createData:(NSDate *)createDate 
-                   feedUser:(FeedUser*)feedUser
-                    comment:(NSString *)comment
-{
-    self = [super initWithFeedId:feedId 
-                        feedType:FeedTypeComment
-                      opusStatus:status 
-                      createData:createDate 
-                        feedUser:feedUser];
-    if (self) {
-        self.comment = comment;
-    }
-    return self;
-}
-
-
-//- (id)initWithGuessFeedId:(NSString *)feedId 
-//               opusStatus:(OpusStatus)status 
-//               createData:(NSDate *)createDate 
-//                 feedUser:(FeedUser*)feedUser
-//                  correct:(BOOL)correct
-//                guessList:(NSArray *)guessList
-//{
-//    self = [super initWithFeedId:feedId 
-//                        feedType:FeedTypeGuess
-//                      opusStatus:status 
-//                      createData:createDate 
-//                        feedUser:feedUser];
-//    if (self) {
-//        
-//    }
-//}
-
-
-
 - (void)dealloc
 {
     PPRelease(_comment);

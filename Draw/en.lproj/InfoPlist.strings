@@ -1,5 +1,5 @@
 /* Localized versions of Info.plist keys */
 
-"CFBundleDisplayName" = "Draw Lively";
+//"CFBundleDisplayName" = "Draw Lively";
 
-//"CFBundleDisplayName" = "Liar Dice";
+"CFBundleDisplayName" = "Liar Dice";
