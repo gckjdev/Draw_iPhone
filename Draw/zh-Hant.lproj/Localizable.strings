@@ -85,6 +85,7 @@
 "kSendingRequest" = "發送消息中...";
 "kLoading" = "加載數據中...";
 "kLoadMore" = "加載中...";
+"kLoadFail" = "加載數據失敗，請稍後再試。";
 
 "kOK" = "確定";
 "kSubmit" = "提交";
@@ -594,7 +595,7 @@
 "kRefreshMessageing" = "正在刷新...";
 
 "kComment" = "評論";
-
+"kReplyComment" = "回複評論";
 "kCorrect" = "猜對了！";
 "kSending" = "發送中...";
 "kNoCommentTips" = "還沒有人評論";
@@ -1012,7 +1013,7 @@
 
 "kNoMoreShowIt" = "不再提醒";
 "kItemTips" = "道具提示";
-"kCustomDiceTips" = "你可以在”用戶設置“那裡更換你的個性化骰子";
+"kCustomDiceTips" = "你可以在“用戶設置“那裡更換你的個性化骰子";
 
 "kSearchingRoom" = "查找房間中...";
 "kHasBought" = "已購買";

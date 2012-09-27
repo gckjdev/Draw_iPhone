@@ -543,7 +543,11 @@ enum{
 #pragma mark - comment cell delegate
 - (void)didStartToReplyToFeed:(CommentFeed *)feed
 {
+    return;
     PPDebug(@"<didStartToReplyToFeed>, feed type = %d,comment = %@", feed.feedType,feed.comment);
+    CommentController *replyController = [[CommentController alloc] initWithFeed:self.feed commentFeed:feed];
+    [self.navigationController pushViewController:self animated:YES];
+    [replyController release];
 }
 
 #pragma mark draw data service delegate

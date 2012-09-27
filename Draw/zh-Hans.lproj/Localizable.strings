@@ -84,7 +84,7 @@
 "kSendingRequest" = "发送消息中...";
 "kLoading" = "加载数据中...";
 "kLoadMore" = "加载中...";
-
+"kLoadFail" = "加载数据失败，请稍后再试。";
 "kOK" = "确定";
 "kSubmit" = "提交";
 "kCancel" = "取消";
@@ -608,6 +608,7 @@
 
 
 "kComment" = "评论";
+"kReplyComment" = "回复评论";
 "kCorrect" = "猜对了！";
 "kSending" = "发送中...";
 "kNoCommentTips" = "还没有人评论";

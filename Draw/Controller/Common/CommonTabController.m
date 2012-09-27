@@ -8,6 +8,7 @@
 
 #import "CommonTabController.h"
 #import "TableTabManager.h"
+#import "CommonMessageCenter.h"
 
 @implementation CommonTabController
 @synthesize titleLabel = _titleLabel;
@@ -177,6 +178,10 @@
     }else{
         tab.status = TableTabStatusLoaded;
     }
+    [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kLoadingFail") 
+                                                   delayTime:1 
+                                                     isHappy:NO];
+
 }
 
 - (void)finishDeleteData:(NSObject *)data ForTabID:(NSInteger)tabID

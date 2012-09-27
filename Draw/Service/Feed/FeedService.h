@@ -86,8 +86,15 @@
 
 - (void)commentOpus:(NSString *)opusId 
              author:(NSString *)author 
-            comment:(NSString *)comment            
+            comment:(NSString *)comment          
+        commentType:(int)commentType 
+          commentId:(NSString *)commentId 
+     commentSummary:(NSString *)commentSummary
+      commentUserId:(NSString *)commentUserId 
+    commentNickName:(NSString *)commentNickName
            delegate:(id<FeedServiceDelegate>)delegate;
+
+
 
 - (void)deleteFeed:(Feed *)feed
           delegate:(id<FeedServiceDelegate>)delegate;

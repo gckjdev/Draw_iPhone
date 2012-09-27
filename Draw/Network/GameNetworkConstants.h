@@ -233,6 +233,12 @@
 
 #define PARA_COMMENT_CONTENT @"comc"
 
+#define PARA_COMMENT_TYPE @"cmt"
+#define PARA_COMMENT_ID @"cmid"
+#define PARA_COMMENT_SUMMARY @"cmsm"
+#define PARA_COMMENT_USERID @"cmuid"
+#define PARA_COMMENT_NICKNAME @"cmnn"
+
 #define PARA_ITEMIDARRAY @"iia"
 #define PARA_REQUIRE_MATCH @"rm"
 #define PARA_TYPE @"tp"

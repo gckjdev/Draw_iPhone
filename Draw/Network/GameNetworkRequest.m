@@ -1391,7 +1391,13 @@
                            gender:(NSString*)gender
                            opusId:(NSString*)opusId                        
                    opusCreatorUId:(NSString*)opusCreatorUId  
-                            comment:(NSString*)comment
+                            comment:(NSString*)comment 
+                          commentType:(int)commentType //comment info
+                           commentId:(NSString *)commentId 
+                      commentSummary:(NSString *)commentSummary
+                       commentUserId:(NSString *)commentUserId 
+                     commentNickName:(NSString *)commentNickName
+
 {
     CommonNetworkOutput* output = [[[CommonNetworkOutput alloc] init] autorelease];
     
@@ -1406,13 +1412,21 @@
         str = [str stringByAddQueryParameter:PARA_NICKNAME value:nick];
         str = [str stringByAddQueryParameter:PARA_AVATAR value:avatar];                
         str = [str stringByAddQueryParameter:PARA_GENDER value:gender];
-        
         str = [str stringByAddQueryParameter:PARA_OPUS_ID value:opusId];
         str = [str stringByAddQueryParameter:PARA_OPUS_CREATOR_UID value:opusCreatorUId];
         str = [str stringByAddQueryParameter:PARA_COMMENT_CONTENT value:comment];
+
+        //Comment info         
+        str = [str stringByAddQueryParameter:PARA_COMMENT_TYPE intValue:commentType];
+        str = [str stringByAddQueryParameter:PARA_COMMENT_ID value:commentId];
+        str = [str stringByAddQueryParameter:PARA_COMMENT_SUMMARY value:commentSummary];
+        str = [str stringByAddQueryParameter:PARA_COMMENT_USERID value:commentUserId];
+        str = [str stringByAddQueryParameter:PARA_COMMENT_NICKNAME value:commentNickName];
         
         //TODO use type at Action Class. due to no Action Class, hard code now!
         str = [str stringByAddQueryParameter:PARA_ACTION_TYPE intValue:ACTION_TYPE_COMMENT];
+        
+        
         
         //action type
         return str;

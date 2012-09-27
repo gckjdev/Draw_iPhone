@@ -199,11 +199,14 @@ static FeedService *_staticFeedService = nil;
             });
         });
 }
-
-
 - (void)commentOpus:(NSString *)opusId 
              author:(NSString *)author 
-            comment:(NSString *)comment            
+            comment:(NSString *)comment          
+        commentType:(int)commentType 
+          commentId:(NSString *)commentId 
+     commentSummary:(NSString *)commentSummary
+      commentUserId:(NSString *)commentUserId 
+    commentNickName:(NSString *)commentNickName
            delegate:(id<FeedServiceDelegate>)delegate
 {
     NSString* userId = [[UserManager defaultManager] userId];
@@ -212,9 +215,23 @@ static FeedService *_staticFeedService = nil;
     NSString* avatar = [[UserManager defaultManager] avatarURL];
     NSString* appId = [ConfigManager appId];
     
-
     dispatch_async(workingQueue, ^{
-        CommonNetworkOutput* output = [GameNetworkRequest commentOpus:TRAFFIC_SERVER_URL appId:appId userId:userId nick:nick avatar:avatar gender:gender opusId:opusId opusCreatorUId:author comment:comment];
+        
+        CommonNetworkOutput* output = [GameNetworkRequest commentOpus:TRAFFIC_SERVER_URL 
+                                                                appId:appId 
+                                                               userId:userId 
+                                                                 nick:nick 
+                                                               avatar:avatar 
+                                                               gender:gender
+                                                               opusId:opusId
+                                                       opusCreatorUId:author
+                                                              comment:comment
+                                                          commentType:commentType 
+                                                            commentId:commentId 
+                                                       commentSummary:commentSummary 
+                                                        commentUserId:commentUserId
+                                                      commentNickName:commentNickName];
+        
         NSString *commentId = nil;
         if (output.resultCode == 0) {
             commentId = [output.jsonDataDict objectForKey:PARA_FEED_ID];
@@ -229,8 +246,8 @@ static FeedService *_staticFeedService = nil;
             }
         });
     });
-    
 }
+
 
 - (void)deleteFeed:(Feed *)feed
           delegate:(id<FeedServiceDelegate>)delegate

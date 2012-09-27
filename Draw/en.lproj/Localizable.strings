@@ -80,6 +80,7 @@
 "kSendingRequest" = "Sending Request...";
 "kLoading" = "Loading...";
 "kLoadMore" = "Loading...";
+"kLoadFail" = "Fail to load data, please try it again later.";
 "kConfirm" = "OK";
 "kOK" = "OK";
 "kSubmit" = "Submit";
@@ -591,8 +592,7 @@
 "kRefreshMessageing" = "Refreshing...";
 
 "kComment" = "Comment";
-
-
+"kReplyComment" = "Reply";
 
 "kCorrect" = "Correct!";
 "kSending" = "Sending...";
