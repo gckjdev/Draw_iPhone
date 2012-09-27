@@ -83,6 +83,8 @@ message UseItemRequest {
   required int32 itemId = 1;
   
   optional int32 extendTime = 100;                // 加时或减时道具，设定的新时长（秒），相对值
+  optional int32  direction = 101;                // 逆道具，返回方向，0: 顺时针；1: 逆时针
+  
 }
 
 message UseItemResponse {
@@ -172,6 +174,7 @@ message NextPlayerStartNotificationRequest {
   required string currentPlayUserId = 1;
   required string nextPlayUserId = 2;
   optional int32  expiredTime = 3;              // 游戏玩家需要在指定时间内做出响应，0表示使用默认值，－1表示不限制
+  optional int32  direction = 4;                // 0: 顺时针；1: 逆时针
 }
 
 message NextPlayerStartNotificationResponse {
