@@ -607,6 +607,16 @@
     }
 }
 
+- (void)clearAllUrgeUser
+{
+    [_urgedUser removeAllObjects];
+    for (int i = 1; i <= MAX_PLAYER_COUNT; i ++) {
+        DiceAvatarView* avatar = (DiceAvatarView*)[self.view viewWithTag:AVATAR_TAG_OFFSET + i];
+        [avatar removeFlyClockOnMyHead];
+    }
+
+}
+
 
 #pragma mark - Register notifications.
 
@@ -1184,6 +1194,7 @@
     [self killTimer];
     self.waitForPlayerBetLabel.hidden = YES;
     [self clearAllReciprocol];
+    [self clearAllUrgeUser];
     
     self.resultDiceCountLabel.text = @"0";
     self.resultDiceImageView.image = [_customDicemanager diceImageForType:[_customDicemanager getMyDiceType] dice:_diceService.lastCallDice];
