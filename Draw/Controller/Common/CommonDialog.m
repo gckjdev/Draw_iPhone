@@ -160,7 +160,7 @@
                                   style:(CommonDialogStyle)aStyle 
                                delegate:(id<CommonDialogDelegate>)aDelegate
 {
-    CommonDialog* view = [CommonDialog createDialogWithStyle:aStyle];
+    CommonDialog* view = [CommonDialog createDialogWithStyle:aStyle theme:[self globalGetTheme]];
     view.delegate = aDelegate;
     [view setTitle:title];
     [view setMessage:message];
