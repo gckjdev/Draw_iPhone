@@ -191,7 +191,7 @@ typedef enum{
         
         NSInteger startIndex = (indexPath.row * NORMAL_CELL_VIEW_NUMBER);
         NSMutableArray *list = [NSMutableArray array];
-        PPDebug(@"startIndex = %d",startIndex);
+//        PPDebug(@"startIndex = %d",startIndex);
         for (NSInteger i = startIndex; i < startIndex+NORMAL_CELL_VIEW_NUMBER; ++ i) {
             NSObject *object = [self saveGetObjectForIndex:i];
             if (object) {

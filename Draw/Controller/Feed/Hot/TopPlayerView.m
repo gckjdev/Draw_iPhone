@@ -16,6 +16,7 @@
 @synthesize nickName = _nickName;
 @synthesize levelInfo = _levelInfo;
 @synthesize maskButton = _maskButton;
+@synthesize cupImage = _cupImage;
 @synthesize topPlayer = _topPlayer;
 @synthesize delegate = _delegate;
 
@@ -85,6 +86,22 @@
 
 - (void)setRankFlag:(NSInteger)rank
 {
+    [self.cupImage setHidden:NO];
+    ShareImageManager *imageManager = [ShareImageManager defaultManager];
+    switch (rank) {
+        case CupTyeGolden:
+            [self.cupImage setImage:[imageManager goldenCupImage]];
+             return;
+        case CupTyeCopper:
+            [self.cupImage setImage:[imageManager copperCupImage]];
+            return;
+        case CupTypeSilver:
+            [self.cupImage setImage:[imageManager silverCupImage]];
+            return;
+        default:
+            [self.cupImage setHidden:NO];
+            return;
+    }
     
 }
 
@@ -111,6 +128,7 @@
     PPRelease(_levelInfo);
     PPRelease(_topPlayer);
     PPRelease(_avatar);
+    PPRelease(_cupImage);
     [super dealloc];
 }
 @end

@@ -443,6 +443,19 @@ static UIImage* _whitePaperImage;
     return [self fixedImageNamed:@"back"];
 }
 
+- (UIImage*)goldenCupImage
+{
+    return [UIImage imageNamed:@"gold_cup"];
+}
+- (UIImage*)silverCupImage
+{
+    return [UIImage imageNamed:@"silver_cup"];
+}
+- (UIImage*)copperCupImage
+{
+    return [UIImage imageNamed:@"copper_cup"];
+}
+
 - (UIImage *)shareDrawButtonImage
 {
     return [UIImage imageNamed:@"draw_share.png"];
