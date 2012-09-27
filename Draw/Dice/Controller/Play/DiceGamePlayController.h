@@ -93,5 +93,4 @@
 - (void)showRobotDecision;
 - (void)hideRobotDecision;
 - (void)clearAllUrgeUser;
-
 @end
