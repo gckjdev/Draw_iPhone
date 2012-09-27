@@ -708,7 +708,8 @@
                                         [CommonDiceItemAction handleItemRequest:message.useItemRequest.itemId 
                                                                          userId:message.userId 
                                                                      controller:self
-                                                                           view:self.view];      
+                                                                           view:self.view 
+                                                                        request:message.useItemRequest];      
                                     }];
 
     
@@ -717,7 +718,8 @@
                                         GameMessage *message = [CommonGameNetworkService userInfoToMessage:notification.userInfo];
                                         [CommonDiceItemAction handleItemResponse:message.useItemResponse.itemId 
                                                                       controller:self
-                                                                            view:self.view];
+                                                                            view:self.view 
+                                                                        response:message.useItemResponse];
                                     }];
     
     [self registerDiceGameNotificationWithName:NOTIFICAIION_CHAT_REQUEST
@@ -1511,7 +1513,7 @@
 {
     if (self.wildsFlagButton.hidden == YES) {
         self.wildsFlagButton.hidden = NO;
-        CAAnimation* enlarge = [AnimationManager scaleAnimationWithFromScale:1 toScale:3 duration:0.5 delegate:self removeCompeleted:NO];
+        CAAnimation* enlarge = [AnimationManager scaleAnimationWithFromScale:1 toScale:3 duration:0.5 delegate:self removeCompeleted:YES];
         
         enlarge.autoreverses = YES;
         enlarge.repeatCount = 2;

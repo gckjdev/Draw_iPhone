@@ -32,19 +32,22 @@
 }
 
 - (void)useItemSuccess:(DiceGamePlayController *)controller
-                  view:(UIView *)view
+                  view:(UIView *)view 
+              response:(UseItemResponse *)response
 {
-    [controller urgeUser:[_gameService.session getNextSeatPlayerByUserId:_userManager.userId].userId];
+    PBGameUser* itemTarget = [_gameService.session getUserByUserId:response.nextPlayUserId];
+    PPDebug(@"<DecTimeItemAction> I use an urge item, urge user %@(sit ad %d)", itemTarget.nickName, itemTarget.seatId);
+    [controller urgeUser:response.nextPlayUserId];
 }
 
 - (void)someoneUseItem:(NSString *)userId
             controller:(DiceGamePlayController *)controller
-                  view:(UIView *)view
+                  view:(UIView *)view 
+               request:(UseItemRequest *)request
 {
-
-    PBGameUser* itemTarget = [_gameService.session getNextSeatPlayerByUserId:userId];
-//    PBGameUser* itemUser = [_gameService.session getUserByUserId:userId];
-//    PPDebug(@"<test> %@(sit at %d) use an urge item, urge user %@(sit ad %d)", itemUser.nickName, itemUser.seatId,  itemTarget.nickName, itemTarget.seatId);
-    [controller urgeUser:itemTarget.userId];
+    PBGameUser* itemUser = [_gameService.session getUserByUserId:userId];
+    PBGameUser* itemTarget = [_gameService.session getUserByUserId:request.nextPlayUserId];
+    PPDebug(@"<DecTimeItemAction> %@(sit at %d) use an urge item, urge user %@(sit ad %d)", itemUser.nickName, itemUser.seatId,  itemTarget.nickName, itemTarget.seatId);
+    [controller urgeUser:request.nextPlayUserId];
 }
 @end

@@ -7,6 +7,8 @@
 //
 
 #import "ReverseItemAction.h"
+#import "GameMessage.pb.h"
+#import "DiceGamePlayController.h"
 
 @implementation ReverseItemAction
 
@@ -27,16 +29,29 @@
 }
 
 - (void)useItemSuccess:(DiceGamePlayController *)controller
-                  view:(UIView *)view
+                  view:(UIView *)view 
+              response:(UseItemResponse *)response
 {
     
+    if (response.decreaseTimeForNextPlayUser) {
+        [controller clearAllUrgeUser];
+        [controller urgeUser:response.nextPlayUserId];
+        PBGameUser* user = [_gameService.session getUserByUserId:response.nextPlayUserId];
+        PPDebug(@"<ReverseItemAction> urge user %@ (sitting at %d)again!", user.nickName, user.seatId);
+    }
 }
 
 - (void)someoneUseItem:(NSString *)userId
             controller:(DiceGamePlayController *)controller
-                  view:(UIView *)view
+                  view:(UIView *)view 
+               request:(UseItemRequest *)request
 {
-    
+    if (request.decreaseTimeForNextPlayUser) {
+        [controller clearAllUrgeUser];
+        [controller urgeUser:request.nextPlayUserId];
+        PBGameUser* user = [_gameService.session getUserByUserId:request.nextPlayUserId];
+        PPDebug(@"<ReverseItemAction> urge user %@ (sitting at %d)again!", user.nickName, user.seatId);
+    }
 }
 
 @end
