@@ -568,7 +568,7 @@
     
     // set user on seat
     for (PBGameUser* user in userList) {
-        PPDebug(@"<test>get user--%@, sitting at %d",user.nickName, user.seatId);
+//        PPDebug(@"<test>get user--%@, sitting at %d",user.nickName, user.seatId);
         int seat = user.seatId;
         int seatIndex = (MAX_PLAYER_COUNT + selfUser.seatId - seat)%MAX_PLAYER_COUNT + 1;
         DiceAvatarView* avatar = (DiceAvatarView*)[self.view viewWithTag:AVATAR_TAG_OFFSET+seatIndex];
@@ -654,8 +654,10 @@
                                     }];
     
     [self registerDiceGameNotificationWithName:NOTIFICATION_NEXT_PLAYER_START
-                                    usingBlock:^(NSNotification *notification) {                       
-                                        [self nextPlayerStart];         
+                                    usingBlock:^(NSNotification *notification) {  
+                                        GameMessage *message = [CommonGameNetworkService userInfoToMessage:notification.userInfo];
+                                        NSString* userId = message.currentPlayUserId;
+                                        [self nextPlayerStart:userId];         
                                     }];
     
     [self registerDiceGameNotificationWithName:NOTIFICATION_CALL_DICE_REQUEST
@@ -915,13 +917,17 @@
 
 - (void)userPreStart:(NSString*)userId
 {
+//    PBGameUser* user = [_diceService.session getUserByUserId:userId];
     if ([_urgedUser containsObject:userId]) {
         [[self avatarViewOfUser:userId] startReciprocol:USER_THINK_TIME_INTERVAL - [ConfigManager getUrgeTime] 
                                                       fromProgress:((float)(USER_THINK_TIME_INTERVAL-[ConfigManager getUrgeTime])/USER_THINK_TIME_INTERVAL)];
         [self removeUrgedUser:userId];
         
+//        PPDebug(@"<test> it is %@'s turn, he has been urged.",user.nickName);
+        
     } else {
         [[self avatarViewOfUser:userId] startReciprocol:USER_THINK_TIME_INTERVAL];
+//        PPDebug(@"<test> it is %@'s turn, he has not been urged.",user.nickName);
     }
 }
 
@@ -950,13 +956,14 @@
     
 }
 
-- (void)nextPlayerStart
+- (void)nextPlayerStart:(NSString*)currentUserId
 {
+//    PBGameUser* user = [_diceService.session getUserByUserId:currentUserId];
+//    PPDebug(@"<test> *******it is %@'s turn*********",user.nickName);
     [self clearAllReciprocol];
     
-    NSString *currentPlayUserId = _diceService.session.currentPlayUserId;
+    NSString *currentPlayUserId = currentUserId;
     [self userPreStart:currentPlayUserId];
-    
     
     // 如果自己是旁观者，则在这里返回。
     if (_diceService.diceSession.isMeAByStander) {
@@ -1543,6 +1550,14 @@
     return YES;
 }
 
+#pragma mark - common info view delegate
+- (void)infoViewDidDisappear:(CommonInfoView*)view
+{
+    if (view.tag == ROBOT_CALL_TIPS_DIALOG_TAG) {
+        _diceRobotDecision = nil;
+    }
+}
+
 - (void)showRobotDecision
 {
 
@@ -1552,7 +1567,7 @@
                                                           delegate:self 
                                                              theme:CommonDialogThemeDice];
     _diceRobotDecision.tag = ROBOT_CALL_TIPS_DIALOG_TAG;
-    
+    _diceRobotDecision.disappearDelegate = self;
     
     if (_robotManager.result.shouldOpen) {
         [_diceRobotDecision.messageLabel setText:NSLS(@"kJustOpen")];
