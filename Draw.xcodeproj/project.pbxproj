@@ -1495,7 +1495,6 @@
 		CAC371581611F752002CB837 /* silver_cup@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAC371541611F752002CB837 /* silver_cup@2x.png */; };
 		CAC371591611F752002CB837 /* copper_cup@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAC371551611F752002CB837 /* copper_cup@2x.png */; };
 		CAC3715A1611F752002CB837 /* gold_cup@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAC371561611F752002CB837 /* gold_cup@2x.png */; };
-		CAC3715B1611F752002CB837 /* comment_reply@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAC371571611F752002CB837 /* comment_reply@2x.png */; };
 		CAC4DCE215450E8F00A42CF2 /* StoreKitUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC4DCE115450E8F00A42CF2 /* StoreKitUtils.m */; };
 		CAC4DCE81545286C00A42CF2 /* TransactionReceiptManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC4DCE71545286B00A42CF2 /* TransactionReceiptManager.m */; };
 		CAC4DCEB154542A200A42CF2 /* TransactionReceipt.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC4DCEA154542A200A42CF2 /* TransactionReceipt.m */; };
@@ -1528,6 +1527,10 @@
 		CAEE2B1E1613EA6F00CD9088 /* ReplayView.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEE2B1D1613EA6F00CD9088 /* ReplayView.m */; };
 		CAEE2B201613EAB400CD9088 /* ReplayView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAEE2B1F1613EAB400CD9088 /* ReplayView.xib */; };
 		CAEE2B221613EE5700CD9088 /* ReplayView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAEE2B211613EE5700CD9088 /* ReplayView~ipad.xib */; };
+		CAEE2B4216142D5C00CD9088 /* ReplyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEE2B4016142D5800CD9088 /* ReplyCell.m */; };
+		CAEE2B4316142D5C00CD9088 /* ReplyCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAEE2B4116142D5A00CD9088 /* ReplyCell.xib */; };
+		CAEE2B4516142E3900CD9088 /* ReplyCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAEE2B4416142E3800CD9088 /* ReplyCell~ipad.xib */; };
+		CAEE2B4716142F3C00CD9088 /* comment_reply@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAEE2B4616142F3C00CD9088 /* comment_reply@2x.png */; };
 		CAEECDAA15DDEEF700FA5A2A /* Board.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEECD9715DDEEF700FA5A2A /* Board.m */; };
 		CAEECDAB15DDEEF700FA5A2A /* BoardManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEECD9915DDEEF700FA5A2A /* BoardManager.m */; };
 		CAEECDAC15DDEEF700FA5A2A /* BoardNetwork.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEECD9C15DDEEF700FA5A2A /* BoardNetwork.m */; };
@@ -3707,7 +3710,6 @@
 		CAC371541611F752002CB837 /* silver_cup@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "silver_cup@2x.png"; sourceTree = "<group>"; };
 		CAC371551611F752002CB837 /* copper_cup@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "copper_cup@2x.png"; sourceTree = "<group>"; };
 		CAC371561611F752002CB837 /* gold_cup@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gold_cup@2x.png"; sourceTree = "<group>"; };
-		CAC371571611F752002CB837 /* comment_reply@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "comment_reply@2x.png"; sourceTree = "<group>"; };
 		CAC4DCE015450E8F00A42CF2 /* StoreKitUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoreKitUtils.h; sourceTree = "<group>"; };
 		CAC4DCE115450E8F00A42CF2 /* StoreKitUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoreKitUtils.m; sourceTree = "<group>"; };
 		CAC4DCE61545286B00A42CF2 /* TransactionReceiptManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransactionReceiptManager.h; sourceTree = "<group>"; };
@@ -3760,6 +3762,11 @@
 		CAEE2B1D1613EA6F00CD9088 /* ReplayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReplayView.m; sourceTree = "<group>"; };
 		CAEE2B1F1613EAB400CD9088 /* ReplayView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReplayView.xib; sourceTree = "<group>"; };
 		CAEE2B211613EE5700CD9088 /* ReplayView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ReplayView~ipad.xib"; sourceTree = "<group>"; };
+		CAEE2B3F16142D5600CD9088 /* ReplyCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReplyCell.h; sourceTree = "<group>"; };
+		CAEE2B4016142D5800CD9088 /* ReplyCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReplyCell.m; sourceTree = "<group>"; };
+		CAEE2B4116142D5A00CD9088 /* ReplyCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReplyCell.xib; sourceTree = "<group>"; };
+		CAEE2B4416142E3800CD9088 /* ReplyCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ReplyCell~ipad.xib"; sourceTree = "<group>"; };
+		CAEE2B4616142F3C00CD9088 /* comment_reply@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "comment_reply@2x.png"; sourceTree = "<group>"; };
 		CAEECCD115DB46AD00FA5A2A /* MainDataModel 8.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "MainDataModel 8.xcdatamodel"; sourceTree = "<group>"; };
 		CAEECCD215DBB0B000FA5A2A /* MainDataModel 9.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "MainDataModel 9.xcdatamodel"; sourceTree = "<group>"; };
 		CAEECD9615DDEEF700FA5A2A /* Board.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Board.h; sourceTree = "<group>"; };
@@ -5312,7 +5319,6 @@
 				CAC371541611F752002CB837 /* silver_cup@2x.png */,
 				CAC371551611F752002CB837 /* copper_cup@2x.png */,
 				CAC371561611F752002CB837 /* gold_cup@2x.png */,
-				CAC371571611F752002CB837 /* comment_reply@2x.png */,
 				CA0A2D0A16117BB500F66400 /* guessed@2x.png */,
 			);
 			path = flag;
@@ -7194,6 +7200,10 @@
 				CA8974081607230E003A95F7 /* UserInfoCell.m */,
 				CA8974091607230E003A95F7 /* UserInfoCell.xib */,
 				CA89740A1607230E003A95F7 /* UserInfoCell~ipad.xib */,
+				CAEE2B3F16142D5600CD9088 /* ReplyCell.h */,
+				CAEE2B4016142D5800CD9088 /* ReplyCell.m */,
+				CAEE2B4116142D5A00CD9088 /* ReplyCell.xib */,
+				CAEE2B4416142E3800CD9088 /* ReplyCell~ipad.xib */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -7494,6 +7504,7 @@
 		CA97EB6A15FCE43E008F756B /* detail */ = {
 			isa = PBXGroup;
 			children = (
+				CAEE2B4616142F3C00CD9088 /* comment_reply@2x.png */,
 				CA1D196916131DDC00E9C81D /* detail_replay@2x.png */,
 				CA97EB6B15FCE43E008F756B /* detail_comment@2x.png */,
 				CA97EB6C15FCE43E008F756B /* detail_flower@2x.png */,
@@ -9780,7 +9791,6 @@
 				CAC371581611F752002CB837 /* silver_cup@2x.png in Resources */,
 				CAC371591611F752002CB837 /* copper_cup@2x.png in Resources */,
 				CAC3715A1611F752002CB837 /* gold_cup@2x.png in Resources */,
-				CAC3715B1611F752002CB837 /* comment_reply@2x.png in Resources */,
 				A43E85001612EFDC003A57F1 /* dice_high_room_background.jpg in Resources */,
 				A43E85011612EFDC003A57F1 /* dice_room_background@2x.jpg in Resources */,
 				A43E85021612EFDC003A57F1 /* dice_super_high_room_background.jpg in Resources */,
@@ -9789,6 +9799,9 @@
 				CA1D196A16131DDC00E9C81D /* detail_replay@2x.png in Resources */,
 				CAEE2B201613EAB400CD9088 /* ReplayView.xib in Resources */,
 				CAEE2B221613EE5700CD9088 /* ReplayView~ipad.xib in Resources */,
+				CAEE2B4316142D5C00CD9088 /* ReplyCell.xib in Resources */,
+				CAEE2B4516142E3900CD9088 /* ReplyCell~ipad.xib in Resources */,
+				CAEE2B4716142F3C00CD9088 /* comment_reply@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -10327,6 +10340,7 @@
 				C2DD4F0D1610412500556CC7 /* DiceRobotDecisionView.m in Sources */,
 				CA0A2CAE1610473800F66400 /* TopPlayerView.m in Sources */,
 				CAEE2B1E1613EA6F00CD9088 /* ReplayView.m in Sources */,
+				CAEE2B4216142D5C00CD9088 /* ReplyCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
