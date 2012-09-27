@@ -1587,7 +1587,7 @@
 
 - (void)hideRobotDecision
 {
-    if (_diceRobotDecision) {
+    if ([self.view viewWithTag:ROBOT_CALL_TIPS_DIALOG_TAG] != nil) {
         [_diceRobotDecision disappear];
     }
 }
