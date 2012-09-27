@@ -39,14 +39,16 @@
 }
 
 - (void)useItemSuccess:(DiceGamePlayController *)controller
-                  view:(UIView *)view
+                  view:(UIView *)view 
+              response:(UseItemResponse *)response
 {
     [self rollDiceAgain:controller view:view];
 }
 
 - (void)someoneUseItem:(NSString *)userId
             controller:(DiceGamePlayController *)controller
-                  view:(UIView *)view
+                  view:(UIView *)view 
+               request:(UseItemRequest *)request
 {
     [self rollUserBell:userId controller:controller];
 }

@@ -97,7 +97,7 @@
     [action useItem:controller view:view];
 
     if (![action waitForResponse]) {
-        [self handleItemResponse:itemType controller:controller view:view];
+        [self handleItemResponse:itemType controller:controller view:view response:nil];
     }
 }
 
