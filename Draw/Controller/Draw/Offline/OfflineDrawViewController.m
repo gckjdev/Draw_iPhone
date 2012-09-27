@@ -698,7 +698,7 @@ enum{
     [self disMissAllPickViews:YES];
 }
 
-#define DRAFT_PAINT_COUNT 2
+#define DRAFT_PAINT_COUNT 30
 
 - (void)didDrawedPaint:(Paint *)paint
 {

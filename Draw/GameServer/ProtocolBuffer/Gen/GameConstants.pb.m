@@ -97,6 +97,7 @@ BOOL GameCommandTypeIsValidValue(GameCommandType value) {
     case GameCommandTypeLocalCallDice:
     case GameCommandTypeLocalOpenDice:
     case GameCommandTypeLocalUserSkip:
+    case GameCommandTypeLocalAllUserBet:
     case GameCommandTypeRoomNotificationRequest:
     case GameCommandTypeRoomNotificationResponse:
     case GameCommandTypeRollDiceBeginNotificationRequest:
