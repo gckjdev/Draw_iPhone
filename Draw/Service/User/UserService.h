@@ -22,7 +22,10 @@
               feedCount:(long)feedCount 
               messageCount:(long)messageCount 
                fanCount:(long)fanCount 
-              roomCount:(long)roomCount;
+              roomCount:(long)roomCount
+           commentCount:(long)commentCount
+          drawToMeCount:(long)drawToMeCount;
+
 - (void)didGetUserNickName:(NSString*)nickName
                 UserAvatar:(NSString*)avatar
                 UserGender:(NSString*)gender
