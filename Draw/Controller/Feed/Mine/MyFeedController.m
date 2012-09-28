@@ -14,6 +14,7 @@
 #import "CommonUserInfoView.h"
 #import "CommonMessageCenter.h"
 #import "CommonDialog.h"
+#import "StatisticManager.h"
 
 typedef enum{
     MyTypeFeed = FeedListTypeAll,
@@ -83,7 +84,9 @@ typedef enum{
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    //TODO update the feed/comment/draw to me/ badge.
+    
+    //update the feed/comment/draw to me/ badge.
+    [self updateAllBadge];
 }
 
 - (void)viewDidUnload
@@ -400,6 +403,44 @@ typedef enum{
     }
 }
 
+- (void)updateBadge:(FeedListType)type count:(NSInteger)count
+{
+    UIButton *badgeButton = (UIButton *)[self.view viewWithTag:10 + type];
+    [badgeButton setTitle:[NSString stringWithFormat:@"%d",count] forState:UIControlStateNormal];
+    if (count == 0 ) {
+        badgeButton.hidden = YES;
+    } else {
+        badgeButton.hidden = NO;
+    }
+}
+
+- (void)updateAllBadge
+{
+    StatisticManager * manager = [StatisticManager defaultManager];
+    [self updateBadge:FeedListTypeAll count:manager.feedCount];
+    [self updateBadge:FeedListTypeComment count:manager.commentCount];
+    [self updateBadge:FeedListTypeDrawToMe count:manager.drawToMeCount];
+}
+
+- (void)clearBadge:(FeedListType)type
+{
+    StatisticManager * manager = [StatisticManager defaultManager];
+    switch (type) {
+        case FeedListTypeAll:
+            manager.feedCount = 0;
+            break;
+        case FeedListTypeComment:
+            manager.commentCount = 0;
+            break;
+        case FeedListTypeDrawToMe:
+            manager.drawToMeCount = 0;
+            break;
+        default:
+            break;
+    }
+    [self updateAllBadge];
+}
+
 #pragma mark - feed service delegate
 
 - (void)didGetFeedList:(NSArray *)feedList 
@@ -410,6 +451,7 @@ typedef enum{
     [self hideActivity];
     if (resultCode == 0) {
         [self finishLoadDataForTabID:type resultList:feedList];
+        [self clearBadge:type];
     }else{
         [self failLoadDataForTabID:type];
     }
@@ -424,10 +466,12 @@ typedef enum{
     [self hideActivity];
     if (resultCode == 0) {
         [self finishLoadDataForTabID:type resultList:feedList];
+        [self clearBadge:type];
     }else{
         [self failLoadDataForTabID:type];
     }
-
+    
+    [self updateBadge:type count:0];
 }
 
 
