@@ -170,6 +170,38 @@ static FeedService *_staticFeedService = nil;
 
 }
 
+- (void)getMyCommentList:(NSInteger)offset 
+                   limit:(NSInteger)limit 
+                delegate:(id<FeedServiceDelegate>)delegate
+{
+    dispatch_async(workingQueue, ^{
+        
+        NSString *userId = [[UserManager defaultManager] userId];
+        NSString *appId = [ConfigManager appId];
+        CommonNetworkOutput* output = [GameNetworkRequest 
+                                       getMyCommentListWithProtocolBuffer:TRAFFIC_SERVER_URL 
+                                       userId:userId 
+                                       appId:appId 
+                                       offset:offset 
+                                       limit:limit];
+        NSArray *list = nil;
+        NSInteger resultCode = output.resultCode;
+        if (resultCode == ERROR_SUCCESS){
+            DataQueryResponse *response = [DataQueryResponse parseFromData:output.responseData];
+            resultCode = [response resultCode];
+            NSArray *pbFeedList = [response feedList];
+            list = [FeedManager parsePbCommentFeedList:pbFeedList];
+        }
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (delegate && [delegate respondsToSelector:@selector(didGetMyCommentList:resultCode:)]) {
+                [delegate didGetMyCommentList:list resultCode:resultCode];
+            }            
+        });
+    });
+}
+
+
 - (void)getFeedByFeedId:(NSString *)feedId 
                delegate:(id<FeedServiceDelegate>)delegate
 {

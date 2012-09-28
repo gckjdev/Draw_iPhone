@@ -50,6 +50,8 @@
 
 - (void)didUpdateFeedTimes:(DrawFeed *)feed 
                 resultCode:(NSInteger)resultCode;
+
+- (void)didGetMyCommentList:(NSArray *)commentList resultCode:(NSInteger)resultCode;
 @end
 
 @interface FeedService : CommonService
@@ -80,6 +82,10 @@
                     offset:(NSInteger)offset 
                      limit:(NSInteger)limit 
                   delegate:(id<FeedServiceDelegate>)delegate;
+
+- (void)getMyCommentList:(NSInteger)offset 
+                   limit:(NSInteger)limit 
+                delegate:(id<FeedServiceDelegate>)delegate;
 
 - (void)getFeedByFeedId:(NSString *)feedId 
                delegate:(id<FeedServiceDelegate>)delegate;

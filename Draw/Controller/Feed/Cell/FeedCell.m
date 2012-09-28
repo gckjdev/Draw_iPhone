@@ -246,7 +246,6 @@
     PPRelease(_avatarView);
     PPRelease(_feed);
     PPRelease(drawImageView);
-    [_showView stop];
     PPRelease(_showView);
     [super dealloc];
 }

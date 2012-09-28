@@ -304,6 +304,13 @@
                                                       offset:(NSInteger)offset
                                                        limit:(NSInteger)limit;
 
++ (CommonNetworkOutput*)getMyCommentListWithProtocolBuffer:(NSString*)baseURL 
+                                                    userId:(NSString *)userId
+                                                     appId:(NSString *)appId
+                                                    offset:(NSInteger)offset
+                                                     limit:(NSInteger)limit;
+
+
 + (CommonNetworkOutput*)updateUser:(NSString*)baseURL
                              appId:(NSString*)appId
                             userId:(NSString*)userId

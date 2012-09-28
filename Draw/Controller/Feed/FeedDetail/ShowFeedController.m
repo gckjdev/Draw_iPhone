@@ -447,16 +447,16 @@ enum{
         
         ShareImageManager *imageManager = [ShareImageManager defaultManager];
         if (item.type == ItemTypeFlower) {
-            UIImageView* itemView = [[[UIImageView alloc] initWithFrame:self.flowerButton.frame] autorelease];
-            [itemView setImage:[imageManager flower]];
-            [self.view addSubview:itemView];
-            [DrawGameAnimationManager showThrowFlower:itemView animInController:self rolling:YES];
+            _throwingItem = [[[UIImageView alloc] initWithFrame:self.flowerButton.frame] autorelease];
+            [_throwingItem setImage:[imageManager flower]];
+            [self.view addSubview:_throwingItem];
+            [DrawGameAnimationManager showThrowFlower:_throwingItem animInController:self rolling:YES];
             [_commentHeader setSeletType:CommentTypeFlower];
         }else{
-            UIImageView* itemView = [[[UIImageView alloc] initWithFrame:self.tomatoButton.frame] autorelease];
-            [itemView setImage:[imageManager tomato]];
-            [self.view addSubview:itemView];
-            [DrawGameAnimationManager showThrowTomato:itemView animInController:self rolling:YES];         
+            _throwingItem = [[[UIImageView alloc] initWithFrame:self.tomatoButton.frame] autorelease];
+            [_throwingItem setImage:[imageManager tomato]];
+            [self.view addSubview:_throwingItem];
+            [DrawGameAnimationManager showThrowTomato:_throwingItem animInController:self rolling:YES];         
             [_commentHeader setSeletType:CommentTypeTomato];
         }
     }
@@ -465,6 +465,10 @@ enum{
 - (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag
 {
     [DrawGameAnimationManager animation:anim didStopWithFlag:flag];
+    if (_throwingItem) {
+        [_throwingItem removeFromSuperview];
+    }
+    _throwingItem = nil;
     [self clickRefresh:nil];
 }
 
@@ -543,10 +547,9 @@ enum{
 #pragma mark - comment cell delegate
 - (void)didStartToReplyToFeed:(CommentFeed *)feed
 {
-    return;
     PPDebug(@"<didStartToReplyToFeed>, feed type = %d,comment = %@", feed.feedType,feed.comment);
     CommentController *replyController = [[CommentController alloc] initWithFeed:self.feed commentFeed:feed];
-    [self.navigationController pushViewController:self animated:YES];
+    [self presentModalViewController:replyController animated:YES];
     [replyController release];
 }
 

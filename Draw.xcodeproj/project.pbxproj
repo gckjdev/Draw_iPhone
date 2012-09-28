@@ -776,6 +776,7 @@
 		C2A09758152ECCB5006535F7 /* GifManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C2A09757152ECCB5006535F7 /* GifManager.m */; };
 		C2A0975B152ECD31006535F7 /* GifView.m in Sources */ = {isa = PBXBuildFile; fileRef = C2A0975A152ECD30006535F7 /* GifView.m */; };
 		C2A09762152ECDEA006535F7 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2A09761152ECDEA006535F7 /* ImageIO.framework */; };
+		C2A3CC1316159AD700663271 /* AnimationPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = C2A3CC1216159AD700663271 /* AnimationPlayer.m */; };
 		C2B002A1160B0EF300AC5F3B /* CustomDiceSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2B0029F160B0EF300AC5F3B /* CustomDiceSettingViewController.m */; };
 		C2B002A2160B0EF300AC5F3B /* CustomDiceSettingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2B002A0160B0EF300AC5F3B /* CustomDiceSettingViewController.xib */; };
 		C2B002A5160B134F00AC5F3B /* CustomDiceSettingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C2B002A4160B134F00AC5F3B /* CustomDiceSettingCell.m */; };
@@ -1281,6 +1282,10 @@
 		CA51BD761525DEDE00C77E50 /* Reward.m in Sources */ = {isa = PBXBuildFile; fileRef = CA51BD751525DEDE00C77E50 /* Reward.m */; };
 		CA639117152FEA3D007564C6 /* RouterTrafficServer.m in Sources */ = {isa = PBXBuildFile; fileRef = CA639116152FEA3D007564C6 /* RouterTrafficServer.m */; };
 		CA63911A152FEA4F007564C6 /* PriceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CA639119152FEA4F007564C6 /* PriceModel.m */; };
+		CA65C0641615A01700EE1C1C /* MyCommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA65C0611615A01700EE1C1C /* MyCommentCell.m */; };
+		CA65C0651615A01700EE1C1C /* MyCommentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA65C0621615A01700EE1C1C /* MyCommentCell.xib */; };
+		CA65C0661615A01700EE1C1C /* MyCommentCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA65C0631615A01700EE1C1C /* MyCommentCell~ipad.xib */; };
+		CA65C0681615A07A00EE1C1C /* reply_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA65C0671615A07A00EE1C1C /* reply_bg@2x.png */; };
 		CA65C1A0152D993600462C96 /* bg.png in Resources */ = {isa = PBXBuildFile; fileRef = CA65C16B152D993600462C96 /* bg.png */; };
 		CA65C1A1152D993600462C96 /* bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA65C16C152D993600462C96 /* bg@2x.png */; };
 		CA65C1A2152D993600462C96 /* bg_land.png in Resources */ = {isa = PBXBuildFile; fileRef = CA65C16D152D993600462C96 /* bg_land.png */; };
@@ -2587,6 +2592,8 @@
 		C2A09759152ECD30006535F7 /* GifView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GifView.h; sourceTree = "<group>"; };
 		C2A0975A152ECD30006535F7 /* GifView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GifView.m; sourceTree = "<group>"; };
 		C2A09761152ECDEA006535F7 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
+		C2A3CC1116159AD700663271 /* AnimationPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnimationPlayer.h; sourceTree = "<group>"; };
+		C2A3CC1216159AD700663271 /* AnimationPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnimationPlayer.m; sourceTree = "<group>"; };
 		C2B0029E160B0EF300AC5F3B /* CustomDiceSettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomDiceSettingViewController.h; sourceTree = "<group>"; };
 		C2B0029F160B0EF300AC5F3B /* CustomDiceSettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomDiceSettingViewController.m; sourceTree = "<group>"; };
 		C2B002A0160B0EF300AC5F3B /* CustomDiceSettingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomDiceSettingViewController.xib; sourceTree = "<group>"; };
@@ -3377,6 +3384,11 @@
 		CA639116152FEA3D007564C6 /* RouterTrafficServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RouterTrafficServer.m; sourceTree = "<group>"; };
 		CA639118152FEA4F007564C6 /* PriceModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PriceModel.h; sourceTree = "<group>"; };
 		CA639119152FEA4F007564C6 /* PriceModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PriceModel.m; sourceTree = "<group>"; };
+		CA65C0601615A01700EE1C1C /* MyCommentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyCommentCell.h; sourceTree = "<group>"; };
+		CA65C0611615A01700EE1C1C /* MyCommentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyCommentCell.m; sourceTree = "<group>"; };
+		CA65C0621615A01700EE1C1C /* MyCommentCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyCommentCell.xib; sourceTree = "<group>"; };
+		CA65C0631615A01700EE1C1C /* MyCommentCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "MyCommentCell~ipad.xib"; sourceTree = "<group>"; };
+		CA65C0671615A07A00EE1C1C /* reply_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "reply_bg@2x.png"; sourceTree = "<group>"; };
 		CA65C16B152D993600462C96 /* bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg.png; sourceTree = "<group>"; };
 		CA65C16C152D993600462C96 /* bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg@2x.png"; sourceTree = "<group>"; };
 		CA65C16D152D993600462C96 /* bg_land.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_land.png; sourceTree = "<group>"; };
@@ -4927,6 +4939,15 @@
 			path = Manipulators;
 			sourceTree = "<group>";
 		};
+		C2A3CC04161590FF00663271 /* Core-Utils-Animation */ = {
+			isa = PBXGroup;
+			children = (
+				C2A3CC1116159AD700663271 /* AnimationPlayer.h */,
+				C2A3CC1216159AD700663271 /* AnimationPlayer.m */,
+			);
+			path = "Core-Utils-Animation";
+			sourceTree = "<group>";
+		};
 		C2B0029D160B0EC500AC5F3B /* Settings */ = {
 			isa = PBXGroup;
 			children = (
@@ -5346,9 +5367,9 @@
 		CA103B391509A56000F60C03 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				C2A3CC04161590FF00663271 /* Core-Utils-Animation */,
 				CA103F491509A9FD00F60C03 /* Core-3PP */,
 				CA103CC21509A56000F60C03 /* Core-Application */,
-				CA103CDB1509A56100F60C03 /* Core-Components-Animation */,
 				CA103CDC1509A56100F60C03 /* Core-Components-Controller */,
 				CA103CE51509A56100F60C03 /* Core-Components-Network */,
 				CA103CE61509A56100F60C03 /* Core-Components-Service */,
@@ -5408,13 +5429,6 @@
 				CA103CDA1509A56100F60C03 /* TestPPViewController.xib */,
 			);
 			path = Test;
-			sourceTree = "<group>";
-		};
-		CA103CDB1509A56100F60C03 /* Core-Components-Animation */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "Core-Components-Animation";
 			sourceTree = "<group>";
 		};
 		CA103CDC1509A56100F60C03 /* Core-Components-Controller */ = {
@@ -6820,6 +6834,7 @@
 		CA34E7601615353A00F85346 /* background */ = {
 			isa = PBXGroup;
 			children = (
+				CA65C0671615A07A00EE1C1C /* reply_bg@2x.png */,
 				CA34E7611615353A00F85346 /* dark_wood_bg@2x.png */,
 				CA34E7621615353A00F85346 /* easy@2x.png */,
 				CA34E7631615353A00F85346 /* finish@2x.png */,
@@ -7425,6 +7440,10 @@
 		CA8973F61607230E003A95F7 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
+				CA65C0601615A01700EE1C1C /* MyCommentCell.h */,
+				CA65C0611615A01700EE1C1C /* MyCommentCell.m */,
+				CA65C0621615A01700EE1C1C /* MyCommentCell.xib */,
+				CA65C0631615A01700EE1C1C /* MyCommentCell~ipad.xib */,
 				CA8973F71607230E003A95F7 /* CommentCell.h */,
 				CA8973F81607230E003A95F7 /* CommentCell.m */,
 				CA8973F91607230E003A95F7 /* CommentCell.xib */,
@@ -9817,6 +9836,9 @@
 				CA34E8981615353A00F85346 /* oowrong.mp3 in Resources */,
 				CA34E8991615353A00F85346 /* pushMessage.mp3 in Resources */,
 				CA34E89A1615353A00F85346 /* wrong.wav in Resources */,
+				CA65C0651615A01700EE1C1C /* MyCommentCell.xib in Resources */,
+				CA65C0661615A01700EE1C1C /* MyCommentCell~ipad.xib in Resources */,
+				CA65C0681615A07A00EE1C1C /* reply_bg@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -10355,6 +10377,8 @@
 				CA0A2CAE1610473800F66400 /* TopPlayerView.m in Sources */,
 				CAEE2B1E1613EA6F00CD9088 /* ReplayView.m in Sources */,
 				CAEE2B4216142D5C00CD9088 /* ReplyCell.m in Sources */,
+				C2A3CC1316159AD700663271 /* AnimationPlayer.m in Sources */,
+				CA65C0641615A01700EE1C1C /* MyCommentCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -10632,8 +10656,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Lingzhe Peng (9WG829Y3AG)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Lingzhe Peng (9WG829Y3AG)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Lingzhe Peng (4JW9JNLMWA)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Lingzhe Peng (4JW9JNLMWA)";
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -10684,8 +10708,8 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "15E61AF7-360B-473A-9B03-A207BE758197";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "15E61AF7-360B-473A-9B03-A207BE758197";
+				PROVISIONING_PROFILE = "8C9352B7-156B-47AF-AA40-39E4517161A8";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "8C9352B7-156B-47AF-AA40-39E4517161A8";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -10694,8 +10718,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Lingzhe Peng";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Lingzhe Peng";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Lingzhe Peng (4JW9JNLMWA)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Lingzhe Peng (4JW9JNLMWA)";
 				COPY_PHASE_STRIP = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -10745,8 +10769,8 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "15D57303-26BC-4ED9-8C04-7F886B871932";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "15D57303-26BC-4ED9-8C04-7F886B871932";
+				PROVISIONING_PROFILE = "8C9352B7-156B-47AF-AA40-39E4517161A8";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "8C9352B7-156B-47AF-AA40-39E4517161A8";
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;
 			};

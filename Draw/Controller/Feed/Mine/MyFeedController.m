@@ -15,6 +15,7 @@
 #import "CommonMessageCenter.h"
 #import "CommonDialog.h"
 #import "StatisticManager.h"
+#import "CommentCell.h"
 
 typedef enum{
     MyTypeFeed = FeedListTypeAll,
@@ -114,6 +115,11 @@ typedef enum{
         return [RankView heightForRankViewType:RankViewTypeNormal]+1;
         case MyTypeFeed:
             return [FeedCell getCellHeight];
+        case MyTypeComment:
+        {
+            CommentFeed * commentFeed = [self.tabDataList objectAtIndex:indexPath.row];
+            return [CommentCell  getCellHeight:commentFeed];
+        }
         default:
             return 44.0f;
     }
@@ -229,6 +235,15 @@ typedef enum{
         }
         [self setNormalRankCell:cell WithFeeds:list];
         return cell;
+    }else if(tab.tabID == MyTypeComment){
+        CommentFeed * commentFeed = [self.tabDataList objectAtIndex:indexPath.row];
+        CommentCell *cell = [theTableView dequeueReusableCellWithIdentifier:[CommentCell getCellIdentifier]];
+        if (cell == nil) {
+            cell = [CommentCell createCell:self];
+        }
+        [cell setCellInfo:commentFeed];
+        return cell;
+//        return nil;
     }else{
         return nil;
     }
@@ -389,10 +404,11 @@ typedef enum{
                                     delegate:self];
             }
             case MyTypeComment:
-                //TODO finish the comment label.
+                
             {
-                [self.noDataTipLabl setText:@"功能尚未完成，先试试其他的吧。"];
-                self.currentTab.status = TableTabStatusLoaded;
+                [feedService getMyCommentList:offset limit:limit delegate:self];
+//                [self.noDataTipLabl setText:@"功能尚未完成，先试试其他的吧。"];
+//                self.currentTab.status = TableTabStatusLoaded;
             }
             default:
                 
@@ -472,6 +488,17 @@ typedef enum{
     }
     
     [self updateBadge:type count:0];
+}
+
+- (void)didGetMyCommentList:(NSArray *)commentList resultCode:(NSInteger)resultCode
+{
+    PPDebug(@"<didGetMyCommentList> list count = %d ", [commentList count]);
+    [self hideActivity];
+    if (resultCode == 0) {
+        [self finishLoadDataForTabID:MyTypeComment resultList:commentList];
+    }else{
+        [self failLoadDataForTabID:MyTypeComment];
+    }
 }
 
 

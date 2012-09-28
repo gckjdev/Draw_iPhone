@@ -6,7 +6,7 @@
 //  Copyright (c) 2012年 __MyCompanyName__. All rights reserved.
 //
 
-#import "CommentCell.h"
+#import "MyCommentCell.h"
 #import "TimeUtils.h"
 #import "LocaleUtils.h"
 #import "DeviceDetection.h"
@@ -16,7 +16,7 @@
 #import "ShareImageManager.h"
 #import "CommentFeed.h"
 
-@implementation CommentCell
+@implementation MyCommentCell
 @synthesize commentLabel;
 @synthesize timeLabel;
 @synthesize nickNameLabel;
