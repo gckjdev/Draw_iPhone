@@ -80,6 +80,12 @@ typedef enum{
     [self.titleLabel setText:NSLS(@"kFeed")];
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    //TODO update the feed/comment/draw to me/ badge.
+}
+
 - (void)viewDidUnload
 {
     [super viewDidUnload];

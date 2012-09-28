@@ -565,6 +565,8 @@
         //update badge
 
         
+        //TODO store the counts.
+        
         [self.bottomMenuPanel setMenuBadge:messageCount forMenuType:MenuButtonTypeChat];
         [self.bottomMenuPanel setMenuBadge:fanCount 
                                forMenuType:MenuButtonTypeFriend];
