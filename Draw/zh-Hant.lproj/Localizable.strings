@@ -832,6 +832,16 @@
 "kCanotSendToSelf" = "不能為自己的作品送鮮花或者扔番茄哦。";
 "kAutoSave" = "自動保存";
 "kReplyCommentDesc" = "回複%@: %@";
+
+"kSummaryOfDraw" = "評論%@的畫: [%@]";
+"kSummaryOfDrawNoWord" = "評論%@的畫";
+"kSummaryOfGuess" = "回复%@的猜畫";
+"kSummaryOfSendItem" = "回复%@的表態: %@";
+"kSummaryOfComment" = "回复%@的評論: %@";
+"kMe" = "我";
+"kSendMeFlower" = "给我赠送了一朵鲜花！";
+"kThrowMeTomato" = "给我丢了个番茄！";
+
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 

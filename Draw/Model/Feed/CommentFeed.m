@@ -36,10 +36,23 @@
 }
 - (NSString *)commentInMyComment
 {
-    return self.comment;
+    if (self.feedType == FeedTypeFlower) {
+        return  NSLS(@"kSendMeFlower");
+    }else if(self.feedType == FeedTypeTomato){
+        return  NSLS(@"kThrowMeTomato");
+    }
+    
+    return [self commentInFeedDeatil];
 }
 
-
+- (BOOL)canDelete
+{
+    if (self.isMyFeed) {
+        return YES;
+    }
+    NSString *uid = self.commentInfo.actionUid;
+    return [[UserManager defaultManager] isMe:uid];
+}
 - (void)initComment:(PBFeed *)pbFeed
 {
     switch (self.feedType) {
@@ -52,9 +65,18 @@
             break;
         case FeedTypeFlower:
             self.comment = NSLS(@"kSendAFlower");            
+            if ([pbFeed hasCommentInfo]) {
+                self.commentInfo = [[CommentInfo alloc] initWithPBCommentInfo:
+                                    pbFeed.commentInfo];                
+            }
             break;
         case FeedTypeTomato:
             self.comment = NSLS(@"kThrowATomato");
+            if ([pbFeed hasCommentInfo]) {
+                self.commentInfo = [[CommentInfo alloc] initWithPBCommentInfo:
+                                    pbFeed.commentInfo];                
+            }
+
             break;
             
         case FeedTypeGuess:
@@ -148,6 +170,45 @@
 }
 - (NSString *)summaryDesc
 {
+    NSString *desc = nil;
+    BOOL isMe = [[UserManager defaultManager] isMe:self.actionUid];
+    NSString *nick = isMe ? NSLS(@"kMe") : self.actionNick;
+    
+    switch (self.type) {
+            //评论XX画的XX
+        case FeedTypeDraw:
+        case FeedTypeDrawToUser:
+        {   
+            if (isMe || [[UserManager defaultManager] hasGuessOpus:self.actionId]) {
+                desc = [NSString stringWithFormat:NSLS(@"kSummaryOfDraw"),nick, self.summary];                
+            }else{
+                desc = [NSString stringWithFormat:NSLS(@"kSummaryOfDrawNoWord")];
+            }
+        }
+            return desc;
+
+            //回复XX的猜画
+        case FeedTypeGuess:
+            desc = [NSString stringWithFormat:NSLS(@"kSummaryOfGuess"),nick];
+            return desc;
+            
+            //回复XX的表态:XX
+        case FeedTypeTomato:
+            desc = [NSString stringWithFormat:NSLS(@"kSummaryOfSendItem"),nick, NSLS(@"kThrowATomato")];
+            return desc;
+            
+        case FeedTypeFlower:
+            desc = [NSString stringWithFormat:NSLS(@"kSummaryOfSendItem"),nick,NSLS(@"kSendAFlower")];
+            return desc;
+            
+            //回复XX的评论:XX
+        case FeedTypeComment:
+            desc = [NSString stringWithFormat:NSLS(@"kSummaryOfComment"),nick,self.summary];
+            return desc;
+            
+        default:
+            break;
+    }
     return self.summary;
 }
 @end

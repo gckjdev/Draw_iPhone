@@ -21,6 +21,7 @@
 - (id)initWithPBFeed:(PBFeed *)pbFeed;
 - (NSString *)commentInFeedDeatil;
 - (NSString *)commentInMyComment;;
+- (BOOL)canDelete;
 @end
 
 
