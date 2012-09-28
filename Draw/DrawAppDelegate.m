@@ -154,7 +154,12 @@ NSString* GlobalGetBoardServerURL()
     
     
     // Init Account Service and Sync Balance and Item
-    [[AccountService defaultService] syncAccountAndItem];
+    if (isDrawApp()){
+        [[AccountService defaultService] syncAccountAndItem];
+    }
+    else{
+        [[AccountService defaultService] syncAccount:nil forceServer:YES];
+    }
     
     if (isDrawApp()){
         [[RouterService defaultService] fetchServerListAtBackground];    

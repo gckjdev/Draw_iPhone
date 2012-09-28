@@ -439,7 +439,9 @@
 #pragma mark - FeedCell delegate
 - (void)didClickGuessButtonOnFeed:(Feed *)feed
 {
-    [OfflineGuessDrawController startOfflineGuess:feed fromController:self];
+    if ([feed isKindOfClass:[DrawFeed class]]){
+        [OfflineGuessDrawController startOfflineGuess:(DrawFeed*)feed fromController:self];
+    }
 }
 - (void)didClickDrawOneMoreButtonAtIndexPath:(NSIndexPath *)indexPath
 {

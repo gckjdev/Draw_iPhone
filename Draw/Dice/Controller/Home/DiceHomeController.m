@@ -314,7 +314,7 @@
     //[diceBtn addTarget:self action:@selector(clickAwardDice:) forControlEvents:UIControlEventTouchUpInside];
     diceBtn.tag = AWARD_DICE_TAG;
     CAAnimation* rolling = [AnimationManager rotationAnimationWithRoundCount:-50 duration:25];
-    rolling.removedOnCompletion = NO;
+    rolling.removedOnCompletion = YES;
     rolling.delegate = self;
     [diceBtn.layer addAnimation:rolling forKey:@"roll"];
     
@@ -351,6 +351,7 @@
                             rand()%(int)(screenHeight - diceHeight) + diceHeight/2);
     
     CAKeyframeAnimation* pathAnimation = [AnimationManager pathByPoins:points count:6 duration:25 delegate:self];
+    pathAnimation.removedOnCompletion = YES;
     
     [diceBtn.layer addAnimation:pathAnimation forKey:@"move"];
     [diceBtn setCenter:points[5]];

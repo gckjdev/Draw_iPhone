@@ -97,7 +97,7 @@
     [action useItem:controller view:view];
 
     if (![action waitForResponse]) {
-        [self handleItemResponse:itemType controller:controller view:view];
+        [self handleItemResponse:itemType controller:controller view:view response:nil];
     }
 }
 
@@ -125,8 +125,58 @@
                          view:view];
 }
 
++ (void)handleItemResponse:(int)itemType
+                controller:(DiceGamePlayController *)controller
+                      view:(UIView *)view 
+                  response:(UseItemResponse*)response
+{
+    CommonDiceItemAction *action = [CommonDiceItemAction createDiceItemActionWithItemType:itemType];
+    
+    if ([action waitForResponse]) {
+        [action handleItemResponse:controller
+                              view:view 
+                          response:response];
+    }
+}
+
++ (void)handleItemRequest:(int)itemType
+                   userId:(NSString *)userId
+               controller:(DiceGamePlayController *)controller
+                     view:(UIView *)view 
+                  request:(UseItemRequest*)request
+{
+    CommonDiceItemAction *action = [CommonDiceItemAction createDiceItemActionWithItemType:itemType];
+    
+    [action handleItemRequest:userId
+                   controller:controller 
+                         view:view 
+                      request:request];
+}
+
+
 - (void)handleItemResponse:(DiceGamePlayController *)controller
-                      view:(UIView *)view
+                      view:(UIView *)view 
+                  response:(UseItemResponse*)response
+{
+    [_accountService consumeItem:_itemType amount:1]; 
+    
+    [self showItemAnimation:_userManager.userId itemType:_itemType controller:controller view:view];
+    
+    [self useItemSuccess:controller view:view response:response];
+}
+
+- (void)handleItemRequest:(NSString *)userId
+               controller:(DiceGamePlayController *)controller
+                     view:(UIView *)view 
+                  request:(UseItemRequest*)request
+{
+    [self showItemAnimation:userId itemType:_itemType controller:controller view:view];
+    
+    [self someoneUseItem:userId controller:controller view:view request:request];
+}
+
+- (void)handleItemResponse:(DiceGamePlayController *)controller
+                      view:(UIView *)view 
 {
     [_accountService consumeItem:_itemType amount:1]; 
     
@@ -137,7 +187,7 @@
 
 - (void)handleItemRequest:(NSString *)userId
                controller:(DiceGamePlayController *)controller
-                     view:(UIView *)view
+                     view:(UIView *)view 
 {
     [self showItemAnimation:userId itemType:_itemType controller:controller view:view];
     
@@ -229,6 +279,22 @@
 {
     return;
 }
+
+- (void)useItemSuccess:(DiceGamePlayController *)controller
+                  view:(UIView *)view 
+              response:(UseItemResponse*)response
+{
+    return;
+}
+
+- (void)someoneUseItem:(NSString *)userId
+            controller:(DiceGamePlayController *)controller
+                  view:(UIView *)view 
+               request:(UseItemRequest*)request
+{
+    return;
+}
+
 
 - (void)useItemSuccess:(DiceGamePlayController *)controller
                   view:(UIView *)view

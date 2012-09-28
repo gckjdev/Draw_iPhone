@@ -47,9 +47,9 @@
     CAAnimation* rolling = [AnimationManager rotationAnimationWithRoundCount:ROATE_RATE*THROWING_TIME duration:THROWING_TIME];
     CAAnimation* throw = [AnimationManager translationAnimationFrom:startPoint to:endPoint duration:THROWING_TIME];
 
-    throw.removedOnCompletion = NO;
+    throw.removedOnCompletion = YES;
     
-    CAAnimation* enlarge = [AnimationManager scaleAnimationWithFromScale:1 toScale:5 duration:MISSING_TIME delegate:viewController removeCompeleted:NO];
+    CAAnimation* enlarge = [AnimationManager scaleAnimationWithFromScale:1 toScale:5 duration:MISSING_TIME delegate:viewController removeCompeleted:YES];
     
     CAAnimation* miss = [AnimationManager missingAnimationWithDuration:MISSING_TIME];
     
@@ -63,7 +63,7 @@
     //设置动画代理
     animGroup.delegate = viewController;
     
-    animGroup.removedOnCompletion = NO;
+    animGroup.removedOnCompletion = YES;
     animGroup.duration             = THROWING_TIME+MISSING_TIME;
     animGroup.timingFunction      = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];    
     animGroup.repeatCount         = 1;//FLT_MAX;  //"forever";
@@ -115,7 +115,7 @@
     
     CAAnimation* rolling = [AnimationManager rotationAnimationWithRoundCount:ROATE_RATE*THROWING_TIME duration:THROWING_TIME];
     CAAnimation* disMiss = [AnimationManager missingAnimationWithDuration:THROWING_TIME];
-    CAAnimation* zoom = [AnimationManager scaleAnimationWithFromScale:0.1 toScale:3 duration:THROWING_TIME delegate:viewController removeCompeleted:NO];
+    CAAnimation* zoom = [AnimationManager scaleAnimationWithFromScale:0.1 toScale:3 duration:THROWING_TIME delegate:viewController removeCompeleted:YES];
     [zoom setValue:ANIM_KEY_RECEIVE_FLOWER forKey:DRAW_ANIM];
     
     [flowerImageView.layer addAnimation:rolling forKey:@"rolling"];
@@ -131,7 +131,7 @@
     
     CAAnimation* rolling = [AnimationManager rotationAnimationWithRoundCount:ROATE_RATE*THROWING_TIME duration:THROWING_TIME];
     CAAnimation* disMiss = [AnimationManager missingAnimationWithDuration:THROWING_TIME];
-    CAAnimation* zoom = [AnimationManager scaleAnimationWithFromScale:0.1 toScale:3 duration:THROWING_TIME delegate:viewController removeCompeleted:NO];
+    CAAnimation* zoom = [AnimationManager scaleAnimationWithFromScale:0.1 toScale:3 duration:THROWING_TIME delegate:viewController removeCompeleted:YES];
     [zoom setValue:ANIM_KEY_RECEIVE_TOMATO forKey:DRAW_ANIM];
     
     [tomatoImageView.layer addAnimation:rolling forKey:@"rolling"];

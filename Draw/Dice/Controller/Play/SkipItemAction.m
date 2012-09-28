@@ -29,14 +29,16 @@
 }
 
 - (void)useItemSuccess:(DiceGamePlayController *)controller
-                  view:(UIView *)view
+                  view:(UIView *)view 
+              response:(UseItemResponse *)response
 {
     
 }
 
 - (void)someoneUseItem:(NSString *)userId
             controller:(DiceGamePlayController *)controller
-                  view:(UIView *)view
+                  view:(UIView *)view 
+               request:(UseItemRequest *)request
 {
     
 }

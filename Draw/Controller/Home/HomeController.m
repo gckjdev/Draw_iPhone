@@ -301,7 +301,13 @@
 - (void)playBackgroundMusic
 {
     MusicItemManager* musicManager = [MusicItemManager defaultManager];
-    NSURL *url = [NSURL fileURLWithPath:musicManager.currentMusicItem.localPath];
+    NSString* musicURL = musicManager.currentMusicItem.localPath;
+    if (musicURL == nil){
+        PPDebug(@"<playBackgroundMusic> but music url is nil");
+        return;
+    }
+    
+    NSURL *url = [NSURL fileURLWithPath:musicURL];
     AudioManager *audioManager = [AudioManager defaultManager];
     
     [audioManager setBackGroundMusicWithURL:url];

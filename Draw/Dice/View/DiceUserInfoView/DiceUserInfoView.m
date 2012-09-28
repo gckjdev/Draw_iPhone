@@ -212,8 +212,7 @@
     }
     DiceUserInfoView* view =  (DiceUserInfoView*)[topLevelObjects objectAtIndex:0];
     
-    CAAnimation *runIn = [AnimationManager scaleAnimationWithFromScale:0.1 toScale:1 duration:RUN_IN_TIME delegate:self removeCompeleted:NO];
-    [view.contentView.layer addAnimation:runIn forKey:@"runIn"];
+    [view appear];
     
     return view;
 }
