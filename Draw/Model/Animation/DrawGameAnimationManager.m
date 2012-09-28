@@ -72,6 +72,7 @@
     return animGroup;
     //[animGroup setValue:key forKey:DRAW_ANIM];
     //对视图自身的层添加组动画
+    ItemImageView.layer.opacity = 0;
     [ItemImageView.layer addAnimation:animGroup forKey:ANIM_GROUP];
 }
 
@@ -118,6 +119,7 @@
     CAAnimation* zoom = [AnimationManager scaleAnimationWithFromScale:0.1 toScale:3 duration:THROWING_TIME delegate:viewController removeCompeleted:YES];
     [zoom setValue:ANIM_KEY_RECEIVE_FLOWER forKey:DRAW_ANIM];
     
+    flowerImageView.layer.opacity = 0;
     [flowerImageView.layer addAnimation:rolling forKey:@"rolling"];
     [flowerImageView.layer addAnimation:disMiss forKey:@"disMiss"];
     [flowerImageView.layer addAnimation:zoom forKey:@"zoom"];
@@ -125,7 +127,7 @@
 + (void)showReceiveTomato:(UIImageView*)tomatoImageView  
     animaitonInController:(UIViewController*)viewController 
 {
-    
+    tomatoImageView.layer.opacity = 0;
     CGPoint point = CGPointMake(viewController.view.center.x-RADIUS+(rand()%(2*RADIUS)), viewController.view.center.y-RADIUS+(rand()%(2*RADIUS)));
     [tomatoImageView setCenter:point];
     

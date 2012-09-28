@@ -101,17 +101,17 @@
 #pragma mark - throw item animation
 - (void)throwTool:(ToolView*)toolView
 {
-    UIImageView* item = [[[UIImageView alloc] initWithFrame:ITEM_FRAME] autorelease];
-    [self.view addSubview:item];
-    [item setImage:toolView.imageView.image];
-    item.center = self.view.center;
+    _throwingItem = [[[UIImageView alloc] initWithFrame:ITEM_FRAME] autorelease];
+    [self.view addSubview:_throwingItem];
+    [_throwingItem setImage:toolView.imageView.image];
+    _throwingItem.center = self.view.center;
     
     if (toolView.itemType == ItemTypeTomato) {
-        [DrawGameAnimationManager showThrowTomato:item 
+        [DrawGameAnimationManager showThrowTomato:_throwingItem 
                                  animInController:self
                                           rolling:NO];
     }else if (toolView.itemType == ItemTypeFlower) {
-        [DrawGameAnimationManager showThrowFlower:item
+        [DrawGameAnimationManager showThrowFlower:_throwingItem
                                  animInController:self 
                                           rolling:NO];
     }
@@ -847,6 +847,10 @@
 - (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag
 {
     [DrawGameAnimationManager animation:anim didStopWithFlag:flag];
+    if (_throwingItem) {
+        [_throwingItem removeFromSuperview];
+    }
+    _throwingItem = nil;
 }
 
 #pragma mark - commonItemInfoView delegate

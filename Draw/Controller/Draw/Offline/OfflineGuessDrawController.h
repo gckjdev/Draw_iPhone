@@ -56,6 +56,7 @@
     NSString *_authorId;
     Draw *_draw;
     UIViewController *_supperController;
+    UIImageView* _throwingItem;
     
     int _maxTomato;
     int _maxFlower;
