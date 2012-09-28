@@ -117,7 +117,7 @@
         NSString *commentNickName = nil;
         
         if (self.commentFeed) {
-            commentType = _feed.feedType;
+            commentType = _commentFeed.feedType;
             commentId = _commentFeed.feedId;
             if (_commentFeed.feedType == FeedTypeComment) {
                 commentSummary = _commentFeed.comment;
@@ -142,7 +142,7 @@
                       commentType:commentType
                         commentId:commentId 
                    commentSummary:commentSummary 
-                    commentUserId:commentId
+                    commentUserId:commentUserId
                   commentNickName:commentNickName 
                          delegate:self];        
     }

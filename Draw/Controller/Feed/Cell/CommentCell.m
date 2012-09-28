@@ -66,7 +66,7 @@
     if (feed.feedType == ItemTypeFlower || feed.feedType == ItemTypeTomato) {
         return COMMENT_ITEM_HEIGHT;
     }
-    NSString *comment = [feed comment];
+    NSString *comment = [feed commentInFeedDeatil];
     UIFont *font = [UIFont systemFontOfSize:COMMENT_FONT_SIZE];
     CGSize commentSize = [comment sizeWithFont:font constrainedToSize:CGSizeMake(COMMENT_WIDTH, 10000000) lineBreakMode:UILineBreakModeCharacterWrap];
     CGFloat height = COMMENT_BASE_Y + COMMENT_SPACE + commentSize.height;
@@ -108,7 +108,7 @@
         [self.timeLabel setText:timeString];
     }
     
-     NSString *comment = [feed comment];
+     NSString *comment = [feed commentInFeedDeatil];
     //set user name
     [self.nickNameLabel setText:author.nickName];
     

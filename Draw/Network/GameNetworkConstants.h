@@ -188,7 +188,7 @@
 #define PARA_COUNT @"ct"
 
 // request parameters
-
+#define METHOD_GET_MYCOMMENT_LIST @"gmcl"
 #define PARA_USERS @"users"
 #define PARA_USERID @"uid"
 #define PARA_CREATOR_USERID @"cuid"
