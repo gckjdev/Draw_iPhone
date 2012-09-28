@@ -1619,6 +1619,7 @@
 		EA856CA515F0A65700178323 /* wood_button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA856C6C15F0A65700178323 /* wood_button@2x.png */; };
 		EA9A315315E9D5CE0059288A /* DiceHelpView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA9A315215E9D5CE0059288A /* DiceHelpView~ipad.xib */; };
 		EAA6A13115CA23550094B122 /* DicesResultView.m in Sources */ = {isa = PBXBuildFile; fileRef = EAA6A12F15CA23550094B122 /* DicesResultView.m */; };
+		EAAFC5471615A4AB00C72BAB /* StatisticManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EAAFC5461615A4AB00C72BAB /* StatisticManager.m */; };
 		EAE0D149155FBC4900827DF9 /* MusicItemManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE0D148155FBC4800827DF9 /* MusicItemManager.m */; };
 		EAE27A3D15EA1C190078F392 /* ChatView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAE27A3C15EA1C190078F392 /* ChatView~ipad.xib */; };
 		EAE8A5611567ECEA002508D1 /* MusicSettingCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAE8A5601567ECE9002508D1 /* MusicSettingCell~ipad.xib */; };
@@ -3880,6 +3881,8 @@
 		EA9A315215E9D5CE0059288A /* DiceHelpView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "DiceHelpView~ipad.xib"; sourceTree = "<group>"; };
 		EAA6A12E15CA23550094B122 /* DicesResultView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DicesResultView.h; sourceTree = "<group>"; };
 		EAA6A12F15CA23550094B122 /* DicesResultView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DicesResultView.m; sourceTree = "<group>"; };
+		EAAFC5451615A4AB00C72BAB /* StatisticManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatisticManager.h; sourceTree = "<group>"; };
+		EAAFC5461615A4AB00C72BAB /* StatisticManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatisticManager.m; sourceTree = "<group>"; };
 		EAE0D147155FBC4700827DF9 /* MusicItemManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MusicItemManager.h; sourceTree = "<group>"; };
 		EAE0D148155FBC4800827DF9 /* MusicItemManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MusicItemManager.m; sourceTree = "<group>"; };
 		EAE27A3C15EA1C190078F392 /* ChatView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ChatView~ipad.xib"; sourceTree = "<group>"; };
@@ -8127,6 +8130,7 @@
 		CAECE0291503B25500BC2404 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				EAAFC5441615A4AB00C72BAB /* Statistic */,
 				CA8973721607131B003A95F7 /* Contest */,
 				CA42E3C515F4617A00790B3C /* TableTab */,
 				CA67B86A15E89AAC002050DB /* GameApp */,
@@ -8620,6 +8624,15 @@
 				EA856C6C15F0A65700178323 /* wood_button@2x.png */,
 			);
 			path = Images;
+			sourceTree = "<group>";
+		};
+		EAAFC5441615A4AB00C72BAB /* Statistic */ = {
+			isa = PBXGroup;
+			children = (
+				EAAFC5451615A4AB00C72BAB /* StatisticManager.h */,
+				EAAFC5461615A4AB00C72BAB /* StatisticManager.m */,
+			);
+			path = Statistic;
 			sourceTree = "<group>";
 		};
 		EAF5AFCD155E2DB4008CD8EE /* MusicSettings */ = {
@@ -10379,6 +10392,7 @@
 				CAEE2B4216142D5C00CD9088 /* ReplyCell.m in Sources */,
 				C2A3CC1316159AD700663271 /* AnimationPlayer.m in Sources */,
 				CA65C0641615A01700EE1C1C /* MyCommentCell.m in Sources */,
+				EAAFC5471615A4AB00C72BAB /* StatisticManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
