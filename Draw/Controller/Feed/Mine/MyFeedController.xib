@@ -303,7 +303,7 @@
 					<object class="IBUIButton" id="747066460">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">-2147483356</int>
-						<string key="NSFrame">{{58, 47}, {20, 20}}</string>
+						<string key="NSFrame">{{62, 47}, {18, 18}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<bool key="IBUIOpaque">NO</bool>
@@ -320,20 +320,20 @@
 							<string key="NSClassName">NSImage</string>
 							<string key="NSResourceName">number@2x.png</string>
 						</object>
-						<object class="IBUIFontDescription" key="IBUIFontDescription" id="789539052">
+						<object class="IBUIFontDescription" key="IBUIFontDescription" id="542656309">
 							<int key="type">2</int>
-							<double key="pointSize">12</double>
+							<double key="pointSize">10</double>
 						</object>
-						<object class="NSFont" key="IBUIFont" id="722146041">
+						<object class="NSFont" key="IBUIFont" id="1054283453">
 							<string key="NSName">Helvetica-Bold</string>
-							<double key="NSSize">12</double>
+							<double key="NSSize">10</double>
 							<int key="NSfFlags">16</int>
 						</object>
 					</object>
 					<object class="IBUIButton" id="956402099">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">-2147483356</int>
-						<string key="NSFrame">{{136, 47}, {20, 20}}</string>
+						<string key="NSFrame">{{142, 47}, {18, 18}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<bool key="IBUIOpaque">NO</bool>
@@ -347,13 +347,13 @@
 						<reference key="IBUINormalTitleColor" ref="75250085"/>
 						<reference key="IBUINormalTitleShadowColor" ref="120212596"/>
 						<reference key="IBUINormalBackgroundImage" ref="571500370"/>
-						<reference key="IBUIFontDescription" ref="789539052"/>
-						<reference key="IBUIFont" ref="722146041"/>
+						<reference key="IBUIFontDescription" ref="542656309"/>
+						<reference key="IBUIFont" ref="1054283453"/>
 					</object>
 					<object class="IBUIButton" id="1064869554">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">-2147483356</int>
-						<string key="NSFrame">{{215, 47}, {20, 20}}</string>
+						<string key="NSFrame">{{222, 47}, {18, 18}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<bool key="IBUIOpaque">NO</bool>
@@ -367,13 +367,13 @@
 						<reference key="IBUINormalTitleColor" ref="75250085"/>
 						<reference key="IBUINormalTitleShadowColor" ref="120212596"/>
 						<reference key="IBUINormalBackgroundImage" ref="571500370"/>
-						<reference key="IBUIFontDescription" ref="789539052"/>
-						<reference key="IBUIFont" ref="722146041"/>
+						<reference key="IBUIFontDescription" ref="542656309"/>
+						<reference key="IBUIFont" ref="1054283453"/>
 					</object>
 					<object class="IBUIButton" id="760559709">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">-2147483356</int>
-						<string key="NSFrame">{{291, 47}, {20, 20}}</string>
+						<string key="NSFrame">{{292, 47}, {18, 18}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<bool key="IBUIOpaque">NO</bool>
@@ -387,8 +387,8 @@
 						<reference key="IBUINormalTitleColor" ref="75250085"/>
 						<reference key="IBUINormalTitleShadowColor" ref="120212596"/>
 						<reference key="IBUINormalBackgroundImage" ref="571500370"/>
-						<reference key="IBUIFontDescription" ref="789539052"/>
-						<reference key="IBUIFont" ref="722146041"/>
+						<reference key="IBUIFontDescription" ref="542656309"/>
+						<reference key="IBUIFont" ref="1054283453"/>
 					</object>
 				</array>
 				<string key="NSFrame">{{0, 20}, {320, 460}}</string>
@@ -528,13 +528,13 @@
 							<reference ref="997203346"/>
 							<reference ref="977230230"/>
 							<reference ref="587427890"/>
-							<reference ref="664520852"/>
 							<reference ref="293613165"/>
 							<reference ref="351911279"/>
 							<reference ref="747066460"/>
 							<reference ref="760559709"/>
 							<reference ref="1064869554"/>
 							<reference ref="956402099"/>
+							<reference ref="664520852"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>

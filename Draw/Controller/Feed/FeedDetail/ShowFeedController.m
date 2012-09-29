@@ -24,6 +24,7 @@
 #import "CommonMessageCenter.h"
 #import "ReplayView.h"
 #import "CommentFeed.h"
+#import "ReplayContestDrawController.h"
 
 @implementation ShowFeedController
 @synthesize titleLabel = _titleLabel;
@@ -92,7 +93,7 @@ enum{
 //    NSInteger start = ActionTagGuess;
 //    NSInteger count = ActionTagEnd - start;
 //    
-    self.guessButton.hidden = [self.feed showAnswer];
+    self.guessButton.hidden = [self.feed showAnswer] || [self.feed isContestFeed];
     self.replayButton.hidden = !self.guessButton.hidden;
     
 //    if ([self.feed showAnswer]) {
@@ -536,9 +537,21 @@ enum{
         Item *item = [Item tomato];
         [self throwItem:item];
     }else if(button == self.replayButton){
-        ReplayView *replay = [ReplayView createReplayView:self];
-        [replay setViewInfo:self.feed];
-        [replay showInView:self.view];
+        
+        if ([self.feed isContestFeed]) {
+            //TODO enter the show contest feed controller.
+            PPDebug(@"enter show contest feed controller");
+            
+            ReplayContestDrawController *controller = [[ReplayContestDrawController alloc] initWithFeed:self.feed];
+            [self.navigationController pushViewController:controller animated:YES];
+            [controller release];
+            
+        }else {
+            ReplayView *replay = [ReplayView createReplayView:self];
+            [replay setViewInfo:self.feed];
+            [replay showInView:self.view];
+        }
+        
     }else{
         //NO action
     }

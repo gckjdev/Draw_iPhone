@@ -1559,6 +1559,9 @@
 		EA18147215E2427C00CAF901 /* DiceRoomListController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA18147015E2427C00CAF901 /* DiceRoomListController~ipad.xib */; };
 		EA229E7F15F5FC5800655A93 /* font.zip in Resources */ = {isa = PBXBuildFile; fileRef = EA229E7E15F5FC5800655A93 /* font.zip */; };
 		EA24D35415EF1EFC008581A2 /* dice_room_help@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA24D35315EF1EFC008581A2 /* dice_room_help@2x.png */; };
+		EA2B2AE61616B2F5004C17AF /* ReplayContestDrawController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2B2AE31616B2F5004C17AF /* ReplayContestDrawController.m */; };
+		EA2B2AE71616B2F5004C17AF /* ReplayContestDrawController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA2B2AE41616B2F5004C17AF /* ReplayContestDrawController.xib */; };
+		EA2B2AE81616B2F5004C17AF /* ReplayContestDrawController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA2B2AE51616B2F5004C17AF /* ReplayContestDrawController~ipad.xib */; };
 		EA6916BE15ECCF4C0001CB5A /* DiceSettingView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA6916BD15ECCF4C0001CB5A /* DiceSettingView~ipad.xib */; };
 		EA856C6D15F0A65700178323 /* add_color@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA856C3415F0A65700178323 /* add_color@2x.png */; };
 		EA856C6E15F0A65700178323 /* back@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA856C3515F0A65700178323 /* back@2x.png */; };
@@ -3820,6 +3823,10 @@
 		EA18147015E2427C00CAF901 /* DiceRoomListController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "DiceRoomListController~ipad.xib"; sourceTree = "<group>"; };
 		EA229E7E15F5FC5800655A93 /* font.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = font.zip; sourceTree = "<group>"; };
 		EA24D35315EF1EFC008581A2 /* dice_room_help@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dice_room_help@2x.png"; sourceTree = "<group>"; };
+		EA2B2AE21616B2F5004C17AF /* ReplayContestDrawController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReplayContestDrawController.h; sourceTree = "<group>"; };
+		EA2B2AE31616B2F5004C17AF /* ReplayContestDrawController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReplayContestDrawController.m; sourceTree = "<group>"; };
+		EA2B2AE41616B2F5004C17AF /* ReplayContestDrawController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReplayContestDrawController.xib; sourceTree = "<group>"; };
+		EA2B2AE51616B2F5004C17AF /* ReplayContestDrawController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ReplayContestDrawController~ipad.xib"; sourceTree = "<group>"; };
 		EA6916BD15ECCF4C0001CB5A /* DiceSettingView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "DiceSettingView~ipad.xib"; sourceTree = "<group>"; };
 		EA856C3415F0A65700178323 /* add_color@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "add_color@2x.png"; sourceTree = "<group>"; };
 		EA856C3515F0A65700178323 /* back@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "back@2x.png"; sourceTree = "<group>"; };
@@ -7486,6 +7493,10 @@
 				CA8974191607230E003A95F7 /* ShowFeedController.m */,
 				CA89741A1607230E003A95F7 /* ShowFeedController.xib */,
 				CA89741B1607230E003A95F7 /* ShowFeedController~ipad.xib */,
+				EA2B2AE21616B2F5004C17AF /* ReplayContestDrawController.h */,
+				EA2B2AE31616B2F5004C17AF /* ReplayContestDrawController.m */,
+				EA2B2AE41616B2F5004C17AF /* ReplayContestDrawController.xib */,
+				EA2B2AE51616B2F5004C17AF /* ReplayContestDrawController~ipad.xib */,
 				CAEE2B1C1613EA6F00CD9088 /* ReplayView.h */,
 				CAEE2B1D1613EA6F00CD9088 /* ReplayView.m */,
 				CAEE2B1F1613EAB400CD9088 /* ReplayView.xib */,
@@ -9852,6 +9863,8 @@
 				CA65C0651615A01700EE1C1C /* MyCommentCell.xib in Resources */,
 				CA65C0661615A01700EE1C1C /* MyCommentCell~ipad.xib in Resources */,
 				CA65C0681615A07A00EE1C1C /* reply_bg@2x.png in Resources */,
+				EA2B2AE71616B2F5004C17AF /* ReplayContestDrawController.xib in Resources */,
+				EA2B2AE81616B2F5004C17AF /* ReplayContestDrawController~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -10393,6 +10406,7 @@
 				C2A3CC1316159AD700663271 /* AnimationPlayer.m in Sources */,
 				CA65C0641615A01700EE1C1C /* MyCommentCell.m in Sources */,
 				EAAFC5471615A4AB00C72BAB /* StatisticManager.m in Sources */,
+				EA2B2AE61616B2F5004C17AF /* ReplayContestDrawController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

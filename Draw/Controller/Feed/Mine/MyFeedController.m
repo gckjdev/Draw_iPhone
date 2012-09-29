@@ -459,7 +459,7 @@ typedef enum{
 {
     UIButton *badgeButton = (UIButton *)[self.view viewWithTag:10 + type];
     [badgeButton setTitle:[NSString stringWithFormat:@"%d",count] forState:UIControlStateNormal];
-    if (count == 0 ) {
+    if (count == 0) {
         badgeButton.hidden = YES;
     } else {
         badgeButton.hidden = NO;
@@ -532,6 +532,7 @@ typedef enum{
     [self hideActivity];
     if (resultCode == 0) {
         [self finishLoadDataForTabID:MyTypeComment resultList:commentList];
+        [self clearBadge:FeedListTypeComment];
     }else{
         [self failLoadDataForTabID:MyTypeComment];
     }
