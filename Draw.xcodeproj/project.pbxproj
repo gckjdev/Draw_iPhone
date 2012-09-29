@@ -1282,6 +1282,10 @@
 		CA51BD761525DEDE00C77E50 /* Reward.m in Sources */ = {isa = PBXBuildFile; fileRef = CA51BD751525DEDE00C77E50 /* Reward.m */; };
 		CA639117152FEA3D007564C6 /* RouterTrafficServer.m in Sources */ = {isa = PBXBuildFile; fileRef = CA639116152FEA3D007564C6 /* RouterTrafficServer.m */; };
 		CA63911A152FEA4F007564C6 /* PriceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CA639119152FEA4F007564C6 /* PriceModel.m */; };
+		CA65C0641615A01700EE1C1C /* MyCommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA65C0611615A01700EE1C1C /* MyCommentCell.m */; };
+		CA65C0651615A01700EE1C1C /* MyCommentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA65C0621615A01700EE1C1C /* MyCommentCell.xib */; };
+		CA65C0661615A01700EE1C1C /* MyCommentCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA65C0631615A01700EE1C1C /* MyCommentCell~ipad.xib */; };
+		CA65C0681615A07A00EE1C1C /* reply_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA65C0671615A07A00EE1C1C /* reply_bg@2x.png */; };
 		CA65C1A0152D993600462C96 /* bg.png in Resources */ = {isa = PBXBuildFile; fileRef = CA65C16B152D993600462C96 /* bg.png */; };
 		CA65C1A1152D993600462C96 /* bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA65C16C152D993600462C96 /* bg@2x.png */; };
 		CA65C1A2152D993600462C96 /* bg_land.png in Resources */ = {isa = PBXBuildFile; fileRef = CA65C16D152D993600462C96 /* bg_land.png */; };
@@ -1615,6 +1619,7 @@
 		EA856CA515F0A65700178323 /* wood_button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA856C6C15F0A65700178323 /* wood_button@2x.png */; };
 		EA9A315315E9D5CE0059288A /* DiceHelpView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA9A315215E9D5CE0059288A /* DiceHelpView~ipad.xib */; };
 		EAA6A13115CA23550094B122 /* DicesResultView.m in Sources */ = {isa = PBXBuildFile; fileRef = EAA6A12F15CA23550094B122 /* DicesResultView.m */; };
+		EAAFC5471615A4AB00C72BAB /* StatisticManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EAAFC5461615A4AB00C72BAB /* StatisticManager.m */; };
 		EAE0D149155FBC4900827DF9 /* MusicItemManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE0D148155FBC4800827DF9 /* MusicItemManager.m */; };
 		EAE27A3D15EA1C190078F392 /* ChatView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAE27A3C15EA1C190078F392 /* ChatView~ipad.xib */; };
 		EAE8A5611567ECEA002508D1 /* MusicSettingCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAE8A5601567ECE9002508D1 /* MusicSettingCell~ipad.xib */; };
@@ -3380,6 +3385,11 @@
 		CA639116152FEA3D007564C6 /* RouterTrafficServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RouterTrafficServer.m; sourceTree = "<group>"; };
 		CA639118152FEA4F007564C6 /* PriceModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PriceModel.h; sourceTree = "<group>"; };
 		CA639119152FEA4F007564C6 /* PriceModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PriceModel.m; sourceTree = "<group>"; };
+		CA65C0601615A01700EE1C1C /* MyCommentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyCommentCell.h; sourceTree = "<group>"; };
+		CA65C0611615A01700EE1C1C /* MyCommentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyCommentCell.m; sourceTree = "<group>"; };
+		CA65C0621615A01700EE1C1C /* MyCommentCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyCommentCell.xib; sourceTree = "<group>"; };
+		CA65C0631615A01700EE1C1C /* MyCommentCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "MyCommentCell~ipad.xib"; sourceTree = "<group>"; };
+		CA65C0671615A07A00EE1C1C /* reply_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "reply_bg@2x.png"; sourceTree = "<group>"; };
 		CA65C16B152D993600462C96 /* bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg.png; sourceTree = "<group>"; };
 		CA65C16C152D993600462C96 /* bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg@2x.png"; sourceTree = "<group>"; };
 		CA65C16D152D993600462C96 /* bg_land.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_land.png; sourceTree = "<group>"; };
@@ -3871,6 +3881,8 @@
 		EA9A315215E9D5CE0059288A /* DiceHelpView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "DiceHelpView~ipad.xib"; sourceTree = "<group>"; };
 		EAA6A12E15CA23550094B122 /* DicesResultView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DicesResultView.h; sourceTree = "<group>"; };
 		EAA6A12F15CA23550094B122 /* DicesResultView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DicesResultView.m; sourceTree = "<group>"; };
+		EAAFC5451615A4AB00C72BAB /* StatisticManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatisticManager.h; sourceTree = "<group>"; };
+		EAAFC5461615A4AB00C72BAB /* StatisticManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatisticManager.m; sourceTree = "<group>"; };
 		EAE0D147155FBC4700827DF9 /* MusicItemManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MusicItemManager.h; sourceTree = "<group>"; };
 		EAE0D148155FBC4800827DF9 /* MusicItemManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MusicItemManager.m; sourceTree = "<group>"; };
 		EAE27A3C15EA1C190078F392 /* ChatView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ChatView~ipad.xib"; sourceTree = "<group>"; };
@@ -6825,6 +6837,7 @@
 		CA34E7601615353A00F85346 /* background */ = {
 			isa = PBXGroup;
 			children = (
+				CA65C0671615A07A00EE1C1C /* reply_bg@2x.png */,
 				CA34E7611615353A00F85346 /* dark_wood_bg@2x.png */,
 				CA34E7621615353A00F85346 /* easy@2x.png */,
 				CA34E7631615353A00F85346 /* finish@2x.png */,
@@ -7430,6 +7443,10 @@
 		CA8973F61607230E003A95F7 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
+				CA65C0601615A01700EE1C1C /* MyCommentCell.h */,
+				CA65C0611615A01700EE1C1C /* MyCommentCell.m */,
+				CA65C0621615A01700EE1C1C /* MyCommentCell.xib */,
+				CA65C0631615A01700EE1C1C /* MyCommentCell~ipad.xib */,
 				CA8973F71607230E003A95F7 /* CommentCell.h */,
 				CA8973F81607230E003A95F7 /* CommentCell.m */,
 				CA8973F91607230E003A95F7 /* CommentCell.xib */,
@@ -8113,6 +8130,7 @@
 		CAECE0291503B25500BC2404 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				EAAFC5441615A4AB00C72BAB /* Statistic */,
 				CA8973721607131B003A95F7 /* Contest */,
 				CA42E3C515F4617A00790B3C /* TableTab */,
 				CA67B86A15E89AAC002050DB /* GameApp */,
@@ -8606,6 +8624,15 @@
 				EA856C6C15F0A65700178323 /* wood_button@2x.png */,
 			);
 			path = Images;
+			sourceTree = "<group>";
+		};
+		EAAFC5441615A4AB00C72BAB /* Statistic */ = {
+			isa = PBXGroup;
+			children = (
+				EAAFC5451615A4AB00C72BAB /* StatisticManager.h */,
+				EAAFC5461615A4AB00C72BAB /* StatisticManager.m */,
+			);
+			path = Statistic;
 			sourceTree = "<group>";
 		};
 		EAF5AFCD155E2DB4008CD8EE /* MusicSettings */ = {
@@ -9822,6 +9849,9 @@
 				CA34E8981615353A00F85346 /* oowrong.mp3 in Resources */,
 				CA34E8991615353A00F85346 /* pushMessage.mp3 in Resources */,
 				CA34E89A1615353A00F85346 /* wrong.wav in Resources */,
+				CA65C0651615A01700EE1C1C /* MyCommentCell.xib in Resources */,
+				CA65C0661615A01700EE1C1C /* MyCommentCell~ipad.xib in Resources */,
+				CA65C0681615A07A00EE1C1C /* reply_bg@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -10361,6 +10391,8 @@
 				CAEE2B1E1613EA6F00CD9088 /* ReplayView.m in Sources */,
 				CAEE2B4216142D5C00CD9088 /* ReplyCell.m in Sources */,
 				C2A3CC1316159AD700663271 /* AnimationPlayer.m in Sources */,
+				CA65C0641615A01700EE1C1C /* MyCommentCell.m in Sources */,
+				EAAFC5471615A4AB00C72BAB /* StatisticManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

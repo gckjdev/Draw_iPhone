@@ -188,7 +188,7 @@
 #define PARA_COUNT @"ct"
 
 // request parameters
-
+#define METHOD_GET_MYCOMMENT_LIST @"gmcl"
 #define PARA_USERS @"users"
 #define PARA_USERID @"uid"
 #define PARA_CREATOR_USERID @"cuid"
@@ -399,6 +399,9 @@
 #define PARA_CONTACT @"ca"
 
 #define PARA_FEED_COUNT @"fec"
+#define PARA_COMMENT_COUNT @"comc"
+#define PARA_DRAWTOME_COUNT @"dtc"
+
 #define PARA_FAN_COUNT @"fac"
 #define PARA_MESSAGE_COUNT @"mc"
 #define PARA_ROOM_COUNT @"rc"

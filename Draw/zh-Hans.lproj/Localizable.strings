@@ -845,6 +845,17 @@
 "kTop" = "排行榜";
 "kCanotSendToSelf" = "不能为自己的作品送鲜花或者扔番茄哦。";
 "kAutoSave" = "自动保存";
+"kReplyCommentDesc" = "回复%@: %@";
+
+"kSummaryOfDraw" = "评论%@的画: [%@]";
+"kSummaryOfDrawNoWord" = "评论%@的画";
+"kSummaryOfGuess" = "回复%@的猜画";
+"kSummaryOfSendItem" = "回复%@的表态: %@";
+"kSummaryOfComment" = "回复%@的评论: %@";
+"kMe" = "我";
+"kSendMeFlower" = "给我赠送了一朵鲜花！";
+"kThrowMeTomato" = "给我丢了个番茄！";
+
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 

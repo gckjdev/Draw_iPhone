@@ -12,6 +12,7 @@
 #import "AudioManager.h"
 #import "DrawConstants.h"
 #import "DeviceDetection.h"
+#import "StatisticManager.h"
 
 #pragma mark - inner class Status message
 
@@ -78,7 +79,8 @@ NotificationManager *_staticNotificationManager = nil;
 #define MESSAGE_BADGE  @"MB"
 #define FEED_BADGE  @"FEB"
 #define ROOM_BADGE  @"RB"
-
+#define COMMENT_BADGE @"CB"
+#define DRAWTOME_BADGE @"DB"
 
 + (NotificationManager *)defaultManager
 {
@@ -172,6 +174,24 @@ NotificationManager *_staticNotificationManager = nil;
     }
 }
 
+- (void)saveStatistic:(NSDictionary *)notification
+{
+    int feedBadge = [NotificationManager intValueOfUserInfo:notification forKey:FEED_BADGE];
+    int fanbadge = [NotificationManager intValueOfUserInfo:notification forKey:FAN_BADGE];
+    int roomBadge = [NotificationManager intValueOfUserInfo:notification forKey:ROOM_BADGE];
+    int messageBadge = [NotificationManager intValueOfUserInfo:notification forKey:MESSAGE_BADGE];
+    int commentBadge = [NotificationManager intValueOfUserInfo:notification forKey:COMMENT_BADGE];
+    int drawtomeBadge = [NotificationManager intValueOfUserInfo:notification forKey:DRAWTOME_BADGE];
+    
+    StatisticManager *manager = [StatisticManager defaultManager];
+    [manager setFeedCount:feedBadge];
+    [manager setFanCount:fanbadge];
+    [manager setRoomCount:roomBadge];
+    [manager setMessageCount:messageBadge];
+    [manager setCommentCount:commentBadge];
+    [manager setDrawToMeCount:drawtomeBadge];
+}
+
 + (int)feedBadge:(NSDictionary *)userInfo
 {
     return [NotificationManager intValueOfUserInfo:userInfo forKey:FEED_BADGE];
@@ -188,6 +208,5 @@ NotificationManager *_staticNotificationManager = nil;
 {
     return [NotificationManager intValueOfUserInfo:userInfo forKey:MESSAGE_BADGE];
 }
-
 
 @end

@@ -217,6 +217,10 @@ static UIImage* _whitePaperImage;
     return [UIImage imageNamed:@"add_color.png"];        
 }
 
+- (UIImage *)commentSourceBG
+{
+    return [UIImage strectchableImageName:@"reply_bg.png"];
+}
 - (UIImage *)popupImage
 {
     return [UIImage strectchableImageName:@"guess_popup.png" leftCapWidth:20];

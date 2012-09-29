@@ -427,10 +427,10 @@ enum{
 - (void)throwItem:(Item *)item
 {
     
-    if ([self.feed isMyOpus]) {
-        [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kCanotSendToSelf") delayTime:1.5 isHappy:YES];
-        return;
-    }
+//    if ([self.feed isMyOpus]) {
+//        [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kCanotSendToSelf") delayTime:1.5 isHappy:YES];
+//        return;
+//    }
     
     if (item.amount <= 0) {
         CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kNoItemTitle") message:NSLS(@"kNoItemMessage") style:CommonDialogStyleDoubleButton delegate:self];
@@ -547,10 +547,9 @@ enum{
 #pragma mark - comment cell delegate
 - (void)didStartToReplyToFeed:(CommentFeed *)feed
 {
-    return;
     PPDebug(@"<didStartToReplyToFeed>, feed type = %d,comment = %@", feed.feedType,feed.comment);
     CommentController *replyController = [[CommentController alloc] initWithFeed:self.feed commentFeed:feed];
-    [self.navigationController pushViewController:self animated:YES];
+    [self presentModalViewController:replyController animated:YES];
     [replyController release];
 }
 
