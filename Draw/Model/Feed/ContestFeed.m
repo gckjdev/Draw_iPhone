@@ -30,14 +30,9 @@
 
 #define ITEM_TIME_LIMIT 1
 
-- (BOOL)canSendFlower
+- (NSInteger)itemLimit
 {
-    return [self localFlowerTimes] < ITEM_TIME_LIMIT;
-}
-
-- (BOOL)canThrowTomato
-{
-    return [self localTomatoTimes] < ITEM_TIME_LIMIT;
+    return 1;
 }
 
 

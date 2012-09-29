@@ -21,6 +21,7 @@
 @synthesize contestUrl = _contestUrl;
 @synthesize title = _title;
 @synthesize statementUrl = _statementUrl;
+@synthesize canSummitCount = _canSummitCount;
 
 - (void)dealloc
 {
@@ -72,6 +73,7 @@
         }else {
             self.status = ContestStatusRunning;
         }
+        self.canSummitCount = [self intValueForKey:PARA_CAN_SUMMIT_COUNT inDict:dict];
     }
     return  self;
 }
@@ -80,6 +82,38 @@
 {
     Contest *contest = [[[Contest alloc] initWithDict:dict] autorelease];
     return contest;
+}
+- (BOOL)isPassed
+{
+    return ([self.endDate timeIntervalSinceNow] < 0);
+}
+- (BOOL)isPendding
+{
+    return ([self.startDate timeIntervalSinceNow] > 0);
+}
+- (BOOL)isRunning
+{
+    return ![self isPassed] && ![self isPendding];
+}
+
+
+
+#define COMMIT_COUNT_PREFIX @"CommitCount"
+- (void)incCommitCount
+{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString *key = [NSString stringWithFormat:@"%@_%@",COMMIT_COUNT_PREFIX,self.contestId];
+    NSNumber *number = [defaults objectForKey:key];
+    number = [NSNumber numberWithInt:number.intValue+1];
+    [defaults setObject:number forKey:key];
+    [defaults synchronize];
+}
+- (BOOL)commintCountEnough
+{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString *key = [NSString stringWithFormat:@"%@_%@",COMMIT_COUNT_PREFIX,self.contestId];
+    NSNumber *number = [defaults objectForKey:key];
+    return number.integerValue >= self.canSummitCount;
 }
 
 @end

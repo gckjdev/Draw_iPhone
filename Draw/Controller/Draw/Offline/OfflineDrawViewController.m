@@ -734,6 +734,9 @@ enum{
     if (resultCode == 0) {
         
         if (self.contest) {
+            [self.contest incCommitCount];
+            [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kSubmitSuccTitle") delayTime:1.5 isSuccessful:YES];
+
             [self quit];
             return;
         }
@@ -750,7 +753,7 @@ enum{
         }
         
     }else{
-        [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kSubmitFailure") delayTime:1 isSuccessful:NO];
+        [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kSubmitFailure") delayTime:1.5 isSuccessful:NO];
     }
     
 }

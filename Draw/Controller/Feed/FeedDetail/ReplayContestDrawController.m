@@ -19,7 +19,7 @@
 #import "CommonItemInfoView.h"
 #import "FeedService.h"
 #import "ShareService.h"
-
+#import "CommonMessageCenter.h"
 
 #define KEY_
 
@@ -157,10 +157,23 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+- (NSString *)canotSendItemPopup
+{
+    NSString *title = [NSString stringWithFormat:NSLS(@"kCanotSendItemToContestOpus"),self.feed.itemLimit];
+    return title;
+}
+
 - (IBAction)clickUpButton:(id)sender {
-    ToolView* toolView = (ToolView*)sender; 
     
-    if ([self.feed canSendFlower]) {
+    if (![self.feed canSendFlower]) {
+        [[CommonMessageCenter defaultCenter] postMessageWithText:self.canotSendItemPopup
+                                                       delayTime:1.5 
+                                                         isHappy:YES];
+        return;
+    }
+    
+    ToolView* toolView = (ToolView*)sender; 
+    if ([[ItemManager defaultManager] hasEnoughItem:ItemTypeFlower]) {
         // throw item animation
         if (![self throwItem:toolView]) 
             return;
@@ -170,7 +183,7 @@
                                          feedOpusId:_feed.feedId
                                          feedAuthor:_feed.author.userId]; 
         [toolView decreaseNumber];
-        
+        [self.feed increaseLocalFlowerTimes];
     } else {
         CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kNoItemTitle") message:NSLS(@"kNoItemMessage") style:CommonDialogStyleDoubleButton delegate:self];
         dialog.tag = ITEM_TAG_OFFSET + toolView.itemType;
@@ -199,9 +212,17 @@
 }
 
 - (IBAction)clickDownButton:(id)sender {
+    
+    if (![self.feed canSendFlower]) {
+        [[CommonMessageCenter defaultCenter] postMessageWithText:self.canotSendItemPopup
+                                                       delayTime:1.5 
+                                                         isHappy:YES];
+        return;
+    }
+    
     ToolView* toolView = (ToolView*)sender;
     
-    if ([self.feed canThrowTomato]) {
+    if ([[ItemManager defaultManager] hasEnoughItem:ItemTypeTomato]) {
         // throw item animation
         if (![self throwItem:toolView]) 
             return;
@@ -214,6 +235,7 @@
                                          feedAuthor:_feed.author.userId];
         
         [toolView decreaseNumber];
+        [self.feed increaseLocalTomatoTimes];
     }else{
         
         CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kNoItemTitle") message:NSLS(@"kNoItemMessage") style:CommonDialogStyleDoubleButton delegate:self];

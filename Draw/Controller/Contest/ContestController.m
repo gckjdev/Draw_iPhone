@@ -13,6 +13,7 @@
 #import "StatementController.h"
 #import "CommonMessageCenter.h"
 #import "ContestOpusController.h"
+#import "CommonMessageCenter.h"
 
 @implementation ContestController
 @synthesize scrollView = _scrollView;
@@ -161,6 +162,20 @@
 - (void)didClickContestView:(ContestView *)contestView
                onJoinButton:(Contest *)contest
 {
+    //not running
+    if (![contest isRunning]) {
+        [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kContestNotRunning") delayTime:1.5 isHappy:NO];
+        return;
+    }else if([contest commintCountEnough]){
+        NSString *title = [NSString stringWithFormat:NSLS(@"kContesSummitCountEnough"),contest.canSummitCount];
+        [[CommonMessageCenter defaultCenter] postMessageWithText:title 
+                                                       delayTime:1.5 
+                                                         isHappy:NO];        
+        return;
+    }
+    //user limit
+    
+    //
     StatementController *sc = [[StatementController alloc] initWithContest:contest];
     [self.navigationController pushViewController:sc animated:YES];
     [sc release];

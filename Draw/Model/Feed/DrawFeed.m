@@ -327,21 +327,29 @@
     return [self actionTimesForKey:self.saveKey];
 }
 
-#define ITEM_TIME_LIMIT 3
-#define SAVE_TIME_LIMIT 1
+- (NSInteger)itemLimit
+{
+    return 3;
+}
+
+- (NSInteger)saveLimit
+{
+    return 1;
+}
+
 - (BOOL)canSendFlower
 {
-    return [self localFlowerTimes] < ITEM_TIME_LIMIT;
+    return [self localFlowerTimes] < self.itemLimit;
 }
 
 - (BOOL)canThrowTomato
 {
-    return [self localTomatoTimes] < ITEM_TIME_LIMIT;
+    return [self localTomatoTimes] < self.itemLimit;
 }
 
 - (BOOL)canSave
 {
-    return [self localSaveTimes] < SAVE_TIME_LIMIT;
+    return [self localSaveTimes] < self.saveLimit;
 }
 
 

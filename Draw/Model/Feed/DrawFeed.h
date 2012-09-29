@@ -75,6 +75,10 @@ typedef enum{
 - (void)increaseLocalFlowerTimes;
 - (void)increaseLocalTomatoTimes;
 - (void)increaseSaveTimes;
+
+- (NSInteger)itemLimit;
+- (NSInteger)saveLimit;
+
 //- (NSInteger)localFlowerTimes;
 //- (NSInteger)localTomatoTimes;
 //- (NSInteger)localSaveTimes;

@@ -17,4 +17,5 @@
 @property(nonatomic, retain)NSString *contestId;
 @property(nonatomic, assign)double contestScore;
 - (id)initWithPBFeed:(PBFeed *)pbFeed;
+
 @end
