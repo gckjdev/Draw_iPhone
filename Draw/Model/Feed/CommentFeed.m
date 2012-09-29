@@ -47,6 +47,15 @@
     return [self commentInFeedDeatil];
 }
 
+- (NSString *)replySummary
+{
+    NSString *desc = self.commentInfo.summaryDesc;
+    if (desc == nil) {
+        desc = NSLS(@"kCommentMyOpus");
+    }
+    return desc;
+}
+
 - (BOOL)canDelete
 {
     
