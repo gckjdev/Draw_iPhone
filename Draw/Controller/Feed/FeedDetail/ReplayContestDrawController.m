@@ -19,7 +19,8 @@
 #import "CommonItemInfoView.h"
 #import "FeedService.h"
 #import "ShareService.h"
-
+#import "CommonMessageCenter.h"
+#import "AccountService.h"
 
 #define KEY_
 
@@ -38,6 +39,7 @@
 @synthesize upButton = _upButton;
 @synthesize downButton = _downButton;
 @synthesize titleLabel = _titleLabel;
+@synthesize saveButton = _saveButton;
 
 - (void)dealloc
 {
@@ -48,6 +50,7 @@
     [_upButton release];
     [_downButton release];
     [_titleLabel release];
+    [_saveButton release];
     [super dealloc];
 }
 
@@ -86,6 +89,7 @@
     [self setUpButton:nil];
     [self setDownButton:nil];
     [self setTitleLabel:nil];
+    [self setSaveButton:nil];
     [super viewDidUnload];
 }
 
@@ -181,9 +185,12 @@
 - (IBAction)clickShareButton:(id)sender {
     UIButton *button = (UIButton *)sender;
     
-    [self showActivityWithText:NSLS(@"kSaving")];
+    UIImage *image = self.feed.largeImage;
+    if(image == nil){
+        image =  [self.showView createImage];   
+    }
     
-    [[ShareService defaultService] shareWithImage:_feed.drawImage 
+    [[ShareService defaultService] shareWithImage:image 
                                        drawUserId:_feed.feedUser.userId
                                        isDrawByMe:[_feed isMyOpus] 
                                          drawWord:_feed.wordText];    
@@ -193,7 +200,7 @@
                                             nickName:_feed.feedUser.nickName
                                            isMyPaint:[_feed isMyOpus] 
                                                 word:_feed.wordText
-                                               image:_feed.drawImage 
+                                               image:image 
                                             delegate:self];
     button.userInteractionEnabled = NO;
 }
@@ -224,11 +231,39 @@
 
 - (void)didSaveOpus:(BOOL)succ
 {
+    [self hideActivity];
+    self.saveButton.userInteractionEnabled = YES;
     if (succ) {
         [self popupMessage:NSLS(@"kSaveOpusOK") title:nil];
     }else{
         [self popupMessage:NSLS(@"kSaveImageFail") title:nil];
     }
+}
+
+#pragma mark - commonItemInfoView delegate
+- (void)didBuyItem:(Item *)anItem 
+            result:(int)result
+{
+    if (result == 0) {
+        [[CommonMessageCenter defaultCenter]postMessageWithText:NSLS(@"kBuySuccess") delayTime:1 isHappy:YES];
+        ToolView* toolview = nil;
+        switch (anItem.type) {
+            case ItemTypeFlower: {
+                toolview = (ToolView*)[self.view viewWithTag:FLOWER_TOOLVIEW_TAG];
+            } break;
+            case ItemTypeTomato: {
+                toolview = (ToolView*)[self.view viewWithTag:TOMATO_TOOLVIEW_TAG];
+            } break;
+            default:
+                break;
+        }
+        [toolview setNumber:[[ItemManager defaultManager] amountForItem:toolview.itemType]];
+    }
+    if (result == ERROR_COINS_NOT_ENOUGH)
+    {
+        [[CommonMessageCenter defaultCenter]postMessageWithText:NSLS(@"kNotEnoughCoin") delayTime:1 isHappy:NO];
+    }
+    //TODO : add other situation deal method
 }
 
 @end

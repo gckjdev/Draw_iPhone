@@ -22,6 +22,7 @@
 @property (retain, nonatomic) IBOutlet UIButton *upButton;
 @property (retain, nonatomic) IBOutlet UIButton *downButton;
 @property (retain, nonatomic) IBOutlet UILabel *titleLabel;
+@property (retain, nonatomic) IBOutlet UIButton *saveButton;
 
 
 - (id)initWithFeed:(DrawFeed *)feed;
