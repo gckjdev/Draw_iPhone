@@ -15,6 +15,7 @@
 @synthesize inputBGView;
 @synthesize titleLabel;
 @synthesize feed = _feed;
+@synthesize commentFeed = _commentFeed;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -33,7 +34,15 @@
     }
     return self;
 }
-
+- (id)initWithFeed:(DrawFeed *)feed commentFeed:(CommentFeed *)commentFeed
+{
+    self = [super init];
+    if (self) {
+        self.feed = feed;
+        self.commentFeed = commentFeed;
+    }
+    return self;    
+}
 - (void)didReceiveMemoryWarning
 {
     // Releases the view if it doesn't have a superview.
@@ -49,7 +58,11 @@
     [super viewDidLoad];
     ShareImageManager *manager = [ShareImageManager defaultManager];
     [self.inputBGView setImage:[manager inputImage]];
-    [self.titleLabel setText:NSLS(@"kComment")];
+    if (self.commentFeed) {
+        [self.titleLabel setText:NSLS(@"kReplyComment")];        
+    }else{
+        [self.titleLabel setText:NSLS(@"kComment")];
+    }
     [self.contentView becomeFirstResponder];
 }
 
@@ -58,6 +71,8 @@
     [self setContentView:nil];
     [self setInputBGView:nil];
     [self setTitleLabel:nil];
+    [self setFeed:nil];
+    [self setCommentFeed:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -70,15 +85,18 @@
 }
 
 - (void)dealloc {
-    [contentView release];
-    [inputBGView release];
-    [titleLabel release];
+    PPRelease(contentView);
+    PPRelease(titleLabel);
+    PPRelease(inputBGView);
+    PPRelease(_commentFeed);
+    PPRelease(_feed);
     [super dealloc];
 }
 - (IBAction)clickBack:(id)sender {
     [self dismissModalViewControllerAnimated:YES];
 }
 
+#define ACTION_SUMMARY_MAX_LENGTH 60
 
 - (void)sendComment
 {
@@ -86,20 +104,68 @@
     if ([msg length] != 0) {
         [self showActivityWithText:NSLS(@"kSending")];
         FeedService *_feedService = [FeedService defaultService];
-        [_feedService commentOpus:_feed.feedId author:_feed.feedUser.userId comment:msg delegate:self];        
+        
+        NSString *opusId = _feed.feedId;
+        NSString *author = _feed.feedUser.userId;
+        NSString *comment = msg;        
+        //new attribute
+
+        NSInteger commentType = 0;
+        NSString *commentId = nil;
+        NSString *commentSummary = nil;
+        NSString *commentUserId = nil;
+        NSString *commentNickName = nil;
+        
+        if (self.commentFeed) {
+            commentType = _commentFeed.feedType;
+            commentId = _commentFeed.feedId;
+            if (_commentFeed.feedType == FeedTypeComment) {
+                commentSummary = _commentFeed.comment;
+            }       
+            commentUserId = _commentFeed.feedUser.userId;
+            commentNickName = _commentFeed.feedUser.nickName;
+            
+        }else{
+            commentType = self.feed.feedType;
+            commentId = opusId;
+            commentSummary = self.feed.wordText;
+            commentUserId = author;
+            commentNickName = _feed.feedUser.nickName;
+        }
+        if ([commentSummary length] > ACTION_SUMMARY_MAX_LENGTH) {
+            PPDebug(@"<sendComment> summary length = %d", [commentSummary length]);
+            commentSummary = [commentSummary substringToIndex:ACTION_SUMMARY_MAX_LENGTH];
+        }
+        [_feedService commentOpus:opusId 
+                           author:author
+                          comment:comment 
+                      commentType:commentType
+                        commentId:commentId 
+                   commentSummary:commentSummary 
+                    commentUserId:commentUserId
+                  commentNickName:commentNickName 
+                         delegate:self];        
     }
 
 }
 
+
+
+
 #pragma mark feed service delegate
-- (void)didCommentOpus:(NSString *)opusId commentFeedId:(NSString *)commentFeedId comment:(NSString *)comment resultCode:(NSInteger)resultCode
+- (void)didCommentOpus:(NSString *)opusId 
+         commentFeedId:(NSString *)commentFeedId 
+               comment:(NSString *)comment 
+            resultCode:(NSInteger)resultCode
 {
     [self hideActivity];
     if (resultCode == 0) {
         [self.contentView setText:nil];
         [self dismissModalViewControllerAnimated:YES];
     }else{
-        [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kCommentFail") delayTime:1 isHappy:NO];
+        [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kCommentFail") 
+                                                       delayTime:1 
+                                                         isHappy:NO];
         PPDebug(@"comment fail: opusId = %@, comment = %@", opusId, comment);        
     }
 }

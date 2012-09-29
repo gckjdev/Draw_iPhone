@@ -64,6 +64,8 @@
 #import "HotController.h"
 #import "MyFeedController.h"
 
+#import "StatisticManager.h"
+
 @interface HomeController()
 {
     BoardPanel *_boardPanel;
@@ -241,6 +243,7 @@
 {    
     [self registerDrawGameNotification];
     
+    [self updateAllBadge];
     [[UserService defaultService] getStatistic:self];   
     [UIApplication sharedApplication].idleTimerDisabled = NO;
     [[DrawGameService defaultService] registerObserver:self];
@@ -301,7 +304,13 @@
 - (void)playBackgroundMusic
 {
     MusicItemManager* musicManager = [MusicItemManager defaultManager];
-    NSURL *url = [NSURL fileURLWithPath:musicManager.currentMusicItem.localPath];
+    NSString* musicURL = musicManager.currentMusicItem.localPath;
+    if (musicURL == nil){
+        PPDebug(@"<playBackgroundMusic> but music url is nil");
+        return;
+    }
+    
+    NSURL *url = [NSURL fileURLWithPath:musicURL];
     AudioManager *audioManager = [AudioManager defaultManager];
     
     [audioManager setBackGroundMusicWithURL:url];
@@ -548,55 +557,45 @@
 
 
 
+- (void)updateAllBadge
+{
+    StatisticManager *manager = [StatisticManager defaultManager];
+    
+    [self.bottomMenuPanel setMenuBadge:manager.messageCount forMenuType:MenuButtonTypeChat];
+    [self.bottomMenuPanel setMenuBadge:manager.fanCount
+                           forMenuType:MenuButtonTypeFriend];
+    [self.menuPanel setMenuBadge:manager.roomCount
+                     forMenuType:MenuButtonTypeFriendPlay];
+    
+    long timelineCount = manager.feedCount + manager.commentCount + manager.drawToMeCount;
+    [self.menuPanel setMenuBadge:timelineCount 
+                     forMenuType:MenuButtonTypeTimeline];
+
+}
+
 - (void)didGetStatistic:(int)resultCode 
               feedCount:(long)feedCount 
            messageCount:(long)messageCount 
                fanCount:(long)fanCount 
               roomCount:(long)roomCount
+           commentCount:(long)commentCount
+          drawToMeCount:(long)drawToMeCount
 {
     if (resultCode == 0) {
         PPDebug(@"<didGetStatistic>:feedCount = %ld, messageCount = %ld, fanCount = %ld", feedCount,messageCount,fanCount);     
-        //update badge
-
         
-        [self.bottomMenuPanel setMenuBadge:messageCount forMenuType:MenuButtonTypeChat];
-        [self.bottomMenuPanel setMenuBadge:fanCount 
-                               forMenuType:MenuButtonTypeFriend];
+        //store the counts.
+        StatisticManager *manager = [StatisticManager defaultManager];
+        [manager setFeedCount:feedCount];
+        [manager setMessageCount:messageCount];
+        [manager setFanCount:fanCount];
+        [manager setRoomCount:roomCount];
+        [manager setCommentCount:commentCount];
+        [manager setDrawToMeCount:drawToMeCount];
 
-    
-        [self.menuPanel setMenuBadge:feedCount 
-                         forMenuType:MenuButtonTypeTimeline];
-        [self.menuPanel setMenuBadge:roomCount
-                         forMenuType:MenuButtonTypeFriendPlay];
+        [self updateAllBadge];
     }
 }
-
-
-
-- (void)updateBadgeWithUserInfo:(NSDictionary *)userInfo;
-{
-    int badge = [NotificationManager feedBadge:userInfo];
-    [self.menuPanel setMenuBadge:badge 
-                     forMenuType:MenuButtonTypeTimeline];
-    
-    badge = [NotificationManager roomBadge:userInfo];    
-    [self.menuPanel setMenuBadge:badge
-                     forMenuType:MenuButtonTypeFriendPlay];
-    
-    badge = [NotificationManager fanBadge:userInfo];
-    [self.bottomMenuPanel setMenuBadge:badge 
-                           forMenuType:MenuButtonTypeFriend];
-    
-    
-    badge = [NotificationManager messageBadge:userInfo];
-    [self.bottomMenuPanel setMenuBadge:badge
-                           forMenuType:MenuButtonTypeChat];
-    
-
-
-}
-
-
 
 - (IBAction)clickFacetime:(id)sender
 {
@@ -714,12 +713,14 @@
             [self.navigationController pushViewController:vc animated:YES];
             [vc release];
         }
+            break;
         case MenuButtonTypeContest:
         {
             ContestController *cc = [[ContestController alloc] init];
             [self.navigationController pushViewController:cc animated:YES];
             [cc release];
         }
+            break;
         case MenuButtonTypeTop:
         {
             HotController *hc = [[HotController alloc] init];

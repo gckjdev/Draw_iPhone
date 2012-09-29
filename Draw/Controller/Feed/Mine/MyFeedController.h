@@ -11,9 +11,20 @@
 #import "FeedService.h"
 #import "RankView.h"
 #import "FeedCell.h"
+#import "CommonDialog.h"
+#import "CommentFeed.h"
 
-@interface MyFeedController : CommonTabController<FeedServiceDelegate,RankViewDelegate, FeedCellDelegate, UIActionSheetDelegate>
+@class Feed;
+@interface MyFeedController : CommonTabController<FeedServiceDelegate,RankViewDelegate,
+FeedCellDelegate, UIActionSheetDelegate, CommonDialogDelegate>
 {
     RankView *_selectRanView;
+    Feed *_seletedFeed;
+    CommentFeed *_selectedCommentFeed;
+    
+    NSInteger indexOfCommentOpus;
+    NSInteger indexOfCommentDelete;
+    NSInteger indexOfCommentReply;
+    
 }
 @end

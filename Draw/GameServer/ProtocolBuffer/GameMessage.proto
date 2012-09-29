@@ -83,13 +83,20 @@ message UseItemRequest {
   required int32 itemId = 1;
   
   optional int32 extendTime = 100;                // 加时或减时道具，设定的新时长（秒），相对值
+
+  optional int32  direction = 22;                                       // 逆道具，返回方向，0: 顺时针；1: 逆时针
+  optional string nextPlayUserId = 23;                                  // 使用道具后，下个玩家的ID，用户逆道具或者减时道具
+  optional bool   decreaseTimeForNextPlayUser = 24[default=false];      // 下一个玩家是否被使用了减时道具
 }
 
 message UseItemResponse {
   required int32 itemId = 1;
   repeated PBDice dices = 20;
   
-  optional PBDiceAction action = 21;            // 建议返回的行动
+  optional PBDiceAction action = 21;                                    // 建议返回的行动
+  optional int32  direction = 22;                                       // 逆道具，返回方向，0: 顺时针；1: 逆时针
+  optional string nextPlayUserId = 23;                                  // 使用道具后，下个玩家的ID，用户逆道具或者减时道具
+  optional bool   decreaseTimeForNextPlayUser = 24[default=false];      // 下一个玩家是否被使用了减时道具
 }
 
 message UserDiceNotification {
@@ -172,6 +179,7 @@ message NextPlayerStartNotificationRequest {
   required string currentPlayUserId = 1;
   required string nextPlayUserId = 2;
   optional int32  expiredTime = 3;              // 游戏玩家需要在指定时间内做出响应，0表示使用默认值，－1表示不限制
+  optional int32  direction = 4;                // 0: 顺时针；1: 逆时针
 }
 
 message NextPlayerStartNotificationResponse {

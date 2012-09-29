@@ -101,17 +101,17 @@
 #pragma mark - throw item animation
 - (void)throwTool:(ToolView*)toolView
 {
-    UIImageView* item = [[[UIImageView alloc] initWithFrame:ITEM_FRAME] autorelease];
-    [self.view addSubview:item];
-    [item setImage:toolView.imageView.image];
-    item.center = self.view.center;
+    _throwingItem = [[[UIImageView alloc] initWithFrame:ITEM_FRAME] autorelease];
+    [self.view addSubview:_throwingItem];
+    [_throwingItem setImage:toolView.imageView.image];
+    _throwingItem.center = self.view.center;
     
     if (toolView.itemType == ItemTypeTomato) {
-        [DrawGameAnimationManager showThrowTomato:item 
+        [DrawGameAnimationManager showThrowTomato:_throwingItem 
                                  animInController:self
                                           rolling:NO];
     }else if (toolView.itemType == ItemTypeFlower) {
-        [DrawGameAnimationManager showThrowFlower:item
+        [DrawGameAnimationManager showThrowFlower:_throwingItem
                                  animInController:self 
                                           rolling:NO];
     }
@@ -507,7 +507,7 @@
         
         NSMutableArray *list =  [NSMutableArray arrayWithArray:_draw.drawActionList];            
         [self.showView setDrawActionList:list];
-        double speed = [DrawAction calculateSpeed:self.showView.drawActionList defaultSpeed:1.0/40.0 maxSecond:30];
+        double speed = [DrawAction calculateSpeed:self.showView.drawActionList defaultSpeed:1.0/40.0 maxSecond:45];
         self.showView.playSpeed = speed;
 //        [self.showView play];
         [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(startPlay:) userInfo:nil repeats:NO];
@@ -809,7 +809,7 @@
 {
     showView = [[ShowDrawView alloc] initWithFrame:DRAW_VIEW_FRAME];  
     [self.view insertSubview:showView aboveSubview:drawBackground];
-    showView.playSpeed = 1.0/28.0;
+    showView.playSpeed = 1.0/30.0;
 }
 
 - (void)setButton:(UIButton *)button title:(NSString *)title enabled:(BOOL)enabled
@@ -847,6 +847,10 @@
 - (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag
 {
     [DrawGameAnimationManager animation:anim didStopWithFlag:flag];
+    if (_throwingItem) {
+        [_throwingItem removeFromSuperview];
+    }
+    _throwingItem = nil;
 }
 
 #pragma mark - commonItemInfoView delegate

@@ -255,7 +255,12 @@
                              gender:(NSString*)gender
                              opusId:(NSString*)opusId                        
                      opusCreatorUId:(NSString*)opusCreatorUId  
-                            comment:(NSString*)comment;
+                            comment:(NSString*)comment 
+                        commentType:(int)commentType //comment info
+                          commentId:(NSString *)commentId 
+                     commentSummary:(NSString *)commentSummary
+                      commentUserId:(NSString *)commentUserId 
+                    commentNickName:(NSString *)commentNickName;
 
 + (CommonNetworkOutput*)throwItemToOpus:(NSString*)baseURL
                                   appId:(NSString*)appId
@@ -298,6 +303,13 @@
                                                         type:(int)type
                                                       offset:(NSInteger)offset
                                                        limit:(NSInteger)limit;
+
++ (CommonNetworkOutput*)getMyCommentListWithProtocolBuffer:(NSString*)baseURL 
+                                                    userId:(NSString *)userId
+                                                     appId:(NSString *)appId
+                                                    offset:(NSInteger)offset
+                                                     limit:(NSInteger)limit;
+
 
 + (CommonNetworkOutput*)updateUser:(NSString*)baseURL
                              appId:(NSString*)appId

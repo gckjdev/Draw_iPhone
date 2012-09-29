@@ -14,6 +14,8 @@
 #import "ItemManager.h"
 
 @class DiceGamePlayController;
+@class UseItemRequest;
+@class UseItemResponse;
 
 @interface CommonDiceItemAction : NSObject
 {
@@ -44,6 +46,16 @@
                controller:(DiceGamePlayController *)controller
                      view:(UIView *)view;
 
++ (void)handleItemResponse:(int)itemType
+                controller:(DiceGamePlayController *)controller
+                      view:(UIView *)view 
+                  response:(UseItemResponse*)response;
++ (void)handleItemRequest:(int)itemType
+                   userId:(NSString *)userId
+               controller:(DiceGamePlayController *)controller
+                     view:(UIView *)view 
+                  request:(UseItemRequest*)request;
+
 - (void)showGifViewOnUserAvatar:(NSString *)userId
                         gifFile:(NSString *)gifFile
                      controller:(DiceGamePlayController *)controller
@@ -72,10 +84,16 @@
 // 道具使用成功时的效果
 - (void)useItemSuccess:(DiceGamePlayController *)controller
                   view:(UIView *)view;
+- (void)useItemSuccess:(DiceGamePlayController *)controller
+                  view:(UIView *)view 
+              response:(UseItemResponse*)response;
 
 // 其他人使用道具成功的效果
 - (void)someoneUseItem:(NSString *)userId
             controller:(DiceGamePlayController *)controller
                   view:(UIView *)view;
-
+- (void)someoneUseItem:(NSString *)userId
+            controller:(DiceGamePlayController *)controller
+                  view:(UIView *)view 
+               request:(UseItemRequest*)request;
 @end

@@ -40,6 +40,7 @@
 - (DrawAction *)addChangeBackAction:(DrawColor *)color;
 - (void)setDrawEnabled:(BOOL)enabled;
 - (BOOL)canRevoke;
+- (void)revoke;
 
 //- (void)revoke;
 //- (void)clearAllActions; //remove all the actions

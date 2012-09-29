@@ -217,6 +217,10 @@ static UIImage* _whitePaperImage;
     return [UIImage imageNamed:@"add_color.png"];        
 }
 
+- (UIImage *)commentSourceBG
+{
+    return [UIImage strectchableImageName:@"reply_bg.png"];
+}
 - (UIImage *)popupImage
 {
     return [UIImage strectchableImageName:@"guess_popup.png" leftCapWidth:20];
@@ -441,6 +445,19 @@ static UIImage* _whitePaperImage;
 - (UIImage*)backButtonImage
 {
     return [self fixedImageNamed:@"back"];
+}
+
+- (UIImage*)goldenCupImage
+{
+    return [UIImage imageNamed:@"gold_cup"];
+}
+- (UIImage*)silverCupImage
+{
+    return [UIImage imageNamed:@"silver_cup"];
+}
+- (UIImage*)copperCupImage
+{
+    return [UIImage imageNamed:@"copper_cup"];
 }
 
 - (UIImage *)shareDrawButtonImage

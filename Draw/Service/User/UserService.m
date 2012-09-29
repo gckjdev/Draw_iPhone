@@ -834,11 +834,17 @@ static UserService* _defaultUserService;
             long messageCount = 0;
             long feedCount = 0;
             long fanCount = 0;
-            long roomCount = 0;            
+            long roomCount = 0;
+            long commentCount = 0;
+            long drawToMeCount = 0;
             
             if (output.resultCode == ERROR_SUCCESS) {
                 NSNumber *count = [output.jsonDataDict objectForKey:PARA_FEED_COUNT];
                 feedCount = [count longValue];
+                count = [output.jsonDataDict objectForKey:PARA_COMMENT_COUNT];
+                commentCount = [count longValue];
+                count = [output.jsonDataDict objectForKey:PARA_DRAWTOME_COUNT];
+                drawToMeCount = [count longValue];
                 count = [output.jsonDataDict objectForKey:PARA_FAN_COUNT];
                 fanCount = [count longValue];
                 count = [output.jsonDataDict objectForKey:PARA_MESSAGE_COUNT];
@@ -846,8 +852,8 @@ static UserService* _defaultUserService;
                 count = [output.jsonDataDict objectForKey:PARA_ROOM_COUNT];
                 roomCount = [count longValue];            
             }
-            if (viewController && [viewController respondsToSelector:@selector(didGetStatistic:feedCount:messageCount:fanCount:roomCount:)]) {
-                [viewController didGetStatistic:output.resultCode feedCount:feedCount messageCount:messageCount fanCount:fanCount roomCount:roomCount];
+            if (viewController && [viewController respondsToSelector:@selector(didGetStatistic:feedCount:messageCount:fanCount:roomCount:commentCount:drawToMeCount:)]) {
+                [viewController didGetStatistic:output.resultCode feedCount:feedCount messageCount:messageCount fanCount:fanCount roomCount:roomCount commentCount:commentCount drawToMeCount:drawToMeCount];
             }
         });
     });

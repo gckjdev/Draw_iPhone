@@ -360,7 +360,7 @@ static VendingController* staticVendingController = nil;
     //设置动画代理
     animGroup.delegate = self;
     
-    animGroup.removedOnCompletion = NO;
+    animGroup.removedOnCompletion = YES;
     
     animGroup.duration             = disappear.beginTime+disappear.duration;
     animGroup.timingFunction      = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];    

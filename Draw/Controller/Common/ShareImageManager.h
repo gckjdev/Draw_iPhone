@@ -58,7 +58,7 @@
 
 - (UIImage *)addColorImage;
 
-
+- (UIImage *)commentSourceBG;
 - (UIImage *)drawingMarkSmallImage;
 - (UIImage *)drawingMarkLargeImage;
 - (UIImage *)scoreBackgroundImage;
@@ -128,6 +128,13 @@
 - (UIImage *)pickToolBackground;
 - (UIImage *)unloadBg;
 - (UIImage*)backButtonImage;
+
+//top player cup
+
+- (UIImage*)goldenCupImage;
+- (UIImage*)copperCupImage;
+- (UIImage*)silverCupImage;
+
 
 - (UIImage *)diceStartMenuImage;
 - (UIImage*)normalRoomMenuImage;

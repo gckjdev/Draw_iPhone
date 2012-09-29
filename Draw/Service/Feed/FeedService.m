@@ -170,6 +170,38 @@ static FeedService *_staticFeedService = nil;
 
 }
 
+- (void)getMyCommentList:(NSInteger)offset 
+                   limit:(NSInteger)limit 
+                delegate:(id<FeedServiceDelegate>)delegate
+{
+    dispatch_async(workingQueue, ^{
+        
+        NSString *userId = [[UserManager defaultManager] userId];
+        NSString *appId = [ConfigManager appId];
+        CommonNetworkOutput* output = [GameNetworkRequest 
+                                       getMyCommentListWithProtocolBuffer:TRAFFIC_SERVER_URL 
+                                       userId:userId 
+                                       appId:appId 
+                                       offset:offset 
+                                       limit:limit];
+        NSArray *list = nil;
+        NSInteger resultCode = output.resultCode;
+        if (resultCode == ERROR_SUCCESS){
+            DataQueryResponse *response = [DataQueryResponse parseFromData:output.responseData];
+            resultCode = [response resultCode];
+            NSArray *pbFeedList = [response feedList];
+            list = [FeedManager parsePbCommentFeedList:pbFeedList];
+        }
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (delegate && [delegate respondsToSelector:@selector(didGetMyCommentList:resultCode:)]) {
+                [delegate didGetMyCommentList:list resultCode:resultCode];
+            }            
+        });
+    });
+}
+
+
 - (void)getFeedByFeedId:(NSString *)feedId 
                delegate:(id<FeedServiceDelegate>)delegate
 {
@@ -199,11 +231,14 @@ static FeedService *_staticFeedService = nil;
             });
         });
 }
-
-
 - (void)commentOpus:(NSString *)opusId 
              author:(NSString *)author 
-            comment:(NSString *)comment            
+            comment:(NSString *)comment          
+        commentType:(int)commentType 
+          commentId:(NSString *)commentId 
+     commentSummary:(NSString *)commentSummary
+      commentUserId:(NSString *)commentUserId 
+    commentNickName:(NSString *)commentNickName
            delegate:(id<FeedServiceDelegate>)delegate
 {
     NSString* userId = [[UserManager defaultManager] userId];
@@ -212,9 +247,23 @@ static FeedService *_staticFeedService = nil;
     NSString* avatar = [[UserManager defaultManager] avatarURL];
     NSString* appId = [ConfigManager appId];
     
-
     dispatch_async(workingQueue, ^{
-        CommonNetworkOutput* output = [GameNetworkRequest commentOpus:TRAFFIC_SERVER_URL appId:appId userId:userId nick:nick avatar:avatar gender:gender opusId:opusId opusCreatorUId:author comment:comment];
+        
+        CommonNetworkOutput* output = [GameNetworkRequest commentOpus:TRAFFIC_SERVER_URL 
+                                                                appId:appId 
+                                                               userId:userId 
+                                                                 nick:nick 
+                                                               avatar:avatar 
+                                                               gender:gender
+                                                               opusId:opusId
+                                                       opusCreatorUId:author
+                                                              comment:comment
+                                                          commentType:commentType 
+                                                            commentId:commentId 
+                                                       commentSummary:commentSummary 
+                                                        commentUserId:commentUserId
+                                                      commentNickName:commentNickName];
+        
         NSString *commentId = nil;
         if (output.resultCode == 0) {
             commentId = [output.jsonDataDict objectForKey:PARA_FEED_ID];
@@ -229,8 +278,8 @@ static FeedService *_staticFeedService = nil;
             }
         });
     });
-    
 }
+
 
 - (void)deleteFeed:(Feed *)feed
           delegate:(id<FeedServiceDelegate>)delegate

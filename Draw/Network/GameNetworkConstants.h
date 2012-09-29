@@ -18,7 +18,7 @@
 
 // method name
 
-#define METHOD @"m"                    // set by Benson, use m1 for security
+#define METHOD @"m1"                    // set by Benson, use m1 for security
 #define METHOD_TEST @"test"
 #define METHOD_ONLINESTATUS @"srpt"
 #define METHOD_REGISTRATION @"reg"
@@ -188,7 +188,7 @@
 #define PARA_COUNT @"ct"
 
 // request parameters
-
+#define METHOD_GET_MYCOMMENT_LIST @"gmcl"
 #define PARA_USERS @"users"
 #define PARA_USERID @"uid"
 #define PARA_CREATOR_USERID @"cuid"
@@ -232,6 +232,12 @@
 #define PARA_FEED_ID @"fid"
 
 #define PARA_COMMENT_CONTENT @"comc"
+
+#define PARA_COMMENT_TYPE @"cmt"
+#define PARA_COMMENT_ID @"cmid"
+#define PARA_COMMENT_SUMMARY @"cmsm"
+#define PARA_COMMENT_USERID @"cmuid"
+#define PARA_COMMENT_NICKNAME @"cmnn"
 
 #define PARA_ITEMIDARRAY @"iia"
 #define PARA_REQUIRE_MATCH @"rm"
@@ -393,6 +399,9 @@
 #define PARA_CONTACT @"ca"
 
 #define PARA_FEED_COUNT @"fec"
+#define PARA_COMMENT_COUNT @"comc"
+#define PARA_DRAWTOME_COUNT @"dtc"
+
 #define PARA_FAN_COUNT @"fac"
 #define PARA_MESSAGE_COUNT @"mc"
 #define PARA_ROOM_COUNT @"rc"

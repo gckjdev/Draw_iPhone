@@ -46,14 +46,16 @@
 }
 
 - (void)useItemSuccess:(DiceGamePlayController *)controller
-                  view:(UIView *)view
+                  view:(UIView *)view 
+              response:(UseItemResponse *)response
 {
     [self postpone:controller view:view];
 }
 
 - (void)someoneUseItem:(NSString *)userId
             controller:(DiceGamePlayController *)controller
-                  view:(UIView *)view
+                  view:(UIView *)view 
+               request:(UseItemRequest *)request
 {
     DiceAvatarView* avatar = [controller avatarViewOfUser:userId];
     [self postponeAvatar:avatar];

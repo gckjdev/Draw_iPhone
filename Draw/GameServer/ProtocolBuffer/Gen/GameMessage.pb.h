@@ -881,15 +881,27 @@
 
 @interface UseItemRequest : PBGeneratedMessage {
 @private
+  BOOL hasDecreaseTimeForNextPlayUser_:1;
   BOOL hasItemId_:1;
   BOOL hasExtendTime_:1;
+  BOOL hasDirection_:1;
+  BOOL hasNextPlayUserId_:1;
+  BOOL decreaseTimeForNextPlayUser_:1;
   int32_t itemId;
   int32_t extendTime;
+  int32_t direction;
+  NSString* nextPlayUserId;
 }
 - (BOOL) hasItemId;
 - (BOOL) hasExtendTime;
+- (BOOL) hasDirection;
+- (BOOL) hasNextPlayUserId;
+- (BOOL) hasDecreaseTimeForNextPlayUser;
 @property (readonly) int32_t itemId;
 @property (readonly) int32_t extendTime;
+@property (readonly) int32_t direction;
+@property (readonly, retain) NSString* nextPlayUserId;
+- (BOOL) decreaseTimeForNextPlayUser;
 
 + (UseItemRequest*) defaultInstance;
 - (UseItemRequest*) defaultInstance;
@@ -934,20 +946,47 @@
 - (int32_t) extendTime;
 - (UseItemRequest_Builder*) setExtendTime:(int32_t) value;
 - (UseItemRequest_Builder*) clearExtendTime;
+
+- (BOOL) hasDirection;
+- (int32_t) direction;
+- (UseItemRequest_Builder*) setDirection:(int32_t) value;
+- (UseItemRequest_Builder*) clearDirection;
+
+- (BOOL) hasNextPlayUserId;
+- (NSString*) nextPlayUserId;
+- (UseItemRequest_Builder*) setNextPlayUserId:(NSString*) value;
+- (UseItemRequest_Builder*) clearNextPlayUserId;
+
+- (BOOL) hasDecreaseTimeForNextPlayUser;
+- (BOOL) decreaseTimeForNextPlayUser;
+- (UseItemRequest_Builder*) setDecreaseTimeForNextPlayUser:(BOOL) value;
+- (UseItemRequest_Builder*) clearDecreaseTimeForNextPlayUser;
 @end
 
 @interface UseItemResponse : PBGeneratedMessage {
 @private
+  BOOL hasDecreaseTimeForNextPlayUser_:1;
   BOOL hasItemId_:1;
+  BOOL hasDirection_:1;
+  BOOL hasNextPlayUserId_:1;
   BOOL hasAction_:1;
+  BOOL decreaseTimeForNextPlayUser_:1;
   int32_t itemId;
+  int32_t direction;
+  NSString* nextPlayUserId;
   PBDiceAction* action;
   NSMutableArray* mutableDicesList;
 }
 - (BOOL) hasItemId;
 - (BOOL) hasAction;
+- (BOOL) hasDirection;
+- (BOOL) hasNextPlayUserId;
+- (BOOL) hasDecreaseTimeForNextPlayUser;
 @property (readonly) int32_t itemId;
 @property (readonly, retain) PBDiceAction* action;
+@property (readonly) int32_t direction;
+@property (readonly, retain) NSString* nextPlayUserId;
+- (BOOL) decreaseTimeForNextPlayUser;
 - (NSArray*) dicesList;
 - (PBDice*) dicesAtIndex:(int32_t) index;
 
@@ -1003,6 +1042,21 @@
 - (UseItemResponse_Builder*) setActionBuilder:(PBDiceAction_Builder*) builderForValue;
 - (UseItemResponse_Builder*) mergeAction:(PBDiceAction*) value;
 - (UseItemResponse_Builder*) clearAction;
+
+- (BOOL) hasDirection;
+- (int32_t) direction;
+- (UseItemResponse_Builder*) setDirection:(int32_t) value;
+- (UseItemResponse_Builder*) clearDirection;
+
+- (BOOL) hasNextPlayUserId;
+- (NSString*) nextPlayUserId;
+- (UseItemResponse_Builder*) setNextPlayUserId:(NSString*) value;
+- (UseItemResponse_Builder*) clearNextPlayUserId;
+
+- (BOOL) hasDecreaseTimeForNextPlayUser;
+- (BOOL) decreaseTimeForNextPlayUser;
+- (UseItemResponse_Builder*) setDecreaseTimeForNextPlayUser:(BOOL) value;
+- (UseItemResponse_Builder*) clearDecreaseTimeForNextPlayUser;
 @end
 
 @interface UserDiceNotification : PBGeneratedMessage {
@@ -1700,18 +1754,22 @@
 @interface NextPlayerStartNotificationRequest : PBGeneratedMessage {
 @private
   BOOL hasExpiredTime_:1;
+  BOOL hasDirection_:1;
   BOOL hasCurrentPlayUserId_:1;
   BOOL hasNextPlayUserId_:1;
   int32_t expiredTime;
+  int32_t direction;
   NSString* currentPlayUserId;
   NSString* nextPlayUserId;
 }
 - (BOOL) hasCurrentPlayUserId;
 - (BOOL) hasNextPlayUserId;
 - (BOOL) hasExpiredTime;
+- (BOOL) hasDirection;
 @property (readonly, retain) NSString* currentPlayUserId;
 @property (readonly, retain) NSString* nextPlayUserId;
 @property (readonly) int32_t expiredTime;
+@property (readonly) int32_t direction;
 
 + (NextPlayerStartNotificationRequest*) defaultInstance;
 - (NextPlayerStartNotificationRequest*) defaultInstance;
@@ -1761,6 +1819,11 @@
 - (int32_t) expiredTime;
 - (NextPlayerStartNotificationRequest_Builder*) setExpiredTime:(int32_t) value;
 - (NextPlayerStartNotificationRequest_Builder*) clearExpiredTime;
+
+- (BOOL) hasDirection;
+- (int32_t) direction;
+- (NextPlayerStartNotificationRequest_Builder*) setDirection:(int32_t) value;
+- (NextPlayerStartNotificationRequest_Builder*) clearDirection;
 @end
 
 @interface NextPlayerStartNotificationResponse : PBGeneratedMessage {

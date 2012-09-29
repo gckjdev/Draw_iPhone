@@ -79,6 +79,7 @@ typedef enum {
   GameCommandTypeLocalCallDice = 312,
   GameCommandTypeLocalOpenDice = 313,
   GameCommandTypeLocalUserSkip = 314,
+  GameCommandTypeLocalAllUserBet = 315,
   GameCommandTypeRoomNotificationRequest = 701,
   GameCommandTypeRoomNotificationResponse = 702,
   GameCommandTypeRollDiceBeginNotificationRequest = 711,

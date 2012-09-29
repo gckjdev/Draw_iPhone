@@ -611,14 +611,10 @@ static AccountService* _defaultAccountService;
                 dispatch_async(dispatch_get_main_queue(), ^{
                                         
                     int deviation = [ConfigManager getBalanceDeviation];
-                    
-                    int rescueDataTag = [[output.jsonDataDict objectForKey:PARA_RESCUE_DATA_TAG] intValue];
-                    if (rescueDataTag) {
-                        PPDebug(@"need data rescue");
-                        [[UserService defaultService] updateAllUserInfo];
-                    }
-                    
                     int balance = [[output.jsonDataDict objectForKey:PARA_ACCOUNT_BALANCE] intValue];
+                    if (balance <= 0){
+                        balance = 0;
+                    }
                     
                     if (forceServer){
                         [_accountManager updateBalanceFromServer:balance];

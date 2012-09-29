@@ -49,6 +49,8 @@
     DrawColor *_bgColor;
     DrawColor *_eraserColor;
     Contest *_contest;
+    
+    BOOL _isAutoSave;
 }
 
 - (IBAction)clickRedraw:(id)sender;

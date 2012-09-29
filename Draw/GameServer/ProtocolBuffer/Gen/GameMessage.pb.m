@@ -2964,6 +2964,9 @@ static OpenDiceResponse* defaultOpenDiceResponseInstance = nil;
 @interface UseItemRequest ()
 @property int32_t itemId;
 @property int32_t extendTime;
+@property int32_t direction;
+@property (retain) NSString* nextPlayUserId;
+@property BOOL decreaseTimeForNextPlayUser;
 @end
 
 @implementation UseItemRequest
@@ -2982,13 +2985,43 @@ static OpenDiceResponse* defaultOpenDiceResponseInstance = nil;
   hasExtendTime_ = !!value;
 }
 @synthesize extendTime;
+- (BOOL) hasDirection {
+  return !!hasDirection_;
+}
+- (void) setHasDirection:(BOOL) value {
+  hasDirection_ = !!value;
+}
+@synthesize direction;
+- (BOOL) hasNextPlayUserId {
+  return !!hasNextPlayUserId_;
+}
+- (void) setHasNextPlayUserId:(BOOL) value {
+  hasNextPlayUserId_ = !!value;
+}
+@synthesize nextPlayUserId;
+- (BOOL) hasDecreaseTimeForNextPlayUser {
+  return !!hasDecreaseTimeForNextPlayUser_;
+}
+- (void) setHasDecreaseTimeForNextPlayUser:(BOOL) value {
+  hasDecreaseTimeForNextPlayUser_ = !!value;
+}
+- (BOOL) decreaseTimeForNextPlayUser {
+  return !!decreaseTimeForNextPlayUser_;
+}
+- (void) setDecreaseTimeForNextPlayUser:(BOOL) value {
+  decreaseTimeForNextPlayUser_ = !!value;
+}
 - (void) dealloc {
+  self.nextPlayUserId = nil;
   [super dealloc];
 }
 - (id) init {
   if ((self = [super init])) {
     self.itemId = 0;
     self.extendTime = 0;
+    self.direction = 0;
+    self.nextPlayUserId = @"";
+    self.decreaseTimeForNextPlayUser = NO;
   }
   return self;
 }
@@ -3014,6 +3047,15 @@ static UseItemRequest* defaultUseItemRequestInstance = nil;
   if (self.hasItemId) {
     [output writeInt32:1 value:self.itemId];
   }
+  if (self.hasDirection) {
+    [output writeInt32:22 value:self.direction];
+  }
+  if (self.hasNextPlayUserId) {
+    [output writeString:23 value:self.nextPlayUserId];
+  }
+  if (self.hasDecreaseTimeForNextPlayUser) {
+    [output writeBool:24 value:self.decreaseTimeForNextPlayUser];
+  }
   if (self.hasExtendTime) {
     [output writeInt32:100 value:self.extendTime];
   }
@@ -3028,6 +3070,15 @@ static UseItemRequest* defaultUseItemRequestInstance = nil;
   size = 0;
   if (self.hasItemId) {
     size += computeInt32Size(1, self.itemId);
+  }
+  if (self.hasDirection) {
+    size += computeInt32Size(22, self.direction);
+  }
+  if (self.hasNextPlayUserId) {
+    size += computeStringSize(23, self.nextPlayUserId);
+  }
+  if (self.hasDecreaseTimeForNextPlayUser) {
+    size += computeBoolSize(24, self.decreaseTimeForNextPlayUser);
   }
   if (self.hasExtendTime) {
     size += computeInt32Size(100, self.extendTime);
@@ -3113,6 +3164,15 @@ static UseItemRequest* defaultUseItemRequestInstance = nil;
   if (other.hasExtendTime) {
     [self setExtendTime:other.extendTime];
   }
+  if (other.hasDirection) {
+    [self setDirection:other.direction];
+  }
+  if (other.hasNextPlayUserId) {
+    [self setNextPlayUserId:other.nextPlayUserId];
+  }
+  if (other.hasDecreaseTimeForNextPlayUser) {
+    [self setDecreaseTimeForNextPlayUser:other.decreaseTimeForNextPlayUser];
+  }
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }
@@ -3136,6 +3196,18 @@ static UseItemRequest* defaultUseItemRequestInstance = nil;
       }
       case 8: {
         [self setItemId:[input readInt32]];
+        break;
+      }
+      case 176: {
+        [self setDirection:[input readInt32]];
+        break;
+      }
+      case 186: {
+        [self setNextPlayUserId:[input readString]];
+        break;
+      }
+      case 192: {
+        [self setDecreaseTimeForNextPlayUser:[input readBool]];
         break;
       }
       case 800: {
@@ -3177,12 +3249,63 @@ static UseItemRequest* defaultUseItemRequestInstance = nil;
   result.extendTime = 0;
   return self;
 }
+- (BOOL) hasDirection {
+  return result.hasDirection;
+}
+- (int32_t) direction {
+  return result.direction;
+}
+- (UseItemRequest_Builder*) setDirection:(int32_t) value {
+  result.hasDirection = YES;
+  result.direction = value;
+  return self;
+}
+- (UseItemRequest_Builder*) clearDirection {
+  result.hasDirection = NO;
+  result.direction = 0;
+  return self;
+}
+- (BOOL) hasNextPlayUserId {
+  return result.hasNextPlayUserId;
+}
+- (NSString*) nextPlayUserId {
+  return result.nextPlayUserId;
+}
+- (UseItemRequest_Builder*) setNextPlayUserId:(NSString*) value {
+  result.hasNextPlayUserId = YES;
+  result.nextPlayUserId = value;
+  return self;
+}
+- (UseItemRequest_Builder*) clearNextPlayUserId {
+  result.hasNextPlayUserId = NO;
+  result.nextPlayUserId = @"";
+  return self;
+}
+- (BOOL) hasDecreaseTimeForNextPlayUser {
+  return result.hasDecreaseTimeForNextPlayUser;
+}
+- (BOOL) decreaseTimeForNextPlayUser {
+  return result.decreaseTimeForNextPlayUser;
+}
+- (UseItemRequest_Builder*) setDecreaseTimeForNextPlayUser:(BOOL) value {
+  result.hasDecreaseTimeForNextPlayUser = YES;
+  result.decreaseTimeForNextPlayUser = value;
+  return self;
+}
+- (UseItemRequest_Builder*) clearDecreaseTimeForNextPlayUser {
+  result.hasDecreaseTimeForNextPlayUser = NO;
+  result.decreaseTimeForNextPlayUser = NO;
+  return self;
+}
 @end
 
 @interface UseItemResponse ()
 @property int32_t itemId;
 @property (retain) NSMutableArray* mutableDicesList;
 @property (retain) PBDiceAction* action;
+@property int32_t direction;
+@property (retain) NSString* nextPlayUserId;
+@property BOOL decreaseTimeForNextPlayUser;
 @end
 
 @implementation UseItemResponse
@@ -3202,15 +3325,45 @@ static UseItemRequest* defaultUseItemRequestInstance = nil;
   hasAction_ = !!value;
 }
 @synthesize action;
+- (BOOL) hasDirection {
+  return !!hasDirection_;
+}
+- (void) setHasDirection:(BOOL) value {
+  hasDirection_ = !!value;
+}
+@synthesize direction;
+- (BOOL) hasNextPlayUserId {
+  return !!hasNextPlayUserId_;
+}
+- (void) setHasNextPlayUserId:(BOOL) value {
+  hasNextPlayUserId_ = !!value;
+}
+@synthesize nextPlayUserId;
+- (BOOL) hasDecreaseTimeForNextPlayUser {
+  return !!hasDecreaseTimeForNextPlayUser_;
+}
+- (void) setHasDecreaseTimeForNextPlayUser:(BOOL) value {
+  hasDecreaseTimeForNextPlayUser_ = !!value;
+}
+- (BOOL) decreaseTimeForNextPlayUser {
+  return !!decreaseTimeForNextPlayUser_;
+}
+- (void) setDecreaseTimeForNextPlayUser:(BOOL) value {
+  decreaseTimeForNextPlayUser_ = !!value;
+}
 - (void) dealloc {
   self.mutableDicesList = nil;
   self.action = nil;
+  self.nextPlayUserId = nil;
   [super dealloc];
 }
 - (id) init {
   if ((self = [super init])) {
     self.itemId = 0;
     self.action = [PBDiceAction defaultInstance];
+    self.direction = 0;
+    self.nextPlayUserId = @"";
+    self.decreaseTimeForNextPlayUser = NO;
   }
   return self;
 }
@@ -3259,6 +3412,15 @@ static UseItemResponse* defaultUseItemResponseInstance = nil;
   if (self.hasAction) {
     [output writeMessage:21 value:self.action];
   }
+  if (self.hasDirection) {
+    [output writeInt32:22 value:self.direction];
+  }
+  if (self.hasNextPlayUserId) {
+    [output writeString:23 value:self.nextPlayUserId];
+  }
+  if (self.hasDecreaseTimeForNextPlayUser) {
+    [output writeBool:24 value:self.decreaseTimeForNextPlayUser];
+  }
   [self.unknownFields writeToCodedOutputStream:output];
 }
 - (int32_t) serializedSize {
@@ -3276,6 +3438,15 @@ static UseItemResponse* defaultUseItemResponseInstance = nil;
   }
   if (self.hasAction) {
     size += computeMessageSize(21, self.action);
+  }
+  if (self.hasDirection) {
+    size += computeInt32Size(22, self.direction);
+  }
+  if (self.hasNextPlayUserId) {
+    size += computeStringSize(23, self.nextPlayUserId);
+  }
+  if (self.hasDecreaseTimeForNextPlayUser) {
+    size += computeBoolSize(24, self.decreaseTimeForNextPlayUser);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -3364,6 +3535,15 @@ static UseItemResponse* defaultUseItemResponseInstance = nil;
   if (other.hasAction) {
     [self mergeAction:other.action];
   }
+  if (other.hasDirection) {
+    [self setDirection:other.direction];
+  }
+  if (other.hasNextPlayUserId) {
+    [self setNextPlayUserId:other.nextPlayUserId];
+  }
+  if (other.hasDecreaseTimeForNextPlayUser) {
+    [self setDecreaseTimeForNextPlayUser:other.decreaseTimeForNextPlayUser];
+  }
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }
@@ -3402,6 +3582,18 @@ static UseItemResponse* defaultUseItemResponseInstance = nil;
         }
         [input readMessage:subBuilder extensionRegistry:extensionRegistry];
         [self setAction:[subBuilder buildPartial]];
+        break;
+      }
+      case 176: {
+        [self setDirection:[input readInt32]];
+        break;
+      }
+      case 186: {
+        [self setNextPlayUserId:[input readString]];
+        break;
+      }
+      case 192: {
+        [self setDecreaseTimeForNextPlayUser:[input readBool]];
         break;
       }
     }
@@ -3480,6 +3672,54 @@ static UseItemResponse* defaultUseItemResponseInstance = nil;
 - (UseItemResponse_Builder*) clearAction {
   result.hasAction = NO;
   result.action = [PBDiceAction defaultInstance];
+  return self;
+}
+- (BOOL) hasDirection {
+  return result.hasDirection;
+}
+- (int32_t) direction {
+  return result.direction;
+}
+- (UseItemResponse_Builder*) setDirection:(int32_t) value {
+  result.hasDirection = YES;
+  result.direction = value;
+  return self;
+}
+- (UseItemResponse_Builder*) clearDirection {
+  result.hasDirection = NO;
+  result.direction = 0;
+  return self;
+}
+- (BOOL) hasNextPlayUserId {
+  return result.hasNextPlayUserId;
+}
+- (NSString*) nextPlayUserId {
+  return result.nextPlayUserId;
+}
+- (UseItemResponse_Builder*) setNextPlayUserId:(NSString*) value {
+  result.hasNextPlayUserId = YES;
+  result.nextPlayUserId = value;
+  return self;
+}
+- (UseItemResponse_Builder*) clearNextPlayUserId {
+  result.hasNextPlayUserId = NO;
+  result.nextPlayUserId = @"";
+  return self;
+}
+- (BOOL) hasDecreaseTimeForNextPlayUser {
+  return result.hasDecreaseTimeForNextPlayUser;
+}
+- (BOOL) decreaseTimeForNextPlayUser {
+  return result.decreaseTimeForNextPlayUser;
+}
+- (UseItemResponse_Builder*) setDecreaseTimeForNextPlayUser:(BOOL) value {
+  result.hasDecreaseTimeForNextPlayUser = YES;
+  result.decreaseTimeForNextPlayUser = value;
+  return self;
+}
+- (UseItemResponse_Builder*) clearDecreaseTimeForNextPlayUser {
+  result.hasDecreaseTimeForNextPlayUser = NO;
+  result.decreaseTimeForNextPlayUser = NO;
   return self;
 }
 @end
@@ -6338,6 +6578,7 @@ static RollDiceEndNotificationResponse* defaultRollDiceEndNotificationResponseIn
 @property (retain) NSString* currentPlayUserId;
 @property (retain) NSString* nextPlayUserId;
 @property int32_t expiredTime;
+@property int32_t direction;
 @end
 
 @implementation NextPlayerStartNotificationRequest
@@ -6363,6 +6604,13 @@ static RollDiceEndNotificationResponse* defaultRollDiceEndNotificationResponseIn
   hasExpiredTime_ = !!value;
 }
 @synthesize expiredTime;
+- (BOOL) hasDirection {
+  return !!hasDirection_;
+}
+- (void) setHasDirection:(BOOL) value {
+  hasDirection_ = !!value;
+}
+@synthesize direction;
 - (void) dealloc {
   self.currentPlayUserId = nil;
   self.nextPlayUserId = nil;
@@ -6373,6 +6621,7 @@ static RollDiceEndNotificationResponse* defaultRollDiceEndNotificationResponseIn
     self.currentPlayUserId = @"";
     self.nextPlayUserId = @"";
     self.expiredTime = 0;
+    self.direction = 0;
   }
   return self;
 }
@@ -6407,6 +6656,9 @@ static NextPlayerStartNotificationRequest* defaultNextPlayerStartNotificationReq
   if (self.hasExpiredTime) {
     [output writeInt32:3 value:self.expiredTime];
   }
+  if (self.hasDirection) {
+    [output writeInt32:4 value:self.direction];
+  }
   [self.unknownFields writeToCodedOutputStream:output];
 }
 - (int32_t) serializedSize {
@@ -6424,6 +6676,9 @@ static NextPlayerStartNotificationRequest* defaultNextPlayerStartNotificationReq
   }
   if (self.hasExpiredTime) {
     size += computeInt32Size(3, self.expiredTime);
+  }
+  if (self.hasDirection) {
+    size += computeInt32Size(4, self.direction);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -6509,6 +6764,9 @@ static NextPlayerStartNotificationRequest* defaultNextPlayerStartNotificationReq
   if (other.hasExpiredTime) {
     [self setExpiredTime:other.expiredTime];
   }
+  if (other.hasDirection) {
+    [self setDirection:other.direction];
+  }
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }
@@ -6540,6 +6798,10 @@ static NextPlayerStartNotificationRequest* defaultNextPlayerStartNotificationReq
       }
       case 24: {
         [self setExpiredTime:[input readInt32]];
+        break;
+      }
+      case 32: {
+        [self setDirection:[input readInt32]];
         break;
       }
     }
@@ -6591,6 +6853,22 @@ static NextPlayerStartNotificationRequest* defaultNextPlayerStartNotificationReq
 - (NextPlayerStartNotificationRequest_Builder*) clearExpiredTime {
   result.hasExpiredTime = NO;
   result.expiredTime = 0;
+  return self;
+}
+- (BOOL) hasDirection {
+  return result.hasDirection;
+}
+- (int32_t) direction {
+  return result.direction;
+}
+- (NextPlayerStartNotificationRequest_Builder*) setDirection:(int32_t) value {
+  result.hasDirection = YES;
+  result.direction = value;
+  return self;
+}
+- (NextPlayerStartNotificationRequest_Builder*) clearDirection {
+  result.hasDirection = NO;
+  result.direction = 0;
   return self;
 }
 @end

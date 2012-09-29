@@ -11,6 +11,30 @@
 
 /*********************** 猜猜画画国际化字符串开始 *************************/
 
+
+/*********************** Notification begin *************************/
+//before 4.5 version
+"kPushMessage" = "%@ 新建了一個好友房間——\"%@\", 邀請你加入。趕緊加入好友房間，和好友猜猜畫畫吧!";
+"kPushTextMessage" = "%@ 給您發來了消息\"%@\"";
+"kPushDrawMessage" = "%@ 邀您欣賞TA的大作";
+"kFM" = "有個神秘人剛剛關注了你，快去看看TA是誰。";
+"kNGRD" = "%@ 猜對了你畫的[%@]。你也去猜猜TA的畫？";
+"kNTGD" = "%@ 嘗試去猜了你畫的[%@]。你也去猜猜TA的畫？";
+"kPDUM" = "%@ 給你畫了一幅畫，趕緊去猜猜TA畫了些什麼。";
+
+//add after 4.5
+"kPCM" = "%@ 評論了你的[%@]: %@";
+"kPRCM" = "%@ 回复你說:%@";
+"kPSF" = "%@ 給你畫的[%@]送了一朵鮮花。";
+"kPTT" = "%@ 給你畫的[%@]扔了一個番茄。";
+
+//add after 5.0
+"kNFM" = "%@ 關注了你。";
+"kNCN" = "[%@] 開始了，趕緊參加吧！豐厚獎品等你來拿喲！";
+
+/*********************** Notification end *************************/
+
+
 "kStart" = "開始遊戲";
 
 "kShop" = "道具商店";
@@ -61,6 +85,7 @@
 "kSendingRequest" = "發送消息中...";
 "kLoading" = "加載數據中...";
 "kLoadMore" = "加載中...";
+"kLoadFail" = "加載數據失敗，請稍後再試。";
 
 "kOK" = "確定";
 "kSubmit" = "提交";
@@ -184,7 +209,7 @@
 "kAbout_us" = "關於我們";
 "kMore_apps" = "更多應用";
 "kGive_a_5-star_review" = "給個好評";
-"kSure_delete" = "刪除圖片";
+"kSure_delete" = "刪除作品";
 "kAre_you_sure" = "確定刪除?";
 "kOptions" = "選項";
 "kShare" = "分享";
@@ -469,7 +494,6 @@
 "kNoRoomTips" = "暫無房間，請點擊下面的［創建房間］建立自己的房間，或者［搜索房間］加入其它好友的房間";
 "kSearchNoResult" = "未搜索到符合條件的房間";
 
-"kPushMessage" = "%@ 新建了一個好友房間——\"%@\", 邀請你加入。趕緊加入好友房間，和好友猜猜畫畫吧!";
 "kGuessWhatIDraw" = "猜猜我畫了什麼？";
 "kGuessWhatTheyDraw" = "猜猜TA畫了什麼？";
 
@@ -545,8 +569,6 @@
 "kGuessRightDesc" = "猜對了%@畫的 [%@]。";
 "kTryGuessDesc" = "嘗試去猜了%@畫的 [%@]。";
 
-"kNGRD" = "%@猜對了你畫的[%@]。你也去猜猜TA的畫？";
-"kNTGD" = "%@嘗試去猜了你畫的[%@]。你也去猜猜TA的畫？";
 
 "kNoGuess" = "猜0";
 "kGuessStat" = "猜過:%d 猜中:%d";
@@ -573,11 +595,7 @@
 "kRefreshMessageing" = "正在刷新...";
 
 "kComment" = "評論";
-
-
-"kPushTextMessage" = "%@ 給您發來了消息\"%@\"";
-"kPushDrawMessage" = "%@ 邀您欣賞TA的大作";
-
+"kReplyComment" = "回複評論";
 "kCorrect" = "猜對了！";
 "kSending" = "發送中...";
 "kNoCommentTips" = "還沒有人評論";
@@ -605,7 +623,7 @@
 "kPlayWithHim" = "和TA一起玩猜猜畫畫";
 "kChatToHim" = "搭個訕";
 
-"kFM" = "有個神秘人剛剛關注了你，快去看看TA是誰。";
+
 
 
 "kUserFeedTitle" = "%@的動態";
@@ -631,13 +649,6 @@
 "kRebindFacebook" = "你已經綁定了Facebook了，是否要重新嘗試綁​​定？"; 
 
 
-"kPDUM" = "%@給你畫了一幅畫，趕緊去猜猜TA畫了些什麼。";
-
-//add after 4.5
-"kPCM" = "%@評論了你的[%@]: %@";
-"kPRCM" = "%@回复你說:%@";
-"kPSF" = "%@給你畫的[%@]送了一朵鮮花。";
-"kPTT" = "%@給你畫的[%@]扔了一個番茄。";
 
 
 "kDrawToUserDesc" = "畫了一幅 [%@] 給%@。";
@@ -799,7 +810,7 @@
 
 "kNoMyFeed" = "你還沒有動態，去畫一幅畫或猜一幅畫？";
 "kNoMyOpus" = "你還沒有作品，去畫一幅畫？";
-"kNoMyComment" = "還沒有人評論過你的評論。";
+"kNoMyComment" = "目前沒有關於你的評論。";
 "kNoDrawToMe" = "還沒有人畫過畫給你，先畫一幅給別人？";
 
 "kUserNoFeed" = "%@ 還沒有動態。";
@@ -819,6 +830,18 @@
 "kContestOpus" = "參賽作品";
 "kTop" = "排行榜";
 "kCanotSendToSelf" = "不能為自己的作品送鮮花或者扔番茄哦。";
+"kAutoSave" = "自動保存";
+"kReplyCommentDesc" = "回複%@: %@";
+
+"kSummaryOfDraw" = "評論%@的畫: [%@]";
+"kSummaryOfDrawNoWord" = "評論%@的畫";
+"kSummaryOfGuess" = "回复%@的猜畫";
+"kSummaryOfSendItem" = "回复%@的表態: %@";
+"kSummaryOfComment" = "回复%@的評論: %@";
+"kMe" = "我";
+"kSendMeFlower" = "给我赠送了一朵鲜花！";
+"kThrowMeTomato" = "给我丢了个番茄！";
+
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 
@@ -1001,7 +1024,7 @@
 
 "kNoMoreShowIt" = "不再提醒";
 "kItemTips" = "道具提示";
-"kCustomDiceTips" = "你可以在”用戶設置“那裡更換你的個性化骰子";
+"kCustomDiceTips" = "你可以在“用戶設置“那裡更換你的個性化骰子";
 
 "kSearchingRoom" = "查找房間中...";
 "kHasBought" = "已購買";

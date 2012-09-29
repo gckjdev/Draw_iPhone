@@ -14,7 +14,7 @@
 #import "WordManager.h"
 #import "CommonUserInfoView.h"
 #import "ShareImageManager.h"
-
+#import "CommentFeed.h"
 
 @implementation CommentCell
 @synthesize commentLabel;
@@ -22,6 +22,7 @@
 @synthesize nickNameLabel;
 @synthesize itemImage;
 @synthesize splitLine;
+@synthesize feed = _feed;
 
 + (id)createCell:(id)delegate
 {
@@ -42,7 +43,7 @@
 }
 
 
-#define COMMENT_WIDTH ([DeviceDetection isIPAD] ? 550 : 209)
+#define COMMENT_WIDTH ([DeviceDetection isIPAD] ? 500 : 204)
 #define COMMENT_FONT_SIZE ([DeviceDetection isIPAD] ? 11*2 : 11)
 #define COMMENT_SPACE ([DeviceDetection isIPAD] ? 20 : 10)
 #define COMMENT_BASE_X ([DeviceDetection isIPAD] ? 102 : 44)
@@ -53,12 +54,19 @@
 #define AVATAR_VIEW_FRAME [DeviceDetection isIPAD] ? CGRectMake(12, 10, 74, 77) : CGRectMake(5, 9, 31, 32)
 
 
+- (IBAction)clickReplyButton:(id)sender {
+    if (self.delegate && [self.delegate 
+                          respondsToSelector:@selector(didStartToReplyToFeed:)]) {
+        [self.delegate didStartToReplyToFeed:self.feed];
+    }
+}
+
 + (CGFloat)getCellHeight:(CommentFeed *)feed
 {
     if (feed.feedType == ItemTypeFlower || feed.feedType == ItemTypeTomato) {
         return COMMENT_ITEM_HEIGHT;
     }
-    NSString *comment = [feed comment];
+    NSString *comment = [feed commentInFeedDeatil];
     UIFont *font = [UIFont systemFontOfSize:COMMENT_FONT_SIZE];
     CGSize commentSize = [comment sizeWithFont:font constrainedToSize:CGSizeMake(COMMENT_WIDTH, 10000000) lineBreakMode:UILineBreakModeCharacterWrap];
     CGFloat height = COMMENT_BASE_Y + COMMENT_SPACE + commentSize.height;
@@ -71,6 +79,8 @@
 - (void)setCellInfo:(CommentFeed *)feed;
 {
     //set avatar
+    self.feed = feed;
+    
     FeedUser *author = feed.author;
     [_avatarView removeFromSuperview];
     _avatarView = [[AvatarView alloc] initWithUrlString:author.avatar 
@@ -98,7 +108,7 @@
         [self.timeLabel setText:timeString];
     }
     
-     NSString *comment = [feed comment];
+     NSString *comment = [feed commentInFeedDeatil];
     //set user name
     [self.nickNameLabel setText:author.nickName];
     

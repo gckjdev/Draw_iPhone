@@ -335,20 +335,21 @@
 
 + (NSString*)getDiceServerListStringWithNormal
 {
-    return @"58.215.172.169:8080";
+//    return @"192.168.1.10:8080";
+//    return @"58.215.172.169:8080";
     return [MobClickUtils getStringValueByKey:@"DICE_SERVER_LIST" defaultValue:@"58.215.164.153:8018"];
 }
 
 + (NSString *)getDiceServerListStringWithHightRule
 {
-    return @"58.215.172.169:8081";
-    return [MobClickUtils getStringValueByKey:@"DICE_SERVER_LIST_HIGHT" defaultValue:@"58.215.164.153:8018"];
+//    return @"58.215.172.169:8081";
+    return [MobClickUtils getStringValueByKey:@"DICE_SERVER_LIST_HIGHT" defaultValue:@"58.215.164.153:8019"];
 }
 
 + (NSString *)getDiceServerListStringWithSuperHightRule
 {
-    return @"58.215.172.169:8082";
-    return [MobClickUtils getStringValueByKey:@"DICE_SERVER_LIST_SUPER_HIGHT" defaultValue:@"58.215.164.153:8018"];
+//    return @"58.215.172.169:8082";
+    return [MobClickUtils getStringValueByKey:@"DICE_SERVER_LIST_SUPER_HIGHT" defaultValue:@"58.215.164.153:8020"];
 }
 
 + (int)getBetAnteWithNormalRule
@@ -389,6 +390,20 @@
 + (int)getUrgeTime
 {
     return [MobClickUtils getIntValueByKey:@"URGE_TIME" defaultValue:5];
+}
+
+
+#define KEY_AUTO_SAVE @"AutoSave"
++ (BOOL)isAutoSave
+{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    return [defaults boolForKey:KEY_AUTO_SAVE];
+}
++ (void)setAutoSave:(BOOL)isAutoSave
+{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setBool:isAutoSave forKey:KEY_AUTO_SAVE];
+    [defaults synchronize];
 }
 
 

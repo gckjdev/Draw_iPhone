@@ -8,6 +8,28 @@
 
 /*********************** 猜猜画画国际化字符串开始 *************************/
 
+/*********************** Notification begin *************************/
+//Notification
+//before 4.5 version
+"kPushMessage" = "%@ just created a room at [Draw Lively] game, \"%@\". Come and play with your friend now!";
+"kPushTextMessage" = "%@ sent you a message\"%@\"";
+"kPushDrawMessage" = "%@ sent you a draw";
+"kFM" = "Someone has just followed you";
+"kNGRD" = "%@ Guessed your drawing: [%@].";
+"kNTGD" = "%@ Tried to guess your drawing: [%@].";
+"kPDUM" = "%@ draws a drawing to you. Hurry to guess!";
+//add after 4.5
+"kPCM" = "%@ comment your[%@]: %@";
+"kPRCM" = "%@ reply to you: %@";
+"kPSF" = "%@ send a flower to your [%@].";
+"kPTT" = "%@ throw a tomato to your [%@].";
+
+//add after 5.0
+"kNFM" = "%@ follow you.";
+"kNCN" = "[%@] starts now. Hurry to join.";
+
+/*********************** Notification end *************************/
+
 "kStart" = "Online";
 
 "kShop" = "Shop";
@@ -58,6 +80,7 @@
 "kSendingRequest" = "Sending Request...";
 "kLoading" = "Loading...";
 "kLoadMore" = "Loading...";
+"kLoadFail" = "Fail to load data, please try it again later.";
 "kConfirm" = "OK";
 "kOK" = "OK";
 "kSubmit" = "Submit";
@@ -458,7 +481,6 @@
 "kNoRoomTips" = "No Room. Create or search room.";
 "kSearchNoResult" = "No room matched";
 
-"kPushMessage" = "%@ just created a room at [Draw Lively] game, \"%@\". Come and play with your friend now!";
 "kGuessWhatIDraw" = "Guess what's this?";
 "kGuessWhatTheyDraw" = "Guess what's this?";
 
@@ -537,10 +559,6 @@
 "kTryGuessDesc" = "Tried to guess %@'s drawing: [%@].";
 
 
-//notification guess right desc
-//notification try guess desc
-"kNGRD" = "%@ Guessed your drawing: [%@].";
-"kNTGD" = "%@ Tried to guess your drawing: [%@].";
 
 
 "kDrawDescNoWord" = "Drew a picture.";
@@ -574,10 +592,7 @@
 "kRefreshMessageing" = "Refreshing...";
 
 "kComment" = "Comment";
-
-
-"kPushTextMessage" = "%@ sent you a message\"%@\"";
-"kPushDrawMessage" = "%@ sent you a draw";
+"kReplyComment" = "Reply";
 
 "kCorrect" = "Correct!";
 "kSending" = "Sending...";
@@ -607,7 +622,7 @@
 "kPlayWithHim" = "Play with him(her)";
 "kChatToHim" = "Talk something";
 
-"kFM" = "Someone has just followed you";
+
 
 "kUserFeedTitle" = "%@'s Timeline";
 "kUserFeed" = "Timeline";
@@ -626,13 +641,7 @@
 "kWeiboExpired" = "微博授权过期";
 
 
-"kPDUM" = "%@ draws a drawing to you. Hurry to guess!";
 
-//add after 4.5
-"kPCM" = "%@ comment your[%@]: %@";
-"kPRCM" = "%@ reply to you: %@";
-"kPSF" = "%@ send a flower to your [%@].";
-"kPTT" = "%@ throw a tomato to your [%@].";
 
 
 "kDrawToUserDesc" = "Drew a picture: [%@] to %@.";
@@ -821,6 +830,14 @@
 "kTop" = "Top";
 
 "kCanotSendToSelf" = "You can't send flower or tomato to your opus.";
+"kAutoSave" = "Auto Save";
+"kReplyCommentDesc" = "Re %@: %@";
+
+"kSummaryOfDraw" = "Comment %@ opus: [%@].";
+"kSummaryOfDrawNoWord" = "Comment %@ opus.";
+"kSummaryOfGuess" = "Reply %@'s guessing.";
+"kSummaryOfSendItem" = "Reply %@'s expression.";
+"kSummaryOfComment" = "Reply %@'s comment: %@.";
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 
@@ -1018,6 +1035,9 @@
 
 "kSearchEmpty" = "No matched room";
 "kNoFriendRoom" = "No friend room";
+"kMe" = "Me";
+"kSendMeFlower" = "Send me a flower";
+"kThrowMeTomato" = "Throw me a Tomato";
 /*********************** 大话骰子国际化字符串结束 *************************/
 
 

@@ -124,6 +124,9 @@ typedef enum{
     [cell.contentView addSubview:view];
 }
 
+#define NORMAL_CELL_VIEW_NUMBER 3
+#define WIDTH_SPACE 1
+
 - (void)setSencodRankCell:(UITableViewCell *)cell 
                 WithFeed1:(DrawFeed *)feed1 
                     feed2:(DrawFeed *)feed2
@@ -135,19 +138,17 @@ typedef enum{
     [cell.contentView addSubview:view1];
     [cell.contentView addSubview:view2];
     
-    CGFloat x2 = (CGRectGetWidth(cell.frame) -  [RankView widthForRankViewType:RankViewTypeSecond]);
+    CGFloat x2 = WIDTH_SPACE + [RankView widthForRankViewType:RankViewTypeSecond];
     view2.frame = CGRectMake(x2, 0, view2.frame.size.width, view2.frame.size.height);
 }
 
-
-#define NORMAL_CELL_VIEW_NUMBER 3
 
 - (void)setNormalRankCell:(UITableViewCell *)cell 
                 WithFeeds:(NSArray *)feeds
 {
     CGFloat width = [RankView widthForRankViewType:RankViewTypeNormal];
     CGFloat height = [RankView heightForRankViewType:RankViewTypeNormal];
-    CGFloat space = (cell.frame.size.width - NORMAL_CELL_VIEW_NUMBER * width)/ (NORMAL_CELL_VIEW_NUMBER - 1);
+    CGFloat space = WIDTH_SPACE;
     CGFloat x = 0;
     CGFloat y = 0;
     for (DrawFeed *feed in feeds) {
@@ -222,13 +223,13 @@ typedef enum{
                     [list addObject:object];
                 }
             }
-            PPDebug(@"startIndex = %d,list count = %d",startIndex,[list count]);
+//            PPDebug(@"startIndex = %d,list count = %d",startIndex,[list count]);
             [self setNormalRankCell:cell WithFeeds:list];
         }        
     }else if(tab.tabID == RankTypeNew){
         NSInteger startIndex = (indexPath.row * NORMAL_CELL_VIEW_NUMBER);
         NSMutableArray *list = [NSMutableArray array];
-        PPDebug(@"startIndex = %d",startIndex);
+//        PPDebug(@"startIndex = %d",startIndex);
         for (NSInteger i = startIndex; i < startIndex+NORMAL_CELL_VIEW_NUMBER; ++ i) {
             NSObject *object = [self saveGetObjectForIndex:i];
             if (object) {
@@ -240,14 +241,14 @@ typedef enum{
     }else if(tab.tabID == RankTypePlayer){
         NSInteger startIndex = (indexPath.row * NORMAL_CELL_VIEW_NUMBER);
         NSMutableArray *list = [NSMutableArray array];
-        PPDebug(@"startIndex = %d",startIndex);
+//        PPDebug(@"startIndex = %d",startIndex);
         for (NSInteger i = startIndex; i < startIndex+NORMAL_CELL_VIEW_NUMBER; ++ i) {
             NSObject *object = [self saveGetObjectForIndex:i];
             if (object) {
                 [list addObject:object];
             }
         }
-        [self setTopPlayerCell:cell WithPlayers:list isFirstRow:NO];
+        [self setTopPlayerCell:cell WithPlayers:list isFirstRow:(indexPath.row == 0)];
     }
     
     return cell;

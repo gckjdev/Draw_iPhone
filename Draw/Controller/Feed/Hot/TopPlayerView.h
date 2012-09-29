@@ -19,6 +19,12 @@
 @end
 
 
+typedef enum{
+    CupTyeGolden = 0,
+    CupTypeSilver,
+    CupTyeCopper
+}CupTye;
+
 @interface TopPlayerView : UIView
 {
     TopPlayer *_topPlayer;
@@ -32,6 +38,7 @@
 @property (retain, nonatomic) IBOutlet UILabel *nickName;
 @property (retain, nonatomic) IBOutlet UILabel *levelInfo;
 @property (retain, nonatomic) IBOutlet UIButton *maskButton;
+@property (retain, nonatomic) IBOutlet UIImageView *cupImage;
 
 
 + (id)createTopPlayerView:(id)delegate;

@@ -22,6 +22,8 @@
 #import "ItemService.h"
 #import "ShareImageManager.h"
 #import "CommonMessageCenter.h"
+#import "ReplayView.h"
+#import "CommentFeed.h"
 
 @implementation ShowFeedController
 @synthesize titleLabel = _titleLabel;
@@ -30,6 +32,7 @@
 @synthesize commentButton = _commentButton;
 @synthesize flowerButton = _flowerButton;
 @synthesize tomatoButton = _tomatoButton;
+@synthesize replayButton = _replayButton;
 @synthesize feed = _feed;
 @synthesize userCell = _userCell;
 @synthesize drawCell = _drawCell;
@@ -57,6 +60,7 @@ typedef enum{
     PPRelease(_commentButton);
     PPRelease(_flowerButton);
     PPRelease(_tomatoButton);
+    [_replayButton release];
     [super dealloc];
 }
 
@@ -76,6 +80,7 @@ enum{
   ActionTagSave,
   ActionTagFlower,
   ActionTagTomato,
+  ActionTagRplay,
   ActionTagEnd,
 };
 
@@ -84,37 +89,39 @@ enum{
 - (void)updateActionButtons
 {
     //data is nil
-    NSInteger start = ActionTagGuess;
-    NSInteger count = ActionTagEnd - start;
+//    NSInteger start = ActionTagGuess;
+//    NSInteger count = ActionTagEnd - start;
+//    
+    self.guessButton.hidden = [self.feed showAnswer];
+    self.replayButton.hidden = !self.guessButton.hidden;
     
-    if ([self.feed showAnswer]) {
-    //mine or correct
-        start = ActionTagComment;
-        self.guessButton.hidden = YES;
-        count --;
-    }else{
-        self.guessButton.hidden = NO;
+//    if ([self.feed showAnswer]) {
+//
+//        start = ActionTagComment;
+//        self.guessButton.hidden = YES;
+//        self.replayButton.hidden = NO;
+//        count --;
+//    }else{
+//        self.replayButton.hidden = YES;
+//        self.guessButton.hidden = NO;
+//    }
+    
+//    CGFloat width = self.guessButton.frame.size.width;
+//    CGFloat space = (SCREEN_WIDTH - (count * width)) / (count + 1);
+//    CGFloat x = space;
+//    CGFloat y = ACTION_BUTTON_Y;
+//    
+//    for (NSInteger tag = start; tag < ActionTagEnd; ++ tag) {
+//        UIButton *button = (UIButton *)[self.view viewWithTag:tag];
+//        button.frame = CGRectMake(x, y, width, width);
+//        button.enabled = YES;
+//        x += width + space;
+//    }
+    for (NSInteger tag = ActionTagGuess; tag < ActionTagEnd; ++ tag) {
+        UIButton *button = (UIButton *)[self.view viewWithTag:tag];            
+        button.enabled = (self.feed.drawData != nil);
     }
-    
-    CGFloat width = self.guessButton.frame.size.width;
-    CGFloat space = (SCREEN_WIDTH - (count * width)) / (count + 1);
-    CGFloat x = space;
-    CGFloat y = ACTION_BUTTON_Y;
-    
-    for (NSInteger tag = start; tag < ActionTagEnd; ++ tag) {
-        UIButton *button = (UIButton *)[self.view viewWithTag:tag];
-        button.frame = CGRectMake(x, y, width, width);
-        button.enabled = YES;
-        x += width + space;
-    }
-    self.saveButton.enabled = !_didSave;
-    
-    if (self.feed.drawData == nil) {
-        for (NSInteger tag = ActionTagGuess; tag < ActionTagEnd; ++ tag) {
-            UIButton *button = (UIButton *)[self.view viewWithTag:tag];            
-            button.enabled = NO;
-        }
-    }
+    self.saveButton.enabled = !_didSave && self.feed.drawData != nil;
 }
 
 - (void)reloadCommentSection
@@ -300,6 +307,9 @@ enum{
 
 -(BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if (indexPath.section != SectionCommentInfo) {
+        return false;
+    }
     if (indexPath.row < [self.dataList count]) {
         DrawFeed *feed = [self.dataList objectAtIndex:indexPath.row];
         return [feed isMyFeed]|| [self.feed isMyOpus];        
@@ -417,10 +427,10 @@ enum{
 - (void)throwItem:(Item *)item
 {
     
-    if ([self.feed isMyOpus]) {
-        [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kCanotSendToSelf") delayTime:1.5 isHappy:YES];
-        return;
-    }
+//    if ([self.feed isMyOpus]) {
+//        [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kCanotSendToSelf") delayTime:1.5 isHappy:YES];
+//        return;
+//    }
     
     if (item.amount <= 0) {
         CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kNoItemTitle") message:NSLS(@"kNoItemMessage") style:CommonDialogStyleDoubleButton delegate:self];
@@ -437,16 +447,16 @@ enum{
         
         ShareImageManager *imageManager = [ShareImageManager defaultManager];
         if (item.type == ItemTypeFlower) {
-            UIImageView* itemView = [[[UIImageView alloc] initWithFrame:self.flowerButton.frame] autorelease];
-            [itemView setImage:[imageManager flower]];
-            [self.view addSubview:itemView];
-            [DrawGameAnimationManager showThrowFlower:itemView animInController:self rolling:YES];
+            _throwingItem = [[[UIImageView alloc] initWithFrame:self.flowerButton.frame] autorelease];
+            [_throwingItem setImage:[imageManager flower]];
+            [self.view addSubview:_throwingItem];
+            [DrawGameAnimationManager showThrowFlower:_throwingItem animInController:self rolling:YES];
             [_commentHeader setSeletType:CommentTypeFlower];
         }else{
-            UIImageView* itemView = [[[UIImageView alloc] initWithFrame:self.tomatoButton.frame] autorelease];
-            [itemView setImage:[imageManager tomato]];
-            [self.view addSubview:itemView];
-            [DrawGameAnimationManager showThrowTomato:itemView animInController:self rolling:YES];         
+            _throwingItem = [[[UIImageView alloc] initWithFrame:self.tomatoButton.frame] autorelease];
+            [_throwingItem setImage:[imageManager tomato]];
+            [self.view addSubview:_throwingItem];
+            [DrawGameAnimationManager showThrowTomato:_throwingItem animInController:self rolling:YES];         
             [_commentHeader setSeletType:CommentTypeTomato];
         }
     }
@@ -455,6 +465,10 @@ enum{
 - (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag
 {
     [DrawGameAnimationManager animation:anim didStopWithFlag:flag];
+    if (_throwingItem) {
+        [_throwingItem removeFromSuperview];
+    }
+    _throwingItem = nil;
     [self clickRefresh:nil];
 }
 
@@ -521,10 +535,22 @@ enum{
         //send a tomato
         Item *item = [Item tomato];
         [self throwItem:item];
+    }else if(button == self.replayButton){
+        ReplayView *replay = [ReplayView createReplayView:self];
+        [replay setViewInfo:self.feed];
+        [replay showInView:self.view];
     }else{
-        //no action
+        //NO action
     }
     
+}
+#pragma mark - comment cell delegate
+- (void)didStartToReplyToFeed:(CommentFeed *)feed
+{
+    PPDebug(@"<didStartToReplyToFeed>, feed type = %d,comment = %@", feed.feedType,feed.comment);
+    CommentController *replyController = [[CommentController alloc] initWithFeed:self.feed commentFeed:feed];
+    [self presentModalViewController:replyController animated:YES];
+    [replyController release];
 }
 
 #pragma mark draw data service delegate
@@ -637,6 +663,7 @@ enum{
     [self setCommentButton:nil];
     [self setFlowerButton:nil];
     [self setTomatoButton:nil];
+    [self setReplayButton:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;

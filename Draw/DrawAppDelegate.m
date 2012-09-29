@@ -61,8 +61,8 @@ NSString* GlobalGetServerURL()
 
 NSString* GlobalGetTrafficServerURL()
 {
-  return [ConfigManager getTrafficAPIServerURL];
-//    return @"http://192.167.1.106:8100/api/i?";    
+  //return [ConfigManager getTrafficAPIServerURL];
+    return @"http://192.168.1.12:8100/api/i?";    
 }
 
 NSString* GlobalGetBoardServerURL()
@@ -154,7 +154,12 @@ NSString* GlobalGetBoardServerURL()
     
     
     // Init Account Service and Sync Balance and Item
-    [[AccountService defaultService] syncAccountAndItem];
+    if (isDrawApp()){
+        [[AccountService defaultService] syncAccountAndItem];
+    }
+    else{
+        [[AccountService defaultService] syncAccount:nil forceServer:YES];
+    }
     
     if (isDrawApp()){
         [[RouterService defaultService] fetchServerListAtBackground];    
@@ -412,8 +417,10 @@ NSString* GlobalGetBoardServerURL()
     for (NSString *key in testAllKeys) {
         PPDebug(@"<didReceiveRemoteNotification> loc-key=%@", key);
     }
-    PPDebug(@"<didReceiveRemoteNotification> aps=%@", [userInfo objectForKey:@"aps"]); 
-    [_homeController updateBadgeWithUserInfo:userInfo];
+    PPDebug(@"<didReceiveRemoteNotification> aps=%@", [userInfo objectForKey:@"aps"]);
+    
+    [[NotificationManager defaultManager] saveStatistic:userInfo];
+    [_homeController updateAllBadge];
     
     NotificationType type = [NotificationManager typeForUserInfo:userInfo];
     if (type == NotificationTypeMessage && _chatDetailController) {
