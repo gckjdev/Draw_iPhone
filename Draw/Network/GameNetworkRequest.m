@@ -1689,6 +1689,50 @@
     
 }
 
+
+
++ (CommonNetworkOutput*)getContestOpusListWithProtocolBuffer:(NSString*)baseURL
+                                                   contestId:(NSString *)contestId
+                                                      userId:(NSString *)userId 
+                                                        type:(NSInteger)type
+                                                      offset:(NSInteger)offset
+                                                       limit:(NSInteger)limit 
+                                                        lang:(NSInteger)lang
+{
+    CommonNetworkOutput* output = [[[CommonNetworkOutput alloc] init] autorelease];
+    
+    ConstructURLBlock constructURLHandler = ^NSString *(NSString *baseURL) {
+        
+        // set input parameters
+        NSString* str = [NSString stringWithString:baseURL];       
+        
+        str = [str stringByAddQueryParameter:METHOD value:METHOD_GET_CONTEST_OPUS_LIST];
+        str = [str stringByAddQueryParameter:PARA_CONTESTID value:contestId];   
+        str = [str stringByAddQueryParameter:PARA_USERID value:userId];
+        str = [str stringByAddQueryParameter:PARA_OFFSET intValue:offset];
+        str = [str stringByAddQueryParameter:PARA_COUNT intValue:limit];
+        str = [str stringByAddQueryParameter:PARA_TYPE intValue:type];
+        str = [str stringByAddQueryParameter:PARA_LANGUAGE intValue:lang];
+        str = [str stringByAddQueryParameter:PARA_FORMAT value:FINDDRAW_FORMAT_PROTOCOLBUFFER];
+        str = [str stringByAddQueryParameter:PARA_APPID value:[ConfigManager appId]];                
+             
+        return str;
+    };
+    
+    
+    PPNetworkResponseBlock responseHandler = ^(NSDictionary *dict, CommonNetworkOutput *output) {
+        return;
+    }; 
+    
+    return [PPNetworkRequest sendRequest:baseURL 
+                     constructURLHandler:constructURLHandler 
+                         responseHandler:responseHandler 
+                            outputFormat:FORMAT_PB 
+                                  output:output];
+    
+}
+
+
 + (CommonNetworkOutput*)getFeedCommentListWithProtocolBuffer:(NSString*)baseURL 
                                                       opusId:(NSString *)opusId
                                                         type:(int)type
