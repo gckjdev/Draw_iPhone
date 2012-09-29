@@ -68,4 +68,10 @@ typedef enum{
 - (NSInteger)flowerTimes;
 - (NSInteger)tomatoTimes;
 - (ActionType)actionType;
+
+- (BOOL)isContestFeed;
+
+- (BOOL)canSendFlower;
+- (BOOL)canThrowTomato;
+
 @end

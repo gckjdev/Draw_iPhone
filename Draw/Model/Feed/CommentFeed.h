@@ -18,9 +18,13 @@
 }
 @property(nonatomic, retain)NSString *comment;
 @property(nonatomic, retain)CommentInfo *commentInfo;
+@property(nonatomic, retain)NSString *opusId;
+@property(nonatomic, retain)NSString *opusCreator;
+
 - (id)initWithPBFeed:(PBFeed *)pbFeed;
 - (NSString *)commentInFeedDeatil;
 - (NSString *)commentInMyComment;;
+- (NSString *)replySummary;
 - (BOOL)canDelete;
 @end
 

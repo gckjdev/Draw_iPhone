@@ -24,7 +24,11 @@
 #import "CommonMessageCenter.h"
 #import "ReplayView.h"
 #import "CommentFeed.h"
+
 #import "AnimationPlayer.h"
+
+#import "ReplayContestDrawController.h"
+
 
 @implementation ShowFeedController
 @synthesize titleLabel = _titleLabel;
@@ -93,7 +97,7 @@ enum{
 //    NSInteger start = ActionTagGuess;
 //    NSInteger count = ActionTagEnd - start;
 //    
-    self.guessButton.hidden = [self.feed showAnswer];
+    self.guessButton.hidden = [self.feed showAnswer] || [self.feed isContestFeed];
     self.replayButton.hidden = !self.guessButton.hidden;
     
 //    if ([self.feed showAnswer]) {
@@ -351,7 +355,7 @@ enum{
 - (void)updateTitle
 {
     NSString *title = nil;
-    if ([self.feed showAnswer]) {
+    if ([self.feed showAnswer] && [self.feed.wordText length] != 0) {
         title = [NSString stringWithFormat:NSLS(@"[%@]"),
                  self.feed.wordText];        
     }else{
@@ -360,16 +364,19 @@ enum{
     [self.titleLabel setText:title];
 }
 
-
+- (void)updateUserInfo
+{
+    [self.userCell setCellInfo:self.feed];
+}
 #pragma mark - cell delegate
 - (void)didUpdateShowView
 {
     //update the times
     [self.commentHeader setViewInfo:self.feed];
-    
     //update the action buttons
     [self updateActionButtons];
     [self updateTitle];
+    [self updateUserInfo];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -529,9 +536,21 @@ enum{
         Item *item = [Item tomato];
         [self throwItem:item];
     }else if(button == self.replayButton){
-        ReplayView *replay = [ReplayView createReplayView:self];
-        [replay setViewInfo:self.feed];
-        [replay showInView:self.view];
+        
+        if ([self.feed isContestFeed]) {
+            //TODO enter the show contest feed controller.
+            PPDebug(@"enter show contest feed controller");
+            
+            ReplayContestDrawController *controller = [[ReplayContestDrawController alloc] initWithFeed:self.feed];
+            [self.navigationController pushViewController:controller animated:YES];
+            [controller release];
+            
+        }else {
+            ReplayView *replay = [ReplayView createReplayView:self];
+            [replay setViewInfo:self.feed];
+            [replay showInView:self.view];
+        }
+        
     }else{
         //NO action
     }

@@ -609,6 +609,7 @@
 
 "kComment" = "评论";
 "kReplyComment" = "回复评论";
+"kReply" = "回复";
 "kCorrect" = "猜对了！";
 "kSending" = "发送中...";
 "kNoCommentTips" = "还没有人评论";
@@ -855,7 +856,7 @@
 "kMe" = "我";
 "kSendMeFlower" = "给我赠送了一朵鲜花！";
 "kThrowMeTomato" = "给我丢了个番茄！";
-
+"kCommentMyOpus" = "评论我的画。";
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 
