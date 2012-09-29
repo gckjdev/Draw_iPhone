@@ -596,6 +596,7 @@
 
 "kComment" = "評論";
 "kReplyComment" = "回複評論";
+"kReply" = "回複";
 "kCorrect" = "猜對了！";
 "kSending" = "發送中...";
 "kNoCommentTips" = "還沒有人評論";

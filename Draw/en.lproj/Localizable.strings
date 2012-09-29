@@ -592,8 +592,8 @@
 "kRefreshMessageing" = "Refreshing...";
 
 "kComment" = "Comment";
-"kReplyComment" = "Reply";
-
+"kReplyComment" = "Reply Comment";
+"kReply" = "Reply";
 "kCorrect" = "Correct!";
 "kSending" = "Sending...";
 "kNoCommentTips" = "No Comments";

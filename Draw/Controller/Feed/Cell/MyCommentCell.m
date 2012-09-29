@@ -22,7 +22,7 @@
 @synthesize timeLabel;
 @synthesize nickNameLabel;
 @synthesize itemImage;
-@synthesize splitLine;
+//@synthesize splitLine;
 @synthesize feed = _feed;
 
 + (id)createCell:(id)delegate
@@ -37,7 +37,7 @@
     cell.delegate = delegate;
     
     [cell.sourceButton.titleLabel setNumberOfLines:3];
-    [cell.sourceButton.titleLabel setLineBreakMode:UILineBreakModeWordWrap];
+    [cell.sourceButton.titleLabel setLineBreakMode:UILineBreakModeCharacterWrap];
 //    [cell.sourceButton.titleLabel sets
     
     return cell;
@@ -49,12 +49,13 @@
 }
 
 
-#define COMMENT_WIDTH ([DeviceDetection isIPAD] ? 500 : 260)
+#define COMMENT_WIDTH ([DeviceDetection isIPAD] ? 590: 260)
+#define REPLY_WIDTH ([DeviceDetection isIPAD] ? 563: 244)
 #define COMMENT_FONT_SIZE ([DeviceDetection isIPAD] ? 12*2 : 12)
 #define REPLY_FONT_SIZE ([DeviceDetection isIPAD] ? 11*2 : 11)
 
 #define COMMENT_SPACE ([DeviceDetection isIPAD] ? 10 : 5)
-#define COMMENT_BASE_X ([DeviceDetection isIPAD] ? 102 : 44)
+#define COMMENT_BASE_X ([DeviceDetection isIPAD] ? 110 : 44)
 #define COMMENT_BASE_Y ([DeviceDetection isIPAD] ? 65 : 30)
 
 #define COMMENT_ITEM_HEIGHT ([DeviceDetection isIPAD] ? 110 : 60)
@@ -62,9 +63,8 @@
 #define AVATAR_VIEW_FRAME [DeviceDetection isIPAD] ? CGRectMake(12, 10, 74, 77) : CGRectMake(5, 9, 31, 32)
 
 #define COMMENT_PAN ([DeviceDetection isIPAD] ? 10 : 6)
-#define REPLY_PAN ([DeviceDetection isIPAD] ? 36 : 18)
+#define REPLY_PAN ([DeviceDetection isIPAD] ? 42 : 22)
 
-#define REPLY_HEIGHT 50
 
 
 + (CGRect)getCommentRect:(CommentFeed *)feed startY:(CGFloat)startY
@@ -81,7 +81,7 @@
 {
     NSString *reply = [[feed commentInfo] summaryDesc];
     UIFont *font = [UIFont systemFontOfSize:REPLY_FONT_SIZE];
-    CGSize commentSize = [reply sizeWithFont:font constrainedToSize:CGSizeMake(COMMENT_WIDTH, 10000000) lineBreakMode:UILineBreakModeCharacterWrap];
+    CGSize commentSize = [reply sizeWithFont:font constrainedToSize:CGSizeMake(REPLY_WIDTH, 10000000) lineBreakMode:UILineBreakModeCharacterWrap];
     return CGRectMake(COMMENT_BASE_X, startY, COMMENT_WIDTH, commentSize.height + REPLY_PAN);    
 }
 
@@ -148,7 +148,7 @@
     self.commentLabel.frame = [MyCommentCell getCommentRect:feed startY:COMMENT_BASE_Y];
     self.sourceButton.frame = [MyCommentCell getReplyRect:feed startY:CGRectGetMaxY(self.commentLabel.frame)];
     
-    splitLine.center = CGPointMake(splitLine.center.x, CGRectGetMaxY(sourceButton.frame) + COMMENT_SPACE);
+//    splitLine.center = CGPointMake(splitLine.center.x, CGRectGetMaxY(sourceButton.frame) + COMMENT_SPACE);
     
     [self.sourceButton setBackgroundImage:[[ShareImageManager defaultManager] commentSourceBG] forState:UIControlStateNormal];
     [self.sourceButton setTitle:feed.commentInfo.summaryDesc forState:UIControlStateNormal];
@@ -162,7 +162,7 @@
     PPRelease(timeLabel);
     PPRelease(nickNameLabel);
     PPRelease(itemImage);
-    PPRelease(splitLine);
+//    PPRelease(splitLine);
     [sourceButton release];
     [super dealloc];
 }

@@ -24,6 +24,7 @@
 #import "CommonMessageCenter.h"
 #import "ReplayView.h"
 #import "CommentFeed.h"
+#import "ReplayContestDrawController.h"
 
 @implementation ShowFeedController
 @synthesize titleLabel = _titleLabel;
@@ -92,7 +93,7 @@ enum{
 //    NSInteger start = ActionTagGuess;
 //    NSInteger count = ActionTagEnd - start;
 //    
-    self.guessButton.hidden = [self.feed showAnswer];
+    self.guessButton.hidden = [self.feed showAnswer] || [self.feed isContestFeed];
     self.replayButton.hidden = !self.guessButton.hidden;
     
 //    if ([self.feed showAnswer]) {
@@ -447,16 +448,16 @@ enum{
         
         ShareImageManager *imageManager = [ShareImageManager defaultManager];
         if (item.type == ItemTypeFlower) {
-            _throwingItem = [[[UIImageView alloc] initWithFrame:self.flowerButton.frame] autorelease];
-            [_throwingItem setImage:[imageManager flower]];
-            [self.view addSubview:_throwingItem];
-            [DrawGameAnimationManager showThrowFlower:_throwingItem animInController:self rolling:YES];
+            UIImageView* throwItem = [[[UIImageView alloc] initWithFrame:self.flowerButton.frame] autorelease];
+            [throwItem setImage:[imageManager flower]];
+            [self.view addSubview:throwItem];
+            [DrawGameAnimationManager showThrowFlower:throwItem animInController:self rolling:YES];
             [_commentHeader setSeletType:CommentTypeFlower];
         }else{
-            _throwingItem = [[[UIImageView alloc] initWithFrame:self.tomatoButton.frame] autorelease];
-            [_throwingItem setImage:[imageManager tomato]];
-            [self.view addSubview:_throwingItem];
-            [DrawGameAnimationManager showThrowTomato:_throwingItem animInController:self rolling:YES];         
+            UIImageView* throwItem = [[[UIImageView alloc] initWithFrame:self.tomatoButton.frame] autorelease];
+            [throwItem setImage:[imageManager tomato]];
+            [self.view addSubview:throwItem];
+            [DrawGameAnimationManager showThrowTomato:throwItem animInController:self rolling:YES];         
             [_commentHeader setSeletType:CommentTypeTomato];
         }
     }
@@ -536,9 +537,21 @@ enum{
         Item *item = [Item tomato];
         [self throwItem:item];
     }else if(button == self.replayButton){
-        ReplayView *replay = [ReplayView createReplayView:self];
-        [replay setViewInfo:self.feed];
-        [replay showInView:self.view];
+        
+        if ([self.feed isContestFeed]) {
+            //TODO enter the show contest feed controller.
+            PPDebug(@"enter show contest feed controller");
+            
+            ReplayContestDrawController *controller = [[ReplayContestDrawController alloc] initWithFeed:self.feed];
+            [self.navigationController pushViewController:controller animated:YES];
+            [controller release];
+            
+        }else {
+            ReplayView *replay = [ReplayView createReplayView:self];
+            [replay setViewInfo:self.feed];
+            [replay showInView:self.view];
+        }
+        
     }else{
         //NO action
     }

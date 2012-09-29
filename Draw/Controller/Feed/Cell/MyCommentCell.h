@@ -12,12 +12,6 @@
 #import "StableView.h"
 #import "PPViewController.h"
 
-@protocol CommentCellDelegate <NSObject>
-
-@optional
-- (void)didStartToReplyToFeed:(CommentFeed *)feed;
-
-@end
 
 @class AvatarView;
 @interface MyCommentCell : PPTableViewCell<AvatarViewDelegate>
@@ -30,7 +24,6 @@
 @property (retain, nonatomic) IBOutlet UILabel *timeLabel;
 @property (retain, nonatomic) IBOutlet UILabel *nickNameLabel;
 @property (retain, nonatomic) IBOutlet UIImageView *itemImage;
-@property (retain, nonatomic) IBOutlet UIView *splitLine;
 @property (retain, nonatomic) CommentFeed *feed;
 
 + (CGFloat)getCellHeight:(CommentFeed *)feed;

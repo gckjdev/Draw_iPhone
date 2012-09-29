@@ -29,6 +29,8 @@ typedef enum{
 @interface MyFeedController()
 - (void)alertDeleteConfirmForType:(MyType)type;
 - (void)showActionSheetForType:(MyType)type;
+- (void)enterOpusDetail:(CommentFeed *)feed;
+- (void)replyComment:(CommentFeed *)feed;
 @end
 
 @implementation MyFeedController
@@ -51,15 +53,26 @@ typedef enum{
     // Release any cached data, images, etc that aren't in use.
 }
 
+
+- (void)enterOpusDetail:(CommentFeed *)feed
+{
+    
+}
+- (void)replyComment:(CommentFeed *)feed
+{
+    
+}
+
+
 - (void)updateCommentIndexes:(BOOL)canDelete
 {
     if (canDelete) {
-        indexOfCommentOpus = 0;
-        indexOfCommentReply = 1;
+        indexOfCommentOpus = 1;
+        indexOfCommentReply = 0;
         indexOfCommentDelete = 2;
     }else{
-        indexOfCommentOpus = 0;
-        indexOfCommentReply = 1;
+        indexOfCommentReply = 0;
+        indexOfCommentOpus = 1;
         indexOfCommentDelete = -1;        
     }
 }
@@ -446,7 +459,7 @@ typedef enum{
 {
     UIButton *badgeButton = (UIButton *)[self.view viewWithTag:10 + type];
     [badgeButton setTitle:[NSString stringWithFormat:@"%d",count] forState:UIControlStateNormal];
-    if (count == 0 ) {
+    if (count == 0) {
         badgeButton.hidden = YES;
     } else {
         badgeButton.hidden = NO;
@@ -519,6 +532,7 @@ typedef enum{
     [self hideActivity];
     if (resultCode == 0) {
         [self finishLoadDataForTabID:MyTypeComment resultList:commentList];
+        [self clearBadge:FeedListTypeComment];
     }else{
         [self failLoadDataForTabID:MyTypeComment];
     }
@@ -559,25 +573,14 @@ typedef enum{
                                       otherButtonTitles:NSLS(@"kDelete"), nil];
     }else if(type == MyTypeComment)
     {
-        BOOL canDelete = [_selectedCommentFeed canDelete];
-        [self updateCommentIndexes:canDelete];
-        if (canDelete) {
-            actionSheet = [[UIActionSheet alloc]
-                           initWithTitle:NSLS(@"kOpusOperation")
-                           delegate:self 
-                           cancelButtonTitle:NSLS(@"kCancel") 
-                           destructiveButtonTitle:NSLS(@"kReply") 
-                           otherButtonTitles:NSLS(@"kOpusDetail"), NSLS(@"kDelete"),nil];
-
-        }else{
-            actionSheet = [[UIActionSheet alloc]
-                           initWithTitle:NSLS(@"kOpusOperation")
-                           delegate:self 
-                           cancelButtonTitle:NSLS(@"kCancel") 
-                           destructiveButtonTitle:NSLS(@"kReply") 
-                           otherButtonTitles:NSLS(@"kOpusDetail"), nil];
+        [self updateCommentIndexes:NO];
+        actionSheet = [[UIActionSheet alloc]
+                       initWithTitle:NSLS(@"kOpusOperation")
+                       delegate:self 
+                       cancelButtonTitle:NSLS(@"kCancel") 
+                       destructiveButtonTitle:NSLS(@"kReply") 
+                       otherButtonTitles:NSLS(@"kOpusDetail"), nil];
             
-        }
     }
     [actionSheet showInView:self.view];
     [actionSheet release];
@@ -635,7 +638,12 @@ typedef enum{
         [_selectRanView setRankViewSelected:NO];
         _selectRanView = nil;
     }else if(type == MyTypeComment){
-
+        if (buttonIndex == indexOfCommentReply) {
+            PPDebug(@"reply comment");
+            [self replyComment:_selectedCommentFeed];
+        }else if(buttonIndex == indexOfCommentOpus){
+            [self enterOpusDetail:_selectedCommentFeed];
+        }
     }
 
 }
