@@ -257,6 +257,12 @@
     [self updateTimesWithType:FeedTimesTypeSave key:PARA_SAVE_TIMES inDict:dict];
 }
 
+
+- (BOOL)isContestFeed
+{
+    return YES;
+}
+
 - (void)dealloc
 {
     PPRelease(_drawImage);    
