@@ -61,8 +61,8 @@ NSString* GlobalGetServerURL()
 
 NSString* GlobalGetTrafficServerURL()
 {
-  //return [ConfigManager getTrafficAPIServerURL];
-    return @"http://192.168.1.12:8100/api/i?";    
+    return [ConfigManager getTrafficAPIServerURL];
+//    return @"http://192.168.1.12:8100/api/i?";    
 }
 
 NSString* GlobalGetBoardServerURL()
