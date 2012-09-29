@@ -68,6 +68,48 @@ static FeedService *_staticFeedService = nil;
 
 }
 
+
+- (void)getContestOpusList:(int)type 
+                 contestId:(NSString *)contestId
+                    offset:(NSInteger)offset 
+                     limit:(NSInteger)limit 
+                  delegate:(PPViewController<FeedServiceDelegate> *)delegate
+{
+    
+    NSString *userId = [[UserManager defaultManager] userId];
+    LanguageType lang = UnknowType;
+    lang = [[UserManager defaultManager] getLanguageType];
+    
+    dispatch_async(workingQueue, ^{
+        
+        CommonNetworkOutput* output = [GameNetworkRequest 
+                                       getContestOpusListWithProtocolBuffer:TRAFFIC_SERVER_URL contestId:contestId
+                                       userId:userId 
+                                       type:type 
+                                       offset:offset
+                                       limit:limit 
+                                       lang:lang];
+        NSArray *list = nil;
+        NSInteger resultCode = output.resultCode;
+        if (resultCode == ERROR_SUCCESS){
+            PPDebug(@"<FeedService> getFeedList finish, start to parse data.");
+            [delegate showActivityWithText:NSLS(@"kParsingData")];
+            DataQueryResponse *response = [DataQueryResponse parseFromData:output.responseData];
+            resultCode = [response resultCode];
+            NSArray *pbFeedList = [response feedList];
+            list = [FeedManager parsePbFeedList:pbFeedList];
+        }
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (delegate && [delegate respondsToSelector:@selector(didGetContestOpusList:type:resultCode:)]) {
+                [delegate didGetContestOpusList:list type:type resultCode:resultCode];
+            }
+            
+        });
+    });
+    
+}
+
 - (void)getUserFeedList:(NSString *)userId
                  offset:(NSInteger)offset 
                   limit:(NSInteger)limit 

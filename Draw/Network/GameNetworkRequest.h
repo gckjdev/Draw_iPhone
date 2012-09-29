@@ -298,6 +298,14 @@
                                                 limit:(NSInteger)limit 
                                                  lang:(NSInteger)lang;
 
++ (CommonNetworkOutput*)getContestOpusListWithProtocolBuffer:(NSString*)baseURL
+                                                   contestId:(NSString *)contestId
+                                                      userId:(NSString *)userId 
+                                                        type:(NSInteger)type
+                                                      offset:(NSInteger)offset
+                                                       limit:(NSInteger)limit 
+                                                        lang:(NSInteger)lang;
+
 + (CommonNetworkOutput*)getFeedCommentListWithProtocolBuffer:(NSString*)baseURL 
                                                       opusId:(NSString *)opusId
                                                         type:(int)type

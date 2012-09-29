@@ -12,6 +12,7 @@
 #import "StatementView.h"
 #import "StatementController.h"
 #import "CommonMessageCenter.h"
+#import "ContestOpusController.h"
 
 @implementation ContestController
 @synthesize scrollView = _scrollView;
@@ -152,7 +153,9 @@
 - (void)didClickContestView:(ContestView *)contestView 
                onOpusButton:(Contest *)contest
 {
-    PPDebug(@"click opus button");
+    ContestOpusController *coc = [[ContestOpusController alloc] initWithContest:contest];
+    [self.navigationController pushViewController:coc animated:YES];
+    [coc release];
 }
 
 - (void)didClickContestView:(ContestView *)contestView
