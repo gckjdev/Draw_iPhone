@@ -128,6 +128,7 @@ typedef enum{
     RankView *view = [RankView createRankView:self type:RankViewTypeFirst];
     [view setViewInfo:feed];
     [cell.contentView addSubview:view];
+    [view updateViewInfoForContestOpus];
 }
 
 #define NORMAL_CELL_VIEW_NUMBER 3
@@ -141,6 +142,8 @@ typedef enum{
     [view1 setViewInfo:feed1];
     RankView *view2 = [RankView createRankView:self type:RankViewTypeSecond];
     [view2 setViewInfo:feed2];
+    [view1 updateViewInfoForContestOpus];
+    [view2 updateViewInfoForContestOpus];
     [cell.contentView addSubview:view1];
     [cell.contentView addSubview:view2];
     
@@ -163,6 +166,7 @@ typedef enum{
         [cell.contentView addSubview:rankView];
         rankView.frame = CGRectMake(x, y, width, height);
         x += width + space;
+        [rankView updateViewInfoForContestOpus];
     }
 }
 
