@@ -70,4 +70,8 @@ typedef enum{
 - (ActionType)actionType;
 
 - (BOOL)isContestFeed;
+
+- (BOOL)canSendFlower;
+- (BOOL)canThrowTomato;
+
 @end
