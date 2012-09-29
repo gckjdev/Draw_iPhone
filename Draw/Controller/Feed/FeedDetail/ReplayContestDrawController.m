@@ -169,6 +169,12 @@
 
 - (IBAction)clickUpButton:(id)sender {
     
+    if ([self.feed isMyOpus]) {
+        [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kCanotSendToSelf") delayTime:1.5 isHappy:YES];
+        return;
+    }
+
+    
     if (![self.feed canSendFlower]) {
         [[CommonMessageCenter defaultCenter] postMessageWithText:self.canotSendItemPopup
                                                        delayTime:1.5 
@@ -220,7 +226,13 @@
 
 - (IBAction)clickDownButton:(id)sender {
     
-    if (![self.feed canSendFlower]) {
+    if ([self.feed isMyOpus]) {
+        [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kCanotSendToSelf") delayTime:1.5 isHappy:YES];
+        return;
+    }
+
+    
+    if (![self.feed canThrowTomato]) {
         [[CommonMessageCenter defaultCenter] postMessageWithText:self.canotSendItemPopup
                                                        delayTime:1.5 
                                                          isHappy:YES];
