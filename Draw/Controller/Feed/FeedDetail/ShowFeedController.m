@@ -24,6 +24,7 @@
 #import "CommonMessageCenter.h"
 #import "ReplayView.h"
 #import "CommentFeed.h"
+#import "AnimationPlayer.h"
 
 @implementation ShowFeedController
 @synthesize titleLabel = _titleLabel;
@@ -449,27 +450,19 @@ enum{
         if (item.type == ItemTypeFlower) {
             UIImageView* throwItem = [[[UIImageView alloc] initWithFrame:self.flowerButton.frame] autorelease];
             [throwItem setImage:[imageManager flower]];
-            [self.view addSubview:throwItem];
-            [DrawGameAnimationManager showThrowFlower:throwItem animInController:self rolling:YES];
+            [DrawGameAnimationManager showThrowFlower:throwItem animInController:self rolling:YES completion:^(BOOL finished) {
+                [self clickRefresh:nil];
+            }];
             [_commentHeader setSeletType:CommentTypeFlower];
         }else{
             UIImageView* throwItem = [[[UIImageView alloc] initWithFrame:self.tomatoButton.frame] autorelease];
             [throwItem setImage:[imageManager tomato]];
-            [self.view addSubview:throwItem];
-            [DrawGameAnimationManager showThrowTomato:throwItem animInController:self rolling:YES];         
+            [DrawGameAnimationManager showThrowTomato:throwItem animInController:self rolling:YES completion:^(BOOL finished) {
+                [self clickRefresh:nil];
+            }];         
             [_commentHeader setSeletType:CommentTypeTomato];
         }
     }
-}
-
-- (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag
-{
-    [DrawGameAnimationManager animation:anim didStopWithFlag:flag];
-    if (_throwingItem) {
-        [_throwingItem removeFromSuperview];
-    }
-    _throwingItem = nil;
-    [self clickRefresh:nil];
 }
 
 
