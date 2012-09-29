@@ -58,7 +58,7 @@
 
 - (UIImage *)addColorImage;
 
-
+- (UIImage *)commentSourceBG;
 - (UIImage *)drawingMarkSmallImage;
 - (UIImage *)drawingMarkLargeImage;
 - (UIImage *)scoreBackgroundImage;

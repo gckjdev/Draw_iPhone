@@ -96,7 +96,7 @@
     [self dismissModalViewControllerAnimated:YES];
 }
 
-#define ACTION_SUMMARY_MAX_LENGTH 20
+#define ACTION_SUMMARY_MAX_LENGTH 60
 
 - (void)sendComment
 {

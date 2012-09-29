@@ -17,6 +17,7 @@
 #import "CommentFeed.h"
 
 @implementation MyCommentCell
+@synthesize sourceButton;
 @synthesize commentLabel;
 @synthesize timeLabel;
 @synthesize nickNameLabel;
@@ -32,46 +33,63 @@
         return nil;
     }
     
-    ((PPTableViewCell*)[topLevelObjects objectAtIndex:0]).delegate = delegate;
+    MyCommentCell *cell = ((MyCommentCell*)[topLevelObjects objectAtIndex:0]);
+    cell.delegate = delegate;
     
-    return [topLevelObjects objectAtIndex:0];
+    [cell.sourceButton.titleLabel setNumberOfLines:3];
+    [cell.sourceButton.titleLabel setLineBreakMode:UILineBreakModeCharacterWrap];
+//    [cell.sourceButton.titleLabel sets
+    
+    return cell;
 }
 
 + (NSString*)getCellIdentifier
 {
-    return @"CommentCell";
+    return @"MyCommentCell";
 }
 
 
-#define COMMENT_WIDTH ([DeviceDetection isIPAD] ? 500 : 204)
-#define COMMENT_FONT_SIZE ([DeviceDetection isIPAD] ? 11*2 : 11)
-#define COMMENT_SPACE ([DeviceDetection isIPAD] ? 20 : 10)
-#define COMMENT_BASE_X ([DeviceDetection isIPAD] ? 102 : 44)
+#define COMMENT_WIDTH ([DeviceDetection isIPAD] ? 590: 260)
+#define REPLY_WIDTH ([DeviceDetection isIPAD] ? 563: 244)
+#define COMMENT_FONT_SIZE ([DeviceDetection isIPAD] ? 12*2 : 12)
+#define REPLY_FONT_SIZE ([DeviceDetection isIPAD] ? 11*2 : 11)
+
+#define COMMENT_SPACE ([DeviceDetection isIPAD] ? 10 : 5)
+#define COMMENT_BASE_X ([DeviceDetection isIPAD] ? 110 : 44)
 #define COMMENT_BASE_Y ([DeviceDetection isIPAD] ? 65 : 30)
 
 #define COMMENT_ITEM_HEIGHT ([DeviceDetection isIPAD] ? 110 : 60)
 
 #define AVATAR_VIEW_FRAME [DeviceDetection isIPAD] ? CGRectMake(12, 10, 74, 77) : CGRectMake(5, 9, 31, 32)
 
+#define COMMENT_PAN ([DeviceDetection isIPAD] ? 10 : 6)
+#define REPLY_PAN ([DeviceDetection isIPAD] ? 42 : 22)
 
-- (IBAction)clickReplyButton:(id)sender {
-    if (self.delegate && [self.delegate 
-                          respondsToSelector:@selector(didStartToReplyToFeed:)]) {
-        [self.delegate didStartToReplyToFeed:self.feed];
-    }
+
+
++ (CGRect)getCommentRect:(CommentFeed *)feed startY:(CGFloat)startY
+{
+    NSString *comment = [feed commentInMyComment];
+    UIFont *font = [UIFont systemFontOfSize:COMMENT_FONT_SIZE];
+    CGSize commentSize = [comment sizeWithFont:font constrainedToSize:CGSizeMake(COMMENT_WIDTH, 10000000) lineBreakMode:UILineBreakModeCharacterWrap];
+    
+    return CGRectMake(COMMENT_BASE_X, startY, COMMENT_WIDTH, commentSize.height + COMMENT_PAN);
+
+}
+
++ (CGRect)getReplyRect:(CommentFeed *)feed startY:(CGFloat)startY
+{
+    NSString *reply = [[feed commentInfo] summaryDesc];
+    UIFont *font = [UIFont systemFontOfSize:REPLY_FONT_SIZE];
+    CGSize commentSize = [reply sizeWithFont:font constrainedToSize:CGSizeMake(REPLY_WIDTH, 10000000) lineBreakMode:UILineBreakModeCharacterWrap];
+    return CGRectMake(COMMENT_BASE_X, startY, COMMENT_WIDTH, commentSize.height + REPLY_PAN);    
 }
 
 + (CGFloat)getCellHeight:(CommentFeed *)feed
 {
-    if (feed.feedType == ItemTypeFlower || feed.feedType == ItemTypeTomato) {
-        return COMMENT_ITEM_HEIGHT;
-    }
-    NSString *comment = [feed commentInFeedDeatil];
-    UIFont *font = [UIFont systemFontOfSize:COMMENT_FONT_SIZE];
-    CGSize commentSize = [comment sizeWithFont:font constrainedToSize:CGSizeMake(COMMENT_WIDTH, 10000000) lineBreakMode:UILineBreakModeCharacterWrap];
-    CGFloat height = COMMENT_BASE_Y + COMMENT_SPACE + commentSize.height;
-//    PPDebug(@"comment = %@,height = %f", comment,height);
-    return height;
+    CGRect commentRect = [MyCommentCell getCommentRect:feed startY:COMMENT_BASE_Y];
+    CGRect replyRect = [MyCommentCell getReplyRect:feed startY:CGRectGetMaxY(commentRect)];
+    return CGRectGetMaxY(replyRect) + COMMENT_SPACE;
 }
 
 #define SHOW_COMMENT_COUNT 3
@@ -108,7 +126,7 @@
         [self.timeLabel setText:timeString];
     }
     
-     NSString *comment = [feed commentInFeedDeatil];
+     NSString *comment = [feed commentInMyComment];
     //set user name
     [self.nickNameLabel setText:author.nickName];
     
@@ -125,19 +143,16 @@
     }
         
     //set comment
-
-    UIFont *font = [UIFont systemFontOfSize:COMMENT_FONT_SIZE];
-    CGSize commentSize = [comment sizeWithFont:font constrainedToSize:CGSizeMake(COMMENT_WIDTH, 10000000) lineBreakMode:UILineBreakModeCharacterWrap];
     
-    self.commentLabel.frame = CGRectMake(COMMENT_BASE_X, COMMENT_BASE_Y, COMMENT_WIDTH,commentSize.height);
-        
     [self.commentLabel setText:[NSString stringWithFormat:@"%@", comment]];
-    [self.commentLabel setFont:font];
+    self.commentLabel.frame = [MyCommentCell getCommentRect:feed startY:COMMENT_BASE_Y];
+    self.sourceButton.frame = [MyCommentCell getReplyRect:feed startY:CGRectGetMaxY(self.commentLabel.frame)];
     
-    CGFloat y = COMMENT_BASE_Y + COMMENT_SPACE + commentSize.height - 0.5;
-    CGFloat x = splitLine.center.x;
-    splitLine.center = CGPointMake(x, y);
-//    PPDebug(@"center = (%f,%f)",x,y);
+    splitLine.center = CGPointMake(splitLine.center.x, CGRectGetMaxY(sourceButton.frame) + COMMENT_SPACE);
+    
+    [self.sourceButton setBackgroundImage:[[ShareImageManager defaultManager] commentSourceBG] forState:UIControlStateNormal];
+    [self.sourceButton setTitle:feed.commentInfo.summaryDesc forState:UIControlStateNormal];
+
 }
 
 
@@ -148,6 +163,7 @@
     PPRelease(nickNameLabel);
     PPRelease(itemImage);
     PPRelease(splitLine);
+    [sourceButton release];
     [super dealloc];
 }
 

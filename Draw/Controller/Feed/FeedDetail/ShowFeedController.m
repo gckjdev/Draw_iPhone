@@ -428,10 +428,10 @@ enum{
 - (void)throwItem:(Item *)item
 {
     
-    if ([self.feed isMyOpus]) {
-        [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kCanotSendToSelf") delayTime:1.5 isHappy:YES];
-        return;
-    }
+//    if ([self.feed isMyOpus]) {
+//        [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kCanotSendToSelf") delayTime:1.5 isHappy:YES];
+//        return;
+//    }
     
     if (item.amount <= 0) {
         CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kNoItemTitle") message:NSLS(@"kNoItemMessage") style:CommonDialogStyleDoubleButton delegate:self];
@@ -448,16 +448,16 @@ enum{
         
         ShareImageManager *imageManager = [ShareImageManager defaultManager];
         if (item.type == ItemTypeFlower) {
-            _throwingItem = [[[UIImageView alloc] initWithFrame:self.flowerButton.frame] autorelease];
-            [_throwingItem setImage:[imageManager flower]];
-            [self.view addSubview:_throwingItem];
-            [DrawGameAnimationManager showThrowFlower:_throwingItem animInController:self rolling:YES];
+            UIImageView* throwItem = [[[UIImageView alloc] initWithFrame:self.flowerButton.frame] autorelease];
+            [throwItem setImage:[imageManager flower]];
+            [self.view addSubview:throwItem];
+            [DrawGameAnimationManager showThrowFlower:throwItem animInController:self rolling:YES];
             [_commentHeader setSeletType:CommentTypeFlower];
         }else{
-            _throwingItem = [[[UIImageView alloc] initWithFrame:self.tomatoButton.frame] autorelease];
-            [_throwingItem setImage:[imageManager tomato]];
-            [self.view addSubview:_throwingItem];
-            [DrawGameAnimationManager showThrowTomato:_throwingItem animInController:self rolling:YES];         
+            UIImageView* throwItem = [[[UIImageView alloc] initWithFrame:self.tomatoButton.frame] autorelease];
+            [throwItem setImage:[imageManager tomato]];
+            [self.view addSubview:throwItem];
+            [DrawGameAnimationManager showThrowTomato:throwItem animInController:self rolling:YES];         
             [_commentHeader setSeletType:CommentTypeTomato];
         }
     }

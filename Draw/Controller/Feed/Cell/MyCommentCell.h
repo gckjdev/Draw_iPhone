@@ -35,6 +35,6 @@
 
 + (CGFloat)getCellHeight:(CommentFeed *)feed;
 - (void)setCellInfo:(CommentFeed *)feed;
-- (IBAction)clickReplyButton:(id)sender;
+@property (retain, nonatomic) IBOutlet UIButton *sourceButton;
 
 @end

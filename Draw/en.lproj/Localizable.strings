@@ -832,6 +832,12 @@
 "kCanotSendToSelf" = "You can't send flower or tomato to your opus.";
 "kAutoSave" = "Auto Save";
 "kReplyCommentDesc" = "Re %@: %@";
+
+"kSummaryOfDraw" = "Comment %@ opus: [%@].";
+"kSummaryOfDrawNoWord" = "Comment %@ opus.";
+"kSummaryOfGuess" = "Reply %@'s guessing.";
+"kSummaryOfSendItem" = "Reply %@'s expression.";
+"kSummaryOfComment" = "Reply %@'s comment: %@.";
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 
@@ -1029,6 +1035,9 @@
 
 "kSearchEmpty" = "No matched room";
 "kNoFriendRoom" = "No friend room";
+"kMe" = "Me";
+"kSendMeFlower" = "Send me a flower";
+"kThrowMeTomato" = "Throw me a Tomato";
 /*********************** 大话骰子国际化字符串结束 *************************/
 
 

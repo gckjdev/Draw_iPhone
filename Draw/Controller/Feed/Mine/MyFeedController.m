@@ -16,6 +16,7 @@
 #import "CommonDialog.h"
 #import "StatisticManager.h"
 #import "CommentCell.h"
+#import "MyCommentCell.h"
 
 typedef enum{
     MyTypeFeed = FeedListTypeAll,
@@ -26,7 +27,8 @@ typedef enum{
 }MyType;
 
 @interface MyFeedController()
-- (void)alertDeleteConfirm;
+- (void)alertDeleteConfirmForType:(MyType)type;
+- (void)showActionSheetForType:(MyType)type;
 @end
 
 @implementation MyFeedController
@@ -49,6 +51,18 @@ typedef enum{
     // Release any cached data, images, etc that aren't in use.
 }
 
+- (void)updateCommentIndexes:(BOOL)canDelete
+{
+    if (canDelete) {
+        indexOfCommentOpus = 0;
+        indexOfCommentReply = 1;
+        indexOfCommentDelete = 2;
+    }else{
+        indexOfCommentOpus = 0;
+        indexOfCommentReply = 1;
+        indexOfCommentDelete = -1;        
+    }
+}
 
 
 - (void)initTabButtons
@@ -118,7 +132,7 @@ typedef enum{
         case MyTypeComment:
         {
             CommentFeed * commentFeed = [self.tabDataList objectAtIndex:indexPath.row];
-            return [CommentCell  getCellHeight:commentFeed];
+            return [MyCommentCell  getCellHeight:commentFeed];
         }
         default:
             return 44.0f;
@@ -237,9 +251,9 @@ typedef enum{
         return cell;
     }else if(tab.tabID == MyTypeComment){
         CommentFeed * commentFeed = [self.tabDataList objectAtIndex:indexPath.row];
-        CommentCell *cell = [theTableView dequeueReusableCellWithIdentifier:[CommentCell getCellIdentifier]];
+        MyCommentCell *cell = [theTableView dequeueReusableCellWithIdentifier:[MyCommentCell getCellIdentifier]];
         if (cell == nil) {
-            cell = [CommentCell createCell:self];
+            cell = [MyCommentCell createCell:self];
         }
         [cell setCellInfo:commentFeed];
         return cell;
@@ -291,7 +305,16 @@ typedef enum{
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    if (self.currentTab.tabID != MyTypeFeed && indexPath.row > [self.tabDataList count])
+    MyType type = self.currentTab.tabID;
+    
+    if (type == MyTypeComment) {
+        //show the action sheet
+        _selectedCommentFeed = [self.tabDataList objectAtIndex:indexPath.row];
+        [self showActionSheetForType:MyTypeComment];
+        return;
+    }
+    
+    if (type != MyTypeFeed && indexPath.row > [self.tabDataList count])
         return;
     
     Feed *feed = [self.tabDataList objectAtIndex:indexPath.row];
@@ -321,7 +344,7 @@ typedef enum{
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     _seletedFeed = [self.tabDataList objectAtIndex:indexPath.row];
-    [self alertDeleteConfirm];
+    [self alertDeleteConfirmForType:MyTypeFeed];
 }
 
 -(BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
@@ -402,14 +425,14 @@ typedef enum{
                                        limit:limit 
                                         type:FeedListTypeDrawToMe
                                     delegate:self];
+                break;
             }
             case MyTypeComment:
                 
             {
                 [feedService getMyCommentList:offset limit:limit delegate:self];
-//                [self.noDataTipLabl setText:@"功能尚未完成，先试试其他的吧。"];
-//                self.currentTab.status = TableTabStatusLoaded;
             }
+                break;
             default:
                 
                 [self hideActivity];
@@ -510,13 +533,56 @@ typedef enum{
     [sc release];    
 }
 
-- (void)alertDeleteConfirm
+- (void)alertDeleteConfirmForType:(MyType)type
 {    
-    CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"kSure_delete") 
-                                                       message:NSLS(@"kAre_you_sure") 
-                                                         style:CommonDialogStyleDoubleButton 
-                                                        delegate:self];  
+    CommonDialog* dialog = nil;
+    if (type == MyTypeFeed) {
+        dialog = [CommonDialog createDialogWithTitle:NSLS(@"kSure_delete") 
+                                    message:NSLS(@"kAre_you_sure") 
+                                      style:CommonDialogStyleDoubleButton 
+                                   delegate:self];          
+    }else if(type == MyTypeComment){
+        //delete comment
+    }
+    
     [dialog showInView:self.view];
+}
+
+- (void)showActionSheetForType:(MyType)type
+{
+    UIActionSheet *actionSheet = nil;
+    if (type == MyTypeOpus) {
+        actionSheet = [[UIActionSheet alloc]
+                                      initWithTitle:NSLS(@"kOpusOperation")
+                                      delegate:self 
+                                      cancelButtonTitle:NSLS(@"kCancel") 
+                                      destructiveButtonTitle:NSLS(@"kOpusDetail") 
+                                      otherButtonTitles:NSLS(@"kDelete"), nil];
+    }else if(type == MyTypeComment)
+    {
+        BOOL canDelete = [_selectedCommentFeed canDelete];
+        [self updateCommentIndexes:canDelete];
+        if (canDelete) {
+            actionSheet = [[UIActionSheet alloc]
+                           initWithTitle:NSLS(@"kOpusOperation")
+                           delegate:self 
+                           cancelButtonTitle:NSLS(@"kCancel") 
+                           destructiveButtonTitle:NSLS(@"kReply") 
+                           otherButtonTitles:NSLS(@"kOpusDetail"), NSLS(@"kDelete"),nil];
+
+        }else{
+            actionSheet = [[UIActionSheet alloc]
+                           initWithTitle:NSLS(@"kOpusOperation")
+                           delegate:self 
+                           cancelButtonTitle:NSLS(@"kCancel") 
+                           destructiveButtonTitle:NSLS(@"kReply") 
+                           otherButtonTitles:NSLS(@"kOpusDetail"), nil];
+            
+        }
+    }
+    [actionSheet showInView:self.view];
+    [actionSheet release];
+
 }
 
 - (void)clickOk:(CommonDialog *)dialog
@@ -543,29 +609,36 @@ typedef enum{
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     
-    DrawFeed *feed = _selectRanView.feed;
-    
-    switch (buttonIndex) {
-        case ActionSheetIndexDelete:
-        {
-            _seletedFeed = feed;
-            [self alertDeleteConfirm];
+    MyType type = self.currentTab.tabID;
+    if (type == MyTypeOpus) {
+        
+        DrawFeed *feed = _selectRanView.feed;
+        
+        switch (buttonIndex) {
+            case ActionSheetIndexDelete:
+            {
+                _seletedFeed = feed;
+                [self alertDeleteConfirmForType:MyTypeFeed];
+            }
+                break;
+            case ActionSheetIndexDetail:
+            {
+                PPDebug(@"Detail");            
+                [self enterDetailFeed:feed];
+            }
+                break;
+            default:
+            {
+                
+            }
+                break;
         }
-            break;
-        case ActionSheetIndexDetail:
-        {
-            PPDebug(@"Detail");            
-            [self enterDetailFeed:feed];
-        }
-            break;
-        default:
-        {
+        [_selectRanView setRankViewSelected:NO];
+        _selectRanView = nil;
+    }else if(type == MyTypeComment){
 
-        }
-            break;
     }
-    [_selectRanView setRankViewSelected:NO];
-    _selectRanView = nil;
+
 }
 
 
@@ -588,16 +661,7 @@ typedef enum{
         //action sheet
         _selectRanView = rankView;
         [rankView setRankViewSelected:YES];
-        
-        UIActionSheet *actionSheet = [[UIActionSheet alloc]
-                                      initWithTitle:NSLS(@"kOpusOperation")
-                                      delegate:self 
-                                      cancelButtonTitle:NSLS(@"kCancel") 
-                                      destructiveButtonTitle:NSLS(@"kOpusDetail") 
-                                      otherButtonTitles:NSLS(@"kDelete"), nil];
-        
-        [actionSheet showInView:self.view];
-        [actionSheet release];
+        [self showActionSheetForType:MyTypeOpus];
         
     }else{
         [self enterDetailFeed:rankView.feed];
