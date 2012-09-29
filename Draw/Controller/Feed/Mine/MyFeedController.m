@@ -17,6 +17,8 @@
 #import "StatisticManager.h"
 #import "CommentCell.h"
 #import "MyCommentCell.h"
+#import "DrawFeed.h"
+#import "CommentController.h"
 
 typedef enum{
     MyTypeFeed = FeedListTypeAll,
@@ -31,6 +33,7 @@ typedef enum{
 - (void)showActionSheetForType:(MyType)type;
 - (void)enterOpusDetail:(CommentFeed *)feed;
 - (void)replyComment:(CommentFeed *)feed;
+- (void)enterDetailFeed:(DrawFeed *)feed;
 @end
 
 @implementation MyFeedController
@@ -54,13 +57,35 @@ typedef enum{
 }
 
 
+- (void)didGetFeed:(DrawFeed *)feed resultCode:(NSInteger)resultCode
+{
+    [self hideActivity];
+    if (resultCode == 0) {
+        if (feed) {
+            [self enterDetailFeed:feed];
+        }else{
+            [[CommonMessageCenter defaultCenter]postMessageWithText:NSLS(@"kOpusDelete") delayTime:1.5 isHappy:NO];
+        }
+    }else{
+        [[CommonMessageCenter defaultCenter]postMessageWithText:NSLS(@"kLoadFail") delayTime:1.5 isHappy:NO];        
+    }
+}
 - (void)enterOpusDetail:(CommentFeed *)feed
 {
-    
+    [self showActivityWithText:NSLS(@"kLoading")];
+    [[FeedService defaultService]getFeedByFeedId:feed.opusId delegate:self];
 }
 - (void)replyComment:(CommentFeed *)feed
 {
-    
+    DrawFeed *drawFeed = [[DrawFeed alloc] init];
+    drawFeed.feedId = feed.opusId;
+    FeedUser *feedUser = [[FeedUser alloc]initWithUserId:feed.opusCreator
+                                                nickName:nil
+                                                  avatar:nil 
+                                                  gender:YES];
+    drawFeed.feedUser = feedUser;
+    CommentController *cc = [[CommentController alloc] initWithFeed:drawFeed commentFeed:_selectedCommentFeed];
+    [self presentModalViewController:cc animated:YES];
 }
 
 

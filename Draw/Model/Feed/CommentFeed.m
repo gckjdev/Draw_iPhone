@@ -185,7 +185,7 @@
             if (isMe || [[UserManager defaultManager] hasGuessOpus:self.actionId]) {
                 desc = [NSString stringWithFormat:NSLS(@"kSummaryOfDraw"),nick, self.summary];                
             }else{
-                desc = [NSString stringWithFormat:NSLS(@"kSummaryOfDrawNoWord")];
+                desc = [NSString stringWithFormat:NSLS(@"kSummaryOfDrawNoWord"),nick];
             }
         }
             return desc;

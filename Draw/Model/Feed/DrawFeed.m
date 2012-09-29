@@ -260,7 +260,7 @@
 
 - (BOOL)isContestFeed
 {
-    return YES;
+    return self.feedType == FeedTypeDrawToContest;
 }
 
 - (void)dealloc

@@ -351,7 +351,7 @@ enum{
 - (void)updateTitle
 {
     NSString *title = nil;
-    if ([self.feed showAnswer]) {
+    if ([self.feed showAnswer] && [self.feed.wordText length] != 0) {
         title = [NSString stringWithFormat:NSLS(@"[%@]"),
                  self.feed.wordText];        
     }else{
@@ -360,16 +360,19 @@ enum{
     [self.titleLabel setText:title];
 }
 
-
+- (void)updateUserInfo
+{
+    [self.userCell setCellInfo:self.feed];
+}
 #pragma mark - cell delegate
 - (void)didUpdateShowView
 {
     //update the times
     [self.commentHeader setViewInfo:self.feed];
-    
     //update the action buttons
     [self updateActionButtons];
     [self updateTitle];
+    [self updateUserInfo];
 }
 
 - (void)viewDidAppear:(BOOL)animated

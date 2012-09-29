@@ -11,20 +11,23 @@
 #import "ShowDrawView.h"
 #import "Draw.h"
 #import "DrawAction.h"
+#import "ShowDrawView.h"
 
 #define KEY_
 
 @interface ReplayContestDrawController ()
 @property (retain, nonatomic) DrawFeed *feed;
-
 @end
 
 @implementation ReplayContestDrawController
 @synthesize holderView = _holderView;
 @synthesize feed = _feed;
+@synthesize showView = _showView;
 
 - (void)dealloc
 {
+    [_showView stop];
+    PPRelease(_showView);
     [_feed release];
     [_holderView release];
     [super dealloc];
@@ -43,16 +46,17 @@
 {
     [super viewDidLoad];
     
-    ShowDrawView *showView = [[[ShowDrawView alloc] initWithFrame:self.holderView.frame] autorelease];
+    self.showView = [[[ShowDrawView alloc] initWithFrame:self.holderView.frame] autorelease];
     
     NSMutableArray *list =  [NSMutableArray
                              arrayWithArray:
                              self.feed.drawData.drawActionList];
-    [showView setDrawActionList:list];
-    double speed = [DrawAction calculateSpeed:showView.drawActionList defaultSpeed:1.0/40.0 maxSecond:45];
-    showView.playSpeed = speed;
-    [self.view addSubview:showView];
-    [showView play];
+    [_showView setDrawActionList:list];
+    double speed = [DrawAction calculateSpeed:_showView.drawActionList defaultSpeed:1.0/40.0 maxSecond:45];
+    _showView.playSpeed = speed;
+    [self.view addSubview:_showView];
+    [self.holderView removeFromSuperview];
+    [_showView play];
 }
 
 - (void)viewDidUnload

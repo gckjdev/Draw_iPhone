@@ -144,6 +144,8 @@
     [self updateTime:self.feed];
     
     if (feed.drawData) {
+        [self updateShowView:feed];
+        [self updateTime:feed];
         return;
     }    
     _getTimes = 1;
@@ -163,6 +165,8 @@
         PPDebug(@"get draw feed succ: feedId = %@",feed.feedId);
         self.feed.timesSet = feed.timesSet;
         self.feed.drawData = feed.drawData;
+        self.feed.feedUser = feed.feedUser;
+        
         [self updateShowView:feed];
         [self updateTime:feed];
         if (self.delegate && [self.delegate respondsToSelector:@selector(didUpdateShowView)]) {
