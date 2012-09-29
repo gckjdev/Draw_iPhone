@@ -11,11 +11,10 @@
 			<string key="NS.object.0">933</string>
 		</object>
 		<array key="IBDocument.IntegratedClassDependencies">
-			<string>IBUIButton</string>
 			<string>IBUITableViewCell</string>
 			<string>IBUIImageView</string>
 			<string>IBUILabel</string>
-			<string>IBUIView</string>
+			<string>IBUIButton</string>
 			<string>IBProxyObject</string>
 		</array>
 		<array key="IBDocument.PluginDependencies">
@@ -65,7 +64,7 @@
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<string key="IBUIText">kGuess</string>
-								<object class="NSColor" key="IBUITextColor" id="19139450">
+								<object class="NSColor" key="IBUITextColor">
 									<int key="NSColorSpace">3</int>
 									<bytes key="NSWhite">MC42NjY2NjY2NjY3AA</bytes>
 								</object>
@@ -148,23 +147,13 @@
 								<string key="NSFrame">{{279, 30}, {20, 20}}</string>
 								<reference key="NSSuperview" ref="153973212"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView" ref="303486316"/>
+								<reference key="NSNextKeyView"/>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<object class="NSCustomResource" key="IBUIImage">
 									<string key="NSClassName">NSImage</string>
 									<string key="NSResourceName">flower@2x.png</string>
 								</object>
-							</object>
-							<object class="IBUIView" id="303486316">
-								<reference key="NSNextResponder" ref="153973212"/>
-								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{0, 82}, {302, 1}}</string>
-								<reference key="NSSuperview" ref="153973212"/>
-								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView" ref="380002626"/>
-								<reference key="IBUIBackgroundColor" ref="19139450"/>
-								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 							</object>
 							<object class="IBUIButton" id="380002626">
 								<reference key="NSNextResponder" ref="153973212"/>
@@ -256,14 +245,6 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">splitLine</string>
-						<reference key="source" ref="786630657"/>
-						<reference key="destination" ref="303486316"/>
-					</object>
-					<int key="connectionID">21</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">itemImage</string>
 						<reference key="source" ref="786630657"/>
 						<reference key="destination" ref="715412253"/>
@@ -307,7 +288,6 @@
 							<reference ref="319891268"/>
 							<reference ref="969849022"/>
 							<reference ref="715412253"/>
-							<reference ref="303486316"/>
 							<reference ref="380002626"/>
 						</array>
 						<reference key="parent" ref="0"/>
@@ -333,11 +313,6 @@
 						<reference key="parent" ref="786630657"/>
 					</object>
 					<object class="IBObjectRecord">
-						<int key="objectID">20</int>
-						<reference key="object" ref="303486316"/>
-						<reference key="parent" ref="786630657"/>
-					</object>
-					<object class="IBObjectRecord">
 						<int key="objectID">18</int>
 						<reference key="object" ref="715412253"/>
 						<reference key="parent" ref="786630657"/>
@@ -356,7 +331,6 @@
 				<string key="-2.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="16.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="18.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<string key="20.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="24.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<real value="0.0" key="24.IBUIButtonInspectorSelectedEdgeInsetMetadataKey"/>
 				<string key="4.CustomClassName">MyCommentCell</string>
@@ -429,7 +403,6 @@
 						<string key="itemImage">UIImageView</string>
 						<string key="nickNameLabel">UILabel</string>
 						<string key="sourceButton">UIButton</string>
-						<string key="splitLine">UIView</string>
 						<string key="timeLabel">UILabel</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
@@ -448,10 +421,6 @@
 						<object class="IBToOneOutletInfo" key="sourceButton">
 							<string key="name">sourceButton</string>
 							<string key="candidateClassName">UIButton</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="splitLine">
-							<string key="name">splitLine</string>
-							<string key="candidateClassName">UIView</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="timeLabel">
 							<string key="name">timeLabel</string>

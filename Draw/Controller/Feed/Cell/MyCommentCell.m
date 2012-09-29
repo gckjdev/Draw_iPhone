@@ -22,7 +22,7 @@
 @synthesize timeLabel;
 @synthesize nickNameLabel;
 @synthesize itemImage;
-@synthesize splitLine;
+//@synthesize splitLine;
 @synthesize feed = _feed;
 
 + (id)createCell:(id)delegate
@@ -148,7 +148,7 @@
     self.commentLabel.frame = [MyCommentCell getCommentRect:feed startY:COMMENT_BASE_Y];
     self.sourceButton.frame = [MyCommentCell getReplyRect:feed startY:CGRectGetMaxY(self.commentLabel.frame)];
     
-    splitLine.center = CGPointMake(splitLine.center.x, CGRectGetMaxY(sourceButton.frame) + COMMENT_SPACE);
+//    splitLine.center = CGPointMake(splitLine.center.x, CGRectGetMaxY(sourceButton.frame) + COMMENT_SPACE);
     
     [self.sourceButton setBackgroundImage:[[ShareImageManager defaultManager] commentSourceBG] forState:UIControlStateNormal];
     [self.sourceButton setTitle:feed.commentInfo.summaryDesc forState:UIControlStateNormal];
@@ -162,7 +162,7 @@
     PPRelease(timeLabel);
     PPRelease(nickNameLabel);
     PPRelease(itemImage);
-    PPRelease(splitLine);
+//    PPRelease(splitLine);
     [sourceButton release];
     [super dealloc];
 }

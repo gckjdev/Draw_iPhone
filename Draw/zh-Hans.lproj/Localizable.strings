@@ -609,6 +609,7 @@
 
 "kComment" = "评论";
 "kReplyComment" = "回复评论";
+"kReply" = "回复";
 "kCorrect" = "猜对了！";
 "kSending" = "发送中...";
 "kNoCommentTips" = "还没有人评论";
