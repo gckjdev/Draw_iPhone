@@ -79,7 +79,7 @@
 
 + (CGRect)getReplyRect:(CommentFeed *)feed startY:(CGFloat)startY
 {
-    NSString *reply = [[feed commentInfo] summaryDesc];
+    NSString *reply = [feed replySummary];
     UIFont *font = [UIFont systemFontOfSize:REPLY_FONT_SIZE];
     CGSize commentSize = [reply sizeWithFont:font constrainedToSize:CGSizeMake(REPLY_WIDTH, 10000000) lineBreakMode:UILineBreakModeCharacterWrap];
     return CGRectMake(COMMENT_BASE_X, startY, COMMENT_WIDTH, commentSize.height + REPLY_PAN);    
@@ -151,8 +151,8 @@
 //    splitLine.center = CGPointMake(splitLine.center.x, CGRectGetMaxY(sourceButton.frame) + COMMENT_SPACE);
     
     [self.sourceButton setBackgroundImage:[[ShareImageManager defaultManager] commentSourceBG] forState:UIControlStateNormal];
-    [self.sourceButton setTitle:feed.commentInfo.summaryDesc forState:UIControlStateNormal];
-
+    
+    [self.sourceButton setTitle:feed.replySummary forState:UIControlStateNormal];        
 }
 
 
