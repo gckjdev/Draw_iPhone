@@ -12,6 +12,11 @@
 #import "Draw.h"
 #import "DrawAction.h"
 #import "ShowDrawView.h"
+#import "ItemService.h"
+#import "ItemManager.h"
+#import "StableView.h"
+#import "DrawGameAnimationManager.h"
+#import "CommonItemInfoView.h"
 
 #define KEY_
 
@@ -65,16 +70,63 @@
     [super viewDidUnload];
 }
 
+#define ITEM_TAG_OFFSET 20120728
+- (BOOL)throwItem:(ToolView*)toolView
+{
+    
+    if([[ItemManager defaultManager] hasEnoughItem:toolView.itemType] == NO){
+        //TODO go the shopping page.
+        CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kNoItemTitle") message:NSLS(@"kNoItemMessage") style:CommonDialogStyleDoubleButton delegate:self];
+        dialog.tag = ITEM_TAG_OFFSET + toolView.itemType;
+        [dialog showInView:self.view];
+        return NO;
+    }
+    UIImageView* throwingItem= [[[UIImageView alloc] initWithFrame:toolView.frame] autorelease];
+    [throwingItem setImage:toolView.imageView.image];
+    if (toolView.itemType == ItemTypeTomato) {
+        [DrawGameAnimationManager showThrowTomato:throwingItem animInController:self rolling:YES];
+    }
+    if (toolView.itemType == ItemTypeFlower) {
+        [DrawGameAnimationManager showThrowFlower:throwingItem animInController:self rolling:YES];
+    }
+    return YES;
+}
+
+- (void)clickOk:(CommonDialog *)dialog
+{
+    switch (dialog.tag) {
+        case (ItemTypeTomato + ITEM_TAG_OFFSET): {
+            [CommonItemInfoView showItem:[Item tomato] infoInView:self];
+        } break;
+        case (ItemTypeFlower + ITEM_TAG_OFFSET): {
+            [CommonItemInfoView showItem:[Item flower] infoInView:self];
+        } break;
+        case (ItemTypeTips + ITEM_TAG_OFFSET): {
+            [CommonItemInfoView showItem:[Item tips] infoInView:self];
+        } break;
+        default:
+            break;
+    }
+}
+
 - (IBAction)clickBackButton:(id)sender {
     [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (IBAction)clickUpButton:(id)sender {
+    if ([self.feed canSendFlower]) {
+        
+    }
 }
 
 - (IBAction)clickShareButton:(id)sender {
 }
 
 - (IBAction)clickDownButton:(id)sender {
+    if ([self.feed canThrowTomato]) {
+        //send 
+    }else{
+        //TIPS
+    }
 }
 @end

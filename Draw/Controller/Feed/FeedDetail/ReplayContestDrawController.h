@@ -7,10 +7,12 @@
 //
 
 #import "PPViewController.h"
+#import "CommonDialog.h"
 
 @class DrawFeed;
 @class ShowDrawView;
-@interface ReplayContestDrawController : PPViewController
+
+@interface ReplayContestDrawController : PPViewController<CommonDialogDelegate>
 {
     ShowDrawView *_showView;
 }
