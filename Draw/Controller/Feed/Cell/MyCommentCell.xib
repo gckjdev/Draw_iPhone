@@ -95,7 +95,7 @@
 								<int key="IBUIContentMode">7</int>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-								<string key="IBUIText"/>
+								<string key="IBUIText">Comment</string>
 								<object class="NSColor" key="IBUITextColor" id="361396447">
 									<int key="NSColorSpace">3</int>
 									<bytes key="NSWhite">MC4zMzMzMzMzMzMzAA</bytes>
@@ -127,7 +127,7 @@
 								<int key="IBUIContentMode">7</int>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-								<string key="IBUIText"/>
+								<string key="IBUIText">nick</string>
 								<object class="NSColor" key="IBUITextColor">
 									<int key="NSColorSpace">1</int>
 									<bytes key="NSRGB">MCAwIDAAA</bytes>
@@ -176,10 +176,11 @@
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-								<double key="IBUIContentEdgeInsets.top">11</double>
+								<double key="IBUIContentEdgeInsets.top">14</double>
 								<double key="IBUIContentEdgeInsets.bottom">0.0</double>
 								<double key="IBUIContentEdgeInsets.left">10</double>
 								<double key="IBUIContentEdgeInsets.right">6</double>
+								<int key="IBUILineBreakMode">1</int>
 								<string key="IBUINormalTitle">回复</string>
 								<reference key="IBUIHighlightedTitleColor" ref="947519612"/>
 								<reference key="IBUINormalTitleColor" ref="361396447"/>
