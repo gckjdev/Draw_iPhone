@@ -411,14 +411,14 @@
 
 - (void)throwTool:(ToolView*)toolView
 {
-    _throwingItem = [[[UIImageView alloc] initWithFrame:ITEM_FRAME] autorelease];
-    [self.view addSubview:_throwingItem];
-    [_throwingItem setImage:toolView.imageView.image];
+    UIImageView* throwItem = [[[UIImageView alloc] initWithFrame:ITEM_FRAME] autorelease];
+    [self.view addSubview:throwItem];
+    [throwItem setImage:toolView.imageView.image];
     if (toolView.itemType == ItemTypeTomato) {
-        [DrawGameAnimationManager showThrowTomato:_throwingItem animInController:self rolling:NO];
+        [DrawGameAnimationManager showThrowTomato:throwItem animInController:self rolling:NO];
     }
     if (toolView.itemType == ItemTypeFlower) {
-        [DrawGameAnimationManager showThrowFlower:_throwingItem animInController:self rolling:NO];
+        [DrawGameAnimationManager showThrowFlower:throwItem animInController:self rolling:NO];
     }
 }
 
