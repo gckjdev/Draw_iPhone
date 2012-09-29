@@ -9,5 +9,12 @@
 #import "DrawFeed.h"
 
 @interface ContestFeed : DrawFeed
+{
+    NSString *_contestId;
+    double _contestScore;
+}
+
+@property(nonatomic, retain)NSString *contestId;
+@property(nonatomic, assign)double contestScore;
 - (id)initWithPBFeed:(PBFeed *)pbFeed;
 @end

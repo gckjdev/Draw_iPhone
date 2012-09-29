@@ -123,6 +123,9 @@ enum{
         button.enabled = (self.feed.drawData != nil);
     }
     self.saveButton.enabled = !_didSave && self.feed.drawData != nil;
+    if (![self.feed canSave]) {
+        self.saveButton.enabled = NO;
+    }
 }
 
 - (void)reloadCommentSection
@@ -435,7 +438,17 @@ enum{
 //        [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kCanotSendToSelf") delayTime:1.5 isHappy:YES];
 //        return;
 //    }
+    if ((item.type == ItemTypeTomato && !self.feed.canThrowTomato) || (item.type == ItemTypeFlower && !self.feed.canSendFlower)) {
+        [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kCanotSendTimeLimit") delayTime:1.5 isHappy:YES];
+        return;
+    }
     
+    if (item.type == ItemTypeFlower) {
+        [self.feed increaseLocalFlowerTimes];
+    }else if(item.type == ItemTypeTomato){
+        [self.feed increaseLocalTomatoTimes];
+    }
+
     if (item.amount <= 0) {
         CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kNoItemTitle") message:NSLS(@"kNoItemMessage") style:CommonDialogStyleDoubleButton delegate:self];
         dialog.tag = ITEM_TAG_OFFSET + item.type;
@@ -521,7 +534,7 @@ enum{
                                            drawUserId:_feed.feedUser.userId
                                            isDrawByMe:[_feed isMyOpus] 
                                              drawWord:_feed.wordText];    
-        
+        [self.feed increaseSaveTimes];
         [[DrawDataService defaultService] saveActionList:_feed.drawData.drawActionList 
                                                   userId:_feed.feedUser.userId
                                                 nickName:_feed.feedUser.nickName

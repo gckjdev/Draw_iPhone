@@ -263,17 +263,87 @@
     return self.feedType == FeedTypeDrawToContest;
 }
 
+//user action limit 
+
+#define FLOWER_PREFIX @"flower"
+#define TOMATO_PREFIX @"tomato"
+#define SAVE_PREFIX @"save"
+
+- (NSString *)flowerKey
+{
+    NSString *key = [NSString stringWithFormat:@"%@_%@",FLOWER_PREFIX,self.feedId];
+    return key;
+}
+- (NSString *)tomatoKey
+{
+    NSString *key = [NSString stringWithFormat:@"%@_%@",TOMATO_PREFIX,self.feedId];
+    return key;
+}
+- (NSString *)saveKey
+{
+    NSString *key = [NSString stringWithFormat:@"%@_%@",SAVE_PREFIX,self.feedId];
+    return key;
+}
+
+- (NSInteger)actionTimesForKey:(NSString *)key
+{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSNumber *number = [defaults objectForKey:key];
+    return number.intValue;
+}
+
+- (void)increaseActionTimes:(NSString *)key
+{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    int value = [self actionTimesForKey:key];
+    NSNumber *number = [NSNumber numberWithInt:++value];
+    [defaults setObject:number forKey:key];
+    [defaults synchronize];
+}
+
+
+- (void)increaseLocalFlowerTimes
+{
+    [self increaseActionTimes:self.flowerKey];
+}
+- (void)increaseLocalTomatoTimes
+{
+    [self increaseActionTimes:self.tomatoKey];
+}
+- (void)increaseSaveTimes
+{
+    [self increaseActionTimes:self.saveKey];
+}
+- (NSInteger)localFlowerTimes
+{
+    return [self actionTimesForKey:self.flowerKey];
+}
+- (NSInteger)localTomatoTimes
+{
+    return [self actionTimesForKey:self.tomatoKey];    
+}
+- (NSInteger)localSaveTimes
+{
+    return [self actionTimesForKey:self.saveKey];
+}
+
+#define ITEM_TIME_LIMIT 3
+#define SAVE_TIME_LIMIT 1
 - (BOOL)canSendFlower
 {
-    //TODO
-    return YES;
+    return [self localFlowerTimes] < ITEM_TIME_LIMIT;
 }
 
 - (BOOL)canThrowTomato
 {
-    //TODO
-    return YES;
+    return [self localTomatoTimes] < ITEM_TIME_LIMIT;
 }
+
+- (BOOL)canSave
+{
+    return [self localSaveTimes] < SAVE_TIME_LIMIT;
+}
+
 
 - (void)dealloc
 {
