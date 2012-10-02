@@ -123,6 +123,9 @@ enum{
         button.enabled = (self.feed.drawData != nil);
     }
     self.saveButton.enabled = !_didSave && self.feed.drawData != nil;
+//    if (![self.feed canSave]) {
+//        self.saveButton.enabled = NO;
+//    }
 }
 
 - (void)reloadCommentSection
@@ -351,7 +354,7 @@ enum{
 - (void)updateTitle
 {
     NSString *title = nil;
-    if ([self.feed showAnswer]) {
+    if ([self.feed showAnswer] && [self.feed.wordText length] != 0) {
         title = [NSString stringWithFormat:NSLS(@"[%@]"),
                  self.feed.wordText];        
     }else{
@@ -360,16 +363,19 @@ enum{
     [self.titleLabel setText:title];
 }
 
-
+- (void)updateUserInfo
+{
+    [self.userCell setCellInfo:self.feed];
+}
 #pragma mark - cell delegate
 - (void)didUpdateShowView
 {
     //update the times
     [self.commentHeader setViewInfo:self.feed];
-    
     //update the action buttons
     [self updateActionButtons];
     [self updateTitle];
+    [self updateUserInfo];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -425,14 +431,28 @@ enum{
 
 #define ITEM_TAG_OFFSET 20120728
 
+- (NSString *)canotSendItemPopup
+{
+    if ([self.feed isContestFeed]) {
+        return  [NSString stringWithFormat:NSLS(@"kCanotSendItemToContestOpus"),self.feed.itemLimit];        
+    }
+    return [NSString stringWithFormat:NSLS(@"kCanotSendItemToOpus"),self.feed.itemLimit];
+}
+
+
 - (void)throwItem:(Item *)item
 {
     
-//    if ([self.feed isMyOpus]) {
-//        [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kCanotSendToSelf") delayTime:1.5 isHappy:YES];
-//        return;
-//    }
+    if ([self.feed isMyOpus]) {
+        [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kCanotSendToSelf") delayTime:1.5 isHappy:YES];
+        return;
+    }
+    if ((item.type == ItemTypeTomato && !self.feed.canThrowTomato) || (item.type == ItemTypeFlower && !self.feed.canSendFlower)) {
+        [[CommonMessageCenter defaultCenter] postMessageWithText:self.canotSendItemPopup delayTime:1.5 isHappy:YES];
+        return;
+    }
     
+
     if (item.amount <= 0) {
         CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kNoItemTitle") message:NSLS(@"kNoItemMessage") style:CommonDialogStyleDoubleButton delegate:self];
         dialog.tag = ITEM_TAG_OFFSET + item.type;
@@ -453,12 +473,14 @@ enum{
             [self.view addSubview:throwItem];
             [DrawGameAnimationManager showThrowFlower:throwItem animInController:self rolling:YES];
             [_commentHeader setSeletType:CommentTypeFlower];
+            [self.feed increaseLocalFlowerTimes];
         }else{
             UIImageView* throwItem = [[[UIImageView alloc] initWithFrame:self.tomatoButton.frame] autorelease];
             [throwItem setImage:[imageManager tomato]];
             [self.view addSubview:throwItem];
             [DrawGameAnimationManager showThrowTomato:throwItem animInController:self rolling:YES];         
             [_commentHeader setSeletType:CommentTypeTomato];
+            [self.feed increaseLocalTomatoTimes];
         }
     }
 }
@@ -518,7 +540,7 @@ enum{
                                            drawUserId:_feed.feedUser.userId
                                            isDrawByMe:[_feed isMyOpus] 
                                              drawWord:_feed.wordText];    
-        
+        [self.feed increaseSaveTimes];
         [[DrawDataService defaultService] saveActionList:_feed.drawData.drawActionList 
                                                   userId:_feed.feedUser.userId
                                                 nickName:_feed.feedUser.nickName

@@ -70,4 +70,20 @@ typedef enum{
 - (ActionType)actionType;
 
 - (BOOL)isContestFeed;
+
+
+- (void)increaseLocalFlowerTimes;
+- (void)increaseLocalTomatoTimes;
+- (void)increaseSaveTimes;
+
+- (NSInteger)itemLimit;
+- (NSInteger)saveLimit;
+
+//- (NSInteger)localFlowerTimes;
+//- (NSInteger)localTomatoTimes;
+//- (NSInteger)localSaveTimes;
+//user action limit
+- (BOOL)canSendFlower;
+- (BOOL)canThrowTomato;
+- (BOOL)canSave;
 @end

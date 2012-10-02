@@ -120,6 +120,9 @@
 #define METHOD_GET_FEED_COMMENT_LIST @"gfc"
 #define METHOD_GET_OUPS_TIMES @"got"
 
+//contest
+#define METHOD_GET_CONTEST_OPUS_LIST @"gcol"
+
 #define PARA_COMMENT_TIMES @"cmt"
 #define PARA_GUESS_TIMES @"gt"
 #define PARA_CORRECT_TIMES @"crt"
@@ -354,6 +357,7 @@
 #define PARA_TITLE @"tt"
 #define PARA_START_DATE @"sd"
 #define PARA_END_DATE @"ed"
+#define PARA_CAN_SUMMIT_COUNT @"csc"
 #define PARA_PRICE @"pr"
 #define PARA_VALUE @"val"
 #define PARA_REBATE @"rb"

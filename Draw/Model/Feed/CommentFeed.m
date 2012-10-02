@@ -47,6 +47,15 @@
     return [self commentInFeedDeatil];
 }
 
+- (NSString *)replySummary
+{
+    NSString *desc = self.commentInfo.summaryDesc;
+    if (desc == nil) {
+        desc = NSLS(@"kCommentMyOpus");
+    }
+    return desc;
+}
+
 - (BOOL)canDelete
 {
     
@@ -185,7 +194,7 @@
             if (isMe || [[UserManager defaultManager] hasGuessOpus:self.actionId]) {
                 desc = [NSString stringWithFormat:NSLS(@"kSummaryOfDraw"),nick, self.summary];                
             }else{
-                desc = [NSString stringWithFormat:NSLS(@"kSummaryOfDrawNoWord")];
+                desc = [NSString stringWithFormat:NSLS(@"kSummaryOfDrawNoWord"),nick];
             }
         }
             return desc;

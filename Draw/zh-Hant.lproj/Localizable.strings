@@ -843,6 +843,15 @@
 "kSendMeFlower" = "给我赠送了一朵鲜花！";
 "kThrowMeTomato" = "给我丢了个番茄！";
 
+"kCommentMyOpus" = "評論我的畫。";
+"kCanotSendItemToOpus" = "不能在同一個作品上使用超過%d次同樣的道具";
+"kCanotSendItemToContestOpus" = "不能在同一個比賽作品上使用超過%d次同樣的道具";
+"kContestNotRunning" = "對不起，比賽已經結束或者尚未開始，您不能參加。";
+"kContesSummitCountEnough" = "對不起，你已經提交了%d作品了，留點機會給別人哦。";
+
+"kOpusMy" = "我的";
+"kOpusRank" = "排行";
+"kOpusNew" = "最新";
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 

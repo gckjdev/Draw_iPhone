@@ -535,6 +535,8 @@
 "kSubmitSuccTitle" = "Submit Successfully";
 "kSubmitSuccMsg" = "Congratulations! Submit Successfully! One more?";
 
+"kContestNotRunning" = "Sorry, the contest is not running now.";
+"kContesSummitCountEnough" = "Sorry. You can only summit %d opus to one contest";
 //"kDedutCoinChangeOpusAlertMessage" = "If you change the opus, the system will deduct 1 coin.";
 //"kNoCoinChangeOpusMessage" = "You have no coins, buy Some!";
 //"kChangeOpusTitle" = "Change Opus";
@@ -1038,6 +1040,13 @@
 "kMe" = "Me";
 "kSendMeFlower" = "Send me a flower";
 "kThrowMeTomato" = "Throw me a Tomato";
+"kCommentMyOpus" = "Comment my opus.";
+
+"kCanotSendItemToOpus" = "You can't send the same item more than %d times on the same opus.";
+"kCanotSendItemToContestOpus" = "You can't send the same item more than %d times on the same contest opus.";
+"kOpusMy" = "Mine";
+"kOpusRank" = "Top";
+"kOpusNew" = "New";
 /*********************** 大话骰子国际化字符串结束 *************************/
 
 
