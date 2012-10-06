@@ -251,7 +251,14 @@ static ChatService *_chatService = nil;
                                                                        drawData:nil
                                                                      createDate:createDate
                                                                            text:text
-                                                                         status:[NSNumber numberWithInt:MessageStatusSendSuccess]];
+                                                                         status:[NSNumber numberWithInt:MessageStatusSendSuccess] 
+                                                                           type:[NSNumber numberWithInt:MessageTypeAskLocation]
+                                                                    hasLocation:[NSNumber numberWithBool:YES]
+                                                                       latitude:[NSNumber numberWithDouble:latitude]
+                                                                      longitude:[NSNumber numberWithDouble:longitude]
+                                                                    replyResult:[NSNumber numberWithInt:0]
+                                                                    reMessageId:nil];
+                
                 PPDebug(@"<ChatService>askLocation success");
             }else {
                 PPDebug(@"<ChatService>askLocation failed");
@@ -305,14 +312,20 @@ static ChatService *_chatService = nil;
                     createDate = [NSDate date];
                 }
                 
-                // TODO save message
                 [[ChatMessageManager defaultManager] createMessageWithMessageId:messageId
                                                                            from:userId
                                                                              to:friendUserId
                                                                        drawData:nil
                                                                      createDate:createDate
                                                                            text:text
-                                                                         status:[NSNumber numberWithInt:MessageStatusSendSuccess]];
+                                                                         status:[NSNumber numberWithInt:MessageStatusSendSuccess] 
+                                                                           type:[NSNumber numberWithInt:MessageTypeReplyLocation]
+                                                                    hasLocation:[NSNumber numberWithBool:YES]
+                                                                       latitude:[NSNumber numberWithDouble:latitude]
+                                                                      longitude:[NSNumber numberWithDouble:longitude]
+                                                                    replyResult:[NSNumber numberWithInt:0]
+                                                                    reMessageId:reqMessageId];
+                
                 PPDebug(@"<ChatService>replyLocation success");
             }else {
                 PPDebug(@"<ChatService>replyLocation failed");
@@ -364,14 +377,21 @@ static ChatService *_chatService = nil;
                     createDate = [NSDate date];
                 }
                 
-                // TODO save reply
                 [[ChatMessageManager defaultManager] createMessageWithMessageId:messageId
                                                                            from:userId
                                                                              to:friendUserId
                                                                        drawData:nil
                                                                      createDate:createDate
                                                                            text:text
-                                                                         status:[NSNumber numberWithInt:MessageStatusSendSuccess]];
+                                                                         status:[NSNumber numberWithInt:MessageStatusSendSuccess] 
+                                                                           type:[NSNumber numberWithInt:MessageTypeReplyLocation]
+                                                                    hasLocation:[NSNumber numberWithBool:NO]
+                                                                       latitude:nil
+                                                                      longitude:nil
+                                                                    replyResult:[NSNumber numberWithInt:REJECT_ASK_LOCATION]
+                                                                    reMessageId:reqMessageId];
+                
+                
                 PPDebug(@"<ChatService>replyRejectLocation success");
             }else {
                 PPDebug(@"<ChatService>replyRejectLocation failed");

@@ -82,7 +82,7 @@ static ChatMessageManager *_chatMessageManager = nil;
                           latitude:(NSNumber *)latitude 
                          longitude:(NSNumber *)longitude 
                        replyResult:(NSNumber *)replyResult 
-                       reMessageId:(NSNumber *)reMessageId
+                       reMessageId:(NSString *)reMessageId
 {
     //PPDebug(@"createMessageWithMessageId:%@ from:%@ to:%@ drawDataLen:%d createDate:%@ text:%@ status:%@",messageId,from,to,[drawData length], createDate, text, status);
     
