@@ -704,6 +704,11 @@
 		CA421601152196B900FAA008 /* AccountService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA421600152196B900FAA008 /* AccountService.m */; };
 		CA4216031521973A00FAA008 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA4216021521973A00FAA008 /* StoreKit.framework */; };
 		CA4216281522A0F400FAA008 /* SKProduct+LocalizedPrice.m in Sources */ = {isa = PBXBuildFile; fileRef = CA4216271522A0F400FAA008 /* SKProduct+LocalizedPrice.m */; };
+		CA427058161FFEA900C6CCAE /* LocateFriendApp.m in Sources */ = {isa = PBXBuildFile; fileRef = CA427057161FFEA900C6CCAE /* LocateFriendApp.m */; };
+		CA42705B161FFEB800C6CCAE /* PrivateSMSApp.m in Sources */ = {isa = PBXBuildFile; fileRef = CA42705A161FFEB800C6CCAE /* PrivateSMSApp.m */; };
+		CA42705E161FFECE00C6CCAE /* PhotoDrawApp.m in Sources */ = {isa = PBXBuildFile; fileRef = CA42705D161FFECE00C6CCAE /* PhotoDrawApp.m */; };
+		CA427061161FFEDC00C6CCAE /* SmsDrawApp.m in Sources */ = {isa = PBXBuildFile; fileRef = CA427060161FFEDC00C6CCAE /* SmsDrawApp.m */; };
+		CA427064161FFEE800C6CCAE /* AvatarDrawApp.m in Sources */ = {isa = PBXBuildFile; fileRef = CA427063161FFEE800C6CCAE /* AvatarDrawApp.m */; };
 		CA42E3CA15F4617A00790B3C /* TableTab.m in Sources */ = {isa = PBXBuildFile; fileRef = CA42E3C715F4617A00790B3C /* TableTab.m */; };
 		CA42E3CB15F4617A00790B3C /* TableTabManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA42E3C915F4617A00790B3C /* TableTabManager.m */; };
 		CA4FF001152AEFDF00F0AC88 /* ColorGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = CA4FF000152AEFDF00F0AC88 /* ColorGroup.m */; };
@@ -2215,6 +2220,16 @@
 		CA4216261522A0F400FAA008 /* SKProduct+LocalizedPrice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SKProduct+LocalizedPrice.h"; sourceTree = "<group>"; };
 		CA4216271522A0F400FAA008 /* SKProduct+LocalizedPrice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SKProduct+LocalizedPrice.m"; sourceTree = "<group>"; };
 		CA427055161FE05C00C6CCAE /* MainDataModel 11.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MainDataModel 11.xcdatamodel"; sourceTree = "<group>"; };
+		CA427056161FFEA900C6CCAE /* LocateFriendApp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocateFriendApp.h; sourceTree = "<group>"; };
+		CA427057161FFEA900C6CCAE /* LocateFriendApp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocateFriendApp.m; sourceTree = "<group>"; };
+		CA427059161FFEB800C6CCAE /* PrivateSMSApp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrivateSMSApp.h; sourceTree = "<group>"; };
+		CA42705A161FFEB800C6CCAE /* PrivateSMSApp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrivateSMSApp.m; sourceTree = "<group>"; };
+		CA42705C161FFECE00C6CCAE /* PhotoDrawApp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoDrawApp.h; sourceTree = "<group>"; };
+		CA42705D161FFECE00C6CCAE /* PhotoDrawApp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoDrawApp.m; sourceTree = "<group>"; };
+		CA42705F161FFEDC00C6CCAE /* SmsDrawApp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SmsDrawApp.h; sourceTree = "<group>"; };
+		CA427060161FFEDC00C6CCAE /* SmsDrawApp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SmsDrawApp.m; sourceTree = "<group>"; };
+		CA427062161FFEE800C6CCAE /* AvatarDrawApp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AvatarDrawApp.h; sourceTree = "<group>"; };
+		CA427063161FFEE800C6CCAE /* AvatarDrawApp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AvatarDrawApp.m; sourceTree = "<group>"; };
 		CA42E3C615F4617A00790B3C /* TableTab.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableTab.h; sourceTree = "<group>"; };
 		CA42E3C715F4617A00790B3C /* TableTab.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableTab.m; sourceTree = "<group>"; };
 		CA42E3C815F4617A00790B3C /* TableTabManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableTabManager.h; sourceTree = "<group>"; };
@@ -5619,6 +5634,16 @@
 				CA67B87315E89B19002050DB /* DiceGameApp.m */,
 				CA67B87815E89B42002050DB /* SweetCandyApp.h */,
 				CA67B87915E89B42002050DB /* SweetCandyApp.m */,
+				CA427056161FFEA900C6CCAE /* LocateFriendApp.h */,
+				CA427057161FFEA900C6CCAE /* LocateFriendApp.m */,
+				CA427059161FFEB800C6CCAE /* PrivateSMSApp.h */,
+				CA42705A161FFEB800C6CCAE /* PrivateSMSApp.m */,
+				CA42705C161FFECE00C6CCAE /* PhotoDrawApp.h */,
+				CA42705D161FFECE00C6CCAE /* PhotoDrawApp.m */,
+				CA42705F161FFEDC00C6CCAE /* SmsDrawApp.h */,
+				CA427060161FFEDC00C6CCAE /* SmsDrawApp.m */,
+				CA427062161FFEE800C6CCAE /* AvatarDrawApp.h */,
+				CA427063161FFEE800C6CCAE /* AvatarDrawApp.m */,
 			);
 			path = GameApp;
 			sourceTree = "<group>";
@@ -7882,6 +7907,11 @@
 				EAAFC5471615A4AB00C72BAB /* StatisticManager.m in Sources */,
 				EA2B2AE61616B2F5004C17AF /* ReplayContestDrawController.m in Sources */,
 				CA9D5F4D161700A70082E258 /* ContestFeed.m in Sources */,
+				CA427058161FFEA900C6CCAE /* LocateFriendApp.m in Sources */,
+				CA42705B161FFEB800C6CCAE /* PrivateSMSApp.m in Sources */,
+				CA42705E161FFECE00C6CCAE /* PhotoDrawApp.m in Sources */,
+				CA427061161FFEDC00C6CCAE /* SmsDrawApp.m in Sources */,
+				CA427064161FFEE800C6CCAE /* AvatarDrawApp.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
