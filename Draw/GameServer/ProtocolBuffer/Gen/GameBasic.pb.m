@@ -2696,9 +2696,14 @@ static PBDrawAction* defaultPBDrawActionInstance = nil;
 @property (retain) NSString* from;
 @property (retain) NSString* to;
 @property int32_t status;
+@property int32_t type;
 @property (retain) NSString* text;
 @property (retain) NSMutableArray* mutableDrawDataList;
 @property int32_t createDate;
+@property Float64 longitude;
+@property Float64 latitude;
+@property (retain) NSString* reqMessageId;
+@property int32_t replyResult;
 @end
 
 @implementation PBMessage
@@ -2731,6 +2736,13 @@ static PBDrawAction* defaultPBDrawActionInstance = nil;
   hasStatus_ = !!value;
 }
 @synthesize status;
+- (BOOL) hasType {
+  return !!hasType_;
+}
+- (void) setHasType:(BOOL) value {
+  hasType_ = !!value;
+}
+@synthesize type;
 - (BOOL) hasText {
   return !!hasText_;
 }
@@ -2746,12 +2758,41 @@ static PBDrawAction* defaultPBDrawActionInstance = nil;
   hasCreateDate_ = !!value;
 }
 @synthesize createDate;
+- (BOOL) hasLongitude {
+  return !!hasLongitude_;
+}
+- (void) setHasLongitude:(BOOL) value {
+  hasLongitude_ = !!value;
+}
+@synthesize longitude;
+- (BOOL) hasLatitude {
+  return !!hasLatitude_;
+}
+- (void) setHasLatitude:(BOOL) value {
+  hasLatitude_ = !!value;
+}
+@synthesize latitude;
+- (BOOL) hasReqMessageId {
+  return !!hasReqMessageId_;
+}
+- (void) setHasReqMessageId:(BOOL) value {
+  hasReqMessageId_ = !!value;
+}
+@synthesize reqMessageId;
+- (BOOL) hasReplyResult {
+  return !!hasReplyResult_;
+}
+- (void) setHasReplyResult:(BOOL) value {
+  hasReplyResult_ = !!value;
+}
+@synthesize replyResult;
 - (void) dealloc {
   self.messageId = nil;
   self.from = nil;
   self.to = nil;
   self.text = nil;
   self.mutableDrawDataList = nil;
+  self.reqMessageId = nil;
   [super dealloc];
 }
 - (id) init {
@@ -2760,8 +2801,13 @@ static PBDrawAction* defaultPBDrawActionInstance = nil;
     self.from = @"";
     self.to = @"";
     self.status = 0;
+    self.type = 0;
     self.text = @"";
     self.createDate = 0;
+    self.longitude = 0;
+    self.latitude = 0;
+    self.reqMessageId = @"";
+    self.replyResult = 0;
   }
   return self;
 }
@@ -2814,6 +2860,9 @@ static PBMessage* defaultPBMessageInstance = nil;
   if (self.hasStatus) {
     [output writeInt32:4 value:self.status];
   }
+  if (self.hasType) {
+    [output writeInt32:5 value:self.type];
+  }
   if (self.hasText) {
     [output writeString:20 value:self.text];
   }
@@ -2822,6 +2871,18 @@ static PBMessage* defaultPBMessageInstance = nil;
   }
   if (self.hasCreateDate) {
     [output writeInt32:22 value:self.createDate];
+  }
+  if (self.hasLongitude) {
+    [output writeDouble:31 value:self.longitude];
+  }
+  if (self.hasLatitude) {
+    [output writeDouble:32 value:self.latitude];
+  }
+  if (self.hasReqMessageId) {
+    [output writeString:33 value:self.reqMessageId];
+  }
+  if (self.hasReplyResult) {
+    [output writeInt32:34 value:self.replyResult];
   }
   [self.unknownFields writeToCodedOutputStream:output];
 }
@@ -2844,6 +2905,9 @@ static PBMessage* defaultPBMessageInstance = nil;
   if (self.hasStatus) {
     size += computeInt32Size(4, self.status);
   }
+  if (self.hasType) {
+    size += computeInt32Size(5, self.type);
+  }
   if (self.hasText) {
     size += computeStringSize(20, self.text);
   }
@@ -2852,6 +2916,18 @@ static PBMessage* defaultPBMessageInstance = nil;
   }
   if (self.hasCreateDate) {
     size += computeInt32Size(22, self.createDate);
+  }
+  if (self.hasLongitude) {
+    size += computeDoubleSize(31, self.longitude);
+  }
+  if (self.hasLatitude) {
+    size += computeDoubleSize(32, self.latitude);
+  }
+  if (self.hasReqMessageId) {
+    size += computeStringSize(33, self.reqMessageId);
+  }
+  if (self.hasReplyResult) {
+    size += computeInt32Size(34, self.replyResult);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -2940,6 +3016,9 @@ static PBMessage* defaultPBMessageInstance = nil;
   if (other.hasStatus) {
     [self setStatus:other.status];
   }
+  if (other.hasType) {
+    [self setType:other.type];
+  }
   if (other.hasText) {
     [self setText:other.text];
   }
@@ -2951,6 +3030,18 @@ static PBMessage* defaultPBMessageInstance = nil;
   }
   if (other.hasCreateDate) {
     [self setCreateDate:other.createDate];
+  }
+  if (other.hasLongitude) {
+    [self setLongitude:other.longitude];
+  }
+  if (other.hasLatitude) {
+    [self setLatitude:other.latitude];
+  }
+  if (other.hasReqMessageId) {
+    [self setReqMessageId:other.reqMessageId];
+  }
+  if (other.hasReplyResult) {
+    [self setReplyResult:other.replyResult];
   }
   [self mergeUnknownFields:other.unknownFields];
   return self;
@@ -2989,6 +3080,10 @@ static PBMessage* defaultPBMessageInstance = nil;
         [self setStatus:[input readInt32]];
         break;
       }
+      case 40: {
+        [self setType:[input readInt32]];
+        break;
+      }
       case 162: {
         [self setText:[input readString]];
         break;
@@ -3001,6 +3096,22 @@ static PBMessage* defaultPBMessageInstance = nil;
       }
       case 176: {
         [self setCreateDate:[input readInt32]];
+        break;
+      }
+      case 249: {
+        [self setLongitude:[input readDouble]];
+        break;
+      }
+      case 257: {
+        [self setLatitude:[input readDouble]];
+        break;
+      }
+      case 266: {
+        [self setReqMessageId:[input readString]];
+        break;
+      }
+      case 272: {
+        [self setReplyResult:[input readInt32]];
         break;
       }
     }
@@ -3070,6 +3181,22 @@ static PBMessage* defaultPBMessageInstance = nil;
   result.status = 0;
   return self;
 }
+- (BOOL) hasType {
+  return result.hasType;
+}
+- (int32_t) type {
+  return result.type;
+}
+- (PBMessage_Builder*) setType:(int32_t) value {
+  result.hasType = YES;
+  result.type = value;
+  return self;
+}
+- (PBMessage_Builder*) clearType {
+  result.hasType = NO;
+  result.type = 0;
+  return self;
+}
 - (BOOL) hasText {
   return result.hasText;
 }
@@ -3129,6 +3256,70 @@ static PBMessage* defaultPBMessageInstance = nil;
 - (PBMessage_Builder*) clearCreateDate {
   result.hasCreateDate = NO;
   result.createDate = 0;
+  return self;
+}
+- (BOOL) hasLongitude {
+  return result.hasLongitude;
+}
+- (Float64) longitude {
+  return result.longitude;
+}
+- (PBMessage_Builder*) setLongitude:(Float64) value {
+  result.hasLongitude = YES;
+  result.longitude = value;
+  return self;
+}
+- (PBMessage_Builder*) clearLongitude {
+  result.hasLongitude = NO;
+  result.longitude = 0;
+  return self;
+}
+- (BOOL) hasLatitude {
+  return result.hasLatitude;
+}
+- (Float64) latitude {
+  return result.latitude;
+}
+- (PBMessage_Builder*) setLatitude:(Float64) value {
+  result.hasLatitude = YES;
+  result.latitude = value;
+  return self;
+}
+- (PBMessage_Builder*) clearLatitude {
+  result.hasLatitude = NO;
+  result.latitude = 0;
+  return self;
+}
+- (BOOL) hasReqMessageId {
+  return result.hasReqMessageId;
+}
+- (NSString*) reqMessageId {
+  return result.reqMessageId;
+}
+- (PBMessage_Builder*) setReqMessageId:(NSString*) value {
+  result.hasReqMessageId = YES;
+  result.reqMessageId = value;
+  return self;
+}
+- (PBMessage_Builder*) clearReqMessageId {
+  result.hasReqMessageId = NO;
+  result.reqMessageId = @"";
+  return self;
+}
+- (BOOL) hasReplyResult {
+  return result.hasReplyResult;
+}
+- (int32_t) replyResult {
+  return result.replyResult;
+}
+- (PBMessage_Builder*) setReplyResult:(int32_t) value {
+  result.hasReplyResult = YES;
+  result.replyResult = value;
+  return self;
+}
+- (PBMessage_Builder*) clearReplyResult {
+  result.hasReplyResult = NO;
+  result.replyResult = 0;
   return self;
 }
 @end
