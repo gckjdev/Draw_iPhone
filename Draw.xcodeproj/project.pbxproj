@@ -5523,6 +5523,68 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		CA427072162003E900C6CCAE /* LocateFriend */ = {
+			isa = PBXGroup;
+			children = (
+				CA427073162003E900C6CCAE /* Controller */,
+				CA427074162003E900C6CCAE /* Model */,
+				CA427075162003E900C6CCAE /* Resource */,
+			);
+			path = LocateFriend;
+			sourceTree = "<group>";
+		};
+		CA427073162003E900C6CCAE /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		CA427074162003E900C6CCAE /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		CA427075162003E900C6CCAE /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
+		CA427076162003E900C6CCAE /* PrivateSms */ = {
+			isa = PBXGroup;
+			children = (
+				CA427077162003E900C6CCAE /* Controller */,
+				CA427078162003E900C6CCAE /* Model */,
+				CA427079162003E900C6CCAE /* Resource */,
+			);
+			path = PrivateSms;
+			sourceTree = "<group>";
+		};
+		CA427077162003E900C6CCAE /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		CA427078162003E900C6CCAE /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		CA427079162003E900C6CCAE /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
 		CA42E3C515F4617A00790B3C /* TableTab */ = {
 			isa = PBXGroup;
 			children = (
@@ -5793,6 +5855,8 @@
 				CAEECD9015DDEEF700FA5A2A /* Board */,
 				CA427065161FFF4A00C6CCAE /* Home */,
 				CA2F81E015C0D62E002038A6 /* Dice */,
+				CA427072162003E900C6CCAE /* LocateFriend */,
+				CA427076162003E900C6CCAE /* PrivateSms */,
 				CA745D311503B1B500600024 /* DrawAppDelegate.h */,
 				CA745D321503B1B500600024 /* DrawAppDelegate.m */,
 				CA745D341503B1B500600024 /* MainWindow.xib */,
