@@ -709,6 +709,9 @@
 		CA42705E161FFECE00C6CCAE /* PhotoDrawApp.m in Sources */ = {isa = PBXBuildFile; fileRef = CA42705D161FFECE00C6CCAE /* PhotoDrawApp.m */; };
 		CA427061161FFEDC00C6CCAE /* SmsDrawApp.m in Sources */ = {isa = PBXBuildFile; fileRef = CA427060161FFEDC00C6CCAE /* SmsDrawApp.m */; };
 		CA427064161FFEE800C6CCAE /* AvatarDrawApp.m in Sources */ = {isa = PBXBuildFile; fileRef = CA427063161FFEE800C6CCAE /* AvatarDrawApp.m */; };
+		CA42706D1620028E00C6CCAE /* SuperHomeController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA42706B1620028E00C6CCAE /* SuperHomeController.m */; };
+		CA42706E1620028E00C6CCAE /* SuperHomeController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA42706C1620028E00C6CCAE /* SuperHomeController.xib */; };
+		CA427070162002E100C6CCAE /* SuperHomeController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA42706F162002E100C6CCAE /* SuperHomeController~ipad.xib */; };
 		CA42E3CA15F4617A00790B3C /* TableTab.m in Sources */ = {isa = PBXBuildFile; fileRef = CA42E3C715F4617A00790B3C /* TableTab.m */; };
 		CA42E3CB15F4617A00790B3C /* TableTabManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA42E3C915F4617A00790B3C /* TableTabManager.m */; };
 		CA4FF001152AEFDF00F0AC88 /* ColorGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = CA4FF000152AEFDF00F0AC88 /* ColorGroup.m */; };
@@ -2230,6 +2233,11 @@
 		CA427060161FFEDC00C6CCAE /* SmsDrawApp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SmsDrawApp.m; sourceTree = "<group>"; };
 		CA427062161FFEE800C6CCAE /* AvatarDrawApp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AvatarDrawApp.h; sourceTree = "<group>"; };
 		CA427063161FFEE800C6CCAE /* AvatarDrawApp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AvatarDrawApp.m; sourceTree = "<group>"; };
+		CA42706A1620028E00C6CCAE /* SuperHomeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SuperHomeController.h; sourceTree = "<group>"; };
+		CA42706B1620028E00C6CCAE /* SuperHomeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SuperHomeController.m; sourceTree = "<group>"; };
+		CA42706C1620028E00C6CCAE /* SuperHomeController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SuperHomeController.xib; sourceTree = "<group>"; };
+		CA42706F162002E100C6CCAE /* SuperHomeController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "SuperHomeController~ipad.xib"; sourceTree = "<group>"; };
+		CA427071162002FE00C6CCAE /* SuperHomeProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SuperHomeProtocol.h; sourceTree = "<group>"; };
 		CA42E3C615F4617A00790B3C /* TableTab.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableTab.h; sourceTree = "<group>"; };
 		CA42E3C715F4617A00790B3C /* TableTab.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableTab.m; sourceTree = "<group>"; };
 		CA42E3C815F4617A00790B3C /* TableTabManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableTabManager.h; sourceTree = "<group>"; };
@@ -5471,6 +5479,50 @@
 			path = StoreKit;
 			sourceTree = "<group>";
 		};
+		CA427065161FFF4A00C6CCAE /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				CA427066161FFF7800C6CCAE /* Controller */,
+				CA427067161FFF7800C6CCAE /* Model */,
+				CA427068161FFF7800C6CCAE /* Resource */,
+				CA427069161FFF7800C6CCAE /* View */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		CA427066161FFF7800C6CCAE /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				CA42706A1620028E00C6CCAE /* SuperHomeController.h */,
+				CA42706B1620028E00C6CCAE /* SuperHomeController.m */,
+				CA42706C1620028E00C6CCAE /* SuperHomeController.xib */,
+				CA42706F162002E100C6CCAE /* SuperHomeController~ipad.xib */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		CA427067161FFF7800C6CCAE /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				CA427071162002FE00C6CCAE /* SuperHomeProtocol.h */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		CA427068161FFF7800C6CCAE /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
+		CA427069161FFF7800C6CCAE /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		CA42E3C515F4617A00790B3C /* TableTab */ = {
 			isa = PBXGroup;
 			children = (
@@ -5739,6 +5791,7 @@
 				CA3220FF151B6A490039A384 /* Network */,
 				CA2F81D915C0D62D002038A6 /* Facetime */,
 				CAEECD9015DDEEF700FA5A2A /* Board */,
+				CA427065161FFF4A00C6CCAE /* Home */,
 				CA2F81E015C0D62E002038A6 /* Dice */,
 				CA745D311503B1B500600024 /* DrawAppDelegate.h */,
 				CA745D321503B1B500600024 /* DrawAppDelegate.m */,
@@ -7364,6 +7417,8 @@
 				EA2B2AE71616B2F5004C17AF /* ReplayContestDrawController.xib in Resources */,
 				EA2B2AE81616B2F5004C17AF /* ReplayContestDrawController~ipad.xib in Resources */,
 				CA9D5F4A1616F2040082E258 /* HotController~ipad.xib in Resources */,
+				CA42706E1620028E00C6CCAE /* SuperHomeController.xib in Resources */,
+				CA427070162002E100C6CCAE /* SuperHomeController~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7912,6 +7967,7 @@
 				CA42705E161FFECE00C6CCAE /* PhotoDrawApp.m in Sources */,
 				CA427061161FFEDC00C6CCAE /* SmsDrawApp.m in Sources */,
 				CA427064161FFEE800C6CCAE /* AvatarDrawApp.m in Sources */,
+				CA42706D1620028E00C6CCAE /* SuperHomeController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
