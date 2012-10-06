@@ -2214,6 +2214,7 @@
 		CA4216021521973A00FAA008 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		CA4216261522A0F400FAA008 /* SKProduct+LocalizedPrice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SKProduct+LocalizedPrice.h"; sourceTree = "<group>"; };
 		CA4216271522A0F400FAA008 /* SKProduct+LocalizedPrice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SKProduct+LocalizedPrice.m"; sourceTree = "<group>"; };
+		CA427055161FE05C00C6CCAE /* MainDataModel 11.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MainDataModel 11.xcdatamodel"; sourceTree = "<group>"; };
 		CA42E3C615F4617A00790B3C /* TableTab.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableTab.h; sourceTree = "<group>"; };
 		CA42E3C715F4617A00790B3C /* TableTab.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableTab.m; sourceTree = "<group>"; };
 		CA42E3C815F4617A00790B3C /* TableTabManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableTabManager.h; sourceTree = "<group>"; };
@@ -8321,6 +8322,7 @@
 		CA1377271524598700B5790B /* MainDataModel.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				CA427055161FE05C00C6CCAE /* MainDataModel 11.xcdatamodel */,
 				CAE32603160199AA00AD77C3 /* MainDataModel 10.xcdatamodel */,
 				CAEECCD215DBB0B000FA5A2A /* MainDataModel 9.xcdatamodel */,
 				CAEECCD115DB46AD00FA5A2A /* MainDataModel 8.xcdatamodel */,
@@ -8332,7 +8334,7 @@
 				CAE23C6E153E9E9A00F52497 /* MainDataModel 2.xcdatamodel */,
 				CA1377281524598700B5790B /* MainDataModel.xcdatamodel */,
 			);
-			currentVersion = CAE32603160199AA00AD77C3 /* MainDataModel 10.xcdatamodel */;
+			currentVersion = CA427055161FE05C00C6CCAE /* MainDataModel 11.xcdatamodel */;
 			path = MainDataModel.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

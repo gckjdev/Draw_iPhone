@@ -52,7 +52,8 @@ static DiceHelpManager* _shareManager;
         fileName = EN_HTML_FILE_NAME_GAME_RULES;
     }
     
-    return [[FileUtil getAppHomeDir] stringByAppendingPathComponent:fileName];
+//    return [[FileUtil getAppHomeDir] stringByAppendingPathComponent:fileName];
+    return [[FileUtil getAppCacheDir] stringByAppendingPathComponent:fileName];
 }
 
 - (NSString *)itemsUsageHtmlFilePath
@@ -68,7 +69,9 @@ static DiceHelpManager* _shareManager;
         fileName = EN_HTML_FILE_NAME_ITMES_USAGE;
     }
     
-    return [[FileUtil getAppHomeDir] stringByAppendingPathComponent:fileName]; 
+//    return [[FileUtil getAppHomeDir] stringByAppendingPathComponent:fileName];
+    return [[FileUtil getAppCacheDir] stringByAppendingPathComponent:fileName];
+    
 }
 
 
