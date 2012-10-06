@@ -9,6 +9,11 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
+enum {
+    MessageTypeNormal,
+    MessageTypeAskLocation,
+    MessageTypeReplyLocation
+} ChatMessageType ;
 
 @interface ChatMessage : NSManagedObject
 
