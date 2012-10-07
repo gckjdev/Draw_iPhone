@@ -852,6 +852,9 @@
 "kOpusMy" = "我的";
 "kOpusRank" = "排行";
 "kOpusNew" = "最新";
+
+"kContestPassed" = "已結束(%d)";
+"kContestPendding" = "未開始";
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 

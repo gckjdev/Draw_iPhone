@@ -840,6 +840,9 @@
 "kSummaryOfGuess" = "Reply %@'s guessing.";
 "kSummaryOfSendItem" = "Reply %@'s expression.";
 "kSummaryOfComment" = "Reply %@'s comment: %@.";
+
+"kContestPassed" = "Passed(%d)";
+"kContestPendding" = "Pendding";
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 

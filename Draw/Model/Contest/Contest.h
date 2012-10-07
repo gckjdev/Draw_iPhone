@@ -52,7 +52,7 @@ typedef enum{
 @property(nonatomic, retain) NSString *title;
 @property(nonatomic, retain) NSString *contestUrl;
 @property(nonatomic, retain) NSString *statementUrl;
-@property(nonatomic, assign) NSInteger canSummitCount;
+@property(nonatomic, assign) NSInteger canSubmitCount;
 - (id)initWithDict:(NSDictionary *)dict;
 + (Contest *)contestWithDict:(NSDictionary *)dict;
 - (void)incCommitCount;

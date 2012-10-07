@@ -21,7 +21,9 @@
 @synthesize contestUrl = _contestUrl;
 @synthesize title = _title;
 @synthesize statementUrl = _statementUrl;
-@synthesize canSummitCount = _canSummitCount;
+@synthesize canSubmitCount = _canSummitCount;
+
+#define DEFAULT_CAN_SUMMIT_COUNT 3
 
 - (void)dealloc
 {
@@ -41,6 +43,8 @@
  {"dat":[{"tp":3,"tt":"猜猜画画11月赛","cid":"505835e6036496eb500bb46d","sd":1348390246,"ed":1348822246,"cu":"http://www.drawlively.com","su":"http://www.drawlively.com","oc":376,"pc":227,"lm":{"lvl":5,"oc":0}}],"ret":0}
  
  */
+
+
 
 - (NSInteger)intValueForKey:(NSString *)key inDict:(NSDictionary *)dict
 {
@@ -73,7 +77,11 @@
         }else {
             self.status = ContestStatusRunning;
         }
-        self.canSummitCount = [self intValueForKey:PARA_CAN_SUMMIT_COUNT inDict:dict];
+        self.canSubmitCount = DEFAULT_CAN_SUMMIT_COUNT;
+        NSNumber *number = [dict objectForKey:PARA_CAN_SUBMIT_COUNT];
+        if (number) {
+            self.canSubmitCount = number.integerValue;
+        }
     }
     return  self;
 }
@@ -96,7 +104,17 @@
     return ![self isPassed] && ![self isPendding];
 }
 
-
+- (ContestStatus)status
+{
+    if ([self.startDate timeIntervalSinceNow] > 0) {
+        _status = ContestStatusPending;
+    }else if([self.endDate timeIntervalSinceNow] < 0){
+        _status = ContestStatusPassed;
+    }else {
+        _status = ContestStatusRunning;
+    }
+    return _status;
+}
 
 #define COMMIT_COUNT_PREFIX @"CommitCount"
 - (void)incCommitCount
@@ -113,7 +131,8 @@
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSString *key = [NSString stringWithFormat:@"%@_%@",COMMIT_COUNT_PREFIX,self.contestId];
     NSNumber *number = [defaults objectForKey:key];
-    return number.integerValue >= self.canSummitCount;
+    NSInteger times = number.integerValue;
+    return times >= self.canSubmitCount;
 }
 
 @end
