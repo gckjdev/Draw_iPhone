@@ -31,7 +31,8 @@ static DiceFontManager *_defaultManager = nil;
 
 + (NSString *)fontDir
 {
-    return [[FileUtil getAppHomeDir] stringByAppendingPathComponent:FONT_DIR];
+    return [[FileUtil getAppCacheDir] stringByAppendingPathComponent:FONT_DIR];
+//    return [[FileUtil getAppHomeDir] stringByAppendingPathComponent:FONT_DIR];
 }
 
 + (NSString *)fontPath

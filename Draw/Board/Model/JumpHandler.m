@@ -10,6 +10,9 @@
 #import "FeedController.h"
 #import "LmWallService.h"
 #import "HomeController.h"
+#import "ContestController.h"
+#import "HotController.h"
+#import "MyFeedController.h"
 
 @implementation JumpHandler
 + (JumpHandler *)createJumpHandlerWithType:(JumpType)type
@@ -53,13 +56,16 @@
 @implementation GameJumpHandler
 
 - (UIViewController *)controllerForGameId:(NSString *)gameId func:(NSString *)func
-{
-    
+{    
     if ([gameId isEqualToString:@"draw"]) {
         if ([func isEqualToString:@"feed"]) {
-            return [[[FeedController alloc] init] autorelease];            
+            return [[[MyFeedController alloc] init] autorelease];            
+        }else if([func isEqualToString:@"contest"]){
+            return [[[ContestController alloc] init] autorelease];            
+        }else if([func isEqualToString:@"hot"]){
+            return [[[HotController alloc] init] autorelease];            
         }else{
-            return [[[HomeController alloc] init] autorelease];            
+            return [[[HomeController alloc] init] autorelease];               
         }
     }
     return nil;

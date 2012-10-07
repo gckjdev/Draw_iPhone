@@ -26,6 +26,7 @@
     DrawFeed *_feed;
     ShowDrawView *_showView;
     NSInteger _getTimes;
+    BOOL _isLoading;
 }
 
 @property (assign, nonatomic) id<DrawInfoCellDelegate> delegate;

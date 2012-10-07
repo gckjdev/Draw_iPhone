@@ -285,7 +285,14 @@
                              userId:(NSString*)userId
                        targetUserId:(NSString*)targetUserId
                                text:(NSString*)text
-                               data:(NSData*)data;
+                               data:(NSData*)data
+                               type:(int)type
+                        hasLocation:(BOOL)hasLocation
+                          longitude:(double)longitude
+                           latitude:(double)latitude
+                       reqMessageId:(NSString*)reqMessageId
+                        replyResult:(int)replyResult;
+
 + (CommonNetworkOutput*)userHasReadMessage:(NSString*)baseURL
                                      appId:(NSString*)appId
                                     userId:(NSString*)userId 
@@ -297,6 +304,14 @@
                                                offset:(NSInteger)offset
                                                 limit:(NSInteger)limit 
                                                  lang:(NSInteger)lang;
+
++ (CommonNetworkOutput*)getContestOpusListWithProtocolBuffer:(NSString*)baseURL
+                                                   contestId:(NSString *)contestId
+                                                      userId:(NSString *)userId 
+                                                        type:(NSInteger)type
+                                                      offset:(NSInteger)offset
+                                                       limit:(NSInteger)limit 
+                                                        lang:(NSInteger)lang;
 
 + (CommonNetworkOutput*)getFeedCommentListWithProtocolBuffer:(NSString*)baseURL 
                                                       opusId:(NSString *)opusId

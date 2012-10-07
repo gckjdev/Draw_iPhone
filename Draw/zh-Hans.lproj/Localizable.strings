@@ -551,6 +551,9 @@
 "kSubmitSuccTitle" = "提交成功";
 "kSubmitSuccMsg" = "恭喜！提交成功！再来一幅？";
 
+"kContestNotRunning" = "对不起，比赛已经结束或者尚未开始，您不能参加。";
+"kContesSummitCountEnough" = "对不起，你已经提交了%d作品了，留点机会给别人哦。";
+
 //"kDedutCoinChangeOpusAlertMessage" = "如果更换一幅作品，系统将会扣除1个金币哦。";
 //"kNoCoinChangeOpusMessage" = "更换作品需要扣除1个金币，你的账户余额不足，是不是现在购买一些金币？";
 //"kChangeOpusTitle" = "更换作品";
@@ -857,6 +860,12 @@
 "kSendMeFlower" = "给我赠送了一朵鲜花！";
 "kThrowMeTomato" = "给我丢了个番茄！";
 "kCommentMyOpus" = "评论我的画。";
+"kCanotSendItemToOpus" = "不能在同一个作品上使用超过%d次同样的道具";
+"kCanotSendItemToContestOpus" = "不能在同一个比赛作品上使用超过%d次同样的道具";
+"kOpusMy" = "我的";
+"kOpusRank" = "排行";
+"kOpusNew" = "最新";
+
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 

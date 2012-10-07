@@ -422,6 +422,11 @@
                                drawActionList:nil];
 }
 
+- (IBAction)clickLocation:(id)sender {
+    UserLocationController *controller = [[[UserLocationController alloc] init] autorelease];
+    [self.navigationController pushViewController:controller animated:YES];
+}
+
 
 #pragma mark - super methods: keyboard show and hide
 #define SUPER_VIEW_HEIGHT (([DeviceDetection isIPAD])?(1004.0):(460.0))

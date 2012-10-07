@@ -43,6 +43,7 @@
 #import "UIImageExt.h"
 #import "ShareController.h"
 #import "Contest.h"
+#import "ContestController.h"
 
 @interface OfflineDrawViewController()
 {
@@ -568,10 +569,24 @@ enum{
     return nil;
 }
 
+- (ContestController *)superContestController
+{
+    for (UIViewController *controller in self.navigationController.viewControllers) {
+        if ([controller isKindOfClass:[ContestController class]]) {
+            return (ContestController *)controller;
+        }
+    }
+    return nil;
+}
+
 
 - (void)quit
 {
-    UIViewController *superController = [self superShowFeedController];
+    UIViewController *superController = [self superContestController];
+    
+    if (superController == nil) {
+        superController = [self superShowFeedController];
+    }
     if (superController == nil) {
         superController = [self superFeedController];
     }
@@ -717,6 +732,15 @@ enum{
     [self hideActivity];
     self.submitButton.userInteractionEnabled = YES;
     if (resultCode == 0) {
+        
+        if (self.contest) {
+            [self.contest incCommitCount];
+            [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kSubmitSuccTitle") delayTime:1.5 isSuccessful:YES];
+
+            [self quit];
+            return;
+        }
+        
         CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kSubmitSuccTitle") message:NSLS(@"kSubmitSuccMsg") style:CommonDialogStyleDoubleButton delegate:self];
         dialog.tag = DIALOG_TAG_SUBMIT;
         [dialog showInView:self.view];
@@ -729,8 +753,9 @@ enum{
         }
         
     }else{
-        [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kSubmitFailure") delayTime:1 isSuccessful:NO];
+        [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kSubmitFailure") delayTime:1.5 isSuccessful:NO];
     }
+    
 }
 
 

@@ -148,9 +148,10 @@
         [self updateTime:feed];
         return;
     }    
-    _getTimes = 1;
-    
-    [[FeedService defaultService] getFeedByFeedId:feed.feedId delegate:self];
+    if (!_isLoading) {
+        _getTimes = 1;
+        [[FeedService defaultService] getFeedByFeedId:feed.feedId delegate:self];        
+    }
     
 //    UIImage *defaultImage = [[ShareImageManager defaultManager] unloadBg];
 //    [self.drawImage setImage:defaultImage];
@@ -160,6 +161,7 @@
 - (void)didGetFeed:(DrawFeed *)feed
         resultCode:(NSInteger)resultCode
 {
+    _isLoading = NO;
     if (resultCode == 0 && feed != nil) {        
         
         PPDebug(@"get draw feed succ: feedId = %@",feed.feedId);

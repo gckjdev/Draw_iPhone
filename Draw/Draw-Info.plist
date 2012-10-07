@@ -24,10 +24,10 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>4.8</string>
+	<string>5.0</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
-	<key>URL types DICE</key>
+	<key>URL types Dice</key>
 	<array>
 		<dict>
 			<key>CFBundleURLSchemes</key>
@@ -48,7 +48,7 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>4.8</string>
+	<string>5.0</string>
 	<key>CFChannelId</key>
 	<string>Test</string>
 	<key>CFWordBaseVersion</key>
@@ -79,7 +79,7 @@
 	<string>DiceDefault.jpg</string>
 	<key>Launch image (iPad) Dice</key>
 	<string>DiceDefault_ipad.jpg</string>
-	<key>Icon files DICE</key>
+	<key>Icon files Dice</key>
 	<array>
 		<string>dice_icon_57.png</string>
 		<string>dice_icon_57@2x.png</string>

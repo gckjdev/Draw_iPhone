@@ -137,6 +137,9 @@ FeedManager *_staticFeedManager = nil;
             case FeedTypeDrawToUser:
                 feed = [[[DrawToUserFeed alloc] initWithPBFeed:pbFeed] autorelease];
                 break;                
+            case FeedTypeDrawToContest:
+                feed = [[[ContestFeed alloc] initWithPBFeed:pbFeed] autorelease];
+                break;
             default:
                 break;
         }
