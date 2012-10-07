@@ -26,7 +26,6 @@
     NSMutableArray *avatarArray;
     BOOL _gameCompleted;
     BOOL _gameCanCompleted;
-    UIImageView* _throwingItem;
 }
 
 @property (retain, nonatomic) IBOutlet UIButton *turnNumberButton;

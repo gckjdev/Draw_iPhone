@@ -843,16 +843,6 @@
                       infoInView:self];
 }
 
-#pragma mark - animation delegate
-- (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag
-{
-    [DrawGameAnimationManager animation:anim didStopWithFlag:flag];
-    if (_throwingItem) {
-        [_throwingItem removeFromSuperview];
-    }
-    _throwingItem = nil;
-}
-
 #pragma mark - commonItemInfoView delegate
 - (void)didBuyItem:(Item *)anItem 
             result:(int)result

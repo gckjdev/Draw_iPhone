@@ -663,15 +663,6 @@
     //[self popupMessage:[NSString stringWithFormat:NSLS(@"kReceiveTomatoMessage"),REWARD_EXP, REWARD_COINS] title:nil];
 }
 
-- (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag
-{
-    [DrawGameAnimationManager animation:anim didStopWithFlag:flag];
-    if (_throwingItem) {
-        [_throwingItem removeFromSuperview];
-    }
-    _throwingItem = nil;
-}
-
 #pragma mark - Common Dialog Delegate
 #define SHOP_DIALOG_TAG 20120406
 

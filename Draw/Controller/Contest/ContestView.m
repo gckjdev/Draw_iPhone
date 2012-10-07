@@ -78,8 +78,20 @@
                            contest.opusCount];
     [self.opusLabel setText:opusTitle];
     
-    NSString *joinTitle = [NSString stringWithFormat:NSLS(@"kJoinCount"),
-                           contest.participantCount];
+    NSString *joinTitle = nil;
+    
+    if ([contest isPassed]) {
+        joinTitle = [NSString stringWithFormat:NSLS(@"kContestPassed"),
+                     contest.participantCount];        
+        
+    }else if([contest isPendding]){
+        joinTitle = NSLS(@"kContestPendding");        
+        
+    }else{
+        joinTitle = [NSString stringWithFormat:NSLS(@"kJoinCount"),
+                     contest.participantCount];        
+    }
+    
     [self.joinLabel setText:joinTitle];
     [self.detailLabel setText:NSLS(@"kDetail")];
 }

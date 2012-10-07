@@ -861,6 +861,11 @@
 "kShowLocation" = "顯示位置";
 "kSendLocation" = "發送我的位置";
 
+
+"kContestPassed" = "已結束(%d)";
+"kContestPendding" = "未開始";
+"kNoContestTips" = "不好意思，目前沒有適合您的比賽。";
+
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 

@@ -14,11 +14,17 @@
 #import "CommonMessageCenter.h"
 #import "ContestOpusController.h"
 #import "CommonMessageCenter.h"
+#import "ShareImageManager.h"
+#import "UICustomPageControl.h"
 
 @implementation ContestController
+@synthesize noContestTipLabel = _noContestTipLabel;
 @synthesize scrollView = _scrollView;
 @synthesize pageControl = _pageControl;
 @synthesize titleLabel = _titleLabel;
+
+
+#define CONTEST_COUNT_LIMIT 20
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -39,17 +45,37 @@
 
 #pragma mark - View lifecycle
 
+- (void)initCustomPageControl
+{
+    self.pageControl.hidesForSinglePage = YES;
+    
+    [self.pageControl setPageIndicatorImageForCurrentPage:[[ShareImageManager defaultManager] pointForCurrentSelectedPage] forNotCurrentPage:[[ShareImageManager defaultManager] pointForUnSelectedPage]];
+    
+    if ([DeviceDetection isIPAD]) {
+        self.pageControl.transform = CGAffineTransformMakeScale(2.0, 2.0);
+        self.pageControl.center = CGPointMake(self.view.center.x, self.pageControl.center.y);
+    }
+}
+
+- (void)getContestList
+{
+    [self showActivityWithText:NSLS(@"kLoading")];
+    _contestService = [ContestService  defaultService];
+    [_contestService getContestListWithType:ContestListTypeAll offset:0 limit:CONTEST_COUNT_LIMIT delegate:self];    
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     [self.titleLabel setText:NSLS(@"kContest")];
+        
+    UIColor *bgColor = [UIColor colorWithRed:245.0/255.0 green:240.0/255.0 blue:220./255. alpha:1.0];
+    [self.view setBackgroundColor:bgColor];
+    [self initCustomPageControl];
     _contestViewList = [[NSMutableArray alloc] init];
-    _contestService = [ContestService  defaultService];
-    [_contestService getContestListWithType:ContestListTypeAll offset:0 limit:12 delegate:self];
-    [self showActivityWithText:NSLS(@"kLoading")];
-    
-//    UIColor *bgColor = [UIColor colorWithRed:245.0/255.0 green:240.0/255.0 blue:220./255. alpha:1.0];
-    [self.view setBackgroundColor:[UIColor darkGrayColor]];
+    [self getContestList];
+    [self.noContestTipLabel setHidden:YES];
+    [self.noContestTipLabel setText:NSLS(@"kNoContestTips")];
 }
 
 - (void)viewDidUnload
@@ -57,6 +83,7 @@
     [self setScrollView:nil];
     [self setPageControl:nil];
     [self setTitleLabel:nil];
+    [self setNoContestTipLabel:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -99,6 +126,7 @@
     }
     [self.pageControl setNumberOfPages:count];
     [self.pageControl setCurrentPage:0];
+    [self.scrollView setContentOffset:CGPointMake(0, 0) animated:YES];
     
 //    [self.view bringSubviewToFront:self.pageControl];
 }
@@ -137,8 +165,13 @@
 
     PPDebug(@"didGetContestList, type = %d, code = %d, contestList = %@", type,code,contestList);
     if (code == 0) {
-        [self updateScorollViewWithContestList:contestList];
+        if ([contestList count] != 0) {
+            [self updateScorollViewWithContestList:contestList];
+        }else{
+            [_noContestTipLabel setHidden:NO];
+        }
     }else{
+
         [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kFailLoad") delayTime:1.5 isHappy:NO];
     }
     [self hideActivity];
@@ -167,7 +200,7 @@
         [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kContestNotRunning") delayTime:1.5 isHappy:NO];
         return;
     }else if([contest commintCountEnough]){
-        NSString *title = [NSString stringWithFormat:NSLS(@"kContesSummitCountEnough"),contest.canSummitCount];
+        NSString *title = [NSString stringWithFormat:NSLS(@"kContesSummitCountEnough"),contest.canSubmitCount];
         [[CommonMessageCenter defaultCenter] postMessageWithText:title 
                                                        delayTime:1.5 
                                                          isHappy:NO];        
@@ -194,6 +227,10 @@
     PPRelease(_pageControl);
     PPRelease(_contestViewList);
     PPRelease(_titleLabel);
+    PPRelease(_noContestTipLabel);
     [super dealloc];
+}
+- (IBAction)clickRefreshButton:(id)sender {
+    [self getContestList];
 }
 @end
