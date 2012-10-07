@@ -39,6 +39,8 @@ typedef enum {
     int _maxFlower;
     
     Feed* _feed;
+    
+    UIImageView* _throwingItem;
 }
 @property (retain, nonatomic) IBOutlet UIButton *upButton;
 @property (retain, nonatomic) IBOutlet UIButton *downButton;

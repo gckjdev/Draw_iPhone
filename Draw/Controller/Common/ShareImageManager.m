@@ -217,6 +217,10 @@ static UIImage* _whitePaperImage;
     return [UIImage imageNamed:@"add_color.png"];        
 }
 
+- (UIImage *)commentSourceBG
+{
+    return [UIImage strectchableImageName:@"reply_bg.png"];
+}
 - (UIImage *)popupImage
 {
     return [UIImage strectchableImageName:@"guess_popup.png" leftCapWidth:20];
@@ -629,7 +633,7 @@ static UIImage* _whitePaperImage;
 
 - (NSString *)feedImageDir
 {
-    NSString *dir = [[FileUtil getAppHomeDir] stringByAppendingPathComponent:TEMP_FEED_IMAGE_DIR];    
+    NSString *dir = [[FileUtil getAppCacheDir] stringByAppendingPathComponent:TEMP_FEED_IMAGE_DIR];
     BOOL flag = [FileUtil createDir:dir];
     if (flag) {
         return dir;

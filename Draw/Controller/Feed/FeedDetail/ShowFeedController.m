@@ -24,6 +24,7 @@
 #import "CommonMessageCenter.h"
 #import "ReplayView.h"
 #import "CommentFeed.h"
+#import "ReplayContestDrawController.h"
 
 @implementation ShowFeedController
 @synthesize titleLabel = _titleLabel;
@@ -92,7 +93,7 @@ enum{
 //    NSInteger start = ActionTagGuess;
 //    NSInteger count = ActionTagEnd - start;
 //    
-    self.guessButton.hidden = [self.feed showAnswer];
+    self.guessButton.hidden = [self.feed showAnswer] || [self.feed isContestFeed];
     self.replayButton.hidden = !self.guessButton.hidden;
     
 //    if ([self.feed showAnswer]) {
@@ -122,6 +123,9 @@ enum{
         button.enabled = (self.feed.drawData != nil);
     }
     self.saveButton.enabled = !_didSave && self.feed.drawData != nil;
+//    if (![self.feed canSave]) {
+//        self.saveButton.enabled = NO;
+//    }
 }
 
 - (void)reloadCommentSection
@@ -350,7 +354,7 @@ enum{
 - (void)updateTitle
 {
     NSString *title = nil;
-    if ([self.feed showAnswer]) {
+    if ([self.feed showAnswer] && [self.feed.wordText length] != 0) {
         title = [NSString stringWithFormat:NSLS(@"[%@]"),
                  self.feed.wordText];        
     }else{
@@ -359,16 +363,19 @@ enum{
     [self.titleLabel setText:title];
 }
 
-
+- (void)updateUserInfo
+{
+    [self.userCell setCellInfo:self.feed];
+}
 #pragma mark - cell delegate
 - (void)didUpdateShowView
 {
     //update the times
     [self.commentHeader setViewInfo:self.feed];
-    
     //update the action buttons
     [self updateActionButtons];
     [self updateTitle];
+    [self updateUserInfo];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -424,6 +431,15 @@ enum{
 
 #define ITEM_TAG_OFFSET 20120728
 
+- (NSString *)canotSendItemPopup
+{
+    if ([self.feed isContestFeed]) {
+        return  [NSString stringWithFormat:NSLS(@"kCanotSendItemToContestOpus"),self.feed.itemLimit];        
+    }
+    return [NSString stringWithFormat:NSLS(@"kCanotSendItemToOpus"),self.feed.itemLimit];
+}
+
+
 - (void)throwItem:(Item *)item
 {
     
@@ -431,7 +447,12 @@ enum{
         [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kCanotSendToSelf") delayTime:1.5 isHappy:YES];
         return;
     }
+    if ((item.type == ItemTypeTomato && !self.feed.canThrowTomato) || (item.type == ItemTypeFlower && !self.feed.canSendFlower)) {
+        [[CommonMessageCenter defaultCenter] postMessageWithText:self.canotSendItemPopup delayTime:1.5 isHappy:YES];
+        return;
+    }
     
+
     if (item.amount <= 0) {
         CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kNoItemTitle") message:NSLS(@"kNoItemMessage") style:CommonDialogStyleDoubleButton delegate:self];
         dialog.tag = ITEM_TAG_OFFSET + item.type;
@@ -447,17 +468,19 @@ enum{
         
         ShareImageManager *imageManager = [ShareImageManager defaultManager];
         if (item.type == ItemTypeFlower) {
-            UIImageView* itemView = [[[UIImageView alloc] initWithFrame:self.flowerButton.frame] autorelease];
-            [itemView setImage:[imageManager flower]];
-            [self.view addSubview:itemView];
-            [DrawGameAnimationManager showThrowFlower:itemView animInController:self rolling:YES];
+            UIImageView* throwItem = [[[UIImageView alloc] initWithFrame:self.flowerButton.frame] autorelease];
+            [throwItem setImage:[imageManager flower]];
+            [self.view addSubview:throwItem];
+            [DrawGameAnimationManager showThrowFlower:throwItem animInController:self rolling:YES];
             [_commentHeader setSeletType:CommentTypeFlower];
+            [self.feed increaseLocalFlowerTimes];
         }else{
-            UIImageView* itemView = [[[UIImageView alloc] initWithFrame:self.tomatoButton.frame] autorelease];
-            [itemView setImage:[imageManager tomato]];
-            [self.view addSubview:itemView];
-            [DrawGameAnimationManager showThrowTomato:itemView animInController:self rolling:YES];         
+            UIImageView* throwItem = [[[UIImageView alloc] initWithFrame:self.tomatoButton.frame] autorelease];
+            [throwItem setImage:[imageManager tomato]];
+            [self.view addSubview:throwItem];
+            [DrawGameAnimationManager showThrowTomato:throwItem animInController:self rolling:YES];         
             [_commentHeader setSeletType:CommentTypeTomato];
+            [self.feed increaseLocalTomatoTimes];
         }
     }
 }
@@ -465,6 +488,10 @@ enum{
 - (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag
 {
     [DrawGameAnimationManager animation:anim didStopWithFlag:flag];
+    if (_throwingItem) {
+        [_throwingItem removeFromSuperview];
+    }
+    _throwingItem = nil;
     [self clickRefresh:nil];
 }
 
@@ -513,7 +540,7 @@ enum{
                                            drawUserId:_feed.feedUser.userId
                                            isDrawByMe:[_feed isMyOpus] 
                                              drawWord:_feed.wordText];    
-        
+        [self.feed increaseSaveTimes];
         [[DrawDataService defaultService] saveActionList:_feed.drawData.drawActionList 
                                                   userId:_feed.feedUser.userId
                                                 nickName:_feed.feedUser.nickName
@@ -532,9 +559,21 @@ enum{
         Item *item = [Item tomato];
         [self throwItem:item];
     }else if(button == self.replayButton){
-        ReplayView *replay = [ReplayView createReplayView:self];
-        [replay setViewInfo:self.feed];
-        [replay showInView:self.view];
+        
+        if ([self.feed isContestFeed]) {
+            //TODO enter the show contest feed controller.
+            PPDebug(@"enter show contest feed controller");
+            
+            ReplayContestDrawController *controller = [[ReplayContestDrawController alloc] initWithFeed:self.feed];
+            [self.navigationController pushViewController:controller animated:YES];
+            [controller release];
+            
+        }else {
+            ReplayView *replay = [ReplayView createReplayView:self];
+            [replay setViewInfo:self.feed];
+            [replay showInView:self.view];
+        }
+        
     }else{
         //NO action
     }
@@ -543,10 +582,9 @@ enum{
 #pragma mark - comment cell delegate
 - (void)didStartToReplyToFeed:(CommentFeed *)feed
 {
-    return;
     PPDebug(@"<didStartToReplyToFeed>, feed type = %d,comment = %@", feed.feedType,feed.comment);
     CommentController *replyController = [[CommentController alloc] initWithFeed:self.feed commentFeed:feed];
-    [self.navigationController pushViewController:self animated:YES];
+    [self presentModalViewController:replyController animated:YES];
     [replyController release];
 }
 

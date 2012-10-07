@@ -8,12 +8,43 @@
 
 #import "Feed.h"
 
+
+@class CommentInfo;
+
 @interface CommentFeed : Feed
 {
     NSString *_comment;
+    CommentInfo *_commentInfo;
 }
 @property(nonatomic, retain)NSString *comment;
+@property(nonatomic, retain)CommentInfo *commentInfo;
+@property(nonatomic, retain)NSString *opusId;
+@property(nonatomic, retain)NSString *opusCreator;
+
 - (id)initWithPBFeed:(PBFeed *)pbFeed;
+- (NSString *)commentInFeedDeatil;
+- (NSString *)commentInMyComment;;
+- (NSString *)replySummary;
+- (BOOL)canDelete;
+@end
 
 
+@interface CommentInfo : NSObject {
+    NSString *_actionId;
+    FeedType _type;
+    NSString *_comment;
+    NSString *_summary;
+    NSString *_actionUid;
+    NSString *_actionNick;
+}
+
+@property(nonatomic, assign) FeedType type;
+@property(nonatomic, retain) NSString *actionId;
+@property(nonatomic, retain) NSString *comment;
+@property(nonatomic, retain) NSString *summary;
+@property(nonatomic, retain) NSString *actionUid;
+@property(nonatomic, retain) NSString *actionNick;
+
+- (id)initWithPBCommentInfo:(PBCommentInfo *)pbInfo;
+- (NSString *)summaryDesc;
 @end

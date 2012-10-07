@@ -34,4 +34,6 @@
 
 + (void)animation:(CAAnimation*)anim didStopWithFlag:(BOOL)flag;
 
++ (CAAnimationGroup*)createThrowItemAnimation:(UIImageView*)ItemImageView inViewController:(UIViewController*)viewController;
+
 @end

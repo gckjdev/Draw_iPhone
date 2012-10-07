@@ -25,7 +25,9 @@ typedef enum{
     
 	FeedTypeFlower = ItemTypeFlower,
 	FeedTypeTomato = ItemTypeTomato,
-    FeedTypeOnlyComment = 8
+    FeedTypeOnlyComment = 8,
+    FeedTypeDrawToContest = 9
+    
     
 }FeedType;
 

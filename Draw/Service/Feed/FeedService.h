@@ -20,6 +20,10 @@
           feedListType:(FeedListType)type 
             resultCode:(NSInteger)resultCode;
 
+- (void)didGetContestOpusList:(NSArray *)feedList 
+                         type:(int)type 
+                   resultCode:(NSInteger)resultCode;
+
 - (void)didGetFeedList:(NSArray *)feedList 
             targetUser:(NSString *)userId 
                   type:(FeedListType)type
@@ -50,6 +54,8 @@
 
 - (void)didUpdateFeedTimes:(DrawFeed *)feed 
                 resultCode:(NSInteger)resultCode;
+
+- (void)didGetMyCommentList:(NSArray *)commentList resultCode:(NSInteger)resultCode;
 @end
 
 @interface FeedService : CommonService
@@ -75,11 +81,21 @@
               limit:(NSInteger)limit 
            delegate:(PPViewController<FeedServiceDelegate> *)delegate;
 
+- (void)getContestOpusList:(int)type 
+                 contestId:(NSString *)contestId
+                    offset:(NSInteger)offset 
+                     limit:(NSInteger)limit 
+                  delegate:(PPViewController<FeedServiceDelegate> *)delegate;
+
 - (void)getOpusCommentList:(NSString *)opusId 
                       type:(int)type
                     offset:(NSInteger)offset 
                      limit:(NSInteger)limit 
                   delegate:(id<FeedServiceDelegate>)delegate;
+
+- (void)getMyCommentList:(NSInteger)offset 
+                   limit:(NSInteger)limit 
+                delegate:(id<FeedServiceDelegate>)delegate;
 
 - (void)getFeedByFeedId:(NSString *)feedId 
                delegate:(id<FeedServiceDelegate>)delegate;

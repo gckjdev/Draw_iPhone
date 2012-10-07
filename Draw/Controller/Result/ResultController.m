@@ -635,14 +635,13 @@
         [dialog showInView:self.view];
         return NO;
     }
-    UIImageView* item = [[[UIImageView alloc] initWithFrame:toolView.frame] autorelease];
-    [self.view addSubview:item];
-    [item setImage:toolView.imageView.image];
+    UIImageView* throwingItem= [[[UIImageView alloc] initWithFrame:toolView.frame] autorelease];
+    [throwingItem setImage:toolView.imageView.image];
     if (toolView.itemType == ItemTypeTomato) {
-        [DrawGameAnimationManager showThrowTomato:item animInController:self rolling:YES];
+        [DrawGameAnimationManager showThrowTomato:throwingItem animInController:self rolling:YES];
     }
     if (toolView.itemType == ItemTypeFlower) {
-        [DrawGameAnimationManager showThrowFlower:item animInController:self rolling:YES];
+        [DrawGameAnimationManager showThrowFlower:throwingItem animInController:self rolling:YES];
     }
     return YES;
 }
@@ -667,6 +666,10 @@
 - (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag
 {
     [DrawGameAnimationManager animation:anim didStopWithFlag:flag];
+    if (_throwingItem) {
+        [_throwingItem removeFromSuperview];
+    }
+    _throwingItem = nil;
 }
 
 #pragma mark - Common Dialog Delegate

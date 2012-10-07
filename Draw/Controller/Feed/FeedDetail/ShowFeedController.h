@@ -31,6 +31,7 @@
     CommentHeaderView *_commentHeader;
     TableTabManager *_tabManager;
     BOOL _didSave;
+    UIImageView* _throwingItem;
 }
 @property (retain, nonatomic) IBOutlet UILabel *titleLabel;
 @property (retain, nonatomic) IBOutlet UIButton *guessButton;

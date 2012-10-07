@@ -28,6 +28,20 @@ enum{
                               text:(NSString *)text 
                             status:(NSNumber *)status;
 
+- (BOOL)createMessageWithMessageId:(NSString *)messageId 
+                              from:(NSString *)from 
+                                to:(NSString *)to 
+                          drawData:(NSData *)drawData 
+                        createDate:(NSDate *)createDate 
+                              text:(NSString *)text 
+                            status:(NSNumber *)status 
+                              type:(NSNumber *)type 
+                       hasLocation:(NSNumber *)hasLocation 
+                          latitude:(NSNumber *)latitude 
+                         longitude:(NSNumber *)longitude 
+                       replyResult:(NSNumber *)replyResult 
+                       reMessageId:(NSString *)reMessageId;
+
 - (BOOL)createByPBMessage:(PBMessage *)pbMessage;
 
 - (NSArray *)findMessagesByFriendUserId:(NSString *)friendUserId;

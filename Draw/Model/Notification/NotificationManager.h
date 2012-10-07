@@ -30,10 +30,7 @@ typedef enum{
 + (int)badgeForType:(NotificationType)type withNotification:(NSDictionary *)notification;
 
 + (NotificationType) typeForUserInfo:(NSDictionary *)notification;
-+ (int)feedBadge:(NSDictionary *)userInfo;
-+ (int)fanBadge:(NSDictionary *)userInfo;
-+ (int)roomBadge:(NSDictionary *)userInfo;
-+ (int)messageBadge:(NSDictionary *)userInfo;
 
+- (void)saveStatistic:(NSDictionary *)notification;
 
 @end
