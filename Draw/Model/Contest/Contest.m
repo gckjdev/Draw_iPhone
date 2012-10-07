@@ -57,8 +57,14 @@
     self = [super init];
     if (self) {
         self.contestId = [dict objectForKey:PARA_CONTESTID];
-        self.contestUrl = [dict objectForKey:PARA_CONTEST_URL];
-        self.statementUrl = [dict objectForKey:PARA_STATEMENT_URL];
+
+        if ([DeviceDetection isIPAD]) {
+            self.contestUrl = [dict objectForKey:PARA_CONTEST_IPAD_URL];
+            self.statementUrl = [dict objectForKey:PARA_STATEMENT_IPAD_URL];            
+        }else{
+            self.contestUrl = [dict objectForKey:PARA_CONTEST_URL];
+            self.statementUrl = [dict objectForKey:PARA_STATEMENT_URL];
+        }
         self.title = [dict objectForKey:PARA_TITLE];
         
         self.opusCount = [self intValueForKey:PARA_OPUS_COUNT inDict:dict];

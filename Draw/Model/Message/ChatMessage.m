@@ -19,10 +19,9 @@
 @dynamic text;
 @dynamic status;
 @dynamic type;
-@dynamic hasLocation;
 @dynamic latitude;
 @dynamic longitude;
 @dynamic replyResult;
-@dynamic reMessageId;
+@dynamic reqMessageId;
 
 @end

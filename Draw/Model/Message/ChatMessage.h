@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-enum {
+typedef enum {
     MessageTypeNormal,
     MessageTypeAskLocation,
     MessageTypeReplyLocation
@@ -25,10 +25,9 @@ enum {
 @property (nonatomic, retain) NSString * text;
 @property (nonatomic, retain) NSNumber * status;
 @property (nonatomic, retain) NSNumber *type;
-@property (nonatomic, retain) NSNumber *hasLocation;
 @property (nonatomic, retain) NSNumber *latitude;
 @property (nonatomic, retain) NSNumber *longitude;
 @property (nonatomic, retain) NSNumber *replyResult;
-@property (nonatomic, retain) NSString *reMessageId;
+@property (nonatomic, retain) NSString *reqMessageId;
 
 @end

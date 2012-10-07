@@ -35,12 +35,11 @@ enum{
                         createDate:(NSDate *)createDate 
                               text:(NSString *)text 
                             status:(NSNumber *)status 
-                              type:(NSNumber *)type 
-                       hasLocation:(NSNumber *)hasLocation 
+                              type:(NSNumber *)type  
                           latitude:(NSNumber *)latitude 
                          longitude:(NSNumber *)longitude 
                        replyResult:(NSNumber *)replyResult 
-                       reMessageId:(NSString *)reMessageId;
+                      reqMessageId:(NSString *)reqMessageId;
 
 - (BOOL)createByPBMessage:(PBMessage *)pbMessage;
 
