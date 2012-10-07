@@ -232,9 +232,6 @@ NSString* GlobalGetBoardServerURL()
     // Show News If Exists
     [self performSelector:@selector(showNews) withObject:nil afterDelay:1.5];
     
-    [[FriendManager defaultManager] removeAllDeletedFriends];
-    [[MyPaintManager defaultManager] removeAlldeletedPaints];
-
 //    [HomeController defaultInstance].hasRemoveNotification = YES;//(obj != nil);
     
     //sync level details
@@ -304,6 +301,10 @@ NSString* GlobalGetBoardServerURL()
     
     [[UserStatusService defaultService] stop];
     [[FacetimeService defaultService] disconnectServer];
+    
+    [[FriendManager defaultManager] removeAllDeletedFriends];
+    [[MyPaintManager defaultManager] removeAlldeletedPaints];
+    
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application
