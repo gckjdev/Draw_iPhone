@@ -129,12 +129,12 @@
 {
     CGFloat resultHeight = 0;
     
-    if ([message.text length] > 0) {
+    if ([message.text length] > 0 || [message.type intValue]== MessageTypeAskLocation || [message.type intValue] == MessageTypeReplyLocation) {
         UIFont *font = [UIFont systemFontOfSize:TEXT_FONT_SIZE];
         CGSize textSize = [message.text sizeWithFont:font constrainedToSize:CGSizeMake(TEXT_WIDTH_MAX, TEXT_HEIGHT_MAX) lineBreakMode:UILineBreakModeWordWrap];
         
         resultHeight = SPACE_Y + textSize.height+2*TEXTVIEW_BORDER_Y + TIME_AND_CONTENT_SPACE + TIME_HEIGHT;
-    }else {
+    } else {
         resultHeight = SPACE_Y + IMAGE_WIDTH_MAX+2*IMAGE_BORDER_Y + TIME_AND_CONTENT_SPACE + TIME_HEIGHT;
     }
     
@@ -142,6 +142,46 @@
 }
 
 
+- (void)setTextMessage:(NSString *)text
+{
+    //get string size
+    UIFont *font = [UIFont systemFontOfSize:TEXT_FONT_SIZE];
+    CGSize textSize = [text sizeWithFont:font constrainedToSize:CGSizeMake(TEXT_WIDTH_MAX, TEXT_HEIGHT_MAX) lineBreakMode:UILineBreakModeWordWrap];
+    
+    //set text
+    contentTextView.frame = CGRectMake(contentTextView.frame.origin.x+BUBBLE_TIP_WIDTH, 0.5*SPACE_Y, textSize.width+2*TEXTVIEW_BORDER_X, textSize.height+2*TEXTVIEW_BORDER_Y);
+    contentTextView.font = font;
+    contentTextView.text = text;
+    contentTextView.backgroundColor = [UIColor clearColor];
+    
+    //set bubble frame
+    bubbleImageView.frame = CGRectMake(bubbleImageView.frame.origin.x, 0.5*SPACE_Y, contentTextView.frame.size.width+BUBBLE_TIP_WIDTH+BUBBLE_NOT_TIP_WIDTH, contentTextView.frame.size.height);
+    
+    enlargeButton.frame = bubbleImageView.frame;
+}
+
+- (void)setGraffitiMessage:(NSArray *)drawActionList
+{
+    CGFloat scale = IMAGE_WIDTH_MAX / DRAW_VIEW_FRAME.size.width;
+    NSMutableArray *scaleActionList = nil;
+    scaleActionList = [DrawAction scaleActionList:drawActionList 
+                                           xScale:scale 
+                                           yScale:scale];
+    
+    [graffitiView setDrawActionList:scaleActionList]; 
+    [graffitiView setShowPenHidden:YES];
+    CGFloat multiple = graffitiView.frame.size.height / graffitiView.frame.size.width;
+    graffitiView.frame = CGRectMake(graffitiView.frame.origin.x+BUBBLE_TIP_WIDTH+IMAGE_BORDER_X, 0.5*SPACE_Y+IMAGE_BORDER_Y, IMAGE_WIDTH_MAX, multiple *IMAGE_WIDTH_MAX);
+    graffitiView.layer.cornerRadius = 4;
+    graffitiView.layer.masksToBounds = YES;
+    [graffitiView show];
+    
+    //set button frame
+    enlargeButton.frame = graffitiView.frame;
+    
+    //set bubble frame
+    bubbleImageView.frame = CGRectMake(bubbleImageView.frame.origin.x,0.5*SPACE_Y, graffitiView.frame.size.width+BUBBLE_TIP_WIDTH+BUBBLE_NOT_TIP_WIDTH+2*IMAGE_BORDER_X, graffitiView.frame.size.height+2*IMAGE_BORDER_Y);
+}
 
 - (void)setCellByChatMessage:(ChatMessage *)message 
               friendNickname:(NSString *)friendNickName 
@@ -183,10 +223,8 @@
         nicknameLabel.text = friendNickName;
     }
     nicknameLabel.hidden = YES;
-    
     UIImage *bubble = [UIImage imageNamed:fromSelf ? @"sent_message.png" : @"receive_message.png"];
     [bubbleImageView setImage:[bubble stretchableImageWithLeftCapWidth:14 topCapHeight:14]];
-    
     
     //set time
     NSString *timeString ;
@@ -204,54 +242,33 @@
         self.timeLabel.text = [dateFormatter stringFromDate:message.createDate];
     }
     
-    
-    
+    PPDebug(@"ChatDetailCell :%@", message.text);
     /*注意要保证xib里面contentTextView,bubbleImageView,graffitiView,timeLabel的x位置一样*/
-    if ([message.text length] > 0) {
+    if ([message.type intValue] == MessageTypeNormal) {
+        if ([message.text length] > 0) {
+            contentTextView.hidden = NO;
+            graffitiView.hidden = YES;
+            enlargeButton.hidden = YES;
+            [self setTextMessage:message.text];
+        }else {
+            contentTextView.hidden = YES;
+            graffitiView.hidden = NO;
+            enlargeButton.hidden = NO;
+             NSArray* drawActionList = [ChatMessageUtil unarchiveDataToDrawActionList:message.drawData];
+            [self setGraffitiMessage:drawActionList];
+        }
+    } else if ([message.type intValue] == MessageTypeAskLocation) {
         contentTextView.hidden = NO;
         graffitiView.hidden = YES;
-        enlargeButton.hidden = YES;
-        
-        //get string size
-        UIFont *font = [UIFont systemFontOfSize:TEXT_FONT_SIZE];
-        CGSize textSize = [message.text sizeWithFont:font constrainedToSize:CGSizeMake(TEXT_WIDTH_MAX, TEXT_HEIGHT_MAX) lineBreakMode:UILineBreakModeWordWrap];
-        
-        //set text
-        contentTextView.frame = CGRectMake(contentTextView.frame.origin.x+BUBBLE_TIP_WIDTH, 0.5*SPACE_Y, textSize.width+2*TEXTVIEW_BORDER_X, textSize.height+2*TEXTVIEW_BORDER_Y);
-        contentTextView.font = font;
-        contentTextView.text = message.text;
-        contentTextView.backgroundColor = [UIColor clearColor];
-        
-        //set bubble frame
-        bubbleImageView.frame = CGRectMake(bubbleImageView.frame.origin.x, 0.5*SPACE_Y, contentTextView.frame.size.width+BUBBLE_TIP_WIDTH+BUBBLE_NOT_TIP_WIDTH, contentTextView.frame.size.height);
-        
-    }else {
-        contentTextView.hidden = YES;
-        graffitiView.hidden = NO;
         enlargeButton.hidden = NO;
-        
-        //set graffitiView
-        NSArray* drawActionList = [ChatMessageUtil unarchiveDataToDrawActionList:message.drawData];
-        CGFloat scale = IMAGE_WIDTH_MAX / DRAW_VIEW_FRAME.size.width;
-        NSMutableArray *scaleActionList = nil;
-        scaleActionList = [DrawAction scaleActionList:drawActionList 
-                                               xScale:scale 
-                                               yScale:scale];
-
-        [graffitiView setDrawActionList:scaleActionList]; 
-        [graffitiView setShowPenHidden:YES];
-        CGFloat multiple = graffitiView.frame.size.height / graffitiView.frame.size.width;
-        graffitiView.frame = CGRectMake(graffitiView.frame.origin.x+BUBBLE_TIP_WIDTH+IMAGE_BORDER_X, 0.5*SPACE_Y+IMAGE_BORDER_Y, IMAGE_WIDTH_MAX, multiple *IMAGE_WIDTH_MAX);
-        graffitiView.layer.cornerRadius = 4;
-        graffitiView.layer.masksToBounds = YES;
-        [graffitiView show];
-        
-        //set button frame
-        enlargeButton.frame = graffitiView.frame;
-        
-        //set bubble frame
-        bubbleImageView.frame = CGRectMake(bubbleImageView.frame.origin.x,0.5*SPACE_Y, graffitiView.frame.size.width+BUBBLE_TIP_WIDTH+BUBBLE_NOT_TIP_WIDTH+2*IMAGE_BORDER_X, graffitiView.frame.size.height+2*IMAGE_BORDER_Y);
+        [self setTextMessage:message.text];
+    } else if ([message.type intValue] == MessageTypeReplyLocation) {
+        contentTextView.hidden = NO;
+        graffitiView.hidden = YES;
+        enlargeButton.hidden = NO;
+        [self setTextMessage:message.text];
     }
+    
     
     //set time frame
     timeLabel.frame = CGRectMake(timeLabel.frame.origin.x, bubbleImageView.frame.origin.y+bubbleImageView.frame.size.height+TIME_AND_CONTENT_SPACE, timeLabel.frame.size.width, TIME_HEIGHT);

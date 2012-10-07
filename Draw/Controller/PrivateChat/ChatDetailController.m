@@ -25,6 +25,7 @@
 #import "CommonMessageCenter.h"
 #import "CommonUserInfoView.h"
 #import "DiceUserInfoView.h"
+#import "GameNetworkConstants.h"
 
 @interface ChatDetailController ()
 
@@ -32,6 +33,7 @@
 @property (retain, nonatomic) NSString *friendAvatar;
 @property (retain, nonatomic) NSString *friendGender;
 @property (retain, nonatomic) OfflineDrawViewController *offlineDrawViewController;
+@property (retain, nonatomic) ChatMessage *selectedMessage;
 
 - (IBAction)clickBack:(id)sender;
 - (IBAction)clickRefreshButton:(id)sender;
@@ -68,7 +70,7 @@
 @synthesize friendAvatar = _friendAvatar;
 @synthesize friendGender = _friendGender;
 @synthesize offlineDrawViewController = _offlineDrawViewController;
-
+@synthesize selectedMessage = _selectedMessage;
 
 - (void)dealloc {
     PPRelease(_offlineDrawViewController);
@@ -84,6 +86,7 @@
     PPRelease(inputTextBackgroundImage);
     PPRelease(paperImageView);
     PPRelease(refreshButton);
+    PPRelease(_selectedMessage);
     [super dealloc];
 }
 
@@ -423,7 +426,12 @@
 }
 
 - (IBAction)clickLocation:(id)sender {
-    UserLocationController *controller = [[[UserLocationController alloc] init] autorelease];
+    UserLocationController *controller = [[[UserLocationController alloc] initWithType:LocationTypeFind 
+                                                                              latitude:0 
+                                                                             longitude:0
+                                                                           messageType:MessageTypeAskLocation
+                                           ] autorelease];
+    controller.delegate = self;
     [self.navigationController pushViewController:controller animated:YES];
 }
 
@@ -440,8 +448,6 @@
     [UIView setAnimationDuration:0.25];
     inputBackgroundView.frame = frame;
     [UIImageView commitAnimations];
-    
-    
 }
 
 - (void)keyboardWillHideWithRect:(CGRect)keyboardRect
@@ -451,8 +457,6 @@
     [UIView setAnimationDuration:0.25];
     inputBackgroundView.frame = frame;
     [UIImageView commitAnimations];
-    
-    
 }
 
 
@@ -533,18 +537,37 @@
         return NO;  
     }  
     return YES;  
-} 
+}
 
 
 #pragma mark - ChatDetailCellDelegate methods
 - (void)didClickEnlargeButton:(NSIndexPath *)aIndexPath
 {
     ChatMessage *message = [dataList objectAtIndex:aIndexPath.row];
-    if ([message.text length] <= 0 && message.drawData) {
-        NSArray* drawActionList = [ChatMessageUtil unarchiveDataToDrawActionList:message.drawData];
-        ReplayGraffitiController *controller = [[ReplayGraffitiController alloc] initWithDrawActionList:drawActionList];
+    self.selectedMessage = message;
+    BOOL fromSelf = [message.from isEqualToString:[[UserManager defaultManager] userId]];
+    
+    if ([message.type intValue] == MessageTypeNormal) {
+        if ([message.text length] <= 0 && message.drawData) {
+            NSArray* drawActionList = [ChatMessageUtil unarchiveDataToDrawActionList:message.drawData];
+            ReplayGraffitiController *controller = [[ReplayGraffitiController alloc] initWithDrawActionList:drawActionList];
+            [self.navigationController pushViewController:controller animated:YES];
+            [controller release];
+        }
+        
+    } else if ([message.type intValue] == MessageTypeAskLocation && !fromSelf) {
+        UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:NSLS(@"kCancel") destructiveButtonTitle:NSLS(@"kReplyLocation") otherButtonTitles:NSLS(@"kRejectLocation"), NSLS(@"kShowLocation"), nil];
+        [actionSheet showInView:self.view];
+        [actionSheet release];
+        
+    } else if (([message.type intValue] == MessageTypeAskLocation && fromSelf)
+               || ([message.type intValue] == MessageTypeReplyLocation && [message.replyResult intValue] != REJECT_ASK_LOCATION) ) {
+        UserLocationController *controller = [[[UserLocationController alloc] initWithType:LocationTypeShow 
+                                                                                  latitude:[message.latitude doubleValue] 
+                                                                                 longitude:[message.longitude doubleValue]
+                                                                               messageType:0] autorelease];
+        controller.delegate = self;
         [self.navigationController pushViewController:controller animated:YES];
-        [controller release];
     }
 }
 
@@ -563,7 +586,7 @@
                                    level:1
                                  hasSina:NO 
                                    hasQQ:NO 
-                             hasFacebook:NO 
+                             hasFacebook:NO
                               infoInView:self];
         }
         if (isDiceApp()) {
@@ -609,10 +632,51 @@
     }
 }
 
-#pragma mark - super methods
-//- (void)loadMoreTableViewDataSource
-//{
-//    [self findAllMessages];
-//}
+#pragma mark - UserLocationControllerDelegate method
+- (void)didClickSendLocation:(double)latitude longitude:(double)longitude messageType:(int)messageType
+{
+    if (messageType == MessageTypeAskLocation) {
+        [[ChatService defaultService] askLocation:self
+                                     friendUserId:_friendUserId
+                                        longitude:longitude
+                                         latitude:latitude
+                                             text:NSLS(@"kAskLocationMessage")];
+        
+    } else if (messageType == MessageTypeReplyLocation){
+        [[ChatService defaultService] replyLocation:self
+                                       friendUserId:_friendUserId
+                                          longitude:longitude
+                                           latitude:latitude
+                                       reqMessageId:_selectedMessage.messageId
+                                               text:NSLS(@"kReplyLocationMessage")];
+    }
+}
+
+#pragma mark - UIActionSheetDelegate method
+#define INDEX_REPLY         0
+#define INDEX_REJECT        1
+#define INDEX_SHOW_LOCATION  2
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == [actionSheet cancelButtonIndex]) {
+        return;
+    } else if (buttonIndex == INDEX_REPLY){
+        UserLocationController *controller = [[[UserLocationController alloc] initWithType:LocationTypeFind
+                                                                                  latitude:0
+                                                                                 longitude:0
+                                                                               messageType:MessageTypeReplyLocation] autorelease];
+        controller.delegate = self;
+        [self.navigationController pushViewController:controller animated:YES];
+    } else if (buttonIndex == INDEX_REJECT) {
+        [[ChatService defaultService] replyRejectLocation:self friendUserId:_friendUserId reqMessageId:_selectedMessage.messageId text:NSLS(@"kRejectLocationMessage")];
+    } else if (buttonIndex == INDEX_SHOW_LOCATION) {
+        UserLocationController *controller = [[[UserLocationController alloc] initWithType:LocationTypeShow
+                                                                                  latitude:[_selectedMessage.latitude doubleValue]
+                                                                                 longitude:[_selectedMessage.longitude doubleValue]
+                                                                               messageType:MessageTypeReplyLocation] autorelease];
+        controller.delegate = self;
+        [self.navigationController pushViewController:controller animated:YES];
+    }
+}
 
 @end

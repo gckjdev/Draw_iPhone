@@ -852,6 +852,15 @@
 "kOpusMy" = "我的";
 "kOpusRank" = "排行";
 "kOpusNew" = "最新";
+
+"kAskLocationMessage" = "這是我的位置，讓我看看你在哪個位置？";
+"kReplyLocationMessage" = "我回復了你的定位請求";
+"kRejectLocationMessage" = "拒絕你的定位請求";
+"kReplyLocation" = "回复定位";
+"kRejectLocation" = "拒絕定位";
+"kShowLocation" = "顯示位置";
+"kSendLocation" = "發送我的位置";
+
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 

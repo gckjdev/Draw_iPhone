@@ -44,7 +44,6 @@ static ChatMessageManager *_chatMessageManager = nil;
                             status:(NSNumber *)status
 {
     //PPDebug(@"createMessageWithMessageId:%@ from:%@ to:%@ drawDataLen:%d createDate:%@ text:%@ status:%@",messageId,from,to,[drawData length], createDate, text, status);
-    
     CoreDataManager *dataManager = [CoreDataManager defaultManager];
     
     ChatMessage *chatMessage = [self findMessageByMessageId:messageId];
@@ -77,12 +76,11 @@ static ChatMessageManager *_chatMessageManager = nil;
                         createDate:(NSDate *)createDate 
                               text:(NSString *)text 
                             status:(NSNumber *)status 
-                              type:(NSNumber *)type 
-                       hasLocation:(NSNumber *)hasLocation 
+                              type:(NSNumber *)type  
                           latitude:(NSNumber *)latitude 
                          longitude:(NSNumber *)longitude 
-                       replyResult:(NSNumber *)replyResult 
-                       reMessageId:(NSString *)reMessageId
+                       replyResult:(NSNumber *)replyResult
+                      reqMessageId:(NSString *)reqMessageId
 {
     //PPDebug(@"createMessageWithMessageId:%@ from:%@ to:%@ drawDataLen:%d createDate:%@ text:%@ status:%@",messageId,from,to,[drawData length], createDate, text, status);
     
@@ -98,11 +96,10 @@ static ChatMessageManager *_chatMessageManager = nil;
         [chatMessage setText:text];
         [chatMessage setStatus:status];
         [chatMessage setType:type];
-        [chatMessage setHasLocation:hasLocation];
         [chatMessage setLatitude:latitude];
         [chatMessage setLongitude:longitude];
         [chatMessage setReplyResult:replyResult];
-        [chatMessage setReMessageId:reMessageId];        
+        [chatMessage setReqMessageId:reqMessageId];        
         return [dataManager save];
     }
     
@@ -115,11 +112,10 @@ static ChatMessageManager *_chatMessageManager = nil;
     [newMessage setText:text];
     [newMessage setStatus:status];
     [newMessage setType:type];
-    [newMessage setHasLocation:hasLocation];
     [newMessage setLatitude:latitude];
     [newMessage setLongitude:longitude];
     [newMessage setReplyResult:replyResult];
-    [newMessage setReMessageId:reMessageId]; 
+    [newMessage setReqMessageId:reqMessageId]; 
     return [dataManager save];
 }
 
@@ -148,13 +144,27 @@ static ChatMessageManager *_chatMessageManager = nil;
     NSData *data = [ChatMessageUtil archiveDataFromDrawActionList:mutableArray];
     [mutableArray release];
     
-    return  [self createMessageWithMessageId:pbMessage.messageId 
-                                        from:pbMessage.from 
-                                          to:pbMessage.to 
+//    return  [self createMessageWithMessageId:pbMessage.messageId 
+//                                        from:pbMessage.from 
+//                                          to:pbMessage.to 
+//                                    drawData:data
+//                                  createDate:[NSDate dateWithTimeIntervalSince1970:pbMessage.createDate]
+//                                        text:pbMessage.text
+//                                      status:[NSNumber numberWithInt:pbMessage.status]];
+    
+    
+    return  [self createMessageWithMessageId:pbMessage.messageId
+                                        from:pbMessage.from
+                                          to:pbMessage.to
                                     drawData:data
                                   createDate:[NSDate dateWithTimeIntervalSince1970:pbMessage.createDate]
                                         text:pbMessage.text
-                                      status:[NSNumber numberWithInt:pbMessage.status]];
+                                      status:[NSNumber numberWithInt:pbMessage.status]
+                                        type:[NSNumber numberWithInt:pbMessage.type]
+                                    latitude:[NSNumber numberWithDouble:pbMessage.latitude]
+                                   longitude:[NSNumber numberWithDouble:pbMessage.longitude]
+                                 replyResult:[NSNumber numberWithInt:pbMessage.replyResult]
+                                reqMessageId:pbMessage.reqMessageId];
 }
 
 
