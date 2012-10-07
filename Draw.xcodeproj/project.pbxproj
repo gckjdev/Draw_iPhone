@@ -988,7 +988,10 @@
 		EA2B2AE61616B2F5004C17AF /* ReplayContestDrawController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2B2AE31616B2F5004C17AF /* ReplayContestDrawController.m */; };
 		EA2B2AE71616B2F5004C17AF /* ReplayContestDrawController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA2B2AE41616B2F5004C17AF /* ReplayContestDrawController.xib */; };
 		EA2B2AE81616B2F5004C17AF /* ReplayContestDrawController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA2B2AE51616B2F5004C17AF /* ReplayContestDrawController~ipad.xib */; };
+		EA372344162018DA00FC6F3E /* UserLocationController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA372342162018DA00FC6F3E /* UserLocationController.xib */; };
 		EA6916BE15ECCF4C0001CB5A /* DiceSettingView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA6916BD15ECCF4C0001CB5A /* DiceSettingView~ipad.xib */; };
+		EA72B4C1162026480022D82D /* UserAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = EA72B4C0162026480022D82D /* UserAnnotation.m */; };
+		EA72B4C3162028260022D82D /* UserLocationController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA72B4C2162028260022D82D /* UserLocationController.m */; };
 		EA856C6D15F0A65700178323 /* add_color@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA856C3415F0A65700178323 /* add_color@2x.png */; };
 		EA856C6E15F0A65700178323 /* back@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA856C3515F0A65700178323 /* back@2x.png */; };
 		EA856C6F15F0A65700178323 /* bigCoin@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA856C3615F0A65700178323 /* bigCoin@2x.png */; };
@@ -2222,7 +2225,7 @@
 		CA4216021521973A00FAA008 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		CA4216261522A0F400FAA008 /* SKProduct+LocalizedPrice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SKProduct+LocalizedPrice.h"; sourceTree = "<group>"; };
 		CA4216271522A0F400FAA008 /* SKProduct+LocalizedPrice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SKProduct+LocalizedPrice.m"; sourceTree = "<group>"; };
-		CA427055161FE05C00C6CCAE /* MainDataModel 11.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MainDataModel 11.xcdatamodel"; sourceTree = "<group>"; };
+		CA427055161FE05C00C6CCAE /* MainDataModel 11.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "MainDataModel 11.xcdatamodel"; sourceTree = "<group>"; };
 		CA427056161FFEA900C6CCAE /* LocateFriendApp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocateFriendApp.h; sourceTree = "<group>"; };
 		CA427057161FFEA900C6CCAE /* LocateFriendApp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocateFriendApp.m; sourceTree = "<group>"; };
 		CA427059161FFEB800C6CCAE /* PrivateSMSApp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrivateSMSApp.h; sourceTree = "<group>"; };
@@ -2683,7 +2686,12 @@
 		EA2B2AE31616B2F5004C17AF /* ReplayContestDrawController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReplayContestDrawController.m; sourceTree = "<group>"; };
 		EA2B2AE41616B2F5004C17AF /* ReplayContestDrawController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReplayContestDrawController.xib; sourceTree = "<group>"; };
 		EA2B2AE51616B2F5004C17AF /* ReplayContestDrawController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ReplayContestDrawController~ipad.xib"; sourceTree = "<group>"; };
+		EA372340162018D900FC6F3E /* UserLocationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserLocationController.h; sourceTree = "<group>"; };
+		EA372342162018DA00FC6F3E /* UserLocationController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserLocationController.xib; sourceTree = "<group>"; };
 		EA6916BD15ECCF4C0001CB5A /* DiceSettingView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "DiceSettingView~ipad.xib"; sourceTree = "<group>"; };
+		EA72B4BF162026480022D82D /* UserAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserAnnotation.h; sourceTree = "<group>"; };
+		EA72B4C0162026480022D82D /* UserAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserAnnotation.m; sourceTree = "<group>"; };
+		EA72B4C2162028260022D82D /* UserLocationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserLocationController.m; sourceTree = "<group>"; };
 		EA856C3415F0A65700178323 /* add_color@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "add_color@2x.png"; sourceTree = "<group>"; };
 		EA856C3515F0A65700178323 /* back@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "back@2x.png"; sourceTree = "<group>"; };
 		EA856C3615F0A65700178323 /* bigCoin@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bigCoin@2x.png"; sourceTree = "<group>"; };
@@ -2845,6 +2853,9 @@
 				EA01D153158BAB1600920A64 /* ReplayGraffitiController.m */,
 				EA01D154158BAB1600920A64 /* ReplayGraffitiController.xib */,
 				EA01D155158BAB1600920A64 /* ReplayGraffitiController~ipad.xib */,
+				EA372340162018D900FC6F3E /* UserLocationController.h */,
+				EA72B4C2162028260022D82D /* UserLocationController.m */,
+				EA372342162018DA00FC6F3E /* UserLocationController.xib */,
 			);
 			path = PrivateChat;
 			sourceTree = "<group>";
@@ -4898,6 +4909,8 @@
 				CADD804C15138C690075C739 /* UserManager.m */,
 				CA9B4EBE16103726008C6A97 /* TopPlayer.h */,
 				CA9B4EBF16103726008C6A97 /* TopPlayer.m */,
+				EA72B4BF162026480022D82D /* UserAnnotation.h */,
+				EA72B4C0162026480022D82D /* UserAnnotation.m */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -7483,6 +7496,7 @@
 				CA9D5F4A1616F2040082E258 /* HotController~ipad.xib in Resources */,
 				CA42706E1620028E00C6CCAE /* SuperHomeController.xib in Resources */,
 				CA427070162002E100C6CCAE /* SuperHomeController~ipad.xib in Resources */,
+				EA372344162018DA00FC6F3E /* UserLocationController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -8032,6 +8046,8 @@
 				CA427061161FFEDC00C6CCAE /* SmsDrawApp.m in Sources */,
 				CA427064161FFEE800C6CCAE /* AvatarDrawApp.m in Sources */,
 				CA42706D1620028E00C6CCAE /* SuperHomeController.m in Sources */,
+				EA72B4C1162026480022D82D /* UserAnnotation.m in Sources */,
+				EA72B4C3162028260022D82D /* UserLocationController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -8316,8 +8332,8 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "15E61AF7-360B-473A-9B03-A207BE758197";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "15E61AF7-360B-473A-9B03-A207BE758197";
+				PROVISIONING_PROFILE = "47332EBD-8E91-478C-B497-FEA88B2C0C2A";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "47332EBD-8E91-478C-B497-FEA88B2C0C2A";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -8326,8 +8342,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Lingzhe Peng";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Lingzhe Peng";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Lingzhe Peng (9WG829Y3AG)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Lingzhe Peng (9WG829Y3AG)";
 				COPY_PHASE_STRIP = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -8377,8 +8393,8 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "71F47996-5EDE-4316-8BF3-4EA4DFF96536";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "71F47996-5EDE-4316-8BF3-4EA4DFF96536";
+				PROVISIONING_PROFILE = "47332EBD-8E91-478C-B497-FEA88B2C0C2A";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "47332EBD-8E91-478C-B497-FEA88B2C0C2A";
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;
 			};

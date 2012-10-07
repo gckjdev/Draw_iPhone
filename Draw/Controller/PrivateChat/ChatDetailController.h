@@ -10,6 +10,7 @@
 #import "ChatService.h"
 #import "OfflineDrawViewController.h"
 #import "ChatDetailCell.h"
+#import "UserLocationController.h"
 
 @interface ChatDetailController : PPTableViewController<ChatServiceDelegate, UITextViewDelegate, OfflineDrawDelegate, ChatDetailCellDelegate>
  

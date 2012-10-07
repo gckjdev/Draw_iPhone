@@ -40,7 +40,7 @@ enum{
                           latitude:(NSNumber *)latitude 
                          longitude:(NSNumber *)longitude 
                        replyResult:(NSNumber *)replyResult 
-                       reMessageId:(NSNumber *)reMessageId;
+                       reMessageId:(NSString *)reMessageId;
 
 - (BOOL)createByPBMessage:(PBMessage *)pbMessage;
 
