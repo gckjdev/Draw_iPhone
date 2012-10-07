@@ -797,6 +797,7 @@
 @private
   BOOL hasFriendGender_:1;
   BOOL hasCreateDate_:1;
+  BOOL hasType_:1;
   BOOL hasModifiedDate_:1;
   BOOL hasTotalMessageCount_:1;
   BOOL hasNewMessageCount_:1;
@@ -810,6 +811,7 @@
   BOOL hasText_:1;
   BOOL friendGender_:1;
   int32_t createDate;
+  int32_t type;
   int32_t modifiedDate;
   int32_t totalMessageCount;
   int32_t newMessageCount;
@@ -833,6 +835,7 @@
 - (BOOL) hasTo;
 - (BOOL) hasText;
 - (BOOL) hasCreateDate;
+- (BOOL) hasType;
 - (BOOL) hasModifiedDate;
 - (BOOL) hasTotalMessageCount;
 - (BOOL) hasNewMessageCount;
@@ -846,6 +849,7 @@
 @property (readonly, retain) NSString* to;
 @property (readonly, retain) NSString* text;
 @property (readonly) int32_t createDate;
+@property (readonly) int32_t type;
 @property (readonly) int32_t modifiedDate;
 @property (readonly) int32_t totalMessageCount;
 @property (readonly) int32_t newMessageCount;
@@ -942,6 +946,11 @@
 - (int32_t) createDate;
 - (PBMessageStat_Builder*) setCreateDate:(int32_t) value;
 - (PBMessageStat_Builder*) clearCreateDate;
+
+- (BOOL) hasType;
+- (int32_t) type;
+- (PBMessageStat_Builder*) setType:(int32_t) value;
+- (PBMessageStat_Builder*) clearType;
 
 - (BOOL) hasModifiedDate;
 - (int32_t) modifiedDate;

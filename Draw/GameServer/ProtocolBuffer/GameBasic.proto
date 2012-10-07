@@ -122,6 +122,7 @@ message PBMessageStat {
   optional string text = 13;
   repeated PBDrawAction drawData = 14;  
   optional int32  createDate = 15;
+  optional int32  type = 16;
   
   // statistic
   optional int32  modifiedDate = 31;

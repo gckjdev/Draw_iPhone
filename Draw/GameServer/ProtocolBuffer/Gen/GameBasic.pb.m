@@ -3336,6 +3336,7 @@ static PBMessage* defaultPBMessageInstance = nil;
 @property (retain) NSString* text;
 @property (retain) NSMutableArray* mutableDrawDataList;
 @property int32_t createDate;
+@property int32_t type;
 @property int32_t modifiedDate;
 @property int32_t totalMessageCount;
 @property int32_t newMessageCount;
@@ -3419,6 +3420,13 @@ static PBMessage* defaultPBMessageInstance = nil;
   hasCreateDate_ = !!value;
 }
 @synthesize createDate;
+- (BOOL) hasType {
+  return !!hasType_;
+}
+- (void) setHasType:(BOOL) value {
+  hasType_ = !!value;
+}
+@synthesize type;
 - (BOOL) hasModifiedDate {
   return !!hasModifiedDate_;
 }
@@ -3464,6 +3472,7 @@ static PBMessage* defaultPBMessageInstance = nil;
     self.to = @"";
     self.text = @"";
     self.createDate = 0;
+    self.type = 0;
     self.modifiedDate = 0;
     self.totalMessageCount = 0;
     self.newMessageCount = 0;
@@ -3546,6 +3555,9 @@ static PBMessageStat* defaultPBMessageStatInstance = nil;
   if (self.hasCreateDate) {
     [output writeInt32:15 value:self.createDate];
   }
+  if (self.hasType) {
+    [output writeInt32:16 value:self.type];
+  }
   if (self.hasModifiedDate) {
     [output writeInt32:31 value:self.modifiedDate];
   }
@@ -3596,6 +3608,9 @@ static PBMessageStat* defaultPBMessageStatInstance = nil;
   }
   if (self.hasCreateDate) {
     size += computeInt32Size(15, self.createDate);
+  }
+  if (self.hasType) {
+    size += computeInt32Size(16, self.type);
   }
   if (self.hasModifiedDate) {
     size += computeInt32Size(31, self.modifiedDate);
@@ -3717,6 +3732,9 @@ static PBMessageStat* defaultPBMessageStatInstance = nil;
   if (other.hasCreateDate) {
     [self setCreateDate:other.createDate];
   }
+  if (other.hasType) {
+    [self setType:other.type];
+  }
   if (other.hasModifiedDate) {
     [self setModifiedDate:other.modifiedDate];
   }
@@ -3791,6 +3809,10 @@ static PBMessageStat* defaultPBMessageStatInstance = nil;
       }
       case 120: {
         [self setCreateDate:[input readInt32]];
+        break;
+      }
+      case 128: {
+        [self setType:[input readInt32]];
         break;
       }
       case 248: {
@@ -3995,6 +4017,22 @@ static PBMessageStat* defaultPBMessageStatInstance = nil;
 - (PBMessageStat_Builder*) clearCreateDate {
   result.hasCreateDate = NO;
   result.createDate = 0;
+  return self;
+}
+- (BOOL) hasType {
+  return result.hasType;
+}
+- (int32_t) type {
+  return result.type;
+}
+- (PBMessageStat_Builder*) setType:(int32_t) value {
+  result.hasType = YES;
+  result.type = value;
+  return self;
+}
+- (PBMessageStat_Builder*) clearType {
+  result.hasType = NO;
+  result.type = 0;
   return self;
 }
 - (BOOL) hasModifiedDate {
