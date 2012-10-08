@@ -253,11 +253,10 @@ static ChatService *_chatService = nil;
                                                                            text:text
                                                                          status:[NSNumber numberWithInt:MessageStatusSendSuccess] 
                                                                            type:[NSNumber numberWithInt:MessageTypeAskLocation]
-                                                                    hasLocation:[NSNumber numberWithBool:YES]
                                                                        latitude:[NSNumber numberWithDouble:latitude]
                                                                       longitude:[NSNumber numberWithDouble:longitude]
                                                                     replyResult:[NSNumber numberWithInt:0]
-                                                                    reMessageId:nil];
+                                                                    reqMessageId:nil];
                 
                 PPDebug(@"<ChatService>askLocation success");
             }else {
@@ -320,11 +319,10 @@ static ChatService *_chatService = nil;
                                                                            text:text
                                                                          status:[NSNumber numberWithInt:MessageStatusSendSuccess] 
                                                                            type:[NSNumber numberWithInt:MessageTypeReplyLocation]
-                                                                    hasLocation:[NSNumber numberWithBool:YES]
                                                                        latitude:[NSNumber numberWithDouble:latitude]
                                                                       longitude:[NSNumber numberWithDouble:longitude]
                                                                     replyResult:[NSNumber numberWithInt:0]
-                                                                    reMessageId:reqMessageId];
+                                                                    reqMessageId:reqMessageId];
                 
                 PPDebug(@"<ChatService>replyLocation success");
             }else {
@@ -385,11 +383,10 @@ static ChatService *_chatService = nil;
                                                                            text:text
                                                                          status:[NSNumber numberWithInt:MessageStatusSendSuccess] 
                                                                            type:[NSNumber numberWithInt:MessageTypeReplyLocation]
-                                                                    hasLocation:[NSNumber numberWithBool:NO]
                                                                        latitude:nil
                                                                       longitude:nil
                                                                     replyResult:[NSNumber numberWithInt:REJECT_ASK_LOCATION]
-                                                                    reMessageId:reqMessageId];
+                                                                    reqMessageId:reqMessageId];
                 
                 
                 PPDebug(@"<ChatService>replyRejectLocation success");

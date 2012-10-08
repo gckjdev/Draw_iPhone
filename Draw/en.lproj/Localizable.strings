@@ -840,6 +840,10 @@
 "kSummaryOfGuess" = "Reply %@'s guessing.";
 "kSummaryOfSendItem" = "Reply %@'s expression.";
 "kSummaryOfComment" = "Reply %@'s comment: %@.";
+
+"kContestPassed" = "Passed(%d)";
+"kContestPendding" = "Pendding";
+"kNoContestTips" = "No Contest Now.";
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 
@@ -1047,6 +1051,15 @@
 "kOpusMy" = "Mine";
 "kOpusRank" = "Top";
 "kOpusNew" = "New";
+
+"kAskLocationMessage" = "This is my position, let me see you where?";
+"kReplyLocationMessage" = "I replied to your positioning request";
+"kRejectLocationMessage" = "Reject your positioning request";
+"kReplyLocation" = "Reply";
+"kRejectLocation" = "Reject";
+"kShowLocation" = "Display";
+"kSendLocation" = "Send my location";
+
 /*********************** 大话骰子国际化字符串结束 *************************/
 
 

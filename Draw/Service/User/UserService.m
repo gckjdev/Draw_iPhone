@@ -140,7 +140,6 @@ static UserService* _defaultUserService;
     
     NSString* nickName = [userInfo objectForKey:SNS_NICK_NAME];
     NSString* gender = [userInfo objectForKey:SNS_GENDER];
-    NSString* avatar = [userInfo objectForKey:SNS_USER_IMAGE_URL];
     NSString* location = [userInfo objectForKey:SNS_LOCATION];
     NSString* sinaId = nil;
     NSString* qqId = nil;
@@ -149,6 +148,15 @@ static UserService* _defaultUserService;
     NSString* sinaNickName = nil;
     NSString* qqToken = nil;
     NSString* qqTokenSecret = nil;
+
+    NSString* avatar = nil;
+    if ([[[UserManager defaultManager] avatarURL] length] == 0){
+        avatar = [userInfo objectForKey:SNS_USER_IMAGE_URL];
+        PPDebug(@"<updateUserWithSNSUserInfo> set avatar to %@", avatar);
+    }
+    else{
+        PPDebug(@"<updateUserWithSNSUserInfo> avatar exists, no change");
+    }
     
     switch (loginIdType) {
         case REGISTER_TYPE_SINA:

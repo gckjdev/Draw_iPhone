@@ -21,7 +21,9 @@
 @synthesize contestUrl = _contestUrl;
 @synthesize title = _title;
 @synthesize statementUrl = _statementUrl;
-@synthesize canSummitCount = _canSummitCount;
+@synthesize canSubmitCount = _canSummitCount;
+
+#define DEFAULT_CAN_SUMMIT_COUNT 3
 
 - (void)dealloc
 {
@@ -42,6 +44,8 @@
  
  */
 
+
+
 - (NSInteger)intValueForKey:(NSString *)key inDict:(NSDictionary *)dict
 {
     NSString *obj = [dict objectForKey:key];
@@ -53,8 +57,14 @@
     self = [super init];
     if (self) {
         self.contestId = [dict objectForKey:PARA_CONTESTID];
-        self.contestUrl = [dict objectForKey:PARA_CONTEST_URL];
-        self.statementUrl = [dict objectForKey:PARA_STATEMENT_URL];
+
+        if ([DeviceDetection isIPAD]) {
+            self.contestUrl = [dict objectForKey:PARA_CONTEST_IPAD_URL];
+            self.statementUrl = [dict objectForKey:PARA_STATEMENT_IPAD_URL];            
+        }else{
+            self.contestUrl = [dict objectForKey:PARA_CONTEST_URL];
+            self.statementUrl = [dict objectForKey:PARA_STATEMENT_URL];
+        }
         self.title = [dict objectForKey:PARA_TITLE];
         
         self.opusCount = [self intValueForKey:PARA_OPUS_COUNT inDict:dict];
@@ -73,7 +83,11 @@
         }else {
             self.status = ContestStatusRunning;
         }
-        self.canSummitCount = [self intValueForKey:PARA_CAN_SUMMIT_COUNT inDict:dict];
+        self.canSubmitCount = DEFAULT_CAN_SUMMIT_COUNT;
+        NSNumber *number = [dict objectForKey:PARA_CAN_SUBMIT_COUNT];
+        if (number) {
+            self.canSubmitCount = number.integerValue;
+        }
     }
     return  self;
 }
@@ -96,7 +110,17 @@
     return ![self isPassed] && ![self isPendding];
 }
 
-
+- (ContestStatus)status
+{
+    if ([self.startDate timeIntervalSinceNow] > 0) {
+        _status = ContestStatusPending;
+    }else if([self.endDate timeIntervalSinceNow] < 0){
+        _status = ContestStatusPassed;
+    }else {
+        _status = ContestStatusRunning;
+    }
+    return _status;
+}
 
 #define COMMIT_COUNT_PREFIX @"CommitCount"
 - (void)incCommitCount
@@ -113,7 +137,8 @@
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSString *key = [NSString stringWithFormat:@"%@_%@",COMMIT_COUNT_PREFIX,self.contestId];
     NSNumber *number = [defaults objectForKey:key];
-    return number.integerValue >= self.canSummitCount;
+    NSInteger times = number.integerValue;
+    return times >= self.canSubmitCount;
 }
 
 @end

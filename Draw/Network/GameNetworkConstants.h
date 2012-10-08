@@ -360,7 +360,7 @@
 #define PARA_TITLE @"tt"
 #define PARA_START_DATE @"sd"
 #define PARA_END_DATE @"ed"
-#define PARA_CAN_SUMMIT_COUNT @"csc"
+#define PARA_CAN_SUBMIT_COUNT @"csc"
 #define PARA_PRICE @"pr"
 #define PARA_VALUE @"val"
 #define PARA_REBATE @"rb"
@@ -448,6 +448,10 @@
 #define PARA_CONTESTID @"cid"
 #define PARA_CONTEST_URL @"cu"
 #define PARA_STATEMENT_URL @"su"
+
+#define PARA_CONTEST_IPAD_URL @"cpu"
+#define PARA_STATEMENT_IPAD_URL @"spu"
+
 #define PARA_OPUS_COUNT @"oc"
 #define PARA_PARTICIPANT_COUNT @"pc"
 #define PARA_LIMIT @"lm"

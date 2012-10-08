@@ -440,13 +440,4 @@
     [DrawGameAnimationManager showReceiveTomato:item animaitonInController:self];    
 }
 
-- (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag
-{
-    [DrawGameAnimationManager animation:anim didStopWithFlag:flag];
-    if (_throwingItem) {
-        [_throwingItem removeFromSuperview];
-    }
-    _throwingItem = nil;
-}
-
 @end

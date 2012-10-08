@@ -12,7 +12,10 @@
 @interface UserLocationController ()
 
 @property (retain, nonatomic) CLLocationManager *locationManager;
-//@property (assign, nonatomic) 
+@property (assign, nonatomic) CLLocationCoordinate2D userCoordinate;
+@property (assign, nonatomic) UserLocationType type;
+@property (assign, nonatomic) int messageType;
+@property (retain, nonatomic) NSString *reqMessageId;
 
 @end
 
@@ -21,20 +24,18 @@
 @synthesize titleLabel = _titleLabel;
 @synthesize locationManager = _locationManager;
 @synthesize delegate = _delegate;
+@synthesize userCoordinate = _userCoordinate;
+@synthesize type = _type;
+@synthesize messageType = _messageType;
+@synthesize reqMessageId = _reqMessageId;
 
 - (void)dealloc
 {
     [_userMapView release];
     [_locationManager release];
     [_titleLabel release];
+    [_reqMessageId release];
     [super dealloc];
-}
-
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-    [self initMap];
-    [self updateLocation];
 }
 
 - (void)viewDidUnload
@@ -42,6 +43,35 @@
     [self setUserMapView:nil];
     [self setTitleLabel:nil];
     [super viewDidUnload];
+}
+
+- (id)initWithType:(UserLocationType)type
+          latitude:(double)latitude
+         longitude:(double)longitude
+       messageType:(int)messageType
+{
+    self = [super init];
+    if (self) {
+        self.type = type;
+        if (type == LocationTypeShow) {
+            self.userCoordinate = CLLocationCoordinate2DMake(latitude, longitude);
+        } else {
+            self.messageType = messageType;
+        }
+    }
+    return self;
+}
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    [self initMap];
+    
+    if (_type == LocationTypeFind) {
+        [self findMyLocation];
+    } else {
+        [self showUserMap];
+    }
 }
 
 - (IBAction)clickBack:(id)sender {
@@ -55,7 +85,7 @@
     self.userMapView.showsUserLocation = NO;
 }
 
-- (void)updateLocation
+- (void)findMyLocation
 {
     if (_locationManager == nil) {
         self.locationManager = [[[CLLocationManager alloc] init] autorelease];
@@ -66,16 +96,15 @@
     [_locationManager startUpdatingLocation];
 }
 
-- (void)showUserMapWithLatitude:(double)latitude longitude:(double)longitude
+- (void)showUserMap
 {
     MKCoordinateRegion newRegion;
-    CLLocationCoordinate2D coordinate= CLLocationCoordinate2DMake(latitude, longitude);
-    newRegion.center = coordinate;
+    newRegion.center = _userCoordinate;
     newRegion.span.latitudeDelta = 0.004000;
     newRegion.span.longitudeDelta = 0.004000;
     [self.userMapView setRegion:newRegion animated:YES];
     
-    UserAnnotation *annotation = [[[UserAnnotation alloc] initWithCoordinate:coordinate] autorelease];
+    UserAnnotation *annotation = [[[UserAnnotation alloc] initWithCoordinate:_userCoordinate] autorelease];
     [self.userMapView addAnnotation:annotation];
 }
 
@@ -84,7 +113,6 @@
        didFailWithError:(NSError *)error
 {
     PPDebug(@"get location fail:%@",error);
-    
     [manager stopUpdatingLocation];
 }
 
@@ -93,12 +121,12 @@
            fromLocation:(CLLocation *)oldLocation
 {
     PPDebug(@"didUpdateToLocation %f,%f",newLocation.coordinate.latitude, newLocation.coordinate.longitude);
-    
+    self.userCoordinate = newLocation.coordinate;
     [manager stopUpdatingLocation];
     
-    [self showUserMapWithLatitude:newLocation.coordinate.latitude longitude:newLocation.coordinate.longitude];
+    [self showUserMap];
     
-    UIAlertView *sendAlertView = [[UIAlertView alloc] initWithTitle:nil message:@"kSendLocation" delegate:self cancelButtonTitle:@"kCancel" otherButtonTitles:@"kSure", nil];
+    UIAlertView *sendAlertView = [[UIAlertView alloc] initWithTitle:nil message:NSLS(@"kSendLocation") delegate:self cancelButtonTitle:NSLS(@"kCancel") otherButtonTitles:NSLS(@"kOK"), nil];
     [sendAlertView show];
     [sendAlertView release];
 }
@@ -117,13 +145,14 @@
 }
 
 #pragma mark - UIAlertViewDelegate
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+- (void)alertView:(UIAlertView *)theAlertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     if (buttonIndex == 0) {
         return;
     } else {
-        if ([_delegate respondsToSelector:@selector(didClickSendLocation:longitude:)]) {
-            //[_delegate didClickSendLocation:<#(double)#> longitude:<#(long)#>];
+        if ([_delegate respondsToSelector:@selector(didClickSendLocation:longitude:messageType:)]) {
+            [_delegate didClickSendLocation:_userCoordinate.latitude longitude:_userCoordinate.longitude messageType:_messageType];
+            [self.navigationController popViewControllerAnimated:YES];
         }
     }
 }

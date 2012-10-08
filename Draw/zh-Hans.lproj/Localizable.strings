@@ -866,6 +866,18 @@
 "kOpusRank" = "排行";
 "kOpusNew" = "最新";
 
+"kAskLocationMessage" = "这是我的位置，让我看看你在哪个位置？";
+"kReplyLocationMessage" = "我回复了你的定位请求";
+"kRejectLocationMessage" = "拒绝你的定位请求";
+"kReplyLocation" = "回复定位";
+"kRejectLocation" = "拒绝定位";
+"kShowLocation" = "显示位置";
+"kSendLocation" = "发送我的位置";
+
+"kContestPassed" = "已结束(%d)";
+"kContestPendding" = "未开始";
+"kNoContestTips" = "不好意思，目前没有适合您的比赛。";
+
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 
