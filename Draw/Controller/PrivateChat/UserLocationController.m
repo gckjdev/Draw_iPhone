@@ -16,6 +16,7 @@
 @property (assign, nonatomic) UserLocationType type;
 @property (assign, nonatomic) int messageType;
 @property (retain, nonatomic) NSString *reqMessageId;
+@property (assign, nonatomic) BOOL hasGetLocation;
 
 @end
 
@@ -28,6 +29,7 @@
 @synthesize type = _type;
 @synthesize messageType = _messageType;
 @synthesize reqMessageId = _reqMessageId;
+@synthesize hasGetLocation;
 
 - (void)dealloc
 {
@@ -65,8 +67,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self initMap];
+    [self.titleLabel setText:NSLS(@"kUserLocationTitle")];
     
+    [self initMap];
     if (_type == LocationTypeFind) {
         [self findMyLocation];
     } else {
@@ -93,6 +96,7 @@
     }
     _locationManager.desiredAccuracy = 100.0;
     _locationManager.distanceFilter = 1000.0;
+    hasGetLocation = NO;
     [_locationManager startUpdatingLocation];
 }
 
@@ -100,15 +104,15 @@
 {
     MKCoordinateRegion newRegion;
     newRegion.center = _userCoordinate;
-    newRegion.span.latitudeDelta = 0.004000;
-    newRegion.span.longitudeDelta = 0.004000;
+    newRegion.span.latitudeDelta = 0.01000;
+    newRegion.span.longitudeDelta = 0.01000;
     [self.userMapView setRegion:newRegion animated:YES];
     
     UserAnnotation *annotation = [[[UserAnnotation alloc] initWithCoordinate:_userCoordinate] autorelease];
     [self.userMapView addAnnotation:annotation];
 }
 
-#pragma mark - CLLocationManagerDelegate
+#pragma mark - CLLocationManagerDelegate method
 - (void)locationManager:(CLLocationManager *)manager
        didFailWithError:(NSError *)error
 {
@@ -121,14 +125,17 @@
            fromLocation:(CLLocation *)oldLocation
 {
     PPDebug(@"didUpdateToLocation %f,%f",newLocation.coordinate.latitude, newLocation.coordinate.longitude);
-    self.userCoordinate = newLocation.coordinate;
     [manager stopUpdatingLocation];
-    
+    self.userCoordinate = newLocation.coordinate;
     [self showUserMap];
     
-    UIAlertView *sendAlertView = [[UIAlertView alloc] initWithTitle:nil message:NSLS(@"kSendLocation") delegate:self cancelButtonTitle:NSLS(@"kCancel") otherButtonTitles:NSLS(@"kOK"), nil];
-    [sendAlertView show];
-    [sendAlertView release];
+    if (hasGetLocation == NO) {
+        hasGetLocation = YES;
+        
+        UIAlertView *sendAlertView = [[UIAlertView alloc] initWithTitle:nil message:NSLS(@"kSendLocation") delegate:self cancelButtonTitle:NSLS(@"kCancel") otherButtonTitles:NSLS(@"kOK"), nil];
+        [sendAlertView show];
+        [sendAlertView release];
+    }
 }
 
 #pragma mark - MKMapViewDelegate

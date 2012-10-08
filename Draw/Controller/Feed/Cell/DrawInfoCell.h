@@ -11,7 +11,7 @@
 #import "DrawFeed.h"
 #import "FeedService.h"
 #import "ShowDrawView.h"
-#import "HJManagedImageV.h"
+//#import "HJManagedImageV.h"
 
 @protocol DrawInfoCellDelegate <NSObject>
 
@@ -20,7 +20,7 @@
 
 @end
 
-@interface DrawInfoCell : PPTableViewCell<FeedServiceDelegate, ShowDrawViewDelegate, HJManagedImageVDelegate>
+@interface DrawInfoCell : PPTableViewCell<FeedServiceDelegate, ShowDrawViewDelegate>//, HJManagedImageVDelegate>
 {
     id<DrawInfoCellDelegate> _delegate;
     DrawFeed *_feed;
@@ -32,7 +32,7 @@
 @property (assign, nonatomic) id<DrawInfoCellDelegate> delegate;
 @property (retain, nonatomic) DrawFeed *feed;
 @property (retain, nonatomic) ShowDrawView *showView;
-@property (retain, nonatomic) IBOutlet HJManagedImageV *drawImage;
+@property (retain, nonatomic) IBOutlet UIImageView *drawImage;
 @property (retain, nonatomic) IBOutlet UILabel *timeLabel;
 @property (retain, nonatomic) IBOutlet UIActivityIndicatorView *loadingActivity;
 - (void)setCellInfo:(DrawFeed *)feed;
