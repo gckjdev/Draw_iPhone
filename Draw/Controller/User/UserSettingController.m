@@ -295,6 +295,7 @@ enum {
     btn.selected = !btn.selected;
     isSoundOn = !btn.selected;
     [[AudioManager defaultManager] setIsSoundOn:isSoundOn];
+    [[AudioManager defaultManager] saveSoundSettings];
 }
 
 - (void)clickMusicSwitcher:(id)sender
@@ -303,6 +304,7 @@ enum {
     btn.selected = !btn.selected;
     isMusicOn = !btn.selected;
     [[AudioManager defaultManager] setIsMusicOn:isMusicOn];
+    [[AudioManager defaultManager] saveSoundSettings];
 }
 
 - (void)clickAutoSaveSwitcher:(id)sender
@@ -871,7 +873,7 @@ enum {
     }else if(!localChanged){
         [self popupHappyMessage:NSLS(@"kNoUpdate") title:nil];
     }
-    [[AudioManager defaultManager] saveSoundSettings];
+//    [[AudioManager defaultManager] saveSoundSettings];
 }
 
 - (IBAction)clickAvatar:(id)sender {

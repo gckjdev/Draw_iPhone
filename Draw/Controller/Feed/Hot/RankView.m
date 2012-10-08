@@ -7,7 +7,6 @@
 //
 
 #import "RankView.h"
-#import "HJManagedImageV.h"
 #import "PPApplication.h"
 #import "DrawFeed.h"
 #import "ShowDrawView.h"
@@ -78,12 +77,16 @@
         return;
     }
     self.feed = feed;
-    [self.drawImage clear];
-    [self.drawImage setImage:[[ShareImageManager defaultManager] unloadBg]];
+//    [self.drawImage clear];
+//    [self.drawImage setImage:[[ShareImageManager defaultManager] unloadBg]];
     if(feed.drawImage){
         [self.drawImage setImage:feed.drawImage];
     }else if ([feed.drawImageUrl length] != 0) {
-        [self.drawImage setUrl:[NSURL URLWithString:feed.drawImageUrl]];
+//        [self.drawImage setUrl:[NSURL URLWithString:feed.drawImageUrl]];
+        NSURL *url = [NSURL URLWithString:feed.drawImageUrl];
+        UIImage *defaultImage = [[ShareImageManager defaultManager] unloadBg];
+//        self.drawImage.image = defaultImage;
+        [self.drawImage setImageWithURL:url placeholderImage:defaultImage];
     }else{
         PPDebug(@"<setViewInfo> show draw view. feedId=%@,word=%@", 
                 feed.feedId,feed.wordText);
@@ -104,7 +107,7 @@
         
         [[ShareImageManager defaultManager] saveFeedImage:image withImageName:feed.feedId asyn:YES];
     }
-    [GlobalGetImageCache() manage:self.drawImage];  
+//    [GlobalGetImageCache() manage:self.drawImage];  
     
     if (feed.showAnswer) {
         NSString *answer = [NSString stringWithFormat:@" %@",feed.wordText];
