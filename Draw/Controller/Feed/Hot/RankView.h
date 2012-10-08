@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "UIImageView+WebCache.h"
 
 @class RankView;
 
@@ -24,7 +24,7 @@ typedef enum{
 }RankViewType;
 
 @class DrawFeed;
-@class HJManagedImageV;
+//@class HJManagedImageV;
 @class ShowDrawView;
 @class TopPlayer;
 @interface RankView : UIView
@@ -35,7 +35,7 @@ typedef enum{
 @property(nonatomic, assign)id delegate;
 @property (retain, nonatomic) IBOutlet UILabel *title;
 @property (retain, nonatomic) IBOutlet UILabel *author;
-@property (retain, nonatomic) IBOutlet HJManagedImageV *drawImage;
+@property (retain, nonatomic) IBOutlet UIImageView *drawImage;
 @property (retain, nonatomic) DrawFeed *feed;
 
 

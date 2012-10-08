@@ -16,6 +16,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import "HJManagedImageV.h"
 #import "PPApplication.h"
+#import "UIImageView+WebCache.h"
 
 @implementation DrawInfoCell
 @synthesize drawImage;
@@ -106,20 +107,28 @@
 
 - (void)updateShowView:(DrawFeed *)feed
 {
-    [self.drawImage setCallbackOnSetImage:self];
+//    [self.drawImage setCallbackOnSetImage:self];
     
     if (self.feed.largeImage) {
-        [self.drawImage clear];
+//        [self.drawImage clear];
         [self.drawImage setImage:self.feed.largeImage];
-        [GlobalGetImageCache() manage:self.drawImage];
+        [self.loadingActivity stopAnimating];
+//        [GlobalGetImageCache() manage:self.drawImage];
     }else if ([feed.drawImageUrl length] != 0 && ![DeviceDetection isIPAD]) {
-        [self.drawImage clear];
+//        [self.drawImage clear];
         //if the draw image is not null
-        [self.drawImage setCallbackOnSetImage:self];
-        [self.drawImage setUrl:[NSURL URLWithString:feed.drawImageUrl]];
+//        [self.drawImage setCallbackOnSetImage:self];
+//        [self.drawImage setUrl:[NSURL URLWithString:feed.drawImageUrl]];
+        [self.drawImage setImageWithURL:[NSURL URLWithString:feed.drawImageUrl] placeholderImage:[[ShareImageManager defaultManager] unloadBg] success:^(UIImage *image, BOOL cached) {
+            PPDebug(@"<managedImageSet>: set large image");
+            self.feed.largeImage = image;
+            [self.loadingActivity stopAnimating];
+        } failure:^(NSError *error) {
+            PPDebug(@"<managedImageSet Failed>: set large image failed!");
+            [self.loadingActivity stopAnimating];
+        }];
         
-        [GlobalGetImageCache() manage:self.drawImage];
-        return;
+//        [GlobalGetImageCache() manage:self.drawImage];
     }else{
         [self showDrawView:feed];
     }
