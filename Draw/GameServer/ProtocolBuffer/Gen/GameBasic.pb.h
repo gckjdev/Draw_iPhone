@@ -647,32 +647,52 @@
 
 @interface PBMessage : PBGeneratedMessage {
 @private
+  BOOL hasLongitude_:1;
+  BOOL hasLatitude_:1;
   BOOL hasStatus_:1;
+  BOOL hasType_:1;
   BOOL hasCreateDate_:1;
+  BOOL hasReplyResult_:1;
   BOOL hasMessageId_:1;
   BOOL hasFrom_:1;
   BOOL hasTo_:1;
   BOOL hasText_:1;
+  BOOL hasReqMessageId_:1;
+  Float64 longitude;
+  Float64 latitude;
   int32_t status;
+  int32_t type;
   int32_t createDate;
+  int32_t replyResult;
   NSString* messageId;
   NSString* from;
   NSString* to;
   NSString* text;
+  NSString* reqMessageId;
   NSMutableArray* mutableDrawDataList;
 }
 - (BOOL) hasMessageId;
 - (BOOL) hasFrom;
 - (BOOL) hasTo;
 - (BOOL) hasStatus;
+- (BOOL) hasType;
 - (BOOL) hasText;
 - (BOOL) hasCreateDate;
+- (BOOL) hasLongitude;
+- (BOOL) hasLatitude;
+- (BOOL) hasReqMessageId;
+- (BOOL) hasReplyResult;
 @property (readonly, retain) NSString* messageId;
 @property (readonly, retain) NSString* from;
 @property (readonly, retain) NSString* to;
 @property (readonly) int32_t status;
+@property (readonly) int32_t type;
 @property (readonly, retain) NSString* text;
 @property (readonly) int32_t createDate;
+@property (readonly) Float64 longitude;
+@property (readonly) Float64 latitude;
+@property (readonly, retain) NSString* reqMessageId;
+@property (readonly) int32_t replyResult;
 - (NSArray*) drawDataList;
 - (PBDrawAction*) drawDataAtIndex:(int32_t) index;
 
@@ -730,6 +750,11 @@
 - (PBMessage_Builder*) setStatus:(int32_t) value;
 - (PBMessage_Builder*) clearStatus;
 
+- (BOOL) hasType;
+- (int32_t) type;
+- (PBMessage_Builder*) setType:(int32_t) value;
+- (PBMessage_Builder*) clearType;
+
 - (BOOL) hasText;
 - (NSString*) text;
 - (PBMessage_Builder*) setText:(NSString*) value;
@@ -746,12 +771,33 @@
 - (int32_t) createDate;
 - (PBMessage_Builder*) setCreateDate:(int32_t) value;
 - (PBMessage_Builder*) clearCreateDate;
+
+- (BOOL) hasLongitude;
+- (Float64) longitude;
+- (PBMessage_Builder*) setLongitude:(Float64) value;
+- (PBMessage_Builder*) clearLongitude;
+
+- (BOOL) hasLatitude;
+- (Float64) latitude;
+- (PBMessage_Builder*) setLatitude:(Float64) value;
+- (PBMessage_Builder*) clearLatitude;
+
+- (BOOL) hasReqMessageId;
+- (NSString*) reqMessageId;
+- (PBMessage_Builder*) setReqMessageId:(NSString*) value;
+- (PBMessage_Builder*) clearReqMessageId;
+
+- (BOOL) hasReplyResult;
+- (int32_t) replyResult;
+- (PBMessage_Builder*) setReplyResult:(int32_t) value;
+- (PBMessage_Builder*) clearReplyResult;
 @end
 
 @interface PBMessageStat : PBGeneratedMessage {
 @private
   BOOL hasFriendGender_:1;
   BOOL hasCreateDate_:1;
+  BOOL hasType_:1;
   BOOL hasModifiedDate_:1;
   BOOL hasTotalMessageCount_:1;
   BOOL hasNewMessageCount_:1;
@@ -765,6 +811,7 @@
   BOOL hasText_:1;
   BOOL friendGender_:1;
   int32_t createDate;
+  int32_t type;
   int32_t modifiedDate;
   int32_t totalMessageCount;
   int32_t newMessageCount;
@@ -788,6 +835,7 @@
 - (BOOL) hasTo;
 - (BOOL) hasText;
 - (BOOL) hasCreateDate;
+- (BOOL) hasType;
 - (BOOL) hasModifiedDate;
 - (BOOL) hasTotalMessageCount;
 - (BOOL) hasNewMessageCount;
@@ -801,6 +849,7 @@
 @property (readonly, retain) NSString* to;
 @property (readonly, retain) NSString* text;
 @property (readonly) int32_t createDate;
+@property (readonly) int32_t type;
 @property (readonly) int32_t modifiedDate;
 @property (readonly) int32_t totalMessageCount;
 @property (readonly) int32_t newMessageCount;
@@ -897,6 +946,11 @@
 - (int32_t) createDate;
 - (PBMessageStat_Builder*) setCreateDate:(int32_t) value;
 - (PBMessageStat_Builder*) clearCreateDate;
+
+- (BOOL) hasType;
+- (int32_t) type;
+- (PBMessageStat_Builder*) setType:(int32_t) value;
+- (PBMessageStat_Builder*) clearType;
 
 - (BOOL) hasModifiedDate;
 - (int32_t) modifiedDate;

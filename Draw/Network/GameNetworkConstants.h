@@ -317,6 +317,9 @@
 #define PARA_LATITUDE @"lat"
 #define PARA_MESSAGETEXT @"t"
 
+#define PARA_REQUEST_MESSAGE_ID @"rmid"
+#define PARA_REPLY_RESULT @"rre"
+
 #define PARA_VERSION @"v"
 
 #define PARA_KEYWORD @"kw"
@@ -497,6 +500,7 @@
 #define ERROR_PARAMETER_EMAIL_NULL      10064
 #define ERROR_PARAMETER_EMAIL_EMPTY     10065
 
+#define REJECT_ASK_LOCATION             1
 
 extern NSString* GlobalGetServerURL();
 extern NSString* GlobalGetTrafficServerURL();

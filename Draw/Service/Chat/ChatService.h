@@ -39,6 +39,25 @@
                text:(NSString *)text 
      drawActionList:(NSArray*)drawActionList;
 
+- (void)askLocation:(id<ChatServiceDelegate>)delegate
+       friendUserId:(NSString *)friendUserId
+          longitude:(double)longitude
+           latitude:(double)latitude
+               text:(NSString*)text;
+
+- (void)replyLocation:(id<ChatServiceDelegate>)delegate
+         friendUserId:(NSString *)friendUserId
+            longitude:(double)longitude
+             latitude:(double)latitude
+         reqMessageId:(NSString*)reqMessageId
+                 text:(NSString*)text;
+
+- (void)replyRejectLocation:(id<ChatServiceDelegate>)delegate
+               friendUserId:(NSString *)friendUserId
+               reqMessageId:(NSString*)reqMessageId
+                       text:(NSString*)text;
+
+
 - (void)sendHasReadMessage:(id<ChatServiceDelegate>)delegate friendUserId:(NSString *)friendUserId;
 
 - (void)deleteMessageTotal:(id<ChatServiceDelegate>)delegate 

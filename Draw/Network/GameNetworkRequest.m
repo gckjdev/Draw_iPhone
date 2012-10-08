@@ -1574,12 +1574,21 @@
     
 }
 
+
+
 + (CommonNetworkOutput*)sendMessage:(NSString*)baseURL
                               appId:(NSString*)appId
                              userId:(NSString*)userId
                        targetUserId:(NSString*)targetUserId
                                text:(NSString*)text
                                data:(NSData*)data
+                               type:(int)type
+                        hasLocation:(BOOL)hasLocation
+                          longitude:(double)longitude
+                           latitude:(double)latitude
+                       reqMessageId:(NSString*)reqMessageId
+                        replyResult:(int)replyResult
+
 {
     CommonNetworkOutput* output = [[[CommonNetworkOutput alloc] init] autorelease];
     
@@ -1593,6 +1602,17 @@
         str = [str stringByAddQueryParameter:PARA_USERID value:userId];                
         str = [str stringByAddQueryParameter:PARA_TO_USERID value:targetUserId];
         str = [str stringByAddQueryParameter:PARA_MESSAGETEXT value:text];                
+
+        str = [str stringByAddQueryParameter:PARA_TYPE intValue:type];
+        if (hasLocation){
+            str = [str stringByAddQueryParameter:PARA_LONGTITUDE doubleValue:longitude];
+            str = [str stringByAddQueryParameter:PARA_LATITUDE doubleValue:latitude];
+        }
+        
+        if (reqMessageId != nil){
+            str = [str stringByAddQueryParameter:PARA_REQUEST_MESSAGE_ID value:reqMessageId];
+            str = [str stringByAddQueryParameter:PARA_REPLY_RESULT intValue:replyResult];
+        }
         
         // TOOD add other parameters
         

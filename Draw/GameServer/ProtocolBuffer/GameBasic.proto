@@ -93,10 +93,17 @@ message PBMessage {
   required string from = 2;
   required string to = 3;
   optional int32  status = 4;
-  
+  optional int32  type = 5[default=0];      // 消息类型：0：消息；1:请求位置；2:回复位置
+
   optional string text = 20;
   repeated PBDrawAction drawData = 21;  
   optional int32  createDate = 22;
+  
+  // add for ask/reply location
+  optional double longitude = 31;
+  optional double latitude = 32;
+  optional string reqMessageId = 33;
+  optional int32  replyResult = 34;
 }
 
 message PBMessageStat {
@@ -115,6 +122,7 @@ message PBMessageStat {
   optional string text = 13;
   repeated PBDrawAction drawData = 14;  
   optional int32  createDate = 15;
+  optional int32  type = 16;
   
   // statistic
   optional int32  modifiedDate = 31;

@@ -70,6 +70,59 @@ static ChatMessageManager *_chatMessageManager = nil;
     return [dataManager save];
 }
 
+- (BOOL)createMessageWithMessageId:(NSString *)messageId 
+                              from:(NSString *)from 
+                                to:(NSString *)to 
+                          drawData:(NSData *)drawData 
+                        createDate:(NSDate *)createDate 
+                              text:(NSString *)text 
+                            status:(NSNumber *)status 
+                              type:(NSNumber *)type 
+                       hasLocation:(NSNumber *)hasLocation 
+                          latitude:(NSNumber *)latitude 
+                         longitude:(NSNumber *)longitude 
+                       replyResult:(NSNumber *)replyResult 
+                       reMessageId:(NSString *)reMessageId
+{
+    //PPDebug(@"createMessageWithMessageId:%@ from:%@ to:%@ drawDataLen:%d createDate:%@ text:%@ status:%@",messageId,from,to,[drawData length], createDate, text, status);
+    
+    CoreDataManager *dataManager = [CoreDataManager defaultManager];
+    
+    ChatMessage *chatMessage = [self findMessageByMessageId:messageId];
+    if (chatMessage) {
+        [chatMessage setMessageId:messageId];
+        [chatMessage setFrom:from];
+        [chatMessage setTo:to];
+        [chatMessage setDrawData:drawData];
+        [chatMessage setCreateDate:createDate];
+        [chatMessage setText:text];
+        [chatMessage setStatus:status];
+        [chatMessage setType:type];
+        [chatMessage setHasLocation:hasLocation];
+        [chatMessage setLatitude:latitude];
+        [chatMessage setLongitude:longitude];
+        [chatMessage setReplyResult:replyResult];
+        [chatMessage setReMessageId:reMessageId];        
+        return [dataManager save];
+    }
+    
+    ChatMessage *newMessage = [dataManager insert:@"ChatMessage"];
+    [newMessage setMessageId:messageId];
+    [newMessage setFrom:from];
+    [newMessage setTo:to];
+    [newMessage setDrawData:drawData];
+    [newMessage setCreateDate:createDate];
+    [newMessage setText:text];
+    [newMessage setStatus:status];
+    [newMessage setType:type];
+    [newMessage setHasLocation:hasLocation];
+    [newMessage setLatitude:latitude];
+    [newMessage setLongitude:longitude];
+    [newMessage setReplyResult:replyResult];
+    [newMessage setReMessageId:reMessageId]; 
+    return [dataManager save];
+}
+
 
 - (NSArray *)findMessagesByFriendUserId:(NSString *)friendUserId
 {
