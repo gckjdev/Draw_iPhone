@@ -34,4 +34,15 @@
 
 + (void)animation:(CAAnimation*)anim didStopWithFlag:(BOOL)flag;
 
++ (CAAnimationGroup*)createThrowItemAnimation:(UIImageView*)ItemImageView inViewController:(UIViewController*)viewController;
+
++ (void)showThrowTomato:(UIImageView*)tomatoImageView 
+       animInController:(UIViewController*)superController
+                rolling:(BOOL)rolling 
+             completion:(void (^)(BOOL finished))completion;
++ (void)showThrowFlower:(UIImageView*)flowerImageView 
+       animInController:(UIViewController*)superController
+                rolling:(BOOL)rolling 
+             completion:(void (^)(BOOL finished))completion;
+
 @end

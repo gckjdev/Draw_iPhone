@@ -56,7 +56,7 @@
 // Lm Ad ID
 
 #define DRAW_BACKGROUND         @"wood_bg@2x.png"
-#define DICE_BACKGROUND         @"dice_room_background@2x.png"
+#define DICE_BACKGROUND         @"dice_room_background@2x.jpg"
 #define CANDY_BACKGROUND        @""
 
 

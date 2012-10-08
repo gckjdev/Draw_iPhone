@@ -1574,12 +1574,21 @@
     
 }
 
+
+
 + (CommonNetworkOutput*)sendMessage:(NSString*)baseURL
                               appId:(NSString*)appId
                              userId:(NSString*)userId
                        targetUserId:(NSString*)targetUserId
                                text:(NSString*)text
                                data:(NSData*)data
+                               type:(int)type
+                        hasLocation:(BOOL)hasLocation
+                          longitude:(double)longitude
+                           latitude:(double)latitude
+                       reqMessageId:(NSString*)reqMessageId
+                        replyResult:(int)replyResult
+
 {
     CommonNetworkOutput* output = [[[CommonNetworkOutput alloc] init] autorelease];
     
@@ -1593,6 +1602,17 @@
         str = [str stringByAddQueryParameter:PARA_USERID value:userId];                
         str = [str stringByAddQueryParameter:PARA_TO_USERID value:targetUserId];
         str = [str stringByAddQueryParameter:PARA_MESSAGETEXT value:text];                
+
+        str = [str stringByAddQueryParameter:PARA_TYPE intValue:type];
+        if (hasLocation){
+            str = [str stringByAddQueryParameter:PARA_LONGTITUDE doubleValue:longitude];
+            str = [str stringByAddQueryParameter:PARA_LATITUDE doubleValue:latitude];
+        }
+        
+        if (reqMessageId != nil){
+            str = [str stringByAddQueryParameter:PARA_REQUEST_MESSAGE_ID value:reqMessageId];
+            str = [str stringByAddQueryParameter:PARA_REPLY_RESULT intValue:replyResult];
+        }
         
         // TOOD add other parameters
         
@@ -1688,6 +1708,50 @@
                                   output:output];
     
 }
+
+
+
++ (CommonNetworkOutput*)getContestOpusListWithProtocolBuffer:(NSString*)baseURL
+                                                   contestId:(NSString *)contestId
+                                                      userId:(NSString *)userId 
+                                                        type:(NSInteger)type
+                                                      offset:(NSInteger)offset
+                                                       limit:(NSInteger)limit 
+                                                        lang:(NSInteger)lang
+{
+    CommonNetworkOutput* output = [[[CommonNetworkOutput alloc] init] autorelease];
+    
+    ConstructURLBlock constructURLHandler = ^NSString *(NSString *baseURL) {
+        
+        // set input parameters
+        NSString* str = [NSString stringWithString:baseURL];       
+        
+        str = [str stringByAddQueryParameter:METHOD value:METHOD_GET_CONTEST_OPUS_LIST];
+        str = [str stringByAddQueryParameter:PARA_CONTESTID value:contestId];   
+        str = [str stringByAddQueryParameter:PARA_USERID value:userId];
+        str = [str stringByAddQueryParameter:PARA_OFFSET intValue:offset];
+        str = [str stringByAddQueryParameter:PARA_COUNT intValue:limit];
+        str = [str stringByAddQueryParameter:PARA_TYPE intValue:type];
+        str = [str stringByAddQueryParameter:PARA_LANGUAGE intValue:lang];
+        str = [str stringByAddQueryParameter:PARA_FORMAT value:FINDDRAW_FORMAT_PROTOCOLBUFFER];
+        str = [str stringByAddQueryParameter:PARA_APPID value:[ConfigManager appId]];                
+             
+        return str;
+    };
+    
+    
+    PPNetworkResponseBlock responseHandler = ^(NSDictionary *dict, CommonNetworkOutput *output) {
+        return;
+    }; 
+    
+    return [PPNetworkRequest sendRequest:baseURL 
+                     constructURLHandler:constructURLHandler 
+                         responseHandler:responseHandler 
+                            outputFormat:FORMAT_PB 
+                                  output:output];
+    
+}
+
 
 + (CommonNetworkOutput*)getFeedCommentListWithProtocolBuffer:(NSString*)baseURL 
                                                       opusId:(NSString *)opusId

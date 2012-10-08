@@ -633,7 +633,7 @@ static UIImage* _whitePaperImage;
 
 - (NSString *)feedImageDir
 {
-    NSString *dir = [[FileUtil getAppHomeDir] stringByAppendingPathComponent:TEMP_FEED_IMAGE_DIR];    
+    NSString *dir = [[FileUtil getAppCacheDir] stringByAppendingPathComponent:TEMP_FEED_IMAGE_DIR];
     BOOL flag = [FileUtil createDir:dir];
     if (flag) {
         return dir;

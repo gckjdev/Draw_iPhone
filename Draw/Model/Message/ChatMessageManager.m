@@ -44,7 +44,6 @@ static ChatMessageManager *_chatMessageManager = nil;
                             status:(NSNumber *)status
 {
     //PPDebug(@"createMessageWithMessageId:%@ from:%@ to:%@ drawDataLen:%d createDate:%@ text:%@ status:%@",messageId,from,to,[drawData length], createDate, text, status);
-    
     CoreDataManager *dataManager = [CoreDataManager defaultManager];
     
     ChatMessage *chatMessage = [self findMessageByMessageId:messageId];
@@ -67,6 +66,56 @@ static ChatMessageManager *_chatMessageManager = nil;
     [newMessage setCreateDate:createDate];
     [newMessage setText:text];
     [newMessage setStatus:status];
+    return [dataManager save];
+}
+
+- (BOOL)createMessageWithMessageId:(NSString *)messageId 
+                              from:(NSString *)from 
+                                to:(NSString *)to 
+                          drawData:(NSData *)drawData 
+                        createDate:(NSDate *)createDate 
+                              text:(NSString *)text 
+                            status:(NSNumber *)status 
+                              type:(NSNumber *)type  
+                          latitude:(NSNumber *)latitude 
+                         longitude:(NSNumber *)longitude 
+                       replyResult:(NSNumber *)replyResult
+                      reqMessageId:(NSString *)reqMessageId
+{
+    //PPDebug(@"createMessageWithMessageId:%@ from:%@ to:%@ drawDataLen:%d createDate:%@ text:%@ status:%@",messageId,from,to,[drawData length], createDate, text, status);
+    
+    CoreDataManager *dataManager = [CoreDataManager defaultManager];
+    
+    ChatMessage *chatMessage = [self findMessageByMessageId:messageId];
+    if (chatMessage) {
+        [chatMessage setMessageId:messageId];
+        [chatMessage setFrom:from];
+        [chatMessage setTo:to];
+        [chatMessage setDrawData:drawData];
+        [chatMessage setCreateDate:createDate];
+        [chatMessage setText:text];
+        [chatMessage setStatus:status];
+        [chatMessage setType:type];
+        [chatMessage setLatitude:latitude];
+        [chatMessage setLongitude:longitude];
+        [chatMessage setReplyResult:replyResult];
+        [chatMessage setReqMessageId:reqMessageId];        
+        return [dataManager save];
+    }
+    
+    ChatMessage *newMessage = [dataManager insert:@"ChatMessage"];
+    [newMessage setMessageId:messageId];
+    [newMessage setFrom:from];
+    [newMessage setTo:to];
+    [newMessage setDrawData:drawData];
+    [newMessage setCreateDate:createDate];
+    [newMessage setText:text];
+    [newMessage setStatus:status];
+    [newMessage setType:type];
+    [newMessage setLatitude:latitude];
+    [newMessage setLongitude:longitude];
+    [newMessage setReplyResult:replyResult];
+    [newMessage setReqMessageId:reqMessageId]; 
     return [dataManager save];
 }
 
@@ -95,13 +144,27 @@ static ChatMessageManager *_chatMessageManager = nil;
     NSData *data = [ChatMessageUtil archiveDataFromDrawActionList:mutableArray];
     [mutableArray release];
     
-    return  [self createMessageWithMessageId:pbMessage.messageId 
-                                        from:pbMessage.from 
-                                          to:pbMessage.to 
+//    return  [self createMessageWithMessageId:pbMessage.messageId 
+//                                        from:pbMessage.from 
+//                                          to:pbMessage.to 
+//                                    drawData:data
+//                                  createDate:[NSDate dateWithTimeIntervalSince1970:pbMessage.createDate]
+//                                        text:pbMessage.text
+//                                      status:[NSNumber numberWithInt:pbMessage.status]];
+    
+    
+    return  [self createMessageWithMessageId:pbMessage.messageId
+                                        from:pbMessage.from
+                                          to:pbMessage.to
                                     drawData:data
                                   createDate:[NSDate dateWithTimeIntervalSince1970:pbMessage.createDate]
                                         text:pbMessage.text
-                                      status:[NSNumber numberWithInt:pbMessage.status]];
+                                      status:[NSNumber numberWithInt:pbMessage.status]
+                                        type:[NSNumber numberWithInt:pbMessage.type]
+                                    latitude:[NSNumber numberWithDouble:pbMessage.latitude]
+                                   longitude:[NSNumber numberWithDouble:pbMessage.longitude]
+                                 replyResult:[NSNumber numberWithInt:pbMessage.replyResult]
+                                reqMessageId:pbMessage.reqMessageId];
 }
 
 

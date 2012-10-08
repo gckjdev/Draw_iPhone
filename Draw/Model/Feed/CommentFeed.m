@@ -13,6 +13,8 @@
 @implementation CommentFeed
 @synthesize comment = _comment;
 @synthesize commentInfo = _commentInfo;
+@synthesize opusId = _opusId;
+@synthesize opusCreator = _opusCreator;
 
 //the feed type can be guess,flower,tomato and comment
 
@@ -45,16 +47,26 @@
     return [self commentInFeedDeatil];
 }
 
+- (NSString *)replySummary
+{
+    NSString *desc = self.commentInfo.summaryDesc;
+    if (desc == nil) {
+        desc = NSLS(@"kCommentMyOpus");
+    }
+    return desc;
+}
+
 - (BOOL)canDelete
 {
-    if (self.isMyFeed) {
-        return YES;
-    }
-    NSString *uid = self.commentInfo.actionUid;
-    return [[UserManager defaultManager] isMe:uid];
+    
+    //we don't know the opus creator, so return no this version.
+    return NO;
 }
 - (void)initComment:(PBFeed *)pbFeed
 {
+    self.opusId = pbFeed.opusId;
+    self.opusCreator = pbFeed.opusCreatorUserId;
+    
     switch (self.feedType) {
         case FeedTypeComment:
             if ([pbFeed hasCommentInfo]) {
@@ -182,7 +194,7 @@
             if (isMe || [[UserManager defaultManager] hasGuessOpus:self.actionId]) {
                 desc = [NSString stringWithFormat:NSLS(@"kSummaryOfDraw"),nick, self.summary];                
             }else{
-                desc = [NSString stringWithFormat:NSLS(@"kSummaryOfDrawNoWord")];
+                desc = [NSString stringWithFormat:NSLS(@"kSummaryOfDrawNoWord"),nick];
             }
         }
             return desc;

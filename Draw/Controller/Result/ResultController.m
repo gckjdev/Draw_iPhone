@@ -635,14 +635,13 @@
         [dialog showInView:self.view];
         return NO;
     }
-    _throwingItem= [[[UIImageView alloc] initWithFrame:toolView.frame] autorelease];
-    [self.view addSubview:_throwingItem];
-    [_throwingItem setImage:toolView.imageView.image];
+    UIImageView* throwingItem= [[[UIImageView alloc] initWithFrame:toolView.frame] autorelease];
+    [throwingItem setImage:toolView.imageView.image];
     if (toolView.itemType == ItemTypeTomato) {
-        [DrawGameAnimationManager showThrowTomato:_throwingItem animInController:self rolling:YES];
+        [DrawGameAnimationManager showThrowTomato:throwingItem animInController:self rolling:YES];
     }
     if (toolView.itemType == ItemTypeFlower) {
-        [DrawGameAnimationManager showThrowFlower:_throwingItem animInController:self rolling:YES];
+        [DrawGameAnimationManager showThrowFlower:throwingItem animInController:self rolling:YES];
     }
     return YES;
 }
@@ -662,15 +661,6 @@
     [item setImage:[ShareImageManager defaultManager].tomato];
     [DrawGameAnimationManager showReceiveFlower:item animationInController:self];
     //[self popupMessage:[NSString stringWithFormat:NSLS(@"kReceiveTomatoMessage"),REWARD_EXP, REWARD_COINS] title:nil];
-}
-
-- (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag
-{
-    [DrawGameAnimationManager animation:anim didStopWithFlag:flag];
-    if (_throwingItem) {
-        [_throwingItem removeFromSuperview];
-    }
-    _throwingItem = nil;
 }
 
 #pragma mark - Common Dialog Delegate

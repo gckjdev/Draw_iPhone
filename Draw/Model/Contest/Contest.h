@@ -37,7 +37,7 @@ typedef enum{
     NSString *_title;
     NSString *_contestUrl;
     NSString *_statementUrl;
-
+    NSInteger _canSummitCount;
 }
 
 //basic info
@@ -52,8 +52,12 @@ typedef enum{
 @property(nonatomic, retain) NSString *title;
 @property(nonatomic, retain) NSString *contestUrl;
 @property(nonatomic, retain) NSString *statementUrl;
-
+@property(nonatomic, assign) NSInteger canSubmitCount;
 - (id)initWithDict:(NSDictionary *)dict;
 + (Contest *)contestWithDict:(NSDictionary *)dict;
-
+- (void)incCommitCount;
+- (BOOL)commintCountEnough;
+- (BOOL)isPassed;
+- (BOOL)isPendding;
+- (BOOL)isRunning;
 @end

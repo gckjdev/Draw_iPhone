@@ -11,6 +11,7 @@
 #import "DeviceDetection.h"
 #import "CommonMessageCenter.h"
 #import "LocaleUtils.h"
+#import "AnimationPlayer.h"
 
 #define THROW_ITEM_TAG  20120713
 #define RECIEVE_ITEM_TAG    120120713
@@ -47,7 +48,7 @@
     CAAnimation* rolling = [AnimationManager rotationAnimationWithRoundCount:ROATE_RATE*THROWING_TIME duration:THROWING_TIME];
     CAAnimation* throw = [AnimationManager translationAnimationFrom:startPoint to:endPoint duration:THROWING_TIME];
 
-    throw.removedOnCompletion = YES;
+    throw.removedOnCompletion = NO;
     
     CAAnimation* enlarge = [AnimationManager scaleAnimationWithFromScale:1 toScale:5 duration:MISSING_TIME delegate:viewController removeCompeleted:YES];
     
@@ -61,7 +62,7 @@
     CAAnimationGroup* animGroup    = [CAAnimationGroup animation];
     
     //设置动画代理
-    animGroup.delegate = viewController;
+//    animGroup.delegate = viewController;
     
     animGroup.removedOnCompletion = YES;
     animGroup.duration             = THROWING_TIME+MISSING_TIME;
@@ -72,10 +73,48 @@
     return animGroup;
     //[animGroup setValue:key forKey:DRAW_ANIM];
     //对视图自身的层添加组动画
-    ItemImageView.layer.opacity = 0;
-    [ItemImageView.layer addAnimation:animGroup forKey:ANIM_GROUP];
+//    ItemImageView.layer.opacity = 0;
+//    [ItemImageView.layer addAnimation:animGroup forKey:ANIM_GROUP];
 }
 
++ (void)showThrowTomato:(UIImageView*)tomatoImageView 
+       animInController:(UIViewController*)superController
+                rolling:(BOOL)rolling 
+             completion:(void (^)(BOOL finished))completion
+{
+    completion(YES);//TODO:still has some problem to solve, this block should be excute in animationplayer's block
+    CAAnimationGroup* animationGroup = nil;
+    if (rolling) {
+        animationGroup =  [DrawGameAnimationManager createThrowItemAnimation:tomatoImageView inViewController:superController];   
+        
+    }else{
+        animationGroup = [AnimationManager scaleMissAnimation:MISSING_TIME scale:4 delegate:superController];
+    }
+    //    [animationGroup setValue:ANIM_KEY_THROW_TOMATO forKey:DRAW_ANIM];
+    [AnimationPlayer showView:tomatoImageView inView:superController.view animation:animationGroup completion:^(BOOL finished) {
+        
+        [[CommonMessageCenter defaultCenter] postMessageWithText:[NSString stringWithFormat:NSLS(@"kThrowTomatoMessage"),REWARD_EXP, REWARD_COINS] delayTime:2 isHappy:YES atHorizon:POP_MESSAGE_HORIZON_OFFSET];
+    }];
+}
++ (void)showThrowFlower:(UIImageView*)flowerImageView 
+       animInController:(UIViewController*)superController
+                rolling:(BOOL)rolling 
+             completion:(void (^)(BOOL finished))completion
+{
+    completion(YES);//TODO:still has some problem to solve, this block should be excute in animationplayer's block
+    CAAnimationGroup* animationGroup = nil;
+    if (rolling) {
+        animationGroup =  [DrawGameAnimationManager createThrowItemAnimation:flowerImageView inViewController:superController];        
+    }else{
+        animationGroup = [AnimationManager scaleMissAnimation:MISSING_TIME scale:4 delegate:superController];
+    }
+    
+    //    [animationGroup setValue:ANIM_KEY_SEND_FLOWER forKey:DRAW_ANIM];
+    [AnimationPlayer showView:flowerImageView inView:superController.view animation:animationGroup completion:^(BOOL finished) {
+        
+        [[CommonMessageCenter defaultCenter] postMessageWithText:[NSString stringWithFormat:NSLS(@"kSendFlowerMessage"),REWARD_EXP, REWARD_COINS] delayTime:2 isHappy:YES atHorizon:POP_MESSAGE_HORIZON_OFFSET];
+    }];
+}
 
 
 
@@ -83,29 +122,22 @@
        animInController:(UIViewController*)superController
                 rolling:(BOOL)rolling
 {
-    CAAnimationGroup* animationGroup = nil;
-    if (rolling) {
-      animationGroup =  [DrawGameAnimationManager createThrowItemAnimation:tomatoImageView inViewController:superController];        
-    }else{
-        animationGroup = [AnimationManager scaleMissAnimation:MISSING_TIME scale:4 delegate:superController];
-    }
-    [animationGroup setValue:ANIM_KEY_THROW_TOMATO forKey:DRAW_ANIM];
-    [tomatoImageView.layer addAnimation:animationGroup forKey:ANIM_GROUP];
+    [self showThrowTomato:tomatoImageView animInController:superController rolling:rolling completion:^(BOOL finished) {
+        
+    }];
 }
+
 + (void)showThrowFlower:(UIImageView*)flowerImageView 
        animInController:(UIViewController*)superController
                 rolling:(BOOL)rolling
 {
     
-    CAAnimationGroup* animationGroup = nil;
-    if (rolling) {
-        animationGroup =  [DrawGameAnimationManager createThrowItemAnimation:flowerImageView inViewController:superController];        
-    }else{
-        animationGroup = [AnimationManager scaleMissAnimation:MISSING_TIME scale:4 delegate:superController];
-    }
-    [animationGroup setValue:ANIM_KEY_SEND_FLOWER forKey:DRAW_ANIM];
-    [flowerImageView.layer addAnimation:animationGroup forKey:ANIM_GROUP];
+    [self showThrowFlower:flowerImageView animInController:superController rolling:rolling completion:^(BOOL finished) {
+        
+    }];
 }
+
+
 
 + (void)showReceiveFlower:(UIImageView*)flowerImageView 
     animationInController:(UIViewController*)viewController 

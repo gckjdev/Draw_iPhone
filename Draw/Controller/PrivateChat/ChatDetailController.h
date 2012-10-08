@@ -10,8 +10,9 @@
 #import "ChatService.h"
 #import "OfflineDrawViewController.h"
 #import "ChatDetailCell.h"
+#import "UserLocationController.h"
 
-@interface ChatDetailController : PPTableViewController<ChatServiceDelegate, UITextViewDelegate, OfflineDrawDelegate, ChatDetailCellDelegate>
+@interface ChatDetailController : PPTableViewController<ChatServiceDelegate, UITextViewDelegate, OfflineDrawDelegate, ChatDetailCellDelegate, UserLocationControllerDelegate, UIActionSheetDelegate>
  
 @property (retain, nonatomic) IBOutlet UILabel *titleLabel;
 @property (retain, nonatomic) IBOutlet UIButton *graffitiButton;

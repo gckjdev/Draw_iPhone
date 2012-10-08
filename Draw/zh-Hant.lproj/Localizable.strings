@@ -596,6 +596,7 @@
 
 "kComment" = "評論";
 "kReplyComment" = "回複評論";
+"kReply" = "回複";
 "kCorrect" = "猜對了！";
 "kSending" = "發送中...";
 "kNoCommentTips" = "還沒有人評論";
@@ -841,6 +842,29 @@
 "kMe" = "我";
 "kSendMeFlower" = "给我赠送了一朵鲜花！";
 "kThrowMeTomato" = "给我丢了个番茄！";
+
+"kCommentMyOpus" = "評論我的畫。";
+"kCanotSendItemToOpus" = "不能在同一個作品上使用超過%d次同樣的道具";
+"kCanotSendItemToContestOpus" = "不能在同一個比賽作品上使用超過%d次同樣的道具";
+"kContestNotRunning" = "對不起，比賽已經結束或者尚未開始，您不能參加。";
+"kContesSummitCountEnough" = "對不起，你已經提交了%d作品了，留點機會給別人哦。";
+
+"kOpusMy" = "我的";
+"kOpusRank" = "排行";
+"kOpusNew" = "最新";
+
+"kAskLocationMessage" = "這是我的位置，讓我看看你在哪個位置？";
+"kReplyLocationMessage" = "我回復了你的定位請求";
+"kRejectLocationMessage" = "拒絕你的定位請求";
+"kReplyLocation" = "回复定位";
+"kRejectLocation" = "拒絕定位";
+"kShowLocation" = "顯示位置";
+"kSendLocation" = "發送我的位置";
+
+
+"kContestPassed" = "已結束(%d)";
+"kContestPendding" = "未開始";
+"kNoContestTips" = "不好意思，目前沒有適合您的比賽。";
 
 /*********************** 猜猜画画国际化字符串结束 *************************/
 

@@ -20,6 +20,10 @@
           feedListType:(FeedListType)type 
             resultCode:(NSInteger)resultCode;
 
+- (void)didGetContestOpusList:(NSArray *)feedList 
+                         type:(int)type 
+                   resultCode:(NSInteger)resultCode;
+
 - (void)didGetFeedList:(NSArray *)feedList 
             targetUser:(NSString *)userId 
                   type:(FeedListType)type
@@ -76,6 +80,12 @@
              offset:(NSInteger)offset 
               limit:(NSInteger)limit 
            delegate:(PPViewController<FeedServiceDelegate> *)delegate;
+
+- (void)getContestOpusList:(int)type 
+                 contestId:(NSString *)contestId
+                    offset:(NSInteger)offset 
+                     limit:(NSInteger)limit 
+                  delegate:(PPViewController<FeedServiceDelegate> *)delegate;
 
 - (void)getOpusCommentList:(NSString *)opusId 
                       type:(int)type

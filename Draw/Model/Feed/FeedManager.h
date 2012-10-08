@@ -12,7 +12,7 @@
 #import "GuessFeed.h"
 #import "DrawToUserFeed.h"
 #import "CommentFeed.h"
-
+#import "ContestFeed.h"
 
 
 typedef enum{

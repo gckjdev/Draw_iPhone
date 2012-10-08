@@ -146,6 +146,12 @@
     [self.title setTextAlignment:UITextAlignmentCenter];
 }
 
+- (void)updateViewInfoForContestOpus
+{
+    [self.title setHidden:YES];
+    [self.author setHidden:NO];
+}
+
 - (void)setRankViewSelected:(BOOL)selected
 {
     [self.maskButton setSelected:selected];

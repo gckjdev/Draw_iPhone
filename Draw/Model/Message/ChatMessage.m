@@ -18,5 +18,10 @@
 @dynamic createDate;
 @dynamic text;
 @dynamic status;
+@dynamic type;
+@dynamic latitude;
+@dynamic longitude;
+@dynamic replyResult;
+@dynamic reqMessageId;
 
 @end
