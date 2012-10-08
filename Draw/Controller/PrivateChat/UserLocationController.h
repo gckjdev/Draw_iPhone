@@ -30,6 +30,7 @@ typedef enum {
 @property (assign, nonatomic) id<UserLocationControllerDelegate> delegate;
 
 - (id)initWithType:(UserLocationType)type
+              isMe:(BOOL)isMe
           latitude:(double)latitude
          longitude:(double)longitude
        messageType:(int)messageType;

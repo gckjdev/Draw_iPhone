@@ -15,8 +15,8 @@
 //Notification  
 //before 4.5 version
 "kPushMessage" = "%@ 新建了一个好友房间——\"%@\", 邀请你加入。赶紧加入好友房间，和好友一起猜猜画画!";
-"kPushTextMessage" = "%@ 给您发来了消息\"%@\"";
-"kPushDrawMessage" = "%@ 邀您欣赏TA的大作。";
+"kPushTextMessage" = "%@ 给你发来了消息\"%@\"";
+"kPushDrawMessage" = "%@ 邀你欣赏TA的大作。";
 "kFM" = "有个神秘人刚刚关注了你，快去看看TA是谁。";
 "kNGRD" = "%@ 猜对了你画的 [%@]。你也去猜猜TA的画？";
 "kNTGD" = "%@ 尝试去猜了你画的 [%@]。你也去猜猜TA的画？";
@@ -31,6 +31,10 @@
 //add after 5.0
 "kNFM" = "%@ 关注了你。";
 "kNCN" = "[%@] 开始了，赶紧参加吧！丰厚奖品等你来拿哟！";
+
+"kPALM" = "%@ 向你发了定位请求";
+"kPRLM" = "%@ 回复了你的定位请求";
+"kPRRLM" = "%@ 拒绝了你的定位请求";
 /*********************** Notification end *************************/
 
 
@@ -866,14 +870,24 @@
 "kOpusRank" = "排行";
 "kOpusNew" = "最新";
 
-"kUserLocationTitle" = "位置";
+"kAskLocationTitle" = "定位请求";
+"kReplyLocationTitle" = "回复请求";
+"kShowMyLocationTitle" = "我的位置";
+"kShowFriendLocationTitle" = "对方位置";
+"kGetingLocation" = "正在获取当前位置...";
+
 "kAskLocationMessage" = "这是我的位置，让我看看你在哪个位置？";
 "kReplyLocationMessage" = "回复了定位请求";
 "kRejectLocationMessage" = "拒绝了定位请求";
-"kReplyLocation" = "回复定位";
-"kRejectLocation" = "拒绝定位";
-"kShowLocation" = "显示位置";
-"kSendLocation" = "发送我的位置";
+
+"kReplyLocation" = "回复定位请求";
+"kRejectLocation" = "拒绝定位请求";
+"kShowLocation" = "显示对方位置";
+
+"kGetLocationFail" = "暂时无法定位,不能发送定位请求。";
+"kAskLocationAlert" = "确定发送定位请求，并且发送你的位置吗？";
+"kReplyLocationAlert" = "确定回复定位请求，并且发送你的位置吗?";
+
 
 "kContestPassed" = "已结束(%d)";
 "kContestPendding" = "未开始";
