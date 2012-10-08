@@ -115,13 +115,13 @@ enum {
             rowOfLevel = -1;
             rowOfCustomWord = 1;
             rowOfAutoSave = 2,
-            rowsInSectionGuessWord = 3;
+            rowsInSectionGuessWord = 2;//hide autosave --kira
         }else {
             rowOfLanguage = 0;
             rowOfLevel = -1;
             rowOfCustomWord = -1;
             rowOfAutoSave = 1,
-            rowsInSectionGuessWord = 2;
+            rowsInSectionGuessWord = 1;//hide autosave--kira
         }
     } else if (isDiceApp()) {
         rowsInSectionGuessWord = 0;
@@ -393,6 +393,7 @@ enum {
     }else{
         [self clearSwitchInCell:cell];
     }
+    [cell.detailTextLabel setText:nil];  
     NSInteger section = indexPath.section;
     NSInteger row = indexPath.row;
 
@@ -401,8 +402,6 @@ enum {
             [cell.textLabel setText:NSLS(@"kPassword")];      
             if ([userManager isPasswordEmpty] && [self.updatePassword length] == 0) {
                 [cell.detailTextLabel setText:NSLS(@"kUnset")];
-            }else{
-                [cell.detailTextLabel setText:nil];            
             }
         }else if (row == rowOfGender){
             [cell.textLabel setText:NSLS(@"kGender")];
