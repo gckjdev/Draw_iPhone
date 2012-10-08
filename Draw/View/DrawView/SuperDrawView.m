@@ -140,7 +140,9 @@
     CGContextMoveToPoint(context, mid1.x, mid1.y);
     CGContextAddQuadCurveToPoint(context, _previousPoint1.x, _previousPoint1.y, mid2.x, mid2.y); 
     CGContextSetLineCap(context, kCGLineCapRound);
+    CGContextSetLineJoin(context, kCGLineJoinRound);
     CGContextSetLineWidth(context, width);    
+
     CGContextSetStrokeColorWithColor(context, cgColor);
     CGContextStrokePath(context);
     self.curImage = nil;
@@ -153,9 +155,10 @@
     CGContextRef context = UIGraphicsGetCurrentContext(); 
     CGContextSetStrokeColorWithColor(context, paint.color.CGColor);
     CGContextSetFillColorWithColor(context, paint.color.CGColor);
-
     CGContextSetLineWidth(context, paint.width);    
-
+    CGContextSetLineCap(context, kCGLineCapRound);
+    CGContextSetLineJoin(context, kCGLineJoinRound);
+    self.curImage = nil;
     if ([paint pointCount] != 0) {
         
         _currentPoint = _previousPoint2 = _previousPoint1 = [paint pointAtIndex:0];
@@ -168,10 +171,9 @@
             CGPoint mid2 = [DrawUtils midPoint1:_currentPoint
                                          point2:_previousPoint1];
             CGContextAddQuadCurveToPoint(context, _previousPoint1.x, _previousPoint1.y, mid2.x, mid2.y); 
-            CGContextSetLineCap(context, kCGLineCapRound);
-            
             _previousPoint2 = _previousPoint1;
             _previousPoint1 = _currentPoint;
+
         }
         CGContextStrokePath(context);
     }else{
