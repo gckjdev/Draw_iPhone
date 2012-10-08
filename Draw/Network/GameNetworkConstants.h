@@ -448,6 +448,10 @@
 #define PARA_CONTESTID @"cid"
 #define PARA_CONTEST_URL @"cu"
 #define PARA_STATEMENT_URL @"su"
+
+#define PARA_CONTEST_IPAD_URL @"cpu"
+#define PARA_STATEMENT_IPAD_URL @"spu"
+
 #define PARA_OPUS_COUNT @"oc"
 #define PARA_PARTICIPANT_COUNT @"pc"
 #define PARA_LIMIT @"lm"

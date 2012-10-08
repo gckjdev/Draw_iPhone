@@ -843,6 +843,7 @@
 
 "kContestPassed" = "Passed(%d)";
 "kContestPendding" = "Pendding";
+"kNoContestTips" = "No Contest Now.";
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 

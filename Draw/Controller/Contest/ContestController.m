@@ -14,8 +14,11 @@
 #import "CommonMessageCenter.h"
 #import "ContestOpusController.h"
 #import "CommonMessageCenter.h"
+#import "ShareImageManager.h"
+#import "UICustomPageControl.h"
 
 @implementation ContestController
+@synthesize noContestTipLabel = _noContestTipLabel;
 @synthesize scrollView = _scrollView;
 @synthesize pageControl = _pageControl;
 @synthesize titleLabel = _titleLabel;
@@ -42,6 +45,18 @@
 
 #pragma mark - View lifecycle
 
+- (void)initCustomPageControl
+{
+    self.pageControl.hidesForSinglePage = YES;
+    
+    [self.pageControl setPageIndicatorImageForCurrentPage:[[ShareImageManager defaultManager] pointForCurrentSelectedPage] forNotCurrentPage:[[ShareImageManager defaultManager] pointForUnSelectedPage]];
+    
+    if ([DeviceDetection isIPAD]) {
+        self.pageControl.transform = CGAffineTransformMakeScale(2.0, 2.0);
+        self.pageControl.center = CGPointMake(self.view.center.x, self.pageControl.center.y);
+    }
+}
+
 - (void)getContestList
 {
     [self showActivityWithText:NSLS(@"kLoading")];
@@ -53,10 +68,14 @@
 {
     [super viewDidLoad];
     [self.titleLabel setText:NSLS(@"kContest")];
+        
+    UIColor *bgColor = [UIColor colorWithRed:245.0/255.0 green:240.0/255.0 blue:220./255. alpha:1.0];
+    [self.view setBackgroundColor:bgColor];
+    [self initCustomPageControl];
     _contestViewList = [[NSMutableArray alloc] init];
     [self getContestList];
-//    UIColor *bgColor = [UIColor colorWithRed:245.0/255.0 green:240.0/255.0 blue:220./255. alpha:1.0];
-    [self.view setBackgroundColor:[UIColor darkGrayColor]];
+    [self.noContestTipLabel setHidden:YES];
+    [self.noContestTipLabel setText:NSLS(@"kNoContestTips")];
 }
 
 - (void)viewDidUnload
@@ -64,6 +83,7 @@
     [self setScrollView:nil];
     [self setPageControl:nil];
     [self setTitleLabel:nil];
+    [self setNoContestTipLabel:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -145,8 +165,13 @@
 
     PPDebug(@"didGetContestList, type = %d, code = %d, contestList = %@", type,code,contestList);
     if (code == 0) {
-        [self updateScorollViewWithContestList:contestList];
+        if ([contestList count] != 0) {
+            [self updateScorollViewWithContestList:contestList];
+        }else{
+            [_noContestTipLabel setHidden:NO];
+        }
     }else{
+
         [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kFailLoad") delayTime:1.5 isHappy:NO];
     }
     [self hideActivity];
@@ -202,6 +227,7 @@
     PPRelease(_pageControl);
     PPRelease(_contestViewList);
     PPRelease(_titleLabel);
+    PPRelease(_noContestTipLabel);
     [super dealloc];
 }
 - (IBAction)clickRefreshButton:(id)sender {
