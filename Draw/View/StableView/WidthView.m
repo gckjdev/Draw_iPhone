@@ -13,19 +13,19 @@
 
 
 
-#define WIDTH_COUNT 4
+#define WIDTH_COUNT ([DeviceDetection isIPAD]?5:5)
 #define DEFAULT_WIDTH 10
 + (NSInteger *)widthValues
 {
-    static NSInteger iPhoneList[] = {16,8,4,2};
-    static NSInteger iPadList[] = {32,18,6,2};
+    static NSInteger iPhoneList[] = {24,16,8,4,2};
+    static NSInteger iPadList[] = {32,16,8,4,2};
     return [DeviceDetection isIPAD] ? iPadList : iPhoneList;
 }
 
 + (NSInteger *)showWidthValues
 {
-    static NSInteger iPhoneList[] = {21,16,8,4};
-    static NSInteger iPadList[] = {36,25,12,5};
+    static NSInteger iPhoneList[] = {23,17,12,7,4};
+    static NSInteger iPadList[] = {36,28,20,12,5};
     return [DeviceDetection isIPAD] ? iPadList : iPhoneList;
 }
 

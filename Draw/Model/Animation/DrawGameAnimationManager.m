@@ -122,7 +122,7 @@
        animInController:(UIViewController*)superController
                 rolling:(BOOL)rolling
 {
-    [self showThrowFlower:tomatoImageView animInController:superController rolling:rolling completion:^(BOOL finished) {
+    [self showThrowTomato:tomatoImageView animInController:superController rolling:rolling completion:^(BOOL finished) {
         
     }];
 }

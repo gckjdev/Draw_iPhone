@@ -27,13 +27,13 @@
 @implementation PickColorView
 
 
-#define DIVIDE_LINE_FRAME ([DeviceDetection isIPAD] ? CGRectMake(30 * IPAD_SCALE, IPAD_SCALE, IPAD_SCALE, 120 * IPAD_SCALE) : CGRectMake(35, 1, 1, 120))
+#define DIVIDE_LINE_FRAME ([DeviceDetection isIPAD] ? CGRectMake(30 * IPAD_SCALE, IPAD_SCALE, IPAD_SCALE, 120 * IPAD_SCALE) : CGRectMake(35, 1, 1, 150))
 
 #define ADD_BUTTON_FRAME ([DeviceDetection isIPAD] ? CGRectMake(0, 0, 32 * 2, 34 * 2) : CGRectMake(0, 0, 32, 34))
 
-#define ADD_BUTTON_CENTER_PEN ([DeviceDetection isIPAD] ? CGPointMake(592,258.9) : CGPointMake(264, 105))
+#define ADD_BUTTON_CENTER_PEN ([DeviceDetection isIPAD] ? CGPointMake(592,258.9) : CGPointMake(264, 135))
 
-#define ADD_BUTTON_CENTER_BG ([DeviceDetection isIPAD] ? CGPointMake(536.8,258.9) : CGPointMake(216, 105))
+#define ADD_BUTTON_CENTER_BG ([DeviceDetection isIPAD] ? CGPointMake(536.8,258.9) : CGPointMake(216, 135))
 
 #define INSERT_INDEX 5
 #define COLOR_SIZE 14
@@ -53,7 +53,7 @@
     [super dealloc];
 }
 
-#define TIP_Y ([DeviceDetection isIPAD] ? -2 : -7)
+#define TIP_Y ([DeviceDetection isIPAD] ? -2 : 0)
 #define TIP_WIDTH ([DeviceDetection isIPAD] ? 40 : 15)
 #define TIP_FONT_SIZE ([DeviceDetection isIPAD] ? 24 : 12)
 
@@ -153,7 +153,7 @@
 #define BUTTON_COUNT_PER_ROW 5
 
 #define PEN_STATR_X ([DeviceDetection isIPAD] ? 58 * 2: 50)
-#define START_Y ([DeviceDetection isIPAD] ? 40 : 9)
+#define START_Y ([DeviceDetection isIPAD] ? 40 : 24)
 #define BG_STATR_X 0
 
 - (void)updatePickColorView
