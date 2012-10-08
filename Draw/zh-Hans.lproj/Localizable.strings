@@ -866,9 +866,10 @@
 "kOpusRank" = "排行";
 "kOpusNew" = "最新";
 
+"kUserLocationTitle" = "位置";
 "kAskLocationMessage" = "这是我的位置，让我看看你在哪个位置？";
-"kReplyLocationMessage" = "我回复了你的定位请求";
-"kRejectLocationMessage" = "拒绝你的定位请求";
+"kReplyLocationMessage" = "回复了定位请求";
+"kRejectLocationMessage" = "拒绝了定位请求";
 "kReplyLocation" = "回复定位";
 "kRejectLocation" = "拒绝定位";
 "kShowLocation" = "显示位置";
