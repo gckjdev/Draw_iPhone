@@ -20,6 +20,9 @@
 @synthesize pageControl = _pageControl;
 @synthesize titleLabel = _titleLabel;
 
+
+#define CONTEST_COUNT_LIMIT 20
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -39,15 +42,19 @@
 
 #pragma mark - View lifecycle
 
+- (void)getContestList
+{
+    [self showActivityWithText:NSLS(@"kLoading")];
+    _contestService = [ContestService  defaultService];
+    [_contestService getContestListWithType:ContestListTypeAll offset:0 limit:CONTEST_COUNT_LIMIT delegate:self];    
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     [self.titleLabel setText:NSLS(@"kContest")];
     _contestViewList = [[NSMutableArray alloc] init];
-    _contestService = [ContestService  defaultService];
-    [_contestService getContestListWithType:ContestListTypeAll offset:0 limit:12 delegate:self];
-    [self showActivityWithText:NSLS(@"kLoading")];
-    
+    [self getContestList];
 //    UIColor *bgColor = [UIColor colorWithRed:245.0/255.0 green:240.0/255.0 blue:220./255. alpha:1.0];
     [self.view setBackgroundColor:[UIColor darkGrayColor]];
 }
@@ -99,6 +106,7 @@
     }
     [self.pageControl setNumberOfPages:count];
     [self.pageControl setCurrentPage:0];
+    [self.scrollView setContentOffset:CGPointMake(0, 0) animated:YES];
     
 //    [self.view bringSubviewToFront:self.pageControl];
 }
@@ -195,5 +203,8 @@
     PPRelease(_contestViewList);
     PPRelease(_titleLabel);
     [super dealloc];
+}
+- (IBAction)clickRefreshButton:(id)sender {
+    [self getContestList];
 }
 @end

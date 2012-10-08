@@ -17,8 +17,11 @@
 }
 
 - (IBAction)clickBackButton:(id)sender;
+- (IBAction)clickRefreshButton:(id)sender;
+
 @property (retain, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (retain, nonatomic) IBOutlet UIPageControl *pageControl;
+
 
 @property (retain, nonatomic) IBOutlet UILabel *titleLabel;
 @end
