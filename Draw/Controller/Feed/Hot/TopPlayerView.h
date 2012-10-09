@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "TopPlayer.h"
 
-@class HJManagedImageV;
+//@class HJManagedImageV;
 @class TopPlayerView;
 
 @protocol TopPlayerViewDelegate <NSObject>
@@ -34,7 +34,7 @@ typedef enum{
 @property(nonatomic, assign)id delegate;
 @property(nonatomic, retain)TopPlayer *topPlayer;
 
-@property (retain, nonatomic) IBOutlet HJManagedImageV *avatar;
+@property (retain, nonatomic) IBOutlet UIImageView *avatar;
 @property (retain, nonatomic) IBOutlet UILabel *nickName;
 @property (retain, nonatomic) IBOutlet UILabel *levelInfo;
 @property (retain, nonatomic) IBOutlet UIButton *maskButton;
