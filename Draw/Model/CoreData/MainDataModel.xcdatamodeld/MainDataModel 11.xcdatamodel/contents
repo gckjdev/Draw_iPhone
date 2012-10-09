@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1810" systemVersion="11G56" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+<model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="872" systemVersion="10K549" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="ChatMessage" representedClassName="ChatMessage" syncable="YES">
         <attribute name="createDate" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="drawData" optional="YES" attributeType="Binary" syncable="YES"/>
@@ -64,6 +64,7 @@
     <entity name="MyPaint" representedClassName="MyPaint" syncable="YES">
         <attribute name="createDate" optional="YES" attributeType="Date" indexed="YES" syncable="YES"/>
         <attribute name="data" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="dataFilePath" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="deleteFlag" optional="YES" attributeType="Boolean" defaultValueString="NO" indexed="YES" syncable="YES"/>
         <attribute name="draft" optional="YES" attributeType="Boolean" defaultValueString="NO" indexed="YES" syncable="YES"/>
         <attribute name="drawByMe" optional="YES" attributeType="Boolean" defaultValueString="NO" indexed="YES" syncable="YES"/>
@@ -133,7 +134,7 @@
         <element name="CustomWord" positionX="160" positionY="192" width="128" height="135"/>
         <element name="Friend" positionX="160" positionY="192" width="128" height="300"/>
         <element name="MessageTotal" positionX="160" positionY="192" width="128" height="225"/>
-        <element name="MyPaint" positionX="160" positionY="192" width="128" height="225"/>
+        <element name="MyPaint" positionX="160" positionY="192" width="128" height="240"/>
         <element name="PriceModel" positionX="160" positionY="192" width="128" height="135"/>
         <element name="RouterTrafficServer" positionX="160" positionY="192" width="128" height="165"/>
         <element name="TransactionReceipt" positionX="160" positionY="192" width="128" height="195"/>
