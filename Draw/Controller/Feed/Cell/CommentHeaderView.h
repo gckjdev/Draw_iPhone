@@ -28,8 +28,10 @@ typedef enum{
 @interface CommentHeaderView : UIView
 {
     NSInteger _currentType;
+    DrawFeed *_feed;
 }
 @property(nonatomic, assign)id delegate;
+@property(nonatomic, retain)DrawFeed *feed;
 - (IBAction)clickButton:(id)sender;
 - (void)setSeletType:(CommentType)type;
 - (CommentType)seletedType;
@@ -37,5 +39,6 @@ typedef enum{
 - (void)setViewInfo:(DrawFeed *)feed;
 + (CGFloat)getHeight;
 - (void)updateTimes:(DrawFeed *)feed;
+
 @end
 

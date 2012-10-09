@@ -68,31 +68,10 @@
 
 - (void)setViewInfo:(Contest *)contest
 {
-    
-//    [(UIScrollView *) [[self.webView subviews] objectAtIndex:0] setBounces:NO];
     self.contest = contest;    
     [self refreshRequest];
+    [self refreshCount];
     [self.webView.scrollView setScrollEnabled:NO];
-    //set count
-    NSString *opusTitle = [NSString stringWithFormat:NSLS(@"kOpusCount"),
-                           contest.opusCount];
-    [self.opusLabel setText:opusTitle];
-    
-    NSString *joinTitle = nil;
-    
-    if ([contest isPassed]) {
-        joinTitle = [NSString stringWithFormat:NSLS(@"kContestPassed"),
-                     contest.participantCount];        
-        
-    }else if([contest isPendding]){
-        joinTitle = NSLS(@"kContestPendding");        
-        
-    }else{
-        joinTitle = [NSString stringWithFormat:NSLS(@"kJoinCount"),
-                     contest.participantCount];        
-    }
-    
-    [self.joinLabel setText:joinTitle];
     [self.detailLabel setText:NSLS(@"kDetail")];
 }
 
@@ -105,6 +84,30 @@
     [self.webView loadRequest:request];
 }
 
+- (void)refreshCount
+{
+    //set count
+    NSString *opusTitle = [NSString stringWithFormat:NSLS(@"kOpusCount"),
+                           _contest.opusCount];
+    [self.opusLabel setText:opusTitle];
+    
+    NSString *joinTitle = nil;
+    
+    if ([_contest isPassed]) {
+        joinTitle = [NSString stringWithFormat:NSLS(@"kContestPassed"),
+                     _contest.participantCount];        
+        
+    }else if([_contest isPendding]){
+        joinTitle = NSLS(@"kContestPendding");        
+        
+    }else{
+        joinTitle = [NSString stringWithFormat:NSLS(@"kJoinCount"),
+                     _contest.participantCount];        
+    }
+    
+    [self.joinLabel setText:joinTitle];
+
+}
 + (CGFloat)getViewWidth
 {
     return [DeviceDetection isIPAD] ? 768 : 320;

@@ -64,6 +64,14 @@
     [_contestService getContestListWithType:ContestListTypeAll offset:0 limit:CONTEST_COUNT_LIMIT delegate:self];    
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    for (ContestView *contestView in _contestViewList) {
+        [contestView refreshCount];
+    }
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -117,7 +125,11 @@
     CGFloat height = [ContestView getViewHeight];
     NSInteger count = [contestList count];
     [self.scrollView setContentSize:CGSizeMake(width * count, height)];
+    int showIndex = 0;
     for (Contest *contest in contestList) {
+        if ([contest isRunning] && showIndex == 0) {
+            showIndex = i;
+        }
         ContestView *contestView = [ContestView createContestView:self];
         contestView.frame = CGRectMake(width * i ++, 0, width, height);
         [self.scrollView addSubview:contestView];
@@ -125,8 +137,8 @@
         [contestView setViewInfo:contest];
     }
     [self.pageControl setNumberOfPages:count];
-    [self.pageControl setCurrentPage:0];
-    [self.scrollView setContentOffset:CGPointMake(0, 0) animated:YES];
+    [self.pageControl setCurrentPage:showIndex];
+    [self.scrollView setContentOffset:CGPointMake(showIndex * width, 0) animated:YES];
     
 //    [self.view bringSubviewToFront:self.pageControl];
 }

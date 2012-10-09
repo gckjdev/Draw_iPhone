@@ -266,8 +266,8 @@
     tab.offset = 0;
     [self startToLoadDataForTabID:tab.tabID];
     [self serviceLoadDataForTabID:tab.tabID];
-    CGRect beginRect = CGRectMake(0, 0, 1, 1);
-    [self.dataTableView scrollRectToVisible:beginRect animated:YES];
+//    CGRect beginRect = CGRectMake(0, 0, 1, 1);
+//    [self.dataTableView scrollRectToVisible:beginRect animated:YES];
 }
 
 - (void)loadMoreTableViewDataSource
