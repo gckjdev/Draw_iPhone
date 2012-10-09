@@ -19,15 +19,14 @@
     FeedManager *_feedManager;
 }
 @property (retain, nonatomic) IBOutlet UILabel *noFeedTipsLabel;
+@property (retain, nonatomic) IBOutlet UILabel *titleLabel;
 @property (retain, nonatomic) IBOutlet UIButton *myFeedButton;
 @property (retain, nonatomic) IBOutlet UIButton *allFeedButton;
 @property (retain, nonatomic) IBOutlet UIButton *hotFeedButton;
-@property (retain, nonatomic) IBOutlet UILabel *titleLabel;
 @property (retain, nonatomic) IBOutlet UIButton *latestFeedButton;
 
 - (IBAction)clickBackButton:(id)sender;
 - (IBAction)clickFeedButton:(id)sender;
 - (IBAction)clickRefreshButton:(id)sender;
-
-
+///test
 @end

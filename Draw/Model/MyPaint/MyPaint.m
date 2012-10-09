@@ -23,7 +23,7 @@
 @dynamic language;
 @dynamic level;
 @dynamic deleteFlag;
-
+@dynamic dataFilePath;
 
 @synthesize thumbImage;
 
