@@ -99,7 +99,7 @@
     [self.showView show]; 
     self.feed.largeImage = [self.showView createImage];
     [self.drawImage setImage:self.feed.largeImage];
-
+    [self.drawImage setHidden:NO];
     //remove the show view after create the image.
     [self.showView removeFromSuperview];
     self.showView = nil;
