@@ -26,7 +26,6 @@
 #import "DrawConstants.h"
 #import "AnimationManager.h"
 #import "CommonMessageCenter.h"
-#import "FeedController.h"
 #import "OfflineGuessDrawController.h"
 #import "DrawDataService.h"
 #import "ShareService.h"
@@ -58,7 +57,6 @@
 @interface ResultController()
 
 //- (BOOL)fromShowFeedController;
-//- (BOOL)fromFeedController;
 - (BOOL)throwItem:(ToolView*)toolView;
 - (void)receiveFlower;
 - (void)receiveTomato;
@@ -204,10 +202,7 @@
 {
     return [self hasSuperViewControllerForClass:[ShowFeedController class]];
 }
-//- (BOOL)fromFeedController
-//{
-//    return [self hasSuperViewControllerForClass:[FeedController class]];
-//}
+
 - (BOOL)fromOfflineGuessController
 {
     return [self hasSuperViewControllerForClass:[OfflineGuessDrawController class]];

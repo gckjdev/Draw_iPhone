@@ -49,9 +49,9 @@
 + (CGFloat)getCellHeight
 {
     if ([DeviceDetection isIPAD]) {
-        return 530.0f;
+        return 520.0f;
     }
-    return 257.0f;
+    return 252.0f;
 }
 
 
