@@ -28,6 +28,9 @@
 "kNFM" = "%@ follow you.";
 "kNCN" = "[%@] starts now. Hurry to join.";
 
+"kPALM" = "%@ send a location request to you";
+"kPRLM" = "%@ reply your location request";
+"kPRRLM" = "%@ reject your location request";
 /*********************** Notification end *************************/
 
 "kStart" = "Online";
@@ -841,14 +844,24 @@
 "kSummaryOfSendItem" = "Reply %@'s expression.";
 "kSummaryOfComment" = "Reply %@'s comment: %@.";
 
-"kUserLocationTitle" = "Location";
-"kAskLocationMessage" = "This is my position, let me see you where?";
-"kReplyLocationMessage" = "Reply positioning request";
-"kRejectLocationMessage" = "Reject positioning request";
+"kAskLocationTitle" = "Location Request";
+"kReplyLocationTitle" = "Reply Request";
+"kShowMyLocationTitle" = "My Location";
+"kShowFriendLocationTitle" = "Location of friend";
+"kGettingLocation" = "Getting current location ...";
+
+"kAskLocationMessage" = "This is my location, let me see you where?";
+"kReplyLocationMessage" = "Reply location request";
+"kRejectLocationMessage" = "Reject location request";
+
 "kReplyLocation" = "Reply";
 "kRejectLocation" = "Reject";
 "kShowLocation" = "Display";
-"kSendLocation" = "Send my location";
+
+"kGetLocationFail" = "Unable to locate, can not send location request.";
+"kAskLocationAlert" = "Send location requests, and send your location?";
+"kReplyLocationAlert" = "Reply location request, and send your location?";
+
 
 "kContestPassed" = "Passed(%d)";
 "kContestPendding" = "Pendding";
