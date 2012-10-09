@@ -426,8 +426,9 @@
 }
 
 - (IBAction)clickLocation:(id)sender {
-    UserLocationController *controller = [[[UserLocationController alloc] initWithType:LocationTypeFind 
-                                                                              latitude:0 
+    UserLocationController *controller = [[[UserLocationController alloc] initWithType:LocationTypeFind
+                                                                                  isMe:YES
+                                                                              latitude:0
                                                                              longitude:0
                                                                            messageType:MessageTypeAskLocation
                                            ] autorelease];
@@ -562,8 +563,9 @@
         
     } else if (([message.type intValue] == MessageTypeAskLocation && fromSelf)
                || ([message.type intValue] == MessageTypeReplyLocation && [message.replyResult intValue] != REJECT_ASK_LOCATION) ) {
-        UserLocationController *controller = [[[UserLocationController alloc] initWithType:LocationTypeShow 
-                                                                                  latitude:[message.latitude doubleValue] 
+        UserLocationController *controller = [[[UserLocationController alloc] initWithType:LocationTypeShow
+                                                                                      isMe:fromSelf
+                                                                                  latitude:[message.latitude doubleValue]
                                                                                  longitude:[message.longitude doubleValue]
                                                                                messageType:0] autorelease];
         controller.delegate = self;
@@ -661,8 +663,7 @@
     if (buttonIndex == [actionSheet cancelButtonIndex]) {
         return;
     } else if (buttonIndex == INDEX_REPLY){
-        UserLocationController *controller = [[[UserLocationController alloc] initWithType:LocationTypeFind
-                                                                                  latitude:0
+        UserLocationController *controller = [[[UserLocationController alloc] initWithType:LocationTypeFind isMe:YES                     latitude:0
                                                                                  longitude:0
                                                                                messageType:MessageTypeReplyLocation] autorelease];
         controller.delegate = self;
@@ -671,6 +672,7 @@
         [[ChatService defaultService] replyRejectLocation:self friendUserId:_friendUserId reqMessageId:_selectedMessage.messageId text:NSLS(@"kRejectLocationMessage")];
     } else if (buttonIndex == INDEX_SHOW_LOCATION) {
         UserLocationController *controller = [[[UserLocationController alloc] initWithType:LocationTypeShow
+                                                                                      isMe:NO
                                                                                   latitude:[_selectedMessage.latitude doubleValue]
                                                                                  longitude:[_selectedMessage.longitude doubleValue]
                                                                                messageType:MessageTypeReplyLocation] autorelease];
