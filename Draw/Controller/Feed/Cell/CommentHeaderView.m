@@ -143,7 +143,7 @@
 + (CGFloat)getHeight
 {
     if ([DeviceDetection isIPAD]) {
-        return 70;
+        return 50;
     }
     return 25;
 }
