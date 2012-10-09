@@ -33,7 +33,6 @@
 #import "ShoppingManager.h"
 #import "DrawDataService.h"
 #import "CommonMessageCenter.h"
-#import "FeedController.h"
 #import "SelectWordController.h"
 #import "ShowFeedController.h"
 #import "MyPaintManager.h"
@@ -549,16 +548,6 @@ enum{
 }
 
 
-- (FeedController *)superFeedController
-{
-    for (UIViewController *controller in self.navigationController.viewControllers) {
-        if ([controller isKindOfClass:[FeedController class]]) {
-            return (FeedController *)controller;
-        }
-    }
-    return nil;
-}
-
 - (ShareController *)superShareController
 {
     for (UIViewController *controller in self.navigationController.viewControllers) {
@@ -586,9 +575,6 @@ enum{
     
     if (superController == nil) {
         superController = [self superShowFeedController];
-    }
-    if (superController == nil) {
-        superController = [self superFeedController];
     }
     if (superController == nil) {
         superController = [self superShareController];
@@ -654,9 +640,6 @@ enum{
 
         
         UIViewController *superController = [self superShowFeedController];
-        if (superController == nil) {
-            superController = [self superFeedController];
-        }
         
         //if come from feed detail controller
         if (superController) {

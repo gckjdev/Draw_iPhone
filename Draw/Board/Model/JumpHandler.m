@@ -7,7 +7,6 @@
 //
 
 #import "JumpHandler.h"
-#import "FeedController.h"
 #import "LmWallService.h"
 #import "HomeController.h"
 #import "ContestController.h"

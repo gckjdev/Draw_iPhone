@@ -14,7 +14,6 @@
 #import "OfflineGuessDrawController.h"
 #import "RoomController.h"
 #import "HomeController.h"
-#import "FeedController.h"
 #import "VendingController.h"
 #import "FriendRoomController.h"
 #import "DrawGameService.h"
