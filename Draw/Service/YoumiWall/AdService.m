@@ -120,8 +120,9 @@ static AdService* _defaultService;
 
 - (BOOL)isShowWanpuAd
 {
-    int percentage = [self getWanpuAdPercentage];
-    return [self isShowAdByPercentage:percentage];        
+    return NO;
+//    int percentage = [self getWanpuAdPercentage];
+//    return [self isShowAdByPercentage:percentage];        
 }
 
 - (void)setAdDisable
