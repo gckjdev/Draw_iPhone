@@ -17,7 +17,7 @@
 
 @optional
 - (void)didUpdateShowView;
-
+- (void)didClickDrawToUser;
 @end
 
 @interface DrawInfoCell : PPTableViewCell<FeedServiceDelegate, ShowDrawViewDelegate>//, HJManagedImageVDelegate>

@@ -17,6 +17,7 @@
 #import "HJManagedImageV.h"
 #import "PPApplication.h"
 #import "UIImageView+WebCache.h"
+#import "CommonUserInfoView.h"
 
 @implementation DrawInfoCell
 @synthesize drawImage;
@@ -58,6 +59,9 @@
 - (NSString*)createDrawToUserInfoByFeed:(DrawToUserFeed*)feed
 {
     NSString* targetUserName = feed.targetUser.nickName;
+    if ([[UserManager defaultManager] isMe:feed.targetUser.userId]) {
+        targetUserName = NSLS(@"kMe");
+    }
     return [NSString stringWithFormat:NSLS(@"kDrawToUserByUser"), targetUserName];
 }
 
@@ -163,6 +167,13 @@
 -(void) managedImageCancelled:(HJManagedImageV*)mi
 {
     
+}
+
+- (IBAction)clickToUser:(id)sender
+{
+    if (_delegate && [_delegate respondsToSelector:@selector(didClickDrawToUser)]) {
+        [_delegate didClickDrawToUser];
+    }
 }
 
 - (void)setCellInfo:(DrawFeed *)feed

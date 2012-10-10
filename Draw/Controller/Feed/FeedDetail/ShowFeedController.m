@@ -385,6 +385,23 @@ enum{
     [self updateUserInfo];
 }
 
+- (void)didClickDrawToUser
+{
+    if ([self.feed isKindOfClass:[DrawToUserFeed class]]) {
+        DrawToUserFeed* feed = (DrawToUserFeed*)self.feed;
+        [CommonUserInfoView showUser:feed.targetUser.userId 
+                            nickName:feed.targetUser.nickName 
+                              avatar:nil 
+                              gender:nil 
+                            location:nil 
+                               level:1
+                             hasSina:NO 
+                               hasQQ:NO 
+                         hasFacebook:NO 
+                          infoInView:self];
+    }
+}
+
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
