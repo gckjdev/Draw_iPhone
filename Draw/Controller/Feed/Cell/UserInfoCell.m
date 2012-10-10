@@ -38,7 +38,7 @@
     if ([DeviceDetection isIPAD]) {
         return 150.0f;
     }
-    return 60.0f;
+    return 45.0f;
 }
 
 - (void)setCellInfo:(DrawFeed *)feed
