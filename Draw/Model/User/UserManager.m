@@ -213,7 +213,7 @@ static UserManager* _defaultManager;
     [userDefaults setObject:email forKey:KEY_EMAIL];
     [userDefaults setObject:password forKey:KEY_PASSWORD];
     
-    if (avatarURL != nil){
+    if ([avatarURL length] > 0){
         [userDefaults setObject:avatarURL forKey:KEY_AVATAR_URL];
     }
     
@@ -327,7 +327,7 @@ static UserManager* _defaultManager;
 
 - (void)setAvatar:(NSString*)avatarURL
 {
-    if (avatarURL == nil)
+    if ([avatarURL length] == 0)
         return;
     
     NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
@@ -559,7 +559,7 @@ sinaAccessTokenSecret:(NSString*)sinaAccessTokenSecret
         [self setSinaId:sinaId nickName:nickName];
     }
     
-    if (avatarURL != nil){
+    if ([avatarURL length] > 0){
         [userDefaults setObject:avatarURL forKey:KEY_AVATAR_URL];
         if (email == nil) {
             [self avatarImage];
