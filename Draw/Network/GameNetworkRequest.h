@@ -238,6 +238,7 @@
 + (CommonNetworkOutput*)updateOpus:(NSString*)baseURL
                              appId:(NSString*)appId
                             userId:(NSString*)userId
+                            opusId:(NSString*)opusId
                               data:(NSData*)data
                          imageData:(NSData *)imageData;
 

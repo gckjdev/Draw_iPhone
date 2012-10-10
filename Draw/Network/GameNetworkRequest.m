@@ -1325,6 +1325,7 @@
 + (CommonNetworkOutput*)updateOpus:(NSString*)baseURL
                              appId:(NSString*)appId
                             userId:(NSString*)userId
+                            opusId:(NSString*)opusId
                               data:(NSData*)data
                          imageData:(NSData *)imageData
 {
@@ -1345,6 +1346,7 @@
         str = [str stringByAddQueryParameter:METHOD value:method];
         str = [str stringByAddQueryParameter:PARA_APPID value:appId];
         str = [str stringByAddQueryParameter:PARA_USERID value:userId];
+        str = [str stringByAddQueryParameter:PARA_OPUS_ID value:opusId];
         str = [str stringByAddQueryParameter:PARA_APPID value:[ConfigManager appId]];
         
         return str;
