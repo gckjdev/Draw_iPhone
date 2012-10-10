@@ -827,9 +827,6 @@
 		CA8974351607230E003A95F7 /* UserInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA8974081607230E003A95F7 /* UserInfoCell.m */; };
 		CA8974361607230E003A95F7 /* UserInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA8974091607230E003A95F7 /* UserInfoCell.xib */; };
 		CA8974371607230E003A95F7 /* UserInfoCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA89740A1607230E003A95F7 /* UserInfoCell~ipad.xib */; };
-		CA8974381607230E003A95F7 /* FeedController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA89740C1607230E003A95F7 /* FeedController.m */; };
-		CA8974391607230E003A95F7 /* FeedController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA89740D1607230E003A95F7 /* FeedController.xib */; };
-		CA89743A1607230E003A95F7 /* FeedController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA89740E1607230E003A95F7 /* FeedController~ipad.xib */; };
 		CA89743B1607230E003A95F7 /* CommentController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA8974111607230E003A95F7 /* CommentController.m */; };
 		CA89743C1607230E003A95F7 /* CommentController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA8974121607230E003A95F7 /* CommentController.xib */; };
 		CA89743D1607230E003A95F7 /* CommentController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA8974131607230E003A95F7 /* CommentController~ipad.xib */; };
@@ -2437,10 +2434,6 @@
 		CA8974081607230E003A95F7 /* UserInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfoCell.m; sourceTree = "<group>"; };
 		CA8974091607230E003A95F7 /* UserInfoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserInfoCell.xib; sourceTree = "<group>"; };
 		CA89740A1607230E003A95F7 /* UserInfoCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "UserInfoCell~ipad.xib"; sourceTree = "<group>"; };
-		CA89740B1607230E003A95F7 /* FeedController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedController.h; sourceTree = "<group>"; };
-		CA89740C1607230E003A95F7 /* FeedController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedController.m; sourceTree = "<group>"; };
-		CA89740D1607230E003A95F7 /* FeedController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FeedController.xib; sourceTree = "<group>"; };
-		CA89740E1607230E003A95F7 /* FeedController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "FeedController~ipad.xib"; sourceTree = "<group>"; };
 		CA8974101607230E003A95F7 /* CommentController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentController.h; sourceTree = "<group>"; };
 		CA8974111607230E003A95F7 /* CommentController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentController.m; sourceTree = "<group>"; };
 		CA8974121607230E003A95F7 /* CommentController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommentController.xib; sourceTree = "<group>"; };
@@ -6043,10 +6036,6 @@
 			isa = PBXGroup;
 			children = (
 				CA8973F61607230E003A95F7 /* Cell */,
-				CA89740B1607230E003A95F7 /* FeedController.h */,
-				CA89740C1607230E003A95F7 /* FeedController.m */,
-				CA89740D1607230E003A95F7 /* FeedController.xib */,
-				CA89740E1607230E003A95F7 /* FeedController~ipad.xib */,
 				CA89740F1607230E003A95F7 /* FeedDetail */,
 				CA89741C1607230E003A95F7 /* Hot */,
 				CA8974201607230E003A95F7 /* Mine */,
@@ -7359,8 +7348,6 @@
 				CA8974341607230E003A95F7 /* FeedCell~ipad.xib in Resources */,
 				CA8974361607230E003A95F7 /* UserInfoCell.xib in Resources */,
 				CA8974371607230E003A95F7 /* UserInfoCell~ipad.xib in Resources */,
-				CA8974391607230E003A95F7 /* FeedController.xib in Resources */,
-				CA89743A1607230E003A95F7 /* FeedController~ipad.xib in Resources */,
 				CA89743C1607230E003A95F7 /* CommentController.xib in Resources */,
 				CA89743D1607230E003A95F7 /* CommentController~ipad.xib in Resources */,
 				CA8974421607230E003A95F7 /* ShowFeedController.xib in Resources */,
@@ -8067,7 +8054,6 @@
 				CA89742F1607230E003A95F7 /* DrawInfoCell.m in Sources */,
 				CA8974321607230E003A95F7 /* FeedCell.m in Sources */,
 				CA8974351607230E003A95F7 /* UserInfoCell.m in Sources */,
-				CA8974381607230E003A95F7 /* FeedController.m in Sources */,
 				CA89743B1607230E003A95F7 /* CommentController.m in Sources */,
 				CA8974411607230E003A95F7 /* ShowFeedController.m in Sources */,
 				CA8974441607230E003A95F7 /* HotController.m in Sources */,
