@@ -106,6 +106,7 @@ static MyPaintManager* _defaultManager;
                 language:(LanguageType)language
                 drawWord:(NSString*)drawWord 
                    level:(WordLevel)level
+
 {
     
 //    NSLog(@"<Draw Log>createDraft");
