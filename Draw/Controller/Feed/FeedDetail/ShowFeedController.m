@@ -65,7 +65,8 @@ typedef enum{
     PPRelease(_commentButton);
     PPRelease(_flowerButton);
     PPRelease(_tomatoButton);
-    [_replayButton release];
+    PPRelease(_replayButton);
+
     [super dealloc];
 }
 
@@ -358,7 +359,9 @@ enum{
 - (void)updateTitle
 {
     NSString *title = nil;
-    if ([self.feed showAnswer] && [self.feed.wordText length] != 0) {
+    if ([self.feed isContestFeed]) {
+        title = [NSString stringWithFormat:NSLS(@"kContestFeedDetail")];        
+    }else if ([self.feed showAnswer] && [self.feed.wordText length] != 0) {
         title = [NSString stringWithFormat:NSLS(@"[%@]"),
                  self.feed.wordText];        
     }else{
@@ -555,20 +558,20 @@ enum{
         Item *item = [Item tomato];
         [self throwItem:item];
     }else if(button == self.replayButton){
-        
-        if ([self.feed isContestFeed]) {
-            //TODO enter the show contest feed controller.
-            PPDebug(@"enter show contest feed controller");
-            
-            ReplayContestDrawController *controller = [[ReplayContestDrawController alloc] initWithFeed:self.feed];
-            [self.navigationController pushViewController:controller animated:YES];
-            [controller release];
-            
-        }else {
-            ReplayView *replay = [ReplayView createReplayView:self];
-            [replay setViewInfo:self.feed];
-            [replay showInView:self.view];
-        }
+//        
+//        if ([self.feed isContestFeed]) {
+//            //TODO enter the show contest feed controller.
+//            PPDebug(@"enter show contest feed controller");
+//            
+//            ReplayContestDrawController *controller = [[ReplayContestDrawController alloc] initWithFeed:self.feed];
+//            [self.navigationController pushViewController:controller animated:YES];
+//            [controller release];
+//            
+//        }else {
+        ReplayView *replay = [ReplayView createReplayView:self];
+        [replay setViewInfo:self.feed];
+        [replay showInView:self.view];
+//        }
         
     }else{
         //NO action

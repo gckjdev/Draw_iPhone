@@ -69,27 +69,13 @@
 							<string key="NSResourceName">paper@2x.png</string>
 						</object>
 					</object>
-					<object class="IBUIImageView" id="47539283">
-						<reference key="NSNextResponder" ref="774585933"/>
-						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{62, 30}, {196, 40}}</string>
-						<reference key="NSSuperview" ref="774585933"/>
-						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="640944265"/>
-						<bool key="IBUIUserInteractionEnabled">NO</bool>
-						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-						<object class="NSCustomResource" key="IBUIImage">
-							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">paperclip@2x.png</string>
-						</object>
-					</object>
 					<object class="IBUIImageView" id="400329107">
 						<reference key="NSNextResponder" ref="774585933"/>
 						<int key="NSvFlags">292</int>
 						<string key="NSFrameSize">{320, 50}</string>
 						<reference key="NSSuperview" ref="774585933"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="47539283"/>
+						<reference key="NSNextKeyView"/>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<object class="NSCustomResource" key="IBUIImage" id="863999974">
@@ -638,7 +624,6 @@
 							<reference ref="204940874"/>
 							<reference ref="823380676"/>
 							<reference ref="400329107"/>
-							<reference ref="47539283"/>
 							<reference ref="640944265"/>
 							<reference ref="375679161"/>
 							<reference ref="65007175"/>
@@ -704,11 +689,6 @@
 						<reference key="parent" ref="774585933"/>
 					</object>
 					<object class="IBObjectRecord">
-						<int key="objectID">109</int>
-						<reference key="object" ref="47539283"/>
-						<reference key="parent" ref="774585933"/>
-					</object>
-					<object class="IBObjectRecord">
 						<int key="objectID">111</int>
 						<reference key="object" ref="375679161"/>
 						<reference key="parent" ref="774585933"/>
@@ -745,7 +725,6 @@
 					<string>-2.IBPluginDependency</string>
 					<string>102.IBPluginDependency</string>
 					<string>105.IBPluginDependency</string>
-					<string>109.IBPluginDependency</string>
 					<string>111.IBPluginDependency</string>
 					<string>115.IBPluginDependency</string>
 					<string>122.CustomClassName</string>
@@ -769,7 +748,6 @@
 					<string>OnlineDrawViewController</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>UIResponder</string>
-					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -1026,7 +1004,6 @@
 				<string>guess_popup@2x.png</string>
 				<string>normalpallets@2x.png</string>
 				<string>paper@2x.png</string>
-				<string>paperclip@2x.png</string>
 				<string>round@2x.png</string>
 				<string>run@2x.png</string>
 				<string>timeset@2x.png</string>
@@ -1042,7 +1019,6 @@
 				<string>{57, 67}</string>
 				<string>{640, 81}</string>
 				<string>{640, 960}</string>
-				<string>{388, 79}</string>
 				<string>{74, 74}</string>
 				<string>{74, 74}</string>
 				<string>{76, 74}</string>
