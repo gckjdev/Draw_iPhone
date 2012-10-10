@@ -9,7 +9,8 @@
 #import "TopPlayerView.h"
 #import "ShareImageManager.h"
 #import "PPApplication.h"
-#import "HJManagedImageV.h"
+//#import "HJManagedImageV.h"
+#import "UIImageView+WebCache.h"
 
 @implementation TopPlayerView
 @synthesize avatar = _avatar;
@@ -54,9 +55,10 @@
     }
     self.topPlayer = player;
 
-    [self.avatar clear];
+//    [self.avatar clear];
     if([_topPlayer.avatar length] != 0){
-        [self.avatar setUrl:[NSURL URLWithString:_topPlayer.avatar]];
+//        [self.avatar setUrl:[NSURL URLWithString:_topPlayer.avatar]];
+        [self.avatar setImageWithURL:[NSURL URLWithString:_topPlayer.avatar]];
     } else{
         UIImage *image = nil;
         if (player.gender) {
@@ -66,7 +68,7 @@
         }
         [self.avatar setImage:image];
     }
-    [GlobalGetImageCache() manage:self.avatar];
+//    [GlobalGetImageCache() manage:self.avatar];
     if (player.nickName) {
         NSString *nick = [NSString stringWithFormat:@" %@",player.nickName];
         //        [self.author setText:author];
@@ -131,4 +133,5 @@
     PPRelease(_cupImage);
     [super dealloc];
 }
+
 @end
