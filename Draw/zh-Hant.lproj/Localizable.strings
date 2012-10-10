@@ -879,6 +879,7 @@
 "kContestPendding" = "未開始";
 "kNoContestTips" = "不好意思，目前沒有適合您的比賽。";
 "kContestFeedDetail" = "作品詳情";
+"kDrawToUserByUser" = "畫給%@";
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 

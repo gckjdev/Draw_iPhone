@@ -40,7 +40,7 @@
 #import "ConfigManager.h"
 #import "ItemService.h"
 #import "VendingController.h"
-#import "Feed.h"
+#import "DrawFeed.h"
 #import "ShowFeedController.h"
 
 #define CONTINUE_TIME 10
@@ -622,6 +622,15 @@
 #define ITEM_TAG_OFFSET 20120728
 - (BOOL)throwItem:(ToolView*)toolView
 {
+    if ((toolView.itemType == ItemTypeTomato 
+         && !_feed.canThrowTomato) 
+        || (toolView.itemType == ItemTypeFlower
+            && !_feed.canSendFlower)) {
+        [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kCannotThrowAgain") delayTime:1.5 isHappy:YES];
+            self.downButton.enabled = NO;
+            
+        return NO;
+    }
     
     if([[ItemManager defaultManager] hasEnoughItem:toolView.itemType] == NO){
         //TODO go the shopping page.

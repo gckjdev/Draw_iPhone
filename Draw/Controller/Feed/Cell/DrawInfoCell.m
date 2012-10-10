@@ -21,6 +21,7 @@
 @implementation DrawInfoCell
 @synthesize drawImage;
 @synthesize timeLabel;
+@synthesize drawToButton = _drawToButton;
 @synthesize loadingActivity;
 @synthesize feed = _feed;
 @synthesize showView = _showView;
@@ -54,10 +55,25 @@
     return 252.0f;
 }
 
+- (NSString*)createDrawToUserInfoByFeed:(DrawToUserFeed*)feed
+{
+    NSString* targetUserName = feed.targetUser.nickName;
+    return [NSString stringWithFormat:NSLS(@"kDrawToUserByUser"), targetUserName];
+}
+
+- (void)updateDrawToUserInfo:(DrawFeed*)feed
+{
+    if ([feed isKindOfClass:[DrawToUserFeed class]]) {
+        [self.drawToButton setTitle:[self createDrawToUserInfoByFeed:(DrawToUserFeed*)feed] forState:UIControlStateNormal];
+    }
+    
+}
+
 
 - (void)updateTime:(DrawFeed *)feed
 {
     NSString *timeString = nil;
+    
     if ([LocaleUtils isChinese]) {
         timeString = chineseBeforeTime(feed.createDate);
     } else {
@@ -71,6 +87,8 @@
         timeString = dateToStringByFormat(feed.createDate, formate);
         [self.timeLabel setText:timeString];
     }
+    
+    
 }
 
 
@@ -156,7 +174,8 @@
         [self updateShowView:feed];
         [self updateTime:feed];
         return;
-    }    
+    } 
+    [self updateDrawToUserInfo:feed];
     if (!_isLoading) {
         _getTimes = 1;
         [[FeedService defaultService] getFeedByFeedId:feed.feedId delegate:self];        
@@ -201,6 +220,7 @@
     PPRelease(timeLabel);
     PPRelease(loadingActivity);
     PPRelease(_feed);
+    [_drawToButton release];
     [super dealloc];
 }
 @end
