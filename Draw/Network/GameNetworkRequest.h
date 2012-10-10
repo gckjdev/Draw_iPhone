@@ -235,6 +235,12 @@
                          targetUid:(NSString *)targetUid
                          contestId:(NSString *)contestId;
 
++ (CommonNetworkOutput*)updateOpus:(NSString*)baseURL
+                             appId:(NSString*)appId
+                            userId:(NSString*)userId
+                              data:(NSData*)data
+                         imageData:(NSData *)imageData;
+
 + (CommonNetworkOutput*)guessOpus:(NSString*)baseURL
                             appId:(NSString*)appId
                            userId:(NSString*)userId

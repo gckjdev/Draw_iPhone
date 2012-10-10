@@ -1322,7 +1322,54 @@
     }
 }
 
++ (CommonNetworkOutput*)updateOpus:(NSString*)baseURL
+                             appId:(NSString*)appId
+                            userId:(NSString*)userId
+                              data:(NSData*)data
+                         imageData:(NSData *)imageData
+{
+    CommonNetworkOutput* output = [[[CommonNetworkOutput alloc] init] autorelease];
+    
+    if (userId == nil || (data == nil && imageData == nil)){
+        PPDebug(@"<updateOpus> but userId nil or data/imageData nil");
+        return nil;
+    }
+    
+    NSString *method = METHOD_UPDATE_OPUS;
+    
+    ConstructURLBlock constructURLHandler = ^NSString *(NSString *baseURL) {
+        
+        // set input parameters
+        NSString* str = [NSString stringWithString:baseURL];
+        
+        str = [str stringByAddQueryParameter:METHOD value:method];
+        str = [str stringByAddQueryParameter:PARA_APPID value:appId];
+        str = [str stringByAddQueryParameter:PARA_USERID value:userId];
+        str = [str stringByAddQueryParameter:PARA_APPID value:[ConfigManager appId]];
+        
+        return str;
+    };
+    
+    
+    PPNetworkResponseBlock responseHandler = ^(NSDictionary *dict, CommonNetworkOutput *output) {
+        output.jsonDataDict = [dict objectForKey:RET_DATA];
+        return;
+    };
+    
+    NSMutableDictionary *dataDict = nil;
+    if (data) {
+        dataDict = [NSMutableDictionary dictionary];
+        [dataDict setObject:data forKey:PARA_DRAW_DATA];
+    }
+    
+    return [PPNetworkRequest uploadRequest:baseURL
+                                 imageData:imageData
+                              postDataDict:dataDict
+                       constructURLHandler:constructURLHandler
+                           responseHandler:responseHandler
+                                    output:output];
 
+}
 
 + (CommonNetworkOutput*)guessOpus:(NSString*)baseURL
                              appId:(NSString*)appId
