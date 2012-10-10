@@ -717,9 +717,12 @@ enum{
     if (resultCode == 0) {
         
         if (self.contest) {
+            self.contest.opusCount ++;
+            if (![self.contest joined]) {
+                self.contest.participantCount ++;
+            }
             [self.contest incCommitCount];
             [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kSubmitSuccTitle") delayTime:1.5 isSuccessful:YES];
-
             [self quit];
             return;
         }

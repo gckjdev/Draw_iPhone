@@ -866,6 +866,7 @@
 "kContestPassed" = "Passed(%d)";
 "kContestPendding" = "Pendding";
 "kNoContestTips" = "No Contest Now.";
+"kContestFeedDetail" = "Contest Opus";
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 
