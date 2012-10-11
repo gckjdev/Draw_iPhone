@@ -58,7 +58,25 @@
 //    [self.avatar clear];
     if([_topPlayer.avatar length] != 0){
 //        [self.avatar setUrl:[NSURL URLWithString:_topPlayer.avatar]];
-        [self.avatar setImageWithURL:[NSURL URLWithString:_topPlayer.avatar]];
+        
+        NSURL *url = [NSURL URLWithString:_topPlayer.avatar];
+        UIImage *defaultImage = nil;
+        if (player.gender) {
+            defaultImage = [[ShareImageManager defaultManager] maleDefaultAvatarImage];
+        }else{
+            defaultImage = [[ShareImageManager defaultManager] femaleDefaultAvatarImage];
+        }
+        
+        self.avatar.alpha = 0;
+            
+        [self.avatar setImageWithURL:url placeholderImage:defaultImage success:^(UIImage *image, BOOL cached) {
+            [UIView animateWithDuration:1 animations:^{
+                self.avatar.alpha = 1.0;
+            }];
+        } failure:^(NSError *error) {
+            self.avatar.alpha = 1;
+        }];
+        
     } else{
         UIImage *image = nil;
         if (player.gender) {
@@ -66,7 +84,12 @@
         }else{
             image = [[ShareImageManager defaultManager] femaleDefaultAvatarImage];
         }
+        self.avatar.alpha = 0;
         [self.avatar setImage:image];
+        [UIView animateWithDuration:1 animations:^{
+            self.avatar.alpha = 1.0;
+        }];
+        
     }
 //    [GlobalGetImageCache() manage:self.avatar];
     if (player.nickName) {
