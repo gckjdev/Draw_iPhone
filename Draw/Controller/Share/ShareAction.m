@@ -171,7 +171,15 @@
                       mimeType:mime
                       fileName:fileName];
     [compose setMailComposeDelegate:self];
-    [self.superViewController presentModalViewController:compose animated:YES];    
+    
+    if ([DeviceDetection isOS6]){
+        [self.superViewController presentViewController:compose animated:YES completion:^{
+            
+        }];
+    }
+    else{
+        [self.superViewController presentModalViewController:compose animated:YES];
+    }
     [compose release];
 }
 
