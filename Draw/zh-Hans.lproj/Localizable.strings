@@ -853,7 +853,7 @@
 "kDetail" = "详细";
 "kFailLoad" = "获取数据失败，请稍后再试。";
 "kContestOpus" = "参赛作品";
-"kTop" = "排行榜";
+"kTop" = "画榜";
 "kCanotSendToSelf" = "不能为自己的作品送鲜花或者扔番茄哦。";
 "kAutoSave" = "自动保存";
 "kReplyCommentDesc" = "回复%@: %@";
