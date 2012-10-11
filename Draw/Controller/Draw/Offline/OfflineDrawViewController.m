@@ -127,9 +127,10 @@
 
 + (void)startDrawWithContest:(Contest *)contest   
               fromController:(UIViewController*)fromController
+                    animated:(BOOL)animated
 {
     OfflineDrawViewController *odc = [[OfflineDrawViewController alloc] initWithContest:contest];
-    [fromController.navigationController pushViewController:odc animated:YES];   
+    [fromController.navigationController pushViewController:odc animated:animated];   
     [odc release];
     
     PPDebug(@"<startDrawWithContest>: contest id = %@",contest.contestId);
@@ -156,10 +157,7 @@
     PPRelease(pickBGColorView);
     PPRelease(_draft);
     PPRelease(_contest);
-    //    [autoReleasePool drain];
-    //    autoReleasePool = nil;
-    
-    [draftButton release];
+    PPRelease(draftButton);
     [super dealloc];
 }
 
@@ -209,6 +207,7 @@
         self.word = [Word wordWithText:draft.drawWord level:draft.level.intValue];
         shareImageManager = [ShareImageManager defaultManager];
         languageType = draft.language.intValue;
+        self.targetUid = draft.drawUserId;
         PPDebug(@"draft word lelve = %@, language = %@", draft.level,draft.language);
     }
     return self;
@@ -373,7 +372,7 @@ enum{
 
 - (void)initDraftButton
 {
-    if (targetType == TypeGraffiti) {
+    if (targetType == TypeGraffiti || targetType == TypeContest) {
         self.draftButton.hidden = YES;
     }
 }
@@ -588,7 +587,6 @@ enum{
         [HomeController returnRoom:self];
     }
 }
-
 - (void)clickOk:(CommonDialog *)dialog
 {
     if (dialog.tag == DIALOG_TAG_CLEAN_DRAW) {
@@ -632,6 +630,9 @@ enum{
                 
     }
     else if(dialog.tag == DIALOG_TAG_SUBMIT){
+        
+        
+        
         // Save Image Locally        
         [[DrawDataService defaultService] saveActionList:drawView.drawActionList 
                                                   userId:[[UserManager defaultManager] userId] 
@@ -641,7 +642,22 @@ enum{
                                                    image:[drawView createImage]
                                                 delegate:self];
 
-        
+        if (self.contest) {
+            
+            if (dialog.style == CommonDialogStyleSingleButton) {
+                [self quit];
+                return;
+            }
+            
+            //draw another opus for contest
+            ContestController *contestController =  [self superContestController];
+            [self.navigationController popToViewController:contestController 
+                                                  animated:NO];
+            [contestController enterDrawControllerWithContest:self.contest 
+                                                     animated:NO];
+            return;
+        }
+
         UIViewController *superController = [self superShowFeedController];
         
         //if come from feed detail controller
@@ -670,7 +686,7 @@ enum{
 - (void)clickBack:(CommonDialog *)dialog
 {
     if(dialog.tag == DIALOG_TAG_SUBMIT){
-        
+
         // Save Image Locally        
         [[DrawDataService defaultService] saveActionList:drawView.drawActionList 
                                                   userId:[[UserManager defaultManager] userId] 
@@ -718,16 +734,35 @@ enum{
     [self hideActivity];
     self.submitButton.userInteractionEnabled = YES;
     if (resultCode == 0) {
-        
+        CommonDialog *dialog = nil;
         if (self.contest) {
+            self.contest.opusCount ++;
+            if (![self.contest joined]) {
+                self.contest.participantCount ++;
+            }
             [self.contest incCommitCount];
-            [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kSubmitSuccTitle") delayTime:1.5 isSuccessful:YES];
-
-            [self quit];
-            return;
+            
+            if ([self.contest commintCountEnough]) {
+                dialog = [CommonDialog createDialogWithTitle:NSLS(@"kSubmitSuccTitle") 
+                                                     message:NSLS(@"kContestSubmitSuccQuitMsg") 
+                                                       style:CommonDialogStyleSingleButton 
+                                                    delegate:self];
+            }else{
+                NSString *title = [NSString stringWithFormat:NSLS(@"kContestSubmitSuccMsg"),
+                                   self.contest.retainCommitChance];
+                
+                dialog = [CommonDialog createDialogWithTitle:NSLS(@"kSubmitSuccTitle") 
+                                                     message:title 
+                                                       style:CommonDialogStyleDoubleButton 
+                                                    delegate:self];
+            }
+        }else{
+            dialog = [CommonDialog createDialogWithTitle:NSLS(@"kSubmitSuccTitle")
+                                                 message:NSLS(@"kSubmitSuccMsg") 
+                                                   style:CommonDialogStyleDoubleButton 
+                                                delegate:self];
         }
         
-        CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kSubmitSuccTitle") message:NSLS(@"kSubmitSuccMsg") style:CommonDialogStyleDoubleButton delegate:self];
         dialog.tag = DIALOG_TAG_SUBMIT;
         [dialog showInView:self.view];
         
@@ -756,7 +791,7 @@ enum{
 //    return;
     
     
-    if (targetType == TypeGraffiti) {
+    if (targetType == TypeGraffiti || targetType == TypeContest) {
         return;
     }
     PPDebug(@"<OfflineDrawViewController> start to save draft. show result = %d",showResult);
@@ -770,8 +805,8 @@ enum{
         if (self.draft) {
             NSLog(@"<Draw Log>update old draft");
             result = [[MyPaintManager defaultManager] updateDraft:self.draft 
-                                                   image:image
-                                                    data:drawView.drawActionList];
+                                                            image:image
+                                                             data:drawView.drawActionList];
         }else{    
             self.draft = [[MyPaintManager defaultManager] createDraft:image data:drawView.drawActionList language:languageType drawWord:self.word.text level:self.word.level]; 
             if (self.draft) {
@@ -798,9 +833,15 @@ enum{
 
 #pragma mark - Actions
 
-- (IBAction)clickDraftButton:(id)sender {
-    
+- (void)saveDraftAndShowResult
+{
     [self saveDraft:YES];
+    [self hideActivity];
+}
+
+- (IBAction)clickDraftButton:(id)sender {
+    [self showActivityWithText:NSLS(@"kSaving")];
+    [self performSelector:@selector(saveDraftAndShowResult) withObject:nil afterDelay:0.01];
 }
 
 - (IBAction)clickRevokeButton:(id)sender {

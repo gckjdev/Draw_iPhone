@@ -123,4 +123,6 @@ typedef enum{
 + (BOOL)isAutoSave; //default is no
 + (void)setAutoSave:(BOOL)isAutoSave;
 
++ (int)numberOfItemCanUsedOnNormalOpus;
++ (int)numberOfItemCanUsedOnContestOpus;
 @end

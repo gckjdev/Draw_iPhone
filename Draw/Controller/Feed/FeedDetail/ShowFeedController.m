@@ -65,7 +65,8 @@ typedef enum{
     PPRelease(_commentButton);
     PPRelease(_flowerButton);
     PPRelease(_tomatoButton);
-    [_replayButton release];
+    PPRelease(_replayButton);
+
     [super dealloc];
 }
 
@@ -255,14 +256,14 @@ enum{
         case SectionCommentInfo:
         {
             if (indexPath.row == 0) {
-                PPDebug(@"row = %d", indexPath.row);
+//                PPDebug(@"row = %d", indexPath.row);
             }
             if (indexPath.row >= [self.dataList count]) {
                 return SPACE_CELL_FONT_HEIGHT;
             }
             CommentFeed *feed = [self.dataList objectAtIndex:indexPath.row];
             CGFloat height = [CommentCell getCellHeight:feed];
-            PPDebug(@"row = %d, height = %f", indexPath.row ,height);
+//            PPDebug(@"row = %d, height = %f", indexPath.row ,height);
             return height;
         }
         default:
@@ -358,7 +359,9 @@ enum{
 - (void)updateTitle
 {
     NSString *title = nil;
-    if ([self.feed showAnswer] && [self.feed.wordText length] != 0) {
+    if ([self.feed isContestFeed]) {
+        title = [NSString stringWithFormat:NSLS(@"kContestFeedDetail")];        
+    }else if ([self.feed showAnswer] && [self.feed.wordText length] != 0) {
         title = [NSString stringWithFormat:NSLS(@"[%@]"),
                  self.feed.wordText];        
     }else{
@@ -380,6 +383,23 @@ enum{
     [self updateActionButtons];
     [self updateTitle];
     [self updateUserInfo];
+}
+
+- (void)didClickDrawToUser
+{
+    if ([self.feed isKindOfClass:[DrawToUserFeed class]]) {
+        DrawToUserFeed* feed = (DrawToUserFeed*)self.feed;
+        [CommonUserInfoView showUser:feed.targetUser.userId 
+                            nickName:feed.targetUser.nickName 
+                              avatar:nil 
+                              gender:nil 
+                            location:nil 
+                               level:1
+                             hasSina:NO 
+                               hasQQ:NO 
+                         hasFacebook:NO 
+                          infoInView:self];
+    }
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -457,18 +477,20 @@ enum{
     }
     
 
-    if (item.amount <= 0) {
+    if (!_feed.isContestFeed && item.amount <= 0) {
         CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kNoItemTitle") message:NSLS(@"kNoItemMessage") style:CommonDialogStyleDoubleButton delegate:self];
         dialog.tag = ITEM_TAG_OFFSET + item.type;
         [dialog showInView:self.view];
 
     }else{
         //throw animation
+        BOOL isFree = _feed.isContestFeed;
         [[ItemService defaultService] sendItemAward:item.type
                                        targetUserId:_feed.author.userId
                                           isOffline:YES
                                          feedOpusId:_feed.feedId
-                                         feedAuthor:_feed.author.userId];
+                                         feedAuthor:_feed.author.userId 
+                                            forFree:isFree];
         
         ShareImageManager *imageManager = [ShareImageManager defaultManager];
         if (item.type == ItemTypeFlower) {
@@ -555,20 +577,20 @@ enum{
         Item *item = [Item tomato];
         [self throwItem:item];
     }else if(button == self.replayButton){
-        
-        if ([self.feed isContestFeed]) {
-            //TODO enter the show contest feed controller.
-            PPDebug(@"enter show contest feed controller");
-            
-            ReplayContestDrawController *controller = [[ReplayContestDrawController alloc] initWithFeed:self.feed];
-            [self.navigationController pushViewController:controller animated:YES];
-            [controller release];
-            
-        }else {
-            ReplayView *replay = [ReplayView createReplayView:self];
-            [replay setViewInfo:self.feed];
-            [replay showInView:self.view];
-        }
+//        
+//        if ([self.feed isContestFeed]) {
+//            //TODO enter the show contest feed controller.
+//            PPDebug(@"enter show contest feed controller");
+//            
+//            ReplayContestDrawController *controller = [[ReplayContestDrawController alloc] initWithFeed:self.feed];
+//            [self.navigationController pushViewController:controller animated:YES];
+//            [controller release];
+//            
+//        }else {
+        ReplayView *replay = [ReplayView createReplayView:self];
+        [replay setViewInfo:self.feed];
+        [replay showInView:self.view];
+//        }
         
     }else{
         //NO action

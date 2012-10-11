@@ -45,5 +45,6 @@
 - (IBAction)clickDetailButton:(id)sender;
 - (IBAction)clickJoinButton:(id)sender;
 - (void)setViewInfo:(Contest *)contest;
+- (void)refreshCount;
 - (void)refreshRequest;
 @end

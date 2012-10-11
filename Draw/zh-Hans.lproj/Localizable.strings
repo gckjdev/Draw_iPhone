@@ -555,6 +555,9 @@
 "kSubmitSuccTitle" = "提交成功";
 "kSubmitSuccMsg" = "恭喜！提交成功！再来一幅？";
 
+"kContestSubmitSuccMsg" = "谢谢您的参与，还可以提交%d幅作品，再来一幅？";
+"kContestSubmitSuccQuitMsg" = "谢谢您的参与！";
+
 "kContestNotRunning" = "对不起，比赛已经结束或者尚未开始，您不能参加。";
 "kContesSummitCountEnough" = "对不起，你已经提交了%d作品了，留点机会给别人哦。";
 
@@ -816,7 +819,7 @@
 "kJoinCount" = "参加(%d)";
 
 "kContest" = "画画大赛";
-"kRank" = "排行榜";
+"kRank" = "画榜";
 "kNoRankPlayer" = "暂时没有达人榜数据。";
 "kNoRankHistory" = "暂时没有总榜数据。";
 "kNoRankHot" = "暂时没有热榜数据。";
@@ -824,8 +827,8 @@
 "kNoData" = "暂时没有数据。";
 
 "kRankPlayer" = "达人";
-"kRankHistory" = "总榜";
-"kRankHot" = "热榜";
+"kRankHistory" = "年度";
+"kRankHot" = "本周";
 "kRankNew" = "最新";
 "kDrawToMe" = "画给我";
 
@@ -892,6 +895,9 @@
 "kContestPassed" = "已结束(%d)";
 "kContestPendding" = "未开始";
 "kNoContestTips" = "不好意思，目前没有适合您的比赛。";
+
+"kContestFeedDetail" = "作品详情";
+"kDrawToUserByUser" = "画给%@";
 
 /*********************** 猜猜画画国际化字符串结束 *************************/
 

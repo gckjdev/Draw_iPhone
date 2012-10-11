@@ -17,10 +17,12 @@
 #import "HJManagedImageV.h"
 #import "PPApplication.h"
 #import "UIImageView+WebCache.h"
+#import "CommonUserInfoView.h"
 
 @implementation DrawInfoCell
 @synthesize drawImage;
 @synthesize timeLabel;
+@synthesize drawToButton = _drawToButton;
 @synthesize loadingActivity;
 @synthesize feed = _feed;
 @synthesize showView = _showView;
@@ -54,10 +56,30 @@
     return 252.0f;
 }
 
+- (NSString*)createDrawToUserInfoByFeed:(DrawToUserFeed*)feed
+{
+    NSString* targetUserName = feed.targetUser.nickName;
+    if ([[UserManager defaultManager] isMe:feed.targetUser.userId]) {
+        targetUserName = NSLS(@"kMe");
+    }
+    return [NSString stringWithFormat:NSLS(@"kDrawToUserByUser"), targetUserName];
+}
+
+- (void)updateDrawToUserInfo:(DrawFeed*)feed
+{
+    if ([feed isKindOfClass:[DrawToUserFeed class]]) {
+        [self.drawToButton setTitle:[self createDrawToUserInfoByFeed:(DrawToUserFeed*)feed] forState:UIControlStateNormal];
+    } else {
+        [self.drawToButton setTitle:nil forState:UIControlStateNormal];
+    }
+    
+}
+
 
 - (void)updateTime:(DrawFeed *)feed
 {
     NSString *timeString = nil;
+    
     if ([LocaleUtils isChinese]) {
         timeString = chineseBeforeTime(feed.createDate);
     } else {
@@ -71,6 +93,8 @@
         timeString = dateToStringByFormat(feed.createDate, formate);
         [self.timeLabel setText:timeString];
     }
+    
+    
 }
 
 
@@ -120,11 +144,11 @@
 //        [self.drawImage setCallbackOnSetImage:self];
 //        [self.drawImage setUrl:[NSURL URLWithString:feed.drawImageUrl]];
         [self.drawImage setImageWithURL:[NSURL URLWithString:feed.drawImageUrl] placeholderImage:[[ShareImageManager defaultManager] unloadBg] success:^(UIImage *image, BOOL cached) {
-            PPDebug(@"<managedImageSet>: set large image");
+            PPDebug(@"<download image> %@ success", feed.drawImageUrl);
             self.feed.largeImage = image;
             [self.loadingActivity stopAnimating];
         } failure:^(NSError *error) {
-            PPDebug(@"<managedImageSet Failed>: set large image failed!");
+            PPDebug(@"<download image> %@ failure, error=%@", feed.drawImageUrl, [error description]);
             [self.loadingActivity stopAnimating];
         }];
         
@@ -147,16 +171,25 @@
     
 }
 
+- (IBAction)clickToUser:(id)sender
+{
+    if (_delegate && [_delegate respondsToSelector:@selector(didClickDrawToUser)]) {
+        [_delegate didClickDrawToUser];
+    }
+}
+
 - (void)setCellInfo:(DrawFeed *)feed
 {    
     [self setFeed:feed];
     [self updateTime:self.feed];
+    [self updateDrawToUserInfo:feed];
     
     if (feed.drawData) {
         [self updateShowView:feed];
         [self updateTime:feed];
         return;
-    }    
+    } 
+
     if (!_isLoading) {
         _getTimes = 1;
         [[FeedService defaultService] getFeedByFeedId:feed.feedId delegate:self];        
@@ -178,8 +211,13 @@
         self.feed.drawData = feed.drawData;
         self.feed.feedUser = feed.feedUser;
         
+//        if ([self.feed isKindOfClass:[DrawToUserFeed class]] && [feed isKindOfClass:[DrawToUserFeed class]]) {
+//            [(DrawToUserFeed *)self.feed setTargetUser:[(DrawToUserFeed *)feed targetUser]];
+//        }
+    
         [self updateShowView:feed];
         [self updateTime:feed];
+        [self updateDrawToUserInfo:feed];
         if (self.delegate && [self.delegate respondsToSelector:@selector(didUpdateShowView)]) {
             [self.delegate didUpdateShowView];
         }
@@ -201,6 +239,7 @@
     PPRelease(timeLabel);
     PPRelease(loadingActivity);
     PPRelease(_feed);
+    [_drawToButton release];
     [super dealloc];
 }
 @end

@@ -77,15 +77,11 @@
         return;
     }
     self.feed = feed;
-//    [self.drawImage clear];
-//    [self.drawImage setImage:[[ShareImageManager defaultManager] unloadBg]];
     if(feed.drawImage){
         [self.drawImage setImage:feed.drawImage];
     }else if ([feed.drawImageUrl length] != 0) {
-//        [self.drawImage setUrl:[NSURL URLWithString:feed.drawImageUrl]];
         NSURL *url = [NSURL URLWithString:feed.drawImageUrl];
         UIImage *defaultImage = [[ShareImageManager defaultManager] unloadBg];
-//        self.drawImage.image = defaultImage;
         [self.drawImage setImageWithURL:url placeholderImage:defaultImage];
     }else{
         PPDebug(@"<setViewInfo> show draw view. feedId=%@,word=%@", 

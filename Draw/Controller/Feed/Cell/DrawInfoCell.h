@@ -17,7 +17,7 @@
 
 @optional
 - (void)didUpdateShowView;
-
+- (void)didClickDrawToUser;
 @end
 
 @interface DrawInfoCell : PPTableViewCell<FeedServiceDelegate, ShowDrawViewDelegate>//, HJManagedImageVDelegate>
@@ -34,6 +34,7 @@
 @property (retain, nonatomic) ShowDrawView *showView;
 @property (retain, nonatomic) IBOutlet UIImageView *drawImage;
 @property (retain, nonatomic) IBOutlet UILabel *timeLabel;
+@property (retain, nonatomic) IBOutlet UIButton *drawToButton;
 @property (retain, nonatomic) IBOutlet UIActivityIndicatorView *loadingActivity;
 - (void)setCellInfo:(DrawFeed *)feed;
 + (NSString*)getCellIdentifier;

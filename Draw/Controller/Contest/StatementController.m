@@ -100,6 +100,7 @@
 
 - (IBAction)acceptButton:(id)sender {
     [OfflineDrawViewController startDrawWithContest:self.contest
-                                     fromController:self];
+                                     fromController:self 
+                                           animated:YES];
 }
 @end

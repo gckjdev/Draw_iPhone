@@ -113,6 +113,7 @@
 //for Draw offline
 #define METHOD_CREATE_OPUS @"cop"
 #define METHOD_CREATE_OPUS_IMAGE @"coi"
+#define METHOD_UPDATE_OPUS @"uop"
 #define METHOD_MATCH_OPUS  @"mop"
 #define METHOD_GET_OPUS_BY_ID @"goi"
 #define METHOD_GET_FEED_LIST  @"gfl"
