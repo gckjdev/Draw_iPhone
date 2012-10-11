@@ -170,7 +170,24 @@
             colorValues = values;
             break;            
         }
-            
+        case PACKAGE_14:
+        {
+            NSInteger values[] = {62,255,170,73,251,231,247,0,129,157,124,237,249,223,28} ;
+            colorValues = values;
+            break;            
+        }
+        case PACKAGE_15:
+        {
+            NSInteger values[] = {20,130,2,247,71,26,76,55,138,155,83,48,204,107,38} ;
+            colorValues = values;
+            break;            
+        }  
+        case PACKAGE_16:
+        {
+            NSInteger values[] = {126,130,9,116,158,8,248,129,85,81,127,179,136,199,236} ;
+            colorValues = values;
+            break;            
+        }  
 //        case GROUP_GRAY_GREEN:
 //        {
 //            NSInteger values[] =   {0,100,0, 0,128,0, 85,107,47, 128,128,0, 127,255,170};
