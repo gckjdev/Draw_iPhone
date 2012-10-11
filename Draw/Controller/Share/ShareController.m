@@ -112,7 +112,7 @@
         
         if (_allPaints == nil) {
             _allPaints = [[NSMutableArray alloc] initWithArray:paints];
-        }else{
+        }else{            
             [_allPaints addObjectsFromArray:paints];
         }        
         _allOffset += [paints count];
