@@ -57,14 +57,14 @@
 								<int key="NSvFlags">319</int>
 								<string key="NSFrame">{{128, 498}, {76, 22}}</string>
 								<reference key="NSSuperview" ref="765286161"/>
-								<reference key="NSNextKeyView" ref="150106597"/>
+								<reference key="NSNextKeyView" ref="878037939"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
 								<int key="IBUIContentMode">7</int>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<string key="IBUIText">99小时前</string>
-								<object class="NSColor" key="IBUITextColor" id="111299289">
+								<object class="NSColor" key="IBUITextColor" id="1002289217">
 									<int key="NSColorSpace">3</int>
 									<bytes key="NSWhite">MC42NjY2NjY2NjY3AA</bytes>
 								</object>
@@ -97,22 +97,25 @@
 									<bytes key="NSWhite">MAA</bytes>
 								</object>
 							</object>
-							<object class="IBUIButton" id="150106597">
+							<object class="IBUIButton" id="878037939">
 								<reference key="NSNextResponder" ref="765286161"/>
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{212, 497}, {385, 22}}</string>
 								<reference key="NSSuperview" ref="765286161"/>
-								<reference key="NSNextKeyView"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<int key="IBUIContentHorizontalAlignment">2</int>
 								<int key="IBUIContentVerticalAlignment">0</int>
-								<object class="NSColor" key="IBUIHighlightedTitleColor">
-									<int key="NSColorSpace">3</int>
-									<bytes key="NSWhite">MQA</bytes>
+								<object class="NSColor" key="IBUITintColor">
+									<int key="NSColorSpace">1</int>
+									<bytes key="NSRGB">MC4xOTYwNzg0MzE0IDAuMzA5ODAzOTIxNiAwLjUyMTU2ODYyNzUAA</bytes>
 								</object>
-								<reference key="IBUINormalTitleColor" ref="111299289"/>
+								<object class="NSColor" key="IBUIHighlightedTitleColor">
+									<int key="NSColorSpace">1</int>
+									<bytes key="NSRGB">MC4xOTYwNzg0MzE0IDAuMzA5ODAzOTIxNiAwLjUyMTU2ODYyNzUAA</bytes>
+								</object>
+								<reference key="IBUINormalTitleColor" ref="1002289217"/>
 								<object class="NSColor" key="IBUINormalTitleShadowColor">
 									<int key="NSColorSpace">3</int>
 									<bytes key="NSWhite">MC41AA</bytes>
@@ -180,14 +183,14 @@
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">drawToButton</string>
 						<reference key="source" ref="893510759"/>
-						<reference key="destination" ref="150106597"/>
+						<reference key="destination" ref="878037939"/>
 					</object>
 					<int key="connectionID">25</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">clickToUser:</string>
-						<reference key="source" ref="150106597"/>
+						<reference key="source" ref="878037939"/>
 						<reference key="destination" ref="893510759"/>
 						<int key="IBEventType">7</int>
 					</object>
@@ -220,7 +223,7 @@
 							<reference ref="872528613"/>
 							<reference ref="1073126218"/>
 							<reference ref="889658087"/>
-							<reference ref="150106597"/>
+							<reference ref="878037939"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -241,7 +244,7 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">24</int>
-						<reference key="object" ref="150106597"/>
+						<reference key="object" ref="878037939"/>
 						<reference key="parent" ref="893510759"/>
 					</object>
 				</array>
@@ -253,6 +256,7 @@
 				<string key="-2.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="18.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="24.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+				<real value="1" key="24.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
 				<string key="3.CustomClassName">DrawInfoCell</string>
 				<string key="3.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="5.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>

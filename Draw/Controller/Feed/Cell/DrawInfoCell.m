@@ -69,6 +69,8 @@
 {
     if ([feed isKindOfClass:[DrawToUserFeed class]]) {
         [self.drawToButton setTitle:[self createDrawToUserInfoByFeed:(DrawToUserFeed*)feed] forState:UIControlStateNormal];
+    } else {
+        [self.drawToButton setTitle:nil forState:UIControlStateNormal];
     }
     
 }
