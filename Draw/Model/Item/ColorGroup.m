@@ -286,6 +286,9 @@
     for (int i = GRADUAL_START; i < GRADUAL_END; ++ i) {
         ColorGroup *group = [ColorGroup getGroupWithID:i];
         [groupList addObject:group];
+        if (i == GRADUAL_GRAY) {
+            group.hasBought = YES;
+        }
     }
     for (int i = PACKAGE_START; i < PACKAGE_END; ++ i) {
         ColorGroup *group = [ColorGroup getGroupWithID:i];
