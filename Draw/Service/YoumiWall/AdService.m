@@ -492,6 +492,7 @@ static AdService* _defaultService;
     adView.tag = AD_VIEW_TAG;
     adView.delegate = self;
     [adView immobViewRequest];
+    
     [superView addSubview:adView];    
     [adView immobViewDisplay];        
     return adView;    

@@ -150,7 +150,7 @@
 
 - (void)drawPaint:(Paint *)paint
 { 
-    PPDebug(@"<SuperDrawView> draw paint");
+//    PPDebug(@"<SuperDrawView> draw paint");
     
     CGContextRef context = UIGraphicsGetCurrentContext(); 
     CGContextSetStrokeColorWithColor(context, paint.color.CGColor);

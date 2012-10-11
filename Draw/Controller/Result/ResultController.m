@@ -317,14 +317,27 @@
     ToolView* flower = [[[ToolView alloc] initWithItemType:ItemTypeFlower number:[[ItemManager defaultManager] amountForItem:ItemTypeFlower]] autorelease];
     tomato.tag = TOMATO_TOOLVIEW_TAG;
     flower.tag = FLOWER_TOOLVIEW_TAG;
-    [self.view addSubview:tomato];
-    [self.view addSubview:flower];
     [tomato setCenter:downButton.center];
     [flower setCenter:upButton.center];
+    [self.view addSubview:tomato];
+    [self.view addSubview:flower];
+
     [tomato addTarget:self action:@selector(clickDownButton:)];
     [flower addTarget:self action:@selector(clickUpButton:)];
     [flower setFrame:upButton.frame];
     [tomato setFrame:downButton.frame];
+    flower.autoresizingMask = UIViewAutoresizingFlexibleTopMargin
+    | !UIViewAutoresizingFlexibleBottomMargin
+    | UIViewAutoresizingFlexibleLeftMargin
+    | UIViewAutoresizingFlexibleRightMargin
+    | !UIViewAutoresizingFlexibleWidth
+    | !UIViewAutoresizingFlexibleHeight;
+    tomato.autoresizingMask = UIViewAutoresizingFlexibleTopMargin
+    | !UIViewAutoresizingFlexibleBottomMargin
+    | UIViewAutoresizingFlexibleLeftMargin
+    | UIViewAutoresizingFlexibleRightMargin
+    | !UIViewAutoresizingFlexibleWidth
+    | !UIViewAutoresizingFlexibleHeight;
     
 }
 - (void)initActionButton

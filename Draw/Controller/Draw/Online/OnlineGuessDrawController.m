@@ -332,6 +332,7 @@
         UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
         [button setTag:i];
         [self initCandidateButton:button];
+        button.autoresizingMask = !UIViewAutoresizingFlexibleBottomMargin |UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
         [self.view addSubview:button];
     }
     [self resetWordButtons:CANDIDATE_WORD_NUMBER];

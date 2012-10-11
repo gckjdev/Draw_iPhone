@@ -143,6 +143,7 @@
 
 - (void)showInView:(UIView *)view
 {
+    self.frame = view.frame;
     [super showInView:view];
     [self.targetTextField becomeFirstResponder];
 }

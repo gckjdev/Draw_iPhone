@@ -69,7 +69,8 @@
 
 - (void)showInView:(UIView *)view
 {
-    self.center = view.center;
+    self.frame = view.frame;
+    //    self.center = view.center;
     [view addSubview:self];
     CAAnimation *showAnimation = [AnimationManager scaleAnimationWithFromScale:0.01 
                                                                        toScale:1 

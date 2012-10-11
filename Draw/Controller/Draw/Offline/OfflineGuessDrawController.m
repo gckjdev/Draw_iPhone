@@ -394,6 +394,7 @@
     
     for (int i = CANDIDATE_BASE_TAG; i <= CANDIDATE_END_TAG; ++ i) {
         UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+        button.autoresizingMask = !UIViewAutoresizingFlexibleBottomMargin |UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
         [button setTag:i];
         [self initCandidateButton:button];
         [self.view addSubview:button];

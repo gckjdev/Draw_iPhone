@@ -326,7 +326,10 @@ enum{
 - (void)initDrawView
 {
     UIView *paperView = [self.view viewWithTag:PAPER_VIEW_TAG];
-    drawView = [[DrawView alloc] initWithFrame:DRAW_VIEW_FRAME];   
+    drawView = [[DrawView alloc] initWithFrame:DRAW_VIEW_FRAME];
+    
+    
+    
     [drawView setDrawEnabled:YES];
     [drawView setRevocationSupported:[DeviceDetection isIPAD]];
     drawView.delegate = self;

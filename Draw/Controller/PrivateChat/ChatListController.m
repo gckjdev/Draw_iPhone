@@ -279,20 +279,23 @@
         scfc.delegate = self;
         self.selectChatFriendController = scfc;
         [scfc release];
-        [self.view addSubview:_selectChatFriendController.view];
-        CGRect frame = _selectChatFriendController.view.frame;
-        _selectChatFriendController.view.frame = CGRectMake(0, self.view.frame.size.height, frame.size.width, frame.size.height);
+//        CGRect frame = _selectChatFriendController.view.frame;
+//        _selectChatFriendController.view.frame = CGRectMake(0, self.view.frame.size.height, frame.size.width, frame.size.height);
     }
     
-    CGRect frame = _selectChatFriendController.view.frame;
+
+//    CGRect frame = _selectChatFriendController.view.frame;
     [UIView beginAnimations:nil context:nil];
     [UIView setAnimationDuration:0.4];
-    _selectChatFriendController.view.frame = CGRectMake(0, 0, frame.size.width, frame.size.height);
-    [UIImageView commitAnimations]; 
+//    _selectChatFriendController.view.frame = CGRectMake(0, 0, frame.size.width, frame.size.height);
+    _selectChatFriendController.view.frame = [[UIScreen mainScreen] bounds];
+    [UIImageView commitAnimations];
+    
+    [self.view addSubview:_selectChatFriendController.view];
 }
 
 
-#pragma mark - SelectChatFriendDelagate 
+#pragma mark - SelectChatFriendDelagate
 - (void)didSelectFriend:(Friend *)aFriend;
 {
     NSString *nickname = [[FriendManager defaultManager] getFriendNick:aFriend];
