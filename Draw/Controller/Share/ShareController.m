@@ -539,8 +539,9 @@
 
 - (void)updateActionSheetIndexs
 {
+    int index = 0;
+    SHARE_AS_GIF = -1;
     if ([LocaleUtils isChina]){
-        int index = 0;
         if (self.selectDraftButton.selected) {
             EDIT  = index++;
         }else{
@@ -557,19 +558,19 @@
     }
     else{
         
-        int index = 0;
+        
         if (self.selectDraftButton.selected) {
-            EDIT  = index++;
+            EDIT  = 0;
         }else{
             EDIT = -1;
         }
-        SHARE_AS_PHOTO = index++;
-        REPLAY = index++;
-        DELETE = index++;
-        DELETE_ALL = index++;
-        DELETE_ALL_MINE = index++;
-        DELETE_ALL_DRAFT = index++;
-        CANCEL = index++;            
+        SHARE_AS_PHOTO = index+1;
+        REPLAY = index+2;
+        DELETE = index+3;
+        DELETE_ALL = index+4;
+        DELETE_ALL_MINE = index+5;
+        DELETE_ALL_DRAFT = index+6;
+        CANCEL = index+7;            
     }
     
 }
