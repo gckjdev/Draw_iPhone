@@ -64,24 +64,48 @@
     
     followButton.selected = YES;
     
-    [self loadMyFollow];
-    [self loadMyFans];
+//    [self loadMyFollow];
+//    [self loadMyFans];
+
+    self.myFollowList = [[FriendManager defaultManager] findAllFollowFriends];
+    self.myFanList = [[FriendManager defaultManager] findAllFanFriends];
+
+    [self updateFriendsCount];
+    if (followButton.selected) {
+        [self setAndReloadData:_myFollowList];
+    }else {
+        [self setAndReloadData:_myFanList];
+    }
+    
 }
 
 - (void)loadMyFollow
 {
-    [[FriendService defaultService] findFriendsByType:FOLLOW viewController:self];
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        [[FriendService defaultService] findFriendsByType:FOLLOW viewController:self];
+    });
+
+    
 }
 
 
 - (void)loadMyFans
 {
-    [[FriendService defaultService] findFriendsByType:FAN viewController:self];
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        [[FriendService defaultService] findFriendsByType:FAN viewController:self];
+    });
+    
+    
+    
+
 }
 
 
 - (void)didfindFriendsByType:(int)type friendList:(NSArray *)friendList result:(int)resultCode
 {
+    
     if (type == FOLLOW) {
         self.myFollowList = friendList;
     }else if(type == FAN)

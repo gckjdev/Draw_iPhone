@@ -149,6 +149,11 @@ static UserService* _defaultUserService;
     NSString* qqToken = nil;
     NSString* qqTokenSecret = nil;
 
+    NSString* newNickName = nil;
+    if ([[[UserManager defaultManager] nickName] length] == 0){
+        newNickName = nickName;
+    }
+    
     NSString* avatar = nil;
     if ([[[UserManager defaultManager] avatarURL] length] == 0){
         avatar = [userInfo objectForKey:SNS_USER_IMAGE_URL];
@@ -185,7 +190,7 @@ static UserService* _defaultUserService;
     dispatch_async(workingQueue, ^{            
         
         CommonNetworkOutput* output = 
-        [GameNetworkRequest updateUser:SERVER_URL appId:appId userId:userId deviceId:nil deviceToken:nil nickName:nickName gender:gender password:nil avatar:avatar location:location sinaId:sinaId sinaNickName:sinaNickName sinaToken:nil sinaSecret:nil qqId:qqId qqNickName:qqNickName qqToken:qqToken qqTokenSecret:qqTokenSecret facebookId:facebookId email:nil];                
+        [GameNetworkRequest updateUser:SERVER_URL appId:appId userId:userId deviceId:nil deviceToken:nil nickName:newNickName gender:gender password:nil avatar:avatar location:location sinaId:sinaId sinaNickName:sinaNickName sinaToken:nil sinaSecret:nil qqId:qqId qqNickName:qqNickName qqToken:qqToken qqTokenSecret:qqTokenSecret facebookId:facebookId email:nil];                
         
 //        [GameNetworkRequest registerUserBySNS:SERVER_URL
 //                                        snsId:loginId
@@ -213,7 +218,7 @@ static UserService* _defaultUserService;
                     [[UserManager defaultManager] saveUserId:userId
                                                       sinaId:loginId
                                                     password:nil 
-                                                    nickName:nickName
+                                                    nickName:newNickName
                                                    avatarURL:avatar
                                              sinaAccessToken:nil
                                        sinaAccessTokenSecret:nil
@@ -223,7 +228,7 @@ static UserService* _defaultUserService;
                     [[UserManager defaultManager] saveUserId:userId
                                                         qqId:loginId
                                                     password:nil 
-                                                    nickName:nickName
+                                                    nickName:newNickName
                                                    avatarURL:avatar
                                                qqAccessToken:qqToken
                                          qqAccessTokenSecret:qqTokenSecret
@@ -233,7 +238,7 @@ static UserService* _defaultUserService;
                     [[UserManager defaultManager] saveUserId:userId
                                                   facebookId:loginId
                                                     password:nil 
-                                                    nickName:nickName
+                                                    nickName:newNickName
                                                    avatarURL:avatar
                                                       gender:gender];                    
                 }   
