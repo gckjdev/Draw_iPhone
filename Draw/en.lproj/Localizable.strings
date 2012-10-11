@@ -1,4 +1,4 @@
-/* 
+/*
  Localizable.strings
  GhostGame
  
@@ -603,7 +603,7 @@
 "kSending" = "Sending...";
 "kNoCommentTips" = "No Comments";
 "kFeedDetail" = "Drawing Detail";
-"kOpusDetail" = "Opus";
+"kOpusDetail" = "View";
 "kCommentFail" = "Failed to Comment";
 
 "kBlankDrawTitle" = "Blank Drawing";
@@ -619,7 +619,7 @@
 
 "kMathOpusFail" = "Sorry. Can't match a opus for you.";
 
-"kGuessWords" = "Guessing: %@";
+"kGuessWords" = "Guessed: %@";
 "kMyDrawing" = "My Drawing:[%@]";
 
 "kDrawToHim" = "Draw Something";
@@ -733,8 +733,8 @@
 "kFollowWeibo" = "Follow Weibo";
 "kGetCoinsByShareToFriends" = "Share successfully. Very good! You got %d coins!";
 
-"kSendAFlower" = "Send a flower to painter!";
-"kThrowATomato" = "Throw a tomato to painter!";
+"kSendAFlower" = "Send a flower!";
+"kThrowATomato" = "Throw a tomato!";
 
 "kShareAwardCoinTips" = "Share these draws to SNS and get %d reward coins!";
 
@@ -785,8 +785,8 @@
 "kFlowerTimes" = "Flower(%d)";
 "kTomatoTimes" = "Tomato(%d)";
 
-"kNoComments" = "No comment yet, to be the first?";
-"kNoGuesses" = "No one guess yet, to be the first?";
+"kNoComments" = "No comment yet, to be the first one?";
+"kNoGuesses" = "No one has guessed it yet, to be the first one?";
 "kNoFlowers" = "Send a flower, if you like it.";
 "kNoTomatos" = "Throw a tomato, if you hate it.";
 
@@ -799,17 +799,17 @@
 
 
 "kContest" = "Contest";
-"kRank" = "Rank";
-"kNoRankPlayer" = "No ranking player yet.";
-"kNoRankHistory" = "No history rank yet";
-"kNoRankHot" = "No hot rank yet";
-"kNoRankNew" = "No new rank yet";
-"kNoData" = "No data.";
+"kRank" = "Top";
+"kNoRankPlayer" = "No data";
+"kNoRankHistory" = "No data";
+"kNoRankHot" = "No data";
+"kNoRankNew" = "No data";
+"kNoData" = "No data";
 
 "kRankPlayer" = "Player";
-"kRankHistory" = "History";
-"kRankHot" = "Hot";
-"kRankNew" = "New";
+"kRankHistory" = "Yearly";
+"kRankHot" = "Weekly";
+"kRankNew" = "Latest";
 "kDrawToMe" = "@Me";
 
 "kNoMyFeed" = "No Feeds. Try to draw and guess?";
@@ -1066,7 +1066,7 @@
 "kNoFriendRoom" = "No friend room";
 "kMe" = "Me";
 "kSendMeFlower" = "Send me a flower";
-"kThrowMeTomato" = "Throw me a Tomato";
+"kThrowMeTomato" = "Throw me a tomato";
 "kCommentMyOpus" = "Comment my opus.";
 
 "kCanotSendItemToOpus" = "You can't send the same item more than %d times on the same opus.";

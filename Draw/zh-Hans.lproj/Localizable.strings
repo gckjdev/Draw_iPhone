@@ -816,7 +816,7 @@
 "kJoinCount" = "参加(%d)";
 
 "kContest" = "画画大赛";
-"kRank" = "排行榜";
+"kRank" = "画榜";
 "kNoRankPlayer" = "暂时没有达人榜数据。";
 "kNoRankHistory" = "暂时没有总榜数据。";
 "kNoRankHot" = "暂时没有热榜数据。";
@@ -824,8 +824,8 @@
 "kNoData" = "暂时没有数据。";
 
 "kRankPlayer" = "达人";
-"kRankHistory" = "总榜";
-"kRankHot" = "热榜";
+"kRankHistory" = "年度";
+"kRankHot" = "本周";
 "kRankNew" = "最新";
 "kDrawToMe" = "画给我";
 
