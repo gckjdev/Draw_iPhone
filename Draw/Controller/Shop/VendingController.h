@@ -18,6 +18,7 @@
     NSMutableArray* _itemList;
     int _currentBuyingItem;
 }
+@property (retain, nonatomic) IBOutlet UIImageView *itemOutImageView;
 @property (retain, nonatomic) IBOutlet UIScrollView *itemListScrollView;
 @property (retain, nonatomic) IBOutlet UIButton *coinsButton;
 @property (retain, nonatomic) IBOutlet UIButton *buyCoinButton;
