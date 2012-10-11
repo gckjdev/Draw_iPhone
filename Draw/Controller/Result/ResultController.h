@@ -14,7 +14,7 @@
 #import "CommonDialog.h"
 #import "CommonItemInfoView.h"
 
-@class Feed;
+@class DrawFeed;
 
 typedef enum {
     OnlineDraw = 0x1,
@@ -38,7 +38,7 @@ typedef enum {
     int _maxTomato;
     int _maxFlower;
     
-    Feed* _feed;
+    DrawFeed* _feed;
 }
 @property (retain, nonatomic) IBOutlet UIButton *upButton;
 @property (retain, nonatomic) IBOutlet UIButton *downButton;

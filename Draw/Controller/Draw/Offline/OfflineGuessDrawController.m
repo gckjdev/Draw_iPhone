@@ -717,7 +717,7 @@
     if (--_maxFlower <= 0) {
         [toolView setEnabled:NO];
     }
-    
+    [_feed increaseLocalFlowerTimes];
     return NO;
 }
 
@@ -737,12 +737,20 @@
     if (--_maxTomato <= 0) {
         [toolView setEnabled:NO];
     }
-    
+    [_feed increaseLocalTomatoTimes];
     return NO;
 }
 #pragma mark - click tool delegate
 - (void)didPickedPickView:(PickView *)pickView toolView:(ToolView *)toolView
 {
+    if ((toolView.itemType == ItemTypeTomato 
+         && !_feed.canThrowTomato) 
+        || (toolView.itemType == ItemTypeFlower
+            && !_feed.canSendFlower)) {
+            [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kCannotThrowAgain") delayTime:1.5 isHappy:YES];
+            return;
+        }
+    
     NSInteger amout = [[ItemManager defaultManager] amountForItem:toolView.itemType];
     if(amout <= 0){
         //TODO go the shopping page.

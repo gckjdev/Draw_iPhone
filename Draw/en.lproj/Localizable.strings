@@ -870,6 +870,9 @@
 "kContestPendding" = "Pendding";
 "kNoContestTips" = "No Contest Now.";
 "kContestFeedDetail" = "Contest Opus";
+
+"kDrawToUserByUser" = "drew to %@";
+
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 
@@ -1077,6 +1080,7 @@
 "kOpusMy" = "Mine";
 "kOpusRank" = "Top";
 "kOpusNew" = "New";
+
 
 /*********************** 大话骰子国际化字符串结束 *************************/
 
