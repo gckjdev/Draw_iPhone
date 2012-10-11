@@ -78,7 +78,7 @@ static VendingController* staticVendingController = nil;
     [bgImageView release];
     [coinsShopButton release];
     [pageControl release];
-    [_itemOutImageView release];
+//    [_itemOutImageView release];
     [super dealloc];
     
 }
