@@ -169,20 +169,35 @@
     
 }
 
+- (void)performLoadMyPaints
+{
+    [_myPaintManager findMyPaintsFrom:_myOffset limit:LOAD_PAINT_LIMIT delegate:self];
+}
+
+- (void)performLoadAllPaints
+{
+    [_myPaintManager findAllPaintsFrom:_allOffset limit:LOAD_PAINT_LIMIT delegate:self];
+}
+
 - (void)loadPaintsOnlyMine:(BOOL)onlyMine
 {
     [self showActivityWithText:NSLS(@"kLoading")];
     if (onlyMine) {
-        [_myPaintManager findMyPaintsFrom:_myOffset limit:LOAD_PAINT_LIMIT delegate:self];
+        [self performSelector:@selector(performLoadMyPaints) withObject:nil afterDelay:0.3f];
     } else {
-        [_myPaintManager findAllPaintsFrom:_allOffset limit:LOAD_PAINT_LIMIT delegate:self];
-    }    
+        [self performSelector:@selector(performLoadAllPaints) withObject:nil afterDelay:0.3f];
+    }
+}
+
+- (void)performLoadDrafts
+{
+    [_myPaintManager findAllDraftsFrom:_draftOffset limit:LOAD_PAINT_LIMIT delegate:self];
 }
 
 - (void)loadDrafts
 {
     [self showActivityWithText:NSLS(@"kLoading")];
-    [_myPaintManager findAllDraftsFrom:_draftOffset limit:LOAD_PAINT_LIMIT delegate:self];
+    [self performSelector:@selector(performLoadDrafts) withObject:nil afterDelay:0.3f];
 }
 
 
@@ -662,7 +677,8 @@
     if (self.selectDraftButton.selected) {
         _draftOffset = 0;
         [_drafts removeAllObjects];
-        [_myPaintManager findAllDraftsFrom:_draftOffset limit:LOAD_PAINT_LIMIT delegate:self];
+        [self loadDrafts];
+//        [_myPaintManager findAllDraftsFrom:_draftOffset limit:LOAD_PAINT_LIMIT delegate:self];
     }
     [super viewDidAppear:animated];
 }

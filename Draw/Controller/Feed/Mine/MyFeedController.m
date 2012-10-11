@@ -81,7 +81,7 @@ typedef enum{
     drawFeed.feedId = feed.opusId;
     FeedUser *feedUser = [[FeedUser alloc]initWithUserId:feed.opusCreator
                                                 nickName:nil
-                                                  avatar:nil 
+                                                  avatar:nil
                                                   gender:YES];
     drawFeed.feedUser = feedUser;
     CommentController *cc = [[CommentController alloc] initWithFeed:drawFeed commentFeed:_selectedCommentFeed];

@@ -181,7 +181,8 @@ static MyPaintManager* _defaultManager;
                     delegate:(id<MyPaintManagerDelegate>)delegate
 {
     CoreDataManager* dataManager = GlobalGetCoreDataManager();
-    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    dispatch_queue_t queue = dispatch_get_main_queue(); //dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);    
+//    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     if (queue) {
         dispatch_async(queue, ^{
             NSArray *array = [dataManager execute:@"findOnlyMyPaints" sortBy:@"createDate" returnFields:nil ascending:NO offset:offset limit:limit];
@@ -200,10 +201,14 @@ static MyPaintManager* _defaultManager;
                      delegate:(id<MyPaintManagerDelegate>)delegate
 {
     CoreDataManager* dataManager = GlobalGetCoreDataManager();
-    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    dispatch_queue_t queue = dispatch_get_main_queue(); //dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    
+//    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     if (queue) {
         dispatch_async(queue, ^{
+//            PPDebug(@"before find");
             NSArray *array = [dataManager execute:@"findAllMyPaints" sortBy:@"createDate" returnFields:nil ascending:NO offset:offset limit:limit];
+//            PPDebug(@"after find");
             dispatch_async(dispatch_get_main_queue(), ^{
                 if (delegate && [delegate respondsToSelector:@selector(didGetAllPaints:)]) {
                     [delegate didGetAllPaints:array];
@@ -219,7 +224,7 @@ static MyPaintManager* _defaultManager;
                  delegate:(id<MyPaintManagerDelegate>)delegate
 {
     CoreDataManager* dataManager = GlobalGetCoreDataManager();
-    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    dispatch_queue_t queue = dispatch_get_main_queue(); //dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     if (queue) {
         dispatch_async(queue, ^{
             NSArray *array = [dataManager execute:@"findAllDrafts" sortBy:@"createDate" returnFields:nil ascending:NO offset:offset limit:limit];
