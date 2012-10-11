@@ -611,6 +611,7 @@
         default:
             [drawGameService quitGame];
             [HomeController returnRoom:self];
+            [self.showView stop];
             [self cleanData];
             [[LevelService defaultService] minusExp:NORMAL_EXP delegate:self];
             break;
