@@ -156,10 +156,7 @@
     PPRelease(pickBGColorView);
     PPRelease(_draft);
     PPRelease(_contest);
-    //    [autoReleasePool drain];
-    //    autoReleasePool = nil;
-    
-    [draftButton release];
+    PPRelease(draftButton);
     [super dealloc];
 }
 
@@ -209,6 +206,7 @@
         self.word = [Word wordWithText:draft.drawWord level:draft.level.intValue];
         shareImageManager = [ShareImageManager defaultManager];
         languageType = draft.language.intValue;
+        self.targetUid = draft.drawUserId;
         PPDebug(@"draft word lelve = %@, language = %@", draft.level,draft.language);
     }
     return self;
@@ -370,7 +368,7 @@ enum{
 
 - (void)initDraftButton
 {
-    if (targetType == TypeGraffiti) {
+    if (targetType == TypeGraffiti || targetType == TypeContest) {
         self.draftButton.hidden = YES;
     }
 }
@@ -756,7 +754,7 @@ enum{
 //    return;
     
     
-    if (targetType == TypeGraffiti) {
+    if (targetType == TypeGraffiti || targetType == TypeContest) {
         return;
     }
     PPDebug(@"<OfflineDrawViewController> start to save draft. show result = %d",showResult);
@@ -770,8 +768,8 @@ enum{
         if (self.draft) {
             NSLog(@"<Draw Log>update old draft");
             result = [[MyPaintManager defaultManager] updateDraft:self.draft 
-                                                   image:image
-                                                    data:drawView.drawActionList];
+                                                            image:image
+                                                             data:drawView.drawActionList];
         }else{    
             self.draft = [[MyPaintManager defaultManager] createDraft:image data:drawView.drawActionList language:languageType drawWord:self.word.text level:self.word.level]; 
             if (self.draft) {
@@ -798,9 +796,15 @@ enum{
 
 #pragma mark - Actions
 
-- (IBAction)clickDraftButton:(id)sender {
-    
+- (void)saveDraftAndShowResult
+{
     [self saveDraft:YES];
+    [self hideActivity];
+}
+
+- (IBAction)clickDraftButton:(id)sender {
+    [self showActivityWithText:NSLS(@"kSaving")];
+    [self performSelector:@selector(saveDraftAndShowResult) withObject:nil afterDelay:0.01];
 }
 
 - (IBAction)clickRevokeButton:(id)sender {

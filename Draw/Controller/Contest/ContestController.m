@@ -16,6 +16,7 @@
 #import "CommonMessageCenter.h"
 #import "ShareImageManager.h"
 #import "UICustomPageControl.h"
+#import "OfflineDrawViewController.h"
 
 @implementation ContestController
 @synthesize noContestTipLabel = _noContestTipLabel;
@@ -218,12 +219,15 @@
                                                          isHappy:NO];        
         return;
     }
-    //user limit
-    
-    //
-    StatementController *sc = [[StatementController alloc] initWithContest:contest];
-    [self.navigationController pushViewController:sc animated:YES];
-    [sc release];
+
+    if ([contest joined]) {
+        [OfflineDrawViewController startDrawWithContest:contest
+                                         fromController:self];
+    }else{
+        StatementController *sc = [[StatementController alloc] initWithContest:contest];
+        [self.navigationController pushViewController:sc animated:YES];
+        [sc release];        
+    }
 }
 
 - (void)didClickContestView:(ContestView *)contestView
