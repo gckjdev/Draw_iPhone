@@ -748,7 +748,7 @@
          && !_feed.canThrowTomato) 
         || (toolView.itemType == ItemTypeFlower
             && !_feed.canSendFlower)) {
-            [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kCannotThrowAgain") delayTime:1.5 isHappy:YES];
+            [[CommonMessageCenter defaultCenter] postMessageWithText:[NSString stringWithFormat:NSLS(@"kCanotSendItemToOpus"),self.feed.itemLimit] delayTime:1.5 isHappy:YES];
             return;
         }
     
