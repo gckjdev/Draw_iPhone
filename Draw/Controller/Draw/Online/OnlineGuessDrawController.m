@@ -104,8 +104,11 @@
 
 #define RowNumber 2
 #define WORD_BASE_X (([DeviceDetection isIPAD])? 26 : 5)
-#define WORD_BASE_Y_1 (([DeviceDetection isIPAD])? 855 : 390)
-#define WORD_BASE_Y_2 (([DeviceDetection isIPAD])? 930 : 425)
+//#define WORD_BASE_Y_1 (([DeviceDetection isIPAD])? 855 : 390)
+//#define WORD_BASE_Y_2 (([DeviceDetection isIPAD])? 930 : 425)
+#define WORD_BASE_Y_1 (([DeviceDetection isIPAD])? 855 : ([DeviceDetection screenSize].height - 90))
+#define WORD_BASE_Y_2 (([DeviceDetection isIPAD])? 930 : ([DeviceDetection screenSize].height - 55))
+
 #define WORD_SPACE_X (([DeviceDetection isIPAD])? 22 : 4)
 
 
@@ -137,6 +140,7 @@
         y = (row == 0) ? WORD_BASE_Y_1 : WORD_BASE_Y_2;
         
         button.frame = CGRectMake(x, y, WORD_BUTTON_WIDTH, WORD_BUTTON_HEIGHT);
+ 
         button.hidden = NO;
         button.enabled = NO;
     }
@@ -330,9 +334,12 @@
     
     for (int i = CANDIDATE_BASE_TAG; i <= CANDIDATE_END_TAG; ++ i) {
         UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+        button.autoresizingMask = !UIViewAutoresizingFlexibleBottomMargin |UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
+
+        
         [button setTag:i];
         [self initCandidateButton:button];
-        button.autoresizingMask = !UIViewAutoresizingFlexibleBottomMargin |UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
+
         [self.view addSubview:button];
     }
     [self resetWordButtons:CANDIDATE_WORD_NUMBER];
