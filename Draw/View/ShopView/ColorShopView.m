@@ -129,6 +129,7 @@
 
 - (void)showInView:(UIView *)view animated:(BOOL)animated
 {
+    self.frame = view.frame;
     [view addSubview:self];
     [self setHidden:NO];
     showAnimated = animated;
