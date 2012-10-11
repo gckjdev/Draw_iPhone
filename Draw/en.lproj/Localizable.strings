@@ -628,9 +628,7 @@
 "kDrawToHim" = "Draw Something";
 "kExploreHim" = "View Opus";
 "kPlayWithHim" = "Play with him(her)";
-"kChatToHim" = "Talk something";
-
-
+"kChatToHim" = "Say something";
 
 "kUserFeedTitle" = "%@'s Timeline";
 "kUserFeed" = "Timeline";
@@ -1079,7 +1077,7 @@
 "kCanotSendItemToContestOpus" = "You can't send the same item more than %d times on the same contest opus.";
 "kOpusMy" = "Mine";
 "kOpusRank" = "Top";
-"kOpusNew" = "New";
+"kOpusNew" = "Latest";
 
 
 /*********************** 大话骰子国际化字符串结束 *************************/

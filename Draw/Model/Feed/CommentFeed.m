@@ -70,23 +70,23 @@
     switch (self.feedType) {
         case FeedTypeComment:
             if ([pbFeed hasCommentInfo]) {
-                self.commentInfo = [[CommentInfo alloc] initWithPBCommentInfo:
-                                    pbFeed.commentInfo];                
+                self.commentInfo = [[[CommentInfo alloc] initWithPBCommentInfo:
+                                    pbFeed.commentInfo] autorelease];
             }
             self.comment = pbFeed.comment;
             break;
         case FeedTypeFlower:
             self.comment = NSLS(@"kSendAFlower");            
             if ([pbFeed hasCommentInfo]) {
-                self.commentInfo = [[CommentInfo alloc] initWithPBCommentInfo:
-                                    pbFeed.commentInfo];                
+                self.commentInfo = [[[CommentInfo alloc] initWithPBCommentInfo:
+                                    pbFeed.commentInfo] autorelease];
             }
             break;
         case FeedTypeTomato:
             self.comment = NSLS(@"kThrowATomato");
             if ([pbFeed hasCommentInfo]) {
-                self.commentInfo = [[CommentInfo alloc] initWithPBCommentInfo:
-                                    pbFeed.commentInfo];                
+                self.commentInfo = [[[CommentInfo alloc] initWithPBCommentInfo:
+                                    pbFeed.commentInfo] autorelease];
             }
 
             break;

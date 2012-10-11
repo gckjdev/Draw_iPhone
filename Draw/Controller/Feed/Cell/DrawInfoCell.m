@@ -144,11 +144,11 @@
 //        [self.drawImage setCallbackOnSetImage:self];
 //        [self.drawImage setUrl:[NSURL URLWithString:feed.drawImageUrl]];
         [self.drawImage setImageWithURL:[NSURL URLWithString:feed.drawImageUrl] placeholderImage:[[ShareImageManager defaultManager] unloadBg] success:^(UIImage *image, BOOL cached) {
-            PPDebug(@"<managedImageSet>: set large image");
+            PPDebug(@"<download image> %@ success", feed.drawImageUrl);
             self.feed.largeImage = image;
             [self.loadingActivity stopAnimating];
         } failure:^(NSError *error) {
-            PPDebug(@"<managedImageSet Failed>: set large image failed!");
+            PPDebug(@"<download image> %@ failure, error=%@", feed.drawImageUrl, [error description]);
             [self.loadingActivity stopAnimating];
         }];
         
