@@ -98,7 +98,8 @@
 
 - (id)initWithContest:(Contest *)contest;
 + (void)startDrawWithContest:(Contest *)contest    
-   fromController:(UIViewController*)fromController;
+              fromController:(UIViewController*)fromController
+                    animated:(BOOL)animated;
 
 @end
 

@@ -222,7 +222,8 @@
 
     if ([contest joined]) {
         [OfflineDrawViewController startDrawWithContest:contest
-                                         fromController:self];
+                                         fromController:self 
+                                               animated:YES];
     }else{
         StatementController *sc = [[StatementController alloc] initWithContest:contest];
         [self.navigationController pushViewController:sc animated:YES];
@@ -248,5 +249,14 @@
 }
 - (IBAction)clickRefreshButton:(id)sender {
     [self getContestList];
+}
+
+- (void)enterDrawControllerWithContest:(Contest *)contest
+                              animated:(BOOL)animated
+{
+    [OfflineDrawViewController startDrawWithContest:contest
+                                     fromController:self 
+                                           animated:animated];
+
 }
 @end

@@ -127,9 +127,10 @@
 
 + (void)startDrawWithContest:(Contest *)contest   
               fromController:(UIViewController*)fromController
+                    animated:(BOOL)animated
 {
     OfflineDrawViewController *odc = [[OfflineDrawViewController alloc] initWithContest:contest];
-    [fromController.navigationController pushViewController:odc animated:YES];   
+    [fromController.navigationController pushViewController:odc animated:animated];   
     [odc release];
     
     PPDebug(@"<startDrawWithContest>: contest id = %@",contest.contestId);
@@ -583,7 +584,6 @@ enum{
         [HomeController returnRoom:self];
     }
 }
-
 - (void)clickOk:(CommonDialog *)dialog
 {
     if (dialog.tag == DIALOG_TAG_CLEAN_DRAW) {
@@ -627,6 +627,9 @@ enum{
                 
     }
     else if(dialog.tag == DIALOG_TAG_SUBMIT){
+        
+        
+        
         // Save Image Locally        
         [[DrawDataService defaultService] saveActionList:drawView.drawActionList 
                                                   userId:[[UserManager defaultManager] userId] 
@@ -636,7 +639,16 @@ enum{
                                                    image:[drawView createImage]
                                                 delegate:self];
 
-        
+        if (self.contest) {
+            //draw another opus for contest
+            ContestController *contestController =  [self superContestController];
+            [self.navigationController popToViewController:contestController 
+                                                  animated:NO];
+            [contestController enterDrawControllerWithContest:self.contest 
+                                                     animated:NO];
+            return;
+        }
+
         UIViewController *superController = [self superShowFeedController];
         
         //if come from feed detail controller
@@ -665,7 +677,7 @@ enum{
 - (void)clickBack:(CommonDialog *)dialog
 {
     if(dialog.tag == DIALOG_TAG_SUBMIT){
-        
+
         // Save Image Locally        
         [[DrawDataService defaultService] saveActionList:drawView.drawActionList 
                                                   userId:[[UserManager defaultManager] userId] 
@@ -713,19 +725,32 @@ enum{
     [self hideActivity];
     self.submitButton.userInteractionEnabled = YES;
     if (resultCode == 0) {
-        
+        CommonDialog *dialog = nil;
         if (self.contest) {
             self.contest.opusCount ++;
             if (![self.contest joined]) {
                 self.contest.participantCount ++;
             }
             [self.contest incCommitCount];
-            [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kSubmitSuccTitle") delayTime:1.5 isSuccessful:YES];
-            [self quit];
-            return;
+            
+            if ([self.contest commintCountEnough]) {
+                dialog = [CommonDialog createDialogWithTitle:NSLS(@"kSubmitSuccTitle") 
+                                                     message:NSLS(@"kContestSubmitSuccQuitMsg") 
+                                                       style:CommonDialogStyleSingleButton 
+                                                    delegate:self];
+            }else{
+                dialog = [CommonDialog createDialogWithTitle:NSLS(@"kSubmitSuccTitle") 
+                                                     message:NSLS(@"kContestSubmitSuccMsg") 
+                                                       style:CommonDialogStyleDoubleButton 
+                                                    delegate:self];
+            }
+        }else{
+            dialog = [CommonDialog createDialogWithTitle:NSLS(@"kSubmitSuccTitle")
+                                                 message:NSLS(@"kSubmitSuccMsg") 
+                                                   style:CommonDialogStyleDoubleButton 
+                                                delegate:self];
         }
         
-        CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kSubmitSuccTitle") message:NSLS(@"kSubmitSuccMsg") style:CommonDialogStyleDoubleButton delegate:self];
         dialog.tag = DIALOG_TAG_SUBMIT;
         [dialog showInView:self.view];
         
