@@ -385,6 +385,23 @@ enum{
     [self updateUserInfo];
 }
 
+- (void)didClickDrawToUser
+{
+    if ([self.feed isKindOfClass:[DrawToUserFeed class]]) {
+        DrawToUserFeed* feed = (DrawToUserFeed*)self.feed;
+        [CommonUserInfoView showUser:feed.targetUser.userId 
+                            nickName:feed.targetUser.nickName 
+                              avatar:nil 
+                              gender:nil 
+                            location:nil 
+                               level:1
+                             hasSina:NO 
+                               hasQQ:NO 
+                         hasFacebook:NO 
+                          infoInView:self];
+    }
+}
+
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
@@ -460,18 +477,20 @@ enum{
     }
     
 
-    if (item.amount <= 0) {
+    if (!_feed.isContestFeed && item.amount <= 0) {
         CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kNoItemTitle") message:NSLS(@"kNoItemMessage") style:CommonDialogStyleDoubleButton delegate:self];
         dialog.tag = ITEM_TAG_OFFSET + item.type;
         [dialog showInView:self.view];
 
     }else{
         //throw animation
+        BOOL isFree = _feed.isContestFeed;
         [[ItemService defaultService] sendItemAward:item.type
                                        targetUserId:_feed.author.userId
                                           isOffline:YES
                                          feedOpusId:_feed.feedId
-                                         feedAuthor:_feed.author.userId];
+                                         feedAuthor:_feed.author.userId 
+                                            forFree:isFree];
         
         ShareImageManager *imageManager = [ShareImageManager defaultManager];
         if (item.type == ItemTypeFlower) {

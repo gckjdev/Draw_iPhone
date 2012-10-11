@@ -59,6 +59,22 @@ ItemService *_staticItemService = nil;
            feedOpusId:(NSString*)feedOpusId
            feedAuthor:(NSString*)feedAuthor
 {
+    [self sendItemAward:itemType 
+           targetUserId:toUserId 
+              isOffline:isOffline 
+             feedOpusId:feedOpusId 
+             feedAuthor:feedAuthor 
+                forFree:NO];  
+    
+}
+
+- (void)sendItemAward:(ItemType)itemType 
+         targetUserId:(NSString*)toUserId 
+            isOffline:(BOOL)isOffline
+           feedOpusId:(NSString*)feedOpusId
+           feedAuthor:(NSString*)feedAuthor 
+              forFree:(BOOL)isFree
+{
     int awardAmount = 0;
     int awardExp = 0;
     NSString* targetUserId = nil;
@@ -83,7 +99,7 @@ ItemService *_staticItemService = nil;
     }
     
     [[AccountService defaultService] consumeItem:itemType 
-                                          amount:1 
+                                          amount:isFree?0:1 
                                     targetUserId:targetUserId 
                                      awardAmount:awardAmount
                                         awardExp:awardExp];    

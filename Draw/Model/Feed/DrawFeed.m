@@ -10,7 +10,7 @@
 #import "Draw.h"
 #import "ShareImageManager.h"
 #import "GameNetworkConstants.h"
-
+#import "ConfigManager.h"
 
 @implementation DrawFeed
 
@@ -329,12 +329,12 @@
 
 - (NSInteger)itemLimit
 {
-    return 3;
+    return [ConfigManager numberOfItemCanUsedOnNormalOpus];
 }
 
 - (NSInteger)saveLimit
 {
-    return 1;
+    return 10;
 }
 
 - (BOOL)canSendFlower

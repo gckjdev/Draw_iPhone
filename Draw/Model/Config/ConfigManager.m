@@ -392,6 +392,15 @@
     return [MobClickUtils getIntValueByKey:@"URGE_TIME" defaultValue:5];
 }
 
++ (int)numberOfItemCanUsedOnNormalOpus
+{
+    return [MobClickUtils getIntValueByKey:@"ITEM_TIMES_ON_NORMAL_OPUS" defaultValue:10];    
+}
++ (int)numberOfItemCanUsedOnContestOpus
+{
+    return [MobClickUtils getIntValueByKey:@"ITEM_TIMES_ON_CONTEST_OPUS"
+                              defaultValue:3];
+}
 
 #define KEY_AUTO_SAVE @"AutoSave"
 + (BOOL)isAutoSave
@@ -405,6 +414,7 @@
     [defaults setBool:isAutoSave forKey:KEY_AUTO_SAVE];
     [defaults synchronize];
 }
+
 
 
 @end

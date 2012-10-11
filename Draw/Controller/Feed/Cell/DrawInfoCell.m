@@ -17,10 +17,12 @@
 #import "HJManagedImageV.h"
 #import "PPApplication.h"
 #import "UIImageView+WebCache.h"
+#import "CommonUserInfoView.h"
 
 @implementation DrawInfoCell
 @synthesize drawImage;
 @synthesize timeLabel;
+@synthesize drawToButton = _drawToButton;
 @synthesize loadingActivity;
 @synthesize feed = _feed;
 @synthesize showView = _showView;
@@ -54,10 +56,28 @@
     return 252.0f;
 }
 
+- (NSString*)createDrawToUserInfoByFeed:(DrawToUserFeed*)feed
+{
+    NSString* targetUserName = feed.targetUser.nickName;
+    if ([[UserManager defaultManager] isMe:feed.targetUser.userId]) {
+        targetUserName = NSLS(@"kMe");
+    }
+    return [NSString stringWithFormat:NSLS(@"kDrawToUserByUser"), targetUserName];
+}
+
+- (void)updateDrawToUserInfo:(DrawFeed*)feed
+{
+    if ([feed isKindOfClass:[DrawToUserFeed class]]) {
+        [self.drawToButton setTitle:[self createDrawToUserInfoByFeed:(DrawToUserFeed*)feed] forState:UIControlStateNormal];
+    }
+    
+}
+
 
 - (void)updateTime:(DrawFeed *)feed
 {
     NSString *timeString = nil;
+    
     if ([LocaleUtils isChinese]) {
         timeString = chineseBeforeTime(feed.createDate);
     } else {
@@ -71,6 +91,8 @@
         timeString = dateToStringByFormat(feed.createDate, formate);
         [self.timeLabel setText:timeString];
     }
+    
+    
 }
 
 
@@ -147,6 +169,13 @@
     
 }
 
+- (IBAction)clickToUser:(id)sender
+{
+    if (_delegate && [_delegate respondsToSelector:@selector(didClickDrawToUser)]) {
+        [_delegate didClickDrawToUser];
+    }
+}
+
 - (void)setCellInfo:(DrawFeed *)feed
 {    
     [self setFeed:feed];
@@ -156,7 +185,8 @@
         [self updateShowView:feed];
         [self updateTime:feed];
         return;
-    }    
+    } 
+    [self updateDrawToUserInfo:feed];
     if (!_isLoading) {
         _getTimes = 1;
         [[FeedService defaultService] getFeedByFeedId:feed.feedId delegate:self];        
@@ -201,6 +231,7 @@
     PPRelease(timeLabel);
     PPRelease(loadingActivity);
     PPRelease(_feed);
+    [_drawToButton release];
     [super dealloc];
 }
 @end

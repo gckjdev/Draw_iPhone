@@ -7,6 +7,7 @@
 //
 
 #import "ContestFeed.h"
+#import "ConfigManager.h"
 
 @implementation ContestFeed
 @synthesize contestId = _contestId;
@@ -28,11 +29,9 @@
     [super dealloc];
 }
 
-#define ITEM_TIME_LIMIT 1
-
 - (NSInteger)itemLimit
 {
-    return 1;
+    return [ConfigManager numberOfItemCanUsedOnContestOpus];
 }
 
 
