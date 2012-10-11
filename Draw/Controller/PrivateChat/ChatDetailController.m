@@ -230,6 +230,7 @@
     self.offlineDrawViewController = odc;
     [odc release];
     //PPDebug(@"offlineDrawViewController:%d",[_offlineDrawViewController retainCount]);
+    _offlineDrawViewController.view.frame = self.view.frame;
     [self.view addSubview:_offlineDrawViewController.view];
     CGRect frame = _offlineDrawViewController.view.frame;
     _offlineDrawViewController.view.frame = CGRectMake(0, self.view.frame.size.height, frame.size.width, frame.size.height);
