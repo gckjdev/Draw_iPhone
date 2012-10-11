@@ -86,6 +86,7 @@ typedef enum{
     drawFeed.feedUser = feedUser;
     CommentController *cc = [[CommentController alloc] initWithFeed:drawFeed commentFeed:_selectedCommentFeed];
     [self presentModalViewController:cc animated:YES];
+    [cc release];
 }
 
 

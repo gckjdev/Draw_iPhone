@@ -397,9 +397,11 @@
             
         case PBDiceTypeDiceNet:
             str = NSLS(@"kDiceNet");
+            break;
             
         case PBDiceTypeDiceWai:
             str = NSLS(@"kDiceWai");
+            break;
             
         default:
             break;
