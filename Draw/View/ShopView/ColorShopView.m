@@ -28,6 +28,8 @@
 @synthesize colorGroups;
 @synthesize delegate = _delegate;
 
+
+
 + (ColorShopView *)colorShopViewWithFrame:(CGRect)frame 
 {
     NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"ColorShopView" owner:self options:nil];
@@ -50,17 +52,7 @@
     view.dataTableView.dataSource = view;
     //get the datalist
     
-    view.colorGroups = [[[NSMutableArray alloc] init]autorelease];
-    for (int i = GROUP_START; i < GROUP_COUNT; i++) {
-        ColorGroup *group = [ColorGroup randomColorGroupForGroupId:i];
-        if ([[AccountService defaultService] hasEnoughItemAmount:group.groupId amount:1]) {
-            group.hasBought = YES;
-        }else{
-            group.hasBought = NO;
-        }
-        group.price = [[ShoppingManager defaultManager] getColorPrice];
-        [view.colorGroups addObject:group];
-    }
+    view.colorGroups = [ColorGroup colorGroupList];
     
     //sort the group, the bought color is before the unbought color
     [view.colorGroups sortUsingComparator:^(id obj1,id obj2){

@@ -147,7 +147,11 @@
     NSInteger times = [self commitCount];
     return times >= self.canSubmitCount;
 }
-
+- (NSInteger)retainCommitChance
+{
+    NSInteger retainTimes = self.canSubmitCount - [self commitCount];
+    return retainTimes > 0 ? retainTimes : 0;
+}
 
 - (BOOL)joined
 {

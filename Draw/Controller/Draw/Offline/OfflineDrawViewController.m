@@ -640,6 +640,12 @@ enum{
                                                 delegate:self];
 
         if (self.contest) {
+            
+            if (dialog.style == CommonDialogStyleSingleButton) {
+                [self quit];
+                return;
+            }
+            
             //draw another opus for contest
             ContestController *contestController =  [self superContestController];
             [self.navigationController popToViewController:contestController 
@@ -739,8 +745,11 @@ enum{
                                                        style:CommonDialogStyleSingleButton 
                                                     delegate:self];
             }else{
+                NSString *title = [NSString stringWithFormat:NSLS(@"kContestSubmitSuccMsg"),
+                                   self.contest.retainCommitChance];
+                
                 dialog = [CommonDialog createDialogWithTitle:NSLS(@"kSubmitSuccTitle") 
-                                                     message:NSLS(@"kContestSubmitSuccMsg") 
+                                                     message:title 
                                                        style:CommonDialogStyleDoubleButton 
                                                     delegate:self];
             }
