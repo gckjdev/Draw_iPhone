@@ -182,13 +182,14 @@
 {    
     [self setFeed:feed];
     [self updateTime:self.feed];
+    [self updateDrawToUserInfo:feed];
     
     if (feed.drawData) {
         [self updateShowView:feed];
         [self updateTime:feed];
         return;
     } 
-    [self updateDrawToUserInfo:feed];
+
     if (!_isLoading) {
         _getTimes = 1;
         [[FeedService defaultService] getFeedByFeedId:feed.feedId delegate:self];        
@@ -210,8 +211,13 @@
         self.feed.drawData = feed.drawData;
         self.feed.feedUser = feed.feedUser;
         
+//        if ([self.feed isKindOfClass:[DrawToUserFeed class]] && [feed isKindOfClass:[DrawToUserFeed class]]) {
+//            [(DrawToUserFeed *)self.feed setTargetUser:[(DrawToUserFeed *)feed targetUser]];
+//        }
+    
         [self updateShowView:feed];
         [self updateTime:feed];
+        [self updateDrawToUserInfo:feed];
         if (self.delegate && [self.delegate respondsToSelector:@selector(didUpdateShowView)]) {
             [self.delegate didUpdateShowView];
         }

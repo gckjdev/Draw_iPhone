@@ -118,6 +118,28 @@ FeedManager *_staticFeedManager = nil;
     }
 }
 
+
++ (Feed *)parsePbFeed:(PBFeed *)pbFeed
+{
+    Feed *feed = nil;
+    switch (pbFeed.actionType) {
+        case FeedTypeDraw:
+            feed = [[[DrawFeed alloc] initWithPBFeed:pbFeed] autorelease];
+            break;
+        case FeedTypeGuess:
+            feed = [[[GuessFeed alloc] initWithPBFeed:pbFeed] autorelease];
+            break;
+        case FeedTypeDrawToUser:
+            feed = [[[DrawToUserFeed alloc] initWithPBFeed:pbFeed] autorelease];
+            break;                
+        case FeedTypeDrawToContest:
+            feed = [[[ContestFeed alloc] initWithPBFeed:pbFeed] autorelease];
+            break;
+        default:
+            break;
+    }
+    return feed;
+}
 #pragma mark - parse pbfeed list
 + (NSArray *)parsePbFeedList:(NSArray *)pbFeedList
 {
@@ -126,23 +148,7 @@ FeedManager *_staticFeedManager = nil;
     }
     NSMutableArray *list = [NSMutableArray array];
     for (PBFeed *pbFeed in pbFeedList) {
-        Feed *feed = nil;
-        switch (pbFeed.actionType) {
-            case FeedTypeDraw:
-                feed = [[[DrawFeed alloc] initWithPBFeed:pbFeed] autorelease];
-                break;
-            case FeedTypeGuess:
-                feed = [[[GuessFeed alloc] initWithPBFeed:pbFeed] autorelease];
-                break;
-            case FeedTypeDrawToUser:
-                feed = [[[DrawToUserFeed alloc] initWithPBFeed:pbFeed] autorelease];
-                break;                
-            case FeedTypeDrawToContest:
-                feed = [[[ContestFeed alloc] initWithPBFeed:pbFeed] autorelease];
-                break;
-            default:
-                break;
-        }
+        Feed *feed = [FeedManager parsePbFeed:pbFeed];
         if (feed) {
             [list addObject:feed];
         }

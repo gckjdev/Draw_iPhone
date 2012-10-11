@@ -280,14 +280,15 @@ static FeedService *_staticFeedService = nil;
                 NSArray *list = [response feedList];
                 PBFeed *pbFeed = ([list count] != 0) ? [list objectAtIndex:0] : nil;
                 if (pbFeed && (pbFeed.actionType == FeedTypeDraw || pbFeed.actionType == FeedTypeDrawToUser || pbFeed.actionType == FeedTypeDrawToContest)) {
-                    feed = [[[DrawFeed alloc] initWithPBFeed:pbFeed] autorelease];
+                    
+                    feed = (DrawFeed*)[FeedManager parsePbFeed:pbFeed];
                     [feed parseDrawData:pbFeed];
                 }
                 resultCode = [response resultCode];
             }        
             dispatch_async(dispatch_get_main_queue(), ^{
                 if (delegate && [delegate respondsToSelector:@selector(didGetFeed:resultCode:)]) {
-                    [delegate didGetFeed:feed resultCode:resultCode];
+                    [delegate didGetFeed:(DrawFeed *)feed resultCode:resultCode];
                 }           
             });
         });
