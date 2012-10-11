@@ -317,14 +317,27 @@
     ToolView* flower = [[[ToolView alloc] initWithItemType:ItemTypeFlower number:[[ItemManager defaultManager] amountForItem:ItemTypeFlower]] autorelease];
     tomato.tag = TOMATO_TOOLVIEW_TAG;
     flower.tag = FLOWER_TOOLVIEW_TAG;
-    [self.view addSubview:tomato];
-    [self.view addSubview:flower];
     [tomato setCenter:downButton.center];
     [flower setCenter:upButton.center];
+    [self.view addSubview:tomato];
+    [self.view addSubview:flower];
+
     [tomato addTarget:self action:@selector(clickDownButton:)];
     [flower addTarget:self action:@selector(clickUpButton:)];
     [flower setFrame:upButton.frame];
     [tomato setFrame:downButton.frame];
+    flower.autoresizingMask = UIViewAutoresizingFlexibleTopMargin
+    | !UIViewAutoresizingFlexibleBottomMargin
+    | UIViewAutoresizingFlexibleLeftMargin
+    | UIViewAutoresizingFlexibleRightMargin
+    | !UIViewAutoresizingFlexibleWidth
+    | !UIViewAutoresizingFlexibleHeight;
+    tomato.autoresizingMask = UIViewAutoresizingFlexibleTopMargin
+    | !UIViewAutoresizingFlexibleBottomMargin
+    | UIViewAutoresizingFlexibleLeftMargin
+    | UIViewAutoresizingFlexibleRightMargin
+    | !UIViewAutoresizingFlexibleWidth
+    | !UIViewAutoresizingFlexibleHeight;
     
 }
 - (void)initActionButton
@@ -622,11 +635,12 @@
 #define ITEM_TAG_OFFSET 20120728
 - (BOOL)throwItem:(ToolView*)toolView
 {
-    if ((toolView.itemType == ItemTypeTomato 
+    if (_resultType != OnlineGuess
+        && ((toolView.itemType == ItemTypeTomato
          && !_feed.canThrowTomato) 
         || (toolView.itemType == ItemTypeFlower
-            && !_feed.canSendFlower)) {
-        [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kCannotThrowAgain") delayTime:1.5 isHappy:YES];
+            && !_feed.canSendFlower))) {
+        [[CommonMessageCenter defaultCenter] postMessageWithText:[NSString stringWithFormat:NSLS(@"kCanotSendItemToOpus"),_feed.itemLimit] delayTime:1.5 isHappy:YES];
             self.downButton.enabled = NO;
             
         return NO;
@@ -643,9 +657,11 @@
     [throwingItem setImage:toolView.imageView.image];
     if (toolView.itemType == ItemTypeTomato) {
         [DrawGameAnimationManager showThrowTomato:throwingItem animInController:self rolling:YES];
+        [_feed increaseLocalTomatoTimes];
     }
     if (toolView.itemType == ItemTypeFlower) {
         [DrawGameAnimationManager showThrowFlower:throwingItem animInController:self rolling:YES];
+        [_feed increaseLocalFlowerTimes];
     }
     return YES;
 }

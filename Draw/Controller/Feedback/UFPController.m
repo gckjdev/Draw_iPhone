@@ -55,6 +55,13 @@
     self.mTableView.delegate = self;
     self.mTableView.dataLoadDelegate = self; 
     [self.mTableView setBackgroundColor:[UIColor clearColor]];
+    self.mTableView.autoresizingMask = !UIViewAutoresizingFlexibleBottomMargin
+    | !UIViewAutoresizingFlexibleTopMargin
+    | !UIViewAutoresizingFlexibleLeftMargin
+    | !UIViewAutoresizingFlexibleRightMargin
+    | UIViewAutoresizingFlexibleWidth
+    | UIViewAutoresizingFlexibleHeight;
+    
     [self.view addSubview:self.mTableView]; 
     //[self.view insertSubview:maskView aboveSubview:self.mTableView]; 
     [self showActivityWithText:NSLS(@"kLoading")];

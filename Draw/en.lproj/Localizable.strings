@@ -514,7 +514,7 @@
 "kCurrentItems" = "Items ";
 "kFreeGetCoins" = "Free Coins";
 
-"kCustomWordManage" = "Word Manage";
+"kCustomWordManage" = "My Words";
 "kAddCustomWord" = "Add Word";
 "kInputWord" = "Input Words";
 "kInputWordPlaceholder" = "Please input a new word";
@@ -870,7 +870,7 @@
 "kContestFeedDetail" = "Contest Opus";
 
 "kDrawToUserByUser" = "drew to %@";
-
+"kCannotThrowAgain" = "You can not use too many tools";
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 
@@ -1077,7 +1077,7 @@
 "kCanotSendItemToContestOpus" = "You can't send the same item more than %d times on the same contest opus.";
 "kOpusMy" = "Mine";
 "kOpusRank" = "Top";
-"kOpusNew" = "New";
+"kOpusNew" = "Latest";
 
 
 /*********************** 大话骰子国际化字符串结束 *************************/

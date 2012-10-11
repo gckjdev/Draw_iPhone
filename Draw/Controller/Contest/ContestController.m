@@ -122,8 +122,11 @@
             [contestList count]);
     [self clearScrollView];
     int i = 0;
-    CGFloat width = [ContestView getViewWidth];
-    CGFloat height = [ContestView getViewHeight];
+//    CGFloat width = [ContestView getViewWidth];
+//    CGFloat height = [ContestView getViewHeight];
+    CGFloat width = self.scrollView.frame.size.width;
+    CGFloat height = self.scrollView.frame.size.height;
+    
     NSInteger count = [contestList count];
     [self.scrollView setContentSize:CGSizeMake(width * count, height)];
     int showIndex = 0;

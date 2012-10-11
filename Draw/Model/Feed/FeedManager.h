@@ -53,7 +53,7 @@ typedef enum{
 - (void)addFeedList:(NSArray *)feedList forType:(FeedListType)type;
 - (void)cleanData;
 
-
++ (Feed *)parsePbFeed:(PBFeed *)pbFeed;
 + (NSArray *)parsePbFeedList:(NSArray *)pbFeedList;
 + (NSArray *)parsePbCommentFeedList:(NSArray *)pbFeedList;
 @end

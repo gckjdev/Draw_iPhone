@@ -230,6 +230,7 @@
     self.offlineDrawViewController = odc;
     [odc release];
     //PPDebug(@"offlineDrawViewController:%d",[_offlineDrawViewController retainCount]);
+    _offlineDrawViewController.view.frame = self.view.frame;
     [self.view addSubview:_offlineDrawViewController.view];
     CGRect frame = _offlineDrawViewController.view.frame;
     _offlineDrawViewController.view.frame = CGRectMake(0, self.view.frame.size.height, frame.size.width, frame.size.height);
@@ -438,13 +439,12 @@
 
 
 #pragma mark - super methods: keyboard show and hide
-#define SUPER_VIEW_HEIGHT (([DeviceDetection isIPAD])?(1004.0):(460.0))
 - (void)keyboardWillShowWithRect:(CGRect)keyboardRect
 {
     [self addHideKeyboardButton];
     [self.view bringSubviewToFront:inputBackgroundView];
     
-    CGRect frame = CGRectMake(0, SUPER_VIEW_HEIGHT-keyboardRect.size.height-inputBackgroundView.frame.size.height, inputBackgroundView.frame.size.width, inputBackgroundView.frame.size.height);
+    CGRect frame = CGRectMake(0, self.view.frame.size.height-keyboardRect.size.height-inputBackgroundView.frame.size.height, inputBackgroundView.frame.size.width, inputBackgroundView.frame.size.height);
     [UIView beginAnimations:nil context:nil];
     [UIView setAnimationDuration:0.25];
     inputBackgroundView.frame = frame;
@@ -453,7 +453,7 @@
 
 - (void)keyboardWillHideWithRect:(CGRect)keyboardRect
 {
-    CGRect frame = CGRectMake(0, SUPER_VIEW_HEIGHT-inputBackgroundView.frame.size.height, inputBackgroundView.frame.size.width, inputBackgroundView.frame.size.height);
+    CGRect frame = CGRectMake(0, self.view.frame.size.height-inputBackgroundView.frame.size.height, inputBackgroundView.frame.size.width, inputBackgroundView.frame.size.height);
     [UIView beginAnimations:nil context:nil];
     [UIView setAnimationDuration:0.25];
     inputBackgroundView.frame = frame;

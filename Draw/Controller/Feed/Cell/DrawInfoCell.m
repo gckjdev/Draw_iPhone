@@ -144,11 +144,11 @@
 //        [self.drawImage setCallbackOnSetImage:self];
 //        [self.drawImage setUrl:[NSURL URLWithString:feed.drawImageUrl]];
         [self.drawImage setImageWithURL:[NSURL URLWithString:feed.drawImageUrl] placeholderImage:[[ShareImageManager defaultManager] unloadBg] success:^(UIImage *image, BOOL cached) {
-            PPDebug(@"<managedImageSet>: set large image");
+            PPDebug(@"<download image> %@ success", feed.drawImageUrl);
             self.feed.largeImage = image;
             [self.loadingActivity stopAnimating];
         } failure:^(NSError *error) {
-            PPDebug(@"<managedImageSet Failed>: set large image failed!");
+            PPDebug(@"<download image> %@ failure, error=%@", feed.drawImageUrl, [error description]);
             [self.loadingActivity stopAnimating];
         }];
         
@@ -182,13 +182,14 @@
 {    
     [self setFeed:feed];
     [self updateTime:self.feed];
+    [self updateDrawToUserInfo:feed];
     
     if (feed.drawData) {
         [self updateShowView:feed];
         [self updateTime:feed];
         return;
     } 
-    [self updateDrawToUserInfo:feed];
+
     if (!_isLoading) {
         _getTimes = 1;
         [[FeedService defaultService] getFeedByFeedId:feed.feedId delegate:self];        
@@ -210,8 +211,13 @@
         self.feed.drawData = feed.drawData;
         self.feed.feedUser = feed.feedUser;
         
+//        if ([self.feed isKindOfClass:[DrawToUserFeed class]] && [feed isKindOfClass:[DrawToUserFeed class]]) {
+//            [(DrawToUserFeed *)self.feed setTargetUser:[(DrawToUserFeed *)feed targetUser]];
+//        }
+    
         [self updateShowView:feed];
         [self updateTime:feed];
+        [self updateDrawToUserInfo:feed];
         if (self.delegate && [self.delegate respondsToSelector:@selector(didUpdateShowView)]) {
             [self.delegate didUpdateShowView];
         }

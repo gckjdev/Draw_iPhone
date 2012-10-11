@@ -112,7 +112,7 @@
         
         if (_allPaints == nil) {
             _allPaints = [[NSMutableArray alloc] initWithArray:paints];
-        }else{
+        }else{            
             [_allPaints addObjectsFromArray:paints];
         }        
         _allOffset += [paints count];
@@ -169,20 +169,35 @@
     
 }
 
+- (void)performLoadMyPaints
+{
+    [_myPaintManager findMyPaintsFrom:_myOffset limit:LOAD_PAINT_LIMIT delegate:self];
+}
+
+- (void)performLoadAllPaints
+{
+    [_myPaintManager findAllPaintsFrom:_allOffset limit:LOAD_PAINT_LIMIT delegate:self];
+}
+
 - (void)loadPaintsOnlyMine:(BOOL)onlyMine
 {
     [self showActivityWithText:NSLS(@"kLoading")];
     if (onlyMine) {
-        [_myPaintManager findMyPaintsFrom:_myOffset limit:LOAD_PAINT_LIMIT delegate:self];
+        [self performSelector:@selector(performLoadMyPaints) withObject:nil afterDelay:0.3f];
     } else {
-        [_myPaintManager findAllPaintsFrom:_allOffset limit:LOAD_PAINT_LIMIT delegate:self];
-    }    
+        [self performSelector:@selector(performLoadAllPaints) withObject:nil afterDelay:0.3f];
+    }
+}
+
+- (void)performLoadDrafts
+{
+    [_myPaintManager findAllDraftsFrom:_draftOffset limit:LOAD_PAINT_LIMIT delegate:self];
 }
 
 - (void)loadDrafts
 {
     [self showActivityWithText:NSLS(@"kLoading")];
-    [_myPaintManager findAllDraftsFrom:_draftOffset limit:LOAD_PAINT_LIMIT delegate:self];
+    [self performSelector:@selector(performLoadDrafts) withObject:nil afterDelay:0.3f];
 }
 
 
@@ -539,8 +554,9 @@
 
 - (void)updateActionSheetIndexs
 {
+    int index = 0;
+    SHARE_AS_GIF = -1;
     if ([LocaleUtils isChina]){
-        int index = 0;
         if (self.selectDraftButton.selected) {
             EDIT  = index++;
         }else{
@@ -556,8 +572,6 @@
         CANCEL = index++;
     }
     else{
-        
-        int index = 0;
         if (self.selectDraftButton.selected) {
             EDIT  = index++;
         }else{
@@ -569,7 +583,7 @@
         DELETE_ALL = index++;
         DELETE_ALL_MINE = index++;
         DELETE_ALL_DRAFT = index++;
-        CANCEL = index++;            
+        CANCEL = index++;
     }
     
 }
@@ -661,7 +675,8 @@
     if (self.selectDraftButton.selected) {
         _draftOffset = 0;
         [_drafts removeAllObjects];
-        [_myPaintManager findAllDraftsFrom:_draftOffset limit:LOAD_PAINT_LIMIT delegate:self];
+        [self loadDrafts];
+//        [_myPaintManager findAllDraftsFrom:_draftOffset limit:LOAD_PAINT_LIMIT delegate:self];
     }
     [super viewDidAppear:animated];
 }

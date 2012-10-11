@@ -219,7 +219,6 @@
 + (void)showExpression:(UIImage*)expression title:(NSString*)title origin:(CGPoint)origin superView:(UIView*)superView
 {
     ChatMessageView *view = [[ChatMessageView alloc] initWithChatExpression:expression title:title];
-    [view showInSuperView:superView origin:origin];
     
     UIImage *bgImage = ((origin.x+view.frame.size.width+WIDTH_EDGE) > WIDTH_SCREEN) ? [[ShareImageManager defaultManager] popupChatImageLeft] : [[ShareImageManager defaultManager] popupChatImageRight];
     [view addBgImage:bgImage];
@@ -235,10 +234,21 @@
 {
     self.frame = CGRectMake(origin.x, origin.y, self.frame.size.width, self.frame.size.height);    
     [superView addSubview:self];
+    self.alpha = 0;
     self.hidden = NO;
-    CAAnimation *animation = [AnimationManager missingAnimationWithDuration:5];
-    [self.layer addAnimation:animation forKey:@"DismissAnimation"];
-    [superView bringSubviewToFront:self];
+//    CAAnimation *animation = [AnimationManager missingAnimationWithDuration:5];
+//    [self.layer addAnimation:animation forKey:@"DismissAnimation"];
+//    [superView bringSubviewToFront:self];
+    [UIView animateWithDuration:1 delay:0 options:UIViewAnimationCurveEaseInOut animations:^{
+        self.alpha = 1;
+    } completion:^(BOOL finished) {
+        [UIView animateWithDuration:1 delay:3 options:UIViewAnimationCurveEaseInOut animations:^{
+            self.alpha = 0;
+        } completion:^(BOOL finished) {
+            self.hidden = YES;
+            [self removeFromSuperview];
+        }];
+    }];
 }
             
 

@@ -42,7 +42,7 @@
 #define FIRST_PRICE_COIN_FRAME  ([DeviceDetection isIPAD]?CGRectMake(96, 196, 34, 34):CGRectMake(37, 89, 17, 17))
 #define FIRST_PRICE_LABEL_FRAME ([DeviceDetection isIPAD]?CGRectMake(138, 196, 100, 34):CGRectMake(57, 89, 42, 17))
 #define ITEM_SEPERATOR  ([DeviceDetection isIPAD]?235:98)
-#define OUT_ITEM_CENTER ([DeviceDetection isIPAD]?CGPointMake(153,951):CGPointMake(64,436))
+#define OUT_ITEM_CENTER (self.itemOutImageView.center)
 #define OUT_ITEM_AMPLITUDE  ([DeviceDetection isIPAD]?100:35)
 
 #define PRICE_LABEL_FONT_SIZE   ([DeviceDetection isIPAD]?26:13)
@@ -78,6 +78,7 @@ static VendingController* staticVendingController = nil;
     [bgImageView release];
     [coinsShopButton release];
     [pageControl release];
+    [_itemOutImageView release];
     [super dealloc];
     
 }
@@ -299,7 +300,7 @@ static VendingController* staticVendingController = nil;
     [self.outItem setImage:anItem.itemImage];
     
     CAAnimation* falling = [AnimationManager translationAnimationFrom:self.outItem.center 
-                                                                   to:OUT_ITEM_CENTER 
+                                                                   to:self.itemOutImageView.center
                                                              duration:FALLING_TIME 
                                                              delegate:self 
                                                      removeCompeleted:NO];
@@ -318,7 +319,7 @@ static VendingController* staticVendingController = nil;
     rRolling.autoreverses = YES;
     rRolling.removedOnCompletion = NO;
     
-    CAAnimation* moveToRight = [AnimationManager translationAnimationTo:CGPointMake(OUT_ITEM_CENTER.x+OUT_ITEM_AMPLITUDE, OUT_ITEM_CENTER.y) 
+    CAAnimation* moveToRight = [AnimationManager translationAnimationTo:CGPointMake(OUT_ITEM_CENTER.x+OUT_ITEM_AMPLITUDE, OUT_ITEM_CENTER.y)
                                                                duration:TIME_FROME_CENTER_TO_SIDE];
     moveToRight.beginTime = FALLING_TIME;
     moveToRight.removedOnCompletion = NO;
@@ -452,6 +453,7 @@ static VendingController* staticVendingController = nil;
     [self setBgImageView:nil];
     [self setCoinsShopButton:nil];
     [self setPageControl:nil];
+    [self setItemOutImageView:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
