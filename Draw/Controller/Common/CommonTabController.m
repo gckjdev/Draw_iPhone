@@ -13,12 +13,14 @@
 @implementation CommonTabController
 @synthesize titleLabel = _titleLabel;
 @synthesize noDataTipLabl = _noDataTipLabl;
+@synthesize supportPullRefresh = _supportPullRefresh;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        self.supportPullRefresh = YES;
     }
     return self;
 }
@@ -68,8 +70,10 @@
 
 - (void)viewDidLoad
 {
-    [self setSupportRefreshHeader:YES];
-    [self setSupportRefreshFooter:YES];
+    if (self.isSupportPullRefresh) {
+        [self setSupportRefreshHeader:YES];
+        [self setSupportRefreshFooter:YES];        
+    }
     [super viewDidLoad];
     [self initTabs];
 }
@@ -97,7 +101,8 @@
 - (IBAction)clickTabButton:(id)sender
 {
     UIButton *button = (UIButton *)sender;
-    [self.currentTabButton setSelected:NO];
+    UIButton *currentButton = self.currentTabButton;
+    [currentButton setSelected:NO];
     [button setSelected:YES];
     TableTab *tab = [_tabManager tabForID:button.tag];
     [_tabManager setCurrentTab:tab];

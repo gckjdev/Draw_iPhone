@@ -23,7 +23,8 @@
 #import "WXApi.h"
 #import "WXApiObject.h"
 #import "OfflineDrawViewController.h"
-
+#import "TableTab.h"
+#import "TableTabManager.h"
 
 #define BUTTON_INDEX_OFFSET 20120229
 #define IMAGE_WIDTH 93
@@ -32,22 +33,17 @@
 #define SHARE_IMAGE_OPTION      120120407
 #define SHARE_AS_PHOTO_OPTION   220120407
 
-#define LOAD_PAINT_LIMIT 32
+#define LOAD_PAINT_LIMIT 20
+
+
+typedef enum{
+    TabTypeMine = 100,
+    TabTypeAll = 101,
+    TabTypeDraft = 102,
+}TabType;
 
 @interface ShareController ()
 {
-    NSMutableArray *_allPaints;
-    NSMutableArray *_myPaints;
-    NSMutableArray *_drafts;
-    
-    
-    NSInteger _allOffset;
-    NSInteger _myOffset;
-    NSInteger _draftOffset;
-    
-    BOOL _allHasMoreData;
-    BOOL _myHasMoreData;
-    BOOL _drafHaseMoreData;
     
     MyPaintManager *_myPaintManager;
     MyPaint *_selectedPaint;
@@ -60,12 +56,12 @@
 - (NSArray *)paints;
 - (void)reloadView;
 - (void)updateActionSheetIndexs;
+- (BOOL)isMineTab;
+- (BOOL)isAllTab;
+- (BOOL)isDraftTab;
 @end
 
 @implementation ShareController
-@synthesize selectDraftButton;
-@synthesize selectMineButton;
-@synthesize selectAllButton;
 @synthesize clearButton;
 @synthesize titleLabel;
 @synthesize shareAction = _shareAction;
@@ -76,15 +72,9 @@
 
 - (void)dealloc {
     PPRelease(_shareAction);
-    PPRelease(_myPaints);
-    PPRelease(_allPaints);
     PPRelease(_gifImages);
     PPRelease(_selectedPaint);
     PPRelease(clearButton);
-    PPRelease(titleLabel);
-    PPRelease(selectAllButton);
-    PPRelease(selectMineButton);
-    PPRelease(selectDraftButton);
     PPRelease(awardCoinTips);
     PPRelease(backButton);
 
@@ -107,76 +97,34 @@
 #pragma mark - MyPaintManager Delegate
 - (void)didGetAllPaints:(NSArray *)paints
 {
+    [self finishLoadDataForTabID:TabTypeAll resultList:paints];
     [self hideActivity];
-    if ([paints count] > 0) {
-        
-        if (_allPaints == nil) {
-            _allPaints = [[NSMutableArray alloc] initWithArray:paints];
-        }else{
-            [_allPaints addObjectsFromArray:paints];
-        }        
-        _allOffset += [paints count];
-        if ([paints count] == LOAD_PAINT_LIMIT) {
-            _allHasMoreData = YES;
-        }else{
-            _allHasMoreData = NO;
-        }
-    }
-    if (self.selectAllButton.selected) {
-        [self reloadView];
-    }
+    [self reloadView];
 }
 - (void)didGetMyPaints:(NSArray *)paints
 {
+    [self finishLoadDataForTabID:TabTypeMine resultList:paints];
     [self hideActivity];
-    if ([paints count] > 0) {
-        if (_myPaints == nil) {
-            _myPaints = [[NSMutableArray alloc] initWithArray:paints];
-        }else{
-            [_myPaints addObjectsFromArray:paints];
-        }        
-        _myOffset += [paints count];
-        if ([paints count] == LOAD_PAINT_LIMIT) {
-            _myHasMoreData = YES;
-        }else{
-            _myHasMoreData = NO;
-        }
-    }
-    if (self.selectMineButton.selected) {
-        [self reloadView];
-    }
+    [self reloadView];
 }
 
 - (void)didGetAllDrafts:(NSArray *)paints
 {
+    [self finishLoadDataForTabID:TabTypeDraft resultList:paints];
     [self hideActivity];
-    if ([paints count] > 0) {
-        if (_drafts == nil) {
-            _drafts = [[NSMutableArray alloc] initWithArray:paints];
-        }else{
-            [_drafts addObjectsFromArray:paints];
-        }        
-        _draftOffset += [paints count];
-        if ([paints count] == LOAD_PAINT_LIMIT) {
-            _drafHaseMoreData = YES;
-        }else{
-            _drafHaseMoreData = NO;
-        }
-    }
-    if (self.selectDraftButton.selected) {
-        [self reloadView];
-    }
-    
+    [self reloadView];
 }
 
 - (void)performLoadMyPaints
 {
-    [_myPaintManager findMyPaintsFrom:_myOffset limit:LOAD_PAINT_LIMIT delegate:self];
+    TableTab *tab = [_tabManager tabForID:TabTypeMine];
+    [_myPaintManager findMyPaintsFrom:tab.offset limit:tab.limit delegate:self];
 }
 
 - (void)performLoadAllPaints
 {
-    [_myPaintManager findAllPaintsFrom:_allOffset limit:LOAD_PAINT_LIMIT delegate:self];
+    TableTab *tab = [_tabManager tabForID:TabTypeAll];
+    [_myPaintManager findAllPaintsFrom:tab.offset limit:tab.limit delegate:self];
 }
 
 - (void)loadPaintsOnlyMine:(BOOL)onlyMine
@@ -191,7 +139,8 @@
 
 - (void)performLoadDrafts
 {
-    [_myPaintManager findAllDraftsFrom:_draftOffset limit:LOAD_PAINT_LIMIT delegate:self];
+    TableTab *tab = [_tabManager tabForID:TabTypeDraft];
+    [_myPaintManager findAllDraftsFrom:tab.offset limit:tab.limit delegate:self];
 }
 
 - (void)loadDrafts
@@ -228,7 +177,7 @@
     
     if ([LocaleUtils isChina]){
         
-        if (self.selectDraftButton.selected) {
+        if (self.isDraftTab) {
             tips = [[UIActionSheet alloc] initWithTitle:NSLS(@"kOptions") 
                                                delegate:self 
                                       cancelButtonTitle:NSLS(@"kCancel") 
@@ -245,7 +194,7 @@
         }
     }
     else{
-        if (self.selectDraftButton.selected) {
+        if (self.isDraftTab) {
             tips = [[UIActionSheet alloc] initWithTitle:NSLS(@"kOptions") 
                                                delegate:self 
                                       cancelButtonTitle:NSLS(@"kCancel") 
@@ -342,49 +291,49 @@
 - (void)clickOk:(CommonDialog *)dialog
 {
     
+    TableTab *myTab = [_tabManager tabForID:TabTypeMine];
+    TableTab *allTab = [_tabManager tabForID:TabTypeAll];
+    TableTab *draftTab = [_tabManager tabForID:TabTypeDraft];
+    
     MyPaint* currentPaint = self.selectedPaint;
-//    self.selectedPaint = nil;
+    self.selectedPaint = nil;
     if (dialog.tag == DELETE){
 
         if (currentPaint == nil) {
             return;
         }
-
         if (currentPaint.draft.boolValue) {
-            _draftOffset --;
-            [_drafts removeObject:currentPaint];
+            draftTab.offset -- ;
+            [draftTab.dataList removeObject:currentPaint];
         }else{        
             if (currentPaint.drawByMe.boolValue) {
-                _myOffset --;
-                [_myPaints removeObject:currentPaint];
+                myTab.offset -- ;
+                [myTab.dataList removeObject:currentPaint];
             }       
-            if ([_allPaints containsObject:currentPaint]) {
-                _allOffset --;
-                [_allPaints removeObject:currentPaint];
+            if ([allTab.dataList containsObject:currentPaint]) {
+                allTab.offset --;
+                [allTab.dataList removeObject:currentPaint];
             }
         }
         [[MyPaintManager defaultManager] deleteMyPaint:currentPaint];
         self.selectedPaint = nil;
     }
     else if (dialog.tag == DELETE_ALL){
-        _allOffset = 0;
-        _myOffset = 0;
-        [_allPaints removeAllObjects];
-        [_myPaints removeAllObjects];
+        myTab.offset = allTab.offset = 0;
+        [allTab.dataList removeAllObjects];
+        [myTab.dataList removeAllObjects];
         [[MyPaintManager defaultManager] deleteAllPaints:NO];
         [self loadPaintsOnlyMine:NO];
-        
     } else if (dialog.tag == DELETE_ALL_MINE) {
-        _allOffset = 0;
-        _myOffset = 0;
-        [_allPaints removeAllObjects];
-        [_myPaints removeAllObjects];
+        myTab.offset = allTab.offset = 0;
+        [allTab.dataList removeAllObjects];
+        [myTab.dataList removeAllObjects];
         [[MyPaintManager defaultManager] deleteAllPaints:YES];
         [self loadPaintsOnlyMine:NO];
     }else if(dialog.tag == DELETE_ALL_DRAFT)
     {
-        _draftOffset = 0;
-        [_drafts removeAllObjects];
+        draftTab.offset = 0;
+        [draftTab.dataList removeAllObjects];
         [[MyPaintManager defaultManager] deleteAllDrafts];
         [self loadDrafts];
     }
@@ -433,13 +382,7 @@
 
 - (NSArray *)paints
 {
-    if (self.selectAllButton.selected) {
-        return _allPaints;
-    }else if(self.selectMineButton.selected){
-        return _myPaints;
-    }else{
-        return _drafts;
-    }
+    return [self tabDataList];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -471,53 +414,12 @@
     int row = indexPath.row;
     int number = [self tableView:tableView numberOfRowsInSection:indexPath.section];
     if (row == number - 1) {
-        if (self.selectAllButton.selected && _allHasMoreData) {
-            [self loadPaintsOnlyMine:NO];            
-        }else if(self.selectMineButton.selected && _myHasMoreData){
-            [self loadPaintsOnlyMine:YES];            
-        }else if(self.selectDraftButton.selected && _drafHaseMoreData){
-            [self loadDrafts];
+        TableTab *tab = self.currentTab;
+        if (tab.hasMoreData && tab.status != TableTabStatusLoading) {
+            [self serviceLoadDataForTabID:tab.tabID];
+            PPDebug(@"service load opus, tab id = %d", tab.tabID);
         }
     }
-}
-
-- (IBAction)selectAll:(id)sender
-{
-    [self.selectDraftButton setSelected:NO];
-    [self.selectMineButton setSelected:NO];
-    [self.selectAllButton setSelected:YES];
-    if (_allPaints) {
-        [self reloadView];
-    }else{
-        [self loadPaintsOnlyMine:NO];
-    }
-    [self updateActionSheetIndexs];
-    
-}
-
-- (IBAction)selectMine:(id)sender
-{
-    [self.selectAllButton setSelected:NO];
-    [self.selectDraftButton setSelected:NO];
-    [self.selectMineButton setSelected:YES];
-    if (_myPaints) {
-        [self reloadView];
-    }else{
-        [self loadPaintsOnlyMine:YES];
-    }
-    [self updateActionSheetIndexs];
-}
-
-- (IBAction)selectDraft:(id)sender {
-    [self.selectAllButton setSelected:NO];
-    [self.selectMineButton setSelected:NO];
-    [self.selectDraftButton setSelected:YES];
-    if (_drafts) {
-        [self reloadView];
-    }else{
-        [self loadDrafts];
-    }
-    [self updateActionSheetIndexs];
 }
 
 
@@ -534,9 +436,9 @@
                                                        message:NSLS(@"kDeleteAllWarning") 
                                                          style:CommonDialogStyleDoubleButton 
                                                       delegate:self];
-    if ([self.selectMineButton isSelected]) {
+    if ([self isMineTab]) {
         dialog.tag = DELETE_ALL_MINE;
-    } else if([self.selectDraftButton isSelected]){
+    } else if([self isDraftTab]){
         dialog.tag = DELETE_ALL_DRAFT;
     }else{
         dialog.tag = DELETE_ALL;
@@ -551,13 +453,26 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+- (BOOL)isMineTab
+{
+    return self.currentTab.tabID == TabTypeMine;
+}
+- (BOOL)isAllTab
+{
+    return self.currentTab.tabID == TabTypeAll;    
+}
+- (BOOL)isDraftTab
+{
+    return self.currentTab.tabID == TabTypeDraft;
+}
+
 
 - (void)updateActionSheetIndexs
 {
     int index = 0;
     SHARE_AS_GIF = -1;
     if ([LocaleUtils isChina]){
-        if (self.selectDraftButton.selected) {
+        if (self.isDraftTab) {
             EDIT  = index++;
         }else{
             EDIT = -1;
@@ -572,20 +487,18 @@
         CANCEL = index++;
     }
     else{
-        
-        
-        if (self.selectDraftButton.selected) {
-            EDIT  = 0;
+        if (self.isDraftTab) {
+            EDIT  = index++;
         }else{
             EDIT = -1;
         }
-        SHARE_AS_PHOTO = index+1;
-        REPLAY = index+2;
-        DELETE = index+3;
-        DELETE_ALL = index+4;
-        DELETE_ALL_MINE = index+5;
-        DELETE_ALL_DRAFT = index+6;
-        CANCEL = index+7;            
+        SHARE_AS_PHOTO = index++;
+        REPLAY = index++;
+        DELETE = index++;
+        DELETE_ALL = index++;
+        DELETE_ALL_MINE = index++;
+        DELETE_ALL_DRAFT = index++;
+        CANCEL = index++;            
     }
     
 }
@@ -599,36 +512,41 @@
         
         _gifImages = [[NSMutableArray alloc] init];
 
-        
         _myPaintManager = [MyPaintManager defaultManager];
-        _allHasMoreData = _myHasMoreData = _drafHaseMoreData = NO;
     }
     return self;
 }
 
+- (void)initTabButtons
+{
+    NSArray* tabList = [_tabManager tabList];
+    for(TableTab *tab in tabList){
+        UIButton *button = (UIButton *)[self.view viewWithTag:tab.tabID];
+        ShareImageManager *imageManager = [ShareImageManager defaultManager];
+        [button setTitle:tab.title forState:UIControlStateNormal];
+        if (tab.tabID == TabTypeMine) {
+            [button setBackgroundImage:[imageManager myFoucsImage] forState:UIButtonTypeCustom];
+            [button setBackgroundImage:[imageManager myFoucsSelectedImage] forState:UIControlStateSelected];
+        }else if(tab.tabID == TabTypeDraft){
+            [button setBackgroundImage:[imageManager foucsMeImage] forState:UIButtonTypeCustom];
+            [button setBackgroundImage:[imageManager foucsMeSelectedImage] forState:UIControlStateSelected];            
+        }else{
+            [button setBackgroundImage:[imageManager middleTabImage] forState:UIControlStateNormal];
+            [button setBackgroundImage:[imageManager middleTabSelectedImage] forState:UIControlStateSelected];
+        }
+    }
+    [self clickTabButton:self.currentTabButton];
+}
+
+
 - (void)viewDidLoad
 {
+    [self setSupportPullRefresh:NO];
     [super viewDidLoad]; 
     
-    NSString *allTitle = NSLS(@"kAll");
-    NSString *mineTitle = NSLS(@"kMine") ;
-    NSString *draftTitle = NSLS(@"kDraft") ;
-    
-    [self.selectAllButton setTitle:allTitle forState:UIControlStateNormal];
-    [self.selectMineButton setTitle:mineTitle forState:UIControlStateNormal];
-    [self.selectDraftButton setTitle:draftTitle forState:UIControlStateNormal];
-    
     ShareImageManager* imageManager = [ShareImageManager defaultManager];
-    
-    [self.selectAllButton setBackgroundImage:[imageManager middleTabImage] forState:UIControlStateNormal];
-    [self.selectAllButton setBackgroundImage:[imageManager middleTabSelectedImage] forState:UIControlStateSelected];
-    
-    [self.selectMineButton setBackgroundImage:[imageManager myFoucsImage] forState:UIControlStateNormal];
-    [self.selectMineButton setBackgroundImage:[imageManager myFoucsSelectedImage] forState:UIControlStateSelected];
-
-    [self.selectDraftButton setBackgroundImage:[imageManager foucsMeImage] forState:UIControlStateNormal];
-    [self.selectDraftButton setBackgroundImage:[imageManager foucsMeSelectedImage] forState:UIControlStateSelected];
-    
+    [self initTabButtons];
+    UIButton *allButton = [self tabButtonWithTabID:TabTypeAll];
 
     if (self.isFromWeiXin) {
         [self.clearButton setTitle:NSLS(@"kCancel") forState:UIControlStateNormal];        
@@ -642,7 +560,7 @@
         CGFloat y = self.dataTableView.frame.origin.y;
         CGFloat width = self.dataTableView.frame.size.width;
         CGFloat height = self.dataTableView.frame.size.height;
-        CGFloat ny = self.selectAllButton.frame.origin.y  + selectAllButton.frame.size.height * 1.2 ;
+        CGFloat ny = allButton.frame.origin.y  + allButton.frame.size.height * 1.2 ;
         CGFloat nHeight = height + (y - ny);
         
         [self.dataTableView setFrame:CGRectMake(x, ny, width, nHeight)];
@@ -654,18 +572,15 @@
         self.titleLabel.text = NSLS(@"kShareTitle");
     }
 
-    [self selectAll:self.selectAllButton];
+    
 }
 
 - (void)viewDidUnload
 {
     [self setClearButton:nil];
     [self setTitleLabel:nil];
-    [self setSelectAllButton:nil];
-    [self setSelectMineButton:nil];
     [self setAwardCoinTips:nil];
     [self setBackButton:nil];
-    [self setSelectDraftButton:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -674,13 +589,82 @@
 
 - (void)viewDidAppear:(BOOL)animated
 {
-    if (self.selectDraftButton.selected) {
-        _draftOffset = 0;
-        [_drafts removeAllObjects];
+    if (self.isDraftTab) {
+        TableTab *tab = [self currentTab];
+        tab.offset = 0;
+        [tab.dataList removeAllObjects];
         [self loadDrafts];
-//        [_myPaintManager findAllDraftsFrom:_draftOffset limit:LOAD_PAINT_LIMIT delegate:self];
     }
     [super viewDidAppear:animated];
 }
 
+#pragma mark common tab controller
+
+- (NSInteger)tabCount
+{
+    return 3;
+}
+- (NSInteger)currentTabIndex
+{
+    return 1;
+}
+- (NSInteger)fetchDataLimitForTabIndex:(NSInteger)index
+{
+    return 32;
+}
+- (NSInteger)tabIDforIndex:(NSInteger)index
+{
+    NSInteger tabId[] = {TabTypeMine,TabTypeAll,TabTypeDraft};
+    return tabId[index];
+}
+
+- (NSString *)tabNoDataTipsforIndex:(NSInteger)index
+{
+//    NSString *tabDesc[] = {NSLS(@"kNoMyFeed"),NSLS(@"kNoMyOpus"),NSLS(@"kNoMyComment"),NSLS(@"kNoDrawToMe")};
+    
+    return NSLS(@"NoData");
+}
+
+- (NSString *)tabTitleforIndex:(NSInteger)index
+{
+    NSString *tabTitle[] = {NSLS(@"kMine"),NSLS(@"kAll"),NSLS(@"kDraft")};
+    return tabTitle[index];
+    
+}
+
+- (void)clickTabButton:(id)sender
+{
+    [super clickTabButton:sender];
+    [self updateActionSheetIndexs];
+    [self reloadView];
+}
+
+- (void)serviceLoadDataForTabID:(NSInteger)tabID
+{
+    [self reloadView];
+    TableTab *tab = [_tabManager tabForID:tabID];
+    if (tab) {
+        switch (tabID) {
+            case TabTypeMine:
+                [self loadPaintsOnlyMine:YES];                
+                break;
+            case TabTypeAll:
+            {
+                [self loadPaintsOnlyMine:NO];
+                break;
+            }
+                
+            case TabTypeDraft: //for test
+            {
+                [self loadDrafts];
+                break;
+            }
+            default:
+                
+                [self hideActivity];
+                break;
+        }
+        
+    }
+}
 @end
