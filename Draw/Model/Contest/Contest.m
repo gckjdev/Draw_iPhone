@@ -101,13 +101,13 @@
 {
     return ([self.endDate timeIntervalSinceNow] < 0);
 }
-- (BOOL)isPendding
+- (BOOL)isPending
 {
     return ([self.startDate timeIntervalSinceNow] > 0);
 }
 - (BOOL)isRunning
 {
-    return ![self isPassed] && ![self isPendding];
+    return ![self isPassed] && ![self isPending];
 }
 
 - (ContestStatus)status

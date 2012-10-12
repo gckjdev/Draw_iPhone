@@ -865,7 +865,7 @@
 
 
 "kContestPassed" = "Passed(%d)";
-"kContestPendding" = "Pendding";
+"kContestPending" = "Pending";
 "kNoContestTips" = "No Contest Now.";
 "kContestFeedDetail" = "Contest Opus";
 
