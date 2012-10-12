@@ -158,6 +158,12 @@
 }
 
 
+- (void)handleStaticTimer:(NSTimer *)theTimer
+{
+    PPDebug(@"<handleStaticTimer>: get static");
+    [[UserService defaultService] getStatistic:self];   
+}
+
 - (void)viewDidLoad
 {        
     if ([ConfigManager isShowRecommendApp]){
@@ -196,7 +202,7 @@
 
     [self enterNextControllerWityType:self.notificationType];
     
-
+    [NSTimer scheduledTimerWithTimeInterval:100 target:self selector:@selector(handleStaticTimer:) userInfo:nil repeats:YES];
 }
 
 - (void)registerDrawGameNotificationWithName:(NSString *)name 
