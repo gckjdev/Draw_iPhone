@@ -66,6 +66,7 @@ static VendingController* staticVendingController = nil;
 @synthesize bgImageView;
 @synthesize coinsShopButton;
 @synthesize pageControl;
+@synthesize itemOutImageView = _itemOutImageView;
 
 - (void)dealloc {
     [itemListScrollView release];
@@ -78,7 +79,7 @@ static VendingController* staticVendingController = nil;
     [bgImageView release];
     [coinsShopButton release];
     [pageControl release];
-//    [_itemOutImageView release];
+    [_itemOutImageView release];
     [super dealloc];
     
 }
