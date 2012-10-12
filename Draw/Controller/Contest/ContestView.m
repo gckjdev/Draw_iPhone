@@ -97,8 +97,8 @@
         joinTitle = [NSString stringWithFormat:NSLS(@"kContestPassed"),
                      _contest.participantCount];        
         
-    }else if([_contest isPendding]){
-        joinTitle = NSLS(@"kContestPendding");        
+    }else if([_contest isPending]){
+        joinTitle = NSLS(@"kContestPending");        
         
     }else{
         joinTitle = [NSString stringWithFormat:NSLS(@"kJoinCount"),

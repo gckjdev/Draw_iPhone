@@ -24,6 +24,8 @@
 @dynamic level;
 @dynamic deleteFlag;
 @dynamic dataFilePath;
+@dynamic contestId;
+@dynamic targetUserId;
 
 @synthesize thumbImage;
 

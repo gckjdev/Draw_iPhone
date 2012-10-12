@@ -78,20 +78,24 @@
     }
     self.feed = feed;
     if(feed.drawImage){
-        self.drawImage.alpha = 0;
+//        self.drawImage.alpha = 0;
         [self.drawImage setImage:feed.drawImage];
-        [UIView animateWithDuration:1 animations:^{
-            self.drawImage.alpha = 1.0;
-        }];
+//        [UIView animateWithDuration:1 animations:^{
+//            self.drawImage.alpha = 1.0;
+//        }];
     }else if ([feed.drawImageUrl length] != 0) {
         NSURL *url = [NSURL URLWithString:feed.drawImageUrl];
         UIImage *defaultImage = [[ShareImageManager defaultManager] unloadBg];
 //        [self.drawImage setImageWithURL:url placeholderImage:defaultImage];
         self.drawImage.alpha = 0;
         [self.drawImage setImageWithURL:url placeholderImage:defaultImage success:^(UIImage *image, BOOL cached) {
-            [UIView animateWithDuration:1 animations:^{
+            if (!cached) {
+                [UIView animateWithDuration:1 animations:^{
+                    self.drawImage.alpha = 1.0;
+                }];
+            }else{
                 self.drawImage.alpha = 1.0;
-            }];
+            }
         } failure:^(NSError *error) {
             self.drawImage.alpha = 1;
         }];
@@ -109,11 +113,11 @@
         [showView show];
         UIImage *image = [showView createImage];
         
-        self.drawImage.alpha = 0;
+//        self.drawImage.alpha = 0;
         [self.drawImage setImage:image];
-        [UIView animateWithDuration:1 animations:^{
-            self.drawImage.alpha = 1.0;
-        }];
+//        [UIView animateWithDuration:1 animations:^{
+//            self.drawImage.alpha = 1.0;
+//        }];
         feed.drawImage = image;
         [showView removeFromSuperview];
         feed.drawData = nil;        

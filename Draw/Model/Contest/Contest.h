@@ -60,6 +60,6 @@ typedef enum{
 - (NSInteger)retainCommitChance;
 - (BOOL)joined;
 - (BOOL)isPassed;
-- (BOOL)isPendding;
+- (BOOL)isPending;
 - (BOOL)isRunning;
 @end
