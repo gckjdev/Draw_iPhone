@@ -16,10 +16,6 @@
 
 BoardService *_staticBoardService;
 
-typedef enum{
-    DeviceTypeIPhone = 1,
-    DeviceTypeIPad = 2,
-}DeviceType;
 
 
 @implementation BoardService
@@ -78,8 +74,7 @@ typedef enum{
 - (void)syncBoards
 {
     dispatch_async(workingQueue, ^{
-        DeviceType deviceType = [DeviceDetection isIPAD] ? DeviceTypeIPad :  DeviceTypeIPhone;
-
+        DeviceType deviceType = [DeviceDetection deviceType];
         NSString *appId = [ConfigManager appId];
         NSString *gameId = [ConfigManager gameId];
         

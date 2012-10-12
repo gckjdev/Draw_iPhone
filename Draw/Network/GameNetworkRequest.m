@@ -2275,6 +2275,7 @@
         str = [str stringByAddQueryParameter:PARA_LANGUAGE intValue:language];
         str = [str stringByAddQueryParameter:PARA_OFFSET intValue:offset];
         str = [str stringByAddQueryParameter:PARA_COUNT intValue:limit];
+        str = [str stringByAddQueryParameter:PARA_DEVICETYPE intValue:[DeviceDetection deviceType]];
         
         return str;
     };
