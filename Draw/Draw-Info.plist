@@ -52,7 +52,7 @@
 	<key>CFChannelId</key>
 	<string>App Store</string>
 	<key>CFWordBaseVersion</key>
-	<integer>1</integer>
+	<integer>2</integer>
 	<key>Icon files Draw</key>
 	<array>
 		<string>57.png</string>

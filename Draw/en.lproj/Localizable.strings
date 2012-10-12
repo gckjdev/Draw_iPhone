@@ -786,8 +786,8 @@
 "kFlowerTimes" = "Flower(%d)";
 "kTomatoTimes" = "Tomato(%d)";
 
-"kNoComments" = "No comment yet, to be the first one?";
-"kNoGuesses" = "No one has guessed it yet, to be the first one?";
+"kNoComments" = "No comment yet, be the first one?";
+"kNoGuesses" = "No one has guessed it yet, be the first one?";
 "kNoFlowers" = "Send a flower, if you like it.";
 "kNoTomatos" = "Throw a tomato, if you hate it.";
 
@@ -808,7 +808,7 @@
 "kNoData" = "No data";
 
 "kRankPlayer" = "Player";
-"kRankHistory" = "Yearly";
+"kRankHistory" = "Annually";
 "kRankHot" = "Weekly";
 "kRankNew" = "Latest";
 "kDrawToMe" = "@Me";
