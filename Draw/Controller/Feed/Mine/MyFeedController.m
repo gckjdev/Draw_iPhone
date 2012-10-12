@@ -336,11 +336,7 @@ typedef enum{
     }
 }
 
-- (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    PPDebug(@"<willSelectRowAtIndexPath>");
-    return indexPath;
-}
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
@@ -353,7 +349,7 @@ typedef enum{
         return;
     }
     
-    if (type != MyTypeFeed && indexPath.row > [self.tabDataList count])
+    if (type != MyTypeFeed || indexPath.row > [self.tabDataList count])
         return;
     
     Feed *feed = [self.tabDataList objectAtIndex:indexPath.row];

@@ -507,7 +507,7 @@
         
         NSMutableArray *list =  [NSMutableArray arrayWithArray:_draw.drawActionList];            
         [self.showView setDrawActionList:list];
-        double speed = [DrawAction calculateSpeed:self.showView.drawActionList defaultSpeed:1.0/40.0 maxSecond:45];
+        double speed = [DrawAction calculateSpeed:self.showView.drawActionList defaultSpeed:1.0/40.0 maxSecond:38];
         self.showView.playSpeed = speed;
 //        [self.showView play];
         [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(startPlay:) userInfo:nil repeats:NO];
