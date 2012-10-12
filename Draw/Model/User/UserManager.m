@@ -19,6 +19,8 @@
 #import "GameNetworkConstants.h"
 #import "SNSConstants.h"
 #import "GameBasic.pb.h"
+#import "SDWebImageManager.h"
+
 
 #define KEY_USERID          @"USER_KEY_USERID"
 #define KEY_NICKNAME        @"USER_KEY_NICKNAME"
@@ -344,6 +346,27 @@ static UserManager* _defaultManager;
 
 - (UIImage*)avatarImage
 {
+    
+    NSString* url = [self avatarURL];
+    if ([url length] == 0){
+        // use default avatar in application bundle
+        self.avatarImage = [UIImage imageNamed:[self defaultAvatar]];
+        return self.avatarImage;
+    }
+    
+    SDWebImageManager *manager = [SDWebImageManager sharedManager];
+    [manager downloadWithURL:[NSURL URLWithString:url]
+                    delegate:self
+                     options:0
+                     success:^(UIImage *image, BOOL cached){
+                         PPDebug(@"download user avatar image from %@, cached=%d", url, cached);
+                         self.avatarImage = image;
+                     }
+                     failure:nil];
+    
+    return _avatarImage;
+    
+    /* old implementation
     if (_avatarImage == nil){
         // local file
         UIImage* localImage = [self readAvatarImageLocally];        
@@ -372,6 +395,7 @@ static UserManager* _defaultManager;
             });
         }
     }
+     */
     
     return _avatarImage;
 }
