@@ -39,7 +39,7 @@
     return @"SelectWordCell";
 }
 
-#define CELL_HEIGHT ([DeviceDetection isIPAD] ? 74 * 2 : 74)
+#define CELL_HEIGHT ([DeviceDetection isIPAD] ? 180 : 74)
 + (CGFloat)getCellHeight
 {
     return CELL_HEIGHT;
