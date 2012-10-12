@@ -240,8 +240,11 @@ typedef enum{
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    if (self.currentTab.tabID != UserTypeFeed && indexPath.row > [self.tabDataList count])
+    if (self.currentTab.tabID != UserTypeFeed ||
+        indexPath.row > [self.tabDataList count])
+    {
         return;
+    }
     
     Feed *feed = [self.tabDataList objectAtIndex:indexPath.row];
     
