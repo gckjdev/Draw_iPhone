@@ -207,7 +207,10 @@
         self.word = [Word wordWithText:draft.drawWord level:draft.level.intValue];
         shareImageManager = [ShareImageManager defaultManager];
         languageType = draft.language.intValue;
-//        self.targetUid = draft.drawUserId;
+        if ([draft.targetUserId length] != 0) {
+            self.targetUid = [NSString stringWithFormat:@"%@",draft.targetUserId];    
+        }
+        
         PPDebug(@"draft word lelve = %@, language = %@", draft.level,draft.language);
     }
     return self;

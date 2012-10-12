@@ -133,6 +133,7 @@ static MyPaintManager* _defaultManager;
         [newMyPaint setDrawUserNickName:[[UserManager defaultManager] nickName]];
         [newMyPaint setCreateDate:[NSDate date]];
         [newMyPaint setDrawWord:drawWord];
+        [newMyPaint setTargetUserId:targetUid];
 //        newMyPaint set
 //        NSLog(@"<Draw Log>before set Lanauge,  %@", [newMyPaint description]);
         
