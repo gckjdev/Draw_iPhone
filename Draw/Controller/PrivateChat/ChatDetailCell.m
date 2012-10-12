@@ -282,6 +282,23 @@
     //nicknameLabel.frame = CGRectMake(nicknameLabel.frame.origin.x, avatarView.frame.origin.y+avatarView.frame.size.height+NICKNAME_AND_AVATAR_SPACE, nicknameLabel.frame.size.width, NICKNAME_HEIGHT);
     
     if (fromSelf) {
+        UIViewAutoresizing autosizing =  !UIViewAutoresizingFlexibleTopMargin
+        | UIViewAutoresizingFlexibleBottomMargin
+        | UIViewAutoresizingFlexibleLeftMargin
+        | !UIViewAutoresizingFlexibleRightMargin
+        | !UIViewAutoresizingFlexibleWidth
+        | !UIViewAutoresizingFlexibleHeight;
+        
+        avatarBackgroundImageView.autoresizingMask = autosizing;
+        avatarView.autoresizingMask = autosizing;
+        bubbleImageView.autoresizingMask = autosizing;
+        timeLabel.autoresizingMask = autosizing;
+        contentTextView.autoresizingMask = autosizing;
+        graffitiView.autoresizingMask = autosizing;
+        enlargeButton.autoresizingMask = autosizing;
+        nicknameLabel.autoresizingMask = autosizing;
+        avatarButton.autoresizingMask = autosizing;
+        
         avatarBackgroundImageView.frame = [self reverseByRect:avatarBackgroundImageView.frame];
         avatarView.frame = [self reverseByRect:avatarView.frame];
         contentTextView.frame = [self reverseByRect:contentTextView.frame];
