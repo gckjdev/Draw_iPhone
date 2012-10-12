@@ -106,6 +106,7 @@ static MyPaintManager* _defaultManager;
                 language:(LanguageType)language
                 drawWord:(NSString*)drawWord 
                    level:(WordLevel)level
+               targetUid:(NSString *)targetUid
 
 {
     
@@ -132,7 +133,8 @@ static MyPaintManager* _defaultManager;
         [newMyPaint setDrawUserNickName:[[UserManager defaultManager] nickName]];
         [newMyPaint setCreateDate:[NSDate date]];
         [newMyPaint setDrawWord:drawWord];
-        
+        [newMyPaint setTargetUserId:targetUid];
+//        newMyPaint set
 //        NSLog(@"<Draw Log>before set Lanauge,  %@", [newMyPaint description]);
         
         [newMyPaint setLanguage:[NSNumber numberWithInt:language]];

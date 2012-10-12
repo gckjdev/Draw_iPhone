@@ -893,12 +893,11 @@
 
 
 "kContestPassed" = "已结束(%d)";
-"kContestPendding" = "未开始";
+"kContestPending" = "未开始";
 "kNoContestTips" = "不好意思，目前没有适合您的比赛。";
 
 "kContestFeedDetail" = "作品详情";
 "kDrawToUserByUser" = "画给%@";
-"kCannotThrowAgain" = "歇歇吧，道具用太多了伤身";
 
 /*********************** 猜猜画画国际化字符串结束 *************************/
 

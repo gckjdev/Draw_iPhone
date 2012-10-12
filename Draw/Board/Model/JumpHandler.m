@@ -61,10 +61,11 @@
             return [[[MyFeedController alloc] init] autorelease];            
         }else if([func isEqualToString:@"contest"]){
             return [[[ContestController alloc] init] autorelease];            
-        }else if([func isEqualToString:@"hot"]){
+        }else if([func isEqualToString:@"top"]){
             return [[[HotController alloc] init] autorelease];            
         }else{
-            return [[[HomeController alloc] init] autorelease];               
+            PPDebug(@"<controllerForGameId>:warnning:function is unexpected. gameId = %@, func = %@", gameId, func);            
+            return nil;//[[[HomeController alloc] init] autorelease];               
         }
     }
     return nil;
