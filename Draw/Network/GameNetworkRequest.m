@@ -1288,6 +1288,10 @@
         }
         str = [str stringByAddQueryParameter:PARA_APPID value:[ConfigManager appId]];
         
+        // add device model
+        NSString* deviceModel = [DeviceDetection platform];
+        str = [str stringByAddQueryParameter:PARA_DEVICEMODEL value:deviceModel];
+        
         return str;
     };
     
@@ -1347,6 +1351,11 @@
         str = [str stringByAddQueryParameter:PARA_APPID value:appId];
         str = [str stringByAddQueryParameter:PARA_USERID value:userId];
         str = [str stringByAddQueryParameter:PARA_OPUS_ID value:opusId];
+        
+        // add device model
+        NSString* deviceModel = [DeviceDetection platform];
+        str = [str stringByAddQueryParameter:PARA_DEVICEMODEL value:deviceModel];
+        
         str = [str stringByAddQueryParameter:PARA_APPID value:[ConfigManager appId]];
         
         return str;

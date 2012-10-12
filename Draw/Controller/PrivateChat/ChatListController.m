@@ -93,6 +93,7 @@
     dispatch_once(&onceToken, ^{
         [self findAllMessageTotals];
     });
+    
     [self hideSelectView:NO];
     [super viewWillAppear:animated];
 }

@@ -362,7 +362,7 @@ static UserManager* _defaultManager;
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
                 ASIHTTPRequest* request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:url]];
                 [request setDownloadDestinationPath:[FileUtil getFileFullPath:AVATAR_LOCAL_FILENAME]];
-                [request setTemporaryFileDownloadPath:[FileUtil getFileFullPath:TEMP_AVATAR_LOCAL_PATH]];
+                [request setTemporaryFileDownloadPath:NSTemporaryDirectory()];
                 [request setAllowResumeForFileDownloads:YES];
                 [request startSynchronous];
                 
