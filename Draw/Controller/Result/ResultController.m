@@ -635,11 +635,12 @@
 #define ITEM_TAG_OFFSET 20120728
 - (BOOL)throwItem:(ToolView*)toolView
 {
-    if ((toolView.itemType == ItemTypeTomato 
+    if (_resultType != OnlineGuess
+        && ((toolView.itemType == ItemTypeTomato
          && !_feed.canThrowTomato) 
         || (toolView.itemType == ItemTypeFlower
-            && !_feed.canSendFlower)) {
-        [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kCannotThrowAgain") delayTime:1.5 isHappy:YES];
+            && !_feed.canSendFlower))) {
+        [[CommonMessageCenter defaultCenter] postMessageWithText:[NSString stringWithFormat:NSLS(@"kCanotSendItemToOpus"),_feed.itemLimit] delayTime:1.5 isHappy:YES];
             self.downButton.enabled = NO;
             
         return NO;
@@ -656,9 +657,11 @@
     [throwingItem setImage:toolView.imageView.image];
     if (toolView.itemType == ItemTypeTomato) {
         [DrawGameAnimationManager showThrowTomato:throwingItem animInController:self rolling:YES];
+        [_feed increaseLocalTomatoTimes];
     }
     if (toolView.itemType == ItemTypeFlower) {
         [DrawGameAnimationManager showThrowFlower:throwingItem animInController:self rolling:YES];
+        [_feed increaseLocalFlowerTimes];
     }
     return YES;
 }

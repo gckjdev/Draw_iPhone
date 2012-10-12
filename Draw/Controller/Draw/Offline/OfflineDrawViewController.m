@@ -207,7 +207,7 @@
         self.word = [Word wordWithText:draft.drawWord level:draft.level.intValue];
         shareImageManager = [ShareImageManager defaultManager];
         languageType = draft.language.intValue;
-        self.targetUid = draft.drawUserId;
+//        self.targetUid = draft.drawUserId;
         PPDebug(@"draft word lelve = %@, language = %@", draft.level,draft.language);
     }
     return self;
@@ -808,7 +808,12 @@ enum{
                                                             image:image
                                                              data:drawView.drawActionList];
         }else{    
-            self.draft = [[MyPaintManager defaultManager] createDraft:image data:drawView.drawActionList language:languageType drawWord:self.word.text level:self.word.level]; 
+            self.draft = [[MyPaintManager defaultManager] createDraft:image 
+                                                                 data:drawView.drawActionList 
+                                                             language:languageType
+                                                             drawWord:self.word.text 
+                                                                level:self.word.level
+                                                            targetUid:self.targetUid]; 
             if (self.draft) {
                 result = YES;
             }else{

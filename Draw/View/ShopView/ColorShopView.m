@@ -55,10 +55,15 @@
     view.colorGroups = [ColorGroup colorGroupList];
     
     //sort the group, the bought color is before the unbought color
-    [view.colorGroups sortUsingComparator:^(id obj1,id obj2){
+    [view.colorGroups sortUsingComparator:^NSComparisonResult(id obj1,id obj2){
         ColorGroup *color1 = (ColorGroup *)obj1;
         ColorGroup *color2 = (ColorGroup *)obj2;
-        return color2.hasBought - color1.hasBought;
+        
+        NSComparisonResult result = color2.hasBought - color1.hasBought;
+        if (result == NSOrderedSame) {
+            return color2.groupId > color1.groupId;
+        }
+        return result;
     }];
     
     [view updateBalanceLabel];

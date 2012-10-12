@@ -35,7 +35,8 @@
                     data:(NSMutableArray*)drawActionList 
                 language:(LanguageType)language
                 drawWord:(NSString*)drawWord 
-                   level:(WordLevel)level;
+                   level:(WordLevel)level
+               targetUid:(NSString *)targetUid;
 
 - (BOOL)updateDraft:(MyPaint *)draft 
               image:(UIImage *)image

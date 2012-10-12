@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CommonTabController.h"
 #import "PPViewController.h"
 #import "ShareCell.h"
 #import "ShowDrawView.h"
@@ -16,7 +17,7 @@
 #import "PPTableViewController.h"
 
 @class MyPaint;
-@interface ShareController : PPTableViewController <UIActionSheetDelegate, ShareCellDelegate, ShowDrawViewDelegate, CommonDialogDelegate,MyPaintManagerDelegate> {
+@interface ShareController : CommonTabController <UIActionSheetDelegate, ShareCellDelegate, ShowDrawViewDelegate, CommonDialogDelegate,MyPaintManagerDelegate> {
     
     int EDIT;
     int SHARE_AS_PHOTO;
@@ -28,14 +29,12 @@
     int DELETE_ALL_DRAFT;
     int CANCEL;    
 }
-- (IBAction)selectDraft:(id)sender;
-@property (retain, nonatomic) IBOutlet UIButton *selectDraftButton;
-@property (retain, nonatomic) IBOutlet UIButton *selectMineButton;
-@property (retain, nonatomic) IBOutlet UIButton *selectAllButton;
+
 @property (retain, nonatomic) IBOutlet UIButton *clearButton;
-@property (retain, nonatomic) IBOutlet UILabel *titleLabel;
-@property (retain, nonatomic) ShareAction *shareAction;
 @property (retain, nonatomic) IBOutlet UILabel *awardCoinTips;
 @property (retain, nonatomic) IBOutlet UIButton *backButton;
+@property (retain, nonatomic) ShareAction *shareAction;
 @property (assign, nonatomic, getter = isFromWeiXin) BOOL fromWeiXin;
+
+- (IBAction)deleteAll:(id)sender;
 @end

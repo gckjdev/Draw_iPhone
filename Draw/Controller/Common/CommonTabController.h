@@ -38,6 +38,7 @@
 //common xib and action
 @property(nonatomic, retain)IBOutlet UILabel *titleLabel;
 @property(nonatomic, retain)IBOutlet UILabel *noDataTipLabl;
+@property(nonatomic, assign, getter = isSupportPullRefresh)BOOL supportPullRefresh;
 - (IBAction)clickBackButton:(id)sender;
 - (IBAction)clickTabButton:(id)sender;
 - (IBAction)clickRefreshButton:(id)sender;

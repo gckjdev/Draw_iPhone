@@ -23,7 +23,9 @@
 #import "UserManager.h"
 
 @interface ChatListController ()
-
+{
+    dispatch_once_t onceToken;
+}
 @property (nonatomic, retain) SelectChatFriendController *selectChatFriendController;
 
 - (IBAction)clickBack:(id)sender;
@@ -87,7 +89,10 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     //PPDebug(@"ChatListController viewWillAppear");
-    [self findAllMessageTotals];
+    
+    dispatch_once(&onceToken, ^{
+        [self findAllMessageTotals];
+    });
     [self hideSelectView:NO];
     [super viewWillAppear:animated];
 }
@@ -104,6 +109,7 @@
 #pragma mark - custom methods
 - (void)findAllMessageTotals
 {
+    [self showActivityWithText:NSLS(@"kLoading")];
     [[ChatService defaultService] findAllMessageTotals:self starOffset:0 maxCount:100];
 }
 
@@ -169,6 +175,7 @@
 #pragma mark - ChatServiceDelegate methods
 - (void)didFindAllMessageTotals:(NSArray *)totalList resultCode:(int)resultCode;
 {
+    [self hideActivity];
     [self dataSourceDidFinishLoadingNewData];
     
     //PPDebug(@"ChatListController:didFindAllmessageTotals");

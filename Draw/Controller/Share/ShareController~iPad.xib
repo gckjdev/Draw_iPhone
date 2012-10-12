@@ -129,6 +129,7 @@
 						<string key="NSFrame">{{0, 277}, {768, 727}}</string>
 						<reference key="NSSuperview" ref="320383738"/>
 						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView"/>
 						<object class="NSColor" key="IBUIBackgroundColor">
 							<int key="NSColorSpace">3</int>
 							<bytes key="NSWhite">MCAwAA</bytes>
@@ -213,6 +214,7 @@
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="485252190"/>
 						<bool key="IBUIOpaque">NO</bool>
+						<int key="IBUITag">101</int>
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 						<int key="IBUIContentHorizontalAlignment">0</int>
 						<int key="IBUIContentVerticalAlignment">0</int>
@@ -238,6 +240,7 @@
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="380333629"/>
 						<bool key="IBUIOpaque">NO</bool>
+						<int key="IBUITag">102</int>
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 						<int key="IBUIContentHorizontalAlignment">0</int>
 						<int key="IBUIContentVerticalAlignment">0</int>
@@ -256,6 +259,7 @@
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="372283332"/>
 						<bool key="IBUIOpaque">NO</bool>
+						<int key="IBUITag">100</int>
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 						<int key="IBUIContentHorizontalAlignment">0</int>
 						<int key="IBUIContentVerticalAlignment">0</int>
@@ -332,22 +336,6 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">selectAllButton</string>
-						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="372283332"/>
-					</object>
-					<int key="connectionID">23</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">selectMineButton</string>
-						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="66482057"/>
-					</object>
-					<int key="connectionID">24</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">clearButton</string>
 						<reference key="source" ref="372490531"/>
 						<reference key="destination" ref="533394264"/>
@@ -371,21 +359,13 @@
 					<int key="connectionID">35</int>
 				</object>
 				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">selectDraftButton</string>
-						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="485252190"/>
-					</object>
-					<int key="connectionID">39</int>
-				</object>
-				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">deleteAll:</string>
 						<reference key="source" ref="533394264"/>
 						<reference key="destination" ref="372490531"/>
 						<int key="IBEventType">7</int>
 					</object>
-					<int key="connectionID">29</int>
+					<int key="connectionID">40</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
@@ -414,30 +394,30 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
-						<string key="label">selectAll:</string>
+						<string key="label">clickTabButton:</string>
 						<reference key="source" ref="372283332"/>
 						<reference key="destination" ref="372490531"/>
 						<int key="IBEventType">7</int>
 					</object>
-					<int key="connectionID">27</int>
+					<int key="connectionID">41</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
-						<string key="label">selectMine:</string>
+						<string key="label">clickTabButton:</string>
 						<reference key="source" ref="66482057"/>
 						<reference key="destination" ref="372490531"/>
 						<int key="IBEventType">7</int>
 					</object>
-					<int key="connectionID">28</int>
+					<int key="connectionID">43</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
-						<string key="label">selectDraft:</string>
+						<string key="label">clickTabButton:</string>
 						<reference key="source" ref="485252190"/>
 						<reference key="destination" ref="372490531"/>
 						<int key="IBEventType">7</int>
 					</object>
-					<int key="connectionID">38</int>
+					<int key="connectionID">44</int>
 				</object>
 			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -558,10 +538,51 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">39</int>
+			<int key="maxID">44</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
+				<object class="IBPartialClassDescription">
+					<string key="className">CommonTabController</string>
+					<string key="superclassName">PPTableViewController</string>
+					<dictionary class="NSMutableDictionary" key="actions">
+						<string key="clickBackButton:">id</string>
+						<string key="clickRefreshButton:">id</string>
+						<string key="clickTabButton:">id</string>
+					</dictionary>
+					<dictionary class="NSMutableDictionary" key="actionInfosByName">
+						<object class="IBActionInfo" key="clickBackButton:">
+							<string key="name">clickBackButton:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="clickRefreshButton:">
+							<string key="name">clickRefreshButton:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="clickTabButton:">
+							<string key="name">clickTabButton:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+					</dictionary>
+					<dictionary class="NSMutableDictionary" key="outlets">
+						<string key="noDataTipLabl">UILabel</string>
+						<string key="titleLabel">UILabel</string>
+					</dictionary>
+					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
+						<object class="IBToOneOutletInfo" key="noDataTipLabl">
+							<string key="name">noDataTipLabl</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="titleLabel">
+							<string key="name">titleLabel</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+					</dictionary>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/CommonTabController.h</string>
+					</object>
+				</object>
 				<object class="IBPartialClassDescription">
 					<string key="className">MyPaint</string>
 					<string key="superclassName">NSManagedObject</string>
@@ -599,15 +620,15 @@
 				</object>
 				<object class="IBPartialClassDescription">
 					<string key="className">ShareController</string>
-					<string key="superclassName">PPTableViewController</string>
+					<string key="superclassName">CommonTabController</string>
 					<object class="NSMutableDictionary" key="actions">
-						<string key="NS.key.0">selectDraft:</string>
+						<string key="NS.key.0">deleteAll:</string>
 						<string key="NS.object.0">id</string>
 					</object>
 					<object class="NSMutableDictionary" key="actionInfosByName">
-						<string key="NS.key.0">selectDraft:</string>
+						<string key="NS.key.0">deleteAll:</string>
 						<object class="IBActionInfo" key="NS.object.0">
-							<string key="name">selectDraft:</string>
+							<string key="name">deleteAll:</string>
 							<string key="candidateClassName">id</string>
 						</object>
 					</object>
@@ -615,11 +636,7 @@
 						<string key="awardCoinTips">UILabel</string>
 						<string key="backButton">UIButton</string>
 						<string key="clearButton">UIButton</string>
-						<string key="selectAllButton">UIButton</string>
-						<string key="selectDraftButton">UIButton</string>
-						<string key="selectMineButton">UIButton</string>
 						<string key="selectedPaint">MyPaint</string>
-						<string key="titleLabel">UILabel</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
 						<object class="IBToOneOutletInfo" key="awardCoinTips">
@@ -634,25 +651,9 @@
 							<string key="name">clearButton</string>
 							<string key="candidateClassName">UIButton</string>
 						</object>
-						<object class="IBToOneOutletInfo" key="selectAllButton">
-							<string key="name">selectAllButton</string>
-							<string key="candidateClassName">UIButton</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="selectDraftButton">
-							<string key="name">selectDraftButton</string>
-							<string key="candidateClassName">UIButton</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="selectMineButton">
-							<string key="name">selectMineButton</string>
-							<string key="candidateClassName">UIButton</string>
-						</object>
 						<object class="IBToOneOutletInfo" key="selectedPaint">
 							<string key="name">selectedPaint</string>
 							<string key="candidateClassName">MyPaint</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="titleLabel">
-							<string key="name">titleLabel</string>
-							<string key="candidateClassName">UILabel</string>
 						</object>
 					</dictionary>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
