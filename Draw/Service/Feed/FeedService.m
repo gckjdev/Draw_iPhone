@@ -38,6 +38,9 @@ static FeedService *_staticFeedService = nil;
     LanguageType lang = UnknowType;
     lang = [[UserManager defaultManager] getLanguageType];
     
+    
+//    [delegate showActivityWithText:NSLS(@"kParsingData")];
+    
     dispatch_async(workingQueue, ^{
         
         CommonNetworkOutput* output = [GameNetworkRequest 
@@ -51,11 +54,19 @@ static FeedService *_staticFeedService = nil;
         NSInteger resultCode = output.resultCode;
         if (resultCode == ERROR_SUCCESS){
             PPDebug(@"<FeedService> getFeedList finish, start to parse data.");
-            [delegate showActivityWithText:NSLS(@"kParsingData")];
-            DataQueryResponse *response = [DataQueryResponse parseFromData:output.responseData];
-            resultCode = [response resultCode];
-            NSArray *pbFeedList = [response feedList];
-            list = [FeedManager parsePbFeedList:pbFeedList];
+            
+            @try {
+                DataQueryResponse *response = [DataQueryResponse parseFromData:output.responseData];
+                resultCode = [response resultCode];
+                NSArray *pbFeedList = [response feedList];
+                list = [FeedManager parsePbFeedList:pbFeedList];
+            }
+            @catch (NSException *exception) {
+                PPDebug(@"<getFeedList> catch exception while parsing data. exception=%@", [exception description]);
+                resultCode = ERROR_CLIENT_PARSE_DATA;
+            }
+            @finally {
+            }
         }
         
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -80,6 +91,7 @@ static FeedService *_staticFeedService = nil;
     LanguageType lang = UnknowType;
     lang = [[UserManager defaultManager] getLanguageType];
     
+//    [delegate showActivityWithText:NSLS(@"kParsingData")];
     dispatch_async(workingQueue, ^{
         
         CommonNetworkOutput* output = [GameNetworkRequest 
@@ -92,12 +104,19 @@ static FeedService *_staticFeedService = nil;
         NSArray *list = nil;
         NSInteger resultCode = output.resultCode;
         if (resultCode == ERROR_SUCCESS){
-            PPDebug(@"<FeedService> getFeedList finish, start to parse data.");
-            [delegate showActivityWithText:NSLS(@"kParsingData")];
-            DataQueryResponse *response = [DataQueryResponse parseFromData:output.responseData];
-            resultCode = [response resultCode];
-            NSArray *pbFeedList = [response feedList];
-            list = [FeedManager parsePbFeedList:pbFeedList];
+            @try {
+                PPDebug(@"<FeedService> getFeedList finish, start to parse data.");
+                DataQueryResponse *response = [DataQueryResponse parseFromData:output.responseData];
+                resultCode = [response resultCode];
+                NSArray *pbFeedList = [response feedList];
+                list = [FeedManager parsePbFeedList:pbFeedList];            
+            }
+            @catch (NSException *exception) {
+                PPDebug(@"<getContestOpusList> catch exception while parsing data. exception=%@", [exception description]);
+                resultCode = ERROR_CLIENT_PARSE_DATA;
+            }
+            @finally {
+            }
         }
         
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -261,14 +280,15 @@ static FeedService *_staticFeedService = nil;
                 NSArray *list = [response feedList];
                 PBFeed *pbFeed = ([list count] != 0) ? [list objectAtIndex:0] : nil;
                 if (pbFeed && (pbFeed.actionType == FeedTypeDraw || pbFeed.actionType == FeedTypeDrawToUser || pbFeed.actionType == FeedTypeDrawToContest)) {
-                    feed = [[[DrawFeed alloc] initWithPBFeed:pbFeed] autorelease];
+                    
+                    feed = (DrawFeed*)[FeedManager parsePbFeed:pbFeed];
                     [feed parseDrawData:pbFeed];
                 }
                 resultCode = [response resultCode];
             }        
             dispatch_async(dispatch_get_main_queue(), ^{
                 if (delegate && [delegate respondsToSelector:@selector(didGetFeed:resultCode:)]) {
-                    [delegate didGetFeed:feed resultCode:resultCode];
+                    [delegate didGetFeed:(DrawFeed *)feed resultCode:resultCode];
                 }           
             });
         });

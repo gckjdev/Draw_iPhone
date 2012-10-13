@@ -13,6 +13,12 @@
 
 @property (nonatomic, readonly) CLLocationCoordinate2D coordinate;
 
-- (id)initWithCoordinate:(CLLocationCoordinate2D)coord;
+- (id)initWithCoordinate:(CLLocationCoordinate2D)coord
+                   title:(NSString *)title
+                subtitle:(NSString *)subtitle;
+
+- (NSString *)title;
+
+- (NSString *)subtitle;
 
 @end

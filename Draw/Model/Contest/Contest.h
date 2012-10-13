@@ -57,7 +57,9 @@ typedef enum{
 + (Contest *)contestWithDict:(NSDictionary *)dict;
 - (void)incCommitCount;
 - (BOOL)commintCountEnough;
+- (NSInteger)retainCommitChance;
+- (BOOL)joined;
 - (BOOL)isPassed;
-- (BOOL)isPendding;
+- (BOOL)isPending;
 - (BOOL)isRunning;
 @end

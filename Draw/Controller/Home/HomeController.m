@@ -38,7 +38,6 @@
 #import "WordManager.h"
 #import "MyFriendsController.h"
 #import "RegisterUserController.h"
-#import "FeedController.h"
 
 #import "OfflineGuessDrawController.h"
 #import "SelectWordController.h"
@@ -159,6 +158,12 @@
 }
 
 
+- (void)handleStaticTimer:(NSTimer *)theTimer
+{
+    PPDebug(@"<handleStaticTimer>: get static");
+    [[UserService defaultService] getStatistic:self];   
+}
+
 - (void)viewDidLoad
 {        
     if ([ConfigManager isShowRecommendApp]){
@@ -197,7 +202,7 @@
 
     [self enterNextControllerWityType:self.notificationType];
     
-
+    [NSTimer scheduledTimerWithTimeInterval:100 target:self selector:@selector(handleStaticTimer:) userInfo:nil repeats:YES];
 }
 
 - (void)registerDrawGameNotificationWithName:(NSString *)name 
@@ -697,10 +702,6 @@
             break;
         case MenuButtonTypeTimeline:
         {
-//            FeedController *fc = [[FeedController alloc] init];
-//            [self.navigationController pushViewController:fc animated:YES];
-//            [fc release];
-//            [_menuPanel setMenuBadge:0 forMenuType:type];
             MyFeedController *myFeedController = [[MyFeedController alloc] init];
             [self.navigationController pushViewController:myFeedController animated:YES];
             [myFeedController release];

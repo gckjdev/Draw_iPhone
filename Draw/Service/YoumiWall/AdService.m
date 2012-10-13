@@ -120,8 +120,9 @@ static AdService* _defaultService;
 
 - (BOOL)isShowWanpuAd
 {
-    int percentage = [self getWanpuAdPercentage];
-    return [self isShowAdByPercentage:percentage];        
+    return NO;
+//    int percentage = [self getWanpuAdPercentage];
+//    return [self isShowAdByPercentage:percentage];        
 }
 
 - (void)setAdDisable
@@ -327,6 +328,7 @@ static AdService* _defaultService;
 
 - (BOOL)isShowAd
 {    
+    return NO;
 //    PPDebug(@"WARNING!!! isShowAd is forced to YES for testing!!!");
 //    return YES;    
     
@@ -491,6 +493,7 @@ static AdService* _defaultService;
     adView.tag = AD_VIEW_TAG;
     adView.delegate = self;
     [adView immobViewRequest];
+    
     [superView addSubview:adView];    
     [adView immobViewDisplay];        
     return adView;    

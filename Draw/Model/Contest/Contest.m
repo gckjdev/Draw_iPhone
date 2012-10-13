@@ -101,13 +101,13 @@
 {
     return ([self.endDate timeIntervalSinceNow] < 0);
 }
-- (BOOL)isPendding
+- (BOOL)isPending
 {
     return ([self.startDate timeIntervalSinceNow] > 0);
 }
 - (BOOL)isRunning
 {
-    return ![self isPassed] && ![self isPendding];
+    return ![self isPassed] && ![self isPending];
 }
 
 - (ContestStatus)status
@@ -132,13 +132,30 @@
     [defaults setObject:number forKey:key];
     [defaults synchronize];
 }
-- (BOOL)commintCountEnough
+
+- (NSInteger)commitCount
 {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSString *key = [NSString stringWithFormat:@"%@_%@",COMMIT_COUNT_PREFIX,self.contestId];
     NSNumber *number = [defaults objectForKey:key];
     NSInteger times = number.integerValue;
+    return times;
+}
+
+- (BOOL)commintCountEnough
+{
+    NSInteger times = [self commitCount];
     return times >= self.canSubmitCount;
+}
+- (NSInteger)retainCommitChance
+{
+    NSInteger retainTimes = self.canSubmitCount - [self commitCount];
+    return retainTimes > 0 ? retainTimes : 0;
+}
+
+- (BOOL)joined
+{
+    return [self commitCount] > 0;
 }
 
 @end

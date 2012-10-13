@@ -15,8 +15,8 @@
 //Notification  
 //before 4.5 version
 "kPushMessage" = "%@ 新建了一个好友房间——\"%@\", 邀请你加入。赶紧加入好友房间，和好友一起猜猜画画!";
-"kPushTextMessage" = "%@ 给您发来了消息\"%@\"";
-"kPushDrawMessage" = "%@ 邀您欣赏TA的大作。";
+"kPushTextMessage" = "%@ 给你发来了消息\"%@\"";
+"kPushDrawMessage" = "%@ 邀你欣赏TA的大作。";
 "kFM" = "有个神秘人刚刚关注了你，快去看看TA是谁。";
 "kNGRD" = "%@ 猜对了你画的 [%@]。你也去猜猜TA的画？";
 "kNTGD" = "%@ 尝试去猜了你画的 [%@]。你也去猜猜TA的画？";
@@ -31,6 +31,10 @@
 //add after 5.0
 "kNFM" = "%@ 关注了你。";
 "kNCN" = "[%@] 开始了，赶紧参加吧！丰厚奖品等你来拿哟！";
+
+"kPALM" = "%@ 向你发了定位请求";
+"kPRLM" = "%@ 回复了你的定位请求";
+"kPRRLM" = "%@ 拒绝了你的定位请求";
 /*********************** Notification end *************************/
 
 
@@ -551,6 +555,9 @@
 "kSubmitSuccTitle" = "提交成功";
 "kSubmitSuccMsg" = "恭喜！提交成功！再来一幅？";
 
+"kContestSubmitSuccMsg" = "谢谢您的参与，还可以提交%d幅作品，再来一幅？";
+"kContestSubmitSuccQuitMsg" = "谢谢您的参与！";
+
 "kContestNotRunning" = "对不起，比赛已经结束或者尚未开始，您不能参加。";
 "kContesSummitCountEnough" = "对不起，你已经提交了%d作品了，留点机会给别人哦。";
 
@@ -812,7 +819,7 @@
 "kJoinCount" = "参加(%d)";
 
 "kContest" = "画画大赛";
-"kRank" = "排行榜";
+"kRank" = "画榜";
 "kNoRankPlayer" = "暂时没有达人榜数据。";
 "kNoRankHistory" = "暂时没有总榜数据。";
 "kNoRankHot" = "暂时没有热榜数据。";
@@ -820,8 +827,8 @@
 "kNoData" = "暂时没有数据。";
 
 "kRankPlayer" = "达人";
-"kRankHistory" = "总榜";
-"kRankHot" = "热榜";
+"kRankHistory" = "年度";
+"kRankHot" = "本周";
 "kRankNew" = "最新";
 "kDrawToMe" = "画给我";
 
@@ -846,7 +853,7 @@
 "kDetail" = "详细";
 "kFailLoad" = "获取数据失败，请稍后再试。";
 "kContestOpus" = "参赛作品";
-"kTop" = "排行榜";
+"kTop" = "画榜";
 "kCanotSendToSelf" = "不能为自己的作品送鲜花或者扔番茄哦。";
 "kAutoSave" = "自动保存";
 "kReplyCommentDesc" = "回复%@: %@";
@@ -866,17 +873,31 @@
 "kOpusRank" = "排行";
 "kOpusNew" = "最新";
 
+"kAskLocationTitle" = "定位请求";
+"kReplyLocationTitle" = "回复请求";
+"kShowMyLocationTitle" = "我的位置";
+"kShowFriendLocationTitle" = "对方位置";
+"kGetingLocation" = "正在获取当前位置...";
+
 "kAskLocationMessage" = "这是我的位置，让我看看你在哪个位置？";
-"kReplyLocationMessage" = "我回复了你的定位请求";
-"kRejectLocationMessage" = "拒绝你的定位请求";
-"kReplyLocation" = "回复定位";
-"kRejectLocation" = "拒绝定位";
-"kShowLocation" = "显示位置";
-"kSendLocation" = "发送我的位置";
+"kReplyLocationMessage" = "回复了定位请求";
+"kRejectLocationMessage" = "拒绝了定位请求";
+
+"kReplyLocation" = "回复定位请求";
+"kRejectLocation" = "拒绝定位请求";
+"kShowLocation" = "显示对方位置";
+
+"kGetLocationFail" = "暂时无法定位,不能发送定位请求。";
+"kAskLocationAlert" = "确定发送定位请求，并且发送你的位置吗？";
+"kReplyLocationAlert" = "确定回复定位请求，并且发送你的位置吗?";
+
 
 "kContestPassed" = "已结束(%d)";
-"kContestPendding" = "未开始";
+"kContestPending" = "未开始";
 "kNoContestTips" = "不好意思，目前没有适合您的比赛。";
+
+"kContestFeedDetail" = "作品详情";
+"kDrawToUserByUser" = "画给%@";
 
 /*********************** 猜猜画画国际化字符串结束 *************************/
 

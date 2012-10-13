@@ -14,7 +14,6 @@
 #import "OfflineGuessDrawController.h"
 #import "RoomController.h"
 #import "HomeController.h"
-#import "FeedController.h"
 #import "VendingController.h"
 #import "FriendRoomController.h"
 #import "DrawGameService.h"
@@ -56,6 +55,7 @@
 
 #define MENU_PANEL_WIDTH ([DeviceDetection isIPAD] ? 768 : 320)
 #define MENU_PANEL_HEIGHT ([DeviceDetection isIPAD] ? 467 : 226)
+
 //static const NSInteger MENU_NUMBER_PER_PAGE = 6;
 
 #define MENU_NUMBER_PER_PAGE ((self.gameAppType == GameAppTypeDraw) ? 4 : 6)
@@ -98,7 +98,6 @@
     CGFloat x = page * self.frame.size.width;
     x += numberInRow * width;
     menu.frame = CGRectMake(x, y, width, height);
-
 }
 
 - (void)initCustomPageControl

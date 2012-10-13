@@ -9,7 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "ItemType.h"
 #import "Item.h"
-@class HJManagedImageV;
+
+
+//@class HJManagedImageV;
 
 
 @interface ToolView : UIButton
@@ -59,7 +61,7 @@ typedef enum {
     NSInteger _score;
     UIButton *markButton;
     AvatarType type;
-    HJManagedImageV *imageView;
+    UIImageView *imageView;
     NSString *_userId;
     UIImageView *bgView;
 }

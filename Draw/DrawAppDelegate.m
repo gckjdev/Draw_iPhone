@@ -55,15 +55,16 @@
 #import "MyPaintManager.h"
 NSString* GlobalGetServerURL()
 {    
-//    return [ConfigManager getAPIServerURL];
-//    return @"http://192.167.1.106:8000/api/i?";
-    return @"http://192.168.1.198:8000/api/i?";    
+    return [ConfigManager getAPIServerURL];
+//    return @"http://192.168.1.101:8000/api/i?";
+//    return @"http://192.168.1.198:8000/api/i?";
 }
 
 NSString* GlobalGetTrafficServerURL()
 {
-//    return [ConfigManager getTrafficAPIServerURL];
-    return @"http://192.168.1.198:8100/api/i?";    
+    return [ConfigManager getTrafficAPIServerURL];
+//    return @"http://192.168.1.101:8100/api/i?";
+//    return @"http://192.168.1.198:8100/api/i?";
 }
 
 NSString* GlobalGetBoardServerURL()
@@ -232,9 +233,6 @@ NSString* GlobalGetBoardServerURL()
     // Show News If Exists
     [self performSelector:@selector(showNews) withObject:nil afterDelay:1.5];
     
-    [[FriendManager defaultManager] removeAllDeletedFriends];
-    [[MyPaintManager defaultManager] removeAlldeletedPaints];
-
 //    [HomeController defaultInstance].hasRemoveNotification = YES;//(obj != nil);
     
     //sync level details
@@ -304,6 +302,10 @@ NSString* GlobalGetBoardServerURL()
     
     [[UserStatusService defaultService] stop];
     [[FacetimeService defaultService] disconnectServer];
+    
+    [[FriendManager defaultManager] removeAllDeletedFriends];
+    [[MyPaintManager defaultManager] removeAlldeletedPaints];
+    
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application

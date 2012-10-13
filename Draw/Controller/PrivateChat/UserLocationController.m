@@ -8,14 +8,19 @@
 
 #import "UserLocationController.h"
 #import "UserAnnotation.h"
+#import "ChatMessage.h"
 
 @interface UserLocationController ()
 
 @property (retain, nonatomic) CLLocationManager *locationManager;
-@property (assign, nonatomic) CLLocationCoordinate2D userCoordinate;
+@property (retain, nonatomic) CLLocation *userLocation;
 @property (assign, nonatomic) UserLocationType type;
 @property (assign, nonatomic) int messageType;
 @property (retain, nonatomic) NSString *reqMessageId;
+@property (assign, nonatomic) BOOL hasGetLocation;
+@property (assign, nonatomic) BOOL isMe;
+@property (nonatomic, retain) CLGeocoder *geocoder;
+@property (nonatomic, retain) NSString *userAddress;
 
 @end
 
@@ -24,10 +29,14 @@
 @synthesize titleLabel = _titleLabel;
 @synthesize locationManager = _locationManager;
 @synthesize delegate = _delegate;
-@synthesize userCoordinate = _userCoordinate;
+@synthesize userLocation = _userLocation;
 @synthesize type = _type;
 @synthesize messageType = _messageType;
 @synthesize reqMessageId = _reqMessageId;
+@synthesize hasGetLocation;
+@synthesize isMe = _isMe;
+@synthesize geocoder = _geocoder;
+@synthesize userAddress = _userAddress;
 
 - (void)dealloc
 {
@@ -35,6 +44,9 @@
     [_locationManager release];
     [_titleLabel release];
     [_reqMessageId release];
+    [_geocoder release];
+    [_userAddress release];
+    [_userLocation release];
     [super dealloc];
 }
 
@@ -46,15 +58,18 @@
 }
 
 - (id)initWithType:(UserLocationType)type
+              isMe:(BOOL)isMe
           latitude:(double)latitude
          longitude:(double)longitude
        messageType:(int)messageType
 {
     self = [super init];
     if (self) {
+        self.geocoder = [[[CLGeocoder alloc] init] autorelease];
         self.type = type;
+        self.isMe = isMe;
         if (type == LocationTypeShow) {
-            self.userCoordinate = CLLocationCoordinate2DMake(latitude, longitude);
+            self.userLocation = [[[CLLocation alloc] initWithLatitude:latitude longitude:longitude] autorelease];
         } else {
             self.messageType = messageType;
         }
@@ -65,12 +80,28 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self initMap];
     
+    NSString *title = nil;
     if (_type == LocationTypeFind) {
+        if (_messageType == MessageTypeAskLocation) {
+            title = NSLS(@"kAskLocationTitle");
+        } else if (_messageType  == MessageTypeReplyLocation) {
+            title = NSLS(@"kReplyLocationTitle");
+        }
+    } else {
+        if (_isMe) {
+            title = NSLS(@"kShowMyLocationTitle");
+        } else {
+            title = NSLS(@"kShowFriendLocationTitle");
+        }
+    }
+    [self.titleLabel setText:title];
+    
+    [self initMap];
+    if (_type == LocationTypeFind) {        
         [self findMyLocation];
     } else {
-        [self showUserMap];
+        [self findAddress];
     }
 }
 
@@ -93,42 +124,95 @@
     }
     _locationManager.desiredAccuracy = 100.0;
     _locationManager.distanceFilter = 1000.0;
+    hasGetLocation = NO;
+    
+    [self showActivityWithText:NSLS(@"kGetingLocation")];
     [_locationManager startUpdatingLocation];
+}
+
+- (void)findAddress
+{
+    [_geocoder reverseGeocodeLocation:_userLocation completionHandler:^(NSArray *placemarks, NSError *error) {
+        if (error){
+            PPDebug(@"<UserLocationController> reverseGeocodeLocation error:%@",error);
+        }else {
+            PPDebug(@"<UserLocationController>  reverseGeocodeLocation success");
+            CLPlacemark *placemark = [placemarks objectAtIndex:0];
+            if ( placemark.subThoroughfare == nil) {
+                 self.userAddress = [NSString stringWithFormat:@"%@%@%@", placemark.locality, placemark.subLocality, placemark.thoroughfare];
+            } else {
+                 self.userAddress = [NSString stringWithFormat:@"%@%@%@%@", placemark.locality, placemark.subLocality, placemark.thoroughfare,  placemark.subThoroughfare];
+            }
+           
+        }
+        [self showUserMap];
+    }];
+    
+}
+
+- (void)showSendTips
+{
+    NSString *alertString = nil;
+    if(_messageType == MessageTypeAskLocation){
+        alertString = NSLS(@"kAskLocationAlert");
+    } else if (_messageType == MessageTypeReplyLocation){
+        alertString = NSLS(@"kReplyLocationAlert");
+    }
+    
+    UIAlertView *sendAlertView = [[UIAlertView alloc] initWithTitle:nil message:alertString delegate:self cancelButtonTitle:NSLS(@"kCancel") otherButtonTitles:NSLS(@"kOK"), nil];
+    [sendAlertView show];
+    [sendAlertView release];
 }
 
 - (void)showUserMap
 {
+    [self hideActivity];
+    
     MKCoordinateRegion newRegion;
-    newRegion.center = _userCoordinate;
-    newRegion.span.latitudeDelta = 0.004000;
-    newRegion.span.longitudeDelta = 0.004000;
+    newRegion.center = _userLocation.coordinate;
+    newRegion.span.latitudeDelta = 0.01000;
+    newRegion.span.longitudeDelta = 0.01000;
     [self.userMapView setRegion:newRegion animated:YES];
     
-    UserAnnotation *annotation = [[[UserAnnotation alloc] initWithCoordinate:_userCoordinate] autorelease];
+    UserAnnotation *annotation = [[[UserAnnotation alloc] initWithCoordinate:_userLocation.coordinate title:_userAddress subtitle:nil] autorelease];
+    
     [self.userMapView addAnnotation:annotation];
+    [self.userMapView selectAnnotation:annotation animated:YES];
+    
+    if (_type == LocationTypeFind) {
+        if (hasGetLocation == NO) {
+            hasGetLocation = YES;
+            
+            [self performSelector:@selector(showSendTips) withObject:nil afterDelay:1.5f];
+        }
+    }
 }
 
-#pragma mark - CLLocationManagerDelegate
+#pragma mark - CLLocationManagerDelegate method
 - (void)locationManager:(CLLocationManager *)manager
        didFailWithError:(NSError *)error
 {
-    PPDebug(@"get location fail:%@",error);
+    PPDebug(@"<UserLocationController>  get location fail:%@",error);
+    [self hideActivity];
     [manager stopUpdatingLocation];
+    [self popupHappyMessage:NSLS(@"kGetLocationFail") title:nil];
 }
 
 - (void)locationManager:(CLLocationManager *)manager
 	didUpdateToLocation:(CLLocation *)newLocation
            fromLocation:(CLLocation *)oldLocation
 {
-    PPDebug(@"didUpdateToLocation %f,%f",newLocation.coordinate.latitude, newLocation.coordinate.longitude);
-    self.userCoordinate = newLocation.coordinate;
+    PPDebug(@"<UserLocationController>  didUpdateToLocation %f,%f",newLocation.coordinate.latitude, newLocation.coordinate.longitude);
     [manager stopUpdatingLocation];
+    self.userLocation = newLocation;
     
-    [self showUserMap];
-    
-    UIAlertView *sendAlertView = [[UIAlertView alloc] initWithTitle:nil message:NSLS(@"kSendLocation") delegate:self cancelButtonTitle:NSLS(@"kCancel") otherButtonTitles:NSLS(@"kOK"), nil];
-    [sendAlertView show];
-    [sendAlertView release];
+    [self findAddress];
+}
+
+
+- (void)selectAnnotation:(id <MKAnnotation>)annotation
+{
+    [self.userMapView selectAnnotation:annotation animated:YES];
 }
 
 #pragma mark - MKMapViewDelegate
@@ -139,6 +223,9 @@
     if (customView == nil) {
         customView = [[[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:identifier] autorelease];
         customView.pinColor = MKPinAnnotationColorRed;
+        customView.canShowCallout = YES;
+        
+        [self performSelector:@selector(selectAnnotation:) withObject:annotation afterDelay:0.3f];
     }
     
     return customView;
@@ -151,7 +238,7 @@
         return;
     } else {
         if ([_delegate respondsToSelector:@selector(didClickSendLocation:longitude:messageType:)]) {
-            [_delegate didClickSendLocation:_userCoordinate.latitude longitude:_userCoordinate.longitude messageType:_messageType];
+            [_delegate didClickSendLocation:_userLocation.coordinate.latitude longitude:_userLocation.coordinate.longitude messageType:_messageType];
             [self.navigationController popViewControllerAnimated:YES];
         }
     }

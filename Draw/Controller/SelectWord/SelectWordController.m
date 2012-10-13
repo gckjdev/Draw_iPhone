@@ -169,8 +169,9 @@
 #define TOOLVIEW_CENTER ([DeviceDetection isIPAD] ? CGPointMake(615, 780) : CGPointMake(272, 344))
 - (void)viewDidLoad
 {
+    CGFloat originY = [DeviceDetection screenSize].height - 50 - 20;
     self.adView = [[AdService defaultService] createAdInView:self
-                                                       frame:CGRectMake(0, 480-50-20, 320, 50) 
+                                                       frame:CGRectMake(0, originY, 320, 50) 
                                                    iPadFrame:CGRectMake(112, 883, 320, 50)
                                                      useLmAd:NO];        
     
@@ -178,7 +179,8 @@
     toolView = [[ToolView alloc] initWithNumber:0];
     toolView.number = [[ItemManager defaultManager] tipsItemAmount];
     toolView.center = TOOLVIEW_CENTER;
-       
+    toolView.autoresizingMask = !UIViewAutoresizingFlexibleBottomMargin |UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
+    
     [self.view addSubview:toolView];
 
     self.wordArray = [[WordManager defaultManager]randDrawWordList];
@@ -212,10 +214,11 @@
     [super viewDidAppear:animated];
 
     if (self.adView == nil){
+        CGFloat originY = [DeviceDetection screenSize].height - 50 - 20;
         self.adView = [[AdService defaultService] createAdInView:self
-                                                           frame:CGRectMake(0, 480-50-20, 320, 50) 
+                                                           frame:CGRectMake(0, originY, 320, 50) 
                                                        iPadFrame:CGRectMake(112, 883, 320, 50)
-                                                         useLmAd:NO];        
+                                                         useLmAd:NO];
     }
 }
 

@@ -36,7 +36,7 @@ FriendService* globalGetFriendService()
 - (void)findFriendsByType:(int)type viewController:(PPViewController<FriendServiceDelegate>*)viewController
 {
     NSString *userId = [[UserManager defaultManager] userId];
-    //[viewController showActivity];
+    [viewController showActivityWithText:NSLS(@"kLoading")];
     
     dispatch_async(workingQueue, ^{            
         CommonNetworkOutput* output = [GameNetworkRequest findFriends:SERVER_URL 
@@ -67,7 +67,7 @@ FriendService* globalGetFriendService()
                 friendList = [[FriendManager defaultManager] findAllFanFriends];
             }
         
-            //[viewController hideActivity];
+            [viewController hideActivity];
             if ([viewController respondsToSelector:@selector(didfindFriendsByType:friendList:result:)]){
                 [viewController didfindFriendsByType:type friendList:friendList result:output.resultCode];
             }            

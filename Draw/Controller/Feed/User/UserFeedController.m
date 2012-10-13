@@ -240,8 +240,11 @@ typedef enum{
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    if (self.currentTab.tabID != UserTypeFeed && indexPath.row > [self.tabDataList count])
+    if (self.currentTab.tabID != UserTypeFeed ||
+        indexPath.row > [self.tabDataList count])
+    {
         return;
+    }
     
     Feed *feed = [self.tabDataList objectAtIndex:indexPath.row];
     
@@ -255,7 +258,7 @@ typedef enum{
     }else if(feed.isGuessType){
         drawFeed = [(GuessFeed *)feed drawFeed];
     }else{
-        PPDebug(@"warnning:<FeedController> feedId = %@ is illegal feed, cannot set the detail", feed.feedId);
+        PPDebug(@"warnning:<UserFeedController> feedId = %@ is illegal feed, cannot set the detail", feed.feedId);
         return;
     }
     ShowFeedController *sfc = [[ShowFeedController alloc] initWithFeed:drawFeed];

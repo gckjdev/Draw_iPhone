@@ -271,6 +271,7 @@
       infoInView:(PPViewController<FriendServiceDelegate>*)superController
 {
     CommonUserInfoView* view = [CommonUserInfoView createUserInfoView];
+    view.frame = superController.view.frame;
     [view initViewWithFriend:afriend];
     view.superViewController = superController;
     [superController.view addSubview:view];
@@ -426,6 +427,7 @@
     }
     [self resetUserInfo];
     [self.superViewController hideActivity];
+    self.frame = self.superViewController.view.frame;
     [self.superViewController.view addSubview:self];
 }
 

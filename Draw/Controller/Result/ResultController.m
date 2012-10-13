@@ -26,7 +26,6 @@
 #import "DrawConstants.h"
 #import "AnimationManager.h"
 #import "CommonMessageCenter.h"
-#import "FeedController.h"
 #import "OfflineGuessDrawController.h"
 #import "DrawDataService.h"
 #import "ShareService.h"
@@ -41,7 +40,7 @@
 #import "ConfigManager.h"
 #import "ItemService.h"
 #import "VendingController.h"
-#import "Feed.h"
+#import "DrawFeed.h"
 #import "ShowFeedController.h"
 
 #define CONTINUE_TIME 10
@@ -58,7 +57,6 @@
 @interface ResultController()
 
 //- (BOOL)fromShowFeedController;
-//- (BOOL)fromFeedController;
 - (BOOL)throwItem:(ToolView*)toolView;
 - (void)receiveFlower;
 - (void)receiveTomato;
@@ -204,10 +202,7 @@
 {
     return [self hasSuperViewControllerForClass:[ShowFeedController class]];
 }
-//- (BOOL)fromFeedController
-//{
-//    return [self hasSuperViewControllerForClass:[FeedController class]];
-//}
+
 - (BOOL)fromOfflineGuessController
 {
     return [self hasSuperViewControllerForClass:[OfflineGuessDrawController class]];
@@ -322,14 +317,27 @@
     ToolView* flower = [[[ToolView alloc] initWithItemType:ItemTypeFlower number:[[ItemManager defaultManager] amountForItem:ItemTypeFlower]] autorelease];
     tomato.tag = TOMATO_TOOLVIEW_TAG;
     flower.tag = FLOWER_TOOLVIEW_TAG;
-    [self.view addSubview:tomato];
-    [self.view addSubview:flower];
     [tomato setCenter:downButton.center];
     [flower setCenter:upButton.center];
+    [self.view addSubview:tomato];
+    [self.view addSubview:flower];
+
     [tomato addTarget:self action:@selector(clickDownButton:)];
     [flower addTarget:self action:@selector(clickUpButton:)];
     [flower setFrame:upButton.frame];
     [tomato setFrame:downButton.frame];
+    flower.autoresizingMask = UIViewAutoresizingFlexibleTopMargin
+    | !UIViewAutoresizingFlexibleBottomMargin
+    | UIViewAutoresizingFlexibleLeftMargin
+    | UIViewAutoresizingFlexibleRightMargin
+    | !UIViewAutoresizingFlexibleWidth
+    | !UIViewAutoresizingFlexibleHeight;
+    tomato.autoresizingMask = UIViewAutoresizingFlexibleTopMargin
+    | !UIViewAutoresizingFlexibleBottomMargin
+    | UIViewAutoresizingFlexibleLeftMargin
+    | UIViewAutoresizingFlexibleRightMargin
+    | !UIViewAutoresizingFlexibleWidth
+    | !UIViewAutoresizingFlexibleHeight;
     
 }
 - (void)initActionButton
@@ -411,7 +419,7 @@
     if (self.adView == nil){
         self.adView = [[AdService defaultService] createAdInView:self 
                                                            frame:CGRectMake(0, 47, 320, 50) 
-                                                       iPadFrame:CGRectMake(0, 815, 320, 50)
+                                                       iPadFrame:CGRectMake(224, 815, 320, 50)
                                                          useLmAd:NO];   
     }        
 }
@@ -627,6 +635,16 @@
 #define ITEM_TAG_OFFSET 20120728
 - (BOOL)throwItem:(ToolView*)toolView
 {
+    if (_resultType != OnlineGuess
+        && ((toolView.itemType == ItemTypeTomato
+         && !_feed.canThrowTomato) 
+        || (toolView.itemType == ItemTypeFlower
+            && !_feed.canSendFlower))) {
+        [[CommonMessageCenter defaultCenter] postMessageWithText:[NSString stringWithFormat:NSLS(@"kCanotSendItemToOpus"),_feed.itemLimit] delayTime:1.5 isHappy:YES];
+            self.downButton.enabled = NO;
+            
+        return NO;
+    }
     
     if([[ItemManager defaultManager] hasEnoughItem:toolView.itemType] == NO){
         //TODO go the shopping page.
@@ -639,9 +657,11 @@
     [throwingItem setImage:toolView.imageView.image];
     if (toolView.itemType == ItemTypeTomato) {
         [DrawGameAnimationManager showThrowTomato:throwingItem animInController:self rolling:YES];
+        [_feed increaseLocalTomatoTimes];
     }
     if (toolView.itemType == ItemTypeFlower) {
         [DrawGameAnimationManager showThrowFlower:throwingItem animInController:self rolling:YES];
+        [_feed increaseLocalFlowerTimes];
     }
     return YES;
 }

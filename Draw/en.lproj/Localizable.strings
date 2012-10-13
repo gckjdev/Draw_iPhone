@@ -1,4 +1,4 @@
-/* 
+/*
  Localizable.strings
  GhostGame
  
@@ -28,6 +28,9 @@
 "kNFM" = "%@ follow you.";
 "kNCN" = "[%@] starts now. Hurry to join.";
 
+"kPALM" = "%@ send a location request to you";
+"kPRLM" = "%@ reply your location request";
+"kPRRLM" = "%@ reject your location request";
 /*********************** Notification end *************************/
 
 "kStart" = "Online";
@@ -511,7 +514,7 @@
 "kCurrentItems" = "Items ";
 "kFreeGetCoins" = "Free Coins";
 
-"kCustomWordManage" = "Word Manage";
+"kCustomWordManage" = "My Words";
 "kAddCustomWord" = "Add Word";
 "kInputWord" = "Input Words";
 "kInputWordPlaceholder" = "Please input a new word";
@@ -534,6 +537,9 @@
 
 "kSubmitSuccTitle" = "Submit Successfully";
 "kSubmitSuccMsg" = "Congratulations! Submit Successfully! One more?";
+
+"kContestSubmitSuccMsg" = "Thank you for your participation, you can submit other %d works, one more?";
+"kContestSubmitSuccQuitMsg" = "Thank you for your participation!";
 
 "kContestNotRunning" = "Sorry, the contest is not running now.";
 "kContesSummitCountEnough" = "Sorry. You can only summit %d opus to one contest";
@@ -600,7 +606,7 @@
 "kSending" = "Sending...";
 "kNoCommentTips" = "No Comments";
 "kFeedDetail" = "Drawing Detail";
-"kOpusDetail" = "Opus";
+"kOpusDetail" = "View";
 "kCommentFail" = "Failed to Comment";
 
 "kBlankDrawTitle" = "Blank Drawing";
@@ -616,15 +622,13 @@
 
 "kMathOpusFail" = "Sorry. Can't match a opus for you.";
 
-"kGuessWords" = "Guessing: %@";
+"kGuessWords" = "Guessed: %@";
 "kMyDrawing" = "My Drawing:[%@]";
 
 "kDrawToHim" = "Draw Something";
 "kExploreHim" = "View Opus";
 "kPlayWithHim" = "Play with him(her)";
-"kChatToHim" = "Talk something";
-
-
+"kChatToHim" = "Say something";
 
 "kUserFeedTitle" = "%@'s Timeline";
 "kUserFeed" = "Timeline";
@@ -730,8 +734,8 @@
 "kFollowWeibo" = "Follow Weibo";
 "kGetCoinsByShareToFriends" = "Share successfully. Very good! You got %d coins!";
 
-"kSendAFlower" = "Send a flower to painter!";
-"kThrowATomato" = "Throw a tomato to painter!";
+"kSendAFlower" = "Send a flower!";
+"kThrowATomato" = "Throw a tomato!";
 
 "kShareAwardCoinTips" = "Share these draws to SNS and get %d reward coins!";
 
@@ -782,8 +786,8 @@
 "kFlowerTimes" = "Flower(%d)";
 "kTomatoTimes" = "Tomato(%d)";
 
-"kNoComments" = "No comment yet, to be the first?";
-"kNoGuesses" = "No one guess yet, to be the first?";
+"kNoComments" = "No comment yet, be the first one?";
+"kNoGuesses" = "No one has guessed it yet, be the first one?";
 "kNoFlowers" = "Send a flower, if you like it.";
 "kNoTomatos" = "Throw a tomato, if you hate it.";
 
@@ -796,17 +800,17 @@
 
 
 "kContest" = "Contest";
-"kRank" = "Rank";
-"kNoRankPlayer" = "No ranking player yet.";
-"kNoRankHistory" = "No history rank yet";
-"kNoRankHot" = "No hot rank yet";
-"kNoRankNew" = "No new rank yet";
-"kNoData" = "No data.";
+"kRank" = "Top";
+"kNoRankPlayer" = "No data";
+"kNoRankHistory" = "No data";
+"kNoRankHot" = "No data";
+"kNoRankNew" = "No data";
+"kNoData" = "No data";
 
 "kRankPlayer" = "Player";
-"kRankHistory" = "History";
-"kRankHot" = "Hot";
-"kRankNew" = "New";
+"kRankHistory" = "Annually";
+"kRankHot" = "Weekly";
+"kRankNew" = "Latest";
 "kDrawToMe" = "@Me";
 
 "kNoMyFeed" = "No Feeds. Try to draw and guess?";
@@ -841,9 +845,32 @@
 "kSummaryOfSendItem" = "Reply %@'s expression.";
 "kSummaryOfComment" = "Reply %@'s comment: %@.";
 
+"kAskLocationTitle" = "Location Request";
+"kReplyLocationTitle" = "Reply Request";
+"kShowMyLocationTitle" = "My Location";
+"kShowFriendLocationTitle" = "Location of friend";
+"kGettingLocation" = "Getting current location ...";
+
+"kAskLocationMessage" = "This is my location, let me see you where?";
+"kReplyLocationMessage" = "Reply location request";
+"kRejectLocationMessage" = "Reject location request";
+
+"kReplyLocation" = "Reply";
+"kRejectLocation" = "Reject";
+"kShowLocation" = "Display";
+
+"kGetLocationFail" = "Unable to locate, can not send location request.";
+"kAskLocationAlert" = "Send location requests, and send your location?";
+"kReplyLocationAlert" = "Reply location request, and send your location?";
+
+
 "kContestPassed" = "Passed(%d)";
-"kContestPendding" = "Pendding";
+"kContestPending" = "Pending";
 "kNoContestTips" = "No Contest Now.";
+"kContestFeedDetail" = "Contest Opus";
+
+"kDrawToUserByUser" = "drew to %@";
+
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 
@@ -1043,22 +1070,15 @@
 "kNoFriendRoom" = "No friend room";
 "kMe" = "Me";
 "kSendMeFlower" = "Send me a flower";
-"kThrowMeTomato" = "Throw me a Tomato";
+"kThrowMeTomato" = "Throw me a tomato";
 "kCommentMyOpus" = "Comment my opus.";
 
 "kCanotSendItemToOpus" = "You can't send the same item more than %d times on the same opus.";
 "kCanotSendItemToContestOpus" = "You can't send the same item more than %d times on the same contest opus.";
 "kOpusMy" = "Mine";
 "kOpusRank" = "Top";
-"kOpusNew" = "New";
+"kOpusNew" = "Latest";
 
-"kAskLocationMessage" = "This is my position, let me see you where?";
-"kReplyLocationMessage" = "I replied to your positioning request";
-"kRejectLocationMessage" = "Reject your positioning request";
-"kReplyLocation" = "Reply";
-"kRejectLocation" = "Reject";
-"kShowLocation" = "Display";
-"kSendLocation" = "Send my location";
 
 /*********************** 大话骰子国际化字符串结束 *************************/
 

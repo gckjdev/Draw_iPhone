@@ -24,6 +24,9 @@
 @property (nonatomic, retain) NSNumber *language;
 @property (nonatomic, retain) NSNumber *level;
 @property (nonatomic, retain) NSNumber *deleteFlag;
+@property (nonatomic, retain) NSString * dataFilePath;
+@property (nonatomic, retain) NSString * targetUserId;
+@property (nonatomic, retain) NSString * contestId;
 
 @property (nonatomic, retain) UIImage *thumbImage;
 

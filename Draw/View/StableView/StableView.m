@@ -13,6 +13,7 @@
 #import "PPDebug.h"
 #import "DeviceDetection.h"
 #import "Item.h"
+#import "UIImageView+WebCache.h"
 
 #define TOOL_VIEW_FRAM (([DeviceDetection isIPAD]) ? CGRectMake(0, 0, 61 * 2, 61 * 2) : CGRectMake(0, 0, 61, 61))
 
@@ -207,7 +208,8 @@
         type = aType;
         bgView = [[UIImageView alloc] initWithFrame:[self calAvatarFrame]];
         [self addSubview:bgView];
-        imageView = [[HJManagedImageV alloc] initWithFrame:self.bounds];
+//        imageView = [[HJManagedImageV alloc] initWithFrame:self.bounds];
+        imageView = [[UIImageView alloc] initWithFrame:self.bounds];
         [self addSubview:imageView];
         [self setAvatarUrl:urlString gender:gender];
         [self addTapGuesture];
@@ -243,7 +245,8 @@
         bgView = [[UIImageView alloc] initWithFrame:[self calAvatarFrame]];
         [self addSubview:bgView];
         [self setAvatarSelected:NO];
-        imageView = [[HJManagedImageV alloc] initWithFrame:self.bounds];
+//        imageView = [[HJManagedImageV alloc] initWithFrame:self.bounds];
+        imageView = [[UIImageView alloc] initWithFrame:self.bounds];
         [self addSubview:imageView];
         [self setAvatarUrl:urlString gender:gender];
         [self addTapGuesture];
@@ -256,9 +259,11 @@
 
 - (void)setUrlString:(NSString *)urlString
 {
-    [imageView clear];
-    [imageView setUrl:[NSURL URLWithString:urlString]];
-    [GlobalGetImageCache() manage:imageView];
+//    [imageView clear];
+//    [imageView setUrl:[NSURL URLWithString:urlString]];
+//    [GlobalGetImageCache() manage:imageView];
+    
+    [imageView setImageWithURL:[NSURL URLWithString:urlString]];
 }
 - (void)dealloc
 {
@@ -286,9 +291,9 @@
 
 - (void)setImage:(UIImage *)image
 {
-    [imageView clear];
+//    [imageView clear];
     [imageView setImage:image];
-    [GlobalGetImageCache() manage:imageView];
+//    [GlobalGetImageCache() manage:imageView];
 }
 
 - (void)clickOnAvatar
@@ -307,7 +312,7 @@
 }
 - (void)setAvatarUrl:(NSString *)url gender:(BOOL)gender
 {
-    [imageView clear];
+//    [imageView clear];
     if (gender) {
         [imageView setImage:[[ShareImageManager defaultManager] 
                              maleDefaultAvatarImage]];
@@ -316,8 +321,9 @@
                              femaleDefaultAvatarImage]];                
     }
     if ([url length] > 0){
-        [imageView setUrl:[NSURL URLWithString:url]];
-        [GlobalGetImageCache() manage:imageView];
+//        [imageView setUrl:[NSURL URLWithString:url]];
+//        [GlobalGetImageCache() manage:imageView];
+        [imageView setImageWithURL:[NSURL URLWithString:url]];
     }
 }
 - (void)setAvatarSelected:(BOOL)selected

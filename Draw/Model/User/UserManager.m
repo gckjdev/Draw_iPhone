@@ -19,6 +19,8 @@
 #import "GameNetworkConstants.h"
 #import "SNSConstants.h"
 #import "GameBasic.pb.h"
+#import "SDWebImageManager.h"
+
 
 #define KEY_USERID          @"USER_KEY_USERID"
 #define KEY_NICKNAME        @"USER_KEY_NICKNAME"
@@ -213,7 +215,7 @@ static UserManager* _defaultManager;
     [userDefaults setObject:email forKey:KEY_EMAIL];
     [userDefaults setObject:password forKey:KEY_PASSWORD];
     
-    if (avatarURL != nil){
+    if ([avatarURL length] > 0){
         [userDefaults setObject:avatarURL forKey:KEY_AVATAR_URL];
     }
     
@@ -327,7 +329,7 @@ static UserManager* _defaultManager;
 
 - (void)setAvatar:(NSString*)avatarURL
 {
-    if (avatarURL == nil)
+    if ([avatarURL length] == 0)
         return;
     
     NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
@@ -344,6 +346,27 @@ static UserManager* _defaultManager;
 
 - (UIImage*)avatarImage
 {
+    
+    NSString* url = [self avatarURL];
+    if ([url length] == 0){
+        // use default avatar in application bundle
+        self.avatarImage = [UIImage imageNamed:[self defaultAvatar]];
+        return self.avatarImage;
+    }
+    
+    SDWebImageManager *manager = [SDWebImageManager sharedManager];
+    [manager downloadWithURL:[NSURL URLWithString:url]
+                    delegate:self
+                     options:0
+                     success:^(UIImage *image, BOOL cached){
+                         PPDebug(@"download user avatar image from %@, cached=%d", url, cached);
+                         self.avatarImage = image;
+                     }
+                     failure:nil];
+    
+    return _avatarImage;
+    
+    /* old implementation
     if (_avatarImage == nil){
         // local file
         UIImage* localImage = [self readAvatarImageLocally];        
@@ -362,7 +385,7 @@ static UserManager* _defaultManager;
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
                 ASIHTTPRequest* request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:url]];
                 [request setDownloadDestinationPath:[FileUtil getFileFullPath:AVATAR_LOCAL_FILENAME]];
-                [request setTemporaryFileDownloadPath:[FileUtil getFileFullPath:TEMP_AVATAR_LOCAL_PATH]];
+                [request setTemporaryFileDownloadPath:NSTemporaryDirectory()];
                 [request setAllowResumeForFileDownloads:YES];
                 [request startSynchronous];
                 
@@ -372,6 +395,7 @@ static UserManager* _defaultManager;
             });
         }
     }
+     */
     
     return _avatarImage;
 }
@@ -559,7 +583,7 @@ sinaAccessTokenSecret:(NSString*)sinaAccessTokenSecret
         [self setSinaId:sinaId nickName:nickName];
     }
     
-    if (avatarURL != nil){
+    if ([avatarURL length] > 0){
         [userDefaults setObject:avatarURL forKey:KEY_AVATAR_URL];
         if (email == nil) {
             [self avatarImage];

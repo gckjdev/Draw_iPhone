@@ -72,7 +72,7 @@
                                      self.feed.drawData.drawActionList];            
             [self.showView setDrawActionList:list];
             
-            double speed = [DrawAction calculateSpeed:self.showView.drawActionList defaultSpeed:1.0/40.0 maxSecond:45];
+            double speed = [DrawAction calculateSpeed:self.showView.drawActionList defaultSpeed:1.0/40.0 maxSecond:38];
             self.showView.playSpeed = speed;
             [self addSubview:self.showView];
             [self.showView play];
@@ -88,7 +88,8 @@
 
 - (void)showInView:(UIView *)view
 {
-    self.center = view.center;
+//    self.center = view.center;
+    self.frame = view.frame;
     [view addSubview:self];
     CAAnimation *showAnimation = [AnimationManager scaleAnimationWithFromScale:0.01 
                                                                        toScale:1 

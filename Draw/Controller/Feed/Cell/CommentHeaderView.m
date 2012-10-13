@@ -10,7 +10,13 @@
 
 @implementation CommentHeaderView
 @synthesize delegate = _delegate;
+@synthesize feed = _feed;
 
+- (void)dealloc
+{
+    PPRelease(_feed);
+    [super dealloc];
+}
 
 #define CHANGE_TIMES 100
 
@@ -113,8 +119,11 @@
 {
     //update comment | guess
     UIView *line = [self splitLineWithType:CommentTypeGuess];
-    [line setCenter:[self splitLineCenter:CommentTypeGuess]];
-    
+    if ([self.feed isContestFeed]) {
+        line.hidden = YES;
+    }else{
+        [line setCenter:[self splitLineCenter:CommentTypeGuess]];
+    }
     //update guess | flower
     line = [self splitLineWithType:CommentTypeFlower];
     [line setCenter:[self splitLineCenter:CommentTypeFlower]];
@@ -143,9 +152,9 @@
 + (CGFloat)getHeight
 {
     if ([DeviceDetection isIPAD]) {
-        return 70;
+        return 50;
     }
-    return 37;
+    return 25;
 }
 
 - (void)updateTimes:(DrawFeed *)feed
@@ -153,10 +162,16 @@
     [self updateButtonWithType:CommentTypeComment 
                          times:feed.commentTimes 
                         format:NSLS(@"kCommentTimes")];
-    
-    [self updateButtonWithType:CommentTypeGuess 
-                         times:feed.guessTimes 
-                        format:NSLS(@"kGuessTimes")];
+    if (![feed isContestFeed]) {
+        [self updateButtonWithType:CommentTypeGuess 
+                             times:feed.guessTimes 
+                            format:NSLS(@"kGuessTimes")];        
+    }else{
+        UIButton *button = [self buttonWithType:CommentTypeGuess];
+        UIButton *prev = [self previousButtonWithType:CommentTypeGuess];
+        button.hidden = YES;
+        button.frame = prev.frame;
+    }
     
     [self updateButtonWithType:CommentTypeFlower
                          times:feed.flowerTimes 

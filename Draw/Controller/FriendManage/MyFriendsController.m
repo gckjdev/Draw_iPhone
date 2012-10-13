@@ -481,13 +481,19 @@
 
 - (void)loadMyFollow
 {
-    [[FriendService defaultService] findFriendsByType:FOLLOW viewController:self];
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        [[FriendService defaultService] findFriendsByType:FOLLOW viewController:self];
+    });
 }
 
 
 - (void)loadMyFans
 {
-    [[FriendService defaultService] findFriendsByType:FAN viewController:self];
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        [[FriendService defaultService] findFriendsByType:FAN viewController:self];
+    });
 }
 
 

@@ -1288,6 +1288,10 @@
         }
         str = [str stringByAddQueryParameter:PARA_APPID value:[ConfigManager appId]];
         
+        // add device model
+        NSString* deviceModel = [DeviceDetection platform];
+        str = [str stringByAddQueryParameter:PARA_DEVICEMODEL value:deviceModel];
+        
         return str;
     };
     
@@ -1322,7 +1326,61 @@
     }
 }
 
++ (CommonNetworkOutput*)updateOpus:(NSString*)baseURL
+                             appId:(NSString*)appId
+                            userId:(NSString*)userId
+                            opusId:(NSString*)opusId
+                              data:(NSData*)data
+                         imageData:(NSData *)imageData
+{
+    CommonNetworkOutput* output = [[[CommonNetworkOutput alloc] init] autorelease];
+    
+    if (userId == nil || (data == nil && imageData == nil)){
+        PPDebug(@"<updateOpus> but userId nil or data/imageData nil");
+        return nil;
+    }
+    
+    NSString *method = METHOD_UPDATE_OPUS;
+    
+    ConstructURLBlock constructURLHandler = ^NSString *(NSString *baseURL) {
+        
+        // set input parameters
+        NSString* str = [NSString stringWithString:baseURL];
+        
+        str = [str stringByAddQueryParameter:METHOD value:method];
+        str = [str stringByAddQueryParameter:PARA_APPID value:appId];
+        str = [str stringByAddQueryParameter:PARA_USERID value:userId];
+        str = [str stringByAddQueryParameter:PARA_OPUS_ID value:opusId];
+        
+        // add device model
+        NSString* deviceModel = [DeviceDetection platform];
+        str = [str stringByAddQueryParameter:PARA_DEVICEMODEL value:deviceModel];
+        
+        str = [str stringByAddQueryParameter:PARA_APPID value:[ConfigManager appId]];
+        
+        return str;
+    };
+    
+    
+    PPNetworkResponseBlock responseHandler = ^(NSDictionary *dict, CommonNetworkOutput *output) {
+        output.jsonDataDict = [dict objectForKey:RET_DATA];
+        return;
+    };
+    
+    NSMutableDictionary *dataDict = nil;
+    if (data) {
+        dataDict = [NSMutableDictionary dictionary];
+        [dataDict setObject:data forKey:PARA_DRAW_DATA];
+    }
+    
+    return [PPNetworkRequest uploadRequest:baseURL
+                                 imageData:imageData
+                              postDataDict:dataDict
+                       constructURLHandler:constructURLHandler
+                           responseHandler:responseHandler
+                                    output:output];
 
+}
 
 + (CommonNetworkOutput*)guessOpus:(NSString*)baseURL
                              appId:(NSString*)appId
@@ -2226,6 +2284,7 @@
         str = [str stringByAddQueryParameter:PARA_LANGUAGE intValue:language];
         str = [str stringByAddQueryParameter:PARA_OFFSET intValue:offset];
         str = [str stringByAddQueryParameter:PARA_COUNT intValue:limit];
+        str = [str stringByAddQueryParameter:PARA_DEVICETYPE intValue:[DeviceDetection deviceType]];
         
         return str;
     };

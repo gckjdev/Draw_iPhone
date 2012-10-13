@@ -412,6 +412,7 @@
 - (void)throwTool:(ToolView*)toolView
 {
     UIImageView* throwItem = [[[UIImageView alloc] initWithFrame:ITEM_FRAME] autorelease];
+    throwItem.center = self.view.center;
     [self.view addSubview:throwItem];
     [throwItem setImage:toolView.imageView.image];
     if (toolView.itemType == ItemTypeTomato) {

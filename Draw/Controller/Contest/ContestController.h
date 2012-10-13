@@ -20,11 +20,11 @@
 
 - (IBAction)clickBackButton:(id)sender;
 - (IBAction)clickRefreshButton:(id)sender;
-@property (retain, nonatomic) IBOutlet UILabel *noContestTipLabel;
 
+- (void)enterDrawControllerWithContest:(Contest *)contest
+                              animated:(BOOL)animated;
+@property (retain, nonatomic) IBOutlet UILabel *noContestTipLabel;
 @property (retain, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (retain, nonatomic) IBOutlet UICustomPageControl *pageControl;
-
-
 @property (retain, nonatomic) IBOutlet UILabel *titleLabel;
 @end

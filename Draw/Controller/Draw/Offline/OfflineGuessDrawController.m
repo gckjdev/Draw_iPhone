@@ -35,7 +35,6 @@
 #import "Draw.h"
 #import "AccountManager.h"
 #import "CoinShopController.h"
-#import "FeedController.h"
 #import "ShowFeedController.h"
 #import "CommonUserInfoView.h"
 #import "FeedService.h"
@@ -395,6 +394,7 @@
     
     for (int i = CANDIDATE_BASE_TAG; i <= CANDIDATE_END_TAG; ++ i) {
         UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+        button.autoresizingMask = !UIViewAutoresizingFlexibleBottomMargin |UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
         [button setTag:i];
         [self initCandidateButton:button];
         [self.view addSubview:button];
@@ -507,7 +507,7 @@
         
         NSMutableArray *list =  [NSMutableArray arrayWithArray:_draw.drawActionList];            
         [self.showView setDrawActionList:list];
-        double speed = [DrawAction calculateSpeed:self.showView.drawActionList defaultSpeed:1.0/40.0 maxSecond:45];
+        double speed = [DrawAction calculateSpeed:self.showView.drawActionList defaultSpeed:1.0/40.0 maxSecond:38];
         self.showView.playSpeed = speed;
 //        [self.showView play];
         [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(startPlay:) userInfo:nil repeats:NO];
@@ -718,7 +718,7 @@
     if (--_maxFlower <= 0) {
         [toolView setEnabled:NO];
     }
-    
+    [_feed increaseLocalFlowerTimes];
     return NO;
 }
 
@@ -738,12 +738,20 @@
     if (--_maxTomato <= 0) {
         [toolView setEnabled:NO];
     }
-    
+    [_feed increaseLocalTomatoTimes];
     return NO;
 }
 #pragma mark - click tool delegate
 - (void)didPickedPickView:(PickView *)pickView toolView:(ToolView *)toolView
 {
+    if ((toolView.itemType == ItemTypeTomato 
+         && !_feed.canThrowTomato) 
+        || (toolView.itemType == ItemTypeFlower
+            && !_feed.canSendFlower)) {
+            [[CommonMessageCenter defaultCenter] postMessageWithText:[NSString stringWithFormat:NSLS(@"kCanotSendItemToOpus"),self.feed.itemLimit] delayTime:1.5 isHappy:YES];
+            return;
+        }
+    
     NSInteger amout = [[ItemManager defaultManager] amountForItem:toolView.itemType];
     if(amout <= 0){
         //TODO go the shopping page.

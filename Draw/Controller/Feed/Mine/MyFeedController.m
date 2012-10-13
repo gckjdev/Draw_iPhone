@@ -81,11 +81,12 @@ typedef enum{
     drawFeed.feedId = feed.opusId;
     FeedUser *feedUser = [[FeedUser alloc]initWithUserId:feed.opusCreator
                                                 nickName:nil
-                                                  avatar:nil 
+                                                  avatar:nil
                                                   gender:YES];
     drawFeed.feedUser = feedUser;
     CommentController *cc = [[CommentController alloc] initWithFeed:drawFeed commentFeed:_selectedCommentFeed];
     [self presentModalViewController:cc animated:YES];
+    [cc release];
 }
 
 
@@ -335,11 +336,7 @@ typedef enum{
     }
 }
 
-- (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    PPDebug(@"<willSelectRowAtIndexPath>");
-    return indexPath;
-}
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
@@ -352,7 +349,7 @@ typedef enum{
         return;
     }
     
-    if (type != MyTypeFeed && indexPath.row > [self.tabDataList count])
+    if (type != MyTypeFeed || indexPath.row > [self.tabDataList count])
         return;
     
     Feed *feed = [self.tabDataList objectAtIndex:indexPath.row];
@@ -367,7 +364,7 @@ typedef enum{
     }else if(feed.isGuessType){
         drawFeed = [(GuessFeed *)feed drawFeed];
     }else{
-        PPDebug(@"warnning:<FeedController> feedId = %@ is illegal feed, cannot set the detail", feed.feedId);
+        PPDebug(@"warnning:<MyFeedController> feedId = %@ is illegal feed, cannot set the detail", feed.feedId);
         return;
     }
     ShowFeedController *sfc = [[ShowFeedController alloc] initWithFeed:drawFeed];
