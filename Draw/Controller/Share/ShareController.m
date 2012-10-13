@@ -94,18 +94,28 @@ typedef enum{
     }
 }
 
+- (void)updateTab:(NSArray *)paints
+{
+    if ([paints count] < self.currentTab.limit) {
+        self.currentTab.hasMoreData = NO;
+    }
+    isLoading = NO;    
+}
+
 #pragma mark - MyPaintManager Delegate
 - (void)didGetAllPaints:(NSArray *)paints
 {
     [self finishLoadDataForTabID:TabTypeAll resultList:paints];
     [self hideActivity];
     [self reloadView];
+    [self updateTab:paints];
 }
 - (void)didGetMyPaints:(NSArray *)paints
 {
     [self finishLoadDataForTabID:TabTypeMine resultList:paints];
     [self hideActivity];
     [self reloadView];
+    [self updateTab:paints];
 }
 
 - (void)didGetAllDrafts:(NSArray *)paints
@@ -113,6 +123,7 @@ typedef enum{
     [self finishLoadDataForTabID:TabTypeDraft resultList:paints];
     [self hideActivity];
     [self reloadView];
+    [self updateTab:paints];
 }
 
 - (void)performLoadMyPaints
@@ -376,7 +387,6 @@ typedef enum{
     else{
         number = self.paints.count / IMAGES_PER_LINE + 1;
     }
-    
     return number;
 }
 
@@ -415,7 +425,7 @@ typedef enum{
     int number = [self tableView:tableView numberOfRowsInSection:indexPath.section];
     if (row == number - 1) {
         TableTab *tab = self.currentTab;
-        if (tab.hasMoreData && tab.status != TableTabStatusLoading) {
+        if (!isLoading && tab.hasMoreData && tab.status != TableTabStatusLoading) {
             [self serviceLoadDataForTabID:tab.tabID];
             PPDebug(@"service load opus, tab id = %d", tab.tabID);
         }
@@ -644,6 +654,7 @@ typedef enum{
     [self reloadView];
     TableTab *tab = [_tabManager tabForID:tabID];
     if (tab) {
+        isLoading = YES;
         switch (tabID) {
             case TabTypeMine:
                 [self loadPaintsOnlyMine:YES];                
