@@ -72,7 +72,7 @@
                                      self.feed.drawData.drawActionList];            
             [self.showView setDrawActionList:list];
             
-            double speed = [DrawAction calculateSpeed:self.showView.drawActionList defaultSpeed:1.0/50.0 maxSecond:38];
+            double speed = [DrawAction calculateSpeed:self.showView.drawActionList];
             self.showView.playSpeed = speed;
             [self addSubview:self.showView];
             [self.showView play];
