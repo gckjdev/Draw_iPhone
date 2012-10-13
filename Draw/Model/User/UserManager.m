@@ -351,7 +351,7 @@ static UserManager* _defaultManager;
     if ([url length] == 0){
         // use default avatar in application bundle
         self.avatarImage = [UIImage imageNamed:[self defaultAvatar]];
-        return self.avatarImage;
+        return _avatarImage;
     }
     
     SDWebImageManager *manager = [SDWebImageManager sharedManager];
