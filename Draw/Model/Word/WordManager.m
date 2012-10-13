@@ -84,7 +84,8 @@ WordManager *GlobalGetWordManager()
 }
 + (NSString *)wordDir
 {
-    return [FileUtil getFileFullPath:WORD_DIR];
+//    return [FileUtil getFileFullPath:WORD_DIR];
+    return [[FileUtil getAppCacheDir] stringByAppendingPathComponent:WORD_DIR];
 }
 + (NSString *)cnWordDictPath
 {
