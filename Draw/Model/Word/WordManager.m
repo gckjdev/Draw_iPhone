@@ -66,7 +66,14 @@ WordManager *GlobalGetWordManager()
 {
     NSNumber *plistVersion = [[NSBundle mainBundle] objectForInfoDictionaryKey:WORD_BASE_KEY];
     NSInteger currentVersion = [[NSUserDefaults standardUserDefaults] integerForKey:WORD_BASE_KEY];
-    return plistVersion.integerValue > currentVersion;
+    
+    if (plistVersion.integerValue > currentVersion)
+        return YES;
+    
+    if ([[NSFileManager defaultManager] fileExistsAtPath:[WordManager wordBaseDictPath]] == NO)
+        return YES;
+    
+    return NO;
 }
 
 + (void)updateWordBaseVersion
