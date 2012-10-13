@@ -13,7 +13,9 @@ typedef enum{
     NotificationTypeRoom = 1,
     NotificationTypeMessage,
     NotificationTypeFeed,
-    NotificationTypeFan
+    NotificationTypeFan,
+    NotificationTypeComment,
+    NotificationTypeDrawToMe
 }NotificationType;
 
 

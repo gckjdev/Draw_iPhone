@@ -695,6 +695,8 @@
 "kFeedStatus" = "新动态(%d)";
 "kRoomStatus" = "新房间邀请(%d)";
 "kMessageStatus" = "新消息(%d)";
+"kCommentStatus" = "新评论(%d)";
+"kDrawToMeStatus" = "新画给我(%d)";
 
 
 "kOpusDelete" = "不好意思，这幅作品已经被删除。";

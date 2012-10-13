@@ -673,10 +673,12 @@
 "kDeleteFail" = "Fail to delete.";
 
 
-"kFanStatus" = "Fans(%d)";
-"kFeedStatus" = "Feed(%d)";
-"kRoomStatus" = "Room(%d)";
-"kMessageStatus" = "Message(%d)";
+"kFanStatus" = "New Fans(%d)";
+"kFeedStatus" = "New Feed(%d)";
+"kRoomStatus" = "New Room(%d)";
+"kMessageStatus" = "New Message(%d)";
+"kCommentStatus" = "New Comment(%d)";
+"kDrawToMeStatus" = "New DrawToMe(%d)";
 
 
 "kOpusDelete" = "Sorry. The opus has been deleted.";

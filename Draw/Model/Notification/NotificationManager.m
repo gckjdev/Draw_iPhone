@@ -51,6 +51,11 @@
             return [NSString stringWithFormat:NSLS(@"kRoomStatus"),self.count];
         case NotificationTypeMessage:
             return [NSString stringWithFormat:NSLS(@"kMessageStatus"),self.count];
+        case NotificationTypeComment:
+            return [NSString stringWithFormat:NSLS(@"kCommentStatus"),self.count];
+        case NotificationTypeDrawToMe:
+            return [NSString stringWithFormat:NSLS(@"kDrawToMeStatus"),self.count];
+
         default:
             return nil;
     }
@@ -89,6 +94,9 @@ NotificationManager *_staticNotificationManager = nil;
     }
     return _staticNotificationManager;
 }
+
+
+
 
 #define OFFSET ([DeviceDetection isIPAD] ? 0 : 0 )
 #define WIDTH ([DeviceDetection isIPAD] ? 768  : 320 )
@@ -149,6 +157,32 @@ NotificationManager *_staticNotificationManager = nil;
     return 0;    
 }
 
++ (int)feedBadge:(NSDictionary *)userInfo
+{
+    return [NotificationManager intValueOfUserInfo:userInfo forKey:FEED_BADGE];
+}
++ (int)fanBadge:(NSDictionary *)userInfo
+{
+    return [NotificationManager intValueOfUserInfo:userInfo forKey:FAN_BADGE];    
+}
++ (int)roomBadge:(NSDictionary *)userInfo
+{
+    return [NotificationManager intValueOfUserInfo:userInfo forKey:ROOM_BADGE];
+}
++ (int)messageBadge:(NSDictionary *)userInfo
+{
+    return [NotificationManager intValueOfUserInfo:userInfo forKey:MESSAGE_BADGE];
+}
++ (int)commentBadge:(NSDictionary *)userInfo
+{
+    return [NotificationManager intValueOfUserInfo:userInfo forKey:COMMENT_BADGE];
+}
++ (int)drawToMeBadge:(NSDictionary *)userInfo
+{
+    return [NotificationManager intValueOfUserInfo:userInfo forKey:DRAWTOME_BADGE];
+}
+
+
 + (NotificationType) typeForUserInfo:(NSDictionary *)userInfo
 {
     NSNumber *type = [userInfo objectForKey:PUSH_TYPE];
@@ -169,6 +203,10 @@ NotificationManager *_staticNotificationManager = nil;
             return [NotificationManager messageBadge:notification];
         case NotificationTypeFeed:
             return [NotificationManager feedBadge:notification];
+        case NotificationTypeComment:
+            return [NotificationManager commentBadge:notification];
+        case NotificationTypeDrawToMe:
+            return [NotificationManager drawToMeBadge:notification];
         default:
             return 0;
     }
@@ -176,37 +214,15 @@ NotificationManager *_staticNotificationManager = nil;
 
 - (void)saveStatistic:(NSDictionary *)notification
 {
-    int feedBadge = [NotificationManager intValueOfUserInfo:notification forKey:FEED_BADGE];
-    int fanbadge = [NotificationManager intValueOfUserInfo:notification forKey:FAN_BADGE];
-    int roomBadge = [NotificationManager intValueOfUserInfo:notification forKey:ROOM_BADGE];
-    int messageBadge = [NotificationManager intValueOfUserInfo:notification forKey:MESSAGE_BADGE];
-    int commentBadge = [NotificationManager intValueOfUserInfo:notification forKey:COMMENT_BADGE];
-    int drawtomeBadge = [NotificationManager intValueOfUserInfo:notification forKey:DRAWTOME_BADGE];
     
     StatisticManager *manager = [StatisticManager defaultManager];
-    [manager setFeedCount:feedBadge];
-    [manager setFanCount:fanbadge];
-    [manager setRoomCount:roomBadge];
-    [manager setMessageCount:messageBadge];
-    [manager setCommentCount:commentBadge];
-    [manager setDrawToMeCount:drawtomeBadge];
+    [manager setFeedCount:[NotificationManager feedBadge:notification]];
+    [manager setFanCount:[NotificationManager fanBadge:notification]];
+    [manager setRoomCount:[NotificationManager roomBadge:notification]];
+    [manager setMessageCount:[NotificationManager messageBadge:notification]];
+    [manager setCommentCount:[NotificationManager commentBadge:notification]];
+    [manager setDrawToMeCount:[NotificationManager drawToMeBadge:notification]];
 }
 
-+ (int)feedBadge:(NSDictionary *)userInfo
-{
-    return [NotificationManager intValueOfUserInfo:userInfo forKey:FEED_BADGE];
-}
-+ (int)fanBadge:(NSDictionary *)userInfo
-{
-    return [NotificationManager intValueOfUserInfo:userInfo forKey:FAN_BADGE];    
-}
-+ (int)roomBadge:(NSDictionary *)userInfo
-{
-    return [NotificationManager intValueOfUserInfo:userInfo forKey:ROOM_BADGE];
-}
-+ (int)messageBadge:(NSDictionary *)userInfo
-{
-    return [NotificationManager intValueOfUserInfo:userInfo forKey:MESSAGE_BADGE];
-}
 
 @end
