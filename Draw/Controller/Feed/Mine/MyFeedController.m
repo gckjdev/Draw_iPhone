@@ -39,6 +39,30 @@ typedef enum{
 @implementation MyFeedController
 //@synthesize titleLabel = _tipsLabel;
 
+- (id)init
+{
+    self = [super init];
+    if (self) {
+        _defaultTabIndex = 0;
+    }
+    return self;
+}
+
+- (id)initWithDefaultTabIndex:(NSInteger)index
+{
+    self = [super initWithDefaultTabIndex:index];
+    return self;
+}
+
++ (void)enterControllerWithIndex:(NSInteger)index
+                  fromController:(UIViewController *)controller 
+                        animated:(BOOL)animated
+{
+    MyFeedController *myFeedController = [[MyFeedController alloc] initWithDefaultTabIndex:index];
+    [controller.navigationController pushViewController:myFeedController animated:animated];
+    [myFeedController release];
+}
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -399,7 +423,7 @@ typedef enum{
 }
 - (NSInteger)currentTabIndex
 {
-    return 0;
+    return _defaultTabIndex;
 }
 - (NSInteger)fetchDataLimitForTabIndex:(NSInteger)index
 {

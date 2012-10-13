@@ -58,7 +58,7 @@
     
     self.showDrawView = [self createShowDrawView:_drawActionList];
     self.showDrawView.center = self.view.center;
-    [self.showDrawView setPlaySpeed:1.0/30.0];
+    [self.showDrawView setPlaySpeed:1.0/45.0];
     [self.view addSubview:self.showDrawView];
     [self.showDrawView play];
 }

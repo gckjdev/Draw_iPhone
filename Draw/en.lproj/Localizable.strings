@@ -679,6 +679,9 @@
 "kMessageStatus" = "New Message(%d)";
 "kCommentStatus" = "New Comment(%d)";
 "kDrawToMeStatus" = "New DrawToMe(%d)";
+"kReplyStatus" = "New Reply(%d)";
+"kFlowerStatus" = "New Flower(%d)";
+"kTomatoStatus" = "New Tomato(%d)";
 
 
 "kOpusDelete" = "Sorry. The opus has been deleted.";

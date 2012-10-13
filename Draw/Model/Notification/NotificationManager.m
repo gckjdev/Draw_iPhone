@@ -35,7 +35,7 @@
     self = [super init];
     if (self) {
         self.type = type;
-        self.count = count;
+        self.count = count < 1 ? 1 : count;
     }
     return self;
 }
@@ -51,11 +51,16 @@
             return [NSString stringWithFormat:NSLS(@"kRoomStatus"),self.count];
         case NotificationTypeMessage:
             return [NSString stringWithFormat:NSLS(@"kMessageStatus"),self.count];
+        case NotificationTypeReply:
+            return [NSString stringWithFormat:NSLS(@"kReplyStatus"),self.count];
         case NotificationTypeComment:
             return [NSString stringWithFormat:NSLS(@"kCommentStatus"),self.count];
         case NotificationTypeDrawToMe:
             return [NSString stringWithFormat:NSLS(@"kDrawToMeStatus"),self.count];
-
+        case NotificationTypeFlower:
+            return [NSString stringWithFormat:NSLS(@"kFlowerStatus"),self.count];
+        case NotificationTypeTomato:
+            return [NSString stringWithFormat:NSLS(@"kTomatoStatus"),self.count];
         default:
             return nil;
     }
@@ -85,7 +90,10 @@ NotificationManager *_staticNotificationManager = nil;
 #define FEED_BADGE  @"FEB"
 #define ROOM_BADGE  @"RB"
 #define COMMENT_BADGE @"CB"
+#define REPLY_BADGE @"RPB"
 #define DRAWTOME_BADGE @"DB"
+#define FLOWER_BADGE @"FLB"
+#define TOMATO_BADGE @"TMB"
 
 + (NotificationManager *)defaultManager
 {
@@ -181,6 +189,14 @@ NotificationManager *_staticNotificationManager = nil;
 {
     return [NotificationManager intValueOfUserInfo:userInfo forKey:DRAWTOME_BADGE];
 }
++ (int)flowerBadge:(NSDictionary *)userInfo
+{
+    return [NotificationManager intValueOfUserInfo:userInfo forKey:FLOWER_BADGE];
+}
++ (int)tomatoMeBadge:(NSDictionary *)userInfo
+{
+    return [NotificationManager intValueOfUserInfo:userInfo forKey:TOMATO_BADGE];
+}
 
 
 + (NotificationType) typeForUserInfo:(NSDictionary *)userInfo
@@ -207,6 +223,11 @@ NotificationManager *_staticNotificationManager = nil;
             return [NotificationManager commentBadge:notification];
         case NotificationTypeDrawToMe:
             return [NotificationManager drawToMeBadge:notification];
+        case NotificationTypeFlower:
+            return [NotificationManager flowerBadge:notification];
+        case NotificationTypeTomato:
+            return [NotificationManager tomatoMeBadge:notification];
+            
         default:
             return 0;
     }

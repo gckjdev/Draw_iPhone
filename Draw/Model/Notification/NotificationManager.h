@@ -15,7 +15,10 @@ typedef enum{
     NotificationTypeFeed,
     NotificationTypeFan,
     NotificationTypeComment,
-    NotificationTypeDrawToMe
+    NotificationTypeReply,
+    NotificationTypeDrawToMe,
+    NotificationTypeFlower,
+    NotificationTypeTomato
 }NotificationType;
 
 

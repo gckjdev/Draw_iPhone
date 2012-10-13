@@ -41,6 +41,23 @@
     [super dealloc];
 }
 
++ (void)enterControllerWithIndex:(NSInteger)index
+                  fromController:(UIViewController *)controller 
+                        animated:(BOOL)animated
+
+{
+    
+}
+
+- (id)initWithDefaultTabIndex:(NSInteger)index
+{
+    self = [super init];
+    if (self) {
+        _defaultTabIndex = index;
+    }
+    return self;
+}
+
 #pragma mark init tabs
 - (void)initTabs
 {
@@ -237,7 +254,7 @@
 }
 - (NSInteger)currentTabIndex
 {
-    return 0;
+    return _defaultTabIndex;
 }
 - (NSInteger)fetchDataLimitForTabIndex:(NSInteger)index
 {

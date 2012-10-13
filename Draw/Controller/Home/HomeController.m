@@ -202,7 +202,7 @@
 
     [self enterNextControllerWityType:self.notificationType];
     
-    [NSTimer scheduledTimerWithTimeInterval:100 target:self selector:@selector(handleStaticTimer:) userInfo:nil repeats:YES];
+    [NSTimer scheduledTimerWithTimeInterval:300 target:self selector:@selector(handleStaticTimer:) userInfo:nil repeats:YES];
 }
 
 - (void)registerDrawGameNotificationWithName:(NSString *)name 
@@ -299,8 +299,16 @@
             break;
         case NotificationTypeMessage:
             [self didClickMenuButton:[self.bottomMenuPanel getMenuButtonByType:MenuButtonTypeChat]];
-            
             break;
+        case NotificationTypeComment:
+        case NotificationTypeFlower:
+        case NotificationTypeReply:
+        case NotificationTypeTomato:
+            [MyFeedController enterControllerWithIndex:2 fromController:self animated:YES];
+            break;
+        case NotificationTypeDrawToMe:            
+            [MyFeedController enterControllerWithIndex:3 fromController:self animated:YES];
+            break;            
         default:
             break;
     }
@@ -702,9 +710,12 @@
             break;
         case MenuButtonTypeTimeline:
         {
-            MyFeedController *myFeedController = [[MyFeedController alloc] init];
-            [self.navigationController pushViewController:myFeedController animated:YES];
-            [myFeedController release];
+            
+//            MyFeedController *frc = [[MyFeedController alloc] init];
+//            [self.navigationController pushViewController:frc animated:YES];
+//            [frc release];
+
+            [MyFeedController enterControllerWithIndex:0 fromController:self animated:YES];
             [_menuPanel setMenuBadge:0 forMenuType:type];
         }
             break;
