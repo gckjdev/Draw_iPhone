@@ -350,9 +350,8 @@ typedef enum{
     PPDebug(@"<didGetFeedList> list count = %d ", [feedList count]);
     [self hideActivity];
     if (resultCode == 0) {
-        NSInteger i = 0;
         for (DrawFeed *feed in feedList) {
-            PPDebug(@"%d: feedId = %@, word = %@", i++, feed.feedId,feed.wordText);
+//            PPDebug(@"%d: feedId = %@, word = %@", i++, feed.feedId,feed.wordText);
         }
         [self finishLoadDataForTabID:type resultList:feedList];
     }else{
