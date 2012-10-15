@@ -19,6 +19,7 @@
 #import "MyCommentCell.h"
 #import "DrawFeed.h"
 #import "CommentController.h"
+#import "UseItemScene.h"
 
 typedef enum{
     MyTypeFeed = FeedListTypeAll,
@@ -367,7 +368,7 @@ typedef enum{
         PPDebug(@"warnning:<MyFeedController> feedId = %@ is illegal feed, cannot set the detail", feed.feedId);
         return;
     }
-    ShowFeedController *sfc = [[ShowFeedController alloc] initWithFeed:drawFeed];
+    ShowFeedController *sfc = [[ShowFeedController alloc] initWithFeed:drawFeed scene:[UseItemScene createSceneByType:UseSceneTypeShowFeedDetail feed:drawFeed]];
     [self.navigationController pushViewController:sfc animated:YES];
     [sfc release];
         
@@ -563,7 +564,7 @@ typedef enum{
 
 - (void)enterDetailFeed:(DrawFeed *)feed
 {
-    ShowFeedController *sc = [[ShowFeedController alloc] initWithFeed:feed];
+    ShowFeedController *sc = [[ShowFeedController alloc] initWithFeed:feed scene:[UseItemScene createSceneByType:UseSceneTypeShowFeedDetail feed:feed]];
     [self.navigationController pushViewController:sc animated:YES];
     [sc release];    
 }

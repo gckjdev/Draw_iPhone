@@ -13,6 +13,7 @@
 #import "FeedCell.h"
 #import "CommonMessageCenter.h"
 #import "CommonUserInfoView.h"
+#import "UseItemScene.h"
 typedef enum{
     UserTypeFeed = FeedListTypeUserFeed,
     UserTypeOpus = FeedListTypeUserOpus,    
@@ -261,7 +262,7 @@ typedef enum{
         PPDebug(@"warnning:<UserFeedController> feedId = %@ is illegal feed, cannot set the detail", feed.feedId);
         return;
     }
-    ShowFeedController *sfc = [[ShowFeedController alloc] initWithFeed:drawFeed];
+    ShowFeedController *sfc = [[ShowFeedController alloc] initWithFeed:drawFeed scene:[UseItemScene createSceneByType:UseSceneTypeShowFeedDetail feed:drawFeed]];
     [self.navigationController pushViewController:sfc animated:YES];
     [sfc release];
     
@@ -364,7 +365,7 @@ typedef enum{
 #pragma mark Rank View delegate
 - (void)didClickRankView:(RankView *)rankView
 {
-    ShowFeedController *sc = [[ShowFeedController alloc] initWithFeed:rankView.feed];
+    ShowFeedController *sc = [[ShowFeedController alloc] initWithFeed:rankView.feed scene:[UseItemScene createSceneByType:UseSceneTypeShowFeedDetail feed:rankView.feed]];
     [self.navigationController pushViewController:sc animated:YES];
     [sc release];
 }

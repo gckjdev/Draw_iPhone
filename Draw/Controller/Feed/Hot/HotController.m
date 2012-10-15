@@ -11,6 +11,7 @@
 #import "ShareImageManager.h"
 #import "ShowFeedController.h"
 #import "CommonUserInfoView.h"
+#import "UseItemScene.h"
 
 typedef enum{
 
@@ -370,7 +371,7 @@ typedef enum{
 #pragma mark Rank View delegate
 - (void)didClickRankView:(RankView *)rankView
 {
-    ShowFeedController *sc = [[ShowFeedController alloc] initWithFeed:rankView.feed];
+    ShowFeedController *sc = [[ShowFeedController alloc] initWithFeed:rankView.feed scene:[UseItemScene createSceneByType:UseSceneTypeShowFeedDetail feed:rankView.feed]];
     [self.navigationController pushViewController:sc animated:YES];
     [sc release];
 }

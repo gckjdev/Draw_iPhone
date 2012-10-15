@@ -95,6 +95,7 @@
     PPRelease(_guessWords);
     PPRelease(_supperController);
     PPRelease(_pickToolView);
+    PPRelease(_scene);
     [super dealloc];
 }
 
@@ -147,7 +148,7 @@
         _opusId = _feed.feedId;
         _draw = _feed.drawData;
         _authorId = _feed.author.userId;
-        _scene = [UseItemScene createSceneByType:UseSceneTypeOfflineGuess feed:feed];
+        _scene = [[UseItemScene createSceneByType:UseSceneTypeOfflineGuess feed:feed] retain];
     }
     return self;
     

@@ -83,7 +83,7 @@
 - (id)init{
     self = [super init];
     if (self) {
-        _scene = [UseItemScene createSceneByType:UseSceneTypeOnlineGuess feed:nil];
+        _scene = [[UseItemScene createSceneByType:UseSceneTypeOnlineGuess feed:nil] retain];
     }
     return self;
 }

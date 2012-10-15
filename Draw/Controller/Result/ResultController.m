@@ -551,7 +551,7 @@
                                      feedAuthor:_feed.author.userId];  
      
     // update UI
-    [self setUpAndDownButtonEnabled:NO];
+//    [self setUpAndDownButtonEnabled:NO];
     [toolView decreaseNumber];
 }
 
@@ -571,7 +571,7 @@
                                      feedAuthor:_feed.author.userId];
     
     // update UI
-    [self setUpAndDownButtonEnabled:NO];
+//    [self setUpAndDownButtonEnabled:NO];
     [toolView decreaseNumber];
 }
 
