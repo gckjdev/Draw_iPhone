@@ -460,11 +460,6 @@ static VendingController* staticVendingController = nil;
     // e.g. self.myOutlet = nil;
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
-
 #pragma animation delegate
 - (void)animationDidStart:(CAAnimation *)anim
 {
