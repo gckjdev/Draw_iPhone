@@ -333,7 +333,7 @@ enum{
     
     
     [drawView setDrawEnabled:YES];
-    [drawView setRevocationSupported:[DeviceDetection isIPAD]];
+    [drawView setRevocationSupported:YES];
     drawView.delegate = self;
     if (self.draft) {
         NSArray* drawActionList = [NSKeyedUnarchiver unarchiveObjectWithData:self.draft.data];
