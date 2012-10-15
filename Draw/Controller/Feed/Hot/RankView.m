@@ -86,15 +86,15 @@
     }else if ([feed.drawImageUrl length] != 0) {
         NSURL *url = [NSURL URLWithString:feed.drawImageUrl];
         UIImage *defaultImage = [[ShareImageManager defaultManager] unloadBg];
-//        [self.drawImage setImageWithURL:url placeholderImage:defaultImage];
-        self.drawImage.alpha = 0;
+
         [self.drawImage setImageWithURL:url placeholderImage:defaultImage success:^(UIImage *image, BOOL cached) {
             if (!cached) {
+                self.drawImage.alpha = 0;
                 [UIView animateWithDuration:1 animations:^{
                     self.drawImage.alpha = 1.0;
                 }];
             }else{
-                self.drawImage.alpha = 1.0;
+//                self.drawImage.alpha = 1.0;
             }
         } failure:^(NSError *error) {
             self.drawImage.alpha = 1;

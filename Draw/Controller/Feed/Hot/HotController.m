@@ -84,13 +84,6 @@ typedef enum{
     // e.g. self.myOutlet = nil;
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
-
-
 #pragma mark - table view delegate
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -350,9 +343,8 @@ typedef enum{
     PPDebug(@"<didGetFeedList> list count = %d ", [feedList count]);
     [self hideActivity];
     if (resultCode == 0) {
-        NSInteger i = 0;
         for (DrawFeed *feed in feedList) {
-            PPDebug(@"%d: feedId = %@, word = %@", i++, feed.feedId,feed.wordText);
+//            PPDebug(@"%d: feedId = %@, word = %@", i++, feed.feedId,feed.wordText);
         }
         [self finishLoadDataForTabID:type resultList:feedList];
     }else{

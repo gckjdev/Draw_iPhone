@@ -11,7 +11,7 @@
 #import "StableView.h"
 #import "PPDebug.h"
 #import "FeedManager.h"
-#import "HJManagedImageV.h"
+//#import "HJManagedImageV.h"
 
 @class Feed;
 @class ShowDrawView;
@@ -32,7 +32,7 @@
 
 @end
 
-@interface FeedCell : PPTableViewCell<AvatarViewDelegate, FeedManagerDelegate, HJManagedImageVDelegate>
+@interface FeedCell : PPTableViewCell<AvatarViewDelegate, FeedManagerDelegate>
 {
     AvatarView *_avatarView;
     ShowDrawView *_showView;
@@ -41,7 +41,7 @@
 @property (retain, nonatomic) IBOutlet UILabel *descLabel;
 @property (retain, nonatomic) IBOutlet UILabel *userNameLabel;
 @property (retain, nonatomic) IBOutlet UILabel *timeLabel;
-@property (retain, nonatomic) IBOutlet HJManagedImageV *drawImageView;
+@property (retain, nonatomic) IBOutlet UIImageView *drawImageView;
 @property (retain, nonatomic) ShowDrawView *showView;
 @property (retain, nonatomic) AvatarView *avatarView;
 @property (retain, nonatomic) Feed *feed;

@@ -735,11 +735,6 @@ enum{
     // e.g. self.myOutlet = nil;
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
 
 - (IBAction)clickRefresh:(id)sender {
     if (self.feed.drawData == nil) {
