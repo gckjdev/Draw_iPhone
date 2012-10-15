@@ -66,20 +66,6 @@
 							<string key="NSResourceName">paper.png</string>
 						</object>
 					</object>
-					<object class="IBUIImageView" id="363934863">
-						<reference key="NSNextResponder" ref="994743261"/>
-						<int key="NSvFlags">319</int>
-						<string key="NSFrame">{{148, 65}, {470, 87}}</string>
-						<reference key="NSSuperview" ref="994743261"/>
-						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="266726240"/>
-						<bool key="IBUIUserInteractionEnabled">NO</bool>
-						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
-						<object class="NSCustomResource" key="IBUIImage">
-							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">paperclip.png</string>
-						</object>
-					</object>
 					<object class="IBUIImageView" id="1012987438">
 						<reference key="NSNextResponder" ref="994743261"/>
 						<int key="NSvFlags">306</int>
@@ -100,7 +86,7 @@
 						<string key="NSFrame">{{16, 13}, {74, 74}}</string>
 						<reference key="NSSuperview" ref="994743261"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="363934863"/>
+						<reference key="NSNextKeyView"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 						<int key="IBUIContentHorizontalAlignment">0</int>
@@ -134,7 +120,7 @@
 					<object class="IBUITextView" id="667568781">
 						<reference key="NSNextResponder" ref="994743261"/>
 						<int key="NSvFlags">319</int>
-						<string key="NSFrame">{{48, 192}, {672, 672}}</string>
+						<string key="NSFrame">{{48, 150}, {672, 714}}</string>
 						<reference key="NSSuperview" ref="994743261"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="950929173"/>
@@ -207,7 +193,6 @@ eSBIZQpPbGQxMw</string>
 						<string key="NSFrame">{{0, 947}, {768, 46}}</string>
 						<reference key="NSSuperview" ref="994743261"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
 						<int key="IBUIContentMode">7</int>
@@ -320,7 +305,6 @@ eSBIZQpPbGQxMw</string>
 						<reference key="object" ref="994743261"/>
 						<array class="NSMutableArray" key="children">
 							<reference ref="950929173"/>
-							<reference ref="363934863"/>
 							<reference ref="266726240"/>
 							<reference ref="213914412"/>
 							<reference ref="163006048"/>
@@ -338,11 +322,6 @@ eSBIZQpPbGQxMw</string>
 					<object class="IBObjectRecord">
 						<int key="objectID">5</int>
 						<reference key="object" ref="950929173"/>
-						<reference key="parent" ref="994743261"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">6</int>
-						<reference key="object" ref="363934863"/>
 						<reference key="parent" ref="994743261"/>
 					</object>
 					<object class="IBObjectRecord">
@@ -382,7 +361,6 @@ eSBIZQpPbGQxMw</string>
 				<string key="3.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="4.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="5.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<string key="6.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="7.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="8.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="9.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -443,7 +421,6 @@ eSBIZQpPbGQxMw</string>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
 			<string key="back.png">{16, 16}</string>
 			<string key="paper.png">{16, 16}</string>
-			<string key="paperclip.png">{16, 16}</string>
 			<string key="topwood.png">{16, 16}</string>
 			<string key="wood_bg.png">{16, 16}</string>
 		</dictionary>
