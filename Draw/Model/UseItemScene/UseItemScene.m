@@ -13,8 +13,8 @@
 #define DEFAULT_MAX_FLOWER  10
 #define DEFAULT_MAX_TOMATO  10
 
-#define ONLINE_FLOWER   2
-#define ONLINE_TOMATO   2
+#define ONLINE_FLOWER   10
+#define ONLINE_TOMATO   10
 
 @implementation UseItemScene
 @synthesize feed = _feed;
