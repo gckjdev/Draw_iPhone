@@ -78,8 +78,8 @@
 
 - (UIImage *)myFoucsImage;
 - (UIImage *)myFoucsSelectedImage;
-- (UIImage *)foucsMeImage;
-- (UIImage *)foucsMeSelectedImage;
+- (UIImage *)focusMeImage;
+- (UIImage *)focusMeSelectedImage;
 - (UIImage *)middleTabImage;
 - (UIImage *)middleTabSelectedImage;
 
