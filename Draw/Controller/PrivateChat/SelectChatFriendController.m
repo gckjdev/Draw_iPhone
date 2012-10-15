@@ -170,6 +170,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     Friend *aFriend = [dataList objectAtIndex:indexPath.row];
+//    [self.navigationController popViewControllerAnimated:NO];
     if (delegate && [delegate respondsToSelector:@selector(didSelectFriend:)]) {
         [delegate didSelectFriend:aFriend];
     }
