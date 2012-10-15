@@ -721,6 +721,8 @@
 		CA42706D1620028E00C6CCAE /* SuperHomeController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA42706B1620028E00C6CCAE /* SuperHomeController.m */; };
 		CA42706E1620028E00C6CCAE /* SuperHomeController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA42706C1620028E00C6CCAE /* SuperHomeController.xib */; };
 		CA427070162002E100C6CCAE /* SuperHomeController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA42706F162002E100C6CCAE /* SuperHomeController~ipad.xib */; };
+		CA42C0C3162C0A5400BCF499 /* icon-22.png in Resources */ = {isa = PBXBuildFile; fileRef = CA42C0C1162C0A5300BCF499 /* icon-22.png */; };
+		CA42C0C4162C0A5400BCF499 /* icon-21.png in Resources */ = {isa = PBXBuildFile; fileRef = CA42C0C2162C0A5400BCF499 /* icon-21.png */; };
 		CA42E3CA15F4617A00790B3C /* TableTab.m in Sources */ = {isa = PBXBuildFile; fileRef = CA42E3C715F4617A00790B3C /* TableTab.m */; };
 		CA42E3CB15F4617A00790B3C /* TableTabManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA42E3C915F4617A00790B3C /* TableTabManager.m */; };
 		CA4FF001152AEFDF00F0AC88 /* ColorGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = CA4FF000152AEFDF00F0AC88 /* ColorGroup.m */; };
@@ -2271,6 +2273,8 @@
 		CA42706C1620028E00C6CCAE /* SuperHomeController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SuperHomeController.xib; sourceTree = "<group>"; };
 		CA42706F162002E100C6CCAE /* SuperHomeController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "SuperHomeController~ipad.xib"; sourceTree = "<group>"; };
 		CA427071162002FE00C6CCAE /* SuperHomeProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SuperHomeProtocol.h; sourceTree = "<group>"; };
+		CA42C0C1162C0A5300BCF499 /* icon-22.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-22.png"; sourceTree = "<group>"; };
+		CA42C0C2162C0A5400BCF499 /* icon-21.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-21.png"; sourceTree = "<group>"; };
 		CA42E3C615F4617A00790B3C /* TableTab.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableTab.h; sourceTree = "<group>"; };
 		CA42E3C715F4617A00790B3C /* TableTab.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableTab.m; sourceTree = "<group>"; };
 		CA42E3C815F4617A00790B3C /* TableTabManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableTabManager.h; sourceTree = "<group>"; };
@@ -5298,6 +5302,8 @@
 		CA34E7591615353A00F85346 /* Icons */ = {
 			isa = PBXGroup;
 			children = (
+				CA42C0C1162C0A5300BCF499 /* icon-22.png */,
+				CA42C0C2162C0A5400BCF499 /* icon-21.png */,
 				CA34E75B1615353A00F85346 /* new_icon.png */,
 				CA34E75C1615353A00F85346 /* new_icon@2x.png */,
 				CA34E75D1615353A00F85346 /* new_icon_ipad1.png */,
@@ -7563,6 +7569,8 @@
 				EA372344162018DA00FC6F3E /* UserLocationController.xib in Resources */,
 				EAA9E1681622B2A000E8DF1A /* UserLocationController~ipad.xib in Resources */,
 				CA9DAC5A1626AE46004C2954 /* Default-568h@2x.png in Resources */,
+				CA42C0C3162C0A5400BCF499 /* icon-22.png in Resources */,
+				CA42C0C4162C0A5400BCF499 /* icon-21.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
