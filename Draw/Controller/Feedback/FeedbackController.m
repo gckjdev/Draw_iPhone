@@ -22,6 +22,10 @@
 #import "CommonMessageCenter.h"
 #import "AccountService.h"
 
+#define HEIGHT_FOR_IPHONE   50
+#define HEIGHT_FOR_IPHONE5  60
+#define HEIGHT_FOR_IPAD     100
+
 
 @interface FeedbackController()
 
@@ -329,6 +333,17 @@ enum {
     return  numberOfRows;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if ([DeviceDetection isIPhone5]) {
+        return HEIGHT_FOR_IPHONE5;
+    }
+    if ([DeviceDetection isIPAD]) {
+        return HEIGHT_FOR_IPAD;
+    }
+    return HEIGHT_FOR_IPHONE;
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:@"FeedBackCell"];
@@ -374,6 +389,13 @@ enum {
     
     
     [self initRowNumber];
+    if ([LocaleUtils isChina]) {
+        [self.qqGroupLabel setText:NSLS(@"kQQGroup")];
+        [self.qqGroupLabel setTextColor:[UIColor colorWithRed:0x6c/255.0 green:0x31/255.0 blue:0x08/255.0 alpha:1.0]];
+    } else {
+        [self.qqGroupLabel setText:nil];
+    }
+
     // Do any additional setup after loading the view from its nib.
 }
 
