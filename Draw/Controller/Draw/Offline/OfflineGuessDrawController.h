@@ -35,6 +35,7 @@
 @class VendingController;
 @class Draw;
 @class DrawFeed;
+@class UseItemScene;
 @interface OfflineGuessDrawController : PPViewController<CommonDialogDelegate,UIScrollViewDelegate,DrawDataServiceDelegate, AvatarViewDelegate,PickViewDelegate, CommonItemInfoViewDelegate>
 {
     ShowDrawView *showView;
@@ -58,8 +59,7 @@
     UIViewController *_supperController;
     UIImageView* _throwingItem;
     
-    int _maxTomato;
-    int _maxFlower;
+    UseItemScene* _scene;
 
 }
 @property (retain, nonatomic) NSString *candidateString;

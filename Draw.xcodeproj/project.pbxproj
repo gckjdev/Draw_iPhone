@@ -259,6 +259,7 @@
 		C2E6628315230B3F00487601 /* ShareController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2E6628115230B3F00487601 /* ShareController.xib */; };
 		C2E6629F152463B900487601 /* ShareEditController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2E6629D152463B900487601 /* ShareEditController.m */; };
 		C2E662A0152463B900487601 /* ShareEditController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2E6629E152463B900487601 /* ShareEditController.xib */; };
+		C2E7401F1629500A0037E7F6 /* UseItemScene.m in Sources */ = {isa = PBXBuildFile; fileRef = C2E7401E1629500A0037E7F6 /* UseItemScene.m */; };
 		C2E90FE015BD3F2D00828562 /* RecommendedAppCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C2E90FDB15BD3F2D00828562 /* RecommendedAppCell.m */; };
 		C2E90FE115BD3F2D00828562 /* RecommendedAppCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2E90FDC15BD3F2D00828562 /* RecommendedAppCell.xib */; };
 		C2E90FEB15BD44DA00828562 /* RecommendApp.m in Sources */ = {isa = PBXBuildFile; fileRef = C2E90FEA15BD44DA00828562 /* RecommendApp.m */; };
@@ -1538,6 +1539,8 @@
 		C2E6629C152463B900487601 /* ShareEditController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareEditController.h; sourceTree = "<group>"; };
 		C2E6629D152463B900487601 /* ShareEditController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareEditController.m; sourceTree = "<group>"; };
 		C2E6629E152463B900487601 /* ShareEditController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShareEditController.xib; sourceTree = "<group>"; };
+		C2E7401D1629500A0037E7F6 /* UseItemScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UseItemScene.h; sourceTree = "<group>"; };
+		C2E7401E1629500A0037E7F6 /* UseItemScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UseItemScene.m; sourceTree = "<group>"; };
 		C2E90FDA15BD3F2D00828562 /* RecommendedAppCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecommendedAppCell.h; sourceTree = "<group>"; };
 		C2E90FDB15BD3F2D00828562 /* RecommendedAppCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecommendedAppCell.m; sourceTree = "<group>"; };
 		C2E90FDC15BD3F2D00828562 /* RecommendedAppCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RecommendedAppCell.xib; sourceTree = "<group>"; };
@@ -3689,6 +3692,15 @@
 				C2DD4F0C1610412500556CC7 /* DiceRobotDecisionView.m */,
 			);
 			path = DiceRobotDecisionView;
+			sourceTree = "<group>";
+		};
+		C2E7401C1629500A0037E7F6 /* UseItemScene */ = {
+			isa = PBXGroup;
+			children = (
+				C2E7401D1629500A0037E7F6 /* UseItemScene.h */,
+				C2E7401E1629500A0037E7F6 /* UseItemScene.m */,
+			);
+			path = UseItemScene;
 			sourceTree = "<group>";
 		};
 		C2E90FD915BD3F2C00828562 /* Recommend */ = {
@@ -6726,6 +6738,7 @@
 		CAECE0291503B25500BC2404 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				C2E7401C1629500A0037E7F6 /* UseItemScene */,
 				EAAFC5441615A4AB00C72BAB /* Statistic */,
 				CA8973721607131B003A95F7 /* Contest */,
 				CA42E3C515F4617A00790B3C /* TableTab */,
@@ -8108,6 +8121,7 @@
 				A43E85F816227E06003A57F1 /* SDWebImagePrefetcher.m in Sources */,
 				A43E85F916227E06003A57F1 /* UIButton+WebCache.m in Sources */,
 				A43E85FA16227E06003A57F1 /* UIImageView+WebCache.m in Sources */,
+				C2E7401F1629500A0037E7F6 /* UseItemScene.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

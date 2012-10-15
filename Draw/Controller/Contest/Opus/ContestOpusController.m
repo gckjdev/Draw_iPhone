@@ -12,6 +12,7 @@
 #import "ShowFeedController.h"
 #import "CommonUserInfoView.h"
 #import "Contest.h"
+#import "UseItemScene.h"
 
 typedef enum{
     OpusTypeMy = 1,
@@ -349,7 +350,7 @@ typedef enum{
 #pragma mark Rank View delegate
 - (void)didClickRankView:(RankView *)rankView
 {
-    ShowFeedController *sc = [[ShowFeedController alloc] initWithFeed:rankView.feed];
+    ShowFeedController *sc = [[ShowFeedController alloc] initWithFeed:rankView.feed scene:[UseItemScene createSceneByType:UseSceneTypeDrawMatch feed:rankView.feed]];
     [self.navigationController pushViewController:sc animated:YES];
     [sc release];
 }

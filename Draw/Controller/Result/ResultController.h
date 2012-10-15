@@ -15,6 +15,7 @@
 #import "CommonItemInfoView.h"
 
 @class DrawFeed;
+@class UseItemScene;
 
 typedef enum {
     OnlineDraw = 0x1,
@@ -34,9 +35,6 @@ typedef enum {
     BOOL _isMyPaint;
     NSArray *_drawActionList;
     ResultType _resultType;
-    
-    int _maxTomato;
-    int _maxFlower;
     
     DrawFeed* _feed;
 }
@@ -70,6 +68,7 @@ typedef enum {
 
 
 @property (retain, nonatomic) IBOutlet UIImageView *drawImage;
+@property (retain, nonatomic) UseItemScene  *useItemScene;
 
 - (id)initWithImage:(UIImage *)image 
          drawUserId:(NSString *)drawUserId
@@ -89,6 +88,27 @@ typedef enum {
           isMyPaint:(BOOL)isMyPaint 
      drawActionList:(NSArray *)drawActionList 
                feed:(Feed*)feed;
+
+- (id)initWithImage:(UIImage *)image
+         drawUserId:(NSString *)drawUserId
+   drawUserNickName:(NSString *)drawUserNickName
+           wordText:(NSString *)aWordText
+              score:(NSInteger)aScore
+            correct:(BOOL)correct
+          isMyPaint:(BOOL)isMyPaint
+     drawActionList:(NSArray *)drawActionList
+              scene:(UseItemScene*)scene;
+
+- (id)initWithImage:(UIImage *)image
+         drawUserId:(NSString *)drawUserId
+   drawUserNickName:(NSString *)drawUserNickName
+           wordText:(NSString *)aWordText
+              score:(NSInteger)aScore
+            correct:(BOOL)correct
+          isMyPaint:(BOOL)isMyPaint
+     drawActionList:(NSArray *)drawActionList
+               feed:(DrawFeed*)feed
+              scene:(UseItemScene*)scene;
 
 
 //- (void)saveActionList:(NSArray *)actionList;
