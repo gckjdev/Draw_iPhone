@@ -538,8 +538,8 @@ typedef enum{
             [button setBackgroundImage:[imageManager myFoucsImage] forState:UIButtonTypeCustom];
             [button setBackgroundImage:[imageManager myFoucsSelectedImage] forState:UIControlStateSelected];
         }else if(tab.tabID == TabTypeDraft){
-            [button setBackgroundImage:[imageManager foucsMeImage] forState:UIButtonTypeCustom];
-            [button setBackgroundImage:[imageManager foucsMeSelectedImage] forState:UIControlStateSelected];            
+            [button setBackgroundImage:[imageManager focusMeImage] forState:UIButtonTypeCustom];
+            [button setBackgroundImage:[imageManager focusMeSelectedImage] forState:UIControlStateSelected];            
         }else{
             [button setBackgroundImage:[imageManager middleTabImage] forState:UIControlStateNormal];
             [button setBackgroundImage:[imageManager middleTabSelectedImage] forState:UIControlStateSelected];

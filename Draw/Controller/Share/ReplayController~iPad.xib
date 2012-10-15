@@ -68,7 +68,7 @@
 					<object class="IBUIImageView" id="838780682">
 						<reference key="NSNextResponder" ref="69976092"/>
 						<int key="NSvFlags">319</int>
-						<string key="NSFrame">{{195, 109}, {379, 102}}</string>
+						<string key="NSFrame">{{195, 105}, {379, 102}}</string>
 						<reference key="NSSuperview" ref="69976092"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="121140273"/>
@@ -82,7 +82,7 @@
 					<object class="IBUILabel" id="121140273">
 						<reference key="NSNextResponder" ref="69976092"/>
 						<int key="NSvFlags">319</int>
-						<string key="NSFrame">{{232, 144}, {304, 45}}</string>
+						<string key="NSFrame">{{232, 138}, {304, 45}}</string>
 						<reference key="NSSuperview" ref="69976092"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="1050140856"/>
@@ -108,20 +108,6 @@
 							<string key="NSName">Helvetica</string>
 							<double key="NSSize">30</double>
 							<int key="NSfFlags">16</int>
-						</object>
-					</object>
-					<object class="IBUIImageView" id="1037593102">
-						<reference key="NSNextResponder" ref="69976092"/>
-						<int key="NSvFlags">319</int>
-						<string key="NSFrame">{{152, 82}, {465, 61}}</string>
-						<reference key="NSSuperview" ref="69976092"/>
-						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="838780682"/>
-						<bool key="IBUIUserInteractionEnabled">NO</bool>
-						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
-						<object class="NSCustomResource" key="IBUIImage">
-							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">paperclip@2x.png</string>
 						</object>
 					</object>
 					<object class="IBUIImageView" id="120271323">
@@ -211,7 +197,7 @@
 						<string key="NSFrame">{{634, 20}, {116, 56}}</string>
 						<reference key="NSSuperview" ref="69976092"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="1037593102"/>
+						<reference key="NSNextKeyView"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 						<int key="IBUIContentHorizontalAlignment">0</int>
@@ -256,7 +242,6 @@
 						<string key="NSFrame">{{297, 902}, {174, 54}}</string>
 						<reference key="NSSuperview" ref="69976092"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 						<int key="IBUIContentHorizontalAlignment">0</int>
@@ -402,7 +387,6 @@
 							<reference ref="120271323"/>
 							<reference ref="838780682"/>
 							<reference ref="121140273"/>
-							<reference ref="1037593102"/>
 							<reference ref="51537371"/>
 							<reference ref="418124054"/>
 						</array>
@@ -421,11 +405,6 @@
 					<object class="IBObjectRecord">
 						<int key="objectID">6</int>
 						<reference key="object" ref="838780682"/>
-						<reference key="parent" ref="69976092"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">7</int>
-						<reference key="object" ref="1037593102"/>
 						<reference key="parent" ref="69976092"/>
 					</object>
 					<object class="IBObjectRecord">
@@ -479,7 +458,6 @@
 				<string key="4.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="5.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="6.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<string key="7.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="8.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="9.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 			</dictionary>
@@ -574,7 +552,6 @@
 			<string key="back@2x.png">{74, 74}</string>
 			<string key="easy@2x.png">{566, 147}</string>
 			<string key="paper@2x.png">{640, 960}</string>
-			<string key="paperclip@2x.png">{388, 79}</string>
 			<string key="topwood@2x.png">{640, 99}</string>
 			<string key="wood_bg@2x.png">{640, 960}</string>
 		</dictionary>
