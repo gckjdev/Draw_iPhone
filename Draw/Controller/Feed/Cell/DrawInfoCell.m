@@ -102,7 +102,7 @@
 {
     CGRect frame = self.drawImage.frame;    
     self.showView = [[[ShowDrawView alloc] initWithFrame:frame] autorelease];
-    self.showView.playSpeed = 1.0/36.0;
+    self.showView.playSpeed = 1.0/50.0;
     [self.showView setShowPenHidden:YES];
     self.showView.delegate = self;
     [self.showView setBackgroundColor:[UIColor whiteColor]];

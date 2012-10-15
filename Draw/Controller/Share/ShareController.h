@@ -28,6 +28,7 @@
     int DELETE_ALL_MINE;
     int DELETE_ALL_DRAFT;
     int CANCEL;    
+    BOOL isLoading;
 }
 
 @property (retain, nonatomic) IBOutlet UIButton *clearButton;

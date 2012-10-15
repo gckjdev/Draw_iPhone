@@ -260,7 +260,7 @@ typedef enum{
     NSInteger count = [super tableView:tableView numberOfRowsInSection:section];
     
     NSInteger type = self.currentTab.tabID;
-    if (type == RankTypeHistory || type == RankTypePlayer) {
+    if (type == RankTypeHistory || type == RankTypePlayer || type == RankTypeHot) {
         if (HISTORY_RANK_NUMBER <= count) {
             self.noMoreData = YES;            
         }
@@ -350,6 +350,10 @@ typedef enum{
     PPDebug(@"<didGetFeedList> list count = %d ", [feedList count]);
     [self hideActivity];
     if (resultCode == 0) {
+        NSInteger i = 0;
+        for (DrawFeed *feed in feedList) {
+            PPDebug(@"%d: feedId = %@, word = %@", i++, feed.feedId,feed.wordText);
+        }
         [self finishLoadDataForTabID:type resultList:feedList];
     }else{
         [self failLoadDataForTabID:type];

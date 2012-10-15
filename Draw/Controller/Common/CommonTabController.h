@@ -32,6 +32,7 @@
 @interface CommonTabController : PPTableViewController<CommonTabControllerDelegate>
 {
     TableTabManager *_tabManager;
+    NSInteger _defaultTabIndex;
 }
 
 
@@ -42,6 +43,12 @@
 - (IBAction)clickBackButton:(id)sender;
 - (IBAction)clickTabButton:(id)sender;
 - (IBAction)clickRefreshButton:(id)sender;
+- (id)initWithDefaultTabIndex:(NSInteger)index;
+
++ (void)enterControllerWithIndex:(NSInteger)index
+                  fromController:(UIViewController *)controller 
+                        animated:(BOOL)animated;
+
 
 //used by the sub class.
 - (NSMutableArray *)tabDataList;
