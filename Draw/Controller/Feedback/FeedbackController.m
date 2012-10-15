@@ -52,7 +52,7 @@
 @synthesize rowOfGiveReview;
 @synthesize rowOfAbout;
 @synthesize numberOfRows;
-
+@synthesize qqGroupLabel = _qqGroupLabel;
 
 #pragma mark - Table dataSource ,table view delegate
 //enum {
@@ -382,6 +382,7 @@ enum {
     [self setDataTableView:nil];
     [self setTitleLabel:nil];
     [self setBackgroundImageView:nil];
+    [self setQqGroupLabel:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -392,6 +393,7 @@ enum {
     [dataTableView release];
     [TitleLabel release];
     [backgroundImageView release];
+    [_qqGroupLabel release];
     [super dealloc];
 }
 
