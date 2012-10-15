@@ -70,7 +70,7 @@
 //    FEEDBACK_COUNT
 //};
 
-#define DRAW_TABLE_HEIGHT   ([DeviceDetection isIPAD] ? 700 : 350)
+#define DRAW_TABLE_HEIGHT   ([DeviceDetection isIPAD] ? 790 : 350)
 #define DICE_TABLE_HEIGHT   ([DeviceDetection isIPAD] ? 600 : 300)
 
 - (void)initRowNumber
@@ -390,7 +390,9 @@ enum {
     
     [self initRowNumber];
     if ([LocaleUtils isChina]) {
-        [self.qqGroupLabel setText:NSLS(@"kQQGroup")];
+        if (isDrawApp()) {
+            [self.qqGroupLabel setText:NSLS(@"kQQGroup")];
+        }
         [self.qqGroupLabel setTextColor:[UIColor colorWithRed:0x6c/255.0 green:0x31/255.0 blue:0x08/255.0 alpha:1.0]];
     } else {
         [self.qqGroupLabel setText:nil];
