@@ -42,6 +42,7 @@
 #import "VendingController.h"
 #import "DrawFeed.h"
 #import "ShowFeedController.h"
+#import "UseItemScene.h"
 
 #define CONTINUE_TIME 10
 
@@ -49,9 +50,6 @@
 #define FLOWER_TOOLVIEW_TAG 120120718
 
 #define ITEM_FRAME  ([DeviceDetection isIPAD]?CGRectMake(0, 0, 122, 122):CGRectMake(0, 0, 61, 61))
-
-#define MAX_TOMATO 10
-#define MAX_FLOWER 10
 
 
 @interface ResultController()
@@ -86,6 +84,7 @@
 @synthesize downLabel;
 @synthesize backButton;
 //@synthesize resultType = _resultType;
+@synthesize useItemScene = _useItemScene;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -106,6 +105,60 @@
     
 }
 
+- (id)initWithImage:(UIImage *)image
+         drawUserId:(NSString *)drawUserId
+   drawUserNickName:(NSString *)drawUserNickName
+           wordText:(NSString *)aWordText
+              score:(NSInteger)aScore
+            correct:(BOOL)correct
+          isMyPaint:(BOOL)isMyPaint
+     drawActionList:(NSArray *)drawActionList
+              scene:(UseItemScene *)scene
+
+{
+    self = [super init];
+    if (self) {
+        _image = image;
+        [_image retain];
+        self.wordText = aWordText;
+        self.score = aScore;
+        _correct = correct;
+        _isMyPaint = isMyPaint;
+        self.drawActionList = [NSArray arrayWithArray:drawActionList];
+        
+        self.drawUserNickName = drawUserNickName;
+        self.drawUserId = drawUserId;
+        
+        drawGameService = [DrawGameService defaultService];
+        self.useItemScene = scene;
+    }
+    return self;
+}
+
+- (id)initWithImage:(UIImage *)image
+         drawUserId:(NSString *)drawUserId
+   drawUserNickName:(NSString *)drawUserNickName
+           wordText:(NSString *)aWordText
+              score:(NSInteger)aScore
+            correct:(BOOL)correct
+          isMyPaint:(BOOL)isMyPaint
+     drawActionList:(NSArray *)drawActionList
+               feed:(DrawFeed *)feed
+              scene:(UseItemScene *)scene
+
+{
+    self = [self initWithImage:image
+                    drawUserId:drawUserId
+              drawUserNickName:drawUserNickName
+                      wordText:aWordText
+                         score:aScore
+                       correct:correct
+                     isMyPaint:isMyPaint
+                drawActionList:drawActionList
+                         scene:scene];
+    _feed = feed;
+    return self;
+}
 
 - (id)initWithImage:(UIImage *)image 
          drawUserId:(NSString *)drawUserId
@@ -378,10 +431,7 @@
     [self.continueButton centerImageAndTitle:-1];
     [self.upButton centerImageAndTitle:-1];
     [self.downButton centerImageAndTitle:-1];
-    
-    _maxFlower = MAX_FLOWER;
-    _maxTomato = MAX_TOMATO;
-        
+
 }
 
 #pragma mark - View lifecycle
@@ -470,6 +520,7 @@
     PPRelease(whitePaper);
     PPRelease(resultLabel);
     PPRelease(_drawActionList);
+    PPRelease(_useItemScene);
     [experienceLabel release];
     [titleLabel release];
     [upLabel release];
@@ -502,9 +553,6 @@
     // update UI
     [self setUpAndDownButtonEnabled:NO];
     [toolView decreaseNumber];
-    if (--_maxFlower <= 0) {
-        [toolView setEnabled:NO];
-    }
 }
 
 - (IBAction)clickDownButton:(id)sender {
@@ -525,9 +573,6 @@
     // update UI
     [self setUpAndDownButtonEnabled:NO];
     [toolView decreaseNumber];
-    if (--_maxTomato <= 0) {
-        [toolView setEnabled:NO];
-    }
 }
 
 - (IBAction)clickContinueButton:(id)sender {
@@ -635,12 +680,11 @@
 #define ITEM_TAG_OFFSET 20120728
 - (BOOL)throwItem:(ToolView*)toolView
 {
-    if (_resultType != OnlineGuess
-        && ((toolView.itemType == ItemTypeTomato
-         && !_feed.canThrowTomato) 
+    if ((toolView.itemType == ItemTypeTomato
+         && ![_useItemScene canThrowTomato])
         || (toolView.itemType == ItemTypeFlower
-            && !_feed.canSendFlower))) {
-        [[CommonMessageCenter defaultCenter] postMessageWithText:[NSString stringWithFormat:NSLS(@"kCanotSendItemToOpus"),_feed.itemLimit] delayTime:1.5 isHappy:YES];
+            && ![_useItemScene canThrowFlower])) {
+            [[CommonMessageCenter defaultCenter] postMessageWithText:[NSString stringWithFormat:NSLS(@"kCanotSendItemToOpus"),[_useItemScene itemLimitForType:toolView.itemType]] delayTime:1.5 isHappy:YES];
             self.downButton.enabled = NO;
             
         return NO;
@@ -657,11 +701,11 @@
     [throwingItem setImage:toolView.imageView.image];
     if (toolView.itemType == ItemTypeTomato) {
         [DrawGameAnimationManager showThrowTomato:throwingItem animInController:self rolling:YES];
-        [_feed increaseLocalTomatoTimes];
+        [_useItemScene throwATomato];
     }
     if (toolView.itemType == ItemTypeFlower) {
         [DrawGameAnimationManager showThrowFlower:throwingItem animInController:self rolling:YES];
-        [_feed increaseLocalFlowerTimes];
+        [_useItemScene throwAFlower];
     }
     return YES;
 }

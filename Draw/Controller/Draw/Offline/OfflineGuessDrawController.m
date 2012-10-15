@@ -42,6 +42,7 @@
 #import "ItemService.h"
 #import "VendingController.h"
 #import "UIImageExt.h"
+#import "UseItemScene.h"
 
 #define PAPER_VIEW_TAG 20120403
 #define TOOLVIEW_CENTER (([DeviceDetection isIPAD]) ? CGPointMake(695, 920):CGPointMake(284, 424))
@@ -132,7 +133,7 @@
 - (id)init{
     self = [super init];
     if (self) {
-        shareImageManager = [ShareImageManager defaultManager];        
+        shareImageManager = [ShareImageManager defaultManager];
     }
     return self;
 }
@@ -146,6 +147,7 @@
         _opusId = _feed.feedId;
         _draw = _feed.drawData;
         _authorId = _feed.author.userId;
+        _scene = [UseItemScene createSceneByType:UseSceneTypeOfflineGuess feed:feed];
     }
     return self;
     
@@ -566,9 +568,6 @@
     
     [self updateDrawInfo];
     [self initPickToolView];
-    
-    _maxFlower = MAX_FLOWER_CAN_THROW;
-    _maxTomato = MAX_TOMATO_CAN_THROW;
 }
 
 - (void)viewDidDisappear:(BOOL)animated
@@ -669,7 +668,16 @@
             image = [UIImage imageWithData:data];            
         }
         
-        ResultController *result = [[ResultController alloc] initWithImage:image drawUserId:_draw.userId drawUserNickName:_draw.nickName wordText:_draw.word.text score:score correct:YES isMyPaint:NO drawActionList:_draw.drawActionList feed:self.feed];
+        ResultController *result = [[ResultController alloc] initWithImage:image
+                                                                drawUserId:_draw.userId
+                                                          drawUserNickName:_draw.nickName
+                                                                  wordText:_draw.word.text
+                                                                     score:score
+                                                                   correct:YES
+                                                                 isMyPaint:NO
+                                                            drawActionList:_draw.drawActionList
+                                                                      feed:self.feed
+                                                                     scene:[UseItemScene createSceneByType:OfflineGuess feed:self.feed]];
         
         //send http request.
         [[DrawDataService defaultService] guessDraw:_guessWords opusId:_opusId opusCreatorUid:_draw.userId isCorrect:YES score:score delegate:nil];
@@ -715,10 +723,7 @@
                                      feedAuthor:_authorId];    
     
     [toolView decreaseNumber];
-    if (--_maxFlower <= 0) {
-        [toolView setEnabled:NO];
-    }
-    [_feed increaseLocalFlowerTimes];
+    [_scene throwAFlower];
     return NO;
 }
 
@@ -735,19 +740,16 @@
                                      feedAuthor:_authorId];    
     
     [toolView decreaseNumber];
-    if (--_maxTomato <= 0) {
-        [toolView setEnabled:NO];
-    }
-    [_feed increaseLocalTomatoTimes];
+    [_scene throwATomato];
     return NO;
 }
 #pragma mark - click tool delegate
 - (void)didPickedPickView:(PickView *)pickView toolView:(ToolView *)toolView
 {
     if ((toolView.itemType == ItemTypeTomato 
-         && !_feed.canThrowTomato) 
+         && ![_scene canThrowTomato])
         || (toolView.itemType == ItemTypeFlower
-            && !_feed.canSendFlower)) {
+            && ![_scene canThrowFlower])) {
             [[CommonMessageCenter defaultCenter] postMessageWithText:[NSString stringWithFormat:NSLS(@"kCanotSendItemToOpus"),self.feed.itemLimit] delayTime:1.5 isHappy:YES];
             return;
         }
