@@ -268,14 +268,14 @@ static UIImage* _whitePaperImage;
      return [UIImage strectchableImageName:@"myfoucs_selected.png"];
 }
 
-- (UIImage *)foucsMeImage
+- (UIImage *)focusMeImage
 {
-    return [UIImage strectchableImageName:@"foucsme.png"];
+    return [UIImage strectchableImageName:@"focusme.png"];
 }
 
-- (UIImage *)foucsMeSelectedImage
+- (UIImage *)focusMeSelectedImage
 {
-    return [UIImage strectchableImageName:@"foucsme_selected.png"];
+    return [UIImage strectchableImageName:@"focusme_selected.png"];
 }
 
 - (UIImage *)middleTabImage

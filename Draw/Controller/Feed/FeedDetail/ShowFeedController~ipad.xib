@@ -66,19 +66,29 @@
 							<string key="NSResourceName">paper@2x.png</string>
 						</object>
 					</object>
-					<object class="IBUIImageView" id="155207670">
+					<object class="IBUITableView" id="745717694">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">301</int>
-						<string key="NSFrame">{{151, 65}, {465, 87}}</string>
+						<string key="NSFrame">{{21, 105}, {724, 796}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="604703104"/>
-						<bool key="IBUIUserInteractionEnabled">NO</bool>
-						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-						<object class="NSCustomResource" key="IBUIImage">
-							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">paperclip@2x.png</string>
+						<object class="NSColor" key="IBUIBackgroundColor" id="466568067">
+							<int key="NSColorSpace">3</int>
+							<bytes key="NSWhite">MQA</bytes>
 						</object>
+						<bool key="IBUIClipsSubviews">YES</bool>
+						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+						<bool key="IBUIAlwaysBounceVertical">YES</bool>
+						<object class="NSColor" key="IBUISeparatorColor">
+							<int key="NSColorSpace">3</int>
+							<bytes key="NSWhite">MC42NjY2NjY2NjY3AA</bytes>
+						</object>
+						<int key="IBUISectionIndexMinimumDisplayRowCount">0</int>
+						<bool key="IBUIShowsSelectionImmediatelyOnTouchBegin">YES</bool>
+						<float key="IBUIRowHeight">44</float>
+						<float key="IBUISectionHeaderHeight">22</float>
+						<float key="IBUISectionFooterHeight">22</float>
 					</object>
 					<object class="IBUIImageView" id="930327868">
 						<reference key="NSNextResponder" ref="191373211"/>
@@ -121,10 +131,7 @@
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<string key="IBUIText">kFeedDetail</string>
-						<object class="NSColor" key="IBUITextColor" id="466568067">
-							<int key="NSColorSpace">3</int>
-							<bytes key="NSWhite">MQA</bytes>
-						</object>
+						<reference key="IBUITextColor" ref="466568067"/>
 						<nil key="IBUIHighlightedColor"/>
 						<object class="NSColor" key="IBUIShadowColor">
 							<int key="NSColorSpace">3</int>
@@ -146,27 +153,6 @@
 							<double key="NSSize">40</double>
 							<int key="NSfFlags">16</int>
 						</object>
-					</object>
-					<object class="IBUITableView" id="745717694">
-						<reference key="NSNextResponder" ref="191373211"/>
-						<int key="NSvFlags">301</int>
-						<string key="NSFrame">{{21, 146}, {724, 753}}</string>
-						<reference key="NSSuperview" ref="191373211"/>
-						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="155207670"/>
-						<reference key="IBUIBackgroundColor" ref="466568067"/>
-						<bool key="IBUIClipsSubviews">YES</bool>
-						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-						<bool key="IBUIAlwaysBounceVertical">YES</bool>
-						<object class="NSColor" key="IBUISeparatorColor">
-							<int key="NSColorSpace">3</int>
-							<bytes key="NSWhite">MC42NjY2NjY2NjY3AA</bytes>
-						</object>
-						<int key="IBUISectionIndexMinimumDisplayRowCount">0</int>
-						<bool key="IBUIShowsSelectionImmediatelyOnTouchBegin">YES</bool>
-						<float key="IBUIRowHeight">44</float>
-						<float key="IBUISectionHeaderHeight">22</float>
-						<float key="IBUISectionFooterHeight">22</float>
 					</object>
 					<object class="IBUIButton" id="254642315">
 						<reference key="NSNextResponder" ref="191373211"/>
@@ -303,6 +289,7 @@
 						<string key="NSFrame">{{633, 916}, {87, 87}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<int key="IBUITag">104</int>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -595,10 +582,8 @@
 						<array class="NSMutableArray" key="children">
 							<reference ref="930327868"/>
 							<reference ref="51975597"/>
-							<reference ref="745717694"/>
 							<reference ref="254642315"/>
 							<reference ref="455976161"/>
-							<reference ref="155207670"/>
 							<reference ref="150974079"/>
 							<reference ref="535934834"/>
 							<reference ref="789324363"/>
@@ -607,6 +592,7 @@
 							<reference ref="604703104"/>
 							<reference ref="943438689"/>
 							<reference ref="608461199"/>
+							<reference ref="745717694"/>
 							<reference ref="1024194235"/>
 						</array>
 						<reference key="parent" ref="0"/>
@@ -625,11 +611,6 @@
 					<object class="IBObjectRecord">
 						<int key="objectID">11</int>
 						<reference key="object" ref="930327868"/>
-						<reference key="parent" ref="191373211"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">12</int>
-						<reference key="object" ref="155207670"/>
 						<reference key="parent" ref="191373211"/>
 					</object>
 					<object class="IBObjectRecord">
@@ -707,7 +688,6 @@
 				<string key="-2.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="1.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="11.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<string key="12.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="13.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="14.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="15.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -841,7 +821,6 @@
 			<string key="detail_tomato@2x.png">{72, 72}</string>
 			<string key="light_yellow_bg@2x.png">{640, 960}</string>
 			<string key="paper@2x.png">{640, 960}</string>
-			<string key="paperclip@2x.png">{388, 79}</string>
 			<string key="refresh@2x.png">{74, 74}</string>
 			<string key="topwood@2x.png">{640, 99}</string>
 		</dictionary>

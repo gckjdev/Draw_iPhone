@@ -218,11 +218,6 @@
 }
 
 
-//#define MIN_SPEED 1.0/20.0
-//#define MAX_SPEED 1.0/70.0
-#define MAX_POINT 7000.0
-#define MIN_POINT 250.0 
-#define SPEED_COEFFICIENT 10.0
 + (NSInteger)pointCountForActions:(NSArray *)actionList
 {
     int sum = 0;
@@ -234,11 +229,7 @@
 
 + (double)calculateSpeed:(NSArray *)actionList
 {
-    NSInteger count = [DrawAction pointCountForActions:actionList];
-    if (count < MIN_POINT) {
-        count = MIN_POINT;
-    }
-    return SPEED_COEFFICIENT / count;
+    return [DrawAction calculateSpeed:actionList defaultSpeed:1.0/50.0 maxSecond:38];
 }
 
 + (double)calculateSpeed:(NSArray *)actionList defaultSpeed:(double)defaultSpeed maxSecond:(NSInteger)second

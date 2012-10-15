@@ -13,6 +13,7 @@
 #import "FeedCell.h"
 #import "CommonMessageCenter.h"
 #import "CommonUserInfoView.h"
+#import "UseItemScene.h"
 typedef enum{
     UserTypeFeed = FeedListTypeUserFeed,
     UserTypeOpus = FeedListTypeUserOpus,    
@@ -70,8 +71,8 @@ typedef enum{
             [button setBackgroundImage:[imageManager myFoucsImage] forState:UIButtonTypeCustom];
             [button setBackgroundImage:[imageManager myFoucsSelectedImage] forState:UIControlStateSelected];
         }else if(tab.tabID == UserTypeFeed){
-            [button setBackgroundImage:[imageManager foucsMeImage] forState:UIButtonTypeCustom];
-            [button setBackgroundImage:[imageManager foucsMeSelectedImage] forState:UIControlStateSelected];            
+            [button setBackgroundImage:[imageManager focusMeImage] forState:UIButtonTypeCustom];
+            [button setBackgroundImage:[imageManager focusMeSelectedImage] forState:UIControlStateSelected];            
         }
     }
 
@@ -92,12 +93,6 @@ typedef enum{
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
-}
-
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
 
@@ -261,7 +256,7 @@ typedef enum{
         PPDebug(@"warnning:<UserFeedController> feedId = %@ is illegal feed, cannot set the detail", feed.feedId);
         return;
     }
-    ShowFeedController *sfc = [[ShowFeedController alloc] initWithFeed:drawFeed];
+    ShowFeedController *sfc = [[ShowFeedController alloc] initWithFeed:drawFeed scene:[UseItemScene createSceneByType:UseSceneTypeShowFeedDetail feed:drawFeed]];
     [self.navigationController pushViewController:sfc animated:YES];
     [sfc release];
     
@@ -364,7 +359,7 @@ typedef enum{
 #pragma mark Rank View delegate
 - (void)didClickRankView:(RankView *)rankView
 {
-    ShowFeedController *sc = [[ShowFeedController alloc] initWithFeed:rankView.feed];
+    ShowFeedController *sc = [[ShowFeedController alloc] initWithFeed:rankView.feed scene:[UseItemScene createSceneByType:UseSceneTypeShowFeedDetail feed:rankView.feed]];
     [self.navigationController pushViewController:sc animated:YES];
     [sc release];
 }

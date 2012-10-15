@@ -148,6 +148,7 @@ static UserService* _defaultUserService;
     NSString* sinaNickName = nil;
     NSString* qqToken = nil;
     NSString* qqTokenSecret = nil;
+    NSString* sinaToken = nil;
 
     NSString* newNickName = nil;
     if ([[[UserManager defaultManager] nickName] length] == 0){
@@ -167,6 +168,7 @@ static UserService* _defaultUserService;
         case REGISTER_TYPE_SINA:
             sinaId = loginId;
             sinaNickName = nickName;
+            sinaToken = [userInfo objectForKey:SNS_OAUTH_TOKEN];
             break;
         
         case REGISTER_TYPE_QQ:
@@ -190,7 +192,7 @@ static UserService* _defaultUserService;
     dispatch_async(workingQueue, ^{            
         
         CommonNetworkOutput* output = 
-        [GameNetworkRequest updateUser:SERVER_URL appId:appId userId:userId deviceId:nil deviceToken:nil nickName:newNickName gender:gender password:nil avatar:avatar location:location sinaId:sinaId sinaNickName:sinaNickName sinaToken:nil sinaSecret:nil qqId:qqId qqNickName:qqNickName qqToken:qqToken qqTokenSecret:qqTokenSecret facebookId:facebookId email:nil];                
+        [GameNetworkRequest updateUser:SERVER_URL appId:appId userId:userId deviceId:nil deviceToken:nil nickName:newNickName gender:gender password:nil avatar:avatar location:location sinaId:sinaId sinaNickName:sinaNickName sinaToken:sinaToken sinaSecret:nil qqId:qqId qqNickName:qqNickName qqToken:qqToken qqTokenSecret:qqTokenSecret facebookId:facebookId email:nil];
         
 //        [GameNetworkRequest registerUserBySNS:SERVER_URL
 //                                        snsId:loginId

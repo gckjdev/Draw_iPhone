@@ -64,19 +64,6 @@
 							<string key="NSResourceName">paper@2x.png</string>
 						</object>
 					</object>
-					<object class="IBUIImageView" id="426082216">
-						<reference key="NSNextResponder" ref="191373211"/>
-						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{190, 62}, {388, 80}}</string>
-						<reference key="NSSuperview" ref="191373211"/>
-						<reference key="NSWindow"/>
-						<bool key="IBUIUserInteractionEnabled">NO</bool>
-						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
-						<object class="NSCustomResource" key="IBUIImage">
-							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">paperclip@2x.png</string>
-						</object>
-					</object>
 					<object class="IBUIImageView" id="842284611">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
@@ -93,7 +80,7 @@
 					<object class="IBUITableView" id="736073514">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">274</int>
-						<string key="NSFrame">{{24, 155}, {720, 814}}</string>
+						<string key="NSFrame">{{24, 108}, {720, 861}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<object class="NSColor" key="IBUIBackgroundColor" id="782736208">
@@ -313,7 +300,6 @@
 							<reference ref="75666609"/>
 							<reference ref="736073514"/>
 							<reference ref="484983689"/>
-							<reference ref="426082216"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -364,11 +350,6 @@
 						<reference key="object" ref="484983689"/>
 						<reference key="parent" ref="191373211"/>
 					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">19</int>
-						<reference key="object" ref="426082216"/>
-						<reference key="parent" ref="191373211"/>
-					</object>
 				</array>
 			</object>
 			<dictionary class="NSMutableDictionary" key="flattenedProperties">
@@ -379,7 +360,6 @@
 				<string key="1.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="10.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="18.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<string key="19.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="5.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="6.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="7.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -468,7 +448,6 @@
 			<string key="back@2x.png">{74, 74}</string>
 			<string key="light_yellow_bg@2x.png">{640, 960}</string>
 			<string key="paper@2x.png">{640, 960}</string>
-			<string key="paperclip@2x.png">{388, 79}</string>
 			<string key="topwood@2x.png">{640, 99}</string>
 		</dictionary>
 		<string key="IBCocoaTouchPluginVersion">933</string>

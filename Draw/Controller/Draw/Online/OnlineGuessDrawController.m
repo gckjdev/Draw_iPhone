@@ -37,7 +37,7 @@
 #import "AccountManager.h"
 #import "ItemService.h"
 #import "VendingController.h"
-
+#import "UseItemScene.h"
 
 #define PAPER_VIEW_TAG 20120403
 #define TOOLVIEW_CENTER (([DeviceDetection isIPAD]) ? CGPointMake(695, 920):CGPointMake(284, 424))
@@ -65,6 +65,7 @@
     PPRelease(showView);
     PPRelease(drawBackground);
     PPRelease(_pickToolView);
+    PPRelease(_scene);
     [super dealloc];
 }
 
@@ -81,6 +82,9 @@
 
 - (id)init{
     self = [super init];
+    if (self) {
+        _scene = [[UseItemScene createSceneByType:UseSceneTypeOnlineGuess feed:nil] retain];
+    }
     return self;
 }
 
@@ -460,9 +464,6 @@
     _guessCorrect = NO;
     _shopController = nil;
     
-    _maxFlower = MAX_FLOWER_CAN_SEND;
-    _maxTomato = MAX_TOMATO_CAN_THROW;
-    
 }
 
 
@@ -566,7 +567,8 @@
                                                              score:gainCoin
                                                            correct:_guessCorrect 
                                                          isMyPaint:NO 
-                                                    drawActionList:showView.drawActionList];
+                                                    drawActionList:showView.drawActionList
+                                                             scene:[UseItemScene createSceneByType:UseSceneTypeOnlineGuess feed:nil]];
     if (_shopController) {
         [_shopController.topNavigationController popToViewController:self animated:NO];
         [self.navigationController pushViewController:rc animated:NO];
@@ -657,7 +659,7 @@
 {
 //    [[DrawGameService defaultService] rankGameResult:RANK_FLOWER];
     [self throwTool:toolView];
-    
+    [_scene throwAFlower];
     // send request for item usage and award
     [[ItemService defaultService] sendItemAward:toolView.itemType 
                                    targetUserId:[[[drawGameService session] currentTurn] currentPlayUserId]
@@ -667,7 +669,8 @@
     
     //[self popupMessage:[NSString stringWithFormat:NSLS(@"kSendFlowerMessage"),REWARD_EXP, REWARD_COINS] title:nil];
     [toolView decreaseNumber];
-    if (--_maxFlower == 0) {
+    
+    if (![_scene canThrowFlower]) {
         [toolView setEnabled:NO];
     }
     return NO;
@@ -679,7 +682,7 @@
 
     [toolView decreaseNumber];
     [self throwTool:toolView];
-
+    [_scene throwATomato];
     // send request for item usage and award
     [[ItemService defaultService] sendItemAward:toolView.itemType 
                                    targetUserId:[[[drawGameService session] currentTurn] currentPlayUserId]
@@ -689,7 +692,7 @@
 
     
     //[self popupMessage:[NSString stringWithFormat:NSLS(@"kThrowTomatoMessage"),REWARD_EXP, REWARD_COINS] title:nil];
-    if (--_maxTomato == 0) {
+    if (![_scene canThrowTomato]) {
         [toolView setEnabled:NO];
     }
     return NO;

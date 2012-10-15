@@ -41,6 +41,23 @@
     [super dealloc];
 }
 
++ (void)enterControllerWithIndex:(NSInteger)index
+                  fromController:(UIViewController *)controller 
+                        animated:(BOOL)animated
+
+{
+    
+}
+
+- (id)initWithDefaultTabIndex:(NSInteger)index
+{
+    self = [super init];
+    if (self) {
+        _defaultTabIndex = index;
+    }
+    return self;
+}
+
 #pragma mark init tabs
 - (void)initTabs
 {
@@ -85,12 +102,6 @@
     [self setNoDataTipLabl:nil];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
-}
-
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
 - (IBAction)clickBackButton:(id)sender
@@ -165,7 +176,7 @@
     }else{
         tab.hasMoreData = YES;        
         [tab.dataList addObjectsFromArray:list];
-        tab.offset = [tab.dataList count];
+        tab.offset += tab.limit;//[tab.dataList count];
     }
     tab.status = TableTabStatusLoaded;
     if (tab.isCurrentTab) {
@@ -237,7 +248,7 @@
 }
 - (NSInteger)currentTabIndex
 {
-    return 0;
+    return _defaultTabIndex;
 }
 - (NSInteger)fetchDataLimitForTabIndex:(NSInteger)index
 {

@@ -58,8 +58,8 @@
     ShareImageManager *imageManager = [ShareImageManager defaultManager];
     [followButton setBackgroundImage:[imageManager myFoucsImage] forState:UIControlStateNormal];
     [followButton setBackgroundImage:[imageManager myFoucsSelectedImage] forState:UIControlStateSelected];
-    [fanButton setBackgroundImage:[imageManager foucsMeImage] forState:UIControlStateNormal];
-    [fanButton setBackgroundImage:[imageManager foucsMeSelectedImage] forState:UIControlStateSelected];
+    [fanButton setBackgroundImage:[imageManager focusMeImage] forState:UIControlStateNormal];
+    [fanButton setBackgroundImage:[imageManager focusMeSelectedImage] forState:UIControlStateSelected];
     [dataTableView setSeparatorColor:[UIColor clearColor]];
     
     followButton.selected = YES;
@@ -170,6 +170,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     Friend *aFriend = [dataList objectAtIndex:indexPath.row];
+//    [self.navigationController popViewControllerAnimated:NO];
     if (delegate && [delegate respondsToSelector:@selector(didSelectFriend:)]) {
         [delegate didSelectFriend:aFriend];
     }

@@ -28,7 +28,7 @@
 #import "AnimationPlayer.h"
 
 #import "ReplayContestDrawController.h"
-
+#import "UseItemScene.h"
 
 @implementation ShowFeedController
 @synthesize titleLabel = _titleLabel;
@@ -42,6 +42,7 @@
 @synthesize userCell = _userCell;
 @synthesize drawCell = _drawCell;
 @synthesize commentHeader = _commentHeader;
+@synthesize useItemScene = _useItemScene;
 
 typedef enum{
     
@@ -66,7 +67,7 @@ typedef enum{
     PPRelease(_flowerButton);
     PPRelease(_tomatoButton);
     PPRelease(_replayButton);
-
+    PPRelease(_useItemScene);
     [super dealloc];
 }
 
@@ -76,6 +77,18 @@ typedef enum{
     if(self)
     {
         self.feed = feed;
+    }
+    return self;
+}
+
+- (id)initWithFeed:(DrawFeed *)feed
+             scene:(UseItemScene *)scene
+{
+    self = [super init];
+    if(self)
+    {
+        self.feed = feed;
+        self.useItemScene = scene;
     }
     return self;
 }
@@ -471,7 +484,7 @@ enum{
         [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kCanotSendToSelf") delayTime:1.5 isHappy:YES];
         return;
     }
-    if ((item.type == ItemTypeTomato && !self.feed.canThrowTomato) || (item.type == ItemTypeFlower && !self.feed.canSendFlower)) {
+    if ((item.type == ItemTypeTomato && ![_useItemScene canThrowTomato]) || (item.type == ItemTypeFlower && ![_useItemScene canThrowFlower])) {
         [[CommonMessageCenter defaultCenter] postMessageWithText:self.canotSendItemPopup delayTime:1.5 isHappy:YES];
         return;
     }
@@ -484,7 +497,7 @@ enum{
 
     }else{
         //throw animation
-        BOOL isFree = _feed.isContestFeed;
+        BOOL isFree = [_useItemScene isItemFree:item.type];
         [[ItemService defaultService] sendItemAward:item.type
                                        targetUserId:_feed.author.userId
                                           isOffline:YES
@@ -722,11 +735,6 @@ enum{
     // e.g. self.myOutlet = nil;
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
 
 - (IBAction)clickRefresh:(id)sender {
     if (self.feed.drawData == nil) {

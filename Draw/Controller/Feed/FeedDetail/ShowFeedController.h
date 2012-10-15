@@ -21,6 +21,7 @@
 @class CommentHeaderView;
 @class TableTab;
 @class TableTabManager;
+@class UseItemScene;
 //@class ToolView;
 
 @interface ShowFeedController : PPTableViewController<FeedServiceDelegate, DrawDataServiceDelegate,CommonDialogDelegate, CommentHeaderViewDelegate, CommentCellDelegate>
@@ -48,8 +49,10 @@
 @property(nonatomic, retain) DrawInfoCell *drawCell;
 @property(nonatomic, retain) CommentHeaderView *commentHeader;
 @property(nonatomic, retain) DrawFeed *feed;
+@property (nonatomic, retain) UseItemScene* useItemScene;
 
 - (id)initWithFeed:(DrawFeed *)feed;
-
+- (id)initWithFeed:(DrawFeed *)feed
+             scene:(UseItemScene*)scene;
 - (IBAction)clickBackButton:(id)sender;
 @end

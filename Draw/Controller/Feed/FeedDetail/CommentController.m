@@ -78,12 +78,6 @@
     // e.g. self.myOutlet = nil;
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
-
 - (void)dealloc {
     PPRelease(contentView);
     PPRelease(titleLabel);
@@ -170,27 +164,37 @@
     }
 }
 
-#pragma mark - key board rect
-
-#define BG_CONTENT_SPACE ([DeviceDetection isIPAD] ?  5.0 : 3.0)
-#define KEYBOARD_BG_SPACE ([DeviceDetection isIPAD] ? 50.0 : 30.0)
-
-- (void)keyboardWillShowWithRect:(CGRect)keyboardRect
-{
-    //update the text view
-    CGFloat end = CGRectGetMinY(keyboardRect);
-    CGRect frame = self.inputBGView.frame;
-    CGFloat bgStartY = CGRectGetMinY(frame);
-    CGFloat bgHeight = end - bgStartY - KEYBOARD_BG_SPACE;
-    CGFloat contentHeiht = bgHeight - BG_CONTENT_SPACE;
-
-    self.inputBGView.frame = CGRectMake(CGRectGetMinX(frame), CGRectGetMinY(frame), CGRectGetWidth(frame), bgHeight);
-
-    frame = self.contentView.frame;
-    self.contentView.frame = CGRectMake(CGRectGetMinX(frame), CGRectGetMinY(frame), CGRectGetWidth(frame), contentHeiht);
-
-}
-
+//#pragma mark - key board rect
+//
+//#define BG_CONTENT_SPACE ([DeviceDetection isIPAD] ?  5.0 : 3.0)
+//#define KEYBOARD_BG_SPACE ([DeviceDetection isIPAD] ? 50.0 : 30.0)
+//
+//#define KEYBOARD_BG_SPACE ([DeviceDetection isIPAD] ? 50.0 : 30.0)
+//#define INPUT_BG_FRAME [DeviceDetection isIPAD] ? CGRectMake(10, 70, 300, 140) : CGRectMake(20, 155, 728, 349)
+//#define INPUT_CONTENT_FRAME [DeviceDetection isIPAD] ? CGRectMake(13, 73, 294, 120) : CGRectMake(25, 160, 718, 342)
+//
+//- (void)keyboardWillShowWithRect:(CGRect)keyboardRect
+//{
+//
+//    //update the text view
+//    CGFloat end = CGRectGetMinY(keyboardRect);
+//    CGRect frame = INPUT_BG_FRAME;
+//    CGFloat bgStartY = CGRectGetMinY(frame);
+//    CGFloat bgHeight = end - bgStartY - KEYBOARD_BG_SPACE;
+//    CGFloat contentHeiht = bgHeight - BG_CONTENT_SPACE;
+//
+//    PPDebug(@"bgHeight = %f, contentHeight = %f", bgHeight,contentHeiht);
+//    
+//    self.inputBGView.frame = CGRectMake(CGRectGetMinX(frame), CGRectGetMinY(frame), CGRectGetWidth(frame), bgHeight);
+//
+//    frame = INPUT_CONTENT_FRAME;
+//    self.contentView.frame = CGRectMake(CGRectGetMinX(frame), CGRectGetMinY(frame), CGRectGetWidth(frame), contentHeiht);
+//
+//    PPDebug(@"BG VIEW FRAME = %@, CONTENT VIEW FRAME = %@", NSStringFromCGRect(self.inputBGView.frame),NSStringFromCGRect(self.contentView.frame));
+//    
+////    PPDebug(@"bgHeight = %f, contentHeight = %f", bgHeight,contentHeiht);
+//}
+//
 
 
 #pragma mark - text view delegate

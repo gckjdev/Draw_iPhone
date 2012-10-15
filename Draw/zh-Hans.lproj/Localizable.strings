@@ -23,7 +23,7 @@
 "kPDUM" = "%@ 给你画了一幅画，赶紧去猜猜TA画了些什么。";
 
 //add after 4.5
-"kPCM" = "%@ 评论了你的[%@]: %@";
+"kPCM" = "%@ 评论你的作品[%@]: %@";
 "kPRCM" = "%@ 回复你说:%@";
 "kPSF" = "%@ 给你画的[%@]送了一朵鲜花。";
 "kPTT" = "%@ 给你画的[%@]扔了一个番茄。";
@@ -695,6 +695,11 @@
 "kFeedStatus" = "新动态(%d)";
 "kRoomStatus" = "新房间邀请(%d)";
 "kMessageStatus" = "新消息(%d)";
+"kCommentStatus" = "新评论(%d)";
+"kDrawToMeStatus" = "新画给我(%d)";
+"kReplyStatus" = "新回复(%d)";
+"kFlowerStatus" = "新鲜花(%d)";
+"kTomatoStatus" = "新番茄(%d)";
 
 
 "kOpusDelete" = "不好意思，这幅作品已经被删除。";
@@ -898,6 +903,7 @@
 
 "kContestFeedDetail" = "作品详情";
 "kDrawToUserByUser" = "画给%@";
+"kQQGroup" = "官方Q群：228119679";
 
 /*********************** 猜猜画画国际化字符串结束 *************************/
 

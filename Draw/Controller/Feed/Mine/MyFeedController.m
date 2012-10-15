@@ -19,6 +19,7 @@
 #import "MyCommentCell.h"
 #import "DrawFeed.h"
 #import "CommentController.h"
+#import "UseItemScene.h"
 
 typedef enum{
     MyTypeFeed = FeedListTypeAll,
@@ -38,6 +39,30 @@ typedef enum{
 
 @implementation MyFeedController
 //@synthesize titleLabel = _tipsLabel;
+
+- (id)init
+{
+    self = [super init];
+    if (self) {
+        _defaultTabIndex = 0;
+    }
+    return self;
+}
+
+- (id)initWithDefaultTabIndex:(NSInteger)index
+{
+    self = [super initWithDefaultTabIndex:index];
+    return self;
+}
+
++ (void)enterControllerWithIndex:(NSInteger)index
+                  fromController:(UIViewController *)controller 
+                        animated:(BOOL)animated
+{
+    MyFeedController *myFeedController = [[MyFeedController alloc] initWithDefaultTabIndex:index];
+    [controller.navigationController pushViewController:myFeedController animated:animated];
+    [myFeedController release];
+}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -115,8 +140,8 @@ typedef enum{
             [button setBackgroundImage:[imageManager myFoucsImage] forState:UIButtonTypeCustom];
             [button setBackgroundImage:[imageManager myFoucsSelectedImage] forState:UIControlStateSelected];
         }else if(tab.tabID == MyTypeDrawToMe){
-            [button setBackgroundImage:[imageManager foucsMeImage] forState:UIButtonTypeCustom];
-            [button setBackgroundImage:[imageManager foucsMeSelectedImage] forState:UIControlStateSelected];            
+            [button setBackgroundImage:[imageManager focusMeImage] forState:UIButtonTypeCustom];
+            [button setBackgroundImage:[imageManager focusMeSelectedImage] forState:UIControlStateSelected];            
         }else{
             [button setBackgroundImage:[imageManager middleTabImage] forState:UIControlStateNormal];
             [button setBackgroundImage:[imageManager middleTabSelectedImage] forState:UIControlStateSelected];
@@ -149,13 +174,6 @@ typedef enum{
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
 }
-
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
-
 
 #pragma mark - table view delegate
 
@@ -367,7 +385,7 @@ typedef enum{
         PPDebug(@"warnning:<MyFeedController> feedId = %@ is illegal feed, cannot set the detail", feed.feedId);
         return;
     }
-    ShowFeedController *sfc = [[ShowFeedController alloc] initWithFeed:drawFeed];
+    ShowFeedController *sfc = [[ShowFeedController alloc] initWithFeed:drawFeed scene:[UseItemScene createSceneByType:UseSceneTypeShowFeedDetail feed:drawFeed]];
     [self.navigationController pushViewController:sfc animated:YES];
     [sfc release];
         
@@ -399,7 +417,7 @@ typedef enum{
 }
 - (NSInteger)currentTabIndex
 {
-    return 0;
+    return _defaultTabIndex;
 }
 - (NSInteger)fetchDataLimitForTabIndex:(NSInteger)index
 {
@@ -563,7 +581,7 @@ typedef enum{
 
 - (void)enterDetailFeed:(DrawFeed *)feed
 {
-    ShowFeedController *sc = [[ShowFeedController alloc] initWithFeed:feed];
+    ShowFeedController *sc = [[ShowFeedController alloc] initWithFeed:feed scene:[UseItemScene createSceneByType:UseSceneTypeShowFeedDetail feed:feed]];
     [self.navigationController pushViewController:sc animated:YES];
     [sc release];    
 }

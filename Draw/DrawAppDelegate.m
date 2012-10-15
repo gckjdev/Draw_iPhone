@@ -304,7 +304,6 @@ NSString* GlobalGetBoardServerURL()
     [[FacetimeService defaultService] disconnectServer];
     
     [[FriendManager defaultManager] removeAllDeletedFriends];
-    [[MyPaintManager defaultManager] removeAlldeletedPaints];
     
 }
 
@@ -352,6 +351,7 @@ NSString* GlobalGetBoardServerURL()
      */
     
     [[MusicItemManager defaultManager] saveMusicItems];
+    [[MyPaintManager defaultManager] removeAlldeletedPaints];
 
 }
 

@@ -116,8 +116,8 @@
     [myFanButton setTitle:fanTitle forState:UIControlStateNormal];
     [myFollowButton setBackgroundImage:[imageManager myFoucsImage] forState:UIControlStateNormal];
     [myFollowButton setBackgroundImage:[imageManager myFoucsSelectedImage] forState:UIControlStateSelected];
-    [myFanButton setBackgroundImage:[imageManager foucsMeImage] forState:UIControlStateNormal];
-    [myFanButton setBackgroundImage:[imageManager foucsMeSelectedImage] forState:UIControlStateSelected];
+    [myFanButton setBackgroundImage:[imageManager focusMeImage] forState:UIControlStateNormal];
+    [myFanButton setBackgroundImage:[imageManager focusMeSelectedImage] forState:UIControlStateSelected];
     myFollowButton.selected = YES;
     
     if (_isInviteFriend) {
@@ -507,6 +507,8 @@
     //            [self popupMessage:NSLS(@"kUpdateFansFailed") title:nil];
     //        }
     //    }
+    
+    [self hideActivity];
     
     if (type == FOLLOW) {
         self.myFollowList = friendList;

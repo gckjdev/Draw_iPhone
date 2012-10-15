@@ -678,6 +678,11 @@
 "kFeedStatus" = "新動態(%d)";
 "kRoomStatus" = "新房間邀請(%d)";
 "kMessageStatus" = "新消息(%d)";
+"kCommentStatus" = "新評論(%d)";
+"kReplyStatus" = "新回复(%d)";
+"kDrawToMeStatus" = "新畫給我(%d)";
+"kFlowerStatus" = "新鮮花(%d)";
+"kTomatoStatus" = "新番茄(%d)";
 
 "kOpusDelete" = "不好意思，這幅作品已經被刪除。";
 "kChatTitle" = "發送消息";
@@ -882,6 +887,7 @@
 "kNoContestTips" = "不好意思，目前沒有適合您的比賽。";
 "kContestFeedDetail" = "作品詳情";
 "kDrawToUserByUser" = "畫給%@";
+"kQQGroup" = "官方Q群：228119679";
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 

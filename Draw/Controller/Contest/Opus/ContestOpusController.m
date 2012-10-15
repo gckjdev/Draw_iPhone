@@ -12,6 +12,7 @@
 #import "ShowFeedController.h"
 #import "CommonUserInfoView.h"
 #import "Contest.h"
+#import "UseItemScene.h"
 
 typedef enum{
     OpusTypeMy = 1,
@@ -65,8 +66,8 @@ typedef enum{
             [button setBackgroundImage:[imageManager myFoucsImage] forState:UIButtonTypeCustom];
             [button setBackgroundImage:[imageManager myFoucsSelectedImage] forState:UIControlStateSelected];
         }else if(tab.tabID == OpusTypeNew){
-            [button setBackgroundImage:[imageManager foucsMeImage] forState:UIButtonTypeCustom];
-            [button setBackgroundImage:[imageManager foucsMeSelectedImage] forState:UIControlStateSelected];            
+            [button setBackgroundImage:[imageManager focusMeImage] forState:UIButtonTypeCustom];
+            [button setBackgroundImage:[imageManager focusMeSelectedImage] forState:UIControlStateSelected];            
         }else{
             [button setBackgroundImage:[imageManager middleTabImage] forState:UIControlStateNormal];
             [button setBackgroundImage:[imageManager middleTabSelectedImage] forState:UIControlStateSelected];
@@ -90,12 +91,6 @@ typedef enum{
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
-}
-
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
 
@@ -349,7 +344,7 @@ typedef enum{
 #pragma mark Rank View delegate
 - (void)didClickRankView:(RankView *)rankView
 {
-    ShowFeedController *sc = [[ShowFeedController alloc] initWithFeed:rankView.feed];
+    ShowFeedController *sc = [[ShowFeedController alloc] initWithFeed:rankView.feed scene:[UseItemScene createSceneByType:UseSceneTypeDrawMatch feed:rankView.feed]];
     [self.navigationController pushViewController:sc animated:YES];
     [sc release];
 }

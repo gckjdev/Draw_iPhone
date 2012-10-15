@@ -15,10 +15,13 @@
 #import "PickToolView.h"
 #import "CommonItemInfoView.h"
 
+
+
 @class Word;
 @class ShowDrawView;
 @class ShareImageManager;
 @class VendingController;
+@class UseItemScene;
 @interface OnlineGuessDrawController : SuperGameViewController<CommonDialogDelegate,UIScrollViewDelegate,LevelServiceDelegate,PickViewDelegate,CommonItemInfoViewDelegate>
 {
     ShowDrawView *showView;
@@ -28,8 +31,9 @@
     UIButton *moveButton;
     UIButton *lastScaleTarget;
     PickToolView *_pickToolView;
-    int _maxTomato;
-    int _maxFlower;
+
+    UseItemScene* _scene;
+    
 }
 @property (retain, nonatomic) NSString *candidateString;
 @property (retain, nonatomic) ShowDrawView *showView;

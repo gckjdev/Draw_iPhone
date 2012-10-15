@@ -11,6 +11,7 @@
 #import "ShareImageManager.h"
 #import "ShowFeedController.h"
 #import "CommonUserInfoView.h"
+#import "UseItemScene.h"
 
 typedef enum{
 
@@ -56,8 +57,8 @@ typedef enum{
             [button setBackgroundImage:[imageManager myFoucsImage] forState:UIButtonTypeCustom];
             [button setBackgroundImage:[imageManager myFoucsSelectedImage] forState:UIControlStateSelected];
         }else if(tab.tabID == RankTypeNew){
-            [button setBackgroundImage:[imageManager foucsMeImage] forState:UIButtonTypeCustom];
-            [button setBackgroundImage:[imageManager foucsMeSelectedImage] forState:UIControlStateSelected];            
+            [button setBackgroundImage:[imageManager focusMeImage] forState:UIButtonTypeCustom];
+            [button setBackgroundImage:[imageManager focusMeSelectedImage] forState:UIControlStateSelected];            
         }else{
             [button setBackgroundImage:[imageManager middleTabImage] forState:UIControlStateNormal];
             [button setBackgroundImage:[imageManager middleTabSelectedImage] forState:UIControlStateSelected];
@@ -82,13 +83,6 @@ typedef enum{
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
 }
-
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
-
 
 #pragma mark - table view delegate
 
@@ -259,7 +253,7 @@ typedef enum{
     NSInteger count = [super tableView:tableView numberOfRowsInSection:section];
     
     NSInteger type = self.currentTab.tabID;
-    if (type == RankTypeHistory || type == RankTypePlayer) {
+    if (type == RankTypeHistory || type == RankTypePlayer || type == RankTypeHot) {
         if (HISTORY_RANK_NUMBER <= count) {
             self.noMoreData = YES;            
         }
@@ -349,6 +343,9 @@ typedef enum{
     PPDebug(@"<didGetFeedList> list count = %d ", [feedList count]);
     [self hideActivity];
     if (resultCode == 0) {
+        for (DrawFeed *feed in feedList) {
+//            PPDebug(@"%d: feedId = %@, word = %@", i++, feed.feedId,feed.wordText);
+        }
         [self finishLoadDataForTabID:type resultList:feedList];
     }else{
         [self failLoadDataForTabID:type];
@@ -370,7 +367,7 @@ typedef enum{
 #pragma mark Rank View delegate
 - (void)didClickRankView:(RankView *)rankView
 {
-    ShowFeedController *sc = [[ShowFeedController alloc] initWithFeed:rankView.feed];
+    ShowFeedController *sc = [[ShowFeedController alloc] initWithFeed:rankView.feed scene:[UseItemScene createSceneByType:UseSceneTypeShowFeedDetail feed:rankView.feed]];
     [self.navigationController pushViewController:sc animated:YES];
     [sc release];
 }

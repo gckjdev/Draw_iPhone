@@ -17,9 +17,7 @@
 #import "WordManager.h"
 #import "Word.h"
 #import "DeviceDetection.h"
-#import "HJManagedImageV.h"
-#import "PPApplication.h"
-
+#import "UIImageView+WebCache.h"
 @implementation FeedCell
 @synthesize guessStatLabel;
 @synthesize descLabel;
@@ -46,8 +44,8 @@
     FeedCell *cell = ((FeedCell*)[topLevelObjects objectAtIndex:0]);
     
     cell.delegate = delegate;
-    cell.drawImageView.callbackOnSetImage = cell;
-    cell.drawImageView.callbackOnCancel = cell;
+//    cell.drawImageView.callbackOnSetImage = cell;
+//    cell.drawImageView.callbackOnCancel = cell;
     return cell;
 }
 
@@ -151,15 +149,6 @@
     return nil;
 }
 
--(void) managedImageSet:(HJManagedImageV*)mi
-{
-    [mi.loadingWheel stopAnimating];
-}
--(void) managedImageCancelled:(HJManagedImageV*)mi
-{
-    [mi.loadingWheel stopAnimating];    
-}
-
 - (void)cleanShowView
 {
     [self.showView stop];
@@ -175,17 +164,30 @@
     {
         drawFeed = [(GuessFeed *) feed drawFeed];
     }
-    [self.drawImageView clear];
+
     if (drawFeed) {
         NSString *imageUrl = drawFeed.drawImageUrl;
         UIImage *image = drawFeed.drawImage;
         [self.drawImageView setImage:[[ShareImageManager defaultManager] 
                                       unloadBg]];
         if ([imageUrl length] != 0) {
-            [self.drawImageView showLoadingWheel];
-            [self.drawImageView setUrl:[NSURL URLWithString:imageUrl]];    
+            NSURL *url = [NSURL URLWithString:imageUrl];
+            UIImage *defaultImage = [[ShareImageManager defaultManager] unloadBg];
+            
+            [self.drawImageView setImageWithURL:url placeholderImage:defaultImage success:^(UIImage *image, BOOL cached) {
+                if (!cached) {
+                    self.drawImageView.alpha = 0;
+                    [UIView animateWithDuration:1 animations:^{
+                    self.drawImageView.alpha = 1.0;
+                    }];
+                }else{
+                    //                self.drawImage.alpha = 1.0;
+                }
+            } failure:^(NSError *error) {
+
+            }];
+            drawFeed.drawImage = nil;
         }else if(image){
-            [self.drawImageView showLoadingWheel];
             [self.drawImageView setImage:image];
         }else if(drawFeed.drawData){
             [self cleanShowView];
@@ -209,7 +211,6 @@
 //            [self.showView removeFromSuperview];
             drawFeed.drawData = nil;
         }
-        [GlobalGetImageCache() manage:self.drawImageView];
     }
 }
 
