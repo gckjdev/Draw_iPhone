@@ -508,6 +508,8 @@
     //        }
     //    }
     
+    [self hideActivity];
+    
     if (type == FOLLOW) {
         self.myFollowList = friendList;
     }else if(type == FAN)

@@ -26,6 +26,7 @@
 #import "CommonUserInfoView.h"
 #import "DiceUserInfoView.h"
 #import "GameNetworkConstants.h"
+#import "ChatListController.h"
 
 @interface ChatDetailController ()
 
@@ -398,7 +399,18 @@
 #pragma mark - button action
 - (IBAction)clickBack:(id)sender 
 {
-    [self.navigationController popViewControllerAnimated:YES];
+    BOOL found = NO;
+    for (UIViewController* controller in self.navigationController.viewControllers){
+        if ([controller isKindOfClass:[ChatListController class]]){
+            found = YES;
+            [self.navigationController popToViewController:controller animated:YES];
+            return;
+        }
+    }
+    
+    if (!found){
+        [self.navigationController popViewControllerAnimated:YES];
+    }
 }
 
 - (IBAction)clickRefreshButton:(id)sender
