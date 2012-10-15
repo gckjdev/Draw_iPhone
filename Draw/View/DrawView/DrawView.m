@@ -231,10 +231,10 @@
     CGRect drawBox = bounds;
     
     //Pad our values so the bounding box respects our line width
-    drawBox.origin.x        -= self.lineWidth * 1;
-    drawBox.origin.y        -= self.lineWidth * 1;
-    drawBox.size.width      += self.lineWidth * 2;
-    drawBox.size.height     += self.lineWidth * 2;
+    drawBox.origin.x        = (NSInteger)(drawBox.origin.x - self.lineWidth * 1) - 1;
+    drawBox.origin.y        = (NSInteger)(drawBox.origin.y - self.lineWidth * 1) - 1;
+    drawBox.size.width      = (NSInteger)(drawBox.size.width + self.lineWidth * 2) + 1;
+    drawBox.size.height     = (NSInteger)(drawBox.size.height + self.lineWidth * 2) + 1;
     
     
     UIGraphicsBeginImageContext(drawBox.size);
