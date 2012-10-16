@@ -132,4 +132,8 @@
 
 - (void)updateFeedTimes:(DrawFeed *)feed
                delegate:(id<FeedServiceDelegate>)delegate;
+
+
+- (void)updateOpus:(NSString *)opusId image:(UIImage *)image;
+
 @end

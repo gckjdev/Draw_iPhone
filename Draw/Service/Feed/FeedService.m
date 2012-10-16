@@ -16,6 +16,7 @@
 #import "GameNetworkConstants.h"
 #import "ConfigManager.h"
 #import "ItemType.h"
+#import "UIImageExt.h"
 
 static FeedService *_staticFeedService = nil;
 @implementation FeedService
@@ -442,6 +443,22 @@ static FeedService *_staticFeedService = nil;
 //        });
     });
     
+}
+
+
+- (void)updateOpus:(NSString *)opusId image:(UIImage *)image
+{
+    NSString* userId = [[UserManager defaultManager] userId];
+    NSString* appId = [ConfigManager appId];    
+    
+    dispatch_async(workingQueue, ^{
+        CommonNetworkOutput* output = [GameNetworkRequest updateOpus:TRAFFIC_SERVER_URL appId:appId userId:userId opusId:opusId data:nil imageData:[image data]];
+        if (output.resultCode == 0) {
+            PPDebug(@"<updateOpus> succ!");
+        }else{
+            PPDebug(@"<updateOpus> fail!");
+        }
+    });
 }
 
 @end

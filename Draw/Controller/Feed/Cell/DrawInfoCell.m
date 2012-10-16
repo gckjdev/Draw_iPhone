@@ -14,8 +14,6 @@
 #import "DrawAction.h"
 #import "TimeUtils.h"
 #import <QuartzCore/QuartzCore.h>
-#import "HJManagedImageV.h"
-#import "PPApplication.h"
 #import "UIImageView+WebCache.h"
 #import "CommonUserInfoView.h"
 
@@ -131,18 +129,10 @@
 
 - (void)updateShowView:(DrawFeed *)feed
 {
-//    [self.drawImage setCallbackOnSetImage:self];
-    
     if (self.feed.largeImage) {
-//        [self.drawImage clear];
         [self.drawImage setImage:self.feed.largeImage];
         [self.loadingActivity stopAnimating];
-//        [GlobalGetImageCache() manage:self.drawImage];
     }else if ([feed.drawImageUrl length] != 0 && ![DeviceDetection isIPAD]) {
-//        [self.drawImage clear];
-        //if the draw image is not null
-//        [self.drawImage setCallbackOnSetImage:self];
-//        [self.drawImage setUrl:[NSURL URLWithString:feed.drawImageUrl]];
         [self.drawImage setImageWithURL:[NSURL URLWithString:feed.drawImageUrl] placeholderImage:[[ShareImageManager defaultManager] unloadBg] success:^(UIImage *image, BOOL cached) {
             PPDebug(@"<download image> %@ success", feed.drawImageUrl);
             self.feed.largeImage = image;
@@ -152,24 +142,13 @@
             [self.loadingActivity stopAnimating];
         }];
         
-//        [GlobalGetImageCache() manage:self.drawImage];
     }else{
         [self showDrawView:feed];
     }
 
 }
 
--(void) managedImageSet:(HJManagedImageV*)mi
-{
-    PPDebug(@"<managedImageSet>: set large image");
-    self.feed.largeImage = mi.image;
-    [self.loadingActivity stopAnimating];
-}
 
--(void) managedImageCancelled:(HJManagedImageV*)mi
-{
-    
-}
 
 - (IBAction)clickToUser:(id)sender
 {
@@ -194,10 +173,8 @@
         _getTimes = 1;
         [[FeedService defaultService] getFeedByFeedId:feed.feedId delegate:self];        
     }
-    
-//    UIImage *defaultImage = [[ShareImageManager defaultManager] unloadBg];
-//    [self.drawImage setImage:defaultImage];
 }
+
 
 #define TRY_GET_FEED_TIMES 3
 - (void)didGetFeed:(DrawFeed *)feed
@@ -206,15 +183,12 @@
     _isLoading = NO;
     if (resultCode == 0 && feed != nil) {        
         
-        PPDebug(@"get draw feed succ: feedId = %@",feed.feedId);
+        PPDebug(@"get draw feed succ: feedId = %@, image url = %@",feed.feedId,
+                feed.drawImageUrl);
         self.feed.timesSet = feed.timesSet;
         self.feed.drawData = feed.drawData;
         self.feed.feedUser = feed.feedUser;
-        
-//        if ([self.feed isKindOfClass:[DrawToUserFeed class]] && [feed isKindOfClass:[DrawToUserFeed class]]) {
-//            [(DrawToUserFeed *)self.feed setTargetUser:[(DrawToUserFeed *)feed targetUser]];
-//        }
-    
+            
         [self updateShowView:feed];
         [self updateTime:feed];
         [self updateDrawToUserInfo:feed];
