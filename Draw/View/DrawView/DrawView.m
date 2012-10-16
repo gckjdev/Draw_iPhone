@@ -135,8 +135,8 @@
 {    
     if (drawAction) {
         
-        point.x = [self correctValue:point.x max:self.bounds.size.width min:0];
-        point.y = [self correctValue:point.y max:self.bounds.size.height min:0];
+//        point.x = [self correctValue:point.x max:self.bounds.size.width min:0];
+//        point.y = [self correctValue:point.y max:self.bounds.size.height min:0];
 //        PPDebug(@"add point = %@", NSStringFromCGPoint(point));
         [drawAction.paint addPoint:point];   
     }
@@ -240,14 +240,16 @@
     UIGraphicsBeginImageContext(drawBox.size);
     [self.layer renderInContext:UIGraphicsGetCurrentContext()];
     self.curImage = UIGraphicsGetImageFromCurrentImageContext();
-
     UIGraphicsEndImageContext();
-        
+            
+    _currentPoint.x = [self correctValue:_currentPoint.x max:self.bounds.size.width min:0];
+    _currentPoint.y = [self correctValue:_currentPoint.y max:self.bounds.size.height min:0];
+    [self addPoint:_currentPoint toDrawAction:_currentDrawAction];
+
     _drawRectType = DrawRectTypeLine;
     
     [self setNeedsDisplayInRect:drawBox];
     
-    [self addPoint:_currentPoint toDrawAction:_currentDrawAction];
 
 }
 - (void)drawRect:(CGRect)rect
