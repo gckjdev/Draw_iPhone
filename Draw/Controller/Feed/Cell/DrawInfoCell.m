@@ -162,7 +162,7 @@
     [self setFeed:feed];
     [self updateTime:self.feed];
     [self updateDrawToUserInfo:feed];
-    
+    [self.loadingActivity setCenter:self.drawImage.center];
     if (feed.drawData) {
         [self updateShowView:feed];
         [self updateTime:feed];
