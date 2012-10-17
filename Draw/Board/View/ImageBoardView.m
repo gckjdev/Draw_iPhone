@@ -10,6 +10,8 @@
 #import "HJManagedImageV.h"
 #import "PPApplication.h"
 #import "AdService.h"
+#import "BoardService.h"
+
 @interface ImageBoardView()
 {
     HJManagedImageV *_imageView;
@@ -51,6 +53,7 @@
         NSString *url = [(ImageBoard *)self.board clickUrl];
         NSURL *URL = [NSURL URLWithString:url];
         [self handleTap:URL];
+        [[BoardService defaultService] updateBoardStatistic:self.board.boardId];
     }
 }
 
