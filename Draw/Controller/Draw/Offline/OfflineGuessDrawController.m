@@ -679,7 +679,7 @@
                                                                  isMyPaint:NO
                                                             drawActionList:_draw.drawActionList
                                                                       feed:self.feed
-                                                                     scene:[UseItemScene createSceneByType:OfflineGuess feed:self.feed]];
+                                                                     scene:[UseItemScene createSceneByType:UseSceneTypeOfflineGuess feed:self.feed]];
         
         //send http request.
         [[DrawDataService defaultService] guessDraw:_guessWords opusId:_opusId opusCreatorUid:_draw.userId isCorrect:YES score:score delegate:nil];
