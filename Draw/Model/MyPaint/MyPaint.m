@@ -7,7 +7,7 @@
 //
 
 #import "MyPaint.h"
-
+#import "MyPaintManager.h"
 
 @implementation MyPaint
 
@@ -27,11 +27,24 @@
 @dynamic contestId;
 @dynamic targetUserId;
 
-@synthesize thumbImage;
+@synthesize thumbImage = _thumbImage;
+
+
+- (NSData *)drawData
+{
+    if ([self.dataFilePath length] != 0) {
+        _drawData = [MyPaintManager drawDataFromDataPath:self.dataFilePath];
+        [_drawData retain];
+        return _drawData;
+    }else{
+        return self.data;
+    }
+}
 
 - (void)dealloc
 {
-    [thumbImage release];
+    PPRelease(_thumbImage);
+    PPRelease(_drawData);
     [super dealloc];
 }
 
