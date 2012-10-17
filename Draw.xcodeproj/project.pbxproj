@@ -721,8 +721,6 @@
 		CA42706D1620028E00C6CCAE /* SuperHomeController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA42706B1620028E00C6CCAE /* SuperHomeController.m */; };
 		CA42706E1620028E00C6CCAE /* SuperHomeController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA42706C1620028E00C6CCAE /* SuperHomeController.xib */; };
 		CA427070162002E100C6CCAE /* SuperHomeController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA42706F162002E100C6CCAE /* SuperHomeController~ipad.xib */; };
-		CA42C0C3162C0A5400BCF499 /* icon-22.png in Resources */ = {isa = PBXBuildFile; fileRef = CA42C0C1162C0A5300BCF499 /* icon-22.png */; };
-		CA42C0C4162C0A5400BCF499 /* icon-21.png in Resources */ = {isa = PBXBuildFile; fileRef = CA42C0C2162C0A5400BCF499 /* icon-21.png */; };
 		CA42E3CA15F4617A00790B3C /* TableTab.m in Sources */ = {isa = PBXBuildFile; fileRef = CA42E3C715F4617A00790B3C /* TableTab.m */; };
 		CA42E3CB15F4617A00790B3C /* TableTabManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA42E3C915F4617A00790B3C /* TableTabManager.m */; };
 		CA4FF001152AEFDF00F0AC88 /* ColorGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = CA4FF000152AEFDF00F0AC88 /* ColorGroup.m */; };
@@ -968,6 +966,7 @@
 		CADD804D15138C690075C739 /* UserManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CADD804C15138C690075C739 /* UserManager.m */; };
 		CADD8050151397870075C739 /* UINavigationController+UINavigationControllerAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = CADD804F151397870075C739 /* UINavigationController+UINavigationControllerAdditions.m */; };
 		CAE0C8971591A2ED008CDA62 /* NotificationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE0C8961591A2ED008CDA62 /* NotificationManager.m */; };
+		CAE1BA95162EB9DE00AA0C05 /* highlight_mask@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAE1BA94162EB9DE00AA0C05 /* highlight_mask@2x.png */; };
 		CAE2CABE151B2ECA0062ED37 /* Account.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE2CABD151B2ECA0062ED37 /* Account.m */; };
 		CAE2CAC1151B2F7C0062ED37 /* Item.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE2CAC0151B2F7C0062ED37 /* Item.m */; };
 		CAE8B15115E4A24F0098A565 /* BoardPanel~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAE8B15015E4A24E0098A565 /* BoardPanel~ipad.xib */; };
@@ -2273,8 +2272,6 @@
 		CA42706C1620028E00C6CCAE /* SuperHomeController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SuperHomeController.xib; sourceTree = "<group>"; };
 		CA42706F162002E100C6CCAE /* SuperHomeController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "SuperHomeController~ipad.xib"; sourceTree = "<group>"; };
 		CA427071162002FE00C6CCAE /* SuperHomeProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SuperHomeProtocol.h; sourceTree = "<group>"; };
-		CA42C0C1162C0A5300BCF499 /* icon-22.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-22.png"; sourceTree = "<group>"; };
-		CA42C0C2162C0A5400BCF499 /* icon-21.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-21.png"; sourceTree = "<group>"; };
 		CA42E3C615F4617A00790B3C /* TableTab.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableTab.h; sourceTree = "<group>"; };
 		CA42E3C715F4617A00790B3C /* TableTab.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableTab.m; sourceTree = "<group>"; };
 		CA42E3C815F4617A00790B3C /* TableTabManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableTabManager.h; sourceTree = "<group>"; };
@@ -2666,6 +2663,7 @@
 		CADD804F151397870075C739 /* UINavigationController+UINavigationControllerAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+UINavigationControllerAdditions.m"; sourceTree = "<group>"; };
 		CAE0C8951591A2ED008CDA62 /* NotificationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotificationManager.h; sourceTree = "<group>"; };
 		CAE0C8961591A2ED008CDA62 /* NotificationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotificationManager.m; sourceTree = "<group>"; };
+		CAE1BA94162EB9DE00AA0C05 /* highlight_mask@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "highlight_mask@2x.png"; sourceTree = "<group>"; };
 		CAE23C6E153E9E9A00F52497 /* MainDataModel 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "MainDataModel 2.xcdatamodel"; sourceTree = "<group>"; };
 		CAE2CABC151B2ECA0062ED37 /* Account.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Account.h; sourceTree = "<group>"; };
 		CAE2CABD151B2ECA0062ED37 /* Account.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Account.m; sourceTree = "<group>"; };
@@ -5302,8 +5300,6 @@
 		CA34E7591615353A00F85346 /* Icons */ = {
 			isa = PBXGroup;
 			children = (
-				CA42C0C1162C0A5300BCF499 /* icon-22.png */,
-				CA42C0C2162C0A5400BCF499 /* icon-21.png */,
 				CA34E75B1615353A00F85346 /* new_icon.png */,
 				CA34E75C1615353A00F85346 /* new_icon@2x.png */,
 				CA34E75D1615353A00F85346 /* new_icon_ipad1.png */,
@@ -6878,6 +6874,7 @@
 				EA856C4315F0A65700178323 /* gold_user_picbg@2x.png */,
 				EA856C4415F0A65700178323 /* green_button@2x.png */,
 				EA856C4515F0A65700178323 /* green_user_picbg@2x.png */,
+				CAE1BA94162EB9DE00AA0C05 /* highlight_mask@2x.png */,
 				EA856C4615F0A65700178323 /* inputbg@2x.png */,
 				EA856C4715F0A65700178323 /* item_out@2x.png */,
 				EA856C4815F0A65700178323 /* light_yellow_bg@2x.png */,
@@ -7569,8 +7566,7 @@
 				EA372344162018DA00FC6F3E /* UserLocationController.xib in Resources */,
 				EAA9E1681622B2A000E8DF1A /* UserLocationController~ipad.xib in Resources */,
 				CA9DAC5A1626AE46004C2954 /* Default-568h@2x.png in Resources */,
-				CA42C0C3162C0A5400BCF499 /* icon-22.png in Resources */,
-				CA42C0C4162C0A5400BCF499 /* icon-21.png in Resources */,
+				CAE1BA95162EB9DE00AA0C05 /* highlight_mask@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -13,6 +13,7 @@
 #import "PPNetworkRequest.h"
 #import "Board.h"
 #import "BoardManager.h"
+#import "UserManager.h"
 
 BoardService *_staticBoardService;
 
@@ -118,6 +119,22 @@ BoardService *_staticBoardService;
             }                        
         });        
 
+    });
+}
+
+- (void)updateBoardStatistic:(NSString *)boardId
+{
+    dispatch_async(workingQueue, ^{
+        DeviceType deviceType = [DeviceDetection deviceType];
+        NSString *appId = [ConfigManager appId];
+        NSString *gameId = [ConfigManager gameId];
+        NSString *userId = [[UserManager defaultManager] userId];
+        
+        CommonNetworkOutput *output = [BoardNetwork updateBoardStatictic:BOARD_SERVER_URL appId:appId gameId:gameId boardId:boardId userId:userId deviceType:deviceType];
+        
+        if (output.resultCode != ERROR_SUCCESS) {
+            PPDebug(@"<updateBoardStatistic> error, error code = %d",output.resultCode);
+        }
     });
 }
 

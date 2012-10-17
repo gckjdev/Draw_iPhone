@@ -24,3 +24,4 @@
 #define PARA_CN_IMAGE_URL @"ciu"
 
 #define METHOD_GETBOARDLIST @"gbl"
+#define METHOD_UPDATE_BOARD_STATISTIC @"ubs"

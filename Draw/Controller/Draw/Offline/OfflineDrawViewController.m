@@ -336,7 +336,7 @@ enum{
     [drawView setRevocationSupported:YES];
     drawView.delegate = self;
     if (self.draft) {
-        NSArray* drawActionList = [NSKeyedUnarchiver unarchiveObjectWithData:self.draft.data];
+        NSArray* drawActionList = [NSKeyedUnarchiver unarchiveObjectWithData:self.draft.drawData];
         [drawView setDrawActionList:[NSMutableArray arrayWithArray:drawActionList]];
         [drawView show];
     }

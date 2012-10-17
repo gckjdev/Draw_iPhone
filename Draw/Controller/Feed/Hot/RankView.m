@@ -50,7 +50,7 @@
     view.delegate = delegate;
     
     UIImage *selectedImage = [[ShareImageManager defaultManager] 
-                              normalButtonImage];
+                              highlightMaskImage];
     [view.maskButton setBackgroundImage:selectedImage 
                                forState:UIControlStateHighlighted];
     [view.maskButton setBackgroundImage:selectedImage 

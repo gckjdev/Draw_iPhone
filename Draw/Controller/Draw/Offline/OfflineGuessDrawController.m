@@ -67,7 +67,7 @@
 @synthesize feed = _feed;
 @synthesize superController = _supperController;
 @synthesize delegate = _delegate;
-
+@synthesize draw = _draw;
 
 + (OfflineGuessDrawController *)startOfflineGuess:(DrawFeed *)feed 
            fromController:(UIViewController *)fromController
@@ -96,6 +96,7 @@
     PPRelease(_supperController);
     PPRelease(_pickToolView);
     PPRelease(_scene);
+    PPRelease(_draw);
     [super dealloc];
 }
 
@@ -146,7 +147,7 @@
         shareImageManager = [ShareImageManager defaultManager];        
         self.feed = feed;
         _opusId = _feed.feedId;
-        _draw = _feed.drawData;
+        self.draw = _feed.drawData;
         _authorId = _feed.author.userId;
         _scene = [[UseItemScene createSceneByType:UseSceneTypeOfflineGuess feed:feed] retain];
     }
@@ -653,7 +654,7 @@
 
 //        }
         if (_feed) {
-            _draw = self.feed.drawData;            
+            self.draw = self.feed.drawData;            
         }
         [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kGuessCorrect") delayTime:1 isHappy:YES];
         [[AudioManager defaultManager] playSoundById:BINGO];
@@ -678,7 +679,7 @@
                                                                  isMyPaint:NO
                                                             drawActionList:_draw.drawActionList
                                                                       feed:self.feed
-                                                                     scene:[UseItemScene createSceneByType:OfflineGuess feed:self.feed]];
+                                                                     scene:[UseItemScene createSceneByType:UseSceneTypeOfflineGuess feed:self.feed]];
         
         //send http request.
         [[DrawDataService defaultService] guessDraw:_guessWords opusId:_opusId opusCreatorUid:_draw.userId isCorrect:YES score:score delegate:nil];

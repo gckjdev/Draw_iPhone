@@ -26,5 +26,6 @@
 
 + (BoardService *)defaultService;
 - (void)syncBoards;
+- (void)updateBoardStatistic:(NSString *)boardId;
 
 @end

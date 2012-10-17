@@ -16,4 +16,11 @@
                            gameId:(NSString*)gameId
                        deviceType:(int)deviceType; //ipad iphone?
 
++ (CommonNetworkOutput*)updateBoardStatictic:(NSString*)baseURL
+                            appId:(NSString*)appId
+                           gameId:(NSString*)gameId 
+                          boardId:(NSString *)boardId
+                           userId:(NSString *)userId
+                       deviceType:(int)deviceType; //ipad iphone?
+
 @end
