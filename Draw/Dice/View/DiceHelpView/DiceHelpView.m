@@ -78,6 +78,7 @@
 
 - (void)showInView:(UIView *)view
 {
+    self.frame = view.frame;
     [self showInView:view animationType:[self randomAnimationType]];
 }
 

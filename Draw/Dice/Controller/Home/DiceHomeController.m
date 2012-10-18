@@ -100,6 +100,7 @@
     self.menuPanel = [MenuPanel menuPanelWithController:self 
                                             gameAppType:GameAppTypeDice];
     
+//    CGPoint iphoneCenter = ([DeviceDetection isIPhone5]?CGPointMake(160, 406):CGPointMake(160, 306));
     self.menuPanel.center = [DeviceDetection isIPAD] ? CGPointMake(384, 686) : CGPointMake(160, 306);
     
     [self.view insertSubview:self.menuPanel atIndex:0];
