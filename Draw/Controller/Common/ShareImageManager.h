@@ -78,13 +78,14 @@
 
 - (UIImage *)myFoucsImage;
 - (UIImage *)myFoucsSelectedImage;
-- (UIImage *)foucsMeImage;
-- (UIImage *)foucsMeSelectedImage;
+- (UIImage *)focusMeImage;
+- (UIImage *)focusMeSelectedImage;
 - (UIImage *)middleTabImage;
 - (UIImage *)middleTabSelectedImage;
 
 
 - (UIImage *)normalButtonImage;
+- (UIImage *)highlightMaskImage;
 - (UIImage *)sinaWeiboImage;
 - (UIImage *)qqWeiboImage;
 - (UIImage *)facebookImage;

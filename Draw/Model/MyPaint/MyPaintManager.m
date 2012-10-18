@@ -12,19 +12,32 @@
 #import "PPDebug.h"
 #import "FileUtil.h"
 #import "UserManager.h"
+#import "StringUtil.h"
 
 #define MY_PAINT_IMAGE_DIR @"Paints"
+#define MY_PAINT_DATA_DIR @"PaintData"
 
+#define SUFFIX_NUMBER 100
 @interface MyPaintManager()
-
+{
+    long _dataPathSuffixIndex;
+}
 - (void)deletePaintImage:(NSString *)paintImage sync:(BOOL)sync;
-
+- (void)deletePaintData:(NSString *)path;
+- (void)transferDrawDataToPath:(NSArray *)paints;
 @end
 
 
 @implementation MyPaintManager
 
 static MyPaintManager* _defaultManager;
+
+- (id)init
+{
+    self = [super init];
+    _dataPathSuffixIndex = 0;
+    return self;
+}
 
 + (MyPaintManager*)defaultManager
 {
@@ -33,6 +46,16 @@ static MyPaintManager* _defaultManager;
     }
     
     return _defaultManager;
+}
+
+- (NSString *)saveDrawData:(NSData *)data
+{
+    ;
+    NSString* fileName = [NSString stringWithFormat:@"%@.dat", [NSString GetUUID]];
+    NSString *path = [MyPaintManager constructDataPath:fileName];
+    PPDebug(@"data save to path = %@", path);
+    [data writeToFile:path atomically:YES];
+    return fileName;
 }
 
 - (BOOL)createMyPaintWithImage:(NSString*)image
@@ -45,8 +68,12 @@ static MyPaintManager* _defaultManager;
 {
     CoreDataManager* dataManager = GlobalGetCoreDataManager();
     MyPaint* newMyPaint = [dataManager insert:@"MyPaint"];
+    NSString *path = [self saveDrawData:data];
+    [newMyPaint setDataFilePath:path];
+
+    //    [newMyPaint setData:data];
     
-    [newMyPaint setData:data];
+    //save the data, and set the data path.
     [newMyPaint setImage:image];
     [newMyPaint setDrawByMe:[NSNumber numberWithBool:drawByMe]];
     [newMyPaint setDrawUserId:drawUserId];
@@ -87,7 +114,8 @@ static MyPaintManager* _defaultManager;
             [self deletePaintImage:draft.image sync:YES];            
         }
         NSData* data = [NSKeyedArchiver archivedDataWithRootObject:drawActionList];
-        draft.data = data;
+        NSString *path = [MyPaintManager constructDataPath:draft.dataFilePath];
+        [data writeToFile:path atomically:YES];
         draft.image = imageName;
         CoreDataManager* dataManager = GlobalGetCoreDataManager();
 //        NSLog(@"<update draft> before save, draft = %@",draft);
@@ -119,13 +147,12 @@ static MyPaintManager* _defaultManager;
 
         CoreDataManager* dataManager = GlobalGetCoreDataManager();
         
-//        NSLog(@"<Draw Log>createDraft insert new draft");
-        
         MyPaint* newMyPaint = [dataManager insert:@"MyPaint"];
         
-//        NSLog(@"<Draw Log>createDraft set attributes");
-        
-        [newMyPaint setData:data];
+//        [newMyPaint setData:data];
+        NSString *path = [self saveDrawData:data];
+        [newMyPaint setDataFilePath:path];
+
         [newMyPaint setImage:imageName];
         [newMyPaint setDrawByMe:[NSNumber numberWithBool:YES]];
         [newMyPaint setDraft:[NSNumber numberWithBool:YES]];
@@ -134,27 +161,18 @@ static MyPaintManager* _defaultManager;
         [newMyPaint setCreateDate:[NSDate date]];
         [newMyPaint setDrawWord:drawWord];
         [newMyPaint setTargetUserId:targetUid];
-//        newMyPaint set
-//        NSLog(@"<Draw Log>before set Lanauge,  %@", [newMyPaint description]);
         
         [newMyPaint setLanguage:[NSNumber numberWithInt:language]];
-        
-//        NSLog(@"<Draw Log>before set level,  %@", [newMyPaint description]);
-        
         [newMyPaint setLevel:[NSNumber numberWithInt:level]];
         
         PPDebug(@"<createDraftWithImage> %@", [newMyPaint description]);
         
-//        NSLog(@"<Draw Log>createDraft before save draft, new Paint = %@",newMyPaint);
-        
         BOOL result = [dataManager save];
         
-//        NSLog(@"<Draw Log>createDraft saved!, result = %d",result);
             
         if (result) {
             return newMyPaint;
         }else{
-//            PPDebug(@"<createDraft>:fail to create draft, word = %@", drawWord);
             return nil;
         }
     }
@@ -178,6 +196,30 @@ static MyPaintManager* _defaultManager;
     return array;
 }
 
+
+- (void)transferDrawDataToPath:(NSArray *)paints
+{
+    PPDebug(@"<transferDrawDataToPath> start");
+    BOOL needSave = NO;
+    for (MyPaint *paint in paints) {
+        if (paint.data) {
+            if ([paint.dataFilePath length] != 0) {
+                [self deletePaintData:paint.dataFilePath];
+            }
+            NSString *path = [self saveDrawData:paint.data];
+            paint.dataFilePath = path;
+            paint.data = nil;
+            needSave = YES;
+            PPDebug(@"<transferDrawDataToPath> transfer path = %@", path);
+        }
+    }
+    if (needSave) {
+        PPDebug(@"<transferDrawDataToPath> save data.");
+        [[CoreDataManager defaultManager] save];        
+    }
+    PPDebug(@"<transferDrawDataToPath> end");
+}
+
 - (void)findMyPaintsFrom:(NSInteger)offset 
                        limit:(NSInteger)limit 
                     delegate:(id<MyPaintManagerDelegate>)delegate
@@ -188,6 +230,7 @@ static MyPaintManager* _defaultManager;
     if (queue) {
         dispatch_async(queue, ^{
             NSArray *array = [dataManager execute:@"findOnlyMyPaints" sortBy:@"createDate" returnFields:nil ascending:NO offset:offset limit:limit];
+            [self transferDrawDataToPath:array];
             dispatch_async(dispatch_get_main_queue(), ^{
                 if (delegate && [delegate respondsToSelector:@selector(didGetMyPaints:)]) {
                     [delegate didGetMyPaints:array];
@@ -211,6 +254,7 @@ static MyPaintManager* _defaultManager;
 //            PPDebug(@"before find");
             NSArray *array = [dataManager execute:@"findAllMyPaints" sortBy:@"createDate" returnFields:nil ascending:NO offset:offset limit:limit];
 //            PPDebug(@"after find");
+            [self transferDrawDataToPath:array];
             dispatch_async(dispatch_get_main_queue(), ^{
                 if (delegate && [delegate respondsToSelector:@selector(didGetAllPaints:)]) {
                     [delegate didGetAllPaints:array];
@@ -230,6 +274,7 @@ static MyPaintManager* _defaultManager;
     if (queue) {
         dispatch_async(queue, ^{
             NSArray *array = [dataManager execute:@"findAllDrafts" sortBy:@"createDate" returnFields:nil ascending:NO offset:offset limit:limit];
+            [self transferDrawDataToPath:array];
             dispatch_async(dispatch_get_main_queue(), ^{
                 if (delegate && [delegate respondsToSelector:@selector(didGetAllDrafts:)]) {
                     [delegate didGetAllDrafts:array];
@@ -250,10 +295,13 @@ static MyPaintManager* _defaultManager;
     @try {
         for (MyPaint* paint in array){
             [paint setDeleteFlag:[NSNumber numberWithBool:YES]];
+            
             //remove the image path.
             [self deletePaintImage:paint.image sync:YES];
-//            NSLog(@"<removeAlldeletedPaints> paint = %@",[paint description]);
+            
             //delete data        
+            [self deletePaintData:paint.dataFilePath];
+            
             [dataManager del:paint];
         }
         [dataManager save];    
@@ -294,6 +342,14 @@ static MyPaintManager* _defaultManager;
        return [self deletePaintsByRquestName:@"findAllDrafts"];
 }
 
+- (void)deletePaintData:(NSString *)path
+{
+    NSString *dataPath = [MyPaintManager constructDataPath:path];
+    if ([[NSFileManager defaultManager] fileExistsAtPath:dataPath]) {
+        [[NSFileManager defaultManager] removeItemAtPath:dataPath error:nil];
+        PPDebug(@"<deleteMyPaints> remove image at %@", dataPath);
+    }            
+}
 
 - (void)deletePaintImage:(NSString *)paintImage sync:(BOOL)sync
 {
@@ -371,7 +427,6 @@ static MyPaintManager* _defaultManager;
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
                                                          NSUserDomainMask, YES);
     if (!paths || [paths count] == 0) {
-//        NSLog(@"Document directory not found!");
         return nil;
     }
     NSString *imgName = imageName;
@@ -380,11 +435,35 @@ static MyPaintManager* _defaultManager;
     dir = [dir stringByAppendingPathComponent:MY_PAINT_IMAGE_DIR];
     BOOL flag = [FileUtil createDir:dir];
     if (flag == NO) {
-//        PPDebug(@"<MyPaintManager> create dir fail. dir = %@",dir);
+        PPDebug(@"<MyPaintManager> create dir fail. dir = %@",dir);
     }
     NSString *uniquePath=[dir stringByAppendingPathComponent:imgName];
-//    NSLog(@"construct path = %@",uniquePath);
     return uniquePath;
+}
+
++ (NSString *)constructDataPath:(NSString *)dataName
+{
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
+                                                         NSUserDomainMask, YES);
+    if (!paths || [paths count] == 0) {
+        return nil;
+    }
+    NSString *dir = [paths objectAtIndex:0];
+    
+    dir = [dir stringByAppendingPathComponent:MY_PAINT_DATA_DIR];
+    BOOL flag = [FileUtil createDir:dir];
+    if (flag == NO) {
+        PPDebug(@"<MyPaintManager> create dir fail. dir = %@",dir);
+    }
+    NSString *uniquePath=[dir stringByAppendingPathComponent:dataName];
+    return uniquePath;
+}
+
++ (NSData *)drawDataFromDataPath:(NSString *)path
+{
+    NSString *dataPath = [MyPaintManager constructDataPath:path];
+    NSData *data = [NSData dataWithContentsOfFile:dataPath];
+    return data;
 }
 
 

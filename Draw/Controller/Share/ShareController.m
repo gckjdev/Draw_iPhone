@@ -99,7 +99,8 @@ typedef enum{
     if ([paints count] < self.currentTab.limit) {
         self.currentTab.hasMoreData = NO;
     }
-    isLoading = NO;    
+    isLoading = NO;   
+    self.noDataTipLabl.hidden = NO;
 }
 
 #pragma mark - MyPaintManager Delegate
@@ -538,8 +539,8 @@ typedef enum{
             [button setBackgroundImage:[imageManager myFoucsImage] forState:UIButtonTypeCustom];
             [button setBackgroundImage:[imageManager myFoucsSelectedImage] forState:UIControlStateSelected];
         }else if(tab.tabID == TabTypeDraft){
-            [button setBackgroundImage:[imageManager foucsMeImage] forState:UIButtonTypeCustom];
-            [button setBackgroundImage:[imageManager foucsMeSelectedImage] forState:UIControlStateSelected];            
+            [button setBackgroundImage:[imageManager focusMeImage] forState:UIButtonTypeCustom];
+            [button setBackgroundImage:[imageManager focusMeSelectedImage] forState:UIControlStateSelected];            
         }else{
             [button setBackgroundImage:[imageManager middleTabImage] forState:UIControlStateNormal];
             [button setBackgroundImage:[imageManager middleTabSelectedImage] forState:UIControlStateSelected];
@@ -655,6 +656,7 @@ typedef enum{
     TableTab *tab = [_tabManager tabForID:tabID];
     if (tab) {
         isLoading = YES;
+        self.noDataTipLabl.hidden = YES;
         switch (tabID) {
             case TabTypeMine:
                 [self loadPaintsOnlyMine:YES];                

@@ -57,6 +57,7 @@ FriendService* globalGetFriendService()
                 
                 [[FriendManager defaultManager] createFriendsByJsonArray:userList];
             }else {
+                [viewController hideActivity];
                 PPDebug(@"<FriendService> findFriends Failed!");
                 return ;
             }

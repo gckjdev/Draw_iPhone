@@ -268,14 +268,14 @@ static UIImage* _whitePaperImage;
      return [UIImage strectchableImageName:@"myfoucs_selected.png"];
 }
 
-- (UIImage *)foucsMeImage
+- (UIImage *)focusMeImage
 {
-    return [UIImage strectchableImageName:@"foucsme.png"];
+    return [UIImage strectchableImageName:@"focusme.png"];
 }
 
-- (UIImage *)foucsMeSelectedImage
+- (UIImage *)focusMeSelectedImage
 {
-    return [UIImage strectchableImageName:@"foucsme_selected.png"];
+    return [UIImage strectchableImageName:@"focusme_selected.png"];
 }
 
 - (UIImage *)middleTabImage
@@ -291,6 +291,11 @@ static UIImage* _whitePaperImage;
 - (UIImage *)normalButtonImage
 {
     return [UIImage strectchableImageName:@"normal_button.png"];
+}
+
+- (UIImage *)highlightMaskImage
+{
+    return [UIImage strectchableImageName:@"highlight_mask.png"];
 }
 
 - (UIImage *)sinaWeiboImage

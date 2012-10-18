@@ -31,7 +31,9 @@
 #define AVATAR_VIEW_FRAME ([DeviceDetection isIPAD] ?  CGRectMake(24, 18, 88, 88) : CGRectMake(12, 9, 36, 36))
 #define FEED_CELL_HEIGHT ([DeviceDetection isIPAD] ?  228 : 100)
 #define DESC_WIDTH ([DeviceDetection isIPAD] ?  400 : 181)
-#define DESC_FONT ([DeviceDetection isIPAD] ? [UIFont systemFontOfSize:14 * 2] : [UIFont systemFontOfSize:14])
+#define DESC_HEIGHT ([DeviceDetection isIPAD] ?  120 : 43)
+
+#define DESC_FONT ([DeviceDetection isIPAD] ? [UIFont systemFontOfSize:25] : [UIFont systemFontOfSize:12])
 
 + (id)createCell:(id)delegate
 {
@@ -84,12 +86,13 @@
 {
     CGPoint origin = self.descLabel.frame.origin;
     UIFont *font = DESC_FONT;
-    CGSize maxSize = CGSizeMake(DESC_WIDTH, 1000000);
+    CGSize maxSize = CGSizeMake(DESC_WIDTH, DESC_HEIGHT);
     CGSize labelSize = [feed.desc sizeWithFont:font constrainedToSize:maxSize 
-         lineBreakMode:UILineBreakModeWordWrap];
+         lineBreakMode:UILineBreakModeCharacterWrap];
     CGRect rect = CGRectMake(origin.x, origin.y, DESC_WIDTH, labelSize.height);
     self.descLabel.frame = rect;
     [self.descLabel setText:feed.desc];
+    PPDebug(@"rect = %@, desc = %@", NSStringFromCGRect(rect),feed.desc);
 }
 
 
