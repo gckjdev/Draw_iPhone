@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#define CUSTOM_MESSAGE_ID 99999
 
 @interface DiceChatMessage : NSObject
 

@@ -23,6 +23,8 @@
 
 #define EXPRESSION_COUNT_PER_PAGE ([DeviceDetection isIPAD] ? 5: 5)
 
+#define HEIGHT_INPUT_TEXT_VIEW ([DeviceDetection isIPAD] ? 78: 78)
+
 @interface ChatView()
 {
     ExpressionManager *_expressionManager;
@@ -53,6 +55,8 @@
     [_popTipView release];
     [_bgImageView release];
     [_pageController release];
+    [_inputTextView release];
+    [_inputTextViewBgImageView release];
     [super dealloc];
 }
 
@@ -75,6 +79,13 @@
     _bgImageView.image = [[DiceImageManager defaultManager] popupBackgroundImage];
     self.pageController.hidesForSinglePage = YES;
     self.pageController.defersCurrentPageDisplay = YES;
+    self.inputTextView.delegate = self;
+    [self.inputTextView setPlaceholder:NSLS(@"kInputWhatYouWantToSay")];
+    [self.inputTextView setTextColor:[UIColor whiteColor]];
+    [self addTarget:self action:@selector(clickChatView:) forControlEvents:UIControlEventTouchUpInside];
+    [self.inputTextView setRoundRectStyleWithBorderColor:[UIColor clearColor]];
+    [self.inputTextView setBackgroundColor:[UIColor clearColor]];
+    [self.inputTextViewBgImageView setImage:[[DiceImageManager defaultManager] inputTextBgImage]];
     [self initCustomPageControl];
     [self addExpressions];
 }
@@ -268,6 +279,34 @@
 //{
 //    [self dismissAnimated:YES];
 //}
+
+
+- (void)sendText:text
+{
+    NSString *content = text;
+    DiceChatMessage *message = [[[DiceChatMessage alloc] initWithMessageId:CUSTOM_MESSAGE_ID content:content voiceId:-1] autorelease];
+    if ([_delegate respondsToSelector:@selector(didClickMessage:)]) {
+        [_delegate didClickMessage:message];
+    }
+}
+
+- (void)clickChatView:(id)sender {
+    [self.inputTextView resignFirstResponder];
+}
+
+#pragma mark - UITextView Delegate Methods
+
+-(BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
+
+{
+    if ([text isEqualToString:@"\n"]) {
+        [textView resignFirstResponder];
+        [self sendText:textView.text];
+        return NO;
+    }
+    
+    return YES;
+}
 
 
 @end

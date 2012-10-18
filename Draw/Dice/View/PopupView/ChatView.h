@@ -10,6 +10,8 @@
 #import "ChatViewCell.h"
 #import "CMPopTipView.h"
 #import "UICustomPageControl.h"
+#import "UIPlaceholderTextView.h"
+#import "TextViewExt.h"
 
 @protocol ChatViewDelegate <NSObject>
 
@@ -21,7 +23,7 @@
 @end
 
 
-@interface ChatView : UIView <UITableViewDataSource, UITableViewDelegate, ChatViewCellDelegate, CMPopTipViewDelegate>
+@interface ChatView : UIButton <UITableViewDataSource, UITableViewDelegate, ChatViewCellDelegate, CMPopTipViewDelegate, UITextViewDelegate>
 
 @property (assign, nonatomic) id<ChatViewDelegate> delegate;
 
@@ -30,6 +32,8 @@
 @property (retain, nonatomic) IBOutlet UICustomPageControl *pageController;
 
 @property (retain, nonatomic) IBOutlet UITableView *messagesHolderView;
+@property (retain, nonatomic) IBOutlet UIPlaceholderTextView *inputTextView;
+@property (retain, nonatomic) IBOutlet UIImageView *inputTextViewBgImageView;
 
 + (id)createChatView;
 - (void)loadContent;

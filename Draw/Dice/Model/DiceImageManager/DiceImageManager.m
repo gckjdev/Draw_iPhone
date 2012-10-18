@@ -485,6 +485,11 @@ static DiceImageManager *_defaultManager = nil;
     return [UIImage imageNamed:@"super_high_room_table.jpg"];
 }
 
+- (UIImage *)inputTextBgImage
+{
+    return [UIImage strectchableImageName:@"input_text_bg.png"];
 
+//    return [UIImage strectchableImageName:@"input_text_bg.png" leftCapWidth:8 topCapHeight:8];
+}
 
 @end
