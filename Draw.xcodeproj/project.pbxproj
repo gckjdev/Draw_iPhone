@@ -109,6 +109,8 @@
 		A455F8CB1585D21400CA5743 /* grayArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A455F8C01585D21400CA5743 /* grayArrow@2x.png */; };
 		A455F8CC1585D21400CA5743 /* whiteArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = A455F8C11585D21400CA5743 /* whiteArrow.png */; };
 		A455F8CD1585D21400CA5743 /* whiteArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A455F8C21585D21400CA5743 /* whiteArrow@2x.png */; };
+		A45AA839162FC0150030D668 /* UIPlaceholderTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = A45AA838162FC0150030D668 /* UIPlaceholderTextView.m */; };
+		A45AA83B162FF5570030D668 /* input_text_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = A45AA83A162FF5570030D668 /* input_text_bg.png */; };
 		A45BC60E15F1C4F80003DDDC /* DiceConfigManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A45BC60D15F1C4F80003DDDC /* DiceConfigManager.m */; };
 		A45BF5E215D231A000CDD5C2 /* DiceFontManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A45BF5E115D231A000CDD5C2 /* DiceFontManager.m */; };
 		A45E8CD515C77F8E0089E240 /* DiceAvatarView.m in Sources */ = {isa = PBXBuildFile; fileRef = A45E8CD415C77F8E0089E240 /* DiceAvatarView.m */; };
@@ -1870,6 +1872,9 @@
 		A455F8C01585D21400CA5743 /* grayArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "grayArrow@2x.png"; sourceTree = "<group>"; };
 		A455F8C11585D21400CA5743 /* whiteArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = whiteArrow.png; sourceTree = "<group>"; };
 		A455F8C21585D21400CA5743 /* whiteArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "whiteArrow@2x.png"; sourceTree = "<group>"; };
+		A45AA837162FC0150030D668 /* UIPlaceholderTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIPlaceholderTextView.h; sourceTree = "<group>"; };
+		A45AA838162FC0150030D668 /* UIPlaceholderTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIPlaceholderTextView.m; sourceTree = "<group>"; };
+		A45AA83A162FF5570030D668 /* input_text_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = input_text_bg.png; sourceTree = "<group>"; };
 		A45BC60C15F1C4F80003DDDC /* DiceConfigManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiceConfigManager.h; sourceTree = "<group>"; };
 		A45BC60D15F1C4F80003DDDC /* DiceConfigManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiceConfigManager.m; sourceTree = "<group>"; };
 		A45BF5E015D231A000CDD5C2 /* DiceFontManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiceFontManager.h; sourceTree = "<group>"; };
@@ -4290,6 +4295,15 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
+		A45AA836162FC0140030D668 /* UIPlaceholderTextView */ = {
+			isa = PBXGroup;
+			children = (
+				A45AA837162FC0150030D668 /* UIPlaceholderTextView.h */,
+				A45AA838162FC0150030D668 /* UIPlaceholderTextView.m */,
+			);
+			path = UIPlaceholderTextView;
+			sourceTree = "<group>";
+		};
 		A45BC60815F1C4DF0003DDDC /* DiceConfigManager */ = {
 			isa = PBXGroup;
 			children = (
@@ -5167,6 +5181,7 @@
 		C2E74105162F9C800037E7F6 /* game */ = {
 			isa = PBXGroup;
 			children = (
+				A45AA83A162FF5570030D668 /* input_text_bg.png */,
 				C2E74106162F9C800037E7F6 /* audio_off@2x.png */,
 				C2E74107162F9C800037E7F6 /* audio_on@2x.png */,
 				C2E74108162F9C800037E7F6 /* bell_1@2x.png */,
@@ -6366,6 +6381,7 @@
 		CA103D9F1509A56100F60C03 /* Core-Utils-View */ = {
 			isa = PBXGroup;
 			children = (
+				A45AA836162FC0140030D668 /* UIPlaceholderTextView */,
 				A41A665615C921DA00066E9B /* UISlideImageView */,
 				CA103DA01509A56100F60C03 /* AlertView */,
 				CA103DA31509A56100F60C03 /* BarButtonItem */,
@@ -10097,6 +10113,7 @@
 				C2E74513162F9C810037E7F6 /* openDice_M.m4a in Resources */,
 				C2E74514162F9C810037E7F6 /* scrambleToOpenDice_F.m4a in Resources */,
 				C2E74515162F9C810037E7F6 /* scrambleToOpenDice_M.m4a in Resources */,
+				A45AA83B162FF5570030D668 /* input_text_bg.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -10656,6 +10673,7 @@
 				A43E85F916227E06003A57F1 /* UIButton+WebCache.m in Sources */,
 				A43E85FA16227E06003A57F1 /* UIImageView+WebCache.m in Sources */,
 				C2E7401F1629500A0037E7F6 /* UseItemScene.m in Sources */,
+				A45AA839162FC0150030D668 /* UIPlaceholderTextView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

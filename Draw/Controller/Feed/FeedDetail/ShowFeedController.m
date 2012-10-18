@@ -542,6 +542,11 @@ enum{
     }    
 }
 
+- (void)clickBack:(CommonDialog *)dialog
+{
+    
+}
+
 #pragma mark - Click Actions
 - (IBAction)clickBackButton:(id)sender {
     [self.navigationController popViewControllerAnimated:YES];

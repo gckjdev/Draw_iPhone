@@ -103,5 +103,5 @@
 - (UIImage *)diceHighRoomTableImage;
 - (UIImage *)diceSuperHighRoomTableImage;
 
-
+- (UIImage *)inputTextBgImage;
 @end

@@ -40,7 +40,9 @@
     self.dataList = [[CustomDiceManager defaultManager] myCustomDiceList]; 
     
 //    [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:[GameApp background]]]];
+    
     [self.bgImageView setImage:[UIImage imageNamed:[GameApp background]]];
+    
     [self.dataTableView setBackgroundView:nil];
 
     [self.controllerTitle.fontLable setText:NSLS(@"kCustomDice")];

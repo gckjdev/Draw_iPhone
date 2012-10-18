@@ -10,6 +10,7 @@
 #import "DiceChatMessage.h"
 #import "LocaleUtils.h"
 
+
 static DiceChatMsgManager *_defaultManager = nil;
 
 @interface DiceChatMsgManager()
