@@ -394,7 +394,6 @@
 		C2E7434F162F9C810037E7F6 /* openDice_wood_4.png in Resources */ = {isa = PBXBuildFile; fileRef = C2E740F3162F9C800037E7F6 /* openDice_wood_4.png */; };
 		C2E74350162F9C810037E7F6 /* openDice_wood_5.png in Resources */ = {isa = PBXBuildFile; fileRef = C2E740F4162F9C800037E7F6 /* openDice_wood_5.png */; };
 		C2E74351162F9C810037E7F6 /* openDice_wood_6.png in Resources */ = {isa = PBXBuildFile; fileRef = C2E740F5162F9C800037E7F6 /* openDice_wood_6.png */; };
-		C2E74352162F9C810037E7F6 /* transformNew.sh in Resources */ = {isa = PBXBuildFile; fileRef = C2E740F6162F9C800037E7F6 /* transformNew.sh */; };
 		C2E74353162F9C810037E7F6 /* dice_close_btn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2E740F8162F9C800037E7F6 /* dice_close_btn@2x.png */; };
 		C2E74354162F9C810037E7F6 /* dice_face_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2E740F9162F9C800037E7F6 /* dice_face_bg@2x.png */; };
 		C2E74355162F9C810037E7F6 /* dice_help_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2E740FA162F9C800037E7F6 /* dice_help_bg@2x.png */; };
@@ -481,7 +480,6 @@
 		C2E743A6162F9C810037E7F6 /* shop_bell@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2E7414E162F9C800037E7F6 /* shop_bell@2x.png */; };
 		C2E743A7162F9C810037E7F6 /* super_high_room_table@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C2E7414F162F9C800037E7F6 /* super_high_room_table@2x.jpg */; };
 		C2E743A8162F9C810037E7F6 /* tools_bell_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2E74150162F9C800037E7F6 /* tools_bell_bg@2x.png */; };
-		C2E743A9162F9C810037E7F6 /* tools_bell_bg_bak@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2E74151162F9C800037E7F6 /* tools_bell_bg_bak@2x.png */; };
 		C2E743AA162F9C810037E7F6 /* tools_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2E74152162F9C800037E7F6 /* tools_bg@2x.png */; };
 		C2E743AB162F9C810037E7F6 /* tools_disable@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2E74153162F9C800037E7F6 /* tools_disable@2x.png */; };
 		C2E743AC162F9C810037E7F6 /* tools_enable@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2E74154162F9C800037E7F6 /* tools_enable@2x.png */; };
@@ -2262,7 +2260,6 @@
 		C2E740F3162F9C800037E7F6 /* openDice_wood_4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = openDice_wood_4.png; sourceTree = "<group>"; };
 		C2E740F4162F9C800037E7F6 /* openDice_wood_5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = openDice_wood_5.png; sourceTree = "<group>"; };
 		C2E740F5162F9C800037E7F6 /* openDice_wood_6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = openDice_wood_6.png; sourceTree = "<group>"; };
-		C2E740F6162F9C800037E7F6 /* transformNew.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = transformNew.sh; sourceTree = "<group>"; };
 		C2E740F8162F9C800037E7F6 /* dice_close_btn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dice_close_btn@2x.png"; sourceTree = "<group>"; };
 		C2E740F9162F9C800037E7F6 /* dice_face_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dice_face_bg@2x.png"; sourceTree = "<group>"; };
 		C2E740FA162F9C800037E7F6 /* dice_help_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dice_help_bg@2x.png"; sourceTree = "<group>"; };
@@ -2349,7 +2346,6 @@
 		C2E7414E162F9C800037E7F6 /* shop_bell@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "shop_bell@2x.png"; sourceTree = "<group>"; };
 		C2E7414F162F9C800037E7F6 /* super_high_room_table@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "super_high_room_table@2x.jpg"; sourceTree = "<group>"; };
 		C2E74150162F9C800037E7F6 /* tools_bell_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tools_bell_bg@2x.png"; sourceTree = "<group>"; };
-		C2E74151162F9C800037E7F6 /* tools_bell_bg_bak@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tools_bell_bg_bak@2x.png"; sourceTree = "<group>"; };
 		C2E74152162F9C800037E7F6 /* tools_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tools_bg@2x.png"; sourceTree = "<group>"; };
 		C2E74153162F9C800037E7F6 /* tools_disable@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tools_disable@2x.png"; sourceTree = "<group>"; };
 		C2E74154162F9C800037E7F6 /* tools_enable@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tools_enable@2x.png"; sourceTree = "<group>"; };
@@ -5150,7 +5146,6 @@
 				C2E740F3162F9C800037E7F6 /* openDice_wood_4.png */,
 				C2E740F4162F9C800037E7F6 /* openDice_wood_5.png */,
 				C2E740F5162F9C800037E7F6 /* openDice_wood_6.png */,
-				C2E740F6162F9C800037E7F6 /* transformNew.sh */,
 			);
 			path = wood;
 			sourceTree = "<group>";
@@ -5249,7 +5244,6 @@
 				C2E7414E162F9C800037E7F6 /* shop_bell@2x.png */,
 				C2E7414F162F9C800037E7F6 /* super_high_room_table@2x.jpg */,
 				C2E74150162F9C800037E7F6 /* tools_bell_bg@2x.png */,
-				C2E74151162F9C800037E7F6 /* tools_bell_bg_bak@2x.png */,
 				C2E74152162F9C800037E7F6 /* tools_bg@2x.png */,
 				C2E74153162F9C800037E7F6 /* tools_disable@2x.png */,
 				C2E74154162F9C800037E7F6 /* tools_enable@2x.png */,
@@ -9657,7 +9651,6 @@
 				C2E7434F162F9C810037E7F6 /* openDice_wood_4.png in Resources */,
 				C2E74350162F9C810037E7F6 /* openDice_wood_5.png in Resources */,
 				C2E74351162F9C810037E7F6 /* openDice_wood_6.png in Resources */,
-				C2E74352162F9C810037E7F6 /* transformNew.sh in Resources */,
 				C2E74353162F9C810037E7F6 /* dice_close_btn@2x.png in Resources */,
 				C2E74354162F9C810037E7F6 /* dice_face_bg@2x.png in Resources */,
 				C2E74355162F9C810037E7F6 /* dice_help_bg@2x.png in Resources */,
@@ -9744,7 +9737,6 @@
 				C2E743A6162F9C810037E7F6 /* shop_bell@2x.png in Resources */,
 				C2E743A7162F9C810037E7F6 /* super_high_room_table@2x.jpg in Resources */,
 				C2E743A8162F9C810037E7F6 /* tools_bell_bg@2x.png in Resources */,
-				C2E743A9162F9C810037E7F6 /* tools_bell_bg_bak@2x.png in Resources */,
 				C2E743AA162F9C810037E7F6 /* tools_bg@2x.png in Resources */,
 				C2E743AB162F9C810037E7F6 /* tools_disable@2x.png in Resources */,
 				C2E743AC162F9C810037E7F6 /* tools_enable@2x.png in Resources */,
@@ -10945,8 +10937,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Lingzhe Peng (9WG829Y3AG)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Lingzhe Peng (9WG829Y3AG)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Lingzhe Peng (4JW9JNLMWA)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Lingzhe Peng (4JW9JNLMWA)";
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -10997,8 +10989,8 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "47332EBD-8E91-478C-B497-FEA88B2C0C2A";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "47332EBD-8E91-478C-B497-FEA88B2C0C2A";
+				PROVISIONING_PROFILE = "8C9352B7-156B-47AF-AA40-39E4517161A8";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "8C9352B7-156B-47AF-AA40-39E4517161A8";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -11007,8 +10999,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Lingzhe Peng (9WG829Y3AG)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Lingzhe Peng (9WG829Y3AG)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Lingzhe Peng (4JW9JNLMWA)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Lingzhe Peng (4JW9JNLMWA)";
 				COPY_PHASE_STRIP = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -11058,8 +11050,8 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "47332EBD-8E91-478C-B497-FEA88B2C0C2A";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "47332EBD-8E91-478C-B497-FEA88B2C0C2A";
+				PROVISIONING_PROFILE = "8C9352B7-156B-47AF-AA40-39E4517161A8";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "8C9352B7-156B-47AF-AA40-39E4517161A8";
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;
 			};
