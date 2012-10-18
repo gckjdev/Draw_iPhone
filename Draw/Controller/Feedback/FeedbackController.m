@@ -71,7 +71,7 @@
 //};
 
 #define DRAW_TABLE_HEIGHT   ([DeviceDetection isIPAD] ? 790 : 350)
-#define DICE_TABLE_HEIGHT   ([DeviceDetection isIPAD] ? 600 : 300)
+#define DICE_TABLE_HEIGHT   ([DeviceDetection isIPAD] ? 790 : 350)
 
 - (void)initRowNumber
 {

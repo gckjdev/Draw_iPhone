@@ -41,7 +41,6 @@
 						<int key="NSvFlags">301</int>
 						<string key="NSFrameSize">{162, 112}</string>
 						<reference key="NSSuperview" ref="951478252"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="612143546"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -82,7 +81,6 @@
 						<int key="NSvFlags">-2147483347</int>
 						<string key="NSFrame">{{93, 20}, {25, 25}}</string>
 						<reference key="NSSuperview" ref="951478252"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="655745263"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
@@ -112,7 +110,6 @@
 						<int key="NSvFlags">287</int>
 						<string key="NSFrame">{{0, 76}, {162, 25}}</string>
 						<reference key="NSSuperview" ref="951478252"/>
-						<reference key="NSWindow"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
 						<int key="IBUIContentMode">7</int>
@@ -137,7 +134,6 @@
 				</array>
 				<string key="NSFrameSize">{162, 112}</string>
 				<reference key="NSSuperview"/>
-				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="402197937"/>
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">3</int>
@@ -237,37 +233,7 @@
 			<nil key="sourceID"/>
 			<int key="maxID">12</int>
 		</object>
-		<object class="IBClassDescriber" key="IBDocument.Classes">
-			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
-				<object class="IBPartialClassDescription">
-					<string key="className">MenuButton</string>
-					<string key="superclassName">UIView</string>
-					<dictionary class="NSMutableDictionary" key="outlets">
-						<string key="badge">UIButton</string>
-						<string key="button">UIButton</string>
-						<string key="title">UILabel</string>
-					</dictionary>
-					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
-						<object class="IBToOneOutletInfo" key="badge">
-							<string key="name">badge</string>
-							<string key="candidateClassName">UIButton</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="button">
-							<string key="name">button</string>
-							<string key="candidateClassName">UIButton</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="title">
-							<string key="name">title</string>
-							<string key="candidateClassName">UILabel</string>
-						</object>
-					</dictionary>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">./Classes/MenuButton.h</string>
-					</object>
-				</object>
-			</array>
-		</object>
+		<object class="IBClassDescriber" key="IBDocument.Classes"/>
 		<int key="IBDocument.localizationMode">0</int>
 		<string key="IBDocument.TargetRuntimeIdentifier">IBCocoaTouchFramework</string>
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
