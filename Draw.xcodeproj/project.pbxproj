@@ -531,7 +531,6 @@
 		C2E743DA162F9C810037E7F6 /* item.aiff in Resources */ = {isa = PBXBuildFile; fileRef = C2E7418E162F9C800037E7F6 /* item.aiff */; };
 		C2E743DB162F9C810037E7F6 /* open.aiff in Resources */ = {isa = PBXBuildFile; fileRef = C2E7418F162F9C800037E7F6 /* open.aiff */; };
 		C2E743DC162F9C810037E7F6 /* rolling.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C2E74190162F9C800037E7F6 /* rolling.mp3 */; };
-		C2E743DD162F9C810037E7F6 /* dice_room_item_old@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2E74192162F9C800037E7F6 /* dice_room_item_old@2x.png */; };
 		C2E743DE162F9C810037E7F6 /* callDice_10_1_F.m4a in Resources */ = {isa = PBXBuildFile; fileRef = C2E74194162F9C800037E7F6 /* callDice_10_1_F.m4a */; };
 		C2E743DF162F9C810037E7F6 /* callDice_10_1_M.m4a in Resources */ = {isa = PBXBuildFile; fileRef = C2E74195162F9C800037E7F6 /* callDice_10_1_M.m4a */; };
 		C2E743E0162F9C810037E7F6 /* callDice_10_2_F.m4a in Resources */ = {isa = PBXBuildFile; fileRef = C2E74196162F9C800037E7F6 /* callDice_10_2_F.m4a */; };
@@ -2402,7 +2401,6 @@
 		C2E7418E162F9C800037E7F6 /* item.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = item.aiff; sourceTree = "<group>"; };
 		C2E7418F162F9C800037E7F6 /* open.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = open.aiff; sourceTree = "<group>"; };
 		C2E74190162F9C800037E7F6 /* rolling.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = rolling.mp3; sourceTree = "<group>"; };
-		C2E74192162F9C800037E7F6 /* dice_room_item_old@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dice_room_item_old@2x.png"; sourceTree = "<group>"; };
 		C2E74194162F9C800037E7F6 /* callDice_10_1_F.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = callDice_10_1_F.m4a; sourceTree = "<group>"; };
 		C2E74195162F9C800037E7F6 /* callDice_10_1_M.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = callDice_10_1_M.m4a; sourceTree = "<group>"; };
 		C2E74196162F9C800037E7F6 /* callDice_10_2_F.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = callDice_10_2_F.m4a; sourceTree = "<group>"; };
@@ -5330,7 +5328,6 @@
 		C2E74191162F9C800037E7F6 /* room */ = {
 			isa = PBXGroup;
 			children = (
-				C2E74192162F9C800037E7F6 /* dice_room_item_old@2x.png */,
 			);
 			path = room;
 			sourceTree = "<group>";
@@ -9788,7 +9785,6 @@
 				C2E743DA162F9C810037E7F6 /* item.aiff in Resources */,
 				C2E743DB162F9C810037E7F6 /* open.aiff in Resources */,
 				C2E743DC162F9C810037E7F6 /* rolling.mp3 in Resources */,
-				C2E743DD162F9C810037E7F6 /* dice_room_item_old@2x.png in Resources */,
 				C2E743DE162F9C810037E7F6 /* callDice_10_1_F.m4a in Resources */,
 				C2E743DF162F9C810037E7F6 /* callDice_10_1_M.m4a in Resources */,
 				C2E743E0162F9C810037E7F6 /* callDice_10_2_F.m4a in Resources */,
