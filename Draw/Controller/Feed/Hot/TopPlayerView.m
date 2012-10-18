@@ -33,7 +33,7 @@
     view.delegate = delegate;
     
     UIImage *selectedImage = [[ShareImageManager defaultManager] 
-                              normalButtonImage];
+                              highlightMaskImage];
 //    view.maskButton = [UIButton buttonWithType:UIButtonTypeCustom];
 //    view.maskButton.frame = view.bounds;
     [view addSubview:view.maskButton];

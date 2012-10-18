@@ -69,6 +69,7 @@
 @property (retain, nonatomic) IBOutlet UIImageView *drawBackground;
 @property (retain, nonatomic) Word *word;
 @property (retain, nonatomic) DrawFeed *feed;
+@property (retain, nonatomic) Draw *draw;
 @property (retain, nonatomic) IBOutlet UILabel *titleLabel;
 
 @property (assign, nonatomic) id<OfflineGuessDelegate>delegate;

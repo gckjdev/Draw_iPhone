@@ -93,6 +93,7 @@
     }
     [super viewDidLoad];
     [self initTabs];
+    [self.view setBackgroundColor:[UIColor whiteColor]];
 }
 
 - (void)viewDidUnload

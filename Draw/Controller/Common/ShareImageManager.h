@@ -85,6 +85,7 @@
 
 
 - (UIImage *)normalButtonImage;
+- (UIImage *)highlightMaskImage;
 - (UIImage *)sinaWeiboImage;
 - (UIImage *)qqWeiboImage;
 - (UIImage *)facebookImage;

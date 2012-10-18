@@ -28,7 +28,9 @@
 + (NSString*)getMyPaintImagePathByCapacityPath:(NSString*)path;
 + (NSString*)getMyPaintImageDirection;
 + (NSString *)constructImagePath:(NSString *)imageName;
++ (NSString *)constructDataPath:(NSString *)dataName;
 
++ (NSData *)drawDataFromDataPath:(NSString *)path;
 + (MyPaintManager*)defaultManager;
 
 - (MyPaint *)createDraft:(UIImage *)image

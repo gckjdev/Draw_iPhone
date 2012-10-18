@@ -96,7 +96,7 @@
 							<object class="IBUILabel" id="460381817">
 								<reference key="NSNextResponder" ref="703497056"/>
 								<int key="NSvFlags">294</int>
-								<string key="NSFrame">{{128, 62}, {400, 89}}</string>
+								<string key="NSFrame">{{128, 62}, {400, 120}}</string>
 								<reference key="NSSuperview" ref="703497056"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="571946735"/>
@@ -106,7 +106,7 @@
 								<int key="IBUIContentMode">7</int>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-								<string key="IBUIText">Jenny 猜对了我的画Jenny 猜对了我的画Jenny 猜对了我的画</string>
+								<string key="IBUIText">Jenny 猜对了我的画Jenny 猜对了我的画Jenny 猜对了我的Jenny 猜对了我的画Jenny 猜对了我的画Jenny 猜对了我的画</string>
 								<reference key="IBUITextColor" ref="116394943"/>
 								<nil key="IBUIHighlightedColor"/>
 								<reference key="IBUIShadowColor" ref="397356283"/>
@@ -114,14 +114,14 @@
 								<int key="IBUIBaselineAdjustment">1</int>
 								<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
 								<float key="IBUIMinimumFontSize">18</float>
-								<int key="IBUINumberOfLines">2</int>
+								<int key="IBUINumberOfLines">4</int>
 								<object class="IBUIFontDescription" key="IBUIFontDescription">
 									<int key="type">1</int>
-									<double key="pointSize">24</double>
+									<double key="pointSize">25</double>
 								</object>
 								<object class="NSFont" key="IBUIFont">
 									<string key="NSName">Helvetica</string>
-									<double key="NSSize">24</double>
+									<double key="NSSize">25</double>
 									<int key="NSfFlags">16</int>
 								</object>
 							</object>

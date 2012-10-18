@@ -11,6 +11,9 @@
 
 
 @interface MyPaint : NSManagedObject
+{
+    NSData *_drawData;
+}
 
 @property (nonatomic, retain) NSDate * createDate;
 @property (nonatomic, retain) NSString * image;
@@ -29,5 +32,6 @@
 @property (nonatomic, retain) NSString * contestId;
 
 @property (nonatomic, retain) UIImage *thumbImage;
-
+//@property (nonatomic, retain) NSData *drawData; //replace data
+- (NSData *)drawData;
 @end

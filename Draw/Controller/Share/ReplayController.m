@@ -119,7 +119,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     MyPaint* currentPaint = self.paint;
-    NSData* currentData = [NSKeyedUnarchiver unarchiveObjectWithData:currentPaint.data ];
+    NSData* currentData = [NSKeyedUnarchiver unarchiveObjectWithData:currentPaint.drawData];
     NSArray* drawActionList = (NSArray*)currentData;
     
     CGFloat xScale = self.showHolderView.frame.size.width/DRAW_VIEW_FRAME.size.width;
