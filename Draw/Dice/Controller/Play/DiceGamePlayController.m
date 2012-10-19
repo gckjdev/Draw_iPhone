@@ -1520,7 +1520,7 @@
 {
     if (self.wildsFlagButton.hidden == YES) {
         self.wildsFlagButton.hidden = NO;
-        CAAnimation* enlarge = [AnimationManager scaleAnimationWithFromScale:1 toScale:3 duration:0.5 delegate:self removeCompeleted:YES];
+        CAAnimation* enlarge = [AnimationManager scaleAnimationWithFromScale:1 toScale:3 duration:0.5 delegate:self removeCompeleted:NO];
         
         enlarge.autoreverses = YES;
         enlarge.repeatCount = 2;
