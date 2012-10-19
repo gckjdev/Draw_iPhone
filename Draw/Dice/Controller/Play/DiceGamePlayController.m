@@ -1094,14 +1094,19 @@
 - (void)userUseWilds
 {
     self.wildsButton.selected = YES;
-    self.wildsButton.enabled = NO;
-    [self showWildsAnim];
+
+    if (self.wildsFlagButton.hidden == YES) {
+        [self showWildsAnim];
+    }
 }
 
 - (void)destroyWilds
 {
     self.wildsButton.selected = NO;
-    [self showDestroyWildsAnim];
+    
+    if (self.wildsFlagButton.hidden == NO) {
+        [self showDestroyWildsAnim];
+    }
 }
 
 - (IBAction)clickWildsButton:(id)sender {
@@ -1115,7 +1120,7 @@
 
     if (_diceService.diceSession.wilds) {
         [self userUseWilds];
-    } else if (self.wildsFlagButton.hidden == NO){
+    } else {
         [self destroyWilds];
     }
     
@@ -1178,7 +1183,7 @@
     
     if (_diceService.diceSession.wilds) {
         [self userUseWilds];
-    } else if (self.wildsFlagButton.hidden == NO) {
+    } else {
         [self destroyWilds];
     }
 
@@ -1517,15 +1522,12 @@
 
 - (void)showWildsAnim
 {
-    if (self.wildsFlagButton.hidden == YES) {
-        self.wildsFlagButton.hidden = NO;
-        CAAnimation* enlarge = [AnimationManager scaleAnimationWithFromScale:1 toScale:3 duration:0.5 delegate:self removeCompeleted:YES];
-        
-        enlarge.autoreverses = YES;
-        enlarge.repeatCount = 2;
-        [self.wildsFlagButton.layer addAnimation:enlarge forKey:@"enlarge"];
-    }
+    self.wildsFlagButton.hidden = NO;
+    CAAnimation* enlarge = [AnimationManager scaleAnimationWithFromScale:1 toScale:3 duration:0.5 delegate:self removeCompeleted:YES];
     
+    enlarge.autoreverses = YES;
+    enlarge.repeatCount = 2;
+    [self.wildsFlagButton.layer addAnimation:enlarge forKey:@"enlarge"];    
 }
 
 - (void)urgeUser:(NSString*)userId
