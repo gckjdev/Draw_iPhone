@@ -54,19 +54,30 @@
     return 252.0f;
 }
 
-- (NSString*)createDrawToUserInfoByFeed:(DrawToUserFeed*)feed
+- (void)initTargetUser:(NSString *)userId nickName:(NSString *)nickName
 {
-    NSString* targetUserName = feed.targetUser.nickName;
-    if ([[UserManager defaultManager] isMe:feed.targetUser.userId]) {
-        targetUserName = NSLS(@"kMe");
+    if (_targetUser == nil) {
+        _targetUser = [[FeedUser alloc] initWithUserId:userId nickName:nickName avatar:nil gender:NO];
+    }else{
+        [_targetUser setUserId:userId];
+        [_targetUser setNickName:nickName];
     }
-    return [NSString stringWithFormat:NSLS(@"kDrawToUserByUser"), targetUserName];
 }
 
 - (void)updateDrawToUserInfo:(DrawFeed*)feed
 {
     if ([feed isKindOfClass:[DrawToUserFeed class]]) {
-        [self.drawToButton setTitle:[self createDrawToUserInfoByFeed:(DrawToUserFeed*)feed] forState:UIControlStateNormal];
+        DrawToUserFeed *drawToUserFeed = (DrawToUserFeed*)feed;
+        [self initTargetUser:[[drawToUserFeed targetUser] userId] nickName:[[drawToUserFeed targetUser] nickName]]; 
+        NSString *targetUserName = nil;
+        if ([[UserManager defaultManager] isMe:_targetUser.userId]) {
+            targetUserName = NSLS(@"kMe");
+        }else{
+            targetUserName = _targetUser.nickName;
+        }
+        targetUserName = [NSString stringWithFormat:NSLS(@"kDrawToUserByUser"), targetUserName];
+
+        [self.drawToButton setTitle:targetUserName forState:UIControlStateNormal];
     } else {
         [self.drawToButton setTitle:nil forState:UIControlStateNormal];
     }
@@ -152,8 +163,8 @@
 
 - (IBAction)clickToUser:(id)sender
 {
-    if (_delegate && [_delegate respondsToSelector:@selector(didClickDrawToUser)]) {
-        [_delegate didClickDrawToUser];
+    if (_delegate && [_delegate respondsToSelector:@selector(didClickDrawToUser:nickName:)]) {
+        [_delegate didClickDrawToUser:_targetUser.userId nickName:_targetUser.nickName];
     }
 }
 
@@ -213,7 +224,8 @@
     PPRelease(timeLabel);
     PPRelease(loadingActivity);
     PPRelease(_feed);
-    [_drawToButton release];
+    PPRelease(_drawToButton);
+    PPRelease(_targetUser);
     [super dealloc];
 }
 @end

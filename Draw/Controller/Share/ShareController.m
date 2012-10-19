@@ -522,7 +522,7 @@ typedef enum{
         [self setFromWeiXin:NO];
         
         _gifImages = [[NSMutableArray alloc] init];
-
+        _defaultTabIndex = 1;
         _myPaintManager = [MyPaintManager defaultManager];
     }
     return self;
@@ -614,10 +614,6 @@ typedef enum{
 - (NSInteger)tabCount
 {
     return 3;
-}
-- (NSInteger)currentTabIndex
-{
-    return 1;
 }
 - (NSInteger)fetchDataLimitForTabIndex:(NSInteger)index
 {
