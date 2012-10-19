@@ -11,13 +11,14 @@
 #import "DrawFeed.h"
 #import "FeedService.h"
 #import "ShowDrawView.h"
+//#im
 //#import "HJManagedImageV.h"
 
 @protocol DrawInfoCellDelegate <NSObject>
 
 @optional
 - (void)didUpdateShowView;
-- (void)didClickDrawToUser;
+- (void)didClickDrawToUser:(NSString *)userId nickName:(NSString *)nickName;
 @end
 
 @interface DrawInfoCell : PPTableViewCell<FeedServiceDelegate, ShowDrawViewDelegate>//, HJManagedImageVDelegate>
@@ -27,6 +28,7 @@
     ShowDrawView *_showView;
     NSInteger _getTimes;
     BOOL _isLoading;
+    FeedUser *_targetUser;
 }
 
 @property (assign, nonatomic) id<DrawInfoCellDelegate> delegate;
