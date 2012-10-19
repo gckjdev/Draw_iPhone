@@ -25,6 +25,7 @@
 #import "DiceImageManager.h"
 #import "FontButton.h"
 #import "ChatDetailController.h"
+#import "HKGirlFontLabel.h"
 
 @implementation DiceUserInfoView
 @synthesize genderImageView;
@@ -50,6 +51,8 @@
 @synthesize hasFacebook;
 @synthesize userLevel;
 @synthesize levelLabel;
+@synthesize coins = _coins;
+@synthesize coinsLabel = _coinsLabel;
 
 - (void)dealloc {
     [backgroundImageView release];
@@ -69,6 +72,7 @@
     [avatar release];
     [genderImageView release];
     [chatButton release];
+    [_coinsLabel release];
     [super dealloc];
 }
 
@@ -157,6 +161,11 @@
     }
 }
 
+- (void)initCoins
+{
+    [self.coinsLabel setText:[NSString stringWithFormat:@"%ld",self.coins]];
+}
+
 - (void)resetUserInfo
 {
     [self initLevelAndName];
@@ -165,6 +174,7 @@
     [self initSNSInfo];
     [self initAvatar];
     [self initFollowStatus];
+    [self initCoins];
     
 }
 
@@ -335,6 +345,7 @@ infoInView:(PPViewController*)superController
                     QQNick:(NSString*)qqNick 
                       qqId:(NSString*)qqId
                 FacebookId:(NSString*)facebookId
+                     coins:(NSString *)coins
 {
     if (nickName != nil) {
         self.userNickName = nickName;
@@ -366,6 +377,11 @@ infoInView:(PPViewController*)superController
     
     if (facebookId != nil) {
         self.hasFacebook = YES;
+    }
+    if (coins != nil && coins.length > 0) {
+        self.coins = coins.intValue;
+    } else {
+        self.coins = 0;
     }
     [self resetUserInfo];
     [self.superViewController hideActivity];

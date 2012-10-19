@@ -206,6 +206,8 @@
 #define PARA_SINA_ID @"siid"
 #define PARA_QQ_ID @"qid"
 
+#define PARA_USER_COINS @"ucn"
+
 #define PARA_FACEBOOKID @"fid"
 #define PARA_RENRENID @"rid"
 #define PARA_TWITTERID @"tid"

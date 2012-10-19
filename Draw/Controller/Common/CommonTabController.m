@@ -20,7 +20,9 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        PPDebug(@"initWithNibName = %@", nibNameOrNil);
         self.supportPullRefresh = YES;
+        _tabManager = [[TableTabManager alloc] init];
     }
     return self;
 }
@@ -61,9 +63,9 @@
 #pragma mark init tabs
 - (void)initTabs
 {
+    PPDebug(@"init tabs");
     NSInteger count = [self tabCount];
     NSInteger currentTabIndex = [self currentTabIndex];
-    _tabManager = [[TableTabManager alloc] init];
     for (int i = 0; i < count; ++i) {
         NSInteger tabID = [self tabIDforIndex:i];
         NSInteger limit = [self fetchDataLimitForTabIndex:i];
@@ -101,6 +103,7 @@
     [super viewDidUnload];
     [self setTitleLabel:nil];
     [self setNoDataTipLabl:nil];
+    [_tabManager cleanData];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
 }
@@ -123,6 +126,7 @@
         [self startToLoadDataForTabID:tab.tabID];
         [self serviceLoadDataForTabID:tab.tabID];
     }
+    _defaultTabIndex = tab.index;
 }
 
 - (IBAction)clickRefreshButton:(id)sender

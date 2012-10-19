@@ -46,6 +46,8 @@
 @synthesize pageController = _pageController;
 @synthesize messagesHolderView = _messagesHolderView;
 @synthesize popTipView = _popTipView;
+@synthesize inputTextView = _inputTextView;
+@synthesize inputTextViewBgImageView = _inputTextViewBgImageView;
 //@synthesize timer = _timer;
 
 - (void)dealloc

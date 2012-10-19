@@ -14,6 +14,7 @@
 @class DiceAvatarView;
 @class PBGameUser;
 @class PPViewController;
+@class HKGirlFontLabel;
 
 @interface DiceUserInfoView : CommonInfoView<FriendServiceDelegate, UserServiceDelegate>
 
@@ -41,6 +42,7 @@
      hasFacebook:(BOOL)didHasFacebook
       infoInView:(PPViewController*)superController 
          canChat:(BOOL)canChat;
+@property (retain, nonatomic) IBOutlet HKGirlFontLabel *coinsLabel;
 @property (retain, nonatomic) IBOutlet UIImageView *genderImageView;
 @property (retain, nonatomic) IBOutlet UIImageView *backgroundImageView;
 @property (retain, nonatomic) IBOutlet UIButton *mask;
@@ -64,5 +66,6 @@
 @property (assign, nonatomic) PPViewController* superViewController;
 @property (retain, nonatomic) IBOutlet DiceAvatarView *avatar;
 @property (retain, nonatomic) IBOutlet FontButton *chatButton;
+@property (assign, nonatomic) long coins;
 
 @end

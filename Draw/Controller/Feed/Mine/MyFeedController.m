@@ -415,10 +415,6 @@ typedef enum{
 {
     return 4;
 }
-- (NSInteger)currentTabIndex
-{
-    return _defaultTabIndex;
-}
 - (NSInteger)fetchDataLimitForTabIndex:(NSInteger)index
 {
     return 12;
