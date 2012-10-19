@@ -393,7 +393,7 @@
                     QQNick:(NSString*)qqNick 
                       qqId:(NSString*)qqId
                 FacebookId:(NSString*)facebookId
-                     coins:(NSString *)coins
+                     coins:(NSNumber *)userCoins
 {
     if (nickName != nil) {
         self.userNickName = nickName;

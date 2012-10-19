@@ -35,7 +35,7 @@
                     QQNick:(NSString*)qqNick 
                       qqId:(NSString*)qqId
                 FacebookId:(NSString*)facebookId
-                     coins:(NSString*)coins;
+                     coins:(NSNumber*)userCoins;
 
 - (void)didGetTopPlayerList:(NSArray *)playerList
                  resultCode:(NSInteger)resultCode;

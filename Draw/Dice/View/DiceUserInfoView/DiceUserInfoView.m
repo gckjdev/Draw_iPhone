@@ -345,7 +345,7 @@ infoInView:(PPViewController*)superController
                     QQNick:(NSString*)qqNick 
                       qqId:(NSString*)qqId
                 FacebookId:(NSString*)facebookId
-                     coins:(NSString *)coins
+                     coins:(NSNumber *)userCoins
 {
     if (nickName != nil) {
         self.userNickName = nickName;
@@ -378,8 +378,8 @@ infoInView:(PPViewController*)superController
     if (facebookId != nil) {
         self.hasFacebook = YES;
     }
-    if (coins != nil && coins.length > 0) {
-        self.coins = coins.intValue;
+    if (userCoins != nil) {
+        self.coins = userCoins.intValue;
     } else {
         self.coins = 0;
     }

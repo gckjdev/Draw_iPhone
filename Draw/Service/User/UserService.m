@@ -893,7 +893,7 @@ static UserService* _defaultUserService;
             NSString* qqNick = nil;
             NSString* facebookId = nil;
             NSString* qqId = nil;
-            NSString* coins = nil;
+            NSNumber* coins = nil;
 
             if (output.resultCode == ERROR_SUCCESS) {
                 userNickName = [output.jsonDataDict objectForKey:PARA_NICKNAME];
@@ -917,7 +917,8 @@ static UserService* _defaultUserService;
                                     SinaNick:sinaNick 
                                       QQNick:qqNick 
                                         qqId:qqId
-                                  FacebookId:facebookId coins:coins];
+                                  FacebookId:facebookId
+                                       coins:coins];
             }
         });
     });
