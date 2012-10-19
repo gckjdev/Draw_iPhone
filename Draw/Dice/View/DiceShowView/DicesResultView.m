@@ -235,6 +235,7 @@
 
 - (void)showUserResult:(NSString *)userId toCenter:(CGPoint)center customDiceType:(CustomDiceType)type
 {
+    _originCenter = self.center;
     DiceGameSession *diceSession = [[DiceGameService defaultService] diceSession];
     NSArray *diceList = [[diceSession userDiceList] objectForKey:userId];
     BOOL wilds = diceSession.wilds;
