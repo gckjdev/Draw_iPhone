@@ -868,6 +868,11 @@
 
 - (void)rollDiceBegin
 {
+    if (![DiceConfigManager meetJoinGameCondictionWithRuleType:_diceService.ruleType]) {
+        [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kNotEnoughCoinToContinue") delayTime:1.5 isHappy:NO];
+        [self quitDiceGame];
+    }
+        
     [self clearGameResult];
     self.waittingForNextTurnNoteLabel.hidden = YES;
     [self showBeginNoteAnimation];
@@ -875,7 +880,6 @@
     [_audioManager playSoundById:5];
     
     [self updateDiceSelecetedView];
-
 }
 
 - (void)tellDiceToRobot:(NSArray*)list
@@ -1015,31 +1019,13 @@
 {
     self.myCoinsLabel.text = [NSString stringWithFormat:@"x%d",[_accountService getBalance]];
     
-    if (![DiceConfigManager meetJoinGameCondictionWithRuleType:_diceService.ruleType]) {
-        [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kNotEnoughCoinToContinue") delayTime:1.5 isHappy:NO];
-        [self quitDiceGame];
-    }
-    
-    [self updateWaittingForNextTurnNotLabel];
-}
-
-//#pragma mark - use item animations
-//- (void)useItem:(int)itemId itemName:(NSString *)itemName userId:(NSString *)userId
-//{
-//    if(itemId == ItemTypeDiceRobot) {
-//        [self showRobotDecition];
+//    if (![DiceConfigManager meetJoinGameCondictionWithRuleType:_diceService.ruleType]) {
+//        [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kNotEnoughCoinToContinue") delayTime:1.5 isHappy:NO];
+//        [self quitDiceGame];
 //    }
 //    
-//    if (itemId == ItemTypeIncTime) {
-//        DiceAvatarView* selfAvatar = (DiceAvatarView*)[self selfAvatarView];
-//        float incTime =MIN(USER_THINK_TIME_INTERVAL*(1-selfAvatar.getCurrentProgress), [ConfigManager getPostponeTime]);
-//        [_diceService userTimeItem:ItemTypeIncTime time:incTime];
-//        PPDebug(@"<test> I use item and delay time for %f", incTime);
-//    } else {
-//        [_diceService userItem:itemId];
-//    }
-//}
-
+//    [self updateWaittingForNextTurnNotLabel];
+}
 
 #pragma mark- Buttons action
 
