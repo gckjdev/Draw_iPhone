@@ -283,7 +283,6 @@
 								<nil key="IBUIHighlightedColor"/>
 								<int key="IBUIBaselineAdjustment">0</int>
 								<float key="IBUIMinimumFontSize">10</float>
-								<int key="IBUITextAlignment">1</int>
 								<reference key="IBUIFontDescription" ref="209444518"/>
 								<reference key="IBUIFont" ref="779877483"/>
 								<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
