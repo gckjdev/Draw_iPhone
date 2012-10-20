@@ -139,7 +139,7 @@
     [messageView popupAtView:atView
                       inView:inView
                 aboveSubView:siblingSubview
-                    duration:3.0
+                    duration:5.0
              backgroundColor:MESSAGE_BACKGROUND_COLOR
                     animated:YES
               pointDirection:pointDirection];
