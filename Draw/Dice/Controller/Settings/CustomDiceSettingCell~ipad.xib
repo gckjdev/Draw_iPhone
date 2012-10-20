@@ -43,7 +43,7 @@
 							<object class="IBUIImageView" id="254958883">
 								<reference key="NSNextResponder" ref="946753982"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{20, 20}, {76, 91}}</string>
+								<string key="NSFrame">{{20, 24}, {76, 91}}</string>
 								<reference key="NSSuperview" ref="946753982"/>
 								<reference key="NSNextKeyView" ref="232014887"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
@@ -53,8 +53,8 @@
 							</object>
 							<object class="IBUILabel" id="232014887">
 								<reference key="NSNextResponder" ref="946753982"/>
-								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{119, 11}, {495, 56}}</string>
+								<int key="NSvFlags">294</int>
+								<string key="NSFrame">{{119, 15}, {495, 56}}</string>
 								<reference key="NSSuperview" ref="946753982"/>
 								<reference key="NSNextKeyView" ref="772317120"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
@@ -88,8 +88,8 @@
 							</object>
 							<object class="IBUILabel" id="772317120">
 								<reference key="NSNextResponder" ref="946753982"/>
-								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{119, 67}, {588, 54}}</string>
+								<int key="NSvFlags">294</int>
+								<string key="NSFrame">{{119, 71}, {588, 54}}</string>
 								<reference key="NSSuperview" ref="946753982"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
@@ -97,7 +97,7 @@
 								<int key="IBUIContentMode">7</int>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBIPadFramework</string>
-								<string key="IBUIText">Label</string>
+								<string key="IBUIText">aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</string>
 								<reference key="IBUITextColor" ref="164001703"/>
 								<reference key="IBUIHighlightedColor" ref="419340468"/>
 								<int key="IBUIBaselineAdjustment">0</int>
@@ -116,7 +116,7 @@
 								<double key="preferredMaxLayoutWidth">588</double>
 							</object>
 						</array>
-						<string key="NSFrameSize">{768, 135}</string>
+						<string key="NSFrameSize">{768, 139}</string>
 						<reference key="NSSuperview" ref="774316942"/>
 						<reference key="NSNextKeyView" ref="254958883"/>
 						<string key="NSReuseIdentifierKey">_NS:11</string>
@@ -131,13 +131,13 @@
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 					</object>
 				</array>
-				<string key="NSFrameSize">{768, 136}</string>
+				<string key="NSFrameSize">{768, 140}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSNextKeyView" ref="946753982"/>
 				<string key="NSReuseIdentifierKey">_NS:9</string>
 				<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 				<reference key="IBUIContentView" ref="946753982"/>
-				<real value="53" key="IBUIRowHeight"/>
+				<real value="57" key="IBUIRowHeight"/>
 			</object>
 		</array>
 		<object class="IBObjectContainer" key="IBDocument.Objects">
