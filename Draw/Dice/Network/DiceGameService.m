@@ -91,9 +91,7 @@ static DiceGameService* _defaultService;
     self.diceSession.lastCallDiceUserId = message.userId;
     self.diceSession.lastCallDice = message.callDiceRequest.dice;
     self.diceSession.lastCallDiceCount = message.callDiceRequest.num;
-    if ([message.callDiceRequest hasWilds]) {
-        self.diceSession.wilds = message.callDiceRequest.wilds;
-    }
+    self.diceSession.wilds = message.callDiceRequest.wilds;
     self.diceSession.callCount ++;
 }
 
@@ -101,7 +99,6 @@ static DiceGameService* _defaultService;
 {
     if (message.resultCode == 0) {
         [self updateCallDiceModel:message];
-        
         [self postNotification:NOTIFICATION_CALL_DICE_REQUEST message:message];
     }
 }
@@ -129,7 +126,6 @@ static DiceGameService* _defaultService;
     if (message.resultCode == 0) {
         // Update open dice model
         [self updateOpenDiceModel:message];
-        
         [self postNotification:NOTIFICATION_OPEN_DICE_REQUEST message:message];
     }
 }
@@ -139,7 +135,6 @@ static DiceGameService* _defaultService;
     if (message.resultCode == 0 && [message.userId isEqualToString:[self userId]]) {
         // Update open dice model
         [self updateOpenDiceModel:message];
-        
         [self postNotification:NOTIFICATION_OPEN_DICE_RESPONSE message:message];
     }
 }
