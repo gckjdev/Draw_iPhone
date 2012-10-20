@@ -73,10 +73,12 @@
 		<string>UIInterfaceOrientationPortrait</string>
 		<string>UIInterfaceOrientationPortraitUpsideDown</string>
 	</array>
-	<key>UILaunchImageFile~iphone</key>
+	<key>Launch image (iPhone) TBD</key>
 	<string>DiceDefault.jpg</string>
-	<key>UILaunchImageFile~ipad</key>
+	<key>Launch image (iPad) TBD</key>
 	<string>DiceDefault_ipad.jpg</string>
+	<key>UILaunchImageFile</key>
+	<string>DiceDefault</string>
 	<key>CFBundleIconFiles</key>
 	<array>
 		<string>dice_icon_57.png</string>

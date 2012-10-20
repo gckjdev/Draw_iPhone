@@ -408,8 +408,6 @@
 		C2E74359162F9C810037E7F6 /* dice_quit_btn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2E740FE162F9C800037E7F6 /* dice_quit_btn@2x.png */; };
 		C2E7435A162F9C810037E7F6 /* femaleImage.png in Resources */ = {isa = PBXBuildFile; fileRef = C2E740FF162F9C800037E7F6 /* femaleImage.png */; };
 		C2E7435B162F9C810037E7F6 /* maleImage.png in Resources */ = {isa = PBXBuildFile; fileRef = C2E74100162F9C800037E7F6 /* maleImage.png */; };
-		C2E7435C162F9C810037E7F6 /* DiceDefault.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C2E74101162F9C800037E7F6 /* DiceDefault.jpg */; };
-		C2E7435D162F9C810037E7F6 /* DiceDefault_ipad.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C2E74103162F9C800037E7F6 /* DiceDefault_ipad.jpg */; };
 		C2E7435E162F9C810037E7F6 /* audio_off@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2E74106162F9C800037E7F6 /* audio_off@2x.png */; };
 		C2E7435F162F9C810037E7F6 /* audio_on@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2E74107162F9C800037E7F6 /* audio_on@2x.png */; };
 		C2E74360162F9C810037E7F6 /* bell_1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2E74108162F9C800037E7F6 /* bell_1@2x.png */; };
@@ -1162,6 +1160,9 @@
 		CA42706D1620028E00C6CCAE /* SuperHomeController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA42706B1620028E00C6CCAE /* SuperHomeController.m */; };
 		CA42706E1620028E00C6CCAE /* SuperHomeController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA42706C1620028E00C6CCAE /* SuperHomeController.xib */; };
 		CA427070162002E100C6CCAE /* SuperHomeController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA42706F162002E100C6CCAE /* SuperHomeController~ipad.xib */; };
+		CA42C14516326A2900BCF499 /* DiceDefault-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA42C13F16326A2900BCF499 /* DiceDefault-568h@2x.png */; };
+		CA42C14616326A2900BCF499 /* DiceDefault.png in Resources */ = {isa = PBXBuildFile; fileRef = CA42C14116326A2900BCF499 /* DiceDefault.png */; };
+		CA42C14716326A2900BCF499 /* DiceDefault~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = CA42C14316326A2900BCF499 /* DiceDefault~ipad.png */; };
 		CA42E3CA15F4617A00790B3C /* TableTab.m in Sources */ = {isa = PBXBuildFile; fileRef = CA42E3C715F4617A00790B3C /* TableTab.m */; };
 		CA42E3CB15F4617A00790B3C /* TableTabManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA42E3C915F4617A00790B3C /* TableTabManager.m */; };
 		CA4FF001152AEFDF00F0AC88 /* ColorGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = CA4FF000152AEFDF00F0AC88 /* ColorGroup.m */; };
@@ -1437,7 +1438,6 @@
 		EA2B2AE81616B2F5004C17AF /* ReplayContestDrawController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA2B2AE51616B2F5004C17AF /* ReplayContestDrawController~ipad.xib */; };
 		EA372344162018DA00FC6F3E /* UserLocationController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA372342162018DA00FC6F3E /* UserLocationController.xib */; };
 		EA6916BE15ECCF4C0001CB5A /* DiceSettingView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA6916BD15ECCF4C0001CB5A /* DiceSettingView~ipad.xib */; };
-		EA6A943E16310A0500854814 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA6A943C16310A0500854814 /* Default-568h@2x.png */; };
 		EA72B4C1162026480022D82D /* UserAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = EA72B4C0162026480022D82D /* UserAnnotation.m */; };
 		EA72B4C3162028260022D82D /* UserLocationController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA72B4C2162028260022D82D /* UserLocationController.m */; };
 		EA856C6D15F0A65700178323 /* add_color@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA856C3415F0A65700178323 /* add_color@2x.png */; };
@@ -2130,8 +2130,6 @@
 		C2E740FE162F9C800037E7F6 /* dice_quit_btn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dice_quit_btn@2x.png"; sourceTree = "<group>"; };
 		C2E740FF162F9C800037E7F6 /* femaleImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = femaleImage.png; sourceTree = "<group>"; };
 		C2E74100162F9C800037E7F6 /* maleImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = maleImage.png; sourceTree = "<group>"; };
-		C2E74102162F9C800037E7F6 /* en */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = en; path = en.lproj/DiceDefault.jpg; sourceTree = "<group>"; };
-		C2E74104162F9C800037E7F6 /* en */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = en; path = en.lproj/DiceDefault_ipad.jpg; sourceTree = "<group>"; };
 		C2E74106162F9C800037E7F6 /* audio_off@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "audio_off@2x.png"; sourceTree = "<group>"; };
 		C2E74107162F9C800037E7F6 /* audio_on@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "audio_on@2x.png"; sourceTree = "<group>"; };
 		C2E74108162F9C800037E7F6 /* bell_1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bell_1@2x.png"; sourceTree = "<group>"; };
@@ -2257,8 +2255,6 @@
 		C2E74187162F9C800037E7F6 /* dice_tabright_selected_bak@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dice_tabright_selected_bak@2x.png"; sourceTree = "<group>"; };
 		C2E74188162F9C800037E7F6 /* dice_tabright_unselect@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dice_tabright_unselect@2x.png"; sourceTree = "<group>"; };
 		C2E74189162F9C800037E7F6 /* dice_user_backgroung@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dice_user_backgroung@2x.png"; sourceTree = "<group>"; };
-		C2E7418A162F9C800037E7F6 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "zh-Hans"; path = "zh-Hans.lproj/DiceDefault.jpg"; sourceTree = "<group>"; };
-		C2E7418B162F9C800037E7F6 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "zh-Hans"; path = "zh-Hans.lproj/DiceDefault_ipad.jpg"; sourceTree = "<group>"; };
 		C2E7418D162F9C800037E7F6 /* dice.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = dice.m4a; sourceTree = "<group>"; };
 		C2E7418E162F9C800037E7F6 /* item.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = item.aiff; sourceTree = "<group>"; };
 		C2E7418F162F9C800037E7F6 /* open.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = open.aiff; sourceTree = "<group>"; };
@@ -3151,6 +3147,12 @@
 		CA42706C1620028E00C6CCAE /* SuperHomeController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SuperHomeController.xib; sourceTree = "<group>"; };
 		CA42706F162002E100C6CCAE /* SuperHomeController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "SuperHomeController~ipad.xib"; sourceTree = "<group>"; };
 		CA427071162002FE00C6CCAE /* SuperHomeProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SuperHomeProtocol.h; sourceTree = "<group>"; };
+		CA42C14016326A2900BCF499 /* en */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = en; path = "en.lproj/DiceDefault-568h@2x.png"; sourceTree = "<group>"; };
+		CA42C14216326A2900BCF499 /* en */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = en; path = en.lproj/DiceDefault.png; sourceTree = "<group>"; };
+		CA42C14416326A2900BCF499 /* en */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = en; path = "en.lproj/DiceDefault~ipad.png"; sourceTree = "<group>"; };
+		CA42C14816326A4600BCF499 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "zh-Hans"; path = "zh-Hans.lproj/DiceDefault-568h@2x.png"; sourceTree = "<group>"; };
+		CA42C14916326A4600BCF499 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "zh-Hans"; path = "zh-Hans.lproj/DiceDefault~ipad.png"; sourceTree = "<group>"; };
+		CA42C14A16326A4600BCF499 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "zh-Hans"; path = "zh-Hans.lproj/DiceDefault.png"; sourceTree = "<group>"; };
 		CA42E3C615F4617A00790B3C /* TableTab.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableTab.h; sourceTree = "<group>"; };
 		CA42E3C715F4617A00790B3C /* TableTab.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableTab.m; sourceTree = "<group>"; };
 		CA42E3C815F4617A00790B3C /* TableTabManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableTabManager.h; sourceTree = "<group>"; };
@@ -3596,8 +3598,6 @@
 		EA372340162018D900FC6F3E /* UserLocationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserLocationController.h; sourceTree = "<group>"; };
 		EA372342162018DA00FC6F3E /* UserLocationController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserLocationController.xib; sourceTree = "<group>"; };
 		EA6916BD15ECCF4C0001CB5A /* DiceSettingView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "DiceSettingView~ipad.xib"; sourceTree = "<group>"; };
-		EA6A943D16310A0500854814 /* en */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = en; path = "en.lproj/Default-568h@2x.png"; sourceTree = "<group>"; };
-		EA6A944216310A1300854814 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "zh-Hans"; path = "zh-Hans.lproj/Default-568h@2x.png"; sourceTree = "<group>"; };
 		EA72B4BF162026480022D82D /* UserAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserAnnotation.h; sourceTree = "<group>"; };
 		EA72B4C0162026480022D82D /* UserAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserAnnotation.m; sourceTree = "<group>"; };
 		EA72B4C2162028260022D82D /* UserLocationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserLocationController.m; sourceTree = "<group>"; };
@@ -4625,11 +4625,11 @@
 		C2E74065162F9C800037E7F6 /* image */ = {
 			isa = PBXGroup;
 			children = (
-				EA6A943C16310A0500854814 /* Default-568h@2x.png */,
+				CA42C13F16326A2900BCF499 /* DiceDefault-568h@2x.png */,
+				CA42C14116326A2900BCF499 /* DiceDefault.png */,
+				CA42C14316326A2900BCF499 /* DiceDefault~ipad.png */,
 				C2E74066162F9C800037E7F6 /* beautifulDice */,
 				C2E740F7162F9C800037E7F6 /* common */,
-				C2E74101162F9C800037E7F6 /* DiceDefault.jpg */,
-				C2E74103162F9C800037E7F6 /* DiceDefault_ipad.jpg */,
 				C2E74105162F9C800037E7F6 /* game */,
 				C2E7415D162F9C800037E7F6 /* home */,
 				C2E7416F162F9C800037E7F6 /* icon */,
@@ -8959,8 +8959,6 @@
 				C2E74359162F9C810037E7F6 /* dice_quit_btn@2x.png in Resources */,
 				C2E7435A162F9C810037E7F6 /* femaleImage.png in Resources */,
 				C2E7435B162F9C810037E7F6 /* maleImage.png in Resources */,
-				C2E7435C162F9C810037E7F6 /* DiceDefault.jpg in Resources */,
-				C2E7435D162F9C810037E7F6 /* DiceDefault_ipad.jpg in Resources */,
 				C2E7435E162F9C810037E7F6 /* audio_off@2x.png in Resources */,
 				C2E7435F162F9C810037E7F6 /* audio_on@2x.png in Resources */,
 				C2E74360162F9C810037E7F6 /* bell_1@2x.png in Resources */,
@@ -9400,10 +9398,12 @@
 				C2E74514162F9C810037E7F6 /* scrambleToOpenDice_F.m4a in Resources */,
 				C2E74515162F9C810037E7F6 /* scrambleToOpenDice_M.m4a in Resources */,
 				A45AA83B162FF5570030D668 /* input_text_bg.png in Resources */,
-				EA6A943E16310A0500854814 /* Default-568h@2x.png in Resources */,
 				A4CE58E316324447003DB23A /* point_pic3@2x.png in Resources */,
 				A4CE58E416324447003DB23A /* point_pic4@2x.png in Resources */,
 				A4CE58E616324998003DB23A /* ChatView~ipad.xib in Resources */,
+				CA42C14516326A2900BCF499 /* DiceDefault-568h@2x.png in Resources */,
+				CA42C14616326A2900BCF499 /* DiceDefault.png in Resources */,
+				CA42C14716326A2900BCF499 /* DiceDefault~ipad.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -10006,24 +10006,6 @@
 			name = EGORefreshTableHeaderView.strings;
 			sourceTree = "<group>";
 		};
-		C2E74101162F9C800037E7F6 /* DiceDefault.jpg */ = {
-			isa = PBXVariantGroup;
-			children = (
-				C2E74102162F9C800037E7F6 /* en */,
-				C2E7418A162F9C800037E7F6 /* zh-Hans */,
-			);
-			name = DiceDefault.jpg;
-			sourceTree = "<group>";
-		};
-		C2E74103162F9C800037E7F6 /* DiceDefault_ipad.jpg */ = {
-			isa = PBXVariantGroup;
-			children = (
-				C2E74104162F9C800037E7F6 /* en */,
-				C2E7418B162F9C800037E7F6 /* zh-Hans */,
-			);
-			name = DiceDefault_ipad.jpg;
-			sourceTree = "<group>";
-		};
 		C2E74163162F9C800037E7F6 /* dice_default_board@2x.jpg */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -10071,6 +10053,33 @@
 			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
+		CA42C13F16326A2900BCF499 /* DiceDefault-568h@2x.png */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CA42C14016326A2900BCF499 /* en */,
+				CA42C14816326A4600BCF499 /* zh-Hans */,
+			);
+			name = "DiceDefault-568h@2x.png";
+			sourceTree = "<group>";
+		};
+		CA42C14116326A2900BCF499 /* DiceDefault.png */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CA42C14216326A2900BCF499 /* en */,
+				CA42C14A16326A4600BCF499 /* zh-Hans */,
+			);
+			name = DiceDefault.png;
+			sourceTree = "<group>";
+		};
+		CA42C14316326A2900BCF499 /* DiceDefault~ipad.png */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CA42C14416326A2900BCF499 /* en */,
+				CA42C14916326A4600BCF499 /* zh-Hans */,
+			);
+			name = "DiceDefault~ipad.png";
+			sourceTree = "<group>";
+		};
 		CA6D353215F71918004DC293 /* clean_ad@2x.png */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -10114,15 +10123,6 @@
 			name = "Default@2x.png";
 			path = /gitdata/Draw_iPhone/Draw/Resource;
 			sourceTree = "<absolute>";
-		};
-		EA6A943C16310A0500854814 /* Default-568h@2x.png */ = {
-			isa = PBXVariantGroup;
-			children = (
-				EA6A943D16310A0500854814 /* en */,
-				EA6A944216310A1300854814 /* zh-Hans */,
-			);
-			name = "Default-568h@2x.png";
-			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
 
