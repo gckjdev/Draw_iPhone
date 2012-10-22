@@ -171,6 +171,15 @@
     });
 }
 
+#pragma mark Online User Count
+
+- (void)updateOnlineUserCount:(GameMessage*)message
+{
+    if ([message hasOnlineUserCount]){
+        _onlineUserCount = [message onlineUserCount];
+    }
+}
+
 
 #pragma mark - Handle Game Message
 
@@ -181,7 +190,7 @@
 //    if ([message resultCode] != 0){
 //        return;
 //    }
-
+    [self updateOnlineUserCount:message];
     if (message.resultCode == 0){    
         [self.roomList removeAllObjects];
         [self.roomList addObjectsFromArray:message.getRoomsResponse.sessionsList];
@@ -202,6 +211,7 @@
             PPDebug(@"<handleJoinGameResponse> Create Session = %@", [self.session description]);
 
             // TODO update online user
+            
             // [self updateOnlineUserCount:message];
             
         }
@@ -501,5 +511,8 @@
                                     userId:[self userId]];
 }
 
-
+- (int)onlineUserCount
+{
+    return _onlineUserCount;
+}
 @end
