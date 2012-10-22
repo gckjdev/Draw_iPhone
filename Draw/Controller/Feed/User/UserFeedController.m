@@ -46,6 +46,7 @@ typedef enum{
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        _defaultTabIndex = 0;
     }
     return self;
 }
@@ -269,10 +270,6 @@ typedef enum{
 - (NSInteger)tabCount
 {
     return 2;
-}
-- (NSInteger)currentTabIndex
-{
-    return 0;
 }
 - (NSInteger)fetchDataLimitForTabIndex:(NSInteger)index
 {

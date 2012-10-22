@@ -335,20 +335,19 @@
 
 + (NSString*)getDiceServerListStringWithNormal
 {
-//    return @"192.168.1.10:8080";
-//    return @"58.215.172.169:8080";
+//    return @"58.215.172.169:8018";
     return [MobClickUtils getStringValueByKey:@"DICE_SERVER_LIST" defaultValue:@"58.215.164.153:8018"];
 }
 
 + (NSString *)getDiceServerListStringWithHightRule
 {
-//    return @"58.215.172.169:8081";
+//    return @"58.215.172.169:8019";
     return [MobClickUtils getStringValueByKey:@"DICE_SERVER_LIST_HIGHT" defaultValue:@"58.215.164.153:8019"];
 }
 
 + (NSString *)getDiceServerListStringWithSuperHightRule
 {
-//    return @"58.215.172.169:8082";
+//    return @"58.215.172.169:8020";
     return [MobClickUtils getStringValueByKey:@"DICE_SERVER_LIST_SUPER_HIGHT" defaultValue:@"58.215.164.153:8020"];
 }
 

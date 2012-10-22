@@ -436,6 +436,7 @@ enum {
                     QQNick:(NSString *)qqNick 
                       qqId:(NSString*)qqId
                 FacebookId:(NSString *)facebookId
+                     coins:(NSNumber *)userCoins
 {
     [self hideActivity];
     NSString* publishText = self.text;

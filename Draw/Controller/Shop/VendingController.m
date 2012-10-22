@@ -123,10 +123,16 @@ static VendingController* staticVendingController = nil;
     ShareImageManager* manager = [ShareImageManager defaultManager];
     //add background
     UIImageView* bg = [[[UIImageView alloc] initWithImage:manager.shoppingBackground] autorelease];
-    [bg setFrame:CGRectMake(0, 
-                            0, 
-                            self.itemListScrollView.frame.size.width, 
-                            self.itemListScrollView.frame.size.height)];
+    
+    bg.frame  = view.bounds;
+    bg.autoresizingMask =
+    !UIViewAutoresizingFlexibleBottomMargin
+    | !UIViewAutoresizingFlexibleTopMargin
+    | !UIViewAutoresizingFlexibleLeftMargin
+    | !UIViewAutoresizingFlexibleRightMargin
+    | UIViewAutoresizingFlexibleWidth
+    | UIViewAutoresizingFlexibleHeight;
+    
     [view addSubview:bg];
     
     //add shelf
@@ -206,6 +212,14 @@ static VendingController* staticVendingController = nil;
                                                             0, 
                                                             self.itemListScrollView.frame.size.width, 
                                                             self.itemListScrollView.frame.size.height)] autorelease];
+    view.autoresizingMask =
+    !UIViewAutoresizingFlexibleBottomMargin
+    | !UIViewAutoresizingFlexibleTopMargin
+    | !UIViewAutoresizingFlexibleLeftMargin
+    | !UIViewAutoresizingFlexibleRightMargin
+    | UIViewAutoresizingFlexibleWidth
+    | UIViewAutoresizingFlexibleHeight;
+    
     [self addPageViewBackground:view];
     [self addItemsToPageView:view withPageIndex:pageIndex];
     return view;

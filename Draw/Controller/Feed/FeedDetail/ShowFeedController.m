@@ -399,21 +399,18 @@ enum{
     [self updateUserInfo];
 }
 
-- (void)didClickDrawToUser
+- (void)didClickDrawToUser:(NSString *)userId nickName:(NSString *)nickName
 {
-    if ([self.feed isKindOfClass:[DrawToUserFeed class]]) {
-        DrawToUserFeed* feed = (DrawToUserFeed*)self.feed;
-        [CommonUserInfoView showUser:feed.targetUser.userId 
-                            nickName:feed.targetUser.nickName 
-                              avatar:nil 
-                              gender:nil 
-                            location:nil 
-                               level:1
-                             hasSina:NO 
-                               hasQQ:NO 
-                         hasFacebook:NO 
-                          infoInView:self];
-    }
+    [CommonUserInfoView showUser:userId
+                        nickName:nickName
+                          avatar:nil 
+                          gender:nil 
+                        location:nil 
+                           level:1
+                         hasSina:NO 
+                           hasQQ:NO 
+                     hasFacebook:NO 
+                      infoInView:self];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -540,6 +537,11 @@ enum{
         default:
             break;
     }    
+}
+
+- (void)clickBack:(CommonDialog *)dialog
+{
+    
 }
 
 #pragma mark - Click Actions

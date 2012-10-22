@@ -30,6 +30,7 @@ typedef enum{
     self = [super init];
     if(self){
         self.contest = contest;
+        _defaultTabIndex = 1;
     }
     return self;
 }
@@ -285,10 +286,6 @@ typedef enum{
 - (NSInteger)tabCount
 {
     return 3;
-}
-- (NSInteger)currentTabIndex
-{
-    return 1;
 }
 - (NSInteger)fetchDataLimitForTabIndex:(NSInteger)index
 {

@@ -115,5 +115,10 @@
     }
 }
 
+- (void)cleanData
+{
+    [_tabList removeAllObjects];
+    PPDebug(@"<TableTabManager>: cleanData");
+}
 
 @end

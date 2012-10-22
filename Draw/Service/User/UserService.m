@@ -893,6 +893,7 @@ static UserService* _defaultUserService;
             NSString* qqNick = nil;
             NSString* facebookId = nil;
             NSString* qqId = nil;
+            NSNumber* coins = nil;
 
             if (output.resultCode == ERROR_SUCCESS) {
                 userNickName = [output.jsonDataDict objectForKey:PARA_NICKNAME];
@@ -904,9 +905,10 @@ static UserService* _defaultUserService;
                 qqNick = [output.jsonDataDict objectForKey:PARA_QQ_NICKNAME];
                 facebookId = [output.jsonDataDict objectForKey:PARA_FACEBOOKID];
                 qqId = [output.jsonDataDict objectForKey:PARA_QQ_ID];
+                coins = [output.jsonDataDict objectForKey:PARA_USER_COINS];
 
             }            
-            if (delegate && [delegate respondsToSelector:@selector(didGetUserNickName:UserAvatar:UserGender:UserLocation:UserLevel:SinaNick:QQNick:qqId:FacebookId:)]) {
+            if (delegate && [delegate respondsToSelector:@selector(didGetUserNickName:UserAvatar:UserGender:UserLocation:UserLevel:SinaNick:QQNick:qqId:FacebookId:coins:)]) {
                 [delegate didGetUserNickName:userNickName
                                   UserAvatar:userAvatar
                                   UserGender:userGender
@@ -915,7 +917,8 @@ static UserService* _defaultUserService;
                                     SinaNick:sinaNick 
                                       QQNick:qqNick 
                                         qqId:qqId
-                                  FacebookId:facebookId];
+                                  FacebookId:facebookId
+                                       coins:coins];
             }
         });
     });

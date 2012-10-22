@@ -868,6 +868,11 @@
 
 - (void)rollDiceBegin
 {
+    if (![DiceConfigManager meetJoinGameCondictionWithRuleType:_diceService.ruleType]) {
+        [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kNotEnoughCoinToContinue") delayTime:1.5 isHappy:NO];
+        [self quitDiceGame];
+    }
+        
     [self clearGameResult];
     self.waittingForNextTurnNoteLabel.hidden = YES;
     [self showBeginNoteAnimation];
@@ -875,7 +880,6 @@
     [_audioManager playSoundById:5];
     
     [self updateDiceSelecetedView];
-
 }
 
 - (void)tellDiceToRobot:(NSArray*)list
@@ -1015,31 +1019,13 @@
 {
     self.myCoinsLabel.text = [NSString stringWithFormat:@"x%d",[_accountService getBalance]];
     
-    if (![DiceConfigManager meetJoinGameCondictionWithRuleType:_diceService.ruleType]) {
-        [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kNotEnoughCoinToContinue") delayTime:1.5 isHappy:NO];
-        [self quitDiceGame];
-    }
-    
-    [self updateWaittingForNextTurnNotLabel];
-}
-
-//#pragma mark - use item animations
-//- (void)useItem:(int)itemId itemName:(NSString *)itemName userId:(NSString *)userId
-//{
-//    if(itemId == ItemTypeDiceRobot) {
-//        [self showRobotDecition];
+//    if (![DiceConfigManager meetJoinGameCondictionWithRuleType:_diceService.ruleType]) {
+//        [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kNotEnoughCoinToContinue") delayTime:1.5 isHappy:NO];
+//        [self quitDiceGame];
 //    }
 //    
-//    if (itemId == ItemTypeIncTime) {
-//        DiceAvatarView* selfAvatar = (DiceAvatarView*)[self selfAvatarView];
-//        float incTime =MIN(USER_THINK_TIME_INTERVAL*(1-selfAvatar.getCurrentProgress), [ConfigManager getPostponeTime]);
-//        [_diceService userTimeItem:ItemTypeIncTime time:incTime];
-//        PPDebug(@"<test> I use item and delay time for %f", incTime);
-//    } else {
-//        [_diceService userItem:itemId];
-//    }
-//}
-
+//    [self updateWaittingForNextTurnNotLabel];
+}
 
 #pragma mark- Buttons action
 
@@ -1094,7 +1080,6 @@
 - (void)userUseWilds
 {
     self.wildsButton.selected = YES;
-    self.wildsButton.enabled = NO;
     [self showWildsAnim];
 }
 
@@ -1105,7 +1090,7 @@
 }
 
 - (IBAction)clickWildsButton:(id)sender {
-    self.wildsButton.selected = !self.wildsButton.selected;
+    self.wildsButton.selected = !self.wildsFlagButton.selected;
 }
 
 - (void)callDiceSuccess
@@ -1115,7 +1100,7 @@
 
     if (_diceService.diceSession.wilds) {
         [self userUseWilds];
-    } else if (self.wildsFlagButton.hidden == NO){
+    } else {
         [self destroyWilds];
     }
     
@@ -1178,7 +1163,7 @@
     
     if (_diceService.diceSession.wilds) {
         [self userUseWilds];
-    } else if (self.wildsFlagButton.hidden == NO) {
+    } else {
         [self destroyWilds];
     }
 
@@ -1501,31 +1486,32 @@
 
 - (void)showDestroyWildsAnim
 {
-    self.wildsFlagButton.transform = CGAffineTransformMakeScale(1, 1);
-    [UIView animateWithDuration:0.5 delay:0 options:UIViewAnimationCurveEaseInOut animations:^{
-        self.wildsFlagButton.transform = CGAffineTransformMakeScale(1.5, 1.5);
-    } completion:^(BOOL finished) {
-        //self.wildsFlagButton.transform = CGAffineTransformMakeScale(1.5, 1.5);
-        [UIView animateWithDuration:1 delay:0.5 options:UIViewAnimationCurveEaseInOut animations:^{
-            self.wildsFlagButton.transform = CGAffineTransformMakeScale(0.01, 15);
+    if (self.wildsFlagButton.hidden == NO) {
+        self.wildsFlagButton.transform = CGAffineTransformMakeScale(1, 1);
+        [UIView animateWithDuration:0.5 delay:0 options:UIViewAnimationCurveEaseInOut animations:^{
+            self.wildsFlagButton.transform = CGAffineTransformMakeScale(1.5, 1.5);
         } completion:^(BOOL finished) {
-            self.wildsFlagButton.transform = CGAffineTransformMakeScale(0.01, 0.01);
-            self.wildsFlagButton.hidden = YES;
+            //self.wildsFlagButton.transform = CGAffineTransformMakeScale(1.5, 1.5);
+            [UIView animateWithDuration:1 delay:0.5 options:UIViewAnimationCurveEaseInOut animations:^{
+                self.wildsFlagButton.transform = CGAffineTransformMakeScale(0.01, 15);
+            } completion:^(BOOL finished) {
+                self.wildsFlagButton.transform = CGAffineTransformMakeScale(0.01, 0.01);
+                self.wildsFlagButton.hidden = YES;
+            }];
         }];
-    }];
+    }
 }
 
 - (void)showWildsAnim
 {
     if (self.wildsFlagButton.hidden == YES) {
         self.wildsFlagButton.hidden = NO;
-        CAAnimation* enlarge = [AnimationManager scaleAnimationWithFromScale:1 toScale:3 duration:0.5 delegate:self removeCompeleted:YES];
+        CAAnimation* enlarge = [AnimationManager scaleAnimationWithFromScale:1 toScale:3 duration:0.5 delegate:self removeCompeleted:NO];
         
         enlarge.autoreverses = YES;
         enlarge.repeatCount = 2;
         [self.wildsFlagButton.layer addAnimation:enlarge forKey:@"enlarge"];
     }
-    
 }
 
 - (void)urgeUser:(NSString*)userId

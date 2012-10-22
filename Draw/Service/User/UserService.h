@@ -34,9 +34,10 @@
                   SinaNick:(NSString*)sinaNick 
                     QQNick:(NSString*)qqNick 
                       qqId:(NSString*)qqId
-                FacebookId:(NSString*)facebookId;
+                FacebookId:(NSString*)facebookId
+                     coins:(NSNumber*)userCoins;
 
-- (void)didGetTopPlayerList:(NSArray *)playerList 
+- (void)didGetTopPlayerList:(NSArray *)playerList
                  resultCode:(NSInteger)resultCode;
 
 @end
