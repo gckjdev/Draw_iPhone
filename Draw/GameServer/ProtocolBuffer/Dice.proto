@@ -25,12 +25,6 @@ message PBUserDice
   optional PBDiceType type = 3 [default=DICE_NORMAL];      // 新增
 }
 
-message PBUserResult {
-  required string userId = 1;
-  required bool win = 2;                    // 结果：false输，true赢
-  required int32 gainCoins = 5;             // 获得的金币
-}
-
 message PBDiceFinalCount{                           // 指示每个用户最终符合开骰的点数
   required string userId = 1;
   required PBDiceType type = 2 [default=DICE_NORMAL];    
@@ -40,7 +34,6 @@ message PBDiceFinalCount{                           // 指示每个用户最终�
 message PBDiceGameResult {
   repeated PBUserResult userResult = 1;
   optional int32 openType = 2[default=0];           // 开0，抢开1
-  
   repeated PBDiceFinalCount finalCount = 3;         // 所有用户最终符合开骰的点数
 }
 

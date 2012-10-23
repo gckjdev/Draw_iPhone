@@ -156,6 +156,7 @@
 		A4D3B15E1560E4F80013C882 /* MessageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A4D3B15D1560E4F80013C882 /* MessageManager.m */; };
 		A4DF0556160C25B400246A40 /* ReverseItemAction.m in Sources */ = {isa = PBXBuildFile; fileRef = A4DF0555160C25B400246A40 /* ReverseItemAction.m */; };
 		A4DF0589160D735E00246A40 /* CutItemAction.m in Sources */ = {isa = PBXBuildFile; fileRef = A4DF0588160D735E00246A40 /* CutItemAction.m */; };
+		A4E787581636399A003557AD /* Zhajinhua.proto in Resources */ = {isa = PBXBuildFile; fileRef = A4E787571636399A003557AD /* Zhajinhua.proto */; };
 		C20D4B1115DE45B100074885 /* CommonDiceDialog.xib in Resources */ = {isa = PBXBuildFile; fileRef = C20D4B1015DE45B100074885 /* CommonDiceDialog.xib */; };
 		C20D4B2515E1D78800074885 /* CommonInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = C20D4B2415E1D78800074885 /* CommonInfoView.m */; };
 		C20D4B2715E21C0400074885 /* DiceInputDialog.xib in Resources */ = {isa = PBXBuildFile; fileRef = C20D4B2615E21C0200074885 /* DiceInputDialog.xib */; };
@@ -1808,6 +1809,7 @@
 		A4DF0555160C25B400246A40 /* ReverseItemAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReverseItemAction.m; sourceTree = "<group>"; };
 		A4DF0587160D735E00246A40 /* CutItemAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CutItemAction.h; sourceTree = "<group>"; };
 		A4DF0588160D735E00246A40 /* CutItemAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CutItemAction.m; sourceTree = "<group>"; };
+		A4E787571636399A003557AD /* Zhajinhua.proto */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Zhajinhua.proto; path = Draw/GameServer/ProtocolBuffer/Zhajinhua.proto; sourceTree = SOURCE_ROOT; };
 		C20D4B1015DE45B100074885 /* CommonDiceDialog.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommonDiceDialog.xib; sourceTree = "<group>"; };
 		C20D4B2315E1D78800074885 /* CommonInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonInfoView.h; sourceTree = "<group>"; };
 		C20D4B2415E1D78800074885 /* CommonInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonInfoView.m; sourceTree = "<group>"; };
@@ -7672,6 +7674,7 @@
 				CA96E34F150DFBFA00292335 /* GameMessage.proto */,
 				A4B763A015C25208003B4E72 /* Draw.proto */,
 				A4B763A115C25208003B4E72 /* Dice.proto */,
+				A4E787571636399A003557AD /* Zhajinhua.proto */,
 			);
 			path = ProtocolBuffer;
 			sourceTree = "<group>";
@@ -9404,6 +9407,7 @@
 				CA42C14516326A2900BCF499 /* DiceDefault-568h@2x.png in Resources */,
 				CA42C14616326A2900BCF499 /* DiceDefault.png in Resources */,
 				CA42C14716326A2900BCF499 /* DiceDefault~ipad.png in Resources */,
+				A4E787581636399A003557AD /* Zhajinhua.proto in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
