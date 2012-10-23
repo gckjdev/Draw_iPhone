@@ -62,16 +62,13 @@ message ZJHGameState{
   optional ZJHUserInfo userInfo = 6;        // 炸金花用户状态，用于旁观者
 }
 
-message PBUserPoker{
+// User for standbyer
+message ZJHUserInfo{  
   required string userId = 1;       // 用户Id
   repeated PBPoker pokers = 2;      // 用户的扑克牌
   
-  optional ZJHCardType type = 5  [default=ZJH_CARD_TYPE_HIGH_CARD];      // 牌类型
-}
-
-// User for standbyer
-message ZJHUserInfo{
-  repeated PBUserPoker userPokers = 1;      // 用户扑克
+  optional ZJHCardType type = 3  [default=ZJH_CARD_TYPE_HIGH_CARD];      // 牌类型
+  
   optional int32 userBet = 5;         // 用户下的总注
   optional bool isCallingStation = 6 [default = false];         // 是否跟到底
   optional ZJHUserState state = 7;          // 用户最近的状态
