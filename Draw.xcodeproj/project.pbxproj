@@ -806,6 +806,7 @@
 		CA745D4D1503B1B500600024 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CA745D4B1503B1B500600024 /* InfoPlist.strings */; };
 		CA745D501503B1B500600024 /* DrawTests.h in Resources */ = {isa = PBXBuildFile; fileRef = CA745D4F1503B1B500600024 /* DrawTests.h */; };
 		CA745D521503B1B500600024 /* DrawTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CA745D511503B1B500600024 /* DrawTests.m */; };
+		CA7ACA6C16367548001B273C /* ZhaJinHua.pb.m in Sources */ = {isa = PBXBuildFile; fileRef = CA7ACA6B16367548001B273C /* ZhaJinHua.pb.m */; };
 		CA7C7E041587213100406BFB /* Feed.m in Sources */ = {isa = PBXBuildFile; fileRef = CA7C7E031587213100406BFB /* Feed.m */; };
 		CA7C7E071587214300406BFB /* FeedManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA7C7E061587214300406BFB /* FeedManager.m */; };
 		CA7C7E0B158721B200406BFB /* FeedService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA7C7E0A158721B200406BFB /* FeedService.m */; };
@@ -2403,6 +2404,8 @@
 		CA745D4E1503B1B500600024 /* DrawTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DrawTests-Prefix.pch"; sourceTree = "<group>"; };
 		CA745D4F1503B1B500600024 /* DrawTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DrawTests.h; sourceTree = "<group>"; };
 		CA745D511503B1B500600024 /* DrawTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DrawTests.m; sourceTree = "<group>"; };
+		CA7ACA6A16367548001B273C /* ZhaJinHua.pb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZhaJinHua.pb.h; sourceTree = "<group>"; };
+		CA7ACA6B16367548001B273C /* ZhaJinHua.pb.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZhaJinHua.pb.m; sourceTree = "<group>"; };
 		CA7C7E021587213100406BFB /* Feed.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Feed.h; sourceTree = "<group>"; };
 		CA7C7E031587213100406BFB /* Feed.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Feed.m; sourceTree = "<group>"; };
 		CA7C7E051587214300406BFB /* FeedManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedManager.h; sourceTree = "<group>"; };
@@ -6341,6 +6344,8 @@
 		CA96E274150DE87A00292335 /* Gen */ = {
 			isa = PBXGroup;
 			children = (
+				CA7ACA6A16367548001B273C /* ZhaJinHua.pb.h */,
+				CA7ACA6B16367548001B273C /* ZhaJinHua.pb.m */,
 				A44DDF4215C669DF005609F6 /* Dice.pb.h */,
 				A44DDF4315C669DF005609F6 /* Dice.pb.m */,
 				A4B763A415C25218003B4E72 /* Draw.pb.h */,
@@ -8188,6 +8193,7 @@
 				A43E85FA16227E06003A57F1 /* UIImageView+WebCache.m in Sources */,
 				C2E7401F1629500A0037E7F6 /* UseItemScene.m in Sources */,
 				A45AA839162FC0150030D668 /* UIPlaceholderTextView.m in Sources */,
+				CA7ACA6C16367548001B273C /* ZhaJinHua.pb.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
