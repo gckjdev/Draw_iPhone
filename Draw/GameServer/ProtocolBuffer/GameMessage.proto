@@ -1,15 +1,15 @@
-
+import "GameConstants.proto";
 import "GameBasic.proto";
+
 import "Draw.proto";
 import "Dice.proto";
-import "GameConstants.proto";
+import "ZhaJinHua.proto";
 
 package game;
 
 option java_package = "com.orange.network.game.protocol.message";
 option java_outer_classname = "GameMessageProtos";
   
-
 message GetRoomsRequest {
   required string gameId = 2;                   // 游戏ID，比如你画我猜为：draw
   optional int32 roomType = 3;                  // 0表示所有房间，1表示好友房间

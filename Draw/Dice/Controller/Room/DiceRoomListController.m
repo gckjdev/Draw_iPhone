@@ -190,7 +190,7 @@
         [self startRefreshRoomsTimer];
     }
     [self updateRoomList];
-    
+    [self updateOnlineUserCount];
 }
 
 - (void)joinGame
@@ -340,7 +340,7 @@
     [self.friendRoomButton.fontLable setTextColor:[UIColor whiteColor]]; 
     [self.nearByRoomButton.fontLable setTextColor:[UIColor whiteColor]]; 
     
-    [self.titleFontButton.fontLable setText:[self title]];
+//    [self.titleFontButton.fontLable setText:[self title]];
     [self.allRoomButton.fontLable setText:NSLS(@"kAll")];
     [self.friendRoomButton.fontLable setText:NSLS(@"kFriend")];
     [self.nearByRoomButton.fontLable setText:NSLS(@"kNearBy")];
@@ -349,7 +349,7 @@
     
     _isRefreshing = YES;
     self.emptyListTips.hidden = YES;
-        
+    [self updateOnlineUserCount];    
 //    [[NSNotificationCenter defaultCenter] addObserver:self
 //                                             selector:@selector(roomsDidUpdate:)
 //                                                 name:ROOMS_DID_UPDATE
@@ -503,6 +503,12 @@
     [self.nearByRoomButton setSelected:YES];
     [self refreshRoomsByFilter:(RoomFilter)nearByRoom];
     _currentRoomType = nearByRoom;
+}
+
+- (void)updateOnlineUserCount
+{
+    NSString* userCount = [NSString stringWithFormat:NSLS(@"kOnlineUser"),[[DiceGameService defaultService] onlineUserCount]];
+    [self.titleFontButton.fontLable setText:[NSString stringWithFormat:@"%@(%@)",[self title], userCount]];
 }
 
 #pragma mark - CommonGameServiceDelegate

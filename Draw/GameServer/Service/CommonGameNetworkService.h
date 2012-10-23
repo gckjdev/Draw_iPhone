@@ -40,6 +40,7 @@
     
     NSString                        *_gameId;
     NSMutableArray                  *_roomList;
+    NSInteger                       _onlineUserCount;
 }
 
 @property (nonatomic, retain) NSString              *serverStringList;
@@ -103,5 +104,5 @@
 - (void)chatWithExpression:(NSString *)expression;
 
 - (NSString*)userId;
-
+- (int)onlineUserCount;
 @end

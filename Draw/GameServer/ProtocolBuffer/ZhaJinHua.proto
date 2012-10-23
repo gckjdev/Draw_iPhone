@@ -4,7 +4,7 @@ import "GameBasic.proto";
 package game;
 
 option java_package = "com.orange.network.game.protocol.model";
-option java_outer_classname = "ZhajinhuaProtos";
+option java_outer_classname = "ZhaJinHuaProtos";
 
 enum ZJHCARDType{
   ZJH_CARD_TYPE_HIGH_CARD = 1;              // 散牌
