@@ -6,7 +6,7 @@ package game;
 option java_package = "com.orange.network.game.protocol.model";
 option java_outer_classname = "ZhaJinHuaProtos";
 
-enum ZJHCARDType{
+enum ZJHCardType{
   ZJH_CARD_TYPE_HIGH_CARD = 1;              // 散牌
   ZJH_CARD_TYPE_PAIR = 2;                   // 对子
   ZJH_CARD_TYPE_STRAIGHT = 3;               // 顺子
@@ -48,37 +48,37 @@ enum PBPokerSuit{
   POKER_SUIT_SPADE = 4;             // 黑桃
 }
 
-PBPoker{
-  optional int pokerId = 1;                                 // 扑克Id
+message PBPoker{
+  optional int32 pokerId = 1;                                 // 扑克Id
   required PBPokerRank rank= 2;                             // 扑克点数
   required PBPokerSuit suit= 3;                             // 扑克花色
   optional bool faceUp = 5 [default = false];               // 牌面是否朝上
 }
 
-ZJHGameState{
-  required int totalBet = 1;        // 游戏总注
-  required int singleBet = 2;       // 游戏单注
+message ZJHGameState{
+  required int32 totalBet = 1;        // 游戏总注
+  required int32 singleBet = 2;       // 游戏单注
   
   optional ZJHUserInfo userInfo = 6;        // 炸金花用户状态，用于旁观者
 }
 
-PBUserPoker{
+message PBUserPoker{
   required string userId = 1;       // 用户Id
   repeated PBPoker pokers = 2;      // 用户的扑克牌
   
-  optional ZJHType type = 5  [default=ZJH_HIGH_CARD];      // 牌类型
+  optional ZJHCardType type = 5  [default=ZJH_CARD_TYPE_HIGH_CARD];      // 牌类型
 }
 
 // User for standbyer
-ZJHUserInfo{
+message ZJHUserInfo{
   repeated PBUserPoker userPokers = 1;      // 用户扑克
-  optional int userBet = 5;         // 用户下的总注
+  optional int32 userBet = 5;         // 用户下的总注
   optional bool isCallingStation = 6 [default = false];         // 是否跟到底
   optional ZJHUserState state = 7;          // 用户最近的状态
-  optioanl bool canBeCompared = 8;          // 能否被比牌
+  optional bool canBeCompared = 8;          // 能否被比牌
 }
 
-ZJHGameResult{
+message ZJHGameResult{
   repeated PBUserResult userResult = 2;
 }
 

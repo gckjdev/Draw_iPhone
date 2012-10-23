@@ -18,6 +18,8 @@
 @class PBMessage_Builder;
 @class PBSNSUser;
 @class PBSNSUser_Builder;
+@class PBUserResult;
+@class PBUserResult_Builder;
 
 @interface GameBasicRoot : NSObject {
 }
@@ -966,5 +968,71 @@
 - (int32_t) newMessageCount;
 - (PBMessageStat_Builder*) setNewMessageCount:(int32_t) value;
 - (PBMessageStat_Builder*) clearNewMessageCount;
+@end
+
+@interface PBUserResult : PBGeneratedMessage {
+@private
+  BOOL hasWin_:1;
+  BOOL hasGainCoins_:1;
+  BOOL hasUserId_:1;
+  BOOL win_:1;
+  int32_t gainCoins;
+  NSString* userId;
+}
+- (BOOL) hasUserId;
+- (BOOL) hasWin;
+- (BOOL) hasGainCoins;
+@property (readonly, retain) NSString* userId;
+- (BOOL) win;
+@property (readonly) int32_t gainCoins;
+
++ (PBUserResult*) defaultInstance;
+- (PBUserResult*) defaultInstance;
+
+- (BOOL) isInitialized;
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
+- (PBUserResult_Builder*) builder;
++ (PBUserResult_Builder*) builder;
++ (PBUserResult_Builder*) builderWithPrototype:(PBUserResult*) prototype;
+
++ (PBUserResult*) parseFromData:(NSData*) data;
++ (PBUserResult*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBUserResult*) parseFromInputStream:(NSInputStream*) input;
++ (PBUserResult*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBUserResult*) parseFromCodedInputStream:(PBCodedInputStream*) input;
++ (PBUserResult*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+@end
+
+@interface PBUserResult_Builder : PBGeneratedMessage_Builder {
+@private
+  PBUserResult* result;
+}
+
+- (PBUserResult*) defaultInstance;
+
+- (PBUserResult_Builder*) clear;
+- (PBUserResult_Builder*) clone;
+
+- (PBUserResult*) build;
+- (PBUserResult*) buildPartial;
+
+- (PBUserResult_Builder*) mergeFrom:(PBUserResult*) other;
+- (PBUserResult_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (PBUserResult_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+
+- (BOOL) hasUserId;
+- (NSString*) userId;
+- (PBUserResult_Builder*) setUserId:(NSString*) value;
+- (PBUserResult_Builder*) clearUserId;
+
+- (BOOL) hasWin;
+- (BOOL) win;
+- (PBUserResult_Builder*) setWin:(BOOL) value;
+- (PBUserResult_Builder*) clearWin;
+
+- (BOOL) hasGainCoins;
+- (int32_t) gainCoins;
+- (PBUserResult_Builder*) setGainCoins:(int32_t) value;
+- (PBUserResult_Builder*) clearGainCoins;
 @end
 

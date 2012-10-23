@@ -114,9 +114,9 @@ enum BetType{
 }
 
 message BetRequest{
-  required int singleBet = 1;                               // 单注大小
-  required int count = 2 [default = 1];                     // 注数
-  optioanl bool isCallStation = 3 [default = false];        // 是否跟到底
+  required int32 singleBet = 1;                               // 单注大小
+  required int32 count = 2 [default = 1];                     // 注数
+  optional bool  isCallStation = 3 [default = false];        // 是否跟到底
 }
 
 message BetResponse{
@@ -142,7 +142,7 @@ message FoldResponse{
 }
 
 message ShowCardRequest{
-  repeated int cardIds = 1;
+  repeated int32 cardIds = 1 [packed=true];
 }
 
 message ShowCardResponse{
@@ -153,7 +153,7 @@ message CompareCardRequest{
 }
 
 message CompareCardResponse{
-  required PBUserResult = 2;   // 比牌结果
+  required PBUserResult userResult = 2;   // 比牌结果
 }
 
 
