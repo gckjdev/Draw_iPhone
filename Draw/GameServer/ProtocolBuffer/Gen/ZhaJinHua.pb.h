@@ -22,8 +22,6 @@
 @class PBPoker_Builder;
 @class PBSNSUser;
 @class PBSNSUser_Builder;
-@class PBUserPoker;
-@class PBUserPoker_Builder;
 @class PBUserResult;
 @class PBUserResult_Builder;
 @class ZJHGameResult;
@@ -232,95 +230,36 @@ BOOL PBPokerSuitIsValidValue(PBPokerSuit value);
 - (ZJHGameState_Builder*) clearUserInfo;
 @end
 
-@interface PBUserPoker : PBGeneratedMessage {
-@private
-  BOOL hasUserId_:1;
-  BOOL hasType_:1;
-  NSString* userId;
-  ZJHCardType type;
-  NSMutableArray* mutablePokersList;
-}
-- (BOOL) hasUserId;
-- (BOOL) hasType;
-@property (readonly, retain) NSString* userId;
-@property (readonly) ZJHCardType type;
-- (NSArray*) pokersList;
-- (PBPoker*) pokersAtIndex:(int32_t) index;
-
-+ (PBUserPoker*) defaultInstance;
-- (PBUserPoker*) defaultInstance;
-
-- (BOOL) isInitialized;
-- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
-- (PBUserPoker_Builder*) builder;
-+ (PBUserPoker_Builder*) builder;
-+ (PBUserPoker_Builder*) builderWithPrototype:(PBUserPoker*) prototype;
-
-+ (PBUserPoker*) parseFromData:(NSData*) data;
-+ (PBUserPoker*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
-+ (PBUserPoker*) parseFromInputStream:(NSInputStream*) input;
-+ (PBUserPoker*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
-+ (PBUserPoker*) parseFromCodedInputStream:(PBCodedInputStream*) input;
-+ (PBUserPoker*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
-@end
-
-@interface PBUserPoker_Builder : PBGeneratedMessage_Builder {
-@private
-  PBUserPoker* result;
-}
-
-- (PBUserPoker*) defaultInstance;
-
-- (PBUserPoker_Builder*) clear;
-- (PBUserPoker_Builder*) clone;
-
-- (PBUserPoker*) build;
-- (PBUserPoker*) buildPartial;
-
-- (PBUserPoker_Builder*) mergeFrom:(PBUserPoker*) other;
-- (PBUserPoker_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
-- (PBUserPoker_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
-
-- (BOOL) hasUserId;
-- (NSString*) userId;
-- (PBUserPoker_Builder*) setUserId:(NSString*) value;
-- (PBUserPoker_Builder*) clearUserId;
-
-- (NSArray*) pokersList;
-- (PBPoker*) pokersAtIndex:(int32_t) index;
-- (PBUserPoker_Builder*) replacePokersAtIndex:(int32_t) index with:(PBPoker*) value;
-- (PBUserPoker_Builder*) addPokers:(PBPoker*) value;
-- (PBUserPoker_Builder*) addAllPokers:(NSArray*) values;
-- (PBUserPoker_Builder*) clearPokersList;
-
-- (BOOL) hasType;
-- (ZJHCardType) type;
-- (PBUserPoker_Builder*) setType:(ZJHCardType) value;
-- (PBUserPoker_Builder*) clearType;
-@end
-
 @interface ZJHUserInfo : PBGeneratedMessage {
 @private
   BOOL hasIsCallingStation_:1;
   BOOL hasCanBeCompared_:1;
   BOOL hasUserBet_:1;
+  BOOL hasUserId_:1;
+  BOOL hasType_:1;
   BOOL hasState_:1;
   BOOL isCallingStation_:1;
   BOOL canBeCompared_:1;
   int32_t userBet;
+  NSString* userId;
+  ZJHCardType type;
   ZJHUserState state;
-  NSMutableArray* mutableUserPokersList;
+  NSMutableArray* mutablePokersList;
 }
+- (BOOL) hasUserId;
+- (BOOL) hasType;
 - (BOOL) hasUserBet;
 - (BOOL) hasIsCallingStation;
 - (BOOL) hasState;
 - (BOOL) hasCanBeCompared;
+@property (readonly, retain) NSString* userId;
+@property (readonly) ZJHCardType type;
 @property (readonly) int32_t userBet;
 - (BOOL) isCallingStation;
 @property (readonly) ZJHUserState state;
 - (BOOL) canBeCompared;
-- (NSArray*) userPokersList;
-- (PBUserPoker*) userPokersAtIndex:(int32_t) index;
+- (NSArray*) pokersList;
+- (PBPoker*) pokersAtIndex:(int32_t) index;
 
 + (ZJHUserInfo*) defaultInstance;
 - (ZJHUserInfo*) defaultInstance;
@@ -356,12 +295,22 @@ BOOL PBPokerSuitIsValidValue(PBPokerSuit value);
 - (ZJHUserInfo_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
 - (ZJHUserInfo_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 
-- (NSArray*) userPokersList;
-- (PBUserPoker*) userPokersAtIndex:(int32_t) index;
-- (ZJHUserInfo_Builder*) replaceUserPokersAtIndex:(int32_t) index with:(PBUserPoker*) value;
-- (ZJHUserInfo_Builder*) addUserPokers:(PBUserPoker*) value;
-- (ZJHUserInfo_Builder*) addAllUserPokers:(NSArray*) values;
-- (ZJHUserInfo_Builder*) clearUserPokersList;
+- (BOOL) hasUserId;
+- (NSString*) userId;
+- (ZJHUserInfo_Builder*) setUserId:(NSString*) value;
+- (ZJHUserInfo_Builder*) clearUserId;
+
+- (NSArray*) pokersList;
+- (PBPoker*) pokersAtIndex:(int32_t) index;
+- (ZJHUserInfo_Builder*) replacePokersAtIndex:(int32_t) index with:(PBPoker*) value;
+- (ZJHUserInfo_Builder*) addPokers:(PBPoker*) value;
+- (ZJHUserInfo_Builder*) addAllPokers:(NSArray*) values;
+- (ZJHUserInfo_Builder*) clearPokersList;
+
+- (BOOL) hasType;
+- (ZJHCardType) type;
+- (ZJHUserInfo_Builder*) setType:(ZJHCardType) value;
+- (ZJHUserInfo_Builder*) clearType;
 
 - (BOOL) hasUserBet;
 - (int32_t) userBet;

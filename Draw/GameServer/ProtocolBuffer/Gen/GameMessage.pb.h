@@ -108,8 +108,6 @@
 @class PBSNSUser_Builder;
 @class PBUserDice;
 @class PBUserDice_Builder;
-@class PBUserPoker;
-@class PBUserPoker_Builder;
 @class PBUserResult;
 @class PBUserResult_Builder;
 @class RegisterRoomsNotificationRequest;
