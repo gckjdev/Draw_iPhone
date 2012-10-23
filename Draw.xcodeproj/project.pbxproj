@@ -3395,6 +3395,53 @@
 			path = Message;
 			sourceTree = "<group>";
 		};
+		A4E7877C1636727E003557AD /* ZhaJinHua */ = {
+			isa = PBXGroup;
+			children = (
+				A4E7877D16367338003557AD /* Controller */,
+				A4E7877E16367338003557AD /* Model */,
+				A4E7877F16367338003557AD /* NetWork */,
+				A4E7878016367338003557AD /* Service */,
+				A4E7878116367338003557AD /* View */,
+			);
+			path = ZhaJinHua;
+			sourceTree = "<group>";
+		};
+		A4E7877D16367338003557AD /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		A4E7877E16367338003557AD /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		A4E7877F16367338003557AD /* NetWork */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = NetWork;
+			sourceTree = "<group>";
+		};
+		A4E7878016367338003557AD /* Service */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		A4E7878116367338003557AD /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		C20D4B2215E1D77100074885 /* CommonInfoView */ = {
 			isa = PBXGroup;
 			children = (
@@ -5950,6 +5997,7 @@
 				CAEECD9015DDEEF700FA5A2A /* Board */,
 				CA427065161FFF4A00C6CCAE /* Home */,
 				CA2F81E015C0D62E002038A6 /* Dice */,
+				A4E7877C1636727E003557AD /* ZhaJinHua */,
 				CA427072162003E900C6CCAE /* LocateFriend */,
 				CA427076162003E900C6CCAE /* PrivateSms */,
 				CA745D311503B1B500600024 /* DrawAppDelegate.h */,
