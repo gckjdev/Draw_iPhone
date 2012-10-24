@@ -44,7 +44,7 @@ enum GameCommandType {
   KEEP_ALIVE_REQUEST = 91;
   KEEP_ALIVE_RESPONSE = 92;
   
-  //　For Dahuatou: client ------> service
+  //　For Dahuatou: client ------> server
   
   GET_ROOMS_REQUEST = 601;                          // 获取房间列表
   GET_ROOMS_RESPONSE = 602;         
@@ -122,7 +122,7 @@ enum GameCommandType {
   GAME_TURN_COMPLETE_NOTIFICATION_REQUEST = 77;
   GAME_TURN_COMPLETE_NOTIFICATION_RESPONSE = 78;  
   
-  // local message, not for service <--> client, only for local purpose
+  // Local message, transterred from client request. 
   LOCAL_CHANNEL_DISCONNECT = 201;
   LOCAL_FINISH_GAME = 203;
   LOCAL_JOIN_GAME = 204;
@@ -137,15 +137,23 @@ enum GameCommandType {
   LOCAL_OTHER_USER_QUIT = 305;
   LOCAL_TIME_OUT = 306;
   LOCAL_START_GAME = 307;
+  
   LOCAL_WORD_PICKED = 308;
   LOCAL_ALL_USER_GUESS = 309;
   LOCAL_DRAW_USER_CHAT = 310;
+  
   LOCAL_PLAY_USER_QUIT = 311;
   LOCAL_CALL_DICE = 312;
   LOCAL_OPEN_DICE = 313;
   LOCAL_USER_SKIP = 314;
   LOCAL_ALL_USER_BET = 315; 
-  
+
+  LOCAL_BET = 316; 
+  LOCAL_CHECK_CARD = 317;
+  LOCAL_FOLD_CARD = 318;
+  LOCAL_SHOW_CARD = 319;
+  LOCAL_COMPARE_CARD = 320;
+
   // For Dahuatou: service -------> client
   ROOM_NOTIFICATION_REQUEST = 701;                      // 房间通知
   ROOM_NOTIFICATION_RESPONSE = 702; 
@@ -163,6 +171,8 @@ enum GameCommandType {
   
   GAME_OVER_NOTIFICATION_REQUEST = 731;                 // 游戏结束
   GAME_OVER_NOTIFICATION_RESPONSE = 732;
+
+  
 }
 
 enum GameResultCode {
