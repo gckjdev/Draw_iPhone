@@ -122,13 +122,6 @@ message BetRequest{
 message BetResponse{
 }
 
-//enum ZJHCardAction{
-//  ZJH_CARD_ACTION_CHECK = 1;        // 看牌
-//  ZJH_CARD_ACTION_FOLD = 2;         // 弃牌
-//  ZJH_CARD_ACTION_SHOW = 3;         // 亮牌
-//  ZJH_CARD_ACTION_COMPARE = 4;      // 比牌
-//}
-
 message CheckCardRequest{
 }
 
@@ -288,7 +281,7 @@ message SendDrawDataResponse{
 
 // For zhajinhua
 message GameStartNotification{                 // 游戏开始通知，用于服务器通知所有同一个会话里面的用户
-    optional ZJHGameState zjhGameState = 11;
+    optional PBZJHGameState zjhGameState = 11;
 }
 
 message GeneralNotification{                 

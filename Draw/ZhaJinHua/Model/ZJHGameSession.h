@@ -10,4 +10,9 @@
 
 @interface ZJHGameSession : CommonGameSession
 
+@property (assign, nonatomic) int totalBet;
+@property (assign, nonatomic) int singleBet;
+@property (retain, nonatomic) NSDictionary *usersInfo;
+
+
 @end
