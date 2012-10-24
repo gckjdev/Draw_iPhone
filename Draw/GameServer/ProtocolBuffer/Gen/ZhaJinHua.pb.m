@@ -20,26 +20,26 @@ static PBExtensionRegistry* extensionRegistry = nil;
 }
 @end
 
-BOOL ZJHCardTypeIsValidValue(ZJHCardType value) {
+BOOL PBZJHCardTypeIsValidValue(PBZJHCardType value) {
   switch (value) {
-    case ZJHCardTypeZjhCardTypeHighCard:
-    case ZJHCardTypeZjhCardTypePair:
-    case ZJHCardTypeZjhCardTypeStraight:
-    case ZJHCardTypeZjhCardTypeFlush:
-    case ZJHCardTypeZjhCardTypeStraightFlush:
-    case ZJHCardTypeZjhCardTypeThreeOfAKind:
-    case ZJHCardTypeZjhCardTypeSpecial:
+    case PBZJHCardTypeZjhCardTypeHighCard:
+    case PBZJHCardTypeZjhCardTypePair:
+    case PBZJHCardTypeZjhCardTypeStraight:
+    case PBZJHCardTypeZjhCardTypeFlush:
+    case PBZJHCardTypeZjhCardTypeStraightFlush:
+    case PBZJHCardTypeZjhCardTypeThreeOfAKind:
+    case PBZJHCardTypeZjhCardTypeSpecial:
       return YES;
     default:
       return NO;
   }
 }
-BOOL ZJHUserStateIsValidValue(ZJHUserState value) {
+BOOL PBZJHUserStateIsValidValue(PBZJHUserState value) {
   switch (value) {
-    case ZJHUserStateZjhStateDefault:
-    case ZJHUserStateZjhStateCompairLose:
-    case ZJHUserStateZjhStateCompairCheckCard:
-    case ZJHUserStateZjhStateCompairFold:
+    case PBZJHUserStateZjhStateDefault:
+    case PBZJHUserStateZjhStateCompairLose:
+    case PBZJHUserStateZjhStateCompairCheckCard:
+    case PBZJHUserStateZjhStateCompairFold:
       return YES;
     default:
       return NO;
@@ -390,13 +390,13 @@ static PBPoker* defaultPBPokerInstance = nil;
 }
 @end
 
-@interface ZJHGameState ()
+@interface PBZJHGameState ()
 @property int32_t totalBet;
 @property int32_t singleBet;
-@property (retain) ZJHUserInfo* userInfo;
+@property (retain) NSMutableArray* mutableUsersInfoList;
 @end
 
-@implementation ZJHGameState
+@implementation PBZJHGameState
 
 - (BOOL) hasTotalBet {
   return !!hasTotalBet_;
@@ -412,36 +412,36 @@ static PBPoker* defaultPBPokerInstance = nil;
   hasSingleBet_ = !!value;
 }
 @synthesize singleBet;
-- (BOOL) hasUserInfo {
-  return !!hasUserInfo_;
-}
-- (void) setHasUserInfo:(BOOL) value {
-  hasUserInfo_ = !!value;
-}
-@synthesize userInfo;
+@synthesize mutableUsersInfoList;
 - (void) dealloc {
-  self.userInfo = nil;
+  self.mutableUsersInfoList = nil;
   [super dealloc];
 }
 - (id) init {
   if ((self = [super init])) {
     self.totalBet = 0;
     self.singleBet = 0;
-    self.userInfo = [ZJHUserInfo defaultInstance];
   }
   return self;
 }
-static ZJHGameState* defaultZJHGameStateInstance = nil;
+static PBZJHGameState* defaultPBZJHGameStateInstance = nil;
 + (void) initialize {
-  if (self == [ZJHGameState class]) {
-    defaultZJHGameStateInstance = [[ZJHGameState alloc] init];
+  if (self == [PBZJHGameState class]) {
+    defaultPBZJHGameStateInstance = [[PBZJHGameState alloc] init];
   }
 }
-+ (ZJHGameState*) defaultInstance {
-  return defaultZJHGameStateInstance;
++ (PBZJHGameState*) defaultInstance {
+  return defaultPBZJHGameStateInstance;
 }
-- (ZJHGameState*) defaultInstance {
-  return defaultZJHGameStateInstance;
+- (PBZJHGameState*) defaultInstance {
+  return defaultPBZJHGameStateInstance;
+}
+- (NSArray*) usersInfoList {
+  return mutableUsersInfoList;
+}
+- (PBZJHUserInfo*) usersInfoAtIndex:(int32_t) index {
+  id value = [mutableUsersInfoList objectAtIndex:index];
+  return value;
 }
 - (BOOL) isInitialized {
   if (!self.hasTotalBet) {
@@ -450,8 +450,8 @@ static ZJHGameState* defaultZJHGameStateInstance = nil;
   if (!self.hasSingleBet) {
     return NO;
   }
-  if (self.hasUserInfo) {
-    if (!self.userInfo.isInitialized) {
+  for (PBZJHUserInfo* element in self.usersInfoList) {
+    if (!element.isInitialized) {
       return NO;
     }
   }
@@ -464,8 +464,8 @@ static ZJHGameState* defaultZJHGameStateInstance = nil;
   if (self.hasSingleBet) {
     [output writeInt32:2 value:self.singleBet];
   }
-  if (self.hasUserInfo) {
-    [output writeMessage:6 value:self.userInfo];
+  for (PBZJHUserInfo* element in self.usersInfoList) {
+    [output writeMessage:6 value:element];
   }
   [self.unknownFields writeToCodedOutputStream:output];
 }
@@ -482,47 +482,47 @@ static ZJHGameState* defaultZJHGameStateInstance = nil;
   if (self.hasSingleBet) {
     size += computeInt32Size(2, self.singleBet);
   }
-  if (self.hasUserInfo) {
-    size += computeMessageSize(6, self.userInfo);
+  for (PBZJHUserInfo* element in self.usersInfoList) {
+    size += computeMessageSize(6, element);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
   return size;
 }
-+ (ZJHGameState*) parseFromData:(NSData*) data {
-  return (ZJHGameState*)[[[ZJHGameState builder] mergeFromData:data] build];
++ (PBZJHGameState*) parseFromData:(NSData*) data {
+  return (PBZJHGameState*)[[[PBZJHGameState builder] mergeFromData:data] build];
 }
-+ (ZJHGameState*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (ZJHGameState*)[[[ZJHGameState builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
++ (PBZJHGameState*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBZJHGameState*)[[[PBZJHGameState builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
 }
-+ (ZJHGameState*) parseFromInputStream:(NSInputStream*) input {
-  return (ZJHGameState*)[[[ZJHGameState builder] mergeFromInputStream:input] build];
++ (PBZJHGameState*) parseFromInputStream:(NSInputStream*) input {
+  return (PBZJHGameState*)[[[PBZJHGameState builder] mergeFromInputStream:input] build];
 }
-+ (ZJHGameState*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (ZJHGameState*)[[[ZJHGameState builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
++ (PBZJHGameState*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBZJHGameState*)[[[PBZJHGameState builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
 }
-+ (ZJHGameState*) parseFromCodedInputStream:(PBCodedInputStream*) input {
-  return (ZJHGameState*)[[[ZJHGameState builder] mergeFromCodedInputStream:input] build];
++ (PBZJHGameState*) parseFromCodedInputStream:(PBCodedInputStream*) input {
+  return (PBZJHGameState*)[[[PBZJHGameState builder] mergeFromCodedInputStream:input] build];
 }
-+ (ZJHGameState*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (ZJHGameState*)[[[ZJHGameState builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
++ (PBZJHGameState*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBZJHGameState*)[[[PBZJHGameState builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
 }
-+ (ZJHGameState_Builder*) builder {
-  return [[[ZJHGameState_Builder alloc] init] autorelease];
++ (PBZJHGameState_Builder*) builder {
+  return [[[PBZJHGameState_Builder alloc] init] autorelease];
 }
-+ (ZJHGameState_Builder*) builderWithPrototype:(ZJHGameState*) prototype {
-  return [[ZJHGameState builder] mergeFrom:prototype];
++ (PBZJHGameState_Builder*) builderWithPrototype:(PBZJHGameState*) prototype {
+  return [[PBZJHGameState builder] mergeFrom:prototype];
 }
-- (ZJHGameState_Builder*) builder {
-  return [ZJHGameState builder];
+- (PBZJHGameState_Builder*) builder {
+  return [PBZJHGameState builder];
 }
 @end
 
-@interface ZJHGameState_Builder()
-@property (retain) ZJHGameState* result;
+@interface PBZJHGameState_Builder()
+@property (retain) PBZJHGameState* result;
 @end
 
-@implementation ZJHGameState_Builder
+@implementation PBZJHGameState_Builder
 @synthesize result;
 - (void) dealloc {
   self.result = nil;
@@ -530,34 +530,34 @@ static ZJHGameState* defaultZJHGameStateInstance = nil;
 }
 - (id) init {
   if ((self = [super init])) {
-    self.result = [[[ZJHGameState alloc] init] autorelease];
+    self.result = [[[PBZJHGameState alloc] init] autorelease];
   }
   return self;
 }
 - (PBGeneratedMessage*) internalGetResult {
   return result;
 }
-- (ZJHGameState_Builder*) clear {
-  self.result = [[[ZJHGameState alloc] init] autorelease];
+- (PBZJHGameState_Builder*) clear {
+  self.result = [[[PBZJHGameState alloc] init] autorelease];
   return self;
 }
-- (ZJHGameState_Builder*) clone {
-  return [ZJHGameState builderWithPrototype:result];
+- (PBZJHGameState_Builder*) clone {
+  return [PBZJHGameState builderWithPrototype:result];
 }
-- (ZJHGameState*) defaultInstance {
-  return [ZJHGameState defaultInstance];
+- (PBZJHGameState*) defaultInstance {
+  return [PBZJHGameState defaultInstance];
 }
-- (ZJHGameState*) build {
+- (PBZJHGameState*) build {
   [self checkInitialized];
   return [self buildPartial];
 }
-- (ZJHGameState*) buildPartial {
-  ZJHGameState* returnMe = [[result retain] autorelease];
+- (PBZJHGameState*) buildPartial {
+  PBZJHGameState* returnMe = [[result retain] autorelease];
   self.result = nil;
   return returnMe;
 }
-- (ZJHGameState_Builder*) mergeFrom:(ZJHGameState*) other {
-  if (other == [ZJHGameState defaultInstance]) {
+- (PBZJHGameState_Builder*) mergeFrom:(PBZJHGameState*) other {
+  if (other == [PBZJHGameState defaultInstance]) {
     return self;
   }
   if (other.hasTotalBet) {
@@ -566,16 +566,19 @@ static ZJHGameState* defaultZJHGameStateInstance = nil;
   if (other.hasSingleBet) {
     [self setSingleBet:other.singleBet];
   }
-  if (other.hasUserInfo) {
-    [self mergeUserInfo:other.userInfo];
+  if (other.mutableUsersInfoList.count > 0) {
+    if (result.mutableUsersInfoList == nil) {
+      result.mutableUsersInfoList = [NSMutableArray array];
+    }
+    [result.mutableUsersInfoList addObjectsFromArray:other.mutableUsersInfoList];
   }
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }
-- (ZJHGameState_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
+- (PBZJHGameState_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
   return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
 }
-- (ZJHGameState_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+- (PBZJHGameState_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
   PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
   while (YES) {
     int32_t tag = [input readTag];
@@ -599,12 +602,9 @@ static ZJHGameState* defaultZJHGameStateInstance = nil;
         break;
       }
       case 50: {
-        ZJHUserInfo_Builder* subBuilder = [ZJHUserInfo builder];
-        if (self.hasUserInfo) {
-          [subBuilder mergeFrom:self.userInfo];
-        }
+        PBZJHUserInfo_Builder* subBuilder = [PBZJHUserInfo builder];
         [input readMessage:subBuilder extensionRegistry:extensionRegistry];
-        [self setUserInfo:[subBuilder buildPartial]];
+        [self addUsersInfo:[subBuilder buildPartial]];
         break;
       }
     }
@@ -616,12 +616,12 @@ static ZJHGameState* defaultZJHGameStateInstance = nil;
 - (int32_t) totalBet {
   return result.totalBet;
 }
-- (ZJHGameState_Builder*) setTotalBet:(int32_t) value {
+- (PBZJHGameState_Builder*) setTotalBet:(int32_t) value {
   result.hasTotalBet = YES;
   result.totalBet = value;
   return self;
 }
-- (ZJHGameState_Builder*) clearTotalBet {
+- (PBZJHGameState_Builder*) clearTotalBet {
   result.hasTotalBet = NO;
   result.totalBet = 0;
   return self;
@@ -632,59 +632,58 @@ static ZJHGameState* defaultZJHGameStateInstance = nil;
 - (int32_t) singleBet {
   return result.singleBet;
 }
-- (ZJHGameState_Builder*) setSingleBet:(int32_t) value {
+- (PBZJHGameState_Builder*) setSingleBet:(int32_t) value {
   result.hasSingleBet = YES;
   result.singleBet = value;
   return self;
 }
-- (ZJHGameState_Builder*) clearSingleBet {
+- (PBZJHGameState_Builder*) clearSingleBet {
   result.hasSingleBet = NO;
   result.singleBet = 0;
   return self;
 }
-- (BOOL) hasUserInfo {
-  return result.hasUserInfo;
+- (NSArray*) usersInfoList {
+  if (result.mutableUsersInfoList == nil) { return [NSArray array]; }
+  return result.mutableUsersInfoList;
 }
-- (ZJHUserInfo*) userInfo {
-  return result.userInfo;
+- (PBZJHUserInfo*) usersInfoAtIndex:(int32_t) index {
+  return [result usersInfoAtIndex:index];
 }
-- (ZJHGameState_Builder*) setUserInfo:(ZJHUserInfo*) value {
-  result.hasUserInfo = YES;
-  result.userInfo = value;
+- (PBZJHGameState_Builder*) replaceUsersInfoAtIndex:(int32_t) index with:(PBZJHUserInfo*) value {
+  [result.mutableUsersInfoList replaceObjectAtIndex:index withObject:value];
   return self;
 }
-- (ZJHGameState_Builder*) setUserInfoBuilder:(ZJHUserInfo_Builder*) builderForValue {
-  return [self setUserInfo:[builderForValue build]];
-}
-- (ZJHGameState_Builder*) mergeUserInfo:(ZJHUserInfo*) value {
-  if (result.hasUserInfo &&
-      result.userInfo != [ZJHUserInfo defaultInstance]) {
-    result.userInfo =
-      [[[ZJHUserInfo builderWithPrototype:result.userInfo] mergeFrom:value] buildPartial];
-  } else {
-    result.userInfo = value;
+- (PBZJHGameState_Builder*) addAllUsersInfo:(NSArray*) values {
+  if (result.mutableUsersInfoList == nil) {
+    result.mutableUsersInfoList = [NSMutableArray array];
   }
-  result.hasUserInfo = YES;
+  [result.mutableUsersInfoList addObjectsFromArray:values];
   return self;
 }
-- (ZJHGameState_Builder*) clearUserInfo {
-  result.hasUserInfo = NO;
-  result.userInfo = [ZJHUserInfo defaultInstance];
+- (PBZJHGameState_Builder*) clearUsersInfoList {
+  result.mutableUsersInfoList = nil;
+  return self;
+}
+- (PBZJHGameState_Builder*) addUsersInfo:(PBZJHUserInfo*) value {
+  if (result.mutableUsersInfoList == nil) {
+    result.mutableUsersInfoList = [NSMutableArray array];
+  }
+  [result.mutableUsersInfoList addObject:value];
   return self;
 }
 @end
 
-@interface ZJHUserInfo ()
+@interface PBZJHUserInfo ()
 @property (retain) NSString* userId;
 @property (retain) NSMutableArray* mutablePokersList;
-@property ZJHCardType type;
+@property PBZJHCardType type;
 @property int32_t userBet;
 @property BOOL isCallingStation;
-@property ZJHUserState state;
+@property PBZJHUserState state;
 @property BOOL canBeCompared;
 @end
 
-@implementation ZJHUserInfo
+@implementation PBZJHUserInfo
 
 - (BOOL) hasUserId {
   return !!hasUserId_;
@@ -747,25 +746,25 @@ static ZJHGameState* defaultZJHGameStateInstance = nil;
 - (id) init {
   if ((self = [super init])) {
     self.userId = @"";
-    self.type = ZJHCardTypeZjhCardTypeHighCard;
+    self.type = PBZJHCardTypeZjhCardTypeHighCard;
     self.userBet = 0;
     self.isCallingStation = NO;
-    self.state = ZJHUserStateZjhStateDefault;
+    self.state = PBZJHUserStateZjhStateDefault;
     self.canBeCompared = YES;
   }
   return self;
 }
-static ZJHUserInfo* defaultZJHUserInfoInstance = nil;
+static PBZJHUserInfo* defaultPBZJHUserInfoInstance = nil;
 + (void) initialize {
-  if (self == [ZJHUserInfo class]) {
-    defaultZJHUserInfoInstance = [[ZJHUserInfo alloc] init];
+  if (self == [PBZJHUserInfo class]) {
+    defaultPBZJHUserInfoInstance = [[PBZJHUserInfo alloc] init];
   }
 }
-+ (ZJHUserInfo*) defaultInstance {
-  return defaultZJHUserInfoInstance;
++ (PBZJHUserInfo*) defaultInstance {
+  return defaultPBZJHUserInfoInstance;
 }
-- (ZJHUserInfo*) defaultInstance {
-  return defaultZJHUserInfoInstance;
+- (PBZJHUserInfo*) defaultInstance {
+  return defaultPBZJHUserInfoInstance;
 }
 - (NSArray*) pokersList {
   return mutablePokersList;
@@ -841,40 +840,40 @@ static ZJHUserInfo* defaultZJHUserInfoInstance = nil;
   memoizedSerializedSize = size;
   return size;
 }
-+ (ZJHUserInfo*) parseFromData:(NSData*) data {
-  return (ZJHUserInfo*)[[[ZJHUserInfo builder] mergeFromData:data] build];
++ (PBZJHUserInfo*) parseFromData:(NSData*) data {
+  return (PBZJHUserInfo*)[[[PBZJHUserInfo builder] mergeFromData:data] build];
 }
-+ (ZJHUserInfo*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (ZJHUserInfo*)[[[ZJHUserInfo builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
++ (PBZJHUserInfo*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBZJHUserInfo*)[[[PBZJHUserInfo builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
 }
-+ (ZJHUserInfo*) parseFromInputStream:(NSInputStream*) input {
-  return (ZJHUserInfo*)[[[ZJHUserInfo builder] mergeFromInputStream:input] build];
++ (PBZJHUserInfo*) parseFromInputStream:(NSInputStream*) input {
+  return (PBZJHUserInfo*)[[[PBZJHUserInfo builder] mergeFromInputStream:input] build];
 }
-+ (ZJHUserInfo*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (ZJHUserInfo*)[[[ZJHUserInfo builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
++ (PBZJHUserInfo*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBZJHUserInfo*)[[[PBZJHUserInfo builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
 }
-+ (ZJHUserInfo*) parseFromCodedInputStream:(PBCodedInputStream*) input {
-  return (ZJHUserInfo*)[[[ZJHUserInfo builder] mergeFromCodedInputStream:input] build];
++ (PBZJHUserInfo*) parseFromCodedInputStream:(PBCodedInputStream*) input {
+  return (PBZJHUserInfo*)[[[PBZJHUserInfo builder] mergeFromCodedInputStream:input] build];
 }
-+ (ZJHUserInfo*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (ZJHUserInfo*)[[[ZJHUserInfo builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
++ (PBZJHUserInfo*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBZJHUserInfo*)[[[PBZJHUserInfo builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
 }
-+ (ZJHUserInfo_Builder*) builder {
-  return [[[ZJHUserInfo_Builder alloc] init] autorelease];
++ (PBZJHUserInfo_Builder*) builder {
+  return [[[PBZJHUserInfo_Builder alloc] init] autorelease];
 }
-+ (ZJHUserInfo_Builder*) builderWithPrototype:(ZJHUserInfo*) prototype {
-  return [[ZJHUserInfo builder] mergeFrom:prototype];
++ (PBZJHUserInfo_Builder*) builderWithPrototype:(PBZJHUserInfo*) prototype {
+  return [[PBZJHUserInfo builder] mergeFrom:prototype];
 }
-- (ZJHUserInfo_Builder*) builder {
-  return [ZJHUserInfo builder];
+- (PBZJHUserInfo_Builder*) builder {
+  return [PBZJHUserInfo builder];
 }
 @end
 
-@interface ZJHUserInfo_Builder()
-@property (retain) ZJHUserInfo* result;
+@interface PBZJHUserInfo_Builder()
+@property (retain) PBZJHUserInfo* result;
 @end
 
-@implementation ZJHUserInfo_Builder
+@implementation PBZJHUserInfo_Builder
 @synthesize result;
 - (void) dealloc {
   self.result = nil;
@@ -882,34 +881,34 @@ static ZJHUserInfo* defaultZJHUserInfoInstance = nil;
 }
 - (id) init {
   if ((self = [super init])) {
-    self.result = [[[ZJHUserInfo alloc] init] autorelease];
+    self.result = [[[PBZJHUserInfo alloc] init] autorelease];
   }
   return self;
 }
 - (PBGeneratedMessage*) internalGetResult {
   return result;
 }
-- (ZJHUserInfo_Builder*) clear {
-  self.result = [[[ZJHUserInfo alloc] init] autorelease];
+- (PBZJHUserInfo_Builder*) clear {
+  self.result = [[[PBZJHUserInfo alloc] init] autorelease];
   return self;
 }
-- (ZJHUserInfo_Builder*) clone {
-  return [ZJHUserInfo builderWithPrototype:result];
+- (PBZJHUserInfo_Builder*) clone {
+  return [PBZJHUserInfo builderWithPrototype:result];
 }
-- (ZJHUserInfo*) defaultInstance {
-  return [ZJHUserInfo defaultInstance];
+- (PBZJHUserInfo*) defaultInstance {
+  return [PBZJHUserInfo defaultInstance];
 }
-- (ZJHUserInfo*) build {
+- (PBZJHUserInfo*) build {
   [self checkInitialized];
   return [self buildPartial];
 }
-- (ZJHUserInfo*) buildPartial {
-  ZJHUserInfo* returnMe = [[result retain] autorelease];
+- (PBZJHUserInfo*) buildPartial {
+  PBZJHUserInfo* returnMe = [[result retain] autorelease];
   self.result = nil;
   return returnMe;
 }
-- (ZJHUserInfo_Builder*) mergeFrom:(ZJHUserInfo*) other {
-  if (other == [ZJHUserInfo defaultInstance]) {
+- (PBZJHUserInfo_Builder*) mergeFrom:(PBZJHUserInfo*) other {
+  if (other == [PBZJHUserInfo defaultInstance]) {
     return self;
   }
   if (other.hasUserId) {
@@ -939,10 +938,10 @@ static ZJHUserInfo* defaultZJHUserInfoInstance = nil;
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }
-- (ZJHUserInfo_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
+- (PBZJHUserInfo_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
   return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
 }
-- (ZJHUserInfo_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+- (PBZJHUserInfo_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
   PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
   while (YES) {
     int32_t tag = [input readTag];
@@ -969,7 +968,7 @@ static ZJHUserInfo* defaultZJHUserInfoInstance = nil;
       }
       case 24: {
         int32_t value = [input readEnum];
-        if (ZJHCardTypeIsValidValue(value)) {
+        if (PBZJHCardTypeIsValidValue(value)) {
           [self setType:value];
         } else {
           [unknownFields mergeVarintField:3 value:value];
@@ -986,7 +985,7 @@ static ZJHUserInfo* defaultZJHUserInfoInstance = nil;
       }
       case 56: {
         int32_t value = [input readEnum];
-        if (ZJHUserStateIsValidValue(value)) {
+        if (PBZJHUserStateIsValidValue(value)) {
           [self setState:value];
         } else {
           [unknownFields mergeVarintField:7 value:value];
@@ -1006,12 +1005,12 @@ static ZJHUserInfo* defaultZJHUserInfoInstance = nil;
 - (NSString*) userId {
   return result.userId;
 }
-- (ZJHUserInfo_Builder*) setUserId:(NSString*) value {
+- (PBZJHUserInfo_Builder*) setUserId:(NSString*) value {
   result.hasUserId = YES;
   result.userId = value;
   return self;
 }
-- (ZJHUserInfo_Builder*) clearUserId {
+- (PBZJHUserInfo_Builder*) clearUserId {
   result.hasUserId = NO;
   result.userId = @"";
   return self;
@@ -1023,22 +1022,22 @@ static ZJHUserInfo* defaultZJHUserInfoInstance = nil;
 - (PBPoker*) pokersAtIndex:(int32_t) index {
   return [result pokersAtIndex:index];
 }
-- (ZJHUserInfo_Builder*) replacePokersAtIndex:(int32_t) index with:(PBPoker*) value {
+- (PBZJHUserInfo_Builder*) replacePokersAtIndex:(int32_t) index with:(PBPoker*) value {
   [result.mutablePokersList replaceObjectAtIndex:index withObject:value];
   return self;
 }
-- (ZJHUserInfo_Builder*) addAllPokers:(NSArray*) values {
+- (PBZJHUserInfo_Builder*) addAllPokers:(NSArray*) values {
   if (result.mutablePokersList == nil) {
     result.mutablePokersList = [NSMutableArray array];
   }
   [result.mutablePokersList addObjectsFromArray:values];
   return self;
 }
-- (ZJHUserInfo_Builder*) clearPokersList {
+- (PBZJHUserInfo_Builder*) clearPokersList {
   result.mutablePokersList = nil;
   return self;
 }
-- (ZJHUserInfo_Builder*) addPokers:(PBPoker*) value {
+- (PBZJHUserInfo_Builder*) addPokers:(PBPoker*) value {
   if (result.mutablePokersList == nil) {
     result.mutablePokersList = [NSMutableArray array];
   }
@@ -1048,17 +1047,17 @@ static ZJHUserInfo* defaultZJHUserInfoInstance = nil;
 - (BOOL) hasType {
   return result.hasType;
 }
-- (ZJHCardType) type {
+- (PBZJHCardType) type {
   return result.type;
 }
-- (ZJHUserInfo_Builder*) setType:(ZJHCardType) value {
+- (PBZJHUserInfo_Builder*) setType:(PBZJHCardType) value {
   result.hasType = YES;
   result.type = value;
   return self;
 }
-- (ZJHUserInfo_Builder*) clearType {
+- (PBZJHUserInfo_Builder*) clearType {
   result.hasType = NO;
-  result.type = ZJHCardTypeZjhCardTypeHighCard;
+  result.type = PBZJHCardTypeZjhCardTypeHighCard;
   return self;
 }
 - (BOOL) hasUserBet {
@@ -1067,12 +1066,12 @@ static ZJHUserInfo* defaultZJHUserInfoInstance = nil;
 - (int32_t) userBet {
   return result.userBet;
 }
-- (ZJHUserInfo_Builder*) setUserBet:(int32_t) value {
+- (PBZJHUserInfo_Builder*) setUserBet:(int32_t) value {
   result.hasUserBet = YES;
   result.userBet = value;
   return self;
 }
-- (ZJHUserInfo_Builder*) clearUserBet {
+- (PBZJHUserInfo_Builder*) clearUserBet {
   result.hasUserBet = NO;
   result.userBet = 0;
   return self;
@@ -1083,12 +1082,12 @@ static ZJHUserInfo* defaultZJHUserInfoInstance = nil;
 - (BOOL) isCallingStation {
   return result.isCallingStation;
 }
-- (ZJHUserInfo_Builder*) setIsCallingStation:(BOOL) value {
+- (PBZJHUserInfo_Builder*) setIsCallingStation:(BOOL) value {
   result.hasIsCallingStation = YES;
   result.isCallingStation = value;
   return self;
 }
-- (ZJHUserInfo_Builder*) clearIsCallingStation {
+- (PBZJHUserInfo_Builder*) clearIsCallingStation {
   result.hasIsCallingStation = NO;
   result.isCallingStation = NO;
   return self;
@@ -1096,17 +1095,17 @@ static ZJHUserInfo* defaultZJHUserInfoInstance = nil;
 - (BOOL) hasState {
   return result.hasState;
 }
-- (ZJHUserState) state {
+- (PBZJHUserState) state {
   return result.state;
 }
-- (ZJHUserInfo_Builder*) setState:(ZJHUserState) value {
+- (PBZJHUserInfo_Builder*) setState:(PBZJHUserState) value {
   result.hasState = YES;
   result.state = value;
   return self;
 }
-- (ZJHUserInfo_Builder*) clearState {
+- (PBZJHUserInfo_Builder*) clearState {
   result.hasState = NO;
-  result.state = ZJHUserStateZjhStateDefault;
+  result.state = PBZJHUserStateZjhStateDefault;
   return self;
 }
 - (BOOL) hasCanBeCompared {
@@ -1115,23 +1114,23 @@ static ZJHUserInfo* defaultZJHUserInfoInstance = nil;
 - (BOOL) canBeCompared {
   return result.canBeCompared;
 }
-- (ZJHUserInfo_Builder*) setCanBeCompared:(BOOL) value {
+- (PBZJHUserInfo_Builder*) setCanBeCompared:(BOOL) value {
   result.hasCanBeCompared = YES;
   result.canBeCompared = value;
   return self;
 }
-- (ZJHUserInfo_Builder*) clearCanBeCompared {
+- (PBZJHUserInfo_Builder*) clearCanBeCompared {
   result.hasCanBeCompared = NO;
   result.canBeCompared = YES;
   return self;
 }
 @end
 
-@interface ZJHGameResult ()
+@interface PBZJHGameResult ()
 @property (retain) NSMutableArray* mutableUserResultList;
 @end
 
-@implementation ZJHGameResult
+@implementation PBZJHGameResult
 
 @synthesize mutableUserResultList;
 - (void) dealloc {
@@ -1143,17 +1142,17 @@ static ZJHUserInfo* defaultZJHUserInfoInstance = nil;
   }
   return self;
 }
-static ZJHGameResult* defaultZJHGameResultInstance = nil;
+static PBZJHGameResult* defaultPBZJHGameResultInstance = nil;
 + (void) initialize {
-  if (self == [ZJHGameResult class]) {
-    defaultZJHGameResultInstance = [[ZJHGameResult alloc] init];
+  if (self == [PBZJHGameResult class]) {
+    defaultPBZJHGameResultInstance = [[PBZJHGameResult alloc] init];
   }
 }
-+ (ZJHGameResult*) defaultInstance {
-  return defaultZJHGameResultInstance;
++ (PBZJHGameResult*) defaultInstance {
+  return defaultPBZJHGameResultInstance;
 }
-- (ZJHGameResult*) defaultInstance {
-  return defaultZJHGameResultInstance;
+- (PBZJHGameResult*) defaultInstance {
+  return defaultPBZJHGameResultInstance;
 }
 - (NSArray*) userResultList {
   return mutableUserResultList;
@@ -1190,40 +1189,40 @@ static ZJHGameResult* defaultZJHGameResultInstance = nil;
   memoizedSerializedSize = size;
   return size;
 }
-+ (ZJHGameResult*) parseFromData:(NSData*) data {
-  return (ZJHGameResult*)[[[ZJHGameResult builder] mergeFromData:data] build];
++ (PBZJHGameResult*) parseFromData:(NSData*) data {
+  return (PBZJHGameResult*)[[[PBZJHGameResult builder] mergeFromData:data] build];
 }
-+ (ZJHGameResult*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (ZJHGameResult*)[[[ZJHGameResult builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
++ (PBZJHGameResult*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBZJHGameResult*)[[[PBZJHGameResult builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
 }
-+ (ZJHGameResult*) parseFromInputStream:(NSInputStream*) input {
-  return (ZJHGameResult*)[[[ZJHGameResult builder] mergeFromInputStream:input] build];
++ (PBZJHGameResult*) parseFromInputStream:(NSInputStream*) input {
+  return (PBZJHGameResult*)[[[PBZJHGameResult builder] mergeFromInputStream:input] build];
 }
-+ (ZJHGameResult*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (ZJHGameResult*)[[[ZJHGameResult builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
++ (PBZJHGameResult*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBZJHGameResult*)[[[PBZJHGameResult builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
 }
-+ (ZJHGameResult*) parseFromCodedInputStream:(PBCodedInputStream*) input {
-  return (ZJHGameResult*)[[[ZJHGameResult builder] mergeFromCodedInputStream:input] build];
++ (PBZJHGameResult*) parseFromCodedInputStream:(PBCodedInputStream*) input {
+  return (PBZJHGameResult*)[[[PBZJHGameResult builder] mergeFromCodedInputStream:input] build];
 }
-+ (ZJHGameResult*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (ZJHGameResult*)[[[ZJHGameResult builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
++ (PBZJHGameResult*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBZJHGameResult*)[[[PBZJHGameResult builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
 }
-+ (ZJHGameResult_Builder*) builder {
-  return [[[ZJHGameResult_Builder alloc] init] autorelease];
++ (PBZJHGameResult_Builder*) builder {
+  return [[[PBZJHGameResult_Builder alloc] init] autorelease];
 }
-+ (ZJHGameResult_Builder*) builderWithPrototype:(ZJHGameResult*) prototype {
-  return [[ZJHGameResult builder] mergeFrom:prototype];
++ (PBZJHGameResult_Builder*) builderWithPrototype:(PBZJHGameResult*) prototype {
+  return [[PBZJHGameResult builder] mergeFrom:prototype];
 }
-- (ZJHGameResult_Builder*) builder {
-  return [ZJHGameResult builder];
+- (PBZJHGameResult_Builder*) builder {
+  return [PBZJHGameResult builder];
 }
 @end
 
-@interface ZJHGameResult_Builder()
-@property (retain) ZJHGameResult* result;
+@interface PBZJHGameResult_Builder()
+@property (retain) PBZJHGameResult* result;
 @end
 
-@implementation ZJHGameResult_Builder
+@implementation PBZJHGameResult_Builder
 @synthesize result;
 - (void) dealloc {
   self.result = nil;
@@ -1231,34 +1230,34 @@ static ZJHGameResult* defaultZJHGameResultInstance = nil;
 }
 - (id) init {
   if ((self = [super init])) {
-    self.result = [[[ZJHGameResult alloc] init] autorelease];
+    self.result = [[[PBZJHGameResult alloc] init] autorelease];
   }
   return self;
 }
 - (PBGeneratedMessage*) internalGetResult {
   return result;
 }
-- (ZJHGameResult_Builder*) clear {
-  self.result = [[[ZJHGameResult alloc] init] autorelease];
+- (PBZJHGameResult_Builder*) clear {
+  self.result = [[[PBZJHGameResult alloc] init] autorelease];
   return self;
 }
-- (ZJHGameResult_Builder*) clone {
-  return [ZJHGameResult builderWithPrototype:result];
+- (PBZJHGameResult_Builder*) clone {
+  return [PBZJHGameResult builderWithPrototype:result];
 }
-- (ZJHGameResult*) defaultInstance {
-  return [ZJHGameResult defaultInstance];
+- (PBZJHGameResult*) defaultInstance {
+  return [PBZJHGameResult defaultInstance];
 }
-- (ZJHGameResult*) build {
+- (PBZJHGameResult*) build {
   [self checkInitialized];
   return [self buildPartial];
 }
-- (ZJHGameResult*) buildPartial {
-  ZJHGameResult* returnMe = [[result retain] autorelease];
+- (PBZJHGameResult*) buildPartial {
+  PBZJHGameResult* returnMe = [[result retain] autorelease];
   self.result = nil;
   return returnMe;
 }
-- (ZJHGameResult_Builder*) mergeFrom:(ZJHGameResult*) other {
-  if (other == [ZJHGameResult defaultInstance]) {
+- (PBZJHGameResult_Builder*) mergeFrom:(PBZJHGameResult*) other {
+  if (other == [PBZJHGameResult defaultInstance]) {
     return self;
   }
   if (other.mutableUserResultList.count > 0) {
@@ -1270,10 +1269,10 @@ static ZJHGameResult* defaultZJHGameResultInstance = nil;
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }
-- (ZJHGameResult_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
+- (PBZJHGameResult_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
   return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
 }
-- (ZJHGameResult_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+- (PBZJHGameResult_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
   PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
   while (YES) {
     int32_t tag = [input readTag];
@@ -1304,22 +1303,22 @@ static ZJHGameResult* defaultZJHGameResultInstance = nil;
 - (PBUserResult*) userResultAtIndex:(int32_t) index {
   return [result userResultAtIndex:index];
 }
-- (ZJHGameResult_Builder*) replaceUserResultAtIndex:(int32_t) index with:(PBUserResult*) value {
+- (PBZJHGameResult_Builder*) replaceUserResultAtIndex:(int32_t) index with:(PBUserResult*) value {
   [result.mutableUserResultList replaceObjectAtIndex:index withObject:value];
   return self;
 }
-- (ZJHGameResult_Builder*) addAllUserResult:(NSArray*) values {
+- (PBZJHGameResult_Builder*) addAllUserResult:(NSArray*) values {
   if (result.mutableUserResultList == nil) {
     result.mutableUserResultList = [NSMutableArray array];
   }
   [result.mutableUserResultList addObjectsFromArray:values];
   return self;
 }
-- (ZJHGameResult_Builder*) clearUserResultList {
+- (PBZJHGameResult_Builder*) clearUserResultList {
   result.mutableUserResultList = nil;
   return self;
 }
-- (ZJHGameResult_Builder*) addUserResult:(PBUserResult*) value {
+- (PBZJHGameResult_Builder*) addUserResult:(PBUserResult*) value {
   if (result.mutableUserResultList == nil) {
     result.mutableUserResultList = [NSMutableArray array];
   }

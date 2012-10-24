@@ -10759,7 +10759,7 @@ static SendDrawDataResponse* defaultSendDrawDataResponseInstance = nil;
 @end
 
 @interface GameStartNotification ()
-@property (retain) ZJHGameState* zjhGameState;
+@property (retain) PBZJHGameState* zjhGameState;
 @end
 
 @implementation GameStartNotification
@@ -10777,7 +10777,7 @@ static SendDrawDataResponse* defaultSendDrawDataResponseInstance = nil;
 }
 - (id) init {
   if ((self = [super init])) {
-    self.zjhGameState = [ZJHGameState defaultInstance];
+    self.zjhGameState = [PBZJHGameState defaultInstance];
   }
   return self;
 }
@@ -10917,7 +10917,7 @@ static GameStartNotification* defaultGameStartNotificationInstance = nil;
         break;
       }
       case 90: {
-        ZJHGameState_Builder* subBuilder = [ZJHGameState builder];
+        PBZJHGameState_Builder* subBuilder = [PBZJHGameState builder];
         if (self.hasZjhGameState) {
           [subBuilder mergeFrom:self.zjhGameState];
         }
@@ -10931,22 +10931,22 @@ static GameStartNotification* defaultGameStartNotificationInstance = nil;
 - (BOOL) hasZjhGameState {
   return result.hasZjhGameState;
 }
-- (ZJHGameState*) zjhGameState {
+- (PBZJHGameState*) zjhGameState {
   return result.zjhGameState;
 }
-- (GameStartNotification_Builder*) setZjhGameState:(ZJHGameState*) value {
+- (GameStartNotification_Builder*) setZjhGameState:(PBZJHGameState*) value {
   result.hasZjhGameState = YES;
   result.zjhGameState = value;
   return self;
 }
-- (GameStartNotification_Builder*) setZjhGameStateBuilder:(ZJHGameState_Builder*) builderForValue {
+- (GameStartNotification_Builder*) setZjhGameStateBuilder:(PBZJHGameState_Builder*) builderForValue {
   return [self setZjhGameState:[builderForValue build]];
 }
-- (GameStartNotification_Builder*) mergeZjhGameState:(ZJHGameState*) value {
+- (GameStartNotification_Builder*) mergeZjhGameState:(PBZJHGameState*) value {
   if (result.hasZjhGameState &&
-      result.zjhGameState != [ZJHGameState defaultInstance]) {
+      result.zjhGameState != [PBZJHGameState defaultInstance]) {
     result.zjhGameState =
-      [[[ZJHGameState builderWithPrototype:result.zjhGameState] mergeFrom:value] buildPartial];
+      [[[PBZJHGameState builderWithPrototype:result.zjhGameState] mergeFrom:value] buildPartial];
   } else {
     result.zjhGameState = value;
   }
@@ -10955,7 +10955,7 @@ static GameStartNotification* defaultGameStartNotificationInstance = nil;
 }
 - (GameStartNotification_Builder*) clearZjhGameState {
   result.hasZjhGameState = NO;
-  result.zjhGameState = [ZJHGameState defaultInstance];
+  result.zjhGameState = [PBZJHGameState defaultInstance];
   return self;
 }
 @end
