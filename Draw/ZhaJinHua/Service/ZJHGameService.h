@@ -7,17 +7,17 @@
 //
 
 #import "CommonGameNetworkService.h"
-#import "ZJHGameSession.h"
 
 @interface ZJHGameService : CommonGameNetworkService
 
 + (ZJHGameService*)defaultService;
 
-- (void)callBet:(BOOL)isCallStation;            // 跟注
+- (void)bet;                                    // 跟注
 - (void)raiseBet;                               // 加注
+- (void)autoBet;                                // 自动跟注
 
 - (void)checkCard;                              // 看牌
-- (void)fold;                                   // 弃牌
+- (void)foldCard;                               // 弃牌
 - (void)compareCard:(NSString*)toUserId;        // 比牌
 - (void)showCard:(NSArray *)cardIds;            // 亮牌
 

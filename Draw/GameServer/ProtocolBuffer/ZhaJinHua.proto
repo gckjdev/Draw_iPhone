@@ -7,20 +7,21 @@ option java_package = "com.orange.network.game.protocol.model";
 option java_outer_classname = "ZhaJinHuaProtos";
 
 enum PBZJHCardType{
-  ZJH_CARD_TYPE_HIGH_CARD = 1;              // 散牌
-  ZJH_CARD_TYPE_PAIR = 2;                   // 对子
-  ZJH_CARD_TYPE_STRAIGHT = 3;               // 顺子
-  ZJH_CARD_TYPE_FLUSH = 4;                  // 金花
-  ZJH_CARD_TYPE_STRAIGHT_FLUSH = 5;         // 顺金
-  ZJH_CARD_TYPE_THREE_OF_A_KIND = 6;        // 豹子
-  ZJH_CARD_TYPE_SPECIAL = 7;                // 特殊
+  UNKNOW = 0;                 // 未知
+  HIGH_CARD = 1;              // 散牌
+  PAIR = 2;                   // 对子
+  STRAIGHT = 3;               // 顺子
+  FLUSH = 4;                  // 金花
+  STRAIGHT_FLUSH = 5;         // 顺金
+  THREE_OF_A_KIND = 6;        // 豹子
+  SPECIAL = 7;                // 特殊
 }
 
 enum PBZJHUserState{
-  ZJH_STATE_DEFAULT = 0;                     // 默认状态
-  ZJH_STATE_COMPAIR_LOSE = 1;                // 和别人比牌失败
-  ZJH_STATE_COMPAIR_CHECK_CARD = 2;          // 已经看牌
-  ZJH_STATE_COMPAIR_FOLD = 3;                // 已经弃牌
+  DEFAULT = 0;                    // 默认状态
+  CHECK_CARD = 1;                 // 已经看牌
+  FOLD_CARD = 2;                  // 已经弃牌
+  COMPAIR_LOSE = 3;               // 和别人比牌失败
 }
 
 enum PBPokerRank{
@@ -66,12 +67,12 @@ message PBZJHUserInfo{
   required string userId = 1;       // 用户Id
   repeated PBPoker pokers = 2;      // 用户的扑克牌
   
-  optional PBZJHCardType type = 3  [default=ZJH_CARD_TYPE_HIGH_CARD];     // 牌类型
+  optional PBZJHCardType cardType = 3  [default = UNKNOW];   // 牌类型
   
-  optional int32 userBet = 5;                                           // 用户下的总注
-  optional bool isCallingStation = 6 [default = false];                 // 是否跟到底
-  optional PBZJHUserState state = 7 [default = ZJH_STATE_DEFAULT];        // 用户最近的状态
-  optional bool canBeCompared = 8 [default = true];                     // 能否被比牌
+  optional int32 totalBet = 5;                                              // 用户下的总注
+  optional bool isAutoBet = 6 [default = false];                            // 是否自动跟
+  optional PBZJHUserState userState = 7 [default = DEFAULT];                // 用户最近的状态
+  optional bool canBeCompared = 8 [default = true];                         // 能否被比牌
 }
 
 message PBZJHGameResult{

@@ -93,10 +93,12 @@
 		A43E85FA16227E06003A57F1 /* UIImageView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = A43E85F216227E06003A57F1 /* UIImageView+WebCache.m */; };
 		A44AD68D15CD149D001666AA /* MessageView.m in Sources */ = {isa = PBXBuildFile; fileRef = A44AD68C15CD149D001666AA /* MessageView.m */; };
 		A44B621F163786D500A8045B /* ZJHGameService.m in Sources */ = {isa = PBXBuildFile; fileRef = A44B621E163786D500A8045B /* ZJHGameService.m */; };
-		A44B62221637870000A8045B /* ZJHNetworkClient.m in Sources */ = {isa = PBXBuildFile; fileRef = A44B62211637870000A8045B /* ZJHNetworkClient.m */; };
+		A44B62221637870000A8045B /* CommonGameNetworkClient+ZJHNetworkExtend.m in Sources */ = {isa = PBXBuildFile; fileRef = A44B62211637870000A8045B /* CommonGameNetworkClient+ZJHNetworkExtend.m */; };
 		A44B6226163787F500A8045B /* ZJHGameController.m in Sources */ = {isa = PBXBuildFile; fileRef = A44B6224163787F500A8045B /* ZJHGameController.m */; };
 		A44B6227163787F500A8045B /* ZJHGameController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A44B6225163787F500A8045B /* ZJHGameController.xib */; };
 		A44B622A16379D4000A8045B /* ZJHUserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = A44B622916379D4000A8045B /* ZJHUserInfo.m */; };
+		A44B622D1637B80700A8045B /* Poker.m in Sources */ = {isa = PBXBuildFile; fileRef = A44B622C1637B80600A8045B /* Poker.m */; };
+		A44B62301637C45600A8045B /* PokerView.m in Sources */ = {isa = PBXBuildFile; fileRef = A44B622F1637C45600A8045B /* PokerView.m */; };
 		A44DDF4115C64528005609F6 /* DiceShowView.m in Sources */ = {isa = PBXBuildFile; fileRef = A44DDF4015C64528005609F6 /* DiceShowView.m */; };
 		A44DDF4415C669E0005609F6 /* Dice.pb.m in Sources */ = {isa = PBXBuildFile; fileRef = A44DDF4315C669DF005609F6 /* Dice.pb.m */; };
 		A454CB6F1558F5CE00896761 /* ChatController.m in Sources */ = {isa = PBXBuildFile; fileRef = A454CB6D1558F5CE00896761 /* ChatController.m */; };
@@ -1270,13 +1272,17 @@
 		A44AD68C15CD149D001666AA /* MessageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageView.m; sourceTree = "<group>"; };
 		A44B621D163786D500A8045B /* ZJHGameService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJHGameService.h; sourceTree = "<group>"; };
 		A44B621E163786D500A8045B /* ZJHGameService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJHGameService.m; sourceTree = "<group>"; };
-		A44B62201637870000A8045B /* ZJHNetworkClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJHNetworkClient.h; sourceTree = "<group>"; };
-		A44B62211637870000A8045B /* ZJHNetworkClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJHNetworkClient.m; sourceTree = "<group>"; };
+		A44B62201637870000A8045B /* CommonGameNetworkClient+ZJHNetworkExtend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CommonGameNetworkClient+ZJHNetworkExtend.h"; sourceTree = "<group>"; };
+		A44B62211637870000A8045B /* CommonGameNetworkClient+ZJHNetworkExtend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CommonGameNetworkClient+ZJHNetworkExtend.m"; sourceTree = "<group>"; };
 		A44B6223163787F500A8045B /* ZJHGameController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJHGameController.h; sourceTree = "<group>"; };
 		A44B6224163787F500A8045B /* ZJHGameController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJHGameController.m; sourceTree = "<group>"; };
 		A44B6225163787F500A8045B /* ZJHGameController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZJHGameController.xib; sourceTree = "<group>"; };
 		A44B622816379D4000A8045B /* ZJHUserInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJHUserInfo.h; sourceTree = "<group>"; };
 		A44B622916379D4000A8045B /* ZJHUserInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJHUserInfo.m; sourceTree = "<group>"; };
+		A44B622B1637B80600A8045B /* Poker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Poker.h; sourceTree = "<group>"; };
+		A44B622C1637B80600A8045B /* Poker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Poker.m; sourceTree = "<group>"; };
+		A44B622E1637C45600A8045B /* PokerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PokerView.h; sourceTree = "<group>"; };
+		A44B622F1637C45600A8045B /* PokerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PokerView.m; sourceTree = "<group>"; };
 		A44DDF2A15C62B18005609F6 /* NotificationName.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NotificationName.h; sourceTree = "<group>"; };
 		A44DDF3F15C64528005609F6 /* DiceShowView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiceShowView.h; sourceTree = "<group>"; };
 		A44DDF4015C64528005609F6 /* DiceShowView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiceShowView.m; sourceTree = "<group>"; };
@@ -3444,6 +3450,8 @@
 				A4E787931636753F003557AD /* ZJHGameSession.m */,
 				A44B622816379D4000A8045B /* ZJHUserInfo.h */,
 				A44B622916379D4000A8045B /* ZJHUserInfo.m */,
+				A44B622B1637B80600A8045B /* Poker.h */,
+				A44B622C1637B80600A8045B /* Poker.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -3451,8 +3459,8 @@
 		A4E7877F16367338003557AD /* NetWork */ = {
 			isa = PBXGroup;
 			children = (
-				A44B62201637870000A8045B /* ZJHNetworkClient.h */,
-				A44B62211637870000A8045B /* ZJHNetworkClient.m */,
+				A44B62201637870000A8045B /* CommonGameNetworkClient+ZJHNetworkExtend.h */,
+				A44B62211637870000A8045B /* CommonGameNetworkClient+ZJHNetworkExtend.m */,
 			);
 			path = NetWork;
 			sourceTree = "<group>";
@@ -3469,6 +3477,8 @@
 		A4E7878116367338003557AD /* View */ = {
 			isa = PBXGroup;
 			children = (
+				A44B622E1637C45600A8045B /* PokerView.h */,
+				A44B622F1637C45600A8045B /* PokerView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -8225,9 +8235,11 @@
 				CA7ACA6C16367548001B273C /* ZhaJinHua.pb.m in Sources */,
 				A4E787941636753F003557AD /* ZJHGameSession.m in Sources */,
 				A44B621F163786D500A8045B /* ZJHGameService.m in Sources */,
-				A44B62221637870000A8045B /* ZJHNetworkClient.m in Sources */,
+				A44B62221637870000A8045B /* CommonGameNetworkClient+ZJHNetworkExtend.m in Sources */,
 				A44B6226163787F500A8045B /* ZJHGameController.m in Sources */,
 				A44B622A16379D4000A8045B /* ZJHUserInfo.m in Sources */,
+				A44B622D1637B80700A8045B /* Poker.m in Sources */,
+				A44B62301637C45600A8045B /* PokerView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

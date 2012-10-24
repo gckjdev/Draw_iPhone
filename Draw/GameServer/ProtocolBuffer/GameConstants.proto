@@ -77,22 +77,20 @@ enum GameCommandType {
   USE_ITEM_RESPONSE = 632;     
   
   // For Zhajinhua: client -------> server
-    
-
   BET_REQUEST = 801;
   BET_RESPONSE = 802;
 
-  CHECK_CARD_NOTIFICATION_REQUEST = 803;        // 看牌
-  CHECK_CARD_NOTIFICATION_RESPONSE = 804;
+  CHECK_CARD_REQUEST = 803;         // 看牌
+  CHECK_CARD_RESPONSE = 804;
   
-  FOLD_NOTIFICATION_REQUEST = 807;              // 弃牌
-  FOLD_NOTIFICATION_RESPONSE = 808;             
+  FOLD_CARD_REQUEST = 807;          // 弃牌
+  FOLD_CARD_RESPONSE = 808;             
   
-  SHOW_CARD_NOTIFICATION_REQUEST = 809;         // 亮牌
-  SHOW_CARD_NOTIFICATION_RESPONSE = 810;        
+  SHOW_CARD_REQUEST = 809;          // 亮牌
+  SHOW_CARD_RESPONSE = 810;        
   
-  COMPARE_CARD_NOTIFICATION_REQUEST = 811;      // 比牌
-  COMPARE_CARD_NOTIFICATION_RESPONSE = 812;
+  COMPARE_CARD_REQUEST = 811;       // 比牌
+  COMPARE_CARD_RESPONSE = 812;
 
   
   // server --> client

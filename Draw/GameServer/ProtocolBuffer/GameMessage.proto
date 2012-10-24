@@ -114,9 +114,9 @@ enum BetType{
 }
 
 message BetRequest{
-  required int32 singleBet = 1;                               // 单注大小
-  required int32 count = 2 [default = 1];                     // 注数
-  optional bool  isCallStation = 3 [default = false];        // 是否跟到底
+  required int32 singleBet = 1;                                 // 单注大小
+  required int32 count = 2 [default = 1];                       // 注数
+  optional bool  isAutoBet = 3 [default = false];               // 是否自动跟注
 }
 
 message BetResponse{
@@ -128,10 +128,10 @@ message CheckCardRequest{
 message CheckCardResponse{
 }
   
-message FoldRequest{
+message FoldCardRequest{
 }
  
-message FoldResponse{
+message FoldCardResponse{
 }
 
 message ShowCardRequest{
@@ -142,7 +142,7 @@ message ShowCardResponse{
 }
   
 message CompareCardRequest{
-  required string userId = 1;  // 被比牌的用户
+  required string toUserId = 1;  // 被比牌的用户
 }
 
 message CompareCardResponse{
@@ -411,8 +411,8 @@ message GameMessage {
   optional CheckCardRequest checkCardRequest = 153;
   optional CheckCardResponse checkCardResponse =154;
   
-  optional FoldRequest foldRequest = 155;
-  optional FoldResponse foldResponse = 156;
+  optional FoldCardRequest foldCardRequest = 155;
+  optional FoldCardResponse foldCardResponse = 156;
 
   optional ShowCardRequest showCardRequest = 157;
   optional ShowCardResponse showCardResponse = 158;

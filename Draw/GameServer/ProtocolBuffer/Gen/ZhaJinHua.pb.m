@@ -22,13 +22,14 @@ static PBExtensionRegistry* extensionRegistry = nil;
 
 BOOL PBZJHCardTypeIsValidValue(PBZJHCardType value) {
   switch (value) {
-    case PBZJHCardTypeZjhCardTypeHighCard:
-    case PBZJHCardTypeZjhCardTypePair:
-    case PBZJHCardTypeZjhCardTypeStraight:
-    case PBZJHCardTypeZjhCardTypeFlush:
-    case PBZJHCardTypeZjhCardTypeStraightFlush:
-    case PBZJHCardTypeZjhCardTypeThreeOfAKind:
-    case PBZJHCardTypeZjhCardTypeSpecial:
+    case PBZJHCardTypeUnknow:
+    case PBZJHCardTypeHighCard:
+    case PBZJHCardTypePair:
+    case PBZJHCardTypeStraight:
+    case PBZJHCardTypeFlush:
+    case PBZJHCardTypeStraightFlush:
+    case PBZJHCardTypeThreeOfAKind:
+    case PBZJHCardTypeSpecial:
       return YES;
     default:
       return NO;
@@ -36,10 +37,10 @@ BOOL PBZJHCardTypeIsValidValue(PBZJHCardType value) {
 }
 BOOL PBZJHUserStateIsValidValue(PBZJHUserState value) {
   switch (value) {
-    case PBZJHUserStateZjhStateDefault:
-    case PBZJHUserStateZjhStateCompairLose:
-    case PBZJHUserStateZjhStateCompairCheckCard:
-    case PBZJHUserStateZjhStateCompairFold:
+    case PBZJHUserStateDefault:
+    case PBZJHUserStateCheckCard:
+    case PBZJHUserStateFoldCard:
+    case PBZJHUserStateCompairLose:
       return YES;
     default:
       return NO;
@@ -676,10 +677,10 @@ static PBZJHGameState* defaultPBZJHGameStateInstance = nil;
 @interface PBZJHUserInfo ()
 @property (retain) NSString* userId;
 @property (retain) NSMutableArray* mutablePokersList;
-@property PBZJHCardType type;
-@property int32_t userBet;
-@property BOOL isCallingStation;
-@property PBZJHUserState state;
+@property PBZJHCardType cardType;
+@property int32_t totalBet;
+@property BOOL isAutoBet;
+@property PBZJHUserState userState;
 @property BOOL canBeCompared;
 @end
 
@@ -693,39 +694,39 @@ static PBZJHGameState* defaultPBZJHGameStateInstance = nil;
 }
 @synthesize userId;
 @synthesize mutablePokersList;
-- (BOOL) hasType {
-  return !!hasType_;
+- (BOOL) hasCardType {
+  return !!hasCardType_;
 }
-- (void) setHasType:(BOOL) value {
-  hasType_ = !!value;
+- (void) setHasCardType:(BOOL) value {
+  hasCardType_ = !!value;
 }
-@synthesize type;
-- (BOOL) hasUserBet {
-  return !!hasUserBet_;
+@synthesize cardType;
+- (BOOL) hasTotalBet {
+  return !!hasTotalBet_;
 }
-- (void) setHasUserBet:(BOOL) value {
-  hasUserBet_ = !!value;
+- (void) setHasTotalBet:(BOOL) value {
+  hasTotalBet_ = !!value;
 }
-@synthesize userBet;
-- (BOOL) hasIsCallingStation {
-  return !!hasIsCallingStation_;
+@synthesize totalBet;
+- (BOOL) hasIsAutoBet {
+  return !!hasIsAutoBet_;
 }
-- (void) setHasIsCallingStation:(BOOL) value {
-  hasIsCallingStation_ = !!value;
+- (void) setHasIsAutoBet:(BOOL) value {
+  hasIsAutoBet_ = !!value;
 }
-- (BOOL) isCallingStation {
-  return !!isCallingStation_;
+- (BOOL) isAutoBet {
+  return !!isAutoBet_;
 }
-- (void) setIsCallingStation:(BOOL) value {
-  isCallingStation_ = !!value;
+- (void) setIsAutoBet:(BOOL) value {
+  isAutoBet_ = !!value;
 }
-- (BOOL) hasState {
-  return !!hasState_;
+- (BOOL) hasUserState {
+  return !!hasUserState_;
 }
-- (void) setHasState:(BOOL) value {
-  hasState_ = !!value;
+- (void) setHasUserState:(BOOL) value {
+  hasUserState_ = !!value;
 }
-@synthesize state;
+@synthesize userState;
 - (BOOL) hasCanBeCompared {
   return !!hasCanBeCompared_;
 }
@@ -746,10 +747,10 @@ static PBZJHGameState* defaultPBZJHGameStateInstance = nil;
 - (id) init {
   if ((self = [super init])) {
     self.userId = @"";
-    self.type = PBZJHCardTypeZjhCardTypeHighCard;
-    self.userBet = 0;
-    self.isCallingStation = NO;
-    self.state = PBZJHUserStateZjhStateDefault;
+    self.cardType = PBZJHCardTypeUnknow;
+    self.totalBet = 0;
+    self.isAutoBet = NO;
+    self.userState = PBZJHUserStateDefault;
     self.canBeCompared = YES;
   }
   return self;
@@ -791,17 +792,17 @@ static PBZJHUserInfo* defaultPBZJHUserInfoInstance = nil;
   for (PBPoker* element in self.pokersList) {
     [output writeMessage:2 value:element];
   }
-  if (self.hasType) {
-    [output writeEnum:3 value:self.type];
+  if (self.hasCardType) {
+    [output writeEnum:3 value:self.cardType];
   }
-  if (self.hasUserBet) {
-    [output writeInt32:5 value:self.userBet];
+  if (self.hasTotalBet) {
+    [output writeInt32:5 value:self.totalBet];
   }
-  if (self.hasIsCallingStation) {
-    [output writeBool:6 value:self.isCallingStation];
+  if (self.hasIsAutoBet) {
+    [output writeBool:6 value:self.isAutoBet];
   }
-  if (self.hasState) {
-    [output writeEnum:7 value:self.state];
+  if (self.hasUserState) {
+    [output writeEnum:7 value:self.userState];
   }
   if (self.hasCanBeCompared) {
     [output writeBool:8 value:self.canBeCompared];
@@ -821,17 +822,17 @@ static PBZJHUserInfo* defaultPBZJHUserInfoInstance = nil;
   for (PBPoker* element in self.pokersList) {
     size += computeMessageSize(2, element);
   }
-  if (self.hasType) {
-    size += computeEnumSize(3, self.type);
+  if (self.hasCardType) {
+    size += computeEnumSize(3, self.cardType);
   }
-  if (self.hasUserBet) {
-    size += computeInt32Size(5, self.userBet);
+  if (self.hasTotalBet) {
+    size += computeInt32Size(5, self.totalBet);
   }
-  if (self.hasIsCallingStation) {
-    size += computeBoolSize(6, self.isCallingStation);
+  if (self.hasIsAutoBet) {
+    size += computeBoolSize(6, self.isAutoBet);
   }
-  if (self.hasState) {
-    size += computeEnumSize(7, self.state);
+  if (self.hasUserState) {
+    size += computeEnumSize(7, self.userState);
   }
   if (self.hasCanBeCompared) {
     size += computeBoolSize(8, self.canBeCompared);
@@ -920,17 +921,17 @@ static PBZJHUserInfo* defaultPBZJHUserInfoInstance = nil;
     }
     [result.mutablePokersList addObjectsFromArray:other.mutablePokersList];
   }
-  if (other.hasType) {
-    [self setType:other.type];
+  if (other.hasCardType) {
+    [self setCardType:other.cardType];
   }
-  if (other.hasUserBet) {
-    [self setUserBet:other.userBet];
+  if (other.hasTotalBet) {
+    [self setTotalBet:other.totalBet];
   }
-  if (other.hasIsCallingStation) {
-    [self setIsCallingStation:other.isCallingStation];
+  if (other.hasIsAutoBet) {
+    [self setIsAutoBet:other.isAutoBet];
   }
-  if (other.hasState) {
-    [self setState:other.state];
+  if (other.hasUserState) {
+    [self setUserState:other.userState];
   }
   if (other.hasCanBeCompared) {
     [self setCanBeCompared:other.canBeCompared];
@@ -969,24 +970,24 @@ static PBZJHUserInfo* defaultPBZJHUserInfoInstance = nil;
       case 24: {
         int32_t value = [input readEnum];
         if (PBZJHCardTypeIsValidValue(value)) {
-          [self setType:value];
+          [self setCardType:value];
         } else {
           [unknownFields mergeVarintField:3 value:value];
         }
         break;
       }
       case 40: {
-        [self setUserBet:[input readInt32]];
+        [self setTotalBet:[input readInt32]];
         break;
       }
       case 48: {
-        [self setIsCallingStation:[input readBool]];
+        [self setIsAutoBet:[input readBool]];
         break;
       }
       case 56: {
         int32_t value = [input readEnum];
         if (PBZJHUserStateIsValidValue(value)) {
-          [self setState:value];
+          [self setUserState:value];
         } else {
           [unknownFields mergeVarintField:7 value:value];
         }
@@ -1044,68 +1045,68 @@ static PBZJHUserInfo* defaultPBZJHUserInfoInstance = nil;
   [result.mutablePokersList addObject:value];
   return self;
 }
-- (BOOL) hasType {
-  return result.hasType;
+- (BOOL) hasCardType {
+  return result.hasCardType;
 }
-- (PBZJHCardType) type {
-  return result.type;
+- (PBZJHCardType) cardType {
+  return result.cardType;
 }
-- (PBZJHUserInfo_Builder*) setType:(PBZJHCardType) value {
-  result.hasType = YES;
-  result.type = value;
+- (PBZJHUserInfo_Builder*) setCardType:(PBZJHCardType) value {
+  result.hasCardType = YES;
+  result.cardType = value;
   return self;
 }
-- (PBZJHUserInfo_Builder*) clearType {
-  result.hasType = NO;
-  result.type = PBZJHCardTypeZjhCardTypeHighCard;
+- (PBZJHUserInfo_Builder*) clearCardType {
+  result.hasCardType = NO;
+  result.cardType = PBZJHCardTypeUnknow;
   return self;
 }
-- (BOOL) hasUserBet {
-  return result.hasUserBet;
+- (BOOL) hasTotalBet {
+  return result.hasTotalBet;
 }
-- (int32_t) userBet {
-  return result.userBet;
+- (int32_t) totalBet {
+  return result.totalBet;
 }
-- (PBZJHUserInfo_Builder*) setUserBet:(int32_t) value {
-  result.hasUserBet = YES;
-  result.userBet = value;
+- (PBZJHUserInfo_Builder*) setTotalBet:(int32_t) value {
+  result.hasTotalBet = YES;
+  result.totalBet = value;
   return self;
 }
-- (PBZJHUserInfo_Builder*) clearUserBet {
-  result.hasUserBet = NO;
-  result.userBet = 0;
+- (PBZJHUserInfo_Builder*) clearTotalBet {
+  result.hasTotalBet = NO;
+  result.totalBet = 0;
   return self;
 }
-- (BOOL) hasIsCallingStation {
-  return result.hasIsCallingStation;
+- (BOOL) hasIsAutoBet {
+  return result.hasIsAutoBet;
 }
-- (BOOL) isCallingStation {
-  return result.isCallingStation;
+- (BOOL) isAutoBet {
+  return result.isAutoBet;
 }
-- (PBZJHUserInfo_Builder*) setIsCallingStation:(BOOL) value {
-  result.hasIsCallingStation = YES;
-  result.isCallingStation = value;
+- (PBZJHUserInfo_Builder*) setIsAutoBet:(BOOL) value {
+  result.hasIsAutoBet = YES;
+  result.isAutoBet = value;
   return self;
 }
-- (PBZJHUserInfo_Builder*) clearIsCallingStation {
-  result.hasIsCallingStation = NO;
-  result.isCallingStation = NO;
+- (PBZJHUserInfo_Builder*) clearIsAutoBet {
+  result.hasIsAutoBet = NO;
+  result.isAutoBet = NO;
   return self;
 }
-- (BOOL) hasState {
-  return result.hasState;
+- (BOOL) hasUserState {
+  return result.hasUserState;
 }
-- (PBZJHUserState) state {
-  return result.state;
+- (PBZJHUserState) userState {
+  return result.userState;
 }
-- (PBZJHUserInfo_Builder*) setState:(PBZJHUserState) value {
-  result.hasState = YES;
-  result.state = value;
+- (PBZJHUserInfo_Builder*) setUserState:(PBZJHUserState) value {
+  result.hasUserState = YES;
+  result.userState = value;
   return self;
 }
-- (PBZJHUserInfo_Builder*) clearState {
-  result.hasState = NO;
-  result.state = PBZJHUserStateZjhStateDefault;
+- (PBZJHUserInfo_Builder*) clearUserState {
+  result.hasUserState = NO;
+  result.userState = PBZJHUserStateDefault;
   return self;
 }
 - (BOOL) hasCanBeCompared {

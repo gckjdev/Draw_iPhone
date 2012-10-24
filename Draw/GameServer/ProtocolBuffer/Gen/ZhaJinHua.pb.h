@@ -31,22 +31,23 @@
 @class PBZJHUserInfo;
 @class PBZJHUserInfo_Builder;
 typedef enum {
-  PBZJHCardTypeZjhCardTypeHighCard = 1,
-  PBZJHCardTypeZjhCardTypePair = 2,
-  PBZJHCardTypeZjhCardTypeStraight = 3,
-  PBZJHCardTypeZjhCardTypeFlush = 4,
-  PBZJHCardTypeZjhCardTypeStraightFlush = 5,
-  PBZJHCardTypeZjhCardTypeThreeOfAKind = 6,
-  PBZJHCardTypeZjhCardTypeSpecial = 7,
+  PBZJHCardTypeUnknow = 0,
+  PBZJHCardTypeHighCard = 1,
+  PBZJHCardTypePair = 2,
+  PBZJHCardTypeStraight = 3,
+  PBZJHCardTypeFlush = 4,
+  PBZJHCardTypeStraightFlush = 5,
+  PBZJHCardTypeThreeOfAKind = 6,
+  PBZJHCardTypeSpecial = 7,
 } PBZJHCardType;
 
 BOOL PBZJHCardTypeIsValidValue(PBZJHCardType value);
 
 typedef enum {
-  PBZJHUserStateZjhStateDefault = 0,
-  PBZJHUserStateZjhStateCompairLose = 1,
-  PBZJHUserStateZjhStateCompairCheckCard = 2,
-  PBZJHUserStateZjhStateCompairFold = 3,
+  PBZJHUserStateDefault = 0,
+  PBZJHUserStateCheckCard = 1,
+  PBZJHUserStateFoldCard = 2,
+  PBZJHUserStateCompairLose = 3,
 } PBZJHUserState;
 
 BOOL PBZJHUserStateIsValidValue(PBZJHUserState value);
@@ -231,31 +232,31 @@ BOOL PBPokerSuitIsValidValue(PBPokerSuit value);
 
 @interface PBZJHUserInfo : PBGeneratedMessage {
 @private
-  BOOL hasIsCallingStation_:1;
+  BOOL hasIsAutoBet_:1;
   BOOL hasCanBeCompared_:1;
-  BOOL hasUserBet_:1;
+  BOOL hasTotalBet_:1;
   BOOL hasUserId_:1;
-  BOOL hasType_:1;
-  BOOL hasState_:1;
-  BOOL isCallingStation_:1;
+  BOOL hasCardType_:1;
+  BOOL hasUserState_:1;
+  BOOL isAutoBet_:1;
   BOOL canBeCompared_:1;
-  int32_t userBet;
+  int32_t totalBet;
   NSString* userId;
-  PBZJHCardType type;
-  PBZJHUserState state;
+  PBZJHCardType cardType;
+  PBZJHUserState userState;
   NSMutableArray* mutablePokersList;
 }
 - (BOOL) hasUserId;
-- (BOOL) hasType;
-- (BOOL) hasUserBet;
-- (BOOL) hasIsCallingStation;
-- (BOOL) hasState;
+- (BOOL) hasCardType;
+- (BOOL) hasTotalBet;
+- (BOOL) hasIsAutoBet;
+- (BOOL) hasUserState;
 - (BOOL) hasCanBeCompared;
 @property (readonly, retain) NSString* userId;
-@property (readonly) PBZJHCardType type;
-@property (readonly) int32_t userBet;
-- (BOOL) isCallingStation;
-@property (readonly) PBZJHUserState state;
+@property (readonly) PBZJHCardType cardType;
+@property (readonly) int32_t totalBet;
+- (BOOL) isAutoBet;
+@property (readonly) PBZJHUserState userState;
 - (BOOL) canBeCompared;
 - (NSArray*) pokersList;
 - (PBPoker*) pokersAtIndex:(int32_t) index;
@@ -306,25 +307,25 @@ BOOL PBPokerSuitIsValidValue(PBPokerSuit value);
 - (PBZJHUserInfo_Builder*) addAllPokers:(NSArray*) values;
 - (PBZJHUserInfo_Builder*) clearPokersList;
 
-- (BOOL) hasType;
-- (PBZJHCardType) type;
-- (PBZJHUserInfo_Builder*) setType:(PBZJHCardType) value;
-- (PBZJHUserInfo_Builder*) clearType;
+- (BOOL) hasCardType;
+- (PBZJHCardType) cardType;
+- (PBZJHUserInfo_Builder*) setCardType:(PBZJHCardType) value;
+- (PBZJHUserInfo_Builder*) clearCardType;
 
-- (BOOL) hasUserBet;
-- (int32_t) userBet;
-- (PBZJHUserInfo_Builder*) setUserBet:(int32_t) value;
-- (PBZJHUserInfo_Builder*) clearUserBet;
+- (BOOL) hasTotalBet;
+- (int32_t) totalBet;
+- (PBZJHUserInfo_Builder*) setTotalBet:(int32_t) value;
+- (PBZJHUserInfo_Builder*) clearTotalBet;
 
-- (BOOL) hasIsCallingStation;
-- (BOOL) isCallingStation;
-- (PBZJHUserInfo_Builder*) setIsCallingStation:(BOOL) value;
-- (PBZJHUserInfo_Builder*) clearIsCallingStation;
+- (BOOL) hasIsAutoBet;
+- (BOOL) isAutoBet;
+- (PBZJHUserInfo_Builder*) setIsAutoBet:(BOOL) value;
+- (PBZJHUserInfo_Builder*) clearIsAutoBet;
 
-- (BOOL) hasState;
-- (PBZJHUserState) state;
-- (PBZJHUserInfo_Builder*) setState:(PBZJHUserState) value;
-- (PBZJHUserInfo_Builder*) clearState;
+- (BOOL) hasUserState;
+- (PBZJHUserState) userState;
+- (PBZJHUserInfo_Builder*) setUserState:(PBZJHUserState) value;
+- (PBZJHUserInfo_Builder*) clearUserState;
 
 - (BOOL) hasCanBeCompared;
 - (BOOL) canBeCompared;

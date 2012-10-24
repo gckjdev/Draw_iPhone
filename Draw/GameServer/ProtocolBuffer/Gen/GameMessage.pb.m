@@ -4024,7 +4024,7 @@ static UserDiceNotification* defaultUserDiceNotificationInstance = nil;
 @interface BetRequest ()
 @property int32_t singleBet;
 @property int32_t count;
-@property BOOL isCallStation;
+@property BOOL isAutoBet;
 @end
 
 @implementation BetRequest
@@ -4043,17 +4043,17 @@ static UserDiceNotification* defaultUserDiceNotificationInstance = nil;
   hasCount_ = !!value;
 }
 @synthesize count;
-- (BOOL) hasIsCallStation {
-  return !!hasIsCallStation_;
+- (BOOL) hasIsAutoBet {
+  return !!hasIsAutoBet_;
 }
-- (void) setHasIsCallStation:(BOOL) value {
-  hasIsCallStation_ = !!value;
+- (void) setHasIsAutoBet:(BOOL) value {
+  hasIsAutoBet_ = !!value;
 }
-- (BOOL) isCallStation {
-  return !!isCallStation_;
+- (BOOL) isAutoBet {
+  return !!isAutoBet_;
 }
-- (void) setIsCallStation:(BOOL) value {
-  isCallStation_ = !!value;
+- (void) setIsAutoBet:(BOOL) value {
+  isAutoBet_ = !!value;
 }
 - (void) dealloc {
   [super dealloc];
@@ -4062,7 +4062,7 @@ static UserDiceNotification* defaultUserDiceNotificationInstance = nil;
   if ((self = [super init])) {
     self.singleBet = 0;
     self.count = 1;
-    self.isCallStation = NO;
+    self.isAutoBet = NO;
   }
   return self;
 }
@@ -4094,8 +4094,8 @@ static BetRequest* defaultBetRequestInstance = nil;
   if (self.hasCount) {
     [output writeInt32:2 value:self.count];
   }
-  if (self.hasIsCallStation) {
-    [output writeBool:3 value:self.isCallStation];
+  if (self.hasIsAutoBet) {
+    [output writeBool:3 value:self.isAutoBet];
   }
   [self.unknownFields writeToCodedOutputStream:output];
 }
@@ -4112,8 +4112,8 @@ static BetRequest* defaultBetRequestInstance = nil;
   if (self.hasCount) {
     size += computeInt32Size(2, self.count);
   }
-  if (self.hasIsCallStation) {
-    size += computeBoolSize(3, self.isCallStation);
+  if (self.hasIsAutoBet) {
+    size += computeBoolSize(3, self.isAutoBet);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -4196,8 +4196,8 @@ static BetRequest* defaultBetRequestInstance = nil;
   if (other.hasCount) {
     [self setCount:other.count];
   }
-  if (other.hasIsCallStation) {
-    [self setIsCallStation:other.isCallStation];
+  if (other.hasIsAutoBet) {
+    [self setIsAutoBet:other.isAutoBet];
   }
   [self mergeUnknownFields:other.unknownFields];
   return self;
@@ -4229,7 +4229,7 @@ static BetRequest* defaultBetRequestInstance = nil;
         break;
       }
       case 24: {
-        [self setIsCallStation:[input readBool]];
+        [self setIsAutoBet:[input readBool]];
         break;
       }
     }
@@ -4267,20 +4267,20 @@ static BetRequest* defaultBetRequestInstance = nil;
   result.count = 1;
   return self;
 }
-- (BOOL) hasIsCallStation {
-  return result.hasIsCallStation;
+- (BOOL) hasIsAutoBet {
+  return result.hasIsAutoBet;
 }
-- (BOOL) isCallStation {
-  return result.isCallStation;
+- (BOOL) isAutoBet {
+  return result.isAutoBet;
 }
-- (BetRequest_Builder*) setIsCallStation:(BOOL) value {
-  result.hasIsCallStation = YES;
-  result.isCallStation = value;
+- (BetRequest_Builder*) setIsAutoBet:(BOOL) value {
+  result.hasIsAutoBet = YES;
+  result.isAutoBet = value;
   return self;
 }
-- (BetRequest_Builder*) clearIsCallStation {
-  result.hasIsCallStation = NO;
-  result.isCallStation = NO;
+- (BetRequest_Builder*) clearIsAutoBet {
+  result.hasIsAutoBet = NO;
+  result.isAutoBet = NO;
   return self;
 }
 @end
@@ -4702,10 +4702,10 @@ static CheckCardResponse* defaultCheckCardResponseInstance = nil;
 }
 @end
 
-@interface FoldRequest ()
+@interface FoldCardRequest ()
 @end
 
-@implementation FoldRequest
+@implementation FoldCardRequest
 
 - (void) dealloc {
   [super dealloc];
@@ -4715,17 +4715,17 @@ static CheckCardResponse* defaultCheckCardResponseInstance = nil;
   }
   return self;
 }
-static FoldRequest* defaultFoldRequestInstance = nil;
+static FoldCardRequest* defaultFoldCardRequestInstance = nil;
 + (void) initialize {
-  if (self == [FoldRequest class]) {
-    defaultFoldRequestInstance = [[FoldRequest alloc] init];
+  if (self == [FoldCardRequest class]) {
+    defaultFoldCardRequestInstance = [[FoldCardRequest alloc] init];
   }
 }
-+ (FoldRequest*) defaultInstance {
-  return defaultFoldRequestInstance;
++ (FoldCardRequest*) defaultInstance {
+  return defaultFoldCardRequestInstance;
 }
-- (FoldRequest*) defaultInstance {
-  return defaultFoldRequestInstance;
+- (FoldCardRequest*) defaultInstance {
+  return defaultFoldCardRequestInstance;
 }
 - (BOOL) isInitialized {
   return YES;
@@ -4744,40 +4744,40 @@ static FoldRequest* defaultFoldRequestInstance = nil;
   memoizedSerializedSize = size;
   return size;
 }
-+ (FoldRequest*) parseFromData:(NSData*) data {
-  return (FoldRequest*)[[[FoldRequest builder] mergeFromData:data] build];
++ (FoldCardRequest*) parseFromData:(NSData*) data {
+  return (FoldCardRequest*)[[[FoldCardRequest builder] mergeFromData:data] build];
 }
-+ (FoldRequest*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (FoldRequest*)[[[FoldRequest builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
++ (FoldCardRequest*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (FoldCardRequest*)[[[FoldCardRequest builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
 }
-+ (FoldRequest*) parseFromInputStream:(NSInputStream*) input {
-  return (FoldRequest*)[[[FoldRequest builder] mergeFromInputStream:input] build];
++ (FoldCardRequest*) parseFromInputStream:(NSInputStream*) input {
+  return (FoldCardRequest*)[[[FoldCardRequest builder] mergeFromInputStream:input] build];
 }
-+ (FoldRequest*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (FoldRequest*)[[[FoldRequest builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
++ (FoldCardRequest*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (FoldCardRequest*)[[[FoldCardRequest builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
 }
-+ (FoldRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input {
-  return (FoldRequest*)[[[FoldRequest builder] mergeFromCodedInputStream:input] build];
++ (FoldCardRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input {
+  return (FoldCardRequest*)[[[FoldCardRequest builder] mergeFromCodedInputStream:input] build];
 }
-+ (FoldRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (FoldRequest*)[[[FoldRequest builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
++ (FoldCardRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (FoldCardRequest*)[[[FoldCardRequest builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
 }
-+ (FoldRequest_Builder*) builder {
-  return [[[FoldRequest_Builder alloc] init] autorelease];
++ (FoldCardRequest_Builder*) builder {
+  return [[[FoldCardRequest_Builder alloc] init] autorelease];
 }
-+ (FoldRequest_Builder*) builderWithPrototype:(FoldRequest*) prototype {
-  return [[FoldRequest builder] mergeFrom:prototype];
++ (FoldCardRequest_Builder*) builderWithPrototype:(FoldCardRequest*) prototype {
+  return [[FoldCardRequest builder] mergeFrom:prototype];
 }
-- (FoldRequest_Builder*) builder {
-  return [FoldRequest builder];
+- (FoldCardRequest_Builder*) builder {
+  return [FoldCardRequest builder];
 }
 @end
 
-@interface FoldRequest_Builder()
-@property (retain) FoldRequest* result;
+@interface FoldCardRequest_Builder()
+@property (retain) FoldCardRequest* result;
 @end
 
-@implementation FoldRequest_Builder
+@implementation FoldCardRequest_Builder
 @synthesize result;
 - (void) dealloc {
   self.result = nil;
@@ -4785,43 +4785,43 @@ static FoldRequest* defaultFoldRequestInstance = nil;
 }
 - (id) init {
   if ((self = [super init])) {
-    self.result = [[[FoldRequest alloc] init] autorelease];
+    self.result = [[[FoldCardRequest alloc] init] autorelease];
   }
   return self;
 }
 - (PBGeneratedMessage*) internalGetResult {
   return result;
 }
-- (FoldRequest_Builder*) clear {
-  self.result = [[[FoldRequest alloc] init] autorelease];
+- (FoldCardRequest_Builder*) clear {
+  self.result = [[[FoldCardRequest alloc] init] autorelease];
   return self;
 }
-- (FoldRequest_Builder*) clone {
-  return [FoldRequest builderWithPrototype:result];
+- (FoldCardRequest_Builder*) clone {
+  return [FoldCardRequest builderWithPrototype:result];
 }
-- (FoldRequest*) defaultInstance {
-  return [FoldRequest defaultInstance];
+- (FoldCardRequest*) defaultInstance {
+  return [FoldCardRequest defaultInstance];
 }
-- (FoldRequest*) build {
+- (FoldCardRequest*) build {
   [self checkInitialized];
   return [self buildPartial];
 }
-- (FoldRequest*) buildPartial {
-  FoldRequest* returnMe = [[result retain] autorelease];
+- (FoldCardRequest*) buildPartial {
+  FoldCardRequest* returnMe = [[result retain] autorelease];
   self.result = nil;
   return returnMe;
 }
-- (FoldRequest_Builder*) mergeFrom:(FoldRequest*) other {
-  if (other == [FoldRequest defaultInstance]) {
+- (FoldCardRequest_Builder*) mergeFrom:(FoldCardRequest*) other {
+  if (other == [FoldCardRequest defaultInstance]) {
     return self;
   }
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }
-- (FoldRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
+- (FoldCardRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
   return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
 }
-- (FoldRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+- (FoldCardRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
   PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
   while (YES) {
     int32_t tag = [input readTag];
@@ -4841,10 +4841,10 @@ static FoldRequest* defaultFoldRequestInstance = nil;
 }
 @end
 
-@interface FoldResponse ()
+@interface FoldCardResponse ()
 @end
 
-@implementation FoldResponse
+@implementation FoldCardResponse
 
 - (void) dealloc {
   [super dealloc];
@@ -4854,17 +4854,17 @@ static FoldRequest* defaultFoldRequestInstance = nil;
   }
   return self;
 }
-static FoldResponse* defaultFoldResponseInstance = nil;
+static FoldCardResponse* defaultFoldCardResponseInstance = nil;
 + (void) initialize {
-  if (self == [FoldResponse class]) {
-    defaultFoldResponseInstance = [[FoldResponse alloc] init];
+  if (self == [FoldCardResponse class]) {
+    defaultFoldCardResponseInstance = [[FoldCardResponse alloc] init];
   }
 }
-+ (FoldResponse*) defaultInstance {
-  return defaultFoldResponseInstance;
++ (FoldCardResponse*) defaultInstance {
+  return defaultFoldCardResponseInstance;
 }
-- (FoldResponse*) defaultInstance {
-  return defaultFoldResponseInstance;
+- (FoldCardResponse*) defaultInstance {
+  return defaultFoldCardResponseInstance;
 }
 - (BOOL) isInitialized {
   return YES;
@@ -4883,40 +4883,40 @@ static FoldResponse* defaultFoldResponseInstance = nil;
   memoizedSerializedSize = size;
   return size;
 }
-+ (FoldResponse*) parseFromData:(NSData*) data {
-  return (FoldResponse*)[[[FoldResponse builder] mergeFromData:data] build];
++ (FoldCardResponse*) parseFromData:(NSData*) data {
+  return (FoldCardResponse*)[[[FoldCardResponse builder] mergeFromData:data] build];
 }
-+ (FoldResponse*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (FoldResponse*)[[[FoldResponse builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
++ (FoldCardResponse*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (FoldCardResponse*)[[[FoldCardResponse builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
 }
-+ (FoldResponse*) parseFromInputStream:(NSInputStream*) input {
-  return (FoldResponse*)[[[FoldResponse builder] mergeFromInputStream:input] build];
++ (FoldCardResponse*) parseFromInputStream:(NSInputStream*) input {
+  return (FoldCardResponse*)[[[FoldCardResponse builder] mergeFromInputStream:input] build];
 }
-+ (FoldResponse*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (FoldResponse*)[[[FoldResponse builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
++ (FoldCardResponse*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (FoldCardResponse*)[[[FoldCardResponse builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
 }
-+ (FoldResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input {
-  return (FoldResponse*)[[[FoldResponse builder] mergeFromCodedInputStream:input] build];
++ (FoldCardResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input {
+  return (FoldCardResponse*)[[[FoldCardResponse builder] mergeFromCodedInputStream:input] build];
 }
-+ (FoldResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (FoldResponse*)[[[FoldResponse builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
++ (FoldCardResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (FoldCardResponse*)[[[FoldCardResponse builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
 }
-+ (FoldResponse_Builder*) builder {
-  return [[[FoldResponse_Builder alloc] init] autorelease];
++ (FoldCardResponse_Builder*) builder {
+  return [[[FoldCardResponse_Builder alloc] init] autorelease];
 }
-+ (FoldResponse_Builder*) builderWithPrototype:(FoldResponse*) prototype {
-  return [[FoldResponse builder] mergeFrom:prototype];
++ (FoldCardResponse_Builder*) builderWithPrototype:(FoldCardResponse*) prototype {
+  return [[FoldCardResponse builder] mergeFrom:prototype];
 }
-- (FoldResponse_Builder*) builder {
-  return [FoldResponse builder];
+- (FoldCardResponse_Builder*) builder {
+  return [FoldCardResponse builder];
 }
 @end
 
-@interface FoldResponse_Builder()
-@property (retain) FoldResponse* result;
+@interface FoldCardResponse_Builder()
+@property (retain) FoldCardResponse* result;
 @end
 
-@implementation FoldResponse_Builder
+@implementation FoldCardResponse_Builder
 @synthesize result;
 - (void) dealloc {
   self.result = nil;
@@ -4924,43 +4924,43 @@ static FoldResponse* defaultFoldResponseInstance = nil;
 }
 - (id) init {
   if ((self = [super init])) {
-    self.result = [[[FoldResponse alloc] init] autorelease];
+    self.result = [[[FoldCardResponse alloc] init] autorelease];
   }
   return self;
 }
 - (PBGeneratedMessage*) internalGetResult {
   return result;
 }
-- (FoldResponse_Builder*) clear {
-  self.result = [[[FoldResponse alloc] init] autorelease];
+- (FoldCardResponse_Builder*) clear {
+  self.result = [[[FoldCardResponse alloc] init] autorelease];
   return self;
 }
-- (FoldResponse_Builder*) clone {
-  return [FoldResponse builderWithPrototype:result];
+- (FoldCardResponse_Builder*) clone {
+  return [FoldCardResponse builderWithPrototype:result];
 }
-- (FoldResponse*) defaultInstance {
-  return [FoldResponse defaultInstance];
+- (FoldCardResponse*) defaultInstance {
+  return [FoldCardResponse defaultInstance];
 }
-- (FoldResponse*) build {
+- (FoldCardResponse*) build {
   [self checkInitialized];
   return [self buildPartial];
 }
-- (FoldResponse*) buildPartial {
-  FoldResponse* returnMe = [[result retain] autorelease];
+- (FoldCardResponse*) buildPartial {
+  FoldCardResponse* returnMe = [[result retain] autorelease];
   self.result = nil;
   return returnMe;
 }
-- (FoldResponse_Builder*) mergeFrom:(FoldResponse*) other {
-  if (other == [FoldResponse defaultInstance]) {
+- (FoldCardResponse_Builder*) mergeFrom:(FoldCardResponse*) other {
+  if (other == [FoldCardResponse defaultInstance]) {
     return self;
   }
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }
-- (FoldResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
+- (FoldCardResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
   return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
 }
-- (FoldResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+- (FoldCardResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
   PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
   while (YES) {
     int32_t tag = [input readTag];
@@ -5334,25 +5334,25 @@ static ShowCardResponse* defaultShowCardResponseInstance = nil;
 @end
 
 @interface CompareCardRequest ()
-@property (retain) NSString* userId;
+@property (retain) NSString* toUserId;
 @end
 
 @implementation CompareCardRequest
 
-- (BOOL) hasUserId {
-  return !!hasUserId_;
+- (BOOL) hasToUserId {
+  return !!hasToUserId_;
 }
-- (void) setHasUserId:(BOOL) value {
-  hasUserId_ = !!value;
+- (void) setHasToUserId:(BOOL) value {
+  hasToUserId_ = !!value;
 }
-@synthesize userId;
+@synthesize toUserId;
 - (void) dealloc {
-  self.userId = nil;
+  self.toUserId = nil;
   [super dealloc];
 }
 - (id) init {
   if ((self = [super init])) {
-    self.userId = @"";
+    self.toUserId = @"";
   }
   return self;
 }
@@ -5369,14 +5369,14 @@ static CompareCardRequest* defaultCompareCardRequestInstance = nil;
   return defaultCompareCardRequestInstance;
 }
 - (BOOL) isInitialized {
-  if (!self.hasUserId) {
+  if (!self.hasToUserId) {
     return NO;
   }
   return YES;
 }
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
-  if (self.hasUserId) {
-    [output writeString:1 value:self.userId];
+  if (self.hasToUserId) {
+    [output writeString:1 value:self.toUserId];
   }
   [self.unknownFields writeToCodedOutputStream:output];
 }
@@ -5387,8 +5387,8 @@ static CompareCardRequest* defaultCompareCardRequestInstance = nil;
   }
 
   size = 0;
-  if (self.hasUserId) {
-    size += computeStringSize(1, self.userId);
+  if (self.hasToUserId) {
+    size += computeStringSize(1, self.toUserId);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -5465,8 +5465,8 @@ static CompareCardRequest* defaultCompareCardRequestInstance = nil;
   if (other == [CompareCardRequest defaultInstance]) {
     return self;
   }
-  if (other.hasUserId) {
-    [self setUserId:other.userId];
+  if (other.hasToUserId) {
+    [self setToUserId:other.toUserId];
   }
   [self mergeUnknownFields:other.unknownFields];
   return self;
@@ -5490,26 +5490,26 @@ static CompareCardRequest* defaultCompareCardRequestInstance = nil;
         break;
       }
       case 10: {
-        [self setUserId:[input readString]];
+        [self setToUserId:[input readString]];
         break;
       }
     }
   }
 }
-- (BOOL) hasUserId {
-  return result.hasUserId;
+- (BOOL) hasToUserId {
+  return result.hasToUserId;
 }
-- (NSString*) userId {
-  return result.userId;
+- (NSString*) toUserId {
+  return result.toUserId;
 }
-- (CompareCardRequest_Builder*) setUserId:(NSString*) value {
-  result.hasUserId = YES;
-  result.userId = value;
+- (CompareCardRequest_Builder*) setToUserId:(NSString*) value {
+  result.hasToUserId = YES;
+  result.toUserId = value;
   return self;
 }
-- (CompareCardRequest_Builder*) clearUserId {
-  result.hasUserId = NO;
-  result.userId = @"";
+- (CompareCardRequest_Builder*) clearToUserId {
+  result.hasToUserId = NO;
+  result.toUserId = @"";
   return self;
 }
 @end
@@ -12812,8 +12812,8 @@ static FacetimeChatResponse* defaultFacetimeChatResponseInstance = nil;
 @property (retain) BetResponse* betResponse;
 @property (retain) CheckCardRequest* checkCardRequest;
 @property (retain) CheckCardResponse* checkCardResponse;
-@property (retain) FoldRequest* foldRequest;
-@property (retain) FoldResponse* foldResponse;
+@property (retain) FoldCardRequest* foldCardRequest;
+@property (retain) FoldCardResponse* foldCardResponse;
 @property (retain) ShowCardRequest* showCardRequest;
 @property (retain) ShowCardResponse* showCardResponse;
 @property (retain) CompareCardRequest* compareCardRequest;
@@ -13162,20 +13162,20 @@ static FacetimeChatResponse* defaultFacetimeChatResponseInstance = nil;
   hasCheckCardResponse_ = !!value;
 }
 @synthesize checkCardResponse;
-- (BOOL) hasFoldRequest {
-  return !!hasFoldRequest_;
+- (BOOL) hasFoldCardRequest {
+  return !!hasFoldCardRequest_;
 }
-- (void) setHasFoldRequest:(BOOL) value {
-  hasFoldRequest_ = !!value;
+- (void) setHasFoldCardRequest:(BOOL) value {
+  hasFoldCardRequest_ = !!value;
 }
-@synthesize foldRequest;
-- (BOOL) hasFoldResponse {
-  return !!hasFoldResponse_;
+@synthesize foldCardRequest;
+- (BOOL) hasFoldCardResponse {
+  return !!hasFoldCardResponse_;
 }
-- (void) setHasFoldResponse:(BOOL) value {
-  hasFoldResponse_ = !!value;
+- (void) setHasFoldCardResponse:(BOOL) value {
+  hasFoldCardResponse_ = !!value;
 }
-@synthesize foldResponse;
+@synthesize foldCardResponse;
 - (BOOL) hasShowCardRequest {
   return !!hasShowCardRequest_;
 }
@@ -13274,8 +13274,8 @@ static FacetimeChatResponse* defaultFacetimeChatResponseInstance = nil;
   self.betResponse = nil;
   self.checkCardRequest = nil;
   self.checkCardResponse = nil;
-  self.foldRequest = nil;
-  self.foldResponse = nil;
+  self.foldCardRequest = nil;
+  self.foldCardResponse = nil;
   self.showCardRequest = nil;
   self.showCardResponse = nil;
   self.compareCardRequest = nil;
@@ -13333,8 +13333,8 @@ static FacetimeChatResponse* defaultFacetimeChatResponseInstance = nil;
     self.betResponse = [BetResponse defaultInstance];
     self.checkCardRequest = [CheckCardRequest defaultInstance];
     self.checkCardResponse = [CheckCardResponse defaultInstance];
-    self.foldRequest = [FoldRequest defaultInstance];
-    self.foldResponse = [FoldResponse defaultInstance];
+    self.foldCardRequest = [FoldCardRequest defaultInstance];
+    self.foldCardResponse = [FoldCardResponse defaultInstance];
     self.showCardRequest = [ShowCardRequest defaultInstance];
     self.showCardResponse = [ShowCardResponse defaultInstance];
     self.compareCardRequest = [CompareCardRequest defaultInstance];
@@ -13612,11 +13612,11 @@ static GameMessage* defaultGameMessageInstance = nil;
   if (self.hasCheckCardResponse) {
     [output writeMessage:154 value:self.checkCardResponse];
   }
-  if (self.hasFoldRequest) {
-    [output writeMessage:155 value:self.foldRequest];
+  if (self.hasFoldCardRequest) {
+    [output writeMessage:155 value:self.foldCardRequest];
   }
-  if (self.hasFoldResponse) {
-    [output writeMessage:156 value:self.foldResponse];
+  if (self.hasFoldCardResponse) {
+    [output writeMessage:156 value:self.foldCardResponse];
   }
   if (self.hasShowCardRequest) {
     [output writeMessage:157 value:self.showCardRequest];
@@ -13795,11 +13795,11 @@ static GameMessage* defaultGameMessageInstance = nil;
   if (self.hasCheckCardResponse) {
     size += computeMessageSize(154, self.checkCardResponse);
   }
-  if (self.hasFoldRequest) {
-    size += computeMessageSize(155, self.foldRequest);
+  if (self.hasFoldCardRequest) {
+    size += computeMessageSize(155, self.foldCardRequest);
   }
-  if (self.hasFoldResponse) {
-    size += computeMessageSize(156, self.foldResponse);
+  if (self.hasFoldCardResponse) {
+    size += computeMessageSize(156, self.foldCardResponse);
   }
   if (self.hasShowCardRequest) {
     size += computeMessageSize(157, self.showCardRequest);
@@ -14044,11 +14044,11 @@ static GameMessage* defaultGameMessageInstance = nil;
   if (other.hasCheckCardResponse) {
     [self mergeCheckCardResponse:other.checkCardResponse];
   }
-  if (other.hasFoldRequest) {
-    [self mergeFoldRequest:other.foldRequest];
+  if (other.hasFoldCardRequest) {
+    [self mergeFoldCardRequest:other.foldCardRequest];
   }
-  if (other.hasFoldResponse) {
-    [self mergeFoldResponse:other.foldResponse];
+  if (other.hasFoldCardResponse) {
+    [self mergeFoldCardResponse:other.foldCardResponse];
   }
   if (other.hasShowCardRequest) {
     [self mergeShowCardRequest:other.showCardRequest];
@@ -14493,21 +14493,21 @@ static GameMessage* defaultGameMessageInstance = nil;
         break;
       }
       case 1242: {
-        FoldRequest_Builder* subBuilder = [FoldRequest builder];
-        if (self.hasFoldRequest) {
-          [subBuilder mergeFrom:self.foldRequest];
+        FoldCardRequest_Builder* subBuilder = [FoldCardRequest builder];
+        if (self.hasFoldCardRequest) {
+          [subBuilder mergeFrom:self.foldCardRequest];
         }
         [input readMessage:subBuilder extensionRegistry:extensionRegistry];
-        [self setFoldRequest:[subBuilder buildPartial]];
+        [self setFoldCardRequest:[subBuilder buildPartial]];
         break;
       }
       case 1250: {
-        FoldResponse_Builder* subBuilder = [FoldResponse builder];
-        if (self.hasFoldResponse) {
-          [subBuilder mergeFrom:self.foldResponse];
+        FoldCardResponse_Builder* subBuilder = [FoldCardResponse builder];
+        if (self.hasFoldCardResponse) {
+          [subBuilder mergeFrom:self.foldCardResponse];
         }
         [input readMessage:subBuilder extensionRegistry:extensionRegistry];
-        [self setFoldResponse:[subBuilder buildPartial]];
+        [self setFoldCardResponse:[subBuilder buildPartial]];
         break;
       }
       case 1258: {
@@ -15865,64 +15865,64 @@ static GameMessage* defaultGameMessageInstance = nil;
   result.checkCardResponse = [CheckCardResponse defaultInstance];
   return self;
 }
-- (BOOL) hasFoldRequest {
-  return result.hasFoldRequest;
+- (BOOL) hasFoldCardRequest {
+  return result.hasFoldCardRequest;
 }
-- (FoldRequest*) foldRequest {
-  return result.foldRequest;
+- (FoldCardRequest*) foldCardRequest {
+  return result.foldCardRequest;
 }
-- (GameMessage_Builder*) setFoldRequest:(FoldRequest*) value {
-  result.hasFoldRequest = YES;
-  result.foldRequest = value;
+- (GameMessage_Builder*) setFoldCardRequest:(FoldCardRequest*) value {
+  result.hasFoldCardRequest = YES;
+  result.foldCardRequest = value;
   return self;
 }
-- (GameMessage_Builder*) setFoldRequestBuilder:(FoldRequest_Builder*) builderForValue {
-  return [self setFoldRequest:[builderForValue build]];
+- (GameMessage_Builder*) setFoldCardRequestBuilder:(FoldCardRequest_Builder*) builderForValue {
+  return [self setFoldCardRequest:[builderForValue build]];
 }
-- (GameMessage_Builder*) mergeFoldRequest:(FoldRequest*) value {
-  if (result.hasFoldRequest &&
-      result.foldRequest != [FoldRequest defaultInstance]) {
-    result.foldRequest =
-      [[[FoldRequest builderWithPrototype:result.foldRequest] mergeFrom:value] buildPartial];
+- (GameMessage_Builder*) mergeFoldCardRequest:(FoldCardRequest*) value {
+  if (result.hasFoldCardRequest &&
+      result.foldCardRequest != [FoldCardRequest defaultInstance]) {
+    result.foldCardRequest =
+      [[[FoldCardRequest builderWithPrototype:result.foldCardRequest] mergeFrom:value] buildPartial];
   } else {
-    result.foldRequest = value;
+    result.foldCardRequest = value;
   }
-  result.hasFoldRequest = YES;
+  result.hasFoldCardRequest = YES;
   return self;
 }
-- (GameMessage_Builder*) clearFoldRequest {
-  result.hasFoldRequest = NO;
-  result.foldRequest = [FoldRequest defaultInstance];
+- (GameMessage_Builder*) clearFoldCardRequest {
+  result.hasFoldCardRequest = NO;
+  result.foldCardRequest = [FoldCardRequest defaultInstance];
   return self;
 }
-- (BOOL) hasFoldResponse {
-  return result.hasFoldResponse;
+- (BOOL) hasFoldCardResponse {
+  return result.hasFoldCardResponse;
 }
-- (FoldResponse*) foldResponse {
-  return result.foldResponse;
+- (FoldCardResponse*) foldCardResponse {
+  return result.foldCardResponse;
 }
-- (GameMessage_Builder*) setFoldResponse:(FoldResponse*) value {
-  result.hasFoldResponse = YES;
-  result.foldResponse = value;
+- (GameMessage_Builder*) setFoldCardResponse:(FoldCardResponse*) value {
+  result.hasFoldCardResponse = YES;
+  result.foldCardResponse = value;
   return self;
 }
-- (GameMessage_Builder*) setFoldResponseBuilder:(FoldResponse_Builder*) builderForValue {
-  return [self setFoldResponse:[builderForValue build]];
+- (GameMessage_Builder*) setFoldCardResponseBuilder:(FoldCardResponse_Builder*) builderForValue {
+  return [self setFoldCardResponse:[builderForValue build]];
 }
-- (GameMessage_Builder*) mergeFoldResponse:(FoldResponse*) value {
-  if (result.hasFoldResponse &&
-      result.foldResponse != [FoldResponse defaultInstance]) {
-    result.foldResponse =
-      [[[FoldResponse builderWithPrototype:result.foldResponse] mergeFrom:value] buildPartial];
+- (GameMessage_Builder*) mergeFoldCardResponse:(FoldCardResponse*) value {
+  if (result.hasFoldCardResponse &&
+      result.foldCardResponse != [FoldCardResponse defaultInstance]) {
+    result.foldCardResponse =
+      [[[FoldCardResponse builderWithPrototype:result.foldCardResponse] mergeFrom:value] buildPartial];
   } else {
-    result.foldResponse = value;
+    result.foldCardResponse = value;
   }
-  result.hasFoldResponse = YES;
+  result.hasFoldCardResponse = YES;
   return self;
 }
-- (GameMessage_Builder*) clearFoldResponse {
-  result.hasFoldResponse = NO;
-  result.foldResponse = [FoldResponse defaultInstance];
+- (GameMessage_Builder*) clearFoldCardResponse {
+  result.hasFoldCardResponse = NO;
+  result.foldCardResponse = [FoldCardResponse defaultInstance];
   return self;
 }
 - (BOOL) hasShowCardRequest {
