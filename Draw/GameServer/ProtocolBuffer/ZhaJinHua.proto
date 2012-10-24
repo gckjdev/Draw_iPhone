@@ -17,10 +17,10 @@ enum ZJHCardType{
 }
 
 enum ZJHUserState{
-  ZJH_ACTION_DEFAULT = 0;                     // 默认状态
-  ZJH_ACTION_COMPAIR_LOSE = 1;                // 和别人比牌失败
-  ZJH_ACTION_COMPAIR_CHECK_CARD = 2;          // 已经看牌
-  ZJH_ACTION_COMPAIR_FOLD = 3;                // 已经弃牌
+  ZJH_STATE_DEFAULT = 0;                     // 默认状态
+  ZJH_STATE_COMPAIR_LOSE = 1;                // 和别人比牌失败
+  ZJH_STATE_COMPAIR_CHECK_CARD = 2;          // 已经看牌
+  ZJH_STATE_COMPAIR_FOLD = 3;                // 已经弃牌
 }
 
 enum PBPokerRank{
@@ -62,17 +62,16 @@ message ZJHGameState{
   optional ZJHUserInfo userInfo = 6;        // 炸金花用户状态，用于旁观者
 }
 
-// User for standbyer
-message ZJHUserInfo{  
+message ZJHUserInfo{
   required string userId = 1;       // 用户Id
   repeated PBPoker pokers = 2;      // 用户的扑克牌
   
-  optional ZJHCardType type = 3  [default=ZJH_CARD_TYPE_HIGH_CARD];      // 牌类型
+  optional ZJHCardType type = 3  [default=ZJH_CARD_TYPE_HIGH_CARD];     // 牌类型
   
-  optional int32 userBet = 5;         // 用户下的总注
-  optional bool isCallingStation = 6 [default = false];         // 是否跟到底
-  optional ZJHUserState state = 7;          // 用户最近的状态
-  optional bool canBeCompared = 8;          // 能否被比牌
+  optional int32 userBet = 5;                                           // 用户下的总注
+  optional bool isCallingStation = 6 [default = false];                 // 是否跟到底
+  optional ZJHUserState state [default = ZJH_STATE_DEFAULT] = 7;        // 用户最近的状态
+  optional bool canBeCompared = 8 [default = true];                     // 能否被比牌
 }
 
 message ZJHGameResult{
