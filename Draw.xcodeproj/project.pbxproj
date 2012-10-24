@@ -96,6 +96,7 @@
 		A44B62221637870000A8045B /* ZJHNetworkClient.m in Sources */ = {isa = PBXBuildFile; fileRef = A44B62211637870000A8045B /* ZJHNetworkClient.m */; };
 		A44B6226163787F500A8045B /* ZJHGameController.m in Sources */ = {isa = PBXBuildFile; fileRef = A44B6224163787F500A8045B /* ZJHGameController.m */; };
 		A44B6227163787F500A8045B /* ZJHGameController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A44B6225163787F500A8045B /* ZJHGameController.xib */; };
+		A44B622A16379D4000A8045B /* ZJHUserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = A44B622916379D4000A8045B /* ZJHUserInfo.m */; };
 		A44DDF4115C64528005609F6 /* DiceShowView.m in Sources */ = {isa = PBXBuildFile; fileRef = A44DDF4015C64528005609F6 /* DiceShowView.m */; };
 		A44DDF4415C669E0005609F6 /* Dice.pb.m in Sources */ = {isa = PBXBuildFile; fileRef = A44DDF4315C669DF005609F6 /* Dice.pb.m */; };
 		A454CB6F1558F5CE00896761 /* ChatController.m in Sources */ = {isa = PBXBuildFile; fileRef = A454CB6D1558F5CE00896761 /* ChatController.m */; };
@@ -1274,6 +1275,8 @@
 		A44B6223163787F500A8045B /* ZJHGameController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJHGameController.h; sourceTree = "<group>"; };
 		A44B6224163787F500A8045B /* ZJHGameController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJHGameController.m; sourceTree = "<group>"; };
 		A44B6225163787F500A8045B /* ZJHGameController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZJHGameController.xib; sourceTree = "<group>"; };
+		A44B622816379D4000A8045B /* ZJHUserInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJHUserInfo.h; sourceTree = "<group>"; };
+		A44B622916379D4000A8045B /* ZJHUserInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJHUserInfo.m; sourceTree = "<group>"; };
 		A44DDF2A15C62B18005609F6 /* NotificationName.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NotificationName.h; sourceTree = "<group>"; };
 		A44DDF3F15C64528005609F6 /* DiceShowView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiceShowView.h; sourceTree = "<group>"; };
 		A44DDF4015C64528005609F6 /* DiceShowView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiceShowView.m; sourceTree = "<group>"; };
@@ -3439,6 +3442,8 @@
 			children = (
 				A4E787921636753F003557AD /* ZJHGameSession.h */,
 				A4E787931636753F003557AD /* ZJHGameSession.m */,
+				A44B622816379D4000A8045B /* ZJHUserInfo.h */,
+				A44B622916379D4000A8045B /* ZJHUserInfo.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -8222,6 +8227,7 @@
 				A44B621F163786D500A8045B /* ZJHGameService.m in Sources */,
 				A44B62221637870000A8045B /* ZJHNetworkClient.m in Sources */,
 				A44B6226163787F500A8045B /* ZJHGameController.m in Sources */,
+				A44B622A16379D4000A8045B /* ZJHUserInfo.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
