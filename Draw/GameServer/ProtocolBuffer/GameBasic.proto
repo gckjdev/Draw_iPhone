@@ -131,6 +131,12 @@ message PBMessageStat {
   
 }
 
+message PBUserResult {
+  required string userId = 1;
+  required bool win = 2;                    // 结果：false输，true赢
+  required int32 gainCoins = 5;             // 获得的金币
+}
+
 //message PBGameItem {
 //  required int32 itemId = 2;                    // 道具Id
 //}

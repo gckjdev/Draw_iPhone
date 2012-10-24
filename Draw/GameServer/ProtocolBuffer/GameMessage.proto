@@ -1,15 +1,15 @@
-
+import "GameConstants.proto";
 import "GameBasic.proto";
+
 import "Draw.proto";
 import "Dice.proto";
-import "GameConstants.proto";
+import "ZhaJinHua.proto";
 
 package game;
 
 option java_package = "com.orange.network.game.protocol.message";
 option java_outer_classname = "GameMessageProtos";
   
-
 message GetRoomsRequest {
   required string gameId = 2;                   // 游戏ID，比如你画我猜为：draw
   optional int32 roomType = 3;                  // 0表示所有房间，1表示好友房间
@@ -61,6 +61,7 @@ message UnRegisterRoomsNotificationResponse {
 
 }
 
+/********************* For dice  ***********************/
 
 message CallDiceRequest {
   optional int32 num = 10;                     
@@ -104,6 +105,57 @@ message UserDiceNotification {
   optional bool cleanAll = 2 [default=false];   // 是否清除之前的所有骰子
   optional bool isWild = 3 [default=false];     // 是否是斋
 }
+
+/************************* For ZhaJinHua *************************/
+
+enum BetType{
+  BET_TYPE_CALL = 1;        // 跟注
+  BET_TYPE_RAISE = 2;       // 加注
+}
+
+message BetRequest{
+  required int32 singleBet = 1;                               // 单注大小
+  required int32 count = 2 [default = 1];                     // 注数
+  optional bool  isCallStation = 3 [default = false];        // 是否跟到底
+}
+
+message BetResponse{
+}
+
+//enum ZJHCardAction{
+//  ZJH_CARD_ACTION_CHECK = 1;        // 看牌
+//  ZJH_CARD_ACTION_FOLD = 2;         // 弃牌
+//  ZJH_CARD_ACTION_SHOW = 3;         // 亮牌
+//  ZJH_CARD_ACTION_COMPARE = 4;      // 比牌
+//}
+
+message CheckCardRequest{
+}
+
+message CheckCardResponse{
+}
+  
+message FoldRequest{
+}
+ 
+message FoldResponse{
+}
+
+message ShowCardRequest{
+  repeated int32 cardIds = 1 [packed=true];
+}
+
+message ShowCardResponse{
+}
+  
+message CompareCardRequest{
+  required string userId = 1;  // 被比牌的用户
+}
+
+message CompareCardResponse{
+  required PBUserResult userResult = 2;   // 比牌结果
+}
+
 
 message JoinGameRequest {
   required string userId = 1;                    // 用户ID
@@ -197,6 +249,8 @@ message BetDiceResponse {
 
 message GameOverNotificationRequest {
   optional PBDiceGameResult gameResult = 1;
+  
+  repeated PBUserResult userResult = 2;         
 } 
   
 message GameOverNotificationResponse{
@@ -232,11 +286,10 @@ message SendDrawDataRequest {
 message SendDrawDataResponse{
 }
 
-//message GameStartNotification{                 // 游戏开始通知，用于服务器通知所有同一个会话里面的用户
-//  required int64 sessionId = 1;                // 游戏会话ID
-//  optional string userId = 2;                  // 接受请求的用户ID
-//  required string userSequence = 3;            // 用户游戏顺序
-//}
+// For zhajinhua
+message GameStartNotification{                 // 游戏开始通知，用于服务器通知所有同一个会话里面的用户
+    optional ZJHGameState zjhGameState = 11;
+}
 
 message GeneralNotification{                 
 
@@ -356,7 +409,26 @@ message GameMessage {
 
   optional UseItemRequest useItemRequest = 131;
   optional UseItemResponse useItemResponse = 132;  
+  
+  
+  // For Zhajinhua
+  optional BetRequest betRequest = 151;
+  optional BetResponse betResponse = 152;
+  
+  optional CheckCardRequest checkCardRequest = 153;
+  optional CheckCardResponse checkCardResponse =154;
+  
+  optional FoldRequest foldRequest = 155;
+  optional FoldResponse foldResponse = 156;
 
+  optional ShowCardRequest showCardRequest = 157;
+  optional ShowCardResponse showCardResponse = 158;
+  
+  optional CompareCardRequest compareCardRequest = 159;
+  optional CompareCardResponse compareCardResponse = 160;
+  
+  
+  // Normal
   optional int32 startOffset = 1000;        // 返回记录列表中的开始记录位置
   optional int32 maxCount = 1001;           // 返回记录的记录数目
   
