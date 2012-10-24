@@ -92,6 +92,10 @@
 		A43E85F916227E06003A57F1 /* UIButton+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = A43E85F016227E06003A57F1 /* UIButton+WebCache.m */; };
 		A43E85FA16227E06003A57F1 /* UIImageView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = A43E85F216227E06003A57F1 /* UIImageView+WebCache.m */; };
 		A44AD68D15CD149D001666AA /* MessageView.m in Sources */ = {isa = PBXBuildFile; fileRef = A44AD68C15CD149D001666AA /* MessageView.m */; };
+		A44B621F163786D500A8045B /* ZJHGameService.m in Sources */ = {isa = PBXBuildFile; fileRef = A44B621E163786D500A8045B /* ZJHGameService.m */; };
+		A44B62221637870000A8045B /* ZJHNetworkClient.m in Sources */ = {isa = PBXBuildFile; fileRef = A44B62211637870000A8045B /* ZJHNetworkClient.m */; };
+		A44B6226163787F500A8045B /* ZJHGameController.m in Sources */ = {isa = PBXBuildFile; fileRef = A44B6224163787F500A8045B /* ZJHGameController.m */; };
+		A44B6227163787F500A8045B /* ZJHGameController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A44B6225163787F500A8045B /* ZJHGameController.xib */; };
 		A44DDF4115C64528005609F6 /* DiceShowView.m in Sources */ = {isa = PBXBuildFile; fileRef = A44DDF4015C64528005609F6 /* DiceShowView.m */; };
 		A44DDF4415C669E0005609F6 /* Dice.pb.m in Sources */ = {isa = PBXBuildFile; fileRef = A44DDF4315C669DF005609F6 /* Dice.pb.m */; };
 		A454CB6F1558F5CE00896761 /* ChatController.m in Sources */ = {isa = PBXBuildFile; fileRef = A454CB6D1558F5CE00896761 /* ChatController.m */; };
@@ -1263,6 +1267,13 @@
 		A43E85F216227E06003A57F1 /* UIImageView+WebCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+WebCache.m"; sourceTree = "<group>"; };
 		A44AD68B15CD149C001666AA /* MessageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageView.h; sourceTree = "<group>"; };
 		A44AD68C15CD149D001666AA /* MessageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageView.m; sourceTree = "<group>"; };
+		A44B621D163786D500A8045B /* ZJHGameService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJHGameService.h; sourceTree = "<group>"; };
+		A44B621E163786D500A8045B /* ZJHGameService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJHGameService.m; sourceTree = "<group>"; };
+		A44B62201637870000A8045B /* ZJHNetworkClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJHNetworkClient.h; sourceTree = "<group>"; };
+		A44B62211637870000A8045B /* ZJHNetworkClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJHNetworkClient.m; sourceTree = "<group>"; };
+		A44B6223163787F500A8045B /* ZJHGameController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJHGameController.h; sourceTree = "<group>"; };
+		A44B6224163787F500A8045B /* ZJHGameController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJHGameController.m; sourceTree = "<group>"; };
+		A44B6225163787F500A8045B /* ZJHGameController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZJHGameController.xib; sourceTree = "<group>"; };
 		A44DDF2A15C62B18005609F6 /* NotificationName.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NotificationName.h; sourceTree = "<group>"; };
 		A44DDF3F15C64528005609F6 /* DiceShowView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiceShowView.h; sourceTree = "<group>"; };
 		A44DDF4015C64528005609F6 /* DiceShowView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiceShowView.m; sourceTree = "<group>"; };
@@ -3416,6 +3427,9 @@
 		A4E7877D16367338003557AD /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				A44B6223163787F500A8045B /* ZJHGameController.h */,
+				A44B6224163787F500A8045B /* ZJHGameController.m */,
+				A44B6225163787F500A8045B /* ZJHGameController.xib */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -3432,6 +3446,8 @@
 		A4E7877F16367338003557AD /* NetWork */ = {
 			isa = PBXGroup;
 			children = (
+				A44B62201637870000A8045B /* ZJHNetworkClient.h */,
+				A44B62211637870000A8045B /* ZJHNetworkClient.m */,
 			);
 			path = NetWork;
 			sourceTree = "<group>";
@@ -3439,6 +3455,8 @@
 		A4E7878016367338003557AD /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				A44B621D163786D500A8045B /* ZJHGameService.h */,
+				A44B621E163786D500A8045B /* ZJHGameService.m */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -7638,6 +7656,7 @@
 				CA56D43E1632E841005FE4AE /* pushMessage.mp3 in Resources */,
 				CA56D43F1632E841005FE4AE /* wrong.wav in Resources */,
 				A4E7876A16366FF8003557AD /* ZhaJinHua.proto in Resources */,
+				A44B6227163787F500A8045B /* ZJHGameController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -8200,6 +8219,9 @@
 				A45AA839162FC0150030D668 /* UIPlaceholderTextView.m in Sources */,
 				CA7ACA6C16367548001B273C /* ZhaJinHua.pb.m in Sources */,
 				A4E787941636753F003557AD /* ZJHGameSession.m in Sources */,
+				A44B621F163786D500A8045B /* ZJHGameService.m in Sources */,
+				A44B62221637870000A8045B /* ZJHNetworkClient.m in Sources */,
+				A44B6226163787F500A8045B /* ZJHGameController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
