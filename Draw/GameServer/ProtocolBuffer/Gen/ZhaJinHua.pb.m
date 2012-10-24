@@ -36,10 +36,10 @@ BOOL ZJHCardTypeIsValidValue(ZJHCardType value) {
 }
 BOOL ZJHUserStateIsValidValue(ZJHUserState value) {
   switch (value) {
-    case ZJHUserStateZjhActionDefault:
-    case ZJHUserStateZjhActionCompairLose:
-    case ZJHUserStateZjhActionCompairCheckCard:
-    case ZJHUserStateZjhActionCompairFold:
+    case ZJHUserStateZjhStateDefault:
+    case ZJHUserStateZjhStateCompairLose:
+    case ZJHUserStateZjhStateCompairCheckCard:
+    case ZJHUserStateZjhStateCompairFold:
       return YES;
     default:
       return NO;
@@ -750,8 +750,8 @@ static ZJHGameState* defaultZJHGameStateInstance = nil;
     self.type = ZJHCardTypeZjhCardTypeHighCard;
     self.userBet = 0;
     self.isCallingStation = NO;
-    self.state = ZJHUserStateZjhActionDefault;
-    self.canBeCompared = NO;
+    self.state = ZJHUserStateZjhStateDefault;
+    self.canBeCompared = YES;
   }
   return self;
 }
@@ -1106,7 +1106,7 @@ static ZJHUserInfo* defaultZJHUserInfoInstance = nil;
 }
 - (ZJHUserInfo_Builder*) clearState {
   result.hasState = NO;
-  result.state = ZJHUserStateZjhActionDefault;
+  result.state = ZJHUserStateZjhStateDefault;
   return self;
 }
 - (BOOL) hasCanBeCompared {
@@ -1122,7 +1122,7 @@ static ZJHUserInfo* defaultZJHUserInfoInstance = nil;
 }
 - (ZJHUserInfo_Builder*) clearCanBeCompared {
   result.hasCanBeCompared = NO;
-  result.canBeCompared = NO;
+  result.canBeCompared = YES;
   return self;
 }
 @end

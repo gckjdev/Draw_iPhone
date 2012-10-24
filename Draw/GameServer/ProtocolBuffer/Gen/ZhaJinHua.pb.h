@@ -43,10 +43,10 @@ typedef enum {
 BOOL ZJHCardTypeIsValidValue(ZJHCardType value);
 
 typedef enum {
-  ZJHUserStateZjhActionDefault = 0,
-  ZJHUserStateZjhActionCompairLose = 1,
-  ZJHUserStateZjhActionCompairCheckCard = 2,
-  ZJHUserStateZjhActionCompairFold = 3,
+  ZJHUserStateZjhStateDefault = 0,
+  ZJHUserStateZjhStateCompairLose = 1,
+  ZJHUserStateZjhStateCompairCheckCard = 2,
+  ZJHUserStateZjhStateCompairFold = 3,
 } ZJHUserState;
 
 BOOL ZJHUserStateIsValidValue(ZJHUserState value);
