@@ -64,14 +64,14 @@ BOOL GameCommandTypeIsValidValue(GameCommandType value) {
     case GameCommandTypeUseItemResponse:
     case GameCommandTypeBetRequest:
     case GameCommandTypeBetResponse:
-    case GameCommandTypeCheckCardNotificationRequest:
-    case GameCommandTypeCheckCardNotificationResponse:
-    case GameCommandTypeFoldNotificationRequest:
-    case GameCommandTypeFoldNotificationResponse:
-    case GameCommandTypeShowCardNotificationRequest:
-    case GameCommandTypeShowCardNotificationResponse:
-    case GameCommandTypeCompareCardNotificationRequest:
-    case GameCommandTypeCompareCardNotificationResponse:
+    case GameCommandTypeCheckCardRequest:
+    case GameCommandTypeCheckCardResponse:
+    case GameCommandTypeFoldCardRequest:
+    case GameCommandTypeFoldCardResponse:
+    case GameCommandTypeShowCardRequest:
+    case GameCommandTypeShowCardResponse:
+    case GameCommandTypeCompareCardRequest:
+    case GameCommandTypeCompareCardResponse:
     case GameCommandTypeUserJoinNotificationRequest:
     case GameCommandTypeUserJoinNotificationResponse:
     case GameCommandTypeUserQuitNotificationRequest:

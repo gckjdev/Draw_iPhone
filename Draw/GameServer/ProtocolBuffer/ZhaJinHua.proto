@@ -6,21 +6,22 @@ package game;
 option java_package = "com.orange.network.game.protocol.model";
 option java_outer_classname = "ZhaJinHuaProtos";
 
-enum ZJHCardType{
-  ZJH_CARD_TYPE_HIGH_CARD = 1;              // 散牌
-  ZJH_CARD_TYPE_PAIR = 2;                   // 对子
-  ZJH_CARD_TYPE_STRAIGHT = 3;               // 顺子
-  ZJH_CARD_TYPE_FLUSH = 4;                  // 金花
-  ZJH_CARD_TYPE_STRAIGHT_FLUSH = 5;         // 顺金
-  ZJH_CARD_TYPE_THREE_OF_A_KIND = 6;        // 豹子
-  ZJH_CARD_TYPE_SPECIAL = 7;                // 特殊
+enum PBZJHCardType{
+  UNKNOW = 0;                 // 未知
+  HIGH_CARD = 1;              // 散牌
+  PAIR = 2;                   // 对子
+  STRAIGHT = 3;               // 顺子
+  FLUSH = 4;                  // 金花
+  STRAIGHT_FLUSH = 5;         // 顺金
+  THREE_OF_A_KIND = 6;        // 豹子
+  SPECIAL = 7;                // 特殊
 }
 
-enum ZJHUserState{
-  ZJH_ACTION_DEFAULT = 0;                     // 默认状态
-  ZJH_ACTION_COMPAIR_LOSE = 1;                // 和别人比牌失败
-  ZJH_ACTION_COMPAIR_CHECK_CARD = 2;          // 已经看牌
-  ZJH_ACTION_COMPAIR_FOLD = 3;                // 已经弃牌
+enum PBZJHUserState{
+  DEFAULT = 0;                    // 默认状态
+  CHECK_CARD = 1;                 // 已经看牌
+  FOLD_CARD = 2;                  // 已经弃牌
+  COMPAIR_LOSE = 3;               // 和别人比牌失败
 }
 
 enum PBPokerRank{
@@ -55,27 +56,26 @@ message PBPoker{
   optional bool faceUp = 5 [default = false];               // 牌面是否朝上
 }
 
-message ZJHGameState{
-  required int32 totalBet = 1;        // 游戏总注
-  required int32 singleBet = 2;       // 游戏单注
+message PBZJHGameState{
+  required int32 totalBet = 1;              // 游戏总注
+  required int32 singleBet = 2;             // 游戏单注
   
-  optional ZJHUserInfo userInfo = 6;        // 炸金花用户状态，用于旁观者
+  repeated PBZJHUserInfo usersInfo = 6;        // 炸金花所有用户状态，用于旁观者
 }
 
-// User for standbyer
-message ZJHUserInfo{  
+message PBZJHUserInfo{
   required string userId = 1;       // 用户Id
   repeated PBPoker pokers = 2;      // 用户的扑克牌
   
-  optional ZJHCardType type = 3  [default=ZJH_CARD_TYPE_HIGH_CARD];      // 牌类型
+  optional PBZJHCardType cardType = 3  [default = UNKNOW];   // 牌类型
   
-  optional int32 userBet = 5;         // 用户下的总注
-  optional bool isCallingStation = 6 [default = false];         // 是否跟到底
-  optional ZJHUserState state = 7;          // 用户最近的状态
-  optional bool canBeCompared = 8;          // 能否被比牌
+  optional int32 totalBet = 5;                                              // 用户下的总注
+  optional bool isAutoBet = 6 [default = false];                            // 是否自动跟
+  optional PBZJHUserState userState = 7 [default = DEFAULT];                // 用户最近的状态
+  optional bool canBeCompared = 8 [default = true];                         // 能否被比牌
 }
 
-message ZJHGameResult{
+message PBZJHGameResult{
   repeated PBUserResult userResult = 2;
 }
 

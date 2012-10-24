@@ -18,7 +18,7 @@
 
 @interface CommonGameNetworkClient : CommonNetworkClient<CommonNetworkClientDelegate>
 {
-    int _messageIdIndex;    
+    int _messageIdIndex;
 }
 
 + (CommonGameNetworkClient*)defaultInstance;
@@ -83,4 +83,6 @@
                   expressionId:(NSString *)expressionId
                      sessionId:(int)sessionId
                         userId:(NSString *)userId;
+
+
 @end
