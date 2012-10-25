@@ -12,6 +12,8 @@
 @class UserManager;
 @class LevelService;
 @class AudioManager;
+@class ZJHImageManager;
+@class AccountService;
 
 typedef enum {
     GamePositionLeftTop = 0,
@@ -26,6 +28,8 @@ typedef enum {
     LevelService    *_levelService;
     UserManager     *_userManager;
     AudioManager    *_audioManager;
+    AccountService  *_accountService;
+    ZJHImageManager *_imageManager;
 }
 
 @end
