@@ -141,8 +141,6 @@ static ZJHGameService *_defaultService;
     
     [_gameState userInfo:message.userId].totalBet += message.betRequest.singleBet * message.betRequest.count;
     [_gameState userInfo:message.userId].isAutoBet = message.betRequest.isAutoBet;
-    
-    [_gameState userInfo:message.userId].lastAction = 
 }
 
 - (void)handleBetDiceRequest:(GameMessage *)message

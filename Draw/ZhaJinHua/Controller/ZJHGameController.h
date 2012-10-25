@@ -15,7 +15,6 @@
 @class ZJHImageManager;
 @class AccountService;
 
-
 typedef enum {
     UserPositionLeftTop = 0,
     UserPositionLeft,
