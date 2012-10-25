@@ -13,8 +13,6 @@
 @class LevelService;
 @class AudioManager;
 
-
-
 typedef enum {
     GamePositionLeftTop = 0,
     GamePositionLeft,
