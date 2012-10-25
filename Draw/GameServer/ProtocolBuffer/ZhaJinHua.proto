@@ -64,7 +64,7 @@ message PBZJHGameState{
   required int32 totalBet = 1;              // 游戏总注
   required int32 singleBet = 2;             // 游戏单注
   
-  repeated PBZJHUserInfo usersInfo = 6;        // 炸金花所有用户状态，用于旁观者
+  repeated PBZJHUserInfo usersInfo = 6;     // 炸金花所有用户状态，用于旁观者
 }
 
 message PBZJHUserInfo{

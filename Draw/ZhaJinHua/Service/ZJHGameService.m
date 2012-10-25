@@ -9,14 +9,20 @@
 #import "ZJHGameService.h"
 #import "GameApp.h"
 #import "CommonGameNetworkClient+ZJHNetworkExtend.h"
+#import "GameMessage.pb.h"
+#import "CommonGameSession.h"
 
 static ZJHGameService *_defaultService;
 
 @interface ZJHGameService ()
 
+@property (readwrite, retain, nonatomic) ZJHGameState *gameState;
+
 @end
 
 @implementation ZJHGameService
+
+@synthesize gameState = _gameState;
 
 #pragma mark - life cycle
 
@@ -41,61 +47,56 @@ static ZJHGameService *_defaultService;
 
 #pragma mark - public methods
 
-- (ZJHGameSession *)ZJHGameSession
-{
-    return (ZJHGameSession *)self.session;
-}
-
 - (void)bet
 {
     [_networkClient sendBetRequest:self.userId
-                         sessionId:[[self ZJHGameSession] sessionId]
-                         singleBet:[[self ZJHGameSession] singleBet]
-                             count:[[self ZJHGameSession] betCountOfUser:self.userId]
+                         sessionId:self.session.sessionId
+                         singleBet:_gameState.singleBet
+                             count:[_gameState betCountOfUser:self.userId]
                          isAutoBet:FALSE];
 }
 
 - (void)raiseBet:(int)singleBet
 {
     [_networkClient sendBetRequest:self.userId
-                         sessionId:[[self ZJHGameSession] sessionId]
+                         sessionId:self.session.sessionId
                          singleBet:singleBet
-                             count:[[self ZJHGameSession] betCountOfUser:self.userId]
+                             count:[_gameState betCountOfUser:self.userId]
                          isAutoBet:FALSE];
 }
 
 - (void)autoBet
 {
     [_networkClient sendBetRequest:self.userId
-                         sessionId:[[self ZJHGameSession] sessionId]
-                         singleBet:[[self ZJHGameSession] singleBet]
-                             count:[[self ZJHGameSession] betCountOfUser:self.userId]
+                         sessionId:self.session.sessionId
+                         singleBet:[_gameState singleBet]
+                             count:[_gameState betCountOfUser:self.userId]
                          isAutoBet:TRUE];
 }
 
 - (void)checkCard
 {
     [_networkClient sendCheckCardRequest:self.userId
-                               sessionId:[[self ZJHGameSession] sessionId]];
+                               sessionId:self.session.sessionId];
 }
 
 - (void)foldCard
 {
     [_networkClient sendFoldCardRequest:self.userId
-                              sessionId:[[self ZJHGameSession] sessionId]];
+                              sessionId:self.session.sessionId];
 }
 
 - (void)compareCard:(NSString*)toUserId
 {
     [_networkClient sendCompareCardRequest:self.userId
-                                 sessionId:[[self ZJHGameSession] sessionId]
+                                 sessionId:self.session.sessionId
                                   toUserId:toUserId];
 }
 
 - (void)showCard:(NSArray *)cardIds
 {
     [_networkClient sendShowCardRequest:self.userId
-                              sessionId:[[self ZJHGameSession] sessionId]
+                              sessionId:self.session.sessionId
                                 cardIds:cardIds];
 }
 
@@ -104,24 +105,37 @@ static ZJHGameService *_defaultService;
              count:(int)count
          isAutoBet:(BOOL)isAutoBet
 {
-    [self ZJHGameSession].totalBet += singleBet * count;
-    [self ZJHGameSession].singleBet = singleBet;
+    _gameState.totalBet += singleBet * count;
+    _gameState.singleBet = singleBet;
     
-    [[self ZJHGameSession] userInfo:userId].totalBet += singleBet * count;
-    [[self ZJHGameSession] userInfo:userId].isAutoBet = isAutoBet;
+    [_gameState userInfo:userId].totalBet += singleBet * count;
+    [_gameState userInfo:userId].isAutoBet = isAutoBet;
 }
 
 
 #pragma mark - overwrite methods
 
-- (CommonGameSession *)createSession
-{
-    return [[[ZJHGameSession alloc] init] autorelease];
-}
-
 - (void)handleCustomMessage:(GameMessage*)message
 {
+    
 }
+
+- (void)handleJoinGameResponse:(GameMessage*)message
+{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        if ([message resultCode] == 0){
+            PBGameSession* pbSession = [[message joinGameResponse] gameSession];
+            self.session = [self createSession];
+            [self.session fromPBGameSession:pbSession userId:self.userId];
+            
+            self.gameState = [[[ZJHGameState alloc] init] autorelease];
+            [_gameState fromPBZJHGameState:[[message joinGameResponse] zjhGameState]];
+        }
+        
+        [self postNotification:NOTIFICATION_JOIN_GAME_RESPONSE message:message];
+    });
+}
+
 
 
 

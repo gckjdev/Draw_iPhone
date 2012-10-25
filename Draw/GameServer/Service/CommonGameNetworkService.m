@@ -183,6 +183,11 @@
 
 #pragma mark - Handle Game Message
 
+- (void)handleGameStartNotificationRequest:(GameMessage*)message
+{
+    
+}
+
 - (void)handleGetRoomsResponse:(GameMessage*)message
 {
     // save room into _roomList and fire the notification
@@ -212,19 +217,17 @@
 
             // TODO update online user
             
-            // [self updateOnlineUserCount:message];
-            
         }
         
         [self postNotification:NOTIFICATION_JOIN_GAME_RESPONSE message:message];
     });
 }
 
-- (void)handleRoomNotification:(GameMessage*)message
+- (void)handleRoomNotificationRequest:(GameMessage*)message
 {
     dispatch_async(dispatch_get_main_queue(), ^{ 
         
-        PPDebug(@"<handleRoomNotification> handle room nitification");
+        PPDebug(@"<handleRoomNotificationRequest> handle room nitification");
         RoomNotificationRequest* notification = [message roomNotificationRequest];
         
         if ([notification sessionsChangedList]){
@@ -275,6 +278,10 @@
 - (void)handleData:(GameMessage*)message
 {
     switch ([message command]){
+        case GameCommandTypeGameStartNotificationRequest:
+            [self handleGameStartNotificationRequest];
+            break;
+            
         case GameCommandTypeGetRoomsResponse:
             [self handleGetRoomsResponse:message];
             break;
@@ -284,7 +291,7 @@
             break;
             
         case GameCommandTypeRoomNotificationRequest:
-            [self handleRoomNotification:message];
+            [self handleRoomNotificationRequest:message];
             break;
             
         case GameCommandTypeCreateRoomResponse:
@@ -391,27 +398,10 @@
                               sessionId:sessionId];
 }
 
-//- (void)joinGameRequest:(long)sessionId ruleType:(int)ruleType
-//{
-//    PPDebug(@"[SEND] JoinGameRequest");
-//    PBGameUser* user = [[UserManager defaultManager] toPBGameUser];
-//    [_networkClient sendJoinGameRequest:user
-//                                 gameId:_gameId 
-//                              sessionId:sessionId 
-//                               ruleType:ruleType];
-//}
-
-
-
-
-
-
-
 
 - (CommonGameSession*)createSession
-{    
-    PPDebug(@"<createSession> NOT IMPLEMENTED YET");
-    return nil;
+{
+    return [[[CommonGameSession alloc] init] autorelease];
 }
 
 - (void)createRoomWithName:(NSString*)name 
@@ -422,17 +412,6 @@
                                    gameId:_gameId 
                                  password:password];
 }
-
-//- (void)createRoomWithName:(NSString*)name 
-//                  password:(NSString *)password
-//                  ruleType:(int)ruleType
-//{
-//    [_networkClient sendCreateRoomRequest:[[UserManager defaultManager] toPBGameUser] 
-//                                     name:name 
-//                                   gameId:_gameId 
-//                                 password:password
-//                                 ruleType:ruleType];
-//}
 
 - (void)registerRoomsNotification:(NSArray*)sessionIdList
 {

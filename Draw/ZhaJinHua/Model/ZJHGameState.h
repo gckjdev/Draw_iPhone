@@ -1,19 +1,20 @@
 //
-//  ZJHGameSession.h
+//  ZJHGameState.h
 //  Draw
 //
 //  Created by 王 小涛 on 12-10-23.
 //
 //
-
-#import "CommonGameSession.h"
+#import <Foundation/Foundation.h>
 #import "ZJHUserInfo.h"
 
-@interface ZJHGameSession : CommonGameSession
+@interface ZJHGameState : NSObject
 
 @property (assign, nonatomic) int totalBet;
 @property (assign, nonatomic) int singleBet;
 @property (assign, nonatomic) int myTurnTimes;
+
+- (ZJHGameState *)fromPBZJHGameState:(PBZJHGameState *)gameState;
 
 - (ZJHUserInfo *)userInfo:(NSString *)userId;
 

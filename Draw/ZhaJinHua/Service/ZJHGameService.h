@@ -7,13 +7,13 @@
 //
 
 #import "CommonGameNetworkService.h"
-#import "ZJHGameSession.h"
+#import "ZJHGameState.h"
 
 @interface ZJHGameService : CommonGameNetworkService
 
-+ (ZJHGameService*)defaultService;
+@property (readonly, retain, nonatomic) ZJHGameState *gameState;
 
-- (ZJHGameSession *)ZJHGameSession;
++ (ZJHGameService*)defaultService;
 
 - (void)bet;                                    // 跟注
 - (void)raiseBet;                               // 加注

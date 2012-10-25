@@ -1820,10 +1820,14 @@ BOOL BetTypeIsValidValue(BetType value);
 @interface JoinGameResponse : PBGeneratedMessage {
 @private
   BOOL hasGameSession_:1;
+  BOOL hasZjhGameState_:1;
   PBGameSession* gameSession;
+  PBZJHGameState* zjhGameState;
 }
 - (BOOL) hasGameSession;
+- (BOOL) hasZjhGameState;
 @property (readonly, retain) PBGameSession* gameSession;
+@property (readonly, retain) PBZJHGameState* zjhGameState;
 
 + (JoinGameResponse*) defaultInstance;
 - (JoinGameResponse*) defaultInstance;
@@ -1865,6 +1869,13 @@ BOOL BetTypeIsValidValue(BetType value);
 - (JoinGameResponse_Builder*) setGameSessionBuilder:(PBGameSession_Builder*) builderForValue;
 - (JoinGameResponse_Builder*) mergeGameSession:(PBGameSession*) value;
 - (JoinGameResponse_Builder*) clearGameSession;
+
+- (BOOL) hasZjhGameState;
+- (PBZJHGameState*) zjhGameState;
+- (JoinGameResponse_Builder*) setZjhGameState:(PBZJHGameState*) value;
+- (JoinGameResponse_Builder*) setZjhGameStateBuilder:(PBZJHGameState_Builder*) builderForValue;
+- (JoinGameResponse_Builder*) mergeZjhGameState:(PBZJHGameState*) value;
+- (JoinGameResponse_Builder*) clearZjhGameState;
 @end
 
 @interface StartGameRequest : PBGeneratedMessage {

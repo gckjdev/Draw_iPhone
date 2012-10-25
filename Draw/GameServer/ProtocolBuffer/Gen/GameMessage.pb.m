@@ -6641,6 +6641,7 @@ static JoinGameRequest* defaultJoinGameRequestInstance = nil;
 
 @interface JoinGameResponse ()
 @property (retain) PBGameSession* gameSession;
+@property (retain) PBZJHGameState* zjhGameState;
 @end
 
 @implementation JoinGameResponse
@@ -6652,13 +6653,22 @@ static JoinGameRequest* defaultJoinGameRequestInstance = nil;
   hasGameSession_ = !!value;
 }
 @synthesize gameSession;
+- (BOOL) hasZjhGameState {
+  return !!hasZjhGameState_;
+}
+- (void) setHasZjhGameState:(BOOL) value {
+  hasZjhGameState_ = !!value;
+}
+@synthesize zjhGameState;
 - (void) dealloc {
   self.gameSession = nil;
+  self.zjhGameState = nil;
   [super dealloc];
 }
 - (id) init {
   if ((self = [super init])) {
     self.gameSession = [PBGameSession defaultInstance];
+    self.zjhGameState = [PBZJHGameState defaultInstance];
   }
   return self;
 }
@@ -6681,11 +6691,19 @@ static JoinGameResponse* defaultJoinGameResponseInstance = nil;
   if (!self.gameSession.isInitialized) {
     return NO;
   }
+  if (self.hasZjhGameState) {
+    if (!self.zjhGameState.isInitialized) {
+      return NO;
+    }
+  }
   return YES;
 }
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
   if (self.hasGameSession) {
     [output writeMessage:1 value:self.gameSession];
+  }
+  if (self.hasZjhGameState) {
+    [output writeMessage:11 value:self.zjhGameState];
   }
   [self.unknownFields writeToCodedOutputStream:output];
 }
@@ -6698,6 +6716,9 @@ static JoinGameResponse* defaultJoinGameResponseInstance = nil;
   size = 0;
   if (self.hasGameSession) {
     size += computeMessageSize(1, self.gameSession);
+  }
+  if (self.hasZjhGameState) {
+    size += computeMessageSize(11, self.zjhGameState);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -6777,6 +6798,9 @@ static JoinGameResponse* defaultJoinGameResponseInstance = nil;
   if (other.hasGameSession) {
     [self mergeGameSession:other.gameSession];
   }
+  if (other.hasZjhGameState) {
+    [self mergeZjhGameState:other.zjhGameState];
+  }
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }
@@ -6805,6 +6829,15 @@ static JoinGameResponse* defaultJoinGameResponseInstance = nil;
         }
         [input readMessage:subBuilder extensionRegistry:extensionRegistry];
         [self setGameSession:[subBuilder buildPartial]];
+        break;
+      }
+      case 90: {
+        PBZJHGameState_Builder* subBuilder = [PBZJHGameState builder];
+        if (self.hasZjhGameState) {
+          [subBuilder mergeFrom:self.zjhGameState];
+        }
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self setZjhGameState:[subBuilder buildPartial]];
         break;
       }
     }
@@ -6838,6 +6871,36 @@ static JoinGameResponse* defaultJoinGameResponseInstance = nil;
 - (JoinGameResponse_Builder*) clearGameSession {
   result.hasGameSession = NO;
   result.gameSession = [PBGameSession defaultInstance];
+  return self;
+}
+- (BOOL) hasZjhGameState {
+  return result.hasZjhGameState;
+}
+- (PBZJHGameState*) zjhGameState {
+  return result.zjhGameState;
+}
+- (JoinGameResponse_Builder*) setZjhGameState:(PBZJHGameState*) value {
+  result.hasZjhGameState = YES;
+  result.zjhGameState = value;
+  return self;
+}
+- (JoinGameResponse_Builder*) setZjhGameStateBuilder:(PBZJHGameState_Builder*) builderForValue {
+  return [self setZjhGameState:[builderForValue build]];
+}
+- (JoinGameResponse_Builder*) mergeZjhGameState:(PBZJHGameState*) value {
+  if (result.hasZjhGameState &&
+      result.zjhGameState != [PBZJHGameState defaultInstance]) {
+    result.zjhGameState =
+      [[[PBZJHGameState builderWithPrototype:result.zjhGameState] mergeFrom:value] buildPartial];
+  } else {
+    result.zjhGameState = value;
+  }
+  result.hasZjhGameState = YES;
+  return self;
+}
+- (JoinGameResponse_Builder*) clearZjhGameState {
+  result.hasZjhGameState = NO;
+  result.zjhGameState = [PBZJHGameState defaultInstance];
   return self;
 }
 @end

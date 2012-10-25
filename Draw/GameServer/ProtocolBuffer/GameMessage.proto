@@ -176,6 +176,7 @@ message JoinGameRequest {
 
 message JoinGameResponse {
   required PBGameSession gameSession = 1;
+  optional PBZJHGameState zjhGameState = 11;
 }
 
 //message ChangeRoomRequest {                     // 更换房间请求

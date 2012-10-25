@@ -35,28 +35,21 @@
     [super dealloc];
 }
 
-- (id)initWithPBZJHUserInfo:(PBZJHUserInfo *)pbZJHUserInfo
+- (ZJHUserInfo *)fromPBZJHUserInfo:(PBZJHUserInfo *)pbZJHUserInfo
 {
-    if (self = [super init]) {
-        self.userId = pbZJHUserInfo.userId;
-        self.pokers = [self pokersFormPBPokers:pbZJHUserInfo.pokersList];
-        self.cardType = pbZJHUserInfo.cardType;
-        self.totalBet = pbZJHUserInfo.totalBet;
-        self.isAutoBet = pbZJHUserInfo.isAutoBet;
-        self.lastAction = pbZJHUserInfo.lastAction;
-        
-        self.alreadCheckCard = FALSE;
-        self.alreadFoldCard = FALSE;
-        self.alreadShowCard = FALSE;
-        self.alreadLose = FALSE;
-    }
+    self.userId = pbZJHUserInfo.userId;
+    self.pokers = [self pokersFormPBPokers:pbZJHUserInfo.pokersList];
+    self.cardType = pbZJHUserInfo.cardType;
+    self.totalBet = pbZJHUserInfo.totalBet;
+    self.isAutoBet = pbZJHUserInfo.isAutoBet;
+    self.lastAction = pbZJHUserInfo.lastAction;
+    
+    self.alreadCheckCard = FALSE;
+    self.alreadFoldCard = FALSE;
+    self.alreadShowCard = FALSE;
+    self.alreadLose = FALSE;
     
     return self;
-}
-
-+ (ZJHUserInfo *)userInfoFromPBZJHUserInfo:(PBZJHUserInfo *)pbZJHUserInfo
-{
-    return [[[ZJHUserInfo alloc] initWithPBZJHUserInfo:pbZJHUserInfo] autorelease];
 }
 
 #pragma make - Publik methods
