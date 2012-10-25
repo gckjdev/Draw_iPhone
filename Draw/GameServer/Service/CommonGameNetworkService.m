@@ -277,7 +277,8 @@
     switch ([message command]){
         case GameCommandTypeGetRoomsResponse:
             [self handleGetRoomsResponse:message];
-            break;        
+            break;
+            
         case GameCommandTypeJoinGameResponse:
             [self handleJoinGameResponse:message];
             break;
@@ -285,6 +286,7 @@
         case GameCommandTypeRoomNotificationRequest:
             [self handleRoomNotification:message];
             break;
+            
         case GameCommandTypeCreateRoomResponse:
             [self handleCreateRoomResponse:message];
             break;

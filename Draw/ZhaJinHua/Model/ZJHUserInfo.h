@@ -10,6 +10,8 @@
 #import "ZhaJinHua.pb.h"
 #import "Poker.h"
 
+#define ZJH_NUM_POKER_PER_USER 3
+
 @interface ZJHUserInfo : NSObject
 
 @property (readonly, copy, nonatomic) NSString *userId;
@@ -17,17 +19,20 @@
 @property (assign, nonatomic) PBZJHCardType cardType;
 @property (assign, nonatomic) int totalBet;
 @property (assign, nonatomic) BOOL isAutoBet;
-@property (assign, nonatomic) PBZJHUserState userState;
-@property (assign, nonatomic) BOOL canBeCompared;
+@property (assign, nonatomic) PBZJHUserAction lastAction;
 
-@property (assign, nonatomic) BOOL alreadChecked;
-@property (assign, nonatomic) BOOL alreadFold;
-@property (assign, nonatomic) BOOL ;
+@property (assign, nonatomic) BOOL alreadCheckCard;
+@property (assign, nonatomic) BOOL alreadFoldCard;
+@property (assign, nonatomic) BOOL alreadShowCard;
+@property (assign, nonatomic) BOOL alreadLose;
 
 + (ZJHUserInfo *)userInfoFromPBZJHUserInfo:(PBZJHUserInfo *)pbZJHUserInfo;
 
-- (void)reset;
 - (void)setPokerFaceUp:(int)pokerId;
 - (Poker *)poker:(int)pokerId;
+- (int)betCount;
+
+- (BOOL)canBeCompare;
+- (BOOL)hasShield;
 
 @end

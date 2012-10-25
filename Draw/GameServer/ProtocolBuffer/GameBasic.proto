@@ -48,9 +48,7 @@ message PBGameSession {
   optional string nextPlayUserId = 9;           // 下一个要轮到的用户（如画画的用户）     
   optional string password = 10;                // 房间密码（为空表示没有密码）
   
-  
   optional int32 ruleType = 11 [default=0];     // 游戏规则类型，不同游戏不同，大话骰参照DiceGameRuleType定义
-     
   repeated PBGameUser users = 50;               // 用户列表
 }
 

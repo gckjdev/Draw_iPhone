@@ -4095,7 +4095,7 @@ static BetRequest* defaultBetRequestInstance = nil;
     [output writeInt32:2 value:self.count];
   }
   if (self.hasIsAutoBet) {
-    [output writeBool:3 value:self.isAutoBet];
+    [output writeBool:4 value:self.isAutoBet];
   }
   [self.unknownFields writeToCodedOutputStream:output];
 }
@@ -4113,7 +4113,7 @@ static BetRequest* defaultBetRequestInstance = nil;
     size += computeInt32Size(2, self.count);
   }
   if (self.hasIsAutoBet) {
-    size += computeBoolSize(3, self.isAutoBet);
+    size += computeBoolSize(4, self.isAutoBet);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -4228,7 +4228,7 @@ static BetRequest* defaultBetRequestInstance = nil;
         [self setCount:[input readInt32]];
         break;
       }
-      case 24: {
+      case 32: {
         [self setIsAutoBet:[input readBool]];
         break;
       }

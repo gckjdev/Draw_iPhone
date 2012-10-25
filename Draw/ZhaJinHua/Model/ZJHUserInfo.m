@@ -20,8 +20,11 @@
 @synthesize cardType = _cardType;
 @synthesize totalBet = _totalBet;
 @synthesize isAutoBet = _isAutoBet;
-@synthesize userState = _userState;
-@synthesize canBeCompared = _canBeCompared;
+@synthesize lastAction = _lastAction;
+
+@synthesize alreadCheckCard = _alreadCheckCard;
+@synthesize alreadFoldCard = _alreadFoldCard;
+@synthesize alreadShowCard = _alreadShowCard;
 
 #pragma mark - Life cycle
 
@@ -40,8 +43,12 @@
         self.cardType = pbZJHUserInfo.cardType;
         self.totalBet = pbZJHUserInfo.totalBet;
         self.isAutoBet = pbZJHUserInfo.isAutoBet;
-        self.userState = pbZJHUserInfo.userState;
-        self.canBeCompared = pbZJHUserInfo.canBeCompared;
+        self.lastAction = pbZJHUserInfo.lastAction;
+        
+        self.alreadCheckCard = FALSE;
+        self.alreadFoldCard = FALSE;
+        self.alreadShowCard = FALSE;
+        self.alreadLose = FALSE;
     }
     
     return self;
@@ -54,16 +61,6 @@
 
 #pragma make - Publik methods
 
-- (void)reset
-{
-    self.pokers = nil;
-    self.cardType = PBZJHCardTypeUnknow;
-    self.totalBet = 0;
-    self.isAutoBet = FALSE;
-    self.userState = PBZJHUserStateDefault;
-    self.canBeCompared = FALSE;
-}
-
 - (void)setPokerFaceUp:(int)pokerId
 {
     Poker *poker = [self poker:pokerId];
@@ -72,10 +69,43 @@
 
 - (int)betCount
 {
-    if (_userState != PBZJHUserStateCheckCard) {
+    if (!_alreadCheckCard) {
         return 1;
     }
     
+    if ([[self faceUpPokers] count] == [_pokers count]) {
+        return 1;
+    }
+    
+    return 2;
+}
+
+- (BOOL)canBeCompare
+{
+    if (_alreadFoldCard || _alreadLose) {
+        return NO;
+    }
+    
+    if (_lastAction == PBZJHUserActionShowCard
+        && [[self faceUpPokers] count] < [_pokers count]) {
+        return NO;
+    }
+    
+    return YES;
+}
+
+- (BOOL)hasShield
+{
+    if (_alreadFoldCard || _alreadLose) {
+        return NO;
+    }
+    
+    if (_lastAction == PBZJHUserActionShowCard
+        && [[self faceUpPokers] count] < [_pokers count]) {
+        return YES;
+    }
+    
+    return NO;
 }
 
 #pragma make - Private methods
@@ -93,13 +123,14 @@
 
 - (NSArray *)pokersFormPBPokers:(NSArray *)pbPokers
 {
-    if (pbPokers == nil) {
+    if ([pbPokers count] < ZJH_NUM_POKER_PER_USER) {
+        PPDebug(@"WARNNING: pbPokers count less than %d", ZJH_NUM_POKER_PER_USER);
         return nil;
     }
     
-    NSMutableArray *pokers = [NSMutableArray arrayWithCapacity:[pbPokers count]];
+    NSMutableArray *pokers = [NSMutableArray arrayWithCapacity:ZJH_NUM_POKER_PER_USER];
     
-    for (int i = 0; i < [pbPokers count]; i ++) {
+    for (int i = 0; i < ZJH_NUM_POKER_PER_USER; i ++) {
         [pokers addObject:[Poker pokerFromPBPoker:[pbPokers objectAtIndex:i]]];
     }
     
@@ -118,6 +149,5 @@
     
     return pokers;
 }
-
 
 @end

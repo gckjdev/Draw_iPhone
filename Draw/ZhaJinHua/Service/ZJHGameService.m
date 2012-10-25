@@ -9,7 +9,6 @@
 #import "ZJHGameService.h"
 #import "GameApp.h"
 #import "CommonGameNetworkClient+ZJHNetworkExtend.h"
-#import "ZJHGameSession.h"
 
 static ZJHGameService *_defaultService;
 
@@ -40,44 +39,92 @@ static ZJHGameService *_defaultService;
     return self;
 }
 
-- (CommonGameSession *)createSession
-{
-    return [[[ZJHGameSession alloc] init] autorelease];
-}
+#pragma mark - public methods
 
 - (ZJHGameSession *)ZJHGameSession
 {
     return (ZJHGameSession *)self.session;
 }
 
+- (void)bet
+{
+    [_networkClient sendBetRequest:self.userId
+                         sessionId:[[self ZJHGameSession] sessionId]
+                         singleBet:[[self ZJHGameSession] singleBet]
+                             count:[[self ZJHGameSession] betCountOfUser:self.userId]
+                         isAutoBet:FALSE];
+}
 
-#pragma mark - public methods
-//- (void)bet
-//{
-//    [_networkClient sendBetRequest:self.userId
-//                         sessionId:self.session.sessionId
-//                         singleBet:self.session.singleBet
-//                             count:[]
-//                         isAutoBet:FALSE];
-//}
-//
-//- (void)raiseBet:(int)singleBet;                               // 加注
-//{
-//    [_networkClient sendBetRequest:self.userId
-//                         sessionId:self.session.sessionId
-//                         singleBet:singleBet
-//                             count:[]
-//                         isAutoBet:FALSE];
-//}
+- (void)raiseBet:(int)singleBet
+{
+    [_networkClient sendBetRequest:self.userId
+                         sessionId:[[self ZJHGameSession] sessionId]
+                         singleBet:singleBet
+                             count:[[self ZJHGameSession] betCountOfUser:self.userId]
+                         isAutoBet:FALSE];
+}
 
-//- (void)autoBet;                                // 自动跟注
+- (void)autoBet
+{
+    [_networkClient sendBetRequest:self.userId
+                         sessionId:[[self ZJHGameSession] sessionId]
+                         singleBet:[[self ZJHGameSession] singleBet]
+                             count:[[self ZJHGameSession] betCountOfUser:self.userId]
+                         isAutoBet:TRUE];
+}
 
-//- (void)raiseBet;                               // 加注
-//
-//- (void)checkCard;                              // 看牌
-//- (void)foldCard;                               // 弃牌
-//- (void)compareCard:(NSString*)toUserId;        // 比牌
-//- (void)showCard:(NSArray *)cardIds;            // 亮牌
+- (void)checkCard
+{
+    [_networkClient sendCheckCardRequest:self.userId
+                               sessionId:[[self ZJHGameSession] sessionId]];
+}
+
+- (void)foldCard
+{
+    [_networkClient sendFoldCardRequest:self.userId
+                              sessionId:[[self ZJHGameSession] sessionId]];
+}
+
+- (void)compareCard:(NSString*)toUserId
+{
+    [_networkClient sendCompareCardRequest:self.userId
+                                 sessionId:[[self ZJHGameSession] sessionId]
+                                  toUserId:toUserId];
+}
+
+- (void)showCard:(NSArray *)cardIds
+{
+    [_networkClient sendShowCardRequest:self.userId
+                              sessionId:[[self ZJHGameSession] sessionId]
+                                cardIds:cardIds];
+}
+
+- (void)someoneBet:(NSString *)userId
+         singleBet:(int)singleBet
+             count:(int)count
+         isAutoBet:(BOOL)isAutoBet
+{
+    [self ZJHGameSession].totalBet += singleBet * count;
+    [self ZJHGameSession].singleBet = singleBet;
+    
+    [[self ZJHGameSession] userInfo:userId].totalBet += singleBet * count;
+    [[self ZJHGameSession] userInfo:userId].isAutoBet = isAutoBet;
+}
+
+
+#pragma mark - overwrite methods
+
+- (CommonGameSession *)createSession
+{
+    return [[[ZJHGameSession alloc] init] autorelease];
+}
+
+- (void)handleCustomMessage:(GameMessage*)message
+{
+}
+
+
+
 
 
 @end
