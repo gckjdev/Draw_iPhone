@@ -280,9 +280,7 @@ message SendDrawDataRequest {
 message SendDrawDataResponse{
 }
 
-// For zhajinhua
 message GameStartNotification{                 // 游戏开始通知，用于服务器通知所有同一个会话里面的用户
-    optional PBZJHGameState zjhGameState = 11;
 }
 
 message GeneralNotification{                 

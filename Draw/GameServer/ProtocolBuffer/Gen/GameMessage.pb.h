@@ -2871,11 +2871,7 @@ BOOL BetTypeIsValidValue(BetType value);
 
 @interface GameStartNotification : PBGeneratedMessage {
 @private
-  BOOL hasZjhGameState_:1;
-  PBZJHGameState* zjhGameState;
 }
-- (BOOL) hasZjhGameState;
-@property (readonly, retain) PBZJHGameState* zjhGameState;
 
 + (GameStartNotification*) defaultInstance;
 - (GameStartNotification*) defaultInstance;
@@ -2910,13 +2906,6 @@ BOOL BetTypeIsValidValue(BetType value);
 - (GameStartNotification_Builder*) mergeFrom:(GameStartNotification*) other;
 - (GameStartNotification_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
 - (GameStartNotification_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
-
-- (BOOL) hasZjhGameState;
-- (PBZJHGameState*) zjhGameState;
-- (GameStartNotification_Builder*) setZjhGameState:(PBZJHGameState*) value;
-- (GameStartNotification_Builder*) setZjhGameStateBuilder:(PBZJHGameState_Builder*) builderForValue;
-- (GameStartNotification_Builder*) mergeZjhGameState:(PBZJHGameState*) value;
-- (GameStartNotification_Builder*) clearZjhGameState;
 @end
 
 @interface GeneralNotification : PBGeneratedMessage {

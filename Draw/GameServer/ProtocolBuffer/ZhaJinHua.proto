@@ -64,7 +64,7 @@ message PBZJHGameState{
   required int32 totalBet = 1;              // 游戏总注
   required int32 singleBet = 2;             // 游戏单注
   
-  repeated PBZJHUserInfo usersInfo = 6;     // 炸金花所有用户状态，用于旁观者
+  repeated PBZJHUserInfo usersInfo = 6;     // 炸金花所有用户状态
 }
 
 message PBZJHUserInfo{
@@ -79,7 +79,7 @@ message PBZJHUserInfo{
   
   optional bool alreadCheckCard = 11 [default = false];                     // 是否已经看牌
   optional bool alreadFoldCard = 12 [default = false];                      // 是否已经弃牌
-  optional bool alreadShowCard = 13 [default = false];                      // 是否已经弃牌
+  optional bool alreadShowCard = 13 [default = false];                      // 是否已经亮牌
   optional bool alreadLose = 14 [default = false];                          // 是否已经失败
 }
 

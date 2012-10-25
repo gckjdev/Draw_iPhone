@@ -185,7 +185,7 @@
 
 - (void)handleGameStartNotificationRequest:(GameMessage*)message
 {
-    
+    PPDebug(@"WARNNING: handleGameStartNotificationRequest NOT COMPLETE YET");
 }
 
 - (void)handleGetRoomsResponse:(GameMessage*)message
