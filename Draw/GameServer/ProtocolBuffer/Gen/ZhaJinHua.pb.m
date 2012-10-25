@@ -39,6 +39,7 @@ BOOL PBZJHUserActionIsValidValue(PBZJHUserAction value) {
   switch (value) {
     case PBZJHUserActionNone:
     case PBZJHUserActionBet:
+    case PBZJHUserActionRaiseBet:
     case PBZJHUserActionAutoBet:
     case PBZJHUserActionCheckCard:
     case PBZJHUserActionFoldCard:

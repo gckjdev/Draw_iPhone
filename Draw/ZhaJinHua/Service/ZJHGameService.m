@@ -120,26 +120,41 @@ static ZJHGameService *_defaultService;
 - (void)handleGameStartNotificationRequest:(GameMessage*)message
 {
     [_gameState fromPBZJHGameState:[[message gameStartNotificationRequest] zjhGameState]];
+    [self postNotification:NOTIFICATION_GAME_START_NOTIFICATION_REQUEST message:message];
 }
 
 #pragma mark -  message handler
 
-- (void)handleBetDiceRequest:(GameMessage *)message
+- (void)updateBetModel:(GameMessage *)message
 {
+    ZJHUserInfo *userInfo = [_gameState userInfo:message.userId];
+    if (userInfo.isAutoBet == TRUE) {
+        userInfo.lastAction = PBZJHUserActionAutoBet;
+    }else if (_gameState.singleBet == message.betRequest.singleBet) {
+        userInfo.lastAction = PBZJHUserActionBet;
+    }else {
+        userInfo.lastAction = PBZJHUserActionRaiseBet;
+    }
+    
     _gameState.totalBet += message.betRequest.singleBet * message.betRequest.count;
     _gameState.singleBet = message.betRequest.singleBet;
     
     [_gameState userInfo:message.userId].totalBet += message.betRequest.singleBet * message.betRequest.count;
     [_gameState userInfo:message.userId].isAutoBet = message.betRequest.isAutoBet;
+    
+    [_gameState userInfo:message.userId].lastAction = 
+}
+
+- (void)handleBetDiceRequest:(GameMessage *)message
+{
+    [self updateBetModel:message];
 }
 
 - (void)handleBetDiceResponse:(GameMessage *)message
 {
-    _gameState.totalBet += message.betRequest.singleBet * message.betRequest.count;
-    _gameState.singleBet = message.betRequest.singleBet;
-    
-    [_gameState userInfo:message.userId].totalBet += message.betRequest.singleBet * message.betRequest.count;
-    [_gameState userInfo:message.userId].isAutoBet = message.betRequest.isAutoBet;
+    if (message.resultCode == 0) {
+        [self updateBetModel:message];
+    }
 }
 
 - (void)handleCustomMessage:(GameMessage*)message
@@ -153,14 +168,10 @@ static ZJHGameService *_defaultService;
             [self handleBetDiceResponse:message];
             break;
             
-            
         default:
             PPDebug(@"<handleCustomMessage> unknown command=%d", [message command]);
             break;
     }
-    
 }
-
-
 
 @end
