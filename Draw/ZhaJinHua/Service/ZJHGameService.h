@@ -7,8 +7,11 @@
 //
 
 #import "CommonGameNetworkService.h"
+#import "ZJHGameState.h"
 
 @interface ZJHGameService : CommonGameNetworkService
+
+@property (readonly, retain, nonatomic) ZJHGameState *gameState;
 
 + (ZJHGameService*)defaultService;
 

@@ -84,11 +84,16 @@
                   sessionId:(int)sessionId
                     cardIds:(NSArray *)cardIds
 {
+    ShowCardRequest_Builder *showCardRequestBuilder = [[[ShowCardRequest_Builder alloc] init] autorelease];
+    [showCardRequestBuilder addAllCardIds:cardIds];
+    ShowCardRequest *showCardRequest = [showCardRequestBuilder build];
+    
     GameMessage_Builder *messageBuilder = [[[GameMessage_Builder alloc] init] autorelease];
     [messageBuilder setCommand:GameCommandTypeShowCardRequest];
     [messageBuilder setMessageId:[self generateMessageId]];
     [messageBuilder setUserId:userId];
     [messageBuilder setSessionId:sessionId];
+    [messageBuilder setShowCardRequest:showCardRequest];
     
     GameMessage* gameMessage = [self build:messageBuilder];
     [self sendData:[gameMessage data]];

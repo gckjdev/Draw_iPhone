@@ -35,12 +35,15 @@ BOOL PBZJHCardTypeIsValidValue(PBZJHCardType value) {
       return NO;
   }
 }
-BOOL PBZJHUserStateIsValidValue(PBZJHUserState value) {
+BOOL PBZJHUserActionIsValidValue(PBZJHUserAction value) {
   switch (value) {
-    case PBZJHUserStateDefault:
-    case PBZJHUserStateCheckCard:
-    case PBZJHUserStateFoldCard:
-    case PBZJHUserStateCompairLose:
+    case PBZJHUserActionNone:
+    case PBZJHUserActionBet:
+    case PBZJHUserActionAutoBet:
+    case PBZJHUserActionCheckCard:
+    case PBZJHUserActionFoldCard:
+    case PBZJHUserActionCompareCard:
+    case PBZJHUserActionShowCard:
       return YES;
     default:
       return NO;
@@ -680,8 +683,11 @@ static PBZJHGameState* defaultPBZJHGameStateInstance = nil;
 @property PBZJHCardType cardType;
 @property int32_t totalBet;
 @property BOOL isAutoBet;
-@property PBZJHUserState userState;
-@property BOOL canBeCompared;
+@property PBZJHUserAction lastAction;
+@property BOOL alreadCheckCard;
+@property BOOL alreadFoldCard;
+@property BOOL alreadShowCard;
+@property BOOL alreadLose;
 @end
 
 @implementation PBZJHUserInfo
@@ -720,24 +726,60 @@ static PBZJHGameState* defaultPBZJHGameStateInstance = nil;
 - (void) setIsAutoBet:(BOOL) value {
   isAutoBet_ = !!value;
 }
-- (BOOL) hasUserState {
-  return !!hasUserState_;
+- (BOOL) hasLastAction {
+  return !!hasLastAction_;
 }
-- (void) setHasUserState:(BOOL) value {
-  hasUserState_ = !!value;
+- (void) setHasLastAction:(BOOL) value {
+  hasLastAction_ = !!value;
 }
-@synthesize userState;
-- (BOOL) hasCanBeCompared {
-  return !!hasCanBeCompared_;
+@synthesize lastAction;
+- (BOOL) hasAlreadCheckCard {
+  return !!hasAlreadCheckCard_;
 }
-- (void) setHasCanBeCompared:(BOOL) value {
-  hasCanBeCompared_ = !!value;
+- (void) setHasAlreadCheckCard:(BOOL) value {
+  hasAlreadCheckCard_ = !!value;
 }
-- (BOOL) canBeCompared {
-  return !!canBeCompared_;
+- (BOOL) alreadCheckCard {
+  return !!alreadCheckCard_;
 }
-- (void) setCanBeCompared:(BOOL) value {
-  canBeCompared_ = !!value;
+- (void) setAlreadCheckCard:(BOOL) value {
+  alreadCheckCard_ = !!value;
+}
+- (BOOL) hasAlreadFoldCard {
+  return !!hasAlreadFoldCard_;
+}
+- (void) setHasAlreadFoldCard:(BOOL) value {
+  hasAlreadFoldCard_ = !!value;
+}
+- (BOOL) alreadFoldCard {
+  return !!alreadFoldCard_;
+}
+- (void) setAlreadFoldCard:(BOOL) value {
+  alreadFoldCard_ = !!value;
+}
+- (BOOL) hasAlreadShowCard {
+  return !!hasAlreadShowCard_;
+}
+- (void) setHasAlreadShowCard:(BOOL) value {
+  hasAlreadShowCard_ = !!value;
+}
+- (BOOL) alreadShowCard {
+  return !!alreadShowCard_;
+}
+- (void) setAlreadShowCard:(BOOL) value {
+  alreadShowCard_ = !!value;
+}
+- (BOOL) hasAlreadLose {
+  return !!hasAlreadLose_;
+}
+- (void) setHasAlreadLose:(BOOL) value {
+  hasAlreadLose_ = !!value;
+}
+- (BOOL) alreadLose {
+  return !!alreadLose_;
+}
+- (void) setAlreadLose:(BOOL) value {
+  alreadLose_ = !!value;
 }
 - (void) dealloc {
   self.userId = nil;
@@ -750,8 +792,11 @@ static PBZJHGameState* defaultPBZJHGameStateInstance = nil;
     self.cardType = PBZJHCardTypeUnknow;
     self.totalBet = 0;
     self.isAutoBet = NO;
-    self.userState = PBZJHUserStateDefault;
-    self.canBeCompared = YES;
+    self.lastAction = PBZJHUserActionNone;
+    self.alreadCheckCard = NO;
+    self.alreadFoldCard = NO;
+    self.alreadShowCard = NO;
+    self.alreadLose = NO;
   }
   return self;
 }
@@ -801,11 +846,20 @@ static PBZJHUserInfo* defaultPBZJHUserInfoInstance = nil;
   if (self.hasIsAutoBet) {
     [output writeBool:6 value:self.isAutoBet];
   }
-  if (self.hasUserState) {
-    [output writeEnum:7 value:self.userState];
+  if (self.hasLastAction) {
+    [output writeEnum:7 value:self.lastAction];
   }
-  if (self.hasCanBeCompared) {
-    [output writeBool:8 value:self.canBeCompared];
+  if (self.hasAlreadCheckCard) {
+    [output writeBool:11 value:self.alreadCheckCard];
+  }
+  if (self.hasAlreadFoldCard) {
+    [output writeBool:12 value:self.alreadFoldCard];
+  }
+  if (self.hasAlreadShowCard) {
+    [output writeBool:13 value:self.alreadShowCard];
+  }
+  if (self.hasAlreadLose) {
+    [output writeBool:14 value:self.alreadLose];
   }
   [self.unknownFields writeToCodedOutputStream:output];
 }
@@ -831,11 +885,20 @@ static PBZJHUserInfo* defaultPBZJHUserInfoInstance = nil;
   if (self.hasIsAutoBet) {
     size += computeBoolSize(6, self.isAutoBet);
   }
-  if (self.hasUserState) {
-    size += computeEnumSize(7, self.userState);
+  if (self.hasLastAction) {
+    size += computeEnumSize(7, self.lastAction);
   }
-  if (self.hasCanBeCompared) {
-    size += computeBoolSize(8, self.canBeCompared);
+  if (self.hasAlreadCheckCard) {
+    size += computeBoolSize(11, self.alreadCheckCard);
+  }
+  if (self.hasAlreadFoldCard) {
+    size += computeBoolSize(12, self.alreadFoldCard);
+  }
+  if (self.hasAlreadShowCard) {
+    size += computeBoolSize(13, self.alreadShowCard);
+  }
+  if (self.hasAlreadLose) {
+    size += computeBoolSize(14, self.alreadLose);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -930,11 +993,20 @@ static PBZJHUserInfo* defaultPBZJHUserInfoInstance = nil;
   if (other.hasIsAutoBet) {
     [self setIsAutoBet:other.isAutoBet];
   }
-  if (other.hasUserState) {
-    [self setUserState:other.userState];
+  if (other.hasLastAction) {
+    [self setLastAction:other.lastAction];
   }
-  if (other.hasCanBeCompared) {
-    [self setCanBeCompared:other.canBeCompared];
+  if (other.hasAlreadCheckCard) {
+    [self setAlreadCheckCard:other.alreadCheckCard];
+  }
+  if (other.hasAlreadFoldCard) {
+    [self setAlreadFoldCard:other.alreadFoldCard];
+  }
+  if (other.hasAlreadShowCard) {
+    [self setAlreadShowCard:other.alreadShowCard];
+  }
+  if (other.hasAlreadLose) {
+    [self setAlreadLose:other.alreadLose];
   }
   [self mergeUnknownFields:other.unknownFields];
   return self;
@@ -986,15 +1058,27 @@ static PBZJHUserInfo* defaultPBZJHUserInfoInstance = nil;
       }
       case 56: {
         int32_t value = [input readEnum];
-        if (PBZJHUserStateIsValidValue(value)) {
-          [self setUserState:value];
+        if (PBZJHUserActionIsValidValue(value)) {
+          [self setLastAction:value];
         } else {
           [unknownFields mergeVarintField:7 value:value];
         }
         break;
       }
-      case 64: {
-        [self setCanBeCompared:[input readBool]];
+      case 88: {
+        [self setAlreadCheckCard:[input readBool]];
+        break;
+      }
+      case 96: {
+        [self setAlreadFoldCard:[input readBool]];
+        break;
+      }
+      case 104: {
+        [self setAlreadShowCard:[input readBool]];
+        break;
+      }
+      case 112: {
+        [self setAlreadLose:[input readBool]];
         break;
       }
     }
@@ -1093,36 +1177,84 @@ static PBZJHUserInfo* defaultPBZJHUserInfoInstance = nil;
   result.isAutoBet = NO;
   return self;
 }
-- (BOOL) hasUserState {
-  return result.hasUserState;
+- (BOOL) hasLastAction {
+  return result.hasLastAction;
 }
-- (PBZJHUserState) userState {
-  return result.userState;
+- (PBZJHUserAction) lastAction {
+  return result.lastAction;
 }
-- (PBZJHUserInfo_Builder*) setUserState:(PBZJHUserState) value {
-  result.hasUserState = YES;
-  result.userState = value;
+- (PBZJHUserInfo_Builder*) setLastAction:(PBZJHUserAction) value {
+  result.hasLastAction = YES;
+  result.lastAction = value;
   return self;
 }
-- (PBZJHUserInfo_Builder*) clearUserState {
-  result.hasUserState = NO;
-  result.userState = PBZJHUserStateDefault;
+- (PBZJHUserInfo_Builder*) clearLastAction {
+  result.hasLastAction = NO;
+  result.lastAction = PBZJHUserActionNone;
   return self;
 }
-- (BOOL) hasCanBeCompared {
-  return result.hasCanBeCompared;
+- (BOOL) hasAlreadCheckCard {
+  return result.hasAlreadCheckCard;
 }
-- (BOOL) canBeCompared {
-  return result.canBeCompared;
+- (BOOL) alreadCheckCard {
+  return result.alreadCheckCard;
 }
-- (PBZJHUserInfo_Builder*) setCanBeCompared:(BOOL) value {
-  result.hasCanBeCompared = YES;
-  result.canBeCompared = value;
+- (PBZJHUserInfo_Builder*) setAlreadCheckCard:(BOOL) value {
+  result.hasAlreadCheckCard = YES;
+  result.alreadCheckCard = value;
   return self;
 }
-- (PBZJHUserInfo_Builder*) clearCanBeCompared {
-  result.hasCanBeCompared = NO;
-  result.canBeCompared = YES;
+- (PBZJHUserInfo_Builder*) clearAlreadCheckCard {
+  result.hasAlreadCheckCard = NO;
+  result.alreadCheckCard = NO;
+  return self;
+}
+- (BOOL) hasAlreadFoldCard {
+  return result.hasAlreadFoldCard;
+}
+- (BOOL) alreadFoldCard {
+  return result.alreadFoldCard;
+}
+- (PBZJHUserInfo_Builder*) setAlreadFoldCard:(BOOL) value {
+  result.hasAlreadFoldCard = YES;
+  result.alreadFoldCard = value;
+  return self;
+}
+- (PBZJHUserInfo_Builder*) clearAlreadFoldCard {
+  result.hasAlreadFoldCard = NO;
+  result.alreadFoldCard = NO;
+  return self;
+}
+- (BOOL) hasAlreadShowCard {
+  return result.hasAlreadShowCard;
+}
+- (BOOL) alreadShowCard {
+  return result.alreadShowCard;
+}
+- (PBZJHUserInfo_Builder*) setAlreadShowCard:(BOOL) value {
+  result.hasAlreadShowCard = YES;
+  result.alreadShowCard = value;
+  return self;
+}
+- (PBZJHUserInfo_Builder*) clearAlreadShowCard {
+  result.hasAlreadShowCard = NO;
+  result.alreadShowCard = NO;
+  return self;
+}
+- (BOOL) hasAlreadLose {
+  return result.hasAlreadLose;
+}
+- (BOOL) alreadLose {
+  return result.alreadLose;
+}
+- (PBZJHUserInfo_Builder*) setAlreadLose:(BOOL) value {
+  result.hasAlreadLose = YES;
+  result.alreadLose = value;
+  return self;
+}
+- (PBZJHUserInfo_Builder*) clearAlreadLose {
+  result.hasAlreadLose = NO;
+  result.alreadLose = NO;
   return self;
 }
 @end

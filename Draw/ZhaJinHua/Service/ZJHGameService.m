@@ -9,15 +9,20 @@
 #import "ZJHGameService.h"
 #import "GameApp.h"
 #import "CommonGameNetworkClient+ZJHNetworkExtend.h"
-#import "ZJHGameSession.h"
+#import "GameMessage.pb.h"
+#import "CommonGameSession.h"
 
 static ZJHGameService *_defaultService;
 
 @interface ZJHGameService ()
 
+@property (readwrite, retain, nonatomic) ZJHGameState *gameState;
+
 @end
 
 @implementation ZJHGameService
+
+@synthesize gameState = _gameState;
 
 #pragma mark - life cycle
 
@@ -40,44 +45,122 @@ static ZJHGameService *_defaultService;
     return self;
 }
 
-- (CommonGameSession *)createSession
-{
-    return [[[ZJHGameSession alloc] init] autorelease];
-}
-
-- (ZJHGameSession *)ZJHGameSession
-{
-    return (ZJHGameSession *)self.session;
-}
-
-
 #pragma mark - public methods
-//- (void)bet
-//{
-//    [_networkClient sendBetRequest:self.userId
-//                         sessionId:self.session.sessionId
-//                         singleBet:self.session.singleBet
-//                             count:[]
-//                         isAutoBet:FALSE];
-//}
-//
-//- (void)raiseBet:(int)singleBet;                               // 加注
-//{
-//    [_networkClient sendBetRequest:self.userId
-//                         sessionId:self.session.sessionId
-//                         singleBet:singleBet
-//                             count:[]
-//                         isAutoBet:FALSE];
-//}
 
-//- (void)autoBet;                                // 自动跟注
+- (void)bet
+{
+    [_networkClient sendBetRequest:self.userId
+                         sessionId:self.session.sessionId
+                         singleBet:_gameState.singleBet
+                             count:[_gameState betCountOfUser:self.userId]
+                         isAutoBet:FALSE];
+}
 
-//- (void)raiseBet;                               // 加注
-//
-//- (void)checkCard;                              // 看牌
-//- (void)foldCard;                               // 弃牌
-//- (void)compareCard:(NSString*)toUserId;        // 比牌
-//- (void)showCard:(NSArray *)cardIds;            // 亮牌
+- (void)raiseBet:(int)singleBet
+{
+    [_networkClient sendBetRequest:self.userId
+                         sessionId:self.session.sessionId
+                         singleBet:singleBet
+                             count:[_gameState betCountOfUser:self.userId]
+                         isAutoBet:FALSE];
+}
+
+- (void)autoBet
+{
+    [_networkClient sendBetRequest:self.userId
+                         sessionId:self.session.sessionId
+                         singleBet:[_gameState singleBet]
+                             count:[_gameState betCountOfUser:self.userId]
+                         isAutoBet:TRUE];
+}
+
+- (void)checkCard
+{
+    [_networkClient sendCheckCardRequest:self.userId
+                               sessionId:self.session.sessionId];
+}
+
+- (void)foldCard
+{
+    [_networkClient sendFoldCardRequest:self.userId
+                              sessionId:self.session.sessionId];
+}
+
+- (void)compareCard:(NSString*)toUserId
+{
+    [_networkClient sendCompareCardRequest:self.userId
+                                 sessionId:self.session.sessionId
+                                  toUserId:toUserId];
+}
+
+- (void)showCard:(NSArray *)cardIds
+{
+    [_networkClient sendShowCardRequest:self.userId
+                              sessionId:self.session.sessionId
+                                cardIds:cardIds];
+}
+
+#pragma mark - overwrite methods
+- (void)handleJoinGameResponse:(GameMessage*)message
+{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        if ([message resultCode] == 0){
+            PBGameSession* pbSession = [[message joinGameResponse] gameSession];
+            self.session = [self createSession];
+            [self.session fromPBGameSession:pbSession userId:self.userId];
+            
+            self.gameState = [[[ZJHGameState alloc] init] autorelease];
+            [_gameState fromPBZJHGameState:[[message joinGameResponse] zjhGameState]];
+        }
+        
+        [self postNotification:NOTIFICATION_JOIN_GAME_RESPONSE message:message];
+    });
+}
+
+- (void)handleGameStartNotificationRequest:(GameMessage*)message
+{
+    [_gameState fromPBZJHGameState:[[message gameStartNotificationRequest] zjhGameState]];
+}
+
+#pragma mark -  message handler
+
+- (void)handleBetDiceRequest:(GameMessage *)message
+{
+    _gameState.totalBet += message.betRequest.singleBet * message.betRequest.count;
+    _gameState.singleBet = message.betRequest.singleBet;
+    
+    [_gameState userInfo:message.userId].totalBet += message.betRequest.singleBet * message.betRequest.count;
+    [_gameState userInfo:message.userId].isAutoBet = message.betRequest.isAutoBet;
+}
+
+- (void)handleBetDiceResponse:(GameMessage *)message
+{
+    _gameState.totalBet += message.betRequest.singleBet * message.betRequest.count;
+    _gameState.singleBet = message.betRequest.singleBet;
+    
+    [_gameState userInfo:message.userId].totalBet += message.betRequest.singleBet * message.betRequest.count;
+    [_gameState userInfo:message.userId].isAutoBet = message.betRequest.isAutoBet;
+}
+
+- (void)handleCustomMessage:(GameMessage*)message
+{
+    switch ([message command]){
+        case GameCommandTypeBetDiceRequest:
+            [self handleBetDiceRequest:message];
+            break;
+            
+        case GameCommandTypeBetDiceResponse:
+            [self handleBetDiceResponse:message];
+            break;
+            
+            
+        default:
+            PPDebug(@"<handleCustomMessage> unknown command=%d", [message command]);
+            break;
+    }
+    
+}
+
 
 
 @end

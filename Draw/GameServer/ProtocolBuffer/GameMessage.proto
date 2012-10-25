@@ -116,7 +116,7 @@ enum BetType{
 message BetRequest{
   required int32 singleBet = 1;                                 // 单注大小
   required int32 count = 2 [default = 1];                       // 注数
-  optional bool  isAutoBet = 3 [default = false];               // 是否自动跟注
+  optional bool  isAutoBet = 4 [default = false];               // 是否自动跟注
 }
 
 message BetResponse{
@@ -169,13 +169,14 @@ message JoinGameRequest {
   optional string location = 15;
   optional int32 userLevel = 16;
 
-  optional PBGameUser user = 100;          // 统一协议接口
-    optional int32 ruleType = 101;                   // 加入游戏的规则类型
+  optional PBGameUser user = 100;                   // 统一协议接口
+  optional int32 ruleType = 101;                    // 加入游戏的规则类型
   
 }
 
 message JoinGameResponse {
   required PBGameSession gameSession = 1;
+  optional PBZJHGameState zjhGameState = 11;
 }
 
 //message ChangeRoomRequest {                     // 更换房间请求
@@ -279,9 +280,11 @@ message SendDrawDataRequest {
 message SendDrawDataResponse{
 }
 
-// For zhajinhua
-message GameStartNotification{                 // 游戏开始通知，用于服务器通知所有同一个会话里面的用户
+message GameStartNotificationRequest{                 // 游戏开始通知，用于服务器通知所有同一个会话里面的用户
     optional PBZJHGameState zjhGameState = 11;
+}
+
+message GameStartNotificationResponse{
 }
 
 message GeneralNotification{                 
@@ -355,6 +358,10 @@ message GameMessage {
   
   optional StartGameRequest startGameRequest = 13;
   optional StartGameResponse startGameResponse = 14;
+  
+  optional GameStartNotificationRequest gameStartNotificationRequest = 15;
+  optional GameStartNotificationResponse gameStartNotificationResponse = 16;
+
   
   optional SendDrawDataRequest sendDrawDataRequest = 21;
   optional SendDrawDataResponse sendDrawDataResponse = 22;

@@ -44,13 +44,16 @@ typedef enum {
 BOOL PBZJHCardTypeIsValidValue(PBZJHCardType value);
 
 typedef enum {
-  PBZJHUserStateDefault = 0,
-  PBZJHUserStateCheckCard = 1,
-  PBZJHUserStateFoldCard = 2,
-  PBZJHUserStateCompairLose = 3,
-} PBZJHUserState;
+  PBZJHUserActionNone = 0,
+  PBZJHUserActionBet = 1,
+  PBZJHUserActionAutoBet = 2,
+  PBZJHUserActionCheckCard = 3,
+  PBZJHUserActionFoldCard = 4,
+  PBZJHUserActionCompareCard = 6,
+  PBZJHUserActionShowCard = 7,
+} PBZJHUserAction;
 
-BOOL PBZJHUserStateIsValidValue(PBZJHUserState value);
+BOOL PBZJHUserActionIsValidValue(PBZJHUserAction value);
 
 typedef enum {
   PBPokerRankPokerRank2 = 2,
@@ -233,31 +236,43 @@ BOOL PBPokerSuitIsValidValue(PBPokerSuit value);
 @interface PBZJHUserInfo : PBGeneratedMessage {
 @private
   BOOL hasIsAutoBet_:1;
-  BOOL hasCanBeCompared_:1;
+  BOOL hasAlreadCheckCard_:1;
+  BOOL hasAlreadFoldCard_:1;
+  BOOL hasAlreadShowCard_:1;
+  BOOL hasAlreadLose_:1;
   BOOL hasTotalBet_:1;
   BOOL hasUserId_:1;
   BOOL hasCardType_:1;
-  BOOL hasUserState_:1;
+  BOOL hasLastAction_:1;
   BOOL isAutoBet_:1;
-  BOOL canBeCompared_:1;
+  BOOL alreadCheckCard_:1;
+  BOOL alreadFoldCard_:1;
+  BOOL alreadShowCard_:1;
+  BOOL alreadLose_:1;
   int32_t totalBet;
   NSString* userId;
   PBZJHCardType cardType;
-  PBZJHUserState userState;
+  PBZJHUserAction lastAction;
   NSMutableArray* mutablePokersList;
 }
 - (BOOL) hasUserId;
 - (BOOL) hasCardType;
 - (BOOL) hasTotalBet;
 - (BOOL) hasIsAutoBet;
-- (BOOL) hasUserState;
-- (BOOL) hasCanBeCompared;
+- (BOOL) hasLastAction;
+- (BOOL) hasAlreadCheckCard;
+- (BOOL) hasAlreadFoldCard;
+- (BOOL) hasAlreadShowCard;
+- (BOOL) hasAlreadLose;
 @property (readonly, retain) NSString* userId;
 @property (readonly) PBZJHCardType cardType;
 @property (readonly) int32_t totalBet;
 - (BOOL) isAutoBet;
-@property (readonly) PBZJHUserState userState;
-- (BOOL) canBeCompared;
+@property (readonly) PBZJHUserAction lastAction;
+- (BOOL) alreadCheckCard;
+- (BOOL) alreadFoldCard;
+- (BOOL) alreadShowCard;
+- (BOOL) alreadLose;
 - (NSArray*) pokersList;
 - (PBPoker*) pokersAtIndex:(int32_t) index;
 
@@ -322,15 +337,30 @@ BOOL PBPokerSuitIsValidValue(PBPokerSuit value);
 - (PBZJHUserInfo_Builder*) setIsAutoBet:(BOOL) value;
 - (PBZJHUserInfo_Builder*) clearIsAutoBet;
 
-- (BOOL) hasUserState;
-- (PBZJHUserState) userState;
-- (PBZJHUserInfo_Builder*) setUserState:(PBZJHUserState) value;
-- (PBZJHUserInfo_Builder*) clearUserState;
+- (BOOL) hasLastAction;
+- (PBZJHUserAction) lastAction;
+- (PBZJHUserInfo_Builder*) setLastAction:(PBZJHUserAction) value;
+- (PBZJHUserInfo_Builder*) clearLastAction;
 
-- (BOOL) hasCanBeCompared;
-- (BOOL) canBeCompared;
-- (PBZJHUserInfo_Builder*) setCanBeCompared:(BOOL) value;
-- (PBZJHUserInfo_Builder*) clearCanBeCompared;
+- (BOOL) hasAlreadCheckCard;
+- (BOOL) alreadCheckCard;
+- (PBZJHUserInfo_Builder*) setAlreadCheckCard:(BOOL) value;
+- (PBZJHUserInfo_Builder*) clearAlreadCheckCard;
+
+- (BOOL) hasAlreadFoldCard;
+- (BOOL) alreadFoldCard;
+- (PBZJHUserInfo_Builder*) setAlreadFoldCard:(BOOL) value;
+- (PBZJHUserInfo_Builder*) clearAlreadFoldCard;
+
+- (BOOL) hasAlreadShowCard;
+- (BOOL) alreadShowCard;
+- (PBZJHUserInfo_Builder*) setAlreadShowCard:(BOOL) value;
+- (PBZJHUserInfo_Builder*) clearAlreadShowCard;
+
+- (BOOL) hasAlreadLose;
+- (BOOL) alreadLose;
+- (PBZJHUserInfo_Builder*) setAlreadLose:(BOOL) value;
+- (PBZJHUserInfo_Builder*) clearAlreadLose;
 @end
 
 @interface PBZJHGameResult : PBGeneratedMessage {
