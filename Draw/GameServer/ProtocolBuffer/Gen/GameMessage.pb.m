@@ -10821,10 +10821,212 @@ static SendDrawDataResponse* defaultSendDrawDataResponseInstance = nil;
 }
 @end
 
-@interface GameStartNotification ()
+@interface GameStartNotificationRequest ()
+@property (retain) PBZJHGameState* zjhGameState;
 @end
 
-@implementation GameStartNotification
+@implementation GameStartNotificationRequest
+
+- (BOOL) hasZjhGameState {
+  return !!hasZjhGameState_;
+}
+- (void) setHasZjhGameState:(BOOL) value {
+  hasZjhGameState_ = !!value;
+}
+@synthesize zjhGameState;
+- (void) dealloc {
+  self.zjhGameState = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.zjhGameState = [PBZJHGameState defaultInstance];
+  }
+  return self;
+}
+static GameStartNotificationRequest* defaultGameStartNotificationRequestInstance = nil;
++ (void) initialize {
+  if (self == [GameStartNotificationRequest class]) {
+    defaultGameStartNotificationRequestInstance = [[GameStartNotificationRequest alloc] init];
+  }
+}
++ (GameStartNotificationRequest*) defaultInstance {
+  return defaultGameStartNotificationRequestInstance;
+}
+- (GameStartNotificationRequest*) defaultInstance {
+  return defaultGameStartNotificationRequestInstance;
+}
+- (BOOL) isInitialized {
+  if (self.hasZjhGameState) {
+    if (!self.zjhGameState.isInitialized) {
+      return NO;
+    }
+  }
+  return YES;
+}
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
+  if (self.hasZjhGameState) {
+    [output writeMessage:11 value:self.zjhGameState];
+  }
+  [self.unknownFields writeToCodedOutputStream:output];
+}
+- (int32_t) serializedSize {
+  int32_t size = memoizedSerializedSize;
+  if (size != -1) {
+    return size;
+  }
+
+  size = 0;
+  if (self.hasZjhGameState) {
+    size += computeMessageSize(11, self.zjhGameState);
+  }
+  size += self.unknownFields.serializedSize;
+  memoizedSerializedSize = size;
+  return size;
+}
++ (GameStartNotificationRequest*) parseFromData:(NSData*) data {
+  return (GameStartNotificationRequest*)[[[GameStartNotificationRequest builder] mergeFromData:data] build];
+}
++ (GameStartNotificationRequest*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (GameStartNotificationRequest*)[[[GameStartNotificationRequest builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+}
++ (GameStartNotificationRequest*) parseFromInputStream:(NSInputStream*) input {
+  return (GameStartNotificationRequest*)[[[GameStartNotificationRequest builder] mergeFromInputStream:input] build];
+}
++ (GameStartNotificationRequest*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (GameStartNotificationRequest*)[[[GameStartNotificationRequest builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (GameStartNotificationRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input {
+  return (GameStartNotificationRequest*)[[[GameStartNotificationRequest builder] mergeFromCodedInputStream:input] build];
+}
++ (GameStartNotificationRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (GameStartNotificationRequest*)[[[GameStartNotificationRequest builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (GameStartNotificationRequest_Builder*) builder {
+  return [[[GameStartNotificationRequest_Builder alloc] init] autorelease];
+}
++ (GameStartNotificationRequest_Builder*) builderWithPrototype:(GameStartNotificationRequest*) prototype {
+  return [[GameStartNotificationRequest builder] mergeFrom:prototype];
+}
+- (GameStartNotificationRequest_Builder*) builder {
+  return [GameStartNotificationRequest builder];
+}
+@end
+
+@interface GameStartNotificationRequest_Builder()
+@property (retain) GameStartNotificationRequest* result;
+@end
+
+@implementation GameStartNotificationRequest_Builder
+@synthesize result;
+- (void) dealloc {
+  self.result = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.result = [[[GameStartNotificationRequest alloc] init] autorelease];
+  }
+  return self;
+}
+- (PBGeneratedMessage*) internalGetResult {
+  return result;
+}
+- (GameStartNotificationRequest_Builder*) clear {
+  self.result = [[[GameStartNotificationRequest alloc] init] autorelease];
+  return self;
+}
+- (GameStartNotificationRequest_Builder*) clone {
+  return [GameStartNotificationRequest builderWithPrototype:result];
+}
+- (GameStartNotificationRequest*) defaultInstance {
+  return [GameStartNotificationRequest defaultInstance];
+}
+- (GameStartNotificationRequest*) build {
+  [self checkInitialized];
+  return [self buildPartial];
+}
+- (GameStartNotificationRequest*) buildPartial {
+  GameStartNotificationRequest* returnMe = [[result retain] autorelease];
+  self.result = nil;
+  return returnMe;
+}
+- (GameStartNotificationRequest_Builder*) mergeFrom:(GameStartNotificationRequest*) other {
+  if (other == [GameStartNotificationRequest defaultInstance]) {
+    return self;
+  }
+  if (other.hasZjhGameState) {
+    [self mergeZjhGameState:other.zjhGameState];
+  }
+  [self mergeUnknownFields:other.unknownFields];
+  return self;
+}
+- (GameStartNotificationRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
+  return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
+}
+- (GameStartNotificationRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
+  while (YES) {
+    int32_t tag = [input readTag];
+    switch (tag) {
+      case 0:
+        [self setUnknownFields:[unknownFields build]];
+        return self;
+      default: {
+        if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
+          [self setUnknownFields:[unknownFields build]];
+          return self;
+        }
+        break;
+      }
+      case 90: {
+        PBZJHGameState_Builder* subBuilder = [PBZJHGameState builder];
+        if (self.hasZjhGameState) {
+          [subBuilder mergeFrom:self.zjhGameState];
+        }
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self setZjhGameState:[subBuilder buildPartial]];
+        break;
+      }
+    }
+  }
+}
+- (BOOL) hasZjhGameState {
+  return result.hasZjhGameState;
+}
+- (PBZJHGameState*) zjhGameState {
+  return result.zjhGameState;
+}
+- (GameStartNotificationRequest_Builder*) setZjhGameState:(PBZJHGameState*) value {
+  result.hasZjhGameState = YES;
+  result.zjhGameState = value;
+  return self;
+}
+- (GameStartNotificationRequest_Builder*) setZjhGameStateBuilder:(PBZJHGameState_Builder*) builderForValue {
+  return [self setZjhGameState:[builderForValue build]];
+}
+- (GameStartNotificationRequest_Builder*) mergeZjhGameState:(PBZJHGameState*) value {
+  if (result.hasZjhGameState &&
+      result.zjhGameState != [PBZJHGameState defaultInstance]) {
+    result.zjhGameState =
+      [[[PBZJHGameState builderWithPrototype:result.zjhGameState] mergeFrom:value] buildPartial];
+  } else {
+    result.zjhGameState = value;
+  }
+  result.hasZjhGameState = YES;
+  return self;
+}
+- (GameStartNotificationRequest_Builder*) clearZjhGameState {
+  result.hasZjhGameState = NO;
+  result.zjhGameState = [PBZJHGameState defaultInstance];
+  return self;
+}
+@end
+
+@interface GameStartNotificationResponse ()
+@end
+
+@implementation GameStartNotificationResponse
 
 - (void) dealloc {
   [super dealloc];
@@ -10834,17 +11036,17 @@ static SendDrawDataResponse* defaultSendDrawDataResponseInstance = nil;
   }
   return self;
 }
-static GameStartNotification* defaultGameStartNotificationInstance = nil;
+static GameStartNotificationResponse* defaultGameStartNotificationResponseInstance = nil;
 + (void) initialize {
-  if (self == [GameStartNotification class]) {
-    defaultGameStartNotificationInstance = [[GameStartNotification alloc] init];
+  if (self == [GameStartNotificationResponse class]) {
+    defaultGameStartNotificationResponseInstance = [[GameStartNotificationResponse alloc] init];
   }
 }
-+ (GameStartNotification*) defaultInstance {
-  return defaultGameStartNotificationInstance;
++ (GameStartNotificationResponse*) defaultInstance {
+  return defaultGameStartNotificationResponseInstance;
 }
-- (GameStartNotification*) defaultInstance {
-  return defaultGameStartNotificationInstance;
+- (GameStartNotificationResponse*) defaultInstance {
+  return defaultGameStartNotificationResponseInstance;
 }
 - (BOOL) isInitialized {
   return YES;
@@ -10863,40 +11065,40 @@ static GameStartNotification* defaultGameStartNotificationInstance = nil;
   memoizedSerializedSize = size;
   return size;
 }
-+ (GameStartNotification*) parseFromData:(NSData*) data {
-  return (GameStartNotification*)[[[GameStartNotification builder] mergeFromData:data] build];
++ (GameStartNotificationResponse*) parseFromData:(NSData*) data {
+  return (GameStartNotificationResponse*)[[[GameStartNotificationResponse builder] mergeFromData:data] build];
 }
-+ (GameStartNotification*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (GameStartNotification*)[[[GameStartNotification builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
++ (GameStartNotificationResponse*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (GameStartNotificationResponse*)[[[GameStartNotificationResponse builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
 }
-+ (GameStartNotification*) parseFromInputStream:(NSInputStream*) input {
-  return (GameStartNotification*)[[[GameStartNotification builder] mergeFromInputStream:input] build];
++ (GameStartNotificationResponse*) parseFromInputStream:(NSInputStream*) input {
+  return (GameStartNotificationResponse*)[[[GameStartNotificationResponse builder] mergeFromInputStream:input] build];
 }
-+ (GameStartNotification*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (GameStartNotification*)[[[GameStartNotification builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
++ (GameStartNotificationResponse*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (GameStartNotificationResponse*)[[[GameStartNotificationResponse builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
 }
-+ (GameStartNotification*) parseFromCodedInputStream:(PBCodedInputStream*) input {
-  return (GameStartNotification*)[[[GameStartNotification builder] mergeFromCodedInputStream:input] build];
++ (GameStartNotificationResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input {
+  return (GameStartNotificationResponse*)[[[GameStartNotificationResponse builder] mergeFromCodedInputStream:input] build];
 }
-+ (GameStartNotification*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (GameStartNotification*)[[[GameStartNotification builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
++ (GameStartNotificationResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (GameStartNotificationResponse*)[[[GameStartNotificationResponse builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
 }
-+ (GameStartNotification_Builder*) builder {
-  return [[[GameStartNotification_Builder alloc] init] autorelease];
++ (GameStartNotificationResponse_Builder*) builder {
+  return [[[GameStartNotificationResponse_Builder alloc] init] autorelease];
 }
-+ (GameStartNotification_Builder*) builderWithPrototype:(GameStartNotification*) prototype {
-  return [[GameStartNotification builder] mergeFrom:prototype];
++ (GameStartNotificationResponse_Builder*) builderWithPrototype:(GameStartNotificationResponse*) prototype {
+  return [[GameStartNotificationResponse builder] mergeFrom:prototype];
 }
-- (GameStartNotification_Builder*) builder {
-  return [GameStartNotification builder];
+- (GameStartNotificationResponse_Builder*) builder {
+  return [GameStartNotificationResponse builder];
 }
 @end
 
-@interface GameStartNotification_Builder()
-@property (retain) GameStartNotification* result;
+@interface GameStartNotificationResponse_Builder()
+@property (retain) GameStartNotificationResponse* result;
 @end
 
-@implementation GameStartNotification_Builder
+@implementation GameStartNotificationResponse_Builder
 @synthesize result;
 - (void) dealloc {
   self.result = nil;
@@ -10904,43 +11106,43 @@ static GameStartNotification* defaultGameStartNotificationInstance = nil;
 }
 - (id) init {
   if ((self = [super init])) {
-    self.result = [[[GameStartNotification alloc] init] autorelease];
+    self.result = [[[GameStartNotificationResponse alloc] init] autorelease];
   }
   return self;
 }
 - (PBGeneratedMessage*) internalGetResult {
   return result;
 }
-- (GameStartNotification_Builder*) clear {
-  self.result = [[[GameStartNotification alloc] init] autorelease];
+- (GameStartNotificationResponse_Builder*) clear {
+  self.result = [[[GameStartNotificationResponse alloc] init] autorelease];
   return self;
 }
-- (GameStartNotification_Builder*) clone {
-  return [GameStartNotification builderWithPrototype:result];
+- (GameStartNotificationResponse_Builder*) clone {
+  return [GameStartNotificationResponse builderWithPrototype:result];
 }
-- (GameStartNotification*) defaultInstance {
-  return [GameStartNotification defaultInstance];
+- (GameStartNotificationResponse*) defaultInstance {
+  return [GameStartNotificationResponse defaultInstance];
 }
-- (GameStartNotification*) build {
+- (GameStartNotificationResponse*) build {
   [self checkInitialized];
   return [self buildPartial];
 }
-- (GameStartNotification*) buildPartial {
-  GameStartNotification* returnMe = [[result retain] autorelease];
+- (GameStartNotificationResponse*) buildPartial {
+  GameStartNotificationResponse* returnMe = [[result retain] autorelease];
   self.result = nil;
   return returnMe;
 }
-- (GameStartNotification_Builder*) mergeFrom:(GameStartNotification*) other {
-  if (other == [GameStartNotification defaultInstance]) {
+- (GameStartNotificationResponse_Builder*) mergeFrom:(GameStartNotificationResponse*) other {
+  if (other == [GameStartNotificationResponse defaultInstance]) {
     return self;
   }
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }
-- (GameStartNotification_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
+- (GameStartNotificationResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
   return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
 }
-- (GameStartNotification_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+- (GameStartNotificationResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
   PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
   while (YES) {
     int32_t tag = [input readTag];
@@ -12778,6 +12980,8 @@ static FacetimeChatResponse* defaultFacetimeChatResponseInstance = nil;
 @property (retain) JoinGameResponse* joinGameResponse;
 @property (retain) StartGameRequest* startGameRequest;
 @property (retain) StartGameResponse* startGameResponse;
+@property (retain) GameStartNotificationRequest* gameStartNotificationRequest;
+@property (retain) GameStartNotificationResponse* gameStartNotificationResponse;
 @property (retain) SendDrawDataRequest* sendDrawDataRequest;
 @property (retain) SendDrawDataResponse* sendDrawDataResponse;
 @property (retain) GameChatRequest* chatRequest;
@@ -12924,6 +13128,20 @@ static FacetimeChatResponse* defaultFacetimeChatResponseInstance = nil;
   hasStartGameResponse_ = !!value;
 }
 @synthesize startGameResponse;
+- (BOOL) hasGameStartNotificationRequest {
+  return !!hasGameStartNotificationRequest_;
+}
+- (void) setHasGameStartNotificationRequest:(BOOL) value {
+  hasGameStartNotificationRequest_ = !!value;
+}
+@synthesize gameStartNotificationRequest;
+- (BOOL) hasGameStartNotificationResponse {
+  return !!hasGameStartNotificationResponse_;
+}
+- (void) setHasGameStartNotificationResponse:(BOOL) value {
+  hasGameStartNotificationResponse_ = !!value;
+}
+@synthesize gameStartNotificationResponse;
 - (BOOL) hasSendDrawDataRequest {
   return !!hasSendDrawDataRequest_;
 }
@@ -13240,6 +13458,8 @@ static FacetimeChatResponse* defaultFacetimeChatResponseInstance = nil;
   self.joinGameResponse = nil;
   self.startGameRequest = nil;
   self.startGameResponse = nil;
+  self.gameStartNotificationRequest = nil;
+  self.gameStartNotificationResponse = nil;
   self.sendDrawDataRequest = nil;
   self.sendDrawDataResponse = nil;
   self.chatRequest = nil;
@@ -13299,6 +13519,8 @@ static FacetimeChatResponse* defaultFacetimeChatResponseInstance = nil;
     self.joinGameResponse = [JoinGameResponse defaultInstance];
     self.startGameRequest = [StartGameRequest defaultInstance];
     self.startGameResponse = [StartGameResponse defaultInstance];
+    self.gameStartNotificationRequest = [GameStartNotificationRequest defaultInstance];
+    self.gameStartNotificationResponse = [GameStartNotificationResponse defaultInstance];
     self.sendDrawDataRequest = [SendDrawDataRequest defaultInstance];
     self.sendDrawDataResponse = [SendDrawDataResponse defaultInstance];
     self.chatRequest = [GameChatRequest defaultInstance];
@@ -13372,6 +13594,11 @@ static GameMessage* defaultGameMessageInstance = nil;
   }
   if (self.hasJoinGameResponse) {
     if (!self.joinGameResponse.isInitialized) {
+      return NO;
+    }
+  }
+  if (self.hasGameStartNotificationRequest) {
+    if (!self.gameStartNotificationRequest.isInitialized) {
       return NO;
     }
   }
@@ -13509,6 +13736,12 @@ static GameMessage* defaultGameMessageInstance = nil;
   }
   if (self.hasStartGameResponse) {
     [output writeMessage:14 value:self.startGameResponse];
+  }
+  if (self.hasGameStartNotificationRequest) {
+    [output writeMessage:15 value:self.gameStartNotificationRequest];
+  }
+  if (self.hasGameStartNotificationResponse) {
+    [output writeMessage:16 value:self.gameStartNotificationResponse];
   }
   if (self.hasSendDrawDataRequest) {
     [output writeMessage:21 value:self.sendDrawDataRequest];
@@ -13692,6 +13925,12 @@ static GameMessage* defaultGameMessageInstance = nil;
   }
   if (self.hasStartGameResponse) {
     size += computeMessageSize(14, self.startGameResponse);
+  }
+  if (self.hasGameStartNotificationRequest) {
+    size += computeMessageSize(15, self.gameStartNotificationRequest);
+  }
+  if (self.hasGameStartNotificationResponse) {
+    size += computeMessageSize(16, self.gameStartNotificationResponse);
   }
   if (self.hasSendDrawDataRequest) {
     size += computeMessageSize(21, self.sendDrawDataRequest);
@@ -13942,6 +14181,12 @@ static GameMessage* defaultGameMessageInstance = nil;
   if (other.hasStartGameResponse) {
     [self mergeStartGameResponse:other.startGameResponse];
   }
+  if (other.hasGameStartNotificationRequest) {
+    [self mergeGameStartNotificationRequest:other.gameStartNotificationRequest];
+  }
+  if (other.hasGameStartNotificationResponse) {
+    [self mergeGameStartNotificationResponse:other.gameStartNotificationResponse];
+  }
   if (other.hasSendDrawDataRequest) {
     [self mergeSendDrawDataRequest:other.sendDrawDataRequest];
   }
@@ -14184,6 +14429,24 @@ static GameMessage* defaultGameMessageInstance = nil;
         }
         [input readMessage:subBuilder extensionRegistry:extensionRegistry];
         [self setStartGameResponse:[subBuilder buildPartial]];
+        break;
+      }
+      case 122: {
+        GameStartNotificationRequest_Builder* subBuilder = [GameStartNotificationRequest builder];
+        if (self.hasGameStartNotificationRequest) {
+          [subBuilder mergeFrom:self.gameStartNotificationRequest];
+        }
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self setGameStartNotificationRequest:[subBuilder buildPartial]];
+        break;
+      }
+      case 130: {
+        GameStartNotificationResponse_Builder* subBuilder = [GameStartNotificationResponse builder];
+        if (self.hasGameStartNotificationResponse) {
+          [subBuilder mergeFrom:self.gameStartNotificationResponse];
+        }
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self setGameStartNotificationResponse:[subBuilder buildPartial]];
         break;
       }
       case 170: {
@@ -14843,6 +15106,66 @@ static GameMessage* defaultGameMessageInstance = nil;
 - (GameMessage_Builder*) clearStartGameResponse {
   result.hasStartGameResponse = NO;
   result.startGameResponse = [StartGameResponse defaultInstance];
+  return self;
+}
+- (BOOL) hasGameStartNotificationRequest {
+  return result.hasGameStartNotificationRequest;
+}
+- (GameStartNotificationRequest*) gameStartNotificationRequest {
+  return result.gameStartNotificationRequest;
+}
+- (GameMessage_Builder*) setGameStartNotificationRequest:(GameStartNotificationRequest*) value {
+  result.hasGameStartNotificationRequest = YES;
+  result.gameStartNotificationRequest = value;
+  return self;
+}
+- (GameMessage_Builder*) setGameStartNotificationRequestBuilder:(GameStartNotificationRequest_Builder*) builderForValue {
+  return [self setGameStartNotificationRequest:[builderForValue build]];
+}
+- (GameMessage_Builder*) mergeGameStartNotificationRequest:(GameStartNotificationRequest*) value {
+  if (result.hasGameStartNotificationRequest &&
+      result.gameStartNotificationRequest != [GameStartNotificationRequest defaultInstance]) {
+    result.gameStartNotificationRequest =
+      [[[GameStartNotificationRequest builderWithPrototype:result.gameStartNotificationRequest] mergeFrom:value] buildPartial];
+  } else {
+    result.gameStartNotificationRequest = value;
+  }
+  result.hasGameStartNotificationRequest = YES;
+  return self;
+}
+- (GameMessage_Builder*) clearGameStartNotificationRequest {
+  result.hasGameStartNotificationRequest = NO;
+  result.gameStartNotificationRequest = [GameStartNotificationRequest defaultInstance];
+  return self;
+}
+- (BOOL) hasGameStartNotificationResponse {
+  return result.hasGameStartNotificationResponse;
+}
+- (GameStartNotificationResponse*) gameStartNotificationResponse {
+  return result.gameStartNotificationResponse;
+}
+- (GameMessage_Builder*) setGameStartNotificationResponse:(GameStartNotificationResponse*) value {
+  result.hasGameStartNotificationResponse = YES;
+  result.gameStartNotificationResponse = value;
+  return self;
+}
+- (GameMessage_Builder*) setGameStartNotificationResponseBuilder:(GameStartNotificationResponse_Builder*) builderForValue {
+  return [self setGameStartNotificationResponse:[builderForValue build]];
+}
+- (GameMessage_Builder*) mergeGameStartNotificationResponse:(GameStartNotificationResponse*) value {
+  if (result.hasGameStartNotificationResponse &&
+      result.gameStartNotificationResponse != [GameStartNotificationResponse defaultInstance]) {
+    result.gameStartNotificationResponse =
+      [[[GameStartNotificationResponse builderWithPrototype:result.gameStartNotificationResponse] mergeFrom:value] buildPartial];
+  } else {
+    result.gameStartNotificationResponse = value;
+  }
+  result.hasGameStartNotificationResponse = YES;
+  return self;
+}
+- (GameMessage_Builder*) clearGameStartNotificationResponse {
+  result.hasGameStartNotificationResponse = NO;
+  result.gameStartNotificationResponse = [GameStartNotificationResponse defaultInstance];
   return self;
 }
 - (BOOL) hasSendDrawDataRequest {

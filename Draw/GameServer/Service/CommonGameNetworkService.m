@@ -185,7 +185,7 @@
 
 - (void)handleGameStartNotificationRequest:(GameMessage*)message
 {
-    PPDebug(@"WARNNING: handleGameStartNotificationRequest NOT COMPLETE YET");
+    PPDebug(@"WARRING: handleGameStartNotificationRequest has not been implementation yet!");
 }
 
 - (void)handleGetRoomsResponse:(GameMessage*)message
@@ -279,7 +279,7 @@
 {
     switch ([message command]){
         case GameCommandTypeGameStartNotificationRequest:
-            [self handleGameStartNotificationRequest];
+            [self handleGameStartNotificationRequest:message];
             break;
             
         case GameCommandTypeGetRoomsResponse:

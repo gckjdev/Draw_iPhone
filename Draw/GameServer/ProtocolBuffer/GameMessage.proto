@@ -280,7 +280,11 @@ message SendDrawDataRequest {
 message SendDrawDataResponse{
 }
 
-message GameStartNotification{                 // 游戏开始通知，用于服务器通知所有同一个会话里面的用户
+message GameStartNotificationRequest{                 // 游戏开始通知，用于服务器通知所有同一个会话里面的用户
+    optional PBZJHGameState zjhGameState = 11;
+}
+
+message GameStartNotificationResponse{
 }
 
 message GeneralNotification{                 
@@ -354,6 +358,10 @@ message GameMessage {
   
   optional StartGameRequest startGameRequest = 13;
   optional StartGameResponse startGameResponse = 14;
+  
+  optional GameStartNotificationRequest gameStartNotificationRequest = 15;
+  optional GameStartNotificationResponse gameStartNotificationResponse = 16;
+
   
   optional SendDrawDataRequest sendDrawDataRequest = 21;
   optional SendDrawDataResponse sendDrawDataResponse = 22;

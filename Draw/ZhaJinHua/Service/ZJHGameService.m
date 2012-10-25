@@ -100,26 +100,7 @@ static ZJHGameService *_defaultService;
                                 cardIds:cardIds];
 }
 
-- (void)someoneBet:(NSString *)userId
-         singleBet:(int)singleBet
-             count:(int)count
-         isAutoBet:(BOOL)isAutoBet
-{
-    _gameState.totalBet += singleBet * count;
-    _gameState.singleBet = singleBet;
-    
-    [_gameState userInfo:userId].totalBet += singleBet * count;
-    [_gameState userInfo:userId].isAutoBet = isAutoBet;
-}
-
-
 #pragma mark - overwrite methods
-
-- (void)handleCustomMessage:(GameMessage*)message
-{
-    
-}
-
 - (void)handleJoinGameResponse:(GameMessage*)message
 {
     dispatch_async(dispatch_get_main_queue(), ^{
@@ -136,8 +117,49 @@ static ZJHGameService *_defaultService;
     });
 }
 
+- (void)handleGameStartNotificationRequest:(GameMessage*)message
+{
+    [_gameState fromPBZJHGameState:[[message gameStartNotificationRequest] zjhGameState]];
+}
 
+#pragma mark -  message handler
 
+- (void)handleBetDiceRequest:(GameMessage *)message
+{
+    _gameState.totalBet += message.betRequest.singleBet * message.betRequest.count;
+    _gameState.singleBet = message.betRequest.singleBet;
+    
+    [_gameState userInfo:message.userId].totalBet += message.betRequest.singleBet * message.betRequest.count;
+    [_gameState userInfo:message.userId].isAutoBet = message.betRequest.isAutoBet;
+}
+
+- (void)handleBetDiceResponse:(GameMessage *)message
+{
+    _gameState.totalBet += message.betRequest.singleBet * message.betRequest.count;
+    _gameState.singleBet = message.betRequest.singleBet;
+    
+    [_gameState userInfo:message.userId].totalBet += message.betRequest.singleBet * message.betRequest.count;
+    [_gameState userInfo:message.userId].isAutoBet = message.betRequest.isAutoBet;
+}
+
+- (void)handleCustomMessage:(GameMessage*)message
+{
+    switch ([message command]){
+        case GameCommandTypeBetDiceRequest:
+            [self handleBetDiceRequest:message];
+            break;
+            
+        case GameCommandTypeBetDiceResponse:
+            [self handleBetDiceResponse:message];
+            break;
+            
+            
+        default:
+            PPDebug(@"<handleCustomMessage> unknown command=%d", [message command]);
+            break;
+    }
+    
+}
 
 
 

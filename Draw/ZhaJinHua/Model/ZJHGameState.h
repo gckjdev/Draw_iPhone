@@ -14,13 +14,11 @@
 @property (assign, nonatomic) int singleBet;
 @property (assign, nonatomic) int myTurnTimes;
 
+- (void)reset;
 - (ZJHGameState *)fromPBZJHGameState:(PBZJHGameState *)gameState;
 
 - (ZJHUserInfo *)userInfo:(NSString *)userId;
-
 - (int)betCountOfUser:(NSString *)userId;
-
 - (BOOL)user:(NSString *)userId canBeCompare:(BOOL)canBeCompare;
 - (BOOL)user:(NSString *)userId hasShield:(BOOL)hasShield;
-
 @end
