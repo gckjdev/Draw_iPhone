@@ -8,6 +8,26 @@
 
 #import "PPViewController.h"
 
-@interface ZJHGameController : PPViewController
+@class ZJHGameService;
+@class UserManager;
+@class LevelService;
+@class AudioManager;
+
+
+
+typedef enum {
+    GamePositionLeftTop = 0,
+    GamePositionLeft,
+    GamePositionCenter,
+    GamePositionRight,
+    GamePositionRightTop,
+}GamePosition;
+
+@interface ZJHGameController : PPViewController {
+    ZJHGameService  *_gameService;
+    LevelService    *_levelService;
+    UserManager     *_userManager;
+    AudioManager    *_audioManager;
+}
 
 @end
