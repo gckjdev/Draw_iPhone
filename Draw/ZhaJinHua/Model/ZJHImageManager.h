@@ -10,4 +10,6 @@
 
 @interface ZJHImageManager : NSObject
 
++ (ZJHImageManager*)defaultManager;
+
 @end

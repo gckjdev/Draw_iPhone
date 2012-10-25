@@ -17,12 +17,12 @@
 
 
 typedef enum {
-    GamePositionLeftTop = 0,
-    GamePositionLeft,
-    GamePositionCenter,
-    GamePositionRight,
-    GamePositionRightTop,
-}GamePosition;
+    UserPositionLeftTop = 0,
+    UserPositionLeft,
+    UserPositionCenter,
+    UserPositionRight,
+    UserPositionRightTop,
+}UserPosition;
 
 @interface ZJHGameController : PPViewController {
     ZJHGameService  *_gameService;
