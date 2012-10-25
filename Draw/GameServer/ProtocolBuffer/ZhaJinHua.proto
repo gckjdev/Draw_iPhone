@@ -20,10 +20,10 @@ enum PBZJHCardType{
 enum PBZJHUserAction{
   NONE = 0;                     // 无动作
   BET = 1;                      // 跟注
-  RAISE_BET = 1;                // 加注
-  AUTO_BET = 2;                 // 自动跟注
-  CHECK_CARD = 3;               // 看牌
-  FOLD_CARD = 4;                // 弃牌
+  RAISE_BET = 2;                // 加注
+  AUTO_BET = 3;                 // 自动跟注
+  CHECK_CARD = 4;               // 看牌
+  FOLD_CARD = 5;                // 弃牌
   COMPARE_CARD = 6;             // 比牌
   SHOW_CARD = 7;                // 亮牌
 }

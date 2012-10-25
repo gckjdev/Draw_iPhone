@@ -46,9 +46,10 @@ BOOL PBZJHCardTypeIsValidValue(PBZJHCardType value);
 typedef enum {
   PBZJHUserActionNone = 0,
   PBZJHUserActionBet = 1,
-  PBZJHUserActionAutoBet = 2,
-  PBZJHUserActionCheckCard = 3,
-  PBZJHUserActionFoldCard = 4,
+  PBZJHUserActionRaiseBet = 2,
+  PBZJHUserActionAutoBet = 3,
+  PBZJHUserActionCheckCard = 4,
+  PBZJHUserActionFoldCard = 5,
   PBZJHUserActionCompareCard = 6,
   PBZJHUserActionShowCard = 7,
 } PBZJHUserAction;
