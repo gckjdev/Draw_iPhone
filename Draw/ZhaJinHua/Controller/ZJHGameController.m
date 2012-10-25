@@ -12,6 +12,7 @@
 #import "UserManager.h"
 #import "AudioManager.h"
 #import "AccountService.h"
+#import "ZJHImageManager.h"
 
 
 #define NOTIFICATION_NEXT_PLAYER_START @""
@@ -31,7 +32,7 @@
     if (self) {
         _gameService = [ZJHGameService defaultService];
         _userManager = [UserManager defaultManager];
-        _imageManager = [DiceImageManager defaultManager];
+        _imageManager = [ZJHImageManager defaultManager];
         _levelService = [LevelService defaultService];
         _accountService = [AccountService defaultService];
         _audioManager = [AudioManager defaultManager];
