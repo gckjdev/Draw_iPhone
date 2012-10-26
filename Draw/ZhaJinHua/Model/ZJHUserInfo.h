@@ -28,7 +28,7 @@
 
 - (ZJHUserInfo *)fromPBZJHUserInfo:(PBZJHUserInfo *)pbZJHUserInfo;
 
-- (void)setPokerFaceUp:(int)pokerId;
+- (void)setPokersFaceUp:(NSArray *)pokerIds;
 - (Poker *)poker:(int)pokerId;
 - (int)betCount;
 

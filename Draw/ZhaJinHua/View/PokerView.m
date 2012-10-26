@@ -8,9 +8,16 @@
 
 #import "PokerView.h"
 
-
-
 @implementation PokerView
+
+- (void)dealloc {
+    [_backImageView release];
+    [_fontView release];
+    [_rankImageView release];
+    [_suitImageView release];
+    [_bodyImageView release];
+    [super dealloc];
+}
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -21,13 +28,20 @@
     return self;
 }
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect
+- (void)faceDown:(BOOL)animation
 {
-    // Drawing code
+    self.backImageView.hidden = NO;
 }
-*/
+
+- (void)faceUp:(BOOL)animation
+{
+    if (self.backImageView.hidden == YES) {
+        return;
+    }
+    
+    self.backImageView.hidden = YES;
+}
+
+
 
 @end

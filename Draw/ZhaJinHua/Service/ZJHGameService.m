@@ -128,6 +128,10 @@ static ZJHGameService *_defaultService;
 - (void)updateBetModel:(GameMessage *)message
 {
     ZJHUserInfo *userInfo = [_gameState userInfo:message.userId];
+    if (userInfo == nil) {
+        return;
+    }
+    
     if (userInfo.isAutoBet == TRUE) {
         userInfo.lastAction = PBZJHUserActionAutoBet;
     }else if (_gameState.singleBet == message.betRequest.singleBet) {
@@ -139,8 +143,43 @@ static ZJHGameService *_defaultService;
     _gameState.totalBet += message.betRequest.singleBet * message.betRequest.count;
     _gameState.singleBet = message.betRequest.singleBet;
     
-    [_gameState userInfo:message.userId].totalBet += message.betRequest.singleBet * message.betRequest.count;
-    [_gameState userInfo:message.userId].isAutoBet = message.betRequest.isAutoBet;
+    userInfo.totalBet += message.betRequest.singleBet * message.betRequest.count;
+    userInfo.isAutoBet = message.betRequest.isAutoBet;
+}
+
+- (void)updateCheckCardModel:(GameMessage *)message
+{
+    ZJHUserInfo *userInfo = [_gameState userInfo:message.userId];
+    if (userInfo == nil) {
+        return;
+    }
+    
+    userInfo.lastAction = PBZJHUserActionCheckCard;
+    userInfo.alreadCheckCard = YES;
+}
+
+- (void)updateFoldCardModel:(GameMessage *)message
+{
+    ZJHUserInfo *userInfo = [_gameState userInfo:message.userId];
+    if (userInfo == nil) {
+        return;
+    }
+    
+    userInfo.lastAction = PBZJHUserActionFoldCard;
+    userInfo.alreadFoldCard = YES;
+}
+
+- (void)updateShowCardModel:(GameMessage *)message
+{
+    ZJHUserInfo *userInfo = [_gameState userInfo:message.userId];
+    if (userInfo == nil) {
+        return;
+    }
+    
+    userInfo.lastAction = PBZJHUserActionShowCard;
+    userInfo.alreadShowCard = YES;
+    
+    [userInfo setPokersFaceUp:message.showCardRequest.cardIdsList];
 }
 
 - (void)handleBetDiceRequest:(GameMessage *)message
@@ -155,6 +194,54 @@ static ZJHGameService *_defaultService;
     }
 }
 
+- (void)handleCheckCardRequest:(GameMessage *)message
+{
+    [self updateCheckCardModel:message];
+}
+
+- (void)handleCheckCardResponse:(GameMessage *)message
+{
+    if (message.resultCode == 0) {
+        [self updateCheckCardModel:message];
+    }
+}
+
+- (void)handleFoldCardRequest:(GameMessage *)message
+{
+    [self updateFoldCardModel:message];
+}
+
+- (void)handleFoldCardResponse:(GameMessage *)message
+{
+    if (message.resultCode == 0) {
+        [self updateFoldCardModel:message];
+    }
+}
+
+- (void)handleCompareCardRequest:(GameMessage *)message
+{
+//    [self updateCompareCardModel:message];
+}
+
+- (void)handleCompareCardResponse:(GameMessage *)message
+{
+//    if (message.resultCode == 0) {
+//        [self updateCompareCardModel:message];
+//    }
+}
+
+- (void)handleShowCardRequest:(GameMessage *)message
+{
+    [self updateShowCardModel:message];
+}
+
+- (void)handleShowCardResponse:(GameMessage *)message
+{
+    if (message.resultCode == 0) {
+        [self updateShowCardModel:message];
+    }
+}
+
 - (void)handleCustomMessage:(GameMessage*)message
 {
     switch ([message command]){
@@ -164,6 +251,38 @@ static ZJHGameService *_defaultService;
             
         case GameCommandTypeBetDiceResponse:
             [self handleBetDiceResponse:message];
+            break;
+            
+        case GameCommandTypeCheckCardRequest:
+            [self handleCheckCardRequest:message];
+            break;
+            
+        case GameCommandTypeCheckCardResponse:
+            [self handleCheckCardResponse:message];
+            break;
+            
+        case GameCommandTypeFoldCardRequest:
+            [self handleFoldCardRequest:message];
+            break;
+            
+        case GameCommandTypeFoldCardResponse:
+            [self handleFoldCardResponse:message];
+            break;
+            
+        case GameCommandTypeCompareCardRequest:
+            [self handleCompareCardRequest:message];
+            break;
+            
+        case GameCommandTypeCompareCardResponse:
+            [self handleCompareCardResponse:message];
+            break;
+            
+        case GameCommandTypeShowCardRequest:
+            [self handleShowCardRequest:message];
+            break;
+            
+        case GameCommandTypeShowCardResponse:
+            [self handleShowCardResponse:message];
             break;
             
         default:

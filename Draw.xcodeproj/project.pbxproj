@@ -99,6 +99,7 @@
 		A44B622A16379D4000A8045B /* ZJHUserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = A44B622916379D4000A8045B /* ZJHUserInfo.m */; };
 		A44B622D1637B80700A8045B /* Poker.m in Sources */ = {isa = PBXBuildFile; fileRef = A44B622C1637B80600A8045B /* Poker.m */; };
 		A44B62301637C45600A8045B /* PokerView.m in Sources */ = {isa = PBXBuildFile; fileRef = A44B622F1637C45600A8045B /* PokerView.m */; };
+		A44B6244163936CB00A8045B /* PokerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A44B6243163936CB00A8045B /* PokerView.xib */; };
 		A44DDF4115C64528005609F6 /* DiceShowView.m in Sources */ = {isa = PBXBuildFile; fileRef = A44DDF4015C64528005609F6 /* DiceShowView.m */; };
 		A44DDF4415C669E0005609F6 /* Dice.pb.m in Sources */ = {isa = PBXBuildFile; fileRef = A44DDF4315C669DF005609F6 /* Dice.pb.m */; };
 		A454CB6F1558F5CE00896761 /* ChatController.m in Sources */ = {isa = PBXBuildFile; fileRef = A454CB6D1558F5CE00896761 /* ChatController.m */; };
@@ -1284,6 +1285,7 @@
 		A44B622C1637B80600A8045B /* Poker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Poker.m; sourceTree = "<group>"; };
 		A44B622E1637C45600A8045B /* PokerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PokerView.h; sourceTree = "<group>"; };
 		A44B622F1637C45600A8045B /* PokerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PokerView.m; sourceTree = "<group>"; };
+		A44B6243163936CB00A8045B /* PokerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PokerView.xib; sourceTree = "<group>"; };
 		A44DDF2A15C62B18005609F6 /* NotificationName.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NotificationName.h; sourceTree = "<group>"; };
 		A44DDF3F15C64528005609F6 /* DiceShowView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiceShowView.h; sourceTree = "<group>"; };
 		A44DDF4015C64528005609F6 /* DiceShowView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiceShowView.m; sourceTree = "<group>"; };
@@ -3484,6 +3486,7 @@
 			children = (
 				A44B622E1637C45600A8045B /* PokerView.h */,
 				A44B622F1637C45600A8045B /* PokerView.m */,
+				A44B6243163936CB00A8045B /* PokerView.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -7677,6 +7680,7 @@
 				CA56D43F1632E841005FE4AE /* wrong.wav in Resources */,
 				A4E7876A16366FF8003557AD /* ZhaJinHua.proto in Resources */,
 				A44B6227163787F500A8045B /* ZJHGameController.xib in Resources */,
+				A44B6244163936CB00A8045B /* PokerView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

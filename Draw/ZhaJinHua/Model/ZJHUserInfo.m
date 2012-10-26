@@ -54,10 +54,11 @@
 
 #pragma make - Publik methods
 
-- (void)setPokerFaceUp:(int)pokerId
+- (void)setPokersFaceUp:(NSArray *)pokerIds
 {
-    Poker *poker = [self poker:pokerId];
-    [poker setFaceUp];
+    for (NSNumber *pokerId in pokerIds) {
+        [self setPokerFaceUp:pokerId.intValue];
+    }
 }
 
 - (int)betCount
@@ -102,6 +103,12 @@
 }
 
 #pragma make - Private methods
+
+- (void)setPokerFaceUp:(int)pokerId
+{
+    Poker *poker = [self poker:pokerId];
+    [poker setFaceUp];
+}
 
 - (Poker *)poker:(int)pokerId
 {

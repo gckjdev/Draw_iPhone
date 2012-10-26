@@ -16,7 +16,7 @@
 + (ZJHGameService*)defaultService;
 
 - (void)bet;                                    // 跟注
-- (void)raiseBet;                               // 加注
+- (void)raiseBet:(int)singleBet;                // 加注
 - (void)autoBet;                                // 自动跟注
 
 - (void)checkCard;                              // 看牌
