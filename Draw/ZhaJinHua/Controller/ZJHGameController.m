@@ -16,7 +16,7 @@
 
 
 #define NOTIFICATION_NEXT_PLAYER_START @""
-#define NOTIFICATION_ROLL_DICE_BEGIN    @""
+#define NOTIFICATION_GAME_BEGIN    @""
 
 @interface ZJHGameController ()
 
@@ -89,7 +89,7 @@
 
                                     }];
     
-    [self registerZJHGameNotificationWithName:NOTIFICATION_ROLL_DICE_BEGIN
+    [self registerZJHGameNotificationWithName:NOTIFICATION_GAME_BEGIN
                                     usingBlock:^(NSNotification *notification) {
                                     }];
     
@@ -158,38 +158,39 @@
     [self updateWaittingForNextTurnNotLabel];
 }
 
-- (void)someOneBet:(GamePosition)position
+- (void)someOneBet:(UserPosition)position
+           counter:(int)counter
 {
     
 }
 
-- (void)someOneShowCard:(GamePosition)position
+- (void)someOneShowCard:(UserPosition)position
 {
     
 }
 
-- (void)someOne:(GamePosition)player
-    compareWith:(GamePosition)otherPlayer
+- (void)someOne:(UserPosition)player
+    compareWith:(UserPosition)otherPlayer
 {
     
 }
 
-- (void)someOneRaiseBet:(GamePosition)position
+- (void)someOneRaiseBet:(UserPosition)position
 {
     
 }
 
-- (void)someOneAutoBet:(GamePosition)position
+- (void)someOneAutoBet:(UserPosition)position
 {
     
 }
 
-- (void)someOneCheckCard:(GamePosition)position
+- (void)someOneCheckCard:(UserPosition)position
 {
     
 }
 
-- (void)someOneFoldCard:(GamePosition)position
+- (void)someOneFoldCard:(UserPosition)position
 {
     
 }

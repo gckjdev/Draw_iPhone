@@ -99,7 +99,6 @@
 		A44B622A16379D4000A8045B /* ZJHUserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = A44B622916379D4000A8045B /* ZJHUserInfo.m */; };
 		A44B622D1637B80700A8045B /* Poker.m in Sources */ = {isa = PBXBuildFile; fileRef = A44B622C1637B80600A8045B /* Poker.m */; };
 		A44B62301637C45600A8045B /* PokerView.m in Sources */ = {isa = PBXBuildFile; fileRef = A44B622F1637C45600A8045B /* PokerView.m */; };
-		A44B6244163936CB00A8045B /* PokerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A44B6243163936CB00A8045B /* PokerView.xib */; };
 		A44DDF4115C64528005609F6 /* DiceShowView.m in Sources */ = {isa = PBXBuildFile; fileRef = A44DDF4015C64528005609F6 /* DiceShowView.m */; };
 		A44DDF4415C669E0005609F6 /* Dice.pb.m in Sources */ = {isa = PBXBuildFile; fileRef = A44DDF4315C669DF005609F6 /* Dice.pb.m */; };
 		A454CB6F1558F5CE00896761 /* ChatController.m in Sources */ = {isa = PBXBuildFile; fileRef = A454CB6D1558F5CE00896761 /* ChatController.m */; };
@@ -283,6 +282,7 @@
 		C2E90FF815BD553A00828562 /* RecommendedAppsController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2E90FF515BD553800828562 /* RecommendedAppsController.xib */; };
 		C2E90FF915BD553A00828562 /* RecommendedAppsController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2E90FF615BD553900828562 /* RecommendedAppsController~ipad.xib */; };
 		C2F2CF981639165500995DCB /* ZJHImageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C2F2CF971639165500995DCB /* ZJHImageManager.m */; };
+		C2F2CFB3163932C000995DCB /* ZJHAvatarView.m in Sources */ = {isa = PBXBuildFile; fileRef = C2F2CFB2163932C000995DCB /* ZJHAvatarView.m */; };
 		C2F48BD115BE4484005C4D72 /* RecommendAppService.m in Sources */ = {isa = PBXBuildFile; fileRef = C2F48BD015BE4484005C4D72 /* RecommendAppService.m */; };
 		C2F48C1415C23D3D005C4D72 /* MatchingFacetimeUserView.m in Sources */ = {isa = PBXBuildFile; fileRef = C2F48C1315C23D3D005C4D72 /* MatchingFacetimeUserView.m */; };
 		C2F48C1615C23DA4005C4D72 /* FacetimeMainController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2F48C1515C23DA3005C4D72 /* FacetimeMainController~ipad.xib */; };
@@ -1285,7 +1285,6 @@
 		A44B622C1637B80600A8045B /* Poker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Poker.m; sourceTree = "<group>"; };
 		A44B622E1637C45600A8045B /* PokerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PokerView.h; sourceTree = "<group>"; };
 		A44B622F1637C45600A8045B /* PokerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PokerView.m; sourceTree = "<group>"; };
-		A44B6243163936CB00A8045B /* PokerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PokerView.xib; sourceTree = "<group>"; };
 		A44DDF2A15C62B18005609F6 /* NotificationName.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NotificationName.h; sourceTree = "<group>"; };
 		A44DDF3F15C64528005609F6 /* DiceShowView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiceShowView.h; sourceTree = "<group>"; };
 		A44DDF4015C64528005609F6 /* DiceShowView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiceShowView.m; sourceTree = "<group>"; };
@@ -1590,6 +1589,8 @@
 		C2E90FF615BD553900828562 /* RecommendedAppsController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "RecommendedAppsController~ipad.xib"; sourceTree = "<group>"; };
 		C2F2CF961639165500995DCB /* ZJHImageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJHImageManager.h; sourceTree = "<group>"; };
 		C2F2CF971639165500995DCB /* ZJHImageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJHImageManager.m; sourceTree = "<group>"; };
+		C2F2CFB1163932C000995DCB /* ZJHAvatarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJHAvatarView.h; sourceTree = "<group>"; };
+		C2F2CFB2163932C000995DCB /* ZJHAvatarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJHAvatarView.m; sourceTree = "<group>"; };
 		C2F48BCF15BE4484005C4D72 /* RecommendAppService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecommendAppService.h; sourceTree = "<group>"; };
 		C2F48BD015BE4484005C4D72 /* RecommendAppService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecommendAppService.m; sourceTree = "<group>"; };
 		C2F48C1215C23D3D005C4D72 /* MatchingFacetimeUserView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MatchingFacetimeUserView.h; sourceTree = "<group>"; };
@@ -3486,7 +3487,8 @@
 			children = (
 				A44B622E1637C45600A8045B /* PokerView.h */,
 				A44B622F1637C45600A8045B /* PokerView.m */,
-				A44B6243163936CB00A8045B /* PokerView.xib */,
+				C2F2CFB1163932C000995DCB /* ZJHAvatarView.h */,
+				C2F2CFB2163932C000995DCB /* ZJHAvatarView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -7680,7 +7682,6 @@
 				CA56D43F1632E841005FE4AE /* wrong.wav in Resources */,
 				A4E7876A16366FF8003557AD /* ZhaJinHua.proto in Resources */,
 				A44B6227163787F500A8045B /* ZJHGameController.xib in Resources */,
-				A44B6244163936CB00A8045B /* PokerView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -8250,6 +8251,7 @@
 				A44B622D1637B80700A8045B /* Poker.m in Sources */,
 				A44B62301637C45600A8045B /* PokerView.m in Sources */,
 				C2F2CF981639165500995DCB /* ZJHImageManager.m in Sources */,
+				C2F2CFB3163932C000995DCB /* ZJHAvatarView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
