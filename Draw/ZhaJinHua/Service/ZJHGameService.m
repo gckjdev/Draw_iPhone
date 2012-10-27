@@ -128,7 +128,7 @@ static ZJHGameService *_defaultService;
 
 - (void)handleGameStartNotificationRequest:(GameMessage*)message
 {
-    [_gameState fromPBZJHGameState:[[message gameStartNotificationRequest] zjhGameState]];
+    [_gameState fromPBZJHGameState:[[message gameStartNotificationRequest] zjhGameStateAtIndex:<#(int32_t)#>]];
     [self postNotification:NOTIFICATION_GAME_START_NOTIFICATION_REQUEST message:message];
 }
 
