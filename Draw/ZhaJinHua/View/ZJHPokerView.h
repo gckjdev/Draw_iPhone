@@ -24,7 +24,6 @@ typedef enum {
 @property (retain, nonatomic) IBOutlet PokerView *poker3View;
 
 - (void)updateZJHUserInfo:(ZJHUserInfo *)userInfo;
-- (void)show;
 
 // 别人看牌时，调用这个接口，把牌摊成扇形
 - (void)makeSectorShape:(ZJHPokerSectorType)sectorType animation:(BOOL)animation;
@@ -34,7 +33,6 @@ typedef enum {
 
 // 别人亮牌时，调用这个接口，把自己那张亮的牌翻过来。
 - (void)faceupCard:(int)cardId animation:(BOOL)animation;
-
 
 // 别人或自己弃牌，调用这个接口，表示弃牌
 - (void)fold:(BOOL)animation;

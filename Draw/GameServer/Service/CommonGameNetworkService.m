@@ -131,7 +131,8 @@
     [self initServerListString];
     [self dispatchServer];
     
-    [_networkClient start:_serverAddress port:_serverPort];        
+//    [_networkClient start:_serverAddress port:_serverPort];
+    [_networkClient start:@"192.168.1.7" port:8080];
 }
 
 - (void)initServerListString

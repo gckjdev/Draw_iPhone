@@ -2877,10 +2877,10 @@ BOOL BetTypeIsValidValue(BetType value);
 
 @interface GameStartNotificationRequest : PBGeneratedMessage {
 @private
-  NSMutableArray* mutableZjhUserPokersList;
+  NSMutableArray* mutableZjhGameStateList;
 }
-- (NSArray*) zjhUserPokersList;
-- (PBZJHUserPoker*) zjhUserPokersAtIndex:(int32_t) index;
+- (NSArray*) zjhGameStateList;
+- (PBZJHGameState*) zjhGameStateAtIndex:(int32_t) index;
 
 + (GameStartNotificationRequest*) defaultInstance;
 - (GameStartNotificationRequest*) defaultInstance;
@@ -2916,12 +2916,12 @@ BOOL BetTypeIsValidValue(BetType value);
 - (GameStartNotificationRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
 - (GameStartNotificationRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 
-- (NSArray*) zjhUserPokersList;
-- (PBZJHUserPoker*) zjhUserPokersAtIndex:(int32_t) index;
-- (GameStartNotificationRequest_Builder*) replaceZjhUserPokersAtIndex:(int32_t) index with:(PBZJHUserPoker*) value;
-- (GameStartNotificationRequest_Builder*) addZjhUserPokers:(PBZJHUserPoker*) value;
-- (GameStartNotificationRequest_Builder*) addAllZjhUserPokers:(NSArray*) values;
-- (GameStartNotificationRequest_Builder*) clearZjhUserPokersList;
+- (NSArray*) zjhGameStateList;
+- (PBZJHGameState*) zjhGameStateAtIndex:(int32_t) index;
+- (GameStartNotificationRequest_Builder*) replaceZjhGameStateAtIndex:(int32_t) index with:(PBZJHGameState*) value;
+- (GameStartNotificationRequest_Builder*) addZjhGameState:(PBZJHGameState*) value;
+- (GameStartNotificationRequest_Builder*) addAllZjhGameState:(NSArray*) values;
+- (GameStartNotificationRequest_Builder*) clearZjhGameStateList;
 @end
 
 @interface GameStartNotificationResponse : PBGeneratedMessage {

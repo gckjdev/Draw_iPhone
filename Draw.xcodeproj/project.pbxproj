@@ -102,6 +102,7 @@
 		A44B6258163A2BB000A8045B /* PokerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A44B6257163A2BAF00A8045B /* PokerView.xib */; };
 		A44B625B163A344100A8045B /* ZJHPokerView.m in Sources */ = {isa = PBXBuildFile; fileRef = A44B625A163A344100A8045B /* ZJHPokerView.m */; };
 		A44B625D163A346500A8045B /* ZJHPokerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A44B625C163A346400A8045B /* ZJHPokerView.xib */; };
+		A44B627C163BC37300A8045B /* DealingShoe.m in Sources */ = {isa = PBXBuildFile; fileRef = A44B627B163BC37000A8045B /* DealingShoe.m */; };
 		A44DDF4115C64528005609F6 /* DiceShowView.m in Sources */ = {isa = PBXBuildFile; fileRef = A44DDF4015C64528005609F6 /* DiceShowView.m */; };
 		A44DDF4415C669E0005609F6 /* Dice.pb.m in Sources */ = {isa = PBXBuildFile; fileRef = A44DDF4315C669DF005609F6 /* Dice.pb.m */; };
 		A454CB6F1558F5CE00896761 /* ChatController.m in Sources */ = {isa = PBXBuildFile; fileRef = A454CB6D1558F5CE00896761 /* ChatController.m */; };
@@ -1292,6 +1293,8 @@
 		A44B6259163A344100A8045B /* ZJHPokerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJHPokerView.h; sourceTree = "<group>"; };
 		A44B625A163A344100A8045B /* ZJHPokerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJHPokerView.m; sourceTree = "<group>"; };
 		A44B625C163A346400A8045B /* ZJHPokerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZJHPokerView.xib; sourceTree = "<group>"; };
+		A44B627A163BC36E00A8045B /* DealingShoe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DealingShoe.h; sourceTree = "<group>"; };
+		A44B627B163BC37000A8045B /* DealingShoe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DealingShoe.m; sourceTree = "<group>"; };
 		A44DDF2A15C62B18005609F6 /* NotificationName.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NotificationName.h; sourceTree = "<group>"; };
 		A44DDF3F15C64528005609F6 /* DiceShowView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiceShowView.h; sourceTree = "<group>"; };
 		A44DDF4015C64528005609F6 /* DiceShowView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiceShowView.m; sourceTree = "<group>"; };
@@ -3500,6 +3503,8 @@
 				A44B6257163A2BAF00A8045B /* PokerView.xib */,
 				C2F2CFB1163932C000995DCB /* ZJHAvatarView.h */,
 				C2F2CFB2163932C000995DCB /* ZJHAvatarView.m */,
+				A44B627A163BC36E00A8045B /* DealingShoe.h */,
+				A44B627B163BC37000A8045B /* DealingShoe.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -8266,6 +8271,7 @@
 				C2F2CF981639165500995DCB /* ZJHImageManager.m in Sources */,
 				C2F2CFB3163932C000995DCB /* ZJHAvatarView.m in Sources */,
 				A44B625B163A344100A8045B /* ZJHPokerView.m in Sources */,
+				A44B627C163BC37300A8045B /* DealingShoe.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

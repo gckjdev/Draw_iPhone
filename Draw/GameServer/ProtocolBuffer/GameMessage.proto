@@ -281,7 +281,7 @@ message SendDrawDataResponse{
 }
 
 message GameStartNotificationRequest{                 // 游戏开始通知，用于服务器通知所有同一个会话里面的用户
-    repeated PBZJHUserPoker zjhUserPokers = 11;
+    repeated PBZJHGameState zjhGameState = 11;
 }
 
 message GameStartNotificationResponse{

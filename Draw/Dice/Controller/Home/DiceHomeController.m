@@ -675,8 +675,8 @@
 - (IBAction)clickZhaJinHuaButton:(id)sender {
     _isZJH = YES;
     
-    [[ZJHGameService defaultService] setServerAddress:@""];
-    [[ZJHGameService defaultService] setServerPort:8090];
+    [[ZJHGameService defaultService] setServerAddress:@"192.168.1.7"];
+    [[ZJHGameService defaultService] setServerPort:8080];
     [[ZJHGameService defaultService] connectServer:self];
 }
 

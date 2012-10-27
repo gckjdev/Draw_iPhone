@@ -14,7 +14,6 @@
 @property (assign, nonatomic) int singleBet;
 @property (assign, nonatomic) int myTurnTimes;
 
-- (void)reset;
 - (ZJHGameState *)fromPBZJHGameState:(PBZJHGameState *)gameState;
 
 - (ZJHUserInfo *)userInfo:(NSString *)userId;
