@@ -45,6 +45,7 @@ BOOL PBZJHUserActionIsValidValue(PBZJHUserAction value) {
     case PBZJHUserActionFoldCard:
     case PBZJHUserActionCompareCard:
     case PBZJHUserActionShowCard:
+    case PBZJHUserActionChangeCard:
       return YES;
     default:
       return NO;

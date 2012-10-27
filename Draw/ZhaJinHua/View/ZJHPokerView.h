@@ -26,8 +26,6 @@ typedef enum {
 - (void)updateZJHUserInfo:(ZJHUserInfo *)userInfo;
 - (void)show;
 
-- (void)update;
-
 // 别人看牌时，调用这个接口，把牌摊成扇形
 - (void)makeSectorShape:(ZJHPokerSectorType)sectorType animation:(BOOL)animation;
 

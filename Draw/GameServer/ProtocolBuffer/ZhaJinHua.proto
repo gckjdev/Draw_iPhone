@@ -26,6 +26,7 @@ enum PBZJHUserAction{
   FOLD_CARD = 5;                // 弃牌
   COMPARE_CARD = 6;             // 比牌
   SHOW_CARD = 7;                // 亮牌
+  CHANGE_CARD = 8;              // 换牌
 }
 
 enum PBPokerRank{

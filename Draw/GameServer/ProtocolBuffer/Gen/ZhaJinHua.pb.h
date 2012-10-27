@@ -56,6 +56,7 @@ typedef enum {
   PBZJHUserActionFoldCard = 5,
   PBZJHUserActionCompareCard = 6,
   PBZJHUserActionShowCard = 7,
+  PBZJHUserActionChangeCard = 8,
 } PBZJHUserAction;
 
 BOOL PBZJHUserActionIsValidValue(PBZJHUserAction value);

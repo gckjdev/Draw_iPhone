@@ -16,7 +16,6 @@
 
 @end
 
-
 @implementation ZJHPokerView
 
 - (id)initWithFrame:(CGRect)frame

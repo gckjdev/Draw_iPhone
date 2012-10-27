@@ -38,8 +38,8 @@
 - (ZJHUserInfo *)fromPBZJHUserInfo:(PBZJHUserInfo *)pbZJHUserInfo
 {
     self.userId = pbZJHUserInfo.userId;
-    self.pokers = [self pokersFormPBPokers:pbZJHUserInfo.pokersList];
-    self.cardType = pbZJHUserInfo.cardType;
+    self.pokers = [self pokersFormPBPokers:pbZJHUserInfo.pokers.pokersList];
+    self.cardType = pbZJHUserInfo.pokers.cardType;
     self.totalBet = pbZJHUserInfo.totalBet;
     self.isAutoBet = pbZJHUserInfo.isAutoBet;
     self.lastAction = pbZJHUserInfo.lastAction;
@@ -51,6 +51,14 @@
     
     return self;
 }
+
+//- (ZJHUserInfo *)updateWithPBZJHUserPokers:(PBZJHUserPoker *)pbZJHUserPokers
+//{
+//    self.pokers = [self pokersFormPBPokers:pbZJHUserPokers.pokers.pokersList];
+//    self.cardType = pbZJHUserPokers.pokers.cardType;
+//    
+//    return self;
+//}
 
 #pragma make - Publik methods
 
