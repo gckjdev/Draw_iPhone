@@ -54,7 +54,7 @@ enum PBPokerSuit{
 }
 
 message PBPoker{
-  optional int32 pokerId = 1;                                 // 扑克Id
+  optional int32 pokerId = 1;                               // 扑克Id
   required PBPokerRank rank= 2;                             // 扑克点数
   required PBPokerSuit suit= 3;                             // 扑克花色
   optional bool faceUp = 5 [default = false];               // 牌面是否朝上
@@ -67,12 +67,20 @@ message PBZJHGameState{
   repeated PBZJHUserInfo usersInfo = 6;     // 炸金花所有用户状态
 }
 
+message PBZJHPoker{
+  repeated PBPoker pokers = 1;                                  // 用户的扑克牌
+  optional PBZJHCardType cardType = 2  [default = UNKNOW];      // 牌类型
+}
+
+message PBZJHUserPoker{
+  required string userId = 1;           // 用户Id
+  optional PBZJHPoker pokers = 2;       // 扑克
+}
+
 message PBZJHUserInfo{
-  required string userId = 1;       // 用户Id
-  repeated PBPoker pokers = 2;      // 用户的扑克牌
-  
-  optional PBZJHCardType cardType = 3  [default = UNKNOW];   // 牌类型
-  
+  required string userId = 1;                                               // 用户Id  
+  optional PBZJHPoker pokers = 2;                                           // 用户扑克
+
   optional int32 totalBet = 5;                                              // 用户下的总注
   optional bool isAutoBet = 6 [default = false];                            // 是否自动跟
   optional PBZJHUserAction lastAction = 7 [default = NONE];                 // 用户最近的操作

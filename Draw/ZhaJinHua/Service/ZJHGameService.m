@@ -22,7 +22,7 @@ static ZJHGameService *_defaultService;
 
 @implementation ZJHGameService
 
-@synthesize gameState = _gameState;
+//@synthesize gameState = _gameState;
 
 #pragma mark - life cycle
 
@@ -93,7 +93,16 @@ static ZJHGameService *_defaultService;
                                   toUserId:toUserId];
 }
 
-- (void)showCard:(NSArray *)cardIds
+- (void)showCard:(int)cardId
+{
+    NSArray *cardIds = [NSArray arrayWithObjects:[NSNumber numberWithInt:cardId], nil];
+    
+    [_networkClient sendShowCardRequest:self.userId
+                              sessionId:self.session.sessionId
+                                cardIds:cardIds];
+}
+
+- (void)showCards:(NSArray *)cardIds
 {
     [_networkClient sendShowCardRequest:self.userId
                               sessionId:self.session.sessionId

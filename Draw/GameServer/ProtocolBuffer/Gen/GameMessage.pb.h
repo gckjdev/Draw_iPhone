@@ -116,8 +116,12 @@
 @class PBZJHGameResult_Builder;
 @class PBZJHGameState;
 @class PBZJHGameState_Builder;
+@class PBZJHPoker;
+@class PBZJHPoker_Builder;
 @class PBZJHUserInfo;
 @class PBZJHUserInfo_Builder;
+@class PBZJHUserPoker;
+@class PBZJHUserPoker_Builder;
 @class RegisterRoomsNotificationRequest;
 @class RegisterRoomsNotificationRequest_Builder;
 @class RegisterRoomsNotificationResponse;
@@ -2873,11 +2877,10 @@ BOOL BetTypeIsValidValue(BetType value);
 
 @interface GameStartNotificationRequest : PBGeneratedMessage {
 @private
-  BOOL hasZjhGameState_:1;
-  PBZJHGameState* zjhGameState;
+  NSMutableArray* mutableZjhUserPokersList;
 }
-- (BOOL) hasZjhGameState;
-@property (readonly, retain) PBZJHGameState* zjhGameState;
+- (NSArray*) zjhUserPokersList;
+- (PBZJHUserPoker*) zjhUserPokersAtIndex:(int32_t) index;
 
 + (GameStartNotificationRequest*) defaultInstance;
 - (GameStartNotificationRequest*) defaultInstance;
@@ -2913,12 +2916,12 @@ BOOL BetTypeIsValidValue(BetType value);
 - (GameStartNotificationRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
 - (GameStartNotificationRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 
-- (BOOL) hasZjhGameState;
-- (PBZJHGameState*) zjhGameState;
-- (GameStartNotificationRequest_Builder*) setZjhGameState:(PBZJHGameState*) value;
-- (GameStartNotificationRequest_Builder*) setZjhGameStateBuilder:(PBZJHGameState_Builder*) builderForValue;
-- (GameStartNotificationRequest_Builder*) mergeZjhGameState:(PBZJHGameState*) value;
-- (GameStartNotificationRequest_Builder*) clearZjhGameState;
+- (NSArray*) zjhUserPokersList;
+- (PBZJHUserPoker*) zjhUserPokersAtIndex:(int32_t) index;
+- (GameStartNotificationRequest_Builder*) replaceZjhUserPokersAtIndex:(int32_t) index with:(PBZJHUserPoker*) value;
+- (GameStartNotificationRequest_Builder*) addZjhUserPokers:(PBZJHUserPoker*) value;
+- (GameStartNotificationRequest_Builder*) addAllZjhUserPokers:(NSArray*) values;
+- (GameStartNotificationRequest_Builder*) clearZjhUserPokersList;
 @end
 
 @interface GameStartNotificationResponse : PBGeneratedMessage {

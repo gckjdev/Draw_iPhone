@@ -678,10 +678,497 @@ static PBZJHGameState* defaultPBZJHGameStateInstance = nil;
 }
 @end
 
-@interface PBZJHUserInfo ()
-@property (retain) NSString* userId;
+@interface PBZJHPoker ()
 @property (retain) NSMutableArray* mutablePokersList;
 @property PBZJHCardType cardType;
+@end
+
+@implementation PBZJHPoker
+
+@synthesize mutablePokersList;
+- (BOOL) hasCardType {
+  return !!hasCardType_;
+}
+- (void) setHasCardType:(BOOL) value {
+  hasCardType_ = !!value;
+}
+@synthesize cardType;
+- (void) dealloc {
+  self.mutablePokersList = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.cardType = PBZJHCardTypeUnknow;
+  }
+  return self;
+}
+static PBZJHPoker* defaultPBZJHPokerInstance = nil;
++ (void) initialize {
+  if (self == [PBZJHPoker class]) {
+    defaultPBZJHPokerInstance = [[PBZJHPoker alloc] init];
+  }
+}
++ (PBZJHPoker*) defaultInstance {
+  return defaultPBZJHPokerInstance;
+}
+- (PBZJHPoker*) defaultInstance {
+  return defaultPBZJHPokerInstance;
+}
+- (NSArray*) pokersList {
+  return mutablePokersList;
+}
+- (PBPoker*) pokersAtIndex:(int32_t) index {
+  id value = [mutablePokersList objectAtIndex:index];
+  return value;
+}
+- (BOOL) isInitialized {
+  for (PBPoker* element in self.pokersList) {
+    if (!element.isInitialized) {
+      return NO;
+    }
+  }
+  return YES;
+}
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
+  for (PBPoker* element in self.pokersList) {
+    [output writeMessage:1 value:element];
+  }
+  if (self.hasCardType) {
+    [output writeEnum:2 value:self.cardType];
+  }
+  [self.unknownFields writeToCodedOutputStream:output];
+}
+- (int32_t) serializedSize {
+  int32_t size = memoizedSerializedSize;
+  if (size != -1) {
+    return size;
+  }
+
+  size = 0;
+  for (PBPoker* element in self.pokersList) {
+    size += computeMessageSize(1, element);
+  }
+  if (self.hasCardType) {
+    size += computeEnumSize(2, self.cardType);
+  }
+  size += self.unknownFields.serializedSize;
+  memoizedSerializedSize = size;
+  return size;
+}
++ (PBZJHPoker*) parseFromData:(NSData*) data {
+  return (PBZJHPoker*)[[[PBZJHPoker builder] mergeFromData:data] build];
+}
++ (PBZJHPoker*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBZJHPoker*)[[[PBZJHPoker builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+}
++ (PBZJHPoker*) parseFromInputStream:(NSInputStream*) input {
+  return (PBZJHPoker*)[[[PBZJHPoker builder] mergeFromInputStream:input] build];
+}
++ (PBZJHPoker*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBZJHPoker*)[[[PBZJHPoker builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (PBZJHPoker*) parseFromCodedInputStream:(PBCodedInputStream*) input {
+  return (PBZJHPoker*)[[[PBZJHPoker builder] mergeFromCodedInputStream:input] build];
+}
++ (PBZJHPoker*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBZJHPoker*)[[[PBZJHPoker builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (PBZJHPoker_Builder*) builder {
+  return [[[PBZJHPoker_Builder alloc] init] autorelease];
+}
++ (PBZJHPoker_Builder*) builderWithPrototype:(PBZJHPoker*) prototype {
+  return [[PBZJHPoker builder] mergeFrom:prototype];
+}
+- (PBZJHPoker_Builder*) builder {
+  return [PBZJHPoker builder];
+}
+@end
+
+@interface PBZJHPoker_Builder()
+@property (retain) PBZJHPoker* result;
+@end
+
+@implementation PBZJHPoker_Builder
+@synthesize result;
+- (void) dealloc {
+  self.result = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.result = [[[PBZJHPoker alloc] init] autorelease];
+  }
+  return self;
+}
+- (PBGeneratedMessage*) internalGetResult {
+  return result;
+}
+- (PBZJHPoker_Builder*) clear {
+  self.result = [[[PBZJHPoker alloc] init] autorelease];
+  return self;
+}
+- (PBZJHPoker_Builder*) clone {
+  return [PBZJHPoker builderWithPrototype:result];
+}
+- (PBZJHPoker*) defaultInstance {
+  return [PBZJHPoker defaultInstance];
+}
+- (PBZJHPoker*) build {
+  [self checkInitialized];
+  return [self buildPartial];
+}
+- (PBZJHPoker*) buildPartial {
+  PBZJHPoker* returnMe = [[result retain] autorelease];
+  self.result = nil;
+  return returnMe;
+}
+- (PBZJHPoker_Builder*) mergeFrom:(PBZJHPoker*) other {
+  if (other == [PBZJHPoker defaultInstance]) {
+    return self;
+  }
+  if (other.mutablePokersList.count > 0) {
+    if (result.mutablePokersList == nil) {
+      result.mutablePokersList = [NSMutableArray array];
+    }
+    [result.mutablePokersList addObjectsFromArray:other.mutablePokersList];
+  }
+  if (other.hasCardType) {
+    [self setCardType:other.cardType];
+  }
+  [self mergeUnknownFields:other.unknownFields];
+  return self;
+}
+- (PBZJHPoker_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
+  return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
+}
+- (PBZJHPoker_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
+  while (YES) {
+    int32_t tag = [input readTag];
+    switch (tag) {
+      case 0:
+        [self setUnknownFields:[unknownFields build]];
+        return self;
+      default: {
+        if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
+          [self setUnknownFields:[unknownFields build]];
+          return self;
+        }
+        break;
+      }
+      case 10: {
+        PBPoker_Builder* subBuilder = [PBPoker builder];
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self addPokers:[subBuilder buildPartial]];
+        break;
+      }
+      case 16: {
+        int32_t value = [input readEnum];
+        if (PBZJHCardTypeIsValidValue(value)) {
+          [self setCardType:value];
+        } else {
+          [unknownFields mergeVarintField:2 value:value];
+        }
+        break;
+      }
+    }
+  }
+}
+- (NSArray*) pokersList {
+  if (result.mutablePokersList == nil) { return [NSArray array]; }
+  return result.mutablePokersList;
+}
+- (PBPoker*) pokersAtIndex:(int32_t) index {
+  return [result pokersAtIndex:index];
+}
+- (PBZJHPoker_Builder*) replacePokersAtIndex:(int32_t) index with:(PBPoker*) value {
+  [result.mutablePokersList replaceObjectAtIndex:index withObject:value];
+  return self;
+}
+- (PBZJHPoker_Builder*) addAllPokers:(NSArray*) values {
+  if (result.mutablePokersList == nil) {
+    result.mutablePokersList = [NSMutableArray array];
+  }
+  [result.mutablePokersList addObjectsFromArray:values];
+  return self;
+}
+- (PBZJHPoker_Builder*) clearPokersList {
+  result.mutablePokersList = nil;
+  return self;
+}
+- (PBZJHPoker_Builder*) addPokers:(PBPoker*) value {
+  if (result.mutablePokersList == nil) {
+    result.mutablePokersList = [NSMutableArray array];
+  }
+  [result.mutablePokersList addObject:value];
+  return self;
+}
+- (BOOL) hasCardType {
+  return result.hasCardType;
+}
+- (PBZJHCardType) cardType {
+  return result.cardType;
+}
+- (PBZJHPoker_Builder*) setCardType:(PBZJHCardType) value {
+  result.hasCardType = YES;
+  result.cardType = value;
+  return self;
+}
+- (PBZJHPoker_Builder*) clearCardType {
+  result.hasCardType = NO;
+  result.cardType = PBZJHCardTypeUnknow;
+  return self;
+}
+@end
+
+@interface PBZJHUserPoker ()
+@property (retain) NSString* userId;
+@property (retain) PBZJHPoker* pokers;
+@end
+
+@implementation PBZJHUserPoker
+
+- (BOOL) hasUserId {
+  return !!hasUserId_;
+}
+- (void) setHasUserId:(BOOL) value {
+  hasUserId_ = !!value;
+}
+@synthesize userId;
+- (BOOL) hasPokers {
+  return !!hasPokers_;
+}
+- (void) setHasPokers:(BOOL) value {
+  hasPokers_ = !!value;
+}
+@synthesize pokers;
+- (void) dealloc {
+  self.userId = nil;
+  self.pokers = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.userId = @"";
+    self.pokers = [PBZJHPoker defaultInstance];
+  }
+  return self;
+}
+static PBZJHUserPoker* defaultPBZJHUserPokerInstance = nil;
++ (void) initialize {
+  if (self == [PBZJHUserPoker class]) {
+    defaultPBZJHUserPokerInstance = [[PBZJHUserPoker alloc] init];
+  }
+}
++ (PBZJHUserPoker*) defaultInstance {
+  return defaultPBZJHUserPokerInstance;
+}
+- (PBZJHUserPoker*) defaultInstance {
+  return defaultPBZJHUserPokerInstance;
+}
+- (BOOL) isInitialized {
+  if (!self.hasUserId) {
+    return NO;
+  }
+  if (self.hasPokers) {
+    if (!self.pokers.isInitialized) {
+      return NO;
+    }
+  }
+  return YES;
+}
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
+  if (self.hasUserId) {
+    [output writeString:1 value:self.userId];
+  }
+  if (self.hasPokers) {
+    [output writeMessage:2 value:self.pokers];
+  }
+  [self.unknownFields writeToCodedOutputStream:output];
+}
+- (int32_t) serializedSize {
+  int32_t size = memoizedSerializedSize;
+  if (size != -1) {
+    return size;
+  }
+
+  size = 0;
+  if (self.hasUserId) {
+    size += computeStringSize(1, self.userId);
+  }
+  if (self.hasPokers) {
+    size += computeMessageSize(2, self.pokers);
+  }
+  size += self.unknownFields.serializedSize;
+  memoizedSerializedSize = size;
+  return size;
+}
++ (PBZJHUserPoker*) parseFromData:(NSData*) data {
+  return (PBZJHUserPoker*)[[[PBZJHUserPoker builder] mergeFromData:data] build];
+}
++ (PBZJHUserPoker*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBZJHUserPoker*)[[[PBZJHUserPoker builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+}
++ (PBZJHUserPoker*) parseFromInputStream:(NSInputStream*) input {
+  return (PBZJHUserPoker*)[[[PBZJHUserPoker builder] mergeFromInputStream:input] build];
+}
++ (PBZJHUserPoker*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBZJHUserPoker*)[[[PBZJHUserPoker builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (PBZJHUserPoker*) parseFromCodedInputStream:(PBCodedInputStream*) input {
+  return (PBZJHUserPoker*)[[[PBZJHUserPoker builder] mergeFromCodedInputStream:input] build];
+}
++ (PBZJHUserPoker*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBZJHUserPoker*)[[[PBZJHUserPoker builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (PBZJHUserPoker_Builder*) builder {
+  return [[[PBZJHUserPoker_Builder alloc] init] autorelease];
+}
++ (PBZJHUserPoker_Builder*) builderWithPrototype:(PBZJHUserPoker*) prototype {
+  return [[PBZJHUserPoker builder] mergeFrom:prototype];
+}
+- (PBZJHUserPoker_Builder*) builder {
+  return [PBZJHUserPoker builder];
+}
+@end
+
+@interface PBZJHUserPoker_Builder()
+@property (retain) PBZJHUserPoker* result;
+@end
+
+@implementation PBZJHUserPoker_Builder
+@synthesize result;
+- (void) dealloc {
+  self.result = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.result = [[[PBZJHUserPoker alloc] init] autorelease];
+  }
+  return self;
+}
+- (PBGeneratedMessage*) internalGetResult {
+  return result;
+}
+- (PBZJHUserPoker_Builder*) clear {
+  self.result = [[[PBZJHUserPoker alloc] init] autorelease];
+  return self;
+}
+- (PBZJHUserPoker_Builder*) clone {
+  return [PBZJHUserPoker builderWithPrototype:result];
+}
+- (PBZJHUserPoker*) defaultInstance {
+  return [PBZJHUserPoker defaultInstance];
+}
+- (PBZJHUserPoker*) build {
+  [self checkInitialized];
+  return [self buildPartial];
+}
+- (PBZJHUserPoker*) buildPartial {
+  PBZJHUserPoker* returnMe = [[result retain] autorelease];
+  self.result = nil;
+  return returnMe;
+}
+- (PBZJHUserPoker_Builder*) mergeFrom:(PBZJHUserPoker*) other {
+  if (other == [PBZJHUserPoker defaultInstance]) {
+    return self;
+  }
+  if (other.hasUserId) {
+    [self setUserId:other.userId];
+  }
+  if (other.hasPokers) {
+    [self mergePokers:other.pokers];
+  }
+  [self mergeUnknownFields:other.unknownFields];
+  return self;
+}
+- (PBZJHUserPoker_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
+  return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
+}
+- (PBZJHUserPoker_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
+  while (YES) {
+    int32_t tag = [input readTag];
+    switch (tag) {
+      case 0:
+        [self setUnknownFields:[unknownFields build]];
+        return self;
+      default: {
+        if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
+          [self setUnknownFields:[unknownFields build]];
+          return self;
+        }
+        break;
+      }
+      case 10: {
+        [self setUserId:[input readString]];
+        break;
+      }
+      case 18: {
+        PBZJHPoker_Builder* subBuilder = [PBZJHPoker builder];
+        if (self.hasPokers) {
+          [subBuilder mergeFrom:self.pokers];
+        }
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self setPokers:[subBuilder buildPartial]];
+        break;
+      }
+    }
+  }
+}
+- (BOOL) hasUserId {
+  return result.hasUserId;
+}
+- (NSString*) userId {
+  return result.userId;
+}
+- (PBZJHUserPoker_Builder*) setUserId:(NSString*) value {
+  result.hasUserId = YES;
+  result.userId = value;
+  return self;
+}
+- (PBZJHUserPoker_Builder*) clearUserId {
+  result.hasUserId = NO;
+  result.userId = @"";
+  return self;
+}
+- (BOOL) hasPokers {
+  return result.hasPokers;
+}
+- (PBZJHPoker*) pokers {
+  return result.pokers;
+}
+- (PBZJHUserPoker_Builder*) setPokers:(PBZJHPoker*) value {
+  result.hasPokers = YES;
+  result.pokers = value;
+  return self;
+}
+- (PBZJHUserPoker_Builder*) setPokersBuilder:(PBZJHPoker_Builder*) builderForValue {
+  return [self setPokers:[builderForValue build]];
+}
+- (PBZJHUserPoker_Builder*) mergePokers:(PBZJHPoker*) value {
+  if (result.hasPokers &&
+      result.pokers != [PBZJHPoker defaultInstance]) {
+    result.pokers =
+      [[[PBZJHPoker builderWithPrototype:result.pokers] mergeFrom:value] buildPartial];
+  } else {
+    result.pokers = value;
+  }
+  result.hasPokers = YES;
+  return self;
+}
+- (PBZJHUserPoker_Builder*) clearPokers {
+  result.hasPokers = NO;
+  result.pokers = [PBZJHPoker defaultInstance];
+  return self;
+}
+@end
+
+@interface PBZJHUserInfo ()
+@property (retain) NSString* userId;
+@property (retain) PBZJHPoker* pokers;
 @property int32_t totalBet;
 @property BOOL isAutoBet;
 @property PBZJHUserAction lastAction;
@@ -700,14 +1187,13 @@ static PBZJHGameState* defaultPBZJHGameStateInstance = nil;
   hasUserId_ = !!value;
 }
 @synthesize userId;
-@synthesize mutablePokersList;
-- (BOOL) hasCardType {
-  return !!hasCardType_;
+- (BOOL) hasPokers {
+  return !!hasPokers_;
 }
-- (void) setHasCardType:(BOOL) value {
-  hasCardType_ = !!value;
+- (void) setHasPokers:(BOOL) value {
+  hasPokers_ = !!value;
 }
-@synthesize cardType;
+@synthesize pokers;
 - (BOOL) hasTotalBet {
   return !!hasTotalBet_;
 }
@@ -784,13 +1270,13 @@ static PBZJHGameState* defaultPBZJHGameStateInstance = nil;
 }
 - (void) dealloc {
   self.userId = nil;
-  self.mutablePokersList = nil;
+  self.pokers = nil;
   [super dealloc];
 }
 - (id) init {
   if ((self = [super init])) {
     self.userId = @"";
-    self.cardType = PBZJHCardTypeUnknow;
+    self.pokers = [PBZJHPoker defaultInstance];
     self.totalBet = 0;
     self.isAutoBet = NO;
     self.lastAction = PBZJHUserActionNone;
@@ -813,19 +1299,12 @@ static PBZJHUserInfo* defaultPBZJHUserInfoInstance = nil;
 - (PBZJHUserInfo*) defaultInstance {
   return defaultPBZJHUserInfoInstance;
 }
-- (NSArray*) pokersList {
-  return mutablePokersList;
-}
-- (PBPoker*) pokersAtIndex:(int32_t) index {
-  id value = [mutablePokersList objectAtIndex:index];
-  return value;
-}
 - (BOOL) isInitialized {
   if (!self.hasUserId) {
     return NO;
   }
-  for (PBPoker* element in self.pokersList) {
-    if (!element.isInitialized) {
+  if (self.hasPokers) {
+    if (!self.pokers.isInitialized) {
       return NO;
     }
   }
@@ -835,11 +1314,8 @@ static PBZJHUserInfo* defaultPBZJHUserInfoInstance = nil;
   if (self.hasUserId) {
     [output writeString:1 value:self.userId];
   }
-  for (PBPoker* element in self.pokersList) {
-    [output writeMessage:2 value:element];
-  }
-  if (self.hasCardType) {
-    [output writeEnum:3 value:self.cardType];
+  if (self.hasPokers) {
+    [output writeMessage:2 value:self.pokers];
   }
   if (self.hasTotalBet) {
     [output writeInt32:5 value:self.totalBet];
@@ -874,11 +1350,8 @@ static PBZJHUserInfo* defaultPBZJHUserInfoInstance = nil;
   if (self.hasUserId) {
     size += computeStringSize(1, self.userId);
   }
-  for (PBPoker* element in self.pokersList) {
-    size += computeMessageSize(2, element);
-  }
-  if (self.hasCardType) {
-    size += computeEnumSize(3, self.cardType);
+  if (self.hasPokers) {
+    size += computeMessageSize(2, self.pokers);
   }
   if (self.hasTotalBet) {
     size += computeInt32Size(5, self.totalBet);
@@ -979,14 +1452,8 @@ static PBZJHUserInfo* defaultPBZJHUserInfoInstance = nil;
   if (other.hasUserId) {
     [self setUserId:other.userId];
   }
-  if (other.mutablePokersList.count > 0) {
-    if (result.mutablePokersList == nil) {
-      result.mutablePokersList = [NSMutableArray array];
-    }
-    [result.mutablePokersList addObjectsFromArray:other.mutablePokersList];
-  }
-  if (other.hasCardType) {
-    [self setCardType:other.cardType];
+  if (other.hasPokers) {
+    [self mergePokers:other.pokers];
   }
   if (other.hasTotalBet) {
     [self setTotalBet:other.totalBet];
@@ -1035,18 +1502,12 @@ static PBZJHUserInfo* defaultPBZJHUserInfoInstance = nil;
         break;
       }
       case 18: {
-        PBPoker_Builder* subBuilder = [PBPoker builder];
-        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
-        [self addPokers:[subBuilder buildPartial]];
-        break;
-      }
-      case 24: {
-        int32_t value = [input readEnum];
-        if (PBZJHCardTypeIsValidValue(value)) {
-          [self setCardType:value];
-        } else {
-          [unknownFields mergeVarintField:3 value:value];
+        PBZJHPoker_Builder* subBuilder = [PBZJHPoker builder];
+        if (self.hasPokers) {
+          [subBuilder mergeFrom:self.pokers];
         }
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self setPokers:[subBuilder buildPartial]];
         break;
       }
       case 40: {
@@ -1101,49 +1562,34 @@ static PBZJHUserInfo* defaultPBZJHUserInfoInstance = nil;
   result.userId = @"";
   return self;
 }
-- (NSArray*) pokersList {
-  if (result.mutablePokersList == nil) { return [NSArray array]; }
-  return result.mutablePokersList;
+- (BOOL) hasPokers {
+  return result.hasPokers;
 }
-- (PBPoker*) pokersAtIndex:(int32_t) index {
-  return [result pokersAtIndex:index];
+- (PBZJHPoker*) pokers {
+  return result.pokers;
 }
-- (PBZJHUserInfo_Builder*) replacePokersAtIndex:(int32_t) index with:(PBPoker*) value {
-  [result.mutablePokersList replaceObjectAtIndex:index withObject:value];
+- (PBZJHUserInfo_Builder*) setPokers:(PBZJHPoker*) value {
+  result.hasPokers = YES;
+  result.pokers = value;
   return self;
 }
-- (PBZJHUserInfo_Builder*) addAllPokers:(NSArray*) values {
-  if (result.mutablePokersList == nil) {
-    result.mutablePokersList = [NSMutableArray array];
+- (PBZJHUserInfo_Builder*) setPokersBuilder:(PBZJHPoker_Builder*) builderForValue {
+  return [self setPokers:[builderForValue build]];
+}
+- (PBZJHUserInfo_Builder*) mergePokers:(PBZJHPoker*) value {
+  if (result.hasPokers &&
+      result.pokers != [PBZJHPoker defaultInstance]) {
+    result.pokers =
+      [[[PBZJHPoker builderWithPrototype:result.pokers] mergeFrom:value] buildPartial];
+  } else {
+    result.pokers = value;
   }
-  [result.mutablePokersList addObjectsFromArray:values];
+  result.hasPokers = YES;
   return self;
 }
-- (PBZJHUserInfo_Builder*) clearPokersList {
-  result.mutablePokersList = nil;
-  return self;
-}
-- (PBZJHUserInfo_Builder*) addPokers:(PBPoker*) value {
-  if (result.mutablePokersList == nil) {
-    result.mutablePokersList = [NSMutableArray array];
-  }
-  [result.mutablePokersList addObject:value];
-  return self;
-}
-- (BOOL) hasCardType {
-  return result.hasCardType;
-}
-- (PBZJHCardType) cardType {
-  return result.cardType;
-}
-- (PBZJHUserInfo_Builder*) setCardType:(PBZJHCardType) value {
-  result.hasCardType = YES;
-  result.cardType = value;
-  return self;
-}
-- (PBZJHUserInfo_Builder*) clearCardType {
-  result.hasCardType = NO;
-  result.cardType = PBZJHCardTypeUnknow;
+- (PBZJHUserInfo_Builder*) clearPokers {
+  result.hasPokers = NO;
+  result.pokers = [PBZJHPoker defaultInstance];
   return self;
 }
 - (BOOL) hasTotalBet {

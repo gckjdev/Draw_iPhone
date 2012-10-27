@@ -10822,25 +10822,18 @@ static SendDrawDataResponse* defaultSendDrawDataResponseInstance = nil;
 @end
 
 @interface GameStartNotificationRequest ()
-@property (retain) PBZJHGameState* zjhGameState;
+@property (retain) NSMutableArray* mutableZjhUserPokersList;
 @end
 
 @implementation GameStartNotificationRequest
 
-- (BOOL) hasZjhGameState {
-  return !!hasZjhGameState_;
-}
-- (void) setHasZjhGameState:(BOOL) value {
-  hasZjhGameState_ = !!value;
-}
-@synthesize zjhGameState;
+@synthesize mutableZjhUserPokersList;
 - (void) dealloc {
-  self.zjhGameState = nil;
+  self.mutableZjhUserPokersList = nil;
   [super dealloc];
 }
 - (id) init {
   if ((self = [super init])) {
-    self.zjhGameState = [PBZJHGameState defaultInstance];
   }
   return self;
 }
@@ -10856,17 +10849,24 @@ static GameStartNotificationRequest* defaultGameStartNotificationRequestInstance
 - (GameStartNotificationRequest*) defaultInstance {
   return defaultGameStartNotificationRequestInstance;
 }
+- (NSArray*) zjhUserPokersList {
+  return mutableZjhUserPokersList;
+}
+- (PBZJHUserPoker*) zjhUserPokersAtIndex:(int32_t) index {
+  id value = [mutableZjhUserPokersList objectAtIndex:index];
+  return value;
+}
 - (BOOL) isInitialized {
-  if (self.hasZjhGameState) {
-    if (!self.zjhGameState.isInitialized) {
+  for (PBZJHUserPoker* element in self.zjhUserPokersList) {
+    if (!element.isInitialized) {
       return NO;
     }
   }
   return YES;
 }
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
-  if (self.hasZjhGameState) {
-    [output writeMessage:11 value:self.zjhGameState];
+  for (PBZJHUserPoker* element in self.zjhUserPokersList) {
+    [output writeMessage:11 value:element];
   }
   [self.unknownFields writeToCodedOutputStream:output];
 }
@@ -10877,8 +10877,8 @@ static GameStartNotificationRequest* defaultGameStartNotificationRequestInstance
   }
 
   size = 0;
-  if (self.hasZjhGameState) {
-    size += computeMessageSize(11, self.zjhGameState);
+  for (PBZJHUserPoker* element in self.zjhUserPokersList) {
+    size += computeMessageSize(11, element);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -10955,8 +10955,11 @@ static GameStartNotificationRequest* defaultGameStartNotificationRequestInstance
   if (other == [GameStartNotificationRequest defaultInstance]) {
     return self;
   }
-  if (other.hasZjhGameState) {
-    [self mergeZjhGameState:other.zjhGameState];
+  if (other.mutableZjhUserPokersList.count > 0) {
+    if (result.mutableZjhUserPokersList == nil) {
+      result.mutableZjhUserPokersList = [NSMutableArray array];
+    }
+    [result.mutableZjhUserPokersList addObjectsFromArray:other.mutableZjhUserPokersList];
   }
   [self mergeUnknownFields:other.unknownFields];
   return self;
@@ -10980,45 +10983,41 @@ static GameStartNotificationRequest* defaultGameStartNotificationRequestInstance
         break;
       }
       case 90: {
-        PBZJHGameState_Builder* subBuilder = [PBZJHGameState builder];
-        if (self.hasZjhGameState) {
-          [subBuilder mergeFrom:self.zjhGameState];
-        }
+        PBZJHUserPoker_Builder* subBuilder = [PBZJHUserPoker builder];
         [input readMessage:subBuilder extensionRegistry:extensionRegistry];
-        [self setZjhGameState:[subBuilder buildPartial]];
+        [self addZjhUserPokers:[subBuilder buildPartial]];
         break;
       }
     }
   }
 }
-- (BOOL) hasZjhGameState {
-  return result.hasZjhGameState;
+- (NSArray*) zjhUserPokersList {
+  if (result.mutableZjhUserPokersList == nil) { return [NSArray array]; }
+  return result.mutableZjhUserPokersList;
 }
-- (PBZJHGameState*) zjhGameState {
-  return result.zjhGameState;
+- (PBZJHUserPoker*) zjhUserPokersAtIndex:(int32_t) index {
+  return [result zjhUserPokersAtIndex:index];
 }
-- (GameStartNotificationRequest_Builder*) setZjhGameState:(PBZJHGameState*) value {
-  result.hasZjhGameState = YES;
-  result.zjhGameState = value;
+- (GameStartNotificationRequest_Builder*) replaceZjhUserPokersAtIndex:(int32_t) index with:(PBZJHUserPoker*) value {
+  [result.mutableZjhUserPokersList replaceObjectAtIndex:index withObject:value];
   return self;
 }
-- (GameStartNotificationRequest_Builder*) setZjhGameStateBuilder:(PBZJHGameState_Builder*) builderForValue {
-  return [self setZjhGameState:[builderForValue build]];
-}
-- (GameStartNotificationRequest_Builder*) mergeZjhGameState:(PBZJHGameState*) value {
-  if (result.hasZjhGameState &&
-      result.zjhGameState != [PBZJHGameState defaultInstance]) {
-    result.zjhGameState =
-      [[[PBZJHGameState builderWithPrototype:result.zjhGameState] mergeFrom:value] buildPartial];
-  } else {
-    result.zjhGameState = value;
+- (GameStartNotificationRequest_Builder*) addAllZjhUserPokers:(NSArray*) values {
+  if (result.mutableZjhUserPokersList == nil) {
+    result.mutableZjhUserPokersList = [NSMutableArray array];
   }
-  result.hasZjhGameState = YES;
+  [result.mutableZjhUserPokersList addObjectsFromArray:values];
   return self;
 }
-- (GameStartNotificationRequest_Builder*) clearZjhGameState {
-  result.hasZjhGameState = NO;
-  result.zjhGameState = [PBZJHGameState defaultInstance];
+- (GameStartNotificationRequest_Builder*) clearZjhUserPokersList {
+  result.mutableZjhUserPokersList = nil;
+  return self;
+}
+- (GameStartNotificationRequest_Builder*) addZjhUserPokers:(PBZJHUserPoker*) value {
+  if (result.mutableZjhUserPokersList == nil) {
+    result.mutableZjhUserPokersList = [NSMutableArray array];
+  }
+  [result.mutableZjhUserPokersList addObject:value];
   return self;
 }
 @end

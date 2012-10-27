@@ -17,8 +17,8 @@
 
 @implementation ZJHGameState
 
-@synthesize usersInfo = _usersInfo;
-@synthesize myTurnTimes = _myTurnTimes;
+//@synthesize usersInfo = _usersInfo;
+//@synthesize myTurnTimes = _myTurnTimes;
 
 #pragma mark - life cycle
 - (void)dealloc

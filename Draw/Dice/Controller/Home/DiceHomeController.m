@@ -41,7 +41,7 @@
 #import "MyFriendsController.h"
 #import "ChatListController.h"
 #import "FeedbackController.h"
-
+#import "ZJHGameService.h"
 
 #define KEY_LAST_AWARD_DATE     @"last_award_day"
 
@@ -59,6 +59,7 @@
     NSTimeInterval interval;
     BOOL hasGetLocalBoardList;
     
+    BOOL _isZJH;
 }
 
 - (void)updateBoardPanelWithBoards:(NSArray *)boards;
@@ -501,7 +502,14 @@
     PPDebug(@"%@ <didConnected>", [self description]);
     
     [self hideActivity];
-        
+    
+    
+    // for zhajinhua test
+    if (_isZJH){
+        [[DiceGameService defaultService] joinGameRequest];
+        return;
+    }
+    
     if (_isTryJoinGame){
         if ([DiceConfigManager meetJoinGameCondictionWithRuleType:DiceGameRuleTypeRuleNormal]) {
             [self showActivityWithText:NSLS(@"kJoiningGame")];
@@ -510,7 +518,12 @@
             [[DiceGameService defaultService] disconnectServer];
             [self showCoinsNotEnoughView];
         }
-    }   
+    }
+    
+    
+
+    
+
 }
 
 - (void)didBroken
@@ -658,5 +671,14 @@
     }
     
 }
+
+- (IBAction)clickZhaJinHuaButton:(id)sender {
+    _isZJH = YES;
+    
+    [[ZJHGameService defaultService] setServerAddress:@""];
+    [[ZJHGameService defaultService] setServerPort:8090];
+    [[ZJHGameService defaultService] connectServer:self];
+}
+
 
 @end
