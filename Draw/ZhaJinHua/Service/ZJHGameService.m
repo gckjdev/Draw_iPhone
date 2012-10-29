@@ -11,6 +11,7 @@
 #import "CommonGameNetworkClient+ZJHNetworkExtend.h"
 #import "GameMessage.pb.h"
 #import "CommonGameSession.h"
+#import "ZJHGameNotification.h"
 
 static ZJHGameService *_defaultService;
 
@@ -183,21 +184,24 @@ static ZJHGameService *_defaultService;
     [userInfo setPokersFaceUp:message.showCardRequest.cardIdsList];
 }
 
-- (void)handleBetDiceRequest:(GameMessage *)message
+- (void)handleBetRequest:(GameMessage *)message
 {
     [self updateBetModel:message];
+    [self postNotification:NOTIFICATION_BET_REQUEST message:message];
 }
 
-- (void)handleBetDiceResponse:(GameMessage *)message
+- (void)handleBetResponse:(GameMessage *)message
 {
     if (message.resultCode == 0) {
         [self updateBetModel:message];
     }
+    [self postNotification:NOTIFICATION_BET_RESPONSE message:message];
 }
 
 - (void)handleCheckCardRequest:(GameMessage *)message
 {
     [self updateCheckCardModel:message];
+    [self postNotification:NOTIFICATION_CHECK_CARD_REQUEST message:message];
 }
 
 - (void)handleCheckCardResponse:(GameMessage *)message
@@ -205,11 +209,14 @@ static ZJHGameService *_defaultService;
     if (message.resultCode == 0) {
         [self updateCheckCardModel:message];
     }
+    [self postNotification:NOTIFICATION_CHECK_CARD_RESPONSE message:message];
 }
 
 - (void)handleFoldCardRequest:(GameMessage *)message
 {
     [self updateFoldCardModel:message];
+    [self postNotification:NOTIFICATION_FOLD_CARD_REQUEST message:message];
+
 }
 
 - (void)handleFoldCardResponse:(GameMessage *)message
@@ -217,6 +224,7 @@ static ZJHGameService *_defaultService;
     if (message.resultCode == 0) {
         [self updateFoldCardModel:message];
     }
+    [self postNotification:NOTIFICATION_FOLD_CARD_RESPONSE message:message];
 }
 
 - (void)handleCompareCardRequest:(GameMessage *)message
@@ -247,11 +255,11 @@ static ZJHGameService *_defaultService;
 {
     switch ([message command]){
         case GameCommandTypeBetDiceRequest:
-            [self handleBetDiceRequest:message];
+            [self handleBetRequest:message];
             break;
             
         case GameCommandTypeBetDiceResponse:
-            [self handleBetDiceResponse:message];
+            [self handleBetResponse:message];
             break;
             
         case GameCommandTypeCheckCardRequest:
