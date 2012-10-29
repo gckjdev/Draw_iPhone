@@ -111,14 +111,16 @@ static ZJHGameService *_defaultService;
 
 #pragma mark - overwrite methods
 
-- (void)updateGameState:(GameMessage *)message
+- (void)updateGameStateOnGameNotificationRequest:(GameMessage*)message
+{
+    if ([[message gameStartNotificationRequest] hasZjhGameState]) {
+        self.gameState = [ZJHGameState fromPBZJHGameState:message.gameStartNotificationRequest.zjhGameState];
+    }
+}
+- (void)updateGameStateOnJoinGameResponse:(GameMessage*)message
 {
     if ([[message joinGameResponse] hasZjhGameState]) {
         self.gameState = [ZJHGameState fromPBZJHGameState:message.joinGameResponse.zjhGameState];
-    }
-    
-    if ([[message gameStartNotificationRequest] hasZjhGameState]) {
-        self.gameState = [ZJHGameState fromPBZJHGameState:message.gameStartNotificationRequest.zjhGameState];
     }
 }
 

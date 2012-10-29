@@ -19,11 +19,11 @@ typedef enum {
 
 @interface ZJHPokerView : UIView
 
-@property (retain, nonatomic) IBOutlet PokerView *poker1View;
-@property (retain, nonatomic) IBOutlet PokerView *poker2View;
-@property (retain, nonatomic) IBOutlet PokerView *poker3View;
+@property (retain, nonatomic) PokerView *poker1View;
+@property (retain, nonatomic) PokerView *poker2View;
+@property (retain, nonatomic) PokerView *poker3View;
 
-- (void)updateZJHUserInfo:(ZJHUserInfo *)userInfo;
+- (void)updateViewWithPokers:(NSArray *)pokers;
 
 // 别人看牌时，调用这个接口，把牌摊成扇形
 - (void)makeSectorShape:(ZJHPokerSectorType)sectorType animation:(BOOL)animation;

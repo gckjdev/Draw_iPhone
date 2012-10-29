@@ -41,7 +41,7 @@
 
 + (ZJHGameState *)fromPBZJHGameState:(PBZJHGameState *)gameState
 {
-    return [[[ZJHGameState alloc] init] autorelease];
+    return [[[ZJHGameState alloc] initWithPBZJHGameState:gameState] autorelease];
 }
 
 - (ZJHUserInfo *)userInfo:(NSString *)userId
@@ -70,10 +70,9 @@
 - (NSDictionary *)usersInfoFromPBZJHUserInfoList:(NSArray *)pbUserInfoList
 {
     NSMutableDictionary *usersInfo = [NSMutableDictionary dictionary];
-    ZJHUserInfo *userInfo = [[[ZJHUserInfo alloc] init] autorelease];
     
     for (PBZJHUserInfo *pbUserInfo in pbUserInfoList) {
-        [usersInfo setValue:[userInfo fromPBZJHUserInfo:pbUserInfo] forKey:pbUserInfo.userId];
+        [usersInfo setValue:[ZJHUserInfo fromPBZJHUserInfo:pbUserInfo] forKey:pbUserInfo.userId];
     }
     
     return usersInfo;
