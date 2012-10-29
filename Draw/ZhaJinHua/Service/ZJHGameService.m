@@ -11,7 +11,6 @@
 #import "CommonGameNetworkClient+ZJHNetworkExtend.h"
 #import "GameMessage.pb.h"
 #import "CommonGameSession.h"
-#import "ZJHGameNotification.h"
 
 static ZJHGameService *_defaultService;
 

@@ -8,6 +8,7 @@
 
 #import "CommonGameNetworkService.h"
 #import "ZJHGameState.h"
+#import "ZJHGameNotification.h"
 
 @interface ZJHGameService : CommonGameNetworkService
 
