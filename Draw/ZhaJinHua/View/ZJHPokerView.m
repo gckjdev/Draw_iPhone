@@ -42,7 +42,7 @@
 }
 
 
-- (void)updateViewWithPokers:(NSArray *)pokers
+- (void)updatePokerViewsWithPokers:(NSArray *)pokers
 {
     if ([pokers count] < 3) {
         return;
@@ -52,13 +52,31 @@
     Poker *poker2 = [pokers objectAtIndex:1];
     Poker *poker3 = [pokers objectAtIndex:2];
 
+    // alloc and init poker view
     self.poker1View = [PokerView createPokerViewWithPoker:poker1 isFaceUp:NO];
-    self.poker2View = [PokerView createPokerViewWithPoker:poker1 isFaceUp:NO];
-    self.poker3View = [PokerView createPokerViewWithPoker:poker1 isFaceUp:NO];
-    
+    self.poker2View = [PokerView createPokerViewWithPoker:poker2 isFaceUp:NO];
+    self.poker3View = [PokerView createPokerViewWithPoker:poker3 isFaceUp:NO];
+
+    // init pokerViewDic
     [self.pokerViewDic setObject:_poker1View forKey:[NSNumber numberWithInt:poker1.pokerId]];
     [self.pokerViewDic setObject:_poker2View forKey:[NSNumber numberWithInt:poker2.pokerId]];
     [self.pokerViewDic setObject:_poker3View forKey:[NSNumber numberWithInt:poker3.pokerId]];
+    
+    
+    // setPokerView frame
+    CGFloat pokerViewOffset = 0;
+    self.poker1View.frame = CGRectMake(pokerViewOffset, 0, POKER_VIEW_WIDTH, POKER_VIEW_HEIGHT);
+    
+    pokerViewOffset = self.poker1View.frame.origin.x + self.poker1View.frame.size.width * 0.5;
+    self.poker2View.frame = CGRectMake(pokerViewOffset, 0, POKER_VIEW_WIDTH, POKER_VIEW_HEIGHT);
+    
+    pokerViewOffset = self.poker2View.frame.origin.x + self.poker2View.frame.size.width * 0.5;
+    self.poker3View.frame = CGRectMake(pokerViewOffset, 0, POKER_VIEW_WIDTH, POKER_VIEW_HEIGHT);
+    
+    // add poker views
+    [self addSubview:self.poker1View];
+    [self addSubview:self.poker2View];
+    [self addSubview:self.poker3View];
 }
 
 - (void)clearPokerViews

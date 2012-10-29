@@ -23,7 +23,7 @@ typedef enum {
 @property (retain, nonatomic) PokerView *poker2View;
 @property (retain, nonatomic) PokerView *poker3View;
 
-- (void)updateViewWithPokers:(NSArray *)pokers;
+- (void)updatePokerViewsWithPokers:(NSArray *)pokers;
 
 // 别人看牌时，调用这个接口，把牌摊成扇形
 - (void)makeSectorShape:(ZJHPokerSectorType)sectorType animation:(BOOL)animation;

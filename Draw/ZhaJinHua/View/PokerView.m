@@ -61,6 +61,8 @@
 + (id)createPokerViewWithPoker:(Poker *)poker isFaceUp:(BOOL)isFaceUp
 {
     PokerView *pokerView = [PokerView createPokerView];
+    [pokerView addTarget:self action:@selector(clickSelf:) forControlEvents:UIControlEventTouchUpInside];
+    
     pokerView.poker = poker;
     pokerView.isFaceUp = isFaceUp;
     
@@ -79,9 +81,6 @@
     
     return pokerView;
 }
-
-
-
 
 - (void)faceDown:(BOOL)animation
 {
@@ -140,21 +139,24 @@
 }
 
 
-
+#pragma mark - click action
 - (void)clickSelf:(id)sender
 {
     PPDebug(@"clickSelf");
-    if (_isFaceUp) {
+    PokerView *pokerView = (PokerView *)pokerView;
+    
+    if (pokerView.isFaceUp) {
         [self popupShowCardButton];
     }
 }
 
-
 - (void)didClickShowCardButton:(id)sender
 {
     PPDebug(@"didClickShowCardButton");
-    [[ZJHGameService defaultService] showCard:_poker.pokerId];
     self.tickImageView.image = [UIImage imageNamed:@""];
+
+    [[ZJHGameService defaultService] showCard:_poker.pokerId];
 }
+
 
 @end
