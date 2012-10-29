@@ -15,6 +15,9 @@
 
 + (ZJHGameService*)defaultService;
 
+- (ZJHUserInfo *)userInfo:(NSString *)userId;
+- (NSArray *)pokersOfUser:(NSString *)userId;
+
 - (void)bet;                                    // 跟注
 - (void)raiseBet:(int)singleBet;                // 加注
 - (void)autoBet;                                // 自动跟注

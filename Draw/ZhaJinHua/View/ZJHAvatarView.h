@@ -31,5 +31,6 @@
 @property (retain, nonatomic) PBGameUser* userInfo;
 
 - (void)updateByPBGameUser:(PBGameUser*)user;
+- (void)resetAvatar;
 
 @end

@@ -14,9 +14,13 @@
 #import "AccountService.h"
 #import "ZJHImageManager.h"
 #import "ZJHAvatarView.h"
-
+#import "CommonGameSession.h"
+#import "ZJHPokerView.h"
+#import "ZJHUserInfo.h"
 
 #define AVATAR_TAG_OFFSET   8000
+#define POKERS_TAG_OFFSET   2000
+#define MAX_PLAYER_COUNT    5
 #define NOTIFICATION_NEXT_PLAYER_START @""
 #define NOTIFICATION_GAME_BEGIN    @""
 
@@ -89,6 +93,7 @@
     
     [self registerZJHGameNotificationWithName:NOTIFICATION_NEXT_PLAYER_START
                                     usingBlock:^(NSNotification *notification) {
+                                        [self gameStart];
 
                                     }];
     
@@ -144,13 +149,49 @@
 
 #pragma mark - private method
 
+- (PBGameUser*)getSelfUserFromUserList:(NSArray*)userList
+{
+    if (userList.count > 0) {
+        for (int i = 0; i < userList.count; i ++) {
+            PBGameUser* user = [userList objectAtIndex:i];
+            if ([user.userId isEqualToString:[_userManager userId]]) {
+                return user;
+            }
+        }
+    }
+    return nil;
+}
+
 - (void)updateAllPlayersAvatar
 {
-    for (int i = UserPositionRightTop; i <= UserPositionLeftTop; i ++) {
-        if (i != UserPositionCenter) {
-            ZJHAvatarView* avatar = (ZJHAvatarView*)[self.view viewWithTag:(AVATAR_TAG_OFFSET+i)];
-            [avatar updateByPBGameUser:[_userManager toPBGameUser]];
-            
+    NSArray* userList = _gameService.session.userList;
+    PBGameUser* selfUser = [self getSelfUserFromUserList:userList];
+    
+    //init seats
+    for (int i = 1; i <= MAX_PLAYER_COUNT; i ++) {
+        ZJHAvatarView* avatar = (ZJHAvatarView*)[self.view viewWithTag:AVATAR_TAG_OFFSET+i];
+        [avatar resetAvatar];
+    }
+    
+    // set user on seat
+    for (PBGameUser* user in userList) {
+        //        PPDebug(@"<test>get user--%@, sitting at %d",user.nickName, user.seatId);
+        int seat = user.seatId;
+        int seatIndex = (MAX_PLAYER_COUNT + selfUser.seatId - seat)%MAX_PLAYER_COUNT + 1;
+        ZJHAvatarView* avatar = (ZJHAvatarView*)[self.view viewWithTag:AVATAR_TAG_OFFSET+seatIndex];
+        [avatar setUserInfo:user];
+    }
+}
+
+- (void)updateAllPokers
+{
+    for (int i = 1; i <= MAX_PLAYER_COUNT; i ++) {
+        ZJHAvatarView* avatar = (ZJHAvatarView*)[self.view viewWithTag:AVATAR_TAG_OFFSET+i];
+        ZJHPokerView* pokerView = (ZJHPokerView*)[self.view viewWithTag:POKERS_TAG_OFFSET+i];
+        
+        [pokerView clearPokerViews];
+        if (avatar.userInfo) {
+            [pokerView updatePokerViewsWithPokers:[[_gameService userInfo:avatar.userInfo.userId] pokers]];
         }
     }
 }
@@ -166,6 +207,12 @@
     [self updateAllPlayersAvatar];
     [self updateWaittingForNextTurnNotLabel];
 }
+
+- (void)gameStart
+{
+    [[[[ZJHGameService defaultService] gameState] userInfo:nil] pokers];
+}
+
 
 - (void)someOneBet:(UserPosition)position
            counter:(int)counter
