@@ -8,6 +8,7 @@
 
 #import "PokerView.h"
 #import "ZJHGameService.h"
+#import "ZJHImageManager.h"
 
 #define POKER_VIEW_ROTATE_ANCHOR_POINT CGPointMake(0, 0)
 
@@ -17,9 +18,10 @@
     CGFloat _newAngle;
     CGPoint _originCenter;
     CGPoint _newCenter;
-    
-    
 }
+
+@property (readwrite, retain, nonatomic) Poker *poker;
+@property (readwrite, assign, nonatomic) BOOL isFaceUp;
 
 @end
 
@@ -38,43 +40,66 @@
     [super dealloc];
 }
 
-- (id)initWithFrame:(CGRect)frame
+- (void)setOriginCenter:(CGPoint *)center
+          originalAngle:(CGFloat)angle
 {
-    self = [super initWithFrame:frame];
-    if (self) {
-        // Initialization code
-    }
-    return self;
+    _originAngle = angle;
+    _originCenter = self.center;
 }
 
-- (id)initWithCoder:(NSCoder *)aDecoder
++ (id)createPokerView
 {
-    self  = [super initWithCoder:aDecoder];
-    if (self) {
-        [self addTarget:self action:@selector(clickSelf:) forControlEvents:UIControlEventTouchUpInside];
-        _originAngle =  0;
-        _newAngle = 0;
-        _originCenter = self.center;
-        _newCenter = self.center;
+    NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"PokerView" owner:self options:nil];
+    // Grab a pointer to the first object (presumably the custom cell, as that's all the XIB should contain).
+    if (topLevelObjects == nil || [topLevelObjects count] <= 0){
+        return nil;
     }
     
-    return self;
+    return [topLevelObjects objectAtIndex:0];
 }
 
-- (void)updatePoker:(Poker *)poker
++ (id)createPokerViewWithPoker:(Poker *)poker isFaceUp:(BOOL)isFaceUp
 {
+    PokerView *pokerView = [PokerView createPokerView];
+    [pokerView addTarget:self action:@selector(clickSelf:) forControlEvents:UIControlEventTouchUpInside];
     
+    pokerView.poker = poker;
+    pokerView.isFaceUp = isFaceUp;
+    
+    pokerView.backImageView.image = [[ZJHImageManager defaultManager] pokerBackImage];
+    
+    pokerView.fontBgImageView.image = [[ZJHImageManager defaultManager] pokerFontBgImage];
+    pokerView.rankImageView.image = [[ZJHImageManager defaultManager] pokerRankImage:poker];
+    pokerView.suitImageView.image = [[ZJHImageManager defaultManager] pokerSuitImage:poker];
+    pokerView.bodyImageView.image = [[ZJHImageManager defaultManager] pokerBodyImage:poker];
+    
+    if (isFaceUp) {
+        [pokerView faceUp:NO];
+    }else {
+        [pokerView faceDown:NO];
+    }
+    
+    return pokerView;
 }
-
 
 - (void)faceDown:(BOOL)animation
 {
-    self.backImageView.hidden = NO;
+    if (_isFaceUp) {
+        _isFaceUp = NO;
+        
+        self.backImageView.hidden = NO;
+        self.fontBgImageView.hidden = YES;
+    }
 }
 
 - (void)faceUp:(BOOL)animation
 {
-    self.backImageView.hidden = YES;
+    if (!_isFaceUp) {
+        _isFaceUp = YES;
+        
+        self.backImageView.hidden = YES;
+        self.fontBgImageView.hidden = NO;
+    }
 }
 
 - (void)rotateToAngle:(CGFloat)angle animation:(BOOL)animation
@@ -114,19 +139,24 @@
 }
 
 
-
+#pragma mark - click action
 - (void)clickSelf:(id)sender
 {
     PPDebug(@"clickSelf");
-    [self popupShowCardButton];
+    PokerView *pokerView = (PokerView *)pokerView;
+    
+    if (pokerView.isFaceUp) {
+        [self popupShowCardButton];
+    }
 }
-
 
 - (void)didClickShowCardButton:(id)sender
 {
     PPDebug(@"didClickShowCardButton");
-    [[ZJHGameService defaultService] showCard:_poker.pokerId];
     self.tickImageView.image = [UIImage imageNamed:@""];
+
+    [[ZJHGameService defaultService] showCard:_poker.pokerId];
 }
+
 
 @end

@@ -10,22 +10,25 @@
 
 #define POKER_X_AXIS_OFFSET 20
 
+#define POKER_VIEW_TAG_OFFSET 200
+#define POKER_VIEW_WIDTH 50
+#define POKER_VIEW_HEIGHT 50
+
 @interface ZJHPokerView ()
 
-@property (retain, nonatomic) ZJHUserInfo *userInfo;
 @property (retain, nonatomic) NSMutableDictionary *pokerViewDic;
 
 @end
 
 @implementation ZJHPokerView
 
-- (id)initWithFrame:(CGRect)frame
-{
-    self = [super initWithFrame:frame];
-    if (self) {
-        // Initialization code
-    }
-    return self;
+- (void)dealloc {
+    [_pokerViewDic release];
+    
+    [_poker1View release];
+    [_poker2View release];
+    [_poker3View release];
+    [super dealloc];
 }
 
 - (id)initWithCoder:(NSCoder *)aDecoder
@@ -38,52 +41,50 @@
     return self;
 }
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect
+
+- (void)updatePokerViewsWithPokers:(NSArray *)pokers
 {
-    // Drawing code
-}
-*/
-
-- (void)dealloc {
-    [_pokerViewDic release];
-    [_userInfo release];
-
-    [_poker1View release];
-    [_poker2View release];
-    [_poker3View release];
-    [super dealloc];
-}
-
-- (void)updateZJHUserInfo:(ZJHUserInfo *)userInfo
-{
-    NSArray *pokers = userInfo.pokers;
     if ([pokers count] < 3) {
         return;
     }
-    
-    self.userInfo = userInfo;
-    
+        
     Poker *poker1 = [pokers objectAtIndex:0];
     Poker *poker2 = [pokers objectAtIndex:1];
     Poker *poker3 = [pokers objectAtIndex:2];
-    
-    [self.poker1View updatePoker:poker1];
-    [self.poker2View updatePoker:poker2];
-    [self.poker3View updatePoker:poker3];
-    
-    [self.pokerViewDic removeAllObjects];
-    
+
+    // alloc and init poker view
+    self.poker1View = [PokerView createPokerViewWithPoker:poker1 isFaceUp:NO];
+    self.poker2View = [PokerView createPokerViewWithPoker:poker2 isFaceUp:NO];
+    self.poker3View = [PokerView createPokerViewWithPoker:poker3 isFaceUp:NO];
+
+    // init pokerViewDic
     [self.pokerViewDic setObject:_poker1View forKey:[NSNumber numberWithInt:poker1.pokerId]];
     [self.pokerViewDic setObject:_poker2View forKey:[NSNumber numberWithInt:poker2.pokerId]];
     [self.pokerViewDic setObject:_poker3View forKey:[NSNumber numberWithInt:poker3.pokerId]];
+    
+    
+    // setPokerView frame
+    CGFloat pokerViewOffset = 0;
+    self.poker1View.frame = CGRectMake(pokerViewOffset, 0, POKER_VIEW_WIDTH, POKER_VIEW_HEIGHT);
+    
+    pokerViewOffset = self.poker1View.frame.origin.x + self.poker1View.frame.size.width * 0.5;
+    self.poker2View.frame = CGRectMake(pokerViewOffset, 0, POKER_VIEW_WIDTH, POKER_VIEW_HEIGHT);
+    
+    pokerViewOffset = self.poker2View.frame.origin.x + self.poker2View.frame.size.width * 0.5;
+    self.poker3View.frame = CGRectMake(pokerViewOffset, 0, POKER_VIEW_WIDTH, POKER_VIEW_HEIGHT);
+    
+    // add poker views
+    [self addSubview:self.poker1View];
+    [self addSubview:self.poker2View];
+    [self addSubview:self.poker3View];
 }
 
-- (void)show
+- (void)clearPokerViews
 {
-    
+    [self.pokerViewDic removeAllObjects];
+    for (UIView *view in [self subviews]) {
+        [view removeFromSuperview];
+    }
 }
 
 - (void)makeSectorShape:(ZJHPokerSectorType)sectorType animation:(BOOL)animation

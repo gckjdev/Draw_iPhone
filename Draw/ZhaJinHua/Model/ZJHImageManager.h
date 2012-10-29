@@ -7,14 +7,18 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "ZhaJinHua.pb.h"
+#import "Poker.h"
 
 @interface ZJHImageManager : NSObject
 
 + (ZJHImageManager*)defaultManager;
 
-- (UIImage*)pokerSuitImage:(PBPoker*)poker;
-- (UIImage*)pokerBodyImage:(PBPoker*)poker;
-- (UIImage*)pokerRankImage:(PBPoker*)poker;
+- (UIImage*)pokerRankImage:(Poker*)poker;
+- (UIImage*)pokerSuitImage:(Poker*)poker;
+- (UIImage*)pokerBodyImage:(Poker*)poker;
+
+- (UIImage*)pokerTickImage;
+- (UIImage*)pokerFontBgImage;
+- (UIImage*)pokerBackImage;
 
 @end

@@ -183,7 +183,7 @@
 
 - (void)handleGameStartNotificationRequest:(GameMessage*)message
 {
-    [self updateGameState:message];
+    [self updateGameStateOnGameNotificationRequest:message];
     [self postNotification:NOTIFICATION_GAME_START_NOTIFICATION_REQUEST message:message];
 }
 
@@ -203,7 +203,11 @@
     [self postNotification:NOTIFICAIION_GET_ROOMS_RESPONSE message:message];
 }
 
-- (void)updateGameState:(GameMessage*)message
+- (void)updateGameStateOnGameNotificationRequest:(GameMessage*)message
+{
+}
+
+- (void)updateGameStateOnJoinGameResponse:(GameMessage*)message
 {
 }
 
@@ -216,7 +220,7 @@
             [_session fromPBGameSession:pbSession userId:[self userId]];
             PPDebug(@"<handleJoinGameResponse> Create Session = %@", [self.session description]);
 
-            [self updateGameState:message];
+            [self updateGameStateOnJoinGameResponse:message];
         }
         
         [self postNotification:NOTIFICATION_JOIN_GAME_RESPONSE message:message];
