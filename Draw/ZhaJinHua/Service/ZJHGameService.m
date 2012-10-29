@@ -116,6 +116,10 @@ static ZJHGameService *_defaultService;
     if ([[message joinGameResponse] hasZjhGameState]) {
         self.gameState = [ZJHGameState fromPBZJHGameState:message.joinGameResponse.zjhGameState];
     }
+    
+    if ([[message gameStartNotificationRequest] hasZjhGameState]) {
+        self.gameState = [ZJHGameState fromPBZJHGameState:message.gameStartNotificationRequest.zjhGameState];
+    }
 }
 
 #pragma mark -  message handler
