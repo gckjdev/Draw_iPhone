@@ -22,7 +22,9 @@
 @property (retain, nonatomic) IBOutlet UIImageView *bodyImageView;
 @property (retain, nonatomic) IBOutlet UIImageView *backImageView;
 
-+ (id)createPokerViewWithPoker:(Poker *)poker isFaceUp:(BOOL)isFaceUp;
++ (id)createPokerViewWithPoker:(Poker *)poker
+                         frame:(CGRect)frame
+                      isFaceUp:(BOOL)isFaceUp;
 
 - (void)faceDown:(BOOL)animation;
 - (void)faceUp:(BOOL)animation;

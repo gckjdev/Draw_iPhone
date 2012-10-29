@@ -27,6 +27,7 @@
 
 @implementation PokerView
 
+#pragma mark - life cycle
 
 - (void)dealloc {
     [_poker release];
@@ -40,27 +41,15 @@
     [super dealloc];
 }
 
-- (void)setOriginCenter:(CGPoint *)center
-          originalAngle:(CGFloat)angle
-{
-    _originAngle = angle;
-    _originCenter = self.center;
-}
 
-+ (id)createPokerView
-{
-    NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"PokerView" owner:self options:nil];
-    // Grab a pointer to the first object (presumably the custom cell, as that's all the XIB should contain).
-    if (topLevelObjects == nil || [topLevelObjects count] <= 0){
-        return nil;
-    }
-    
-    return [topLevelObjects objectAtIndex:0];
-}
-
-+ (id)createPokerViewWithPoker:(Poker *)poker isFaceUp:(BOOL)isFaceUp
++ (id)createPokerViewWithPoker:(Poker *)poker
+                         frame:(CGRect)frame
+                      isFaceUp:(BOOL)isFaceUp
 {
     PokerView *pokerView = [PokerView createPokerView];
+    pokerView.frame = frame;
+    [pokerView setOriginCenter:pokerView.center originalAngle:0];
+    
     [pokerView addTarget:self action:@selector(clickSelf:) forControlEvents:UIControlEventTouchUpInside];
     
     pokerView.poker = poker;
@@ -81,6 +70,8 @@
     
     return pokerView;
 }
+
+#pragma mark - public methods
 
 - (void)faceDown:(BOOL)animation
 {
@@ -136,6 +127,26 @@
     if (_newCenter.x != _originCenter.x || _newCenter.y != _originCenter.y) {
         [self moveToCenter:_originCenter animation:animation];
     }
+}
+
+#pragma mark - pravite methods
+
++ (id)createPokerView
+{
+    NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"PokerView" owner:self options:nil];
+    // Grab a pointer to the first object (presumably the custom cell, as that's all the XIB should contain).
+    if (topLevelObjects == nil || [topLevelObjects count] <= 0){
+        return nil;
+    }
+    
+    return [topLevelObjects objectAtIndex:0];
+}
+
+- (void)setOriginCenter:(CGPoint)center
+          originalAngle:(CGFloat)angle
+{
+    _originAngle = angle;
+    _originCenter = self.center;
 }
 
 
