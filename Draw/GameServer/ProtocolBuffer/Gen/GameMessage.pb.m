@@ -10822,25 +10822,15 @@ static SendDrawDataResponse* defaultSendDrawDataResponseInstance = nil;
 @end
 
 @interface GameStartNotificationRequest ()
-@property (retain) PBZJHGameState* zjhGameState;
 @end
 
 @implementation GameStartNotificationRequest
 
-- (BOOL) hasZjhGameState {
-  return !!hasZjhGameState_;
-}
-- (void) setHasZjhGameState:(BOOL) value {
-  hasZjhGameState_ = !!value;
-}
-@synthesize zjhGameState;
 - (void) dealloc {
-  self.zjhGameState = nil;
   [super dealloc];
 }
 - (id) init {
   if ((self = [super init])) {
-    self.zjhGameState = [PBZJHGameState defaultInstance];
   }
   return self;
 }
@@ -10857,17 +10847,9 @@ static GameStartNotificationRequest* defaultGameStartNotificationRequestInstance
   return defaultGameStartNotificationRequestInstance;
 }
 - (BOOL) isInitialized {
-  if (self.hasZjhGameState) {
-    if (!self.zjhGameState.isInitialized) {
-      return NO;
-    }
-  }
   return YES;
 }
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
-  if (self.hasZjhGameState) {
-    [output writeMessage:11 value:self.zjhGameState];
-  }
   [self.unknownFields writeToCodedOutputStream:output];
 }
 - (int32_t) serializedSize {
@@ -10877,9 +10859,6 @@ static GameStartNotificationRequest* defaultGameStartNotificationRequestInstance
   }
 
   size = 0;
-  if (self.hasZjhGameState) {
-    size += computeMessageSize(11, self.zjhGameState);
-  }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
   return size;
@@ -10955,9 +10934,6 @@ static GameStartNotificationRequest* defaultGameStartNotificationRequestInstance
   if (other == [GameStartNotificationRequest defaultInstance]) {
     return self;
   }
-  if (other.hasZjhGameState) {
-    [self mergeZjhGameState:other.zjhGameState];
-  }
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }
@@ -10979,60 +10955,31 @@ static GameStartNotificationRequest* defaultGameStartNotificationRequestInstance
         }
         break;
       }
-      case 90: {
-        PBZJHGameState_Builder* subBuilder = [PBZJHGameState builder];
-        if (self.hasZjhGameState) {
-          [subBuilder mergeFrom:self.zjhGameState];
-        }
-        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
-        [self setZjhGameState:[subBuilder buildPartial]];
-        break;
-      }
     }
   }
-}
-- (BOOL) hasZjhGameState {
-  return result.hasZjhGameState;
-}
-- (PBZJHGameState*) zjhGameState {
-  return result.zjhGameState;
-}
-- (GameStartNotificationRequest_Builder*) setZjhGameState:(PBZJHGameState*) value {
-  result.hasZjhGameState = YES;
-  result.zjhGameState = value;
-  return self;
-}
-- (GameStartNotificationRequest_Builder*) setZjhGameStateBuilder:(PBZJHGameState_Builder*) builderForValue {
-  return [self setZjhGameState:[builderForValue build]];
-}
-- (GameStartNotificationRequest_Builder*) mergeZjhGameState:(PBZJHGameState*) value {
-  if (result.hasZjhGameState &&
-      result.zjhGameState != [PBZJHGameState defaultInstance]) {
-    result.zjhGameState =
-      [[[PBZJHGameState builderWithPrototype:result.zjhGameState] mergeFrom:value] buildPartial];
-  } else {
-    result.zjhGameState = value;
-  }
-  result.hasZjhGameState = YES;
-  return self;
-}
-- (GameStartNotificationRequest_Builder*) clearZjhGameState {
-  result.hasZjhGameState = NO;
-  result.zjhGameState = [PBZJHGameState defaultInstance];
-  return self;
 }
 @end
 
 @interface GameStartNotificationResponse ()
+@property (retain) PBZJHGameState* zjhGameState;
 @end
 
 @implementation GameStartNotificationResponse
 
+- (BOOL) hasZjhGameState {
+  return !!hasZjhGameState_;
+}
+- (void) setHasZjhGameState:(BOOL) value {
+  hasZjhGameState_ = !!value;
+}
+@synthesize zjhGameState;
 - (void) dealloc {
+  self.zjhGameState = nil;
   [super dealloc];
 }
 - (id) init {
   if ((self = [super init])) {
+    self.zjhGameState = [PBZJHGameState defaultInstance];
   }
   return self;
 }
@@ -11049,9 +10996,17 @@ static GameStartNotificationResponse* defaultGameStartNotificationResponseInstan
   return defaultGameStartNotificationResponseInstance;
 }
 - (BOOL) isInitialized {
+  if (self.hasZjhGameState) {
+    if (!self.zjhGameState.isInitialized) {
+      return NO;
+    }
+  }
   return YES;
 }
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
+  if (self.hasZjhGameState) {
+    [output writeMessage:11 value:self.zjhGameState];
+  }
   [self.unknownFields writeToCodedOutputStream:output];
 }
 - (int32_t) serializedSize {
@@ -11061,6 +11016,9 @@ static GameStartNotificationResponse* defaultGameStartNotificationResponseInstan
   }
 
   size = 0;
+  if (self.hasZjhGameState) {
+    size += computeMessageSize(11, self.zjhGameState);
+  }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
   return size;
@@ -11136,6 +11094,9 @@ static GameStartNotificationResponse* defaultGameStartNotificationResponseInstan
   if (other == [GameStartNotificationResponse defaultInstance]) {
     return self;
   }
+  if (other.hasZjhGameState) {
+    [self mergeZjhGameState:other.zjhGameState];
+  }
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }
@@ -11157,8 +11118,47 @@ static GameStartNotificationResponse* defaultGameStartNotificationResponseInstan
         }
         break;
       }
+      case 90: {
+        PBZJHGameState_Builder* subBuilder = [PBZJHGameState builder];
+        if (self.hasZjhGameState) {
+          [subBuilder mergeFrom:self.zjhGameState];
+        }
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self setZjhGameState:[subBuilder buildPartial]];
+        break;
+      }
     }
   }
+}
+- (BOOL) hasZjhGameState {
+  return result.hasZjhGameState;
+}
+- (PBZJHGameState*) zjhGameState {
+  return result.zjhGameState;
+}
+- (GameStartNotificationResponse_Builder*) setZjhGameState:(PBZJHGameState*) value {
+  result.hasZjhGameState = YES;
+  result.zjhGameState = value;
+  return self;
+}
+- (GameStartNotificationResponse_Builder*) setZjhGameStateBuilder:(PBZJHGameState_Builder*) builderForValue {
+  return [self setZjhGameState:[builderForValue build]];
+}
+- (GameStartNotificationResponse_Builder*) mergeZjhGameState:(PBZJHGameState*) value {
+  if (result.hasZjhGameState &&
+      result.zjhGameState != [PBZJHGameState defaultInstance]) {
+    result.zjhGameState =
+      [[[PBZJHGameState builderWithPrototype:result.zjhGameState] mergeFrom:value] buildPartial];
+  } else {
+    result.zjhGameState = value;
+  }
+  result.hasZjhGameState = YES;
+  return self;
+}
+- (GameStartNotificationResponse_Builder*) clearZjhGameState {
+  result.hasZjhGameState = NO;
+  result.zjhGameState = [PBZJHGameState defaultInstance];
+  return self;
 }
 @end
 
@@ -13597,8 +13597,8 @@ static GameMessage* defaultGameMessageInstance = nil;
       return NO;
     }
   }
-  if (self.hasGameStartNotificationRequest) {
-    if (!self.gameStartNotificationRequest.isInitialized) {
+  if (self.hasGameStartNotificationResponse) {
+    if (!self.gameStartNotificationResponse.isInitialized) {
       return NO;
     }
   }

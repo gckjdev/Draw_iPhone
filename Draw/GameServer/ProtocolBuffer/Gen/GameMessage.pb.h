@@ -2877,11 +2877,7 @@ BOOL BetTypeIsValidValue(BetType value);
 
 @interface GameStartNotificationRequest : PBGeneratedMessage {
 @private
-  BOOL hasZjhGameState_:1;
-  PBZJHGameState* zjhGameState;
 }
-- (BOOL) hasZjhGameState;
-@property (readonly, retain) PBZJHGameState* zjhGameState;
 
 + (GameStartNotificationRequest*) defaultInstance;
 - (GameStartNotificationRequest*) defaultInstance;
@@ -2916,18 +2912,15 @@ BOOL BetTypeIsValidValue(BetType value);
 - (GameStartNotificationRequest_Builder*) mergeFrom:(GameStartNotificationRequest*) other;
 - (GameStartNotificationRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
 - (GameStartNotificationRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
-
-- (BOOL) hasZjhGameState;
-- (PBZJHGameState*) zjhGameState;
-- (GameStartNotificationRequest_Builder*) setZjhGameState:(PBZJHGameState*) value;
-- (GameStartNotificationRequest_Builder*) setZjhGameStateBuilder:(PBZJHGameState_Builder*) builderForValue;
-- (GameStartNotificationRequest_Builder*) mergeZjhGameState:(PBZJHGameState*) value;
-- (GameStartNotificationRequest_Builder*) clearZjhGameState;
 @end
 
 @interface GameStartNotificationResponse : PBGeneratedMessage {
 @private
+  BOOL hasZjhGameState_:1;
+  PBZJHGameState* zjhGameState;
 }
+- (BOOL) hasZjhGameState;
+@property (readonly, retain) PBZJHGameState* zjhGameState;
 
 + (GameStartNotificationResponse*) defaultInstance;
 - (GameStartNotificationResponse*) defaultInstance;
@@ -2962,6 +2955,13 @@ BOOL BetTypeIsValidValue(BetType value);
 - (GameStartNotificationResponse_Builder*) mergeFrom:(GameStartNotificationResponse*) other;
 - (GameStartNotificationResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
 - (GameStartNotificationResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+
+- (BOOL) hasZjhGameState;
+- (PBZJHGameState*) zjhGameState;
+- (GameStartNotificationResponse_Builder*) setZjhGameState:(PBZJHGameState*) value;
+- (GameStartNotificationResponse_Builder*) setZjhGameStateBuilder:(PBZJHGameState_Builder*) builderForValue;
+- (GameStartNotificationResponse_Builder*) mergeZjhGameState:(PBZJHGameState*) value;
+- (GameStartNotificationResponse_Builder*) clearZjhGameState;
 @end
 
 @interface GeneralNotification : PBGeneratedMessage {

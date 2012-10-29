@@ -288,7 +288,7 @@ static ZJHGameService *_defaultService;
 
 - (NSString *)getServerListString
 {
-    return @"192.168.1.7:8080";
+    return @"192.168.1.8:8080";
 }
 
 @end
