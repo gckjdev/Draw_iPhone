@@ -26,7 +26,7 @@
 @property (assign, nonatomic) BOOL alreadShowCard;
 @property (assign, nonatomic) BOOL alreadLose;
 
-- (ZJHUserInfo *)fromPBZJHUserInfo:(PBZJHUserInfo *)pbZJHUserInfo;
++ (ZJHUserInfo *)fromPBZJHUserInfo:(PBZJHUserInfo *)pbZJHUserInfo;
 //- (ZJHUserInfo *)updateWithPokers:(PBZJHUserPoker *)pokers;
 
 - (void)setPokersFaceUp:(NSArray *)pokerIds;

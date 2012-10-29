@@ -35,30 +35,29 @@
     [super dealloc];
 }
 
-- (ZJHUserInfo *)fromPBZJHUserInfo:(PBZJHUserInfo *)pbZJHUserInfo
+- (id)initWithPBZJHUserInfo:(PBZJHUserInfo *)pbZJHUserInfo
 {
-    self.userId = pbZJHUserInfo.userId;
-    self.pokers = [self pokersFormPBPokers:pbZJHUserInfo.pokers.pokersList];
-    self.cardType = pbZJHUserInfo.pokers.cardType;
-    self.totalBet = pbZJHUserInfo.totalBet;
-    self.isAutoBet = pbZJHUserInfo.isAutoBet;
-    self.lastAction = pbZJHUserInfo.lastAction;
-    
-    self.alreadCheckCard = FALSE;
-    self.alreadFoldCard = FALSE;
-    self.alreadShowCard = FALSE;
-    self.alreadLose = FALSE;
+    if (self = [super init]) {
+        self.userId = pbZJHUserInfo.userId;
+        self.pokers = [self pokersFormPBPokers:pbZJHUserInfo.pokers.pokersList];
+        self.cardType = pbZJHUserInfo.pokers.cardType;
+        self.totalBet = pbZJHUserInfo.totalBet;
+        self.isAutoBet = pbZJHUserInfo.isAutoBet;
+        self.lastAction = pbZJHUserInfo.lastAction;
+        
+        self.alreadCheckCard = FALSE;
+        self.alreadFoldCard = FALSE;
+        self.alreadShowCard = FALSE;
+        self.alreadLose = FALSE;
+    }
     
     return self;
 }
 
-//- (ZJHUserInfo *)updateWithPBZJHUserPokers:(PBZJHUserPoker *)pbZJHUserPokers
-//{
-//    self.pokers = [self pokersFormPBPokers:pbZJHUserPokers.pokers.pokersList];
-//    self.cardType = pbZJHUserPokers.pokers.cardType;
-//    
-//    return self;
-//}
++ (ZJHUserInfo *)fromPBZJHUserInfo:(PBZJHUserInfo *)pbZJHUserInfo
+{
+    return [[[ZJHUserInfo alloc] initWithPBZJHUserInfo:pbZJHUserInfo] autorelease];
+}
 
 #pragma make - Publik methods
 

@@ -390,19 +390,19 @@ static DiceGameService* _defaultService;
                                                     multiple:1]; 
 }
 
-- (void)initServerListString
+- (NSString *)getServerListString
 {
     switch (_ruleType) {
         case DiceGameRuleTypeRuleNormal:
-            self.serverStringList = [ConfigManager getDiceServerListStringWithNormal];
+            return [ConfigManager getDiceServerListStringWithNormal];
             break;
             
         case DiceGameRuleTypeRuleHigh:
-            self.serverStringList = [ConfigManager getDiceServerListStringWithHightRule];
+            return [ConfigManager getDiceServerListStringWithHightRule];
             break;
             
         case DiceGameRuleTypeRuleSuperHigh:
-            self.serverStringList = [ConfigManager getDiceServerListStringWithSuperHightRule];
+            return [ConfigManager getDiceServerListStringWithSuperHightRule];
             break;
             
         default:

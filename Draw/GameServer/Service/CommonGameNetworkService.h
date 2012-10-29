@@ -49,37 +49,33 @@
 @property (nonatomic, assign) int                   serverPort;
 @property (nonatomic, retain) NSMutableArray        *roomList;
 @property (nonatomic, retain) CommonGameSession     *session;
-//@property (nonatomic, retain) PBGameUser        *user;
 
 - (BOOL)isConnected;
 - (void)connectServer:(id<CommonGameServiceDelegate>)delegate;
+- (void)disconnectServer;
 
 // Left to Sub Class to implementation.
-- (void)initServerListString;
-
-- (void)disconnectServer;
+- (NSString *)getServerListString;
+- (void)updateGameState:(GameMessage*)message;
 
 - (void)startDisconnectTimer;
 - (void)clearDisconnectTimer;
 
 - (void)getRoomList;
 - (void)getRoomList:(int)startIndex 
-              count:(int)count 
-   shouldReloadData:(BOOL)shouldReloadData;
+              count:(int)count;
+
 - (void)getRoomList:(int)startIndex 
               count:(int)count 
-   shouldReloadData:(BOOL)shouldReloadData 
-           roomType:(int)type 
+           roomType:(int)type
             keyword:(NSString*)keyword 
              gameId:(NSString*)gameId;
 
 - (void)joinGameRequest;
 - (void)joinGameRequestWithCustomUser:(PBGameUser*)customSelfUser;
-//- (void)joinGameRequestWithRuleType:(int)ruleType;
 
 - (void)joinGameRequest:(long)sessionId;
 - (void)joinGameRequest:(long)sessionId customSelfUser:(PBGameUser*)customSelfUser;
-//- (void)joinGameRequest:(long)sessionId ruleType:(int)ruleType;
 
 - (void)quitGame;
 
@@ -87,10 +83,6 @@
 
 - (void)createRoomWithName:(NSString*)name 
                   password:(NSString*)password;
-
-//- (void)createRoomWithName:(NSString*)name 
-//                  password:(NSString *)password
-//                  ruleType:(int)ruleType;
 
 + (GameMessage*)userInfoToMessage:(NSDictionary*)userInfo;
 + (NSDictionary*)messageToUserInfo:(GameMessage*)message;
@@ -106,4 +98,5 @@
 
 - (NSString*)userId;
 - (int)onlineUserCount;
+
 @end

@@ -27,14 +27,21 @@
     [super dealloc];
 }
 
-- (ZJHGameState *)fromPBZJHGameState:(PBZJHGameState *)gameState
+- (id)initWithPBZJHGameState:(PBZJHGameState *)gameState
 {
-    self.totalBet = gameState.totalBet;
-    self.singleBet = gameState.singleBet;
-    self.myTurnTimes = 0;
-    self.usersInfo = [self usersInfoFromPBZJHUserInfoList:gameState.usersInfoList];
+    if (self = [super init]) {
+        self.totalBet = gameState.totalBet;
+        self.singleBet = gameState.singleBet;
+        self.myTurnTimes = 0;
+        self.usersInfo = [self usersInfoFromPBZJHUserInfoList:gameState.usersInfoList];
+    }
     
     return self;
+}
+
++ (ZJHGameState *)fromPBZJHGameState:(PBZJHGameState *)gameState
+{
+    return [[[ZJHGameState alloc] init] autorelease];
 }
 
 - (ZJHUserInfo *)userInfo:(NSString *)userId

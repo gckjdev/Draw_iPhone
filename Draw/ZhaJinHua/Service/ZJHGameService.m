@@ -110,26 +110,12 @@ static ZJHGameService *_defaultService;
 }
 
 #pragma mark - overwrite methods
-- (void)handleJoinGameResponse:(GameMessage*)message
-{
-    dispatch_async(dispatch_get_main_queue(), ^{
-        if ([message resultCode] == 0){
-            PBGameSession* pbSession = [[message joinGameResponse] gameSession];
-            self.session = [self createSession];
-            [self.session fromPBGameSession:pbSession userId:self.userId];
-            
-            self.gameState = [[[ZJHGameState alloc] init] autorelease];
-            [_gameState fromPBZJHGameState:[[message joinGameResponse] zjhGameState]];
-        }
-        
-        [self postNotification:NOTIFICATION_JOIN_GAME_RESPONSE message:message];
-    });
-}
 
-- (void)handleGameStartNotificationRequest:(GameMessage*)message
+- (void)updateGameState:(GameMessage *)message
 {
-    [_gameState fromPBZJHGameState:[[message gameStartNotificationRequest] zjhGameStateAtIndex:<#(int32_t)#>]];
-    [self postNotification:NOTIFICATION_GAME_START_NOTIFICATION_REQUEST message:message];
+    if ([[message joinGameResponse] hasZjhGameState]) {
+        self.gameState = [ZJHGameState fromPBZJHGameState:message.joinGameResponse.zjhGameState];
+    }
 }
 
 #pragma mark -  message handler
@@ -298,6 +284,11 @@ static ZJHGameService *_defaultService;
             PPDebug(@"<handleCustomMessage> unknown command=%d", [message command]);
             break;
     }
+}
+
+- (NSString *)getServerListString
+{
+    return @"192.168.1.7:8080";
 }
 
 @end

@@ -506,7 +506,7 @@
     
     // for zhajinhua test
     if (_isZJH){
-        [[DiceGameService defaultService] joinGameRequest];
+        [[ZJHGameService defaultService] joinGameRequest];
         return;
     }
     
@@ -669,16 +669,12 @@
         default:
             break;
     }
-    
 }
 
 - (IBAction)clickZhaJinHuaButton:(id)sender {
     _isZJH = YES;
     
-    [[ZJHGameService defaultService] setServerAddress:@"192.168.1.7"];
-    [[ZJHGameService defaultService] setServerPort:8080];
     [[ZJHGameService defaultService] connectServer:self];
 }
-
 
 @end

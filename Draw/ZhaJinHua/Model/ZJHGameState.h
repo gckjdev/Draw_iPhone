@@ -14,7 +14,7 @@
 @property (assign, nonatomic) int singleBet;
 @property (assign, nonatomic) int myTurnTimes;
 
-- (ZJHGameState *)fromPBZJHGameState:(PBZJHGameState *)gameState;
++ (ZJHGameState *)fromPBZJHGameState:(PBZJHGameState *)gameState;
 
 - (ZJHUserInfo *)userInfo:(NSString *)userId;
 - (int)betCountOfUser:(NSString *)userId;
