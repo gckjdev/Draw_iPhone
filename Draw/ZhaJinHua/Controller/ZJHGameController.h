@@ -16,11 +16,11 @@
 @class AccountService;
 
 typedef enum {
-    UserPositionLeftTop = 0,
-    UserPositionLeft,
-    UserPositionCenter,
+    UserPositionRightTop = 1,
     UserPositionRight,
-    UserPositionRightTop,
+    UserPositionCenter,
+    UserPositionLeft,
+    UserPositionLeftTop,
 }UserPosition;
 
 @interface ZJHGameController : PPViewController {

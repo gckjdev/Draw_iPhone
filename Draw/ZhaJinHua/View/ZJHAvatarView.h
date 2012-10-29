@@ -6,10 +6,11 @@
 //
 //
 
-#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 #import "DiceAvatarView.h"
 #import "HKGirlFontLabel.h"
 
+@class PBGameUser;
 @class ZJHAvatarView;
 
 @protocol ZJHAvatarViewDelegate <NSObject>
@@ -21,12 +22,14 @@
 
 @end
 
-@interface ZJHAvatarView : NSObject
+@interface ZJHAvatarView : UIView <DiceAvatarViewDelegate>
 
 @property (retain, nonatomic) DiceAvatarView* roundAvatar;
 @property (retain, nonatomic) UIImageView*    backgroundImageView;
 @property (retain, nonatomic) HKGirlFontLabel*  nickNameLabel;
 @property (assign, nonatomic) id<ZJHAvatarViewDelegate> delegate;
+@property (retain, nonatomic) PBGameUser* userInfo;
 
+- (void)updateByPBGameUser:(PBGameUser*)user;
 
 @end

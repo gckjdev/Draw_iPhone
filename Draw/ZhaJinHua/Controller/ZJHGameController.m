@@ -13,8 +13,10 @@
 #import "AudioManager.h"
 #import "AccountService.h"
 #import "ZJHImageManager.h"
+#import "ZJHAvatarView.h"
 
 
+#define AVATAR_TAG_OFFSET   8000
 #define NOTIFICATION_NEXT_PLAYER_START @""
 #define NOTIFICATION_GAME_BEGIN    @""
 
@@ -54,6 +56,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self updateAllPlayersAvatar];
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -143,7 +146,13 @@
 
 - (void)updateAllPlayersAvatar
 {
-   
+    for (int i = UserPositionRightTop; i <= UserPositionLeftTop; i ++) {
+        if (i != UserPositionCenter) {
+            ZJHAvatarView* avatar = (ZJHAvatarView*)[self.view viewWithTag:(AVATAR_TAG_OFFSET+i)];
+            [avatar updateByPBGameUser:[_userManager toPBGameUser]];
+            
+        }
+    }
 }
 
 
