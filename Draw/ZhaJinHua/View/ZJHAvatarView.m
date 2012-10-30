@@ -149,6 +149,8 @@
     [self.roundAvatar setAvatarUrl:nil gender:NO];
     [self.nickNameLabel setText:nil];
     self.userInfo = nil;
+    self.delegate = nil;
+    self.roundAvatar.delegate = nil;
 }
 
 - (void)updateBackgroundByUser:(PBGameUser*)user
