@@ -28,6 +28,8 @@
 @interface ZJHGameController ()
 
 - (void)roomChanged;
+- (ZJHPokerView*)getSelfPokersView;
+- (ZJHPokerView*)getPokersViewByPosition:(UserPosition)position;
 
 @end
 
@@ -303,12 +305,21 @@
 
 - (void)someoneCheckCard:(UserPosition)position
 {
-    
+    ZJHPokerView* view = [self getPokersViewByPosition:position];
+    ZJHPokerSectorType type;
+    if (position == UserPositionLeft || position == UserPositionLeftTop) {
+        type = ZJHPokerSectorTypeLeft;
+    }
+    if (position == UserPositionRight || position == UserPositionRightTop) {
+        type = ZJHPokerSectorTypeRight;
+    }
+    [view makeSectorShape:type animation:YES];
 }
 
 - (void)someoneFoldCard:(UserPosition)position
 {
-    
+    ZJHPokerView* view = [self getPokersViewByPosition:position];
+    [view fold:YES];
 }
 
 - (ZJHPokerView*)getSelfPokersView
@@ -319,6 +330,18 @@
 - (ZJHPokerView*)getPokersViewByPosition:(UserPosition)position
 {
     return (ZJHPokerView*)[self.view viewWithTag:(POKERS_TAG_OFFSET+position)];
+}
+
+- (UserPosition)getPositionByUserId:(NSString*)userId
+{
+    PBGameUser* user = [_gameService.session getUserByUserId:userId];
+    PBGameUser* selfUser = [self getselfUser];
+    return (UserPositionCenter + (user.seatId - selfUser.seatId))%MAX_PLAYER_COUNT;
+}
+
+- (ZJHPokerView*)getPokersViewByUserId:(NSString*)userId
+{
+    return [self getPokersViewByPosition:[self getPositionByUserId:userId]];
 }
 
 @end
