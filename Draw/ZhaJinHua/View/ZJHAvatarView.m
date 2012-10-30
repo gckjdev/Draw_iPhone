@@ -41,7 +41,18 @@
 
 - (CGRect)calculateRoundAvatarFrame
 {
-    
+    if (self.frame.size.height >= self.frame.size.width) {
+        return CGRectMake(self.frame.size.width*0.1, self.frame.size.height-self.frame.size.width*0.9, self.frame.size.width*0.8, self.frame.size.width*0.8);
+    }
+    return CGRectMake(self.frame.size.height*0.1, self.frame.size.height*0.1, self.frame.size.height*0.8, self.frame.size.height*0.8);
+}
+
+- (CGRect)calculateNicknameLabelFrame
+{
+    if (self.frame.size.height >= self.frame.size.width) {
+        return CGRectMake(0, 0, self.frame.size.width, self.frame.size.width*0.3);
+    }
+    return CGRectMake(self.roundAvatar.frame.size.width, 0, self.frame.size.width - self.roundAvatar.frame.size.width, self.frame.size.height*0.3);
 }
 
 
@@ -54,11 +65,11 @@
         [self addSubview:_backgroundImageView];
         
         _roundAvatar = [[DiceAvatarView alloc] initWithFrame:[self calculateRoundAvatarFrame]];
-        _roundAvatar.center = CGPointMake(self.frame.size.width/2, self.frame.size.height/2);
+//        _roundAvatar.center = CGPointMake(self.frame.size.width/2, self.frame.size.height/2);
         [self addSubview:_roundAvatar];
         self.roundAvatar.delegate = self;
         
-        _nickNameLabel = [[HKGirlFontLabel alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height*0.2)];
+        _nickNameLabel = [[HKGirlFontLabel alloc] initWithFrame:[self calculateNicknameLabelFrame]];
         [self addSubview:_nickNameLabel];
         
         
@@ -157,6 +168,7 @@
     if (user) {
         [self.roundAvatar setAvatarUrl:user.avatar gender:user.gender];
     }
+
 
 }
 
