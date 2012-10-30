@@ -72,6 +72,7 @@
     
     // add all users
     [self.userList removeAllObjects];
+    
     for (PBGameUser* user in [pbSession usersList]){                
         [self.userList addObject:user];
     }
