@@ -39,6 +39,11 @@
     [tapGestureRecognizer release];
 }
 
+- (CGRect)calculateRoundAvatarFrame
+{
+    
+}
+
 
 - (id)initWithCoder:(NSCoder *)aDecoder
 {
@@ -48,7 +53,7 @@
         _backgroundImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
         [self addSubview:_backgroundImageView];
         
-        _roundAvatar = [[DiceAvatarView alloc] initWithFrame:self.frame];
+        _roundAvatar = [[DiceAvatarView alloc] initWithFrame:[self calculateRoundAvatarFrame]];
         _roundAvatar.center = CGPointMake(self.frame.size.width/2, self.frame.size.height/2);
         [self addSubview:_roundAvatar];
         self.roundAvatar.delegate = self;
