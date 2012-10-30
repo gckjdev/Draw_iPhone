@@ -109,6 +109,7 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+
 }
 
 #pragma player action
@@ -151,23 +152,14 @@
 
 #pragma mark - private method
 
-- (PBGameUser*)getSelfUserFromUserList:(NSArray*)userList
+- (PBGameUser*)getSelfUser
 {
-    if (userList.count > 0) {
-        for (int i = 0; i < userList.count; i ++) {
-            PBGameUser* user = [userList objectAtIndex:i];
-            if ([user.userId isEqualToString:[_userManager userId]]) {
-                return user;
-            }
-        }
-    }
-    return nil;
+    return [_gameService.session getUserByUserId:_userManager.userId];
 }
 
 - (void)updateAllPlayersAvatar
 {
-    NSArray* userList = _gameService.session.userList;
-    PBGameUser* selfUser = [self getSelfUserFromUserList:userList];
+    PBGameUser* selfUser = [self getSelfUser];
     
     //init seats
     for (int i = 1; i <= MAX_PLAYER_COUNT; i ++) {
@@ -176,10 +168,11 @@
     }
     
     // set user on seat
+    NSArray* userList = _gameService.session.userList;
     for (PBGameUser* user in userList) {
         //        PPDebug(@"<test>get user--%@, sitting at %d",user.nickName, user.seatId);
         int seat = user.seatId;
-        int seatIndex = (MAX_PLAYER_COUNT + selfUser.seatId - seat)%MAX_PLAYER_COUNT + 1;
+        int seatIndex = (MAX_PLAYER_COUNT + selfUser.seatId - seat) % MAX_PLAYER_COUNT + 1;
         ZJHAvatarView* avatar = (ZJHAvatarView*)[self.view viewWithTag:AVATAR_TAG_OFFSET+seatIndex];
         [avatar setUserInfo:user];
     }
