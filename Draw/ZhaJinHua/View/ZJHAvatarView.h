@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 #import "DiceAvatarView.h"
-#import "HKGirlFontLabel.h"
 
 @class PBGameUser;
 @class ZJHAvatarView;
@@ -26,7 +25,7 @@
 
 @property (retain, nonatomic) DiceAvatarView* roundAvatar;
 @property (retain, nonatomic) UIImageView*    backgroundImageView;
-@property (retain, nonatomic) HKGirlFontLabel*  nickNameLabel;
+@property (retain, nonatomic) UILabel*  nickNameLabel;
 @property (assign, nonatomic) id<ZJHAvatarViewDelegate> delegate;
 @property (retain, nonatomic) PBGameUser* userInfo;
 
