@@ -42,6 +42,7 @@
 #import "ChatListController.h"
 #import "FeedbackController.h"
 #import "ZJHGameService.h"
+#import "ZJHGameController.h"
 
 #define KEY_LAST_AWARD_DATE     @"last_award_day"
 
@@ -435,6 +436,13 @@
     [self registerDiceGameNotificationWithName:NOTIFICATION_JOIN_GAME_RESPONSE usingBlock:^(NSNotification *note) {
         PPDebug(@"<%@> NOTIFICATION_JOIN_GAME_RESPONSE", [self description]); 
         [self hideActivity];
+        if (_isZJH) {
+            ZJHGameController* vc = [[[ZJHGameController alloc] init] autorelease];
+            [self.navigationController pushViewController:vc
+                                                 animated:YES];
+            _isZJH = NO;
+            return ;
+        }
         if(_isTryJoinGame) {
             GameMessage* message = [CommonGameNetworkService userInfoToMessage:[note userInfo]];
             if ([message resultCode] == GameResultCodeSuccess){
@@ -675,6 +683,7 @@
     _isZJH = YES;
     
     [[ZJHGameService defaultService] connectServer:self];
+    
 }
 
 @end
