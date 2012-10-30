@@ -275,34 +275,34 @@
 }
 
 
-- (void)someoneBet:(UserPosition)position
+- (void)showSomeoneBet:(UserPosition)position
            counter:(int)counter
 {
 
 }
 
-- (void)someoneShowCard:(UserPosition)position
+- (void)showSomeoneShowCard:(UserPosition)position
 {
     
 }
 
-- (void)someone:(UserPosition)player
+- (void)showSomeone:(UserPosition)player
     compareWith:(UserPosition)otherPlayer
 {
     
 }
 
-- (void)someoneRaiseBet:(UserPosition)position
+- (void)showSomeoneRaiseBet:(UserPosition)position
 {
     
 }
 
-- (void)someoneAutoBet:(UserPosition)position
+- (void)showSomeoneAutoBet:(UserPosition)position
 {
     
 }
 
-- (void)someoneCheckCard:(UserPosition)position
+- (void)showSomeoneCheckCard:(UserPosition)position
 {
     ZJHPokerView* view = [self getPokersViewByPosition:position];
     ZJHPokerSectorType type;
@@ -315,7 +315,7 @@
     [view makeSectorShape:type animation:YES];
 }
 
-- (void)someoneFoldCard:(UserPosition)position
+- (void)showSomeoneFoldCard:(UserPosition)position
 {
     ZJHPokerView* view = [self getPokersViewByPosition:position];
     [view fold:YES];
@@ -331,16 +331,26 @@
     return (ZJHPokerView*)[self.view viewWithTag:(POKERS_TAG_OFFSET+position)];
 }
 
+- (ZJHAvatarView*)getAvatarViewByPosition:(UserPosition)position
+{
+    return (ZJHAvatarView*)[self.view viewWithTag:(AVATAR_TAG_OFFSET+position)];
+}
+
 - (UserPosition)getPositionByUserId:(NSString*)userId
 {
     PBGameUser* user = [_gameService.session getUserByUserId:userId];
-    PBGameUser* selfUser = [self getselfUser];
+    PBGameUser* selfUser = [self getSelfUser];
     return (UserPositionCenter + (user.seatId - selfUser.seatId))%MAX_PLAYER_COUNT;
 }
 
 - (ZJHPokerView*)getPokersViewByUserId:(NSString*)userId
 {
     return [self getPokersViewByPosition:[self getPositionByUserId:userId]];
+}
+
+- (ZJHAvatarView*)getAvatarViewByUserId:(NSString*)userId
+{
+    return [self getAvatarViewByPosition:[self getPositionByUserId:userId]];
 }
 
 @end
