@@ -333,8 +333,6 @@ compareCardWith:(UserPosition)otherPlayer
 
 - (void)updateAllPlayersAvatar
 {
-    PBGameUser* selfUser = [self getSelfUser];
-    
     //init seats
     for (int i = 1; i <= MAX_PLAYER_COUNT; i ++) {
         ZJHAvatarView* avatar = (ZJHAvatarView*)[self.view viewWithTag:AVATAR_TAG_OFFSET+i];
@@ -345,10 +343,9 @@ compareCardWith:(UserPosition)otherPlayer
     NSArray* userList = _gameService.session.userList;
     for (PBGameUser* user in userList) {
         //        PPDebug(@"<test>get user--%@, sitting at %d",user.nickName, user.seatId);
-        int seat = user.seatId;
-        int seatIndex = (MAX_PLAYER_COUNT + selfUser.seatId - seat) % MAX_PLAYER_COUNT + 1;
-        ZJHAvatarView* avatar = (ZJHAvatarView*)[self.view viewWithTag:AVATAR_TAG_OFFSET+seatIndex];
-        [avatar setUserInfo:user];
+
+        ZJHAvatarView* avatar = [self getAvatarViewByUserId:user.userId];
+        [avatar updateByPBGameUser:[_userManager toPBGameUser]];
     }
 }
 
@@ -361,8 +358,6 @@ compareCardWith:(UserPosition)otherPlayer
         [pokerView clearPokerViews];
         if (avatar.userInfo) {
             [pokerView updatePokerViewsWithPokers:[[_gameService userInfo:avatar.userInfo.userId] pokers]];
-        } else {
-            [pokerView updatePokerViewsWithPokers:[[_gameService userInfo:_userManager.userId] pokers]];
         }
     }
 }
