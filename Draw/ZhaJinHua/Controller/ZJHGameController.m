@@ -29,7 +29,6 @@
 
 - (void)roomChanged;
 - (ZJHPokerView*)getSelfPokersView;
-- (ZJHPokerView*)getPokersViewByPosition:(UserPosition)position;
 
 @end
 
@@ -113,12 +112,12 @@
     [self registerZJHGameNotificationWithName:NOTIFICATION_NEXT_PLAYER_START
                                     usingBlock:^(NSNotification *notification) {
                                         NSString* userId = [[self messageFromNotification:notification] currentPlayUserId];
-                                        [self nextPlayerStart:userId];
+                                        [self nextPlayerStart:[self getUserPositionByUserId:userId]];
                                     }];
     
     [self registerZJHGameNotificationWithName:NOTIFICATION_BET_REQUEST
                                    usingBlock:^(NSNotification *notification) {
-                                       [self someoneBet:[self userIdOfNotification:notification]];
+                                       [self someoneBet:[self getUserPositionByUserId:[self userIdOfNotification:notification]]];
                                    }];
     
     [self registerZJHGameNotificationWithName:NOTIFICATION_BET_RESPONSE
@@ -128,7 +127,7 @@
     
     [self registerZJHGameNotificationWithName:NOTIFICATION_CHECK_CARD_REQUEST
                                    usingBlock:^(NSNotification *notification) {
-                                       [self someoneCheckCard:[self userIdOfNotification:notification]];
+                                       [self someoneCheckCard:[self getUserPositionByUserId:[self userIdOfNotification:notification]]];
                                    }];
     
     [self registerZJHGameNotificationWithName:NOTIFICATION_CHECK_CARD_RESPONSE
@@ -138,7 +137,7 @@
     
     [self registerZJHGameNotificationWithName:NOTIFICATION_FOLD_CARD_REQUEST
                                    usingBlock:^(NSNotification *notification) {
-                                       [self someoneFoldCard:[self userIdOfNotification:notification]];
+                                       [self someoneFoldCard:[self getUserPositionByUserId:[self userIdOfNotification:notification]]];
                                    }];
     
     [self registerZJHGameNotificationWithName:NOTIFICATION_FOLD_CARD_RESPONSE
@@ -148,7 +147,7 @@
     
     [self registerZJHGameNotificationWithName:NOTIFICATION_SHOW_CARD_REQUEST
                                    usingBlock:^(NSNotification *notification) {
-                                       [self someoneShowCard:[self userIdOfNotification:notification]];
+                                       [self someoneShowCard:[self getUserPositionByUserId:[self userIdOfNotification:notification]]];
                                    }];
     
     [self registerZJHGameNotificationWithName:NOTIFICATION_SHOW_CARD_RESPONSE
@@ -158,8 +157,13 @@
     
     [self registerZJHGameNotificationWithName:NOTIFICATION_COMPARE_CARD_REQUEST
                                    usingBlock:^(NSNotification *notification) {
-                                       [self someoneCompareCard:[self userIdOfNotification:notification]];
+                                       NSString *userId = [self userIdOfNotification:notification];
+                                       NSString *toUserId = [[[self messageFromNotification:notification] compareCardRequest] toUserId];
+                                       
+                                       [self someone:[self getUserPositionByUserId:userId]
+                                     compareCardWith:[self getUserPositionByUserId:toUserId]];
                                    }];
+                                       
     
     [self registerZJHGameNotificationWithName:NOTIFICATION_COMPARE_CARD_RESPONSE
                                    usingBlock:^(NSNotification *notification) {
@@ -175,7 +179,7 @@
 
 }
 
-#pragma player action
+#pragma mark - player action
 
 - (IBAction)bet:(id)sender
 {
@@ -210,6 +214,108 @@
 
 - (IBAction)showCard:(id)sender
 {
+    
+}
+
+#pragma mark - player action response
+
+- (void)betSuccess
+{
+    
+}
+
+- (void)checkCardSuccess
+{
+}
+
+- (void)foldCardSuccess
+{
+}
+
+- (void)showCardSuccess
+{
+}
+
+- (void)compareCardSuccess
+{
+}
+
+#pragma mark - service notification request
+
+- (void)roomChanged
+{
+    [self updateAllPlayersAvatar];
+    [self updateWaittingForNextTurnNotLabel];
+}
+
+- (void)gameStart
+{
+    PPDebug(@"<ZJHGameController> game start!");
+    [self updateAllPokers];
+    
+}
+
+- (void)nextPlayerStart:(UserPosition)position
+{
+    
+}
+
+- (void)someoneBet:(UserPosition)position
+{
+    
+
+}
+
+- (void)someoneShowCard:(UserPosition)position
+{
+    
+}
+
+- (void)someone:(UserPosition)player
+compareCardWith:(UserPosition)otherPlayer
+{
+    
+}
+
+- (void)someoneRaiseBet:(UserPosition)position
+{
+    
+}
+
+- (void)someoneAutoBet:(UserPosition)position
+{
+    
+}
+
+- (ZJHPokerSectorType)getPokerSectorTypeByUserPosition:(UserPosition)position
+{
+    switch (position) {
+        case UserPositionLeft:
+        case UserPositionLeftTop:
+            return ZJHPokerSectorTypeLeft;
+            break;
+            
+        case UserPositionRight:
+        case UserPositionRightTop:
+            return ZJHPokerSectorTypeRight;
+            break;
+            
+        default:
+            return ZJHPokerSectorTypeNone;
+            break;
+    }
+}
+
+- (void)someoneCheckCard:(UserPosition)position
+{
+    ZJHPokerView *view = [self getPokersViewByUserPosition:position];
+    
+    [view makeSectorShape:[self getPokerSectorTypeByUserPosition:position] animation:YES];
+}
+
+- (void)someoneFoldCard:(UserPosition)position
+{
+    
     
 }
 
@@ -262,74 +368,17 @@
     
 }
 
-- (void)roomChanged
-{
-    [self updateAllPlayersAvatar];
-    [self updateWaittingForNextTurnNotLabel];
-}
-
-- (void)gameStart
-{
-    PPDebug(@"<ZJHGameController> game start!");
-    [self updateAllPokers];
-}
-
-
-- (void)someoneBet:(UserPosition)position
-           counter:(int)counter
-{
-
-}
-
-- (void)someoneShowCard:(UserPosition)position
-{
-    
-}
-
-- (void)someone:(UserPosition)player
-    compareWith:(UserPosition)otherPlayer
-{
-    
-}
-
-- (void)someoneRaiseBet:(UserPosition)position
-{
-    
-}
-
-- (void)someoneAutoBet:(UserPosition)position
-{
-    
-}
-
-- (void)someoneCheckCard:(UserPosition)position
-{
-    ZJHPokerView* view = [self getPokersViewByPosition:position];
-    ZJHPokerSectorType type;
-    if (position == UserPositionLeft || position == UserPositionLeftTop) {
-        type = ZJHPokerSectorTypeLeft;
-    }
-    if (position == UserPositionRight || position == UserPositionRightTop) {
-        type = ZJHPokerSectorTypeRight;
-    }
-    [view makeSectorShape:type animation:YES];
-}
-
-- (void)someoneFoldCard:(UserPosition)position
-{
-    ZJHPokerView* view = [self getPokersViewByPosition:position];
-    [view fold:YES];
-}
 
 - (ZJHPokerView*)getSelfPokersView
 {
     return (ZJHPokerView*)[self.view viewWithTag:(POKERS_TAG_OFFSET+UserPositionCenter)];
 }
 
-- (ZJHPokerView*)getPokersViewByPosition:(UserPosition)position
+- (ZJHPokerView*)getPokersViewByUserPosition:(UserPosition)position
 {
     return (ZJHPokerView*)[self.view viewWithTag:(POKERS_TAG_OFFSET+position)];
 }
+
 
 - (ZJHAvatarView*)getAvatarViewByPosition:(UserPosition)position
 {
@@ -345,7 +394,7 @@
 
 - (ZJHPokerView*)getPokersViewByUserId:(NSString*)userId
 {
-    return [self getPokersViewByPosition:[self getPositionByUserId:userId]];
+    return [self getPokersViewByUserPosition:[self getPositionByUserId:userId]];
 }
 
 - (ZJHAvatarView*)getAvatarViewByUserId:(NSString*)userId
