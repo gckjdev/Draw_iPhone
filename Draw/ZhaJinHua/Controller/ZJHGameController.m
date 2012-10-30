@@ -379,11 +379,27 @@ compareCardWith:(UserPosition)otherPlayer
     return (ZJHPokerView*)[self.view viewWithTag:(POKERS_TAG_OFFSET+position)];
 }
 
-- (UserPosition)getUserPositionByUserId:(NSString*)userId
+
+- (ZJHAvatarView*)getAvatarViewByPosition:(UserPosition)position
+{
+    return (ZJHAvatarView*)[self.view viewWithTag:(AVATAR_TAG_OFFSET+position)];
+}
+
+- (UserPosition)getPositionByUserId:(NSString*)userId
 {
     PBGameUser* user = [_gameService.session getUserByUserId:userId];
     PBGameUser* selfUser = [self getSelfUser];
     return (UserPositionCenter + (user.seatId - selfUser.seatId))%MAX_PLAYER_COUNT;
+}
+
+- (ZJHPokerView*)getPokersViewByUserId:(NSString*)userId
+{
+    return [self getPokersViewByUserPosition:[self getPositionByUserId:userId]];
+}
+
+- (ZJHAvatarView*)getAvatarViewByUserId:(NSString*)userId
+{
+    return [self getAvatarViewByPosition:[self getPositionByUserId:userId]];
 }
 
 @end
