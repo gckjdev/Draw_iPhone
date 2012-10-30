@@ -270,6 +270,7 @@
 {
     PPDebug(@"<ZJHGameController> game start!");
     [self updateAllPokers];
+    
 }
 
 
