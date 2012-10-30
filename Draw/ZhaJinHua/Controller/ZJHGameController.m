@@ -261,4 +261,9 @@
     return (ZJHPokerView*)[self.view viewWithTag:(POKERS_TAG_OFFSET+UserPositionCenter)];
 }
 
+- (ZJHPokerView*)getPokersViewByPosition:(UserPosition)position
+{
+    return (ZJHPokerView*)[self.view viewWithTag:(POKERS_TAG_OFFSET+position)];
+}
+
 @end
