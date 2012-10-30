@@ -203,8 +203,8 @@ static ZJHGameService *_defaultService;
 {
     if (message.resultCode == 0) {
         [self updateBetModel:message];
+        [self postNotification:NOTIFICATION_BET_RESPONSE message:message];
     }
-    [self postNotification:NOTIFICATION_BET_RESPONSE message:message];
 }
 
 - (void)handleCheckCardRequest:(GameMessage *)message
@@ -217,8 +217,8 @@ static ZJHGameService *_defaultService;
 {
     if (message.resultCode == 0) {
         [self updateCheckCardModel:message];
+        [self postNotification:NOTIFICATION_CHECK_CARD_RESPONSE message:message];
     }
-    [self postNotification:NOTIFICATION_CHECK_CARD_RESPONSE message:message];
 }
 
 - (void)handleFoldCardRequest:(GameMessage *)message
@@ -232,8 +232,8 @@ static ZJHGameService *_defaultService;
 {
     if (message.resultCode == 0) {
         [self updateFoldCardModel:message];
+        [self postNotification:NOTIFICATION_FOLD_CARD_RESPONSE message:message];
     }
-    [self postNotification:NOTIFICATION_FOLD_CARD_RESPONSE message:message];
 }
 
 - (void)handleCompareCardRequest:(GameMessage *)message
@@ -251,12 +251,14 @@ static ZJHGameService *_defaultService;
 - (void)handleShowCardRequest:(GameMessage *)message
 {
     [self updateShowCardModel:message];
+    [self postNotification:NOTIFICATION_SHOW_CARD_REQUEST message:message];
 }
 
 - (void)handleShowCardResponse:(GameMessage *)message
 {
     if (message.resultCode == 0) {
         [self updateShowCardModel:message];
+        [self postNotification:NOTIFICATION_SHOW_CARD_RESPONSE message:message];
     }
 }
 

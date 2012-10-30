@@ -17,6 +17,7 @@
 #import "CommonGameSession.h"
 #import "ZJHPokerView.h"
 #import "ZJHUserInfo.h"
+#import "GameMessage.pb.h"
 
 #define AVATAR_TAG_OFFSET   8000
 #define POKERS_TAG_OFFSET   2000
@@ -82,28 +83,88 @@
                             usingBlock:block];
 }
 
+- (GameMessage *)messageFromNotification:(NSNotification *)notification
+{
+    return [CommonGameNetworkService userInfoToMessage:notification.userInfo];
+}
+
+- (NSString *)userIdOfNotification:(NSNotification *)notification
+{
+    return [[self messageFromNotification:notification] userId];
+}
+
 - (void)registerDiceGameNotifications
 {
+    
     [self registerZJHGameNotificationWithName:NOTIFICATION_JOIN_GAME_RESPONSE
                                     usingBlock:^(NSNotification *notification) {
                                     }];
-    
     
     [self registerZJHGameNotificationWithName:NOTIFICATION_ROOM
                                     usingBlock:^(NSNotification *notification) {
                                         [self roomChanged];
                                     }];
     
+    [self registerZJHGameNotificationWithName:NOTIFICATION_GAME_START_NOTIFICATION_REQUEST
+                                   usingBlock:^(NSNotification *notification) {
+                                       [self gameStart];
+                                   }];
+    
     [self registerZJHGameNotificationWithName:NOTIFICATION_NEXT_PLAYER_START
                                     usingBlock:^(NSNotification *notification) {
-
+                                        NSString* userId = [[self messageFromNotification:notification] currentPlayUserId];
+                                        [self nextPlayerStart:userId];
                                     }];
     
-    [self registerZJHGameNotificationWithName:NOTIFICATION_GAME_START_NOTIFICATION_REQUEST
-                                    usingBlock:^(NSNotification *notification) {
-                                        [self gameStart];
-                                    }];
+    [self registerZJHGameNotificationWithName:NOTIFICATION_BET_REQUEST
+                                   usingBlock:^(NSNotification *notification) {
+                                       [self someoneBet:[self userIdOfNotification:notification]];
+                                   }];
     
+    [self registerZJHGameNotificationWithName:NOTIFICATION_BET_RESPONSE
+                                   usingBlock:^(NSNotification *notification) {
+                                       [self betSuccess];
+                                   }];
+    
+    [self registerZJHGameNotificationWithName:NOTIFICATION_CHECK_CARD_REQUEST
+                                   usingBlock:^(NSNotification *notification) {
+                                       [self someoneCheckCard:[self userIdOfNotification:notification]];
+                                   }];
+    
+    [self registerZJHGameNotificationWithName:NOTIFICATION_CHECK_CARD_RESPONSE
+                                   usingBlock:^(NSNotification *notification) {
+                                       [self checkCardSuccess];
+                                   }];
+    
+    [self registerZJHGameNotificationWithName:NOTIFICATION_FOLD_CARD_REQUEST
+                                   usingBlock:^(NSNotification *notification) {
+                                       [self someoneFoldCard:[self userIdOfNotification:notification]];
+                                   }];
+    
+    [self registerZJHGameNotificationWithName:NOTIFICATION_FOLD_CARD_RESPONSE
+                                   usingBlock:^(NSNotification *notification) {
+                                       [self foldCardSuccess];
+                                   }];
+    
+    [self registerZJHGameNotificationWithName:NOTIFICATION_SHOW_CARD_REQUEST
+                                   usingBlock:^(NSNotification *notification) {
+                                       [self someoneShowCard:[self userIdOfNotification:notification]];
+                                   }];
+    
+    [self registerZJHGameNotificationWithName:NOTIFICATION_SHOW_CARD_RESPONSE
+                                   usingBlock:^(NSNotification *notification) {
+                                       [self showCardSuccess];
+                                   }];
+    
+    [self registerZJHGameNotificationWithName:NOTIFICATION_COMPARE_CARD_REQUEST
+                                   usingBlock:^(NSNotification *notification) {
+                                       [self someoneCompareCard:[self userIdOfNotification:notification]];
+                                   }];
+    
+    [self registerZJHGameNotificationWithName:NOTIFICATION_COMPARE_CARD_RESPONSE
+                                   usingBlock:^(NSNotification *notification) {
+                                       [self compareCardSuccess];
+                                   }];    
 }
 
 
@@ -111,6 +172,7 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+
 }
 
 #pragma player action
@@ -153,23 +215,14 @@
 
 #pragma mark - private method
 
-- (PBGameUser*)getSelfUserFromUserList:(NSArray*)userList
+- (PBGameUser*)getSelfUser
 {
-    if (userList.count > 0) {
-        for (int i = 0; i < userList.count; i ++) {
-            PBGameUser* user = [userList objectAtIndex:i];
-            if ([user.userId isEqualToString:[_userManager userId]]) {
-                return user;
-            }
-        }
-    }
-    return nil;
+    return [_gameService.session getUserByUserId:_userManager.userId];
 }
 
 - (void)updateAllPlayersAvatar
 {
-    NSArray* userList = _gameService.session.userList;
-    PBGameUser* selfUser = [self getSelfUserFromUserList:userList];
+    PBGameUser* selfUser = [self getSelfUser];
     
     //init seats
     for (int i = 1; i <= MAX_PLAYER_COUNT; i ++) {
@@ -178,10 +231,11 @@
     }
     
     // set user on seat
+    NSArray* userList = _gameService.session.userList;
     for (PBGameUser* user in userList) {
         //        PPDebug(@"<test>get user--%@, sitting at %d",user.nickName, user.seatId);
         int seat = user.seatId;
-        int seatIndex = (MAX_PLAYER_COUNT + selfUser.seatId - seat)%MAX_PLAYER_COUNT + 1;
+        int seatIndex = (MAX_PLAYER_COUNT + selfUser.seatId - seat) % MAX_PLAYER_COUNT + 1;
         ZJHAvatarView* avatar = (ZJHAvatarView*)[self.view viewWithTag:AVATAR_TAG_OFFSET+seatIndex];
         [avatar setUserInfo:user];
     }
@@ -221,34 +275,34 @@
 }
 
 
-- (void)someOneBet:(UserPosition)position
+- (void)someoneBet:(UserPosition)position
            counter:(int)counter
 {
-    
+
 }
 
-- (void)someOneShowCard:(UserPosition)position
+- (void)someoneShowCard:(UserPosition)position
 {
     
 }
 
-- (void)someOne:(UserPosition)player
+- (void)someone:(UserPosition)player
     compareWith:(UserPosition)otherPlayer
 {
     
 }
 
-- (void)someOneRaiseBet:(UserPosition)position
+- (void)someoneRaiseBet:(UserPosition)position
 {
     
 }
 
-- (void)someOneAutoBet:(UserPosition)position
+- (void)someoneAutoBet:(UserPosition)position
 {
     
 }
 
-- (void)someOneCheckCard:(UserPosition)position
+- (void)someoneCheckCard:(UserPosition)position
 {
     ZJHPokerView* view = [self getPokersViewByPosition:position];
     ZJHPokerSectorType type;
@@ -261,7 +315,7 @@
     [view makeSectorShape:type animation:YES];
 }
 
-- (void)someOneFoldCard:(UserPosition)position
+- (void)someoneFoldCard:(UserPosition)position
 {
     ZJHPokerView* view = [self getPokersViewByPosition:position];
     [view fold:YES];
