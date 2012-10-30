@@ -273,39 +273,39 @@
 }
 
 
-- (void)someOneBet:(UserPosition)position
+- (void)someoneBet:(UserPosition)position
            counter:(int)counter
 {
-    
+
 }
 
-- (void)someOneShowCard:(UserPosition)position
+- (void)someoneShowCard:(UserPosition)position
 {
     
 }
 
-- (void)someOne:(UserPosition)player
+- (void)someone:(UserPosition)player
     compareWith:(UserPosition)otherPlayer
 {
     
 }
 
-- (void)someOneRaiseBet:(UserPosition)position
+- (void)someoneRaiseBet:(UserPosition)position
 {
     
 }
 
-- (void)someOneAutoBet:(UserPosition)position
+- (void)someoneAutoBet:(UserPosition)position
 {
     
 }
 
-- (void)someOneCheckCard:(UserPosition)position
+- (void)someoneCheckCard:(UserPosition)position
 {
     
 }
 
-- (void)someOneFoldCard:(UserPosition)position
+- (void)someoneFoldCard:(UserPosition)position
 {
     
 }
