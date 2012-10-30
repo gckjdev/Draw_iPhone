@@ -166,7 +166,7 @@
                                        [self someone:[self getPositionByUserId:userId]
                                      compareCardWith:[self getPositionByUserId:toUserId]];
                                    }];
-                                       
+    
     [self registerZJHGameNotificationWithName:NOTIFICATION_COMPARE_CARD_RESPONSE
                                    usingBlock:^(NSNotification *notification) {
                                        [self compareCardSuccess];
