@@ -103,6 +103,70 @@
 		A44B625B163A344100A8045B /* ZJHPokerView.m in Sources */ = {isa = PBXBuildFile; fileRef = A44B625A163A344100A8045B /* ZJHPokerView.m */; };
 		A44B625D163A346500A8045B /* ZJHPokerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A44B625C163A346400A8045B /* ZJHPokerView.xib */; };
 		A44B627C163BC37300A8045B /* DealingShoe.m in Sources */ = {isa = PBXBuildFile; fileRef = A44B627B163BC37000A8045B /* DealingShoe.m */; };
+		A44B634E163E811600A8045B /* Chips_10.png in Resources */ = {isa = PBXBuildFile; fileRef = A44B6308163E811600A8045B /* Chips_10.png */; };
+		A44B634F163E811600A8045B /* Chips_100.png in Resources */ = {isa = PBXBuildFile; fileRef = A44B6309163E811600A8045B /* Chips_100.png */; };
+		A44B6350163E811600A8045B /* Chips_25.png in Resources */ = {isa = PBXBuildFile; fileRef = A44B630A163E811600A8045B /* Chips_25.png */; };
+		A44B6351163E811600A8045B /* Chips_5.png in Resources */ = {isa = PBXBuildFile; fileRef = A44B630B163E811600A8045B /* Chips_5.png */; };
+		A44B6352163E811600A8045B /* Chips_50.png in Resources */ = {isa = PBXBuildFile; fileRef = A44B630C163E811600A8045B /* Chips_50.png */; };
+		A44B6353163E811600A8045B /* Chips_500.png in Resources */ = {isa = PBXBuildFile; fileRef = A44B630D163E811600A8045B /* Chips_500.png */; };
+		A44B6354163E811600A8045B /* poker_back_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = A44B6310163E811600A8045B /* poker_back_bg.png */; };
+		A44B6355163E811600A8045B /* poker_body_club.png in Resources */ = {isa = PBXBuildFile; fileRef = A44B6312163E811600A8045B /* poker_body_club.png */; };
+		A44B6356163E811600A8045B /* poker_body_diamond.png in Resources */ = {isa = PBXBuildFile; fileRef = A44B6313163E811600A8045B /* poker_body_diamond.png */; };
+		A44B6357163E811600A8045B /* poker_body_heart.png in Resources */ = {isa = PBXBuildFile; fileRef = A44B6314163E811600A8045B /* poker_body_heart.png */; };
+		A44B6358163E811600A8045B /* poker_body_J.png in Resources */ = {isa = PBXBuildFile; fileRef = A44B6315163E811600A8045B /* poker_body_J.png */; };
+		A44B6359163E811600A8045B /* poker_body_K.png in Resources */ = {isa = PBXBuildFile; fileRef = A44B6316163E811600A8045B /* poker_body_K.png */; };
+		A44B635A163E811600A8045B /* poker_body_Q.png in Resources */ = {isa = PBXBuildFile; fileRef = A44B6317163E811600A8045B /* poker_body_Q.png */; };
+		A44B635B163E811600A8045B /* poker_body_spade.png in Resources */ = {isa = PBXBuildFile; fileRef = A44B6318163E811600A8045B /* poker_body_spade.png */; };
+		A44B635C163E811600A8045B /* poker_front_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = A44B6319163E811600A8045B /* poker_front_bg.png */; };
+		A44B635E163E811600A8045B /* poker_rank_black_10.png in Resources */ = {isa = PBXBuildFile; fileRef = A44B631C163E811600A8045B /* poker_rank_black_10.png */; };
+		A44B635F163E811600A8045B /* poker_rank_black_2.png in Resources */ = {isa = PBXBuildFile; fileRef = A44B631D163E811600A8045B /* poker_rank_black_2.png */; };
+		A44B6360163E811600A8045B /* poker_rank_black_3.png in Resources */ = {isa = PBXBuildFile; fileRef = A44B631E163E811600A8045B /* poker_rank_black_3.png */; };
+		A44B6361163E811600A8045B /* poker_rank_black_4.png in Resources */ = {isa = PBXBuildFile; fileRef = A44B631F163E811600A8045B /* poker_rank_black_4.png */; };
+		A44B6362163E811600A8045B /* poker_rank_black_5.png in Resources */ = {isa = PBXBuildFile; fileRef = A44B6320163E811600A8045B /* poker_rank_black_5.png */; };
+		A44B6363163E811600A8045B /* poker_rank_black_6.png in Resources */ = {isa = PBXBuildFile; fileRef = A44B6321163E811600A8045B /* poker_rank_black_6.png */; };
+		A44B6364163E811600A8045B /* poker_rank_black_7.png in Resources */ = {isa = PBXBuildFile; fileRef = A44B6322163E811600A8045B /* poker_rank_black_7.png */; };
+		A44B6365163E811600A8045B /* poker_rank_black_8.png in Resources */ = {isa = PBXBuildFile; fileRef = A44B6323163E811600A8045B /* poker_rank_black_8.png */; };
+		A44B6366163E811600A8045B /* poker_rank_black_9.png in Resources */ = {isa = PBXBuildFile; fileRef = A44B6324163E811600A8045B /* poker_rank_black_9.png */; };
+		A44B6367163E811600A8045B /* poker_rank_black_J.png in Resources */ = {isa = PBXBuildFile; fileRef = A44B6325163E811600A8045B /* poker_rank_black_J.png */; };
+		A44B6368163E811600A8045B /* poker_rank_black_K.png in Resources */ = {isa = PBXBuildFile; fileRef = A44B6326163E811600A8045B /* poker_rank_black_K.png */; };
+		A44B6369163E811600A8045B /* poker_rank_black_Q.png in Resources */ = {isa = PBXBuildFile; fileRef = A44B6327163E811600A8045B /* poker_rank_black_Q.png */; };
+		A44B636B163E811600A8045B /* poker_rank_red_10.png in Resources */ = {isa = PBXBuildFile; fileRef = A44B6329163E811600A8045B /* poker_rank_red_10.png */; };
+		A44B636C163E811600A8045B /* poker_rank_red_2.png in Resources */ = {isa = PBXBuildFile; fileRef = A44B632A163E811600A8045B /* poker_rank_red_2.png */; };
+		A44B636D163E811600A8045B /* poker_rank_red_3.png in Resources */ = {isa = PBXBuildFile; fileRef = A44B632B163E811600A8045B /* poker_rank_red_3.png */; };
+		A44B636E163E811600A8045B /* poker_rank_red_4.png in Resources */ = {isa = PBXBuildFile; fileRef = A44B632C163E811600A8045B /* poker_rank_red_4.png */; };
+		A44B636F163E811600A8045B /* poker_rank_red_5.png in Resources */ = {isa = PBXBuildFile; fileRef = A44B632D163E811600A8045B /* poker_rank_red_5.png */; };
+		A44B6370163E811600A8045B /* poker_rank_red_6.png in Resources */ = {isa = PBXBuildFile; fileRef = A44B632E163E811600A8045B /* poker_rank_red_6.png */; };
+		A44B6371163E811600A8045B /* poker_rank_red_7.png in Resources */ = {isa = PBXBuildFile; fileRef = A44B632F163E811600A8045B /* poker_rank_red_7.png */; };
+		A44B6372163E811600A8045B /* poker_rank_red_8.png in Resources */ = {isa = PBXBuildFile; fileRef = A44B6330163E811600A8045B /* poker_rank_red_8.png */; };
+		A44B6373163E811600A8045B /* poker_rank_red_9.png in Resources */ = {isa = PBXBuildFile; fileRef = A44B6331163E811600A8045B /* poker_rank_red_9.png */; };
+		A44B6374163E811600A8045B /* poker_rank_red_J.png in Resources */ = {isa = PBXBuildFile; fileRef = A44B6332163E811600A8045B /* poker_rank_red_J.png */; };
+		A44B6375163E811600A8045B /* poker_rank_red_K.png in Resources */ = {isa = PBXBuildFile; fileRef = A44B6333163E811600A8045B /* poker_rank_red_K.png */; };
+		A44B6376163E811600A8045B /* poker_rank_red_Q.png in Resources */ = {isa = PBXBuildFile; fileRef = A44B6334163E811600A8045B /* poker_rank_red_Q.png */; };
+		A44B6377163E811600A8045B /* poker_suit_club.png in Resources */ = {isa = PBXBuildFile; fileRef = A44B6336163E811600A8045B /* poker_suit_club.png */; };
+		A44B6378163E811600A8045B /* poker_suit_diamond.png in Resources */ = {isa = PBXBuildFile; fileRef = A44B6337163E811600A8045B /* poker_suit_diamond.png */; };
+		A44B6379163E811600A8045B /* poker_suit_heart.png in Resources */ = {isa = PBXBuildFile; fileRef = A44B6338163E811600A8045B /* poker_suit_heart.png */; };
+		A44B637A163E811600A8045B /* poker_suit_spade.png in Resources */ = {isa = PBXBuildFile; fileRef = A44B6339163E811600A8045B /* poker_suit_spade.png */; };
+		A44B637B163E811600A8045B /* avatar_default.png in Resources */ = {isa = PBXBuildFile; fileRef = A44B633B163E811600A8045B /* avatar_default.png */; };
+		A44B637C163E811600A8045B /* chat_button.png in Resources */ = {isa = PBXBuildFile; fileRef = A44B633C163E811600A8045B /* chat_button.png */; };
+		A44B637D163E811600A8045B /* coin_tree.png in Resources */ = {isa = PBXBuildFile; fileRef = A44B633D163E811600A8045B /* coin_tree.png */; };
+		A44B637E163E811600A8045B /* item_box.png in Resources */ = {isa = PBXBuildFile; fileRef = A44B633E163E811600A8045B /* item_box.png */; };
+		A44B637F163E811600A8045B /* runaway.png in Resources */ = {isa = PBXBuildFile; fileRef = A44B633F163E811600A8045B /* runaway.png */; };
+		A44B6380163E811600A8045B /* setting.png in Resources */ = {isa = PBXBuildFile; fileRef = A44B6340163E811600A8045B /* setting.png */; };
+		A44B6381163E811600A8045B /* zjh_button_holder_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = A44B6341163E811600A8045B /* zjh_button_holder_bg.png */; };
+		A44B6382163E811600A8045B /* zjh_auto_bet.png in Resources */ = {isa = PBXBuildFile; fileRef = A44B6343163E811600A8045B /* zjh_auto_bet.png */; };
+		A44B6383163E811600A8045B /* zjh_bet.png in Resources */ = {isa = PBXBuildFile; fileRef = A44B6344163E811600A8045B /* zjh_bet.png */; };
+		A44B6384163E811600A8045B /* zjh_check_card.png in Resources */ = {isa = PBXBuildFile; fileRef = A44B6345163E811600A8045B /* zjh_check_card.png */; };
+		A44B6385163E811600A8045B /* zjh_compare_card.png in Resources */ = {isa = PBXBuildFile; fileRef = A44B6346163E811600A8045B /* zjh_compare_card.png */; };
+		A44B6386163E811600A8045B /* zjh_fold_card.png in Resources */ = {isa = PBXBuildFile; fileRef = A44B6347163E811600A8045B /* zjh_fold_card.png */; };
+		A44B6387163E811600A8045B /* zjh_raise_bet.png in Resources */ = {isa = PBXBuildFile; fileRef = A44B6348163E811600A8045B /* zjh_raise_bet.png */; };
+		A44B6388163E811600A8045B /* zjh_game_bg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A44B6349163E811600A8045B /* zjh_game_bg.jpg */; };
+		A44B6389163E811600A8045B /* zjh_game_total_bet_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = A44B634A163E811600A8045B /* zjh_game_total_bet_bg.png */; };
+		A44B638A163E811600A8045B /* zjh_my_avatar_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = A44B634B163E811600A8045B /* zjh_my_avatar_bg.png */; };
+		A44B638B163E811600A8045B /* zjh_other_plyer_avatar.png in Resources */ = {isa = PBXBuildFile; fileRef = A44B634C163E811600A8045B /* zjh_other_plyer_avatar.png */; };
+		A44B638C163E811600A8045B /* zjh_user_bet_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = A44B634D163E811600A8045B /* zjh_user_bet_bg.png */; };
+		A44B638E163E867200A8045B /* chips_250.png in Resources */ = {isa = PBXBuildFile; fileRef = A44B638D163E867200A8045B /* chips_250.png */; };
+		A44B6391163E868700A8045B /* poker_rank_black_A.png in Resources */ = {isa = PBXBuildFile; fileRef = A44B638F163E868700A8045B /* poker_rank_black_A.png */; };
+		A44B6392163E868700A8045B /* poker_rank_red_A.png in Resources */ = {isa = PBXBuildFile; fileRef = A44B6390163E868700A8045B /* poker_rank_red_A.png */; };
 		A44DDF4115C64528005609F6 /* DiceShowView.m in Sources */ = {isa = PBXBuildFile; fileRef = A44DDF4015C64528005609F6 /* DiceShowView.m */; };
 		A44DDF4415C669E0005609F6 /* Dice.pb.m in Sources */ = {isa = PBXBuildFile; fileRef = A44DDF4315C669DF005609F6 /* Dice.pb.m */; };
 		A454CB6F1558F5CE00896761 /* ChatController.m in Sources */ = {isa = PBXBuildFile; fileRef = A454CB6D1558F5CE00896761 /* ChatController.m */; };
@@ -1296,6 +1360,70 @@
 		A44B627A163BC36E00A8045B /* DealingShoe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DealingShoe.h; sourceTree = "<group>"; };
 		A44B627B163BC37000A8045B /* DealingShoe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DealingShoe.m; sourceTree = "<group>"; };
 		A44B627D163E7AD100A8045B /* ZJHGameNotification.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZJHGameNotification.h; sourceTree = "<group>"; };
+		A44B6308163E811600A8045B /* Chips_10.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Chips_10.png; sourceTree = "<group>"; };
+		A44B6309163E811600A8045B /* Chips_100.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Chips_100.png; sourceTree = "<group>"; };
+		A44B630A163E811600A8045B /* Chips_25.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Chips_25.png; sourceTree = "<group>"; };
+		A44B630B163E811600A8045B /* Chips_5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Chips_5.png; sourceTree = "<group>"; };
+		A44B630C163E811600A8045B /* Chips_50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Chips_50.png; sourceTree = "<group>"; };
+		A44B630D163E811600A8045B /* Chips_500.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Chips_500.png; sourceTree = "<group>"; };
+		A44B6310163E811600A8045B /* poker_back_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = poker_back_bg.png; sourceTree = "<group>"; };
+		A44B6312163E811600A8045B /* poker_body_club.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = poker_body_club.png; sourceTree = "<group>"; };
+		A44B6313163E811600A8045B /* poker_body_diamond.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = poker_body_diamond.png; sourceTree = "<group>"; };
+		A44B6314163E811600A8045B /* poker_body_heart.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = poker_body_heart.png; sourceTree = "<group>"; };
+		A44B6315163E811600A8045B /* poker_body_J.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = poker_body_J.png; sourceTree = "<group>"; };
+		A44B6316163E811600A8045B /* poker_body_K.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = poker_body_K.png; sourceTree = "<group>"; };
+		A44B6317163E811600A8045B /* poker_body_Q.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = poker_body_Q.png; sourceTree = "<group>"; };
+		A44B6318163E811600A8045B /* poker_body_spade.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = poker_body_spade.png; sourceTree = "<group>"; };
+		A44B6319163E811600A8045B /* poker_front_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = poker_front_bg.png; sourceTree = "<group>"; };
+		A44B631C163E811600A8045B /* poker_rank_black_10.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = poker_rank_black_10.png; sourceTree = "<group>"; };
+		A44B631D163E811600A8045B /* poker_rank_black_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = poker_rank_black_2.png; sourceTree = "<group>"; };
+		A44B631E163E811600A8045B /* poker_rank_black_3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = poker_rank_black_3.png; sourceTree = "<group>"; };
+		A44B631F163E811600A8045B /* poker_rank_black_4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = poker_rank_black_4.png; sourceTree = "<group>"; };
+		A44B6320163E811600A8045B /* poker_rank_black_5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = poker_rank_black_5.png; sourceTree = "<group>"; };
+		A44B6321163E811600A8045B /* poker_rank_black_6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = poker_rank_black_6.png; sourceTree = "<group>"; };
+		A44B6322163E811600A8045B /* poker_rank_black_7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = poker_rank_black_7.png; sourceTree = "<group>"; };
+		A44B6323163E811600A8045B /* poker_rank_black_8.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = poker_rank_black_8.png; sourceTree = "<group>"; };
+		A44B6324163E811600A8045B /* poker_rank_black_9.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = poker_rank_black_9.png; sourceTree = "<group>"; };
+		A44B6325163E811600A8045B /* poker_rank_black_J.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = poker_rank_black_J.png; sourceTree = "<group>"; };
+		A44B6326163E811600A8045B /* poker_rank_black_K.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = poker_rank_black_K.png; sourceTree = "<group>"; };
+		A44B6327163E811600A8045B /* poker_rank_black_Q.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = poker_rank_black_Q.png; sourceTree = "<group>"; };
+		A44B6329163E811600A8045B /* poker_rank_red_10.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = poker_rank_red_10.png; sourceTree = "<group>"; };
+		A44B632A163E811600A8045B /* poker_rank_red_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = poker_rank_red_2.png; sourceTree = "<group>"; };
+		A44B632B163E811600A8045B /* poker_rank_red_3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = poker_rank_red_3.png; sourceTree = "<group>"; };
+		A44B632C163E811600A8045B /* poker_rank_red_4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = poker_rank_red_4.png; sourceTree = "<group>"; };
+		A44B632D163E811600A8045B /* poker_rank_red_5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = poker_rank_red_5.png; sourceTree = "<group>"; };
+		A44B632E163E811600A8045B /* poker_rank_red_6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = poker_rank_red_6.png; sourceTree = "<group>"; };
+		A44B632F163E811600A8045B /* poker_rank_red_7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = poker_rank_red_7.png; sourceTree = "<group>"; };
+		A44B6330163E811600A8045B /* poker_rank_red_8.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = poker_rank_red_8.png; sourceTree = "<group>"; };
+		A44B6331163E811600A8045B /* poker_rank_red_9.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = poker_rank_red_9.png; sourceTree = "<group>"; };
+		A44B6332163E811600A8045B /* poker_rank_red_J.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = poker_rank_red_J.png; sourceTree = "<group>"; };
+		A44B6333163E811600A8045B /* poker_rank_red_K.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = poker_rank_red_K.png; sourceTree = "<group>"; };
+		A44B6334163E811600A8045B /* poker_rank_red_Q.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = poker_rank_red_Q.png; sourceTree = "<group>"; };
+		A44B6336163E811600A8045B /* poker_suit_club.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = poker_suit_club.png; sourceTree = "<group>"; };
+		A44B6337163E811600A8045B /* poker_suit_diamond.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = poker_suit_diamond.png; sourceTree = "<group>"; };
+		A44B6338163E811600A8045B /* poker_suit_heart.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = poker_suit_heart.png; sourceTree = "<group>"; };
+		A44B6339163E811600A8045B /* poker_suit_spade.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = poker_suit_spade.png; sourceTree = "<group>"; };
+		A44B633B163E811600A8045B /* avatar_default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = avatar_default.png; sourceTree = "<group>"; };
+		A44B633C163E811600A8045B /* chat_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chat_button.png; sourceTree = "<group>"; };
+		A44B633D163E811600A8045B /* coin_tree.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = coin_tree.png; sourceTree = "<group>"; };
+		A44B633E163E811600A8045B /* item_box.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = item_box.png; sourceTree = "<group>"; };
+		A44B633F163E811600A8045B /* runaway.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = runaway.png; sourceTree = "<group>"; };
+		A44B6340163E811600A8045B /* setting.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = setting.png; sourceTree = "<group>"; };
+		A44B6341163E811600A8045B /* zjh_button_holder_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = zjh_button_holder_bg.png; sourceTree = "<group>"; };
+		A44B6343163E811600A8045B /* zjh_auto_bet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = zjh_auto_bet.png; sourceTree = "<group>"; };
+		A44B6344163E811600A8045B /* zjh_bet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = zjh_bet.png; sourceTree = "<group>"; };
+		A44B6345163E811600A8045B /* zjh_check_card.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = zjh_check_card.png; sourceTree = "<group>"; };
+		A44B6346163E811600A8045B /* zjh_compare_card.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = zjh_compare_card.png; sourceTree = "<group>"; };
+		A44B6347163E811600A8045B /* zjh_fold_card.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = zjh_fold_card.png; sourceTree = "<group>"; };
+		A44B6348163E811600A8045B /* zjh_raise_bet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = zjh_raise_bet.png; sourceTree = "<group>"; };
+		A44B6349163E811600A8045B /* zjh_game_bg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = zjh_game_bg.jpg; sourceTree = "<group>"; };
+		A44B634A163E811600A8045B /* zjh_game_total_bet_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = zjh_game_total_bet_bg.png; sourceTree = "<group>"; };
+		A44B634B163E811600A8045B /* zjh_my_avatar_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = zjh_my_avatar_bg.png; sourceTree = "<group>"; };
+		A44B634C163E811600A8045B /* zjh_other_plyer_avatar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = zjh_other_plyer_avatar.png; sourceTree = "<group>"; };
+		A44B634D163E811600A8045B /* zjh_user_bet_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = zjh_user_bet_bg.png; sourceTree = "<group>"; };
+		A44B638D163E867200A8045B /* chips_250.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chips_250.png; sourceTree = "<group>"; };
+		A44B638F163E868700A8045B /* poker_rank_black_A.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = poker_rank_black_A.png; sourceTree = "<group>"; };
+		A44B6390163E868700A8045B /* poker_rank_red_A.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = poker_rank_red_A.png; sourceTree = "<group>"; };
 		A44DDF2A15C62B18005609F6 /* NotificationName.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NotificationName.h; sourceTree = "<group>"; };
 		A44DDF3F15C64528005609F6 /* DiceShowView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiceShowView.h; sourceTree = "<group>"; };
 		A44DDF4015C64528005609F6 /* DiceShowView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiceShowView.m; sourceTree = "<group>"; };
@@ -3062,6 +3190,149 @@
 			path = SDWebImage;
 			sourceTree = "<group>";
 		};
+		A44B6305163E810900A8045B /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				A44B6306163E811600A8045B /* Image */,
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
+		A44B6306163E811600A8045B /* Image */ = {
+			isa = PBXGroup;
+			children = (
+				A44B6307163E811600A8045B /* chips */,
+				A44B630E163E811600A8045B /* common */,
+				A44B630F163E811600A8045B /* poker */,
+				A44B633A163E811600A8045B /* room */,
+			);
+			path = Image;
+			sourceTree = "<group>";
+		};
+		A44B6307163E811600A8045B /* chips */ = {
+			isa = PBXGroup;
+			children = (
+				A44B638D163E867200A8045B /* chips_250.png */,
+				A44B6308163E811600A8045B /* Chips_10.png */,
+				A44B6309163E811600A8045B /* Chips_100.png */,
+				A44B630A163E811600A8045B /* Chips_25.png */,
+				A44B630B163E811600A8045B /* Chips_5.png */,
+				A44B630C163E811600A8045B /* Chips_50.png */,
+				A44B630D163E811600A8045B /* Chips_500.png */,
+			);
+			path = chips;
+			sourceTree = "<group>";
+		};
+		A44B630E163E811600A8045B /* common */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = common;
+			sourceTree = "<group>";
+		};
+		A44B630F163E811600A8045B /* poker */ = {
+			isa = PBXGroup;
+			children = (
+				A44B6310163E811600A8045B /* poker_back_bg.png */,
+				A44B6319163E811600A8045B /* poker_front_bg.png */,
+				A44B6311163E811600A8045B /* poker_body */,
+				A44B631A163E811600A8045B /* poker_rank */,
+				A44B6335163E811600A8045B /* poker_suit */,
+			);
+			path = poker;
+			sourceTree = "<group>";
+		};
+		A44B6311163E811600A8045B /* poker_body */ = {
+			isa = PBXGroup;
+			children = (
+				A44B6318163E811600A8045B /* poker_body_spade.png */,
+				A44B6312163E811600A8045B /* poker_body_club.png */,
+				A44B6313163E811600A8045B /* poker_body_diamond.png */,
+				A44B6314163E811600A8045B /* poker_body_heart.png */,
+				A44B6315163E811600A8045B /* poker_body_J.png */,
+				A44B6316163E811600A8045B /* poker_body_K.png */,
+				A44B6317163E811600A8045B /* poker_body_Q.png */,
+			);
+			path = poker_body;
+			sourceTree = "<group>";
+		};
+		A44B631A163E811600A8045B /* poker_rank */ = {
+			isa = PBXGroup;
+			children = (
+				A44B638F163E868700A8045B /* poker_rank_black_A.png */,
+				A44B6390163E868700A8045B /* poker_rank_red_A.png */,
+				A44B631C163E811600A8045B /* poker_rank_black_10.png */,
+				A44B631D163E811600A8045B /* poker_rank_black_2.png */,
+				A44B631E163E811600A8045B /* poker_rank_black_3.png */,
+				A44B631F163E811600A8045B /* poker_rank_black_4.png */,
+				A44B6320163E811600A8045B /* poker_rank_black_5.png */,
+				A44B6321163E811600A8045B /* poker_rank_black_6.png */,
+				A44B6322163E811600A8045B /* poker_rank_black_7.png */,
+				A44B6323163E811600A8045B /* poker_rank_black_8.png */,
+				A44B6324163E811600A8045B /* poker_rank_black_9.png */,
+				A44B6325163E811600A8045B /* poker_rank_black_J.png */,
+				A44B6326163E811600A8045B /* poker_rank_black_K.png */,
+				A44B6327163E811600A8045B /* poker_rank_black_Q.png */,
+				A44B6329163E811600A8045B /* poker_rank_red_10.png */,
+				A44B632A163E811600A8045B /* poker_rank_red_2.png */,
+				A44B632B163E811600A8045B /* poker_rank_red_3.png */,
+				A44B632C163E811600A8045B /* poker_rank_red_4.png */,
+				A44B632D163E811600A8045B /* poker_rank_red_5.png */,
+				A44B632E163E811600A8045B /* poker_rank_red_6.png */,
+				A44B632F163E811600A8045B /* poker_rank_red_7.png */,
+				A44B6330163E811600A8045B /* poker_rank_red_8.png */,
+				A44B6331163E811600A8045B /* poker_rank_red_9.png */,
+				A44B6332163E811600A8045B /* poker_rank_red_J.png */,
+				A44B6333163E811600A8045B /* poker_rank_red_K.png */,
+				A44B6334163E811600A8045B /* poker_rank_red_Q.png */,
+			);
+			path = poker_rank;
+			sourceTree = "<group>";
+		};
+		A44B6335163E811600A8045B /* poker_suit */ = {
+			isa = PBXGroup;
+			children = (
+				A44B6336163E811600A8045B /* poker_suit_club.png */,
+				A44B6337163E811600A8045B /* poker_suit_diamond.png */,
+				A44B6338163E811600A8045B /* poker_suit_heart.png */,
+				A44B6339163E811600A8045B /* poker_suit_spade.png */,
+			);
+			path = poker_suit;
+			sourceTree = "<group>";
+		};
+		A44B633A163E811600A8045B /* room */ = {
+			isa = PBXGroup;
+			children = (
+				A44B633B163E811600A8045B /* avatar_default.png */,
+				A44B633C163E811600A8045B /* chat_button.png */,
+				A44B633D163E811600A8045B /* coin_tree.png */,
+				A44B633E163E811600A8045B /* item_box.png */,
+				A44B633F163E811600A8045B /* runaway.png */,
+				A44B6340163E811600A8045B /* setting.png */,
+				A44B6341163E811600A8045B /* zjh_button_holder_bg.png */,
+				A44B6342163E811600A8045B /* zjh_buttons */,
+				A44B6349163E811600A8045B /* zjh_game_bg.jpg */,
+				A44B634A163E811600A8045B /* zjh_game_total_bet_bg.png */,
+				A44B634B163E811600A8045B /* zjh_my_avatar_bg.png */,
+				A44B634C163E811600A8045B /* zjh_other_plyer_avatar.png */,
+				A44B634D163E811600A8045B /* zjh_user_bet_bg.png */,
+			);
+			path = room;
+			sourceTree = "<group>";
+		};
+		A44B6342163E811600A8045B /* zjh_buttons */ = {
+			isa = PBXGroup;
+			children = (
+				A44B6343163E811600A8045B /* zjh_auto_bet.png */,
+				A44B6344163E811600A8045B /* zjh_bet.png */,
+				A44B6345163E811600A8045B /* zjh_check_card.png */,
+				A44B6346163E811600A8045B /* zjh_compare_card.png */,
+				A44B6347163E811600A8045B /* zjh_fold_card.png */,
+				A44B6348163E811600A8045B /* zjh_raise_bet.png */,
+			);
+			path = zjh_buttons;
+			sourceTree = "<group>";
+		};
 		A44DDF3B15C64482005609F6 /* DiceSelectedView */ = {
 			isa = PBXGroup;
 			children = (
@@ -3441,6 +3712,7 @@
 		A4E7877C1636727E003557AD /* ZhaJinHua */ = {
 			isa = PBXGroup;
 			children = (
+				A44B6305163E810900A8045B /* Resource */,
 				A4E7877D16367338003557AD /* Controller */,
 				A4E7877E16367338003557AD /* Model */,
 				A4E7877F16367338003557AD /* NetWork */,
@@ -7702,6 +7974,70 @@
 				A44B6227163787F500A8045B /* ZJHGameController.xib in Resources */,
 				A44B6258163A2BB000A8045B /* PokerView.xib in Resources */,
 				A44B625D163A346500A8045B /* ZJHPokerView.xib in Resources */,
+				A44B634E163E811600A8045B /* Chips_10.png in Resources */,
+				A44B634F163E811600A8045B /* Chips_100.png in Resources */,
+				A44B6350163E811600A8045B /* Chips_25.png in Resources */,
+				A44B6351163E811600A8045B /* Chips_5.png in Resources */,
+				A44B6352163E811600A8045B /* Chips_50.png in Resources */,
+				A44B6353163E811600A8045B /* Chips_500.png in Resources */,
+				A44B6354163E811600A8045B /* poker_back_bg.png in Resources */,
+				A44B6355163E811600A8045B /* poker_body_club.png in Resources */,
+				A44B6356163E811600A8045B /* poker_body_diamond.png in Resources */,
+				A44B6357163E811600A8045B /* poker_body_heart.png in Resources */,
+				A44B6358163E811600A8045B /* poker_body_J.png in Resources */,
+				A44B6359163E811600A8045B /* poker_body_K.png in Resources */,
+				A44B635A163E811600A8045B /* poker_body_Q.png in Resources */,
+				A44B635B163E811600A8045B /* poker_body_spade.png in Resources */,
+				A44B635C163E811600A8045B /* poker_front_bg.png in Resources */,
+				A44B635E163E811600A8045B /* poker_rank_black_10.png in Resources */,
+				A44B635F163E811600A8045B /* poker_rank_black_2.png in Resources */,
+				A44B6360163E811600A8045B /* poker_rank_black_3.png in Resources */,
+				A44B6361163E811600A8045B /* poker_rank_black_4.png in Resources */,
+				A44B6362163E811600A8045B /* poker_rank_black_5.png in Resources */,
+				A44B6363163E811600A8045B /* poker_rank_black_6.png in Resources */,
+				A44B6364163E811600A8045B /* poker_rank_black_7.png in Resources */,
+				A44B6365163E811600A8045B /* poker_rank_black_8.png in Resources */,
+				A44B6366163E811600A8045B /* poker_rank_black_9.png in Resources */,
+				A44B6367163E811600A8045B /* poker_rank_black_J.png in Resources */,
+				A44B6368163E811600A8045B /* poker_rank_black_K.png in Resources */,
+				A44B6369163E811600A8045B /* poker_rank_black_Q.png in Resources */,
+				A44B636B163E811600A8045B /* poker_rank_red_10.png in Resources */,
+				A44B636C163E811600A8045B /* poker_rank_red_2.png in Resources */,
+				A44B636D163E811600A8045B /* poker_rank_red_3.png in Resources */,
+				A44B636E163E811600A8045B /* poker_rank_red_4.png in Resources */,
+				A44B636F163E811600A8045B /* poker_rank_red_5.png in Resources */,
+				A44B6370163E811600A8045B /* poker_rank_red_6.png in Resources */,
+				A44B6371163E811600A8045B /* poker_rank_red_7.png in Resources */,
+				A44B6372163E811600A8045B /* poker_rank_red_8.png in Resources */,
+				A44B6373163E811600A8045B /* poker_rank_red_9.png in Resources */,
+				A44B6374163E811600A8045B /* poker_rank_red_J.png in Resources */,
+				A44B6375163E811600A8045B /* poker_rank_red_K.png in Resources */,
+				A44B6376163E811600A8045B /* poker_rank_red_Q.png in Resources */,
+				A44B6377163E811600A8045B /* poker_suit_club.png in Resources */,
+				A44B6378163E811600A8045B /* poker_suit_diamond.png in Resources */,
+				A44B6379163E811600A8045B /* poker_suit_heart.png in Resources */,
+				A44B637A163E811600A8045B /* poker_suit_spade.png in Resources */,
+				A44B637B163E811600A8045B /* avatar_default.png in Resources */,
+				A44B637C163E811600A8045B /* chat_button.png in Resources */,
+				A44B637D163E811600A8045B /* coin_tree.png in Resources */,
+				A44B637E163E811600A8045B /* item_box.png in Resources */,
+				A44B637F163E811600A8045B /* runaway.png in Resources */,
+				A44B6380163E811600A8045B /* setting.png in Resources */,
+				A44B6381163E811600A8045B /* zjh_button_holder_bg.png in Resources */,
+				A44B6382163E811600A8045B /* zjh_auto_bet.png in Resources */,
+				A44B6383163E811600A8045B /* zjh_bet.png in Resources */,
+				A44B6384163E811600A8045B /* zjh_check_card.png in Resources */,
+				A44B6385163E811600A8045B /* zjh_compare_card.png in Resources */,
+				A44B6386163E811600A8045B /* zjh_fold_card.png in Resources */,
+				A44B6387163E811600A8045B /* zjh_raise_bet.png in Resources */,
+				A44B6388163E811600A8045B /* zjh_game_bg.jpg in Resources */,
+				A44B6389163E811600A8045B /* zjh_game_total_bet_bg.png in Resources */,
+				A44B638A163E811600A8045B /* zjh_my_avatar_bg.png in Resources */,
+				A44B638B163E811600A8045B /* zjh_other_plyer_avatar.png in Resources */,
+				A44B638C163E811600A8045B /* zjh_user_bet_bg.png in Resources */,
+				A44B638E163E867200A8045B /* chips_250.png in Resources */,
+				A44B6391163E868700A8045B /* poker_rank_black_A.png in Resources */,
+				A44B6392163E868700A8045B /* poker_rank_red_A.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
