@@ -217,6 +217,11 @@
     
 }
 
+- (IBAction)clickQuitButton:(id)sender
+{
+    [self quitGame];
+}
+
 #pragma mark - player action response
 
 - (void)betSuccess
@@ -400,6 +405,18 @@ compareCardWith:(UserPosition)otherPlayer
 - (ZJHAvatarView*)getAvatarViewByUserId:(NSString*)userId
 {
     return [self getAvatarViewByPosition:[self getPositionByUserId:userId]];
+}
+
+- (void)quitGame
+{
+//    [self clearAllReciprocol];
+//    [self clearAllPlayersAvatar];
+//    [self clearAllResultViews];
+//    [self dismissAllPopupViews];
+    [_gameService quitGame];
+    [self unregisterAllNotifications];
+    [self.navigationController popViewControllerAnimated:YES];
+    //[_audioManager backgroundMusicStop];
 }
 
 @end
