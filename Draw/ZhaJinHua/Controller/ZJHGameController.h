@@ -23,13 +23,6 @@ typedef enum {
     UserPositionLeftTop,
 }UserPosition;
 
-@interface ZJHGameController : PPViewController {
-    ZJHGameService  *_gameService;
-    LevelService    *_levelService;
-    UserManager     *_userManager;
-    AudioManager    *_audioManager;
-    AccountService  *_accountService;
-    ZJHImageManager *_imageManager;
-}
+@interface ZJHGameController : PPViewController 
 
 @end
