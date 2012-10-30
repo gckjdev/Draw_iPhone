@@ -29,18 +29,5 @@
          landmarkName = "-showCards:"
          landmarkType = "5">
       </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "Yes"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "Draw/Dice/Controller/Home/DiceHomeController.m"
-         timestampString = "373274753.606818"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "514"
-         endingLineNumber = "514"
-         landmarkName = "-didConnected"
-         landmarkType = "5">
-      </FileBreakpoint>
    </FileBreakpoints>
 </Bucket>
