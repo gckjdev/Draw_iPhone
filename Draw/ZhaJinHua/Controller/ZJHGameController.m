@@ -275,34 +275,34 @@
 }
 
 
-- (void)showSomeoneBet:(UserPosition)position
+- (void)someoneBet:(UserPosition)position
            counter:(int)counter
 {
 
 }
 
-- (void)showSomeoneShowCard:(UserPosition)position
+- (void)someoneShowCard:(UserPosition)position
 {
     
 }
 
-- (void)showSomeone:(UserPosition)player
+- (void)someone:(UserPosition)player
     compareWith:(UserPosition)otherPlayer
 {
     
 }
 
-- (void)showSomeoneRaiseBet:(UserPosition)position
+- (void)someoneRaiseBet:(UserPosition)position
 {
     
 }
 
-- (void)showSomeoneAutoBet:(UserPosition)position
+- (void)someoneAutoBet:(UserPosition)position
 {
     
 }
 
-- (void)showSomeoneCheckCard:(UserPosition)position
+- (void)someoneCheckCard:(UserPosition)position
 {
     ZJHPokerView* view = [self getPokersViewByPosition:position];
     ZJHPokerSectorType type;
@@ -315,7 +315,7 @@
     [view makeSectorShape:type animation:YES];
 }
 
-- (void)showSomeoneFoldCard:(UserPosition)position
+- (void)someoneFoldCard:(UserPosition)position
 {
     ZJHPokerView* view = [self getPokersViewByPosition:position];
     [view fold:YES];
