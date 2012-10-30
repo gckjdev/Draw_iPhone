@@ -47,6 +47,16 @@ static ZJHGameService *_defaultService;
 
 #pragma mark - public methods
 
+- (ZJHUserInfo *)userInfo:(NSString *)userId
+{
+    return [_gameState userInfo:userId];
+}
+
+- (NSArray *)pokersOfUser:(NSString *)userId
+{
+    return [[self userInfo:userId] pokers];
+}
+
 - (void)bet
 {
     [_networkClient sendBetRequest:self.userId
