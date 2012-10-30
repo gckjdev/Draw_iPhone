@@ -26,13 +26,26 @@
 #define NOTIFICATION_GAME_BEGIN    @""
 
 @interface ZJHGameController ()
-
-- (void)roomChanged;
-- (ZJHPokerView*)getSelfPokersView;
+{
+    ZJHGameService  *_gameService;
+    LevelService    *_levelService;
+    UserManager     *_userManager;
+    AudioManager    *_audioManager;
+    AccountService  *_accountService;
+    ZJHImageManager *_imageManager;
+}
 
 @end
 
 @implementation ZJHGameController
+
+
+#pragma mark - life cycle
+
+- (void)dealloc
+{
+    [super dealloc];
+}
 
 - (id)init
 {
@@ -67,7 +80,12 @@
     // Do any additional setup after loading the view from its nib.
 }
 
-
+- (void)didReceiveMemoryWarning
+{
+    // dealloc resource here when memory is not enough
+    [self unregisterAllNotifications];
+    [super didReceiveMemoryWarning];
+}
 
 #pragma mark - Register notifications.
 
@@ -82,23 +100,8 @@
                             usingBlock:block];
 }
 
-- (GameMessage *)messageFromNotification:(NSNotification *)notification
-{
-    return [CommonGameNetworkService userInfoToMessage:notification.userInfo];
-}
-
-- (NSString *)userIdOfNotification:(NSNotification *)notification
-{
-    return [[self messageFromNotification:notification] userId];
-}
-
 - (void)registerDiceGameNotifications
 {
-    
-    [self registerZJHGameNotificationWithName:NOTIFICATION_JOIN_GAME_RESPONSE
-                                    usingBlock:^(NSNotification *notification) {
-                                    }];
-    
     [self registerZJHGameNotificationWithName:NOTIFICATION_ROOM
                                     usingBlock:^(NSNotification *notification) {
                                         [self roomChanged];
@@ -164,19 +167,10 @@
                                      compareCardWith:[self getPositionByUserId:toUserId]];
                                    }];
                                        
-    
     [self registerZJHGameNotificationWithName:NOTIFICATION_COMPARE_CARD_RESPONSE
                                    usingBlock:^(NSNotification *notification) {
                                        [self compareCardSuccess];
                                    }];    
-}
-
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-
 }
 
 #pragma mark - player action
@@ -412,6 +406,16 @@ compareCardWith:(UserPosition)otherPlayer
     [self unregisterAllNotifications];
     [self.navigationController popViewControllerAnimated:YES];
     //[_audioManager backgroundMusicStop];
+}
+
+- (GameMessage *)messageFromNotification:(NSNotification *)notification
+{
+    return [CommonGameNetworkService userInfoToMessage:notification.userInfo];
+}
+
+- (NSString *)userIdOfNotification:(NSNotification *)notification
+{
+    return [[self messageFromNotification:notification] userId];
 }
 
 @end
