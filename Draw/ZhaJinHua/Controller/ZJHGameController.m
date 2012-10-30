@@ -60,6 +60,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self registerDiceGameNotifications];
     [self updateAllPlayersAvatar];
     // Do any additional setup after loading the view from its nib.
 }
@@ -93,12 +94,12 @@
     
     [self registerZJHGameNotificationWithName:NOTIFICATION_NEXT_PLAYER_START
                                     usingBlock:^(NSNotification *notification) {
-                                        [self gameStart];
 
                                     }];
     
-    [self registerZJHGameNotificationWithName:NOTIFICATION_GAME_BEGIN
+    [self registerZJHGameNotificationWithName:NOTIFICATION_GAME_START_NOTIFICATION_REQUEST
                                     usingBlock:^(NSNotification *notification) {
+                                        [self gameStart];
                                     }];
     
 }
@@ -134,7 +135,8 @@
 
 - (IBAction)checkCard:(id)sender
 {
-    
+    ZJHPokerView* pokers = [self getSelfPokersView];
+    [pokers faceupCards:YES];
 }
 
 - (IBAction)foldCard:(id)sender
@@ -192,6 +194,8 @@
         [pokerView clearPokerViews];
         if (avatar.userInfo) {
             [pokerView updatePokerViewsWithPokers:[[_gameService userInfo:avatar.userInfo.userId] pokers]];
+        } else {
+            [pokerView updatePokerViewsWithPokers:[[_gameService userInfo:_userManager.userId] pokers]];
         }
     }
 }
@@ -210,7 +214,8 @@
 
 - (void)gameStart
 {
-    [[[[ZJHGameService defaultService] gameState] userInfo:nil] pokers];
+    PPDebug(@"<ZJHGameController> game start!");
+    [self updateAllPokers];
 }
 
 
@@ -251,9 +256,9 @@
     
 }
 
-- (void)updateAllPlayers
+- (ZJHPokerView*)getSelfPokersView
 {
-    
+    return (ZJHPokerView*)[self.view viewWithTag:(POKERS_TAG_OFFSET+UserPositionCenter)];
 }
 
 @end
