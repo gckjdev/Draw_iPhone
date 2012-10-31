@@ -18,7 +18,7 @@
 - (UIImage*)pokerBodyImage:(Poker*)poker;
 
 - (UIImage*)pokerTickImage;
-- (UIImage*)pokerFontBgImage;
+- (UIImage*)pokerFrontBgImage;
 - (UIImage*)pokerBackImage;
 
 @end

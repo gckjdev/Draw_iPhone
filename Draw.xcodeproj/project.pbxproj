@@ -101,7 +101,6 @@
 		A44B62301637C45600A8045B /* PokerView.m in Sources */ = {isa = PBXBuildFile; fileRef = A44B622F1637C45600A8045B /* PokerView.m */; };
 		A44B6258163A2BB000A8045B /* PokerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A44B6257163A2BAF00A8045B /* PokerView.xib */; };
 		A44B625B163A344100A8045B /* ZJHPokerView.m in Sources */ = {isa = PBXBuildFile; fileRef = A44B625A163A344100A8045B /* ZJHPokerView.m */; };
-		A44B625D163A346500A8045B /* ZJHPokerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A44B625C163A346400A8045B /* ZJHPokerView.xib */; };
 		A44B627C163BC37300A8045B /* DealingShoe.m in Sources */ = {isa = PBXBuildFile; fileRef = A44B627B163BC37000A8045B /* DealingShoe.m */; };
 		A44B63EC163F72B500A8045B /* Chips_100@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A44B63A6163F72B500A8045B /* Chips_100@2x.png */; };
 		A44B63ED163F72B500A8045B /* Chips_10@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A44B63A7163F72B500A8045B /* Chips_10@2x.png */; };
@@ -1357,7 +1356,6 @@
 		A44B6257163A2BAF00A8045B /* PokerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PokerView.xib; sourceTree = "<group>"; };
 		A44B6259163A344100A8045B /* ZJHPokerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJHPokerView.h; sourceTree = "<group>"; };
 		A44B625A163A344100A8045B /* ZJHPokerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJHPokerView.m; sourceTree = "<group>"; };
-		A44B625C163A346400A8045B /* ZJHPokerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZJHPokerView.xib; sourceTree = "<group>"; };
 		A44B627A163BC36E00A8045B /* DealingShoe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DealingShoe.h; sourceTree = "<group>"; };
 		A44B627B163BC37000A8045B /* DealingShoe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DealingShoe.m; sourceTree = "<group>"; };
 		A44B627D163E7AD100A8045B /* ZJHGameNotification.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZJHGameNotification.h; sourceTree = "<group>"; };
@@ -3766,7 +3764,6 @@
 			children = (
 				A44B6259163A344100A8045B /* ZJHPokerView.h */,
 				A44B625A163A344100A8045B /* ZJHPokerView.m */,
-				A44B625C163A346400A8045B /* ZJHPokerView.xib */,
 				A44B622E1637C45600A8045B /* PokerView.h */,
 				A44B622F1637C45600A8045B /* PokerView.m */,
 				A44B6257163A2BAF00A8045B /* PokerView.xib */,
@@ -7970,7 +7967,6 @@
 				A4E7876A16366FF8003557AD /* ZhaJinHua.proto in Resources */,
 				A44B6227163787F500A8045B /* ZJHGameController.xib in Resources */,
 				A44B6258163A2BB000A8045B /* PokerView.xib in Resources */,
-				A44B625D163A346500A8045B /* ZJHPokerView.xib in Resources */,
 				A44B63EC163F72B500A8045B /* Chips_100@2x.png in Resources */,
 				A44B63ED163F72B500A8045B /* Chips_10@2x.png in Resources */,
 				A44B63EE163F72B500A8045B /* chips_250@2x.png in Resources */,

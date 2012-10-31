@@ -32,10 +32,10 @@
 - (void)dealloc {
     [_poker release];
     [_backImageView release];
-    [_fontView release];
+    [_frontView release];
     [_rankImageView release];
     [_suitImageView release];
-    [_bodyImageView release];
+    [_frontBgImageView release];
     [_tickImageView release];
     [_bodyImageView release];
     [super dealloc];
@@ -47,26 +47,24 @@
                       isFaceUp:(BOOL)isFaceUp
 {
     PokerView *pokerView = [PokerView createPokerView];
+    pokerView.backgroundColor = [UIColor clearColor];
     pokerView.frame = frame;
     [pokerView setOriginCenter:pokerView.center originalAngle:0];
     
-    [pokerView addTarget:self action:@selector(clickSelf:) forControlEvents:UIControlEventTouchUpInside];
+    [pokerView addTarget:pokerView action:@selector(clickSelf:) forControlEvents:UIControlEventTouchUpInside];
     
     pokerView.poker = poker;
     pokerView.isFaceUp = isFaceUp;
     
     pokerView.backImageView.image = [[ZJHImageManager defaultManager] pokerBackImage];
     
-    pokerView.fontBgImageView.image = [[ZJHImageManager defaultManager] pokerFontBgImage];
+    pokerView.frontBgImageView.image = [[ZJHImageManager defaultManager] pokerFrontBgImage];
     pokerView.rankImageView.image = [[ZJHImageManager defaultManager] pokerRankImage:poker];
     pokerView.suitImageView.image = [[ZJHImageManager defaultManager] pokerSuitImage:poker];
     pokerView.bodyImageView.image = [[ZJHImageManager defaultManager] pokerBodyImage:poker];
     
-    if (isFaceUp) {
-        [pokerView faceUp:NO];
-    }else {
-        [pokerView faceDown:NO];
-    }
+    pokerView.backImageView.hidden = isFaceUp;
+    pokerView.frontView.hidden = !isFaceUp;
     
     return pokerView;
 }
@@ -79,7 +77,7 @@
         _isFaceUp = NO;
         
         self.backImageView.hidden = NO;
-        self.fontBgImageView.hidden = YES;
+        self.frontView.hidden = YES;
     }
 }
 
@@ -89,7 +87,7 @@
         _isFaceUp = YES;
         
         self.backImageView.hidden = YES;
-        self.fontBgImageView.hidden = NO;
+        self.frontView.hidden = NO;
     }
 }
 

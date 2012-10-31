@@ -20,6 +20,7 @@
 #import "GameMessage.pb.h"
 #import "BetTable.h"
 #import "ConfigManager.h"
+//#import "Poker.h"
 
 #define AVATAR_TAG_OFFSET   8000
 #define POKERS_TAG_OFFSET   2000
@@ -177,39 +178,40 @@
 }
 
 #pragma mark - player action
+- (IBAction)clickBetButton:(id)sender {
+}
 
-- (IBAction)bet:(id)sender
+- (IBAction)clickRaiseBetButton:(id)sender
 {
     
 }
 
-- (IBAction)raiseBet:(id)sender
+- (IBAction)clickAutoBetButton:(id)sender
 {
     
 }
 
-- (IBAction)autoBet:(id)sender
+- (IBAction)clickCompareCardButton:(id)sender
 {
-    
+    Poker *poker1 = [Poker pokerWithPokerId:1 rank:14 suit:2 faceUp:0];
+    Poker *poker2 = [Poker pokerWithPokerId:1 rank:14 suit:3 faceUp:0];
+    Poker *poker3 = [Poker pokerWithPokerId:1 rank:14 suit:4 faceUp:0];
+
+    [[self getSelfPokersView] updatePokerViewsWithPokers:[NSArray arrayWithObjects:poker1, poker2, poker3, nil]];
 }
 
-- (IBAction)compareCard:(id)sender
-{
-    
-}
-
-- (IBAction)checkCard:(id)sender
+- (IBAction)clickCheckCardButton:(id)sender
 {
     ZJHPokerView* pokers = [self getSelfPokersView];
     [pokers faceupCards:YES];
 }
 
-- (IBAction)foldCard:(id)sender
+- (IBAction)clickFoldCardButton:(id)sender
 {
     
 }
 
-- (IBAction)showCard:(id)sender
+- (IBAction)clickShowCardButton:(id)sender
 {
     
 }
@@ -355,7 +357,7 @@ compareCardWith:(UserPosition)otherPlayer
         
         [pokerView clearPokerViews];
         if (avatar.userInfo) {
-            [pokerView updatePokerViewsWithPokers:[[_gameService userInfo:avatar.userInfo.userId] pokers]];
+            [pokerView updatePokerViewsWithPokers:[[_gameService userPlayInfo:avatar.userInfo.userId] pokers]];
         }
     }
 }
