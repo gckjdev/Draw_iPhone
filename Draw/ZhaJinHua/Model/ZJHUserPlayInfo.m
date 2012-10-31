@@ -1,30 +1,19 @@
 //
-//  ZJHUserInfo.m
+//  ZJHUserPlayInfo.m
 //  Draw
 //
 //  Created by 王 小涛 on 12-10-24.
 //
 //
 
-#import "ZJHUserInfo.h"
+#import "ZJHUserPlayInfo.h"
 
-@interface ZJHUserInfo ()
+@interface ZJHUserPlayInfo ()
 @property (readwrite, copy, nonatomic) NSString *userId;
 
 @end
 
-@implementation ZJHUserInfo
-
-//@synthesize userId = _userId;
-//@synthesize pokers = _pokers;
-//@synthesize cardType = _cardType;
-//@synthesize totalBet = _totalBet;
-//@synthesize isAutoBet = _isAutoBet;
-//@synthesize lastAction = _lastAction;
-//
-//@synthesize alreadCheckCard = _alreadCheckCard;
-//@synthesize alreadFoldCard = _alreadFoldCard;
-//@synthesize alreadShowCard = _alreadShowCard;
+@implementation ZJHUserPlayInfo
 
 #pragma mark - Life cycle
 
@@ -35,15 +24,15 @@
     [super dealloc];
 }
 
-- (id)initWithPBZJHUserInfo:(PBZJHUserInfo *)pbZJHUserInfo
+- (id)initWithPBZJHUserPlayInfo:(PBZJHUserPlayInfo *)pbZJHUserPlayInfo
 {
     if (self = [super init]) {
-        self.userId = pbZJHUserInfo.userId;
-        self.pokers = [self pokersFormPBPokers:pbZJHUserInfo.pokers.pokersList];
-        self.cardType = pbZJHUserInfo.pokers.cardType;
-        self.totalBet = pbZJHUserInfo.totalBet;
-        self.isAutoBet = pbZJHUserInfo.isAutoBet;
-        self.lastAction = pbZJHUserInfo.lastAction;
+        self.userId = pbZJHUserPlayInfo.userId;
+        self.pokers = [self pokersFormPBPokers:pbZJHUserPlayInfo.pokers.pokersList];
+        self.cardType = pbZJHUserPlayInfo.pokers.cardType;
+        self.totalBet = pbZJHUserPlayInfo.totalBet;
+        self.isAutoBet = pbZJHUserPlayInfo.isAutoBet;
+        self.lastAction = pbZJHUserPlayInfo.lastAction;
         
         self.alreadCheckCard = FALSE;
         self.alreadFoldCard = FALSE;
@@ -54,9 +43,9 @@
     return self;
 }
 
-+ (ZJHUserInfo *)fromPBZJHUserInfo:(PBZJHUserInfo *)pbZJHUserInfo
++ (ZJHUserPlayInfo *)fromPBZJHUserPlayInfo:(PBZJHUserPlayInfo *)pbZJHUserPlayInfo
 {
-    return [[[ZJHUserInfo alloc] initWithPBZJHUserInfo:pbZJHUserInfo] autorelease];
+    return [[[ZJHUserPlayInfo alloc] initWithPBZJHUserPlayInfo:pbZJHUserPlayInfo] autorelease];
 }
 
 #pragma make - Publik methods

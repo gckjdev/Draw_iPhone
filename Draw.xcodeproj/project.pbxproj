@@ -96,7 +96,7 @@
 		A44B62221637870000A8045B /* CommonGameNetworkClient+ZJHNetworkExtend.m in Sources */ = {isa = PBXBuildFile; fileRef = A44B62211637870000A8045B /* CommonGameNetworkClient+ZJHNetworkExtend.m */; };
 		A44B6226163787F500A8045B /* ZJHGameController.m in Sources */ = {isa = PBXBuildFile; fileRef = A44B6224163787F500A8045B /* ZJHGameController.m */; };
 		A44B6227163787F500A8045B /* ZJHGameController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A44B6225163787F500A8045B /* ZJHGameController.xib */; };
-		A44B622A16379D4000A8045B /* ZJHUserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = A44B622916379D4000A8045B /* ZJHUserInfo.m */; };
+		A44B622A16379D4000A8045B /* ZJHUserPlayInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = A44B622916379D4000A8045B /* ZJHUserPlayInfo.m */; };
 		A44B622D1637B80700A8045B /* Poker.m in Sources */ = {isa = PBXBuildFile; fileRef = A44B622C1637B80600A8045B /* Poker.m */; };
 		A44B62301637C45600A8045B /* PokerView.m in Sources */ = {isa = PBXBuildFile; fileRef = A44B622F1637C45600A8045B /* PokerView.m */; };
 		A44B6258163A2BB000A8045B /* PokerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A44B6257163A2BAF00A8045B /* PokerView.xib */; };
@@ -1348,8 +1348,8 @@
 		A44B6223163787F500A8045B /* ZJHGameController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJHGameController.h; sourceTree = "<group>"; };
 		A44B6224163787F500A8045B /* ZJHGameController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJHGameController.m; sourceTree = "<group>"; };
 		A44B6225163787F500A8045B /* ZJHGameController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZJHGameController.xib; sourceTree = "<group>"; };
-		A44B622816379D4000A8045B /* ZJHUserInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJHUserInfo.h; sourceTree = "<group>"; };
-		A44B622916379D4000A8045B /* ZJHUserInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJHUserInfo.m; sourceTree = "<group>"; };
+		A44B622816379D4000A8045B /* ZJHUserPlayInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJHUserPlayInfo.h; sourceTree = "<group>"; };
+		A44B622916379D4000A8045B /* ZJHUserPlayInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJHUserPlayInfo.m; sourceTree = "<group>"; };
 		A44B622B1637B80600A8045B /* Poker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Poker.h; sourceTree = "<group>"; };
 		A44B622C1637B80600A8045B /* Poker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Poker.m; sourceTree = "<group>"; };
 		A44B622E1637C45600A8045B /* PokerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PokerView.h; sourceTree = "<group>"; };
@@ -3732,8 +3732,8 @@
 			children = (
 				A4E787921636753F003557AD /* ZJHGameState.h */,
 				A4E787931636753F003557AD /* ZJHGameState.m */,
-				A44B622816379D4000A8045B /* ZJHUserInfo.h */,
-				A44B622916379D4000A8045B /* ZJHUserInfo.m */,
+				A44B622816379D4000A8045B /* ZJHUserPlayInfo.h */,
+				A44B622916379D4000A8045B /* ZJHUserPlayInfo.m */,
 				A44B622B1637B80600A8045B /* Poker.h */,
 				A44B622C1637B80600A8045B /* Poker.m */,
 				C2F2CF961639165500995DCB /* ZJHImageManager.h */,
@@ -8600,7 +8600,7 @@
 				A44B621F163786D500A8045B /* ZJHGameService.m in Sources */,
 				A44B62221637870000A8045B /* CommonGameNetworkClient+ZJHNetworkExtend.m in Sources */,
 				A44B6226163787F500A8045B /* ZJHGameController.m in Sources */,
-				A44B622A16379D4000A8045B /* ZJHUserInfo.m in Sources */,
+				A44B622A16379D4000A8045B /* ZJHUserPlayInfo.m in Sources */,
 				A44B622D1637B80700A8045B /* Poker.m in Sources */,
 				A44B62301637C45600A8045B /* PokerView.m in Sources */,
 				C2F2CF981639165500995DCB /* ZJHImageManager.m in Sources */,

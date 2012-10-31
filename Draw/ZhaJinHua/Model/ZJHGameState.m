@@ -33,7 +33,7 @@
         self.totalBet = gameState.totalBet;
         self.singleBet = gameState.singleBet;
         self.myTurnTimes = 0;
-        self.usersInfo = [self usersInfoFromPBZJHUserInfoList:gameState.usersInfoList];
+        self.usersInfo = [self usersPlayInfoFromPBZJHUserPlayInfoList:gameState.usersInfoList];
     }
     
     return self;
@@ -67,12 +67,12 @@
 
 #pragma mark -  pravite methods
 
-- (NSDictionary *)usersInfoFromPBZJHUserInfoList:(NSArray *)pbUserInfoList
+- (NSDictionary *)usersPlayInfoFromPBZJHUserPlayInfoList:(NSArray *)pbUserPlayInfoList
 {
     NSMutableDictionary *usersInfo = [NSMutableDictionary dictionary];
     
-    for (PBZJHUserInfo *pbUserInfo in pbUserInfoList) {
-        [usersInfo setValue:[ZJHUserInfo fromPBZJHUserInfo:pbUserInfo] forKey:pbUserInfo.userId];
+    for (PBZJHUserPlayInfo *pbUserPlayInfo in pbUserPlayInfoList) {
+        [usersInfo setValue:[ZJHUserPlayInfo fromPBZJHUserPlayInfo:pbUserPlayInfo] forKey:pbUserPlayInfo.userId];
     }
     
     return usersInfo;

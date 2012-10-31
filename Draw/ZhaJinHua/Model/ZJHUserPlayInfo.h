@@ -1,5 +1,5 @@
 //
-//  ZJHUserInfo.h
+//  ZJHUserPlayInfo.h
 //  Draw
 //
 //  Created by 王 小涛 on 12-10-24.
@@ -12,7 +12,7 @@
 
 #define ZJH_NUM_POKER_PER_USER 3
 
-@interface ZJHUserInfo : NSObject
+@interface ZJHUserPlayInfo : NSObject
 
 @property (readonly, copy, nonatomic) NSString *userId;
 @property (retain, nonatomic) NSArray *pokers;
@@ -26,8 +26,7 @@
 @property (assign, nonatomic) BOOL alreadShowCard;
 @property (assign, nonatomic) BOOL alreadLose;
 
-+ (ZJHUserInfo *)fromPBZJHUserInfo:(PBZJHUserInfo *)pbZJHUserInfo;
-//- (ZJHUserInfo *)updateWithPokers:(PBZJHUserPoker *)pokers;
++ (ZJHUserInfo *)fromPBZJHUserPlayInfo:(PBZJHUserPlayInfo *)pbZJHUserPlayInfo;
 
 - (void)setPokersFaceUp:(NSArray *)pokerIds;
 - (Poker *)poker:(int)pokerId;

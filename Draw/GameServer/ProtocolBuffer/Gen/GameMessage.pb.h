@@ -118,8 +118,8 @@
 @class PBZJHGameState_Builder;
 @class PBZJHPoker;
 @class PBZJHPoker_Builder;
-@class PBZJHUserInfo;
-@class PBZJHUserInfo_Builder;
+@class PBZJHUserPlayInfo;
+@class PBZJHUserPlayInfo_Builder;
 @class PBZJHUserPoker;
 @class PBZJHUserPoker_Builder;
 @class RegisterRoomsNotificationRequest;
@@ -1570,11 +1570,10 @@ BOOL BetTypeIsValidValue(BetType value);
 
 @interface CompareCardResponse : PBGeneratedMessage {
 @private
-  BOOL hasUserResult_:1;
-  PBUserResult* userResult;
+  NSMutableArray* mutableUserResultList;
 }
-- (BOOL) hasUserResult;
-@property (readonly, retain) PBUserResult* userResult;
+- (NSArray*) userResultList;
+- (PBUserResult*) userResultAtIndex:(int32_t) index;
 
 + (CompareCardResponse*) defaultInstance;
 - (CompareCardResponse*) defaultInstance;
@@ -1610,12 +1609,12 @@ BOOL BetTypeIsValidValue(BetType value);
 - (CompareCardResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
 - (CompareCardResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 
-- (BOOL) hasUserResult;
-- (PBUserResult*) userResult;
-- (CompareCardResponse_Builder*) setUserResult:(PBUserResult*) value;
-- (CompareCardResponse_Builder*) setUserResultBuilder:(PBUserResult_Builder*) builderForValue;
-- (CompareCardResponse_Builder*) mergeUserResult:(PBUserResult*) value;
-- (CompareCardResponse_Builder*) clearUserResult;
+- (NSArray*) userResultList;
+- (PBUserResult*) userResultAtIndex:(int32_t) index;
+- (CompareCardResponse_Builder*) replaceUserResultAtIndex:(int32_t) index with:(PBUserResult*) value;
+- (CompareCardResponse_Builder*) addUserResult:(PBUserResult*) value;
+- (CompareCardResponse_Builder*) addAllUserResult:(NSArray*) values;
+- (CompareCardResponse_Builder*) clearUserResultList;
 @end
 
 @interface JoinGameRequest : PBGeneratedMessage {
@@ -2476,13 +2475,14 @@ BOOL BetTypeIsValidValue(BetType value);
 @interface GameOverNotificationRequest : PBGeneratedMessage {
 @private
   BOOL hasGameResult_:1;
+  BOOL hasZjhgameResult_:1;
   PBDiceGameResult* gameResult;
-  NSMutableArray* mutableUserResultList;
+  PBZJHGameResult* zjhgameResult;
 }
 - (BOOL) hasGameResult;
+- (BOOL) hasZjhgameResult;
 @property (readonly, retain) PBDiceGameResult* gameResult;
-- (NSArray*) userResultList;
-- (PBUserResult*) userResultAtIndex:(int32_t) index;
+@property (readonly, retain) PBZJHGameResult* zjhgameResult;
 
 + (GameOverNotificationRequest*) defaultInstance;
 - (GameOverNotificationRequest*) defaultInstance;
@@ -2525,12 +2525,12 @@ BOOL BetTypeIsValidValue(BetType value);
 - (GameOverNotificationRequest_Builder*) mergeGameResult:(PBDiceGameResult*) value;
 - (GameOverNotificationRequest_Builder*) clearGameResult;
 
-- (NSArray*) userResultList;
-- (PBUserResult*) userResultAtIndex:(int32_t) index;
-- (GameOverNotificationRequest_Builder*) replaceUserResultAtIndex:(int32_t) index with:(PBUserResult*) value;
-- (GameOverNotificationRequest_Builder*) addUserResult:(PBUserResult*) value;
-- (GameOverNotificationRequest_Builder*) addAllUserResult:(NSArray*) values;
-- (GameOverNotificationRequest_Builder*) clearUserResultList;
+- (BOOL) hasZjhgameResult;
+- (PBZJHGameResult*) zjhgameResult;
+- (GameOverNotificationRequest_Builder*) setZjhgameResult:(PBZJHGameResult*) value;
+- (GameOverNotificationRequest_Builder*) setZjhgameResultBuilder:(PBZJHGameResult_Builder*) builderForValue;
+- (GameOverNotificationRequest_Builder*) mergeZjhgameResult:(PBZJHGameResult*) value;
+- (GameOverNotificationRequest_Builder*) clearZjhgameResult;
 @end
 
 @interface GameOverNotificationResponse : PBGeneratedMessage {

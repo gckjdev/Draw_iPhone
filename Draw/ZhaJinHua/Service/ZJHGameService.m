@@ -193,6 +193,19 @@ static ZJHGameService *_defaultService;
     [userInfo setPokersFaceUp:message.showCardRequest.cardIdsList];
 }
 
+- (void)updateCompareCardModel:(GameMessage *)message
+{
+    NSArray *resultList = message.compareCardResponse.userResultList;
+    ZJHUserInfo *userInfo;
+    for (PBUserResult *result in resultList) {
+        userInfo = [_gameState userInfo:result.userId];
+        userInfo.lastAction = PBZJHUserActionCompareCard;
+        if (!result.win) {
+            userInfo.alreadLose = YES;
+        }
+    }
+}
+
 - (void)handleBetRequest:(GameMessage *)message
 {
     [self updateBetModel:message];
@@ -238,14 +251,15 @@ static ZJHGameService *_defaultService;
 
 - (void)handleCompareCardRequest:(GameMessage *)message
 {
-//    [self updateCompareCardModel:message];
+    
 }
 
 - (void)handleCompareCardResponse:(GameMessage *)message
 {
-//    if (message.resultCode == 0) {
-//        [self updateCompareCardModel:message];
-//    }
+    if (message.resultCode == 0) {
+        [self updateCompareCardModel:message];
+        [self postNotification:NOTIFICATION_COMPARE_CARD_RESPONSE message:message];
+    }
 }
 
 - (void)handleShowCardRequest:(GameMessage *)message
