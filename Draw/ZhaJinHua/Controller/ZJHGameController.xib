@@ -711,57 +711,57 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
-						<string key="label">raiseBet:</string>
+						<string key="label">clickRaiseBetButton:</string>
 						<reference key="source" ref="238988111"/>
 						<reference key="destination" ref="372490531"/>
 						<int key="IBEventType">7</int>
 					</object>
-					<int key="connectionID">1724</int>
+					<int key="connectionID">1727</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
-						<string key="label">autoBet:</string>
+						<string key="label">clickAutoBetButton:</string>
 						<reference key="source" ref="435382813"/>
 						<reference key="destination" ref="372490531"/>
 						<int key="IBEventType">7</int>
 					</object>
-					<int key="connectionID">918</int>
+					<int key="connectionID">1728</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
-						<string key="label">compareCard:</string>
+						<string key="label">clickCompareCardButton:</string>
 						<reference key="source" ref="221285920"/>
 						<reference key="destination" ref="372490531"/>
 						<int key="IBEventType">7</int>
 					</object>
-					<int key="connectionID">920</int>
+					<int key="connectionID">1729</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
-						<string key="label">checkCard:</string>
+						<string key="label">clickCheckCardButton:</string>
 						<reference key="source" ref="380057684"/>
 						<reference key="destination" ref="372490531"/>
 						<int key="IBEventType">7</int>
 					</object>
-					<int key="connectionID">921</int>
+					<int key="connectionID">1730</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
-						<string key="label">foldCard:</string>
+						<string key="label">clickFoldCardButton:</string>
 						<reference key="source" ref="18726215"/>
 						<reference key="destination" ref="372490531"/>
 						<int key="IBEventType">7</int>
 					</object>
-					<int key="connectionID">922</int>
+					<int key="connectionID">1731</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
-						<string key="label">bet:</string>
+						<string key="label">clickBetButton:</string>
 						<reference key="source" ref="139360167"/>
 						<reference key="destination" ref="372490531"/>
 						<int key="IBEventType">7</int>
 					</object>
-					<int key="connectionID">1725</int>
+					<int key="connectionID">1726</int>
 				</object>
 			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -3992,7 +3992,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">1725</int>
+			<int key="maxID">1731</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -4031,6 +4031,50 @@
 				<object class="IBPartialClassDescription">
 					<string key="className">ZJHGameController</string>
 					<string key="superclassName">PPViewController</string>
+					<dictionary class="NSMutableDictionary" key="actions">
+						<string key="clickAutoBetButton:">id</string>
+						<string key="clickBetButton:">id</string>
+						<string key="clickCheckCardButton:">id</string>
+						<string key="clickCompareCardButton:">id</string>
+						<string key="clickFoldCardButton:">id</string>
+						<string key="clickQuitButton:">id</string>
+						<string key="clickRaiseBetButton:">id</string>
+						<string key="clickShowCardButton:">id</string>
+					</dictionary>
+					<dictionary class="NSMutableDictionary" key="actionInfosByName">
+						<object class="IBActionInfo" key="clickAutoBetButton:">
+							<string key="name">clickAutoBetButton:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="clickBetButton:">
+							<string key="name">clickBetButton:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="clickCheckCardButton:">
+							<string key="name">clickCheckCardButton:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="clickCompareCardButton:">
+							<string key="name">clickCompareCardButton:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="clickFoldCardButton:">
+							<string key="name">clickFoldCardButton:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="clickQuitButton:">
+							<string key="name">clickQuitButton:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="clickRaiseBetButton:">
+							<string key="name">clickRaiseBetButton:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="clickShowCardButton:">
+							<string key="name">clickShowCardButton:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+					</dictionary>
 					<object class="NSMutableDictionary" key="outlets">
 						<string key="NS.key.0">betTable</string>
 						<string key="NS.object.0">BetTable</string>

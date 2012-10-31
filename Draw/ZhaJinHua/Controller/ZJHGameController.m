@@ -178,10 +178,9 @@
 }
 
 #pragma mark - player action
-
-- (IBAction)bet:(id)sender
-{
+- (IBAction)clickBetButton:(id)sender {
     [self.betTable someBetFrom:UserPositionCenter forCount:10];
+
 }
 
 - (IBAction)clickRaiseBetButton:(id)sender
@@ -210,11 +209,6 @@
 }
 
 - (IBAction)clickFoldCardButton:(id)sender
-{
-    
-}
-
-- (IBAction)clickShowCardButton:(id)sender
 {
     
 }
