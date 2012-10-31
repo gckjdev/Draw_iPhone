@@ -39,8 +39,8 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "348"
          endingLineNumber = "348"
-         landmarkName = "@implementation ZJHGameController"
-         landmarkType = "3">
+         landmarkName = "-updateAllPokers"
+         landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "Yes"
@@ -52,7 +52,7 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "248"
          endingLineNumber = "248"
-         landmarkName = "-roomChanged"
+         landmarkName = "-gameStart"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint

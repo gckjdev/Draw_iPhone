@@ -51,6 +51,7 @@
     if ([pokers count] < 3) {
         return;
     }
+    [self clearPokerViews];
         
     Poker *poker1 = [pokers objectAtIndex:0];
     Poker *poker2 = [pokers objectAtIndex:1];
@@ -88,10 +89,7 @@
 
 - (void)clearPokerViews
 {
-    [self.pokerViewDic removeAllObjects];
-    for (UIView *view in [self subviews]) {
-        [view removeFromSuperview];
-    }
+
 }
 
 - (void)makeSectorShape:(ZJHPokerSectorType)sectorType animation:(BOOL)animation

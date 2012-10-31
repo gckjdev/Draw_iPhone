@@ -210,7 +210,7 @@
 
 - (IBAction)clickFoldCardButton:(id)sender
 {
-    
+    [[self getSelfPokersView] clearPokerViews];
 }
 
 - (IBAction)clickQuitButton:(id)sender
