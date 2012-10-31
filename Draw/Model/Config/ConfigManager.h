@@ -125,4 +125,6 @@ typedef enum{
 
 + (int)numberOfItemCanUsedOnNormalOpus;
 + (int)numberOfItemCanUsedOnContestOpus;
+
++ (int)getZJHTimeInterval;
 @end

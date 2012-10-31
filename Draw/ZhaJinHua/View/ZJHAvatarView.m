@@ -69,7 +69,10 @@
         [self addSubview:_roundAvatar];
         self.roundAvatar.delegate = self;
         
-        _nickNameLabel = [[HKGirlFontLabel alloc] initWithFrame:[self calculateNicknameLabelFrame]];
+        _nickNameLabel = [[UILabel alloc] initWithFrame:[self calculateNicknameLabelFrame]];
+        [_nickNameLabel setTextColor:[UIColor whiteColor]];
+        [_nickNameLabel setBackgroundColor:[UIColor clearColor]];
+        [_nickNameLabel setAdjustsFontSizeToFitWidth:YES];
         [self addSubview:_nickNameLabel];
         
         

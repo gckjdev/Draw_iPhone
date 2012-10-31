@@ -1,14 +1,15 @@
 //
-//  betTable.m
+//  BetTable.m
 //  Draw
 //
-//  Created by Kira on 12-10-30.
+//  Created by Kira on 12-10-31.
 //
 //
 
-#import "betTable.h"
 
-@implementation betTable
+#import "BetTable.h"
+
+@implementation BetTable
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -22,13 +23,13 @@
 - (CGPoint)getPointByPosition:(UserPosition)position
 {
     switch (position) {
-        case UserPositionRight: 
+        case UserPositionRight:
             return CGPointMake(self.frame.size.width, self.frame.size.height);
-        case UserPositionRightTop: 
+        case UserPositionRightTop:
             return CGPointMake(self.frame.size.width, 0);
-        case UserPositionLeft: 
+        case UserPositionLeft:
             return CGPointMake(0, self.frame.size.height);
-        case UserPositionLeftTop: 
+        case UserPositionLeftTop:
             return CGPointMake(0, 0);
         case UserPositionCenter:
             return CGPointMake(self.frame.size.width/2, self.frame.size.height);
@@ -52,12 +53,13 @@
 
 
 /*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect
-{
-    // Drawing code
-}
-*/
+ // Only override drawRect: if you perform custom drawing.
+ // An empty implementation adversely affects performance during animation.
+ - (void)drawRect:(CGRect)rect
+ {
+ // Drawing code
+ }
+ */
 
 @end
+

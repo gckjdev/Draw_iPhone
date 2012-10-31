@@ -18,6 +18,8 @@
 #import "ZJHPokerView.h"
 #import "ZJHUserPlayInfo.h"
 #import "GameMessage.pb.h"
+#import "BetTable.h"
+#import "ConfigManager.h"
 
 #define AVATAR_TAG_OFFSET   8000
 #define POKERS_TAG_OFFSET   2000
@@ -38,12 +40,13 @@
 @end
 
 @implementation ZJHGameController
-
+@synthesize betTable = _betTable;
 
 #pragma mark - life cycle
 
 - (void)dealloc
 {
+    [_betTable release];
     [super dealloc];
 }
 
@@ -256,12 +259,13 @@
 
 - (void)nextPlayerStart:(UserPosition)position
 {
-    
+    ZJHAvatarView* avatar = [self getAvatarViewByPosition:position];
+    [avatar startReciprocol:[ConfigManager getZJHTimeInterval]];
 }
 
 - (void)someoneBet:(UserPosition)position
 {
-    
+    [self.betTable someBetFrom:position forCount:0];
 
 }
 
@@ -278,7 +282,7 @@ compareCardWith:(UserPosition)otherPlayer
 
 - (void)someoneRaiseBet:(UserPosition)position
 {
-    
+    [self.betTable someBetFrom:position forCount:0];
 }
 
 - (void)someoneAutoBet:(UserPosition)position
@@ -314,8 +318,8 @@ compareCardWith:(UserPosition)otherPlayer
 
 - (void)someoneFoldCard:(UserPosition)position
 {
-    
-    
+    ZJHPokerView *view = [self getPokersViewByPosition:position];
+    [view fold:YES];
 }
 
 #pragma mark - private method
@@ -417,5 +421,23 @@ compareCardWith:(UserPosition)otherPlayer
 {
     return [[self messageFromNotification:notification] userId];
 }
+
+- (void)viewDidUnload {
+    [self setBetTable:nil];
+    [super viewDidUnload];
+}
+
+#pragma mark - ZJHAvatarDelegate
+
+- (void)didClickOnAvatar:(ZJHAvatarView*)view
+{
+    
+}
+
+- (void)reciprocalEnd:(ZJHAvatarView*)view
+{
+    [self foldCard:nil];
+}
+
 
 @end
