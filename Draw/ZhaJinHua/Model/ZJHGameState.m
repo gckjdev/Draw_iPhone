@@ -44,7 +44,7 @@
     return [[[ZJHGameState alloc] initWithPBZJHGameState:gameState] autorelease];
 }
 
-- (ZJHUserInfo *)userInfo:(NSString *)userId
+- (ZJHUserPlayInfo *)userInfo:(NSString *)userId
 {
     return [_usersInfo objectForKey:userId];
 }

@@ -16,7 +16,7 @@
 
 + (ZJHGameService*)defaultService;
 
-- (ZJHUserInfo *)userInfo:(NSString *)userId;
+- (ZJHUserPlayInfo *)userPlayInfo:(NSString *)userId;
 - (NSArray *)pokersOfUser:(NSString *)userId;
 
 - (void)bet;                                    // 跟注
