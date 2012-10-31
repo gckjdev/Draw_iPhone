@@ -5515,25 +5515,18 @@ static CompareCardRequest* defaultCompareCardRequestInstance = nil;
 @end
 
 @interface CompareCardResponse ()
-@property (retain) PBUserResult* userResult;
+@property (retain) NSMutableArray* mutableUserResultList;
 @end
 
 @implementation CompareCardResponse
 
-- (BOOL) hasUserResult {
-  return !!hasUserResult_;
-}
-- (void) setHasUserResult:(BOOL) value {
-  hasUserResult_ = !!value;
-}
-@synthesize userResult;
+@synthesize mutableUserResultList;
 - (void) dealloc {
-  self.userResult = nil;
+  self.mutableUserResultList = nil;
   [super dealloc];
 }
 - (id) init {
   if ((self = [super init])) {
-    self.userResult = [PBUserResult defaultInstance];
   }
   return self;
 }
@@ -5549,18 +5542,24 @@ static CompareCardResponse* defaultCompareCardResponseInstance = nil;
 - (CompareCardResponse*) defaultInstance {
   return defaultCompareCardResponseInstance;
 }
+- (NSArray*) userResultList {
+  return mutableUserResultList;
+}
+- (PBUserResult*) userResultAtIndex:(int32_t) index {
+  id value = [mutableUserResultList objectAtIndex:index];
+  return value;
+}
 - (BOOL) isInitialized {
-  if (!self.hasUserResult) {
-    return NO;
-  }
-  if (!self.userResult.isInitialized) {
-    return NO;
+  for (PBUserResult* element in self.userResultList) {
+    if (!element.isInitialized) {
+      return NO;
+    }
   }
   return YES;
 }
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
-  if (self.hasUserResult) {
-    [output writeMessage:2 value:self.userResult];
+  for (PBUserResult* element in self.userResultList) {
+    [output writeMessage:2 value:element];
   }
   [self.unknownFields writeToCodedOutputStream:output];
 }
@@ -5571,8 +5570,8 @@ static CompareCardResponse* defaultCompareCardResponseInstance = nil;
   }
 
   size = 0;
-  if (self.hasUserResult) {
-    size += computeMessageSize(2, self.userResult);
+  for (PBUserResult* element in self.userResultList) {
+    size += computeMessageSize(2, element);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -5649,8 +5648,11 @@ static CompareCardResponse* defaultCompareCardResponseInstance = nil;
   if (other == [CompareCardResponse defaultInstance]) {
     return self;
   }
-  if (other.hasUserResult) {
-    [self mergeUserResult:other.userResult];
+  if (other.mutableUserResultList.count > 0) {
+    if (result.mutableUserResultList == nil) {
+      result.mutableUserResultList = [NSMutableArray array];
+    }
+    [result.mutableUserResultList addObjectsFromArray:other.mutableUserResultList];
   }
   [self mergeUnknownFields:other.unknownFields];
   return self;
@@ -5675,44 +5677,40 @@ static CompareCardResponse* defaultCompareCardResponseInstance = nil;
       }
       case 18: {
         PBUserResult_Builder* subBuilder = [PBUserResult builder];
-        if (self.hasUserResult) {
-          [subBuilder mergeFrom:self.userResult];
-        }
         [input readMessage:subBuilder extensionRegistry:extensionRegistry];
-        [self setUserResult:[subBuilder buildPartial]];
+        [self addUserResult:[subBuilder buildPartial]];
         break;
       }
     }
   }
 }
-- (BOOL) hasUserResult {
-  return result.hasUserResult;
+- (NSArray*) userResultList {
+  if (result.mutableUserResultList == nil) { return [NSArray array]; }
+  return result.mutableUserResultList;
 }
-- (PBUserResult*) userResult {
-  return result.userResult;
+- (PBUserResult*) userResultAtIndex:(int32_t) index {
+  return [result userResultAtIndex:index];
 }
-- (CompareCardResponse_Builder*) setUserResult:(PBUserResult*) value {
-  result.hasUserResult = YES;
-  result.userResult = value;
+- (CompareCardResponse_Builder*) replaceUserResultAtIndex:(int32_t) index with:(PBUserResult*) value {
+  [result.mutableUserResultList replaceObjectAtIndex:index withObject:value];
   return self;
 }
-- (CompareCardResponse_Builder*) setUserResultBuilder:(PBUserResult_Builder*) builderForValue {
-  return [self setUserResult:[builderForValue build]];
-}
-- (CompareCardResponse_Builder*) mergeUserResult:(PBUserResult*) value {
-  if (result.hasUserResult &&
-      result.userResult != [PBUserResult defaultInstance]) {
-    result.userResult =
-      [[[PBUserResult builderWithPrototype:result.userResult] mergeFrom:value] buildPartial];
-  } else {
-    result.userResult = value;
+- (CompareCardResponse_Builder*) addAllUserResult:(NSArray*) values {
+  if (result.mutableUserResultList == nil) {
+    result.mutableUserResultList = [NSMutableArray array];
   }
-  result.hasUserResult = YES;
+  [result.mutableUserResultList addObjectsFromArray:values];
   return self;
 }
-- (CompareCardResponse_Builder*) clearUserResult {
-  result.hasUserResult = NO;
-  result.userResult = [PBUserResult defaultInstance];
+- (CompareCardResponse_Builder*) clearUserResultList {
+  result.mutableUserResultList = nil;
+  return self;
+}
+- (CompareCardResponse_Builder*) addUserResult:(PBUserResult*) value {
+  if (result.mutableUserResultList == nil) {
+    result.mutableUserResultList = [NSMutableArray array];
+  }
+  [result.mutableUserResultList addObject:value];
   return self;
 }
 @end
@@ -9184,7 +9182,7 @@ static BetDiceResponse* defaultBetDiceResponseInstance = nil;
 
 @interface GameOverNotificationRequest ()
 @property (retain) PBDiceGameResult* gameResult;
-@property (retain) NSMutableArray* mutableUserResultList;
+@property (retain) PBZJHGameResult* zjhgameResult;
 @end
 
 @implementation GameOverNotificationRequest
@@ -9196,15 +9194,22 @@ static BetDiceResponse* defaultBetDiceResponseInstance = nil;
   hasGameResult_ = !!value;
 }
 @synthesize gameResult;
-@synthesize mutableUserResultList;
+- (BOOL) hasZjhgameResult {
+  return !!hasZjhgameResult_;
+}
+- (void) setHasZjhgameResult:(BOOL) value {
+  hasZjhgameResult_ = !!value;
+}
+@synthesize zjhgameResult;
 - (void) dealloc {
   self.gameResult = nil;
-  self.mutableUserResultList = nil;
+  self.zjhgameResult = nil;
   [super dealloc];
 }
 - (id) init {
   if ((self = [super init])) {
     self.gameResult = [PBDiceGameResult defaultInstance];
+    self.zjhgameResult = [PBZJHGameResult defaultInstance];
   }
   return self;
 }
@@ -9220,21 +9225,14 @@ static GameOverNotificationRequest* defaultGameOverNotificationRequestInstance =
 - (GameOverNotificationRequest*) defaultInstance {
   return defaultGameOverNotificationRequestInstance;
 }
-- (NSArray*) userResultList {
-  return mutableUserResultList;
-}
-- (PBUserResult*) userResultAtIndex:(int32_t) index {
-  id value = [mutableUserResultList objectAtIndex:index];
-  return value;
-}
 - (BOOL) isInitialized {
   if (self.hasGameResult) {
     if (!self.gameResult.isInitialized) {
       return NO;
     }
   }
-  for (PBUserResult* element in self.userResultList) {
-    if (!element.isInitialized) {
+  if (self.hasZjhgameResult) {
+    if (!self.zjhgameResult.isInitialized) {
       return NO;
     }
   }
@@ -9244,8 +9242,8 @@ static GameOverNotificationRequest* defaultGameOverNotificationRequestInstance =
   if (self.hasGameResult) {
     [output writeMessage:1 value:self.gameResult];
   }
-  for (PBUserResult* element in self.userResultList) {
-    [output writeMessage:2 value:element];
+  if (self.hasZjhgameResult) {
+    [output writeMessage:2 value:self.zjhgameResult];
   }
   [self.unknownFields writeToCodedOutputStream:output];
 }
@@ -9259,8 +9257,8 @@ static GameOverNotificationRequest* defaultGameOverNotificationRequestInstance =
   if (self.hasGameResult) {
     size += computeMessageSize(1, self.gameResult);
   }
-  for (PBUserResult* element in self.userResultList) {
-    size += computeMessageSize(2, element);
+  if (self.hasZjhgameResult) {
+    size += computeMessageSize(2, self.zjhgameResult);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -9340,11 +9338,8 @@ static GameOverNotificationRequest* defaultGameOverNotificationRequestInstance =
   if (other.hasGameResult) {
     [self mergeGameResult:other.gameResult];
   }
-  if (other.mutableUserResultList.count > 0) {
-    if (result.mutableUserResultList == nil) {
-      result.mutableUserResultList = [NSMutableArray array];
-    }
-    [result.mutableUserResultList addObjectsFromArray:other.mutableUserResultList];
+  if (other.hasZjhgameResult) {
+    [self mergeZjhgameResult:other.zjhgameResult];
   }
   [self mergeUnknownFields:other.unknownFields];
   return self;
@@ -9377,9 +9372,12 @@ static GameOverNotificationRequest* defaultGameOverNotificationRequestInstance =
         break;
       }
       case 18: {
-        PBUserResult_Builder* subBuilder = [PBUserResult builder];
+        PBZJHGameResult_Builder* subBuilder = [PBZJHGameResult builder];
+        if (self.hasZjhgameResult) {
+          [subBuilder mergeFrom:self.zjhgameResult];
+        }
         [input readMessage:subBuilder extensionRegistry:extensionRegistry];
-        [self addUserResult:[subBuilder buildPartial]];
+        [self setZjhgameResult:[subBuilder buildPartial]];
         break;
       }
     }
@@ -9415,33 +9413,34 @@ static GameOverNotificationRequest* defaultGameOverNotificationRequestInstance =
   result.gameResult = [PBDiceGameResult defaultInstance];
   return self;
 }
-- (NSArray*) userResultList {
-  if (result.mutableUserResultList == nil) { return [NSArray array]; }
-  return result.mutableUserResultList;
+- (BOOL) hasZjhgameResult {
+  return result.hasZjhgameResult;
 }
-- (PBUserResult*) userResultAtIndex:(int32_t) index {
-  return [result userResultAtIndex:index];
+- (PBZJHGameResult*) zjhgameResult {
+  return result.zjhgameResult;
 }
-- (GameOverNotificationRequest_Builder*) replaceUserResultAtIndex:(int32_t) index with:(PBUserResult*) value {
-  [result.mutableUserResultList replaceObjectAtIndex:index withObject:value];
+- (GameOverNotificationRequest_Builder*) setZjhgameResult:(PBZJHGameResult*) value {
+  result.hasZjhgameResult = YES;
+  result.zjhgameResult = value;
   return self;
 }
-- (GameOverNotificationRequest_Builder*) addAllUserResult:(NSArray*) values {
-  if (result.mutableUserResultList == nil) {
-    result.mutableUserResultList = [NSMutableArray array];
+- (GameOverNotificationRequest_Builder*) setZjhgameResultBuilder:(PBZJHGameResult_Builder*) builderForValue {
+  return [self setZjhgameResult:[builderForValue build]];
+}
+- (GameOverNotificationRequest_Builder*) mergeZjhgameResult:(PBZJHGameResult*) value {
+  if (result.hasZjhgameResult &&
+      result.zjhgameResult != [PBZJHGameResult defaultInstance]) {
+    result.zjhgameResult =
+      [[[PBZJHGameResult builderWithPrototype:result.zjhgameResult] mergeFrom:value] buildPartial];
+  } else {
+    result.zjhgameResult = value;
   }
-  [result.mutableUserResultList addObjectsFromArray:values];
+  result.hasZjhgameResult = YES;
   return self;
 }
-- (GameOverNotificationRequest_Builder*) clearUserResultList {
-  result.mutableUserResultList = nil;
-  return self;
-}
-- (GameOverNotificationRequest_Builder*) addUserResult:(PBUserResult*) value {
-  if (result.mutableUserResultList == nil) {
-    result.mutableUserResultList = [NSMutableArray array];
-  }
-  [result.mutableUserResultList addObject:value];
+- (GameOverNotificationRequest_Builder*) clearZjhgameResult {
+  result.hasZjhgameResult = NO;
+  result.zjhgameResult = [PBZJHGameResult defaultInstance];
   return self;
 }
 @end

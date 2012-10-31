@@ -33,7 +33,7 @@
         self.totalBet = gameState.totalBet;
         self.singleBet = gameState.singleBet;
         self.myTurnTimes = 0;
-        self.usersInfo = [self usersInfoFromPBZJHUserInfoList:gameState.usersInfoList];
+        self.usersInfo = [self usersPlayInfoFromPBZJHUserPlayInfoList:gameState.usersInfoList];
     }
     
     return self;
@@ -44,35 +44,35 @@
     return [[[ZJHGameState alloc] initWithPBZJHGameState:gameState] autorelease];
 }
 
-- (ZJHUserInfo *)userInfo:(NSString *)userId
+- (ZJHUserPlayInfo *)userPlayInfo:(NSString *)userId
 {
     return [_usersInfo objectForKey:userId];
 }
 
 - (int)betCountOfUser:(NSString *)userId
 {
-    return [[self userInfo:userId] betCount];
+    return [[self userPlayInfo:userId] betCount];
 }
 
 - (BOOL)user:(NSString *)userId canBeCompare:(BOOL)canBeCompare
 {
-    return [[self userInfo:userId] canBeCompare];
+    return [[self userPlayInfo:userId] canBeCompare];
 }
 
 - (BOOL)user:(NSString *)userId hasShield:(BOOL)hasShield
 {
-    return [[self userInfo:userId] hasShield];
+    return [[self userPlayInfo:userId] hasShield];
 }
 
 
 #pragma mark -  pravite methods
 
-- (NSDictionary *)usersInfoFromPBZJHUserInfoList:(NSArray *)pbUserInfoList
+- (NSDictionary *)usersPlayInfoFromPBZJHUserPlayInfoList:(NSArray *)pbUserPlayInfoList
 {
     NSMutableDictionary *usersInfo = [NSMutableDictionary dictionary];
     
-    for (PBZJHUserInfo *pbUserInfo in pbUserInfoList) {
-        [usersInfo setValue:[ZJHUserInfo fromPBZJHUserInfo:pbUserInfo] forKey:pbUserInfo.userId];
+    for (PBZJHUserPlayInfo *pbUserPlayInfo in pbUserPlayInfoList) {
+        [usersInfo setValue:[ZJHUserPlayInfo fromPBZJHUserPlayInfo:pbUserPlayInfo] forKey:pbUserPlayInfo.userId];
     }
     
     return usersInfo;

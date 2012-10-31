@@ -6,7 +6,7 @@
 //
 //
 #import <Foundation/Foundation.h>
-#import "ZJHUserInfo.h"
+#import "ZJHUserPlayInfo.h"
 
 @interface ZJHGameState : NSObject
 
@@ -16,7 +16,7 @@
 
 + (ZJHGameState *)fromPBZJHGameState:(PBZJHGameState *)gameState;
 
-- (ZJHUserInfo *)userInfo:(NSString *)userId;
+- (ZJHUserPlayInfo *)userPlayInfo:(NSString *)userId;
 - (int)betCountOfUser:(NSString *)userId;
 - (BOOL)user:(NSString *)userId canBeCompare:(BOOL)canBeCompare;
 - (BOOL)user:(NSString *)userId hasShield:(BOOL)hasShield;

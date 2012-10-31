@@ -16,7 +16,7 @@
 #import "ZJHAvatarView.h"
 #import "CommonGameSession.h"
 #import "ZJHPokerView.h"
-#import "ZJHUserInfo.h"
+#import "ZJHUserPlayInfo.h"
 #import "GameMessage.pb.h"
 #import "BetTable.h"
 #import "ConfigManager.h"

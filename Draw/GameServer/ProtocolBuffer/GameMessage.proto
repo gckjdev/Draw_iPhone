@@ -146,7 +146,7 @@ message CompareCardRequest{
 }
 
 message CompareCardResponse{
-  required PBUserResult userResult = 2;   // 比牌结果
+  repeated PBUserResult userResult = 2;   // 比牌结果
 }
 
 
@@ -242,9 +242,8 @@ message BetDiceResponse {
 }
 
 message GameOverNotificationRequest {
-  optional PBDiceGameResult gameResult = 1;
-  
-  repeated PBUserResult userResult = 2;         
+  optional PBDiceGameResult gameResult = 1;             // 默认为大话骰
+  optional PBZJHGameResult ZJHGameResult = 2;           // 炸金花
 } 
   
 message GameOverNotificationResponse{

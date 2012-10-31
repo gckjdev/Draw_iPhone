@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "PokerView.h"
-#import "ZJHUserInfo.h"
+#import "ZJHUserPlayInfo.h"
 
 typedef enum {
     ZJHPokerSectorTypeNone = 0,

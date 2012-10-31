@@ -47,14 +47,14 @@ static ZJHGameService *_defaultService;
 
 #pragma mark - public methods
 
-- (ZJHUserInfo *)userInfo:(NSString *)userId
+- (ZJHUserPlayInfo *)userPlayInfo:(NSString *)userId
 {
-    return [_gameState userInfo:userId];
+    return [_gameState userPlayInfo:userId];
 }
 
 - (NSArray *)pokersOfUser:(NSString *)userId
 {
-    return [[self userInfo:userId] pokers];
+    return [[self userPlayInfo:userId] pokers];
 }
 
 - (void)bet
@@ -138,59 +138,72 @@ static ZJHGameService *_defaultService;
 
 - (void)updateBetModel:(GameMessage *)message
 {
-    ZJHUserInfo *userInfo = [_gameState userInfo:message.userId];
-    if (userInfo == nil) {
+    ZJHUserPlayInfo *userPlayInfo = [_gameState userPlayInfo:message.userId];
+    if (userPlayInfo == nil) {
         return;
     }
     
-    if (userInfo.isAutoBet == TRUE) {
-        userInfo.lastAction = PBZJHUserActionAutoBet;
+    if (userPlayInfo.isAutoBet == TRUE) {
+        userPlayInfo.lastAction = PBZJHUserActionAutoBet;
     }else if (_gameState.singleBet == message.betRequest.singleBet) {
-        userInfo.lastAction = PBZJHUserActionBet;
+        userPlayInfo.lastAction = PBZJHUserActionBet;
     }else {
-        userInfo.lastAction = PBZJHUserActionRaiseBet;
+        userPlayInfo.lastAction = PBZJHUserActionRaiseBet;
     }
     
     _gameState.totalBet += message.betRequest.singleBet * message.betRequest.count;
     _gameState.singleBet = message.betRequest.singleBet;
     
-    userInfo.totalBet += message.betRequest.singleBet * message.betRequest.count;
-    userInfo.isAutoBet = message.betRequest.isAutoBet;
+    userPlayInfo.totalBet += message.betRequest.singleBet * message.betRequest.count;
+    userPlayInfo.isAutoBet = message.betRequest.isAutoBet;
 }
 
 - (void)updateCheckCardModel:(GameMessage *)message
 {
-    ZJHUserInfo *userInfo = [_gameState userInfo:message.userId];
-    if (userInfo == nil) {
+    ZJHUserPlayInfo *userPlayInfo = [_gameState userPlayInfo:message.userId];
+    if (userPlayInfo == nil) {
         return;
     }
     
-    userInfo.lastAction = PBZJHUserActionCheckCard;
-    userInfo.alreadCheckCard = YES;
+    userPlayInfo.lastAction = PBZJHUserActionCheckCard;
+    userPlayInfo.alreadCheckCard = YES;
 }
 
 - (void)updateFoldCardModel:(GameMessage *)message
 {
-    ZJHUserInfo *userInfo = [_gameState userInfo:message.userId];
-    if (userInfo == nil) {
+    ZJHUserPlayInfo *userPlayInfo = [_gameState userPlayInfo:message.userId];
+    if (userPlayInfo == nil) {
         return;
     }
     
-    userInfo.lastAction = PBZJHUserActionFoldCard;
-    userInfo.alreadFoldCard = YES;
+    userPlayInfo.lastAction = PBZJHUserActionFoldCard;
+    userPlayInfo.alreadFoldCard = YES;
 }
 
 - (void)updateShowCardModel:(GameMessage *)message
 {
-    ZJHUserInfo *userInfo = [_gameState userInfo:message.userId];
-    if (userInfo == nil) {
+    ZJHUserPlayInfo *userPlayInfo = [_gameState userPlayInfo:message.userId];
+    if (userPlayInfo == nil) {
         return;
     }
     
-    userInfo.lastAction = PBZJHUserActionShowCard;
-    userInfo.alreadShowCard = YES;
+    userPlayInfo.lastAction = PBZJHUserActionShowCard;
+    userPlayInfo.alreadShowCard = YES;
     
-    [userInfo setPokersFaceUp:message.showCardRequest.cardIdsList];
+    [userPlayInfo setPokersFaceUp:message.showCardRequest.cardIdsList];
+}
+
+- (void)updateCompareCardModel:(GameMessage *)message
+{
+    NSArray *resultList = message.compareCardResponse.userResultList;
+    ZJHUserPlayInfo *userPlayInfo;
+    for (PBUserResult *result in resultList) {
+        userPlayInfo = [_gameState userPlayInfo:result.userId];
+        userPlayInfo.lastAction = PBZJHUserActionCompareCard;
+        if (!result.win) {
+            userPlayInfo.alreadLose = YES;
+        }
+    }
 }
 
 - (void)handleBetRequest:(GameMessage *)message
@@ -238,14 +251,15 @@ static ZJHGameService *_defaultService;
 
 - (void)handleCompareCardRequest:(GameMessage *)message
 {
-//    [self updateCompareCardModel:message];
+    
 }
 
 - (void)handleCompareCardResponse:(GameMessage *)message
 {
-//    if (message.resultCode == 0) {
-//        [self updateCompareCardModel:message];
-//    }
+    if (message.resultCode == 0) {
+        [self updateCompareCardModel:message];
+        [self postNotification:NOTIFICATION_COMPARE_CARD_RESPONSE message:message];
+    }
 }
 
 - (void)handleShowCardRequest:(GameMessage *)message
