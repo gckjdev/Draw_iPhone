@@ -185,7 +185,7 @@
 
 - (IBAction)raiseBet:(id)sender
 {
-    
+    [self.betTable clearAllCounter];
 }
 
 - (IBAction)autoBet:(id)sender
@@ -355,7 +355,7 @@ compareCardWith:(UserPosition)otherPlayer
         
         [pokerView clearPokerViews];
         if (avatar.userInfo) {
-            [pokerView updatePokerViewsWithPokers:[[_gameService userInfo:avatar.userInfo.userId] pokers]];
+            [pokerView updatePokerViewsWithPokers:[[_gameService userPlayInfo:avatar.userInfo.userId] pokers]];
         }
     }
 }

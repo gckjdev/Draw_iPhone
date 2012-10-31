@@ -53,24 +53,35 @@
 - (void)someBetFrom:(UserPosition)position
            forCount:(int)counter
 {
+    CALayer* layer = [CALayer layer];
     UIImage* counterImage = [[ZJHImageManager defaultManager] counterImageForCounter:counter];
-    UIImageView* counterView = [[[UIImageView alloc] initWithImage:counterImage] autorelease];
+    [layer setContents:(id)[counterImage CGImage]];
+//    UIImageView* counterView = [[[UIImageView alloc] initWithImage:counterImage] autorelease];
+    layer.bounds = CGRectMake(0, 0, counterImage.size.width,counterImage.size.height);
     
-    [self addSubview:counterView];
+    [self.layer addSublayer:layer];
     CAAnimation* anim = [AnimationManager translationAnimationFrom:[self getPointByPosition:position]
                                                                 to:[self getRandomCenterPoint]
                                                           duration:1
                                                           delegate:self
                                                   removeCompeleted:NO];
     anim.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut];
-    [counterView.layer addAnimation:anim forKey:nil];
+    [layer addAnimation:anim forKey:nil];
 }
 
 - (void)clearAllCounter
 {
-    for (UIView* view in [self subviews]) {
-        [view removeFromSuperview];
+    
+    for (CALayer* layer in [self.layer sublayers]) {
+        CAAnimation* anim = [AnimationManager translationAnimationTo:[self getPointByPosition:UserPositionCenter] duration:1];
+        CAAnimation* anim2 = [AnimationManager missingAnimationWithDuration:1];
+        anim.removedOnCompletion = NO;
+        anim2.removedOnCompletion = NO;
+        anim.delegate = self;
+        [layer addAnimation:anim2 forKey:nil];
+        [layer addAnimation:anim forKey:nil];
     }
+    
 
 }
 
