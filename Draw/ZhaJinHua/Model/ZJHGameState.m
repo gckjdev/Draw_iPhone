@@ -44,24 +44,24 @@
     return [[[ZJHGameState alloc] initWithPBZJHGameState:gameState] autorelease];
 }
 
-- (ZJHUserPlayInfo *)userInfo:(NSString *)userId
+- (ZJHUserPlayInfo *)userPlayInfo:(NSString *)userId
 {
     return [_usersInfo objectForKey:userId];
 }
 
 - (int)betCountOfUser:(NSString *)userId
 {
-    return [[self userInfo:userId] betCount];
+    return [[self userPlayInfo:userId] betCount];
 }
 
 - (BOOL)user:(NSString *)userId canBeCompare:(BOOL)canBeCompare
 {
-    return [[self userInfo:userId] canBeCompare];
+    return [[self userPlayInfo:userId] canBeCompare];
 }
 
 - (BOOL)user:(NSString *)userId hasShield:(BOOL)hasShield
 {
-    return [[self userInfo:userId] hasShield];
+    return [[self userPlayInfo:userId] hasShield];
 }
 
 
