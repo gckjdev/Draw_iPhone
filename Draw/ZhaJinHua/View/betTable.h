@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "ZJHGameController.h"
 
-@interface betTable : UIView
+@interface BetTable : UIView
 
 - (void)someBetFrom:(UserPosition)position
            forCount:(int)counter;

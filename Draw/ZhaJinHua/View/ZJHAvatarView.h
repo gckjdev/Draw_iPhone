@@ -31,5 +31,8 @@
 
 - (void)updateByPBGameUser:(PBGameUser*)user;
 - (void)resetAvatar;
+- (void)startReciprocol:(CFTimeInterval)reciprocolTime;
+- (void)startReciprocol:(CFTimeInterval)reciprocolTime
+           fromProgress:(float)progress;
 
 @end

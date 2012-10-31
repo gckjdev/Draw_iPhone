@@ -8,12 +8,14 @@
 
 #import "PPViewController.h"
 
+
 @class ZJHGameService;
 @class UserManager;
 @class LevelService;
 @class AudioManager;
 @class ZJHImageManager;
 @class AccountService;
+@class BetTable;
 
 typedef enum {
     UserPositionRightTop = 1,
@@ -24,5 +26,6 @@ typedef enum {
 }UserPosition;
 
 @interface ZJHGameController : PPViewController 
+@property (retain, nonatomic) IBOutlet BetTable *betTable;
 
 @end

@@ -6,9 +6,9 @@
 //
 //
 
-#import "betTable.h"
+#import "BetTable.h"
 
-@implementation betTable
+@implementation BetTable
 
 - (id)initWithFrame:(CGRect)frame
 {
