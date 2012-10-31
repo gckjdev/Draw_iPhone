@@ -21,4 +21,6 @@
 - (UIImage*)pokerFontBgImage;
 - (UIImage*)pokerBackImage;
 
+- (UIImage*)counterImageForCounter:(int)counter;
+
 @end

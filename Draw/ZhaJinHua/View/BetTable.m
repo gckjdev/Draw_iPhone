@@ -8,6 +8,9 @@
 
 
 #import "BetTable.h"
+#import "ZJHImageManager.h"
+#import "AnimationManager.h"
+
 
 @implementation BetTable
 
@@ -40,15 +43,35 @@
     
 }
 
+- (CGPoint)getRandomCenterPoint
+{
+    int randomX = random()%((int)self.frame.size.width/2);
+    int randomY = random()%((int)self.frame.size.height/2);
+    return CGPointMake(self.frame.size.width/4+randomX, self.frame.size.height/4+randomY);
+}
+
 - (void)someBetFrom:(UserPosition)position
            forCount:(int)counter
 {
+    UIImage* counterImage = [[ZJHImageManager defaultManager] counterImageForCounter:counter];
+    UIImageView* counterView = [[[UIImageView alloc] initWithImage:counterImage] autorelease];
     
+    [self addSubview:counterView];
+    CAAnimation* anim = [AnimationManager translationAnimationFrom:[self getPointByPosition:position]
+                                                                to:[self getRandomCenterPoint]
+                                                          duration:1
+                                                          delegate:self
+                                                  removeCompeleted:NO];
+    anim.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut];
+    [counterView.layer addAnimation:anim forKey:nil];
 }
 
 - (void)clearAllCounter
 {
-    
+    for (UIView* view in [self subviews]) {
+        [view removeFromSuperview];
+    }
+
 }
 
 

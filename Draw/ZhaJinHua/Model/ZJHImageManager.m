@@ -8,6 +8,7 @@
 
 #import "ZJHImageManager.h"
 #import "ZhaJinHua.pb.h"
+#import "ShareImageManager.h"
 
 static ZJHImageManager* shareInstance;
 
@@ -257,6 +258,11 @@ static ZJHImageManager* shareInstance;
             return nil;
             break;
     }
+}
+
+- (UIImage*)counterImageForCounter:(int)counter
+{
+    return [[ShareImageManager defaultManager] coinImage];
 }
 
 

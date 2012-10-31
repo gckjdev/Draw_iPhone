@@ -180,7 +180,7 @@
 
 - (IBAction)bet:(id)sender
 {
-    
+    [self.betTable someBetFrom:UserPositionCenter forCount:10];
 }
 
 - (IBAction)raiseBet:(id)sender
