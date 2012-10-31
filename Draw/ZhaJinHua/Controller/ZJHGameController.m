@@ -178,12 +178,15 @@
 }
 
 #pragma mark - player action
-- (IBAction)clickBetButton:(id)sender {
+
+- (IBAction)bet:(id)sender
+{
+    [self.betTable someBetFrom:UserPositionCenter forCount:10];
 }
 
 - (IBAction)clickRaiseBetButton:(id)sender
 {
-    
+    [self.betTable clearAllCounter];
 }
 
 - (IBAction)clickAutoBetButton:(id)sender
