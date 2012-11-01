@@ -121,12 +121,12 @@
     [self registerZJHGameNotificationWithName:NOTIFICATION_NEXT_PLAYER_START
                                     usingBlock:^(NSNotification *notification) {
                                         NSString* userId = [[self messageFromNotification:notification] currentPlayUserId];
-                                        [self nextPlayerStart:[self getPositionByUserId:userId]];
+                                        [self nextPlayerStart:userId];
                                     }];
     
     [self registerZJHGameNotificationWithName:NOTIFICATION_BET_REQUEST
                                    usingBlock:^(NSNotification *notification) {
-                                       [self someoneBet:[self getPositionByUserId:[self userIdOfNotification:notification]]];
+                                       [self someoneBet:[self userIdOfNotification:notification]];
                                    }];
     
     [self registerZJHGameNotificationWithName:NOTIFICATION_BET_RESPONSE
@@ -136,7 +136,7 @@
     
     [self registerZJHGameNotificationWithName:NOTIFICATION_CHECK_CARD_REQUEST
                                    usingBlock:^(NSNotification *notification) {
-                                       [self someoneCheckCard:[self getPositionByUserId:[self userIdOfNotification:notification]]];
+                                       [self someoneCheckCard:[self userIdOfNotification:notification]];
                                    }];
     
     [self registerZJHGameNotificationWithName:NOTIFICATION_CHECK_CARD_RESPONSE
@@ -146,7 +146,7 @@
     
     [self registerZJHGameNotificationWithName:NOTIFICATION_FOLD_CARD_REQUEST
                                    usingBlock:^(NSNotification *notification) {
-                                       [self someoneFoldCard:[self getPositionByUserId:[self userIdOfNotification:notification]]];
+                                       [self someoneFoldCard:[self userIdOfNotification:notification]];
                                    }];
     
     [self registerZJHGameNotificationWithName:NOTIFICATION_FOLD_CARD_RESPONSE
@@ -156,7 +156,7 @@
     
     [self registerZJHGameNotificationWithName:NOTIFICATION_SHOW_CARD_REQUEST
                                    usingBlock:^(NSNotification *notification) {
-                                       [self someoneShowCard:[self getPositionByUserId:[self userIdOfNotification:notification]]];
+                                       [self someoneShowCard:[self userIdOfNotification:notification]];
                                    }];
     
     [self registerZJHGameNotificationWithName:NOTIFICATION_SHOW_CARD_RESPONSE
@@ -169,8 +169,8 @@
                                        NSString *userId = [self userIdOfNotification:notification];
                                        NSString *toUserId = [[[self messageFromNotification:notification] compareCardRequest] toUserId];
                                        
-                                       [self someone:[self getPositionByUserId:userId]
-                                     compareCardWith:[self getPositionByUserId:toUserId]];
+                                       [self someone:userId
+                                     compareCardWith:toUserId];
                                    }];
     
     [self registerZJHGameNotificationWithName:NOTIFICATION_COMPARE_CARD_RESPONSE
@@ -272,35 +272,39 @@
     
 }
 
-- (void)nextPlayerStart:(UserPosition)position
+- (void)nextPlayerStart:(NSString*)userId
 {
-    ZJHAvatarView* avatar = [self getAvatarViewByPosition:position];
+    ZJHAvatarView* avatar = [self getAvatarViewByPosition:[self getPositionByUserId:userId]];
     [avatar startReciprocol:[ConfigManager getZJHTimeInterval]];
 }
 
-- (void)someoneBet:(UserPosition)position
+- (void)someoneBet:(NSString*)userId
 {
-    [self.betTable someBetFrom:position forCount:0];
+    UserPosition position = [self getPositionByUserId:userId];
+    ZJHUserPlayInfo *userPlayInfo = [_gameService userPlayInfo:userId];
+    int bet = [userPlayInfo betCount] * _gameService.gameState.singleBet;
+    
+    [self.betTable someBetFrom:position forCount:bet];
 
 }
 
-- (void)someoneShowCard:(UserPosition)position
+- (void)someoneShowCard:(NSString*)userId
 {
     
 }
 
-- (void)someone:(UserPosition)player
-compareCardWith:(UserPosition)otherPlayer
+- (void)someone:(NSString*)userId
+compareCardWith:(NSString*)targetUserId
 {
     
 }
 
-- (void)someoneRaiseBet:(UserPosition)position
+- (void)someoneRaiseBet:(NSString*)userId
 {
-    [self.betTable someBetFrom:position forCount:0];
+    [self.betTable someBetFrom:[self getPositionByUserId:userId] forCount:0];
 }
 
-- (void)someoneAutoBet:(UserPosition)position
+- (void)someoneAutoBet:(NSString*)userId
 {
     
 }
@@ -324,22 +328,24 @@ compareCardWith:(UserPosition)otherPlayer
     }
 }
 
-- (void)someoneCheckCard:(UserPosition)position
+- (void)someoneCheckCard:(NSString*)userId
 {
+    UserPosition position = [self getPositionByUserId:userId];
     ZJHPokerView *view = [self getPokersViewByPosition:position];
     
     [view makeSectorShape:[self getPokerSectorTypeByPosition:position] animation:YES];
 }
 
-- (void)someoneFoldCard:(UserPosition)position
+- (void)someoneFoldCard:(NSString*)userId
 {
-    ZJHPokerView *view = [self getPokersViewByPosition:position];
+    
+    ZJHPokerView *view = [self getPokersViewByPosition:[self getPositionByUserId:userId]];
     [view foldCards:YES];
 }
 
-- (void)someoneWon:(UserPosition)position
+- (void)someoneWon:(NSString*)userId
 {
-    [self.betTable clearAllCounter:position];
+    [self.betTable clearAllCounter:[self getPositionByUserId:userId]];
 }
 
 #pragma mark - private method
@@ -470,7 +476,9 @@ compareCardWith:(UserPosition)otherPlayer
 
 - (void)reciprocalEnd:(ZJHAvatarView*)view
 {
-    [self clickFoldCardButton:nil];
+    if ([_userManager isMe:view.userInfo.userId]) {
+        [self clickFoldCardButton:nil];
+    }
 }
 
 
