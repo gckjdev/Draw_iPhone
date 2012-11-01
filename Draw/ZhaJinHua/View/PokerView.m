@@ -221,9 +221,10 @@
 
 - (void)popupShowCardButton
 {
-    UIButton *showCardButton = [PokerView createShowCardButton];
+    UIView *showCardButton = [PokerView createShowCardButton];
     
     self.popupView = [[[CMPopTipView alloc] initWithCustomView:showCardButton needBubblePath:NO] autorelease];
+    self.popupView.backgroundColor = [UIColor clearColor];
     
     [self.popupView presentPointingAtView:self
                                    inView:self
