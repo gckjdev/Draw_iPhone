@@ -69,14 +69,14 @@
 		A404A9A0164237EF007CA21A /* poker_lose_back_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = A404A99E164237EF007CA21A /* poker_lose_back_bg.png */; };
 		A404A9A2164237FA007CA21A /* show_card_button.png in Resources */ = {isa = PBXBuildFile; fileRef = A404A9A1164237FA007CA21A /* show_card_button.png */; };
 		A404A9AB16426545007CA21A /* ChipsSelectView.m in Sources */ = {isa = PBXBuildFile; fileRef = A404A9AA16426545007CA21A /* ChipsSelectView.m */; };
-		A404A9B01642722A007CA21A /* ChipView.m in Sources */ = {isa = PBXBuildFile; fileRef = A404A9AF16427229007CA21A /* ChipView.m */; };
-		A404A9B9164273E0007CA21A /* chip_100@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A404A9B2164273E0007CA21A /* chip_100@2x.png */; };
-		A404A9BA164273E0007CA21A /* chip_10@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A404A9B3164273E0007CA21A /* chip_10@2x.png */; };
-		A404A9BB164273E0007CA21A /* chip_250@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A404A9B4164273E0007CA21A /* chip_250@2x.png */; };
-		A404A9BC164273E0007CA21A /* chip_25@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A404A9B5164273E0007CA21A /* chip_25@2x.png */; };
-		A404A9BD164273E0007CA21A /* chip_500@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A404A9B6164273E0007CA21A /* chip_500@2x.png */; };
-		A404A9BE164273E0007CA21A /* chip_50@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A404A9B7164273E0007CA21A /* chip_50@2x.png */; };
-		A404A9BF164273E0007CA21A /* chip_5@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A404A9B8164273E0007CA21A /* chip_5@2x.png */; };
+		A404A9AD16426585007CA21A /* ChipsSelectView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A404A9AC16426584007CA21A /* ChipsSelectView.xib */; };
+		A404A9D816428149007CA21A /* chip_100@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A404A9D116428149007CA21A /* chip_100@2x.png */; };
+		A404A9D916428149007CA21A /* chip_10@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A404A9D216428149007CA21A /* chip_10@2x.png */; };
+		A404A9DA16428149007CA21A /* chip_250@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A404A9D316428149007CA21A /* chip_250@2x.png */; };
+		A404A9DB16428149007CA21A /* chip_25@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A404A9D416428149007CA21A /* chip_25@2x.png */; };
+		A404A9DC16428149007CA21A /* chip_500@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A404A9D516428149007CA21A /* chip_500@2x.png */; };
+		A404A9DD16428149007CA21A /* chip_50@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A404A9D616428149007CA21A /* chip_50@2x.png */; };
+		A404A9DE16428149007CA21A /* chip_5@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A404A9D716428149007CA21A /* chip_5@2x.png */; };
 		A40FEEDE15E22E1300A88C57 /* ChatView.m in Sources */ = {isa = PBXBuildFile; fileRef = A40FEEDD15E22E1300A88C57 /* ChatView.m */; };
 		A41A665915C921DA00066E9B /* SlideImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = A41A665815C921DA00066E9B /* SlideImageView.m */; };
 		A42C520615E614D2001D8208 /* DiceChatMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = A42C520315E614D2001D8208 /* DiceChatMessage.m */; };
@@ -283,6 +283,7 @@
 		C29707C5160ADBEC00BE0789 /* CustomDiceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C29707C4160ADBEC00BE0789 /* CustomDiceManager.m */; };
 		C29A300715CA16AC00BD0B73 /* CustomLabelUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = C29A300615CA16AC00BD0B73 /* CustomLabelUtil.m */; };
 		C29A300B15CA17FE00BD0B73 /* HKGirlFontLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = C29A300A15CA17FE00BD0B73 /* HKGirlFontLabel.m */; };
+		C29B5F541642749900EF4AB4 /* DealerView.m in Sources */ = {isa = PBXBuildFile; fileRef = C29B5F531642749900EF4AB4 /* DealerView.m */; };
 		C29B8A211563B02000B9707D /* CommonMessageCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = C29B8A1F1563B02000B9707D /* CommonMessageCenter.m */; };
 		C29B8A221563B02000B9707D /* CommonMessageView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C29B8A201563B02000B9707D /* CommonMessageView.xib */; };
 		C29B8AA8156760FF00B9707D /* CommonMessageView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C29B8AA7156760FE00B9707D /* CommonMessageView~ipad.xib */; };
@@ -1302,15 +1303,14 @@
 		A404A9A1164237FA007CA21A /* show_card_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = show_card_button.png; sourceTree = "<group>"; };
 		A404A9A916426545007CA21A /* ChipsSelectView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChipsSelectView.h; sourceTree = "<group>"; };
 		A404A9AA16426545007CA21A /* ChipsSelectView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChipsSelectView.m; sourceTree = "<group>"; };
-		A404A9AE16427228007CA21A /* ChipView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChipView.h; sourceTree = "<group>"; };
-		A404A9AF16427229007CA21A /* ChipView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChipView.m; sourceTree = "<group>"; };
-		A404A9B2164273E0007CA21A /* chip_100@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chip_100@2x.png"; sourceTree = "<group>"; };
-		A404A9B3164273E0007CA21A /* chip_10@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chip_10@2x.png"; sourceTree = "<group>"; };
-		A404A9B4164273E0007CA21A /* chip_250@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chip_250@2x.png"; sourceTree = "<group>"; };
-		A404A9B5164273E0007CA21A /* chip_25@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chip_25@2x.png"; sourceTree = "<group>"; };
-		A404A9B6164273E0007CA21A /* chip_500@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chip_500@2x.png"; sourceTree = "<group>"; };
-		A404A9B7164273E0007CA21A /* chip_50@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chip_50@2x.png"; sourceTree = "<group>"; };
-		A404A9B8164273E0007CA21A /* chip_5@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chip_5@2x.png"; sourceTree = "<group>"; };
+		A404A9AC16426584007CA21A /* ChipsSelectView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChipsSelectView.xib; sourceTree = "<group>"; };
+		A404A9D116428149007CA21A /* chip_100@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chip_100@2x.png"; sourceTree = "<group>"; };
+		A404A9D216428149007CA21A /* chip_10@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chip_10@2x.png"; sourceTree = "<group>"; };
+		A404A9D316428149007CA21A /* chip_250@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chip_250@2x.png"; sourceTree = "<group>"; };
+		A404A9D416428149007CA21A /* chip_25@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chip_25@2x.png"; sourceTree = "<group>"; };
+		A404A9D516428149007CA21A /* chip_500@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chip_500@2x.png"; sourceTree = "<group>"; };
+		A404A9D616428149007CA21A /* chip_50@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chip_50@2x.png"; sourceTree = "<group>"; };
+		A404A9D716428149007CA21A /* chip_5@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chip_5@2x.png"; sourceTree = "<group>"; };
 		A40FEEDC15E22E1300A88C57 /* ChatView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatView.h; sourceTree = "<group>"; };
 		A40FEEDD15E22E1300A88C57 /* ChatView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatView.m; sourceTree = "<group>"; };
 		A41A665715C921DA00066E9B /* SlideImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SlideImageView.h; sourceTree = "<group>"; };
@@ -1621,6 +1621,8 @@
 		C29A300615CA16AC00BD0B73 /* CustomLabelUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomLabelUtil.m; sourceTree = "<group>"; };
 		C29A300915CA17FE00BD0B73 /* HKGirlFontLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HKGirlFontLabel.h; path = FontLabel/HKGirlFontLabel.h; sourceTree = "<group>"; };
 		C29A300A15CA17FE00BD0B73 /* HKGirlFontLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HKGirlFontLabel.m; path = FontLabel/HKGirlFontLabel.m; sourceTree = "<group>"; };
+		C29B5F521642749900EF4AB4 /* DealerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DealerView.h; sourceTree = "<group>"; };
+		C29B5F531642749900EF4AB4 /* DealerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DealerView.m; sourceTree = "<group>"; };
 		C29B8A1E1563B02000B9707D /* CommonMessageCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonMessageCenter.h; sourceTree = "<group>"; };
 		C29B8A1F1563B02000B9707D /* CommonMessageCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonMessageCenter.m; sourceTree = "<group>"; };
 		C29B8A201563B02000B9707D /* CommonMessageView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommonMessageView.xib; sourceTree = "<group>"; };
@@ -3131,16 +3133,16 @@
 			path = Chat;
 			sourceTree = "<group>";
 		};
-		A404A9B1164273DF007CA21A /* chip */ = {
+		A404A9D016428149007CA21A /* chip */ = {
 			isa = PBXGroup;
 			children = (
-				A404A9B2164273E0007CA21A /* chip_100@2x.png */,
-				A404A9B3164273E0007CA21A /* chip_10@2x.png */,
-				A404A9B4164273E0007CA21A /* chip_250@2x.png */,
-				A404A9B5164273E0007CA21A /* chip_25@2x.png */,
-				A404A9B6164273E0007CA21A /* chip_500@2x.png */,
-				A404A9B7164273E0007CA21A /* chip_50@2x.png */,
-				A404A9B8164273E0007CA21A /* chip_5@2x.png */,
+				A404A9D116428149007CA21A /* chip_100@2x.png */,
+				A404A9D216428149007CA21A /* chip_10@2x.png */,
+				A404A9D316428149007CA21A /* chip_250@2x.png */,
+				A404A9D416428149007CA21A /* chip_25@2x.png */,
+				A404A9D516428149007CA21A /* chip_500@2x.png */,
+				A404A9D616428149007CA21A /* chip_50@2x.png */,
+				A404A9D716428149007CA21A /* chip_5@2x.png */,
 			);
 			path = chip;
 			sourceTree = "<group>";
@@ -3234,7 +3236,7 @@
 		A44B63A4163F72B500A8045B /* Image */ = {
 			isa = PBXGroup;
 			children = (
-				A404A9B1164273DF007CA21A /* chip */,
+				A404A9D016428149007CA21A /* chip */,
 				A44B63AD163F72B500A8045B /* poker */,
 				A44B63D8163F72B500A8045B /* room */,
 			);
@@ -3783,6 +3785,8 @@
 		A4E7878116367338003557AD /* View */ = {
 			isa = PBXGroup;
 			children = (
+				C29B5F521642749900EF4AB4 /* DealerView.h */,
+				C29B5F531642749900EF4AB4 /* DealerView.m */,
 				A44B6259163A344100A8045B /* ZJHPokerView.h */,
 				A44B625A163A344100A8045B /* ZJHPokerView.m */,
 				A44B622E1637C45600A8045B /* PokerView.h */,
@@ -3796,8 +3800,7 @@
 				C2C54CEA1640C45B005561DA /* BetTable.m */,
 				A404A9A916426545007CA21A /* ChipsSelectView.h */,
 				A404A9AA16426545007CA21A /* ChipsSelectView.m */,
-				A404A9AE16427228007CA21A /* ChipView.h */,
-				A404A9AF16427229007CA21A /* ChipView.m */,
+				A404A9AC16426584007CA21A /* ChipsSelectView.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -8056,13 +8059,14 @@
 				A404A99F164237EF007CA21A /* poker_fold_back_bg@2x.png in Resources */,
 				A404A9A0164237EF007CA21A /* poker_lose_back_bg.png in Resources */,
 				A404A9A2164237FA007CA21A /* show_card_button.png in Resources */,
-				A404A9B9164273E0007CA21A /* chip_100@2x.png in Resources */,
-				A404A9BA164273E0007CA21A /* chip_10@2x.png in Resources */,
-				A404A9BB164273E0007CA21A /* chip_250@2x.png in Resources */,
-				A404A9BC164273E0007CA21A /* chip_25@2x.png in Resources */,
-				A404A9BD164273E0007CA21A /* chip_500@2x.png in Resources */,
-				A404A9BE164273E0007CA21A /* chip_50@2x.png in Resources */,
-				A404A9BF164273E0007CA21A /* chip_5@2x.png in Resources */,
+				A404A9AD16426585007CA21A /* ChipsSelectView.xib in Resources */,
+				A404A9D816428149007CA21A /* chip_100@2x.png in Resources */,
+				A404A9D916428149007CA21A /* chip_10@2x.png in Resources */,
+				A404A9DA16428149007CA21A /* chip_250@2x.png in Resources */,
+				A404A9DB16428149007CA21A /* chip_25@2x.png in Resources */,
+				A404A9DC16428149007CA21A /* chip_500@2x.png in Resources */,
+				A404A9DD16428149007CA21A /* chip_50@2x.png in Resources */,
+				A404A9DE16428149007CA21A /* chip_5@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -8639,7 +8643,7 @@
 				C2C54CFE1640F85C005561DA /* NSMutableArray+Queue.m in Sources */,
 				C2C54D011640F878005561DA /* NSMutableArray+Stack.m in Sources */,
 				A404A9AB16426545007CA21A /* ChipsSelectView.m in Sources */,
-				A404A9B01642722A007CA21A /* ChipView.m in Sources */,
+				C29B5F541642749900EF4AB4 /* DealerView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
