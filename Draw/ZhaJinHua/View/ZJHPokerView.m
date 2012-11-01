@@ -36,6 +36,7 @@
 - (void)updateWithPokers:(NSArray *)pokers
                     size:(CGSize)size
                      gap:(CGFloat)gap
+                delegate:(id<PokerViewProtocol>)delegate
 {
     if ([pokers count] < 3) {
         return;
@@ -51,19 +52,23 @@
     CGRect frame = CGRectMake(pokerViewOffset, 0, size.width, size.height);
     self.poker1View = [PokerView createPokerViewWithPoker:poker1
                                                     frame:frame
-                                                 isFaceUp:NO];
+                                                 isFaceUp:NO
+                                                 delegate:delegate];
     
     pokerViewOffset = self.poker1View.frame.origin.x + self.poker1View.frame.size.width + gap;
     frame = CGRectMake(pokerViewOffset, 0, size.width, size.height);
     self.poker2View = [PokerView createPokerViewWithPoker:poker2
                                                     frame:frame
-                                                 isFaceUp:NO];
+                                                 isFaceUp:NO
+                                                 delegate:delegate];
+
     
     pokerViewOffset = self.poker2View.frame.origin.x + self.poker2View.frame.size.width + gap;
     frame = CGRectMake(pokerViewOffset, 0, size.width, size.height);
     self.poker3View = [PokerView createPokerViewWithPoker:poker3
                                                     frame:frame
-                                                    isFaceUp:NO];
+                                                 isFaceUp:NO
+                                                 delegate:delegate];
     
 //    // save original center
 //    _poker1OriginCenter = self.poker1View.center;

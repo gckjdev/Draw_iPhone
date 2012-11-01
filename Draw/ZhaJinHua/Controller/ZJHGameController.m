@@ -21,6 +21,8 @@
 #import "BetTable.h"
 #import "ConfigManager.h"
 //#import "Poker.h"
+#import "CMPopTipView.h"
+#import "PokerView.h"
 
 #define AVATAR_TAG_OFFSET   8000
 #define POKERS_TAG_OFFSET   2000
@@ -201,7 +203,7 @@
 
     ZJHPokerView* pokersView = [self getSelfPokersView];
 
-    [pokersView updateWithPokers:[NSArray arrayWithObjects:poker1, poker2, poker3, nil] size:CGSizeMake(SMALL_POKER_VIEW_WIDTH, SMALL_POKER_VIEW_HEIGHT) gap:SMALL_POKER_GAP];
+    [pokersView updateWithPokers:[NSArray arrayWithObjects:poker1, poker2, poker3, nil] size:CGSizeMake(BIG_POKER_VIEW_WIDTH, BIG_POKER_VIEW_HEIGHT) gap:BIG_POKER_GAP delegate:self];
     
 }
 
@@ -448,6 +450,33 @@ compareCardWith:(UserPosition)otherPlayer
 - (void)reciprocalEnd:(ZJHAvatarView*)view
 {
     [self foldCard:nil];
+}
+
+
+
+
+
+
+
++ (id)createShowCardButton
+{
+    NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"PokerView" owner:self options:nil];
+    // Grab a pointer to the first object (presumably the custom cell, as that's all the XIB should contain).
+    if (topLevelObjects == nil || [topLevelObjects count] <= 1){
+        return nil;
+    }
+    
+    return [topLevelObjects objectAtIndex:1];
+}
+
+- (void)didClickPokerView:(PokerView *)pokerView
+{
+    pokerView.showCardButtonIsPopup ? [pokerView dismissShowCardButton] : [pokerView popupShowCardButtonInView:self.view aboveView:nil];
+}
+
+- (void)didClickShowCardButton:(PokerView *)pokerView
+{
+    PPDebug(@"didClickShowCardButton: card rank: %d, suit = %d", pokerView.poker.rank, pokerView.poker.suit);
 }
 
 

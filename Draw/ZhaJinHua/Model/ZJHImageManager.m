@@ -115,6 +115,10 @@ static ZJHImageManager* shareInstance;
     return [UIImage imageNamed:@"poker_back_bg.png"];
 }
 
+- (UIImage*)showCardButtonBgImage
+{
+    return [UIImage imageNamed:@"show_card_button.png"];
+}
 
 
 #pragma mark - pravite methods

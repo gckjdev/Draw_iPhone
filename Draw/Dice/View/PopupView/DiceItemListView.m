@@ -75,7 +75,7 @@
     
     [_popTipView presentPointingAtView:view
                                 inView:inView 
-                          aboveSubView:siblingSubview
+                             aboveView:siblingSubview
                               animated:animated];
     
     if (duration != 0 ) {

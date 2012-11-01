@@ -33,7 +33,8 @@ typedef enum {
 
 - (void)updateWithPokers:(NSArray *)pokers
                     size:(CGSize)size
-                     gap:(CGFloat)gap;
+                     gap:(CGFloat)gap
+                delegate:(id<PokerViewProtocol>)delegate;
 
 - (void)clear;
 
