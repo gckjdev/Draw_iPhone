@@ -181,7 +181,11 @@
 
 #pragma mark - player action
 - (IBAction)clickBetButton:(id)sender {
-    [self.betTable someBetFrom:UserPositionCenter forCount:10];
+    ZJHUserPlayInfo *userPlayInfo = [_gameService userPlayInfo:_userManager.userId];
+    int bet = [userPlayInfo betCount] * _gameService.gameState.singleBet;
+    [self.betTable someBetFrom:UserPositionCenter forCount:bet];
+    
+    [_gameService bet];
 
 }
 
@@ -192,7 +196,11 @@
 
 - (IBAction)clickAutoBetButton:(id)sender
 {
+    ZJHUserPlayInfo *userPlayInfo = [_gameService userPlayInfo:_userManager.userId];
+    int bet = [userPlayInfo betCount] * _gameService.gameState.singleBet;
+    [self.betTable someBetFrom:UserPositionCenter forCount:bet];
     
+    [_gameService autoBet];
 }
 
 - (IBAction)clickCompareCardButton:(id)sender
@@ -210,14 +218,15 @@
 - (IBAction)clickCheckCardButton:(id)sender
 {
     ZJHPokerView* pokersView = [self getSelfPokersView];
-    
-    [pokersView faceUpCards:NO];
+    [pokersView faceUpCards:YES];
+    [_gameService checkCard];
 }
 
 - (IBAction)clickFoldCardButton:(id)sender
 {
     ZJHPokerView* pokers = [self getSelfPokersView];
     [pokers foldCards:YES];
+    [_gameService foldCard];
 }
 
 - (IBAction)clickQuitButton:(id)sender
@@ -367,9 +376,21 @@ compareCardWith:(UserPosition)otherPlayer
         ZJHPokerView* pokerView = (ZJHPokerView*)[self.view viewWithTag:POKERS_TAG_OFFSET+i];
         
         [pokerView clear];
-//        if (avatar.userInfo) {
-//            [pokerView updateWithPokers:[[_gameService userPlayInfo:avatar.userInfo.userId] pokers]];
-//        }
+        if (avatar.userInfo) {
+            CGSize pokerSize;
+            CGFloat gap;
+            if ([_userManager isMe:avatar.userInfo.userId]) {
+                pokerSize = CGSizeMake(BIG_POKER_VIEW_WIDTH, BIG_POKER_VIEW_HEIGHT);
+                gap = BIG_POKER_GAP;
+            }else {
+                pokerSize = CGSizeMake(SMALL_POKER_VIEW_WIDTH, SMALL_POKER_VIEW_HEIGHT);
+                gap = SMALL_POKER_GAP;
+            }
+            [pokerView updateWithPokers:[[_gameService userPlayInfo:avatar.userInfo.userId] pokers]
+                                   size:pokerSize
+                                    gap:gap
+                               delegate:self];
+        }
     }
 }
 
@@ -449,7 +470,7 @@ compareCardWith:(UserPosition)otherPlayer
 
 - (void)reciprocalEnd:(ZJHAvatarView*)view
 {
-    [self foldCard:nil];
+    [self clickFoldCardButton:nil];
 }
 
 
@@ -477,6 +498,7 @@ compareCardWith:(UserPosition)otherPlayer
 - (void)didClickShowCardButton:(PokerView *)pokerView
 {
     PPDebug(@"didClickShowCardButton: card rank: %d, suit = %d", pokerView.poker.rank, pokerView.poker.suit);
+    [_gameService showCard:pokerView.poker.pokerId];
 }
 
 
