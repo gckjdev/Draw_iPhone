@@ -16,7 +16,9 @@
 }
 
 - (void)someBetFrom:(UserPosition)position
-           forCount:(int)counter;
+       forSingleBet:(int)singleBet
+              count:(int)count;
+
 - (void)clearAllCounter:(UserPosition)position;
 
 

@@ -25,6 +25,11 @@
 
 - (UIImage*)showCardButtonBgImage;
 
+- (UIImage*)chipsImageForChipsValue:(int)chipsValue;
+
+
+
+
 - (UIImage*)counterImageForCounter:(int)counter;
 
 @end

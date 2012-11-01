@@ -182,12 +182,11 @@
 
 #pragma mark - player action
 - (IBAction)clickBetButton:(id)sender {
-    ZJHUserPlayInfo *userPlayInfo = [_gameService userPlayInfo:_userManager.userId];
-    int bet = [userPlayInfo betCount] * _gameService.gameState.singleBet;
-    [self.betTable someBetFrom:UserPositionCenter forCount:bet];
+    [self.betTable someBetFrom:UserPositionCenter
+                  forSingleBet:_gameService.gameState.singleBet
+                         count:[[_gameService userPlayInfo:_userManager.userId] betCount]];
     
     [_gameService bet];
-
 }
 
 - (IBAction)clickRaiseBetButton:(id)sender
@@ -197,9 +196,9 @@
 
 - (IBAction)clickAutoBetButton:(id)sender
 {
-    ZJHUserPlayInfo *userPlayInfo = [_gameService userPlayInfo:_userManager.userId];
-    int bet = [userPlayInfo betCount] * _gameService.gameState.singleBet;
-    [self.betTable someBetFrom:UserPositionCenter forCount:bet];
+    [self.betTable someBetFrom:UserPositionCenter
+                  forSingleBet:_gameService.gameState.singleBet
+                         count:[[_gameService userPlayInfo:_userManager.userId] betCount]];
     
     [_gameService autoBet];
 }
@@ -280,12 +279,10 @@
 }
 
 - (void)someoneBet:(NSString*)userId
-{
-    UserPosition position = [self getPositionByUserId:userId];
-    ZJHUserPlayInfo *userPlayInfo = [_gameService userPlayInfo:userId];
-    int bet = [userPlayInfo betCount] * _gameService.gameState.singleBet;
-    
-    [self.betTable someBetFrom:position forCount:bet];
+{    
+    [self.betTable someBetFrom:[self getPositionByUserId:userId]
+                  forSingleBet:_gameService.gameState.singleBet
+                         count:[[_gameService userPlayInfo:userId] betCount]];
 
 }
 
@@ -307,7 +304,9 @@ compareCardWith:(NSString*)targetUserId
 
 - (void)someoneRaiseBet:(NSString*)userId
 {
-    [self.betTable someBetFrom:[self getPositionByUserId:userId] forCount:0];
+    [self.betTable someBetFrom:[self getPositionByUserId:userId]
+                  forSingleBet:_gameService.gameState.singleBet
+                         count:[[_gameService userPlayInfo:userId] betCount]];
 }
 
 - (void)someoneAutoBet:(NSString*)userId

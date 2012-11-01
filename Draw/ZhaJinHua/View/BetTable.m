@@ -81,10 +81,19 @@
 }
 
 - (void)someBetFrom:(UserPosition)position
-           forCount:(int)counter
+       forSingleBet:(int)singleBet
+              count:(int)count
+{
+    while (count--) {
+        [self someBetFrom:position singleBet:singleBet];
+    };
+}
+
+- (void)someBetFrom:(UserPosition)position
+          singleBet:(int)singleBet
 {
     CALayer* layer = [CALayer layer];
-    UIImage* counterImage = [[ZJHImageManager defaultManager] counterImageForCounter:counter];
+    UIImage* counterImage = [[ZJHImageManager defaultManager] chipsImageForChipsValue:singleBet];
     [layer setContents:(id)[counterImage CGImage]];
 //    UIImageView* counterView = [[[UIImageView alloc] initWithImage:counterImage] autorelease];
     layer.bounds = CGRectMake(0, 0, counterImage.size.width,counterImage.size.height);
