@@ -364,6 +364,7 @@ compareCardWith:(NSString*)targetUserId
     }
     
     [[self getAvatarViewByPosition:UserPositionCenter] updateByPBGameUser:[_userManager toPBGameUser]];
+    [[self getAvatarViewByPosition:UserPositionCenter] setDelegate:self];
     
     // set user on seat
     NSArray* userList = _gameService.session.userList;
@@ -476,9 +477,7 @@ compareCardWith:(NSString*)targetUserId
 
 - (void)reciprocalEnd:(ZJHAvatarView*)view
 {
-    if ([_userManager isMe:view.userInfo.userId]) {
-        [self clickFoldCardButton:nil];
-    }
+    [self clickFoldCardButton:nil];
 }
 
 
