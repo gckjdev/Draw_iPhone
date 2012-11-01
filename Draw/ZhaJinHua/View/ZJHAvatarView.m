@@ -148,7 +148,7 @@
 - (void)resetAvatar
 {
     [self.backgroundImageView setImage:nil];
-    [self.roundAvatar setAvatarUrl:nil gender:NO];
+    [self.roundAvatar setImage:nil];
     [self.nickNameLabel setText:nil];
     self.userInfo = nil;
     self.delegate = nil;

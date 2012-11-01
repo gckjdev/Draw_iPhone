@@ -8,12 +8,16 @@
 
 #import <UIKit/UIKit.h>
 #import "ZJHGameController.h"
+#import "NSMutableArray+Queue.h"
 
-@interface BetTable : UIView
+@interface BetTable : UIView {
+    NSMutableArray* _layerQueue;
+    NSMutableArray* _visibleLayerQueue;
+}
 
 - (void)someBetFrom:(UserPosition)position
            forCount:(int)counter;
-- (void)clearAllCounter;
+- (void)clearAllCounter:(UserPosition)position;
 
 
 @end

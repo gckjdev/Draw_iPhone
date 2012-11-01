@@ -11,14 +11,44 @@
 #import "ZJHImageManager.h"
 #import "AnimationManager.h"
 
+#define MAX_LAYER   10
 
 @implementation BetTable
+
+- (void)dealloc
+{
+    [_layerQueue release];
+    [_visibleLayerQueue release];
+    [super dealloc];
+}
+
+- (id)init
+{
+    self = [super init];
+    if (self) {
+        _layerQueue = [[NSMutableArray alloc] init];
+        _visibleLayerQueue = [[NSMutableArray alloc] init];
+    }
+    return self;
+}
 
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
     if (self) {
+        _layerQueue = [[NSMutableArray alloc] init];
+        _visibleLayerQueue = [[NSMutableArray alloc] init];
         // Initialization code
+    }
+    return self;
+}
+
+- (id)initWithCoder:(NSCoder *)aDecoder
+{
+    self = [super initWithCoder:aDecoder];
+    if (self) {
+        _layerQueue = [[NSMutableArray alloc] init];
+        _visibleLayerQueue = [[NSMutableArray alloc] init];
     }
     return self;
 }
@@ -58,31 +88,43 @@
     [layer setContents:(id)[counterImage CGImage]];
 //    UIImageView* counterView = [[[UIImageView alloc] initWithImage:counterImage] autorelease];
     layer.bounds = CGRectMake(0, 0, counterImage.size.width,counterImage.size.height);
+    layer.shouldRasterize = YES;
     
     [self.layer addSublayer:layer];
+    [_visibleLayerQueue enqueue:layer];
+    
     CAAnimation* anim = [AnimationManager translationAnimationFrom:[self getPointByPosition:position]
                                                                 to:[self getRandomCenterPoint]
-                                                          duration:1
+                                                          duration:0.5
                                                           delegate:self
                                                   removeCompeleted:NO];
     anim.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut];
     [layer addAnimation:anim forKey:nil];
 }
 
-- (void)clearAllCounter
+- (void)clearAllCounter:(UserPosition)position
 {
     
-    for (CALayer* layer in [self.layer sublayers]) {
-        CAAnimation* anim = [AnimationManager translationAnimationTo:[self getPointByPosition:UserPositionCenter] duration:1];
+
+    //清除上一次残留的筹码
+    PPDebug(@"<test>clear counter, layerQueue count = %d",_layerQueue.count);
+    while ([_layerQueue peek]) {
+        CALayer* layer = [_layerQueue dequeue];
+        [layer removeFromSuperlayer];
+    }
+    
+    //播放当前筹码动画，把筹码压进清除队列
+    while ([_visibleLayerQueue peek] != nil) {
+        CALayer* layer = [_visibleLayerQueue dequeue];
+        CAAnimation* anim = [AnimationManager translationAnimationTo:[self getPointByPosition:position] duration:1];
         CAAnimation* anim2 = [AnimationManager missingAnimationWithDuration:1];
         anim.removedOnCompletion = NO;
         anim2.removedOnCompletion = NO;
-        anim.delegate = self;
         [layer addAnimation:anim2 forKey:nil];
         [layer addAnimation:anim forKey:nil];
+        [_layerQueue enqueue:layer];
+        PPDebug(@"<test>enqueue, count = %d",_layerQueue.count);
     }
-    
-
 }
 
 
