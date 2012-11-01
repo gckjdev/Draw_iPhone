@@ -17,7 +17,7 @@
 
 - (void)someBetFrom:(UserPosition)position
            forCount:(int)counter;
-- (void)clearAllCounter;
+- (void)clearAllCounter:(UserPosition)position;
 
 
 @end

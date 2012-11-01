@@ -27,6 +27,7 @@
     self = [super init];
     if (self) {
         _layerQueue = [[NSMutableArray alloc] init];
+        _visibleLayerQueue = [[NSMutableArray alloc] init];
     }
     return self;
 }
@@ -36,6 +37,7 @@
     self = [super initWithFrame:frame];
     if (self) {
         _layerQueue = [[NSMutableArray alloc] init];
+        _visibleLayerQueue = [[NSMutableArray alloc] init];
         // Initialization code
     }
     return self;
@@ -86,21 +88,24 @@
     [layer setContents:(id)[counterImage CGImage]];
 //    UIImageView* counterView = [[[UIImageView alloc] initWithImage:counterImage] autorelease];
     layer.bounds = CGRectMake(0, 0, counterImage.size.width,counterImage.size.height);
+    layer.shouldRasterize = YES;
     
     [self.layer addSublayer:layer];
     [_visibleLayerQueue enqueue:layer];
     
     CAAnimation* anim = [AnimationManager translationAnimationFrom:[self getPointByPosition:position]
                                                                 to:[self getRandomCenterPoint]
-                                                          duration:1
+                                                          duration:0.5
                                                           delegate:self
                                                   removeCompeleted:NO];
     anim.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut];
     [layer addAnimation:anim forKey:nil];
 }
 
-- (void)clearAllCounter
+- (void)clearAllCounter:(UserPosition)position
 {
+    
+
     //清除上一次残留的筹码
     PPDebug(@"<test>clear counter, layerQueue count = %d",_layerQueue.count);
     while ([_layerQueue peek]) {
@@ -111,7 +116,7 @@
     //播放当前筹码动画，把筹码压进清除队列
     while ([_visibleLayerQueue peek] != nil) {
         CALayer* layer = [_visibleLayerQueue dequeue];
-        CAAnimation* anim = [AnimationManager translationAnimationTo:[self getPointByPosition:UserPositionCenter] duration:1];
+        CAAnimation* anim = [AnimationManager translationAnimationTo:[self getPointByPosition:position] duration:1];
         CAAnimation* anim2 = [AnimationManager missingAnimationWithDuration:1];
         anim.removedOnCompletion = NO;
         anim2.removedOnCompletion = NO;

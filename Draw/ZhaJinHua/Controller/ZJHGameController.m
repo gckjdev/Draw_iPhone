@@ -185,7 +185,7 @@
 
 - (IBAction)raiseBet:(id)sender
 {
-    [self.betTable clearAllCounter];
+    [self.betTable clearAllCounter:UserPositionCenter];
 }
 
 - (IBAction)autoBet:(id)sender
@@ -322,6 +322,11 @@ compareCardWith:(UserPosition)otherPlayer
     [view fold:YES];
 }
 
+- (void)someoneWon:(UserPosition)position
+{
+    [self.betTable clearAllCounter:position];
+}
+
 #pragma mark - private method
 
 - (PBGameUser*)getSelfUser
@@ -336,6 +341,8 @@ compareCardWith:(UserPosition)otherPlayer
         ZJHAvatarView* avatar = (ZJHAvatarView*)[self.view viewWithTag:AVATAR_TAG_OFFSET+i];
         [avatar resetAvatar];
     }
+    
+    [[self getAvatarViewByPosition:UserPositionCenter] updateByPBGameUser:[_userManager toPBGameUser]];
     
     // set user on seat
     NSArray* userList = _gameService.session.userList;
