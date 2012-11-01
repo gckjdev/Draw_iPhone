@@ -9,12 +9,12 @@
 #import <UIKit/UIKit.h>
 #import "Poker.h"
 
-@interface PokerView : UIButton
+@interface PokerView : UIView
 
 @property (readonly, retain, nonatomic) Poker *poker;
 @property (readonly, assign, nonatomic) BOOL isFaceUp;
 
-@property (retain, nonatomic) IBOutlet UIView *frontView;
+@property (retain, nonatomic) IBOutlet UIButton *frontView;
 @property (retain, nonatomic) IBOutlet UIImageView *rankImageView;
 @property (retain, nonatomic) IBOutlet UIImageView *suitImageView;
 @property (retain, nonatomic) IBOutlet UIImageView *frontBgImageView;
@@ -26,11 +26,16 @@
                          frame:(CGRect)frame
                       isFaceUp:(BOOL)isFaceUp;
 
+- (void)enableUserInterface;
+
 - (void)faceDown:(BOOL)animation;
 - (void)faceUp:(BOOL)animation;
 
-- (void)rotateToAngle:(CGFloat)angle animation:(BOOL)animation;
-- (void)moveToCenter:(CGPoint)center animation:(BOOL)animation;
+- (void)rotateToAngle:(CGFloat)angle
+            animation:(BOOL)animation;
+- (void)moveToCenter:(CGPoint)center
+           animation:(BOOL)animation;
+
 - (void)backToOriginPosition:(BOOL)animation;
 
 @end

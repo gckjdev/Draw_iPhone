@@ -34,38 +34,12 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Draw/ZhaJinHua/Controller/ZJHGameController.m"
-         timestampString = "373359462.442391"
+         timestampString = "373428138.920239"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "348"
-         endingLineNumber = "348"
-         landmarkName = "-updateAllPokers"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "Yes"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "Draw/ZhaJinHua/Controller/ZJHGameController.m"
-         timestampString = "373359462.442391"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "248"
-         endingLineNumber = "248"
-         landmarkName = "-gameStart"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "Yes"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "Draw/ZhaJinHua/View/PokerView.m"
-         timestampString = "373358153.81388"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "154"
-         endingLineNumber = "154"
-         landmarkName = "-clickSelf:"
+         startingLineNumber = "253"
+         endingLineNumber = "253"
+         landmarkName = "-roomChanged"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>
