@@ -156,7 +156,8 @@
     
     [self registerZJHGameNotificationWithName:NOTIFICATION_SHOW_CARD_REQUEST
                                    usingBlock:^(NSNotification *notification) {
-                                       [self someoneShowCard:[self userIdOfNotification:notification]];
+
+                                       [self someoneShowCard:[self userIdOfNotification:notification] cardIds:[[[self messageFromNotification:notification] showCardRequest] cardIdsList]];
                                    }];
     
     [self registerZJHGameNotificationWithName:NOTIFICATION_SHOW_CARD_RESPONSE
@@ -288,8 +289,13 @@
 
 }
 
-- (void)someoneShowCard:(NSString*)userId
+
+- (void)someoneShowCard:(NSString*)userId cardIds:(NSArray *)cardIds
 {
+    for (NSNumber *cardId in cardIds) {
+        [[self getPokersViewByPosition:[self getPositionByUserId:userId]] faceUpCard:cardId.intValue
+                                                                           animation:YES];
+    }
     
 }
 
