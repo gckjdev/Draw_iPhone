@@ -338,6 +338,7 @@
 		C2C54D011640F878005561DA /* NSMutableArray+Stack.m in Sources */ = {isa = PBXBuildFile; fileRef = C2C54D001640F878005561DA /* NSMutableArray+Stack.m */; };
 		C2D9A504159D4C4100794B24 /* CommonSnsInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = C2D9A503159D4C4100794B24 /* CommonSnsInfoView.m */; };
 		C2DD4F0D1610412500556CC7 /* DiceRobotDecisionView.m in Sources */ = {isa = PBXBuildFile; fileRef = C2DD4F0C1610412500556CC7 /* DiceRobotDecisionView.m */; };
+		C2DFDA9A164271FB0075F998 /* DealerView.m in Sources */ = {isa = PBXBuildFile; fileRef = C2DFDA99164271FB0075F998 /* DealerView.m */; };
 		C2E5241915218E21008913CC /* AnimationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C2E5241815218E21008913CC /* AnimationManager.m */; };
 		C2E662611521B91900487601 /* ReportController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2E6625F1521B91900487601 /* ReportController.m */; };
 		C2E662621521B91900487601 /* ReportController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2E662601521B91900487601 /* ReportController.xib */; };
@@ -1714,6 +1715,8 @@
 		C2D9A503159D4C4100794B24 /* CommonSnsInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonSnsInfoView.m; sourceTree = "<group>"; };
 		C2DD4F0B1610412500556CC7 /* DiceRobotDecisionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiceRobotDecisionView.h; sourceTree = "<group>"; };
 		C2DD4F0C1610412500556CC7 /* DiceRobotDecisionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiceRobotDecisionView.m; sourceTree = "<group>"; };
+		C2DFDA98164271FB0075F998 /* DealerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DealerView.h; sourceTree = "<group>"; };
+		C2DFDA99164271FB0075F998 /* DealerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DealerView.m; sourceTree = "<group>"; };
 		C2E5241715218E21008913CC /* AnimationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnimationManager.h; sourceTree = "<group>"; };
 		C2E5241815218E21008913CC /* AnimationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnimationManager.m; sourceTree = "<group>"; };
 		C2E6625E1521B91900487601 /* ReportController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReportController.h; sourceTree = "<group>"; };
@@ -3788,6 +3791,8 @@
 				A44B627B163BC37000A8045B /* DealingShoe.m */,
 				C2C54CE91640C45B005561DA /* BetTable.h */,
 				C2C54CEA1640C45B005561DA /* BetTable.m */,
+				C2DFDA98164271FB0075F998 /* DealerView.h */,
+				C2DFDA99164271FB0075F998 /* DealerView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -8628,6 +8633,7 @@
 				C2C54CEB1640C45B005561DA /* BetTable.m in Sources */,
 				C2C54CFE1640F85C005561DA /* NSMutableArray+Queue.m in Sources */,
 				C2C54D011640F878005561DA /* NSMutableArray+Stack.m in Sources */,
+				C2DFDA9A164271FB0075F998 /* DealerView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

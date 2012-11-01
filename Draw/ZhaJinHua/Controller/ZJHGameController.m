@@ -378,7 +378,7 @@ compareCardWith:(NSString*)targetUserId
         //        PPDebug(@"<test>get user--%@, sitting at %d",user.nickName, user.seatId);
 
         ZJHAvatarView* avatar = [self getAvatarViewByUserId:user.userId];
-        [avatar updateByPBGameUser:[_userManager toPBGameUser]];
+        [avatar updateByPBGameUser:user];
     }
 }
 
