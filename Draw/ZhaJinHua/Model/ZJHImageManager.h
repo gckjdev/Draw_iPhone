@@ -20,6 +20,8 @@
 - (UIImage*)pokerTickImage;
 - (UIImage*)pokerFrontBgImage;
 - (UIImage*)pokerBackImage;
+- (UIImage*)pokerFoldBackImage;
+- (UIImage*)pokerLoseBackImage;
 
 - (UIImage*)showCardButtonBgImage;
 

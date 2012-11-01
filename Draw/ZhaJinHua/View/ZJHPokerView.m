@@ -7,6 +7,7 @@
 //
 
 #import "ZJHPokerView.h"
+#import "ZJHImageManager.h"
 
 //#define POKER_X_AXIS_OFFSET 30
 #define POKER_VIEW_TAG_OFFSET 200
@@ -142,10 +143,15 @@
 
 - (void)foldCards:(BOOL)animation
 {
+    self.poker1View.backImageView.image = [[ZJHImageManager defaultManager] pokerFoldBackImage];
     [self.poker1View faceDown:animation];
     [self.poker1View backToOriginPosition:animation];
+    
+    self.poker2View.backImageView.image = [[ZJHImageManager defaultManager] pokerFoldBackImage];
     [self.poker2View faceDown:animation];
     [self.poker2View backToOriginPosition:animation];
+    
+    self.poker3View.backImageView.image = [[ZJHImageManager defaultManager] pokerFoldBackImage];
     [self.poker3View faceDown:animation];
     [self.poker3View backToOriginPosition:animation];
 }
