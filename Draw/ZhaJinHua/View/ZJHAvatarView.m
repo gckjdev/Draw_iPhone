@@ -75,7 +75,6 @@
         [_nickNameLabel setAdjustsFontSizeToFitWidth:YES];
         [self addSubview:_nickNameLabel];
         
-        
         [self addTapGuesture];
     }
     return self;

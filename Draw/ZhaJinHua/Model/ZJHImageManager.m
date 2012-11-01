@@ -105,14 +105,14 @@ static ZJHImageManager* shareInstance;
     return [UIImage imageNamed:@""];
 }
 
-- (UIImage*)pokerFontBgImage
+- (UIImage*)pokerFrontBgImage
 {
-    return [UIImage imageNamed:@"poker_back_bg.png"];
+    return [UIImage imageNamed:@"poker_front_bg.png"];
 }
 
 - (UIImage*)pokerBackImage
 {
-    return [UIImage imageNamed:@"poker_font_bg.png"];
+    return [UIImage imageNamed:@"poker_back_bg.png"];
 }
 
 

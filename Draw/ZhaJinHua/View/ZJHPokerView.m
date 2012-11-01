@@ -11,8 +11,8 @@
 #define POKER_X_AXIS_OFFSET 20
 
 #define POKER_VIEW_TAG_OFFSET 200
-#define POKER_VIEW_WIDTH 50
-#define POKER_VIEW_HEIGHT 50
+#define POKER_VIEW_WIDTH 32
+#define POKER_VIEW_HEIGHT 42
 
 @interface ZJHPokerView ()
 
@@ -37,6 +37,7 @@
 {
     self = [super initWithCoder:aDecoder];
     if (self) {
+//        self.backgroundColor = [UIColor clearColor];
         self.pokerViewDic = [NSMutableDictionary dictionary];
     }
     
@@ -50,6 +51,7 @@
     if ([pokers count] < 3) {
         return;
     }
+    [self clearPokerViews];
         
     Poker *poker1 = [pokers objectAtIndex:0];
     Poker *poker2 = [pokers objectAtIndex:1];
@@ -87,10 +89,7 @@
 
 - (void)clearPokerViews
 {
-    [self.pokerViewDic removeAllObjects];
-    for (UIView *view in [self subviews]) {
-        [view removeFromSuperview];
-    }
+
 }
 
 - (void)makeSectorShape:(ZJHPokerSectorType)sectorType animation:(BOOL)animation

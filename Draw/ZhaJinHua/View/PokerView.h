@@ -14,10 +14,10 @@
 @property (readonly, retain, nonatomic) Poker *poker;
 @property (readonly, assign, nonatomic) BOOL isFaceUp;
 
-@property (retain, nonatomic) IBOutlet UIView *fontView;
+@property (retain, nonatomic) IBOutlet UIView *frontView;
 @property (retain, nonatomic) IBOutlet UIImageView *rankImageView;
 @property (retain, nonatomic) IBOutlet UIImageView *suitImageView;
-@property (retain, nonatomic) IBOutlet UIImageView *fontBgImageView;
+@property (retain, nonatomic) IBOutlet UIImageView *frontBgImageView;
 @property (retain, nonatomic) IBOutlet UIImageView *tickImageView;
 @property (retain, nonatomic) IBOutlet UIImageView *bodyImageView;
 @property (retain, nonatomic) IBOutlet UIImageView *backImageView;
