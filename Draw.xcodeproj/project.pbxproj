@@ -65,6 +65,9 @@
 		A3FAE0E415536FE3008B5827 /* PassWordDialog~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3FAE0E315536FE3008B5827 /* PassWordDialog~ipad.xib */; };
 		A3FAE0E61553701B008B5827 /* RegisterUserController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3FAE0E51553701B008B5827 /* RegisterUserController~ipad.xib */; };
 		A3FAE0E815537040008B5827 /* CompleteUserInfoController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3FAE0E715537040008B5827 /* CompleteUserInfoController~ipad.xib */; };
+		A404A99F164237EF007CA21A /* poker_fold_back_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A404A99D164237EF007CA21A /* poker_fold_back_bg@2x.png */; };
+		A404A9A0164237EF007CA21A /* poker_lose_back_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = A404A99E164237EF007CA21A /* poker_lose_back_bg.png */; };
+		A404A9A2164237FA007CA21A /* show_card_button.png in Resources */ = {isa = PBXBuildFile; fileRef = A404A9A1164237FA007CA21A /* show_card_button.png */; };
 		A40FEEDE15E22E1300A88C57 /* ChatView.m in Sources */ = {isa = PBXBuildFile; fileRef = A40FEEDD15E22E1300A88C57 /* ChatView.m */; };
 		A41A665915C921DA00066E9B /* SlideImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = A41A665815C921DA00066E9B /* SlideImageView.m */; };
 		A42C520615E614D2001D8208 /* DiceChatMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = A42C520315E614D2001D8208 /* DiceChatMessage.m */; };
@@ -101,7 +104,6 @@
 		A44B62301637C45600A8045B /* PokerView.m in Sources */ = {isa = PBXBuildFile; fileRef = A44B622F1637C45600A8045B /* PokerView.m */; };
 		A44B6258163A2BB000A8045B /* PokerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A44B6257163A2BAF00A8045B /* PokerView.xib */; };
 		A44B625B163A344100A8045B /* ZJHPokerView.m in Sources */ = {isa = PBXBuildFile; fileRef = A44B625A163A344100A8045B /* ZJHPokerView.m */; };
-		A44B625D163A346500A8045B /* ZJHPokerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A44B625C163A346400A8045B /* ZJHPokerView.xib */; };
 		A44B627C163BC37300A8045B /* DealingShoe.m in Sources */ = {isa = PBXBuildFile; fileRef = A44B627B163BC37000A8045B /* DealingShoe.m */; };
 		A44B63EC163F72B500A8045B /* Chips_100@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A44B63A6163F72B500A8045B /* Chips_100@2x.png */; };
 		A44B63ED163F72B500A8045B /* Chips_10@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A44B63A7163F72B500A8045B /* Chips_10@2x.png */; };
@@ -332,6 +334,8 @@
 		C2BBCE1A15B00283006A13A6 /* DrawGameAnimationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C2BBCE1915B00283006A13A6 /* DrawGameAnimationManager.m */; };
 		C2C1BF4515A2A9B6001A2BFC /* UIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C2C1BF4415A2A9B6001A2BFC /* UIManager.m */; };
 		C2C54CEB1640C45B005561DA /* BetTable.m in Sources */ = {isa = PBXBuildFile; fileRef = C2C54CEA1640C45B005561DA /* BetTable.m */; };
+		C2C54CFE1640F85C005561DA /* NSMutableArray+Queue.m in Sources */ = {isa = PBXBuildFile; fileRef = C2C54CFD1640F85C005561DA /* NSMutableArray+Queue.m */; };
+		C2C54D011640F878005561DA /* NSMutableArray+Stack.m in Sources */ = {isa = PBXBuildFile; fileRef = C2C54D001640F878005561DA /* NSMutableArray+Stack.m */; };
 		C2D9A504159D4C4100794B24 /* CommonSnsInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = C2D9A503159D4C4100794B24 /* CommonSnsInfoView.m */; };
 		C2DD4F0D1610412500556CC7 /* DiceRobotDecisionView.m in Sources */ = {isa = PBXBuildFile; fileRef = C2DD4F0C1610412500556CC7 /* DiceRobotDecisionView.m */; };
 		C2E5241915218E21008913CC /* AnimationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C2E5241815218E21008913CC /* AnimationManager.m */; };
@@ -1291,6 +1295,9 @@
 		A3FAE0E315536FE3008B5827 /* PassWordDialog~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "PassWordDialog~ipad.xib"; sourceTree = "<group>"; };
 		A3FAE0E51553701B008B5827 /* RegisterUserController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "RegisterUserController~ipad.xib"; sourceTree = "<group>"; };
 		A3FAE0E715537040008B5827 /* CompleteUserInfoController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "CompleteUserInfoController~ipad.xib"; sourceTree = "<group>"; };
+		A404A99D164237EF007CA21A /* poker_fold_back_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "poker_fold_back_bg@2x.png"; sourceTree = "<group>"; };
+		A404A99E164237EF007CA21A /* poker_lose_back_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = poker_lose_back_bg.png; sourceTree = "<group>"; };
+		A404A9A1164237FA007CA21A /* show_card_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = show_card_button.png; sourceTree = "<group>"; };
 		A40FEEDC15E22E1300A88C57 /* ChatView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatView.h; sourceTree = "<group>"; };
 		A40FEEDD15E22E1300A88C57 /* ChatView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatView.m; sourceTree = "<group>"; };
 		A41A665715C921DA00066E9B /* SlideImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SlideImageView.h; sourceTree = "<group>"; };
@@ -1357,7 +1364,6 @@
 		A44B6257163A2BAF00A8045B /* PokerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PokerView.xib; sourceTree = "<group>"; };
 		A44B6259163A344100A8045B /* ZJHPokerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJHPokerView.h; sourceTree = "<group>"; };
 		A44B625A163A344100A8045B /* ZJHPokerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJHPokerView.m; sourceTree = "<group>"; };
-		A44B625C163A346400A8045B /* ZJHPokerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZJHPokerView.xib; sourceTree = "<group>"; };
 		A44B627A163BC36E00A8045B /* DealingShoe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DealingShoe.h; sourceTree = "<group>"; };
 		A44B627B163BC37000A8045B /* DealingShoe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DealingShoe.m; sourceTree = "<group>"; };
 		A44B627D163E7AD100A8045B /* ZJHGameNotification.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZJHGameNotification.h; sourceTree = "<group>"; };
@@ -1700,6 +1706,10 @@
 		C2C1BF4415A2A9B6001A2BFC /* UIManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UIManager.m; path = UI/UIManager.m; sourceTree = "<group>"; };
 		C2C54CE91640C45B005561DA /* BetTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BetTable.h; sourceTree = "<group>"; };
 		C2C54CEA1640C45B005561DA /* BetTable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BetTable.m; sourceTree = "<group>"; };
+		C2C54CFC1640F85B005561DA /* NSMutableArray+Queue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+Queue.h"; sourceTree = "<group>"; };
+		C2C54CFD1640F85C005561DA /* NSMutableArray+Queue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+Queue.m"; sourceTree = "<group>"; };
+		C2C54CFF1640F878005561DA /* NSMutableArray+Stack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+Stack.h"; sourceTree = "<group>"; };
+		C2C54D001640F878005561DA /* NSMutableArray+Stack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+Stack.m"; sourceTree = "<group>"; };
 		C2D9A502159D4C4100794B24 /* CommonSnsInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonSnsInfoView.h; sourceTree = "<group>"; };
 		C2D9A503159D4C4100794B24 /* CommonSnsInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonSnsInfoView.m; sourceTree = "<group>"; };
 		C2DD4F0B1610412500556CC7 /* DiceRobotDecisionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiceRobotDecisionView.h; sourceTree = "<group>"; };
@@ -3228,6 +3238,8 @@
 		A44B63AD163F72B500A8045B /* poker */ = {
 			isa = PBXGroup;
 			children = (
+				A404A99D164237EF007CA21A /* poker_fold_back_bg@2x.png */,
+				A404A99E164237EF007CA21A /* poker_lose_back_bg.png */,
 				A44B63AE163F72B500A8045B /* poker_back_bg@2x.png */,
 				A44B63AF163F72B500A8045B /* poker_body */,
 				A44B63B7163F72B500A8045B /* poker_front_bg@2x.png */,
@@ -3298,6 +3310,7 @@
 		A44B63D8163F72B500A8045B /* room */ = {
 			isa = PBXGroup;
 			children = (
+				A404A9A1164237FA007CA21A /* show_card_button.png */,
 				A44B642C163F732F00A8045B /* tree@2x.png */,
 				A44B63D9163F72B500A8045B /* avatar_default@2x.png */,
 				A44B63DA163F72B500A8045B /* chat_button@2x.png */,
@@ -3766,7 +3779,6 @@
 			children = (
 				A44B6259163A344100A8045B /* ZJHPokerView.h */,
 				A44B625A163A344100A8045B /* ZJHPokerView.m */,
-				A44B625C163A346400A8045B /* ZJHPokerView.xib */,
 				A44B622E1637C45600A8045B /* PokerView.h */,
 				A44B622F1637C45600A8045B /* PokerView.m */,
 				A44B6257163A2BAF00A8045B /* PokerView.xib */,
@@ -4621,6 +4633,10 @@
 			children = (
 				CA103D511509A56100F60C03 /* NSAutoExtendMutableArray.h */,
 				CA103D521509A56100F60C03 /* NSAutoExtendMutableArray.m */,
+				C2C54CFC1640F85B005561DA /* NSMutableArray+Queue.h */,
+				C2C54CFD1640F85C005561DA /* NSMutableArray+Queue.m */,
+				C2C54CFF1640F878005561DA /* NSMutableArray+Stack.h */,
+				C2C54D001640F878005561DA /* NSMutableArray+Stack.m */,
 			);
 			path = Array;
 			sourceTree = "<group>";
@@ -7970,7 +7986,6 @@
 				A4E7876A16366FF8003557AD /* ZhaJinHua.proto in Resources */,
 				A44B6227163787F500A8045B /* ZJHGameController.xib in Resources */,
 				A44B6258163A2BB000A8045B /* PokerView.xib in Resources */,
-				A44B625D163A346500A8045B /* ZJHPokerView.xib in Resources */,
 				A44B63EC163F72B500A8045B /* Chips_100@2x.png in Resources */,
 				A44B63ED163F72B500A8045B /* Chips_10@2x.png in Resources */,
 				A44B63EE163F72B500A8045B /* chips_250@2x.png in Resources */,
@@ -8035,6 +8050,9 @@
 				A44B642A163F72B500A8045B /* zjh_other_plyer_avatar@2x.png in Resources */,
 				A44B642B163F72B500A8045B /* zjh_user_bet_bg@2x.png in Resources */,
 				A44B642D163F732F00A8045B /* tree@2x.png in Resources */,
+				A404A99F164237EF007CA21A /* poker_fold_back_bg@2x.png in Resources */,
+				A404A9A0164237EF007CA21A /* poker_lose_back_bg.png in Resources */,
+				A404A9A2164237FA007CA21A /* show_card_button.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -8608,6 +8626,8 @@
 				A44B625B163A344100A8045B /* ZJHPokerView.m in Sources */,
 				A44B627C163BC37300A8045B /* DealingShoe.m in Sources */,
 				C2C54CEB1640C45B005561DA /* BetTable.m in Sources */,
+				C2C54CFE1640F85C005561DA /* NSMutableArray+Queue.m in Sources */,
+				C2C54D011640F878005561DA /* NSMutableArray+Stack.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

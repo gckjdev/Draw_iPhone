@@ -9,19 +9,20 @@
 #import "PokerView.h"
 #import "ZJHGameService.h"
 #import "ZJHImageManager.h"
+#import <QuartzCore/QuartzCore.h>
+#import "CMPopTipView.h"
 
 #define POKER_VIEW_ROTATE_ANCHOR_POINT CGPointMake(0, 0)
 
 @interface PokerView ()
 {
-    CGFloat _originAngle;
-    CGFloat _newAngle;
     CGPoint _originCenter;
-    CGPoint _newCenter;
+    CGFloat _angle;
 }
 
 @property (readwrite, retain, nonatomic) Poker *poker;
 @property (readwrite, assign, nonatomic) BOOL isFaceUp;
+@property (retain, nonatomic) CMPopTipView *popupView;
 
 @end
 
@@ -32,12 +33,13 @@
 - (void)dealloc {
     [_poker release];
     [_backImageView release];
-    [_fontView release];
+    [_frontView release];
     [_rankImageView release];
     [_suitImageView release];
-    [_bodyImageView release];
+    [_frontBgImageView release];
     [_tickImageView release];
     [_bodyImageView release];
+    [_popupView release];
     [super dealloc];
 }
 
@@ -47,31 +49,34 @@
                       isFaceUp:(BOOL)isFaceUp
 {
     PokerView *pokerView = [PokerView createPokerView];
+    pokerView.backgroundColor = [UIColor clearColor];
     pokerView.frame = frame;
-    [pokerView setOriginCenter:pokerView.center originalAngle:0];
-    
-    [pokerView addTarget:self action:@selector(clickSelf:) forControlEvents:UIControlEventTouchUpInside];
+    [pokerView setOriginInfo];
     
     pokerView.poker = poker;
     pokerView.isFaceUp = isFaceUp;
     
     pokerView.backImageView.image = [[ZJHImageManager defaultManager] pokerBackImage];
     
-    pokerView.fontBgImageView.image = [[ZJHImageManager defaultManager] pokerFontBgImage];
+    pokerView.frontBgImageView.image = [[ZJHImageManager defaultManager] pokerFrontBgImage];
     pokerView.rankImageView.image = [[ZJHImageManager defaultManager] pokerRankImage:poker];
     pokerView.suitImageView.image = [[ZJHImageManager defaultManager] pokerSuitImage:poker];
     pokerView.bodyImageView.image = [[ZJHImageManager defaultManager] pokerBodyImage:poker];
     
-    if (isFaceUp) {
-        [pokerView faceUp:NO];
-    }else {
-        [pokerView faceDown:NO];
-    }
+    pokerView.backImageView.hidden = isFaceUp;
+    pokerView.frontView.hidden = !isFaceUp;
     
     return pokerView;
 }
 
 #pragma mark - public methods
+
+- (void)enableUserInterface
+{
+    [self.frontView addTarget:self
+                       action:@selector(clickSelf:)
+             forControlEvents:UIControlEventTouchUpInside];
+}
 
 - (void)faceDown:(BOOL)animation
 {
@@ -79,7 +84,17 @@
         _isFaceUp = NO;
         
         self.backImageView.hidden = NO;
-        self.fontBgImageView.hidden = YES;
+        self.frontView.hidden = YES;
+        
+        if (!animation) {
+            return;
+        }
+        
+        [UIView beginAnimations:nil context:NULL];
+        [UIView setAnimationDuration:0.75];
+        [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromRight
+                               forView:self cache:YES];
+        [UIView commitAnimations];
     }
 }
 
@@ -89,44 +104,79 @@
         _isFaceUp = YES;
         
         self.backImageView.hidden = YES;
-        self.fontBgImageView.hidden = NO;
+        self.frontView.hidden = NO;
+        
+        if (!animation) {
+            return;
+        }
+        
+        [UIView beginAnimations:nil context:NULL];
+        [UIView setAnimationDuration:0.75];
+        [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromLeft
+                               forView:self cache:YES];
+        [UIView commitAnimations];
     }
 }
 
-- (void)rotateToAngle:(CGFloat)angle animation:(BOOL)animation
+- (void)setAcnhorPoint:(CGPoint)anchorPoint
 {
-    if (angle == _newAngle) {
+    CGPoint oldAnchorPoint = self.layer.anchorPoint;
+    CGPoint newAnchorPoint = anchorPoint;
+    CGPoint oldPosition = self.layer.position;
+    
+    self.layer.anchorPoint = newAnchorPoint;
+    CGFloat px = oldPosition.x + (newAnchorPoint.x - oldAnchorPoint.x) * self.frame.size.width;
+    CGFloat py = oldPosition.y + (newAnchorPoint.y - oldAnchorPoint.y) * self.frame.size.height;
+    self.layer.position = CGPointMake(px, py);
+}
+
+- (void)rotateToAngle:(CGFloat)angle
+            animation:(BOOL)animation
+{
+    // TODO: rotate self
+    if (_angle == angle) {
         return;
     }
     
-    CGFloat routeAngle = angle - _newAngle;
-    _newAngle = angle;
-
-    // TODO: rotate self
+    [self setAcnhorPoint:CGPointMake(0.5, 1)];
     
+    CFTimeInterval duration = animation ? 1 : 0;
+    CABasicAnimation * rotation = [CABasicAnimation       animationWithKeyPath:@"transform.rotation.z"];
+    rotation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut];
+    rotation.fromValue = [NSNumber numberWithFloat:_angle];
+    rotation.toValue = [NSNumber numberWithFloat:angle];
+    rotation.duration = duration ;
+    [self.layer addAnimation:rotation forKey:nil];
+
+    [self.layer setTransform:CATransform3DMakeRotation(angle, 0, 0, 1)];
+        
+    _angle = angle;
 }
 
 - (void)moveToCenter:(CGPoint)center animation:(BOOL)animation
 {
-    if (center.x == _newCenter.x && center.y == _newCenter.y) {
+    if (self.center.x == center.x && self.center.y == center.y) {
         return;
     }
     
-    _newCenter = center;
-    
-    // TODO: move to center;
-    
+    if (animation) {
+        [UIView beginAnimations:nil context:NULL];
+        [UIView setAnimationDuration:1];
+        self.center = center;
+        [UIView commitAnimations];
+    }else{
+        self.center = center;
+    }
 }
 
 - (void)backToOriginPosition:(BOOL)animation
 {
-    if (_newAngle != _originAngle) {
-        [self rotateToAngle:_originAngle animation:animation];
-    }
-    
-    if (_newCenter.x != _originCenter.x || _newCenter.y != _originCenter.y) {
-        [self moveToCenter:_originCenter animation:animation];
-    }
+    [self rotateToAngle:0
+              animation:animation];
+//    
+//    [self setAcnhorPoint:CGPointMake(0.5, 0.5)];
+//    
+//    [self moveToCenter:_originCenter animation:animation];
 }
 
 #pragma mark - pravite methods
@@ -142,10 +192,11 @@
     return [topLevelObjects objectAtIndex:0];
 }
 
-- (void)setOriginCenter:(CGPoint)center
-          originalAngle:(CGFloat)angle
+
+
+- (void)setOriginInfo
 {
-    _originAngle = angle;
+    _angle = 0;
     _originCenter = self.center;
 }
 
@@ -154,11 +205,37 @@
 - (void)clickSelf:(id)sender
 {
     PPDebug(@"clickSelf");
-    PokerView *pokerView = (PokerView *)pokerView;
-    
-    if (pokerView.isFaceUp) {
-        [self popupShowCardButton];
+    self.popupView.isPopup ? [self.popupView dismissAnimated:YES]: [self popupShowCardButton];
+}
+
++ (id)createShowCardButton
+{
+    NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"PokerView" owner:self options:nil];
+    // Grab a pointer to the first object (presumably the custom cell, as that's all the XIB should contain).
+    if (topLevelObjects == nil || [topLevelObjects count] <= 1){
+        return nil;
     }
+    
+    return [topLevelObjects objectAtIndex:1];
+}
+
+- (void)popupShowCardButton
+{
+    UIView *showCardButton = [PokerView createShowCardButton];
+    
+    self.popupView = [[[CMPopTipView alloc] initWithCustomView:showCardButton needBubblePath:NO] autorelease];
+    self.popupView.backgroundColor = [UIColor clearColor];
+    
+    [self.popupView presentPointingAtView:self
+                                   inView:self
+                             aboveSubView:self
+                                 animated:YES
+                           pointDirection:PointDirectionDown];
+    
+    [self.popupView performSelector:@selector(dismissAnimated:)
+                         withObject:[NSNumber numberWithBool:YES]
+                         afterDelay:3.0];
+    
 }
 
 - (void)didClickShowCardButton:(id)sender
@@ -168,6 +245,5 @@
 
     [[ZJHGameService defaultService] showCard:_poker.pokerId];
 }
-
 
 @end

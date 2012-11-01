@@ -11,8 +11,8 @@
 @interface Poker ()
 
 @property (readwrite, nonatomic) int pokerId;
-@property (readwrite, nonatomic) int rank;
-@property (readwrite, nonatomic) int suit;
+@property (readwrite, nonatomic) PBPokerRank rank;
+@property (readwrite, nonatomic) PBPokerSuit suit;
 @property (readwrite, nonatomic) BOOL faceUp;
 
 @end
@@ -36,9 +36,35 @@
     return self;
 }
 
+- (id)initWithPokerId:(int)pokerId
+                 rank:(PBPokerRank)rank
+                 suit:(PBPokerSuit)suit
+               faceUp:(BOOL)faceUp
+{
+    if (self = [super init]) {
+        _pokerId = pokerId;
+        _rank = rank;
+        _suit = suit;
+        _faceUp = faceUp;
+    }
+    
+    return self;
+}
+
 + (Poker *)pokerFromPBPoker:(PBPoker *)pbPoker
 {
     return [[[Poker alloc] initWithPBPoker:pbPoker] autorelease];
+}
+
++ (Poker *)pokerWithPokerId:(int)pokerId
+                       rank:(PBPokerRank)rank
+                       suit:(PBPokerSuit)suit
+                     faceUp:(BOOL)faceUp
+{
+    return [[[Poker alloc] initWithPokerId:pokerId
+                                      rank:rank
+                                      suit:suit
+                                    faceUp:faceUp] autorelease];
 }
 
 - (void)setFaceUp

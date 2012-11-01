@@ -12,11 +12,18 @@
 @interface Poker : NSObject
 
 @property (readonly, nonatomic) int pokerId;
-@property (readonly, nonatomic) int rank;
-@property (readonly, nonatomic) int suit;
+@property (readonly, nonatomic) PBPokerRank rank;
+@property (readonly, nonatomic) PBPokerSuit suit;
 @property (readonly, nonatomic) BOOL faceUp;
 
 + (Poker *)pokerFromPBPoker:(PBPoker *)pbPoker;
+
+// for test
++ (Poker *)pokerWithPokerId:(int)pokerId
+                       rank:(PBPokerRank)rank
+                       suit:(PBPokerSuit)suit
+                     faceUp:(BOOL)faceUp;
+
 - (void)setFaceUp;
 
 @end

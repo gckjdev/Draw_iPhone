@@ -20,6 +20,7 @@
 #import "GameMessage.pb.h"
 #import "BetTable.h"
 #import "ConfigManager.h"
+//#import "Poker.h"
 
 #define AVATAR_TAG_OFFSET   8000
 #define POKERS_TAG_OFFSET   2000
@@ -177,41 +178,44 @@
 }
 
 #pragma mark - player action
-
-- (IBAction)bet:(id)sender
-{
+- (IBAction)clickBetButton:(id)sender {
     [self.betTable someBetFrom:UserPositionCenter forCount:10];
+
 }
 
-- (IBAction)raiseBet:(id)sender
+- (IBAction)clickRaiseBetButton:(id)sender
+{
+    [self.betTable clearAllCounter:UserPositionCenter];
+}
+
+- (IBAction)clickAutoBetButton:(id)sender
 {
     
 }
 
-- (IBAction)autoBet:(id)sender
+- (IBAction)clickCompareCardButton:(id)sender
 {
+    Poker *poker1 = [Poker pokerWithPokerId:1 rank:14 suit:2 faceUp:0];
+    Poker *poker2 = [Poker pokerWithPokerId:1 rank:14 suit:3 faceUp:0];
+    Poker *poker3 = [Poker pokerWithPokerId:1 rank:14 suit:4 faceUp:0];
+
+    ZJHPokerView* pokersView = [self getSelfPokersView];
+
+    [pokersView updateWithPokers:[NSArray arrayWithObjects:poker1, poker2, poker3, nil] size:CGSizeMake(SMALL_POKER_VIEW_WIDTH, SMALL_POKER_VIEW_HEIGHT) gap:SMALL_POKER_GAP];
     
 }
 
-- (IBAction)compareCard:(id)sender
+- (IBAction)clickCheckCardButton:(id)sender
 {
+    ZJHPokerView* pokersView = [self getSelfPokersView];
     
+    [pokersView faceUpCards:NO];
 }
 
-- (IBAction)checkCard:(id)sender
+- (IBAction)clickFoldCardButton:(id)sender
 {
     ZJHPokerView* pokers = [self getSelfPokersView];
-    [pokers faceupCards:YES];
-}
-
-- (IBAction)foldCard:(id)sender
-{
-    
-}
-
-- (IBAction)showCard:(id)sender
-{
-    
+    [pokers foldCards:YES];
 }
 
 - (IBAction)clickQuitButton:(id)sender
@@ -319,7 +323,12 @@ compareCardWith:(UserPosition)otherPlayer
 - (void)someoneFoldCard:(UserPosition)position
 {
     ZJHPokerView *view = [self getPokersViewByPosition:position];
-    [view fold:YES];
+    [view foldCards:YES];
+}
+
+- (void)someoneWon:(UserPosition)position
+{
+    [self.betTable clearAllCounter:position];
 }
 
 #pragma mark - private method
@@ -337,6 +346,8 @@ compareCardWith:(UserPosition)otherPlayer
         [avatar resetAvatar];
     }
     
+    [[self getAvatarViewByPosition:UserPositionCenter] updateByPBGameUser:[_userManager toPBGameUser]];
+    
     // set user on seat
     NSArray* userList = _gameService.session.userList;
     for (PBGameUser* user in userList) {
@@ -353,10 +364,10 @@ compareCardWith:(UserPosition)otherPlayer
         ZJHAvatarView* avatar = (ZJHAvatarView*)[self.view viewWithTag:AVATAR_TAG_OFFSET+i];
         ZJHPokerView* pokerView = (ZJHPokerView*)[self.view viewWithTag:POKERS_TAG_OFFSET+i];
         
-        [pokerView clearPokerViews];
-        if (avatar.userInfo) {
-            [pokerView updatePokerViewsWithPokers:[[_gameService userInfo:avatar.userInfo.userId] pokers]];
-        }
+        [pokerView clear];
+//        if (avatar.userInfo) {
+//            [pokerView updateWithPokers:[[_gameService userPlayInfo:avatar.userInfo.userId] pokers]];
+//        }
     }
 }
 
