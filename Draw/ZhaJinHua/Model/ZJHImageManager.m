@@ -129,45 +129,50 @@ static ZJHImageManager* shareInstance;
     return [UIImage imageNamed:@"show_card_button.png"];
 }
 
-- (UIImage*)chipsImageForChipsValue:(int)chipsValue
+- (UIImage*)chipImageForChipValue:(int)chipValue;
 {
-    switch (chipsValue) {
+    switch (chipValue) {
         case 5:
-            return [UIImage imageNamed:@"chips_5@2x.png"];
+            return [UIImage imageNamed:@"chip_5@2x.png"];
             break;
             
         case 10:
-            return [UIImage imageNamed:@"chips_10@2x.png"];
+            return [UIImage imageNamed:@"chip_10@2x.png"];
             break;
             
         case 25:
-            return [UIImage imageNamed:@"chips_25@2x.png"];
+            return [UIImage imageNamed:@"chip_25@2x.png"];
             break;
             
         case 50:
-            return [UIImage imageNamed:@"chips_50@2x.png"];
+            return [UIImage imageNamed:@"chip_50@2x.png"];
             break;
             
         case 100:
-            return [UIImage imageNamed:@"chips_100@2x.png"];
+            return [UIImage imageNamed:@"chip_100@2x.png"];
             break;
             
         case 250:
-            return [UIImage imageNamed:@"chips_250@2x.png"];
+            return [UIImage imageNamed:@"chip_250@2x.png"];
             break;
             
         case 500:
-            return [UIImage imageNamed:@"chips_500@2x.png"];
+            return [UIImage imageNamed:@"chip_500@2x.png"];
             break;
             
         case 1000:
-            return [UIImage imageNamed:@"chips_1000@2x.png"];
+            return [UIImage imageNamed:@"chip_1000@2x.png"];
             break;
             
         default:
             return nil;
             break;
     }
+}
+
+- (UIImage*)chipsSelectViewBgImage
+{
+    return [UIImage imageNamed:@""];
 }
 
 

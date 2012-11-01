@@ -183,7 +183,7 @@
 #pragma mark - player action
 - (IBAction)clickBetButton:(id)sender {
     [self.betTable someBetFrom:UserPositionCenter
-                  forSingleBet:_gameService.gameState.singleBet
+                     chipValue:_gameService.gameState.singleBet
                          count:[[_gameService userPlayInfo:_userManager.userId] betCount]];
     
     [_gameService bet];
@@ -191,13 +191,14 @@
 
 - (IBAction)clickRaiseBetButton:(id)sender
 {
-    [self.betTable clearAllCounter:UserPositionCenter];
+    [self.betTable clearAllChips:UserPositionCenter];
+    
 }
 
 - (IBAction)clickAutoBetButton:(id)sender
 {
     [self.betTable someBetFrom:UserPositionCenter
-                  forSingleBet:_gameService.gameState.singleBet
+                     chipValue:_gameService.gameState.singleBet
                          count:[[_gameService userPlayInfo:_userManager.userId] betCount]];
     
     [_gameService autoBet];
@@ -281,7 +282,7 @@
 - (void)someoneBet:(NSString*)userId
 {    
     [self.betTable someBetFrom:[self getPositionByUserId:userId]
-                  forSingleBet:_gameService.gameState.singleBet
+                     chipValue:_gameService.gameState.singleBet
                          count:[[_gameService userPlayInfo:userId] betCount]];
 
 }
@@ -305,7 +306,7 @@ compareCardWith:(NSString*)targetUserId
 - (void)someoneRaiseBet:(NSString*)userId
 {
     [self.betTable someBetFrom:[self getPositionByUserId:userId]
-                  forSingleBet:_gameService.gameState.singleBet
+                     chipValue:_gameService.gameState.singleBet
                          count:[[_gameService userPlayInfo:userId] betCount]];
 }
 
@@ -350,7 +351,7 @@ compareCardWith:(NSString*)targetUserId
 
 - (void)someoneWon:(NSString*)userId
 {
-    [self.betTable clearAllCounter:[self getPositionByUserId:userId]];
+    [self.betTable clearAllChips:[self getPositionByUserId:userId]];
 }
 
 #pragma mark - private method
