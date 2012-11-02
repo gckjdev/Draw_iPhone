@@ -206,13 +206,15 @@
 
 - (IBAction)clickCompareCardButton:(id)sender
 {
-    Poker *poker1 = [Poker pokerWithPokerId:1 rank:14 suit:2 faceUp:0];
-    Poker *poker2 = [Poker pokerWithPokerId:1 rank:14 suit:3 faceUp:0];
-    Poker *poker3 = [Poker pokerWithPokerId:1 rank:14 suit:4 faceUp:0];
-
-    ZJHPokerView* pokersView = [self getSelfPokersView];
-
-    [pokersView updateWithPokers:[NSArray arrayWithObjects:poker1, poker2, poker3, nil] size:CGSizeMake(BIG_POKER_VIEW_WIDTH, BIG_POKER_VIEW_HEIGHT) gap:BIG_POKER_GAP delegate:self];
+//    Poker *poker1 = [Poker pokerWithPokerId:1 rank:14 suit:2 faceUp:0];
+//    Poker *poker2 = [Poker pokerWithPokerId:1 rank:14 suit:3 faceUp:0];
+//    Poker *poker3 = [Poker pokerWithPokerId:1 rank:14 suit:4 faceUp:0];
+//
+//    ZJHPokerView* pokersView = [self getSelfPokersView];
+//
+//    [pokersView updateWithPokers:[NSArray arrayWithObjects:poker1, poker2, poker3, nil] size:CGSizeMake(BIG_POKER_VIEW_WIDTH, BIG_POKER_VIEW_HEIGHT) gap:BIG_POKER_GAP delegate:self];
+    
+    
     
 }
 
