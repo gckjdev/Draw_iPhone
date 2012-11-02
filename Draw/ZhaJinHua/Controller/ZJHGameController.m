@@ -20,7 +20,7 @@
 #import "GameMessage.pb.h"
 #import "BetTable.h"
 #import "ConfigManager.h"
-#import "ChipsSelectView.h"
+#import "PopupViewManager.h"
 
 #define AVATAR_TAG_OFFSET   8000
 #define POKERS_TAG_OFFSET   2000
@@ -34,6 +34,7 @@
     AudioManager    *_audioManager;
     AccountService  *_accountService;
     ZJHImageManager *_imageManager;
+    PopupViewManager *_popupViewManager;
 }
 
 @end
@@ -66,7 +67,7 @@
         _levelService = [LevelService defaultService];
         _accountService = [AccountService defaultService];
         _audioManager = [AudioManager defaultManager];
-
+        _popupViewManager = [PopupViewManager defaultManager];
     }
     
     return self;
@@ -195,9 +196,11 @@
 
 - (IBAction)clickRaiseBetButton:(id)sender
 {
-
-//    [self.betTable clearAllChips:UserPositionCenter];
     [self gameStart];
+    [_popupViewManager popupChipsSelectViewAtView:sender
+                                           inView:self.view
+                                        aboveView:nil
+                                         delegate:self];
     
 }
 
@@ -220,8 +223,7 @@
 //
 //    [pokersView updateWithPokers:[NSArray arrayWithObjects:poker1, poker2, poker3, nil] size:CGSizeMake(BIG_POKER_VIEW_WIDTH, BIG_POKER_VIEW_HEIGHT) gap:BIG_POKER_GAP delegate:self];
     
-    [ChipsSelectView popupAtView:sender inView:self.view aboveView:nil delegate:self];
-    
+
 }
 
 - (IBAction)clickCheckCardButton:(id)sender
@@ -537,6 +539,8 @@ compareCardWith:(NSString*)targetUserId
 - (void)didSelectChip:(int)chipValue
 {
     PPDebug(@"didSelectChip: %d", chipValue);
+    [_popupViewManager dismissChipsSelectView];
+    [_gameService raiseBet:chipValue];
 }
 
 - (void)updateZJHButtons

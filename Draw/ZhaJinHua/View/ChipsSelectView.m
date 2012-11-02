@@ -18,24 +18,14 @@
 @interface ChipsSelectView()
 
 @property (assign, nonatomic) id<ChipsSelectViewProtocol> delegate;
-@property (retain, nonatomic) CMPopTipView *popupView;
 
 @end
 
 @implementation ChipsSelectView
 
-+ (void)popupAtView:(UIView *)atView
-             inView:(UIView *)inView
-          aboveView:(UIView *)aboveView
-           delegate:(id<ChipsSelectViewProtocol>)delegate
+- (void)dealloc
 {
-    ChipsSelectView *chipsSelectView = [ChipsSelectView createChipsSelectView:delegate];
-
-    [chipsSelectView.popupView presentPointingAtView:atView inView:inView aboveView:aboveView animated:YES pointDirection:PointDirectionAuto];
-    
-    [chipsSelectView.popupView performSelector:@selector(dismissAnimated:)
-                                    withObject:[NSNumber numberWithBool:YES]
-                                    afterDelay:3.0];
+    [super dealloc];
 }
 
 + (ChipsSelectView *)createChipsSelectView:(id<ChipsSelectViewProtocol>)delegate
@@ -54,10 +44,6 @@
         UIImageView *imageView = [[[UIImageView alloc] initWithFrame:self.bounds] autorelease];
         imageView.image = [[ZJHImageManager defaultManager] chipsSelectViewBgImage];
         [self addSubview:imageView];
-        
-        self.popupView = [[[CMPopTipView alloc] initWithCustomView:self needBubblePath:NO] autorelease];
-        self.popupView.backgroundColor = [UIColor grayColor];
-        self.popupView.alpha = 0.1;
     }
     
     return self;
@@ -67,7 +53,7 @@
 {
     int i = 0;
     CGRect frame = CGRectMake(0, 0, CHIP_VIEW_WIDTH, CHIP_VIEW_HEIGHT);
-    for (NSNumber *chipValue in [[[ZJHGameService defaultService] gameState] chipValues]) {
+    for (NSNumber *chipValue in [[ZJHGameService defaultService] chipValues]) {
         frame = CGRectMake(i++ * (CHIP_VIEW_WIDTH + CHIP_GAP), 0, CHIP_VIEW_WIDTH, CHIP_VIEW_HEIGHT);
         ChipView *chipView = [ChipView chipViewWithFrame:frame chipValue:chipValue.intValue delegate:self];
         
@@ -81,7 +67,6 @@
 
 - (void)didClickChipView:(ChipView *)chipView
 {
-    [self.popupView dismissAnimated:YES];
     if ([_delegate respondsToSelector:@selector(didSelectChip:)]) {
         [_delegate didSelectChip:chipView.chipValue];
     }

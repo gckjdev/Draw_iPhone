@@ -54,20 +54,6 @@
     return [[self userPlayInfo:userId] betCount];
 }
 
-- (NSArray *)chipValues
-{
-    return [NSArray arrayWithObjects:[NSNumber numberWithInt:5], [NSNumber numberWithInt:10], [NSNumber numberWithInt:25], [NSNumber numberWithInt:50], nil];
-}
-
-- (BOOL)canRaiseBet
-{
-    if (_singleBet < [[self.chipValues objectAtIndex:([self.chipValues count] - 1)] intValue]) {
-        return YES;
-    }else {
-        return NO;
-    }
-}
-
 #pragma mark -  pravite methods
 
 - (NSDictionary *)usersPlayInfoFromPBZJHUserPlayInfoList:(NSArray *)pbUserPlayInfoList

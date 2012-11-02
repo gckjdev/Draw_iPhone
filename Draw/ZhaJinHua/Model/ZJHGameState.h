@@ -19,7 +19,4 @@
 - (ZJHUserPlayInfo *)userPlayInfo:(NSString *)userId;
 - (int)betCountOfUser:(NSString *)userId;
 
-- (NSArray *)chipValues;
-- (BOOL)canRaiseBet;
-
 @end

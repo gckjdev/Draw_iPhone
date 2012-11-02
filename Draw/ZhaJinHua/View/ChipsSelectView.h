@@ -19,9 +19,6 @@
 
 @interface ChipsSelectView : UIView <ChipViewProtocol>
 
-+ (void)popupAtView:(UIView *)atView
-             inView:(UIView *)inView
-          aboveView:(UIView *)aboveView
-           delegate:(id<ChipsSelectViewProtocol>)delegate;
++ (ChipsSelectView *)createChipsSelectView:(id<ChipsSelectViewProtocol>)delegate;
 
 @end

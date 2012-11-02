@@ -120,6 +120,11 @@ static ZJHGameService *_defaultService;
                                 cardIds:cardIds];
 }
 
+- (NSArray *)chipValues
+{
+    return [NSArray arrayWithObjects:[NSNumber numberWithInt:5], [NSNumber numberWithInt:10], [NSNumber numberWithInt:25], [NSNumber numberWithInt:50], nil];
+}
+
 - (BOOL)canIBet
 {
     return [self isMyTurn];
@@ -129,8 +134,12 @@ static ZJHGameService *_defaultService;
 {
     if (![self isMyTurn]) {
         return NO;
+    }
+    
+    if (_gameState.singleBet < [[self.chipValues objectAtIndex:([self.chipValues count] - 1)] intValue]) {
+        return YES;
     }else {
-        return [_gameState canRaiseBet];
+        return NO;
     }
 }
 

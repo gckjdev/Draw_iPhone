@@ -77,6 +77,7 @@
 		A404A9DD16428149007CA21A /* chip_50@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A404A9D616428149007CA21A /* chip_50@2x.png */; };
 		A404A9DE16428149007CA21A /* chip_5@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A404A9D716428149007CA21A /* chip_5@2x.png */; };
 		A404A9E21643607F007CA21A /* ChipView.m in Sources */ = {isa = PBXBuildFile; fileRef = A404A9E01643607F007CA21A /* ChipView.m */; };
+		A404A9EF1643DD57007CA21A /* PopupViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A404A9EE1643DD54007CA21A /* PopupViewManager.m */; };
 		A40FEEDE15E22E1300A88C57 /* ChatView.m in Sources */ = {isa = PBXBuildFile; fileRef = A40FEEDD15E22E1300A88C57 /* ChatView.m */; };
 		A41A665915C921DA00066E9B /* SlideImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = A41A665815C921DA00066E9B /* SlideImageView.m */; };
 		A42C520615E614D2001D8208 /* DiceChatMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = A42C520315E614D2001D8208 /* DiceChatMessage.m */; };
@@ -1312,6 +1313,8 @@
 		A404A9D716428149007CA21A /* chip_5@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chip_5@2x.png"; sourceTree = "<group>"; };
 		A404A9DF1643607F007CA21A /* ChipView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChipView.h; sourceTree = "<group>"; };
 		A404A9E01643607F007CA21A /* ChipView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChipView.m; sourceTree = "<group>"; };
+		A404A9ED1643DD51007CA21A /* PopupViewManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PopupViewManager.h; sourceTree = "<group>"; };
+		A404A9EE1643DD54007CA21A /* PopupViewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PopupViewManager.m; sourceTree = "<group>"; };
 		A40FEEDC15E22E1300A88C57 /* ChatView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatView.h; sourceTree = "<group>"; };
 		A40FEEDD15E22E1300A88C57 /* ChatView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatView.m; sourceTree = "<group>"; };
 		A41A665715C921DA00066E9B /* SlideImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SlideImageView.h; sourceTree = "<group>"; };
@@ -3803,6 +3806,8 @@
 				A404A9AA16426545007CA21A /* ChipsSelectView.m */,
 				A404A9DF1643607F007CA21A /* ChipView.h */,
 				A404A9E01643607F007CA21A /* ChipView.m */,
+				A404A9ED1643DD51007CA21A /* PopupViewManager.h */,
+				A404A9EE1643DD54007CA21A /* PopupViewManager.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -8646,6 +8651,7 @@
 				A404A9AB16426545007CA21A /* ChipsSelectView.m in Sources */,
 				C29B5F541642749900EF4AB4 /* DealerView.m in Sources */,
 				A404A9E21643607F007CA21A /* ChipView.m in Sources */,
+				A404A9EF1643DD57007CA21A /* PopupViewManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
