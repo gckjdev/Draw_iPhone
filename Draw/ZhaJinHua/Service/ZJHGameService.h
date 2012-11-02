@@ -29,4 +29,14 @@
 - (void)showCard:(int)cardId;                   // 亮牌(单张)
 - (void)showCards:(NSArray *)cardIds;           // 亮牌(多张)；目前该接口没用到
 
+- (BOOL)canIBet;
+- (BOOL)canIRaiseBet;
+- (BOOL)canIAutoBet;
+- (BOOL)canICheckCard;
+- (BOOL)canIFoldCard;
+- (BOOL)canICompareCard;
+- (BOOL)canIShowCard:(int)cardId;
+
+- (BOOL)canUserCompareCard:(NSString *)userId;
+
 @end

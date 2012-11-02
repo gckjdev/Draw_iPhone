@@ -49,6 +49,12 @@
 {
     [_betTable release];
     [_dealerView release];
+    [_betButton release];
+    [_raiseBetButton release];
+    [_autoBetButton release];
+    [_compareCardButton release];
+    [_checkCardButton release];
+    [_foldCardButton release];
     [super dealloc];
 }
 
@@ -487,6 +493,12 @@ compareCardWith:(NSString*)targetUserId
 - (void)viewDidUnload {
     [self setBetTable:nil];
     [self setDealerView:nil];
+    [self setBetButton:nil];
+    [self setRaiseBetButton:nil];
+    [self setAutoBetButton:nil];
+    [self setCompareCardButton:nil];
+    [self setCheckCardButton:nil];
+    [self setFoldCardButton:nil];
     [super viewDidUnload];
 }
 
@@ -506,9 +518,13 @@ compareCardWith:(NSString*)targetUserId
 
 - (void)didClickPokerView:(PokerView *)pokerView
 {
+    if (![_gameService canIShowCard:pokerView.poker.pokerId]) {
+        return;
+    }
+    
     pokerView.showCardButtonIsPopup ? [pokerView dismissShowCardButton] : [pokerView popupShowCardButtonInView:self.view aboveView:nil];
+    
 }
-
 
 - (void)didClickShowCardButton:(PokerView *)pokerView
 {
@@ -523,8 +539,15 @@ compareCardWith:(NSString*)targetUserId
     PPDebug(@"didSelectChip: %d", chipValue);
 }
 
-- (void)updateButtons
+- (void)updateZJHButtons
 {
+    self.betButton.enabled = [_gameService canIBet];
+    self.raiseBetButton.enabled = [_gameService canIRaiseBet];
+    self.autoBetButton.enabled = [_gameService canIAutoBet];
+    
+    self.compareCardButton.enabled = [_gameService canICompareCard];
+    self.checkCardButton.enabled = [_gameService canICheckCard];
+    self.foldCardButton.enabled = [_gameService canIFoldCard];
 
 }
 
@@ -532,6 +555,7 @@ compareCardWith:(NSString*)targetUserId
 - (void)didDealFinish:(DealerView *)view
 {
     [self updateAllPokers];
+
 }
 
 @end

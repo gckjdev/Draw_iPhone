@@ -33,5 +33,12 @@ typedef enum {
 
 @property (retain, nonatomic) IBOutlet BetTable *betTable;
 @property (retain, nonatomic) IBOutlet DealerView *dealerView;
+@property (retain, nonatomic) IBOutlet UIButton *betButton;
+@property (retain, nonatomic) IBOutlet UIButton *raiseBetButton;
+@property (retain, nonatomic) IBOutlet UIButton *autoBetButton;
+@property (retain, nonatomic) IBOutlet UIButton *compareCardButton;
+@property (retain, nonatomic) IBOutlet UIButton *checkCardButton;
+@property (retain, nonatomic) IBOutlet UIButton *foldCardButton;
+
 
 @end

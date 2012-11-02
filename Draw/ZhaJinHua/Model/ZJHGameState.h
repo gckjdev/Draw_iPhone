@@ -18,8 +18,6 @@
 
 - (ZJHUserPlayInfo *)userPlayInfo:(NSString *)userId;
 - (int)betCountOfUser:(NSString *)userId;
-- (BOOL)user:(NSString *)userId canBeCompare:(BOOL)canBeCompare;
-- (BOOL)user:(NSString *)userId hasShield:(BOOL)hasShield;
 
 - (NSArray *)chipValues;
 - (BOOL)canRaiseBet;

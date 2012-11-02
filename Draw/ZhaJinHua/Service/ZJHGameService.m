@@ -11,6 +11,7 @@
 #import "CommonGameNetworkClient+ZJHNetworkExtend.h"
 #import "GameMessage.pb.h"
 #import "CommonGameSession.h"
+#import "UserManager.h"
 
 static ZJHGameService *_defaultService;
 
@@ -117,6 +118,63 @@ static ZJHGameService *_defaultService;
     [_networkClient sendShowCardRequest:self.userId
                               sessionId:self.session.sessionId
                                 cardIds:cardIds];
+}
+
+- (BOOL)isMyTurn
+{
+    return [[UserManager defaultManager] isMe:self.session.currentPlayUserId];
+}
+
+- (BOOL)canIBet
+{
+    return [self isMyTurn];
+}
+
+- (BOOL)canIRaiseBet
+{
+    if (![self isMyTurn]) {
+        return NO;
+    }else {
+        return [_gameState canRaiseBet];
+    }
+}
+
+- (BOOL)canIAutoBet
+{
+    return [self isMyTurn];
+}
+
+- (BOOL)canICheckCard
+{
+    return [[_gameState userPlayInfo:[[UserManager defaultManager] userId]] canCheckCard];
+}
+
+- (BOOL)canIFoldCard
+{
+    return [[_gameState userPlayInfo:[[UserManager defaultManager] userId]] canFoldCard];
+}
+
+- (BOOL)canICompareCard
+{
+    if (![self isMyTurn]) {
+        return NO;
+    }else {
+        return [[_gameState userPlayInfo:[[UserManager defaultManager] userId]] canCompareCard];
+    }
+}
+
+- (BOOL)canIShowCard:(int)cardId
+{
+    if (![self isMyTurn]) {
+        return NO;
+    }else {
+        return [[_gameState userPlayInfo:[[UserManager defaultManager] userId]] canShowCard:cardId];
+    }
+}
+
+- (BOOL)canUserCompareCard:(NSString *)userId
+{
+    return [[_gameState userPlayInfo:userId] canCompareCard];
 }
 
 #pragma mark - overwrite methods

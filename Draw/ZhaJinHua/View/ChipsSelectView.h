@@ -22,6 +22,6 @@
 + (void)popupAtView:(UIView *)atView
              inView:(UIView *)inView
           aboveView:(UIView *)aboveView
-           delegate:(id<ChipViewProtocol>)delegate;
+           delegate:(id<ChipsSelectViewProtocol>)delegate;
 
 @end
