@@ -11,6 +11,7 @@
 #import "CommonGameNetworkClient+ZJHNetworkExtend.h"
 #import "GameMessage.pb.h"
 #import "CommonGameSession.h"
+#import "UserManager.h"
 
 static ZJHGameService *_defaultService;
 
@@ -117,6 +118,36 @@ static ZJHGameService *_defaultService;
     [_networkClient sendShowCardRequest:self.userId
                               sessionId:self.session.sessionId
                                 cardIds:cardIds];
+}
+
+- (BOOL)canIRaiseBet
+{
+    return [_gameState canRaiseBet];
+}
+
+- (BOOL)canICheckCard
+{
+    return [[_gameState userPlayInfo:[[UserManager defaultManager] userId]] canCheckCard];
+}
+
+- (BOOL)canIFoldCard
+{
+    return [[_gameState userPlayInfo:[[UserManager defaultManager] userId]] canFoldCard];
+}
+
+- (BOOL)canICompareCard
+{
+    return [[_gameState userPlayInfo:[[UserManager defaultManager] userId]] canCompareCard];
+}
+
+- (BOOL)canIShowCard:(int)cardId
+{
+    return [[_gameState userPlayInfo:[[UserManager defaultManager] userId]] canShowCard:cardId];
+}
+
+- (BOOL)canUserCompareCard:(NSString *)userId
+{
+    return [[_gameState userPlayInfo:userId] canCompareCard];
 }
 
 #pragma mark - overwrite methods

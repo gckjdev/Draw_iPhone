@@ -54,16 +54,6 @@
     return [[self userPlayInfo:userId] betCount];
 }
 
-- (BOOL)user:(NSString *)userId canBeCompare:(BOOL)canBeCompare
-{
-    return [[self userPlayInfo:userId] canBeCompare];
-}
-
-- (BOOL)user:(NSString *)userId hasShield:(BOOL)hasShield
-{
-    return [[self userPlayInfo:userId] hasShield];
-}
-
 - (NSArray *)chipValues
 {
     return [NSArray arrayWithObjects:[NSNumber numberWithInt:5], [NSNumber numberWithInt:10], [NSNumber numberWithInt:25], [NSNumber numberWithInt:50], nil];

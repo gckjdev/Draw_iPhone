@@ -490,9 +490,13 @@ compareCardWith:(NSString*)targetUserId
 
 - (void)didClickPokerView:(PokerView *)pokerView
 {
+    if (![_gameService canIShowCard:pokerView.poker.pokerId]) {
+        return;
+    }
+    
     pokerView.showCardButtonIsPopup ? [pokerView dismissShowCardButton] : [pokerView popupShowCardButtonInView:self.view aboveView:nil];
+    
 }
-
 
 - (void)didClickShowCardButton:(PokerView *)pokerView
 {
@@ -509,7 +513,7 @@ compareCardWith:(NSString*)targetUserId
 
 - (void)updateButtons
 {
-    self.rai
+    
 }
 
 @end
