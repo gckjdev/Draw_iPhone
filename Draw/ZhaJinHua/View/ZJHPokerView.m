@@ -26,9 +26,9 @@
 #pragma mark - life cycle
 
 - (void)dealloc {    
-    [_poker1View release];
-    [_poker2View release];
-    [_poker3View release];
+    [_pokerView1 release];
+    [_pokerView2 release];
+    [_pokerView3 release];
     [super dealloc];
 }
 
@@ -51,22 +51,22 @@
     // alloc and init poker view
     CGFloat pokerViewOffset = 0;
     CGRect frame = CGRectMake(pokerViewOffset, 0, size.width, size.height);
-    self.poker1View = [PokerView createPokerViewWithPoker:poker1
+    self.pokerView1 = [PokerView createPokerViewWithPoker:poker1
                                                     frame:frame
                                                  isFaceUp:NO
                                                  delegate:delegate];
     
-    pokerViewOffset = self.poker1View.frame.origin.x + self.poker1View.frame.size.width + gap;
+    pokerViewOffset = self.pokerView1.frame.origin.x + self.pokerView1.frame.size.width + gap;
     frame = CGRectMake(pokerViewOffset, 0, size.width, size.height);
-    self.poker2View = [PokerView createPokerViewWithPoker:poker2
+    self.pokerView2 = [PokerView createPokerViewWithPoker:poker2
                                                     frame:frame
                                                  isFaceUp:NO
                                                  delegate:delegate];
 
     
-    pokerViewOffset = self.poker2View.frame.origin.x + self.poker2View.frame.size.width + gap;
+    pokerViewOffset = self.pokerView2.frame.origin.x + self.pokerView2.frame.size.width + gap;
     frame = CGRectMake(pokerViewOffset, 0, size.width, size.height);
-    self.poker3View = [PokerView createPokerViewWithPoker:poker3
+    self.pokerView3 = [PokerView createPokerViewWithPoker:poker3
                                                     frame:frame
                                                  isFaceUp:NO
                                                  delegate:delegate];
@@ -77,9 +77,9 @@
 //    _poker3OriginCenter = self.poker3View.center;
     
     // add poker views
-    [self addSubview:self.poker1View];
-    [self addSubview:self.poker2View];
-    [self addSubview:self.poker3View];
+    [self addSubview:self.pokerView1];
+    [self addSubview:self.pokerView2];
+    [self addSubview:self.pokerView3];
 }
 
 - (void)clear
@@ -93,18 +93,18 @@
 {
     switch (sectorType) {
         case ZJHPokerSectorTypeRight:
-            [self.poker2View rotateToAngle:(M_PI * (1.0/12.0)) animation:animation];
-            [self.poker3View rotateToAngle:(M_PI * (1.0/6.0)) animation:animation];
+            [self.pokerView2 rotateToAngle:(M_PI * (1.0/12.0)) animation:animation];
+            [self.pokerView3 rotateToAngle:(M_PI * (1.0/6.0)) animation:animation];
             break;
             
         case ZJHPokerSectorTypeLeft:
-            [self.poker1View rotateToAngle:(-M_PI * (1.0/6.0)) animation:animation];
-            [self.poker2View rotateToAngle:(-M_PI * (1.0/12.0)) animation:animation];
+            [self.pokerView1 rotateToAngle:(-M_PI * (1.0/6.0)) animation:animation];
+            [self.pokerView2 rotateToAngle:(-M_PI * (1.0/12.0)) animation:animation];
             break;
             
         case ZJHPokerSectorTypeCenter:
-            [self.poker1View rotateToAngle:(-M_PI * (1.0/12.0)) animation:animation];
-            [self.poker3View rotateToAngle:(M_PI * (1.0/12.0)) animation:animation];
+            [self.pokerView1 rotateToAngle:(-M_PI * (1.0/12.0)) animation:animation];
+            [self.pokerView3 rotateToAngle:(M_PI * (1.0/12.0)) animation:animation];
             break;
             
         default:
@@ -115,45 +115,45 @@
 - (void)faceUpCards:(BOOL)animation
 {
 //    [self.poker1View moveToCenter:CGPointMake(_poker1OriginCenter.x - POKER_X_AXIS_OFFSET, _poker1OriginCenter.y) animation:animation];
-    [self.poker1View faceUp:animation];
-    [self.poker1View enableUserInterface];
+    [self.pokerView1 faceUp:animation];
+    [self.pokerView1 enableUserInterface];
     
-    [self.poker2View faceUp:animation];
-    [self.poker2View enableUserInterface];
+    [self.pokerView2 faceUp:animation];
+    [self.pokerView2 enableUserInterface];
 
 //    [self.poker3View moveToCenter:CGPointMake(_poker3OriginCenter.x + POKER_X_AXIS_OFFSET, _poker3OriginCenter.y) animation:animation];
-    [self.poker3View faceUp:animation];
-    [self.poker3View enableUserInterface];
+    [self.pokerView3 faceUp:animation];
+    [self.pokerView3 enableUserInterface];
 }
 
 - (void)faceUpCard:(int)cardId animation:(BOOL)animation
 {
-    if (self.poker1View.poker.pokerId == cardId) {
-        [self.poker1View faceUp:animation];
+    if (self.pokerView1.poker.pokerId == cardId) {
+        [self.pokerView1 faceUp:animation];
     }
     
-    if (self.poker2View.poker.pokerId == cardId) {
-        [self.poker2View faceUp:animation];
+    if (self.pokerView2.poker.pokerId == cardId) {
+        [self.pokerView2 faceUp:animation];
     }
     
-    if (self.poker3View.poker.pokerId == cardId) {
-        [self.poker3View faceUp:animation];
+    if (self.pokerView3.poker.pokerId == cardId) {
+        [self.pokerView3 faceUp:animation];
     }
 }
 
 - (void)foldCards:(BOOL)animation
 {
-    self.poker1View.backImageView.image = [[ZJHImageManager defaultManager] pokerFoldBackImage];
-    [self.poker1View faceDown:animation];
-    [self.poker1View backToOriginPosition:animation];
+    self.pokerView1.backImageView.image = [[ZJHImageManager defaultManager] pokerFoldBackImage];
+    [self.pokerView1 faceDown:animation];
+    [self.pokerView1 backToOriginPosition:animation];
     
-    self.poker2View.backImageView.image = [[ZJHImageManager defaultManager] pokerFoldBackImage];
-    [self.poker2View faceDown:animation];
-    [self.poker2View backToOriginPosition:animation];
+    self.pokerView2.backImageView.image = [[ZJHImageManager defaultManager] pokerFoldBackImage];
+    [self.pokerView2 faceDown:animation];
+    [self.pokerView2 backToOriginPosition:animation];
     
-    self.poker3View.backImageView.image = [[ZJHImageManager defaultManager] pokerFoldBackImage];
-    [self.poker3View faceDown:animation];
-    [self.poker3View backToOriginPosition:animation];
+    self.pokerView3.backImageView.image = [[ZJHImageManager defaultManager] pokerFoldBackImage];
+    [self.pokerView3 faceDown:animation];
+    [self.pokerView3 backToOriginPosition:animation];
 }
 
 - (void)compare:(BOOL)animation

@@ -16,10 +16,10 @@
 }
 
 - (void)someBetFrom:(UserPosition)position
-       forSingleBet:(int)singleBet
+          chipValue:(int)chipValue
               count:(int)count;
 
-- (void)clearAllCounter:(UserPosition)position;
+- (void)clearAllChips:(UserPosition)position;
 
 
 @end
