@@ -212,7 +212,7 @@
 //
 //    [pokersView updateWithPokers:[NSArray arrayWithObjects:poker1, poker2, poker3, nil] size:CGSizeMake(BIG_POKER_VIEW_WIDTH, BIG_POKER_VIEW_HEIGHT) gap:BIG_POKER_GAP delegate:self];
     
-    [ChipsSelectView popupAtView:sender inView:self.view aboveView:nil];
+    [ChipsSelectView popupAtView:sender inView:self.view aboveView:nil delegate:self];
     
 }
 
@@ -474,7 +474,7 @@ compareCardWith:(NSString*)targetUserId
     [super viewDidUnload];
 }
 
-#pragma mark - ZJHAvatarDelegate
+#pragma mark - ZJHAvatar delegate
 
 - (void)didClickOnAvatar:(ZJHAvatarView*)view
 {
@@ -486,27 +486,13 @@ compareCardWith:(NSString*)targetUserId
     [self clickFoldCardButton:nil];
 }
 
-
-
-
-
-
-
-+ (id)createShowCardButton
-{
-    NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"PokerView" owner:self options:nil];
-    // Grab a pointer to the first object (presumably the custom cell, as that's all the XIB should contain).
-    if (topLevelObjects == nil || [topLevelObjects count] <= 1){
-        return nil;
-    }
-    
-    return [topLevelObjects objectAtIndex:1];
-}
+#pragma mark - poker view protocol
 
 - (void)didClickPokerView:(PokerView *)pokerView
 {
     pokerView.showCardButtonIsPopup ? [pokerView dismissShowCardButton] : [pokerView popupShowCardButtonInView:self.view aboveView:nil];
 }
+
 
 - (void)didClickShowCardButton:(PokerView *)pokerView
 {
@@ -514,5 +500,11 @@ compareCardWith:(NSString*)targetUserId
     [_gameService showCard:pokerView.poker.pokerId];
 }
 
+#pragma mark - chipsSelectView protocol
+
+- (void)didSelectChip:(int)chipValue
+{
+    PPDebug(@"didSelectChip: %d", chipValue);
+}
 
 @end

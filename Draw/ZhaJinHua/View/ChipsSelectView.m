@@ -14,23 +14,37 @@
 #define CHIP_GAP 5
 #define CHIPS_COUNT 4
 
+@interface ChipsSelectView()
+
+@property (assign, nonatomic) id<ChipsSelectViewProtocol> delegate;
+@property (retain, nonatomic) CMPopTipView *popupView;
+
+@end
+
 @implementation ChipsSelectView
 
 + (void)popupAtView:(UIView *)atView
              inView:(UIView *)inView
           aboveView:(UIView *)aboveView
+           delegate:(id<ChipsSelectViewProtocol>)delegate
 {
-    ChipsSelectView *chipsSelectView = [ChipsSelectView createChipsSelectView];
+    ChipsSelectView *chipsSelectView = [ChipsSelectView createChipsSelectView:delegate];
 
-    CMPopTipView *popupView = [[[CMPopTipView alloc] initWithCustomView:chipsSelectView needBubblePath:NO] autorelease];
-    popupView.backgroundColor = [UIColor grayColor];
-    popupView.alpha = 0.1;
-    [popupView presentPointingAtView:atView inView:inView aboveView:aboveView animated:YES pointDirection:PointDirectionAuto];
+    [chipsSelectView.popupView presentPointingAtView:atView inView:inView aboveView:aboveView animated:YES pointDirection:PointDirectionAuto];
+    
+    [chipsSelectView.popupView performSelector:@selector(dismissAnimated:)
+                                    withObject:[NSNumber numberWithBool:YES]
+                                    afterDelay:3.0];
 }
 
-+ (ChipsSelectView *)createChipsSelectView
++ (ChipsSelectView *)createChipsSelectView:(id<ChipsSelectViewProtocol>)delegate
+
 {
-    return [[[ChipsSelectView alloc] initWithFrame:CGRectMake(0, 0, CHIP_VIEW_WIDTH * CHIPS_COUNT + CHIP_GAP * (CHIPS_COUNT - 1), CHIP_VIEW_HEIGHT)] autorelease];
+    ChipsSelectView *chipsSelectView = [[[ChipsSelectView alloc] initWithFrame:CGRectMake(0, 0, CHIP_VIEW_WIDTH * CHIPS_COUNT + CHIP_GAP * (CHIPS_COUNT - 1), CHIP_VIEW_HEIGHT)] autorelease];
+    chipsSelectView.delegate = delegate;
+    [chipsSelectView addChipViews];
+    
+    return chipsSelectView;
 }
 
 - (id)initWithFrame:(CGRect)frame
@@ -40,7 +54,9 @@
         imageView.image = [[ZJHImageManager defaultManager] chipsSelectViewBgImage];
         [self addSubview:imageView];
         
-        [self addChipViews];
+        self.popupView = [[[CMPopTipView alloc] initWithCustomView:self needBubblePath:NO] autorelease];
+        self.popupView.backgroundColor = [UIColor grayColor];
+        self.popupView.alpha = 0.1;
     }
     
     return self;
@@ -55,6 +71,14 @@
         frame = CGRectMake(i++ * (CHIP_VIEW_WIDTH + CHIP_GAP), 0, CHIP_VIEW_WIDTH, CHIP_VIEW_HEIGHT);
         ChipView *chipView = [ChipView chipViewWithFrame:frame chipValue:chipValue.intValue delegate:self];
         [self addSubview:chipView];
+    }
+}
+
+- (void)didClickChipView:(ChipView *)chipView
+{
+    [self.popupView dismissAnimated:YES];
+    if ([_delegate respondsToSelector:@selector(didSelectChip:)]) {
+        [_delegate didSelectChip:chipView.chipValue];
     }
 }
 
