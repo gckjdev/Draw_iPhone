@@ -86,6 +86,7 @@
     [super viewDidLoad];
     [self registerDiceGameNotifications];
     [self updateAllPlayersAvatar];
+    self.dealerView.delegate = self;
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -273,23 +274,21 @@
     [self updateWaittingForNextTurnNotLabel];
 }
 
-- (CGPoint*)getPlayerSittingPoints
+- (NSArray*)getPositionsArray
 {
-    CGPoint points[5];
-    points[0] = CGPointMake(0, self.dealerView.frame.size.height/2);
-    points[1] = CGPointMake(0, self.dealerView.frame.size.height);
-    points[2] = CGPointMake(self.dealerView.frame.size.width/2, self.dealerView.frame.size.height/2);
-    points[3] = CGPointMake(self.dealerView.frame.size.width, self.dealerView.frame.size.height/2);
-    points[4] = CGPointMake(self.dealerView.frame.size.width, 0);
-    
-    return points;
+    NSMutableArray* array = [[[NSMutableArray alloc] initWithCapacity:MAX_PLAYER_COUNT] autorelease];
+    for (PBGameUser* user in _gameService.session.userList) {
+        [array addObject:[NSNumber numberWithInt:[self getPositionByUserId:user.userId]]];
+    }
+    return array;
 }
 
 - (void)gameStart
 {
     PPDebug(@"<ZJHGameController> game start!");
-    [self updateAllPokers];
-    [self.dealerView deal];
+//    [self updateAllPokers];
+    [self.dealerView dealWithPositionArray:[self getPositionsArray]
+                                     times:3];
     
 }
 
@@ -549,6 +548,14 @@ compareCardWith:(NSString*)targetUserId
     self.compareCardButton.enabled = [_gameService canICompareCard];
     self.checkCardButton.enabled = [_gameService canICheckCard];
     self.foldCardButton.enabled = [_gameService canIFoldCard];
+
+}
+
+#pragma mark - deal view delegate
+- (void)didDealFinish:(DealerView *)view
+{
+    [self updateAllPokers];
+
 }
 
 @end
