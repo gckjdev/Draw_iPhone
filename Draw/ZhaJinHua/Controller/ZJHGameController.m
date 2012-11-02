@@ -49,6 +49,12 @@
 {
     [_betTable release];
     [_dealerView release];
+    [_betButton release];
+    [_raiseBetButton release];
+    [_autoBetButton release];
+    [_compareCardButton release];
+    [_checkCardButton release];
+    [_foldCardButton release];
     [super dealloc];
 }
 
@@ -488,6 +494,12 @@ compareCardWith:(NSString*)targetUserId
 - (void)viewDidUnload {
     [self setBetTable:nil];
     [self setDealerView:nil];
+    [self setBetButton:nil];
+    [self setRaiseBetButton:nil];
+    [self setAutoBetButton:nil];
+    [self setCompareCardButton:nil];
+    [self setCheckCardButton:nil];
+    [self setFoldCardButton:nil];
     [super viewDidUnload];
 }
 
@@ -528,9 +540,15 @@ compareCardWith:(NSString*)targetUserId
     PPDebug(@"didSelectChip: %d", chipValue);
 }
 
-- (void)updateButtonsdidClickShowCardButton
+- (void)updateZJHButtons
 {
+    self.betButton.enabled = [_gameService canIBet];
+    self.raiseBetButton.enabled = [_gameService canIRaiseBet];
+    self.autoBetButton.enabled = [_gameService canIAutoBet];
     
+    self.compareCardButton.enabled = [_gameService canICompareCard];
+    self.checkCardButton.enabled = [_gameService canICheckCard];
+    self.foldCardButton.enabled = [_gameService canIFoldCard];
 }
 
 @end

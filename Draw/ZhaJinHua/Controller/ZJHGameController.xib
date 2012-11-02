@@ -665,6 +665,62 @@
 					<int key="connectionID">1967</int>
 				</object>
 				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">betButton</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="238988111"/>
+					</object>
+					<int key="connectionID">1968</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">raiseBetButton</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="139360167"/>
+					</object>
+					<int key="connectionID">1969</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">autoBetButton</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="435382813"/>
+					</object>
+					<int key="connectionID">1970</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">compareCardbutton</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="221285920"/>
+					</object>
+					<int key="connectionID">1971</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">compareCardButton</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="221285920"/>
+					</object>
+					<int key="connectionID">1972</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">checkCardButton</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="380057684"/>
+					</object>
+					<int key="connectionID">1973</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">foldCardButton</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="18726215"/>
+					</object>
+					<int key="connectionID">1974</int>
+				</object>
+				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">clickQuitButton:</string>
 						<reference key="source" ref="876385374"/>
@@ -4058,7 +4114,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">1967</int>
+			<int key="maxID">1974</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes"/>
 		<int key="IBDocument.localizationMode">0</int>
@@ -4068,7 +4124,7 @@
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
 			<string key="message_icon@2x.png">{16, 16}</string>
 			<string key="runaway@2x.png">{72, 72}</string>
-			<string key="setting@2x.png">{72, 71}</string>
+			<string key="setting@2x.png">{74, 74}</string>
 			<string key="tree@2x.png">{79, 81}</string>
 			<string key="zjh_auto_bet@2x.png">{127, 60}</string>
 			<string key="zjh_bet@2x.png">{103, 60}</string>

@@ -120,9 +120,28 @@ static ZJHGameService *_defaultService;
                                 cardIds:cardIds];
 }
 
+- (BOOL)isMyTurn
+{
+    return [[UserManager defaultManager] isMe:self.session.currentPlayUserId];
+}
+
+- (BOOL)canIBet
+{
+    return [self isMyTurn];
+}
+
 - (BOOL)canIRaiseBet
 {
-    return [_gameState canRaiseBet];
+    if (![self isMyTurn]) {
+        return NO;
+    }else {
+        return [_gameState canRaiseBet];
+    }
+}
+
+- (BOOL)canIAutoBet
+{
+    return [self isMyTurn];
 }
 
 - (BOOL)canICheckCard
@@ -137,12 +156,20 @@ static ZJHGameService *_defaultService;
 
 - (BOOL)canICompareCard
 {
-    return [[_gameState userPlayInfo:[[UserManager defaultManager] userId]] canCompareCard];
+    if (![self isMyTurn]) {
+        return NO;
+    }else {
+        return [[_gameState userPlayInfo:[[UserManager defaultManager] userId]] canCompareCard];
+    }
 }
 
 - (BOOL)canIShowCard:(int)cardId
 {
-    return [[_gameState userPlayInfo:[[UserManager defaultManager] userId]] canShowCard:cardId];
+    if (![self isMyTurn]) {
+        return NO;
+    }else {
+        return [[_gameState userPlayInfo:[[UserManager defaultManager] userId]] canShowCard:cardId];
+    }
 }
 
 - (BOOL)canUserCompareCard:(NSString *)userId
