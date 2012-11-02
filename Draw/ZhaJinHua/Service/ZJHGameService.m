@@ -120,11 +120,6 @@ static ZJHGameService *_defaultService;
                                 cardIds:cardIds];
 }
 
-- (BOOL)isMyTurn
-{
-    return [[UserManager defaultManager] isMe:self.session.currentPlayUserId];
-}
-
 - (BOOL)canIBet
 {
     return [self isMyTurn];
@@ -264,6 +259,17 @@ static ZJHGameService *_defaultService;
     }
 }
 
+- (void)handleNextPlayerStartNotificationRequest:(GameMessage *)message
+{
+    self.session.currentPlayUserId = [message currentPlayUserId];
+    [self postNotification:NOTIFICATION_NEXT_PLAYER_START message:message];
+}
+
+- (void)handleNextPlayerStartNotificationResponse:(GameMessage *)message
+{
+    
+}
+
 - (void)handleBetRequest:(GameMessage *)message
 {
     [self updateBetModel:message];
@@ -337,11 +343,19 @@ static ZJHGameService *_defaultService;
 - (void)handleCustomMessage:(GameMessage*)message
 {
     switch ([message command]){
-        case GameCommandTypeBetDiceRequest:
+        case GameCommandTypeNextPlayerStartNotificationRequest:
+            [self handleNextPlayerStartNotificationRequest:message];
+            break;
+            
+        case GameCommandTypeNextPlayerStartNotificationResponse:
+            [self handleNextPlayerStartNotificationResponse:message];
+            break;
+            
+        case GameCommandTypeBetRequest:
             [self handleBetRequest:message];
             break;
             
-        case GameCommandTypeBetDiceResponse:
+        case GameCommandTypeBetResponse:
             [self handleBetResponse:message];
             break;
             
