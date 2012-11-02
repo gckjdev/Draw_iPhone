@@ -719,14 +719,6 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">compareCardbutton</string>
-						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="221285920"/>
-					</object>
-					<int key="connectionID">1971</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">compareCardButton</string>
 						<reference key="source" ref="372490531"/>
 						<reference key="destination" ref="221285920"/>
@@ -4190,45 +4182,6 @@
 				<object class="IBPartialClassDescription">
 					<string key="className">ZJHGameController</string>
 					<string key="superclassName">PPViewController</string>
-					<dictionary class="NSMutableDictionary" key="actions">
-						<string key="clickAutoBetButton:">id</string>
-						<string key="clickBetButton:">id</string>
-						<string key="clickCheckCardButton:">id</string>
-						<string key="clickCompareCardButton:">id</string>
-						<string key="clickFoldCardButton:">id</string>
-						<string key="clickQuitButton:">id</string>
-						<string key="clickRaiseBetButton:">id</string>
-					</dictionary>
-					<dictionary class="NSMutableDictionary" key="actionInfosByName">
-						<object class="IBActionInfo" key="clickAutoBetButton:">
-							<string key="name">clickAutoBetButton:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-						<object class="IBActionInfo" key="clickBetButton:">
-							<string key="name">clickBetButton:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-						<object class="IBActionInfo" key="clickCheckCardButton:">
-							<string key="name">clickCheckCardButton:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-						<object class="IBActionInfo" key="clickCompareCardButton:">
-							<string key="name">clickCompareCardButton:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-						<object class="IBActionInfo" key="clickFoldCardButton:">
-							<string key="name">clickFoldCardButton:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-						<object class="IBActionInfo" key="clickQuitButton:">
-							<string key="name">clickQuitButton:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-						<object class="IBActionInfo" key="clickRaiseBetButton:">
-							<string key="name">clickRaiseBetButton:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-					</dictionary>
 					<dictionary class="NSMutableDictionary" key="outlets">
 						<string key="autoBetButton">UIButton</string>
 						<string key="betButton">UIButton</string>
