@@ -20,7 +20,6 @@
 
 @end
 
-
 @interface ChipView : UIButton
 
 @property (readonly, nonatomic, assign) id<ChipViewProtocol> delegate;

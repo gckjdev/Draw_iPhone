@@ -3799,10 +3799,10 @@
 				A44B627B163BC37000A8045B /* DealingShoe.m */,
 				C2C54CE91640C45B005561DA /* BetTable.h */,
 				C2C54CEA1640C45B005561DA /* BetTable.m */,
-				A404A9DF1643607F007CA21A /* ChipView.h */,
-				A404A9E01643607F007CA21A /* ChipView.m */,
 				A404A9A916426545007CA21A /* ChipsSelectView.h */,
 				A404A9AA16426545007CA21A /* ChipsSelectView.m */,
+				A404A9DF1643607F007CA21A /* ChipView.h */,
+				A404A9E01643607F007CA21A /* ChipView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";

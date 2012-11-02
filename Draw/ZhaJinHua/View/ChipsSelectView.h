@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "ChipView.h"
 
-@protocol ChipsSelectView <NSObject>
+@protocol ChipsSelectViewProtocol <NSObject>
 
 @optional
 - (void)didSelectChip:(int)chipValue;
@@ -21,6 +21,7 @@
 
 + (void)popupAtView:(UIView *)atView
              inView:(UIView *)inView
-          aboveView:(UIView *)aboveView;
+          aboveView:(UIView *)aboveView
+           delegate:(id<ChipViewProtocol>)delegate;
 
 @end

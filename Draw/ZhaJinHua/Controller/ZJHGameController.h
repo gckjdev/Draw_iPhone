@@ -10,6 +10,7 @@
 #import "PokerView.h"
 #import "ZJHAvatarView.h"
 #import "DealerView.h"
+#import "ChipsSelectView.h"
 
 
 @class ZJHGameService;
@@ -28,7 +29,8 @@ typedef enum {
     UserPositionLeftTop,
 }UserPosition;
 
-@interface ZJHGameController : PPViewController <PokerViewProtocol, ZJHAvatarViewDelegate, DealerViewDelegate>
+@interface ZJHGameController : PPViewController <PokerViewProtocol, ZJHAvatarViewDelegate, DealerViewDelegate, ChipsSelectViewProtocol>
+
 @property (retain, nonatomic) IBOutlet BetTable *betTable;
 @property (retain, nonatomic) IBOutlet DealerView *dealerView;
 
