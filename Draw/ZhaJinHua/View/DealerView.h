@@ -19,9 +19,7 @@
 @interface DealerView : UIView
 @property (assign, nonatomic) id<DealerViewDelegate> delegate;
 
-- (void)dealToDestinationPoints:(CGPoint[])points
-                          count:(int)pointsCount
-                          times:(int)times;
+- (void)deal;
 
 
 @end

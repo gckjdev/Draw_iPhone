@@ -193,7 +193,8 @@
 - (IBAction)clickRaiseBetButton:(id)sender
 {
 
-    [self.betTable clearAllChips:UserPositionCenter];
+//    [self.betTable clearAllChips:UserPositionCenter];
+    [self gameStart];
     
 }
 
@@ -286,7 +287,7 @@
 {
     PPDebug(@"<ZJHGameController> game start!");
     [self updateAllPokers];
-    [self.dealerView dealToDestinationPoints:[self getPlayerSittingPoints] count:5 times:3];
+    [self.dealerView deal];
     
 }
 
