@@ -115,6 +115,65 @@ static ZJHImageManager* shareInstance;
     return [UIImage imageNamed:@"poker_back_bg.png"];
 }
 
+- (UIImage*)pokerFoldBackImage
+{
+    return [UIImage imageNamed:@"poker_fold_back_bg.png"];
+}
+
+- (UIImage*)pokerLoseBackImage{
+    return [UIImage imageNamed:@"poker_lose_back_bg.png"];
+}
+
+- (UIImage*)showCardButtonBgImage
+{
+    return [UIImage imageNamed:@"show_card_button.png"];
+}
+
+- (UIImage*)chipImageForChipValue:(int)chipValue;
+{
+    switch (chipValue) {
+        case 5:
+            return [UIImage imageNamed:@"chip_5@2x.png"];
+            break;
+            
+        case 10:
+            return [UIImage imageNamed:@"chip_10@2x.png"];
+            break;
+            
+        case 25:
+            return [UIImage imageNamed:@"chip_25@2x.png"];
+            break;
+            
+        case 50:
+            return [UIImage imageNamed:@"chip_50@2x.png"];
+            break;
+            
+        case 100:
+            return [UIImage imageNamed:@"chip_100@2x.png"];
+            break;
+            
+        case 250:
+            return [UIImage imageNamed:@"chip_250@2x.png"];
+            break;
+            
+        case 500:
+            return [UIImage imageNamed:@"chip_500@2x.png"];
+            break;
+            
+        case 1000:
+            return [UIImage imageNamed:@"chip_1000@2x.png"];
+            break;
+            
+        default:
+            return nil;
+            break;
+    }
+}
+
+- (UIImage*)chipsSelectViewBgImage
+{
+    return [UIImage imageNamed:@""];
+}
 
 
 #pragma mark - pravite methods
@@ -258,11 +317,6 @@ static ZJHImageManager* shareInstance;
             return nil;
             break;
     }
-}
-
-- (UIImage*)counterImageForCounter:(int)counter
-{
-    return [[ShareImageManager defaultManager] coinImage];
 }
 
 

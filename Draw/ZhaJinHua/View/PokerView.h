@@ -9,8 +9,19 @@
 #import <UIKit/UIKit.h>
 #import "Poker.h"
 
+@class PokerView;
+
+@protocol PokerViewProtocol <NSObject>
+
+@optional
+- (void)didClickPokerView:(PokerView *)pokerView;
+- (void)didClickShowCardButton:(PokerView *)pokerView;
+
+@end
+
 @interface PokerView : UIView
 
+@property (readonly, assign, nonatomic) id<PokerViewProtocol> delegate;
 @property (readonly, retain, nonatomic) Poker *poker;
 @property (readonly, assign, nonatomic) BOOL isFaceUp;
 
@@ -21,12 +32,19 @@
 @property (retain, nonatomic) IBOutlet UIImageView *tickImageView;
 @property (retain, nonatomic) IBOutlet UIImageView *bodyImageView;
 @property (retain, nonatomic) IBOutlet UIImageView *backImageView;
+@property (retain, nonatomic) IBOutlet UILabel *locateLabel;
 
 + (id)createPokerViewWithPoker:(Poker *)poker
                          frame:(CGRect)frame
-                      isFaceUp:(BOOL)isFaceUp;
+                      isFaceUp:(BOOL)isFaceUp
+                      delegate:(id<PokerViewProtocol>)delegate;
 
 - (void)enableUserInterface;
+
+- (BOOL)showCardButtonIsPopup;
+- (void)popupShowCardButtonInView:(UIView *)inView
+                        aboveView:(UIView *)aboveView;
+- (void)dismissShowCardButton;
 
 - (void)faceDown:(BOOL)animation;
 - (void)faceUp:(BOOL)animation;

@@ -27,13 +27,14 @@ typedef enum {
 
 @interface ZJHPokerView : UIView
 
-@property (retain, nonatomic) PokerView *poker1View;
-@property (retain, nonatomic) PokerView *poker2View;
-@property (retain, nonatomic) PokerView *poker3View;
+@property (retain, nonatomic) PokerView *pokerView1;
+@property (retain, nonatomic) PokerView *pokerView2;
+@property (retain, nonatomic) PokerView *pokerView3;
 
 - (void)updateWithPokers:(NSArray *)pokers
                     size:(CGSize)size
-                     gap:(CGFloat)gap;
+                     gap:(CGFloat)gap
+                delegate:(id<PokerViewProtocol>)delegate;
 
 - (void)clear;
 

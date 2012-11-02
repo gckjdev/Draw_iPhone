@@ -80,7 +80,7 @@
     
     [_popTipView presentPointingAtView:atView
                                 inView:inView 
-                          aboveSubView:siblingSubview
+                             aboveView:siblingSubview
                               animated:animated 
                         pointDirection:pointDirection];
     

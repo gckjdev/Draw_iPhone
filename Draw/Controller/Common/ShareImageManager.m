@@ -147,6 +147,7 @@ static UIImage* _whitePaperImage;
 {
     return [UIImage imageNamed:@"coin.png"];
 }
+
 - (UIImage *)toolImage
 {
     return [UIImage imageNamed:@"tool.png"];

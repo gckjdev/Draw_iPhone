@@ -81,13 +81,21 @@
 }
 
 - (void)someBetFrom:(UserPosition)position
-           forCount:(int)counter
+          chipValue:(int)chipValue
+              count:(int)count
+{
+    while (count--) {
+        [self someBetFrom:position chipValue:chipValue];
+    };
+}
+
+- (void)someBetFrom:(UserPosition)position
+          chipValue:(int)chipValue
 {
     CALayer* layer = [CALayer layer];
-    UIImage* counterImage = [[ZJHImageManager defaultManager] counterImageForCounter:counter];
-    [layer setContents:(id)[counterImage CGImage]];
-//    UIImageView* counterView = [[[UIImageView alloc] initWithImage:counterImage] autorelease];
-    layer.bounds = CGRectMake(0, 0, counterImage.size.width,counterImage.size.height);
+    UIImage* chipImage = [[ZJHImageManager defaultManager] chipImageForChipValue:chipValue];
+    [layer setContents:(id)[chipImage CGImage]];
+    layer.bounds = CGRectMake(0, 0, chipImage.size.width,chipImage.size.height);
     layer.shouldRasterize = YES;
     
     [self.layer addSublayer:layer];
@@ -102,12 +110,10 @@
     [layer addAnimation:anim forKey:nil];
 }
 
-- (void)clearAllCounter:(UserPosition)position
+- (void)clearAllChips:(UserPosition)position
 {
-    
-
     //清除上一次残留的筹码
-    PPDebug(@"<test>clear counter, layerQueue count = %d",_layerQueue.count);
+    PPDebug(@"<test>clear chips, layerQueue count = %d",_layerQueue.count);
     while ([_layerQueue peek]) {
         CALayer* layer = [_layerQueue dequeue];
         [layer removeFromSuperlayer];

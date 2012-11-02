@@ -20,7 +20,13 @@
 - (UIImage*)pokerTickImage;
 - (UIImage*)pokerFrontBgImage;
 - (UIImage*)pokerBackImage;
+- (UIImage*)pokerFoldBackImage;
+- (UIImage*)pokerLoseBackImage;
 
-- (UIImage*)counterImageForCounter:(int)counter;
+- (UIImage*)showCardButtonBgImage;
+
+- (UIImage*)chipImageForChipValue:(int)chipValue;
+
+- (UIImage*)chipsSelectViewBgImage;
 
 @end

@@ -20,6 +20,7 @@
     CGFloat _angle;
 }
 
+@property (readwrite, assign, nonatomic) id<PokerViewProtocol> delegate;
 @property (readwrite, retain, nonatomic) Poker *poker;
 @property (readwrite, assign, nonatomic) BOOL isFaceUp;
 @property (retain, nonatomic) CMPopTipView *popupView;
@@ -40,15 +41,18 @@
     [_tickImageView release];
     [_bodyImageView release];
     [_popupView release];
+    [_locateLabel release];
     [super dealloc];
 }
 
 
 + (id)createPokerViewWithPoker:(Poker *)poker
                          frame:(CGRect)frame
-                      isFaceUp:(BOOL)isFaceUp
+                      isFaceUp:(BOOL)isFaceUp                      delegate:(id<PokerViewProtocol>)delegate
 {
     PokerView *pokerView = [PokerView createPokerView];
+    pokerView.delegate = delegate;
+
     pokerView.backgroundColor = [UIColor clearColor];
     pokerView.frame = frame;
     [pokerView setOriginInfo];
@@ -205,30 +209,45 @@
 - (void)clickSelf:(id)sender
 {
     PPDebug(@"clickSelf");
-    self.popupView.isPopup ? [self.popupView dismissAnimated:YES]: [self popupShowCardButton];
-}
-
-+ (id)createShowCardButton
-{
-    NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"PokerView" owner:self options:nil];
-    // Grab a pointer to the first object (presumably the custom cell, as that's all the XIB should contain).
-    if (topLevelObjects == nil || [topLevelObjects count] <= 1){
-        return nil;
-    }
     
-    return [topLevelObjects objectAtIndex:1];
+    if ([self.delegate respondsToSelector:@selector(didClickPokerView:)]) {
+        [self.delegate didClickPokerView:self];
+    }
 }
 
-- (void)popupShowCardButton
+- (void)dismissShowCardButton
 {
-    UIView *showCardButton = [PokerView createShowCardButton];
+    [self.popupView dismissAnimated:YES];
+}
+
+- (UIView *)createShowCardButton
+{
+    UIView *view = [[[UIView alloc] initWithFrame:CGRectMake(0, 0, 43, 36)] autorelease];
+    UIImageView *imageView = [[[UIImageView alloc] initWithFrame:view.bounds] autorelease];
+    imageView.image = [[ZJHImageManager defaultManager] showCardButtonBgImage];
+    UIButton *button = [[[UIButton alloc] initWithFrame:CGRectMake(4, 4, 35, 25)] autorelease];
+    [button.titleLabel setFont:[UIFont systemFontOfSize:13]];
+    [button setTitle:@"亮牌" forState:UIControlStateNormal];
+    [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [button addTarget:self action:@selector(clickShowCardButton:) forControlEvents:UIControlEventTouchUpInside];
+    
+    [view addSubview:imageView];
+    [view addSubview:button];
+    
+    return view;
+}
+
+- (void)popupShowCardButtonInView:(UIView *)inView
+                        aboveView:(UIView *)aboveView
+{
+    UIView *showCardButton = [self createShowCardButton];
     
     self.popupView = [[[CMPopTipView alloc] initWithCustomView:showCardButton needBubblePath:NO] autorelease];
     self.popupView.backgroundColor = [UIColor clearColor];
     
-    [self.popupView presentPointingAtView:self
-                                   inView:self
-                             aboveSubView:self
+    [self.popupView presentPointingAtView:self.locateLabel
+                                   inView:inView
+                                aboveView:aboveView
                                  animated:YES
                            pointDirection:PointDirectionDown];
     
@@ -238,12 +257,19 @@
     
 }
 
-- (void)didClickShowCardButton:(id)sender
+- (BOOL)showCardButtonIsPopup
+{
+    return self.popupView.isPopup;
+}
+
+- (void)clickShowCardButton:(id)sender
 {
     PPDebug(@"didClickShowCardButton");
+    [self dismissShowCardButton];
     self.tickImageView.image = [UIImage imageNamed:@""];
-
-    [[ZJHGameService defaultService] showCard:_poker.pokerId];
-}
+    if ([self.delegate respondsToSelector:@selector(didClickShowCardButton:)]) {
+        [self.delegate didClickShowCardButton:self];
+    }
+}    
 
 @end
