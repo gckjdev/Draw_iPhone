@@ -511,7 +511,7 @@ compareCardWith:(NSString*)targetUserId
     PPDebug(@"didSelectChip: %d", chipValue);
 }
 
-- (void)updateButtons
+- (void)updateButtonsdidClickShowCardButton
 {
     
 }
