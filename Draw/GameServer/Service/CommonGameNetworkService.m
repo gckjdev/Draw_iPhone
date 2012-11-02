@@ -494,4 +494,10 @@
 {
     return _onlineUserCount;
 }
+
+- (BOOL)isMyTurn
+{
+    return [[UserManager defaultManager] isMe:self.session.currentPlayUserId];
+}
+
 @end

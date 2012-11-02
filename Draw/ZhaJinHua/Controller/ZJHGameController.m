@@ -25,8 +25,6 @@
 #define AVATAR_TAG_OFFSET   8000
 #define POKERS_TAG_OFFSET   2000
 #define MAX_PLAYER_COUNT    5
-#define NOTIFICATION_NEXT_PLAYER_START @""
-#define NOTIFICATION_GAME_BEGIN    @""
 
 @interface ZJHGameController ()
 {
@@ -299,6 +297,8 @@
 {
     ZJHAvatarView* avatar = [self getAvatarViewByPosition:[self getPositionByUserId:userId]];
     [avatar startReciprocol:[ConfigManager getZJHTimeInterval]];
+    
+    [self updateZJHButtons];
 }
 
 - (void)someoneBet:(NSString*)userId
