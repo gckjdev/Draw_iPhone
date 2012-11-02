@@ -69,7 +69,6 @@
 		A404A9A0164237EF007CA21A /* poker_lose_back_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = A404A99E164237EF007CA21A /* poker_lose_back_bg.png */; };
 		A404A9A2164237FA007CA21A /* show_card_button.png in Resources */ = {isa = PBXBuildFile; fileRef = A404A9A1164237FA007CA21A /* show_card_button.png */; };
 		A404A9AB16426545007CA21A /* ChipsSelectView.m in Sources */ = {isa = PBXBuildFile; fileRef = A404A9AA16426545007CA21A /* ChipsSelectView.m */; };
-		A404A9AD16426585007CA21A /* ChipsSelectView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A404A9AC16426584007CA21A /* ChipsSelectView.xib */; };
 		A404A9D816428149007CA21A /* chip_100@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A404A9D116428149007CA21A /* chip_100@2x.png */; };
 		A404A9D916428149007CA21A /* chip_10@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A404A9D216428149007CA21A /* chip_10@2x.png */; };
 		A404A9DA16428149007CA21A /* chip_250@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A404A9D316428149007CA21A /* chip_250@2x.png */; };
@@ -1303,7 +1302,6 @@
 		A404A9A1164237FA007CA21A /* show_card_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = show_card_button.png; sourceTree = "<group>"; };
 		A404A9A916426545007CA21A /* ChipsSelectView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChipsSelectView.h; sourceTree = "<group>"; };
 		A404A9AA16426545007CA21A /* ChipsSelectView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChipsSelectView.m; sourceTree = "<group>"; };
-		A404A9AC16426584007CA21A /* ChipsSelectView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChipsSelectView.xib; sourceTree = "<group>"; };
 		A404A9D116428149007CA21A /* chip_100@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chip_100@2x.png"; sourceTree = "<group>"; };
 		A404A9D216428149007CA21A /* chip_10@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chip_10@2x.png"; sourceTree = "<group>"; };
 		A404A9D316428149007CA21A /* chip_250@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chip_250@2x.png"; sourceTree = "<group>"; };
@@ -3800,7 +3798,6 @@
 				C2C54CEA1640C45B005561DA /* BetTable.m */,
 				A404A9A916426545007CA21A /* ChipsSelectView.h */,
 				A404A9AA16426545007CA21A /* ChipsSelectView.m */,
-				A404A9AC16426584007CA21A /* ChipsSelectView.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -8059,7 +8056,6 @@
 				A404A99F164237EF007CA21A /* poker_fold_back_bg@2x.png in Resources */,
 				A404A9A0164237EF007CA21A /* poker_lose_back_bg.png in Resources */,
 				A404A9A2164237FA007CA21A /* show_card_button.png in Resources */,
-				A404A9AD16426585007CA21A /* ChipsSelectView.xib in Resources */,
 				A404A9D816428149007CA21A /* chip_100@2x.png in Resources */,
 				A404A9D916428149007CA21A /* chip_10@2x.png in Resources */,
 				A404A9DA16428149007CA21A /* chip_250@2x.png in Resources */,
