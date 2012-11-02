@@ -10,6 +10,7 @@
 #import "CMPopTipView.h"
 #import "ZJHImageManager.h"
 #import "ChipView.h"
+#import "ZJHGameService.h"
 
 #define CHIP_GAP 5
 #define CHIPS_COUNT 4
@@ -66,10 +67,14 @@
 {
     int i = 0;
     CGRect frame = CGRectMake(0, 0, CHIP_VIEW_WIDTH, CHIP_VIEW_HEIGHT);
-    NSArray *chipValues = [NSArray arrayWithObjects:[NSNumber numberWithInt:5], [NSNumber numberWithInt:10], [NSNumber numberWithInt:25], [NSNumber numberWithInt:50], nil];
-    for (NSNumber *chipValue in chipValues) {
+    for (NSNumber *chipValue in [[[ZJHGameService defaultService] gameState] chipValues]) {
         frame = CGRectMake(i++ * (CHIP_VIEW_WIDTH + CHIP_GAP), 0, CHIP_VIEW_WIDTH, CHIP_VIEW_HEIGHT);
         ChipView *chipView = [ChipView chipViewWithFrame:frame chipValue:chipValue.intValue delegate:self];
+        
+        if (chipValue.intValue <= [[[ZJHGameService defaultService] gameState] singleBet]) {
+            chipView.enabled = NO;
+        }
+        
         [self addSubview:chipView];
     }
 }
