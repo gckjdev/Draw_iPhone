@@ -20,9 +20,7 @@
 #import "GameMessage.pb.h"
 #import "BetTable.h"
 #import "ConfigManager.h"
-//#import "Poker.h"
-#import "CMPopTipView.h"
-#import "PokerView.h"
+#import "ChipsSelectView.h"
 
 #define AVATAR_TAG_OFFSET   8000
 #define POKERS_TAG_OFFSET   2000
@@ -214,7 +212,7 @@
 //
 //    [pokersView updateWithPokers:[NSArray arrayWithObjects:poker1, poker2, poker3, nil] size:CGSizeMake(BIG_POKER_VIEW_WIDTH, BIG_POKER_VIEW_HEIGHT) gap:BIG_POKER_GAP delegate:self];
     
-    
+    [ChipsSelectView popupAtView:sender inView:self.view aboveView:nil];
     
 }
 
