@@ -50,6 +50,7 @@
 - (void)dealloc
 {
     [_betTable release];
+    [_dealerView release];
     [super dealloc];
 }
 
@@ -191,7 +192,7 @@
 
 - (IBAction)clickRaiseBetButton:(id)sender
 {
-    [self.betTable clearAllCounter:UserPositionCenter];
+    [self gameStart];
 }
 
 - (IBAction)clickAutoBetButton:(id)sender
@@ -265,10 +266,23 @@
     [self updateWaittingForNextTurnNotLabel];
 }
 
+- (CGPoint*)getPlayerSittingPoints
+{
+    CGPoint points[5];
+    points[0] = CGPointMake(0, self.dealerView.frame.size.height/2);
+    points[1] = CGPointMake(0, self.dealerView.frame.size.height);
+    points[2] = CGPointMake(self.dealerView.frame.size.width/2, self.dealerView.frame.size.height/2);
+    points[3] = CGPointMake(self.dealerView.frame.size.width, self.dealerView.frame.size.height/2);
+    points[4] = CGPointMake(self.dealerView.frame.size.width, 0);
+    
+    return points;
+}
+
 - (void)gameStart
 {
     PPDebug(@"<ZJHGameController> game start!");
     [self updateAllPokers];
+    [self.dealerView dealToDestinationPoints:[self getPlayerSittingPoints] count:5 times:3];
     
 }
 
@@ -470,6 +484,7 @@ compareCardWith:(NSString*)targetUserId
 
 - (void)viewDidUnload {
     [self setBetTable:nil];
+    [self setDealerView:nil];
     [super viewDidUnload];
 }
 
