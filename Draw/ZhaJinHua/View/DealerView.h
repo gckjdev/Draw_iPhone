@@ -16,10 +16,13 @@
 
 @end
 
-@interface DealerView : UIView
+@interface DealerView : UIView {
+    int _remainCards;
+}
 @property (assign, nonatomic) id<DealerViewDelegate> delegate;
 
-- (void)deal;
+- (void)dealWithPositionArray:(NSArray*)array
+                        times:(int)times;
 
 
 @end
