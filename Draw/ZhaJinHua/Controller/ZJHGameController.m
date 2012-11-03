@@ -53,9 +53,8 @@
     [_autoBetButton release];
     [_compareCardButton release];
     [_checkCardButton release];
-    [_foldCardButton release];
-    [_cardTypeLabel release];
     [_cardTypeButton release];
+    [_foldCardButton release];
     [super dealloc];
 }
 
@@ -505,6 +504,7 @@ compareCardWith:(NSString*)targetUserId
     [self setFoldCardButton:nil];
     [self setCardTypeLabel:nil];
     [self setCardTypeButton:nil];
+    [self setFoldCardButton:nil];
     [super viewDidUnload];
 }
 
