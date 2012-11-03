@@ -22,11 +22,12 @@
 @class BetTable;
 
 typedef enum {
-    UserPositionRightTop = 1,
+    UserPositionCenter = 0,
     UserPositionRight,
-    UserPositionCenter,
-    UserPositionLeft,
+    UserPositionRightTop,
     UserPositionLeftTop,
+    UserPositionLeft,
+    
 }UserPosition;
 
 @interface ZJHGameController : PPViewController <PokerViewProtocol, ZJHAvatarViewDelegate, DealerViewDelegate, ChipsSelectViewProtocol>
