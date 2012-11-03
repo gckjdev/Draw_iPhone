@@ -127,6 +127,7 @@
 
 - (void)startReciprocol:(CFTimeInterval)reciprocolTime
 {
+    [self bringSubviewToFront:self.roundAvatar];
     [self.roundAvatar startReciprocol:reciprocolTime];
 }
 
