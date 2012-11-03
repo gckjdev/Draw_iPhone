@@ -42,24 +42,24 @@
     return ((float)(rand()%100)/100);
 }
 
-- (CGPoint)pointByPosition:(UserPosition)position
-{
-    switch (position) {
-        case UserPositionRight:
-            return CGPointMake(self.frame.size.width, self.frame.size.height*0.75);
-        case UserPositionRightTop:
-            return CGPointMake(self.frame.size.width, self.frame.size.height*0.25);
-        case UserPositionLeft:
-            return CGPointMake(0, self.frame.size.height*0.75);
-        case UserPositionLeftTop:
-            return CGPointMake(0, self.frame.size.height*0.25);
-        case UserPositionCenter:
-            return CGPointMake(self.frame.size.width/2, self.frame.size.height);
-        default:
-            return CGPointMake(self.frame.size.width/2, 0);
-            break;
-    };
-}
+//- (CGPoint)pointByPosition:(UserPosition)position
+//{
+//    switch (position) {
+//        case UserPositionRight:
+//            return CGPointMake(self.frame.size.width, self.frame.size.height*0.75);
+//        case UserPositionRightTop:
+//            return CGPointMake(self.frame.size.width, self.frame.size.height*0.25);
+//        case UserPositionLeft:
+//            return CGPointMake(0, self.frame.size.height*0.75);
+//        case UserPositionLeftTop:
+//            return CGPointMake(0, self.frame.size.height*0.25);
+//        case UserPositionCenter:
+//            return CGPointMake(self.frame.size.width/2, self.frame.size.height);
+//        default:
+//            return CGPointMake(self.frame.size.width/2, 0);
+//            break;
+//    };
+//}
 
 - (void)dealCard:(id)point
 {
