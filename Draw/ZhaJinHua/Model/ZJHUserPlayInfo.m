@@ -176,4 +176,45 @@
     return pokers;
 }
 
+- (NSString *)ZJHPokerType
+{
+    switch (_cardType) {
+        case PBZJHCardTypeHighCard:
+            return @"kCardTypeHighCard";
+            break;
+            
+        case PBZJHCardTypePair:
+            return @"kCardTypePair";
+            break;
+            
+        case PBZJHCardTypeStraight:
+            return @"kCardTypeStraight";
+            break;
+            
+        case PBZJHCardTypeFlush:
+            return @"kCardTypeFlush";
+            break;
+            
+        case PBZJHCardTypeStraightFlush:
+            return @"kCardTypeStraightFlush";
+            break;
+            
+        case PBZJHCardTypeThreeOfAKind:
+            return @"kCardTypeThreeOfAKind";
+            break;
+            
+        case PBZJHCardTypeSpecial:
+            return @"kCardTypeSpecial";
+            break;
+            
+        case PBZJHCardTypeUnknow:
+            return @"kCardTypeUnknow";
+            break;
+            
+        default:
+            return @"";
+            break;
+    }
+}
+
 @end

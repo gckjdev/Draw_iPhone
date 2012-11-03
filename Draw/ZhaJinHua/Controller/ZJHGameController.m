@@ -54,6 +54,8 @@
     [_compareCardButton release];
     [_checkCardButton release];
     [_foldCardButton release];
+    [_cardTypeLabel release];
+    [_cardTypeButton release];
     [super dealloc];
 }
 
@@ -501,6 +503,8 @@ compareCardWith:(NSString*)targetUserId
     [self setCompareCardButton:nil];
     [self setCheckCardButton:nil];
     [self setFoldCardButton:nil];
+    [self setCardTypeLabel:nil];
+    [self setCardTypeButton:nil];
     [super viewDidUnload];
 }
 
