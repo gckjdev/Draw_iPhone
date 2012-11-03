@@ -11,6 +11,20 @@
 #import "AnimationManager.h"
 #import "ZJHGameController.h"
 
+@implementation DealPoint
+@synthesize x;
+@synthesize y;
+
++ (DealPoint*)pointWithCGPoint:(CGPoint)point
+{
+    DealPoint* aPoint = [[[DealPoint alloc] init] autorelease];
+    aPoint.x = point.x;
+    aPoint.y = point.y;
+    return aPoint;
+}
+
+@end
+
 @implementation DealerView
 @synthesize delegate = _delegate;
 
@@ -47,9 +61,9 @@
     };
 }
 
-- (void)dealCard:(id)position
+- (void)dealCard:(id)point
 {
-    int pos = ((NSNumber*)position).intValue;
+    CGPoint destinationPoint = CGPointMake(((DealPoint*)point).x, ((DealPoint*)point).y);
     CALayer* layer= [CALayer layer];
     UIImage* back = [[ZJHImageManager defaultManager] pokerBackImage];
     layer.contents = (id)[back CGImage];
@@ -58,7 +72,7 @@
     layer.position = CGPointMake(self.frame.size.width/2, self.frame.size.height/2);
     [self.layer addSublayer:layer];
 
-    CAAnimation* anim = [AnimationManager translationAnimationFrom:CGPointMake(self.frame.size.width/2, self.frame.size.height/2) to:[self pointByPosition:pos] duration:0.5 delegate:self removeCompeleted:NO];
+    CAAnimation* anim = [AnimationManager translationAnimationFrom:CGPointMake(self.frame.size.width/2, self.frame.size.height/2) to:destinationPoint duration:0.5 delegate:self removeCompeleted:NO];
     float angle = [self randomAngle];
     CAAnimation* anim2 = [AnimationManager rotationAnimationWithRoundCount:angle duration:0.5];
     anim2.removedOnCompletion = NO;
@@ -89,8 +103,8 @@
     float delay = 0;
     _remainCards = times * [array count];
     while (times --) {
-        for (NSNumber* position in array) {
-            [self performSelector:@selector(dealCard:) withObject:position afterDelay:delay];
+        for (DealPoint* point in array) {
+            [self performSelector:@selector(dealCard:) withObject:point afterDelay:delay];
             delay = delay + 0.5;
             
         }
