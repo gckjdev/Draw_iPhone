@@ -233,12 +233,10 @@
 
 - (IBAction)clickRaiseBetButton:(id)sender
 {
-    [self gameStart];
     [_popupViewManager popupChipsSelectViewAtView:sender
                                            inView:self.view
                                         aboveView:nil
                                          delegate:self];
-    
 }
 
 - (IBAction)clickAutoBetButton:(id)sender
@@ -328,7 +326,7 @@
 //    [self updateAllPokers];
     [self.dealerView dealWithPositionArray:[self getPositionsArray]
                                      times:3];
-    
+    [self updateZJHButtons];
 }
 
 - (void)nextPlayerStart:(NSString*)userId
@@ -336,7 +334,6 @@
     ZJHAvatarView* avatar = [self getAvatarViewByPosition:[self getPositionByUserId:userId]];
     [avatar startReciprocol:[ConfigManager getZJHTimeInterval]];
     [self updateZJHButtons];
-   
 }
 
 - (void)someoneBet:(NSString*)userId

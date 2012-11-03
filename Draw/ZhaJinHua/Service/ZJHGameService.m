@@ -358,6 +358,11 @@ static ZJHGameService *_defaultService;
     }
 }
 
+- (void)handleGameOverNotificationRequest:(GameMessage *)message
+{
+    [self postNotification:NOTIFICATION_GAME_OVER_NOTIFICATION_REQUEST message:message];
+}
+
 - (void)handleCustomMessage:(GameMessage*)message
 {
     switch ([message command]){
@@ -407,6 +412,10 @@ static ZJHGameService *_defaultService;
             
         case GameCommandTypeShowCardResponse:
             [self handleShowCardResponse:message];
+            break;
+            
+        case GameCommandTypeGameOverNotificationRequest:
+            [self handleGameOverNotificationRequest:message];
             break;
             
         default:
