@@ -90,7 +90,7 @@
     while (times --) {
         for (NSNumber* position in array) {
             [self performSelector:@selector(dealCard:) withObject:position afterDelay:delay];
-            delay = delay + 0.1;
+            delay = delay + 0.5;
             
         }
         

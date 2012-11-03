@@ -285,6 +285,9 @@
 		C29A300715CA16AC00BD0B73 /* CustomLabelUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = C29A300615CA16AC00BD0B73 /* CustomLabelUtil.m */; };
 		C29A300B15CA17FE00BD0B73 /* HKGirlFontLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = C29A300A15CA17FE00BD0B73 /* HKGirlFontLabel.m */; };
 		C29B5F541642749900EF4AB4 /* DealerView.m in Sources */ = {isa = PBXBuildFile; fileRef = C29B5F531642749900EF4AB4 /* DealerView.m */; };
+		C29B5F961644C74500EF4AB4 /* ZJHAvatarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C29B5F951644C74500EF4AB4 /* ZJHAvatarView.xib */; };
+		C29B5FB81644CAAD00EF4AB4 /* ZJHMyAvatarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C29B5FB71644CAAD00EF4AB4 /* ZJHMyAvatarView.xib */; };
+		C29B5FBB1644CB9C00EF4AB4 /* ZJHMyAvatarView.m in Sources */ = {isa = PBXBuildFile; fileRef = C29B5FBA1644CB9C00EF4AB4 /* ZJHMyAvatarView.m */; };
 		C29B8A211563B02000B9707D /* CommonMessageCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = C29B8A1F1563B02000B9707D /* CommonMessageCenter.m */; };
 		C29B8A221563B02000B9707D /* CommonMessageView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C29B8A201563B02000B9707D /* CommonMessageView.xib */; };
 		C29B8AA8156760FF00B9707D /* CommonMessageView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C29B8AA7156760FE00B9707D /* CommonMessageView~ipad.xib */; };
@@ -1627,6 +1630,10 @@
 		C29A300A15CA17FE00BD0B73 /* HKGirlFontLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HKGirlFontLabel.m; path = FontLabel/HKGirlFontLabel.m; sourceTree = "<group>"; };
 		C29B5F521642749900EF4AB4 /* DealerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DealerView.h; sourceTree = "<group>"; };
 		C29B5F531642749900EF4AB4 /* DealerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DealerView.m; sourceTree = "<group>"; };
+		C29B5F951644C74500EF4AB4 /* ZJHAvatarView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZJHAvatarView.xib; sourceTree = "<group>"; };
+		C29B5FB71644CAAD00EF4AB4 /* ZJHMyAvatarView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZJHMyAvatarView.xib; sourceTree = "<group>"; };
+		C29B5FB91644CB9C00EF4AB4 /* ZJHMyAvatarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJHMyAvatarView.h; sourceTree = "<group>"; };
+		C29B5FBA1644CB9C00EF4AB4 /* ZJHMyAvatarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJHMyAvatarView.m; sourceTree = "<group>"; };
 		C29B8A1E1563B02000B9707D /* CommonMessageCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonMessageCenter.h; sourceTree = "<group>"; };
 		C29B8A1F1563B02000B9707D /* CommonMessageCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonMessageCenter.m; sourceTree = "<group>"; };
 		C29B8A201563B02000B9707D /* CommonMessageView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommonMessageView.xib; sourceTree = "<group>"; };
@@ -3798,6 +3805,10 @@
 				A44B6257163A2BAF00A8045B /* PokerView.xib */,
 				C2F2CFB1163932C000995DCB /* ZJHAvatarView.h */,
 				C2F2CFB2163932C000995DCB /* ZJHAvatarView.m */,
+				C29B5F951644C74500EF4AB4 /* ZJHAvatarView.xib */,
+				C29B5FB71644CAAD00EF4AB4 /* ZJHMyAvatarView.xib */,
+				C29B5FB91644CB9C00EF4AB4 /* ZJHMyAvatarView.h */,
+				C29B5FBA1644CB9C00EF4AB4 /* ZJHMyAvatarView.m */,
 				A44B627A163BC36E00A8045B /* DealingShoe.h */,
 				A44B627B163BC37000A8045B /* DealingShoe.m */,
 				C2C54CE91640C45B005561DA /* BetTable.h */,
@@ -8073,6 +8084,8 @@
 				A404A9DC16428149007CA21A /* chip_500@2x.png in Resources */,
 				A404A9DD16428149007CA21A /* chip_50@2x.png in Resources */,
 				A404A9DE16428149007CA21A /* chip_5@2x.png in Resources */,
+				C29B5F961644C74500EF4AB4 /* ZJHAvatarView.xib in Resources */,
+				C29B5FB81644CAAD00EF4AB4 /* ZJHMyAvatarView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -8652,6 +8665,7 @@
 				C29B5F541642749900EF4AB4 /* DealerView.m in Sources */,
 				A404A9E21643607F007CA21A /* ChipView.m in Sources */,
 				A404A9EF1643DD57007CA21A /* PopupViewManager.m in Sources */,
+				C29B5FBB1644CB9C00EF4AB4 /* ZJHMyAvatarView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

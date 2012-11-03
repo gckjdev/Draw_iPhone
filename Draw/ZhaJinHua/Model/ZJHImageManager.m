@@ -328,5 +328,18 @@ static ZJHImageManager* shareInstance;
     }
 }
 
+- (UIImage*)noUserAvatarBackground
+{
+    return [UIImage imageNamed:@"avatar_default.png"];
+}
+- (UIImage*)avatarBackground
+{
+    return [UIImage imageNamed:@"zjh_other_plyer_avatar.png"];
+}
+- (UIImage*)myAvatarBackground
+{
+    return [UIImage imageNamed:@"zjh_my_avatar_bg.png"];
+}
+
 
 @end

@@ -29,4 +29,8 @@
 
 - (UIImage*)chipsSelectViewBgImage;
 
+- (UIImage*)noUserAvatarBackground;
+- (UIImage*)avatarBackground;
+- (UIImage*)myAvatarBackground;
+
 @end
