@@ -207,8 +207,6 @@
         self.roundAvatar.hidden = NO;
         [self.roundAvatar setAvatarUrl:user.avatar gender:user.gender];
     }
-
-
 }
 
 - (void)updateByPBGameUser:(PBGameUser*)user

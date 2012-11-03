@@ -98,6 +98,7 @@
             [myAvatar setFrame:placeView.frame];
             [self.view addSubview:myAvatar];
             myAvatar.tag = AVATAR_VIEW_TAG_OFFSET + i;
+            [myAvatar update];
             continue;
         }
         ZJHAvatarView* anAvatar = [ZJHAvatarView createZJHAvatarView];
