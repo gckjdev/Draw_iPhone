@@ -120,6 +120,11 @@
     self.dealerView.delegate = self;
     
 //    [self updateZJHButtons];
+    
+    // hidden views below
+    self.cardTypeButton.hidden = YES;
+    self.cardTypeButton.userInteractionEnabled = NO;
+    
 }
 
 
@@ -598,7 +603,7 @@ compareCardWith:(NSString*)targetUserId
 
 - (void)showMyCardTypeString
 {
-    _cardTypeButton.hidden = YES;
+    _cardTypeButton.hidden = NO;
     [_cardTypeButton setTitle:[_gameService myCardType] forState:UIControlStateNormal];
 }
 
