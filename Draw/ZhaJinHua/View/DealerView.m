@@ -84,9 +84,9 @@
     layer.position = CGPointMake(self.frame.size.width/2, self.frame.size.height/2);
     [self.layer addSublayer:layer];
 
-    CAAnimation* anim = [AnimationManager translationAnimationFrom:CGPointMake(self.frame.size.width/2, self.frame.size.height/2) to:destinationPoint duration:0.5 delegate:self removeCompeleted:NO];
+    CAAnimation* anim = [AnimationManager translationAnimationFrom:CGPointMake(self.frame.size.width/2, self.frame.size.height/2) to:destinationPoint duration:0.3 delegate:self removeCompeleted:NO];
     float angle = [self randomAngle];
-    CAAnimation* anim2 = [AnimationManager rotationAnimationWithRoundCount:angle duration:0.5];
+    CAAnimation* anim2 = [AnimationManager rotationAnimationWithRoundCount:angle duration:0.3];
     anim2.removedOnCompletion = NO;
     //        PPDebug(@"deal to point (%.2f, %.2f)",points[i].x, points[i].y );
     PPDebug(@" <test> remain cards = %d", _remainCards);
@@ -117,7 +117,7 @@
     while (times --) {
         for (DealPoint* point in array) {
             [self performSelector:@selector(dealCard:) withObject:point afterDelay:delay];
-            delay = delay + 0.5;
+            delay = delay + 0.3;
             
         }
         
