@@ -31,6 +31,17 @@
     [super dealloc];
 }
 
++ (id)createAvatarView
+{
+    NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"ZJHAvatarView" owner:self options:nil];
+    // Grab a pointer to the first object (presumably the custom cell, as that's all the XIB should contain).
+    if (topLevelObjects == nil || [topLevelObjects count] <= 0){
+        return nil;
+    }
+    
+    return [topLevelObjects objectAtIndex:0];
+}
+
 
 - (void)addTapGuesture
 {

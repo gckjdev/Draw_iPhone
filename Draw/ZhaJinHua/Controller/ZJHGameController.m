@@ -21,8 +21,10 @@
 #import "BetTable.h"
 #import "ConfigManager.h"
 #import "PopupViewManager.h"
+#import "ZJHMyAvatarView.h"
 
-#define AVATAR_VIEW_TAG_OFFSET   8000
+#define AVATAR_VIEW_TAG_OFFSET   4000
+#define AVATAR_PLACE_VIEW_OFFSET    8000
 #define POKERS_VIEW_TAG_OFFSET   2000
 #define USER_TOTAL_BET_BG_IMAGE_VIEW_OFFSET 3000
 #define USER_TOTAL_BET_LABEL 3200
@@ -87,9 +89,28 @@
     return self;
 }
 
+- (void)initAllAvatars
+{
+    for (int i = 1; i <= UserPositionLeftTop; i ++) {
+        UIView* placeView = [self.view viewWithTag:(i + AVATAR_PLACE_VIEW_OFFSET)];
+        if (i == UserPositionCenter) {
+            ZJHMyAvatarView* myAvatar = [ZJHMyAvatarView createAvatarView];
+            [myAvatar setFrame:placeView.frame];
+            [self.view addSubview:myAvatar];
+            myAvatar.tag = AVATAR_VIEW_TAG_OFFSET + i;
+            continue;
+        }
+        ZJHAvatarView* anAvatar = [ZJHAvatarView createAvatarView];
+        [anAvatar setFrame:placeView.frame];
+        [self.view addSubview:anAvatar];
+        anAvatar.tag = AVATAR_VIEW_TAG_OFFSET + i;
+    }
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self initAllAvatars];
     [self registerDiceGameNotifications];
     [self updateAllPlayersAvatar];
     self.dealerView.delegate = self;

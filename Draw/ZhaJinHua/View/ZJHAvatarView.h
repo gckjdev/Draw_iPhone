@@ -35,4 +35,6 @@
 - (void)startReciprocol:(CFTimeInterval)reciprocolTime
            fromProgress:(float)progress;
 
++ (id)createAvatarView;
+
 @end
