@@ -22,8 +22,10 @@
 #import "ConfigManager.h"
 #import "PopupViewManager.h"
 
-#define AVATAR_TAG_OFFSET   8000
-#define POKERS_TAG_OFFSET   2000
+#define AVATAR_VIEW_TAG_OFFSET   8000
+#define POKERS_VIEW_TAG_OFFSET   2000
+#define USER_TOTAL_BET_BG_IMAGE_VIEW_OFFSET 3000
+#define USER_TOTAL_BET_LABEL 3200
 #define MAX_PLAYER_COUNT    5
 
 @interface ZJHGameController ()
@@ -55,6 +57,8 @@
     [_checkCardButton release];
     [_cardTypeButton release];
     [_foldCardButton release];
+    [_totalBetLabel release];
+    [_singleBetLabel release];
     [super dealloc];
 }
 
@@ -389,7 +393,7 @@ compareCardWith:(NSString*)targetUserId
 {
     //init seats
     for (int i = 1; i <= MAX_PLAYER_COUNT; i ++) {
-        ZJHAvatarView* avatar = (ZJHAvatarView*)[self.view viewWithTag:AVATAR_TAG_OFFSET+i];
+        ZJHAvatarView* avatar = (ZJHAvatarView*)[self.view viewWithTag:AVATAR_VIEW_TAG_OFFSET+i];
         [avatar resetAvatar];
     }
     
@@ -409,8 +413,8 @@ compareCardWith:(NSString*)targetUserId
 - (void)updateAllPokers
 {
     for (int i = 1; i <= MAX_PLAYER_COUNT; i ++) {
-        ZJHAvatarView* avatar = (ZJHAvatarView*)[self.view viewWithTag:AVATAR_TAG_OFFSET+i];
-        ZJHPokerView* pokerView = (ZJHPokerView*)[self.view viewWithTag:POKERS_TAG_OFFSET+i];
+        ZJHAvatarView* avatar = (ZJHAvatarView*)[self.view viewWithTag:AVATAR_VIEW_TAG_OFFSET+i];
+        ZJHPokerView* pokerView = (ZJHPokerView*)[self.view viewWithTag:POKERS_VIEW_TAG_OFFSET+i];
         
         [pokerView clear];
         if (avatar.userInfo) {
@@ -440,18 +444,18 @@ compareCardWith:(NSString*)targetUserId
 
 - (ZJHPokerView*)getSelfPokersView
 {
-    return (ZJHPokerView*)[self.view viewWithTag:(POKERS_TAG_OFFSET+UserPositionCenter)];
+    return (ZJHPokerView*)[self.view viewWithTag:(POKERS_VIEW_TAG_OFFSET+UserPositionCenter)];
 }
 
 - (ZJHPokerView*)getPokersViewByPosition:(UserPosition)position
 {
-    return (ZJHPokerView*)[self.view viewWithTag:(POKERS_TAG_OFFSET+position)];
+    return (ZJHPokerView*)[self.view viewWithTag:(POKERS_VIEW_TAG_OFFSET+position)];
 }
 
 
 - (ZJHAvatarView*)getAvatarViewByPosition:(UserPosition)position
 {
-    return (ZJHAvatarView*)[self.view viewWithTag:(AVATAR_TAG_OFFSET+position)];
+    return (ZJHAvatarView*)[self.view viewWithTag:(AVATAR_VIEW_TAG_OFFSET+position)];
 }
 
 - (UserPosition)getPositionByUserId:(NSString*)userId
@@ -501,10 +505,10 @@ compareCardWith:(NSString*)targetUserId
     [self setAutoBetButton:nil];
     [self setCompareCardButton:nil];
     [self setCheckCardButton:nil];
-    [self setFoldCardButton:nil];
-    [self setCardTypeLabel:nil];
     [self setCardTypeButton:nil];
     [self setFoldCardButton:nil];
+    [self setTotalBetLabel:nil];
+    [self setSingleBetLabel:nil];
     [super viewDidUnload];
 }
 

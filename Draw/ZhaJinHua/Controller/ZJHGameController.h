@@ -40,6 +40,8 @@ typedef enum {
 @property (retain, nonatomic) IBOutlet UIButton *checkCardButton;
 @property (retain, nonatomic) IBOutlet UIButton *foldCardButton;
 @property (retain, nonatomic) IBOutlet UIButton *cardTypeButton;
+@property (retain, nonatomic) IBOutlet UILabel *totalBetLabel;
+@property (retain, nonatomic) IBOutlet UILabel *singleBetLabel;
 
 
 @end
