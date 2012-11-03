@@ -13,6 +13,8 @@
 #define KEY_GUESS_DIFF_LEVEL    @"KEY_GUESS_DIFF_LEVEL"
 #define KEY_CHAT_VOICE_ENABLE   @"KEY_CHAT_VOICE_ENABLE"
 
+#define ZJH_TIME_INTERVAL 10
+
 @implementation ConfigManager
 
 + (BOOL)isLiarDice
@@ -400,6 +402,12 @@
     return [MobClickUtils getIntValueByKey:@"ITEM_TIMES_ON_CONTEST_OPUS"
                               defaultValue:3];
 }
+
++ (int)getZJHTimeInterval
+{
+    return ZJH_TIME_INTERVAL;
+}
+
 
 #define KEY_AUTO_SAVE @"AutoSave"
 + (BOOL)isAutoSave

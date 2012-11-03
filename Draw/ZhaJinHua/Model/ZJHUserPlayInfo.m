@@ -86,7 +86,7 @@
 
 - (BOOL)canCheckCard
 {
-    if (_alreadCheckCard) {
+    if (_alreadCheckCard || _alreadFoldCard || _alreadLose) {
         return NO;
     }else {
         return YES;
@@ -95,7 +95,7 @@
 
 - (BOOL)canFoldCard
 {
-    if (_alreadFoldCard) {
+    if (_alreadFoldCard || _alreadLose) {
         return NO;
     }else {
         return YES;
