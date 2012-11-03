@@ -53,11 +53,12 @@
     CALayer* layer= [CALayer layer];
     UIImage* back = [[ZJHImageManager defaultManager] pokerBackImage];
     layer.contents = (id)[back CGImage];
-    layer.bounds = CGRectMake(0, 0, back.size.width/2, back.size.height/2);
+    layer.bounds = CGRectMake(0, 0, back.size.width*0.7, back.size.height*0.7);
     layer.shouldRasterize = YES;
+    layer.position = CGPointMake(self.frame.size.width/2, self.frame.size.height/2);
     [self.layer addSublayer:layer];
-    
-    CAAnimation* anim = [AnimationManager translationAnimationFrom:CGPointMake(self.frame.size.width/2, 0) to:[self pointByPosition:pos] duration:0.5 delegate:self removeCompeleted:NO];
+
+    CAAnimation* anim = [AnimationManager translationAnimationFrom:CGPointMake(self.frame.size.width/2, self.frame.size.height/2) to:[self pointByPosition:pos] duration:0.5 delegate:self removeCompeleted:NO];
     float angle = [self randomAngle];
     CAAnimation* anim2 = [AnimationManager rotationAnimationWithRoundCount:angle duration:0.5];
     anim2.removedOnCompletion = NO;

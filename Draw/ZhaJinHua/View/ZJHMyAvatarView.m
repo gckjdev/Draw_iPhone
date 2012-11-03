@@ -7,6 +7,8 @@
 //
 
 #import "ZJHMyAvatarView.h"
+#import "AccountService.h"
+#import "LevelService.h"
 
 @implementation ZJHMyAvatarView
 
@@ -42,6 +44,11 @@
     [view addTapGuesture];
     
     return view;
+}
+
+- (void)update{
+    [self.levelLabel setText:[NSString stringWithFormat:@"LV.%d",[LevelService defaultService].level]];
+    [self.coinsLabel setText:[NSString stringWithFormat:@"X%d",[AccountService defaultService].getBalance]];
 }
 
 /*
