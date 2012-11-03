@@ -9,5 +9,9 @@
 #import "ZJHAvatarView.h"
 
 @interface ZJHMyAvatarView : ZJHAvatarView
+@property (retain, nonatomic) IBOutlet UILabel *levelLabel;
+@property (retain, nonatomic) IBOutlet UILabel *coinsLabel;
+
++ (id)createAvatarView;
 
 @end
