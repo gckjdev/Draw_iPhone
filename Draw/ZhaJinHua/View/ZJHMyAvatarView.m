@@ -29,6 +29,21 @@
     return [topLevelObjects objectAtIndex:0];
 }
 
++ (ZJHMyAvatarView*)createZJHMyAvatarView
+{
+    ZJHMyAvatarView* view = [ZJHMyAvatarView createAvatarView];
+    
+    view.roundAvatar = [[[DiceAvatarView alloc] initWithFrame:view.roundAvatarPlaceView.frame] autorelease];
+    [view sendSubviewToBack:view.roundAvatar];
+    //        _roundAvatar.center = CGPointMake(self.frame.size.width/2, self.frame.size.height/2);
+    [view addSubview:view.roundAvatar];
+    view.roundAvatar.delegate = view;
+    
+    [view addTapGuesture];
+    
+    return view;
+}
+
 /*
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.

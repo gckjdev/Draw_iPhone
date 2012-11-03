@@ -17,6 +17,7 @@
 
 @implementation ZJHAvatarView
 @synthesize roundAvatar = _roundAvatar;
+@synthesize roundAvatarPlaceView = _roundAvatarPlaceView;
 @synthesize backgroundImageView = _backgroundImageView;
 @synthesize nickNameLabel = _nickNameLabel;
 @synthesize delegate = _delegate;
@@ -28,6 +29,7 @@
     [_backgroundImageView release];
     [_nickNameLabel release];
     [_userInfo release];
+    [_roundAvatarPlaceView release];
     [super dealloc];
 }
 
@@ -40,6 +42,21 @@
     }
     
     return [topLevelObjects objectAtIndex:0];
+}
+
++ (ZJHAvatarView*)createZJHAvatarView
+{
+    ZJHAvatarView* view = [ZJHAvatarView createAvatarView];
+    
+    view.roundAvatar = [[[DiceAvatarView alloc] initWithFrame:view.roundAvatarPlaceView.frame] autorelease];
+    [view sendSubviewToBack:view.roundAvatar];
+    //        _roundAvatar.center = CGPointMake(self.frame.size.width/2, self.frame.size.height/2);
+    [view addSubview:view.roundAvatar];
+    view.roundAvatar.delegate = view;
+    
+    [view addTapGuesture];
+    
+    return view;
 }
 
 
@@ -67,30 +84,30 @@
     return CGRectMake(self.roundAvatar.frame.size.width, 0, self.frame.size.width - self.roundAvatar.frame.size.width, self.frame.size.height*0.3);
 }
 
-
-- (id)initWithCoder:(NSCoder *)aDecoder
-{
-    self = [super initWithCoder:aDecoder];
-    if (self) {
-        
-        _backgroundImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
-        [self addSubview:_backgroundImageView];
-        
-        _roundAvatar = [[DiceAvatarView alloc] initWithFrame:[self calculateRoundAvatarFrame]];
-//        _roundAvatar.center = CGPointMake(self.frame.size.width/2, self.frame.size.height/2);
-        [self addSubview:_roundAvatar];
-        self.roundAvatar.delegate = self;
-        
-        _nickNameLabel = [[UILabel alloc] initWithFrame:[self calculateNicknameLabelFrame]];
-        [_nickNameLabel setTextColor:[UIColor whiteColor]];
-        [_nickNameLabel setBackgroundColor:[UIColor clearColor]];
-        [_nickNameLabel setAdjustsFontSizeToFitWidth:YES];
-        [self addSubview:_nickNameLabel];
-        
-        [self addTapGuesture];
-    }
-    return self;
-}
+//
+//- (id)initWithCoder:(NSCoder *)aDecoder
+//{
+//    self = [super initWithCoder:aDecoder];
+//    if (self) {
+//        
+//        _backgroundImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
+//        [self addSubview:_backgroundImageView];
+//        
+//        _roundAvatar = [[DiceAvatarView alloc] initWithFrame:[self calculateRoundAvatarFrame]];
+////        _roundAvatar.center = CGPointMake(self.frame.size.width/2, self.frame.size.height/2);
+//        [self addSubview:_roundAvatar];
+//        self.roundAvatar.delegate = self;
+//        
+//        _nickNameLabel = [[UILabel alloc] initWithFrame:[self calculateNicknameLabelFrame]];
+//        [_nickNameLabel setTextColor:[UIColor whiteColor]];
+//        [_nickNameLabel setBackgroundColor:[UIColor clearColor]];
+//        [_nickNameLabel setAdjustsFontSizeToFitWidth:YES];
+//        [self addSubview:_nickNameLabel];
+//        
+//        [self addTapGuesture];
+//    }
+//    return self;
+//}
 
 - (void)encodeWithCoder:(NSCoder *)aCoder
 {
@@ -160,8 +177,9 @@
 - (void)resetAvatar
 {
     [self.backgroundImageView setImage:[ZJHImageManager defaultManager].noUserAvatarBackground];
-    [self.roundAvatar setImage:nil];
+    [self.roundAvatar setImage:[ZJHImageManager defaultManager].noUserAvatarBackground];
     [self.nickNameLabel setText:nil];
+    self.roundAvatar.hidden = YES;
     self.userInfo = nil;
     self.delegate = nil;
     self.roundAvatar.delegate = nil;
@@ -186,6 +204,7 @@
 - (void)updateAvatarByUser:(PBGameUser*)user
 {
     if (user) {
+        self.roundAvatar.hidden = NO;
         [self.roundAvatar setAvatarUrl:user.avatar gender:user.gender];
     }
 

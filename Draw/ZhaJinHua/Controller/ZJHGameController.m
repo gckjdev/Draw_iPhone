@@ -94,13 +94,13 @@
     for (int i = 1; i <= UserPositionLeftTop; i ++) {
         UIView* placeView = [self.view viewWithTag:(i + AVATAR_PLACE_VIEW_OFFSET)];
         if (i == UserPositionCenter) {
-            ZJHMyAvatarView* myAvatar = [ZJHMyAvatarView createAvatarView];
+            ZJHMyAvatarView* myAvatar = [ZJHMyAvatarView createZJHMyAvatarView];
             [myAvatar setFrame:placeView.frame];
             [self.view addSubview:myAvatar];
             myAvatar.tag = AVATAR_VIEW_TAG_OFFSET + i;
             continue;
         }
-        ZJHAvatarView* anAvatar = [ZJHAvatarView createAvatarView];
+        ZJHAvatarView* anAvatar = [ZJHAvatarView createZJHAvatarView];
         [anAvatar setFrame:placeView.frame];
         [self.view addSubview:anAvatar];
         anAvatar.tag = AVATAR_VIEW_TAG_OFFSET + i;

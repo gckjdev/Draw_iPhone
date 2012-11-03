@@ -12,6 +12,6 @@
 @property (retain, nonatomic) IBOutlet UILabel *levelLabel;
 @property (retain, nonatomic) IBOutlet UILabel *coinsLabel;
 
-+ (id)createAvatarView;
++ (ZJHMyAvatarView*)createZJHMyAvatarView;
 
 @end
