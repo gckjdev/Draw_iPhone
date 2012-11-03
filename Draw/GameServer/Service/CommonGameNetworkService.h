@@ -61,8 +61,9 @@
 
 // Left to Sub Class to implementation.
 - (NSString *)getServerListString;
-- (void)updateGameStateOnGameNotificationRequest:(GameMessage*)message;
-- (void)updateGameStateOnJoinGameResponse:(GameMessage*)message;
+- (void)hanldMoreOnGameStartNotificationRequest:(GameMessage*)message;
+- (void)handleMoreOnGameOverNotificationRequest:(GameMessage*)message;
+- (void)handleMoreOnJoinGameResponse:(GameMessage*)message;
 
 - (void)startDisconnectTimer;
 - (void)clearDisconnectTimer;
