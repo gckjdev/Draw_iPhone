@@ -9,6 +9,7 @@
 #import "ZJHAvatarView.h"
 #import "GameBasic.pb.h"
 #import "HKGirlFontLabel.h"
+#import "ZJHImageManager.h"
 
 @interface ZJHAvatarView ()
 
@@ -42,7 +43,7 @@
 - (CGRect)calculateRoundAvatarFrame
 {
     if (self.frame.size.height >= self.frame.size.width) {
-        return CGRectMake(self.frame.size.width*0.1, self.frame.size.height-self.frame.size.width*0.9, self.frame.size.width*0.8, self.frame.size.width*0.8);
+        return CGRectMake(self.frame.size.width*0.19, self.frame.size.height-self.frame.size.width*0.815, self.frame.size.width*0.6, self.frame.size.width*0.6);
     }
     return CGRectMake(self.frame.size.height*0.1, self.frame.size.height*0.1, self.frame.size.height*0.8, self.frame.size.height*0.8);
 }
@@ -50,7 +51,7 @@
 - (CGRect)calculateNicknameLabelFrame
 {
     if (self.frame.size.height >= self.frame.size.width) {
-        return CGRectMake(0, 0, self.frame.size.width, self.frame.size.width*0.3);
+        return CGRectMake(self.frame.size.width*0.1, 0, self.frame.size.width*0.8, self.frame.size.width*0.3);
     }
     return CGRectMake(self.roundAvatar.frame.size.width, 0, self.frame.size.width - self.roundAvatar.frame.size.width, self.frame.size.height*0.3);
 }
@@ -147,7 +148,7 @@
 
 - (void)resetAvatar
 {
-    [self.backgroundImageView setImage:nil];
+    [self.backgroundImageView setImage:[ZJHImageManager defaultManager].noUserAvatarBackground];
     [self.roundAvatar setImage:nil];
     [self.nickNameLabel setText:nil];
     self.userInfo = nil;
@@ -157,7 +158,11 @@
 
 - (void)updateBackgroundByUser:(PBGameUser*)user
 {
-//    [self.backgroundImageView setImage:nil];
+    if (self.frame.size.width > self.frame.size.height) {
+        [self.backgroundImageView setImage:[ZJHImageManager defaultManager].myAvatarBackground];
+    } else {
+        [self.backgroundImageView setImage:[ZJHImageManager defaultManager].avatarBackground];
+    }
 }
 
 - (void)updateNicknameByUser:(PBGameUser*)user
