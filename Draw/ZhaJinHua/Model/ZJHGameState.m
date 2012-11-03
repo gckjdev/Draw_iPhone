@@ -24,6 +24,7 @@
 - (void)dealloc
 {
     [_usersInfo release];
+    [_winner release];
     [super dealloc];
 }
 

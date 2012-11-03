@@ -13,6 +13,7 @@
 @property (assign, nonatomic) int totalBet;
 @property (assign, nonatomic) int singleBet;
 @property (assign, nonatomic) int myTurnTimes;
+@property (retain, nonatomic) NSString *winner;
 
 + (ZJHGameState *)fromPBZJHGameState:(PBZJHGameState *)gameState;
 

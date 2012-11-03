@@ -219,7 +219,12 @@
     [self registerZJHGameNotificationWithName:NOTIFICATION_COMPARE_CARD_RESPONSE
                                    usingBlock:^(NSNotification *notification) {
                                        [self compareCardSuccess];
-                                   }];    
+                                   }];
+    
+    [self registerZJHGameNotificationWithName:NOTIFICATION_GAME_OVER_NOTIFICATION_REQUEST
+                                   usingBlock:^(NSNotification *notification) {
+                                       [self gameOver];
+                                   }];
 }
 
 #pragma mark - player action
@@ -327,6 +332,11 @@
     [self.dealerView dealWithPositionArray:[self getPositionsArray]
                                      times:3];
     [self updateZJHButtons];
+}
+
+- (void)gameOver
+{
+    [self clearAllUserPokers];
 }
 
 - (void)nextPlayerStart:(NSString*)userId
@@ -602,6 +612,13 @@ compareCardWith:(NSString*)targetUserId
 {
     _cardTypeButton.hidden = NO;
     [_cardTypeButton setTitle:[_gameService myCardType] forState:UIControlStateNormal];
+}
+
+- (void)clearAllUserPokers
+{
+    for (int i = 1; i <= MAX_PLAYER_COUNT; i ++){
+        [[self getPokersViewByPosition:i] clear];
+    }
 }
 
 @end

@@ -360,6 +360,7 @@ static ZJHGameService *_defaultService;
 
 - (void)handleGameOverNotificationRequest:(GameMessage *)message
 {
+    
     [self postNotification:NOTIFICATION_GAME_OVER_NOTIFICATION_REQUEST message:message];
 }
 
