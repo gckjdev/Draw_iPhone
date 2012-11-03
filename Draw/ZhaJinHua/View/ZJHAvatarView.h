@@ -38,5 +38,6 @@
 
 + (ZJHAvatarView*)createZJHAvatarView;
 - (void)addTapGuesture;
+- (void)stopReciprocol;
 
 @end

@@ -37,6 +37,18 @@
     return self;
 }
 
+- (void)removeFromSuperview
+{
+    self.delegate = nil;
+    [super removeFromSuperview];
+}
+
+- (void)dealloc
+{
+    [self setDelegate:nil];
+    [super dealloc];
+}
+
 - (CGFloat)randomAngle
 {
     return ((float)(rand()%100)/100);
