@@ -270,15 +270,14 @@
 
 - (IBAction)clickCheckCardButton:(id)sender
 {
-    [[self getSelfPokersView] faceUpCards:YES];
+    [[self getMyPokersView] faceUpCards:YES];
     [_gameService checkCard];
     [self showMyCardTypeString];
 }
 
 - (IBAction)clickFoldCardButton:(id)sender
 {
-    ZJHPokerView* pokers = [self getSelfPokersView];
-    [pokers foldCards:YES];
+    [[self getMyPokersView] foldCards:YES];
     [_gameService foldCard];
 }
 
@@ -496,8 +495,7 @@ compareCardWith:(NSString*)targetUserId
     
 }
 
-
-- (ZJHPokerView*)getSelfPokersView
+- (ZJHPokerView*)getMyPokersView
 {
     return (ZJHPokerView*)[self.view viewWithTag:(POKERS_VIEW_TAG_OFFSET+UserPositionCenter)];
 }
@@ -528,6 +526,11 @@ compareCardWith:(NSString*)targetUserId
 - (ZJHAvatarView*)getAvatarViewByUserId:(NSString*)userId
 {
     return [self getAvatarViewByPosition:[self getPositionByUserId:userId]];
+}
+
+- (ZJHAvatarView*)getMyAvatarView
+{
+    return [self getAvatarViewByPosition:[self getPositionByUserId:_userManager.userId]];
 }
 
 - (void)quitGame
