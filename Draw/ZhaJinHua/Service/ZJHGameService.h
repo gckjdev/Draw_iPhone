@@ -41,4 +41,6 @@
 
 - (BOOL)canUserCompareCard:(NSString *)userId;
 
+- (NSString *)myCardType;
+
 @end

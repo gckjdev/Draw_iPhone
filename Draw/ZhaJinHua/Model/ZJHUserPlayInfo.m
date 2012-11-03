@@ -176,7 +176,7 @@
     return pokers;
 }
 
-- (NSString *)ZJHPokerType
+- (NSString *)cardTypeString
 {
     switch (_cardType) {
         case PBZJHCardTypeHighCard:

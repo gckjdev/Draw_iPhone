@@ -110,12 +110,17 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    // Do any additional setup after loading the view from its nib.
+
     [self initAllAvatars];
     [self registerDiceGameNotifications];
     [self updateAllPlayersAvatar];
     self.dealerView.delegate = self;
-    // Do any additional setup after loading the view from its nib.
+    
+//    [self updateZJHButtons];
 }
+
 
 - (void)didReceiveMemoryWarning
 {
@@ -254,9 +259,9 @@
 
 - (IBAction)clickCheckCardButton:(id)sender
 {
-    ZJHPokerView* pokersView = [self getSelfPokersView];
-    [pokersView faceUpCards:YES];
+    [[self getSelfPokersView] faceUpCards:YES];
     [_gameService checkCard];
+    [self showMyCardTypeString];
 }
 
 - (IBAction)clickFoldCardButton:(id)sender
@@ -324,8 +329,8 @@
 {
     ZJHAvatarView* avatar = [self getAvatarViewByPosition:[self getPositionByUserId:userId]];
     [avatar startReciprocol:[ConfigManager getZJHTimeInterval]];
-    
     [self updateZJHButtons];
+   
 }
 
 - (void)someoneBet:(NSString*)userId
@@ -581,7 +586,6 @@ compareCardWith:(NSString*)targetUserId
     self.compareCardButton.enabled = [_gameService canICompareCard];
     self.checkCardButton.enabled = [_gameService canICheckCard];
     self.foldCardButton.enabled = [_gameService canIFoldCard];
-
 }
 
 #pragma mark - deal view delegate
@@ -589,6 +593,12 @@ compareCardWith:(NSString*)targetUserId
 {
     [self updateAllPokers];
 
+}
+
+- (void)showMyCardTypeString
+{
+    _cardTypeButton.hidden = YES;
+    [_cardTypeButton setTitle:[_gameService myCardType] forState:UIControlStateNormal];
 }
 
 @end
