@@ -10,6 +10,17 @@
 
 @class DealerView;
 
+@interface DealPoint : NSObject {
+    
+}
+
+@property (assign, nonatomic) float x;
+@property (assign, nonatomic) float y;
+
++ (DealPoint*)pointWithCGPoint:(CGPoint)point;
+
+@end
+
 @protocol DealerViewDelegate <NSObject>
 
 - (void)didDealFinish:(DealerView*)view;

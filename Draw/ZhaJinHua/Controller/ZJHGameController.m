@@ -329,11 +329,31 @@
     return array;
 }
 
+- (CGPoint)calRelativePointByPokerView:(ZJHPokerView*)view
+{
+    float x = view.center.x - self.dealerView.frame.origin.x;
+    float y = view.center.y - self.dealerView.frame.origin.y;
+    return CGPointMake(x, y);
+}
+
+- (NSArray*)dealPointsArray
+{
+    NSMutableArray* array = [[[NSMutableArray alloc] initWithCapacity:MAX_PLAYER_COUNT] autorelease];
+    for (PBGameUser* user in _gameService.session.userList) {
+        ZJHPokerView* view = [self getPokersViewByUserId:user.userId];
+        if (view) {
+            CGPoint point = [self calRelativePointByPokerView:view];
+            [array addObject:[DealPoint pointWithCGPoint:point]];
+        }
+    }
+    return array;
+}
+
 - (void)gameStart
 {
     PPDebug(@"<ZJHGameController> game start!");
 //    [self updateAllPokers];
-    [self.dealerView dealWithPositionArray:[self getPositionsArray]
+    [self.dealerView dealWithPositionArray:[self dealPointsArray]
                                      times:3];
 }
 
