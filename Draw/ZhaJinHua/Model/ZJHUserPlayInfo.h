@@ -39,7 +39,7 @@
 - (BOOL)canFoldCard;
 - (BOOL)canShowCard:(int)cardId;
 
-- (NSString *)ZJHPokerType;
+- (NSString *)cardTypeString;
 
 
 @end

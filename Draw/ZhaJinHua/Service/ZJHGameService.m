@@ -16,6 +16,9 @@
 static ZJHGameService *_defaultService;
 
 @interface ZJHGameService ()
+{
+    UserManager *_userManager;
+}
 
 @property (readwrite, retain, nonatomic) ZJHGameState *gameState;
 
@@ -41,6 +44,7 @@ static ZJHGameService *_defaultService;
     if (self = [super init]) {
         _gameId = ZHAJINHUA_GAME_ID;
         _networkClient = [CommonGameNetworkClient defaultInstance];
+        _userManager = [UserManager defaultManager];
     }
 
     return self;
@@ -150,12 +154,12 @@ static ZJHGameService *_defaultService;
 
 - (BOOL)canICheckCard
 {
-    return [[_gameState userPlayInfo:[[UserManager defaultManager] userId]] canCheckCard];
+    return [[_gameState userPlayInfo:_userManager.userId] canCheckCard];
 }
 
 - (BOOL)canIFoldCard
 {
-    return [[_gameState userPlayInfo:[[UserManager defaultManager] userId]] canFoldCard];
+    return [[_gameState userPlayInfo:_userManager.userId] canFoldCard];
 }
 
 - (BOOL)canICompareCard
@@ -163,7 +167,7 @@ static ZJHGameService *_defaultService;
     if (![self isMyTurn]) {
         return NO;
     }else {
-        return [[_gameState userPlayInfo:[[UserManager defaultManager] userId]] canCompareCard];
+        return [[_gameState userPlayInfo:_userManager.userId] canCompareCard];
     }
 }
 
@@ -172,13 +176,18 @@ static ZJHGameService *_defaultService;
     if (![self isMyTurn]) {
         return NO;
     }else {
-        return [[_gameState userPlayInfo:[[UserManager defaultManager] userId]] canShowCard:cardId];
+        return [[_gameState userPlayInfo:_userManager.userId] canShowCard:cardId];
     }
 }
 
 - (BOOL)canUserCompareCard:(NSString *)userId
 {
     return [[_gameState userPlayInfo:userId] canCompareCard];
+}
+
+- (NSString *)myCardType
+{
+    return [[_gameState userPlayInfo:_userManager.userId] cardTypeString];
 }
 
 #pragma mark - overwrite methods
