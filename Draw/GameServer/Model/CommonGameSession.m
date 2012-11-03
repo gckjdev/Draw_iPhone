@@ -133,27 +133,8 @@
     }
 }
 
-//- (void)startPlay
-//{
-//    self.status = SESSION_PLAYING;
-//}
-//
-//- (void)finishPlay
-//{
-//    self.status = SESSION_WAITING;
-//}
-
 - (NSString *)getNickNameByUserId:(NSString *)userId
 {
-    //    for (GameSessionUser *user in self.userList) {
-    //        if([user.userId isEqualToString:userId])
-    //        {
-    //            return user.nickName;
-    //        }
-    //    }
-    //    
-    //    return [[_deletedUserList objectForKey:userId] nickName];
-    
     return [[self getUserByUserId:userId] nickName];
 }
 
@@ -235,6 +216,10 @@
     return [[self playingUserList] count];
 }
 
+- (BOOL)isGamePlaying
+{
+    return (_status == GameStatusPlaying);
+}
 
 
 @end

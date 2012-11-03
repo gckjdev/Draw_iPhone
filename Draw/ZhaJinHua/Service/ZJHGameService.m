@@ -154,12 +154,12 @@ static ZJHGameService *_defaultService;
 
 - (BOOL)canICheckCard
 {
-    return [[_gameState userPlayInfo:_userManager.userId] canCheckCard];
+    return [[self myPlayInfo] canCheckCard];
 }
 
 - (BOOL)canIFoldCard
 {
-    return [[_gameState userPlayInfo:_userManager.userId] canFoldCard];
+    return [[self myPlayInfo] canFoldCard];
 }
 
 - (BOOL)canICompareCard
@@ -167,7 +167,7 @@ static ZJHGameService *_defaultService;
     if (![self isMyTurn]) {
         return NO;
     }else {
-        return [[_gameState userPlayInfo:_userManager.userId] canCompareCard];
+        return [[self myPlayInfo] canCompareCard];
     }
 }
 
@@ -176,7 +176,7 @@ static ZJHGameService *_defaultService;
     if (![self isMyTurn]) {
         return NO;
     }else {
-        return [[_gameState userPlayInfo:_userManager.userId] canShowCard:cardId];
+        return [[self myPlayInfo] canShowCard:cardId];
     }
 }
 
@@ -187,21 +187,36 @@ static ZJHGameService *_defaultService;
 
 - (NSString *)myCardType
 {
-    return [[_gameState userPlayInfo:_userManager.userId] cardTypeString];
+    return [[self myPlayInfo] cardTypeString];
+}
+
+- (BOOL)doIWin
+{
+    return [_userManager isMe:_gameState.winner];
 }
 
 #pragma mark - overwrite methods
 
-- (void)updateGameStateOnGameNotificationRequest:(GameMessage*)message
+- (void)handleMoreOnJoinGameResponse:(GameMessage*)message
+{
+    if ([[message joinGameResponse] hasZjhGameState]) {
+        self.gameState = [ZJHGameState fromPBZJHGameState:message.joinGameResponse.zjhGameState];
+    }
+}
+
+- (void)hanldMoreOnGameStartNotificationRequest:(GameMessage*)message
 {
     if ([[message gameStartNotificationRequest] hasZjhGameState]) {
         self.gameState = [ZJHGameState fromPBZJHGameState:message.gameStartNotificationRequest.zjhGameState];
     }
 }
-- (void)updateGameStateOnJoinGameResponse:(GameMessage*)message
+
+- (void)handleMoreOnGameOverNotificationRequest:(GameMessage*)message
 {
-    if ([[message joinGameResponse] hasZjhGameState]) {
-        self.gameState = [ZJHGameState fromPBZJHGameState:message.joinGameResponse.zjhGameState];
+    for (PBUserResult *userResult in message.gameOverNotificationRequest.zjhgameResult.userResultList) {
+        if (userResult.win) {
+            self.gameState.winner = userResult.userId;
+        }
     }
 }
 
@@ -259,8 +274,7 @@ static ZJHGameService *_defaultService;
     }
     
     userPlayInfo.lastAction = PBZJHUserActionShowCard;
-    userPlayInfo.alreadShowCard = YES;
-    
+    userPlayInfo.alreadShowCard = YES;    
     [userPlayInfo setPokersFaceUp:message.showCardRequest.cardIdsList];
 }
 
@@ -275,17 +289,6 @@ static ZJHGameService *_defaultService;
             userPlayInfo.alreadLose = YES;
         }
     }
-}
-
-- (void)handleNextPlayerStartNotificationRequest:(GameMessage *)message
-{
-    self.session.currentPlayUserId = [message currentPlayUserId];
-    [self postNotification:NOTIFICATION_NEXT_PLAYER_START message:message];
-}
-
-- (void)handleNextPlayerStartNotificationResponse:(GameMessage *)message
-{
-    
 }
 
 - (void)handleBetRequest:(GameMessage *)message
@@ -358,22 +361,9 @@ static ZJHGameService *_defaultService;
     }
 }
 
-- (void)handleGameOverNotificationRequest:(GameMessage *)message
-{
-    
-    [self postNotification:NOTIFICATION_GAME_OVER_NOTIFICATION_REQUEST message:message];
-}
-
 - (void)handleCustomMessage:(GameMessage*)message
 {
     switch ([message command]){
-        case GameCommandTypeNextPlayerStartNotificationRequest:
-            [self handleNextPlayerStartNotificationRequest:message];
-            break;
-            
-        case GameCommandTypeNextPlayerStartNotificationResponse:
-            [self handleNextPlayerStartNotificationResponse:message];
-            break;
             
         case GameCommandTypeBetRequest:
             [self handleBetRequest:message];
@@ -415,9 +405,7 @@ static ZJHGameService *_defaultService;
             [self handleShowCardResponse:message];
             break;
             
-        case GameCommandTypeGameOverNotificationRequest:
-            [self handleGameOverNotificationRequest:message];
-            break;
+
             
         default:
             PPDebug(@"<handleCustomMessage> unknown command=%d", [message command]);
@@ -428,6 +416,11 @@ static ZJHGameService *_defaultService;
 - (NSString *)getServerListString
 {
     return @"192.168.1.5:8080";
+}
+
+- (ZJHUserPlayInfo *)myPlayInfo
+{
+    return [_gameState userPlayInfo:_userManager.userId];
 }
 
 @end

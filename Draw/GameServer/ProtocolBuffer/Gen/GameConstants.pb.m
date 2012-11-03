@@ -150,6 +150,13 @@ BOOL GameResultCodeIsValidValue(GameResultCode value) {
     case GameResultCodeErrorDiceAlreadyOpen:
     case GameResultCodeErrorUserAlreadyCallDice:
     case GameResultCodeErrorDiceOpenSelf:
+    case GameResultCodeErrorCannotBet:
+    case GameResultCodeErrorAlreadyCheckCard:
+    case GameResultCodeErrorCannotCheckCard:
+    case GameResultCodeErrorAlreadyFoldCard:
+    case GameResultCodeErrorCannotFoldCard:
+    case GameResultCodeErrorAlreadyShowCard:
+    case GameResultCodeErrorCannotShowCard:
     case GameResultCodeErrorUnknownItem:
     case GameResultCodeErrorExcessTimeLimit:
     case GameResultCodeErrorSystemHandlerNotFound:

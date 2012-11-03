@@ -119,11 +119,13 @@
     [self updateAllPlayersAvatar];
     self.dealerView.delegate = self;
     
-//    [self updateZJHButtons];
+    [self updateZJHButtons];
     
     // hidden views below
     self.cardTypeButton.hidden = YES;
     self.cardTypeButton.userInteractionEnabled = NO;
+    
+    
     
 }
 
@@ -289,15 +291,17 @@
 
 - (void)betSuccess
 {
-    
+    [self updateZJHButtons];
 }
 
 - (void)checkCardSuccess
 {
+    [self updateZJHButtons];
 }
 
 - (void)foldCardSuccess
 {
+    [self updateZJHButtons];
 }
 
 - (void)showCardSuccess
@@ -343,12 +347,12 @@
 //    [self updateAllPokers];
     [self.dealerView dealWithPositionArray:[self dealPointsArray]
                                      times:3];
-    [self updateZJHButtons];
 }
 
 - (void)gameOver
 {
     [self clearAllUserPokers];
+    [self updateZJHButtons];
 }
 
 - (void)nextPlayerStart:(NSString*)userId
@@ -617,7 +621,7 @@ compareCardWith:(NSString*)targetUserId
 - (void)didDealFinish:(DealerView *)view
 {
     [self updateAllPokers];
-
+    [self updateZJHButtons];
 }
 
 - (void)showMyCardTypeString

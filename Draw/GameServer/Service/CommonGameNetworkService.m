@@ -183,17 +183,28 @@
 
 - (void)handleGameStartNotificationRequest:(GameMessage*)message
 {
-    [self updateGameStateOnGameNotificationRequest:message];
+    self.session.status = GameStatusPlaying;
+    [self hanldMoreOnGameStartNotificationRequest:message];
     [self postNotification:NOTIFICATION_GAME_START_NOTIFICATION_REQUEST message:message];
+}
+
+- (void)handleGameOverNotificationRequest:(GameMessage*)message
+{
+    self.session.status = GameStatusOver;
+    [self handleMoreOnGameOverNotificationRequest:message];
+    [self postNotification:NOTIFICATION_GAME_OVER_NOTIFICATION_REQUEST message:message];
+}
+
+- (void)handleNextPlayerStartNotificationRequest:(GameMessage *)message
+{
+    self.session.currentPlayUserId = [message currentPlayUserId];
+    [self postNotification:NOTIFICATION_NEXT_PLAYER_START message:message];
 }
 
 - (void)handleGetRoomsResponse:(GameMessage*)message
 {
     // save room into _roomList and fire the notification
     
-//    if ([message resultCode] != 0){
-//        return;
-//    }
     [self updateOnlineUserCount:message];
     if (message.resultCode == 0){    
         [self.roomList removeAllObjects];
@@ -203,11 +214,15 @@
     [self postNotification:NOTIFICAIION_GET_ROOMS_RESPONSE message:message];
 }
 
-- (void)updateGameStateOnGameNotificationRequest:(GameMessage*)message
+- (void)hanldMoreOnGameStartNotificationRequest:(GameMessage*)message
 {
 }
 
-- (void)updateGameStateOnJoinGameResponse:(GameMessage*)message
+- (void)handleMoreOnGameOverNotificationRequest:(GameMessage*)message
+{
+}
+
+- (void)handleMoreOnJoinGameResponse:(GameMessage*)message
 {
 }
 
@@ -220,10 +235,9 @@
             [_session fromPBGameSession:pbSession userId:[self userId]];
             PPDebug(@"<handleJoinGameResponse> Create Session = %@", [self.session description]);
 
-            [self updateGameStateOnJoinGameResponse:message];
+            [self handleMoreOnJoinGameResponse:message];
+            [self postNotification:NOTIFICATION_JOIN_GAME_RESPONSE message:message];
         }
-        
-        [self postNotification:NOTIFICATION_JOIN_GAME_RESPONSE message:message];
     });
 }
 
@@ -282,16 +296,9 @@
 - (void)handleData:(GameMessage*)message
 {
     switch ([message command]){
-        case GameCommandTypeGameStartNotificationRequest:
-            [self handleGameStartNotificationRequest:message];
-            break;
-            
+
         case GameCommandTypeGetRoomsResponse:
             [self handleGetRoomsResponse:message];
-            break;
-            
-        case GameCommandTypeJoinGameResponse:
-            [self handleJoinGameResponse:message];
             break;
             
         case GameCommandTypeRoomNotificationRequest:
@@ -302,9 +309,26 @@
             [self handleCreateRoomResponse:message];
             break;
             
+        case GameCommandTypeJoinGameResponse:
+            [self handleJoinGameResponse:message];
+            break;
+            
+        case GameCommandTypeGameStartNotificationRequest:
+            [self handleGameStartNotificationRequest:message];
+            break;
+            
+        case GameCommandTypeGameOverNotificationRequest:
+            [self handleGameOverNotificationRequest:message];
+            break;
+            
+        case GameCommandTypeNextPlayerStartNotificationRequest:
+            [self handleNextPlayerStartNotificationRequest:message];
+            break;
+            
         case GameCommandTypeChatRequest:
             [self handleChatRequest:message];
             break;
+
             
         default:
             [self handleCustomMessage:message];
@@ -369,15 +393,6 @@
     PPDebug(@"[SEND] JoinGameRequest");
     [_networkClient sendJoinGameRequest:customSelfUser gameId:_gameId];
 }
-
-//- (void)joinGameRequestWithRuleType:(int)ruleType
-//{
-//    PPDebug(@"[SEND] JoinGameRequest");
-//    PBGameUser* user = [[UserManager defaultManager] toPBGameUser];
-//    [_networkClient sendJoinGameRequest:user 
-//                                 gameId:_gameId
-//                               ruleType:ruleType];
-//}
 
 - (void)joinGameRequest:(long)sessionId 
 {
