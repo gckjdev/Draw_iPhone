@@ -83,7 +83,7 @@
     UIImage* back = [[ZJHImageManager defaultManager] pokerBackImage];
     layer.contents = (id)[back CGImage];
     layer.bounds = CGRectMake(0, 0, back.size.width*0.7, back.size.height*0.7);
-    layer.shouldRasterize = YES;
+//    layer.shouldRasterize = YES;
     layer.position = CGPointMake(self.frame.size.width/2, self.frame.size.height/2);
     [self.layer addSublayer:layer];
 
