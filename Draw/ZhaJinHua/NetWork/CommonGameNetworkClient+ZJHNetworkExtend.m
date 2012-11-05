@@ -24,7 +24,7 @@
     BetRequest *betRequest = [betRequestBuilder build];
     
     GameMessage_Builder *messageBuilder = [[[GameMessage_Builder alloc] init] autorelease];
-    [messageBuilder setCommand:GameCommandTypeBetDiceRequest];
+    [messageBuilder setCommand:GameCommandTypeBetRequest];
     [messageBuilder setMessageId:[self generateMessageId]];
     [messageBuilder setUserId:userId];
     [messageBuilder setSessionId:sessionId];

@@ -44,5 +44,6 @@
 - (NSString *)myCardType;
 
 - (BOOL)doIWin;
+- (NSString *)winner;
 
 @end

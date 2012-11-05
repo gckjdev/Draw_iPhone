@@ -195,6 +195,11 @@ static ZJHGameService *_defaultService;
     return [_userManager isMe:_gameState.winner];
 }
 
+- (NSString *)winner
+{
+    return _gameState.winner;
+}
+
 #pragma mark - overwrite methods
 
 - (void)handleMoreOnJoinGameResponse:(GameMessage*)message
@@ -415,7 +420,7 @@ static ZJHGameService *_defaultService;
 
 - (NSString *)getServerListString
 {
-    return @"58.215.172.169:8080";
+    return @"192.168.1.10:8080";
 }
 
 - (ZJHUserPlayInfo *)myPlayInfo

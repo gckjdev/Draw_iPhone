@@ -231,6 +231,7 @@
 
 #pragma mark - player action
 - (IBAction)clickBetButton:(id)sender {
+    [[self getMyAvatarView] stopReciprocol];
     [self.betTable someBetFrom:UserPositionCenter
                      chipValue:_gameService.gameState.singleBet
                          count:[[_gameService userPlayInfo:_userManager.userId] betCount]];
@@ -248,6 +249,8 @@
 
 - (IBAction)clickAutoBetButton:(id)sender
 {
+    [[self getMyAvatarView] stopReciprocol];
+
     [self.betTable someBetFrom:UserPositionCenter
                      chipValue:_gameService.gameState.singleBet
                          count:[[_gameService userPlayInfo:_userManager.userId] betCount]];
@@ -277,6 +280,7 @@
 
 - (IBAction)clickFoldCardButton:(id)sender
 {
+    [[self getMyAvatarView] stopReciprocol];
     [[self getMyPokersView] foldCards:YES];
     [_gameService foldCard];
 }
@@ -351,6 +355,7 @@
 - (void)gameOver
 {
     [self clearAllUserPokers];
+    [self.betTable clearAllChips:[self getPositionByUserId:[_gameService winner]]];
     [self updateZJHButtons];
 }
 
