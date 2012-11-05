@@ -41,6 +41,8 @@
     PopupViewManager *_popupViewManager;
 }
 
+- (void)clearAllAvatarReciprocols;
+
 @end
 
 @implementation ZJHGameController
@@ -362,6 +364,8 @@
         [_gameService bet:YES];
     }
     
+    [self clearAllAvatarReciprocols];
+    
     ZJHAvatarView* avatar = [self getAvatarViewByPosition:[self getPositionByUserId:userId]];
     [avatar startReciprocol:[ConfigManager getZJHTimeInterval]];
     [self updateZJHButtons];
@@ -370,8 +374,6 @@
 - (void)someoneBet:(NSString*)userId
 {
     [self userBet:userId];
-
-
 }
 
 
@@ -644,6 +646,13 @@ compareCardWith:(NSString*)targetUserId
 {
     for (int i = UserPositionCenter; i < MAX_PLAYER_COUNT; i ++){
         [[self getPokersViewByPosition:i] clear];
+    }
+}
+
+- (void)clearAllAvatarReciprocols
+{
+    for (int i = UserPositionCenter; i < MAX_PLAYER_COUNT; i ++){
+        [[self getAvatarViewByPosition:i] stopReciprocol];
     }
 }
 
