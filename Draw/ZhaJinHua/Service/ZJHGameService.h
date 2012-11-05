@@ -19,6 +19,7 @@
 //- (ZJHUserPlayInfo *)userPlayInfo:(NSString *)userId;
 - (NSArray *)pokersOfUser:(NSString *)userId;
 - (int)betCountOfUser:(NSString *)userId;
+- (int)totalBetOfUser:(NSString *)userId;
 
 - (void)bet:(BOOL)autoBet;                      // 跟注
 - (void)raiseBet:(int)singleBet;                // 加注

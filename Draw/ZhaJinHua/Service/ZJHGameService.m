@@ -67,6 +67,11 @@ static ZJHGameService *_defaultService;
     return [[self userPlayInfo:userId] betCount];
 }
 
+- (int)totalBetOfUser:(NSString *)userId
+{
+    return [[self userPlayInfo:userId] totalBet];
+}
+
 - (int)myBetCount
 {
     return [[self userPlayInfo:_userManager.userId] betCount];

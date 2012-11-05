@@ -28,7 +28,6 @@
 #define POKERS_VIEW_TAG_OFFSET   2000
 #define USER_TOTAL_BET_BG_IMAGE_VIEW_OFFSET 3000
 #define USER_TOTAL_BET_LABEL 3200
-#define MAX_PLAYER_COUNT    5
 
 @interface ZJHGameController ()
 {
@@ -93,7 +92,7 @@
 
 - (void)initAllAvatars
 {
-    for (int i = UserPositionCenter; i < MAX_PLAYER_COUNT; i ++) {
+    for (int i = UserPositionCenter; i < UserPositionMax; i ++) {
         UIView* placeView = [self.view viewWithTag:(i + AVATAR_PLACE_VIEW_OFFSET)];
         if (i == UserPositionCenter) {
             ZJHMyAvatarView* myAvatar = [ZJHMyAvatarView createZJHMyAvatarView];
@@ -295,8 +294,12 @@
 
 - (void)betSuccess
 {
-    [self userBet:_userManager.userId];
     [self updateZJHButtons];
+
+    [self userBet:_userManager.userId];
+    
+    [self updateTotalBetAndSingleBet];
+    [self updateUserTotalBet:_userManager.userId];
 }
 
 - (void)checkCardSuccess
@@ -323,6 +326,10 @@
 {
     [self updateAllPlayersAvatar];
     [self updateWaittingForNextTurnNotLabel];
+    
+    for (PBGameUser *user in _gameService.session.deletedUserList) {
+        [self hideTotalBetOfUser:user.userId];
+    }
 }
 
 
@@ -335,7 +342,7 @@
 
 - (NSArray*)dealPointsArray
 {
-    NSMutableArray* array = [[[NSMutableArray alloc] initWithCapacity:MAX_PLAYER_COUNT] autorelease];
+    NSMutableArray* array = [[[NSMutableArray alloc] initWithCapacity:UserPositionMax] autorelease];
     for (PBGameUser* user in _gameService.session.userList) {
         ZJHPokerView* view = [self getPokersViewByUserId:user.userId];
         if (view) {
@@ -351,7 +358,8 @@
     PPDebug(@"<ZJHGameController> game start!");
     [self.dealerView dealWithPositionArray:[self dealPointsArray]
                                      times:3];
-    
+    [self updateTotalBetAndSingleBet];
+    [self updateAllUserTotalBet];
 }
 
 - (void)gameOver
@@ -377,6 +385,8 @@
 - (void)someoneBet:(NSString*)userId
 {
     [self userBet:userId];
+    [self updateTotalBetAndSingleBet];
+    [self updateUserTotalBet:userId];
 }
 
 
@@ -454,7 +464,7 @@ compareCardWith:(NSString*)targetUserId
 - (void)updateAllPlayersAvatar
 {
     //init seats
-    for (int i = UserPositionCenter; i < MAX_PLAYER_COUNT; i ++) {
+    for (int i = UserPositionCenter; i < UserPositionMax; i ++) {
         ZJHAvatarView* avatar = (ZJHAvatarView*)[self.view viewWithTag:AVATAR_VIEW_TAG_OFFSET+i];
         [avatar resetAvatar];
     }
@@ -465,7 +475,7 @@ compareCardWith:(NSString*)targetUserId
     // set user on seat
     NSArray* userList = _gameService.session.userList;
     for (PBGameUser* user in userList) {
-                PPDebug(@"<test>get user--%@, sitting at %d",user.nickName, user.seatId);
+        PPDebug(@"<test>get user--%@, sitting at %d",user.nickName, user.seatId);
 
         ZJHAvatarView* avatar = [self getAvatarViewByUserId:user.userId];
         [avatar updateByPBGameUser:user];
@@ -474,7 +484,7 @@ compareCardWith:(NSString*)targetUserId
 
 - (void)updateAllPokers
 {
-    for (int i = UserPositionCenter; i < MAX_PLAYER_COUNT; i ++) {
+    for (int i = UserPositionCenter; i < UserPositionMax; i ++) {
         ZJHAvatarView* avatar = (ZJHAvatarView*)[self.view viewWithTag:AVATAR_VIEW_TAG_OFFSET+i];
         ZJHPokerView* pokerView = (ZJHPokerView*)[self.view viewWithTag:POKERS_VIEW_TAG_OFFSET+i];
         
@@ -523,7 +533,7 @@ compareCardWith:(NSString*)targetUserId
 {
     PBGameUser* user = [_gameService.session getUserByUserId:userId];
     PBGameUser* selfUser = [self getSelfUser];
-    return (MAX_PLAYER_COUNT + (user.seatId - selfUser.seatId))%MAX_PLAYER_COUNT;
+    return (UserPositionMax + (user.seatId - selfUser.seatId))%UserPositionMax;
 }
 
 - (ZJHPokerView*)getPokersViewByUserId:(NSString*)userId
@@ -643,16 +653,57 @@ compareCardWith:(NSString*)targetUserId
 
 - (void)clearAllUserPokers
 {
-    for (int i = UserPositionCenter; i < MAX_PLAYER_COUNT; i ++){
+    for (int i = UserPositionCenter; i < UserPositionMax; i ++){
         [[self getPokersViewByPosition:i] clear];
     }
 }
 
 - (void)clearAllAvatarReciprocols
 {
-    for (int i = UserPositionCenter; i < MAX_PLAYER_COUNT; i ++){
+    for (int i = UserPositionCenter; i < UserPositionMax; i ++){
         [[self getAvatarViewByPosition:i] stopReciprocol];
     }
+}
+
+- (void)updateTotalBetAndSingleBet
+{
+    self.totalBetLabel.text = [self int2String:_gameService.gameState.totalBet];
+    self.singleBetLabel.text = [self int2String:_gameService.gameState.singleBet];
+}
+
+- (void)updateAllUserTotalBet
+{
+    for (PBGameUser *user in _gameService.session.playingUserList) {
+        [self updateUserTotalBet:user.userId];
+    }
+}
+
+- (void)hideTotalBetOfUser:(NSString *)userId
+{
+    [[self totalBetLabelOfUser:userId] setHidden:YES];
+    [[self totalBetBgImageViewOfUser:userId] setHidden:YES];
+}
+
+- (void)updateUserTotalBet:(NSString *)userId
+{
+    [[self totalBetLabelOfUser:userId] setHidden:NO];
+    [[self totalBetBgImageViewOfUser:userId] setHidden:NO];
+    [[self totalBetLabelOfUser:userId] setText:[self int2String:[_gameService totalBetOfUser:userId]]];
+}
+
+- (UILabel *)totalBetLabelOfUser:(NSString *)userId
+{
+    return (UILabel *)[self.view viewWithTag:USER_TOTAL_BET_LABEL+[self getPositionByUserId:userId]];
+}
+
+- (UIImageView *)totalBetBgImageViewOfUser:(NSString *)userId
+{
+    return (UIImageView *)[self.view viewWithTag:USER_TOTAL_BET_BG_IMAGE_VIEW_OFFSET+ [self getPositionByUserId:userId]];
+}
+
+- (NSString *)int2String:(int)intValue
+{
+    return [NSString stringWithFormat:@"%d", intValue];
 }
 
 @end

@@ -27,7 +27,7 @@ typedef enum {
     UserPositionRightTop,
     UserPositionLeftTop,
     UserPositionLeft,
-    
+    UserPositionMax
 }UserPosition;
 
 @interface ZJHGameController : PPViewController <PokerViewProtocol, ZJHAvatarViewDelegate, DealerViewDelegate, ChipsSelectViewProtocol>
