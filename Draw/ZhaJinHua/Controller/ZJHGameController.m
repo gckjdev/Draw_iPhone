@@ -41,8 +41,6 @@
     PopupViewManager *_popupViewManager;
 }
 
-- (void)stopAllReciprocol;
-
 @end
 
 @implementation ZJHGameController
@@ -231,14 +229,21 @@
                                    }];
 }
 
+#pragma mark - pravite methods
+- (void)userBet:(NSString *)userId
+{
+    [[self getAvatarViewByUserId:userId] stopReciprocol];
+
+    [self.betTable someBetFrom:[self getPositionByUserId:userId]
+                     chipValue:_gameService.gameState.singleBet
+                         count:[_gameService betCountOfUser:userId]];
+}
+
 #pragma mark - player action
 - (IBAction)clickBetButton:(id)sender {
-    [[self getMyAvatarView] stopReciprocol];
-    [self.betTable someBetFrom:UserPositionCenter
-                     chipValue:_gameService.gameState.singleBet
-                         count:[_gameService myBetCount]];
-    
-    [_gameService bet];
+    [_popupViewManager dismissChipsSelectView];
+    [_gameService bet:NO];
+    [self userBet:_userManager.userId];
 }
 
 - (IBAction)clickRaiseBetButton:(id)sender
@@ -253,25 +258,14 @@
 {
     self.autoBetButton.selected = !self.autoBetButton.selected;
     if (self.autoBetButton.selected == YES) {
-        [[self getMyAvatarView] stopReciprocol];
-        [_gameService autoBet];
-        [self.betTable someBetFrom:UserPositionCenter
-                         chipValue:_gameService.gameState.singleBet
-                             count:[_gameService myBetCount]];
+        [_popupViewManager dismissChipsSelectView];
+        [_gameService bet:YES];
+        [self userBet:_userManager.userId];
     }
 }
 
 - (IBAction)clickCompareCardButton:(id)sender
 {
-//    Poker *poker1 = [Poker pokerWithPokerId:1 rank:14 suit:2 faceUp:0];
-//    Poker *poker2 = [Poker pokerWithPokerId:1 rank:14 suit:3 faceUp:0];
-//    Poker *poker3 = [Poker pokerWithPokerId:1 rank:14 suit:4 faceUp:0];
-//
-//    ZJHPokerView* pokersView = [self getSelfPokersView];
-//
-//    [pokersView updateWithPokers:[NSArray arrayWithObjects:poker1, poker2, poker3, nil] size:CGSizeMake(BIG_POKER_VIEW_WIDTH, BIG_POKER_VIEW_HEIGHT) gap:BIG_POKER_GAP delegate:self];
-    
-
 }
 
 - (IBAction)clickCheckCardButton:(id)sender
@@ -364,20 +358,19 @@
 
 - (void)nextPlayerStart:(NSString*)userId
 {
-    [self stopAllReciprocol];
+    if ([_gameService isMeAutoBet]) {
+        [_gameService bet:YES];
+    }
+    
     ZJHAvatarView* avatar = [self getAvatarViewByPosition:[self getPositionByUserId:userId]];
     [avatar startReciprocol:[ConfigManager getZJHTimeInterval]];
     [self updateZJHButtons];
 }
 
 - (void)someoneBet:(NSString*)userId
-{    
-    [self.betTable someBetFrom:[self getPositionByUserId:userId]
-                     chipValue:_gameService.gameState.singleBet
-                         count:[_gameService myBetCount]];
-    
-    ZJHAvatarView* avatar = (ZJHAvatarView*)[self getAvatarViewByUserId:userId];
-    [avatar stopReciprocol];
+{
+    [self userBet:userId];
+
 
 }
 
@@ -449,14 +442,6 @@ compareCardWith:(NSString*)targetUserId
 }
 
 #pragma mark - private method
-
-- (void)stopAllReciprocol
-{
-    for (int i = UserPositionCenter; i < MAX_PLAYER_COUNT; i ++){
-        ZJHAvatarView* avatar = [self getAvatarViewByPosition:i];
-        [avatar stopReciprocol];
-    }
-}
 
 - (PBGameUser*)getSelfUser
 {
@@ -625,12 +610,10 @@ compareCardWith:(NSString*)targetUserId
 - (void)didSelectChip:(int)chipValue
 {
     PPDebug(@"didSelectChip: %d", chipValue);
-    [[self getMyAvatarView] stopReciprocol];
     [_popupViewManager dismissChipsSelectView];
     [_gameService raiseBet:chipValue];
-    [self.betTable someBetFrom:UserPositionCenter
-                     chipValue:_gameService.gameState.singleBet
-                         count:[_gameService myBetCount]];
+
+    [self userBet:_userManager.userId];
 }
 
 - (void)updateZJHButtons
