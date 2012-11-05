@@ -515,4 +515,9 @@
     return [[UserManager defaultManager] isMe:self.session.currentPlayUserId];
 }
 
+- (BOOL)isGamePlaying
+{
+    return [self.session isGamePlaying];
+}
+
 @end

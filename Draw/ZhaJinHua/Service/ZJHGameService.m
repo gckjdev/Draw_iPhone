@@ -164,12 +164,12 @@ static ZJHGameService *_defaultService;
 
 - (BOOL)canICheckCard
 {
-    return [[self myPlayInfo] canCheckCard];
+    return [self isGamePlaying] && [[self myPlayInfo] canCheckCard];
 }
 
 - (BOOL)canIFoldCard
 {
-    return [[self myPlayInfo] canFoldCard];
+    return [self isGamePlaying] && [[self myPlayInfo] canFoldCard];
 }
 
 - (BOOL)canICompareCard
