@@ -415,7 +415,7 @@ static ZJHGameService *_defaultService;
 
 - (NSString *)getServerListString
 {
-    return @"192.168.1.5:8080";
+    return @"192.168.1.10:8080";
 }
 
 - (ZJHUserPlayInfo *)myPlayInfo
