@@ -62,13 +62,23 @@ static ZJHGameService *_defaultService;
     return [[self userPlayInfo:userId] pokers];
 }
 
-- (void)bet
+- (int)betCountOfUser:(NSString *)userId
+{
+    return [[self userPlayInfo:userId] betCount];
+}
+
+- (int)myBetCount
+{
+    return [[self userPlayInfo:_userManager.userId] betCount];
+}
+
+- (void)bet:(BOOL)autoBet
 {
     [_networkClient sendBetRequest:self.userId
                          sessionId:self.session.sessionId
-                         singleBet:_gameState.singleBet
-                             count:[_gameState betCountOfUser:self.userId]
-                         isAutoBet:FALSE];
+                         singleBet:[_gameState singleBet]
+                             count:[self myBetCount]
+                         isAutoBet:autoBet];
 }
 
 - (void)raiseBet:(int)singleBet
@@ -76,18 +86,18 @@ static ZJHGameService *_defaultService;
     [_networkClient sendBetRequest:self.userId
                          sessionId:self.session.sessionId
                          singleBet:singleBet
-                             count:[_gameState betCountOfUser:self.userId]
+                             count:[self myBetCount]
                          isAutoBet:FALSE];
 }
 
-- (void)autoBet
-{
-    [_networkClient sendBetRequest:self.userId
-                         sessionId:self.session.sessionId
-                         singleBet:[_gameState singleBet]
-                             count:[_gameState betCountOfUser:self.userId]
-                         isAutoBet:TRUE];
-}
+//- (void)autoBet
+//{
+//    [_networkClient sendBetRequest:self.userId
+//                         sessionId:self.session.sessionId
+//                         singleBet:[_gameState singleBet]
+//                             count:[self myBetCount]
+//                         isAutoBet:TRUE];
+//}
 
 - (void)checkCard
 {
@@ -190,9 +200,9 @@ static ZJHGameService *_defaultService;
     return [[self myPlayInfo] cardTypeString];
 }
 
-- (int)myBetCount
+- (BOOL)isMeAutoBet
 {
-    return [[_gameState userPlayInfo:_userManager.userId] betCount];
+    return [[self userPlayInfo:_userManager.userId] isAutoBet];
 }
 
 - (BOOL)doIWin
