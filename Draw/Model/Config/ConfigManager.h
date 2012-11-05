@@ -127,4 +127,5 @@ typedef enum{
 + (int)numberOfItemCanUsedOnContestOpus;
 
 + (int)getZJHTimeInterval;
++ (int)getTreeMatureTime;
 @end

@@ -20,6 +20,16 @@
     return self;
 }
 
+- (void)setIsMature:(BOOL)isMature
+{
+    _isMature = isMature;
+    if (isMature) {
+        //TODO: here set button image a coin
+    } else {
+        //TODO: here set button image a tree
+    }
+}
+
 - (void)killTimer
 {
     if (_treeTimer) {
@@ -30,15 +40,22 @@
     }
 }
 
+- (void)mature:(id)sender
+{
+    [self setIsMature:YES];
+}
+
 - (void)startGrowth
 {
     [self killTimer];
-//    _treeTimer = [NSTimer timerWithTimeInterval:[ConfigManager getTreeMatureTime] target:self
-//                                       selector:@selector(mature:) userInfo:nil repeats:NO];
+    [self setIsMature:NO];
+    _treeTimer = [NSTimer timerWithTimeInterval:[ConfigManager getTreeMatureTime] target:self
+                                       selector:@selector(mature:) userInfo:nil repeats:NO];
 }
 
 - (void)kill
 {
+    [self killTimer];
     
 }
 
