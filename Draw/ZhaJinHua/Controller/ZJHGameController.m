@@ -330,6 +330,7 @@
     
     for (PBGameUser *user in [_gameService.session.deletedUserList allKeys]) {
         [self hideTotalBetOfUser:user.userId];
+        [[self getPokersViewByUserId:user.userId] clear];
     }
 }
 
