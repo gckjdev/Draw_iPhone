@@ -110,7 +110,7 @@
     [layer addAnimation:anim forKey:nil];
 }
 
-- (void)clearAllChips:(UserPosition)position
+- (void)userWonAllChips:(UserPosition)position
 {
     //清除上一次残留的筹码
     PPDebug(@"<test>clear chips, layerQueue count = %d",_layerQueue.count);
@@ -130,6 +130,15 @@
         [layer addAnimation:anim forKey:nil];
         [_layerQueue enqueue:layer];
         PPDebug(@"<test>enqueue, count = %d",_layerQueue.count);
+    }
+}
+
+- (void)clearAllChips
+{
+    [_layerQueue removeAllObjects];
+    [_visibleLayerQueue removeAllObjects];
+    for (CALayer* layer in [self.layer sublayers]) {
+        [layer removeFromSuperlayer];
     }
 }
 

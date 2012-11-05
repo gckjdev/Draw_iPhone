@@ -355,7 +355,7 @@
 - (void)gameOver
 {
     [self clearAllUserPokers];
-    [self.betTable clearAllChips:[self getPositionByUserId:[_gameService winner]]];
+    [self.betTable userWonAllChips:[self getPositionByUserId:[_gameService winner]]];
     [self updateZJHButtons];
 }
 
@@ -438,7 +438,7 @@ compareCardWith:(NSString*)targetUserId
 
 - (void)someoneWon:(NSString*)userId
 {
-    [self.betTable clearAllChips:[self getPositionByUserId:userId]];
+    [self.betTable userWonAllChips:[self getPositionByUserId:userId]];
 }
 
 #pragma mark - private method
