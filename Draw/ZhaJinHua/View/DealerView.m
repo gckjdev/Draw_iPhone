@@ -118,9 +118,7 @@
         for (DealPoint* point in array) {
             [self performSelector:@selector(dealCard:) withObject:point afterDelay:delay];
             delay = delay + 0.3;
-            
         }
-        
     }
 }
 
