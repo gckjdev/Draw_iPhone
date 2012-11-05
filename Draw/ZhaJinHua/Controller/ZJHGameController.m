@@ -126,8 +126,8 @@
     self.cardTypeButton.hidden = YES;
     self.cardTypeButton.userInteractionEnabled = NO;
     
-    
-    
+    [self updateTotalBetAndSingleBet];
+    [self updateAllUserTotalBet];
 }
 
 
@@ -389,14 +389,12 @@
     [self updateUserTotalBet:userId];
 }
 
-
 - (void)someoneShowCard:(NSString*)userId cardIds:(NSArray *)cardIds
 {
     for (NSNumber *cardId in cardIds) {
         [[self getPokersViewByPosition:[self getPositionByUserId:userId]] faceUpCard:cardId.intValue
                                                                            animation:YES];
     }
-    
 }
 
 - (void)someone:(NSString*)userId
@@ -664,6 +662,8 @@ compareCardWith:(NSString*)targetUserId
         [[self getAvatarViewByPosition:i] stopReciprocol];
     }
 }
+
+#pragma mark - pravite methods, update bet.
 
 - (void)updateTotalBetAndSingleBet
 {
