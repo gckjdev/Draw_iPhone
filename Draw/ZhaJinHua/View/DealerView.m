@@ -11,8 +11,8 @@
 #import "AnimationManager.h"
 #import "ZJHGameController.h"
 
-#define DEAL_TIMEINTERVAL   0.3
-#define DEAL_ANIMATION_DURATION 0.3
+#define DEAL_TIMEINTERVAL   0.33
+#define DEAL_ANIMATION_DURATION 0.33
 
 @implementation DealPoint
 @synthesize x;

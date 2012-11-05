@@ -126,8 +126,10 @@
         CAAnimation* anim2 = [AnimationManager missingAnimationWithDuration:1];
         anim.removedOnCompletion = NO;
         anim2.removedOnCompletion = NO;
-        [layer addAnimation:anim2 forKey:nil];
         [layer addAnimation:anim forKey:nil];
+        [CATransaction setCompletionBlock:^{
+            [layer addAnimation:anim2 forKey:nil];
+        }];
         [_layerQueue enqueue:layer];
         PPDebug(@"<test>enqueue, count = %d",_layerQueue.count);
     }

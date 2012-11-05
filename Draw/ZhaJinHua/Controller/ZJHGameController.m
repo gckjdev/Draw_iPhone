@@ -359,8 +359,10 @@
     PPDebug(@"<ZJHGameController> game start!");
     [self.dealerView dealWithPositionArray:[self dealPointsArray]
                                      times:CARDS_COUNT];
-    [self.betTable clearAllChips];
+
+//    [self.betTable clearAllChips];
     [_gameService bet:NO];
+
 }
 
 - (void)gameOver
