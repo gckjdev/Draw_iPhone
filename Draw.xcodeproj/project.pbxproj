@@ -274,6 +274,7 @@
 		C28E7C111602E5E000F4B6A5 /* DecTimeItemAction.m in Sources */ = {isa = PBXBuildFile; fileRef = C28E7C101602E5DD00F4B6A5 /* DecTimeItemAction.m */; };
 		C28E7C141602E5FC00F4B6A5 /* SkipItemAction.m in Sources */ = {isa = PBXBuildFile; fileRef = C28E7C131602E5F900F4B6A5 /* SkipItemAction.m */; };
 		C2916CC01606B9DD00B0996E /* DiceRobotManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C2916CBF1606B9DD00B0996E /* DiceRobotManager.m */; };
+		C292CD4D1647966500BDE772 /* MoneyTree.m in Sources */ = {isa = PBXBuildFile; fileRef = C292CD4C1647966500BDE772 /* MoneyTree.m */; };
 		C296872B15DCE03F006968BA /* DiceItemInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = C296872115DCE03F006968BA /* DiceItemInfoView.m */; };
 		C296872C15DCE03F006968BA /* DiceItemInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C296872215DCE03F006968BA /* DiceItemInfoView.xib */; };
 		C296872D15DCE03F006968BA /* DiceUserInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = C296872515DCE03F006968BA /* DiceUserInfoView.m */; };
@@ -1612,6 +1613,8 @@
 		C28E7C131602E5F900F4B6A5 /* SkipItemAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SkipItemAction.m; sourceTree = "<group>"; };
 		C2916CBE1606B9DD00B0996E /* DiceRobotManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiceRobotManager.h; sourceTree = "<group>"; };
 		C2916CBF1606B9DD00B0996E /* DiceRobotManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiceRobotManager.m; sourceTree = "<group>"; };
+		C292CD4B1647966500BDE772 /* MoneyTree.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoneyTree.h; sourceTree = "<group>"; };
+		C292CD4C1647966500BDE772 /* MoneyTree.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoneyTree.m; sourceTree = "<group>"; };
 		C296872015DCE03F006968BA /* DiceItemInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiceItemInfoView.h; sourceTree = "<group>"; };
 		C296872115DCE03F006968BA /* DiceItemInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiceItemInfoView.m; sourceTree = "<group>"; };
 		C296872215DCE03F006968BA /* DiceItemInfoView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DiceItemInfoView.xib; sourceTree = "<group>"; };
@@ -3819,6 +3822,8 @@
 				A404A9E01643607F007CA21A /* ChipView.m */,
 				A404A9ED1643DD51007CA21A /* PopupViewManager.h */,
 				A404A9EE1643DD54007CA21A /* PopupViewManager.m */,
+				C292CD4B1647966500BDE772 /* MoneyTree.h */,
+				C292CD4C1647966500BDE772 /* MoneyTree.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -8666,6 +8671,7 @@
 				A404A9E21643607F007CA21A /* ChipView.m in Sources */,
 				A404A9EF1643DD57007CA21A /* PopupViewManager.m in Sources */,
 				C29B5FBB1644CB9C00EF4AB4 /* ZJHMyAvatarView.m in Sources */,
+				C292CD4D1647966500BDE772 /* MoneyTree.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
