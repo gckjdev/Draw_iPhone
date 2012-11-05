@@ -254,7 +254,6 @@
 
 - (IBAction)clickRaiseBetButton:(id)sender
 {
-    [self disableZJHButtons];
     [_popupViewManager popupChipsSelectViewAtView:sender
                                            inView:self.view
                                         aboveView:nil
@@ -636,6 +635,7 @@ compareCardWith:(NSString*)targetUserId
 - (void)didSelectChip:(int)chipValue
 {
     PPDebug(@"didSelectChip: %d", chipValue);
+    [self disableZJHButtons];
     [_popupViewManager dismissChipsSelectView];
     [_gameService raiseBet:chipValue];
 }

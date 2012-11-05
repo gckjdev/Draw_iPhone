@@ -257,7 +257,7 @@ static ZJHGameService *_defaultService;
     self.gameState = [ZJHGameState fromPBZJHGameState:message.joinGameResponse.zjhGameState];
 }
 
-- (void)hanldMoreOnGameStartNotificationRequest:(GameMessage*)message
+- (void)handleMoreOnGameStartNotificationRequest:(GameMessage*)message
 {
     self.gameState = [ZJHGameState fromPBZJHGameState:message.gameStartNotificationRequest.zjhGameState];
 }
