@@ -150,6 +150,8 @@ static ZJHGameService *_defaultService;
         return NO;
     }
     
+    PPDebug(@"isMyTurn: %d", [self isMyTurn]);
+
     return [self isMyTurn];
 }
 
@@ -252,17 +254,12 @@ static ZJHGameService *_defaultService;
 
 - (void)handleMoreOnJoinGameResponse:(GameMessage*)message
 {
-    if ([[message joinGameResponse] hasZjhGameState]) {
-        self.gameState = [ZJHGameState fromPBZJHGameState:message.joinGameResponse.zjhGameState];
-    }
+    self.gameState = [ZJHGameState fromPBZJHGameState:message.joinGameResponse.zjhGameState];
 }
 
 - (void)hanldMoreOnGameStartNotificationRequest:(GameMessage*)message
 {
-    if ([[message gameStartNotificationRequest] hasZjhGameState]) {
-        self.gameState = [ZJHGameState fromPBZJHGameState:message.gameStartNotificationRequest.zjhGameState];
-        self.gameState.singleBet = 5;
-    }
+    self.gameState = [ZJHGameState fromPBZJHGameState:message.gameStartNotificationRequest.zjhGameState];
 }
 
 - (void)handleMoreOnGameOverNotificationRequest:(GameMessage*)message
