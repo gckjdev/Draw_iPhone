@@ -75,9 +75,9 @@
 
 - (CGPoint)getRandomCenterPoint
 {
-    int randomX = random()%((int)self.frame.size.width/2);
-    int randomY = random()%((int)self.frame.size.height/2);
-    return CGPointMake(self.frame.size.width/4+randomX, self.frame.size.height/4+randomY);
+    int randomX = random()%((int)self.frame.size.width/3);
+    int randomY = random()%((int)self.frame.size.height/3);
+    return CGPointMake(self.frame.size.width/3+randomX, self.frame.size.height/3+randomY);
 }
 
 - (void)someBetFrom:(UserPosition)position
@@ -95,8 +95,8 @@
     CALayer* layer = [CALayer layer];
     UIImage* chipImage = [[ZJHImageManager defaultManager] chipImageForChipValue:chipValue];
     [layer setContents:(id)[chipImage CGImage]];
-    layer.bounds = CGRectMake(0, 0, chipImage.size.width,chipImage.size.height);
-    layer.shouldRasterize = YES;
+    layer.bounds = CGRectMake(0, 0, chipImage.size.width/2,chipImage.size.height/2);
+//    layer.shouldRasterize = YES;
     
     [self.layer addSublayer:layer];
     [_visibleLayerQueue enqueue:layer];
