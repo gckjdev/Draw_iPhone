@@ -394,14 +394,12 @@ compareCardWith:(NSString*)targetUserId
 
 - (void)someoneRaiseBet:(NSString*)userId
 {
-    [self.betTable someBetFrom:[self getPositionByUserId:userId]
-                     chipValue:_gameService.gameState.singleBet
-                         count:[_gameService myBetCount]];
+    [self userBet:userId];
 }
 
 - (void)someoneAutoBet:(NSString*)userId
 {
-    
+    [self userBet:userId];
 }
 
 - (ZJHPokerSectorType)getPokerSectorTypeByPosition:(UserPosition)position
@@ -409,12 +407,12 @@ compareCardWith:(NSString*)targetUserId
     switch (position) {
         case UserPositionLeft:
         case UserPositionLeftTop:
-            return ZJHPokerSectorTypeLeft;
+            return ZJHPokerSectorTypeRight;
             break;
             
         case UserPositionRight:
         case UserPositionRightTop:
-            return ZJHPokerSectorTypeRight;
+            return ZJHPokerSectorTypeLeft;
             break;
             
         default:
