@@ -16,7 +16,7 @@
 
 + (ZJHGameService*)defaultService;
 
-- (ZJHUserPlayInfo *)userPlayInfo:(NSString *)userId;
+//- (ZJHUserPlayInfo *)userPlayInfo:(NSString *)userId;
 - (NSArray *)pokersOfUser:(NSString *)userId;
 
 - (void)bet;                                    // 跟注
@@ -42,6 +42,7 @@
 - (BOOL)canUserCompareCard:(NSString *)userId;
 
 - (NSString *)myCardType;
+- (int)myBetCount;
 
 - (BOOL)doIWin;
 - (NSString *)winner;

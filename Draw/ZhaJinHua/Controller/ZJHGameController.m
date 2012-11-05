@@ -234,7 +234,7 @@
     [[self getMyAvatarView] stopReciprocol];
     [self.betTable someBetFrom:UserPositionCenter
                      chipValue:_gameService.gameState.singleBet
-                         count:[[_gameService userPlayInfo:_userManager.userId] betCount]];
+                         count:[_gameService myBetCount]];
     
     [_gameService bet];
 }
@@ -249,13 +249,14 @@
 
 - (IBAction)clickAutoBetButton:(id)sender
 {
-    [[self getMyAvatarView] stopReciprocol];
-
-    [self.betTable someBetFrom:UserPositionCenter
-                     chipValue:_gameService.gameState.singleBet
-                         count:[[_gameService userPlayInfo:_userManager.userId] betCount]];
-    
-    [_gameService autoBet];
+    self.autoBetButton.selected = !self.autoBetButton.selected;
+    if (self.autoBetButton.selected == YES) {
+        [[self getMyAvatarView] stopReciprocol];
+        [_gameService autoBet];
+        [self.betTable someBetFrom:UserPositionCenter
+                         chipValue:_gameService.gameState.singleBet
+                             count:[_gameService myBetCount]];
+    }
 }
 
 - (IBAction)clickCompareCardButton:(id)sender
@@ -370,7 +371,7 @@
 {    
     [self.betTable someBetFrom:[self getPositionByUserId:userId]
                      chipValue:_gameService.gameState.singleBet
-                         count:[[_gameService userPlayInfo:userId] betCount]];
+                         count:[_gameService myBetCount]];
 
 }
 
@@ -394,7 +395,7 @@ compareCardWith:(NSString*)targetUserId
 {
     [self.betTable someBetFrom:[self getPositionByUserId:userId]
                      chipValue:_gameService.gameState.singleBet
-                         count:[[_gameService userPlayInfo:userId] betCount]];
+                         count:[_gameService myBetCount]];
 }
 
 - (void)someoneAutoBet:(NSString*)userId
@@ -486,7 +487,7 @@ compareCardWith:(NSString*)targetUserId
                 pokerSize = CGSizeMake(SMALL_POKER_VIEW_WIDTH, SMALL_POKER_VIEW_HEIGHT);
                 gap = SMALL_POKER_GAP;
             }
-            [pokerView updateWithPokers:[[_gameService userPlayInfo:avatar.userInfo.userId] pokers]
+            [pokerView updateWithPokers:[_gameService pokersOfUser:avatar.userInfo.userId]
                                    size:pokerSize
                                     gap:gap
                                delegate:self];
@@ -610,8 +611,12 @@ compareCardWith:(NSString*)targetUserId
 - (void)didSelectChip:(int)chipValue
 {
     PPDebug(@"didSelectChip: %d", chipValue);
+    [[self getMyAvatarView] stopReciprocol];
     [_popupViewManager dismissChipsSelectView];
     [_gameService raiseBet:chipValue];
+    [self.betTable someBetFrom:UserPositionCenter
+                     chipValue:_gameService.gameState.singleBet
+                         count:[_gameService myBetCount]];
 }
 
 - (void)updateZJHButtons
