@@ -150,6 +150,8 @@ static ZJHGameService *_defaultService;
         return NO;
     }
     
+    PPDebug(@"isMyTurn: %d", [self isMyTurn]);
+
     return [self isMyTurn];
 }
 
@@ -258,7 +260,6 @@ static ZJHGameService *_defaultService;
 - (void)hanldMoreOnGameStartNotificationRequest:(GameMessage*)message
 {
     self.gameState = [ZJHGameState fromPBZJHGameState:message.gameStartNotificationRequest.zjhGameState];
-    self.gameState.singleBet = 5;
 }
 
 - (void)handleMoreOnGameOverNotificationRequest:(GameMessage*)message

@@ -329,9 +329,9 @@
     [self updateAllPlayersAvatar];
     [self updateWaittingForNextTurnNotLabel];
     
-    for (PBGameUser *user in [_gameService.session.deletedUserList allKeys]) {
-        [self hideTotalBetOfUser:user.userId];
-        [[self getPokersViewByUserId:user.userId] clear];
+    for (NSString *userId in [_gameService.session.deletedUserList allKeys]) {
+        [self hideTotalBetOfUser:userId];
+        [[self getPokersViewByUserId:userId] clear];
     }
 }
 
@@ -361,10 +361,6 @@
     PPDebug(@"<ZJHGameController> game start!");
     [self.dealerView dealWithPositionArray:[self dealPointsArray]
                                      times:CARDS_COUNT];
-
-//    [self.betTable clearAllChips];
-    [_gameService bet:NO];
-
 }
 
 - (void)gameOver
