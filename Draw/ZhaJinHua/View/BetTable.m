@@ -128,7 +128,8 @@
         anim2.removedOnCompletion = NO;
         [layer addAnimation:anim forKey:nil];
         [CATransaction setCompletionBlock:^{
-            [layer addAnimation:anim2 forKey:nil];
+            [layer setPosition:[self getPointByPosition:position]];
+            [layer setOpacity:0];
         }];
         [_layerQueue enqueue:layer];
         PPDebug(@"<test>enqueue, count = %d",_layerQueue.count);

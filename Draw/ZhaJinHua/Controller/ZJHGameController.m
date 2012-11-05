@@ -242,6 +242,7 @@
 
 - (void)updateBet
 {
+    
 }
 
 #pragma mark - player action
@@ -368,7 +369,8 @@
 {
     [self updateZJHButtons];
     [self clearAllUserPokers];
-    [self.betTable userWonAllChips:[self getPositionByUserId:[_gameService winner]]];
+    [self clearAllAvatarReciprocols];
+    [self someoneWon:[_gameService winner]];
 }
 
 - (void)nextPlayerStart:(NSString*)userId
@@ -451,6 +453,19 @@ compareCardWith:(NSString*)targetUserId
 - (void)someoneWon:(NSString*)userId
 {
     [self.betTable userWonAllChips:[self getPositionByUserId:userId]];
+}
+
+- (void)someoneJoinIn:(NSString*)userId
+{
+    [[self getAvatarViewByUserId:userId] setUserInfo:[_gameService.session getUserByUserId:userId]];
+    [self updateUserTotalBet:userId];
+}
+
+- (void)someoneFlee:(NSString*)userId
+{
+    [self someoneFoldCard:userId];
+    [[self getAvatarViewByUserId:userId] resetAvatar];
+    [self hideTotalBetOfUser:userId];
 }
 
 #pragma mark - private method
@@ -657,12 +672,12 @@ compareCardWith:(NSString*)targetUserId
     }
 }
 
-//- (void)clearAllAvatarReciprocols
-//{
-//    for (int i = UserPositionCenter; i < UserPositionMax; i ++){
-//        [[self getAvatarViewByPosition:i] stopReciprocol];
-//    }
-//}
+- (void)clearAllAvatarReciprocols
+{
+    for (int i = UserPositionCenter; i < UserPositionMax; i ++){
+        [[self getAvatarViewByPosition:i] stopReciprocol];
+    }
+}
 
 #pragma mark - pravite methods, update bet.
 
