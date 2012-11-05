@@ -41,6 +41,8 @@
     PopupViewManager *_popupViewManager;
 }
 
+- (void)stopAllReciprocol;
+
 @end
 
 @implementation ZJHGameController
@@ -362,6 +364,7 @@
 
 - (void)nextPlayerStart:(NSString*)userId
 {
+    [self stopAllReciprocol];
     ZJHAvatarView* avatar = [self getAvatarViewByPosition:[self getPositionByUserId:userId]];
     [avatar startReciprocol:[ConfigManager getZJHTimeInterval]];
     [self updateZJHButtons];
@@ -372,6 +375,9 @@
     [self.betTable someBetFrom:[self getPositionByUserId:userId]
                      chipValue:_gameService.gameState.singleBet
                          count:[_gameService myBetCount]];
+    
+    ZJHAvatarView* avatar = (ZJHAvatarView*)[self getAvatarViewByUserId:userId];
+    [avatar stopReciprocol];
 
 }
 
@@ -443,6 +449,14 @@ compareCardWith:(NSString*)targetUserId
 }
 
 #pragma mark - private method
+
+- (void)stopAllReciprocol
+{
+    for (int i = UserPositionCenter; i < MAX_PLAYER_COUNT; i ++){
+        ZJHAvatarView* avatar = [self getAvatarViewByPosition:i];
+        [avatar stopReciprocol];
+    }
+}
 
 - (PBGameUser*)getSelfUser
 {
