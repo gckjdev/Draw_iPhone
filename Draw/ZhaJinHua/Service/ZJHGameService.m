@@ -190,6 +190,11 @@ static ZJHGameService *_defaultService;
     return [[self myPlayInfo] cardTypeString];
 }
 
+- (int)myBetCount
+{
+    return [[_gameState userPlayInfo:_userManager.userId] betCount];
+}
+
 - (BOOL)doIWin
 {
     return [_userManager isMe:_gameState.winner];

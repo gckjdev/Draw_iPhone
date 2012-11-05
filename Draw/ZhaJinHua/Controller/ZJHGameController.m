@@ -234,7 +234,7 @@
     [[self getMyAvatarView] stopReciprocol];
     [self.betTable someBetFrom:UserPositionCenter
                      chipValue:_gameService.gameState.singleBet
-                         count:[[_gameService userPlayInfo:_userManager.userId] betCount]];
+                         count:[_gameService myBetCount]];
     
     [_gameService bet];
 }
@@ -253,7 +253,7 @@
 
     [self.betTable someBetFrom:UserPositionCenter
                      chipValue:_gameService.gameState.singleBet
-                         count:[[_gameService userPlayInfo:_userManager.userId] betCount]];
+                         count:[_gameService myBetCount]];
     
     [_gameService autoBet];
 }
@@ -370,7 +370,7 @@
 {    
     [self.betTable someBetFrom:[self getPositionByUserId:userId]
                      chipValue:_gameService.gameState.singleBet
-                         count:[[_gameService userPlayInfo:userId] betCount]];
+                         count:[_gameService myBetCount]];
 
 }
 
@@ -394,7 +394,7 @@ compareCardWith:(NSString*)targetUserId
 {
     [self.betTable someBetFrom:[self getPositionByUserId:userId]
                      chipValue:_gameService.gameState.singleBet
-                         count:[[_gameService userPlayInfo:userId] betCount]];
+                         count:[_gameService myBetCount]];
 }
 
 - (void)someoneAutoBet:(NSString*)userId
@@ -486,7 +486,7 @@ compareCardWith:(NSString*)targetUserId
                 pokerSize = CGSizeMake(SMALL_POKER_VIEW_WIDTH, SMALL_POKER_VIEW_HEIGHT);
                 gap = SMALL_POKER_GAP;
             }
-            [pokerView updateWithPokers:[[_gameService userPlayInfo:avatar.userInfo.userId] pokers]
+            [pokerView updateWithPokers:[_gameService pokersOfUser:avatar.userInfo.userId]
                                    size:pokerSize
                                     gap:gap
                                delegate:self];
@@ -612,6 +612,9 @@ compareCardWith:(NSString*)targetUserId
     PPDebug(@"didSelectChip: %d", chipValue);
     [_popupViewManager dismissChipsSelectView];
     [_gameService raiseBet:chipValue];
+    [self.betTable someBetFrom:UserPositionCenter
+                     chipValue:_gameService.gameState.singleBet
+                         count:[_gameService myBetCount]];
 }
 
 - (void)updateZJHButtons
