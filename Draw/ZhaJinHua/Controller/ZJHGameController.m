@@ -249,13 +249,14 @@
 
 - (IBAction)clickAutoBetButton:(id)sender
 {
-    [[self getMyAvatarView] stopReciprocol];
-
-    [self.betTable someBetFrom:UserPositionCenter
-                     chipValue:_gameService.gameState.singleBet
-                         count:[_gameService myBetCount]];
-    
-    [_gameService autoBet];
+    self.autoBetButton.selected = !self.autoBetButton.selected;
+    if (self.autoBetButton.selected == YES) {
+        [[self getMyAvatarView] stopReciprocol];
+        [_gameService autoBet];
+        [self.betTable someBetFrom:UserPositionCenter
+                         chipValue:_gameService.gameState.singleBet
+                             count:[_gameService myBetCount]];
+    }
 }
 
 - (IBAction)clickCompareCardButton:(id)sender
