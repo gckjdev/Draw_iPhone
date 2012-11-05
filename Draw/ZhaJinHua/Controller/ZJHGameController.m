@@ -249,7 +249,6 @@
 - (IBAction)clickBetButton:(id)sender {
     [_popupViewManager dismissChipsSelectView];
     [_gameService bet:NO];
-//    [self userBet:_userManager.userId];
 }
 
 - (IBAction)clickRaiseBetButton:(id)sender
@@ -266,7 +265,6 @@
     if (self.autoBetButton.selected == YES) {
         [_popupViewManager dismissChipsSelectView];
         [_gameService bet:YES];
-//        [self userBet:_userManager.userId];
     }
 }
 
@@ -617,7 +615,6 @@ compareCardWith:(NSString*)targetUserId
     PPDebug(@"didSelectChip: %d", chipValue);
     [_popupViewManager dismissChipsSelectView];
     [_gameService raiseBet:chipValue];
-//    [self userBet:_userManager.userId];
 }
 
 - (void)updateZJHButtons
