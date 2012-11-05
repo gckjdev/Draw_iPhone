@@ -261,6 +261,7 @@ static ZJHGameService *_defaultService;
 {
     if ([[message gameStartNotificationRequest] hasZjhGameState]) {
         self.gameState = [ZJHGameState fromPBZJHGameState:message.gameStartNotificationRequest.zjhGameState];
+        self.gameState.singleBet = 5;
     }
 }
 

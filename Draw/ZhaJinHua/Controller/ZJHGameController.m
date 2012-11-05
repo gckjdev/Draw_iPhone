@@ -42,8 +42,6 @@
     PopupViewManager *_popupViewManager;
 }
 
-- (void)clearAllAvatarReciprocols;
-
 @end
 
 @implementation ZJHGameController
@@ -329,7 +327,7 @@
     [self updateAllPlayersAvatar];
     [self updateWaittingForNextTurnNotLabel];
     
-    for (PBGameUser *user in _gameService.session.deletedUserList) {
+    for (PBGameUser *user in [_gameService.session.deletedUserList allKeys]) {
         [self hideTotalBetOfUser:user.userId];
     }
 }
@@ -360,28 +358,29 @@
     PPDebug(@"<ZJHGameController> game start!");
     [self.dealerView dealWithPositionArray:[self dealPointsArray]
                                      times:CARDS_COUNT];
+
 //    [self.betTable clearAllChips];
-    [self clickBetButton:nil];
+    [_gameService bet:NO];
+
 }
 
 - (void)gameOver
 {
+    [self updateZJHButtons];
     [self clearAllUserPokers];
     [self.betTable userWonAllChips:[self getPositionByUserId:[_gameService winner]]];
-    [self updateZJHButtons];
 }
 
 - (void)nextPlayerStart:(NSString*)userId
 {
-    if ([_gameService isMeAutoBet]) {
-        [_gameService bet:YES];
-    }
+    [[self getAvatarViewByPosition:[self getPositionByUserId:userId]] startReciprocol:[ConfigManager getZJHTimeInterval]];
     
-    [self clearAllAvatarReciprocols];
-    
-    ZJHAvatarView* avatar = [self getAvatarViewByPosition:[self getPositionByUserId:userId]];
-    [avatar startReciprocol:[ConfigManager getZJHTimeInterval]];
     [self updateZJHButtons];
+
+    if ([_gameService isMyTurn] && [_gameService isMeAutoBet]) {
+        [_gameService bet:YES];
+        return;
+    }    
 }
 
 - (void)someoneBet:(NSString*)userId
@@ -658,12 +657,12 @@ compareCardWith:(NSString*)targetUserId
     }
 }
 
-- (void)clearAllAvatarReciprocols
-{
-    for (int i = UserPositionCenter; i < UserPositionMax; i ++){
-        [[self getAvatarViewByPosition:i] stopReciprocol];
-    }
-}
+//- (void)clearAllAvatarReciprocols
+//{
+//    for (int i = UserPositionCenter; i < UserPositionMax; i ++){
+//        [[self getAvatarViewByPosition:i] stopReciprocol];
+//    }
+//}
 
 #pragma mark - pravite methods, update bet.
 
