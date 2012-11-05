@@ -346,10 +346,11 @@
 						<reference key="IBUIHighlightedTitleColor" ref="129307563"/>
 						<reference key="IBUINormalTitleColor" ref="129307563"/>
 						<reference key="IBUINormalTitleShadowColor" ref="395620140"/>
-						<object class="NSCustomResource" key="IBUINormalBackgroundImage">
+						<object class="NSCustomResource" key="IBUISelectedBackgroundImage" id="631382882">
 							<string key="NSClassName">NSImage</string>
 							<string key="NSResourceName">zjh_auto_bet@2x.png</string>
 						</object>
+						<reference key="IBUINormalBackgroundImage" ref="631382882"/>
 						<reference key="IBUIFontDescription" ref="670079205"/>
 						<reference key="IBUIFont" ref="669435553"/>
 					</object>
@@ -4932,6 +4933,7 @@
 				<string key="2874.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="2876.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="290.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+				<real value="2" key="290.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
 				<array class="NSMutableArray" key="290.IBViewMetadataConstraints">
 					<reference ref="422785084"/>
 				</array>

@@ -178,6 +178,7 @@
 		A454CB701558F5CE00896761 /* ChatController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A454CB6E1558F5CE00896761 /* ChatController.xib */; };
 		A454CBC4155A181500896761 /* MessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A454CBC2155A181500896761 /* MessageCell.m */; };
 		A454CBC5155A181500896761 /* MessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A454CBC3155A181500896761 /* MessageCell.xib */; };
+		A455074F1647ABCA005E887B /* zjh_auto_bet_on@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A455074E1647ABCA005E887B /* zjh_auto_bet_on@2x.png */; };
 		A455F8C31585D21400CA5743 /* EGORefreshTableFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = A455F8B21585D21400CA5743 /* EGORefreshTableFooterView.m */; };
 		A455F8C41585D21400CA5743 /* EGORefreshTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = A455F8B41585D21400CA5743 /* EGORefreshTableHeaderView.m */; };
 		A455F8C51585D21400CA5743 /* EGORefreshTableHeaderView.strings in Resources */ = {isa = PBXBuildFile; fileRef = A455F8B61585D21400CA5743 /* EGORefreshTableHeaderView.strings */; };
@@ -1456,6 +1457,7 @@
 		A454CBC1155A181500896761 /* MessageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageCell.h; sourceTree = "<group>"; };
 		A454CBC2155A181500896761 /* MessageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageCell.m; sourceTree = "<group>"; };
 		A454CBC3155A181500896761 /* MessageCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MessageCell.xib; sourceTree = "<group>"; };
+		A455074E1647ABCA005E887B /* zjh_auto_bet_on@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zjh_auto_bet_on@2x.png"; sourceTree = "<group>"; };
 		A455F8B11585D21400CA5743 /* EGORefreshTableFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EGORefreshTableFooterView.h; sourceTree = "<group>"; };
 		A455F8B21585D21400CA5743 /* EGORefreshTableFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EGORefreshTableFooterView.m; sourceTree = "<group>"; };
 		A455F8B31585D21400CA5743 /* EGORefreshTableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EGORefreshTableHeaderView.h; sourceTree = "<group>"; };
@@ -3353,6 +3355,7 @@
 		A44B63E0163F72B500A8045B /* zjh_buttons */ = {
 			isa = PBXGroup;
 			children = (
+				A455074E1647ABCA005E887B /* zjh_auto_bet_on@2x.png */,
 				A44B63E1163F72B500A8045B /* zjh_auto_bet@2x.png */,
 				A44B63E2163F72B500A8045B /* zjh_bet@2x.png */,
 				A44B63E3163F72B500A8045B /* zjh_check_card@2x.png */,
@@ -8091,6 +8094,7 @@
 				A404A9DE16428149007CA21A /* chip_5@2x.png in Resources */,
 				C29B5F961644C74500EF4AB4 /* ZJHAvatarView.xib in Resources */,
 				C29B5FB81644CAAD00EF4AB4 /* ZJHMyAvatarView.xib in Resources */,
+				A455074F1647ABCA005E887B /* zjh_auto_bet_on@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
