@@ -610,6 +610,7 @@ compareCardWith:(NSString*)targetUserId
 - (void)didSelectChip:(int)chipValue
 {
     PPDebug(@"didSelectChip: %d", chipValue);
+    [[self getMyAvatarView] stopReciprocol];
     [_popupViewManager dismissChipsSelectView];
     [_gameService raiseBet:chipValue];
     [self.betTable someBetFrom:UserPositionCenter
