@@ -239,11 +239,15 @@
                          count:[_gameService betCountOfUser:userId]];
 }
 
+- (void)updateBet
+{
+}
+
 #pragma mark - player action
 - (IBAction)clickBetButton:(id)sender {
     [_popupViewManager dismissChipsSelectView];
     [_gameService bet:NO];
-    [self userBet:_userManager.userId];
+//    [self userBet:_userManager.userId];
 }
 
 - (IBAction)clickRaiseBetButton:(id)sender
@@ -260,7 +264,7 @@
     if (self.autoBetButton.selected == YES) {
         [_popupViewManager dismissChipsSelectView];
         [_gameService bet:YES];
-        [self userBet:_userManager.userId];
+//        [self userBet:_userManager.userId];
     }
 }
 
@@ -291,6 +295,7 @@
 
 - (void)betSuccess
 {
+    [self userBet:_userManager.userId];
     [self updateZJHButtons];
 }
 
@@ -344,9 +349,9 @@
 - (void)gameStart
 {
     PPDebug(@"<ZJHGameController> game start!");
-//    [self updateAllPokers];
     [self.dealerView dealWithPositionArray:[self dealPointsArray]
                                      times:3];
+    
 }
 
 - (void)gameOver
@@ -370,9 +375,6 @@
 - (void)someoneBet:(NSString*)userId
 {
     [self userBet:userId];
-    [self userBet:userId];
-
-
 }
 
 
@@ -611,8 +613,7 @@ compareCardWith:(NSString*)targetUserId
     PPDebug(@"didSelectChip: %d", chipValue);
     [_popupViewManager dismissChipsSelectView];
     [_gameService raiseBet:chipValue];
-
-    [self userBet:_userManager.userId];
+//    [self userBet:_userManager.userId];
 }
 
 - (void)updateZJHButtons
