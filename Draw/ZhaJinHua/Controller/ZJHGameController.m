@@ -120,7 +120,7 @@
     [self updateAllPlayersAvatar];
     self.dealerView.delegate = self;
     
-    [self updateZJHButtons];
+    [self disableZJHButtons];
     
     // hidden views below
     self.cardTypeButton.hidden = YES;
@@ -246,12 +246,14 @@
 
 #pragma mark - player action
 - (IBAction)clickBetButton:(id)sender {
+    [self disableZJHButtons];
     [_popupViewManager dismissChipsSelectView];
     [_gameService bet:NO];
 }
 
 - (IBAction)clickRaiseBetButton:(id)sender
 {
+    [self disableZJHButtons];
     [_popupViewManager popupChipsSelectViewAtView:sender
                                            inView:self.view
                                         aboveView:nil
@@ -262,6 +264,7 @@
 {
     self.autoBetButton.selected = !self.autoBetButton.selected;
     if (self.autoBetButton.selected == YES) {
+        [self disableZJHButtons];
         [_popupViewManager dismissChipsSelectView];
         [_gameService bet:YES];
     }
@@ -280,6 +283,7 @@
 
 - (IBAction)clickFoldCardButton:(id)sender
 {
+    [self disableZJHButtons];
     [[self getMyAvatarView] stopReciprocol];
     [[self getMyPokersView] foldCards:YES];
     [_gameService foldCard];
@@ -294,8 +298,6 @@
 
 - (void)betSuccess
 {
-    [self updateZJHButtons];
-
     [self userBet:_userManager.userId];
     
     [self updateTotalBetAndSingleBet];
@@ -304,20 +306,20 @@
 
 - (void)checkCardSuccess
 {
-    [self updateZJHButtons];
 }
 
 - (void)foldCardSuccess
 {
-    [self updateZJHButtons];
 }
 
 - (void)showCardSuccess
 {
+    
 }
 
 - (void)compareCardSuccess
 {
+    
 }
 
 #pragma mark - service notification request
@@ -367,7 +369,7 @@
 
 - (void)gameOver
 {
-    [self updateZJHButtons];
+    [self disableZJHButtons];
     [self clearAllUserPokers];
     [self.betTable userWonAllChips:[self getPositionByUserId:[_gameService winner]]];
 }
@@ -627,6 +629,17 @@ compareCardWith:(NSString*)targetUserId
     [_gameService raiseBet:chipValue];
 }
 
+- (void)disableZJHButtons
+{
+    self.betButton.enabled = NO;
+    self.raiseBetButton.enabled = NO;
+    self.autoBetButton.enabled = NO;
+    
+    self.compareCardButton.enabled = NO;
+    self.checkCardButton.enabled = NO;
+    self.foldCardButton.enabled = NO;
+}
+
 - (void)updateZJHButtons
 {
     self.betButton.enabled = [_gameService canIBet];
@@ -642,7 +655,6 @@ compareCardWith:(NSString*)targetUserId
 - (void)didDealFinish:(DealerView *)view
 {
     [self updateAllPokers];
-    [self updateZJHButtons];
 }
 
 - (void)showMyCardTypeString

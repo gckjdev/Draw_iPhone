@@ -21,13 +21,13 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Draw/ZhaJinHua/Controller/ZJHGameController.m"
-         timestampString = "373796776.967265"
+         timestampString = "373798446.778535"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "682"
-         endingLineNumber = "682"
-         landmarkName = "-hideTotalBetOfUser:"
-         landmarkType = "5">
+         startingLineNumber = "684"
+         endingLineNumber = "684"
+         landmarkName = "@implementation ZJHGameController"
+         landmarkType = "3">
       </FileBreakpoint>
    </FileBreakpoints>
 </Bucket>
