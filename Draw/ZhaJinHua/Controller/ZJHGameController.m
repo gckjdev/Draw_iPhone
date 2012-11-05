@@ -29,6 +29,8 @@
 #define USER_TOTAL_BET_BG_IMAGE_VIEW_OFFSET 3000
 #define USER_TOTAL_BET_LABEL 3200
 
+#define CARDS_COUNT 3
+
 @interface ZJHGameController ()
 {
     ZJHGameService  *_gameService;
@@ -357,9 +359,9 @@
 {
     PPDebug(@"<ZJHGameController> game start!");
     [self.dealerView dealWithPositionArray:[self dealPointsArray]
-                                     times:3];
-    [self updateTotalBetAndSingleBet];
-    [self updateAllUserTotalBet];
+                                     times:CARDS_COUNT];
+    [self.betTable clearAllChips];
+    [self clickBetButton:nil];
 }
 
 - (void)gameOver

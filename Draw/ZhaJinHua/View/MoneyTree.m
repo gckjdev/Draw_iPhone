@@ -7,6 +7,7 @@
 //
 
 #import "MoneyTree.h"
+#import "ConfigManager.h"
 
 @implementation MoneyTree
 
@@ -19,10 +20,23 @@
     return self;
 }
 
+- (void)killTimer
+{
+    if (_treeTimer) {
+        if ([_treeTimer isValid]) {
+            [_treeTimer invalidate];
+        }
+        _treeTimer = nil;
+    }
+}
+
 - (void)startGrowth
 {
-    
+    [self killTimer];
+//    _treeTimer = [NSTimer timerWithTimeInterval:[ConfigManager getTreeMatureTime] target:self
+//                                       selector:@selector(mature:) userInfo:nil repeats:NO];
 }
+
 - (void)kill
 {
     
