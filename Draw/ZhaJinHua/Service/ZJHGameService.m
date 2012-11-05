@@ -291,7 +291,7 @@ static ZJHGameService *_defaultService;
     _gameState.totalBet += message.betRequest.singleBet * message.betRequest.count;
     _gameState.singleBet = message.betRequest.singleBet;
     
-    userPlayInfo.totalBet += message.betRequest.singleBet * message.betRequest.count;
+    userPlayInfo.totalBet += (message.betRequest.singleBet * message.betRequest.count);
     userPlayInfo.isAutoBet = message.betRequest.isAutoBet;
 }
 
