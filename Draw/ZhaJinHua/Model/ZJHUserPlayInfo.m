@@ -70,7 +70,7 @@
     return 2;
 }
 
-- (BOOL)canBeCompare
+- (BOOL)canCompareCard
 {
     if (_alreadFoldCard || _alreadLose) {
         return NO;
@@ -82,6 +82,35 @@
     }
     
     return YES;
+}
+
+- (BOOL)canCheckCard
+{
+    if (_alreadCheckCard || _alreadFoldCard || _alreadLose) {
+        return NO;
+    }else {
+        return YES;
+    }
+}
+
+- (BOOL)canFoldCard
+{
+    if (_alreadFoldCard || _alreadLose) {
+        return NO;
+    }else {
+        return YES;
+    }
+}
+
+- (BOOL)canShowCard:(int)cardId
+{
+    for (Poker *poker in _pokers) {
+        if (cardId == poker.pokerId) {
+            return !poker.faceUp;
+        }
+    }
+    
+    return NO;
 }
 
 - (BOOL)hasShield
@@ -97,6 +126,7 @@
     
     return NO;
 }
+
 
 #pragma make - Private methods
 
@@ -144,6 +174,47 @@
     }
     
     return pokers;
+}
+
+- (NSString *)cardTypeString
+{
+    switch (_cardType) {
+        case PBZJHCardTypeHighCard:
+            return @"kCardTypeHighCard";
+            break;
+            
+        case PBZJHCardTypePair:
+            return @"kCardTypePair";
+            break;
+            
+        case PBZJHCardTypeStraight:
+            return @"kCardTypeStraight";
+            break;
+            
+        case PBZJHCardTypeFlush:
+            return @"kCardTypeFlush";
+            break;
+            
+        case PBZJHCardTypeStraightFlush:
+            return @"kCardTypeStraightFlush";
+            break;
+            
+        case PBZJHCardTypeThreeOfAKind:
+            return @"kCardTypeThreeOfAKind";
+            break;
+            
+        case PBZJHCardTypeSpecial:
+            return @"kCardTypeSpecial";
+            break;
+            
+        case PBZJHCardTypeUnknow:
+            return @"kCardTypeUnknow";
+            break;
+            
+        default:
+            return @"";
+            break;
+    }
 }
 
 @end

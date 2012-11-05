@@ -11,10 +11,14 @@
 #import "CommonGameNetworkClient+ZJHNetworkExtend.h"
 #import "GameMessage.pb.h"
 #import "CommonGameSession.h"
+#import "UserManager.h"
 
 static ZJHGameService *_defaultService;
 
 @interface ZJHGameService ()
+{
+    UserManager *_userManager;
+}
 
 @property (readwrite, retain, nonatomic) ZJHGameState *gameState;
 
@@ -40,6 +44,7 @@ static ZJHGameService *_defaultService;
     if (self = [super init]) {
         _gameId = ZHAJINHUA_GAME_ID;
         _networkClient = [CommonGameNetworkClient defaultInstance];
+        _userManager = [UserManager defaultManager];
     }
 
     return self;
@@ -119,18 +124,99 @@ static ZJHGameService *_defaultService;
                                 cardIds:cardIds];
 }
 
+- (NSArray *)chipValues
+{
+    return [NSArray arrayWithObjects:[NSNumber numberWithInt:5], [NSNumber numberWithInt:10], [NSNumber numberWithInt:25], [NSNumber numberWithInt:50], nil];
+}
+
+- (BOOL)canIBet
+{
+    return [self isMyTurn];
+}
+
+- (BOOL)canIRaiseBet
+{
+    if (![self isMyTurn]) {
+        return NO;
+    }
+    
+    if (_gameState.singleBet < [[self.chipValues objectAtIndex:([self.chipValues count] - 1)] intValue]) {
+        return YES;
+    }else {
+        return NO;
+    }
+}
+
+- (BOOL)canIAutoBet
+{
+    return [self isMyTurn];
+}
+
+- (BOOL)canICheckCard
+{
+    return [[self myPlayInfo] canCheckCard];
+}
+
+- (BOOL)canIFoldCard
+{
+    return [[self myPlayInfo] canFoldCard];
+}
+
+- (BOOL)canICompareCard
+{
+    if (![self isMyTurn]) {
+        return NO;
+    }else {
+        return [[self myPlayInfo] canCompareCard];
+    }
+}
+
+- (BOOL)canIShowCard:(int)cardId
+{
+    if (![self isMyTurn]) {
+        return NO;
+    }else {
+        return [[self myPlayInfo] canShowCard:cardId];
+    }
+}
+
+- (BOOL)canUserCompareCard:(NSString *)userId
+{
+    return [[_gameState userPlayInfo:userId] canCompareCard];
+}
+
+- (NSString *)myCardType
+{
+    return [[self myPlayInfo] cardTypeString];
+}
+
+- (BOOL)doIWin
+{
+    return [_userManager isMe:_gameState.winner];
+}
+
 #pragma mark - overwrite methods
 
-- (void)updateGameStateOnGameNotificationRequest:(GameMessage*)message
+- (void)handleMoreOnJoinGameResponse:(GameMessage*)message
+{
+    if ([[message joinGameResponse] hasZjhGameState]) {
+        self.gameState = [ZJHGameState fromPBZJHGameState:message.joinGameResponse.zjhGameState];
+    }
+}
+
+- (void)hanldMoreOnGameStartNotificationRequest:(GameMessage*)message
 {
     if ([[message gameStartNotificationRequest] hasZjhGameState]) {
         self.gameState = [ZJHGameState fromPBZJHGameState:message.gameStartNotificationRequest.zjhGameState];
     }
 }
-- (void)updateGameStateOnJoinGameResponse:(GameMessage*)message
+
+- (void)handleMoreOnGameOverNotificationRequest:(GameMessage*)message
 {
-    if ([[message joinGameResponse] hasZjhGameState]) {
-        self.gameState = [ZJHGameState fromPBZJHGameState:message.joinGameResponse.zjhGameState];
+    for (PBUserResult *userResult in message.gameOverNotificationRequest.zjhgameResult.userResultList) {
+        if (userResult.win) {
+            self.gameState.winner = userResult.userId;
+        }
     }
 }
 
@@ -188,8 +274,7 @@ static ZJHGameService *_defaultService;
     }
     
     userPlayInfo.lastAction = PBZJHUserActionShowCard;
-    userPlayInfo.alreadShowCard = YES;
-    
+    userPlayInfo.alreadShowCard = YES;    
     [userPlayInfo setPokersFaceUp:message.showCardRequest.cardIdsList];
 }
 
@@ -279,11 +364,12 @@ static ZJHGameService *_defaultService;
 - (void)handleCustomMessage:(GameMessage*)message
 {
     switch ([message command]){
-        case GameCommandTypeBetDiceRequest:
+            
+        case GameCommandTypeBetRequest:
             [self handleBetRequest:message];
             break;
             
-        case GameCommandTypeBetDiceResponse:
+        case GameCommandTypeBetResponse:
             [self handleBetResponse:message];
             break;
             
@@ -319,6 +405,8 @@ static ZJHGameService *_defaultService;
             [self handleShowCardResponse:message];
             break;
             
+
+            
         default:
             PPDebug(@"<handleCustomMessage> unknown command=%d", [message command]);
             break;
@@ -327,7 +415,12 @@ static ZJHGameService *_defaultService;
 
 - (NSString *)getServerListString
 {
-    return @"192.168.1.10:8080";
+    return @"192.168.1.5:8080";
+}
+
+- (ZJHUserPlayInfo *)myPlayInfo
+{
+    return [_gameState userPlayInfo:_userManager.userId];
 }
 
 @end

@@ -242,8 +242,8 @@ message BetDiceResponse {
 }
 
 message GameOverNotificationRequest {
-  optional PBDiceGameResult gameResult = 1;             // 默认为大话骰
-  optional PBZJHGameResult ZJHGameResult = 2;           // 炸金花
+  optional PBDiceGameResult gameResult = 1;                 // 默认为大话骰
+  optional PBZJHGameResult ZJHGameResult = 2;               // 炸金花
 } 
   
 message GameOverNotificationResponse{

@@ -32,7 +32,14 @@
 - (Poker *)poker:(int)pokerId;
 - (int)betCount;
 
-- (BOOL)canBeCompare;
 - (BOOL)hasShield;
+
+- (BOOL)canCompareCard;
+- (BOOL)canCheckCard;
+- (BOOL)canFoldCard;
+- (BOOL)canShowCard:(int)cardId;
+
+- (NSString *)cardTypeString;
+
 
 @end

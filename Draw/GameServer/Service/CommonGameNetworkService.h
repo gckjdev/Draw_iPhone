@@ -15,7 +15,12 @@
 #define NOTIFICAIION_GET_ROOMS_RESPONSE         @"NOTIFICAIION_GET_ROOMS_RESPONSE"
 #define NOTIFICATION_ROOM                       @"NOTIFICATION_ROOM"
 #define NOTIFICAIION_CHAT_REQUEST               @"NOTIFICAIION_CHAT_REQUEST"
+
 #define NOTIFICATION_GAME_START_NOTIFICATION_REQUEST @"NOTIFICATION_GAME_START_NOTIFICATION_REQUEST"
+#define NOTIFICATION_GAME_OVER_NOTIFICATION_REQUEST @"NOTIFICATION_GAME_OVER_NOTIFICATION_REQUEST"
+
+
+#define NOTIFICATION_NEXT_PLAYER_START          @"NOTIFICATION_NEXT_PLAYER_START"
 
 #define SERVER_LIST_SEPERATOR   @"$"
 #define SERVER_PORT_SEPERATOR   @":"
@@ -56,8 +61,9 @@
 
 // Left to Sub Class to implementation.
 - (NSString *)getServerListString;
-- (void)updateGameStateOnGameNotificationRequest:(GameMessage*)message;
-- (void)updateGameStateOnJoinGameResponse:(GameMessage*)message;
+- (void)hanldMoreOnGameStartNotificationRequest:(GameMessage*)message;
+- (void)handleMoreOnGameOverNotificationRequest:(GameMessage*)message;
+- (void)handleMoreOnJoinGameResponse:(GameMessage*)message;
 
 - (void)startDisconnectTimer;
 - (void)clearDisconnectTimer;
@@ -99,5 +105,7 @@
 
 - (NSString*)userId;
 - (int)onlineUserCount;
+
+- (BOOL)isMyTurn;
 
 @end

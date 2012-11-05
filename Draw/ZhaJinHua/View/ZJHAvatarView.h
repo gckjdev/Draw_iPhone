@@ -24,8 +24,9 @@
 @interface ZJHAvatarView : UIView <DiceAvatarViewDelegate>
 
 @property (retain, nonatomic) DiceAvatarView* roundAvatar;
-@property (retain, nonatomic) UIImageView*    backgroundImageView;
-@property (retain, nonatomic) UILabel*  nickNameLabel;
+@property (retain, nonatomic) IBOutlet UIView* roundAvatarPlaceView;
+@property (retain, nonatomic) IBOutlet UIImageView*    backgroundImageView;
+@property (retain, nonatomic) IBOutlet UILabel*  nickNameLabel;
 @property (assign, nonatomic) id<ZJHAvatarViewDelegate> delegate;
 @property (retain, nonatomic) PBGameUser* userInfo;
 
@@ -34,5 +35,9 @@
 - (void)startReciprocol:(CFTimeInterval)reciprocolTime;
 - (void)startReciprocol:(CFTimeInterval)reciprocolTime
            fromProgress:(float)progress;
+
++ (ZJHAvatarView*)createZJHAvatarView;
+- (void)addTapGuesture;
+- (void)stopReciprocol;
 
 @end

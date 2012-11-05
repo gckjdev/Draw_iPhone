@@ -24,6 +24,7 @@
 - (void)dealloc
 {
     [_usersInfo release];
+    [_winner release];
     [super dealloc];
 }
 
@@ -53,17 +54,6 @@
 {
     return [[self userPlayInfo:userId] betCount];
 }
-
-- (BOOL)user:(NSString *)userId canBeCompare:(BOOL)canBeCompare
-{
-    return [[self userPlayInfo:userId] canBeCompare];
-}
-
-- (BOOL)user:(NSString *)userId hasShield:(BOOL)hasShield
-{
-    return [[self userPlayInfo:userId] hasShield];
-}
-
 
 #pragma mark -  pravite methods
 

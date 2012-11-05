@@ -20,13 +20,26 @@
          shouldBeEnabled = "Yes"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
-         filePath = "Draw/ZhaJinHua/Service/ZJHGameService.m"
-         timestampString = "373173217.943281"
+         filePath = "Draw/ZhaJinHua/View/PokerView.m"
+         timestampString = "373629066.029649"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "116"
-         endingLineNumber = "116"
-         landmarkName = "-showCards:"
+         startingLineNumber = "213"
+         endingLineNumber = "213"
+         landmarkName = "-clickSelf:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "Draw/ZhaJinHua/Controller/ZJHGameController.m"
+         timestampString = "373629078.544411"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "586"
+         endingLineNumber = "586"
+         landmarkName = "-didClickPokerView:"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

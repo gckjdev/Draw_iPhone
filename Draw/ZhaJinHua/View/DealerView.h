@@ -8,6 +8,32 @@
 
 #import <UIKit/UIKit.h>
 
-@interface DealerView : UIView
+@class DealerView;
+
+@interface DealPoint : NSObject {
+    
+}
+
+@property (assign, nonatomic) float x;
+@property (assign, nonatomic) float y;
+
++ (DealPoint*)pointWithCGPoint:(CGPoint)point;
+
+@end
+
+@protocol DealerViewDelegate <NSObject>
+
+- (void)didDealFinish:(DealerView*)view;
+
+@end
+
+@interface DealerView : UIView {
+    int _remainCards;
+}
+@property (assign, nonatomic) id<DealerViewDelegate> delegate;
+
+- (void)dealWithPositionArray:(NSArray*)array
+                        times:(int)times;
+
 
 @end

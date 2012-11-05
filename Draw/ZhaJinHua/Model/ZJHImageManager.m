@@ -78,6 +78,7 @@ static ZJHImageManager* shareInstance;
         case PBPokerRankPokerRank7:
         case PBPokerRankPokerRank8:
         case PBPokerRankPokerRank9:
+        case PBPokerRankPokerRank10:
         case PBPokerRankPokerRankA:
             return [self pokerBodyImageWithPokerSuit:poker.suit];
             break;
@@ -214,6 +215,10 @@ static ZJHImageManager* shareInstance;
             return [UIImage imageNamed:@"poker_rank_red_9.png"];
             break;
             
+        case PBPokerRankPokerRank10:
+            return [UIImage imageNamed:@"poker_rank_red_10.png"];
+            break;
+            
         case PBPokerRankPokerRankJ:
             return [UIImage imageNamed:@"poker_rank_red_J.png"];
             break;
@@ -272,6 +277,10 @@ static ZJHImageManager* shareInstance;
             return [UIImage imageNamed:@"poker_rank_black_9.png"];
             break;
             
+        case PBPokerRankPokerRank10:
+            return [UIImage imageNamed:@"poker_rank_black_10.png"];
+            break;
+            
         case PBPokerRankPokerRankJ:
             return [UIImage imageNamed:@"poker_rank_black_J.png"];
             break;
@@ -317,6 +326,19 @@ static ZJHImageManager* shareInstance;
             return nil;
             break;
     }
+}
+
+- (UIImage*)noUserAvatarBackground
+{
+    return [UIImage imageNamed:@"avatar_default.png"];
+}
+- (UIImage*)avatarBackground
+{
+    return [UIImage imageNamed:@"zjh_other_plyer_avatar.png"];
+}
+- (UIImage*)myAvatarBackground
+{
+    return [UIImage imageNamed:@"zjh_my_avatar_bg.png"];
 }
 
 

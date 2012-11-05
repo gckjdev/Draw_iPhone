@@ -10,21 +10,32 @@
 #import "CMPopTipView.h"
 #import "ZJHImageManager.h"
 #import "ChipView.h"
+#import "ZJHGameService.h"
+
+#define CHIP_GAP 5
+#define CHIPS_COUNT 4
+
+@interface ChipsSelectView()
+
+@property (assign, nonatomic) id<ChipsSelectViewProtocol> delegate;
+
+@end
 
 @implementation ChipsSelectView
 
-+ (void)popupAtView:(UIView *)atView
-             inView:(UIView *)inView
-          aboveView:(UIView *)aboveView
+- (void)dealloc
 {
-    ChipsSelectView *chipsSelectView = [ChipsSelectView createChipsSelectView];
-    CMPopTipView *popupView = [[[CMPopTipView alloc] initWithCustomView:chipsSelectView needBubblePath:NO] autorelease];
-    [popupView presentPointingAtView:atView inView:inView aboveView:aboveView animated:YES pointDirection:PointDirectionAuto];
+    [super dealloc];
 }
 
-+ (ChipsSelectView *)createChipsSelectView
++ (ChipsSelectView *)createChipsSelectView:(id<ChipsSelectViewProtocol>)delegate
+
 {
-    return [[[ChipsSelectView alloc] initWithFrame:CGRectMake(0, 0, 60, 30)] autorelease];
+    ChipsSelectView *chipsSelectView = [[[ChipsSelectView alloc] initWithFrame:CGRectMake(0, 0, CHIP_VIEW_WIDTH * CHIPS_COUNT + CHIP_GAP * (CHIPS_COUNT - 1), CHIP_VIEW_HEIGHT)] autorelease];
+    chipsSelectView.delegate = delegate;
+    [chipsSelectView addChipViews];
+    
+    return chipsSelectView;
 }
 
 - (id)initWithFrame:(CGRect)frame
@@ -33,8 +44,6 @@
         UIImageView *imageView = [[[UIImageView alloc] initWithFrame:self.bounds] autorelease];
         imageView.image = [[ZJHImageManager defaultManager] chipsSelectViewBgImage];
         [self addSubview:imageView];
-        
-        [self addChipViews];
     }
     
     return self;
@@ -44,11 +53,22 @@
 {
     int i = 0;
     CGRect frame = CGRectMake(0, 0, CHIP_VIEW_WIDTH, CHIP_VIEW_HEIGHT);
-    NSArray *chipValues = [NSArray arrayWithObjects:[NSNumber numberWithInt:5], [NSNumber numberWithInt:10], [NSNumber numberWithInt:25], [NSNumber numberWithInt:50], nil];
-    for (NSNumber *chipValue in chipValues) {
-        frame = CGRectMake(i * CHIP_VIEW_WIDTH, 0, CHIP_VIEW_WIDTH, CHIP_VIEW_HEIGHT);
-        ChipView *chipView = [ChipView chipViewWithFrame:frame chipValue:5 delegate:self];
+    for (NSNumber *chipValue in [[ZJHGameService defaultService] chipValues]) {
+        frame = CGRectMake(i++ * (CHIP_VIEW_WIDTH + CHIP_GAP), 0, CHIP_VIEW_WIDTH, CHIP_VIEW_HEIGHT);
+        ChipView *chipView = [ChipView chipViewWithFrame:frame chipValue:chipValue.intValue delegate:self];
+        
+        if (chipValue.intValue <= [[[ZJHGameService defaultService] gameState] singleBet]) {
+            chipView.enabled = NO;
+        }
+        
         [self addSubview:chipView];
+    }
+}
+
+- (void)didClickChipView:(ChipView *)chipView
+{
+    if ([_delegate respondsToSelector:@selector(didSelectChip:)]) {
+        [_delegate didSelectChip:chipView.chipValue];
     }
 }
 
