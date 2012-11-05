@@ -146,11 +146,19 @@ static ZJHGameService *_defaultService;
 
 - (BOOL)canIBet
 {
+    if (![self isGamePlaying]) {
+        return NO;
+    }
+    
     return [self isMyTurn];
 }
 
 - (BOOL)canIRaiseBet
 {
+    if (![self isGamePlaying]) {
+        return NO;
+    }
+    
     if (![self isMyTurn]) {
         return NO;
     }
@@ -164,21 +172,37 @@ static ZJHGameService *_defaultService;
 
 - (BOOL)canIAutoBet
 {
+    if (![self isGamePlaying]) {
+        return NO;
+    }
+    
     return [self isMyTurn];
 }
 
 - (BOOL)canICheckCard
 {
-    return [self isGamePlaying] && [[self myPlayInfo] canCheckCard];
+    if (![self isGamePlaying]) {
+        return NO;
+    }
+    
+    return [[self myPlayInfo] canCheckCard];
 }
 
 - (BOOL)canIFoldCard
 {
-    return [self isGamePlaying] && [[self myPlayInfo] canFoldCard];
+    if (![self isGamePlaying]) {
+        return NO;
+    }
+    
+    return [[self myPlayInfo] canFoldCard];
 }
 
 - (BOOL)canICompareCard
 {
+    if (![self isGamePlaying]) {
+        return NO;
+    }
+    
     if (![self isMyTurn]) {
         return NO;
     }else {
@@ -188,11 +212,15 @@ static ZJHGameService *_defaultService;
 
 - (BOOL)canIShowCard:(int)cardId
 {
+    if (![self isGamePlaying]) {
+        return NO;
+    }
+    
     if (![self isMyTurn]) {
         return NO;
-    }else {
-        return [[self myPlayInfo] canShowCard:cardId];
     }
+    
+    return [[self myPlayInfo] canShowCard:cardId];
 }
 
 - (BOOL)canUserCompareCard:(NSString *)userId
