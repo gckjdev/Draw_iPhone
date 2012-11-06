@@ -43,6 +43,9 @@
 #define METHOD_UPDATEUSER @"uu"
 #define METHOD_USERFEEDBACK @"ufb"
 #define METHOD_USER_READ_MSG @"urm"
+#define METHOD_GETMESSAGESTATLIST @"gmsl"
+#define METHOD_GETMESSAGELIST @"gml"
+
 
 #define METHOD_REGISTERUSER @"ru"
 #define METHOD_BINDUSER @"bu"
@@ -83,6 +86,7 @@
 
 //friends method
 #define METHOD_FINDFRIENDS @"ff"
+#define METHOD_GET_FRIEND_LIST @"gfrl"
 #define METHOD_SEARCHUSER @"su"
 #define METHOD_FOLLOWUSER @"fu"
 #define METHOD_UNFOLLOWUSER @"ufu"
@@ -190,6 +194,7 @@
 #define PAPA_ROOM_USERS @"rus"
 #define PARA_OFFSET @"os"
 #define PARA_COUNT @"ct"
+#define PARA_FORWARD @"fw"
 
 // request parameters
 #define METHOD_GET_MYCOMMENT_LIST @"gmcl"
@@ -423,7 +428,7 @@
 #define PARA_START_INDEX    @"si"
 #define PARA_END_INDEX      @"ei"
 #define PARA_LASTMODIFIEDDATE @"lsmd"
-
+#define PARA_RELATION @"rl"
 #define FRIENDS_TYPE_FOLLOW 0
 #define FRIENDS_TYPE_FAN    1
 
@@ -508,6 +513,7 @@
 #define ERROR_PARAMETER_EMAIL_EMPTY     10065
 
 #define REJECT_ASK_LOCATION             1
+#define ACCEPT_ASK_LOCATION             0
 
 extern NSString* GlobalGetServerURL();
 extern NSString* GlobalGetTrafficServerURL();

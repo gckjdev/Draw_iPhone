@@ -931,8 +931,8 @@ enum{
     NSArray *drawActionList = drawView.drawActionList;
 
     if (targetType == TypeGraffiti) {
-        if (delegate && [delegate respondsToSelector:@selector(didClickSubmit:)]) {
-            [delegate didClickSubmit:drawActionList];
+        if (delegate && [delegate respondsToSelector:@selector(didController:clickSubmit:)]) {
+            [delegate didController:self clickSubmit:drawActionList];
         }
     }else {
         
@@ -945,8 +945,8 @@ enum{
 - (void)clickBackButton:(id)sender
 {
     if (targetType == TypeGraffiti) {
-        if (delegate && [delegate respondsToSelector:@selector(didClickBack)]) {
-            [delegate didClickBack];
+        if (delegate && [delegate respondsToSelector:@selector(didControllerClickBack:)]) {
+            [delegate didControllerClickBack:self];
         }
     }else {
         CommonDialog *dialog = nil;

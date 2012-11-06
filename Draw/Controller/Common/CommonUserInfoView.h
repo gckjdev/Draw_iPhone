@@ -10,23 +10,18 @@
 #import "FriendService.h"
 #import "UserService.h"
 @class PPViewController;
-@class Friend;
+@class MyFriend;
 
 @interface CommonUserInfoView : UIView<FriendServiceDelegate, UserServiceDelegate>
+{
+    MyFriend* targetFriend;
+}
 
-+ (void)showUser:(Friend*)afriend 
-      infoInView:(UIViewController*)superController;
-@property (retain, nonatomic) IBOutlet UIImageView *backgroundImageView;
-+ (void)showUser:(NSString*)userId 
-        nickName:(NSString*)nickName 
-          avatar:(NSString*)avatar 
-          gender:(NSString*)aGender 
-        location:(NSString*)location 
-           level:(int)level
-         hasSina:(BOOL)didHasSina 
-           hasQQ:(BOOL)didHasQQ 
-     hasFacebook:(BOOL)didHasFacebook
-      infoInView:(PPViewController*)superController;
++ (void)showFriend:(MyFriend*)afriend 
+        infoInView:(UIViewController*)superController
+        needUpdate:(BOOL)needUpdate; //if need update the info from service.
+
+
 @property (retain, nonatomic) IBOutlet UIButton *mask;
 @property (retain, nonatomic) IBOutlet UIView *contentView;
 @property (retain, nonatomic) IBOutlet UILabel *userName;
@@ -40,17 +35,12 @@
 @property (retain, nonatomic) IBOutlet UIButton *chatToUserButton;
 @property (retain, nonatomic) IBOutlet UIButton *followUserButton;
 @property (retain, nonatomic) IBOutlet UILabel *statusLabel;
-@property (retain, nonatomic) Friend* targetFriend;
-@property (retain, nonatomic) NSString* userId;
-@property (retain, nonatomic) NSString* userAvatar;
-@property (retain, nonatomic) NSString* userNickName;
-@property (retain, nonatomic) NSString* userLocation;
-@property (retain, nonatomic) NSString* userGender;
-@property (assign, nonatomic) BOOL hasSina;
-@property (assign, nonatomic) BOOL hasQQ;
-@property (assign, nonatomic) BOOL hasFacebook;
-@property (assign, nonatomic) int userLevel;
 @property (retain, nonatomic) IBOutlet UILabel *levelLabel;
+
 @property (assign, nonatomic) PPViewController* superViewController;
+@property (retain, nonatomic) IBOutlet UIImageView *backgroundImageView;
+
+//use MyFriend as the model
+@property (retain, nonatomic) MyFriend* targetFriend;
 
 @end

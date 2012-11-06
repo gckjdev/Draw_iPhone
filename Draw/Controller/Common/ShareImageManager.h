@@ -174,6 +174,10 @@
 - (UIImage *)rightImage;
 - (UIImage *)myPaintImage;
 
+
+- (UIImage *)leftBubbleImage;
+- (UIImage *)rightBubbleImage;
+
 #pragma mark - Feed Image manager.
 - (void)saveFeedImage:(UIImage *)image
     withImageName:(NSString *)imageName 
@@ -185,5 +189,8 @@
 
 - (UIImage *)pointForCurrentSelectedPage;
 - (UIImage *)pointForUnSelectedPage;
+
+
+
 
 @end

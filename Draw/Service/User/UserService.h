@@ -9,7 +9,7 @@
 #import "CommonService.h"
 
 @class PPViewController;
-
+@class MyFriend;
 @protocol UserServiceDelegate <NSObject>
 
 @optional
@@ -35,7 +35,11 @@
                     QQNick:(NSString*)qqNick 
                       qqId:(NSString*)qqId
                 FacebookId:(NSString*)facebookId
-                     coins:(NSString*)coins;
+                     coins:(NSString*)coins
+                  relation:(int)relation;
+
+- (void)didGetUserInfo:(MyFriend *)user resultCode:(NSInteger)resultCode;
+
 
 - (void)didGetTopPlayerList:(NSArray *)playerList
                  resultCode:(NSInteger)resultCode;

@@ -826,7 +826,13 @@
 - (void)didClickOnAvatar:(DiceAvatarView*)view
 {
     if (view.userId) {
-        [DiceUserInfoView showUser:view.userId nickName:nil avatar:nil gender:nil location:nil level:0 hasSina:NO hasQQ:NO hasFacebook:NO infoInView:self canChat:NO];
+        MyFriend *aFriend = [MyFriend friendWithFid:view.userId
+                                           nickName:nil
+                                             avatar:nil
+                                             gender:nil
+                                              level:1];
+
+        [DiceUserInfoView showFriend:aFriend infoInView:self canChat:NO needUpdate:YES];
     }
     
 }

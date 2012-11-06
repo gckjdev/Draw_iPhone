@@ -9,12 +9,14 @@
 #import "ReplayGraffitiController.h"
 #import "ShowDrawView.h"
 #import "DrawAction.h"
+#import "ShareImageManager.h"
 
 @interface ReplayGraffitiController ()
 @property(nonatomic, retain) NSArray *drawActionList;
 @end
 
 @implementation ReplayGraffitiController
+@synthesize playEndButton = _playEndButton;
 @synthesize titleLabel = _titleLabel;
 @synthesize drawActionList = _drawActionList;
 @synthesize showDrawView = _showDrawView;
@@ -25,6 +27,7 @@
     PPRelease(_showDrawView);
     PPRelease(_titleLabel);
     PPRelease(_drawActionList);
+    [_playEndButton release];
     [super dealloc];
 }
 
@@ -58,14 +61,20 @@
     
     self.showDrawView = [self createShowDrawView:_drawActionList];
     self.showDrawView.center = self.view.center;
-    [self.showDrawView setPlaySpeed:1.0/60.0];
+    [self.showDrawView setShowPenHidden:YES];
+    [self.showDrawView setPlaySpeed:1.0/80.0];
     [self.view addSubview:self.showDrawView];
     [self.showDrawView play];
+    
+    [self.playEndButton setBackgroundImage:[[ShareImageManager defaultManager] greenImage] forState:UIControlStateNormal];
+    [self.playEndButton setTitle:NSLS(@"kPlayEnd") forState:UIControlStateNormal];
+
 }
 
 - (void)viewDidUnload
 {
     [self setTitleLabel:nil];
+    [self setPlayEndButton:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -75,4 +84,10 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+- (IBAction)clickPlayEndButton:(id)sender {
+    [self.showDrawView show];
+    [self.showDrawView setShowPenHidden:YES];
+    self.playEndButton.hidden = YES;
+
+}
 @end

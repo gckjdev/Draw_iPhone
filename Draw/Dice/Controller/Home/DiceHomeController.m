@@ -38,7 +38,7 @@
 #import "VendingController.h"
 #import "DiceRoomListController.h"
 #import "UserSettingController.h"
-#import "MyFriendsController.h"
+#import "FriendController.h"
 #import "ChatListController.h"
 #import "FeedbackController.h"
 
@@ -627,7 +627,7 @@
             break;
         case MenuButtonTypeFriend:
         {
-            MyFriendsController *mfc = [[MyFriendsController alloc] init];
+            FriendController *mfc = [[FriendController alloc] init];
             [self.navigationController pushViewController:mfc animated:YES];
             [mfc release];
             [_bottomMenuPanel setMenuBadge:0 forMenuType:MenuButtonTypeFriend];

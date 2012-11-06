@@ -19,9 +19,11 @@ typedef enum{
 
 @optional
 - (void)didPlayDrawView:(ShowDrawView *)showDrawView;
-- (void)didPlayDrawView:(ShowDrawView *)showDrawView AtActionIndex:(NSInteger)actionIndex pointIndex:(NSInteger)pointIndex;
+- (void)didPlayDrawView:(ShowDrawView *)showDrawView
+          AtActionIndex:(NSInteger)actionIndex 
+             pointIndex:(NSInteger)pointIndex;
 - (void)didClickShowDrawView:(ShowDrawView *)showDrawView;
-
+- (void)didLongClickShowDrawView:(ShowDrawView *)showDrawView;
 @end
 
 //@class DrawColor;
@@ -35,10 +37,10 @@ typedef enum{
     NSInteger _playingActionIndex;
     NSInteger _playingPointIndex;
     
-//    NSInteger _startPlayIndex;
     BOOL _showPenHidden;
     PenView *pen;
-//    BOOL _showDraw;
+
+    UIImage *_image; //use to show.
 }
 
 @property(nonatomic, assign) double playSpeed; //default is 1/30.0;
@@ -53,7 +55,7 @@ typedef enum{
 - (void)playFromDrawActionIndex:(NSInteger)index;
 - (void)addDrawAction:(DrawAction *)action play:(BOOL)play;
 - (void)setShowPenHidden:(BOOL)showPenHidden;
-
+- (void)showImage:(UIImage *)image;
 - (BOOL)isShowPenHidden;
 
 @end

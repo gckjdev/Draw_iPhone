@@ -7,9 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		A3092467155ABEAF00235A55 /* MyFriendsController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3092464155ABEAF00235A55 /* MyFriendsController~ipad.xib */; };
 		A3092468155ABEAF00235A55 /* SearchUserController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3092465155ABEAF00235A55 /* SearchUserController~ipad.xib */; };
-		A3092469155ABEAF00235A55 /* ShowUserController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3092466155ABEAF00235A55 /* ShowUserController~ipad.xib */; };
 		A30A28511580C2AE006CA3CC /* ChatCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A30A28461580C2AE006CA3CC /* ChatCell.m */; };
 		A30A28521580C2AE006CA3CC /* ChatCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A30A28471580C2AE006CA3CC /* ChatCell.xib */; };
 		A30A28531580C2AE006CA3CC /* ChatCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A30A28481580C2AE006CA3CC /* ChatCell~ipad.xib */; };
@@ -25,37 +23,23 @@
 		A31B5EF5157E1BE8003DDBF1 /* SelectCustomWordView.m in Sources */ = {isa = PBXBuildFile; fileRef = A31B5EF2157E1BE8003DDBF1 /* SelectCustomWordView.m */; };
 		A31B5EF6157E1BE8003DDBF1 /* SelectCustomWordView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A31B5EF3157E1BE8003DDBF1 /* SelectCustomWordView.xib */; };
 		A31B5EF7157E1BE8003DDBF1 /* SelectCustomWordView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A31B5EF4157E1BE8003DDBF1 /* SelectCustomWordView~ipad.xib */; };
-		A329332F15591D4D00621789 /* MyFriendsController.m in Sources */ = {isa = PBXBuildFile; fileRef = A329332715591D4D00621789 /* MyFriendsController.m */; };
-		A329333015591D4D00621789 /* MyFriendsController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A329332815591D4D00621789 /* MyFriendsController.xib */; };
 		A329333115591D4D00621789 /* SearchUserController.m in Sources */ = {isa = PBXBuildFile; fileRef = A329332A15591D4D00621789 /* SearchUserController.m */; };
 		A329333215591D4D00621789 /* SearchUserController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A329332B15591D4D00621789 /* SearchUserController.xib */; };
-		A329333315591D4D00621789 /* ShowUserController.m in Sources */ = {isa = PBXBuildFile; fileRef = A329332D15591D4D00621789 /* ShowUserController.m */; };
-		A329333415591D4D00621789 /* ShowUserController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A329332E15591D4D00621789 /* ShowUserController.xib */; };
-		A3431E801587279D002E0E81 /* ChatMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = A3431E7D1587279D002E0E81 /* ChatMessage.m */; };
-		A3431E811587279D002E0E81 /* ChatMessageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A3431E7F1587279D002E0E81 /* ChatMessageManager.m */; };
 		A35793101574BD670007B2C0 /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A357930D1574BD670007B2C0 /* libWeChatSDK.a */; };
 		A3598489157C7B2700745BAB /* CustomWordManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A3598488157C7B2700745BAB /* CustomWordManager.m */; };
 		A359848C157C977100745BAB /* CustomWord.m in Sources */ = {isa = PBXBuildFile; fileRef = A359848B157C977100745BAB /* CustomWord.m */; };
 		A35984B2157CCAB900745BAB /* MyWordsController.m in Sources */ = {isa = PBXBuildFile; fileRef = A35984AF157CCAB900745BAB /* MyWordsController.m */; };
 		A35984B3157CCAB900745BAB /* MyWordsController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A35984B0157CCAB900745BAB /* MyWordsController.xib */; };
 		A35984B4157CCAB900745BAB /* MyWordsController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A35984B1157CCAB900745BAB /* MyWordsController~ipad.xib */; };
-		A387F097158853EF00DC7C5D /* SelectChatFriendController.m in Sources */ = {isa = PBXBuildFile; fileRef = A387F094158853EF00DC7C5D /* SelectChatFriendController.m */; };
-		A387F098158853EF00DC7C5D /* SelectChatFriendController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A387F095158853EF00DC7C5D /* SelectChatFriendController.xib */; };
-		A387F099158853EF00DC7C5D /* SelectChatFriendController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A387F096158853EF00DC7C5D /* SelectChatFriendController~ipad.xib */; };
 		A3C129D81563A6B600C021A7 /* DrawDataService.m in Sources */ = {isa = PBXBuildFile; fileRef = A3C129D71563A6B600C021A7 /* DrawDataService.m */; };
 		A3C129E01563A6ED00C021A7 /* RemoteDrawView.m in Sources */ = {isa = PBXBuildFile; fileRef = A3C129DD1563A6ED00C021A7 /* RemoteDrawView.m */; };
 		A3C129E11563A6ED00C021A7 /* RemoteDrawView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3C129DE1563A6ED00C021A7 /* RemoteDrawView.xib */; };
 		A3C129E21563A6ED00C021A7 /* RemoteDrawView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3C129DF1563A6ED00C021A7 /* RemoteDrawView~ipad.xib */; };
 		A3C129E51563A70E00C021A7 /* Draw.m in Sources */ = {isa = PBXBuildFile; fileRef = A3C129E41563A70E00C021A7 /* Draw.m */; };
-		A3CA09AB158A21DA009C7EB0 /* ChatMessageUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = A3CA09AA158A21DA009C7EB0 /* ChatMessageUtil.m */; };
 		A3D11BF51562306A00248B4C /* FriendCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A3D11BF21562306A00248B4C /* FriendCell.m */; };
 		A3D11BF61562306A00248B4C /* FriendCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3D11BF31562306A00248B4C /* FriendCell.xib */; };
 		A3D11BF71562306A00248B4C /* FriendCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3D11BF41562306A00248B4C /* FriendCell~ipad.xib */; };
 		A3DE093F15908AB700E2C746 /* ChatDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A3DE093C15908AB700E2C746 /* ChatDetailCell.m */; };
-		A3DE094015908AB700E2C746 /* ChatDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3DE093D15908AB700E2C746 /* ChatDetailCell.xib */; };
-		A3DE094115908AB700E2C746 /* ChatDetailCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3DE093E15908AB700E2C746 /* ChatDetailCell~ipad.xib */; };
-		A3F66CA61581B999000BFF9A /* MessageTotal.m in Sources */ = {isa = PBXBuildFile; fileRef = A3F66CA21581B999000BFF9A /* MessageTotal.m */; };
-		A3F66CB01581BA8C000BFF9A /* MessageTotalManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A3F66CAF1581BA8C000BFF9A /* MessageTotalManager.m */; };
 		A3F66CC115820B2E000BFF9A /* ChatService.m in Sources */ = {isa = PBXBuildFile; fileRef = A3F66CC015820B2D000BFF9A /* ChatService.m */; };
 		A3FAE0DA15536E8D008B5827 /* RoomController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3FAE0D915536E8D008B5827 /* RoomController~ipad.xib */; };
 		A3FAE0DC15536EBB008B5827 /* UserSettingController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3FAE0DB15536EBB008B5827 /* UserSettingController~ipad.xib */; };
@@ -1275,6 +1259,8 @@
 		CA34E8991615353A00F85346 /* pushMessage.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CA34E7FE1615353A00F85346 /* pushMessage.mp3 */; };
 		CA34E89A1615353A00F85346 /* wrong.wav in Resources */ = {isa = PBXBuildFile; fileRef = CA34E7FF1615353A00F85346 /* wrong.wav */; };
 		CA355F00152C03F200A14823 /* UserItem.m in Sources */ = {isa = PBXBuildFile; fileRef = CA355EFF152C03F100A14823 /* UserItem.m */; };
+		CA389FC1163E2344005637E8 /* PPMessageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA389FC0163E2344005637E8 /* PPMessageManager.m */; };
+		CA389FD1163E967F005637E8 /* graffiti@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA389FD0163E967F005637E8 /* graffiti@2x.png */; };
 		CA3B56DD1514C92800A93137 /* GameSessionUser.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3B56DC1514C92800A93137 /* GameSessionUser.m */; };
 		CA3B56E01514C9DF00A93137 /* GameTurn.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3B56DF1514C9DF00A93137 /* GameTurn.m */; };
 		CA3B56E31514CB7D00A93137 /* GamePlayResult.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3B56E21514CB7D00A93137 /* GamePlayResult.m */; };
@@ -1429,11 +1415,16 @@
 		CA89747E16087699003A95F7 /* ContestService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA89747D16087699003A95F7 /* ContestService.m */; };
 		CA89748316087BE2003A95F7 /* ContestController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA89748116087BE2003A95F7 /* ContestController.m */; };
 		CA89748416087BE2003A95F7 /* ContestController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA89748216087BE2003A95F7 /* ContestController.xib */; };
+		CA8CB58C16312ACA009AAD34 /* MyFriend.m in Sources */ = {isa = PBXBuildFile; fileRef = CA8CB58B16312ACA009AAD34 /* MyFriend.m */; };
+		CA8CB5961632441B009AAD34 /* FriendController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA8CB59316324419009AAD34 /* FriendController.m */; };
+		CA8CB5971632441B009AAD34 /* FriendController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA8CB5941632441A009AAD34 /* FriendController.xib */; };
+		CA8CB5981632441B009AAD34 /* FriendController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA8CB5951632441A009AAD34 /* FriendController~ipad.xib */; };
 		CA8D602A1531C98400E016ED /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA8D602C1531C98400E016ED /* Default@2x.png */; };
 		CA8D60631531EC5500E016ED /* ReplayController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA8D60611531EC5500E016ED /* ReplayController.m */; };
 		CA8D60641531EC5500E016ED /* ReplayController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA8D60621531EC5500E016ED /* ReplayController.xib */; };
 		CA91FC7F15C27BE700E9C1CD /* CommonGameNetworkClient.m in Sources */ = {isa = PBXBuildFile; fileRef = CA91FC7E15C27BE700E9C1CD /* CommonGameNetworkClient.m */; };
 		CA91FC8215C27BF700E9C1CD /* CommonGameNetworkService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA91FC8115C27BF700E9C1CD /* CommonGameNetworkService.m */; };
+		CA933E33163BC4580046BF26 /* MessageStat.m in Sources */ = {isa = PBXBuildFile; fileRef = CA933E32163BC4580046BF26 /* MessageStat.m */; };
 		CA959895152F54700093FEDB /* InputDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = CA959893152F54700093FEDB /* InputDialog.m */; };
 		CA959896152F54700093FEDB /* InputDialog.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA959894152F54700093FEDB /* InputDialog.xib */; };
 		CA963A5615C7C5A8007ACFB9 /* CommonGameSession.m in Sources */ = {isa = PBXBuildFile; fileRef = CA963A5515C7C5A8007ACFB9 /* CommonGameSession.m */; };
@@ -1490,6 +1481,7 @@
 		CAA9C427159BF41B00398EC5 /* ShareService.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA9C426159BF41B00398EC5 /* ShareService.m */; };
 		CAA9C435159CA97100398EC5 /* LmWallService.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA9C434159CA97100398EC5 /* LmWallService.m */; };
 		CAACE19915F499E6002EB53A /* SuperDrawView.m in Sources */ = {isa = PBXBuildFile; fileRef = CAACE19815F499E6002EB53A /* SuperDrawView.m */; };
+		CAADDBD41643697800EC2102 /* StorageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CAADDBD31643697800EC2102 /* StorageManager.m */; };
 		CAAE4A8315790F480012F6B8 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = CAAE4A8215790F480012F6B8 /* libsqlite3.dylib */; };
 		CAB15E8515AD41C300502106 /* PickColorView.m in Sources */ = {isa = PBXBuildFile; fileRef = CAB15E7E15AD41C300502106 /* PickColorView.m */; };
 		CAB15E8615AD41C300502106 /* PickEraserView.m in Sources */ = {isa = PBXBuildFile; fileRef = CAB15E8015AD41C300502106 /* PickEraserView.m */; };
@@ -1570,8 +1562,13 @@
 		CAEECDE015DE28AB00FA5A2A /* ImageBoardView.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEECDDF15DE28A800FA5A2A /* ImageBoardView.m */; };
 		CAEECE1415DF8D5200FA5A2A /* BoardPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEECE1215DF8D5100FA5A2A /* BoardPanel.m */; };
 		CAEECE1515DF8D5200FA5A2A /* BoardPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAEECE1315DF8D5200FA5A2A /* BoardPanel.xib */; };
+		CAF10182164166D40073E9D1 /* ChatDetailCellReceive.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAF1017E164166D30073E9D1 /* ChatDetailCellReceive.xib */; };
+		CAF10183164166D40073E9D1 /* ChatDetailCellReceive~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAF1017F164166D30073E9D1 /* ChatDetailCellReceive~ipad.xib */; };
+		CAF10184164166D40073E9D1 /* ChatDetailCellSend.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAF10180164166D40073E9D1 /* ChatDetailCellSend.xib */; };
+		CAF10185164166D40073E9D1 /* ChatDetailCellSend~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAF10181164166D40073E9D1 /* ChatDetailCellSend~ipad.xib */; };
 		CAF10AFB151C665D008C4512 /* AccountManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF10AFA151C665D008C4512 /* AccountManager.m */; };
 		CAF10AFE151C666E008C4512 /* ItemManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF10AFD151C666E008C4512 /* ItemManager.m */; };
+		CAFC95EC163B8015004E256C /* PPMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFC95EB163B8015004E256C /* PPMessage.m */; };
 		EA01D156158BAB1600920A64 /* ReplayGraffitiController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA01D153158BAB1600920A64 /* ReplayGraffitiController.m */; };
 		EA01D157158BAB1600920A64 /* ReplayGraffitiController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA01D154158BAB1600920A64 /* ReplayGraffitiController.xib */; };
 		EA01D158158BAB1600920A64 /* ReplayGraffitiController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA01D155158BAB1600920A64 /* ReplayGraffitiController~ipad.xib */; };
@@ -1712,9 +1709,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		A3092464155ABEAF00235A55 /* MyFriendsController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "MyFriendsController~ipad.xib"; sourceTree = "<group>"; };
 		A3092465155ABEAF00235A55 /* SearchUserController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "SearchUserController~ipad.xib"; sourceTree = "<group>"; };
-		A3092466155ABEAF00235A55 /* ShowUserController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ShowUserController~ipad.xib"; sourceTree = "<group>"; };
 		A30A28451580C2AE006CA3CC /* ChatCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatCell.h; sourceTree = "<group>"; };
 		A30A28461580C2AE006CA3CC /* ChatCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatCell.m; sourceTree = "<group>"; };
 		A30A28471580C2AE006CA3CC /* ChatCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChatCell.xib; sourceTree = "<group>"; };
@@ -1735,19 +1730,9 @@
 		A31B5EF2157E1BE8003DDBF1 /* SelectCustomWordView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectCustomWordView.m; sourceTree = "<group>"; };
 		A31B5EF3157E1BE8003DDBF1 /* SelectCustomWordView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SelectCustomWordView.xib; sourceTree = "<group>"; };
 		A31B5EF4157E1BE8003DDBF1 /* SelectCustomWordView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "SelectCustomWordView~ipad.xib"; sourceTree = "<group>"; };
-		A329332615591D4D00621789 /* MyFriendsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyFriendsController.h; sourceTree = "<group>"; };
-		A329332715591D4D00621789 /* MyFriendsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyFriendsController.m; sourceTree = "<group>"; };
-		A329332815591D4D00621789 /* MyFriendsController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyFriendsController.xib; sourceTree = "<group>"; };
 		A329332915591D4D00621789 /* SearchUserController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchUserController.h; sourceTree = "<group>"; };
 		A329332A15591D4D00621789 /* SearchUserController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchUserController.m; sourceTree = "<group>"; };
 		A329332B15591D4D00621789 /* SearchUserController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchUserController.xib; sourceTree = "<group>"; };
-		A329332C15591D4D00621789 /* ShowUserController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowUserController.h; sourceTree = "<group>"; };
-		A329332D15591D4D00621789 /* ShowUserController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowUserController.m; sourceTree = "<group>"; };
-		A329332E15591D4D00621789 /* ShowUserController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShowUserController.xib; sourceTree = "<group>"; };
-		A3431E7C1587279D002E0E81 /* ChatMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatMessage.h; sourceTree = "<group>"; };
-		A3431E7D1587279D002E0E81 /* ChatMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatMessage.m; sourceTree = "<group>"; };
-		A3431E7E1587279D002E0E81 /* ChatMessageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatMessageManager.h; sourceTree = "<group>"; };
-		A3431E7F1587279D002E0E81 /* ChatMessageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatMessageManager.m; sourceTree = "<group>"; };
 		A357930D1574BD670007B2C0 /* libWeChatSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeChatSDK.a; sourceTree = "<group>"; };
 		A357930E1574BD670007B2C0 /* WXApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApi.h; sourceTree = "<group>"; };
 		A357930F1574BD670007B2C0 /* WXApiObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApiObject.h; sourceTree = "<group>"; };
@@ -1760,10 +1745,6 @@
 		A35984AF157CCAB900745BAB /* MyWordsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyWordsController.m; sourceTree = "<group>"; };
 		A35984B0157CCAB900745BAB /* MyWordsController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyWordsController.xib; sourceTree = "<group>"; };
 		A35984B1157CCAB900745BAB /* MyWordsController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "MyWordsController~ipad.xib"; sourceTree = "<group>"; };
-		A387F093158853EF00DC7C5D /* SelectChatFriendController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectChatFriendController.h; sourceTree = "<group>"; };
-		A387F094158853EF00DC7C5D /* SelectChatFriendController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectChatFriendController.m; sourceTree = "<group>"; };
-		A387F095158853EF00DC7C5D /* SelectChatFriendController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SelectChatFriendController.xib; sourceTree = "<group>"; };
-		A387F096158853EF00DC7C5D /* SelectChatFriendController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "SelectChatFriendController~ipad.xib"; sourceTree = "<group>"; };
 		A3C129D61563A6B600C021A7 /* DrawDataService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawDataService.h; sourceTree = "<group>"; };
 		A3C129D71563A6B600C021A7 /* DrawDataService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawDataService.m; sourceTree = "<group>"; };
 		A3C129DC1563A6ED00C021A7 /* RemoteDrawView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RemoteDrawView.h; sourceTree = "<group>"; };
@@ -1772,20 +1753,12 @@
 		A3C129DF1563A6ED00C021A7 /* RemoteDrawView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "RemoteDrawView~ipad.xib"; sourceTree = "<group>"; };
 		A3C129E31563A70E00C021A7 /* Draw.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Draw.h; sourceTree = "<group>"; };
 		A3C129E41563A70E00C021A7 /* Draw.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Draw.m; sourceTree = "<group>"; };
-		A3CA09A9158A21DA009C7EB0 /* ChatMessageUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatMessageUtil.h; sourceTree = "<group>"; };
-		A3CA09AA158A21DA009C7EB0 /* ChatMessageUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatMessageUtil.m; sourceTree = "<group>"; };
 		A3D11BF11562306A00248B4C /* FriendCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendCell.h; sourceTree = "<group>"; };
 		A3D11BF21562306A00248B4C /* FriendCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendCell.m; sourceTree = "<group>"; };
 		A3D11BF31562306A00248B4C /* FriendCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FriendCell.xib; sourceTree = "<group>"; };
 		A3D11BF41562306A00248B4C /* FriendCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "FriendCell~ipad.xib"; sourceTree = "<group>"; };
 		A3DE093B15908AB700E2C746 /* ChatDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatDetailCell.h; sourceTree = "<group>"; };
 		A3DE093C15908AB700E2C746 /* ChatDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatDetailCell.m; sourceTree = "<group>"; };
-		A3DE093D15908AB700E2C746 /* ChatDetailCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChatDetailCell.xib; sourceTree = "<group>"; };
-		A3DE093E15908AB700E2C746 /* ChatDetailCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ChatDetailCell~ipad.xib"; sourceTree = "<group>"; };
-		A3F66CA11581B999000BFF9A /* MessageTotal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageTotal.h; sourceTree = "<group>"; };
-		A3F66CA21581B999000BFF9A /* MessageTotal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageTotal.m; sourceTree = "<group>"; };
-		A3F66CAE1581BA8C000BFF9A /* MessageTotalManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageTotalManager.h; sourceTree = "<group>"; };
-		A3F66CAF1581BA8C000BFF9A /* MessageTotalManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageTotalManager.m; sourceTree = "<group>"; };
 		A3F66CBF15820B2D000BFF9A /* ChatService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatService.h; sourceTree = "<group>"; };
 		A3F66CC015820B2D000BFF9A /* ChatService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatService.m; sourceTree = "<group>"; };
 		A3FAE0D915536E8D008B5827 /* RoomController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "RoomController~ipad.xib"; sourceTree = "<group>"; };
@@ -3394,6 +3367,9 @@
 		CA355EFE152C03F000A14823 /* UserItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserItem.h; sourceTree = "<group>"; };
 		CA355EFF152C03F100A14823 /* UserItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserItem.m; sourceTree = "<group>"; };
 		CA355F01152C296900A14823 /* ItemType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemType.h; sourceTree = "<group>"; };
+		CA389FBF163E2344005637E8 /* PPMessageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPMessageManager.h; sourceTree = "<group>"; };
+		CA389FC0163E2344005637E8 /* PPMessageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPMessageManager.m; sourceTree = "<group>"; };
+		CA389FD0163E967F005637E8 /* graffiti@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "graffiti@2x.png"; sourceTree = "<group>"; };
 		CA3B56DB1514C92800A93137 /* GameSessionUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameSessionUser.h; sourceTree = "<group>"; };
 		CA3B56DC1514C92800A93137 /* GameSessionUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameSessionUser.m; sourceTree = "<group>"; };
 		CA3B56DE1514C9DF00A93137 /* GameTurn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameTurn.h; sourceTree = "<group>"; };
@@ -3639,6 +3615,12 @@
 		CA89748016087BE2003A95F7 /* ContestController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContestController.h; sourceTree = "<group>"; };
 		CA89748116087BE2003A95F7 /* ContestController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContestController.m; sourceTree = "<group>"; };
 		CA89748216087BE2003A95F7 /* ContestController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContestController.xib; sourceTree = "<group>"; };
+		CA8CB58A16312ACA009AAD34 /* MyFriend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyFriend.h; sourceTree = "<group>"; };
+		CA8CB58B16312ACA009AAD34 /* MyFriend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyFriend.m; sourceTree = "<group>"; };
+		CA8CB59216324418009AAD34 /* FriendController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendController.h; sourceTree = "<group>"; };
+		CA8CB59316324419009AAD34 /* FriendController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendController.m; sourceTree = "<group>"; };
+		CA8CB5941632441A009AAD34 /* FriendController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FriendController.xib; sourceTree = "<group>"; };
+		CA8CB5951632441A009AAD34 /* FriendController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "FriendController~ipad.xib"; sourceTree = "<group>"; };
 		CA8D60601531EC5500E016ED /* ReplayController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReplayController.h; sourceTree = "<group>"; };
 		CA8D60611531EC5500E016ED /* ReplayController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReplayController.m; sourceTree = "<group>"; };
 		CA8D60621531EC5500E016ED /* ReplayController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReplayController.xib; sourceTree = "<group>"; };
@@ -3646,6 +3628,8 @@
 		CA91FC7E15C27BE700E9C1CD /* CommonGameNetworkClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonGameNetworkClient.m; sourceTree = "<group>"; };
 		CA91FC8015C27BF700E9C1CD /* CommonGameNetworkService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonGameNetworkService.h; sourceTree = "<group>"; };
 		CA91FC8115C27BF700E9C1CD /* CommonGameNetworkService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonGameNetworkService.m; sourceTree = "<group>"; };
+		CA933E31163BC4580046BF26 /* MessageStat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageStat.h; sourceTree = "<group>"; };
+		CA933E32163BC4580046BF26 /* MessageStat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageStat.m; sourceTree = "<group>"; };
 		CA959892152F546F0093FEDB /* InputDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InputDialog.h; sourceTree = "<group>"; };
 		CA959893152F54700093FEDB /* InputDialog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InputDialog.m; sourceTree = "<group>"; };
 		CA959894152F54700093FEDB /* InputDialog.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InputDialog.xib; sourceTree = "<group>"; };
@@ -3753,6 +3737,8 @@
 		CAA9C434159CA97100398EC5 /* LmWallService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LmWallService.m; sourceTree = "<group>"; };
 		CAACE19715F499E6002EB53A /* SuperDrawView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SuperDrawView.h; sourceTree = "<group>"; };
 		CAACE19815F499E6002EB53A /* SuperDrawView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SuperDrawView.m; sourceTree = "<group>"; };
+		CAADDBD21643697800EC2102 /* StorageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StorageManager.h; sourceTree = "<group>"; };
+		CAADDBD31643697800EC2102 /* StorageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StorageManager.m; sourceTree = "<group>"; };
 		CAAE4A8215790F480012F6B8 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		CAB15E7D15AD41C300502106 /* PickColorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PickColorView.h; sourceTree = "<group>"; };
 		CAB15E7E15AD41C300502106 /* PickColorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PickColorView.m; sourceTree = "<group>"; };
@@ -3878,10 +3864,16 @@
 		CAEECE1115DF8D5000FA5A2A /* BoardPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BoardPanel.h; path = ../Controller/BoardPanel.h; sourceTree = "<group>"; };
 		CAEECE1215DF8D5100FA5A2A /* BoardPanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BoardPanel.m; path = ../Controller/BoardPanel.m; sourceTree = "<group>"; };
 		CAEECE1315DF8D5200FA5A2A /* BoardPanel.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = BoardPanel.xib; path = ../Controller/BoardPanel.xib; sourceTree = "<group>"; };
+		CAF1017E164166D30073E9D1 /* ChatDetailCellReceive.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChatDetailCellReceive.xib; sourceTree = "<group>"; };
+		CAF1017F164166D30073E9D1 /* ChatDetailCellReceive~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ChatDetailCellReceive~ipad.xib"; sourceTree = "<group>"; };
+		CAF10180164166D40073E9D1 /* ChatDetailCellSend.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChatDetailCellSend.xib; sourceTree = "<group>"; };
+		CAF10181164166D40073E9D1 /* ChatDetailCellSend~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ChatDetailCellSend~ipad.xib"; sourceTree = "<group>"; };
 		CAF10AF9151C665D008C4512 /* AccountManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountManager.h; sourceTree = "<group>"; };
 		CAF10AFA151C665D008C4512 /* AccountManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountManager.m; sourceTree = "<group>"; };
 		CAF10AFC151C666D008C4512 /* ItemManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemManager.h; sourceTree = "<group>"; };
 		CAF10AFD151C666E008C4512 /* ItemManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemManager.m; sourceTree = "<group>"; };
+		CAFC95EA163B8015004E256C /* PPMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPMessage.h; sourceTree = "<group>"; };
+		CAFC95EB163B8015004E256C /* PPMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPMessage.m; sourceTree = "<group>"; };
 		EA01D152158BAB1600920A64 /* ReplayGraffitiController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReplayGraffitiController.h; sourceTree = "<group>"; };
 		EA01D153158BAB1600920A64 /* ReplayGraffitiController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReplayGraffitiController.m; sourceTree = "<group>"; };
 		EA01D154158BAB1600920A64 /* ReplayGraffitiController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReplayGraffitiController.xib; sourceTree = "<group>"; };
@@ -4053,12 +4045,10 @@
 				A30A284C1580C2AE006CA3CC /* ChatDetailController~ipad.xib */,
 				A3DE093B15908AB700E2C746 /* ChatDetailCell.h */,
 				A3DE093C15908AB700E2C746 /* ChatDetailCell.m */,
-				A3DE093D15908AB700E2C746 /* ChatDetailCell.xib */,
-				A3DE093E15908AB700E2C746 /* ChatDetailCell~ipad.xib */,
-				A387F093158853EF00DC7C5D /* SelectChatFriendController.h */,
-				A387F094158853EF00DC7C5D /* SelectChatFriendController.m */,
-				A387F095158853EF00DC7C5D /* SelectChatFriendController.xib */,
-				A387F096158853EF00DC7C5D /* SelectChatFriendController~ipad.xib */,
+				CAF1017E164166D30073E9D1 /* ChatDetailCellReceive.xib */,
+				CAF1017F164166D30073E9D1 /* ChatDetailCellReceive~ipad.xib */,
+				CAF10180164166D40073E9D1 /* ChatDetailCellSend.xib */,
+				CAF10181164166D40073E9D1 /* ChatDetailCellSend~ipad.xib */,
 				EA01D152158BAB1600920A64 /* ReplayGraffitiController.h */,
 				EA01D153158BAB1600920A64 /* ReplayGraffitiController.m */,
 				EA01D154158BAB1600920A64 /* ReplayGraffitiController.xib */,
@@ -4094,16 +4084,12 @@
 		A3F66C9E1581B999000BFF9A /* Message */ = {
 			isa = PBXGroup;
 			children = (
-				A3431E7C1587279D002E0E81 /* ChatMessage.h */,
-				A3431E7D1587279D002E0E81 /* ChatMessage.m */,
-				A3431E7E1587279D002E0E81 /* ChatMessageManager.h */,
-				A3431E7F1587279D002E0E81 /* ChatMessageManager.m */,
-				A3F66CA11581B999000BFF9A /* MessageTotal.h */,
-				A3F66CA21581B999000BFF9A /* MessageTotal.m */,
-				A3F66CAE1581BA8C000BFF9A /* MessageTotalManager.h */,
-				A3F66CAF1581BA8C000BFF9A /* MessageTotalManager.m */,
-				A3CA09A9158A21DA009C7EB0 /* ChatMessageUtil.h */,
-				A3CA09AA158A21DA009C7EB0 /* ChatMessageUtil.m */,
+				CA389FBF163E2344005637E8 /* PPMessageManager.h */,
+				CA389FC0163E2344005637E8 /* PPMessageManager.m */,
+				CAFC95EA163B8015004E256C /* PPMessage.h */,
+				CAFC95EB163B8015004E256C /* PPMessage.m */,
+				CA933E31163BC4580046BF26 /* MessageStat.h */,
+				CA933E32163BC4580046BF26 /* MessageStat.m */,
 			);
 			path = Message;
 			sourceTree = "<group>";
@@ -6962,9 +6948,9 @@
 			isa = PBXGroup;
 			children = (
 				CA322103151B6BE60039A384 /* UserService.h */,
-				CA322104151B6BE60039A384 /* UserService.m */,
 				CA41C94E1520608D00013DC8 /* PriceService.h */,
 				CA41C94F1520608D00013DC8 /* PriceService.m */,
+				CA322104151B6BE60039A384 /* UserService.m */,
 				CA4215FF152196B900FAA008 /* AccountService.h */,
 				CA421600152196B900FAA008 /* AccountService.m */,
 				C246F3561577633B003C284F /* LevelService.h */,
@@ -8313,6 +8299,8 @@
 				CAA362411558C3090081D3EB /* Friend.m */,
 				CAA362431558C33F0081D3EB /* FriendManager.h */,
 				CAA362441558C3400081D3EB /* FriendManager.m */,
+				CA8CB58A16312ACA009AAD34 /* MyFriend.h */,
+				CA8CB58B16312ACA009AAD34 /* MyFriend.m */,
 			);
 			path = Friend;
 			sourceTree = "<group>";
@@ -8320,22 +8308,18 @@
 		CA9DB92B154E75190031DBBD /* FriendManage */ = {
 			isa = PBXGroup;
 			children = (
+				CA8CB59216324418009AAD34 /* FriendController.h */,
+				CA8CB59316324419009AAD34 /* FriendController.m */,
+				CA8CB5941632441A009AAD34 /* FriendController.xib */,
+				CA8CB5951632441A009AAD34 /* FriendController~ipad.xib */,
 				A3D11BF11562306A00248B4C /* FriendCell.h */,
 				A3D11BF21562306A00248B4C /* FriendCell.m */,
 				A3D11BF31562306A00248B4C /* FriendCell.xib */,
 				A3D11BF41562306A00248B4C /* FriendCell~ipad.xib */,
-				A329332615591D4D00621789 /* MyFriendsController.h */,
-				A329332715591D4D00621789 /* MyFriendsController.m */,
-				A329332815591D4D00621789 /* MyFriendsController.xib */,
-				A3092464155ABEAF00235A55 /* MyFriendsController~ipad.xib */,
 				A329332915591D4D00621789 /* SearchUserController.h */,
 				A329332A15591D4D00621789 /* SearchUserController.m */,
 				A329332B15591D4D00621789 /* SearchUserController.xib */,
 				A3092465155ABEAF00235A55 /* SearchUserController~ipad.xib */,
-				A329332C15591D4D00621789 /* ShowUserController.h */,
-				A329332D15591D4D00621789 /* ShowUserController.m */,
-				A329332E15591D4D00621789 /* ShowUserController.xib */,
-				A3092466155ABEAF00235A55 /* ShowUserController~ipad.xib */,
 			);
 			path = FriendManage;
 			sourceTree = "<group>";
@@ -8511,6 +8495,15 @@
 				CAA9C426159BF41B00398EC5 /* ShareService.m */,
 			);
 			path = Share;
+			sourceTree = "<group>";
+		};
+		CAADDBD11643696600EC2102 /* Storage */ = {
+			isa = PBXGroup;
+			children = (
+				CAADDBD21643697800EC2102 /* StorageManager.h */,
+				CAADDBD31643697800EC2102 /* StorageManager.m */,
+			);
+			path = Storage;
 			sourceTree = "<group>";
 		};
 		CAAE4A891579B8180012F6B8 /* Ad */ = {
@@ -8707,6 +8700,7 @@
 		CAECE0291503B25500BC2404 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				CAADDBD11643696600EC2102 /* Storage */,
 				C2E7401C1629500A0037E7F6 /* UseItemScene */,
 				EAAFC5441615A4AB00C72BAB /* Statistic */,
 				CA8973721607131B003A95F7 /* Contest */,
@@ -8814,6 +8808,7 @@
 		EA856C3315F0A65700178323 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				CA389FD0163E967F005637E8 /* graffiti@2x.png */,
 				CA6D354115F72215004DC293 /* run@2x.png */,
 				CA6D353F15F720FE004DC293 /* buyed@2x.png */,
 				CA6D353D15F71B10004DC293 /* buyitems_bg@2x.png */,
@@ -9115,13 +9110,9 @@
 				A42D90461553803D0023AF32 /* ShoppingCell~ipad.xib in Resources */,
 				A42D9048155380760023AF32 /* ColorShopView~ipad.xib in Resources */,
 				A454CB701558F5CE00896761 /* ChatController.xib in Resources */,
-				A329333015591D4D00621789 /* MyFriendsController.xib in Resources */,
 				A329333215591D4D00621789 /* SearchUserController.xib in Resources */,
-				A329333415591D4D00621789 /* ShowUserController.xib in Resources */,
 				A454CBC5155A181500896761 /* MessageCell.xib in Resources */,
-				A3092467155ABEAF00235A55 /* MyFriendsController~ipad.xib in Resources */,
 				A3092468155ABEAF00235A55 /* SearchUserController~ipad.xib in Resources */,
-				A3092469155ABEAF00235A55 /* ShowUserController~ipad.xib in Resources */,
 				CA0CB750155CB037009C8EE6 /* FriendRoomController.xib in Resources */,
 				CA0CB755155CB04D009C8EE6 /* SearchRoomController.xib in Resources */,
 				CA0CB75A155CB064009C8EE6 /* RoomCell.xib in Resources */,
@@ -9175,12 +9166,8 @@
 				A455F8CB1585D21400CA5743 /* grayArrow@2x.png in Resources */,
 				A455F8CC1585D21400CA5743 /* whiteArrow.png in Resources */,
 				A455F8CD1585D21400CA5743 /* whiteArrow@2x.png in Resources */,
-				A387F098158853EF00DC7C5D /* SelectChatFriendController.xib in Resources */,
-				A387F099158853EF00DC7C5D /* SelectChatFriendController~ipad.xib in Resources */,
 				EA01D157158BAB1600920A64 /* ReplayGraffitiController.xib in Resources */,
 				EA01D158158BAB1600920A64 /* ReplayGraffitiController~ipad.xib in Resources */,
-				A3DE094015908AB700E2C746 /* ChatDetailCell.xib in Resources */,
-				A3DE094115908AB700E2C746 /* ChatDetailCell~ipad.xib in Resources */,
 				C2615A9F1597FBEC00CEEC66 /* CommonUserInfoView.xib in Resources */,
 				C2615AA11597FC0C00CEEC66 /* CommonUserInfoView~ipad.xib in Resources */,
 				CAA1AF7F159DB00B00504C98 /* adsmogo_adclose@2x.png in Resources */,
@@ -10119,6 +10106,13 @@
 				C2E74515162F9C810037E7F6 /* scrambleToOpenDice_M.m4a in Resources */,
 				A45AA83B162FF5570030D668 /* input_text_bg.png in Resources */,
 				EA6A943E16310A0500854814 /* Default-568h@2x.png in Resources */,
+				CA8CB5971632441B009AAD34 /* FriendController.xib in Resources */,
+				CA8CB5981632441B009AAD34 /* FriendController~ipad.xib in Resources */,
+				CA389FD1163E967F005637E8 /* graffiti@2x.png in Resources */,
+				CAF10182164166D40073E9D1 /* ChatDetailCellReceive.xib in Resources */,
+				CAF10183164166D40073E9D1 /* ChatDetailCellReceive~ipad.xib in Resources */,
+				CAF10184164166D40073E9D1 /* ChatDetailCellSend.xib in Resources */,
+				CAF10185164166D40073E9D1 /* ChatDetailCellSend~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -10442,9 +10436,7 @@
 				CAA362451558C3400081D3EB /* FriendManager.m in Sources */,
 				CAA362481558C3780081D3EB /* FriendService.m in Sources */,
 				A454CB6F1558F5CE00896761 /* ChatController.m in Sources */,
-				A329332F15591D4D00621789 /* MyFriendsController.m in Sources */,
 				A329333115591D4D00621789 /* SearchUserController.m in Sources */,
-				A329333315591D4D00621789 /* ShowUserController.m in Sources */,
 				A454CBC4155A181500896761 /* MessageCell.m in Sources */,
 				CA0CB74F155CB037009C8EE6 /* FriendRoomController.m in Sources */,
 				CA0CB754155CB04D009C8EE6 /* SearchRoomController.m in Sources */,
@@ -10481,18 +10473,12 @@
 				A30A28511580C2AE006CA3CC /* ChatCell.m in Sources */,
 				A30A28541580C2AE006CA3CC /* ChatDetailController.m in Sources */,
 				A30A28571580C2AE006CA3CC /* ChatListController.m in Sources */,
-				A3F66CA61581B999000BFF9A /* MessageTotal.m in Sources */,
-				A3F66CB01581BA8C000BFF9A /* MessageTotalManager.m in Sources */,
 				A3F66CC115820B2E000BFF9A /* ChatService.m in Sources */,
 				A455F8C31585D21400CA5743 /* EGORefreshTableFooterView.m in Sources */,
 				A455F8C41585D21400CA5743 /* EGORefreshTableHeaderView.m in Sources */,
 				CA7C7E041587213100406BFB /* Feed.m in Sources */,
 				CA7C7E071587214300406BFB /* FeedManager.m in Sources */,
 				CA7C7E0B158721B200406BFB /* FeedService.m in Sources */,
-				A3431E801587279D002E0E81 /* ChatMessage.m in Sources */,
-				A3431E811587279D002E0E81 /* ChatMessageManager.m in Sources */,
-				A387F097158853EF00DC7C5D /* SelectChatFriendController.m in Sources */,
-				A3CA09AB158A21DA009C7EB0 /* ChatMessageUtil.m in Sources */,
 				EA01D156158BAB1600920A64 /* ReplayGraffitiController.m in Sources */,
 				A3DE093F15908AB700E2C746 /* ChatDetailCell.m in Sources */,
 				CAE0C8971591A2ED008CDA62 /* NotificationManager.m in Sources */,
@@ -10679,6 +10665,12 @@
 				A43E85FA16227E06003A57F1 /* UIImageView+WebCache.m in Sources */,
 				C2E7401F1629500A0037E7F6 /* UseItemScene.m in Sources */,
 				A45AA839162FC0150030D668 /* UIPlaceholderTextView.m in Sources */,
+				CA8CB58C16312ACA009AAD34 /* MyFriend.m in Sources */,
+				CA8CB5961632441B009AAD34 /* FriendController.m in Sources */,
+				CAFC95EC163B8015004E256C /* PPMessage.m in Sources */,
+				CA933E33163BC4580046BF26 /* MessageStat.m in Sources */,
+				CA389FC1163E2344005637E8 /* PPMessageManager.m in Sources */,
+				CAADDBD41643697800EC2102 /* StorageManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

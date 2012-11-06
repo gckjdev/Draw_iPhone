@@ -29,12 +29,14 @@
 @class PickBackgroundColorView;
 @class MyPaint;
 @class Contest;
+@class OfflineDrawViewController;
 
 @protocol OfflineDrawDelegate <NSObject>
 
 @optional
-- (void)didClickBack;
-- (void)didClickSubmit:(NSArray*)drawActionList;
+- (void)didControllerClickBack:(OfflineDrawViewController *)controller;
+- (void)didController:(OfflineDrawViewController *)controller 
+          clickSubmit:(NSMutableArray*)drawActionList;
 
 @end
 

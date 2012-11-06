@@ -489,6 +489,14 @@ static UIImage* _whitePaperImage;
     return [UIImage strectchableImageName:@"print_tipbig.png"];
 }
 
+- (UIImage *)leftBubbleImage
+{
+    return [UIImage strectchableImageName:@"receive_message@2x.png"];
+}
+- (UIImage *)rightBubbleImage
+{
+    return [UIImage strectchableImageName:@"sent_message@2x.png"];
+}
 
 #pragma mark - menu button image
 - (UIImage *)onlinePlayImage
