@@ -98,8 +98,8 @@
             break;
             
         case ZJHPokerSectorTypeLeft:
-            [self.pokerView1 rotateToAngle:(-M_PI * (1.0/6.0)) animation:animation];
             [self.pokerView2 rotateToAngle:(-M_PI * (1.0/12.0)) animation:animation];
+            [self.pokerView1 rotateToAngle:(-M_PI * (1.0/6.0)) animation:animation];
             break;
             
         case ZJHPokerSectorTypeCenter:
@@ -112,18 +112,46 @@
     }
 }
 
-- (void)faceUpCards:(BOOL)animation
+#define GAP_RATIO_BETWEEN_CARDS 0.5
+- (void)xMotion:(ZJHPokerXMotionType)xMotiontype animation:(BOOL)animation
 {
-//    [self.poker1View moveToCenter:CGPointMake(_poker1OriginCenter.x - POKER_X_AXIS_OFFSET, _poker1OriginCenter.y) animation:animation];
+    switch (xMotiontype) {
+        case ZJHPokerXMotionTypeRight:
+            [self.pokerView2 moveToCenter:CGPointMake(self.pokerView1.center.x - self.pokerView1.frame.size.width * GAP_RATIO_BETWEEN_CARDS, self.pokerView1.center.y) animation:animation];
+            [self.pokerView3 moveToCenter:CGPointMake(self.pokerView1.center.x - 2 * self.pokerView1.frame.size.width * GAP_RATIO_BETWEEN_CARDS, self.pokerView1.center.y) animation:animation];
+            break;
+            
+        case ZJHPokerSectorTypeLeft:
+            [self.pokerView2 moveToCenter:CGPointMake(self.pokerView3.center.x - self.pokerView3.frame.size.width * GAP_RATIO_BETWEEN_CARDS, self.pokerView3.center.y) animation:animation];
+            [self.pokerView1 moveToCenter:CGPointMake(self.pokerView3.center.x - 2 * self.pokerView3.frame.size.width * GAP_RATIO_BETWEEN_CARDS, self.pokerView3.center.y) animation:animation];
+            break;
+            
+        case ZJHPokerSectorTypeCenter:
+            [self.pokerView1 moveToCenter:CGPointMake(self.pokerView2.center.x - self.pokerView2.frame.size.width * GAP_RATIO_BETWEEN_CARDS, self.pokerView2.center.y) animation:animation];
+            [self.pokerView3 moveToCenter:CGPointMake(self.pokerView2.center.x - self.pokerView2.frame.size.width * GAP_RATIO_BETWEEN_CARDS, self.pokerView2.center.y) animation:animation];
+            break;
+            
+        default:
+            break;
+    }
+}
+
+
+- (void)faceUpCards:(ZJHPokerXMotionType)xMotiontype animation:(BOOL)animation
+{
+    [self.pokerView1 backToOriginPosition:animation];
     [self.pokerView1 faceUp:animation];
     [self.pokerView1 enableUserInterface];
     
+    [self.pokerView2 backToOriginPosition:animation];
     [self.pokerView2 faceUp:animation];
     [self.pokerView2 enableUserInterface];
 
-//    [self.poker3View moveToCenter:CGPointMake(_poker3OriginCenter.x + POKER_X_AXIS_OFFSET, _poker3OriginCenter.y) animation:animation];
+    [self.pokerView3 backToOriginPosition:animation];
     [self.pokerView3 faceUp:animation];
     [self.pokerView3 enableUserInterface];
+    
+    [self xMotion:xMotiontype animation:animation];
 }
 
 - (void)faceUpCard:(int)cardId animation:(BOOL)animation

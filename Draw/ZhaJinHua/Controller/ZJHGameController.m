@@ -274,7 +274,7 @@
 
 - (IBAction)clickCheckCardButton:(id)sender
 {
-    [[self getMyPokersView] faceUpCards:YES];
+    [[self getMyPokersView] faceUpCards:ZJHPokerXMotionTypeNone animation:YES];
     [_gameService checkCard];
     [self showMyCardTypeString];
 }
@@ -368,9 +368,21 @@
 - (void)gameOver
 {
     [self disableZJHButtons];
-    [self clearAllUserPokers];
     [self clearAllAvatarReciprocols];
     [self someoneWon:[_gameService winner]];
+
+    
+    [self faceupUserCards];
+    [self performSelector:@selector(clearAllUserPokers) withObject:nil afterDelay:3.0];
+}
+
+- (void)faceupUserCards
+{
+    for (NSString *userId in [_gameService.gameState.usersInfo allKeys]) {
+        if (![_userManager isMe:userId]) {
+            [[self getPokersViewByUserId:userId] faceUpCards:[self getPokerXMotionTypeByPosition:[self getPositionByUserId:userId]] animation:YES];
+        }
+    }
 }
 
 - (void)nextPlayerStart:(NSString*)userId
@@ -425,6 +437,25 @@ compareCardWith:(NSString*)targetUserId
             
         default:
             return ZJHPokerSectorTypeNone;
+            break;
+    }
+}
+
+- (ZJHPokerXMotionType)getPokerXMotionTypeByPosition:(UserPosition)position
+{
+    switch (position) {
+        case UserPositionLeft:
+        case UserPositionLeftTop:
+            return ZJHPokerXMotionTypeRight;
+            break;
+            
+        case UserPositionRight:
+        case UserPositionRightTop:
+            return ZJHPokerXMotionTypeLeft;
+            break;
+            
+        default:
+            return ZJHPokerXMotionTypeNone;
             break;
     }
 }
