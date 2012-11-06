@@ -75,9 +75,9 @@
 
 - (CGPoint)getRandomCenterPoint
 {
-    int randomX = random()%((int)self.frame.size.width/3);
-    int randomY = random()%((int)self.frame.size.height/3);
-    return CGPointMake(self.frame.size.width/3+randomX, self.frame.size.height/3+randomY);
+    int randomX = random()%((int)self.frame.size.width/2);
+    int randomY = random()%((int)self.frame.size.height/2);
+    return CGPointMake(self.frame.size.width/4+randomX, self.frame.size.height/8+randomY);
 }
 
 - (void)someBetFrom:(UserPosition)position
