@@ -18,6 +18,10 @@
 @end
 
 @implementation Poker
+@synthesize pokerId = _pokerId;
+@synthesize rank = _rank;
+@synthesize suit = _suit;
+@synthesize faceUp = _faceUp;
 
 - (void)dealloc
 {

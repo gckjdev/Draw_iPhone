@@ -46,7 +46,16 @@
 
 @implementation ZJHGameController
 @synthesize betTable = _betTable;
-
+@synthesize dealerView = _dealerView;
+@synthesize raiseBetButton = _raiseBetButton;
+@synthesize autoBetButton = _autoBetButton;
+@synthesize compareCardButton = _compareCardButton;
+@synthesize checkCardButton = _checkCardButton;
+@synthesize cardTypeButton = _cardTypeButton;
+@synthesize foldCardButton = _foldCardButton;
+@synthesize totalBetLabel = _totalBetLabel;
+@synthesize singleBetLabel = _singleBetLabel;
+@synthesize betButton = _betButton;
 #pragma mark - life cycle
 
 - (void)dealloc

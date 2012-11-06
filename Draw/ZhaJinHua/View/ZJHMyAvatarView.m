@@ -12,6 +12,9 @@
 
 @implementation ZJHMyAvatarView
 
+@synthesize levelLabel = _levelLabel;
+@synthesize coinsLabel = _coinsLabel;
+
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];

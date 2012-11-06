@@ -22,6 +22,9 @@
 @end
 
 @implementation ZJHPokerView
+@synthesize pokerView1 = _pokerView1;
+@synthesize pokerView2 = _pokerView2;
+@synthesize pokerView3 = _pokerView3;
 
 #pragma mark - life cycle
 
