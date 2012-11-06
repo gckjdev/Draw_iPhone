@@ -290,6 +290,8 @@ static ZJHGameService *_defaultService;
         return;
     }
     
+    PPDebug(@"################### User: %@, bet #####################", userPlayInfo.userId);
+    
     if (message.betRequest.isAutoBet == TRUE) {
         userPlayInfo.lastAction = PBZJHUserActionAutoBet;
         userPlayInfo.autoBetCount ++;

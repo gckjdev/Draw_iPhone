@@ -59,7 +59,7 @@
                                                  isFaceUp:NO
                                                  delegate:delegate];
     
-    pokerViewOffset = self.pokerView1.frame.origin.x + self.pokerView1.frame.size.width + gap;
+    pokerViewOffset = self.pokerView1.frame.origin.x + gap;
     frame = CGRectMake(pokerViewOffset, 0, size.width, size.height);
     self.pokerView2 = [PokerView createPokerViewWithPoker:poker2
                                                     frame:frame
@@ -67,7 +67,7 @@
                                                  delegate:delegate];
 
     
-    pokerViewOffset = self.pokerView2.frame.origin.x + self.pokerView2.frame.size.width + gap;
+    pokerViewOffset = self.pokerView2.frame.origin.x + gap;
     frame = CGRectMake(pokerViewOffset, 0, size.width, size.height);
     self.pokerView3 = [PokerView createPokerViewWithPoker:poker3
                                                     frame:frame
@@ -120,8 +120,8 @@
 {
     switch (xMotiontype) {
         case ZJHPokerXMotionTypeRight:
-            [self.pokerView2 moveToCenter:CGPointMake(self.pokerView1.center.x - self.pokerView1.frame.size.width * GAP_RATIO_BETWEEN_CARDS, self.pokerView1.center.y) animation:animation];
-            [self.pokerView3 moveToCenter:CGPointMake(self.pokerView1.center.x - 2 * self.pokerView1.frame.size.width * GAP_RATIO_BETWEEN_CARDS, self.pokerView1.center.y) animation:animation];
+            [self.pokerView2 moveToCenter:CGPointMake(self.pokerView1.center.x + self.pokerView1.frame.size.width * GAP_RATIO_BETWEEN_CARDS, self.pokerView1.center.y) animation:animation];
+            [self.pokerView3 moveToCenter:CGPointMake(self.pokerView1.center.x + 2 * self.pokerView1.frame.size.width * GAP_RATIO_BETWEEN_CARDS, self.pokerView1.center.y) animation:animation];
             break;
             
         case ZJHPokerSectorTypeLeft:
@@ -131,7 +131,7 @@
             
         case ZJHPokerSectorTypeCenter:
             [self.pokerView1 moveToCenter:CGPointMake(self.pokerView2.center.x - self.pokerView2.frame.size.width * GAP_RATIO_BETWEEN_CARDS, self.pokerView2.center.y) animation:animation];
-            [self.pokerView3 moveToCenter:CGPointMake(self.pokerView2.center.x - self.pokerView2.frame.size.width * GAP_RATIO_BETWEEN_CARDS, self.pokerView2.center.y) animation:animation];
+            [self.pokerView3 moveToCenter:CGPointMake(self.pokerView2.center.x + self.pokerView2.frame.size.width * GAP_RATIO_BETWEEN_CARDS, self.pokerView2.center.y) animation:animation];
             break;
             
         default:
