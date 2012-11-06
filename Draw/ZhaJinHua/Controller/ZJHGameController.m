@@ -46,7 +46,16 @@
 
 @implementation ZJHGameController
 @synthesize betTable = _betTable;
-
+@synthesize dealerView = _dealerView;
+@synthesize raiseBetButton = _raiseBetButton;
+@synthesize autoBetButton = _autoBetButton;
+@synthesize compareCardButton = _compareCardButton;
+@synthesize checkCardButton = _checkCardButton;
+@synthesize cardTypeButton = _cardTypeButton;
+@synthesize foldCardButton = _foldCardButton;
+@synthesize totalBetLabel = _totalBetLabel;
+@synthesize singleBetLabel = _singleBetLabel;
+@synthesize betButton = _betButton;
 #pragma mark - life cycle
 
 - (void)dealloc
@@ -120,7 +129,7 @@
     [self updateAllPlayersAvatar];
     self.dealerView.delegate = self;
     
-//    [self disableZJHButtons];
+    [self disableZJHButtons];
     
     // hidden views below
     self.cardTypeButton.hidden = YES;
@@ -231,14 +240,6 @@
 }
 
 #pragma mark - pravite methods
-- (void)userBet:(NSString *)userId
-{
-    [[self getAvatarViewByUserId:userId] stopReciprocol];
-
-    [self.betTable someBetFrom:[self getPositionByUserId:userId]
-                     chipValue:_gameService.gameState.singleBet
-                         count:[_gameService betCountOfUser:userId]];
-}
 
 - (void)updateBet
 {
@@ -247,6 +248,7 @@
 
 #pragma mark - player action
 - (IBAction)clickBetButton:(id)sender {
+    [[self getMyAvatarView] stopReciprocol];
     [self disableZJHButtons];
     [_popupViewManager dismissChipsSelectView];
     [_gameService bet:NO];
@@ -262,6 +264,7 @@
 
 - (IBAction)clickAutoBetButton:(id)sender
 {
+    [[self getMyAvatarView] stopReciprocol];
     self.autoBetButton.selected = YES;
     [self disableZJHButtons];
     [_popupViewManager dismissChipsSelectView];
@@ -274,15 +277,15 @@
 
 - (IBAction)clickCheckCardButton:(id)sender
 {
-    [[self getMyPokersView] faceUpCards:YES];
+    [[self getMyPokersView] faceUpCards:ZJHPokerXMotionTypeNone animation:YES];
     [_gameService checkCard];
     [self showMyCardTypeString];
 }
 
 - (IBAction)clickFoldCardButton:(id)sender
 {
-    [self disableZJHButtons];
     [[self getMyAvatarView] stopReciprocol];
+    [self disableZJHButtons];
     [[self getMyPokersView] foldCards:YES];
     [_gameService foldCard];
 }
@@ -296,7 +299,9 @@
 
 - (void)betSuccess
 {
-    [self userBet:_userManager.userId];
+    [self.betTable someBetFrom:[self getPositionByUserId:_userManager.userId]
+                     chipValue:_gameService.gameState.singleBet
+                         count:[_gameService betCountOfUser:_userManager.userId]];
     
     [self updateTotalBetAndSingleBet];
     [self updateUserTotalBet:_userManager.userId];
@@ -305,6 +310,7 @@
 
 - (void)checkCardSuccess
 {
+    [self updateZJHButtons];
 }
 
 - (void)foldCardSuccess
@@ -368,9 +374,19 @@
 - (void)gameOver
 {
     [self disableZJHButtons];
-    [self clearAllUserPokers];
     [self clearAllAvatarReciprocols];
     [self someoneWon:[_gameService winner]];
+
+    
+    [self faceupUserCards];
+    [self performSelector:@selector(clearAllUserPokers) withObject:nil afterDelay:3.0];
+}
+
+- (void)faceupUserCards
+{
+    for (NSString *userId in [_gameService.gameState.usersInfo allKeys]) {
+        [[self getPokersViewByUserId:userId] faceUpCards:[self getPokerXMotionTypeByPosition:[self getPositionByUserId:userId]] animation:YES];
+    }
 }
 
 - (void)nextPlayerStart:(NSString*)userId
@@ -391,7 +407,10 @@
 
 - (void)someoneBet:(NSString*)userId
 {
-    [self userBet:userId];
+    [[self getAvatarViewByUserId:userId] stopReciprocol];
+    [self.betTable someBetFrom:[self getPositionByUserId:userId]
+                     chipValue:_gameService.gameState.singleBet
+                         count:[_gameService betCountOfUser:userId]];
     [self updateTotalBetAndSingleBet];
     [self updateUserTotalBet:userId];
 }
@@ -429,6 +448,25 @@ compareCardWith:(NSString*)targetUserId
     }
 }
 
+- (ZJHPokerXMotionType)getPokerXMotionTypeByPosition:(UserPosition)position
+{
+    switch (position) {
+        case UserPositionLeft:
+        case UserPositionLeftTop:
+            return ZJHPokerXMotionTypeRight;
+            break;
+            
+        case UserPositionRight:
+        case UserPositionRightTop:
+            return ZJHPokerXMotionTypeLeft;
+            break;
+            
+        default:
+            return ZJHPokerXMotionTypeNone;
+            break;
+    }
+}
+
 - (void)someoneCheckCard:(NSString*)userId
 {
     [[self getPokersViewByUserId:userId] makeSectorShape:[self getPokerSectorTypeByPosition:[self getPositionByUserId:userId]] animation:YES];
@@ -436,6 +474,7 @@ compareCardWith:(NSString*)targetUserId
 
 - (void)someoneFoldCard:(NSString*)userId
 {
+    [[self getAvatarViewByUserId:userId] stopReciprocol];
     [[self getPokersViewByUserId:userId] foldCards:YES];
 }
 
@@ -626,6 +665,7 @@ compareCardWith:(NSString*)targetUserId
 - (void)didSelectChip:(int)chipValue
 {
     PPDebug(@"didSelectChip: %d", chipValue);
+    [[self getMyAvatarView] stopReciprocol];
     [self disableZJHButtons];
     [_popupViewManager dismissChipsSelectView];
     [_gameService raiseBet:chipValue];
@@ -742,7 +782,7 @@ compareCardWith:(NSString*)targetUserId
 
 - (IBAction)testWin:(id)sender
 {
-    [self.betTable userWonAllChips:UserPositionCenter];
+    [self.betTable userWonAllChips:UserPositionLeftTop];
 
 }
 

@@ -150,9 +150,19 @@
                          startIndex:(NSInteger)startIndex 
                            endIndex:(NSInteger)endIndex;
 
+//new get friend list interface.
++ (CommonNetworkOutput*)getFriendList:(NSString*)baseURL
+                                appId:(NSString*)appId 
+                               gameId:(NSString*)gameId
+                               userId:(NSString*)userId
+                                 type:(NSInteger)type 
+                               offset:(NSInteger)offset 
+                                limit:(NSInteger)limit;
+
 + (CommonNetworkOutput*)searchUsers:(NSString*)baseURL
                               appId:(NSString*)appId 
                              gameId:(NSString*)gameId
+                             userId:(NSString*)userId
                           keyString:(NSString*)keyString 
                          startIndex:(NSInteger)startIndex 
                            endIndex:(NSInteger)endIndex;
@@ -280,12 +290,19 @@
                                itemType:(int)itemType;
 
 
-+ (CommonNetworkOutput*)getUserMessage:(NSString*)baseURL
++ (CommonNetworkOutput*)getMessageList:(NSString*)baseURL
                                  appId:(NSString*)appId
                                 userId:(NSString*)userId
                           friendUserId:(NSString*)friendUserId
-                           startOffset:(int)startOffset
-                              maxCount:(int)maxCount;
+                       offsetMessageId:(NSString *)messageId
+                              maxCount:(int)maxCount
+                               forward:(BOOL)forward;
+
++ (CommonNetworkOutput*)getMessageStatList:(NSString*)baseURL
+                                     appId:(NSString*)appId
+                                    userId:(NSString*)userId
+                                    offset:(NSInteger)offset
+                                  maxCount:(int)maxCount;
 
 + (CommonNetworkOutput*)sendMessage:(NSString*)baseURL
                               appId:(NSString*)appId
@@ -372,7 +389,8 @@
                                    userId:(NSString*)userId
                              targetUserId:(NSString*)targetUserId;
 
-+ (CommonNetworkOutput*)getUserSimpleInfo:(NSString*)baseURL 
++ (CommonNetworkOutput*)getUserSimpleInfo:(NSString*)baseURL
+                                   userId:(NSString *)userId
                                     appId:(NSString*)appId 
                                    gameId:(NSString*)gameId
                                  ByUserId:(NSString*)targetUserId;

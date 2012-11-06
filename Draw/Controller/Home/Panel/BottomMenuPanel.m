@@ -9,7 +9,6 @@
 #import "BottomMenuPanel.h"
 #import "RegisterUserController.h"
 #import "UserSettingController.h"
-#import "MyFriendsController.h"
 #import "ChatListController.h"
 #import "ShareController.h"
 #import "FeedbackController.h"

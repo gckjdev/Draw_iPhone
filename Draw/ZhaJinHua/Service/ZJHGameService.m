@@ -27,7 +27,7 @@ static ZJHGameService *_defaultService;
 
 @implementation ZJHGameService
 
-//@synthesize gameState = _gameState;
+@synthesize gameState = _gameState;
 
 #pragma mark - life cycle
 
@@ -289,6 +289,8 @@ static ZJHGameService *_defaultService;
     if (userPlayInfo == nil) {
         return;
     }
+    
+    PPDebug(@"################### User: %@, bet #####################", userPlayInfo.userId);
     
     if (message.betRequest.isAutoBet == TRUE) {
         userPlayInfo.lastAction = PBZJHUserActionAutoBet;

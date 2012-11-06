@@ -14,9 +14,19 @@
 
 @optional
 - (void)didCreateRoom:(Room*)room resultCode:(int)resultCode; 
-- (void)didFindRoomByUser:(NSString *)userId roomList:(NSArray*)roomList resultCode:(int)resultCode;
-- (void)didSearhRoomWithKey:(NSString *)key roomList:(NSArray*)roomList resultCode:(int)resultCode;
-- (void)didInviteFriends:(NSSet *)friendSet resultCode:(int)resultCode;
+
+- (void)didFindRoomByUser:(NSString *)userId
+                 roomList:(NSArray*)roomList
+               resultCode:(int)resultCode;
+
+- (void)didSearhRoomWithKey:(NSString *)key 
+                   roomList:(NSArray*)roomList
+                 resultCode:(int)resultCode;
+
+- (void)didRoom:(Room *)room 
+  inviteFriends:(NSSet *)friendSet 
+     resultCode:(int)resultCode;
+
 - (void)didRemoveRoom:(Room *)room resultCode:(int)resultCode;
 - (void)didJoinNewRoom:(int)resultCode;
 

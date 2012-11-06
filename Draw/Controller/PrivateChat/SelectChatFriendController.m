@@ -158,10 +158,9 @@
     if (cell == nil) {
         cell = [FriendCell createCell:self];
     }
-    
-    Friend *friend = [dataList objectAtIndex:[indexPath row]];
-    [cell setCellWithFriend:friend indexPath:indexPath fromType:FromFriendList];
-    cell.followButton.hidden = YES;
+//    MyFriend *myFriend = []
+//    Friend *friend = [dataList objectAtIndex:[indexPath row]];
+//    [cell setCellWithFriend:friend indexPath:indexPath fromType:FromFriendList];
     
     return cell;
 }
@@ -169,7 +168,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    Friend *aFriend = [dataList objectAtIndex:indexPath.row];
+    MyFriend *aFriend = [dataList objectAtIndex:indexPath.row];
 //    [self.navigationController popViewControllerAnimated:NO];
     if (delegate && [delegate respondsToSelector:@selector(didSelectFriend:)]) {
         [delegate didSelectFriend:aFriend];

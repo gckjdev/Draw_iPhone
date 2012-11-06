@@ -57,13 +57,13 @@
 {
     switch (position) {
         case UserPositionRight:
-            return CGPointMake(self.frame.size.width, self.frame.size.height);
+            return CGPointMake(self.frame.size.width, self.frame.size.height*0.6);
         case UserPositionRightTop:
-            return CGPointMake(self.frame.size.width, 0);
+            return CGPointMake(self.frame.size.width, self.frame.size.height*0.1);
         case UserPositionLeft:
-            return CGPointMake(0, self.frame.size.height);
+            return CGPointMake(0, self.frame.size.height*0.6);
         case UserPositionLeftTop:
-            return CGPointMake(0, 0);
+            return CGPointMake(0, self.frame.size.height*0.1);
         case UserPositionCenter:
             return CGPointMake(self.frame.size.width/2, self.frame.size.height);
         default:
@@ -75,9 +75,9 @@
 
 - (CGPoint)getRandomCenterPoint
 {
-    int randomX = random()%((int)self.frame.size.width/3);
-    int randomY = random()%((int)self.frame.size.height/3);
-    return CGPointMake(self.frame.size.width/3+randomX, self.frame.size.height/3+randomY);
+    int randomX = random()%((int)self.frame.size.width/2);
+    int randomY = random()%((int)self.frame.size.height/2);
+    return CGPointMake(self.frame.size.width/4+randomX, self.frame.size.height/8+randomY);
 }
 
 - (void)someBetFrom:(UserPosition)position
@@ -96,16 +96,21 @@
     UIImage* chipImage = [[ZJHImageManager defaultManager] chipImageForChipValue:chipValue];
     [layer setContents:(id)[chipImage CGImage]];
     layer.bounds = CGRectMake(0, 0, chipImage.size.width/2,chipImage.size.height/2);
-//    layer.shouldRasterize = YES;
+    layer.shouldRasterize = YES;
     
     [self.layer addSublayer:layer];
     [_visibleLayerQueue enqueue:layer];
-    
+
+    CGPoint randomPoint = [self getRandomCenterPoint];
+    layer.position = randomPoint;
     CAAnimation* anim = [AnimationManager translationAnimationFrom:[self getPointByPosition:position]
-                                                                to:[self getRandomCenterPoint]
+                                                                to:randomPoint
                                                           duration:0.5
                                                           delegate:self
                                                   removeCompeleted:NO];
+//    [CATransaction setCompletionBlock:^{
+//        layer.position = randomPoint;
+//    }];
     anim.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut];
     [layer addAnimation:anim forKey:nil];
 }
@@ -113,7 +118,7 @@
 - (void)userWonAllChips:(UserPosition)position
 {
     //清除上一次残留的筹码
-    PPDebug(@"<test>clear chips, layerQueue count = %d",_layerQueue.count);
+//    PPDebug(@"<test>clear chips, layerQueue count = %d",_layerQueue.count);
     while ([_layerQueue peek]) {
         CALayer* layer = [_layerQueue dequeue];
         [layer removeFromSuperlayer];
@@ -122,37 +127,27 @@
     //播放当前筹码动画，把筹码压进清除队列
     while ([_visibleLayerQueue peek] != nil) {
         CALayer* layer = [_visibleLayerQueue dequeue];
-//        [layer addAnimation:[AnimationManager transAndDismissTo:[self getPointByPosition:position] scale:2 duration:1] forKey:nil];
-//        CAAnimation* anim = [AnimationManager translationAnimationTo:[self getPointByPosition:position] duration:1];
-//        CAAnimation* anim2 = [AnimationManager missingAnimationWithDuration:1];
-//        anim.removedOnCompletion = NO;
-//        anim2.removedOnCompletion = NO;
-//        [layer addAnimation:anim forKey:nil];
-//        [CATransaction setCompletionBlock:^{
-//            [layer setPosition:[self getPointByPosition:position]];
-//            [layer setOpacity:0];
-//        }];
-        [UIView animateWithDuration:1 animations:^{
-            layer.position = [self getPointByPosition:position];
-            layer.opacity = 1;
-        } completion:^(BOOL finished) {
-            [UIView animateWithDuration:1 animations:^{
-//                layer.opacity = 0;
-            } completion:^(BOOL finished) {
-//                layer.opacity = 0;
-            }];
+        CAAnimation* anim = [AnimationManager translationAnimationFrom:layer.position
+                                                                    to:[self getPointByPosition:position]
+                                                              duration:0.5
+                                                              delegate:self
+                                                      removeCompeleted:NO];
+        [CATransaction setCompletionBlock:^{
+            layer.opacity = 0;
         }];
+        [layer addAnimation:anim forKey:nil];
         [_layerQueue enqueue:layer];
-        PPDebug(@"<test>enqueue, count = %d",_layerQueue.count);
+//        PPDebug(@"<test>enqueue, count = %d",_layerQueue.count);
     }
 }
 
 - (void)clearAllChips
 {
-    [_layerQueue removeAllObjects];
-    [_visibleLayerQueue removeAllObjects];
-    for (CALayer* layer in [self.layer sublayers]) {
-        [layer removeFromSuperlayer];
+    while ([_visibleLayerQueue peek]) {
+        [(CALayer*)[_visibleLayerQueue dequeue] removeFromSuperlayer];
+    }
+    while ([_layerQueue peek]) {
+        [(CALayer*)[_visibleLayerQueue dequeue] removeFromSuperlayer];
     }
 }
 

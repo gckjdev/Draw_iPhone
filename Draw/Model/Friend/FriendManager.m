@@ -13,6 +13,7 @@
 #import "GameNetworkConstants.h"
 #import "TimeUtils.h"
 #import "Friend.h"
+#import "MyFriend.h"
 
 @interface FriendManager()
 
@@ -388,5 +389,23 @@ static FriendManager *_defaultFriendManager = nil;
         return [aFriend facebookNick];
     }
     return @"";
+}
+
+#pragma -mark methods for MyFriend
+
+- (NSArray *)parseFriendList:(NSArray *)jsonArray
+{
+    if ([jsonArray count] == 0) {
+        return nil;
+    }
+    NSMutableArray *list = [NSMutableArray array];
+    for (NSDictionary *dict in jsonArray) {
+        if (dict) {
+            MyFriend *friend = [MyFriend friendWithDict:dict];
+            PPDebug(@"friend = %@",[friend description]);
+            [list addObject:friend];
+        }
+    }
+    return list;
 }
 @end

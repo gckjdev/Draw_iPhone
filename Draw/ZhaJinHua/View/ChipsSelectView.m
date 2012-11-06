@@ -22,6 +22,8 @@
 @end
 
 @implementation ChipsSelectView
+@synthesize delegate = _delegate;
+
 
 - (void)dealloc
 {

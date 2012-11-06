@@ -7,7 +7,6 @@
 //
 
 #import "CommonTabController.h"
-#import "TableTabManager.h"
 #import "CommonMessageCenter.h"
 
 @implementation CommonTabController
@@ -113,13 +112,9 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-- (IBAction)clickTabButton:(id)sender
+- (void)clickTab:(NSInteger)tabID
 {
-    UIButton *button = (UIButton *)sender;
-    UIButton *currentButton = self.currentTabButton;
-    [currentButton setSelected:NO];
-    [button setSelected:YES];
-    TableTab *tab = [_tabManager tabForID:button.tag];
+    TableTab *tab = [_tabManager tabForID:tabID];
     [_tabManager setCurrentTab:tab];
     [self.dataTableView reloadData];
     if (tab.status == TableTabStatusUnload) {
@@ -127,6 +122,15 @@
         [self serviceLoadDataForTabID:tab.tabID];
     }
     _defaultTabIndex = tab.index;
+
+}
+- (IBAction)clickTabButton:(id)sender
+{
+    UIButton *button = (UIButton *)sender;
+    UIButton *currentButton = self.currentTabButton;
+    [currentButton setSelected:NO];
+    [button setSelected:YES];
+    [self clickTab:button.tag];
 }
 
 - (IBAction)clickRefreshButton:(id)sender
@@ -154,6 +158,7 @@
 - (UIButton *)currentTabButton
 {
     TableTab *tab = [self currentTab];
+    PPDebug(@"current tabID = %d",tab.tabID);
     if (tab) {
         return [self tabButtonWithTabID:tab.tabID];
     }

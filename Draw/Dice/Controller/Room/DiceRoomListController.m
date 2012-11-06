@@ -637,16 +637,15 @@
 #pragma mark - dice room list delegate
 - (void)didQueryUser:(NSString *)userId
 {
-    [DiceUserInfoView showUser:userId 
-                      nickName:nil 
-                        avatar:nil 
-                        gender:nil 
-                      location:nil 
-                         level:0 
-                       hasSina:NO 
-                         hasQQ:NO 
-                   hasFacebook:NO 
-                    infoInView:self canChat:NO];
+    MyFriend *friend = [MyFriend friendWithFid:userId 
+                                      nickName:nil
+                                        avatar:nil
+                                        gender:nil 
+                                         level:1];
+    [DiceUserInfoView showFriend:friend 
+                      infoInView:self
+                         canChat:NO
+                      needUpdate:YES];
 }
 
 @end
