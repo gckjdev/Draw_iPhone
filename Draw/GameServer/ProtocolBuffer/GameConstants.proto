@@ -153,6 +153,7 @@ enum GameCommandType {
   LOCAL_FOLD_CARD = 318;
   LOCAL_SHOW_CARD = 319;
   LOCAL_COMPARE_CARD = 320;
+  NOT_CURRENT_TURN_LOCAL_FOLD_CARD = 321;
 
   // For Dahuatou: service -------> client
   ROOM_NOTIFICATION_REQUEST = 701;                      // 房间通知
