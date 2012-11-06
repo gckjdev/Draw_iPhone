@@ -120,7 +120,7 @@
     [self updateAllPlayersAvatar];
     self.dealerView.delegate = self;
     
-//    [self disableZJHButtons];
+    [self disableZJHButtons];
     
     // hidden views below
     self.cardTypeButton.hidden = YES;
@@ -379,9 +379,7 @@
 - (void)faceupUserCards
 {
     for (NSString *userId in [_gameService.gameState.usersInfo allKeys]) {
-        if (![_userManager isMe:userId]) {
-            [[self getPokersViewByUserId:userId] faceUpCards:[self getPokerXMotionTypeByPosition:[self getPositionByUserId:userId]] animation:YES];
-        }
+        [[self getPokersViewByUserId:userId] faceUpCards:[self getPokerXMotionTypeByPosition:[self getPositionByUserId:userId]] animation:YES];
     }
 }
 
