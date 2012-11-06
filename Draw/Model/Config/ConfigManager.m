@@ -414,6 +414,11 @@
                               defaultValue:3000];
 }
 
++ (int)getZJHMaxAutoBetCount
+{
+    return 5;
+}
+
 
 #define KEY_AUTO_SAVE @"AutoSave"
 + (BOOL)isAutoSave

@@ -128,4 +128,7 @@ typedef enum{
 
 + (int)getZJHTimeInterval;
 + (int)getTreeMatureTime;
+
++ (int)getZJHMaxAutoBetCount;
+
 @end

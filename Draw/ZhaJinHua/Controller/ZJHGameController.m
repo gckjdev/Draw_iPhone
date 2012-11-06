@@ -120,7 +120,7 @@
     [self updateAllPlayersAvatar];
     self.dealerView.delegate = self;
     
-    [self disableZJHButtons];
+//    [self disableZJHButtons];
     
     // hidden views below
     self.cardTypeButton.hidden = YES;
@@ -262,12 +262,10 @@
 
 - (IBAction)clickAutoBetButton:(id)sender
 {
-    self.autoBetButton.selected = !self.autoBetButton.selected;
-    if (self.autoBetButton.selected == YES) {
-        [self disableZJHButtons];
-        [_popupViewManager dismissChipsSelectView];
-        [_gameService bet:YES];
-    }
+    self.autoBetButton.selected = YES;
+    [self disableZJHButtons];
+    [_popupViewManager dismissChipsSelectView];
+    [_gameService bet:YES];
 }
 
 - (IBAction)clickCompareCardButton:(id)sender
@@ -302,6 +300,7 @@
     
     [self updateTotalBetAndSingleBet];
     [self updateUserTotalBet:_userManager.userId];
+    [self updateAutoBetButton];
 }
 
 - (void)checkCardSuccess
@@ -361,6 +360,9 @@
     PPDebug(@"<ZJHGameController> game start!");
     [self.dealerView dealWithPositionArray:[self dealPointsArray]
                                      times:CARDS_COUNT];
+    [self updateTotalBetAndSingleBet];
+    [self updateAllUserTotalBet];
+    [self updateAutoBetButton];
 }
 
 - (void)gameOver
@@ -374,13 +376,17 @@
 - (void)nextPlayerStart:(NSString*)userId
 {
     [[self getAvatarViewByPosition:[self getPositionByUserId:userId]] startReciprocol:[ConfigManager getZJHTimeInterval]];
-    
+        
     [self updateZJHButtons];
 
-    if ([_gameService isMyTurn] && [_gameService isMeAutoBet]) {
-        [_gameService bet:YES];
-        return;
-    }    
+    
+    if ([_gameService isMyTurn]) {
+        if (self.autoBetButton.selected == YES && [_gameService canIContinueAutoBet]) {
+            [self clickAutoBetButton:nil];
+        }else{
+            self.autoBetButton.selected = NO;
+        }
+    }
 }
 
 - (void)someoneBet:(NSString*)userId
@@ -404,16 +410,6 @@ compareCardWith:(NSString*)targetUserId
     
 }
 
-- (void)someoneRaiseBet:(NSString*)userId
-{
-    [self userBet:userId];
-}
-
-- (void)someoneAutoBet:(NSString*)userId
-{
-    [self userBet:userId];
-}
-
 - (ZJHPokerSectorType)getPokerSectorTypeByPosition:(UserPosition)position
 {
     switch (position) {
@@ -435,17 +431,12 @@ compareCardWith:(NSString*)targetUserId
 
 - (void)someoneCheckCard:(NSString*)userId
 {
-    UserPosition position = [self getPositionByUserId:userId];
-    ZJHPokerView *view = [self getPokersViewByPosition:position];
-    
-    [view makeSectorShape:[self getPokerSectorTypeByPosition:position] animation:YES];
+    [[self getPokersViewByUserId:userId] makeSectorShape:[self getPokerSectorTypeByPosition:[self getPositionByUserId:userId]] animation:YES];
 }
 
 - (void)someoneFoldCard:(NSString*)userId
 {
-    
-    ZJHPokerView *view = [self getPokersViewByPosition:[self getPositionByUserId:userId]];
-    [view foldCards:YES];
+    [[self getPokersViewByUserId:userId] foldCards:YES];
 }
 
 - (void)someoneWon:(NSString*)userId
@@ -729,6 +720,30 @@ compareCardWith:(NSString*)targetUserId
 - (NSString *)int2String:(int)intValue
 {
     return [NSString stringWithFormat:@"%d", intValue];
+}
+- (void)updateAutoBetButton
+{
+    if ([_gameService remainderAutoBetCount] > 0) {
+        [self.autoBetButton setTitle:[NSString stringWithFormat:@"%d", [_gameService remainderAutoBetCount]] forState:UIControlStateNormal];
+        
+    }else{
+        [self.autoBetButton setTitle:@"k跟到底" forState:UIControlStateNormal];
+    }
+    
+}
+
+#pragma mark - test
+
+- (IBAction)testBet:(id)sender
+{
+    [self.betTable someBetFrom:UserPositionCenter chipValue:5 count:1];
+
+}
+
+- (IBAction)testWin:(id)sender
+{
+    [self.betTable userWonAllChips:UserPositionCenter];
+
 }
 
 @end

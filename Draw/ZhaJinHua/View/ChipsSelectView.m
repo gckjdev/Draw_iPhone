@@ -59,6 +59,7 @@
         
         if (chipValue.intValue <= [[[ZJHGameService defaultService] gameState] singleBet]) {
             chipView.enabled = NO;
+            chipView.alpha = 0.5;
         }
         
         [self addSubview:chipView];
