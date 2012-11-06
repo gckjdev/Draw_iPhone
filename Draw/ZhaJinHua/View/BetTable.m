@@ -57,13 +57,13 @@
 {
     switch (position) {
         case UserPositionRight:
-            return CGPointMake(self.frame.size.width, self.frame.size.height);
+            return CGPointMake(self.frame.size.width, self.frame.size.height*0.75);
         case UserPositionRightTop:
-            return CGPointMake(self.frame.size.width, 0);
+            return CGPointMake(self.frame.size.width, self.frame.size.height*0.25);
         case UserPositionLeft:
-            return CGPointMake(0, self.frame.size.height);
+            return CGPointMake(0, self.frame.size.height*0.75);
         case UserPositionLeftTop:
-            return CGPointMake(0, 0);
+            return CGPointMake(0, self.frame.size.height*0.25);
         case UserPositionCenter:
             return CGPointMake(self.frame.size.width/2, self.frame.size.height);
         default:
@@ -102,14 +102,15 @@
     [_visibleLayerQueue enqueue:layer];
 
     CGPoint randomPoint = [self getRandomCenterPoint];
+    layer.position = randomPoint;
     CAAnimation* anim = [AnimationManager translationAnimationFrom:[self getPointByPosition:position]
                                                                 to:randomPoint
                                                           duration:0.5
                                                           delegate:self
                                                   removeCompeleted:NO];
-    [CATransaction setCompletionBlock:^{
-        layer.position = randomPoint;
-    }];
+//    [CATransaction setCompletionBlock:^{
+//        layer.position = randomPoint;
+//    }];
     anim.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut];
     [layer addAnimation:anim forKey:nil];
 }
