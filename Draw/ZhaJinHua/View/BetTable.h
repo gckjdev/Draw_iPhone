@@ -19,7 +19,8 @@
           chipValue:(int)chipValue
               count:(int)count;
 
-- (void)clearAllChips:(UserPosition)position;
+- (void)userWonAllChips:(UserPosition)position;
+- (void)clearAllChips;
 
 
 @end

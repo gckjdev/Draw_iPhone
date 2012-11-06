@@ -108,7 +108,6 @@
     NSString* userId = [user userId];
     for (PBGameUser* user in _userList){
         if ([[user userId] isEqualToString:userId]){
-//            [_userList replaceObjectAtIndex:index withObject:user];
             return;
         }
     }

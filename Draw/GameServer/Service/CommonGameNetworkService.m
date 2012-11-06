@@ -184,7 +184,7 @@
 - (void)handleGameStartNotificationRequest:(GameMessage*)message
 {
     self.session.status = GameStatusPlaying;
-    [self hanldMoreOnGameStartNotificationRequest:message];
+    [self handleMoreOnGameStartNotificationRequest:message];
     [self postNotification:NOTIFICATION_GAME_START_NOTIFICATION_REQUEST message:message];
 }
 
@@ -214,7 +214,7 @@
     [self postNotification:NOTIFICAIION_GET_ROOMS_RESPONSE message:message];
 }
 
-- (void)hanldMoreOnGameStartNotificationRequest:(GameMessage*)message
+- (void)handleMoreOnGameStartNotificationRequest:(GameMessage*)message
 {
 }
 
@@ -513,6 +513,11 @@
 - (BOOL)isMyTurn
 {
     return [[UserManager defaultManager] isMe:self.session.currentPlayUserId];
+}
+
+- (BOOL)isGamePlaying
+{
+    return [self.session isGamePlaying];
 }
 
 @end

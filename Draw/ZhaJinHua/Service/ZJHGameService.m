@@ -62,13 +62,28 @@ static ZJHGameService *_defaultService;
     return [[self userPlayInfo:userId] pokers];
 }
 
-- (void)bet
+- (int)betCountOfUser:(NSString *)userId
+{
+    return [[self userPlayInfo:userId] betCount];
+}
+
+- (int)totalBetOfUser:(NSString *)userId
+{
+    return [[self userPlayInfo:userId] totalBet];
+}
+
+- (int)myBetCount
+{
+    return [[self userPlayInfo:_userManager.userId] betCount];
+}
+
+- (void)bet:(BOOL)autoBet
 {
     [_networkClient sendBetRequest:self.userId
                          sessionId:self.session.sessionId
-                         singleBet:_gameState.singleBet
-                             count:[_gameState betCountOfUser:self.userId]
-                         isAutoBet:FALSE];
+                         singleBet:[_gameState singleBet]
+                             count:[self myBetCount]
+                         isAutoBet:autoBet];
 }
 
 - (void)raiseBet:(int)singleBet
@@ -76,18 +91,18 @@ static ZJHGameService *_defaultService;
     [_networkClient sendBetRequest:self.userId
                          sessionId:self.session.sessionId
                          singleBet:singleBet
-                             count:[_gameState betCountOfUser:self.userId]
+                             count:[self myBetCount]
                          isAutoBet:FALSE];
 }
 
-- (void)autoBet
-{
-    [_networkClient sendBetRequest:self.userId
-                         sessionId:self.session.sessionId
-                         singleBet:[_gameState singleBet]
-                             count:[_gameState betCountOfUser:self.userId]
-                         isAutoBet:TRUE];
-}
+//- (void)autoBet
+//{
+//    [_networkClient sendBetRequest:self.userId
+//                         sessionId:self.session.sessionId
+//                         singleBet:[_gameState singleBet]
+//                             count:[self myBetCount]
+//                         isAutoBet:TRUE];
+//}
 
 - (void)checkCard
 {
@@ -131,11 +146,21 @@ static ZJHGameService *_defaultService;
 
 - (BOOL)canIBet
 {
+    if (![self isGamePlaying]) {
+        return NO;
+    }
+    
+    PPDebug(@"isMyTurn: %d", [self isMyTurn]);
+
     return [self isMyTurn];
 }
 
 - (BOOL)canIRaiseBet
 {
+    if (![self isGamePlaying]) {
+        return NO;
+    }
+    
     if (![self isMyTurn]) {
         return NO;
     }
@@ -149,21 +174,37 @@ static ZJHGameService *_defaultService;
 
 - (BOOL)canIAutoBet
 {
+    if (![self isGamePlaying]) {
+        return NO;
+    }
+    
     return [self isMyTurn];
 }
 
 - (BOOL)canICheckCard
 {
+    if (![self isGamePlaying]) {
+        return NO;
+    }
+    
     return [[self myPlayInfo] canCheckCard];
 }
 
 - (BOOL)canIFoldCard
 {
+    if (![self isGamePlaying]) {
+        return NO;
+    }
+    
     return [[self myPlayInfo] canFoldCard];
 }
 
 - (BOOL)canICompareCard
 {
+    if (![self isGamePlaying]) {
+        return NO;
+    }
+    
     if (![self isMyTurn]) {
         return NO;
     }else {
@@ -173,11 +214,15 @@ static ZJHGameService *_defaultService;
 
 - (BOOL)canIShowCard:(int)cardId
 {
+    if (![self isGamePlaying]) {
+        return NO;
+    }
+    
     if (![self isMyTurn]) {
         return NO;
-    }else {
-        return [[self myPlayInfo] canShowCard:cardId];
     }
+    
+    return [[self myPlayInfo] canShowCard:cardId];
 }
 
 - (BOOL)canUserCompareCard:(NSString *)userId
@@ -190,25 +235,31 @@ static ZJHGameService *_defaultService;
     return [[self myPlayInfo] cardTypeString];
 }
 
+- (BOOL)isMeAutoBet
+{
+    return [[self userPlayInfo:_userManager.userId] isAutoBet];
+}
+
 - (BOOL)doIWin
 {
     return [_userManager isMe:_gameState.winner];
+}
+
+- (NSString *)winner
+{
+    return _gameState.winner;
 }
 
 #pragma mark - overwrite methods
 
 - (void)handleMoreOnJoinGameResponse:(GameMessage*)message
 {
-    if ([[message joinGameResponse] hasZjhGameState]) {
-        self.gameState = [ZJHGameState fromPBZJHGameState:message.joinGameResponse.zjhGameState];
-    }
+    self.gameState = [ZJHGameState fromPBZJHGameState:message.joinGameResponse.zjhGameState];
 }
 
-- (void)hanldMoreOnGameStartNotificationRequest:(GameMessage*)message
+- (void)handleMoreOnGameStartNotificationRequest:(GameMessage*)message
 {
-    if ([[message gameStartNotificationRequest] hasZjhGameState]) {
-        self.gameState = [ZJHGameState fromPBZJHGameState:message.gameStartNotificationRequest.zjhGameState];
-    }
+    self.gameState = [ZJHGameState fromPBZJHGameState:message.gameStartNotificationRequest.zjhGameState];
 }
 
 - (void)handleMoreOnGameOverNotificationRequest:(GameMessage*)message
@@ -415,7 +466,7 @@ static ZJHGameService *_defaultService;
 
 - (NSString *)getServerListString
 {
-    return @"192.168.1.5:8080";
+    return @"192.168.1.10:8080";
 }
 
 - (ZJHUserPlayInfo *)myPlayInfo

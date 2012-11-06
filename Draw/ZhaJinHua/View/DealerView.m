@@ -11,6 +11,9 @@
 #import "AnimationManager.h"
 #import "ZJHGameController.h"
 
+#define DEAL_TIMEINTERVAL   0.33
+#define DEAL_ANIMATION_DURATION 0.33
+
 @implementation DealPoint
 @synthesize x;
 @synthesize y;
@@ -80,13 +83,13 @@
     UIImage* back = [[ZJHImageManager defaultManager] pokerBackImage];
     layer.contents = (id)[back CGImage];
     layer.bounds = CGRectMake(0, 0, back.size.width*0.7, back.size.height*0.7);
-    layer.shouldRasterize = YES;
+//    layer.shouldRasterize = YES;
     layer.position = CGPointMake(self.frame.size.width/2, self.frame.size.height/2);
     [self.layer addSublayer:layer];
 
-    CAAnimation* anim = [AnimationManager translationAnimationFrom:CGPointMake(self.frame.size.width/2, self.frame.size.height/2) to:destinationPoint duration:0.3 delegate:self removeCompeleted:NO];
+    CAAnimation* anim = [AnimationManager translationAnimationFrom:CGPointMake(self.frame.size.width/2, self.frame.size.height/2) to:destinationPoint duration:DEAL_ANIMATION_DURATION delegate:self removeCompeleted:NO];
     float angle = [self randomAngle];
-    CAAnimation* anim2 = [AnimationManager rotationAnimationWithRoundCount:angle duration:0.3];
+    CAAnimation* anim2 = [AnimationManager rotationAnimationWithRoundCount:angle duration:DEAL_ANIMATION_DURATION];
     anim2.removedOnCompletion = NO;
     //        PPDebug(@"deal to point (%.2f, %.2f)",points[i].x, points[i].y );
     PPDebug(@" <test> remain cards = %d", _remainCards);
@@ -117,10 +120,9 @@
     while (times --) {
         for (DealPoint* point in array) {
             [self performSelector:@selector(dealCard:) withObject:point afterDelay:delay];
-            delay = delay + 0.3;
-            
+            delay = delay + DEAL_TIMEINTERVAL;
+
         }
-        
     }
 }
 

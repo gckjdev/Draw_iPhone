@@ -35,6 +35,7 @@
         self.singleBet = gameState.singleBet;
         self.myTurnTimes = 0;
         self.usersInfo = [self usersPlayInfoFromPBZJHUserPlayInfoList:gameState.usersInfoList];
+        self.winner = nil;
     }
     
     return self;
