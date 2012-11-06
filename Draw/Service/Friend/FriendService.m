@@ -15,7 +15,7 @@
 #import "FriendManager.h"
 #import "TimeUtils.h"
 #import "ConfigManager.h"
-
+#import "MyFriend.h"
 static FriendService* friendService;
 FriendService* globalGetFriendService() 
 {
@@ -80,10 +80,12 @@ FriendService* globalGetFriendService()
 - (void)searchUsersByString:(NSString*)searchString viewController:(PPViewController<FriendServiceDelegate>*)viewController
 {
     [viewController showActivityWithText:NSLS(@"kSearching")];
-    dispatch_async(workingQueue, ^{            
+    dispatch_async(workingQueue, ^{         
+        NSString *userId = [[UserManager defaultManager] userId];
         CommonNetworkOutput* output = [GameNetworkRequest searchUsers:SERVER_URL 
                                                                 appId:[ConfigManager appId] 
                                                                gameId:[ConfigManager gameId]
+                                                               userId:userId
                                                             keyString:searchString 
                                                            startIndex:0 
                                                              endIndex:100];             
@@ -203,5 +205,152 @@ FriendService* globalGetFriendService()
     });
 }
 
+#pragma mark - new getting friend list methods 
 
+- (void)followUser:(MyFriend *)myFriend 
+          delegate:(id<FriendServiceDelegate>)delegate
+{
+
+    NSString *userId = [[UserManager defaultManager] userId];
+    NSArray *targetList = [NSArray arrayWithObject:[myFriend friendUserId]];
+    
+    dispatch_async(workingQueue, ^{            
+        CommonNetworkOutput* output = [GameNetworkRequest followUser:SERVER_URL 
+                                                               appId:[ConfigManager appId]
+                                                              userId:userId 
+                                                   targetUserIdArray:targetList];             
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (output.resultCode == ERROR_SUCCESS){
+                PPDebug(@"<FriendService> followUser success!");
+            }else {
+                if (output.resultCode == ERROR_FOLLOW_USER_NOT_FOUND) {
+                    PPDebug(@"<FriendService> followUser Failed: user not found");
+                }else {
+                    PPDebug(@"<FriendService> followUser Failed!");
+                }
+            }
+            if (delegate && [delegate respondsToSelector:@selector(didFollowFriend:resultCode:)]) {
+                [delegate didFollowFriend:myFriend resultCode:output.resultCode];
+            }
+        }); 
+    });
+}
+
+- (void)unFollowUser:(MyFriend *)myFriend 
+            delegate:(id<FriendServiceDelegate>)delegate
+{
+
+    NSString *userId = [[UserManager defaultManager] userId];
+    NSArray *targetList = [NSArray arrayWithObject:[myFriend friendUserId]];
+    
+    dispatch_async(workingQueue, ^{            
+        CommonNetworkOutput* output = [GameNetworkRequest unFollowUser:SERVER_URL 
+                                                                 appId:[ConfigManager appId]
+                                                                userId:userId 
+                                                     targetUserIdArray:targetList];             
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            if (output.resultCode == ERROR_SUCCESS){
+            }else {
+                PPDebug(@"<FriendService> unFollowUser Failed!");
+            }
+            if (delegate && [delegate respondsToSelector:
+                             @selector(didUnFollowFriend:resultCode:)]) {
+                [delegate didUnFollowFriend:myFriend resultCode:output.resultCode];
+            }
+        }); 
+    });
+}
+
+- (void)removeFan:(MyFriend *)fan 
+         delegate:(id<FriendServiceDelegate>)delegate
+{
+    NSString *userId = [[UserManager defaultManager] userId];
+    
+    NSArray *targetList = [NSArray arrayWithObject:userId];
+    
+    dispatch_async(workingQueue, ^{            
+        CommonNetworkOutput* output = [GameNetworkRequest unFollowUser:SERVER_URL 
+                                                                 appId:[ConfigManager appId]
+                                                                userId:fan.friendUserId 
+                                                     targetUserIdArray:targetList];             
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            if (output.resultCode == ERROR_SUCCESS){
+            }else {
+                PPDebug(@"<FriendService> unFollowUser Failed!");
+            }
+            if (delegate && [delegate respondsToSelector:
+                             @selector(didRemoveFan:resultCode:)]) {
+                [delegate didRemoveFan:fan resultCode:output.resultCode];
+            }
+        }); 
+    });
+}
+
+- (void)getFriendList:(FriendType)type 
+               offset:(NSInteger)offset 
+                limit:(NSInteger)limit
+             delegate:(id<FriendServiceDelegate>)delegate
+{
+    NSString *userId = [[UserManager defaultManager] userId];
+    
+    dispatch_async(workingQueue, ^{            
+        CommonNetworkOutput* output = [GameNetworkRequest getFriendList:SERVER_URL
+                                                                  appId:[ConfigManager appId] 
+                                                                 gameId:[ConfigManager gameId] 
+                                                                 userId:userId 
+                                                                   type:type 
+                                                                 offset:offset
+                                                                  limit:limit];   
+        NSInteger resultCode = output.resultCode;
+        NSArray* friendList = nil;
+        if (resultCode == ERROR_SUCCESS) {
+            NSArray* userList = [output.jsonDataDict objectForKey:PARA_USERS];
+            friendList = [[FriendManager defaultManager] parseFriendList:userList];
+        }else{
+            PPDebug(@"warning:<getFriendList> error code = %d", resultCode);
+        }
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (delegate && [delegate respondsToSelector:@selector(didfindFriendsByType:friendList:result:)]) {
+                [delegate didfindFriendsByType:type friendList:friendList result:resultCode];
+            }
+        }); 
+    });
+}
+- (void)searchUsersWithKey:(NSString*)key
+                    offset:(NSInteger)offset 
+                     limit:(NSInteger)limit
+                  delegate:(id<FriendServiceDelegate>)delegate
+{
+    dispatch_async(workingQueue, ^{         
+        NSString *userId = [[UserManager defaultManager] userId];
+        CommonNetworkOutput* output = [GameNetworkRequest searchUsers:SERVER_URL 
+                                                                appId:[ConfigManager appId] 
+                                                               gameId:[ConfigManager gameId]
+                                                               userId:userId
+                                                            keyString:key 
+                                                           startIndex:offset 
+                                                             endIndex:limit];             
+        
+        NSArray* userList = nil;
+        NSArray *retList = nil;
+        if (output.resultCode == ERROR_SUCCESS){ 
+            PPDebug(@"<FriendService> searchUsers success!");
+            userList= [output.jsonDataDict objectForKey:PARA_USERS];
+            retList = [[FriendManager defaultManager] parseFriendList:userList];
+        }else {
+            PPDebug(@"<FriendService> searchUsers Failed!");
+        }
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            if ([delegate respondsToSelector:@selector(didSearchUsers:result:)]){
+                [delegate didSearchUsers:retList result:output.resultCode];
+            }
+        }); 
+    });
+    
+}
 @end

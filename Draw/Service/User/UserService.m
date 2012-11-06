@@ -26,6 +26,7 @@
 #import "QQWeiboService.h"
 #import "ConfigManager.h"
 #import "TopPlayer.h"
+#import "MyFriend.h"
 
 @implementation UserService
 
@@ -677,10 +678,6 @@ static UserService* _defaultUserService;
 
                 [[QQWeiboService defaultService] saveToken:qqAccessToken secret:qqAccessSecret];
                 
-                if (isDiceApp() == NO){
-                    [[FriendService defaultService] findFriendsByType:FOLLOW viewController:nil];
-                    [[FriendService defaultService] findFriendsByType:FAN viewController:nil];
-                }
                 
                 [[LevelService defaultService] setLevel:levelSring.intValue];
                 [[LevelService defaultService] setExperience:expSring.intValue];
@@ -767,72 +764,6 @@ static UserService* _defaultUserService;
         });
     });
 }
-//- (void)checkDevice
-//{    
-//    NSLog(@"current user Id is %@", user.userId);    
-//    NSString* userId = [[UserManager defaultManager] userId];
-//    if (userId == nil){
-//        // not login yet, read server data later
-//    }
-//    else{
-//        // already has local data, just sync balance & item data
-//    }
-//    
-//    if (userCurrentStatus != USER_EXIST_LOCAL_STATUS_LOGIN){
-//        dispatch_async(workingQueue, ^{
-//            CommonNetworkOutput* output = [GroupBuyNetworkRequest deviceLogin:SERVER_URL appId:GlobalGetPlaceAppId() needReturnUser:YES deviceToken:deviceToken];
-//            
-//            dispatch_async(dispatch_get_main_queue(), ^{
-//                if (output.resultCode == ERROR_SUCCESS) {
-//                    // save return User ID locally
-//                    NSString* userId = [output.jsonDataDict objectForKey:PARA_USERID]; 
-//                    NSString* avatar = [output.jsonDataDict objectForKey:PARA_AVATAR]; 
-//                    NSString* email = [output.jsonDataDict objectForKey:PARA_EMAIL];
-//                    NSString* nickName = [output.jsonDataDict objectForKey:PARA_NICKNAME];
-//                    NSString* qqAccessToken = [output.jsonDataDict objectForKey:PARA_QQ_ACCESS_TOKEN];
-//                    NSString* qqAccessTokenSecret = [output.jsonDataDict objectForKey:PARA_QQ_ACCESS_TOKEN_SECRET];
-//                    NSString* sinaAccessToken = [output.jsonDataDict objectForKey:PARA_SINA_ACCESS_TOKEN];
-//                    NSString* sinaAccessTokenSecret = [output.jsonDataDict objectForKey:PARA_SINA_ACCESS_TOKEN_SECRET];
-//                    NSString* password = [output.jsonDataDict objectForKey:PARA_PASSWORD];
-//                    NSString* sinaLoginId = [output.jsonDataDict objectForKey:PARA_SINA_ID];
-//                    NSString* qqLoginId = [output.jsonDataDict objectForKey:PARA_QQ_ID];
-//                    
-//                    [UserManager createUserWithUserId:userId 
-//                                                email:email 
-//                                             password:password 
-//                                             nickName:nickName 
-//                                               avatar:avatar 
-//                                          sinaLoginId:sinaLoginId 
-//                                      sinaAccessToken:sinaAccessToken 
-//                                sinaAccessTokenSecret:sinaAccessTokenSecret                      
-//                                            qqLoginId:qqLoginId                     
-//                                        qqAccessToken:qqAccessToken 
-//                                  qqAccessTokenSecret:qqAccessTokenSecret];
-//                    
-//                    [self updateUserCache];
-//                }
-//                else if (output.resultCode == ERROR_DEVICE_NOT_BIND){
-//                    // send registration request
-//                    [self registerUserByDevice];
-//                }
-//                else{
-//                    // TODO, need to handle different error code
-//                }
-//            });
-//            
-//        });
-//    }
-//    else{
-//        dispatch_async(workingQueue, ^{
-//            [GroupBuyNetworkRequest deviceLogin:SERVER_URL appId:GlobalGetPlaceAppId() needReturnUser:NO deviceToken:deviceToken];        
-//        });
-//    }
-//    
-//    
-//    if (delegate && [delegate respondsToSelector:@selector(checkDeviceResult:)]){
-//        [delegate checkDeviceResult:userCurrentStatus];        
-//    }    
-//}
 
 - (void)getStatistic:(PPViewController<UserServiceDelegate>*)viewController
 {
@@ -878,47 +809,22 @@ static UserService* _defaultUserService;
 - (void)getUserSimpleInfoByUserId:(NSString *)targetUserId
                          delegate:(id<UserServiceDelegate>)delegate{
     dispatch_async(workingQueue, ^{
+        NSString *userId = [[UserManager defaultManager] userId];
         CommonNetworkOutput* output = [GameNetworkRequest getUserSimpleInfo:SERVER_URL
+                                                                     userId:userId
                                                                       appId:[ConfigManager appId] 
                                                                      gameId:[ConfigManager gameId]
                                                                    ByUserId:targetUserId];
-        
+        MyFriend *user = nil;
+        if (output.resultCode == ERROR_SUCCESS) {
+            user = [MyFriend friendWithDict:output.jsonDataDict];
+            user.friendUserId = targetUserId;
+        }
         dispatch_async(dispatch_get_main_queue(), ^{
-            NSString* userNickName = nil;
-            NSString* userAvatar = nil;
-            NSString* userGender = nil;
-            NSString* userLocation = nil;
-            NSString* userLevel = nil;
-            NSString* sinaNick = nil;
-            NSString* qqNick = nil;
-            NSString* facebookId = nil;
-            NSString* qqId = nil;
-            NSNumber* coins = nil;
 
-            if (output.resultCode == ERROR_SUCCESS) {
-                userNickName = [output.jsonDataDict objectForKey:PARA_NICKNAME];
-                userAvatar = [output.jsonDataDict objectForKey:PARA_AVATAR];
-                userGender = [output.jsonDataDict objectForKey:PARA_GENDER];
-                userLocation = [output.jsonDataDict objectForKey:PARA_LOCATION];
-                userLevel = [output.jsonDataDict objectForKey:PARA_LEVEL];
-                sinaNick = [output.jsonDataDict objectForKey:PARA_SINA_NICKNAME];
-                qqNick = [output.jsonDataDict objectForKey:PARA_QQ_NICKNAME];
-                facebookId = [output.jsonDataDict objectForKey:PARA_FACEBOOKID];
-                qqId = [output.jsonDataDict objectForKey:PARA_QQ_ID];
-                coins = [output.jsonDataDict objectForKey:PARA_USER_COINS];
-
-            }            
-            if (delegate && [delegate respondsToSelector:@selector(didGetUserNickName:UserAvatar:UserGender:UserLocation:UserLevel:SinaNick:QQNick:qqId:FacebookId:coins:)]) {
-                [delegate didGetUserNickName:userNickName
-                                  UserAvatar:userAvatar
-                                  UserGender:userGender
-                                UserLocation:userLocation
-                                   UserLevel:userLevel 
-                                    SinaNick:sinaNick 
-                                      QQNick:qqNick 
-                                        qqId:qqId
-                                  FacebookId:facebookId
-                                       coins:coins];
+            if (delegate && [delegate respondsToSelector:@selector(didGetUserInfo:resultCode:)])
+            {
+                [delegate didGetUserInfo:user resultCode:output.resultCode];
             }
         });
     });

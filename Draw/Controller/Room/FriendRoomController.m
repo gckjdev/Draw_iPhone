@@ -8,7 +8,6 @@
 
 #import "FriendRoomController.h"
 #import "ShareImageManager.h"
-#import "MyFriendsController.h"
 #import "SearchRoomController.h"
 #import "UserManager.h"
 #import "PPDebug.h"
@@ -18,13 +17,14 @@
 #import "StringUtil.h"
 #import "GameMessage.pb.h"
 #import "RoomController.h"
-#import "MyFriendsController.h"
+#import "FriendController.h"
 #import "RoomManager.h"
 #import "DeviceDetection.h"
 #import "WordManager.h"
 #import "LevelService.h"
 #import "CommonUserInfoView.h"
 #import "NotificationManager.h"
+#import "MyFriend.h"
 
 @interface FriendRoomController ()
 
@@ -173,28 +173,73 @@
 {
     Room *room = [self.dataList objectAtIndex:indexPath.row];
     if (room) {
-        MyFriendsController *mfc = [[MyFriendsController alloc] initWithRoom:room];
+        _currentSelectRoom = room;
+        NSString *invitedText = [NSString stringWithFormat:NSLS(@"kInvitationInfoInRoom"), room.roomName, room.password, [UIUtils getAppLink:[ConfigManager appId]]];
+        
+        
+        NSMutableSet *fSet = nil;
+        if ([room.userList count] != 0) {
+            fSet = [NSMutableSet setWithCapacity:[room.userList count]];
+            for (RoomUser *user in room.userList) {
+                if ([user.userId length] != 0) {
+                    [fSet addObject:user.userId];                    
+                }
+            }
+        }
+        
+        NSInteger capacity = [[RoomManager defaultManager] roomFriendCapacity];
+        
+        FriendController *mfc = [[FriendController alloc] initWithInviteText:invitedText invitedFriendIdSet:fSet capacity:capacity delegate:self];
         [self.navigationController pushViewController:mfc animated:YES];
         [mfc release];
     }
 }
 
+- (void)friendController:(FriendController *)controller 
+      didInviteFriendSet:(NSSet *)friendSet
+{
+    PPDebug(@"<didInviteFriendSet> set count = %d", [friendSet count]);
+
+    [controller.navigationController popViewControllerAnimated:YES];
+    [roomService inviteUsers:friendSet toRoom:_currentSelectRoom delegate:self];
+}
+
+//#pragma mark -  Room Service Delegate Method
+- (void)updateRoom:(Room *)room users:(NSSet *)friendSet
+{
+    NSMutableArray *array = [NSMutableArray arrayWithArray:room.userList];
+    for (MyFriend *friend in friendSet) {
+        RoomUser *user = [[RoomUser alloc] initWithFriend:friend
+                                                   status:UserUnInvited];
+        [array addObject:user];
+        [user release];
+        room.userList = array;
+    }
+    [self.dataTableView reloadData];
+}
+
+
+- (void)didRoom:(Room *)room 
+  inviteFriends:(NSSet *)friendSet 
+     resultCode:(int)resultCode
+{
+    [self hideActivity];
+    if (resultCode != 0) {
+        [self popupMessage:NSLS(@"kInviteFriendFail") title:nil];
+    }else{
+        [self popupMessage:NSLS(@"kInviteFriendSucc") title:nil];
+        [self updateRoom:room users:friendSet];
+    }
+}
+//
 
 - (void)didClickAvatar:(NSIndexPath *)indexPath
 {
     Room *room = [self.dataList objectAtIndex:indexPath.row];
     RoomUser *roomUser = room.creator;
-    
-    [CommonUserInfoView showUser:roomUser.userId
-                        nickName:roomUser.nickName
-                          avatar:roomUser.avatar 
-                          gender:roomUser.gender 
-                        location:nil 
-                           level:1
-                         hasSina:NO 
-                           hasQQ:NO 
-                     hasFacebook:NO 
-                      infoInView:self];
+
+    MyFriend *friend = [MyFriend friendWithFid:roomUser.userId nickName:roomUser.nickName avatar:roomUser.avatar gender:roomUser.gender level:1];
+    [CommonUserInfoView showFriend:friend infoInView:self needUpdate:YES];
 }
 
 
@@ -205,7 +250,7 @@
 }
 
 - (IBAction)clickMyFriendButton:(id)sender {
-    MyFriendsController *mfc = [[MyFriendsController alloc] init];
+    FriendController *mfc = [[FriendController alloc] init];
     [self.navigationController pushViewController:mfc animated:YES];
     [mfc release];
 }

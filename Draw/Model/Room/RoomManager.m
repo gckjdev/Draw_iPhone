@@ -11,6 +11,7 @@
 #import "TimeUtils.h"
 #import "UserManager.h"
 #import "Friend.h"
+#import "MyFriend.h"
 
 RoomManager *staticRoomManager = nil;
 @implementation RoomManager
@@ -181,6 +182,19 @@ RoomManager *staticRoomManager = nil;
 }
 
 - (RoomUserStatus)aFriend:(Friend *)aFriend statusAtRoom:(Room *)room
+{
+    if (aFriend == nil || room == nil) {
+        return NO;
+    }
+    for (RoomUser *user in room.userList) {
+        if ([user.userId isEqualToString:aFriend.friendUserId]) {
+            return user.status;
+        }
+    }
+    return UserUnInvited;
+}
+
+- (RoomUserStatus)myFriend:(MyFriend *)aFriend statusAtRoom:(Room *)room
 {
     if (aFriend == nil || room == nil) {
         return NO;

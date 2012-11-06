@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "MyFriend.h"
 
 typedef enum {
     RoomUnknow = 0,
@@ -62,7 +63,8 @@ typedef enum {
 @property(nonatomic,retain)NSDate *lastPlayDate;
 @property(nonatomic, assign)RoomUserStatus status;
 
-
+- (id)initWithFriend:(MyFriend *)aFriend
+              status:(RoomUserStatus)status;
 - (BOOL)isMale;
 - (BOOL)isMe;
 

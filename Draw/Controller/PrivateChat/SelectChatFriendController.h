@@ -14,7 +14,7 @@
 
 @optional
 - (void)didCancel;
-- (void)didSelectFriend:(Friend *)aFriend;
+- (void)didSelectFriend:(MyFriend *)aFriend;
 
 @end
 

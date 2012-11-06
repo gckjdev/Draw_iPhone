@@ -28,6 +28,18 @@
 @end
 
 @implementation PokerView
+@synthesize poker = _poker;
+@synthesize backImageView = _backImageView;
+@synthesize frontView = _frontView;
+@synthesize rankImageView = _rankImageView;
+@synthesize suitImageView = _suitImageView;
+@synthesize frontBgImageView = _frontBgImageView;
+@synthesize tickImageView = _tickImageView;
+@synthesize bodyImageView = _bodyImageView;
+@synthesize popupView = _popupView;
+@synthesize locateLabel = _locateLabel;
+@synthesize isFaceUp = _isFaceUp;
+@synthesize delegate = _delegate;
 
 #pragma mark - life cycle
 

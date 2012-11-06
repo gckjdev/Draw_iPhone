@@ -136,10 +136,9 @@ RoomService *staticRoomService = nil;
         NSString *roomId = [room roomId];
         NSString *roomPassword = [room password];
         NSMutableArray *array = [[NSMutableArray alloc] init];
-        for (Friend *friend in friendSet) {
+        for (MyFriend *friend in friendSet) {
             if([friend.friendUserId length] != 0){
-                NSString *nick = [[FriendManager defaultManager] getFriendNick:friend];
-                NSString *temp = [NSString stringWithFormat:@"%@,%@",friend.friendUserId,nick];
+                NSString *temp = [NSString stringWithFormat:@"%@,%@",friend.friendUserId,friend.nickName];
                 [array addObject:temp];
             }
         }
@@ -148,8 +147,8 @@ RoomService *staticRoomService = nil;
         CommonNetworkOutput* output = [GameNetworkRequest inviteUsersToRoom:TRAFFIC_SERVER_URL roomId:roomId password:roomPassword userId:userId userList:usersString];
         
         dispatch_async(dispatch_get_main_queue(), ^{
-            if (delegate && [delegate respondsToSelector:@selector(didInviteFriends:resultCode:)]) {
-                [delegate didInviteFriends:friendSet resultCode:output.resultCode];
+            if (delegate && [delegate respondsToSelector:@selector(didRoom:inviteFriends:resultCode:)]) {
+                [delegate didRoom:room inviteFriends:friendSet resultCode:output.resultCode];
             }
         });
         
