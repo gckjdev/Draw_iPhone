@@ -44,7 +44,8 @@
 - (BOOL)canUserCompareCard:(NSString *)userId;
 
 - (NSString *)myCardType;
-- (BOOL)isMeAutoBet;
+- (BOOL)canIContinueAutoBet;
+- (int)remainderAutoBetCount;
 
 - (BOOL)doIWin;
 - (NSString *)winner;

@@ -12,6 +12,7 @@
 #import "GameMessage.pb.h"
 #import "CommonGameSession.h"
 #import "UserManager.h"
+#import "ConfigManager.h"
 
 static ZJHGameService *_defaultService;
 
@@ -235,9 +236,18 @@ static ZJHGameService *_defaultService;
     return [[self myPlayInfo] cardTypeString];
 }
 
-- (BOOL)isMeAutoBet
+- (BOOL)canIContinueAutoBet
 {
-    return [[self userPlayInfo:_userManager.userId] isAutoBet];
+    PPDebug(@"isMyTurn: %d", [self isMyTurn]);
+    PPDebug(@"isAutoBet : %d", [[self myPlayInfo] isAutoBet]);
+    PPDebug(@"autoBetCount : %d", [[self myPlayInfo] autoBetCount]);
+
+    return [self isMyTurn] && [[self myPlayInfo] isAutoBet] && ([self remainderAutoBetCount] > 0);
+}
+
+- (int)remainderAutoBetCount
+{
+    return [ConfigManager getZJHMaxAutoBetCount] - [[self myPlayInfo] autoBetCount];
 }
 
 - (BOOL)doIWin
@@ -280,9 +290,10 @@ static ZJHGameService *_defaultService;
         return;
     }
     
-    if (userPlayInfo.isAutoBet == TRUE) {
+    if (message.betRequest.isAutoBet == TRUE) {
         userPlayInfo.lastAction = PBZJHUserActionAutoBet;
-    }else if (_gameState.singleBet == message.betRequest.singleBet) {
+        userPlayInfo.autoBetCount ++;
+    }else if (message.betRequest.singleBet == _gameState.singleBet) {
         userPlayInfo.lastAction = PBZJHUserActionBet;
     }else {
         userPlayInfo.lastAction = PBZJHUserActionRaiseBet;
@@ -466,7 +477,7 @@ static ZJHGameService *_defaultService;
 
 - (NSString *)getServerListString
 {
-    return @"192.168.1.10:8080";
+    return @"58.215.172.169:8080";
 }
 
 - (ZJHUserPlayInfo *)myPlayInfo
