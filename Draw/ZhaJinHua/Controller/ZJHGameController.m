@@ -314,6 +314,7 @@
 
 - (void)checkCardSuccess
 {
+    [self updateZJHButtons];
 }
 
 - (void)foldCardSuccess
