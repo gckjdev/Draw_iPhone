@@ -29,44 +29,5 @@
          landmarkName = "-reciprocalEnd:"
          landmarkType = "5">
       </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "Yes"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "Draw/ZhaJinHua/Service/ZJHGameService.m"
-         timestampString = "373858431.350025"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "250"
-         endingLineNumber = "250"
-         landmarkName = "-remainderAutoBetCount"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "Yes"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "Draw/ZhaJinHua/Service/ZJHGameService.m"
-         timestampString = "373858474.164539"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "365"
-         endingLineNumber = "365"
-         landmarkName = "-handleBetResponse:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "Yes"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "Draw/ZhaJinHua/NetWork/CommonGameNetworkClient+ZJHNetworkExtend.m"
-         timestampString = "373858573.096609"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "23"
-         endingLineNumber = "23"
-         landmarkName = "-sendBetRequest:sessionId:singleBet:count:isAutoBet:"
-         landmarkType = "5">
-      </FileBreakpoint>
    </FileBreakpoints>
 </Bucket>

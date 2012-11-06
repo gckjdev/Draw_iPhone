@@ -247,7 +247,7 @@ static ZJHGameService *_defaultService;
 
 - (int)remainderAutoBetCount
 {
-    return [ConfigManager getZJHMaxAutoBetCount] - [[self myPlayInfo] autoBetCount];
+    return ([ConfigManager getZJHMaxAutoBetCount] - [[self myPlayInfo] autoBetCount] % [ConfigManager getZJHMaxAutoBetCount]) % [ConfigManager getZJHMaxAutoBetCount];
 }
 
 - (BOOL)doIWin
