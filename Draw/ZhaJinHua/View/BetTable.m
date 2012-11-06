@@ -95,17 +95,24 @@
     CALayer* layer = [CALayer layer];
     UIImage* chipImage = [[ZJHImageManager defaultManager] chipImageForChipValue:chipValue];
     [layer setContents:(id)[chipImage CGImage]];
+//    UIImageView* view = [[[UIImageView alloc] initWithImage:chipImage] autorelease];
     layer.bounds = CGRectMake(0, 0, chipImage.size.width/2,chipImage.size.height/2);
-//    layer.shouldRasterize = YES;
+//    view.frame = layer.bounds;
+    layer.shouldRasterize = YES;
     
     [self.layer addSublayer:layer];
+//    [self addSubview:view];
     [_visibleLayerQueue enqueue:layer];
-    
+//    [_visibleLayerQueue enqueue:view];
+    CGPoint randomPoint = [self getRandomCenterPoint];
     CAAnimation* anim = [AnimationManager translationAnimationFrom:[self getPointByPosition:position]
-                                                                to:[self getRandomCenterPoint]
+                                                                to:randomPoint
                                                           duration:0.5
                                                           delegate:self
                                                   removeCompeleted:NO];
+    [CATransaction setCompletionBlock:^{
+        layer.position = randomPoint;
+    }];
     anim.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut];
     [layer addAnimation:anim forKey:nil];
 }
@@ -122,26 +129,35 @@
     //播放当前筹码动画，把筹码压进清除队列
     while ([_visibleLayerQueue peek] != nil) {
         CALayer* layer = [_visibleLayerQueue dequeue];
-//        [layer addAnimation:[AnimationManager transAndDismissTo:[self getPointByPosition:position] scale:2 duration:1] forKey:nil];
+//        UIView* view = [_visibleLayerQueue dequeue];
+        CAAnimation* anim = [AnimationManager translationAnimationFrom:layer.position
+                                                                    to:[self getPointByPosition:position]
+                                                              duration:0.5
+                                                              delegate:self
+                                                      removeCompeleted:NO];
+        [CATransaction setCompletionBlock:^{
+            layer.opacity = 0;
+        }];
+        [layer addAnimation:anim forKey:nil];
+        
 //        CAAnimation* anim = [AnimationManager translationAnimationTo:[self getPointByPosition:position] duration:1];
 //        CAAnimation* anim2 = [AnimationManager missingAnimationWithDuration:1];
 //        anim.removedOnCompletion = NO;
 //        anim2.removedOnCompletion = NO;
-//        [layer addAnimation:anim forKey:nil];
+//        [view.layer addAnimation:anim forKey:nil];
 //        [CATransaction setCompletionBlock:^{
 //            [layer setPosition:[self getPointByPosition:position]];
 //            [layer setOpacity:0];
 //        }];
-        [UIView animateWithDuration:1 animations:^{
-            layer.position = [self getPointByPosition:position];
-            layer.opacity = 1;
-        } completion:^(BOOL finished) {
-            [UIView animateWithDuration:1 animations:^{
-//                layer.opacity = 0;
-            } completion:^(BOOL finished) {
-//                layer.opacity = 0;
-            }];
-        }];
+//        [UIView animateWithDuration:1 animations:^{
+//            view.layer.position = [self getPointByPosition:position];
+//        } completion:^(BOOL finished) {
+//            [UIView animateWithDuration:1 animations:^{
+//                view.layer.opacity = 0;
+//            } completion:^(BOOL finished) {
+////                layer.opacity = 0;
+//            }];
+//        }];
         [_layerQueue enqueue:layer];
         PPDebug(@"<test>enqueue, count = %d",_layerQueue.count);
     }
@@ -149,10 +165,18 @@
 
 - (void)clearAllChips
 {
-    [_layerQueue removeAllObjects];
-    [_visibleLayerQueue removeAllObjects];
-    for (CALayer* layer in [self.layer sublayers]) {
-        [layer removeFromSuperlayer];
+    while ([_visibleLayerQueue peek]) {
+        [(CALayer*)[_visibleLayerQueue dequeue] removeFromSuperlayer];
+    }
+    while ([_layerQueue peek]) {
+        [(CALayer*)[_visibleLayerQueue dequeue] removeFromSuperlayer];
+    }
+}
+
+- (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag
+{
+    if ([(NSString*)[anim valueForKey:@"test"] isEqualToString:@"test"]) {
+//        [self clearAllChips];
     }
 }
 
