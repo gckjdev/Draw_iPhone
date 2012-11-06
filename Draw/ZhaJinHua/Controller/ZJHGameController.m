@@ -120,7 +120,7 @@
     [self updateAllPlayersAvatar];
     self.dealerView.delegate = self;
     
-    [self disableZJHButtons];
+//    [self disableZJHButtons];
     
     // hidden views below
     self.cardTypeButton.hidden = YES;
@@ -362,6 +362,7 @@
                                      times:CARDS_COUNT];
     [self updateTotalBetAndSingleBet];
     [self updateAllUserTotalBet];
+    [self updateAutoBetButton];
 }
 
 - (void)gameOver
@@ -409,16 +410,6 @@ compareCardWith:(NSString*)targetUserId
     
 }
 
-- (void)someoneRaiseBet:(NSString*)userId
-{
-    [self userBet:userId];
-}
-
-- (void)someoneAutoBet:(NSString*)userId
-{
-    [self userBet:userId];
-}
-
 - (ZJHPokerSectorType)getPokerSectorTypeByPosition:(UserPosition)position
 {
     switch (position) {
@@ -440,17 +431,12 @@ compareCardWith:(NSString*)targetUserId
 
 - (void)someoneCheckCard:(NSString*)userId
 {
-    UserPosition position = [self getPositionByUserId:userId];
-    ZJHPokerView *view = [self getPokersViewByPosition:position];
-    
-    [view makeSectorShape:[self getPokerSectorTypeByPosition:position] animation:YES];
+    [[self getPokersViewByUserId:userId] makeSectorShape:[self getPokerSectorTypeByPosition:[self getPositionByUserId:userId]] animation:YES];
 }
 
 - (void)someoneFoldCard:(NSString*)userId
 {
-    
-    ZJHPokerView *view = [self getPokersViewByPosition:[self getPositionByUserId:userId]];
-    [view foldCards:YES];
+    [[self getPokersViewByUserId:userId] foldCards:YES];
 }
 
 - (void)someoneWon:(NSString*)userId

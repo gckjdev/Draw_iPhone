@@ -40,8 +40,7 @@ static PopupViewManager *_defaultManager;
     ChipsSelectView *chipsSelectView = [ChipsSelectView createChipsSelectView:delegate];
 
     self.chipsSelectPopupView = [[[CMPopTipView alloc] initWithCustomView:chipsSelectView] autorelease];
-    self.chipsSelectPopupView.backgroundColor = [UIColor magentaColor];
-    self.chipsSelectPopupView.alpha = 0.5;
+    self.chipsSelectPopupView.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.25];
     
     [self.chipsSelectPopupView presentPointingAtView:atView inView:inView aboveView:aboveView animated:YES pointDirection:PointDirectionAuto];
     

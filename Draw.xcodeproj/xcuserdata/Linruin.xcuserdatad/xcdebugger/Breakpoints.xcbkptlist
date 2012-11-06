@@ -21,11 +21,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Draw/ZhaJinHua/Controller/ZJHGameController.m"
-         timestampString = "373819844.708997"
+         timestampString = "373861172.346895"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "617"
-         endingLineNumber = "617"
+         startingLineNumber = "603"
+         endingLineNumber = "603"
          landmarkName = "-reciprocalEnd:"
          landmarkType = "5">
       </FileBreakpoint>
