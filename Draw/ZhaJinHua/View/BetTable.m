@@ -122,13 +122,7 @@
     //播放当前筹码动画，把筹码压进清除队列
     while ([_visibleLayerQueue peek] != nil) {
         CALayer* layer = [_visibleLayerQueue dequeue];
-        [UIView animateWithDuration:2 animations:^{
-            layer.position = [self getPointByPosition:position];
-        } completion:^(BOOL finished) {
-            [UIView animateWithDuration:1 animations:^{
-                layer.opacity = 0;
-            }];
-        }];
+        [layer addAnimation:[AnimationManager transAndDismissTo:[self getPointByPosition:position] scale:2 duration:3] forKey:nil];
 //        CAAnimation* anim = [AnimationManager translationAnimationTo:[self getPointByPosition:position] duration:1];
 //        CAAnimation* anim2 = [AnimationManager missingAnimationWithDuration:1];
 //        anim.removedOnCompletion = NO;

@@ -731,4 +731,17 @@ compareCardWith:(NSString*)targetUserId
     return [NSString stringWithFormat:@"%d", intValue];
 }
 
+#pragma mark - test
+
+- (IBAction)testBet:(id)sender
+{
+    [self.betTable someBetFrom:UserPositionCenter chipValue:5 count:1];
+
+}
+
+- (IBAction)testWin:(id)sender
+{
+    [self.betTable userWonAllChips:UserPositionCenter];
+}
+
 @end

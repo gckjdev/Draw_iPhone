@@ -45,12 +45,18 @@
     [self setIsMature:YES];
 }
 
+- (void)startGrowthTimer:(CFTimeInterval)timeInterval
+{
+    _treeTimer = [NSTimer timerWithTimeInterval:timeInterval target:self
+                                       selector:@selector(mature:) userInfo:nil repeats:NO];
+}
+
 - (void)startGrowth
 {
     [self killTimer];
     [self setIsMature:NO];
-    _treeTimer = [NSTimer timerWithTimeInterval:[ConfigManager getTreeMatureTime] target:self
-                                       selector:@selector(mature:) userInfo:nil repeats:NO];
+    [self startGrowthTimer:[ConfigManager getTreeMatureTime]];
+    
 }
 
 - (void)kill
