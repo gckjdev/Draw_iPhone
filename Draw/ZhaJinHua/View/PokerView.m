@@ -153,7 +153,7 @@
     if (_angle == angle) {
         return;
     }
-    
+
     [self setAcnhorPoint:CGPointMake(0.5, 1)];
     
     CFTimeInterval duration = animation ? 1 : 0;
@@ -167,6 +167,10 @@
     [self.layer setTransform:CATransform3DMakeRotation(angle, 0, 0, 1)];
         
     _angle = angle;
+    
+    if (angle == 0) {
+        [self setAcnhorPoint:CGPointMake(0.5, 0.5)];
+    }
 }
 
 - (void)moveToCenter:(CGPoint)center animation:(BOOL)animation
@@ -189,10 +193,7 @@
 {
     [self rotateToAngle:0
               animation:animation];
-//    
-//    [self setAcnhorPoint:CGPointMake(0.5, 0.5)];
-//    
-//    [self moveToCenter:_originCenter animation:animation];
+    [self moveToCenter:_originCenter animation:animation];
 }
 
 #pragma mark - pravite methods

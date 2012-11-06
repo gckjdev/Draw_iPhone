@@ -20,10 +20,17 @@
 
 typedef enum {
     ZJHPokerSectorTypeNone = 0,
-    ZJHPokerSectorTypeRight = 1,
-    ZJHPokerSectorTypeLeft = 2,
-    ZJHPokerSectorTypeCenter = 3
+    ZJHPokerSectorTypeRight = 1,        // 左边的牌固定，右边两张牌向右扇开
+    ZJHPokerSectorTypeLeft = 2,         // 右边的牌固定，左边两张牌向左扇开
+    ZJHPokerSectorTypeCenter = 3        // 中间的牌固定，两边往外扇开
 } ZJHPokerSectorType;
+
+typedef enum {
+    ZJHPokerXMotionTypeNone = 0,
+    ZJHPokerXMotionTypeRight = 1,       // 左边的牌固定，右边两张牌向右移动
+    ZJHPokerXMotionTypeLeft = 2,        // 右边的牌固定，左边两张牌向左移动
+    ZJHPokerXMotionTypeCenter = 3       // 中间的牌固定，两边往外移动
+} ZJHPokerXMotionType;
 
 @interface ZJHPokerView : UIView
 
@@ -42,7 +49,7 @@ typedef enum {
 - (void)makeSectorShape:(ZJHPokerSectorType)sectorType animation:(BOOL)animation;
 
 // 自己看牌时，调用这个接口，把自己三张牌都翻过来。
-- (void)faceUpCards:(BOOL)animation;
+- (void)faceUpCards:(ZJHPokerXMotionType)xMotiontype animation:(BOOL)animation;
 
 // 别人亮牌时，调用这个接口，把自己那张亮的牌翻过来。
 - (void)faceUpCard:(int)cardId animation:(BOOL)animation;

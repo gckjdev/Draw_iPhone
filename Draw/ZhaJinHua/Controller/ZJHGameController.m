@@ -283,7 +283,7 @@
 
 - (IBAction)clickCheckCardButton:(id)sender
 {
-    [[self getMyPokersView] faceUpCards:YES];
+    [[self getMyPokersView] faceUpCards:ZJHPokerXMotionTypeNone animation:YES];
     [_gameService checkCard];
     [self showMyCardTypeString];
 }
@@ -377,9 +377,21 @@
 - (void)gameOver
 {
     [self disableZJHButtons];
-    [self clearAllUserPokers];
     [self clearAllAvatarReciprocols];
     [self someoneWon:[_gameService winner]];
+
+    
+    [self faceupUserCards];
+    [self performSelector:@selector(clearAllUserPokers) withObject:nil afterDelay:3.0];
+}
+
+- (void)faceupUserCards
+{
+    for (NSString *userId in [_gameService.gameState.usersInfo allKeys]) {
+        if (![_userManager isMe:userId]) {
+            [[self getPokersViewByUserId:userId] faceUpCards:[self getPokerXMotionTypeByPosition:[self getPositionByUserId:userId]] animation:YES];
+        }
+    }
 }
 
 - (void)nextPlayerStart:(NSString*)userId
@@ -434,6 +446,25 @@ compareCardWith:(NSString*)targetUserId
             
         default:
             return ZJHPokerSectorTypeNone;
+            break;
+    }
+}
+
+- (ZJHPokerXMotionType)getPokerXMotionTypeByPosition:(UserPosition)position
+{
+    switch (position) {
+        case UserPositionLeft:
+        case UserPositionLeftTop:
+            return ZJHPokerXMotionTypeRight;
+            break;
+            
+        case UserPositionRight:
+        case UserPositionRightTop:
+            return ZJHPokerXMotionTypeLeft;
+            break;
+            
+        default:
+            return ZJHPokerXMotionTypeNone;
             break;
     }
 }
@@ -730,15 +761,29 @@ compareCardWith:(NSString*)targetUserId
 {
     return [NSString stringWithFormat:@"%d", intValue];
 }
-
 - (void)updateAutoBetButton
 {
     if ([_gameService remainderAutoBetCount] > 0) {
         [self.autoBetButton setTitle:[NSString stringWithFormat:@"%d", [_gameService remainderAutoBetCount]] forState:UIControlStateNormal];
-
+        
     }else{
         [self.autoBetButton setTitle:@"k跟到底" forState:UIControlStateNormal];
     }
+    
+}
+
+#pragma mark - test
+
+- (IBAction)testBet:(id)sender
+{
+    [self.betTable someBetFrom:UserPositionCenter chipValue:5 count:1];
+
+}
+
+- (IBAction)testWin:(id)sender
+{
+    [self.betTable userWonAllChips:UserPositionCenter];
+
 }
 
 @end
