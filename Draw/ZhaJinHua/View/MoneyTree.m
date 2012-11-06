@@ -10,6 +10,7 @@
 #import "ConfigManager.h"
 
 @implementation MoneyTree
+@synthesize isMature = _isMature;
 
 - (id)initWithFrame:(CGRect)frame
 {

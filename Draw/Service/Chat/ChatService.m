@@ -14,12 +14,17 @@
 #import "LogUtil.h"
 #import "GameMessage.pb.h"
 #import "GameBasic.pb.h"
-#import "ChatMessageManager.h"
-#import "MessageTotalManager.h"
+//#import "ChatMessageManager.h"
+//#import "MessageTotalManager.h"
 #import "DrawDataService.h"
-#import "ChatMessageUtil.h"
+//#import "ChatMessageUtil.h"
+//#import "ChatMessage.h"
+
 #import "ConfigManager.h"
-#import "ChatMessage.h"
+
+#import "PPMessage.h"
+#import "PPMessageManager.h"
+#import "MessageStat.h"
 
 static ChatService *_chatService = nil;
 
@@ -34,373 +39,196 @@ static ChatService *_chatService = nil;
 }
 
 
-- (void)findAllMessageTotals:(id<ChatServiceDelegate>)delegate 
-                  starOffset:(int)starOffset 
-                    maxCount:(int)maxCount
+- (void)getMessageStats:(id<ChatServiceDelegate>)delegate 
+                  offset:(int)starOffset 
+                    limit:(int)maxCount
 {
     NSString *userId = [[UserManager defaultManager] userId];
     
     dispatch_async(workingQueue, ^{            
-        CommonNetworkOutput* output = [GameNetworkRequest getUserMessage:TRAFFIC_SERVER_URL 
-                                                                   appId:[ConfigManager appId] 
-                                                                  userId:userId
-                                                            friendUserId:nil 
-                                                             startOffset:starOffset 
-                                                                maxCount:maxCount];
+        CommonNetworkOutput* output = [GameNetworkRequest getMessageStatList:TRAFFIC_SERVER_URL 
+                                                                       appId:[ConfigManager appId] 
+                                                                      userId:userId 
+                                                                      offset:starOffset 
+                                                                    maxCount:maxCount];
+        NSArray *messageStatList = nil;
+        if (output.resultCode == ERROR_SUCCESS){
+            @try{
+                DataQueryResponse *drawResponse = [DataQueryResponse parseFromData:output.responseData];
+                NSArray *stats = [drawResponse messageStatList];
+                messageStatList = [PPMessageManager parseMessageStatList:stats];
+                
+            }@catch (NSException *exception){
+                PPDebug (@"<ChatService>findAllMessageTotals try catch:%@%@", [exception name], [exception reason]);
+            }            
+            PPDebug(@"<ChatService>findAllMessageTotals success");
+        }else {
+            PPDebug(@"<ChatService>findAllMessageTotals failed");
+        }
         
         dispatch_async(dispatch_get_main_queue(), ^{
             
-            if (output.resultCode == ERROR_SUCCESS){
-                @try{
-                    DataQueryResponse *drawResponse = [DataQueryResponse parseFromData:output.responseData];
-                    NSArray *messageStatList = [drawResponse messageStatList];
-                    for (PBMessageStat *pbMessageStat in messageStatList) {
-                        [[MessageTotalManager defaultManager] createByPBMessageStat:pbMessageStat];
-                    }
-                }@catch (NSException *exception){
-                    PPDebug (@"<ChatService>findAllMessageTotals try catch:%@%@", [exception name], [exception reason]);
-                }
-                
-                PPDebug(@"<ChatService>findAllMessageTotals success");
-            }else {
-                PPDebug(@"<ChatService>findAllMessageTotals failed");
-            }
+            if (delegate && [delegate respondsToSelector:@selector(didGetMessageStats:resultCode:)]){
             
-            if (delegate && [delegate respondsToSelector:@selector(didFindAllMessageTotals:resultCode:)]){
-                NSArray *array = [[MessageTotalManager defaultManager] findAllMessageTotals];
-                [delegate didFindAllMessageTotals:array resultCode:output.resultCode];
+                [delegate didGetMessageStats:messageStatList resultCode:output.resultCode];
             }
         }); 
     });
 }
 
 
-- (void)findAllMessages:(id<ChatServiceDelegate>)delegate 
-           friendUserId:(NSString *)friendUserId 
-             starOffset:(int)starOffset 
-               maxCount:(int)maxCount
+- (void)getMessageList:(id<ChatServiceDelegate>)delegate 
+          friendUserId:(NSString *)friendUserId 
+       offsetMessageId:(NSString *)offsetMessageId
+               forward:(BOOL)forward
+                 limit:(int)limit
 {
     NSString *userId = [[UserManager defaultManager] userId];
     
     
-    
     dispatch_async(workingQueue, ^{            
-        CommonNetworkOutput* output = [GameNetworkRequest getUserMessage:TRAFFIC_SERVER_URL 
+        CommonNetworkOutput* output = [GameNetworkRequest getMessageList:TRAFFIC_SERVER_URL 
                                                                    appId:[ConfigManager appId] 
-                                                                  userId:userId
-                                                            friendUserId:friendUserId 
-                                                             startOffset:starOffset 
-                                                                maxCount:maxCount];
-        
-        dispatch_async(dispatch_get_main_queue(), ^{
+                                                                  userId:userId 
+                                                            friendUserId:friendUserId offsetMessageId:offsetMessageId maxCount:limit
+                                                                 forward:forward];
+        NSArray *messageList = nil;
+        if (output.resultCode == ERROR_SUCCESS){
             
-            NSUInteger newMessagesCount = 0;
-            
-            if (output.resultCode == ERROR_SUCCESS){
+            @try{
+                DataQueryResponse *travelResponse = [DataQueryResponse parseFromData:output.responseData];
+                NSArray *mList = [travelResponse messageList];
+                messageList = [PPMessageManager parseMessageList:mList];
                 
-                @try{
-                    DataQueryResponse *travelResponse = [DataQueryResponse parseFromData:output.responseData];
-                    NSArray *messageList = [travelResponse messageList];
-                    for (PBMessage *pbMessage in messageList) {
-                        [[ChatMessageManager defaultManager] createByPBMessage:pbMessage];
-                    }
-                    
-                    newMessagesCount = [messageList count];
-                    
-                }@catch (NSException *exception){
-                    PPDebug (@"<ChatService>findAllMessages try catch:%@%@", [exception name], [exception reason]);
-                }
-                
-                PPDebug(@"<ChatService>findAllMessages success");
-            }else {
-                PPDebug(@"<ChatService>findAllMessages failed");
+            }@catch (NSException *exception){
+                PPDebug (@"<ChatService>findAllMessages try catch:%@%@", [exception name], [exception reason]);
             }
             
-            if (delegate && [delegate respondsToSelector:@selector(didFindAllMessages:resultCode:newMessagesCount:)]){
-                NSArray *array = [[ChatMessageManager defaultManager] findMessagesByFriendUserId:friendUserId];
-                [delegate didFindAllMessages:array resultCode:output.resultCode newMessagesCount:newMessagesCount];
+            PPDebug(@"<ChatService>findAllMessages success");
+        }else {
+            PPDebug(@"<ChatService>findAllMessages failed");
+        }
+
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            if (delegate && [delegate respondsToSelector:@selector(didGetMessages:forward:resultCode:)]){
+                [delegate didGetMessages:messageList forward:forward resultCode:output.resultCode];
             }
         }); 
     });
 }
 
 
-- (void)sendMessage:(id<ChatServiceDelegate>)delegate
-       friendUserId:(NSString *)friendUserId
-               text:(NSString *)text 
-     drawActionList:(NSArray*)drawActionList
+- (void)sendMessage:(PPMessage *)message 
+           delegate:(id<ChatServiceDelegate>)delegate
 {
-    NSString *userId = [[UserManager defaultManager] userId];
-    if (userId == nil){
-        return;
-    }
-    
-    PBDraw *draw = nil;
-    NSData *data = nil;
-    if (drawActionList != nil) {
-        draw = [[DrawDataService defaultService] buildPBDraw:nil 
-                                                        nick:nil 
-                                                      avatar:nil
-                                              drawActionList:drawActionList
-                                                    drawWord:nil 
-                                                    language:ChineseType];
-        data = [draw data];
-    }
-    
+    [message retain];
     dispatch_async(workingQueue, ^{            
+        
+        NSString *userId = [[UserManager defaultManager] userId];
+        NSString *friendId = message.friendId;
+        MessageType type  = message.messageType;
+        
+        //text
+        NSString *text = nil;
+        
+        //draw
+        NSArray *drawActionList = nil;        
+        NSData *data = nil;
+        
+        //location request
+        BOOL hasLocation = NO;
+        double latitude, longitude;
+        
+        //location response
+        NSInteger replyResult = ACCEPT_ASK_LOCATION;
+        NSString *reqMessageId = nil;
+
+        switch (type) {
+            case MessageTypeText:
+            {
+                text = [(TextMessage *)message text];
+                break;
+            }
+            case MessageTypeDraw:
+            {
+                drawActionList = [(DrawMessage *)message drawActionList];
+                if (drawActionList != nil) {
+                    PBDraw *draw = [[DrawDataService defaultService] buildPBDraw:nil 
+                                                                    nick:nil 
+                                                                  avatar:nil
+                                                          drawActionList:drawActionList
+                                                                drawWord:nil 
+                                                                language:ChineseType];
+                    data = [draw data];
+                }
+                break;
+            }
+            case MessageTypeLocationRequest:
+            {
+                LocationAskMessage *laMessage = (LocationAskMessage *)message;
+                longitude = [laMessage longitude];
+                latitude = [laMessage latitude];
+                hasLocation = YES;
+                text = laMessage.text;
+                break;
+            }
+            case MessageTypeLocationResponse:
+            {
+                LocationReplyMessage *laMessage = (LocationReplyMessage *)message;
+                longitude = [laMessage longitude];
+                latitude = [laMessage latitude];
+                text = laMessage.text;
+                replyResult = laMessage.replyResult;
+                hasLocation = (replyResult == ACCEPT_ASK_LOCATION);
+                break;
+            }
+
+            default:
+                break;
+        }
+
+        
+        
         CommonNetworkOutput* output = [GameNetworkRequest sendMessage:TRAFFIC_SERVER_URL 
                                                                 appId:[ConfigManager appId] 
                                                                userId:userId 
-                                                         targetUserId:friendUserId 
+                                                         targetUserId:friendId 
                                                                  text:text
                                                                  data:data
-                                                                 type:MessageTypeNormal
-                                                          hasLocation:NO
-                                                            longitude:0
-                                                             latitude:0
-                                                         reqMessageId:nil
-                                                          replyResult:0];
-        
-        dispatch_async(dispatch_get_main_queue(), ^{
+                                                                 type:type
+                                                          hasLocation:hasLocation
+                                                            longitude:longitude
+                                                             latitude:latitude
+                                                         reqMessageId:reqMessageId
+                                                          replyResult:replyResult];
+        if (output.resultCode == ERROR_SUCCESS){
+            NSString *messageId = [output.jsonDataDict objectForKey:PARA_MESSAGE_ID];
+            message.messageId = messageId;
+            message.status = MessageStatusSent;  
             
-            if (output.resultCode == ERROR_SUCCESS){
-                NSString *messageId = [output.jsonDataDict objectForKey:PARA_MESSAGE_ID];
-                
-                NSString *createDateStr = [output.jsonDataDict objectForKey:PARA_CREATE_DATE];
-                double createDateDouble = [createDateStr doubleValue];
-                NSDate *createDate ;
-                if (createDateDouble > 0) {
-                    createDate = [NSDate dateWithTimeIntervalSince1970:createDateDouble];
-                } else {
-                    createDate = [NSDate date];
-                }
-                
-                
-                NSMutableArray *mutableArray = [[NSMutableArray alloc] init];
-                for (PBDrawAction *pbDrawAction in draw.drawDataList) {
-                    DrawAction *drawAction = [[DrawAction alloc] initWithPBDrawAction:pbDrawAction];
-                    [mutableArray addObject:drawAction];
-                    [drawAction release];
-                }
-                //NSData* dataForSave = [NSKeyedArchiver archivedDataWithRootObject:drawActionList];
-                NSData* dataForSave = [ChatMessageUtil archiveDataFromDrawActionList:mutableArray];
-                [mutableArray release];
-                
-                [[ChatMessageManager defaultManager] createMessageWithMessageId:messageId 
-                                                                           from:userId 
-                                                                             to:friendUserId 
-                                                                       drawData:dataForSave
-                                                                     createDate:createDate
-                                                                           text:text 
-                                                                         status:[NSNumber numberWithInt:MessageStatusSendSuccess]];
-                PPDebug(@"<ChatService>sendMessage success");
-            }else {
-                PPDebug(@"<ChatService>sendMessage failed");
+            NSInteger timeValue = [[output.jsonDataDict objectForKey:PARA_CREATE_DATE] intValue];
+            if (timeValue != 0) {
+                message.createDate = [NSDate dateWithTimeIntervalSince1970:timeValue];
+                PPDebug(@"return date = %@", message.createDate);
             }
             
-            if (delegate && [delegate respondsToSelector:@selector(didSendMessage:)]){
-                [delegate didSendMessage:output.resultCode];
+            PPDebug(@"<ChatService>sendMessage success");
+        }else {
+            PPDebug(@"<ChatService>sendMessage failed");
+            message.status = MessageStatusFail;
+        }
+
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            [message release];
+            if (delegate && [delegate respondsToSelector:@selector(didSendMessage:resultCode:)]){
+                [delegate didSendMessage:message resultCode:output.resultCode];
             }
         }); 
     });
 }
 
-- (void)askLocation:(id<ChatServiceDelegate>)delegate
-       friendUserId:(NSString *)friendUserId
-          longitude:(double)longitude
-           latitude:(double)latitude
-               text:(NSString*)text
-{
-    NSString *userId = [[UserManager defaultManager] userId];
-    if (userId == nil){
-        return;
-    }
-    
-    dispatch_async(workingQueue, ^{
-        CommonNetworkOutput* output = [GameNetworkRequest sendMessage:TRAFFIC_SERVER_URL
-                                                                appId:[ConfigManager appId]
-                                                               userId:userId
-                                                         targetUserId:friendUserId
-                                                                 text:text
-                                                                 data:nil
-                                                                 type:MessageTypeAskLocation
-                                                          hasLocation:YES
-                                                            longitude:longitude
-                                                             latitude:latitude
-                                                         reqMessageId:nil
-                                                          replyResult:0];
-        
-        dispatch_async(dispatch_get_main_queue(), ^{
-            
-            if (output.resultCode == ERROR_SUCCESS){
-                NSString *messageId = [output.jsonDataDict objectForKey:PARA_MESSAGE_ID];
-                
-                NSString *createDateStr = [output.jsonDataDict objectForKey:PARA_CREATE_DATE];
-                double createDateDouble = [createDateStr doubleValue];
-                NSDate *createDate ;
-                if (createDateDouble > 0) {
-                    createDate = [NSDate dateWithTimeIntervalSince1970:createDateDouble];
-                } else {
-                    createDate = [NSDate date];
-                }
-                
-                // TODO save
-                [[ChatMessageManager defaultManager] createMessageWithMessageId:messageId
-                                                                           from:userId
-                                                                             to:friendUserId
-                                                                       drawData:nil
-                                                                     createDate:createDate
-                                                                           text:text
-                                                                         status:[NSNumber numberWithInt:MessageStatusSendSuccess] 
-                                                                           type:[NSNumber numberWithInt:MessageTypeAskLocation]
-                                                                       latitude:[NSNumber numberWithDouble:latitude]
-                                                                      longitude:[NSNumber numberWithDouble:longitude]
-                                                                    replyResult:[NSNumber numberWithInt:0]
-                                                                    reqMessageId:nil];
-                
-                PPDebug(@"<ChatService>askLocation success");
-            }else {
-                PPDebug(@"<ChatService>askLocation failed");
-            }
-            
-            if (delegate && [delegate respondsToSelector:@selector(didSendMessage:)]){
-                [delegate didSendMessage:output.resultCode];
-            }
-        });
-    });
-    
-}
-
-- (void)replyLocation:(id<ChatServiceDelegate>)delegate
-         friendUserId:(NSString *)friendUserId
-            longitude:(double)longitude
-             latitude:(double)latitude
-         reqMessageId:(NSString*)reqMessageId
-                 text:(NSString*)text
-{
-    NSString *userId = [[UserManager defaultManager] userId];
-    if (userId == nil){
-        return;
-    }
-    
-    dispatch_async(workingQueue, ^{
-        CommonNetworkOutput* output = [GameNetworkRequest sendMessage:TRAFFIC_SERVER_URL
-                                                                appId:[ConfigManager appId]
-                                                               userId:userId
-                                                         targetUserId:friendUserId
-                                                                 text:text
-                                                                 data:nil
-                                                                 type:MessageTypeReplyLocation
-                                                          hasLocation:YES
-                                                            longitude:longitude
-                                                             latitude:latitude
-                                                         reqMessageId:reqMessageId
-                                                          replyResult:0];
-        
-        dispatch_async(dispatch_get_main_queue(), ^{
-            
-            if (output.resultCode == ERROR_SUCCESS){
-                NSString *messageId = [output.jsonDataDict objectForKey:PARA_MESSAGE_ID];
-                
-                NSString *createDateStr = [output.jsonDataDict objectForKey:PARA_CREATE_DATE];
-                double createDateDouble = [createDateStr doubleValue];
-                NSDate *createDate ;
-                if (createDateDouble > 0) {
-                    createDate = [NSDate dateWithTimeIntervalSince1970:createDateDouble];
-                } else {
-                    createDate = [NSDate date];
-                }
-                
-                [[ChatMessageManager defaultManager] createMessageWithMessageId:messageId
-                                                                           from:userId
-                                                                             to:friendUserId
-                                                                       drawData:nil
-                                                                     createDate:createDate
-                                                                           text:text
-                                                                         status:[NSNumber numberWithInt:MessageStatusSendSuccess] 
-                                                                           type:[NSNumber numberWithInt:MessageTypeReplyLocation]
-                                                                       latitude:[NSNumber numberWithDouble:latitude]
-                                                                      longitude:[NSNumber numberWithDouble:longitude]
-                                                                    replyResult:[NSNumber numberWithInt:0]
-                                                                    reqMessageId:reqMessageId];
-                
-                PPDebug(@"<ChatService>replyLocation success");
-            }else {
-                PPDebug(@"<ChatService>replyLocation failed");
-            }
-            
-            if (delegate && [delegate respondsToSelector:@selector(didSendMessage:)]){
-                [delegate didSendMessage:output.resultCode];
-            }
-        });
-    });
-    
-}
-
-- (void)replyRejectLocation:(id<ChatServiceDelegate>)delegate
-               friendUserId:(NSString *)friendUserId
-               reqMessageId:(NSString*)reqMessageId
-                       text:(NSString*)text
-{
-    NSString *userId = [[UserManager defaultManager] userId];
-    if (userId == nil){
-        return;
-    }
-    
-    dispatch_async(workingQueue, ^{
-        CommonNetworkOutput* output = [GameNetworkRequest sendMessage:TRAFFIC_SERVER_URL
-                                                                appId:[ConfigManager appId]
-                                                               userId:userId
-                                                         targetUserId:friendUserId
-                                                                 text:text
-                                                                 data:nil
-                                                                 type:MessageTypeReplyLocation
-                                                          hasLocation:NO
-                                                            longitude:0
-                                                             latitude:0
-                                                         reqMessageId:reqMessageId
-                                                          replyResult:REJECT_ASK_LOCATION];
-        
-        dispatch_async(dispatch_get_main_queue(), ^{
-            
-            if (output.resultCode == ERROR_SUCCESS){
-                NSString *messageId = [output.jsonDataDict objectForKey:PARA_MESSAGE_ID];
-                
-                NSString *createDateStr = [output.jsonDataDict objectForKey:PARA_CREATE_DATE];
-                double createDateDouble = [createDateStr doubleValue];
-                NSDate *createDate ;
-                if (createDateDouble > 0) {
-                    createDate = [NSDate dateWithTimeIntervalSince1970:createDateDouble];
-                } else {
-                    createDate = [NSDate date];
-                }
-                
-                [[ChatMessageManager defaultManager] createMessageWithMessageId:messageId
-                                                                           from:userId
-                                                                             to:friendUserId
-                                                                       drawData:nil
-                                                                     createDate:createDate
-                                                                           text:text
-                                                                         status:[NSNumber numberWithInt:MessageStatusSendSuccess] 
-                                                                           type:[NSNumber numberWithInt:MessageTypeReplyLocation]
-                                                                       latitude:nil
-                                                                      longitude:nil
-                                                                    replyResult:[NSNumber numberWithInt:REJECT_ASK_LOCATION]
-                                                                    reqMessageId:reqMessageId];
-                
-                
-                PPDebug(@"<ChatService>replyRejectLocation success");
-            }else {
-                PPDebug(@"<ChatService>replyRejectLocation failed");
-            }
-            
-            if (delegate && [delegate respondsToSelector:@selector(didSendMessage:)]){
-                [delegate didSendMessage:output.resultCode];
-            }
-        });
-    });
-    
-}
 
 
 - (void)sendHasReadMessage:(id<ChatServiceDelegate>)delegate friendUserId:(NSString *)friendUserId 
@@ -412,27 +240,25 @@ static ChatService *_chatService = nil;
                                                                        appId:[ConfigManager appId] 
                                                                       userId:userId 
                                                                 friendUserId:friendUserId];
+        if (output.resultCode == ERROR_SUCCESS){
+            PPDebug(@"<ChatService>sendHasReadMessage success");
+        }else {
+            PPDebug(@"<ChatService>sendHasReadMessage failed");
+        }
         
         dispatch_async(dispatch_get_main_queue(), ^{
-            if (output.resultCode == ERROR_SUCCESS){
-                PPDebug(@"<ChatService>sendHasReadMessage success");
-            }else {
-                PPDebug(@"<ChatService>sendHasReadMessage failed");
-            }
             
-            if (delegate && [delegate respondsToSelector:@selector(didSendHasReadMessage:)]){
-                [delegate didSendHasReadMessage:output.resultCode];
+            if (delegate && [delegate respondsToSelector:@selector(didSendHasReadMessage:resultCode:)]){
+                [delegate didSendHasReadMessage:friendUserId resultCode:output.resultCode];
             }
         }); 
     });
 }
 
 
-- (void)deleteMessageTotal:(id<ChatServiceDelegate>)delegate friendUserId:(NSString *)friendUserId
+- (void)deleteMessageStat:(id<ChatServiceDelegate>)delegate friendUserId:(NSString *)friendUserId
 {
     NSString *userId = [[UserManager defaultManager] userId];
-    
-    [[MessageTotalManager defaultManager] deleteMessageTotal:friendUserId];
     
     dispatch_async(workingQueue, ^{
         
@@ -440,16 +266,17 @@ static ChatService *_chatService = nil;
                                                                       appId:[ConfigManager appId] 
                                                                      userId:userId 
                                                                targetUserId:friendUserId];
+        if (output.resultCode == ERROR_SUCCESS){
+            PPDebug(@"<ChatService>deleteMessageTotal success");
+            [PPMessageManager deleteLocalFriendMessageList:friendUserId];
+        }else {
+            PPDebug(@"<ChatService>deleteMessageTotal failed");
+        }
         
         dispatch_async(dispatch_get_main_queue(), ^{
-            if (output.resultCode == ERROR_SUCCESS){
-                PPDebug(@"<ChatService>deleteMessageTotal success");
-            }else {
-                PPDebug(@"<ChatService>deleteMessageTotal failed");
-            }
             
-            if (delegate && [delegate respondsToSelector:@selector(didDeleteMessageTotal:resultCode:)]){
-                [delegate didDeleteMessageTotal:friendUserId resultCode:output.resultCode];
+            if (delegate && [delegate respondsToSelector:@selector(didDeleteMessageStat:resultCode:)]){
+                [delegate didDeleteMessageStat:friendUserId resultCode:output.resultCode];
             }
         }); 
     });
@@ -457,31 +284,35 @@ static ChatService *_chatService = nil;
 
 
 - (void)deleteMessage:(id<ChatServiceDelegate>)delegate 
-        messageIdList:(NSArray *)messageIdList
+        messageList:(NSArray *)messageList
 {
     NSString *userId = [[UserManager defaultManager] userId];
-    
-    for (NSString *messageId in messageIdList) {
-        [[ChatMessageManager defaultManager] deleteMessageByMessageId:messageId];
-    }
+    [messageList retain];
     
     dispatch_async(workingQueue, ^{
         
+        NSMutableArray *messageIdList = [NSMutableArray array];
+        for (PPMessage *message in messageList) {
+            [messageIdList addObject:message.messageId];
+        }
         CommonNetworkOutput* output = [GameNetworkRequest deleteMessage:TRAFFIC_SERVER_URL 
                                                                   appId:[ConfigManager appId] 
                                                                  userId:userId 
                                                    targetMessageIdArray:messageIdList];
+        messageIdList = nil;
+        if (output.resultCode == ERROR_SUCCESS){
+            PPDebug(@"<ChatService>deleteMessage success");
+        }else {
+            PPDebug(@"<ChatService>deleteMessage failed");
+        }
         
         dispatch_async(dispatch_get_main_queue(), ^{
-            if (output.resultCode == ERROR_SUCCESS){
-                PPDebug(@"<ChatService>deleteMessage success");
-            }else {
-                PPDebug(@"<ChatService>deleteMessage failed");
-            }
             
-            if (delegate && [delegate respondsToSelector:@selector(didDeleteMessage:)]){
-                [delegate didDeleteMessage:output.resultCode];
+            if (delegate && [delegate respondsToSelector:
+                             @selector(didDeleteMessages:resultCode:)]){
+                [delegate didDeleteMessages:messageList resultCode:output.resultCode];
             }
+            [messageList release];
         }); 
     });
     

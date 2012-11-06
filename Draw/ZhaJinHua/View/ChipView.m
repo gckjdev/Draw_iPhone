@@ -17,6 +17,7 @@
 @end
 
 @implementation ChipView
+@synthesize delegate = _delegate;
 
 - (id)initWithFrame:(CGRect)frame
           chipValue:(int)chipValue

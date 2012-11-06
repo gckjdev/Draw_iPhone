@@ -15,8 +15,8 @@
 //Notification  
 //before 4.5 version
 "kPushMessage" = "%@ 新建了一个好友房间——\"%@\", 邀请你加入。赶紧加入好友房间，和好友一起猜猜画画!";
-"kPushTextMessage" = "%@ 给你发来了消息\"%@\"";
-"kPushDrawMessage" = "%@ 邀你欣赏TA的大作。";
+"kPushTextMessage" = "%@ 发来消息:\"%@...\"";
+"kPushDrawMessage" = "%@ 发来一张涂鸦。";
 "kFM" = "有个神秘人刚刚关注了你，快去看看TA是谁。";
 "kNGRD" = "%@ 猜对了你画的 [%@]。你也去猜猜TA的画？";
 "kNTGD" = "%@ 尝试去猜了你画的 [%@]。你也去猜猜TA的画？";
@@ -382,9 +382,12 @@
 "kFollowSuccessfully" = "关注成功！";
 "kFollowFailed" = "网络错误，关注用户失败，请检查网络是否可用或稍候再试";
 "kUnfollow" = "取消关注";
+"kRemoveFan" = "移除粉丝";
 "kUnfollowing" = "发送取消关注请求中...";
-"kUnfollowSuccessfully" = "成功取消关注";
-"kUnfollowFailed" = "取消关注失败";
+"kUnfollowSuccessfully" = "成功取消关注。";
+"kUnfollowFailed" = "取消关注失败。";
+"kRemoveSuccessfully" = "成功移除粉丝";
+"kRemoveFailed" = "移除粉丝失败。";
 "kEnterWords" = "搜索条件不能为空";
 "kSearchUserPlaceholder" = "用户昵称/微博昵称/邮件地址";
 "kSearchFailedTitle" = "网络错误";
@@ -904,7 +907,12 @@
 "kContestFeedDetail" = "作品详情";
 "kDrawToUserByUser" = "画给%@";
 "kQQGroup" = "官方Q群：228119679";
+"kCopy" = "复制";
 
+"kDrawMessage" = "涂鸦消息";
+"kImageMessage" = "图片消息";
+"kVoiceMessage" = "语音消息";
+"kResend" = "重发";
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 

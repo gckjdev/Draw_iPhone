@@ -14,6 +14,20 @@
 @end
 
 @implementation ZJHUserPlayInfo
+@synthesize userId = _userId;
+@synthesize pokers = _pokers;
+@synthesize cardType = _cardType;
+@synthesize totalBet = _totalBet;
+@synthesize isAutoBet = _isAutoBet;
+@synthesize autoBetCount = _autoBetCount;
+@synthesize lastAction = _lastAction;
+
+@synthesize alreadCheckCard = _alreadCheckCard;
+@synthesize alreadFoldCard = _alreadFoldCard;
+@synthesize alreadShowCard = _alreadShowCard;
+@synthesize alreadLose = _alreadLose;
+
+
 
 #pragma mark - Life cycle
 

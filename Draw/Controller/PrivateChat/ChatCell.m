@@ -8,15 +8,13 @@
 
 #import "ChatCell.h"
 #import "LogUtil.h"
-#import "DeviceDetection.h"
-#import "MessageTotal.h"
+
 #import "ShareImageManager.h"
-#import "PPApplication.h"
 #import "ShowDrawView.h"
 #import "DrawAction.h"
-#import "ChatMessageUtil.h"
 #import "FriendManager.h"
 #import "TimeUtils.h"
+#import "MessageStat.h"
 
 @interface ChatCell()
 
@@ -31,17 +29,17 @@
 
 @synthesize avatarImage;
 @synthesize nickNameLabel;
-@synthesize graffiti;
 @synthesize textLabel;
 @synthesize timeLabel;
 @synthesize countLabel;
 @synthesize countBackground;
 @synthesize chatCellDelegate;
+@synthesize messageStat = _messageStat;
 
 - (void)dealloc {
+    PPRelease(_messageStat);
     PPRelease(avatarImage);
     PPRelease(nickNameLabel);
-    PPRelease(graffiti);
     PPRelease(timeLabel);
     PPRelease(textLabel);
     PPRelease(countLabel);
@@ -105,70 +103,93 @@
 }
 
 
-- (void)setCellByMessageTotal:(MessageTotal *)messageTotal indexPath:(NSIndexPath *)aIndexPath
+- (void)updateAvatar
 {
-    self.indexPath = aIndexPath;
-    
-    //set avatar
-    [avatarImage clear];
-    if ([messageTotal.friendGender isEqualToString:MALE]) {
-        [avatarImage setImage:[[ShareImageManager defaultManager] maleDefaultAvatarImage]];
-    } else {
-        [avatarImage setImage:[[ShareImageManager defaultManager] femaleDefaultAvatarImage]];
-    }
-    if ([messageTotal.friendAvatar length] > 0) {
-        [avatarImage setUrl:[NSURL URLWithString:messageTotal.friendAvatar]];
-        [GlobalGetImageCache() manage:avatarImage];
+    NSString *avatar = self.messageStat.friendAvatar;
+    BOOL isMale = self.messageStat.friendGender;
+    UIImage *defaultImage = nil;
+    if (isMale) {
+        defaultImage = [[ShareImageManager defaultManager] maleDefaultAvatarImage];
+    }else{
+        defaultImage = [[ShareImageManager defaultManager] femaleDefaultAvatarImage];
     }
     
-    //set nickname
-    self.nickNameLabel.text = messageTotal.friendNickName;
-    
-    //set text or graffiti 
-    if ([messageTotal.latestText length] > 0) {
-        self.textLabel.hidden = NO;
-        self.graffiti.hidden = YES;
-        self.textLabel.text = messageTotal.latestText;
-    }else {
-        self.textLabel.hidden = NO;
-        self.graffiti.hidden = YES;
-        self.textLabel.text = [NSString stringWithFormat:@"[%@]",NSLS(@"kGraffitiMessage")] ;
-
-    }
-    
-    //set countLabel
-    if ([messageTotal.totalNewMessage intValue] > 0) {
-        countBackground.hidden = NO;
-        countLabel.hidden = NO;
+    if([avatar length] != 0){
+        NSURL *url = [NSURL URLWithString:avatar];
         
-        if ([messageTotal.totalNewMessage intValue] > 99) {
+        self.avatarImage.alpha = 0;
+        [self.avatarImage setImageWithURL:url placeholderImage:defaultImage success:^(UIImage *image, BOOL cached) {
+            if (!cached) {
+                [UIView animateWithDuration:1 animations:^{
+                    self.avatarImage.alpha = 1.0;
+                }];
+            }else{
+                self.avatarImage.alpha = 1.0;
+            }
+        } failure:^(NSError *error) {
+            self.avatarImage.alpha = 1;
+            [self.avatarImage setImage:defaultImage];
+        }];
+    } else{
+        [self.avatarImage setImage:defaultImage];
+    }
+
+}
+
+- (void)updateBadge
+{
+    NSInteger count = [self.messageStat numberOfNewMessage];
+    countBackground.hidden = countLabel.hidden = (count <= 0);
+    if (count > 0) {
+        if (count > 99) {
             countLabel.text = @"N";
         } else {
-            countLabel.text = [NSString stringWithFormat:@"%@",messageTotal.totalNewMessage];
+            countLabel.text = [NSString stringWithFormat:@"%d",count];
         }
-        
-    } else {
-        countBackground.hidden = YES;
-        countLabel.hidden = YES;
-    }
-    
-    
-    
-    //set timeLabel
+    } 
+}
+
+
+- (void)updateTime
+{
     NSString *timeString = nil;
+    NSDate *date = [self.messageStat latestCreateDate];
     if ([LocaleUtils isChinese]) {
-        timeString = chineseBeforeTime(messageTotal.latestCreateDate);
+        timeString = chineseBeforeTime(date);
     } else {
-        timeString = englishBeforeTime(messageTotal.latestCreateDate);
+        timeString = englishBeforeTime(date);
     }
     if (timeString) {
         self.timeLabel.text = timeString;
     } else {
         NSDateFormatter *dateFormatter = [[[NSDateFormatter alloc] init] autorelease];
         [dateFormatter setDateFormat:@"yy-MM-dd HH:mm"];
-        self.timeLabel.text = [dateFormatter stringFromDate:messageTotal.latestCreateDate];
+        self.timeLabel.text = [dateFormatter stringFromDate:date];
     }
     self.timeLabel.textColor = [UIColor colorWithRed:151.0/255.0 green:151.0/255.0 blue:151.0/255.0 alpha:1];
+
+}
+
+- (void)setCellByMessageStat:(MessageStat *)messageStat indexPath:(NSIndexPath *)aIndexPath
+{
+    self.indexPath = aIndexPath;
+    self.messageStat = messageStat;
+    //set avatar
+    [self updateAvatar];
+    
+    //set nickname
+    self.nickNameLabel.text = messageStat.friendNickName;
+    
+    
+    //set text
+    [self.textLabel setText:self.messageStat.desc];
+    
+    //set countLabel
+    [self updateBadge];
+    
+    
+    //set timeLabel
+    [self updateTime];
 }
 
 - (IBAction)clickAvatar:(id)sender

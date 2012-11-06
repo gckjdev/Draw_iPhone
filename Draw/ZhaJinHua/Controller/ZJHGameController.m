@@ -46,7 +46,16 @@
 
 @implementation ZJHGameController
 @synthesize betTable = _betTable;
-
+@synthesize dealerView = _dealerView;
+@synthesize raiseBetButton = _raiseBetButton;
+@synthesize autoBetButton = _autoBetButton;
+@synthesize compareCardButton = _compareCardButton;
+@synthesize checkCardButton = _checkCardButton;
+@synthesize cardTypeButton = _cardTypeButton;
+@synthesize foldCardButton = _foldCardButton;
+@synthesize totalBetLabel = _totalBetLabel;
+@synthesize singleBetLabel = _singleBetLabel;
+@synthesize betButton = _betButton;
 #pragma mark - life cycle
 
 - (void)dealloc
@@ -120,7 +129,7 @@
     [self updateAllPlayersAvatar];
     self.dealerView.delegate = self;
     
-//    [self disableZJHButtons];
+    [self disableZJHButtons];
     
     // hidden views below
     self.cardTypeButton.hidden = YES;
@@ -274,7 +283,7 @@
 
 - (IBAction)clickCheckCardButton:(id)sender
 {
-    [[self getMyPokersView] faceUpCards:YES];
+    [[self getMyPokersView] faceUpCards:ZJHPokerXMotionTypeNone animation:YES];
     [_gameService checkCard];
     [self showMyCardTypeString];
 }
@@ -368,9 +377,19 @@
 - (void)gameOver
 {
     [self disableZJHButtons];
-    [self clearAllUserPokers];
     [self clearAllAvatarReciprocols];
     [self someoneWon:[_gameService winner]];
+
+    
+    [self faceupUserCards];
+    [self performSelector:@selector(clearAllUserPokers) withObject:nil afterDelay:3.0];
+}
+
+- (void)faceupUserCards
+{
+    for (NSString *userId in [_gameService.gameState.usersInfo allKeys]) {
+        [[self getPokersViewByUserId:userId] faceUpCards:[self getPokerXMotionTypeByPosition:[self getPositionByUserId:userId]] animation:YES];
+    }
 }
 
 - (void)nextPlayerStart:(NSString*)userId
@@ -425,6 +444,25 @@ compareCardWith:(NSString*)targetUserId
             
         default:
             return ZJHPokerSectorTypeNone;
+            break;
+    }
+}
+
+- (ZJHPokerXMotionType)getPokerXMotionTypeByPosition:(UserPosition)position
+{
+    switch (position) {
+        case UserPositionLeft:
+        case UserPositionLeftTop:
+            return ZJHPokerXMotionTypeRight;
+            break;
+            
+        case UserPositionRight:
+        case UserPositionRightTop:
+            return ZJHPokerXMotionTypeLeft;
+            break;
+            
+        default:
+            return ZJHPokerXMotionTypeNone;
             break;
     }
 }

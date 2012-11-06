@@ -15,7 +15,8 @@
 #import "ChatMessageUtil.h"
 #import "DrawAction.h"
 #import "FriendManager.h"
-
+#import <UIKit/UIKit.h>
+#import <QuartzCore/QuartzCore.h>
 @interface MessageTotal()
 
 

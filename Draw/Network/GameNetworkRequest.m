@@ -857,9 +857,48 @@
     
 }
 
+
++ (CommonNetworkOutput*)getFriendList:(NSString*)baseURL
+                                appId:(NSString*)appId 
+                               gameId:(NSString*)gameId
+                               userId:(NSString*)userId
+                                 type:(NSInteger)type 
+                               offset:(NSInteger)offset 
+                                limit:(NSInteger)limit
+{
+    CommonNetworkOutput* output = [[[CommonNetworkOutput alloc] init] autorelease];
+    
+    ConstructURLBlock constructURLHandler = ^NSString *(NSString *baseURL) {        
+        // set input parameters
+        NSString* str = [NSString stringWithString:baseURL];               
+        str = [str stringByAddQueryParameter:METHOD value:METHOD_GET_FRIEND_LIST];
+        str = [str stringByAddQueryParameter:PARA_APPID value:appId];
+        str = [str stringByAddQueryParameter:PARA_GAME_ID value:gameId];
+        str = [str stringByAddQueryParameter:PARA_USERID value:userId];
+        str = [str stringByAddQueryParameter:PARA_FRIENDSTYPE intValue:type];  
+        str = [str stringByAddQueryParameter:PARA_OFFSET intValue:offset];
+        str = [str stringByAddQueryParameter:PARA_COUNT intValue:limit];
+        return str;
+    };
+    
+    
+    PPNetworkResponseBlock responseHandler = ^(NSDictionary *dict, CommonNetworkOutput *output) {
+        output.jsonDataDict = [dict objectForKey:RET_DATA];                
+        return;
+    }; 
+    
+    return [PPNetworkRequest sendRequest:baseURL
+                     constructURLHandler:constructURLHandler
+                         responseHandler:responseHandler
+                                  output:output];
+    
+    
+}
+
 + (CommonNetworkOutput*)searchUsers:(NSString*)baseURL
                               appId:(NSString*)appId 
                              gameId:(NSString*)gameId
+                             userId:(NSString*)userId
                           keyString:(NSString*)keyString 
                          startIndex:(NSInteger)startIndex 
                            endIndex:(NSInteger)endIndex
@@ -872,6 +911,7 @@
         str = [str stringByAddQueryParameter:METHOD value:METHOD_SEARCHUSER];
         str = [str stringByAddQueryParameter:PARA_APPID value:appId];
         str = [str stringByAddQueryParameter:PARA_GAME_ID value:gameId];
+        str = [str stringByAddQueryParameter:PARA_USERID value:userId];
         str = [str stringByAddQueryParameter:PARA_SEARCHSTRING value:keyString]; 
         str = [str stringByAddQueryParameter:PARA_START_INDEX intValue:startIndex];
         str = [str stringByAddQueryParameter:PARA_END_INDEX intValue:endIndex];
@@ -1592,12 +1632,13 @@
     
 }
 
-+ (CommonNetworkOutput*)getUserMessage:(NSString*)baseURL
++ (CommonNetworkOutput*)getMessageList:(NSString*)baseURL
                                  appId:(NSString*)appId
                                 userId:(NSString*)userId
                           friendUserId:(NSString*)friendUserId
-                           startOffset:(int)startOffset
+                            offsetMessageId:(NSString *)messageId
                               maxCount:(int)maxCount
+                               forward:(BOOL)forward
 {
     CommonNetworkOutput* output = [[[CommonNetworkOutput alloc] init] autorelease];
     
@@ -1606,12 +1647,15 @@
         // set input parameters
         NSString* str = [NSString stringWithString:baseURL]; 
         
-        str = [str stringByAddQueryParameter:METHOD value:METHOD_GETMYMESSAGE];
+        str = [str stringByAddQueryParameter:METHOD value:METHOD_GETMESSAGELIST];
         str = [str stringByAddQueryParameter:PARA_APPID value:appId];
         str = [str stringByAddQueryParameter:PARA_USERID value:userId];                
         str = [str stringByAddQueryParameter:PARA_TO_USERID value:friendUserId];
-        str = [str stringByAddQueryParameter:PARA_START_OFFSET intValue:startOffset];                
-        str = [str stringByAddQueryParameter:PARA_MAX_COUNT intValue:maxCount];
+        
+        str = [str stringByAddQueryParameter:PARA_MESSAGE_ID value:messageId];    
+        str = [str stringByAddQueryParameter:PARA_FORWARD intValue:forward];
+        
+        str = [str stringByAddQueryParameter:PARA_COUNT intValue:maxCount];
         str = [str stringByAddQueryParameter:PARA_FORMAT value:FINDDRAW_FORMAT_PROTOCOLBUFFER];
         
         // TOOD add other parameters
@@ -1633,6 +1677,43 @@
 }
 
 
++ (CommonNetworkOutput*)getMessageStatList:(NSString*)baseURL
+                                 appId:(NSString*)appId
+                                userId:(NSString*)userId
+                                offset:(NSInteger)offset
+                              maxCount:(int)maxCount
+{
+    CommonNetworkOutput* output = [[[CommonNetworkOutput alloc] init] autorelease];
+    
+    ConstructURLBlock constructURLHandler = ^NSString *(NSString *baseURL) {
+        
+        // set input parameters
+        NSString* str = [NSString stringWithString:baseURL]; 
+        
+        str = [str stringByAddQueryParameter:METHOD value:METHOD_GETMESSAGESTATLIST];
+        str = [str stringByAddQueryParameter:PARA_APPID value:appId];
+        str = [str stringByAddQueryParameter:PARA_USERID value:userId];                
+        str = [str stringByAddQueryParameter:PARA_OFFSET intValue:offset];            
+        str = [str stringByAddQueryParameter:PARA_COUNT intValue:maxCount];
+        str = [str stringByAddQueryParameter:PARA_FORMAT value:FINDDRAW_FORMAT_PROTOCOLBUFFER];
+        
+        // TOOD add other parameters
+        
+        return str;
+    };
+    
+    
+    PPNetworkResponseBlock responseHandler = ^(NSDictionary *dict, CommonNetworkOutput *output) {
+        return;
+    }; 
+    
+    return [PPNetworkRequest sendRequest:baseURL 
+                     constructURLHandler:constructURLHandler 
+                         responseHandler:responseHandler 
+                            outputFormat:FORMAT_PB 
+                                  output:output];
+    
+}
 
 + (CommonNetworkOutput*)sendMessage:(NSString*)baseURL
                               appId:(NSString*)appId
@@ -2147,7 +2228,8 @@
     
 }
 
-+ (CommonNetworkOutput*)getUserSimpleInfo:(NSString*)baseURL 
++ (CommonNetworkOutput*)getUserSimpleInfo:(NSString*)baseURL
+                                   userId:(NSString *)userId
                                     appId:(NSString*)appId 
                                    gameId:(NSString*)gameId
                                  ByUserId:(NSString*)targetUserId
@@ -2158,6 +2240,7 @@
         // set input parameters
         NSString* str = [NSString stringWithString:baseURL];               
         str = [str stringByAddQueryParameter:METHOD value:METHOD_GET_TARGET_USER_INFO];
+        str = [str stringByAddQueryParameter:PARA_USERID value:userId];
         str = [str stringByAddQueryParameter:PARA_APPID value:appId];
         str = [str stringByAddQueryParameter:PARA_GAME_ID value:gameId];
         str = [str stringByAddQueryParameter:PARA_TARGETUSERID value:targetUserId];

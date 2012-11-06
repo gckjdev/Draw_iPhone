@@ -7,45 +7,46 @@
 //
 
 #import "PPTableViewCell.h"
-
+#import "UIImageView+WebCache.h"
 typedef enum{
     FromFriendList = 1,
     FromInviteList = 2,
     FromSearchUserList = 3
 }FromType;
 
+
+@class Friend;
+@class MyFriend;
+@class Room;
+
 @protocol FollowDelegate <NSObject>
 @optional
 - (void)didClickFollowButtonAtIndexPath:(NSIndexPath *)indexPath 
                                user:(NSDictionary *)user;
-//- (void)didInviteFriendAtIndexPath:(NSIndexPath *)indexPath;
+//for new friend controller.
+- (void)didClickFollowButtonWithFriend:(MyFriend *)myFriend;
 
 @end
 
-@class HJManagedImageV;
-@class Friend;
-@class Room;
 @interface FriendCell : PPTableViewCell
-@property (retain, nonatomic) IBOutlet HJManagedImageV *avatarView;
+{
+    MyFriend *_myFriend;
+}
+
 @property (retain, nonatomic) IBOutlet UILabel *nickNameLabel;
 @property (retain, nonatomic) IBOutlet UILabel *genderLabel;
 @property (retain, nonatomic) IBOutlet UILabel *areaLabel;
-@property (retain, nonatomic) IBOutlet UIImageView *authImageView1;
 @property (retain, nonatomic) IBOutlet UILabel *statusLabel;
-@property (retain, nonatomic) IBOutlet UIButton *followButton;
 @property (retain, nonatomic) IBOutlet UILabel* levelLabel;
-@property (retain, nonatomic) IBOutlet UIImageView *authImageView2;
-@property (retain, nonatomic) IBOutlet UIImageView *authImageView3;
-@property (retain, nonatomic) NSDictionary *user;
+@property (retain, nonatomic) IBOutlet UIImageView *avatarView;
+
 @property (assign, nonatomic) id<FollowDelegate> followDelegate;
-//@property (assign, nonatomic) id<FollowDelegate> inviteDelegate;
+@property (retain, nonatomic) MyFriend *myFriend;
 
 
-- (void)setCellByDictionary:(NSDictionary *)aUser indexPath:(NSIndexPath *)aIndexPath fromType:(FromType)type;
-- (void)setCellWithFriend:(Friend *)aFriend indexPath:(NSIndexPath *)aIndexPath fromType:(FromType)type;
-
-- (IBAction)clickFollowButton:(id)sender;
-
+- (void)setCellWithMyFriend:(MyFriend *)aFriend
+                  indexPath:(NSIndexPath *)aIndexPath 
+                 statusText:(NSString *)statusText;
 
 
 @end

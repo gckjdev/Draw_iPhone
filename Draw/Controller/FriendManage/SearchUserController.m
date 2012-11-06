@@ -9,13 +9,8 @@
 #import "SearchUserController.h"
 #import "ShareImageManager.h"
 #import "UIImageUtil.h"
-#import "DeviceDetection.h"
 #import "FriendService.h"
 #import "LogUtil.h"
-#import "HJManagedImageV.h"
-#import "PPApplication.h"
-#import "FriendManager.h"
-#import "GameNetworkConstants.h"
 #import "TimeUtils.h"
 #import "CommonDialog.h"
 #import "FriendCell.h"
@@ -24,23 +19,16 @@
 
 @interface SearchUserController ()
 
-@property (assign, nonatomic) int selectedIndex;
-- (void)clickFollowButton:(id)sender;
 
 @end
 
 @implementation SearchUserController
 @synthesize searchButton;
-@synthesize titleLabel;
-@synthesize resultLabel;
 @synthesize inputImageView;
 @synthesize inputTextField;
-@synthesize selectedIndex;
 
 - (void)dealloc {
     PPRelease(searchButton);
-    PPRelease(titleLabel);
-    PPRelease(resultLabel);
     PPRelease(inputTextField);
     PPRelease(inputImageView);
     [super dealloc];
@@ -52,15 +40,17 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        _defaultTabIndex = 0;
     }
     return self;
 }
 
-
+#define SEARCH_BUTTON_TAG 20121025
 - (void)viewDidLoad
 {
+//    [self setSupportPullRefresh:NO];
     [super viewDidLoad];
-    [titleLabel setText:NSLS(@"kSearchUser")];
+    [self.titleLabel setText:NSLS(@"kSearchUser")];
     
     ShareImageManager *imageManager = [ShareImageManager defaultManager];
     
@@ -71,12 +61,8 @@
     
     [searchButton setBackgroundImage:[imageManager orangeImage] forState:UIControlStateNormal];
     [searchButton setTitle:NSLS(@"kSearch") forState:UIControlStateNormal];
+    searchButton.tag = SEARCH_BUTTON_TAG;
     
-    resultLabel.textColor = [UIColor colorWithRed:105.0/255.0 green:50.0/255.0 blue:12.0/255.0 alpha:1.0];
-    resultLabel.hidden = YES;
-    
-    dataTableView.separatorColor = [UIColor clearColor];
-    dataTableView.hidden = YES;
     
     [inputTextField becomeFirstResponder];
 }
@@ -86,12 +72,22 @@
 {
     [self setSearchButton:nil];
     [self setTitleLabel:nil];
-    [self setResultLabel:nil];
     [self setInputTextField:nil];
     [self setInputImageView:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
+}
+
+
+- (MyFriend *)friendOfIndex:(NSInteger)index
+{
+    NSArray *list = self.tabDataList;
+    if (index < [list count]) {
+        MyFriend *friend = [list objectAtIndex:index];
+        return friend;
+    }
+    return nil;
 }
 
 
@@ -107,65 +103,28 @@
     FriendCell *cell = [tableView dequeueReusableCellWithIdentifier:indentifier];
     if (cell == nil) {
         cell = [FriendCell createCell:self];
-        cell.followDelegate = self;
     }
-    NSDictionary *userDic = (NSDictionary *)[dataList objectAtIndex:[indexPath row]];
-    [cell setCellByDictionary:userDic indexPath:indexPath fromType:FromSearchUserList];
-    
+    MyFriend *friend = [self friendOfIndex:indexPath.row];
+    if (friend) {
+        [cell setCellWithMyFriend:friend indexPath:indexPath statusText:nil];        
+    }
+
     return cell;
 }
 
-
-//- (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath
-//{
-//    return nil;
-//}
-
-- (NSDictionary *)friendForIndexPath:(NSIndexPath *)indexPath
-{
-    NSInteger row = indexPath.row;
-    if ([dataList count] > row) {
-        return [self.dataList objectAtIndex:row];
-    }
-    return nil;
-}
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSDictionary *userDic = [self friendForIndexPath:indexPath];
-    int level = ((NSString*)[userDic objectForKey:PARA_LEVEL]).intValue;
-    NSString* nickName = [userDic objectForKey:PARA_NICKNAME];
-    NSString* sinaNick = [userDic objectForKey:PARA_SINA_NICKNAME];
-    NSString* qqNick = [userDic objectForKey:PARA_QQ_NICKNAME];
-    NSString* facebookId = [userDic objectForKey:PARA_FACEBOOKID];
-    NSString* nick = (nickName != nil)?nickName:
-    ((sinaNick != nil)?sinaNick:
-     ((qqNick != nil)?qqNick:
-      ((facebookId!=nil)?facebookId:nil)));//just find any avalible nickname if possible
+    
+    MyFriend *friend = [self friendOfIndex:indexPath.row];
+    if (friend == nil) {
+        return;
+    }
     if (isDrawApp()) {
-        [CommonUserInfoView showUser:[userDic objectForKey:PARA_USERID] 
-                            nickName:nick 
-                              avatar:[userDic objectForKey:PARA_AVATAR] 
-                              gender:[userDic objectForKey:PARA_GENDER] 
-                            location:[userDic objectForKey:PARA_LOCATION] 
-                               level:level  
-                             hasSina:(sinaNick != nil)
-                               hasQQ:(qqNick != nil)
-                         hasFacebook:(facebookId != nil)
-                          infoInView:self];
+        [CommonUserInfoView showFriend:friend infoInView:self needUpdate:YES];
+    }else if(isDiceApp())
+    {
+        [DiceUserInfoView showFriend:friend infoInView:self canChat:YES needUpdate:YES];
     }
-    if (isDiceApp()) {
-        [DiceUserInfoView showUser:[userDic objectForKey:PARA_USERID] 
-                            nickName:nick 
-                              avatar:[userDic objectForKey:PARA_AVATAR] 
-                              gender:[userDic objectForKey:PARA_GENDER] 
-                            location:[userDic objectForKey:PARA_LOCATION] 
-                               level:level  
-                             hasSina:(sinaNick != nil)
-                               hasQQ:(qqNick != nil)
-                         hasFacebook:(facebookId != nil)
-                          infoInView:self];
-    }
-
 }
 
 
@@ -186,92 +145,31 @@
     [inputTextField resignFirstResponder];
     
     if ([inputTextField.text length] == 0) {
-        resultLabel.hidden = YES;
-        dataTableView.hidden = YES;
         [self popupMessage:NSLS(@"kEnterWords") title:nil];
     }else {
-        resultLabel.hidden = YES;
-        [[FriendService defaultService] searchUsersByString:inputTextField.text viewController:self];
+        NSInteger tabID = self.currentTab.tabID;
+        self.currentTab.offset = 0;
+        [self startToLoadDataForTabID:tabID];
+        [self serviceLoadDataForTabID:tabID];
     }
 }
 
 
-- (void)clickFollowButton:(id)sender
-{
-    UIButton *button = (UIButton *)sender;
-    selectedIndex = button.tag;
-    NSDictionary *userDic = (NSDictionary *)[dataList objectAtIndex:selectedIndex];
-    NSString* userId = [userDic objectForKey:PARA_USERID];
-    
-    [[FriendService defaultService] followUser:userId viewController:self
-     ];
-}
-
-#pragma -mark FollowDelegate Method
-- (void)didClickFollowButtonAtIndexPath:(NSIndexPath *)indexPath user:(NSDictionary *)user
-{
-    NSString* userId = [user objectForKey:PARA_USERID];
-    
-    selectedIndex = [indexPath row];
-    
-    [[FriendService defaultService] followUser:userId viewController:self
-     ];
-}
 
 
 #pragma -mark FriendServiceDelegate Method
 - (void)didSearchUsers:(NSArray *)userList result:(int)resultCode
 {
+    
     if (resultCode == 0)
     {
-        self.dataList = userList;
-        [dataTableView reloadData];
-        if ([dataList count] == 0) {
-            dataTableView.hidden = YES;
-            resultLabel.hidden = NO;
-            [resultLabel setText:NSLS(@"kDidNottFindThisUser")];
-        }
-        else {
-            dataTableView.hidden = NO;
-            resultLabel.hidden = YES;
-        }
+        PPDebug(@"<didSearchUsers> count = %d", [userList count]);
+        [self finishLoadDataForTabID:self.currentTab.tabID resultList:userList];
     }else {
         [self popupMessage:NSLS(@"kSearchFailed") title:nil];
+        [self failLoadDataForTabID:self.currentTab.tabID];
     }
     
-    
-    /**********************************/
-    //test data
-//    NSMutableArray *testUserList = [[NSMutableArray alloc] init];
-//    for (int i=0; i<20; i++) {
-//        NSMutableDictionary *userDic = [[NSMutableDictionary alloc] init];
-//        [userDic setObject:[NSString stringWithFormat:@"4fab294a03649bc45d248e3%d",i]  forKey:PARA_USERID];
-//        [userDic setObject:[NSString stringWithFormat:@"name%d",i] forKey:PARA_NICKNAME];
-//        
-//        if (i%2 ==0) {
-//            [userDic setObject:[NSString stringWithFormat:@"name%d",i] forKey:PARA_SINA_NICKNAME];
-//            [userDic setObject:@"m" forKey:PARA_GENDER];
-//        }else {
-//            [userDic setObject:[NSString stringWithFormat:@"name%d",i] forKey:PARA_QQ_NICKNAME];
-//            [userDic setObject:@"f" forKey:PARA_GENDER];
-//        }
-//        
-//        [testUserList addObject:userDic];
-//        [userDic release];
-//    }
-//    self.dataList = testUserList;
-//    [testUserList release];
-//    [dataTableView reloadData];
-//    if ([dataList count] == 0) {
-//        dataTableView.hidden = YES;
-//        resultLabel.hidden = NO;
-//        [resultLabel setText:NSLS(@"kDidNottFindThisUser")];
-//    }
-//    else {
-//        dataTableView.hidden = NO;
-//        resultLabel.hidden = YES;
-//    }
-    /**********************************/
 }
 
 
@@ -279,10 +177,6 @@
 {
     if (resultCode == 0) {
         [self popupMessage:NSLS(@"kFollowSuccessfully") title:nil];
-        NSDictionary *userDic = (NSDictionary *)[dataList objectAtIndex:selectedIndex];
-        [userDic setValue:[NSNumber numberWithInt:FOLLOW] forKey:PARA_FRIENDSTYPE];
-        [[FriendManager defaultManager] createFriendByDictionary:userDic];
-        [dataTableView reloadData];
     } else {
         [self popupMessage:NSLS(@"kFollowFailed") title:nil];
     }
@@ -296,6 +190,40 @@
     return YES;
 }
 
+
+
+#pragma mark - common tab controller delegate
+
+- (NSInteger)tabCount
+{
+    return 1;
+}
+- (NSInteger)fetchDataLimitForTabIndex:(NSInteger)index
+{
+    return 20;
+}
+- (NSInteger)tabIDforIndex:(NSInteger)index
+{
+    return SEARCH_BUTTON_TAG;
+}
+- (NSString *)tabTitleforIndex:(NSInteger)index
+{
+    return nil;
+}
+
+- (NSInteger)currentTabIndex
+{
+    return 0;
+}
+
+- (void)serviceLoadDataForTabID:(NSInteger)tabID
+{
+    TableTab *tab = [_tabManager tabForID:tabID];
+    [[FriendService defaultService] searchUsersWithKey:inputTextField.text
+                                                offset:tab.offset 
+                                                 limit:tab.limit
+                                              delegate:self];
+}
 
 
 @end

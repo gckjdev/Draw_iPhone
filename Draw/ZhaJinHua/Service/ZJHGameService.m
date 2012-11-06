@@ -27,7 +27,7 @@ static ZJHGameService *_defaultService;
 
 @implementation ZJHGameService
 
-//@synthesize gameState = _gameState;
+@synthesize gameState = _gameState;
 
 #pragma mark - life cycle
 

@@ -17,9 +17,9 @@
 
 @implementation ZJHGameState
 
-//@synthesize usersInfo = _usersInfo;
-//@synthesize myTurnTimes = _myTurnTimes;
-
+@synthesize usersInfo = _usersInfo;
+@synthesize myTurnTimes = _myTurnTimes;
+@synthesize winner = _winner;
 #pragma mark - life cycle
 - (void)dealloc
 {

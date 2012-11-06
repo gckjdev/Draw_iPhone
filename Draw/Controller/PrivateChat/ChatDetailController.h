@@ -12,24 +12,29 @@
 #import "ChatDetailCell.h"
 #import "UserLocationController.h"
 
+@class MessageStat;
+@class PPMessage;
+
+@protocol ChatDetailControllerDelegate <NSObject>
+
+@optional
+- (void)didMessageStat:(MessageStat *)messageStat createNewMessage:(PPMessage *)message;
+
+@end
+
 @interface ChatDetailController : PPTableViewController<ChatServiceDelegate, UITextViewDelegate, OfflineDrawDelegate, ChatDetailCellDelegate, UserLocationControllerDelegate, UIActionSheetDelegate>
- 
+{
+    
+}
 @property (retain, nonatomic) IBOutlet UILabel *titleLabel;
-@property (retain, nonatomic) IBOutlet UIButton *graffitiButton;
 @property (retain, nonatomic) IBOutlet UIView *inputBackgroundView;
 @property (retain, nonatomic) IBOutlet UITextView *inputTextView;
-@property (retain, nonatomic) IBOutlet UIButton *sendButton;
 @property (retain, nonatomic) IBOutlet UIImageView *inputTextBackgroundImage;
-@property (retain, nonatomic) IBOutlet UIImageView *paperImageView;
 @property (retain, nonatomic) IBOutlet UIButton *refreshButton;
+@property (assign, nonatomic) id<ChatDetailControllerDelegate> delegate;
 
-@property (retain, nonatomic) NSString *friendUserId;
-
-- (id)initWithFriendUserId:(NSString *)frindUserId 
-            friendNickname:(NSString *)friendNickname 
-              friendAvatar:(NSString *)friendAvatar 
-              friendGender:(NSString *)friendGender;
-
-- (void)findAllMessages;
-
+- (IBAction)clickGraffitiButton:(id)sender; 
+- (void)loadNewMessage;
+- (id)initWithMessageStat:(MessageStat *)messageStat;
+- (NSString *)fid;
 @end
