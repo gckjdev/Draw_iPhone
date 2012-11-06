@@ -62,6 +62,16 @@ BOOL GameCommandTypeIsValidValue(GameCommandType value) {
     case GameCommandTypeBetDiceResponse:
     case GameCommandTypeUseItemRequest:
     case GameCommandTypeUseItemResponse:
+    case GameCommandTypeBetRequest:
+    case GameCommandTypeBetResponse:
+    case GameCommandTypeCheckCardRequest:
+    case GameCommandTypeCheckCardResponse:
+    case GameCommandTypeFoldCardRequest:
+    case GameCommandTypeFoldCardResponse:
+    case GameCommandTypeShowCardRequest:
+    case GameCommandTypeShowCardResponse:
+    case GameCommandTypeCompareCardRequest:
+    case GameCommandTypeCompareCardResponse:
     case GameCommandTypeUserJoinNotificationRequest:
     case GameCommandTypeUserJoinNotificationResponse:
     case GameCommandTypeUserQuitNotificationRequest:
@@ -98,6 +108,11 @@ BOOL GameCommandTypeIsValidValue(GameCommandType value) {
     case GameCommandTypeLocalOpenDice:
     case GameCommandTypeLocalUserSkip:
     case GameCommandTypeLocalAllUserBet:
+    case GameCommandTypeLocalBet:
+    case GameCommandTypeLocalCheckCard:
+    case GameCommandTypeLocalFoldCard:
+    case GameCommandTypeLocalShowCard:
+    case GameCommandTypeLocalCompareCard:
     case GameCommandTypeRoomNotificationRequest:
     case GameCommandTypeRoomNotificationResponse:
     case GameCommandTypeRollDiceBeginNotificationRequest:
@@ -135,6 +150,13 @@ BOOL GameResultCodeIsValidValue(GameResultCode value) {
     case GameResultCodeErrorDiceAlreadyOpen:
     case GameResultCodeErrorUserAlreadyCallDice:
     case GameResultCodeErrorDiceOpenSelf:
+    case GameResultCodeErrorCannotBet:
+    case GameResultCodeErrorAlreadyCheckCard:
+    case GameResultCodeErrorCannotCheckCard:
+    case GameResultCodeErrorAlreadyFoldCard:
+    case GameResultCodeErrorCannotFoldCard:
+    case GameResultCodeErrorAlreadyShowCard:
+    case GameResultCodeErrorCannotShowCard:
     case GameResultCodeErrorUnknownItem:
     case GameResultCodeErrorExcessTimeLimit:
     case GameResultCodeErrorSystemHandlerNotFound:

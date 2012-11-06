@@ -2,19 +2,32 @@
 
 #import "ProtocolBuffers.h"
 
+#import "GameConstants.pb.h"
 #import "GameBasic.pb.h"
 #import "Draw.pb.h"
 #import "Dice.pb.h"
-#import "GameConstants.pb.h"
+#import "ZhaJinHua.pb.h"
 
 @class BetDiceRequest;
 @class BetDiceRequest_Builder;
 @class BetDiceResponse;
 @class BetDiceResponse_Builder;
+@class BetRequest;
+@class BetRequest_Builder;
+@class BetResponse;
+@class BetResponse_Builder;
 @class CallDiceRequest;
 @class CallDiceRequest_Builder;
 @class CallDiceResponse;
 @class CallDiceResponse_Builder;
+@class CheckCardRequest;
+@class CheckCardRequest_Builder;
+@class CheckCardResponse;
+@class CheckCardResponse_Builder;
+@class CompareCardRequest;
+@class CompareCardRequest_Builder;
+@class CompareCardResponse;
+@class CompareCardResponse_Builder;
 @class CreateRoomRequest;
 @class CreateRoomRequest_Builder;
 @class CreateRoomResponse;
@@ -25,6 +38,10 @@
 @class FacetimeChatRequest_Builder;
 @class FacetimeChatResponse;
 @class FacetimeChatResponse_Builder;
+@class FoldCardRequest;
+@class FoldCardRequest_Builder;
+@class FoldCardResponse;
+@class FoldCardResponse_Builder;
 @class GameChatRequest;
 @class GameChatRequest_Builder;
 @class GameChatResponse;
@@ -35,6 +52,10 @@
 @class GameOverNotificationRequest_Builder;
 @class GameOverNotificationResponse;
 @class GameOverNotificationResponse_Builder;
+@class GameStartNotificationRequest;
+@class GameStartNotificationRequest_Builder;
+@class GameStartNotificationResponse;
+@class GameStartNotificationResponse_Builder;
 @class GeneralNotification;
 @class GeneralNotification_Builder;
 @class GetRoomsRequest;
@@ -83,12 +104,24 @@
 @class PBMessageStat;
 @class PBMessageStat_Builder;
 @class PBMessage_Builder;
+@class PBPoker;
+@class PBPoker_Builder;
 @class PBSNSUser;
 @class PBSNSUser_Builder;
 @class PBUserDice;
 @class PBUserDice_Builder;
 @class PBUserResult;
 @class PBUserResult_Builder;
+@class PBZJHGameResult;
+@class PBZJHGameResult_Builder;
+@class PBZJHGameState;
+@class PBZJHGameState_Builder;
+@class PBZJHPoker;
+@class PBZJHPoker_Builder;
+@class PBZJHUserPlayInfo;
+@class PBZJHUserPlayInfo_Builder;
+@class PBZJHUserPoker;
+@class PBZJHUserPoker_Builder;
 @class RegisterRoomsNotificationRequest;
 @class RegisterRoomsNotificationRequest_Builder;
 @class RegisterRoomsNotificationResponse;
@@ -113,6 +146,10 @@
 @class SendDrawDataRequest_Builder;
 @class SendDrawDataResponse;
 @class SendDrawDataResponse_Builder;
+@class ShowCardRequest;
+@class ShowCardRequest_Builder;
+@class ShowCardResponse;
+@class ShowCardResponse_Builder;
 @class StartGameRequest;
 @class StartGameRequest_Builder;
 @class StartGameResponse;
@@ -127,6 +164,13 @@
 @class UseItemResponse_Builder;
 @class UserDiceNotification;
 @class UserDiceNotification_Builder;
+typedef enum {
+  BetTypeBetTypeCall = 1,
+  BetTypeBetTypeRaise = 2,
+} BetType;
+
+BOOL BetTypeIsValidValue(BetType value);
+
 
 @interface GameMessageRoot : NSObject {
 }
@@ -1126,6 +1170,453 @@
 - (UserDiceNotification_Builder*) clearIsWild;
 @end
 
+@interface BetRequest : PBGeneratedMessage {
+@private
+  BOOL hasIsAutoBet_:1;
+  BOOL hasSingleBet_:1;
+  BOOL hasCount_:1;
+  BOOL isAutoBet_:1;
+  int32_t singleBet;
+  int32_t count;
+}
+- (BOOL) hasSingleBet;
+- (BOOL) hasCount;
+- (BOOL) hasIsAutoBet;
+@property (readonly) int32_t singleBet;
+@property (readonly) int32_t count;
+- (BOOL) isAutoBet;
+
++ (BetRequest*) defaultInstance;
+- (BetRequest*) defaultInstance;
+
+- (BOOL) isInitialized;
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
+- (BetRequest_Builder*) builder;
++ (BetRequest_Builder*) builder;
++ (BetRequest_Builder*) builderWithPrototype:(BetRequest*) prototype;
+
++ (BetRequest*) parseFromData:(NSData*) data;
++ (BetRequest*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (BetRequest*) parseFromInputStream:(NSInputStream*) input;
++ (BetRequest*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (BetRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input;
++ (BetRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+@end
+
+@interface BetRequest_Builder : PBGeneratedMessage_Builder {
+@private
+  BetRequest* result;
+}
+
+- (BetRequest*) defaultInstance;
+
+- (BetRequest_Builder*) clear;
+- (BetRequest_Builder*) clone;
+
+- (BetRequest*) build;
+- (BetRequest*) buildPartial;
+
+- (BetRequest_Builder*) mergeFrom:(BetRequest*) other;
+- (BetRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (BetRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+
+- (BOOL) hasSingleBet;
+- (int32_t) singleBet;
+- (BetRequest_Builder*) setSingleBet:(int32_t) value;
+- (BetRequest_Builder*) clearSingleBet;
+
+- (BOOL) hasCount;
+- (int32_t) count;
+- (BetRequest_Builder*) setCount:(int32_t) value;
+- (BetRequest_Builder*) clearCount;
+
+- (BOOL) hasIsAutoBet;
+- (BOOL) isAutoBet;
+- (BetRequest_Builder*) setIsAutoBet:(BOOL) value;
+- (BetRequest_Builder*) clearIsAutoBet;
+@end
+
+@interface BetResponse : PBGeneratedMessage {
+@private
+}
+
++ (BetResponse*) defaultInstance;
+- (BetResponse*) defaultInstance;
+
+- (BOOL) isInitialized;
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
+- (BetResponse_Builder*) builder;
++ (BetResponse_Builder*) builder;
++ (BetResponse_Builder*) builderWithPrototype:(BetResponse*) prototype;
+
++ (BetResponse*) parseFromData:(NSData*) data;
++ (BetResponse*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (BetResponse*) parseFromInputStream:(NSInputStream*) input;
++ (BetResponse*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (BetResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input;
++ (BetResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+@end
+
+@interface BetResponse_Builder : PBGeneratedMessage_Builder {
+@private
+  BetResponse* result;
+}
+
+- (BetResponse*) defaultInstance;
+
+- (BetResponse_Builder*) clear;
+- (BetResponse_Builder*) clone;
+
+- (BetResponse*) build;
+- (BetResponse*) buildPartial;
+
+- (BetResponse_Builder*) mergeFrom:(BetResponse*) other;
+- (BetResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (BetResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+@end
+
+@interface CheckCardRequest : PBGeneratedMessage {
+@private
+}
+
++ (CheckCardRequest*) defaultInstance;
+- (CheckCardRequest*) defaultInstance;
+
+- (BOOL) isInitialized;
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
+- (CheckCardRequest_Builder*) builder;
++ (CheckCardRequest_Builder*) builder;
++ (CheckCardRequest_Builder*) builderWithPrototype:(CheckCardRequest*) prototype;
+
++ (CheckCardRequest*) parseFromData:(NSData*) data;
++ (CheckCardRequest*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (CheckCardRequest*) parseFromInputStream:(NSInputStream*) input;
++ (CheckCardRequest*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (CheckCardRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input;
++ (CheckCardRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+@end
+
+@interface CheckCardRequest_Builder : PBGeneratedMessage_Builder {
+@private
+  CheckCardRequest* result;
+}
+
+- (CheckCardRequest*) defaultInstance;
+
+- (CheckCardRequest_Builder*) clear;
+- (CheckCardRequest_Builder*) clone;
+
+- (CheckCardRequest*) build;
+- (CheckCardRequest*) buildPartial;
+
+- (CheckCardRequest_Builder*) mergeFrom:(CheckCardRequest*) other;
+- (CheckCardRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (CheckCardRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+@end
+
+@interface CheckCardResponse : PBGeneratedMessage {
+@private
+}
+
++ (CheckCardResponse*) defaultInstance;
+- (CheckCardResponse*) defaultInstance;
+
+- (BOOL) isInitialized;
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
+- (CheckCardResponse_Builder*) builder;
++ (CheckCardResponse_Builder*) builder;
++ (CheckCardResponse_Builder*) builderWithPrototype:(CheckCardResponse*) prototype;
+
++ (CheckCardResponse*) parseFromData:(NSData*) data;
++ (CheckCardResponse*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (CheckCardResponse*) parseFromInputStream:(NSInputStream*) input;
++ (CheckCardResponse*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (CheckCardResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input;
++ (CheckCardResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+@end
+
+@interface CheckCardResponse_Builder : PBGeneratedMessage_Builder {
+@private
+  CheckCardResponse* result;
+}
+
+- (CheckCardResponse*) defaultInstance;
+
+- (CheckCardResponse_Builder*) clear;
+- (CheckCardResponse_Builder*) clone;
+
+- (CheckCardResponse*) build;
+- (CheckCardResponse*) buildPartial;
+
+- (CheckCardResponse_Builder*) mergeFrom:(CheckCardResponse*) other;
+- (CheckCardResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (CheckCardResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+@end
+
+@interface FoldCardRequest : PBGeneratedMessage {
+@private
+}
+
++ (FoldCardRequest*) defaultInstance;
+- (FoldCardRequest*) defaultInstance;
+
+- (BOOL) isInitialized;
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
+- (FoldCardRequest_Builder*) builder;
++ (FoldCardRequest_Builder*) builder;
++ (FoldCardRequest_Builder*) builderWithPrototype:(FoldCardRequest*) prototype;
+
++ (FoldCardRequest*) parseFromData:(NSData*) data;
++ (FoldCardRequest*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (FoldCardRequest*) parseFromInputStream:(NSInputStream*) input;
++ (FoldCardRequest*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (FoldCardRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input;
++ (FoldCardRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+@end
+
+@interface FoldCardRequest_Builder : PBGeneratedMessage_Builder {
+@private
+  FoldCardRequest* result;
+}
+
+- (FoldCardRequest*) defaultInstance;
+
+- (FoldCardRequest_Builder*) clear;
+- (FoldCardRequest_Builder*) clone;
+
+- (FoldCardRequest*) build;
+- (FoldCardRequest*) buildPartial;
+
+- (FoldCardRequest_Builder*) mergeFrom:(FoldCardRequest*) other;
+- (FoldCardRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (FoldCardRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+@end
+
+@interface FoldCardResponse : PBGeneratedMessage {
+@private
+}
+
++ (FoldCardResponse*) defaultInstance;
+- (FoldCardResponse*) defaultInstance;
+
+- (BOOL) isInitialized;
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
+- (FoldCardResponse_Builder*) builder;
++ (FoldCardResponse_Builder*) builder;
++ (FoldCardResponse_Builder*) builderWithPrototype:(FoldCardResponse*) prototype;
+
++ (FoldCardResponse*) parseFromData:(NSData*) data;
++ (FoldCardResponse*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (FoldCardResponse*) parseFromInputStream:(NSInputStream*) input;
++ (FoldCardResponse*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (FoldCardResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input;
++ (FoldCardResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+@end
+
+@interface FoldCardResponse_Builder : PBGeneratedMessage_Builder {
+@private
+  FoldCardResponse* result;
+}
+
+- (FoldCardResponse*) defaultInstance;
+
+- (FoldCardResponse_Builder*) clear;
+- (FoldCardResponse_Builder*) clone;
+
+- (FoldCardResponse*) build;
+- (FoldCardResponse*) buildPartial;
+
+- (FoldCardResponse_Builder*) mergeFrom:(FoldCardResponse*) other;
+- (FoldCardResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (FoldCardResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+@end
+
+@interface ShowCardRequest : PBGeneratedMessage {
+@private
+  NSMutableArray* mutableCardIdsList;
+  int32_t cardIdsMemoizedSerializedSize;
+}
+- (NSArray*) cardIdsList;
+- (int32_t) cardIdsAtIndex:(int32_t) index;
+
++ (ShowCardRequest*) defaultInstance;
+- (ShowCardRequest*) defaultInstance;
+
+- (BOOL) isInitialized;
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
+- (ShowCardRequest_Builder*) builder;
++ (ShowCardRequest_Builder*) builder;
++ (ShowCardRequest_Builder*) builderWithPrototype:(ShowCardRequest*) prototype;
+
++ (ShowCardRequest*) parseFromData:(NSData*) data;
++ (ShowCardRequest*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (ShowCardRequest*) parseFromInputStream:(NSInputStream*) input;
++ (ShowCardRequest*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (ShowCardRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input;
++ (ShowCardRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+@end
+
+@interface ShowCardRequest_Builder : PBGeneratedMessage_Builder {
+@private
+  ShowCardRequest* result;
+}
+
+- (ShowCardRequest*) defaultInstance;
+
+- (ShowCardRequest_Builder*) clear;
+- (ShowCardRequest_Builder*) clone;
+
+- (ShowCardRequest*) build;
+- (ShowCardRequest*) buildPartial;
+
+- (ShowCardRequest_Builder*) mergeFrom:(ShowCardRequest*) other;
+- (ShowCardRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (ShowCardRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+
+- (NSArray*) cardIdsList;
+- (int32_t) cardIdsAtIndex:(int32_t) index;
+- (ShowCardRequest_Builder*) replaceCardIdsAtIndex:(int32_t) index with:(int32_t) value;
+- (ShowCardRequest_Builder*) addCardIds:(int32_t) value;
+- (ShowCardRequest_Builder*) addAllCardIds:(NSArray*) values;
+- (ShowCardRequest_Builder*) clearCardIdsList;
+@end
+
+@interface ShowCardResponse : PBGeneratedMessage {
+@private
+}
+
++ (ShowCardResponse*) defaultInstance;
+- (ShowCardResponse*) defaultInstance;
+
+- (BOOL) isInitialized;
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
+- (ShowCardResponse_Builder*) builder;
++ (ShowCardResponse_Builder*) builder;
++ (ShowCardResponse_Builder*) builderWithPrototype:(ShowCardResponse*) prototype;
+
++ (ShowCardResponse*) parseFromData:(NSData*) data;
++ (ShowCardResponse*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (ShowCardResponse*) parseFromInputStream:(NSInputStream*) input;
++ (ShowCardResponse*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (ShowCardResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input;
++ (ShowCardResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+@end
+
+@interface ShowCardResponse_Builder : PBGeneratedMessage_Builder {
+@private
+  ShowCardResponse* result;
+}
+
+- (ShowCardResponse*) defaultInstance;
+
+- (ShowCardResponse_Builder*) clear;
+- (ShowCardResponse_Builder*) clone;
+
+- (ShowCardResponse*) build;
+- (ShowCardResponse*) buildPartial;
+
+- (ShowCardResponse_Builder*) mergeFrom:(ShowCardResponse*) other;
+- (ShowCardResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (ShowCardResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+@end
+
+@interface CompareCardRequest : PBGeneratedMessage {
+@private
+  BOOL hasToUserId_:1;
+  NSString* toUserId;
+}
+- (BOOL) hasToUserId;
+@property (readonly, retain) NSString* toUserId;
+
++ (CompareCardRequest*) defaultInstance;
+- (CompareCardRequest*) defaultInstance;
+
+- (BOOL) isInitialized;
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
+- (CompareCardRequest_Builder*) builder;
++ (CompareCardRequest_Builder*) builder;
++ (CompareCardRequest_Builder*) builderWithPrototype:(CompareCardRequest*) prototype;
+
++ (CompareCardRequest*) parseFromData:(NSData*) data;
++ (CompareCardRequest*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (CompareCardRequest*) parseFromInputStream:(NSInputStream*) input;
++ (CompareCardRequest*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (CompareCardRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input;
++ (CompareCardRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+@end
+
+@interface CompareCardRequest_Builder : PBGeneratedMessage_Builder {
+@private
+  CompareCardRequest* result;
+}
+
+- (CompareCardRequest*) defaultInstance;
+
+- (CompareCardRequest_Builder*) clear;
+- (CompareCardRequest_Builder*) clone;
+
+- (CompareCardRequest*) build;
+- (CompareCardRequest*) buildPartial;
+
+- (CompareCardRequest_Builder*) mergeFrom:(CompareCardRequest*) other;
+- (CompareCardRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (CompareCardRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+
+- (BOOL) hasToUserId;
+- (NSString*) toUserId;
+- (CompareCardRequest_Builder*) setToUserId:(NSString*) value;
+- (CompareCardRequest_Builder*) clearToUserId;
+@end
+
+@interface CompareCardResponse : PBGeneratedMessage {
+@private
+  NSMutableArray* mutableUserResultList;
+}
+- (NSArray*) userResultList;
+- (PBUserResult*) userResultAtIndex:(int32_t) index;
+
++ (CompareCardResponse*) defaultInstance;
+- (CompareCardResponse*) defaultInstance;
+
+- (BOOL) isInitialized;
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
+- (CompareCardResponse_Builder*) builder;
++ (CompareCardResponse_Builder*) builder;
++ (CompareCardResponse_Builder*) builderWithPrototype:(CompareCardResponse*) prototype;
+
++ (CompareCardResponse*) parseFromData:(NSData*) data;
++ (CompareCardResponse*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (CompareCardResponse*) parseFromInputStream:(NSInputStream*) input;
++ (CompareCardResponse*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (CompareCardResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input;
++ (CompareCardResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+@end
+
+@interface CompareCardResponse_Builder : PBGeneratedMessage_Builder {
+@private
+  CompareCardResponse* result;
+}
+
+- (CompareCardResponse*) defaultInstance;
+
+- (CompareCardResponse_Builder*) clear;
+- (CompareCardResponse_Builder*) clone;
+
+- (CompareCardResponse*) build;
+- (CompareCardResponse*) buildPartial;
+
+- (CompareCardResponse_Builder*) mergeFrom:(CompareCardResponse*) other;
+- (CompareCardResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (CompareCardResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+
+- (NSArray*) userResultList;
+- (PBUserResult*) userResultAtIndex:(int32_t) index;
+- (CompareCardResponse_Builder*) replaceUserResultAtIndex:(int32_t) index with:(PBUserResult*) value;
+- (CompareCardResponse_Builder*) addUserResult:(PBUserResult*) value;
+- (CompareCardResponse_Builder*) addAllUserResult:(NSArray*) values;
+- (CompareCardResponse_Builder*) clearUserResultList;
+@end
+
 @interface JoinGameRequest : PBGeneratedMessage {
 @private
   BOOL hasIsRobot_:1;
@@ -1334,10 +1825,14 @@
 @interface JoinGameResponse : PBGeneratedMessage {
 @private
   BOOL hasGameSession_:1;
+  BOOL hasZjhGameState_:1;
   PBGameSession* gameSession;
+  PBZJHGameState* zjhGameState;
 }
 - (BOOL) hasGameSession;
+- (BOOL) hasZjhGameState;
 @property (readonly, retain) PBGameSession* gameSession;
+@property (readonly, retain) PBZJHGameState* zjhGameState;
 
 + (JoinGameResponse*) defaultInstance;
 - (JoinGameResponse*) defaultInstance;
@@ -1379,6 +1874,13 @@
 - (JoinGameResponse_Builder*) setGameSessionBuilder:(PBGameSession_Builder*) builderForValue;
 - (JoinGameResponse_Builder*) mergeGameSession:(PBGameSession*) value;
 - (JoinGameResponse_Builder*) clearGameSession;
+
+- (BOOL) hasZjhGameState;
+- (PBZJHGameState*) zjhGameState;
+- (JoinGameResponse_Builder*) setZjhGameState:(PBZJHGameState*) value;
+- (JoinGameResponse_Builder*) setZjhGameStateBuilder:(PBZJHGameState_Builder*) builderForValue;
+- (JoinGameResponse_Builder*) mergeZjhGameState:(PBZJHGameState*) value;
+- (JoinGameResponse_Builder*) clearZjhGameState;
 @end
 
 @interface StartGameRequest : PBGeneratedMessage {
@@ -1973,10 +2475,14 @@
 @interface GameOverNotificationRequest : PBGeneratedMessage {
 @private
   BOOL hasGameResult_:1;
+  BOOL hasZjhgameResult_:1;
   PBDiceGameResult* gameResult;
+  PBZJHGameResult* zjhgameResult;
 }
 - (BOOL) hasGameResult;
+- (BOOL) hasZjhgameResult;
 @property (readonly, retain) PBDiceGameResult* gameResult;
+@property (readonly, retain) PBZJHGameResult* zjhgameResult;
 
 + (GameOverNotificationRequest*) defaultInstance;
 - (GameOverNotificationRequest*) defaultInstance;
@@ -2018,6 +2524,13 @@
 - (GameOverNotificationRequest_Builder*) setGameResultBuilder:(PBDiceGameResult_Builder*) builderForValue;
 - (GameOverNotificationRequest_Builder*) mergeGameResult:(PBDiceGameResult*) value;
 - (GameOverNotificationRequest_Builder*) clearGameResult;
+
+- (BOOL) hasZjhgameResult;
+- (PBZJHGameResult*) zjhgameResult;
+- (GameOverNotificationRequest_Builder*) setZjhgameResult:(PBZJHGameResult*) value;
+- (GameOverNotificationRequest_Builder*) setZjhgameResultBuilder:(PBZJHGameResult_Builder*) builderForValue;
+- (GameOverNotificationRequest_Builder*) mergeZjhgameResult:(PBZJHGameResult*) value;
+- (GameOverNotificationRequest_Builder*) clearZjhgameResult;
 @end
 
 @interface GameOverNotificationResponse : PBGeneratedMessage {
@@ -2360,6 +2873,95 @@
 - (SendDrawDataResponse_Builder*) mergeFrom:(SendDrawDataResponse*) other;
 - (SendDrawDataResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
 - (SendDrawDataResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+@end
+
+@interface GameStartNotificationRequest : PBGeneratedMessage {
+@private
+  BOOL hasZjhGameState_:1;
+  PBZJHGameState* zjhGameState;
+}
+- (BOOL) hasZjhGameState;
+@property (readonly, retain) PBZJHGameState* zjhGameState;
+
++ (GameStartNotificationRequest*) defaultInstance;
+- (GameStartNotificationRequest*) defaultInstance;
+
+- (BOOL) isInitialized;
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
+- (GameStartNotificationRequest_Builder*) builder;
++ (GameStartNotificationRequest_Builder*) builder;
++ (GameStartNotificationRequest_Builder*) builderWithPrototype:(GameStartNotificationRequest*) prototype;
+
++ (GameStartNotificationRequest*) parseFromData:(NSData*) data;
++ (GameStartNotificationRequest*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (GameStartNotificationRequest*) parseFromInputStream:(NSInputStream*) input;
++ (GameStartNotificationRequest*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (GameStartNotificationRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input;
++ (GameStartNotificationRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+@end
+
+@interface GameStartNotificationRequest_Builder : PBGeneratedMessage_Builder {
+@private
+  GameStartNotificationRequest* result;
+}
+
+- (GameStartNotificationRequest*) defaultInstance;
+
+- (GameStartNotificationRequest_Builder*) clear;
+- (GameStartNotificationRequest_Builder*) clone;
+
+- (GameStartNotificationRequest*) build;
+- (GameStartNotificationRequest*) buildPartial;
+
+- (GameStartNotificationRequest_Builder*) mergeFrom:(GameStartNotificationRequest*) other;
+- (GameStartNotificationRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (GameStartNotificationRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+
+- (BOOL) hasZjhGameState;
+- (PBZJHGameState*) zjhGameState;
+- (GameStartNotificationRequest_Builder*) setZjhGameState:(PBZJHGameState*) value;
+- (GameStartNotificationRequest_Builder*) setZjhGameStateBuilder:(PBZJHGameState_Builder*) builderForValue;
+- (GameStartNotificationRequest_Builder*) mergeZjhGameState:(PBZJHGameState*) value;
+- (GameStartNotificationRequest_Builder*) clearZjhGameState;
+@end
+
+@interface GameStartNotificationResponse : PBGeneratedMessage {
+@private
+}
+
++ (GameStartNotificationResponse*) defaultInstance;
+- (GameStartNotificationResponse*) defaultInstance;
+
+- (BOOL) isInitialized;
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
+- (GameStartNotificationResponse_Builder*) builder;
++ (GameStartNotificationResponse_Builder*) builder;
++ (GameStartNotificationResponse_Builder*) builderWithPrototype:(GameStartNotificationResponse*) prototype;
+
++ (GameStartNotificationResponse*) parseFromData:(NSData*) data;
++ (GameStartNotificationResponse*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (GameStartNotificationResponse*) parseFromInputStream:(NSInputStream*) input;
++ (GameStartNotificationResponse*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (GameStartNotificationResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input;
++ (GameStartNotificationResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+@end
+
+@interface GameStartNotificationResponse_Builder : PBGeneratedMessage_Builder {
+@private
+  GameStartNotificationResponse* result;
+}
+
+- (GameStartNotificationResponse*) defaultInstance;
+
+- (GameStartNotificationResponse_Builder*) clear;
+- (GameStartNotificationResponse_Builder*) clone;
+
+- (GameStartNotificationResponse*) build;
+- (GameStartNotificationResponse*) buildPartial;
+
+- (GameStartNotificationResponse_Builder*) mergeFrom:(GameStartNotificationResponse*) other;
+- (GameStartNotificationResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (GameStartNotificationResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
 @interface GeneralNotification : PBGeneratedMessage {
@@ -2777,36 +3379,44 @@
 @interface GameMessage : PBGeneratedMessage {
 @private
   BOOL hasSessionId_:1;
-  BOOL hasStartOffset_:1;
   BOOL hasMessageId_:1;
   BOOL hasTimeStamp_:1;
   BOOL hasRound_:1;
   BOOL hasMaxCount_:1;
   BOOL hasOnlineUserCount_:1;
-  BOOL hasCurrentPlayUserId_:1;
-  BOOL hasToUserId_:1;
-  BOOL hasUserId_:1;
+  BOOL hasStartOffset_:1;
   BOOL hasMac_:1;
-  BOOL hasRollDiceEndNotificationRequest_:1;
-  BOOL hasCallDiceRequest_:1;
-  BOOL hasCallDiceResponse_:1;
-  BOOL hasOpenDiceRequest_:1;
-  BOOL hasOpenDiceResponse_:1;
-  BOOL hasGameOverNotificationRequest_:1;
-  BOOL hasGameOverNotificationResponse_:1;
-  BOOL hasRegisterRoomsNotificationRequest_:1;
-  BOOL hasRegisterRoomsNotificationResponse_:1;
-  BOOL hasUnRegisterRoomsNotificationRequest_:1;
-  BOOL hasUnRegisterRoomsNotificationResponse_:1;
-  BOOL hasUserDiceNotification_:1;
-  BOOL hasBetDiceRequest_:1;
-  BOOL hasBetDiceResponse_:1;
+  BOOL hasUserId_:1;
+  BOOL hasToUserId_:1;
+  BOOL hasCurrentPlayUserId_:1;
   BOOL hasUseItemRequest_:1;
+  BOOL hasBetDiceResponse_:1;
+  BOOL hasBetDiceRequest_:1;
+  BOOL hasUserDiceNotification_:1;
+  BOOL hasUnRegisterRoomsNotificationResponse_:1;
+  BOOL hasUnRegisterRoomsNotificationRequest_:1;
+  BOOL hasRegisterRoomsNotificationResponse_:1;
+  BOOL hasRegisterRoomsNotificationRequest_:1;
+  BOOL hasGameOverNotificationResponse_:1;
+  BOOL hasGameOverNotificationRequest_:1;
+  BOOL hasOpenDiceResponse_:1;
   BOOL hasUseItemResponse_:1;
+  BOOL hasBetRequest_:1;
+  BOOL hasBetResponse_:1;
+  BOOL hasCheckCardRequest_:1;
+  BOOL hasCheckCardResponse_:1;
+  BOOL hasFoldCardRequest_:1;
+  BOOL hasFoldCardResponse_:1;
+  BOOL hasShowCardRequest_:1;
+  BOOL hasShowCardResponse_:1;
+  BOOL hasCompareCardRequest_:1;
+  BOOL hasCompareCardResponse_:1;
   BOOL hasJoinGameRequest_:1;
   BOOL hasJoinGameResponse_:1;
   BOOL hasStartGameRequest_:1;
   BOOL hasStartGameResponse_:1;
+  BOOL hasGameStartNotificationRequest_:1;
+  BOOL hasGameStartNotificationResponse_:1;
   BOOL hasSendDrawDataRequest_:1;
   BOOL hasSendDrawDataResponse_:1;
   BOOL hasChatRequest_:1;
@@ -2821,40 +3431,52 @@
   BOOL hasSearchRoomRequest_:1;
   BOOL hasSearchRoomResponse_:1;
   BOOL hasRoomNotificationRequest_:1;
+  BOOL hasRollDiceEndNotificationRequest_:1;
+  BOOL hasCallDiceRequest_:1;
+  BOOL hasCallDiceResponse_:1;
+  BOOL hasOpenDiceRequest_:1;
   BOOL hasCompleteReason_:1;
   BOOL hasResultCode_:1;
   BOOL hasCommand_:1;
   int64_t sessionId;
-  int32_t startOffset;
   int32_t messageId;
   int32_t timeStamp;
   int32_t round;
   int32_t maxCount;
   int32_t onlineUserCount;
-  NSString* currentPlayUserId;
-  NSString* toUserId;
-  NSString* userId;
+  int32_t startOffset;
   NSString* mac;
-  RollDiceEndNotificationRequest* rollDiceEndNotificationRequest;
-  CallDiceRequest* callDiceRequest;
-  CallDiceResponse* callDiceResponse;
-  OpenDiceRequest* openDiceRequest;
-  OpenDiceResponse* openDiceResponse;
-  GameOverNotificationRequest* gameOverNotificationRequest;
-  GameOverNotificationResponse* gameOverNotificationResponse;
-  RegisterRoomsNotificationRequest* registerRoomsNotificationRequest;
-  RegisterRoomsNotificationResponse* registerRoomsNotificationResponse;
-  UnRegisterRoomsNotificationRequest* unRegisterRoomsNotificationRequest;
-  UnRegisterRoomsNotificationResponse* unRegisterRoomsNotificationResponse;
-  UserDiceNotification* userDiceNotification;
-  BetDiceRequest* betDiceRequest;
-  BetDiceResponse* betDiceResponse;
+  NSString* userId;
+  NSString* toUserId;
+  NSString* currentPlayUserId;
   UseItemRequest* useItemRequest;
+  BetDiceResponse* betDiceResponse;
+  BetDiceRequest* betDiceRequest;
+  UserDiceNotification* userDiceNotification;
+  UnRegisterRoomsNotificationResponse* unRegisterRoomsNotificationResponse;
+  UnRegisterRoomsNotificationRequest* unRegisterRoomsNotificationRequest;
+  RegisterRoomsNotificationResponse* registerRoomsNotificationResponse;
+  RegisterRoomsNotificationRequest* registerRoomsNotificationRequest;
+  GameOverNotificationResponse* gameOverNotificationResponse;
+  GameOverNotificationRequest* gameOverNotificationRequest;
+  OpenDiceResponse* openDiceResponse;
   UseItemResponse* useItemResponse;
+  BetRequest* betRequest;
+  BetResponse* betResponse;
+  CheckCardRequest* checkCardRequest;
+  CheckCardResponse* checkCardResponse;
+  FoldCardRequest* foldCardRequest;
+  FoldCardResponse* foldCardResponse;
+  ShowCardRequest* showCardRequest;
+  ShowCardResponse* showCardResponse;
+  CompareCardRequest* compareCardRequest;
+  CompareCardResponse* compareCardResponse;
   JoinGameRequest* joinGameRequest;
   JoinGameResponse* joinGameResponse;
   StartGameRequest* startGameRequest;
   StartGameResponse* startGameResponse;
+  GameStartNotificationRequest* gameStartNotificationRequest;
+  GameStartNotificationResponse* gameStartNotificationResponse;
   SendDrawDataRequest* sendDrawDataRequest;
   SendDrawDataResponse* sendDrawDataResponse;
   GameChatRequest* chatRequest;
@@ -2869,6 +3491,10 @@
   SearchRoomRequest* searchRoomRequest;
   SearchRoomResponse* searchRoomResponse;
   RoomNotificationRequest* roomNotificationRequest;
+  RollDiceEndNotificationRequest* rollDiceEndNotificationRequest;
+  CallDiceRequest* callDiceRequest;
+  CallDiceResponse* callDiceResponse;
+  OpenDiceRequest* openDiceRequest;
   GameCompleteReason completeReason;
   GameResultCode resultCode;
   GameCommandType command;
@@ -2887,6 +3513,8 @@
 - (BOOL) hasJoinGameResponse;
 - (BOOL) hasStartGameRequest;
 - (BOOL) hasStartGameResponse;
+- (BOOL) hasGameStartNotificationRequest;
+- (BOOL) hasGameStartNotificationResponse;
 - (BOOL) hasSendDrawDataRequest;
 - (BOOL) hasSendDrawDataResponse;
 - (BOOL) hasChatRequest;
@@ -2917,6 +3545,16 @@
 - (BOOL) hasBetDiceResponse;
 - (BOOL) hasUseItemRequest;
 - (BOOL) hasUseItemResponse;
+- (BOOL) hasBetRequest;
+- (BOOL) hasBetResponse;
+- (BOOL) hasCheckCardRequest;
+- (BOOL) hasCheckCardResponse;
+- (BOOL) hasFoldCardRequest;
+- (BOOL) hasFoldCardResponse;
+- (BOOL) hasShowCardRequest;
+- (BOOL) hasShowCardResponse;
+- (BOOL) hasCompareCardRequest;
+- (BOOL) hasCompareCardResponse;
 - (BOOL) hasStartOffset;
 - (BOOL) hasMaxCount;
 - (BOOL) hasTimeStamp;
@@ -2935,6 +3573,8 @@
 @property (readonly, retain) JoinGameResponse* joinGameResponse;
 @property (readonly, retain) StartGameRequest* startGameRequest;
 @property (readonly, retain) StartGameResponse* startGameResponse;
+@property (readonly, retain) GameStartNotificationRequest* gameStartNotificationRequest;
+@property (readonly, retain) GameStartNotificationResponse* gameStartNotificationResponse;
 @property (readonly, retain) SendDrawDataRequest* sendDrawDataRequest;
 @property (readonly, retain) SendDrawDataResponse* sendDrawDataResponse;
 @property (readonly, retain) GameChatRequest* chatRequest;
@@ -2965,6 +3605,16 @@
 @property (readonly, retain) BetDiceResponse* betDiceResponse;
 @property (readonly, retain) UseItemRequest* useItemRequest;
 @property (readonly, retain) UseItemResponse* useItemResponse;
+@property (readonly, retain) BetRequest* betRequest;
+@property (readonly, retain) BetResponse* betResponse;
+@property (readonly, retain) CheckCardRequest* checkCardRequest;
+@property (readonly, retain) CheckCardResponse* checkCardResponse;
+@property (readonly, retain) FoldCardRequest* foldCardRequest;
+@property (readonly, retain) FoldCardResponse* foldCardResponse;
+@property (readonly, retain) ShowCardRequest* showCardRequest;
+@property (readonly, retain) ShowCardResponse* showCardResponse;
+@property (readonly, retain) CompareCardRequest* compareCardRequest;
+@property (readonly, retain) CompareCardResponse* compareCardResponse;
 @property (readonly) int32_t startOffset;
 @property (readonly) int32_t maxCount;
 @property (readonly) int32_t timeStamp;
@@ -3081,6 +3731,20 @@
 - (GameMessage_Builder*) setStartGameResponseBuilder:(StartGameResponse_Builder*) builderForValue;
 - (GameMessage_Builder*) mergeStartGameResponse:(StartGameResponse*) value;
 - (GameMessage_Builder*) clearStartGameResponse;
+
+- (BOOL) hasGameStartNotificationRequest;
+- (GameStartNotificationRequest*) gameStartNotificationRequest;
+- (GameMessage_Builder*) setGameStartNotificationRequest:(GameStartNotificationRequest*) value;
+- (GameMessage_Builder*) setGameStartNotificationRequestBuilder:(GameStartNotificationRequest_Builder*) builderForValue;
+- (GameMessage_Builder*) mergeGameStartNotificationRequest:(GameStartNotificationRequest*) value;
+- (GameMessage_Builder*) clearGameStartNotificationRequest;
+
+- (BOOL) hasGameStartNotificationResponse;
+- (GameStartNotificationResponse*) gameStartNotificationResponse;
+- (GameMessage_Builder*) setGameStartNotificationResponse:(GameStartNotificationResponse*) value;
+- (GameMessage_Builder*) setGameStartNotificationResponseBuilder:(GameStartNotificationResponse_Builder*) builderForValue;
+- (GameMessage_Builder*) mergeGameStartNotificationResponse:(GameStartNotificationResponse*) value;
+- (GameMessage_Builder*) clearGameStartNotificationResponse;
 
 - (BOOL) hasSendDrawDataRequest;
 - (SendDrawDataRequest*) sendDrawDataRequest;
@@ -3291,6 +3955,76 @@
 - (GameMessage_Builder*) setUseItemResponseBuilder:(UseItemResponse_Builder*) builderForValue;
 - (GameMessage_Builder*) mergeUseItemResponse:(UseItemResponse*) value;
 - (GameMessage_Builder*) clearUseItemResponse;
+
+- (BOOL) hasBetRequest;
+- (BetRequest*) betRequest;
+- (GameMessage_Builder*) setBetRequest:(BetRequest*) value;
+- (GameMessage_Builder*) setBetRequestBuilder:(BetRequest_Builder*) builderForValue;
+- (GameMessage_Builder*) mergeBetRequest:(BetRequest*) value;
+- (GameMessage_Builder*) clearBetRequest;
+
+- (BOOL) hasBetResponse;
+- (BetResponse*) betResponse;
+- (GameMessage_Builder*) setBetResponse:(BetResponse*) value;
+- (GameMessage_Builder*) setBetResponseBuilder:(BetResponse_Builder*) builderForValue;
+- (GameMessage_Builder*) mergeBetResponse:(BetResponse*) value;
+- (GameMessage_Builder*) clearBetResponse;
+
+- (BOOL) hasCheckCardRequest;
+- (CheckCardRequest*) checkCardRequest;
+- (GameMessage_Builder*) setCheckCardRequest:(CheckCardRequest*) value;
+- (GameMessage_Builder*) setCheckCardRequestBuilder:(CheckCardRequest_Builder*) builderForValue;
+- (GameMessage_Builder*) mergeCheckCardRequest:(CheckCardRequest*) value;
+- (GameMessage_Builder*) clearCheckCardRequest;
+
+- (BOOL) hasCheckCardResponse;
+- (CheckCardResponse*) checkCardResponse;
+- (GameMessage_Builder*) setCheckCardResponse:(CheckCardResponse*) value;
+- (GameMessage_Builder*) setCheckCardResponseBuilder:(CheckCardResponse_Builder*) builderForValue;
+- (GameMessage_Builder*) mergeCheckCardResponse:(CheckCardResponse*) value;
+- (GameMessage_Builder*) clearCheckCardResponse;
+
+- (BOOL) hasFoldCardRequest;
+- (FoldCardRequest*) foldCardRequest;
+- (GameMessage_Builder*) setFoldCardRequest:(FoldCardRequest*) value;
+- (GameMessage_Builder*) setFoldCardRequestBuilder:(FoldCardRequest_Builder*) builderForValue;
+- (GameMessage_Builder*) mergeFoldCardRequest:(FoldCardRequest*) value;
+- (GameMessage_Builder*) clearFoldCardRequest;
+
+- (BOOL) hasFoldCardResponse;
+- (FoldCardResponse*) foldCardResponse;
+- (GameMessage_Builder*) setFoldCardResponse:(FoldCardResponse*) value;
+- (GameMessage_Builder*) setFoldCardResponseBuilder:(FoldCardResponse_Builder*) builderForValue;
+- (GameMessage_Builder*) mergeFoldCardResponse:(FoldCardResponse*) value;
+- (GameMessage_Builder*) clearFoldCardResponse;
+
+- (BOOL) hasShowCardRequest;
+- (ShowCardRequest*) showCardRequest;
+- (GameMessage_Builder*) setShowCardRequest:(ShowCardRequest*) value;
+- (GameMessage_Builder*) setShowCardRequestBuilder:(ShowCardRequest_Builder*) builderForValue;
+- (GameMessage_Builder*) mergeShowCardRequest:(ShowCardRequest*) value;
+- (GameMessage_Builder*) clearShowCardRequest;
+
+- (BOOL) hasShowCardResponse;
+- (ShowCardResponse*) showCardResponse;
+- (GameMessage_Builder*) setShowCardResponse:(ShowCardResponse*) value;
+- (GameMessage_Builder*) setShowCardResponseBuilder:(ShowCardResponse_Builder*) builderForValue;
+- (GameMessage_Builder*) mergeShowCardResponse:(ShowCardResponse*) value;
+- (GameMessage_Builder*) clearShowCardResponse;
+
+- (BOOL) hasCompareCardRequest;
+- (CompareCardRequest*) compareCardRequest;
+- (GameMessage_Builder*) setCompareCardRequest:(CompareCardRequest*) value;
+- (GameMessage_Builder*) setCompareCardRequestBuilder:(CompareCardRequest_Builder*) builderForValue;
+- (GameMessage_Builder*) mergeCompareCardRequest:(CompareCardRequest*) value;
+- (GameMessage_Builder*) clearCompareCardRequest;
+
+- (BOOL) hasCompareCardResponse;
+- (CompareCardResponse*) compareCardResponse;
+- (GameMessage_Builder*) setCompareCardResponse:(CompareCardResponse*) value;
+- (GameMessage_Builder*) setCompareCardResponseBuilder:(CompareCardResponse_Builder*) builderForValue;
+- (GameMessage_Builder*) mergeCompareCardResponse:(CompareCardResponse*) value;
+- (GameMessage_Builder*) clearCompareCardResponse;
 
 - (BOOL) hasStartOffset;
 - (int32_t) startOffset;

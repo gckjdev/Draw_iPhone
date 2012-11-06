@@ -113,7 +113,7 @@
 }
 
 #pragma mark - Timer
-#define TIMER_INTERVAL 15
+#define TIMER_INTERVAL 5
 #define TRASITION_DURATION 1
 
 - (void)restartTimer

@@ -13,10 +13,10 @@
 		<string>new_icon.png</string>
 		<string>new_icon@2x.png</string>
 		<string>new_icon_ipad1.png</string>
-		<string>icon-21.png</string>
+		<string>new_icon_ipad2.png</string>
 	</array>
 	<key>CFBundleIdentifier</key>
-	<string>com.orange.draw</string>
+	<string>com.orange.dice</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
@@ -24,10 +24,10 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>5.0</string>
+	<string>5.1</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
-	<key>URL types Dice</key>
+	<key>URL types DICE</key>
 	<array>
 		<dict>
 			<key>CFBundleURLSchemes</key>
@@ -48,12 +48,12 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>5.0</string>
+	<string>5.1</string>
 	<key>CFChannelId</key>
 	<string>App Store</string>
 	<key>CFWordBaseVersion</key>
 	<integer>2</integer>
-	<key>Icon files Draw</key>
+	<key>Icon files DRAW OLD</key>
 	<array>
 		<string>57.png</string>
 		<string>57@2x.png</string>
@@ -73,10 +73,10 @@
 		<string>UIInterfaceOrientationPortrait</string>
 		<string>UIInterfaceOrientationPortraitUpsideDown</string>
 	</array>
-	<key>Launch image (iPhone) Dice</key>
-	<string>DiceDefault.jpg</string>
-	<key>Launch image (iPad) Dice</key>
-	<string>DiceDefault_ipad.jpg</string>
+	<key>Launch image Dice</key>
+	<string>DiceDefault</string>
+	<key>UILaunchImageFile</key>
+	<string>Default</string>
 	<key>Icon files Dice</key>
 	<array>
 		<string>dice_icon_57.png</string>

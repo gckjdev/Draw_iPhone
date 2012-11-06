@@ -37,6 +37,7 @@
 
 - (void)showInView:(UIView *)view
 {
+    self.frame = view.bounds;
     bgImageView.image = [[DiceImageManager defaultManager] popupBackgroundImage];
     
     musicImageView.image = [[AudioManager defaultManager] isMusicOn] ? [[DiceImageManager defaultManager] diceMusicOnImage] : [[DiceImageManager defaultManager] diceMusicOffImage];

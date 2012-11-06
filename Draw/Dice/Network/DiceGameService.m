@@ -44,18 +44,18 @@ static DiceGameService* _defaultService;
     return self;
 }
 
-- (void)handleNextPlayerStartNotification:(GameMessage*)message
-{
-    // update game status and fire notification
-    [self.diceSession setCurrentPlayUserId:message.currentPlayUserId];
-    [self postNotification:NOTIFICATION_NEXT_PLAYER_START message:message];
-}
+//- (void)handleNextPlayerStartNotification:(GameMessage*)message
+//{
+//    // update game status and fire notification
+//    [self.diceSession setCurrentPlayUserId:message.currentPlayUserId];
+//    [self postNotification:NOTIFICATION_NEXT_PLAYER_START message:message];
+//}
 
 - (void)handleRollDiceBegin:(GameMessage*)message
 {
     [self.diceSession reset];
     self.diceSession.isMeAByStander = NO;
-    self.diceSession.gameState = GameStatePlaying;
+    self.diceSession.status = GameStatusPlaying;
 
     NSMutableArray* newUserList = [NSMutableArray array];
     
@@ -85,46 +85,63 @@ static DiceGameService* _defaultService;
     [self postNotification:NOTIFICATION_ROLL_DICE_END message:message];
 }
 
-- (void)handleCallDiceRequest:(GameMessage *)message
+- (void)updateCallDiceModel:(GameMessage*)message
 {
+    // Update Model.
     self.diceSession.lastCallDiceUserId = message.userId;
     self.diceSession.lastCallDice = message.callDiceRequest.dice;
     self.diceSession.lastCallDiceCount = message.callDiceRequest.num;
-    if ([message.callDiceRequest hasWilds]) {
-        self.diceSession.wilds = message.callDiceRequest.wilds;
-    }
-    
+    self.diceSession.wilds = message.callDiceRequest.wilds;
     self.diceSession.callCount ++;
+}
 
-    [self postNotification:NOTIFICATION_CALL_DICE_REQUEST message:message];
+- (void)handleCallDiceRequest:(GameMessage *)message
+{
+    if (message.resultCode == 0) {
+        [self updateCallDiceModel:message];
+        [self postNotification:NOTIFICATION_CALL_DICE_REQUEST message:message];
+    }
 }
 
 - (void)handleCallDiceResponse:(GameMessage *)message
 {
-    if (message.resultCode == 0) {
-        self.diceSession.callCount ++;
+//    BOOL bol1 = (message.resultCode == 0);
+//    BOOL bol2 = ([message.userId isEqualToString:[self userId]]);
+    if (message.resultCode == 0 && [message.userId isEqualToString:[self userId]]) {
+        [self updateCallDiceModel:message];
+        
         [self postNotification:NOTIFICATION_CALL_DICE_RESPONSE message:message];
     }
 }
 
-- (void)handleOpenDiceRequest:(GameMessage*)message
+- (void)updateOpenDiceModel:(GameMessage*)message
 {
+    // Update open dice model
     self.diceSession.openDiceUserId = message.userId;
     self.diceSession.openType = message.openDiceRequest.openType;
-    
-    [self postNotification:NOTIFICATION_OPEN_DICE_REQUEST message:message];
+}
+
+- (void)handleOpenDiceRequest:(GameMessage*)message
+{
+    if (message.resultCode == 0) {
+        // Update open dice model
+        [self updateOpenDiceModel:message];
+        [self postNotification:NOTIFICATION_OPEN_DICE_REQUEST message:message];
+    }
 }
 
 - (void)handleOpenDiceResponse:(GameMessage*)message
 {
-    if (message.resultCode == 0) {
+    if (message.resultCode == 0 && [message.userId isEqualToString:[self userId]]) {
+        // Update open dice model
+        [self updateOpenDiceModel:message];
         [self postNotification:NOTIFICATION_OPEN_DICE_RESPONSE message:message];
     }
 }
 
-- (void)handleGameOverNotificationRequest:(GameMessage *)message
+- (void)handleMoreOnGameOverNotificationRequest:(GameMessage *)message
 {
-    self.diceSession.gameState = GameStateGameOver;
+    self.diceSession.status = GameStatusOver;
     NSMutableDictionary *resultDic= [NSMutableDictionary dictionary];
     for(PBUserResult *result in [[[message gameOverNotificationRequest] gameResult] userResultList])
     {
@@ -205,9 +222,9 @@ static DiceGameService* _defaultService;
             [self handleRollDiceEnd:message];
             break;
             
-        case GameCommandTypeNextPlayerStartNotificationRequest:
-            [self handleNextPlayerStartNotification:message];
-            break;
+//        case GameCommandTypeNextPlayerStartNotificationRequest:
+//            [self handleNextPlayerStartNotification:message];
+//            break;
             
         case GameCommandTypeCallDiceRequest:
             [self handleCallDiceRequest:message];
@@ -225,9 +242,9 @@ static DiceGameService* _defaultService;
             [self handleOpenDiceResponse:message];
             break;
             
-        case GameCommandTypeGameOverNotificationRequest:
-            [self handleGameOverNotificationRequest:message];
-            break;
+//        case GameCommandTypeGameOverNotificationRequest:
+//            [self handleGameOverNotificationRequest:message];
+//            break;
             
         case GameCommandTypeUserDiceNotification:
             [self handleUserDiceNotification:message];
@@ -274,19 +291,26 @@ static DiceGameService* _defaultService;
 - (void)callDice:(int)dice count:(int)count wilds:(BOOL)wilds
 {
     PPDebug(@"****************** ME CALL DICE: %d * %d %@ **********************", count, dice, wilds?@"斋":@"");
-    
-    // Update Model.
-    self.diceSession.lastCallDiceUserId = [self userId];
-    self.diceSession.lastCallDice = dice;
-    self.diceSession.lastCallDiceCount = count;
-    self.diceSession.wilds = wilds;
+//
+//    // Update Model.
+//    self.diceSession.lastCallDiceUserId = [self userId];
+//    self.diceSession.lastCallDice = dice;
+//    self.diceSession.lastCallDiceCount = count;
+//    self.diceSession.wilds = wilds;
+//    
+//    // Send command.
+//    [(DiceNetworkClient *)_networkClient sendCallDiceRequest:self.lastCallUserId
+//                                                   sessionId:self.session.sessionId
+//                                                        dice:self.lastCallDice
+//                                                       count:self.lastCallDiceCount
+//                                                       wilds:wilds];
     
     // Send command.
-    [(DiceNetworkClient *)_networkClient sendCallDiceRequest:self.lastCallUserId
+    [(DiceNetworkClient *)_networkClient sendCallDiceRequest:[self userId]
                                                    sessionId:self.session.sessionId
-                                                        dice:self.lastCallDice
-                                                       count:self.lastCallDiceCount
-                                                       wilds:wilds]; 
+                                                        dice:dice
+                                                       count:count
+                                                       wilds:wilds];
 }
 
 - (void)userItem:(int)itemId
@@ -357,8 +381,8 @@ static DiceGameService* _defaultService;
     
     OpenType openType = [[self userId] isEqualToString:self.diceSession.currentPlayUserId] ? OpenTypeNormal : OpenTypeScramble;
     
-    self.diceSession.openDiceUserId = [self userId];
-    self.diceSession.openType = openType;
+//    self.diceSession.openDiceUserId = [self userId];
+//    self.diceSession.openType = openType;
     
     [(DiceNetworkClient *)_networkClient sendOpenDiceRequest:[self userId]
                                                    sessionId:self.session.sessionId
@@ -366,19 +390,19 @@ static DiceGameService* _defaultService;
                                                     multiple:1]; 
 }
 
-- (void)initServerListString
+- (NSString *)getServerListString
 {
     switch (_ruleType) {
         case DiceGameRuleTypeRuleNormal:
-            self.serverStringList = [ConfigManager getDiceServerListStringWithNormal];
+            return [ConfigManager getDiceServerListStringWithNormal];
             break;
             
         case DiceGameRuleTypeRuleHigh:
-            self.serverStringList = [ConfigManager getDiceServerListStringWithHightRule];
+            return [ConfigManager getDiceServerListStringWithHightRule];
             break;
             
         case DiceGameRuleTypeRuleSuperHigh:
-            self.serverStringList = [ConfigManager getDiceServerListStringWithSuperHightRule];
+            return [ConfigManager getDiceServerListStringWithSuperHightRule];
             break;
             
         default:

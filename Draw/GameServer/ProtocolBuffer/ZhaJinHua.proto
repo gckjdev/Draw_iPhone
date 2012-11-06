@@ -1,0 +1,99 @@
+
+import "GameBasic.proto";
+
+package game;
+
+option java_package = "com.orange.network.game.protocol.model";
+option java_outer_classname = "ZhaJinHuaProtos";
+
+enum PBZJHCardType{
+  UNKNOW = 0;                 // 未知
+  HIGH_CARD = 1;              // 散牌
+  PAIR = 2;                   // 对子
+  STRAIGHT = 3;               // 顺子
+  FLUSH = 4;                  // 金花
+  STRAIGHT_FLUSH = 5;         // 顺金
+  THREE_OF_A_KIND = 6;        // 豹子
+  SPECIAL = 7;                // 特殊
+}
+
+enum PBZJHUserAction{
+  NONE = 0;                     // 无动作
+  BET = 1;                      // 跟注
+  RAISE_BET = 2;                // 加注
+  AUTO_BET = 3;                 // 自动跟注
+  CHECK_CARD = 4;               // 看牌
+  FOLD_CARD = 5;                // 弃牌
+  COMPARE_CARD = 6;             // 比牌
+  SHOW_CARD = 7;                // 亮牌
+  CHANGE_CARD = 8;              // 换牌
+}
+
+enum PBPokerRank{
+  POKER_RANK_2 = 2;
+  POKER_RANK_3 = 3;
+  POKER_RANK_4 = 4;
+  POKER_RANK_5 = 5;
+  POKER_RANK_6 = 6;
+  POKER_RANK_7 = 7;
+  POKER_RANK_8 = 8;
+  POKER_RANK_9 = 9;
+  POKER_RANK_10 = 10;
+  POKER_RANK_J = 11;
+  POKER_RANK_Q = 12;
+  POKER_RANK_K = 13;
+  POKER_RANK_A = 14;
+  POKER_RANK_BLACK_JOKER = 15;
+  POKER_RANK_RED_JOKER = 16;
+}
+
+enum PBPokerSuit{
+  POKER_SUIT_DIAMOND = 1;           // 方块
+  POKER_SUIT_CLUB = 2;              // 梅花
+  POKER_SUIT_HEART = 3;             // 红桃
+  POKER_SUIT_SPADE = 4;             // 黑桃
+}
+
+message PBPoker{
+  optional int32 pokerId = 1;                               // 扑克Id
+  required PBPokerRank rank= 2;                             // 扑克点数
+  required PBPokerSuit suit= 3;                             // 扑克花色
+  optional bool faceUp = 5 [default = false];               // 牌面是否朝上
+}
+
+message PBZJHGameState{
+  required int32 totalBet = 1;              // 游戏总注
+  required int32 singleBet = 2;             // 游戏单注
+  
+  repeated PBZJHUserPlayInfo usersInfo = 6;     // 炸金花所有用户状态
+}
+
+message PBZJHPoker{
+  repeated PBPoker pokers = 1;                                  // 用户的扑克牌
+  optional PBZJHCardType cardType = 2  [default = UNKNOW];      // 牌类型
+}
+
+message PBZJHUserPoker{
+  required string userId = 1;           // 用户Id
+  optional PBZJHPoker pokers = 2;       // 扑克
+}
+
+message PBZJHUserPlayInfo{
+  required string userId = 1;                                               // 用户Id  
+  optional PBZJHPoker pokers = 2;                                           // 用户扑克
+
+  optional int32 totalBet = 5;                                              // 用户下的总注
+  optional bool isAutoBet = 6 [default = false];                            // 是否自动跟
+  optional PBZJHUserAction lastAction = 7 [default = NONE];                 // 用户最近的操作
+  
+  optional bool alreadCheckCard = 11 [default = false];                     // 是否已经看牌
+  optional bool alreadFoldCard = 12 [default = false];                      // 是否已经弃牌
+  optional bool alreadShowCard = 13 [default = false];                      // 是否已经亮牌
+  optional bool alreadLose = 14 [default = false];                          // 是否已经失败
+}
+
+message PBZJHGameResult{
+  repeated PBUserResult userResult = 2;
+}
+
+

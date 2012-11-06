@@ -41,7 +41,8 @@
 #import "FriendController.h"
 #import "ChatListController.h"
 #import "FeedbackController.h"
-
+#import "ZJHGameService.h"
+#import "ZJHGameController.h"
 
 #define KEY_LAST_AWARD_DATE     @"last_award_day"
 
@@ -59,6 +60,7 @@
     NSTimeInterval interval;
     BOOL hasGetLocalBoardList;
     
+    BOOL _isZJH;
 }
 
 - (void)updateBoardPanelWithBoards:(NSArray *)boards;
@@ -434,6 +436,13 @@
     [self registerDiceGameNotificationWithName:NOTIFICATION_JOIN_GAME_RESPONSE usingBlock:^(NSNotification *note) {
         PPDebug(@"<%@> NOTIFICATION_JOIN_GAME_RESPONSE", [self description]); 
         [self hideActivity];
+        if (_isZJH) {
+            ZJHGameController* vc = [[[ZJHGameController alloc] init] autorelease];
+            [self.navigationController pushViewController:vc
+                                                 animated:YES];
+            _isZJH = NO;
+            return ;
+        }
         if(_isTryJoinGame) {
             GameMessage* message = [CommonGameNetworkService userInfoToMessage:[note userInfo]];
             if ([message resultCode] == GameResultCodeSuccess){
@@ -501,7 +510,14 @@
     PPDebug(@"%@ <didConnected>", [self description]);
     
     [self hideActivity];
-        
+    
+    
+    // for zhajinhua test
+    if (_isZJH){
+        [[ZJHGameService defaultService] joinGameRequest];
+        return;
+    }
+    
     if (_isTryJoinGame){
         if ([DiceConfigManager meetJoinGameCondictionWithRuleType:DiceGameRuleTypeRuleNormal]) {
             [self showActivityWithText:NSLS(@"kJoiningGame")];
@@ -510,7 +526,12 @@
             [[DiceGameService defaultService] disconnectServer];
             [self showCoinsNotEnoughView];
         }
-    }   
+    }
+    
+    
+
+    
+
 }
 
 - (void)didBroken
@@ -656,6 +677,12 @@
         default:
             break;
     }
+}
+
+- (IBAction)clickZhaJinHuaButton:(id)sender {
+    _isZJH = YES;
+    
+    [[ZJHGameService defaultService] connectServer:self];
     
 }
 

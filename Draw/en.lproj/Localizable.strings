@@ -1077,7 +1077,7 @@
 
 "kSearchingRoom" = "Searching Room...";
 
-"kHasBought" = "Already Has";
+"kHasBought" = "Already Owned";
 "kRoomNameDuplicated" = "Room name duplicated.";
 
 "kSearchEmpty" = "No matched room";
@@ -1092,7 +1092,7 @@
 "kOpusMy" = "Mine";
 "kOpusRank" = "Top";
 "kOpusNew" = "Latest";
-
+"kOnlineUser" = "%d online";
 
 /*********************** 大话骰子国际化字符串结束 *************************/
 

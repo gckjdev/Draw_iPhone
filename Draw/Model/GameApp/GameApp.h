@@ -27,6 +27,7 @@
 #define DRAW_GAME_ID            @"Draw"
 #define DICE_GAME_ID            @"Dice"
 #define CANDY_GAME_ID           @"Candy"
+#define ZHAJINHUA_GAME_ID       @"ZhaJinHua"
 
 // Umeng ID
 #define DRAW_UMENG_ID           @"4f83980852701565c500003a"

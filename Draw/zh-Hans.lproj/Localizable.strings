@@ -1103,6 +1103,20 @@
 
 "kSearchEmpty" = "找不到匹配的房间";
 "kNoFriendRoom" = "暂时没有好友房间";
-
+"kOnlineUser" = "在线%d人";
 /*********************** 大话骰子国际化字符串结束 *************************/
 
+
+
+/*********************** 炸金花国际化字符串开始 *************************/
+
+"kCardTypeHighCard" = "散牌";
+"kCardTypePair" = "对子";
+"kCardTypeStraight" = "顺子";
+"kCardTypeFlush" = "金花";
+"kCardTypeStraightFlush" = "顺金";
+"kCardTypeThreeOfAKind" = "豹子";
+"kCardTypeSpecial" = "特殊";
+"kCardTypeUnknow" = "未知";
+
+/*********************** 炸金花国际化字符串结束 *************************/

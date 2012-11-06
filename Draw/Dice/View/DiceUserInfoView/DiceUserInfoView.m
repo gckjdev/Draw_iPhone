@@ -264,6 +264,7 @@
 
 
 #pragma mark - user service delegate
+
 - (void)didGetUserInfo:(MyFriend *)user resultCode:(NSInteger)resultCode
 {
     if (resultCode == 0 && user != nil) {

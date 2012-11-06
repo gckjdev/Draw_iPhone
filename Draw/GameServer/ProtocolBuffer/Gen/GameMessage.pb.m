@@ -12,10 +12,11 @@ static PBExtensionRegistry* extensionRegistry = nil;
   if (self == [GameMessageRoot class]) {
     PBMutableExtensionRegistry* registry = [PBMutableExtensionRegistry registry];
     [self registerAllExtensions:registry];
+    [GameConstantsRoot registerAllExtensions:registry];
     [GameBasicRoot registerAllExtensions:registry];
     [DrawRoot registerAllExtensions:registry];
     [DiceRoot registerAllExtensions:registry];
-    [GameConstantsRoot registerAllExtensions:registry];
+    [ZhaJinHuaRoot registerAllExtensions:registry];
     extensionRegistry = [registry retain];
   }
 }
@@ -23,6 +24,15 @@ static PBExtensionRegistry* extensionRegistry = nil;
 }
 @end
 
+BOOL BetTypeIsValidValue(BetType value) {
+  switch (value) {
+    case BetTypeBetTypeCall:
+    case BetTypeBetTypeRaise:
+      return YES;
+    default:
+      return NO;
+  }
+}
 @interface GetRoomsRequest ()
 @property (retain) NSString* gameId;
 @property int32_t roomType;
@@ -4011,6 +4021,1700 @@ static UserDiceNotification* defaultUserDiceNotificationInstance = nil;
 }
 @end
 
+@interface BetRequest ()
+@property int32_t singleBet;
+@property int32_t count;
+@property BOOL isAutoBet;
+@end
+
+@implementation BetRequest
+
+- (BOOL) hasSingleBet {
+  return !!hasSingleBet_;
+}
+- (void) setHasSingleBet:(BOOL) value {
+  hasSingleBet_ = !!value;
+}
+@synthesize singleBet;
+- (BOOL) hasCount {
+  return !!hasCount_;
+}
+- (void) setHasCount:(BOOL) value {
+  hasCount_ = !!value;
+}
+@synthesize count;
+- (BOOL) hasIsAutoBet {
+  return !!hasIsAutoBet_;
+}
+- (void) setHasIsAutoBet:(BOOL) value {
+  hasIsAutoBet_ = !!value;
+}
+- (BOOL) isAutoBet {
+  return !!isAutoBet_;
+}
+- (void) setIsAutoBet:(BOOL) value {
+  isAutoBet_ = !!value;
+}
+- (void) dealloc {
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.singleBet = 0;
+    self.count = 1;
+    self.isAutoBet = NO;
+  }
+  return self;
+}
+static BetRequest* defaultBetRequestInstance = nil;
++ (void) initialize {
+  if (self == [BetRequest class]) {
+    defaultBetRequestInstance = [[BetRequest alloc] init];
+  }
+}
++ (BetRequest*) defaultInstance {
+  return defaultBetRequestInstance;
+}
+- (BetRequest*) defaultInstance {
+  return defaultBetRequestInstance;
+}
+- (BOOL) isInitialized {
+  if (!self.hasSingleBet) {
+    return NO;
+  }
+  if (!self.hasCount) {
+    return NO;
+  }
+  return YES;
+}
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
+  if (self.hasSingleBet) {
+    [output writeInt32:1 value:self.singleBet];
+  }
+  if (self.hasCount) {
+    [output writeInt32:2 value:self.count];
+  }
+  if (self.hasIsAutoBet) {
+    [output writeBool:4 value:self.isAutoBet];
+  }
+  [self.unknownFields writeToCodedOutputStream:output];
+}
+- (int32_t) serializedSize {
+  int32_t size = memoizedSerializedSize;
+  if (size != -1) {
+    return size;
+  }
+
+  size = 0;
+  if (self.hasSingleBet) {
+    size += computeInt32Size(1, self.singleBet);
+  }
+  if (self.hasCount) {
+    size += computeInt32Size(2, self.count);
+  }
+  if (self.hasIsAutoBet) {
+    size += computeBoolSize(4, self.isAutoBet);
+  }
+  size += self.unknownFields.serializedSize;
+  memoizedSerializedSize = size;
+  return size;
+}
++ (BetRequest*) parseFromData:(NSData*) data {
+  return (BetRequest*)[[[BetRequest builder] mergeFromData:data] build];
+}
++ (BetRequest*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (BetRequest*)[[[BetRequest builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+}
++ (BetRequest*) parseFromInputStream:(NSInputStream*) input {
+  return (BetRequest*)[[[BetRequest builder] mergeFromInputStream:input] build];
+}
++ (BetRequest*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (BetRequest*)[[[BetRequest builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (BetRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input {
+  return (BetRequest*)[[[BetRequest builder] mergeFromCodedInputStream:input] build];
+}
++ (BetRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (BetRequest*)[[[BetRequest builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (BetRequest_Builder*) builder {
+  return [[[BetRequest_Builder alloc] init] autorelease];
+}
++ (BetRequest_Builder*) builderWithPrototype:(BetRequest*) prototype {
+  return [[BetRequest builder] mergeFrom:prototype];
+}
+- (BetRequest_Builder*) builder {
+  return [BetRequest builder];
+}
+@end
+
+@interface BetRequest_Builder()
+@property (retain) BetRequest* result;
+@end
+
+@implementation BetRequest_Builder
+@synthesize result;
+- (void) dealloc {
+  self.result = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.result = [[[BetRequest alloc] init] autorelease];
+  }
+  return self;
+}
+- (PBGeneratedMessage*) internalGetResult {
+  return result;
+}
+- (BetRequest_Builder*) clear {
+  self.result = [[[BetRequest alloc] init] autorelease];
+  return self;
+}
+- (BetRequest_Builder*) clone {
+  return [BetRequest builderWithPrototype:result];
+}
+- (BetRequest*) defaultInstance {
+  return [BetRequest defaultInstance];
+}
+- (BetRequest*) build {
+  [self checkInitialized];
+  return [self buildPartial];
+}
+- (BetRequest*) buildPartial {
+  BetRequest* returnMe = [[result retain] autorelease];
+  self.result = nil;
+  return returnMe;
+}
+- (BetRequest_Builder*) mergeFrom:(BetRequest*) other {
+  if (other == [BetRequest defaultInstance]) {
+    return self;
+  }
+  if (other.hasSingleBet) {
+    [self setSingleBet:other.singleBet];
+  }
+  if (other.hasCount) {
+    [self setCount:other.count];
+  }
+  if (other.hasIsAutoBet) {
+    [self setIsAutoBet:other.isAutoBet];
+  }
+  [self mergeUnknownFields:other.unknownFields];
+  return self;
+}
+- (BetRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
+  return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
+}
+- (BetRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
+  while (YES) {
+    int32_t tag = [input readTag];
+    switch (tag) {
+      case 0:
+        [self setUnknownFields:[unknownFields build]];
+        return self;
+      default: {
+        if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
+          [self setUnknownFields:[unknownFields build]];
+          return self;
+        }
+        break;
+      }
+      case 8: {
+        [self setSingleBet:[input readInt32]];
+        break;
+      }
+      case 16: {
+        [self setCount:[input readInt32]];
+        break;
+      }
+      case 32: {
+        [self setIsAutoBet:[input readBool]];
+        break;
+      }
+    }
+  }
+}
+- (BOOL) hasSingleBet {
+  return result.hasSingleBet;
+}
+- (int32_t) singleBet {
+  return result.singleBet;
+}
+- (BetRequest_Builder*) setSingleBet:(int32_t) value {
+  result.hasSingleBet = YES;
+  result.singleBet = value;
+  return self;
+}
+- (BetRequest_Builder*) clearSingleBet {
+  result.hasSingleBet = NO;
+  result.singleBet = 0;
+  return self;
+}
+- (BOOL) hasCount {
+  return result.hasCount;
+}
+- (int32_t) count {
+  return result.count;
+}
+- (BetRequest_Builder*) setCount:(int32_t) value {
+  result.hasCount = YES;
+  result.count = value;
+  return self;
+}
+- (BetRequest_Builder*) clearCount {
+  result.hasCount = NO;
+  result.count = 1;
+  return self;
+}
+- (BOOL) hasIsAutoBet {
+  return result.hasIsAutoBet;
+}
+- (BOOL) isAutoBet {
+  return result.isAutoBet;
+}
+- (BetRequest_Builder*) setIsAutoBet:(BOOL) value {
+  result.hasIsAutoBet = YES;
+  result.isAutoBet = value;
+  return self;
+}
+- (BetRequest_Builder*) clearIsAutoBet {
+  result.hasIsAutoBet = NO;
+  result.isAutoBet = NO;
+  return self;
+}
+@end
+
+@interface BetResponse ()
+@end
+
+@implementation BetResponse
+
+- (void) dealloc {
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+  }
+  return self;
+}
+static BetResponse* defaultBetResponseInstance = nil;
++ (void) initialize {
+  if (self == [BetResponse class]) {
+    defaultBetResponseInstance = [[BetResponse alloc] init];
+  }
+}
++ (BetResponse*) defaultInstance {
+  return defaultBetResponseInstance;
+}
+- (BetResponse*) defaultInstance {
+  return defaultBetResponseInstance;
+}
+- (BOOL) isInitialized {
+  return YES;
+}
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
+  [self.unknownFields writeToCodedOutputStream:output];
+}
+- (int32_t) serializedSize {
+  int32_t size = memoizedSerializedSize;
+  if (size != -1) {
+    return size;
+  }
+
+  size = 0;
+  size += self.unknownFields.serializedSize;
+  memoizedSerializedSize = size;
+  return size;
+}
++ (BetResponse*) parseFromData:(NSData*) data {
+  return (BetResponse*)[[[BetResponse builder] mergeFromData:data] build];
+}
++ (BetResponse*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (BetResponse*)[[[BetResponse builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+}
++ (BetResponse*) parseFromInputStream:(NSInputStream*) input {
+  return (BetResponse*)[[[BetResponse builder] mergeFromInputStream:input] build];
+}
++ (BetResponse*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (BetResponse*)[[[BetResponse builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (BetResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input {
+  return (BetResponse*)[[[BetResponse builder] mergeFromCodedInputStream:input] build];
+}
++ (BetResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (BetResponse*)[[[BetResponse builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (BetResponse_Builder*) builder {
+  return [[[BetResponse_Builder alloc] init] autorelease];
+}
++ (BetResponse_Builder*) builderWithPrototype:(BetResponse*) prototype {
+  return [[BetResponse builder] mergeFrom:prototype];
+}
+- (BetResponse_Builder*) builder {
+  return [BetResponse builder];
+}
+@end
+
+@interface BetResponse_Builder()
+@property (retain) BetResponse* result;
+@end
+
+@implementation BetResponse_Builder
+@synthesize result;
+- (void) dealloc {
+  self.result = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.result = [[[BetResponse alloc] init] autorelease];
+  }
+  return self;
+}
+- (PBGeneratedMessage*) internalGetResult {
+  return result;
+}
+- (BetResponse_Builder*) clear {
+  self.result = [[[BetResponse alloc] init] autorelease];
+  return self;
+}
+- (BetResponse_Builder*) clone {
+  return [BetResponse builderWithPrototype:result];
+}
+- (BetResponse*) defaultInstance {
+  return [BetResponse defaultInstance];
+}
+- (BetResponse*) build {
+  [self checkInitialized];
+  return [self buildPartial];
+}
+- (BetResponse*) buildPartial {
+  BetResponse* returnMe = [[result retain] autorelease];
+  self.result = nil;
+  return returnMe;
+}
+- (BetResponse_Builder*) mergeFrom:(BetResponse*) other {
+  if (other == [BetResponse defaultInstance]) {
+    return self;
+  }
+  [self mergeUnknownFields:other.unknownFields];
+  return self;
+}
+- (BetResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
+  return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
+}
+- (BetResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
+  while (YES) {
+    int32_t tag = [input readTag];
+    switch (tag) {
+      case 0:
+        [self setUnknownFields:[unknownFields build]];
+        return self;
+      default: {
+        if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
+          [self setUnknownFields:[unknownFields build]];
+          return self;
+        }
+        break;
+      }
+    }
+  }
+}
+@end
+
+@interface CheckCardRequest ()
+@end
+
+@implementation CheckCardRequest
+
+- (void) dealloc {
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+  }
+  return self;
+}
+static CheckCardRequest* defaultCheckCardRequestInstance = nil;
++ (void) initialize {
+  if (self == [CheckCardRequest class]) {
+    defaultCheckCardRequestInstance = [[CheckCardRequest alloc] init];
+  }
+}
++ (CheckCardRequest*) defaultInstance {
+  return defaultCheckCardRequestInstance;
+}
+- (CheckCardRequest*) defaultInstance {
+  return defaultCheckCardRequestInstance;
+}
+- (BOOL) isInitialized {
+  return YES;
+}
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
+  [self.unknownFields writeToCodedOutputStream:output];
+}
+- (int32_t) serializedSize {
+  int32_t size = memoizedSerializedSize;
+  if (size != -1) {
+    return size;
+  }
+
+  size = 0;
+  size += self.unknownFields.serializedSize;
+  memoizedSerializedSize = size;
+  return size;
+}
++ (CheckCardRequest*) parseFromData:(NSData*) data {
+  return (CheckCardRequest*)[[[CheckCardRequest builder] mergeFromData:data] build];
+}
++ (CheckCardRequest*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (CheckCardRequest*)[[[CheckCardRequest builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+}
++ (CheckCardRequest*) parseFromInputStream:(NSInputStream*) input {
+  return (CheckCardRequest*)[[[CheckCardRequest builder] mergeFromInputStream:input] build];
+}
++ (CheckCardRequest*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (CheckCardRequest*)[[[CheckCardRequest builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (CheckCardRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input {
+  return (CheckCardRequest*)[[[CheckCardRequest builder] mergeFromCodedInputStream:input] build];
+}
++ (CheckCardRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (CheckCardRequest*)[[[CheckCardRequest builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (CheckCardRequest_Builder*) builder {
+  return [[[CheckCardRequest_Builder alloc] init] autorelease];
+}
++ (CheckCardRequest_Builder*) builderWithPrototype:(CheckCardRequest*) prototype {
+  return [[CheckCardRequest builder] mergeFrom:prototype];
+}
+- (CheckCardRequest_Builder*) builder {
+  return [CheckCardRequest builder];
+}
+@end
+
+@interface CheckCardRequest_Builder()
+@property (retain) CheckCardRequest* result;
+@end
+
+@implementation CheckCardRequest_Builder
+@synthesize result;
+- (void) dealloc {
+  self.result = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.result = [[[CheckCardRequest alloc] init] autorelease];
+  }
+  return self;
+}
+- (PBGeneratedMessage*) internalGetResult {
+  return result;
+}
+- (CheckCardRequest_Builder*) clear {
+  self.result = [[[CheckCardRequest alloc] init] autorelease];
+  return self;
+}
+- (CheckCardRequest_Builder*) clone {
+  return [CheckCardRequest builderWithPrototype:result];
+}
+- (CheckCardRequest*) defaultInstance {
+  return [CheckCardRequest defaultInstance];
+}
+- (CheckCardRequest*) build {
+  [self checkInitialized];
+  return [self buildPartial];
+}
+- (CheckCardRequest*) buildPartial {
+  CheckCardRequest* returnMe = [[result retain] autorelease];
+  self.result = nil;
+  return returnMe;
+}
+- (CheckCardRequest_Builder*) mergeFrom:(CheckCardRequest*) other {
+  if (other == [CheckCardRequest defaultInstance]) {
+    return self;
+  }
+  [self mergeUnknownFields:other.unknownFields];
+  return self;
+}
+- (CheckCardRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
+  return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
+}
+- (CheckCardRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
+  while (YES) {
+    int32_t tag = [input readTag];
+    switch (tag) {
+      case 0:
+        [self setUnknownFields:[unknownFields build]];
+        return self;
+      default: {
+        if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
+          [self setUnknownFields:[unknownFields build]];
+          return self;
+        }
+        break;
+      }
+    }
+  }
+}
+@end
+
+@interface CheckCardResponse ()
+@end
+
+@implementation CheckCardResponse
+
+- (void) dealloc {
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+  }
+  return self;
+}
+static CheckCardResponse* defaultCheckCardResponseInstance = nil;
++ (void) initialize {
+  if (self == [CheckCardResponse class]) {
+    defaultCheckCardResponseInstance = [[CheckCardResponse alloc] init];
+  }
+}
++ (CheckCardResponse*) defaultInstance {
+  return defaultCheckCardResponseInstance;
+}
+- (CheckCardResponse*) defaultInstance {
+  return defaultCheckCardResponseInstance;
+}
+- (BOOL) isInitialized {
+  return YES;
+}
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
+  [self.unknownFields writeToCodedOutputStream:output];
+}
+- (int32_t) serializedSize {
+  int32_t size = memoizedSerializedSize;
+  if (size != -1) {
+    return size;
+  }
+
+  size = 0;
+  size += self.unknownFields.serializedSize;
+  memoizedSerializedSize = size;
+  return size;
+}
++ (CheckCardResponse*) parseFromData:(NSData*) data {
+  return (CheckCardResponse*)[[[CheckCardResponse builder] mergeFromData:data] build];
+}
++ (CheckCardResponse*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (CheckCardResponse*)[[[CheckCardResponse builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+}
++ (CheckCardResponse*) parseFromInputStream:(NSInputStream*) input {
+  return (CheckCardResponse*)[[[CheckCardResponse builder] mergeFromInputStream:input] build];
+}
++ (CheckCardResponse*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (CheckCardResponse*)[[[CheckCardResponse builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (CheckCardResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input {
+  return (CheckCardResponse*)[[[CheckCardResponse builder] mergeFromCodedInputStream:input] build];
+}
++ (CheckCardResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (CheckCardResponse*)[[[CheckCardResponse builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (CheckCardResponse_Builder*) builder {
+  return [[[CheckCardResponse_Builder alloc] init] autorelease];
+}
++ (CheckCardResponse_Builder*) builderWithPrototype:(CheckCardResponse*) prototype {
+  return [[CheckCardResponse builder] mergeFrom:prototype];
+}
+- (CheckCardResponse_Builder*) builder {
+  return [CheckCardResponse builder];
+}
+@end
+
+@interface CheckCardResponse_Builder()
+@property (retain) CheckCardResponse* result;
+@end
+
+@implementation CheckCardResponse_Builder
+@synthesize result;
+- (void) dealloc {
+  self.result = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.result = [[[CheckCardResponse alloc] init] autorelease];
+  }
+  return self;
+}
+- (PBGeneratedMessage*) internalGetResult {
+  return result;
+}
+- (CheckCardResponse_Builder*) clear {
+  self.result = [[[CheckCardResponse alloc] init] autorelease];
+  return self;
+}
+- (CheckCardResponse_Builder*) clone {
+  return [CheckCardResponse builderWithPrototype:result];
+}
+- (CheckCardResponse*) defaultInstance {
+  return [CheckCardResponse defaultInstance];
+}
+- (CheckCardResponse*) build {
+  [self checkInitialized];
+  return [self buildPartial];
+}
+- (CheckCardResponse*) buildPartial {
+  CheckCardResponse* returnMe = [[result retain] autorelease];
+  self.result = nil;
+  return returnMe;
+}
+- (CheckCardResponse_Builder*) mergeFrom:(CheckCardResponse*) other {
+  if (other == [CheckCardResponse defaultInstance]) {
+    return self;
+  }
+  [self mergeUnknownFields:other.unknownFields];
+  return self;
+}
+- (CheckCardResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
+  return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
+}
+- (CheckCardResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
+  while (YES) {
+    int32_t tag = [input readTag];
+    switch (tag) {
+      case 0:
+        [self setUnknownFields:[unknownFields build]];
+        return self;
+      default: {
+        if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
+          [self setUnknownFields:[unknownFields build]];
+          return self;
+        }
+        break;
+      }
+    }
+  }
+}
+@end
+
+@interface FoldCardRequest ()
+@end
+
+@implementation FoldCardRequest
+
+- (void) dealloc {
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+  }
+  return self;
+}
+static FoldCardRequest* defaultFoldCardRequestInstance = nil;
++ (void) initialize {
+  if (self == [FoldCardRequest class]) {
+    defaultFoldCardRequestInstance = [[FoldCardRequest alloc] init];
+  }
+}
++ (FoldCardRequest*) defaultInstance {
+  return defaultFoldCardRequestInstance;
+}
+- (FoldCardRequest*) defaultInstance {
+  return defaultFoldCardRequestInstance;
+}
+- (BOOL) isInitialized {
+  return YES;
+}
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
+  [self.unknownFields writeToCodedOutputStream:output];
+}
+- (int32_t) serializedSize {
+  int32_t size = memoizedSerializedSize;
+  if (size != -1) {
+    return size;
+  }
+
+  size = 0;
+  size += self.unknownFields.serializedSize;
+  memoizedSerializedSize = size;
+  return size;
+}
++ (FoldCardRequest*) parseFromData:(NSData*) data {
+  return (FoldCardRequest*)[[[FoldCardRequest builder] mergeFromData:data] build];
+}
++ (FoldCardRequest*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (FoldCardRequest*)[[[FoldCardRequest builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+}
++ (FoldCardRequest*) parseFromInputStream:(NSInputStream*) input {
+  return (FoldCardRequest*)[[[FoldCardRequest builder] mergeFromInputStream:input] build];
+}
++ (FoldCardRequest*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (FoldCardRequest*)[[[FoldCardRequest builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (FoldCardRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input {
+  return (FoldCardRequest*)[[[FoldCardRequest builder] mergeFromCodedInputStream:input] build];
+}
++ (FoldCardRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (FoldCardRequest*)[[[FoldCardRequest builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (FoldCardRequest_Builder*) builder {
+  return [[[FoldCardRequest_Builder alloc] init] autorelease];
+}
++ (FoldCardRequest_Builder*) builderWithPrototype:(FoldCardRequest*) prototype {
+  return [[FoldCardRequest builder] mergeFrom:prototype];
+}
+- (FoldCardRequest_Builder*) builder {
+  return [FoldCardRequest builder];
+}
+@end
+
+@interface FoldCardRequest_Builder()
+@property (retain) FoldCardRequest* result;
+@end
+
+@implementation FoldCardRequest_Builder
+@synthesize result;
+- (void) dealloc {
+  self.result = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.result = [[[FoldCardRequest alloc] init] autorelease];
+  }
+  return self;
+}
+- (PBGeneratedMessage*) internalGetResult {
+  return result;
+}
+- (FoldCardRequest_Builder*) clear {
+  self.result = [[[FoldCardRequest alloc] init] autorelease];
+  return self;
+}
+- (FoldCardRequest_Builder*) clone {
+  return [FoldCardRequest builderWithPrototype:result];
+}
+- (FoldCardRequest*) defaultInstance {
+  return [FoldCardRequest defaultInstance];
+}
+- (FoldCardRequest*) build {
+  [self checkInitialized];
+  return [self buildPartial];
+}
+- (FoldCardRequest*) buildPartial {
+  FoldCardRequest* returnMe = [[result retain] autorelease];
+  self.result = nil;
+  return returnMe;
+}
+- (FoldCardRequest_Builder*) mergeFrom:(FoldCardRequest*) other {
+  if (other == [FoldCardRequest defaultInstance]) {
+    return self;
+  }
+  [self mergeUnknownFields:other.unknownFields];
+  return self;
+}
+- (FoldCardRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
+  return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
+}
+- (FoldCardRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
+  while (YES) {
+    int32_t tag = [input readTag];
+    switch (tag) {
+      case 0:
+        [self setUnknownFields:[unknownFields build]];
+        return self;
+      default: {
+        if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
+          [self setUnknownFields:[unknownFields build]];
+          return self;
+        }
+        break;
+      }
+    }
+  }
+}
+@end
+
+@interface FoldCardResponse ()
+@end
+
+@implementation FoldCardResponse
+
+- (void) dealloc {
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+  }
+  return self;
+}
+static FoldCardResponse* defaultFoldCardResponseInstance = nil;
++ (void) initialize {
+  if (self == [FoldCardResponse class]) {
+    defaultFoldCardResponseInstance = [[FoldCardResponse alloc] init];
+  }
+}
++ (FoldCardResponse*) defaultInstance {
+  return defaultFoldCardResponseInstance;
+}
+- (FoldCardResponse*) defaultInstance {
+  return defaultFoldCardResponseInstance;
+}
+- (BOOL) isInitialized {
+  return YES;
+}
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
+  [self.unknownFields writeToCodedOutputStream:output];
+}
+- (int32_t) serializedSize {
+  int32_t size = memoizedSerializedSize;
+  if (size != -1) {
+    return size;
+  }
+
+  size = 0;
+  size += self.unknownFields.serializedSize;
+  memoizedSerializedSize = size;
+  return size;
+}
++ (FoldCardResponse*) parseFromData:(NSData*) data {
+  return (FoldCardResponse*)[[[FoldCardResponse builder] mergeFromData:data] build];
+}
++ (FoldCardResponse*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (FoldCardResponse*)[[[FoldCardResponse builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+}
++ (FoldCardResponse*) parseFromInputStream:(NSInputStream*) input {
+  return (FoldCardResponse*)[[[FoldCardResponse builder] mergeFromInputStream:input] build];
+}
++ (FoldCardResponse*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (FoldCardResponse*)[[[FoldCardResponse builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (FoldCardResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input {
+  return (FoldCardResponse*)[[[FoldCardResponse builder] mergeFromCodedInputStream:input] build];
+}
++ (FoldCardResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (FoldCardResponse*)[[[FoldCardResponse builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (FoldCardResponse_Builder*) builder {
+  return [[[FoldCardResponse_Builder alloc] init] autorelease];
+}
++ (FoldCardResponse_Builder*) builderWithPrototype:(FoldCardResponse*) prototype {
+  return [[FoldCardResponse builder] mergeFrom:prototype];
+}
+- (FoldCardResponse_Builder*) builder {
+  return [FoldCardResponse builder];
+}
+@end
+
+@interface FoldCardResponse_Builder()
+@property (retain) FoldCardResponse* result;
+@end
+
+@implementation FoldCardResponse_Builder
+@synthesize result;
+- (void) dealloc {
+  self.result = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.result = [[[FoldCardResponse alloc] init] autorelease];
+  }
+  return self;
+}
+- (PBGeneratedMessage*) internalGetResult {
+  return result;
+}
+- (FoldCardResponse_Builder*) clear {
+  self.result = [[[FoldCardResponse alloc] init] autorelease];
+  return self;
+}
+- (FoldCardResponse_Builder*) clone {
+  return [FoldCardResponse builderWithPrototype:result];
+}
+- (FoldCardResponse*) defaultInstance {
+  return [FoldCardResponse defaultInstance];
+}
+- (FoldCardResponse*) build {
+  [self checkInitialized];
+  return [self buildPartial];
+}
+- (FoldCardResponse*) buildPartial {
+  FoldCardResponse* returnMe = [[result retain] autorelease];
+  self.result = nil;
+  return returnMe;
+}
+- (FoldCardResponse_Builder*) mergeFrom:(FoldCardResponse*) other {
+  if (other == [FoldCardResponse defaultInstance]) {
+    return self;
+  }
+  [self mergeUnknownFields:other.unknownFields];
+  return self;
+}
+- (FoldCardResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
+  return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
+}
+- (FoldCardResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
+  while (YES) {
+    int32_t tag = [input readTag];
+    switch (tag) {
+      case 0:
+        [self setUnknownFields:[unknownFields build]];
+        return self;
+      default: {
+        if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
+          [self setUnknownFields:[unknownFields build]];
+          return self;
+        }
+        break;
+      }
+    }
+  }
+}
+@end
+
+@interface ShowCardRequest ()
+@property (retain) NSMutableArray* mutableCardIdsList;
+@end
+
+@implementation ShowCardRequest
+
+@synthesize mutableCardIdsList;
+- (void) dealloc {
+  self.mutableCardIdsList = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+  }
+  return self;
+}
+static ShowCardRequest* defaultShowCardRequestInstance = nil;
++ (void) initialize {
+  if (self == [ShowCardRequest class]) {
+    defaultShowCardRequestInstance = [[ShowCardRequest alloc] init];
+  }
+}
++ (ShowCardRequest*) defaultInstance {
+  return defaultShowCardRequestInstance;
+}
+- (ShowCardRequest*) defaultInstance {
+  return defaultShowCardRequestInstance;
+}
+- (NSArray*) cardIdsList {
+  return mutableCardIdsList;
+}
+- (int32_t) cardIdsAtIndex:(int32_t) index {
+  id value = [mutableCardIdsList objectAtIndex:index];
+  return [value intValue];
+}
+- (BOOL) isInitialized {
+  return YES;
+}
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
+  if (self.mutableCardIdsList.count > 0) {
+    [output writeRawVarint32:10];
+    [output writeRawVarint32:cardIdsMemoizedSerializedSize];
+  }
+  for (NSNumber* value in self.mutableCardIdsList) {
+    [output writeInt32NoTag:[value intValue]];
+  }
+  [self.unknownFields writeToCodedOutputStream:output];
+}
+- (int32_t) serializedSize {
+  int32_t size = memoizedSerializedSize;
+  if (size != -1) {
+    return size;
+  }
+
+  size = 0;
+  {
+    int32_t dataSize = 0;
+    for (NSNumber* value in self.mutableCardIdsList) {
+      dataSize += computeInt32SizeNoTag([value intValue]);
+    }
+    size += dataSize;
+    if (self.mutableCardIdsList.count > 0) {
+      size += 1;
+      size += computeInt32SizeNoTag(dataSize);
+    }
+    cardIdsMemoizedSerializedSize = dataSize;
+  }
+  size += self.unknownFields.serializedSize;
+  memoizedSerializedSize = size;
+  return size;
+}
++ (ShowCardRequest*) parseFromData:(NSData*) data {
+  return (ShowCardRequest*)[[[ShowCardRequest builder] mergeFromData:data] build];
+}
++ (ShowCardRequest*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (ShowCardRequest*)[[[ShowCardRequest builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+}
++ (ShowCardRequest*) parseFromInputStream:(NSInputStream*) input {
+  return (ShowCardRequest*)[[[ShowCardRequest builder] mergeFromInputStream:input] build];
+}
++ (ShowCardRequest*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (ShowCardRequest*)[[[ShowCardRequest builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (ShowCardRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input {
+  return (ShowCardRequest*)[[[ShowCardRequest builder] mergeFromCodedInputStream:input] build];
+}
++ (ShowCardRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (ShowCardRequest*)[[[ShowCardRequest builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (ShowCardRequest_Builder*) builder {
+  return [[[ShowCardRequest_Builder alloc] init] autorelease];
+}
++ (ShowCardRequest_Builder*) builderWithPrototype:(ShowCardRequest*) prototype {
+  return [[ShowCardRequest builder] mergeFrom:prototype];
+}
+- (ShowCardRequest_Builder*) builder {
+  return [ShowCardRequest builder];
+}
+@end
+
+@interface ShowCardRequest_Builder()
+@property (retain) ShowCardRequest* result;
+@end
+
+@implementation ShowCardRequest_Builder
+@synthesize result;
+- (void) dealloc {
+  self.result = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.result = [[[ShowCardRequest alloc] init] autorelease];
+  }
+  return self;
+}
+- (PBGeneratedMessage*) internalGetResult {
+  return result;
+}
+- (ShowCardRequest_Builder*) clear {
+  self.result = [[[ShowCardRequest alloc] init] autorelease];
+  return self;
+}
+- (ShowCardRequest_Builder*) clone {
+  return [ShowCardRequest builderWithPrototype:result];
+}
+- (ShowCardRequest*) defaultInstance {
+  return [ShowCardRequest defaultInstance];
+}
+- (ShowCardRequest*) build {
+  [self checkInitialized];
+  return [self buildPartial];
+}
+- (ShowCardRequest*) buildPartial {
+  ShowCardRequest* returnMe = [[result retain] autorelease];
+  self.result = nil;
+  return returnMe;
+}
+- (ShowCardRequest_Builder*) mergeFrom:(ShowCardRequest*) other {
+  if (other == [ShowCardRequest defaultInstance]) {
+    return self;
+  }
+  if (other.mutableCardIdsList.count > 0) {
+    if (result.mutableCardIdsList == nil) {
+      result.mutableCardIdsList = [NSMutableArray array];
+    }
+    [result.mutableCardIdsList addObjectsFromArray:other.mutableCardIdsList];
+  }
+  [self mergeUnknownFields:other.unknownFields];
+  return self;
+}
+- (ShowCardRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
+  return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
+}
+- (ShowCardRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
+  while (YES) {
+    int32_t tag = [input readTag];
+    switch (tag) {
+      case 0:
+        [self setUnknownFields:[unknownFields build]];
+        return self;
+      default: {
+        if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
+          [self setUnknownFields:[unknownFields build]];
+          return self;
+        }
+        break;
+      }
+      case 10: {
+        int32_t length = [input readRawVarint32];
+        int32_t limit = [input pushLimit:length];
+        while (input.bytesUntilLimit > 0) {
+          [self addCardIds:[input readInt32]];
+        }
+        [input popLimit:limit];
+        break;
+      }
+    }
+  }
+}
+- (NSArray*) cardIdsList {
+  if (result.mutableCardIdsList == nil) {
+    return [NSArray array];
+  }
+  return result.mutableCardIdsList;
+}
+- (int32_t) cardIdsAtIndex:(int32_t) index {
+  return [result cardIdsAtIndex:index];
+}
+- (ShowCardRequest_Builder*) replaceCardIdsAtIndex:(int32_t) index with:(int32_t) value {
+  [result.mutableCardIdsList replaceObjectAtIndex:index withObject:[NSNumber numberWithInt:value]];
+  return self;
+}
+- (ShowCardRequest_Builder*) addCardIds:(int32_t) value {
+  if (result.mutableCardIdsList == nil) {
+    result.mutableCardIdsList = [NSMutableArray array];
+  }
+  [result.mutableCardIdsList addObject:[NSNumber numberWithInt:value]];
+  return self;
+}
+- (ShowCardRequest_Builder*) addAllCardIds:(NSArray*) values {
+  if (result.mutableCardIdsList == nil) {
+    result.mutableCardIdsList = [NSMutableArray array];
+  }
+  [result.mutableCardIdsList addObjectsFromArray:values];
+  return self;
+}
+- (ShowCardRequest_Builder*) clearCardIdsList {
+  result.mutableCardIdsList = nil;
+  return self;
+}
+@end
+
+@interface ShowCardResponse ()
+@end
+
+@implementation ShowCardResponse
+
+- (void) dealloc {
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+  }
+  return self;
+}
+static ShowCardResponse* defaultShowCardResponseInstance = nil;
++ (void) initialize {
+  if (self == [ShowCardResponse class]) {
+    defaultShowCardResponseInstance = [[ShowCardResponse alloc] init];
+  }
+}
++ (ShowCardResponse*) defaultInstance {
+  return defaultShowCardResponseInstance;
+}
+- (ShowCardResponse*) defaultInstance {
+  return defaultShowCardResponseInstance;
+}
+- (BOOL) isInitialized {
+  return YES;
+}
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
+  [self.unknownFields writeToCodedOutputStream:output];
+}
+- (int32_t) serializedSize {
+  int32_t size = memoizedSerializedSize;
+  if (size != -1) {
+    return size;
+  }
+
+  size = 0;
+  size += self.unknownFields.serializedSize;
+  memoizedSerializedSize = size;
+  return size;
+}
++ (ShowCardResponse*) parseFromData:(NSData*) data {
+  return (ShowCardResponse*)[[[ShowCardResponse builder] mergeFromData:data] build];
+}
++ (ShowCardResponse*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (ShowCardResponse*)[[[ShowCardResponse builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+}
++ (ShowCardResponse*) parseFromInputStream:(NSInputStream*) input {
+  return (ShowCardResponse*)[[[ShowCardResponse builder] mergeFromInputStream:input] build];
+}
++ (ShowCardResponse*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (ShowCardResponse*)[[[ShowCardResponse builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (ShowCardResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input {
+  return (ShowCardResponse*)[[[ShowCardResponse builder] mergeFromCodedInputStream:input] build];
+}
++ (ShowCardResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (ShowCardResponse*)[[[ShowCardResponse builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (ShowCardResponse_Builder*) builder {
+  return [[[ShowCardResponse_Builder alloc] init] autorelease];
+}
++ (ShowCardResponse_Builder*) builderWithPrototype:(ShowCardResponse*) prototype {
+  return [[ShowCardResponse builder] mergeFrom:prototype];
+}
+- (ShowCardResponse_Builder*) builder {
+  return [ShowCardResponse builder];
+}
+@end
+
+@interface ShowCardResponse_Builder()
+@property (retain) ShowCardResponse* result;
+@end
+
+@implementation ShowCardResponse_Builder
+@synthesize result;
+- (void) dealloc {
+  self.result = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.result = [[[ShowCardResponse alloc] init] autorelease];
+  }
+  return self;
+}
+- (PBGeneratedMessage*) internalGetResult {
+  return result;
+}
+- (ShowCardResponse_Builder*) clear {
+  self.result = [[[ShowCardResponse alloc] init] autorelease];
+  return self;
+}
+- (ShowCardResponse_Builder*) clone {
+  return [ShowCardResponse builderWithPrototype:result];
+}
+- (ShowCardResponse*) defaultInstance {
+  return [ShowCardResponse defaultInstance];
+}
+- (ShowCardResponse*) build {
+  [self checkInitialized];
+  return [self buildPartial];
+}
+- (ShowCardResponse*) buildPartial {
+  ShowCardResponse* returnMe = [[result retain] autorelease];
+  self.result = nil;
+  return returnMe;
+}
+- (ShowCardResponse_Builder*) mergeFrom:(ShowCardResponse*) other {
+  if (other == [ShowCardResponse defaultInstance]) {
+    return self;
+  }
+  [self mergeUnknownFields:other.unknownFields];
+  return self;
+}
+- (ShowCardResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
+  return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
+}
+- (ShowCardResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
+  while (YES) {
+    int32_t tag = [input readTag];
+    switch (tag) {
+      case 0:
+        [self setUnknownFields:[unknownFields build]];
+        return self;
+      default: {
+        if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
+          [self setUnknownFields:[unknownFields build]];
+          return self;
+        }
+        break;
+      }
+    }
+  }
+}
+@end
+
+@interface CompareCardRequest ()
+@property (retain) NSString* toUserId;
+@end
+
+@implementation CompareCardRequest
+
+- (BOOL) hasToUserId {
+  return !!hasToUserId_;
+}
+- (void) setHasToUserId:(BOOL) value {
+  hasToUserId_ = !!value;
+}
+@synthesize toUserId;
+- (void) dealloc {
+  self.toUserId = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.toUserId = @"";
+  }
+  return self;
+}
+static CompareCardRequest* defaultCompareCardRequestInstance = nil;
++ (void) initialize {
+  if (self == [CompareCardRequest class]) {
+    defaultCompareCardRequestInstance = [[CompareCardRequest alloc] init];
+  }
+}
++ (CompareCardRequest*) defaultInstance {
+  return defaultCompareCardRequestInstance;
+}
+- (CompareCardRequest*) defaultInstance {
+  return defaultCompareCardRequestInstance;
+}
+- (BOOL) isInitialized {
+  if (!self.hasToUserId) {
+    return NO;
+  }
+  return YES;
+}
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
+  if (self.hasToUserId) {
+    [output writeString:1 value:self.toUserId];
+  }
+  [self.unknownFields writeToCodedOutputStream:output];
+}
+- (int32_t) serializedSize {
+  int32_t size = memoizedSerializedSize;
+  if (size != -1) {
+    return size;
+  }
+
+  size = 0;
+  if (self.hasToUserId) {
+    size += computeStringSize(1, self.toUserId);
+  }
+  size += self.unknownFields.serializedSize;
+  memoizedSerializedSize = size;
+  return size;
+}
++ (CompareCardRequest*) parseFromData:(NSData*) data {
+  return (CompareCardRequest*)[[[CompareCardRequest builder] mergeFromData:data] build];
+}
++ (CompareCardRequest*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (CompareCardRequest*)[[[CompareCardRequest builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+}
++ (CompareCardRequest*) parseFromInputStream:(NSInputStream*) input {
+  return (CompareCardRequest*)[[[CompareCardRequest builder] mergeFromInputStream:input] build];
+}
++ (CompareCardRequest*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (CompareCardRequest*)[[[CompareCardRequest builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (CompareCardRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input {
+  return (CompareCardRequest*)[[[CompareCardRequest builder] mergeFromCodedInputStream:input] build];
+}
++ (CompareCardRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (CompareCardRequest*)[[[CompareCardRequest builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (CompareCardRequest_Builder*) builder {
+  return [[[CompareCardRequest_Builder alloc] init] autorelease];
+}
++ (CompareCardRequest_Builder*) builderWithPrototype:(CompareCardRequest*) prototype {
+  return [[CompareCardRequest builder] mergeFrom:prototype];
+}
+- (CompareCardRequest_Builder*) builder {
+  return [CompareCardRequest builder];
+}
+@end
+
+@interface CompareCardRequest_Builder()
+@property (retain) CompareCardRequest* result;
+@end
+
+@implementation CompareCardRequest_Builder
+@synthesize result;
+- (void) dealloc {
+  self.result = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.result = [[[CompareCardRequest alloc] init] autorelease];
+  }
+  return self;
+}
+- (PBGeneratedMessage*) internalGetResult {
+  return result;
+}
+- (CompareCardRequest_Builder*) clear {
+  self.result = [[[CompareCardRequest alloc] init] autorelease];
+  return self;
+}
+- (CompareCardRequest_Builder*) clone {
+  return [CompareCardRequest builderWithPrototype:result];
+}
+- (CompareCardRequest*) defaultInstance {
+  return [CompareCardRequest defaultInstance];
+}
+- (CompareCardRequest*) build {
+  [self checkInitialized];
+  return [self buildPartial];
+}
+- (CompareCardRequest*) buildPartial {
+  CompareCardRequest* returnMe = [[result retain] autorelease];
+  self.result = nil;
+  return returnMe;
+}
+- (CompareCardRequest_Builder*) mergeFrom:(CompareCardRequest*) other {
+  if (other == [CompareCardRequest defaultInstance]) {
+    return self;
+  }
+  if (other.hasToUserId) {
+    [self setToUserId:other.toUserId];
+  }
+  [self mergeUnknownFields:other.unknownFields];
+  return self;
+}
+- (CompareCardRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
+  return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
+}
+- (CompareCardRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
+  while (YES) {
+    int32_t tag = [input readTag];
+    switch (tag) {
+      case 0:
+        [self setUnknownFields:[unknownFields build]];
+        return self;
+      default: {
+        if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
+          [self setUnknownFields:[unknownFields build]];
+          return self;
+        }
+        break;
+      }
+      case 10: {
+        [self setToUserId:[input readString]];
+        break;
+      }
+    }
+  }
+}
+- (BOOL) hasToUserId {
+  return result.hasToUserId;
+}
+- (NSString*) toUserId {
+  return result.toUserId;
+}
+- (CompareCardRequest_Builder*) setToUserId:(NSString*) value {
+  result.hasToUserId = YES;
+  result.toUserId = value;
+  return self;
+}
+- (CompareCardRequest_Builder*) clearToUserId {
+  result.hasToUserId = NO;
+  result.toUserId = @"";
+  return self;
+}
+@end
+
+@interface CompareCardResponse ()
+@property (retain) NSMutableArray* mutableUserResultList;
+@end
+
+@implementation CompareCardResponse
+
+@synthesize mutableUserResultList;
+- (void) dealloc {
+  self.mutableUserResultList = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+  }
+  return self;
+}
+static CompareCardResponse* defaultCompareCardResponseInstance = nil;
++ (void) initialize {
+  if (self == [CompareCardResponse class]) {
+    defaultCompareCardResponseInstance = [[CompareCardResponse alloc] init];
+  }
+}
++ (CompareCardResponse*) defaultInstance {
+  return defaultCompareCardResponseInstance;
+}
+- (CompareCardResponse*) defaultInstance {
+  return defaultCompareCardResponseInstance;
+}
+- (NSArray*) userResultList {
+  return mutableUserResultList;
+}
+- (PBUserResult*) userResultAtIndex:(int32_t) index {
+  id value = [mutableUserResultList objectAtIndex:index];
+  return value;
+}
+- (BOOL) isInitialized {
+  for (PBUserResult* element in self.userResultList) {
+    if (!element.isInitialized) {
+      return NO;
+    }
+  }
+  return YES;
+}
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
+  for (PBUserResult* element in self.userResultList) {
+    [output writeMessage:2 value:element];
+  }
+  [self.unknownFields writeToCodedOutputStream:output];
+}
+- (int32_t) serializedSize {
+  int32_t size = memoizedSerializedSize;
+  if (size != -1) {
+    return size;
+  }
+
+  size = 0;
+  for (PBUserResult* element in self.userResultList) {
+    size += computeMessageSize(2, element);
+  }
+  size += self.unknownFields.serializedSize;
+  memoizedSerializedSize = size;
+  return size;
+}
++ (CompareCardResponse*) parseFromData:(NSData*) data {
+  return (CompareCardResponse*)[[[CompareCardResponse builder] mergeFromData:data] build];
+}
++ (CompareCardResponse*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (CompareCardResponse*)[[[CompareCardResponse builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+}
++ (CompareCardResponse*) parseFromInputStream:(NSInputStream*) input {
+  return (CompareCardResponse*)[[[CompareCardResponse builder] mergeFromInputStream:input] build];
+}
++ (CompareCardResponse*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (CompareCardResponse*)[[[CompareCardResponse builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (CompareCardResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input {
+  return (CompareCardResponse*)[[[CompareCardResponse builder] mergeFromCodedInputStream:input] build];
+}
++ (CompareCardResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (CompareCardResponse*)[[[CompareCardResponse builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (CompareCardResponse_Builder*) builder {
+  return [[[CompareCardResponse_Builder alloc] init] autorelease];
+}
++ (CompareCardResponse_Builder*) builderWithPrototype:(CompareCardResponse*) prototype {
+  return [[CompareCardResponse builder] mergeFrom:prototype];
+}
+- (CompareCardResponse_Builder*) builder {
+  return [CompareCardResponse builder];
+}
+@end
+
+@interface CompareCardResponse_Builder()
+@property (retain) CompareCardResponse* result;
+@end
+
+@implementation CompareCardResponse_Builder
+@synthesize result;
+- (void) dealloc {
+  self.result = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.result = [[[CompareCardResponse alloc] init] autorelease];
+  }
+  return self;
+}
+- (PBGeneratedMessage*) internalGetResult {
+  return result;
+}
+- (CompareCardResponse_Builder*) clear {
+  self.result = [[[CompareCardResponse alloc] init] autorelease];
+  return self;
+}
+- (CompareCardResponse_Builder*) clone {
+  return [CompareCardResponse builderWithPrototype:result];
+}
+- (CompareCardResponse*) defaultInstance {
+  return [CompareCardResponse defaultInstance];
+}
+- (CompareCardResponse*) build {
+  [self checkInitialized];
+  return [self buildPartial];
+}
+- (CompareCardResponse*) buildPartial {
+  CompareCardResponse* returnMe = [[result retain] autorelease];
+  self.result = nil;
+  return returnMe;
+}
+- (CompareCardResponse_Builder*) mergeFrom:(CompareCardResponse*) other {
+  if (other == [CompareCardResponse defaultInstance]) {
+    return self;
+  }
+  if (other.mutableUserResultList.count > 0) {
+    if (result.mutableUserResultList == nil) {
+      result.mutableUserResultList = [NSMutableArray array];
+    }
+    [result.mutableUserResultList addObjectsFromArray:other.mutableUserResultList];
+  }
+  [self mergeUnknownFields:other.unknownFields];
+  return self;
+}
+- (CompareCardResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
+  return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
+}
+- (CompareCardResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
+  while (YES) {
+    int32_t tag = [input readTag];
+    switch (tag) {
+      case 0:
+        [self setUnknownFields:[unknownFields build]];
+        return self;
+      default: {
+        if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
+          [self setUnknownFields:[unknownFields build]];
+          return self;
+        }
+        break;
+      }
+      case 18: {
+        PBUserResult_Builder* subBuilder = [PBUserResult builder];
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self addUserResult:[subBuilder buildPartial]];
+        break;
+      }
+    }
+  }
+}
+- (NSArray*) userResultList {
+  if (result.mutableUserResultList == nil) { return [NSArray array]; }
+  return result.mutableUserResultList;
+}
+- (PBUserResult*) userResultAtIndex:(int32_t) index {
+  return [result userResultAtIndex:index];
+}
+- (CompareCardResponse_Builder*) replaceUserResultAtIndex:(int32_t) index with:(PBUserResult*) value {
+  [result.mutableUserResultList replaceObjectAtIndex:index withObject:value];
+  return self;
+}
+- (CompareCardResponse_Builder*) addAllUserResult:(NSArray*) values {
+  if (result.mutableUserResultList == nil) {
+    result.mutableUserResultList = [NSMutableArray array];
+  }
+  [result.mutableUserResultList addObjectsFromArray:values];
+  return self;
+}
+- (CompareCardResponse_Builder*) clearUserResultList {
+  result.mutableUserResultList = nil;
+  return self;
+}
+- (CompareCardResponse_Builder*) addUserResult:(PBUserResult*) value {
+  if (result.mutableUserResultList == nil) {
+    result.mutableUserResultList = [NSMutableArray array];
+  }
+  [result.mutableUserResultList addObject:value];
+  return self;
+}
+@end
+
 @interface JoinGameRequest ()
 @property (retain) NSString* userId;
 @property (retain) NSString* gameId;
@@ -4935,6 +6639,7 @@ static JoinGameRequest* defaultJoinGameRequestInstance = nil;
 
 @interface JoinGameResponse ()
 @property (retain) PBGameSession* gameSession;
+@property (retain) PBZJHGameState* zjhGameState;
 @end
 
 @implementation JoinGameResponse
@@ -4946,13 +6651,22 @@ static JoinGameRequest* defaultJoinGameRequestInstance = nil;
   hasGameSession_ = !!value;
 }
 @synthesize gameSession;
+- (BOOL) hasZjhGameState {
+  return !!hasZjhGameState_;
+}
+- (void) setHasZjhGameState:(BOOL) value {
+  hasZjhGameState_ = !!value;
+}
+@synthesize zjhGameState;
 - (void) dealloc {
   self.gameSession = nil;
+  self.zjhGameState = nil;
   [super dealloc];
 }
 - (id) init {
   if ((self = [super init])) {
     self.gameSession = [PBGameSession defaultInstance];
+    self.zjhGameState = [PBZJHGameState defaultInstance];
   }
   return self;
 }
@@ -4975,11 +6689,19 @@ static JoinGameResponse* defaultJoinGameResponseInstance = nil;
   if (!self.gameSession.isInitialized) {
     return NO;
   }
+  if (self.hasZjhGameState) {
+    if (!self.zjhGameState.isInitialized) {
+      return NO;
+    }
+  }
   return YES;
 }
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
   if (self.hasGameSession) {
     [output writeMessage:1 value:self.gameSession];
+  }
+  if (self.hasZjhGameState) {
+    [output writeMessage:11 value:self.zjhGameState];
   }
   [self.unknownFields writeToCodedOutputStream:output];
 }
@@ -4992,6 +6714,9 @@ static JoinGameResponse* defaultJoinGameResponseInstance = nil;
   size = 0;
   if (self.hasGameSession) {
     size += computeMessageSize(1, self.gameSession);
+  }
+  if (self.hasZjhGameState) {
+    size += computeMessageSize(11, self.zjhGameState);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -5071,6 +6796,9 @@ static JoinGameResponse* defaultJoinGameResponseInstance = nil;
   if (other.hasGameSession) {
     [self mergeGameSession:other.gameSession];
   }
+  if (other.hasZjhGameState) {
+    [self mergeZjhGameState:other.zjhGameState];
+  }
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }
@@ -5099,6 +6827,15 @@ static JoinGameResponse* defaultJoinGameResponseInstance = nil;
         }
         [input readMessage:subBuilder extensionRegistry:extensionRegistry];
         [self setGameSession:[subBuilder buildPartial]];
+        break;
+      }
+      case 90: {
+        PBZJHGameState_Builder* subBuilder = [PBZJHGameState builder];
+        if (self.hasZjhGameState) {
+          [subBuilder mergeFrom:self.zjhGameState];
+        }
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self setZjhGameState:[subBuilder buildPartial]];
         break;
       }
     }
@@ -5132,6 +6869,36 @@ static JoinGameResponse* defaultJoinGameResponseInstance = nil;
 - (JoinGameResponse_Builder*) clearGameSession {
   result.hasGameSession = NO;
   result.gameSession = [PBGameSession defaultInstance];
+  return self;
+}
+- (BOOL) hasZjhGameState {
+  return result.hasZjhGameState;
+}
+- (PBZJHGameState*) zjhGameState {
+  return result.zjhGameState;
+}
+- (JoinGameResponse_Builder*) setZjhGameState:(PBZJHGameState*) value {
+  result.hasZjhGameState = YES;
+  result.zjhGameState = value;
+  return self;
+}
+- (JoinGameResponse_Builder*) setZjhGameStateBuilder:(PBZJHGameState_Builder*) builderForValue {
+  return [self setZjhGameState:[builderForValue build]];
+}
+- (JoinGameResponse_Builder*) mergeZjhGameState:(PBZJHGameState*) value {
+  if (result.hasZjhGameState &&
+      result.zjhGameState != [PBZJHGameState defaultInstance]) {
+    result.zjhGameState =
+      [[[PBZJHGameState builderWithPrototype:result.zjhGameState] mergeFrom:value] buildPartial];
+  } else {
+    result.zjhGameState = value;
+  }
+  result.hasZjhGameState = YES;
+  return self;
+}
+- (JoinGameResponse_Builder*) clearZjhGameState {
+  result.hasZjhGameState = NO;
+  result.zjhGameState = [PBZJHGameState defaultInstance];
   return self;
 }
 @end
@@ -7415,6 +9182,7 @@ static BetDiceResponse* defaultBetDiceResponseInstance = nil;
 
 @interface GameOverNotificationRequest ()
 @property (retain) PBDiceGameResult* gameResult;
+@property (retain) PBZJHGameResult* zjhgameResult;
 @end
 
 @implementation GameOverNotificationRequest
@@ -7426,13 +9194,22 @@ static BetDiceResponse* defaultBetDiceResponseInstance = nil;
   hasGameResult_ = !!value;
 }
 @synthesize gameResult;
+- (BOOL) hasZjhgameResult {
+  return !!hasZjhgameResult_;
+}
+- (void) setHasZjhgameResult:(BOOL) value {
+  hasZjhgameResult_ = !!value;
+}
+@synthesize zjhgameResult;
 - (void) dealloc {
   self.gameResult = nil;
+  self.zjhgameResult = nil;
   [super dealloc];
 }
 - (id) init {
   if ((self = [super init])) {
     self.gameResult = [PBDiceGameResult defaultInstance];
+    self.zjhgameResult = [PBZJHGameResult defaultInstance];
   }
   return self;
 }
@@ -7454,11 +9231,19 @@ static GameOverNotificationRequest* defaultGameOverNotificationRequestInstance =
       return NO;
     }
   }
+  if (self.hasZjhgameResult) {
+    if (!self.zjhgameResult.isInitialized) {
+      return NO;
+    }
+  }
   return YES;
 }
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
   if (self.hasGameResult) {
     [output writeMessage:1 value:self.gameResult];
+  }
+  if (self.hasZjhgameResult) {
+    [output writeMessage:2 value:self.zjhgameResult];
   }
   [self.unknownFields writeToCodedOutputStream:output];
 }
@@ -7471,6 +9256,9 @@ static GameOverNotificationRequest* defaultGameOverNotificationRequestInstance =
   size = 0;
   if (self.hasGameResult) {
     size += computeMessageSize(1, self.gameResult);
+  }
+  if (self.hasZjhgameResult) {
+    size += computeMessageSize(2, self.zjhgameResult);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -7550,6 +9338,9 @@ static GameOverNotificationRequest* defaultGameOverNotificationRequestInstance =
   if (other.hasGameResult) {
     [self mergeGameResult:other.gameResult];
   }
+  if (other.hasZjhgameResult) {
+    [self mergeZjhgameResult:other.zjhgameResult];
+  }
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }
@@ -7578,6 +9369,15 @@ static GameOverNotificationRequest* defaultGameOverNotificationRequestInstance =
         }
         [input readMessage:subBuilder extensionRegistry:extensionRegistry];
         [self setGameResult:[subBuilder buildPartial]];
+        break;
+      }
+      case 18: {
+        PBZJHGameResult_Builder* subBuilder = [PBZJHGameResult builder];
+        if (self.hasZjhgameResult) {
+          [subBuilder mergeFrom:self.zjhgameResult];
+        }
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self setZjhgameResult:[subBuilder buildPartial]];
         break;
       }
     }
@@ -7611,6 +9411,36 @@ static GameOverNotificationRequest* defaultGameOverNotificationRequestInstance =
 - (GameOverNotificationRequest_Builder*) clearGameResult {
   result.hasGameResult = NO;
   result.gameResult = [PBDiceGameResult defaultInstance];
+  return self;
+}
+- (BOOL) hasZjhgameResult {
+  return result.hasZjhgameResult;
+}
+- (PBZJHGameResult*) zjhgameResult {
+  return result.zjhgameResult;
+}
+- (GameOverNotificationRequest_Builder*) setZjhgameResult:(PBZJHGameResult*) value {
+  result.hasZjhgameResult = YES;
+  result.zjhgameResult = value;
+  return self;
+}
+- (GameOverNotificationRequest_Builder*) setZjhgameResultBuilder:(PBZJHGameResult_Builder*) builderForValue {
+  return [self setZjhgameResult:[builderForValue build]];
+}
+- (GameOverNotificationRequest_Builder*) mergeZjhgameResult:(PBZJHGameResult*) value {
+  if (result.hasZjhgameResult &&
+      result.zjhgameResult != [PBZJHGameResult defaultInstance]) {
+    result.zjhgameResult =
+      [[[PBZJHGameResult builderWithPrototype:result.zjhgameResult] mergeFrom:value] buildPartial];
+  } else {
+    result.zjhgameResult = value;
+  }
+  result.hasZjhgameResult = YES;
+  return self;
+}
+- (GameOverNotificationRequest_Builder*) clearZjhgameResult {
+  result.hasZjhgameResult = NO;
+  result.zjhgameResult = [PBZJHGameResult defaultInstance];
   return self;
 }
 @end
@@ -8971,6 +10801,347 @@ static SendDrawDataResponse* defaultSendDrawDataResponseInstance = nil;
   return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
 }
 - (SendDrawDataResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
+  while (YES) {
+    int32_t tag = [input readTag];
+    switch (tag) {
+      case 0:
+        [self setUnknownFields:[unknownFields build]];
+        return self;
+      default: {
+        if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
+          [self setUnknownFields:[unknownFields build]];
+          return self;
+        }
+        break;
+      }
+    }
+  }
+}
+@end
+
+@interface GameStartNotificationRequest ()
+@property (retain) PBZJHGameState* zjhGameState;
+@end
+
+@implementation GameStartNotificationRequest
+
+- (BOOL) hasZjhGameState {
+  return !!hasZjhGameState_;
+}
+- (void) setHasZjhGameState:(BOOL) value {
+  hasZjhGameState_ = !!value;
+}
+@synthesize zjhGameState;
+- (void) dealloc {
+  self.zjhGameState = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.zjhGameState = [PBZJHGameState defaultInstance];
+  }
+  return self;
+}
+static GameStartNotificationRequest* defaultGameStartNotificationRequestInstance = nil;
++ (void) initialize {
+  if (self == [GameStartNotificationRequest class]) {
+    defaultGameStartNotificationRequestInstance = [[GameStartNotificationRequest alloc] init];
+  }
+}
++ (GameStartNotificationRequest*) defaultInstance {
+  return defaultGameStartNotificationRequestInstance;
+}
+- (GameStartNotificationRequest*) defaultInstance {
+  return defaultGameStartNotificationRequestInstance;
+}
+- (BOOL) isInitialized {
+  if (self.hasZjhGameState) {
+    if (!self.zjhGameState.isInitialized) {
+      return NO;
+    }
+  }
+  return YES;
+}
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
+  if (self.hasZjhGameState) {
+    [output writeMessage:11 value:self.zjhGameState];
+  }
+  [self.unknownFields writeToCodedOutputStream:output];
+}
+- (int32_t) serializedSize {
+  int32_t size = memoizedSerializedSize;
+  if (size != -1) {
+    return size;
+  }
+
+  size = 0;
+  if (self.hasZjhGameState) {
+    size += computeMessageSize(11, self.zjhGameState);
+  }
+  size += self.unknownFields.serializedSize;
+  memoizedSerializedSize = size;
+  return size;
+}
++ (GameStartNotificationRequest*) parseFromData:(NSData*) data {
+  return (GameStartNotificationRequest*)[[[GameStartNotificationRequest builder] mergeFromData:data] build];
+}
++ (GameStartNotificationRequest*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (GameStartNotificationRequest*)[[[GameStartNotificationRequest builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+}
++ (GameStartNotificationRequest*) parseFromInputStream:(NSInputStream*) input {
+  return (GameStartNotificationRequest*)[[[GameStartNotificationRequest builder] mergeFromInputStream:input] build];
+}
++ (GameStartNotificationRequest*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (GameStartNotificationRequest*)[[[GameStartNotificationRequest builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (GameStartNotificationRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input {
+  return (GameStartNotificationRequest*)[[[GameStartNotificationRequest builder] mergeFromCodedInputStream:input] build];
+}
++ (GameStartNotificationRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (GameStartNotificationRequest*)[[[GameStartNotificationRequest builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (GameStartNotificationRequest_Builder*) builder {
+  return [[[GameStartNotificationRequest_Builder alloc] init] autorelease];
+}
++ (GameStartNotificationRequest_Builder*) builderWithPrototype:(GameStartNotificationRequest*) prototype {
+  return [[GameStartNotificationRequest builder] mergeFrom:prototype];
+}
+- (GameStartNotificationRequest_Builder*) builder {
+  return [GameStartNotificationRequest builder];
+}
+@end
+
+@interface GameStartNotificationRequest_Builder()
+@property (retain) GameStartNotificationRequest* result;
+@end
+
+@implementation GameStartNotificationRequest_Builder
+@synthesize result;
+- (void) dealloc {
+  self.result = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.result = [[[GameStartNotificationRequest alloc] init] autorelease];
+  }
+  return self;
+}
+- (PBGeneratedMessage*) internalGetResult {
+  return result;
+}
+- (GameStartNotificationRequest_Builder*) clear {
+  self.result = [[[GameStartNotificationRequest alloc] init] autorelease];
+  return self;
+}
+- (GameStartNotificationRequest_Builder*) clone {
+  return [GameStartNotificationRequest builderWithPrototype:result];
+}
+- (GameStartNotificationRequest*) defaultInstance {
+  return [GameStartNotificationRequest defaultInstance];
+}
+- (GameStartNotificationRequest*) build {
+  [self checkInitialized];
+  return [self buildPartial];
+}
+- (GameStartNotificationRequest*) buildPartial {
+  GameStartNotificationRequest* returnMe = [[result retain] autorelease];
+  self.result = nil;
+  return returnMe;
+}
+- (GameStartNotificationRequest_Builder*) mergeFrom:(GameStartNotificationRequest*) other {
+  if (other == [GameStartNotificationRequest defaultInstance]) {
+    return self;
+  }
+  if (other.hasZjhGameState) {
+    [self mergeZjhGameState:other.zjhGameState];
+  }
+  [self mergeUnknownFields:other.unknownFields];
+  return self;
+}
+- (GameStartNotificationRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
+  return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
+}
+- (GameStartNotificationRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
+  while (YES) {
+    int32_t tag = [input readTag];
+    switch (tag) {
+      case 0:
+        [self setUnknownFields:[unknownFields build]];
+        return self;
+      default: {
+        if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
+          [self setUnknownFields:[unknownFields build]];
+          return self;
+        }
+        break;
+      }
+      case 90: {
+        PBZJHGameState_Builder* subBuilder = [PBZJHGameState builder];
+        if (self.hasZjhGameState) {
+          [subBuilder mergeFrom:self.zjhGameState];
+        }
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self setZjhGameState:[subBuilder buildPartial]];
+        break;
+      }
+    }
+  }
+}
+- (BOOL) hasZjhGameState {
+  return result.hasZjhGameState;
+}
+- (PBZJHGameState*) zjhGameState {
+  return result.zjhGameState;
+}
+- (GameStartNotificationRequest_Builder*) setZjhGameState:(PBZJHGameState*) value {
+  result.hasZjhGameState = YES;
+  result.zjhGameState = value;
+  return self;
+}
+- (GameStartNotificationRequest_Builder*) setZjhGameStateBuilder:(PBZJHGameState_Builder*) builderForValue {
+  return [self setZjhGameState:[builderForValue build]];
+}
+- (GameStartNotificationRequest_Builder*) mergeZjhGameState:(PBZJHGameState*) value {
+  if (result.hasZjhGameState &&
+      result.zjhGameState != [PBZJHGameState defaultInstance]) {
+    result.zjhGameState =
+      [[[PBZJHGameState builderWithPrototype:result.zjhGameState] mergeFrom:value] buildPartial];
+  } else {
+    result.zjhGameState = value;
+  }
+  result.hasZjhGameState = YES;
+  return self;
+}
+- (GameStartNotificationRequest_Builder*) clearZjhGameState {
+  result.hasZjhGameState = NO;
+  result.zjhGameState = [PBZJHGameState defaultInstance];
+  return self;
+}
+@end
+
+@interface GameStartNotificationResponse ()
+@end
+
+@implementation GameStartNotificationResponse
+
+- (void) dealloc {
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+  }
+  return self;
+}
+static GameStartNotificationResponse* defaultGameStartNotificationResponseInstance = nil;
++ (void) initialize {
+  if (self == [GameStartNotificationResponse class]) {
+    defaultGameStartNotificationResponseInstance = [[GameStartNotificationResponse alloc] init];
+  }
+}
++ (GameStartNotificationResponse*) defaultInstance {
+  return defaultGameStartNotificationResponseInstance;
+}
+- (GameStartNotificationResponse*) defaultInstance {
+  return defaultGameStartNotificationResponseInstance;
+}
+- (BOOL) isInitialized {
+  return YES;
+}
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
+  [self.unknownFields writeToCodedOutputStream:output];
+}
+- (int32_t) serializedSize {
+  int32_t size = memoizedSerializedSize;
+  if (size != -1) {
+    return size;
+  }
+
+  size = 0;
+  size += self.unknownFields.serializedSize;
+  memoizedSerializedSize = size;
+  return size;
+}
++ (GameStartNotificationResponse*) parseFromData:(NSData*) data {
+  return (GameStartNotificationResponse*)[[[GameStartNotificationResponse builder] mergeFromData:data] build];
+}
++ (GameStartNotificationResponse*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (GameStartNotificationResponse*)[[[GameStartNotificationResponse builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+}
++ (GameStartNotificationResponse*) parseFromInputStream:(NSInputStream*) input {
+  return (GameStartNotificationResponse*)[[[GameStartNotificationResponse builder] mergeFromInputStream:input] build];
+}
++ (GameStartNotificationResponse*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (GameStartNotificationResponse*)[[[GameStartNotificationResponse builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (GameStartNotificationResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input {
+  return (GameStartNotificationResponse*)[[[GameStartNotificationResponse builder] mergeFromCodedInputStream:input] build];
+}
++ (GameStartNotificationResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (GameStartNotificationResponse*)[[[GameStartNotificationResponse builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (GameStartNotificationResponse_Builder*) builder {
+  return [[[GameStartNotificationResponse_Builder alloc] init] autorelease];
+}
++ (GameStartNotificationResponse_Builder*) builderWithPrototype:(GameStartNotificationResponse*) prototype {
+  return [[GameStartNotificationResponse builder] mergeFrom:prototype];
+}
+- (GameStartNotificationResponse_Builder*) builder {
+  return [GameStartNotificationResponse builder];
+}
+@end
+
+@interface GameStartNotificationResponse_Builder()
+@property (retain) GameStartNotificationResponse* result;
+@end
+
+@implementation GameStartNotificationResponse_Builder
+@synthesize result;
+- (void) dealloc {
+  self.result = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.result = [[[GameStartNotificationResponse alloc] init] autorelease];
+  }
+  return self;
+}
+- (PBGeneratedMessage*) internalGetResult {
+  return result;
+}
+- (GameStartNotificationResponse_Builder*) clear {
+  self.result = [[[GameStartNotificationResponse alloc] init] autorelease];
+  return self;
+}
+- (GameStartNotificationResponse_Builder*) clone {
+  return [GameStartNotificationResponse builderWithPrototype:result];
+}
+- (GameStartNotificationResponse*) defaultInstance {
+  return [GameStartNotificationResponse defaultInstance];
+}
+- (GameStartNotificationResponse*) build {
+  [self checkInitialized];
+  return [self buildPartial];
+}
+- (GameStartNotificationResponse*) buildPartial {
+  GameStartNotificationResponse* returnMe = [[result retain] autorelease];
+  self.result = nil;
+  return returnMe;
+}
+- (GameStartNotificationResponse_Builder*) mergeFrom:(GameStartNotificationResponse*) other {
+  if (other == [GameStartNotificationResponse defaultInstance]) {
+    return self;
+  }
+  [self mergeUnknownFields:other.unknownFields];
+  return self;
+}
+- (GameStartNotificationResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
+  return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
+}
+- (GameStartNotificationResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
   PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
   while (YES) {
     int32_t tag = [input readTag];
@@ -10808,6 +12979,8 @@ static FacetimeChatResponse* defaultFacetimeChatResponseInstance = nil;
 @property (retain) JoinGameResponse* joinGameResponse;
 @property (retain) StartGameRequest* startGameRequest;
 @property (retain) StartGameResponse* startGameResponse;
+@property (retain) GameStartNotificationRequest* gameStartNotificationRequest;
+@property (retain) GameStartNotificationResponse* gameStartNotificationResponse;
 @property (retain) SendDrawDataRequest* sendDrawDataRequest;
 @property (retain) SendDrawDataResponse* sendDrawDataResponse;
 @property (retain) GameChatRequest* chatRequest;
@@ -10838,6 +13011,16 @@ static FacetimeChatResponse* defaultFacetimeChatResponseInstance = nil;
 @property (retain) BetDiceResponse* betDiceResponse;
 @property (retain) UseItemRequest* useItemRequest;
 @property (retain) UseItemResponse* useItemResponse;
+@property (retain) BetRequest* betRequest;
+@property (retain) BetResponse* betResponse;
+@property (retain) CheckCardRequest* checkCardRequest;
+@property (retain) CheckCardResponse* checkCardResponse;
+@property (retain) FoldCardRequest* foldCardRequest;
+@property (retain) FoldCardResponse* foldCardResponse;
+@property (retain) ShowCardRequest* showCardRequest;
+@property (retain) ShowCardResponse* showCardResponse;
+@property (retain) CompareCardRequest* compareCardRequest;
+@property (retain) CompareCardResponse* compareCardResponse;
 @property int32_t startOffset;
 @property int32_t maxCount;
 @property int32_t timeStamp;
@@ -10944,6 +13127,20 @@ static FacetimeChatResponse* defaultFacetimeChatResponseInstance = nil;
   hasStartGameResponse_ = !!value;
 }
 @synthesize startGameResponse;
+- (BOOL) hasGameStartNotificationRequest {
+  return !!hasGameStartNotificationRequest_;
+}
+- (void) setHasGameStartNotificationRequest:(BOOL) value {
+  hasGameStartNotificationRequest_ = !!value;
+}
+@synthesize gameStartNotificationRequest;
+- (BOOL) hasGameStartNotificationResponse {
+  return !!hasGameStartNotificationResponse_;
+}
+- (void) setHasGameStartNotificationResponse:(BOOL) value {
+  hasGameStartNotificationResponse_ = !!value;
+}
+@synthesize gameStartNotificationResponse;
 - (BOOL) hasSendDrawDataRequest {
   return !!hasSendDrawDataRequest_;
 }
@@ -11154,6 +13351,76 @@ static FacetimeChatResponse* defaultFacetimeChatResponseInstance = nil;
   hasUseItemResponse_ = !!value;
 }
 @synthesize useItemResponse;
+- (BOOL) hasBetRequest {
+  return !!hasBetRequest_;
+}
+- (void) setHasBetRequest:(BOOL) value {
+  hasBetRequest_ = !!value;
+}
+@synthesize betRequest;
+- (BOOL) hasBetResponse {
+  return !!hasBetResponse_;
+}
+- (void) setHasBetResponse:(BOOL) value {
+  hasBetResponse_ = !!value;
+}
+@synthesize betResponse;
+- (BOOL) hasCheckCardRequest {
+  return !!hasCheckCardRequest_;
+}
+- (void) setHasCheckCardRequest:(BOOL) value {
+  hasCheckCardRequest_ = !!value;
+}
+@synthesize checkCardRequest;
+- (BOOL) hasCheckCardResponse {
+  return !!hasCheckCardResponse_;
+}
+- (void) setHasCheckCardResponse:(BOOL) value {
+  hasCheckCardResponse_ = !!value;
+}
+@synthesize checkCardResponse;
+- (BOOL) hasFoldCardRequest {
+  return !!hasFoldCardRequest_;
+}
+- (void) setHasFoldCardRequest:(BOOL) value {
+  hasFoldCardRequest_ = !!value;
+}
+@synthesize foldCardRequest;
+- (BOOL) hasFoldCardResponse {
+  return !!hasFoldCardResponse_;
+}
+- (void) setHasFoldCardResponse:(BOOL) value {
+  hasFoldCardResponse_ = !!value;
+}
+@synthesize foldCardResponse;
+- (BOOL) hasShowCardRequest {
+  return !!hasShowCardRequest_;
+}
+- (void) setHasShowCardRequest:(BOOL) value {
+  hasShowCardRequest_ = !!value;
+}
+@synthesize showCardRequest;
+- (BOOL) hasShowCardResponse {
+  return !!hasShowCardResponse_;
+}
+- (void) setHasShowCardResponse:(BOOL) value {
+  hasShowCardResponse_ = !!value;
+}
+@synthesize showCardResponse;
+- (BOOL) hasCompareCardRequest {
+  return !!hasCompareCardRequest_;
+}
+- (void) setHasCompareCardRequest:(BOOL) value {
+  hasCompareCardRequest_ = !!value;
+}
+@synthesize compareCardRequest;
+- (BOOL) hasCompareCardResponse {
+  return !!hasCompareCardResponse_;
+}
+- (void) setHasCompareCardResponse:(BOOL) value {
+  hasCompareCardResponse_ = !!value;
+}
+@synthesize compareCardResponse;
 - (BOOL) hasStartOffset {
   return !!hasStartOffset_;
 }
@@ -11190,6 +13457,8 @@ static FacetimeChatResponse* defaultFacetimeChatResponseInstance = nil;
   self.joinGameResponse = nil;
   self.startGameRequest = nil;
   self.startGameResponse = nil;
+  self.gameStartNotificationRequest = nil;
+  self.gameStartNotificationResponse = nil;
   self.sendDrawDataRequest = nil;
   self.sendDrawDataResponse = nil;
   self.chatRequest = nil;
@@ -11220,6 +13489,16 @@ static FacetimeChatResponse* defaultFacetimeChatResponseInstance = nil;
   self.betDiceResponse = nil;
   self.useItemRequest = nil;
   self.useItemResponse = nil;
+  self.betRequest = nil;
+  self.betResponse = nil;
+  self.checkCardRequest = nil;
+  self.checkCardResponse = nil;
+  self.foldCardRequest = nil;
+  self.foldCardResponse = nil;
+  self.showCardRequest = nil;
+  self.showCardResponse = nil;
+  self.compareCardRequest = nil;
+  self.compareCardResponse = nil;
   self.mac = nil;
   [super dealloc];
 }
@@ -11239,6 +13518,8 @@ static FacetimeChatResponse* defaultFacetimeChatResponseInstance = nil;
     self.joinGameResponse = [JoinGameResponse defaultInstance];
     self.startGameRequest = [StartGameRequest defaultInstance];
     self.startGameResponse = [StartGameResponse defaultInstance];
+    self.gameStartNotificationRequest = [GameStartNotificationRequest defaultInstance];
+    self.gameStartNotificationResponse = [GameStartNotificationResponse defaultInstance];
     self.sendDrawDataRequest = [SendDrawDataRequest defaultInstance];
     self.sendDrawDataResponse = [SendDrawDataResponse defaultInstance];
     self.chatRequest = [GameChatRequest defaultInstance];
@@ -11269,6 +13550,16 @@ static FacetimeChatResponse* defaultFacetimeChatResponseInstance = nil;
     self.betDiceResponse = [BetDiceResponse defaultInstance];
     self.useItemRequest = [UseItemRequest defaultInstance];
     self.useItemResponse = [UseItemResponse defaultInstance];
+    self.betRequest = [BetRequest defaultInstance];
+    self.betResponse = [BetResponse defaultInstance];
+    self.checkCardRequest = [CheckCardRequest defaultInstance];
+    self.checkCardResponse = [CheckCardResponse defaultInstance];
+    self.foldCardRequest = [FoldCardRequest defaultInstance];
+    self.foldCardResponse = [FoldCardResponse defaultInstance];
+    self.showCardRequest = [ShowCardRequest defaultInstance];
+    self.showCardResponse = [ShowCardResponse defaultInstance];
+    self.compareCardRequest = [CompareCardRequest defaultInstance];
+    self.compareCardResponse = [CompareCardResponse defaultInstance];
     self.startOffset = 0;
     self.maxCount = 0;
     self.timeStamp = 0;
@@ -11302,6 +13593,11 @@ static GameMessage* defaultGameMessageInstance = nil;
   }
   if (self.hasJoinGameResponse) {
     if (!self.joinGameResponse.isInitialized) {
+      return NO;
+    }
+  }
+  if (self.hasGameStartNotificationRequest) {
+    if (!self.gameStartNotificationRequest.isInitialized) {
       return NO;
     }
   }
@@ -11380,6 +13676,21 @@ static GameMessage* defaultGameMessageInstance = nil;
       return NO;
     }
   }
+  if (self.hasBetRequest) {
+    if (!self.betRequest.isInitialized) {
+      return NO;
+    }
+  }
+  if (self.hasCompareCardRequest) {
+    if (!self.compareCardRequest.isInitialized) {
+      return NO;
+    }
+  }
+  if (self.hasCompareCardResponse) {
+    if (!self.compareCardResponse.isInitialized) {
+      return NO;
+    }
+  }
   return YES;
 }
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
@@ -11424,6 +13735,12 @@ static GameMessage* defaultGameMessageInstance = nil;
   }
   if (self.hasStartGameResponse) {
     [output writeMessage:14 value:self.startGameResponse];
+  }
+  if (self.hasGameStartNotificationRequest) {
+    [output writeMessage:15 value:self.gameStartNotificationRequest];
+  }
+  if (self.hasGameStartNotificationResponse) {
+    [output writeMessage:16 value:self.gameStartNotificationResponse];
   }
   if (self.hasSendDrawDataRequest) {
     [output writeMessage:21 value:self.sendDrawDataRequest];
@@ -11515,6 +13832,36 @@ static GameMessage* defaultGameMessageInstance = nil;
   if (self.hasUseItemResponse) {
     [output writeMessage:132 value:self.useItemResponse];
   }
+  if (self.hasBetRequest) {
+    [output writeMessage:151 value:self.betRequest];
+  }
+  if (self.hasBetResponse) {
+    [output writeMessage:152 value:self.betResponse];
+  }
+  if (self.hasCheckCardRequest) {
+    [output writeMessage:153 value:self.checkCardRequest];
+  }
+  if (self.hasCheckCardResponse) {
+    [output writeMessage:154 value:self.checkCardResponse];
+  }
+  if (self.hasFoldCardRequest) {
+    [output writeMessage:155 value:self.foldCardRequest];
+  }
+  if (self.hasFoldCardResponse) {
+    [output writeMessage:156 value:self.foldCardResponse];
+  }
+  if (self.hasShowCardRequest) {
+    [output writeMessage:157 value:self.showCardRequest];
+  }
+  if (self.hasShowCardResponse) {
+    [output writeMessage:158 value:self.showCardResponse];
+  }
+  if (self.hasCompareCardRequest) {
+    [output writeMessage:159 value:self.compareCardRequest];
+  }
+  if (self.hasCompareCardResponse) {
+    [output writeMessage:160 value:self.compareCardResponse];
+  }
   if (self.hasStartOffset) {
     [output writeInt32:1000 value:self.startOffset];
   }
@@ -11577,6 +13924,12 @@ static GameMessage* defaultGameMessageInstance = nil;
   }
   if (self.hasStartGameResponse) {
     size += computeMessageSize(14, self.startGameResponse);
+  }
+  if (self.hasGameStartNotificationRequest) {
+    size += computeMessageSize(15, self.gameStartNotificationRequest);
+  }
+  if (self.hasGameStartNotificationResponse) {
+    size += computeMessageSize(16, self.gameStartNotificationResponse);
   }
   if (self.hasSendDrawDataRequest) {
     size += computeMessageSize(21, self.sendDrawDataRequest);
@@ -11667,6 +14020,36 @@ static GameMessage* defaultGameMessageInstance = nil;
   }
   if (self.hasUseItemResponse) {
     size += computeMessageSize(132, self.useItemResponse);
+  }
+  if (self.hasBetRequest) {
+    size += computeMessageSize(151, self.betRequest);
+  }
+  if (self.hasBetResponse) {
+    size += computeMessageSize(152, self.betResponse);
+  }
+  if (self.hasCheckCardRequest) {
+    size += computeMessageSize(153, self.checkCardRequest);
+  }
+  if (self.hasCheckCardResponse) {
+    size += computeMessageSize(154, self.checkCardResponse);
+  }
+  if (self.hasFoldCardRequest) {
+    size += computeMessageSize(155, self.foldCardRequest);
+  }
+  if (self.hasFoldCardResponse) {
+    size += computeMessageSize(156, self.foldCardResponse);
+  }
+  if (self.hasShowCardRequest) {
+    size += computeMessageSize(157, self.showCardRequest);
+  }
+  if (self.hasShowCardResponse) {
+    size += computeMessageSize(158, self.showCardResponse);
+  }
+  if (self.hasCompareCardRequest) {
+    size += computeMessageSize(159, self.compareCardRequest);
+  }
+  if (self.hasCompareCardResponse) {
+    size += computeMessageSize(160, self.compareCardResponse);
   }
   if (self.hasStartOffset) {
     size += computeInt32Size(1000, self.startOffset);
@@ -11797,6 +14180,12 @@ static GameMessage* defaultGameMessageInstance = nil;
   if (other.hasStartGameResponse) {
     [self mergeStartGameResponse:other.startGameResponse];
   }
+  if (other.hasGameStartNotificationRequest) {
+    [self mergeGameStartNotificationRequest:other.gameStartNotificationRequest];
+  }
+  if (other.hasGameStartNotificationResponse) {
+    [self mergeGameStartNotificationResponse:other.gameStartNotificationResponse];
+  }
   if (other.hasSendDrawDataRequest) {
     [self mergeSendDrawDataRequest:other.sendDrawDataRequest];
   }
@@ -11886,6 +14275,36 @@ static GameMessage* defaultGameMessageInstance = nil;
   }
   if (other.hasUseItemResponse) {
     [self mergeUseItemResponse:other.useItemResponse];
+  }
+  if (other.hasBetRequest) {
+    [self mergeBetRequest:other.betRequest];
+  }
+  if (other.hasBetResponse) {
+    [self mergeBetResponse:other.betResponse];
+  }
+  if (other.hasCheckCardRequest) {
+    [self mergeCheckCardRequest:other.checkCardRequest];
+  }
+  if (other.hasCheckCardResponse) {
+    [self mergeCheckCardResponse:other.checkCardResponse];
+  }
+  if (other.hasFoldCardRequest) {
+    [self mergeFoldCardRequest:other.foldCardRequest];
+  }
+  if (other.hasFoldCardResponse) {
+    [self mergeFoldCardResponse:other.foldCardResponse];
+  }
+  if (other.hasShowCardRequest) {
+    [self mergeShowCardRequest:other.showCardRequest];
+  }
+  if (other.hasShowCardResponse) {
+    [self mergeShowCardResponse:other.showCardResponse];
+  }
+  if (other.hasCompareCardRequest) {
+    [self mergeCompareCardRequest:other.compareCardRequest];
+  }
+  if (other.hasCompareCardResponse) {
+    [self mergeCompareCardResponse:other.compareCardResponse];
   }
   if (other.hasStartOffset) {
     [self setStartOffset:other.startOffset];
@@ -12009,6 +14428,24 @@ static GameMessage* defaultGameMessageInstance = nil;
         }
         [input readMessage:subBuilder extensionRegistry:extensionRegistry];
         [self setStartGameResponse:[subBuilder buildPartial]];
+        break;
+      }
+      case 122: {
+        GameStartNotificationRequest_Builder* subBuilder = [GameStartNotificationRequest builder];
+        if (self.hasGameStartNotificationRequest) {
+          [subBuilder mergeFrom:self.gameStartNotificationRequest];
+        }
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self setGameStartNotificationRequest:[subBuilder buildPartial]];
+        break;
+      }
+      case 130: {
+        GameStartNotificationResponse_Builder* subBuilder = [GameStartNotificationResponse builder];
+        if (self.hasGameStartNotificationResponse) {
+          [subBuilder mergeFrom:self.gameStartNotificationResponse];
+        }
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self setGameStartNotificationResponse:[subBuilder buildPartial]];
         break;
       }
       case 170: {
@@ -12279,6 +14716,96 @@ static GameMessage* defaultGameMessageInstance = nil;
         }
         [input readMessage:subBuilder extensionRegistry:extensionRegistry];
         [self setUseItemResponse:[subBuilder buildPartial]];
+        break;
+      }
+      case 1210: {
+        BetRequest_Builder* subBuilder = [BetRequest builder];
+        if (self.hasBetRequest) {
+          [subBuilder mergeFrom:self.betRequest];
+        }
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self setBetRequest:[subBuilder buildPartial]];
+        break;
+      }
+      case 1218: {
+        BetResponse_Builder* subBuilder = [BetResponse builder];
+        if (self.hasBetResponse) {
+          [subBuilder mergeFrom:self.betResponse];
+        }
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self setBetResponse:[subBuilder buildPartial]];
+        break;
+      }
+      case 1226: {
+        CheckCardRequest_Builder* subBuilder = [CheckCardRequest builder];
+        if (self.hasCheckCardRequest) {
+          [subBuilder mergeFrom:self.checkCardRequest];
+        }
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self setCheckCardRequest:[subBuilder buildPartial]];
+        break;
+      }
+      case 1234: {
+        CheckCardResponse_Builder* subBuilder = [CheckCardResponse builder];
+        if (self.hasCheckCardResponse) {
+          [subBuilder mergeFrom:self.checkCardResponse];
+        }
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self setCheckCardResponse:[subBuilder buildPartial]];
+        break;
+      }
+      case 1242: {
+        FoldCardRequest_Builder* subBuilder = [FoldCardRequest builder];
+        if (self.hasFoldCardRequest) {
+          [subBuilder mergeFrom:self.foldCardRequest];
+        }
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self setFoldCardRequest:[subBuilder buildPartial]];
+        break;
+      }
+      case 1250: {
+        FoldCardResponse_Builder* subBuilder = [FoldCardResponse builder];
+        if (self.hasFoldCardResponse) {
+          [subBuilder mergeFrom:self.foldCardResponse];
+        }
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self setFoldCardResponse:[subBuilder buildPartial]];
+        break;
+      }
+      case 1258: {
+        ShowCardRequest_Builder* subBuilder = [ShowCardRequest builder];
+        if (self.hasShowCardRequest) {
+          [subBuilder mergeFrom:self.showCardRequest];
+        }
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self setShowCardRequest:[subBuilder buildPartial]];
+        break;
+      }
+      case 1266: {
+        ShowCardResponse_Builder* subBuilder = [ShowCardResponse builder];
+        if (self.hasShowCardResponse) {
+          [subBuilder mergeFrom:self.showCardResponse];
+        }
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self setShowCardResponse:[subBuilder buildPartial]];
+        break;
+      }
+      case 1274: {
+        CompareCardRequest_Builder* subBuilder = [CompareCardRequest builder];
+        if (self.hasCompareCardRequest) {
+          [subBuilder mergeFrom:self.compareCardRequest];
+        }
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self setCompareCardRequest:[subBuilder buildPartial]];
+        break;
+      }
+      case 1282: {
+        CompareCardResponse_Builder* subBuilder = [CompareCardResponse builder];
+        if (self.hasCompareCardResponse) {
+          [subBuilder mergeFrom:self.compareCardResponse];
+        }
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self setCompareCardResponse:[subBuilder buildPartial]];
         break;
       }
       case 8000: {
@@ -12578,6 +15105,66 @@ static GameMessage* defaultGameMessageInstance = nil;
 - (GameMessage_Builder*) clearStartGameResponse {
   result.hasStartGameResponse = NO;
   result.startGameResponse = [StartGameResponse defaultInstance];
+  return self;
+}
+- (BOOL) hasGameStartNotificationRequest {
+  return result.hasGameStartNotificationRequest;
+}
+- (GameStartNotificationRequest*) gameStartNotificationRequest {
+  return result.gameStartNotificationRequest;
+}
+- (GameMessage_Builder*) setGameStartNotificationRequest:(GameStartNotificationRequest*) value {
+  result.hasGameStartNotificationRequest = YES;
+  result.gameStartNotificationRequest = value;
+  return self;
+}
+- (GameMessage_Builder*) setGameStartNotificationRequestBuilder:(GameStartNotificationRequest_Builder*) builderForValue {
+  return [self setGameStartNotificationRequest:[builderForValue build]];
+}
+- (GameMessage_Builder*) mergeGameStartNotificationRequest:(GameStartNotificationRequest*) value {
+  if (result.hasGameStartNotificationRequest &&
+      result.gameStartNotificationRequest != [GameStartNotificationRequest defaultInstance]) {
+    result.gameStartNotificationRequest =
+      [[[GameStartNotificationRequest builderWithPrototype:result.gameStartNotificationRequest] mergeFrom:value] buildPartial];
+  } else {
+    result.gameStartNotificationRequest = value;
+  }
+  result.hasGameStartNotificationRequest = YES;
+  return self;
+}
+- (GameMessage_Builder*) clearGameStartNotificationRequest {
+  result.hasGameStartNotificationRequest = NO;
+  result.gameStartNotificationRequest = [GameStartNotificationRequest defaultInstance];
+  return self;
+}
+- (BOOL) hasGameStartNotificationResponse {
+  return result.hasGameStartNotificationResponse;
+}
+- (GameStartNotificationResponse*) gameStartNotificationResponse {
+  return result.gameStartNotificationResponse;
+}
+- (GameMessage_Builder*) setGameStartNotificationResponse:(GameStartNotificationResponse*) value {
+  result.hasGameStartNotificationResponse = YES;
+  result.gameStartNotificationResponse = value;
+  return self;
+}
+- (GameMessage_Builder*) setGameStartNotificationResponseBuilder:(GameStartNotificationResponse_Builder*) builderForValue {
+  return [self setGameStartNotificationResponse:[builderForValue build]];
+}
+- (GameMessage_Builder*) mergeGameStartNotificationResponse:(GameStartNotificationResponse*) value {
+  if (result.hasGameStartNotificationResponse &&
+      result.gameStartNotificationResponse != [GameStartNotificationResponse defaultInstance]) {
+    result.gameStartNotificationResponse =
+      [[[GameStartNotificationResponse builderWithPrototype:result.gameStartNotificationResponse] mergeFrom:value] buildPartial];
+  } else {
+    result.gameStartNotificationResponse = value;
+  }
+  result.hasGameStartNotificationResponse = YES;
+  return self;
+}
+- (GameMessage_Builder*) clearGameStartNotificationResponse {
+  result.hasGameStartNotificationResponse = NO;
+  result.gameStartNotificationResponse = [GameStartNotificationResponse defaultInstance];
   return self;
 }
 - (BOOL) hasSendDrawDataRequest {
@@ -13478,6 +16065,306 @@ static GameMessage* defaultGameMessageInstance = nil;
 - (GameMessage_Builder*) clearUseItemResponse {
   result.hasUseItemResponse = NO;
   result.useItemResponse = [UseItemResponse defaultInstance];
+  return self;
+}
+- (BOOL) hasBetRequest {
+  return result.hasBetRequest;
+}
+- (BetRequest*) betRequest {
+  return result.betRequest;
+}
+- (GameMessage_Builder*) setBetRequest:(BetRequest*) value {
+  result.hasBetRequest = YES;
+  result.betRequest = value;
+  return self;
+}
+- (GameMessage_Builder*) setBetRequestBuilder:(BetRequest_Builder*) builderForValue {
+  return [self setBetRequest:[builderForValue build]];
+}
+- (GameMessage_Builder*) mergeBetRequest:(BetRequest*) value {
+  if (result.hasBetRequest &&
+      result.betRequest != [BetRequest defaultInstance]) {
+    result.betRequest =
+      [[[BetRequest builderWithPrototype:result.betRequest] mergeFrom:value] buildPartial];
+  } else {
+    result.betRequest = value;
+  }
+  result.hasBetRequest = YES;
+  return self;
+}
+- (GameMessage_Builder*) clearBetRequest {
+  result.hasBetRequest = NO;
+  result.betRequest = [BetRequest defaultInstance];
+  return self;
+}
+- (BOOL) hasBetResponse {
+  return result.hasBetResponse;
+}
+- (BetResponse*) betResponse {
+  return result.betResponse;
+}
+- (GameMessage_Builder*) setBetResponse:(BetResponse*) value {
+  result.hasBetResponse = YES;
+  result.betResponse = value;
+  return self;
+}
+- (GameMessage_Builder*) setBetResponseBuilder:(BetResponse_Builder*) builderForValue {
+  return [self setBetResponse:[builderForValue build]];
+}
+- (GameMessage_Builder*) mergeBetResponse:(BetResponse*) value {
+  if (result.hasBetResponse &&
+      result.betResponse != [BetResponse defaultInstance]) {
+    result.betResponse =
+      [[[BetResponse builderWithPrototype:result.betResponse] mergeFrom:value] buildPartial];
+  } else {
+    result.betResponse = value;
+  }
+  result.hasBetResponse = YES;
+  return self;
+}
+- (GameMessage_Builder*) clearBetResponse {
+  result.hasBetResponse = NO;
+  result.betResponse = [BetResponse defaultInstance];
+  return self;
+}
+- (BOOL) hasCheckCardRequest {
+  return result.hasCheckCardRequest;
+}
+- (CheckCardRequest*) checkCardRequest {
+  return result.checkCardRequest;
+}
+- (GameMessage_Builder*) setCheckCardRequest:(CheckCardRequest*) value {
+  result.hasCheckCardRequest = YES;
+  result.checkCardRequest = value;
+  return self;
+}
+- (GameMessage_Builder*) setCheckCardRequestBuilder:(CheckCardRequest_Builder*) builderForValue {
+  return [self setCheckCardRequest:[builderForValue build]];
+}
+- (GameMessage_Builder*) mergeCheckCardRequest:(CheckCardRequest*) value {
+  if (result.hasCheckCardRequest &&
+      result.checkCardRequest != [CheckCardRequest defaultInstance]) {
+    result.checkCardRequest =
+      [[[CheckCardRequest builderWithPrototype:result.checkCardRequest] mergeFrom:value] buildPartial];
+  } else {
+    result.checkCardRequest = value;
+  }
+  result.hasCheckCardRequest = YES;
+  return self;
+}
+- (GameMessage_Builder*) clearCheckCardRequest {
+  result.hasCheckCardRequest = NO;
+  result.checkCardRequest = [CheckCardRequest defaultInstance];
+  return self;
+}
+- (BOOL) hasCheckCardResponse {
+  return result.hasCheckCardResponse;
+}
+- (CheckCardResponse*) checkCardResponse {
+  return result.checkCardResponse;
+}
+- (GameMessage_Builder*) setCheckCardResponse:(CheckCardResponse*) value {
+  result.hasCheckCardResponse = YES;
+  result.checkCardResponse = value;
+  return self;
+}
+- (GameMessage_Builder*) setCheckCardResponseBuilder:(CheckCardResponse_Builder*) builderForValue {
+  return [self setCheckCardResponse:[builderForValue build]];
+}
+- (GameMessage_Builder*) mergeCheckCardResponse:(CheckCardResponse*) value {
+  if (result.hasCheckCardResponse &&
+      result.checkCardResponse != [CheckCardResponse defaultInstance]) {
+    result.checkCardResponse =
+      [[[CheckCardResponse builderWithPrototype:result.checkCardResponse] mergeFrom:value] buildPartial];
+  } else {
+    result.checkCardResponse = value;
+  }
+  result.hasCheckCardResponse = YES;
+  return self;
+}
+- (GameMessage_Builder*) clearCheckCardResponse {
+  result.hasCheckCardResponse = NO;
+  result.checkCardResponse = [CheckCardResponse defaultInstance];
+  return self;
+}
+- (BOOL) hasFoldCardRequest {
+  return result.hasFoldCardRequest;
+}
+- (FoldCardRequest*) foldCardRequest {
+  return result.foldCardRequest;
+}
+- (GameMessage_Builder*) setFoldCardRequest:(FoldCardRequest*) value {
+  result.hasFoldCardRequest = YES;
+  result.foldCardRequest = value;
+  return self;
+}
+- (GameMessage_Builder*) setFoldCardRequestBuilder:(FoldCardRequest_Builder*) builderForValue {
+  return [self setFoldCardRequest:[builderForValue build]];
+}
+- (GameMessage_Builder*) mergeFoldCardRequest:(FoldCardRequest*) value {
+  if (result.hasFoldCardRequest &&
+      result.foldCardRequest != [FoldCardRequest defaultInstance]) {
+    result.foldCardRequest =
+      [[[FoldCardRequest builderWithPrototype:result.foldCardRequest] mergeFrom:value] buildPartial];
+  } else {
+    result.foldCardRequest = value;
+  }
+  result.hasFoldCardRequest = YES;
+  return self;
+}
+- (GameMessage_Builder*) clearFoldCardRequest {
+  result.hasFoldCardRequest = NO;
+  result.foldCardRequest = [FoldCardRequest defaultInstance];
+  return self;
+}
+- (BOOL) hasFoldCardResponse {
+  return result.hasFoldCardResponse;
+}
+- (FoldCardResponse*) foldCardResponse {
+  return result.foldCardResponse;
+}
+- (GameMessage_Builder*) setFoldCardResponse:(FoldCardResponse*) value {
+  result.hasFoldCardResponse = YES;
+  result.foldCardResponse = value;
+  return self;
+}
+- (GameMessage_Builder*) setFoldCardResponseBuilder:(FoldCardResponse_Builder*) builderForValue {
+  return [self setFoldCardResponse:[builderForValue build]];
+}
+- (GameMessage_Builder*) mergeFoldCardResponse:(FoldCardResponse*) value {
+  if (result.hasFoldCardResponse &&
+      result.foldCardResponse != [FoldCardResponse defaultInstance]) {
+    result.foldCardResponse =
+      [[[FoldCardResponse builderWithPrototype:result.foldCardResponse] mergeFrom:value] buildPartial];
+  } else {
+    result.foldCardResponse = value;
+  }
+  result.hasFoldCardResponse = YES;
+  return self;
+}
+- (GameMessage_Builder*) clearFoldCardResponse {
+  result.hasFoldCardResponse = NO;
+  result.foldCardResponse = [FoldCardResponse defaultInstance];
+  return self;
+}
+- (BOOL) hasShowCardRequest {
+  return result.hasShowCardRequest;
+}
+- (ShowCardRequest*) showCardRequest {
+  return result.showCardRequest;
+}
+- (GameMessage_Builder*) setShowCardRequest:(ShowCardRequest*) value {
+  result.hasShowCardRequest = YES;
+  result.showCardRequest = value;
+  return self;
+}
+- (GameMessage_Builder*) setShowCardRequestBuilder:(ShowCardRequest_Builder*) builderForValue {
+  return [self setShowCardRequest:[builderForValue build]];
+}
+- (GameMessage_Builder*) mergeShowCardRequest:(ShowCardRequest*) value {
+  if (result.hasShowCardRequest &&
+      result.showCardRequest != [ShowCardRequest defaultInstance]) {
+    result.showCardRequest =
+      [[[ShowCardRequest builderWithPrototype:result.showCardRequest] mergeFrom:value] buildPartial];
+  } else {
+    result.showCardRequest = value;
+  }
+  result.hasShowCardRequest = YES;
+  return self;
+}
+- (GameMessage_Builder*) clearShowCardRequest {
+  result.hasShowCardRequest = NO;
+  result.showCardRequest = [ShowCardRequest defaultInstance];
+  return self;
+}
+- (BOOL) hasShowCardResponse {
+  return result.hasShowCardResponse;
+}
+- (ShowCardResponse*) showCardResponse {
+  return result.showCardResponse;
+}
+- (GameMessage_Builder*) setShowCardResponse:(ShowCardResponse*) value {
+  result.hasShowCardResponse = YES;
+  result.showCardResponse = value;
+  return self;
+}
+- (GameMessage_Builder*) setShowCardResponseBuilder:(ShowCardResponse_Builder*) builderForValue {
+  return [self setShowCardResponse:[builderForValue build]];
+}
+- (GameMessage_Builder*) mergeShowCardResponse:(ShowCardResponse*) value {
+  if (result.hasShowCardResponse &&
+      result.showCardResponse != [ShowCardResponse defaultInstance]) {
+    result.showCardResponse =
+      [[[ShowCardResponse builderWithPrototype:result.showCardResponse] mergeFrom:value] buildPartial];
+  } else {
+    result.showCardResponse = value;
+  }
+  result.hasShowCardResponse = YES;
+  return self;
+}
+- (GameMessage_Builder*) clearShowCardResponse {
+  result.hasShowCardResponse = NO;
+  result.showCardResponse = [ShowCardResponse defaultInstance];
+  return self;
+}
+- (BOOL) hasCompareCardRequest {
+  return result.hasCompareCardRequest;
+}
+- (CompareCardRequest*) compareCardRequest {
+  return result.compareCardRequest;
+}
+- (GameMessage_Builder*) setCompareCardRequest:(CompareCardRequest*) value {
+  result.hasCompareCardRequest = YES;
+  result.compareCardRequest = value;
+  return self;
+}
+- (GameMessage_Builder*) setCompareCardRequestBuilder:(CompareCardRequest_Builder*) builderForValue {
+  return [self setCompareCardRequest:[builderForValue build]];
+}
+- (GameMessage_Builder*) mergeCompareCardRequest:(CompareCardRequest*) value {
+  if (result.hasCompareCardRequest &&
+      result.compareCardRequest != [CompareCardRequest defaultInstance]) {
+    result.compareCardRequest =
+      [[[CompareCardRequest builderWithPrototype:result.compareCardRequest] mergeFrom:value] buildPartial];
+  } else {
+    result.compareCardRequest = value;
+  }
+  result.hasCompareCardRequest = YES;
+  return self;
+}
+- (GameMessage_Builder*) clearCompareCardRequest {
+  result.hasCompareCardRequest = NO;
+  result.compareCardRequest = [CompareCardRequest defaultInstance];
+  return self;
+}
+- (BOOL) hasCompareCardResponse {
+  return result.hasCompareCardResponse;
+}
+- (CompareCardResponse*) compareCardResponse {
+  return result.compareCardResponse;
+}
+- (GameMessage_Builder*) setCompareCardResponse:(CompareCardResponse*) value {
+  result.hasCompareCardResponse = YES;
+  result.compareCardResponse = value;
+  return self;
+}
+- (GameMessage_Builder*) setCompareCardResponseBuilder:(CompareCardResponse_Builder*) builderForValue {
+  return [self setCompareCardResponse:[builderForValue build]];
+}
+- (GameMessage_Builder*) mergeCompareCardResponse:(CompareCardResponse*) value {
+  if (result.hasCompareCardResponse &&
+      result.compareCardResponse != [CompareCardResponse defaultInstance]) {
+    result.compareCardResponse =
+      [[[CompareCardResponse builderWithPrototype:result.compareCardResponse] mergeFrom:value] buildPartial];
+  } else {
+    result.compareCardResponse = value;
+  }
+  result.hasCompareCardResponse = YES;
+  return self;
+}
+- (GameMessage_Builder*) clearCompareCardResponse {
+  result.hasCompareCardResponse = NO;
+  result.compareCardResponse = [CompareCardResponse defaultInstance];
   return self;
 }
 - (BOOL) hasStartOffset {

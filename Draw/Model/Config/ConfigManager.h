@@ -125,4 +125,10 @@ typedef enum{
 
 + (int)numberOfItemCanUsedOnNormalOpus;
 + (int)numberOfItemCanUsedOnContestOpus;
+
++ (int)getZJHTimeInterval;
++ (int)getTreeMatureTime;
+
++ (int)getZJHMaxAutoBetCount;
+
 @end

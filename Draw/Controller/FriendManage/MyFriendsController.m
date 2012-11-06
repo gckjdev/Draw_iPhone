@@ -27,6 +27,7 @@
 #import "ConfigManager.h"
 #import "NotificationManager.h"
 #import "DiceUserInfoView.h"
+#import "StatisticManager.h"
 
 @interface MyFriendsController ()
 
@@ -178,6 +179,7 @@
     PPDebug(@"<MyFriendsController> viewWillAppear");
     
     [self updateFriendsListFromLocal];
+    [super viewWillAppear:animated];
 }
 
 
@@ -481,6 +483,11 @@
 
 - (void)loadMyFollow
 {
+    if ([[StatisticManager defaultManager] fanCount] > 0){
+        [[FriendService defaultService] findFriendsByType:FOLLOW viewController:self];
+        return;
+    }
+    
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         [[FriendService defaultService] findFriendsByType:FOLLOW viewController:self];
@@ -490,6 +497,11 @@
 
 - (void)loadMyFans
 {
+    if ([[StatisticManager defaultManager] fanCount] > 0){
+        [[FriendService defaultService] findFriendsByType:FAN viewController:self];
+        return;
+    }
+
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         [[FriendService defaultService] findFriendsByType:FAN viewController:self];

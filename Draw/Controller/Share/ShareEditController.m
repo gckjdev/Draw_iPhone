@@ -20,6 +20,7 @@
 #import "AccountService.h"
 #import "DeviceDetection.h"
 #import "CommonMessageCenter.h"
+#import "MyFriend.h"
 
 #define PATTERN_TAG_OFFSET 20120403
 #define IPAD_INFUSEVIEW_FRAME CGRectMake(31*2.4,130*2.13,259*2.4,259*2.13)
@@ -427,34 +428,26 @@ enum {
 
 
 #pragma user service delegate
-- (void)didGetUserNickName:(NSString *)nickName 
-                UserAvatar:(NSString *)avatar 
-                UserGender:(NSString *)gender 
-              UserLocation:(NSString *)location 
-                 UserLevel:(NSString *)level 
-                  SinaNick:(NSString *)sinaNick 
-                    QQNick:(NSString *)qqNick 
-                      qqId:(NSString*)qqId
-                FacebookId:(NSString *)facebookId
-                     coins:(NSString *)coins
-                  relation:(int)relation;
+
+- (void)didGetUserInfo:(MyFriend *)user resultCode:(NSInteger)resultCode
 {
+    
     [self hideActivity];
     NSString* publishText = self.text;
-    if (qqNick 
+    if (user.isQQUser 
         && [[UserManager defaultManager] hasBindQQWeibo] 
         && _snsType == QQ_WEIBO){
-        publishText = [publishText stringByAppendingFormat:@" @%@",qqId];       
+        publishText = [publishText stringByAppendingFormat:@" @%@",user.qqId];       
     }
     
-    if (sinaNick 
+    if (user.isSinaUser 
         && [[UserManager defaultManager] hasBindSinaWeibo]
         && [[SinaSNSService defaultService] isAuthorizeExpired] == NO 
         && _snsType == SINA_WEIBO){
-        publishText = [publishText stringByAppendingFormat:@" @%@",sinaNick];
+        publishText = [publishText stringByAppendingFormat:@" @%@",user.sinaNick];
     }
     
-    if (facebookId 
+    if (user.isFacebookUser 
         && [[UserManager defaultManager] hasBindFacebook] 
         && _snsType == FACEBOOK){
         //publishText = [publishText stringByAppendingString:facebookId];          

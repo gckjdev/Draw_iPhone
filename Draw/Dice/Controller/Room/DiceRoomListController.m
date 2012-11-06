@@ -125,7 +125,7 @@
 
 - (void)refreshRooms:(id)sender
 {
-    [[DiceGameService defaultService] getRoomList:0 count:ROOMS_COUNT_PER_PAGE shouldReloadData:YES];
+    [[DiceGameService defaultService] getRoomList:0 count:ROOMS_COUNT_PER_PAGE];
 }
 
 - (void)clearRefreshRoomsTimer
@@ -190,7 +190,7 @@
         [self startRefreshRoomsTimer];
     }
     [self updateRoomList];
-    
+    [self updateOnlineUserCount];
 }
 
 - (void)joinGame
@@ -258,11 +258,7 @@
             [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kJoinGameFailure") delayTime:1.5 isHappy:NO];
         }
     }];
-//    [self registerDiceGameNotificationWithName:NOTIFICATION_ROOM usingBlock:^(NSNotification *note) {
-//        PPDebug(@"<DiceRoomListController> NOTIFICATION_ROOM"); 
-//        [[DiceGameService defaultService] getRoomList:0 count:_diceGameService.roomList.count shouldReloadData:YES];
-//
-//    }];
+
     [self registerDiceGameNotificationWithName:UIApplicationWillEnterForegroundNotification usingBlock:^(NSNotification *note) {
         PPDebug(@"<DiceRoomListController> Disconnected from server");
         if (![[DiceGameService defaultService] isConnected]) {
@@ -340,7 +336,7 @@
     [self.friendRoomButton.fontLable setTextColor:[UIColor whiteColor]]; 
     [self.nearByRoomButton.fontLable setTextColor:[UIColor whiteColor]]; 
     
-    [self.titleFontButton.fontLable setText:[self title]];
+//    [self.titleFontButton.fontLable setText:[self title]];
     [self.allRoomButton.fontLable setText:NSLS(@"kAll")];
     [self.friendRoomButton.fontLable setText:NSLS(@"kFriend")];
     [self.nearByRoomButton.fontLable setText:NSLS(@"kNearBy")];
@@ -349,7 +345,7 @@
     
     _isRefreshing = YES;
     self.emptyListTips.hidden = YES;
-        
+    [self updateOnlineUserCount];    
 //    [[NSNotificationCenter defaultCenter] addObserver:self
 //                                             selector:@selector(roomsDidUpdate:)
 //                                                 name:ROOMS_DID_UPDATE
@@ -472,7 +468,11 @@
 
 - (void)refreshRoomsByFilter:(RoomFilter)filter
 {
-    [[DiceGameService defaultService] getRoomList:0 count:ROOMS_COUNT_PER_PAGE shouldReloadData:YES roomType:filter keyword:nil gameId:[ConfigManager gameId]];
+    [[DiceGameService defaultService] getRoomList:0
+                                            count:ROOMS_COUNT_PER_PAGE
+                                         roomType:filter
+                                          keyword:nil
+                                           gameId:[ConfigManager gameId]];
 }
 
 
@@ -505,11 +505,17 @@
     _currentRoomType = nearByRoom;
 }
 
+- (void)updateOnlineUserCount
+{
+    NSString* userCount = [NSString stringWithFormat:NSLS(@"kOnlineUser"),[[DiceGameService defaultService] onlineUserCount]];
+    [self.titleFontButton.fontLable setText:[NSString stringWithFormat:@"%@(%@)",[self title], userCount]];
+}
+
 #pragma mark - CommonGameServiceDelegate
 - (void)didConnected
 {
     [self hideActivity];
-    [[DiceGameService defaultService] getRoomList:0 count:ROOMS_COUNT_PER_PAGE shouldReloadData:YES];
+    [[DiceGameService defaultService] getRoomList:0 count:ROOMS_COUNT_PER_PAGE];
     [self.createRoomButton setEnabled:YES];
     [self.fastEntryButton setEnabled:YES];
     firstLoad = NO;
@@ -551,7 +557,7 @@
 #pragma mark - load more delegate
 - (void)loadMoreTableViewDataSource
 {
-    [_diceGameService getRoomList:_diceGameService.roomList.count count:ROOMS_COUNT_PER_PAGE shouldReloadData:NO];
+    [_diceGameService getRoomList:_diceGameService.roomList.count count:ROOMS_COUNT_PER_PAGE];
 }
 
 - (IBAction)clickHelpButton:(id)sender {
@@ -607,7 +613,11 @@
 
 - (void)willSearch:(NSString *)keywords byView:(CommonSearchView *)view
 {
-    [[DiceGameService defaultService] getRoomList:0 count:ROOMS_COUNT_PER_PAGE shouldReloadData:YES roomType:_currentRoomType keyword:keywords gameId:[ConfigManager gameId]];
+    [[DiceGameService defaultService] getRoomList:0
+                                            count:ROOMS_COUNT_PER_PAGE
+                                         roomType:_currentRoomType
+                                          keyword:keywords
+                                           gameId:[ConfigManager gameId]];
     [self showActivityWithText:NSLS(@"kSearchingRoom")];
     [self pauseRefreshingRooms];
 }

@@ -1,0 +1,735 @@
+//
+//  ZJHGameController.m
+//  Draw
+//
+//  Created by 王 小涛 on 12-10-24.
+//
+//
+
+#import "ZJHGameController.h"
+#import "ZJHGameService.h"
+#import "LevelService.h"
+#import "UserManager.h"
+#import "AudioManager.h"
+#import "AccountService.h"
+#import "ZJHImageManager.h"
+#import "ZJHAvatarView.h"
+#import "CommonGameSession.h"
+#import "ZJHPokerView.h"
+#import "ZJHUserPlayInfo.h"
+#import "GameMessage.pb.h"
+#import "BetTable.h"
+#import "ConfigManager.h"
+#import "PopupViewManager.h"
+#import "ZJHMyAvatarView.h"
+
+#define AVATAR_VIEW_TAG_OFFSET   4000
+#define AVATAR_PLACE_VIEW_OFFSET    8000
+#define POKERS_VIEW_TAG_OFFSET   2000
+#define USER_TOTAL_BET_BG_IMAGE_VIEW_OFFSET 3000
+#define USER_TOTAL_BET_LABEL 3200
+
+#define CARDS_COUNT 3
+
+@interface ZJHGameController ()
+{
+    ZJHGameService  *_gameService;
+    LevelService    *_levelService;
+    UserManager     *_userManager;
+    AudioManager    *_audioManager;
+    AccountService  *_accountService;
+    ZJHImageManager *_imageManager;
+    PopupViewManager *_popupViewManager;
+}
+
+@end
+
+@implementation ZJHGameController
+@synthesize betTable = _betTable;
+
+#pragma mark - life cycle
+
+- (void)dealloc
+{
+    [_betTable release];
+    [_dealerView release];
+    [_betButton release];
+    [_raiseBetButton release];
+    [_autoBetButton release];
+    [_compareCardButton release];
+    [_checkCardButton release];
+    [_cardTypeButton release];
+    [_foldCardButton release];
+    [_totalBetLabel release];
+    [_singleBetLabel release];
+    [super dealloc];
+}
+
+- (id)init
+{
+    self = [super init];
+    if (self) {
+        _gameService = [ZJHGameService defaultService];
+        _userManager = [UserManager defaultManager];
+        _imageManager = [ZJHImageManager defaultManager];
+        _levelService = [LevelService defaultService];
+        _accountService = [AccountService defaultService];
+        _audioManager = [AudioManager defaultManager];
+        _popupViewManager = [PopupViewManager defaultManager];
+    }
+    
+    return self;
+}
+
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+{
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self) {
+        // Custom initialization
+    }
+    return self;
+}
+
+- (void)initAllAvatars
+{
+    for (int i = UserPositionCenter; i < UserPositionMax; i ++) {
+        UIView* placeView = [self.view viewWithTag:(i + AVATAR_PLACE_VIEW_OFFSET)];
+        if (i == UserPositionCenter) {
+            ZJHMyAvatarView* myAvatar = [ZJHMyAvatarView createZJHMyAvatarView];
+            [myAvatar setFrame:placeView.frame];
+            [self.view addSubview:myAvatar];
+            myAvatar.tag = AVATAR_VIEW_TAG_OFFSET + i;
+            [myAvatar update];
+            continue;
+        }
+        ZJHAvatarView* anAvatar = [ZJHAvatarView createZJHAvatarView];
+        [anAvatar setFrame:placeView.frame];
+        [self.view addSubview:anAvatar];
+        anAvatar.tag = AVATAR_VIEW_TAG_OFFSET + i;
+    }
+}
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    
+    // Do any additional setup after loading the view from its nib.
+
+    [self initAllAvatars];
+    [self registerDiceGameNotifications];
+    [self updateAllPlayersAvatar];
+    self.dealerView.delegate = self;
+    
+//    [self disableZJHButtons];
+    
+    // hidden views below
+    self.cardTypeButton.hidden = YES;
+    self.cardTypeButton.userInteractionEnabled = NO;
+    
+    [self updateTotalBetAndSingleBet];
+    [self updateAllUserTotalBet];
+}
+
+
+- (void)didReceiveMemoryWarning
+{
+    // dealloc resource here when memory is not enough
+    [self unregisterAllNotifications];
+    [super didReceiveMemoryWarning];
+}
+
+#pragma mark - Register notifications.
+
+- (void)registerZJHGameNotificationWithName:(NSString *)name
+                                  usingBlock:(void (^)(NSNotification *note))block
+{
+    PPDebug(@"<%@> name", [self description]);
+    
+    [self registerNotificationWithName:name
+                                object:nil
+                                 queue:[NSOperationQueue mainQueue]
+                            usingBlock:block];
+}
+
+- (void)registerDiceGameNotifications
+{
+    [self registerZJHGameNotificationWithName:NOTIFICATION_ROOM
+                                    usingBlock:^(NSNotification *notification) {
+                                        [self roomChanged];
+                                    }];
+    
+    [self registerZJHGameNotificationWithName:NOTIFICATION_GAME_START_NOTIFICATION_REQUEST
+                                   usingBlock:^(NSNotification *notification) {
+                                       [self gameStart];
+                                   }];
+    
+    [self registerZJHGameNotificationWithName:NOTIFICATION_NEXT_PLAYER_START
+                                    usingBlock:^(NSNotification *notification) {
+                                        NSString* userId = [[self messageFromNotification:notification] currentPlayUserId];
+                                        [self nextPlayerStart:userId];
+                                    }];
+    
+    [self registerZJHGameNotificationWithName:NOTIFICATION_BET_REQUEST
+                                   usingBlock:^(NSNotification *notification) {
+                                       [self someoneBet:[self userIdOfNotification:notification]];
+                                   }];
+    
+    [self registerZJHGameNotificationWithName:NOTIFICATION_BET_RESPONSE
+                                   usingBlock:^(NSNotification *notification) {
+                                       [self betSuccess];
+                                   }];
+    
+    [self registerZJHGameNotificationWithName:NOTIFICATION_CHECK_CARD_REQUEST
+                                   usingBlock:^(NSNotification *notification) {
+                                       [self someoneCheckCard:[self userIdOfNotification:notification]];
+                                   }];
+    
+    [self registerZJHGameNotificationWithName:NOTIFICATION_CHECK_CARD_RESPONSE
+                                   usingBlock:^(NSNotification *notification) {
+                                       [self checkCardSuccess];
+                                   }];
+    
+    [self registerZJHGameNotificationWithName:NOTIFICATION_FOLD_CARD_REQUEST
+                                   usingBlock:^(NSNotification *notification) {
+                                       [self someoneFoldCard:[self userIdOfNotification:notification]];
+                                   }];
+    
+    [self registerZJHGameNotificationWithName:NOTIFICATION_FOLD_CARD_RESPONSE
+                                   usingBlock:^(NSNotification *notification) {
+                                       [self foldCardSuccess];
+                                   }];
+    
+    [self registerZJHGameNotificationWithName:NOTIFICATION_SHOW_CARD_REQUEST
+                                   usingBlock:^(NSNotification *notification) {
+
+                                       [self someoneShowCard:[self userIdOfNotification:notification] cardIds:[[[self messageFromNotification:notification] showCardRequest] cardIdsList]];
+                                   }];
+    
+    [self registerZJHGameNotificationWithName:NOTIFICATION_SHOW_CARD_RESPONSE
+                                   usingBlock:^(NSNotification *notification) {
+                                       [self showCardSuccess];
+                                   }];
+    
+    [self registerZJHGameNotificationWithName:NOTIFICATION_COMPARE_CARD_REQUEST
+                                   usingBlock:^(NSNotification *notification) {
+                                       NSString *userId = [self userIdOfNotification:notification];
+                                       NSString *toUserId = [[[self messageFromNotification:notification] compareCardRequest] toUserId];
+                                       
+                                       [self someone:userId
+                                     compareCardWith:toUserId];
+                                   }];
+    
+    [self registerZJHGameNotificationWithName:NOTIFICATION_COMPARE_CARD_RESPONSE
+                                   usingBlock:^(NSNotification *notification) {
+                                       [self compareCardSuccess];
+                                   }];
+    
+    [self registerZJHGameNotificationWithName:NOTIFICATION_GAME_OVER_NOTIFICATION_REQUEST
+                                   usingBlock:^(NSNotification *notification) {
+                                       [self gameOver];
+                                   }];
+}
+
+#pragma mark - pravite methods
+- (void)userBet:(NSString *)userId
+{
+    [[self getAvatarViewByUserId:userId] stopReciprocol];
+
+    [self.betTable someBetFrom:[self getPositionByUserId:userId]
+                     chipValue:_gameService.gameState.singleBet
+                         count:[_gameService betCountOfUser:userId]];
+}
+
+- (void)updateBet
+{
+    
+}
+
+#pragma mark - player action
+- (IBAction)clickBetButton:(id)sender {
+    [self disableZJHButtons];
+    [_popupViewManager dismissChipsSelectView];
+    [_gameService bet:NO];
+}
+
+- (IBAction)clickRaiseBetButton:(id)sender
+{
+    [_popupViewManager popupChipsSelectViewAtView:sender
+                                           inView:self.view
+                                        aboveView:nil
+                                         delegate:self];
+}
+
+- (IBAction)clickAutoBetButton:(id)sender
+{
+    self.autoBetButton.selected = YES;
+    [self disableZJHButtons];
+    [_popupViewManager dismissChipsSelectView];
+    [_gameService bet:YES];
+}
+
+- (IBAction)clickCompareCardButton:(id)sender
+{
+}
+
+- (IBAction)clickCheckCardButton:(id)sender
+{
+    [[self getMyPokersView] faceUpCards:YES];
+    [_gameService checkCard];
+    [self showMyCardTypeString];
+}
+
+- (IBAction)clickFoldCardButton:(id)sender
+{
+    [self disableZJHButtons];
+    [[self getMyAvatarView] stopReciprocol];
+    [[self getMyPokersView] foldCards:YES];
+    [_gameService foldCard];
+}
+
+- (IBAction)clickQuitButton:(id)sender
+{
+    [self quitGame];
+}
+
+#pragma mark - player action response
+
+- (void)betSuccess
+{
+    [self userBet:_userManager.userId];
+    
+    [self updateTotalBetAndSingleBet];
+    [self updateUserTotalBet:_userManager.userId];
+    [self updateAutoBetButton];
+}
+
+- (void)checkCardSuccess
+{
+}
+
+- (void)foldCardSuccess
+{
+}
+
+- (void)showCardSuccess
+{
+    
+}
+
+- (void)compareCardSuccess
+{
+    
+}
+
+#pragma mark - service notification request
+
+- (void)roomChanged
+{
+    [self updateAllPlayersAvatar];
+    [self updateWaittingForNextTurnNotLabel];
+    
+    for (NSString *userId in [_gameService.session.deletedUserList allKeys]) {
+        [self hideTotalBetOfUser:userId];
+        [[self getPokersViewByUserId:userId] clear];
+    }
+}
+
+
+- (CGPoint)calRelativePointByPokerView:(ZJHPokerView*)view
+{
+    float x = view.center.x - self.dealerView.frame.origin.x;
+    float y = view.center.y - self.dealerView.frame.origin.y;
+    return CGPointMake(x, y);
+}
+
+- (NSArray*)dealPointsArray
+{
+    NSMutableArray* array = [[[NSMutableArray alloc] initWithCapacity:UserPositionMax] autorelease];
+    for (PBGameUser* user in _gameService.session.userList) {
+        ZJHPokerView* view = [self getPokersViewByUserId:user.userId];
+        if (view) {
+            CGPoint point = [self calRelativePointByPokerView:view];
+            [array addObject:[DealPoint pointWithCGPoint:point]];
+        }
+    }
+    return array;
+}
+
+- (void)gameStart
+{
+    PPDebug(@"<ZJHGameController> game start!");
+    [self.dealerView dealWithPositionArray:[self dealPointsArray]
+                                     times:CARDS_COUNT];
+    [self updateTotalBetAndSingleBet];
+    [self updateAllUserTotalBet];
+    [self updateAutoBetButton];
+}
+
+- (void)gameOver
+{
+    [self disableZJHButtons];
+    [self clearAllUserPokers];
+    [self clearAllAvatarReciprocols];
+    [self someoneWon:[_gameService winner]];
+}
+
+- (void)nextPlayerStart:(NSString*)userId
+{
+    [[self getAvatarViewByPosition:[self getPositionByUserId:userId]] startReciprocol:[ConfigManager getZJHTimeInterval]];
+        
+    [self updateZJHButtons];
+
+    
+    if ([_gameService isMyTurn]) {
+        if (self.autoBetButton.selected == YES && [_gameService canIContinueAutoBet]) {
+            [self clickAutoBetButton:nil];
+        }else{
+            self.autoBetButton.selected = NO;
+        }
+    }
+}
+
+- (void)someoneBet:(NSString*)userId
+{
+    [self userBet:userId];
+    [self updateTotalBetAndSingleBet];
+    [self updateUserTotalBet:userId];
+}
+
+- (void)someoneShowCard:(NSString*)userId cardIds:(NSArray *)cardIds
+{
+    for (NSNumber *cardId in cardIds) {
+        [[self getPokersViewByPosition:[self getPositionByUserId:userId]] faceUpCard:cardId.intValue
+                                                                           animation:YES];
+    }
+}
+
+- (void)someone:(NSString*)userId
+compareCardWith:(NSString*)targetUserId
+{
+    
+}
+
+- (ZJHPokerSectorType)getPokerSectorTypeByPosition:(UserPosition)position
+{
+    switch (position) {
+        case UserPositionLeft:
+        case UserPositionLeftTop:
+            return ZJHPokerSectorTypeRight;
+            break;
+            
+        case UserPositionRight:
+        case UserPositionRightTop:
+            return ZJHPokerSectorTypeLeft;
+            break;
+            
+        default:
+            return ZJHPokerSectorTypeNone;
+            break;
+    }
+}
+
+- (void)someoneCheckCard:(NSString*)userId
+{
+    [[self getPokersViewByUserId:userId] makeSectorShape:[self getPokerSectorTypeByPosition:[self getPositionByUserId:userId]] animation:YES];
+}
+
+- (void)someoneFoldCard:(NSString*)userId
+{
+    [[self getPokersViewByUserId:userId] foldCards:YES];
+}
+
+- (void)someoneWon:(NSString*)userId
+{
+    [self.betTable userWonAllChips:[self getPositionByUserId:userId]];
+}
+
+- (void)someoneJoinIn:(NSString*)userId
+{
+    [[self getAvatarViewByUserId:userId] setUserInfo:[_gameService.session getUserByUserId:userId]];
+    [self updateUserTotalBet:userId];
+}
+
+- (void)someoneFlee:(NSString*)userId
+{
+    [self someoneFoldCard:userId];
+    [[self getAvatarViewByUserId:userId] resetAvatar];
+    [self hideTotalBetOfUser:userId];
+}
+
+#pragma mark - private method
+
+- (PBGameUser*)getSelfUser
+{
+    return [_gameService.session getUserByUserId:_userManager.userId];
+}
+
+- (void)updateAllPlayersAvatar
+{
+    //init seats
+    for (int i = UserPositionCenter; i < UserPositionMax; i ++) {
+        ZJHAvatarView* avatar = (ZJHAvatarView*)[self.view viewWithTag:AVATAR_VIEW_TAG_OFFSET+i];
+        [avatar resetAvatar];
+    }
+    
+    [[self getAvatarViewByPosition:UserPositionCenter] updateByPBGameUser:[_userManager toPBGameUser]];
+    [[self getAvatarViewByPosition:UserPositionCenter] setDelegate:self];
+    
+    // set user on seat
+    NSArray* userList = _gameService.session.userList;
+    for (PBGameUser* user in userList) {
+        PPDebug(@"<test>get user--%@, sitting at %d",user.nickName, user.seatId);
+
+        ZJHAvatarView* avatar = [self getAvatarViewByUserId:user.userId];
+        [avatar updateByPBGameUser:user];
+    }
+}
+
+- (void)updateAllPokers
+{
+    for (int i = UserPositionCenter; i < UserPositionMax; i ++) {
+        ZJHAvatarView* avatar = (ZJHAvatarView*)[self.view viewWithTag:AVATAR_VIEW_TAG_OFFSET+i];
+        ZJHPokerView* pokerView = (ZJHPokerView*)[self.view viewWithTag:POKERS_VIEW_TAG_OFFSET+i];
+        
+        [pokerView clear];
+        if (avatar.userInfo) {
+            CGSize pokerSize;
+            CGFloat gap;
+            if ([_userManager isMe:avatar.userInfo.userId]) {
+                pokerSize = CGSizeMake(BIG_POKER_VIEW_WIDTH, BIG_POKER_VIEW_HEIGHT);
+                gap = BIG_POKER_GAP;
+            }else {
+                pokerSize = CGSizeMake(SMALL_POKER_VIEW_WIDTH, SMALL_POKER_VIEW_HEIGHT);
+                gap = SMALL_POKER_GAP;
+            }
+            [pokerView updateWithPokers:[_gameService pokersOfUser:avatar.userInfo.userId]
+                                   size:pokerSize
+                                    gap:gap
+                               delegate:self];
+        }
+    }
+}
+
+
+- (void)updateWaittingForNextTurnNotLabel
+{
+    
+}
+
+- (ZJHPokerView*)getMyPokersView
+{
+    return (ZJHPokerView*)[self.view viewWithTag:(POKERS_VIEW_TAG_OFFSET+UserPositionCenter)];
+}
+
+- (ZJHPokerView*)getPokersViewByPosition:(UserPosition)position
+{
+    return (ZJHPokerView*)[self.view viewWithTag:(POKERS_VIEW_TAG_OFFSET+position)];
+}
+
+
+- (ZJHAvatarView*)getAvatarViewByPosition:(UserPosition)position
+{
+    return (ZJHAvatarView*)[self.view viewWithTag:(AVATAR_VIEW_TAG_OFFSET+position)];
+}
+
+- (UserPosition)getPositionByUserId:(NSString*)userId
+{
+    PBGameUser* user = [_gameService.session getUserByUserId:userId];
+    PBGameUser* selfUser = [self getSelfUser];
+    return (UserPositionMax + (user.seatId - selfUser.seatId))%UserPositionMax;
+}
+
+- (ZJHPokerView*)getPokersViewByUserId:(NSString*)userId
+{
+    return [self getPokersViewByPosition:[self getPositionByUserId:userId]];
+}
+
+- (ZJHAvatarView*)getAvatarViewByUserId:(NSString*)userId
+{
+    return [self getAvatarViewByPosition:[self getPositionByUserId:userId]];
+}
+
+- (ZJHAvatarView*)getMyAvatarView
+{
+    return [self getAvatarViewByPosition:[self getPositionByUserId:_userManager.userId]];
+}
+
+- (void)quitGame
+{
+//    [self clearAllReciprocol];
+//    [self clearAllPlayersAvatar];
+//    [self clearAllResultViews];
+//    [self dismissAllPopupViews];
+    [_gameService quitGame];
+    [self unregisterAllNotifications];
+    [self.navigationController popViewControllerAnimated:YES];
+    //[_audioManager backgroundMusicStop];
+}
+
+- (GameMessage *)messageFromNotification:(NSNotification *)notification
+{
+    return [CommonGameNetworkService userInfoToMessage:notification.userInfo];
+}
+
+- (NSString *)userIdOfNotification:(NSNotification *)notification
+{
+    return [[self messageFromNotification:notification] userId];
+}
+
+- (void)viewDidUnload {
+    [self setBetTable:nil];
+    [self setDealerView:nil];
+    [self setBetButton:nil];
+    [self setRaiseBetButton:nil];
+    [self setAutoBetButton:nil];
+    [self setCompareCardButton:nil];
+    [self setCheckCardButton:nil];
+    [self setCardTypeButton:nil];
+    [self setFoldCardButton:nil];
+    [self setTotalBetLabel:nil];
+    [self setSingleBetLabel:nil];
+    [super viewDidUnload];
+}
+
+#pragma mark - ZJHAvatar delegate
+
+- (void)didClickOnAvatar:(ZJHAvatarView*)view
+{
+    
+}
+
+- (void)reciprocalEnd:(ZJHAvatarView*)view
+{
+    [self clickFoldCardButton:nil];
+}
+
+#pragma mark - poker view protocol
+
+- (void)didClickPokerView:(PokerView *)pokerView
+{
+    if (![_gameService canIShowCard:pokerView.poker.pokerId]) {
+        return;
+    }
+    
+    pokerView.showCardButtonIsPopup ? [pokerView dismissShowCardButton] : [pokerView popupShowCardButtonInView:self.view aboveView:nil];
+    
+}
+
+- (void)didClickShowCardButton:(PokerView *)pokerView
+{
+    PPDebug(@"didClickShowCardButton: card rank: %d, suit = %d", pokerView.poker.rank, pokerView.poker.suit);
+    [_gameService showCard:pokerView.poker.pokerId];
+}
+
+#pragma mark - chipsSelectView protocol
+
+- (void)didSelectChip:(int)chipValue
+{
+    PPDebug(@"didSelectChip: %d", chipValue);
+    [self disableZJHButtons];
+    [_popupViewManager dismissChipsSelectView];
+    [_gameService raiseBet:chipValue];
+}
+
+- (void)disableZJHButtons
+{
+    self.betButton.enabled = NO;
+    self.raiseBetButton.enabled = NO;
+    self.autoBetButton.enabled = NO;
+    
+    self.compareCardButton.enabled = NO;
+    self.checkCardButton.enabled = NO;
+    self.foldCardButton.enabled = NO;
+}
+
+- (void)updateZJHButtons
+{
+    self.betButton.enabled = [_gameService canIBet];
+    self.raiseBetButton.enabled = [_gameService canIRaiseBet];
+    self.autoBetButton.enabled = [_gameService canIAutoBet];
+    
+    self.compareCardButton.enabled = [_gameService canICompareCard];
+    self.checkCardButton.enabled = [_gameService canICheckCard];
+    self.foldCardButton.enabled = [_gameService canIFoldCard];
+}
+
+#pragma mark - deal view delegate
+- (void)didDealFinish:(DealerView *)view
+{
+    [self updateAllPokers];
+}
+
+- (void)showMyCardTypeString
+{
+    _cardTypeButton.hidden = NO;
+    [_cardTypeButton setTitle:[_gameService myCardType] forState:UIControlStateNormal];
+}
+
+- (void)clearAllUserPokers
+{
+    for (int i = UserPositionCenter; i < UserPositionMax; i ++){
+        [[self getPokersViewByPosition:i] clear];
+    }
+}
+
+- (void)clearAllAvatarReciprocols
+{
+    for (int i = UserPositionCenter; i < UserPositionMax; i ++){
+        [[self getAvatarViewByPosition:i] stopReciprocol];
+    }
+}
+
+#pragma mark - pravite methods, update bet.
+
+- (void)updateTotalBetAndSingleBet
+{
+    self.totalBetLabel.text = [self int2String:_gameService.gameState.totalBet];
+    self.singleBetLabel.text = [self int2String:_gameService.gameState.singleBet];
+}
+
+- (void)updateAllUserTotalBet
+{
+    for (PBGameUser *user in _gameService.session.playingUserList) {
+        [self updateUserTotalBet:user.userId];
+    }
+}
+
+- (void)hideTotalBetOfUser:(NSString *)userId
+{
+    [[self totalBetLabelOfUser:userId] setHidden:YES];
+    [[self totalBetBgImageViewOfUser:userId] setHidden:YES];
+}
+
+- (void)updateUserTotalBet:(NSString *)userId
+{
+    [[self totalBetLabelOfUser:userId] setHidden:NO];
+    [[self totalBetBgImageViewOfUser:userId] setHidden:NO];
+    [[self totalBetLabelOfUser:userId] setText:[self int2String:[_gameService totalBetOfUser:userId]]];
+}
+
+- (UILabel *)totalBetLabelOfUser:(NSString *)userId
+{
+    return (UILabel *)[self.view viewWithTag:USER_TOTAL_BET_LABEL+[self getPositionByUserId:userId]];
+}
+
+- (UIImageView *)totalBetBgImageViewOfUser:(NSString *)userId
+{
+    return (UIImageView *)[self.view viewWithTag:USER_TOTAL_BET_BG_IMAGE_VIEW_OFFSET+ [self getPositionByUserId:userId]];
+}
+
+- (NSString *)int2String:(int)intValue
+{
+    return [NSString stringWithFormat:@"%d", intValue];
+}
+
+- (void)updateAutoBetButton
+{
+    if ([_gameService remainderAutoBetCount] > 0) {
+        [self.autoBetButton setTitle:[NSString stringWithFormat:@"%d", [_gameService remainderAutoBetCount]] forState:UIControlStateNormal];
+
+    }else{
+        [self.autoBetButton setTitle:@"k跟到底" forState:UIControlStateNormal];
+    }
+}
+
+@end

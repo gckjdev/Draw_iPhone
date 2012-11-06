@@ -26,17 +26,7 @@
            commentCount:(long)commentCount
           drawToMeCount:(long)drawToMeCount;
 
-- (void)didGetUserNickName:(NSString*)nickName
-                UserAvatar:(NSString*)avatar
-                UserGender:(NSString*)gender
-              UserLocation:(NSString*)location 
-                 UserLevel:(NSString*)level 
-                  SinaNick:(NSString*)sinaNick 
-                    QQNick:(NSString*)qqNick 
-                      qqId:(NSString*)qqId
-                FacebookId:(NSString*)facebookId
-                     coins:(NSString*)coins
-                  relation:(int)relation;
+
 
 - (void)didGetUserInfo:(MyFriend *)user resultCode:(NSInteger)resultCode;
 
