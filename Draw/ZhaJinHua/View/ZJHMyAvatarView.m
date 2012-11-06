@@ -57,7 +57,7 @@
 
 - (void)update{
     [self.levelLabel setText:[NSString stringWithFormat:@"LV.%d",[LevelService defaultService].level]];
-    [self.coinsLabel setText:[NSString stringWithFormat:@"X%d",[AccountService defaultService].getBalance]];
+    [self.coinsLabel setText:[NSString stringWithFormat:@"x%d",[AccountService defaultService].getBalance]];
 }
 
 /*
