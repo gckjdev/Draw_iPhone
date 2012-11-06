@@ -57,13 +57,13 @@
 {
     switch (position) {
         case UserPositionRight:
-            return CGPointMake(self.frame.size.width, self.frame.size.height*0.75);
+            return CGPointMake(self.frame.size.width, self.frame.size.height*0.6);
         case UserPositionRightTop:
-            return CGPointMake(self.frame.size.width, self.frame.size.height*0.25);
+            return CGPointMake(self.frame.size.width, self.frame.size.height*0.1);
         case UserPositionLeft:
-            return CGPointMake(0, self.frame.size.height*0.75);
+            return CGPointMake(0, self.frame.size.height*0.6);
         case UserPositionLeftTop:
-            return CGPointMake(0, self.frame.size.height*0.25);
+            return CGPointMake(0, self.frame.size.height*0.1);
         case UserPositionCenter:
             return CGPointMake(self.frame.size.width/2, self.frame.size.height);
         default:
@@ -75,9 +75,9 @@
 
 - (CGPoint)getRandomCenterPoint
 {
-    int randomX = random()%((int)self.frame.size.width/3);
-    int randomY = random()%((int)self.frame.size.height/3);
-    return CGPointMake(self.frame.size.width/3+randomX, self.frame.size.height/3+randomY);
+    int randomX = random()%((int)self.frame.size.width/2);
+    int randomY = random()%((int)self.frame.size.height/2);
+    return CGPointMake(self.frame.size.width/4+randomX, self.frame.size.height/8+randomY);
 }
 
 - (void)someBetFrom:(UserPosition)position

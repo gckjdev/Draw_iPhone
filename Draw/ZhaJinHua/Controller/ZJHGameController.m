@@ -782,7 +782,7 @@ compareCardWith:(NSString*)targetUserId
 
 - (IBAction)testWin:(id)sender
 {
-    [self.betTable userWonAllChips:UserPositionCenter];
+    [self.betTable userWonAllChips:UserPositionLeftTop];
 
 }
 
