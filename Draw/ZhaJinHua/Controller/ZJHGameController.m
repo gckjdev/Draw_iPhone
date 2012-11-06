@@ -752,15 +752,29 @@ compareCardWith:(NSString*)targetUserId
 {
     return [NSString stringWithFormat:@"%d", intValue];
 }
-
 - (void)updateAutoBetButton
 {
     if ([_gameService remainderAutoBetCount] > 0) {
         [self.autoBetButton setTitle:[NSString stringWithFormat:@"%d", [_gameService remainderAutoBetCount]] forState:UIControlStateNormal];
-
+        
     }else{
         [self.autoBetButton setTitle:@"k跟到底" forState:UIControlStateNormal];
     }
+    
+}
+
+#pragma mark - test
+
+- (IBAction)testBet:(id)sender
+{
+    [self.betTable someBetFrom:UserPositionCenter chipValue:5 count:1];
+
+}
+
+- (IBAction)testWin:(id)sender
+{
+    [self.betTable userWonAllChips:UserPositionCenter];
+
 }
 
 @end
