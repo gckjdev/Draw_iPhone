@@ -240,14 +240,6 @@
 }
 
 #pragma mark - pravite methods
-- (void)userBet:(NSString *)userId
-{
-    [[self getAvatarViewByUserId:userId] stopReciprocol];
-
-    [self.betTable someBetFrom:[self getPositionByUserId:userId]
-                     chipValue:_gameService.gameState.singleBet
-                         count:[_gameService betCountOfUser:userId]];
-}
 
 - (void)updateBet
 {
@@ -256,6 +248,7 @@
 
 #pragma mark - player action
 - (IBAction)clickBetButton:(id)sender {
+    [[self getMyAvatarView] stopReciprocol];
     [self disableZJHButtons];
     [_popupViewManager dismissChipsSelectView];
     [_gameService bet:NO];
@@ -271,6 +264,7 @@
 
 - (IBAction)clickAutoBetButton:(id)sender
 {
+    [[self getMyAvatarView] stopReciprocol];
     self.autoBetButton.selected = YES;
     [self disableZJHButtons];
     [_popupViewManager dismissChipsSelectView];
@@ -290,8 +284,8 @@
 
 - (IBAction)clickFoldCardButton:(id)sender
 {
-    [self disableZJHButtons];
     [[self getMyAvatarView] stopReciprocol];
+    [self disableZJHButtons];
     [[self getMyPokersView] foldCards:YES];
     [_gameService foldCard];
 }
@@ -305,7 +299,9 @@
 
 - (void)betSuccess
 {
-    [self userBet:_userManager.userId];
+    [self.betTable someBetFrom:[self getPositionByUserId:_userManager.userId]
+                     chipValue:_gameService.gameState.singleBet
+                         count:[_gameService betCountOfUser:_userManager.userId]];
     
     [self updateTotalBetAndSingleBet];
     [self updateUserTotalBet:_userManager.userId];
@@ -411,7 +407,10 @@
 
 - (void)someoneBet:(NSString*)userId
 {
-    [self userBet:userId];
+    [[self getAvatarViewByUserId:userId] stopReciprocol];
+    [self.betTable someBetFrom:[self getPositionByUserId:userId]
+                     chipValue:_gameService.gameState.singleBet
+                         count:[_gameService betCountOfUser:userId]];
     [self updateTotalBetAndSingleBet];
     [self updateUserTotalBet:userId];
 }
@@ -475,6 +474,7 @@ compareCardWith:(NSString*)targetUserId
 
 - (void)someoneFoldCard:(NSString*)userId
 {
+    [[self getAvatarViewByUserId:userId] stopReciprocol];
     [[self getPokersViewByUserId:userId] foldCards:YES];
 }
 
@@ -665,6 +665,7 @@ compareCardWith:(NSString*)targetUserId
 - (void)didSelectChip:(int)chipValue
 {
     PPDebug(@"didSelectChip: %d", chipValue);
+    [[self getMyAvatarView] stopReciprocol];
     [self disableZJHButtons];
     [_popupViewManager dismissChipsSelectView];
     [_gameService raiseBet:chipValue];
