@@ -46,6 +46,12 @@
     return view;
 }
 
+- (void)resetAvatar
+{
+
+}
+
+
 - (void)update{
     [self.levelLabel setText:[NSString stringWithFormat:@"LV.%d",[LevelService defaultService].level]];
     [self.coinsLabel setText:[NSString stringWithFormat:@"X%d",[AccountService defaultService].getBalance]];

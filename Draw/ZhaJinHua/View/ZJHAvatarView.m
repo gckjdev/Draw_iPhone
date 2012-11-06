@@ -52,7 +52,7 @@
     [view sendSubviewToBack:view.roundAvatar];
     //        _roundAvatar.center = CGPointMake(self.frame.size.width/2, self.frame.size.height/2);
     [view addSubview:view.roundAvatar];
-    view.roundAvatar.delegate = view;
+//    view.roundAvatar.delegate = view;
     
     [view addTapGuesture];
     
