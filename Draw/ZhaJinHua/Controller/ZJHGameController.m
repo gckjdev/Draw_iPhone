@@ -680,17 +680,35 @@ compareCardWith:(NSString*)targetUserId
     self.compareCardButton.enabled = NO;
     self.checkCardButton.enabled = NO;
     self.foldCardButton.enabled = NO;
+    
+    [self.betButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [self.raiseBetButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [self.autoBetButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+
+    [self.compareCardButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [self.checkCardButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [self.foldCardButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
 }
 
 - (void)updateZJHButtons
 {
     self.betButton.enabled = [_gameService canIBet];
+    [self.betButton setTitleColor:(self.betButton.enabled ? [UIColor whiteColor] : [UIColor blackColor]) forState:UIControlStateNormal];
+    
     self.raiseBetButton.enabled = [_gameService canIRaiseBet];
+    [self.raiseBetButton setTitleColor:(self.raiseBetButton.enabled ? [UIColor whiteColor] : [UIColor blackColor]) forState:UIControlStateNormal];
+    
     self.autoBetButton.enabled = [_gameService canIAutoBet];
+    [self.autoBetButton setTitleColor:(self.autoBetButton.enabled ? [UIColor whiteColor] : [UIColor blackColor]) forState:UIControlStateNormal];
     
     self.compareCardButton.enabled = [_gameService canICompareCard];
+    [self.compareCardButton setTitleColor:(self.compareCardButton.enabled ? [UIColor whiteColor] : [UIColor blackColor]) forState:UIControlStateNormal];
+
     self.checkCardButton.enabled = [_gameService canICheckCard];
+    [self.checkCardButton setTitleColor:(self.checkCardButton.enabled ? [UIColor whiteColor] : [UIColor blackColor]) forState:UIControlStateNormal];
+
     self.foldCardButton.enabled = [_gameService canIFoldCard];
+    [self.foldCardButton setTitleColor:(self.foldCardButton.enabled ? [UIColor whiteColor] : [UIColor blackColor]) forState:UIControlStateNormal];
 }
 
 #pragma mark - deal view delegate
