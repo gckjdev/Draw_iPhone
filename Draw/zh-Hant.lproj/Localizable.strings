@@ -1091,3 +1091,15 @@
 /*********************** 大话骰子国际化字符串结束 *************************/
 
 
+/*********************** 炸金花国际化字符串开始 *************************/
+
+"kCardTypeHighCard" = "散牌";
+"kCardTypePair" = "對子";
+"kCardTypeStraight" = "順子";
+"kCardTypeFlush" = "金花";
+"kCardTypeStraightFlush" = "順金";
+"kCardTypeThreeOfAKind" = "豹子";
+"kCardTypeSpecial" = "特殊";
+"kCardTypeUnknow" = "未知";
+
+/*********************** 炸金花国际化字符串结束 *************************/

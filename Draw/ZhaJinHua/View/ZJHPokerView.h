@@ -61,4 +61,7 @@ typedef enum {
 - (void)compare:(BOOL)animation
             win:(BOOL)win;
 
+- (void)showBomb;
+
+
 @end
