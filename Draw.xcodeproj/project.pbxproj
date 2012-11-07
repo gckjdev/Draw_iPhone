@@ -195,6 +195,8 @@
 		A46215F016495D2B005DA90E /* zjh_compare_card_disable@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A46215EA16495D2B005DA90E /* zjh_compare_card_disable@2x.png */; };
 		A46215F116495D2B005DA90E /* zjh_fold_card_disable@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A46215EB16495D2B005DA90E /* zjh_fold_card_disable@2x.png */; };
 		A46215F216495D2B005DA90E /* zjh_raise_bet_disable@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A46215EC16495D2B005DA90E /* zjh_raise_bet_disable@2x.png */; };
+		A46215F5164A07B1005DA90E /* CommonGameUser.m in Sources */ = {isa = PBXBuildFile; fileRef = A46215F4164A07B1005DA90E /* CommonGameUser.m */; };
+		A46215F8164A08DA005DA90E /* SNSUser.m in Sources */ = {isa = PBXBuildFile; fileRef = A46215F7164A08D9005DA90E /* SNSUser.m */; };
 		A47FF99E15DB9ADB00EE8125 /* DiceItemService.m in Sources */ = {isa = PBXBuildFile; fileRef = A47FF99D15DB9ADB00EE8125 /* DiceItemService.m */; };
 		A48E827415E871CE002DB480 /* DiceHelpManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A48E827315E871CE002DB480 /* DiceHelpManager.m */; };
 		A48E827615E8AB1B002DB480 /* ChatView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A48E827515E8AB1A002DB480 /* ChatView.xib */; };
@@ -1488,6 +1490,10 @@
 		A46215EA16495D2B005DA90E /* zjh_compare_card_disable@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zjh_compare_card_disable@2x.png"; sourceTree = "<group>"; };
 		A46215EB16495D2B005DA90E /* zjh_fold_card_disable@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zjh_fold_card_disable@2x.png"; sourceTree = "<group>"; };
 		A46215EC16495D2B005DA90E /* zjh_raise_bet_disable@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zjh_raise_bet_disable@2x.png"; sourceTree = "<group>"; };
+		A46215F3164A07B0005DA90E /* CommonGameUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonGameUser.h; sourceTree = "<group>"; };
+		A46215F4164A07B1005DA90E /* CommonGameUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonGameUser.m; sourceTree = "<group>"; };
+		A46215F6164A08D9005DA90E /* SNSUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SNSUser.h; sourceTree = "<group>"; };
+		A46215F7164A08D9005DA90E /* SNSUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SNSUser.m; sourceTree = "<group>"; };
 		A47FF99C15DB9ADB00EE8125 /* DiceItemService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiceItemService.h; sourceTree = "<group>"; };
 		A47FF99D15DB9ADB00EE8125 /* DiceItemService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiceItemService.m; sourceTree = "<group>"; };
 		A48E827215E871CE002DB480 /* DiceHelpManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiceHelpManager.h; sourceTree = "<group>"; };
@@ -3794,6 +3800,10 @@
 				A44B622C1637B80600A8045B /* Poker.m */,
 				C2F2CF961639165500995DCB /* ZJHImageManager.h */,
 				C2F2CF971639165500995DCB /* ZJHImageManager.m */,
+				A46215F3164A07B0005DA90E /* CommonGameUser.h */,
+				A46215F4164A07B1005DA90E /* CommonGameUser.m */,
+				A46215F6164A08D9005DA90E /* SNSUser.h */,
+				A46215F7164A08D9005DA90E /* SNSUser.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -8708,6 +8718,8 @@
 				CA1882C21648C94B000942D6 /* PPMessageManager.m in Sources */,
 				CA1882C31648C94B000942D6 /* PPMessage.m in Sources */,
 				CA1882C41648C94B000942D6 /* MessageStat.m in Sources */,
+				A46215F5164A07B1005DA90E /* CommonGameUser.m in Sources */,
+				A46215F8164A08DA005DA90E /* SNSUser.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

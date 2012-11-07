@@ -303,7 +303,7 @@
 						<string key="IBUINormalTitle">加注</string>
 						<reference key="IBUIHighlightedTitleColor" ref="129307563"/>
 						<reference key="IBUINormalTitleColor" ref="129307563"/>
-						<object class="NSColor" key="IBUINormalTitleShadowColor" id="1072700300">
+						<object class="NSColor" key="IBUINormalTitleShadowColor" id="423365091">
 							<int key="NSColorSpace">3</int>
 							<bytes key="NSWhite">MAA</bytes>
 						</object>
@@ -330,7 +330,7 @@
 						<string key="IBUINormalTitle">跟注</string>
 						<reference key="IBUIHighlightedTitleColor" ref="129307563"/>
 						<reference key="IBUINormalTitleColor" ref="129307563"/>
-						<reference key="IBUINormalTitleShadowColor" ref="1072700300"/>
+						<reference key="IBUINormalTitleShadowColor" ref="423365091"/>
 						<object class="NSCustomResource" key="IBUINormalBackgroundImage">
 							<string key="NSClassName">NSImage</string>
 							<string key="NSResourceName">zjh_bet@2x.png</string>
@@ -353,13 +353,10 @@
 						<string key="IBUITitleShadowOffset">{0, 1}</string>
 						<string key="IBUINormalTitle">跟到底</string>
 						<reference key="IBUIHighlightedTitleColor" ref="129307563"/>
-						<object class="NSColor" key="IBUISelectedTitleColor">
-							<int key="NSColorSpace">1</int>
-							<bytes key="NSRGB">MCAwLjUwMTk2MDgxNCAxAA</bytes>
-						</object>
+						<reference key="IBUISelectedTitleColor" ref="129307563"/>
 						<reference key="IBUINormalTitleColor" ref="129307563"/>
-						<reference key="IBUISelectedTitleShadowColor" ref="1072700300"/>
-						<reference key="IBUINormalTitleShadowColor" ref="1072700300"/>
+						<reference key="IBUISelectedTitleShadowColor" ref="423365091"/>
+						<reference key="IBUINormalTitleShadowColor" ref="423365091"/>
 						<object class="NSCustomResource" key="IBUISelectedBackgroundImage" id="846275372">
 							<string key="NSClassName">NSImage</string>
 							<string key="NSResourceName">zjh_auto_bet@2x.png</string>
@@ -384,7 +381,7 @@
 						<string key="IBUINormalTitle">比牌</string>
 						<reference key="IBUIHighlightedTitleColor" ref="129307563"/>
 						<reference key="IBUINormalTitleColor" ref="129307563"/>
-						<reference key="IBUINormalTitleShadowColor" ref="1072700300"/>
+						<reference key="IBUINormalTitleShadowColor" ref="423365091"/>
 						<object class="NSCustomResource" key="IBUINormalBackgroundImage">
 							<string key="NSClassName">NSImage</string>
 							<string key="NSResourceName">zjh_compare_card@2x.png</string>
@@ -408,7 +405,7 @@
 						<string key="IBUINormalTitle">看牌</string>
 						<reference key="IBUIHighlightedTitleColor" ref="129307563"/>
 						<reference key="IBUINormalTitleColor" ref="129307563"/>
-						<reference key="IBUINormalTitleShadowColor" ref="1072700300"/>
+						<reference key="IBUINormalTitleShadowColor" ref="423365091"/>
 						<object class="NSCustomResource" key="IBUINormalBackgroundImage">
 							<string key="NSClassName">NSImage</string>
 							<string key="NSResourceName">zjh_check_card@2x.png</string>
@@ -431,7 +428,7 @@
 						<string key="IBUINormalTitle">弃牌</string>
 						<reference key="IBUIHighlightedTitleColor" ref="129307563"/>
 						<reference key="IBUINormalTitleColor" ref="129307563"/>
-						<reference key="IBUINormalTitleShadowColor" ref="1072700300"/>
+						<reference key="IBUINormalTitleShadowColor" ref="423365091"/>
 						<object class="NSCustomResource" key="IBUINormalBackgroundImage">
 							<string key="NSClassName">NSImage</string>
 							<string key="NSResourceName">zjh_fold_card@2x.png</string>
@@ -459,7 +456,7 @@
 							<bytes key="NSRGB">MC45MTM2NzU2ODg5IDEgMAA</bytes>
 						</object>
 						<nil key="IBUIHighlightedColor"/>
-						<reference key="IBUIShadowColor" ref="1072700300"/>
+						<reference key="IBUIShadowColor" ref="423365091"/>
 						<string key="IBUIShadowOffset">{0, 1}</string>
 						<int key="IBUIBaselineAdjustment">0</int>
 						<float key="IBUIMinimumFontSize">10</float>
@@ -490,7 +487,7 @@
 						<string key="IBUIText">总注:</string>
 						<reference key="IBUITextColor" ref="129307563"/>
 						<nil key="IBUIHighlightedColor"/>
-						<reference key="IBUIShadowColor" ref="1072700300"/>
+						<reference key="IBUIShadowColor" ref="423365091"/>
 						<string key="IBUIShadowOffset">{0, 1}</string>
 						<int key="IBUIBaselineAdjustment">0</int>
 						<float key="IBUIMinimumFontSize">10</float>
@@ -524,7 +521,7 @@
 							<bytes key="NSRGB">MC4zMDY4MTgxODE4IDEgMQA</bytes>
 						</object>
 						<nil key="IBUIHighlightedColor"/>
-						<reference key="IBUIShadowColor" ref="1072700300"/>
+						<reference key="IBUIShadowColor" ref="423365091"/>
 						<string key="IBUIShadowOffset">{0, 1}</string>
 						<int key="IBUIBaselineAdjustment">0</int>
 						<float key="IBUIMinimumFontSize">10</float>
@@ -548,7 +545,7 @@
 						<string key="IBUIText">单注:</string>
 						<reference key="IBUITextColor" ref="129307563"/>
 						<nil key="IBUIHighlightedColor"/>
-						<reference key="IBUIShadowColor" ref="1072700300"/>
+						<reference key="IBUIShadowColor" ref="423365091"/>
 						<string key="IBUIShadowOffset">{0, 1}</string>
 						<int key="IBUIBaselineAdjustment">0</int>
 						<float key="IBUIMinimumFontSize">10</float>
@@ -660,7 +657,7 @@
 							<int key="NSColorSpace">1</int>
 							<bytes key="NSRGB">MC45OTM5NzU4ODg1IDEgMC4yMTYzMjA5MjUAA</bytes>
 						</object>
-						<reference key="IBUINormalTitleShadowColor" ref="1072700300"/>
+						<reference key="IBUINormalTitleShadowColor" ref="423365091"/>
 						<object class="IBUIFontDescription" key="IBUIFontDescription">
 							<int key="type">2</int>
 							<double key="pointSize">12</double>
@@ -933,7 +930,7 @@
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="916225450"/>
-				<reference key="IBUIBackgroundColor" ref="1072700300"/>
+				<reference key="IBUIBackgroundColor" ref="423365091"/>
 				<object class="IBUISimulatedStatusBarMetrics" key="IBUISimulatedStatusBarMetrics"/>
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 			</object>
@@ -5159,7 +5156,7 @@
 				<string key="2874.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="2876.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="290.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<real value="0.0" key="290.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
+				<real value="2" key="290.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
 				<array class="NSMutableArray" key="290.IBViewMetadataConstraints">
 					<reference ref="422785084"/>
 				</array>

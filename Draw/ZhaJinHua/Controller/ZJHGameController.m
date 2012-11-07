@@ -277,13 +277,15 @@
 
 - (IBAction)clickCompareCardButton:(id)sender
 {
+    
 }
 
 - (IBAction)clickCheckCardButton:(id)sender
 {
     [[self getMyPokersView] faceUpCards:ZJHPokerXMotionTypeNone animation:YES];
-    [_gameService checkCard];
     [self showMyCardTypeString];
+
+    [_gameService checkCard];
 }
 
 - (IBAction)clickFoldCardButton:(id)sender
@@ -373,6 +375,8 @@
     [self updateTotalBetAndSingleBet];
     [self updateAllUserTotalBet];
     [self updateAutoBetButton];
+    
+    [self allBet];
 }
 
 - (void)gameOver
@@ -520,8 +524,7 @@ compareCardWith:(NSString*)targetUserId
     [[self getAvatarViewByPosition:UserPositionCenter] setDelegate:self];
     
     // set user on seat
-    NSArray* userList = _gameService.session.userList;
-    for (PBGameUser* user in userList) {
+    for (PBGameUser* user in _gameService.session.userList) {
         PPDebug(@"<test>get user--%@, sitting at %d",user.nickName, user.seatId);
 
         ZJHAvatarView* avatar = [self getAvatarViewByUserId:user.userId];
@@ -774,7 +777,7 @@ compareCardWith:(NSString*)targetUserId
 
 - (void)updateAllUserTotalBet
 {
-    for (PBGameUser *user in _gameService.session.playingUserList) {
+    for (PBGameUser *user in _gameService.session.userList) {
         [self updateUserTotalBet:user.userId];
     }
 }
@@ -829,6 +832,16 @@ compareCardWith:(NSString*)targetUserId
 {
     [self.betTable userWonAllChips:UserPositionLeftTop];
 
+}
+
+- (void)allBet
+{
+    for (PBGameUser *user in _gameService.session.userList) {
+        [self.betTable someBetFrom:[self getPositionByUserId:user.userId]
+                         chipValue:_gameService.gameState.singleBet
+                             count:[_gameService betCountOfUser:user.userId]];
+
+    }
 }
 
 @end

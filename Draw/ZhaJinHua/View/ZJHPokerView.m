@@ -198,6 +198,11 @@
     }
 }
 
+- (void)showBomb
+{
+    
+}
+
 #pragma mark - pravite methods
 
 - (void)lose:(BOOL)animation
