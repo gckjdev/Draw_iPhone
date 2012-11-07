@@ -33,6 +33,23 @@
 - (UIImage*)avatarBackground;
 - (UIImage*)myAvatarBackground;
 
+
 - (UIImage*)moneyTreeImage;
+
+- (UIImage*)betBtnBgImage;
+- (UIImage*)raiseBetBtnBgImage;
+- (UIImage*)autoBetBtnBgImage;
+- (UIImage*)compareCardBtnBgImage;
+- (UIImage*)checkCardBtnBgImage;
+- (UIImage*)foldCardBtnBgImage;
+
+- (UIImage*)betBtnDisableBgImage;
+- (UIImage*)raiseBetBtnDisableBgImage;
+- (UIImage*)autoBetBtnDisableBgImage;
+- (UIImage*)compareCardBtnDisableBgImage;
+- (UIImage*)checkCardBtnDisableBgImage;
+- (UIImage*)foldCardBtnDisableBgImage;
+
+
 
 @end
