@@ -92,7 +92,7 @@
     CAAnimation* anim2 = [AnimationManager rotationAnimationWithRoundCount:angle duration:DEAL_ANIMATION_DURATION];
     anim2.removedOnCompletion = NO;
     //        PPDebug(@"deal to point (%.2f, %.2f)",points[i].x, points[i].y );
-    PPDebug(@" <test> remain cards = %d", _remainCards);
+//    PPDebug(@" <test> remain cards = %d", _remainCards);
     if (_remainCards == 1) {
         
         [CATransaction setCompletionBlock:^{
@@ -102,7 +102,7 @@
                     [layer setOpacity:0];
                 }
             }
-            PPDebug(@"<test> deal finish!");
+//            PPDebug(@"<test> deal finish!");
         }];
     }
     

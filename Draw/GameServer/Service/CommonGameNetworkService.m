@@ -197,6 +197,8 @@
 
 - (void)handleNextPlayerStartNotificationRequest:(GameMessage *)message
 {
+    PPDebug(@"(*************** next player: %@ *****************", [message currentPlayUserId]);
+
     self.session.currentPlayUserId = [message currentPlayUserId];
     [self postNotification:NOTIFICATION_NEXT_PLAYER_START message:message];
 }

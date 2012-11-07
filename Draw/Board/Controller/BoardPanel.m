@@ -193,15 +193,15 @@
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
     self.pageControl.currentPage = [self pageForOffset];    
-    PPDebug(@"scrollViewDidEndDecelerating, page = %d", self.pageControl.currentPage);    
+//    PPDebug(@"scrollViewDidEndDecelerating, page = %d", self.pageControl.currentPage);    
     [self restartTimer];
     [self refreshBoardViewInPage:self.pageControl.currentPage];
 }
 
 - (void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView
 {
-    PPDebug(@"<BoardPanel>scrollViewDidEndScrollingAnimation");
-    self.pageControl.currentPage = [self pageForOffset];     
+//    PPDebug(@"<BoardPanel>scrollViewDidEndScrollingAnimation");
+    self.pageControl.currentPage = [self pageForOffset];
 }
 
 - (void)gotoPage:(NSInteger)page animated:(BOOL)animated
@@ -211,7 +211,7 @@
         return;
     }
     
-    PPDebug(@"<BoardPanel> gotoPage page=%d", page);
+//    PPDebug(@"<BoardPanel> gotoPage page=%d", page);
     self.pageControl.currentPage = page;
     CGPoint offset = [self offsetForPage];
     [self.scrollView setContentOffset:offset animated:animated];
@@ -232,7 +232,7 @@
     }
 }
 - (IBAction)changePage:(id)sender {
-    PPDebug(@"<BoardPanel>changePage to %d", self.pageControl.currentPage);
+//    PPDebug(@"<BoardPanel>changePage to %d", self.pageControl.currentPage);
     [self.scrollView setContentOffset:[self offsetForPage] animated:YES];
     [self refreshBoardViewInPage:self.pageControl.currentPage];
 }

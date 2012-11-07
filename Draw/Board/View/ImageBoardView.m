@@ -102,8 +102,8 @@
                 imageUrl = board.imageUrl;
             }
         }
-        PPDebug(@"<ImageBoard> load view, image url = %@", imageUrl);
-        [_imageView setUrl:[NSURL URLWithString:imageUrl]];        
+//        PPDebug(@"<ImageBoard> load view, image url = %@", imageUrl);
+        [_imageView setUrl:[NSURL URLWithString:imageUrl]];
     }
     
     [GlobalGetImageCache() manage:_imageView];
@@ -113,7 +113,7 @@
 
 - (void)viewWillAppear
 {
-    PPDebug(@"image board view will appear");
+//    PPDebug(@"image board view will appear");
     
     BOOL isShowAd = [[AdService defaultService] isShowAd];
     isShowAd = NO; // set by Benson to disable Ad in board  
@@ -143,7 +143,7 @@
 - (void)viewDidDisappear
 {
 //    [[AdService defaultService] clearAdView:self.adView];
-    PPDebug(@"image board viewDidDisappear, clear all ad view");
+//    PPDebug(@"image board viewDidDisappear, clear all ad view");
     [self clearAllAdView];
 }
 

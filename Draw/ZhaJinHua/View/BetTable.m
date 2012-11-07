@@ -96,7 +96,7 @@
     UIImage* chipImage = [[ZJHImageManager defaultManager] chipImageForChipValue:chipValue];
     [layer setContents:(id)[chipImage CGImage]];
     layer.bounds = CGRectMake(0, 0, chipImage.size.width/2,chipImage.size.height/2);
-    layer.shouldRasterize = YES;
+//    layer.shouldRasterize = YES;
     
     [self.layer addSublayer:layer];
     [_visibleLayerQueue enqueue:layer];

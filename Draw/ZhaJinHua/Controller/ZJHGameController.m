@@ -158,9 +158,7 @@
 
 - (void)registerZJHGameNotificationWithName:(NSString *)name
                                   usingBlock:(void (^)(NSNotification *note))block
-{
-    PPDebug(@"<%@> name", [self description]);
-    
+{    
     [self registerNotificationWithName:name
                                 object:nil
                                  queue:[NSOperationQueue mainQueue]
@@ -372,7 +370,7 @@
 
 - (void)gameStart
 {
-    PPDebug(@"<ZJHGameController> game start!");
+//    PPDebug(@"<ZJHGameController> game start!");
     [self.dealerView dealWithPositionArray:[self dealPointsArray]
                                      times:CARDS_COUNT];
     [self updateTotalBetAndSingleBet];
@@ -403,17 +401,13 @@
 
 - (void)nextPlayerStart:(NSString*)userId
 {
+    PPDebug(@"################# [controller: %@] next player: %@ ##################", [self description],userId);
     [[self getAvatarViewByPosition:[self getPositionByUserId:userId]] startReciprocol:[ConfigManager getZJHTimeInterval]];
         
     [self updateZJHButtons];
-
     
-    if ([_gameService isMyTurn]) {
-        if (self.autoBetButton.selected == YES && [_gameService canIContinueAutoBet]) {
+    if ([_gameService canIContinueAutoBet]) {
             [self clickAutoBetButton:nil];
-        }else{
-            self.autoBetButton.selected = NO;
-        }
     }
 }
 
@@ -528,7 +522,7 @@ compareCardWith:(NSString*)targetUserId
     
     // set user on seat
     for (PBGameUser* user in _gameService.session.userList) {
-        PPDebug(@"<test>get user--%@, sitting at %d",user.nickName, user.seatId);
+//        PPDebug(@"<test>get user--%@, sitting at %d",user.nickName, user.seatId);
 
         ZJHAvatarView* avatar = [self getAvatarViewByUserId:user.userId];
         [avatar updateByPBGameUser:user];
@@ -610,8 +604,9 @@ compareCardWith:(NSString*)targetUserId
 //    [self clearAllPlayersAvatar];
 //    [self clearAllResultViews];
 //    [self dismissAllPopupViews];
-    [_gameService quitGame];
+
     [self unregisterAllNotifications];
+    [_gameService quitGame];
     [self.navigationController popViewControllerAnimated:YES];
     //[_audioManager backgroundMusicStop];
 }
@@ -651,6 +646,7 @@ compareCardWith:(NSString*)targetUserId
 
 - (void)reciprocalEnd:(ZJHAvatarView*)view
 {
+    PPDebug(@"################# [controller: %@] TIME OUT: auto fold ##################", [self description]);
     [self clickFoldCardButton:nil];
 }
 
@@ -722,7 +718,7 @@ compareCardWith:(NSString*)targetUserId
     [self.raiseBetButton setTitleColor:(self.raiseBetButton.userInteractionEnabled ? TITLE_COLOR_WHEN_ENABLE : TITLE_COLOR_WHEN_DISABLE) forState:UIControlStateNormal];
     [self.raiseBetButton setBackgroundImage:(self.raiseBetButton.userInteractionEnabled ? [_imageManager raiseBetBtnBgImage] : [_imageManager raiseBetBtnDisableBgImage]) forState:UIControlStateNormal];
 
-    
+    self.autoBetButton.selected = [_gameService remainderAutoBetCount] > 0 ? YES : NO;
     self.autoBetButton.userInteractionEnabled = [_gameService canIAutoBet];
     [self.autoBetButton setTitleColor:(self.autoBetButton.userInteractionEnabled ? TITLE_COLOR_WHEN_ENABLE : TITLE_COLOR_WHEN_DISABLE) forState:UIControlStateNormal];
     [self.autoBetButton setBackgroundImage:(self.autoBetButton.userInteractionEnabled ? [_imageManager autoBetBtnBgImage] : [_imageManager autoBetBtnDisableBgImage]) forState:UIControlStateNormal];
