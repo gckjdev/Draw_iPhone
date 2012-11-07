@@ -33,6 +33,9 @@
 - (UIImage*)avatarBackground;
 - (UIImage*)myAvatarBackground;
 
+
+- (UIImage*)moneyTreeImage;
+
 - (UIImage*)betBtnBgImage;
 - (UIImage*)raiseBetBtnBgImage;
 - (UIImage*)autoBetBtnBgImage;
@@ -46,6 +49,7 @@
 - (UIImage*)compareCardBtnDisableBgImage;
 - (UIImage*)checkCardBtnDisableBgImage;
 - (UIImage*)foldCardBtnDisableBgImage;
+
 
 
 @end

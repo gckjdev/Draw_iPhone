@@ -8,6 +8,8 @@
 
 #import "MoneyTree.h"
 #import "ConfigManager.h"
+#import "ZJHImageManager.h"
+#import "ShareImageManager.h"
 
 @implementation MoneyTree
 @synthesize isMature = _isMature;
@@ -17,6 +19,25 @@
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
+        
+    }
+    return self;
+}
+
+- (id)init
+{
+    self = [super init];
+    if (self) {
+        [self addTarget:self action:@selector(clickTree:) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return self;
+}
+
+- (id)initWithCoder:(NSCoder *)aDecoder
+{
+    self = [super initWithCoder:aDecoder];
+    if (self) {
+        [self addTarget:self action:@selector(clickTree:) forControlEvents:UIControlEventTouchUpInside];
     }
     return self;
 }
@@ -26,8 +47,11 @@
     _isMature = isMature;
     if (isMature) {
         //TODO: here set button image a coin
+        
+        [self setImage:[[ShareImageManager defaultManager] coinImage] forState:UIControlStateNormal];
     } else {
         //TODO: here set button image a tree
+        [self setImage:[[ZJHImageManager defaultManager] moneyTreeImage] forState:UIControlStateNormal];
     }
 }
 
@@ -41,15 +65,18 @@
     }
 }
 
-- (void)mature:(id)sender
+- (void)mature
 {
     [self setIsMature:YES];
 }
 
 - (void)startGrowthTimer:(CFTimeInterval)timeInterval
 {
-    _treeTimer = [NSTimer timerWithTimeInterval:timeInterval target:self
-                                       selector:@selector(mature:) userInfo:nil repeats:NO];
+    _treeTimer = [NSTimer scheduledTimerWithTimeInterval:timeInterval
+                                                  target:self
+                                                selector:@selector(mature)
+                                                userInfo:nil
+                                                 repeats:NO];
 }
 
 - (void)startGrowth
@@ -64,6 +91,22 @@
 {
     [self killTimer];
     
+}
+
+- (void)clickTree:(id)sender
+{
+    if (_isMature) {
+        self.isMature = NO;
+        if (_delegate && [_delegate respondsToSelector:@selector(getMoney:fromTree:)]) {
+            [_delegate getMoney:10 fromTree:self];
+        }
+        [self startGrowth];
+
+    } else {
+        if (_delegate && [_delegate respondsToSelector:@selector(moneyTreeNotMature:)]) {
+            [_delegate moneyTreeNotMature:self];
+        }
+    }
 }
 
 /*

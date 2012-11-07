@@ -22,6 +22,7 @@
 #import "ConfigManager.h"
 #import "PopupViewManager.h"
 #import "ZJHMyAvatarView.h"
+#import "MoneyTree.h"
 
 #define AVATAR_VIEW_TAG_OFFSET   4000
 #define AVATAR_PLACE_VIEW_OFFSET    8000
@@ -75,6 +76,7 @@
     [_foldCardButton release];
     [_totalBetLabel release];
     [_singleBetLabel release];
+    [_moneyTree release];
     [super dealloc];
 }
 
@@ -141,6 +143,7 @@
     
     [self updateTotalBetAndSingleBet];
     [self updateAllUserTotalBet];
+    [self.moneyTree startGrowth];
 }
 
 
@@ -635,6 +638,7 @@ compareCardWith:(NSString*)targetUserId
     [self setFoldCardButton:nil];
     [self setTotalBetLabel:nil];
     [self setSingleBetLabel:nil];
+    [self setMoneyTree:nil];
     [super viewDidUnload];
 }
 

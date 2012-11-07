@@ -341,6 +341,12 @@ static ZJHImageManager* shareInstance;
     return [UIImage imageNamed:@"zjh_my_avatar_bg.png"];
 }
 
+
+- (UIImage*)moneyTreeImage
+{
+    return [UIImage imageNamed:@"tree.png"];
+}
+
 - (UIImage*)betBtnBgImage
 {
     return [UIImage imageNamed:@"zjh_bet@2x.png"];
