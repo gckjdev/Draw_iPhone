@@ -341,5 +341,75 @@ static ZJHImageManager* shareInstance;
     return [UIImage imageNamed:@"zjh_my_avatar_bg.png"];
 }
 
+- (UIImage*)betBtnBgImage
+{
+    return [UIImage imageNamed:@"zjh_bet@2x.png"];
+}
+
+- (UIImage*)raiseBetBtnBgImage
+{
+    return [UIImage imageNamed:@"zjh_raise_bet@2x.png"];
+}
+
+
+- (UIImage*)autoBetBtnBgImage
+{
+    return [UIImage imageNamed:@"zjh_auto_bet@2x.png"];
+}
+
+
+- (UIImage*)compareCardBtnBgImage
+{
+    return [UIImage imageNamed:@"zjh_compare_card@2x.png"];
+}
+
+
+- (UIImage*)checkCardBtnBgImage
+{
+    return [UIImage imageNamed:@"zjh_check_card@2x.png"];
+}
+
+
+- (UIImage*)foldCardBtnBgImage
+{
+    return [UIImage imageNamed:@"zjh_fold_card@2x.png"];
+}
+
+- (UIImage*)betBtnDisableBgImage
+{
+    return [UIImage imageNamed:@"zjh_bet_disable@2x.png"];
+}
+
+- (UIImage*)raiseBetBtnDisableBgImage
+{
+    return [UIImage imageNamed:@"zjh_raise_bet_disable@2x.png"];
+}
+
+
+- (UIImage*)autoBetBtnDisableBgImage
+{
+    return [UIImage imageNamed:@"zjh_auto_bet_disable@2x.png"];
+}
+
+
+- (UIImage*)compareCardBtnDisableBgImage
+{
+    return [UIImage imageNamed:@"zjh_compare_card_disable@2x.png"];
+}
+
+
+- (UIImage*)checkCardBtnDisableBgImage
+{
+    return [UIImage imageNamed:@"zjh_check_card_disable@2x.png"];
+}
+
+
+- (UIImage*)foldCardBtnDisableBgImage
+{
+    return [UIImage imageNamed:@"zjh_fold_card_disable@2x.png"];
+}
+
+
+
 
 @end
