@@ -388,6 +388,7 @@
 		C2EBB8E7164A17770024D605 /* raise_bet.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C2EBB8C8164A17770024D605 /* raise_bet.mp3 */; };
 		C2EBB8E8164A17770024D605 /* raise_bet1_F.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C2EBB8C9164A17770024D605 /* raise_bet1_F.mp3 */; };
 		C2EBB8E9164A17770024D605 /* raise_bet1_M.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C2EBB8CA164A17770024D605 /* raise_bet1_M.mp3 */; };
+		C2EBB8EC164A1B200024D605 /* ZJHSoundManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C2EBB8EB164A1B200024D605 /* ZJHSoundManager.m */; };
 		C2F2CF981639165500995DCB /* ZJHImageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C2F2CF971639165500995DCB /* ZJHImageManager.m */; };
 		C2F2CFB3163932C000995DCB /* ZJHAvatarView.m in Sources */ = {isa = PBXBuildFile; fileRef = C2F2CFB2163932C000995DCB /* ZJHAvatarView.m */; };
 		C2F48BD115BE4484005C4D72 /* RecommendAppService.m in Sources */ = {isa = PBXBuildFile; fileRef = C2F48BD015BE4484005C4D72 /* RecommendAppService.m */; };
@@ -1819,6 +1820,8 @@
 		C2EBB8C8164A17770024D605 /* raise_bet.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = raise_bet.mp3; sourceTree = "<group>"; };
 		C2EBB8C9164A17770024D605 /* raise_bet1_F.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = raise_bet1_F.mp3; sourceTree = "<group>"; };
 		C2EBB8CA164A17770024D605 /* raise_bet1_M.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = raise_bet1_M.mp3; sourceTree = "<group>"; };
+		C2EBB8EA164A1B200024D605 /* ZJHSoundManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJHSoundManager.h; sourceTree = "<group>"; };
+		C2EBB8EB164A1B200024D605 /* ZJHSoundManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJHSoundManager.m; sourceTree = "<group>"; };
 		C2F2CF961639165500995DCB /* ZJHImageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJHImageManager.h; sourceTree = "<group>"; };
 		C2F2CF971639165500995DCB /* ZJHImageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJHImageManager.m; sourceTree = "<group>"; };
 		C2F2CFB1163932C000995DCB /* ZJHAvatarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJHAvatarView.h; sourceTree = "<group>"; };
@@ -3849,6 +3852,8 @@
 		A4E7877E16367338003557AD /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				C2EBB8EA164A1B200024D605 /* ZJHSoundManager.h */,
+				C2EBB8EB164A1B200024D605 /* ZJHSoundManager.m */,
 				A4E787921636753F003557AD /* ZJHGameState.h */,
 				A4E787931636753F003557AD /* ZJHGameState.m */,
 				A44B622816379D4000A8045B /* ZJHUserPlayInfo.h */,
@@ -8840,6 +8845,7 @@
 				CA1882C21648C94B000942D6 /* PPMessageManager.m in Sources */,
 				CA1882C31648C94B000942D6 /* PPMessage.m in Sources */,
 				CA1882C41648C94B000942D6 /* MessageStat.m in Sources */,
+				C2EBB8EC164A1B200024D605 /* ZJHSoundManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

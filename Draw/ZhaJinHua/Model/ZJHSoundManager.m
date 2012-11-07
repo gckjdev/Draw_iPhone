@@ -20,61 +20,109 @@ static ZJHSoundManager* shareInstance;
     return shareInstance;
 }
 
-- (NSString*)getBetSoundEffect
+- (NSString*)betSoundEffect
 {
     
 }
 
-- (NSString*)getBetHumanSound:(BOOL)gender
+- (NSString*)betHumanSound:(BOOL)gender
 {
     
 }
 
-- (NSString*)getCheckCardSoundEffect
+- (NSString*)checkCardSoundEffect
 {
     
 }
 
-- (NSString*)getCheckCardHumanSound:(BOOL)gender
+- (NSString*)checkCardHumanSound:(BOOL)gender
 {
     
 }
 
-- (NSString*)getCompareCardSoundEffect
+- (NSString*)compareCardSoundEffect
 {
     
 }
 
-- (NSString*)getCompareCardHumanSound:(BOOL)gender
+- (NSString*)compareCardHumanSound:(BOOL)gender
 {
     
 }
 
-- (NSString*)getFoldCardSoundEffect
+- (NSString*)foldCardSoundEffect
 {
     
 }
 
-- (NSString*)getFoldCardHumanSound:(BOOL)gender
+- (NSString*)foldCardHumanSound:(BOOL)gender
 {
     
 }
 
-- (NSString*)getRaiseBetSoundEffect
+- (NSString*)raiseBetSoundEffect
 {
     
 }
 
-- (NSString*)getRaiseBetHumanSound:(BOOL)gender
+- (NSString*)raiseBetHumanSound:(BOOL)gender
 {
     
 }
 
-- (NSString*)getClickButtonSound
+- (NSString*)clickButtonSound
 {
     
 }
 
+- (NSString*)dealCardAppear
+{
+    
+}
 
+- (NSString*)dealCard
+{
+    
+}
+
+- (NSString*)dealCardDisappear
+{
+    
+}
+
+- (NSString*)fireworks
+{
+    
+}
+
+- (NSString*)flee
+{
+    
+}
+
+- (NSString*)fullMoney
+{
+    
+}
+
+- (NSString*)gameBGM
+{
+    
+}
+
+- (NSString*)gameOver
+{
+    
+}
+
+- (NSString*)gameWin
+{
+    
+}
+
+- (NSString*)getChips
+{
+    
+}
 
 @end
