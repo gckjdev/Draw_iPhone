@@ -341,5 +341,9 @@ static ZJHImageManager* shareInstance;
     return [UIImage imageNamed:@"zjh_my_avatar_bg.png"];
 }
 
+- (UIImage*)moneyTreeImage
+{
+    return [UIImage imageNamed:@"tree.png"];
+}
 
 @end

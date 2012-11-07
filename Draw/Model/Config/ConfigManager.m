@@ -410,7 +410,7 @@
 + (int)getTreeMatureTime
 {
     return [MobClickUtils getIntValueByKey:@"ZJH_TREE_MATURE_TIME"
-                              defaultValue:3000];
+                              defaultValue:60];
 }
 
 + (int)getZJHMaxAutoBetCount

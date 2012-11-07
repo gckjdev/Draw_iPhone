@@ -21,6 +21,7 @@
 }
 @property (assign, nonatomic) CFTimeInterval growthTime;
 @property (assign, nonatomic) BOOL isMature;
+@property (assign, nonatomic) id<MoneyTreeDelegate> delegate;
 
 - (void)startGrowth;
 - (void)kill;

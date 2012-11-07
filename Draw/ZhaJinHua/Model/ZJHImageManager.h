@@ -33,4 +33,6 @@
 - (UIImage*)avatarBackground;
 - (UIImage*)myAvatarBackground;
 
+- (UIImage*)moneyTreeImage;
+
 @end

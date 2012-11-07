@@ -20,6 +20,7 @@
 @class ZJHImageManager;
 @class AccountService;
 @class BetTable;
+@class MoneyTree;
 
 typedef enum {
     UserPositionCenter = 0,
@@ -43,6 +44,7 @@ typedef enum {
 @property (retain, nonatomic) IBOutlet UIButton *cardTypeButton;
 @property (retain, nonatomic) IBOutlet UILabel *totalBetLabel;
 @property (retain, nonatomic) IBOutlet UILabel *singleBetLabel;
+@property (retain, nonatomic) IBOutlet MoneyTree *moneyTree;
 
 
 @end

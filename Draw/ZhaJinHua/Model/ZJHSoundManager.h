@@ -10,4 +10,6 @@
 
 @interface ZJHSoundManager : NSObject
 
++ (ZJHSoundManager*)defaultManager;
+
 @end
