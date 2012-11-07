@@ -31,6 +31,10 @@
 
 #define CARDS_COUNT 3
 
+#define TITLE_COLOR_WHEN_DISABLE [UIColor colorWithRed:6.0/255.0 green:41.0/255.0 blue:56.0/255.0 alpha:1]
+
+#define TITLE_COLOR_WHEN_ENABLE [UIColor whiteColor]
+
 @interface ZJHGameController ()
 {
     ZJHGameService  *_gameService;
@@ -374,6 +378,7 @@
 - (void)gameOver
 {
     [self disableZJHButtons];
+    self.autoBetButton.selected = NO;
     [self clearAllAvatarReciprocols];
     [self someoneWon:[_gameService winner]];
 
@@ -673,24 +678,64 @@ compareCardWith:(NSString*)targetUserId
 
 - (void)disableZJHButtons
 {
-    self.betButton.enabled = NO;
-    self.raiseBetButton.enabled = NO;
-    self.autoBetButton.enabled = NO;
+    self.betButton.userInteractionEnabled = NO;
+    self.raiseBetButton.userInteractionEnabled = NO;
+    self.autoBetButton.userInteractionEnabled = NO;
     
-    self.compareCardButton.enabled = NO;
-    self.checkCardButton.enabled = NO;
-    self.foldCardButton.enabled = NO;
+    self.compareCardButton.userInteractionEnabled = NO;
+    self.checkCardButton.userInteractionEnabled = NO;
+    self.foldCardButton.userInteractionEnabled = NO;
+    
+    
+    [self.betButton setTitleColor:TITLE_COLOR_WHEN_DISABLE forState:UIControlStateNormal];
+    [self.raiseBetButton setTitleColor:TITLE_COLOR_WHEN_DISABLE forState:UIControlStateNormal];
+    [self.autoBetButton setTitleColor:TITLE_COLOR_WHEN_DISABLE forState:UIControlStateNormal];
+
+    [self.compareCardButton setTitleColor:TITLE_COLOR_WHEN_DISABLE forState:UIControlStateNormal];
+    [self.checkCardButton setTitleColor:TITLE_COLOR_WHEN_DISABLE forState:UIControlStateNormal];
+    [self.foldCardButton setTitleColor:TITLE_COLOR_WHEN_DISABLE forState:UIControlStateNormal];
+    
+    [self.betButton setBackgroundImage:[_imageManager betBtnDisableBgImage] forState:UIControlStateNormal];
+    [self.raiseBetButton setBackgroundImage: [_imageManager raiseBetBtnDisableBgImage] forState:UIControlStateNormal];
+    [self.autoBetButton setBackgroundImage:(self.autoBetButton.userInteractionEnabled ? [_imageManager autoBetBtnBgImage] : [_imageManager autoBetBtnDisableBgImage]) forState:UIControlStateNormal];
+
+    
+    [self.compareCardButton setBackgroundImage:[_imageManager compareCardBtnDisableBgImage] forState:UIControlStateNormal];
+    [self.checkCardButton setBackgroundImage:[_imageManager checkCardBtnDisableBgImage] forState:UIControlStateNormal];
+    [self.foldCardButton setBackgroundImage:[_imageManager foldCardBtnDisableBgImage] forState:UIControlStateNormal];
 }
 
 - (void)updateZJHButtons
 {
-    self.betButton.enabled = [_gameService canIBet];
-    self.raiseBetButton.enabled = [_gameService canIRaiseBet];
-    self.autoBetButton.enabled = [_gameService canIAutoBet];
+    self.betButton.userInteractionEnabled = [_gameService canIBet];
+    [self.betButton setTitleColor:(self.betButton.userInteractionEnabled ? TITLE_COLOR_WHEN_ENABLE : TITLE_COLOR_WHEN_DISABLE) forState:UIControlStateNormal];
+    [self.betButton setBackgroundImage:(self.betButton.userInteractionEnabled ? [_imageManager betBtnBgImage] : [_imageManager betBtnDisableBgImage]) forState:UIControlStateNormal];
     
-    self.compareCardButton.enabled = [_gameService canICompareCard];
-    self.checkCardButton.enabled = [_gameService canICheckCard];
-    self.foldCardButton.enabled = [_gameService canIFoldCard];
+    self.raiseBetButton.userInteractionEnabled = [_gameService canIRaiseBet];
+    [self.raiseBetButton setTitleColor:(self.raiseBetButton.userInteractionEnabled ? TITLE_COLOR_WHEN_ENABLE : TITLE_COLOR_WHEN_DISABLE) forState:UIControlStateNormal];
+    [self.raiseBetButton setBackgroundImage:(self.raiseBetButton.userInteractionEnabled ? [_imageManager raiseBetBtnBgImage] : [_imageManager raiseBetBtnDisableBgImage]) forState:UIControlStateNormal];
+
+    
+    self.autoBetButton.userInteractionEnabled = [_gameService canIAutoBet];
+    [self.autoBetButton setTitleColor:(self.autoBetButton.userInteractionEnabled ? TITLE_COLOR_WHEN_ENABLE : TITLE_COLOR_WHEN_DISABLE) forState:UIControlStateNormal];
+    [self.autoBetButton setBackgroundImage:(self.autoBetButton.userInteractionEnabled ? [_imageManager autoBetBtnBgImage] : [_imageManager autoBetBtnDisableBgImage]) forState:UIControlStateNormal];
+
+    
+    self.compareCardButton.userInteractionEnabled = [_gameService canICompareCard];
+    [self.compareCardButton setTitleColor:(self.compareCardButton.userInteractionEnabled ? TITLE_COLOR_WHEN_ENABLE : TITLE_COLOR_WHEN_DISABLE) forState:UIControlStateNormal];
+    [self.compareCardButton setBackgroundImage:(self.compareCardButton.userInteractionEnabled ? [_imageManager compareCardBtnBgImage] : [_imageManager compareCardBtnDisableBgImage]) forState:UIControlStateNormal];
+
+
+    self.checkCardButton.userInteractionEnabled = [_gameService canICheckCard];
+    [self.checkCardButton setTitleColor:(self.checkCardButton.userInteractionEnabled ? TITLE_COLOR_WHEN_ENABLE : TITLE_COLOR_WHEN_DISABLE) forState:UIControlStateNormal];
+    [self.checkCardButton setBackgroundImage:(self.checkCardButton.userInteractionEnabled ? [_imageManager checkCardBtnBgImage] : [_imageManager checkCardBtnDisableBgImage]) forState:UIControlStateNormal];
+
+
+    self.foldCardButton.userInteractionEnabled = [_gameService canIFoldCard];
+    [self.foldCardButton setTitleColor:(self.foldCardButton.userInteractionEnabled ? TITLE_COLOR_WHEN_ENABLE : TITLE_COLOR_WHEN_DISABLE) forState:UIControlStateNormal];
+    [self.foldCardButton setBackgroundImage:(self.foldCardButton.userInteractionEnabled ? [_imageManager foldCardBtnBgImage] : [_imageManager foldCardBtnDisableBgImage]) forState:UIControlStateNormal];
+
+    
 }
 
 #pragma mark - deal view delegate
