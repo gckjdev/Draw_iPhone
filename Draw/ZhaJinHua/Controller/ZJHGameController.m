@@ -546,6 +546,9 @@ compareCardWith:(NSString*)targetUserId
 {
     for (PBGameUser* user in _gameService.session.userList) {
         ZJHAvatarView* avatar = [self getAvatarViewByUserId:user.userId];
+        if (![_gameService canUserCompareCard:user.userId]) {
+            continue;
+        }
         UIButton* btn = (UIButton*)[self.view viewWithTag:avatar.tag - AVATAR_VIEW_TAG_OFFSET + COMPARE_BUTTON_TAG_OFFSET];
         if (!btn) {
             btn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
