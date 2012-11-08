@@ -23,6 +23,7 @@
 #import "PopupViewManager.h"
 #import "ZJHMyAvatarView.h"
 #import "MoneyTree.h"
+#import "AnimationManager.h"
 
 #define AVATAR_VIEW_TAG_OFFSET   4000
 #define AVATAR_PLACE_VIEW_OFFSET    8000
@@ -229,16 +230,19 @@
     
     [self registerZJHGameNotificationWithName:NOTIFICATION_COMPARE_CARD_REQUEST
                                    usingBlock:^(NSNotification *notification) {
-                                       NSString *userId = [self userIdOfNotification:notification];
-                                       NSString *toUserId = [[[self messageFromNotification:notification] compareCardRequest] toUserId];
+//                                       NSString *userId = [self userIdOfNotification:notification];
+//                                       NSString *toUserId = [[[self messageFromNotification:notification] compareCardRequest] toUserId];
                                        
-                                       [self someone:userId
-                                     compareCardWith:toUserId];
+//                                       [self someone:userId
+//                                     compareCardWith:toUserId];
                                    }];
     
     [self registerZJHGameNotificationWithName:NOTIFICATION_COMPARE_CARD_RESPONSE
                                    usingBlock:^(NSNotification *notification) {
-                                       [self compareCardSuccess];
+                                       NSArray* userResultList = [[[self messageFromNotification:notification] compareCardResponse] userResultList];
+                                       [self showCompareCardResult:userResultList];
+                                       
+//                                       [self compareCardSuccess];
                                    }];
     
     [self registerZJHGameNotificationWithName:NOTIFICATION_GAME_OVER_NOTIFICATION_REQUEST
@@ -439,8 +443,25 @@ compareCardWith:(NSString*)targetUserId
     ZJHPokerView* pokerView = [self getPokersViewByUserId:userId];
     ZJHPokerView* otherPokerView = [self getPokersViewByUserId:targetUserId];
     
-    [pokerView compare:YES win:didWin];
-    [otherPokerView compare:YES win:!didWin];
+    [pokerView.layer addAnimation:[AnimationManager translationAnimationFrom:pokerView.center to:self.view.center duration:2 delegate:self removeCompeleted:NO] forKey:nil];
+    [otherPokerView.layer addAnimation:[AnimationManager translationAnimationFrom:otherPokerView.center to:self.view.center duration:2 delegate:self removeCompeleted:NO] forKey:nil];
+    [CATransaction setCompletionBlock:^{
+        [pokerView compare:YES win:didWin];
+        [otherPokerView compare:YES win:!didWin];
+        [pokerView.layer addAnimation:[AnimationManager translationAnimationFrom:self.view.center to:pokerView.center duration:2 delegate:self removeCompeleted:NO] forKey:nil];
+        [otherPokerView.layer addAnimation:[AnimationManager translationAnimationFrom:self.view.center to:otherPokerView.center duration:2 delegate:self removeCompeleted:NO] forKey:nil];
+    }];
+}
+
+- (void)showCompareCardResult:(NSArray*)userResultList
+{
+    [self clearAllAvatarReciprocols];
+    if (userResultList.count == 2) {
+        PBUserResult* result1 = [userResultList objectAtIndex:0];
+        PBUserResult* result2 = [userResultList objectAtIndex:1];
+        
+        [self someone:result1.userId compareCardWith:result2.userId didWin:result1.win];
+    }
 }
 
 - (ZJHPokerSectorType)getPokerSectorTypeByPosition:(UserPosition)position
@@ -516,14 +537,14 @@ compareCardWith:(NSString*)targetUserId
 {
     UIButton* compareSomeoneBtn = (UIButton*)sender;
     ZJHAvatarView* avatar = (ZJHAvatarView*)[self.view viewWithTag:(AVATAR_VIEW_TAG_OFFSET+compareSomeoneBtn.tag - COMPARE_BUTTON_TAG_OFFSET)];
-    [self someone:[_userManager userId] compareCardWith:avatar.userInfo.userId didWin:YES];
+//    [self someone:[_userManager userId] compareCardWith:avatar.userInfo.userId didWin:YES];
     self.isComparing = NO;
-    //TODO:send compare request
+    [_gameService compareCard:avatar.userInfo.userId];
 }
 
 - (void)setAllPlayerComparing
 {
-    for (PBGameUser* user in _gameService.session.playingUserList) {
+    for (PBGameUser* user in _gameService.session.userList) {
         ZJHAvatarView* avatar = [self getAvatarViewByUserId:user.userId];
         UIButton* btn = (UIButton*)[self.view viewWithTag:avatar.tag - AVATAR_VIEW_TAG_OFFSET + COMPARE_BUTTON_TAG_OFFSET];
         if (!btn) {
@@ -542,7 +563,7 @@ compareCardWith:(NSString*)targetUserId
 
 - (void)setAllPlayerNotComparing
 {
-    for (PBGameUser* user in _gameService.session.playingUserList) {
+    for (PBGameUser* user in _gameService.session.userList) {
         ZJHAvatarView* avatar = [self getAvatarViewByUserId:user.userId];
         UIButton* btn = (UIButton*)[self.view viewWithTag:avatar.tag - AVATAR_VIEW_TAG_OFFSET + COMPARE_BUTTON_TAG_OFFSET];
         if (btn) {
