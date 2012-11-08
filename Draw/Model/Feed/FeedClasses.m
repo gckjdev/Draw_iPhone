@@ -55,6 +55,10 @@
             autorelease];
 }
 
+- (NSString *)genderString
+{
+    return _gender ? @"m" : @"f";
+}
 
 - (NSString *)description
 {

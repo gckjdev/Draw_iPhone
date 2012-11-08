@@ -20,6 +20,7 @@
 #import "DrawFeed.h"
 #import "CommentController.h"
 #import "UseItemScene.h"
+#import "MyFriend.h"
 
 typedef enum{
     MyTypeFeed = FeedListTypeAll,
@@ -311,6 +312,7 @@ typedef enum{
         MyCommentCell *cell = [theTableView dequeueReusableCellWithIdentifier:[MyCommentCell getCellIdentifier]];
         if (cell == nil) {
             cell = [MyCommentCell createCell:self];
+            cell.superViewController = self;
         }
         [cell setCellInfo:commentFeed];
         return cell;
@@ -721,15 +723,11 @@ typedef enum{
 {
     
     NSString* genderString = gender?@"m":@"f";
-    [CommonUserInfoView showUser:userId 
-                        nickName:nickName 
-                          avatar:nil 
-                          gender:genderString 
-                        location:nil 
-                           level:1
-                         hasSina:NO 
-                           hasQQ:NO 
-                     hasFacebook:NO 
-                      infoInView:self];
+    MyFriend *friend = [MyFriend friendWithFid:userId
+                                      nickName:nickName
+                                        avatar:nil
+                                        gender:genderString
+                                         level:1];
+    [CommonUserInfoView showFriend:friend infoInView:self needUpdate:YES];
 }
 @end

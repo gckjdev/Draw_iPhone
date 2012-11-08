@@ -31,7 +31,7 @@
               avatar:(NSString *)avatar 
               gender:(BOOL)gender;
 
-
+- (NSString *)genderString;
 @end
 
 typedef enum{

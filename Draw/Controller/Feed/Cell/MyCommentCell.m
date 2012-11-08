@@ -15,6 +15,7 @@
 #import "CommonUserInfoView.h"
 #import "ShareImageManager.h"
 #import "CommentFeed.h"
+#import "MyFriend.h"
 
 @implementation MyCommentCell
 @synthesize sourceButton;
@@ -24,6 +25,7 @@
 @synthesize itemImage;
 //@synthesize splitLine;
 @synthesize feed = _feed;
+@synthesize superViewController = _superViewController;
 
 + (id)createCell:(id)delegate
 {
@@ -162,23 +164,19 @@
     PPRelease(timeLabel);
     PPRelease(nickNameLabel);
     PPRelease(itemImage);
-//    PPRelease(splitLine);
-    [sourceButton release];
+    PPRelease(sourceButton);
+    PPRelease(_superViewController);
     [super dealloc];
 }
 
 #pragma mark - avatar view delegate
 - (void)didClickOnAvatar:(NSString *)userId
 {
-    [CommonUserInfoView showUser:userId 
-                        nickName:nil 
-                          avatar:nil 
-                          gender:nil 
-                        location:nil 
-                           level:1
-                         hasSina:NO 
-                           hasQQ:NO 
-                     hasFacebook:NO 
-                      infoInView:self.delegate];
+    MyFriend *friend = [MyFriend friendWithFid:userId
+                                      nickName:nil
+                                        avatar:nil
+                                        gender:nil
+                                         level:1];
+    [CommonUserInfoView showFriend:friend infoInView:_superViewController needUpdate:YES];
 }
 @end
