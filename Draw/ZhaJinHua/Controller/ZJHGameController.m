@@ -32,6 +32,8 @@
 
 #define CARDS_COUNT 3
 
+#define COMPARE_BUTTON_TAG_OFFSET   5000
+
 #define TITLE_COLOR_WHEN_DISABLE [UIColor colorWithRed:6.0/255.0 green:41.0/255.0 blue:56.0/255.0 alpha:1]
 
 #define TITLE_COLOR_WHEN_ENABLE [UIColor whiteColor]
@@ -46,6 +48,7 @@
     ZJHImageManager *_imageManager;
     PopupViewManager *_popupViewManager;
 }
+@property (assign, nonatomic) BOOL  isComparing;
 
 @end
 
@@ -280,7 +283,7 @@
 
 - (IBAction)clickCompareCardButton:(id)sender
 {
-    
+    self.isComparing = YES;
 }
 
 - (IBAction)clickCheckCardButton:(id)sender
@@ -437,8 +440,13 @@
 
 - (void)someone:(NSString*)userId
 compareCardWith:(NSString*)targetUserId
+         didWin:(BOOL)didWin
 {
+    ZJHPokerView* pokerView = [self getPokersViewByUserId:userId];
+    ZJHPokerView* otherPokerView = [self getPokersViewByUserId:targetUserId];
     
+    [pokerView compare:YES win:didWin];
+    [otherPokerView compare:YES win:!didWin];
 }
 
 - (ZJHPokerSectorType)getPokerSectorTypeByPosition:(UserPosition)position
@@ -509,6 +517,57 @@ compareCardWith:(NSString*)targetUserId
 }
 
 #pragma mark - private method
+
+- (void)clickCompareWithSomeone:(id)sender
+{
+    UIButton* compareSomeoneBtn = (UIButton*)sender;
+    ZJHAvatarView* avatar = (ZJHAvatarView*)[self.view viewWithTag:(AVATAR_VIEW_TAG_OFFSET+compareSomeoneBtn.tag - COMPARE_BUTTON_TAG_OFFSET)];
+    [self someone:[_userManager userId] compareCardWith:avatar.userInfo.userId didWin:YES];
+    self.isComparing = NO;
+    //TODO:send compare request
+}
+
+- (void)setAllPlayerComparing
+{
+    for (PBGameUser* user in _gameService.session.playingUserList) {
+        ZJHAvatarView* avatar = [self getAvatarViewByUserId:user.userId];
+        UIButton* btn = (UIButton*)[self.view viewWithTag:avatar.tag - AVATAR_VIEW_TAG_OFFSET + COMPARE_BUTTON_TAG_OFFSET];
+        if (!btn) {
+            btn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+            [btn setTitle:@"比" forState:UIControlStateNormal];
+            btn.frame = avatar.frame;
+            btn.tag = avatar.tag - AVATAR_VIEW_TAG_OFFSET + COMPARE_BUTTON_TAG_OFFSET;
+            [btn addTarget:self action:@selector(clickCompareWithSomeone:) forControlEvents:UIControlEventTouchUpInside];
+            [self.view addSubview:btn];
+        }
+        btn.hidden = NO;
+        [self.view bringSubviewToFront:btn];
+        
+    }
+}
+
+- (void)setAllPlayerNotComparing
+{
+    for (PBGameUser* user in _gameService.session.playingUserList) {
+        ZJHAvatarView* avatar = [self getAvatarViewByUserId:user.userId];
+        UIButton* btn = (UIButton*)[self.view viewWithTag:avatar.tag - AVATAR_VIEW_TAG_OFFSET + COMPARE_BUTTON_TAG_OFFSET];
+        if (btn) {
+            [btn setHidden:YES];
+            [self.view sendSubviewToBack:btn];
+        }
+    }
+}
+
+- (void)setIsComparing:(BOOL)isComparing
+{
+    _isComparing = isComparing;
+    if (isComparing) {
+        [self setAllPlayerComparing];
+    } else {
+        [self setAllPlayerNotComparing];
+    }
+
+}
 
 - (PBGameUser*)getSelfUser
 {
