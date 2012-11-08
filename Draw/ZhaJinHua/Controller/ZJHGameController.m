@@ -442,15 +442,36 @@ compareCardWith:(NSString*)targetUserId
 {
     ZJHPokerView* pokerView = [self getPokersViewByUserId:userId];
     ZJHPokerView* otherPokerView = [self getPokersViewByUserId:targetUserId];
+    CGPoint pokerViewOrgPoint = pokerView.center;
+    CGPoint otherPokerViewOrgPoint = otherPokerView.center;
     
-    [pokerView.layer addAnimation:[AnimationManager translationAnimationFrom:pokerView.center to:self.view.center duration:2 delegate:self removeCompeleted:NO] forKey:nil];
-    [otherPokerView.layer addAnimation:[AnimationManager translationAnimationFrom:otherPokerView.center to:self.view.center duration:2 delegate:self removeCompeleted:NO] forKey:nil];
-    [CATransaction setCompletionBlock:^{
+    [UIView animateWithDuration:1 animations:^{
+        pokerView.layer.position = CGPointMake(self.view.center.x, self.view.center.y - 30);
+        otherPokerView.layer.position = CGPointMake(self.view.center.x, self.view.center.y + 30);
+    } completion:^(BOOL finished) {
         [pokerView compare:YES win:didWin];
         [otherPokerView compare:YES win:!didWin];
-        [pokerView.layer addAnimation:[AnimationManager translationAnimationFrom:self.view.center to:pokerView.center duration:2 delegate:self removeCompeleted:NO] forKey:nil];
-        [otherPokerView.layer addAnimation:[AnimationManager translationAnimationFrom:self.view.center to:otherPokerView.center duration:2 delegate:self removeCompeleted:NO] forKey:nil];
+        [UIView animateWithDuration:1 animations:^{
+            pokerView.layer.position = CGPointMake(self.view.center.x, self.view.center.y - 30);
+            otherPokerView.layer.position = CGPointMake(self.view.center.x, self.view.center.y + 30);
+        } completion:^(BOOL finished) {
+            [UIView animateWithDuration:1 animations:^{
+                pokerView.layer.position = pokerViewOrgPoint;
+                otherPokerView.layer.position = otherPokerViewOrgPoint;
+            } completion:^(BOOL finished) {
+                //
+            }];
+        }];
     }];
+    
+//    [pokerView.layer addAnimation:[AnimationManager translationAnimationFrom:pokerView.center to:self.view.center duration:2 delegate:self removeCompeleted:NO] forKey:nil];
+//    [otherPokerView.layer addAnimation:[AnimationManager translationAnimationFrom:otherPokerView.center to:self.view.center duration:2 delegate:self removeCompeleted:NO] forKey:nil];
+//    [CATransaction setCompletionBlock:^{
+//        [pokerView compare:YES win:didWin];
+//        [otherPokerView compare:YES win:!didWin];
+//        [pokerView.layer addAnimation:[AnimationManager translationAnimationFrom:self.view.center to:pokerView.center duration:2 delegate:self removeCompeleted:NO] forKey:nil];
+//        [otherPokerView.layer addAnimation:[AnimationManager translationAnimationFrom:self.view.center to:otherPokerView.center duration:2 delegate:self removeCompeleted:NO] forKey:nil];
+//    }];
 }
 
 - (void)showCompareCardResult:(NSArray*)userResultList
