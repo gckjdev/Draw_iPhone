@@ -452,8 +452,8 @@ compareCardWith:(NSString*)targetUserId
         [pokerView compare:YES win:didWin];
         [otherPokerView compare:YES win:!didWin];
         [UIView animateWithDuration:1 animations:^{
-            pokerView.layer.position = CGPointMake(self.view.center.x, self.view.center.y - 30);
-            otherPokerView.layer.position = CGPointMake(self.view.center.x, self.view.center.y + 30);
+            pokerView.layer.position = CGPointMake(self.view.center.x, self.view.center.y - 29.9);
+            otherPokerView.layer.position = CGPointMake(self.view.center.x, self.view.center.y + 29.9);
         } completion:^(BOOL finished) {
             [UIView animateWithDuration:1 animations:^{
                 pokerView.layer.position = pokerViewOrgPoint;
