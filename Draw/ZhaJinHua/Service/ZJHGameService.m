@@ -113,6 +113,8 @@ static ZJHGameService *_defaultService;
 
 - (void)foldCard
 {
+    PPDebug(@"################# fold card: %@ ##################", self.userId);
+
     [_networkClient sendFoldCardRequest:self.userId
                               sessionId:self.session.sessionId];
 }
@@ -151,7 +153,7 @@ static ZJHGameService *_defaultService;
         return NO;
     }
     
-    PPDebug(@"isMyTurn: %d", [self isMyTurn]);
+//    PPDebug(@"isMyTurn: %d", [self isMyTurn]);
 
     return [self isMyTurn];
 }
@@ -238,9 +240,9 @@ static ZJHGameService *_defaultService;
 
 - (BOOL)canIContinueAutoBet
 {
-    PPDebug(@"isMyTurn: %d", [self isMyTurn]);
-    PPDebug(@"isAutoBet : %d", [[self myPlayInfo] isAutoBet]);
-    PPDebug(@"autoBetCount : %d", [[self myPlayInfo] autoBetCount]);
+//    PPDebug(@"isMyTurn: %d", [self isMyTurn]);
+//    PPDebug(@"isAutoBet : %d", [[self myPlayInfo] isAutoBet]);
+//    PPDebug(@"autoBetCount : %d", [[self myPlayInfo] autoBetCount]);
 
     return [self isMyTurn] && [[self myPlayInfo] isAutoBet] && ([self remainderAutoBetCount] > 0);
 }
@@ -480,7 +482,9 @@ static ZJHGameService *_defaultService;
 - (NSString *)getServerListString
 {
     return @"58.215.172.169:8080";
+
     return @"192.168.1.10:8080";
+
 }
 
 - (ZJHUserPlayInfo *)myPlayInfo

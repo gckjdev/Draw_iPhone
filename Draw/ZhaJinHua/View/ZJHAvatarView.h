@@ -25,7 +25,7 @@
 
 @property (retain, nonatomic) DiceAvatarView* roundAvatar;
 @property (retain, nonatomic) IBOutlet UIView* roundAvatarPlaceView;
-@property (retain, nonatomic) IBOutlet UIImageView*    backgroundImageView;
+@property (retain, nonatomic) IBOutlet UIImageView* backgroundImageView;
 @property (retain, nonatomic) IBOutlet UILabel*  nickNameLabel;
 @property (assign, nonatomic) id<ZJHAvatarViewDelegate> delegate;
 @property (retain, nonatomic) PBGameUser* userInfo;

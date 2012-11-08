@@ -357,37 +357,6 @@
 		C2E90FF715BD553A00828562 /* RecommendedAppsController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2E90FF415BD553700828562 /* RecommendedAppsController.m */; };
 		C2E90FF815BD553A00828562 /* RecommendedAppsController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2E90FF515BD553800828562 /* RecommendedAppsController.xib */; };
 		C2E90FF915BD553A00828562 /* RecommendedAppsController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2E90FF615BD553900828562 /* RecommendedAppsController~ipad.xib */; };
-		C2EBB8CB164A17770024D605 /* bet.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C2EBB8AC164A17770024D605 /* bet.mp3 */; };
-		C2EBB8CC164A17770024D605 /* bet1_F.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C2EBB8AD164A17770024D605 /* bet1_F.mp3 */; };
-		C2EBB8CD164A17770024D605 /* bet1_M.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C2EBB8AE164A17770024D605 /* bet1_M.mp3 */; };
-		C2EBB8CE164A17770024D605 /* bet2_F.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C2EBB8AF164A17770024D605 /* bet2_F.mp3 */; };
-		C2EBB8CF164A17770024D605 /* bet2_M.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C2EBB8B0164A17770024D605 /* bet2_M.mp3 */; };
-		C2EBB8D0164A17770024D605 /* bet3_F.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C2EBB8B1164A17770024D605 /* bet3_F.mp3 */; };
-		C2EBB8D1164A17770024D605 /* bet3_M.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C2EBB8B2164A17770024D605 /* bet3_M.mp3 */; };
-		C2EBB8D2164A17770024D605 /* bet4_F.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C2EBB8B3164A17770024D605 /* bet4_F.mp3 */; };
-		C2EBB8D3164A17770024D605 /* check_card.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C2EBB8B4164A17770024D605 /* check_card.mp3 */; };
-		C2EBB8D4164A17770024D605 /* check_card1_F.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C2EBB8B5164A17770024D605 /* check_card1_F.mp3 */; };
-		C2EBB8D5164A17770024D605 /* check_card1_M.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C2EBB8B6164A17770024D605 /* check_card1_M.mp3 */; };
-		C2EBB8D6164A17770024D605 /* check_card2_F.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C2EBB8B7164A17770024D605 /* check_card2_F.mp3 */; };
-		C2EBB8D7164A17770024D605 /* click_button.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C2EBB8B8164A17770024D605 /* click_button.mp3 */; };
-		C2EBB8D8164A17770024D605 /* compare_card1_F.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C2EBB8B9164A17770024D605 /* compare_card1_F.mp3 */; };
-		C2EBB8D9164A17770024D605 /* compare_card1_M.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C2EBB8BA164A17770024D605 /* compare_card1_M.mp3 */; };
-		C2EBB8DA164A17770024D605 /* deal_card.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C2EBB8BB164A17770024D605 /* deal_card.mp3 */; };
-		C2EBB8DB164A17770024D605 /* dealer_appear.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C2EBB8BC164A17770024D605 /* dealer_appear.mp3 */; };
-		C2EBB8DC164A17770024D605 /* dealer_disappear.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C2EBB8BD164A17770024D605 /* dealer_disappear.mp3 */; };
-		C2EBB8DD164A17770024D605 /* fireworks.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C2EBB8BE164A17770024D605 /* fireworks.mp3 */; };
-		C2EBB8DE164A17770024D605 /* flee.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C2EBB8BF164A17770024D605 /* flee.mp3 */; };
-		C2EBB8DF164A17770024D605 /* fold_card1_F.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C2EBB8C0164A17770024D605 /* fold_card1_F.mp3 */; };
-		C2EBB8E0164A17770024D605 /* fold_card1_M.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C2EBB8C1164A17770024D605 /* fold_card1_M.mp3 */; };
-		C2EBB8E1164A17770024D605 /* fold_card2_F.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C2EBB8C2164A17770024D605 /* fold_card2_F.mp3 */; };
-		C2EBB8E2164A17770024D605 /* full_monney.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C2EBB8C3164A17770024D605 /* full_monney.mp3 */; };
-		C2EBB8E3164A17770024D605 /* game_bg.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C2EBB8C4164A17770024D605 /* game_bg.mp3 */; };
-		C2EBB8E4164A17770024D605 /* game_over.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C2EBB8C5164A17770024D605 /* game_over.mp3 */; };
-		C2EBB8E5164A17770024D605 /* game_win.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C2EBB8C6164A17770024D605 /* game_win.mp3 */; };
-		C2EBB8E6164A17770024D605 /* get_chips.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C2EBB8C7164A17770024D605 /* get_chips.mp3 */; };
-		C2EBB8E7164A17770024D605 /* raise_bet.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C2EBB8C8164A17770024D605 /* raise_bet.mp3 */; };
-		C2EBB8E8164A17770024D605 /* raise_bet1_F.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C2EBB8C9164A17770024D605 /* raise_bet1_F.mp3 */; };
-		C2EBB8E9164A17770024D605 /* raise_bet1_M.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C2EBB8CA164A17770024D605 /* raise_bet1_M.mp3 */; };
 		C2EBB8EC164A1B200024D605 /* ZJHSoundManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C2EBB8EB164A1B200024D605 /* ZJHSoundManager.m */; };
 		C2F2CF981639165500995DCB /* ZJHImageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C2F2CF971639165500995DCB /* ZJHImageManager.m */; };
 		C2F2CFB3163932C000995DCB /* ZJHAvatarView.m in Sources */ = {isa = PBXBuildFile; fileRef = C2F2CFB2163932C000995DCB /* ZJHAvatarView.m */; };
@@ -1789,37 +1758,6 @@
 		C2E90FF415BD553700828562 /* RecommendedAppsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecommendedAppsController.m; sourceTree = "<group>"; };
 		C2E90FF515BD553800828562 /* RecommendedAppsController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RecommendedAppsController.xib; sourceTree = "<group>"; };
 		C2E90FF615BD553900828562 /* RecommendedAppsController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "RecommendedAppsController~ipad.xib"; sourceTree = "<group>"; };
-		C2EBB8AC164A17770024D605 /* bet.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = bet.mp3; sourceTree = "<group>"; };
-		C2EBB8AD164A17770024D605 /* bet1_F.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = bet1_F.mp3; sourceTree = "<group>"; };
-		C2EBB8AE164A17770024D605 /* bet1_M.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = bet1_M.mp3; sourceTree = "<group>"; };
-		C2EBB8AF164A17770024D605 /* bet2_F.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = bet2_F.mp3; sourceTree = "<group>"; };
-		C2EBB8B0164A17770024D605 /* bet2_M.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = bet2_M.mp3; sourceTree = "<group>"; };
-		C2EBB8B1164A17770024D605 /* bet3_F.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = bet3_F.mp3; sourceTree = "<group>"; };
-		C2EBB8B2164A17770024D605 /* bet3_M.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = bet3_M.mp3; sourceTree = "<group>"; };
-		C2EBB8B3164A17770024D605 /* bet4_F.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = bet4_F.mp3; sourceTree = "<group>"; };
-		C2EBB8B4164A17770024D605 /* check_card.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = check_card.mp3; sourceTree = "<group>"; };
-		C2EBB8B5164A17770024D605 /* check_card1_F.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = check_card1_F.mp3; sourceTree = "<group>"; };
-		C2EBB8B6164A17770024D605 /* check_card1_M.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = check_card1_M.mp3; sourceTree = "<group>"; };
-		C2EBB8B7164A17770024D605 /* check_card2_F.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = check_card2_F.mp3; sourceTree = "<group>"; };
-		C2EBB8B8164A17770024D605 /* click_button.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = click_button.mp3; sourceTree = "<group>"; };
-		C2EBB8B9164A17770024D605 /* compare_card1_F.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = compare_card1_F.mp3; sourceTree = "<group>"; };
-		C2EBB8BA164A17770024D605 /* compare_card1_M.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = compare_card1_M.mp3; sourceTree = "<group>"; };
-		C2EBB8BB164A17770024D605 /* deal_card.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = deal_card.mp3; sourceTree = "<group>"; };
-		C2EBB8BC164A17770024D605 /* dealer_appear.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = dealer_appear.mp3; sourceTree = "<group>"; };
-		C2EBB8BD164A17770024D605 /* dealer_disappear.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = dealer_disappear.mp3; sourceTree = "<group>"; };
-		C2EBB8BE164A17770024D605 /* fireworks.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = fireworks.mp3; sourceTree = "<group>"; };
-		C2EBB8BF164A17770024D605 /* flee.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = flee.mp3; sourceTree = "<group>"; };
-		C2EBB8C0164A17770024D605 /* fold_card1_F.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = fold_card1_F.mp3; sourceTree = "<group>"; };
-		C2EBB8C1164A17770024D605 /* fold_card1_M.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = fold_card1_M.mp3; sourceTree = "<group>"; };
-		C2EBB8C2164A17770024D605 /* fold_card2_F.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = fold_card2_F.mp3; sourceTree = "<group>"; };
-		C2EBB8C3164A17770024D605 /* full_monney.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = full_monney.mp3; sourceTree = "<group>"; };
-		C2EBB8C4164A17770024D605 /* game_bg.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = game_bg.mp3; sourceTree = "<group>"; };
-		C2EBB8C5164A17770024D605 /* game_over.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = game_over.mp3; sourceTree = "<group>"; };
-		C2EBB8C6164A17770024D605 /* game_win.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = game_win.mp3; sourceTree = "<group>"; };
-		C2EBB8C7164A17770024D605 /* get_chips.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = get_chips.mp3; sourceTree = "<group>"; };
-		C2EBB8C8164A17770024D605 /* raise_bet.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = raise_bet.mp3; sourceTree = "<group>"; };
-		C2EBB8C9164A17770024D605 /* raise_bet1_F.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = raise_bet1_F.mp3; sourceTree = "<group>"; };
-		C2EBB8CA164A17770024D605 /* raise_bet1_M.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = raise_bet1_M.mp3; sourceTree = "<group>"; };
 		C2EBB8EA164A1B200024D605 /* ZJHSoundManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJHSoundManager.h; sourceTree = "<group>"; };
 		C2EBB8EB164A1B200024D605 /* ZJHSoundManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJHSoundManager.m; sourceTree = "<group>"; };
 		C2F2CF961639165500995DCB /* ZJHImageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJHImageManager.h; sourceTree = "<group>"; };
@@ -3321,7 +3259,6 @@
 		A44B63A3163F72B500A8045B /* Resource */ = {
 			isa = PBXGroup;
 			children = (
-				C2EBB8AB164A17770024D605 /* sounds */,
 				A44B63A4163F72B500A8045B /* Image */,
 			);
 			path = Resource;
@@ -4263,44 +4200,6 @@
 				C2E90FEA15BD44DA00828562 /* RecommendApp.m */,
 			);
 			path = Recommend;
-			sourceTree = "<group>";
-		};
-		C2EBB8AB164A17770024D605 /* sounds */ = {
-			isa = PBXGroup;
-			children = (
-				C2EBB8AC164A17770024D605 /* bet.mp3 */,
-				C2EBB8AD164A17770024D605 /* bet1_F.mp3 */,
-				C2EBB8AE164A17770024D605 /* bet1_M.mp3 */,
-				C2EBB8AF164A17770024D605 /* bet2_F.mp3 */,
-				C2EBB8B0164A17770024D605 /* bet2_M.mp3 */,
-				C2EBB8B1164A17770024D605 /* bet3_F.mp3 */,
-				C2EBB8B2164A17770024D605 /* bet3_M.mp3 */,
-				C2EBB8B3164A17770024D605 /* bet4_F.mp3 */,
-				C2EBB8B4164A17770024D605 /* check_card.mp3 */,
-				C2EBB8B5164A17770024D605 /* check_card1_F.mp3 */,
-				C2EBB8B6164A17770024D605 /* check_card1_M.mp3 */,
-				C2EBB8B7164A17770024D605 /* check_card2_F.mp3 */,
-				C2EBB8B8164A17770024D605 /* click_button.mp3 */,
-				C2EBB8B9164A17770024D605 /* compare_card1_F.mp3 */,
-				C2EBB8BA164A17770024D605 /* compare_card1_M.mp3 */,
-				C2EBB8BB164A17770024D605 /* deal_card.mp3 */,
-				C2EBB8BC164A17770024D605 /* dealer_appear.mp3 */,
-				C2EBB8BD164A17770024D605 /* dealer_disappear.mp3 */,
-				C2EBB8BE164A17770024D605 /* fireworks.mp3 */,
-				C2EBB8BF164A17770024D605 /* flee.mp3 */,
-				C2EBB8C0164A17770024D605 /* fold_card1_F.mp3 */,
-				C2EBB8C1164A17770024D605 /* fold_card1_M.mp3 */,
-				C2EBB8C2164A17770024D605 /* fold_card2_F.mp3 */,
-				C2EBB8C3164A17770024D605 /* full_monney.mp3 */,
-				C2EBB8C4164A17770024D605 /* game_bg.mp3 */,
-				C2EBB8C5164A17770024D605 /* game_over.mp3 */,
-				C2EBB8C6164A17770024D605 /* game_win.mp3 */,
-				C2EBB8C7164A17770024D605 /* get_chips.mp3 */,
-				C2EBB8C8164A17770024D605 /* raise_bet.mp3 */,
-				C2EBB8C9164A17770024D605 /* raise_bet1_F.mp3 */,
-				C2EBB8CA164A17770024D605 /* raise_bet1_M.mp3 */,
-			);
-			path = sounds;
 			sourceTree = "<group>";
 		};
 		C2F48BCE15BE4484005C4D72 /* Recommend */ = {
@@ -8233,37 +8132,6 @@
 				A46215F016495D2B005DA90E /* zjh_compare_card_disable@2x.png in Resources */,
 				A46215F116495D2B005DA90E /* zjh_fold_card_disable@2x.png in Resources */,
 				A46215F216495D2B005DA90E /* zjh_raise_bet_disable@2x.png in Resources */,
-				C2EBB8CB164A17770024D605 /* bet.mp3 in Resources */,
-				C2EBB8CC164A17770024D605 /* bet1_F.mp3 in Resources */,
-				C2EBB8CD164A17770024D605 /* bet1_M.mp3 in Resources */,
-				C2EBB8CE164A17770024D605 /* bet2_F.mp3 in Resources */,
-				C2EBB8CF164A17770024D605 /* bet2_M.mp3 in Resources */,
-				C2EBB8D0164A17770024D605 /* bet3_F.mp3 in Resources */,
-				C2EBB8D1164A17770024D605 /* bet3_M.mp3 in Resources */,
-				C2EBB8D2164A17770024D605 /* bet4_F.mp3 in Resources */,
-				C2EBB8D3164A17770024D605 /* check_card.mp3 in Resources */,
-				C2EBB8D4164A17770024D605 /* check_card1_F.mp3 in Resources */,
-				C2EBB8D5164A17770024D605 /* check_card1_M.mp3 in Resources */,
-				C2EBB8D6164A17770024D605 /* check_card2_F.mp3 in Resources */,
-				C2EBB8D7164A17770024D605 /* click_button.mp3 in Resources */,
-				C2EBB8D8164A17770024D605 /* compare_card1_F.mp3 in Resources */,
-				C2EBB8D9164A17770024D605 /* compare_card1_M.mp3 in Resources */,
-				C2EBB8DA164A17770024D605 /* deal_card.mp3 in Resources */,
-				C2EBB8DB164A17770024D605 /* dealer_appear.mp3 in Resources */,
-				C2EBB8DC164A17770024D605 /* dealer_disappear.mp3 in Resources */,
-				C2EBB8DD164A17770024D605 /* fireworks.mp3 in Resources */,
-				C2EBB8DE164A17770024D605 /* flee.mp3 in Resources */,
-				C2EBB8DF164A17770024D605 /* fold_card1_F.mp3 in Resources */,
-				C2EBB8E0164A17770024D605 /* fold_card1_M.mp3 in Resources */,
-				C2EBB8E1164A17770024D605 /* fold_card2_F.mp3 in Resources */,
-				C2EBB8E2164A17770024D605 /* full_monney.mp3 in Resources */,
-				C2EBB8E3164A17770024D605 /* game_bg.mp3 in Resources */,
-				C2EBB8E4164A17770024D605 /* game_over.mp3 in Resources */,
-				C2EBB8E5164A17770024D605 /* game_win.mp3 in Resources */,
-				C2EBB8E6164A17770024D605 /* get_chips.mp3 in Resources */,
-				C2EBB8E7164A17770024D605 /* raise_bet.mp3 in Resources */,
-				C2EBB8E8164A17770024D605 /* raise_bet1_F.mp3 in Resources */,
-				C2EBB8E9164A17770024D605 /* raise_bet1_M.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

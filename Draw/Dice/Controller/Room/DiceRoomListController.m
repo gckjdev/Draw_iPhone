@@ -214,9 +214,7 @@
 
 - (void)registerDiceGameNotificationWithName:(NSString *)name 
                                   usingBlock:(void (^)(NSNotification *note))block
-{
-    PPDebug(@"<%@> name", [self description]);         
-    
+{    
     [self registerNotificationWithName:name 
                                 object:nil 
                                  queue:[NSOperationQueue mainQueue] 

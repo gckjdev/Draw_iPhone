@@ -228,6 +228,7 @@
 
 - (void)reciprocalEnd:(DiceAvatarView *)view
 {
+    PPDebug(@"<test> zjh avatar = %@, seciprocal end",[self description]);
     if (_delegate && [_delegate respondsToSelector:@selector(reciprocalEnd:)]) {
         [_delegate reciprocalEnd:self];
     }
