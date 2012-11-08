@@ -337,6 +337,10 @@
         infoInView:(PPViewController*)superController
         needUpdate:(BOOL)needUpdate //if need update the info from service.
 {
+    if ([[UserManager defaultManager] isMe:afriend.friendUserId]) {
+        return;
+    }
+    
     CommonUserInfoView *view = [CommonUserInfoView createUserInfoView];
     [view initViewWithFriend:afriend superController:superController];
     [view show];
