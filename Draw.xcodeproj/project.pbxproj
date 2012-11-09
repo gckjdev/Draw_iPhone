@@ -198,6 +198,9 @@
 		A47FF99E15DB9ADB00EE8125 /* DiceItemService.m in Sources */ = {isa = PBXBuildFile; fileRef = A47FF99D15DB9ADB00EE8125 /* DiceItemService.m */; };
 		A48E827415E871CE002DB480 /* DiceHelpManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A48E827315E871CE002DB480 /* DiceHelpManager.m */; };
 		A48E827615E8AB1B002DB480 /* ChatView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A48E827515E8AB1A002DB480 /* ChatView.xib */; };
+		A4A131BF164CB44400665109 /* bomb1.png in Resources */ = {isa = PBXBuildFile; fileRef = A4A131B9164CB44400665109 /* bomb1.png */; };
+		A4A131C1164CB44400665109 /* bomb2.png in Resources */ = {isa = PBXBuildFile; fileRef = A4A131BB164CB44400665109 /* bomb2.png */; };
+		A4A131C2164CB44400665109 /* bomb3.png in Resources */ = {isa = PBXBuildFile; fileRef = A4A131BC164CB44400665109 /* bomb3.png */; };
 		A4AB18F315E359B90097CC7A /* ChatViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A4AB18F115E359B90097CC7A /* ChatViewCell.m */; };
 		A4AB18F415E359B90097CC7A /* ChatViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4AB18F215E359B90097CC7A /* ChatViewCell.xib */; };
 		A4AC51BE15C7BFF10041DC86 /* FontLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = A4AC51B415C7BFF10041DC86 /* FontLabel.m */; };
@@ -914,7 +917,7 @@
 		CA82847415D637930016CD43 /* unzip.c in Sources */ = {isa = PBXBuildFile; fileRef = CA82846C15D637930016CD43 /* unzip.c */; };
 		CA82847515D637930016CD43 /* zip.c in Sources */ = {isa = PBXBuildFile; fileRef = CA82846E15D637930016CD43 /* zip.c */; };
 		CA82847615D637930016CD43 /* SSZipArchive.m in Sources */ = {isa = PBXBuildFile; fileRef = CA82847115D637930016CD43 /* SSZipArchive.m */; };
-		CA84180F164CE0AE00713014 /* graffiti@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA84180E164CE0AE00713014 /* graffiti@2x.png */; };
+		CA841821164CE4AA00713014 /* graffiti@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA841820164CE4AA00713014 /* graffiti@2x.png */; };
 		CA89737516071335003A95F7 /* Contest.m in Sources */ = {isa = PBXBuildFile; fileRef = CA89737416071335003A95F7 /* Contest.m */; };
 		CA89737816071345003A95F7 /* ContestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA89737716071345003A95F7 /* ContestManager.m */; };
 		CA8974291607230E003A95F7 /* CommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA8973F81607230E003A95F7 /* CommentCell.m */; };
@@ -1495,6 +1498,9 @@
 		A48E827215E871CE002DB480 /* DiceHelpManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiceHelpManager.h; sourceTree = "<group>"; };
 		A48E827315E871CE002DB480 /* DiceHelpManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiceHelpManager.m; sourceTree = "<group>"; };
 		A48E827515E8AB1A002DB480 /* ChatView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChatView.xib; sourceTree = "<group>"; };
+		A4A131B9164CB44400665109 /* bomb1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bomb1.png; sourceTree = "<group>"; };
+		A4A131BB164CB44400665109 /* bomb2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bomb2.png; sourceTree = "<group>"; };
+		A4A131BC164CB44400665109 /* bomb3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bomb3.png; sourceTree = "<group>"; };
 		A4AB18F015E359B90097CC7A /* ChatViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatViewCell.h; sourceTree = "<group>"; };
 		A4AB18F115E359B90097CC7A /* ChatViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatViewCell.m; sourceTree = "<group>"; };
 		A4AB18F215E359B90097CC7A /* ChatViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChatViewCell.xib; sourceTree = "<group>"; };
@@ -2644,7 +2650,7 @@
 		CA82846F15D637930016CD43 /* zip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zip.h; sourceTree = "<group>"; };
 		CA82847015D637930016CD43 /* SSZipArchive.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSZipArchive.h; sourceTree = "<group>"; };
 		CA82847115D637930016CD43 /* SSZipArchive.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSZipArchive.m; sourceTree = "<group>"; };
-		CA84180E164CE0AE00713014 /* graffiti@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "graffiti@2x.png"; sourceTree = "<group>"; };
+		CA841820164CE4AA00713014 /* graffiti@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "graffiti@2x.png"; sourceTree = "<group>"; };
 		CA89737316071335003A95F7 /* Contest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Contest.h; sourceTree = "<group>"; };
 		CA89737416071335003A95F7 /* Contest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Contest.m; sourceTree = "<group>"; };
 		CA89737616071345003A95F7 /* ContestManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContestManager.h; sourceTree = "<group>"; };
@@ -3351,6 +3357,7 @@
 		A44B63D8163F72B500A8045B /* room */ = {
 			isa = PBXGroup;
 			children = (
+				A4A131B8164CB44400665109 /* bomb */,
 				A404A9A1164237FA007CA21A /* show_card_button.png */,
 				A44B642C163F732F00A8045B /* tree@2x.png */,
 				A44B63D9163F72B500A8045B /* avatar_default@2x.png */,
@@ -3568,6 +3575,16 @@
 				A48E827315E871CE002DB480 /* DiceHelpManager.m */,
 			);
 			path = DiceHelpManager;
+			sourceTree = "<group>";
+		};
+		A4A131B8164CB44400665109 /* bomb */ = {
+			isa = PBXGroup;
+			children = (
+				A4A131B9164CB44400665109 /* bomb1.png */,
+				A4A131BB164CB44400665109 /* bomb2.png */,
+				A4A131BC164CB44400665109 /* bomb3.png */,
+			);
+			path = bomb;
 			sourceTree = "<group>";
 		};
 		A4AC51B215C7BFF00041DC86 /* FontLabel */ = {
@@ -7334,7 +7351,7 @@
 		EA856C3315F0A65700178323 /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				CA84180E164CE0AE00713014 /* graffiti@2x.png */,
+				CA841820164CE4AA00713014 /* graffiti@2x.png */,
 				A4CE58E116324447003DB23A /* point_pic3@2x.png */,
 				A4CE58E216324447003DB23A /* point_pic4@2x.png */,
 				CA6D354115F72215004DC293 /* run@2x.png */,
@@ -8135,7 +8152,10 @@
 				A46215F016495D2B005DA90E /* zjh_compare_card_disable@2x.png in Resources */,
 				A46215F116495D2B005DA90E /* zjh_fold_card_disable@2x.png in Resources */,
 				A46215F216495D2B005DA90E /* zjh_raise_bet_disable@2x.png in Resources */,
-				CA84180F164CE0AE00713014 /* graffiti@2x.png in Resources */,
+				A4A131BF164CB44400665109 /* bomb1.png in Resources */,
+				A4A131C1164CB44400665109 /* bomb2.png in Resources */,
+				A4A131C2164CB44400665109 /* bomb3.png in Resources */,
+				CA841821164CE4AA00713014 /* graffiti@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

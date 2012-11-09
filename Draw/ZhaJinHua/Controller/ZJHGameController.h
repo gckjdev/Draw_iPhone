@@ -7,7 +7,7 @@
 //
 
 #import "PPViewController.h"
-#import "PokerView.h"
+#import "ZJHPokerView.h"
 #import "ZJHAvatarView.h"
 #import "DealerView.h"
 #import "ChipsSelectView.h"
@@ -31,7 +31,7 @@ typedef enum {
     UserPositionMax
 }UserPosition;
 
-@interface ZJHGameController : PPViewController <PokerViewProtocol, ZJHAvatarViewDelegate, DealerViewDelegate, ChipsSelectViewProtocol> {
+@interface ZJHGameController : PPViewController <ZJHPokerViewProtocol, ZJHAvatarViewDelegate, DealerViewDelegate, ChipsSelectViewProtocol> {
     
 }
 

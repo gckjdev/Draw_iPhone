@@ -230,7 +230,7 @@ static ZJHGameService *_defaultService;
 
 - (BOOL)canUserCompareCard:(NSString *)userId
 {
-    return [[_gameState userPlayInfo:userId] canCompareCard];
+    return [[_gameState userPlayInfo:userId] canCompareCard] && ![_userManager isMe:userId];
 }
 
 - (NSString *)myCardType
@@ -471,8 +471,6 @@ static ZJHGameService *_defaultService;
             [self handleShowCardResponse:message];
             break;
             
-
-            
         default:
             PPDebug(@"<handleCustomMessage> unknown command=%d", [message command]);
             break;
@@ -482,9 +480,7 @@ static ZJHGameService *_defaultService;
 - (NSString *)getServerListString
 {
 //    return @"58.215.172.169:8080";
-
     return @"192.168.1.7:8080";
-
 }
 
 - (ZJHUserPlayInfo *)myPlayInfo

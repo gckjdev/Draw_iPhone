@@ -146,7 +146,7 @@
 
 - (void)updateShowView:(DrawFeed *)feed
 {
-    self.feed.largeImage = [[FeedManager defaultManager] largeImageForFeedId:feed.feedId];
+//    self.feed.largeImage = [[FeedManager defaultManager] largeImageForFeedId:feed.feedId];
     if (self.feed.largeImage) {
         [self.drawImage setImage:self.feed.largeImage];
         [self.loadingActivity stopAnimating];
@@ -187,6 +187,12 @@
         return;
     } 
 
+    if (self.feed.largeImage == nil) {
+        self.feed.largeImage = [[FeedManager defaultManager] largeImageForFeedId:self.feed.feedId];
+        if(self.feed.largeImage){
+            [self.drawImage setImage:self.feed.largeImage];
+        }
+    }
     if (!_isLoading) {
         _getTimes = 1;
         [[FeedService defaultService] getFeedByFeedId:feed.feedId delegate:self];

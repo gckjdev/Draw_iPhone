@@ -415,7 +415,11 @@ static ZJHImageManager* shareInstance;
     return [UIImage imageNamed:@"zjh_fold_card_disable@2x.png"];
 }
 
-
+- (UIImage*)bombImage
+{
+    NSArray *bombs = [NSArray arrayWithObjects:@"bomb1.png", @"bomb2.png", @"bomb3.png", nil];
+    return [UIImage imageNamed:[bombs objectAtIndex:(rand() % [bombs count])]];
+}
 
 
 @end
