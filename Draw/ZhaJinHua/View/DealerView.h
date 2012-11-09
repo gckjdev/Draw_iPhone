@@ -31,6 +31,7 @@
     int _remainCards;
 }
 @property (assign, nonatomic) id<DealerViewDelegate> delegate;
+@property (readonly, assign, nonatomic) BOOL isDealing;
 
 - (void)dealWithPositionArray:(NSArray*)array
                         times:(int)times;

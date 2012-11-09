@@ -417,7 +417,7 @@ static ZJHImageManager* shareInstance;
 
 - (UIImage*)bombImage
 {
-    NSArray *bombs = [NSArray arrayWithObjects:@"bomb1.png", @"bomb2.jpg", @"bomb3.png", @"bomb4.png", @"bomb5.jpeg", @"bomb6.jpg", nil];
+    NSArray *bombs = [NSArray arrayWithObjects:@"bomb1.png", @"bomb2.png", @"bomb3.png", nil];
     return [UIImage imageNamed:[bombs objectAtIndex:(rand() % [bombs count])]];
 }
 

@@ -11,8 +11,8 @@
 
 #define TAG_BOMB_BUTTON 300
 
-#define BOMB_BUTTON_WIDTH 20
-#define BOMB_BUTTON_HEIGHT 20
+#define BOMB_BUTTON_WIDTH 30
+#define BOMB_BUTTON_HEIGHT 30
 
 @interface ZJHPokerView ()
 {
@@ -142,6 +142,8 @@
 
 - (void)faceUpCards:(ZJHPokerXMotionType)xMotiontype animation:(BOOL)animation
 {
+    [self clearBombButton];
+
     [self.pokerView1 backToOriginPosition:animation];
     [self.pokerView1 faceUp:animation];
     [self.pokerView1 enableUserInterface];
@@ -174,6 +176,7 @@
 
 - (void)foldCards:(BOOL)animation
 {
+    [self clearBombButton];
     self.pokerView1.backImageView.image = [[ZJHImageManager defaultManager] pokerFoldBackImage];
     [self.pokerView1 faceDown:animation];
     [self.pokerView1 backToOriginPosition:animation];
@@ -206,6 +209,7 @@
     bomb.tag = TAG_BOMB_BUTTON;
     [bomb setImage:[[ZJHImageManager defaultManager] bombImage] forState:UIControlStateNormal];
     [bomb addTarget:self action:@selector(clickBomb:) forControlEvents:UIControlEventTouchUpInside];
+    bomb.center = CGPointMake(self.frame.size.width/2, self.frame.size.height/2);
     [self addSubview:bomb];
 }
 

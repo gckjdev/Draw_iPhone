@@ -194,35 +194,35 @@
 {
     switch (_cardType) {
         case PBZJHCardTypeHighCard:
-            return @"kCardTypeHighCard";
+            return NSLS(@"kCardTypeHighCard");
             break;
             
         case PBZJHCardTypePair:
-            return @"kCardTypePair";
+            return NSLS(@"kCardTypePair");
             break;
             
         case PBZJHCardTypeStraight:
-            return @"kCardTypeStraight";
+            return NSLS(@"kCardTypeStraight");
             break;
             
         case PBZJHCardTypeFlush:
-            return @"kCardTypeFlush";
+            return NSLS(@"kCardTypeFlush");
             break;
             
         case PBZJHCardTypeStraightFlush:
-            return @"kCardTypeStraightFlush";
+            return NSLS(@"kCardTypeStraightFlush");
             break;
             
         case PBZJHCardTypeThreeOfAKind:
-            return @"kCardTypeThreeOfAKind";
+            return NSLS(@"kCardTypeThreeOfAKind");
             break;
             
         case PBZJHCardTypeSpecial:
-            return @"kCardTypeSpecial";
+            return NSLS(@"kCardTypeSpecial");
             break;
             
         case PBZJHCardTypeUnknow:
-            return @"kCardTypeUnknow";
+            return NSLS(@"kCardTypeUnknow");
             break;
             
         default:
