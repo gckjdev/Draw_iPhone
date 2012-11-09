@@ -93,6 +93,7 @@ static DrawDataService* _defaultDrawDataService = nil;
                 [viewController didMatchDraw:feed result:resultCode];
             }  
         });
+        //TODO store feed draw data.
     });    
 }
 
@@ -199,6 +200,11 @@ static DrawDataService* _defaultDrawDataService = nil;
                 [viewController didCreateDraw: output.resultCode];
             }
         });
+        NSString *actionId = [output.jsonDataDict objectForKey:PARA_FEED_ID];
+        if ([actionId length] != 0) {
+            //store the draw action.
+            
+        }
     });
 }
 

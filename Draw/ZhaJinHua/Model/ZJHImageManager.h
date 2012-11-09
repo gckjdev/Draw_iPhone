@@ -24,6 +24,7 @@
 - (UIImage*)pokerLoseBackImage;
 
 - (UIImage*)showCardButtonBgImage;
+- (UIImage*)showCardButtonDisableBgImage;
 
 - (UIImage*)chipImageForChipValue:(int)chipValue;
 

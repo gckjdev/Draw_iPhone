@@ -86,6 +86,13 @@
     [self addSubview:self.pokerView3];
 }
 
+- (void)dismissShowCardButtons
+{
+    [self.pokerView1 dismissShowCardButton];
+    [self.pokerView2 dismissShowCardButton];
+    [self.pokerView3 dismissShowCardButton];
+}
+
 - (void)clear
 {
     for (UIView *view in [self subviews]) {

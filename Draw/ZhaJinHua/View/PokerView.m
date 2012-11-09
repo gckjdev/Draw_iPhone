@@ -233,16 +233,18 @@
     [self.popupView dismissAnimated:YES];
 }
 
-- (UIView *)createShowCardButton
+- (UIView *)createShowCardButton:(BOOL)enabled
 {
     UIView *view = [[[UIView alloc] initWithFrame:CGRectMake(0, 0, 43, 36)] autorelease];
     UIImageView *imageView = [[[UIImageView alloc] initWithFrame:view.bounds] autorelease];
-    imageView.image = [[ZJHImageManager defaultManager] showCardButtonBgImage];
+    imageView.image = enabled ? [[ZJHImageManager defaultManager] showCardButtonBgImage] : [[ZJHImageManager defaultManager] showCardButtonDisableBgImage];
     UIButton *button = [[[UIButton alloc] initWithFrame:CGRectMake(4, 4, 35, 25)] autorelease];
     [button.titleLabel setFont:[UIFont systemFontOfSize:13]];
     [button setTitle:@"亮牌" forState:UIControlStateNormal];
     [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [button addTarget:self action:@selector(clickShowCardButton:) forControlEvents:UIControlEventTouchUpInside];
+    if (enabled) {
+        [button addTarget:self action:@selector(clickShowCardButton:) forControlEvents:UIControlEventTouchUpInside];
+    }
     
     [view addSubview:imageView];
     [view addSubview:button];
@@ -252,8 +254,9 @@
 
 - (void)popupShowCardButtonInView:(UIView *)inView
                         aboveView:(UIView *)aboveView
+                          enabled:(BOOL)enabled
 {
-    UIView *showCardButton = [self createShowCardButton];
+    UIView *showCardButton = [self createShowCardButton:enabled];
     
     self.popupView = [[[CMPopTipView alloc] initWithCustomView:showCardButton needBubblePath:NO] autorelease];
     self.popupView.backgroundColor = [UIColor clearColor];

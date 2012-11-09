@@ -11,7 +11,7 @@
 #import "LevelService.h"
 #import "UserManager.h"
 #import "AudioManager.h"
-#import "AccountService.h"
+//#import "AccountService.h"
 #import "ZJHImageManager.h"
 #import "ZJHAvatarView.h"
 #import "CommonGameSession.h"
@@ -45,7 +45,7 @@
     LevelService    *_levelService;
     UserManager     *_userManager;
     AudioManager    *_audioManager;
-    AccountService  *_accountService;
+//    AccountService  *_accountService;
     ZJHImageManager *_imageManager;
     PopupViewManager *_popupViewManager;
 }
@@ -93,7 +93,7 @@
         _userManager = [UserManager defaultManager];
         _imageManager = [ZJHImageManager defaultManager];
         _levelService = [LevelService defaultService];
-        _accountService = [AccountService defaultService];
+//        _accountService = [AccountService defaultService];
         _audioManager = [AudioManager defaultManager];
         _popupViewManager = [PopupViewManager defaultManager];
     }
@@ -384,13 +384,18 @@
 - (void)gameOver
 {
     [self disableZJHButtons];
-    self.autoBetButton.selected = NO;
     [self clearAllAvatarReciprocols];
     [self someoneWon:[_gameService winner]];
 
-    
     [self faceupUserCards];
-    [self performSelector:@selector(clearAllUserPokers) withObject:nil afterDelay:3.0];
+    [self performSelector:@selector(resetGame) withObject:nil afterDelay:3.0];
+}
+
+- (void)resetGame
+{
+    self.autoBetButton.selected = NO;
+    [self hiddenMyCardTypeString];
+    [self clearAllUserPokers];
 }
 
 - (void)faceupUserCards
@@ -745,12 +750,7 @@ compareCardWith:(NSString*)targetUserId
 
 - (void)didClickPokerView:(PokerView *)pokerView
 {
-    if (![_gameService canIShowCard:pokerView.poker.pokerId]) {
-        return;
-    }
-    
-    pokerView.showCardButtonIsPopup ? [pokerView dismissShowCardButton] : [pokerView popupShowCardButtonInView:self.view aboveView:nil];
-    
+    pokerView.showCardButtonIsPopup ? [pokerView dismissShowCardButton] : [pokerView popupShowCardButtonInView:self.view aboveView:nil enabled:[_gameService canIShowCard:pokerView.poker.pokerId]];
 }
 
 - (void)didClickShowCardButton:(PokerView *)pokerView
@@ -780,6 +780,7 @@ compareCardWith:(NSString*)targetUserId
 
 - (void)disableZJHButtons
 {
+    [[self getMyPokersView] dismissShowCardButtons];
     self.betButton.userInteractionEnabled = NO;
     self.raiseBetButton.userInteractionEnabled = NO;
     self.autoBetButton.userInteractionEnabled = NO;
@@ -787,7 +788,6 @@ compareCardWith:(NSString*)targetUserId
     self.compareCardButton.userInteractionEnabled = NO;
     self.checkCardButton.userInteractionEnabled = NO;
     self.foldCardButton.userInteractionEnabled = NO;
-    
     
     [self.betButton setTitleColor:TITLE_COLOR_WHEN_DISABLE forState:UIControlStateNormal];
     [self.raiseBetButton setTitleColor:TITLE_COLOR_WHEN_DISABLE forState:UIControlStateNormal];
@@ -850,6 +850,11 @@ compareCardWith:(NSString*)targetUserId
 {
     _cardTypeButton.hidden = NO;
     [_cardTypeButton setTitle:[_gameService myCardType] forState:UIControlStateNormal];
+}
+
+- (void)hiddenMyCardTypeString
+{
+    _cardTypeButton.hidden = YES;
 }
 
 - (void)clearAllUserPokers

@@ -130,6 +130,11 @@ static ZJHImageManager* shareInstance;
     return [UIImage imageNamed:@"show_card_button.png"];
 }
 
+- (UIImage*)showCardButtonDisableBgImage
+{
+    return [UIImage imageNamed:@"show_card_button_disable.png"];
+}
+
 - (UIImage*)chipImageForChipValue:(int)chipValue;
 {
     switch (chipValue) {

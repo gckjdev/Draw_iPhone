@@ -417,9 +417,9 @@
                                 [self didConnected];
                             }];
     
-    [self registerNotificationWithName:NOTIFICATION_NETWORK_BROKEN // TODO set right name here
+    [self registerNotificationWithName:NOTIFICATION_NETWORK_DISCONNECTED // TODO set right name here
                             usingBlock:^(NSNotification *note) {
-                                [self connectBrokenWithError:[CommonGameNetworkService userInfoToError:note.userInfo]];
+                                [self disconnectWithError:[CommonGameNetworkService userInfoToError:note.userInfo]];
                             }];
 }
 
@@ -478,16 +478,17 @@
 
 }
 
-- (void)connectBrokenWithError:(NSError *)error
+- (void)disconnectWithError:(NSError *)error
 {
     PPDebug(@"diconnect error: %@", [error description]);
 
     _isTryJoinGame = NO;
-    
     [self hideActivity];
-    [self.navigationController popToRootViewControllerAnimated:YES];
     
-    [self popupUnhappyMessage:NSLS(@"kNetworkBroken") title:@""];
+    if (error != nil) {
+        [self.navigationController popToRootViewControllerAnimated:YES];
+        [self popupUnhappyMessage:NSLS(@"kNetworkBroken") title:@""];
+    }
 }
 
 //- (void)connectFailed

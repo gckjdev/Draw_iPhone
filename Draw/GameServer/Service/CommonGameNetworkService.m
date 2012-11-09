@@ -163,9 +163,7 @@
 
 - (void)didBroken:(NSError *)error
 {
-    if (error != nil) {
-        [self postNotification:NOTIFICATION_NETWORK_BROKEN error:error];
-    }
+    [self postNotification:NOTIFICATION_NETWORK_DISCONNECTED error:error];
     
     /*
     if (_connectionDelegate == nil)

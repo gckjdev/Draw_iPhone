@@ -179,13 +179,6 @@
 - (UIImage *)rightBubbleImage;
 
 #pragma mark - Feed Image manager.
-- (void)saveFeedImage:(UIImage *)image
-    withImageName:(NSString *)imageName 
-             asyn:(BOOL)asyn;
-
-- (UIImage *)getImageWithFeedId:(NSString *)feedId;
-- (void)clearFeedCache;
-
 
 - (UIImage *)pointForCurrentSelectedPage;
 - (UIImage *)pointForUnSelectedPage;

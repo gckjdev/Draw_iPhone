@@ -206,13 +206,15 @@
             [self addSubview:self.showView];
             [self.showView show];
             drawFeed.drawImage = [self.showView createImage];
-            //save image.
-            [[ShareImageManager defaultManager] saveFeedImage:drawFeed.drawImage withImageName:[self opusIdForFeed:feed] asyn:YES];
+
             [self.drawImageView setImage:drawFeed.drawImage];
             
             [self cleanShowView];
-//            [self.showView removeFromSuperview];
+
             drawFeed.drawData = nil;
+
+            [[FeedManager defaultManager] saveFeed:[self opusIdForFeed:feed] thumbImage:drawFeed.drawImage];
+
         }
     }
 }

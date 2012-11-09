@@ -89,30 +89,6 @@ CGRect CGRectFrom(CGPoint origin, CGSize size){
 
 
 
-//#define SPACE_Y         (([DeviceDetection isIPAD])?(32):(16))
-//#define SCREEN_WIDTH    (([DeviceDetection isIPAD])?(768):(320))
-//#define TEXTVIEW_BORDER_X (([DeviceDetection isIPAD])?(10):(8))
-//#define TEXTVIEW_BORDER_Y (([DeviceDetection isIPAD])?(10):(8))
-//#define IMAGE_WIDTH_MAX (([DeviceDetection isIPAD])?(200.0):(100.0))
-//#define IMAGE_BORDER_X (([DeviceDetection isIPAD])?(10):(5))
-//#define IMAGE_BORDER_Y (([DeviceDetection isIPAD])?(16):(8))
-//#define TIME_AND_CONTENT_SPACE    (([DeviceDetection isIPAD])?(2):(1))
-////#define TIME_HEIGHT     (([DeviceDetection isIPAD])?(32):(16))
-//#define NICKNAME_AND_AVATAR_SPACE (([DeviceDetection isIPAD])?(4):(2))
-//#define NICKNAME_HEIGHT (([DeviceDetection isIPAD])?(32):(16))
-
-
-- (UIViewAutoresizing)autoresizingMask
-{
-    UIViewAutoresizing autosizing =  !UIViewAutoresizingFlexibleTopMargin
-    | UIViewAutoresizingFlexibleBottomMargin
-    | UIViewAutoresizingFlexibleLeftMargin
-    | !UIViewAutoresizingFlexibleRightMargin
-    | !UIViewAutoresizingFlexibleWidth
-    | !UIViewAutoresizingFlexibleHeight;
-    return autosizing;
-}
-
 //保持view的大小和x不变，单单改变y值
 - (void)setViews:(NSArray *)views yOrigin:(CGFloat)y
 {
@@ -279,8 +255,9 @@ CGRect CGRectFrom(CGPoint origin, CGSize size){
     PPRelease(contentButton);
     PPRelease(showDrawView);
     PPRelease(_superController);
-    [loadingView release];
-    [failureView release];
+    PPRelease(loadingView);
+    PPRelease(failureView);
+    PPRelease(_avatarView);
     [super dealloc];
 }
 
@@ -310,6 +287,8 @@ CGRect CGRectFrom(CGPoint origin, CGSize size){
     [cell.contentButton setImageEdgeInsets:sets];
     [cell.contentButton setTitleEdgeInsets:sets];
 
+    cell.avatarView.userInteractionEnabled = NO;
+    
     return cell;
 }
 
@@ -349,7 +328,48 @@ CGRect CGRectFrom(CGPoint origin, CGSize size){
     PPDebug(@"total height = %f", height);
     return height;
 }
-- (void)setCellWithMessageStat:(MessageStat *)messageStat 
+
+- (void)updateAvatarImage:(MessageStat *)messageStat
+{
+    self.avatarView.frame = self.avatarButton.frame;
+    NSString *avatar = self.messageStat.friendAvatar;
+    BOOL isMale = self.messageStat.friendGender;
+    
+    if (!_isReceive) {
+        avatar = [[UserManager defaultManager] avatarURL];
+        isMale = [[[UserManager defaultManager] gender] isEqualToString:@"m"];
+    }
+        
+
+    UIImage *defaultImage = nil;
+    if (isMale) {
+        defaultImage = [[ShareImageManager defaultManager] maleDefaultAvatarImage];
+    }else{
+        defaultImage = [[ShareImageManager defaultManager] femaleDefaultAvatarImage];
+    }
+    
+    if([avatar length] != 0){
+        NSURL *url = [NSURL URLWithString:avatar];
+        
+        self.avatarView.alpha = 0;
+        [self.avatarView setImageWithURL:url placeholderImage:defaultImage success:^(UIImage *image, BOOL cached) {
+            if (!cached) {
+                [UIView animateWithDuration:1 animations:^{
+                    self.avatarView.alpha = 1.0;
+                }];
+            }else{
+                self.avatarView.alpha = 1.0;
+            }
+        } failure:^(NSError *error) {
+            self.avatarView.alpha = 1;
+            [self.avatarView setImage:defaultImage];
+        }];
+    } else{
+        [self.avatarView setImage:defaultImage];
+    }
+}
+
+- (void)setCellWithMessageStat:(MessageStat *)messageStat
                        message:(PPMessage *)message 
                      indexPath:(NSIndexPath *)indexPath 
                       showTime:(BOOL)showTime
@@ -388,6 +408,7 @@ CGRect CGRectFrom(CGPoint origin, CGSize size){
         
         [self updateSendingFlag:_message.status];
     }
+    [self updateAvatarImage:messageStat];
 }
 
 
