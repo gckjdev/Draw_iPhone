@@ -20,39 +20,13 @@
          shouldBeEnabled = "Yes"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
-         filePath = "Draw/ZhaJinHua/Controller/ZJHGameController.m"
-         timestampString = "373974487.948682"
+         filePath = "Draw/Dice/Controller/Home/DiceHomeController.m"
+         timestampString = "374055649.883299"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "68"
-         endingLineNumber = "68"
-         landmarkName = "-dealloc"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "Yes"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "Draw/ZhaJinHua/View/ZJHAvatarView.m"
-         timestampString = "373974529.121983"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "28"
-         endingLineNumber = "28"
-         landmarkName = "-dealloc"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "Yes"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "Draw/ZhaJinHua/View/ZJHMyAvatarView.m"
-         timestampString = "373974543.668998"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "73"
-         endingLineNumber = "73"
-         landmarkName = "-dealloc"
+         startingLineNumber = "445"
+         endingLineNumber = "445"
+         landmarkName = "-connectServer:"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

@@ -207,24 +207,17 @@
 {
     // Internet Test Server
     [[DiceGameService defaultService] setRuleType:_ruleType];
-    [[DiceGameService defaultService] connectServer:self];
+//    [[DiceGameService defaultService] connectServer:self];
+    [[DiceGameService defaultService] connectServer];
     [self showActivityWithText:NSLS(@"kRefreshingRoomList")];
     _isJoiningDice = NO;    
-}
-
-- (void)registerDiceGameNotificationWithName:(NSString *)name 
-                                  usingBlock:(void (^)(NSNotification *note))block
-{    
-    [self registerNotificationWithName:name 
-                                object:nil 
-                                 queue:[NSOperationQueue mainQueue] 
-                            usingBlock:block];
 }
 
 - (void)registerDiceRoomNotification
 {
     
-    [self registerDiceGameNotificationWithName:NOTIFICAIION_CREATE_ROOM_RESPONSE usingBlock:^(NSNotification *note) {
+    [self registerNotificationWithName:NOTIFICAIION_CREATE_ROOM_RESPONSE
+                            usingBlock:^(NSNotification *note) {
         PPDebug(@"<DiceRoomListController> NOTIFICAIION_CREATE_ROOM_RESPONSE"); 
         [self hideActivity];
         GameMessage* message = [CommonGameNetworkService userInfoToMessage:note.userInfo];
@@ -237,14 +230,16 @@
         }
     }];
     
-    [self registerDiceGameNotificationWithName:NOTIFICAIION_GET_ROOMS_RESPONSE usingBlock:^(NSNotification *note) {
+    [self registerNotificationWithName:NOTIFICAIION_GET_ROOMS_RESPONSE
+                            usingBlock:^(NSNotification *note) {
         PPDebug(@"<DiceRoomListController> NOTIFICAIION_GET_ROOMS_RESPONSE"); 
         GameMessage* message = [CommonGameNetworkService userInfoToMessage:note.userInfo];
         if (message.resultCode == GameResultCodeSuccess) {
             [self getRoomsFinished];
         }
     }];
-    [self registerDiceGameNotificationWithName:NOTIFICATION_JOIN_GAME_RESPONSE usingBlock:^(NSNotification *note) {
+    [self registerNotificationWithName:NOTIFICATION_JOIN_GAME_RESPONSE
+                            usingBlock:^(NSNotification *note) {
         PPDebug(@"<DiceRoomListController> NOTIFICATION_JOIN_GAME_RESPONSE");  
         [self hideActivity];
         GameMessage* message = [CommonGameNetworkService userInfoToMessage:note.userInfo];
@@ -256,13 +251,19 @@
             [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kJoinGameFailure") delayTime:1.5 isHappy:NO];
         }
     }];
+    
+    [self registerNotificationWithName:NOTIFICATION_NETWORK_CONNECTED
+                            usingBlock:^(NSNotification *note) {
+                                [self didConnected];
+                            }];
 
-    [self registerDiceGameNotificationWithName:UIApplicationWillEnterForegroundNotification usingBlock:^(NSNotification *note) {
-        PPDebug(@"<DiceRoomListController> Disconnected from server");
-        if (![[DiceGameService defaultService] isConnected]) {
-            [self didBroken];
-        }
-    }];
+//    [self registerNotificationWithName:UIApplicationWillEnterForegroundNotification
+//                            usingBlock:^(NSNotification *note) {
+//        PPDebug(@"<DiceRoomListController> Disconnected from server");
+//        if (![[DiceGameService defaultService] isConnected]) {
+//            [self didBroken];
+//        }
+//    }];
 
 }
 
