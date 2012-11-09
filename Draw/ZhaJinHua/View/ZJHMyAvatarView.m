@@ -9,6 +9,8 @@
 #import "ZJHMyAvatarView.h"
 #import "AccountService.h"
 #import "LevelService.h"
+#import "ZJHGameService.h"
+
 
 @implementation ZJHMyAvatarView
 
@@ -57,7 +59,7 @@
 
 - (void)update{
     [self.levelLabel setText:[NSString stringWithFormat:@"LV.%d",[LevelService defaultService].level]];
-    [self.coinsLabel setText:[NSString stringWithFormat:@"x%d",[AccountService defaultService].getBalance]];
+    [self.coinsLabel setText:[NSString stringWithFormat:@"x%d",[ZJHGameService defaultService].myBalance]];
 }
 
 /*

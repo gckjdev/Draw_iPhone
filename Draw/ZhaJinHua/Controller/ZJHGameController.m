@@ -24,6 +24,7 @@
 #import "ZJHMyAvatarView.h"
 #import "MoneyTree.h"
 #import "AnimationManager.h"
+#import "LevelService.h"
 
 #define AVATAR_VIEW_TAG_OFFSET   4000
 #define AVATAR_PLACE_VIEW_OFFSET    8000
@@ -314,6 +315,7 @@
     [self updateTotalBetAndSingleBet];
     [self updateUserTotalBet:_userManager.userId];
     [self updateAutoBetButton];
+    [self updateMyAvatar];
 }
 
 - (void)checkCardSuccess
@@ -938,6 +940,8 @@ compareCardWith:(NSString*)targetUserId
 
 }
 
+#pragma mark - test end
+
 - (void)allBet
 {
     for (PBGameUser *user in _gameService.session.userList) {
@@ -946,6 +950,11 @@ compareCardWith:(NSString*)targetUserId
                              count:[_gameService betCountOfUser:user.userId]];
 
     }
+}
+
+- (void)updateMyAvatar
+{
+    [(ZJHMyAvatarView*)[self getAvatarViewByPosition:UserPositionCenter] update];
 }
 
 
