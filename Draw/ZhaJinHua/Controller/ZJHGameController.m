@@ -448,6 +448,13 @@ compareCardWith:(NSString*)targetUserId
     [UIView animateWithDuration:1 animations:^{
         pokerView.layer.position = CGPointMake(self.view.center.x, self.view.center.y - 30);
         otherPokerView.layer.position = CGPointMake(self.view.center.x, self.view.center.y + 30);
+        if ([_userManager isMe:userId]) {
+            pokerView.layer.transform = CATransform3DMakeScale(28/35.0, 37/48.0, 1);
+        }
+        if ([_userManager isMe:targetUserId ]) {
+            otherPokerView.layer.transform = CATransform3DMakeScale(28/35.0, 37/48.0, 1);
+        }
+        
     } completion:^(BOOL finished) {
         [pokerView compare:YES win:didWin];
         [otherPokerView compare:YES win:!didWin];
@@ -458,8 +465,14 @@ compareCardWith:(NSString*)targetUserId
             [UIView animateWithDuration:1 animations:^{
                 pokerView.layer.position = pokerViewOrgPoint;
                 otherPokerView.layer.position = otherPokerViewOrgPoint;
+                if ([_userManager isMe:userId]) {
+                    pokerView.layer.transform = CATransform3DMakeScale(1, 1, 1);
+                }
+                if ([_userManager isMe:targetUserId ]) {
+                    otherPokerView.layer.transform = CATransform3DMakeScale(1, 1, 1);
+                }
             } completion:^(BOOL finished) {
-                //
+                
             }];
         }];
     }];
@@ -567,7 +580,7 @@ compareCardWith:(NSString*)targetUserId
 {
     for (PBGameUser* user in _gameService.session.userList) {
         ZJHAvatarView* avatar = [self getAvatarViewByUserId:user.userId];
-        if (![_gameService canUserCompareCard:user.userId]) {
+        if (![_gameService canUserCompareCard:user.userId] || [_userManager isMe:user.userId]) {
             continue;
         }
         UIButton* btn = (UIButton*)[self.view viewWithTag:avatar.tag - AVATAR_VIEW_TAG_OFFSET + COMPARE_BUTTON_TAG_OFFSET];
@@ -587,8 +600,8 @@ compareCardWith:(NSString*)targetUserId
 
 - (void)setAllPlayerNotComparing
 {
-    for (PBGameUser* user in _gameService.session.userList) {
-        ZJHAvatarView* avatar = [self getAvatarViewByUserId:user.userId];
+    for (int i = UserPositionCenter; i < UserPositionMax; i ++) {
+        ZJHAvatarView* avatar = [self getAvatarViewByPosition:i];
         UIButton* btn = (UIButton*)[self.view viewWithTag:avatar.tag - AVATAR_VIEW_TAG_OFFSET + COMPARE_BUTTON_TAG_OFFSET];
         if (btn) {
             [btn setHidden:YES];
