@@ -200,9 +200,9 @@
 
 - (void)showBomb
 {
-    [self clearBombButton];
+    [self clearBomb];
     
-    UIButton *bomb = [[[UIButton alloc] initWithFrame:CGRectMake(0, 0, 0, 0)] autorelease];
+    UIButton *bomb = [[[UIButton alloc] initWithFrame:CGRectMake(0, 0, BOMB_BUTTON_WIDTH, BOMB_BUTTON_HEIGHT)] autorelease];
     bomb.tag = TAG_BOMB_BUTTON;
     [bomb setImage:[[ZJHImageManager defaultManager] bombImage] forState:UIControlStateNormal];
     [bomb addTarget:self action:@selector(clickBomb:) forControlEvents:UIControlEventTouchUpInside];
@@ -213,7 +213,7 @@
 
 - (void)clickBomb:(id)sender
 {
-    [self clearBombButton];
+    [self clearBomb];
     
     if ([_delegate respondsToSelector:@selector(didClickBombButton:)]) {
         [_delegate didClickBombButton:self];
@@ -249,7 +249,7 @@
     
 }
 
-- (void)clearBombButton
+- (void)clearBomb
 {
     [[self viewWithTag:TAG_BOMB_BUTTON] removeFromSuperview];
 }
