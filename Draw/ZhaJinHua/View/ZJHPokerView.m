@@ -174,6 +174,7 @@
 
 - (void)foldCards:(BOOL)animation
 {
+    [self clearBombButton];
     self.pokerView1.backImageView.image = [[ZJHImageManager defaultManager] pokerFoldBackImage];
     [self.pokerView1 faceDown:animation];
     [self.pokerView1 backToOriginPosition:animation];
