@@ -28,6 +28,12 @@
 
 @end
 
+
+@interface DealerView ()
+@property (readwrite, assign, nonatomic) BOOL isDealing;
+
+@end
+
 @implementation DealerView
 @synthesize delegate = _delegate;
 
@@ -97,6 +103,7 @@
         
         [CATransaction setCompletionBlock:^{
             if (_delegate && [_delegate respondsToSelector:@selector(didDealFinish:)]) {
+                _isDealing = NO;
                 [_delegate didDealFinish:self];
                 for (CALayer* layer in [self.layer sublayers]) {
                     [layer setOpacity:0];
@@ -115,6 +122,7 @@
 - (void)dealWithPositionArray:(NSArray*)array
                         times:(int)times
 {
+    _isDealing = YES;
     float delay = 0;
     _remainCards = times * [array count];
     while (times --) {
