@@ -9,8 +9,9 @@
 #import "CommonGameNetworkService.h"
 #import "ZJHGameState.h"
 #import "ZJHGameNotification.h"
+#import "AccountService.h"
 
-@interface ZJHGameService : CommonGameNetworkService
+@interface ZJHGameService : CommonGameNetworkService <AccountServiceDelegate>
 
 @property (readonly, retain, nonatomic) ZJHGameState *gameState;
 
@@ -49,5 +50,7 @@
 
 - (BOOL)doIWin;
 - (NSString *)winner;
+
+- (int)myBalance;
 
 @end

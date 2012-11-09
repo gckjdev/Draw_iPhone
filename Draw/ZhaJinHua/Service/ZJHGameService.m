@@ -13,7 +13,6 @@
 #import "CommonGameSession.h"
 #import "UserManager.h"
 #import "ConfigManager.h"
-#import "AccountService.h"
 
 static ZJHGameService *_defaultService;
 
@@ -21,6 +20,7 @@ static ZJHGameService *_defaultService;
 {
     UserManager *_userManager;
     AccountService *_accountService;
+    int _myBalance;
 }
 
 @property (readwrite, retain, nonatomic) ZJHGameState *gameState;
@@ -152,7 +152,7 @@ static ZJHGameService *_defaultService;
 
 - (BOOL)isMyBalanceEnough
 {
-    return [_accountService getBalance] >= _gameState.singleBet * [self myBetCount];
+    return _myBalance >= _gameState.singleBet * [self myBetCount];
 }
 
 - (BOOL)canRaise
@@ -233,17 +233,18 @@ static ZJHGameService *_defaultService;
 
 - (void)handleMoreOnJoinGameResponse:(GameMessage*)message
 {
+    [_accountService syncAccount:self forceServer:YES];
     self.gameState = [ZJHGameState fromPBZJHGameState:message.joinGameResponse.zjhGameState];
 }
 
 - (void)handleMoreOnGameStartNotificationRequest:(GameMessage*)message
 {
-    [_accountService syncAccount:nil forceServer:YES];
     self.gameState = [ZJHGameState fromPBZJHGameState:message.gameStartNotificationRequest.zjhGameState];
 }
 
 - (void)handleMoreOnGameOverNotificationRequest:(GameMessage*)message
 {
+    [_accountService syncAccount:self forceServer:YES];
     for (PBUserResult *userResult in message.gameOverNotificationRequest.zjhgameResult.userResultList) {
         if (userResult.win) {
             self.gameState.winner = userResult.userId;
@@ -258,6 +259,10 @@ static ZJHGameService *_defaultService;
     ZJHUserPlayInfo *userPlayInfo = [_gameState userPlayInfo:message.userId];
     if (userPlayInfo == nil) {
         return;
+    }
+    
+    if ([_userManager isMe:userPlayInfo.userId]) {
+        _myBalance -= message.betRequest.singleBet * message.betRequest.count;
     }
     
     PPDebug(@"################### User: %@, bet #####################", userPlayInfo.userId);
@@ -454,6 +459,16 @@ static ZJHGameService *_defaultService;
 - (ZJHUserPlayInfo *)myPlayInfo
 {
     return [_gameState userPlayInfo:_userManager.userId];
+}
+
+- (void)didSyncFinish
+{
+    _myBalance = [_accountService getBalance];
+}
+
+- (int)myBalance
+{
+    return _myBalance;
 }
 
 @end

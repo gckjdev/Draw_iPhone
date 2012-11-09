@@ -11,7 +11,7 @@
 #import "LevelService.h"
 #import "UserManager.h"
 #import "AudioManager.h"
-#import "AccountService.h"
+//#import "AccountService.h"
 #import "ZJHImageManager.h"
 #import "ZJHAvatarView.h"
 #import "CommonGameSession.h"
@@ -45,7 +45,7 @@
     LevelService    *_levelService;
     UserManager     *_userManager;
     AudioManager    *_audioManager;
-    AccountService  *_accountService;
+//    AccountService  *_accountService;
     ZJHImageManager *_imageManager;
     PopupViewManager *_popupViewManager;
 }
@@ -92,7 +92,7 @@
         _userManager = [UserManager defaultManager];
         _imageManager = [ZJHImageManager defaultManager];
         _levelService = [LevelService defaultService];
-        _accountService = [AccountService defaultService];
+//        _accountService = [AccountService defaultService];
         _audioManager = [AudioManager defaultManager];
         _popupViewManager = [PopupViewManager defaultManager];
     }
