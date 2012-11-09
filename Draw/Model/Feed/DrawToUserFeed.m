@@ -20,6 +20,25 @@
     return self;
 }
 
+
+#define KEY_TARGET_USER @"TARGET_USER"
+
+- (id)initWithCoder:(NSCoder *)aDecoder
+{
+    self = [super initWithCoder:aDecoder];
+    if (self) {
+        self.targetUser = [aDecoder decodeObjectForKey:KEY_TARGET_USER];
+    }
+    return self;
+}
+
+- (void)encodeWithCoder:(NSCoder *)aCoder
+{
+    [super encodeWithCoder:aCoder];
+    [aCoder encodeObject:self.targetUser forKey:KEY_TARGET_USER];
+}
+
+
 - (void)updateDesc
 {
     if ([self hasGuessed] || [self isMyOpus]) {

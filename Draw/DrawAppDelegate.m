@@ -50,7 +50,7 @@
 #import "DiceHomeController.h"
 #import "DiceHelpManager.h"
 #import "BoardService.h"
-
+#import "FeedManager.h"
 
 #import "MyPaintManager.h"
 NSString* GlobalGetServerURL()
@@ -352,7 +352,8 @@ NSString* GlobalGetBoardServerURL()
     
     [[MusicItemManager defaultManager] saveMusicItems];
     [[MyPaintManager defaultManager] removeAlldeletedPaints];
-
+    [[FeedManager defaultManager] removeOldCache];
+//    [Feed]
 }
 
 #pragma mark - Device Notification Delegate

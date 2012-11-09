@@ -23,6 +23,25 @@
     return self;
 }
 
+#define KEY_CONTEST_ID @"CONTEST_ID"
+#define KEY_CONTEST_SCORE @"CONTEST_SCORE"
+- (id)initWithCoder:(NSCoder *)aDecoder
+{
+    self = [super initWithCoder:aDecoder];
+    if (self) {
+        self.contestId = [aDecoder decodeObjectForKey:KEY_CONTEST_ID];
+        self.contestScore = [aDecoder decodeIntegerForKey:KEY_CONTEST_SCORE];
+    }
+    return self;
+}
+
+
+- (void)encodeWithCoder:(NSCoder *)aCoder
+{
+    [super encodeWithCoder:aCoder];
+    [aCoder encodeObject:self.contestId forKey:KEY_CONTEST_ID];
+    [aCoder encodeInteger:self.contestScore forKey:KEY_CONTEST_SCORE];
+}
 - (void)dealloc
 {
     PPRelease(_contestId);

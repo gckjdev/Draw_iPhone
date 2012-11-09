@@ -44,7 +44,7 @@ typedef enum {
 @class PBFeed;
 @class PBDraw;
 
-@interface Feed : NSObject
+@interface Feed : NSObject<NSCoding>
 {
     
     NSString *_feedId;    

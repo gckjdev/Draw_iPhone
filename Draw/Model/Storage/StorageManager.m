@@ -143,9 +143,23 @@ static StorageManager *_staticStorageManager = nil;
     return [FileUtil removeFile:[self currentDirectory]];
 }
 
+
+- (NSInteger)numberOfFiles
+{
+    return [FileUtil numberOfFilesBelowDir:[self currentDirectory]];
+}
+
 - (BOOL)removeDataForKey:(NSString *)key
 {
     NSString *path = [self pathWithKey:key];
     return [FileUtil removeFile:path];
 }
+
+- (BOOL)removeOldFilestimeIntervalSinceNow:(NSTimeInterval)timeInterval
+{
+    NSString *dir = [self currentDirectory];
+    PPDebug(@"<removeOldFilestimeIntervalSinceNow> start to delete files below %@, interval = %lf",dir,timeInterval);
+    return [FileUtil removeFilesBelowDir:[self currentDirectory] timeIntervalSinceNow:timeInterval];
+}
+
 @end

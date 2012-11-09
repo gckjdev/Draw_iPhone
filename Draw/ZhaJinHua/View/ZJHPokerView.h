@@ -74,6 +74,7 @@ typedef enum {
             win:(BOOL)win;
 
 - (void)showBomb;
+- (void)clearBomb;
 
 
 @end

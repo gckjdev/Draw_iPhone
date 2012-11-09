@@ -95,9 +95,15 @@ static ShareService* _defaultService;
     
     dispatch_async(queue, ^{
         CommonNetworkOutput* output = [GameNetworkRequest getUserSimpleInfo:SERVER_URL
-                                                                      appId:[ConfigManager appId] 
+                                                                     userId:[[UserManager defaultManager] userId]
+                                                                      appId:[ConfigManager appId]
                                                                      gameId:[ConfigManager gameId]
                                                                    ByUserId:drawUserId];
+        
+//        CommonNetworkOutput* output = [GameNetworkRequest getUserSimpleInfo:SERVER_URL
+//                                                                      appId:[ConfigManager appId] 
+//                                                                     gameId:[ConfigManager gameId]
+//                                                                   ByUserId:drawUserId];
         
         dispatch_async(dispatch_get_main_queue(), ^{
             NSString* sinaNick = nil;

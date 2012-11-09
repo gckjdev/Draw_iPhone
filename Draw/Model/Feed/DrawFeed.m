@@ -11,6 +11,7 @@
 #import "ShareImageManager.h"
 #import "GameNetworkConstants.h"
 #import "ConfigManager.h"
+#import "FeedManager.h"
 
 @implementation DrawFeed
 
@@ -42,8 +43,7 @@
         PPDebug(@"<DrawFeed>initDrawInfo, drawImageUrl is nil, load image from local. feedID = %@",self.feedId);        
         
         //load draw data from local
-        self.drawImage = [[ShareImageManager defaultManager] 
-                          getImageWithFeedId:self.feedId];
+        self.drawImage = [[FeedManager defaultManager] thumbImageForFeedId:self.feedId];
         
         if (self.drawImage == nil && drawData) {
             Draw* draw = [[Draw alloc]initWithPBDraw:drawData];
@@ -69,6 +69,31 @@
         [self initDrawInfo:pbFeed.opusImage drawData:pbFeed.drawData];
     }
     return self;
+}
+
+#define KEY_WORD_TEXT @"WORD_TEXT"
+#define KEY_DRAW @"DRAW"
+#define KEY_IMAGE @"IMAGE"
+#define KEY_TIMES @"TIMES"
+- (id)initWithCoder:(NSCoder *)aDecoder
+{
+    self = [super initWithCoder:aDecoder];
+    if (self) {
+        self.wordText = [aDecoder decodeObjectForKey:KEY_WORD_TEXT];
+        self.drawData = [aDecoder decodeObjectForKey:KEY_DRAW];
+        self.drawImageUrl = [aDecoder decodeObjectForKey:KEY_IMAGE];
+        self.timesSet = [aDecoder decodeObjectForKey:KEY_TIMES];
+    }
+    return self;
+}
+
+- (void)encodeWithCoder:(NSCoder *)aCoder
+{
+    [super encodeWithCoder:aCoder];
+    [aCoder encodeObject:self.wordText forKey:KEY_WORD_TEXT];
+    [aCoder encodeObject:self.drawData forKey:KEY_DRAW];
+    [aCoder encodeObject:self.drawImageUrl forKey:KEY_IMAGE];
+    [aCoder encodeObject:self.timesSet forKey:KEY_TIMES];
 }
 
 - (void)parseDrawData:(PBFeed *)pbFeed

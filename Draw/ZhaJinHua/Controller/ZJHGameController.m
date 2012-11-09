@@ -446,18 +446,31 @@ compareCardWith:(NSString*)targetUserId
     [UIView animateWithDuration:1 animations:^{
         pokerView.layer.position = CGPointMake(self.view.center.x, self.view.center.y - 30);
         otherPokerView.layer.position = CGPointMake(self.view.center.x, self.view.center.y + 30);
+        if ([_userManager isMe:userId]) {
+            pokerView.layer.transform = CATransform3DMakeScale(28/35.0, 37/48.0, 1);
+        }
+        if ([_userManager isMe:targetUserId ]) {
+            otherPokerView.layer.transform = CATransform3DMakeScale(28/35.0, 37/48.0, 1);
+        }
+        
     } completion:^(BOOL finished) {
         [pokerView compare:YES win:didWin];
         [otherPokerView compare:YES win:!didWin];
         [UIView animateWithDuration:1 animations:^{
-            pokerView.layer.position = CGPointMake(self.view.center.x, self.view.center.y - 30);
-            otherPokerView.layer.position = CGPointMake(self.view.center.x, self.view.center.y + 30);
+            pokerView.layer.position = CGPointMake(self.view.center.x, self.view.center.y - 29.9);
+            otherPokerView.layer.position = CGPointMake(self.view.center.x, self.view.center.y + 29.9);
         } completion:^(BOOL finished) {
             [UIView animateWithDuration:1 animations:^{
                 pokerView.layer.position = pokerViewOrgPoint;
                 otherPokerView.layer.position = otherPokerViewOrgPoint;
+                if ([_userManager isMe:userId]) {
+                    pokerView.layer.transform = CATransform3DMakeScale(1, 1, 1);
+                }
+                if ([_userManager isMe:targetUserId ]) {
+                    otherPokerView.layer.transform = CATransform3DMakeScale(1, 1, 1);
+                }
             } completion:^(BOOL finished) {
-                //
+                
             }];
         }];
     }];
@@ -552,14 +565,14 @@ compareCardWith:(NSString*)targetUserId
 
 #pragma mark - private method
 
-- (void)clickCompareWithSomeone:(id)sender
-{
-    UIButton* compareSomeoneBtn = (UIButton*)sender;
-    ZJHAvatarView* avatar = (ZJHAvatarView*)[self.view viewWithTag:(AVATAR_VIEW_TAG_OFFSET+compareSomeoneBtn.tag - COMPARE_BUTTON_TAG_OFFSET)];
-//    [self someone:[_userManager userId] compareCardWith:avatar.userInfo.userId didWin:YES];
-    self.isComparing = NO;
-    [_gameService compareCard:avatar.userInfo.userId];
-}
+//- (void)clickCompareWithSomeone:(id)sender
+//{
+//    UIButton* compareSomeoneBtn = (UIButton*)sender;
+//    ZJHAvatarView* avatar = (ZJHAvatarView*)[self.view viewWithTag:(AVATAR_VIEW_TAG_OFFSET+compareSomeoneBtn.tag - COMPARE_BUTTON_TAG_OFFSET)];
+////    [self someone:[_userManager userId] compareCardWith:avatar.userInfo.userId didWin:YES];
+//    self.isComparing = NO;
+//    [_gameService compareCard:avatar.userInfo.userId];
+//}
 
 - (void)setAllPlayerComparing
 {
@@ -568,30 +581,30 @@ compareCardWith:(NSString*)targetUserId
         if (![_gameService canUserCompareCard:user.userId]) {
             continue;
         }
-        UIButton* btn = (UIButton*)[self.view viewWithTag:avatar.tag - AVATAR_VIEW_TAG_OFFSET + COMPARE_BUTTON_TAG_OFFSET];
-        if (!btn) {
-            btn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-            [btn setTitle:@"比" forState:UIControlStateNormal];
-            btn.frame = avatar.frame;
-            btn.tag = avatar.tag - AVATAR_VIEW_TAG_OFFSET + COMPARE_BUTTON_TAG_OFFSET;
-            [btn addTarget:self action:@selector(clickCompareWithSomeone:) forControlEvents:UIControlEventTouchUpInside];
-            [self.view addSubview:btn];
-        }
-        btn.hidden = NO;
-        [self.view bringSubviewToFront:btn];
+//        UIButton* btn = (UIButton*)[self.view viewWithTag:avatar.tag - AVATAR_VIEW_TAG_OFFSET + COMPARE_BUTTON_TAG_OFFSET];
+//        if (!btn) {
+//            btn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+//            [btn setTitle:@"比" forState:UIControlStateNormal];
+//            btn.frame = avatar.frame;
+//            btn.tag = avatar.tag - AVATAR_VIEW_TAG_OFFSET + COMPARE_BUTTON_TAG_OFFSET;
+//            [btn addTarget:self action:@selector(clickCompareWithSomeone:) forControlEvents:UIControlEventTouchUpInside];
+//            [self.view addSubview:btn];
+//        }
+//        btn.hidden = NO;
+//        [self.view bringSubviewToFront:btn];
+        ZJHPokerView* pokerView = (ZJHPokerView*)[self.view viewWithTag:(avatar.tag - AVATAR_VIEW_TAG_OFFSET + POKERS_VIEW_TAG_OFFSET)];
+        [pokerView showBomb];
         
     }
 }
 
 - (void)setAllPlayerNotComparing
 {
-    for (PBGameUser* user in _gameService.session.userList) {
-        ZJHAvatarView* avatar = [self getAvatarViewByUserId:user.userId];
-        UIButton* btn = (UIButton*)[self.view viewWithTag:avatar.tag - AVATAR_VIEW_TAG_OFFSET + COMPARE_BUTTON_TAG_OFFSET];
-        if (btn) {
-            [btn setHidden:YES];
-            [self.view sendSubviewToBack:btn];
-        }
+    for (int i = UserPositionCenter; i < UserPositionMax; i ++) {
+        ZJHAvatarView* avatar = [self getAvatarViewByPosition:i];
+        ZJHPokerView* pokerView = (ZJHPokerView*)[self.view viewWithTag:(avatar.tag - AVATAR_VIEW_TAG_OFFSET + POKERS_VIEW_TAG_OFFSET)];
+        [pokerView clearBomb];
+        
     }
 }
 
@@ -742,7 +755,10 @@ compareCardWith:(NSString*)targetUserId
 
 - (void)didClickBombButton:(ZJHPokerView *)zjhPokerView
 {
-    // TODO: 
+    ZJHAvatarView* avatar = (ZJHAvatarView*)[self.view viewWithTag:(AVATAR_VIEW_TAG_OFFSET+zjhPokerView.tag - POKERS_VIEW_TAG_OFFSET)];
+    //    [self someone:[_userManager userId] compareCardWith:avatar.userInfo.userId didWin:YES];
+    self.isComparing = NO;
+    [_gameService compareCard:avatar.userInfo.userId];
 }
 
 #pragma mark - chipsSelectView protocol
@@ -925,5 +941,6 @@ compareCardWith:(NSString*)targetUserId
 
     }
 }
+
 
 @end

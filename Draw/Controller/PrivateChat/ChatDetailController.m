@@ -333,6 +333,7 @@
     ChatDetailCell *cell = [tableView dequeueReusableCellWithIdentifier:indentifier];
     if (cell == nil) {
         cell = [ChatDetailCell createCell:self isReceive:isReceive];
+        cell.superController = self;
     }
     BOOL flag = [self messageShowTime:message];
     [cell setCellWithMessageStat:self.messageStat 

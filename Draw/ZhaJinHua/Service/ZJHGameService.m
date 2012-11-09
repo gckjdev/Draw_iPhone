@@ -201,7 +201,7 @@ static ZJHGameService *_defaultService;
 
 - (BOOL)canUserCompareCard:(NSString *)userId
 {
-    return [[_gameState userPlayInfo:userId] canCompareCard];
+    return [[_gameState userPlayInfo:userId] canCompareCard] && ![_userManager isMe:userId];
 }
 
 - (NSString *)myCardType

@@ -149,7 +149,7 @@
 
 - (void)faceUpCards:(ZJHPokerXMotionType)xMotiontype animation:(BOOL)animation
 {
-    [self clearBombButton];
+    [self clearBomb];
 
     [self.pokerView1 backToOriginPosition:animation];
     [self.pokerView1 faceUp:animation];
@@ -183,7 +183,7 @@
 
 - (void)foldCards:(BOOL)animation
 {
-    [self clearBombButton];
+    [self clearBomb];
     self.pokerView1.backImageView.image = [[ZJHImageManager defaultManager] pokerFoldBackImage];
     [self.pokerView1 faceDown:animation];
     [self.pokerView1 backToOriginPosition:animation];
@@ -210,7 +210,7 @@
 
 - (void)showBomb
 {
-    [self clearBombButton];
+    [self clearBomb];
     
     UIButton *bomb = [[[UIButton alloc] initWithFrame:CGRectMake(0, 0, BOMB_BUTTON_WIDTH, BOMB_BUTTON_HEIGHT)] autorelease];
     bomb.tag = TAG_BOMB_BUTTON;
@@ -224,7 +224,7 @@
 
 - (void)clickBomb:(id)sender
 {
-    [self clearBombButton];
+    [self clearBomb];
     
     if ([_delegate respondsToSelector:@selector(didClickBombButton:)]) {
         [_delegate didClickBombButton:self];
@@ -260,7 +260,7 @@
     
 }
 
-- (void)clearBombButton
+- (void)clearBomb
 {
     [[self viewWithTag:TAG_BOMB_BUTTON] removeFromSuperview];
 }

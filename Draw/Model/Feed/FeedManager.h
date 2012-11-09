@@ -13,7 +13,7 @@
 #import "DrawToUserFeed.h"
 #import "CommentFeed.h"
 #import "ContestFeed.h"
-
+#import "StorageManager.h"
 
 typedef enum{
     
@@ -44,16 +44,28 @@ typedef enum{
 
 @interface FeedManager : NSObject
 {
-    NSMutableDictionary *_dataMap;
+    StorageManager *_storeManager;
+    StorageManager *_feedImageManager;
 }
 + (FeedManager *)defaultManager;
-+ (void)releaseDefaultManager;
-- (NSMutableArray *)feedListForType:(FeedListType)type;
-- (void)setFeedList:(NSMutableArray *)feedList forType:(FeedListType)type;
-- (void)addFeedList:(NSArray *)feedList forType:(FeedListType)type;
-- (void)cleanData;
-
 + (Feed *)parsePbFeed:(PBFeed *)pbFeed;
 + (NSArray *)parsePbFeedList:(NSArray *)pbFeedList;
 + (NSArray *)parsePbCommentFeedList:(NSArray *)pbFeedList;
+
+- (void)cachePBFeed:(PBFeed *)feed;
+- (PBFeed *)loadPBFeedWithFeedId:(NSString *)feedId;
+
+- (void)removeOldCache;
+//- (void)removeOldFiles;
+//- (void)removeOldImages;
+
+- (UIImage *)thumbImageForFeedId:(NSString *)feedId;
+- (UIImage *)largeImageForFeedId:(NSString *)feedId;
+
+//working in the background queue.
+- (void)saveFeed:(NSString *)feedId thumbImage:(UIImage *)image;
+- (void)saveFeed:(NSString *)feedId largeImage:(UIImage *)image;
+
+
+
 @end

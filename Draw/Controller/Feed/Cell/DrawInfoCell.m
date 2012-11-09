@@ -109,37 +109,44 @@
 
 - (void)showDrawView:(DrawFeed *)feed
 {
-    CGRect frame = self.drawImage.frame;    
-    self.showView = [[[ShowDrawView alloc] initWithFrame:frame] autorelease];
-    self.showView.playSpeed = 1.0/50.0;
-    [self.showView setShowPenHidden:YES];
-    self.showView.delegate = self;
-    [self.showView setBackgroundColor:[UIColor whiteColor]];
-    [self.showView cleanAllActions];
-    [self addSubview:self.showView];
-    [self.drawImage setHidden:YES];
-    [self.loadingActivity stopAnimating];
+        CGRect frame = self.drawImage.frame;
+        self.showView = [[[ShowDrawView alloc] initWithFrame:frame] autorelease];
+        self.showView.playSpeed = 1.0/50.0;
+        [self.showView setShowPenHidden:YES];
+        self.showView.delegate = self;
+        [self.showView setBackgroundColor:[UIColor whiteColor]];
+        [self.showView cleanAllActions];
+        [self addSubview:self.showView];
+        [self.drawImage setHidden:YES];
+        
+        CGRect normalFrame = DRAW_VIEW_FRAME;
+        
+        CGFloat xScale = frame.size.width / normalFrame.size.width;
+        CGFloat yScale = frame.size.height / normalFrame.size.height;
+        if (xScale == 1 && yScale == 1) {
+            self.showView.drawActionList = [NSMutableArray arrayWithArray:self.feed.drawData.drawActionList];
+        }else{
+            self.showView.drawActionList = [DrawAction scaleActionList:_feed.drawData.drawActionList xScale:xScale yScale:yScale];
+        }
+        [self.showView show];
+        UIImage *image = [self.showView createImage];
+        //remove the show view after create the image.
+        [self.showView removeFromSuperview];
+        self.showView = nil;
+        self.feed.largeImage = image;
+        [self.drawImage setImage:self.feed.largeImage];
+        [self.drawImage setHidden:NO];
+
+        [self.loadingActivity stopAnimating];
     
-    CGRect normalFrame = DRAW_VIEW_FRAME;
+        //cache image
+        [[FeedManager defaultManager] saveFeed:feed.feedId largeImage:image];
     
-    CGFloat xScale = frame.size.width / normalFrame.size.width;
-    CGFloat yScale = frame.size.height / normalFrame.size.height;
-    if (xScale == 1 && yScale == 1) {
-        self.showView.drawActionList = [NSMutableArray arrayWithArray:self.feed.drawData.drawActionList];
-    }else{
-        self.showView.drawActionList = [DrawAction scaleActionList:_feed.drawData.drawActionList xScale:xScale yScale:yScale];
-    }
-    [self.showView show]; 
-    self.feed.largeImage = [self.showView createImage];
-    [self.drawImage setImage:self.feed.largeImage];
-    [self.drawImage setHidden:NO];
-    //remove the show view after create the image.
-    [self.showView removeFromSuperview];
-    self.showView = nil;
 }
 
 - (void)updateShowView:(DrawFeed *)feed
 {
+//    self.feed.largeImage = [[FeedManager defaultManager] largeImageForFeedId:feed.feedId];
     if (self.feed.largeImage) {
         [self.drawImage setImage:self.feed.largeImage];
         [self.loadingActivity stopAnimating];
@@ -180,9 +187,16 @@
         return;
     } 
 
+    if (self.feed.largeImage == nil) {
+        self.feed.largeImage = [[FeedManager defaultManager] largeImageForFeedId:self.feed.feedId];
+        if(self.feed.largeImage){
+            [self.drawImage setImage:self.feed.largeImage];
+        }
+    }
     if (!_isLoading) {
         _getTimes = 1;
-        [[FeedService defaultService] getFeedByFeedId:feed.feedId delegate:self];        
+        [[FeedService defaultService] getFeedByFeedId:feed.feedId delegate:self];
+        _isLoading = YES;
     }
 }
 
@@ -208,6 +222,7 @@
         }
     }else if(resultCode != 0){
         if (_getTimes < TRY_GET_FEED_TIMES) {
+            PPDebug(@"warnning:<didGetFeed> try again, feed id = %@",feed.feedId);
             [[FeedService defaultService] getFeedByFeedId:feed.feedId delegate:self];
             _getTimes ++;            
         }else{

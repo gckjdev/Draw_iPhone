@@ -82,6 +82,35 @@
     return self;
 }
 
+
+#define KEY_GUESS_WORD @"GUESS_WORD"
+#define KEY_DRAW_FEED @"DRAW_FEED"
+#define KEY_CORRECT @"CORRECT"
+#define KEY_SCORE @"SCORE"
+
+
+- (id)initWithCoder:(NSCoder *)aDecoder
+{
+    self = [super initWithCoder:aDecoder];
+    if (self) {
+        self.drawFeed = [aDecoder decodeObjectForKey:KEY_DRAW_FEED];
+        self.guessWords = [aDecoder decodeObjectForKey:KEY_GUESS_WORD];
+        _correct = [aDecoder decodeIntegerForKey:KEY_CORRECT];
+        _score = [aDecoder decodeIntegerForKey:KEY_SCORE];
+    }
+    return self;
+}
+
+- (void)encodeWithCoder:(NSCoder *)aCoder
+{
+    [super encodeWithCoder:aCoder];
+    [aCoder encodeObject:_drawFeed forKey:KEY_DRAW_FEED];
+    [aCoder encodeObject:_guessWords forKey:KEY_GUESS_WORD];
+    [aCoder encodeInteger:_correct forKey:KEY_CORRECT];
+    [aCoder encodeInteger:_score forKey:KEY_SCORE];
+}
+
+
 - (NSInteger)guessTimes
 {
     PPDebug(@"warnning:<guessTimes> get guess times from guess feed, feedId = %@", self.feedId);

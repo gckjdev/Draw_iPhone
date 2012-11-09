@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface FeedUser : NSObject
+@interface FeedUser : NSObject<NSCoding>
 {
     NSString *_userId;
     NSString *_nickName;
@@ -47,7 +47,7 @@ typedef enum{
 
 
 @class PBFeedTimes;
-@interface FeedTimes : NSObject
+@interface FeedTimes : NSObject<NSCoding>
 {
     NSInteger _type;
     NSInteger _times;
