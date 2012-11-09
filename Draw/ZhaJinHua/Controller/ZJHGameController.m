@@ -645,7 +645,6 @@ compareCardWith:(NSString*)targetUserId
         ZJHAvatarView* avatar = (ZJHAvatarView*)[self.view viewWithTag:AVATAR_VIEW_TAG_OFFSET+i];
         ZJHPokerView* pokerView = (ZJHPokerView*)[self.view viewWithTag:POKERS_VIEW_TAG_OFFSET+i];
         
-        [pokerView clear];
         if (avatar.userInfo) {
             CGSize pokerSize;
             CGFloat gap;
@@ -658,8 +657,7 @@ compareCardWith:(NSString*)targetUserId
             }
             [pokerView updateWithPokers:[_gameService pokersOfUser:avatar.userInfo.userId]
                                    size:pokerSize
-                                    gap:gap
-                               delegate:self];
+                                    gap:gap];
         }
     }
 }
@@ -753,6 +751,11 @@ compareCardWith:(NSString*)targetUserId
 {
     PPDebug(@"didClickShowCardButton: card rank: %d, suit = %d", pokerView.poker.rank, pokerView.poker.suit);
     [_gameService showCard:pokerView.poker.pokerId];
+}
+
+- (void)didClickBombButton:(ZJHPokerView *)zjhPokerView
+{
+    // TODO: 
 }
 
 #pragma mark - chipsSelectView protocol

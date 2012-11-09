@@ -32,17 +32,27 @@ typedef enum {
     ZJHPokerXMotionTypeCenter = 3       // 中间的牌固定，两边往外移动
 } ZJHPokerXMotionType;
 
-@interface ZJHPokerView : UIView
+@class ZJHPokerView;
 
+@protocol ZJHPokerViewProtocol <NSObject>
+
+@optional
+- (void)didClickPokerView:(PokerView *)pokerView;
+- (void)didClickShowCardButton:(PokerView *)pokerView;
+- (void)didClickBombButton:(ZJHPokerView *)zjhPokerView;
+
+@end
+
+@interface ZJHPokerView : UIView <PokerViewProtocol>
+
+@property (assign, nonatomic) IBOutlet id<ZJHPokerViewProtocol> delegate;
 @property (retain, nonatomic) PokerView *pokerView1;
 @property (retain, nonatomic) PokerView *pokerView2;
 @property (retain, nonatomic) PokerView *pokerView3;
 
 - (void)updateWithPokers:(NSArray *)pokers
                     size:(CGSize)size
-                     gap:(CGFloat)gap
-                delegate:(id<PokerViewProtocol>)delegate;
-
+                     gap:(CGFloat)gap;
 - (void)clear;
 
 // 别人看牌时，调用这个接口，把牌摊成扇形
