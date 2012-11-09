@@ -50,6 +50,6 @@
 - (UIImage*)checkCardBtnDisableBgImage;
 - (UIImage*)foldCardBtnDisableBgImage;
 
-
+- (UIImage*)bombImage;
 
 @end

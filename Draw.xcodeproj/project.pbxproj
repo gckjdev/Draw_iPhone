@@ -198,6 +198,12 @@
 		A47FF99E15DB9ADB00EE8125 /* DiceItemService.m in Sources */ = {isa = PBXBuildFile; fileRef = A47FF99D15DB9ADB00EE8125 /* DiceItemService.m */; };
 		A48E827415E871CE002DB480 /* DiceHelpManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A48E827315E871CE002DB480 /* DiceHelpManager.m */; };
 		A48E827615E8AB1B002DB480 /* ChatView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A48E827515E8AB1A002DB480 /* ChatView.xib */; };
+		A4A131BF164CB44400665109 /* bomb1.png in Resources */ = {isa = PBXBuildFile; fileRef = A4A131B9164CB44400665109 /* bomb1.png */; };
+		A4A131C0164CB44400665109 /* bomb2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A4A131BA164CB44400665109 /* bomb2.jpg */; };
+		A4A131C1164CB44400665109 /* bomb3.png in Resources */ = {isa = PBXBuildFile; fileRef = A4A131BB164CB44400665109 /* bomb3.png */; };
+		A4A131C2164CB44400665109 /* bomb4.png in Resources */ = {isa = PBXBuildFile; fileRef = A4A131BC164CB44400665109 /* bomb4.png */; };
+		A4A131C3164CB44400665109 /* bomb5.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = A4A131BD164CB44400665109 /* bomb5.jpeg */; };
+		A4A131C4164CB44400665109 /* bomb6.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A4A131BE164CB44400665109 /* bomb6.jpg */; };
 		A4AB18F315E359B90097CC7A /* ChatViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A4AB18F115E359B90097CC7A /* ChatViewCell.m */; };
 		A4AB18F415E359B90097CC7A /* ChatViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4AB18F215E359B90097CC7A /* ChatViewCell.xib */; };
 		A4AC51BE15C7BFF10041DC86 /* FontLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = A4AC51B415C7BFF10041DC86 /* FontLabel.m */; };
@@ -1494,6 +1500,12 @@
 		A48E827215E871CE002DB480 /* DiceHelpManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiceHelpManager.h; sourceTree = "<group>"; };
 		A48E827315E871CE002DB480 /* DiceHelpManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiceHelpManager.m; sourceTree = "<group>"; };
 		A48E827515E8AB1A002DB480 /* ChatView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChatView.xib; sourceTree = "<group>"; };
+		A4A131B9164CB44400665109 /* bomb1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bomb1.png; sourceTree = "<group>"; };
+		A4A131BA164CB44400665109 /* bomb2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = bomb2.jpg; sourceTree = "<group>"; };
+		A4A131BB164CB44400665109 /* bomb3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bomb3.png; sourceTree = "<group>"; };
+		A4A131BC164CB44400665109 /* bomb4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bomb4.png; sourceTree = "<group>"; };
+		A4A131BD164CB44400665109 /* bomb5.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = bomb5.jpeg; sourceTree = "<group>"; };
+		A4A131BE164CB44400665109 /* bomb6.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = bomb6.jpg; sourceTree = "<group>"; };
 		A4AB18F015E359B90097CC7A /* ChatViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatViewCell.h; sourceTree = "<group>"; };
 		A4AB18F115E359B90097CC7A /* ChatViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatViewCell.m; sourceTree = "<group>"; };
 		A4AB18F215E359B90097CC7A /* ChatViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChatViewCell.xib; sourceTree = "<group>"; };
@@ -3349,6 +3361,7 @@
 		A44B63D8163F72B500A8045B /* room */ = {
 			isa = PBXGroup;
 			children = (
+				A4A131B8164CB44400665109 /* bomb */,
 				A404A9A1164237FA007CA21A /* show_card_button.png */,
 				A44B642C163F732F00A8045B /* tree@2x.png */,
 				A44B63D9163F72B500A8045B /* avatar_default@2x.png */,
@@ -3566,6 +3579,19 @@
 				A48E827315E871CE002DB480 /* DiceHelpManager.m */,
 			);
 			path = DiceHelpManager;
+			sourceTree = "<group>";
+		};
+		A4A131B8164CB44400665109 /* bomb */ = {
+			isa = PBXGroup;
+			children = (
+				A4A131B9164CB44400665109 /* bomb1.png */,
+				A4A131BA164CB44400665109 /* bomb2.jpg */,
+				A4A131BB164CB44400665109 /* bomb3.png */,
+				A4A131BC164CB44400665109 /* bomb4.png */,
+				A4A131BD164CB44400665109 /* bomb5.jpeg */,
+				A4A131BE164CB44400665109 /* bomb6.jpg */,
+			);
+			path = bomb;
 			sourceTree = "<group>";
 		};
 		A4AC51B215C7BFF00041DC86 /* FontLabel */ = {
@@ -8132,6 +8158,12 @@
 				A46215F016495D2B005DA90E /* zjh_compare_card_disable@2x.png in Resources */,
 				A46215F116495D2B005DA90E /* zjh_fold_card_disable@2x.png in Resources */,
 				A46215F216495D2B005DA90E /* zjh_raise_bet_disable@2x.png in Resources */,
+				A4A131BF164CB44400665109 /* bomb1.png in Resources */,
+				A4A131C0164CB44400665109 /* bomb2.jpg in Resources */,
+				A4A131C1164CB44400665109 /* bomb3.png in Resources */,
+				A4A131C2164CB44400665109 /* bomb4.png in Resources */,
+				A4A131C3164CB44400665109 /* bomb5.jpeg in Resources */,
+				A4A131C4164CB44400665109 /* bomb6.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

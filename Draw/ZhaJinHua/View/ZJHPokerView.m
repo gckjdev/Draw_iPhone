@@ -9,8 +9,10 @@
 #import "ZJHPokerView.h"
 #import "ZJHImageManager.h"
 
-//#define POKER_X_AXIS_OFFSET 30
-#define POKER_VIEW_TAG_OFFSET 200
+#define TAG_BOMB_BUTTON 300
+
+#define BOMB_BUTTON_WIDTH 20
+#define BOMB_BUTTON_HEIGHT 20
 
 @interface ZJHPokerView ()
 {
@@ -39,8 +41,7 @@
 
 - (void)updateWithPokers:(NSArray *)pokers
                     size:(CGSize)size
-                     gap:(CGFloat)gap
-                delegate:(id<PokerViewProtocol>)delegate
+                     gap:(CGFloat)gap;
 {
     if ([pokers count] < 3) {
         return;
@@ -57,14 +58,14 @@
     self.pokerView1 = [PokerView createPokerViewWithPoker:poker1
                                                     frame:frame
                                                  isFaceUp:NO
-                                                 delegate:delegate];
+                                                 delegate:self];
     
     pokerViewOffset = self.pokerView1.frame.origin.x + gap;
     frame = CGRectMake(pokerViewOffset, 0, size.width, size.height);
     self.pokerView2 = [PokerView createPokerViewWithPoker:poker2
                                                     frame:frame
                                                  isFaceUp:NO
-                                                 delegate:delegate];
+                                                 delegate:self];
 
     
     pokerViewOffset = self.pokerView2.frame.origin.x + gap;
@@ -72,7 +73,7 @@
     self.pokerView3 = [PokerView createPokerViewWithPoker:poker3
                                                     frame:frame
                                                  isFaceUp:NO
-                                                 delegate:delegate];
+                                                 delegate:self];
     
 //    // save original center
 //    _poker1OriginCenter = self.poker1View.center;
@@ -139,7 +140,6 @@
     }
 }
 
-
 - (void)faceUpCards:(ZJHPokerXMotionType)xMotiontype animation:(BOOL)animation
 {
     [self.pokerView1 backToOriginPosition:animation];
@@ -200,8 +200,42 @@
 
 - (void)showBomb
 {
+    [self clearBombButton];
     
+    UIButton *bomb = [[[UIButton alloc] initWithFrame:CGRectMake(0, 0, 0, 0)] autorelease];
+    bomb.tag = TAG_BOMB_BUTTON;
+    [bomb setImage:[[ZJHImageManager defaultManager] bombImage] forState:UIControlStateNormal];
+    [bomb addTarget:self action:@selector(clickBomb:) forControlEvents:UIControlEventTouchUpInside];
+    [self addSubview:bomb];
 }
+
+#pragma mark - bomb button action.
+
+- (void)clickBomb:(id)sender
+{
+    [self clearBombButton];
+    
+    if ([_delegate respondsToSelector:@selector(didClickBombButton:)]) {
+        [_delegate didClickBombButton:self];
+    }
+}
+
+#pragma mark - delegate methods.
+
+- (void)didClickPokerView:(PokerView *)pokerView
+{
+    if ([_delegate respondsToSelector:@selector(didClickPokerView:)]) {
+        [_delegate didClickPokerView:pokerView];
+    }
+}
+
+- (void)didClickShowCardButton:(PokerView *)pokerView
+{
+    if ([_delegate respondsToSelector:@selector(didClickShowCardButton:)]) {
+        [_delegate didClickShowCardButton:pokerView];
+    }
+}
+
 
 #pragma mark - pravite methods
 
@@ -215,5 +249,9 @@
     
 }
 
+- (void)clearBombButton
+{
+    [[self viewWithTag:TAG_BOMB_BUTTON] removeFromSuperview];
+}
 
 @end
