@@ -322,6 +322,7 @@
 {
     self.frame = self.superViewController.view.frame;
     [self initView];
+    self.followUserButton.hidden = YES;
     [self.superViewController.view addSubview:self];
 }
 
