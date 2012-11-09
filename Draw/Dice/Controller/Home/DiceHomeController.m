@@ -151,7 +151,7 @@
 {
     [_boardPanel stopTimer];
     [_boardPanel clearAds];
-    [self unregisterAllNotifications];
+    [self unregisterDiceGameNotifications];
     [super viewDidDisappear:animated];
 }
 
@@ -174,28 +174,36 @@
     }
 }
 
-- (void)didGetBoards:(NSArray *)boards 
+- (void)didGetBoards:(NSArray *)boards
           resultCode:(NSInteger)resultCode
 {
-//    if (resultCode == 0) {
-//        PPDebug(@"<didGetBoards> update Board Panel With Remote Boards ");
-//        [self updateBoardPanelWithBoards:boards];
-//        [[BoardManager defaultManager] saveBoardList:boards];
-//    }else {
-//        //start timer to fetch. use the local
-//        if(!hasGetLocalBoardList){
-//            NSArray * boardList = [[BoardManager defaultManager] 
-//                                   getLocalBoardList];
-//            hasGetLocalBoardList = YES;
-//            PPDebug(@"<didGetBoards> update Board Panel With Local Boards ");
-//            [self updateBoardPanelWithBoards:boardList];
-//        }
-//        [NSTimer scheduledTimerWithTimeInterval:interval target:self 
-//                                       selector:@selector(updateBoardList:)
-//                                       userInfo:nil
-//                                        repeats:NO];
-//        //start timer to fetch. use the local
-//    }
+
+}
+
+- (void)joinGameResponse:(GameMessage*)message
+{
+    PPDebug(@"<%@> NOTIFICATION_JOIN_GAME_RESPONSE", [self description]);
+    [self hideActivity];
+    if (_isZJH) {
+        ZJHGameController* vc = [[[ZJHGameController alloc] init] autorelease];
+        [self.navigationController pushViewController:vc
+                                             animated:YES];
+        _isZJH = NO;
+        return ;
+    }
+    if(_isTryJoinGame) {
+        if ([message resultCode] == GameResultCodeSuccess){
+            DiceGamePlayController *controller = [[[DiceGamePlayController alloc] init] autorelease];
+            [self.navigationController pushViewController:controller animated:YES];
+        }
+        else{
+            // TODO show error info here
+            PPDebug(@"JOIN GAME FAIL, ResultCode=%d", [message resultCode]);
+        }
+        
+        // clear join dice flag
+        _isTryJoinGame = NO;
+    }
 }
 
 - (void)updateBoardPanelWithBoards:(NSArray *)boards
@@ -272,35 +280,6 @@
 
     
 }
-
-//- (void)updateTimer:(id)sender
-//{
-//    UIButton* btn = (UIButton*)[self.view viewWithTag:AWARD_DICE_TAG];
-//    _awardDicePoint = rand()%6+1;
-//    UIImage* image = [UIImage imageNamed:[NSString stringWithFormat:@"open_bell_%dbig.png", _awardDicePoint]];
-//    [btn setImage:image forState:UIControlStateNormal];
-////    CGPoint aPoint = ((CALayer*)[btn.layer presentationLayer]).position;
-////    CGPoint aPoint = btn.layer.presentationLayer.
-////    PPDebug(@"dice pos = (%f, %f)",aPoint.x, aPoint.y);
-////    CAKeyframeAnimation* anim = (CAKeyframeAnimation*)[btn.layer animationForKey:@"bb"];
-//    
-//        
-//}
-
-//- (void)startRollDiceTimer
-//{
-//    _rollAwardDiceTimer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(updateTimer:) userInfo:nil repeats:YES];
-//}
-//
-//- (void)killRollDiceTimer
-//{
-//    if (_rollAwardDiceTimer) {
-//        if ([_rollAwardDiceTimer isValid]) {
-//            [_rollAwardDiceTimer invalidate];
-//        }
-//        _rollAwardDiceTimer = nil;
-//    }
-//}
 
 - (void)rollAwardDice
 {
@@ -414,76 +393,41 @@
                 [btn removeFromSuperview];
         }];
     }
-    
-}
-
-
-#pragma mark - Game Notification
-
-- (void)registerDiceGameNotificationWithName:(NSString *)name 
-                                  usingBlock:(void (^)(NSNotification *note))block
-{
-    [self registerNotificationWithName:name 
-                                object:nil 
-                                 queue:[NSOperationQueue mainQueue] 
-                            usingBlock:block];
-    
-
 }
 
 - (void)registerDiceGameNotification
 {
-    [self registerDiceGameNotificationWithName:NOTIFICATION_JOIN_GAME_RESPONSE usingBlock:^(NSNotification *note) {
-        PPDebug(@"<%@> NOTIFICATION_JOIN_GAME_RESPONSE", [self description]); 
-        [self hideActivity];
-        if (_isZJH) {
-            ZJHGameController* vc = [[[ZJHGameController alloc] init] autorelease];
-            [self.navigationController pushViewController:vc
-                                                 animated:YES];
-            _isZJH = NO;
-            return ;
-        }
-        if(_isTryJoinGame) {
-            GameMessage* message = [CommonGameNetworkService userInfoToMessage:[note userInfo]];
-            if ([message resultCode] == GameResultCodeSuccess){
-                DiceGamePlayController *controller = [[[DiceGamePlayController alloc] init] autorelease];
-                [self.navigationController pushViewController:controller animated:YES];
-            }
-            else{
-                // TODO show error info here
-                PPDebug(@"JOIN GAME FAIL, ResultCode=%d", [message resultCode]);
-            }
-
-            // clear join dice flag
-            _isTryJoinGame = NO; 
-        }
+    [self registerNotificationWithName:NOTIFICATION_JOIN_GAME_RESPONSE
+                            usingBlock:^(NSNotification *note) {
+                                [self joinGameResponse:[CommonGameNetworkService userInfoToMessage:[note userInfo]]];
     }];
     
     [self registerNotificationWithName:BOARD_UPDATE_NOTIFICATION // TODO set right name here
-                                object:nil
-                                 queue:[NSOperationQueue mainQueue]
                             usingBlock:^(NSNotification *note) {
-                                
-                                // TODO reload board here
                                 [self updateBoardPanelWithBoards:[[BoardManager defaultManager] boardList]];
-                                
                             }];    
     
     [self registerNotificationWithName:UIApplicationDidEnterBackgroundNotification
-                                object:nil
-                                 queue:[NSOperationQueue mainQueue]
                             usingBlock:^(NSNotification *note) {
-                                
-                                //clear the ad.
                                 [_boardPanel clearAds];
-                                
-                            }]; 
+                            }];
     
+    [self registerNotificationWithName:NOTIFICATION_NETWORK_CONNECTED // TODO set right name here
+                            usingBlock:^(NSNotification *note) {
+                                [self didConnected];
+                            }];
+    
+    [self registerNotificationWithName:NOTIFICATION_NETWORK_BROKEN // TODO set right name here
+                            usingBlock:^(NSNotification *note) {
+                                [self connectBrokenWithError:[CommonGameNetworkService userInfoToError:note.userInfo]];
+                            }];
 }
 
-- (void)unregisterDiceGameNotification
-{        
-    [self unregisterAllNotifications];
+- (void)unregisterDiceGameNotifications
+{
+    [self unregisterNotificationWithName:NOTIFICATION_JOIN_GAME_RESPONSE];
+    [self unregisterNotificationWithName:BOARD_UPDATE_NOTIFICATION];
+    [self unregisterNotificationWithName:NOTIFICATION_NETWORK_CONNECTED];
 }
 
 - (void)showCoinsNotEnoughView
@@ -502,7 +446,8 @@
     
     [self showActivityWithText:NSLS(@"kConnectingServer")];
     [[DiceGameService defaultService] setRuleType:ruleType];
-    [[DiceGameService defaultService] connectServer:self];
+//    [[DiceGameService defaultService] connectServer:self];
+    [[DiceGameService defaultService] connectServer];
 }
 
 - (void)didConnected
@@ -510,7 +455,6 @@
     PPDebug(@"%@ <didConnected>", [self description]);
     
     [self hideActivity];
-    
     
     // for zhajinhua test
     if (_isZJH){
@@ -534,16 +478,32 @@
 
 }
 
-- (void)didBroken
+- (void)connectBrokenWithError:(NSError *)error
 {
+    PPDebug(@"diconnect error: %@", [error description]);
+
     _isTryJoinGame = NO;
-    PPDebug(@"%@ <didBroken>", [self description]);
+    
     [self hideActivity];
+    [self.navigationController popToRootViewControllerAnimated:YES];
     
     [self popupUnhappyMessage:NSLS(@"kNetworkBroken") title:@""];
-    [self.navigationController popToRootViewControllerAnimated:NO];
-    
 }
+
+//- (void)connectFailed
+//{
+//    [self connectBroken];
+//}
+
+//- (void)connectBroken
+//{
+//    _isTryJoinGame = NO;
+//    PPDebug(@"%@ <didBroken>", [self description]);
+//    [self hideActivity];
+//    
+//    [self popupUnhappyMessage:NSLS(@"kNetworkBroken") title:@""];
+//    [self.navigationController popToRootViewControllerAnimated:NO];
+//}
 
 #pragma mark - common dialog delegate
 - (void)clickOk:(CommonDialog *)dialog
@@ -681,8 +641,10 @@
 
 - (IBAction)clickZhaJinHuaButton:(id)sender {
     _isZJH = YES;
-    
-    [[ZJHGameService defaultService] connectServer:self];
+    [self showActivityWithText:NSLS(@"kConnectingServer")];
+
+//    [[ZJHGameService defaultService] connectServer:self];
+    [[ZJHGameService defaultService] connectServer];
     
 }
 

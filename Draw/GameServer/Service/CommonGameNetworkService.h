@@ -19,8 +19,11 @@
 #define NOTIFICATION_GAME_START_NOTIFICATION_REQUEST @"NOTIFICATION_GAME_START_NOTIFICATION_REQUEST"
 #define NOTIFICATION_GAME_OVER_NOTIFICATION_REQUEST @"NOTIFICATION_GAME_OVER_NOTIFICATION_REQUEST"
 
-
 #define NOTIFICATION_NEXT_PLAYER_START          @"NOTIFICATION_NEXT_PLAYER_START"
+
+#define NOTIFICATION_NETWORK_CONNECTED          @"NOTIFICATION_NETWORK_CONNECTED"
+#define NOTIFICATION_NETWORK_BROKEN             @"NOTIFICATION_NETWORK_BROKEN"
+
 
 #define SERVER_LIST_SEPERATOR   @"$"
 #define SERVER_PORT_SEPERATOR   @":"
@@ -28,12 +31,12 @@
 
 @class PBGameSession;
 
-@protocol CommonGameServiceDelegate <NSObject>
+/*@protocol CommonGameServiceDelegate <NSObject>
 
 - (void)didConnected;
 - (void)didBroken;
 
-@end
+@end*/
 
 @class CommonGameSession;
 @class GameMessage;
@@ -42,7 +45,7 @@
 {
     CommonGameNetworkClient         *_networkClient;    
     NSTimer                         *_disconnectTimer;
-    id<CommonGameServiceDelegate>   _connectionDelegate;    
+//    id<CommonGameServiceDelegate>   _connectionDelegate;
     
     NSString                        *_gameId;
     NSMutableArray                  *_roomList;
@@ -56,7 +59,8 @@
 @property (nonatomic, retain) CommonGameSession     *session;
 
 - (BOOL)isConnected;
-- (void)connectServer:(id<CommonGameServiceDelegate>)delegate;
+//- (void)connectServer:(id<CommonGameServiceDelegate>)delegate;
+- (void)connectServer;
 - (void)disconnectServer;
 
 // Left to Sub Class to implementation.
@@ -93,6 +97,9 @@
 
 + (GameMessage*)userInfoToMessage:(NSDictionary*)userInfo;
 + (NSDictionary*)messageToUserInfo:(GameMessage*)message;
+
++ (NSDictionary*)errorToUserInfo:(NSError*)error;
++ (NSError*)userInfoToError:(NSDictionary*)userInfo;
 
 - (void)postNotification:(NSString*)name message:(GameMessage*)message;
 - (void)registerRoomsNotification:(NSArray*)sessionIdList;

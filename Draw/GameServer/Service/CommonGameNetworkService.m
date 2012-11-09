@@ -117,9 +117,10 @@
     }
 }
 
-- (void)connectServer:(id<CommonGameServiceDelegate>)connectionDelegate
+//- (void)connectServer:(id<CommonGameServiceDelegate>)connectionDelegate
+- (void)connectServer
 {
-    _connectionDelegate = connectionDelegate;
+//    _connectionDelegate = connectionDelegate;
     
     [self clearDisconnectTimer];
     [_networkClient setDelegate:self];
@@ -138,26 +139,35 @@
 
 - (void)disconnectServer
 {
-    [_networkClient disconnect];
-    _connectionDelegate = nil;
+    if ([_networkClient isConnected]){
+        [_networkClient disconnect];
+    }
+//    _connectionDelegate = nil;
 }
 
 #pragma CommonNetworkClientDelegate
 
 - (void)didConnected
 {
-    if (_connectionDelegate == nil)
+    [self postNotification:NOTIFICATION_NETWORK_CONNECTED message:nil];
+        
+/*    if (_connectionDelegate == nil)
         return;
     
     dispatch_sync(dispatch_get_main_queue(), ^{
         if ([_connectionDelegate respondsToSelector:@selector(didConnected)]){
             [_connectionDelegate didConnected];
         }
-    });
+    });*/
 }
 
-- (void)didBroken
-{    
+- (void)didBroken:(NSError *)error
+{
+    if (error != nil) {
+        [self postNotification:NOTIFICATION_NETWORK_BROKEN error:error];
+    }
+    
+    /*
     if (_connectionDelegate == nil)
         return;
     
@@ -167,6 +177,7 @@
             [_connectionDelegate didBroken];
         }
     });
+     */
 }
 
 #pragma mark Online User Count
@@ -212,7 +223,6 @@
         [self.roomList removeAllObjects];
         [self.roomList addObjectsFromArray:message.getRoomsResponse.sessionsList];
     }
-    
     [self postNotification:NOTIFICAIION_GET_ROOMS_RESPONSE message:message];
 }
 
@@ -238,8 +248,8 @@
             PPDebug(@"<handleJoinGameResponse> Create Session = %@", [self.session description]);
 
             [self handleMoreOnJoinGameResponse:message];
-            [self postNotification:NOTIFICATION_JOIN_GAME_RESPONSE message:message];
         }
+        [self postNotification:NOTIFICATION_JOIN_GAME_RESPONSE message:message];
     });
 }
 
@@ -277,10 +287,9 @@
             
             // TODO update online user
             // [self updateOnlineUserCount:message];
-            
         }
-        
         [self postNotification:NOTIFICAIION_CREATE_ROOM_RESPONSE message:message];
+        
     });
     
 }
@@ -453,10 +462,14 @@
 
 #pragma mark - notification methods
 
-#define KEY_GAME_MESSAGE @"KEY_GAME_MESSAGE"
+#define KEY_GAME_MESSAGE    @"KEY_GAME_MESSAGE"
+#define KEY_GAME_ERROR      @"KEY_GAME_ERROR"
 
 + (NSDictionary*)messageToUserInfo:(GameMessage*)message
 {
+    if (message == nil)
+        return nil;
+    
     NSDictionary* userInfo = [NSDictionary dictionaryWithObject:[message data]
                                                          forKey:KEY_GAME_MESSAGE];
     
@@ -466,6 +479,32 @@
 + (GameMessage*)userInfoToMessage:(NSDictionary*)userInfo
 {
     return [GameMessage parseFromData:[userInfo objectForKey:KEY_GAME_MESSAGE]];
+}
+
++ (NSDictionary*)errorToUserInfo:(NSError*)error
+{
+    if (error == nil)
+        return nil;
+    
+    NSDictionary* userInfo = [NSDictionary dictionaryWithObject:error
+                                                         forKey:KEY_GAME_ERROR];
+    
+    return userInfo;
+}
+
++ (NSError*)userInfoToError:(NSDictionary*)userInfo
+{
+    return [userInfo objectForKey:KEY_GAME_ERROR];
+}
+
+- (void)postNotification:(NSString*)name error:(NSError*)error
+{
+    [[NSNotificationCenter defaultCenter]
+     postNotificationName:name
+     object:self
+     userInfo:[CommonGameNetworkService errorToUserInfo:error]];
+    
+    PPDebug(@"<%@> post notification %@ with error", [self description], name);    
 }
 
 - (void)postNotification:(NSString*)name message:(GameMessage*)message

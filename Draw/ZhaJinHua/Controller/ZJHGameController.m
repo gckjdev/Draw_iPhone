@@ -135,7 +135,6 @@
     // Do any additional setup after loading the view from its nib.
 
     [self initAllAvatars];
-    [self registerDiceGameNotifications];
     [self updateAllPlayersAvatar];
     self.dealerView.delegate = self;
     
@@ -150,6 +149,18 @@
     [self.moneyTree startGrowth];
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    [self registerZJHGameNotifications];
+    [super viewDidAppear:animated];
+}
+
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [self unregisterAllNotifications];
+    [super viewDidDisappear:animated];
+}
+
 
 - (void)didReceiveMemoryWarning
 {
@@ -160,102 +171,83 @@
 
 #pragma mark - Register notifications.
 
-- (void)registerZJHGameNotificationWithName:(NSString *)name
-                                  usingBlock:(void (^)(NSNotification *note))block
-{    
-    [self registerNotificationWithName:name
-                                object:nil
-                                 queue:[NSOperationQueue mainQueue]
-                            usingBlock:block];
-}
-
-- (void)registerDiceGameNotifications
+- (void)registerZJHGameNotifications
 {
-    [self registerZJHGameNotificationWithName:NOTIFICATION_ROOM
-                                    usingBlock:^(NSNotification *notification) {
-                                        [self roomChanged];
-                                    }];
+    [self registerNotificationWithName:NOTIFICATION_ROOM
+                            usingBlock:^(NSNotification *notification) {
+                                [self roomChanged];
+                            }];
     
-    [self registerZJHGameNotificationWithName:NOTIFICATION_GAME_START_NOTIFICATION_REQUEST
+    [self registerNotificationWithName:NOTIFICATION_GAME_START_NOTIFICATION_REQUEST
+                            usingBlock:^(NSNotification *notification) {
+                                [self gameStart];
+                            }];
+    
+    [self registerNotificationWithName:NOTIFICATION_NEXT_PLAYER_START
+                            usingBlock:^(NSNotification *notification) {
+                                [self nextPlayerStart];
+                            }];
+    
+    [self registerNotificationWithName:NOTIFICATION_BET_REQUEST
+                            usingBlock:^(NSNotification *notification) {
+                                [self someoneBet:[[CommonGameNetworkService userInfoToMessage:notification.userInfo] userId]];
+                            }];
+    
+    [self registerNotificationWithName:NOTIFICATION_BET_RESPONSE
+                            usingBlock:^(NSNotification *notification) {
+                                [self betSuccess];
+                            }];
+    
+    [self registerNotificationWithName:NOTIFICATION_CHECK_CARD_REQUEST
+                            usingBlock:^(NSNotification *notification) {
+                                [self someoneCheckCard:[[CommonGameNetworkService userInfoToMessage:notification.userInfo] userId]];
+                            }];
+    
+    [self registerNotificationWithName:NOTIFICATION_CHECK_CARD_RESPONSE
+                            usingBlock:^(NSNotification *notification) {
+                                [self checkCardSuccess];
+                            }];
+    
+    [self registerNotificationWithName:NOTIFICATION_FOLD_CARD_REQUEST
                                    usingBlock:^(NSNotification *notification) {
-                                       [self gameStart];
+                                       [self someoneFoldCard:[[CommonGameNetworkService userInfoToMessage:notification.userInfo] userId]];
                                    }];
     
-    [self registerZJHGameNotificationWithName:NOTIFICATION_NEXT_PLAYER_START
-                                    usingBlock:^(NSNotification *notification) {
-                                        NSString* userId = [[self messageFromNotification:notification] currentPlayUserId];
-                                        [self nextPlayerStart:userId];
-                                    }];
-    
-    [self registerZJHGameNotificationWithName:NOTIFICATION_BET_REQUEST
-                                   usingBlock:^(NSNotification *notification) {
-                                       [self someoneBet:[self userIdOfNotification:notification]];
-                                   }];
-    
-    [self registerZJHGameNotificationWithName:NOTIFICATION_BET_RESPONSE
-                                   usingBlock:^(NSNotification *notification) {
-                                       [self betSuccess];
-                                   }];
-    
-    [self registerZJHGameNotificationWithName:NOTIFICATION_CHECK_CARD_REQUEST
-                                   usingBlock:^(NSNotification *notification) {
-                                       [self someoneCheckCard:[self userIdOfNotification:notification]];
-                                   }];
-    
-    [self registerZJHGameNotificationWithName:NOTIFICATION_CHECK_CARD_RESPONSE
-                                   usingBlock:^(NSNotification *notification) {
-                                       [self checkCardSuccess];
-                                   }];
-    
-    [self registerZJHGameNotificationWithName:NOTIFICATION_FOLD_CARD_REQUEST
-                                   usingBlock:^(NSNotification *notification) {
-                                       [self someoneFoldCard:[self userIdOfNotification:notification]];
-                                   }];
-    
-    [self registerZJHGameNotificationWithName:NOTIFICATION_FOLD_CARD_RESPONSE
+    [self registerNotificationWithName:NOTIFICATION_FOLD_CARD_RESPONSE
                                    usingBlock:^(NSNotification *notification) {
                                        [self foldCardSuccess];
                                    }];
     
-    [self registerZJHGameNotificationWithName:NOTIFICATION_SHOW_CARD_REQUEST
+    [self registerNotificationWithName:NOTIFICATION_SHOW_CARD_REQUEST
                                    usingBlock:^(NSNotification *notification) {
-
-                                       [self someoneShowCard:[self userIdOfNotification:notification] cardIds:[[[self messageFromNotification:notification] showCardRequest] cardIdsList]];
+                                       NSString *userId = [[CommonGameNetworkService userInfoToMessage:notification.userInfo] userId];
+                                       NSArray *cardIds = [[[CommonGameNetworkService userInfoToMessage:notification.userInfo] showCardRequest] cardIdsList];
+                                       [self someoneShowCard:userId
+                                                     cardIds:cardIds];
                                    }];
     
-    [self registerZJHGameNotificationWithName:NOTIFICATION_SHOW_CARD_RESPONSE
+    [self registerNotificationWithName:NOTIFICATION_SHOW_CARD_RESPONSE
                                    usingBlock:^(NSNotification *notification) {
                                        [self showCardSuccess];
                                    }];
     
-    [self registerZJHGameNotificationWithName:NOTIFICATION_COMPARE_CARD_REQUEST
+    [self registerNotificationWithName:NOTIFICATION_COMPARE_CARD_REQUEST
                                    usingBlock:^(NSNotification *notification) {
-//                                       NSString *userId = [self userIdOfNotification:notification];
-//                                       NSString *toUserId = [[[self messageFromNotification:notification] compareCardRequest] toUserId];
-                                       
-//                                       [self someone:userId
-//                                     compareCardWith:toUserId];
+
                                    }];
     
-    [self registerZJHGameNotificationWithName:NOTIFICATION_COMPARE_CARD_RESPONSE
+    [self registerNotificationWithName:NOTIFICATION_COMPARE_CARD_RESPONSE
                                    usingBlock:^(NSNotification *notification) {
-                                       NSArray* userResultList = [[[self messageFromNotification:notification] compareCardResponse] userResultList];
+                                       NSArray* userResultList = [[[CommonGameNetworkService userInfoToMessage:notification.userInfo] compareCardResponse] userResultList];
                                        [self showCompareCardResult:userResultList];
                                        
 //                                       [self compareCardSuccess];
                                    }];
     
-    [self registerZJHGameNotificationWithName:NOTIFICATION_GAME_OVER_NOTIFICATION_REQUEST
+    [self registerNotificationWithName:NOTIFICATION_GAME_OVER_NOTIFICATION_REQUEST
                                    usingBlock:^(NSNotification *notification) {
                                        [self gameOver];
                                    }];
-}
-
-#pragma mark - pravite methods
-
-- (void)updateBet
-{
-    
 }
 
 #pragma mark - player action
@@ -306,7 +298,8 @@
 
 - (IBAction)clickQuitButton:(id)sender
 {
-    [self quitGame];
+    [_gameService quitGame];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 #pragma mark - player action response
@@ -406,10 +399,10 @@
     }
 }
 
-- (void)nextPlayerStart:(NSString*)userId
+- (void)nextPlayerStart
 {
-    PPDebug(@"################# [controller: %@] next player: %@ ##################", [self description],userId);
-    [[self getAvatarViewByPosition:[self getPositionByUserId:userId]] startReciprocol:[ConfigManager getZJHTimeInterval]];
+    PPDebug(@"################# [controller: %@] next player: %@ ##################", [self description],_gameService.session.currentPlayUserId);
+    [[self getAvatarViewByPosition:[self getPositionByUserId:_gameService.session.currentPlayUserId]] startReciprocol:[ConfigManager getZJHTimeInterval]];
         
     [self updateZJHButtons];
     
@@ -713,29 +706,6 @@ compareCardWith:(NSString*)targetUserId
 - (ZJHAvatarView*)getMyAvatarView
 {
     return [self getAvatarViewByPosition:[self getPositionByUserId:_userManager.userId]];
-}
-
-- (void)quitGame
-{
-//    [self clearAllReciprocol];
-//    [self clearAllPlayersAvatar];
-//    [self clearAllResultViews];
-//    [self dismissAllPopupViews];
-
-    [self unregisterAllNotifications];
-    [_gameService quitGame];
-    [self.navigationController popViewControllerAnimated:YES];
-    //[_audioManager backgroundMusicStop];
-}
-
-- (GameMessage *)messageFromNotification:(NSNotification *)notification
-{
-    return [CommonGameNetworkService userInfoToMessage:notification.userInfo];
-}
-
-- (NSString *)userIdOfNotification:(NSNotification *)notification
-{
-    return [[self messageFromNotification:notification] userId];
 }
 
 - (void)viewDidUnload {
