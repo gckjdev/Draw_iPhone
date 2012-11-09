@@ -30,6 +30,9 @@
 #import "ReplayContestDrawController.h"
 #import "UseItemScene.h"
 
+#import "MyFriend.h"
+#import "FeedClasses.h"
+
 @implementation ShowFeedController
 @synthesize titleLabel = _titleLabel;
 @synthesize guessButton = _guessButton;
@@ -205,6 +208,7 @@ enum{
     CommentCell *cell = [self.dataTableView dequeueReusableCellWithIdentifier:identifier];
     if (cell == nil) {
         cell = [CommentCell createCell:self];
+        cell.superViewController = self;
     }
     cell.accessoryType = UITableViewCellAccessoryNone;
     CommentFeed *feed = [self.dataList objectAtIndex:row];
@@ -301,17 +305,17 @@ enum{
 {
     switch (indexPath.section) {
         case SectionUserInfo:
-            [CommonUserInfoView showUser:self.feed.author.userId 
-                                nickName:nil 
-                                  avatar:nil 
-                                  gender:nil 
-                                location:nil 
-                                   level:1
-                                 hasSina:NO 
-                                   hasQQ:NO 
-                             hasFacebook:NO 
-                              infoInView:self];
 
+        {
+            FeedUser *feedUser = self.feed.author;
+            MyFriend *friend = [MyFriend friendWithFid:feedUser.userId
+                                              nickName:feedUser.nickName
+                                                avatar:feedUser.avatar
+                                                gender:feedUser.genderString
+                                                 level:1];
+            [CommonUserInfoView showFriend:friend infoInView:self needUpdate:YES];
+
+        }
             break;
             
         default:
@@ -401,16 +405,12 @@ enum{
 
 - (void)didClickDrawToUser:(NSString *)userId nickName:(NSString *)nickName
 {
-    [CommonUserInfoView showUser:userId
-                        nickName:nickName
-                          avatar:nil 
-                          gender:nil 
-                        location:nil 
-                           level:1
-                         hasSina:NO 
-                           hasQQ:NO 
-                     hasFacebook:NO 
-                      infoInView:self];
+    MyFriend *friend = [MyFriend friendWithFid:userId
+                                      nickName:nickName
+                                        avatar:nil
+                                        gender:@"m"
+                                         level:1];
+    [CommonUserInfoView showFriend:friend infoInView:self needUpdate:YES];
 }
 
 - (void)viewDidAppear:(BOOL)animated

@@ -13,6 +13,7 @@
 #import "CommonUserInfoView.h"
 #import "Contest.h"
 #import "UseItemScene.h"
+#import "MyFriend.h"
 
 typedef enum{
     OpusTypeMy = 1,
@@ -351,16 +352,12 @@ typedef enum{
 {
     TopPlayer *player = topPlayerView.topPlayer;
     NSString* genderString = player.gender?@"m":@"f";
-    [CommonUserInfoView showUser:player.userId 
-                        nickName:player.nickName 
-                          avatar:player.avatar 
-                          gender:genderString 
-                        location:nil 
-                           level:player.level
-                         hasSina:NO 
-                           hasQQ:NO 
-                     hasFacebook:NO 
-                      infoInView:self];
+    MyFriend *friend = [MyFriend friendWithFid:player.userId
+                                      nickName:player.nickName
+                                        avatar:player.avatar
+                                        gender:genderString
+                                         level:1];
+    [CommonUserInfoView showFriend:friend infoInView:self needUpdate:YES];
 }
 
 @end

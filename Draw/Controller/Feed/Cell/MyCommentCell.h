@@ -25,6 +25,7 @@
 @property (retain, nonatomic) IBOutlet UILabel *nickNameLabel;
 @property (retain, nonatomic) IBOutlet UIImageView *itemImage;
 @property (retain, nonatomic) CommentFeed *feed;
+@property (retain, nonatomic) PPViewController *superViewController;
 
 + (CGFloat)getCellHeight:(CommentFeed *)feed;
 - (void)setCellInfo:(CommentFeed *)feed;

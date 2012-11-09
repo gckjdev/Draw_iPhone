@@ -43,6 +43,7 @@
 #import "VendingController.h"
 #import "UIImageExt.h"
 #import "UseItemScene.h"
+#import "MyFriend.h"
 
 #define PAPER_VIEW_TAG 20120403
 #define TOOLVIEW_CENTER (([DeviceDetection isIPAD]) ? CGPointMake(695, 920):CGPointMake(284, 424))
@@ -843,16 +844,13 @@
 #pragma mark - avatar view delegate
 - (void)didClickOnAvatar:(NSString *)userId
 {
-    [CommonUserInfoView showUser:userId 
-                        nickName:nil 
-                          avatar:nil 
-                          gender:nil 
-                        location:nil 
-                           level:1
-                         hasSina:NO 
-                           hasQQ:NO 
-                     hasFacebook:NO 
-                      infoInView:self];
+    MyFriend *friend = [MyFriend friendWithFid:userId
+                                      nickName:nil
+                                        avatar:nil
+                                        gender:nil
+                                         level:1];
+    [CommonUserInfoView showFriend:friend infoInView:self needUpdate:YES];
+
 }
 
 #pragma mark - commonItemInfoView delegate

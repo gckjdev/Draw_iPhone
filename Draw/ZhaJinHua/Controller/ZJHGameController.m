@@ -23,6 +23,7 @@
 #import "PopupViewManager.h"
 #import "ZJHMyAvatarView.h"
 #import "MoneyTree.h"
+#import "AnimationManager.h"
 
 #define AVATAR_VIEW_TAG_OFFSET   4000
 #define AVATAR_PLACE_VIEW_OFFSET    8000
@@ -31,6 +32,8 @@
 #define USER_TOTAL_BET_LABEL 3200
 
 #define CARDS_COUNT 3
+
+#define COMPARE_BUTTON_TAG_OFFSET   5000
 
 #define TITLE_COLOR_WHEN_DISABLE [UIColor colorWithRed:6.0/255.0 green:41.0/255.0 blue:56.0/255.0 alpha:1]
 
@@ -46,6 +49,7 @@
     ZJHImageManager *_imageManager;
     PopupViewManager *_popupViewManager;
 }
+@property (assign, nonatomic) BOOL  isComparing;
 
 @end
 
@@ -229,15 +233,15 @@
     
     [self registerNotificationWithName:NOTIFICATION_COMPARE_CARD_REQUEST
                                    usingBlock:^(NSNotification *notification) {
-                                       NSString *userId = [[CommonGameNetworkService userInfoToMessage:notification.userInfo] userId];
-                                       NSString *toUserId = [[[CommonGameNetworkService userInfoToMessage:notification.userInfo] compareCardRequest] toUserId];
-                                       
-                                       [self someone:userId compareCardWith:toUserId];
+
                                    }];
     
     [self registerNotificationWithName:NOTIFICATION_COMPARE_CARD_RESPONSE
                                    usingBlock:^(NSNotification *notification) {
-                                       [self compareCardSuccess];
+                                       NSArray* userResultList = [[[CommonGameNetworkService userInfoToMessage:notification.userInfo] compareCardResponse] userResultList];
+                                       [self showCompareCardResult:userResultList];
+                                       
+//                                       [self compareCardSuccess];
                                    }];
     
     [self registerNotificationWithName:NOTIFICATION_GAME_OVER_NOTIFICATION_REQUEST
@@ -273,7 +277,7 @@
 
 - (IBAction)clickCompareCardButton:(id)sender
 {
-    
+    self.isComparing = YES;
 }
 
 - (IBAction)clickCheckCardButton:(id)sender
@@ -427,8 +431,51 @@
 
 - (void)someone:(NSString*)userId
 compareCardWith:(NSString*)targetUserId
+         didWin:(BOOL)didWin
 {
+    ZJHPokerView* pokerView = [self getPokersViewByUserId:userId];
+    ZJHPokerView* otherPokerView = [self getPokersViewByUserId:targetUserId];
+    CGPoint pokerViewOrgPoint = pokerView.center;
+    CGPoint otherPokerViewOrgPoint = otherPokerView.center;
     
+    [UIView animateWithDuration:1 animations:^{
+        pokerView.layer.position = CGPointMake(self.view.center.x, self.view.center.y - 30);
+        otherPokerView.layer.position = CGPointMake(self.view.center.x, self.view.center.y + 30);
+    } completion:^(BOOL finished) {
+        [pokerView compare:YES win:didWin];
+        [otherPokerView compare:YES win:!didWin];
+        [UIView animateWithDuration:1 animations:^{
+            pokerView.layer.position = CGPointMake(self.view.center.x, self.view.center.y - 30);
+            otherPokerView.layer.position = CGPointMake(self.view.center.x, self.view.center.y + 30);
+        } completion:^(BOOL finished) {
+            [UIView animateWithDuration:1 animations:^{
+                pokerView.layer.position = pokerViewOrgPoint;
+                otherPokerView.layer.position = otherPokerViewOrgPoint;
+            } completion:^(BOOL finished) {
+                //
+            }];
+        }];
+    }];
+    
+//    [pokerView.layer addAnimation:[AnimationManager translationAnimationFrom:pokerView.center to:self.view.center duration:2 delegate:self removeCompeleted:NO] forKey:nil];
+//    [otherPokerView.layer addAnimation:[AnimationManager translationAnimationFrom:otherPokerView.center to:self.view.center duration:2 delegate:self removeCompeleted:NO] forKey:nil];
+//    [CATransaction setCompletionBlock:^{
+//        [pokerView compare:YES win:didWin];
+//        [otherPokerView compare:YES win:!didWin];
+//        [pokerView.layer addAnimation:[AnimationManager translationAnimationFrom:self.view.center to:pokerView.center duration:2 delegate:self removeCompeleted:NO] forKey:nil];
+//        [otherPokerView.layer addAnimation:[AnimationManager translationAnimationFrom:self.view.center to:otherPokerView.center duration:2 delegate:self removeCompeleted:NO] forKey:nil];
+//    }];
+}
+
+- (void)showCompareCardResult:(NSArray*)userResultList
+{
+    [self clearAllAvatarReciprocols];
+    if (userResultList.count == 2) {
+        PBUserResult* result1 = [userResultList objectAtIndex:0];
+        PBUserResult* result2 = [userResultList objectAtIndex:1];
+        
+        [self someone:result1.userId compareCardWith:result2.userId didWin:result1.win];
+    }
 }
 
 - (ZJHPokerSectorType)getPokerSectorTypeByPosition:(UserPosition)position
@@ -499,6 +546,60 @@ compareCardWith:(NSString*)targetUserId
 }
 
 #pragma mark - private method
+
+- (void)clickCompareWithSomeone:(id)sender
+{
+    UIButton* compareSomeoneBtn = (UIButton*)sender;
+    ZJHAvatarView* avatar = (ZJHAvatarView*)[self.view viewWithTag:(AVATAR_VIEW_TAG_OFFSET+compareSomeoneBtn.tag - COMPARE_BUTTON_TAG_OFFSET)];
+//    [self someone:[_userManager userId] compareCardWith:avatar.userInfo.userId didWin:YES];
+    self.isComparing = NO;
+    [_gameService compareCard:avatar.userInfo.userId];
+}
+
+- (void)setAllPlayerComparing
+{
+    for (PBGameUser* user in _gameService.session.userList) {
+        ZJHAvatarView* avatar = [self getAvatarViewByUserId:user.userId];
+        if (![_gameService canUserCompareCard:user.userId]) {
+            continue;
+        }
+        UIButton* btn = (UIButton*)[self.view viewWithTag:avatar.tag - AVATAR_VIEW_TAG_OFFSET + COMPARE_BUTTON_TAG_OFFSET];
+        if (!btn) {
+            btn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+            [btn setTitle:@"比" forState:UIControlStateNormal];
+            btn.frame = avatar.frame;
+            btn.tag = avatar.tag - AVATAR_VIEW_TAG_OFFSET + COMPARE_BUTTON_TAG_OFFSET;
+            [btn addTarget:self action:@selector(clickCompareWithSomeone:) forControlEvents:UIControlEventTouchUpInside];
+            [self.view addSubview:btn];
+        }
+        btn.hidden = NO;
+        [self.view bringSubviewToFront:btn];
+        
+    }
+}
+
+- (void)setAllPlayerNotComparing
+{
+    for (PBGameUser* user in _gameService.session.userList) {
+        ZJHAvatarView* avatar = [self getAvatarViewByUserId:user.userId];
+        UIButton* btn = (UIButton*)[self.view viewWithTag:avatar.tag - AVATAR_VIEW_TAG_OFFSET + COMPARE_BUTTON_TAG_OFFSET];
+        if (btn) {
+            [btn setHidden:YES];
+            [self.view sendSubviewToBack:btn];
+        }
+    }
+}
+
+- (void)setIsComparing:(BOOL)isComparing
+{
+    _isComparing = isComparing;
+    if (isComparing) {
+        [self setAllPlayerComparing];
+    } else {
+        [self setAllPlayerNotComparing];
+    }
+
+}
 
 - (PBGameUser*)getSelfUser
 {

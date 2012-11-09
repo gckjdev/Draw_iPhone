@@ -207,7 +207,7 @@
 
 - (void)lose:(BOOL)animation
 {
-    
+    [self foldCards:animation];
 }
 
 - (void)win:(BOOL)animation

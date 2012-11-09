@@ -31,7 +31,9 @@ typedef enum {
     UserPositionMax
 }UserPosition;
 
-@interface ZJHGameController : PPViewController <PokerViewProtocol, ZJHAvatarViewDelegate, DealerViewDelegate, ChipsSelectViewProtocol>
+@interface ZJHGameController : PPViewController <PokerViewProtocol, ZJHAvatarViewDelegate, DealerViewDelegate, ChipsSelectViewProtocol> {
+    
+}
 
 @property (retain, nonatomic) IBOutlet BetTable *betTable;
 @property (retain, nonatomic) IBOutlet DealerView *dealerView;
