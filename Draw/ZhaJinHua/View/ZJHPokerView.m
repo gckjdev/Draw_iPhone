@@ -142,7 +142,7 @@
 
 - (void)faceUpCards:(ZJHPokerXMotionType)xMotiontype animation:(BOOL)animation
 {
-    [self clearBombButton];
+    [self clearBomb];
 
     [self.pokerView1 backToOriginPosition:animation];
     [self.pokerView1 faceUp:animation];
@@ -176,7 +176,7 @@
 
 - (void)foldCards:(BOOL)animation
 {
-    [self clearBombButton];
+    [self clearBomb];
     self.pokerView1.backImageView.image = [[ZJHImageManager defaultManager] pokerFoldBackImage];
     [self.pokerView1 faceDown:animation];
     [self.pokerView1 backToOriginPosition:animation];
