@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <archive type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="8.00">
 	<data>
-		<int key="IBDocument.SystemTarget">1280</int>
-		<string key="IBDocument.SystemVersion">10K549</string>
-		<string key="IBDocument.InterfaceBuilderVersion">1938</string>
-		<string key="IBDocument.AppKitVersion">1038.36</string>
-		<string key="IBDocument.HIToolboxVersion">461.00</string>
+		<int key="IBDocument.SystemTarget">1536</int>
+		<string key="IBDocument.SystemVersion">12C60</string>
+		<string key="IBDocument.InterfaceBuilderVersion">2840</string>
+		<string key="IBDocument.AppKitVersion">1187.34</string>
+		<string key="IBDocument.HIToolboxVersion">625.00</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-			<string key="NS.object.0">933</string>
+			<string key="NS.object.0">1926</string>
 		</object>
 		<array key="IBDocument.IntegratedClassDependencies">
-			<string>IBUIImageView</string>
+			<string>IBProxyObject</string>
+			<string>IBUIActivityIndicatorView</string>
 			<string>IBUIButton</string>
+			<string>IBUIImageView</string>
 			<string>IBUITableViewCell</string>
 			<string>IBUIView</string>
-			<string>IBUIActivityIndicatorView</string>
-			<string>IBProxyObject</string>
 		</array>
 		<array key="IBDocument.PluginDependencies">
 			<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -66,6 +66,7 @@
 								<object class="NSColor" key="IBUINormalTitleColor">
 									<int key="NSColorSpace">1</int>
 									<bytes key="NSRGB">MCAwIDAAA</bytes>
+									<string key="IBUIColorCocoaTouchKeyPath">darkTextColor</string>
 								</object>
 								<object class="NSColor" key="IBUINormalTitleShadowColor" id="340319056">
 									<int key="NSColorSpace">3</int>
@@ -124,7 +125,7 @@
 								<string key="NSFrame">{{451, 61}, {155, 150}}</string>
 								<reference key="NSSuperview" ref="128332022"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView" ref="845961539"/>
+								<reference key="NSNextKeyView" ref="444942405"/>
 								<object class="NSColor" key="IBUIBackgroundColor">
 									<int key="NSColorSpace">3</int>
 									<bytes key="NSWhite">MQA</bytes>
@@ -140,7 +141,6 @@
 								<string key="NSFrame">{{676, 57}, {72, 72}}</string>
 								<reference key="NSSuperview" ref="128332022"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -152,9 +152,9 @@
 									<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
 								</object>
 								<reference key="IBUINormalTitleShadowColor" ref="340319056"/>
-								<object class="NSCustomResource" key="IBUINormalImage">
+								<object class="NSCustomResource" key="IBUINormalBackgroundImage">
 									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">man1@2x.png</string>
+									<string key="NSResourceName">inputbg@2x.png</string>
 								</object>
 								<object class="IBUIFontDescription" key="IBUIFontDescription">
 									<int key="type">2</int>
@@ -196,6 +196,17 @@
 									<string key="NSClassName">NSImage</string>
 									<string key="NSResourceName">wrong@2x.png</string>
 								</object>
+							</object>
+							<object class="IBUIImageView" id="444942405">
+								<reference key="NSNextResponder" ref="128332022"/>
+								<int key="NSvFlags">292</int>
+								<string key="NSFrame">{{676, 57}, {72, 72}}</string>
+								<reference key="NSSuperview" ref="128332022"/>
+								<reference key="NSWindow"/>
+								<reference key="NSNextKeyView" ref="845961539"/>
+								<string key="NSReuseIdentifierKey">_NS:9</string>
+								<bool key="IBUIUserInteractionEnabled">NO</bool>
+								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 							</object>
 						</array>
 						<string key="NSFrameSize">{768, 219}</string>
@@ -274,6 +285,14 @@
 					<int key="connectionID">44</int>
 				</object>
 				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">avatarView</string>
+						<reference key="source" ref="661876673"/>
+						<reference key="destination" ref="444942405"/>
+					</object>
+					<int key="connectionID">46</int>
+				</object>
+				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">clickContentButton:</string>
 						<reference key="source" ref="120807257"/>
@@ -321,6 +340,7 @@
 							<reference ref="93773777"/>
 							<reference ref="240726313"/>
 							<reference ref="148413260"/>
+							<reference ref="444942405"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -354,6 +374,11 @@
 						<reference key="object" ref="148413260"/>
 						<reference key="parent" ref="661876673"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">45</int>
+						<reference key="object" ref="444942405"/>
+						<reference key="parent" ref="661876673"/>
+					</object>
 				</array>
 			</object>
 			<dictionary class="NSMutableDictionary" key="flattenedProperties">
@@ -370,12 +395,13 @@
 				<string key="32.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="41.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="42.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+				<string key="45.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 			</dictionary>
 			<dictionary class="NSMutableDictionary" key="unlocalizedProperties"/>
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">44</int>
+			<int key="maxID">46</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -398,6 +424,7 @@
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="outlets">
 						<string key="avatarButton">UIButton</string>
+						<string key="avatarView">UIImageView</string>
 						<string key="contentButton">UIButton</string>
 						<string key="failureView">UIImageView</string>
 						<string key="loadingView">UIActivityIndicatorView</string>
@@ -408,6 +435,10 @@
 						<object class="IBToOneOutletInfo" key="avatarButton">
 							<string key="name">avatarButton</string>
 							<string key="candidateClassName">UIButton</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="avatarView">
+							<string key="name">avatarView</string>
+							<string key="candidateClassName">UIImageView</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="contentButton">
 							<string key="name">contentButton</string>
@@ -463,18 +494,14 @@
 		</object>
 		<int key="IBDocument.localizationMode">0</int>
 		<string key="IBDocument.TargetRuntimeIdentifier">IBCocoaTouchFramework</string>
-		<object class="NSMutableDictionary" key="IBDocument.PluginDeclaredDependencyDefaults">
-			<string key="NS.key.0">com.apple.InterfaceBuilder.CocoaTouchPlugin.iPhoneOS</string>
-			<real value="1280" key="NS.object.0"/>
-		</object>
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="man1@2x.png">{128, 125}</string>
+			<string key="inputbg@2x.png">{69, 77}</string>
 			<string key="normal_button@2x.png">{68, 68}</string>
 			<string key="sent_message@2x.png">{95, 73}</string>
 			<string key="wrong@2x.png">{74, 74}</string>
 		</dictionary>
-		<string key="IBCocoaTouchPluginVersion">933</string>
+		<string key="IBCocoaTouchPluginVersion">1926</string>
 	</data>
 </archive>

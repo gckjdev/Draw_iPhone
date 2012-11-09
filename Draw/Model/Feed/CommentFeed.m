@@ -22,7 +22,31 @@
 
 #define SHOW_COMMENT_COUNT 3
 
+#define KEY_COMMENT @"ACTION_ID"
+#define KEY_COMMENT_INFO @"COMMENT_INFO"
+#define KEY_OPUS_ID @"OPUS_ID"
+#define KEY_OPUS_CREATOR @"ACTION_UID"
 
+- (void)encodeWithCoder:(NSCoder *)aCoder
+{
+    [self encodeWithCoder:aCoder];
+    [aCoder encodeObject:_comment forKey:KEY_COMMENT];
+    [aCoder encodeObject:_commentInfo forKey:KEY_COMMENT_INFO];
+    [aCoder encodeObject:self.opusId forKey:KEY_OPUS_ID];
+    [aCoder encodeObject:self.opusCreator forKey:KEY_OPUS_CREATOR];
+    
+}
+- (id)initWithCoder:(NSCoder *)aDecoder
+{
+    self = [self initWithCoder:aDecoder];
+    if (self) {
+        self.comment = [aDecoder decodeObjectForKey:KEY_COMMENT];
+        self.commentInfo = [aDecoder decodeObjectForKey:KEY_COMMENT_INFO];
+        self.opusId = [aDecoder decodeObjectForKey:KEY_OPUS_ID];
+        self.opusCreator = [aDecoder decodeObjectForKey:KEY_OPUS_CREATOR];
+    }
+    return self;
+}
 
 - (NSString *)commentInFeedDeatil
 {
@@ -62,6 +86,9 @@
     //we don't know the opus creator, so return no this version.
     return NO;
 }
+
+
+
 - (void)initComment:(PBFeed *)pbFeed
 {
     self.opusId = pbFeed.opusId;
@@ -166,6 +193,38 @@
     PPRelease(_summary);
     [super dealloc];
 }
+
+#define KEY_ACTION_ID @"ACTION_ID"
+#define KEY_COMMENT @"COMMENT"
+#define KEY_SUMMAY @"SUMMARY"
+#define KEY_ACTION_UID @"ACTION_UID"
+#define KEY_ACTION_NICK @"ACTION_NICK"
+#define KEY_TYPE @"TYPE"
+
+- (void)encodeWithCoder:(NSCoder *)aCoder
+{
+    [aCoder encodeObject:_actionId forKey:KEY_ACTION_ID];
+    [aCoder encodeObject:_comment forKey:KEY_COMMENT];
+    [aCoder encodeObject:_summary forKey:KEY_SUMMAY];
+    [aCoder encodeObject:_actionUid forKey:KEY_ACTION_UID];
+    [aCoder encodeObject:_actionNick forKey:KEY_ACTION_NICK];
+    [aCoder encodeInteger:_type forKey:KEY_TYPE];
+
+}
+- (id)initWithCoder:(NSCoder *)aDecoder
+{
+    self = [self init];
+    if (self) {
+        self.actionId = [aDecoder decodeObjectForKey:KEY_ACTION_ID];
+        self.comment = [aDecoder decodeObjectForKey:KEY_COMMENT];
+        self.actionUid = [aDecoder decodeObjectForKey:KEY_ACTION_UID];
+        self.summary = [aDecoder decodeObjectForKey:KEY_SUMMAY];
+        self.actionNick = [aDecoder decodeObjectForKey:KEY_ACTION_NICK];
+        self.type = [aDecoder decodeIntegerForKey:KEY_TYPE];
+    }
+    return self;
+}
+
 
 - (id)initWithPBCommentInfo:(PBCommentInfo *)pbInfo
 {

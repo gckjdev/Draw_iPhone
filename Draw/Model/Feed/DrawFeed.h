@@ -18,7 +18,7 @@ typedef enum{
 }ActionType;
 
 
-@interface DrawFeed : Feed
+@interface DrawFeed : Feed<NSCoding>
 {
     Draw *_drawData;
     UIImage *_drawImage;

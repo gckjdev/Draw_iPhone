@@ -914,6 +914,7 @@
 		CA82847415D637930016CD43 /* unzip.c in Sources */ = {isa = PBXBuildFile; fileRef = CA82846C15D637930016CD43 /* unzip.c */; };
 		CA82847515D637930016CD43 /* zip.c in Sources */ = {isa = PBXBuildFile; fileRef = CA82846E15D637930016CD43 /* zip.c */; };
 		CA82847615D637930016CD43 /* SSZipArchive.m in Sources */ = {isa = PBXBuildFile; fileRef = CA82847115D637930016CD43 /* SSZipArchive.m */; };
+		CA84180F164CE0AE00713014 /* graffiti@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA84180E164CE0AE00713014 /* graffiti@2x.png */; };
 		CA89737516071335003A95F7 /* Contest.m in Sources */ = {isa = PBXBuildFile; fileRef = CA89737416071335003A95F7 /* Contest.m */; };
 		CA89737816071345003A95F7 /* ContestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA89737716071345003A95F7 /* ContestManager.m */; };
 		CA8974291607230E003A95F7 /* CommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA8973F81607230E003A95F7 /* CommentCell.m */; };
@@ -2643,6 +2644,7 @@
 		CA82846F15D637930016CD43 /* zip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zip.h; sourceTree = "<group>"; };
 		CA82847015D637930016CD43 /* SSZipArchive.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSZipArchive.h; sourceTree = "<group>"; };
 		CA82847115D637930016CD43 /* SSZipArchive.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSZipArchive.m; sourceTree = "<group>"; };
+		CA84180E164CE0AE00713014 /* graffiti@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "graffiti@2x.png"; sourceTree = "<group>"; };
 		CA89737316071335003A95F7 /* Contest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Contest.h; sourceTree = "<group>"; };
 		CA89737416071335003A95F7 /* Contest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Contest.m; sourceTree = "<group>"; };
 		CA89737616071345003A95F7 /* ContestManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContestManager.h; sourceTree = "<group>"; };
@@ -7332,6 +7334,7 @@
 		EA856C3315F0A65700178323 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				CA84180E164CE0AE00713014 /* graffiti@2x.png */,
 				A4CE58E116324447003DB23A /* point_pic3@2x.png */,
 				A4CE58E216324447003DB23A /* point_pic4@2x.png */,
 				CA6D354115F72215004DC293 /* run@2x.png */,
@@ -8132,6 +8135,7 @@
 				A46215F016495D2B005DA90E /* zjh_compare_card_disable@2x.png in Resources */,
 				A46215F116495D2B005DA90E /* zjh_fold_card_disable@2x.png in Resources */,
 				A46215F216495D2B005DA90E /* zjh_raise_bet_disable@2x.png in Resources */,
+				CA84180F164CE0AE00713014 /* graffiti@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -8893,8 +8897,8 @@
 					armv7,
 					armv6,
 				);
-				CODE_SIGN_IDENTITY = "iPhone Developer: Lingzhe Peng (4JW9JNLMWA)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Lingzhe Peng (4JW9JNLMWA)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Lingzhe Peng (9WG829Y3AG)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Lingzhe Peng (9WG829Y3AG)";
 				COMPRESS_PNG_FILES = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -8908,8 +8912,8 @@
 					"../Common_iPhone_20/3PP-SDK/QWeiboSDK4iOS/**",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
-				PROVISIONING_PROFILE = "8C9352B7-156B-47AF-AA40-39E4517161A8";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "8C9352B7-156B-47AF-AA40-39E4517161A8";
+				PROVISIONING_PROFILE = "B6900C1C-652D-4108-A6DD-7D3DEC301766";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "B6900C1C-652D-4108-A6DD-7D3DEC301766";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -8922,8 +8926,8 @@
 					armv7,
 					armv6,
 				);
-				CODE_SIGN_IDENTITY = "iPhone Developer: Lingzhe Peng (4JW9JNLMWA)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Lingzhe Peng (4JW9JNLMWA)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Lingzhe Peng (9WG829Y3AG)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Lingzhe Peng (9WG829Y3AG)";
 				COMPRESS_PNG_FILES = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_VERSION = "";
@@ -8935,8 +8939,8 @@
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
-				PROVISIONING_PROFILE = "8C9352B7-156B-47AF-AA40-39E4517161A8";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "8C9352B7-156B-47AF-AA40-39E4517161A8";
+				PROVISIONING_PROFILE = "B6900C1C-652D-4108-A6DD-7D3DEC301766";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "B6900C1C-652D-4108-A6DD-7D3DEC301766";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -8946,8 +8950,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Lingzhe Peng (4JW9JNLMWA)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Lingzhe Peng (4JW9JNLMWA)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Lingzhe Peng (9WG829Y3AG)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Lingzhe Peng (9WG829Y3AG)";
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -8998,8 +9002,8 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "8C9352B7-156B-47AF-AA40-39E4517161A8";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "8C9352B7-156B-47AF-AA40-39E4517161A8";
+				PROVISIONING_PROFILE = "B6900C1C-652D-4108-A6DD-7D3DEC301766";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "B6900C1C-652D-4108-A6DD-7D3DEC301766";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -9008,8 +9012,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Lingzhe Peng (4JW9JNLMWA)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Lingzhe Peng (4JW9JNLMWA)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Lingzhe Peng (9WG829Y3AG)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Lingzhe Peng (9WG829Y3AG)";
 				COPY_PHASE_STRIP = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -9059,8 +9063,8 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "8C9352B7-156B-47AF-AA40-39E4517161A8";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "8C9352B7-156B-47AF-AA40-39E4517161A8";
+				PROVISIONING_PROFILE = "B6900C1C-652D-4108-A6DD-7D3DEC301766";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "B6900C1C-652D-4108-A6DD-7D3DEC301766";
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;
 			};

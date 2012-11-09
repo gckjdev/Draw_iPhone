@@ -42,6 +42,31 @@
     return self;
 }
 
+#define KEY_UID @"UID"
+#define KEY_NICK @"NICK"
+#define KEY_AVATAR @"AVATAR"
+#define KEY_GENDER @"GENDER"
+
+- (id)initWithCoder:(NSCoder *)aDecoder
+{
+    self = [super init];
+    if (self) {
+        self.userId = [aDecoder decodeObjectForKey:KEY_UID];
+        self.nickName = [aDecoder decodeObjectForKey:KEY_NICK];
+        self.avatar = [aDecoder decodeObjectForKey:KEY_AVATAR];
+        self.gender = [aDecoder decodeBoolForKey:KEY_GENDER];
+    }
+    return self;
+}
+
+- (void)encodeWithCoder:(NSCoder *)aCoder
+{
+    [aCoder encodeObject:_userId forKey:KEY_UID];
+    [aCoder encodeObject:_nickName forKey:KEY_NICK];
+    [aCoder encodeObject:_avatar forKey:KEY_AVATAR];
+    [aCoder encodeBool:_gender forKey:KEY_GENDER];
+}
+
 + (FeedUser *)feedUserWithUserId:(NSString *)userId 
                         nickName:(NSString *)nickName 
                           avatar:(NSString *)avatar 
@@ -82,6 +107,24 @@
     }
     return self;
 }
+
+#define KEY_TYPE @"TYPE"
+#define KEY_TIMES @"TIMES"
+- (void)encodeWithCoder:(NSCoder *)aCoder
+{
+    [aCoder encodeInteger:_type forKey:KEY_TYPE];
+    [aCoder encodeInteger:_times forKey:KEY_TIMES];
+}
+- (id)initWithCoder:(NSCoder *)aDecoder
+{
+    self = [super init];
+    if (self) {
+        self.type = [aDecoder decodeIntegerForKey:KEY_TYPE];
+        self.times = [aDecoder decodeIntegerForKey:KEY_TIMES];
+    }
+    return self;
+}
+
 
 - (id)initWithPbFeedTimes:(PBFeedTimes *)pbFeedTimes
 {

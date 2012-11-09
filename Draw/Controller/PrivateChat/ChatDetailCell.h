@@ -8,6 +8,7 @@
 
 #import "PPTableViewCell.h"
 #import "ShowDrawView.h"
+#import "StableView.h"
 
 @class PPViewController;
 @class PPMessage;
@@ -34,6 +35,7 @@
     
 }
 
+@property (retain, nonatomic) IBOutlet UIImageView *avatarView;
 @property (retain, nonatomic) IBOutlet UIButton *timeButton;
 @property (retain, nonatomic) IBOutlet UIButton *avatarButton;
 @property (retain, nonatomic) IBOutlet UIButton *contentButton;

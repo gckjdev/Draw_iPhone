@@ -40,4 +40,7 @@ typedef enum
 - (BOOL)removeAllData; //remove all the data below the directory. use be careful...
 
 - (BOOL)removeDataForKey:(NSString *)key;
+- (BOOL)removeOldFilestimeIntervalSinceNow:(NSTimeInterval)timeInterval;
+
+- (NSInteger)numberOfFiles;
 @end
