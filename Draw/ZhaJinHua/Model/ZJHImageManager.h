@@ -52,4 +52,6 @@
 
 - (UIImage*)bombImage;
 
+- (UIImage*)vsImage;
+
 @end

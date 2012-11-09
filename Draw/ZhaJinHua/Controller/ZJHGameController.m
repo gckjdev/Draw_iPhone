@@ -81,6 +81,7 @@
     [_totalBetLabel release];
     [_singleBetLabel release];
     [_moneyTree release];
+    [_vsImageView release];
     [super dealloc];
 }
 
@@ -438,6 +439,7 @@ compareCardWith:(NSString*)targetUserId
     CGPoint pokerViewOrgPoint = pokerView.center;
     CGPoint otherPokerViewOrgPoint = otherPokerView.center;
     
+    
     [UIView animateWithDuration:1 animations:^{
         pokerView.layer.position = CGPointMake(self.view.center.x, self.view.center.y - 30);
         otherPokerView.layer.position = CGPointMake(self.view.center.x, self.view.center.y + 30);
@@ -449,11 +451,13 @@ compareCardWith:(NSString*)targetUserId
         }
         
     } completion:^(BOOL finished) {
+        self.vsImageView.hidden = NO;
         [pokerView compare:YES win:didWin];
         [otherPokerView compare:YES win:!didWin];
         [UIView animateWithDuration:1 animations:^{
             pokerView.layer.position = CGPointMake(self.view.center.x, self.view.center.y - 29.9);
             otherPokerView.layer.position = CGPointMake(self.view.center.x, self.view.center.y + 29.9);
+            
         } completion:^(BOOL finished) {
             [UIView animateWithDuration:1 animations:^{
                 pokerView.layer.position = pokerViewOrgPoint;
@@ -464,6 +468,7 @@ compareCardWith:(NSString*)targetUserId
                 if ([_userManager isMe:targetUserId ]) {
                     otherPokerView.layer.transform = CATransform3DMakeScale(1, 1, 1);
                 }
+                self.vsImageView.hidden = YES;
             } completion:^(BOOL finished) {
                 
             }];
@@ -719,6 +724,7 @@ compareCardWith:(NSString*)targetUserId
     [self setTotalBetLabel:nil];
     [self setSingleBetLabel:nil];
     [self setMoneyTree:nil];
+    [self setVsImageView:nil];
     [super viewDidUnload];
 }
 
