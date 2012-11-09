@@ -13,12 +13,14 @@
 #import "CommonGameSession.h"
 #import "UserManager.h"
 #import "ConfigManager.h"
+#import "AccountService.h"
 
 static ZJHGameService *_defaultService;
 
 @interface ZJHGameService ()
 {
     UserManager *_userManager;
+    AccountService *_accountService;
 }
 
 @property (readwrite, retain, nonatomic) ZJHGameState *gameState;
@@ -46,6 +48,7 @@ static ZJHGameService *_defaultService;
         _gameId = ZHAJINHUA_GAME_ID;
         _networkClient = [CommonGameNetworkClient defaultInstance];
         _userManager = [UserManager defaultManager];
+        _accountService = [AccountService defaultService];
     }
 
     return self;
@@ -147,85 +150,53 @@ static ZJHGameService *_defaultService;
     return [NSArray arrayWithObjects:[NSNumber numberWithInt:5], [NSNumber numberWithInt:10], [NSNumber numberWithInt:25], [NSNumber numberWithInt:50], nil];
 }
 
-- (BOOL)canIBet
+- (BOOL)isMyBalanceEnough
 {
-    if (![self isGamePlaying]) {
+    return [_accountService getBalance] >= _gameState.singleBet * [self myBetCount];
+}
+
+- (BOOL)canRaise
+{
+    if (_gameState.singleBet < [[self.chipValues objectAtIndex:([self.chipValues count] - 1)] intValue]) {
+        return YES;
+    }else{
         return NO;
     }
-    
-//    PPDebug(@"isMyTurn: %d", [self isMyTurn]);
+}
 
-    return [self isMyTurn];
+- (BOOL)canIBet
+{
+    return [self isGamePlaying] && [self isMyTurn] && [self isMyBalanceEnough];
 }
 
 - (BOOL)canIRaiseBet
 {
-    if (![self isGamePlaying]) {
-        return NO;
-    }
-    
-    if (![self isMyTurn]) {
-        return NO;
-    }
-    
-    if (_gameState.singleBet < [[self.chipValues objectAtIndex:([self.chipValues count] - 1)] intValue]) {
-        return YES;
-    }else {
-        return NO;
-    }
+    return [self isGamePlaying] && [self isMyTurn] && [self canRaise] && [self isMyBalanceEnough];
 }
 
 - (BOOL)canIAutoBet
 {
-    if (![self isGamePlaying]) {
-        return NO;
-    }
-    
-    return [self isMyTurn];
+    return [self isGamePlaying] && [self isMyTurn] && [self isMyBalanceEnough];
 }
 
 - (BOOL)canICheckCard
 {
-    if (![self isGamePlaying]) {
-        return NO;
-    }
-    
-    return [[self myPlayInfo] canCheckCard];
+    return [self isGamePlaying] && [[self myPlayInfo] canCheckCard];
 }
 
 - (BOOL)canIFoldCard
 {
-    if (![self isGamePlaying]) {
-        return NO;
-    }
-    
-    return [[self myPlayInfo] canFoldCard];
+    return [self isGamePlaying] && [[self myPlayInfo] canFoldCard];
 }
 
 - (BOOL)canICompareCard
 {
-    if (![self isGamePlaying]) {
-        return NO;
-    }
-    
-    if (![self isMyTurn]) {
-        return NO;
-    }else {
-        return [[self myPlayInfo] canCompareCard];
-    }
+    return [self isGamePlaying] && [self isMyTurn] && [[self myPlayInfo] canCompareCard];
 }
 
 - (BOOL)canIShowCard:(int)cardId
 {
-    if (![self isGamePlaying]) {
-        return NO;
-    }
-    
-    if (![self isMyTurn]) {
-        return NO;
-    }
-    
-    return [[self myPlayInfo] canShowCard:cardId];
+    return [self isGamePlaying] && [self isMyTurn] && [[self myPlayInfo] canShowCard:cardId];
 }
 
 - (BOOL)canUserCompareCard:(NSString *)userId
@@ -240,11 +211,7 @@ static ZJHGameService *_defaultService;
 
 - (BOOL)canIContinueAutoBet
 {
-//    PPDebug(@"isMyTurn: %d", [self isMyTurn]);
-//    PPDebug(@"isAutoBet : %d", [[self myPlayInfo] isAutoBet]);
-//    PPDebug(@"autoBetCount : %d", [[self myPlayInfo] autoBetCount]);
-
-    return [self isMyTurn] && [[self myPlayInfo] isAutoBet] && ([self remainderAutoBetCount] > 0);
+    return [self isMyTurn] && [[self myPlayInfo] isAutoBet] && ([self remainderAutoBetCount] > 0) && [self isMyBalanceEnough];
 }
 
 - (int)remainderAutoBetCount
@@ -271,6 +238,7 @@ static ZJHGameService *_defaultService;
 
 - (void)handleMoreOnGameStartNotificationRequest:(GameMessage*)message
 {
+    [_accountService syncAccount:nil forceServer:YES];
     self.gameState = [ZJHGameState fromPBZJHGameState:message.gameStartNotificationRequest.zjhGameState];
 }
 

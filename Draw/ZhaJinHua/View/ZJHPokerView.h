@@ -53,6 +53,8 @@ typedef enum {
 - (void)updateWithPokers:(NSArray *)pokers
                     size:(CGSize)size
                      gap:(CGFloat)gap;
+
+- (void)dismissShowCardButtons;
 - (void)clear;
 
 // 别人看牌时，调用这个接口，把牌摊成扇形

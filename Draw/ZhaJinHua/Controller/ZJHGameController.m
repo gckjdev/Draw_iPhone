@@ -383,13 +383,18 @@
 - (void)gameOver
 {
     [self disableZJHButtons];
-    self.autoBetButton.selected = NO;
     [self clearAllAvatarReciprocols];
     [self someoneWon:[_gameService winner]];
 
-    
     [self faceupUserCards];
-    [self performSelector:@selector(clearAllUserPokers) withObject:nil afterDelay:3.0];
+    [self performSelector:@selector(resetGame) withObject:nil afterDelay:3.0];
+}
+
+- (void)resetGame
+{
+    self.autoBetButton.selected = NO;
+    [self hiddenMyCardTypeString];
+    [self clearAllUserPokers];
 }
 
 - (void)faceupUserCards
@@ -726,12 +731,7 @@ compareCardWith:(NSString*)targetUserId
 
 - (void)didClickPokerView:(PokerView *)pokerView
 {
-    if (![_gameService canIShowCard:pokerView.poker.pokerId]) {
-        return;
-    }
-    
-    pokerView.showCardButtonIsPopup ? [pokerView dismissShowCardButton] : [pokerView popupShowCardButtonInView:self.view aboveView:nil];
-    
+    pokerView.showCardButtonIsPopup ? [pokerView dismissShowCardButton] : [pokerView popupShowCardButtonInView:self.view aboveView:nil enabled:[_gameService canIShowCard:pokerView.poker.pokerId]];
 }
 
 - (void)didClickShowCardButton:(PokerView *)pokerView
@@ -758,6 +758,7 @@ compareCardWith:(NSString*)targetUserId
 
 - (void)disableZJHButtons
 {
+    [[self getMyPokersView] dismissShowCardButtons];
     self.betButton.userInteractionEnabled = NO;
     self.raiseBetButton.userInteractionEnabled = NO;
     self.autoBetButton.userInteractionEnabled = NO;
@@ -765,7 +766,6 @@ compareCardWith:(NSString*)targetUserId
     self.compareCardButton.userInteractionEnabled = NO;
     self.checkCardButton.userInteractionEnabled = NO;
     self.foldCardButton.userInteractionEnabled = NO;
-    
     
     [self.betButton setTitleColor:TITLE_COLOR_WHEN_DISABLE forState:UIControlStateNormal];
     [self.raiseBetButton setTitleColor:TITLE_COLOR_WHEN_DISABLE forState:UIControlStateNormal];
@@ -828,6 +828,11 @@ compareCardWith:(NSString*)targetUserId
 {
     _cardTypeButton.hidden = NO;
     [_cardTypeButton setTitle:[_gameService myCardType] forState:UIControlStateNormal];
+}
+
+- (void)hiddenMyCardTypeString
+{
+    _cardTypeButton.hidden = YES;
 }
 
 - (void)clearAllUserPokers
