@@ -109,12 +109,12 @@
 
 - (void)viewWillAppear
 {
-    PPDebug(@"super board view will appear");
+//    PPDebug(@"super board view will appear");
 }
 
 - (void)viewDidDisappear
 {
-    PPDebug(@"super board view did disappear");
+//    PPDebug(@"super board view did disappear");
 }
 @end
 
@@ -144,7 +144,7 @@
 
 - (void)viewWillAppear
 {
-    PPDebug(@"default board view will appear");
+//    PPDebug(@"default board view will appear");
     BOOL isShowAd = [[AdService defaultService] isShowAd];
     isShowAd = NO; // set by Benson to disable Ad in board  
     if (isShowAd){

@@ -9,15 +9,28 @@
 #import <Foundation/Foundation.h>
 #import "CommonService.h"
 
+@class PPMessage;
 @protocol ChatServiceDelegate <NSObject>
 
 @optional
-- (void)didFindAllMessageTotals:(NSArray *)totalList resultCode:(int)resultCode;
-- (void)didFindAllMessages:(NSArray *)list resultCode:(int)resultCode newMessagesCount:(NSUInteger)newMessagesCount;
-- (void)didSendMessage:(int)resultCode;
-- (void)didSendHasReadMessage:(int)resultCode;
-- (void)didDeleteMessageTotal:(NSString *)friendUserId resultCode:(int)resultCode;
-- (void)didDeleteMessage:(int)resultCode;
+- (void)didGetMessageStats:(NSArray *)statList
+                resultCode:(int)resultCode;
+
+- (void)didGetMessages:(NSArray *)list 
+               forward:(BOOL)forward
+            resultCode:(int)resultCode;
+
+
+- (void)didSendMessage:(PPMessage *)message 
+            resultCode:(int)resultCode;
+
+- (void)didSendHasReadMessage:(NSString *)friendId resultCode:(int)resultCode;
+
+- (void)didDeleteMessageStat:(NSString *)friendUserId
+                   resultCode:(int)resultCode;
+
+- (void)didDeleteMessages:(NSArray *)messages
+               resultCode:(int)resultCode;
 
 @end
 
@@ -25,45 +38,27 @@
 
 + (ChatService*)defaultService;
 
-- (void)findAllMessageTotals:(id<ChatServiceDelegate>)delegate 
-                  starOffset:(int)starOffset 
-                    maxCount:(int)maxCount;
+- (void)getMessageStats:(id<ChatServiceDelegate>)delegate 
+                  offset:(int)starOffset 
+                    limit:(int)maxCount;
 
-- (void)findAllMessages:(id<ChatServiceDelegate>)delegate 
-           friendUserId:(NSString *)friendUserId 
-             starOffset:(int)starOffset 
-               maxCount:(int)maxCount;
+- (void)getMessageList:(id<ChatServiceDelegate>)delegate 
+          friendUserId:(NSString *)friendUserId 
+       offsetMessageId:(NSString *)offsetMessageId
+               forward:(BOOL)forward
+                 limit:(int)limit;
 
-- (void)sendMessage:(id<ChatServiceDelegate>)delegate
-       friendUserId:(NSString *)friendUserId
-               text:(NSString *)text 
-     drawActionList:(NSArray*)drawActionList;
 
-- (void)askLocation:(id<ChatServiceDelegate>)delegate
-       friendUserId:(NSString *)friendUserId
-          longitude:(double)longitude
-           latitude:(double)latitude
-               text:(NSString*)text;
-
-- (void)replyLocation:(id<ChatServiceDelegate>)delegate
-         friendUserId:(NSString *)friendUserId
-            longitude:(double)longitude
-             latitude:(double)latitude
-         reqMessageId:(NSString*)reqMessageId
-                 text:(NSString*)text;
-
-- (void)replyRejectLocation:(id<ChatServiceDelegate>)delegate
-               friendUserId:(NSString *)friendUserId
-               reqMessageId:(NSString*)reqMessageId
-                       text:(NSString*)text;
+- (void)sendMessage:(PPMessage *)message 
+           delegate:(id<ChatServiceDelegate>)delegate;
 
 
 - (void)sendHasReadMessage:(id<ChatServiceDelegate>)delegate friendUserId:(NSString *)friendUserId;
 
-- (void)deleteMessageTotal:(id<ChatServiceDelegate>)delegate 
+- (void)deleteMessageStat:(id<ChatServiceDelegate>)delegate 
               friendUserId:(NSString *)friendUserId;
 
 - (void)deleteMessage:(id<ChatServiceDelegate>)delegate 
-        messageIdList:(NSArray *)messageIdList;
+        messageList:(NSArray *)messageList;
 
 @end

@@ -12,7 +12,7 @@
 #import "ShowFeedController.h"
 #import "CommonUserInfoView.h"
 #import "UseItemScene.h"
-
+#import "MyFriend.h"
 typedef enum{
 
     RankTypePlayer = FeedListTypeTopPlayer,
@@ -373,16 +373,12 @@ typedef enum{
 {
     TopPlayer *player = topPlayerView.topPlayer;
     NSString* genderString = player.gender?@"m":@"f";
-    [CommonUserInfoView showUser:player.userId 
-                        nickName:player.nickName 
-                          avatar:player.avatar 
-                          gender:genderString 
-                        location:nil 
-                           level:player.level
-                         hasSina:NO 
-                           hasQQ:NO 
-                     hasFacebook:NO 
-                      infoInView:self];
+    MyFriend *friend = [MyFriend friendWithFid:player.userId 
+                                      nickName:player.nickName
+                                        avatar:player.avatar
+                                        gender:genderString 
+                                         level:player.level];
+    [CommonUserInfoView showFriend:friend infoInView:self needUpdate:YES];
 }
 
 @end

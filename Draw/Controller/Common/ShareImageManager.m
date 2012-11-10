@@ -26,7 +26,6 @@ static UIImage* _whitePaperImage;
 {
     if (_defaultManager == nil){
         _defaultManager = [[ShareImageManager alloc] init];
-        [_defaultManager clearFeedCache];
     }
     
     return _defaultManager;
@@ -147,6 +146,7 @@ static UIImage* _whitePaperImage;
 {
     return [UIImage imageNamed:@"coin.png"];
 }
+
 - (UIImage *)toolImage
 {
     return [UIImage imageNamed:@"tool.png"];
@@ -489,6 +489,14 @@ static UIImage* _whitePaperImage;
     return [UIImage strectchableImageName:@"print_tipbig.png"];
 }
 
+- (UIImage *)leftBubbleImage
+{
+    return [UIImage strectchableImageName:@"receive_message@2x.png"];
+}
+- (UIImage *)rightBubbleImage
+{
+    return [UIImage strectchableImageName:@"sent_message@2x.png"];
+}
 
 #pragma mark - menu button image
 - (UIImage *)onlinePlayImage
@@ -629,107 +637,6 @@ static UIImage* _whitePaperImage;
     return nil;
 }
 
-
-#pragma mark - save and get temp image.
-
-
-#define TEMP_FEED_IMAGE_DIR @"feed_image"
-#define TEMP_IMAGE_SUFFIX @".png"
-
-- (NSString *)feedImageDir
-{
-    NSString *dir = [[FileUtil getAppCacheDir] stringByAppendingPathComponent:TEMP_FEED_IMAGE_DIR];
-    BOOL flag = [FileUtil createDir:dir];
-    if (flag) {
-        return dir;
-    }
-    return nil;
-}
-
-- (NSString *)constructImagePath:(NSString *)imageName
-{
-    NSString *dir = [self feedImageDir];
-    if (dir) {
-        NSString *imgName = [NSString stringWithFormat:@"%@%@", imageName, TEMP_IMAGE_SUFFIX];
-        NSString *uniquePath=[dir stringByAppendingPathComponent:imgName];
-        NSLog(@"construct path = %@",uniquePath);
-        return uniquePath;        
-    }
-    return nil;
-}
-
-
-
-
-- (void)saveFeedImage:(UIImage *)image 
-    withImageName:(NSString *)imageName 
-             asyn:(BOOL)asyn
-{
-    if (image == nil || [imageName length] == 0) {
-        return;
-    }
-    void (^handleBlock)()= ^(){
-        NSString *uniquePath = [self constructImagePath:imageName];
-        if (uniquePath == nil) {
-            return;
-        }
-        NSData* imageData = UIImagePNGRepresentation(image);
-        BOOL result=[imageData writeToFile:uniquePath atomically:YES];
-        PPDebug(@"<ShareImageManager> asyn save image to path:%@ result:%d , canRead:%d", uniquePath, result, [[NSFileManager defaultManager] fileExistsAtPath:uniquePath]);
-    };
-    
-    if (asyn) {
-        dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-        if (queue == NULL){
-            return;
-        }
-        dispatch_async(queue, handleBlock);        
-    }else{
-        handleBlock();
-    }
-}
-- (UIImage *)getImageWithFeedId:(NSString *)feedId
-{
-    PPDebug(@"<ShareImageManager> get image, image name = %@", feedId);
-    if ([feedId length] == 0) {
-        return nil;
-    }
-    NSString *uniquePath = [self constructImagePath:feedId];
-    if (uniquePath == nil) {
-        return nil;
-    }
-    UIImage *image = [UIImage imageWithContentsOfFile:uniquePath];
-    return image;
-}
-
-
-#define CLEAR_CACHE_INTERVAL 3600 * 24 * 10
-#define LAST_CLEAR_CACHE_KEY @"last_clear"
-
-- (void)clearFeedCache
-{
-    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-    //back ground run
-    if (queue) {
-        NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-        NSDate *lastClearDate = [userDefaults objectForKey:LAST_CLEAR_CACHE_KEY];
-        NSDate *date = [NSDate date];
-        if (lastClearDate != nil) {
-
-            NSTimeInterval interval = [date timeIntervalSinceDate:lastClearDate];
-            PPDebug(@"<clearFeedCache>: interval = %f", interval);
-            if (interval < CLEAR_CACHE_INTERVAL) {
-                PPDebug(@"interval = %f, < %d. need not clear date", interval, CLEAR_CACHE_INTERVAL);
-                return;
-            }
-        }
-        PPDebug(@"<clearFeedCache> start to clear the feed cache");
-        [FileUtil removeFilesBelowDir:[self feedImageDir] timeIntervalSinceNow:CLEAR_CACHE_INTERVAL];    
-        [userDefaults setObject:date forKey:LAST_CLEAR_CACHE_KEY];
-        [userDefaults synchronize];
-        
-    }
-}
 
 - (UIImage *)unloadBg
 {

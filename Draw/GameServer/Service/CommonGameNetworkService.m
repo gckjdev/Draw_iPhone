@@ -22,14 +22,12 @@
 @synthesize roomList = _roomList;
 @synthesize session = _session;
 @synthesize serverStringList = _serverStringList;
-//@synthesize user = _user;
 
 - (void)dealloc
 {    
     [self clearDisconnectTimer];
     [_serverAddress release];
     
-//    PPRelease(_user);
     PPRelease(_session);
     PPRelease(_serverAddress);   
     PPRelease(_roomList);
@@ -47,8 +45,6 @@
         _roomList = [[NSMutableArray alloc] init];
     }
 
-//    _networkClient = [[CommonGameNetworkClient alloc] init];
-//    [_networkClient setDelegate:self]; 
     return self;
 }
 
@@ -121,45 +117,55 @@
     }
 }
 
-- (void)connectServer:(id<CommonGameServiceDelegate>)connectionDelegate
+//- (void)connectServer:(id<CommonGameServiceDelegate>)connectionDelegate
+- (void)connectServer
 {
-    _connectionDelegate = connectionDelegate;
+//    _connectionDelegate = connectionDelegate;
     
     [self clearDisconnectTimer];
     [_networkClient setDelegate:self];
     
-    [self initServerListString];
+    self.serverStringList = [self getServerListString];
     [self dispatchServer];
     
-    [_networkClient start:_serverAddress port:_serverPort];        
+    [_networkClient start:_serverAddress port:_serverPort];
 }
 
-- (void)initServerListString
+- (NSString *)getServerListString
 {
+    PPDebug(@"WARNNIG: getServerListString has not been implementation yet.");
+    return @"";
 }
 
 - (void)disconnectServer
 {
-    [_networkClient disconnect];
-    _connectionDelegate = nil;
+    if ([_networkClient isConnected]){
+        [_networkClient disconnect];
+    }
+//    _connectionDelegate = nil;
 }
 
 #pragma CommonNetworkClientDelegate
 
 - (void)didConnected
 {
-    if (_connectionDelegate == nil)
+    [self postNotification:NOTIFICATION_NETWORK_CONNECTED message:nil];
+        
+/*    if (_connectionDelegate == nil)
         return;
     
     dispatch_sync(dispatch_get_main_queue(), ^{
         if ([_connectionDelegate respondsToSelector:@selector(didConnected)]){
             [_connectionDelegate didConnected];
         }
-    });
+    });*/
 }
 
-- (void)didBroken
-{    
+- (void)didBroken:(NSError *)error
+{
+    [self postNotification:NOTIFICATION_NETWORK_DISCONNECTED error:error];
+    
+    /*
     if (_connectionDelegate == nil)
         return;
     
@@ -169,6 +175,7 @@
             [_connectionDelegate didBroken];
         }
     });
+     */
 }
 
 #pragma mark Online User Count
@@ -183,48 +190,72 @@
 
 #pragma mark - Handle Game Message
 
+- (void)handleGameStartNotificationRequest:(GameMessage*)message
+{
+    self.session.status = GameStatusPlaying;
+    [self handleMoreOnGameStartNotificationRequest:message];
+    [self postNotification:NOTIFICATION_GAME_START_NOTIFICATION_REQUEST message:message];
+}
+
+- (void)handleGameOverNotificationRequest:(GameMessage*)message
+{
+    self.session.status = GameStatusOver;
+    [self handleMoreOnGameOverNotificationRequest:message];
+    [self postNotification:NOTIFICATION_GAME_OVER_NOTIFICATION_REQUEST message:message];
+}
+
+- (void)handleNextPlayerStartNotificationRequest:(GameMessage *)message
+{
+    PPDebug(@"(*************** next player: %@ *****************", [message currentPlayUserId]);
+
+    self.session.currentPlayUserId = [message currentPlayUserId];
+    [self postNotification:NOTIFICATION_NEXT_PLAYER_START message:message];
+}
+
 - (void)handleGetRoomsResponse:(GameMessage*)message
 {
     // save room into _roomList and fire the notification
     
-//    if ([message resultCode] != 0){
-//        return;
-//    }
     [self updateOnlineUserCount:message];
     if (message.resultCode == 0){    
         [self.roomList removeAllObjects];
         [self.roomList addObjectsFromArray:message.getRoomsResponse.sessionsList];
     }
-    
     [self postNotification:NOTIFICAIION_GET_ROOMS_RESPONSE message:message];
+}
+
+- (void)handleMoreOnGameStartNotificationRequest:(GameMessage*)message
+{
+}
+
+- (void)handleMoreOnGameOverNotificationRequest:(GameMessage*)message
+{
+}
+
+- (void)handleMoreOnJoinGameResponse:(GameMessage*)message
+{
 }
 
 - (void)handleJoinGameResponse:(GameMessage*)message
 {
     dispatch_async(dispatch_get_main_queue(), ^{ 
-        
-        // create game session
         if ([message resultCode] == 0){
             PBGameSession* pbSession = [[message joinGameResponse] gameSession];
             self.session = [self createSession];
             [_session fromPBGameSession:pbSession userId:[self userId]];
             PPDebug(@"<handleJoinGameResponse> Create Session = %@", [self.session description]);
 
-            // TODO update online user
-            
-            // [self updateOnlineUserCount:message];
-            
+            [self handleMoreOnJoinGameResponse:message];
         }
-        
         [self postNotification:NOTIFICATION_JOIN_GAME_RESPONSE message:message];
     });
 }
 
-- (void)handleRoomNotification:(GameMessage*)message
+- (void)handleRoomNotificationRequest:(GameMessage*)message
 {
     dispatch_async(dispatch_get_main_queue(), ^{ 
         
-        PPDebug(@"<handleRoomNotification> handle room nitification");
+        PPDebug(@"<handleRoomNotificationRequest> handle room nitification");
         RoomNotificationRequest* notification = [message roomNotificationRequest];
         
         if ([notification sessionsChangedList]){
@@ -254,10 +285,9 @@
             
             // TODO update online user
             // [self updateOnlineUserCount:message];
-            
         }
-        
         [self postNotification:NOTIFICAIION_CREATE_ROOM_RESPONSE message:message];
+        
     });
     
 }
@@ -275,23 +305,39 @@
 - (void)handleData:(GameMessage*)message
 {
     switch ([message command]){
+
         case GameCommandTypeGetRoomsResponse:
             [self handleGetRoomsResponse:message];
-            break;        
+            break;
+            
+        case GameCommandTypeRoomNotificationRequest:
+            [self handleRoomNotificationRequest:message];
+            break;
+            
+        case GameCommandTypeCreateRoomResponse:
+            [self handleCreateRoomResponse:message];
+            break;
+            
         case GameCommandTypeJoinGameResponse:
             [self handleJoinGameResponse:message];
             break;
             
-        case GameCommandTypeRoomNotificationRequest:
-            [self handleRoomNotification:message];
+        case GameCommandTypeGameStartNotificationRequest:
+            [self handleGameStartNotificationRequest:message];
             break;
-        case GameCommandTypeCreateRoomResponse:
-            [self handleCreateRoomResponse:message];
+            
+        case GameCommandTypeGameOverNotificationRequest:
+            [self handleGameOverNotificationRequest:message];
+            break;
+            
+        case GameCommandTypeNextPlayerStartNotificationRequest:
+            [self handleNextPlayerStartNotificationRequest:message];
             break;
             
         case GameCommandTypeChatRequest:
             [self handleChatRequest:message];
             break;
+
             
         default:
             [self handleCustomMessage:message];
@@ -314,15 +360,12 @@
 
 - (void)getRoomList:(int)startIndex 
               count:(int)count 
-   shouldReloadData:(BOOL)shouldReloadData
 {
     NSString* userId = [[UserManager defaultManager] userId];
     if (userId == nil){
         return;
     }
-//    if (shouldReloadData) {
-//        [self.roomList removeAllObjects];
-//    }
+
     [_networkClient sendGetRoomsRequest:userId 
                              startIndex:startIndex 
                                   count:count];
@@ -330,7 +373,6 @@
 
 - (void)getRoomList:(int)startIndex 
               count:(int)count 
-   shouldReloadData:(BOOL)shouldReloadData 
            roomType:(int)type 
             keyword:(NSString*)keyword 
              gameId:(NSString*)gameId
@@ -339,9 +381,7 @@
     if (userId == nil){
         return;
     }
-    //    if (shouldReloadData) {
-    //        [self.roomList removeAllObjects];
-    //    }
+
     [_networkClient sendGetRoomsRequest:userId 
                              startIndex:startIndex 
                                   count:count 
@@ -363,15 +403,6 @@
     [_networkClient sendJoinGameRequest:customSelfUser gameId:_gameId];
 }
 
-//- (void)joinGameRequestWithRuleType:(int)ruleType
-//{
-//    PPDebug(@"[SEND] JoinGameRequest");
-//    PBGameUser* user = [[UserManager defaultManager] toPBGameUser];
-//    [_networkClient sendJoinGameRequest:user 
-//                                 gameId:_gameId
-//                               ruleType:ruleType];
-//}
-
 - (void)joinGameRequest:(long)sessionId 
 {
     PPDebug(@"[SEND] JoinGameRequest");
@@ -389,27 +420,10 @@
                               sessionId:sessionId];
 }
 
-//- (void)joinGameRequest:(long)sessionId ruleType:(int)ruleType
-//{
-//    PPDebug(@"[SEND] JoinGameRequest");
-//    PBGameUser* user = [[UserManager defaultManager] toPBGameUser];
-//    [_networkClient sendJoinGameRequest:user
-//                                 gameId:_gameId 
-//                              sessionId:sessionId 
-//                               ruleType:ruleType];
-//}
-
-
-
-
-
-
-
 
 - (CommonGameSession*)createSession
-{    
-    PPDebug(@"<createSession> NOT IMPLEMENTED YET");
-    return nil;
+{
+    return [[[CommonGameSession alloc] init] autorelease];
 }
 
 - (void)createRoomWithName:(NSString*)name 
@@ -420,17 +434,6 @@
                                    gameId:_gameId 
                                  password:password];
 }
-
-//- (void)createRoomWithName:(NSString*)name 
-//                  password:(NSString *)password
-//                  ruleType:(int)ruleType
-//{
-//    [_networkClient sendCreateRoomRequest:[[UserManager defaultManager] toPBGameUser] 
-//                                     name:name 
-//                                   gameId:_gameId 
-//                                 password:password
-//                                 ruleType:ruleType];
-//}
 
 - (void)registerRoomsNotification:(NSArray*)sessionIdList
 {
@@ -457,10 +460,14 @@
 
 #pragma mark - notification methods
 
-#define KEY_GAME_MESSAGE @"KEY_GAME_MESSAGE"
+#define KEY_GAME_MESSAGE    @"KEY_GAME_MESSAGE"
+#define KEY_GAME_ERROR      @"KEY_GAME_ERROR"
 
 + (NSDictionary*)messageToUserInfo:(GameMessage*)message
 {
+    if (message == nil)
+        return nil;
+    
     NSDictionary* userInfo = [NSDictionary dictionaryWithObject:[message data]
                                                          forKey:KEY_GAME_MESSAGE];
     
@@ -470,6 +477,32 @@
 + (GameMessage*)userInfoToMessage:(NSDictionary*)userInfo
 {
     return [GameMessage parseFromData:[userInfo objectForKey:KEY_GAME_MESSAGE]];
+}
+
++ (NSDictionary*)errorToUserInfo:(NSError*)error
+{
+    if (error == nil)
+        return nil;
+    
+    NSDictionary* userInfo = [NSDictionary dictionaryWithObject:error
+                                                         forKey:KEY_GAME_ERROR];
+    
+    return userInfo;
+}
+
++ (NSError*)userInfoToError:(NSDictionary*)userInfo
+{
+    return [userInfo objectForKey:KEY_GAME_ERROR];
+}
+
+- (void)postNotification:(NSString*)name error:(NSError*)error
+{
+    [[NSNotificationCenter defaultCenter]
+     postNotificationName:name
+     object:self
+     userInfo:[CommonGameNetworkService errorToUserInfo:error]];
+    
+    PPDebug(@"<%@> post notification %@ with error", [self description], name);    
 }
 
 - (void)postNotification:(NSString*)name message:(GameMessage*)message
@@ -515,4 +548,15 @@
 {
     return _onlineUserCount;
 }
+
+- (BOOL)isMyTurn
+{
+    return [[UserManager defaultManager] isMe:self.session.currentPlayUserId];
+}
+
+- (BOOL)isGamePlaying
+{
+    return [self.session isGamePlaying];
+}
+
 @end

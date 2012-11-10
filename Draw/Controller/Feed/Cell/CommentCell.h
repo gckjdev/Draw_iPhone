@@ -32,6 +32,7 @@
 @property (retain, nonatomic) IBOutlet UIImageView *itemImage;
 @property (retain, nonatomic) IBOutlet UIView *splitLine;
 @property (retain, nonatomic) CommentFeed *feed;
+@property (retain, nonatomic) PPViewController *superViewController;
 
 + (CGFloat)getCellHeight:(CommentFeed *)feed;
 - (void)setCellInfo:(CommentFeed *)feed;

@@ -138,6 +138,20 @@
 }
 
 
+- (id)initWithFriend:(MyFriend *)aFriend
+              status:(RoomUserStatus)status
+{
+    self = [super init];
+    if (self) {
+        self.userId = aFriend.friendUserId;
+        self.nickName = aFriend.friendNick;
+        self.avatar = aFriend.avatar;
+        self.gender = aFriend.gender;
+        self.status = status;
+    }
+    return self;
+}
+
 - (NSString *)string:(NSString *)string appendKey:(NSString *)key value:(NSString *)value
 {
     NSString* p = key;

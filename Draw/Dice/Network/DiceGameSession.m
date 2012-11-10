@@ -22,7 +22,7 @@
 @synthesize finalCount = _finalCount;
 @synthesize wilds = _wilds;
 @synthesize isMeAByStander = _isMeAByStander;
-@synthesize gameState = _gameState;
+//@synthesize gameState = _gameState;
 @synthesize callCount = _callCount;
 @synthesize betWin = _betWin;
 @synthesize itemUseCountDic = _itemUseCountDic;
@@ -77,7 +77,7 @@
     self.finalCount = nil;
     self.wilds = false;
     self.isMeAByStander = YES;
-    self.gameState = GameStateGameOver;
+//    self.gameState = GameStateGameOver;
     self.callCount = 0;
     self.betWin = NO;
 }

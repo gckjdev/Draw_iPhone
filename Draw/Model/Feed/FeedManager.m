@@ -15,60 +15,31 @@
 
 FeedManager *_staticFeedManager = nil;
 
-#define FeedKeyMy @"FeedKeyMy"
-#define FeedKeyAll @"FeedKeyAll"
-#define FeedKeyHot @"FeedKeyHot"
-#define FeedKeyLatest @"FeedKeyLatest"
-
 @implementation FeedManager
 
 
-- (void)addListForKey:(NSString *)key
-{
-    NSMutableArray *list = [NSMutableArray array];
-    [_dataMap setObject:list forKey:key];
-}
 
-
-- (NSString *)keyForType:(FeedListType )type
-{
-    if (type == FeedListTypeMy) {
-        return FeedKeyMy;
-    }
-    if (type == FeedListTypeAll) {
-        return FeedKeyAll;
-    }
-    if (type == FeedListTypeHot) {
-        return FeedKeyHot;
-    }else if(type == FeedListTypeLatest){
-        return FeedKeyLatest;
-    }
-    return nil;
-}
+#define FEED_DIR @"feedCache"
+#define FEED_IMAGE_DIR @"feed_image"
+#define THUMB_IMAGE_SUFFIX @".png"
+#define LARGE_IMAGE_SUFFIX @"_l.png"
 
 - (id)init
 {
     self = [super init];
     if (self) {
-        _dataMap = [[NSMutableDictionary alloc] init];
-        [self addListForKey:FeedKeyMy];
-        [self addListForKey:FeedKeyAll];
-        [self addListForKey:FeedKeyHot];
-        [self addListForKey:FeedKeyLatest];
+        _storeManager = [[StorageManager alloc] initWithStoreType:StorageTypeCache directoryName:FEED_DIR];
+        _feedImageManager = [[StorageManager alloc] initWithStoreType:StorageTypeCache directoryName:FEED_IMAGE_DIR];
+//        [self removeOldCache];
     }
     return self;
 }
 
 - (void)dealloc
 {
-    PPRelease(_dataMap);
+    PPRelease(_feedImageManager);
+    PPRelease(_storeManager);
     [super dealloc];
-}
-
-
-- (void)cleanData
-{
-    [_dataMap removeAllObjects];
 }
 
 + (FeedManager *)defaultManager
@@ -77,45 +48,6 @@ FeedManager *_staticFeedManager = nil;
         _staticFeedManager = [[FeedManager alloc] init];
     }
     return _staticFeedManager;
-}
-
-+ (void)releaseDefaultManager
-{
-    [_staticFeedManager cleanData];
-    [_staticFeedManager release];
-    _staticFeedManager = nil;
-}
-
-- (NSMutableArray *)feedListForType:(FeedListType)type
-{
-    NSString *key = [self keyForType:type];
-    if (key) {
-        return [_dataMap objectForKey:key];
-    }
-    return nil;
-}
-- (void)setFeedList:(NSMutableArray *)feedList forType:(FeedListType)type
-{
-    NSString *key = [self keyForType:type];
-    if (key) {
-        if (feedList) {
-            [_dataMap setObject:feedList forKey:key];            
-        }else{
-            //if the list is nil;
-            NSMutableArray *list = [self feedListForType:type];
-            [list removeAllObjects];
-        }
-    }
-}
-- (void)addFeedList:(NSArray *)feedList forType:(FeedListType)type
-{
-    if ([feedList count] == 0) {
-        return;
-    }
-    NSMutableArray *list = [self feedListForType:type];
-    if (list) {
-        [list addObjectsFromArray:feedList];
-    }
 }
 
 
@@ -170,5 +102,87 @@ FeedManager *_staticFeedManager = nil;
         [feed release];
     }
     return list;    
+}
+
+- (void)cachePBFeed:(PBFeed *)feed
+{
+    PPDebug(@"<cachePBFeed> feed Id = %@",feed.feedId);
+    [_storeManager saveData:[feed data] forKey:feed.feedId];
+
+}
+- (PBFeed *)loadPBFeedWithFeedId:(NSString *)feedId
+{
+    NSData *data = [_storeManager dataForKey:feedId];
+    if (data) {
+        PBFeed *pbFeed = [PBFeed parseFromData:data];
+        PPDebug(@"<loadPBFeedWithFeedId>, feed id = %@",pbFeed.feedId);
+        return pbFeed;
+    }
+    return nil;
+}
+
+
+
+#define FEED_INTERVAL 3600 * 24 * 5 //5 DAYS
+
+- (void)removeOldFiles
+{
+    [_storeManager removeOldFilestimeIntervalSinceNow:FEED_INTERVAL];
+}
+
+
+
+#pragma mark - Feed Cache Image
+
+#define FEED_IMAGE_INTERVAL 3600 * 24 * 10 //10 DAYS
+
+- (void)removeOldImages
+{
+    [_feedImageManager removeOldFilestimeIntervalSinceNow:FEED_IMAGE_INTERVAL];
+}
+
+- (UIImage *)thumbImageForFeedId:(NSString *)feedId
+{
+    if ([feedId length] != 0) {
+        NSString *key = [NSString stringWithFormat:@"%@%@",feedId,THUMB_IMAGE_SUFFIX];
+        return [_feedImageManager imageForKey:key];
+    }
+    return nil;
+}
+- (UIImage *)largeImageForFeedId:(NSString *)feedId
+{
+    if ([feedId length] != 0) {
+        NSString *key = [NSString stringWithFormat:@"%@%@",feedId,LARGE_IMAGE_SUFFIX];
+        return [_feedImageManager imageForKey:key];
+    }
+    return nil;    
+}
+
+- (void)saveFeed:(NSString *)feedId thumbImage:(UIImage *)image
+{
+    if ([feedId length] != 0 && image != nil) {
+        dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+        dispatch_async(queue, ^{
+            NSString *key = [NSString stringWithFormat:@"%@%@",feedId,THUMB_IMAGE_SUFFIX];
+            [_feedImageManager saveImage:image forKey:key];
+    });
+                        }
+}
+- (void)saveFeed:(NSString *)feedId largeImage:(UIImage *)image
+{
+    if ([feedId length] != 0 && image != nil) {
+        dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+        dispatch_async(queue, ^{
+            NSString *key = [NSString stringWithFormat:@"%@%@",feedId,LARGE_IMAGE_SUFFIX];
+            [_feedImageManager saveImage:image forKey:key];
+        });
+    }
+}
+
+- (void)removeOldCache
+{
+    PPDebug(@"<removeOldCache>");
+    [self removeOldFiles];
+    [self removeOldImages];
 }
 @end

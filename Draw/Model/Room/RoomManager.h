@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "Room.h"
 @class Friend;
+@class MyFriend;
 
 @interface RoomManager : NSObject
 {
@@ -29,6 +30,7 @@
                             split:(NSString *)split 
                             count:(NSInteger)count;
 - (RoomUserStatus)aFriend:(Friend *)aFriend statusAtRoom:(Room *)room;
+- (RoomUserStatus)myFriend:(MyFriend *)aFriend statusAtRoom:(Room *)room;
 - (NSMutableArray *)sortRoomList:(NSArray *)roomList;
 - (BOOL)room:(Room *)room containsUser:(NSString *)userId;
 - (NSInteger)roomFriendCapacity;

@@ -7,18 +7,50 @@
 //
 
 #import "CommonGameNetworkService.h"
+#import "ZJHGameState.h"
+#import "ZJHGameNotification.h"
+#import "AccountService.h"
 
-@interface ZJHGameService : CommonGameNetworkService
+@interface ZJHGameService : CommonGameNetworkService <AccountServiceDelegate>
+
+@property (readonly, retain, nonatomic) ZJHGameState *gameState;
 
 + (ZJHGameService*)defaultService;
 
-- (void)bet;                                    // 跟注
-- (void)raiseBet;                               // 加注
-- (void)autoBet;                                // 自动跟注
+//- (ZJHUserPlayInfo *)userPlayInfo:(NSString *)userId;
+- (NSArray *)pokersOfUser:(NSString *)userId;
+- (int)betCountOfUser:(NSString *)userId;
+- (int)totalBetOfUser:(NSString *)userId;
+
+- (void)bet:(BOOL)autoBet;                      // 跟注
+- (void)raiseBet:(int)singleBet;                // 加注
+//- (void)autoBet;                                // 自动跟注
 
 - (void)checkCard;                              // 看牌
 - (void)foldCard;                               // 弃牌
 - (void)compareCard:(NSString*)toUserId;        // 比牌
-- (void)showCard:(NSArray *)cardIds;            // 亮牌
+- (void)showCard:(int)cardId;                   // 亮牌(单张)
+- (void)showCards:(NSArray *)cardIds;           // 亮牌(多张)；目前该接口没用到
+
+- (NSArray *)chipValues;
+
+- (BOOL)canIBet;
+- (BOOL)canIRaiseBet;
+- (BOOL)canIAutoBet;
+- (BOOL)canICheckCard;
+- (BOOL)canIFoldCard;
+- (BOOL)canICompareCard;
+- (BOOL)canIShowCard:(int)cardId;
+
+- (BOOL)canUserCompareCard:(NSString *)userId;
+
+- (NSString *)myCardType;
+- (BOOL)canIContinueAutoBet;
+- (int)remainderAutoBetCount;
+
+- (BOOL)doIWin;
+- (NSString *)winner;
+
+- (int)myBalance;
 
 @end

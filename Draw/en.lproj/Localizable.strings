@@ -12,8 +12,8 @@
 //Notification
 //before 4.5 version
 "kPushMessage" = "%@ just created a room at [Draw Lively] game, \"%@\". Come and play with your friend now!";
-"kPushTextMessage" = "%@ sent you a message\"%@\"";
-"kPushDrawMessage" = "%@ sent you a draw";
+"kPushTextMessage" = "%@ says:\"%@...\"";
+"kPushDrawMessage" = "%@ sent you a draw.";
 "kFM" = "Someone has just followed you";
 "kNGRD" = "%@ Guessed your drawing: [%@].";
 "kNTGD" = "%@ Tried to guess your drawing: [%@].";
@@ -366,9 +366,12 @@
 "kFollowSuccessfully" = "Follow user successfully!";
 "kFollowFailed" = "Network error, follow user failed!";
 "kUnfollow" = "Unfollow";
+"kRemoveFan" = "Remove";
 "kUnfollowing" = "Sending request...";
 "kUnfollowSuccessfully" = "Unfollow user successfully!";
 "kUnfollowFailed" = "Network error, fail to unfollow user!";
+"kRemoveSuccessfully" = "remove fan successfully!";
+"kRemoveFailed" = "Network error, fail to remove user!";
 "kEnterWords" = "Search keyword can not be empty.";
 "kSearchUserPlaceholder" = "Nickname/Facebook/Email";
 "kSearchFailedTitle" = "Network error";
@@ -876,6 +879,12 @@
 
 "kDrawToUserByUser" = "drew to %@";
 "kQQGroup" = "";
+"kCopy" = "Copy";
+
+"kDrawMessage" = "Draw Message";
+"kImageMessage" = "Image Message";
+"kVoiceMessage" = "Voice Message";
+"kResend" = "Resend";
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 

@@ -17,11 +17,16 @@ enum PBZJHCardType{
   SPECIAL = 7;                // 特殊
 }
 
-enum PBZJHUserState{
-  DEFAULT = 0;                    // 默认状态
-  CHECK_CARD = 1;                 // 已经看牌
-  FOLD_CARD = 2;                  // 已经弃牌
-  COMPAIR_LOSE = 3;               // 和别人比牌失败
+enum PBZJHUserAction{
+  NONE = 0;                     // 无动作
+  BET = 1;                      // 跟注
+  RAISE_BET = 2;                // 加注
+  AUTO_BET = 3;                 // 自动跟注
+  CHECK_CARD = 4;               // 看牌
+  FOLD_CARD = 5;                // 弃牌
+  COMPARE_CARD = 6;             // 比牌
+  SHOW_CARD = 7;                // 亮牌
+  CHANGE_CARD = 8;              // 换牌
 }
 
 enum PBPokerRank{
@@ -50,7 +55,7 @@ enum PBPokerSuit{
 }
 
 message PBPoker{
-  optional int32 pokerId = 1;                                 // 扑克Id
+  optional int32 pokerId = 1;                               // 扑克Id
   required PBPokerRank rank= 2;                             // 扑克点数
   required PBPokerSuit suit= 3;                             // 扑克花色
   optional bool faceUp = 5 [default = false];               // 牌面是否朝上
@@ -60,19 +65,31 @@ message PBZJHGameState{
   required int32 totalBet = 1;              // 游戏总注
   required int32 singleBet = 2;             // 游戏单注
   
-  repeated PBZJHUserInfo usersInfo = 6;        // 炸金花所有用户状态，用于旁观者
+  repeated PBZJHUserPlayInfo usersInfo = 6;     // 炸金花所有用户状态
 }
 
-message PBZJHUserInfo{
-  required string userId = 1;       // 用户Id
-  repeated PBPoker pokers = 2;      // 用户的扑克牌
-  
-  optional PBZJHCardType cardType = 3  [default = UNKNOW];   // 牌类型
-  
+message PBZJHPoker{
+  repeated PBPoker pokers = 1;                                  // 用户的扑克牌
+  optional PBZJHCardType cardType = 2  [default = UNKNOW];      // 牌类型
+}
+
+message PBZJHUserPoker{
+  required string userId = 1;           // 用户Id
+  optional PBZJHPoker pokers = 2;       // 扑克
+}
+
+message PBZJHUserPlayInfo{
+  required string userId = 1;                                               // 用户Id  
+  optional PBZJHPoker pokers = 2;                                           // 用户扑克
+
   optional int32 totalBet = 5;                                              // 用户下的总注
   optional bool isAutoBet = 6 [default = false];                            // 是否自动跟
-  optional PBZJHUserState userState = 7 [default = DEFAULT];                // 用户最近的状态
-  optional bool canBeCompared = 8 [default = true];                         // 能否被比牌
+  optional PBZJHUserAction lastAction = 7 [default = NONE];                 // 用户最近的操作
+  
+  optional bool alreadCheckCard = 11 [default = false];                     // 是否已经看牌
+  optional bool alreadFoldCard = 12 [default = false];                      // 是否已经弃牌
+  optional bool alreadShowCard = 13 [default = false];                      // 是否已经亮牌
+  optional bool alreadLose = 14 [default = false];                          // 是否已经失败
 }
 
 message PBZJHGameResult{

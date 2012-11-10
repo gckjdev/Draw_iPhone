@@ -271,10 +271,19 @@
 
 - (void)performTapGuesture:(UITapGestureRecognizer *)tap
 {
+    PPDebug(@"<performTapGuesture>");
     if(self.delegate && [self.delegate respondsToSelector:@selector(didClickShowDrawView:)]){
         [self.delegate didClickShowDrawView:self];
     }
 }
+- (void)performLongTapGuesture:(UILongPressGestureRecognizer *)tap
+{
+    PPDebug(@"<performLongTapGuesture>");
+    if(self.delegate && [self.delegate respondsToSelector:@selector(didLongClickShowDrawView:)]){
+        [self.delegate didLongClickShowDrawView:self];
+    }
+}
+
 
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch
 {
@@ -287,6 +296,22 @@
 
 #pragma mark Constructor & Destructor
 
+- (void)addGestures
+{
+    
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(performTapGuesture:)];
+    tap.delegate = self;
+    [self addGestureRecognizer:tap];
+    [tap release];
+
+    UILongPressGestureRecognizer *ltap = [[UILongPressGestureRecognizer alloc] initWithTarget:self
+                                                                                 action:@selector(performLongTapGuesture:)];
+    ltap.delegate = self;
+    [self addGestureRecognizer:ltap];
+    [ltap release];
+
+}
+
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
@@ -296,10 +321,8 @@
         _drawActionList = [[NSMutableArray alloc] init];
         self.backgroundColor = [UIColor whiteColor];      
         //add tap guesture
-        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(performTapGuesture:)];
-        tap.delegate = self;
-        [self addGestureRecognizer:tap];
-        [tap release];
+        
+        [self addGestures];
         
         //set pen
         pen = [[PenView alloc] initWithPenType:Pencil];
@@ -326,6 +349,7 @@
     PPRelease(_playTimer);
     PPRelease(_drawActionList);
     PPRelease(pen);
+    PPRelease(_image);
     [super dealloc];
 }
 
@@ -352,5 +376,23 @@
     return _showPenHidden;
 }
 
-
+- (void)showImage:(UIImage *)image
+{
+    if (_image != image) {
+        [_image release];
+        _image = [image retain];
+    }
+    _drawRectType = DrawRectTypeShowImage;
+    [self setNeedsDisplay];
+}
+- (void)drawRect:(CGRect)rect
+{
+    if (_drawRectType == DrawRectTypeShowImage) {
+        [self stop];
+        [_image drawInRect:self.bounds];
+        PPDebug(@"<ShowDrawView> show Image");
+    }else{
+        [super drawRect:rect];
+    }
+}
 @end

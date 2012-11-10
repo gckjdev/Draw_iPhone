@@ -13,6 +13,7 @@
 #import "DrawUtils.h"
 #import "Draw.h"
 #import "ShareImageManager.h"
+#import "FeedManager.h"
 
 @implementation RankView
 @synthesize drawFlag = _drawFlag;
@@ -113,18 +114,15 @@
         [showView show];
         UIImage *image = [showView createImage];
         
-//        self.drawImage.alpha = 0;
         [self.drawImage setImage:image];
-//        [UIView animateWithDuration:1 animations:^{
-//            self.drawImage.alpha = 1.0;
-//        }];
         feed.drawImage = image;
         [showView removeFromSuperview];
         feed.drawData = nil;        
-        
-        [[ShareImageManager defaultManager] saveFeedImage:image withImageName:feed.feedId asyn:YES];
+
+        //save image.
+        [[FeedManager defaultManager] saveFeed:feed.feedId thumbImage:image];
     }
-//    [GlobalGetImageCache() manage:self.drawImage];  
+
     
     if (feed.showAnswer) {
         NSString *answer = [NSString stringWithFormat:@" %@",feed.wordText];

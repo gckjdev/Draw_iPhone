@@ -77,4 +77,7 @@ enum deleteFlag {
 
 - (NSString *)getFriendNick:(Friend *)aFriend;
 
+
+//new method for MyFriend
+- (NSArray *)parseFriendList:(NSArray *)jsonArray;
 @end

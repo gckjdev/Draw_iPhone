@@ -111,8 +111,6 @@
 - (void)dealloc {
     [UIApplication sharedApplication].idleTimerDisabled=NO;
 
-    [self unregisterAllNotifications];
-
     [self setAdView:nil];
     
     [self clearAdHideTimer];
@@ -241,10 +239,6 @@
     [[UIApplication sharedApplication] 
      setStatusBarStyle:UIStatusBarStyleBlackOpaque animated:NO];
     
-//    NSString* aRoomName = [[[DiceGameService defaultService] session] roomName];
-//    if (aRoomName == nil || aRoomName.length <= 0) {
-//        aRoomName = [NSString stringWithFormat:@"%d", [[[DiceGameService defaultService] session] sessionId]];
-//    }
     _roomNameLabel.text = [_diceService roomName];
     
     myCoinsLabel.textColor = [UIColor whiteColor];
@@ -272,7 +266,6 @@
     self.waitForPlayerBetLabel.hidden = YES;
     self.waitForPlayerBetLabel.textColor = [UIColor yellowColor];
 
-    [self registerDiceGameNotifications];    
     
     [self updateWaittingForNextTurnNotLabel];
     
@@ -286,6 +279,18 @@
     if ([DeviceDetection isIPAD] == NO){
         [self startAdHideTimer];
     }
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [self registerDiceGameNotifications];
+    [super viewDidAppear:animated];
+}
+
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [self unregisterAllNotifications];
+    [super viewDidDisappear:animated];
 }
 
 - (void)viewDidUnload
@@ -494,7 +499,7 @@
 
 - (IBAction)clickRunAwayButton:(id)sender {
     [self killTimer];
-    if (![_diceService.diceSession isMeAByStander] && (_diceService.diceSession.gameState == GameStatePlaying)) {
+    if (![_diceService.diceSession isMeAByStander] && (_diceService.diceSession.status == GameStatusPlaying)) {
         NSString *message = [NSString stringWithFormat:NSLS(@"kDedutCoinQuitGameAlertMessage"), [ConfigManager getDiceFleeCoin]];
         CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kQuitGameAlertTitle") 
                                                            message:message
@@ -619,90 +624,79 @@
 
 #pragma mark - Register notifications.
 
-- (void)registerDiceGameNotificationWithName:(NSString *)name 
-                                  usingBlock:(void (^)(NSNotification *note))block
-{
-    PPDebug(@"<%@> name", [self description]);         
-
-    [self registerNotificationWithName:name 
-                                object:nil 
-                                 queue:[NSOperationQueue mainQueue] 
-                            usingBlock:block];
-}
-
 - (void)registerDiceGameNotifications
 {    
-    [self registerDiceGameNotificationWithName:NOTIFICATION_JOIN_GAME_RESPONSE 
+    [self registerNotificationWithName:NOTIFICATION_JOIN_GAME_RESPONSE 
                                     usingBlock:^(NSNotification *notification) {                    
                                     }];
 
     
-    [self registerDiceGameNotificationWithName:NOTIFICATION_ROOM 
+    [self registerNotificationWithName:NOTIFICATION_ROOM 
                             usingBlock:^(NSNotification *notification) {
          [self roomChanged];
      }];
         
-    [self registerDiceGameNotificationWithName:NOTIFICATION_ROLL_DICE_BEGIN
+    [self registerNotificationWithName:NOTIFICATION_ROLL_DICE_BEGIN
                                     usingBlock:^(NSNotification *notification) {                       
                                         [self rollDiceBegin];         
                                     }];
     
  
-    [self registerDiceGameNotificationWithName:NOTIFICATION_ROLL_DICE_END
+    [self registerNotificationWithName:NOTIFICATION_ROLL_DICE_END
                                     usingBlock:^(NSNotification *notification) {                       
                                         [self rollDiceEnd];         
                                     }];
     
-    [self registerDiceGameNotificationWithName:NOTIFICATION_NEXT_PLAYER_START
+    [self registerNotificationWithName:NOTIFICATION_NEXT_PLAYER_START
                                     usingBlock:^(NSNotification *notification) {  
                                         GameMessage *message = [CommonGameNetworkService userInfoToMessage:notification.userInfo];
                                         NSString* userId = message.currentPlayUserId;
                                         [self nextPlayerStart:userId];         
                                     }];
     
-    [self registerDiceGameNotificationWithName:NOTIFICATION_CALL_DICE_REQUEST
+    [self registerNotificationWithName:NOTIFICATION_CALL_DICE_REQUEST
                                     usingBlock:^(NSNotification *notification) {                       
                                         [self someoneCallDice];         
                                     }];
     
-    [self registerDiceGameNotificationWithName:NOTIFICATION_CALL_DICE_RESPONSE
+    [self registerNotificationWithName:NOTIFICATION_CALL_DICE_RESPONSE
                                     usingBlock:^(NSNotification *notification) {
                                         [self callDiceSuccess];
                                     }];
     
-    [self registerDiceGameNotificationWithName:NOTIFICATION_OPEN_DICE_REQUEST
+    [self registerNotificationWithName:NOTIFICATION_OPEN_DICE_REQUEST
                                     usingBlock:^(NSNotification *notification) {       
                                         [self someoneOpenDice];         
                                     }];
     
-    [self registerDiceGameNotificationWithName:NOTIFICATION_OPEN_DICE_RESPONSE
+    [self registerNotificationWithName:NOTIFICATION_OPEN_DICE_RESPONSE
                                     usingBlock:^(NSNotification *notification) { 
                                         [self openDiceSuccess];
                                     }];
     
-    [self registerDiceGameNotificationWithName:NOTIFICATION_BET_DICE_REQUEST
+    [self registerNotificationWithName:NOTIFICATION_BET_DICE_REQUEST
                                     usingBlock:^(NSNotification *notification) {
                                         GameMessage *message = [CommonGameNetworkService userInfoToMessage:notification.userInfo];
                                         BOOL win = !message.betDiceRequest.option;
                                         [self someoneBetDice:message.userId win:win];         
                                     }];
     
-    [self registerDiceGameNotificationWithName:NOTIFICATION_BET_DICE_RESPONSE
+    [self registerNotificationWithName:NOTIFICATION_BET_DICE_RESPONSE
                                     usingBlock:^(NSNotification *notification) {
                                         [self betDiceSuccess];
                                     }];
     
-    [self registerDiceGameNotificationWithName:NOTIFICATION_GAME_OVER_REQUEST
+    [self registerNotificationWithName:NOTIFICATION_GAME_OVER_REQUEST
                                     usingBlock:^(NSNotification *notification) {                       
                                         [self gameOver];         
                                     }];
     
-    [self registerDiceGameNotificationWithName:NOTIFICATION_USER_DICE
+    [self registerNotificationWithName:NOTIFICATION_USER_DICE
                                     usingBlock:^(NSNotification *notification) { 
                                         [self someoneChangeDice];
                                     }];
     
-    [self registerDiceGameNotificationWithName:NOTIFICATION_USE_ITEM_REQUEST
+    [self registerNotificationWithName:NOTIFICATION_USE_ITEM_REQUEST
                                     usingBlock:^(NSNotification *notification) {  
                                         GameMessage *message = [CommonGameNetworkService userInfoToMessage:notification.userInfo];
                                         
@@ -714,7 +708,7 @@
                                     }];
 
     
-    [self registerDiceGameNotificationWithName:NOTIFICATION_USE_ITEM_RESPONSE
+    [self registerNotificationWithName:NOTIFICATION_USE_ITEM_RESPONSE
                                     usingBlock:^(NSNotification *notification) {    
                                         GameMessage *message = [CommonGameNetworkService userInfoToMessage:notification.userInfo];
                                         [CommonDiceItemAction handleItemResponse:message.useItemResponse.itemId 
@@ -723,7 +717,7 @@
                                                                         response:message.useItemResponse];
                                     }];
     
-    [self registerDiceGameNotificationWithName:NOTIFICAIION_CHAT_REQUEST
+    [self registerNotificationWithName:NOTIFICAIION_CHAT_REQUEST
                                     usingBlock:^(NSNotification *notification) {    
                                         GameMessage *message = [CommonGameNetworkService userInfoToMessage:notification.userInfo];
                                         
@@ -736,7 +730,8 @@
                                                                  userId:message.userId];
                                         }
                                     }];
-    [self registerDiceGameNotificationWithName:UIApplicationWillEnterForegroundNotification usingBlock:^(NSNotification *note) {
+    
+    [self registerNotificationWithName:UIApplicationWillEnterForegroundNotification usingBlock:^(NSNotification *note) {
         PPDebug(@"<DiceGamePlayController> Disconnected from server");
         if (![_diceService isConnected]) {
             [self popupUnhappyMessage:NSLS(@"kNetworkBroken") title:@""];
@@ -817,7 +812,6 @@
     [self clearAllResultViews];
     [self dismissAllPopupViews];
     [[DiceGameService defaultService] quitGame];
-    [self unregisterAllNotifications];
     [self.navigationController popViewControllerAnimated:YES];
     //[_audioManager backgroundMusicStop];
 }
@@ -826,7 +820,13 @@
 - (void)didClickOnAvatar:(DiceAvatarView*)view
 {
     if (view.userId) {
-        [DiceUserInfoView showUser:view.userId nickName:nil avatar:nil gender:nil location:nil level:0 hasSina:NO hasQQ:NO hasFacebook:NO infoInView:self canChat:NO];
+        MyFriend *aFriend = [MyFriend friendWithFid:view.userId
+                                           nickName:nil
+                                             avatar:nil
+                                             gender:nil
+                                              level:1];
+
+        [DiceUserInfoView showFriend:aFriend infoInView:self canChat:NO needUpdate:YES];
     }
     
 }

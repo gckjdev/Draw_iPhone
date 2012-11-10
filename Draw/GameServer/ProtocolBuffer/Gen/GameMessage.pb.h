@@ -52,8 +52,10 @@
 @class GameOverNotificationRequest_Builder;
 @class GameOverNotificationResponse;
 @class GameOverNotificationResponse_Builder;
-@class GameStartNotification;
-@class GameStartNotification_Builder;
+@class GameStartNotificationRequest;
+@class GameStartNotificationRequest_Builder;
+@class GameStartNotificationResponse;
+@class GameStartNotificationResponse_Builder;
 @class GeneralNotification;
 @class GeneralNotification_Builder;
 @class GetRoomsRequest;
@@ -114,8 +116,12 @@
 @class PBZJHGameResult_Builder;
 @class PBZJHGameState;
 @class PBZJHGameState_Builder;
-@class PBZJHUserInfo;
-@class PBZJHUserInfo_Builder;
+@class PBZJHPoker;
+@class PBZJHPoker_Builder;
+@class PBZJHUserPlayInfo;
+@class PBZJHUserPlayInfo_Builder;
+@class PBZJHUserPoker;
+@class PBZJHUserPoker_Builder;
 @class RegisterRoomsNotificationRequest;
 @class RegisterRoomsNotificationRequest_Builder;
 @class RegisterRoomsNotificationResponse;
@@ -1564,11 +1570,10 @@ BOOL BetTypeIsValidValue(BetType value);
 
 @interface CompareCardResponse : PBGeneratedMessage {
 @private
-  BOOL hasUserResult_:1;
-  PBUserResult* userResult;
+  NSMutableArray* mutableUserResultList;
 }
-- (BOOL) hasUserResult;
-@property (readonly, retain) PBUserResult* userResult;
+- (NSArray*) userResultList;
+- (PBUserResult*) userResultAtIndex:(int32_t) index;
 
 + (CompareCardResponse*) defaultInstance;
 - (CompareCardResponse*) defaultInstance;
@@ -1604,12 +1609,12 @@ BOOL BetTypeIsValidValue(BetType value);
 - (CompareCardResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
 - (CompareCardResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 
-- (BOOL) hasUserResult;
-- (PBUserResult*) userResult;
-- (CompareCardResponse_Builder*) setUserResult:(PBUserResult*) value;
-- (CompareCardResponse_Builder*) setUserResultBuilder:(PBUserResult_Builder*) builderForValue;
-- (CompareCardResponse_Builder*) mergeUserResult:(PBUserResult*) value;
-- (CompareCardResponse_Builder*) clearUserResult;
+- (NSArray*) userResultList;
+- (PBUserResult*) userResultAtIndex:(int32_t) index;
+- (CompareCardResponse_Builder*) replaceUserResultAtIndex:(int32_t) index with:(PBUserResult*) value;
+- (CompareCardResponse_Builder*) addUserResult:(PBUserResult*) value;
+- (CompareCardResponse_Builder*) addAllUserResult:(NSArray*) values;
+- (CompareCardResponse_Builder*) clearUserResultList;
 @end
 
 @interface JoinGameRequest : PBGeneratedMessage {
@@ -1820,10 +1825,14 @@ BOOL BetTypeIsValidValue(BetType value);
 @interface JoinGameResponse : PBGeneratedMessage {
 @private
   BOOL hasGameSession_:1;
+  BOOL hasZjhGameState_:1;
   PBGameSession* gameSession;
+  PBZJHGameState* zjhGameState;
 }
 - (BOOL) hasGameSession;
+- (BOOL) hasZjhGameState;
 @property (readonly, retain) PBGameSession* gameSession;
+@property (readonly, retain) PBZJHGameState* zjhGameState;
 
 + (JoinGameResponse*) defaultInstance;
 - (JoinGameResponse*) defaultInstance;
@@ -1865,6 +1874,13 @@ BOOL BetTypeIsValidValue(BetType value);
 - (JoinGameResponse_Builder*) setGameSessionBuilder:(PBGameSession_Builder*) builderForValue;
 - (JoinGameResponse_Builder*) mergeGameSession:(PBGameSession*) value;
 - (JoinGameResponse_Builder*) clearGameSession;
+
+- (BOOL) hasZjhGameState;
+- (PBZJHGameState*) zjhGameState;
+- (JoinGameResponse_Builder*) setZjhGameState:(PBZJHGameState*) value;
+- (JoinGameResponse_Builder*) setZjhGameStateBuilder:(PBZJHGameState_Builder*) builderForValue;
+- (JoinGameResponse_Builder*) mergeZjhGameState:(PBZJHGameState*) value;
+- (JoinGameResponse_Builder*) clearZjhGameState;
 @end
 
 @interface StartGameRequest : PBGeneratedMessage {
@@ -2459,13 +2475,14 @@ BOOL BetTypeIsValidValue(BetType value);
 @interface GameOverNotificationRequest : PBGeneratedMessage {
 @private
   BOOL hasGameResult_:1;
+  BOOL hasZjhgameResult_:1;
   PBDiceGameResult* gameResult;
-  NSMutableArray* mutableUserResultList;
+  PBZJHGameResult* zjhgameResult;
 }
 - (BOOL) hasGameResult;
+- (BOOL) hasZjhgameResult;
 @property (readonly, retain) PBDiceGameResult* gameResult;
-- (NSArray*) userResultList;
-- (PBUserResult*) userResultAtIndex:(int32_t) index;
+@property (readonly, retain) PBZJHGameResult* zjhgameResult;
 
 + (GameOverNotificationRequest*) defaultInstance;
 - (GameOverNotificationRequest*) defaultInstance;
@@ -2508,12 +2525,12 @@ BOOL BetTypeIsValidValue(BetType value);
 - (GameOverNotificationRequest_Builder*) mergeGameResult:(PBDiceGameResult*) value;
 - (GameOverNotificationRequest_Builder*) clearGameResult;
 
-- (NSArray*) userResultList;
-- (PBUserResult*) userResultAtIndex:(int32_t) index;
-- (GameOverNotificationRequest_Builder*) replaceUserResultAtIndex:(int32_t) index with:(PBUserResult*) value;
-- (GameOverNotificationRequest_Builder*) addUserResult:(PBUserResult*) value;
-- (GameOverNotificationRequest_Builder*) addAllUserResult:(NSArray*) values;
-- (GameOverNotificationRequest_Builder*) clearUserResultList;
+- (BOOL) hasZjhgameResult;
+- (PBZJHGameResult*) zjhgameResult;
+- (GameOverNotificationRequest_Builder*) setZjhgameResult:(PBZJHGameResult*) value;
+- (GameOverNotificationRequest_Builder*) setZjhgameResultBuilder:(PBZJHGameResult_Builder*) builderForValue;
+- (GameOverNotificationRequest_Builder*) mergeZjhgameResult:(PBZJHGameResult*) value;
+- (GameOverNotificationRequest_Builder*) clearZjhgameResult;
 @end
 
 @interface GameOverNotificationResponse : PBGeneratedMessage {
@@ -2858,7 +2875,7 @@ BOOL BetTypeIsValidValue(BetType value);
 - (SendDrawDataResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
-@interface GameStartNotification : PBGeneratedMessage {
+@interface GameStartNotificationRequest : PBGeneratedMessage {
 @private
   BOOL hasZjhGameState_:1;
   PBZJHGameState* zjhGameState;
@@ -2866,46 +2883,85 @@ BOOL BetTypeIsValidValue(BetType value);
 - (BOOL) hasZjhGameState;
 @property (readonly, retain) PBZJHGameState* zjhGameState;
 
-+ (GameStartNotification*) defaultInstance;
-- (GameStartNotification*) defaultInstance;
++ (GameStartNotificationRequest*) defaultInstance;
+- (GameStartNotificationRequest*) defaultInstance;
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
-- (GameStartNotification_Builder*) builder;
-+ (GameStartNotification_Builder*) builder;
-+ (GameStartNotification_Builder*) builderWithPrototype:(GameStartNotification*) prototype;
+- (GameStartNotificationRequest_Builder*) builder;
++ (GameStartNotificationRequest_Builder*) builder;
++ (GameStartNotificationRequest_Builder*) builderWithPrototype:(GameStartNotificationRequest*) prototype;
 
-+ (GameStartNotification*) parseFromData:(NSData*) data;
-+ (GameStartNotification*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
-+ (GameStartNotification*) parseFromInputStream:(NSInputStream*) input;
-+ (GameStartNotification*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
-+ (GameStartNotification*) parseFromCodedInputStream:(PBCodedInputStream*) input;
-+ (GameStartNotification*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (GameStartNotificationRequest*) parseFromData:(NSData*) data;
++ (GameStartNotificationRequest*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (GameStartNotificationRequest*) parseFromInputStream:(NSInputStream*) input;
++ (GameStartNotificationRequest*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (GameStartNotificationRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input;
++ (GameStartNotificationRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
-@interface GameStartNotification_Builder : PBGeneratedMessage_Builder {
+@interface GameStartNotificationRequest_Builder : PBGeneratedMessage_Builder {
 @private
-  GameStartNotification* result;
+  GameStartNotificationRequest* result;
 }
 
-- (GameStartNotification*) defaultInstance;
+- (GameStartNotificationRequest*) defaultInstance;
 
-- (GameStartNotification_Builder*) clear;
-- (GameStartNotification_Builder*) clone;
+- (GameStartNotificationRequest_Builder*) clear;
+- (GameStartNotificationRequest_Builder*) clone;
 
-- (GameStartNotification*) build;
-- (GameStartNotification*) buildPartial;
+- (GameStartNotificationRequest*) build;
+- (GameStartNotificationRequest*) buildPartial;
 
-- (GameStartNotification_Builder*) mergeFrom:(GameStartNotification*) other;
-- (GameStartNotification_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
-- (GameStartNotification_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+- (GameStartNotificationRequest_Builder*) mergeFrom:(GameStartNotificationRequest*) other;
+- (GameStartNotificationRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (GameStartNotificationRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 
 - (BOOL) hasZjhGameState;
 - (PBZJHGameState*) zjhGameState;
-- (GameStartNotification_Builder*) setZjhGameState:(PBZJHGameState*) value;
-- (GameStartNotification_Builder*) setZjhGameStateBuilder:(PBZJHGameState_Builder*) builderForValue;
-- (GameStartNotification_Builder*) mergeZjhGameState:(PBZJHGameState*) value;
-- (GameStartNotification_Builder*) clearZjhGameState;
+- (GameStartNotificationRequest_Builder*) setZjhGameState:(PBZJHGameState*) value;
+- (GameStartNotificationRequest_Builder*) setZjhGameStateBuilder:(PBZJHGameState_Builder*) builderForValue;
+- (GameStartNotificationRequest_Builder*) mergeZjhGameState:(PBZJHGameState*) value;
+- (GameStartNotificationRequest_Builder*) clearZjhGameState;
+@end
+
+@interface GameStartNotificationResponse : PBGeneratedMessage {
+@private
+}
+
++ (GameStartNotificationResponse*) defaultInstance;
+- (GameStartNotificationResponse*) defaultInstance;
+
+- (BOOL) isInitialized;
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
+- (GameStartNotificationResponse_Builder*) builder;
++ (GameStartNotificationResponse_Builder*) builder;
++ (GameStartNotificationResponse_Builder*) builderWithPrototype:(GameStartNotificationResponse*) prototype;
+
++ (GameStartNotificationResponse*) parseFromData:(NSData*) data;
++ (GameStartNotificationResponse*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (GameStartNotificationResponse*) parseFromInputStream:(NSInputStream*) input;
++ (GameStartNotificationResponse*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (GameStartNotificationResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input;
++ (GameStartNotificationResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+@end
+
+@interface GameStartNotificationResponse_Builder : PBGeneratedMessage_Builder {
+@private
+  GameStartNotificationResponse* result;
+}
+
+- (GameStartNotificationResponse*) defaultInstance;
+
+- (GameStartNotificationResponse_Builder*) clear;
+- (GameStartNotificationResponse_Builder*) clone;
+
+- (GameStartNotificationResponse*) build;
+- (GameStartNotificationResponse*) buildPartial;
+
+- (GameStartNotificationResponse_Builder*) mergeFrom:(GameStartNotificationResponse*) other;
+- (GameStartNotificationResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (GameStartNotificationResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
 @interface GeneralNotification : PBGeneratedMessage {
@@ -3323,26 +3379,27 @@ BOOL BetTypeIsValidValue(BetType value);
 @interface GameMessage : PBGeneratedMessage {
 @private
   BOOL hasSessionId_:1;
-  BOOL hasStartOffset_:1;
   BOOL hasMessageId_:1;
   BOOL hasTimeStamp_:1;
   BOOL hasRound_:1;
   BOOL hasMaxCount_:1;
   BOOL hasOnlineUserCount_:1;
-  BOOL hasCurrentPlayUserId_:1;
-  BOOL hasToUserId_:1;
-  BOOL hasUserId_:1;
+  BOOL hasStartOffset_:1;
   BOOL hasMac_:1;
-  BOOL hasGameOverNotificationRequest_:1;
-  BOOL hasGameOverNotificationResponse_:1;
-  BOOL hasRegisterRoomsNotificationRequest_:1;
-  BOOL hasRegisterRoomsNotificationResponse_:1;
-  BOOL hasUnRegisterRoomsNotificationRequest_:1;
-  BOOL hasUnRegisterRoomsNotificationResponse_:1;
-  BOOL hasUserDiceNotification_:1;
-  BOOL hasBetDiceRequest_:1;
-  BOOL hasBetDiceResponse_:1;
+  BOOL hasUserId_:1;
+  BOOL hasToUserId_:1;
+  BOOL hasCurrentPlayUserId_:1;
   BOOL hasUseItemRequest_:1;
+  BOOL hasBetDiceResponse_:1;
+  BOOL hasBetDiceRequest_:1;
+  BOOL hasUserDiceNotification_:1;
+  BOOL hasUnRegisterRoomsNotificationResponse_:1;
+  BOOL hasUnRegisterRoomsNotificationRequest_:1;
+  BOOL hasRegisterRoomsNotificationResponse_:1;
+  BOOL hasRegisterRoomsNotificationRequest_:1;
+  BOOL hasGameOverNotificationResponse_:1;
+  BOOL hasGameOverNotificationRequest_:1;
+  BOOL hasOpenDiceResponse_:1;
   BOOL hasUseItemResponse_:1;
   BOOL hasBetRequest_:1;
   BOOL hasBetResponse_:1;
@@ -3358,6 +3415,8 @@ BOOL BetTypeIsValidValue(BetType value);
   BOOL hasJoinGameResponse_:1;
   BOOL hasStartGameRequest_:1;
   BOOL hasStartGameResponse_:1;
+  BOOL hasGameStartNotificationRequest_:1;
+  BOOL hasGameStartNotificationResponse_:1;
   BOOL hasSendDrawDataRequest_:1;
   BOOL hasSendDrawDataResponse_:1;
   BOOL hasChatRequest_:1;
@@ -3376,31 +3435,31 @@ BOOL BetTypeIsValidValue(BetType value);
   BOOL hasCallDiceRequest_:1;
   BOOL hasCallDiceResponse_:1;
   BOOL hasOpenDiceRequest_:1;
-  BOOL hasOpenDiceResponse_:1;
   BOOL hasCompleteReason_:1;
   BOOL hasResultCode_:1;
   BOOL hasCommand_:1;
   int64_t sessionId;
-  int32_t startOffset;
   int32_t messageId;
   int32_t timeStamp;
   int32_t round;
   int32_t maxCount;
   int32_t onlineUserCount;
-  NSString* currentPlayUserId;
-  NSString* toUserId;
-  NSString* userId;
+  int32_t startOffset;
   NSString* mac;
-  GameOverNotificationRequest* gameOverNotificationRequest;
-  GameOverNotificationResponse* gameOverNotificationResponse;
-  RegisterRoomsNotificationRequest* registerRoomsNotificationRequest;
-  RegisterRoomsNotificationResponse* registerRoomsNotificationResponse;
-  UnRegisterRoomsNotificationRequest* unRegisterRoomsNotificationRequest;
-  UnRegisterRoomsNotificationResponse* unRegisterRoomsNotificationResponse;
-  UserDiceNotification* userDiceNotification;
-  BetDiceRequest* betDiceRequest;
-  BetDiceResponse* betDiceResponse;
+  NSString* userId;
+  NSString* toUserId;
+  NSString* currentPlayUserId;
   UseItemRequest* useItemRequest;
+  BetDiceResponse* betDiceResponse;
+  BetDiceRequest* betDiceRequest;
+  UserDiceNotification* userDiceNotification;
+  UnRegisterRoomsNotificationResponse* unRegisterRoomsNotificationResponse;
+  UnRegisterRoomsNotificationRequest* unRegisterRoomsNotificationRequest;
+  RegisterRoomsNotificationResponse* registerRoomsNotificationResponse;
+  RegisterRoomsNotificationRequest* registerRoomsNotificationRequest;
+  GameOverNotificationResponse* gameOverNotificationResponse;
+  GameOverNotificationRequest* gameOverNotificationRequest;
+  OpenDiceResponse* openDiceResponse;
   UseItemResponse* useItemResponse;
   BetRequest* betRequest;
   BetResponse* betResponse;
@@ -3416,6 +3475,8 @@ BOOL BetTypeIsValidValue(BetType value);
   JoinGameResponse* joinGameResponse;
   StartGameRequest* startGameRequest;
   StartGameResponse* startGameResponse;
+  GameStartNotificationRequest* gameStartNotificationRequest;
+  GameStartNotificationResponse* gameStartNotificationResponse;
   SendDrawDataRequest* sendDrawDataRequest;
   SendDrawDataResponse* sendDrawDataResponse;
   GameChatRequest* chatRequest;
@@ -3434,7 +3495,6 @@ BOOL BetTypeIsValidValue(BetType value);
   CallDiceRequest* callDiceRequest;
   CallDiceResponse* callDiceResponse;
   OpenDiceRequest* openDiceRequest;
-  OpenDiceResponse* openDiceResponse;
   GameCompleteReason completeReason;
   GameResultCode resultCode;
   GameCommandType command;
@@ -3453,6 +3513,8 @@ BOOL BetTypeIsValidValue(BetType value);
 - (BOOL) hasJoinGameResponse;
 - (BOOL) hasStartGameRequest;
 - (BOOL) hasStartGameResponse;
+- (BOOL) hasGameStartNotificationRequest;
+- (BOOL) hasGameStartNotificationResponse;
 - (BOOL) hasSendDrawDataRequest;
 - (BOOL) hasSendDrawDataResponse;
 - (BOOL) hasChatRequest;
@@ -3511,6 +3573,8 @@ BOOL BetTypeIsValidValue(BetType value);
 @property (readonly, retain) JoinGameResponse* joinGameResponse;
 @property (readonly, retain) StartGameRequest* startGameRequest;
 @property (readonly, retain) StartGameResponse* startGameResponse;
+@property (readonly, retain) GameStartNotificationRequest* gameStartNotificationRequest;
+@property (readonly, retain) GameStartNotificationResponse* gameStartNotificationResponse;
 @property (readonly, retain) SendDrawDataRequest* sendDrawDataRequest;
 @property (readonly, retain) SendDrawDataResponse* sendDrawDataResponse;
 @property (readonly, retain) GameChatRequest* chatRequest;
@@ -3667,6 +3731,20 @@ BOOL BetTypeIsValidValue(BetType value);
 - (GameMessage_Builder*) setStartGameResponseBuilder:(StartGameResponse_Builder*) builderForValue;
 - (GameMessage_Builder*) mergeStartGameResponse:(StartGameResponse*) value;
 - (GameMessage_Builder*) clearStartGameResponse;
+
+- (BOOL) hasGameStartNotificationRequest;
+- (GameStartNotificationRequest*) gameStartNotificationRequest;
+- (GameMessage_Builder*) setGameStartNotificationRequest:(GameStartNotificationRequest*) value;
+- (GameMessage_Builder*) setGameStartNotificationRequestBuilder:(GameStartNotificationRequest_Builder*) builderForValue;
+- (GameMessage_Builder*) mergeGameStartNotificationRequest:(GameStartNotificationRequest*) value;
+- (GameMessage_Builder*) clearGameStartNotificationRequest;
+
+- (BOOL) hasGameStartNotificationResponse;
+- (GameStartNotificationResponse*) gameStartNotificationResponse;
+- (GameMessage_Builder*) setGameStartNotificationResponse:(GameStartNotificationResponse*) value;
+- (GameMessage_Builder*) setGameStartNotificationResponseBuilder:(GameStartNotificationResponse_Builder*) builderForValue;
+- (GameMessage_Builder*) mergeGameStartNotificationResponse:(GameStartNotificationResponse*) value;
+- (GameMessage_Builder*) clearGameStartNotificationResponse;
 
 - (BOOL) hasSendDrawDataRequest;
 - (SendDrawDataRequest*) sendDrawDataRequest;

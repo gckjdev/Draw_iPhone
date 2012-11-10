@@ -29,7 +29,7 @@
 @end
 
 
-@interface CommentInfo : NSObject {
+@interface CommentInfo : NSObject<NSCoding> {
     NSString *_actionId;
     FeedType _type;
     NSString *_comment;

@@ -68,6 +68,36 @@
     return self;
 }
 
+#define KEY_ID @"ID"
+#define KEY_TYPE @"TYPE"
+#define KEY_CREATE_DATE @"CREATE_DATE"
+#define KEY_USER @"USER"
+#define KEY_STATUS @"STATUS"
+#define KEY_DESC @"DESC"
+
+- (id)initWithCoder:(NSCoder *)aDecoder
+{
+    self = [super init];
+    if (self) {
+        self.feedId = [aDecoder decodeObjectForKey:KEY_ID];
+        self.feedType = [aDecoder decodeIntegerForKey:KEY_TYPE];
+        self.createDate = [aDecoder decodeObjectForKey:KEY_CREATE_DATE];
+        self.feedUser = [aDecoder decodeObjectForKey:KEY_USER];
+        self.opusStatus = [aDecoder decodeIntegerForKey:KEY_STATUS];
+        self.desc = [aDecoder decodeObjectForKey:KEY_DESC];
+    }
+    return self;
+}
+
+- (void)encodeWithCoder:(NSCoder *)aCoder
+{
+    [aCoder encodeObject:self.feedId forKey:KEY_ID];
+    [aCoder encodeInteger:self.feedType forKey:KEY_TYPE];
+    [aCoder encodeObject:self.createDate forKey:KEY_CREATE_DATE];
+    [aCoder encodeObject:self.feedUser forKey:KEY_USER];
+    [aCoder encodeInteger:self.opusStatus forKey:KEY_STATUS];
+    [aCoder encodeObject:self.desc forKey:KEY_DESC];
+}
 
 - (BOOL)isMyFeed
 {

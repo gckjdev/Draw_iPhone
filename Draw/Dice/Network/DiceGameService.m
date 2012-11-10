@@ -44,18 +44,18 @@ static DiceGameService* _defaultService;
     return self;
 }
 
-- (void)handleNextPlayerStartNotification:(GameMessage*)message
-{
-    // update game status and fire notification
-    [self.diceSession setCurrentPlayUserId:message.currentPlayUserId];
-    [self postNotification:NOTIFICATION_NEXT_PLAYER_START message:message];
-}
+//- (void)handleNextPlayerStartNotification:(GameMessage*)message
+//{
+//    // update game status and fire notification
+//    [self.diceSession setCurrentPlayUserId:message.currentPlayUserId];
+//    [self postNotification:NOTIFICATION_NEXT_PLAYER_START message:message];
+//}
 
 - (void)handleRollDiceBegin:(GameMessage*)message
 {
     [self.diceSession reset];
     self.diceSession.isMeAByStander = NO;
-    self.diceSession.gameState = GameStatePlaying;
+    self.diceSession.status = GameStatusPlaying;
 
     NSMutableArray* newUserList = [NSMutableArray array];
     
@@ -139,9 +139,9 @@ static DiceGameService* _defaultService;
     }
 }
 
-- (void)handleGameOverNotificationRequest:(GameMessage *)message
+- (void)handleMoreOnGameOverNotificationRequest:(GameMessage *)message
 {
-    self.diceSession.gameState = GameStateGameOver;
+    self.diceSession.status = GameStatusOver;
     NSMutableDictionary *resultDic= [NSMutableDictionary dictionary];
     for(PBUserResult *result in [[[message gameOverNotificationRequest] gameResult] userResultList])
     {
@@ -222,9 +222,9 @@ static DiceGameService* _defaultService;
             [self handleRollDiceEnd:message];
             break;
             
-        case GameCommandTypeNextPlayerStartNotificationRequest:
-            [self handleNextPlayerStartNotification:message];
-            break;
+//        case GameCommandTypeNextPlayerStartNotificationRequest:
+//            [self handleNextPlayerStartNotification:message];
+//            break;
             
         case GameCommandTypeCallDiceRequest:
             [self handleCallDiceRequest:message];
@@ -242,9 +242,9 @@ static DiceGameService* _defaultService;
             [self handleOpenDiceResponse:message];
             break;
             
-        case GameCommandTypeGameOverNotificationRequest:
-            [self handleGameOverNotificationRequest:message];
-            break;
+//        case GameCommandTypeGameOverNotificationRequest:
+//            [self handleGameOverNotificationRequest:message];
+//            break;
             
         case GameCommandTypeUserDiceNotification:
             [self handleUserDiceNotification:message];
@@ -390,19 +390,19 @@ static DiceGameService* _defaultService;
                                                     multiple:1]; 
 }
 
-- (void)initServerListString
+- (NSString *)getServerListString
 {
     switch (_ruleType) {
         case DiceGameRuleTypeRuleNormal:
-            self.serverStringList = [ConfigManager getDiceServerListStringWithNormal];
+            return [ConfigManager getDiceServerListStringWithNormal];
             break;
             
         case DiceGameRuleTypeRuleHigh:
-            self.serverStringList = [ConfigManager getDiceServerListStringWithHightRule];
+            return [ConfigManager getDiceServerListStringWithHightRule];
             break;
             
         case DiceGameRuleTypeRuleSuperHigh:
-            self.serverStringList = [ConfigManager getDiceServerListStringWithSuperHightRule];
+            return [ConfigManager getDiceServerListStringWithSuperHightRule];
             break;
             
         default:

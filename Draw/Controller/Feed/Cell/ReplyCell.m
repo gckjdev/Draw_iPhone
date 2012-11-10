@@ -14,7 +14,7 @@
 #import "WordManager.h"
 #import "CommonUserInfoView.h"
 #import "ShareImageManager.h"
-
+#import "MyFriend.h"
 
 @implementation ReplyCell
 @synthesize commentLabel;
@@ -144,15 +144,12 @@
 #pragma mark - avatar view delegate
 - (void)didClickOnAvatar:(NSString *)userId
 {
-    [CommonUserInfoView showUser:userId 
-                        nickName:nil 
-                          avatar:nil 
-                          gender:nil 
-                        location:nil 
-                           level:1
-                         hasSina:NO 
-                           hasQQ:NO 
-                     hasFacebook:NO 
-                      infoInView:self.delegate];
+    MyFriend *friend = [MyFriend friendWithFid:userId
+                                      nickName:nil
+                                        avatar:nil
+                                        gender:nil
+                                         level:1];
+    [CommonUserInfoView showFriend:friend infoInView:self.delegate needUpdate:YES];
+
 }
 @end

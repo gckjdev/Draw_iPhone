@@ -94,5 +94,4 @@
 - (NSString*)rankToString:(int)rank;
 
 
-
 @end

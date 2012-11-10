@@ -8,16 +8,14 @@
 
 #import "ChatDetailController.h"
 #import "DeviceDetection.h"
-#import "ChatMessage.h"
-#import "ChatMessageManager.h"
+#import "PPMessage.h"
+#import "PPMessageManager.h"
 #import "UserManager.h"
 #import "DrawConstants.h"
 #import "DrawDataService.h"
 #import "DrawAction.h"
 #import "GameBasic.pb.h"
 #import "ShowDrawView.h"
-#import "MessageTotalManager.h"
-#import "ChatMessageUtil.h"
 #import "ShareImageManager.h"
 #import "ReplayGraffitiController.h"
 #import "DrawAppDelegate.h"
@@ -27,139 +25,209 @@
 #import "DiceUserInfoView.h"
 #import "GameNetworkConstants.h"
 #import "ChatListController.h"
+#import "MessageStat.h"
 
 @interface ChatDetailController ()
+{
+    MessageStat *_messageStat;
+    NSMutableArray *_messageList;
+    CGFloat _panelHeight;
+    
+    NSInteger _asIndexDelete;
+    NSInteger _asIndexReplay;
+    NSInteger _asIndexCopy;
+    NSInteger _asIndexResend;
+//    BOOL _noData;
+    BOOL _showingActionSheet;
+}
 
-@property (retain, nonatomic) NSString *friendNickname;
-@property (retain, nonatomic) NSString *friendAvatar;
-@property (retain, nonatomic) NSString *friendGender;
-@property (retain, nonatomic) OfflineDrawViewController *offlineDrawViewController;
-@property (retain, nonatomic) ChatMessage *selectedMessage;
-
+@property (retain, nonatomic) PPMessage *selectedMessage;
+@property (retain, nonatomic) MessageStat *messageStat;
+@property (retain, nonatomic) NSMutableArray *messageList;
 - (IBAction)clickBack:(id)sender;
-- (IBAction)clickRefreshButton:(id)sender;
-- (IBAction)clickGraffitiButton:(id)sender;
-- (IBAction)clickSendButton:(id)sender;
-
-
-- (void)scrollToBottom:(BOOL)animated;
-- (void)showGraffitiView;
-- (void)hideGraffitiView;
-- (void)removeHideKeyboardButton;
-- (void)addHideKeyboardButton;
-- (void)clickHideKeyboardButton:(id)sender;
-- (void)replayGraffiti:(id)sender;
-- (void)changeTableSize:(BOOL)animated duration:(NSTimeInterval)duration;
-- (void)keepSendButtonSite;
-- (void)updateInputViewAndTableFrame;
-- (void)setAndReloadData:(NSArray *)newDataList;
-
+- (NSInteger)loadNewDataCount;
+- (NSInteger)loadMoreDataCount;
+- (void)tableViewScrollToTop;
+- (void)tableViewScrollToBottom;
+- (BOOL)messageShowTime:(PPMessage *)message;
+- (void)appendMessageList:(NSArray *)list;
 @end
 
 
 @implementation ChatDetailController
 @synthesize titleLabel;
-@synthesize graffitiButton;
 @synthesize inputBackgroundView;
 @synthesize inputTextView;
-@synthesize sendButton;
 @synthesize inputTextBackgroundImage;
-@synthesize paperImageView;
 @synthesize refreshButton;
-@synthesize friendUserId = _friendUserId;
-@synthesize friendNickname = _friendNickname;
-@synthesize friendAvatar = _friendAvatar;
-@synthesize friendGender = _friendGender;
-@synthesize offlineDrawViewController = _offlineDrawViewController;
 @synthesize selectedMessage = _selectedMessage;
+@synthesize messageStat = _messageStat;
+@synthesize messageList = _messageList;
+@synthesize delegate = _delegate;
 
+- (void)reloadTableView
+{
+    NSArray *temp = [self.messageList sortedArrayUsingComparator:^(id obj1,id obj2){
+        NSDate *date1 = [(PPMessage *)obj1 createDate];
+        NSDate *date2 = [(PPMessage *)obj2 createDate];
+        if ([date1 timeIntervalSince1970] > [date2 timeIntervalSince1970]) {
+            return NSOrderedDescending;
+        }
+        return NSOrderedAscending;
+        
+    } ];
+    self.messageList = [NSMutableArray arrayWithArray:temp];
+    temp = nil;
+    [[self dataTableView] reloadData];
+}
+
+- (NSString *)fid
+{
+    return self.messageStat.friendId;
+}
+
+- (void)appendMessageList:(NSArray *)list
+{
+    
+//    PPDebug(@"", <#...#>)
+    if ([list count] == 0) {
+        return;
+    }
+    if ([_messageList count] == 0) {
+        [_messageList addObjectsFromArray:list];
+        return;
+    }
+    NSMutableArray *repeatList = [NSMutableArray array];
+    for (PPMessage *nMessage in list) {
+        for (PPMessage *message in _messageList) {
+            if ([message.messageId isEqualToString:nMessage.messageId]) {
+                [repeatList addObject:nMessage];
+                break;
+            }
+        }
+    }
+    PPDebug(@"repeatList count = %d", [repeatList count]);
+    [_messageList addObjectsFromArray:list];
+    [_messageList removeObjectsInArray:repeatList];
+}
+
+#define GROUP_INTERVAL 60 * 5
+- (BOOL)messageShowTime:(PPMessage *)message
+{
+    NSInteger index = [self.messageList indexOfObject:message];
+    if (index == 0) {
+        return YES;
+    }
+    PPMessage *lastMessage = [self.messageList objectAtIndex:index - 1];
+    
+    NSInteger timeValue = [[message createDate] timeIntervalSince1970];
+    NSInteger lastTime = [[lastMessage createDate] timeIntervalSince1970];
+    if (timeValue - lastTime >= GROUP_INTERVAL) {
+        return YES;
+    }
+    return NO;
+}
 - (void)dealloc {
-    PPRelease(_offlineDrawViewController);
-    PPRelease(_friendNickname);
-    PPRelease(_friendUserId);
-    PPRelease(_friendAvatar);
-    PPRelease(_friendGender);
     PPRelease(titleLabel);
-    PPRelease(graffitiButton);
-    PPRelease(sendButton);
     PPRelease(inputTextView);
     PPRelease(inputBackgroundView);
     PPRelease(inputTextBackgroundImage);
-    PPRelease(paperImageView);
     PPRelease(refreshButton);
     PPRelease(_selectedMessage);
+    PPRelease(_messageStat);
+    PPRelease(_messageList);
     [super dealloc];
 }
 
 
-- (id)initWithFriendUserId:(NSString *)frindUserId 
-            friendNickname:(NSString *)friendNickname 
-              friendAvatar:(NSString *)friendAvatar 
-              friendGender:(NSString *)friendGender
+- (id)initWithMessageStat:(MessageStat *)messageStat
 {
     self = [super init];
     if (self) {
-        self.friendUserId = frindUserId;
-        self.friendNickname = friendNickname;
-        self.friendAvatar = friendAvatar;
-        self.friendGender = friendGender;
+        self.messageStat = messageStat;
+        _messageList = [[NSMutableArray alloc] init];
     }
     return self;
+}
+
+- (void)initViews
+{
+    self.titleLabel.text = self.messageStat.friendNickName;
+    inputTextView.returnKeyType = UIReturnKeySend;
+
+}
+
+
+
+#pragma mark read && write data into files
+
+- (void)initListWithLocalData
+{
+    NSArray* list = [PPMessageManager messageListForFriendId:self.fid];
+    PPDebug(@"<initListWithLocalData> list count = %d", [list count]);
+    if ([list count] != 0) {
+        [self appendMessageList:list];
+        [self reloadTableView];
+        [self tableViewScrollToBottom];
+        
+        //reSend the sendding messages...
+        for (PPMessage *message in list) {
+            if (message.status == MessageStatusSending) {
+                [[ChatService defaultService] sendMessage:message delegate:self];
+            }
+        }
+    }
+}
+
+- (void)bgRunBlock:(dispatch_block_t)block
+{
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    if (queue) {
+        dispatch_async(queue, block);
+    }
+}
+- (void)bgSaveMessageList
+{
+    [self bgRunBlock:^{
+        [PPMessageManager saveFriend:self.fid messageList:self.messageList];
+    }];
 }
 
 
 - (void)viewDidLoad
 {
-    //[self setSupportRefreshFooter:YES];
-    
+    [self setSupportRefreshHeader:YES];
     [super viewDidLoad];
-    self.titleLabel.text = self.friendNickname;
-    
-    ShareImageManager *imageManager = [ShareImageManager defaultManager];
-    [inputTextBackgroundImage setImage:[imageManager inputImage]];
-    [sendButton setBackgroundImage:[imageManager greenImage] forState:UIControlStateNormal];
-    [sendButton setTitle:NSLS(@"kSendMessage") forState:UIControlStateNormal];
-    [graffitiButton setBackgroundImage:[imageManager greenImage] forState:UIControlStateNormal];
-    [graffitiButton setTitle:NSLS(@"kGraffiti") forState:UIControlStateNormal];
-    inputBackgroundView.backgroundColor = [UIColor clearColor];
-    inputTextView.returnKeyType = UIReturnKeySend;
-    
-    [[MessageTotalManager defaultManager] readNewMessageWithFriendUserId:_friendUserId 
-                                                                  userId:[[UserManager defaultManager] userId]];
-    self.dataList = [[ChatMessageManager defaultManager] findMessagesByFriendUserId:_friendUserId];
-    [self findAllMessages];
-    
-    [self changeTableSize:NO duration:0];
-    
+    [self initViews];  
+    [self initListWithLocalData];
+    [self loadNewMessage];
 }
 
 
 - (void)viewDidUnload
 {
     [self setTitleLabel:nil];
-    [self setGraffitiButton:nil];
-    [self setSendButton:nil];
     [self setInputBackgroundView:nil];
     [self setInputTextView:nil];
     [self setInputTextBackgroundImage:nil];
-    [self setPaperImageView:nil];
     [self setRefreshButton:nil];
+    [self setMessageList:nil];
     [super viewDidUnload];
 }
 
 
 - (void)viewDidAppear:(BOOL)animated
 {
-    //not reload data
-    //PPDebug(@"ChatDetailController viewDidAppear");
     
     DrawAppDelegate *drawAppDelegate = (DrawAppDelegate *)[[UIApplication sharedApplication] delegate];
     drawAppDelegate.chatDetailController = self;
+    [super viewDidAppear:animated];
 }
-
 
 - (void)viewDidDisappear:(BOOL)animated
 {
+    [self bgSaveMessageList];
+    
     DrawAppDelegate *drawAppDelegate = (DrawAppDelegate *)[[UIApplication sharedApplication] delegate];
     drawAppDelegate.chatDetailController = nil;
     [super viewDidDisappear:animated];
@@ -167,530 +235,524 @@
 
 
 #pragma mark - ChatServiceDelegate methods
-- (void)didFindAllMessages:(NSArray *)list resultCode:(int)resultCode newMessagesCount:(NSUInteger)newMessagesCount
+- (void)didGetMessages:(NSArray *)list 
+               forward:(BOOL)forward
+            resultCode:(int)resultCode
 {
     [self hideActivity];
-    
+    [self dataSourceDidFinishLoadingNewData];   
     if (resultCode == 0) {
-        if (newMessagesCount > 0) {
-            [[ChatService defaultService] sendHasReadMessage:nil friendUserId:_friendUserId];
+        PPDebug(@"<didGetMessages>, count = %d", [list count]);
+        if (!forward && [list count] < [self loadMoreDataCount]) {
+            [self.refreshHeaderView setHidden:YES];
+            self.dataTableView.tableHeaderView.hidden = YES;
         }
+        if ([list count] == 0) {
+            return;
+        }
+        [self appendMessageList:list];
+        [self reloadTableView];
+        if (forward) {
+            [self tableViewScrollToBottom];
+        }else{
+            [self tableViewScrollToTop];
+        }
+        
+        if (forward) {
+            [[ChatService defaultService] sendHasReadMessage:self friendUserId:self.fid];
+            self.messageStat.numberOfNewMessage = 0;
+        }
+        
+    }else{
+        PPDebug(@"<didGetMessages>, fail! resultCode = %d",resultCode);
     }
-    
-    [self setAndReloadData:list];
 }
 
 
-- (void)didSendMessage:(int)resultCode
+- (void)didSendMessage:(PPMessage *)message resultCode:(int)resultCode
 {
-    [self hideActivity];
-    
+    [self.dataTableView reloadData];
     if (resultCode == 0) {
-        [inputTextView setText:@""];
-        [self updateInputViewAndTableFrame];
-        
-        NSArray *list = [[ChatMessageManager defaultManager] findMessagesByFriendUserId:_friendUserId];
-        [self setAndReloadData:list];
-        
-        [self hideGraffitiView];
-        
-        [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kSendMessageSuccessfully") delayTime:1 isSuccessful:YES];
+        if (_delegate && [_delegate respondsToSelector:@selector(didMessageStat:createNewMessage:)]) {
+            [_delegate didMessageStat:self.messageStat createNewMessage:message];
+        }
     } else {
-        [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kSendMessageFailed") delayTime:2 isHappy:NO];
+        
     }
-    
-    [inputTextView resignFirstResponder];
-}
-
-
-- (void)didDeleteMessage:(int)resultCode
-{
-    
 }
 
 
 #pragma mark - custom methods
 - (void)scrollToBottom:(BOOL)animated
 {
-    if ([dataList count]>0) {
-        NSIndexPath *indPath = [NSIndexPath indexPathForRow:[dataList count]-1 inSection:0];
+    if ([_messageList count]>0) {
+        NSIndexPath *indPath = [NSIndexPath indexPathForRow:[_messageList count]-1 inSection:0];
         [dataTableView scrollToRowAtIndexPath:indPath atScrollPosition:UITableViewScrollPositionBottom animated:animated];
     }
 }
 
 
-- (void)findAllMessages
-{
-    [[ChatService defaultService] findAllMessages:self friendUserId:_friendUserId starOffset:0 maxCount:100];
-}
-
 
 - (void)showGraffitiView
 {
     OfflineDrawViewController *odc = [[OfflineDrawViewController alloc] initWithTargetType:TypeGraffiti delegate:self];
-    self.offlineDrawViewController = odc;
-    [odc release];
-    //PPDebug(@"offlineDrawViewController:%d",[_offlineDrawViewController retainCount]);
-    _offlineDrawViewController.view.frame = self.view.frame;
-    [self.view addSubview:_offlineDrawViewController.view];
-    CGRect frame = _offlineDrawViewController.view.frame;
-    _offlineDrawViewController.view.frame = CGRectMake(0, self.view.frame.size.height, frame.size.width, frame.size.height);
-    
-    [UIView beginAnimations:nil context:nil];
-    [UIView setAnimationDuration:0.4];
-    _offlineDrawViewController.view.frame = CGRectMake(0, 0, frame.size.width, frame.size.height);
-    [UIImageView commitAnimations];
+    [self presentModalViewController:odc animated:YES];
 }
 
-
-- (void)hideGraffitiView
-{
-    if (_offlineDrawViewController) {
-        CGRect frame = _offlineDrawViewController.view.frame;
-        [UIView beginAnimations:nil context:nil];
-        [UIView setAnimationDuration:0.4];
-        _offlineDrawViewController.view.frame = CGRectMake(0, self.view.frame.size.height, frame.size.width, frame.size.height);
-        [UIImageView commitAnimations];
-    }
-}
-
-
-#define HIDE_KEYBOARDBUTTON_TAG 77
-#define NAVIGATION_BAR_HEIGHT (([DeviceDetection isIPAD])?(100.0):(50.0))
-- (void)removeHideKeyboardButton
-{
-    UIButton *button = (UIButton*)[self.view viewWithTag:HIDE_KEYBOARDBUTTON_TAG];
-    [button removeFromSuperview];
-}
-
-
-- (void)addHideKeyboardButton
-{
-    [self removeHideKeyboardButton];
-    UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(0, NAVIGATION_BAR_HEIGHT, self.view.frame.size.width, self.view.frame.size.height-NAVIGATION_BAR_HEIGHT)];
-    button.tag = HIDE_KEYBOARDBUTTON_TAG;
-    [button addTarget:self action:@selector(clickHideKeyboardButton:) forControlEvents:UIControlEventAllTouchEvents];
-    [self.view addSubview:button];
-    [button release];
-}
-
-- (void)clickHideKeyboardButton:(id)sender
-{
-    [inputTextView resignFirstResponder];
-    [self removeHideKeyboardButton];
-}
-
-
-- (void)replayGraffiti:(id)sender
-{
-    UIButton *button = (UIButton *)sender;
-    NSInteger tag =  button.tag;
-    ChatMessage *message = [dataList objectAtIndex:tag];
-    if ([message.text length] <= 0 && message.drawData) {
-        NSArray* drawActionList = [ChatMessageUtil unarchiveDataToDrawActionList:message.drawData];
-        ReplayGraffitiController *controller = [[ReplayGraffitiController alloc] initWithDrawActionList:drawActionList];
-        [self.navigationController pushViewController:controller animated:YES];
-        [controller release];
-    }
-}
-
-
-#define TABLE_AND_INPUT_SPACE (([DeviceDetection isIPAD])?(24.0):(12.0))
-- (void)changeTableSize:(BOOL)animated duration:(NSTimeInterval)duration
-{
-    CGFloat newPaperHeight = inputBackgroundView.frame.origin.y - paperImageView.frame.origin.y;
-    CGRect newPaperFrame = CGRectMake(paperImageView.frame.origin.x, paperImageView.frame.origin.y, paperImageView.frame.size.width, newPaperHeight);
-    CGFloat newTableHeight = inputBackgroundView.frame.origin.y - dataTableView.frame.origin.y - TABLE_AND_INPUT_SPACE;
-    CGRect newTableFrame = CGRectMake(dataTableView.frame.origin.x, dataTableView.frame.origin.y, dataTableView.frame.size.width, newTableHeight);
-    
-    if (animated) {
-        [UIView beginAnimations:nil context:nil];
-        [UIView setAnimationDuration:duration];
-        paperImageView.frame = newPaperFrame;
-        dataTableView.frame = newTableFrame;
-        [UIView commitAnimations];
-    }else {
-        paperImageView.frame = newPaperFrame;
-        dataTableView.frame = newTableFrame;
-    }
-    
-    [self scrollToBottom:NO];
-}
-
-
-#define SENDBUTTON_AND_BOTTOM_SPACE (([DeviceDetection isIPAD])?(8.0):(4.0))
-- (void)keepSendButtonSite
-{
-    CGFloat newY = inputBackgroundView.frame.size.height-sendButton.frame.size.height-SENDBUTTON_AND_BOTTOM_SPACE;
-    sendButton.frame = CGRectMake(sendButton.frame.origin.x, newY, sendButton.frame.size.width, sendButton.frame.size.height);
-    graffitiButton.frame = CGRectMake(graffitiButton.frame.origin.x, newY, graffitiButton.frame.size.width, graffitiButton.frame.size.height);
-}
-
-
-- (void)setAndReloadData:(NSArray *)newDataList
-{
-    self.dataList = newDataList;
-    [dataTableView reloadData];
-    [self scrollToBottom:NO];
-}
 
 
 #pragma mark - UITableViewDelegate or UITableViewDataSource methods
+
+- (PPMessage *)messageOfIndex:(NSInteger)index
+{
+    if (index >= 0 && index < [_messageList count]) {
+        return [_messageList objectAtIndex:index];
+    }
+    return nil;
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [dataList count];
+    return [_messageList count];
 }
 
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    ChatMessage *message = (ChatMessage *)[dataList objectAtIndex:indexPath.row];
-    return [ChatDetailCell getCellHeight:message];
+    PPMessage *message = [self messageOfIndex:indexPath.row];
+    BOOL flag = [self messageShowTime:message];
+    return [ChatDetailCell getCellHeight:message showTime:flag];
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSString *indentifier = [ChatDetailCell getCellIdentifier];
+    PPMessage *message = [self messageOfIndex:indexPath.row];
+    BOOL isReceive = (message.sourceType != SourceTypeSend);
+    NSString *indentifier = [ChatDetailCell getCellIdentifierIsReceive:isReceive];
     ChatDetailCell *cell = [tableView dequeueReusableCellWithIdentifier:indentifier];
     if (cell == nil) {
-        cell = [ChatDetailCell createCell:self];
+        cell = [ChatDetailCell createCell:self isReceive:isReceive];
+        cell.superController = self;
     }
-    cell.chatDetailCellDelegate = self;
-    ChatMessage *message = (ChatMessage *)[dataList objectAtIndex:indexPath.row];
-    [cell setCellByChatMessage:message 
-                friendNickname:_friendNickname 
-                  friendAvatar:_friendAvatar 
-                  friendGender:_friendGender
-                     indexPath:indexPath];
-    
+    BOOL flag = [self messageShowTime:message];
+    [cell setCellWithMessageStat:self.messageStat 
+                         message:message
+                       indexPath:indexPath 
+                        showTime:flag];
     return cell;
 }
 
-
-- (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    return nil;
-}
-
-- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    return UITableViewCellEditingStyleDelete;
-}
-
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        ChatMessage *chatMessage = [dataList objectAtIndex:indexPath.row];
-        NSString *messageId = chatMessage.messageId;
-        
-        NSMutableArray *mutableArray = [[NSMutableArray alloc] initWithArray:dataList];
-        [mutableArray removeObjectAtIndex:indexPath.row];
-        self.dataList = mutableArray;
-        [mutableArray release];
-        
-        [dataTableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationRight];
-        
-        [[ChatService defaultService] deleteMessage:self messageIdList:[NSArray arrayWithObject:messageId]];
-    }
-}
 
 
 #pragma mark - button action
 - (IBAction)clickBack:(id)sender 
 {
-    BOOL found = NO;
     for (UIViewController* controller in self.navigationController.viewControllers){
         if ([controller isKindOfClass:[ChatListController class]]){
-            found = YES;
             [self.navigationController popToViewController:controller animated:YES];
             return;
         }
     }
-    
-    if (!found){
-        [self.navigationController popViewControllerAnimated:YES];
-    }
-}
-
-- (IBAction)clickRefreshButton:(id)sender
-{
-    [self showActivityWithText:NSLS(@"kRefreshMessageing")];
-    [self findAllMessages];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (IBAction)clickGraffitiButton:(id)sender 
 {
     [self showGraffitiView];
-    [inputTextView resignFirstResponder];
+//    [inputTextView resignFirstResponder];
 }
 
-- (IBAction)clickSendButton:(id)sender 
+//设定view底部，整个view往上移位
+- (void)updateInputPanel:(UIView *)view withBottomLine:(CGFloat)yLine 
 {
-    if ([inputTextView.text length] <= 0) {
-        return;
-    }
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationDuration:0.3];
+    CGPoint origin = CGPointMake(0, 0);
+    CGSize size = view.frame.size;
+    origin.y = yLine - size.height;
+    view.frame = CGRectMake(origin.x, origin.y, size.width, size.height);
+    [UIView commitAnimations];
+}
+
+
+//设定view底部，整个view保持起始点不变，整个view往上缩
+- (void)updateTableView:(UITableView *)tableView withBottomLine:(CGFloat)yLine
+{
+    CGPoint origin = tableView.frame.origin;
+    CGSize size = tableView.frame.size;
+    size.height = yLine - origin.y;
+    tableView.frame = CGRectMake(origin.x, origin.y, size.width, size.height);
+    [self tableViewScrollToBottom];
+    [tableView reloadData];
+
+}
+
+//设定view底部，整个view保持起始点不变，整个view膨胀
+- (void)spanView:(UIView *)view 
+  withBottomLine:(CGFloat)yLine 
+          viewHeight:(CGFloat)viewHeight
+{
+    CGPoint origin = view.frame.origin;
+    CGSize size = view.frame.size;
+    size.height = viewHeight;
+    origin.y = yLine - size.height;
     
-    [self showActivityWithText:NSLS(@"kSendingChatMessage")];
-    [[ChatService defaultService] sendMessage:self 
-                                 friendUserId:_friendUserId 
-                                         text:inputTextView.text 
-                               drawActionList:nil];
+    view.frame = CGRectMake(origin.x, origin.y, size.width, size.height);
 }
 
-- (IBAction)clickLocation:(id)sender {
-    UserLocationController *controller = [[[UserLocationController alloc] initWithType:LocationTypeFind
-                                                                                  isMe:YES
-                                                                              latitude:0
-                                                                             longitude:0
-                                                                           messageType:MessageTypeAskLocation
-                                           ] autorelease];
-    controller.delegate = self;
-    [self.navigationController pushViewController:controller animated:YES];
-}
+#define STATUS_BAR_HEIGHT 20.0f
 
+- (void)clickMaskView:(UIButton *)view
+{
+    [view removeFromSuperview];
+    [self.inputTextView resignFirstResponder];
+}
+- (void)addMaskView
+{
+    UIButton *view = [UIButton buttonWithType:UIButtonTypeCustom];
+    view.frame = self.dataTableView.frame;
+    [self.view addSubview:view];
+    [view addTarget:self action:@selector(clickMaskView:) forControlEvents:UIControlEventTouchUpInside];
+}
 
 #pragma mark - super methods: keyboard show and hide
+
+
 - (void)keyboardWillShowWithRect:(CGRect)keyboardRect
 {
-    [self addHideKeyboardButton];
-    [self.view bringSubviewToFront:inputBackgroundView];
+    PPDebug(@"<keyboardWillShowWithRect> keyboardRect = %@",NSStringFromCGRect(keyboardRect));
     
-    CGRect frame = CGRectMake(0, self.view.frame.size.height-keyboardRect.size.height-inputBackgroundView.frame.size.height, inputBackgroundView.frame.size.width, inputBackgroundView.frame.size.height);
-    [UIView beginAnimations:nil context:nil];
-    [UIView setAnimationDuration:0.25];
-    inputBackgroundView.frame = frame;
-    [UIImageView commitAnimations];
+    CGFloat yLine = keyboardRect.origin.y - STATUS_BAR_HEIGHT;
+    [self updateInputPanel:self.inputBackgroundView withBottomLine:yLine];
+    yLine -= self.inputBackgroundView.frame.size.height;
+    [self updateTableView:self.dataTableView withBottomLine:yLine];
+    [self addMaskView];
 }
 
 - (void)keyboardWillHideWithRect:(CGRect)keyboardRect
 {
-    CGRect frame = CGRectMake(0, self.view.frame.size.height-inputBackgroundView.frame.size.height, inputBackgroundView.frame.size.width, inputBackgroundView.frame.size.height);
-    [UIView beginAnimations:nil context:nil];
-    [UIView setAnimationDuration:0.25];
-    inputBackgroundView.frame = frame;
-    [UIImageView commitAnimations];
+    PPDebug(@"<keyboardWillHideWithRect> keyboardRect = %@",NSStringFromCGRect(keyboardRect));
+    CGFloat yLine = [[UIScreen mainScreen] bounds].size.height;
+    [self updateInputPanel:self.inputBackgroundView withBottomLine:yLine - STATUS_BAR_HEIGHT];
+    
+    yLine = self.inputBackgroundView.frame.origin.y;
+    [self updateTableView:self.dataTableView withBottomLine:yLine];
+
 }
 
 
-- (void)keyboardDidShowWithRect:(CGRect)keyboardRect
+#pragma mark sendMessage
+
+- (void)constructMessage:(PPMessage *)message
 {
-    [self changeTableSize:NO duration:0.25];
+    [message setFriendId:_messageStat.friendId];
+    [message setStatus:MessageStatusSending];
+    [message setSourceType:SourceTypeSend];
+    [message setCreateDate:[NSDate date]];    
 }
 
-
-- (void)keyboardDidHideWithRect:(CGRect)keyboardRect
+- (void)sendTextMessage:(NSString *)text
 {
-    [self changeTableSize:NO duration:0.1];
+    TextMessage *message = [[TextMessage alloc] init];
+    [self constructMessage:message];
+    [message setText:text];
+    [message setMessageType:MessageTypeText];
+    [[ChatService defaultService] sendMessage:message delegate:self];
+    [self.messageList addObject:message];
+    [message release];
+    [self.dataTableView reloadData];
+    [self tableViewScrollToBottom];
+}
+- (void)sendDrawMessage:(NSMutableArray *)drawActionList
+{
+    DrawMessage *message = [[[DrawMessage alloc] init] autorelease];
+    [self constructMessage:message];
+    [message setMessageType:MessageTypeDraw];
+    [message setDrawActionList:drawActionList];
+    [[ChatService defaultService] sendMessage:message delegate:self];    
+    [self.messageList addObject:message];
+    [self.dataTableView reloadData];
+    [self tableViewScrollToBottom];
 }
 
 
 #pragma mark - OfflineDrawDelegate methods
-- (void)didClickBack
+- (void)didControllerClickBack:(OfflineDrawViewController *)controller
 {
-    [self hideGraffitiView];
+    [controller dismissModalViewControllerAnimated:YES];
+}
+- (void)didController:(OfflineDrawViewController *)controller clickSubmit:(NSMutableArray*)drawActionList
+{
+    [controller dismissModalViewControllerAnimated:YES];
+    [self sendDrawMessage:drawActionList];
+    [self tableViewScrollToBottom];
 }
 
 
-- (void)didClickSubmit:(NSArray *)drawActionList
+#pragma mark - chat cell delegate
+- (void)didClickAvatarButton:(NSIndexPath *)aIndexPath
 {
-    [self showActivityWithText:NSLS(@"kSendingChatMessage")];
-    [[ChatService defaultService] sendMessage:self 
-                                 friendUserId:_friendUserId 
-                                         text:nil 
-                               drawActionList:drawActionList];
-}
-
-
-#pragma mark - UITextViewDelegate methods
-#define INPUT_TEXT_WIDTH_MAX    (([DeviceDetection isIPAD])?(370.0):(180.0))
-#define INPUT_TEXT_HEIGHT_MAX   (([DeviceDetection isIPAD])?(180.0):(90.0))
-#define TEXTTVIEW_HEIGHT_MIN    (([DeviceDetection isIPAD])?(58.0):(32.0))
-#define INPUTBACKGROUNDVIEW_HEIGHT_MIN  (([DeviceDetection isIPAD])?(92.0):(46.0))
-#define IMAGE_AND_TEXT_DIFF  (([DeviceDetection isIPAD])?(14.0):(4.0))
-/*
- TEXTTVIEW_HEIGHT_MIN、INPUTBACKGROUNDVIEW_HEIGHT_MIN、IMAGE_AND_TEXT_DIFF 要参照XIB的值
- */
-- (void)textViewDidChange:(UITextView *)textView
-{
-    [self updateInputViewAndTableFrame];
-}
-
-
-- (void)updateInputViewAndTableFrame
-{
-    UIFont *font = inputTextView.font;
-    CGSize size = [inputTextView.text sizeWithFont:font constrainedToSize:CGSizeMake(INPUT_TEXT_WIDTH_MAX, INPUT_TEXT_HEIGHT_MAX) lineBreakMode:UILineBreakModeWordWrap];
-    //PPDebug(@"%f %f %f", inputTextView.frame.size.height, size.height, size.width);
-    CGRect oldFrame = inputTextView.frame;
-    CGFloat newHeight = size.height + 12;
-    CGRect oldBackgroundFrame = inputBackgroundView.frame;
+    PPMessage *message = [self messageOfIndex:aIndexPath.row];
+    NSString *fromUserId = message.friendId;
     
-    if (newHeight > TEXTTVIEW_HEIGHT_MIN) {
-        CGFloat addHeight = newHeight - oldFrame.size.height;
-        [inputTextView setFrame: CGRectMake(oldFrame.origin.x, oldFrame.origin.y, oldFrame.size.width, newHeight)];
-        [inputBackgroundView setFrame:CGRectMake(oldBackgroundFrame.origin.x, oldBackgroundFrame.origin.y-addHeight, oldBackgroundFrame.size.width, oldBackgroundFrame.size.height+addHeight)];
-    }else {
-        [inputTextView setFrame: CGRectMake(oldFrame.origin.x, oldFrame.origin.y, oldFrame.size.width, TEXTTVIEW_HEIGHT_MIN)];
-        CGFloat delHeight = oldBackgroundFrame.size.height - INPUTBACKGROUNDVIEW_HEIGHT_MIN;
-        [inputBackgroundView setFrame:CGRectMake(oldBackgroundFrame.origin.x, oldBackgroundFrame.origin.y+delHeight, oldBackgroundFrame.size.width, INPUTBACKGROUNDVIEW_HEIGHT_MIN)];
+    if (![[UserManager defaultManager] isMe:fromUserId]) {
+        MyFriend *friend = [MyFriend friendWithFid:_messageStat.friendId 
+                                          nickName:_messageStat.friendNickName 
+                                            avatar:_messageStat.friendAvatar
+                                            gender:_messageStat.friendGenderString 
+                                             level:1];
+        if (isDrawApp()) {
+            [CommonUserInfoView showFriend:friend infoInView:self needUpdate:YES];
+        }
+        if (isDiceApp()) {
+            [DiceUserInfoView showFriend:friend infoInView:self canChat:YES needUpdate:YES];
+        }        
     }
-    
-    inputTextBackgroundImage.frame = CGRectMake(inputTextBackgroundImage.frame.origin.x, inputTextBackgroundImage.frame.origin.y, inputTextBackgroundImage.frame.size.width, inputTextView.frame.size.height + IMAGE_AND_TEXT_DIFF);//这个IMAGE_AND_TEXT_DIFF参照xib
-    inputTextBackgroundImage.center = inputTextView.center;
-    
-    [self changeTableSize:NO duration:0];
 }
 
 
+#pragma mark textview delegate
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text  
 {  
     if ([text isEqualToString:@"\n"]) {  
-        [self clickSendButton:self.sendButton];
+        if ([textView.text length] != 0) {
+            [self sendTextMessage:textView.text];
+            [self tableViewScrollToBottom];
+            textView.text = nil;            
+        }
         return NO;  
     }  
     return YES;  
 }
 
 
-#pragma mark - ChatDetailCellDelegate methods
-- (void)didClickEnlargeButton:(NSIndexPath *)aIndexPath
+#define TEXT_VIEW_MAX_HEIGHT (([DeviceDetection isIPAD])?(300.0):(120.0))
+#define TEXT_VIEW_MIN_HEIGHT (([DeviceDetection isIPAD])?(50.0):(32.0))
+#define SPACE_BG_TEXT (([DeviceDetection isIPAD])?(9.0):(3.0))
+#define SPACE_PANEL_BG (([DeviceDetection isIPAD])?(11.0):(5.0))
+- (void)textViewDidChange:(UITextView *)textView
 {
-    ChatMessage *message = [dataList objectAtIndex:aIndexPath.row];
-    self.selectedMessage = message;
-    BOOL fromSelf = [message.from isEqualToString:[[UserManager defaultManager] userId]];
+    NSString *text = textView.text;
+    CGSize size = [text sizeWithFont:textView.font 
+                   constrainedToSize:CGSizeMake(textView.frame.size.width, TEXT_VIEW_MAX_HEIGHT) 
+                       lineBreakMode:UILineBreakModeWordWrap];
+    CGFloat textHeight = (size.height < TEXT_VIEW_MIN_HEIGHT) ? TEXT_VIEW_MIN_HEIGHT : (size.height);
     
-    if ([message.type intValue] == MessageTypeNormal) {
-        if ([message.text length] <= 0 && message.drawData) {
-            NSArray* drawActionList = [ChatMessageUtil unarchiveDataToDrawActionList:message.drawData];
-            ReplayGraffitiController *controller = [[ReplayGraffitiController alloc] initWithDrawActionList:drawActionList];
-            [self.navigationController pushViewController:controller animated:YES];
-            [controller release];
-        }
-        
-    } else if ([message.type intValue] == MessageTypeAskLocation && !fromSelf) {
-        UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:NSLS(@"kCancel") destructiveButtonTitle:NSLS(@"kReplyLocation") otherButtonTitles:NSLS(@"kRejectLocation"), NSLS(@"kShowLocation"), nil];
-        [actionSheet showInView:self.view];
-        [actionSheet release];
-        
-    } else if (([message.type intValue] == MessageTypeAskLocation && fromSelf)
-               || ([message.type intValue] == MessageTypeReplyLocation && [message.replyResult intValue] != REJECT_ASK_LOCATION) ) {
-        UserLocationController *controller = [[[UserLocationController alloc] initWithType:LocationTypeShow
-                                                                                      isMe:fromSelf
-                                                                                  latitude:[message.latitude doubleValue]
-                                                                                 longitude:[message.longitude doubleValue]
-                                                                               messageType:0] autorelease];
-        controller.delegate = self;
-        [self.navigationController pushViewController:controller animated:YES];
+    CGFloat panelHeight = textHeight + 2 * (SPACE_PANEL_BG + SPACE_BG_TEXT);
+    if (_panelHeight != panelHeight) {
+        _panelHeight = panelHeight;
+        CGFloat yLine = CGRectGetMaxY(self.inputBackgroundView.frame);
+        [self spanView:self.inputBackgroundView withBottomLine:yLine viewHeight:panelHeight];
     }
 }
 
-- (void)didClickAvatarButton:(NSIndexPath *)aIndexPath
+
+#pragma mark delete chat message
+
+#define ACTION_SHEET_TAG_TEXT 201211021
+#define ACTION_SHEET_TAG_DRAW 201211022
+#define ACTION_SHEET_TAG_IMAGE 201211023
+
+- (void)resetASIndexesOfMessage:(PPMessage *)message
 {
-    ChatMessage *message = [dataList objectAtIndex:aIndexPath.row];
-    NSString *fromUserId = message.from;
-    
-    if ([fromUserId isEqualToString:[[UserManager defaultManager] userId]]) {
-        if (isDrawApp()) {
-            [CommonUserInfoView showUser:[[UserManager defaultManager] userId]
-                                nickName:[[UserManager defaultManager] nickName]
-                                  avatar:[[UserManager defaultManager] avatarURL]
-                                  gender:[[UserManager defaultManager] gender]
-                                location:nil 
-                                   level:1
-                                 hasSina:NO 
-                                   hasQQ:NO 
-                             hasFacebook:NO
-                              infoInView:self];
-        }
-        if (isDiceApp()) {
-            [DiceUserInfoView showUser:[[UserManager defaultManager] userId]
-                                nickName:[[UserManager defaultManager] nickName]
-                                  avatar:[[UserManager defaultManager] avatarURL]
-                                  gender:[[UserManager defaultManager] gender]
-                                location:nil 
-                                   level:1
-                                 hasSina:NO 
-                                   hasQQ:NO 
-                             hasFacebook:NO 
-                              infoInView:self];
-        }
-        
-        
-    } else if ([fromUserId isEqualToString:self.friendUserId]) {
-        if (isDrawApp()) {
-            [CommonUserInfoView showUser:self.friendUserId
-                                nickName:self.friendNickname 
-                                  avatar:self.friendAvatar 
-                                  gender:self.friendGender
-                                location:nil 
-                                   level:1
-                                 hasSina:NO 
-                                   hasQQ:NO 
-                             hasFacebook:NO 
-                              infoInView:self];
-        }
-        if (isDiceApp()) {
-            [DiceUserInfoView showUser:self.friendUserId
-                                nickName:self.friendNickname 
-                                  avatar:self.friendAvatar 
-                                  gender:self.friendGender
-                                location:nil 
-                                   level:1
-                                 hasSina:NO 
-                                   hasQQ:NO 
-                             hasFacebook:NO 
-                              infoInView:self];
-        }
-        
+    _asIndexDelete = -1;
+    _asIndexCopy = -1;
+    _asIndexReplay = -1;
+    _asIndexResend = -1;
+    NSInteger start = 0;
+    _asIndexDelete = start++;
+    if (message.messageType == MessageTypeDraw) {
+        _asIndexReplay = start++;
+    }else if(message.messageType == MessageTypeText){
+        _asIndexCopy = start++;
+    }
+    if (message.status == MessageStatusFail) {
+        _asIndexResend = start++;
     }
 }
 
-#pragma mark - UserLocationControllerDelegate method
-- (void)didClickSendLocation:(double)latitude longitude:(double)longitude messageType:(int)messageType
+- (void)didDeleteMessages:(NSArray *)messages
+               resultCode:(int)resultCode
 {
-    if (messageType == MessageTypeAskLocation) {
-        [[ChatService defaultService] askLocation:self
-                                     friendUserId:_friendUserId
-                                        longitude:longitude
-                                         latitude:latitude
-                                             text:NSLS(@"kAskLocationMessage")];
+    if (resultCode != 0) {
+        [self popupMessage:NSLS(@"kDeleteFail") title:nil];
+    }else{
         
-    } else if (messageType == MessageTypeReplyLocation){
-        [[ChatService defaultService] replyLocation:self
-                                       friendUserId:_friendUserId
-                                          longitude:longitude
-                                           latitude:latitude
-                                       reqMessageId:_selectedMessage.messageId
-                                               text:NSLS(@"kReplyLocationMessage")];
     }
 }
 
-#pragma mark - UIActionSheetDelegate method
-#define INDEX_REPLY         0
-#define INDEX_REJECT        1
-#define INDEX_SHOW_LOCATION  2
+#pragma mark enter replay controller
+- (void)enterReplayController:(DrawMessage *)message
+{
+    ReplayGraffitiController *rg = [[ReplayGraffitiController alloc] initWithDrawActionList:[message drawActionList]];
+    [self.navigationController pushViewController:rg animated:YES];
+    [rg release];
+
+}
+- (void)clickMessage:(PPMessage *)message 
+  withDrawActionList:(NSArray *)drawActionList
+{
+    [self enterReplayController:(DrawMessage *)message];
+}
+
+#pragma mark options action.
+- (void)didLongClickMessage:(PPMessage *)message
+{
+    if (_showingActionSheet) {
+        return;
+    }else{
+        _showingActionSheet = YES;
+    }
+    NSString *otherOperation = nil;
+    NSInteger tag = 0;
+    switch (message.messageType) {
+        case MessageTypeDraw:
+            tag = ACTION_SHEET_TAG_DRAW;
+            otherOperation = NSLS(@"kReplay");            
+            break;
+        case MessageTypeText:
+            tag = ACTION_SHEET_TAG_TEXT;
+            otherOperation = NSLS(@"kCopy");            
+            break;
+        default:
+            return;
+    }
+    [self resetASIndexesOfMessage:message];
+    UIActionSheet *actionSheet = nil;
+    if (message.status == MessageStatusFail) {
+        actionSheet=  [[UIActionSheet alloc]
+                       initWithTitle:NSLS(@"kOpusOperation")
+                       delegate:self 
+                       cancelButtonTitle:NSLS(@"kCancel") 
+                       destructiveButtonTitle:NSLS(@"kDelete") 
+                       otherButtonTitles:otherOperation, NSLS(@"kResend"), nil];
+        [actionSheet setDestructiveButtonIndex:_asIndexResend];
+
+    }else
+    {
+       actionSheet=  [[UIActionSheet alloc]
+                      initWithTitle:NSLS(@"kOpusOperation")
+                      delegate:self 
+                      cancelButtonTitle:NSLS(@"kCancel") 
+                      destructiveButtonTitle:NSLS(@"kDelete") 
+                      otherButtonTitles:otherOperation, nil];
+    }
+    [actionSheet showInView:self.view];
+    [actionSheet release];
+    actionSheet.tag = tag;
+    _selectedMessage = message;
+}
+
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    if (buttonIndex == [actionSheet cancelButtonIndex]) {
-        return;
-    } else if (buttonIndex == INDEX_REPLY){
-        UserLocationController *controller = [[[UserLocationController alloc] initWithType:LocationTypeFind isMe:YES                     latitude:0
-                                                                                 longitude:0
-                                                                               messageType:MessageTypeReplyLocation] autorelease];
-        controller.delegate = self;
-        [self.navigationController pushViewController:controller animated:YES];
-    } else if (buttonIndex == INDEX_REJECT) {
-        [[ChatService defaultService] replyRejectLocation:self friendUserId:_friendUserId reqMessageId:_selectedMessage.messageId text:NSLS(@"kRejectLocationMessage")];
-    } else if (buttonIndex == INDEX_SHOW_LOCATION) {
-        UserLocationController *controller = [[[UserLocationController alloc] initWithType:LocationTypeShow
-                                                                                      isMe:NO
-                                                                                  latitude:[_selectedMessage.latitude doubleValue]
-                                                                                 longitude:[_selectedMessage.longitude doubleValue]
-                                                                               messageType:MessageTypeReplyLocation] autorelease];
-        controller.delegate = self;
-        [self.navigationController pushViewController:controller animated:YES];
+
+    _showingActionSheet = NO;
+    if (_asIndexDelete == buttonIndex) {
+        [[ChatService defaultService] deleteMessage:self
+                                      messageList:[NSArray arrayWithObject:_selectedMessage]];
+                
+        NSInteger row = [self.messageList indexOfObject:_selectedMessage];
+        NSIndexPath *path = [NSIndexPath indexPathForRow:row inSection:0];
+        NSArray *indexPaths = [NSArray arrayWithObject:path];
+        [self.messageList removeObject:_selectedMessage];
+        [self.dataTableView deleteRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationFade];
+        
+    }else if(_asIndexCopy == buttonIndex && _selectedMessage.messageType == MessageTypeText)
+    {
+        UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
+        pasteboard.string = _selectedMessage.text;         
+    }else if(_asIndexReplay == buttonIndex && _selectedMessage.messageType == MessageTypeDraw){
+        [self enterReplayController:(DrawMessage *)_selectedMessage];
+    }else if(_asIndexResend == buttonIndex){
+        [[ChatService defaultService] sendMessage:_selectedMessage delegate:self];
+        [_selectedMessage setCreateDate:[NSDate date]];
+        [_selectedMessage setStatus:MessageStatusSending];
+        [self reloadTableView];
+        [self tableViewScrollToBottom];
     }
+    _selectedMessage = nil;
+}
+
+
+
+#pragma mark load more chat list.
+
+- (NSInteger)loadNewDataCount
+{
+    return 50;
+}
+- (NSInteger)loadMoreDataCount
+{
+    return 10;
+}
+
+
+- (NSString *)lastMessageId
+{
+    NSInteger count = [_messageList count] - 1;
+    for (int i = count; i >= 0; --i) {
+        PPMessage *message = [_messageList objectAtIndex:i];
+        if (message.isMessageSentOrReceived) {
+            return message.messageId;
+        }
+    }
+    return nil;
+}
+- (NSString *)firstMessageId
+{
+    for (PPMessage *message in _messageList) {
+        if (message.isMessageSentOrReceived) {
+            return message.messageId;
+        }
+    }
+    return nil;    
+}
+- (void)loadNewMessage
+{
+    [[ChatService defaultService] getMessageList:self 
+                                    friendUserId:self.fid
+                                 offsetMessageId:self.lastMessageId 
+                                         forward:YES 
+                                           limit:[self loadNewDataCount]];
+}
+- (void)loadMoreMessage
+{
+    [[ChatService defaultService] getMessageList:self 
+                                    friendUserId:self.fid
+                                 offsetMessageId:self.firstMessageId 
+                                         forward:NO 
+                                           limit:[self loadMoreDataCount]];
+}
+
+- (void)tableViewScrollToTop
+{
+    if ([self.messageList count] > 0) {
+        NSInteger row = 0;
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:row inSection:0];
+        [self.dataTableView scrollToRowAtIndexPath:indexPath 
+                                  atScrollPosition:UITableViewScrollPositionBottom 
+                                          animated:YES];        
+    }    
+}
+- (void)tableViewScrollToBottom
+{
+    if ([self.messageList count] > 0) {
+        NSInteger row = [self.messageList count] - 1;
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:row inSection:0];
+        [self.dataTableView scrollToRowAtIndexPath:indexPath 
+                                  atScrollPosition:UITableViewScrollPositionBottom 
+                                          animated:YES];        
+    }    
+}
+
+
+- (void)reloadTableViewDataSource
+{
+    if (self.refreshHeaderView.hidden) {
+        return;
+    }
+    [self loadMoreMessage];
 }
 
 @end

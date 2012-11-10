@@ -7,39 +7,57 @@
 //
 
 #import "PPTableViewCell.h"
+#import "ShowDrawView.h"
+#import "StableView.h"
+
+@class PPViewController;
+@class PPMessage;
+@class ShowDrawView;
+@class MessageStat;
 
 @protocol ChatDetailCellDelegate <NSObject>
 
 @optional
-- (void)didClickEnlargeButton:(NSIndexPath *)aIndexPath;
-- (void)didClickAvatarButton:(NSIndexPath *)aIndexPath;
+
+- (void)clickMessage:(PPMessage *)message 
+         withDrawActionList:(NSArray *)drawActionList;
+
+- (void)clickMessage:(PPMessage *)message 
+         withImageURL:(NSString *)imageURL;
+
+- (void)didLongClickMessage:(PPMessage *)message;
+
 @end
 
 
-@class HJManagedImageV;
-@class ChatMessage;
-@class ShowDrawView;
-@interface ChatDetailCell : PPTableViewCell
+@interface ChatDetailCell : PPTableViewCell<ShowDrawViewDelegate>
+{
+    
+}
 
-@property (retain, nonatomic) IBOutlet UIImageView *avatarBackgroundImageView;
-@property (retain, nonatomic) IBOutlet HJManagedImageV *avatarView;
-@property (retain, nonatomic) IBOutlet UIImageView *bubbleImageView;
-@property (retain, nonatomic) IBOutlet UILabel *timeLabel;
-@property (retain, nonatomic) IBOutlet UITextView *contentTextView;
-@property (retain, nonatomic) IBOutlet ShowDrawView *graffitiView;
-@property (assign, nonatomic) id<ChatDetailCellDelegate> chatDetailCellDelegate;
-@property (retain, nonatomic) IBOutlet UIButton *enlargeButton;
-@property (retain, nonatomic) IBOutlet UILabel *nicknameLabel;
+@property (retain, nonatomic) IBOutlet UIImageView *avatarView;
+@property (retain, nonatomic) IBOutlet UIButton *timeButton;
 @property (retain, nonatomic) IBOutlet UIButton *avatarButton;
+@property (retain, nonatomic) IBOutlet UIButton *contentButton;
+@property (retain, nonatomic) IBOutlet ShowDrawView *showDrawView;
+@property (retain, nonatomic) PPViewController *superController;
+@property (retain, nonatomic) IBOutlet UIActivityIndicatorView *loadingView;
+@property (retain, nonatomic) IBOutlet UIImageView *failureView;
+
++ (id)createCell:(id<ChatDetailCellDelegate>)delegate isReceive:(BOOL)isRecevie;
++ (NSString*)getCellIdentifierIsReceive:(BOOL)isRecevie;
+
+- (IBAction)clickContentButton:(id)sender;
+- (IBAction)clickAvatarButton:(id)sender;
 
 
-+ (id)createCell:(id)delegate;
-+ (NSString*)getCellIdentifier;
-+ (CGFloat)getCellHeight:(ChatMessage *)message;
-- (void)setCellByChatMessage:(ChatMessage *)message 
-              friendNickname:(NSString *)friendNickName 
-                friendAvatar:(NSString *)friendAvatar 
-                friendGender:(NSString *)friendGender
-                   indexPath:(NSIndexPath *)aIndexPath;
+
+
++ (CGFloat)getCellHeight:(PPMessage *)message 
+                showTime:(BOOL)showTime;
+- (void)setCellWithMessageStat:(MessageStat *)messageStat 
+                       message:(PPMessage *)message 
+                     indexPath:(NSIndexPath *)indexPath 
+                      showTime:(BOOL)showTime;
 
 @end

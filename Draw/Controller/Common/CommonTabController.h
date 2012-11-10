@@ -7,9 +7,7 @@
 //
 
 #import "PPTableViewController.h"
-
-@class TableTabManager;
-@class TableTab;
+#import "TableTabManager.h"
 
 
 @protocol CommonTabControllerDelegate <NSObject>
@@ -43,6 +41,8 @@
 - (IBAction)clickBackButton:(id)sender;
 - (IBAction)clickTabButton:(id)sender;
 - (IBAction)clickRefreshButton:(id)sender;
+
+- (void)clickTab:(NSInteger)tabID;
 - (id)initWithDefaultTabIndex:(NSInteger)index;
 
 + (void)enterControllerWithIndex:(NSInteger)index

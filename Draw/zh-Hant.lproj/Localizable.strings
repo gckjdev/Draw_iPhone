@@ -15,8 +15,8 @@
 /*********************** Notification begin *************************/
 //before 4.5 version
 "kPushMessage" = "%@ 新建了一個好友房間——\"%@\", 邀請你加入。趕緊加入好友房間，和好友猜猜畫畫吧!";
-"kPushTextMessage" = "%@ 給您發來了消息\"%@\"";
-"kPushDrawMessage" = "%@ 邀您欣賞TA的大作";
+"kPushTextMessage" = "%@ 發來消息:\"%@...\"";
+"kPushDrawMessage" = "%@ 發來一張塗鴉。";
 "kFM" = "有個神秘人剛剛關注了你，快去看看TA是誰。";
 "kNGRD" = "%@ 猜對了你畫的[%@]。你也去猜猜TA的畫？";
 "kNTGD" = "%@ 嘗試去猜了你畫的[%@]。你也去猜猜TA的畫？";
@@ -377,9 +377,12 @@
 "kFollowSuccessfully" = "關注成功！";
 "kFollowFailed" = "網絡錯誤，關注用戶失敗，請檢查網絡是否可用或稍候再試";
 "kUnfollow" = "取消關注";
+"kRemoveFan" = "移除粉絲";
 "kUnfollowing" = "發送取消關注請求中...";
 "kUnfollowSuccessfully" = "成功取消關注";
 "kUnfollowFailed" = "取消關注失敗";
+"kRemoveSuccessfully" = "成功移除粉絲";
+"kRemoveFailed" = "移除粉絲失敗。";
 "kEnterWords" = "搜索條件不能為空";
 "kSearchUserPlaceholder" = "用戶暱稱/微博暱稱/郵件地址";
 "kSearchFailedTitle" = "網絡錯誤";
@@ -888,6 +891,12 @@
 "kContestFeedDetail" = "作品詳情";
 "kDrawToUserByUser" = "畫給%@";
 "kQQGroup" = "官方Q群：228119679";
+"kCopy" = "復制";
+
+"kDrawMessage" = "塗鴉消息";
+"kImageMessage" = "圖片消息";
+"kVoiceMessage" = "語音消息";
+"kResend" = "重發";
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 
@@ -1082,3 +1091,15 @@
 /*********************** 大话骰子国际化字符串结束 *************************/
 
 
+/*********************** 炸金花国际化字符串开始 *************************/
+
+"kCardTypeHighCard" = "散牌";
+"kCardTypePair" = "對子";
+"kCardTypeStraight" = "順子";
+"kCardTypeFlush" = "金花";
+"kCardTypeStraightFlush" = "順金";
+"kCardTypeThreeOfAKind" = "豹子";
+"kCardTypeSpecial" = "特殊";
+"kCardTypeUnknow" = "未知";
+
+/*********************** 炸金花国际化字符串结束 *************************/

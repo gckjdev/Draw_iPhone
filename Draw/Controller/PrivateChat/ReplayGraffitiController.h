@@ -15,6 +15,8 @@
 }
 @property (retain, nonatomic) IBOutlet UILabel *titleLabel;
 @property (retain, nonatomic) ShowDrawView *showDrawView;
+@property (retain, nonatomic) IBOutlet UIButton *playEndButton;
+- (IBAction)clickPlayEndButton:(id)sender;
 - (id)initWithDrawActionList:(NSArray *)drawActionList;
 
 @end

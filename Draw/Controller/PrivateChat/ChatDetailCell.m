@@ -8,57 +8,263 @@
 
 #import "ChatDetailCell.h"
 #import "LogUtil.h"
-#import "ChatMessage.h"
+#import "PPMessage.h"
 #import "UserManager.h"
-#import "DeviceDetection.h"
-#import "ChatMessageUtil.h"
 #import "ShowDrawView.h"
 #import "DrawAction.h"
-#import "HJManagedImageV.h"
-#import "DrawAppDelegate.h"
 #import "ShareImageManager.h"
-#import "FriendManager.h"
 #import "TimeUtils.h"
 #import "LocaleUtils.h"
+#import "PPMessage.h"
+#import "UIImageView+WebCache.h"
+#import "CommonUserInfoView.h"
+#import "DiceUserInfoView.h"
+#import "GameApp.h"
+#import "MyFriend.h"
+#import "MessageStat.h"
+
+CGRect CGRectFrom(CGPoint origin, CGSize size){
+    return CGRectMake(origin.x, origin.y, size.width, size.height); 
+}
 
 @interface ChatDetailCell()
+{
+    BOOL _showTime;
+    PPMessage *_message;
+    MessageStat *_messageStat;
+    BOOL _isReceive;
+}
+//- (IBAction)clickEnlargeButton:(id)sender;
+//- (IBAction)clcikAvatarButton:(id)sender;
 
-- (IBAction)clickEnlargeButton:(id)sender;
-- (IBAction)clcikAvatarButton:(id)sender;
+@property(nonatomic, assign)BOOL showTime;
+@property(nonatomic, retain)PPMessage *message;
+@property(nonatomic, retain)MessageStat *messageStat;
+@property(nonatomic, assign)BOOL isReceive;
+
 - (CGRect)reverseByRect:(CGRect)rect;
+//- (void)translateX:(CGFloat)x y:(CGFloat)y views:(NSArray *)views;
+- (void)updateTextMessageView:(TextMessage *)message;
+- (void)updateDrawMessageView:(DrawMessage *)message;
+
++ (CGFloat)contentStartY:(BOOL)hasTime; //计算图或者文字的起始y坐标
+
 
 @end
 
 @implementation ChatDetailCell
-@synthesize avatarBackgroundImageView;
-@synthesize avatarView;
-@synthesize bubbleImageView;
-@synthesize timeLabel;
-@synthesize contentTextView;
-@synthesize graffitiView;
-@synthesize chatDetailCellDelegate;
-@synthesize enlargeButton;
-@synthesize nicknameLabel;
+@synthesize timeButton;
 @synthesize avatarButton;
+@synthesize contentButton;
+@synthesize showDrawView;
+@synthesize message = _message;
+@synthesize messageStat = _messageStat;
+@synthesize showTime = _showTime;
+@synthesize isReceive = _isReceive;
+@synthesize superController = _superController;
+@synthesize loadingView;
+@synthesize failureView;
+#pragma mark adjust frame
+
+
+#define TEXT_WIDTH_MAX    (([DeviceDetection isIPAD])?(473.0):(198.0))
+#define TEXT_HEIGHT_MAX   (([DeviceDetection isIPAD])?(2000.0):(1000.0))
+#define TEXT_VERTICAL_EDGE (([DeviceDetection isIPAD])?(16.0):(8.0)) //文字和泡泡的y上的距离
+
+#define TIME_HEIGHT  (([DeviceDetection isIPAD])?(34):(17))//时间的高度
+
+#define SPACE_TOP_TIME (([DeviceDetection isIPAD])?(11.0):(5.0)) //时间和顶端之间的间隔
+#define SPACE_CONTENT_BOTTOM (([DeviceDetection isIPAD])?(25.0):(15.0)) //内容和底部之间的间隔
+#define SPACE_TIME_CONTENT (([DeviceDetection isIPAD])?(11.0):(5.0)) //时间和内容之间的间隔
+#define SPACE_AVATAR_CONTENT (([DeviceDetection isIPAD])?(10.0):(5.0)) //头像和内容之间的间隔
+
+#define SPACE_CONTENT_FLAG (([DeviceDetection isIPAD])?(10.0):(5.0)) //时间和顶端之间的间隔
+
+#define TEXT_FONT_SIZE  (([DeviceDetection isIPAD])?(30):(14))
+
+#define DRAW_VIEW_SIZE (([DeviceDetection isIPAD])?CGSizeMake(155,150):CGSizeMake(64,67))
+
+#define BUBBLE_TIP_WIDTH   (([DeviceDetection isIPAD])?(38):(25)) //尖尖的部分距离文字的距离
+#define BUBBLE_NOT_TIP_WIDTH    (([DeviceDetection isIPAD])?(25):(12))//不尖部分和文字的距离
+
+
+
+//保持view的大小和x不变，单单改变y值
+- (void)setViews:(NSArray *)views yOrigin:(CGFloat)y
+{
+    for (UIView *view in views) {
+        CGPoint origin = view.frame.origin;
+        origin.y = y;
+        view.frame = CGRectFrom(origin, view.frame.size);
+
+    }
+}
+
+//使得view的中心点x坐标与x对齐
+- (void)setView:(UIView *)view centerX:(CGFloat)x
+{
+    view.center = CGPointMake(x, view.center.y);
+}
+
+//使得view的中心点y坐标与y对齐
+- (void)setView:(UIView *)view centerY:(CGFloat)y
+{
+    view.center = CGPointMake(view.center.x, y);    
+}
+
+//保持view的origin不变，调整size
+- (void)updateView:(UIView *)view origin:(CGPoint)origin 
+{
+    view.frame = CGRectFrom(origin, view.frame.size);
+}
+
+//保持view的origin不变，调整size
+- (void)updateView:(UIView *)view size:(CGSize)size 
+{
+    view.frame = CGRectFrom(view.frame.origin, size);
+}
+
+//将frame左右翻转
+- (CGRect)reverseByRect:(CGRect)rect
+{
+    CGRect newRect = CGRectMake(self.frame.size.width-rect.origin.x-rect.size.width, rect.origin.y, rect.size.width, rect.size.height);
+    return newRect;
+}
+
++ (CGFloat)contentStartY:(BOOL)hasTime //计算图或者文字的起始y坐标
+{
+    if (!hasTime) {
+        return SPACE_TOP_TIME;
+    }
+    return SPACE_TOP_TIME + TIME_HEIGHT + SPACE_TIME_CONTENT;
+}
++ (CGSize)sizeForMessageView:(NSString *)text
+{
+    UIFont *font = [UIFont systemFontOfSize:TEXT_FONT_SIZE];
+    CGSize textSize = [text sizeWithFont:font constrainedToSize:CGSizeMake(TEXT_WIDTH_MAX, TEXT_HEIGHT_MAX) lineBreakMode:UILineBreakModeCharacterWrap];
+    textSize.height += TEXT_VERTICAL_EDGE * 2;
+    textSize.width += BUBBLE_TIP_WIDTH + BUBBLE_NOT_TIP_WIDTH;
+    return textSize;
+}
+
+//使得view以右上角为基点，不变
+- (void)updateView:(UIView *)view rightTop:(CGPoint)rightTopPoint
+{
+    CGSize size = view.frame.size;
+    CGPoint origin = CGPointMake(rightTopPoint.x - size.width, rightTopPoint.y) ;
+    view.frame = CGRectFrom(origin, size);
+}
+
+
+#pragma mark - update the message show view.
+- (void)updateTextMessageView:(TextMessage *)message
+{
+    [self.showDrawView setHidden:YES];
+    [self.contentButton setTitle:message.text forState:UIControlStateNormal];
+    CGSize size = [ChatDetailCell sizeForMessageView:message.text];
+    [self updateView:self.contentButton size:size];
+}
+
+- (void)updateDrawMessageView:(DrawMessage *)message
+{
+    [self.showDrawView setHidden:NO];
+    [self.contentButton setTitle:nil forState:UIControlStateNormal];
+    CGFloat width = DRAW_VIEW_SIZE.width + BUBBLE_TIP_WIDTH + BUBBLE_NOT_TIP_WIDTH;
+    CGFloat height = (DRAW_VIEW_SIZE.height + TEXT_VERTICAL_EDGE * 2);
+    [self updateView:self.contentButton size:CGSizeMake(width, height)];
+    
+    CGPoint contentOrigin = self.contentButton.frame.origin;
+    CGPoint origin = CGPointMake(contentOrigin.x + BUBBLE_TIP_WIDTH, contentOrigin.y + TEXT_VERTICAL_EDGE);
+    [self updateView:self.showDrawView origin:origin];
+
+    //create the image once...
+    [self.showDrawView removeFromSuperview];
+    CGRect frame = self.showDrawView.frame;
+    self.showDrawView = [[ShowDrawView alloc] initWithFrame:frame];
+    [self addSubview:self.showDrawView];
+
+    if (!message.thumbImage) {
+        CGFloat xs = DRAW_VIEW_SIZE.width / DRAW_VIEW_FRAME.size.width;
+        CGFloat ys = DRAW_VIEW_SIZE.height / DRAW_VIEW_FRAME.size.height;
+
+        NSMutableArray *drawList = [DrawAction scaleActionList:message.drawActionList xScale:xs yScale:ys];
+
+    
+        [self.showDrawView setDrawActionList:drawList];
+        [self.showDrawView show];
+        message.thumbImage = [self.showDrawView createImage];
+        [self.showDrawView cleanAllActions];
+    }
+    
+    [self.showDrawView setDelegate:self];            
+    [self.showDrawView showImage:message.thumbImage];
+    
+}
+- (void)didClickShowDrawView:(ShowDrawView *)showDrawView
+{
+    if (self.delegate && [self.delegate respondsToSelector:@selector(clickMessage:withDrawActionList:)]) {
+        [self.delegate clickMessage:self.message
+                 withDrawActionList:[(DrawMessage *)self.message drawActionList]];
+    }
+}
+
+- (void)didLongClickShowDrawView:(ShowDrawView *)showDrawView
+{
+    [self clickContentButton:self.contentButton];
+}
+- (void)updateTime:(NSDate *)date
+{
+    NSString *dateString = dateToLocaleString(date);
+    
+    [self.timeButton setTitle:dateString forState:UIControlStateNormal];
+    CGSize textSize = [dateString sizeWithFont:self.timeButton.titleLabel.font
+                             constrainedToSize:CGSizeMake(3000, TIME_HEIGHT)
+                                 lineBreakMode:UILineBreakModeCharacterWrap];
+    textSize.height = TIME_HEIGHT;
+    textSize.width += 10;
+    [self updateView:self.timeButton size:textSize];
+    [self setView:self.timeButton centerX:self.center.x];
+}
+
+- (void)updateSendingFlag:(MessageStatus)status
+{
+//    SPACE_CONTENT_FLAG
+    [self.loadingView setHidden:YES];
+    [self.failureView setHidden:YES];
+    UIView *view = nil;
+    if (status == MessageStatusFail) {
+        view = self.failureView;
+    }else if(status == MessageStatusSending){
+        view = self.loadingView;
+    }
+    if (view) {
+        [view setHidden:NO];
+        CGFloat y = self.contentButton.center.y;
+        CGFloat x = self.contentButton.frame.origin.x - SPACE_CONTENT_FLAG - view.frame.size.width / 2;
+        [view setCenter:CGPointMake(x, y)];
+    }
+}
 
 - (void)dealloc {
-    
-    [graffitiView stop];
-    PPRelease(avatarView);
-    PPRelease(bubbleImageView);
-    PPRelease(timeLabel);
-    PPRelease(contentTextView);
-    PPRelease(graffitiView);
-    PPRelease(enlargeButton);
-    PPRelease(nicknameLabel);
-    PPRelease(avatarBackgroundImageView);
+
+    [self.showDrawView stop];
+    PPRelease(_message);
+    PPRelease(_messageStat);
+    PPRelease(timeButton);
     PPRelease(avatarButton);
+    PPRelease(contentButton);
+    PPRelease(showDrawView);
+    PPRelease(_superController);
+    PPRelease(loadingView);
+    PPRelease(failureView);
+    PPRelease(_avatarView);
     [super dealloc];
 }
 
-+ (id)createCell:(id)delegate
++ (id)createCell:(id<ChatDetailCellDelegate>)delegate isReceive:(BOOL)isRecevie
+
 {
-    NSString* cellId = [self getCellIdentifier];
+    NSString* cellId = [self getCellIdentifierIsReceive:isRecevie];
     NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:cellId owner:self options:nil];
     // Grab a pointer to the first object (presumably the custom cell, as that's all the XIB should contain).  
     if (topLevelObjects == nil || [topLevelObjects count] <= 0){
@@ -68,263 +274,164 @@
     
     ChatDetailCell *cell = (ChatDetailCell*)[topLevelObjects objectAtIndex:0];
     cell.delegate = delegate;
-    
-    UIColor *textColor = [UIColor colorWithRed:79.0/255.0 green:62.0/255.0 blue:32.0/255.0 alpha:1];
-    cell.contentTextView.textColor = textColor;
-    cell.nicknameLabel.textColor = textColor;
-    
-    cell.timeLabel.textColor = [UIColor colorWithRed:151.0/255.0 green:151.0/255.0 blue:151.0/255.0 alpha:1];
+    cell.isReceive = isRecevie;
+    [cell.contentButton.titleLabel setLineBreakMode:UILineBreakModeCharacterWrap];
+    UIEdgeInsets sets = UIEdgeInsetsMake(0, 0, 0, 0);
+    if (isRecevie) {
+        [cell.contentButton setBackgroundImage:[[ShareImageManager defaultManager] leftBubbleImage] forState:UIControlStateNormal];        
+        sets = UIEdgeInsetsMake(TEXT_VERTICAL_EDGE, BUBBLE_TIP_WIDTH, TEXT_VERTICAL_EDGE, BUBBLE_NOT_TIP_WIDTH);
+    }else{
+        [cell.contentButton setBackgroundImage:[[ShareImageManager defaultManager] rightBubbleImage] forState:UIControlStateNormal];
+        sets = UIEdgeInsetsMake(TEXT_VERTICAL_EDGE, BUBBLE_NOT_TIP_WIDTH, TEXT_VERTICAL_EDGE, BUBBLE_TIP_WIDTH);
+    }
+    [cell.contentButton setImageEdgeInsets:sets];
+    [cell.contentButton setTitleEdgeInsets:sets];
+
+    cell.avatarView.userInteractionEnabled = NO;
     
     return cell;
 }
 
-
-+ (NSString*)getCellIdentifier
++ (NSString*)getCellIdentifierIsReceive:(BOOL)isRecevie
 {
-    return @"ChatDetailCell";
+    return isRecevie ? @"ChatDetailCellReceive" : @"ChatDetailCellSend";
 }
 
 
-- (CGRect)reverseByRect:(CGRect)rect
++ (CGFloat)getCellHeight:(PPMessage *)message 
+                showTime:(BOOL)showTime
 {
-    CGRect newRect = CGRectMake(self.frame.size.width-rect.origin.x-rect.size.width, rect.origin.y, rect.size.width, rect.size.height);
-    return newRect;
-}
+    CGFloat height = [ChatDetailCell contentStartY:showTime];
 
-#define TEXT_WIDTH_MAX    (([DeviceDetection isIPAD])?(400.0):(200.0))
-#define TEXT_HEIGHT_MAX   (([DeviceDetection isIPAD])?(2000.0):(1000.0))
-#define TEXT_FONT_SIZE  (([DeviceDetection isIPAD])?(30):(15))
-#define SPACE_Y         (([DeviceDetection isIPAD])?(32):(16))
-#define SCREEN_WIDTH    (([DeviceDetection isIPAD])?(768):(320))
-#define TEXTVIEW_BORDER_X (([DeviceDetection isIPAD])?(10):(8))
-#define TEXTVIEW_BORDER_Y (([DeviceDetection isIPAD])?(10):(8))
-#define BUBBLE_TIP_WIDTH   (([DeviceDetection isIPAD])?(16):(10))
-#define BUBBLE_NOT_TIP_WIDTH    (([DeviceDetection isIPAD])?(9):(4.5))
-#define IMAGE_WIDTH_MAX (([DeviceDetection isIPAD])?(200.0):(100.0))
-#define IMAGE_BORDER_X (([DeviceDetection isIPAD])?(10):(5))
-#define IMAGE_BORDER_Y (([DeviceDetection isIPAD])?(16):(8))
-#define TIME_AND_CONTENT_SPACE    (([DeviceDetection isIPAD])?(2):(1))
-#define TIME_HEIGHT     (([DeviceDetection isIPAD])?(32):(16))
-#define NICKNAME_AND_AVATAR_SPACE (([DeviceDetection isIPAD])?(4):(2))
-#define NICKNAME_HEIGHT (([DeviceDetection isIPAD])?(32):(16))
-/*
- TEXT_WIDTH_MAX 是消息的最大长度
- TEXT_HEIGHT_MAX  是消息的最大高度
- TEXT_FONT_SIZE  是字体
- SPACE_Y  两个CELL之间的空隙
- SCREEN_WIDTH    是屏幕宽度
- TEXTVIEW_BORDER_X  是TextView的文字与左或右边界的空隙
- TEXTVIEW_BORDER_Y  是TextView的文字与上或下边界的空隙
- BUBBLE_TIP_WIDTH   是气泡图尖角的宽度
- BUBBLE_NOT_TIP_WIDTH 是气泡图非尖角的宽度
- IMAGE_WIDTH_MAX    是图片的最大宽度
- IMAGE_BORDER_X 是图片与气泡图边界X方向的空隙
- IMAGE_BORDER_Y 是图片与气泡图边界Y方向的空隙
- TIME_AND_CONTENT_SPACE 时间跟内容的距离
- TIME_HEIGHT 时间高度
- NICKNAME_AND_AVATAR_SPACE  名字与头像距离
- NICKNAME_HEIGHT  名字高度
- */
-+ (CGFloat)getCellHeight:(ChatMessage *)message
-{
-    CGFloat resultHeight = 0;
+    PPDebug(@"<getCellHeight> text = %@, type = %d", message.text,message.messageType);
     
-    if ([message.text length] > 0 || [message.type intValue]== MessageTypeAskLocation || [message.type intValue] == MessageTypeReplyLocation) {
-        UIFont *font = [UIFont systemFontOfSize:TEXT_FONT_SIZE];
-        CGSize textSize = [message.text sizeWithFont:font constrainedToSize:CGSizeMake(TEXT_WIDTH_MAX, TEXT_HEIGHT_MAX) lineBreakMode:UILineBreakModeWordWrap];
-        
-        resultHeight = SPACE_Y + textSize.height+2*TEXTVIEW_BORDER_Y + TIME_AND_CONTENT_SPACE + TIME_HEIGHT;
-    } else {
-        resultHeight = SPACE_Y + IMAGE_WIDTH_MAX+2*IMAGE_BORDER_Y + TIME_AND_CONTENT_SPACE + TIME_HEIGHT;
-    }
     
-    return resultHeight;
-}
+    PPDebug(@"height1 = %f", height);
 
-
-- (void)setTextMessage:(NSString *)text
-{
-    //get string size
-    UIFont *font = [UIFont systemFontOfSize:TEXT_FONT_SIZE];
-    CGSize textSize = [text sizeWithFont:font constrainedToSize:CGSizeMake(TEXT_WIDTH_MAX, TEXT_HEIGHT_MAX) lineBreakMode:UILineBreakModeWordWrap];
-    
-    //set text
-    contentTextView.frame = CGRectMake(contentTextView.frame.origin.x+BUBBLE_TIP_WIDTH, 0.5*SPACE_Y, textSize.width+2*TEXTVIEW_BORDER_X, textSize.height+2*TEXTVIEW_BORDER_Y);
-    contentTextView.font = font;
-    contentTextView.text = text;
-    contentTextView.backgroundColor = [UIColor clearColor];
-    
-    //set bubble frame
-    bubbleImageView.frame = CGRectMake(bubbleImageView.frame.origin.x, 0.5*SPACE_Y, contentTextView.frame.size.width+BUBBLE_TIP_WIDTH+BUBBLE_NOT_TIP_WIDTH, contentTextView.frame.size.height);
-    
-    enlargeButton.frame = bubbleImageView.frame;
-}
-
-- (void)setGraffitiMessage:(NSArray *)drawActionList
-{
-    CGFloat scale = IMAGE_WIDTH_MAX / DRAW_VIEW_FRAME.size.width;
-    NSMutableArray *scaleActionList = nil;
-    scaleActionList = [DrawAction scaleActionList:drawActionList 
-                                           xScale:scale 
-                                           yScale:scale];
-    
-    [graffitiView setDrawActionList:scaleActionList]; 
-    [graffitiView setShowPenHidden:YES];
-    CGFloat multiple = graffitiView.frame.size.height / graffitiView.frame.size.width;
-    graffitiView.frame = CGRectMake(graffitiView.frame.origin.x+BUBBLE_TIP_WIDTH+IMAGE_BORDER_X, 0.5*SPACE_Y+IMAGE_BORDER_Y, IMAGE_WIDTH_MAX, multiple *IMAGE_WIDTH_MAX);
-    graffitiView.layer.cornerRadius = 4;
-    graffitiView.layer.masksToBounds = YES;
-    [graffitiView show];
-    
-    //set button frame
-    enlargeButton.frame = graffitiView.frame;
-    
-    //set bubble frame
-    bubbleImageView.frame = CGRectMake(bubbleImageView.frame.origin.x,0.5*SPACE_Y, graffitiView.frame.size.width+BUBBLE_TIP_WIDTH+BUBBLE_NOT_TIP_WIDTH+2*IMAGE_BORDER_X, graffitiView.frame.size.height+2*IMAGE_BORDER_Y);
-}
-
-- (void)setCellByChatMessage:(ChatMessage *)message 
-              friendNickname:(NSString *)friendNickName 
-                friendAvatar:(NSString *)friendAvatar 
-                friendGender:(NSString *)friendGender
-                   indexPath:(NSIndexPath *)aIndexPath
-{
-    self.indexPath = aIndexPath;
-    
-    BOOL fromSelf = [message.from isEqualToString:[[UserManager defaultManager] userId]];
-    
-    //set avatar
-    [avatarView clear];
-    NSString *gender;
-    NSString *avatarUrl;
-    if (fromSelf) {
-        gender = [[UserManager defaultManager] gender];
-        avatarUrl = [[UserManager defaultManager] avatarURL];
-    }else {
-        gender = friendGender;
-        avatarUrl = friendAvatar;
-    }
-    
-    if ([gender isEqualToString:MALE]) {
-        [avatarView setImage:[[ShareImageManager defaultManager] maleDefaultAvatarImage]];
-    } else {
-        [avatarView setImage:[[ShareImageManager defaultManager] femaleDefaultAvatarImage]];
-    }
-    
-    if ([avatarUrl length] > 0) {
-        [avatarView setUrl:[NSURL URLWithString:avatarUrl]];
-        [GlobalGetImageCache() manage:avatarView];
-    }
-    
-    //set nickname
-    if (fromSelf) {
-        nicknameLabel.text = NSLS(@"Me");
-    }else {
-        nicknameLabel.text = friendNickName;
-    }
-    nicknameLabel.hidden = YES;
-    UIImage *bubble = [UIImage imageNamed:fromSelf ? @"sent_message.png" : @"receive_message.png"];
-    [bubbleImageView setImage:[bubble stretchableImageWithLeftCapWidth:14 topCapHeight:14]];
-    
-    //set time
-    NSString *timeString ;
-    if ([LocaleUtils isChinese]) {
-        timeString = chineseBeforeTime(message.createDate);
-    } else {
-        timeString = englishBeforeTime(message.createDate);
-    }
-    
-    if (timeString) {
-        self.timeLabel.text = timeString;
-    } else {
-        NSDateFormatter *dateFormatter = [[[NSDateFormatter alloc] init] autorelease];
-        [dateFormatter setDateFormat:@"yy-MM-dd HH:mm"];
-        self.timeLabel.text = [dateFormatter stringFromDate:message.createDate];
-    }
-    
-    PPDebug(@"ChatDetailCell :%@", message.text);
-    /*注意要保证xib里面contentTextView,bubbleImageView,graffitiView,timeLabel的x位置一样*/
-    if ([message.type intValue] == MessageTypeNormal) {
-        if ([message.text length] > 0) {
-            contentTextView.hidden = NO;
-            graffitiView.hidden = YES;
-            enlargeButton.hidden = YES;
-            [self setTextMessage:message.text];
-        }else {
-            contentTextView.hidden = YES;
-            graffitiView.hidden = NO;
-            enlargeButton.hidden = NO;
-             NSArray* drawActionList = [ChatMessageUtil unarchiveDataToDrawActionList:message.drawData];
-            [self setGraffitiMessage:drawActionList];
+    switch (message.messageType) {
+        case MessageTypeDraw:
+            height += (DRAW_VIEW_SIZE.height + TEXT_VERTICAL_EDGE * 2);
+            PPDebug(@"height2.1 = %f", height);
+            break;
+        case MessageTypeText:
+        case MessageTypeLocationRequest:
+        case MessageTypeLocationResponse:            
+        default:
+        {
+            CGSize size = [ChatDetailCell sizeForMessageView:message.text];
+            height += size.height;
+            PPDebug(@"height2.2 = %f", height);
+            break;
         }
-    } else if ([message.type intValue] == MessageTypeAskLocation) {
-        contentTextView.hidden = NO;
-        graffitiView.hidden = YES;
-        enlargeButton.hidden = NO;
-        [self setTextMessage:message.text];
-    } else if ([message.type intValue] == MessageTypeReplyLocation) {
-        contentTextView.hidden = NO;
-        graffitiView.hidden = YES;
-        enlargeButton.hidden = NO;
-        [self setTextMessage:message.text];
     }
-    
-    
-    //set time frame
-    timeLabel.frame = CGRectMake(timeLabel.frame.origin.x, bubbleImageView.frame.origin.y+bubbleImageView.frame.size.height+TIME_AND_CONTENT_SPACE, timeLabel.frame.size.width, TIME_HEIGHT);
-    
-    //set avatar frame
-    avatarView.frame = CGRectMake(avatarView.frame.origin.x, bubbleImageView.frame.origin.y+bubbleImageView.frame.size.height-avatarView.frame.size.height-2, avatarView.frame.size.width, avatarView.frame.size.height);
-    avatarBackgroundImageView.center = CGPointMake(avatarView.center.x, avatarView.center.y+2);
-    avatarButton.frame = avatarBackgroundImageView.frame;
-    
-    //set nickname frame 
-    //nicknameLabel.frame = CGRectMake(nicknameLabel.frame.origin.x, avatarView.frame.origin.y+avatarView.frame.size.height+NICKNAME_AND_AVATAR_SPACE, nicknameLabel.frame.size.width, NICKNAME_HEIGHT);
-    
-    if (fromSelf) {
-        UIViewAutoresizing autosizing =  !UIViewAutoresizingFlexibleTopMargin
-        | UIViewAutoresizingFlexibleBottomMargin
-        | UIViewAutoresizingFlexibleLeftMargin
-        | !UIViewAutoresizingFlexibleRightMargin
-        | !UIViewAutoresizingFlexibleWidth
-        | !UIViewAutoresizingFlexibleHeight;
-        
-        avatarBackgroundImageView.autoresizingMask = autosizing;
-        avatarView.autoresizingMask = autosizing;
-        bubbleImageView.autoresizingMask = autosizing;
-        timeLabel.autoresizingMask = autosizing;
-        contentTextView.autoresizingMask = autosizing;
-        graffitiView.autoresizingMask = autosizing;
-        enlargeButton.autoresizingMask = autosizing;
-        nicknameLabel.autoresizingMask = autosizing;
-        avatarButton.autoresizingMask = autosizing;
-        
-        avatarBackgroundImageView.frame = [self reverseByRect:avatarBackgroundImageView.frame];
-        avatarView.frame = [self reverseByRect:avatarView.frame];
-        contentTextView.frame = [self reverseByRect:contentTextView.frame];
-        bubbleImageView.frame = [self reverseByRect:bubbleImageView.frame];
-        graffitiView.frame = [self reverseByRect:graffitiView.frame];
-        enlargeButton.frame = [self reverseByRect:enlargeButton.frame];
-        timeLabel.frame = [self reverseByRect:timeLabel.frame];
-        [timeLabel setTextAlignment:UITextAlignmentRight];
-        nicknameLabel.frame = [self reverseByRect:nicknameLabel.frame];
-        avatarButton.frame = [self reverseByRect:avatarButton.frame];
-    }
-    
-    self.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y, self.frame.size.width, timeLabel.frame.origin.y+timeLabel.frame.size.height+0.5*SPACE_Y);
+    height += SPACE_CONTENT_BOTTOM;
+    PPDebug(@"total height = %f", height);
+    return height;
 }
 
-- (IBAction)clickEnlargeButton:(id)sender
+- (void)updateAvatarImage:(MessageStat *)messageStat
 {
-    if (chatDetailCellDelegate && [chatDetailCellDelegate respondsToSelector:@selector(didClickEnlargeButton:)]){
-        [chatDetailCellDelegate didClickEnlargeButton:self.indexPath];
+    self.avatarView.frame = self.avatarButton.frame;
+    NSString *avatar = self.messageStat.friendAvatar;
+    BOOL isMale = self.messageStat.friendGender;
+    
+    if (!_isReceive) {
+        avatar = [[UserManager defaultManager] avatarURL];
+        isMale = [[[UserManager defaultManager] gender] isEqualToString:@"m"];
+    }
+        
+
+    UIImage *defaultImage = nil;
+    if (isMale) {
+        defaultImage = [[ShareImageManager defaultManager] maleDefaultAvatarImage];
+    }else{
+        defaultImage = [[ShareImageManager defaultManager] femaleDefaultAvatarImage];
+    }
+    
+    if([avatar length] != 0){
+        NSURL *url = [NSURL URLWithString:avatar];
+        
+        self.avatarView.alpha = 0;
+        [self.avatarView setImageWithURL:url placeholderImage:defaultImage success:^(UIImage *image, BOOL cached) {
+            if (!cached) {
+                [UIView animateWithDuration:1 animations:^{
+                    self.avatarView.alpha = 1.0;
+                }];
+            }else{
+                self.avatarView.alpha = 1.0;
+            }
+        } failure:^(NSError *error) {
+            self.avatarView.alpha = 1;
+            [self.avatarView setImage:defaultImage];
+        }];
+    } else{
+        [self.avatarView setImage:defaultImage];
     }
 }
 
-- (IBAction)clcikAvatarButton:(id)sender
+- (void)setCellWithMessageStat:(MessageStat *)messageStat
+                       message:(PPMessage *)message 
+                     indexPath:(NSIndexPath *)indexPath 
+                      showTime:(BOOL)showTime
 {
-    if (chatDetailCellDelegate && [chatDetailCellDelegate respondsToSelector:@selector(didClickAvatarButton:)]){
-        [chatDetailCellDelegate didClickAvatarButton:self.indexPath];
+    self.messageStat = messageStat;
+    self.message = message;
+    self.showTime = showTime;
+    self.indexPath = indexPath;
+    
+    //adjust time label and content
+    [self.timeButton setHidden:!showTime];
+    CGFloat startY = [ChatDetailCell contentStartY:showTime];
+    NSArray *updateViews = [NSArray arrayWithObjects:self.avatarButton,self.contentButton, nil];
+    [self setViews:updateViews yOrigin:startY];
+    
+    if (showTime) {
+        [self updateTime:message.createDate];
+    }
+
+    if (message.messageType == MessageTypeText || message.messageType == MessageTypeLocationRequest || message.messageType == MessageTypeLocationResponse) {
+        [self updateTextMessageView:(TextMessage *)message];
+        
+    }else if(message.messageType == MessageTypeDraw){
+        [self updateDrawMessageView:(DrawMessage *)message];
+    }
+    
+    //如果是发送的消息就靠右
+    if (!_isReceive) {
+        CGPoint rightTop = self.avatarButton.frame.origin;
+        rightTop.x -= SPACE_AVATAR_CONTENT;
+        [self updateView:self.contentButton rightTop:rightTop];
+        CGPoint origin = self.contentButton.frame.origin;
+        origin.x += BUBBLE_NOT_TIP_WIDTH;
+        origin.y += TEXT_VERTICAL_EDGE;
+        [self updateView:self.showDrawView origin:origin];
+        
+        [self updateSendingFlag:_message.status];
+    }
+    [self updateAvatarImage:messageStat];
+}
+
+
+#pragma mark action
+- (IBAction)clickAvatarButton:(id)sender {
+    if (_isReceive) {
+        MyFriend *friend = [MyFriend friendWithFid:_messageStat.friendId 
+                                          nickName:_messageStat.friendNickName 
+                                            avatar:_messageStat.friendAvatar
+                                            gender:_messageStat.friendGenderString 
+                                             level:1];
+        if (isDrawApp()) {
+            [CommonUserInfoView showFriend:friend infoInView:self.superController needUpdate:YES];
+        }
+        if (isDiceApp()) {
+            [DiceUserInfoView showFriend:friend infoInView:self.superController canChat:YES needUpdate:YES];
+        }        
+    }}
+
+- (IBAction)clickContentButton:(id)sender {
+    //show the action sheet to show the options
+    if (delegate && [delegate respondsToSelector:@selector(didLongClickMessage:)]) {
+        [delegate didLongClickMessage:self.message];
     }
 }
 

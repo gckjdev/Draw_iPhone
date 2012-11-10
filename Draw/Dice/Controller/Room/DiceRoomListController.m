@@ -125,7 +125,7 @@
 
 - (void)refreshRooms:(id)sender
 {
-    [[DiceGameService defaultService] getRoomList:0 count:ROOMS_COUNT_PER_PAGE shouldReloadData:YES];
+    [[DiceGameService defaultService] getRoomList:0 count:ROOMS_COUNT_PER_PAGE];
 }
 
 - (void)clearRefreshRoomsTimer
@@ -207,26 +207,17 @@
 {
     // Internet Test Server
     [[DiceGameService defaultService] setRuleType:_ruleType];
-    [[DiceGameService defaultService] connectServer:self];
+//    [[DiceGameService defaultService] connectServer:self];
+    [[DiceGameService defaultService] connectServer];
     [self showActivityWithText:NSLS(@"kRefreshingRoomList")];
     _isJoiningDice = NO;    
-}
-
-- (void)registerDiceGameNotificationWithName:(NSString *)name 
-                                  usingBlock:(void (^)(NSNotification *note))block
-{
-    PPDebug(@"<%@> name", [self description]);         
-    
-    [self registerNotificationWithName:name 
-                                object:nil 
-                                 queue:[NSOperationQueue mainQueue] 
-                            usingBlock:block];
 }
 
 - (void)registerDiceRoomNotification
 {
     
-    [self registerDiceGameNotificationWithName:NOTIFICAIION_CREATE_ROOM_RESPONSE usingBlock:^(NSNotification *note) {
+    [self registerNotificationWithName:NOTIFICAIION_CREATE_ROOM_RESPONSE
+                            usingBlock:^(NSNotification *note) {
         PPDebug(@"<DiceRoomListController> NOTIFICAIION_CREATE_ROOM_RESPONSE"); 
         [self hideActivity];
         GameMessage* message = [CommonGameNetworkService userInfoToMessage:note.userInfo];
@@ -239,14 +230,16 @@
         }
     }];
     
-    [self registerDiceGameNotificationWithName:NOTIFICAIION_GET_ROOMS_RESPONSE usingBlock:^(NSNotification *note) {
+    [self registerNotificationWithName:NOTIFICAIION_GET_ROOMS_RESPONSE
+                            usingBlock:^(NSNotification *note) {
         PPDebug(@"<DiceRoomListController> NOTIFICAIION_GET_ROOMS_RESPONSE"); 
         GameMessage* message = [CommonGameNetworkService userInfoToMessage:note.userInfo];
         if (message.resultCode == GameResultCodeSuccess) {
             [self getRoomsFinished];
         }
     }];
-    [self registerDiceGameNotificationWithName:NOTIFICATION_JOIN_GAME_RESPONSE usingBlock:^(NSNotification *note) {
+    [self registerNotificationWithName:NOTIFICATION_JOIN_GAME_RESPONSE
+                            usingBlock:^(NSNotification *note) {
         PPDebug(@"<DiceRoomListController> NOTIFICATION_JOIN_GAME_RESPONSE");  
         [self hideActivity];
         GameMessage* message = [CommonGameNetworkService userInfoToMessage:note.userInfo];
@@ -258,17 +251,19 @@
             [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kJoinGameFailure") delayTime:1.5 isHappy:NO];
         }
     }];
-//    [self registerDiceGameNotificationWithName:NOTIFICATION_ROOM usingBlock:^(NSNotification *note) {
-//        PPDebug(@"<DiceRoomListController> NOTIFICATION_ROOM"); 
-//        [[DiceGameService defaultService] getRoomList:0 count:_diceGameService.roomList.count shouldReloadData:YES];
-//
+    
+    [self registerNotificationWithName:NOTIFICATION_NETWORK_CONNECTED
+                            usingBlock:^(NSNotification *note) {
+                                [self didConnected];
+                            }];
+
+//    [self registerNotificationWithName:UIApplicationWillEnterForegroundNotification
+//                            usingBlock:^(NSNotification *note) {
+//        PPDebug(@"<DiceRoomListController> Disconnected from server");
+//        if (![[DiceGameService defaultService] isConnected]) {
+//            [self didBroken];
+//        }
 //    }];
-    [self registerDiceGameNotificationWithName:UIApplicationWillEnterForegroundNotification usingBlock:^(NSNotification *note) {
-        PPDebug(@"<DiceRoomListController> Disconnected from server");
-        if (![[DiceGameService defaultService] isConnected]) {
-            [self didBroken];
-        }
-    }];
 
 }
 
@@ -472,7 +467,11 @@
 
 - (void)refreshRoomsByFilter:(RoomFilter)filter
 {
-    [[DiceGameService defaultService] getRoomList:0 count:ROOMS_COUNT_PER_PAGE shouldReloadData:YES roomType:filter keyword:nil gameId:[ConfigManager gameId]];
+    [[DiceGameService defaultService] getRoomList:0
+                                            count:ROOMS_COUNT_PER_PAGE
+                                         roomType:filter
+                                          keyword:nil
+                                           gameId:[ConfigManager gameId]];
 }
 
 
@@ -515,7 +514,7 @@
 - (void)didConnected
 {
     [self hideActivity];
-    [[DiceGameService defaultService] getRoomList:0 count:ROOMS_COUNT_PER_PAGE shouldReloadData:YES];
+    [[DiceGameService defaultService] getRoomList:0 count:ROOMS_COUNT_PER_PAGE];
     [self.createRoomButton setEnabled:YES];
     [self.fastEntryButton setEnabled:YES];
     firstLoad = NO;
@@ -557,7 +556,7 @@
 #pragma mark - load more delegate
 - (void)loadMoreTableViewDataSource
 {
-    [_diceGameService getRoomList:_diceGameService.roomList.count count:ROOMS_COUNT_PER_PAGE shouldReloadData:NO];
+    [_diceGameService getRoomList:_diceGameService.roomList.count count:ROOMS_COUNT_PER_PAGE];
 }
 
 - (IBAction)clickHelpButton:(id)sender {
@@ -613,7 +612,11 @@
 
 - (void)willSearch:(NSString *)keywords byView:(CommonSearchView *)view
 {
-    [[DiceGameService defaultService] getRoomList:0 count:ROOMS_COUNT_PER_PAGE shouldReloadData:YES roomType:_currentRoomType keyword:keywords gameId:[ConfigManager gameId]];
+    [[DiceGameService defaultService] getRoomList:0
+                                            count:ROOMS_COUNT_PER_PAGE
+                                         roomType:_currentRoomType
+                                          keyword:keywords
+                                           gameId:[ConfigManager gameId]];
     [self showActivityWithText:NSLS(@"kSearchingRoom")];
     [self pauseRefreshingRooms];
 }
@@ -633,16 +636,15 @@
 #pragma mark - dice room list delegate
 - (void)didQueryUser:(NSString *)userId
 {
-    [DiceUserInfoView showUser:userId 
-                      nickName:nil 
-                        avatar:nil 
-                        gender:nil 
-                      location:nil 
-                         level:0 
-                       hasSina:NO 
-                         hasQQ:NO 
-                   hasFacebook:NO 
-                    infoInView:self canChat:NO];
+    MyFriend *friend = [MyFriend friendWithFid:userId 
+                                      nickName:nil
+                                        avatar:nil
+                                        gender:nil 
+                                         level:1];
+    [DiceUserInfoView showFriend:friend 
+                      infoInView:self
+                         canChat:NO
+                      needUpdate:YES];
 }
 
 @end

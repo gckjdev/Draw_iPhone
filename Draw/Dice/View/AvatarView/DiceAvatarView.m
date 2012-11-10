@@ -134,7 +134,42 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        // Initialization code
+        self.backgroundColor = [UIColor clearColor];
+        bgView = [[UIImageView alloc] initWithFrame:[self calSqureAvatarFrame]];
+        [self addSubview:bgView];
+        
+        float width = MIN(self.bounds.size.width, self.bounds.size.height);
+        imageView = [[HJManagedImageV alloc] initWithFrame:CGRectMake(0, 0, width, width)];
+        [imageView setCenter:CGPointMake(self.bounds.size.width/2, self.bounds.size.height/2)];
+        imageView.layer.cornerRadius = self.frame.size.width/2;
+        imageView.layer.masksToBounds = YES;
+        [imageView setImage:[[DiceImageManager defaultManager]
+                             whiteSofaImage]];
+        [self addSubview:imageView];
+        
+        progressView = [[DACircularProgressView alloc] init];
+        progressView.progressBarWidth = width*0.10;
+        [progressView setFrame:[self calAvatarFrame]];
+        progressView.trackTintColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.5];
+        progressView.progressTintColor = [UIColor greenColor];
+        progressView.hidden = YES;
+        progressView.clockwise = YES;
+        [self addSubview:progressView];
+        
+        int pointSize = [DeviceDetection isIPAD]?32:16;
+        _rewardView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height/2)];
+        _rewardCoinView = [[UIImageView alloc] initWithImage:[ShareImageManager defaultManager].rewardCoin];
+        [_rewardCoinView setFrame:CGRectMake(_rewardView.frame.size.width/2-_rewardView.frame.size.height, 0, _rewardView.frame.size.height, _rewardView.frame.size.height)];
+        _rewardCoinLabel = [[HKGirlFontLabel alloc] initWithFrame:CGRectMake(_rewardView.frame.size.width/2, 0, _rewardView.frame.size.width, _rewardView.frame.size.height) pointSize:pointSize];
+        [_rewardCoinLabel setTextColor:[UIColor whiteColor]];
+        [_rewardCoinLabel setAutoresizingMask:UIViewAutoresizingFlexibleWidth];
+        //[_rewardCoinLabel setTextAlignment:UITextAlignmentCenter];
+        [_rewardView addSubview:_rewardCoinView];
+        [_rewardView addSubview:_rewardCoinLabel];
+        _rewardView.hidden = YES;
+        [self addSubview:_rewardView];
+        
+        [self addTapGuesture];
 
     }
     return self;

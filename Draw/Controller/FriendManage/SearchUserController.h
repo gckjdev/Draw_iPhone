@@ -9,11 +9,13 @@
 #import "PPTableViewController.h"
 #import "FriendService.h"
 #import "FriendCell.h"
+#import "CommonTabController.h"
 
-@interface SearchUserController :PPTableViewController <FriendServiceDelegate, FollowDelegate,UITextFieldDelegate>
+@interface SearchUserController :CommonTabController <FriendServiceDelegate,UITextFieldDelegate>
+{
+    
+}
 @property (retain, nonatomic) IBOutlet UIButton *searchButton;
-@property (retain, nonatomic) IBOutlet UILabel *titleLabel;
-@property (retain, nonatomic) IBOutlet UILabel *resultLabel;
 @property (retain, nonatomic) IBOutlet UIImageView *inputImageView;
 @property (retain, nonatomic) IBOutlet UITextField *inputTextField;
 

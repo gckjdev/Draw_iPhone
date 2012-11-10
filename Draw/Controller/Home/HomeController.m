@@ -36,7 +36,6 @@
 #import "DrawAppDelegate.h"
 #import "AnimationManager.h"
 #import "WordManager.h"
-#import "MyFriendsController.h"
 #import "RegisterUserController.h"
 
 #import "OfflineGuessDrawController.h"
@@ -64,6 +63,8 @@
 #import "MyFeedController.h"
 
 #import "StatisticManager.h"
+
+#import "FriendController.h"
 
 @interface HomeController()
 {
@@ -207,9 +208,7 @@
 
 - (void)registerDrawGameNotificationWithName:(NSString *)name 
                                   usingBlock:(void (^)(NSNotification *note))block
-{
-    PPDebug(@"<%@> name", [self description]);         
-    
+{    
     [self registerNotificationWithName:name 
                                 object:nil 
                                  queue:[NSOperationQueue mainQueue] 
@@ -755,7 +754,7 @@
             break;
         case MenuButtonTypeFriend:
         {
-            MyFriendsController *mfc = [[MyFriendsController alloc] init];
+            FriendController *mfc = [[FriendController alloc] init];
             [self.navigationController pushViewController:mfc animated:YES];
             [mfc release];
             [_bottomMenuPanel setMenuBadge:0 forMenuType:MenuButtonTypeFriend];

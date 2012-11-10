@@ -48,7 +48,7 @@ static ChatMessageManager *_chatMessageManager = nil;
     
     ChatMessage *chatMessage = [self findMessageByMessageId:messageId];
     if (chatMessage) {
-        [chatMessage setMessageId:messageId];
+        [chatMessage :messageId];
         [chatMessage setFrom:from];
         [chatMessage setTo:to];
         [chatMessage setDrawData:drawData];

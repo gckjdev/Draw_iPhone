@@ -28,8 +28,12 @@
 @class PBZJHGameResult_Builder;
 @class PBZJHGameState;
 @class PBZJHGameState_Builder;
-@class PBZJHUserInfo;
-@class PBZJHUserInfo_Builder;
+@class PBZJHPoker;
+@class PBZJHPoker_Builder;
+@class PBZJHUserPlayInfo;
+@class PBZJHUserPlayInfo_Builder;
+@class PBZJHUserPoker;
+@class PBZJHUserPoker_Builder;
 typedef enum {
   PBZJHCardTypeUnknow = 0,
   PBZJHCardTypeHighCard = 1,
@@ -44,13 +48,18 @@ typedef enum {
 BOOL PBZJHCardTypeIsValidValue(PBZJHCardType value);
 
 typedef enum {
-  PBZJHUserStateDefault = 0,
-  PBZJHUserStateCheckCard = 1,
-  PBZJHUserStateFoldCard = 2,
-  PBZJHUserStateCompairLose = 3,
-} PBZJHUserState;
+  PBZJHUserActionNone = 0,
+  PBZJHUserActionBet = 1,
+  PBZJHUserActionRaiseBet = 2,
+  PBZJHUserActionAutoBet = 3,
+  PBZJHUserActionCheckCard = 4,
+  PBZJHUserActionFoldCard = 5,
+  PBZJHUserActionCompareCard = 6,
+  PBZJHUserActionShowCard = 7,
+  PBZJHUserActionChangeCard = 8,
+} PBZJHUserAction;
 
-BOOL PBZJHUserStateIsValidValue(PBZJHUserState value);
+BOOL PBZJHUserActionIsValidValue(PBZJHUserAction value);
 
 typedef enum {
   PBPokerRankPokerRank2 = 2,
@@ -176,7 +185,7 @@ BOOL PBPokerSuitIsValidValue(PBPokerSuit value);
 @property (readonly) int32_t totalBet;
 @property (readonly) int32_t singleBet;
 - (NSArray*) usersInfoList;
-- (PBZJHUserInfo*) usersInfoAtIndex:(int32_t) index;
+- (PBZJHUserPlayInfo*) usersInfoAtIndex:(int32_t) index;
 
 + (PBZJHGameState*) defaultInstance;
 - (PBZJHGameState*) defaultInstance;
@@ -223,114 +232,250 @@ BOOL PBPokerSuitIsValidValue(PBPokerSuit value);
 - (PBZJHGameState_Builder*) clearSingleBet;
 
 - (NSArray*) usersInfoList;
-- (PBZJHUserInfo*) usersInfoAtIndex:(int32_t) index;
-- (PBZJHGameState_Builder*) replaceUsersInfoAtIndex:(int32_t) index with:(PBZJHUserInfo*) value;
-- (PBZJHGameState_Builder*) addUsersInfo:(PBZJHUserInfo*) value;
+- (PBZJHUserPlayInfo*) usersInfoAtIndex:(int32_t) index;
+- (PBZJHGameState_Builder*) replaceUsersInfoAtIndex:(int32_t) index with:(PBZJHUserPlayInfo*) value;
+- (PBZJHGameState_Builder*) addUsersInfo:(PBZJHUserPlayInfo*) value;
 - (PBZJHGameState_Builder*) addAllUsersInfo:(NSArray*) values;
 - (PBZJHGameState_Builder*) clearUsersInfoList;
 @end
 
-@interface PBZJHUserInfo : PBGeneratedMessage {
+@interface PBZJHPoker : PBGeneratedMessage {
 @private
-  BOOL hasIsAutoBet_:1;
-  BOOL hasCanBeCompared_:1;
-  BOOL hasTotalBet_:1;
-  BOOL hasUserId_:1;
   BOOL hasCardType_:1;
-  BOOL hasUserState_:1;
-  BOOL isAutoBet_:1;
-  BOOL canBeCompared_:1;
-  int32_t totalBet;
-  NSString* userId;
   PBZJHCardType cardType;
-  PBZJHUserState userState;
   NSMutableArray* mutablePokersList;
 }
-- (BOOL) hasUserId;
 - (BOOL) hasCardType;
-- (BOOL) hasTotalBet;
-- (BOOL) hasIsAutoBet;
-- (BOOL) hasUserState;
-- (BOOL) hasCanBeCompared;
-@property (readonly, retain) NSString* userId;
 @property (readonly) PBZJHCardType cardType;
-@property (readonly) int32_t totalBet;
-- (BOOL) isAutoBet;
-@property (readonly) PBZJHUserState userState;
-- (BOOL) canBeCompared;
 - (NSArray*) pokersList;
 - (PBPoker*) pokersAtIndex:(int32_t) index;
 
-+ (PBZJHUserInfo*) defaultInstance;
-- (PBZJHUserInfo*) defaultInstance;
++ (PBZJHPoker*) defaultInstance;
+- (PBZJHPoker*) defaultInstance;
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
-- (PBZJHUserInfo_Builder*) builder;
-+ (PBZJHUserInfo_Builder*) builder;
-+ (PBZJHUserInfo_Builder*) builderWithPrototype:(PBZJHUserInfo*) prototype;
+- (PBZJHPoker_Builder*) builder;
++ (PBZJHPoker_Builder*) builder;
++ (PBZJHPoker_Builder*) builderWithPrototype:(PBZJHPoker*) prototype;
 
-+ (PBZJHUserInfo*) parseFromData:(NSData*) data;
-+ (PBZJHUserInfo*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
-+ (PBZJHUserInfo*) parseFromInputStream:(NSInputStream*) input;
-+ (PBZJHUserInfo*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
-+ (PBZJHUserInfo*) parseFromCodedInputStream:(PBCodedInputStream*) input;
-+ (PBZJHUserInfo*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBZJHPoker*) parseFromData:(NSData*) data;
++ (PBZJHPoker*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBZJHPoker*) parseFromInputStream:(NSInputStream*) input;
++ (PBZJHPoker*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBZJHPoker*) parseFromCodedInputStream:(PBCodedInputStream*) input;
++ (PBZJHPoker*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
-@interface PBZJHUserInfo_Builder : PBGeneratedMessage_Builder {
+@interface PBZJHPoker_Builder : PBGeneratedMessage_Builder {
 @private
-  PBZJHUserInfo* result;
+  PBZJHPoker* result;
 }
 
-- (PBZJHUserInfo*) defaultInstance;
+- (PBZJHPoker*) defaultInstance;
 
-- (PBZJHUserInfo_Builder*) clear;
-- (PBZJHUserInfo_Builder*) clone;
+- (PBZJHPoker_Builder*) clear;
+- (PBZJHPoker_Builder*) clone;
 
-- (PBZJHUserInfo*) build;
-- (PBZJHUserInfo*) buildPartial;
+- (PBZJHPoker*) build;
+- (PBZJHPoker*) buildPartial;
 
-- (PBZJHUserInfo_Builder*) mergeFrom:(PBZJHUserInfo*) other;
-- (PBZJHUserInfo_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
-- (PBZJHUserInfo_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
-
-- (BOOL) hasUserId;
-- (NSString*) userId;
-- (PBZJHUserInfo_Builder*) setUserId:(NSString*) value;
-- (PBZJHUserInfo_Builder*) clearUserId;
+- (PBZJHPoker_Builder*) mergeFrom:(PBZJHPoker*) other;
+- (PBZJHPoker_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (PBZJHPoker_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 
 - (NSArray*) pokersList;
 - (PBPoker*) pokersAtIndex:(int32_t) index;
-- (PBZJHUserInfo_Builder*) replacePokersAtIndex:(int32_t) index with:(PBPoker*) value;
-- (PBZJHUserInfo_Builder*) addPokers:(PBPoker*) value;
-- (PBZJHUserInfo_Builder*) addAllPokers:(NSArray*) values;
-- (PBZJHUserInfo_Builder*) clearPokersList;
+- (PBZJHPoker_Builder*) replacePokersAtIndex:(int32_t) index with:(PBPoker*) value;
+- (PBZJHPoker_Builder*) addPokers:(PBPoker*) value;
+- (PBZJHPoker_Builder*) addAllPokers:(NSArray*) values;
+- (PBZJHPoker_Builder*) clearPokersList;
 
 - (BOOL) hasCardType;
 - (PBZJHCardType) cardType;
-- (PBZJHUserInfo_Builder*) setCardType:(PBZJHCardType) value;
-- (PBZJHUserInfo_Builder*) clearCardType;
+- (PBZJHPoker_Builder*) setCardType:(PBZJHCardType) value;
+- (PBZJHPoker_Builder*) clearCardType;
+@end
+
+@interface PBZJHUserPoker : PBGeneratedMessage {
+@private
+  BOOL hasUserId_:1;
+  BOOL hasPokers_:1;
+  NSString* userId;
+  PBZJHPoker* pokers;
+}
+- (BOOL) hasUserId;
+- (BOOL) hasPokers;
+@property (readonly, retain) NSString* userId;
+@property (readonly, retain) PBZJHPoker* pokers;
+
++ (PBZJHUserPoker*) defaultInstance;
+- (PBZJHUserPoker*) defaultInstance;
+
+- (BOOL) isInitialized;
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
+- (PBZJHUserPoker_Builder*) builder;
++ (PBZJHUserPoker_Builder*) builder;
++ (PBZJHUserPoker_Builder*) builderWithPrototype:(PBZJHUserPoker*) prototype;
+
++ (PBZJHUserPoker*) parseFromData:(NSData*) data;
++ (PBZJHUserPoker*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBZJHUserPoker*) parseFromInputStream:(NSInputStream*) input;
++ (PBZJHUserPoker*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBZJHUserPoker*) parseFromCodedInputStream:(PBCodedInputStream*) input;
++ (PBZJHUserPoker*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+@end
+
+@interface PBZJHUserPoker_Builder : PBGeneratedMessage_Builder {
+@private
+  PBZJHUserPoker* result;
+}
+
+- (PBZJHUserPoker*) defaultInstance;
+
+- (PBZJHUserPoker_Builder*) clear;
+- (PBZJHUserPoker_Builder*) clone;
+
+- (PBZJHUserPoker*) build;
+- (PBZJHUserPoker*) buildPartial;
+
+- (PBZJHUserPoker_Builder*) mergeFrom:(PBZJHUserPoker*) other;
+- (PBZJHUserPoker_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (PBZJHUserPoker_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+
+- (BOOL) hasUserId;
+- (NSString*) userId;
+- (PBZJHUserPoker_Builder*) setUserId:(NSString*) value;
+- (PBZJHUserPoker_Builder*) clearUserId;
+
+- (BOOL) hasPokers;
+- (PBZJHPoker*) pokers;
+- (PBZJHUserPoker_Builder*) setPokers:(PBZJHPoker*) value;
+- (PBZJHUserPoker_Builder*) setPokersBuilder:(PBZJHPoker_Builder*) builderForValue;
+- (PBZJHUserPoker_Builder*) mergePokers:(PBZJHPoker*) value;
+- (PBZJHUserPoker_Builder*) clearPokers;
+@end
+
+@interface PBZJHUserPlayInfo : PBGeneratedMessage {
+@private
+  BOOL hasIsAutoBet_:1;
+  BOOL hasAlreadCheckCard_:1;
+  BOOL hasAlreadFoldCard_:1;
+  BOOL hasAlreadShowCard_:1;
+  BOOL hasAlreadLose_:1;
+  BOOL hasTotalBet_:1;
+  BOOL hasUserId_:1;
+  BOOL hasPokers_:1;
+  BOOL hasLastAction_:1;
+  BOOL isAutoBet_:1;
+  BOOL alreadCheckCard_:1;
+  BOOL alreadFoldCard_:1;
+  BOOL alreadShowCard_:1;
+  BOOL alreadLose_:1;
+  int32_t totalBet;
+  NSString* userId;
+  PBZJHPoker* pokers;
+  PBZJHUserAction lastAction;
+}
+- (BOOL) hasUserId;
+- (BOOL) hasPokers;
+- (BOOL) hasTotalBet;
+- (BOOL) hasIsAutoBet;
+- (BOOL) hasLastAction;
+- (BOOL) hasAlreadCheckCard;
+- (BOOL) hasAlreadFoldCard;
+- (BOOL) hasAlreadShowCard;
+- (BOOL) hasAlreadLose;
+@property (readonly, retain) NSString* userId;
+@property (readonly, retain) PBZJHPoker* pokers;
+@property (readonly) int32_t totalBet;
+- (BOOL) isAutoBet;
+@property (readonly) PBZJHUserAction lastAction;
+- (BOOL) alreadCheckCard;
+- (BOOL) alreadFoldCard;
+- (BOOL) alreadShowCard;
+- (BOOL) alreadLose;
+
++ (PBZJHUserPlayInfo*) defaultInstance;
+- (PBZJHUserPlayInfo*) defaultInstance;
+
+- (BOOL) isInitialized;
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
+- (PBZJHUserPlayInfo_Builder*) builder;
++ (PBZJHUserPlayInfo_Builder*) builder;
++ (PBZJHUserPlayInfo_Builder*) builderWithPrototype:(PBZJHUserPlayInfo*) prototype;
+
++ (PBZJHUserPlayInfo*) parseFromData:(NSData*) data;
++ (PBZJHUserPlayInfo*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBZJHUserPlayInfo*) parseFromInputStream:(NSInputStream*) input;
++ (PBZJHUserPlayInfo*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBZJHUserPlayInfo*) parseFromCodedInputStream:(PBCodedInputStream*) input;
++ (PBZJHUserPlayInfo*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+@end
+
+@interface PBZJHUserPlayInfo_Builder : PBGeneratedMessage_Builder {
+@private
+  PBZJHUserPlayInfo* result;
+}
+
+- (PBZJHUserPlayInfo*) defaultInstance;
+
+- (PBZJHUserPlayInfo_Builder*) clear;
+- (PBZJHUserPlayInfo_Builder*) clone;
+
+- (PBZJHUserPlayInfo*) build;
+- (PBZJHUserPlayInfo*) buildPartial;
+
+- (PBZJHUserPlayInfo_Builder*) mergeFrom:(PBZJHUserPlayInfo*) other;
+- (PBZJHUserPlayInfo_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (PBZJHUserPlayInfo_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+
+- (BOOL) hasUserId;
+- (NSString*) userId;
+- (PBZJHUserPlayInfo_Builder*) setUserId:(NSString*) value;
+- (PBZJHUserPlayInfo_Builder*) clearUserId;
+
+- (BOOL) hasPokers;
+- (PBZJHPoker*) pokers;
+- (PBZJHUserPlayInfo_Builder*) setPokers:(PBZJHPoker*) value;
+- (PBZJHUserPlayInfo_Builder*) setPokersBuilder:(PBZJHPoker_Builder*) builderForValue;
+- (PBZJHUserPlayInfo_Builder*) mergePokers:(PBZJHPoker*) value;
+- (PBZJHUserPlayInfo_Builder*) clearPokers;
 
 - (BOOL) hasTotalBet;
 - (int32_t) totalBet;
-- (PBZJHUserInfo_Builder*) setTotalBet:(int32_t) value;
-- (PBZJHUserInfo_Builder*) clearTotalBet;
+- (PBZJHUserPlayInfo_Builder*) setTotalBet:(int32_t) value;
+- (PBZJHUserPlayInfo_Builder*) clearTotalBet;
 
 - (BOOL) hasIsAutoBet;
 - (BOOL) isAutoBet;
-- (PBZJHUserInfo_Builder*) setIsAutoBet:(BOOL) value;
-- (PBZJHUserInfo_Builder*) clearIsAutoBet;
+- (PBZJHUserPlayInfo_Builder*) setIsAutoBet:(BOOL) value;
+- (PBZJHUserPlayInfo_Builder*) clearIsAutoBet;
 
-- (BOOL) hasUserState;
-- (PBZJHUserState) userState;
-- (PBZJHUserInfo_Builder*) setUserState:(PBZJHUserState) value;
-- (PBZJHUserInfo_Builder*) clearUserState;
+- (BOOL) hasLastAction;
+- (PBZJHUserAction) lastAction;
+- (PBZJHUserPlayInfo_Builder*) setLastAction:(PBZJHUserAction) value;
+- (PBZJHUserPlayInfo_Builder*) clearLastAction;
 
-- (BOOL) hasCanBeCompared;
-- (BOOL) canBeCompared;
-- (PBZJHUserInfo_Builder*) setCanBeCompared:(BOOL) value;
-- (PBZJHUserInfo_Builder*) clearCanBeCompared;
+- (BOOL) hasAlreadCheckCard;
+- (BOOL) alreadCheckCard;
+- (PBZJHUserPlayInfo_Builder*) setAlreadCheckCard:(BOOL) value;
+- (PBZJHUserPlayInfo_Builder*) clearAlreadCheckCard;
+
+- (BOOL) hasAlreadFoldCard;
+- (BOOL) alreadFoldCard;
+- (PBZJHUserPlayInfo_Builder*) setAlreadFoldCard:(BOOL) value;
+- (PBZJHUserPlayInfo_Builder*) clearAlreadFoldCard;
+
+- (BOOL) hasAlreadShowCard;
+- (BOOL) alreadShowCard;
+- (PBZJHUserPlayInfo_Builder*) setAlreadShowCard:(BOOL) value;
+- (PBZJHUserPlayInfo_Builder*) clearAlreadShowCard;
+
+- (BOOL) hasAlreadLose;
+- (BOOL) alreadLose;
+- (PBZJHUserPlayInfo_Builder*) setAlreadLose:(BOOL) value;
+- (PBZJHUserPlayInfo_Builder*) clearAlreadLose;
 @end
 
 @interface PBZJHGameResult : PBGeneratedMessage {
