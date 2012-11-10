@@ -19,7 +19,6 @@
 @synthesize cardType = _cardType;
 @synthesize totalBet = _totalBet;
 @synthesize isAutoBet = _isAutoBet;
-@synthesize autoBetCount = _autoBetCount;
 @synthesize lastAction = _lastAction;
 
 @synthesize alreadCheckCard = _alreadCheckCard;
@@ -82,6 +81,15 @@
     }
     
     return 2;
+}
+
+- (BOOL)canAutoBet
+{
+    if (_alreadFoldCard || _alreadLose) {
+        return NO;
+    }
+    
+    return YES;
 }
 
 - (BOOL)canCompareCard

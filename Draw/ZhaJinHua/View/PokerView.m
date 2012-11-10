@@ -60,7 +60,7 @@
 
 + (id)createPokerViewWithPoker:(Poker *)poker
                          frame:(CGRect)frame
-                      isFaceUp:(BOOL)isFaceUp                      delegate:(id<PokerViewProtocol>)delegate
+                      delegate:(id<PokerViewProtocol>)delegate
 {
     PokerView *pokerView = [PokerView createPokerView];
     pokerView.delegate = delegate;
@@ -70,7 +70,7 @@
     [pokerView setOriginInfo];
     
     pokerView.poker = poker;
-    pokerView.isFaceUp = isFaceUp;
+    pokerView.isFaceUp = poker.faceUp;
     
     pokerView.backImageView.image = [[ZJHImageManager defaultManager] pokerBackImage];
     
@@ -79,8 +79,8 @@
     pokerView.suitImageView.image = [[ZJHImageManager defaultManager] pokerSuitImage:poker];
     pokerView.bodyImageView.image = [[ZJHImageManager defaultManager] pokerBodyImage:poker];
     
-    pokerView.backImageView.hidden = isFaceUp;
-    pokerView.frontView.hidden = !isFaceUp;
+    pokerView.backImageView.hidden = poker.faceUp;
+    pokerView.frontView.hidden = !poker.faceUp;
     
     return pokerView;
 }
@@ -233,19 +233,15 @@
     [self.popupView dismissAnimated:YES];
 }
 
-- (UIView *)createShowCardButton:(BOOL)enabled
+- (UIView *)createShowCardButton
 {
     UIView *view = [[[UIView alloc] initWithFrame:CGRectMake(0, 0, 43, 36)] autorelease];
     UIImageView *imageView = [[[UIImageView alloc] initWithFrame:view.bounds] autorelease];
-    imageView.image = enabled ? [[ZJHImageManager defaultManager] showCardButtonBgImage] : [[ZJHImageManager defaultManager] showCardButtonDisableBgImage];
     UIButton *button = [[[UIButton alloc] initWithFrame:CGRectMake(4, 4, 35, 25)] autorelease];
     [button.titleLabel setFont:[UIFont systemFontOfSize:13]];
     [button setTitle:@"亮牌" forState:UIControlStateNormal];
     [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    if (enabled) {
-        [button addTarget:self action:@selector(clickShowCardButton:) forControlEvents:UIControlEventTouchUpInside];
-    }
-    
+
     [view addSubview:imageView];
     [view addSubview:button];
     
@@ -254,9 +250,8 @@
 
 - (void)popupShowCardButtonInView:(UIView *)inView
                         aboveView:(UIView *)aboveView
-                          enabled:(BOOL)enabled
 {
-    UIView *showCardButton = [self createShowCardButton:enabled];
+    UIView *showCardButton = [self createShowCardButton];
     
     self.popupView = [[[CMPopTipView alloc] initWithCustomView:showCardButton needBubblePath:NO] autorelease];
     self.popupView.backgroundColor = [UIColor clearColor];

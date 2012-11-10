@@ -70,8 +70,9 @@ typedef enum {
 - (void)foldCards:(BOOL)animation;
 
 // 别人或自己比牌，调用这个接口，表示比牌结果
-- (void)compare:(BOOL)animation
-            win:(BOOL)win;
+
+- (void)winCards:(BOOL)animation;
+- (void)loseCards:(BOOL)animation;
 
 - (void)showBomb;
 - (void)clearBomb;
