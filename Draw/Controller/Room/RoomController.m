@@ -512,7 +512,7 @@
     [self hideActivity];
     [self resetStartTimer];
     
-    [self popupUnhappyMessage:NSLS(@"kNetworkBroken") title:@""];
+//    [self popupUnhappyMessage:NSLS(@"kNetworkBroken") title:@""];
     [self.navigationController popViewControllerAnimated:YES];
 }
 

@@ -75,7 +75,7 @@ static CommonGameNetworkClient* _defaultGameNetworkClient;
     
     [builder setMac:[strForEncode encodeMD5Base64:PROTOCOL_BUFFER_SHARE_KEY]]; 
 
-    PPDebug(@"[TEST] PB MAC=%@", [builder mac]);    
+//    PPDebug(@"[TEST] PB MAC=%@", [builder mac]);    
     return [builder build];
 }
 

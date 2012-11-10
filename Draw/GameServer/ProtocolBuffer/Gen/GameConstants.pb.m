@@ -113,6 +113,7 @@ BOOL GameCommandTypeIsValidValue(GameCommandType value) {
     case GameCommandTypeLocalFoldCard:
     case GameCommandTypeLocalShowCard:
     case GameCommandTypeLocalCompareCard:
+    case GameCommandTypeNotCurrentTurnLocalFoldCard:
     case GameCommandTypeRoomNotificationRequest:
     case GameCommandTypeRoomNotificationResponse:
     case GameCommandTypeRollDiceBeginNotificationRequest:
@@ -157,6 +158,8 @@ BOOL GameResultCodeIsValidValue(GameResultCode value) {
     case GameResultCodeErrorCannotFoldCard:
     case GameResultCodeErrorAlreadyShowCard:
     case GameResultCodeErrorCannotShowCard:
+    case GameResultCodeErrorAlreadyCompareCard:
+    case GameResultCodeErrorCannotCompareCard:
     case GameResultCodeErrorUnknownItem:
     case GameResultCodeErrorExcessTimeLimit:
     case GameResultCodeErrorSystemHandlerNotFound:

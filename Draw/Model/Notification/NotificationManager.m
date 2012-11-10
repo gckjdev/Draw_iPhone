@@ -129,6 +129,11 @@ NotificationManager *_staticNotificationManager = nil;
     [super dealloc];
 }
 
+- (void)showNotificationWithText:(NSString*)text
+{
+    [statueBar changeMessge:text];
+}
+
 - (void)showNotification:(NSDictionary *)notification
 {
     NotificationType type = [NotificationManager typeForUserInfo:notification];

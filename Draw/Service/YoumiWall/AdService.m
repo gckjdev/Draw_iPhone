@@ -328,7 +328,6 @@ static AdService* _defaultService;
 
 - (BOOL)isShowAd
 {    
-    return NO;
 //    PPDebug(@"WARNING!!! isShowAd is forced to YES for testing!!!");
 //    return YES;    
     

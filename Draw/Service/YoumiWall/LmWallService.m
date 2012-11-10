@@ -14,6 +14,7 @@
 #import "AdService.h"
 #import "UserManager.h"
 #import "ConfigManager.h"
+#import "NotificationManager.h"
 
 //#define IPHONE_WALL_ID     ([GameApp lmWallId])  //@"ed21340370b99ad5bd2a5e304e3ea6c4"
 
@@ -132,14 +133,14 @@ static LmWallService* _defaultService;
     [self show:viewController];        
 }
 
-- (void)handleScoreAdded:(int)score
+- (void)handleScoreAdded:(int)score wallType:(int)wallType
 {
     // charge account
     [[AccountService defaultService] chargeAccount:score source:LmAppReward];
     
     NSString* userId = [[UserManager defaultManager] userId];
     
-    if ([ConfigManager wallType] == WallTypeLimei){
+    if (wallType == WallTypeLimei){
         [self.adWallView immobViewReduceScore:score WithAdUnitID:[GameApp lmwallId] WithAccountID:userId];
     }
     else{
@@ -162,9 +163,14 @@ static LmWallService* _defaultService;
     }
     else{
         title = @"免费金币";
-        message = [NSString stringWithFormat:@"成功下载应用后获取了%d金币",(int)score] ;
+        message = [NSString stringWithFormat:@"成功下载应用获取%d金币",(int)score] ;
     }        
+
+    if (!isForRemoveAd){
+        [[NotificationManager defaultManager] showNotificationWithText:message];
+    }
     
+    /*
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title
                                                     message:message
                                                    delegate:nil 
@@ -172,7 +178,8 @@ static LmWallService* _defaultService;
                                           otherButtonTitles:nil];
     
     [alert show];
-    [alert release];    
+    [alert release];
+     */
 }
 
 /**
@@ -203,7 +210,7 @@ static LmWallService* _defaultService;
     if (score <= 0.0f)
         return;
     
-    [self handleScoreAdded:score];
+    [self handleScoreAdded:score wallType:WallTypeLimei];
 }
 
 - (void) immobViewReduceScore:(BOOL)status WithMessage:(NSString *)message
@@ -232,7 +239,7 @@ static LmWallService* _defaultService;
     if (pointsValue <= 0)
         return;
 
-    [self handleScoreAdded:pointsValue];
+    [self handleScoreAdded:pointsValue wallType:WallTypeWanpu];
 }
 //获取积分失败处理方法:
 -(void)getUpdatedPointsFailed:(NSNotification*)notifyObj{

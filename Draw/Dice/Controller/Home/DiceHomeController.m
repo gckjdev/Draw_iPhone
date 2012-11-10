@@ -485,6 +485,8 @@
     _isTryJoinGame = NO;
     [self hideActivity];
     
+    [self.navigationController popToRootViewControllerAnimated:NO];
+    
     if (error != nil) {
         [self.navigationController popToRootViewControllerAnimated:YES];
         [self popupUnhappyMessage:NSLS(@"kNetworkBroken") title:@""];
