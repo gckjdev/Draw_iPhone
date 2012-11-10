@@ -128,20 +128,20 @@
 - (void)startReciprocal:(CFTimeInterval)reciprocalTime
 {
     [self bringSubviewToFront:self.roundAvatar];
-    [self.roundAvatar startreciprocal:reciprocalTime];
+    [self.roundAvatar startReciprocol:reciprocalTime];
 }
 
-- (void)startreciprocal:(CFTimeInterval)reciprocalTime
+- (void)startReciprocal:(CFTimeInterval)reciprocalTime
            fromProgress:(float)progress
 {
-    [self.roundAvatar startReciprocal:reciprocalTime
+    [self.roundAvatar startReciprocol:reciprocalTime
                          fromProgress:progress];
     
 }
 
 - (void)stopReciprocal
 {
-    [self.roundAvatar stopReciprocal];
+    [self.roundAvatar stopReciprocol];
 }
 
 
