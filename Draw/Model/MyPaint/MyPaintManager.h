@@ -11,6 +11,7 @@
 #import "MyPaint.h"
 #import "UserManager.h"
 #import "Word.h"
+#import "StorageManager.h"
 
 @protocol MyPaintManagerDelegate <NSObject>
 
@@ -21,39 +22,44 @@
 @end
 
 @class MyPaint;
-
+@class PBDraw;
 
 @interface MyPaintManager : NSObject
+{
+    StorageManager *_imageManager;
+    StorageManager *_drawDataManager;
+}
+//+ (NSString*)getMyPaintImagePathByCapacityPath:(NSString*)path;
+//+ (NSString *)constructImagePath:(NSString *)imageName;
+//+ (NSString *)constructDataPath:(NSString *)dataName;
+//
+//+ (NSData *)drawDataFromDataPath:(NSString *)path;
 
-+ (NSString*)getMyPaintImagePathByCapacityPath:(NSString*)path;
-+ (NSString*)getMyPaintImageDirection;
-+ (NSString *)constructImagePath:(NSString *)imageName;
-+ (NSString *)constructDataPath:(NSString *)dataName;
+//- (MyPaint *)createDraft:(UIImage *)image
+//                    data:(NSMutableArray*)drawActionList 
+//                language:(LanguageType)language
+//                drawWord:(NSString*)drawWord 
+//                   level:(WordLevel)level
+//               targetUid:(NSString *)targetUid;
+//
+//- (BOOL)updateDraft:(MyPaint *)draft 
+//              image:(UIImage *)image
+//               data:(NSMutableArray*)drawActionList;
+//
+//
+//
+//- (BOOL)createMyPaintWithImage:(NSString*)image
+//                          data:(NSData*)data
+//                    drawUserId:(NSString*)drawUserId
+//              drawUserNickName:(NSString*)drawUserNickName
+//                      drawByMe:(BOOL)drawByMe
+//                      drawWord:(NSString*)drawWord;
 
-+ (NSData *)drawDataFromDataPath:(NSString *)path;
+
+
+#pragma mark - below no chage.
+
 + (MyPaintManager*)defaultManager;
-
-- (MyPaint *)createDraft:(UIImage *)image
-                    data:(NSMutableArray*)drawActionList 
-                language:(LanguageType)language
-                drawWord:(NSString*)drawWord 
-                   level:(WordLevel)level
-               targetUid:(NSString *)targetUid;
-
-- (BOOL)updateDraft:(MyPaint *)draft 
-              image:(UIImage *)image
-               data:(NSMutableArray*)drawActionList;
-
-
-- (MyPaint *)latestDraft;
-
-- (BOOL)createMyPaintWithImage:(NSString*)image
-                          data:(NSData*)data
-                    drawUserId:(NSString*)drawUserId
-              drawUserNickName:(NSString*)drawUserNickName
-                      drawByMe:(BOOL)drawByMe
-                      drawWord:(NSString*)drawWord;
-
 
 - (void)findMyPaintsFrom:(NSInteger)offset 
                        limit:(NSInteger)limit 
@@ -79,4 +85,20 @@
 //real remove.
 - (void)removeAlldeletedPaints;
 
+
+#pragma mark new methods.
+
+- (BOOL)createMyPaintWithImage:(UIImage*)image
+                    pbDrawData:(PBDraw*)pbDrawData;
+
+- (MyPaint *)createDraft:(UIImage *)image
+              pbDrawData:(PBDraw*)pbDrawData
+               targetUid:(NSString *)targetUid;
+
+- (BOOL)updateDraft:(MyPaint *)draft
+              image:(UIImage *)image
+        pbDrawData:(PBDraw*)pbDrawData;
+
+- (NSMutableArray *)drawActionListForPaint:(MyPaint *)paint;
+- (NSString *)imagePathForPaint:(MyPaint *)paint;
 @end

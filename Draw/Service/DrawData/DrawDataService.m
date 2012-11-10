@@ -85,7 +85,7 @@ static DrawDataService* _defaultDrawDataService = nil;
                 PBFeed *pbFeed = ([list count] != 0) ? [list objectAtIndex:0] : nil;
                 if (pbFeed && (pbFeed.actionType == FeedTypeDraw || pbFeed.actionType == FeedTypeDrawToUser)) {
                     feed = [[[DrawFeed alloc] initWithPBFeed:pbFeed] autorelease];
-                    [feed parseDrawData:pbFeed];
+//                    [feed parseDrawData:pbFeed];
                 }
                 resultCode = [response resultCode];
             }
@@ -249,58 +249,29 @@ static DrawDataService* _defaultDrawDataService = nil;
 
 }
 
-// save draw data locally
-- (void)saveActionList:(NSArray *)actionList 
-                userId:(NSString*)userId 
-              nickName:(NSString*)nickName 
-             isMyPaint:(BOOL)isMyPaint
-                  word:(NSString*)word
-                 image:(UIImage*)image
-              delegate:(id<DrawDataServiceDelegate>)delegate
+
+
+- (void)savePaintWithPBDraw:(PBDraw*)pbDraw
+                      image:(UIImage*)image
+                   delegate:(id<DrawDataServiceDelegate>)delegate;
 {
-    
-    if (actionList.count == 0) {
-        PPDebug(@"actionList has no object");        
-    }
-/*    
-    if ([DrawAction isDrawActionListBlank:actionList]) {
+    if ([pbDraw.drawDataList count] == 0) {
+        PPDebug(@"<savePaintWithPBDraw>:actionList has no object");
+        return;
+    }else if(image == nil){
+        PPDebug(@"<savePaintWithPBDraw>image is nil.");
         return;
     }
- */
-    int aTime = time(0);
-    NSString* imageName = [NSString stringWithFormat:@"%d.png", aTime];
-    if (image!=nil) 
-    {
-        dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-        if (queue == NULL){
-            return;
-        }
-        
-        dispatch_async(queue, ^{
-
-            NSString *uniquePath=[MyPaintManager constructImagePath:imageName];
-
-            NSData* imageData = UIImagePNGRepresentation(image);
-            BOOL result=[imageData writeToFile:uniquePath atomically:YES];
-            PPDebug(@"<DrawGameService> save image to path:%@ result:%d , canRead:%d", uniquePath, result, [[NSFileManager defaultManager] fileExistsAtPath:uniquePath]);
-            if (result) {
-                NSData* drawActionListData = [NSKeyedArchiver archivedDataWithRootObject:actionList];
-               result = [[MyPaintManager defaultManager ] createMyPaintWithImage:imageName 
-                                                                    data:drawActionListData 
-                                                              drawUserId:userId
-                                                        drawUserNickName:nickName 
-                                                                drawByMe:isMyPaint
-                                                                drawWord:word];                
-            }
-            
-            dispatch_async(dispatch_get_main_queue(), ^{
-                if (delegate && [delegate respondsToSelector:@selector(didSaveOpus:)]) {
-                    [delegate didSaveOpus:result];
-                }
-            });
-        });
-    }
     
+    dispatch_async(workingQueue, ^{
+        BOOL result = [[MyPaintManager defaultManager] createMyPaintWithImage:image
+                                                                   pbDrawData:pbDraw];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (delegate && [delegate respondsToSelector:@selector(didSaveOpus:)]) {
+                [delegate didSaveOpus:result];
+            }
+        });
+    });
 }
 
 

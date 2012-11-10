@@ -25,7 +25,17 @@ typedef enum
 @property(nonatomic, retain)NSString *directoryName;
 
 + (id)defaultManager; //StorageTypeCache type, dir name is default
-- (id)initWithStoreType:(StorageType)type 
+
+//full path
+- (NSString *)pathWithKey:(NSString *)key;
+- (NSString *)currentDirectory;
+
+
+//Relative path below root directory(Document/Library/Temp)
+- (NSString *)relativePathWithKey:(NSString *)key;
+- (NSString *)fullPathWithRelativePath:(NSString *)relativePath;
+
+- (id)initWithStoreType:(StorageType)type
           directoryName:(NSString *)directoryName;
 - (BOOL)saveData:(NSData *)data forKey:(NSString *)key;
 - (NSData *)dataForKey:(NSString *)key;

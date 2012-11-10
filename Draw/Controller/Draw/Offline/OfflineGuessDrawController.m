@@ -86,6 +86,7 @@
     moveButton = nil;
     _shopController = nil;
     lastScaleTarget = nil;
+    self.feed.drawData = nil;
     [showView stop];
     PPRelease(_candidateString);
 //    PPRelease(toolView);
@@ -148,6 +149,9 @@
         shareImageManager = [ShareImageManager defaultManager];        
         self.feed = feed;
         _opusId = _feed.feedId;
+        if (_feed.drawData == nil) {
+            [_feed parseDrawData];
+        }
         self.draw = _feed.drawData;
         _authorId = _feed.author.userId;
         _scene = [[UseItemScene createSceneByType:UseSceneTypeOfflineGuess feed:feed] retain];

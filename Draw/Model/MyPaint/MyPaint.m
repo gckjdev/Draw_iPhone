@@ -28,23 +28,43 @@
 @dynamic targetUserId;
 
 @synthesize thumbImage = _thumbImage;
+@synthesize drawActionList = _drawActionList;
+@synthesize imageFilePath = _imageFilePath;
 
 
-- (NSData *)drawData
+- (NSString *)imageFilePath
 {
-    if ([self.dataFilePath length] != 0) {
-        _drawData = [MyPaintManager drawDataFromDataPath:self.dataFilePath];
-        [_drawData retain];
-        return _drawData;
-    }else{
-        return self.data;
+    if (_imageFilePath == nil) {
+        _imageFilePath = [[MyPaintManager defaultManager] imagePathForPaint:self];
+        [_imageFilePath retain];
+        PPDebug(@"<MyPaint> imageFilePath = %@",_imageFilePath);
     }
+    return _imageFilePath;
+}
+
+- (UIImage *)thumbImage
+{
+    if (_thumbImage == nil) {
+        _thumbImage = [UIImage imageWithContentsOfFile:self.imageFilePath];
+        [_thumbImage retain];
+    }
+    return _thumbImage;
+}
+
+- (NSMutableArray *)drawActionList
+{
+    if (_drawActionList == nil) {
+        _drawActionList = [[MyPaintManager defaultManager] drawActionListForPaint:self];
+        [_drawActionList retain];
+    }
+    return _drawActionList;
 }
 
 - (void)dealloc
 {
     PPRelease(_thumbImage);
-    PPRelease(_drawData);
+    PPRelease(_drawActionList);
+    PPRelease(_imageFilePath);
     [super dealloc];
 }
 

@@ -25,6 +25,7 @@
 #import "OfflineDrawViewController.h"
 #import "TableTab.h"
 #import "TableTabManager.h"
+#import "UIImageExt.h"
 
 #define BUTTON_INDEX_OFFSET 20120229
 #define IMAGE_WIDTH 93
@@ -171,8 +172,7 @@ typedef enum{
         [message setThumbImage:paint.thumbImage];
         WXImageObject *ext = [WXImageObject object];
         message.title = NSLS(@"kWXShareImageName");
-        NSString* filePath = [MyPaintManager getMyPaintImagePathByCapacityPath:paint.image];
-        ext.imageData = [NSData dataWithContentsOfFile:filePath] ;
+        ext.imageData = [paint.thumbImage data] ;
         message.mediaObject = ext;
         
         GetMessageFromWXResp* resp = [[[GetMessageFromWXResp alloc] init] autorelease];
@@ -257,10 +257,11 @@ typedef enum{
     MyPaint* currentPaint = _selectedPaint;
     
     if (buttonIndex == SHARE_AS_PHOTO) {                        
-        self.shareAction = [[[ShareAction alloc] initWithDrawImageFile:currentPaint.image 
-                                                                 isGIF:NO
-                                                             drawWord:currentPaint.drawWord
-                                                                 drawUserId:currentPaint.drawUserId] autorelease];
+        self.shareAction = [[[ShareAction alloc]
+                             initWithDrawImageFile:currentPaint.imageFilePath
+                             isGIF:NO
+                             drawWord:currentPaint.drawWord
+                             drawUserId:currentPaint.drawUserId] autorelease];
             
         [_shareAction displayWithViewController:self];                       
     }                            

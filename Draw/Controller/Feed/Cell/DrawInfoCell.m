@@ -109,6 +109,11 @@
 
 - (void)showDrawView:(DrawFeed *)feed
 {
+        if (![feed hasDrawActions]) {
+            return;
+        }
+
+        [feed parseDrawData];
         CGRect frame = self.drawImage.frame;
         self.showView = [[[ShowDrawView alloc] initWithFrame:frame] autorelease];
         self.showView.playSpeed = 1.0/50.0;
@@ -124,9 +129,9 @@
         CGFloat xScale = frame.size.width / normalFrame.size.width;
         CGFloat yScale = frame.size.height / normalFrame.size.height;
         if (xScale == 1 && yScale == 1) {
-            self.showView.drawActionList = [NSMutableArray arrayWithArray:self.feed.drawData.drawActionList];
+            self.showView.drawActionList = [NSMutableArray arrayWithArray:feed.drawData.drawActionList];
         }else{
-            self.showView.drawActionList = [DrawAction scaleActionList:_feed.drawData.drawActionList xScale:xScale yScale:yScale];
+            self.showView.drawActionList = [DrawAction scaleActionList:feed.drawData.drawActionList xScale:xScale yScale:yScale];
         }
         [self.showView show];
         UIImage *image = [self.showView createImage];
@@ -141,7 +146,7 @@
     
         //cache image
         [[FeedManager defaultManager] saveFeed:feed.feedId largeImage:image];
-    
+        feed.drawData = nil;
 }
 
 - (void)updateShowView:(DrawFeed *)feed
@@ -181,12 +186,14 @@
     [self updateTime:self.feed];
     [self updateDrawToUserInfo:feed];
     [self.loadingActivity setCenter:self.drawImage.center];
-    if (feed.drawData) {
+    if ([feed hasDrawActions]) {
+        PPDebug(@"<setCellInfo>:DrawInfoCell have drawData. start to showView");
         [self updateShowView:feed];
         [self updateTime:feed];
         return;
     } 
-
+    PPDebug(@"<setCellInfo>:DrawInfoCell have no drawData. start to load data");
+    
     if (self.feed.largeImage == nil) {
         self.feed.largeImage = [[FeedManager defaultManager] largeImageForFeedId:self.feed.feedId];
         if(self.feed.largeImage){
@@ -211,7 +218,7 @@
         PPDebug(@"get draw feed succ: feedId = %@, image url = %@",feed.feedId,
                 feed.drawImageUrl);
         self.feed.timesSet = feed.timesSet;
-        self.feed.drawData = feed.drawData;
+        self.feed.pbDraw = feed.pbDraw;
         self.feed.feedUser = feed.feedUser;
             
         [self updateShowView:feed];

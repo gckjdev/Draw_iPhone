@@ -58,11 +58,13 @@
             self.showView.hidden = YES;
             [self.showView removeFromSuperview];
             self.showView = nil;
+            self.feed.drawData = nil;
             self.feed = nil;
             [self removeFromSuperview];
         }else if ([animationValue isEqualToString:SHOW_ANIMATION_VALUE]) {
             PPDebug(@"<animationDidStop>: start to show draw view.");
             [self.holderView removeFromSuperview];
+            [self.feed parseDrawData];
             self.showView = [[[ShowDrawView alloc]
                               initWithFrame:self.holderView.frame] 
                              autorelease];
@@ -71,7 +73,6 @@
                                      arrayWithArray:
                                      self.feed.drawData.drawActionList];            
             [self.showView setDrawActionList:list];
-            
             double speed = [DrawAction calculateSpeed:self.showView.drawActionList];
             self.showView.playSpeed = speed;
             [self addSubview:self.showView];

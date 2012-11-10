@@ -12,7 +12,7 @@
 
 @interface MyPaint : NSManagedObject
 {
-    NSData *_drawData;
+//    NSData *_drawData;
 }
 
 @property (nonatomic, retain) NSDate * createDate;
@@ -27,11 +27,12 @@
 @property (nonatomic, retain) NSNumber *language;
 @property (nonatomic, retain) NSNumber *level;
 @property (nonatomic, retain) NSNumber *deleteFlag;
-@property (nonatomic, retain) NSString * dataFilePath;
+@property (nonatomic, retain) NSString * dataFilePath; //relative
 @property (nonatomic, retain) NSString * targetUserId;
 @property (nonatomic, retain) NSString * contestId;
 
 @property (nonatomic, retain) UIImage *thumbImage;
-//@property (nonatomic, retain) NSData *drawData; //replace data
-- (NSData *)drawData;
+@property (nonatomic, retain) NSString *imageFilePath; //full path
+@property (nonatomic, retain) NSMutableArray *drawActionList;
+
 @end
