@@ -51,20 +51,23 @@
 #import "DiceHelpManager.h"
 #import "BoardService.h"
 
+#import "PPResourcePackage.h"
+#import "PPResourceService.h"
+#import "PPResourceTestViewController.h"
 
 #import "MyPaintManager.h"
 NSString* GlobalGetServerURL()
 {    
     return [ConfigManager getAPIServerURL];
 //    return @"http://192.167.1.105:8000/api/i?";
-//    return @"http://192.168.1.198:8000/api/i?";
+//    return @"http://192.168.1.123:8000/api/i?";
 }
 
 NSString* GlobalGetTrafficServerURL()
 {
     return [ConfigManager getTrafficAPIServerURL];
 //    return @"http://192.168.1.14:8100/api/i?";
-//    return @"http://192.168.1.198:8100/api/i?";
+//    return @"http://192.168.1.123:8100/api/i?";
 }
 
 NSString* GlobalGetBoardServerURL()
@@ -72,8 +75,6 @@ NSString* GlobalGetBoardServerURL()
     return [ConfigManager getTrafficAPIServerURL];
 //    return @"http://192.168.1.13:8100/api/i?";    
 }
-
-
 
 @implementation DrawAppDelegate
 
@@ -156,12 +157,14 @@ NSString* GlobalGetBoardServerURL()
     
     
     // Init Account Service and Sync Balance and Item
-    if (isDrawApp()){
-        [[AccountService defaultService] syncAccountAndItem];
-    }
-    else{
-        [[AccountService defaultService] syncAccount:nil forceServer:YES];
-    }
+    [[AccountService defaultService] syncAccount:nil forceServer:YES];
+    
+//    if (isDrawApp()){
+//        [[AccountService defaultService] syncAccountAndItem];
+//    }
+//    else{
+//        
+//    }
     
     if (isDrawApp()){
         [[RouterService defaultService] fetchServerListAtBackground];    
@@ -218,8 +221,31 @@ NSString* GlobalGetBoardServerURL()
         [self checkAppVersion:[ConfigManager appId]];
     }
 
+    
     // Show Root View
     self.window.rootViewController = navigationController;
+    
+    /*
+    NSSet* resourcePackages1 = [NSSet setWithObjects:
+                               [PPResourcePackage resourcePackageWithName:@"common_core" type:PPResourceImage],
+                               [PPResourcePackage resourcePackageWithName:@"draw_core" type:PPResourceImage],
+                               [PPResourcePackage resourcePackageWithName:@"dice_core" type:PPResourceImage],                               
+                               nil];
+    
+    NSSet* resourcePackages2 = [NSSet setWithObjects:
+                                [PPResourcePackage resourcePackageWithName:@"dice_beautiful" type:PPResourceImage],
+                                [PPResourcePackage resourcePackageWithName:@"dice_music" type:PPResourceImage],
+                                [PPResourcePackage resourcePackageWithName:@"dice_voice" type:PPResourceImage],
+                                [PPResourcePackage resourcePackageWithName:@"dice_help" type:PPResourceImage],
+                                nil];
+    
+    [[PPResourceService defaultService] addExplicitResourcePackage:resourcePackages1];
+    [[PPResourceService defaultService] addImplicitResourcePackage:resourcePackages2];
+
+    PPResourceTestViewController* resourceTestController = [[PPResourceTestViewController alloc] init];
+    self.window.rootViewController = resourceTestController;
+    //*/
+    
     [self.window makeKeyAndVisible];
     
     // Fetch Server List At Background

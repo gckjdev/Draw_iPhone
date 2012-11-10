@@ -519,7 +519,7 @@
     PPDebug(@"%@ <didBroken>", [self description]);
     [self hideActivity];
     
-    [self popupUnhappyMessage:NSLS(@"kNetworkBroken") title:@""];
+//    [self popupUnhappyMessage:NSLS(@"kNetworkBroken") title:@""];
     [self.navigationController popToRootViewControllerAnimated:NO];
     
 }

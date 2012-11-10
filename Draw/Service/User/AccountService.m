@@ -656,7 +656,12 @@ static AccountService* _defaultAccountService;
                             PPDebug(@"<syncAccountAndItem> add client item type[%d], amount[%d]", itemType, itemAmount);
                         }
                         else{
-                            if ([[item amount] intValue] < itemAmount){
+                            
+                            if (forceServer){
+                                // use server item amount
+                                [item setAmount:[NSNumber numberWithInt:itemAmount]];
+                            }
+                            else if ([[item amount] intValue] < itemAmount){
                                 // use server item amount
                                 [item setAmount:[NSNumber numberWithInt:itemAmount]];
                                 PPDebug(@"<syncAccountAndItem> update client item type[%d], amount[%d]", itemType, itemAmount);
@@ -807,15 +812,39 @@ static AccountService* _defaultAccountService;
      */
 }
 
+#define SHARE_WEIBO_REWARD_COUNTER  @"SHARE_WEIBO_REWARD_COUNTER"
+#define MAX_REWARD_FOR_SHARE_WEIBO  10
+
 - (int)rewardForShareWeibo
 {
+    int counter = [[NSUserDefaults standardUserDefaults] integerForKey:SHARE_WEIBO_REWARD_COUNTER];
+    if (counter >= MAX_REWARD_FOR_SHARE_WEIBO){
+        return 0;
+    }
+    
+    // award user
     [self chargeAccount:[ConfigManager getShareWeiboReward] source:ShareWeiboReward];
+    
+    // update counter
+    [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithInt:counter+1] forKey:SHARE_WEIBO_REWARD_COUNTER];
+
+    // return award amount
     return [ConfigManager getShareWeiboReward];
 }
 
+#define SHARE_APP_REWARD_COUNTER  @"SHARE_APP_REWARD_COUNTER"
+#define MAX_REWARD_FOR_SHARE_APP    10
+
 - (void)rewardForShareApp
 {
+    int counter = [[NSUserDefaults standardUserDefaults] integerForKey:SHARE_APP_REWARD_COUNTER];
+    if (counter >= MAX_REWARD_FOR_SHARE_APP){
+        return;
+    }
+    
     [self chargeAccount:[ConfigManager getShareFriendReward] source:ShareAppReward];
+    
+    [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithInt:counter+1] forKey:SHARE_APP_REWARD_COUNTER];
 }
 
 @end

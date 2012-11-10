@@ -384,6 +384,9 @@ infoInView:(PPViewController*)superController
         self.coins = 0;
     }
     [self resetUserInfo];
+
+    // TODO : writen by Benson
+    // Bugs : sometimes crash here due to superViewController has been deallocated
     [self.superViewController hideActivity];
     [self showInView:self.superViewController.view];
 }

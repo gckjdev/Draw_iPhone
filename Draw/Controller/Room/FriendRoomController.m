@@ -362,7 +362,7 @@
     _isTryJoinGame = NO;
     PPDebug(@"<didBroken> Friend Room");
     [self hideActivity];
-    [self popupUnhappyMessage:NSLS(@"kNetworkBroken") title:@""];
+//    [self popupUnhappyMessage:NSLS(@"kNetworkBroken") title:@""];
     
     if (self.navigationController.topViewController != self){
         [self.navigationController popToViewController:self animated:YES];

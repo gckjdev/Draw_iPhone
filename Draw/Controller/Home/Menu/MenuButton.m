@@ -196,10 +196,10 @@ int *drawMainMenuTypeList()
         MenuButtonTypeOfflineDraw,   
         MenuButtonTypeOfflineGuess,   
         MenuButtonTypeTimeline,   
+        MenuButtonTypeOnlinePlay,
+
         MenuButtonTypeTop,
-        
-        MenuButtonTypeOnlinePlay,  
-        MenuButtonTypeFriendPlay,   
+        MenuButtonTypeFriendPlay,
         MenuButtonTypeContest,
         MenuButtonTypeShop,    
         //must add the end mark.
