@@ -42,7 +42,10 @@ message PBFeed {
   required string userId = 2;
   required int32  actionType = 3;
   required int32  createDate = 4;
-  
+  optional int32  deviceType = 5;       // deviceType : (1:iPhone/iPod Touch, 2:iPad, 3:Android Phone)
+  optional string deviceName = 6;       // 设备名称，如 iPhone4, New iPad, iPhone5, 三星Galaxy 等等
+  optional string gameId = 7;           // 来自哪个游戏
+
   // for user info
   optional string nickName = 21;
   optional string avatar = 22;
