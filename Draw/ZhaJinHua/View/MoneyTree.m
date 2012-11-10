@@ -81,6 +81,7 @@
 
 - (void)startGrowth
 {
+    PPDebug(@"<MoneyTree> tree start growth");
     [self killTimer];
     [self setIsMature:NO];
     [self startGrowthTimer:[ConfigManager getTreeMatureTime]];

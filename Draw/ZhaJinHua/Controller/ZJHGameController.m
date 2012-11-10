@@ -379,7 +379,7 @@
     [self updateTotalBetAndSingleBet];
     [self updateAllUserTotalBet];
     [self updateAutoBetButton];
-    
+    [self updateMyAvatar];
     [self allBet];
 }
 
@@ -732,6 +732,7 @@ compareCardWith:(NSString*)targetUserId
     [self setSingleBetLabel:nil];
     [self setMoneyTree:nil];
     [self setVsImageView:nil];
+    [self.moneyTree kill];
     [super viewDidUnload];
 }
 

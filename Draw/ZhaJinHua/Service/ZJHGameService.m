@@ -233,7 +233,7 @@ static ZJHGameService *_defaultService;
 
 - (void)handleMoreOnJoinGameResponse:(GameMessage*)message
 {
-    [_accountService syncAccount:self forceServer:YES];
+    _myBalance = [_accountService getBalance];
     self.gameState = [ZJHGameState fromPBZJHGameState:message.joinGameResponse.zjhGameState];
 }
 
@@ -452,8 +452,8 @@ static ZJHGameService *_defaultService;
 
 - (NSString *)getServerListString
 {
-//    return @"58.215.172.169:8080";
-    return @"192.168.1.7:8080";
+    return @"58.215.172.169:8080";
+//    return @"192.168.1.7:8080";
 }
 
 - (ZJHUserPlayInfo *)myPlayInfo
