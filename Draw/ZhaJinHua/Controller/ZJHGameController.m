@@ -148,7 +148,7 @@
     
     [self updateTotalBetAndSingleBet];
     [self updateAllUserTotalBet];
-    [self.moneyTree startGrowth];
+    [self.moneyTree startGrow];
 }
 
 - (void)viewDidAppear:(BOOL)animated

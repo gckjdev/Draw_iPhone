@@ -23,7 +23,7 @@
 @property (assign, nonatomic) BOOL isMature;
 @property (assign, nonatomic) id<MoneyTreeDelegate> delegate;
 
-- (void)startGrowth;
+- (void)startGrow;
 - (void)kill;
 
 @end
