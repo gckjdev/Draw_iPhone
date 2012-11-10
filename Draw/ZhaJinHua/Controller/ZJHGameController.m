@@ -435,7 +435,7 @@
     
     if ([_gameService isMyTurn] && [_gameService isMeAutoBet]) {
         if ([_gameService isMyBalanceEnough]) {
-            [self bet:YES];
+            [self performSelector:@selector(bet:) withObject:nil afterDelay:1];
             return;
         }else{
             [_gameService setAutoBet:NO];
