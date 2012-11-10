@@ -337,6 +337,7 @@
 
 + (NSString*)getDiceServerListStringWithNormal
 {
+//    return @"192.168.1.198:8080";
     return [MobClickUtils getStringValueByKey:@"DICE_SERVER_LIST" defaultValue:@"58.215.164.153:8018"];
 }
 
@@ -410,7 +411,7 @@
 + (int)getTreeMatureTime
 {
     return [MobClickUtils getIntValueByKey:@"ZJH_TREE_MATURE_TIME"
-                              defaultValue:60];
+                              defaultValue:10];
 }
 
 + (int)getZJHMaxAutoBetCount
@@ -431,7 +432,6 @@
     [defaults setBool:isAutoSave forKey:KEY_AUTO_SAVE];
     [defaults synchronize];
 }
-
 
 
 @end

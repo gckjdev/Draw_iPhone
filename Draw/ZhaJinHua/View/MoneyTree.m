@@ -79,8 +79,9 @@
                                                  repeats:NO];
 }
 
-- (void)startGrowth
+- (void)startGrow
 {
+    PPDebug(@"<MoneyTree> tree start growth");
     [self killTimer];
     [self setIsMature:NO];
     [self startGrowthTimer:[ConfigManager getTreeMatureTime]];
@@ -100,7 +101,7 @@
         if (_delegate && [_delegate respondsToSelector:@selector(getMoney:fromTree:)]) {
             [_delegate getMoney:10 fromTree:self];
         }
-        [self startGrowth];
+        [self startGrow];
 
     } else {
         if (_delegate && [_delegate respondsToSelector:@selector(moneyTreeNotMature:)]) {

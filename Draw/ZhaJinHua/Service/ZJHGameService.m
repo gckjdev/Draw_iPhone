@@ -99,14 +99,15 @@ static ZJHGameService *_defaultService;
                          isAutoBet:FALSE];
 }
 
-//- (void)autoBet
-//{
-//    [_networkClient sendBetRequest:self.userId
-//                         sessionId:self.session.sessionId
-//                         singleBet:[_gameState singleBet]
-//                             count:[self myBetCount]
-//                         isAutoBet:TRUE];
-//}
+- (void)setAutoBet:(BOOL)isAutobet
+{
+    [self userPlayInfo:_userManager.userId].isAutoBet = isAutobet;
+}
+
+- (BOOL)isMeAutoBet
+{
+    return [[self myPlayInfo] isAutoBet];
+}
 
 - (void)checkCard
 {
@@ -176,7 +177,7 @@ static ZJHGameService *_defaultService;
 
 - (BOOL)canIAutoBet
 {
-    return [self isGamePlaying] && [self isMyTurn] && [self isMyBalanceEnough];
+    return [self isGamePlaying] && [self isMyBalanceEnough] && [[self myPlayInfo] canAutoBet];
 }
 
 - (BOOL)canICheckCard
@@ -209,16 +210,6 @@ static ZJHGameService *_defaultService;
     return [[self myPlayInfo] cardTypeString];
 }
 
-- (BOOL)canIContinueAutoBet
-{
-    return [self isMyTurn] && [[self myPlayInfo] isAutoBet] && ([self remainderAutoBetCount] > 0) && [self isMyBalanceEnough];
-}
-
-- (int)remainderAutoBetCount
-{
-    return ([ConfigManager getZJHMaxAutoBetCount] - [[self myPlayInfo] autoBetCount] % [ConfigManager getZJHMaxAutoBetCount]) % [ConfigManager getZJHMaxAutoBetCount];
-}
-
 - (BOOL)doIWin
 {
     return [_userManager isMe:_gameState.winner];
@@ -233,7 +224,7 @@ static ZJHGameService *_defaultService;
 
 - (void)handleMoreOnJoinGameResponse:(GameMessage*)message
 {
-    [_accountService syncAccount:self forceServer:YES];
+    _myBalance = [_accountService getBalance];
     self.gameState = [ZJHGameState fromPBZJHGameState:message.joinGameResponse.zjhGameState];
 }
 
@@ -250,6 +241,16 @@ static ZJHGameService *_defaultService;
             self.gameState.winner = userResult.userId;
         }
     }
+}
+
+- (void)handleNextPlayerStartNotificationRequest:(GameMessage *)message
+{
+    PPDebug(@"(*************** next player: %@ *****************", [message currentPlayUserId]);
+    
+    self.session.currentPlayUserId = [message currentPlayUserId];
+
+    
+    [self postNotification:NOTIFICATION_NEXT_PLAYER_START message:message];
 }
 
 #pragma mark -  message handler
@@ -269,7 +270,6 @@ static ZJHGameService *_defaultService;
     
     if (message.betRequest.isAutoBet == TRUE) {
         userPlayInfo.lastAction = PBZJHUserActionAutoBet;
-        userPlayInfo.autoBetCount ++;
     }else if (message.betRequest.singleBet == _gameState.singleBet) {
         userPlayInfo.lastAction = PBZJHUserActionBet;
     }else {
@@ -303,6 +303,7 @@ static ZJHGameService *_defaultService;
     
     userPlayInfo.lastAction = PBZJHUserActionFoldCard;
     userPlayInfo.alreadFoldCard = YES;
+    userPlayInfo.isAutoBet = NO;
 }
 
 - (void)updateShowCardModel:(GameMessage *)message
@@ -326,6 +327,7 @@ static ZJHGameService *_defaultService;
         userPlayInfo.lastAction = PBZJHUserActionCompareCard;
         if (!result.win) {
             userPlayInfo.alreadLose = YES;
+            userPlayInfo.isAutoBet = NO;
         }
     }
 }

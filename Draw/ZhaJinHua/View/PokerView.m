@@ -14,6 +14,13 @@
 
 #define POKER_VIEW_ROTATE_ANCHOR_POINT CGPointMake(0, 0)
 
+
+#define FACEUP_ANIMATION_DURATION 0.75
+#define FACEDOWN_ANIMATION_DURATION 0.75
+
+#define ROTATE_ANIMATION_DURATION 1
+#define MOVE_ANIMATION_DURATION 1
+
 @interface PokerView ()
 {
     CGPoint _originCenter;
@@ -60,7 +67,7 @@
 
 + (id)createPokerViewWithPoker:(Poker *)poker
                          frame:(CGRect)frame
-                      isFaceUp:(BOOL)isFaceUp                      delegate:(id<PokerViewProtocol>)delegate
+                      delegate:(id<PokerViewProtocol>)delegate
 {
     PokerView *pokerView = [PokerView createPokerView];
     pokerView.delegate = delegate;
@@ -70,7 +77,7 @@
     [pokerView setOriginInfo];
     
     pokerView.poker = poker;
-    pokerView.isFaceUp = isFaceUp;
+    pokerView.isFaceUp = poker.faceUp;
     
     pokerView.backImageView.image = [[ZJHImageManager defaultManager] pokerBackImage];
     
@@ -79,8 +86,8 @@
     pokerView.suitImageView.image = [[ZJHImageManager defaultManager] pokerSuitImage:poker];
     pokerView.bodyImageView.image = [[ZJHImageManager defaultManager] pokerBodyImage:poker];
     
-    pokerView.backImageView.hidden = isFaceUp;
-    pokerView.frontView.hidden = !isFaceUp;
+    pokerView.backImageView.hidden = poker.faceUp;
+    pokerView.frontView.hidden = !poker.faceUp;
     
     return pokerView;
 }
@@ -96,42 +103,41 @@
 
 - (void)faceDown:(BOOL)animation
 {
-    if (_isFaceUp) {
-        _isFaceUp = NO;
-        
-        self.backImageView.hidden = NO;
-        self.frontView.hidden = YES;
-        
-        if (!animation) {
-            return;
-        }
-        
-        [UIView beginAnimations:nil context:NULL];
-        [UIView setAnimationDuration:0.75];
-        [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromRight
-                               forView:self cache:YES];
-        [UIView commitAnimations];
+    if (!_isFaceUp) {
+        return;
     }
+    _isFaceUp = NO;
+    
+    self.backImageView.hidden = NO;
+    self.frontView.hidden = YES;
+    
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationDuration:(animation ? FACEDOWN_ANIMATION_DURATION : 0)];
+    [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromRight
+                           forView:self cache:YES];
+    [UIView commitAnimations];
+    
+    return;
 }
 
 - (void)faceUp:(BOOL)animation
 {
-    if (!_isFaceUp) {
-        _isFaceUp = YES;
-        
-        self.backImageView.hidden = YES;
-        self.frontView.hidden = NO;
-        
-        if (!animation) {
-            return;
-        }
-        
-        [UIView beginAnimations:nil context:NULL];
-        [UIView setAnimationDuration:0.75];
-        [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromLeft
-                               forView:self cache:YES];
-        [UIView commitAnimations];
+    if (_isFaceUp) {
+        return;
     }
+    
+    _isFaceUp = YES;
+    
+    self.backImageView.hidden = YES;
+    self.frontView.hidden = NO;
+    
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationDuration:(animation ? FACEUP_ANIMATION_DURATION : 0)];
+    [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromLeft
+                           forView:self cache:YES];
+    [UIView commitAnimations];
+    
+    return;
 }
 
 - (void)setAcnhorPoint:(CGPoint)anchorPoint
@@ -156,7 +162,7 @@
 
     [self setAcnhorPoint:CGPointMake(0.5, 1)];
     
-    CFTimeInterval duration = animation ? 1 : 0;
+    CFTimeInterval duration = animation ? ROTATE_ANIMATION_DURATION : 0;
     CABasicAnimation * rotation = [CABasicAnimation       animationWithKeyPath:@"transform.rotation.z"];
     rotation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut];
     rotation.fromValue = [NSNumber numberWithFloat:_angle];
@@ -171,6 +177,8 @@
     if (angle == 0) {
         [self setAcnhorPoint:CGPointMake(0.5, 0.5)];
     }
+    
+    return;
 }
 
 - (void)moveToCenter:(CGPoint)center animation:(BOOL)animation
@@ -179,14 +187,12 @@
         return;
     }
     
-    if (animation) {
-        [UIView beginAnimations:nil context:NULL];
-        [UIView setAnimationDuration:1];
-        self.center = center;
-        [UIView commitAnimations];
-    }else{
-        self.center = center;
-    }
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationDuration:(animation ? MOVE_ANIMATION_DURATION : 0)];
+    self.center = center;
+    [UIView commitAnimations];
+
+    return;
 }
 
 - (void)backToOriginPosition:(BOOL)animation
@@ -233,19 +239,17 @@
     [self.popupView dismissAnimated:YES];
 }
 
-- (UIView *)createShowCardButton:(BOOL)enabled
+- (UIView *)createShowCardButton
 {
     UIView *view = [[[UIView alloc] initWithFrame:CGRectMake(0, 0, 43, 36)] autorelease];
     UIImageView *imageView = [[[UIImageView alloc] initWithFrame:view.bounds] autorelease];
-    imageView.image = enabled ? [[ZJHImageManager defaultManager] showCardButtonBgImage] : [[ZJHImageManager defaultManager] showCardButtonDisableBgImage];
+    imageView.image = [[ZJHImageManager defaultManager] showCardButtonBgImage];
     UIButton *button = [[[UIButton alloc] initWithFrame:CGRectMake(4, 4, 35, 25)] autorelease];
     [button.titleLabel setFont:[UIFont systemFontOfSize:13]];
     [button setTitle:@"亮牌" forState:UIControlStateNormal];
     [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    if (enabled) {
-        [button addTarget:self action:@selector(clickShowCardButton:) forControlEvents:UIControlEventTouchUpInside];
-    }
-    
+    [button addTarget:self action:@selector(clickShowCardButton:) forControlEvents:UIControlEventTouchUpInside];
+
     [view addSubview:imageView];
     [view addSubview:button];
     
@@ -254,9 +258,8 @@
 
 - (void)popupShowCardButtonInView:(UIView *)inView
                         aboveView:(UIView *)aboveView
-                          enabled:(BOOL)enabled
 {
-    UIView *showCardButton = [self createShowCardButton:enabled];
+    UIView *showCardButton = [self createShowCardButton];
     
     self.popupView = [[[CMPopTipView alloc] initWithCustomView:showCardButton needBubblePath:NO] autorelease];
     self.popupView.backgroundColor = [UIColor clearColor];

@@ -471,11 +471,6 @@
             [self showCoinsNotEnoughView];
         }
     }
-    
-    
-
-    
-
 }
 
 - (void)disconnectWithError:(NSError *)error
@@ -484,7 +479,7 @@
 
     _isTryJoinGame = NO;
     [self hideActivity];
-    
+        
     if (error != nil) {
         [self.navigationController popToRootViewControllerAnimated:YES];
         [self popupUnhappyMessage:NSLS(@"kNetworkBroken") title:@""];

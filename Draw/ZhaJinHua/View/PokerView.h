@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "Poker.h"
 
+
 @class PokerView;
 
 @protocol PokerViewProtocol <NSObject>
@@ -36,15 +37,14 @@
 
 + (id)createPokerViewWithPoker:(Poker *)poker
                          frame:(CGRect)frame
-                      isFaceUp:(BOOL)isFaceUp
                       delegate:(id<PokerViewProtocol>)delegate;
 
 - (void)enableUserInterface;
 
 - (BOOL)showCardButtonIsPopup;
 - (void)popupShowCardButtonInView:(UIView *)inView
-                        aboveView:(UIView *)aboveView
-                          enabled:(BOOL)enabled;
+                        aboveView:(UIView *)aboveView;
+
 - (void)dismissShowCardButton;
 
 - (void)faceDown:(BOOL)animation;

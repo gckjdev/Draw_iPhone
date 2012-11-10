@@ -1192,6 +1192,9 @@ static PBCommentInfo* defaultPBCommentInfoInstance = nil;
 @property (retain) NSString* userId;
 @property int32_t actionType;
 @property int32_t createDate;
+@property int32_t deviceType;
+@property (retain) NSString* deviceName;
+@property (retain) NSString* gameId;
 @property (retain) NSString* nickName;
 @property (retain) NSString* avatar;
 @property BOOL gender;
@@ -1251,6 +1254,27 @@ static PBCommentInfo* defaultPBCommentInfoInstance = nil;
   hasCreateDate_ = !!value;
 }
 @synthesize createDate;
+- (BOOL) hasDeviceType {
+  return !!hasDeviceType_;
+}
+- (void) setHasDeviceType:(BOOL) value {
+  hasDeviceType_ = !!value;
+}
+@synthesize deviceType;
+- (BOOL) hasDeviceName {
+  return !!hasDeviceName_;
+}
+- (void) setHasDeviceName:(BOOL) value {
+  hasDeviceName_ = !!value;
+}
+@synthesize deviceName;
+- (BOOL) hasGameId {
+  return !!hasGameId_;
+}
+- (void) setHasGameId:(BOOL) value {
+  hasGameId_ = !!value;
+}
+@synthesize gameId;
 - (BOOL) hasNickName {
   return !!hasNickName_;
 }
@@ -1446,6 +1470,8 @@ static PBCommentInfo* defaultPBCommentInfoInstance = nil;
 - (void) dealloc {
   self.feedId = nil;
   self.userId = nil;
+  self.deviceName = nil;
+  self.gameId = nil;
   self.nickName = nil;
   self.avatar = nil;
   self.drawData = nil;
@@ -1470,6 +1496,9 @@ static PBCommentInfo* defaultPBCommentInfoInstance = nil;
     self.userId = @"";
     self.actionType = 0;
     self.createDate = 0;
+    self.deviceType = 0;
+    self.deviceName = @"";
+    self.gameId = @"";
     self.nickName = @"";
     self.avatar = @"";
     self.gender = NO;
@@ -1566,6 +1595,15 @@ static PBFeed* defaultPBFeedInstance = nil;
   }
   if (self.hasCreateDate) {
     [output writeInt32:4 value:self.createDate];
+  }
+  if (self.hasDeviceType) {
+    [output writeInt32:5 value:self.deviceType];
+  }
+  if (self.hasDeviceName) {
+    [output writeString:6 value:self.deviceName];
+  }
+  if (self.hasGameId) {
+    [output writeString:7 value:self.gameId];
   }
   if (self.hasNickName) {
     [output writeString:21 value:self.nickName];
@@ -1668,6 +1706,15 @@ static PBFeed* defaultPBFeedInstance = nil;
   }
   if (self.hasCreateDate) {
     size += computeInt32Size(4, self.createDate);
+  }
+  if (self.hasDeviceType) {
+    size += computeInt32Size(5, self.deviceType);
+  }
+  if (self.hasDeviceName) {
+    size += computeStringSize(6, self.deviceName);
+  }
+  if (self.hasGameId) {
+    size += computeStringSize(7, self.gameId);
   }
   if (self.hasNickName) {
     size += computeStringSize(21, self.nickName);
@@ -1842,6 +1889,15 @@ static PBFeed* defaultPBFeedInstance = nil;
   if (other.hasCreateDate) {
     [self setCreateDate:other.createDate];
   }
+  if (other.hasDeviceType) {
+    [self setDeviceType:other.deviceType];
+  }
+  if (other.hasDeviceName) {
+    [self setDeviceName:other.deviceName];
+  }
+  if (other.hasGameId) {
+    [self setGameId:other.gameId];
+  }
   if (other.hasNickName) {
     [self setNickName:other.nickName];
   }
@@ -1964,6 +2020,18 @@ static PBFeed* defaultPBFeedInstance = nil;
       }
       case 32: {
         [self setCreateDate:[input readInt32]];
+        break;
+      }
+      case 40: {
+        [self setDeviceType:[input readInt32]];
+        break;
+      }
+      case 50: {
+        [self setDeviceName:[input readString]];
+        break;
+      }
+      case 58: {
+        [self setGameId:[input readString]];
         break;
       }
       case 170: {
@@ -2151,6 +2219,54 @@ static PBFeed* defaultPBFeedInstance = nil;
 - (PBFeed_Builder*) clearCreateDate {
   result.hasCreateDate = NO;
   result.createDate = 0;
+  return self;
+}
+- (BOOL) hasDeviceType {
+  return result.hasDeviceType;
+}
+- (int32_t) deviceType {
+  return result.deviceType;
+}
+- (PBFeed_Builder*) setDeviceType:(int32_t) value {
+  result.hasDeviceType = YES;
+  result.deviceType = value;
+  return self;
+}
+- (PBFeed_Builder*) clearDeviceType {
+  result.hasDeviceType = NO;
+  result.deviceType = 0;
+  return self;
+}
+- (BOOL) hasDeviceName {
+  return result.hasDeviceName;
+}
+- (NSString*) deviceName {
+  return result.deviceName;
+}
+- (PBFeed_Builder*) setDeviceName:(NSString*) value {
+  result.hasDeviceName = YES;
+  result.deviceName = value;
+  return self;
+}
+- (PBFeed_Builder*) clearDeviceName {
+  result.hasDeviceName = NO;
+  result.deviceName = @"";
+  return self;
+}
+- (BOOL) hasGameId {
+  return result.hasGameId;
+}
+- (NSString*) gameId {
+  return result.gameId;
+}
+- (PBFeed_Builder*) setGameId:(NSString*) value {
+  result.hasGameId = YES;
+  result.gameId = value;
+  return self;
+}
+- (PBFeed_Builder*) clearGameId {
+  result.hasGameId = NO;
+  result.gameId = @"";
   return self;
 }
 - (BOOL) hasNickName {

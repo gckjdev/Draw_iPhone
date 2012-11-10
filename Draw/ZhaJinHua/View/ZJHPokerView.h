@@ -11,11 +11,11 @@
 #import "ZJHUserPlayInfo.h"
 
 #define SMALL_POKER_VIEW_WIDTH 28
-#define SMALL_POKER_VIEW_HEIGHT 37
+#define SMALL_POKER_VIEW_HEIGHT 36
 #define SMALL_POKER_GAP (SMALL_POKER_VIEW_WIDTH * 0.15)
 
 #define BIG_POKER_VIEW_WIDTH 35
-#define BIG_POKER_VIEW_HEIGHT 48
+#define BIG_POKER_VIEW_HEIGHT 47
 #define BIG_POKER_GAP (BIG_POKER_VIEW_WIDTH * 1.1)
 
 typedef enum {
@@ -70,8 +70,9 @@ typedef enum {
 - (void)foldCards:(BOOL)animation;
 
 // 别人或自己比牌，调用这个接口，表示比牌结果
-- (void)compare:(BOOL)animation
-            win:(BOOL)win;
+
+- (void)winCards:(BOOL)animation;
+- (void)loseCards:(BOOL)animation;
 
 - (void)showBomb;
 - (void)clearBomb;

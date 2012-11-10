@@ -57,14 +57,12 @@
     CGRect frame = CGRectMake(pokerViewOffset, 0, size.width, size.height);
     self.pokerView1 = [PokerView createPokerViewWithPoker:poker1
                                                     frame:frame
-                                                 isFaceUp:NO
                                                  delegate:self];
     
     pokerViewOffset = self.pokerView1.frame.origin.x + gap;
     frame = CGRectMake(pokerViewOffset, 0, size.width, size.height);
     self.pokerView2 = [PokerView createPokerViewWithPoker:poker2
                                                     frame:frame
-                                                 isFaceUp:NO
                                                  delegate:self];
 
     
@@ -72,7 +70,6 @@
     frame = CGRectMake(pokerViewOffset, 0, size.width, size.height);
     self.pokerView3 = [PokerView createPokerViewWithPoker:poker3
                                                     frame:frame
-                                                 isFaceUp:NO
                                                  delegate:self];
     
 //    // save original center
@@ -197,15 +194,23 @@
     [self.pokerView3 backToOriginPosition:animation];
 }
 
-- (void)compare:(BOOL)animation
-            win:(BOOL)win
+- (void)winCards:(BOOL)animation
 {
-    // TODO:
-    if (win) {
-        [self win:animation];
-    }else {
-        [self lose:animation];
-    }
+}
+
+- (void)loseCards:(BOOL)animation
+{
+    self.pokerView1.backImageView.image = [[ZJHImageManager defaultManager] pokerLoseBackImage];
+    [self.pokerView1 faceDown:animation];
+    [self.pokerView1 backToOriginPosition:animation];
+    
+    self.pokerView2.backImageView.image = [[ZJHImageManager defaultManager] pokerLoseBackImage];
+    [self.pokerView2 faceDown:animation];
+    [self.pokerView2 backToOriginPosition:animation];
+    
+    self.pokerView3.backImageView.image = [[ZJHImageManager defaultManager] pokerLoseBackImage];
+    [self.pokerView3 faceDown:animation];
+    [self.pokerView3 backToOriginPosition:animation];
 }
 
 - (void)showBomb
@@ -245,19 +250,6 @@
     if ([_delegate respondsToSelector:@selector(didClickShowCardButton:)]) {
         [_delegate didClickShowCardButton:pokerView];
     }
-}
-
-
-#pragma mark - pravite methods
-
-- (void)lose:(BOOL)animation
-{
-    [self foldCards:animation];
-}
-
-- (void)win:(BOOL)animation
-{
-    
 }
 
 - (void)clearBomb
