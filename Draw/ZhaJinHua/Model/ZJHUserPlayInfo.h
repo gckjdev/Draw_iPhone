@@ -19,7 +19,6 @@
 @property (assign, nonatomic) PBZJHCardType cardType;
 @property (assign, nonatomic) int totalBet;
 @property (assign, nonatomic) BOOL isAutoBet;
-@property (assign, nonatomic) int autoBetCount;
 @property (assign, nonatomic) PBZJHUserAction lastAction;
 
 @property (assign, nonatomic) BOOL alreadCheckCard;
@@ -35,6 +34,7 @@
 
 - (BOOL)hasShield;
 
+- (BOOL)canAutoBet;
 - (BOOL)canCompareCard;
 - (BOOL)canCheckCard;
 - (BOOL)canFoldCard;

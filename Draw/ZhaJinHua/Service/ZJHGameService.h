@@ -17,13 +17,16 @@
 
 + (ZJHGameService*)defaultService;
 
-//- (ZJHUserPlayInfo *)userPlayInfo:(NSString *)userId;
+- (ZJHUserPlayInfo *)userPlayInfo:(NSString *)userId;
+
 - (NSArray *)pokersOfUser:(NSString *)userId;
 - (int)betCountOfUser:(NSString *)userId;
 - (int)totalBetOfUser:(NSString *)userId;
 
 - (void)bet:(BOOL)autoBet;                      // 跟注
 - (void)raiseBet:(int)singleBet;                // 加注
+- (void)setAutoBet:(BOOL)isAutobet;
+- (BOOL)isMeAutoBet;
 //- (void)autoBet;                                // 自动跟注
 
 - (void)checkCard;                              // 看牌
@@ -33,6 +36,7 @@
 - (void)showCards:(NSArray *)cardIds;           // 亮牌(多张)；目前该接口没用到
 
 - (NSArray *)chipValues;
+- (BOOL)isMyBalanceEnough;
 
 - (BOOL)canIBet;
 - (BOOL)canIRaiseBet;
@@ -45,12 +49,8 @@
 - (BOOL)canUserCompareCard:(NSString *)userId;
 
 - (NSString *)myCardType;
-- (BOOL)canIContinueAutoBet;
-- (int)remainderAutoBetCount;
-
 - (BOOL)doIWin;
 - (NSString *)winner;
-
 - (int)myBalance;
 
 @end
