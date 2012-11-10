@@ -32,7 +32,7 @@ typedef enum {
 }UserPosition;
 
 @interface ZJHGameController : PPViewController <ZJHPokerViewProtocol, ZJHAvatarViewDelegate, DealerViewDelegate, ChipsSelectViewProtocol> {
-    
+    BOOL _isComparing;
 }
 
 @property (retain, nonatomic) IBOutlet BetTable *betTable;

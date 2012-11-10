@@ -467,7 +467,7 @@ compareCardWith:(NSString*)targetUserId
     ZJHPokerView* otherPokerView = [self getPokersViewByUserId:targetUserId];
     CGPoint pokerViewOrgPoint = pokerView.center;
     CGPoint otherPokerViewOrgPoint = otherPokerView.center;
-    
+    _isComparing = YES;
     
     [UIView animateWithDuration:1 animations:^{
         pokerView.layer.position = CGPointMake(self.view.center.x, self.view.center.y - 30);
@@ -508,7 +508,7 @@ compareCardWith:(NSString*)targetUserId
                 }
                 self.vsImageView.hidden = YES;
             } completion:^(BOOL finished) {
-                
+                _isComparing = NO;
             }];
         }];
     }];
@@ -517,7 +517,7 @@ compareCardWith:(NSString*)targetUserId
 - (void)showCompareCardResult:(NSArray*)userResultList
 {
     [self clearAllAvatarReciprocals];
-    if (userResultList.count == 2) {
+    if (userResultList.count == 2 && !_isComparing) {
         PBUserResult* result1 = [userResultList objectAtIndex:0];
         PBUserResult* result2 = [userResultList objectAtIndex:1];
         
