@@ -343,6 +343,7 @@
 		C2C54CEB1640C45B005561DA /* BetTable.m in Sources */ = {isa = PBXBuildFile; fileRef = C2C54CEA1640C45B005561DA /* BetTable.m */; };
 		C2C54CFE1640F85C005561DA /* NSMutableArray+Queue.m in Sources */ = {isa = PBXBuildFile; fileRef = C2C54CFD1640F85C005561DA /* NSMutableArray+Queue.m */; };
 		C2C54D011640F878005561DA /* NSMutableArray+Stack.m in Sources */ = {isa = PBXBuildFile; fileRef = C2C54D001640F878005561DA /* NSMutableArray+Stack.m */; };
+		C2CC622E164CF61100DBB076 /* VS.png in Resources */ = {isa = PBXBuildFile; fileRef = C2CC622D164CF61100DBB076 /* VS.png */; };
 		C2D9A504159D4C4100794B24 /* CommonSnsInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = C2D9A503159D4C4100794B24 /* CommonSnsInfoView.m */; };
 		C2DD4F0D1610412500556CC7 /* DiceRobotDecisionView.m in Sources */ = {isa = PBXBuildFile; fileRef = C2DD4F0C1610412500556CC7 /* DiceRobotDecisionView.m */; };
 		C2E5241915218E21008913CC /* AnimationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C2E5241815218E21008913CC /* AnimationManager.m */; };
@@ -910,6 +911,15 @@
 		CA745D501503B1B500600024 /* DrawTests.h in Resources */ = {isa = PBXBuildFile; fileRef = CA745D4F1503B1B500600024 /* DrawTests.h */; };
 		CA745D521503B1B500600024 /* DrawTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CA745D511503B1B500600024 /* DrawTests.m */; };
 		CA7ACA6C16367548001B273C /* ZhaJinHua.pb.m in Sources */ = {isa = PBXBuildFile; fileRef = CA7ACA6B16367548001B273C /* ZhaJinHua.pb.m */; };
+		CA7AFD04164E05A10039E07F /* ImplicitDownloadService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA7AFCF3164E05A10039E07F /* ImplicitDownloadService.m */; };
+		CA7AFD05164E05A10039E07F /* PPResourcePackage.m in Sources */ = {isa = PBXBuildFile; fileRef = CA7AFCF6164E05A10039E07F /* PPResourcePackage.m */; };
+		CA7AFD06164E05A10039E07F /* PPResourcePackageDownloadRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = CA7AFCF8164E05A10039E07F /* PPResourcePackageDownloadRequest.m */; };
+		CA7AFD07164E05A10039E07F /* PPResourcePackageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA7AFCFA164E05A10039E07F /* PPResourcePackageManager.m */; };
+		CA7AFD08164E05A10039E07F /* PPResourceSearchService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA7AFCFC164E05A10039E07F /* PPResourceSearchService.m */; };
+		CA7AFD09164E05A10039E07F /* PPResourceService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA7AFCFE164E05A10039E07F /* PPResourceService.m */; };
+		CA7AFD0A164E05A10039E07F /* PPResourceTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA7AFD00164E05A10039E07F /* PPResourceTestViewController.m */; };
+		CA7AFD0B164E05A10039E07F /* PPResourceTestViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA7AFD01164E05A10039E07F /* PPResourceTestViewController.xib */; };
+		CA7AFD0C164E05A10039E07F /* PPResourceUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = CA7AFD03164E05A10039E07F /* PPResourceUtils.m */; };
 		CA7C7E041587213100406BFB /* Feed.m in Sources */ = {isa = PBXBuildFile; fileRef = CA7C7E031587213100406BFB /* Feed.m */; };
 		CA7C7E071587214300406BFB /* FeedManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA7C7E061587214300406BFB /* FeedManager.m */; };
 		CA7C7E0B158721B200406BFB /* FeedService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA7C7E0A158721B200406BFB /* FeedService.m */; };
@@ -1738,6 +1748,7 @@
 		C2C54CFD1640F85C005561DA /* NSMutableArray+Queue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+Queue.m"; sourceTree = "<group>"; };
 		C2C54CFF1640F878005561DA /* NSMutableArray+Stack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+Stack.h"; sourceTree = "<group>"; };
 		C2C54D001640F878005561DA /* NSMutableArray+Stack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+Stack.m"; sourceTree = "<group>"; };
+		C2CC622D164CF61100DBB076 /* VS.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = VS.png; sourceTree = "<group>"; };
 		C2D9A502159D4C4100794B24 /* CommonSnsInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonSnsInfoView.h; sourceTree = "<group>"; };
 		C2D9A503159D4C4100794B24 /* CommonSnsInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonSnsInfoView.m; sourceTree = "<group>"; };
 		C2DD4F0B1610412500556CC7 /* DiceRobotDecisionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiceRobotDecisionView.h; sourceTree = "<group>"; };
@@ -2635,6 +2646,24 @@
 		CA745D511503B1B500600024 /* DrawTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DrawTests.m; sourceTree = "<group>"; };
 		CA7ACA6A16367548001B273C /* ZhaJinHua.pb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZhaJinHua.pb.h; sourceTree = "<group>"; };
 		CA7ACA6B16367548001B273C /* ZhaJinHua.pb.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZhaJinHua.pb.m; sourceTree = "<group>"; };
+		CA7AFCF2164E05A10039E07F /* ImplicitDownloadService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImplicitDownloadService.h; sourceTree = "<group>"; };
+		CA7AFCF3164E05A10039E07F /* ImplicitDownloadService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImplicitDownloadService.m; sourceTree = "<group>"; };
+		CA7AFCF4164E05A10039E07F /* PPResource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPResource.h; sourceTree = "<group>"; };
+		CA7AFCF5164E05A10039E07F /* PPResourcePackage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPResourcePackage.h; sourceTree = "<group>"; };
+		CA7AFCF6164E05A10039E07F /* PPResourcePackage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPResourcePackage.m; sourceTree = "<group>"; };
+		CA7AFCF7164E05A10039E07F /* PPResourcePackageDownloadRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPResourcePackageDownloadRequest.h; sourceTree = "<group>"; };
+		CA7AFCF8164E05A10039E07F /* PPResourcePackageDownloadRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPResourcePackageDownloadRequest.m; sourceTree = "<group>"; };
+		CA7AFCF9164E05A10039E07F /* PPResourcePackageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPResourcePackageManager.h; sourceTree = "<group>"; };
+		CA7AFCFA164E05A10039E07F /* PPResourcePackageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPResourcePackageManager.m; sourceTree = "<group>"; };
+		CA7AFCFB164E05A10039E07F /* PPResourceSearchService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPResourceSearchService.h; sourceTree = "<group>"; };
+		CA7AFCFC164E05A10039E07F /* PPResourceSearchService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPResourceSearchService.m; sourceTree = "<group>"; };
+		CA7AFCFD164E05A10039E07F /* PPResourceService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPResourceService.h; sourceTree = "<group>"; };
+		CA7AFCFE164E05A10039E07F /* PPResourceService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPResourceService.m; sourceTree = "<group>"; };
+		CA7AFCFF164E05A10039E07F /* PPResourceTestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPResourceTestViewController.h; sourceTree = "<group>"; };
+		CA7AFD00164E05A10039E07F /* PPResourceTestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPResourceTestViewController.m; sourceTree = "<group>"; };
+		CA7AFD01164E05A10039E07F /* PPResourceTestViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PPResourceTestViewController.xib; sourceTree = "<group>"; };
+		CA7AFD02164E05A10039E07F /* PPResourceUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPResourceUtils.h; sourceTree = "<group>"; };
+		CA7AFD03164E05A10039E07F /* PPResourceUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPResourceUtils.m; sourceTree = "<group>"; };
 		CA7C7E021587213100406BFB /* Feed.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Feed.h; sourceTree = "<group>"; };
 		CA7C7E031587213100406BFB /* Feed.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Feed.m; sourceTree = "<group>"; };
 		CA7C7E051587214300406BFB /* FeedManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedManager.h; sourceTree = "<group>"; };
@@ -3359,6 +3388,7 @@
 		A44B63D8163F72B500A8045B /* room */ = {
 			isa = PBXGroup;
 			children = (
+				C2CC622D164CF61100DBB076 /* VS.png */,
 				A4A131B8164CB44400665109 /* bomb */,
 				A404A9A1164237FA007CA21A /* show_card_button.png */,
 				A4A131D7164CEDCE00665109 /* show_card_button_disable.png */,
@@ -4469,6 +4499,7 @@
 		CA103CE61509A56100F60C03 /* Core-Components-Service */ = {
 			isa = PBXGroup;
 			children = (
+				CA7AFCF1164E05A10039E07F /* PPResource */,
 				A43E85DE16227E06003A57F1 /* SDWebImage */,
 				CA103CE71509A56100F60C03 /* HJCache */,
 				CA103CFC1509A56100F60C03 /* Review */,
@@ -6487,6 +6518,31 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		CA7AFCF1164E05A10039E07F /* PPResource */ = {
+			isa = PBXGroup;
+			children = (
+				CA7AFCF2164E05A10039E07F /* ImplicitDownloadService.h */,
+				CA7AFCF3164E05A10039E07F /* ImplicitDownloadService.m */,
+				CA7AFCF4164E05A10039E07F /* PPResource.h */,
+				CA7AFCF5164E05A10039E07F /* PPResourcePackage.h */,
+				CA7AFCF6164E05A10039E07F /* PPResourcePackage.m */,
+				CA7AFCF7164E05A10039E07F /* PPResourcePackageDownloadRequest.h */,
+				CA7AFCF8164E05A10039E07F /* PPResourcePackageDownloadRequest.m */,
+				CA7AFCF9164E05A10039E07F /* PPResourcePackageManager.h */,
+				CA7AFCFA164E05A10039E07F /* PPResourcePackageManager.m */,
+				CA7AFCFB164E05A10039E07F /* PPResourceSearchService.h */,
+				CA7AFCFC164E05A10039E07F /* PPResourceSearchService.m */,
+				CA7AFCFD164E05A10039E07F /* PPResourceService.h */,
+				CA7AFCFE164E05A10039E07F /* PPResourceService.m */,
+				CA7AFCFF164E05A10039E07F /* PPResourceTestViewController.h */,
+				CA7AFD00164E05A10039E07F /* PPResourceTestViewController.m */,
+				CA7AFD01164E05A10039E07F /* PPResourceTestViewController.xib */,
+				CA7AFD02164E05A10039E07F /* PPResourceUtils.h */,
+				CA7AFD03164E05A10039E07F /* PPResourceUtils.m */,
+			);
+			path = PPResource;
+			sourceTree = "<group>";
+		};
 		CA7C7E001587210500406BFB /* Feed */ = {
 			isa = PBXGroup;
 			children = (
@@ -8160,6 +8216,8 @@
 				A4A131C2164CB44400665109 /* bomb3.png in Resources */,
 				CA841821164CE4AA00713014 /* graffiti@2x.png in Resources */,
 				A4A131D8164CEDCE00665109 /* show_card_button_disable.png in Resources */,
+				C2CC622E164CF61100DBB076 /* VS.png in Resources */,
+				CA7AFD0B164E05A10039E07F /* PPResourceTestViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -8742,6 +8800,14 @@
 				CA1882C31648C94B000942D6 /* PPMessage.m in Sources */,
 				CA1882C41648C94B000942D6 /* MessageStat.m in Sources */,
 				C2EBB8EC164A1B200024D605 /* ZJHSoundManager.m in Sources */,
+				CA7AFD04164E05A10039E07F /* ImplicitDownloadService.m in Sources */,
+				CA7AFD05164E05A10039E07F /* PPResourcePackage.m in Sources */,
+				CA7AFD06164E05A10039E07F /* PPResourcePackageDownloadRequest.m in Sources */,
+				CA7AFD07164E05A10039E07F /* PPResourcePackageManager.m in Sources */,
+				CA7AFD08164E05A10039E07F /* PPResourceSearchService.m in Sources */,
+				CA7AFD09164E05A10039E07F /* PPResourceService.m in Sources */,
+				CA7AFD0A164E05A10039E07F /* PPResourceTestViewController.m in Sources */,
+				CA7AFD0C164E05A10039E07F /* PPResourceUtils.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

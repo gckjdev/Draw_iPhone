@@ -155,11 +155,13 @@ enum {
     if (result == 0){
         
         // reward
-        [[AccountService defaultService] chargeAccount:[ConfigManager getShareFriendReward] source:ShareAppReward];        
+        if ([[AccountService defaultService] rewardForShareWeibo] > 0){
+            // show message
+            NSString* message = [NSString stringWithFormat:NSLS(@"kGetCoinsByShareToFriends"), [ConfigManager getShareFriendReward]];
+            [[CommonMessageCenter defaultCenter] postMessageWithText:message delayTime:2.0 isHappy:YES];
+        }
         
-        // show message
-        NSString* message = [NSString stringWithFormat:NSLS(@"kGetCoinsByShareToFriends"), [ConfigManager getShareFriendReward]];
-        [[CommonMessageCenter defaultCenter] postMessageWithText:message delayTime:2.0 isHappy:YES];
+        
     }
 }
 

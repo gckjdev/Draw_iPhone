@@ -30,6 +30,7 @@ typedef enum{
 
 + (NotificationManager *)defaultManager;
 - (void)showNotification:(NSDictionary *)notification;
+- (void)showNotificationWithText:(NSString*)text;
 - (void)hideNotification;
 - (void)hideNotificationForType:(NotificationType)type;
 + (int)badgeForType:(NotificationType)type withNotification:(NSDictionary *)notification;

@@ -426,5 +426,10 @@ static ZJHImageManager* shareInstance;
     return [UIImage imageNamed:[bombs objectAtIndex:(rand() % [bombs count])]];
 }
 
+- (UIImage*)vsImage
+{
+    return [UIImage imageNamed:@"VS.png"];
+}
+
 
 @end

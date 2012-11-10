@@ -24,6 +24,7 @@
 #import "ZJHMyAvatarView.h"
 #import "MoneyTree.h"
 #import "AnimationManager.h"
+#import "LevelService.h"
 
 #define AVATAR_VIEW_TAG_OFFSET   4000
 #define AVATAR_PLACE_VIEW_OFFSET    8000
@@ -81,6 +82,7 @@
     [_totalBetLabel release];
     [_singleBetLabel release];
     [_moneyTree release];
+    [_vsImageView release];
     [super dealloc];
 }
 
@@ -141,13 +143,14 @@
     
     // hidden views below
     [self updateTotalBetAndSingleBet];
+
     [self hideAllUserTotalBet];
     
     [self updateView];
     
     self.dealerView.delegate = self;
     
-    [self.moneyTree startGrowth];
+    [self.moneyTree startGrow];
 
 }
 
@@ -158,7 +161,7 @@
     }
     
     [self updateAllUsersPokers];
-
+    [self updateAllUserTotalBet];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -264,7 +267,7 @@
 
 - (void)bet:(BOOL)autoBet
 {
-    [[self getMyAvatarView] stopReciprocol];
+    [[self getMyAvatarView] stopReciprocal];
     [_gameService bet:autoBet];
 }
 
@@ -304,7 +307,7 @@
 
 - (IBAction)clickFoldCardButton:(id)sender
 {
-    [[self getMyAvatarView] stopReciprocol];
+    [[self getMyAvatarView] stopReciprocal];
     [[self getMyPokersView] foldCards:YES];
     [_gameService foldCard];
 }
@@ -327,6 +330,7 @@
     
     [self updateTotalBetAndSingleBet];
     [self updateUserTotalBet:_userManager.userId];
+    [self updateMyAvatar];
 }
 
 - (void)checkCardSuccess
@@ -388,14 +392,16 @@
                                      times:CARDS_COUNT];
     [self updateTotalBetAndSingleBet];
     [self updateAllUserTotalBet];
-    
+
+    [self updateMyAvatar];
     [self allBet];
 }
 
 - (void)gameOver
 {
     [self updateZJHButtons];
-    [self clearAllAvatarReciprocols];
+    [self clearAllAvatarReciprocals];
+
     [self someoneWon:[_gameService winner]];
 
     [self faceupUserCards];
@@ -421,8 +427,8 @@
 {
     PPDebug(@"################# [controller: %@] next player: %@ ##################", [self description],_gameService.session.currentPlayUserId);
     
-    [[self getAvatarViewByPosition:[self getPositionByUserId:_gameService.session.currentPlayUserId]] startReciprocol:[ConfigManager getZJHTimeInterval]];
-    
+    [[self getAvatarViewByPosition:[self getPositionByUserId:_gameService.session.currentPlayUserId]] startReciprocal:[ConfigManager getZJHTimeInterval]];
+
     [self updateZJHButtons];
     
     if ([_gameService isMyTurn] && [_gameService isMeAutoBet]) {
@@ -437,7 +443,7 @@
 
 - (void)someoneBet:(NSString*)userId
 {
-    [[self getAvatarViewByUserId:userId] stopReciprocol];
+    [[self getAvatarViewByUserId:userId] stopReciprocal];
     [self.betTable someBetFrom:[self getPositionByUserId:userId]
                      chipValue:_gameService.gameState.singleBet
                          count:[_gameService betCountOfUser:userId]];
@@ -462,6 +468,7 @@ compareCardWith:(NSString*)targetUserId
     CGPoint pokerViewOrgPoint = pokerView.center;
     CGPoint otherPokerViewOrgPoint = otherPokerView.center;
     
+    
     [UIView animateWithDuration:1 animations:^{
         pokerView.layer.position = CGPointMake(self.view.center.x, self.view.center.y - 30);
         otherPokerView.layer.position = CGPointMake(self.view.center.x, self.view.center.y + 30);
@@ -473,17 +480,20 @@ compareCardWith:(NSString*)targetUserId
         }
         
     } completion:^(BOOL finished) {
+        self.vsImageView.hidden = NO;
+
         if (didWin) {
             [pokerView winCards:YES];
             [otherPokerView loseCards:YES];
         }else {
-            [pokerView winCards:NO];
-            [otherPokerView loseCards:NO];
+            [pokerView loseCards:YES];
+            [otherPokerView winCards:YES];
         }
 
         [UIView animateWithDuration:1 animations:^{
             pokerView.layer.position = CGPointMake(self.view.center.x, self.view.center.y - 29.9);
             otherPokerView.layer.position = CGPointMake(self.view.center.x, self.view.center.y + 29.9);
+            
         } completion:^(BOOL finished) {
             [UIView animateWithDuration:1 animations:^{
                 pokerView.layer.position = pokerViewOrgPoint;
@@ -494,6 +504,7 @@ compareCardWith:(NSString*)targetUserId
                 if ([_userManager isMe:targetUserId ]) {
                     otherPokerView.layer.transform = CATransform3DMakeScale(1, 1, 1);
                 }
+                self.vsImageView.hidden = YES;
             } completion:^(BOOL finished) {
                 
             }];
@@ -503,7 +514,7 @@ compareCardWith:(NSString*)targetUserId
 
 - (void)showCompareCardResult:(NSArray*)userResultList
 {
-    [self clearAllAvatarReciprocols];
+    [self clearAllAvatarReciprocals];
     if (userResultList.count == 2) {
         PBUserResult* result1 = [userResultList objectAtIndex:0];
         PBUserResult* result2 = [userResultList objectAtIndex:1];
@@ -557,7 +568,7 @@ compareCardWith:(NSString*)targetUserId
 
 - (void)someoneFoldCard:(NSString*)userId
 {
-    [[self getAvatarViewByUserId:userId] stopReciprocol];
+    [[self getAvatarViewByUserId:userId] stopReciprocal];
     [[self getPokersViewByUserId:userId] foldCards:YES];
 }
 
@@ -724,6 +735,8 @@ compareCardWith:(NSString*)targetUserId
     [self setTotalBetLabel:nil];
     [self setSingleBetLabel:nil];
     [self setMoneyTree:nil];
+    [self setVsImageView:nil];
+    [self.moneyTree kill];
     [super viewDidUnload];
 }
 
@@ -770,7 +783,7 @@ compareCardWith:(NSString*)targetUserId
 - (void)didSelectChip:(int)chipValue
 {
     PPDebug(@"didSelectChip: %d", chipValue);
-    [[self getMyAvatarView] stopReciprocol];
+    [[self getMyAvatarView] stopReciprocal];
     [_popupViewManager dismissChipsSelectView];
     [_gameService raiseBet:chipValue];
 }
@@ -833,10 +846,10 @@ compareCardWith:(NSString*)targetUserId
     }
 }
 
-- (void)clearAllAvatarReciprocols
+- (void)clearAllAvatarReciprocals
 {
     for (int i = UserPositionCenter; i < UserPositionMax; i ++){
-        [[self getAvatarViewByPosition:i] stopReciprocol];
+        [[self getAvatarViewByPosition:i] stopReciprocal];
     }
 }
 
@@ -920,6 +933,8 @@ compareCardWith:(NSString*)targetUserId
 
 }
 
+#pragma mark - test end
+
 - (void)allBet
 {
     for (PBGameUser *user in _gameService.session.userList) {
@@ -928,6 +943,11 @@ compareCardWith:(NSString*)targetUserId
                              count:[_gameService betCountOfUser:user.userId]];
 
     }
+}
+
+- (void)updateMyAvatar
+{
+    [(ZJHMyAvatarView*)[self getAvatarViewByPosition:UserPositionCenter] update];
 }
 
 

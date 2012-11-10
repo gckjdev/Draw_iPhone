@@ -224,7 +224,7 @@ static ZJHGameService *_defaultService;
 
 - (void)handleMoreOnJoinGameResponse:(GameMessage*)message
 {
-    [_accountService syncAccount:self forceServer:YES];
+    _myBalance = [_accountService getBalance];
     self.gameState = [ZJHGameState fromPBZJHGameState:message.joinGameResponse.zjhGameState];
 }
 

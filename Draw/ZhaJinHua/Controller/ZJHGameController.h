@@ -47,6 +47,7 @@ typedef enum {
 @property (retain, nonatomic) IBOutlet UILabel *totalBetLabel;
 @property (retain, nonatomic) IBOutlet UILabel *singleBetLabel;
 @property (retain, nonatomic) IBOutlet MoneyTree *moneyTree;
+@property (retain, nonatomic) IBOutlet UIImageView *vsImageView;
 
 
 @end
