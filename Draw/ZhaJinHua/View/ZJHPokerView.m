@@ -200,6 +200,17 @@
 
 - (void)loseCards:(BOOL)animation
 {
+    self.pokerView1.backImageView.image = [[ZJHImageManager defaultManager] pokerLoseBackImage];
+    [self.pokerView1 faceDown:animation];
+    [self.pokerView1 backToOriginPosition:animation];
+    
+    self.pokerView2.backImageView.image = [[ZJHImageManager defaultManager] pokerLoseBackImage];
+    [self.pokerView2 faceDown:animation];
+    [self.pokerView2 backToOriginPosition:animation];
+    
+    self.pokerView3.backImageView.image = [[ZJHImageManager defaultManager] pokerLoseBackImage];
+    [self.pokerView3 faceDown:animation];
+    [self.pokerView3 backToOriginPosition:animation];
 }
 
 - (void)showBomb
