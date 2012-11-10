@@ -296,6 +296,7 @@
 - (IBAction)clickCompareCardButton:(id)sender
 {
     self.isComparing = YES;
+    [self disableZJHButtons];
 }
 
 - (IBAction)clickCheckCardButton:(id)sender
@@ -324,7 +325,8 @@
 - (void)betSuccess
 {
     [self updateZJHButtons];
-    
+    [self dismissAllPopupView];
+
     [self.betTable someBetFrom:[self getPositionByUserId:_userManager.userId]
                      chipValue:_gameService.gameState.singleBet
                          count:[_gameService betCountOfUser:_userManager.userId]];
@@ -337,13 +339,12 @@
 - (void)checkCardSuccess
 {
     [self updateZJHButtons];
-
 }
 
 - (void)foldCardSuccess
 {
     [self updateZJHButtons];
-
+    [self dismissAllPopupView];
 }
 
 - (void)showCardSuccess
@@ -796,6 +797,33 @@ compareCardWith:(NSString*)targetUserId
 {
     [[self getMyPokersView] dismissShowCardButtons];
     [_popupViewManager dismissChipsSelectView];
+}
+
+- (void)disableZJHButtons
+{
+    self.betButton.userInteractionEnabled = NO;
+    [self.betButton setTitleColor:TITLE_COLOR_WHEN_DISABLE forState:UIControlStateNormal];
+    [self.betButton setBackgroundImage:[_imageManager betBtnDisableBgImage] forState:UIControlStateNormal];
+    
+    self.raiseBetButton.userInteractionEnabled = NO;
+    [self.raiseBetButton setTitleColor:TITLE_COLOR_WHEN_DISABLE forState:UIControlStateNormal];
+    [self.raiseBetButton setBackgroundImage:[_imageManager raiseBetBtnDisableBgImage] forState:UIControlStateNormal];
+    
+    self.autoBetButton.userInteractionEnabled = NO;
+    [self.autoBetButton setTitleColor:TITLE_COLOR_WHEN_DISABLE forState:UIControlStateNormal];
+    [self.autoBetButton setBackgroundImage:[_imageManager autoBetBtnDisableBgImage] forState:UIControlStateNormal];
+    
+    self.compareCardButton.userInteractionEnabled = NO;
+    [self.compareCardButton setTitleColor:TITLE_COLOR_WHEN_DISABLE forState:UIControlStateNormal];
+    [self.compareCardButton setBackgroundImage:[_imageManager compareCardBtnDisableBgImage] forState:UIControlStateNormal];
+    
+    self.checkCardButton.userInteractionEnabled = NO;
+    [self.checkCardButton setTitleColor:TITLE_COLOR_WHEN_DISABLE forState:UIControlStateNormal];
+    [self.checkCardButton setBackgroundImage:[_imageManager checkCardBtnDisableBgImage] forState:UIControlStateNormal];
+    
+//    self.foldCardButton.userInteractionEnabled = NO;
+//    [self.foldCardButton setTitleColor:TITLE_COLOR_WHEN_DISABLE forState:UIControlStateNormal];
+//    [self.foldCardButton setBackgroundImage:[_imageManager foldCardBtnDisableBgImage] forState:UIControlStateNormal];
 }
 
 - (void)updateZJHButtons
