@@ -86,5 +86,7 @@
 	</array>
 	<key>CFResourceTest</key>
 	<false/>
+	<key>CFServerTest</key>
+	<false/>
 </dict>
 </plist>

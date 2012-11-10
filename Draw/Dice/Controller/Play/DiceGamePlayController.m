@@ -731,6 +731,8 @@
                                         }
                                     }];
     
+    
+    
     [self registerNotificationWithName:UIApplicationWillEnterForegroundNotification usingBlock:^(NSNotification *note) {
         PPDebug(@"<DiceGamePlayController> Disconnected from server");
         if (![_diceService isConnected]) {
