@@ -310,6 +310,7 @@
     [[self getMyAvatarView] stopReciprocal];
     [[self getMyPokersView] foldCards:YES];
     [_gameService foldCard];
+    [self setIsComparing:NO];
 }
 
 - (IBAction)clickQuitButton:(id)sender
@@ -752,6 +753,7 @@ compareCardWith:(NSString*)targetUserId
 - (void)reciprocalEnd:(ZJHAvatarView*)view
 {
     PPDebug(@"################# [controller: %@] TIME OUT: auto fold ##################", [self description]);
+    
     [self clickFoldCardButton:nil];
 }
 
