@@ -498,6 +498,8 @@ compareCardWith:(NSString*)targetUserId
             [UIView animateWithDuration:1 animations:^{
                 pokerView.layer.position = pokerViewOrgPoint;
                 otherPokerView.layer.position = otherPokerViewOrgPoint;
+                PPDebug(@"<test>poker view move to org point,(%.2f, %.2f)",pokerViewOrgPoint.x, pokerViewOrgPoint.y);
+                PPDebug(@"<test>otherPoker view move to org point,(%.2f, %.2f)", otherPokerViewOrgPoint.x, otherPokerViewOrgPoint.y);
                 if ([_userManager isMe:userId]) {
                     pokerView.layer.transform = CATransform3DMakeScale(1, 1, 1);
                 }
