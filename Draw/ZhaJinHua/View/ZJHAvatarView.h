@@ -32,12 +32,12 @@
 
 - (void)updateByPBGameUser:(PBGameUser*)user;
 - (void)resetAvatar;
-- (void)startReciprocol:(CFTimeInterval)reciprocolTime;
-- (void)startReciprocol:(CFTimeInterval)reciprocolTime
+- (void)startReciprocal:(CFTimeInterval)reciprocalTime;
+- (void)startReciprocal:(CFTimeInterval)reciprocalTime
            fromProgress:(float)progress;
 
 + (ZJHAvatarView*)createZJHAvatarView;
 - (void)addTapGuesture;
-- (void)stopReciprocol;
+- (void)stopReciprocal;
 
 @end

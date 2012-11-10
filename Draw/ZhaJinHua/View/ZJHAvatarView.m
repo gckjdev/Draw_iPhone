@@ -125,23 +125,23 @@
 }
 
 
-- (void)startReciprocol:(CFTimeInterval)reciprocolTime
+- (void)startReciprocal:(CFTimeInterval)reciprocalTime
 {
     [self bringSubviewToFront:self.roundAvatar];
-    [self.roundAvatar startReciprocol:reciprocolTime];
+    [self.roundAvatar startreciprocal:reciprocalTime];
 }
 
-- (void)startReciprocol:(CFTimeInterval)reciprocolTime
+- (void)startreciprocal:(CFTimeInterval)reciprocalTime
            fromProgress:(float)progress
 {
-    [self.roundAvatar startReciprocol:reciprocolTime
+    [self.roundAvatar startReciprocal:reciprocalTime
                          fromProgress:progress];
     
 }
 
-- (void)stopReciprocol
+- (void)stopReciprocal
 {
-    [self.roundAvatar stopReciprocol];
+    [self.roundAvatar stopReciprocal];
 }
 
 
