@@ -471,11 +471,6 @@
             [self showCoinsNotEnoughView];
         }
     }
-    
-    
-
-    
-
 }
 
 - (void)disconnectWithError:(NSError *)error

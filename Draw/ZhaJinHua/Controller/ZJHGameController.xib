@@ -356,11 +356,14 @@
 						<reference key="IBUINormalTitleColor" ref="129307563"/>
 						<reference key="IBUISelectedTitleShadowColor" ref="321640810"/>
 						<reference key="IBUINormalTitleShadowColor" ref="321640810"/>
-						<object class="NSCustomResource" key="IBUISelectedBackgroundImage" id="846275372">
+						<object class="NSCustomResource" key="IBUISelectedBackgroundImage">
+							<string key="NSClassName">NSImage</string>
+							<string key="NSResourceName">zjh_auto_bet_on@2x.png</string>
+						</object>
+						<object class="NSCustomResource" key="IBUINormalBackgroundImage">
 							<string key="NSClassName">NSImage</string>
 							<string key="NSResourceName">zjh_auto_bet@2x.png</string>
 						</object>
-						<reference key="IBUINormalBackgroundImage" ref="846275372"/>
 						<reference key="IBUIFontDescription" ref="670079205"/>
 						<reference key="IBUIFont" ref="669435553"/>
 					</object>
@@ -1712,6 +1715,7 @@
 			<string key="setting@2x.png">{72, 71}</string>
 			<string key="tree@2x.png">{79, 81}</string>
 			<string key="zjh_auto_bet@2x.png">{127, 60}</string>
+			<string key="zjh_auto_bet_on@2x.png">{127, 60}</string>
 			<string key="zjh_bet@2x.png">{103, 60}</string>
 			<string key="zjh_button_holder_bg@2x.png">{640, 110}</string>
 			<string key="zjh_check_card@2x.png">{82, 60}</string>
