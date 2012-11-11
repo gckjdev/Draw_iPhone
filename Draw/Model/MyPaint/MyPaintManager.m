@@ -350,7 +350,7 @@ static MyPaintManager* _defaultManager;
         NSString *imageFileName = [draft image];
         NSString *pbDataFileName = [draft dataFilePath];
         //update image
-        if (imageFileName) {
+        if ([imageFileName length] != 0) {
             [_imageManager saveImage:image forKey:imageFileName];
         }else{
             NSString *imageFileName = [self imageFileName];
@@ -358,8 +358,19 @@ static MyPaintManager* _defaultManager;
             [draft setImage:imageFileName];
         }
         //update draw data.
-        if (pbDataFileName) {
-            [_drawDataManager saveData:[pbDrawData data] forKey:pbDataFileName];
+        if ([pbDataFileName length] != 0) {
+            if ([self saveDataAsPBDraw:draft]) {
+                [_drawDataManager saveData:[pbDrawData data] forKey:pbDataFileName];
+            }else{
+                //if old data save as action list, remove old data
+                [_drawDataManager removeDataForKey:pbDataFileName];
+                
+                //save and rename path.
+                pbDataFileName = [self pbDataFileName];
+                [_drawDataManager saveData:[pbDrawData data] forKey:pbDataFileName];
+                [draft setDataFilePath:pbDataFileName];
+            }
+
         }else{
             [_drawDataManager saveData:[pbDrawData data] forKey:pbDataFileName];
             [draft setDataFilePath:pbDataFileName];

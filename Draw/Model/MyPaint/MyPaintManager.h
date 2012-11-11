@@ -101,4 +101,7 @@
 
 - (NSMutableArray *)drawActionListForPaint:(MyPaint *)paint;
 - (NSString *)imagePathForPaint:(MyPaint *)paint;
+
+
+
 @end
