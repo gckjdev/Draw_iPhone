@@ -192,9 +192,10 @@
             drawFeed.drawImage = nil;
         }else if(image){
             [self.drawImageView setImage:image];
-        }else if(drawFeed.drawData){
+        }else {//if(drawFeed.drawData){
+//            [drawFeed ]
             [self cleanShowView];
-            
+            [drawFeed parseDrawData];
             Draw *draw = drawFeed.drawData;
             CGRect normalFrame = DRAW_VIEW_FRAME;
             CGRect currentFrame = self.drawImageView.frame;
