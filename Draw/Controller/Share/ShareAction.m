@@ -75,6 +75,7 @@
     self.isDrawByMe = ([[UserManager defaultManager].userId isEqualToString:drawUserId]);
     self.isGIF = isGIF;
     self.drawUserId = drawUserId;
+    self.imageFilePath = imageFilePath;
     return self; 
 }
 
