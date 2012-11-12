@@ -1283,11 +1283,6 @@
 						<reference key="parent" ref="483638841"/>
 					</object>
 					<object class="IBObjectRecord">
-						<int key="objectID">1042</int>
-						<reference key="object" ref="808794720"/>
-						<reference key="parent" ref="483638841"/>
-					</object>
-					<object class="IBObjectRecord">
 						<int key="objectID">1083</int>
 						<reference key="object" ref="906806925"/>
 						<reference key="parent" ref="483638841"/>
@@ -1313,6 +1308,7 @@
 					<object class="IBObjectRecord">
 						<int key="objectID">1921</int>
 						<reference key="object" ref="609306115"/>
+						<array class="NSMutableArray" key="children"/>
 						<reference key="parent" ref="483638841"/>
 					</object>
 					<object class="IBObjectRecord">
@@ -1387,6 +1383,11 @@
 						<array class="NSMutableArray" key="children"/>
 						<reference key="parent" ref="483638841"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">1042</int>
+						<reference key="object" ref="808794720"/>
+						<reference key="parent" ref="483638841"/>
+					</object>
 				</array>
 			</object>
 			<dictionary class="NSMutableDictionary" key="flattenedProperties">
@@ -1452,7 +1453,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">3872</int>
+			<int key="maxID">3878</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes"/>
 		<int key="IBDocument.localizationMode">0</int>
@@ -1461,7 +1462,7 @@
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
 			<string key="VS.png">{46, 37}</string>
-			<string key="chat_button@2x.png">{68, 58}</string>
+			<string key="chat_button@2x.png">{60, 51}</string>
 			<string key="game_setting@2x.png">{72, 71}</string>
 			<string key="runaway@2x.png">{72, 72}</string>
 			<string key="tree@2x.png">{79, 81}</string>
