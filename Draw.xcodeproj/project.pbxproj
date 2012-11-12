@@ -344,6 +344,37 @@
 		C2B3E9401553740400CCF52C /* ReplayController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2B3E93F1553740400CCF52C /* ReplayController~ipad.xib */; };
 		C2B3E9421553741600CCF52C /* MyPaintButton~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2B3E9411553741600CCF52C /* MyPaintButton~ipad.xib */; };
 		C2BBCE1A15B00283006A13A6 /* DrawGameAnimationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C2BBCE1915B00283006A13A6 /* DrawGameAnimationManager.m */; };
+		C2BE37001650DDB900E86944 /* bet.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C2BE36E11650DDB900E86944 /* bet.mp3 */; };
+		C2BE37011650DDB900E86944 /* bet1_F.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C2BE36E21650DDB900E86944 /* bet1_F.mp3 */; };
+		C2BE37021650DDB900E86944 /* bet1_M.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C2BE36E31650DDB900E86944 /* bet1_M.mp3 */; };
+		C2BE37031650DDB900E86944 /* bet2_F.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C2BE36E41650DDB900E86944 /* bet2_F.mp3 */; };
+		C2BE37041650DDB900E86944 /* bet2_M.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C2BE36E51650DDB900E86944 /* bet2_M.mp3 */; };
+		C2BE37051650DDB900E86944 /* bet3_F.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C2BE36E61650DDB900E86944 /* bet3_F.mp3 */; };
+		C2BE37061650DDB900E86944 /* bet3_M.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C2BE36E71650DDB900E86944 /* bet3_M.mp3 */; };
+		C2BE37071650DDB900E86944 /* bet4_F.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C2BE36E81650DDB900E86944 /* bet4_F.mp3 */; };
+		C2BE37081650DDB900E86944 /* check_card.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C2BE36E91650DDB900E86944 /* check_card.mp3 */; };
+		C2BE37091650DDB900E86944 /* check_card1_F.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C2BE36EA1650DDB900E86944 /* check_card1_F.mp3 */; };
+		C2BE370A1650DDB900E86944 /* check_card1_M.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C2BE36EB1650DDB900E86944 /* check_card1_M.mp3 */; };
+		C2BE370B1650DDB900E86944 /* check_card2_F.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C2BE36EC1650DDB900E86944 /* check_card2_F.mp3 */; };
+		C2BE370C1650DDB900E86944 /* click_button.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C2BE36ED1650DDB900E86944 /* click_button.mp3 */; };
+		C2BE370D1650DDB900E86944 /* compare_card1_F.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C2BE36EE1650DDB900E86944 /* compare_card1_F.mp3 */; };
+		C2BE370E1650DDB900E86944 /* compare_card1_M.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C2BE36EF1650DDB900E86944 /* compare_card1_M.mp3 */; };
+		C2BE370F1650DDB900E86944 /* deal_card.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C2BE36F01650DDB900E86944 /* deal_card.mp3 */; };
+		C2BE37101650DDB900E86944 /* dealer_appear.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C2BE36F11650DDB900E86944 /* dealer_appear.mp3 */; };
+		C2BE37111650DDB900E86944 /* dealer_disappear.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C2BE36F21650DDB900E86944 /* dealer_disappear.mp3 */; };
+		C2BE37121650DDB900E86944 /* fireworks.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C2BE36F31650DDB900E86944 /* fireworks.mp3 */; };
+		C2BE37131650DDB900E86944 /* flee.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C2BE36F41650DDB900E86944 /* flee.mp3 */; };
+		C2BE37141650DDB900E86944 /* fold_card1_F.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C2BE36F51650DDB900E86944 /* fold_card1_F.mp3 */; };
+		C2BE37151650DDB900E86944 /* fold_card1_M.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C2BE36F61650DDB900E86944 /* fold_card1_M.mp3 */; };
+		C2BE37161650DDB900E86944 /* fold_card2_F.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C2BE36F71650DDB900E86944 /* fold_card2_F.mp3 */; };
+		C2BE37171650DDB900E86944 /* full_monney.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C2BE36F81650DDB900E86944 /* full_monney.mp3 */; };
+		C2BE37181650DDB900E86944 /* game_bg.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C2BE36F91650DDB900E86944 /* game_bg.mp3 */; };
+		C2BE37191650DDB900E86944 /* game_over.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C2BE36FA1650DDB900E86944 /* game_over.mp3 */; };
+		C2BE371A1650DDB900E86944 /* game_win.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C2BE36FB1650DDB900E86944 /* game_win.mp3 */; };
+		C2BE371B1650DDB900E86944 /* get_chips.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C2BE36FC1650DDB900E86944 /* get_chips.mp3 */; };
+		C2BE371C1650DDB900E86944 /* raise_bet.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C2BE36FD1650DDB900E86944 /* raise_bet.mp3 */; };
+		C2BE371D1650DDB900E86944 /* raise_bet1_F.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C2BE36FE1650DDB900E86944 /* raise_bet1_F.mp3 */; };
+		C2BE371E1650DDB900E86944 /* raise_bet1_M.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C2BE36FF1650DDB900E86944 /* raise_bet1_M.mp3 */; };
 		C2C1BF4515A2A9B6001A2BFC /* UIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C2C1BF4415A2A9B6001A2BFC /* UIManager.m */; };
 		C2C54CEB1640C45B005561DA /* BetTable.m in Sources */ = {isa = PBXBuildFile; fileRef = C2C54CEA1640C45B005561DA /* BetTable.m */; };
 		C2C54CFE1640F85C005561DA /* NSMutableArray+Queue.m in Sources */ = {isa = PBXBuildFile; fileRef = C2C54CFD1640F85C005561DA /* NSMutableArray+Queue.m */; };
@@ -2340,6 +2371,37 @@
 		C2B3E9931555175B00CCF52C /* DrawConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DrawConstants.h; sourceTree = "<group>"; };
 		C2BBCE1815B00283006A13A6 /* DrawGameAnimationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DrawGameAnimationManager.h; path = Animation/DrawGameAnimationManager.h; sourceTree = "<group>"; };
 		C2BBCE1915B00283006A13A6 /* DrawGameAnimationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DrawGameAnimationManager.m; path = Animation/DrawGameAnimationManager.m; sourceTree = "<group>"; };
+		C2BE36E11650DDB900E86944 /* bet.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = bet.mp3; sourceTree = "<group>"; };
+		C2BE36E21650DDB900E86944 /* bet1_F.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = bet1_F.mp3; sourceTree = "<group>"; };
+		C2BE36E31650DDB900E86944 /* bet1_M.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = bet1_M.mp3; sourceTree = "<group>"; };
+		C2BE36E41650DDB900E86944 /* bet2_F.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = bet2_F.mp3; sourceTree = "<group>"; };
+		C2BE36E51650DDB900E86944 /* bet2_M.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = bet2_M.mp3; sourceTree = "<group>"; };
+		C2BE36E61650DDB900E86944 /* bet3_F.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = bet3_F.mp3; sourceTree = "<group>"; };
+		C2BE36E71650DDB900E86944 /* bet3_M.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = bet3_M.mp3; sourceTree = "<group>"; };
+		C2BE36E81650DDB900E86944 /* bet4_F.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = bet4_F.mp3; sourceTree = "<group>"; };
+		C2BE36E91650DDB900E86944 /* check_card.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = check_card.mp3; sourceTree = "<group>"; };
+		C2BE36EA1650DDB900E86944 /* check_card1_F.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = check_card1_F.mp3; sourceTree = "<group>"; };
+		C2BE36EB1650DDB900E86944 /* check_card1_M.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = check_card1_M.mp3; sourceTree = "<group>"; };
+		C2BE36EC1650DDB900E86944 /* check_card2_F.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = check_card2_F.mp3; sourceTree = "<group>"; };
+		C2BE36ED1650DDB900E86944 /* click_button.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = click_button.mp3; sourceTree = "<group>"; };
+		C2BE36EE1650DDB900E86944 /* compare_card1_F.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = compare_card1_F.mp3; sourceTree = "<group>"; };
+		C2BE36EF1650DDB900E86944 /* compare_card1_M.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = compare_card1_M.mp3; sourceTree = "<group>"; };
+		C2BE36F01650DDB900E86944 /* deal_card.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = deal_card.mp3; sourceTree = "<group>"; };
+		C2BE36F11650DDB900E86944 /* dealer_appear.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = dealer_appear.mp3; sourceTree = "<group>"; };
+		C2BE36F21650DDB900E86944 /* dealer_disappear.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = dealer_disappear.mp3; sourceTree = "<group>"; };
+		C2BE36F31650DDB900E86944 /* fireworks.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = fireworks.mp3; sourceTree = "<group>"; };
+		C2BE36F41650DDB900E86944 /* flee.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = flee.mp3; sourceTree = "<group>"; };
+		C2BE36F51650DDB900E86944 /* fold_card1_F.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = fold_card1_F.mp3; sourceTree = "<group>"; };
+		C2BE36F61650DDB900E86944 /* fold_card1_M.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = fold_card1_M.mp3; sourceTree = "<group>"; };
+		C2BE36F71650DDB900E86944 /* fold_card2_F.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = fold_card2_F.mp3; sourceTree = "<group>"; };
+		C2BE36F81650DDB900E86944 /* full_monney.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = full_monney.mp3; sourceTree = "<group>"; };
+		C2BE36F91650DDB900E86944 /* game_bg.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = game_bg.mp3; sourceTree = "<group>"; };
+		C2BE36FA1650DDB900E86944 /* game_over.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = game_over.mp3; sourceTree = "<group>"; };
+		C2BE36FB1650DDB900E86944 /* game_win.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = game_win.mp3; sourceTree = "<group>"; };
+		C2BE36FC1650DDB900E86944 /* get_chips.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = get_chips.mp3; sourceTree = "<group>"; };
+		C2BE36FD1650DDB900E86944 /* raise_bet.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = raise_bet.mp3; sourceTree = "<group>"; };
+		C2BE36FE1650DDB900E86944 /* raise_bet1_F.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = raise_bet1_F.mp3; sourceTree = "<group>"; };
+		C2BE36FF1650DDB900E86944 /* raise_bet1_M.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = raise_bet1_M.mp3; sourceTree = "<group>"; };
 		C2C1BF4315A2A9B6001A2BFC /* UIManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UIManager.h; path = UI/UIManager.h; sourceTree = "<group>"; };
 		C2C1BF4415A2A9B6001A2BFC /* UIManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UIManager.m; path = UI/UIManager.m; sourceTree = "<group>"; };
 		C2C54CE91640C45B005561DA /* BetTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BetTable.h; sourceTree = "<group>"; };
@@ -4490,6 +4552,7 @@
 		A44B63A3163F72B500A8045B /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				C2BE36E01650DDB900E86944 /* sounds */,
 				A44B63A4163F72B500A8045B /* Image */,
 			);
 			path = Resource;
@@ -5408,6 +5471,44 @@
 			);
 			name = Animation;
 			path = ../Model;
+			sourceTree = "<group>";
+		};
+		C2BE36E01650DDB900E86944 /* sounds */ = {
+			isa = PBXGroup;
+			children = (
+				C2BE36E11650DDB900E86944 /* bet.mp3 */,
+				C2BE36E21650DDB900E86944 /* bet1_F.mp3 */,
+				C2BE36E31650DDB900E86944 /* bet1_M.mp3 */,
+				C2BE36E41650DDB900E86944 /* bet2_F.mp3 */,
+				C2BE36E51650DDB900E86944 /* bet2_M.mp3 */,
+				C2BE36E61650DDB900E86944 /* bet3_F.mp3 */,
+				C2BE36E71650DDB900E86944 /* bet3_M.mp3 */,
+				C2BE36E81650DDB900E86944 /* bet4_F.mp3 */,
+				C2BE36E91650DDB900E86944 /* check_card.mp3 */,
+				C2BE36EA1650DDB900E86944 /* check_card1_F.mp3 */,
+				C2BE36EB1650DDB900E86944 /* check_card1_M.mp3 */,
+				C2BE36EC1650DDB900E86944 /* check_card2_F.mp3 */,
+				C2BE36ED1650DDB900E86944 /* click_button.mp3 */,
+				C2BE36EE1650DDB900E86944 /* compare_card1_F.mp3 */,
+				C2BE36EF1650DDB900E86944 /* compare_card1_M.mp3 */,
+				C2BE36F01650DDB900E86944 /* deal_card.mp3 */,
+				C2BE36F11650DDB900E86944 /* dealer_appear.mp3 */,
+				C2BE36F21650DDB900E86944 /* dealer_disappear.mp3 */,
+				C2BE36F31650DDB900E86944 /* fireworks.mp3 */,
+				C2BE36F41650DDB900E86944 /* flee.mp3 */,
+				C2BE36F51650DDB900E86944 /* fold_card1_F.mp3 */,
+				C2BE36F61650DDB900E86944 /* fold_card1_M.mp3 */,
+				C2BE36F71650DDB900E86944 /* fold_card2_F.mp3 */,
+				C2BE36F81650DDB900E86944 /* full_monney.mp3 */,
+				C2BE36F91650DDB900E86944 /* game_bg.mp3 */,
+				C2BE36FA1650DDB900E86944 /* game_over.mp3 */,
+				C2BE36FB1650DDB900E86944 /* game_win.mp3 */,
+				C2BE36FC1650DDB900E86944 /* get_chips.mp3 */,
+				C2BE36FD1650DDB900E86944 /* raise_bet.mp3 */,
+				C2BE36FE1650DDB900E86944 /* raise_bet1_F.mp3 */,
+				C2BE36FF1650DDB900E86944 /* raise_bet1_M.mp3 */,
+			);
+			path = sounds;
 			sourceTree = "<group>";
 		};
 		C2C1BF4215A2A884001A2BFC /* UI */ = {
@@ -10782,6 +10883,37 @@
 				CA9139EB164E277300B6387F /* openDice_M.m4a in Resources */,
 				CA9139EC164E277300B6387F /* scrambleToOpenDice_F.m4a in Resources */,
 				CA9139ED164E277300B6387F /* scrambleToOpenDice_M.m4a in Resources */,
+				C2BE37001650DDB900E86944 /* bet.mp3 in Resources */,
+				C2BE37011650DDB900E86944 /* bet1_F.mp3 in Resources */,
+				C2BE37021650DDB900E86944 /* bet1_M.mp3 in Resources */,
+				C2BE37031650DDB900E86944 /* bet2_F.mp3 in Resources */,
+				C2BE37041650DDB900E86944 /* bet2_M.mp3 in Resources */,
+				C2BE37051650DDB900E86944 /* bet3_F.mp3 in Resources */,
+				C2BE37061650DDB900E86944 /* bet3_M.mp3 in Resources */,
+				C2BE37071650DDB900E86944 /* bet4_F.mp3 in Resources */,
+				C2BE37081650DDB900E86944 /* check_card.mp3 in Resources */,
+				C2BE37091650DDB900E86944 /* check_card1_F.mp3 in Resources */,
+				C2BE370A1650DDB900E86944 /* check_card1_M.mp3 in Resources */,
+				C2BE370B1650DDB900E86944 /* check_card2_F.mp3 in Resources */,
+				C2BE370C1650DDB900E86944 /* click_button.mp3 in Resources */,
+				C2BE370D1650DDB900E86944 /* compare_card1_F.mp3 in Resources */,
+				C2BE370E1650DDB900E86944 /* compare_card1_M.mp3 in Resources */,
+				C2BE370F1650DDB900E86944 /* deal_card.mp3 in Resources */,
+				C2BE37101650DDB900E86944 /* dealer_appear.mp3 in Resources */,
+				C2BE37111650DDB900E86944 /* dealer_disappear.mp3 in Resources */,
+				C2BE37121650DDB900E86944 /* fireworks.mp3 in Resources */,
+				C2BE37131650DDB900E86944 /* flee.mp3 in Resources */,
+				C2BE37141650DDB900E86944 /* fold_card1_F.mp3 in Resources */,
+				C2BE37151650DDB900E86944 /* fold_card1_M.mp3 in Resources */,
+				C2BE37161650DDB900E86944 /* fold_card2_F.mp3 in Resources */,
+				C2BE37171650DDB900E86944 /* full_monney.mp3 in Resources */,
+				C2BE37181650DDB900E86944 /* game_bg.mp3 in Resources */,
+				C2BE37191650DDB900E86944 /* game_over.mp3 in Resources */,
+				C2BE371A1650DDB900E86944 /* game_win.mp3 in Resources */,
+				C2BE371B1650DDB900E86944 /* get_chips.mp3 in Resources */,
+				C2BE371C1650DDB900E86944 /* raise_bet.mp3 in Resources */,
+				C2BE371D1650DDB900E86944 /* raise_bet1_F.mp3 in Resources */,
+				C2BE371E1650DDB900E86944 /* raise_bet1_M.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
