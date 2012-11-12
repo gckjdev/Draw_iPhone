@@ -50,7 +50,7 @@ static ZJHSoundManager* shareInstance;
 
 - (NSString*)compareCardSoundEffect
 {
-    
+    return nil;
 }
 
 - (NSString*)compareCardHumanSound:(BOOL)gender
@@ -64,7 +64,7 @@ static ZJHSoundManager* shareInstance;
 
 - (NSString*)foldCardSoundEffect
 {
-    
+    return nil;
 }
 
 - (NSString*)foldCardHumanSound:(BOOL)gender
