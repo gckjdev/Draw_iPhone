@@ -42,7 +42,7 @@ static ZJHSoundManager* shareInstance;
 - (NSString*)checkCardHumanSound:(BOOL)gender
 {
     if (gender) {
-        return @"check_card1.mp3";
+        return @"check_card1_M.mp3";
     } else {
         return [NSString stringWithFormat:@"check_card%d_F.mp3",rand()%2+1];
     }
