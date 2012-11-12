@@ -164,7 +164,6 @@
     if ([_gameService gameState] == nil) {
         return;
     }
-    
     [self updateAllUsersPokers];
     [self updateAllUserTotalBet];
 }
@@ -452,13 +451,14 @@
 {
     PPDebug(@"################# [controller: %@] next player: %@ ##################", [self description],_gameService.session.currentPlayUserId);
     
+    [self clearAllAvatarReciprocals];
     [[self getAvatarViewByPosition:[self getPositionByUserId:_gameService.session.currentPlayUserId]] startReciprocal:[ConfigManager getZJHTimeInterval]];
 
     [self updateZJHButtons];
     
     if ([_gameService isMyTurn] && [_gameService isMeAutoBet]) {
         if ([_gameService isMyBalanceEnough]) {
-            [self performSelector:@selector(bet:) withObject:nil afterDelay:1];
+            [self bet:YES];
             return;
         }else{
             [_gameService setAutoBet:NO];
@@ -624,6 +624,7 @@ compareCardWith:(NSString*)targetUserId
 {
     if ([_userManager isMe:userId]) {
         [_audioManager playSoundByName:[_soundManager gameWin]];
+        [_audioManager playSoundByName:[_soundManager fullMoney]];
     } else {
         [_audioManager playSoundByName:[_soundManager gameOver]];
     }
@@ -695,7 +696,7 @@ compareCardWith:(NSString*)targetUserId
     
     // set user on seat
     for (PBGameUser* user in _gameService.session.userList) {
-//        PPDebug(@"<test>get user--%@, sitting at %d",user.nickName, user.seatId);
+        PPDebug(@"<ZJHGameController>Get user--%@, sitting at %d",user.nickName, user.seatId);
 
         ZJHAvatarView* avatar = [self getAvatarViewByUserId:user.userId];
         [avatar updateByPBGameUser:user];
