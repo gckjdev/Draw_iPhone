@@ -33,6 +33,7 @@
     PPDebug(@"%@ dealloc", [self description]);
     PPRelease(_drawActionList);
     PPRelease(_curImage);
+    PPRelease(_image);
     [super dealloc];
 }
 
@@ -86,6 +87,15 @@
     [self setNeedsDisplay];
 }
 
+- (void)showImage:(UIImage *)image
+{
+    if (_image != image) {
+        [_image release];
+        _image = [image retain];
+    }
+    _drawRectType = DrawRectTypeShowImage;
+    [self setNeedsDisplay];
+}
 
 - (UIImage*)createImage
 {
@@ -262,6 +272,22 @@
         {
             PPDebug(@"<SuperDrawView> DrawRectTypeRevoke");
             [self revokeRect:rect];
+        }
+            break;
+        case DrawRectTypeShowImage:
+        {
+//            [self stop];
+            PPDebug(@"<SuperDrawView> show Image");
+            if (_image) {
+                [_image drawAtPoint:CGPointMake(0, 0)];
+                
+                PPDebug(@"<SuperDrawView>draw image (size = %@) in rect(%@)",NSStringFromCGSize(_image.size),NSStringFromCGRect(rect));
+
+            }else{
+                PPDebug(@"<SuperDrawView> image is nil");
+            }
+            
+
         }
             break;
         case DrawRectTypeClean:

@@ -40,7 +40,7 @@ typedef enum{
     BOOL _showPenHidden;
     PenView *pen;
 
-    UIImage *_image; //use to show.
+
 }
 
 @property(nonatomic, assign) double playSpeed; //default is 1/30.0;

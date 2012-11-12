@@ -45,8 +45,10 @@
 - (UIImage *)thumbImage
 {
     if (_thumbImage == nil) {
-        _thumbImage = [UIImage imageWithContentsOfFile:self.imageFilePath];
+        NSData *data = [NSData dataWithContentsOfFile:self.imageFilePath];
+        _thumbImage = [UIImage imageWithData:data];
         [_thumbImage retain];
+        data = nil;
     }
     return _thumbImage;
 }

@@ -349,7 +349,6 @@
     PPRelease(_playTimer);
     PPRelease(_drawActionList);
     PPRelease(pen);
-    PPRelease(_image);
     [super dealloc];
 }
 
@@ -376,23 +375,15 @@
     return _showPenHidden;
 }
 
-- (void)showImage:(UIImage *)image
-{
-    if (_image != image) {
-        [_image release];
-        _image = [image retain];
-    }
-    _drawRectType = DrawRectTypeShowImage;
-    [self setNeedsDisplay];
-}
-- (void)drawRect:(CGRect)rect
-{
-    if (_drawRectType == DrawRectTypeShowImage) {
-        [self stop];
-        [_image drawInRect:self.bounds];
-        PPDebug(@"<ShowDrawView> show Image");
-    }else{
-        [super drawRect:rect];
-    }
-}
+
+//- (void)drawRect:(CGRect)rect
+//{
+//    if (_drawRectType == DrawRectTypeShowImage) {
+//        [self stop];
+//        [_image drawInRect:self.bounds];
+//        PPDebug(@"<ShowDrawView> show Image");
+//    }else{
+//        [super drawRect:rect];
+//    }
+//}
 @end

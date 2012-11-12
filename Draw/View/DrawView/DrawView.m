@@ -295,7 +295,7 @@
 
 - (BOOL)canRevoke
 {
-    return [_drawActionList count] > 0;
+    return [_drawActionList count] > _revokeBaseIndex;
 }
 - (void)revoke
 {
@@ -330,6 +330,19 @@
             [self drawPaint:paint];
         }
     }
+}
+
+- (void)showDraft:(MyPaint *)draft
+{
+    self.drawActionList = draft.drawActionList;
+    _revokeBaseIndex = [self.drawActionList count];
+    if(draft.thumbImage)
+    {
+        [self showImage:draft.thumbImage];
+    }else{
+        [self show];
+    }
+    [self addRevocationImage];
 }
 
 @end

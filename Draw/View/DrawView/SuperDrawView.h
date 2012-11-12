@@ -42,7 +42,7 @@ typedef enum{
     UIImage *_curImage;
     CGColorRef _changeBackColor;
     
-
+    UIImage *_image; 
 }
 
 @property (nonatomic, retain) NSMutableArray *drawActionList;
@@ -51,6 +51,7 @@ typedef enum{
 //public method
 - (BOOL)isViewBlank;
 - (void)show;
+- (void)showImage:(UIImage *)image;
 - (UIImage*)createImage;
 - (void)cleanAllActions;
 

@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "SuperDrawView.h"
+#import "MyPaint.h"
 
 @protocol DrawViewDelegate <NSObject>
 
@@ -24,9 +25,8 @@
     DrawColor* _lineColor;    
     ItemType _penType;
     
-    //for revoke
-//    NSInteger _revokePaintIndex;
     NSMutableArray *_revokeImageList;
+    NSInteger _revokeBaseIndex;
 }
 
 //@property (nonatomic, retain) NSMutableArray *drawActionList;
@@ -41,7 +41,7 @@
 - (void)setDrawEnabled:(BOOL)enabled;
 - (BOOL)canRevoke;
 - (void)revoke;
-
+- (void)showDraft:(MyPaint *)draft;
 //- (void)revoke;
 //- (void)clearAllActions; //remove all the actions
 @end

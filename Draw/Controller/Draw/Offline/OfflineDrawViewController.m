@@ -337,8 +337,8 @@ enum{
     [drawView setRevocationSupported:YES];
     drawView.delegate = self;
     if (self.draft) {
-        [drawView setDrawActionList:self.draft.drawActionList];
-        [drawView show];
+        [drawView showDraft:self.draft];
+        self.draft.thumbImage = nil;
     }
     [self.view insertSubview:drawView aboveSubview:paperView];
     self.bgColor = self.eraserColor = [DrawColor whiteColor];
