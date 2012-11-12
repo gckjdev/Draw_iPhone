@@ -1,5 +1,5 @@
 //
-//  MessageView.h
+//  DiceMessageView.h
 //  Draw
 //
 //  Created by 小涛 王 on 12-8-4.
@@ -10,7 +10,7 @@
 #import "FontLabel.h"
 #import "CMPopTipView.h"
 
-@interface MessageView:FontLabel
+@interface DiceMessageView:FontLabel
 
 - (id)initWithFrame:(CGRect)frame
             message:(NSString *)message

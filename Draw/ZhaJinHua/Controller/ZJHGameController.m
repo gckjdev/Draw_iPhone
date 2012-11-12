@@ -11,8 +11,6 @@
 #import "LevelService.h"
 #import "UserManager.h"
 #import "AudioManager.h"
-//#import "AccountService.h"
-#import "ZJHImageManager.h"
 #import "ZJHAvatarView.h"
 #import "CommonGameSession.h"
 #import "ZJHPokerView.h"
@@ -25,12 +23,20 @@
 #import "MoneyTree.h"
 #import "AnimationManager.h"
 #import "LevelService.h"
+#import "ZJHSoundManager.h"
+#import "MessageView.h"
 
 #define AVATAR_VIEW_TAG_OFFSET   4000
 #define AVATAR_PLACE_VIEW_OFFSET    8000
 #define POKERS_VIEW_TAG_OFFSET   2000
 #define USER_TOTAL_BET_BG_IMAGE_VIEW_OFFSET 3000
 #define USER_TOTAL_BET_LABEL 3200
+
+#define LEFT_TOP_MESSAGE_VIEW_POSITION CGPointMake(64, 106)
+#define RIGHT_TOP_MESSAGE_VIEW_POSITION CGPointMake(221, 106)
+#define LEFT_MESSAGE_VIEW_POSITION CGPointMake(64, 231)
+#define RIGHT_MESSAGE_VIEW_POSITION CGPointMake(221, 231)
+#define CENTER_MESSAGE_VIEW_POSITION CGPointMake(134, 272)
 
 #define CARDS_COUNT 3
 
@@ -39,6 +45,8 @@
 #define TITLE_COLOR_WHEN_DISABLE [UIColor colorWithRed:6.0/255.0 green:41.0/255.0 blue:56.0/255.0 alpha:1]
 
 #define TITLE_COLOR_WHEN_ENABLE [UIColor whiteColor]
+
+#define ACTION_LABEL_FONT [UIFont systemFontOfSize:11]
 
 @interface ZJHGameController ()
 {
@@ -49,6 +57,7 @@
 //    AccountService  *_accountService;
     ZJHImageManager *_imageManager;
     PopupViewManager *_popupViewManager;
+    ZJHSoundManager  *_soundManager;
 }
 @property (assign, nonatomic) BOOL  isComparing;
 
@@ -97,6 +106,7 @@
 //        _accountService = [AccountService defaultService];
         _audioManager = [AudioManager defaultManager];
         _popupViewManager = [PopupViewManager defaultManager];
+        _soundManager = [ZJHSoundManager defaultManager];
     }
     
     return self;
@@ -151,6 +161,8 @@
     self.dealerView.delegate = self;
     
     [self.moneyTree startGrow];
+    
+    [_audioManager setBackGroundMusicWithName:[_soundManager gameBGM]];
 
 }
 
@@ -159,7 +171,6 @@
     if ([_gameService gameState] == nil) {
         return;
     }
-    
     [self updateAllUsersPokers];
     [self updateAllUserTotalBet];
 }
@@ -254,7 +265,8 @@
     [self registerNotificationWithName:NOTIFICATION_COMPARE_CARD_RESPONSE
                                    usingBlock:^(NSNotification *notification) {
                                        NSArray* userResultList = [[[CommonGameNetworkService userInfoToMessage:notification.userInfo] compareCardResponse] userResultList];
-                                       [self showCompareCardResult:userResultList];
+                                       NSString *userId = [[CommonGameNetworkService userInfoToMessage:notification.userInfo] userId];
+                                       [self showCompareCardResult:userResultList initiator:userId];
                                    }];
     
     [self registerNotificationWithName:NOTIFICATION_GAME_OVER_NOTIFICATION_REQUEST
@@ -324,6 +336,17 @@
 
 - (void)betSuccess
 {
+    ZJHUserPlayInfo *userPlayInfo = [_gameService userPlayInfo:_userManager.userId];
+    BOOL gender = [_userManager.gender isEqualToString:@"m"];
+    NSString* soundName;
+    if (userPlayInfo.lastAction == PBZJHUserActionRaiseBet) {
+        soundName = [_soundManager raiseBetHumanSound:gender];
+    } else {
+        soundName = [_soundManager betHumanSound:gender];
+    }
+    [_audioManager playSoundByName:soundName];
+    [_audioManager playSoundByName:[_soundManager betSoundEffect]];
+    
     [self updateZJHButtons];
     [self dismissAllPopupView];
 
@@ -338,11 +361,17 @@
 
 - (void)checkCardSuccess
 {
+    BOOL gender = [_userManager.gender isEqualToString:@"m"];
+    [_audioManager playSoundByName:[_soundManager checkCardHumanSound:gender]];
+    [_audioManager playSoundByName:[_soundManager checkCardSoundEffect]];
+    
     [self updateZJHButtons];
 }
 
 - (void)foldCardSuccess
 {
+    [_audioManager playSoundByName:_soundManager.foldCardSoundEffect];
+    [_audioManager playSoundByName:[_soundManager foldCardHumanSound:[@"m" isEqualToString:_userManager.gender]]];
     [self updateZJHButtons];
     [self dismissAllPopupView];
 }
@@ -429,14 +458,14 @@
 {
     PPDebug(@"################# [controller: %@] next player: %@ ##################", [self description],_gameService.session.currentPlayUserId);
     
+    [self clearAllAvatarReciprocals];
     [[self getAvatarViewByPosition:[self getPositionByUserId:_gameService.session.currentPlayUserId]] startReciprocal:[ConfigManager getZJHTimeInterval]];
 
     [self updateZJHButtons];
     
     if ([_gameService isMyTurn] && [_gameService isMeAutoBet]) {
         if ([_gameService isMyBalanceEnough]) {
-            [self performSelector:@selector(bet:) withObject:nil afterDelay:1];
-            return;
+            [self bet:YES];
         }else{
             [_gameService setAutoBet:NO];
         }
@@ -445,6 +474,19 @@
 
 - (void)someoneBet:(NSString*)userId
 {
+    ZJHUserPlayInfo *userPlayInfo = [_gameService userPlayInfo:userId];
+    BOOL gender = [_gameService.session getUserByUserId:userId].gender;
+    NSString* soundName;
+    if (userPlayInfo.lastAction == PBZJHUserActionRaiseBet) {
+        soundName = [_soundManager raiseBetHumanSound:gender];
+        [self popupRaiseBetMessageAtUser:userId];
+    } else {
+        soundName = [_soundManager betHumanSound:gender];
+        [self popupBetMessageAtUser:userId];
+    }
+    [_audioManager playSoundByName:soundName];
+    [_audioManager playSoundByName:[_soundManager betSoundEffect]];
+    
     [[self getAvatarViewByUserId:userId] stopReciprocal];
     [self.betTable someBetFrom:[self getPositionByUserId:userId]
                      chipValue:_gameService.gameState.singleBet
@@ -464,7 +506,12 @@
 - (void)someone:(NSString*)userId
 compareCardWith:(NSString*)targetUserId
          didWin:(BOOL)didWin
+      initiator:(NSString*)initiatorId
 {
+    BOOL gender = [_gameService.session getUserByUserId:initiatorId].gender;
+    [_audioManager playSoundByName:[_soundManager compareCardHumanSound:gender]];
+    [_audioManager playSoundByName:[_soundManager compareCardSoundEffect]];
+    
     ZJHPokerView* pokerView = [self getPokersViewByUserId:userId];
     ZJHPokerView* otherPokerView = [self getPokersViewByUserId:targetUserId];
     CGPoint pokerViewOrgPoint = pokerView.center;
@@ -516,15 +563,17 @@ compareCardWith:(NSString*)targetUserId
     }];
 }
 
-- (void)showCompareCardResult:(NSArray*)userResultList
+- (void)showCompareCardResult:(NSArray*)userResultList initiator:(NSString*)initiatorId
 {
     [self clearAllAvatarReciprocals];
     if (userResultList.count == 2 && !_isComparing) {
         PBUserResult* result1 = [userResultList objectAtIndex:0];
         PBUserResult* result2 = [userResultList objectAtIndex:1];
         
-        [self someone:result1.userId compareCardWith:result2.userId didWin:result1.win];
+        [self someone:result1.userId compareCardWith:result2.userId didWin:result1.win initiator:initiatorId];
     }
+    
+    [self popupCompareCardMessageAtUser:initiatorId];
 }
 
 - (ZJHPokerSectorType)getPokerSectorTypeByPosition:(UserPosition)position
@@ -567,17 +616,30 @@ compareCardWith:(NSString*)targetUserId
 
 - (void)someoneCheckCard:(NSString*)userId
 {
+    BOOL gender = [_gameService.session getUserByUserId:userId].gender;
+    [_audioManager playSoundByName:[_soundManager checkCardHumanSound:gender]];
+    [_audioManager playSoundByName:[_soundManager checkCardSoundEffect]];
     [[self getPokersViewByUserId:userId] makeSectorShape:[self getPokerSectorTypeByPosition:[self getPositionByUserId:userId]] animation:YES];
+    [self popupCheckCardMessageAtUser:userId];
 }
 
 - (void)someoneFoldCard:(NSString*)userId
 {
+    BOOL gender = [_gameService.session getUserByUserId:userId].gender;
+    [_audioManager playSoundByName:[_soundManager foldCardHumanSound:gender]];
     [[self getAvatarViewByUserId:userId] stopReciprocal];
     [[self getPokersViewByUserId:userId] foldCards:YES];
+    [self popupFoldCardMessageAtUser:userId];
 }
 
 - (void)someoneWon:(NSString*)userId
 {
+    if ([_userManager isMe:userId]) {
+        [_audioManager playSoundByName:[_soundManager gameWin]];
+        [_audioManager playSoundByName:[_soundManager fullMoney]];
+    } else {
+        [_audioManager playSoundByName:[_soundManager gameOver]];
+    }
     [self.betTable userWonAllChips:[self getPositionByUserId:userId]];
 }
 
@@ -646,7 +708,7 @@ compareCardWith:(NSString*)targetUserId
     
     // set user on seat
     for (PBGameUser* user in _gameService.session.userList) {
-//        PPDebug(@"<test>get user--%@, sitting at %d",user.nickName, user.seatId);
+        PPDebug(@"<ZJHGameController>Get user--%@, sitting at %d",user.nickName, user.seatId);
 
         ZJHAvatarView* avatar = [self getAvatarViewByUserId:user.userId];
         [avatar updateByPBGameUser:user];
@@ -672,11 +734,15 @@ compareCardWith:(NSString*)targetUserId
                                size:pokerSize
                                 gap:gap];
         
+        if (userPlayInfo.alreadCheckCard) {
+            [pokerView makeSectorShape:[self getPokerSectorTypeByPosition:[self getPositionByUserId:user.userId]] animation:YES];
+        }
+        
         if (userPlayInfo.alreadFoldCard) {
             [pokerView foldCards:YES];
         }
         
-        if (userPlayInfo.alreadLose) {
+        if (userPlayInfo.alreadCompareLose) {
             [pokerView loseCards:YES];
         }
     }
@@ -698,7 +764,6 @@ compareCardWith:(NSString*)targetUserId
     return (ZJHPokerView*)[self.view viewWithTag:(POKERS_VIEW_TAG_OFFSET+position)];
 }
 
-
 - (ZJHAvatarView*)getAvatarViewByPosition:(UserPosition)position
 {
     return (ZJHAvatarView*)[self.view viewWithTag:(AVATAR_VIEW_TAG_OFFSET+position)];
@@ -710,6 +775,8 @@ compareCardWith:(NSString*)targetUserId
     PBGameUser* selfUser = [self getSelfUser];
     return (UserPositionMax + (user.seatId - selfUser.seatId))%UserPositionMax;
 }
+
+
 
 - (ZJHPokerView*)getPokersViewByUserId:(NSString*)userId
 {
@@ -951,20 +1018,6 @@ compareCardWith:(NSString*)targetUserId
     return [NSString stringWithFormat:@"%d", intValue];
 }
 
-#pragma mark - test
-
-- (IBAction)testBet:(id)sender
-{
-    [self.betTable someBetFrom:UserPositionCenter chipValue:5 count:1];
-
-}
-
-- (IBAction)testWin:(id)sender
-{
-    [self.betTable userWonAllChips:UserPositionLeftTop];
-
-}
-
 #pragma mark - test end
 
 - (void)allBet
@@ -977,10 +1030,100 @@ compareCardWith:(NSString*)targetUserId
     }
 }
 
+
+
 - (void)updateMyAvatar
 {
     [(ZJHMyAvatarView*)[self getAvatarViewByPosition:UserPositionCenter] update];
 }
 
+- (CGPoint)getMessageOriginPointByUserPosition:(UserPosition)position
+{
+    switch (position) {
+        case UserPositionCenter:
+            return CENTER_MESSAGE_VIEW_POSITION;
+            break;
+            
+        case UserPositionLeftTop:
+            return LEFT_TOP_MESSAGE_VIEW_POSITION;
+            break;
+            
+        case UserPositionLeft:
+            return LEFT_MESSAGE_VIEW_POSITION;
+            break;
+            
+        case UserPositionRightTop:
+            return RIGHT_TOP_MESSAGE_VIEW_POSITION;
+            break;
+            
+        case UserPositionRight:
+            return RIGHT_MESSAGE_VIEW_POSITION;
+            break;
+            
+        default:
+            return CGPointMake(0, 0);
+            break;
+    }
+}
+
+- (void)popupView:(UIView *)view
+       atPosition:(UserPosition)position
+{
+    CGPoint point = [self getMessageOriginPointByUserPosition:position];
+    view.frame = CGRectMake(point.x, point.y, view.frame.size.width, view.frame.size.height);
+    [self.view addSubview:view];
+
+    [UIView animateWithDuration:0.3 animations:^{
+        view.alpha = 1;
+    } completion:^(BOOL finished) {
+        [UIView animateWithDuration:1.5 animations:^{
+            view.center = CGPointMake(view.center.x, view.center.y - 15);
+            view.alpha = 0;
+        } completion:^(BOOL finished) {
+            [view removeFromSuperview];
+            
+        }];
+    }];
+}
+
+- (void)popupBetMessageAtUser:(NSString *)userId
+{
+    UserPosition pos = [self getPositionByUserId:userId];
+    MessageView *view = [MessageView messageViewWithMessage:@"跟注" font:ACTION_LABEL_FONT textAlignment:UITextAlignmentCenter bgImage:[_imageManager betActionImage:pos]];
+    
+    [self popupView:view atPosition:[self getPositionByUserId:userId]];
+}
+
+- (void)popupRaiseBetMessageAtUser:(NSString *)userId
+{
+    UserPosition pos = [self getPositionByUserId:userId];
+    MessageView *view = [MessageView messageViewWithMessage:@"加注" font:ACTION_LABEL_FONT textAlignment:UITextAlignmentCenter bgImage:[_imageManager raiseBetActionImage:pos]];
+    
+    [self popupView:view atPosition:[self getPositionByUserId:userId]];
+}
+
+- (void)popupCheckCardMessageAtUser:(NSString *)userId
+{
+    UserPosition pos = [self getPositionByUserId:userId];
+    MessageView *view = [MessageView messageViewWithMessage:@"看牌" font:ACTION_LABEL_FONT textAlignment:UITextAlignmentCenter bgImage:[_imageManager checkCardActionImage:pos]];
+    
+    [self popupView:view atPosition:[self getPositionByUserId:userId]];
+}
+
+- (void)popupCompareCardMessageAtUser:(NSString *)userId
+{
+    UserPosition pos = [self getPositionByUserId:userId];
+    MessageView *view = [MessageView messageViewWithMessage:@"比牌" font:ACTION_LABEL_FONT textAlignment:UITextAlignmentCenter bgImage:[_imageManager compareCardActionImage:pos]];
+    
+    [self popupView:view atPosition:[self getPositionByUserId:userId]];
+}
+
+- (void)popupFoldCardMessageAtUser:(NSString *)userId
+{
+    UserPosition pos = [self getPositionByUserId:userId];
+    MessageView *view = [MessageView messageViewWithMessage:@"弃牌" font:ACTION_LABEL_FONT textAlignment:UITextAlignmentCenter bgImage:[_imageManager foldCardActionImage:pos]];
+    
+    [self popupView:view atPosition:[self getPositionByUserId:userId]];
+}
 
 @end

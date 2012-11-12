@@ -24,7 +24,7 @@
 @synthesize alreadCheckCard = _alreadCheckCard;
 @synthesize alreadFoldCard = _alreadFoldCard;
 @synthesize alreadShowCard = _alreadShowCard;
-@synthesize alreadLose = _alreadLose;
+@synthesize alreadCompareLose = _alreadCompareLose;
 
 
 
@@ -47,10 +47,10 @@
         self.isAutoBet = pbZJHUserPlayInfo.isAutoBet;
         self.lastAction = pbZJHUserPlayInfo.lastAction;
         
-        self.alreadCheckCard = FALSE;
-        self.alreadFoldCard = FALSE;
-        self.alreadShowCard = FALSE;
-        self.alreadLose = FALSE;
+        self.alreadCheckCard = pbZJHUserPlayInfo.alreadCheckCard;
+        self.alreadFoldCard = pbZJHUserPlayInfo.alreadFoldCard;
+        self.alreadShowCard = pbZJHUserPlayInfo.alreadShowCard;
+        self.alreadCompareLose = pbZJHUserPlayInfo.alreadCompareLose;
     }
     
     return self;
@@ -85,7 +85,7 @@
 
 - (BOOL)canAutoBet
 {
-    if (_alreadFoldCard || _alreadLose) {
+    if (_alreadFoldCard || _alreadCompareLose) {
         return NO;
     }
     
@@ -94,7 +94,7 @@
 
 - (BOOL)canCompareCard
 {
-    if (_alreadFoldCard || _alreadLose) {
+    if (_alreadFoldCard || _alreadCompareLose) {
         return NO;
     }
     
@@ -108,7 +108,7 @@
 
 - (BOOL)canCheckCard
 {
-    if (_alreadCheckCard || _alreadFoldCard || _alreadLose) {
+    if (_alreadCheckCard || _alreadFoldCard || _alreadCompareLose) {
         return NO;
     }else {
         return YES;
@@ -117,7 +117,7 @@
 
 - (BOOL)canFoldCard
 {
-    if (_alreadFoldCard || _alreadLose) {
+    if (_alreadFoldCard || _alreadCompareLose) {
         return NO;
     }else {
         return YES;
@@ -137,7 +137,7 @@
 
 - (BOOL)hasShield
 {
-    if (_alreadFoldCard || _alreadLose) {
+    if (_alreadFoldCard || _alreadCompareLose) {
         return NO;
     }
     

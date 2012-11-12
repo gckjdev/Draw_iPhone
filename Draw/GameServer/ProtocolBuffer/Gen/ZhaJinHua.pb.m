@@ -1176,7 +1176,7 @@ static PBZJHUserPoker* defaultPBZJHUserPokerInstance = nil;
 @property BOOL alreadCheckCard;
 @property BOOL alreadFoldCard;
 @property BOOL alreadShowCard;
-@property BOOL alreadLose;
+@property BOOL alreadCompareLose;
 @end
 
 @implementation PBZJHUserPlayInfo
@@ -1257,17 +1257,17 @@ static PBZJHUserPoker* defaultPBZJHUserPokerInstance = nil;
 - (void) setAlreadShowCard:(BOOL) value {
   alreadShowCard_ = !!value;
 }
-- (BOOL) hasAlreadLose {
-  return !!hasAlreadLose_;
+- (BOOL) hasAlreadCompareLose {
+  return !!hasAlreadCompareLose_;
 }
-- (void) setHasAlreadLose:(BOOL) value {
-  hasAlreadLose_ = !!value;
+- (void) setHasAlreadCompareLose:(BOOL) value {
+  hasAlreadCompareLose_ = !!value;
 }
-- (BOOL) alreadLose {
-  return !!alreadLose_;
+- (BOOL) alreadCompareLose {
+  return !!alreadCompareLose_;
 }
-- (void) setAlreadLose:(BOOL) value {
-  alreadLose_ = !!value;
+- (void) setAlreadCompareLose:(BOOL) value {
+  alreadCompareLose_ = !!value;
 }
 - (void) dealloc {
   self.userId = nil;
@@ -1284,7 +1284,7 @@ static PBZJHUserPoker* defaultPBZJHUserPokerInstance = nil;
     self.alreadCheckCard = NO;
     self.alreadFoldCard = NO;
     self.alreadShowCard = NO;
-    self.alreadLose = NO;
+    self.alreadCompareLose = NO;
   }
   return self;
 }
@@ -1336,8 +1336,8 @@ static PBZJHUserPlayInfo* defaultPBZJHUserPlayInfoInstance = nil;
   if (self.hasAlreadShowCard) {
     [output writeBool:13 value:self.alreadShowCard];
   }
-  if (self.hasAlreadLose) {
-    [output writeBool:14 value:self.alreadLose];
+  if (self.hasAlreadCompareLose) {
+    [output writeBool:14 value:self.alreadCompareLose];
   }
   [self.unknownFields writeToCodedOutputStream:output];
 }
@@ -1372,8 +1372,8 @@ static PBZJHUserPlayInfo* defaultPBZJHUserPlayInfoInstance = nil;
   if (self.hasAlreadShowCard) {
     size += computeBoolSize(13, self.alreadShowCard);
   }
-  if (self.hasAlreadLose) {
-    size += computeBoolSize(14, self.alreadLose);
+  if (self.hasAlreadCompareLose) {
+    size += computeBoolSize(14, self.alreadCompareLose);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -1474,8 +1474,8 @@ static PBZJHUserPlayInfo* defaultPBZJHUserPlayInfoInstance = nil;
   if (other.hasAlreadShowCard) {
     [self setAlreadShowCard:other.alreadShowCard];
   }
-  if (other.hasAlreadLose) {
-    [self setAlreadLose:other.alreadLose];
+  if (other.hasAlreadCompareLose) {
+    [self setAlreadCompareLose:other.alreadCompareLose];
   }
   [self mergeUnknownFields:other.unknownFields];
   return self;
@@ -1541,7 +1541,7 @@ static PBZJHUserPlayInfo* defaultPBZJHUserPlayInfoInstance = nil;
         break;
       }
       case 112: {
-        [self setAlreadLose:[input readBool]];
+        [self setAlreadCompareLose:[input readBool]];
         break;
       }
     }
@@ -1689,20 +1689,20 @@ static PBZJHUserPlayInfo* defaultPBZJHUserPlayInfoInstance = nil;
   result.alreadShowCard = NO;
   return self;
 }
-- (BOOL) hasAlreadLose {
-  return result.hasAlreadLose;
+- (BOOL) hasAlreadCompareLose {
+  return result.hasAlreadCompareLose;
 }
-- (BOOL) alreadLose {
-  return result.alreadLose;
+- (BOOL) alreadCompareLose {
+  return result.alreadCompareLose;
 }
-- (PBZJHUserPlayInfo_Builder*) setAlreadLose:(BOOL) value {
-  result.hasAlreadLose = YES;
-  result.alreadLose = value;
+- (PBZJHUserPlayInfo_Builder*) setAlreadCompareLose:(BOOL) value {
+  result.hasAlreadCompareLose = YES;
+  result.alreadCompareLose = value;
   return self;
 }
-- (PBZJHUserPlayInfo_Builder*) clearAlreadLose {
-  result.hasAlreadLose = NO;
-  result.alreadLose = NO;
+- (PBZJHUserPlayInfo_Builder*) clearAlreadCompareLose {
+  result.hasAlreadCompareLose = NO;
+  result.alreadCompareLose = NO;
   return self;
 }
 @end

@@ -9,6 +9,16 @@
 #import <Foundation/Foundation.h>
 #import "Poker.h"
 
+
+typedef enum {
+    UserPositionCenter = 0,
+    UserPositionRight,
+    UserPositionRightTop,
+    UserPositionLeftTop,
+    UserPositionLeft,
+    UserPositionMax
+}UserPosition;
+
 @interface ZJHImageManager : NSObject
 
 + (ZJHImageManager*)defaultManager;
@@ -54,5 +64,13 @@
 - (UIImage*)bombImage;
 
 - (UIImage*)vsImage;
+
+- (UIImage *)betActionImage:(UserPosition)position;
+- (UIImage *)raiseBetActionImage:(UserPosition)position;
+- (UIImage *)checkCardActionImage:(UserPosition)position;
+- (UIImage *)compareCardActionImage:(UserPosition)position;
+- (UIImage *)foldCardActionImage:(UserPosition)position;
+
+
 
 @end

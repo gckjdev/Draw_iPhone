@@ -9,7 +9,7 @@
 #import "DicePopupViewManager.h"
 #import "CMPopTipView.h"
 #import "CallDiceView.h"
-#import "MessageView.h"
+#import "DiceMessageView.h"
 #import "LocaleUtils.h"
 #import "DiceFontManager.h"
 
@@ -24,7 +24,7 @@
 
 @property (retain, nonatomic) CallDiceView *callDiceView;
 @property (retain, nonatomic) DiceItemListView *diceItemListView;
-@property (retain, nonatomic) MessageView *openDiceView;
+@property (retain, nonatomic) DiceMessageView *openDiceView;
 @property (retain, nonatomic) ChatView *chatView;
 
 @end
@@ -132,7 +132,7 @@
         aboveSubView:(UIView *)siblingSubview
       pointDirection:(PointDirection)pointDirection
 {
-    MessageView *messageView = [[[MessageView alloc] initWithFrame:CGRectZero 
+    DiceMessageView *messageView = [[[DiceMessageView alloc] initWithFrame:CGRectZero 
                                                            message:message
                                                           fontName:[[DiceFontManager defaultManager] fontName]
                                                          pointSize:SIZE_FONT_CHAT_MESSAGE] autorelease];
@@ -170,7 +170,7 @@
         default:
             break;
     }
-    self.openDiceView = [[[MessageView alloc] initWithFrame:CGRectZero 
+    self.openDiceView = [[[DiceMessageView alloc] initWithFrame:CGRectZero 
                                                    message:message
                                                   fontName:[[DiceFontManager defaultManager] fontName]
                                                  pointSize:SIZE_FONT_OPEN_DICE

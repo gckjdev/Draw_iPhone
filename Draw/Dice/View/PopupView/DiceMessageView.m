@@ -1,12 +1,12 @@
 //
-//  MessageView.m
+//  DiceMessageView.m
 //  Draw
 //
 //  Created by 小涛 王 on 12-8-4.
 //  Copyright (c) 2012年 甘橙软件. All rights reserved.
 //
 
-#import "MessageView.h"
+#import "DiceMessageView.h"
 #import "StringUtil.h"
 
 #define DEFAULT_BG_COLOR [UIColor colorWithRed:255./255. green:234./255. blue:80./255. alpha:0.4]
@@ -14,13 +14,13 @@
 #define MESSAGE_MAX_WIDTH   ([DeviceDetection isIPAD] ? 400 : 200 )
 #define MESSAGE_MIN_WIDTH   ([DeviceDetection isIPAD] ? 50 : 25 )
 
-@interface MessageView ()
+@interface DiceMessageView ()
 
 @property (retain, nonatomic) CMPopTipView *popTipView;
 
 @end
 
-@implementation MessageView
+@implementation DiceMessageView
 
 @synthesize popTipView = _popTipView;
 
