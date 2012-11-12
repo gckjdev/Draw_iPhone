@@ -326,7 +326,7 @@ static ZJHGameService *_defaultService;
         userPlayInfo = [_gameState userPlayInfo:result.userId];
         userPlayInfo.lastAction = PBZJHUserActionCompareCard;
         if (!result.win) {
-            userPlayInfo.alreadLose = YES;
+            userPlayInfo.alreadCompareLose = YES;
             userPlayInfo.isAutoBet = NO;
         }
     }

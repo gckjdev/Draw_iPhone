@@ -742,7 +742,7 @@ compareCardWith:(NSString*)targetUserId
             [pokerView foldCards:YES];
         }
         
-        if (userPlayInfo.alreadLose) {
+        if (userPlayInfo.alreadCompareLose) {
             [pokerView loseCards:YES];
         }
     }

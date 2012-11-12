@@ -24,7 +24,7 @@
 @property (assign, nonatomic) BOOL alreadCheckCard;
 @property (assign, nonatomic) BOOL alreadFoldCard;
 @property (assign, nonatomic) BOOL alreadShowCard;
-@property (assign, nonatomic) BOOL alreadLose;
+@property (assign, nonatomic) BOOL alreadCompareLose;
 
 + (ZJHUserPlayInfo *)fromPBZJHUserPlayInfo:(PBZJHUserPlayInfo *)pbZJHUserPlayInfo;
 

@@ -362,7 +362,7 @@ BOOL PBPokerSuitIsValidValue(PBPokerSuit value);
   BOOL hasAlreadCheckCard_:1;
   BOOL hasAlreadFoldCard_:1;
   BOOL hasAlreadShowCard_:1;
-  BOOL hasAlreadLose_:1;
+  BOOL hasAlreadCompareLose_:1;
   BOOL hasTotalBet_:1;
   BOOL hasUserId_:1;
   BOOL hasPokers_:1;
@@ -371,7 +371,7 @@ BOOL PBPokerSuitIsValidValue(PBPokerSuit value);
   BOOL alreadCheckCard_:1;
   BOOL alreadFoldCard_:1;
   BOOL alreadShowCard_:1;
-  BOOL alreadLose_:1;
+  BOOL alreadCompareLose_:1;
   int32_t totalBet;
   NSString* userId;
   PBZJHPoker* pokers;
@@ -385,7 +385,7 @@ BOOL PBPokerSuitIsValidValue(PBPokerSuit value);
 - (BOOL) hasAlreadCheckCard;
 - (BOOL) hasAlreadFoldCard;
 - (BOOL) hasAlreadShowCard;
-- (BOOL) hasAlreadLose;
+- (BOOL) hasAlreadCompareLose;
 @property (readonly, retain) NSString* userId;
 @property (readonly, retain) PBZJHPoker* pokers;
 @property (readonly) int32_t totalBet;
@@ -394,7 +394,7 @@ BOOL PBPokerSuitIsValidValue(PBPokerSuit value);
 - (BOOL) alreadCheckCard;
 - (BOOL) alreadFoldCard;
 - (BOOL) alreadShowCard;
-- (BOOL) alreadLose;
+- (BOOL) alreadCompareLose;
 
 + (PBZJHUserPlayInfo*) defaultInstance;
 - (PBZJHUserPlayInfo*) defaultInstance;
@@ -472,10 +472,10 @@ BOOL PBPokerSuitIsValidValue(PBPokerSuit value);
 - (PBZJHUserPlayInfo_Builder*) setAlreadShowCard:(BOOL) value;
 - (PBZJHUserPlayInfo_Builder*) clearAlreadShowCard;
 
-- (BOOL) hasAlreadLose;
-- (BOOL) alreadLose;
-- (PBZJHUserPlayInfo_Builder*) setAlreadLose:(BOOL) value;
-- (PBZJHUserPlayInfo_Builder*) clearAlreadLose;
+- (BOOL) hasAlreadCompareLose;
+- (BOOL) alreadCompareLose;
+- (PBZJHUserPlayInfo_Builder*) setAlreadCompareLose:(BOOL) value;
+- (PBZJHUserPlayInfo_Builder*) clearAlreadCompareLose;
 @end
 
 @interface PBZJHGameResult : PBGeneratedMessage {

@@ -89,7 +89,7 @@ message PBZJHUserPlayInfo{
   optional bool alreadCheckCard = 11 [default = false];                     // 是否已经看牌
   optional bool alreadFoldCard = 12 [default = false];                      // 是否已经弃牌
   optional bool alreadShowCard = 13 [default = false];                      // 是否已经亮牌
-  optional bool alreadLose = 14 [default = false];                          // 是否已经失败
+  optional bool alreadCompareLose = 14 [default = false];                          // 是否已经比牌失败
 }
 
 message PBZJHGameResult{
