@@ -202,7 +202,6 @@
 		A4A131C1164CB44400665109 /* bomb2.png in Resources */ = {isa = PBXBuildFile; fileRef = A4A131BB164CB44400665109 /* bomb2.png */; };
 		A4A131C2164CB44400665109 /* bomb3.png in Resources */ = {isa = PBXBuildFile; fileRef = A4A131BC164CB44400665109 /* bomb3.png */; };
 		A4A131D8164CEDCE00665109 /* show_card_button_disable.png in Resources */ = {isa = PBXBuildFile; fileRef = A4A131D7164CEDCE00665109 /* show_card_button_disable.png */; };
-		A4A1324D1650E56400665109 /* MessageView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4A1324C1650E56400665109 /* MessageView.m */; };
 		A4A132591650E56E00665109 /* zjh_bet1.png in Resources */ = {isa = PBXBuildFile; fileRef = A4A1324F1650E56E00665109 /* zjh_bet1.png */; };
 		A4A1325A1650E56E00665109 /* zjh_bet2.png in Resources */ = {isa = PBXBuildFile; fileRef = A4A132501650E56E00665109 /* zjh_bet2.png */; };
 		A4A1325B1650E56E00665109 /* zjh_check_card1.png in Resources */ = {isa = PBXBuildFile; fileRef = A4A132511650E56E00665109 /* zjh_check_card1.png */; };
@@ -213,6 +212,7 @@
 		A4A132601650E56E00665109 /* zjh_fold_card2.png in Resources */ = {isa = PBXBuildFile; fileRef = A4A132561650E56E00665109 /* zjh_fold_card2.png */; };
 		A4A132611650E56E00665109 /* zjh_raise_bet1.png in Resources */ = {isa = PBXBuildFile; fileRef = A4A132571650E56E00665109 /* zjh_raise_bet1.png */; };
 		A4A132621650E56E00665109 /* zjh_raise_bet2.png in Resources */ = {isa = PBXBuildFile; fileRef = A4A132581650E56E00665109 /* zjh_raise_bet2.png */; };
+		A4A132651650E86900665109 /* MessageView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4A132641650E86900665109 /* MessageView.m */; };
 		A4AB18F315E359B90097CC7A /* ChatViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A4AB18F115E359B90097CC7A /* ChatViewCell.m */; };
 		A4AB18F415E359B90097CC7A /* ChatViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4AB18F215E359B90097CC7A /* ChatViewCell.xib */; };
 		A4AC51BE15C7BFF10041DC86 /* FontLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = A4AC51B415C7BFF10041DC86 /* FontLabel.m */; };
@@ -2145,8 +2145,6 @@
 		A4A131BB164CB44400665109 /* bomb2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bomb2.png; sourceTree = "<group>"; };
 		A4A131BC164CB44400665109 /* bomb3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bomb3.png; sourceTree = "<group>"; };
 		A4A131D7164CEDCE00665109 /* show_card_button_disable.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = show_card_button_disable.png; sourceTree = "<group>"; };
-		A4A1324B1650E56400665109 /* MessageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageView.h; sourceTree = "<group>"; };
-		A4A1324C1650E56400665109 /* MessageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageView.m; sourceTree = "<group>"; };
 		A4A1324F1650E56E00665109 /* zjh_bet1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = zjh_bet1.png; sourceTree = "<group>"; };
 		A4A132501650E56E00665109 /* zjh_bet2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = zjh_bet2.png; sourceTree = "<group>"; };
 		A4A132511650E56E00665109 /* zjh_check_card1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = zjh_check_card1.png; sourceTree = "<group>"; };
@@ -2157,6 +2155,8 @@
 		A4A132561650E56E00665109 /* zjh_fold_card2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = zjh_fold_card2.png; sourceTree = "<group>"; };
 		A4A132571650E56E00665109 /* zjh_raise_bet1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = zjh_raise_bet1.png; sourceTree = "<group>"; };
 		A4A132581650E56E00665109 /* zjh_raise_bet2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = zjh_raise_bet2.png; sourceTree = "<group>"; };
+		A4A132631650E86900665109 /* MessageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageView.h; sourceTree = "<group>"; };
+		A4A132641650E86900665109 /* MessageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageView.m; sourceTree = "<group>"; };
 		A4AB18F015E359B90097CC7A /* ChatViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatViewCell.h; sourceTree = "<group>"; };
 		A4AB18F115E359B90097CC7A /* ChatViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatViewCell.m; sourceTree = "<group>"; };
 		A4AB18F215E359B90097CC7A /* ChatViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChatViewCell.xib; sourceTree = "<group>"; };
@@ -5173,8 +5173,8 @@
 		A4E7878116367338003557AD /* View */ = {
 			isa = PBXGroup;
 			children = (
-				A4A1324B1650E56400665109 /* MessageView.h */,
-				A4A1324C1650E56400665109 /* MessageView.m */,
+				A4A132631650E86900665109 /* MessageView.h */,
+				A4A132641650E86900665109 /* MessageView.m */,
 				C29B5F521642749900EF4AB4 /* DealerView.h */,
 				C29B5F531642749900EF4AB4 /* DealerView.m */,
 				A44B6259163A344100A8045B /* ZJHPokerView.h */,
@@ -11561,7 +11561,7 @@
 				C223396B164E3CA100D2C123 /* CMOpenALSound.m in Sources */,
 				C223396C164E3CA100D2C123 /* CMOpenALSoundManager.m in Sources */,
 				C223396D164E3CA100D2C123 /* DebugOutput.m in Sources */,
-				A4A1324D1650E56400665109 /* MessageView.m in Sources */,
+				A4A132651650E86900665109 /* MessageView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

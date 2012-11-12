@@ -23,8 +23,8 @@
 #import "MoneyTree.h"
 #import "AnimationManager.h"
 #import "LevelService.h"
-#import "MessageView.h"
 #import "ZJHSoundManager.h"
+#import "MessageView.h"
 
 #define AVATAR_VIEW_TAG_OFFSET   4000
 #define AVATAR_PLACE_VIEW_OFFSET    8000
@@ -356,6 +356,7 @@
     [self updateTotalBetAndSingleBet];
     [self updateUserTotalBet:_userManager.userId];
     [self updateMyAvatar];
+    [self popupBetMessageAtUser:_userManager.userId];
 }
 
 - (void)checkCardSuccess
