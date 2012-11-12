@@ -36,7 +36,7 @@
 #define RIGHT_TOP_MESSAGE_VIEW_POSITION CGPointMake(221, 106)
 #define LEFT_MESSAGE_VIEW_POSITION CGPointMake(64, 231)
 #define RIGHT_MESSAGE_VIEW_POSITION CGPointMake(221, 231)
-#define CENTER_MESSAGE_VIEW_POSITION CGPointMake(134, 265)
+#define CENTER_MESSAGE_VIEW_POSITION CGPointMake(134, 272)
 
 #define CARDS_COUNT 3
 
@@ -45,6 +45,8 @@
 #define TITLE_COLOR_WHEN_DISABLE [UIColor colorWithRed:6.0/255.0 green:41.0/255.0 blue:56.0/255.0 alpha:1]
 
 #define TITLE_COLOR_WHEN_ENABLE [UIColor whiteColor]
+
+#define ACTION_LABEL_FONT [UIFont systemFontOfSize:11]
 
 @interface ZJHGameController ()
 {
@@ -356,7 +358,6 @@
     [self updateTotalBetAndSingleBet];
     [self updateUserTotalBet:_userManager.userId];
     [self updateMyAvatar];
-    [self popupBetMessageAtUser:_userManager.userId];
 }
 
 - (void)checkCardSuccess
@@ -464,8 +465,7 @@
     
     if ([_gameService isMyTurn] && [_gameService isMeAutoBet]) {
         if ([_gameService isMyBalanceEnough]) {
-            [self performSelector:@selector(bet:) withObject:nil afterDelay:1];
-            return;
+            [self bet:YES];
         }else{
             [_gameService setAutoBet:NO];
         }
@@ -479,8 +479,10 @@
     NSString* soundName;
     if (userPlayInfo.lastAction == PBZJHUserActionRaiseBet) {
         soundName = [_soundManager raiseBetHumanSound:gender];
+        [self popupRaiseBetMessageAtUser:userId];
     } else {
         soundName = [_soundManager betHumanSound:gender];
+        [self popupBetMessageAtUser:userId];
     }
     [_audioManager playSoundByName:soundName];
     [_audioManager playSoundByName:[_soundManager betSoundEffect]];
@@ -570,6 +572,8 @@ compareCardWith:(NSString*)targetUserId
         
         [self someone:result1.userId compareCardWith:result2.userId didWin:result1.win initiator:initiatorId];
     }
+    
+    [self popupCompareCardMessageAtUser:initiatorId];
 }
 
 - (ZJHPokerSectorType)getPokerSectorTypeByPosition:(UserPosition)position
@@ -616,6 +620,7 @@ compareCardWith:(NSString*)targetUserId
     [_audioManager playSoundByName:[_soundManager checkCardHumanSound:gender]];
     [_audioManager playSoundByName:[_soundManager checkCardSoundEffect]];
     [[self getPokersViewByUserId:userId] makeSectorShape:[self getPokerSectorTypeByPosition:[self getPositionByUserId:userId]] animation:YES];
+    [self popupCheckCardMessageAtUser:userId];
 }
 
 - (void)someoneFoldCard:(NSString*)userId
@@ -624,6 +629,7 @@ compareCardWith:(NSString*)targetUserId
     [_audioManager playSoundByName:[_soundManager foldCardHumanSound:gender]];
     [[self getAvatarViewByUserId:userId] stopReciprocal];
     [[self getPokersViewByUserId:userId] foldCards:YES];
+    [self popupFoldCardMessageAtUser:userId];
 }
 
 - (void)someoneWon:(NSString*)userId
@@ -726,6 +732,10 @@ compareCardWith:(NSString*)targetUserId
         [pokerView updateWithPokers:[_gameService pokersOfUser:user.userId]
                                size:pokerSize
                                 gap:gap];
+        
+        if (userPlayInfo.alreadCheckCard) {
+            [pokerView makeSectorShape:[self getPokerSectorTypeByPosition:[self getPositionByUserId:user.userId]] animation:YES];
+        }
         
         if (userPlayInfo.alreadFoldCard) {
             [pokerView foldCards:YES];
@@ -1061,21 +1071,32 @@ compareCardWith:(NSString*)targetUserId
     CGPoint point = [self getMessageOriginPointByUserPosition:position];
     view.frame = CGRectMake(point.x, point.y, view.frame.size.width, view.frame.size.height);
     [self.view addSubview:view];
-    [view performSelector:@selector(removeFromSuperview) withObject:nil afterDelay:3];
+
+    [UIView animateWithDuration:0.3 animations:^{
+        view.alpha = 1;
+    } completion:^(BOOL finished) {
+        [UIView animateWithDuration:1.5 animations:^{
+            view.center = CGPointMake(view.center.x, view.center.y - 15);
+            view.alpha = 0;
+        } completion:^(BOOL finished) {
+            [view removeFromSuperview];
+            
+        }];
+    }];
 }
 
 - (void)popupBetMessageAtUser:(NSString *)userId
 {
     UserPosition pos = [self getPositionByUserId:userId];
-    MessageView *view = [MessageView messageViewWithMessage:@"跟注" font:[UIFont systemFontOfSize:13] textAlignment:UITextAlignmentCenter bgImage:[_imageManager betActionImage:pos]];
+    MessageView *view = [MessageView messageViewWithMessage:@"跟注" font:ACTION_LABEL_FONT textAlignment:UITextAlignmentCenter bgImage:[_imageManager betActionImage:pos]];
     
     [self popupView:view atPosition:[self getPositionByUserId:userId]];
 }
 
-- (void)popupRaiseMessageAtUser:(NSString *)userId
+- (void)popupRaiseBetMessageAtUser:(NSString *)userId
 {
     UserPosition pos = [self getPositionByUserId:userId];
-    MessageView *view = [MessageView messageViewWithMessage:@"加注" font:[UIFont systemFontOfSize:13] textAlignment:UITextAlignmentCenter bgImage:[_imageManager raiseBetActionImage:pos]];
+    MessageView *view = [MessageView messageViewWithMessage:@"加注" font:ACTION_LABEL_FONT textAlignment:UITextAlignmentCenter bgImage:[_imageManager raiseBetActionImage:pos]];
     
     [self popupView:view atPosition:[self getPositionByUserId:userId]];
 }
@@ -1083,7 +1104,7 @@ compareCardWith:(NSString*)targetUserId
 - (void)popupCheckCardMessageAtUser:(NSString *)userId
 {
     UserPosition pos = [self getPositionByUserId:userId];
-    MessageView *view = [MessageView messageViewWithMessage:@"看牌" font:[UIFont systemFontOfSize:13] textAlignment:UITextAlignmentCenter bgImage:[_imageManager checkCardActionImage:pos]];
+    MessageView *view = [MessageView messageViewWithMessage:@"看牌" font:ACTION_LABEL_FONT textAlignment:UITextAlignmentCenter bgImage:[_imageManager checkCardActionImage:pos]];
     
     [self popupView:view atPosition:[self getPositionByUserId:userId]];
 }
@@ -1091,7 +1112,7 @@ compareCardWith:(NSString*)targetUserId
 - (void)popupCompareCardMessageAtUser:(NSString *)userId
 {
     UserPosition pos = [self getPositionByUserId:userId];
-    MessageView *view = [MessageView messageViewWithMessage:@"比牌" font:[UIFont systemFontOfSize:13] textAlignment:UITextAlignmentCenter bgImage:[_imageManager compareCardActionImage:pos]];
+    MessageView *view = [MessageView messageViewWithMessage:@"比牌" font:ACTION_LABEL_FONT textAlignment:UITextAlignmentCenter bgImage:[_imageManager compareCardActionImage:pos]];
     
     [self popupView:view atPosition:[self getPositionByUserId:userId]];
 }
@@ -1099,7 +1120,7 @@ compareCardWith:(NSString*)targetUserId
 - (void)popupFoldCardMessageAtUser:(NSString *)userId
 {
     UserPosition pos = [self getPositionByUserId:userId];
-    MessageView *view = [MessageView messageViewWithMessage:@"弃牌" font:[UIFont systemFontOfSize:13] textAlignment:UITextAlignmentCenter bgImage:[_imageManager foldCardActionImage:pos]];
+    MessageView *view = [MessageView messageViewWithMessage:@"弃牌" font:ACTION_LABEL_FONT textAlignment:UITextAlignmentCenter bgImage:[_imageManager foldCardActionImage:pos]];
     
     [self popupView:view atPosition:[self getPositionByUserId:userId]];
 }

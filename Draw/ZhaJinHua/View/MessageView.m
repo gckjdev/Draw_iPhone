@@ -9,11 +9,14 @@
 #import "MessageView.h"
 
 #define MESSAGE_MAX_WIDTH 200
-#define MESSAGE_MIN_WIDTH 20
-#define LABEL_LEFT_OFFSET 5
-#define LABEL_RIGHT_OFFSET 3
-#define LABEL_TOP_OFFSET 2
-#define LABEL_BOTTOM_OFFSET 5
+#define MESSAGE_MIN_WIDTH 30
+#define MESSAGE_MAX_HEIGHT MAXFLOAT
+#define MESSAGE_MIN_HEIGHT 20
+
+#define LABEL_LEFT_OFFSET 2.5
+#define LABEL_RIGHT_OFFSET 2.5
+#define LABEL_TOP_OFFSET 1
+#define LABEL_BOTTOM_OFFSET 7
 
 
 #define LABEL_TAG 200
@@ -21,7 +24,6 @@
 
 
 @implementation MessageView
-
 
 - (void)dealloc {
     [super dealloc];
@@ -52,8 +54,8 @@
         UIImageView *imageView = [[[UIImageView alloc] initWithFrame:CGRectMake(0, 0, LABEL_LEFT_OFFSET + label.frame.size.width + LABEL_RIGHT_OFFSET, LABEL_TOP_OFFSET + label.frame.size.height + LABEL_BOTTOM_OFFSET)] autorelease];
         imageView.tag = BACKGROUND_IMAGE_VIEW_TAG;
         imageView.image = bgImage;
-        [self addSubview:label];
         [self addSubview:imageView];
+        [self addSubview:label];
     }
     
     return self;
@@ -67,11 +69,13 @@
     UILineBreakMode mode = [LocaleUtils isChinese] ? UILineBreakModeCharacterWrap : UILineBreakModeWordWrap;
     CGSize size = [message sizeWithFont:font constrainedToSize:withSize lineBreakMode:mode];
     size.width = (size.width < MESSAGE_MIN_WIDTH) ? MESSAGE_MIN_WIDTH : size.width;
-    size.width = size.width * 1.1;
+//    size.width = size.width * 1.1;
+    size.height = (size.height < MESSAGE_MIN_HEIGHT) ? MESSAGE_MIN_HEIGHT : size.height;
+
     CGRect rect = CGRectMake(0, 0, size.width, size.height);
     
     UILabel *label = [[[UILabel alloc] initWithFrame:rect] autorelease];
-    
+    label.font = font;
     label.text = message;
     label.lineBreakMode = mode;
     label.textAlignment = textAlignment;

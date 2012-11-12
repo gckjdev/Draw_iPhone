@@ -47,10 +47,10 @@
         self.isAutoBet = pbZJHUserPlayInfo.isAutoBet;
         self.lastAction = pbZJHUserPlayInfo.lastAction;
         
-        self.alreadCheckCard = FALSE;
-        self.alreadFoldCard = FALSE;
-        self.alreadShowCard = FALSE;
-        self.alreadLose = FALSE;
+        self.alreadCheckCard = pbZJHUserPlayInfo.alreadCheckCard;
+        self.alreadFoldCard = pbZJHUserPlayInfo.alreadFoldCard;
+        self.alreadShowCard = pbZJHUserPlayInfo.alreadShowCard;
+        self.alreadLose = pbZJHUserPlayInfo.alreadLose;
     }
     
     return self;
