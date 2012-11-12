@@ -11,6 +11,7 @@
 #import "ZJHAvatarView.h"
 #import "DealerView.h"
 #import "ChipsSelectView.h"
+#import "ZJHImageManager.h"
 
 
 @class ZJHGameService;
@@ -22,14 +23,6 @@
 @class BetTable;
 @class MoneyTree;
 
-typedef enum {
-    UserPositionCenter = 0,
-    UserPositionRight,
-    UserPositionRightTop,
-    UserPositionLeftTop,
-    UserPositionLeft,
-    UserPositionMax
-}UserPosition;
 
 @interface ZJHGameController : PPViewController <ZJHPokerViewProtocol, ZJHAvatarViewDelegate, DealerViewDelegate, ChipsSelectViewProtocol> {
     BOOL _isComparing;

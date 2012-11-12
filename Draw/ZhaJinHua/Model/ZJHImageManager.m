@@ -431,5 +431,104 @@ static ZJHImageManager* shareInstance;
     return [UIImage imageNamed:@"VS.png"];
 }
 
+- (UIImage *)betActionImage:(UserPosition)position
+{
+    switch (position) {
+        case UserPositionCenter:
+        case UserPositionLeft:
+        case UserPositionLeftTop:
+            return [UIImage imageNamed:@"zjh_bet1.png"];
+            break;
+            
+        case UserPositionRight:
+        case UserPositionRightTop:
+            return [UIImage imageNamed:@"zjh_bet2.png"];
+            break;
+            
+        default:
+            return nil;
+            break;
+    }
+}
+
+- (UIImage *)raiseBetActionImage:(UserPosition)position
+{
+    switch (position) {
+        case UserPositionCenter:
+        case UserPositionLeft:
+        case UserPositionLeftTop:
+            return [UIImage imageNamed:@"zjh_raise_bet1.png"];
+            break;
+            
+        case UserPositionRight:
+        case UserPositionRightTop:
+            return [UIImage imageNamed:@"zjh_raise_bet2.png"];
+            break;
+            
+        default:
+            return nil;
+            break;
+    }
+}
+
+- (UIImage *)checkCardActionImage:(UserPosition)position
+{
+    switch (position) {
+        case UserPositionCenter:
+        case UserPositionLeft:
+        case UserPositionLeftTop:
+            return [UIImage imageNamed:@"zjh_check_card1.png"];
+            break;
+            
+        case UserPositionRight:
+        case UserPositionRightTop:
+            return [UIImage imageNamed:@"zjh_check_card2.png"];
+            break;
+            
+        default:
+            return nil;
+            break;
+    }
+}
+
+- (UIImage *)compareCardActionImage:(UserPosition)position
+{
+    switch (position) {
+        case UserPositionCenter:
+        case UserPositionLeft:
+        case UserPositionLeftTop:
+            return [UIImage imageNamed:@"zjh_compare_card1.png"];
+            break;
+            
+        case UserPositionRight:
+        case UserPositionRightTop:
+            return [UIImage imageNamed:@"zjh_compare_card2.png"];
+            break;
+            
+        default:
+            return nil;
+            break;
+    }
+}
+
+- (UIImage *)foldCardActionImage:(UserPosition)position
+{
+    switch (position) {
+        case UserPositionCenter:
+        case UserPositionLeft:
+        case UserPositionLeftTop:
+            return [UIImage imageNamed:@"zjh_fold_card1.png"];
+            break;
+            
+        case UserPositionRight:
+        case UserPositionRightTop:
+            return [UIImage imageNamed:@"zjh_fold_card2.png"];
+            break;
+            
+        default:
+            return nil;
+            break;
+    }
+}
 
 @end

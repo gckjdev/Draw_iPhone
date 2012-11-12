@@ -11,8 +11,6 @@
 #import "LevelService.h"
 #import "UserManager.h"
 #import "AudioManager.h"
-//#import "AccountService.h"
-#import "ZJHImageManager.h"
 #import "ZJHAvatarView.h"
 #import "CommonGameSession.h"
 #import "ZJHPokerView.h"
@@ -26,12 +24,19 @@
 #import "AnimationManager.h"
 #import "LevelService.h"
 #import "ZJHSoundManager.h"
+#import "MessageView.h"
 
 #define AVATAR_VIEW_TAG_OFFSET   4000
 #define AVATAR_PLACE_VIEW_OFFSET    8000
 #define POKERS_VIEW_TAG_OFFSET   2000
 #define USER_TOTAL_BET_BG_IMAGE_VIEW_OFFSET 3000
 #define USER_TOTAL_BET_LABEL 3200
+
+#define LEFT_TOP_MESSAGE_VIEW_POSITION CGPointMake(64, 106)
+#define RIGHT_TOP_MESSAGE_VIEW_POSITION CGPointMake(221, 106)
+#define LEFT_MESSAGE_VIEW_POSITION CGPointMake(64, 231)
+#define RIGHT_MESSAGE_VIEW_POSITION CGPointMake(221, 231)
+#define CENTER_MESSAGE_VIEW_POSITION CGPointMake(134, 265)
 
 #define CARDS_COUNT 3
 
@@ -350,6 +355,7 @@
     [self updateTotalBetAndSingleBet];
     [self updateUserTotalBet:_userManager.userId];
     [self updateMyAvatar];
+    [self popupBetMessageAtUser:_userManager.userId];
 }
 
 - (void)checkCardSuccess
@@ -748,7 +754,6 @@ compareCardWith:(NSString*)targetUserId
     return (ZJHPokerView*)[self.view viewWithTag:(POKERS_VIEW_TAG_OFFSET+position)];
 }
 
-
 - (ZJHAvatarView*)getAvatarViewByPosition:(UserPosition)position
 {
     return (ZJHAvatarView*)[self.view viewWithTag:(AVATAR_VIEW_TAG_OFFSET+position)];
@@ -760,6 +765,8 @@ compareCardWith:(NSString*)targetUserId
     PBGameUser* selfUser = [self getSelfUser];
     return (UserPositionMax + (user.seatId - selfUser.seatId))%UserPositionMax;
 }
+
+
 
 - (ZJHPokerView*)getPokersViewByUserId:(NSString*)userId
 {
@@ -1001,20 +1008,6 @@ compareCardWith:(NSString*)targetUserId
     return [NSString stringWithFormat:@"%d", intValue];
 }
 
-#pragma mark - test
-
-- (IBAction)testBet:(id)sender
-{
-    [self.betTable someBetFrom:UserPositionCenter chipValue:5 count:1];
-
-}
-
-- (IBAction)testWin:(id)sender
-{
-    [self.betTable userWonAllChips:UserPositionLeftTop];
-
-}
-
 #pragma mark - test end
 
 - (void)allBet
@@ -1027,10 +1020,89 @@ compareCardWith:(NSString*)targetUserId
     }
 }
 
+
+
 - (void)updateMyAvatar
 {
     [(ZJHMyAvatarView*)[self getAvatarViewByPosition:UserPositionCenter] update];
 }
 
+- (CGPoint)getMessageOriginPointByUserPosition:(UserPosition)position
+{
+    switch (position) {
+        case UserPositionCenter:
+            return CENTER_MESSAGE_VIEW_POSITION;
+            break;
+            
+        case UserPositionLeftTop:
+            return LEFT_TOP_MESSAGE_VIEW_POSITION;
+            break;
+            
+        case UserPositionLeft:
+            return LEFT_MESSAGE_VIEW_POSITION;
+            break;
+            
+        case UserPositionRightTop:
+            return RIGHT_TOP_MESSAGE_VIEW_POSITION;
+            break;
+            
+        case UserPositionRight:
+            return RIGHT_MESSAGE_VIEW_POSITION;
+            break;
+            
+        default:
+            return CGPointMake(0, 0);
+            break;
+    }
+}
+
+- (void)popupView:(UIView *)view
+       atPosition:(UserPosition)position
+{
+    CGPoint point = [self getMessageOriginPointByUserPosition:position];
+    view.frame = CGRectMake(point.x, point.y, view.frame.size.width, view.frame.size.height);
+    [self.view addSubview:view];
+    [view performSelector:@selector(removeFromSuperview) withObject:nil afterDelay:3];
+}
+
+- (void)popupBetMessageAtUser:(NSString *)userId
+{
+    UserPosition pos = [self getPositionByUserId:userId];
+    MessageView *view = [MessageView messageViewWithMessage:@"跟注" font:[UIFont systemFontOfSize:13] textAlignment:UITextAlignmentCenter bgImage:[_imageManager betActionImage:pos]];
+    
+    [self popupView:view atPosition:[self getPositionByUserId:userId]];
+}
+
+- (void)popupRaiseMessageAtUser:(NSString *)userId
+{
+    UserPosition pos = [self getPositionByUserId:userId];
+    MessageView *view = [MessageView messageViewWithMessage:@"加注" font:[UIFont systemFontOfSize:13] textAlignment:UITextAlignmentCenter bgImage:[_imageManager raiseBetActionImage:pos]];
+    
+    [self popupView:view atPosition:[self getPositionByUserId:userId]];
+}
+
+- (void)popupCheckCardMessageAtUser:(NSString *)userId
+{
+    UserPosition pos = [self getPositionByUserId:userId];
+    MessageView *view = [MessageView messageViewWithMessage:@"看牌" font:[UIFont systemFontOfSize:13] textAlignment:UITextAlignmentCenter bgImage:[_imageManager checkCardActionImage:pos]];
+    
+    [self popupView:view atPosition:[self getPositionByUserId:userId]];
+}
+
+- (void)popupCompareCardMessageAtUser:(NSString *)userId
+{
+    UserPosition pos = [self getPositionByUserId:userId];
+    MessageView *view = [MessageView messageViewWithMessage:@"比牌" font:[UIFont systemFontOfSize:13] textAlignment:UITextAlignmentCenter bgImage:[_imageManager compareCardActionImage:pos]];
+    
+    [self popupView:view atPosition:[self getPositionByUserId:userId]];
+}
+
+- (void)popupFoldCardMessageAtUser:(NSString *)userId
+{
+    UserPosition pos = [self getPositionByUserId:userId];
+    MessageView *view = [MessageView messageViewWithMessage:@"弃牌" font:[UIFont systemFontOfSize:13] textAlignment:UITextAlignmentCenter bgImage:[_imageManager foldCardActionImage:pos]];
+    
+    [self popupView:view atPosition:[self getPositionByUserId:userId]];
+}
 
 @end
