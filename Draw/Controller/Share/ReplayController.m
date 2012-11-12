@@ -65,7 +65,7 @@
     if (_replayForCreateGif)
         path = _tempGIFFilePath;
     else
-        path = [MyPaintManager getMyPaintImagePathByCapacityPath:_paint.image];
+        path = _paint.imageFilePath;
     
     self.shareAction = [[[ShareAction alloc] initWithDrawImageFile:path
                                                              isGIF:_replayForCreateGif
@@ -119,8 +119,8 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     MyPaint* currentPaint = self.paint;
-    NSData* currentData = [NSKeyedUnarchiver unarchiveObjectWithData:currentPaint.drawData];
-    NSArray* drawActionList = (NSArray*)currentData;
+
+//    NSArray* drawActionList = (NSArray*)currentData;
     
     CGFloat xScale = self.showHolderView.frame.size.width/DRAW_VIEW_FRAME.size.width;
     CGFloat yScale = self.showHolderView.frame.size.height/DRAW_VIEW_FRAME.size.height;
@@ -131,7 +131,7 @@
         [_replayView setShowPenHidden:YES];
     }
     
-    NSMutableArray *actionList = [DrawAction scaleActionList:drawActionList 
+    NSMutableArray *actionList = [DrawAction scaleActionList:self.paint.drawActionList
                                                       xScale:xScale 
                                                       yScale:yScale];
     [_replayView setDrawActionList:actionList];

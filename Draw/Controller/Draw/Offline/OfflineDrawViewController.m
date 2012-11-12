@@ -75,6 +75,7 @@
 - (void)handleDraftTimer:(NSTimer *)theTimer;
 */
 - (void)saveDraft:(BOOL)showResult;
+- (PBDraw *)pbDraw;
 @end
 
 
@@ -336,8 +337,7 @@ enum{
     [drawView setRevocationSupported:YES];
     drawView.delegate = self;
     if (self.draft) {
-        NSArray* drawActionList = [NSKeyedUnarchiver unarchiveObjectWithData:self.draft.drawData];
-        [drawView setDrawActionList:[NSMutableArray arrayWithArray:drawActionList]];
+        [drawView setDrawActionList:self.draft.drawActionList];
         [drawView show];
     }
     [self.view insertSubview:drawView aboveSubview:paperView];
@@ -623,8 +623,6 @@ enum{
         [pickPenView updatePenViews];
     }else if(dialog.tag == DIALOG_TAG_CHANGE_BACK)
     {
-//        DrawAction *action = [DrawAction 
-//                              changeBackgroundActionWithColor:self.bgColor];
         [drawView addChangeBackAction:self.bgColor];
         self.eraserColor = self.bgColor;
         if (drawView.penType == Eraser) {
@@ -635,15 +633,8 @@ enum{
     else if(dialog.tag == DIALOG_TAG_SUBMIT){
         
         
-        
         // Save Image Locally        
-        [[DrawDataService defaultService] saveActionList:drawView.drawActionList 
-                                                  userId:[[UserManager defaultManager] userId] 
-                                                nickName:[[UserManager defaultManager] nickName]
-                                               isMyPaint:YES    
-                                                    word:[_word text]
-                                                   image:[drawView createImage]
-                                                delegate:self];
+        [[DrawDataService defaultService] savePaintWithPBDraw:self.pbDraw image:drawView.createImage delegate:self];
 
         if (self.contest) {
             
@@ -691,13 +682,7 @@ enum{
     if(dialog.tag == DIALOG_TAG_SUBMIT){
 
         // Save Image Locally        
-        [[DrawDataService defaultService] saveActionList:drawView.drawActionList 
-                                                  userId:[[UserManager defaultManager] userId] 
-                                                nickName:[[UserManager defaultManager] nickName]
-                                               isMyPaint:YES    
-                                                    word:[_word text]
-                                                   image:[drawView createImage]
-                                                delegate:self];
+        [[DrawDataService defaultService] savePaintWithPBDraw:self.pbDraw image:drawView.createImage delegate:self];
         [self quit];
     }
 }
@@ -787,6 +772,19 @@ enum{
 
 #pragma mark - Draft
 
+- (PBDraw *)pbDraw
+{
+    UserManager *userManager = [UserManager defaultManager];
+    PBDraw *pbDraw = [[DrawDataService defaultService]
+                      buildPBDraw:[userManager userId]
+                      nick:[userManager nickName]
+                      avatar:[userManager avatarURL]
+                      drawActionList:drawView.drawActionList
+                      drawWord:self.word
+                      language:languageType];
+    return pbDraw;
+}
+
 - (void)saveDraft:(BOOL)showResult
 {
 //due to unknow bugs, ignore the code below.
@@ -805,18 +803,18 @@ enum{
     BOOL result = NO;
 
     @try {
+        
+        
         if (self.draft) {
             NSLog(@"<Draw Log>update old draft");
-            result = [[MyPaintManager defaultManager] updateDraft:self.draft 
-                                                            image:image
-                                                             data:drawView.drawActionList];
-        }else{    
-            self.draft = [[MyPaintManager defaultManager] createDraft:image 
-                                                                 data:drawView.drawActionList 
-                                                             language:languageType
-                                                             drawWord:self.word.text 
-                                                                level:self.word.level
-                                                            targetUid:self.targetUid]; 
+            result = [[MyPaintManager defaultManager]
+                      updateDraft:self.draft image:image
+                      pbDrawData:self.pbDraw];
+        }else{
+            self.draft = [[MyPaintManager defaultManager]
+                          createDraft:image pbDrawData:self.pbDraw
+                          targetUid:_targetUid];
+            
             if (self.draft) {
                 result = YES;
             }else{
@@ -928,11 +926,9 @@ enum{
         return;
     }
     
-    NSArray *drawActionList = drawView.drawActionList;
-
     if (targetType == TypeGraffiti) {
         if (delegate && [delegate respondsToSelector:@selector(didController:clickSubmit:)]) {
-            [delegate didController:self clickSubmit:drawActionList];
+            [delegate didController:self clickSubmit:drawView.drawActionList];
         }
     }else {
         

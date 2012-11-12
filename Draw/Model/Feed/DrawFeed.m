@@ -21,6 +21,7 @@
 @synthesize drawData = _drawData;
 @synthesize wordText = _wordText;
 @synthesize largeImage = _largeImage;
+@synthesize pbDraw = _pbDraw;
 
 - (void)initTimeList:(NSArray *)feedTimesList
 {
@@ -44,13 +45,15 @@
         
         //load draw data from local
         self.drawImage = [[FeedManager defaultManager] thumbImageForFeedId:self.feedId];
+        self.largeImage = [[FeedManager defaultManager] largeImageForFeedId:self.feedId];
         
-        if (self.drawImage == nil && drawData) {
-            Draw* draw = [[Draw alloc]initWithPBDraw:drawData];
-            self.drawData = draw;
-            [draw release];
-            PPDebug(@"<DrawFeed>initDrawInfo, drawImageUrl is nil, load image from local, feedID = %@",self.feedId);        
-        }
+        self.pbDraw = drawData;
+//        if (self.drawImage == nil && drawData) {
+//            Draw* draw = [[Draw alloc]initWithPBDraw:drawData];
+//            self.drawData = draw;
+//            [draw release];
+//            PPDebug(@"<DrawFeed>initDrawInfo, drawImageUrl is nil, load image from local, feedID = %@",self.feedId);        
+//        }
     }else{
         PPDebug(@"<DrawFeed>initDrawInfo, drawImageUrl = %@,feedID = %@", self.drawImageUrl,self.feedId);
     }
@@ -63,7 +66,7 @@
     if (self) {
         //set times info
         [self initTimeList:pbFeed.feedTimesList];
-        
+        self.pbDraw = pbFeed.drawData;
         //set draw info
         self.wordText = pbFeed.opusWord;
         [self initDrawInfo:pbFeed.opusImage drawData:pbFeed.drawData];
@@ -101,6 +104,16 @@
     if (self.drawData == nil && pbFeed.drawData != nil) {
         Draw* drawData = [[Draw alloc] initWithPBDraw:pbFeed.drawData];
         self.drawData = drawData;        
+        [drawData release];
+    }
+}
+
+- (void)parseDrawData
+{
+    if (self.drawData == nil && self.pbDraw != nil) {
+        PPDebug(@"<parseDrawData> parse DrawData, ready to show.");
+        Draw* drawData = [[Draw alloc] initWithPBDraw:self.pbDraw];
+        self.drawData = drawData;
         [drawData release];
     }
 }
@@ -377,6 +390,10 @@
     return [self localSaveTimes] < self.saveLimit;
 }
 
+- (BOOL)hasDrawActions
+{
+    return [self.pbDraw.drawDataList count] != 0;
+}
 
 - (void)dealloc
 {
@@ -386,6 +403,7 @@
     PPRelease(_drawImageUrl);
     PPRelease(_timesSet);    
     PPRelease(_largeImage);
+    PPRelease(_pbDraw);
     [super dealloc];
 }
 

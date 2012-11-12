@@ -58,6 +58,7 @@ typedef enum{
 
 - (void)dealloc
 {
+    _feed.drawData = nil;
     PPRelease(_feed);
     PPRelease(_drawCell);
     PPRelease(_userCell);
@@ -141,9 +142,9 @@ enum{
 //    }
     for (NSInteger tag = ActionTagGuess; tag < ActionTagEnd; ++ tag) {
         UIButton *button = (UIButton *)[self.view viewWithTag:tag];            
-        button.enabled = (self.feed.drawData != nil);
+        button.enabled = ([self.feed hasDrawActions]);
     }
-    self.saveButton.enabled = !_didSave && self.feed.drawData != nil;
+    self.saveButton.enabled = !_didSave && [self.feed hasDrawActions];
 //    if (![self.feed canSave]) {
 //        self.saveButton.enabled = NO;
 //    }
@@ -562,6 +563,8 @@ enum{
         [cc release];
         [_commentHeader setSeletType:CommentTypeComment];       
     }else if(button == self.saveButton){
+        
+        
         //save
         UIImage *image = self.feed.largeImage;
         if(image == nil){
@@ -575,13 +578,13 @@ enum{
                                            isDrawByMe:[_feed isMyOpus] 
                                              drawWord:_feed.wordText];    
         [self.feed increaseSaveTimes];
-        [[DrawDataService defaultService] saveActionList:_feed.drawData.drawActionList 
-                                                  userId:_feed.feedUser.userId
-                                                nickName:_feed.feedUser.nickName
-                                               isMyPaint:[_feed isMyOpus] 
-                                                    word:_feed.wordText
-                                                   image:image
-                                                delegate:self];
+        
+        //TODO save pbdraw data instead of drawActionList
+//        [_feed parseDrawData];
+        [[DrawDataService defaultService] savePaintWithPBDraw:_feed.pbDraw
+                                                        image:image
+                                                     delegate:self];
+        
         button.userInteractionEnabled = NO;
         
     }else if(button == self.flowerButton){
@@ -733,6 +736,7 @@ enum{
     [self setFlowerButton:nil];
     [self setTomatoButton:nil];
     [self setReplayButton:nil];
+    [self setFeed:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;

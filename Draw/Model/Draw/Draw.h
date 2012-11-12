@@ -19,7 +19,7 @@
 {
     NSString *_userId;
     NSString *_nickName;
-    NSArray *_drawActionList;
+    NSMutableArray *_drawActionList;
     Word *_word;
     NSDate *_date;
     NSString *_avatar;
@@ -28,7 +28,7 @@
 }
 @property (retain, nonatomic) NSString *userId;
 @property (retain, nonatomic) NSString *nickName;
-@property (retain, nonatomic) NSArray *drawActionList;
+@property (retain, nonatomic) NSMutableArray *drawActionList;
 @property (retain, nonatomic) Word *word;
 @property (retain, nonatomic) NSDate *date;
 @property (retain, nonatomic) NSString *avatar;

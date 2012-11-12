@@ -107,6 +107,7 @@
         ShowDrawView *showView = [[ShowDrawView alloc] initWithFrame:self.drawImage.frame];
         CGFloat xScale = self.bounds.size.width / DRAW_VIEW_FRAME.size.width;
         CGFloat yScale = self.bounds.size.height / DRAW_VIEW_FRAME.size.height;
+        [feed parseDrawData];
         NSMutableArray *list = [DrawAction scaleActionList:feed.drawData.drawActionList xScale:xScale yScale:yScale];
         [showView setDrawActionList:list];
         [self insertSubview:showView aboveSubview:self.drawImage];

@@ -26,6 +26,7 @@ typedef enum{
     NSString *_drawImageUrl;
     NSSet *_timesSet;
     UIImage *_largeImage;
+    PBDraw *_pbDraw;
 }
 
 
@@ -35,6 +36,7 @@ typedef enum{
 @property (nonatomic, retain) Draw *drawData;
 @property (nonatomic, retain) NSString *drawImageUrl;
 @property (nonatomic, retain) NSSet *timesSet;
+@property (nonatomic, retain) PBDraw *pbDraw;
 
 - (id)initWithPBFeed:(PBFeed *)pbFeed;
 
@@ -49,6 +51,7 @@ typedef enum{
           timesArray:(NSArray *)timesArray;
 
 - (void)parseDrawData:(PBFeed *)pbFeed;
+- (void)parseDrawData;
 - (BOOL)isMyOpus;
 - (BOOL) hasGuessed;
 - (void)incGuessTimes;
@@ -86,4 +89,6 @@ typedef enum{
 - (BOOL)canSendFlower;
 - (BOOL)canThrowTomato;
 - (BOOL)canSave;
+
+- (BOOL)hasDrawActions;
 @end

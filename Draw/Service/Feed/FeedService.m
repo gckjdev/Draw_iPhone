@@ -304,8 +304,6 @@ static FeedService *_staticFeedService = nil;
         //parse the draw feed.
         if (pbFeed && (pbFeed.actionType == FeedTypeDraw || pbFeed.actionType == FeedTypeDrawToUser || pbFeed.actionType == FeedTypeDrawToContest)) {
             feed = (DrawFeed*)[FeedManager parsePbFeed:pbFeed];
-            PPDebug(@"feed data length = %d",[[pbFeed data] length]);
-            [feed parseDrawData:pbFeed];
         }
         
         //send back to delegate

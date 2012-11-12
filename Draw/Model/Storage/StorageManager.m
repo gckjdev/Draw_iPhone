@@ -50,6 +50,18 @@ static StorageManager *_staticStorageManager = nil;
     return nil;
 }
 
+
+//Relative path below root directory(Document/Library/Temp)
+- (NSString *)relativePathWithKey:(NSString *)key
+{
+    return [_directoryName stringByAppendingPathComponent:key];
+}
+- (NSString *)fullPathWithRelativePath:(NSString *)relativePath
+{
+    return [[self rootDirectory] stringByAppendingPathComponent:relativePath];
+}
+
+
 #define DEFAULT_DIR @"default"
 
 + (id)defaultManager
@@ -161,5 +173,13 @@ static StorageManager *_staticStorageManager = nil;
     PPDebug(@"<removeOldFilestimeIntervalSinceNow> start to delete files below %@, interval = %lf",dir,timeInterval);
     return [FileUtil removeFilesBelowDir:[self currentDirectory] timeIntervalSinceNow:timeInterval];
 }
+
+
+//- (NSString *)currentDirPath
+//{
+//    return [self currentDirectory];
+//}
+//- (NSString *)filePathForFileName:(NSString *)fileName;
+
 
 @end

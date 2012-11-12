@@ -604,13 +604,17 @@
                                        isDrawByMe:_isMyPaint
                                          drawWord:wordText];    
     
-    [[DrawDataService defaultService] saveActionList:self.drawActionList 
-                                              userId:_drawUserId 
-                                            nickName:_drawUserNickName 
-                                           isMyPaint:_isMyPaint 
-                                                word:self.wordText 
-                                               image:_image 
-                                            delegate:self];
+    PBDraw *pbDraw = [[DrawDataService defaultService]
+                      buildPBDraw:_drawUserId
+                      nick:_drawUserNickName
+                      avatar:nil
+                      drawActionList:self.drawActionList
+                      drawWord:[Word wordWithText:self.wordText level:1]
+                      language:1];
+
+    [[DrawDataService defaultService ] savePaintWithPBDraw:pbDraw
+                                                     image:_image
+                                                  delegate:self];
     self.saveButton.enabled = NO;
     self.saveButton.selected = YES;
 }

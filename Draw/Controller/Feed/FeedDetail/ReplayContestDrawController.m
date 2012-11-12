@@ -214,13 +214,8 @@
                                        isDrawByMe:[_feed isMyOpus] 
                                          drawWord:_feed.wordText];    
     
-    [[DrawDataService defaultService] saveActionList:_feed.drawData.drawActionList 
-                                              userId:_feed.feedUser.userId
-                                            nickName:_feed.feedUser.nickName
-                                           isMyPaint:[_feed isMyOpus] 
-                                                word:_feed.wordText
-                                               image:image 
-                                            delegate:self];
+    
+    [[DrawDataService defaultService] savePaintWithPBDraw:_feed.pbDraw image:image delegate:self];
     button.userInteractionEnabled = NO;
 }
 
