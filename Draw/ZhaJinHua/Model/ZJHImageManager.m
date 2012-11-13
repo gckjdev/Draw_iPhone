@@ -9,6 +9,14 @@
 #import "ZJHImageManager.h"
 #import "ZhaJinHua.pb.h"
 #import "ShareImageManager.h"
+#import "PPResourceService.h"
+
+@interface ZJHImageManager()
+{
+    PPResourceService *_resService;
+}
+
+@end
 
 static ZJHImageManager* shareInstance;
 
@@ -20,6 +28,15 @@ static ZJHImageManager* shareInstance;
         shareInstance = [[ZJHImageManager alloc] init];
     }
     return shareInstance;
+}
+
+- (id)init
+{
+    if (self = [super init]) {
+        _resService = [PPResourceService defaultService];
+    }
+    
+    return self;
 }
 
 - (UIImage*)pokerRankImage:(Poker*)poker
@@ -46,19 +63,19 @@ static ZJHImageManager* shareInstance;
 {
     switch (poker.suit) {
         case PBPokerSuitPokerSuitSpade:
-            return [UIImage imageNamed:@"poker_suit_spade.png"];
+            return [_resService imageByName:@"poker_suit_spade"];
             break;
             
         case PBPokerSuitPokerSuitHeart:
-            return [UIImage imageNamed:@"poker_suit_heart.png"];
+            return [_resService imageByName:@"poker_suit_heart"];
             break;
             
         case PBPokerSuitPokerSuitClub:
-            return [UIImage imageNamed:@"poker_suit_club.png"];
+            return [_resService imageByName:@"poker_suit_club"];
             break;
             
         case PBPokerSuitPokerSuitDiamond:
-            return [UIImage imageNamed:@"poker_suit_diamond.png"];
+            return [_resService imageByName:@"poker_suit_diamond"];
             break;
             
         default:
@@ -84,15 +101,15 @@ static ZJHImageManager* shareInstance;
             break;
             
         case PBPokerRankPokerRankJ:
-            return [UIImage imageNamed:@"poker_body_J.png"];
+            return [_resService imageByName:@"poker_body_J"];
             break;
             
         case PBPokerRankPokerRankQ:
-            return [UIImage imageNamed:@"poker_body_Q.png"];
+            return [_resService imageByName:@"poker_body_Q"];
             break;
             
         case PBPokerRankPokerRankK:
-            return [UIImage imageNamed:@"poker_body_K.png"];
+            return [_resService imageByName:@"poker_body_K"];
             break;
             
         default:
@@ -103,71 +120,71 @@ static ZJHImageManager* shareInstance;
 
 - (UIImage*)pokerTickImage
 {
-    return [UIImage imageNamed:@""];
+    return [_resService imageByName:@""];
 }
 
 - (UIImage*)pokerFrontBgImage
 {
-    return [UIImage imageNamed:@"poker_front_bg.png"];
+    return [_resService imageByName:@"poker_front_bg"];
 }
 
 - (UIImage*)pokerBackImage
 {
-    return [UIImage imageNamed:@"poker_back_bg.png"];
+    return [_resService imageByName:@"poker_back_bg"];
 }
 
 - (UIImage*)pokerFoldBackImage
 {
-    return [UIImage imageNamed:@"poker_fold_back_bg.png"];
+    return [_resService imageByName:@"poker_fold_back_bg"];
 }
 
 - (UIImage*)pokerLoseBackImage{
-    return [UIImage imageNamed:@"poker_lose_back_bg.png"];
+    return [_resService imageByName:@"poker_lose_back_bg"];
 }
 
 - (UIImage*)showCardButtonBgImage
 {
-    return [UIImage imageNamed:@"show_card_button.png"];
+    return [_resService imageByName:@"show_card_button"];
 }
 
 - (UIImage*)showCardButtonDisableBgImage
 {
-    return [UIImage imageNamed:@"show_card_button_disable.png"];
+    return [_resService imageByName:@"show_card_button_disable"];
 }
 
 - (UIImage*)chipImageForChipValue:(int)chipValue;
 {
     switch (chipValue) {
         case 5:
-            return [UIImage imageNamed:@"chip_5@2x.png"];
+            return [_resService imageByName:@"chip_5"];
             break;
             
         case 10:
-            return [UIImage imageNamed:@"chip_10@2x.png"];
+            return [_resService imageByName:@"chip_10"];
             break;
             
         case 25:
-            return [UIImage imageNamed:@"chip_25@2x.png"];
+            return [_resService imageByName:@"chip_25"];
             break;
             
         case 50:
-            return [UIImage imageNamed:@"chip_50@2x.png"];
+            return [_resService imageByName:@"chip_50"];
             break;
             
         case 100:
-            return [UIImage imageNamed:@"chip_100@2x.png"];
+            return [_resService imageByName:@"chip_100"];
             break;
             
         case 250:
-            return [UIImage imageNamed:@"chip_250@2x.png"];
+            return [_resService imageByName:@"chip_250"];
             break;
             
         case 500:
-            return [UIImage imageNamed:@"chip_500@2x.png"];
+            return [_resService imageByName:@"chip_500"];
             break;
             
         case 1000:
-            return [UIImage imageNamed:@"chip_1000@2x.png"];
+            return [_resService imageByName:@"chip_1000"];
             break;
             
         default:
@@ -178,7 +195,7 @@ static ZJHImageManager* shareInstance;
 
 - (UIImage*)chipsSelectViewBgImage
 {
-    return [UIImage imageNamed:@""];
+    return [_resService imageByName:@""];
 }
 
 
@@ -189,55 +206,55 @@ static ZJHImageManager* shareInstance;
     switch (poker.rank) {
             
         case PBPokerRankPokerRank2:
-            return [UIImage imageNamed:@"poker_rank_red_2.png"];
+            return [_resService imageByName:@"poker_rank_red_2"];
             break;
             
         case PBPokerRankPokerRank3:
-            return [UIImage imageNamed:@"poker_rank_red_3.png"];
+            return [_resService imageByName:@"poker_rank_red_3"];
             break;
             
         case PBPokerRankPokerRank4:
-            return [UIImage imageNamed:@"poker_rank_red_4.png"];
+            return [_resService imageByName:@"poker_rank_red_4"];
             break;
             
         case PBPokerRankPokerRank5:
-            return [UIImage imageNamed:@"poker_rank_red_5.png"];
+            return [_resService imageByName:@"poker_rank_red_5"];
             break;
             
         case PBPokerRankPokerRank6:
-            return [UIImage imageNamed:@"poker_rank_red_6.png"];
+            return [_resService imageByName:@"poker_rank_red_6"];
             break;
             
         case PBPokerRankPokerRank7:
-            return [UIImage imageNamed:@"poker_rank_red_7.png"];
+            return [_resService imageByName:@"poker_rank_red_7"];
             break;
             
         case PBPokerRankPokerRank8:
-            return [UIImage imageNamed:@"poker_rank_red_8.png"];
+            return [_resService imageByName:@"poker_rank_red_8"];
             break;
             
         case PBPokerRankPokerRank9:
-            return [UIImage imageNamed:@"poker_rank_red_9.png"];
+            return [_resService imageByName:@"poker_rank_red_9"];
             break;
             
         case PBPokerRankPokerRank10:
-            return [UIImage imageNamed:@"poker_rank_red_10.png"];
+            return [_resService imageByName:@"poker_rank_red_10"];
             break;
             
         case PBPokerRankPokerRankJ:
-            return [UIImage imageNamed:@"poker_rank_red_J.png"];
+            return [_resService imageByName:@"poker_rank_red_J"];
             break;
             
         case PBPokerRankPokerRankQ:
-            return [UIImage imageNamed:@"poker_rank_red_Q.png"];
+            return [_resService imageByName:@"poker_rank_red_Q"];
             break;
             
         case PBPokerRankPokerRankK:
-            return [UIImage imageNamed:@"poker_rank_red_K.png"];
+            return [_resService imageByName:@"poker_rank_red_K"];
             break;
             
         case PBPokerRankPokerRankA:
-            return [UIImage imageNamed:@"poker_rank_red_A.png"];
+            return [_resService imageByName:@"poker_rank_red_A"];
             break;
             
         default:
@@ -251,55 +268,55 @@ static ZJHImageManager* shareInstance;
     switch (poker.rank) {
             
         case PBPokerRankPokerRank2:
-            return [UIImage imageNamed:@"poker_rank_black_2.png"];
+            return [_resService imageByName:@"poker_rank_black_2"];
             break;
             
         case PBPokerRankPokerRank3:
-            return [UIImage imageNamed:@"poker_rank_black_3.png"];
+            return [_resService imageByName:@"poker_rank_black_3"];
             break;
             
         case PBPokerRankPokerRank4:
-            return [UIImage imageNamed:@"poker_rank_black_4.png"];
+            return [_resService imageByName:@"poker_rank_black_4"];
             break;
             
         case PBPokerRankPokerRank5:
-            return [UIImage imageNamed:@"poker_rank_black_5.png"];
+            return [_resService imageByName:@"poker_rank_black_5"];
             break;
             
         case PBPokerRankPokerRank6:
-            return [UIImage imageNamed:@"poker_rank_black_6.png"];
+            return [_resService imageByName:@"poker_rank_black_6"];
             break;
             
         case PBPokerRankPokerRank7:
-            return [UIImage imageNamed:@"poker_rank_black_7.png"];
+            return [_resService imageByName:@"poker_rank_black_7"];
             break;
             
         case PBPokerRankPokerRank8:
-            return [UIImage imageNamed:@"poker_rank_black_8.png"];
+            return [_resService imageByName:@"poker_rank_black_8"];
             break;
             
         case PBPokerRankPokerRank9:
-            return [UIImage imageNamed:@"poker_rank_black_9.png"];
+            return [_resService imageByName:@"poker_rank_black_9"];
             break;
             
         case PBPokerRankPokerRank10:
-            return [UIImage imageNamed:@"poker_rank_black_10.png"];
+            return [_resService imageByName:@"poker_rank_black_10"];
             break;
             
         case PBPokerRankPokerRankJ:
-            return [UIImage imageNamed:@"poker_rank_black_J.png"];
+            return [_resService imageByName:@"poker_rank_black_J"];
             break;
             
         case PBPokerRankPokerRankQ:
-            return [UIImage imageNamed:@"poker_rank_black_Q.png"];
+            return [_resService imageByName:@"poker_rank_black_Q"];
             break;
             
         case PBPokerRankPokerRankK:
-            return [UIImage imageNamed:@"poker_rank_black_K.png"];
+            return [_resService imageByName:@"poker_rank_black_K"];
             break;
             
         case PBPokerRankPokerRankA:
-            return [UIImage imageNamed:@"poker_rank_black_A.png"];
+            return [_resService imageByName:@"poker_rank_black_A"];
             break;
             
         default:
@@ -312,19 +329,19 @@ static ZJHImageManager* shareInstance;
 {
     switch (suit) {
         case PBPokerSuitPokerSuitSpade:
-            return [UIImage imageNamed:@"poker_body_spade.png"];
+            return [_resService imageByName:@"poker_body_spade"];
             break;
             
         case PBPokerSuitPokerSuitHeart:
-            return [UIImage imageNamed:@"poker_body_heart.png"];
+            return [_resService imageByName:@"poker_body_heart"];
             break;
             
         case PBPokerSuitPokerSuitClub:
-            return [UIImage imageNamed:@"poker_body_club.png"];
+            return [_resService imageByName:@"poker_body_club"];
             break;
             
         case PBPokerSuitPokerSuitDiamond:
-            return [UIImage imageNamed:@"poker_body_diamond.png"];
+            return [_resService imageByName:@"poker_body_diamond"];
             break;
             
         default:
@@ -335,100 +352,106 @@ static ZJHImageManager* shareInstance;
 
 - (UIImage*)noUserAvatarBackground
 {
-    return [UIImage imageNamed:@"avatar_default.png"];
+    return [_resService imageByName:@"avatar_default"];
 }
 - (UIImage*)avatarBackground
 {
-    return [UIImage imageNamed:@"zjh_other_plyer_avatar.png"];
+    return [_resService imageByName:@"zjh_other_plyer_avatar"];
 }
 - (UIImage*)myAvatarBackground
 {
-    return [UIImage imageNamed:@"zjh_my_avatar_bg.png"];
+    return [_resService imageByName:@"zjh_my_avatar_bg"];
 }
 
 
 - (UIImage*)moneyTreeImage
 {
-    return [UIImage imageNamed:@"tree.png"];
+    return [_resService imageByName:@"zjh_money_tree"];
 }
 
 - (UIImage*)betBtnBgImage
 {
-    return [UIImage imageNamed:@"zjh_bet@2x.png"];
+    return [_resService imageByName:@"zjh_bet"];
 }
 
 - (UIImage*)raiseBetBtnBgImage
 {
-    return [UIImage imageNamed:@"zjh_raise_bet@2x.png"];
+    return [_resService imageByName:@"zjh_raise_bet"];
 }
 
 
 - (UIImage*)autoBetBtnBgImage
 {
-    return [UIImage imageNamed:@"zjh_auto_bet@2x.png"];
+    return [_resService imageByName:@"zjh_auto_bet"];
 }
+
+- (UIImage*)autoBetBtnOnBgImage
+{
+    return [_resService imageByName:@"zjh_auto_bet_on"];
+}
+
 
 
 - (UIImage*)compareCardBtnBgImage
 {
-    return [UIImage imageNamed:@"zjh_compare_card@2x.png"];
+    return [_resService imageByName:@"zjh_compare_card"];
 }
 
 
 - (UIImage*)checkCardBtnBgImage
 {
-    return [UIImage imageNamed:@"zjh_check_card@2x.png"];
+    return [_resService imageByName:@"zjh_check_card"];
 }
 
 
 - (UIImage*)foldCardBtnBgImage
 {
-    return [UIImage imageNamed:@"zjh_fold_card@2x.png"];
+    return [_resService imageByName:@"zjh_fold_card"];
 }
 
 - (UIImage*)betBtnDisableBgImage
 {
-    return [UIImage imageNamed:@"zjh_bet_disable@2x.png"];
+    return [_resService imageByName:@"zjh_bet_disable"];
 }
 
 - (UIImage*)raiseBetBtnDisableBgImage
 {
-    return [UIImage imageNamed:@"zjh_raise_bet_disable@2x.png"];
+    return [_resService imageByName:@"zjh_raise_bet_disable"];
 }
 
 
 - (UIImage*)autoBetBtnDisableBgImage
 {
-    return [UIImage imageNamed:@"zjh_auto_bet_disable@2x.png"];
+    return [_resService imageByName:@"zjh_auto_bet_disable"];
 }
 
 
 - (UIImage*)compareCardBtnDisableBgImage
 {
-    return [UIImage imageNamed:@"zjh_compare_card_disable@2x.png"];
+    return [_resService imageByName:@"zjh_compare_card_disable"];
 }
 
 
 - (UIImage*)checkCardBtnDisableBgImage
 {
-    return [UIImage imageNamed:@"zjh_check_card_disable@2x.png"];
+    return [_resService imageByName:@"zjh_check_card_disable"];
 }
 
 
 - (UIImage*)foldCardBtnDisableBgImage
 {
-    return [UIImage imageNamed:@"zjh_fold_card_disable@2x.png"];
+    return [_resService imageByName:@"zjh_fold_card_disable"];
 }
 
 - (UIImage*)bombImage
 {
-    NSArray *bombs = [NSArray arrayWithObjects:@"bomb1.png", @"bomb2.png", @"bomb3.png", nil];
-    return [UIImage imageNamed:[bombs objectAtIndex:(rand() % [bombs count])]];
+    NSArray *bombs = [NSArray arrayWithObjects:@"bomb1", @"bomb2", @"bomb3", nil];
+    return [_resService imageByName:[bombs objectAtIndex:(rand() % [bombs count])]];
 }
 
 - (UIImage*)vsImage
 {
-    return [UIImage imageNamed:@"VS.png"];
+    return [_resService imageByName:@"zjh_vs"];
 }
 
 - (UIImage *)betActionImage:(UserPosition)position
@@ -437,12 +460,12 @@ static ZJHImageManager* shareInstance;
         case UserPositionCenter:
         case UserPositionLeft:
         case UserPositionLeftTop:
-            return [UIImage imageNamed:@"zjh_bet1.png"];
+            return [_resService imageByName:@"zjh_bet1"];
             break;
             
         case UserPositionRight:
         case UserPositionRightTop:
-            return [UIImage imageNamed:@"zjh_bet2.png"];
+            return [_resService imageByName:@"zjh_bet2"];
             break;
             
         default:
@@ -457,12 +480,12 @@ static ZJHImageManager* shareInstance;
         case UserPositionCenter:
         case UserPositionLeft:
         case UserPositionLeftTop:
-            return [UIImage imageNamed:@"zjh_raise_bet1.png"];
+            return [_resService imageByName:@"zjh_raise_bet1"];
             break;
             
         case UserPositionRight:
         case UserPositionRightTop:
-            return [UIImage imageNamed:@"zjh_raise_bet2.png"];
+            return [_resService imageByName:@"zjh_raise_bet2"];
             break;
             
         default:
@@ -477,12 +500,12 @@ static ZJHImageManager* shareInstance;
         case UserPositionCenter:
         case UserPositionLeft:
         case UserPositionLeftTop:
-            return [UIImage imageNamed:@"zjh_check_card1.png"];
+            return [_resService imageByName:@"zjh_check_card1"];
             break;
             
         case UserPositionRight:
         case UserPositionRightTop:
-            return [UIImage imageNamed:@"zjh_check_card2.png"];
+            return [_resService imageByName:@"zjh_check_card2"];
             break;
             
         default:
@@ -497,12 +520,12 @@ static ZJHImageManager* shareInstance;
         case UserPositionCenter:
         case UserPositionLeft:
         case UserPositionLeftTop:
-            return [UIImage imageNamed:@"zjh_compare_card1.png"];
+            return [_resService imageByName:@"zjh_compare_card1"];
             break;
             
         case UserPositionRight:
         case UserPositionRightTop:
-            return [UIImage imageNamed:@"zjh_compare_card2.png"];
+            return [_resService imageByName:@"zjh_compare_card2"];
             break;
             
         default:
@@ -517,18 +540,48 @@ static ZJHImageManager* shareInstance;
         case UserPositionCenter:
         case UserPositionLeft:
         case UserPositionLeftTop:
-            return [UIImage imageNamed:@"zjh_fold_card1.png"];
+            return [_resService imageByName:@"zjh_fold_card1"];
             break;
             
         case UserPositionRight:
         case UserPositionRightTop:
-            return [UIImage imageNamed:@"zjh_fold_card2.png"];
+            return [_resService imageByName:@"zjh_fold_card2"];
             break;
             
         default:
             return nil;
             break;
     }
+}
+
+- (UIImage *)gameBgImage
+{
+    return [_resService imageByName:@"zjh_game_bg"];
+}
+
+- (UIImage *)totalBetBgImage
+{
+    return [_resService imageByName:@"zjh_game_total_bet_bg"];
+}
+
+- (UIImage *)buttonsHolderBgImage
+{
+    return [_resService imageByName:@"zjh_button_holder_bg"];
+}
+
+- (UIImage *)runawayButtonImage
+{
+    return [_resService imageByName:@"zjh_runaway"];
+}
+
+- (UIImage *)settingButtonImage
+{
+    return [_resService imageByName:@"zjh_game_setting"];
+}
+
+- (UIImage *)chatButtonImage
+{
+    return [_resService imageByName:@"zjh_chat_button"];
 }
 
 @end
