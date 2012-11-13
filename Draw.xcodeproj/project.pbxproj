@@ -269,6 +269,8 @@
 		C223397F164E41C900D2C123 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C223397E164E41C800D2C123 /* OpenAL.framework */; };
 		C225866E15EF5AA4009D686D /* GCServer.m in Sources */ = {isa = PBXBuildFile; fileRef = C225866D15EF5AA4009D686D /* GCServer.m */; };
 		C22E21871608664F00DE3035 /* DiceRobotItemAction.m in Sources */ = {isa = PBXBuildFile; fileRef = C22E21861608664F00DE3035 /* DiceRobotItemAction.m */; };
+		C23936501651F7C3001BD5C6 /* ZJHSettingView.m in Sources */ = {isa = PBXBuildFile; fileRef = C239364F1651F7C3001BD5C6 /* ZJHSettingView.m */; };
+		C23936521651F7E0001BD5C6 /* ZJHSettingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C23936511651F7E0001BD5C6 /* ZJHSettingView.xib */; };
 		C24339FF15AAB02400325A76 /* VendingController.m in Sources */ = {isa = PBXBuildFile; fileRef = C24339FD15AAB01D00325A76 /* VendingController.m */; };
 		C2433A0015AAB02400325A76 /* VendingController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C24339FE15AAB02000325A76 /* VendingController.xib */; };
 		C2433A0215AAB06D00325A76 /* VendingController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2433A0115AAB06C00325A76 /* VendingController~ipad.xib */; };
@@ -2250,6 +2252,9 @@
 		C225866D15EF5AA4009D686D /* GCServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCServer.m; sourceTree = "<group>"; };
 		C22E21851608664F00DE3035 /* DiceRobotItemAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiceRobotItemAction.h; sourceTree = "<group>"; };
 		C22E21861608664F00DE3035 /* DiceRobotItemAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiceRobotItemAction.m; sourceTree = "<group>"; };
+		C239364E1651F7C3001BD5C6 /* ZJHSettingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJHSettingView.h; sourceTree = "<group>"; };
+		C239364F1651F7C3001BD5C6 /* ZJHSettingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJHSettingView.m; sourceTree = "<group>"; };
+		C23936511651F7E0001BD5C6 /* ZJHSettingView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZJHSettingView.xib; sourceTree = "<group>"; };
 		C24339FC15AAB01C00325A76 /* VendingController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VendingController.h; sourceTree = "<group>"; };
 		C24339FD15AAB01D00325A76 /* VendingController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VendingController.m; sourceTree = "<group>"; };
 		C24339FE15AAB02000325A76 /* VendingController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VendingController.xib; sourceTree = "<group>"; };
@@ -5203,6 +5208,9 @@
 				A404A9EE1643DD54007CA21A /* PopupViewManager.m */,
 				C292CD4B1647966500BDE772 /* MoneyTree.h */,
 				C292CD4C1647966500BDE772 /* MoneyTree.m */,
+				C239364E1651F7C3001BD5C6 /* ZJHSettingView.h */,
+				C239364F1651F7C3001BD5C6 /* ZJHSettingView.m */,
+				C23936511651F7E0001BD5C6 /* ZJHSettingView.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -10971,6 +10979,7 @@
 				A4A132611650E56E00665109 /* zjh_raise_bet1.png in Resources */,
 				A4A132621650E56E00665109 /* zjh_raise_bet2.png in Resources */,
 				A42EA3321651E4EF0080BB95 /* zjh_game_table@2x.png in Resources */,
+				C23936521651F7E0001BD5C6 /* ZJHSettingView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -11566,6 +11575,7 @@
 				C223396D164E3CA100D2C123 /* DebugOutput.m in Sources */,
 				A4A132651650E86900665109 /* MessageView.m in Sources */,
 				A43FF3281650E9EF00B490B7 /* DiceMessageView.m in Sources */,
+				C23936501651F7C3001BD5C6 /* ZJHSettingView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
