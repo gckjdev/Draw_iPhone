@@ -10,14 +10,18 @@
 
 @class MoneyTree;
 @protocol MoneyTreeDelegate <NSObject>
-
+ @optional
 - (void)moneyTreeNotMature:(MoneyTree*)tree;
 - (void)getMoney:(int)money fromTree:(MoneyTree*)tree;
+- (void)coinDidRaiseUp:(MoneyTree*)tree;
 
 @end
 
 @interface MoneyTree : UIButton {
     NSTimer* _treeTimer;
+    UILabel* _rewardCoinLabel;
+    UIView* _rewardView;
+    UIImageView* _rewardCoinView;
 }
 @property (assign, nonatomic) CFTimeInterval growthTime;
 @property (assign, nonatomic) BOOL isMature;
