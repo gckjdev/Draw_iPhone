@@ -26,6 +26,7 @@
 #import "ZJHSoundManager.h"
 #import "MessageView.h"
 #import "CommonMessageCenter.h"
+#import "ZJHSettingView.h"
 
 #define AVATAR_VIEW_TAG_OFFSET   4000
 #define AVATAR_PLACE_VIEW_OFFSET    8000
@@ -334,6 +335,11 @@
 {
     [_gameService quitGame];
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (IBAction)clickSettingButton:(id)sender
+{
+    [[ZJHSettingView createZJHSettingView] showInView:self.view];
 }
 
 #pragma mark - player action response
