@@ -29,6 +29,15 @@
     BOOL _isComparing;
 }
 
+@property (retain, nonatomic) IBOutlet UIImageView *gameBgImageView;
+@property (retain, nonatomic) IBOutlet UIImageView *totalBetBgImageView;
+@property (retain, nonatomic) IBOutlet UIImageView *buttonsHolderBgImageView;
+@property (retain, nonatomic) IBOutlet UIButton *runawayButton;
+@property (retain, nonatomic) IBOutlet UIButton *settingButton;
+@property (retain, nonatomic) IBOutlet UIButton *chatButton;
+@property (retain, nonatomic) IBOutlet MoneyTree *moneyTree;
+@property (retain, nonatomic) IBOutlet UIImageView *vsImageView;
+
 @property (retain, nonatomic) IBOutlet BetTable *betTable;
 @property (retain, nonatomic) IBOutlet DealerView *dealerView;
 @property (retain, nonatomic) IBOutlet UIButton *betButton;
@@ -40,8 +49,6 @@
 @property (retain, nonatomic) IBOutlet UIButton *cardTypeButton;
 @property (retain, nonatomic) IBOutlet UILabel *totalBetLabel;
 @property (retain, nonatomic) IBOutlet UILabel *singleBetLabel;
-@property (retain, nonatomic) IBOutlet MoneyTree *moneyTree;
-@property (retain, nonatomic) IBOutlet UIImageView *vsImageView;
 
 
 @end

@@ -56,11 +56,11 @@
     LevelService    *_levelService;
     UserManager     *_userManager;
     AudioManager    *_audioManager;
-//    AccountService  *_accountService;
     ZJHImageManager *_imageManager;
     PopupViewManager *_popupViewManager;
     ZJHSoundManager  *_soundManager;
     CommonMessageCenter* _msgCenter;
+    PPResourceService *_resService;
 }
 @property (assign, nonatomic) BOOL  isComparing;
 
@@ -95,6 +95,12 @@
     [_singleBetLabel release];
     [_moneyTree release];
     [_vsImageView release];
+    [_gameBgImageView release];
+    [_totalBetBgImageView release];
+    [_buttonsHolderBgImageView release];
+    [_runawayButton release];
+    [_settingButton release];
+    [_chatButton release];
     [super dealloc];
 }
 
@@ -106,11 +112,11 @@
         _userManager = [UserManager defaultManager];
         _imageManager = [ZJHImageManager defaultManager];
         _levelService = [LevelService defaultService];
-//        _accountService = [AccountService defaultService];
         _audioManager = [AudioManager defaultManager];
         _popupViewManager = [PopupViewManager defaultManager];
         _soundManager = [ZJHSoundManager defaultManager];
         _msgCenter = [CommonMessageCenter defaultCenter];
+        _resService = [PPResourceService defaultService];
     }
     
     return self;
@@ -146,23 +152,18 @@
 
 - (void)viewDidLoad
 {
-    [[PPResourceService defaultService] startDownloadInView:self.view backgroundImage:@"DiceDefault" resourcePackageName:@"zhajinhua_core" success:^(BOOL alreadyExisted) {
-        [self popupMessage:@"Load resources OK!" title:@""];
-        
-        // TODO set image for each UI element
-        UIImage* image = [[PPResourceService defaultService] imageByName:@"win_face"];
-        
-    } failure:^(NSError *error, UIView* downloadView) {
-        
-        [self popupMessage:@"Fail to load resources" title:@""];
-        
-        // TODO quit game here
-        [self quitGame];
-    }];
-    
     [super viewDidLoad];
     
     // Do any additional setup after loading the view from its nib.
+    
+    self.gameBgImageView.image = [_resService imageByName:@"zjh_game_bg"];
+    self.totalBetBgImageView.image = [_resService imageByName:@"zjh_game_total_bet_bg"];
+    self.buttonsHolderBgImageView.image = [_resService imageByName:@"zjh_button_holder_bg"];
+    [self.runawayButton setImage:[_resService imageByName:@"zjh_runaway"] forState:UIControlStateNormal] ;
+    [self.settingButton setImage:[_resService imageByName:@"zjh_game_setting"] forState:UIControlStateNormal] ;
+    [self.chatButton setImage:[_resService imageByName:@"zjh_chat_button"] forState:UIControlStateNormal] ;
+    [self.moneyTree setImage:[_resService imageByName:@"zjh_money_tree"] forState:UIControlStateNormal] ;
+    self.vsImageView.image = [_resService imageByName:@"zjh_vs"];
 
     [self initAllAvatars];
     [self updateAllUsersAvatar];
@@ -182,7 +183,6 @@
     self.moneyTree.delegate = self;
     
     [_audioManager setBackGroundMusicWithName:[_soundManager gameBGM]];
-
 }
 
 - (void)updateView
@@ -829,6 +829,12 @@ compareCardWith:(NSString*)targetUserId
     [self setMoneyTree:nil];
     [self setVsImageView:nil];
     [self.moneyTree kill];
+    [self setGameBgImageView:nil];
+    [self setTotalBetBgImageView:nil];
+    [self setButtonsHolderBgImageView:nil];
+    [self setRunawayButton:nil];
+    [self setSettingButton:nil];
+    [self setChatButton:nil];
     [super viewDidUnload];
 }
 

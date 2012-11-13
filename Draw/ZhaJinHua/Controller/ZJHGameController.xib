@@ -133,7 +133,7 @@
 						</object>
 						<object class="NSCustomResource" key="IBUINormalBackgroundImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">runaway@2x.png</string>
+							<string key="NSResourceName">zjh_runaway@2x.png</string>
 						</object>
 						<object class="IBUIFontDescription" key="IBUIFontDescription" id="670079205">
 							<int key="type">2</int>
@@ -165,7 +165,7 @@
 						<reference key="IBUINormalTitleShadowColor" ref="395620140"/>
 						<object class="NSCustomResource" key="IBUINormalImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">game_setting@2x.png</string>
+							<string key="NSResourceName">zjh_game_setting@2x.png</string>
 						</object>
 						<reference key="IBUIFontDescription" ref="670079205"/>
 						<reference key="IBUIFont" ref="669435553"/>
@@ -268,7 +268,7 @@
 					<object class="IBUIButton" id="863054290">
 						<reference key="NSNextResponder" ref="483638841"/>
 						<int key="NSvFlags">269</int>
-						<string key="NSFrame">{{10, 372.5}, {34, 29}}</string>
+						<string key="NSFrame">{{8, 372}, {34, 29}}</string>
 						<reference key="NSSuperview" ref="483638841"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="145363908"/>
@@ -285,7 +285,7 @@
 						<reference key="IBUINormalTitleShadowColor" ref="395620140"/>
 						<object class="NSCustomResource" key="IBUINormalImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">chat_button@2x.png</string>
+							<string key="NSResourceName">zjh_chat_button@2x.png</string>
 						</object>
 						<reference key="IBUIFontDescription" ref="670079205"/>
 						<reference key="IBUIFont" ref="669435553"/>
@@ -570,13 +570,16 @@
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<int key="IBUIContentHorizontalAlignment">0</int>
 						<int key="IBUIContentVerticalAlignment">0</int>
-						<int key="IBUIButtonType">1</int>
 						<reference key="IBUIHighlightedTitleColor" ref="129307563"/>
 						<object class="NSColor" key="IBUINormalTitleColor">
 							<int key="NSColorSpace">1</int>
 							<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
 						</object>
 						<reference key="IBUINormalTitleShadowColor" ref="395620140"/>
+						<object class="NSCustomResource" key="IBUINormalImage">
+							<string key="NSClassName">NSImage</string>
+							<string key="NSResourceName">zjh_money_tree@2x.png</string>
+						</object>
 						<reference key="IBUIFontDescription" ref="670079205"/>
 						<reference key="IBUIFont" ref="669435553"/>
 					</object>
@@ -895,7 +898,7 @@
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<object class="NSCustomResource" key="IBUIImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">VS.png</string>
+							<string key="NSResourceName">zjh_vs.png</string>
 						</object>
 					</object>
 				</array>
@@ -1021,6 +1024,54 @@
 						<reference key="destination" ref="107431730"/>
 					</object>
 					<int key="connectionID">3879</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">totalBetBgImageView</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="307831003"/>
+					</object>
+					<int key="connectionID">3882</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">gameBgImageView</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="916225450"/>
+					</object>
+					<int key="connectionID">3883</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">buttonsHolderBgImageView</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="145363908"/>
+					</object>
+					<int key="connectionID">3884</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">runawayButton</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="876385374"/>
+					</object>
+					<int key="connectionID">3885</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">settingButton</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="1054681330"/>
+					</object>
+					<int key="connectionID">3886</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">chatButton</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="863054290"/>
+					</object>
+					<int key="connectionID">3887</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
@@ -1149,7 +1200,6 @@
 						<int key="objectID">4</int>
 						<reference key="object" ref="483638841"/>
 						<array class="NSMutableArray" key="children">
-							<reference ref="863054290"/>
 							<reference ref="1054681330"/>
 							<reference ref="916225450"/>
 							<reference ref="636923254"/>
@@ -1191,6 +1241,7 @@
 							<reference ref="245541937"/>
 							<reference ref="446393849"/>
 							<reference ref="859829263"/>
+							<reference ref="863054290"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -1500,7 +1551,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">3879</int>
+			<int key="maxID">3887</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -1582,14 +1633,20 @@
 						<string key="autoBetButton">UIButton</string>
 						<string key="betButton">UIButton</string>
 						<string key="betTable">BetTable</string>
+						<string key="buttonsHolderBgImageView">UIImageView</string>
 						<string key="cardTypeButton">UIButton</string>
+						<string key="chatButton">UIButton</string>
 						<string key="checkCardButton">UIButton</string>
 						<string key="compareCardButton">UIButton</string>
 						<string key="dealerView">DealerView</string>
 						<string key="foldCardButton">UIButton</string>
+						<string key="gameBgImageView">UIImageView</string>
 						<string key="moneyTree">MoneyTree</string>
 						<string key="raiseBetButton">UIButton</string>
+						<string key="runawayButton">UIButton</string>
+						<string key="settingButton">UIButton</string>
 						<string key="singleBetLabel">UILabel</string>
+						<string key="totalBetBgImageView">UIImageView</string>
 						<string key="totalBetLabel">UILabel</string>
 						<string key="vsImageView">UIImageView</string>
 					</dictionary>
@@ -1606,8 +1663,16 @@
 							<string key="name">betTable</string>
 							<string key="candidateClassName">BetTable</string>
 						</object>
+						<object class="IBToOneOutletInfo" key="buttonsHolderBgImageView">
+							<string key="name">buttonsHolderBgImageView</string>
+							<string key="candidateClassName">UIImageView</string>
+						</object>
 						<object class="IBToOneOutletInfo" key="cardTypeButton">
 							<string key="name">cardTypeButton</string>
+							<string key="candidateClassName">UIButton</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="chatButton">
+							<string key="name">chatButton</string>
 							<string key="candidateClassName">UIButton</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="checkCardButton">
@@ -1626,6 +1691,10 @@
 							<string key="name">foldCardButton</string>
 							<string key="candidateClassName">UIButton</string>
 						</object>
+						<object class="IBToOneOutletInfo" key="gameBgImageView">
+							<string key="name">gameBgImageView</string>
+							<string key="candidateClassName">UIImageView</string>
+						</object>
 						<object class="IBToOneOutletInfo" key="moneyTree">
 							<string key="name">moneyTree</string>
 							<string key="candidateClassName">MoneyTree</string>
@@ -1634,9 +1703,21 @@
 							<string key="name">raiseBetButton</string>
 							<string key="candidateClassName">UIButton</string>
 						</object>
+						<object class="IBToOneOutletInfo" key="runawayButton">
+							<string key="name">runawayButton</string>
+							<string key="candidateClassName">UIButton</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="settingButton">
+							<string key="name">settingButton</string>
+							<string key="candidateClassName">UIButton</string>
+						</object>
 						<object class="IBToOneOutletInfo" key="singleBetLabel">
 							<string key="name">singleBetLabel</string>
 							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="totalBetBgImageView">
+							<string key="name">totalBetBgImageView</string>
+							<string key="candidateClassName">UIImageView</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="totalBetLabel">
 							<string key="name">totalBetLabel</string>
@@ -1678,21 +1759,22 @@
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="VS.png">{46, 37}</string>
-			<string key="chat_button@2x.png">{60, 51}</string>
-			<string key="game_setting@2x.png">{72, 71}</string>
-			<string key="runaway@2x.png">{72, 72}</string>
 			<string key="zjh_auto_bet@2x.png">{127, 60}</string>
 			<string key="zjh_auto_bet_on@2x.png">{127, 60}</string>
 			<string key="zjh_bet@2x.png">{103, 60}</string>
 			<string key="zjh_button_holder_bg@2x.png">{640, 110}</string>
+			<string key="zjh_chat_button@2x.png">{60, 51}</string>
 			<string key="zjh_check_card@2x.png">{82, 60}</string>
 			<string key="zjh_compare_card@2x.png">{92, 60}</string>
 			<string key="zjh_fold_card@2x.png">{90, 60}</string>
 			<string key="zjh_game_bg@2x.jpg">{640, 960}</string>
+			<string key="zjh_game_setting@2x.png">{72, 71}</string>
 			<string key="zjh_game_total_bet_bg@2x.png">{329, 43}</string>
+			<string key="zjh_money_tree@2x.png">{79, 81}</string>
 			<string key="zjh_raise_bet@2x.png">{98, 60}</string>
+			<string key="zjh_runaway@2x.png">{72, 72}</string>
 			<string key="zjh_user_bet_bg@2x.png">{100, 34}</string>
+			<string key="zjh_vs.png">{46, 37}</string>
 		</dictionary>
 		<string key="IBCocoaTouchPluginVersion">1926</string>
 	</data>

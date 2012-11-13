@@ -1461,11 +1461,11 @@
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="VS.png">{46, 37}</string>
-			<string key="chat_button@2x.png">{60, 51}</string>
-			<string key="game_setting@2x.png">{72, 71}</string>
-			<string key="runaway@2x.png">{72, 72}</string>
-			<string key="tree@2x.png">{79, 81}</string>
+			<string key="VS.png">{16, 16}</string>
+			<string key="chat_button@2x.png">{16, 16}</string>
+			<string key="game_setting@2x.png">{16, 16}</string>
+			<string key="runaway@2x.png">{16, 16}</string>
+			<string key="tree@2x.png">{16, 16}</string>
 			<string key="zjh_auto_bet@2x.png">{127, 60}</string>
 			<string key="zjh_auto_bet_on@2x.png">{127, 60}</string>
 			<string key="zjh_bet@2x.png">{103, 60}</string>
