@@ -12,6 +12,7 @@
 #import "DealerView.h"
 #import "ChipsSelectView.h"
 #import "ZJHImageManager.h"
+#import "MoneyTree.h"
 
 
 @class ZJHGameService;
@@ -24,7 +25,7 @@
 @class MoneyTree;
 
 
-@interface ZJHGameController : PPViewController <ZJHPokerViewProtocol, ZJHAvatarViewDelegate, DealerViewDelegate, ChipsSelectViewProtocol> {
+@interface ZJHGameController : PPViewController <ZJHPokerViewProtocol, ZJHAvatarViewDelegate, DealerViewDelegate, ChipsSelectViewProtocol, MoneyTreeDelegate> {
     BOOL _isComparing;
 }
 
