@@ -10,9 +10,18 @@
 #import "ConfigManager.h"
 #import "ZJHImageManager.h"
 #import "ShareImageManager.h"
+#import "LevelService.h"
 
 @implementation MoneyTree
 @synthesize isMature = _isMature;
+
+- (void)dealloc
+{
+    [_rewardCoinLabel release];
+    [_rewardView release];
+    [_rewardCoinView release];
+    [super dealloc];
+}
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -38,6 +47,21 @@
     self = [super initWithCoder:aDecoder];
     if (self) {
         [self addTarget:self action:@selector(clickTree:) forControlEvents:UIControlEventTouchUpInside];
+        
+        int pointSize = [DeviceDetection isIPAD]?32:16;
+        _rewardView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height/2)];
+        _rewardCoinView = [[UIImageView alloc] initWithImage:[ShareImageManager defaultManager].rewardCoin];
+        [_rewardCoinView setFrame:CGRectMake(_rewardView.frame.size.width/2-_rewardView.frame.size.height, 0, _rewardView.frame.size.height, _rewardView.frame.size.height)];
+        _rewardCoinLabel = [[UILabel alloc] initWithFrame:CGRectMake(_rewardView.frame.size.width/2, 0, _rewardView.frame.size.width, _rewardView.frame.size.height)];
+        [_rewardCoinLabel setFont:[UIFont systemFontOfSize:pointSize]];
+        [_rewardCoinLabel setAutoresizingMask:UIViewAutoresizingFlexibleWidth];
+        [_rewardCoinLabel setBackgroundColor:[UIColor clearColor]];
+        [_rewardCoinLabel setTextColor:[UIColor yellowColor]];
+        //[_rewardCoinLabel setTextAlignment:UITextAlignmentCenter];
+        [_rewardView addSubview:_rewardCoinView];
+        [_rewardView addSubview:_rewardCoinLabel];
+        _rewardView.hidden = YES;
+        [self addSubview:_rewardView];
     }
     return self;
 }
@@ -94,13 +118,61 @@
     
 }
 
+- (int)calAwardCoinByLevel:(int)level
+{
+    return level * 50;
+}
+
+- (void)rewardCoins:(int)coinsCount
+           duration:(float)duration
+{
+    
+    
+    [_rewardCoinLabel setText:[NSString stringWithFormat:@"%+d",coinsCount]];
+    _rewardView.center = CGPointMake(self.frame.size.width/2, self.frame.size.height + _rewardView.frame.size.height);
+    _rewardView.alpha = 1;
+    _rewardView.hidden = NO;
+    [UIView animateWithDuration: duration
+                          delay: 0
+                        options: UIViewAnimationOptionCurveLinear
+                     animations: ^{
+                         _rewardView.center = CGPointMake(self.frame.size.width/2                                                            , -1*_rewardView.frame.size.height);
+                     }
+                     completion: ^(BOOL finished){
+                         if (_delegate && [_delegate respondsToSelector:@selector(coinDidRaiseUp:)]) {
+                             [_delegate coinDidRaiseUp:self];
+                         }
+                         //PPDebug(@"raise finish");
+                         //code that runs when this animation finishes
+                     }
+     ];
+    
+    [UIView animateWithDuration: duration
+                          delay: duration
+                        options: UIViewAnimationOptionCurveLinear
+                     animations: ^{
+                         //view2.center = CGPointMake(x2, y2);
+                         _rewardView.alpha = 0;
+                     }
+                     completion: ^(BOOL finished){
+                         //PPDebug(@"dismiss finish");
+                         _rewardView.hidden = YES;
+                         //code that runs when this animation finishes
+                     }
+     ];
+    
+    
+}
+
 - (void)clickTree:(id)sender
 {
     if (_isMature) {
         self.isMature = NO;
         if (_delegate && [_delegate respondsToSelector:@selector(getMoney:fromTree:)]) {
-            [_delegate getMoney:10 fromTree:self];
+            [_delegate getMoney:[self calAwardCoinByLevel:[LevelService defaultService].level] fromTree:self];
         }
+        [self rewardCoins:[self calAwardCoinByLevel:[LevelService defaultService].level] duration:1];
+        
         [self startGrow];
 
     } else {

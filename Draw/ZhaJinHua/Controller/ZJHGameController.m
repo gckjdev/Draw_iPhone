@@ -25,6 +25,7 @@
 #import "LevelService.h"
 #import "ZJHSoundManager.h"
 #import "MessageView.h"
+#import "CommonMessageCenter.h"
 
 #define AVATAR_VIEW_TAG_OFFSET   4000
 #define AVATAR_PLACE_VIEW_OFFSET    8000
@@ -58,6 +59,7 @@
     ZJHImageManager *_imageManager;
     PopupViewManager *_popupViewManager;
     ZJHSoundManager  *_soundManager;
+    CommonMessageCenter* _msgCenter;
 }
 @property (assign, nonatomic) BOOL  isComparing;
 
@@ -107,6 +109,7 @@
         _audioManager = [AudioManager defaultManager];
         _popupViewManager = [PopupViewManager defaultManager];
         _soundManager = [ZJHSoundManager defaultManager];
+        _msgCenter = [CommonMessageCenter defaultCenter];
     }
     
     return self;
@@ -161,6 +164,7 @@
     self.dealerView.delegate = self;
     
     [self.moneyTree startGrow];
+    self.moneyTree.delegate = self;
     
     [_audioManager setBackGroundMusicWithName:[_soundManager gameBGM]];
 
@@ -788,9 +792,9 @@ compareCardWith:(NSString*)targetUserId
     return [self getAvatarViewByPosition:[self getPositionByUserId:userId]];
 }
 
-- (ZJHAvatarView*)getMyAvatarView
+- (ZJHMyAvatarView*)getMyAvatarView
 {
-    return [self getAvatarViewByPosition:[self getPositionByUserId:_userManager.userId]];
+    return (ZJHMyAvatarView*)[self getAvatarViewByPosition:UserPositionCenter];
 }
 
 - (void)viewDidUnload {
@@ -1124,6 +1128,24 @@ compareCardWith:(NSString*)targetUserId
     MessageView *view = [MessageView messageViewWithMessage:@"弃牌" font:ACTION_LABEL_FONT textAlignment:UITextAlignmentCenter bgImage:[_imageManager foldCardActionImage:pos]];
     
     [self popupView:view atPosition:[self getPositionByUserId:userId]];
+}
+
+
+#pragma mark - money tree delegate
+- (void)getMoney:(int)money fromTree:(MoneyTree *)tree
+{
+    [_audioManager playSoundByName:[_soundManager betSoundEffect]];
+    [[AccountService defaultService] chargeAccount:money source:MoneyTreeAward];
+    [[self getMyAvatarView] update];
+    [_msgCenter postMessageWithText:[NSString stringWithFormat:NSLS(@"kGetMoneyFromTree"), money]
+                          delayTime:1
+                            isHappy:YES];
+}
+
+- (void)moneyTreeNotMature:(MoneyTree *)tree
+{
+    [_msgCenter postMessageWithText:NSLS(@"kMoneyTreeNotMature")
+                          delayTime:1];
 }
 
 @end
