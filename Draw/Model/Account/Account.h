@@ -30,7 +30,9 @@ typedef enum  {
     
     LiarDiceWinType = 200,
     LiarDiceFleeType = 201,
-    LiarDiceDailyAward = 202
+    LiarDiceDailyAward = 202,
+    
+    MoneyTreeAward = 203
     
 }BalanceSourceType;
 
