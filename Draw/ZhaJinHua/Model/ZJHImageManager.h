@@ -71,6 +71,13 @@ typedef enum {
 - (UIImage *)compareCardActionImage:(UserPosition)position;
 - (UIImage *)foldCardActionImage:(UserPosition)position;
 
+- (UIImage *)gameBgImage;
+- (UIImage *)totalBetBgImage;
+- (UIImage *)buttonsHolderBgImage;
+- (UIImage *)runawayImage;
+- (UIImage *)settingImage;
+- (UIImage *)chatImage;
+
 
 
 @end

@@ -26,7 +26,6 @@
 #import "ZJHSoundManager.h"
 #import "MessageView.h"
 #import "CommonMessageCenter.h"
-#import "PPResourceService.h"
 #import "ZJHSettingView.h"
 
 #define AVATAR_VIEW_TAG_OFFSET   4000
@@ -61,7 +60,6 @@
     PopupViewManager *_popupViewManager;
     ZJHSoundManager  *_soundManager;
     CommonMessageCenter* _msgCenter;
-    PPResourceService *_resService;
 }
 @property (assign, nonatomic) BOOL  isComparing;
 
@@ -117,7 +115,6 @@
         _popupViewManager = [PopupViewManager defaultManager];
         _soundManager = [ZJHSoundManager defaultManager];
         _msgCenter = [CommonMessageCenter defaultCenter];
-        _resService = [PPResourceService defaultService];
     }
     
     return self;
@@ -157,14 +154,14 @@
     
     // Do any additional setup after loading the view from its nib.
     
-    self.gameBgImageView.image = [_resService imageByName:@"zjh_game_bg"];
-    self.totalBetBgImageView.image = [_resService imageByName:@"zjh_game_total_bet_bg"];
-    self.buttonsHolderBgImageView.image = [_resService imageByName:@"zjh_button_holder_bg"];
-    [self.runawayButton setImage:[_resService imageByName:@"zjh_runaway"] forState:UIControlStateNormal] ;
-    [self.settingButton setImage:[_resService imageByName:@"zjh_game_setting"] forState:UIControlStateNormal] ;
-    [self.chatButton setImage:[_resService imageByName:@"zjh_chat_button"] forState:UIControlStateNormal] ;
-    [self.moneyTree setImage:[_resService imageByName:@"zjh_money_tree"] forState:UIControlStateNormal] ;
-    self.vsImageView.image = [_resService imageByName:@"zjh_vs"];
+    self.gameBgImageView.image = [_imageManager gameBgImage];
+    self.totalBetBgImageView.image = [_imageManager totalBetBgImage];
+    self.buttonsHolderBgImageView.image = [_imageManager buttonsHolderBgImage];
+    [self.runawayButton setBackgroundImage:[_imageManager runawayImage] forState:UIControlStateNormal] ;
+    [self.settingButton setImage:[_imageManager settingImage] forState:UIControlStateNormal] ;
+    [self.chatButton setImage:[_imageManager chatImage] forState:UIControlStateNormal] ;
+    [self.moneyTree setImage:[_imageManager moneyTreeImage] forState:UIControlStateNormal] ;
+    self.vsImageView.image = [_imageManager vsImage];
 
     [self initAllAvatars];
     [self updateAllUsersAvatar];
