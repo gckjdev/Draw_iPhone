@@ -573,7 +573,9 @@ compareCardWith:(NSString*)targetUserId
         [self someone:result1.userId compareCardWith:result2.userId didWin:result1.win initiator:initiatorId];
     }
     
-    [self popupCompareCardMessageAtUser:initiatorId];
+    if (![_userManager isMe:initiatorId]) {
+        [self popupCompareCardMessageAtUser:initiatorId];
+    }
 }
 
 - (ZJHPokerSectorType)getPokerSectorTypeByPosition:(UserPosition)position
