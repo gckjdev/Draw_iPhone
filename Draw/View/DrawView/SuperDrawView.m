@@ -284,6 +284,7 @@
                 PPDebug(@"<SuperDrawView>draw image (size = %@) in rect(%@)",NSStringFromCGSize(_image.size),NSStringFromCGRect(rect));
 
             }else{
+                [self show];
                 PPDebug(@"<SuperDrawView> image is nil");
             }
             

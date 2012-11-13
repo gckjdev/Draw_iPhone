@@ -81,21 +81,32 @@
     CGFloat red = ((intColor >> 22) % (1<<8)) / 255.0; 
     return [UIColor colorWithRed:red green:green blue:blue alpha:alpha];
 }
+
++ (NSInteger)roundFloatValue:(CGFloat)value
+{
+    NSInteger round = value;
+    if (value - round > 0.5) {
+        ++round;
+    }
+    return round;
+}
+
 + (NSInteger)compressPoint:(CGPoint)point
 {
-    NSInteger ret = ((NSInteger)point.x * (1 << 15)) + point.y;    
+    NSInteger ret = ([DrawUtils roundFloatValue:point.x] * (1 << 15)) + [DrawUtils roundFloatValue:point.y];
 
-//    NSLog(@"(%f,%f)====>%d",point.x, point.y, ret);
+//    NSLog(@"Compress: %@====>%d",NSStringFromCGPoint(point), ret);
     return ret;
 }
 
 + (CGPoint)decompressIntPoint:(NSInteger)intPoint
 {
-    CGFloat y = intPoint % (1<<15);
-    CGFloat x = intPoint / (1<<15);
-    
-//    NSLog(@"%d====>(%f,%f)", intPoint, x, y);
-    return CGPointMake(x, y);
+    NSInteger div = 1<< 15;
+    NSInteger y = intPoint % div;
+    CGFloat x = (CGFloat)intPoint / (CGFloat)(div);
+    CGPoint point = CGPointMake(x, y);
+//    NSLog(@"Decompress %d====>%@", intPoint, NSStringFromCGPoint(point));
+    return point;
     
 }
 
