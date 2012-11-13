@@ -58,9 +58,9 @@
 - (void)killTimer
 {
     if (_treeTimer) {
-        if ([_treeTimer isValid]) {
-            [_treeTimer invalidate];
-        }
+//        if ([_treeTimer isValid]) {
+//            [_treeTimer invalidate];
+//        }
         _treeTimer = nil;
     }
 }
