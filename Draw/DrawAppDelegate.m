@@ -226,6 +226,18 @@ NSString* GlobalGetBoardServerURL()
     // Show Root View
     self.window.rootViewController = navigationController;
     
+    
+    // TODO define game resource constants
+    NSSet* resourcePackages = [NSSet setWithObjects:
+                               [PPResourcePackage resourcePackageWithName:@"common_core" type:PPResourceImage],
+                               [PPResourcePackage resourcePackageWithName:@"draw_core" type:PPResourceImage],
+                               [PPResourcePackage resourcePackageWithName:@"dice_core" type:PPResourceImage],
+                               [PPResourcePackage resourcePackageWithName:@"zhajinhua_core" type:PPResourceImage],
+                               nil];
+    
+    
+    [[PPResourceService defaultService] addExplicitResourcePackage:resourcePackages];
+    
     /*
     NSSet* resourcePackages1 = [NSSet setWithObjects:
                                [PPResourcePackage resourcePackageWithName:@"common_core" type:PPResourceImage],

@@ -26,6 +26,7 @@
 #import "ZJHSoundManager.h"
 #import "MessageView.h"
 #import "CommonMessageCenter.h"
+#import "PPResourceService.h"
 
 #define AVATAR_VIEW_TAG_OFFSET   4000
 #define AVATAR_PLACE_VIEW_OFFSET    8000
@@ -145,6 +146,20 @@
 
 - (void)viewDidLoad
 {
+    [[PPResourceService defaultService] startDownloadInView:self.view backgroundImage:@"DiceDefault" resourcePackageName:@"zhajinhua_core" success:^(BOOL alreadyExisted) {
+        [self popupMessage:@"Load resources OK!" title:@""];
+        
+        // TODO set image for each UI element
+        UIImage* image = [[PPResourceService defaultService] imageByName:@"win_face"];
+        
+    } failure:^(NSError *error, UIView* downloadView) {
+        
+        [self popupMessage:@"Fail to load resources" title:@""];
+        
+        // TODO quit game here
+        [self quitGame];
+    }];
+    
     [super viewDidLoad];
     
     // Do any additional setup after loading the view from its nib.
