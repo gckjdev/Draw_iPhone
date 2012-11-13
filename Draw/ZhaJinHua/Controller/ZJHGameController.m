@@ -148,25 +148,32 @@
     }
 }
 
+- (void)setImages
+{
+    self.gameBgImageView.image = [_imageManager gameBgImage];
+    self.totalBetBgImageView.image = [_imageManager totalBetBgImage];
+    self.buttonsHolderBgImageView.image = [_imageManager buttonsHolderBgImage];
+    [self.runawayButton setBackgroundImage:[_imageManager runawayButtonImage] forState:UIControlStateNormal] ;
+    [self.settingButton setImage:[_imageManager settingButtonImage] forState:UIControlStateNormal] ;
+    [self.chatButton setImage:[_imageManager chatButtonImage] forState:UIControlStateNormal] ;
+    [self.moneyTree setImage:[_imageManager moneyTreeImage] forState:UIControlStateNormal] ;
+    self.vsImageView.image = [_imageManager vsImage];
+    
+    [self updateZJHButtons];
+
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
+    
     // Do any additional setup after loading the view from its nib.
     
-    self.gameBgImageView.image = [_imageManager gameBgImage];
-    self.totalBetBgImageView.image = [_imageManager totalBetBgImage];
-    self.buttonsHolderBgImageView.image = [_imageManager buttonsHolderBgImage];
-    [self.runawayButton setBackgroundImage:[_imageManager runawayImage] forState:UIControlStateNormal] ;
-    [self.settingButton setImage:[_imageManager settingImage] forState:UIControlStateNormal] ;
-    [self.chatButton setImage:[_imageManager chatImage] forState:UIControlStateNormal] ;
-    [self.moneyTree setImage:[_imageManager moneyTreeImage] forState:UIControlStateNormal] ;
-    self.vsImageView.image = [_imageManager vsImage];
+    [self setImages];
 
     [self initAllAvatars];
     [self updateAllUsersAvatar];
-    
-    [self updateZJHButtons];
     
     // hidden views below
     [self updateTotalBetAndSingleBet];

@@ -371,52 +371,58 @@ static ZJHImageManager* shareInstance;
 
 - (UIImage*)betBtnBgImage
 {
-    return [_resService imageByName:@"zjh_bet@2x"];
+    return [_resService imageByName:@"zjh_bet"];
 }
 
 - (UIImage*)raiseBetBtnBgImage
 {
-    return [_resService imageByName:@"zjh_raise_bet@2x"];
+    return [_resService imageByName:@"zjh_raise_bet"];
 }
 
 
 - (UIImage*)autoBetBtnBgImage
 {
-    return [_resService imageByName:@"zjh_auto_bet@2x"];
+    return [_resService imageByName:@"zjh_auto_bet"];
 }
+
+- (UIImage*)autoBetBtnOnBgImage
+{
+    return [_resService imageByName:@"zjh_auto_bet_on"];
+}
+
 
 
 - (UIImage*)compareCardBtnBgImage
 {
-    return [_resService imageByName:@"zjh_compare_card@2x"];
+    return [_resService imageByName:@"zjh_compare_card"];
 }
 
 
 - (UIImage*)checkCardBtnBgImage
 {
-    return [_resService imageByName:@"zjh_check_card@2x"];
+    return [_resService imageByName:@"zjh_check_card"];
 }
 
 
 - (UIImage*)foldCardBtnBgImage
 {
-    return [_resService imageByName:@"zjh_fold_card@2x"];
+    return [_resService imageByName:@"zjh_fold_card"];
 }
 
 - (UIImage*)betBtnDisableBgImage
 {
-    return [_resService imageByName:@"zjh_bet_disable@2x"];
+    return [_resService imageByName:@"zjh_bet_disable"];
 }
 
 - (UIImage*)raiseBetBtnDisableBgImage
 {
-    return [_resService imageByName:@"zjh_raise_bet_disable@2x"];
+    return [_resService imageByName:@"zjh_raise_bet_disable"];
 }
 
 
 - (UIImage*)autoBetBtnDisableBgImage
 {
-    return [_resService imageByName:@"zjh_auto_bet_disable@2x"];
+    return [_resService imageByName:@"zjh_auto_bet_disable"];
 }
 
 
@@ -563,17 +569,17 @@ static ZJHImageManager* shareInstance;
     return [_resService imageByName:@"zjh_button_holder_bg"];
 }
 
-- (UIImage *)runawayImage
+- (UIImage *)runawayButtonImage
 {
     return [_resService imageByName:@"zjh_runaway"];
 }
 
-- (UIImage *)settingImage
+- (UIImage *)settingButtonImage
 {
     return [_resService imageByName:@"zjh_game_setting"];
 }
 
-- (UIImage *)chatImage
+- (UIImage *)chatButtonImage
 {
     return [_resService imageByName:@"zjh_chat_button"];
 }

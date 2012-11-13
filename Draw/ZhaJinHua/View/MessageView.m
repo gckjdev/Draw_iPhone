@@ -54,6 +54,7 @@
         UIImageView *imageView = [[[UIImageView alloc] initWithFrame:CGRectMake(0, 0, LABEL_LEFT_OFFSET + label.frame.size.width + LABEL_RIGHT_OFFSET, LABEL_TOP_OFFSET + label.frame.size.height + LABEL_BOTTOM_OFFSET)] autorelease];
         imageView.tag = BACKGROUND_IMAGE_VIEW_TAG;
         imageView.image = bgImage;
+        self.backgroundColor = [UIColor clearColor];
         [self addSubview:imageView];
         [self addSubview:label];
     }
