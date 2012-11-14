@@ -188,7 +188,16 @@
     PPDebug(@"<%@> NOTIFICATION_JOIN_GAME_RESPONSE", [self description]);
     [self hideActivity];
     if (_isZJH) {
-        ZJHGameController* vc = [[[ZJHGameController alloc] init] autorelease];
+        ZJHGameController* vc;
+        if ([DeviceDetection isIPhone5]) {
+            vc = [[[ZJHGameController alloc] initWithNibName:@"ZJHGameController~ip5" bundle:[NSBundle mainBundle]] autorelease];
+
+        }else if ([DeviceDetection isIPAD]){
+            vc = [[[ZJHGameController alloc] initWithNibName:@"ZJHGameController~ipad" bundle:[NSBundle mainBundle]] autorelease];
+        }else{
+            vc = [[[ZJHGameController alloc] initWithNibName:@"ZJHGameController" bundle:[NSBundle mainBundle]] autorelease];
+        }
+        
         [self.navigationController pushViewController:vc
                                              animated:YES];
         _isZJH = NO;
@@ -651,10 +660,6 @@
     } failure:^(NSError *error, UIView* downloadView) {
         [self popupMessage:@"Fail to load resources" title:@""];
     }];
-    
-    
-
-    
 }
 
 @end
