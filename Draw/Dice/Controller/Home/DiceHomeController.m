@@ -44,6 +44,7 @@
 #import "ZJHGameService.h"
 #import "ZJHGameController.h"
 #import "PPResourceService.h"
+#import "ZJHRoomListController.h"
 
 #define KEY_LAST_AWARD_DATE     @"last_award_day"
 
@@ -657,6 +658,10 @@
 }
 
 - (IBAction)clickZhaJinHuaButton:(id)sender {
+    
+    ZJHRoomListController* vc = [[[ZJHRoomListController alloc] init] autorelease];
+    [self.navigationController pushViewController:vc animated:YES];
+    return;
     
     [_resService startDownloadInView:self.view backgroundImage:@"DiceDefault" resourcePackageName:@"zhajinhua_core" success:^(BOOL alreadyExisted) {
         _isZJH = YES;

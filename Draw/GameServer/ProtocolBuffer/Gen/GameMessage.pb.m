@@ -17,6 +17,7 @@ static PBExtensionRegistry* extensionRegistry = nil;
     [DrawRoot registerAllExtensions:registry];
     [DiceRoot registerAllExtensions:registry];
     [ZhaJinHuaRoot registerAllExtensions:registry];
+    [BbsRoot registerAllExtensions:registry];
     extensionRegistry = [registry retain];
   }
 }
@@ -16440,6 +16441,9 @@ static GameMessage* defaultGameMessageInstance = nil;
 @property (retain) NSMutableArray* mutableMessageList;
 @property (retain) NSMutableArray* mutableMessageStatList;
 @property (retain) NSMutableArray* mutableFeedList;
+@property (retain) NSMutableArray* mutableBbsBoardList;
+@property (retain) NSMutableArray* mutableBbsPostList;
+@property (retain) NSMutableArray* mutableBbsActionList;
 @end
 
 @implementation DataQueryResponse
@@ -16462,11 +16466,17 @@ static GameMessage* defaultGameMessageInstance = nil;
 @synthesize mutableMessageList;
 @synthesize mutableMessageStatList;
 @synthesize mutableFeedList;
+@synthesize mutableBbsBoardList;
+@synthesize mutableBbsPostList;
+@synthesize mutableBbsActionList;
 - (void) dealloc {
   self.mutableDrawDataList = nil;
   self.mutableMessageList = nil;
   self.mutableMessageStatList = nil;
   self.mutableFeedList = nil;
+  self.mutableBbsBoardList = nil;
+  self.mutableBbsPostList = nil;
+  self.mutableBbsActionList = nil;
   [super dealloc];
 }
 - (id) init {
@@ -16516,6 +16526,27 @@ static DataQueryResponse* defaultDataQueryResponseInstance = nil;
   id value = [mutableFeedList objectAtIndex:index];
   return value;
 }
+- (NSArray*) bbsBoardList {
+  return mutableBbsBoardList;
+}
+- (PBBBSBoard*) bbsBoardAtIndex:(int32_t) index {
+  id value = [mutableBbsBoardList objectAtIndex:index];
+  return value;
+}
+- (NSArray*) bbsPostList {
+  return mutableBbsPostList;
+}
+- (PBBBSPost*) bbsPostAtIndex:(int32_t) index {
+  id value = [mutableBbsPostList objectAtIndex:index];
+  return value;
+}
+- (NSArray*) bbsActionList {
+  return mutableBbsActionList;
+}
+- (PBBBSAction*) bbsActionAtIndex:(int32_t) index {
+  id value = [mutableBbsActionList objectAtIndex:index];
+  return value;
+}
 - (BOOL) isInitialized {
   if (!self.hasResultCode) {
     return NO;
@@ -16540,6 +16571,21 @@ static DataQueryResponse* defaultDataQueryResponseInstance = nil;
       return NO;
     }
   }
+  for (PBBBSBoard* element in self.bbsBoardList) {
+    if (!element.isInitialized) {
+      return NO;
+    }
+  }
+  for (PBBBSPost* element in self.bbsPostList) {
+    if (!element.isInitialized) {
+      return NO;
+    }
+  }
+  for (PBBBSAction* element in self.bbsActionList) {
+    if (!element.isInitialized) {
+      return NO;
+    }
+  }
   return YES;
 }
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
@@ -16560,6 +16606,15 @@ static DataQueryResponse* defaultDataQueryResponseInstance = nil;
   }
   for (PBFeed* element in self.feedList) {
     [output writeMessage:41 value:element];
+  }
+  for (PBBBSBoard* element in self.bbsBoardList) {
+    [output writeMessage:51 value:element];
+  }
+  for (PBBBSPost* element in self.bbsPostList) {
+    [output writeMessage:52 value:element];
+  }
+  for (PBBBSAction* element in self.bbsActionList) {
+    [output writeMessage:53 value:element];
   }
   [self.unknownFields writeToCodedOutputStream:output];
 }
@@ -16587,6 +16642,15 @@ static DataQueryResponse* defaultDataQueryResponseInstance = nil;
   }
   for (PBFeed* element in self.feedList) {
     size += computeMessageSize(41, element);
+  }
+  for (PBBBSBoard* element in self.bbsBoardList) {
+    size += computeMessageSize(51, element);
+  }
+  for (PBBBSPost* element in self.bbsPostList) {
+    size += computeMessageSize(52, element);
+  }
+  for (PBBBSAction* element in self.bbsActionList) {
+    size += computeMessageSize(53, element);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -16693,6 +16757,24 @@ static DataQueryResponse* defaultDataQueryResponseInstance = nil;
     }
     [result.mutableFeedList addObjectsFromArray:other.mutableFeedList];
   }
+  if (other.mutableBbsBoardList.count > 0) {
+    if (result.mutableBbsBoardList == nil) {
+      result.mutableBbsBoardList = [NSMutableArray array];
+    }
+    [result.mutableBbsBoardList addObjectsFromArray:other.mutableBbsBoardList];
+  }
+  if (other.mutableBbsPostList.count > 0) {
+    if (result.mutableBbsPostList == nil) {
+      result.mutableBbsPostList = [NSMutableArray array];
+    }
+    [result.mutableBbsPostList addObjectsFromArray:other.mutableBbsPostList];
+  }
+  if (other.mutableBbsActionList.count > 0) {
+    if (result.mutableBbsActionList == nil) {
+      result.mutableBbsActionList = [NSMutableArray array];
+    }
+    [result.mutableBbsActionList addObjectsFromArray:other.mutableBbsActionList];
+  }
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }
@@ -16744,6 +16826,24 @@ static DataQueryResponse* defaultDataQueryResponseInstance = nil;
         PBFeed_Builder* subBuilder = [PBFeed builder];
         [input readMessage:subBuilder extensionRegistry:extensionRegistry];
         [self addFeed:[subBuilder buildPartial]];
+        break;
+      }
+      case 410: {
+        PBBBSBoard_Builder* subBuilder = [PBBBSBoard builder];
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self addBbsBoard:[subBuilder buildPartial]];
+        break;
+      }
+      case 418: {
+        PBBBSPost_Builder* subBuilder = [PBBBSPost builder];
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self addBbsPost:[subBuilder buildPartial]];
+        break;
+      }
+      case 426: {
+        PBBBSAction_Builder* subBuilder = [PBBBSAction builder];
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self addBbsAction:[subBuilder buildPartial]];
         break;
       }
     }
@@ -16895,6 +16995,93 @@ static DataQueryResponse* defaultDataQueryResponseInstance = nil;
     result.mutableFeedList = [NSMutableArray array];
   }
   [result.mutableFeedList addObject:value];
+  return self;
+}
+- (NSArray*) bbsBoardList {
+  if (result.mutableBbsBoardList == nil) { return [NSArray array]; }
+  return result.mutableBbsBoardList;
+}
+- (PBBBSBoard*) bbsBoardAtIndex:(int32_t) index {
+  return [result bbsBoardAtIndex:index];
+}
+- (DataQueryResponse_Builder*) replaceBbsBoardAtIndex:(int32_t) index with:(PBBBSBoard*) value {
+  [result.mutableBbsBoardList replaceObjectAtIndex:index withObject:value];
+  return self;
+}
+- (DataQueryResponse_Builder*) addAllBbsBoard:(NSArray*) values {
+  if (result.mutableBbsBoardList == nil) {
+    result.mutableBbsBoardList = [NSMutableArray array];
+  }
+  [result.mutableBbsBoardList addObjectsFromArray:values];
+  return self;
+}
+- (DataQueryResponse_Builder*) clearBbsBoardList {
+  result.mutableBbsBoardList = nil;
+  return self;
+}
+- (DataQueryResponse_Builder*) addBbsBoard:(PBBBSBoard*) value {
+  if (result.mutableBbsBoardList == nil) {
+    result.mutableBbsBoardList = [NSMutableArray array];
+  }
+  [result.mutableBbsBoardList addObject:value];
+  return self;
+}
+- (NSArray*) bbsPostList {
+  if (result.mutableBbsPostList == nil) { return [NSArray array]; }
+  return result.mutableBbsPostList;
+}
+- (PBBBSPost*) bbsPostAtIndex:(int32_t) index {
+  return [result bbsPostAtIndex:index];
+}
+- (DataQueryResponse_Builder*) replaceBbsPostAtIndex:(int32_t) index with:(PBBBSPost*) value {
+  [result.mutableBbsPostList replaceObjectAtIndex:index withObject:value];
+  return self;
+}
+- (DataQueryResponse_Builder*) addAllBbsPost:(NSArray*) values {
+  if (result.mutableBbsPostList == nil) {
+    result.mutableBbsPostList = [NSMutableArray array];
+  }
+  [result.mutableBbsPostList addObjectsFromArray:values];
+  return self;
+}
+- (DataQueryResponse_Builder*) clearBbsPostList {
+  result.mutableBbsPostList = nil;
+  return self;
+}
+- (DataQueryResponse_Builder*) addBbsPost:(PBBBSPost*) value {
+  if (result.mutableBbsPostList == nil) {
+    result.mutableBbsPostList = [NSMutableArray array];
+  }
+  [result.mutableBbsPostList addObject:value];
+  return self;
+}
+- (NSArray*) bbsActionList {
+  if (result.mutableBbsActionList == nil) { return [NSArray array]; }
+  return result.mutableBbsActionList;
+}
+- (PBBBSAction*) bbsActionAtIndex:(int32_t) index {
+  return [result bbsActionAtIndex:index];
+}
+- (DataQueryResponse_Builder*) replaceBbsActionAtIndex:(int32_t) index with:(PBBBSAction*) value {
+  [result.mutableBbsActionList replaceObjectAtIndex:index withObject:value];
+  return self;
+}
+- (DataQueryResponse_Builder*) addAllBbsAction:(NSArray*) values {
+  if (result.mutableBbsActionList == nil) {
+    result.mutableBbsActionList = [NSMutableArray array];
+  }
+  [result.mutableBbsActionList addObjectsFromArray:values];
+  return self;
+}
+- (DataQueryResponse_Builder*) clearBbsActionList {
+  result.mutableBbsActionList = nil;
+  return self;
+}
+- (DataQueryResponse_Builder*) addBbsAction:(PBBBSAction*) value {
+  if (result.mutableBbsActionList == nil) {
+    result.mutableBbsActionList = [NSMutableArray array];
+  }
+  [result.mutableBbsActionList addObject:value];
   return self;
 }
 @end
