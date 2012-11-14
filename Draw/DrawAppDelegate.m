@@ -229,10 +229,10 @@ NSString* GlobalGetBoardServerURL()
     
     // TODO define game resource constants
     NSSet* resourcePackages = [NSSet setWithObjects:
-                               [PPResourcePackage resourcePackageWithName:@"common_core" type:PPResourceImage],
-                               [PPResourcePackage resourcePackageWithName:@"draw_core" type:PPResourceImage],
-                               [PPResourcePackage resourcePackageWithName:@"dice_core" type:PPResourceImage],
-                               [PPResourcePackage resourcePackageWithName:@"zhajinhua_core" type:PPResourceImage],
+                               [PPResourcePackage resourcePackageWithName:RESOURCE_PACKAGE_COMMON type:PPResourceImage],
+                               [PPResourcePackage resourcePackageWithName:RESOURCE_PACKAGE_ZJH type:PPResourceImage],
+                               [PPResourcePackage resourcePackageWithName:RESOURCE_PACKAGE_DICE type:PPResourceImage],
+                               [PPResourcePackage resourcePackageWithName:RESOURCE_PACKAGE_DRAW type:PPResourceImage],
                                nil];
     
     

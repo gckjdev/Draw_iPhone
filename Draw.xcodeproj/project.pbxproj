@@ -3837,6 +3837,7 @@
 		CA913722164E277300B6387F /* openDice_M.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = openDice_M.m4a; sourceTree = "<group>"; };
 		CA913723164E277300B6387F /* scrambleToOpenDice_F.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = scrambleToOpenDice_F.m4a; sourceTree = "<group>"; };
 		CA913724164E277300B6387F /* scrambleToOpenDice_M.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = scrambleToOpenDice_M.m4a; sourceTree = "<group>"; };
+		CA913A2F1653432C00B6387F /* GameResource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameResource.h; sourceTree = "<group>"; };
 		CA91FC7D15C27BE700E9C1CD /* CommonGameNetworkClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonGameNetworkClient.h; sourceTree = "<group>"; };
 		CA91FC7E15C27BE700E9C1CD /* CommonGameNetworkClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonGameNetworkClient.m; sourceTree = "<group>"; };
 		CA91FC8015C27BF700E9C1CD /* CommonGameNetworkService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonGameNetworkService.h; sourceTree = "<group>"; };
@@ -8548,6 +8549,14 @@
 			path = voice;
 			sourceTree = "<group>";
 		};
+		CA913A2E1653431900B6387F /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				CA913A2F1653432C00B6387F /* GameResource.h */,
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
 		CA96E264150DD55400292335 /* GameServer */ = {
 			isa = PBXGroup;
 			children = (
@@ -9089,6 +9098,7 @@
 		CAECE0291503B25500BC2404 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				CA913A2E1653431900B6387F /* Resource */,
 				CA1882A91648C7C7000942D6 /* Storage */,
 				C2E7401C1629500A0037E7F6 /* UseItemScene */,
 				EAAFC5441615A4AB00C72BAB /* Statistic */,
