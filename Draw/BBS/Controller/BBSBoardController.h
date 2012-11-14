@@ -9,5 +9,6 @@
 #import "PPTableViewController.h"
 
 @interface BBSBoardController : PPTableViewController
+- (IBAction)clickBackButton:(id)sender;
 
 @end
