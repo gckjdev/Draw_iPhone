@@ -82,6 +82,7 @@
 - (void)checkAndJoinGame:(int)sessionId
 {
     if ([self meetJoinGameCondition] == JoinGameSuccess) {
+        _isJoiningGame = YES;
         [_gameService joinGameRequest:sessionId];
     } else {
         [self handleJoinGameError:[self meetJoinGameCondition]];
@@ -143,16 +144,9 @@
     [self startRefreshRoomsTimer];
 }
 
-- (void)handleNoRoomMessage
-{
-    PPDebug(@"<CommonRoomListController> handleNoRoomMessage method not implement");
-}
-
 - (void)updateRoomList
 {
-    if (self.dataList.count < 1) {
-        [self handleNoRoomMessage];
-    }
+    PPDebug(@"<CommonRoomListController> updateRoomList method not implement");
 }
 
 
@@ -171,10 +165,19 @@
     [self updateOnlineUserCount];
 }
 
+- (void)enterGame
+{
+    PPDebug(@"<CommonRoomListController> enterGame method not implement");
+}
+
 - (void)didJoinGame
 {
     [self hideActivity];
-    PPDebug(@"<CommonRoomListController> didJoinGame method not implement");
+    if (_isJoiningGame) {
+        [self enterGame];
+        _isJoiningGame = NO;
+    }
+    
 }
 
 - (void)connectServer
@@ -278,49 +281,7 @@
     [super viewDidDisappear:animated];
 }
 
-#pragma mark - TableView delegate methods
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    return [CommonRoomListCell getCellHeight];
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    CommonRoomListCell *cell = [tableView dequeueReusableCellWithIdentifier:[CommonRoomListCell getCellIdentifier]];
-    if (cell == nil) {
-        cell = [CommonRoomListCell createCell:[CommonRoomListCell getCellIdentifier]];
-    }
-    cell.delegate = self;
-    return cell;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    return _gameService.roomList.count;
-}
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    
-    self.currentSession = [_gameService sessionInRoom:indexPath.row];
-    if (self.currentSession.password == nil
-        || self.currentSession.password.length <= 0
-        || [[UserManager defaultManager] isMe:self.currentSession.createBy])
-    {
-        [self checkAndJoinGame:self.currentSession.sessionId];
-    } else {
-        InputDialog *inputDialog = [InputDialog dialogWith:NSLS(@"kPassword")
-                                                  delegate:self
-                                                     theme:CommonDialogThemeDice];
-        inputDialog.targetTextField.text = nil;
-        inputDialog.targetTextField.placeholder = NSLS(@"kEnterPassword");
-        [inputDialog showInView:self.view];
-        inputDialog.tag = ENTER_ROOM_DIALOG_TAG;
-    }
-    
-    
-}
 
 #pragma mark - Button action
 
@@ -330,12 +291,17 @@
 }
 
 - (IBAction)clickFastEntryButton:(id)sender {
+    _isJoiningGame = YES;
     [self checkAndJoinGame];
 }
 
 - (IBAction)createRoom:(id)sender
 {
-    PPDebug(@"<CommonRoomListController> createRoom method not implement");
+    if ([self meetJoinGameCondition]) {
+        [self showCreateRoomView];
+    }else {
+        [self handleJoinGameError:[self meetJoinGameCondition]];
+    }
 }
 
 - (void)showCreateRoomView
@@ -352,7 +318,7 @@
 
 
 
-- (void)refreshRoomsByFilter:(RoomFilter)filter
+- (void)refreshRoomsByFilter:(CommonRoomFilter)filter
 {
     [_gameService getRoomList:0
                                             count:ROOMS_COUNT_PER_PAGE
@@ -368,12 +334,18 @@
     PPDebug(@"<CommonRoomListController> updateOnlineUserCount method not implement");
 }
 
+- (void)connectServerSuccessfully
+{
+    PPDebug(@"<CommonRoomListController> connectServerSuccessfully method not implement");
+}
+
 #pragma mark - CommonGameServiceDelegate
 - (void)didConnected
 {
     [self hideActivity];
     [_gameService getRoomList:0 count:ROOMS_COUNT_PER_PAGE];
     firstLoad = NO;
+    [self connectServerSuccessfully];
 }
 
 - (void)didBroken
@@ -384,6 +356,17 @@
     //    [self popupUnhappyMessage:NSLS(@"kNetworkBroken") title:@""];
     [self.navigationController popToRootViewControllerAnimated:NO];
     
+}
+
+- (void)showPasswordDialog
+{
+    InputDialog *inputDialog = [InputDialog dialogWith:NSLS(@"kPassword")
+                                              delegate:self
+                                                 theme:CommonDialogThemeDice];
+    inputDialog.targetTextField.text = nil;
+    inputDialog.targetTextField.placeholder = NSLS(@"kEnterPassword");
+    [inputDialog showInView:self.view];
+    inputDialog.tag = ENTER_ROOM_DIALOG_TAG;
 }
 
 #pragma makr - inputDialog delegate
@@ -441,10 +424,10 @@
 - (void)infoViewDidDisappear:(CommonInfoView*)view
 {
     _searchView = nil;
-    if (_currentRoomType == allRoom) {
+    if (_currentRoomType == CommonRoomFilterAllRoom) {
         [self continueRefreshingRooms];
     }
-    if (_currentRoomType == friendRoom) {
+    if (_currentRoomType == CommonRoomFilterFriendRoom) {
 //        [self clickFriendRoom:nil];
     }
     

@@ -8,6 +8,14 @@
 
 #import "PPTableViewCell.h"
 
+@protocol CommonRoomListCellDelegate <NSObject>
+
+- (void)didQueryUser:(NSString*)userId;
+
+@end
+
 @interface CommonRoomListCell : PPTableViewCell
+
+@property (assign, nonatomic) id<CommonRoomListCellDelegate> delegate;
 
 @end
