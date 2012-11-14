@@ -308,6 +308,10 @@
 		C29707C5160ADBEC00BE0789 /* CustomDiceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C29707C4160ADBEC00BE0789 /* CustomDiceManager.m */; };
 		C299BED61653297500C21E2F /* CommonRoomListController.m in Sources */ = {isa = PBXBuildFile; fileRef = C299BED51653297500C21E2F /* CommonRoomListController.m */; };
 		C299BED9165333E800C21E2F /* CommonRoomListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C299BED8165333E800C21E2F /* CommonRoomListCell.m */; };
+		C299BF2E165379A800C21E2F /* ZJHRoomListController.m in Sources */ = {isa = PBXBuildFile; fileRef = C299BF2C165379A800C21E2F /* ZJHRoomListController.m */; };
+		C299BF2F165379A800C21E2F /* ZJHRoomListController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C299BF2D165379A800C21E2F /* ZJHRoomListController.xib */; };
+		C299BF3216537AB100C21E2F /* ZJHRoomListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C299BF3116537AB100C21E2F /* ZJHRoomListCell.m */; };
+		C299BF3416537AFB00C21E2F /* ZJHRoomListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C299BF3316537AFB00C21E2F /* ZJHRoomListCell.xib */; };
 		C29A300715CA16AC00BD0B73 /* CustomLabelUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = C29A300615CA16AC00BD0B73 /* CustomLabelUtil.m */; };
 		C29A300B15CA17FE00BD0B73 /* HKGirlFontLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = C29A300A15CA17FE00BD0B73 /* HKGirlFontLabel.m */; };
 		C29B5F541642749900EF4AB4 /* DealerView.m in Sources */ = {isa = PBXBuildFile; fileRef = C29B5F531642749900EF4AB4 /* DealerView.m */; };
@@ -2322,6 +2326,12 @@
 		C299BED51653297500C21E2F /* CommonRoomListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonRoomListController.m; sourceTree = "<group>"; };
 		C299BED7165333E800C21E2F /* CommonRoomListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonRoomListCell.h; sourceTree = "<group>"; };
 		C299BED8165333E800C21E2F /* CommonRoomListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonRoomListCell.m; sourceTree = "<group>"; };
+		C299BF2B165379A800C21E2F /* ZJHRoomListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJHRoomListController.h; sourceTree = "<group>"; };
+		C299BF2C165379A800C21E2F /* ZJHRoomListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJHRoomListController.m; sourceTree = "<group>"; };
+		C299BF2D165379A800C21E2F /* ZJHRoomListController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZJHRoomListController.xib; sourceTree = "<group>"; };
+		C299BF3016537AB100C21E2F /* ZJHRoomListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJHRoomListCell.h; sourceTree = "<group>"; };
+		C299BF3116537AB100C21E2F /* ZJHRoomListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJHRoomListCell.m; sourceTree = "<group>"; };
+		C299BF3316537AFB00C21E2F /* ZJHRoomListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZJHRoomListCell.xib; sourceTree = "<group>"; };
 		C29A300515CA16AC00BD0B73 /* CustomLabelUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomLabelUtil.h; sourceTree = "<group>"; };
 		C29A300615CA16AC00BD0B73 /* CustomLabelUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomLabelUtil.m; sourceTree = "<group>"; };
 		C29A300915CA17FE00BD0B73 /* HKGirlFontLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HKGirlFontLabel.h; path = FontLabel/HKGirlFontLabel.h; sourceTree = "<group>"; };
@@ -5157,6 +5167,7 @@
 		A4E7877D16367338003557AD /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				C299BF2A1653796800C21E2F /* room */,
 				A42EA4391653415F0080BB95 /* ZJHGameController~ip5.xib */,
 				A42EA3331651F0220080BB95 /* ZJHGameController~ipad.xib */,
 				A44B6223163787F500A8045B /* ZJHGameController.h */,
@@ -5357,6 +5368,19 @@
 				C29707C4160ADBEC00BE0789 /* CustomDiceManager.m */,
 			);
 			path = CustomDiceManager;
+			sourceTree = "<group>";
+		};
+		C299BF2A1653796800C21E2F /* room */ = {
+			isa = PBXGroup;
+			children = (
+				C299BF2B165379A800C21E2F /* ZJHRoomListController.h */,
+				C299BF2C165379A800C21E2F /* ZJHRoomListController.m */,
+				C299BF2D165379A800C21E2F /* ZJHRoomListController.xib */,
+				C299BF3016537AB100C21E2F /* ZJHRoomListCell.h */,
+				C299BF3116537AB100C21E2F /* ZJHRoomListCell.m */,
+				C299BF3316537AFB00C21E2F /* ZJHRoomListCell.xib */,
+			);
+			name = room;
 			sourceTree = "<group>";
 		};
 		C29A300815CA176400BD0B73 /* FontLabel */ = {
@@ -11026,6 +11050,8 @@
 				A42EA43616533FBC0080BB95 /* zjh_vs.png in Resources */,
 				A42EA43A1653415F0080BB95 /* ZJHGameController~ip5.xib in Resources */,
 				A42EA43C165341B40080BB95 /* zjh_game_bg_ip5@2x.jpg in Resources */,
+				C299BF2F165379A800C21E2F /* ZJHRoomListController.xib in Resources */,
+				C299BF3416537AFB00C21E2F /* ZJHRoomListCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -11626,6 +11652,8 @@
 				C299BED9165333E800C21E2F /* CommonRoomListCell.m in Sources */,
 				CA913A521653532000B6387F /* Bbs.pb.m in Sources */,
 				A42EA46F1653656A0080BB95 /* ZJHScreenConfig.m in Sources */,
+				C299BF2E165379A800C21E2F /* ZJHRoomListController.m in Sources */,
+				C299BF3216537AB100C21E2F /* ZJHRoomListCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
