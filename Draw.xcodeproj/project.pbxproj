@@ -3039,6 +3039,7 @@
 		CA3F2ED71609BCFB0059667B /* ContestOpusController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContestOpusController.xib; sourceTree = "<group>"; };
 		CA3F2F1C1609BDCA0059667B /* CommonTabController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonTabController.h; sourceTree = "<group>"; };
 		CA3F2F1D1609BDCA0059667B /* CommonTabController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonTabController.m; sourceTree = "<group>"; };
+		CA4150C1165345620062A638 /* BBS.proto */ = {isa = PBXFileReference; lastKnownFileType = text; path = BBS.proto; sourceTree = "<group>"; };
 		CA41C941152010FF00013DC8 /* ItemShopController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemShopController.h; sourceTree = "<group>"; };
 		CA41C942152010FF00013DC8 /* ItemShopController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemShopController.m; sourceTree = "<group>"; };
 		CA41C943152010FF00013DC8 /* ItemShopController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ItemShopController.xib; sourceTree = "<group>"; };
@@ -8990,6 +8991,7 @@
 				A4B763A015C25208003B4E72 /* Draw.proto */,
 				A4B763A115C25208003B4E72 /* Dice.proto */,
 				A4E7876916366FF8003557AD /* ZhaJinHua.proto */,
+				CA4150C1165345620062A638 /* BBS.proto */,
 			);
 			path = ProtocolBuffer;
 			sourceTree = "<group>";
