@@ -567,7 +567,7 @@ static ZJHImageManager* shareInstance;
 
 - (UIImage *)userTotalBetBgImage
 {
-    return [_resService imageByName:@"zjh_user_bet_bg"];
+    return [_resService imageByName:@"zjh_user_bet_bg" inResourcePackage:RESOURCE_PACKAGE_ZJH];
 }
 
 - (UIImage *)buttonsHolderBgImage
