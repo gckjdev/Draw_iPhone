@@ -26,6 +26,7 @@
 #import "ZJHSoundManager.h"
 #import "MessageView.h"
 #import "CommonMessageCenter.h"
+#import "ZJHSettingView.h"
 
 #define AVATAR_VIEW_TAG_OFFSET   4000
 #define AVATAR_PLACE_VIEW_OFFSET    8000
@@ -55,7 +56,6 @@
     LevelService    *_levelService;
     UserManager     *_userManager;
     AudioManager    *_audioManager;
-//    AccountService  *_accountService;
     ZJHImageManager *_imageManager;
     PopupViewManager *_popupViewManager;
     ZJHSoundManager  *_soundManager;
@@ -94,6 +94,12 @@
     [_singleBetLabel release];
     [_moneyTree release];
     [_vsImageView release];
+    [_gameBgImageView release];
+    [_totalBetBgImageView release];
+    [_buttonsHolderBgImageView release];
+    [_runawayButton release];
+    [_settingButton release];
+    [_chatButton release];
     [super dealloc];
 }
 
@@ -105,7 +111,6 @@
         _userManager = [UserManager defaultManager];
         _imageManager = [ZJHImageManager defaultManager];
         _levelService = [LevelService defaultService];
-//        _accountService = [AccountService defaultService];
         _audioManager = [AudioManager defaultManager];
         _popupViewManager = [PopupViewManager defaultManager];
         _soundManager = [ZJHSoundManager defaultManager];
@@ -143,16 +148,36 @@
     }
 }
 
+- (void)setImages
+{
+    self.gameBgImageView.image = [_imageManager gameBgImage];
+    self.totalBetBgImageView.image = [_imageManager totalBetBgImage];
+    self.buttonsHolderBgImageView.image = [_imageManager buttonsHolderBgImage];
+    [self.runawayButton setBackgroundImage:[_imageManager runawayButtonImage] forState:UIControlStateNormal] ;
+    [self.settingButton setImage:[_imageManager settingButtonImage] forState:UIControlStateNormal] ;
+    [self.chatButton setImage:[_imageManager chatButtonImage] forState:UIControlStateNormal] ;
+    [self.moneyTree setImage:[_imageManager moneyTreeImage] forState:UIControlStateNormal] ;
+    self.vsImageView.image = [_imageManager vsImage];
+    
+    [self.autoBetButton setBackgroundImage:[_imageManager autoBetBtnOnBgImage] forState:UIControlStateSelected];
+    [self updateZJHButtons];
+    
+    for (int tag = USER_TOTAL_BET_BG_IMAGE_VIEW_OFFSET; tag < USER_TOTAL_BET_BG_IMAGE_VIEW_OFFSET + UserPositionMax; tag ++) {
+        [((UIImageView *)[self.view viewWithTag:tag]) setImage:[_imageManager userTotalBetBgImage]];
+    }
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
+    
     // Do any additional setup after loading the view from its nib.
+    
+    [self setImages];
 
     [self initAllAvatars];
     [self updateAllUsersAvatar];
-    
-    [self updateZJHButtons];
     
     // hidden views below
     [self updateTotalBetAndSingleBet];
@@ -167,7 +192,6 @@
     self.moneyTree.delegate = self;
     
     [_audioManager setBackGroundMusicWithName:[_soundManager gameBGM]];
-
 }
 
 - (void)updateView
@@ -281,6 +305,12 @@
 
 #pragma mark - player action
 
+- (void)compareToUser:(NSString*)targetUserId
+{
+    self.isComparing = NO;
+    [_gameService compareCard:targetUserId];
+}
+
 - (void)bet:(BOOL)autoBet
 {
     [[self getMyAvatarView] stopReciprocal];
@@ -334,6 +364,11 @@
 {
     [_gameService quitGame];
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (IBAction)clickSettingButton:(id)sender
+{
+    [[ZJHSettingView createZJHSettingView] showInView:self.view];
 }
 
 #pragma mark - player action response
@@ -654,6 +689,8 @@ compareCardWith:(NSString*)targetUserId
 
 - (void)setAllPlayerComparing
 {
+    int canCompareUserCount = 0;
+    ZJHPokerView* lastCanComparePokerView;
     for (PBGameUser* user in _gameService.session.userList) {
         ZJHAvatarView* avatar = [self getAvatarViewByUserId:user.userId];
         if (![_gameService canUserCompareCard:user.userId]) {
@@ -670,8 +707,13 @@ compareCardWith:(NSString*)targetUserId
 //        }
 //        btn.hidden = NO;
 //        [self.view bringSubviewToFront:btn];
-        ZJHPokerView* pokerView = (ZJHPokerView*)[self.view viewWithTag:(avatar.tag - AVATAR_VIEW_TAG_OFFSET + POKERS_VIEW_TAG_OFFSET)];
-        [pokerView showBomb];
+        lastCanComparePokerView = (ZJHPokerView*)[self.view viewWithTag:(avatar.tag - AVATAR_VIEW_TAG_OFFSET + POKERS_VIEW_TAG_OFFSET)];
+        [lastCanComparePokerView showBomb];
+        canCompareUserCount ++;
+    }
+    if (canCompareUserCount == 1) {
+        ZJHAvatarView* avatar = (ZJHAvatarView*)[self.view viewWithTag:(AVATAR_VIEW_TAG_OFFSET+lastCanComparePokerView.tag - POKERS_VIEW_TAG_OFFSET)];
+        [self compareToUser:avatar.userInfo.userId];
     }
 }
 
@@ -814,6 +856,12 @@ compareCardWith:(NSString*)targetUserId
     [self setMoneyTree:nil];
     [self setVsImageView:nil];
     [self.moneyTree kill];
+    [self setGameBgImageView:nil];
+    [self setTotalBetBgImageView:nil];
+    [self setButtonsHolderBgImageView:nil];
+    [self setRunawayButton:nil];
+    [self setSettingButton:nil];
+    [self setChatButton:nil];
     [super viewDidUnload];
 }
 
@@ -852,8 +900,7 @@ compareCardWith:(NSString*)targetUserId
 {
     ZJHAvatarView* avatar = (ZJHAvatarView*)[self.view viewWithTag:(AVATAR_VIEW_TAG_OFFSET+zjhPokerView.tag - POKERS_VIEW_TAG_OFFSET)];
     //    [self someone:[_userManager userId] compareCardWith:avatar.userInfo.userId didWin:YES];
-    self.isComparing = NO;
-    [_gameService compareCard:avatar.userInfo.userId];
+    [self compareToUser:avatar.userInfo.userId];
 }
 
 #pragma mark - chipsSelectView protocol
@@ -1024,8 +1071,6 @@ compareCardWith:(NSString*)targetUserId
     return [NSString stringWithFormat:@"%d", intValue];
 }
 
-#pragma mark - test end
-
 - (void)allBet
 {
     for (PBGameUser *user in _gameService.session.userList) {
@@ -1082,12 +1127,12 @@ compareCardWith:(NSString*)targetUserId
     [UIView animateWithDuration:0.3 animations:^{
         view.alpha = 1;
     } completion:^(BOOL finished) {
-        [UIView animateWithDuration:1.5 animations:^{
+        [UIView animateWithDuration:1.5 delay:0.5 options:UIViewAnimationCurveEaseInOut animations:^{
             view.center = CGPointMake(view.center.x, view.center.y - 15);
             view.alpha = 0;
         } completion:^(BOOL finished) {
             [view removeFromSuperview];
-            
+
         }];
     }];
 }

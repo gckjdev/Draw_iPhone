@@ -43,6 +43,7 @@
 #import "FeedbackController.h"
 #import "ZJHGameService.h"
 #import "ZJHGameController.h"
+#import "PPResourceService.h"
 
 #define KEY_LAST_AWARD_DATE     @"last_award_day"
 
@@ -61,6 +62,7 @@
     BOOL hasGetLocalBoardList;
     
     BOOL _isZJH;
+    PPResourceService *_resService;
 }
 
 - (void)updateBoardPanelWithBoards:(NSArray *)boards;
@@ -129,7 +131,8 @@
 - (void)viewDidLoad
 {        
     [[AdService defaultService] setViewController:self];
-    
+    _resService = [PPResourceService defaultService];
+
     [super viewDidLoad];
     [self loadMainMenu];
     [self loadBottomMenu];
@@ -636,11 +639,21 @@
 }
 
 - (IBAction)clickZhaJinHuaButton:(id)sender {
-    _isZJH = YES;
-    [self showActivityWithText:NSLS(@"kConnectingServer")];
+    
+    [_resService startDownloadInView:self.view backgroundImage:@"DiceDefault" resourcePackageName:@"zhajinhua_core" success:^(BOOL alreadyExisted) {
+        _isZJH = YES;
+        
+        [self showActivityWithText:NSLS(@"kConnectingServer")];
+        
+        //    [[ZJHGameService defaultService] connectServer:self];
+        [[ZJHGameService defaultService] connectServer];
+        
+    } failure:^(NSError *error, UIView* downloadView) {
+        [self popupMessage:@"Fail to load resources" title:@""];
+    }];
+    
+    
 
-//    [[ZJHGameService defaultService] connectServer:self];
-    [[ZJHGameService defaultService] connectServer];
     
 }
 

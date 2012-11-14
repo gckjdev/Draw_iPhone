@@ -31,6 +31,7 @@
 @synthesize roundNumber = _roundNumber;
 @synthesize currentPlayUserId = _currentPlayUserId;
 @synthesize ruleType = _ruleType;
+@synthesize myTurnTimes = _myTurnTimes;
 
 - (void)dealloc
 {
@@ -54,6 +55,7 @@
     _deletedUserList = [[NSMutableDictionary alloc] init];
         
     self.roundNumber = 0;
+    self.myTurnTimes = 0;
     return self;
 }
 

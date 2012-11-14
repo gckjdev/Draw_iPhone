@@ -10,6 +10,7 @@
 #import "BetTable.h"
 #import "ZJHImageManager.h"
 #import "AnimationManager.h"
+#import "ChipView.h"
 
 #define MAX_LAYER   10
 
@@ -95,7 +96,7 @@
     CALayer* layer = [CALayer layer];
     UIImage* chipImage = [[ZJHImageManager defaultManager] chipImageForChipValue:chipValue];
     [layer setContents:(id)[chipImage CGImage]];
-    layer.bounds = CGRectMake(0, 0, chipImage.size.width/2,chipImage.size.height/2);
+    layer.bounds = CGRectMake(0, 0, CHIP_VIEW_WIDTH, CHIP_VIEW_HEIGHT);
 //    layer.shouldRasterize = YES;
     
     [self.layer addSublayer:layer];

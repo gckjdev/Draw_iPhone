@@ -50,6 +50,7 @@ typedef enum {
 - (UIImage*)betBtnBgImage;
 - (UIImage*)raiseBetBtnBgImage;
 - (UIImage*)autoBetBtnBgImage;
+- (UIImage*)autoBetBtnOnBgImage;
 - (UIImage*)compareCardBtnBgImage;
 - (UIImage*)checkCardBtnBgImage;
 - (UIImage*)foldCardBtnBgImage;
@@ -71,6 +72,12 @@ typedef enum {
 - (UIImage *)compareCardActionImage:(UserPosition)position;
 - (UIImage *)foldCardActionImage:(UserPosition)position;
 
-
+- (UIImage *)gameBgImage;
+- (UIImage *)totalBetBgImage;
+- (UIImage *)userTotalBetBgImage;
+- (UIImage *)buttonsHolderBgImage;
+- (UIImage *)runawayButtonImage;
+- (UIImage *)settingButtonImage;
+- (UIImage *)chatButtonImage;
 
 @end
