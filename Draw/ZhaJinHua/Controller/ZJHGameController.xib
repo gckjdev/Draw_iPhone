@@ -54,7 +54,7 @@
 					<object class="IBUIImageView" id="307831003">
 						<reference key="NSNextResponder" ref="483638841"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{81, 94}, {164, 21}}</string>
+						<string key="NSFrame">{{78, 94}, {164, 21}}</string>
 						<reference key="NSSuperview" ref="483638841"/>
 						<reference key="NSNextKeyView" ref="388818070"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
@@ -425,7 +425,7 @@
 					<object class="IBUILabel" id="189187716">
 						<reference key="NSNextResponder" ref="483638841"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{124, 93}, {50, 21}}</string>
+						<string key="NSFrame">{{116, 93}, {52, 21}}</string>
 						<reference key="NSSuperview" ref="483638841"/>
 						<reference key="NSNextKeyView" ref="527910833"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
@@ -435,7 +435,7 @@
 						<int key="IBUIContentMode">7</int>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-						<string key="IBUIText">5000</string>
+						<string key="IBUIText">5000000</string>
 						<object class="NSColor" key="IBUITextColor">
 							<int key="NSColorSpace">1</int>
 							<bytes key="NSRGB">MC45MTM2NzU2ODg5IDEgMAA</bytes>
@@ -444,7 +444,6 @@
 						<reference key="IBUIShadowColor" ref="321640810"/>
 						<string key="IBUIShadowOffset">{0, 1}</string>
 						<int key="IBUIBaselineAdjustment">0</int>
-						<float key="IBUIMinimumFontSize">10</float>
 						<object class="IBUIFontDescription" key="IBUIFontDescription" id="144605954">
 							<int key="type">1</int>
 							<double key="pointSize">13</double>
@@ -454,11 +453,12 @@
 							<double key="NSSize">13</double>
 							<int key="NSfFlags">16</int>
 						</object>
+						<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
 					</object>
 					<object class="IBUILabel" id="388818070">
 						<reference key="NSNextResponder" ref="483638841"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{90, 93}, {33, 21}}</string>
+						<string key="NSFrame">{{85, 93}, {33, 21}}</string>
 						<reference key="NSSuperview" ref="483638841"/>
 						<reference key="NSNextKeyView" ref="189187716"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
@@ -488,7 +488,7 @@
 					<object class="IBUILabel" id="10053604">
 						<reference key="NSNextResponder" ref="483638841"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{207, 93}, {44, 21}}</string>
+						<string key="NSFrame">{{200, 93}, {38, 21}}</string>
 						<reference key="NSSuperview" ref="483638841"/>
 						<reference key="NSNextKeyView" ref="194040692"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
@@ -498,7 +498,7 @@
 						<int key="IBUIContentMode">7</int>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-						<string key="IBUIText">200</string>
+						<string key="IBUIText">20000</string>
 						<object class="NSColor" key="IBUITextColor">
 							<int key="NSColorSpace">1</int>
 							<bytes key="NSRGB">MC4zMDY4MTgxODE4IDEgMQA</bytes>
@@ -507,14 +507,14 @@
 						<reference key="IBUIShadowColor" ref="321640810"/>
 						<string key="IBUIShadowOffset">{0, 1}</string>
 						<int key="IBUIBaselineAdjustment">0</int>
-						<float key="IBUIMinimumFontSize">10</float>
 						<reference key="IBUIFontDescription" ref="144605954"/>
 						<reference key="IBUIFont" ref="645857597"/>
+						<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
 					</object>
 					<object class="IBUILabel" id="527910833">
 						<reference key="NSNextResponder" ref="483638841"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{173, 93}, {31, 21}}</string>
+						<string key="NSFrame">{{168, 93}, {31, 21}}</string>
 						<reference key="NSSuperview" ref="483638841"/>
 						<reference key="NSNextKeyView" ref="10053604"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
@@ -1314,12 +1314,6 @@
 						<reference key="parent" ref="483638841"/>
 					</object>
 					<object class="IBObjectRecord">
-						<int key="objectID">840</int>
-						<reference key="object" ref="10053604"/>
-						<array class="NSMutableArray" key="children"/>
-						<reference key="parent" ref="483638841"/>
-					</object>
-					<object class="IBObjectRecord">
 						<int key="objectID">841</int>
 						<reference key="object" ref="527910833"/>
 						<array class="NSMutableArray" key="children"/>
@@ -1452,6 +1446,11 @@
 						<reference key="object" ref="808794720"/>
 						<reference key="parent" ref="483638841"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">840</int>
+						<reference key="object" ref="10053604"/>
+						<reference key="parent" ref="483638841"/>
+					</object>
 				</array>
 			</object>
 			<dictionary class="NSMutableDictionary" key="flattenedProperties">
@@ -1525,22 +1524,22 @@
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="zjh_auto_bet@2x.png">{127, 60}</string>
-			<string key="zjh_auto_bet_on@2x.png">{127, 60}</string>
-			<string key="zjh_bet@2x.png">{103, 60}</string>
-			<string key="zjh_button_holder_bg@2x.png">{640, 110}</string>
-			<string key="zjh_chat_button@2x.png">{60, 51}</string>
-			<string key="zjh_check_card@2x.png">{82, 60}</string>
-			<string key="zjh_compare_card@2x.png">{92, 60}</string>
-			<string key="zjh_fold_card@2x.png">{90, 60}</string>
-			<string key="zjh_game_bg@2x.jpg">{640, 960}</string>
-			<string key="zjh_game_setting@2x.png">{72, 71}</string>
-			<string key="zjh_game_total_bet_bg@2x.png">{329, 43}</string>
-			<string key="zjh_money_tree@2x.png">{79, 81}</string>
-			<string key="zjh_raise_bet@2x.png">{98, 60}</string>
-			<string key="zjh_runaway@2x.png">{72, 72}</string>
-			<string key="zjh_user_bet_bg@2x.png">{100, 34}</string>
-			<string key="zjh_vs.png">{46, 37}</string>
+			<string key="zjh_auto_bet@2x.png">{16, 16}</string>
+			<string key="zjh_auto_bet_on@2x.png">{16, 16}</string>
+			<string key="zjh_bet@2x.png">{16, 16}</string>
+			<string key="zjh_button_holder_bg@2x.png">{16, 16}</string>
+			<string key="zjh_chat_button@2x.png">{16, 16}</string>
+			<string key="zjh_check_card@2x.png">{16, 16}</string>
+			<string key="zjh_compare_card@2x.png">{16, 16}</string>
+			<string key="zjh_fold_card@2x.png">{16, 16}</string>
+			<string key="zjh_game_bg@2x.jpg">{16, 16}</string>
+			<string key="zjh_game_setting@2x.png">{16, 16}</string>
+			<string key="zjh_game_total_bet_bg@2x.png">{16, 16}</string>
+			<string key="zjh_money_tree@2x.png">{16, 16}</string>
+			<string key="zjh_raise_bet@2x.png">{16, 16}</string>
+			<string key="zjh_runaway@2x.png">{16, 16}</string>
+			<string key="zjh_user_bet_bg@2x.png">{16, 16}</string>
+			<string key="zjh_vs.png">{16, 16}</string>
 		</dictionary>
 		<string key="IBCocoaTouchPluginVersion">1926</string>
 	</data>

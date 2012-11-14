@@ -77,5 +77,4 @@ typedef enum {
 - (void)showBomb;
 - (void)clearBomb;
 
-
 @end

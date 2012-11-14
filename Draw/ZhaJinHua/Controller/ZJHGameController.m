@@ -612,6 +612,10 @@ compareCardWith:(NSString*)targetUserId
         PBUserResult* result1 = [userResultList objectAtIndex:0];
         PBUserResult* result2 = [userResultList objectAtIndex:1];
         
+        if ([result1.userId isEqualToString:_userManager.userId] || [result2.userId isEqualToString:_userManager.userId]) {
+            [self disableCheckCardAndFoldCardButtons];
+        }
+        
         [self someone:result1.userId compareCardWith:result2.userId didWin:result1.win initiator:initiatorId];
     }
     
@@ -964,6 +968,19 @@ compareCardWith:(NSString*)targetUserId
     [self.foldCardButton setBackgroundImage:(self.foldCardButton.userInteractionEnabled ? [_imageManager foldCardBtnBgImage] : [_imageManager foldCardBtnDisableBgImage]) forState:UIControlStateNormal];
 }
 
+- (void)disableCheckCardAndFoldCardButtons
+{
+    
+    
+    self.checkCardButton.userInteractionEnabled = NO;
+    [self.checkCardButton setTitleColor:TITLE_COLOR_WHEN_DISABLE forState:UIControlStateNormal];
+    [self.checkCardButton setBackgroundImage:[_imageManager checkCardBtnDisableBgImage] forState:UIControlStateNormal];
+    
+    self.foldCardButton.userInteractionEnabled = NO;
+    [self.foldCardButton setTitleColor:TITLE_COLOR_WHEN_DISABLE forState:UIControlStateNormal];
+    [self.foldCardButton setBackgroundImage:[_imageManager foldCardBtnDisableBgImage] forState:UIControlStateNormal];
+}
+
 #pragma mark - deal view delegate
 - (void)didDealFinish:(DealerView *)view
 {
@@ -1005,8 +1022,8 @@ compareCardWith:(NSString*)targetUserId
 
 - (void)updateAllUserTotalBet
 {
-    for (PBGameUser *user in _gameService.session.userList) {
-        [self updateUserTotalBet:user.userId];
+    for (NSString *userId in [_gameService.gameState.usersInfo allKeys]) {
+        [self updateUserTotalBet:userId];
     }
 }
 
