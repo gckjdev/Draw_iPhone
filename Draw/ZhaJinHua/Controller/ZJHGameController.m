@@ -1117,12 +1117,12 @@ compareCardWith:(NSString*)targetUserId
     [UIView animateWithDuration:0.3 animations:^{
         view.alpha = 1;
     } completion:^(BOOL finished) {
-        [UIView animateWithDuration:1.5 animations:^{
+        [UIView animateWithDuration:1.5 delay:0.5 options:UIViewAnimationCurveEaseInOut animations:^{
             view.center = CGPointMake(view.center.x, view.center.y - 15);
             view.alpha = 0;
         } completion:^(BOOL finished) {
             [view removeFromSuperview];
-            
+
         }];
     }];
 }
