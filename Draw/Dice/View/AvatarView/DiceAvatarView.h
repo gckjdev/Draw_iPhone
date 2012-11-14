@@ -60,6 +60,7 @@ typedef enum {
 //- (void)setAvatarFrame:(CGRect)frame;
 - (void)setAvatarUrl:(NSString *)url gender:(BOOL)gender;
 - (void)setCurrentProgress:(CGFloat)progress;
+- (void)setProgressBarWidth:(CGFloat)width;
 - (void)setProgressHidden:(BOOL)hidden;
 - (void)setAvatarStyle:(AvatarViewStyle)style;
 - (void)startReciprocol:(CFTimeInterval)reciprocolTime;

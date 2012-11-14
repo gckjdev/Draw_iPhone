@@ -190,6 +190,13 @@
     _currentProgress = progress;
 }
 
+- (void)setProgressBarWidth:(CGFloat)width
+{
+    progressView.progressBarWidth = MIN(self.bounds.size.width, self.bounds.size.height) * width;
+    [progressView setFrame:[self calAvatarFrame]];
+    
+}
+
 - (void)setProgressHidden:(BOOL)hidden
 {
     [UIView beginAnimations:@"" context:nil];
