@@ -13,5 +13,6 @@
 #define RESOURCE_PACKAGE_DICE       @"dice_core"
 #define RESOURCE_PACKAGE_DRAW       @"draw_core"
 #define RESOURCE_PACKAGE_COMMON     @"common_core"
+#define RESOURCE_PACKAGE_ZJH_AUDIO  @"zhajinhua_audio"
 
 #endif
