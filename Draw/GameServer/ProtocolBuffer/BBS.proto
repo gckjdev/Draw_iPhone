@@ -1,0 +1,57 @@
+
+import "GameBasic.proto";
+
+package game;
+
+option java_package = "com.orange.network.game.protocol.model";
+option java_outer_classname = "BBSProtos";
+
+message PBBBSUser {
+required string userId = 1;
+optional string nickName = 2;
+optional string avatar =3;
+optional bool gender = 4;
+}
+
+message PBBBSContent{
+required int32 type = 1; //1 for text, 2 for support, 3 for image, 4 for draw
+optional string text = 2;
+
+//image content
+optional string thumbImageUrl = 10;
+optional string imageUrl = 11;
+
+//draw content
+optional string drawThumbUrl = 20;
+optional string drawImageUrl  = 21;
+repeated PBDrawAction drawActionList = 22;
+}
+
+
+message BBSPost{
+required string postId = 1;
+required string boardId = 2;
+required string appId = 3;
+required int32 deviceType = 4;
+required int32 replyCount = 5;
+required int32 supportCount = 6;
+required int32 createDate = 7;
+required int32 modifyDate = 8;
+required BBSUser createUser = 9;
+required BBSContent content = 10;
+}
+
+message BBSAction{
+required string actionId = 1;
+required int32 type =2;
+required string postId = 3;
+required string appId = 4;
+required int32 deviceType = 5;
+required int32 createDate = 6;
+required BBSUser createUser = 7;
+required BBSContent content = 8;
+
+//reply for reply
+optional BBSUser sourceUser = 20; 
+optional BBSContent sourceContent = 21;
+}
