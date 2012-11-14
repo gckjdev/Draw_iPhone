@@ -689,31 +689,14 @@ compareCardWith:(NSString*)targetUserId
 
 - (void)setAllPlayerComparing
 {
-    int canCompareUserCount = 0;
-    ZJHPokerView* lastCanComparePokerView;
-    for (PBGameUser* user in _gameService.session.userList) {
-        ZJHAvatarView* avatar = [self getAvatarViewByUserId:user.userId];
-        if (![_gameService canUserCompareCard:user.userId]) {
-            continue;
-        }
-//        UIButton* btn = (UIButton*)[self.view viewWithTag:avatar.tag - AVATAR_VIEW_TAG_OFFSET + COMPARE_BUTTON_TAG_OFFSET];
-//        if (!btn) {
-//            btn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-//            [btn setTitle:@"比" forState:UIControlStateNormal];
-//            btn.frame = avatar.frame;
-//            btn.tag = avatar.tag - AVATAR_VIEW_TAG_OFFSET + COMPARE_BUTTON_TAG_OFFSET;
-//            [btn addTarget:self action:@selector(clickCompareWithSomeone:) forControlEvents:UIControlEventTouchUpInside];
-//            [self.view addSubview:btn];
-//        }
-//        btn.hidden = NO;
-//        [self.view bringSubviewToFront:btn];
-        lastCanComparePokerView = (ZJHPokerView*)[self.view viewWithTag:(avatar.tag - AVATAR_VIEW_TAG_OFFSET + POKERS_VIEW_TAG_OFFSET)];
-        [lastCanComparePokerView showBomb];
-        canCompareUserCount ++;
+    if (_gameService.compareUserIdList.count == 1) {
+        [self compareToUser:(NSString*)[_gameService.compareUserIdList objectAtIndex:0]];
+        return;
     }
-    if (canCompareUserCount == 1) {
-        ZJHAvatarView* avatar = (ZJHAvatarView*)[self.view viewWithTag:(AVATAR_VIEW_TAG_OFFSET+lastCanComparePokerView.tag - POKERS_VIEW_TAG_OFFSET)];
-        [self compareToUser:avatar.userInfo.userId];
+    for (NSString* userId in _gameService.compareUserIdList) {
+        ZJHPokerView* pokerView = [self getPokersViewByUserId:userId];
+        [pokerView showBomb];
+
     }
 }
 
