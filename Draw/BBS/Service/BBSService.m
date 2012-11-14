@@ -8,6 +8,20 @@
 
 #import "BBSService.h"
 
+BBSService *_staticBBSService;
+
 @implementation BBSService
+
++ (id)defaultService
+{
+    if (_staticBBSService == nil) {
+        _staticBBSService = [[BBSService alloc] init];
+    }
+    return _staticBBSService;
+}
+- (void)getBBSBoardList:(id<BBSServiceDelegate>) delegate
+{
+    
+}
 
 @end

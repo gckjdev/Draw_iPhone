@@ -8,6 +8,19 @@
 
 #import "CommonService.h"
 
+
+@protocol BBSServiceDelegate <NSObject>
+
+@optional
+- (void)didGetBBSBoardList:(NSArray *)boardList
+               resultCount:(NSInteger)resultCount;
+
+@end
 @interface BBSService : CommonService
+
++ (id)defaultService;
+- (void)getBBSBoardList:(id<BBSServiceDelegate>) delegate;
+
+
 
 @end
