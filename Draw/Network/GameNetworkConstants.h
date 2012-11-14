@@ -467,6 +467,11 @@
 
 #define FINDDRAW_FORMAT_PROTOCOLBUFFER @"pb"
 
+
+
+#pragma mark BBS Constant
+#define METHOD_GET_BBSBOARD_LIST @"gbbl"
+
 #define REGISTER_TYPE_EMAIL     1
 #define REGISTER_TYPE_SINA      2
 #define REGISTER_TYPE_QQ        3
