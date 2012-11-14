@@ -720,6 +720,11 @@
 		CA3F2ED81609BCFB0059667B /* ContestOpusController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3F2ED61609BCFB0059667B /* ContestOpusController.m */; };
 		CA3F2ED91609BCFB0059667B /* ContestOpusController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA3F2ED71609BCFB0059667B /* ContestOpusController.xib */; };
 		CA3F2F1F1609BDCA0059667B /* CommonTabController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3F2F1D1609BDCA0059667B /* CommonTabController.m */; };
+		CA415132165395A30062A638 /* BBSManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA41512E165395A30062A638 /* BBSManager.m */; };
+		CA415133165395A30062A638 /* BBSService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA415131165395A30062A638 /* BBSService.m */; };
+		CA415137165395E30062A638 /* BBSBoardController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA415135165395E30062A638 /* BBSBoardController.m */; };
+		CA415138165395E30062A638 /* BBSBoardController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA415136165395E30062A638 /* BBSBoardController.xib */; };
+		CA41513A165396410062A638 /* BBSBoardController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA415139165396410062A638 /* BBSBoardController~ipad.xib */; };
 		CA41C944152010FF00013DC8 /* ItemShopController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA41C942152010FF00013DC8 /* ItemShopController.m */; };
 		CA41C945152010FF00013DC8 /* ItemShopController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA41C943152010FF00013DC8 /* ItemShopController.xib */; };
 		CA41C9491520179100013DC8 /* ShoppingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA41C9471520179000013DC8 /* ShoppingCell.m */; };
@@ -3041,6 +3046,14 @@
 		CA3F2F1C1609BDCA0059667B /* CommonTabController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonTabController.h; sourceTree = "<group>"; };
 		CA3F2F1D1609BDCA0059667B /* CommonTabController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonTabController.m; sourceTree = "<group>"; };
 		CA4150C1165345620062A638 /* BBS.proto */ = {isa = PBXFileReference; lastKnownFileType = text; path = BBS.proto; sourceTree = "<group>"; };
+		CA41512D165395A30062A638 /* BBSManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBSManager.h; sourceTree = "<group>"; };
+		CA41512E165395A30062A638 /* BBSManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBSManager.m; sourceTree = "<group>"; };
+		CA415130165395A30062A638 /* BBSService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBSService.h; sourceTree = "<group>"; };
+		CA415131165395A30062A638 /* BBSService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBSService.m; sourceTree = "<group>"; };
+		CA415134165395E30062A638 /* BBSBoardController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBSBoardController.h; sourceTree = "<group>"; };
+		CA415135165395E30062A638 /* BBSBoardController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBSBoardController.m; sourceTree = "<group>"; };
+		CA415136165395E30062A638 /* BBSBoardController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BBSBoardController.xib; sourceTree = "<group>"; };
+		CA415139165396410062A638 /* BBSBoardController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "BBSBoardController~ipad.xib"; sourceTree = "<group>"; };
 		CA41C941152010FF00013DC8 /* ItemShopController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemShopController.h; sourceTree = "<group>"; };
 		CA41C942152010FF00013DC8 /* ItemShopController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemShopController.m; sourceTree = "<group>"; };
 		CA41C943152010FF00013DC8 /* ItemShopController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ItemShopController.xib; sourceTree = "<group>"; };
@@ -7205,6 +7218,45 @@
 			path = Opus;
 			sourceTree = "<group>";
 		};
+		CA41512A165395A30062A638 /* BBS */ = {
+			isa = PBXGroup;
+			children = (
+				CA41512B165395A30062A638 /* Controller */,
+				CA41512C165395A30062A638 /* Manager */,
+				CA41512F165395A30062A638 /* Service */,
+			);
+			path = BBS;
+			sourceTree = "<group>";
+		};
+		CA41512B165395A30062A638 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				CA415134165395E30062A638 /* BBSBoardController.h */,
+				CA415135165395E30062A638 /* BBSBoardController.m */,
+				CA415136165395E30062A638 /* BBSBoardController.xib */,
+				CA415139165396410062A638 /* BBSBoardController~ipad.xib */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		CA41512C165395A30062A638 /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				CA41512D165395A30062A638 /* BBSManager.h */,
+				CA41512E165395A30062A638 /* BBSManager.m */,
+			);
+			path = Manager;
+			sourceTree = "<group>";
+		};
+		CA41512F165395A30062A638 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				CA415130165395A30062A638 /* BBSService.h */,
+				CA415131165395A30062A638 /* BBSService.m */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
 		CA4216251522A0E800FAA008 /* StoreKit */ = {
 			isa = PBXGroup;
 			children = (
@@ -7856,6 +7908,7 @@
 				CA3220FF151B6A490039A384 /* Network */,
 				CA2F81D915C0D62D002038A6 /* Facetime */,
 				CAEECD9015DDEEF700FA5A2A /* Board */,
+				CA41512A165395A30062A638 /* BBS */,
 				CA427065161FFF4A00C6CCAE /* Home */,
 				CA2F81E015C0D62E002038A6 /* Dice */,
 				A4E7877C1636727E003557AD /* ZhaJinHua */,
@@ -11010,6 +11063,8 @@
 				A42EA43A1653415F0080BB95 /* ZJHGameController~ip5.xib in Resources */,
 				A42EA43C165341B40080BB95 /* zjh_game_bg_ip5@2x.jpg in Resources */,
 				A42EA47216537AB40080BB95 /* zjh_finger@2x.png in Resources */,
+				CA415138165395E30062A638 /* BBSBoardController.xib in Resources */,
+				CA41513A165396410062A638 /* BBSBoardController~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -11610,6 +11665,9 @@
 				C299BED9165333E800C21E2F /* CommonRoomListCell.m in Sources */,
 				CA913A521653532000B6387F /* Bbs.pb.m in Sources */,
 				A42EA46F1653656A0080BB95 /* ZJHScreenConfig.m in Sources */,
+				CA415132165395A30062A638 /* BBSManager.m in Sources */,
+				CA415133165395A30062A638 /* BBSService.m in Sources */,
+				CA415137165395E30062A638 /* BBSBoardController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
