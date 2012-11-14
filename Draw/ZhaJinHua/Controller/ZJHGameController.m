@@ -38,7 +38,14 @@
 #define RIGHT_TOP_MESSAGE_VIEW_POSITION CGPointMake(221, 106)
 #define LEFT_MESSAGE_VIEW_POSITION CGPointMake(64, 231)
 #define RIGHT_MESSAGE_VIEW_POSITION CGPointMake(221, 231)
-#define CENTER_MESSAGE_VIEW_POSITION CGPointMake(134, 272)
+
+#define LEFT_TOP_MESSAGE_VIEW_POSITION_IPHONE5 CGPointMake(64, 182)
+#define RIGHT_TOP_MESSAGE_VIEW_POSITION_IPHONE5 CGPointMake(221, 182)
+#define LEFT_MESSAGE_VIEW_POSITION_IPHONE5 CGPointMake(64, 318)
+#define RIGHT_MESSAGE_VIEW_POSITION_IPHONE5 CGPointMake(221, 318)
+
+
+
 
 #define CARDS_COUNT 3
 
@@ -1082,9 +1089,6 @@ compareCardWith:(NSString*)targetUserId
 - (CGPoint)getMessageOriginPointByUserPosition:(UserPosition)position
 {
     switch (position) {
-        case UserPositionCenter:
-            return CENTER_MESSAGE_VIEW_POSITION;
-            break;
             
         case UserPositionLeftTop:
             return LEFT_TOP_MESSAGE_VIEW_POSITION;
@@ -1185,5 +1189,7 @@ compareCardWith:(NSString*)targetUserId
     [_msgCenter postMessageWithText:NSLS(@"kMoneyTreeNotMature")
                           delayTime:1];
 }
+
+
 
 @end
