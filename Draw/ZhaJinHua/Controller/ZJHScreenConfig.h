@@ -7,7 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "ZJHConstance.h"
+
+
 
 @interface ZJHScreenConfig : NSObject
+
++ (CGPoint)getMessageViewOriginByPosition:(UserPosition)position;
 
 @end
