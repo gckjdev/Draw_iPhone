@@ -53,4 +53,6 @@
 - (NSString *)winner;
 - (int)myBalance;
 
+- (NSArray *)compareUserIdList;
+
 @end

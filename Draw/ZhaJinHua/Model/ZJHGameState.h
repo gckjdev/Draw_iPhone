@@ -12,7 +12,6 @@
 
 @property (assign, nonatomic) int totalBet;
 @property (assign, nonatomic) int singleBet;
-@property (assign, nonatomic) int myTurnTimes;
 @property (retain, nonatomic) NSString *winner;
 @property (readonly, retain, nonatomic) NSDictionary *usersInfo;
 

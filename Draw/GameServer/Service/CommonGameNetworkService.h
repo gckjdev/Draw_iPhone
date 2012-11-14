@@ -68,6 +68,7 @@
 - (void)handleMoreOnGameStartNotificationRequest:(GameMessage*)message;
 - (void)handleMoreOnGameOverNotificationRequest:(GameMessage*)message;
 - (void)handleMoreOnJoinGameResponse:(GameMessage*)message;
+- (void)handleMoreOnNextPlayerStartNotificationRequest:(GameMessage*)message;
 
 - (void)startDisconnectTimer;
 - (void)clearDisconnectTimer;

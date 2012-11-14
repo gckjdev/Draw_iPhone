@@ -193,6 +193,7 @@
 - (void)handleGameStartNotificationRequest:(GameMessage*)message
 {
     self.session.status = GameStatusPlaying;
+    self.session.myTurnTimes = 0;
     [self handleMoreOnGameStartNotificationRequest:message];
     [self postNotification:NOTIFICATION_GAME_START_NOTIFICATION_REQUEST message:message];
 }
@@ -207,8 +208,11 @@
 - (void)handleNextPlayerStartNotificationRequest:(GameMessage *)message
 {
     PPDebug(@"(*************** next player: %@ *****************", [message currentPlayUserId]);
-
     self.session.currentPlayUserId = [message currentPlayUserId];
+    if ([self isMyTurn]) {
+        self.session.myTurnTimes++;
+    }
+    [self handleMoreOnNextPlayerStartNotificationRequest:message];
     [self postNotification:NOTIFICATION_NEXT_PLAYER_START message:message];
 }
 
@@ -233,6 +237,10 @@
 }
 
 - (void)handleMoreOnJoinGameResponse:(GameMessage*)message
+{
+}
+
+- (void)handleMoreOnNextPlayerStartNotificationRequest:(GameMessage*)message
 {
 }
 

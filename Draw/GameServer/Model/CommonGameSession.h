@@ -28,6 +28,7 @@ typedef enum{
 @property (nonatomic, assign) GameStatus status;
 @property (nonatomic, assign) NSInteger roundNumber;
 @property (nonatomic, retain) NSString *currentPlayUserId;
+@property (nonatomic, assign) NSInteger myTurnTimes;
 @property (nonatomic, assign) int ruleType;
 
 - (void)fromPBGameSession:(PBGameSession*)pbSession userId:(NSString*)userId;

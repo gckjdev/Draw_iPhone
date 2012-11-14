@@ -564,6 +564,11 @@ static ZJHImageManager* shareInstance;
     return [_resService imageByName:@"zjh_game_total_bet_bg"];
 }
 
+- (UIImage *)userTotalBetBgImage
+{
+    return [_resService imageByName:@"zjh_user_bet_bg"];
+}
+
 - (UIImage *)buttonsHolderBgImage
 {
     return [_resService imageByName:@"zjh_button_holder_bg"];

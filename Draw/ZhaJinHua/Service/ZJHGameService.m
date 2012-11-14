@@ -192,7 +192,7 @@ static ZJHGameService *_defaultService;
 
 - (BOOL)canICompareCard
 {
-    return [self isGamePlaying] && [self isMyTurn] && [[self myPlayInfo] canCompareCard];
+    return [self isGamePlaying] && [self isMyTurn] && [[self myPlayInfo] canCompareCard] && (self.session.myTurnTimes >=2) && ([[self compareUserIdList] count] > 0);
 }
 
 - (BOOL)canIShowCard:(int)cardId
@@ -241,16 +241,6 @@ static ZJHGameService *_defaultService;
             self.gameState.winner = userResult.userId;
         }
     }
-}
-
-- (void)handleNextPlayerStartNotificationRequest:(GameMessage *)message
-{
-    PPDebug(@"(*************** next player: %@ *****************", [message currentPlayUserId]);
-    
-    self.session.currentPlayUserId = [message currentPlayUserId];
-
-    
-    [self postNotification:NOTIFICATION_NEXT_PLAYER_START message:message];
 }
 
 #pragma mark -  message handler
@@ -471,6 +461,18 @@ static ZJHGameService *_defaultService;
 - (int)myBalance
 {
     return _myBalance;
+}
+
+- (NSArray *)compareUserIdList
+{
+    NSMutableArray *arr = [NSMutableArray array];
+    for (PBGameUser *user in self.session.userList) {
+        if ([self canUserCompareCard:user.userId]) {
+            [arr addObject:user.userId];
+        }
+    }
+    
+    return arr;
 }
 
 
