@@ -281,6 +281,10 @@
 		C2433A2915AC025A00325A76 /* CommonItemInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2433A2815AC025900325A76 /* CommonItemInfoView.xib */; };
 		C2433A2B15AC028400325A76 /* CommonItemInfoView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2433A2A15AC028300325A76 /* CommonItemInfoView~ipad.xib */; };
 		C246F3581577633B003C284F /* LevelService.m in Sources */ = {isa = PBXBuildFile; fileRef = C246F3571577633B003C284F /* LevelService.m */; };
+		C250AD111653A7F400003E15 /* ZJHRoomListController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C250AD0B1653A7F400003E15 /* ZJHRoomListController.xib */; };
+		C250AD121653A7F400003E15 /* ZJHRoomListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C250AD0C1653A7F400003E15 /* ZJHRoomListCell.xib */; };
+		C250AD131653A7F400003E15 /* ZJHRoomListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C250AD0E1653A7F400003E15 /* ZJHRoomListCell.m */; };
+		C250AD141653A7F400003E15 /* ZJHRoomListController.m in Sources */ = {isa = PBXBuildFile; fileRef = C250AD101653A7F400003E15 /* ZJHRoomListController.m */; };
 		C25C079E15D5F11700E8DD8D /* UIImage+Filtrr.m in Sources */ = {isa = PBXBuildFile; fileRef = C25C079915D5F11700E8DD8D /* UIImage+Filtrr.m */; };
 		C25C079F15D5F11700E8DD8D /* UIImage+FiltrrCompositions.m in Sources */ = {isa = PBXBuildFile; fileRef = C25C079B15D5F11700E8DD8D /* UIImage+FiltrrCompositions.m */; };
 		C25C07A015D5F11700E8DD8D /* UIImage+Scale.m in Sources */ = {isa = PBXBuildFile; fileRef = C25C079D15D5F11700E8DD8D /* UIImage+Scale.m */; };
@@ -2281,6 +2285,12 @@
 		C2433A2A15AC028300325A76 /* CommonItemInfoView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "CommonItemInfoView~ipad.xib"; sourceTree = "<group>"; };
 		C246F3561577633B003C284F /* LevelService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LevelService.h; sourceTree = "<group>"; };
 		C246F3571577633B003C284F /* LevelService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LevelService.m; sourceTree = "<group>"; };
+		C250AD0B1653A7F400003E15 /* ZJHRoomListController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZJHRoomListController.xib; sourceTree = "<group>"; };
+		C250AD0C1653A7F400003E15 /* ZJHRoomListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZJHRoomListCell.xib; sourceTree = "<group>"; };
+		C250AD0D1653A7F400003E15 /* ZJHRoomListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJHRoomListCell.h; sourceTree = "<group>"; };
+		C250AD0E1653A7F400003E15 /* ZJHRoomListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJHRoomListCell.m; sourceTree = "<group>"; };
+		C250AD0F1653A7F400003E15 /* ZJHRoomListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJHRoomListController.h; sourceTree = "<group>"; };
+		C250AD101653A7F400003E15 /* ZJHRoomListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJHRoomListController.m; sourceTree = "<group>"; };
 		C25C079815D5F11700E8DD8D /* UIImage+Filtrr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Filtrr.h"; sourceTree = "<group>"; };
 		C25C079915D5F11700E8DD8D /* UIImage+Filtrr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Filtrr.m"; sourceTree = "<group>"; };
 		C25C079A15D5F11700E8DD8D /* UIImage+FiltrrCompositions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+FiltrrCompositions.h"; sourceTree = "<group>"; };
@@ -5159,6 +5169,7 @@
 		A4E7877D16367338003557AD /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				C250AD0A1653A7E500003E15 /* room */,
 				A42EA4391653415F0080BB95 /* ZJHGameController~ip5.xib */,
 				A42EA3331651F0220080BB95 /* ZJHGameController~ipad.xib */,
 				A44B6223163787F500A8045B /* ZJHGameController.h */,
@@ -5297,6 +5308,19 @@
 				C225866D15EF5AA4009D686D /* GCServer.m */,
 			);
 			path = Server;
+			sourceTree = "<group>";
+		};
+		C250AD0A1653A7E500003E15 /* room */ = {
+			isa = PBXGroup;
+			children = (
+				C250AD0B1653A7F400003E15 /* ZJHRoomListController.xib */,
+				C250AD0C1653A7F400003E15 /* ZJHRoomListCell.xib */,
+				C250AD0D1653A7F400003E15 /* ZJHRoomListCell.h */,
+				C250AD0E1653A7F400003E15 /* ZJHRoomListCell.m */,
+				C250AD0F1653A7F400003E15 /* ZJHRoomListController.h */,
+				C250AD101653A7F400003E15 /* ZJHRoomListController.m */,
+			);
+			name = room;
 			sourceTree = "<group>";
 		};
 		C25C079715D5F11700E8DD8D /* Filtrr */ = {
@@ -11078,6 +11102,8 @@
 				A42EA47216537AB40080BB95 /* zjh_finger@2x.png in Resources */,
 				CA415138165395E30062A638 /* BBSBoardController.xib in Resources */,
 				CA41513A165396410062A638 /* BBSBoardController~ipad.xib in Resources */,
+				C250AD111653A7F400003E15 /* ZJHRoomListController.xib in Resources */,
+				C250AD121653A7F400003E15 /* ZJHRoomListCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -11682,6 +11708,8 @@
 				CA415133165395A30062A638 /* BBSService.m in Sources */,
 				CA415137165395E30062A638 /* BBSBoardController.m in Sources */,
 				CA41513E16539B650062A638 /* BBSNetwork.m in Sources */,
+				C250AD131653A7F400003E15 /* ZJHRoomListCell.m in Sources */,
+				C250AD141653A7F400003E15 /* ZJHRoomListController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
