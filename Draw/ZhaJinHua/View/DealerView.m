@@ -10,6 +10,7 @@
 #import "ZJHImageManager.h"
 #import "AnimationManager.h"
 #import "ZJHGameController.h"
+#import "ZJHPokerView.h"
 
 #define DEAL_TIMEINTERVAL   0.33
 #define DEAL_ANIMATION_DURATION 0.33
@@ -88,7 +89,7 @@
     CALayer* layer= [CALayer layer];
     UIImage* back = [[ZJHImageManager defaultManager] pokerBackImage];
     layer.contents = (id)[back CGImage];
-    layer.bounds = CGRectMake(0, 0, back.size.width*0.7, back.size.height*0.7);
+    layer.bounds = CGRectMake(0, 0, SMALL_POKER_VIEW_WIDTH, SMALL_POKER_VIEW_HEIGHT);
 //    layer.shouldRasterize = YES;
     layer.position = CGPointMake(self.frame.size.width/2, self.frame.size.height/2);
     [self.layer addSublayer:layer];

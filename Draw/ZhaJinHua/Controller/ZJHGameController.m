@@ -159,8 +159,12 @@
     [self.moneyTree setImage:[_imageManager moneyTreeImage] forState:UIControlStateNormal] ;
     self.vsImageView.image = [_imageManager vsImage];
     
+    [self.autoBetButton setBackgroundImage:[_imageManager autoBetBtnOnBgImage] forState:UIControlStateSelected];
     [self updateZJHButtons];
-
+    
+    for (int tag = USER_TOTAL_BET_BG_IMAGE_VIEW_OFFSET; tag < USER_TOTAL_BET_BG_IMAGE_VIEW_OFFSET + UserPositionMax; tag ++) {
+        [((UIImageView *)[self.view viewWithTag:tag]) setImage:[_imageManager userTotalBetBgImage]];
+    }
 }
 
 - (void)viewDidLoad
@@ -300,6 +304,12 @@
 }
 
 #pragma mark - player action
+
+- (void)compareToUser:(NSString*)targetUserId
+{
+    self.isComparing = NO;
+    [_gameService compareCard:targetUserId];
+}
 
 - (void)bet:(BOOL)autoBet
 {
@@ -679,6 +689,8 @@ compareCardWith:(NSString*)targetUserId
 
 - (void)setAllPlayerComparing
 {
+    int canCompareUserCount = 0;
+    ZJHPokerView* lastCanComparePokerView;
     for (PBGameUser* user in _gameService.session.userList) {
         ZJHAvatarView* avatar = [self getAvatarViewByUserId:user.userId];
         if (![_gameService canUserCompareCard:user.userId]) {
@@ -695,8 +707,13 @@ compareCardWith:(NSString*)targetUserId
 //        }
 //        btn.hidden = NO;
 //        [self.view bringSubviewToFront:btn];
-        ZJHPokerView* pokerView = (ZJHPokerView*)[self.view viewWithTag:(avatar.tag - AVATAR_VIEW_TAG_OFFSET + POKERS_VIEW_TAG_OFFSET)];
-        [pokerView showBomb];
+        lastCanComparePokerView = (ZJHPokerView*)[self.view viewWithTag:(avatar.tag - AVATAR_VIEW_TAG_OFFSET + POKERS_VIEW_TAG_OFFSET)];
+        [lastCanComparePokerView showBomb];
+        canCompareUserCount ++;
+    }
+    if (canCompareUserCount == 1) {
+        ZJHAvatarView* avatar = (ZJHAvatarView*)[self.view viewWithTag:(AVATAR_VIEW_TAG_OFFSET+lastCanComparePokerView.tag - POKERS_VIEW_TAG_OFFSET)];
+        [self compareToUser:avatar.userInfo.userId];
     }
 }
 
@@ -883,8 +900,7 @@ compareCardWith:(NSString*)targetUserId
 {
     ZJHAvatarView* avatar = (ZJHAvatarView*)[self.view viewWithTag:(AVATAR_VIEW_TAG_OFFSET+zjhPokerView.tag - POKERS_VIEW_TAG_OFFSET)];
     //    [self someone:[_userManager userId] compareCardWith:avatar.userInfo.userId didWin:YES];
-    self.isComparing = NO;
-    [_gameService compareCard:avatar.userInfo.userId];
+    [self compareToUser:avatar.userInfo.userId];
 }
 
 #pragma mark - chipsSelectView protocol
@@ -1055,8 +1071,6 @@ compareCardWith:(NSString*)targetUserId
     return [NSString stringWithFormat:@"%d", intValue];
 }
 
-#pragma mark - test end
-
 - (void)allBet
 {
     for (PBGameUser *user in _gameService.session.userList) {
@@ -1113,12 +1127,12 @@ compareCardWith:(NSString*)targetUserId
     [UIView animateWithDuration:0.3 animations:^{
         view.alpha = 1;
     } completion:^(BOOL finished) {
-        [UIView animateWithDuration:1.5 animations:^{
+        [UIView animateWithDuration:1.5 delay:0.5 options:UIViewAnimationCurveEaseInOut animations:^{
             view.center = CGPointMake(view.center.x, view.center.y - 15);
             view.alpha = 0;
         } completion:^(BOOL finished) {
             [view removeFromSuperview];
-            
+
         }];
     }];
 }

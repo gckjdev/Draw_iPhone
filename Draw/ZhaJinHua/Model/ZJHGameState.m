@@ -18,7 +18,6 @@
 @implementation ZJHGameState
 
 @synthesize usersInfo = _usersInfo;
-@synthesize myTurnTimes = _myTurnTimes;
 @synthesize winner = _winner;
 #pragma mark - life cycle
 - (void)dealloc
@@ -33,7 +32,6 @@
     if (self = [super init]) {
         self.totalBet = gameState.totalBet;
         self.singleBet = gameState.singleBet;
-        self.myTurnTimes = 0;
         self.usersInfo = [self usersPlayInfoFromPBZJHUserPlayInfoList:gameState.usersInfoList];
         self.winner = nil;
     }
