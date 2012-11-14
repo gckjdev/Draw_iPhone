@@ -199,7 +199,7 @@
     [self.moneyTree startGrow];
     self.moneyTree.delegate = self;
     
-    [_audioManager setBackGroundMusicWithName:[_soundManager gameBGM]];
+    [_audioManager setBackGroundMusicWithURL:[_soundManager gameBGM]];
 }
 
 - (void)updateView
@@ -385,14 +385,16 @@
 {
     ZJHUserPlayInfo *userPlayInfo = [_gameService userPlayInfo:_userManager.userId];
     BOOL gender = [_userManager.gender isEqualToString:@"m"];
-    NSString* soundName;
+    NSURL* soundURL;
     if (userPlayInfo.lastAction == PBZJHUserActionRaiseBet) {
-        soundName = [_soundManager raiseBetHumanSound:gender];
+        soundURL = [_soundManager raiseBetHumanSound:gender];
     } else {
-        soundName = [_soundManager betHumanSound:gender];
+        soundURL = [_soundManager betHumanSound:gender];
     }
-    [_audioManager playSoundByName:soundName];
-    [_audioManager playSoundByName:[_soundManager betSoundEffect]];
+    [_audioManager playSoundByURL:soundURL];
+    [_audioManager playSoundByURL:[_soundManager betSoundEffect]];
+
+    //    [_audioManager playSoundByURL:[_soundManager betSoundEffect]];
     
     [self updateZJHButtons];
     [self dismissAllPopupView];
@@ -409,16 +411,16 @@
 - (void)checkCardSuccess
 {
     BOOL gender = [_userManager.gender isEqualToString:@"m"];
-    [_audioManager playSoundByName:[_soundManager checkCardHumanSound:gender]];
-    [_audioManager playSoundByName:[_soundManager checkCardSoundEffect]];
+    [_audioManager playSoundByURL:[_soundManager checkCardHumanSound:gender]];
+    [_audioManager playSoundByURL:[_soundManager checkCardSoundEffect]];
     
     [self updateZJHButtons];
 }
 
 - (void)foldCardSuccess
 {
-    [_audioManager playSoundByName:_soundManager.foldCardSoundEffect];
-    [_audioManager playSoundByName:[_soundManager foldCardHumanSound:[@"m" isEqualToString:_userManager.gender]]];
+    [_audioManager playSoundByURL:_soundManager.foldCardSoundEffect];
+    [_audioManager playSoundByURL:[_soundManager foldCardHumanSound:[@"m" isEqualToString:_userManager.gender]]];
     [self updateZJHButtons];
     [self dismissAllPopupView];
 }
@@ -523,16 +525,16 @@
 {
     ZJHUserPlayInfo *userPlayInfo = [_gameService userPlayInfo:userId];
     BOOL gender = [_gameService.session getUserByUserId:userId].gender;
-    NSString* soundName;
+    NSURL* soundURL;
     if (userPlayInfo.lastAction == PBZJHUserActionRaiseBet) {
-        soundName = [_soundManager raiseBetHumanSound:gender];
+        soundURL = [_soundManager raiseBetHumanSound:gender];
         [self popupRaiseBetMessageAtUser:userId];
     } else {
-        soundName = [_soundManager betHumanSound:gender];
+        soundURL = [_soundManager betHumanSound:gender];
         [self popupBetMessageAtUser:userId];
     }
-    [_audioManager playSoundByName:soundName];
-    [_audioManager playSoundByName:[_soundManager betSoundEffect]];
+    [_audioManager playSoundByURL:soundURL];
+    [_audioManager playSoundByURL:[_soundManager betSoundEffect]];
     
     [[self getAvatarViewByUserId:userId] stopReciprocal];
     [self.betTable someBetFrom:[self getPositionByUserId:userId]
@@ -556,8 +558,8 @@ compareCardWith:(NSString*)targetUserId
       initiator:(NSString*)initiatorId
 {
     BOOL gender = [_gameService.session getUserByUserId:initiatorId].gender;
-    [_audioManager playSoundByName:[_soundManager compareCardHumanSound:gender]];
-    [_audioManager playSoundByName:[_soundManager compareCardSoundEffect]];
+    [_audioManager playSoundByURL:[_soundManager compareCardHumanSound:gender]];
+    [_audioManager playSoundByURL:[_soundManager compareCardSoundEffect]];
     
     ZJHPokerView* pokerView = [self getPokersViewByUserId:userId];
     ZJHPokerView* otherPokerView = [self getPokersViewByUserId:targetUserId];
@@ -666,8 +668,8 @@ compareCardWith:(NSString*)targetUserId
 - (void)someoneCheckCard:(NSString*)userId
 {
     BOOL gender = [_gameService.session getUserByUserId:userId].gender;
-    [_audioManager playSoundByName:[_soundManager checkCardHumanSound:gender]];
-    [_audioManager playSoundByName:[_soundManager checkCardSoundEffect]];
+    [_audioManager playSoundByURL:[_soundManager checkCardHumanSound:gender]];
+    [_audioManager playSoundByURL:[_soundManager checkCardSoundEffect]];
     [[self getPokersViewByUserId:userId] makeSectorShape:[self getPokerSectorTypeByPosition:[self getPositionByUserId:userId]] animation:YES];
     [self popupCheckCardMessageAtUser:userId];
 }
@@ -675,7 +677,7 @@ compareCardWith:(NSString*)targetUserId
 - (void)someoneFoldCard:(NSString*)userId
 {
     BOOL gender = [_gameService.session getUserByUserId:userId].gender;
-    [_audioManager playSoundByName:[_soundManager foldCardHumanSound:gender]];
+    [_audioManager playSoundByURL:[_soundManager foldCardHumanSound:gender]];
     [[self getAvatarViewByUserId:userId] stopReciprocal];
     [[self getPokersViewByUserId:userId] foldCards:YES];
     [self popupFoldCardMessageAtUser:userId];
@@ -684,10 +686,10 @@ compareCardWith:(NSString*)targetUserId
 - (void)someoneWon:(NSString*)userId
 {
     if ([_userManager isMe:userId]) {
-        [_audioManager playSoundByName:[_soundManager gameWin]];
-        [_audioManager playSoundByName:[_soundManager fullMoney]];
+        [_audioManager playSoundByURL:[_soundManager gameWin]];
+        [_audioManager playSoundByURL:[_soundManager fullMoney]];
     } else {
-        [_audioManager playSoundByName:[_soundManager gameOver]];
+        [_audioManager playSoundByURL:[_soundManager gameOver]];
     }
     [self.betTable userWonAllChips:[self getPositionByUserId:userId]];
 }
@@ -1172,7 +1174,7 @@ compareCardWith:(NSString*)targetUserId
 #pragma mark - money tree delegate
 - (void)getMoney:(int)money fromTree:(MoneyTree *)tree
 {
-    [_audioManager playSoundByName:[_soundManager betSoundEffect]];
+    [_audioManager playSoundByURL:[_soundManager betSoundEffect]];
     [[AccountService defaultService] chargeAccount:money source:MoneyTreeAward];
     [[self getMyAvatarView] update];
     [_msgCenter postMessageWithText:[NSString stringWithFormat:NSLS(@"kGetMoneyFromTree"), money]
