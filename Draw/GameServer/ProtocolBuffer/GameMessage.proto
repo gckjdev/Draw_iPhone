@@ -4,6 +4,7 @@ import "GameBasic.proto";
 import "Draw.proto";
 import "Dice.proto";
 import "ZhaJinHua.proto";
+import "BBS.proto";
 
 package game;
 
@@ -448,4 +449,10 @@ message DataQueryResponse {
   
   // for user feed
   repeated PBFeed feed = 41;
+  
+  //for bbs
+  repeated PBBBSBoard bbsBoard = 51;
+  repeated PBBBSPost bbsPost = 52;
+  repeated PBBBSAction bbsAction = 53;
+
 }
