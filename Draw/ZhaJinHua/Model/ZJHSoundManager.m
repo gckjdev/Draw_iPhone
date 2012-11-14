@@ -7,8 +7,18 @@
 //
 
 #import "ZJHSoundManager.h"
+#import "PPResourceService.h"
+#import "GameResource.h"
 
 static ZJHSoundManager* shareInstance;
+
+@interface ZJHSoundManager()
+{
+    PPResourceService* _resourceService;
+}
+
+
+@end
 
 @implementation ZJHSoundManager
 
@@ -20,129 +30,142 @@ static ZJHSoundManager* shareInstance;
     return shareInstance;
 }
 
-- (NSString*)betSoundEffect
+- (id)init
 {
-    return @"bet.mp3";
+    self = [super init];
+    _resourceService = [PPResourceService defaultService];
+    return self;
 }
 
-- (NSString*)betHumanSound:(BOOL)gender
+- (NSURL*)betSoundEffect
+{
+    return [_resourceService audioURLByName:@"bet.mp3" inResourcePackage:RESOURCE_PACKAGE_ZJH_AUDIO];
+}
+
+- (NSURL*)betHumanSound:(BOOL)gender
 {
     if (gender) {
-        return [NSString stringWithFormat:@"bet%d_M.mp3",rand()%3+1];
+        return [_resourceService audioURLByName:[NSString stringWithFormat:@"bet%d_M.mp3",rand()%3+1]
+                              inResourcePackage:RESOURCE_PACKAGE_ZJH_AUDIO];
+//        return ;
     } else {
-        return [NSString stringWithFormat:@"bet%d_F.mp3",rand()%4+1];
+        return [_resourceService audioURLByName:[NSString stringWithFormat:@"bet%d_F.mp3",rand()%3+1]
+                              inResourcePackage:RESOURCE_PACKAGE_ZJH_AUDIO];
+//        return [NSString stringWithFormat:@"bet%d_F.mp3",rand()%4+1];
     }
 }
 
-- (NSString*)checkCardSoundEffect
+- (NSURL*)checkCardSoundEffect
 {
-    return @"check_card.mp3";
+    return [_resourceService audioURLByName:@"check_card.mp3" inResourcePackage:RESOURCE_PACKAGE_ZJH_AUDIO];;
 }
 
-- (NSString*)checkCardHumanSound:(BOOL)gender
+- (NSURL*)checkCardHumanSound:(BOOL)gender
 {
     if (gender) {
-        return @"check_card1_M.mp3";
+        return [_resourceService audioURLByName:@"check_card1_M.mp3" inResourcePackage:RESOURCE_PACKAGE_ZJH_AUDIO];;
     } else {
-        return [NSString stringWithFormat:@"check_card%d_F.mp3",rand()%2+1];
+        return [_resourceService audioURLByName:[NSString stringWithFormat:@"check_card%d_F.mp3",rand()%2+1]
+                              inResourcePackage:RESOURCE_PACKAGE_ZJH_AUDIO];;
     }
 }
 
-- (NSString*)compareCardSoundEffect
+- (NSURL*)compareCardSoundEffect
 {
     return nil;
 }
 
-- (NSString*)compareCardHumanSound:(BOOL)gender
+- (NSURL*)compareCardHumanSound:(BOOL)gender
 {
     if (gender) {
-        return @"compare_card1_M.mp3";
+        return [_resourceService audioURLByName:@"compare_card1_M.mp3" inResourcePackage:RESOURCE_PACKAGE_ZJH_AUDIO];;
     } else {
-        return @"compare_card1_F.mp3";
+        return [_resourceService audioURLByName:@"compare_card1_F.mp3" inResourcePackage:RESOURCE_PACKAGE_ZJH_AUDIO];;
     }
 }
 
-- (NSString*)foldCardSoundEffect
+- (NSURL*)foldCardSoundEffect
 {
     return nil;
 }
 
-- (NSString*)foldCardHumanSound:(BOOL)gender
+- (NSURL*)foldCardHumanSound:(BOOL)gender
 {
     if (gender) {
-        return @"fold_card1_M.mp3";
+        return [_resourceService audioURLByName:@"fold_card1_M.mp3" inResourcePackage:RESOURCE_PACKAGE_ZJH_AUDIO];;
     } else {
-        return [NSString stringWithFormat:@"fold_card%d_F.mp3",rand()%2+1];
+        return [_resourceService audioURLByName:[NSString stringWithFormat:@"fold_card%d_F.mp3",rand()%2+1]
+                              inResourcePackage:RESOURCE_PACKAGE_ZJH_AUDIO];;
     }
 }
 
-- (NSString*)raiseBetSoundEffect
+- (NSURL*)raiseBetSoundEffect
 {
-    return @"raise_bet.mp3";
+    return [_resourceService audioURLByName:@"raise_bet.mp3" inResourcePackage:RESOURCE_PACKAGE_ZJH_AUDIO];;
 }
 
-- (NSString*)raiseBetHumanSound:(BOOL)gender
+- (NSURL*)raiseBetHumanSound:(BOOL)gender
 {
     if (gender) {
-        return @"raise_bet1_M.mp3";
+        return [_resourceService audioURLByName:@"raise_bet1_M.mp3" inResourcePackage:RESOURCE_PACKAGE_ZJH_AUDIO];
     } else {
-        return @"raise_bet1_F.mp3";
+        return [_resourceService audioURLByName:@"raise_bet1_F.mp3" inResourcePackage:RESOURCE_PACKAGE_ZJH_AUDIO];
     }
 }
 
-- (NSString*)clickButtonSound
+- (NSURL*)clickButtonSound
 {
-    return @"click_button.mp3";
+    return [_resourceService audioURLByName:@"click_button.mp3" inResourcePackage:RESOURCE_PACKAGE_ZJH_AUDIO];;
 }
 
-- (NSString*)dealCardAppear
+- (NSURL*)dealCardAppear
 {
-    return @"dealer_appear.mp3";
+    return [_resourceService audioURLByName:@"dealer_appear.mp3" inResourcePackage:RESOURCE_PACKAGE_ZJH_AUDIO];;
 }
 
-- (NSString*)dealCard
+- (NSURL*)dealCard
 {
-    return @"deal_card.mp3";
+    return [_resourceService audioURLByName:@"deal_card.mp3" inResourcePackage:RESOURCE_PACKAGE_ZJH_AUDIO];;
 }
 
-- (NSString*)dealCardDisappear
+- (NSURL*)dealCardDisappear
 {
-    return @"dealer_disappear.mp3";
+    return [_resourceService audioURLByName:@"dealer_disappear.mp3" inResourcePackage:RESOURCE_PACKAGE_ZJH_AUDIO];;
 }
 
-- (NSString*)fireworks
+- (NSURL*)fireworks
 {
-    return @"fireworks.mp3";
+    return [_resourceService audioURLByName:@"fireworks.mp3" inResourcePackage:RESOURCE_PACKAGE_ZJH_AUDIO];;
 }
 
-- (NSString*)flee
+- (NSURL*)flee
 {
-    return @"flee.mp3";
+    return [_resourceService audioURLByName:@"flee.mp3" inResourcePackage:RESOURCE_PACKAGE_ZJH_AUDIO];;
 }
 
-- (NSString*)fullMoney
+- (NSURL*)fullMoney
 {
-    return @"full_monney.mp3";
+    return [_resourceService audioURLByName:@"full_monney.mp3" inResourcePackage:RESOURCE_PACKAGE_ZJH_AUDIO];;
 }
 
-- (NSString*)gameBGM
+- (NSURL*)gameBGM
 {
-    return @"game_bg.mp3";
+    return [_resourceService audioURLByName:@"game_bg.mp3" inResourcePackage:RESOURCE_PACKAGE_ZJH_AUDIO];;
 }
 
-- (NSString*)gameOver
+- (NSURL*)gameOver
 {
-    return @"game_over.mp3";
+    return [_resourceService audioURLByName:@"game_over.mp3" inResourcePackage:RESOURCE_PACKAGE_ZJH_AUDIO];;
 }
 
-- (NSString*)gameWin
+- (NSURL*)gameWin
 {
-    return @"game_win.mp3";
+    return [_resourceService audioURLByName:@"game_win.mp3" inResourcePackage:RESOURCE_PACKAGE_ZJH_AUDIO];;
 }
 
-- (NSString*)getChips
+- (NSURL*)getChips
 {
-    return @"get_chips.mp3";
+    return [_resourceService audioURLByName:@"get_chips.mp3" inResourcePackage:RESOURCE_PACKAGE_ZJH_AUDIO];;
 }
 
 @end

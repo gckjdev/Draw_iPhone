@@ -12,27 +12,26 @@
 
 + (ZJHSoundManager*)defaultManager;
 
-
-- (NSString*)betSoundEffect;
-- (NSString*)betHumanSound:(BOOL)gender;
-- (NSString*)checkCardSoundEffect;
-- (NSString*)checkCardHumanSound:(BOOL)gender;
-- (NSString*)compareCardSoundEffect;
-- (NSString*)compareCardHumanSound:(BOOL)gender;
-- (NSString*)foldCardSoundEffect;
-- (NSString*)foldCardHumanSound:(BOOL)gender;
-- (NSString*)raiseBetSoundEffect;
-- (NSString*)raiseBetHumanSound:(BOOL)gender;
-- (NSString*)clickButtonSound;
-- (NSString*)dealCardAppear;
-- (NSString*)dealCard;
-- (NSString*)dealCardDisappear;
-- (NSString*)fireworks;
-- (NSString*)flee;
-- (NSString*)fullMoney;
-- (NSString*)gameBGM;
-- (NSString*)gameOver;
-- (NSString*)gameWin;
-- (NSString*)getChips;
+- (NSURL*)betSoundEffect;
+- (NSURL*)betHumanSound:(BOOL)gender;
+- (NSURL*)checkCardSoundEffect;
+- (NSURL*)checkCardHumanSound:(BOOL)gender;
+- (NSURL*)compareCardSoundEffect;
+- (NSURL*)compareCardHumanSound:(BOOL)gender;
+- (NSURL*)foldCardSoundEffect;
+- (NSURL*)foldCardHumanSound:(BOOL)gender;
+- (NSURL*)raiseBetSoundEffect;
+- (NSURL*)raiseBetHumanSound:(BOOL)gender;
+- (NSURL*)clickButtonSound;
+- (NSURL*)dealCardAppear;
+- (NSURL*)dealCard;
+- (NSURL*)dealCardDisappear;
+- (NSURL*)fireworks;
+- (NSURL*)flee;
+- (NSURL*)fullMoney;
+- (NSURL*)gameBGM;
+- (NSURL*)gameOver;
+- (NSURL*)gameWin;
+- (NSURL*)getChips;
 
 @end

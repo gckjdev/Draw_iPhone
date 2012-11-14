@@ -228,15 +228,19 @@ NSString* GlobalGetBoardServerURL()
     
     
     // TODO define game resource constants
-    NSSet* resourcePackages = [NSSet setWithObjects:
+    NSSet* explicitsResourcePackages = [NSSet setWithObjects:
                                [PPResourcePackage resourcePackageWithName:RESOURCE_PACKAGE_COMMON type:PPResourceImage],
                                [PPResourcePackage resourcePackageWithName:RESOURCE_PACKAGE_ZJH type:PPResourceImage],
                                [PPResourcePackage resourcePackageWithName:RESOURCE_PACKAGE_DICE type:PPResourceImage],
                                [PPResourcePackage resourcePackageWithName:RESOURCE_PACKAGE_DRAW type:PPResourceImage],
                                nil];
     
+    NSSet* implicitResourcePackages = [NSSet setWithObjects:
+                                        [PPResourcePackage resourcePackageWithName:RESOURCE_PACKAGE_ZJH_AUDIO type:PPResourceAudio],
+                                        nil];
     
-    [[PPResourceService defaultService] addExplicitResourcePackage:resourcePackages];
+    [[PPResourceService defaultService] addExplicitResourcePackage:explicitsResourcePackages];
+    [[PPResourceService defaultService] addImplicitResourcePackage:implicitResourcePackages];
     
     /*
     NSSet* resourcePackages1 = [NSSet setWithObjects:
