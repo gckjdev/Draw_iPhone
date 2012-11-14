@@ -18,6 +18,9 @@
 #import "LmWallService.h"
 #import "CommonRoomListCell.h"
 #import "UserManager.h"
+#import "CommonUserInfoView.h"
+#import "MyFriend.h"
+
 
 
 #define KEY_GAME_MESSAGE @"KEY_GAME_MESSAGE"
@@ -65,26 +68,40 @@
     [super dealloc];
 }
 
-- (BOOL)meetJoinGameCondition
+- (JoinGameErrorCode)meetJoinGameCondition
 {
     PPDebug(@"<CommonRoomListController> meetJoinGameCondition method not implement");
     return NO;
 }
 
+- (void)handleJoinGameError:(JoinGameErrorCode)errorCode
+{
+    PPDebug(@"<CommonRoomListController> didJoinGameError: method not implement");
+}
+
 - (void)checkAndJoinGame:(int)sessionId
 {
-    PPDebug(@"<CommonRoomListController> checkAndJoinGame:(int)sessionId method not implement");
+    if ([self meetJoinGameCondition] == JoinGameSuccess) {
+        [_gameService joinGameRequest:sessionId];
+    } else {
+        [self handleJoinGameError:[self meetJoinGameCondition]];
+    }
 }
 
 - (void)checkAndJoinGame
 {
-    PPDebug(@"<CommonRoomListController> checkAndJoinGame method not implement");
+    if ([self meetJoinGameCondition] == JoinGameSuccess) {
+        [_gameService joinGameRequest];
+    } else {
+        [self handleJoinGameError:[self meetJoinGameCondition]];
+    }
 }
 
 - (void)createRoomWithName:(NSString*)targetText
                   password:(NSString*)password
 {
     [self showActivityWithText:NSLS(@"kCreatingRoom")];
+    [_gameService createRoomWithName:targetText password:password];
 }
 
 - (void)refreshRooms:(id)sender
@@ -126,19 +143,16 @@
     [self startRefreshRoomsTimer];
 }
 
+- (void)handleNoRoomMessage
+{
+    PPDebug(@"<CommonRoomListController> handleNoRoomMessage method not implement");
+}
+
 - (void)updateRoomList
 {
-//    self.emptyListTips.hidden = YES;
-//    if (self.dataList.count < 1) {
-//        self.emptyListTips.hidden = NO;
-//        if (_currentRoomType == friendRoom) {
-//            [self.emptyListTips setText:NSLS(@"kNoFriendRoom")];
-//        }
-//        if (_searchView) {
-//            [self.emptyListTips setText:NSLS(@"kSearchEmpty")];
-//        }
-//    }
-    PPDebug(@"<CommonRoomListController> updateRoomList method not implement");
+    if (self.dataList.count < 1) {
+        [self handleNoRoomMessage];
+    }
 }
 
 
@@ -157,15 +171,16 @@
     [self updateOnlineUserCount];
 }
 
-- (void)joinGame
+- (void)didJoinGame
 {
     [self hideActivity];
-    PPDebug(@"<CommonRoomListController> joinGame method not implement");
+    PPDebug(@"<CommonRoomListController> didJoinGame method not implement");
 }
 
 - (void)connectServer
 {
-    PPDebug(@"<CommonRoomListController> connectServer method not implement");
+    [_gameService connectServer];
+    [self showActivityWithText:NSLS(@"kRefreshingRoomList")];
 }
 
 - (void)registerDiceRoomNotification
@@ -177,7 +192,7 @@
                                 [self hideActivity];
                                 GameMessage* message = [CommonGameNetworkService userInfoToMessage:note.userInfo];
                                 if (message.resultCode == GameResultCodeSuccess) {
-                                    [self joinGame];
+                                    [self didJoinGame];
                                 } else if (message.resultCode == GameResultCodeErrorSessionNameDuplicated) {
                                     [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kRoomNameDuplicated") delayTime:2 isHappy:NO];
                                 }else {
@@ -199,7 +214,7 @@
                                 [self hideActivity];
                                 GameMessage* message = [CommonGameNetworkService userInfoToMessage:note.userInfo];
                                 if (message.resultCode == GameResultCodeSuccess) {
-                                    [self joinGame];
+                                    [self didJoinGame];
                                 } else if (message.resultCode == GameResultCodeErrorSessionidFull) {
                                     [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kSessionFull") delayTime:1.5 isHappy:NO];
                                 } else {
@@ -318,9 +333,9 @@
     [self checkAndJoinGame];
 }
 
-- (IBAction)creatRoom:(id)sender
+- (IBAction)createRoom:(id)sender
 {
-    PPDebug(@"<CommonRoomListController> creatRoom method not implement");
+    PPDebug(@"<CommonRoomListController> createRoom method not implement");
 }
 
 - (void)showCreateRoomView
@@ -350,7 +365,7 @@
 
 - (void)updateOnlineUserCount
 {
-
+    PPDebug(@"<CommonRoomListController> updateOnlineUserCount method not implement");
 }
 
 #pragma mark - CommonGameServiceDelegate
@@ -469,7 +484,12 @@
 #pragma mark - dice room list delegate
 - (void)didQueryUser:(NSString *)userId
 {
-
+    MyFriend *friend = [MyFriend friendWithFid:userId
+                                      nickName:nil
+                                        avatar:nil
+                                        gender:nil
+                                         level:1];
+    [CommonUserInfoView showFriend:friend infoInView:self needUpdate:YES];
 }
 
 

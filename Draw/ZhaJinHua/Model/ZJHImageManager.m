@@ -446,8 +446,9 @@ static ZJHImageManager* shareInstance;
 
 - (UIImage*)bombImage
 {
-    NSArray *bombs = [NSArray arrayWithObjects:@"bomb1", @"bomb2", @"bomb3", nil];
-    return [_resService imageByName:[bombs objectAtIndex:(rand() % [bombs count])] inResourcePackage:RESOURCE_PACKAGE_ZJH];
+//    return [_resService imageByName:@"zjh_finger" inResourcePackage:RESOURCE_PACKAGE_ZJH];
+    
+    return [UIImage imageNamed:@"zjh_finger@2x"];
 }
 
 - (UIImage*)vsImage

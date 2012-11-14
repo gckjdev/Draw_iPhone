@@ -1998,3 +1998,529 @@ static PBBBSAction* defaultPBBBSActionInstance = nil;
 }
 @end
 
+@interface PBBBSBoard ()
+@property (retain) NSString* boardId;
+@property int32_t type;
+@property (retain) NSString* name;
+@property int32_t topicCount;
+@property int32_t postCount;
+@property (retain) NSString* icon;
+@property (retain) NSString* parentBoardId;
+@property (retain) PBBBSPost* lastPost;
+@property (retain) NSString* desc;
+@end
+
+@implementation PBBBSBoard
+
+- (BOOL) hasBoardId {
+  return !!hasBoardId_;
+}
+- (void) setHasBoardId:(BOOL) value {
+  hasBoardId_ = !!value;
+}
+@synthesize boardId;
+- (BOOL) hasType {
+  return !!hasType_;
+}
+- (void) setHasType:(BOOL) value {
+  hasType_ = !!value;
+}
+@synthesize type;
+- (BOOL) hasName {
+  return !!hasName_;
+}
+- (void) setHasName:(BOOL) value {
+  hasName_ = !!value;
+}
+@synthesize name;
+- (BOOL) hasTopicCount {
+  return !!hasTopicCount_;
+}
+- (void) setHasTopicCount:(BOOL) value {
+  hasTopicCount_ = !!value;
+}
+@synthesize topicCount;
+- (BOOL) hasPostCount {
+  return !!hasPostCount_;
+}
+- (void) setHasPostCount:(BOOL) value {
+  hasPostCount_ = !!value;
+}
+@synthesize postCount;
+- (BOOL) hasIcon {
+  return !!hasIcon_;
+}
+- (void) setHasIcon:(BOOL) value {
+  hasIcon_ = !!value;
+}
+@synthesize icon;
+- (BOOL) hasParentBoardId {
+  return !!hasParentBoardId_;
+}
+- (void) setHasParentBoardId:(BOOL) value {
+  hasParentBoardId_ = !!value;
+}
+@synthesize parentBoardId;
+- (BOOL) hasLastPost {
+  return !!hasLastPost_;
+}
+- (void) setHasLastPost:(BOOL) value {
+  hasLastPost_ = !!value;
+}
+@synthesize lastPost;
+- (BOOL) hasDesc {
+  return !!hasDesc_;
+}
+- (void) setHasDesc:(BOOL) value {
+  hasDesc_ = !!value;
+}
+@synthesize desc;
+- (void) dealloc {
+  self.boardId = nil;
+  self.name = nil;
+  self.icon = nil;
+  self.parentBoardId = nil;
+  self.lastPost = nil;
+  self.desc = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.boardId = @"";
+    self.type = 0;
+    self.name = @"";
+    self.topicCount = 0;
+    self.postCount = 0;
+    self.icon = @"";
+    self.parentBoardId = @"";
+    self.lastPost = [PBBBSPost defaultInstance];
+    self.desc = @"";
+  }
+  return self;
+}
+static PBBBSBoard* defaultPBBBSBoardInstance = nil;
++ (void) initialize {
+  if (self == [PBBBSBoard class]) {
+    defaultPBBBSBoardInstance = [[PBBBSBoard alloc] init];
+  }
+}
++ (PBBBSBoard*) defaultInstance {
+  return defaultPBBBSBoardInstance;
+}
+- (PBBBSBoard*) defaultInstance {
+  return defaultPBBBSBoardInstance;
+}
+- (BOOL) isInitialized {
+  if (!self.hasBoardId) {
+    return NO;
+  }
+  if (!self.hasType) {
+    return NO;
+  }
+  if (!self.hasName) {
+    return NO;
+  }
+  if (!self.hasTopicCount) {
+    return NO;
+  }
+  if (!self.hasPostCount) {
+    return NO;
+  }
+  if (self.hasLastPost) {
+    if (!self.lastPost.isInitialized) {
+      return NO;
+    }
+  }
+  return YES;
+}
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
+  if (self.hasBoardId) {
+    [output writeString:1 value:self.boardId];
+  }
+  if (self.hasType) {
+    [output writeInt32:2 value:self.type];
+  }
+  if (self.hasName) {
+    [output writeString:3 value:self.name];
+  }
+  if (self.hasIcon) {
+    [output writeString:4 value:self.icon];
+  }
+  if (self.hasTopicCount) {
+    [output writeInt32:5 value:self.topicCount];
+  }
+  if (self.hasPostCount) {
+    [output writeInt32:6 value:self.postCount];
+  }
+  if (self.hasParentBoardId) {
+    [output writeString:7 value:self.parentBoardId];
+  }
+  if (self.hasLastPost) {
+    [output writeMessage:8 value:self.lastPost];
+  }
+  if (self.hasDesc) {
+    [output writeString:9 value:self.desc];
+  }
+  [self.unknownFields writeToCodedOutputStream:output];
+}
+- (int32_t) serializedSize {
+  int32_t size = memoizedSerializedSize;
+  if (size != -1) {
+    return size;
+  }
+
+  size = 0;
+  if (self.hasBoardId) {
+    size += computeStringSize(1, self.boardId);
+  }
+  if (self.hasType) {
+    size += computeInt32Size(2, self.type);
+  }
+  if (self.hasName) {
+    size += computeStringSize(3, self.name);
+  }
+  if (self.hasIcon) {
+    size += computeStringSize(4, self.icon);
+  }
+  if (self.hasTopicCount) {
+    size += computeInt32Size(5, self.topicCount);
+  }
+  if (self.hasPostCount) {
+    size += computeInt32Size(6, self.postCount);
+  }
+  if (self.hasParentBoardId) {
+    size += computeStringSize(7, self.parentBoardId);
+  }
+  if (self.hasLastPost) {
+    size += computeMessageSize(8, self.lastPost);
+  }
+  if (self.hasDesc) {
+    size += computeStringSize(9, self.desc);
+  }
+  size += self.unknownFields.serializedSize;
+  memoizedSerializedSize = size;
+  return size;
+}
++ (PBBBSBoard*) parseFromData:(NSData*) data {
+  return (PBBBSBoard*)[[[PBBBSBoard builder] mergeFromData:data] build];
+}
++ (PBBBSBoard*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBBBSBoard*)[[[PBBBSBoard builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+}
++ (PBBBSBoard*) parseFromInputStream:(NSInputStream*) input {
+  return (PBBBSBoard*)[[[PBBBSBoard builder] mergeFromInputStream:input] build];
+}
++ (PBBBSBoard*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBBBSBoard*)[[[PBBBSBoard builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (PBBBSBoard*) parseFromCodedInputStream:(PBCodedInputStream*) input {
+  return (PBBBSBoard*)[[[PBBBSBoard builder] mergeFromCodedInputStream:input] build];
+}
++ (PBBBSBoard*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBBBSBoard*)[[[PBBBSBoard builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (PBBBSBoard_Builder*) builder {
+  return [[[PBBBSBoard_Builder alloc] init] autorelease];
+}
++ (PBBBSBoard_Builder*) builderWithPrototype:(PBBBSBoard*) prototype {
+  return [[PBBBSBoard builder] mergeFrom:prototype];
+}
+- (PBBBSBoard_Builder*) builder {
+  return [PBBBSBoard builder];
+}
+@end
+
+@interface PBBBSBoard_Builder()
+@property (retain) PBBBSBoard* result;
+@end
+
+@implementation PBBBSBoard_Builder
+@synthesize result;
+- (void) dealloc {
+  self.result = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.result = [[[PBBBSBoard alloc] init] autorelease];
+  }
+  return self;
+}
+- (PBGeneratedMessage*) internalGetResult {
+  return result;
+}
+- (PBBBSBoard_Builder*) clear {
+  self.result = [[[PBBBSBoard alloc] init] autorelease];
+  return self;
+}
+- (PBBBSBoard_Builder*) clone {
+  return [PBBBSBoard builderWithPrototype:result];
+}
+- (PBBBSBoard*) defaultInstance {
+  return [PBBBSBoard defaultInstance];
+}
+- (PBBBSBoard*) build {
+  [self checkInitialized];
+  return [self buildPartial];
+}
+- (PBBBSBoard*) buildPartial {
+  PBBBSBoard* returnMe = [[result retain] autorelease];
+  self.result = nil;
+  return returnMe;
+}
+- (PBBBSBoard_Builder*) mergeFrom:(PBBBSBoard*) other {
+  if (other == [PBBBSBoard defaultInstance]) {
+    return self;
+  }
+  if (other.hasBoardId) {
+    [self setBoardId:other.boardId];
+  }
+  if (other.hasType) {
+    [self setType:other.type];
+  }
+  if (other.hasName) {
+    [self setName:other.name];
+  }
+  if (other.hasTopicCount) {
+    [self setTopicCount:other.topicCount];
+  }
+  if (other.hasPostCount) {
+    [self setPostCount:other.postCount];
+  }
+  if (other.hasIcon) {
+    [self setIcon:other.icon];
+  }
+  if (other.hasParentBoardId) {
+    [self setParentBoardId:other.parentBoardId];
+  }
+  if (other.hasLastPost) {
+    [self mergeLastPost:other.lastPost];
+  }
+  if (other.hasDesc) {
+    [self setDesc:other.desc];
+  }
+  [self mergeUnknownFields:other.unknownFields];
+  return self;
+}
+- (PBBBSBoard_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
+  return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
+}
+- (PBBBSBoard_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
+  while (YES) {
+    int32_t tag = [input readTag];
+    switch (tag) {
+      case 0:
+        [self setUnknownFields:[unknownFields build]];
+        return self;
+      default: {
+        if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
+          [self setUnknownFields:[unknownFields build]];
+          return self;
+        }
+        break;
+      }
+      case 10: {
+        [self setBoardId:[input readString]];
+        break;
+      }
+      case 16: {
+        [self setType:[input readInt32]];
+        break;
+      }
+      case 26: {
+        [self setName:[input readString]];
+        break;
+      }
+      case 34: {
+        [self setIcon:[input readString]];
+        break;
+      }
+      case 40: {
+        [self setTopicCount:[input readInt32]];
+        break;
+      }
+      case 48: {
+        [self setPostCount:[input readInt32]];
+        break;
+      }
+      case 58: {
+        [self setParentBoardId:[input readString]];
+        break;
+      }
+      case 66: {
+        PBBBSPost_Builder* subBuilder = [PBBBSPost builder];
+        if (self.hasLastPost) {
+          [subBuilder mergeFrom:self.lastPost];
+        }
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self setLastPost:[subBuilder buildPartial]];
+        break;
+      }
+      case 74: {
+        [self setDesc:[input readString]];
+        break;
+      }
+    }
+  }
+}
+- (BOOL) hasBoardId {
+  return result.hasBoardId;
+}
+- (NSString*) boardId {
+  return result.boardId;
+}
+- (PBBBSBoard_Builder*) setBoardId:(NSString*) value {
+  result.hasBoardId = YES;
+  result.boardId = value;
+  return self;
+}
+- (PBBBSBoard_Builder*) clearBoardId {
+  result.hasBoardId = NO;
+  result.boardId = @"";
+  return self;
+}
+- (BOOL) hasType {
+  return result.hasType;
+}
+- (int32_t) type {
+  return result.type;
+}
+- (PBBBSBoard_Builder*) setType:(int32_t) value {
+  result.hasType = YES;
+  result.type = value;
+  return self;
+}
+- (PBBBSBoard_Builder*) clearType {
+  result.hasType = NO;
+  result.type = 0;
+  return self;
+}
+- (BOOL) hasName {
+  return result.hasName;
+}
+- (NSString*) name {
+  return result.name;
+}
+- (PBBBSBoard_Builder*) setName:(NSString*) value {
+  result.hasName = YES;
+  result.name = value;
+  return self;
+}
+- (PBBBSBoard_Builder*) clearName {
+  result.hasName = NO;
+  result.name = @"";
+  return self;
+}
+- (BOOL) hasTopicCount {
+  return result.hasTopicCount;
+}
+- (int32_t) topicCount {
+  return result.topicCount;
+}
+- (PBBBSBoard_Builder*) setTopicCount:(int32_t) value {
+  result.hasTopicCount = YES;
+  result.topicCount = value;
+  return self;
+}
+- (PBBBSBoard_Builder*) clearTopicCount {
+  result.hasTopicCount = NO;
+  result.topicCount = 0;
+  return self;
+}
+- (BOOL) hasPostCount {
+  return result.hasPostCount;
+}
+- (int32_t) postCount {
+  return result.postCount;
+}
+- (PBBBSBoard_Builder*) setPostCount:(int32_t) value {
+  result.hasPostCount = YES;
+  result.postCount = value;
+  return self;
+}
+- (PBBBSBoard_Builder*) clearPostCount {
+  result.hasPostCount = NO;
+  result.postCount = 0;
+  return self;
+}
+- (BOOL) hasIcon {
+  return result.hasIcon;
+}
+- (NSString*) icon {
+  return result.icon;
+}
+- (PBBBSBoard_Builder*) setIcon:(NSString*) value {
+  result.hasIcon = YES;
+  result.icon = value;
+  return self;
+}
+- (PBBBSBoard_Builder*) clearIcon {
+  result.hasIcon = NO;
+  result.icon = @"";
+  return self;
+}
+- (BOOL) hasParentBoardId {
+  return result.hasParentBoardId;
+}
+- (NSString*) parentBoardId {
+  return result.parentBoardId;
+}
+- (PBBBSBoard_Builder*) setParentBoardId:(NSString*) value {
+  result.hasParentBoardId = YES;
+  result.parentBoardId = value;
+  return self;
+}
+- (PBBBSBoard_Builder*) clearParentBoardId {
+  result.hasParentBoardId = NO;
+  result.parentBoardId = @"";
+  return self;
+}
+- (BOOL) hasLastPost {
+  return result.hasLastPost;
+}
+- (PBBBSPost*) lastPost {
+  return result.lastPost;
+}
+- (PBBBSBoard_Builder*) setLastPost:(PBBBSPost*) value {
+  result.hasLastPost = YES;
+  result.lastPost = value;
+  return self;
+}
+- (PBBBSBoard_Builder*) setLastPostBuilder:(PBBBSPost_Builder*) builderForValue {
+  return [self setLastPost:[builderForValue build]];
+}
+- (PBBBSBoard_Builder*) mergeLastPost:(PBBBSPost*) value {
+  if (result.hasLastPost &&
+      result.lastPost != [PBBBSPost defaultInstance]) {
+    result.lastPost =
+      [[[PBBBSPost builderWithPrototype:result.lastPost] mergeFrom:value] buildPartial];
+  } else {
+    result.lastPost = value;
+  }
+  result.hasLastPost = YES;
+  return self;
+}
+- (PBBBSBoard_Builder*) clearLastPost {
+  result.hasLastPost = NO;
+  result.lastPost = [PBBBSPost defaultInstance];
+  return self;
+}
+- (BOOL) hasDesc {
+  return result.hasDesc;
+}
+- (NSString*) desc {
+  return result.desc;
+}
+- (PBBBSBoard_Builder*) setDesc:(NSString*) value {
+  result.hasDesc = YES;
+  result.desc = value;
+  return self;
+}
+- (PBBBSBoard_Builder*) clearDesc {
+  result.hasDesc = NO;
+  result.desc = @"";
+  return self;
+}
+@end
+
