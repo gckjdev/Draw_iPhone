@@ -10,6 +10,7 @@
 #import "ZhaJinHua.pb.h"
 #import "ShareImageManager.h"
 #import "PPResourceService.h"
+#import "GameResource.h"
 
 @interface ZJHImageManager()
 {
@@ -63,19 +64,19 @@ static ZJHImageManager* shareInstance;
 {
     switch (poker.suit) {
         case PBPokerSuitPokerSuitSpade:
-            return [_resService imageByName:@"poker_suit_spade"];
+            return [_resService imageByName:@"poker_suit_spade" inResourcePackage:RESOURCE_PACKAGE_ZJH];
             break;
             
         case PBPokerSuitPokerSuitHeart:
-            return [_resService imageByName:@"poker_suit_heart"];
+            return [_resService imageByName:@"poker_suit_heart" inResourcePackage:RESOURCE_PACKAGE_ZJH];
             break;
             
         case PBPokerSuitPokerSuitClub:
-            return [_resService imageByName:@"poker_suit_club"];
+            return [_resService imageByName:@"poker_suit_club" inResourcePackage:RESOURCE_PACKAGE_ZJH];
             break;
             
         case PBPokerSuitPokerSuitDiamond:
-            return [_resService imageByName:@"poker_suit_diamond"];
+            return [_resService imageByName:@"poker_suit_diamond" inResourcePackage:RESOURCE_PACKAGE_ZJH];
             break;
             
         default:
@@ -101,15 +102,15 @@ static ZJHImageManager* shareInstance;
             break;
             
         case PBPokerRankPokerRankJ:
-            return [_resService imageByName:@"poker_body_J"];
+            return [_resService imageByName:@"poker_body_J" inResourcePackage:RESOURCE_PACKAGE_ZJH];
             break;
             
         case PBPokerRankPokerRankQ:
-            return [_resService imageByName:@"poker_body_Q"];
+            return [_resService imageByName:@"poker_body_Q" inResourcePackage:RESOURCE_PACKAGE_ZJH];
             break;
             
         case PBPokerRankPokerRankK:
-            return [_resService imageByName:@"poker_body_K"];
+            return [_resService imageByName:@"poker_body_K" inResourcePackage:RESOURCE_PACKAGE_ZJH];
             break;
             
         default:
@@ -120,71 +121,71 @@ static ZJHImageManager* shareInstance;
 
 - (UIImage*)pokerTickImage
 {
-    return [_resService imageByName:@""];
+    return [_resService imageByName:@"" inResourcePackage:RESOURCE_PACKAGE_ZJH];
 }
 
 - (UIImage*)pokerFrontBgImage
 {
-    return [_resService imageByName:@"poker_front_bg"];
+    return [_resService imageByName:@"poker_front_bg" inResourcePackage:RESOURCE_PACKAGE_ZJH];
 }
 
 - (UIImage*)pokerBackImage
 {
-    return [_resService imageByName:@"poker_back_bg"];
+    return [_resService imageByName:@"poker_back_bg" inResourcePackage:RESOURCE_PACKAGE_ZJH];
 }
 
 - (UIImage*)pokerFoldBackImage
 {
-    return [_resService imageByName:@"poker_fold_back_bg"];
+    return [_resService imageByName:@"poker_fold_back_bg" inResourcePackage:RESOURCE_PACKAGE_ZJH];
 }
 
 - (UIImage*)pokerLoseBackImage{
-    return [_resService imageByName:@"poker_lose_back_bg"];
+    return [_resService imageByName:@"poker_lose_back_bg" inResourcePackage:RESOURCE_PACKAGE_ZJH];
 }
 
 - (UIImage*)showCardButtonBgImage
 {
-    return [_resService imageByName:@"show_card_button"];
+    return [_resService imageByName:@"show_card_button" inResourcePackage:RESOURCE_PACKAGE_ZJH];
 }
 
 - (UIImage*)showCardButtonDisableBgImage
 {
-    return [_resService imageByName:@"show_card_button_disable"];
+    return [_resService imageByName:@"show_card_button_disable" inResourcePackage:RESOURCE_PACKAGE_ZJH];
 }
 
 - (UIImage*)chipImageForChipValue:(int)chipValue;
 {
     switch (chipValue) {
         case 5:
-            return [_resService imageByName:@"chip_5"];
+            return [_resService imageByName:@"chip_5" inResourcePackage:RESOURCE_PACKAGE_ZJH];
             break;
             
         case 10:
-            return [_resService imageByName:@"chip_10"];
+            return [_resService imageByName:@"chip_10" inResourcePackage:RESOURCE_PACKAGE_ZJH];
             break;
             
         case 25:
-            return [_resService imageByName:@"chip_25"];
+            return [_resService imageByName:@"chip_25" inResourcePackage:RESOURCE_PACKAGE_ZJH];
             break;
             
         case 50:
-            return [_resService imageByName:@"chip_50"];
+            return [_resService imageByName:@"chip_50" inResourcePackage:RESOURCE_PACKAGE_ZJH];
             break;
             
         case 100:
-            return [_resService imageByName:@"chip_100"];
+            return [_resService imageByName:@"chip_100" inResourcePackage:RESOURCE_PACKAGE_ZJH];
             break;
             
         case 250:
-            return [_resService imageByName:@"chip_250"];
+            return [_resService imageByName:@"chip_250" inResourcePackage:RESOURCE_PACKAGE_ZJH];
             break;
             
         case 500:
-            return [_resService imageByName:@"chip_500"];
+            return [_resService imageByName:@"chip_500" inResourcePackage:RESOURCE_PACKAGE_ZJH];
             break;
             
         case 1000:
-            return [_resService imageByName:@"chip_1000"];
+            return [_resService imageByName:@"chip_1000" inResourcePackage:RESOURCE_PACKAGE_ZJH];
             break;
             
         default:
@@ -195,7 +196,7 @@ static ZJHImageManager* shareInstance;
 
 - (UIImage*)chipsSelectViewBgImage
 {
-    return [_resService imageByName:@""];
+    return [_resService imageByName:@"" inResourcePackage:RESOURCE_PACKAGE_ZJH];
 }
 
 
@@ -206,55 +207,55 @@ static ZJHImageManager* shareInstance;
     switch (poker.rank) {
             
         case PBPokerRankPokerRank2:
-            return [_resService imageByName:@"poker_rank_red_2"];
+            return [_resService imageByName:@"poker_rank_red_2" inResourcePackage:RESOURCE_PACKAGE_ZJH];
             break;
             
         case PBPokerRankPokerRank3:
-            return [_resService imageByName:@"poker_rank_red_3"];
+            return [_resService imageByName:@"poker_rank_red_3" inResourcePackage:RESOURCE_PACKAGE_ZJH];
             break;
             
         case PBPokerRankPokerRank4:
-            return [_resService imageByName:@"poker_rank_red_4"];
+            return [_resService imageByName:@"poker_rank_red_4" inResourcePackage:RESOURCE_PACKAGE_ZJH];
             break;
             
         case PBPokerRankPokerRank5:
-            return [_resService imageByName:@"poker_rank_red_5"];
+            return [_resService imageByName:@"poker_rank_red_5" inResourcePackage:RESOURCE_PACKAGE_ZJH];
             break;
             
         case PBPokerRankPokerRank6:
-            return [_resService imageByName:@"poker_rank_red_6"];
+            return [_resService imageByName:@"poker_rank_red_6" inResourcePackage:RESOURCE_PACKAGE_ZJH];
             break;
             
         case PBPokerRankPokerRank7:
-            return [_resService imageByName:@"poker_rank_red_7"];
+            return [_resService imageByName:@"poker_rank_red_7" inResourcePackage:RESOURCE_PACKAGE_ZJH];
             break;
             
         case PBPokerRankPokerRank8:
-            return [_resService imageByName:@"poker_rank_red_8"];
+            return [_resService imageByName:@"poker_rank_red_8" inResourcePackage:RESOURCE_PACKAGE_ZJH];
             break;
             
         case PBPokerRankPokerRank9:
-            return [_resService imageByName:@"poker_rank_red_9"];
+            return [_resService imageByName:@"poker_rank_red_9" inResourcePackage:RESOURCE_PACKAGE_ZJH];
             break;
             
         case PBPokerRankPokerRank10:
-            return [_resService imageByName:@"poker_rank_red_10"];
+            return [_resService imageByName:@"poker_rank_red_10" inResourcePackage:RESOURCE_PACKAGE_ZJH];
             break;
             
         case PBPokerRankPokerRankJ:
-            return [_resService imageByName:@"poker_rank_red_J"];
+            return [_resService imageByName:@"poker_rank_red_J" inResourcePackage:RESOURCE_PACKAGE_ZJH];
             break;
             
         case PBPokerRankPokerRankQ:
-            return [_resService imageByName:@"poker_rank_red_Q"];
+            return [_resService imageByName:@"poker_rank_red_Q" inResourcePackage:RESOURCE_PACKAGE_ZJH];
             break;
             
         case PBPokerRankPokerRankK:
-            return [_resService imageByName:@"poker_rank_red_K"];
+            return [_resService imageByName:@"poker_rank_red_K" inResourcePackage:RESOURCE_PACKAGE_ZJH];
             break;
             
         case PBPokerRankPokerRankA:
-            return [_resService imageByName:@"poker_rank_red_A"];
+            return [_resService imageByName:@"poker_rank_red_A" inResourcePackage:RESOURCE_PACKAGE_ZJH];
             break;
             
         default:
@@ -268,55 +269,55 @@ static ZJHImageManager* shareInstance;
     switch (poker.rank) {
             
         case PBPokerRankPokerRank2:
-            return [_resService imageByName:@"poker_rank_black_2"];
+            return [_resService imageByName:@"poker_rank_black_2" inResourcePackage:RESOURCE_PACKAGE_ZJH];
             break;
             
         case PBPokerRankPokerRank3:
-            return [_resService imageByName:@"poker_rank_black_3"];
+            return [_resService imageByName:@"poker_rank_black_3" inResourcePackage:RESOURCE_PACKAGE_ZJH];
             break;
             
         case PBPokerRankPokerRank4:
-            return [_resService imageByName:@"poker_rank_black_4"];
+            return [_resService imageByName:@"poker_rank_black_4" inResourcePackage:RESOURCE_PACKAGE_ZJH];
             break;
             
         case PBPokerRankPokerRank5:
-            return [_resService imageByName:@"poker_rank_black_5"];
+            return [_resService imageByName:@"poker_rank_black_5" inResourcePackage:RESOURCE_PACKAGE_ZJH];
             break;
             
         case PBPokerRankPokerRank6:
-            return [_resService imageByName:@"poker_rank_black_6"];
+            return [_resService imageByName:@"poker_rank_black_6" inResourcePackage:RESOURCE_PACKAGE_ZJH];
             break;
             
         case PBPokerRankPokerRank7:
-            return [_resService imageByName:@"poker_rank_black_7"];
+            return [_resService imageByName:@"poker_rank_black_7" inResourcePackage:RESOURCE_PACKAGE_ZJH];
             break;
             
         case PBPokerRankPokerRank8:
-            return [_resService imageByName:@"poker_rank_black_8"];
+            return [_resService imageByName:@"poker_rank_black_8" inResourcePackage:RESOURCE_PACKAGE_ZJH];
             break;
             
         case PBPokerRankPokerRank9:
-            return [_resService imageByName:@"poker_rank_black_9"];
+            return [_resService imageByName:@"poker_rank_black_9" inResourcePackage:RESOURCE_PACKAGE_ZJH];
             break;
             
         case PBPokerRankPokerRank10:
-            return [_resService imageByName:@"poker_rank_black_10"];
+            return [_resService imageByName:@"poker_rank_black_10" inResourcePackage:RESOURCE_PACKAGE_ZJH];
             break;
             
         case PBPokerRankPokerRankJ:
-            return [_resService imageByName:@"poker_rank_black_J"];
+            return [_resService imageByName:@"poker_rank_black_J" inResourcePackage:RESOURCE_PACKAGE_ZJH];
             break;
             
         case PBPokerRankPokerRankQ:
-            return [_resService imageByName:@"poker_rank_black_Q"];
+            return [_resService imageByName:@"poker_rank_black_Q" inResourcePackage:RESOURCE_PACKAGE_ZJH];
             break;
             
         case PBPokerRankPokerRankK:
-            return [_resService imageByName:@"poker_rank_black_K"];
+            return [_resService imageByName:@"poker_rank_black_K" inResourcePackage:RESOURCE_PACKAGE_ZJH];
             break;
             
         case PBPokerRankPokerRankA:
-            return [_resService imageByName:@"poker_rank_black_A"];
+            return [_resService imageByName:@"poker_rank_black_A" inResourcePackage:RESOURCE_PACKAGE_ZJH];
             break;
             
         default:
@@ -329,19 +330,19 @@ static ZJHImageManager* shareInstance;
 {
     switch (suit) {
         case PBPokerSuitPokerSuitSpade:
-            return [_resService imageByName:@"poker_body_spade"];
+            return [_resService imageByName:@"poker_body_spade" inResourcePackage:RESOURCE_PACKAGE_ZJH];
             break;
             
         case PBPokerSuitPokerSuitHeart:
-            return [_resService imageByName:@"poker_body_heart"];
+            return [_resService imageByName:@"poker_body_heart" inResourcePackage:RESOURCE_PACKAGE_ZJH];
             break;
             
         case PBPokerSuitPokerSuitClub:
-            return [_resService imageByName:@"poker_body_club"];
+            return [_resService imageByName:@"poker_body_club" inResourcePackage:RESOURCE_PACKAGE_ZJH];
             break;
             
         case PBPokerSuitPokerSuitDiamond:
-            return [_resService imageByName:@"poker_body_diamond"];
+            return [_resService imageByName:@"poker_body_diamond" inResourcePackage:RESOURCE_PACKAGE_ZJH];
             break;
             
         default:
@@ -352,106 +353,106 @@ static ZJHImageManager* shareInstance;
 
 - (UIImage*)noUserAvatarBackground
 {
-    return [_resService imageByName:@"avatar_default"];
+    return [_resService imageByName:@"avatar_default" inResourcePackage:RESOURCE_PACKAGE_ZJH];
 }
 - (UIImage*)avatarBackground
 {
-    return [_resService imageByName:@"zjh_other_plyer_avatar"];
+    return [_resService imageByName:@"zjh_other_plyer_avatar" inResourcePackage:RESOURCE_PACKAGE_ZJH];
 }
 - (UIImage*)myAvatarBackground
 {
-    return [_resService imageByName:@"zjh_my_avatar_bg"];
+    return [_resService imageByName:@"zjh_my_avatar_bg" inResourcePackage:RESOURCE_PACKAGE_ZJH];
 }
 
 
 - (UIImage*)moneyTreeImage
 {
-    return [_resService imageByName:@"zjh_money_tree"];
+    return [_resService imageByName:@"zjh_money_tree" inResourcePackage:RESOURCE_PACKAGE_ZJH];
 }
 
 - (UIImage*)betBtnBgImage
 {
-    return [_resService imageByName:@"zjh_bet"];
+    return [_resService imageByName:@"zjh_bet" inResourcePackage:RESOURCE_PACKAGE_ZJH];
 }
 
 - (UIImage*)raiseBetBtnBgImage
 {
-    return [_resService imageByName:@"zjh_raise_bet"];
+    return [_resService imageByName:@"zjh_raise_bet" inResourcePackage:RESOURCE_PACKAGE_ZJH];
 }
 
 
 - (UIImage*)autoBetBtnBgImage
 {
-    return [_resService imageByName:@"zjh_auto_bet"];
+    return [_resService imageByName:@"zjh_auto_bet" inResourcePackage:RESOURCE_PACKAGE_ZJH];
 }
 
 - (UIImage*)autoBetBtnOnBgImage
 {
-    return [_resService imageByName:@"zjh_auto_bet_on"];
+    return [_resService imageByName:@"zjh_auto_bet_on" inResourcePackage:RESOURCE_PACKAGE_ZJH];
 }
 
 
 
 - (UIImage*)compareCardBtnBgImage
 {
-    return [_resService imageByName:@"zjh_compare_card"];
+    return [_resService imageByName:@"zjh_compare_card" inResourcePackage:RESOURCE_PACKAGE_ZJH];
 }
 
 
 - (UIImage*)checkCardBtnBgImage
 {
-    return [_resService imageByName:@"zjh_check_card"];
+    return [_resService imageByName:@"zjh_check_card" inResourcePackage:RESOURCE_PACKAGE_ZJH];
 }
 
 
 - (UIImage*)foldCardBtnBgImage
 {
-    return [_resService imageByName:@"zjh_fold_card"];
+    return [_resService imageByName:@"zjh_fold_card" inResourcePackage:RESOURCE_PACKAGE_ZJH];
 }
 
 - (UIImage*)betBtnDisableBgImage
 {
-    return [_resService imageByName:@"zjh_bet_disable"];
+    return [_resService imageByName:@"zjh_bet_disable" inResourcePackage:RESOURCE_PACKAGE_ZJH];
 }
 
 - (UIImage*)raiseBetBtnDisableBgImage
 {
-    return [_resService imageByName:@"zjh_raise_bet_disable"];
+    return [_resService imageByName:@"zjh_raise_bet_disable" inResourcePackage:RESOURCE_PACKAGE_ZJH];
 }
 
 
 - (UIImage*)autoBetBtnDisableBgImage
 {
-    return [_resService imageByName:@"zjh_auto_bet_disable"];
+    return [_resService imageByName:@"zjh_auto_bet_disable" inResourcePackage:RESOURCE_PACKAGE_ZJH];
 }
 
 
 - (UIImage*)compareCardBtnDisableBgImage
 {
-    return [_resService imageByName:@"zjh_compare_card_disable"];
+    return [_resService imageByName:@"zjh_compare_card_disable" inResourcePackage:RESOURCE_PACKAGE_ZJH];
 }
 
 
 - (UIImage*)checkCardBtnDisableBgImage
 {
-    return [_resService imageByName:@"zjh_check_card_disable"];
+    return [_resService imageByName:@"zjh_check_card_disable" inResourcePackage:RESOURCE_PACKAGE_ZJH];
 }
 
 
 - (UIImage*)foldCardBtnDisableBgImage
 {
-    return [_resService imageByName:@"zjh_fold_card_disable"];
+    return [_resService imageByName:@"zjh_fold_card_disable" inResourcePackage:RESOURCE_PACKAGE_ZJH];
 }
 
 - (UIImage*)bombImage
 {
     NSArray *bombs = [NSArray arrayWithObjects:@"bomb1", @"bomb2", @"bomb3", nil];
-    return [_resService imageByName:[bombs objectAtIndex:(rand() % [bombs count])]];
+    return [_resService imageByName:[bombs objectAtIndex:(rand() % [bombs count])] inResourcePackage:RESOURCE_PACKAGE_ZJH];
 }
 
 - (UIImage*)vsImage
 {
-    return [_resService imageByName:@"zjh_vs"];
+    return [_resService imageByName:@"zjh_vs" inResourcePackage:RESOURCE_PACKAGE_ZJH];
 }
 
 - (UIImage *)betActionImage:(UserPosition)position
@@ -460,12 +461,12 @@ static ZJHImageManager* shareInstance;
         case UserPositionCenter:
         case UserPositionLeft:
         case UserPositionLeftTop:
-            return [_resService imageByName:@"zjh_bet1"];
+            return [_resService imageByName:@"zjh_bet1" inResourcePackage:RESOURCE_PACKAGE_ZJH];
             break;
             
         case UserPositionRight:
         case UserPositionRightTop:
-            return [_resService imageByName:@"zjh_bet2"];
+            return [_resService imageByName:@"zjh_bet2" inResourcePackage:RESOURCE_PACKAGE_ZJH];
             break;
             
         default:
@@ -480,12 +481,12 @@ static ZJHImageManager* shareInstance;
         case UserPositionCenter:
         case UserPositionLeft:
         case UserPositionLeftTop:
-            return [_resService imageByName:@"zjh_raise_bet1"];
+            return [_resService imageByName:@"zjh_raise_bet1" inResourcePackage:RESOURCE_PACKAGE_ZJH];
             break;
             
         case UserPositionRight:
         case UserPositionRightTop:
-            return [_resService imageByName:@"zjh_raise_bet2"];
+            return [_resService imageByName:@"zjh_raise_bet2" inResourcePackage:RESOURCE_PACKAGE_ZJH];
             break;
             
         default:
@@ -500,12 +501,12 @@ static ZJHImageManager* shareInstance;
         case UserPositionCenter:
         case UserPositionLeft:
         case UserPositionLeftTop:
-            return [_resService imageByName:@"zjh_check_card1"];
+            return [_resService imageByName:@"zjh_check_card1" inResourcePackage:RESOURCE_PACKAGE_ZJH];
             break;
             
         case UserPositionRight:
         case UserPositionRightTop:
-            return [_resService imageByName:@"zjh_check_card2"];
+            return [_resService imageByName:@"zjh_check_card2" inResourcePackage:RESOURCE_PACKAGE_ZJH];
             break;
             
         default:
@@ -520,12 +521,12 @@ static ZJHImageManager* shareInstance;
         case UserPositionCenter:
         case UserPositionLeft:
         case UserPositionLeftTop:
-            return [_resService imageByName:@"zjh_compare_card1"];
+            return [_resService imageByName:@"zjh_compare_card1" inResourcePackage:RESOURCE_PACKAGE_ZJH];
             break;
             
         case UserPositionRight:
         case UserPositionRightTop:
-            return [_resService imageByName:@"zjh_compare_card2"];
+            return [_resService imageByName:@"zjh_compare_card2" inResourcePackage:RESOURCE_PACKAGE_ZJH];
             break;
             
         default:
@@ -540,12 +541,12 @@ static ZJHImageManager* shareInstance;
         case UserPositionCenter:
         case UserPositionLeft:
         case UserPositionLeftTop:
-            return [_resService imageByName:@"zjh_fold_card1"];
+            return [_resService imageByName:@"zjh_fold_card1" inResourcePackage:RESOURCE_PACKAGE_ZJH];
             break;
             
         case UserPositionRight:
         case UserPositionRightTop:
-            return [_resService imageByName:@"zjh_fold_card2"];
+            return [_resService imageByName:@"zjh_fold_card2" inResourcePackage:RESOURCE_PACKAGE_ZJH];
             break;
             
         default:
@@ -556,12 +557,12 @@ static ZJHImageManager* shareInstance;
 
 - (UIImage *)gameBgImage
 {
-    return [_resService imageByName:@"zjh_game_bg"];
+    return [_resService imageByName:@"zjh_game_bg" inResourcePackage:RESOURCE_PACKAGE_ZJH];
 }
 
 - (UIImage *)totalBetBgImage
 {
-    return [_resService imageByName:@"zjh_game_total_bet_bg"];
+    return [_resService imageByName:@"zjh_game_total_bet_bg" inResourcePackage:RESOURCE_PACKAGE_ZJH];
 }
 
 - (UIImage *)userTotalBetBgImage
@@ -571,22 +572,22 @@ static ZJHImageManager* shareInstance;
 
 - (UIImage *)buttonsHolderBgImage
 {
-    return [_resService imageByName:@"zjh_button_holder_bg"];
+    return [_resService imageByName:@"zjh_button_holder_bg" inResourcePackage:RESOURCE_PACKAGE_ZJH];
 }
 
 - (UIImage *)runawayButtonImage
 {
-    return [_resService imageByName:@"zjh_runaway"];
+    return [_resService imageByName:@"zjh_runaway" inResourcePackage:RESOURCE_PACKAGE_ZJH];
 }
 
 - (UIImage *)settingButtonImage
 {
-    return [_resService imageByName:@"zjh_game_setting"];
+    return [_resService imageByName:@"zjh_game_setting" inResourcePackage:RESOURCE_PACKAGE_ZJH];
 }
 
 - (UIImage *)chatButtonImage
 {
-    return [_resService imageByName:@"zjh_chat_button"];
+    return [_resService imageByName:@"zjh_chat_button" inResourcePackage:RESOURCE_PACKAGE_ZJH];
 }
 
 @end

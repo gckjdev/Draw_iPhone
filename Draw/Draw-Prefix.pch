@@ -15,4 +15,5 @@
     #import "LocaleUtils.h"
     #import "DeviceDetection.h"
     #import "GameApp.h"
+    #import "GameResource.h"
 #endif
