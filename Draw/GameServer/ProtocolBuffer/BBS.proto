@@ -28,7 +28,7 @@ message PBBBSContent{
 }
 
 
-message BBSPost{
+message PBBBSPost{
     required string postId = 1;
     required string boardId = 2;
     required string appId = 3;
@@ -37,11 +37,11 @@ message BBSPost{
     required int32 supportCount = 6;
     required int32 createDate = 7;
     required int32 modifyDate = 8;
-    required BBSUser createUser = 9;
-    required BBSContent content = 10;
+    required PBBBSUser createUser = 9;
+    required PBBBSContent content = 10;
 }
 
-message BBSAction{
+message PBBBSAction{
     required string actionId = 1;
 
     //comment or reply or support
@@ -51,10 +51,10 @@ message BBSAction{
     required string appId = 4;
     required int32 deviceType = 5;
     required int32 createDate = 6;
-    required BBSUser createUser = 7;
-    optional BBSContent content = 8;
+    required PBBBSUser createUser = 7;
+    optional PBBBSContent content = 8;
 
     //reply for reply
-    optional BBSUser sourceUser = 20; 
-    optional BBSContent sourceContent = 21;
+    optional PBBBSUser sourceUser = 20; 
+    optional PBBBSContent sourceContent = 21;
 }

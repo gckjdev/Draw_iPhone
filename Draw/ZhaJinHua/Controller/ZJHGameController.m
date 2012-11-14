@@ -44,8 +44,8 @@
 
 #define COMPARE_BUTTON_TAG_OFFSET   5000
 
-#define TITLE_COLOR_WHEN_DISABLE [UIColor colorWithRed:6.0/255.0 green:41.0/255.0 blue:56.0/255.0 alpha:1]
-
+//#define TITLE_COLOR_WHEN_DISABLE [UIColor colorWithRed:6.0/255.0 green:41.0/255.0 blue:56.0/255.0 alpha:1]
+#define TITLE_COLOR_WHEN_DISABLE [UIColor lightGrayColor]
 #define TITLE_COLOR_WHEN_ENABLE [UIColor whiteColor]
 
 #define ACTION_LABEL_FONT [UIFont systemFontOfSize:11]
@@ -125,6 +125,14 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        _gameService = [ZJHGameService defaultService];
+        _userManager = [UserManager defaultManager];
+        _imageManager = [ZJHImageManager defaultManager];
+        _levelService = [LevelService defaultService];
+        _audioManager = [AudioManager defaultManager];
+        _popupViewManager = [PopupViewManager defaultManager];
+        _soundManager = [ZJHSoundManager defaultManager];
+        _msgCenter = [CommonMessageCenter defaultCenter];
     }
     return self;
 }
