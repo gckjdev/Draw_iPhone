@@ -6,6 +6,8 @@
 
 @class PBBBSAction;
 @class PBBBSAction_Builder;
+@class PBBBSBoard;
+@class PBBBSBoard_Builder;
 @class PBBBSContent;
 @class PBBBSContent_Builder;
 @class PBBBSPost;
@@ -483,5 +485,127 @@
 - (PBBBSAction_Builder*) setSourceContentBuilder:(PBBBSContent_Builder*) builderForValue;
 - (PBBBSAction_Builder*) mergeSourceContent:(PBBBSContent*) value;
 - (PBBBSAction_Builder*) clearSourceContent;
+@end
+
+@interface PBBBSBoard : PBGeneratedMessage {
+@private
+  BOOL hasType_:1;
+  BOOL hasTopicCount_:1;
+  BOOL hasPostCount_:1;
+  BOOL hasBoardId_:1;
+  BOOL hasName_:1;
+  BOOL hasIcon_:1;
+  BOOL hasParentBoardId_:1;
+  BOOL hasDesc_:1;
+  BOOL hasLastPost_:1;
+  int32_t type;
+  int32_t topicCount;
+  int32_t postCount;
+  NSString* boardId;
+  NSString* name;
+  NSString* icon;
+  NSString* parentBoardId;
+  NSString* desc;
+  PBBBSPost* lastPost;
+}
+- (BOOL) hasBoardId;
+- (BOOL) hasType;
+- (BOOL) hasName;
+- (BOOL) hasTopicCount;
+- (BOOL) hasPostCount;
+- (BOOL) hasIcon;
+- (BOOL) hasParentBoardId;
+- (BOOL) hasLastPost;
+- (BOOL) hasDesc;
+@property (readonly, retain) NSString* boardId;
+@property (readonly) int32_t type;
+@property (readonly, retain) NSString* name;
+@property (readonly) int32_t topicCount;
+@property (readonly) int32_t postCount;
+@property (readonly, retain) NSString* icon;
+@property (readonly, retain) NSString* parentBoardId;
+@property (readonly, retain) PBBBSPost* lastPost;
+@property (readonly, retain) NSString* desc;
+
++ (PBBBSBoard*) defaultInstance;
+- (PBBBSBoard*) defaultInstance;
+
+- (BOOL) isInitialized;
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
+- (PBBBSBoard_Builder*) builder;
++ (PBBBSBoard_Builder*) builder;
++ (PBBBSBoard_Builder*) builderWithPrototype:(PBBBSBoard*) prototype;
+
++ (PBBBSBoard*) parseFromData:(NSData*) data;
++ (PBBBSBoard*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBBBSBoard*) parseFromInputStream:(NSInputStream*) input;
++ (PBBBSBoard*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBBBSBoard*) parseFromCodedInputStream:(PBCodedInputStream*) input;
++ (PBBBSBoard*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+@end
+
+@interface PBBBSBoard_Builder : PBGeneratedMessage_Builder {
+@private
+  PBBBSBoard* result;
+}
+
+- (PBBBSBoard*) defaultInstance;
+
+- (PBBBSBoard_Builder*) clear;
+- (PBBBSBoard_Builder*) clone;
+
+- (PBBBSBoard*) build;
+- (PBBBSBoard*) buildPartial;
+
+- (PBBBSBoard_Builder*) mergeFrom:(PBBBSBoard*) other;
+- (PBBBSBoard_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (PBBBSBoard_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+
+- (BOOL) hasBoardId;
+- (NSString*) boardId;
+- (PBBBSBoard_Builder*) setBoardId:(NSString*) value;
+- (PBBBSBoard_Builder*) clearBoardId;
+
+- (BOOL) hasType;
+- (int32_t) type;
+- (PBBBSBoard_Builder*) setType:(int32_t) value;
+- (PBBBSBoard_Builder*) clearType;
+
+- (BOOL) hasName;
+- (NSString*) name;
+- (PBBBSBoard_Builder*) setName:(NSString*) value;
+- (PBBBSBoard_Builder*) clearName;
+
+- (BOOL) hasTopicCount;
+- (int32_t) topicCount;
+- (PBBBSBoard_Builder*) setTopicCount:(int32_t) value;
+- (PBBBSBoard_Builder*) clearTopicCount;
+
+- (BOOL) hasPostCount;
+- (int32_t) postCount;
+- (PBBBSBoard_Builder*) setPostCount:(int32_t) value;
+- (PBBBSBoard_Builder*) clearPostCount;
+
+- (BOOL) hasIcon;
+- (NSString*) icon;
+- (PBBBSBoard_Builder*) setIcon:(NSString*) value;
+- (PBBBSBoard_Builder*) clearIcon;
+
+- (BOOL) hasParentBoardId;
+- (NSString*) parentBoardId;
+- (PBBBSBoard_Builder*) setParentBoardId:(NSString*) value;
+- (PBBBSBoard_Builder*) clearParentBoardId;
+
+- (BOOL) hasLastPost;
+- (PBBBSPost*) lastPost;
+- (PBBBSBoard_Builder*) setLastPost:(PBBBSPost*) value;
+- (PBBBSBoard_Builder*) setLastPostBuilder:(PBBBSPost_Builder*) builderForValue;
+- (PBBBSBoard_Builder*) mergeLastPost:(PBBBSPost*) value;
+- (PBBBSBoard_Builder*) clearLastPost;
+
+- (BOOL) hasDesc;
+- (NSString*) desc;
+- (PBBBSBoard_Builder*) setDesc:(NSString*) value;
+- (PBBBSBoard_Builder*) clearDesc;
 @end
 

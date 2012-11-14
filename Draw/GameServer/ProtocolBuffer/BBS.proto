@@ -58,3 +58,19 @@ message PBBBSAction{
     optional PBBBSUser sourceUser = 20; 
     optional PBBBSContent sourceContent = 21;
 }
+
+
+message PBBBSBoard{
+    required string boardId = 1;
+    required int32 type =2; //1 for parent board, 2 for sub board
+    required string name = 3;
+    required int32 topicCount = 5;
+    required int32 postCount = 6;
+
+    optional string icon = 4;
+    optional string parentBoardId = 7;
+    optional PBBBSPost lastPost = 8;
+    optional string desc = 9;
+}
+
+
