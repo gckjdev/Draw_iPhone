@@ -159,8 +159,12 @@
     [self.moneyTree setImage:[_imageManager moneyTreeImage] forState:UIControlStateNormal] ;
     self.vsImageView.image = [_imageManager vsImage];
     
+    [self.autoBetButton setBackgroundImage:[_imageManager autoBetBtnOnBgImage] forState:UIControlStateSelected];
     [self updateZJHButtons];
-
+    
+    for (int tag = USER_TOTAL_BET_BG_IMAGE_VIEW_OFFSET; tag < USER_TOTAL_BET_BG_IMAGE_VIEW_OFFSET + UserPositionMax; tag ++) {
+        [((UIImageView *)[self.view viewWithTag:tag]) setImage:[_imageManager userTotalBetBgImage]];
+    }
 }
 
 - (void)viewDidLoad

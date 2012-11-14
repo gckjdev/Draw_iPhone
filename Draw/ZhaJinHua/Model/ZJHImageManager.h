@@ -74,6 +74,7 @@ typedef enum {
 
 - (UIImage *)gameBgImage;
 - (UIImage *)totalBetBgImage;
+- (UIImage *)userTotalBetBgImage;
 - (UIImage *)buttonsHolderBgImage;
 - (UIImage *)runawayButtonImage;
 - (UIImage *)settingButtonImage;
