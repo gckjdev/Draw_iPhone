@@ -7,6 +7,7 @@
 #import "Draw.pb.h"
 #import "Dice.pb.h"
 #import "ZhaJinHua.pb.h"
+#import "Bbs.pb.h"
 
 @class BetDiceRequest;
 @class BetDiceRequest_Builder;
@@ -74,6 +75,16 @@
 @class OpenDiceRequest_Builder;
 @class OpenDiceResponse;
 @class OpenDiceResponse_Builder;
+@class PBBBSAction;
+@class PBBBSAction_Builder;
+@class PBBBSBoard;
+@class PBBBSBoard_Builder;
+@class PBBBSContent;
+@class PBBBSContent_Builder;
+@class PBBBSPost;
+@class PBBBSPost_Builder;
+@class PBBBSUser;
+@class PBBBSUser_Builder;
 @class PBCommentInfo;
 @class PBCommentInfo_Builder;
 @class PBDice;
@@ -4057,6 +4068,9 @@ BOOL BetTypeIsValidValue(BetType value);
   NSMutableArray* mutableMessageList;
   NSMutableArray* mutableMessageStatList;
   NSMutableArray* mutableFeedList;
+  NSMutableArray* mutableBbsBoardList;
+  NSMutableArray* mutableBbsPostList;
+  NSMutableArray* mutableBbsActionList;
 }
 - (BOOL) hasResultCode;
 - (BOOL) hasTotalCount;
@@ -4070,6 +4084,12 @@ BOOL BetTypeIsValidValue(BetType value);
 - (PBMessageStat*) messageStatAtIndex:(int32_t) index;
 - (NSArray*) feedList;
 - (PBFeed*) feedAtIndex:(int32_t) index;
+- (NSArray*) bbsBoardList;
+- (PBBBSBoard*) bbsBoardAtIndex:(int32_t) index;
+- (NSArray*) bbsPostList;
+- (PBBBSPost*) bbsPostAtIndex:(int32_t) index;
+- (NSArray*) bbsActionList;
+- (PBBBSAction*) bbsActionAtIndex:(int32_t) index;
 
 + (DataQueryResponse*) defaultInstance;
 - (DataQueryResponse*) defaultInstance;
@@ -4142,5 +4162,26 @@ BOOL BetTypeIsValidValue(BetType value);
 - (DataQueryResponse_Builder*) addFeed:(PBFeed*) value;
 - (DataQueryResponse_Builder*) addAllFeed:(NSArray*) values;
 - (DataQueryResponse_Builder*) clearFeedList;
+
+- (NSArray*) bbsBoardList;
+- (PBBBSBoard*) bbsBoardAtIndex:(int32_t) index;
+- (DataQueryResponse_Builder*) replaceBbsBoardAtIndex:(int32_t) index with:(PBBBSBoard*) value;
+- (DataQueryResponse_Builder*) addBbsBoard:(PBBBSBoard*) value;
+- (DataQueryResponse_Builder*) addAllBbsBoard:(NSArray*) values;
+- (DataQueryResponse_Builder*) clearBbsBoardList;
+
+- (NSArray*) bbsPostList;
+- (PBBBSPost*) bbsPostAtIndex:(int32_t) index;
+- (DataQueryResponse_Builder*) replaceBbsPostAtIndex:(int32_t) index with:(PBBBSPost*) value;
+- (DataQueryResponse_Builder*) addBbsPost:(PBBBSPost*) value;
+- (DataQueryResponse_Builder*) addAllBbsPost:(NSArray*) values;
+- (DataQueryResponse_Builder*) clearBbsPostList;
+
+- (NSArray*) bbsActionList;
+- (PBBBSAction*) bbsActionAtIndex:(int32_t) index;
+- (DataQueryResponse_Builder*) replaceBbsActionAtIndex:(int32_t) index with:(PBBBSAction*) value;
+- (DataQueryResponse_Builder*) addBbsAction:(PBBBSAction*) value;
+- (DataQueryResponse_Builder*) addAllBbsAction:(NSArray*) values;
+- (DataQueryResponse_Builder*) clearBbsActionList;
 @end
 
