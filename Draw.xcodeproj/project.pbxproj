@@ -1605,6 +1605,7 @@
 		CA9139EB164E277300B6387F /* openDice_M.m4a in Resources */ = {isa = PBXBuildFile; fileRef = CA913722164E277300B6387F /* openDice_M.m4a */; };
 		CA9139EC164E277300B6387F /* scrambleToOpenDice_F.m4a in Resources */ = {isa = PBXBuildFile; fileRef = CA913723164E277300B6387F /* scrambleToOpenDice_F.m4a */; };
 		CA9139ED164E277300B6387F /* scrambleToOpenDice_M.m4a in Resources */ = {isa = PBXBuildFile; fileRef = CA913724164E277300B6387F /* scrambleToOpenDice_M.m4a */; };
+		CA913A521653532000B6387F /* Bbs.pb.m in Sources */ = {isa = PBXBuildFile; fileRef = CA913A511653532000B6387F /* Bbs.pb.m */; };
 		CA91FC7F15C27BE700E9C1CD /* CommonGameNetworkClient.m in Sources */ = {isa = PBXBuildFile; fileRef = CA91FC7E15C27BE700E9C1CD /* CommonGameNetworkClient.m */; };
 		CA91FC8215C27BF700E9C1CD /* CommonGameNetworkService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA91FC8115C27BF700E9C1CD /* CommonGameNetworkService.m */; };
 		CA959895152F54700093FEDB /* InputDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = CA959893152F54700093FEDB /* InputDialog.m */; };
@@ -4029,6 +4030,8 @@
 		CA913723164E277300B6387F /* scrambleToOpenDice_F.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = scrambleToOpenDice_F.m4a; sourceTree = "<group>"; };
 		CA913724164E277300B6387F /* scrambleToOpenDice_M.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = scrambleToOpenDice_M.m4a; sourceTree = "<group>"; };
 		CA913A2F1653432C00B6387F /* GameResource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameResource.h; sourceTree = "<group>"; };
+		CA913A501653532000B6387F /* Bbs.pb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Bbs.pb.h; sourceTree = "<group>"; };
+		CA913A511653532000B6387F /* Bbs.pb.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Bbs.pb.m; sourceTree = "<group>"; };
 		CA91FC7D15C27BE700E9C1CD /* CommonGameNetworkClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonGameNetworkClient.h; sourceTree = "<group>"; };
 		CA91FC7E15C27BE700E9C1CD /* CommonGameNetworkClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonGameNetworkClient.m; sourceTree = "<group>"; };
 		CA91FC8015C27BF700E9C1CD /* CommonGameNetworkService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonGameNetworkService.h; sourceTree = "<group>"; };
@@ -9008,6 +9011,8 @@
 		CA96E274150DE87A00292335 /* Gen */ = {
 			isa = PBXGroup;
 			children = (
+				CA913A501653532000B6387F /* Bbs.pb.h */,
+				CA913A511653532000B6387F /* Bbs.pb.m */,
 				CA7ACA6A16367548001B273C /* ZhaJinHua.pb.h */,
 				CA7ACA6B16367548001B273C /* ZhaJinHua.pb.m */,
 				A44DDF4215C669DF005609F6 /* Dice.pb.h */,
@@ -11612,6 +11617,7 @@
 				C239366716522858001BD5C6 /* ZJHSettingView.m in Sources */,
 				C299BED61653297500C21E2F /* CommonRoomListController.m in Sources */,
 				C299BED9165333E800C21E2F /* CommonRoomListCell.m in Sources */,
+				CA913A521653532000B6387F /* Bbs.pb.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
