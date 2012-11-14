@@ -8,6 +8,8 @@
 
 #import "ZJHPokerView.h"
 #import "ZJHImageManager.h"
+#import <QuartzCore/QuartzCore.h>
+#import "AnimationManager.h"
 
 #define TAG_BOMB_BUTTON 300
 
@@ -221,7 +223,17 @@
     bomb.tag = TAG_BOMB_BUTTON;
     [bomb setImage:[[ZJHImageManager defaultManager] bombImage] forState:UIControlStateNormal];
     [bomb addTarget:self action:@selector(clickBomb:) forControlEvents:UIControlEventTouchUpInside];
-    bomb.center = CGPointMake(self.frame.size.width/2, self.frame.size.height/2);
+    bomb.center = CGPointMake(self.frame.size.width/2 + 8, self.frame.size.height/2 - 5); 
+    
+    CABasicAnimation *ani = [CABasicAnimation animationWithKeyPath:@"position.y"];
+    ani.repeatCount = 3;
+    ani.duration = 1.0;
+    CGFloat originY = bomb.layer.position.y - 10;
+    CGFloat toY = bomb.layer.position.y;
+    ani.fromValue = [NSNumber numberWithFloat:originY];
+    ani.toValue = [NSNumber numberWithFloat:toY];
+    [bomb.layer addAnimation:ani forKey:nil];
+    
     [self addSubview:bomb];
 }
 
