@@ -8,16 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "Poker.h"
-
-
-typedef enum {
-    UserPositionCenter = 0,
-    UserPositionRight,
-    UserPositionRightTop,
-    UserPositionLeftTop,
-    UserPositionLeft,
-    UserPositionMax
-}UserPosition;
+#import "ZJHConstance.h"
 
 @interface ZJHImageManager : NSObject
 

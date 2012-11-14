@@ -27,6 +27,7 @@
 #import "MessageView.h"
 #import "CommonMessageCenter.h"
 #import "ZJHSettingView.h"
+#import "ZJHScreenConfig.h"
 
 #define AVATAR_VIEW_TAG_OFFSET   4000
 #define AVATAR_PLACE_VIEW_OFFSET    8000
@@ -34,22 +35,7 @@
 #define USER_TOTAL_BET_BG_IMAGE_VIEW_OFFSET 3000
 #define USER_TOTAL_BET_LABEL 3200
 
-#define LEFT_TOP_MESSAGE_VIEW_POSITION CGPointMake(64, 106)
-#define RIGHT_TOP_MESSAGE_VIEW_POSITION CGPointMake(221, 106)
-#define LEFT_MESSAGE_VIEW_POSITION CGPointMake(64, 231)
-#define RIGHT_MESSAGE_VIEW_POSITION CGPointMake(221, 231)
-
-#define LEFT_TOP_MESSAGE_VIEW_POSITION_IPHONE5 CGPointMake(64, 182)
-#define RIGHT_TOP_MESSAGE_VIEW_POSITION_IPHONE5 CGPointMake(221, 182)
-#define LEFT_MESSAGE_VIEW_POSITION_IPHONE5 CGPointMake(64, 318)
-#define RIGHT_MESSAGE_VIEW_POSITION_IPHONE5 CGPointMake(221, 318)
-
-
-
-
 #define CARDS_COUNT 3
-
-#define COMPARE_BUTTON_TAG_OFFSET   5000
 
 //#define TITLE_COLOR_WHEN_DISABLE [UIColor colorWithRed:6.0/255.0 green:41.0/255.0 blue:56.0/255.0 alpha:1]
 #define TITLE_COLOR_WHEN_DISABLE [UIColor lightGrayColor]
@@ -1090,36 +1076,10 @@ compareCardWith:(NSString*)targetUserId
     [(ZJHMyAvatarView*)[self getAvatarViewByPosition:UserPositionCenter] update];
 }
 
-- (CGPoint)getMessageOriginPointByUserPosition:(UserPosition)position
-{
-    switch (position) {
-            
-        case UserPositionLeftTop:
-            return LEFT_TOP_MESSAGE_VIEW_POSITION;
-            break;
-            
-        case UserPositionLeft:
-            return LEFT_MESSAGE_VIEW_POSITION;
-            break;
-            
-        case UserPositionRightTop:
-            return RIGHT_TOP_MESSAGE_VIEW_POSITION;
-            break;
-            
-        case UserPositionRight:
-            return RIGHT_MESSAGE_VIEW_POSITION;
-            break;
-            
-        default:
-            return CGPointMake(0, 0);
-            break;
-    }
-}
-
 - (void)popupView:(UIView *)view
        atPosition:(UserPosition)position
 {
-    CGPoint point = [self getMessageOriginPointByUserPosition:position];
+    CGPoint point = [ZJHScreenConfig getMessageViewOriginByPosition:position];
     view.frame = CGRectMake(point.x, point.y, view.frame.size.width, view.frame.size.height);
     [self.view addSubview:view];
 
