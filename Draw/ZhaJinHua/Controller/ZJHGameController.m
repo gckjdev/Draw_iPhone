@@ -858,7 +858,11 @@ compareCardWith:(NSString*)targetUserId
 - (void)reciprocalEnd:(ZJHAvatarView*)view
 {
     PPDebug(@"################# [controller: %@] TIME OUT: auto fold ##################", [self description]);
-    
+    if (_isComparing) {
+        [self bet:NO];
+        self.isComparing = NO;
+        return;
+    }
     [self clickFoldCardButton:nil];
 }
 
