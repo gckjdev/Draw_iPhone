@@ -50,6 +50,7 @@
     
     view.roundAvatar = [[[DiceAvatarView alloc] initWithFrame:view.roundAvatarPlaceView.frame] autorelease];
     [view sendSubviewToBack:view.roundAvatar];
+    [view.roundAvatar setProgressBarWidth:0.07];
     //        _roundAvatar.center = CGPointMake(self.frame.size.width/2, self.frame.size.height/2);
     [view addSubview:view.roundAvatar];
 //    view.roundAvatar.delegate = view;

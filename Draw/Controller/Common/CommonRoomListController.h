@@ -12,12 +12,18 @@
 #import "CommonDialog.h"
 #import "CommonSearchView.h"
 #import "CommonGameNetworkService.h"
+#import "FriendService.h"
 
 typedef enum {
     allRoom = 0,
     friendRoom = 1,
     nearByRoom = 2
 }RoomFilter;
+
+typedef enum {
+    JoinGameSuccess = 0,
+    NotEnoughCoin
+}JoinGameErrorCode;
 
 @class PBGameSession;
 @class CommonSearchView;
