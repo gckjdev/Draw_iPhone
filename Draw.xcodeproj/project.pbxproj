@@ -725,6 +725,7 @@
 		CA415137165395E30062A638 /* BBSBoardController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA415135165395E30062A638 /* BBSBoardController.m */; };
 		CA415138165395E30062A638 /* BBSBoardController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA415136165395E30062A638 /* BBSBoardController.xib */; };
 		CA41513A165396410062A638 /* BBSBoardController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA415139165396410062A638 /* BBSBoardController~ipad.xib */; };
+		CA41513E16539B650062A638 /* BBSNetwork.m in Sources */ = {isa = PBXBuildFile; fileRef = CA41513D16539B650062A638 /* BBSNetwork.m */; };
 		CA41C944152010FF00013DC8 /* ItemShopController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA41C942152010FF00013DC8 /* ItemShopController.m */; };
 		CA41C945152010FF00013DC8 /* ItemShopController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA41C943152010FF00013DC8 /* ItemShopController.xib */; };
 		CA41C9491520179100013DC8 /* ShoppingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA41C9471520179000013DC8 /* ShoppingCell.m */; };
@@ -3054,6 +3055,8 @@
 		CA415135165395E30062A638 /* BBSBoardController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBSBoardController.m; sourceTree = "<group>"; };
 		CA415136165395E30062A638 /* BBSBoardController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BBSBoardController.xib; sourceTree = "<group>"; };
 		CA415139165396410062A638 /* BBSBoardController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "BBSBoardController~ipad.xib"; sourceTree = "<group>"; };
+		CA41513C16539B650062A638 /* BBSNetwork.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBSNetwork.h; sourceTree = "<group>"; };
+		CA41513D16539B650062A638 /* BBSNetwork.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBSNetwork.m; sourceTree = "<group>"; };
 		CA41C941152010FF00013DC8 /* ItemShopController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemShopController.h; sourceTree = "<group>"; };
 		CA41C942152010FF00013DC8 /* ItemShopController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemShopController.m; sourceTree = "<group>"; };
 		CA41C943152010FF00013DC8 /* ItemShopController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ItemShopController.xib; sourceTree = "<group>"; };
@@ -7221,6 +7224,7 @@
 		CA41512A165395A30062A638 /* BBS */ = {
 			isa = PBXGroup;
 			children = (
+				CA41513B16539B210062A638 /* Network */,
 				CA41512B165395A30062A638 /* Controller */,
 				CA41512C165395A30062A638 /* Manager */,
 				CA41512F165395A30062A638 /* Service */,
@@ -7255,6 +7259,15 @@
 				CA415131165395A30062A638 /* BBSService.m */,
 			);
 			path = Service;
+			sourceTree = "<group>";
+		};
+		CA41513B16539B210062A638 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				CA41513C16539B650062A638 /* BBSNetwork.h */,
+				CA41513D16539B650062A638 /* BBSNetwork.m */,
+			);
+			path = Network;
 			sourceTree = "<group>";
 		};
 		CA4216251522A0E800FAA008 /* StoreKit */ = {
@@ -11668,6 +11681,7 @@
 				CA415132165395A30062A638 /* BBSManager.m in Sources */,
 				CA415133165395A30062A638 /* BBSService.m in Sources */,
 				CA415137165395E30062A638 /* BBSBoardController.m in Sources */,
+				CA41513E16539B650062A638 /* BBSNetwork.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
