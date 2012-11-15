@@ -61,6 +61,7 @@
 		A40D70D31653E894000CC598 /* zjh_button_holder_bg_ipad@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A40D70CF1653E894000CC598 /* zjh_button_holder_bg_ipad@2x.png */; };
 		A40D70D41653E894000CC598 /* zjh_game_bg_ipad@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A40D70D01653E894000CC598 /* zjh_game_bg_ipad@2x.jpg */; };
 		A40D71A916548737000CC598 /* PokerView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A40D71A816548737000CC598 /* PokerView~ipad.xib */; };
+		A40D71C51654F58B000CC598 /* FXLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = A40D71C41654F58B000CC598 /* FXLabel.m */; };
 		A40FEEDE15E22E1300A88C57 /* ChatView.m in Sources */ = {isa = PBXBuildFile; fileRef = A40FEEDD15E22E1300A88C57 /* ChatView.m */; };
 		A41A665915C921DA00066E9B /* SlideImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = A41A665815C921DA00066E9B /* SlideImageView.m */; };
 		A42C520615E614D2001D8208 /* DiceChatMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = A42C520315E614D2001D8208 /* DiceChatMessage.m */; };
@@ -1975,6 +1976,8 @@
 		A40D70CF1653E894000CC598 /* zjh_button_holder_bg_ipad@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zjh_button_holder_bg_ipad@2x.png"; sourceTree = "<group>"; };
 		A40D70D01653E894000CC598 /* zjh_game_bg_ipad@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "zjh_game_bg_ipad@2x.jpg"; sourceTree = "<group>"; };
 		A40D71A816548737000CC598 /* PokerView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "PokerView~ipad.xib"; sourceTree = "<group>"; };
+		A40D71C31654F58B000CC598 /* FXLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FXLabel.h; sourceTree = "<group>"; };
+		A40D71C41654F58B000CC598 /* FXLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FXLabel.m; sourceTree = "<group>"; };
 		A40FEEDC15E22E1300A88C57 /* ChatView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatView.h; sourceTree = "<group>"; };
 		A40FEEDD15E22E1300A88C57 /* ChatView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatView.m; sourceTree = "<group>"; };
 		A41A665715C921DA00066E9B /* SlideImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SlideImageView.h; sourceTree = "<group>"; };
@@ -4542,6 +4545,15 @@
 			path = Chat;
 			sourceTree = "<group>";
 		};
+		A40D71C21654F58B000CC598 /* FXLabel */ = {
+			isa = PBXGroup;
+			children = (
+				A40D71C31654F58B000CC598 /* FXLabel.h */,
+				A40D71C41654F58B000CC598 /* FXLabel.m */,
+			);
+			path = FXLabel;
+			sourceTree = "<group>";
+		};
 		A41A665615C921DA00066E9B /* UISlideImageView */ = {
 			isa = PBXGroup;
 			children = (
@@ -5992,6 +6004,7 @@
 		CA103D061509A56100F60C03 /* Core-Components-View */ = {
 			isa = PBXGroup;
 			children = (
+				A40D71C21654F58B000CC598 /* FXLabel */,
 				C20D4B2215E1D77100074885 /* CommonInfoView */,
 				A45E8CE015C780570089E240 /* CMPopTipView */,
 				CA51816A15A2D79700AD5A78 /* CustomStatueBar */,
@@ -11734,6 +11747,7 @@
 				CA41513E16539B650062A638 /* BBSNetwork.m in Sources */,
 				C250AD131653A7F400003E15 /* ZJHRoomListCell.m in Sources */,
 				C250AD141653A7F400003E15 /* ZJHRoomListController.m in Sources */,
+				A40D71C51654F58B000CC598 /* FXLabel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
