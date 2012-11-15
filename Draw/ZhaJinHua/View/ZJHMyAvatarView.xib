@@ -126,7 +126,7 @@
 							<int key="traits">0</int>
 							<double key="pointSize">8</double>
 						</object>
-						<object class="NSFont" key="IBUIFont" id="374760921">
+						<object class="NSFont" key="IBUIFont" id="1064221833">
 							<string key="NSName">Helvetica</string>
 							<double key="NSSize">8</double>
 							<int key="NSfFlags">16</int>
@@ -170,7 +170,7 @@
 						<int key="IBUIBaselineAdjustment">0</int>
 						<float key="IBUIMinimumFontSize">7</float>
 						<reference key="IBUIFontDescription" ref="258912737"/>
-						<reference key="IBUIFont" ref="374760921"/>
+						<reference key="IBUIFont" ref="1064221833"/>
 					</object>
 				</array>
 				<string key="NSFrameSize">{111, 57}</string>
