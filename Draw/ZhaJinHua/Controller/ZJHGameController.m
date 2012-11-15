@@ -503,7 +503,7 @@
     [[self getAvatarViewByPosition:[self getPositionByUserId:_gameService.session.currentPlayUserId]] startReciprocal:[ConfigManager getZJHTimeInterval]];
 
     [self updateZJHButtons];
-    
+        
     if ([_gameService isMyTurn] && [_gameService isMeAutoBet]) {
         if ([_gameService isMyBalanceEnough]) {
             [self bet:YES];
@@ -975,8 +975,6 @@ compareCardWith:(NSString*)targetUserId
 
 - (void)disableCheckCardAndFoldCardButtons
 {
-    
-    
     self.checkCardButton.userInteractionEnabled = NO;
     [self.checkCardButton setTitleColor:TITLE_COLOR_WHEN_DISABLE forState:UIControlStateNormal];
     [self.checkCardButton setBackgroundImage:[_imageManager checkCardBtnDisableBgImage] forState:UIControlStateNormal];
@@ -990,6 +988,7 @@ compareCardWith:(NSString*)targetUserId
 - (void)didDealFinish:(DealerView *)view
 {
     [self updateAllUsersPokers];
+    [self updateZJHButtons];
 }
 
 - (void)showMyCardTypeString
