@@ -191,12 +191,7 @@
     self.singleBetNoteLabel.shadowOffset = CGSizeMake(0.0f, 2.0f);
     self.singleBetNoteLabel.shadowColor = [UIColor colorWithWhite:0.0f alpha:0.75f];
     self.singleBetNoteLabel.shadowBlur = 5.0f;
-    
-    self.singleBetLabel.glowColor = self.singleBetLabel.textColor;
-    self.singleBetLabel.glowOffset = CGSizeMake(0.0, 0.0);
-    self.singleBetLabel.glowAmount = 80.0;
 
-    
 //    self.totalBetNoteLabel.shadowColor = [UIColor colorWithWhite:1.0f alpha:0.8f];
 //    self.totalBetNoteLabel.shadowOffset = CGSizeMake(1.0f, 2.0f);
 //    self.totalBetNoteLabel.shadowBlur = 1.0f;
