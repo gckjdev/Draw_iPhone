@@ -7,13 +7,13 @@
 //
 
 #import "CommonService.h"
-
+#import "BBSManager.h"
 
 @protocol BBSServiceDelegate <NSObject>
 
 @optional
 - (void)didGetBBSBoardList:(NSArray *)boardList
-               resultCount:(NSInteger)resultCount;
+                resultCode:(NSInteger)resultCode;
 
 @end
 @interface BBSService : CommonService
