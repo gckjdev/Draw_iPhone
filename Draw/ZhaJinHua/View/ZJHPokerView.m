@@ -13,8 +13,8 @@
 
 #define TAG_BOMB_BUTTON 300
 
-#define BOMB_BUTTON_WIDTH 27
-#define BOMB_BUTTON_HEIGHT 32
+#define BOMB_BUTTON_WIDTH [DeviceDetection isIPAD] ? 54 : 27
+#define BOMB_BUTTON_HEIGHT [DeviceDetection isIPAD] ? 64 : 32
 
 @interface ZJHPokerView ()
 {
@@ -223,7 +223,7 @@
     bomb.tag = TAG_BOMB_BUTTON;
     [bomb setImage:[[ZJHImageManager defaultManager] bombImage] forState:UIControlStateNormal];
     [bomb addTarget:self action:@selector(clickBomb:) forControlEvents:UIControlEventTouchUpInside];
-    bomb.center = CGPointMake(self.frame.size.width/2, self.frame.size.height/2 - 5);
+    bomb.center = CGPointMake(self.frame.size.width/2, self.frame.size.height/2 - ([DeviceDetection isIPAD] ? 10 : 5));
     
     UIImageView *imageView = [[[UIImageView alloc] initWithFrame:bomb.bounds] autorelease];
     imageView.image = [[ZJHImageManager defaultManager] bombImageLight];
@@ -233,7 +233,7 @@
     CABasicAnimation *movAni = [CABasicAnimation animationWithKeyPath:@"position.y"];
     movAni.repeatCount = 1000;
     movAni.duration = 1.0;
-    CGFloat originY = bomb.layer.position.y - 10;
+    CGFloat originY = bomb.layer.position.y - ([DeviceDetection isIPAD] ? 20 : 10);
     CGFloat toY = bomb.layer.position.y;
     movAni.fromValue = [NSNumber numberWithFloat:originY];
     movAni.toValue = [NSNumber numberWithFloat:toY];

@@ -5236,7 +5236,6 @@
 		A4E7878116367338003557AD /* View */ = {
 			isa = PBXGroup;
 			children = (
-				A40D71A816548737000CC598 /* PokerView~ipad.xib */,
 				C239366316522858001BD5C6 /* ZJHSettingView.xib */,
 				C239366416522858001BD5C6 /* ZJHSettingView.h */,
 				C239366516522858001BD5C6 /* ZJHSettingView.m */,
@@ -5249,6 +5248,7 @@
 				A44B622E1637C45600A8045B /* PokerView.h */,
 				A44B622F1637C45600A8045B /* PokerView.m */,
 				A44B6257163A2BAF00A8045B /* PokerView.xib */,
+				A40D71A816548737000CC598 /* PokerView~ipad.xib */,
 				C2F2CFB1163932C000995DCB /* ZJHAvatarView.h */,
 				C2F2CFB2163932C000995DCB /* ZJHAvatarView.m */,
 				C29B5F951644C74500EF4AB4 /* ZJHAvatarView.xib */,

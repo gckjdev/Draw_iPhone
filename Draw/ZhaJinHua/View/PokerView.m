@@ -239,13 +239,25 @@
     [self.popupView dismissAnimated:YES];
 }
 
+#define SHOW_CARD_VIEW_WIDTH ([DeviceDetection isIPAD] ? 72 : 43)
+#define SHOW_CARD_VIEW__HEIGHT ([DeviceDetection isIPAD] ? 60 : 36)
+
+#define SHOW_CARD_BUTTON_X_OFFSET ([DeviceDetection isIPAD] ? 6 : 4)
+#define SHOW_CARD_BUTTON_Y_OFFSET ([DeviceDetection isIPAD] ? 6 : 4)
+
+#define SHOW_CARD_BUTTON_WIDTH ([DeviceDetection isIPAD] ? 56 : 35)
+#define SHOW_CARD_BUTTON_HEIGHT ([DeviceDetection isIPAD] ? 40 : 25)
+
+#define SHOW_CARD_BUTTON_FONT ([DeviceDetection isIPAD] ? [UIFont systemFontOfSize:18] : [UIFont systemFontOfSize:13])
+
 - (UIView *)createShowCardButton
 {
-    UIView *view = [[[UIView alloc] initWithFrame:CGRectMake(0, 0, 43, 36)] autorelease];
+
+    UIView *view = [[[UIView alloc] initWithFrame:CGRectMake(0, 0, SHOW_CARD_VIEW_WIDTH, SHOW_CARD_VIEW__HEIGHT)] autorelease];
     UIImageView *imageView = [[[UIImageView alloc] initWithFrame:view.bounds] autorelease];
     imageView.image = [[ZJHImageManager defaultManager] showCardButtonBgImage];
-    UIButton *button = [[[UIButton alloc] initWithFrame:CGRectMake(4, 4, 35, 25)] autorelease];
-    [button.titleLabel setFont:[UIFont systemFontOfSize:13]];
+    UIButton *button = [[[UIButton alloc] initWithFrame:CGRectMake(SHOW_CARD_BUTTON_X_OFFSET, SHOW_CARD_BUTTON_Y_OFFSET, SHOW_CARD_BUTTON_WIDTH, SHOW_CARD_BUTTON_HEIGHT)] autorelease];
+    [button.titleLabel setFont:SHOW_CARD_BUTTON_FONT];
     [button setTitle:@"亮牌" forState:UIControlStateNormal];
     [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [button addTarget:self action:@selector(clickShowCardButton:) forControlEvents:UIControlEventTouchUpInside];
