@@ -544,7 +544,7 @@
     }
 }
 
-#define COMPARE_CARD_OFFSET  [DeviceDetection isIPAD]?60:30
+#define COMPARE_CARD_OFFSET  ([DeviceDetection isIPAD]?60:30)
 
 - (void)someone:(NSString*)userId
 compareCardWith:(NSString*)targetUserId
@@ -583,8 +583,8 @@ compareCardWith:(NSString*)targetUserId
         }
 
         [UIView animateWithDuration:1 animations:^{
-            pokerView.layer.position = CGPointMake(self.view.center.x, self.view.center.y - 29.9);
-            otherPokerView.layer.position = CGPointMake(self.view.center.x, self.view.center.y + 29.9);
+            pokerView.layer.position = CGPointMake(self.view.center.x, self.view.center.y - COMPARE_CARD_OFFSET-0.1);
+            otherPokerView.layer.position = CGPointMake(self.view.center.x, self.view.center.y + COMPARE_CARD_OFFSET-0.1);
             
         } completion:^(BOOL finished) {
             [UIView animateWithDuration:1 animations:^{
@@ -620,7 +620,7 @@ compareCardWith:(NSString*)targetUserId
         
         [self someone:initiatorId
       compareCardWith:[result2.userId isEqualToString:initiatorId]?result1.userId:result2.userId
-               didWin:result1.win
+               didWin:[result1.userId isEqualToString:initiatorId]?result1.win:result2.win
             initiator:initiatorId];
     }
     
