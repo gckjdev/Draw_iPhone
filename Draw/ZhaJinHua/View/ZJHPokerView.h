@@ -16,7 +16,7 @@
 
 #define BIG_POKER_VIEW_WIDTH ([DeviceDetection isIPAD] ? 70 : 35)
 #define BIG_POKER_VIEW_HEIGHT ([DeviceDetection isIPAD] ? 94 : 48)
-#define BIG_POKER_GAP (BIG_POKER_VIEW_WIDTH * ([DeviceDetection isIPAD] ? 1.06 : 1.04))
+#define BIG_POKER_GAP (BIG_POKER_VIEW_WIDTH * ([DeviceDetection isIPAD] ? 1.06 : 1.05))
 
 typedef enum {
     ZJHPokerSectorTypeNone = 0,

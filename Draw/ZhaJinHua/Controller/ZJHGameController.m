@@ -995,6 +995,19 @@ compareCardWith:(NSString*)targetUserId
 {
     _cardTypeButton.hidden = NO;
     [_cardTypeButton setTitle:[_gameService myCardType] forState:UIControlStateNormal];
+    PPDebug(@"_cardTypeButton.titleLabel.font.pointSize = %f", _cardTypeButton.titleLabel.font.pointSize);
+    
+    [UIView animateWithDuration:0.5 delay:0 options:UIViewAnimationCurveEaseInOut animations:^{
+        _cardTypeButton.titleLabel.transform = CGAffineTransformMakeScale(1.2, 1.2);
+
+    } completion:^(BOOL finished) {
+        [UIView animateWithDuration:0.5 delay:0 options:UIViewAnimationCurveEaseInOut animations:^{
+            _cardTypeButton.titleLabel.transform = CGAffineTransformMakeScale(1, 1);
+        } completion:^(BOOL finished) {
+            
+        }];
+
+    }];
 }
 
 - (void)hideMyCardTypeString
