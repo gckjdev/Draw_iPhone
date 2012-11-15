@@ -15,7 +15,7 @@
 #define SMALL_POKER_GAP (SMALL_POKER_VIEW_WIDTH * 0.15)
 
 #define BIG_POKER_VIEW_WIDTH ([DeviceDetection isIPAD] ? 70 : 35)
-#define BIG_POKER_VIEW_HEIGHT ([DeviceDetection isIPAD] ? 94 : 47)
+#define BIG_POKER_VIEW_HEIGHT ([DeviceDetection isIPAD] ? 96 : 48)
 #define BIG_POKER_GAP (BIG_POKER_VIEW_WIDTH * ([DeviceDetection isIPAD] ? 1.06 : 1.1))
 
 typedef enum {
