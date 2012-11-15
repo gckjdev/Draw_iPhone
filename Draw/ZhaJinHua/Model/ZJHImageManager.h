@@ -54,6 +54,7 @@
 - (UIImage*)foldCardBtnDisableBgImage;
 
 - (UIImage*)bombImage;
+- (UIImage*)bombImageLight;
 
 - (UIImage*)vsImage;
 

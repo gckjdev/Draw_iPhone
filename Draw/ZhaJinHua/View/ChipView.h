@@ -8,8 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-#define CHIP_VIEW_WIDTH 32
-#define CHIP_VIEW_HEIGHT 32
+#define CHIP_VIEW_WIDTH [DeviceDetection isIPAD] ? 64 : 32
+#define CHIP_VIEW_HEIGHT [DeviceDetection isIPAD] ? 64 : 32
 
 @class ChipView;
 

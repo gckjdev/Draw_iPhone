@@ -66,6 +66,9 @@
 
 #import "FriendController.h"
 
+#import "BBSService.h"
+
+
 @interface HomeController()
 {
     BoardPanel *_boardPanel;
@@ -605,8 +608,13 @@
 
 - (IBAction)clickFacetime:(id)sender
 {
-    FacetimeMainController* vc = [[[FacetimeMainController alloc] init] autorelease];
-    [self.navigationController pushViewController:vc animated:YES];
+
+    [[BBSService defaultService] getBBSBoardList:nil];
+//    BBSBoardController *bbs = [[BBSBoardController alloc] init];
+//    [self.navigationController pushViewController:bbs animated:YES];
+//    [bbs release];
+//    FacetimeMainController* vc = [[[FacetimeMainController alloc] init] autorelease];
+//    [self.navigationController pushViewController:vc animated:YES];
     
 //    [[DiceGameService defaultService] joinGameRequest];
 }

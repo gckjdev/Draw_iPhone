@@ -7,7 +7,7 @@
 //
 
 #import "BBSBoardController.h"
-
+#import "BBSService.h"
 @interface BBSBoardController ()
 
 @end
@@ -26,6 +26,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [[BBSService defaultService] getBBSBoardList:nil];
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -35,4 +36,7 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (IBAction)clickBackButton:(id)sender {
+    [self.navigationController popViewControllerAnimated:YES];
+}
 @end

@@ -11,6 +11,7 @@
 #import "ShareImageManager.h"
 #import "PPResourceService.h"
 #import "GameResource.h"
+//#import "UIImageUtil.h"
 
 @interface ZJHImageManager()
 {
@@ -446,9 +447,16 @@ static ZJHImageManager* shareInstance;
 
 - (UIImage*)bombImage
 {
-//    return [_resService imageByName:@"zjh_finger" inResourcePackage:RESOURCE_PACKAGE_ZJH];
+//    return [_resService imageByName:@"zjh_arrow" inResourcePackage:RESOURCE_PACKAGE_ZJH];
     
-    return [UIImage imageNamed:@"zjh_finger@2x"];
+    return [UIImage imageNamed:@"zjh_arrow@2x.png"];
+}
+
+- (UIImage*)bombImageLight
+{
+    //    return [_resService imageByName:@"zjh_arrow_light" inResourcePackage:RESOURCE_PACKAGE_ZJH];
+    
+    return [UIImage imageNamed:@"zjh_arrow_light@2x.png"];
 }
 
 - (UIImage*)vsImage
@@ -568,7 +576,7 @@ static ZJHImageManager* shareInstance;
 
 - (UIImage *)userTotalBetBgImage
 {
-    return [_resService imageByName:@"zjh_user_bet_bg" inResourcePackage:RESOURCE_PACKAGE_ZJH];
+    return [[_resService imageByName:@"zjh_user_bet_bg" inResourcePackage:RESOURCE_PACKAGE_ZJH] stretchableImageWithLeftCapWidth:25 topCapHeight:0];
 }
 
 - (UIImage *)buttonsHolderBgImage
