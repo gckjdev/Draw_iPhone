@@ -28,6 +28,7 @@
 #import "CommonMessageCenter.h"
 #import "ZJHSettingView.h"
 #import "ZJHScreenConfig.h"
+#import "NotificationName.h"
 
 #define AVATAR_VIEW_TAG_OFFSET   4000
 #define AVATAR_PLACE_VIEW_OFFSET    8000

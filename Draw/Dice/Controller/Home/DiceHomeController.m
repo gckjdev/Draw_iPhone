@@ -44,6 +44,7 @@
 #import "ZJHGameService.h"
 #import "ZJHGameController.h"
 #import "PPResourceService.h"
+#import "NotificationName.h"
 
 #define KEY_LAST_AWARD_DATE     @"last_award_day"
 
