@@ -39,7 +39,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+    [self.fastEntryButton setRoyButtonWithColor:[UIColor redColor]];
+    [self.createRoomButton setRoyButtonWithColor:[UIColor yellowColor]];
     // Do any additional setup after loading the view from its nib.
 }
 
