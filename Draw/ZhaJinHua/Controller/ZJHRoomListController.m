@@ -11,6 +11,7 @@
 #import "ZJHRoomListCell.h"
 #import "UserManager.h"
 #import "ZJHGameController.h"
+#import "DiceColorManager.h"
 
 @interface ZJHRoomListController ()
 
@@ -39,8 +40,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self.fastEntryButton setRoyButtonWithColor:[UIColor redColor]];
-    [self.createRoomButton setRoyButtonWithColor:[UIColor yellowColor]];
+    [self.createRoomButton setRoyButtonWithColor:[DiceColorManager dialoggreenColor]];
+    [self.createRoomButton setTitleColor:[UIColor darkTextColor] forState:UIControlStateNormal];
+    [self.fastEntryButton setRoyButtonWithColor:[DiceColorManager dialogYellowColor]];
+    [self.fastEntryButton setTitleColor:[UIColor darkTextColor] forState:UIControlStateNormal];
     // Do any additional setup after loading the view from its nib.
 }
 
