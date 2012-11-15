@@ -283,7 +283,7 @@
 							<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
 						</object>
 						<reference key="IBUINormalTitleShadowColor" ref="395620140"/>
-						<object class="NSCustomResource" key="IBUINormalImage">
+						<object class="NSCustomResource" key="IBUINormalBackgroundImage">
 							<string key="NSClassName">NSImage</string>
 							<string key="NSResourceName">zjh_chat_button@2x.png</string>
 						</object>
@@ -1598,6 +1598,17 @@
 				<object class="IBPartialClassDescription">
 					<string key="className">ZJHGameController</string>
 					<string key="superclassName">PPViewController</string>
+					<object class="NSMutableDictionary" key="actions">
+						<string key="NS.key.0">clickRaiseBetButton:</string>
+						<string key="NS.object.0">id</string>
+					</object>
+					<object class="NSMutableDictionary" key="actionInfosByName">
+						<string key="NS.key.0">clickRaiseBetButton:</string>
+						<object class="IBActionInfo" key="NS.object.0">
+							<string key="name">clickRaiseBetButton:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+					</object>
 					<dictionary class="NSMutableDictionary" key="outlets">
 						<string key="autoBetButton">UIButton</string>
 						<string key="betButton">UIButton</string>
