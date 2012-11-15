@@ -33,6 +33,7 @@
     if (topLevelObjects == nil || [topLevelObjects count] <= 0){
         return nil;
     }
+    
     return [topLevelObjects objectAtIndex:0];
 }
 
@@ -43,6 +44,7 @@
     view.roundAvatar = [[[DiceAvatarView alloc] initWithFrame:view.roundAvatarPlaceView.frame] autorelease];
     [view sendSubviewToBack:view.roundAvatar];
     //        _roundAvatar.center = CGPointMake(self.frame.size.width/2, self.frame.size.height/2);
+    [view.roundAvatar setProgressBarWidth:0.07];
     [view addSubview:view.roundAvatar];
     view.roundAvatar.delegate = view;
     
