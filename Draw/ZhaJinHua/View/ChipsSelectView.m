@@ -12,7 +12,7 @@
 #import "ChipView.h"
 #import "ZJHGameService.h"
 
-#define CHIP_GAP 5
+#define CHIP_GAP ([DeviceDetection isIPAD] ? 10 : 5)
 #define CHIPS_COUNT 4
 
 @interface ChipsSelectView()
