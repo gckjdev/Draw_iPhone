@@ -34,6 +34,7 @@
 
 {
     ChipsSelectView *chipsSelectView = [[[ChipsSelectView alloc] initWithFrame:CGRectMake(0, 0, CHIP_VIEW_WIDTH * CHIPS_COUNT + CHIP_GAP * (CHIPS_COUNT - 1), CHIP_VIEW_HEIGHT)] autorelease];
+    PPDebug(@"%f, %f", chipsSelectView.frame.size.width , chipsSelectView.frame.size.height);
     chipsSelectView.delegate = delegate;
     [chipsSelectView addChipViews];
     
