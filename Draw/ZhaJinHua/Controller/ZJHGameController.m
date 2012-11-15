@@ -308,7 +308,6 @@
 
 - (void)compareToUser:(NSString*)targetUserId
 {
-    self.isComparing = NO;
     [_gameService compareCard:targetUserId];
 }
 
@@ -545,6 +544,8 @@
     }
 }
 
+#define COMPARE_CARD_OFFSET  ([DeviceDetection isIPAD]?60:30)
+
 - (void)someone:(NSString*)userId
 compareCardWith:(NSString*)targetUserId
          didWin:(BOOL)didWin
@@ -561,8 +562,8 @@ compareCardWith:(NSString*)targetUserId
     _isComparing = YES;
     
     [UIView animateWithDuration:1 animations:^{
-        pokerView.layer.position = CGPointMake(self.view.center.x, self.view.center.y - 30);
-        otherPokerView.layer.position = CGPointMake(self.view.center.x, self.view.center.y + 30);
+        pokerView.layer.position = CGPointMake(self.view.center.x, self.view.center.y - COMPARE_CARD_OFFSET);
+        otherPokerView.layer.position = CGPointMake(self.view.center.x, self.view.center.y + COMPARE_CARD_OFFSET);
         if ([_userManager isMe:userId]) {
             pokerView.layer.transform = CATransform3DMakeScale(28/35.0, 37/48.0, 1);
         }
@@ -582,8 +583,8 @@ compareCardWith:(NSString*)targetUserId
         }
 
         [UIView animateWithDuration:1 animations:^{
-            pokerView.layer.position = CGPointMake(self.view.center.x, self.view.center.y - 29.9);
-            otherPokerView.layer.position = CGPointMake(self.view.center.x, self.view.center.y + 29.9);
+            pokerView.layer.position = CGPointMake(self.view.center.x, self.view.center.y - COMPARE_CARD_OFFSET-0.1);
+            otherPokerView.layer.position = CGPointMake(self.view.center.x, self.view.center.y + COMPARE_CARD_OFFSET-0.1);
             
         } completion:^(BOOL finished) {
             [UIView animateWithDuration:1 animations:^{
@@ -599,7 +600,7 @@ compareCardWith:(NSString*)targetUserId
                 }
                 self.vsImageView.hidden = YES;
             } completion:^(BOOL finished) {
-                _isComparing = NO;
+                _isShowingComparing = NO;
             }];
         }];
     }];
@@ -608,7 +609,8 @@ compareCardWith:(NSString*)targetUserId
 - (void)showCompareCardResult:(NSArray*)userResultList initiator:(NSString*)initiatorId
 {
     [self clearAllAvatarReciprocals];
-    if (userResultList.count == 2 && !_isComparing) {
+    self.isComparing = NO;
+    if (userResultList.count == 2 && !_isShowingComparing) {
         PBUserResult* result1 = [userResultList objectAtIndex:0];
         PBUserResult* result2 = [userResultList objectAtIndex:1];
         
@@ -616,7 +618,10 @@ compareCardWith:(NSString*)targetUserId
             [self disableCheckCardAndFoldCardButtons];
         }
         
-        [self someone:result1.userId compareCardWith:result2.userId didWin:result1.win initiator:initiatorId];
+        [self someone:initiatorId
+      compareCardWith:[result2.userId isEqualToString:initiatorId]?result1.userId:result2.userId
+               didWin:[result1.userId isEqualToString:initiatorId]?result1.win:result2.win
+            initiator:initiatorId];
     }
     
     if (![_userManager isMe:initiatorId]) {

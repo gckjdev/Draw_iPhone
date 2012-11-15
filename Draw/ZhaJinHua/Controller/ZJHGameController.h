@@ -27,6 +27,7 @@
 
 @interface ZJHGameController : PPViewController <ZJHPokerViewProtocol, ZJHAvatarViewDelegate, DealerViewDelegate, ChipsSelectViewProtocol, MoneyTreeDelegate> {
     BOOL _isComparing;
+    BOOL _isShowingComparing;
 }
 
 @property (retain, nonatomic) IBOutlet UIImageView *gameBgImageView;
