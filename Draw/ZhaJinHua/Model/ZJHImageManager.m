@@ -576,7 +576,9 @@ static ZJHImageManager* shareInstance;
 
 - (UIImage *)userTotalBetBgImage
 {
-    return [[_resService imageByName:@"zjh_user_bet_bg" inResourcePackage:RESOURCE_PACKAGE_ZJH] stretchableImageWithLeftCapWidth:25 topCapHeight:0];
+    return [_resService imageByName:@"zjh_user_bet_bg" inResourcePackage:RESOURCE_PACKAGE_ZJH];
+
+//    return [[_resService imageByName:@"zjh_user_bet_bg" inResourcePackage:RESOURCE_PACKAGE_ZJH] stretchableImageWithLeftCapWidth:25 topCapHeight:0];
 }
 
 - (UIImage *)buttonsHolderBgImage
