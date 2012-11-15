@@ -38,9 +38,9 @@
 - (void)setCellInfo:(PBGameSession *)session;
 {
     if (session.name == nil || session.name.length <= 0) {
-        [self.roomNameLabel setText:session.name];
-    } else {
         [self.roomNameLabel setText:[NSString stringWithFormat:@"%lld",session.sessionId]];
+    } else {
+        [self.roomNameLabel setText:session.name];
     }
     [self.backgroundImageView setImage:[DiceImageManager defaultManager].roomCellBackgroundImage];
     for (int i = 0; i < 6; i ++) {
