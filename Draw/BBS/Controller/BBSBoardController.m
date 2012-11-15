@@ -13,7 +13,7 @@
 {
     NSArray *_parentBoardList;
     BBSManager *_bbsManager;
-//    NSArray *_subBoardList;
+    NSMutableSet *_openBoardSet;
 }
 @property(nonatomic, retain)NSArray *parentBoardList;
 
@@ -27,6 +27,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         _bbsManager = [BBSManager defaultManager];
+        _openBoardSet = [[NSMutableSet alloc] init];
     }
     return self;
 }
@@ -55,7 +56,7 @@
 {
     if (resultCode == 0) {
         self.parentBoardList = [_bbsManager parentBoardList];
-        
+        [_openBoardSet removeAllObjects];
     }else{
         PPDebug(@"<didGetBBSBoardList>: fail.");
     }
@@ -65,11 +66,32 @@
 
 #pragma mark table view delegate
 
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+- (void)didClickBoardSection:(BBSBoardSection *)boardSection
+                    bbsBoard:(PBBBSBoard*)bbsBoard
+{
+    if (![_openBoardSet containsObject:bbsBoard]) {
+        [_openBoardSet addObject:bbsBoard];
+    }else{
+        [_openBoardSet removeObject:bbsBoard];
+    }
+    NSInteger section = [_parentBoardList indexOfObject:bbsBoard];
+    if (section != NSNotFound) {
+        [self.dataTableView reloadSections:[NSIndexSet indexSetWithIndex:section]
+                          withRowAnimation:UITableViewRowAnimationFade];
+    }
+}
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
     PBBBSBoard *board = [_parentBoardList objectAtIndex:section];
-    return board.name;
+    BBSBoardSection *header = [BBSBoardSection createBoardSectionView:self];
+    [header setViewWithBoard:board];
+    return header;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 100;
+}
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {	
@@ -89,13 +111,15 @@
     return nil;
 }
 
-// Customize the number of rows in the table view.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [[self subBoardListForSection:section] count];
+    PBBBSBoard *board = [_parentBoardList objectAtIndex:section];
+    if ([_openBoardSet containsObject:board]) {
+        return [[self subBoardListForSection:section] count];
+    }
+    return 0;
 }
 
 
-// Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)theTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     static NSString *CellIdentifier = @"BBSBoardCell";
@@ -114,6 +138,7 @@
 	return cell;
 	
 }
+
 
 
 @end

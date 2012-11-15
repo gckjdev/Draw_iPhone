@@ -8,8 +8,9 @@
 
 #import "PPTableViewController.h"
 #import "BBSService.h"
+#import "BBSBoardSection.h"
 
-@interface BBSBoardController : PPTableViewController<BBSServiceDelegate>
+@interface BBSBoardController : PPTableViewController<BBSServiceDelegate, BBSBoardSectionDelegate>
 {
 
 }
