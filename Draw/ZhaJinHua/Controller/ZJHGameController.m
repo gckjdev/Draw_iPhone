@@ -41,7 +41,7 @@
 #define TITLE_COLOR_WHEN_DISABLE [UIColor lightGrayColor]
 #define TITLE_COLOR_WHEN_ENABLE [UIColor whiteColor]
 
-#define ACTION_LABEL_FONT [UIFont systemFontOfSize:11]
+#define ACTION_LABEL_FONT ([DeviceDetection isIPAD] ? [UIFont systemFontOfSize:22] : [UIFont systemFontOfSize:11])
 
 @interface ZJHGameController ()
 {
@@ -155,9 +155,9 @@
     self.totalBetBgImageView.image = [_imageManager totalBetBgImage];
     self.buttonsHolderBgImageView.image = [_imageManager buttonsHolderBgImage];
     [self.runawayButton setBackgroundImage:[_imageManager runawayButtonImage] forState:UIControlStateNormal] ;
-    [self.settingButton setImage:[_imageManager settingButtonImage] forState:UIControlStateNormal] ;
-    [self.chatButton setImage:[_imageManager chatButtonImage] forState:UIControlStateNormal] ;
-    [self.moneyTree setImage:[_imageManager moneyTreeImage] forState:UIControlStateNormal] ;
+    [self.settingButton setBackgroundImage:[_imageManager settingButtonImage] forState:UIControlStateNormal] ;
+    [self.chatButton setBackgroundImage:[_imageManager chatButtonImage] forState:UIControlStateNormal] ;
+    [self.moneyTree setBackgroundImage:[_imageManager moneyTreeImage] forState:UIControlStateNormal] ;
     self.vsImageView.image = [_imageManager vsImage];
     
     [self.autoBetButton setBackgroundImage:[_imageManager autoBetBtnOnBgImage] forState:UIControlStateSelected];
@@ -1106,7 +1106,7 @@ compareCardWith:(NSString*)targetUserId
         view.alpha = 1;
     } completion:^(BOOL finished) {
         [UIView animateWithDuration:1.5 delay:0.5 options:UIViewAnimationCurveEaseInOut animations:^{
-            view.center = CGPointMake(view.center.x, view.center.y - 15);
+            view.center = CGPointMake(view.center.x, view.center.y - ([DeviceDetection isIPAD] ? 30 : 15));
             view.alpha = 0;
         } completion:^(BOOL finished) {
             [view removeFromSuperview];

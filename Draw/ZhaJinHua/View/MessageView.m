@@ -13,10 +13,10 @@
 #define MESSAGE_MAX_HEIGHT MAXFLOAT
 #define MESSAGE_MIN_HEIGHT 20
 
-#define LABEL_LEFT_OFFSET 2.5
-#define LABEL_RIGHT_OFFSET 2.5
-#define LABEL_TOP_OFFSET 1
-#define LABEL_BOTTOM_OFFSET 7
+#define LABEL_LEFT_OFFSET ([DeviceDetection isIPAD] ? 5.0 : 2.5)
+#define LABEL_RIGHT_OFFSET ([DeviceDetection isIPAD] ? 5.0 : 2.5)
+#define LABEL_TOP_OFFSET ([DeviceDetection isIPAD] ? 2 : 1)
+#define LABEL_BOTTOM_OFFSET ([DeviceDetection isIPAD] ? 14 : 7)
 
 
 #define LABEL_TAG 200
@@ -49,6 +49,7 @@
         UILabel *label = [self labelWithMessage:message
                                            font:font
                                   textAlignment:textAlignment];
+
         label.tag = LABEL_TAG;
         label.frame = CGRectMake(LABEL_LEFT_OFFSET, LABEL_TOP_OFFSET, label.frame.size.width, label.frame.size.height);
         UIImageView *imageView = [[[UIImageView alloc] initWithFrame:CGRectMake(0, 0, LABEL_LEFT_OFFSET + label.frame.size.width + LABEL_RIGHT_OFFSET, LABEL_TOP_OFFSET + label.frame.size.height + LABEL_BOTTOM_OFFSET)] autorelease];
@@ -72,6 +73,12 @@
     size.width = (size.width < MESSAGE_MIN_WIDTH) ? MESSAGE_MIN_WIDTH : size.width;
 //    size.width = size.width * 1.1;
     size.height = (size.height < MESSAGE_MIN_HEIGHT) ? MESSAGE_MIN_HEIGHT : size.height;
+    
+    if([DeviceDetection isIPAD])
+    {
+        size.width *= 1.5;
+        size.height *= 1.5;
+    }
 
     CGRect rect = CGRectMake(0, 0, size.width, size.height);
     
