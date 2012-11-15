@@ -18,7 +18,7 @@
 #import "GameNetworkConstants.h"
 #import "ConfigManager.h"
 
-#import "BBSManager.h"
+
 BBSService *_staticBBSService;
 
 @implementation BBSService
@@ -40,16 +40,26 @@ BBSService *_staticBBSService;
                                                            userId:userId
                                                        deviceType:1];
         NSInteger resultCode = [output resultCode];
-        NSInteger length = [output.responseData length];
-        if (output.resultCode == ERROR_SUCCESS && length > 0) {
-            DataQueryResponse *response = [DataQueryResponse parseFromData:output.responseData];
-            resultCode = [response resultCode];
-            NSArray *list = [response bbsBoardList];
-            for (PBBBSBoard *board in list) {
-                [BBSManager printBBSBoard:board];
-
+        NSArray *list = nil;
+        @try {
+            if (output.resultCode == ERROR_SUCCESS && [output.responseData length] > 0) {
+                DataQueryResponse *response = [DataQueryResponse parseFromData:output.responseData];
+                resultCode = [response resultCode];
+                list = [response bbsBoardList];
+                [[BBSManager defaultManager] setBoardList:list];
             }
         }
+        @catch (NSException *exception) {
+            PPDebug(@"<getBBSBoardList>exception = %@",[exception debugDescription]);
+        }
+        @finally {
+            list = nil;
+        }
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (delegate && [delegate respondsToSelector:@selector(didGetBBSBoardList:resultCode:)]) {
+                [delegate didGetBBSBoardList:list resultCode:resultCode];
+            }
+        });
     });
 }
 

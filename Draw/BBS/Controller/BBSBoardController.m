@@ -7,18 +7,26 @@
 //
 
 #import "BBSBoardController.h"
-#import "BBSService.h"
+
+
 @interface BBSBoardController ()
+{
+    NSArray *_parentBoardList;
+    BBSManager *_bbsManager;
+//    NSArray *_subBoardList;
+}
+@property(nonatomic, retain)NSArray *parentBoardList;
 
 @end
 
 @implementation BBSBoardController
+@synthesize parentBoardList = _parentBoardList;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
+        _bbsManager = [BBSManager defaultManager];
     }
     return self;
 }
@@ -26,7 +34,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [[BBSService defaultService] getBBSBoardList:nil];
+    [[BBSService defaultService] getBBSBoardList:self];
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -39,4 +47,73 @@
 - (IBAction)clickBackButton:(id)sender {
     [self.navigationController popViewControllerAnimated:YES];
 }
+
+#pragma mark bbs borad delegate
+
+- (void)didGetBBSBoardList:(NSArray *)boardList
+               resultCode:(NSInteger)resultCode
+{
+    if (resultCode == 0) {
+        self.parentBoardList = [_bbsManager parentBoardList];
+        
+    }else{
+        PPDebug(@"<didGetBBSBoardList>: fail.");
+    }
+    [self.dataTableView reloadData];
+}
+
+
+#pragma mark table view delegate
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    PBBBSBoard *board = [_parentBoardList objectAtIndex:section];
+    return board.name;
+}
+
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{	
+	return 44;
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return [_parentBoardList count];
+}
+
+- (NSArray *)subBoardListForSection:(NSInteger)section {
+    if (section < [_parentBoardList count] && section >= 0) {
+        PBBBSBoard *pBoard = [_parentBoardList objectAtIndex:section];
+        NSArray *subList = [_bbsManager sbuBoardListForBoardId:pBoard.boardId];
+        return subList;
+    }
+    return nil;
+}
+
+// Customize the number of rows in the table view.
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return [[self subBoardListForSection:section] count];
+}
+
+
+// Customize the appearance of table view cells.
+- (UITableViewCell *)tableView:(UITableView *)theTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    static NSString *CellIdentifier = @"BBSBoardCell";
+	UITableViewCell *cell = [theTableView dequeueReusableCellWithIdentifier:CellIdentifier];
+	if (cell == nil) {
+		cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
+		cell.selectionStyle = UITableViewCellSelectionStyleGray;
+	}
+    
+    PBBBSBoard *pBoard = [_parentBoardList objectAtIndex:indexPath.section];
+    NSArray *subList = [_bbsManager sbuBoardListForBoardId:pBoard.boardId];
+    PBBBSBoard *sBoard = [subList objectAtIndex:indexPath.row];
+    
+    [cell.textLabel setText:sBoard.name];
+    
+	return cell;
+	
+}
+
+
 @end

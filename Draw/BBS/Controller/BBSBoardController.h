@@ -7,8 +7,12 @@
 //
 
 #import "PPTableViewController.h"
+#import "BBSService.h"
 
-@interface BBSBoardController : PPTableViewController
+@interface BBSBoardController : PPTableViewController<BBSServiceDelegate>
+{
+
+}
 - (IBAction)clickBackButton:(id)sender;
 
 @end

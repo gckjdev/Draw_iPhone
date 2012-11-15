@@ -66,7 +66,7 @@
 
 #import "FriendController.h"
 
-#import "BBSService.h"
+#import "BBSBoardController.h"
 
 
 @interface HomeController()
@@ -609,7 +609,7 @@
 - (IBAction)clickFacetime:(id)sender
 {
 
-    [[BBSService defaultService] getBBSBoardList:nil];
+//    [[BBSService defaultService] getBBSBoardList:nil];
 //    BBSBoardController *bbs = [[BBSBoardController alloc] init];
 //    [self.navigationController pushViewController:bbs animated:YES];
 //    [bbs release];
@@ -729,9 +729,12 @@
             break;
         case MenuButtonTypeContest:
         {
-            ContestController *cc = [[ContestController alloc] init];
-            [self.navigationController pushViewController:cc animated:YES];
-            [cc release];
+            BBSBoardController *bbs = [[BBSBoardController alloc] init];
+            [self.navigationController pushViewController:bbs animated:YES];
+            [bbs release];
+//            ContestController *cc = [[ContestController alloc] init];
+//            [self.navigationController pushViewController:cc animated:YES];
+//            [cc release];
         }
             break;
         case MenuButtonTypeTop:
