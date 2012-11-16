@@ -124,12 +124,12 @@
 - (void)startRefreshRoomsTimer
 {
     [self clearRefreshRoomsTimer];
-    _refreshRoomTimer = [NSTimer scheduledTimerWithTimeInterval:REFRESH_ROOMS_TIME_INTERVAL
-                                                         target:self
-                                                       selector:@selector(refreshRooms:)
-                                                       userInfo:nil
-                                                        repeats:NO];
-    [_refreshRoomTimer retain];
+//    _refreshRoomTimer = [NSTimer scheduledTimerWithTimeInterval:REFRESH_ROOMS_TIME_INTERVAL
+//                                                         target:self
+//                                                       selector:@selector(refreshRooms:)
+//                                                       userInfo:nil
+//                                                        repeats:NO];
+//    [_refreshRoomTimer retain];
 }
 
 - (void)pauseRefreshingRooms
@@ -182,8 +182,12 @@
 
 - (void)connectServer
 {
-    [_gameService connectServer];
-    [self showActivityWithText:NSLS(@"kRefreshingRoomList")];
+    if (![_gameService isConnected]) {
+        [_gameService connectServer];
+        [self showActivityWithText:NSLS(@"kRefreshingRoomList")];
+    } else {
+        [self connectServerSuccessfully];
+    }
 }
 
 - (void)registerDiceRoomNotification
@@ -240,7 +244,7 @@
     
 }
 
-- (void)unregisterDiceRoomNotification
+- (void)unregisterRoomNotification
 {
     [self unregisterAllNotifications];
 }
@@ -275,7 +279,7 @@
 
 - (void)viewDidDisappear:(BOOL)animated
 {
-    [self unregisterDiceRoomNotification];
+    [self unregisterRoomNotification];
     [_searchView disappear];
     [self clearRefreshRoomsTimer];
     [super viewDidDisappear:animated];
