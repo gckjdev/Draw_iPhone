@@ -65,7 +65,6 @@
 @synthesize autoBetButton = _autoBetButton;
 @synthesize compareCardButton = _compareCardButton;
 @synthesize checkCardButton = _checkCardButton;
-@synthesize cardTypeButton = _cardTypeButton;
 @synthesize foldCardButton = _foldCardButton;
 @synthesize totalBetLabel = _totalBetLabel;
 @synthesize singleBetLabel = _singleBetLabel;
@@ -81,7 +80,6 @@
     [_autoBetButton release];
     [_compareCardButton release];
     [_checkCardButton release];
-    [_cardTypeButton release];
     [_foldCardButton release];
     [_totalBetLabel release];
     [_singleBetLabel release];
@@ -95,6 +93,7 @@
     [_chatButton release];
     [_totalBetNoteLabel release];
     [_singleBetNoteLabel release];
+    [_cardTypeLabel release];
     [super dealloc];
 }
 
@@ -191,6 +190,10 @@
     self.singleBetNoteLabel.shadowOffset = CGSizeMake(0.0f, 2.0f);
     self.singleBetNoteLabel.shadowColor = [UIColor colorWithWhite:0.0f alpha:0.75f];
     self.singleBetNoteLabel.shadowBlur = 5.0f;
+    
+    
+    self.cardTypeLabel.gradientStartColor = [UIColor colorWithRed:254.0/255.0 green:241.0/255.0 blue:67.0/255.0 alpha:1];
+    self.cardTypeLabel.gradientEndColor = [UIColor colorWithRed:238.0/255.0 green:159.0/255.0 blue:7.0/255.0 alpha:1];
 
 //    self.totalBetNoteLabel.shadowColor = [UIColor colorWithWhite:1.0f alpha:0.8f];
 //    self.totalBetNoteLabel.shadowOffset = CGSizeMake(1.0f, 2.0f);
@@ -871,7 +874,6 @@ compareCardWith:(NSString*)targetUserId
     [self setAutoBetButton:nil];
     [self setCompareCardButton:nil];
     [self setCheckCardButton:nil];
-    [self setCardTypeButton:nil];
     [self setFoldCardButton:nil];
     [self setTotalBetLabel:nil];
     [self setSingleBetLabel:nil];
@@ -886,6 +888,7 @@ compareCardWith:(NSString*)targetUserId
     [self setChatButton:nil];
     [self setTotalBetNoteLabel:nil];
     [self setSingleBetLabel:nil];
+    [self setCardTypeLabel:nil];
     [super viewDidUnload];
 }
 
@@ -1022,26 +1025,13 @@ compareCardWith:(NSString*)targetUserId
 
 - (void)showMyCardTypeString
 {
-    _cardTypeButton.hidden = NO;
-    [_cardTypeButton setTitle:[_gameService myCardType] forState:UIControlStateNormal];
-    PPDebug(@"_cardTypeButton.titleLabel.font.pointSize = %f", _cardTypeButton.titleLabel.font.pointSize);
-    
-    [UIView animateWithDuration:0.5 delay:0 options:UIViewAnimationCurveEaseInOut animations:^{
-        _cardTypeButton.titleLabel.transform = CGAffineTransformMakeScale(1.2, 1.2);
-
-    } completion:^(BOOL finished) {
-        [UIView animateWithDuration:0.5 delay:0 options:UIViewAnimationCurveEaseInOut animations:^{
-            _cardTypeButton.titleLabel.transform = CGAffineTransformMakeScale(1, 1);
-        } completion:^(BOOL finished) {
-            
-        }];
-
-    }];
+    _cardTypeLabel.hidden = NO;
+    _cardTypeLabel.text = [_gameService myCardType];
 }
 
 - (void)hideMyCardTypeString
 {
-    _cardTypeButton.hidden = YES;
+    _cardTypeLabel.hidden = YES;
 }
 
 - (void)clearAllUserPokers
