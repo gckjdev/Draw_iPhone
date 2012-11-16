@@ -400,7 +400,7 @@
 - (IBAction)clickCheckCardButton:(id)sender
 {
     [[self getMyPokersView] faceUpCards:ZJHPokerXMotionTypeNone animation:YES];
-    [self showMyCardTypeString];
+    [self showMyCardType];
     [_gameService checkCard];
 }
 
@@ -535,7 +535,7 @@
 - (void)resetGame
 {
     self.autoBetButton.selected = NO;
-    [self hideMyCardTypeString];
+    [self hideMyCardType];
     [self clearAllUserPokers];
     [self hideAllUserTotalBet];
 }
@@ -1045,19 +1045,16 @@ compareCardWith:(NSString*)targetUserId
     [self updateZJHButtons];
 }
 
-- (void)showMyCardTypeString
+- (void)showMyCardType
 {
-    _cardTypeLabel.hidden = NO;
     _cardTypeBgImageView.hidden = NO;
-    _cardTypeLabel.text = [_gameService myCardType];
     
-    CABasicAnimation * roateAni = [CABasicAnimation
-                                    animationWithKeyPath:@"transform.rotation.z"];
+    CABasicAnimation * roateAni = [CABasicAnimation animationWithKeyPath:@"transform.rotation.z"];
     roateAni.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionLinear];
     roateAni.fromValue = [NSNumber numberWithFloat:0];
     roateAni.toValue = [NSNumber numberWithFloat:(-M_PI * 2)];
     roateAni.duration = 1 ;
-    roateAni.repeatCount = 3;
+    roateAni.repeatCount = 2;
     roateAni.removedOnCompletion = YES;
     
     CABasicAnimation * caseInAni = [CABasicAnimation
@@ -1074,12 +1071,12 @@ compareCardWith:(NSString*)targetUserId
     caseOutAni.fromValue = [NSNumber numberWithInt:1];
     caseOutAni.toValue = [NSNumber numberWithInt:0.5];
     caseOutAni.duration = 1.0 ;
-    caseOutAni.beginTime = 2.0;
+    caseOutAni.beginTime = 1.0;
     caseOutAni.fillMode = kCAFillModeForwards;
     
     CAAnimationGroup* animGroup = [CAAnimationGroup animation];
     animGroup.removedOnCompletion = YES;
-    animGroup.duration = 3;
+    animGroup.duration = 2;
     animGroup.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionLinear];
     animGroup.repeatCount = 1;
     animGroup.fillMode = kCAFillModeForwards;
@@ -1087,10 +1084,19 @@ compareCardWith:(NSString*)targetUserId
 
     [_cardTypeBgImageView.layer addAnimation:animGroup forKey:nil];
     
-    [_cardTypeBgImageView performSelector:@selector(setHidden:) withObject:[NSNumber numberWithBool:YES] afterDelay:animGroup.duration];
+    [self performSelector:@selector(showMyCardTypeString) withObject:nil afterDelay:animGroup.duration];
+    
+
 }
 
-- (void)hideMyCardTypeString
+- (void)showMyCardTypeString
+{
+    _cardTypeBgImageView.hidden = YES;
+    _cardTypeLabel.hidden = NO;
+    _cardTypeLabel.text = [_gameService myCardType];
+}
+
+- (void)hideMyCardType
 {
     _cardTypeLabel.hidden = YES;
     _cardTypeBgImageView.hidden = YES;
