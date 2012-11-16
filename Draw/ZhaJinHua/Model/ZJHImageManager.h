@@ -77,5 +77,5 @@
 - (UIImage *)cardTypeBgImage;
 
 - (UIImage *)roomBackgroundImage;
-
+- (UIImage *)roomTitleBgImage;
 @end

@@ -187,7 +187,7 @@
     label.gradientEndColor = [UIColor colorWithRed:238.0/255.0 green:159.0/255.0 blue:7.0/255.0 alpha:1];
     label.text = cardType;
     
-    [label.layer addAnimation:[AnimationManager appearAnimationFrom:0 to:1 duration:1.0] forKey:nil];
+    [label.layer addAnimation:[AnimationManager appearAnimationFrom:0 to:1 duration:0.5] forKey:nil];
     
     [self addSubview:label];
 }

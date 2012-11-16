@@ -30,6 +30,7 @@
 #import "ZJHScreenConfig.h"
 #import "MoneyTreeView.h"
 #import "AnimationManager.h"
+#import "RoomTitleView.h"
 
 #define AVATAR_VIEW_TAG_OFFSET   4000
 #define AVATAR_PLACE_VIEW_OFFSET    8000
@@ -186,18 +187,15 @@
     
     [self setImages];
     
-    //demonstrate inner shadow
-//    self.roomNameLabel.shadowColor = nil;
-//    self.roomNameLabel.shadowOffset = CGSizeMake(0.0f, 2.0f);
-//    self.roomNameLabel.shadowColor = [UIColor colorWithWhite:0.0f alpha:0.75f];
-//    self.roomNameLabel.shadowBlur = 5.0f;
+    [RoomTitleView showRoomTitle:[_gameService getRoomName]inView:self.view];
     
-    self.roomNameLabel.shadowColor = [UIColor colorWithWhite:1.0f alpha:0.8f];
-    self.roomNameLabel.shadowOffset = CGSizeMake(0.5f, 0.5f);
-    self.roomNameLabel.shadowBlur = 1.0f;
-    self.roomNameLabel.innerShadowColor = [UIColor colorWithWhite:0.0f alpha:0.8f];
-    self.roomNameLabel.innerShadowOffset = CGSizeMake(1.0f, 2.0f);
-    self.roomNameLabel.text = [_gameService getRoomName];
+    //demonstrate inner shadow
+//    self.roomNameLabel.shadowColor = [UIColor colorWithWhite:1.0f alpha:0.8f];
+//    self.roomNameLabel.shadowOffset = CGSizeMake(0.5f, 0.5f);
+//    self.roomNameLabel.shadowBlur = 1.0f;
+//    self.roomNameLabel.innerShadowColor = [UIColor colorWithWhite:0.0f alpha:0.8f];
+//    self.roomNameLabel.innerShadowOffset = CGSizeMake(1.0f, 2.0f);
+//    self.roomNameLabel.text = [_gameService getRoomName];
     
     //demonstrate gradient fill
     self.totalBetLabel.gradientStartColor = [UIColor colorWithRed:254.0/255.0 green:241.0/255.0 blue:67.0/255.0 alpha:1];
@@ -1092,7 +1090,7 @@ compareCardWith:(NSString*)targetUserId
     _cardTypeLabel.hidden = NO;
     _cardTypeLabel.text = [_gameService myCardType];
 
-    [_cardTypeLabel.layer addAnimation:[AnimationManager appearAnimationFrom:0.5 to:1.0 duration:1] forKey:nil];
+    [_cardTypeLabel.layer addAnimation:[AnimationManager appearAnimationFrom:0.5 to:1.0 duration:0.5] forKey:nil];
 }
 
 - (void)hideMyCardType
