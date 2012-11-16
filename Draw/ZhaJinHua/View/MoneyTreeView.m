@@ -69,6 +69,7 @@
     if (_remainTime <= 0) {
 //        [self popupMatureMessage];
         [self killTreeTimer];
+        return;
     }
     [self.popMessageLabel setText:[NSString stringWithFormat:NSLS(@"kRemainTimes"),_remainTime/60, _remainTime%60]];
 }
@@ -90,6 +91,8 @@
     _remainTime = self.growthTime;
     self.moneyTree.growthTime = _remainTime;
     [self.moneyTree startGrow];
+    self.popMessageBody.layer.opacity = 0;
+    
     _timer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(update:) userInfo:nil repeats:YES];
     [_timer retain];
 }
