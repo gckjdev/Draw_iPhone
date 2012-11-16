@@ -371,6 +371,21 @@ static ZJHImageManager* shareInstance;
     return [_resService imageByName:@"zjh_money_tree" inResourcePackage:RESOURCE_PACKAGE_ZJH];
 }
 
+- (UIImage*)bigMoneyTreeImage
+{
+    return [_resService imageByName:@"zjh_money_tree_big" inResourcePackage:RESOURCE_PACKAGE_ZJH];
+}
+
+- (UIImage*)moneyTreeCoinLightImage
+{
+    return [_resService imageByName:@"zjh_money_tree_coin_shining_light" inResourcePackage:RESOURCE_PACKAGE_ZJH];
+}
+
+- (UIImage*)moneyTreeCoinImage
+{
+    return [_resService imageByName:@"zjh_money_tree_coin" inResourcePackage:RESOURCE_PACKAGE_ZJH];
+}
+
 - (UIImage*)betBtnBgImage
 {
     return [_resService imageByName:@"zjh_bet" inResourcePackage:RESOURCE_PACKAGE_ZJH];

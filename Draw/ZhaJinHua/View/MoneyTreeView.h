@@ -7,7 +7,22 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MoneyTree.h"
 
-@interface MoneyTreeView : UIView
+@interface MoneyTreeView : UIView <MoneyTreeDelegate>{
+    NSTimer* _timer;
+    int _remainTime;
+}
+@property (retain, nonatomic) IBOutlet MoneyTree *moneyTree;
+@property (retain, nonatomic) IBOutlet UILabel *popMessageLabel;
+@property (retain, nonatomic) IBOutlet UIImageView *popMessageBackgroundImageView;
+@property (retain, nonatomic) IBOutlet UIView *popMessageBody;
+
+@property (assign, nonatomic) CFTimeInterval growthTime;
+
+- (void)growMoneyTree;
+
++ (MoneyTreeView*)createMoneyTreeView;
+- (void)growMoneyTree;
 
 @end

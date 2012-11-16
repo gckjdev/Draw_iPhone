@@ -28,6 +28,7 @@
 #import "CommonMessageCenter.h"
 #import "ZJHSettingView.h"
 #import "ZJHScreenConfig.h"
+#import "MoneyTreeView.h"
 
 #define AVATAR_VIEW_TAG_OFFSET   4000
 #define AVATAR_PLACE_VIEW_OFFSET    8000
@@ -85,7 +86,7 @@
     [_foldCardButton release];
     [_totalBetLabel release];
     [_singleBetLabel release];
-    [_moneyTree release];
+    [_moneyTreeHolder release];
     [_vsImageView release];
     [_gameBgImageView release];
     [_totalBetBgImageView release];
@@ -95,6 +96,7 @@
     [_chatButton release];
     [_totalBetNoteLabel release];
     [_singleBetNoteLabel release];
+    [_moneyTreeView release];
     [super dealloc];
 }
 
@@ -159,7 +161,6 @@
     [self.runawayButton setBackgroundImage:[_imageManager runawayButtonImage] forState:UIControlStateNormal] ;
     [self.settingButton setBackgroundImage:[_imageManager settingButtonImage] forState:UIControlStateNormal] ;
     [self.chatButton setBackgroundImage:[_imageManager chatButtonImage] forState:UIControlStateNormal] ;
-    [self.moneyTree setBackgroundImage:[_imageManager moneyTreeImage] forState:UIControlStateNormal] ;
     self.vsImageView.image = [_imageManager vsImage];
     
     [self.autoBetButton setBackgroundImage:[_imageManager autoBetBtnOnBgImage] forState:UIControlStateSelected];
@@ -216,8 +217,10 @@
     
     self.dealerView.delegate = self;
     
-    [self.moneyTree startGrow];
-    self.moneyTree.delegate = self;
+    self.moneyTreeView = [MoneyTreeView createMoneyTreeView];
+    [self.moneyTreeView growMoneyTree];
+    [self.view addSubview:self.moneyTreeView];
+    [self.moneyTreeView setFrame:self.moneyTreeHolder.frame];
     
     [_audioManager setBackGroundMusicWithURL:[_soundManager gameBGM]];
 }
@@ -875,9 +878,7 @@ compareCardWith:(NSString*)targetUserId
     [self setFoldCardButton:nil];
     [self setTotalBetLabel:nil];
     [self setSingleBetLabel:nil];
-    [self setMoneyTree:nil];
     [self setVsImageView:nil];
-    [self.moneyTree kill];
     [self setGameBgImageView:nil];
     [self setTotalBetBgImageView:nil];
     [self setButtonsHolderBgImageView:nil];

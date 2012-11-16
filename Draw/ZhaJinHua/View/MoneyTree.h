@@ -14,6 +14,7 @@
 - (void)moneyTreeNotMature:(MoneyTree*)tree;
 - (void)getMoney:(int)money fromTree:(MoneyTree*)tree;
 - (void)coinDidRaiseUp:(MoneyTree*)tree;
+- (void)treeDidMature:(MoneyTree*)tree;
 
 @end
 

@@ -22,8 +22,7 @@
 @class ZJHImageManager;
 @class AccountService;
 @class BetTable;
-@class MoneyTree;
-
+@class MoneyTreeView;
 
 @interface ZJHGameController : PPViewController <ZJHPokerViewProtocol, ZJHAvatarViewDelegate, DealerViewDelegate, ChipsSelectViewProtocol, MoneyTreeDelegate> {
     BOOL _isComparing;
@@ -36,7 +35,7 @@
 @property (retain, nonatomic) IBOutlet UIButton *runawayButton;
 @property (retain, nonatomic) IBOutlet UIButton *settingButton;
 @property (retain, nonatomic) IBOutlet UIButton *chatButton;
-@property (retain, nonatomic) IBOutlet MoneyTree *moneyTree;
+@property (retain, nonatomic) IBOutlet UIView *moneyTreeHolder;
 @property (retain, nonatomic) IBOutlet UIImageView *vsImageView;
 
 @property (retain, nonatomic) IBOutlet BetTable *betTable;
@@ -52,6 +51,7 @@
 @property (retain, nonatomic) IBOutlet FXLabel *singleBetNoteLabel;
 @property (retain, nonatomic) IBOutlet FXLabel *totalBetLabel;
 @property (retain, nonatomic) IBOutlet FXLabel *totalBetNoteLabel;
+@property (retain, nonatomic) MoneyTreeView *moneyTreeView;
 
 
 @end

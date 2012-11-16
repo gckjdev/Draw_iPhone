@@ -11,6 +11,7 @@
 #import "ZJHImageManager.h"
 #import "ShareImageManager.h"
 #import "LevelService.h"
+#import "AnimationManager.h"
 
 @implementation MoneyTree
 @synthesize isMature = _isMature;
@@ -66,13 +67,30 @@
     return self;
 }
 
+- (CALayer*)coinLayer
+{
+    CALayer* coinLayer = [CALayer layer];
+    UIImage* coinImage = [ZJHImageManager defaultManager].moneyTreeCoinImage;
+    coinLayer.contents = (id)[coinImage CGImage];
+    [coinLayer setBounds:CGRectMake(0, 0, coinImage.size.width, coinImage.size.height)];
+    return coinLayer;
+}
+
+- (void)showOneCoin
+{
+    [self setImage:[ZJHImageManager defaultManager].bigMoneyTreeImage forState:UIControlStateNormal];
+    CALayer* coinLayer = [self coinLayer];
+    coinLayer.position = CGPointMake(self.frame.size.width*0.75, self.frame.size.height*0.5);
+    [self.layer addSublayer:coinLayer];
+                              
+}
+
 - (void)setIsMature:(BOOL)isMature
 {
     _isMature = isMature;
     if (isMature) {
         //TODO: here set button image a coin
-        
-        [self setImage:[[ShareImageManager defaultManager] coinImage] forState:UIControlStateNormal];
+        [self showOneCoin];
     } else {
         //TODO: here set button image a tree
         [self setImage:[[ZJHImageManager defaultManager] moneyTreeImage] forState:UIControlStateNormal];
@@ -82,9 +100,9 @@
 - (void)killTimer
 {
     if (_treeTimer) {
-//        if ([_treeTimer isValid]) {
-//            [_treeTimer invalidate];
-//        }
+        if ([_treeTimer isValid]) {
+            [_treeTimer invalidate];
+        }
         _treeTimer = nil;
     }
 }
@@ -92,6 +110,15 @@
 - (void)mature
 {
     [self setIsMature:YES];
+    [self killTimer];
+    [self startMatureTimer:self.growthTime/2];
+}
+
+- (void)tooMature
+{
+    CALayer* coinLayer = [self coinLayer];
+    coinLayer.position = CGPointMake(self.frame.size.width*0.25, self.frame.size.height*0.25);
+    [self.layer addSublayer:coinLayer];
 }
 
 - (void)startGrowthTimer:(CFTimeInterval)timeInterval
@@ -101,6 +128,17 @@
                                                 selector:@selector(mature)
                                                 userInfo:nil
                                                  repeats:NO];
+    [_treeTimer retain];
+}
+
+- (void)startMatureTimer:(CFTimeInterval)timeInterval
+{
+    _treeTimer = [NSTimer scheduledTimerWithTimeInterval:timeInterval
+                                                  target:self
+                                                selector:@selector(tooMature)
+                                                userInfo:nil
+                                                 repeats:NO];
+    [_treeTimer retain];
 }
 
 - (void)startGrow
@@ -108,7 +146,7 @@
     PPDebug(@"<MoneyTree> tree start growth");
     [self killTimer];
     [self setIsMature:NO];
-    [self startGrowthTimer:[ConfigManager getTreeMatureTime]];
+    [self startGrowthTimer:self.growthTime];
     
 }
 
