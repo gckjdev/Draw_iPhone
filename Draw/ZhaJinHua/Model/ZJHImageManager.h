@@ -75,4 +75,6 @@
 - (UIImage *)settingButtonImage;
 - (UIImage *)chatButtonImage;
 
+- (UIImage *)roomBackgroundImage;
+
 @end

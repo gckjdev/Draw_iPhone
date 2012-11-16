@@ -616,4 +616,9 @@ static ZJHImageManager* shareInstance;
     return [_resService imageByName:@"zjh_chat_button" inResourcePackage:RESOURCE_PACKAGE_ZJH];
 }
 
+- (UIImage *)roomBackgroundImage
+{
+    return [_resService imageByName:@"dice_room_background" inResourcePackage:RESOURCE_PACKAGE_ZJH];
+}
+
 @end

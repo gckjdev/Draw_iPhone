@@ -19,11 +19,19 @@
 
 - (void)dealloc
 {
+    _delegate = nil;
+    [self killTimer];
     [_rewardCoinLabel release];
     [_rewardView release];
     [_rewardCoinView release];
     [_layerQueue release];
     [super dealloc];
+}
+
+- (void)removeFromSuperview
+{
+    [self killTimer];
+    self.delegate = nil;
 }
 
 - (id)initWithFrame:(CGRect)frame
@@ -114,6 +122,7 @@
     if (_treeTimer) {
         if ([_treeTimer isValid]) {
             [_treeTimer invalidate];
+            [_treeTimer release];
         }
         _treeTimer = nil;
     }

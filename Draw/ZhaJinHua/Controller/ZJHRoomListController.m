@@ -44,6 +44,7 @@
     [self.createRoomButton setTitleColor:[UIColor darkTextColor] forState:UIControlStateNormal];
     [self.fastEntryButton setRoyButtonWithColor:[DiceColorManager dialogYellowColor]];
     [self.fastEntryButton setTitleColor:[UIColor darkTextColor] forState:UIControlStateNormal];
+    [self.backgroundImageView setImage:[ZJHImageManager defaultManager].roomBackgroundImage];
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -142,4 +143,12 @@
     self.createRoomButton.enabled = YES;
 }
 
+- (void)dealloc {
+    [_backgroundImageView release];
+    [super dealloc];
+}
+- (void)viewDidUnload {
+    [self setBackgroundImageView:nil];
+    [super viewDidUnload];
+}
 @end

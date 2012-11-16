@@ -1217,23 +1217,4 @@ compareCardWith:(NSString*)targetUserId
 }
 
 
-#pragma mark - money tree delegate
-- (void)getMoney:(int)money fromTree:(MoneyTree *)tree
-{
-    [_audioManager playSoundByURL:[_soundManager betSoundEffect]];
-    [[AccountService defaultService] chargeAccount:money source:MoneyTreeAward];
-    [[self getMyAvatarView] update];
-//    [_msgCenter postMessageWithText:[NSString stringWithFormat:NSLS(@"kGetMoneyFromTree"), money]
-//                          delayTime:1
-//                            isHappy:YES];
-}
-
-- (void)moneyTreeNotMature:(MoneyTree *)tree
-{
-//    [_msgCenter postMessageWithText:NSLS(@"kMoneyTreeNotMature")
-//                          delayTime:1];
-}
-
-
-
 @end

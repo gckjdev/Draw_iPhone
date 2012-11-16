@@ -20,5 +20,6 @@
 @property (retain, nonatomic) IBOutlet UIButton *friendRoomButton;
 @property (retain, nonatomic) IBOutlet UIButton *nearByRoomButton;
 @property (retain, nonatomic) IBOutlet UILabel *emptyListTips;
+@property (retain, nonatomic) IBOutlet UIImageView *backgroundImageView;
 
 @end
