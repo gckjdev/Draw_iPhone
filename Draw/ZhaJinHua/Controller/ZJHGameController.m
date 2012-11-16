@@ -239,6 +239,7 @@
     self.dealerView.delegate = self;
     
     self.moneyTreeView = [MoneyTreeView createMoneyTreeView];
+    self.moneyTreeView.growthTime = 10;
     [self.moneyTreeView growMoneyTree];
     [self.view addSubview:self.moneyTreeView];
     [self.moneyTreeView setFrame:self.moneyTreeHolder.frame];

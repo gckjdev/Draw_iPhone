@@ -34,28 +34,26 @@
 + (MoneyTreeView*)createMoneyTreeView
 {
     MoneyTreeView* view = [MoneyTreeView createView];
-    
+    view.moneyTree.delegate = view;
     return view;
 }
 
 - (void)popupMatureMessage
 {
     [self.popMessageLabel setText:[NSString stringWithFormat:NSLS(@"kMatureMessage")]];
-    [UIView animateWithDuration:4 animations:^{
-        self.popMessageBody.layer.opacity = 1;
-    } completion:^(BOOL finished) {
-        [UIView animateWithDuration:1 animations:^{
-            self.popMessageBody.layer.opacity = 0;
-        } completion:^(BOOL finished) {
-            
-        }];
-    }];
+    [self popupMessage];
 }
 
 - (void)popupNotMatureMessage
 {
+    [self popupMessage];
+}
+
+- (void)popupMessage
+{
+    self.popMessageBody.layer.opacity = 1;
     [UIView animateWithDuration:4 animations:^{
-        self.popMessageBody.layer.opacity = 1;
+        self.popMessageBody.layer.opacity = 0.99;
     } completion:^(BOOL finished) {
         [UIView animateWithDuration:1 animations:^{
             self.popMessageBody.layer.opacity = 0;
@@ -71,6 +69,7 @@
     if (_remainTime <= 0) {
 //        [self popupMatureMessage];
         [self killTreeTimer];
+        return;
     }
     [self.popMessageLabel setText:[NSString stringWithFormat:NSLS(@"kRemainTimes"),_remainTime/60, _remainTime%60]];
 }
@@ -92,6 +91,8 @@
     _remainTime = self.growthTime;
     self.moneyTree.growthTime = _remainTime;
     [self.moneyTree startGrow];
+    self.popMessageBody.layer.opacity = 0;
+    
     _timer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(update:) userInfo:nil repeats:YES];
     [_timer retain];
 }

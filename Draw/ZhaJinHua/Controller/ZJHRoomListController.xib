@@ -69,7 +69,7 @@
 					<object class="IBUITableView" id="370940758">
 						<reference key="NSNextResponder" ref="25482459"/>
 						<int key="NSvFlags">274</int>
-						<string key="NSFrame">{{0, 90}, {325, 310}}</string>
+						<string key="NSFrame">{{0, 47}, {325, 353}}</string>
 						<reference key="NSSuperview" ref="25482459"/>
 						<reference key="NSNextKeyView" ref="606315056"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
@@ -169,7 +169,7 @@
 					</object>
 					<object class="IBUIButton" id="39528972">
 						<reference key="NSNextResponder" ref="25482459"/>
-						<int key="NSvFlags">292</int>
+						<int key="NSvFlags">-2147483356</int>
 						<string key="NSFrame">{{285, 7}, {28, 28}}</string>
 						<reference key="NSSuperview" ref="25482459"/>
 						<reference key="NSNextKeyView" ref="703224615"/>
@@ -214,7 +214,7 @@
 					</object>
 					<object class="IBUIButton" id="703224615">
 						<reference key="NSNextResponder" ref="25482459"/>
-						<int key="NSvFlags">292</int>
+						<int key="NSvFlags">-2147483356</int>
 						<string key="NSFrame">{{72, 53}, {90, 29}}</string>
 						<reference key="NSSuperview" ref="25482459"/>
 						<reference key="NSNextKeyView" ref="407714080"/>
@@ -241,7 +241,7 @@
 					</object>
 					<object class="IBUIButton" id="407714080">
 						<reference key="NSNextResponder" ref="25482459"/>
-						<int key="NSvFlags">292</int>
+						<int key="NSvFlags">-2147483356</int>
 						<string key="NSFrame">{{162, 53}, {90, 29}}</string>
 						<reference key="NSSuperview" ref="25482459"/>
 						<reference key="NSNextKeyView" ref="143734441"/>
@@ -286,7 +286,7 @@
 					</object>
 					<object class="IBUIButton" id="114032252">
 						<reference key="NSNextResponder" ref="25482459"/>
-						<int key="NSvFlags">292</int>
+						<int key="NSvFlags">-2147483356</int>
 						<string key="NSFrame">{{285, 52}, {30, 29}}</string>
 						<reference key="NSSuperview" ref="25482459"/>
 						<reference key="NSNextKeyView" ref="370940758"/>
@@ -311,7 +311,7 @@
 					<object class="IBUILabel" id="606315056">
 						<reference key="NSNextResponder" ref="25482459"/>
 						<int key="NSvFlags">-2147483331</int>
-						<string key="NSFrame">{{79, 99}, {163, 40}}</string>
+						<string key="NSFrame">{{79, 90}, {163, 40}}</string>
 						<reference key="NSSuperview" ref="25482459"/>
 						<reference key="NSNextKeyView" ref="810150406"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
@@ -515,13 +515,13 @@
 							<reference ref="151090419"/>
 							<reference ref="703224615"/>
 							<reference ref="143734441"/>
-							<reference ref="398906862"/>
 							<reference ref="503601785"/>
 							<reference ref="39528972"/>
 							<reference ref="762222889"/>
 							<reference ref="810150406"/>
 							<reference ref="370940758"/>
 							<reference ref="657076153"/>
+							<reference ref="398906862"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -629,14 +629,14 @@
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="dice_back@2x.png">{16, 16}</string>
-			<string key="dice_room_header@2x.png">{16, 16}</string>
-			<string key="dice_room_help@2x.png">{16, 16}</string>
-			<string key="dice_tableft_selected@2x.png">{16, 16}</string>
-			<string key="dice_tableft_unselect@2x.png">{16, 16}</string>
-			<string key="dice_tabright_selected@2x.png">{16, 16}</string>
-			<string key="dice_tabright_unselect@2x.png">{16, 16}</string>
-			<string key="room_search@2x.png">{16, 16}</string>
+			<string key="dice_back@2x.png">{57, 57}</string>
+			<string key="dice_room_header@2x.png">{640, 94}</string>
+			<string key="dice_room_help@2x.png">{57, 57}</string>
+			<string key="dice_tableft_selected@2x.png">{184, 59}</string>
+			<string key="dice_tableft_unselect@2x.png">{184, 59}</string>
+			<string key="dice_tabright_selected@2x.png">{184, 59}</string>
+			<string key="dice_tabright_unselect@2x.png">{184, 59}</string>
+			<string key="room_search@2x.png">{57, 51}</string>
 		</dictionary>
 		<string key="IBCocoaTouchPluginVersion">1926</string>
 	</data>
