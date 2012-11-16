@@ -52,6 +52,7 @@
 @property (retain, nonatomic) IBOutlet FXLabel *totalBetLabel;
 @property (retain, nonatomic) IBOutlet FXLabel *totalBetNoteLabel;
 @property (retain, nonatomic) IBOutlet FXLabel *cardTypeLabel;
+@property (retain, nonatomic) IBOutlet FXLabel *roomNameLabel;
 
 
 @end

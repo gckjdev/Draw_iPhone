@@ -476,5 +476,13 @@ static ZJHGameService *_defaultService;
     return arr;
 }
 
+- (NSString *)getRoomName
+{
+    if ([self.session.roomName length] > 0) {
+        return self.session.roomName;
+    }
+    
+    return [NSString stringWithFormat:NSLS(@"k炸金花%x号房"), self.session.sessionId];
+}
 
 @end
