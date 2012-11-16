@@ -13,7 +13,7 @@
 #import "ChipsSelectView.h"
 #import "ZJHImageManager.h"
 #import "MoneyTree.h"
-
+#import "FXLabel.h"
 
 @class ZJHGameService;
 @class UserManager;
@@ -48,8 +48,10 @@
 @property (retain, nonatomic) IBOutlet UIButton *checkCardButton;
 @property (retain, nonatomic) IBOutlet UIButton *foldCardButton;
 @property (retain, nonatomic) IBOutlet UIButton *cardTypeButton;
-@property (retain, nonatomic) IBOutlet UILabel *totalBetLabel;
-@property (retain, nonatomic) IBOutlet UILabel *singleBetLabel;
+@property (retain, nonatomic) IBOutlet FXLabel *singleBetLabel;
+@property (retain, nonatomic) IBOutlet FXLabel *singleBetNoteLabel;
+@property (retain, nonatomic) IBOutlet FXLabel *totalBetLabel;
+@property (retain, nonatomic) IBOutlet FXLabel *totalBetNoteLabel;
 
 
 @end
