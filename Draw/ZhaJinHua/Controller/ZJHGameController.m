@@ -29,6 +29,7 @@
 #import "ZJHSettingView.h"
 #import "ZJHScreenConfig.h"
 #import "MoneyTreeView.h"
+#import "AnimationManager.h"
 
 #define AVATAR_VIEW_TAG_OFFSET   4000
 #define AVATAR_PLACE_VIEW_OFFSET    8000
@@ -101,6 +102,7 @@
     [_cardTypeLabel release];
     [_roomNameLabel release];
 
+    [_cardTypeBgImageView release];
     [super dealloc];
 }
 
@@ -214,21 +216,15 @@
     self.singleBetNoteLabel.shadowColor = [UIColor colorWithWhite:0.0f alpha:0.75f];
     self.singleBetNoteLabel.shadowBlur = 5.0f;
     
-    
     self.cardTypeLabel.gradientStartColor = [UIColor colorWithRed:254.0/255.0 green:241.0/255.0 blue:67.0/255.0 alpha:1];
     self.cardTypeLabel.gradientEndColor = [UIColor colorWithRed:238.0/255.0 green:159.0/255.0 blue:7.0/255.0 alpha:1];
-
-//    self.totalBetNoteLabel.shadowColor = [UIColor colorWithWhite:1.0f alpha:0.8f];
-//    self.totalBetNoteLabel.shadowOffset = CGSizeMake(1.0f, 2.0f);
-//    self.totalBetNoteLabel.shadowBlur = 1.0f;
-//    self.totalBetNoteLabel.innerShadowColor = [UIColor colorWithWhite:0.0f alpha:0.8f];
-//    self.totalBetNoteLabel.innerShadowOffset = CGSizeMake(1.0f, 2.0f);
-    
     
     self.totalBetLabel.shadowColor = nil;
     self.totalBetLabel.shadowOffset = CGSizeMake(0.0f, 2.0f);
     self.totalBetLabel.shadowColor = [UIColor colorWithWhite:0.0f alpha:0.75f];
     self.totalBetLabel.shadowBlur = 5.0f;
+    
+    self.cardTypeBgImageView.image = [_imageManager cardTypeBgImage];
     
     [self initAllAvatars];
     [self updateAllUsersAvatar];
@@ -913,6 +909,7 @@ compareCardWith:(NSString*)targetUserId
     [self setSingleBetLabel:nil];
     [self setCardTypeLabel:nil];
     [self setRoomNameLabel:nil];
+    [self setCardTypeBgImageView:nil];
     [super viewDidUnload];
 }
 
@@ -1050,12 +1047,52 @@ compareCardWith:(NSString*)targetUserId
 - (void)showMyCardTypeString
 {
     _cardTypeLabel.hidden = NO;
+    _cardTypeBgImageView.hidden = NO;
     _cardTypeLabel.text = [_gameService myCardType];
+    
+    CABasicAnimation * roateAni = [CABasicAnimation
+                                    animationWithKeyPath:@"transform.rotation.z"];
+    roateAni.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionLinear];
+    roateAni.fromValue = [NSNumber numberWithFloat:0];
+    roateAni.toValue = [NSNumber numberWithFloat:(-M_PI * 2)];
+    roateAni.duration = 1 ;
+    roateAni.repeatCount = 3;
+    roateAni.removedOnCompletion = YES;
+    
+    CABasicAnimation * caseInAni = [CABasicAnimation
+                                    animationWithKeyPath:@"opacity"];
+    caseInAni.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionLinear];
+    caseInAni.fromValue = [NSNumber numberWithInt:0.5];
+    caseInAni.toValue = [NSNumber numberWithInt:1];
+    caseInAni.duration = 1.0 ;
+    caseInAni.fillMode = kCAFillModeForwards;
+    
+    CABasicAnimation * caseOutAni = [CABasicAnimation
+                                    animationWithKeyPath:@"opacity"];
+    caseOutAni.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionLinear];
+    caseOutAni.fromValue = [NSNumber numberWithInt:1];
+    caseOutAni.toValue = [NSNumber numberWithInt:0.5];
+    caseOutAni.duration = 1.0 ;
+    caseOutAni.beginTime = 2.0;
+    caseOutAni.fillMode = kCAFillModeForwards;
+    
+    CAAnimationGroup* animGroup = [CAAnimationGroup animation];
+    animGroup.removedOnCompletion = YES;
+    animGroup.duration = 3;
+    animGroup.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionLinear];
+    animGroup.repeatCount = 1;
+    animGroup.fillMode = kCAFillModeForwards;
+    animGroup.animations = [NSArray arrayWithObjects:roateAni, caseInAni, caseOutAni, nil];
+
+    [_cardTypeBgImageView.layer addAnimation:animGroup forKey:nil];
+    
+    [_cardTypeBgImageView performSelector:@selector(setHidden:) withObject:[NSNumber numberWithBool:YES] afterDelay:animGroup.duration];
 }
 
 - (void)hideMyCardTypeString
 {
     _cardTypeLabel.hidden = YES;
+    _cardTypeBgImageView.hidden = YES;
 }
 
 - (void)clearAllUserPokers

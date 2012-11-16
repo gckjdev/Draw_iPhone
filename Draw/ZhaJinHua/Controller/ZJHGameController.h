@@ -54,6 +54,7 @@
 @property (retain, nonatomic) MoneyTreeView *moneyTreeView;
 
 @property (retain, nonatomic) IBOutlet FXLabel *cardTypeLabel;
+@property (retain, nonatomic) IBOutlet UIImageView *cardTypeBgImageView;
 @property (retain, nonatomic) IBOutlet FXLabel *roomNameLabel;
 
 
