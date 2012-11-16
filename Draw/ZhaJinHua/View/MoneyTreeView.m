@@ -34,28 +34,26 @@
 + (MoneyTreeView*)createMoneyTreeView
 {
     MoneyTreeView* view = [MoneyTreeView createView];
-    
+    view.moneyTree.delegate = view;
     return view;
 }
 
 - (void)popupMatureMessage
 {
     [self.popMessageLabel setText:[NSString stringWithFormat:NSLS(@"kMatureMessage")]];
-    [UIView animateWithDuration:4 animations:^{
-        self.popMessageBody.layer.opacity = 1;
-    } completion:^(BOOL finished) {
-        [UIView animateWithDuration:1 animations:^{
-            self.popMessageBody.layer.opacity = 0;
-        } completion:^(BOOL finished) {
-            
-        }];
-    }];
+    [self popupMessage];
 }
 
 - (void)popupNotMatureMessage
 {
+    [self popupMessage];
+}
+
+- (void)popupMessage
+{
+    self.popMessageBody.layer.opacity = 1;
     [UIView animateWithDuration:4 animations:^{
-        self.popMessageBody.layer.opacity = 1;
+        self.popMessageBody.layer.opacity = 0.99;
     } completion:^(BOOL finished) {
         [UIView animateWithDuration:1 animations:^{
             self.popMessageBody.layer.opacity = 0;

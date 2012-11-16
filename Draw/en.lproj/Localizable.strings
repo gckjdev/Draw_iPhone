@@ -1096,5 +1096,5 @@
 
 /*********************** 大话骰子国际化字符串结束 *************************/
 
-"kRemainTimes" = "Remain %d hours %d minutes";
+"kRemainTimes" = "Remain %d min %d sec";
 "kMatureMessage" = "Money tree is mature, click it!";

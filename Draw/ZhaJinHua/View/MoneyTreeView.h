@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "MoneyTree.h"
 
+
 @interface MoneyTreeView : UIView <MoneyTreeDelegate>{
     NSTimer* _timer;
     int _remainTime;
