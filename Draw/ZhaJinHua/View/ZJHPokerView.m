@@ -185,6 +185,11 @@
 
     label.gradientStartColor = [UIColor colorWithRed:254.0/255.0 green:241.0/255.0 blue:67.0/255.0 alpha:1];
     label.gradientEndColor = [UIColor colorWithRed:238.0/255.0 green:159.0/255.0 blue:7.0/255.0 alpha:1];
+    label.shadowColor = nil;
+    label.shadowOffset = CGSizeMake(0.0f, 2.0f);
+    label.shadowColor = [UIColor colorWithWhite:0.0f alpha:0.75f];
+    label.shadowBlur = 5.0f;
+
     label.text = cardType;
     
     [label.layer addAnimation:[AnimationManager appearAnimationFrom:0 to:1 duration:0.5] forKey:nil];

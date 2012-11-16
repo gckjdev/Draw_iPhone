@@ -169,41 +169,16 @@
     [self.settingButton setBackgroundImage:[_imageManager settingButtonImage] forState:UIControlStateNormal] ;
     [self.chatButton setBackgroundImage:[_imageManager chatButtonImage] forState:UIControlStateNormal] ;
     self.vsImageView.image = [_imageManager vsImage];
-    
     [self.autoBetButton setBackgroundImage:[_imageManager autoBetBtnOnBgImage] forState:UIControlStateSelected];
-    [self updateZJHButtons];
-    
+    self.cardTypeBgImageView.image = [_imageManager cardTypeBgImage];
+
     for (int tag = USER_TOTAL_BET_BG_IMAGE_VIEW_OFFSET; tag < USER_TOTAL_BET_BG_IMAGE_VIEW_OFFSET + UserPositionMax; tag ++) {
         [((UIImageView *)[self.view viewWithTag:tag]) setImage:[_imageManager userTotalBetBgImage]];
     }
 }
 
-- (void)viewDidLoad
+- (void)setBeautifulLabels
 {
-    [super viewDidLoad];
-    
-    
-    // Do any additional setup after loading the view from its nib.
-    
-    [self setImages];
-    
-    [RoomTitleView showRoomTitle:[_gameService getRoomName]inView:self.view];
-    
-    //demonstrate inner shadow
-//    self.roomNameLabel.shadowColor = [UIColor colorWithWhite:1.0f alpha:0.8f];
-//    self.roomNameLabel.shadowOffset = CGSizeMake(0.5f, 0.5f);
-//    self.roomNameLabel.shadowBlur = 1.0f;
-//    self.roomNameLabel.innerShadowColor = [UIColor colorWithWhite:0.0f alpha:0.8f];
-//    self.roomNameLabel.innerShadowOffset = CGSizeMake(1.0f, 2.0f);
-//    self.roomNameLabel.text = [_gameService getRoomName];
-    
-    //demonstrate gradient fill
-    self.totalBetLabel.gradientStartColor = [UIColor colorWithRed:254.0/255.0 green:241.0/255.0 blue:67.0/255.0 alpha:1];
-    self.totalBetLabel.gradientEndColor = [UIColor colorWithRed:238.0/255.0 green:159.0/255.0 blue:7.0/255.0 alpha:1];
-    
-    self.singleBetLabel.gradientStartColor = [UIColor colorWithRed:187.0/255.0 green:252.0/255.0 blue:252.0/255.0 alpha:1];
-    self.singleBetLabel.gradientEndColor = [UIColor colorWithRed:0 green:1 blue:1 alpha:1];
-
     self.totalBetNoteLabel.shadowColor = nil;
     self.totalBetNoteLabel.shadowOffset = CGSizeMake(0.0f, 2.0f);
     self.totalBetNoteLabel.shadowColor = [UIColor colorWithWhite:0.0f alpha:0.75f];
@@ -214,44 +189,67 @@
     self.singleBetNoteLabel.shadowColor = [UIColor colorWithWhite:0.0f alpha:0.75f];
     self.singleBetNoteLabel.shadowBlur = 5.0f;
     
-    self.cardTypeLabel.gradientStartColor = [UIColor colorWithRed:254.0/255.0 green:241.0/255.0 blue:67.0/255.0 alpha:1];
-    self.cardTypeLabel.gradientEndColor = [UIColor colorWithRed:238.0/255.0 green:159.0/255.0 blue:7.0/255.0 alpha:1];
-    
+    self.totalBetLabel.gradientStartColor = [UIColor colorWithRed:254.0/255.0 green:241.0/255.0 blue:67.0/255.0 alpha:1];
+    self.totalBetLabel.gradientEndColor = [UIColor colorWithRed:238.0/255.0 green:159.0/255.0 blue:7.0/255.0 alpha:1];
     self.totalBetLabel.shadowColor = nil;
     self.totalBetLabel.shadowOffset = CGSizeMake(0.0f, 2.0f);
     self.totalBetLabel.shadowColor = [UIColor colorWithWhite:0.0f alpha:0.75f];
     self.totalBetLabel.shadowBlur = 5.0f;
     
-    self.cardTypeBgImageView.image = [_imageManager cardTypeBgImage];
+    self.singleBetLabel.gradientStartColor = [UIColor colorWithRed:187.0/255.0 green:252.0/255.0 blue:252.0/255.0 alpha:1];
+    self.singleBetLabel.gradientEndColor = [UIColor colorWithRed:0 green:1 blue:1 alpha:1];
+    self.singleBetLabel.shadowColor = nil;
+    self.singleBetLabel.shadowOffset = CGSizeMake(0.0f, 2.0f);
+    self.singleBetLabel.shadowColor = [UIColor colorWithWhite:0.0f alpha:0.75f];
+    self.singleBetLabel.shadowBlur = 5.0f;
     
+    self.cardTypeLabel.gradientStartColor = [UIColor colorWithRed:254.0/255.0 green:241.0/255.0 blue:67.0/255.0 alpha:1];
+    self.cardTypeLabel.gradientEndColor = [UIColor colorWithRed:238.0/255.0 green:159.0/255.0 blue:7.0/255.0 alpha:1];
+    self.cardTypeLabel.shadowColor = nil;
+    self.cardTypeLabel.shadowOffset = CGSizeMake(0.0f, 2.0f);
+    self.cardTypeLabel.shadowColor = [UIColor colorWithWhite:0.0f alpha:0.75f];
+    self.cardTypeLabel.shadowBlur = 5.0f;
+}
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    
+    // Do any additional setup after loading the view from its nib.
+    
+    [self setImages];
+    [self setBeautifulLabels];
+
+    // room title.
+    [RoomTitleView showRoomTitle:[_gameService getRoomName]inView:self.view];
+    
+    // dealer view.
+    self.dealerView.delegate = self;
+    
+    // avatars.
     [self initAllAvatars];
     [self updateAllUsersAvatar];
     
-    // hidden views below
+    // total bet and single bet.
     [self updateTotalBetAndSingleBet];
+    
+    // pokers and user bet.
+    if ([_gameService gameState] != nil) {
+        [self updateAllUsersPokers];
+        [self updateAllUserTotalBet];
+    }
 
-    [self hideAllUserTotalBet];
-    
-    [self updateView];
-    
-    self.dealerView.delegate = self;
-    
+    // money tree.
     self.moneyTreeView = [MoneyTreeView createMoneyTreeView];
     self.moneyTreeView.growthTime = 10;
     [self.moneyTreeView growMoneyTree];
     [self.view addSubview:self.moneyTreeView];
     [self.moneyTreeView setFrame:self.moneyTreeHolder.frame];
     
+    [self updateZJHButtons];
+    
+    // background music.
     [_audioManager setBackGroundMusicWithURL:[_soundManager gameBGM]];
-}
-
-- (void)updateView
-{
-    if ([_gameService gameState] == nil) {
-        return;
-    }
-    [self updateAllUsersPokers];
-    [self updateAllUserTotalBet];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -483,6 +481,10 @@
     for (NSString *userId in [_gameService.session.deletedUserList allKeys]) {
         [self hideTotalBetOfPosition:[self getPositionByUserId:userId]];
         [[self getPokersViewByUserId:userId] clear];
+    }
+    
+    if ([_gameService.session.deletedUserList count] > 0){
+        [self updateZJHButtons];
     }
 }
 
@@ -748,6 +750,7 @@ compareCardWith:(NSString*)targetUserId
     [[self getAvatarViewByUserId:userId] stopReciprocal];
     [[self getPokersViewByUserId:userId] foldCards:YES];
     [self popupFoldCardMessageAtUser:userId];
+    [self updateZJHButtons];
 }
 
 - (void)someoneWon:(NSString*)userId
