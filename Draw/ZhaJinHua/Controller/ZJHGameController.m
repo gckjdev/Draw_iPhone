@@ -42,7 +42,7 @@
 #define TITLE_COLOR_WHEN_DISABLE [UIColor lightGrayColor]
 #define TITLE_COLOR_WHEN_ENABLE [UIColor whiteColor]
 
-#define ACTION_LABEL_FONT [UIFont systemFontOfSize:11]
+#define ACTION_LABEL_FONT ([DeviceDetection isIPAD] ? [UIFont systemFontOfSize:22] : [UIFont systemFontOfSize:11])
 
 @interface ZJHGameController ()
 {
@@ -156,9 +156,9 @@
     self.totalBetBgImageView.image = [_imageManager totalBetBgImage];
     self.buttonsHolderBgImageView.image = [_imageManager buttonsHolderBgImage];
     [self.runawayButton setBackgroundImage:[_imageManager runawayButtonImage] forState:UIControlStateNormal] ;
-    [self.settingButton setImage:[_imageManager settingButtonImage] forState:UIControlStateNormal] ;
-    [self.chatButton setImage:[_imageManager chatButtonImage] forState:UIControlStateNormal] ;
-    [self.moneyTree setImage:[_imageManager moneyTreeImage] forState:UIControlStateNormal] ;
+    [self.settingButton setBackgroundImage:[_imageManager settingButtonImage] forState:UIControlStateNormal] ;
+    [self.chatButton setBackgroundImage:[_imageManager chatButtonImage] forState:UIControlStateNormal] ;
+    [self.moneyTree setBackgroundImage:[_imageManager moneyTreeImage] forState:UIControlStateNormal] ;
     self.vsImageView.image = [_imageManager vsImage];
     
     [self.autoBetButton setBackgroundImage:[_imageManager autoBetBtnOnBgImage] forState:UIControlStateSelected];
@@ -309,7 +309,6 @@
 
 - (void)compareToUser:(NSString*)targetUserId
 {
-    self.isComparing = NO;
     [_gameService compareCard:targetUserId];
 }
 
@@ -505,7 +504,7 @@
     [[self getAvatarViewByPosition:[self getPositionByUserId:_gameService.session.currentPlayUserId]] startReciprocal:[ConfigManager getZJHTimeInterval]];
 
     [self updateZJHButtons];
-    
+        
     if ([_gameService isMyTurn] && [_gameService isMeAutoBet]) {
         if ([_gameService isMyBalanceEnough]) {
             [self bet:YES];
@@ -546,6 +545,8 @@
     }
 }
 
+#define COMPARE_CARD_OFFSET  ([DeviceDetection isIPAD]?60:30)
+
 - (void)someone:(NSString*)userId
 compareCardWith:(NSString*)targetUserId
          didWin:(BOOL)didWin
@@ -562,8 +563,8 @@ compareCardWith:(NSString*)targetUserId
     _isComparing = YES;
     
     [UIView animateWithDuration:1 animations:^{
-        pokerView.layer.position = CGPointMake(self.view.center.x, self.view.center.y - 30);
-        otherPokerView.layer.position = CGPointMake(self.view.center.x, self.view.center.y + 30);
+        pokerView.layer.position = CGPointMake(self.view.center.x, self.view.center.y - COMPARE_CARD_OFFSET);
+        otherPokerView.layer.position = CGPointMake(self.view.center.x, self.view.center.y + COMPARE_CARD_OFFSET);
         if ([_userManager isMe:userId]) {
             pokerView.layer.transform = CATransform3DMakeScale(28/35.0, 37/48.0, 1);
         }
@@ -583,8 +584,8 @@ compareCardWith:(NSString*)targetUserId
         }
 
         [UIView animateWithDuration:1 animations:^{
-            pokerView.layer.position = CGPointMake(self.view.center.x, self.view.center.y - 29.9);
-            otherPokerView.layer.position = CGPointMake(self.view.center.x, self.view.center.y + 29.9);
+            pokerView.layer.position = CGPointMake(self.view.center.x, self.view.center.y - COMPARE_CARD_OFFSET-0.1);
+            otherPokerView.layer.position = CGPointMake(self.view.center.x, self.view.center.y + COMPARE_CARD_OFFSET-0.1);
             
         } completion:^(BOOL finished) {
             [UIView animateWithDuration:1 animations:^{
@@ -600,7 +601,7 @@ compareCardWith:(NSString*)targetUserId
                 }
                 self.vsImageView.hidden = YES;
             } completion:^(BOOL finished) {
-                _isComparing = NO;
+                _isShowingComparing = NO;
             }];
         }];
     }];
@@ -609,11 +610,19 @@ compareCardWith:(NSString*)targetUserId
 - (void)showCompareCardResult:(NSArray*)userResultList initiator:(NSString*)initiatorId
 {
     [self clearAllAvatarReciprocals];
-    if (userResultList.count == 2 && !_isComparing) {
+    self.isComparing = NO;
+    if (userResultList.count == 2 && !_isShowingComparing) {
         PBUserResult* result1 = [userResultList objectAtIndex:0];
         PBUserResult* result2 = [userResultList objectAtIndex:1];
         
-        [self someone:result1.userId compareCardWith:result2.userId didWin:result1.win initiator:initiatorId];
+        if ([result1.userId isEqualToString:_userManager.userId] || [result2.userId isEqualToString:_userManager.userId]) {
+            [self disableCheckCardAndFoldCardButtons];
+        }
+        
+        [self someone:initiatorId
+      compareCardWith:[result2.userId isEqualToString:initiatorId]?result1.userId:result2.userId
+               didWin:[result1.userId isEqualToString:initiatorId]?result1.win:result2.win
+            initiator:initiatorId];
     }
     
     if (![_userManager isMe:initiatorId]) {
@@ -965,16 +974,41 @@ compareCardWith:(NSString*)targetUserId
     [self.foldCardButton setBackgroundImage:(self.foldCardButton.userInteractionEnabled ? [_imageManager foldCardBtnBgImage] : [_imageManager foldCardBtnDisableBgImage]) forState:UIControlStateNormal];
 }
 
+- (void)disableCheckCardAndFoldCardButtons
+{
+    self.checkCardButton.userInteractionEnabled = NO;
+    [self.checkCardButton setTitleColor:TITLE_COLOR_WHEN_DISABLE forState:UIControlStateNormal];
+    [self.checkCardButton setBackgroundImage:[_imageManager checkCardBtnDisableBgImage] forState:UIControlStateNormal];
+    
+    self.foldCardButton.userInteractionEnabled = NO;
+    [self.foldCardButton setTitleColor:TITLE_COLOR_WHEN_DISABLE forState:UIControlStateNormal];
+    [self.foldCardButton setBackgroundImage:[_imageManager foldCardBtnDisableBgImage] forState:UIControlStateNormal];
+}
+
 #pragma mark - deal view delegate
 - (void)didDealFinish:(DealerView *)view
 {
     [self updateAllUsersPokers];
+    [self updateZJHButtons];
 }
 
 - (void)showMyCardTypeString
 {
     _cardTypeButton.hidden = NO;
     [_cardTypeButton setTitle:[_gameService myCardType] forState:UIControlStateNormal];
+    PPDebug(@"_cardTypeButton.titleLabel.font.pointSize = %f", _cardTypeButton.titleLabel.font.pointSize);
+    
+    [UIView animateWithDuration:0.5 delay:0 options:UIViewAnimationCurveEaseInOut animations:^{
+        _cardTypeButton.titleLabel.transform = CGAffineTransformMakeScale(1.2, 1.2);
+
+    } completion:^(BOOL finished) {
+        [UIView animateWithDuration:0.5 delay:0 options:UIViewAnimationCurveEaseInOut animations:^{
+            _cardTypeButton.titleLabel.transform = CGAffineTransformMakeScale(1, 1);
+        } completion:^(BOOL finished) {
+            
+        }];
+
+    }];
 }
 
 - (void)hideMyCardTypeString
@@ -1006,8 +1040,8 @@ compareCardWith:(NSString*)targetUserId
 
 - (void)updateAllUserTotalBet
 {
-    for (PBGameUser *user in _gameService.session.userList) {
-        [self updateUserTotalBet:user.userId];
+    for (NSString *userId in [_gameService.gameState.usersInfo allKeys]) {
+        [self updateUserTotalBet:userId];
     }
 }
 
@@ -1090,7 +1124,7 @@ compareCardWith:(NSString*)targetUserId
         view.alpha = 1;
     } completion:^(BOOL finished) {
         [UIView animateWithDuration:1.5 delay:0.5 options:UIViewAnimationCurveEaseInOut animations:^{
-            view.center = CGPointMake(view.center.x, view.center.y - 15);
+            view.center = CGPointMake(view.center.x, view.center.y - ([DeviceDetection isIPAD] ? 30 : 15));
             view.alpha = 0;
         } completion:^(BOOL finished) {
             [view removeFromSuperview];

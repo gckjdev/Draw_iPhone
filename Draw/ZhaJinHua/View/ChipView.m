@@ -45,6 +45,7 @@
                       chipValue:(int)chipValue
                        delegate:(id<ChipViewProtocol>)delegate;
 {
+
     return [[[self alloc] initWithFrame:frame
                               chipValue:chipValue
                                delegate:delegate] autorelease];

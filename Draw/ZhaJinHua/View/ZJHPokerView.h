@@ -10,13 +10,13 @@
 #import "PokerView.h"
 #import "ZJHUserPlayInfo.h"
 
-#define SMALL_POKER_VIEW_WIDTH 28
-#define SMALL_POKER_VIEW_HEIGHT 36
+#define SMALL_POKER_VIEW_WIDTH ([DeviceDetection isIPAD] ? 56 : 28)
+#define SMALL_POKER_VIEW_HEIGHT ([DeviceDetection isIPAD] ? 72 : 36)
 #define SMALL_POKER_GAP (SMALL_POKER_VIEW_WIDTH * 0.15)
 
-#define BIG_POKER_VIEW_WIDTH 35
-#define BIG_POKER_VIEW_HEIGHT 47
-#define BIG_POKER_GAP (BIG_POKER_VIEW_WIDTH * 1.1)
+#define BIG_POKER_VIEW_WIDTH ([DeviceDetection isIPAD] ? 70 : 35)
+#define BIG_POKER_VIEW_HEIGHT ([DeviceDetection isIPAD] ? 94 : 48)
+#define BIG_POKER_GAP (BIG_POKER_VIEW_WIDTH * ([DeviceDetection isIPAD] ? 1.06 : 1.05))
 
 typedef enum {
     ZJHPokerSectorTypeNone = 0,
@@ -76,6 +76,5 @@ typedef enum {
 
 - (void)showBomb;
 - (void)clearBomb;
-
 
 @end

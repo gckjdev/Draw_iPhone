@@ -7,7 +7,22 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import "Bbs.pb.h"
 @interface BBSManager : NSObject
+{
+    NSArray *_boardList;
+    NSMutableDictionary *_boardDict;
+}
+@property(nonatomic, retain)NSArray *boardList;
+
++(BBSManager *)defaultManager;
+-(NSArray *)parentBoardList;
+-(NSArray *)sbuBoardListForBoardId:(NSString *)boardId;
+
++(void)printBBSBoard:(PBBBSBoard *)board;
++(void)printBBSContent:(PBBBSContent *)content;
++(void)printBBSUser:(PBBBSUser *)user;
++(void)printBBSPost:(PBBBSPost *)post;
++(void)printBBSAction:(PBBBSAction *)action;
 
 @end

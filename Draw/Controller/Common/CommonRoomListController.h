@@ -15,10 +15,10 @@
 #import "FriendService.h"
 
 typedef enum {
-    allRoom = 0,
-    friendRoom = 1,
-    nearByRoom = 2
-}RoomFilter;
+    CommonRoomFilterAllRoom = 0,
+    CommonRoomFilterFriendRoom = 1,
+    CommonRoomFilterNearByRoom = 2
+}CommonRoomFilter;
 
 typedef enum {
     JoinGameSuccess = 0,
@@ -29,7 +29,7 @@ typedef enum {
 @class CommonSearchView;
 
 @interface CommonRoomListController : PPTableViewController</*CommonGameServiceDelegate, */InputDialogDelegate, CommonDialogDelegate, CommonSearchViewDelegate, CommonInfoViewDelegate> {
-    BOOL _isJoiningDice;
+    BOOL _isJoiningGame;
     PBGameSession* _currentSession;
     NSTimer* _refreshRoomTimer;
     BOOL firstLoad;
@@ -41,5 +41,20 @@ typedef enum {
 
 
 @property (retain, nonatomic) PBGameSession* currentSession;
+
+- (void)showPasswordDialog;
+- (void)checkAndJoinGame:(int)sessionId;
+- (void)checkAndJoinGame;
+
+- (void)didQueryUser:(NSString *)userId;
+
+- (CGPoint)searchViewPoint;
+- (void)updateOnlineUserCount;
+- (void)enterGame;
+- (void)handleNoRoomMessage;
+- (JoinGameErrorCode)meetJoinGameCondition;
+- (void)handleJoinGameError:(JoinGameErrorCode)errorCode;
+- (void)updateRoomList;
+- (void)connectServerSuccessfully;
 
 @end

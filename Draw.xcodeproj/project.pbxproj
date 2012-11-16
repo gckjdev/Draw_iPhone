@@ -56,6 +56,11 @@
 		A404A9AB16426545007CA21A /* ChipsSelectView.m in Sources */ = {isa = PBXBuildFile; fileRef = A404A9AA16426545007CA21A /* ChipsSelectView.m */; };
 		A404A9E21643607F007CA21A /* ChipView.m in Sources */ = {isa = PBXBuildFile; fileRef = A404A9E01643607F007CA21A /* ChipView.m */; };
 		A404A9EF1643DD57007CA21A /* PopupViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A404A9EE1643DD54007CA21A /* PopupViewManager.m */; };
+		A40D70D11653E894000CC598 /* zjh_arrow_light@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A40D70CD1653E894000CC598 /* zjh_arrow_light@2x.png */; };
+		A40D70D21653E894000CC598 /* zjh_arrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A40D70CE1653E894000CC598 /* zjh_arrow@2x.png */; };
+		A40D70D31653E894000CC598 /* zjh_button_holder_bg_ipad@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A40D70CF1653E894000CC598 /* zjh_button_holder_bg_ipad@2x.png */; };
+		A40D70D41653E894000CC598 /* zjh_game_bg_ipad@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A40D70D01653E894000CC598 /* zjh_game_bg_ipad@2x.jpg */; };
+		A40D71A916548737000CC598 /* PokerView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A40D71A816548737000CC598 /* PokerView~ipad.xib */; };
 		A40FEEDE15E22E1300A88C57 /* ChatView.m in Sources */ = {isa = PBXBuildFile; fileRef = A40FEEDD15E22E1300A88C57 /* ChatView.m */; };
 		A41A665915C921DA00066E9B /* SlideImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = A41A665815C921DA00066E9B /* SlideImageView.m */; };
 		A42C520615E614D2001D8208 /* DiceChatMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = A42C520315E614D2001D8208 /* DiceChatMessage.m */; };
@@ -162,7 +167,6 @@
 		A42EA43A1653415F0080BB95 /* ZJHGameController~ip5.xib in Resources */ = {isa = PBXBuildFile; fileRef = A42EA4391653415F0080BB95 /* ZJHGameController~ip5.xib */; };
 		A42EA43C165341B40080BB95 /* zjh_game_bg_ip5@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A42EA43B165341B40080BB95 /* zjh_game_bg_ip5@2x.jpg */; };
 		A42EA46F1653656A0080BB95 /* ZJHScreenConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = A42EA46E1653656A0080BB95 /* ZJHScreenConfig.m */; };
-		A42EA47216537AB40080BB95 /* zjh_finger@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A42EA47116537AB40080BB95 /* zjh_finger@2x.png */; };
 		A43A64B916084E7E00F35978 /* DiceBetView.m in Sources */ = {isa = PBXBuildFile; fileRef = A43A64B816084E7E00F35978 /* DiceBetView.m */; };
 		A43A64BB16084EA000F35978 /* DiceBetView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A43A64BA16084EA000F35978 /* DiceBetView.xib */; };
 		A43A64D71609595700F35978 /* DiceBetView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A43A64D61609595700F35978 /* DiceBetView~ipad.xib */; };
@@ -281,6 +285,10 @@
 		C2433A2915AC025A00325A76 /* CommonItemInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2433A2815AC025900325A76 /* CommonItemInfoView.xib */; };
 		C2433A2B15AC028400325A76 /* CommonItemInfoView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2433A2A15AC028300325A76 /* CommonItemInfoView~ipad.xib */; };
 		C246F3581577633B003C284F /* LevelService.m in Sources */ = {isa = PBXBuildFile; fileRef = C246F3571577633B003C284F /* LevelService.m */; };
+		C250AD111653A7F400003E15 /* ZJHRoomListController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C250AD0B1653A7F400003E15 /* ZJHRoomListController.xib */; };
+		C250AD121653A7F400003E15 /* ZJHRoomListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C250AD0C1653A7F400003E15 /* ZJHRoomListCell.xib */; };
+		C250AD131653A7F400003E15 /* ZJHRoomListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C250AD0E1653A7F400003E15 /* ZJHRoomListCell.m */; };
+		C250AD141653A7F400003E15 /* ZJHRoomListController.m in Sources */ = {isa = PBXBuildFile; fileRef = C250AD101653A7F400003E15 /* ZJHRoomListController.m */; };
 		C25C079E15D5F11700E8DD8D /* UIImage+Filtrr.m in Sources */ = {isa = PBXBuildFile; fileRef = C25C079915D5F11700E8DD8D /* UIImage+Filtrr.m */; };
 		C25C079F15D5F11700E8DD8D /* UIImage+FiltrrCompositions.m in Sources */ = {isa = PBXBuildFile; fileRef = C25C079B15D5F11700E8DD8D /* UIImage+FiltrrCompositions.m */; };
 		C25C07A015D5F11700E8DD8D /* UIImage+Scale.m in Sources */ = {isa = PBXBuildFile; fileRef = C25C079D15D5F11700E8DD8D /* UIImage+Scale.m */; };
@@ -304,6 +312,8 @@
 		C297078316099EC500BE0789 /* CommonSearchView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C297078216099EC500BE0789 /* CommonSearchView.xib */; };
 		C297078516099EEC00BE0789 /* CommonSearchView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C297078416099EEC00BE0789 /* CommonSearchView~ipad.xib */; };
 		C29707C5160ADBEC00BE0789 /* CustomDiceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C29707C4160ADBEC00BE0789 /* CustomDiceManager.m */; };
+		C298ECBF16547A41000B5753 /* ZJHMyAvatarView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C298ECBE16547A41000B5753 /* ZJHMyAvatarView~ipad.xib */; };
+		C298ECC116547B78000B5753 /* ZJHAvatarView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C298ECC016547B78000B5753 /* ZJHAvatarView~ipad.xib */; };
 		C299BED61653297500C21E2F /* CommonRoomListController.m in Sources */ = {isa = PBXBuildFile; fileRef = C299BED51653297500C21E2F /* CommonRoomListController.m */; };
 		C299BED9165333E800C21E2F /* CommonRoomListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C299BED8165333E800C21E2F /* CommonRoomListCell.m */; };
 		C29A300715CA16AC00BD0B73 /* CustomLabelUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = C29A300615CA16AC00BD0B73 /* CustomLabelUtil.m */; };
@@ -725,6 +735,11 @@
 		CA415137165395E30062A638 /* BBSBoardController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA415135165395E30062A638 /* BBSBoardController.m */; };
 		CA415138165395E30062A638 /* BBSBoardController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA415136165395E30062A638 /* BBSBoardController.xib */; };
 		CA41513A165396410062A638 /* BBSBoardController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA415139165396410062A638 /* BBSBoardController~ipad.xib */; };
+		CA41513E16539B650062A638 /* BBSNetwork.m in Sources */ = {isa = PBXBuildFile; fileRef = CA41513D16539B650062A638 /* BBSNetwork.m */; };
+		CA4151B1165502640062A638 /* BBSBoardCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA4151AC165502640062A638 /* BBSBoardCell.m */; };
+		CA4151B2165502640062A638 /* BBSBoardCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA4151AD165502640062A638 /* BBSBoardCell.xib */; };
+		CA4151B3165502640062A638 /* BBSBoardSection.m in Sources */ = {isa = PBXBuildFile; fileRef = CA4151AF165502640062A638 /* BBSBoardSection.m */; };
+		CA4151B4165502640062A638 /* BBSBoardSection.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA4151B0165502640062A638 /* BBSBoardSection.xib */; };
 		CA41C944152010FF00013DC8 /* ItemShopController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA41C942152010FF00013DC8 /* ItemShopController.m */; };
 		CA41C945152010FF00013DC8 /* ItemShopController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA41C943152010FF00013DC8 /* ItemShopController.xib */; };
 		CA41C9491520179100013DC8 /* ShoppingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA41C9471520179000013DC8 /* ShoppingCell.m */; };
@@ -1959,6 +1974,11 @@
 		A404A9E01643607F007CA21A /* ChipView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChipView.m; sourceTree = "<group>"; };
 		A404A9ED1643DD51007CA21A /* PopupViewManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PopupViewManager.h; sourceTree = "<group>"; };
 		A404A9EE1643DD54007CA21A /* PopupViewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PopupViewManager.m; sourceTree = "<group>"; };
+		A40D70CD1653E894000CC598 /* zjh_arrow_light@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zjh_arrow_light@2x.png"; sourceTree = "<group>"; };
+		A40D70CE1653E894000CC598 /* zjh_arrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zjh_arrow@2x.png"; sourceTree = "<group>"; };
+		A40D70CF1653E894000CC598 /* zjh_button_holder_bg_ipad@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zjh_button_holder_bg_ipad@2x.png"; sourceTree = "<group>"; };
+		A40D70D01653E894000CC598 /* zjh_game_bg_ipad@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "zjh_game_bg_ipad@2x.jpg"; sourceTree = "<group>"; };
+		A40D71A816548737000CC598 /* PokerView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "PokerView~ipad.xib"; sourceTree = "<group>"; };
 		A40FEEDC15E22E1300A88C57 /* ChatView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatView.h; sourceTree = "<group>"; };
 		A40FEEDD15E22E1300A88C57 /* ChatView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatView.m; sourceTree = "<group>"; };
 		A41A665715C921DA00066E9B /* SlideImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SlideImageView.h; sourceTree = "<group>"; };
@@ -2076,7 +2096,6 @@
 		A42EA46D165365690080BB95 /* ZJHScreenConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJHScreenConfig.h; sourceTree = "<group>"; };
 		A42EA46E1653656A0080BB95 /* ZJHScreenConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJHScreenConfig.m; sourceTree = "<group>"; };
 		A42EA470165367270080BB95 /* ZJHConstance.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZJHConstance.h; sourceTree = "<group>"; };
-		A42EA47116537AB40080BB95 /* zjh_finger@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zjh_finger@2x.png"; sourceTree = "<group>"; };
 		A43A64B716084E7E00F35978 /* DiceBetView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiceBetView.h; sourceTree = "<group>"; };
 		A43A64B816084E7E00F35978 /* DiceBetView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiceBetView.m; sourceTree = "<group>"; };
 		A43A64BA16084EA000F35978 /* DiceBetView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DiceBetView.xib; sourceTree = "<group>"; };
@@ -2280,6 +2299,12 @@
 		C2433A2A15AC028300325A76 /* CommonItemInfoView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "CommonItemInfoView~ipad.xib"; sourceTree = "<group>"; };
 		C246F3561577633B003C284F /* LevelService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LevelService.h; sourceTree = "<group>"; };
 		C246F3571577633B003C284F /* LevelService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LevelService.m; sourceTree = "<group>"; };
+		C250AD0B1653A7F400003E15 /* ZJHRoomListController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZJHRoomListController.xib; sourceTree = "<group>"; };
+		C250AD0C1653A7F400003E15 /* ZJHRoomListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZJHRoomListCell.xib; sourceTree = "<group>"; };
+		C250AD0D1653A7F400003E15 /* ZJHRoomListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJHRoomListCell.h; sourceTree = "<group>"; };
+		C250AD0E1653A7F400003E15 /* ZJHRoomListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJHRoomListCell.m; sourceTree = "<group>"; };
+		C250AD0F1653A7F400003E15 /* ZJHRoomListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJHRoomListController.h; sourceTree = "<group>"; };
+		C250AD101653A7F400003E15 /* ZJHRoomListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJHRoomListController.m; sourceTree = "<group>"; };
 		C25C079815D5F11700E8DD8D /* UIImage+Filtrr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Filtrr.h"; sourceTree = "<group>"; };
 		C25C079915D5F11700E8DD8D /* UIImage+Filtrr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Filtrr.m"; sourceTree = "<group>"; };
 		C25C079A15D5F11700E8DD8D /* UIImage+FiltrrCompositions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+FiltrrCompositions.h"; sourceTree = "<group>"; };
@@ -2319,6 +2344,8 @@
 		C297078416099EEC00BE0789 /* CommonSearchView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "CommonSearchView~ipad.xib"; sourceTree = "<group>"; };
 		C29707C3160ADBEC00BE0789 /* CustomDiceManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomDiceManager.h; sourceTree = "<group>"; };
 		C29707C4160ADBEC00BE0789 /* CustomDiceManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomDiceManager.m; sourceTree = "<group>"; };
+		C298ECBE16547A41000B5753 /* ZJHMyAvatarView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ZJHMyAvatarView~ipad.xib"; sourceTree = "<group>"; };
+		C298ECC016547B78000B5753 /* ZJHAvatarView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ZJHAvatarView~ipad.xib"; sourceTree = "<group>"; };
 		C299BED41653297500C21E2F /* CommonRoomListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonRoomListController.h; sourceTree = "<group>"; };
 		C299BED51653297500C21E2F /* CommonRoomListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonRoomListController.m; sourceTree = "<group>"; };
 		C299BED7165333E800C21E2F /* CommonRoomListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonRoomListCell.h; sourceTree = "<group>"; };
@@ -3054,6 +3081,14 @@
 		CA415135165395E30062A638 /* BBSBoardController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBSBoardController.m; sourceTree = "<group>"; };
 		CA415136165395E30062A638 /* BBSBoardController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BBSBoardController.xib; sourceTree = "<group>"; };
 		CA415139165396410062A638 /* BBSBoardController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "BBSBoardController~ipad.xib"; sourceTree = "<group>"; };
+		CA41513C16539B650062A638 /* BBSNetwork.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBSNetwork.h; sourceTree = "<group>"; };
+		CA41513D16539B650062A638 /* BBSNetwork.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBSNetwork.m; sourceTree = "<group>"; };
+		CA4151AB165502640062A638 /* BBSBoardCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBSBoardCell.h; sourceTree = "<group>"; };
+		CA4151AC165502640062A638 /* BBSBoardCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBSBoardCell.m; sourceTree = "<group>"; };
+		CA4151AD165502640062A638 /* BBSBoardCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BBSBoardCell.xib; sourceTree = "<group>"; };
+		CA4151AE165502640062A638 /* BBSBoardSection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBSBoardSection.h; sourceTree = "<group>"; };
+		CA4151AF165502640062A638 /* BBSBoardSection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBSBoardSection.m; sourceTree = "<group>"; };
+		CA4151B0165502640062A638 /* BBSBoardSection.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BBSBoardSection.xib; sourceTree = "<group>"; };
 		CA41C941152010FF00013DC8 /* ItemShopController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemShopController.h; sourceTree = "<group>"; };
 		CA41C942152010FF00013DC8 /* ItemShopController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemShopController.m; sourceTree = "<group>"; };
 		CA41C943152010FF00013DC8 /* ItemShopController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ItemShopController.xib; sourceTree = "<group>"; };
@@ -4656,7 +4691,10 @@
 		A42EA3AF16533FBC0080BB95 /* room */ = {
 			isa = PBXGroup;
 			children = (
-				A42EA47116537AB40080BB95 /* zjh_finger@2x.png */,
+				A40D70CD1653E894000CC598 /* zjh_arrow_light@2x.png */,
+				A40D70CE1653E894000CC598 /* zjh_arrow@2x.png */,
+				A40D70CF1653E894000CC598 /* zjh_button_holder_bg_ipad@2x.png */,
+				A40D70D01653E894000CC598 /* zjh_game_bg_ipad@2x.jpg */,
 				A42EA43B165341B40080BB95 /* zjh_game_bg_ip5@2x.jpg */,
 				A42EA3B016533FBC0080BB95 /* avatar_default@2x.png */,
 				A42EA3B516533FBC0080BB95 /* item_box@2x.png */,
@@ -5156,6 +5194,7 @@
 		A4E7877D16367338003557AD /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				C250AD0A1653A7E500003E15 /* room */,
 				A42EA4391653415F0080BB95 /* ZJHGameController~ip5.xib */,
 				A42EA3331651F0220080BB95 /* ZJHGameController~ipad.xib */,
 				A44B6223163787F500A8045B /* ZJHGameController.h */,
@@ -5219,10 +5258,13 @@
 				A44B622E1637C45600A8045B /* PokerView.h */,
 				A44B622F1637C45600A8045B /* PokerView.m */,
 				A44B6257163A2BAF00A8045B /* PokerView.xib */,
+				A40D71A816548737000CC598 /* PokerView~ipad.xib */,
 				C2F2CFB1163932C000995DCB /* ZJHAvatarView.h */,
 				C2F2CFB2163932C000995DCB /* ZJHAvatarView.m */,
 				C29B5F951644C74500EF4AB4 /* ZJHAvatarView.xib */,
+				C298ECC016547B78000B5753 /* ZJHAvatarView~ipad.xib */,
 				C29B5FB71644CAAD00EF4AB4 /* ZJHMyAvatarView.xib */,
+				C298ECBE16547A41000B5753 /* ZJHMyAvatarView~ipad.xib */,
 				C29B5FB91644CB9C00EF4AB4 /* ZJHMyAvatarView.h */,
 				C29B5FBA1644CB9C00EF4AB4 /* ZJHMyAvatarView.m */,
 				A44B627A163BC36E00A8045B /* DealingShoe.h */,
@@ -5294,6 +5336,19 @@
 				C225866D15EF5AA4009D686D /* GCServer.m */,
 			);
 			path = Server;
+			sourceTree = "<group>";
+		};
+		C250AD0A1653A7E500003E15 /* room */ = {
+			isa = PBXGroup;
+			children = (
+				C250AD0B1653A7F400003E15 /* ZJHRoomListController.xib */,
+				C250AD0C1653A7F400003E15 /* ZJHRoomListCell.xib */,
+				C250AD0D1653A7F400003E15 /* ZJHRoomListCell.h */,
+				C250AD0E1653A7F400003E15 /* ZJHRoomListCell.m */,
+				C250AD0F1653A7F400003E15 /* ZJHRoomListController.h */,
+				C250AD101653A7F400003E15 /* ZJHRoomListController.m */,
+			);
+			name = room;
 			sourceTree = "<group>";
 		};
 		C25C079715D5F11700E8DD8D /* Filtrr */ = {
@@ -7221,6 +7276,7 @@
 		CA41512A165395A30062A638 /* BBS */ = {
 			isa = PBXGroup;
 			children = (
+				CA41513B16539B210062A638 /* Network */,
 				CA41512B165395A30062A638 /* Controller */,
 				CA41512C165395A30062A638 /* Manager */,
 				CA41512F165395A30062A638 /* Service */,
@@ -7231,6 +7287,7 @@
 		CA41512B165395A30062A638 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				CA4151AA165502630062A638 /* View */,
 				CA415134165395E30062A638 /* BBSBoardController.h */,
 				CA415135165395E30062A638 /* BBSBoardController.m */,
 				CA415136165395E30062A638 /* BBSBoardController.xib */,
@@ -7255,6 +7312,28 @@
 				CA415131165395A30062A638 /* BBSService.m */,
 			);
 			path = Service;
+			sourceTree = "<group>";
+		};
+		CA41513B16539B210062A638 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				CA41513C16539B650062A638 /* BBSNetwork.h */,
+				CA41513D16539B650062A638 /* BBSNetwork.m */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		CA4151AA165502630062A638 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				CA4151AB165502640062A638 /* BBSBoardCell.h */,
+				CA4151AC165502640062A638 /* BBSBoardCell.m */,
+				CA4151AD165502640062A638 /* BBSBoardCell.xib */,
+				CA4151AE165502640062A638 /* BBSBoardSection.h */,
+				CA4151AF165502640062A638 /* BBSBoardSection.m */,
+				CA4151B0165502640062A638 /* BBSBoardSection.xib */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		CA4216251522A0E800FAA008 /* StoreKit */ = {
@@ -11062,9 +11141,19 @@
 				A42EA43616533FBC0080BB95 /* zjh_vs.png in Resources */,
 				A42EA43A1653415F0080BB95 /* ZJHGameController~ip5.xib in Resources */,
 				A42EA43C165341B40080BB95 /* zjh_game_bg_ip5@2x.jpg in Resources */,
-				A42EA47216537AB40080BB95 /* zjh_finger@2x.png in Resources */,
 				CA415138165395E30062A638 /* BBSBoardController.xib in Resources */,
 				CA41513A165396410062A638 /* BBSBoardController~ipad.xib in Resources */,
+				C250AD111653A7F400003E15 /* ZJHRoomListController.xib in Resources */,
+				C250AD121653A7F400003E15 /* ZJHRoomListCell.xib in Resources */,
+				A40D70D11653E894000CC598 /* zjh_arrow_light@2x.png in Resources */,
+				A40D70D21653E894000CC598 /* zjh_arrow@2x.png in Resources */,
+				A40D70D31653E894000CC598 /* zjh_button_holder_bg_ipad@2x.png in Resources */,
+				A40D70D41653E894000CC598 /* zjh_game_bg_ipad@2x.jpg in Resources */,
+				C298ECBF16547A41000B5753 /* ZJHMyAvatarView~ipad.xib in Resources */,
+				C298ECC116547B78000B5753 /* ZJHAvatarView~ipad.xib in Resources */,
+				A40D71A916548737000CC598 /* PokerView~ipad.xib in Resources */,
+				CA4151B2165502640062A638 /* BBSBoardCell.xib in Resources */,
+				CA4151B4165502640062A638 /* BBSBoardSection.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -11668,6 +11757,11 @@
 				CA415132165395A30062A638 /* BBSManager.m in Sources */,
 				CA415133165395A30062A638 /* BBSService.m in Sources */,
 				CA415137165395E30062A638 /* BBSBoardController.m in Sources */,
+				CA41513E16539B650062A638 /* BBSNetwork.m in Sources */,
+				C250AD131653A7F400003E15 /* ZJHRoomListCell.m in Sources */,
+				C250AD141653A7F400003E15 /* ZJHRoomListController.m in Sources */,
+				CA4151B1165502640062A638 /* BBSBoardCell.m in Sources */,
+				CA4151B3165502640062A638 /* BBSBoardSection.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

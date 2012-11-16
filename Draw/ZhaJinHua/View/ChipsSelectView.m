@@ -12,7 +12,7 @@
 #import "ChipView.h"
 #import "ZJHGameService.h"
 
-#define CHIP_GAP 5
+#define CHIP_GAP ([DeviceDetection isIPAD] ? 10 : 5)
 #define CHIPS_COUNT 4
 
 @interface ChipsSelectView()
@@ -34,6 +34,7 @@
 
 {
     ChipsSelectView *chipsSelectView = [[[ChipsSelectView alloc] initWithFrame:CGRectMake(0, 0, CHIP_VIEW_WIDTH * CHIPS_COUNT + CHIP_GAP * (CHIPS_COUNT - 1), CHIP_VIEW_HEIGHT)] autorelease];
+    PPDebug(@"%f, %f", chipsSelectView.frame.size.width , chipsSelectView.frame.size.height);
     chipsSelectView.delegate = delegate;
     [chipsSelectView addChipViews];
     
