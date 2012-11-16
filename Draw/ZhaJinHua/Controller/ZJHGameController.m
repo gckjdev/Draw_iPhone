@@ -396,8 +396,7 @@
 - (IBAction)clickCompareCardButton:(id)sender
 {
     self.isComparing = YES;
-    [self disableAllZJHButtons];
-    [self enableFoldCardButton];
+    [self updateZJHButtons];
 }
 
 - (IBAction)clickCheckCardButton:(id)sender
@@ -411,7 +410,6 @@
     [[self getMyAvatarView] stopReciprocal];
     [self disableAllZJHButtons];
     [_gameService foldCard];
-    [self setIsComparing:NO];
 }
 
 - (IBAction)clickQuitButton:(id)sender
@@ -486,10 +484,6 @@
     for (NSString *userId in [_gameService.session.deletedUserList allKeys]) {
         [self hideTotalBetOfPosition:[self getPositionByUserId:userId]];
         [[self getPokersViewByUserId:userId] clear];
-    }
-    
-    if ([_gameService.session.deletedUserList count] > 0){
-        [self updateZJHButtons];
     }
 }
 
@@ -683,7 +677,6 @@ compareCardWith:(NSString*)targetUserId
 - (void)showCompareCardResult:(NSArray*)userResultList initiator:(NSString*)initiatorId
 {
     [self clearAllAvatarReciprocals];
-    self.isComparing = NO;
     if (userResultList.count == 2 && !_isShowingComparing) {
         _isShowingComparing = YES;
         PBUserResult* result1 = [userResultList objectAtIndex:0];
@@ -758,7 +751,6 @@ compareCardWith:(NSString*)targetUserId
     [[self getAvatarViewByUserId:userId] stopReciprocal];
     [[self getPokersViewByUserId:userId] foldCards:YES];
     [self popupFoldCardMessageAtUser:userId];
-    [self updateZJHButtons];
 }
 
 - (void)someoneWon:(NSString*)userId
@@ -947,11 +939,6 @@ compareCardWith:(NSString*)targetUserId
 - (void)reciprocalEnd:(ZJHAvatarView*)view
 {
     PPDebug(@"################# [controller: %@] TIME OUT: auto fold ##################", [self description]);
-    if (_isComparing) {
-        [self bet:NO];
-        self.isComparing = NO;
-        return;
-    }
     [self clickFoldCardButton:nil];
 }
 
@@ -1020,7 +1007,7 @@ compareCardWith:(NSString*)targetUserId
     [self.autoBetButton setTitleColor:(self.autoBetButton.userInteractionEnabled ? TITLE_COLOR_WHEN_ENABLE : TITLE_COLOR_WHEN_DISABLE) forState:UIControlStateNormal];
     [self.autoBetButton setBackgroundImage:(self.autoBetButton.userInteractionEnabled ? [_imageManager autoBetBtnBgImage] : [_imageManager autoBetBtnDisableBgImage]) forState:UIControlStateNormal];
     
-    self.compareCardButton.userInteractionEnabled = [_gameService canICompareCard];
+    self.compareCardButton.userInteractionEnabled = [_gameService canICompareCard] && !self.isComparing;
     [self.compareCardButton setTitleColor:(self.compareCardButton.userInteractionEnabled ? TITLE_COLOR_WHEN_ENABLE : TITLE_COLOR_WHEN_DISABLE) forState:UIControlStateNormal];
     [self.compareCardButton setBackgroundImage:(self.compareCardButton.userInteractionEnabled ? [_imageManager compareCardBtnBgImage] : [_imageManager compareCardBtnDisableBgImage]) forState:UIControlStateNormal];
 
@@ -1036,7 +1023,8 @@ compareCardWith:(NSString*)targetUserId
 - (void)disableAllZJHButtons
 {
     [self dismissAllPopupView];
-    
+    self.isComparing = NO;
+   
     self.betButton.userInteractionEnabled = NO;
     [self.betButton setTitleColor:TITLE_COLOR_WHEN_DISABLE forState:UIControlStateNormal];
     [self.betButton setBackgroundImage:[_imageManager betBtnDisableBgImage] forState:UIControlStateNormal];
