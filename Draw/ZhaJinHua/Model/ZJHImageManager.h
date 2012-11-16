@@ -74,6 +74,7 @@
 - (UIImage *)runawayButtonImage;
 - (UIImage *)settingButtonImage;
 - (UIImage *)chatButtonImage;
+- (UIImage *)cardTypeBgImage;
 
 - (UIImage *)roomBackgroundImage;
 

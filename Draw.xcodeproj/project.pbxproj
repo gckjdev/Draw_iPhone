@@ -128,8 +128,7 @@
 		A42EA40C16533FBC0080BB95 /* poker_suit_spade@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A42EA3AE16533FBC0080BB95 /* poker_suit_spade@2x.png */; };
 		A42EA40D16533FBC0080BB95 /* avatar_default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A42EA3B016533FBC0080BB95 /* avatar_default@2x.png */; };
 		A42EA41116533FBC0080BB95 /* item_box@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A42EA3B516533FBC0080BB95 /* item_box@2x.png */; };
-		A42EA41216533FBC0080BB95 /* show_card_button.png in Resources */ = {isa = PBXBuildFile; fileRef = A42EA3B616533FBC0080BB95 /* show_card_button.png */; };
-		A42EA41316533FBC0080BB95 /* show_card_button_disable.png in Resources */ = {isa = PBXBuildFile; fileRef = A42EA3B716533FBC0080BB95 /* show_card_button_disable.png */; };
+		A42EA41316533FBC0080BB95 /* show_card_button_disable@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A42EA3B716533FBC0080BB95 /* show_card_button_disable@2x.png */; };
 		A42EA41416533FBC0080BB95 /* zjh_bet1.png in Resources */ = {isa = PBXBuildFile; fileRef = A42EA3B916533FBC0080BB95 /* zjh_bet1.png */; };
 		A42EA41516533FBC0080BB95 /* zjh_bet2.png in Resources */ = {isa = PBXBuildFile; fileRef = A42EA3BA16533FBC0080BB95 /* zjh_bet2.png */; };
 		A42EA41616533FBC0080BB95 /* zjh_check_card1.png in Resources */ = {isa = PBXBuildFile; fileRef = A42EA3BB16533FBC0080BB95 /* zjh_check_card1.png */; };
@@ -243,6 +242,8 @@
 		A4B7640A15C28F8E003B4E72 /* DiceGameService.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B763FE15C28F8E003B4E72 /* DiceGameService.m */; };
 		A4B7640B15C28F8E003B4E72 /* DiceNetworkClient.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B7640015C28F8E003B4E72 /* DiceNetworkClient.m */; };
 		A4B7648C15C382D6003B4E72 /* DiceImageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B7648B15C382D6003B4E72 /* DiceImageManager.m */; };
+		A4BE1E6B165613C100406B98 /* zjh_card_type_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = A4BE1E6A165613C100406B98 /* zjh_card_type_bg.png */; };
+		A4BE1E6D1656298000406B98 /* show_card_button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4BE1E6C1656297D00406B98 /* show_card_button@2x.png */; };
 		A4C1123915D4B621009B3E8D /* DiceAnimationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A4C1123815D4B621009B3E8D /* DiceAnimationManager.m */; };
 		A4C516A915DE40A800E4F735 /* DiceItemListView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4C516A815DE40A800E4F735 /* DiceItemListView.m */; };
 		A4C516AF15DE40F100E4F735 /* DiceItem.m in Sources */ = {isa = PBXBuildFile; fileRef = A4C516AC15DE40F100E4F735 /* DiceItem.m */; };
@@ -2067,8 +2068,7 @@
 		A42EA3AE16533FBC0080BB95 /* poker_suit_spade@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "poker_suit_spade@2x.png"; sourceTree = "<group>"; };
 		A42EA3B016533FBC0080BB95 /* avatar_default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "avatar_default@2x.png"; sourceTree = "<group>"; };
 		A42EA3B516533FBC0080BB95 /* item_box@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "item_box@2x.png"; sourceTree = "<group>"; };
-		A42EA3B616533FBC0080BB95 /* show_card_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = show_card_button.png; sourceTree = "<group>"; };
-		A42EA3B716533FBC0080BB95 /* show_card_button_disable.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = show_card_button_disable.png; sourceTree = "<group>"; };
+		A42EA3B716533FBC0080BB95 /* show_card_button_disable@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "show_card_button_disable@2x.png"; sourceTree = "<group>"; };
 		A42EA3B916533FBC0080BB95 /* zjh_bet1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = zjh_bet1.png; sourceTree = "<group>"; };
 		A42EA3BA16533FBC0080BB95 /* zjh_bet2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = zjh_bet2.png; sourceTree = "<group>"; };
 		A42EA3BB16533FBC0080BB95 /* zjh_check_card1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = zjh_check_card1.png; sourceTree = "<group>"; };
@@ -2245,6 +2245,8 @@
 		A4B7640015C28F8E003B4E72 /* DiceNetworkClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiceNetworkClient.m; sourceTree = "<group>"; };
 		A4B7648A15C382D6003B4E72 /* DiceImageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiceImageManager.h; sourceTree = "<group>"; };
 		A4B7648B15C382D6003B4E72 /* DiceImageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiceImageManager.m; sourceTree = "<group>"; };
+		A4BE1E6A165613C100406B98 /* zjh_card_type_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = zjh_card_type_bg.png; sourceTree = "<group>"; };
+		A4BE1E6C1656297D00406B98 /* show_card_button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "show_card_button@2x.png"; sourceTree = "<group>"; };
 		A4C1123715D4B621009B3E8D /* DiceAnimationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiceAnimationManager.h; sourceTree = "<group>"; };
 		A4C1123815D4B621009B3E8D /* DiceAnimationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiceAnimationManager.m; sourceTree = "<group>"; };
 		A4C516A715DE40A800E4F735 /* DiceItemListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiceItemListView.h; sourceTree = "<group>"; };
@@ -4726,6 +4728,8 @@
 		A42EA3AF16533FBC0080BB95 /* room */ = {
 			isa = PBXGroup;
 			children = (
+				A4BE1E6C1656297D00406B98 /* show_card_button@2x.png */,
+				A4BE1E6A165613C100406B98 /* zjh_card_type_bg.png */,
 				C298ED021655CEE2000B5753 /* zjh_money_tree_big@2x.png */,
 				C298ED031655CEE2000B5753 /* zjh_money_tree_coin_shining_light.png */,
 				C298ED041655CEE2000B5753 /* zjh_money_tree_coin@2x.png */,
@@ -4734,15 +4738,14 @@
 				A40D70CF1653E894000CC598 /* zjh_button_holder_bg_ipad@2x.png */,
 				A40D70D01653E894000CC598 /* zjh_game_bg_ipad@2x.jpg */,
 				A42EA43B165341B40080BB95 /* zjh_game_bg_ip5@2x.jpg */,
+				A42EA3D416533FBC0080BB95 /* zjh_game_bg@2x.jpg */,
 				A42EA3B016533FBC0080BB95 /* avatar_default@2x.png */,
 				A42EA3B516533FBC0080BB95 /* item_box@2x.png */,
-				A42EA3B616533FBC0080BB95 /* show_card_button.png */,
-				A42EA3B716533FBC0080BB95 /* show_card_button_disable.png */,
+				A42EA3B716533FBC0080BB95 /* show_card_button_disable@2x.png */,
 				A42EA3B816533FBC0080BB95 /* zjh_actions */,
 				A42EA3C316533FBC0080BB95 /* zjh_button_holder_bg@2x.png */,
 				A42EA3C416533FBC0080BB95 /* zjh_buttons */,
 				A42EA3D316533FBC0080BB95 /* zjh_chat_button@2x.png */,
-				A42EA3D416533FBC0080BB95 /* zjh_game_bg@2x.jpg */,
 				A42EA3D516533FBC0080BB95 /* zjh_game_setting@2x.png */,
 				A42EA3D616533FBC0080BB95 /* zjh_game_total_bet_bg@2x.png */,
 				A42EA3D716533FBC0080BB95 /* zjh_money_tree@2x.png */,
@@ -11151,8 +11154,7 @@
 				A42EA40C16533FBC0080BB95 /* poker_suit_spade@2x.png in Resources */,
 				A42EA40D16533FBC0080BB95 /* avatar_default@2x.png in Resources */,
 				A42EA41116533FBC0080BB95 /* item_box@2x.png in Resources */,
-				A42EA41216533FBC0080BB95 /* show_card_button.png in Resources */,
-				A42EA41316533FBC0080BB95 /* show_card_button_disable.png in Resources */,
+				A42EA41316533FBC0080BB95 /* show_card_button_disable@2x.png in Resources */,
 				A42EA41416533FBC0080BB95 /* zjh_bet1.png in Resources */,
 				A42EA41516533FBC0080BB95 /* zjh_bet2.png in Resources */,
 				A42EA41616533FBC0080BB95 /* zjh_check_card1.png in Resources */,
@@ -11210,6 +11212,8 @@
 				C298ED26165603ED000B5753 /* MoneyTree.xib in Resources */,
 				C298ED28165603ED000B5753 /* MoneyTreeView.xib in Resources */,
 				C298ED29165603ED000B5753 /* MoneyTreeView~ipad.xib in Resources */,
+				A4BE1E6B165613C100406B98 /* zjh_card_type_bg.png in Resources */,
+				A4BE1E6D1656298000406B98 /* show_card_button@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

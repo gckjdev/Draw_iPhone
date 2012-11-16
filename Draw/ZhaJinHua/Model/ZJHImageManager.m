@@ -462,16 +462,12 @@ static ZJHImageManager* shareInstance;
 
 - (UIImage*)bombImage
 {
-//    return [_resService imageByName:@"zjh_arrow" inResourcePackage:RESOURCE_PACKAGE_ZJH];
-    
-    return [UIImage imageNamed:@"zjh_arrow@2x.png"];
+    return [_resService imageByName:@"zjh_arrow" inResourcePackage:RESOURCE_PACKAGE_ZJH];
 }
 
 - (UIImage*)bombImageLight
 {
-    //    return [_resService imageByName:@"zjh_arrow_light" inResourcePackage:RESOURCE_PACKAGE_ZJH];
-    
-    return [UIImage imageNamed:@"zjh_arrow_light@2x.png"];
+    return [_resService imageByName:@"zjh_arrow_light" inResourcePackage:RESOURCE_PACKAGE_ZJH];
 }
 
 - (UIImage*)vsImage
@@ -616,9 +612,16 @@ static ZJHImageManager* shareInstance;
     return [_resService imageByName:@"zjh_chat_button" inResourcePackage:RESOURCE_PACKAGE_ZJH];
 }
 
+
 - (UIImage *)roomBackgroundImage
 {
     return [_resService imageByName:@"dice_room_background" inResourcePackage:RESOURCE_PACKAGE_ZJH];
+}
+
+- (UIImage *)cardTypeBgImage
+{
+    return [_resService imageByName:@"zjh_card_type_bg" inResourcePackage:RESOURCE_PACKAGE_ZJH];
+
 }
 
 @end
