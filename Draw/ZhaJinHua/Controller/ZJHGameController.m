@@ -94,6 +94,8 @@
     [_runawayButton release];
     [_settingButton release];
     [_chatButton release];
+    [_totalBetNoteLabel release];
+    [_singleBetNoteLabel release];
     [super dealloc];
 }
 
@@ -177,7 +179,32 @@
     // Do any additional setup after loading the view from its nib.
     
     [self setImages];
+    //demonstrate gradient fill
+    self.totalBetLabel.gradientStartColor = [UIColor colorWithRed:254.0/255.0 green:241.0/255.0 blue:67.0/255.0 alpha:1];
+    self.totalBetLabel.gradientEndColor = [UIColor colorWithRed:238.0/255.0 green:159.0/255.0 blue:7.0/255.0 alpha:1];
 
+    self.totalBetNoteLabel.shadowColor = nil;
+    self.totalBetNoteLabel.shadowOffset = CGSizeMake(0.0f, 2.0f);
+    self.totalBetNoteLabel.shadowColor = [UIColor colorWithWhite:0.0f alpha:0.75f];
+    self.totalBetNoteLabel.shadowBlur = 5.0f;
+    
+    self.singleBetNoteLabel.shadowColor = nil;
+    self.singleBetNoteLabel.shadowOffset = CGSizeMake(0.0f, 2.0f);
+    self.singleBetNoteLabel.shadowColor = [UIColor colorWithWhite:0.0f alpha:0.75f];
+    self.singleBetNoteLabel.shadowBlur = 5.0f;
+
+//    self.totalBetNoteLabel.shadowColor = [UIColor colorWithWhite:1.0f alpha:0.8f];
+//    self.totalBetNoteLabel.shadowOffset = CGSizeMake(1.0f, 2.0f);
+//    self.totalBetNoteLabel.shadowBlur = 1.0f;
+//    self.totalBetNoteLabel.innerShadowColor = [UIColor colorWithWhite:0.0f alpha:0.8f];
+//    self.totalBetNoteLabel.innerShadowOffset = CGSizeMake(1.0f, 2.0f);
+    
+    
+    self.totalBetLabel.shadowColor = nil;
+    self.totalBetLabel.shadowOffset = CGSizeMake(0.0f, 2.0f);
+    self.totalBetLabel.shadowColor = [UIColor colorWithWhite:0.0f alpha:0.75f];
+    self.totalBetLabel.shadowBlur = 5.0f;
+    
     [self initAllAvatars];
     [self updateAllUsersAvatar];
     
@@ -465,7 +492,7 @@
                                      times:CARDS_COUNT];
     [self updateTotalBetAndSingleBet];
     [self updateAllUserTotalBet];
-
+//    [self updateAllUsersAvatar]; //some times all room notification post before registered, and update all user avatar method will no longer called, here fix it  --kira
     [self updateMyAvatar];
     [self allBet];
 }
@@ -478,7 +505,7 @@
     [self someoneWon:[_gameService winner]];
 
     [self faceupUserCards];
-    [self performSelector:@selector(resetGame) withObject:nil afterDelay:3.0];
+    [self performSelector:@selector(resetGame) withObject:nil afterDelay:9.0];
 }
 
 - (void)resetGame
@@ -858,6 +885,8 @@ compareCardWith:(NSString*)targetUserId
     [self setRunawayButton:nil];
     [self setSettingButton:nil];
     [self setChatButton:nil];
+    [self setTotalBetNoteLabel:nil];
+    [self setSingleBetLabel:nil];
     [super viewDidUnload];
 }
 
@@ -1180,15 +1209,15 @@ compareCardWith:(NSString*)targetUserId
     [_audioManager playSoundByURL:[_soundManager betSoundEffect]];
     [[AccountService defaultService] chargeAccount:money source:MoneyTreeAward];
     [[self getMyAvatarView] update];
-    [_msgCenter postMessageWithText:[NSString stringWithFormat:NSLS(@"kGetMoneyFromTree"), money]
-                          delayTime:1
-                            isHappy:YES];
+//    [_msgCenter postMessageWithText:[NSString stringWithFormat:NSLS(@"kGetMoneyFromTree"), money]
+//                          delayTime:1
+//                            isHappy:YES];
 }
 
 - (void)moneyTreeNotMature:(MoneyTree *)tree
 {
-    [_msgCenter postMessageWithText:NSLS(@"kMoneyTreeNotMature")
-                          delayTime:1];
+//    [_msgCenter postMessageWithText:NSLS(@"kMoneyTreeNotMature")
+//                          delayTime:1];
 }
 
 
