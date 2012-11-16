@@ -464,7 +464,7 @@
                                      times:CARDS_COUNT];
     [self updateTotalBetAndSingleBet];
     [self updateAllUserTotalBet];
-
+//    [self updateAllUsersAvatar]; //some times all room notification post before registered, and update all user avatar method will no longer called, here fix it  --kira
     [self updateMyAvatar];
     [self allBet];
 }
@@ -477,7 +477,7 @@
     [self someoneWon:[_gameService winner]];
 
     [self faceupUserCards];
-    [self performSelector:@selector(resetGame) withObject:nil afterDelay:3.0];
+    [self performSelector:@selector(resetGame) withObject:nil afterDelay:9.0];
 }
 
 - (void)resetGame
@@ -1166,15 +1166,15 @@ compareCardWith:(NSString*)targetUserId
     [_audioManager playSoundByURL:[_soundManager betSoundEffect]];
     [[AccountService defaultService] chargeAccount:money source:MoneyTreeAward];
     [[self getMyAvatarView] update];
-    [_msgCenter postMessageWithText:[NSString stringWithFormat:NSLS(@"kGetMoneyFromTree"), money]
-                          delayTime:1
-                            isHappy:YES];
+//    [_msgCenter postMessageWithText:[NSString stringWithFormat:NSLS(@"kGetMoneyFromTree"), money]
+//                          delayTime:1
+//                            isHappy:YES];
 }
 
 - (void)moneyTreeNotMature:(MoneyTree *)tree
 {
-    [_msgCenter postMessageWithText:NSLS(@"kMoneyTreeNotMature")
-                          delayTime:1];
+//    [_msgCenter postMessageWithText:NSLS(@"kMoneyTreeNotMature")
+//                          delayTime:1];
 }
 
 
