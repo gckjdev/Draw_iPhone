@@ -7,7 +7,21 @@
 //
 
 #import "PPViewController.h"
+#import "BBSService.h"
 
-@interface CreatePostController : PPViewController
+@class PBBBSBoard;
+@interface CreatePostController : PPViewController<BBSServiceDelegate>
+{
+}
+
+
+- (id)initWithBoard:(PBBBSBoard *)board;
++ (CreatePostController *)enterControllerWithBoard:(PBBBSBoard *)board
+                                    fromController:(UIViewController *)fromController;
+@property (retain, nonatomic) IBOutlet UITextView *textView;
+
+- (IBAction)clickBackButton:(id)sender;
+
+- (IBAction)clickSubmitButton:(id)sender;
 
 @end

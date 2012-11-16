@@ -8,6 +8,7 @@
 
 #import "BBSBoardController.h"
 #import "BBSBoardCell.h"
+#import "CreatePostController.h"
 
 @interface BBSBoardController ()
 {
@@ -129,6 +130,17 @@
 }
 
 
+- (PBBBSBoard *)boardForIndexPath:(NSIndexPath *)indexPath
+{
+    PBBBSBoard *pBoard = [_parentBoardList objectAtIndex:indexPath.section];
+    NSArray *subList = [_bbsManager sbuBoardListForBoardId:pBoard.boardId];
+    if ([subList count] == 0) {
+        return pBoard;
+    }
+    PBBBSBoard *sBoard = [subList objectAtIndex:indexPath.row];
+    return sBoard;
+}
+
 - (UITableViewCell *)tableView:(UITableView *)theTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     NSString *CellIdentifier = [BBSBoardCell getCellIdentifier];
@@ -136,18 +148,17 @@
 	if (cell == nil) {
 		cell = [BBSBoardCell createCell:self];
 	}
-    
-    PBBBSBoard *pBoard = [_parentBoardList objectAtIndex:indexPath.section];
-    NSArray *subList = [_bbsManager sbuBoardListForBoardId:pBoard.boardId];
-    PBBBSBoard *sBoard = [subList objectAtIndex:indexPath.row];
-    
-//    [cell.textLabel setText:sBoard.name];
+    PBBBSBoard *sBoard = [self boardForIndexPath:indexPath];
     [cell updateCellWithBoard:sBoard];
     
 	return cell;
 	
 }
 
-
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    PBBBSBoard *sBoard = [self boardForIndexPath:indexPath];
+    [CreatePostController enterControllerWithBoard:sBoard fromController:self];
+}
 
 @end

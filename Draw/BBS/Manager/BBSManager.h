@@ -8,6 +8,20 @@
 
 #import <Foundation/Foundation.h>
 #import "Bbs.pb.h"
+
+enum BBSBoardType {
+    BBSBoardTypeParent = 1,
+    BBSBoardTypeSub = 2
+};
+
+typedef enum {
+    ContentTypeNo = 0,
+    ContentTypeText = 1,
+    ContentTypeImage = 2,
+    ContentTypeDraw = 4
+}BBSPostContentType;
+
+
 @interface BBSManager : NSObject
 {
     NSArray *_boardList;
