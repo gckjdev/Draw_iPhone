@@ -79,15 +79,20 @@
     return coinLayer;
 }
 
+- (CALayer*)shiningLightLayer
+{
+    CALayer* layer = [CALayer layer];
+    UIImage* layerImage = [ZJHImageManager defaultManager].moneyTreeCoinLightImage;
+    layer.contents = (id)[layerImage CGImage];
+    [layer setBounds:CGRectMake(0, 0, layerImage.size.width, layerImage.size.height)];
+    [_layerQueue enqueue:layer];
+    return layer;
+}
+
 - (void)showOneCoin
 {
     [self setImage:[ZJHImageManager defaultManager].bigMoneyTreeImage forState:UIControlStateNormal];
-    CALayer* coinLayer = [self coinLayer];
-    coinLayer.position = CGPointMake(self.frame.size.width*0.75, self.frame.size.height*0.5);
-    [self.layer addSublayer:coinLayer];
-    if (_delegate && [_delegate respondsToSelector:@selector(treeDidMature:)]) {
-        [_delegate treeDidMature:self];
-    }
+    [self addCoinAtPosition:CGPointMake(self.frame.size.width*0.75, self.frame.size.height/2)];
 }
 
 - (void)setIsMature:(BOOL)isMature
@@ -121,14 +126,30 @@
     [self startMatureTimer:self.growthTime/2];
 }
 
-- (void)tooMature
+- (void)addCoinAtPosition:(CGPoint)position
 {
     CALayer* coinLayer = [self coinLayer];
-    coinLayer.position = CGPointMake(self.frame.size.width*0.25, self.frame.size.height*0.25);
+    coinLayer.position = position;
     [self.layer addSublayer:coinLayer];
+    
+    CALayer* lightLayer = [self shiningLightLayer];
+    lightLayer.position = CGPointMake(coinLayer.position.x + coinLayer.bounds.size.width/4, coinLayer.position.y + coinLayer.bounds.size.height/4);
+    [self.layer addSublayer:lightLayer];
+    
+    CAAnimation* shining = [AnimationManager missingAnimationWithDuration:1];
+    shining.autoreverses = YES;
+    shining.repeatCount = 1000;
+    [lightLayer addAnimation:shining forKey:nil];
+    
+    
     if (_delegate && [_delegate respondsToSelector:@selector(treeDidMature:)]) {
         [_delegate treeDidMature:self];
     }
+}
+
+- (void)tooMature
+{
+    [self addCoinAtPosition:CGPointMake(self.frame.size.width*0.25, self.frame.size.height/4)];
 }
 
 - (void)startGrowthTimer:(CFTimeInterval)timeInterval

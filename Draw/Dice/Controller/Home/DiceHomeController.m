@@ -480,7 +480,9 @@
     
     // for zhajinhua test
     if (_isZJH){
-        [[ZJHGameService defaultService] joinGameRequest];
+        ZJHRoomListController* vc = [[[ZJHRoomListController alloc] init] autorelease];
+        [self.navigationController pushViewController:vc animated:YES];
+        
         return;
     }
     
