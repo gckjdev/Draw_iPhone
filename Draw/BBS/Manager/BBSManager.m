@@ -14,10 +14,6 @@
 
 BBSManager *_staticBBSManager;
 
-enum BBSBoardType {
-  BBSBoardTypeParent = 1,
-  BBSBoardTypeSub = 2
-};
 
 @synthesize boardList = _boardList;
 
@@ -80,19 +76,22 @@ enum BBSBoardType {
 
 +(void)printBBSBoard:(PBBBSBoard *)board
 {
-    PPDebug(@"Board:[boardId = %@, type = %d, name = %@, icon = %@, parentBoardId = %@, lastPost = %@, topicCount = %d, postCount = %d, desc = %@]",board.boardId, board.type,board.name,board.icon,board.parentBoardId,[board.lastPost description],board.topicCount,board.postCount,board.desc);
+    PPDebug(@"Board:[boardId = %@,\n type = %d,\n name = %@,\n icon = %@,\n parentBoardId = %@,\n lastPost = %@,\n topicCount = %d,\n postCount = %d,\n desc = %@]",board.boardId, board.type,board.name,board.icon,board.parentBoardId,[board.lastPost description],board.topicCount,board.postCount,board.desc);
 }
 +(void)printBBSContent:(PBBBSContent *)content
 {
-    
+    PPDebug(@"Content:[text = %@])",content.text);
 }
 +(void)printBBSUser:(PBBBSUser *)user
 {
-    
+    PPDebug(@"User:[userId = %@,\n nickName = %@,\n gender = %d,\n avatar = %@]",user.userId, user.nickName,user.gender,user.avatar);
 }
 +(void)printBBSPost:(PBBBSPost *)post
 {
-    
+    PPDebug(@"Post:[postId = %@,\n replyCount = %d,\n supportCount = %d]",post.postId,post.replyCount,post.supportCount);
+    [BBSManager printBBSUser:post.createUser];
+    [BBSManager printBBSContent:post.content];
+
 }
 +(void)printBBSAction:(PBBBSAction *)action
 {
