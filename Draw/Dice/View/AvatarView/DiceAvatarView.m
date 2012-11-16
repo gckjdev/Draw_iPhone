@@ -338,27 +338,6 @@
 - (void)rewardCoins:(int)coinsCount 
            duration:(float)duration
 {
-   
-//    
-//    CAAnimationGroup* animGroup = [CAAnimationGroup animation];
-//    CAAnimation* raise = [AnimationManager translationAnimationFrom:CGPointMake(self.frame.size.width/2, self.frame.size.height + _rewardView.frame.size.height) to:CGPointMake(self.frame.size.width/2                                                            , -3*_rewardView.frame.size.height) duration:duration*2];
-//    CAAnimation* disMiss = [AnimationManager missingAnimationWithDuration:duration];
-//    disMiss.beginTime = duration;
-//    disMiss.delegate = self;
-//    [disMiss setValue:@"dismiss" forKey:@"avatarAnim"];
-    
-//    animGroup.animations = [NSArray arrayWithObjects:raise, disMiss, nil];
-//    animGroup.removedOnCompletion = NO;
-//    animGroup.duration = duration*2;
-//    animGroup.timingFunction      = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];    
-//    animGroup.repeatCount         = 1;//FLT_MAX;  //"forever";
-//    animGroup.fillMode             = kCAFillModeForwards;
-//    
-//    animGroup.delegate = self;
-//    [animGroup setValue:@"group" forKey:@"avatarAnim"];
-//    [_rewardView.layer addAnimation:animGroup forKey:@"popReward"];
-//    [_rewardView.layer addAnimation:disMiss forKey:@"disMiss"];
-//    [_rewardView.layer addAnimation:raise forKey:@"raise"];
     
     [_rewardCoinLabel setText:[NSString stringWithFormat:@"%+d",coinsCount]];
     _rewardCoinLabel.textColor = (coinsCount >= 0) ? [UIColor redColor] : [UIColor greenColor];

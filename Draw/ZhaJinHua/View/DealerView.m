@@ -100,7 +100,8 @@
 
     CAAnimation* anim = [AnimationManager translationAnimationFrom:CGPointMake(self.frame.size.width/2, self.frame.size.height/2) to:destinationPoint duration:DEAL_ANIMATION_DURATION delegate:self removeCompeleted:NO];
     float angle = [self randomAngle];
-    CAAnimation* anim2 = [AnimationManager rotationAnimationWithRoundCount:angle duration:DEAL_ANIMATION_DURATION];
+    CAAnimation* anim2 = [AnimationManager rotateAnimationWithRoundCount:angle duration:DEAL_ANIMATION_DURATION];
+    
     anim2.removedOnCompletion = NO;
     //        PPDebug(@"deal to point (%.2f, %.2f)",points[i].x, points[i].y );
 //    PPDebug(@" <test> remain cards = %d", _remainCards);

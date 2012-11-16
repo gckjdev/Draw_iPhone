@@ -399,7 +399,9 @@
 
 - (IBAction)clickCheckCardButton:(id)sender
 {
-    [[self getMyPokersView] faceUpCards:ZJHPokerXMotionTypeNone animation:YES];
+    [[self getMyPokersView] faceUpCardsWithCardType:nil
+                                        xMotiontype:ZJHPokerXMotionTypeNone
+                                          animation:YES];
     [self showMyCardType];
     [_gameService checkCard];
 }
@@ -543,7 +545,8 @@
 - (void)faceupUserCards
 {
     for (NSString *userId in [_gameService.gameState.usersInfo allKeys]) {
-        [[self getPokersViewByUserId:userId] faceUpCards:[self getPokerXMotionTypeByPosition:[self getPositionByUserId:userId]] animation:YES];
+        NSString *cardType = [_userManager isMe:userId] ? nil : [_gameService cardTypeOfUser:userId];
+        [[self getPokersViewByUserId:userId] faceUpCardsWithCardType:cardType xMotiontype:[self getPokerXMotionTypeByPosition:[self getPositionByUserId:userId]] animation:YES];
     }
 }
 
@@ -1049,31 +1052,13 @@ compareCardWith:(NSString*)targetUserId
 {
     _cardTypeBgImageView.hidden = NO;
     
-    CABasicAnimation * roateAni = [CABasicAnimation animationWithKeyPath:@"transform.rotation.z"];
-    roateAni.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionLinear];
-    roateAni.fromValue = [NSNumber numberWithFloat:0];
-    roateAni.toValue = [NSNumber numberWithFloat:(-M_PI * 2)];
-    roateAni.duration = 1 ;
-    roateAni.repeatCount = 2;
-    roateAni.removedOnCompletion = YES;
+    CAAnimation * roateAni = [AnimationManager circlingAnimationWithDirection:AntiClockWise duration:1 repeatedCount:2];
     
-    CABasicAnimation * caseInAni = [CABasicAnimation
-                                    animationWithKeyPath:@"opacity"];
-    caseInAni.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionLinear];
-    caseInAni.fromValue = [NSNumber numberWithInt:0.5];
-    caseInAni.toValue = [NSNumber numberWithInt:1];
-    caseInAni.duration = 1.0 ;
-    caseInAni.fillMode = kCAFillModeForwards;
+    CAAnimation * caseInAni = [AnimationManager appearAnimationFrom:0.5 to:1 duration:1.0];
     
-    CABasicAnimation * caseOutAni = [CABasicAnimation
-                                    animationWithKeyPath:@"opacity"];
-    caseOutAni.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionLinear];
-    caseOutAni.fromValue = [NSNumber numberWithInt:1];
-    caseOutAni.toValue = [NSNumber numberWithInt:0.5];
-    caseOutAni.duration = 1.0 ;
+    CAAnimation * caseOutAni = [AnimationManager disappearAnimationWithDuration:1.0];
     caseOutAni.beginTime = 1.0;
-    caseOutAni.fillMode = kCAFillModeForwards;
-    
+        
     CAAnimationGroup* animGroup = [CAAnimationGroup animation];
     animGroup.removedOnCompletion = YES;
     animGroup.duration = 2;
@@ -1085,8 +1070,6 @@ compareCardWith:(NSString*)targetUserId
     [_cardTypeBgImageView.layer addAnimation:animGroup forKey:nil];
     
     [self performSelector:@selector(showMyCardTypeString) withObject:nil afterDelay:animGroup.duration];
-    
-
 }
 
 - (void)showMyCardTypeString
@@ -1094,6 +1077,8 @@ compareCardWith:(NSString*)targetUserId
     _cardTypeBgImageView.hidden = YES;
     _cardTypeLabel.hidden = NO;
     _cardTypeLabel.text = [_gameService myCardType];
+
+    [_cardTypeLabel.layer addAnimation:[AnimationManager appearAnimationFrom:0.5 to:1.0 duration:1] forKey:nil];
 }
 
 - (void)hideMyCardType

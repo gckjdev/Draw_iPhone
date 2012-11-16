@@ -210,6 +210,11 @@ static ZJHGameService *_defaultService;
     return [[self myPlayInfo] cardTypeString];
 }
 
+- (NSString *)cardTypeOfUser:(NSString *)userId
+{
+    return [[self userPlayInfo:userId] cardTypeString];
+}
+
 - (BOOL)doIWin
 {
     return [_userManager isMe:_gameState.winner];
