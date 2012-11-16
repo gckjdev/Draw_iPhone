@@ -318,6 +318,9 @@
 		C298ED051655CEE2000B5753 /* zjh_money_tree_big@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C298ED021655CEE2000B5753 /* zjh_money_tree_big@2x.png */; };
 		C298ED061655CEE2000B5753 /* zjh_money_tree_coin_shining_light.png in Resources */ = {isa = PBXBuildFile; fileRef = C298ED031655CEE2000B5753 /* zjh_money_tree_coin_shining_light.png */; };
 		C298ED071655CEE2000B5753 /* zjh_money_tree_coin@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C298ED041655CEE2000B5753 /* zjh_money_tree_coin@2x.png */; };
+		C298ED0C1655DEE0000B5753 /* MoneyTreeView.m in Sources */ = {isa = PBXBuildFile; fileRef = C298ED0B1655DEE0000B5753 /* MoneyTreeView.m */; };
+		C298ED0E1655DEFE000B5753 /* MoneyTreeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C298ED0D1655DEFE000B5753 /* MoneyTreeView.xib */; };
+		C298ED101655DF49000B5753 /* MoneyTreeView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C298ED0F1655DF49000B5753 /* MoneyTreeView~ipad.xib */; };
 		C299BED61653297500C21E2F /* CommonRoomListController.m in Sources */ = {isa = PBXBuildFile; fileRef = C299BED51653297500C21E2F /* CommonRoomListController.m */; };
 		C299BED9165333E800C21E2F /* CommonRoomListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C299BED8165333E800C21E2F /* CommonRoomListCell.m */; };
 		C29A300715CA16AC00BD0B73 /* CustomLabelUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = C29A300615CA16AC00BD0B73 /* CustomLabelUtil.m */; };
@@ -2355,6 +2358,10 @@
 		C298ED021655CEE2000B5753 /* zjh_money_tree_big@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zjh_money_tree_big@2x.png"; sourceTree = "<group>"; };
 		C298ED031655CEE2000B5753 /* zjh_money_tree_coin_shining_light.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = zjh_money_tree_coin_shining_light.png; sourceTree = "<group>"; };
 		C298ED041655CEE2000B5753 /* zjh_money_tree_coin@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zjh_money_tree_coin@2x.png"; sourceTree = "<group>"; };
+		C298ED0A1655DEE0000B5753 /* MoneyTreeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoneyTreeView.h; sourceTree = "<group>"; };
+		C298ED0B1655DEE0000B5753 /* MoneyTreeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoneyTreeView.m; sourceTree = "<group>"; };
+		C298ED0D1655DEFE000B5753 /* MoneyTreeView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MoneyTreeView.xib; sourceTree = "<group>"; };
+		C298ED0F1655DF49000B5753 /* MoneyTreeView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "MoneyTreeView~ipad.xib"; sourceTree = "<group>"; };
 		C299BED41653297500C21E2F /* CommonRoomListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonRoomListController.h; sourceTree = "<group>"; };
 		C299BED51653297500C21E2F /* CommonRoomListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonRoomListController.m; sourceTree = "<group>"; };
 		C299BED7165333E800C21E2F /* CommonRoomListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonRoomListCell.h; sourceTree = "<group>"; };
@@ -5300,6 +5307,10 @@
 				A404A9EE1643DD54007CA21A /* PopupViewManager.m */,
 				C292CD4B1647966500BDE772 /* MoneyTree.h */,
 				C292CD4C1647966500BDE772 /* MoneyTree.m */,
+				C298ED0A1655DEE0000B5753 /* MoneyTreeView.h */,
+				C298ED0B1655DEE0000B5753 /* MoneyTreeView.m */,
+				C298ED0D1655DEFE000B5753 /* MoneyTreeView.xib */,
+				C298ED0F1655DF49000B5753 /* MoneyTreeView~ipad.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -11179,6 +11190,8 @@
 				C298ED051655CEE2000B5753 /* zjh_money_tree_big@2x.png in Resources */,
 				C298ED061655CEE2000B5753 /* zjh_money_tree_coin_shining_light.png in Resources */,
 				C298ED071655CEE2000B5753 /* zjh_money_tree_coin@2x.png in Resources */,
+				C298ED0E1655DEFE000B5753 /* MoneyTreeView.xib in Resources */,
+				C298ED101655DF49000B5753 /* MoneyTreeView~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -11788,6 +11801,7 @@
 				CA4151B1165502640062A638 /* BBSBoardCell.m in Sources */,
 				CA4151B3165502640062A638 /* BBSBoardSection.m in Sources */,
 				A40D71DD16553575000CC598 /* FXLabel.m in Sources */,
+				C298ED0C1655DEE0000B5753 /* MoneyTreeView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
