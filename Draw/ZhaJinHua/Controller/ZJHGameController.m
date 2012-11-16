@@ -364,6 +364,7 @@
 - (void)bet:(BOOL)autoBet
 {
     [[self getMyAvatarView] stopReciprocal];
+    [self disableAllZJHButtons];
     [_gameService bet:autoBet];
 }
 
@@ -392,22 +393,20 @@
 - (IBAction)clickCompareCardButton:(id)sender
 {
     self.isComparing = YES;
-    [self disableZJHButtons];
+    [self disableAllZJHButtons];
+    [self enableFoldCardButton];
 }
 
 - (IBAction)clickCheckCardButton:(id)sender
 {
-    [[self getMyPokersView] faceUpCardsWithCardType:nil
-                                        xMotiontype:ZJHPokerXMotionTypeNone
-                                          animation:YES];
-    [self showMyCardType];
+    [[self getMyAvatarView] stopReciprocal];
     [_gameService checkCard];
 }
 
 - (IBAction)clickFoldCardButton:(id)sender
 {
     [[self getMyAvatarView] stopReciprocal];
-    [[self getMyPokersView] foldCards:YES];
+    [self disableAllZJHButtons];
     [_gameService foldCard];
     [self setIsComparing:NO];
 }
@@ -437,12 +436,7 @@
     }
     [_audioManager playSoundByURL:soundURL];
     [_audioManager playSoundByURL:[_soundManager betSoundEffect]];
-
-    //    [_audioManager playSoundByURL:[_soundManager betSoundEffect]];
     
-    [self updateZJHButtons];
-    [self dismissAllPopupView];
-
     [self.betTable someBetFrom:[self getPositionByUserId:_userManager.userId]
                      chipValue:_gameService.gameState.singleBet
                          count:[_gameService betCountOfUser:_userManager.userId]];
@@ -454,6 +448,11 @@
 
 - (void)checkCardSuccess
 {
+    [[self getMyPokersView] faceUpCardsWithCardType:nil
+                                        xMotiontype:ZJHPokerXMotionTypeNone
+                                          animation:YES];
+    [self showMyCardType];
+    
     BOOL gender = [_userManager.gender isEqualToString:@"m"];
     [_audioManager playSoundByURL:[_soundManager checkCardHumanSound:gender]];
     [_audioManager playSoundByURL:[_soundManager checkCardSoundEffect]];
@@ -463,10 +462,9 @@
 
 - (void)foldCardSuccess
 {
+    [[self getMyPokersView] foldCards:YES];
     [_audioManager playSoundByURL:_soundManager.foldCardSoundEffect];
     [_audioManager playSoundByURL:[_soundManager foldCardHumanSound:[@"m" isEqualToString:_userManager.gender]]];
-    [self updateZJHButtons];
-    [self dismissAllPopupView];
 }
 
 - (void)showCardSuccess
@@ -682,7 +680,7 @@ compareCardWith:(NSString*)targetUserId
         PBUserResult* result2 = [userResultList objectAtIndex:1];
         
         if ([result1.userId isEqualToString:_userManager.userId] || [result2.userId isEqualToString:_userManager.userId]) {
-            [self disableCheckCardAndFoldCardButtons];
+            [self disableAllZJHButtons];
         }
         
         [self someone:initiatorId
@@ -775,7 +773,6 @@ compareCardWith:(NSString*)targetUserId
     for (NSString* userId in _gameService.compareUserIdList) {
         ZJHPokerView* pokerView = [self getPokersViewByUserId:userId];
         [pokerView showBomb];
-
     }
 }
 
@@ -967,7 +964,8 @@ compareCardWith:(NSString*)targetUserId
 - (void)didClickBombButton:(ZJHPokerView *)zjhPokerView
 {
     ZJHAvatarView* avatar = (ZJHAvatarView*)[self.view viewWithTag:(AVATAR_VIEW_TAG_OFFSET+zjhPokerView.tag - POKERS_VIEW_TAG_OFFSET)];
-    //    [self someone:[_userManager userId] compareCardWith:avatar.userInfo.userId didWin:YES];
+    [[self getMyAvatarView] stopReciprocal];
+    [self disableAllZJHButtons];
     [self compareToUser:avatar.userInfo.userId];
 }
 
@@ -975,9 +973,8 @@ compareCardWith:(NSString*)targetUserId
 
 - (void)didSelectChip:(int)chipValue
 {
-    PPDebug(@"didSelectChip: %d", chipValue);
     [[self getMyAvatarView] stopReciprocal];
-    [_popupViewManager dismissChipsSelectView];
+    [self disableAllZJHButtons];
     [_gameService raiseBet:chipValue];
 }
 
@@ -987,35 +984,18 @@ compareCardWith:(NSString*)targetUserId
     [_popupViewManager dismissChipsSelectView];
 }
 
-- (void)disableZJHButtons
+- (void)enableFoldCardButton
 {
-    self.betButton.userInteractionEnabled = NO;
-    [self.betButton setTitleColor:TITLE_COLOR_WHEN_DISABLE forState:UIControlStateNormal];
-    [self.betButton setBackgroundImage:[_imageManager betBtnDisableBgImage] forState:UIControlStateNormal];
-    
-    self.raiseBetButton.userInteractionEnabled = NO;
-    [self.raiseBetButton setTitleColor:TITLE_COLOR_WHEN_DISABLE forState:UIControlStateNormal];
-    [self.raiseBetButton setBackgroundImage:[_imageManager raiseBetBtnDisableBgImage] forState:UIControlStateNormal];
-    
-    self.autoBetButton.userInteractionEnabled = NO;
-    [self.autoBetButton setTitleColor:TITLE_COLOR_WHEN_DISABLE forState:UIControlStateNormal];
-    [self.autoBetButton setBackgroundImage:[_imageManager autoBetBtnDisableBgImage] forState:UIControlStateNormal];
-    
-    self.compareCardButton.userInteractionEnabled = NO;
-    [self.compareCardButton setTitleColor:TITLE_COLOR_WHEN_DISABLE forState:UIControlStateNormal];
-    [self.compareCardButton setBackgroundImage:[_imageManager compareCardBtnDisableBgImage] forState:UIControlStateNormal];
-    
-    self.checkCardButton.userInteractionEnabled = NO;
-    [self.checkCardButton setTitleColor:TITLE_COLOR_WHEN_DISABLE forState:UIControlStateNormal];
-    [self.checkCardButton setBackgroundImage:[_imageManager checkCardBtnDisableBgImage] forState:UIControlStateNormal];
-    
-//    self.foldCardButton.userInteractionEnabled = NO;
-//    [self.foldCardButton setTitleColor:TITLE_COLOR_WHEN_DISABLE forState:UIControlStateNormal];
-//    [self.foldCardButton setBackgroundImage:[_imageManager foldCardBtnDisableBgImage] forState:UIControlStateNormal];
+    self.foldCardButton.userInteractionEnabled = YES;
+    [self.foldCardButton setTitleColor:TITLE_COLOR_WHEN_ENABLE forState:UIControlStateNormal];
+    [self.foldCardButton setBackgroundImage:[_imageManager foldCardBtnBgImage] forState:UIControlStateNormal];
 }
+
 
 - (void)updateZJHButtons
 {
+    [self dismissAllPopupView];
+    
     self.betButton.userInteractionEnabled = [_gameService canIBet];
     [self.betButton setTitleColor:(self.betButton.userInteractionEnabled ? TITLE_COLOR_WHEN_ENABLE : TITLE_COLOR_WHEN_DISABLE) forState:UIControlStateNormal];
     [self.betButton setBackgroundImage:(self.betButton.userInteractionEnabled ? [_imageManager betBtnBgImage] : [_imageManager betBtnDisableBgImage]) forState:UIControlStateNormal];
@@ -1042,8 +1022,27 @@ compareCardWith:(NSString*)targetUserId
     [self.foldCardButton setBackgroundImage:(self.foldCardButton.userInteractionEnabled ? [_imageManager foldCardBtnBgImage] : [_imageManager foldCardBtnDisableBgImage]) forState:UIControlStateNormal];
 }
 
-- (void)disableCheckCardAndFoldCardButtons
+- (void)disableAllZJHButtons
 {
+    [self dismissAllPopupView];
+    
+    self.betButton.userInteractionEnabled = NO;
+    [self.betButton setTitleColor:TITLE_COLOR_WHEN_DISABLE forState:UIControlStateNormal];
+    [self.betButton setBackgroundImage:[_imageManager betBtnDisableBgImage] forState:UIControlStateNormal];
+    
+    self.raiseBetButton.userInteractionEnabled = NO;
+    [self.raiseBetButton setTitleColor:TITLE_COLOR_WHEN_DISABLE forState:UIControlStateNormal];
+    [self.raiseBetButton setBackgroundImage:[_imageManager raiseBetBtnDisableBgImage] forState:UIControlStateNormal];
+    
+    self.autoBetButton.userInteractionEnabled = NO;
+    self.autoBetButton.selected = [_gameService isMeAutoBet];
+    [self.autoBetButton setTitleColor:TITLE_COLOR_WHEN_DISABLE forState:UIControlStateNormal];
+    [self.autoBetButton setBackgroundImage:[_imageManager autoBetBtnDisableBgImage] forState:UIControlStateNormal];
+    
+    self.compareCardButton.userInteractionEnabled = NO;
+    [self.compareCardButton setTitleColor:TITLE_COLOR_WHEN_DISABLE forState:UIControlStateNormal];
+    [self.compareCardButton setBackgroundImage:[_imageManager compareCardBtnDisableBgImage] forState:UIControlStateNormal];
+    
     self.checkCardButton.userInteractionEnabled = NO;
     [self.checkCardButton setTitleColor:TITLE_COLOR_WHEN_DISABLE forState:UIControlStateNormal];
     [self.checkCardButton setBackgroundImage:[_imageManager checkCardBtnDisableBgImage] forState:UIControlStateNormal];
