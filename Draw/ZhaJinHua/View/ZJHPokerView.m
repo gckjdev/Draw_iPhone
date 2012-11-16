@@ -18,7 +18,7 @@
 #define BOMB_BUTTON_WIDTH [DeviceDetection isIPAD] ? 54 : 27
 #define BOMB_BUTTON_HEIGHT [DeviceDetection isIPAD] ? 64 : 32
 
-#define CARD_TYPE_STRING_FONT [UIFont boldSystemFontOfSize:([DeviceDetection isIPAD] ? 18 :12)]
+#define CARD_TYPE_STRING_FONT [UIFont boldSystemFontOfSize:([DeviceDetection isIPAD] ? 20 :12)]
 
 @interface ZJHPokerView ()
 {
@@ -253,7 +253,7 @@
     
     UIButton *bomb = [[[UIButton alloc] initWithFrame:CGRectMake(0, 0, BOMB_BUTTON_WIDTH, BOMB_BUTTON_HEIGHT)] autorelease];
     bomb.tag = TAG_BOMB_BUTTON;
-    [bomb setImage:[[ZJHImageManager defaultManager] bombImage] forState:UIControlStateNormal];
+    [bomb setBackgroundImage:[[ZJHImageManager defaultManager] bombImage] forState:UIControlStateNormal];
     [bomb addTarget:self action:@selector(clickBomb:) forControlEvents:UIControlEventTouchUpInside];
     bomb.center = CGPointMake(self.frame.size.width/2, self.frame.size.height/2 - ([DeviceDetection isIPAD] ? 10 : 5));
     

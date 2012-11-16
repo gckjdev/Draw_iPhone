@@ -211,6 +211,14 @@
     self.cardTypeLabel.shadowBlur = 5.0f;
 }
 
+- (void)initMoneyTree
+{
+    self.moneyTreeView = [MoneyTreeView createMoneyTreeView];
+    self.moneyTreeView.growthTime = 10;
+    [self.moneyTreeView startGrowing];
+    [self.moneyTreeView showInView:self.moneyTreeHolder];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -240,12 +248,9 @@
     }
 
     // money tree.
-    self.moneyTreeView = [MoneyTreeView createMoneyTreeView];
-    self.moneyTreeView.growthTime = 10;
-    [self.moneyTreeView growMoneyTree];
-    [self.view addSubview:self.moneyTreeView];
-    [self.moneyTreeView setFrame:self.moneyTreeHolder.frame];
+    [self initMoneyTree];
     
+    // operation buttons.
     [self updateZJHButtons];
     
     // background music.
@@ -556,6 +561,9 @@
 - (void)faceupUserCards
 {
     for (NSString *userId in [_gameService.gameState.usersInfo allKeys]) {
+        if (_cardTypeLabel.hidden == YES) {
+            [self showMyCardType];
+        }
         NSString *cardType = [_userManager isMe:userId] ? nil : [_gameService cardTypeOfUser:userId];
         [[self getPokersViewByUserId:userId] faceUpCardsWithCardType:cardType xMotiontype:[self getPokerXMotionTypeByPosition:[self getPositionByUserId:userId]] animation:YES];
     }
@@ -1016,11 +1024,11 @@ compareCardWith:(NSString*)targetUserId
     [self.compareCardButton setTitleColor:(self.compareCardButton.userInteractionEnabled ? TITLE_COLOR_WHEN_ENABLE : TITLE_COLOR_WHEN_DISABLE) forState:UIControlStateNormal];
     [self.compareCardButton setBackgroundImage:(self.compareCardButton.userInteractionEnabled ? [_imageManager compareCardBtnBgImage] : [_imageManager compareCardBtnDisableBgImage]) forState:UIControlStateNormal];
 
-    self.checkCardButton.userInteractionEnabled = [_gameService canICheckCard];
+    self.checkCardButton.userInteractionEnabled = [_gameService canICheckCard] && !self.dealerView.isDealing;
     [self.checkCardButton setTitleColor:(self.checkCardButton.userInteractionEnabled ? TITLE_COLOR_WHEN_ENABLE : TITLE_COLOR_WHEN_DISABLE) forState:UIControlStateNormal];
     [self.checkCardButton setBackgroundImage:(self.checkCardButton.userInteractionEnabled ? [_imageManager checkCardBtnBgImage] : [_imageManager checkCardBtnDisableBgImage]) forState:UIControlStateNormal];
 
-    self.foldCardButton.userInteractionEnabled = [_gameService canIFoldCard];
+    self.foldCardButton.userInteractionEnabled = [_gameService canIFoldCard] && !self.dealerView.isDealing;
     [self.foldCardButton setTitleColor:(self.foldCardButton.userInteractionEnabled ? TITLE_COLOR_WHEN_ENABLE : TITLE_COLOR_WHEN_DISABLE) forState:UIControlStateNormal];
     [self.foldCardButton setBackgroundImage:(self.foldCardButton.userInteractionEnabled ? [_imageManager foldCardBtnBgImage] : [_imageManager foldCardBtnDisableBgImage]) forState:UIControlStateNormal];
 }

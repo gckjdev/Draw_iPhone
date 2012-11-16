@@ -40,6 +40,12 @@
     return view;
 }
 
+- (void)showInView:(UIView *)view
+{
+    self.frame = view.bounds;
+    [view addSubview:self];
+}
+
 - (void)popupMatureMessage
 {
     [self.popMessageLabel setText:[NSString stringWithFormat:NSLS(@"kMatureMessage")]];
@@ -88,7 +94,7 @@
 }
 
 
-- (void)growMoneyTree
+- (void)startGrowing
 {
     [self killTreeTimer];
     _remainTime = self.growthTime;
@@ -125,7 +131,7 @@
 - (void)getMoney:(int)money fromTree:(MoneyTree*)tree
 {
     [[AudioManager defaultManager] playSoundByURL:[ZJHSoundManager defaultManager].betSoundEffect];
-    [self growMoneyTree];
+    [self startGrowing];
 }
 - (void)coinDidRaiseUp:(MoneyTree*)tree
 {
