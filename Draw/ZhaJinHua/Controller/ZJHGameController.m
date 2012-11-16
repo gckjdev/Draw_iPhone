@@ -523,6 +523,18 @@
     [self allBet];
 }
 
+- (void)showAllUserGameResult
+{
+    for (PBGameUser* user in _gameService.session.userList) {
+        ZJHAvatarView* avatar = [self getAvatarViewByUserId:user.userId];
+        if ([[_gameService winner] isEqualToString:user.userId]) {
+            [avatar showWinCoins:_gameService.gameState.totalBet];
+        } else {
+            [avatar showLoseCoins:[_gameService totalBetOfUser:user.userId]];
+        }
+    }
+}
+
 - (void)gameOver
 {
     [self updateZJHButtons];
@@ -531,6 +543,7 @@
     [self someoneWon:[_gameService winner]];
 
     [self faceupUserCards];
+    [self showAllUserGameResult];
     [self performSelector:@selector(resetGame) withObject:nil afterDelay:9.0];
 }
 
@@ -666,6 +679,7 @@ compareCardWith:(NSString*)targetUserId
     [self clearAllAvatarReciprocals];
     self.isComparing = NO;
     if (userResultList.count == 2 && !_isShowingComparing) {
+        _isShowingComparing = YES;
         PBUserResult* result1 = [userResultList objectAtIndex:0];
         PBUserResult* result2 = [userResultList objectAtIndex:1];
         
@@ -1243,25 +1257,6 @@ compareCardWith:(NSString*)targetUserId
     
     [self popupView:view atPosition:[self getPositionByUserId:userId]];
 }
-
-
-#pragma mark - money tree delegate
-- (void)getMoney:(int)money fromTree:(MoneyTree *)tree
-{
-    [_audioManager playSoundByURL:[_soundManager betSoundEffect]];
-    [[AccountService defaultService] chargeAccount:money source:MoneyTreeAward];
-    [[self getMyAvatarView] update];
-//    [_msgCenter postMessageWithText:[NSString stringWithFormat:NSLS(@"kGetMoneyFromTree"), money]
-//                          delayTime:1
-//                            isHappy:YES];
-}
-
-- (void)moneyTreeNotMature:(MoneyTree *)tree
-{
-//    [_msgCenter postMessageWithText:NSLS(@"kMoneyTreeNotMature")
-//                          delayTime:1];
-}
-
 
 
 @end

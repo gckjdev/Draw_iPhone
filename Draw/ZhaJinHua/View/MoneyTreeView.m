@@ -8,6 +8,8 @@
 
 #import "MoneyTreeView.h"
 #import "AnimationManager.h"
+#import "AudioManager.h"
+#import "ZJHSoundManager.h"
 
 @implementation MoneyTreeView
 
@@ -79,6 +81,7 @@
     if (_timer) {
         if ([_timer isValid]) {
             [_timer invalidate];
+            [_timer release];
         }
         _timer = nil;
     }
@@ -121,6 +124,7 @@
 }
 - (void)getMoney:(int)money fromTree:(MoneyTree*)tree
 {
+    [[AudioManager defaultManager] playSoundByURL:[ZJHSoundManager defaultManager].betSoundEffect];
     [self growMoneyTree];
 }
 - (void)coinDidRaiseUp:(MoneyTree*)tree

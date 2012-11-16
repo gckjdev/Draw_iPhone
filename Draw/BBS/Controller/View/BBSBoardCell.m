@@ -10,6 +10,7 @@
 #import "UIImageView+WebCache.h"
 #import "Bbs.pb.h"
 #import "TimeUtils.h"
+#import "BBSManager.h"
 
 @implementation BBSBoardCell
 
@@ -45,6 +46,8 @@
     [self.author setText:board.lastPost.createUser.nickName];
     NSDate *date = [NSDate dateWithTimeIntervalSince1970:board.lastPost.createDate];
     self.timestamp.text = dateToChineseString(date);
+    
+    [BBSManager printBBSPost:board.lastPost];
 }
 
 - (void)dealloc {

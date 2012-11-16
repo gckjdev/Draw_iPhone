@@ -13,6 +13,11 @@ message PBBBSUser {
     optional bool gender = 4;
 }
 
+message PBBBSDraw{
+    repeated PBDrawAction drawActionList = 1; 
+}
+
+
 message PBBBSContent{
     required int32 type = 1; //1 for text, 2 for image, 3 for draw
     optional string text = 2;
@@ -24,9 +29,8 @@ message PBBBSContent{
     //draw content
     optional string drawThumbUrl = 20;
     optional string drawImageUrl  = 21;
-    repeated PBDrawAction drawActionList = 22;
+    optional PBBBSDraw drawData = 22;
 }
-
 
 message PBBBSPost{
     required string postId = 1;

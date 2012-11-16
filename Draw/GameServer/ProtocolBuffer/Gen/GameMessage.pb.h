@@ -81,6 +81,8 @@
 @class PBBBSBoard_Builder;
 @class PBBBSContent;
 @class PBBBSContent_Builder;
+@class PBBBSDraw;
+@class PBBBSDraw_Builder;
 @class PBBBSPost;
 @class PBBBSPost_Builder;
 @class PBBBSUser;

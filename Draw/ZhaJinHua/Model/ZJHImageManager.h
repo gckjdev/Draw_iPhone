@@ -76,4 +76,6 @@
 - (UIImage *)chatButtonImage;
 - (UIImage *)cardTypeBgImage;
 
+- (UIImage *)roomBackgroundImage;
+
 @end

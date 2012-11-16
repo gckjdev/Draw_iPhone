@@ -322,6 +322,207 @@ static PBBBSUser* defaultPBBBSUserInstance = nil;
 }
 @end
 
+@interface PBBBSDraw ()
+@property (retain) NSMutableArray* mutableDrawActionListList;
+@end
+
+@implementation PBBBSDraw
+
+@synthesize mutableDrawActionListList;
+- (void) dealloc {
+  self.mutableDrawActionListList = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+  }
+  return self;
+}
+static PBBBSDraw* defaultPBBBSDrawInstance = nil;
++ (void) initialize {
+  if (self == [PBBBSDraw class]) {
+    defaultPBBBSDrawInstance = [[PBBBSDraw alloc] init];
+  }
+}
++ (PBBBSDraw*) defaultInstance {
+  return defaultPBBBSDrawInstance;
+}
+- (PBBBSDraw*) defaultInstance {
+  return defaultPBBBSDrawInstance;
+}
+- (NSArray*) drawActionListList {
+  return mutableDrawActionListList;
+}
+- (PBDrawAction*) drawActionListAtIndex:(int32_t) index {
+  id value = [mutableDrawActionListList objectAtIndex:index];
+  return value;
+}
+- (BOOL) isInitialized {
+  for (PBDrawAction* element in self.drawActionListList) {
+    if (!element.isInitialized) {
+      return NO;
+    }
+  }
+  return YES;
+}
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
+  for (PBDrawAction* element in self.drawActionListList) {
+    [output writeMessage:1 value:element];
+  }
+  [self.unknownFields writeToCodedOutputStream:output];
+}
+- (int32_t) serializedSize {
+  int32_t size = memoizedSerializedSize;
+  if (size != -1) {
+    return size;
+  }
+
+  size = 0;
+  for (PBDrawAction* element in self.drawActionListList) {
+    size += computeMessageSize(1, element);
+  }
+  size += self.unknownFields.serializedSize;
+  memoizedSerializedSize = size;
+  return size;
+}
++ (PBBBSDraw*) parseFromData:(NSData*) data {
+  return (PBBBSDraw*)[[[PBBBSDraw builder] mergeFromData:data] build];
+}
++ (PBBBSDraw*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBBBSDraw*)[[[PBBBSDraw builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+}
++ (PBBBSDraw*) parseFromInputStream:(NSInputStream*) input {
+  return (PBBBSDraw*)[[[PBBBSDraw builder] mergeFromInputStream:input] build];
+}
++ (PBBBSDraw*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBBBSDraw*)[[[PBBBSDraw builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (PBBBSDraw*) parseFromCodedInputStream:(PBCodedInputStream*) input {
+  return (PBBBSDraw*)[[[PBBBSDraw builder] mergeFromCodedInputStream:input] build];
+}
++ (PBBBSDraw*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBBBSDraw*)[[[PBBBSDraw builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (PBBBSDraw_Builder*) builder {
+  return [[[PBBBSDraw_Builder alloc] init] autorelease];
+}
++ (PBBBSDraw_Builder*) builderWithPrototype:(PBBBSDraw*) prototype {
+  return [[PBBBSDraw builder] mergeFrom:prototype];
+}
+- (PBBBSDraw_Builder*) builder {
+  return [PBBBSDraw builder];
+}
+@end
+
+@interface PBBBSDraw_Builder()
+@property (retain) PBBBSDraw* result;
+@end
+
+@implementation PBBBSDraw_Builder
+@synthesize result;
+- (void) dealloc {
+  self.result = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.result = [[[PBBBSDraw alloc] init] autorelease];
+  }
+  return self;
+}
+- (PBGeneratedMessage*) internalGetResult {
+  return result;
+}
+- (PBBBSDraw_Builder*) clear {
+  self.result = [[[PBBBSDraw alloc] init] autorelease];
+  return self;
+}
+- (PBBBSDraw_Builder*) clone {
+  return [PBBBSDraw builderWithPrototype:result];
+}
+- (PBBBSDraw*) defaultInstance {
+  return [PBBBSDraw defaultInstance];
+}
+- (PBBBSDraw*) build {
+  [self checkInitialized];
+  return [self buildPartial];
+}
+- (PBBBSDraw*) buildPartial {
+  PBBBSDraw* returnMe = [[result retain] autorelease];
+  self.result = nil;
+  return returnMe;
+}
+- (PBBBSDraw_Builder*) mergeFrom:(PBBBSDraw*) other {
+  if (other == [PBBBSDraw defaultInstance]) {
+    return self;
+  }
+  if (other.mutableDrawActionListList.count > 0) {
+    if (result.mutableDrawActionListList == nil) {
+      result.mutableDrawActionListList = [NSMutableArray array];
+    }
+    [result.mutableDrawActionListList addObjectsFromArray:other.mutableDrawActionListList];
+  }
+  [self mergeUnknownFields:other.unknownFields];
+  return self;
+}
+- (PBBBSDraw_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
+  return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
+}
+- (PBBBSDraw_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
+  while (YES) {
+    int32_t tag = [input readTag];
+    switch (tag) {
+      case 0:
+        [self setUnknownFields:[unknownFields build]];
+        return self;
+      default: {
+        if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
+          [self setUnknownFields:[unknownFields build]];
+          return self;
+        }
+        break;
+      }
+      case 10: {
+        PBDrawAction_Builder* subBuilder = [PBDrawAction builder];
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self addDrawActionList:[subBuilder buildPartial]];
+        break;
+      }
+    }
+  }
+}
+- (NSArray*) drawActionListList {
+  if (result.mutableDrawActionListList == nil) { return [NSArray array]; }
+  return result.mutableDrawActionListList;
+}
+- (PBDrawAction*) drawActionListAtIndex:(int32_t) index {
+  return [result drawActionListAtIndex:index];
+}
+- (PBBBSDraw_Builder*) replaceDrawActionListAtIndex:(int32_t) index with:(PBDrawAction*) value {
+  [result.mutableDrawActionListList replaceObjectAtIndex:index withObject:value];
+  return self;
+}
+- (PBBBSDraw_Builder*) addAllDrawActionList:(NSArray*) values {
+  if (result.mutableDrawActionListList == nil) {
+    result.mutableDrawActionListList = [NSMutableArray array];
+  }
+  [result.mutableDrawActionListList addObjectsFromArray:values];
+  return self;
+}
+- (PBBBSDraw_Builder*) clearDrawActionListList {
+  result.mutableDrawActionListList = nil;
+  return self;
+}
+- (PBBBSDraw_Builder*) addDrawActionList:(PBDrawAction*) value {
+  if (result.mutableDrawActionListList == nil) {
+    result.mutableDrawActionListList = [NSMutableArray array];
+  }
+  [result.mutableDrawActionListList addObject:value];
+  return self;
+}
+@end
+
 @interface PBBBSContent ()
 @property int32_t type;
 @property (retain) NSString* text;
@@ -329,7 +530,7 @@ static PBBBSUser* defaultPBBBSUserInstance = nil;
 @property (retain) NSString* imageUrl;
 @property (retain) NSString* drawThumbUrl;
 @property (retain) NSString* drawImageUrl;
-@property (retain) NSMutableArray* mutableDrawActionListList;
+@property (retain) PBBBSDraw* drawData;
 @end
 
 @implementation PBBBSContent
@@ -376,14 +577,20 @@ static PBBBSUser* defaultPBBBSUserInstance = nil;
   hasDrawImageUrl_ = !!value;
 }
 @synthesize drawImageUrl;
-@synthesize mutableDrawActionListList;
+- (BOOL) hasDrawData {
+  return !!hasDrawData_;
+}
+- (void) setHasDrawData:(BOOL) value {
+  hasDrawData_ = !!value;
+}
+@synthesize drawData;
 - (void) dealloc {
   self.text = nil;
   self.thumbImageUrl = nil;
   self.imageUrl = nil;
   self.drawThumbUrl = nil;
   self.drawImageUrl = nil;
-  self.mutableDrawActionListList = nil;
+  self.drawData = nil;
   [super dealloc];
 }
 - (id) init {
@@ -394,6 +601,7 @@ static PBBBSUser* defaultPBBBSUserInstance = nil;
     self.imageUrl = @"";
     self.drawThumbUrl = @"";
     self.drawImageUrl = @"";
+    self.drawData = [PBBBSDraw defaultInstance];
   }
   return self;
 }
@@ -409,19 +617,12 @@ static PBBBSContent* defaultPBBBSContentInstance = nil;
 - (PBBBSContent*) defaultInstance {
   return defaultPBBBSContentInstance;
 }
-- (NSArray*) drawActionListList {
-  return mutableDrawActionListList;
-}
-- (PBDrawAction*) drawActionListAtIndex:(int32_t) index {
-  id value = [mutableDrawActionListList objectAtIndex:index];
-  return value;
-}
 - (BOOL) isInitialized {
   if (!self.hasType) {
     return NO;
   }
-  for (PBDrawAction* element in self.drawActionListList) {
-    if (!element.isInitialized) {
+  if (self.hasDrawData) {
+    if (!self.drawData.isInitialized) {
       return NO;
     }
   }
@@ -446,8 +647,8 @@ static PBBBSContent* defaultPBBBSContentInstance = nil;
   if (self.hasDrawImageUrl) {
     [output writeString:21 value:self.drawImageUrl];
   }
-  for (PBDrawAction* element in self.drawActionListList) {
-    [output writeMessage:22 value:element];
+  if (self.hasDrawData) {
+    [output writeMessage:22 value:self.drawData];
   }
   [self.unknownFields writeToCodedOutputStream:output];
 }
@@ -476,8 +677,8 @@ static PBBBSContent* defaultPBBBSContentInstance = nil;
   if (self.hasDrawImageUrl) {
     size += computeStringSize(21, self.drawImageUrl);
   }
-  for (PBDrawAction* element in self.drawActionListList) {
-    size += computeMessageSize(22, element);
+  if (self.hasDrawData) {
+    size += computeMessageSize(22, self.drawData);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -572,11 +773,8 @@ static PBBBSContent* defaultPBBBSContentInstance = nil;
   if (other.hasDrawImageUrl) {
     [self setDrawImageUrl:other.drawImageUrl];
   }
-  if (other.mutableDrawActionListList.count > 0) {
-    if (result.mutableDrawActionListList == nil) {
-      result.mutableDrawActionListList = [NSMutableArray array];
-    }
-    [result.mutableDrawActionListList addObjectsFromArray:other.mutableDrawActionListList];
+  if (other.hasDrawData) {
+    [self mergeDrawData:other.drawData];
   }
   [self mergeUnknownFields:other.unknownFields];
   return self;
@@ -624,9 +822,12 @@ static PBBBSContent* defaultPBBBSContentInstance = nil;
         break;
       }
       case 178: {
-        PBDrawAction_Builder* subBuilder = [PBDrawAction builder];
+        PBBBSDraw_Builder* subBuilder = [PBBBSDraw builder];
+        if (self.hasDrawData) {
+          [subBuilder mergeFrom:self.drawData];
+        }
         [input readMessage:subBuilder extensionRegistry:extensionRegistry];
-        [self addDrawActionList:[subBuilder buildPartial]];
+        [self setDrawData:[subBuilder buildPartial]];
         break;
       }
     }
@@ -728,33 +929,34 @@ static PBBBSContent* defaultPBBBSContentInstance = nil;
   result.drawImageUrl = @"";
   return self;
 }
-- (NSArray*) drawActionListList {
-  if (result.mutableDrawActionListList == nil) { return [NSArray array]; }
-  return result.mutableDrawActionListList;
+- (BOOL) hasDrawData {
+  return result.hasDrawData;
 }
-- (PBDrawAction*) drawActionListAtIndex:(int32_t) index {
-  return [result drawActionListAtIndex:index];
+- (PBBBSDraw*) drawData {
+  return result.drawData;
 }
-- (PBBBSContent_Builder*) replaceDrawActionListAtIndex:(int32_t) index with:(PBDrawAction*) value {
-  [result.mutableDrawActionListList replaceObjectAtIndex:index withObject:value];
+- (PBBBSContent_Builder*) setDrawData:(PBBBSDraw*) value {
+  result.hasDrawData = YES;
+  result.drawData = value;
   return self;
 }
-- (PBBBSContent_Builder*) addAllDrawActionList:(NSArray*) values {
-  if (result.mutableDrawActionListList == nil) {
-    result.mutableDrawActionListList = [NSMutableArray array];
+- (PBBBSContent_Builder*) setDrawDataBuilder:(PBBBSDraw_Builder*) builderForValue {
+  return [self setDrawData:[builderForValue build]];
+}
+- (PBBBSContent_Builder*) mergeDrawData:(PBBBSDraw*) value {
+  if (result.hasDrawData &&
+      result.drawData != [PBBBSDraw defaultInstance]) {
+    result.drawData =
+      [[[PBBBSDraw builderWithPrototype:result.drawData] mergeFrom:value] buildPartial];
+  } else {
+    result.drawData = value;
   }
-  [result.mutableDrawActionListList addObjectsFromArray:values];
+  result.hasDrawData = YES;
   return self;
 }
-- (PBBBSContent_Builder*) clearDrawActionListList {
-  result.mutableDrawActionListList = nil;
-  return self;
-}
-- (PBBBSContent_Builder*) addDrawActionList:(PBDrawAction*) value {
-  if (result.mutableDrawActionListList == nil) {
-    result.mutableDrawActionListList = [NSMutableArray array];
-  }
-  [result.mutableDrawActionListList addObject:value];
+- (PBBBSContent_Builder*) clearDrawData {
+  result.hasDrawData = NO;
+  result.drawData = [PBBBSDraw defaultInstance];
   return self;
 }
 @end

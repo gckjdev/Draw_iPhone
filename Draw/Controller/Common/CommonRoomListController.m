@@ -81,7 +81,7 @@
 
 - (void)checkAndJoinGame:(int)sessionId
 {
-    if ([self meetJoinGameCondition] == JoinGameSuccess) {
+    if ([self meetJoinGameCondition] == canJoinGame) {
         _isJoiningGame = YES;
         [_gameService joinGameRequest:sessionId];
     } else {
@@ -91,7 +91,7 @@
 
 - (void)checkAndJoinGame
 {
-    if ([self meetJoinGameCondition] == JoinGameSuccess) {
+    if ([self meetJoinGameCondition] == canJoinGame) {
         [_gameService joinGameRequest];
     } else {
         [self handleJoinGameError:[self meetJoinGameCondition]];
@@ -101,6 +101,7 @@
 - (void)createRoomWithName:(NSString*)targetText
                   password:(NSString*)password
 {
+    _isJoiningGame = YES;
     [self showActivityWithText:NSLS(@"kCreatingRoom")];
     [_gameService createRoomWithName:targetText password:password];
 }
@@ -301,7 +302,7 @@
 
 - (IBAction)createRoom:(id)sender
 {
-    if ([self meetJoinGameCondition]) {
+    if ([self meetJoinGameCondition] == canJoinGame) {
         [self showCreateRoomView];
     }else {
         [self handleJoinGameError:[self meetJoinGameCondition]];
