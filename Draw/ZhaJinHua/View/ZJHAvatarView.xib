@@ -57,7 +57,6 @@
 						<string key="NSFrame">{{5, 24}, {45, 45}}</string>
 						<reference key="NSSuperview" ref="420009022"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<object class="NSColor" key="IBUIBackgroundColor" id="693792213">
 							<int key="NSColorSpace">3</int>
@@ -71,7 +70,7 @@
 						<string key="NSFrameSize">{54, 21}</string>
 						<reference key="NSSuperview" ref="420009022"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="579748600"/>
+						<reference key="NSNextKeyView" ref="981604131"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -79,35 +78,35 @@
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<string key="IBUIText">玉树临风</string>
-						<object class="NSColor" key="IBUITextColor" id="927359332">
+						<object class="NSColor" key="IBUITextColor" id="494656581">
 							<int key="NSColorSpace">3</int>
 							<bytes key="NSWhite">MQA</bytes>
 						</object>
 						<nil key="IBUIHighlightedColor"/>
 						<int key="IBUIBaselineAdjustment">0</int>
 						<int key="IBUITextAlignment">1</int>
-						<object class="IBUIFontDescription" key="IBUIFontDescription" id="894548441">
+						<object class="IBUIFontDescription" key="IBUIFontDescription">
 							<string key="name">Avenir-Medium</string>
 							<string key="family">Avenir</string>
 							<int key="traits">0</int>
 							<double key="pointSize">10</double>
 						</object>
-						<object class="NSFont" key="IBUIFont" id="895497797">
+						<object class="NSFont" key="IBUIFont">
 							<string key="NSName">Avenir-Medium</string>
 							<double key="NSSize">10</double>
 							<int key="NSfFlags">16</int>
 						</object>
 						<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
 					</object>
-					<object class="IBUIView" id="579748600">
+					<object class="IBUIView" id="981604131">
 						<reference key="NSNextResponder" ref="420009022"/>
 						<int key="NSvFlags">-2147483329</int>
 						<array class="NSMutableArray" key="NSSubviews">
-							<object class="IBUILabel" id="1068855797">
-								<reference key="NSNextResponder" ref="579748600"/>
+							<object class="IBUILabel" id="379722105">
+								<reference key="NSNextResponder" ref="981604131"/>
 								<int key="NSvFlags">319</int>
 								<string key="NSFrame">{{17, 0}, {37, 17}}</string>
-								<reference key="NSSuperview" ref="579748600"/>
+								<reference key="NSSuperview" ref="981604131"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="657775062"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
@@ -117,21 +116,30 @@
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<string key="IBUIText">玉树临风</string>
-								<reference key="IBUITextColor" ref="927359332"/>
+								<reference key="IBUITextColor" ref="494656581"/>
 								<nil key="IBUIHighlightedColor"/>
 								<int key="IBUIBaselineAdjustment">0</int>
 								<int key="IBUITextAlignment">1</int>
-								<reference key="IBUIFontDescription" ref="894548441"/>
-								<reference key="IBUIFont" ref="895497797"/>
+								<object class="IBUIFontDescription" key="IBUIFontDescription">
+									<string key="name">Avenir-Medium</string>
+									<string key="family">Avenir</string>
+									<int key="traits">0</int>
+									<double key="pointSize">13</double>
+								</object>
+								<object class="NSFont" key="IBUIFont">
+									<string key="NSName">Avenir-Medium</string>
+									<double key="NSSize">13</double>
+									<int key="NSfFlags">16</int>
+								</object>
 								<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
 							</object>
-							<object class="IBUIImageView" id="653397859">
-								<reference key="NSNextResponder" ref="579748600"/>
+							<object class="IBUIImageView" id="698693143">
+								<reference key="NSNextResponder" ref="981604131"/>
 								<int key="NSvFlags">319</int>
 								<string key="NSFrameSize">{17, 17}</string>
-								<reference key="NSSuperview" ref="579748600"/>
+								<reference key="NSSuperview" ref="981604131"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView" ref="1068855797"/>
+								<reference key="NSNextKeyView" ref="379722105"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -140,7 +148,7 @@
 						<string key="NSFrame">{{0, 29}, {54, 17}}</string>
 						<reference key="NSSuperview" ref="420009022"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="653397859"/>
+						<reference key="NSNextKeyView" ref="698693143"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<reference key="IBUIBackgroundColor" ref="693792213"/>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -189,7 +197,7 @@
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">rewardCoinView</string>
 						<reference key="source" ref="420009022"/>
-						<reference key="destination" ref="579748600"/>
+						<reference key="destination" ref="981604131"/>
 					</object>
 					<int key="connectionID">166</int>
 				</object>
@@ -197,7 +205,7 @@
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">rewardCoinLabel</string>
 						<reference key="source" ref="420009022"/>
-						<reference key="destination" ref="1068855797"/>
+						<reference key="destination" ref="379722105"/>
 					</object>
 					<int key="connectionID">167</int>
 				</object>
@@ -205,7 +213,7 @@
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">coinImageView</string>
 						<reference key="source" ref="420009022"/>
-						<reference key="destination" ref="653397859"/>
+						<reference key="destination" ref="698693143"/>
 					</object>
 					<int key="connectionID">168</int>
 				</object>
@@ -236,7 +244,7 @@
 							<reference ref="317097103"/>
 							<reference ref="657775062"/>
 							<reference ref="755362746"/>
-							<reference ref="579748600"/>
+							<reference ref="981604131"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -259,22 +267,22 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">163</int>
-						<reference key="object" ref="579748600"/>
+						<reference key="object" ref="981604131"/>
 						<array class="NSMutableArray" key="children">
-							<reference ref="1068855797"/>
-							<reference ref="653397859"/>
+							<reference ref="379722105"/>
+							<reference ref="698693143"/>
 						</array>
 						<reference key="parent" ref="420009022"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">164</int>
-						<reference key="object" ref="1068855797"/>
-						<reference key="parent" ref="579748600"/>
+						<reference key="object" ref="379722105"/>
+						<reference key="parent" ref="981604131"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">165</int>
-						<reference key="object" ref="653397859"/>
-						<reference key="parent" ref="579748600"/>
+						<reference key="object" ref="698693143"/>
+						<reference key="parent" ref="981604131"/>
 					</object>
 				</array>
 			</object>
