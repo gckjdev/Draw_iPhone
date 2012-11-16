@@ -42,7 +42,7 @@
 #define TITLE_COLOR_WHEN_DISABLE [UIColor lightGrayColor]
 #define TITLE_COLOR_WHEN_ENABLE [UIColor whiteColor]
 
-#define ACTION_LABEL_FONT ([DeviceDetection isIPAD] ? [UIFont systemFontOfSize:22] : [UIFont systemFontOfSize:11])
+#define ACTION_LABEL_FONT ([DeviceDetection isIPAD] ? [UIFont boldSystemFontOfSize:22] : [UIFont boldSystemFontOfSize:11])
 
 @interface ZJHGameController ()
 {
@@ -54,6 +54,7 @@
     PopupViewManager *_popupViewManager;
     ZJHSoundManager  *_soundManager;
     CommonMessageCenter* _msgCenter;
+
 }
 @property (assign, nonatomic) BOOL  isComparing;
 
@@ -66,7 +67,6 @@
 @synthesize autoBetButton = _autoBetButton;
 @synthesize compareCardButton = _compareCardButton;
 @synthesize checkCardButton = _checkCardButton;
-@synthesize cardTypeButton = _cardTypeButton;
 @synthesize foldCardButton = _foldCardButton;
 @synthesize totalBetLabel = _totalBetLabel;
 @synthesize singleBetLabel = _singleBetLabel;
@@ -82,7 +82,6 @@
     [_autoBetButton release];
     [_compareCardButton release];
     [_checkCardButton release];
-    [_cardTypeButton release];
     [_foldCardButton release];
     [_totalBetLabel release];
     [_singleBetLabel release];
@@ -96,7 +95,12 @@
     [_chatButton release];
     [_totalBetNoteLabel release];
     [_singleBetNoteLabel release];
+
     [_moneyTreeView release];
+
+    [_cardTypeLabel release];
+    [_roomNameLabel release];
+
     [super dealloc];
 }
 
@@ -179,9 +183,26 @@
     // Do any additional setup after loading the view from its nib.
     
     [self setImages];
+    
+    //demonstrate inner shadow
+//    self.roomNameLabel.shadowColor = nil;
+//    self.roomNameLabel.shadowOffset = CGSizeMake(0.0f, 2.0f);
+//    self.roomNameLabel.shadowColor = [UIColor colorWithWhite:0.0f alpha:0.75f];
+//    self.roomNameLabel.shadowBlur = 5.0f;
+    
+    self.roomNameLabel.shadowColor = [UIColor colorWithWhite:1.0f alpha:0.8f];
+    self.roomNameLabel.shadowOffset = CGSizeMake(0.5f, 0.5f);
+    self.roomNameLabel.shadowBlur = 1.0f;
+    self.roomNameLabel.innerShadowColor = [UIColor colorWithWhite:0.0f alpha:0.8f];
+    self.roomNameLabel.innerShadowOffset = CGSizeMake(1.0f, 2.0f);
+    self.roomNameLabel.text = [_gameService getRoomName];
+    
     //demonstrate gradient fill
     self.totalBetLabel.gradientStartColor = [UIColor colorWithRed:254.0/255.0 green:241.0/255.0 blue:67.0/255.0 alpha:1];
     self.totalBetLabel.gradientEndColor = [UIColor colorWithRed:238.0/255.0 green:159.0/255.0 blue:7.0/255.0 alpha:1];
+    
+    self.singleBetLabel.gradientStartColor = [UIColor colorWithRed:187.0/255.0 green:252.0/255.0 blue:252.0/255.0 alpha:1];
+    self.singleBetLabel.gradientEndColor = [UIColor colorWithRed:0 green:1 blue:1 alpha:1];
 
     self.totalBetNoteLabel.shadowColor = nil;
     self.totalBetNoteLabel.shadowOffset = CGSizeMake(0.0f, 2.0f);
@@ -192,6 +213,10 @@
     self.singleBetNoteLabel.shadowOffset = CGSizeMake(0.0f, 2.0f);
     self.singleBetNoteLabel.shadowColor = [UIColor colorWithWhite:0.0f alpha:0.75f];
     self.singleBetNoteLabel.shadowBlur = 5.0f;
+    
+    
+    self.cardTypeLabel.gradientStartColor = [UIColor colorWithRed:254.0/255.0 green:241.0/255.0 blue:67.0/255.0 alpha:1];
+    self.cardTypeLabel.gradientEndColor = [UIColor colorWithRed:238.0/255.0 green:159.0/255.0 blue:7.0/255.0 alpha:1];
 
 //    self.totalBetNoteLabel.shadowColor = [UIColor colorWithWhite:1.0f alpha:0.8f];
 //    self.totalBetNoteLabel.shadowOffset = CGSizeMake(1.0f, 2.0f);
@@ -874,7 +899,6 @@ compareCardWith:(NSString*)targetUserId
     [self setAutoBetButton:nil];
     [self setCompareCardButton:nil];
     [self setCheckCardButton:nil];
-    [self setCardTypeButton:nil];
     [self setFoldCardButton:nil];
     [self setTotalBetLabel:nil];
     [self setSingleBetLabel:nil];
@@ -887,6 +911,8 @@ compareCardWith:(NSString*)targetUserId
     [self setChatButton:nil];
     [self setTotalBetNoteLabel:nil];
     [self setSingleBetLabel:nil];
+    [self setCardTypeLabel:nil];
+    [self setRoomNameLabel:nil];
     [super viewDidUnload];
 }
 
@@ -1023,26 +1049,13 @@ compareCardWith:(NSString*)targetUserId
 
 - (void)showMyCardTypeString
 {
-    _cardTypeButton.hidden = NO;
-    [_cardTypeButton setTitle:[_gameService myCardType] forState:UIControlStateNormal];
-    PPDebug(@"_cardTypeButton.titleLabel.font.pointSize = %f", _cardTypeButton.titleLabel.font.pointSize);
-    
-    [UIView animateWithDuration:0.5 delay:0 options:UIViewAnimationCurveEaseInOut animations:^{
-        _cardTypeButton.titleLabel.transform = CGAffineTransformMakeScale(1.2, 1.2);
-
-    } completion:^(BOOL finished) {
-        [UIView animateWithDuration:0.5 delay:0 options:UIViewAnimationCurveEaseInOut animations:^{
-            _cardTypeButton.titleLabel.transform = CGAffineTransformMakeScale(1, 1);
-        } completion:^(BOOL finished) {
-            
-        }];
-
-    }];
+    _cardTypeLabel.hidden = NO;
+    _cardTypeLabel.text = [_gameService myCardType];
 }
 
 - (void)hideMyCardTypeString
 {
-    _cardTypeButton.hidden = YES;
+    _cardTypeLabel.hidden = YES;
 }
 
 - (void)clearAllUserPokers
@@ -1165,7 +1178,7 @@ compareCardWith:(NSString*)targetUserId
 - (void)popupBetMessageAtUser:(NSString *)userId
 {
     UserPosition pos = [self getPositionByUserId:userId];
-    MessageView *view = [MessageView messageViewWithMessage:@"跟注" font:ACTION_LABEL_FONT textAlignment:UITextAlignmentCenter bgImage:[_imageManager betActionImage:pos]];
+    MessageView *view = [MessageView messageViewWithMessage:@"跟注" font:ACTION_LABEL_FONT textColor:[UIColor blackColor] textAlignment:UITextAlignmentCenter bgImage:[_imageManager betActionImage:pos]];
     
     [self popupView:view atPosition:[self getPositionByUserId:userId]];
 }
@@ -1173,7 +1186,7 @@ compareCardWith:(NSString*)targetUserId
 - (void)popupRaiseBetMessageAtUser:(NSString *)userId
 {
     UserPosition pos = [self getPositionByUserId:userId];
-    MessageView *view = [MessageView messageViewWithMessage:@"加注" font:ACTION_LABEL_FONT textAlignment:UITextAlignmentCenter bgImage:[_imageManager raiseBetActionImage:pos]];
+    MessageView *view = [MessageView messageViewWithMessage:@"加注" font:ACTION_LABEL_FONT textColor:[UIColor blackColor]textAlignment:UITextAlignmentCenter bgImage:[_imageManager raiseBetActionImage:pos]];
     
     [self popupView:view atPosition:[self getPositionByUserId:userId]];
 }
@@ -1181,7 +1194,7 @@ compareCardWith:(NSString*)targetUserId
 - (void)popupCheckCardMessageAtUser:(NSString *)userId
 {
     UserPosition pos = [self getPositionByUserId:userId];
-    MessageView *view = [MessageView messageViewWithMessage:@"看牌" font:ACTION_LABEL_FONT textAlignment:UITextAlignmentCenter bgImage:[_imageManager checkCardActionImage:pos]];
+    MessageView *view = [MessageView messageViewWithMessage:@"看牌" font:ACTION_LABEL_FONT textColor:[UIColor blackColor]textAlignment:UITextAlignmentCenter bgImage:[_imageManager checkCardActionImage:pos]];
     
     [self popupView:view atPosition:[self getPositionByUserId:userId]];
 }
@@ -1189,7 +1202,7 @@ compareCardWith:(NSString*)targetUserId
 - (void)popupCompareCardMessageAtUser:(NSString *)userId
 {
     UserPosition pos = [self getPositionByUserId:userId];
-    MessageView *view = [MessageView messageViewWithMessage:@"比牌" font:ACTION_LABEL_FONT textAlignment:UITextAlignmentCenter bgImage:[_imageManager compareCardActionImage:pos]];
+    MessageView *view = [MessageView messageViewWithMessage:@"比牌" font:ACTION_LABEL_FONT textColor:[UIColor blackColor]textAlignment:UITextAlignmentCenter bgImage:[_imageManager compareCardActionImage:pos]];
     
     [self popupView:view atPosition:[self getPositionByUserId:userId]];
 }
@@ -1197,7 +1210,7 @@ compareCardWith:(NSString*)targetUserId
 - (void)popupFoldCardMessageAtUser:(NSString *)userId
 {
     UserPosition pos = [self getPositionByUserId:userId];
-    MessageView *view = [MessageView messageViewWithMessage:@"弃牌" font:ACTION_LABEL_FONT textAlignment:UITextAlignmentCenter bgImage:[_imageManager foldCardActionImage:pos]];
+    MessageView *view = [MessageView messageViewWithMessage:@"弃牌" font:ACTION_LABEL_FONT textColor:[UIColor blackColor]textAlignment:UITextAlignmentCenter bgImage:[_imageManager foldCardActionImage:pos]];
     
     [self popupView:view atPosition:[self getPositionByUserId:userId]];
 }

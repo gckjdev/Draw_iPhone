@@ -45,6 +45,11 @@
     }
 }
 
++ (CGFloat)getViewHeight
+{
+    return 100.0;
+}
+
 - (void)dealloc {
     [_icon release];
     [_name release];

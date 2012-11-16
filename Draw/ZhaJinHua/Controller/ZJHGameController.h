@@ -46,12 +46,16 @@
 @property (retain, nonatomic) IBOutlet UIButton *compareCardButton;
 @property (retain, nonatomic) IBOutlet UIButton *checkCardButton;
 @property (retain, nonatomic) IBOutlet UIButton *foldCardButton;
-@property (retain, nonatomic) IBOutlet UIButton *cardTypeButton;
 @property (retain, nonatomic) IBOutlet FXLabel *singleBetLabel;
 @property (retain, nonatomic) IBOutlet FXLabel *singleBetNoteLabel;
 @property (retain, nonatomic) IBOutlet FXLabel *totalBetLabel;
 @property (retain, nonatomic) IBOutlet FXLabel *totalBetNoteLabel;
+
 @property (retain, nonatomic) MoneyTreeView *moneyTreeView;
+
+@property (retain, nonatomic) IBOutlet FXLabel *cardTypeLabel;
+@property (retain, nonatomic) IBOutlet FXLabel *roomNameLabel;
+
 
 
 @end
