@@ -125,7 +125,7 @@
 }
 - (JoinGameErrorCode)meetJoinGameCondition
 {
-    return JoinGameSuccess;
+    return canJoinGame;
 }
 - (void)handleJoinGameError:(JoinGameErrorCode)errorCode
 {

@@ -663,6 +663,7 @@ compareCardWith:(NSString*)targetUserId
     [self clearAllAvatarReciprocals];
     self.isComparing = NO;
     if (userResultList.count == 2 && !_isShowingComparing) {
+        _isShowingComparing = YES;
         PBUserResult* result1 = [userResultList objectAtIndex:0];
         PBUserResult* result2 = [userResultList objectAtIndex:1];
         
