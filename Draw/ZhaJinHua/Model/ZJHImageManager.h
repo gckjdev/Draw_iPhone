@@ -37,6 +37,9 @@
 
 
 - (UIImage*)moneyTreeImage;
+- (UIImage*)bigMoneyTreeImage;
+- (UIImage*)moneyTreeCoinLightImage;
+- (UIImage*)moneyTreeCoinImage;
 
 - (UIImage*)betBtnBgImage;
 - (UIImage*)raiseBetBtnBgImage;
@@ -71,5 +74,8 @@
 - (UIImage *)runawayButtonImage;
 - (UIImage *)settingButtonImage;
 - (UIImage *)chatButtonImage;
+- (UIImage *)cardTypeBgImage;
+
+- (UIImage *)roomBackgroundImage;
 
 @end

@@ -55,4 +55,6 @@
 
 - (NSArray *)compareUserIdList;
 
+- (NSString *)getRoomName;
+
 @end

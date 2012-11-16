@@ -28,6 +28,8 @@
 #import "CommonMessageCenter.h"
 #import "ZJHSettingView.h"
 #import "ZJHScreenConfig.h"
+#import "MoneyTreeView.h"
+#import "AnimationManager.h"
 
 #define AVATAR_VIEW_TAG_OFFSET   4000
 #define AVATAR_PLACE_VIEW_OFFSET    8000
@@ -41,7 +43,7 @@
 #define TITLE_COLOR_WHEN_DISABLE [UIColor lightGrayColor]
 #define TITLE_COLOR_WHEN_ENABLE [UIColor whiteColor]
 
-#define ACTION_LABEL_FONT ([DeviceDetection isIPAD] ? [UIFont systemFontOfSize:22] : [UIFont systemFontOfSize:11])
+#define ACTION_LABEL_FONT ([DeviceDetection isIPAD] ? [UIFont boldSystemFontOfSize:22] : [UIFont boldSystemFontOfSize:11])
 
 @interface ZJHGameController ()
 {
@@ -53,6 +55,7 @@
     PopupViewManager *_popupViewManager;
     ZJHSoundManager  *_soundManager;
     CommonMessageCenter* _msgCenter;
+
 }
 @property (assign, nonatomic) BOOL  isComparing;
 
@@ -83,7 +86,7 @@
     [_foldCardButton release];
     [_totalBetLabel release];
     [_singleBetLabel release];
-    [_moneyTree release];
+    [_moneyTreeHolder release];
     [_vsImageView release];
     [_gameBgImageView release];
     [_totalBetBgImageView release];
@@ -93,7 +96,13 @@
     [_chatButton release];
     [_totalBetNoteLabel release];
     [_singleBetNoteLabel release];
+
+    [_moneyTreeView release];
+
     [_cardTypeLabel release];
+    [_roomNameLabel release];
+
+    [_cardTypeBgImageView release];
     [super dealloc];
 }
 
@@ -158,7 +167,6 @@
     [self.runawayButton setBackgroundImage:[_imageManager runawayButtonImage] forState:UIControlStateNormal] ;
     [self.settingButton setBackgroundImage:[_imageManager settingButtonImage] forState:UIControlStateNormal] ;
     [self.chatButton setBackgroundImage:[_imageManager chatButtonImage] forState:UIControlStateNormal] ;
-    [self.moneyTree setBackgroundImage:[_imageManager moneyTreeImage] forState:UIControlStateNormal] ;
     self.vsImageView.image = [_imageManager vsImage];
     
     [self.autoBetButton setBackgroundImage:[_imageManager autoBetBtnOnBgImage] forState:UIControlStateSelected];
@@ -177,9 +185,26 @@
     // Do any additional setup after loading the view from its nib.
     
     [self setImages];
+    
+    //demonstrate inner shadow
+//    self.roomNameLabel.shadowColor = nil;
+//    self.roomNameLabel.shadowOffset = CGSizeMake(0.0f, 2.0f);
+//    self.roomNameLabel.shadowColor = [UIColor colorWithWhite:0.0f alpha:0.75f];
+//    self.roomNameLabel.shadowBlur = 5.0f;
+    
+    self.roomNameLabel.shadowColor = [UIColor colorWithWhite:1.0f alpha:0.8f];
+    self.roomNameLabel.shadowOffset = CGSizeMake(0.5f, 0.5f);
+    self.roomNameLabel.shadowBlur = 1.0f;
+    self.roomNameLabel.innerShadowColor = [UIColor colorWithWhite:0.0f alpha:0.8f];
+    self.roomNameLabel.innerShadowOffset = CGSizeMake(1.0f, 2.0f);
+    self.roomNameLabel.text = [_gameService getRoomName];
+    
     //demonstrate gradient fill
     self.totalBetLabel.gradientStartColor = [UIColor colorWithRed:254.0/255.0 green:241.0/255.0 blue:67.0/255.0 alpha:1];
     self.totalBetLabel.gradientEndColor = [UIColor colorWithRed:238.0/255.0 green:159.0/255.0 blue:7.0/255.0 alpha:1];
+    
+    self.singleBetLabel.gradientStartColor = [UIColor colorWithRed:187.0/255.0 green:252.0/255.0 blue:252.0/255.0 alpha:1];
+    self.singleBetLabel.gradientEndColor = [UIColor colorWithRed:0 green:1 blue:1 alpha:1];
 
     self.totalBetNoteLabel.shadowColor = nil;
     self.totalBetNoteLabel.shadowOffset = CGSizeMake(0.0f, 2.0f);
@@ -191,21 +216,15 @@
     self.singleBetNoteLabel.shadowColor = [UIColor colorWithWhite:0.0f alpha:0.75f];
     self.singleBetNoteLabel.shadowBlur = 5.0f;
     
-    
     self.cardTypeLabel.gradientStartColor = [UIColor colorWithRed:254.0/255.0 green:241.0/255.0 blue:67.0/255.0 alpha:1];
     self.cardTypeLabel.gradientEndColor = [UIColor colorWithRed:238.0/255.0 green:159.0/255.0 blue:7.0/255.0 alpha:1];
-
-//    self.totalBetNoteLabel.shadowColor = [UIColor colorWithWhite:1.0f alpha:0.8f];
-//    self.totalBetNoteLabel.shadowOffset = CGSizeMake(1.0f, 2.0f);
-//    self.totalBetNoteLabel.shadowBlur = 1.0f;
-//    self.totalBetNoteLabel.innerShadowColor = [UIColor colorWithWhite:0.0f alpha:0.8f];
-//    self.totalBetNoteLabel.innerShadowOffset = CGSizeMake(1.0f, 2.0f);
-    
     
     self.totalBetLabel.shadowColor = nil;
     self.totalBetLabel.shadowOffset = CGSizeMake(0.0f, 2.0f);
     self.totalBetLabel.shadowColor = [UIColor colorWithWhite:0.0f alpha:0.75f];
     self.totalBetLabel.shadowBlur = 5.0f;
+    
+    self.cardTypeBgImageView.image = [_imageManager cardTypeBgImage];
     
     [self initAllAvatars];
     [self updateAllUsersAvatar];
@@ -219,8 +238,11 @@
     
     self.dealerView.delegate = self;
     
-    [self.moneyTree startGrow];
-    self.moneyTree.delegate = self;
+    self.moneyTreeView = [MoneyTreeView createMoneyTreeView];
+    self.moneyTreeView.growthTime = 10;
+    [self.moneyTreeView growMoneyTree];
+    [self.view addSubview:self.moneyTreeView];
+    [self.moneyTreeView setFrame:self.moneyTreeHolder.frame];
     
     [_audioManager setBackGroundMusicWithURL:[_soundManager gameBGM]];
 }
@@ -378,7 +400,7 @@
 - (IBAction)clickCheckCardButton:(id)sender
 {
     [[self getMyPokersView] faceUpCards:ZJHPokerXMotionTypeNone animation:YES];
-    [self showMyCardTypeString];
+    [self showMyCardType];
     [_gameService checkCard];
 }
 
@@ -513,7 +535,7 @@
 - (void)resetGame
 {
     self.autoBetButton.selected = NO;
-    [self hideMyCardTypeString];
+    [self hideMyCardType];
     [self clearAllUserPokers];
     [self hideAllUserTotalBet];
 }
@@ -641,6 +663,7 @@ compareCardWith:(NSString*)targetUserId
     [self clearAllAvatarReciprocals];
     self.isComparing = NO;
     if (userResultList.count == 2 && !_isShowingComparing) {
+        _isShowingComparing = YES;
         PBUserResult* result1 = [userResultList objectAtIndex:0];
         PBUserResult* result2 = [userResultList objectAtIndex:1];
         
@@ -877,9 +900,7 @@ compareCardWith:(NSString*)targetUserId
     [self setFoldCardButton:nil];
     [self setTotalBetLabel:nil];
     [self setSingleBetLabel:nil];
-    [self setMoneyTree:nil];
     [self setVsImageView:nil];
-    [self.moneyTree kill];
     [self setGameBgImageView:nil];
     [self setTotalBetBgImageView:nil];
     [self setButtonsHolderBgImageView:nil];
@@ -889,6 +910,8 @@ compareCardWith:(NSString*)targetUserId
     [self setTotalBetNoteLabel:nil];
     [self setSingleBetLabel:nil];
     [self setCardTypeLabel:nil];
+    [self setRoomNameLabel:nil];
+    [self setCardTypeBgImageView:nil];
     [super viewDidUnload];
 }
 
@@ -1023,15 +1046,61 @@ compareCardWith:(NSString*)targetUserId
     [self updateZJHButtons];
 }
 
+- (void)showMyCardType
+{
+    _cardTypeBgImageView.hidden = NO;
+    
+    CABasicAnimation * roateAni = [CABasicAnimation animationWithKeyPath:@"transform.rotation.z"];
+    roateAni.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionLinear];
+    roateAni.fromValue = [NSNumber numberWithFloat:0];
+    roateAni.toValue = [NSNumber numberWithFloat:(-M_PI * 2)];
+    roateAni.duration = 1 ;
+    roateAni.repeatCount = 2;
+    roateAni.removedOnCompletion = YES;
+    
+    CABasicAnimation * caseInAni = [CABasicAnimation
+                                    animationWithKeyPath:@"opacity"];
+    caseInAni.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionLinear];
+    caseInAni.fromValue = [NSNumber numberWithInt:0.5];
+    caseInAni.toValue = [NSNumber numberWithInt:1];
+    caseInAni.duration = 1.0 ;
+    caseInAni.fillMode = kCAFillModeForwards;
+    
+    CABasicAnimation * caseOutAni = [CABasicAnimation
+                                    animationWithKeyPath:@"opacity"];
+    caseOutAni.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionLinear];
+    caseOutAni.fromValue = [NSNumber numberWithInt:1];
+    caseOutAni.toValue = [NSNumber numberWithInt:0.5];
+    caseOutAni.duration = 1.0 ;
+    caseOutAni.beginTime = 1.0;
+    caseOutAni.fillMode = kCAFillModeForwards;
+    
+    CAAnimationGroup* animGroup = [CAAnimationGroup animation];
+    animGroup.removedOnCompletion = YES;
+    animGroup.duration = 2;
+    animGroup.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionLinear];
+    animGroup.repeatCount = 1;
+    animGroup.fillMode = kCAFillModeForwards;
+    animGroup.animations = [NSArray arrayWithObjects:roateAni, caseInAni, caseOutAni, nil];
+
+    [_cardTypeBgImageView.layer addAnimation:animGroup forKey:nil];
+    
+    [self performSelector:@selector(showMyCardTypeString) withObject:nil afterDelay:animGroup.duration];
+    
+
+}
+
 - (void)showMyCardTypeString
 {
+    _cardTypeBgImageView.hidden = YES;
     _cardTypeLabel.hidden = NO;
     _cardTypeLabel.text = [_gameService myCardType];
 }
 
-- (void)hideMyCardTypeString
+- (void)hideMyCardType
 {
     _cardTypeLabel.hidden = YES;
+    _cardTypeBgImageView.hidden = YES;
 }
 
 - (void)clearAllUserPokers
@@ -1154,7 +1223,7 @@ compareCardWith:(NSString*)targetUserId
 - (void)popupBetMessageAtUser:(NSString *)userId
 {
     UserPosition pos = [self getPositionByUserId:userId];
-    MessageView *view = [MessageView messageViewWithMessage:@"跟注" font:ACTION_LABEL_FONT textAlignment:UITextAlignmentCenter bgImage:[_imageManager betActionImage:pos]];
+    MessageView *view = [MessageView messageViewWithMessage:@"跟注" font:ACTION_LABEL_FONT textColor:[UIColor blackColor] textAlignment:UITextAlignmentCenter bgImage:[_imageManager betActionImage:pos]];
     
     [self popupView:view atPosition:[self getPositionByUserId:userId]];
 }
@@ -1162,7 +1231,7 @@ compareCardWith:(NSString*)targetUserId
 - (void)popupRaiseBetMessageAtUser:(NSString *)userId
 {
     UserPosition pos = [self getPositionByUserId:userId];
-    MessageView *view = [MessageView messageViewWithMessage:@"加注" font:ACTION_LABEL_FONT textAlignment:UITextAlignmentCenter bgImage:[_imageManager raiseBetActionImage:pos]];
+    MessageView *view = [MessageView messageViewWithMessage:@"加注" font:ACTION_LABEL_FONT textColor:[UIColor blackColor]textAlignment:UITextAlignmentCenter bgImage:[_imageManager raiseBetActionImage:pos]];
     
     [self popupView:view atPosition:[self getPositionByUserId:userId]];
 }
@@ -1170,7 +1239,7 @@ compareCardWith:(NSString*)targetUserId
 - (void)popupCheckCardMessageAtUser:(NSString *)userId
 {
     UserPosition pos = [self getPositionByUserId:userId];
-    MessageView *view = [MessageView messageViewWithMessage:@"看牌" font:ACTION_LABEL_FONT textAlignment:UITextAlignmentCenter bgImage:[_imageManager checkCardActionImage:pos]];
+    MessageView *view = [MessageView messageViewWithMessage:@"看牌" font:ACTION_LABEL_FONT textColor:[UIColor blackColor]textAlignment:UITextAlignmentCenter bgImage:[_imageManager checkCardActionImage:pos]];
     
     [self popupView:view atPosition:[self getPositionByUserId:userId]];
 }
@@ -1178,7 +1247,7 @@ compareCardWith:(NSString*)targetUserId
 - (void)popupCompareCardMessageAtUser:(NSString *)userId
 {
     UserPosition pos = [self getPositionByUserId:userId];
-    MessageView *view = [MessageView messageViewWithMessage:@"比牌" font:ACTION_LABEL_FONT textAlignment:UITextAlignmentCenter bgImage:[_imageManager compareCardActionImage:pos]];
+    MessageView *view = [MessageView messageViewWithMessage:@"比牌" font:ACTION_LABEL_FONT textColor:[UIColor blackColor]textAlignment:UITextAlignmentCenter bgImage:[_imageManager compareCardActionImage:pos]];
     
     [self popupView:view atPosition:[self getPositionByUserId:userId]];
 }
@@ -1186,29 +1255,10 @@ compareCardWith:(NSString*)targetUserId
 - (void)popupFoldCardMessageAtUser:(NSString *)userId
 {
     UserPosition pos = [self getPositionByUserId:userId];
-    MessageView *view = [MessageView messageViewWithMessage:@"弃牌" font:ACTION_LABEL_FONT textAlignment:UITextAlignmentCenter bgImage:[_imageManager foldCardActionImage:pos]];
+    MessageView *view = [MessageView messageViewWithMessage:@"弃牌" font:ACTION_LABEL_FONT textColor:[UIColor blackColor]textAlignment:UITextAlignmentCenter bgImage:[_imageManager foldCardActionImage:pos]];
     
     [self popupView:view atPosition:[self getPositionByUserId:userId]];
 }
-
-
-#pragma mark - money tree delegate
-- (void)getMoney:(int)money fromTree:(MoneyTree *)tree
-{
-    [_audioManager playSoundByURL:[_soundManager betSoundEffect]];
-    [[AccountService defaultService] chargeAccount:money source:MoneyTreeAward];
-    [[self getMyAvatarView] update];
-//    [_msgCenter postMessageWithText:[NSString stringWithFormat:NSLS(@"kGetMoneyFromTree"), money]
-//                          delayTime:1
-//                            isHappy:YES];
-}
-
-- (void)moneyTreeNotMature:(MoneyTree *)tree
-{
-//    [_msgCenter postMessageWithText:NSLS(@"kMoneyTreeNotMature")
-//                          delayTime:1];
-}
-
 
 
 @end

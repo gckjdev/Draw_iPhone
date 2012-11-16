@@ -11,6 +11,8 @@
 #import "AnimationManager.h"
 #import "ZJHGameController.h"
 #import "ZJHPokerView.h"
+#import "AudioManager.h"
+#import "ZJHSoundManager.h"
 
 #define DEAL_TIMEINTERVAL   0.33
 #define DEAL_ANIMATION_DURATION 0.33
@@ -85,6 +87,8 @@
 
 - (void)dealCard:(id)point
 {
+    [[AudioManager defaultManager] playSoundByURL:[ZJHSoundManager defaultManager].dealCard];
+    
     CGPoint destinationPoint = CGPointMake(((DealPoint*)point).x, ((DealPoint*)point).y);
     CALayer* layer= [CALayer layer];
     UIImage* back = [[ZJHImageManager defaultManager] pokerBackImage];

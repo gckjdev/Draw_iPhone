@@ -446,7 +446,6 @@ static ZJHGameService *_defaultService;
 {
     return @"58.215.172.169:8018";
     return @"192.168.1.7:8018";
-
 }
 
 - (ZJHUserPlayInfo *)myPlayInfo
@@ -476,5 +475,13 @@ static ZJHGameService *_defaultService;
     return arr;
 }
 
+- (NSString *)getRoomName
+{
+    if ([self.session.roomName length] > 0) {
+        return self.session.roomName;
+    }
+    
+    return [NSString stringWithFormat:NSLS(@"k炸金花%x号房"), self.session.sessionId];
+}
 
 @end
