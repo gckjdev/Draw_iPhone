@@ -521,6 +521,18 @@
     [self allBet];
 }
 
+- (void)showAllUserGameResult
+{
+    for (PBGameUser* user in _gameService.session.userList) {
+        ZJHAvatarView* avatar = [self getAvatarViewByUserId:user.userId];
+        if ([[_gameService winner] isEqualToString:user.userId]) {
+            [avatar showWinCoins:_gameService.gameState.totalBet];
+        } else {
+            [avatar showLoseCoins:[_gameService totalBetOfUser:user.userId]];
+        }
+    }
+}
+
 - (void)gameOver
 {
     [self updateZJHButtons];
@@ -529,6 +541,7 @@
     [self someoneWon:[_gameService winner]];
 
     [self faceupUserCards];
+    [self showAllUserGameResult];
     [self performSelector:@selector(resetGame) withObject:nil afterDelay:9.0];
 }
 
