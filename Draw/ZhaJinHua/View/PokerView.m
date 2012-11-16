@@ -242,8 +242,8 @@
 #define SHOW_CARD_VIEW_WIDTH ([DeviceDetection isIPAD] ? 72 : 43)
 #define SHOW_CARD_VIEW__HEIGHT ([DeviceDetection isIPAD] ? 60 : 36)
 
-#define SHOW_CARD_BUTTON_X_OFFSET ([DeviceDetection isIPAD] ? 6 : 4)
-#define SHOW_CARD_BUTTON_Y_OFFSET ([DeviceDetection isIPAD] ? 6 : 4)
+#define SHOW_CARD_BUTTON_X_OFFSET ([DeviceDetection isIPAD] ? 8 : 4)
+#define SHOW_CARD_BUTTON_Y_OFFSET ([DeviceDetection isIPAD] ? 8 : 4)
 
 #define SHOW_CARD_BUTTON_WIDTH ([DeviceDetection isIPAD] ? 56 : 35)
 #define SHOW_CARD_BUTTON_HEIGHT ([DeviceDetection isIPAD] ? 40 : 25)

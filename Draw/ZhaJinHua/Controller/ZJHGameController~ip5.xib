@@ -212,7 +212,7 @@
 						<string key="NSFrame">{{7, 281}, {54, 75}}</string>
 						<reference key="NSSuperview" ref="483638841"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="1037938971"/>
+						<reference key="NSNextKeyView" ref="419912309"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<reference key="IBUIBackgroundColor" ref="846204045"/>
 						<int key="IBUITag">8004</int>
@@ -497,11 +497,11 @@
 						<string key="IBUIShadowOffset">{0, 1}</string>
 						<int key="IBUIBaselineAdjustment">0</int>
 						<float key="IBUIMinimumFontSize">10</float>
-						<object class="IBUIFontDescription" key="IBUIFontDescription" id="912981871">
+						<object class="IBUIFontDescription" key="IBUIFontDescription" id="301289591">
 							<int key="type">2</int>
 							<double key="pointSize">13</double>
 						</object>
-						<object class="NSFont" key="IBUIFont" id="506906489">
+						<object class="NSFont" key="IBUIFont" id="988098672">
 							<string key="NSName">Helvetica-Bold</string>
 							<double key="NSSize">13</double>
 							<int key="NSfFlags">16</int>
@@ -556,8 +556,8 @@
 						<string key="IBUIShadowOffset">{0, 1}</string>
 						<int key="IBUIBaselineAdjustment">0</int>
 						<float key="IBUIMinimumFontSize">10</float>
-						<reference key="IBUIFontDescription" ref="912981871"/>
-						<reference key="IBUIFont" ref="506906489"/>
+						<reference key="IBUIFontDescription" ref="301289591"/>
+						<reference key="IBUIFont" ref="988098672"/>
 					</object>
 					<object class="IBUIView" id="194040692">
 						<reference key="NSNextResponder" ref="483638841"/>
@@ -619,7 +619,7 @@
 						<int key="IBUITag">2000</int>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 					</object>
-					<object class="IBUILabel" id="1037938971">
+					<object class="IBUILabel" id="419912309">
 						<reference key="NSNextResponder" ref="483638841"/>
 						<int key="NSvFlags">-2147483356</int>
 						<string key="NSFrame">{{219, 368}, {30, 30}}</string>
@@ -1106,7 +1106,7 @@
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">cardTypeLabel</string>
 						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="1037938971"/>
+						<reference key="destination" ref="419912309"/>
 					</object>
 					<int key="connectionID">3892</int>
 				</object>
@@ -1295,7 +1295,7 @@
 							<reference ref="876385374"/>
 							<reference ref="107431730"/>
 							<reference ref="153235675"/>
-							<reference ref="1037938971"/>
+							<reference ref="419912309"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -1535,7 +1535,7 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">3891</int>
-						<reference key="object" ref="1037938971"/>
+						<reference key="object" ref="419912309"/>
 						<reference key="parent" ref="483638841"/>
 					</object>
 				</array>

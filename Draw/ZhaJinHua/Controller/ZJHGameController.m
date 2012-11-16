@@ -196,6 +196,9 @@
     //demonstrate gradient fill
     self.totalBetLabel.gradientStartColor = [UIColor colorWithRed:254.0/255.0 green:241.0/255.0 blue:67.0/255.0 alpha:1];
     self.totalBetLabel.gradientEndColor = [UIColor colorWithRed:238.0/255.0 green:159.0/255.0 blue:7.0/255.0 alpha:1];
+    
+    self.singleBetLabel.gradientStartColor = [UIColor colorWithRed:187.0/255.0 green:252.0/255.0 blue:252.0/255.0 alpha:1];
+    self.singleBetLabel.gradientEndColor = [UIColor colorWithRed:0 green:1 blue:1 alpha:1];
 
     self.totalBetNoteLabel.shadowColor = nil;
     self.totalBetNoteLabel.shadowOffset = CGSizeMake(0.0f, 2.0f);
