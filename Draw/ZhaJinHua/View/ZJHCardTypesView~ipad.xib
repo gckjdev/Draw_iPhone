@@ -68,11 +68,11 @@
 						<nil key="IBUIHighlightedColor"/>
 						<int key="IBUIBaselineAdjustment">0</int>
 						<int key="IBUITextAlignment">1</int>
-						<object class="IBUIFontDescription" key="IBUIFontDescription" id="89720742">
+						<object class="IBUIFontDescription" key="IBUIFontDescription" id="1056154830">
 							<int key="type">1</int>
 							<double key="pointSize">21</double>
 						</object>
-						<object class="NSFont" key="IBUIFont" id="59144790">
+						<object class="NSFont" key="IBUIFont" id="86273302">
 							<string key="NSName">Helvetica</string>
 							<double key="NSSize">21</double>
 							<int key="NSfFlags">16</int>
@@ -98,8 +98,8 @@
 						<nil key="IBUIHighlightedColor"/>
 						<int key="IBUIBaselineAdjustment">0</int>
 						<int key="IBUITextAlignment">1</int>
-						<reference key="IBUIFontDescription" ref="89720742"/>
-						<reference key="IBUIFont" ref="59144790"/>
+						<reference key="IBUIFontDescription" ref="1056154830"/>
+						<reference key="IBUIFont" ref="86273302"/>
 						<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
 					</object>
 					<object class="IBUILabel" id="904093530">
@@ -118,8 +118,8 @@
 						<nil key="IBUIHighlightedColor"/>
 						<int key="IBUIBaselineAdjustment">0</int>
 						<int key="IBUITextAlignment">1</int>
-						<reference key="IBUIFontDescription" ref="89720742"/>
-						<reference key="IBUIFont" ref="59144790"/>
+						<reference key="IBUIFontDescription" ref="1056154830"/>
+						<reference key="IBUIFont" ref="86273302"/>
 						<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
 					</object>
 					<object class="IBUILabel" id="625048453">
@@ -138,8 +138,8 @@
 						<nil key="IBUIHighlightedColor"/>
 						<int key="IBUIBaselineAdjustment">0</int>
 						<int key="IBUITextAlignment">1</int>
-						<reference key="IBUIFontDescription" ref="89720742"/>
-						<reference key="IBUIFont" ref="59144790"/>
+						<reference key="IBUIFontDescription" ref="1056154830"/>
+						<reference key="IBUIFont" ref="86273302"/>
 						<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
 					</object>
 					<object class="IBUILabel" id="605395088">
@@ -158,8 +158,8 @@
 						<nil key="IBUIHighlightedColor"/>
 						<int key="IBUIBaselineAdjustment">0</int>
 						<int key="IBUITextAlignment">1</int>
-						<reference key="IBUIFontDescription" ref="89720742"/>
-						<reference key="IBUIFont" ref="59144790"/>
+						<reference key="IBUIFontDescription" ref="1056154830"/>
+						<reference key="IBUIFont" ref="86273302"/>
 						<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
 					</object>
 					<object class="IBUILabel" id="630274278">
@@ -178,8 +178,8 @@
 						<nil key="IBUIHighlightedColor"/>
 						<int key="IBUIBaselineAdjustment">0</int>
 						<int key="IBUITextAlignment">1</int>
-						<reference key="IBUIFontDescription" ref="89720742"/>
-						<reference key="IBUIFont" ref="59144790"/>
+						<reference key="IBUIFontDescription" ref="1056154830"/>
+						<reference key="IBUIFont" ref="86273302"/>
 						<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
 					</object>
 					<object class="IBUILabel" id="745904652">
@@ -201,8 +201,8 @@
 						<nil key="IBUIHighlightedColor"/>
 						<int key="IBUIBaselineAdjustment">0</int>
 						<int key="IBUITextAlignment">1</int>
-						<reference key="IBUIFontDescription" ref="89720742"/>
-						<reference key="IBUIFont" ref="59144790"/>
+						<reference key="IBUIFontDescription" ref="1056154830"/>
+						<reference key="IBUIFont" ref="86273302"/>
 						<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
 					</object>
 					<object class="IBUILabel" id="1038290246">
@@ -221,8 +221,8 @@
 						<nil key="IBUIHighlightedColor"/>
 						<int key="IBUIBaselineAdjustment">0</int>
 						<int key="IBUITextAlignment">1</int>
-						<reference key="IBUIFontDescription" ref="89720742"/>
-						<reference key="IBUIFont" ref="59144790"/>
+						<reference key="IBUIFontDescription" ref="1056154830"/>
+						<reference key="IBUIFont" ref="86273302"/>
 						<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
 					</object>
 					<object class="IBUILabel" id="704969061">
@@ -241,8 +241,8 @@
 						<nil key="IBUIHighlightedColor"/>
 						<int key="IBUIBaselineAdjustment">0</int>
 						<int key="IBUITextAlignment">1</int>
-						<reference key="IBUIFontDescription" ref="89720742"/>
-						<reference key="IBUIFont" ref="59144790"/>
+						<reference key="IBUIFontDescription" ref="1056154830"/>
+						<reference key="IBUIFont" ref="86273302"/>
 						<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
 					</object>
 					<object class="IBUILabel" id="427659028">
@@ -261,8 +261,8 @@
 						<nil key="IBUIHighlightedColor"/>
 						<int key="IBUIBaselineAdjustment">0</int>
 						<int key="IBUITextAlignment">1</int>
-						<reference key="IBUIFontDescription" ref="89720742"/>
-						<reference key="IBUIFont" ref="59144790"/>
+						<reference key="IBUIFontDescription" ref="1056154830"/>
+						<reference key="IBUIFont" ref="86273302"/>
 						<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
 					</object>
 					<object class="IBUILabel" id="323583222">
@@ -281,8 +281,8 @@
 						<nil key="IBUIHighlightedColor"/>
 						<int key="IBUIBaselineAdjustment">0</int>
 						<int key="IBUITextAlignment">1</int>
-						<reference key="IBUIFontDescription" ref="89720742"/>
-						<reference key="IBUIFont" ref="59144790"/>
+						<reference key="IBUIFontDescription" ref="1056154830"/>
+						<reference key="IBUIFont" ref="86273302"/>
 						<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
 					</object>
 				</array>
