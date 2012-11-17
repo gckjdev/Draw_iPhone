@@ -9,19 +9,25 @@
 #import "CreatePostController.h"
 #import "BBSService.h"
 #import "Bbs.pb.h"
+#import "UIImageExt.h"
+#import "OfflineDrawViewController.h"
+#import "ShareImageManager.h"
 
 @interface CreatePostController ()
 {
     PBBBSBoard *_bbsBoard;
     UIImage *_image;
     UIImage *_drawImage;
+    NSString *_text;
     NSMutableArray *_drawActionList;
+    ChangeAvatar *_imagePicker;
 }
 @property(nonatomic, retain)PBBBSBoard *bbsBoard;
-
+@property(nonatomic, retain)ChangeAvatar *imagePicker;
 @property(nonatomic, retain)UIImage *image;
 @property(nonatomic, retain)UIImage *drawImage;
 @property(nonatomic, retain)NSMutableArray *drawActionList;
+@property(nonatomic, retain)NSString *text;
 @end
 
 @implementation CreatePostController
@@ -30,6 +36,8 @@
 @synthesize drawImage = _drawImage;
 @synthesize drawActionList = _drawActionList;
 @synthesize textView = _textView;
+@synthesize imagePicker = _imagePicker;
+@synthesize text = _text;
 - (void)dealloc
 {
     PPRelease(_image);
@@ -37,6 +45,10 @@
     PPRelease(_drawActionList);
     PPRelease(_bbsBoard);
     PPRelease(_textView);
+    PPRelease(_imagePicker);
+    PPRelease(_text);
+    PPRelease(_graffitiButton);
+    PPRelease(_imageButton);
     [super dealloc];
 }
 - (id)initWithBoard:(PBBBSBoard *)board
@@ -65,10 +77,29 @@
     return self;
 }
 
+- (void)updateToolButtons
+{
+    ShareImageManager *imageManager = [ShareImageManager defaultManager];
+    if (self.drawImage) {
+        [self.graffitiButton setImage:self.drawImage
+                             forState:UIControlStateNormal];
+    }else{
+        [self.graffitiButton setImage:[imageManager greenImage]
+                             forState:UIControlStateNormal];
+    }
+    if (self.image) {
+        [self.imageButton setImage:self.image
+                          forState:UIControlStateNormal];
+    }else{
+        [self.imageButton setImage:[imageManager redImage]
+                          forState:UIControlStateNormal];
+    }
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    [self updateToolButtons];
 }
 
 - (void)didReceiveMemoryWarning
@@ -79,18 +110,31 @@
 
 - (void)viewDidUnload {
     [self setTextView:nil];
+    [self setGraffitiButton:nil];
+    [self setImageButton:nil];
     [super viewDidUnload];
 }
 
 #define TEXT_LENGTH_MIN 5
-#define TEXT_LENGTH_MAX 30000
-- (BOOL)checkSendingInfo
+#define TEXT_LENGTH_MAX 3000
+#define IMAGE_SIZE_MAX 1500
+- (BOOL)checkAndSetSendingInfo
 {
-    if ([self.textView.text length] < TEXT_LENGTH_MIN) {
+
+    self.text = self.textView.text;
+    if (self.image) {
+        self.text = NSLS(@"kImage");
+        return YES;
+    }
+    if (self.drawImage) {
+        self.text = NSLS(@"kGraffiti");
+        return YES;
+    }
+    if ([self.text length] < TEXT_LENGTH_MIN) {
         PPDebug(@"<checkSendingInfo> text length less than %d", TEXT_LENGTH_MIN);
         return NO;
     }
-    if ([self.textView.text length] > TEXT_LENGTH_MAX) {
+    if ([self.text length] > TEXT_LENGTH_MAX) {
         PPDebug(@"<checkSendingInfo> text length more than %d", TEXT_LENGTH_MAX);
         return NO;
     }
@@ -102,16 +146,56 @@
 }
 
 - (IBAction)clickSubmitButton:(id)sender {
-    NSString *text = self.textView.text;
-    if (![self checkSendingInfo]) {
+    if (![self checkAndSetSendingInfo]) {
         return;
     }
     [[BBSService defaultService] createPostWithBoardId:_bbsBoard.boardId
-                                                  text:text
+                                                  text:self.text
                                                  image:self.image
                                         drawActionList:self.drawActionList
                                              drawImage:self.drawImage
                                               delegate:self];
+}
+
+- (IBAction)clickGraffitiButton:(id)sender {
+    //TODO alert to clear image data.
+    
+    //clear image data
+    self.image = nil;
+    [self updateToolButtons];
+    
+    OfflineDrawViewController *odc = [[OfflineDrawViewController alloc] initWithTargetType:TypeGraffiti delegate:self];
+    [self presentModalViewController:odc animated:YES];
+
+}
+
+- (IBAction)clickImageButton:(id)sender {
+    //TODO alert to clear graffiti data
+    
+    //clear graffiti data
+    self.drawActionList = nil;
+    self.drawImage = nil;
+    [self updateToolButtons];
+    
+    self.imagePicker = [[ChangeAvatar alloc] init];
+    [self.imagePicker setAutoRoundRect:NO];
+    [self.imagePicker setImageSize:CGSizeMake(0, 0)];
+    [self.imagePicker showSelectionView:self];
+}
+
+
+- (void)didImageSelected:(UIImage*)image
+{
+    if ([[image data] length] > IMAGE_SIZE_MAX) {
+        NSData *data = UIImageJPEGRepresentation(image, 0.3);
+        if (data) {
+            self.image = [UIImage imageWithData:data];
+            [self updateToolButtons];
+            return;
+        }
+    }
+    self.image = image;
+    [self updateToolButtons];
 }
 
 - (void)didCreatePost:(PBBBSPost *)post
@@ -124,6 +208,24 @@
     }else{
         PPDebug(@"<didCreatePost>create post fail.result code = %d",resultCode);
     }
+}
+
+
+#pragma mark - offline create draw delegate
+
+- (void)didControllerClickBack:(OfflineDrawViewController *)controller
+{
+    [controller dismissModalViewControllerAnimated:YES];
+}
+
+- (void)didController:(OfflineDrawViewController *)controller
+     submitActionList:(NSMutableArray *)drawActionList
+            drawImage:(UIImage *)drawImage
+{
+    [controller dismissModalViewControllerAnimated:YES];
+    self.drawImage = drawImage;
+    self.drawActionList = drawActionList;
+    [self updateToolButtons];
 }
 
 @end

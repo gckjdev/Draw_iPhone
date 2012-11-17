@@ -927,8 +927,9 @@ enum{
     }
     
     if (targetType == TypeGraffiti) {
-        if (delegate && [delegate respondsToSelector:@selector(didController:clickSubmit:)]) {
-            [delegate didController:self clickSubmit:drawView.drawActionList];
+        if (delegate && [delegate respondsToSelector:@selector(didController:submitActionList:drawImage:)]) {
+            UIImage *image = [drawView createImage];
+            [delegate didController:self submitActionList:drawView.drawActionList drawImage:image];
         }
     }else {
         

@@ -35,8 +35,9 @@
 
 @optional
 - (void)didControllerClickBack:(OfflineDrawViewController *)controller;
-- (void)didController:(OfflineDrawViewController *)controller 
-          clickSubmit:(NSMutableArray*)drawActionList;
+- (void)didController:(OfflineDrawViewController *)controller
+     submitActionList:(NSMutableArray*)drawActionList
+            drawImage:(UIImage *)drawImage;
 
 @end
 
