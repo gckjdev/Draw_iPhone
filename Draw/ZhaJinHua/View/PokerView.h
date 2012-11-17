@@ -49,9 +49,7 @@
 - (void)enableUserInterface;
 
 - (BOOL)showCardButtonIsPopup;
-- (void)popupShowCardButtonInView:(UIView *)inView
-                        aboveView:(UIView *)aboveView;
-
+- (void)popupShowCardButtonInView:(UIView *)inView;
 - (void)dismissShowCardButton;
 
 - (void)faceDown:(BOOL)animation;
