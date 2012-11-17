@@ -154,6 +154,11 @@ static ZJHImageManager* shareInstance;
     return [_resService imageByName:@"show_card_button_disable" inResourcePackage:RESOURCE_PACKAGE_ZJH];
 }
 
+- (UIImage *)showCardFlagImage
+{
+    return [_resService imageByName:@"zjh_show_card_flag" inResourcePackage:RESOURCE_PACKAGE_ZJH];
+}
+
 - (UIImage*)chipImageForChipValue:(int)chipValue;
 {
     switch (chipValue) {
@@ -199,7 +204,6 @@ static ZJHImageManager* shareInstance;
 {
     return [_resService imageByName:@"" inResourcePackage:RESOURCE_PACKAGE_ZJH];
 }
-
 
 #pragma mark - pravite methods
 
@@ -371,6 +375,21 @@ static ZJHImageManager* shareInstance;
     return [_resService imageByName:@"zjh_money_tree" inResourcePackage:RESOURCE_PACKAGE_ZJH];
 }
 
+- (UIImage*)bigMoneyTreeImage
+{
+    return [_resService imageByName:@"zjh_money_tree_big" inResourcePackage:RESOURCE_PACKAGE_ZJH];
+}
+
+- (UIImage*)moneyTreeCoinLightImage
+{
+    return [_resService imageByName:@"zjh_money_tree_coin_shining_light" inResourcePackage:RESOURCE_PACKAGE_ZJH];
+}
+
+- (UIImage*)moneyTreeCoinImage
+{
+    return [_resService imageByName:@"zjh_money_tree_coin" inResourcePackage:RESOURCE_PACKAGE_ZJH];
+}
+
 - (UIImage*)betBtnBgImage
 {
     return [_resService imageByName:@"zjh_bet" inResourcePackage:RESOURCE_PACKAGE_ZJH];
@@ -447,16 +466,12 @@ static ZJHImageManager* shareInstance;
 
 - (UIImage*)bombImage
 {
-//    return [_resService imageByName:@"zjh_arrow" inResourcePackage:RESOURCE_PACKAGE_ZJH];
-    
-    return [UIImage imageNamed:@"zjh_arrow@2x.png"];
+    return [_resService imageByName:@"zjh_arrow" inResourcePackage:RESOURCE_PACKAGE_ZJH];
 }
 
 - (UIImage*)bombImageLight
 {
-    //    return [_resService imageByName:@"zjh_arrow_light" inResourcePackage:RESOURCE_PACKAGE_ZJH];
-    
-    return [UIImage imageNamed:@"zjh_arrow_light@2x.png"];
+    return [_resService imageByName:@"zjh_arrow_light" inResourcePackage:RESOURCE_PACKAGE_ZJH];
 }
 
 - (UIImage*)vsImage
@@ -600,5 +615,22 @@ static ZJHImageManager* shareInstance;
 {
     return [_resService imageByName:@"zjh_chat_button" inResourcePackage:RESOURCE_PACKAGE_ZJH];
 }
+
+
+- (UIImage *)roomBackgroundImage
+{
+    return [_resService imageByName:@"dice_room_background" inResourcePackage:RESOURCE_PACKAGE_ZJH];
+}
+
+- (UIImage *)cardTypeBgImage
+{
+    return [_resService imageByName:@"zjh_card_type_bg" inResourcePackage:RESOURCE_PACKAGE_ZJH];
+}
+
+- (UIImage *)roomTitleBgImage
+{
+    return [_resService imageByName:@"zjh_room_title_bg" inResourcePackage:RESOURCE_PACKAGE_ZJH];
+}
+
 
 @end

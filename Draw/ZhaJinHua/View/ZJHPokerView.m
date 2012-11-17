@@ -10,11 +10,15 @@
 #import "ZJHImageManager.h"
 #import <QuartzCore/QuartzCore.h>
 #import "AnimationManager.h"
+#import "FXLabel.h"
+#import "AnimationManager.h"
 
 #define TAG_BOMB_BUTTON 300
 
 #define BOMB_BUTTON_WIDTH [DeviceDetection isIPAD] ? 54 : 27
 #define BOMB_BUTTON_HEIGHT [DeviceDetection isIPAD] ? 64 : 32
+
+#define CARD_TYPE_STRING_FONT [UIFont boldSystemFontOfSize:([DeviceDetection isIPAD] ? 20 :12)]
 
 @interface ZJHPokerView ()
 {
@@ -146,7 +150,9 @@
     }
 }
 
-- (void)faceUpCards:(ZJHPokerXMotionType)xMotiontype animation:(BOOL)animation
+- (void)faceUpCardsWithCardType:(NSString *)cardType
+                    xMotiontype:(ZJHPokerXMotionType)xMotiontype
+                      animation:(BOOL)animation
 {
     [self clearBomb];
 
@@ -163,6 +169,32 @@
     [self.pokerView3 enableUserInterface];
     
     [self xMotion:xMotiontype animation:animation];
+    [self performSelector:@selector(showCardType:) withObject:cardType afterDelay:MOVE_ANIMATION_DURATION];
+}
+
+- (void)showCardType:(NSString *)cardType
+{
+    CGFloat height = ([DeviceDetection isIPAD] ? 25 : 15);
+    CGFloat offsetY = ([DeviceDetection isIPAD] ? -8 : -5);
+    FXLabel *label = [[[FXLabel alloc] initWithFrame:CGRectMake(0, offsetY - height, self.pokerView2.frame.size.width, height)] autorelease];
+    label.center = CGPointMake(self.pokerView2.center.x, label.center.y);
+    label.backgroundColor = [UIColor clearColor];
+    label.font = CARD_TYPE_STRING_FONT;
+    
+    label.textAlignment = UITextAlignmentCenter;
+
+    label.gradientStartColor = [UIColor colorWithRed:254.0/255.0 green:241.0/255.0 blue:67.0/255.0 alpha:1];
+    label.gradientEndColor = [UIColor colorWithRed:238.0/255.0 green:159.0/255.0 blue:7.0/255.0 alpha:1];
+    label.shadowColor = nil;
+    label.shadowOffset = CGSizeMake(0.0f, 2.0f);
+    label.shadowColor = [UIColor colorWithWhite:0.0f alpha:0.75f];
+    label.shadowBlur = 5.0f;
+
+    label.text = cardType;
+    
+    [label.layer addAnimation:[AnimationManager appearAnimationFrom:0 to:1 duration:0.5] forKey:nil];
+    
+    [self addSubview:label];
 }
 
 - (void)faceUpCard:(int)cardId animation:(BOOL)animation
@@ -221,7 +253,7 @@
     
     UIButton *bomb = [[[UIButton alloc] initWithFrame:CGRectMake(0, 0, BOMB_BUTTON_WIDTH, BOMB_BUTTON_HEIGHT)] autorelease];
     bomb.tag = TAG_BOMB_BUTTON;
-    [bomb setImage:[[ZJHImageManager defaultManager] bombImage] forState:UIControlStateNormal];
+    [bomb setBackgroundImage:[[ZJHImageManager defaultManager] bombImage] forState:UIControlStateNormal];
     [bomb addTarget:self action:@selector(clickBomb:) forControlEvents:UIControlEventTouchUpInside];
     bomb.center = CGPointMake(self.frame.size.width/2, self.frame.size.height/2 - ([DeviceDetection isIPAD] ? 10 : 5));
     
@@ -230,25 +262,16 @@
     imageView.userInteractionEnabled = NO;
     [bomb addSubview:imageView];
         
-    CABasicAnimation *movAni = [CABasicAnimation animationWithKeyPath:@"position.y"];
-    movAni.repeatCount = 1000;
-    movAni.duration = 1.0;
     CGFloat originY = bomb.layer.position.y - ([DeviceDetection isIPAD] ? 20 : 10);
     CGFloat toY = bomb.layer.position.y;
-    movAni.fromValue = [NSNumber numberWithFloat:originY];
-    movAni.toValue = [NSNumber numberWithFloat:toY];
-    [bomb.layer addAnimation:movAni forKey:nil];
     
-    CABasicAnimation * animation = [CABasicAnimation
-                                    animationWithKeyPath:@"opacity"];
-    animation.repeatCount = 1000;
-    animation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut];
-    animation.fromValue = [NSNumber numberWithInt:0];
-    animation.toValue = [NSNumber numberWithInt:1];
-    animation.duration = 1.0 ;
-    animation.fillMode = kCAFillModeForwards;
-    [imageView.layer addAnimation:animation forKey:nil];
+    CAAnimation *moveVerticalAni = [AnimationManager moveVerticalAnimationFrom:originY to:toY duration:1.0];
+    moveVerticalAni.repeatCount = 1000;
+    [bomb.layer addAnimation:moveVerticalAni forKey:nil];
     
+    CAAnimation *appearAni = [AnimationManager appearAnimationFrom:0 to:1 duration:1.0];
+    appearAni.repeatCount = 1000;
+    [imageView.layer addAnimation:appearAni forKey:nil];
     
     [self addSubview:bomb];
 }

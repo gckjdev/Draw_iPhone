@@ -12,6 +12,7 @@
 
 + messageViewWithMessage:(NSString *)message
                     font:(UIFont *)font
+               textColor:(UIColor *)textColor
            textAlignment:(UITextAlignment)textAlignment
                  bgImage:(UIImage*)bgImage;
 

@@ -318,7 +318,7 @@
     [self.view addSubview:diceBtn];
     //[diceBtn addTarget:self action:@selector(clickAwardDice:) forControlEvents:UIControlEventTouchUpInside];
     diceBtn.tag = AWARD_DICE_TAG;
-    CAAnimation* rolling = [AnimationManager rotationAnimationWithRoundCount:-50 duration:25];
+    CAAnimation* rolling = [AnimationManager rotateAnimationWithRoundCount:-50 duration:25];
     rolling.removedOnCompletion = YES;
     rolling.delegate = self;
     [diceBtn.layer addAnimation:rolling forKey:@"roll"];
@@ -481,7 +481,9 @@
     
     // for zhajinhua test
     if (_isZJH){
-        [[ZJHGameService defaultService] joinGameRequest];
+        ZJHRoomListController* vc = [[[ZJHRoomListController alloc] init] autorelease];
+        [self.navigationController pushViewController:vc animated:YES];
+        
         return;
     }
     

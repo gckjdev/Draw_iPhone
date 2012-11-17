@@ -192,6 +192,9 @@ static ZJHGameService *_defaultService;
 
 - (BOOL)canICompareCard
 {
+    PPDebug(@"[[self myPlayInfo] canCompareCard] ＝ %d", [[self myPlayInfo] canCompareCard]);
+    PPDebug(@"[[self compareUserIdList] count] = %d", [[self compareUserIdList] count]);
+    PPDebug(@"self.session.myTurnTimes = %d", self.session.myTurnTimes);
     return [self isGamePlaying] && [self isMyTurn] && [[self myPlayInfo] canCompareCard] && (self.session.myTurnTimes >=2) && ([[self compareUserIdList] count] > 0);
 }
 
@@ -208,6 +211,11 @@ static ZJHGameService *_defaultService;
 - (NSString *)myCardType
 {
     return [[self myPlayInfo] cardTypeString];
+}
+
+- (NSString *)cardTypeOfUser:(NSString *)userId
+{
+    return [[self userPlayInfo:userId] cardTypeString];
 }
 
 - (BOOL)doIWin
@@ -475,5 +483,13 @@ static ZJHGameService *_defaultService;
     return arr;
 }
 
+- (NSString *)getRoomName
+{
+    if ([self.session.roomName length] > 0) {
+        return self.session.roomName;
+    }
+    
+    return [NSString stringWithFormat:NSLS(@"k炸金花%d号房"), self.session.sessionId];
+}
 
 @end

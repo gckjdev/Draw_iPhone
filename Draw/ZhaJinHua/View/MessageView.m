@@ -7,6 +7,7 @@
 //
 
 #import "MessageView.h"
+#import "FXLabel.h"
 
 #define MESSAGE_MAX_WIDTH 200
 #define MESSAGE_MIN_WIDTH 30
@@ -31,23 +32,27 @@
 
 + messageViewWithMessage:(NSString *)message
                     font:(UIFont *)font
+               textColor:(UIColor *)textColor
            textAlignment:(UITextAlignment)textAlignment
                  bgImage:(UIImage*)bgImage
 {
     return [[[MessageView alloc] initWithMessage:message
                                             font:font
+                                       textColor:textColor
                                    textAlignment:textAlignment
                                          bgImage:bgImage] autorelease];
 }
 
 - (id)initWithMessage:(NSString *)message
                  font:(UIFont *)font
+            textColor:(UIColor *)textColor
         textAlignment:(UITextAlignment)textAlignment
               bgImage:(UIImage*)bgImage
 {
     if (self = [super init]) {
-        UILabel *label = [self labelWithMessage:message
+        FXLabel *label = [self labelWithMessage:message
                                            font:font
+                                      textColor:textColor
                                   textAlignment:textAlignment];
 
         label.tag = LABEL_TAG;
@@ -55,6 +60,9 @@
         UIImageView *imageView = [[[UIImageView alloc] initWithFrame:CGRectMake(0, 0, LABEL_LEFT_OFFSET + label.frame.size.width + LABEL_RIGHT_OFFSET, LABEL_TOP_OFFSET + label.frame.size.height + LABEL_BOTTOM_OFFSET)] autorelease];
         imageView.tag = BACKGROUND_IMAGE_VIEW_TAG;
         imageView.image = bgImage;
+        
+
+        
         self.backgroundColor = [UIColor clearColor];
         [self addSubview:imageView];
         [self addSubview:label];
@@ -63,8 +71,9 @@
     return self;
 }
 
-- (UILabel *)labelWithMessage:(NSString *)message
+- (FXLabel *)labelWithMessage:(NSString *)message
                          font:(UIFont *)font
+                    textColor:(UIColor *)textColor
                 textAlignment:(UITextAlignment)textAlignment
 {
     CGSize withSize = CGSizeMake(MESSAGE_MAX_WIDTH, MAXFLOAT);
@@ -82,13 +91,15 @@
 
     CGRect rect = CGRectMake(0, 0, size.width, size.height);
     
-    UILabel *label = [[[UILabel alloc] initWithFrame:rect] autorelease];
+    FXLabel *label = [[[FXLabel alloc] initWithFrame:rect] autorelease];
     label.font = font;
     label.text = message;
     label.lineBreakMode = mode;
     label.textAlignment = textAlignment;
     label.numberOfLines = 0;
     label.backgroundColor = [UIColor clearColor];
+    
+    label.textColor = textColor;
     
     return label;
 }

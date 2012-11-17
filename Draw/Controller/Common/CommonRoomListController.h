@@ -21,7 +21,7 @@ typedef enum {
 }CommonRoomFilter;
 
 typedef enum {
-    JoinGameSuccess = 0,
+    canJoinGame = 0,
     NotEnoughCoin
 }JoinGameErrorCode;
 

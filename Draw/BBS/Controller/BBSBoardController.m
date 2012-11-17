@@ -7,7 +7,8 @@
 //
 
 #import "BBSBoardController.h"
-
+#import "BBSBoardCell.h"
+#import "CreatePostController.h"
 
 @interface BBSBoardController ()
 {
@@ -49,6 +50,14 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+//- (void)openAllSubBoards
+//{
+////    for (PBBBSBoard *pBoard in self.parentBoardList) {
+////        NSArray *sBoards = [_bbsManager sbuBoardListForBoardId:pBoard.boardId];
+////        [_openBoardSet addObjectsFromArray:sBoards];
+////    }
+//}
+
 #pragma mark bbs borad delegate
 
 - (void)didGetBBSBoardList:(NSArray *)boardList
@@ -57,6 +66,7 @@
     if (resultCode == 0) {
         self.parentBoardList = [_bbsManager parentBoardList];
         [_openBoardSet removeAllObjects];
+        [_openBoardSet addObjectsFromArray:_parentBoardList];
     }else{
         PPDebug(@"<didGetBBSBoardList>: fail.");
     }
@@ -90,12 +100,12 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return 100;
+    return [BBSBoardSection getViewHeight];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {	
-	return 44;
+	return [BBSBoardCell getCellHeight];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -120,25 +130,35 @@
 }
 
 
-- (UITableViewCell *)tableView:(UITableView *)theTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    static NSString *CellIdentifier = @"BBSBoardCell";
-	UITableViewCell *cell = [theTableView dequeueReusableCellWithIdentifier:CellIdentifier];
-	if (cell == nil) {
-		cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
-		cell.selectionStyle = UITableViewCellSelectionStyleGray;
-	}
-    
+- (PBBBSBoard *)boardForIndexPath:(NSIndexPath *)indexPath
+{
     PBBBSBoard *pBoard = [_parentBoardList objectAtIndex:indexPath.section];
     NSArray *subList = [_bbsManager sbuBoardListForBoardId:pBoard.boardId];
+    if ([subList count] == 0) {
+        return pBoard;
+    }
     PBBBSBoard *sBoard = [subList objectAtIndex:indexPath.row];
+    return sBoard;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)theTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    [cell.textLabel setText:sBoard.name];
+    NSString *CellIdentifier = [BBSBoardCell getCellIdentifier];
+	BBSBoardCell *cell = [theTableView dequeueReusableCellWithIdentifier:CellIdentifier];
+	if (cell == nil) {
+		cell = [BBSBoardCell createCell:self];
+	}
+    PBBBSBoard *sBoard = [self boardForIndexPath:indexPath];
+    [cell updateCellWithBoard:sBoard];
     
 	return cell;
 	
 }
 
-
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    PBBBSBoard *sBoard = [self boardForIndexPath:indexPath];
+    [CreatePostController enterControllerWithBoard:sBoard fromController:self];
+}
 
 @end

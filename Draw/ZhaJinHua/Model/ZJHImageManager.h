@@ -26,6 +26,8 @@
 
 - (UIImage*)showCardButtonBgImage;
 - (UIImage*)showCardButtonDisableBgImage;
+- (UIImage *)showCardFlagImage;
+
 
 - (UIImage*)chipImageForChipValue:(int)chipValue;
 
@@ -37,6 +39,9 @@
 
 
 - (UIImage*)moneyTreeImage;
+- (UIImage*)bigMoneyTreeImage;
+- (UIImage*)moneyTreeCoinLightImage;
+- (UIImage*)moneyTreeCoinImage;
 
 - (UIImage*)betBtnBgImage;
 - (UIImage*)raiseBetBtnBgImage;
@@ -71,5 +76,9 @@
 - (UIImage *)runawayButtonImage;
 - (UIImage *)settingButtonImage;
 - (UIImage *)chatButtonImage;
+- (UIImage *)cardTypeBgImage;
+
+- (UIImage *)roomBackgroundImage;
+- (UIImage *)roomTitleBgImage;
 
 @end

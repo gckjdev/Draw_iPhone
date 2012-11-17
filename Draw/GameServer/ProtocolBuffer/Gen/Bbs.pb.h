@@ -10,6 +10,8 @@
 @class PBBBSBoard_Builder;
 @class PBBBSContent;
 @class PBBBSContent_Builder;
+@class PBBBSDraw;
+@class PBBBSDraw_Builder;
 @class PBBBSPost;
 @class PBBBSPost_Builder;
 @class PBBBSUser;
@@ -114,6 +116,55 @@
 - (PBBBSUser_Builder*) clearGender;
 @end
 
+@interface PBBBSDraw : PBGeneratedMessage {
+@private
+  NSMutableArray* mutableDrawActionListList;
+}
+- (NSArray*) drawActionListList;
+- (PBDrawAction*) drawActionListAtIndex:(int32_t) index;
+
++ (PBBBSDraw*) defaultInstance;
+- (PBBBSDraw*) defaultInstance;
+
+- (BOOL) isInitialized;
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
+- (PBBBSDraw_Builder*) builder;
++ (PBBBSDraw_Builder*) builder;
++ (PBBBSDraw_Builder*) builderWithPrototype:(PBBBSDraw*) prototype;
+
++ (PBBBSDraw*) parseFromData:(NSData*) data;
++ (PBBBSDraw*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBBBSDraw*) parseFromInputStream:(NSInputStream*) input;
++ (PBBBSDraw*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBBBSDraw*) parseFromCodedInputStream:(PBCodedInputStream*) input;
++ (PBBBSDraw*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+@end
+
+@interface PBBBSDraw_Builder : PBGeneratedMessage_Builder {
+@private
+  PBBBSDraw* result;
+}
+
+- (PBBBSDraw*) defaultInstance;
+
+- (PBBBSDraw_Builder*) clear;
+- (PBBBSDraw_Builder*) clone;
+
+- (PBBBSDraw*) build;
+- (PBBBSDraw*) buildPartial;
+
+- (PBBBSDraw_Builder*) mergeFrom:(PBBBSDraw*) other;
+- (PBBBSDraw_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (PBBBSDraw_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+
+- (NSArray*) drawActionListList;
+- (PBDrawAction*) drawActionListAtIndex:(int32_t) index;
+- (PBBBSDraw_Builder*) replaceDrawActionListAtIndex:(int32_t) index with:(PBDrawAction*) value;
+- (PBBBSDraw_Builder*) addDrawActionList:(PBDrawAction*) value;
+- (PBBBSDraw_Builder*) addAllDrawActionList:(NSArray*) values;
+- (PBBBSDraw_Builder*) clearDrawActionListList;
+@end
+
 @interface PBBBSContent : PBGeneratedMessage {
 @private
   BOOL hasType_:1;
@@ -122,13 +173,14 @@
   BOOL hasImageUrl_:1;
   BOOL hasDrawThumbUrl_:1;
   BOOL hasDrawImageUrl_:1;
+  BOOL hasDrawData_:1;
   int32_t type;
   NSString* text;
   NSString* thumbImageUrl;
   NSString* imageUrl;
   NSString* drawThumbUrl;
   NSString* drawImageUrl;
-  NSMutableArray* mutableDrawActionListList;
+  PBBBSDraw* drawData;
 }
 - (BOOL) hasType;
 - (BOOL) hasText;
@@ -136,14 +188,14 @@
 - (BOOL) hasImageUrl;
 - (BOOL) hasDrawThumbUrl;
 - (BOOL) hasDrawImageUrl;
+- (BOOL) hasDrawData;
 @property (readonly) int32_t type;
 @property (readonly, retain) NSString* text;
 @property (readonly, retain) NSString* thumbImageUrl;
 @property (readonly, retain) NSString* imageUrl;
 @property (readonly, retain) NSString* drawThumbUrl;
 @property (readonly, retain) NSString* drawImageUrl;
-- (NSArray*) drawActionListList;
-- (PBDrawAction*) drawActionListAtIndex:(int32_t) index;
+@property (readonly, retain) PBBBSDraw* drawData;
 
 + (PBBBSContent*) defaultInstance;
 - (PBBBSContent*) defaultInstance;
@@ -209,12 +261,12 @@
 - (PBBBSContent_Builder*) setDrawImageUrl:(NSString*) value;
 - (PBBBSContent_Builder*) clearDrawImageUrl;
 
-- (NSArray*) drawActionListList;
-- (PBDrawAction*) drawActionListAtIndex:(int32_t) index;
-- (PBBBSContent_Builder*) replaceDrawActionListAtIndex:(int32_t) index with:(PBDrawAction*) value;
-- (PBBBSContent_Builder*) addDrawActionList:(PBDrawAction*) value;
-- (PBBBSContent_Builder*) addAllDrawActionList:(NSArray*) values;
-- (PBBBSContent_Builder*) clearDrawActionListList;
+- (BOOL) hasDrawData;
+- (PBBBSDraw*) drawData;
+- (PBBBSContent_Builder*) setDrawData:(PBBBSDraw*) value;
+- (PBBBSContent_Builder*) setDrawDataBuilder:(PBBBSDraw_Builder*) builderForValue;
+- (PBBBSContent_Builder*) mergeDrawData:(PBBBSDraw*) value;
+- (PBBBSContent_Builder*) clearDrawData;
 @end
 
 @interface PBBBSPost : PBGeneratedMessage {

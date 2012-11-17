@@ -455,55 +455,6 @@
     return nil;
 }
 
-//- (void)userId:(NSString *)userId popupMessage:(NSString *)message
-//{
-//    AvatarView *player = [self userAvatarForUserId:userId];
-//    if (player == nil) {
-//        return;
-//    }
-//    CGFloat x = player.frame.origin.x;
-//    CGFloat y = player.frame.origin.y + player.frame.size.height;
-//    
-//    CGSize size = [message sizeWithFont:popupButton.titleLabel.font];
-//    if ([DeviceDetection isIPAD]) {
-//        [popupButton setFrame:CGRectMake(x, y, size.width + 20 * 2, size.height + 15 * 2)];        
-//    }else{
-//        [popupButton setFrame:CGRectMake(x, y, size.width + 20, size.height + 15)];
-//    }
-//    [popupButton setTitle:message forState:UIControlStateNormal];
-//    [popupButton setImage:nil forState:UIControlStateNormal];
-//    [self updatePopupButtonInset:NO];
-//    [popupButton setHidden:NO];
-//    CAAnimation *animation = [AnimationManager missingAnimationWithDuration:5];
-//    [popupButton.layer addAnimation:animation forKey:@"DismissAnimation"];
-//}
-
-//- (void)userId:(NSString *)userId popupImage:(UIImage *)image title:(NSString*)title
-//{    
-//    AvatarView *player = [self userAvatarForUserId:userId avatarList:[self getAvatarList]];
-//
-//    if (player == nil) {
-//        return;
-//    }
-//    CGFloat x = player.frame.origin.x;
-//    CGFloat y = player.frame.origin.y + player.frame.size.height;
-//    
-//    CGSize size = [image size];
-//    if ([DeviceDetection isIPAD]) {
-//        [popupButton setFrame:CGRectMake(x, y, size.width + 30 * 2, size.height + 25 * 2)];        
-//    }else{
-//        [popupButton setFrame:CGRectMake(x, y, size.width + 30, size.height + 25)];
-//    }
-//    [popupButton setImage:image forState:UIControlStateNormal];
-//    [popupButton setTitle:title forState:UIControlStateNormal];
-//    [self updatePopupButtonInset:YES];
-//    [popupButton setHidden:NO];
-//    CAAnimation *animation = [AnimationManager missingAnimationWithDuration:5];
-//    [popupButton.layer addAnimation:animation forKey:@"DismissAnimation"];
-//    [self.view bringSubviewToFront:popupButton];
-//}
-
-
 #pragma mark - Draw Game Service Delegate
 
 - (void)didBroken

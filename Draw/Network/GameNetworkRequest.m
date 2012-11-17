@@ -1357,7 +1357,8 @@
         }
         
         return [PPNetworkRequest uploadRequest:baseURL 
-                                     imageData:imageData 
+                                     imageData:imageData
+                                      imageKey:PARA_DRAW_IMAGE
                                   postDataDict:dataDict 
                            constructURLHandler:constructURLHandler 
                                responseHandler:responseHandler 
@@ -1415,6 +1416,7 @@
     
     return [PPNetworkRequest uploadRequest:baseURL
                                  imageData:imageData
+                                  imageKey:PARA_DRAW_IMAGE
                               postDataDict:dataDict
                        constructURLHandler:constructURLHandler
                            responseHandler:responseHandler

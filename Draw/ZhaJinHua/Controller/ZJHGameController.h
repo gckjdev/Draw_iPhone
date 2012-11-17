@@ -12,7 +12,6 @@
 #import "DealerView.h"
 #import "ChipsSelectView.h"
 #import "ZJHImageManager.h"
-#import "MoneyTree.h"
 #import "FXLabel.h"
 
 @class ZJHGameService;
@@ -22,10 +21,9 @@
 @class ZJHImageManager;
 @class AccountService;
 @class BetTable;
-@class MoneyTree;
+@class MoneyTreeView;
 
-
-@interface ZJHGameController : PPViewController <ZJHPokerViewProtocol, ZJHAvatarViewDelegate, DealerViewDelegate, ChipsSelectViewProtocol, MoneyTreeDelegate> {
+@interface ZJHGameController : PPViewController <ZJHPokerViewProtocol, ZJHAvatarViewDelegate, DealerViewDelegate, ChipsSelectViewProtocol> {
     BOOL _isComparing;
     BOOL _isShowingComparing;
 }
@@ -36,7 +34,7 @@
 @property (retain, nonatomic) IBOutlet UIButton *runawayButton;
 @property (retain, nonatomic) IBOutlet UIButton *settingButton;
 @property (retain, nonatomic) IBOutlet UIButton *chatButton;
-@property (retain, nonatomic) IBOutlet MoneyTree *moneyTree;
+@property (retain, nonatomic) IBOutlet UIView *moneyTreeHolder;
 @property (retain, nonatomic) IBOutlet UIImageView *vsImageView;
 
 @property (retain, nonatomic) IBOutlet BetTable *betTable;
@@ -47,11 +45,17 @@
 @property (retain, nonatomic) IBOutlet UIButton *compareCardButton;
 @property (retain, nonatomic) IBOutlet UIButton *checkCardButton;
 @property (retain, nonatomic) IBOutlet UIButton *foldCardButton;
-@property (retain, nonatomic) IBOutlet UIButton *cardTypeButton;
 @property (retain, nonatomic) IBOutlet FXLabel *singleBetLabel;
 @property (retain, nonatomic) IBOutlet FXLabel *singleBetNoteLabel;
 @property (retain, nonatomic) IBOutlet FXLabel *totalBetLabel;
 @property (retain, nonatomic) IBOutlet FXLabel *totalBetNoteLabel;
+
+@property (retain, nonatomic) MoneyTreeView *moneyTreeView;
+
+@property (retain, nonatomic) IBOutlet FXLabel *cardTypeLabel;
+@property (retain, nonatomic) IBOutlet UIImageView *cardTypeBgImageView;
+@property (retain, nonatomic) IBOutlet FXLabel *roomNameLabel;
+
 
 
 @end

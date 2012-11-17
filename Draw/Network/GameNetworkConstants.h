@@ -137,6 +137,7 @@
 
 
 
+
 #define ACTION_TYPE_GUESS    2
 #define ACTION_TYPE_COMMENT  3
 #define ACTION_TYPE_SAVE     100
@@ -240,6 +241,7 @@
 #define PARA_APPID @"app"
 #define PARA_GAME_ID @"gid"
 #define PARA_DRAW_DATA @"dd"
+#define PARA_DRAW_IMAGE @"photo"
 #define PARA_FEED_ID @"fid"
 
 #define PARA_COMMENT_CONTENT @"comc"
@@ -471,6 +473,8 @@
 
 #pragma mark BBS Constant
 #define METHOD_GET_BBSBOARD_LIST @"gbbl"
+#define METHOD_CREATE_POST @"cp"
+#define PARA_BOARDID @"bid"
 
 #define REGISTER_TYPE_EMAIL     1
 #define REGISTER_TYPE_SINA      2

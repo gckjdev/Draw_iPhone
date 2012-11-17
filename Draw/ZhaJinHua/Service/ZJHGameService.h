@@ -49,10 +49,13 @@
 - (BOOL)canUserCompareCard:(NSString *)userId;
 
 - (NSString *)myCardType;
+- (NSString *)cardTypeOfUser:(NSString *)userId;
 - (BOOL)doIWin;
 - (NSString *)winner;
 - (int)myBalance;
 
 - (NSArray *)compareUserIdList;
+
+- (NSString *)getRoomName;
 
 @end

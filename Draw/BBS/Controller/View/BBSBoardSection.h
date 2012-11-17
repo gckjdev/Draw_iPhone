@@ -34,5 +34,5 @@
 + (BBSBoardSection *)createBoardSectionView:(id<BBSBoardSectionDelegate>)delegate;
 - (void)setViewWithBoard:(PBBBSBoard *)board;
 - (IBAction)clickMaskButton:(id)sender;
-
++ (CGFloat)getViewHeight;
 @end

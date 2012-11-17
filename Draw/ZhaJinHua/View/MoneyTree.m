@@ -11,16 +11,27 @@
 #import "ZJHImageManager.h"
 #import "ShareImageManager.h"
 #import "LevelService.h"
+#import "AnimationManager.h"
+#import "NSMutableArray+Queue.h"
 
 @implementation MoneyTree
 @synthesize isMature = _isMature;
 
 - (void)dealloc
 {
+    _delegate = nil;
+    [self killTimer];
     [_rewardCoinLabel release];
     [_rewardView release];
     [_rewardCoinView release];
+    [_layerQueue release];
     [super dealloc];
+}
+
+- (void)removeFromSuperview
+{
+    [self killTimer];
+    self.delegate = nil;
 }
 
 - (id)initWithFrame:(CGRect)frame
@@ -28,7 +39,6 @@
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
-        
     }
     return self;
 }
@@ -38,6 +48,7 @@
     self = [super init];
     if (self) {
         [self addTarget:self action:@selector(clickTree:) forControlEvents:UIControlEventTouchUpInside];
+        _layerQueue = [[NSMutableArray alloc] init];
     }
     return self;
 }
@@ -46,7 +57,7 @@
 {
     self = [super initWithCoder:aDecoder];
     if (self) {
-        [self addTarget:self action:@selector(clickTree:) forControlEvents:UIControlEventTouchUpInside];
+        [self init];
         
         int pointSize = [DeviceDetection isIPAD]?32:16;
         _rewardView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height/2)];
@@ -66,15 +77,42 @@
     return self;
 }
 
+- (CALayer*)coinLayer
+{
+    CALayer* coinLayer = [CALayer layer];
+    UIImage* coinImage = [ZJHImageManager defaultManager].moneyTreeCoinImage;
+    coinLayer.contents = (id)[coinImage CGImage];
+    [coinLayer setBounds:CGRectMake(0, 0, coinImage.size.width, coinImage.size.height)];
+    [_layerQueue enqueue:coinLayer];
+    return coinLayer;
+}
+
+- (CALayer*)shiningLightLayer
+{
+    CALayer* layer = [CALayer layer];
+    UIImage* layerImage = [ZJHImageManager defaultManager].moneyTreeCoinLightImage;
+    layer.contents = (id)[layerImage CGImage];
+    [layer setBounds:CGRectMake(0, 0, layerImage.size.width, layerImage.size.height)];
+    [_layerQueue enqueue:layer];
+    return layer;
+}
+
+- (void)showOneCoin
+{
+    [self setImage:[ZJHImageManager defaultManager].bigMoneyTreeImage forState:UIControlStateNormal];
+    [self addCoinAtPosition:CGPointMake(self.frame.size.width*0.75, self.frame.size.height/2)];
+}
+
 - (void)setIsMature:(BOOL)isMature
 {
     _isMature = isMature;
     if (isMature) {
-        //TODO: here set button image a coin
-        
-        [self setImage:[[ShareImageManager defaultManager] coinImage] forState:UIControlStateNormal];
+        [self showOneCoin];
     } else {
-        //TODO: here set button image a tree
+        while ([_layerQueue peek]) {
+            CALayer* layer = [_layerQueue dequeue];
+            [layer removeFromSuperlayer];
+        }
         [self setImage:[[ZJHImageManager defaultManager] moneyTreeImage] forState:UIControlStateNormal];
     }
 }
@@ -82,9 +120,10 @@
 - (void)killTimer
 {
     if (_treeTimer) {
-//        if ([_treeTimer isValid]) {
-//            [_treeTimer invalidate];
-//        }
+        if ([_treeTimer isValid]) {
+            [_treeTimer invalidate];
+            [_treeTimer release];
+        }
         _treeTimer = nil;
     }
 }
@@ -92,6 +131,34 @@
 - (void)mature
 {
     [self setIsMature:YES];
+    [self killTimer];
+    [self startMatureTimer:self.growthTime/2];
+}
+
+- (void)addCoinAtPosition:(CGPoint)position
+{
+    CALayer* coinLayer = [self coinLayer];
+    coinLayer.position = position;
+    [self.layer addSublayer:coinLayer];
+    
+    CALayer* lightLayer = [self shiningLightLayer];
+    lightLayer.position = CGPointMake(coinLayer.position.x + coinLayer.bounds.size.width/4, coinLayer.position.y + coinLayer.bounds.size.height/4);
+    [self.layer addSublayer:lightLayer];
+    
+    CAAnimation* shining = [AnimationManager disappearAnimationWithDuration:1];
+    shining.autoreverses = YES;
+    shining.repeatCount = 1000;
+    [lightLayer addAnimation:shining forKey:nil];
+    
+    
+    if (_delegate && [_delegate respondsToSelector:@selector(treeDidMature:)]) {
+        [_delegate treeDidMature:self];
+    }
+}
+
+- (void)tooMature
+{
+    [self addCoinAtPosition:CGPointMake(self.frame.size.width*0.25, self.frame.size.height/4)];
 }
 
 - (void)startGrowthTimer:(CFTimeInterval)timeInterval
@@ -101,6 +168,17 @@
                                                 selector:@selector(mature)
                                                 userInfo:nil
                                                  repeats:NO];
+    [_treeTimer retain];
+}
+
+- (void)startMatureTimer:(CFTimeInterval)timeInterval
+{
+    _treeTimer = [NSTimer scheduledTimerWithTimeInterval:timeInterval
+                                                  target:self
+                                                selector:@selector(tooMature)
+                                                userInfo:nil
+                                                 repeats:NO];
+    [_treeTimer retain];
 }
 
 - (void)startGrow
@@ -108,7 +186,7 @@
     PPDebug(@"<MoneyTree> tree start growth");
     [self killTimer];
     [self setIsMature:NO];
-    [self startGrowthTimer:[ConfigManager getTreeMatureTime]];
+    [self startGrowthTimer:self.growthTime];
     
 }
 

@@ -8,12 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
+
 @class MoneyTree;
 @protocol MoneyTreeDelegate <NSObject>
  @optional
 - (void)moneyTreeNotMature:(MoneyTree*)tree;
 - (void)getMoney:(int)money fromTree:(MoneyTree*)tree;
 - (void)coinDidRaiseUp:(MoneyTree*)tree;
+- (void)treeDidMature:(MoneyTree*)tree;
 
 @end
 
@@ -22,6 +24,7 @@
     UILabel* _rewardCoinLabel;
     UIView* _rewardView;
     UIImageView* _rewardCoinView;
+    NSMutableArray*  _layerQueue;
 }
 @property (assign, nonatomic) CFTimeInterval growthTime;
 @property (assign, nonatomic) BOOL isMature;

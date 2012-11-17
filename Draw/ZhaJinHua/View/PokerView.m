@@ -11,15 +11,10 @@
 #import "ZJHImageManager.h"
 #import <QuartzCore/QuartzCore.h>
 #import "CMPopTipView.h"
+#import "AnimationManager.h"
 
 #define POKER_VIEW_ROTATE_ANCHOR_POINT CGPointMake(0, 0)
-
-
-#define FACEUP_ANIMATION_DURATION 0.75
-#define FACEDOWN_ANIMATION_DURATION 0.75
-
-#define ROTATE_ANIMATION_DURATION 1
-#define MOVE_ANIMATION_DURATION 1
+#define SHOW_CARD_FLAG_IMAGE_TAG 308
 
 @interface PokerView ()
 {
@@ -242,8 +237,8 @@
 #define SHOW_CARD_VIEW_WIDTH ([DeviceDetection isIPAD] ? 72 : 43)
 #define SHOW_CARD_VIEW__HEIGHT ([DeviceDetection isIPAD] ? 60 : 36)
 
-#define SHOW_CARD_BUTTON_X_OFFSET ([DeviceDetection isIPAD] ? 6 : 4)
-#define SHOW_CARD_BUTTON_Y_OFFSET ([DeviceDetection isIPAD] ? 6 : 4)
+#define SHOW_CARD_BUTTON_X_OFFSET ([DeviceDetection isIPAD] ? 8 : 4)
+#define SHOW_CARD_BUTTON_Y_OFFSET ([DeviceDetection isIPAD] ? 8 : 4)
 
 #define SHOW_CARD_BUTTON_WIDTH ([DeviceDetection isIPAD] ? 56 : 35)
 #define SHOW_CARD_BUTTON_HEIGHT ([DeviceDetection isIPAD] ? 40 : 25)
@@ -297,10 +292,23 @@
 {
     PPDebug(@"didClickShowCardButton");
     [self dismissShowCardButton];
+    [self setShowCardFlagImage];
+    
     self.tickImageView.image = [UIImage imageNamed:@""];
     if ([self.delegate respondsToSelector:@selector(didClickShowCardButton:)]) {
         [self.delegate didClickShowCardButton:self];
     }
-}    
+}
+
+- (void)setShowCardFlagImage
+{
+    UIImageView *imageView = [[[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 50, 63)] autorelease];
+    imageView.image = [[ZJHImageManager defaultManager] showCardFlagImage];
+    imageView.center = CGPointMake(self.frame.size.width/2, self.frame.size.height/2);
+    [self addSubview:imageView];
+    
+    [imageView.layer addAnimation:[AnimationManager appearAnimationFrom:0.5 to:1 duration:0.8] forKey:nil];
+}
+
 
 @end

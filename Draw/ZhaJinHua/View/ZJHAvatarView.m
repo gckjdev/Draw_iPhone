@@ -10,6 +10,7 @@
 #import "GameBasic.pb.h"
 #import "HKGirlFontLabel.h"
 #import "ZJHImageManager.h"
+#import "ShareImageManager.h"
 
 @interface ZJHAvatarView ()
 
@@ -30,6 +31,9 @@
     [_nickNameLabel release];
     [_userInfo release];
     [_roundAvatarPlaceView release];
+    [_rewardCoinView release];
+    [_rewardCoinLabel release];
+    [_coinImageView release];
     [super dealloc];
 }
 
@@ -234,5 +238,47 @@
         [_delegate reciprocalEnd:self];
     }
 }
+
+- (void)showWinCoins:(int)coinsCount
+{
+    float duration = 3;
+    [self.coinImageView setImage:[ShareImageManager defaultManager].coinImage];
+    [self bringSubviewToFront:_rewardCoinView];
+    [_rewardCoinLabel setText:[NSString stringWithFormat:@"%+d",coinsCount]];
+    _rewardCoinLabel.textColor = (coinsCount >= 0) ? [UIColor redColor] : [UIColor greenColor];
+    _rewardCoinView.center = CGPointMake(self.frame.size.width/2, self.frame.size.height + _rewardCoinView.frame.size.height);
+    _rewardCoinView.alpha = 1;
+    _rewardCoinView.hidden = NO;
+    [UIView animateWithDuration: duration
+                          delay: 0
+                        options: UIViewAnimationOptionCurveLinear
+                     animations: ^{
+                         _rewardCoinView.center = CGPointMake(self.frame.size.width/2                                                            , -1*_rewardCoinView.frame.size.height);
+                     }
+                     completion: ^(BOOL finished){
+                         
+                         //code that runs when this animation finishes
+                     }
+     ];
+    
+    [UIView animateWithDuration: duration
+                          delay: duration
+                        options: UIViewAnimationOptionCurveLinear
+                     animations: ^{
+                         //view2.center = CGPointMake(x2, y2);
+                         _rewardCoinView.alpha = 0;
+                     }
+                     completion: ^(BOOL finished){
+                         //PPDebug(@"dismiss finish");
+                         _rewardCoinView.hidden = YES;
+                         //code that runs when this animation finishes
+                     }
+     ];
+}
+- (void)showLoseCoins:(int)coins
+{
+    [self showWinCoins:-coins];
+}
+
 
 @end
