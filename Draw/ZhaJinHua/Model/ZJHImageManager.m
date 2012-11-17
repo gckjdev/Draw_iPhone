@@ -632,5 +632,10 @@ static ZJHImageManager* shareInstance;
     return [_resService imageByName:@"zjh_room_title_bg" inResourcePackage:RESOURCE_PACKAGE_ZJH];
 }
 
+- (UIImage *)moneyTreePopupMessageBackground
+{
+    return [_resService imageByName:@"zjh_money_tree_popMessage_background" inResourcePackage:RESOURCE_PACKAGE_ZJH];
+}
+
 
 @end
