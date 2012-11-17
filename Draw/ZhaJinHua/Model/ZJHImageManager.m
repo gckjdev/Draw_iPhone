@@ -202,7 +202,7 @@ static ZJHImageManager* shareInstance;
 
 - (UIImage*)chipsSelectViewBgImage
 {
-    return [_resService imageByName:@"" inResourcePackage:RESOURCE_PACKAGE_ZJH];
+    return [_resService imageByName:@"chips_select_bg_image" inResourcePackage:RESOURCE_PACKAGE_ZJH];
 }
 
 #pragma mark - pravite methods

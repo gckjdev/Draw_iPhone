@@ -68,6 +68,10 @@ typedef enum {
 // 别人亮牌时，调用这个接口，把自己那张亮的牌翻过来。
 - (void)faceUpCard:(int)cardId animation:(BOOL)animation;
 
+// 自己亮牌时，调用这个接口，把自己那张亮的牌设置标志。
+- (void)setShowCardFlag:(int)cardId animation:(BOOL)animation;
+
+
 // 别人或自己弃牌，调用这个接口，表示弃牌
 - (void)foldCards:(BOOL)animation;
 

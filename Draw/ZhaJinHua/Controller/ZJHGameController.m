@@ -336,7 +336,8 @@
     
     [self registerNotificationWithName:NOTIFICATION_SHOW_CARD_RESPONSE
                                    usingBlock:^(NSNotification *notification) {
-                                       [self showCardSuccess];
+                                        NSArray *cardIds = [[[CommonGameNetworkService userInfoToMessage:notification.userInfo] showCardRequest] cardIdsList];
+                                       [self showCardSuccess:cardIds];
                                    }];
     
     [self registerNotificationWithName:NOTIFICATION_COMPARE_CARD_REQUEST
@@ -468,8 +469,11 @@
     [_audioManager playSoundByURL:[_soundManager foldCardHumanSound:[@"m" isEqualToString:_userManager.gender]]];
 }
 
-- (void)showCardSuccess
+- (void)showCardSuccess:(NSArray *)cardIds
 {
+    for (NSNumber *cardId in cardIds) {
+        [[self getMyPokersView] setShowCardFlag:cardId.intValue animation:YES];
+    }
     [self updateZJHButtons];
 }
 

@@ -41,7 +41,6 @@
 @property (retain, nonatomic) IBOutlet UIImageView *tickImageView;
 @property (retain, nonatomic) IBOutlet UIImageView *bodyImageView;
 @property (retain, nonatomic) IBOutlet UIImageView *backImageView;
-@property (retain, nonatomic) IBOutlet UILabel *locateLabel;
 
 + (id)createPokerViewWithPoker:(Poker *)poker
                          frame:(CGRect)frame
@@ -64,5 +63,7 @@
            animation:(BOOL)animation;
 
 - (void)backToOriginPosition:(BOOL)animation;
+
+- (void)setShowCardFlag:(BOOL)animation;
 
 @end
