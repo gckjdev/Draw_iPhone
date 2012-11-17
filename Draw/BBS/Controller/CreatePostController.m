@@ -21,6 +21,7 @@
     NSString *_text;
     NSMutableArray *_drawActionList;
     ChangeAvatar *_imagePicker;
+    NSInteger _bonus;
 }
 @property(nonatomic, retain)PBBBSBoard *bbsBoard;
 @property(nonatomic, retain)ChangeAvatar *imagePicker;
@@ -28,6 +29,7 @@
 @property(nonatomic, retain)UIImage *drawImage;
 @property(nonatomic, retain)NSMutableArray *drawActionList;
 @property(nonatomic, retain)NSString *text;
+@property(nonatomic, assign)NSInteger bonus;
 @end
 
 @implementation CreatePostController
@@ -38,6 +40,8 @@
 @synthesize textView = _textView;
 @synthesize imagePicker = _imagePicker;
 @synthesize text = _text;
+@synthesize bonus = _bonus;
+
 - (void)dealloc
 {
     PPRelease(_image);
@@ -49,6 +53,7 @@
     PPRelease(_text);
     PPRelease(_graffitiButton);
     PPRelease(_imageButton);
+    PPRelease(_rewardButton);
     [super dealloc];
 }
 - (id)initWithBoard:(PBBBSBoard *)board
@@ -56,6 +61,7 @@
     self = [super init];
     if (self) {
         self.bbsBoard = board;
+        self.bonus = 0;
     }
     return self;
 }
@@ -94,6 +100,8 @@
         [self.imageButton setImage:[imageManager redImage]
                           forState:UIControlStateNormal];
     }
+    [self.rewardButton setTitle:[NSString stringWithFormat:@"%d",self.bonus]
+                       forState:UIControlStateNormal];
 }
 
 - (void)viewDidLoad
@@ -112,6 +120,7 @@
     [self setTextView:nil];
     [self setGraffitiButton:nil];
     [self setImageButton:nil];
+    [self setRewardButton:nil];
     [super viewDidUnload];
 }
 
@@ -122,14 +131,23 @@
 {
 
     self.text = self.textView.text;
+    //create image post
     if (self.image) {
-        self.text = NSLS(@"kImage");
+        if ([self.text length] == 0) {
+            self.text = NSLS(@"kImage");
+        }
         return YES;
     }
+    
+    //crate draw post.
     if (self.drawImage) {
-        self.text = NSLS(@"kGraffiti");
+        if ([self.text length] == 0) {
+            self.text = NSLS(@"kGraffiti");
+        }
         return YES;
     }
+    
+    //create text post
     if ([self.text length] < TEXT_LENGTH_MIN) {
         PPDebug(@"<checkSendingInfo> text length less than %d", TEXT_LENGTH_MIN);
         return NO;
@@ -154,6 +172,7 @@
                                                  image:self.image
                                         drawActionList:self.drawActionList
                                              drawImage:self.drawImage
+                                                 bonus:self.bonus
                                               delegate:self];
 }
 
@@ -183,6 +202,21 @@
     [self.imagePicker showSelectionView:self];
 }
 
+- (IBAction)clickRewardButton:(id)sender {
+    UIActionSheet *as = [[UIActionSheet alloc] initWithTitle:NSLS(@"kReward")
+                                                    delegate:self
+                                           cancelButtonTitle:NSLS(@"kCancel")
+                                      destructiveButtonTitle:NSLS(@"100")
+                                           otherButtonTitles:@"200",@"300", nil];
+    [as showInView:self.view];
+    [as release];
+}
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    self.bonus = (buttonIndex + 1) * 100;
+    [self updateToolButtons];
+}
 
 - (void)didImageSelected:(UIImage*)image
 {

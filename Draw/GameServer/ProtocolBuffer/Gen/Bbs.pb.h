@@ -14,6 +14,8 @@
 @class PBBBSDraw_Builder;
 @class PBBBSPost;
 @class PBBBSPost_Builder;
+@class PBBBSReward;
+@class PBBBSReward_Builder;
 @class PBBBSUser;
 @class PBBBSUser_Builder;
 @class PBDrawAction;
@@ -269,6 +271,83 @@
 - (PBBBSContent_Builder*) clearDrawData;
 @end
 
+@interface PBBBSReward : PBGeneratedMessage {
+@private
+  BOOL hasBonus_:1;
+  BOOL hasStatus_:1;
+  BOOL hasAwardDate_:1;
+  BOOL hasWinner_:1;
+  int32_t bonus;
+  int32_t status;
+  int32_t awardDate;
+  PBBBSUser* winner;
+}
+- (BOOL) hasBonus;
+- (BOOL) hasStatus;
+- (BOOL) hasWinner;
+- (BOOL) hasAwardDate;
+@property (readonly) int32_t bonus;
+@property (readonly) int32_t status;
+@property (readonly, retain) PBBBSUser* winner;
+@property (readonly) int32_t awardDate;
+
++ (PBBBSReward*) defaultInstance;
+- (PBBBSReward*) defaultInstance;
+
+- (BOOL) isInitialized;
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
+- (PBBBSReward_Builder*) builder;
++ (PBBBSReward_Builder*) builder;
++ (PBBBSReward_Builder*) builderWithPrototype:(PBBBSReward*) prototype;
+
++ (PBBBSReward*) parseFromData:(NSData*) data;
++ (PBBBSReward*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBBBSReward*) parseFromInputStream:(NSInputStream*) input;
++ (PBBBSReward*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBBBSReward*) parseFromCodedInputStream:(PBCodedInputStream*) input;
++ (PBBBSReward*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+@end
+
+@interface PBBBSReward_Builder : PBGeneratedMessage_Builder {
+@private
+  PBBBSReward* result;
+}
+
+- (PBBBSReward*) defaultInstance;
+
+- (PBBBSReward_Builder*) clear;
+- (PBBBSReward_Builder*) clone;
+
+- (PBBBSReward*) build;
+- (PBBBSReward*) buildPartial;
+
+- (PBBBSReward_Builder*) mergeFrom:(PBBBSReward*) other;
+- (PBBBSReward_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (PBBBSReward_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+
+- (BOOL) hasBonus;
+- (int32_t) bonus;
+- (PBBBSReward_Builder*) setBonus:(int32_t) value;
+- (PBBBSReward_Builder*) clearBonus;
+
+- (BOOL) hasStatus;
+- (int32_t) status;
+- (PBBBSReward_Builder*) setStatus:(int32_t) value;
+- (PBBBSReward_Builder*) clearStatus;
+
+- (BOOL) hasWinner;
+- (PBBBSUser*) winner;
+- (PBBBSReward_Builder*) setWinner:(PBBBSUser*) value;
+- (PBBBSReward_Builder*) setWinnerBuilder:(PBBBSUser_Builder*) builderForValue;
+- (PBBBSReward_Builder*) mergeWinner:(PBBBSUser*) value;
+- (PBBBSReward_Builder*) clearWinner;
+
+- (BOOL) hasAwardDate;
+- (int32_t) awardDate;
+- (PBBBSReward_Builder*) setAwardDate:(int32_t) value;
+- (PBBBSReward_Builder*) clearAwardDate;
+@end
+
 @interface PBBBSPost : PBGeneratedMessage {
 @private
   BOOL hasDeviceType_:1;
@@ -281,6 +360,7 @@
   BOOL hasAppId_:1;
   BOOL hasCreateUser_:1;
   BOOL hasContent_:1;
+  BOOL hasReward_:1;
   int32_t deviceType;
   int32_t replyCount;
   int32_t supportCount;
@@ -291,6 +371,7 @@
   NSString* appId;
   PBBBSUser* createUser;
   PBBBSContent* content;
+  PBBBSReward* reward;
 }
 - (BOOL) hasPostId;
 - (BOOL) hasBoardId;
@@ -302,6 +383,7 @@
 - (BOOL) hasModifyDate;
 - (BOOL) hasCreateUser;
 - (BOOL) hasContent;
+- (BOOL) hasReward;
 @property (readonly, retain) NSString* postId;
 @property (readonly, retain) NSString* boardId;
 @property (readonly, retain) NSString* appId;
@@ -312,6 +394,7 @@
 @property (readonly) int32_t modifyDate;
 @property (readonly, retain) PBBBSUser* createUser;
 @property (readonly, retain) PBBBSContent* content;
+@property (readonly, retain) PBBBSReward* reward;
 
 + (PBBBSPost*) defaultInstance;
 - (PBBBSPost*) defaultInstance;
@@ -400,6 +483,13 @@
 - (PBBBSPost_Builder*) setContentBuilder:(PBBBSContent_Builder*) builderForValue;
 - (PBBBSPost_Builder*) mergeContent:(PBBBSContent*) value;
 - (PBBBSPost_Builder*) clearContent;
+
+- (BOOL) hasReward;
+- (PBBBSReward*) reward;
+- (PBBBSPost_Builder*) setReward:(PBBBSReward*) value;
+- (PBBBSPost_Builder*) setRewardBuilder:(PBBBSReward_Builder*) builderForValue;
+- (PBBBSPost_Builder*) mergeReward:(PBBBSReward*) value;
+- (PBBBSPost_Builder*) clearReward;
 @end
 
 @interface PBBBSAction : PBGeneratedMessage {

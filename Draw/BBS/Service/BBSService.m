@@ -174,6 +174,7 @@ BBSService *_staticBBSService;
                         image:(UIImage *)image
                drawActionList:(NSArray *)drawActionList
                     drawImage:(UIImage *)drawImage
+                        bonus:(NSInteger)bonus
                      delegate:(id<BBSServiceDelegate>)delegate
 {
     dispatch_async(workingQueue, ^{
@@ -210,7 +211,8 @@ BBSService *_staticBBSService;
                                                         text:text
                                                        image:[image data]
                                                     drawData:drawData
-                                                   drawImage:[drawImage data]];
+                                                   drawImage:[drawImage data]
+                                                       bonus:bonus];
         
         PBBBSPost *post = nil;
         if (output.resultCode == ERROR_SUCCESS) {

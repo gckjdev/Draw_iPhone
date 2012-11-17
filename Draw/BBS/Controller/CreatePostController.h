@@ -12,7 +12,7 @@
 #import "OfflineDrawViewController.h"
 
 @class PBBBSBoard;
-@interface CreatePostController : PPViewController<BBSServiceDelegate, ChangeAvatarDelegate, OfflineDrawDelegate>
+@interface CreatePostController : PPViewController<BBSServiceDelegate, ChangeAvatarDelegate, OfflineDrawDelegate, UIActionSheetDelegate>
 {
 }
 
@@ -20,6 +20,7 @@
 @property (retain, nonatomic) IBOutlet UIButton *imageButton;
 @property (retain, nonatomic) IBOutlet UITextView *textView;
 
+@property (retain, nonatomic) IBOutlet UIButton *rewardButton;
 - (id)initWithBoard:(PBBBSBoard *)board;
 + (CreatePostController *)enterControllerWithBoard:(PBBBSBoard *)board
                                     fromController:(UIViewController *)fromController;
@@ -30,5 +31,6 @@
 - (IBAction)clickSubmitButton:(id)sender;
 - (IBAction)clickGraffitiButton:(id)sender;
 - (IBAction)clickImageButton:(id)sender;
+- (IBAction)clickRewardButton:(id)sender;
 
 @end
