@@ -402,7 +402,6 @@
 
 - (IBAction)clickCheckCardButton:(id)sender
 {
-    [[self getMyAvatarView] stopReciprocal];
     [_gameService checkCard];
 }
 
