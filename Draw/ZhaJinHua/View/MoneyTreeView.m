@@ -24,6 +24,7 @@
 }
 
 AUTO_CREATE_VIEW_BY_XIB(MoneyTreeView)
+
 + (MoneyTreeView*)createMoneyTreeView
 {
     MoneyTreeView* view = [MoneyTreeView createView];
