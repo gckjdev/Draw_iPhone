@@ -14,6 +14,8 @@
 #import "AnimationManager.h"
 #import "NSMutableArray+Queue.h"
 
+#define EARN_COIN_EACH_LEVEL (50)
+
 @implementation MoneyTree
 @synthesize isMature = _isMature;
 
@@ -107,13 +109,17 @@
 {
     _isMature = isMature;
     if (isMature) {
+        _hasEverMature = YES;
         [self showOneCoin];
     } else {
         while ([_layerQueue peek]) {
             CALayer* layer = [_layerQueue dequeue];
             [layer removeFromSuperlayer];
         }
-        [self setImage:[[ZJHImageManager defaultManager] moneyTreeImage] forState:UIControlStateNormal];
+        if (!_hasEverMature) {
+            [self setImage:[[ZJHImageManager defaultManager] moneyTreeImage] forState:UIControlStateNormal];
+        }
+        
     }
 }
 
@@ -198,7 +204,7 @@
 
 - (int)calAwardCoinByLevel:(int)level
 {
-    return level * 50;
+    return level * EARN_COIN_EACH_LEVEL;
 }
 
 - (void)rewardCoins:(int)coinsCount
