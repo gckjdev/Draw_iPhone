@@ -1096,6 +1096,6 @@
 
 /*********************** 大话骰子国际化字符串结束 *************************/
 
-"kRemainTimes" = "00:%2d:%2d:";
+"kRemainTimes" = "00:%02d:%02d";
 "kMatureMessage" = "Mature";
 "kZJHRoomTitle" = "3Card";
