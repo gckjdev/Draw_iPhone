@@ -60,6 +60,11 @@
 		A40D71DD16553575000CC598 /* FXLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = A40D71DC16553575000CC598 /* FXLabel.m */; };
 		A40FEEDE15E22E1300A88C57 /* ChatView.m in Sources */ = {isa = PBXBuildFile; fileRef = A40FEEDD15E22E1300A88C57 /* ChatView.m */; };
 		A41A665915C921DA00066E9B /* SlideImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = A41A665815C921DA00066E9B /* SlideImageView.m */; };
+		A41CF57816578D0B0011AE45 /* ZJHCardTypesView.m in Sources */ = {isa = PBXBuildFile; fileRef = A41CF57616578D0B0011AE45 /* ZJHCardTypesView.m */; };
+		A41CF57916578D0B0011AE45 /* ZJHCardTypesView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A41CF57716578D0B0011AE45 /* ZJHCardTypesView.xib */; };
+		A41CF57D16578D230011AE45 /* chips_select_bg_image@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A41CF57A16578D230011AE45 /* chips_select_bg_image@2x.png */; };
+		A41CF57E16578D230011AE45 /* zjh_card_types_note_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A41CF57B16578D230011AE45 /* zjh_card_types_note_bg@2x.png */; };
+		A41CF57F16578D230011AE45 /* zjh_money_tree_popMessage_background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A41CF57C16578D230011AE45 /* zjh_money_tree_popMessage_background@2x.png */; };
 		A42C520615E614D2001D8208 /* DiceChatMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = A42C520315E614D2001D8208 /* DiceChatMessage.m */; };
 		A42C520715E614D2001D8208 /* DiceChatMsgManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A42C520515E614D2001D8208 /* DiceChatMsgManager.m */; };
 		A42C520B15E614E5001D8208 /* DiceSoundManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A42C520A15E614E5001D8208 /* DiceSoundManager.m */; };
@@ -2022,6 +2027,12 @@
 		A40FEEDD15E22E1300A88C57 /* ChatView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatView.m; sourceTree = "<group>"; };
 		A41A665715C921DA00066E9B /* SlideImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SlideImageView.h; sourceTree = "<group>"; };
 		A41A665815C921DA00066E9B /* SlideImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SlideImageView.m; sourceTree = "<group>"; };
+		A41CF57516578D0B0011AE45 /* ZJHCardTypesView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJHCardTypesView.h; sourceTree = "<group>"; };
+		A41CF57616578D0B0011AE45 /* ZJHCardTypesView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJHCardTypesView.m; sourceTree = "<group>"; };
+		A41CF57716578D0B0011AE45 /* ZJHCardTypesView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZJHCardTypesView.xib; sourceTree = "<group>"; };
+		A41CF57A16578D230011AE45 /* chips_select_bg_image@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chips_select_bg_image@2x.png"; sourceTree = "<group>"; };
+		A41CF57B16578D230011AE45 /* zjh_card_types_note_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zjh_card_types_note_bg@2x.png"; sourceTree = "<group>"; };
+		A41CF57C16578D230011AE45 /* zjh_money_tree_popMessage_background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zjh_money_tree_popMessage_background@2x.png"; sourceTree = "<group>"; };
 		A42C520215E614D2001D8208 /* DiceChatMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiceChatMessage.h; sourceTree = "<group>"; };
 		A42C520315E614D2001D8208 /* DiceChatMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiceChatMessage.m; sourceTree = "<group>"; };
 		A42C520415E614D2001D8208 /* DiceChatMsgManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiceChatMsgManager.h; sourceTree = "<group>"; };
@@ -5191,6 +5202,9 @@
 		A4BE1EAD1656A46100406B98 /* room */ = {
 			isa = PBXGroup;
 			children = (
+				A41CF57A16578D230011AE45 /* chips_select_bg_image@2x.png */,
+				A41CF57B16578D230011AE45 /* zjh_card_types_note_bg@2x.png */,
+				A41CF57C16578D230011AE45 /* zjh_money_tree_popMessage_background@2x.png */,
 				A4BE1F42165730C600406B98 /* zjh_show_card_flag@2x.png */,
 				A4BE1EAE1656A46100406B98 /* avatar_default@2x.png */,
 				A4BE1EAF1656A46100406B98 /* item_box@2x.png */,
@@ -5376,6 +5390,9 @@
 		A4E7878116367338003557AD /* View */ = {
 			isa = PBXGroup;
 			children = (
+				A41CF57516578D0B0011AE45 /* ZJHCardTypesView.h */,
+				A41CF57616578D0B0011AE45 /* ZJHCardTypesView.m */,
+				A41CF57716578D0B0011AE45 /* ZJHCardTypesView.xib */,
 				C298ED21165603ED000B5753 /* MoneyTree.xib */,
 				C298ED22165603ED000B5753 /* MoneyTreeView.h */,
 				C298ED23165603ED000B5753 /* MoneyTreeView.m */,
@@ -11461,6 +11478,10 @@
 				A4BE1F43165730C600406B98 /* zjh_show_card_flag@2x.png in Resources */,
 				CA8815711657440400E29BB1 /* Language.strings in Resources */,
 				CA8815DD1657457200E29BB1 /* SinaWeibo.bundle in Resources */,
+				A41CF57916578D0B0011AE45 /* ZJHCardTypesView.xib in Resources */,
+				A41CF57D16578D230011AE45 /* chips_select_bg_image@2x.png in Resources */,
+				A41CF57E16578D230011AE45 /* zjh_card_types_note_bg@2x.png in Resources */,
+				A41CF57F16578D230011AE45 /* zjh_money_tree_popMessage_background@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -12095,6 +12116,7 @@
 				CA8815DE1657457200E29BB1 /* SinaWeibo.m in Sources */,
 				CA8815DF1657457200E29BB1 /* SinaWeiboAuthorizeView.m in Sources */,
 				CA8815E01657457200E29BB1 /* SinaWeiboRequest.m in Sources */,
+				A41CF57816578D0B0011AE45 /* ZJHCardTypesView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
