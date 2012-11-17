@@ -11,9 +11,10 @@
 #import "ZJHImageManager.h"
 #import <QuartzCore/QuartzCore.h>
 #import "CMPopTipView.h"
+#import "AnimationManager.h"
 
 #define POKER_VIEW_ROTATE_ANCHOR_POINT CGPointMake(0, 0)
-
+#define SHOW_CARD_FLAG_IMAGE_TAG 308
 
 @interface PokerView ()
 {
@@ -291,10 +292,23 @@
 {
     PPDebug(@"didClickShowCardButton");
     [self dismissShowCardButton];
+    [self setShowCardFlagImage];
+    
     self.tickImageView.image = [UIImage imageNamed:@""];
     if ([self.delegate respondsToSelector:@selector(didClickShowCardButton:)]) {
         [self.delegate didClickShowCardButton:self];
     }
 }
+
+- (void)setShowCardFlagImage
+{
+    UIImageView *imageView = [[[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 50, 63)] autorelease];
+    imageView.image = [[ZJHImageManager defaultManager] showCardFlagImage];
+    imageView.center = CGPointMake(self.frame.size.width/2, self.frame.size.height/2);
+    [self addSubview:imageView];
+    
+    [imageView.layer addAnimation:[AnimationManager appearAnimationFrom:0.5 to:1 duration:0.8] forKey:nil];
+}
+
 
 @end

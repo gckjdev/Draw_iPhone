@@ -154,6 +154,11 @@ static ZJHImageManager* shareInstance;
     return [_resService imageByName:@"show_card_button_disable" inResourcePackage:RESOURCE_PACKAGE_ZJH];
 }
 
+- (UIImage *)showCardFlagImage
+{
+    return [_resService imageByName:@"zjh_show_card_flag" inResourcePackage:RESOURCE_PACKAGE_ZJH];
+}
+
 - (UIImage*)chipImageForChipValue:(int)chipValue;
 {
     switch (chipValue) {
@@ -199,7 +204,6 @@ static ZJHImageManager* shareInstance;
 {
     return [_resService imageByName:@"" inResourcePackage:RESOURCE_PACKAGE_ZJH];
 }
-
 
 #pragma mark - pravite methods
 

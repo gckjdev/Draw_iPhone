@@ -251,6 +251,7 @@
 		A4BE1F3F1656A46100406B98 /* zjh_runaway@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4BE1EDE1656A46100406B98 /* zjh_runaway@2x.png */; };
 		A4BE1F401656A46100406B98 /* zjh_user_bet_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4BE1EDF1656A46100406B98 /* zjh_user_bet_bg@2x.png */; };
 		A4BE1F411656A46100406B98 /* zjh_vs@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4BE1EE01656A46100406B98 /* zjh_vs@2x.png */; };
+		A4BE1F43165730C600406B98 /* zjh_show_card_flag@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4BE1F42165730C600406B98 /* zjh_show_card_flag@2x.png */; };
 		A4C1123915D4B621009B3E8D /* DiceAnimationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A4C1123815D4B621009B3E8D /* DiceAnimationManager.m */; };
 		A4C516A915DE40A800E4F735 /* DiceItemListView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4C516A815DE40A800E4F735 /* DiceItemListView.m */; };
 		A4C516AF15DE40F100E4F735 /* DiceItem.m in Sources */ = {isa = PBXBuildFile; fileRef = A4C516AC15DE40F100E4F735 /* DiceItem.m */; };
@@ -2259,6 +2260,7 @@
 		A4BE1EDE1656A46100406B98 /* zjh_runaway@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zjh_runaway@2x.png"; sourceTree = "<group>"; };
 		A4BE1EDF1656A46100406B98 /* zjh_user_bet_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zjh_user_bet_bg@2x.png"; sourceTree = "<group>"; };
 		A4BE1EE01656A46100406B98 /* zjh_vs@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zjh_vs@2x.png"; sourceTree = "<group>"; };
+		A4BE1F42165730C600406B98 /* zjh_show_card_flag@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zjh_show_card_flag@2x.png"; sourceTree = "<group>"; };
 		A4C1123715D4B621009B3E8D /* DiceAnimationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiceAnimationManager.h; sourceTree = "<group>"; };
 		A4C1123815D4B621009B3E8D /* DiceAnimationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiceAnimationManager.m; sourceTree = "<group>"; };
 		A4C516A715DE40A800E4F735 /* DiceItemListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiceItemListView.h; sourceTree = "<group>"; };
@@ -5113,6 +5115,7 @@
 		A4BE1EAD1656A46100406B98 /* room */ = {
 			isa = PBXGroup;
 			children = (
+				A4BE1F42165730C600406B98 /* zjh_show_card_flag@2x.png */,
 				A4BE1EAE1656A46100406B98 /* avatar_default@2x.png */,
 				A4BE1EAF1656A46100406B98 /* item_box@2x.png */,
 				A4BE1EB01656A46100406B98 /* show_card_button@2x.png */,
@@ -11231,6 +11234,7 @@
 				A4BE1F3F1656A46100406B98 /* zjh_runaway@2x.png in Resources */,
 				A4BE1F401656A46100406B98 /* zjh_user_bet_bg@2x.png in Resources */,
 				A4BE1F411656A46100406B98 /* zjh_vs@2x.png in Resources */,
+				A4BE1F43165730C600406B98 /* zjh_show_card_flag@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -12077,8 +12081,8 @@
 					armv7,
 					armv6,
 				);
-				CODE_SIGN_IDENTITY = "iPhone Developer: Lingzhe Peng (9WG829Y3AG)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Lingzhe Peng (9WG829Y3AG)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Lingzhe Peng (4JW9JNLMWA)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Lingzhe Peng (4JW9JNLMWA)";
 				COMPRESS_PNG_FILES = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -12092,8 +12096,8 @@
 					"../Common_iPhone_20/3PP-SDK/QWeiboSDK4iOS/**",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
-				PROVISIONING_PROFILE = "B6900C1C-652D-4108-A6DD-7D3DEC301766";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "B6900C1C-652D-4108-A6DD-7D3DEC301766";
+				PROVISIONING_PROFILE = "8C9352B7-156B-47AF-AA40-39E4517161A8";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "8C9352B7-156B-47AF-AA40-39E4517161A8";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -12106,8 +12110,8 @@
 					armv7,
 					armv6,
 				);
-				CODE_SIGN_IDENTITY = "iPhone Developer: Lingzhe Peng (9WG829Y3AG)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Lingzhe Peng (9WG829Y3AG)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Lingzhe Peng (4JW9JNLMWA)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Lingzhe Peng (4JW9JNLMWA)";
 				COMPRESS_PNG_FILES = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_VERSION = "";
@@ -12119,8 +12123,8 @@
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
-				PROVISIONING_PROFILE = "B6900C1C-652D-4108-A6DD-7D3DEC301766";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "B6900C1C-652D-4108-A6DD-7D3DEC301766";
+				PROVISIONING_PROFILE = "8C9352B7-156B-47AF-AA40-39E4517161A8";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "8C9352B7-156B-47AF-AA40-39E4517161A8";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -12130,8 +12134,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Lingzhe Peng (9WG829Y3AG)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Lingzhe Peng (9WG829Y3AG)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Lingzhe Peng (4JW9JNLMWA)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Lingzhe Peng (4JW9JNLMWA)";
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -12182,8 +12186,8 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "B6900C1C-652D-4108-A6DD-7D3DEC301766";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "B6900C1C-652D-4108-A6DD-7D3DEC301766";
+				PROVISIONING_PROFILE = "8C9352B7-156B-47AF-AA40-39E4517161A8";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "8C9352B7-156B-47AF-AA40-39E4517161A8";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -12192,8 +12196,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Lingzhe Peng (9WG829Y3AG)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Lingzhe Peng (9WG829Y3AG)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Lingzhe Peng (4JW9JNLMWA)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Lingzhe Peng (4JW9JNLMWA)";
 				COPY_PHASE_STRIP = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -12243,8 +12247,8 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "B6900C1C-652D-4108-A6DD-7D3DEC301766";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "B6900C1C-652D-4108-A6DD-7D3DEC301766";
+				PROVISIONING_PROFILE = "8C9352B7-156B-47AF-AA40-39E4517161A8";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "8C9352B7-156B-47AF-AA40-39E4517161A8";
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;
 			};
