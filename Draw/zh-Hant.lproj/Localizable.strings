@@ -1101,7 +1101,7 @@
 "kCardTypeThreeOfAKind" = "豹子";
 "kCardTypeSpecial" = "特殊";
 "kCardTypeUnknow" = "未知";
-"kRemainTimes" = "離成熟還剩 %d 分 %d 秒";
-"kMatureMessage" = "搖錢樹成熟了，快去點一下!";
+"kRemainTimes" = "00:%2d:%2d:";
+"kMatureMessage" = "成熟";
 "kZJHRoomTitle" = "詐金花";
 /*********************** 炸金花国际化字符串结束 *************************/

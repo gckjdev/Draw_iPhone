@@ -720,7 +720,6 @@
 		CA32216C151EF49A0039A384 /* SNSWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA322155151EF49A0039A384 /* SNSWebViewController.m */; };
 		CA32216D151EF49A0039A384 /* SNSWebViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA322156151EF49A0039A384 /* SNSWebViewController.xib */; };
 		CA32216E151EF49A0039A384 /* QQWeiboRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = CA322159151EF49A0039A384 /* QQWeiboRequest.m */; };
-		CA322179151EF49B0039A384 /* SINAWeiboRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = CA322167151EF49A0039A384 /* SINAWeiboRequest.m */; };
 		CA32217D151EF5570039A384 /* SinaSNSService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA32217C151EF5570039A384 /* SinaSNSService.m */; };
 		CA322180151EF56F0039A384 /* QQWeiboService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA32217F151EF56E0039A384 /* QQWeiboService.m */; };
 		CA322185151F62C00039A384 /* CoinShopController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA322183151F62C00039A384 /* CoinShopController.m */; };
@@ -3064,8 +3063,6 @@
 		CA322156151EF49A0039A384 /* SNSWebViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SNSWebViewController.xib; sourceTree = "<group>"; };
 		CA322158151EF49A0039A384 /* QQWeiboRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QQWeiboRequest.h; sourceTree = "<group>"; };
 		CA322159151EF49A0039A384 /* QQWeiboRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QQWeiboRequest.m; sourceTree = "<group>"; };
-		CA322166151EF49A0039A384 /* SINAWeiboRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SINAWeiboRequest.h; sourceTree = "<group>"; };
-		CA322167151EF49A0039A384 /* SINAWeiboRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SINAWeiboRequest.m; sourceTree = "<group>"; };
 		CA32217B151EF5570039A384 /* SinaSNSService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SinaSNSService.h; sourceTree = "<group>"; };
 		CA32217C151EF5570039A384 /* SinaSNSService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SinaSNSService.m; sourceTree = "<group>"; };
 		CA32217E151EF56E0039A384 /* QQWeiboService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QQWeiboService.h; sourceTree = "<group>"; };
@@ -7312,8 +7309,6 @@
 		CA322165151EF49A0039A384 /* SINA */ = {
 			isa = PBXGroup;
 			children = (
-				CA322166151EF49A0039A384 /* SINAWeiboRequest.h */,
-				CA322167151EF49A0039A384 /* SINAWeiboRequest.m */,
 			);
 			path = SINA;
 			sourceTree = "<group>";
@@ -11462,7 +11457,6 @@
 				CA32216B151EF49A0039A384 /* SNSServiceHandler.m in Sources */,
 				CA32216C151EF49A0039A384 /* SNSWebViewController.m in Sources */,
 				CA32216E151EF49A0039A384 /* QQWeiboRequest.m in Sources */,
-				CA322179151EF49B0039A384 /* SINAWeiboRequest.m in Sources */,
 				CA32217D151EF5570039A384 /* SinaSNSService.m in Sources */,
 				CA322180151EF56F0039A384 /* QQWeiboService.m in Sources */,
 				CA322185151F62C00039A384 /* CoinShopController.m in Sources */,

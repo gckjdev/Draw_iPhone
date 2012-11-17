@@ -68,33 +68,70 @@
     [super dealloc];
 }
 
-- (JoinGameErrorCode)meetJoinGameCondition
+- (PrejoinGameErrorCode)handlePrejoinGameCheck
 {
-    PPDebug(@"<CommonRoomListController> meetJoinGameCondition method not implement");
-    return NO;
+    PPDebug(@"<CommonRoomListController> handlePrejoinGameCheck method not implement");
+    return canJoinGame;
+}
+- (PrejoinGameErrorCode)handlePrejoinGameCheckBySessionId:(int)sessionId
+{
+    PPDebug(@"<CommonRoomListController> handlePrejoinGameCheck method not implement");
+    return canJoinGame;
 }
 
-- (void)handleJoinGameError:(JoinGameErrorCode)errorCode
+- (void)handleJoinGameError:(PrejoinGameErrorCode)errorCode
 {
     PPDebug(@"<CommonRoomListController> didJoinGameError: method not implement");
 }
 
+- (void)handleUpdateRoomList
+{
+    PPDebug(@"<CommonRoomListController> updateRoomList method not implement");
+}
+
+- (void)handleDidJoinGame
+{
+    PPDebug(@"<CommonRoomListController> handleDidJoinGame method not implement");
+}
+
+- (CGPoint)getSearchViewPosition
+{
+    PPDebug(@"<CommonRoomListController> getSearchViewPosition method not implement");
+    return CGPointMake(0, 0);
+}
+
+- (void)handleUpdateOnlineUserCount
+{
+    PPDebug(@"<CommonRoomListController> handleUpdateOnlineUserCount method not implement");
+}
+
+- (void)handleDidConnectServer
+{
+    PPDebug(@"<CommonRoomListController> handleDidConnectServer method not implement");
+}
+
+- (void)handleNoRoomMessage
+{
+    PPDebug(@"<CommonRoomListController> handleNoRoomMessage method not implement");
+
+}
+
 - (void)checkAndJoinGame:(int)sessionId
 {
-    if ([self meetJoinGameCondition] == canJoinGame) {
+    if ([self handlePrejoinGameCheckBySessionId:sessionId] == canJoinGame) {
         _isJoiningGame = YES;
         [_gameService joinGameRequest:sessionId];
     } else {
-        [self handleJoinGameError:[self meetJoinGameCondition]];
+        [self handleJoinGameError:[self handlePrejoinGameCheck]];
     }
 }
 
 - (void)checkAndJoinGame
 {
-    if ([self meetJoinGameCondition] == canJoinGame) {
+    if ([self handlePrejoinGameCheck] == canJoinGame) {
         [_gameService joinGameRequest];
     } else {
-        [self handleJoinGameError:[self meetJoinGameCondition]];
+        [self handleJoinGameError:[self handlePrejoinGameCheck]];
     }
 }
 
@@ -145,11 +182,6 @@
     [self startRefreshRoomsTimer];
 }
 
-- (void)updateRoomList
-{
-    PPDebug(@"<CommonRoomListController> updateRoomList method not implement");
-}
-
 
 - (void)getRoomsFinished
 {
@@ -162,20 +194,21 @@
     if (_isRefreshing) {
         [self startRefreshRoomsTimer];
     }
-    [self updateRoomList];
-    [self updateOnlineUserCount];
+    if (self.dataList.count > 0) {
+        [self handleUpdateRoomList];
+    } else {
+        [self handleNoRoomMessage];
+    }
+    [self handleUpdateOnlineUserCount];
 }
 
-- (void)enterGame
-{
-    PPDebug(@"<CommonRoomListController> enterGame method not implement");
-}
+
 
 - (void)didJoinGame
 {
     [self hideActivity];
     if (_isJoiningGame) {
-        [self enterGame];
+        [self handleDidJoinGame];
         _isJoiningGame = NO;
     }
     
@@ -256,7 +289,7 @@
     [super viewDidLoad];
     
     _isRefreshing = YES;
-    [self updateOnlineUserCount];
+    [self handleUpdateOnlineUserCount];
     //    [[NSNotificationCenter defaultCenter] addObserver:self
     //                                             selector:@selector(roomsDidUpdate:)
     //                                                 name:ROOMS_DID_UPDATE
@@ -302,10 +335,10 @@
 
 - (IBAction)createRoom:(id)sender
 {
-    if ([self meetJoinGameCondition] == canJoinGame) {
+    if ([self handlePrejoinGameCheck] == canJoinGame) {
         [self showCreateRoomView];
     }else {
-        [self handleJoinGameError:[self meetJoinGameCondition]];
+        [self handleJoinGameError:[self handlePrejoinGameCheck]];
     }
 }
 
@@ -334,15 +367,6 @@
 
 
 
-- (void)updateOnlineUserCount
-{
-    PPDebug(@"<CommonRoomListController> updateOnlineUserCount method not implement");
-}
-
-- (void)connectServerSuccessfully
-{
-    PPDebug(@"<CommonRoomListController> connectServerSuccessfully method not implement");
-}
 
 #pragma mark - CommonGameServiceDelegate
 - (void)didConnected
@@ -350,7 +374,7 @@
     [self hideActivity];
     [_gameService getRoomList:0 count:ROOMS_COUNT_PER_PAGE];
     firstLoad = NO;
-    [self connectServerSuccessfully];
+    [self handleDidConnectServer];
 }
 
 - (void)didBroken
@@ -451,11 +475,7 @@
     [self pauseRefreshingRooms];
 }
 
-- (CGPoint)searchViewPoint
-{
-    PPDebug(@"<CommonRoomListController> searchViewPoint method not implement");
-    return CGPointMake(0, 0);
-}
+
 
 - (IBAction)clickSearch:(id)sender
 {
@@ -464,7 +484,7 @@
     } else {
         _searchView = [CommonSearchView showInView:self.view
                                            byTheme:CommonSearchViewThemeDice
-                                           atPoint:[self searchViewPoint]
+                                           atPoint:[self getSearchViewPosition]
                                           delegate:self];
     }
 }
