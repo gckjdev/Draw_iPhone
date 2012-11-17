@@ -10,6 +10,14 @@
 #import "Poker.h"
 
 
+
+#define FACEUP_ANIMATION_DURATION 0.75
+#define FACEDOWN_ANIMATION_DURATION 0.75
+
+#define ROTATE_ANIMATION_DURATION 1
+#define MOVE_ANIMATION_DURATION 1
+
+
 @class PokerView;
 
 @protocol PokerViewProtocol <NSObject>

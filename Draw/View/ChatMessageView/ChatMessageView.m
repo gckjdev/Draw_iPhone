@@ -236,9 +236,7 @@
     [superView addSubview:self];
     self.alpha = 0;
     self.hidden = NO;
-//    CAAnimation *animation = [AnimationManager missingAnimationWithDuration:5];
-//    [self.layer addAnimation:animation forKey:@"DismissAnimation"];
-//    [superView bringSubviewToFront:self];
+
     [UIView animateWithDuration:1 delay:0 options:UIViewAnimationCurveEaseInOut animations:^{
         self.alpha = 1;
     } completion:^(BOOL finished) {

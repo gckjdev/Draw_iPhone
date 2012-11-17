@@ -15,12 +15,6 @@
 #define POKER_VIEW_ROTATE_ANCHOR_POINT CGPointMake(0, 0)
 
 
-#define FACEUP_ANIMATION_DURATION 0.75
-#define FACEDOWN_ANIMATION_DURATION 0.75
-
-#define ROTATE_ANIMATION_DURATION 1
-#define MOVE_ANIMATION_DURATION 1
-
 @interface PokerView ()
 {
     CGPoint _originCenter;
@@ -301,6 +295,6 @@
     if ([self.delegate respondsToSelector:@selector(didClickShowCardButton:)]) {
         [self.delegate didClickShowCardButton:self];
     }
-}    
+}
 
 @end

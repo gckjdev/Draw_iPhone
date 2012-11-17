@@ -38,7 +38,7 @@
 #define ANIMATION_DURATION 0.8f
 
 - (IBAction)clickCloseButton:(id)sender {
-    CAAnimation *animation = [AnimationManager missingAnimationWithDuration:ANIMATION_DURATION];
+    CAAnimation *animation = [AnimationManager disappearAnimationWithDuration:ANIMATION_DURATION];
     animation.delegate = self;
     animation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
     [animation setValue:MISS_ANIMATION_VALUE forKey:ANIMATION_KEY];

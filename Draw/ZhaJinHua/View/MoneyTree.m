@@ -145,7 +145,7 @@
     lightLayer.position = CGPointMake(coinLayer.position.x + coinLayer.bounds.size.width/4, coinLayer.position.y + coinLayer.bounds.size.height/4);
     [self.layer addSublayer:lightLayer];
     
-    CAAnimation* shining = [AnimationManager missingAnimationWithDuration:1];
+    CAAnimation* shining = [AnimationManager disappearAnimationWithDuration:1];
     shining.autoreverses = YES;
     shining.repeatCount = 1000;
     [lightLayer addAnimation:shining forKey:nil];

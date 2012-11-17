@@ -21,9 +21,9 @@
 
 @property (assign, nonatomic) CFTimeInterval growthTime;
 
-- (void)growMoneyTree;
-
 + (MoneyTreeView*)createMoneyTreeView;
-- (void)growMoneyTree;
+- (void)showInView:(UIView *)view;
+
+- (void)startGrowing;
 
 @end

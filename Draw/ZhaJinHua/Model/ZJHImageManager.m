@@ -621,7 +621,12 @@ static ZJHImageManager* shareInstance;
 - (UIImage *)cardTypeBgImage
 {
     return [_resService imageByName:@"zjh_card_type_bg" inResourcePackage:RESOURCE_PACKAGE_ZJH];
-
 }
+
+- (UIImage *)roomTitleBgImage
+{
+    return [_resService imageByName:@"zjh_room_title_bg" inResourcePackage:RESOURCE_PACKAGE_ZJH];
+}
+
 
 @end

@@ -210,6 +210,11 @@ static ZJHGameService *_defaultService;
     return [[self myPlayInfo] cardTypeString];
 }
 
+- (NSString *)cardTypeOfUser:(NSString *)userId
+{
+    return [[self userPlayInfo:userId] cardTypeString];
+}
+
 - (BOOL)doIWin
 {
     return [_userManager isMe:_gameState.winner];
@@ -445,7 +450,7 @@ static ZJHGameService *_defaultService;
 - (NSString *)getServerListString
 {
     return @"58.215.172.169:8018";
-    return @"192.168.1.7:8018";
+//    return @"192.168.1.7:8018";
 }
 
 - (ZJHUserPlayInfo *)myPlayInfo
@@ -481,7 +486,7 @@ static ZJHGameService *_defaultService;
         return self.session.roomName;
     }
     
-    return [NSString stringWithFormat:NSLS(@"k炸金花%x号房"), self.session.sessionId];
+    return [NSString stringWithFormat:NSLS(@"k炸金花%d号房"), self.session.sessionId];
 }
 
 @end
