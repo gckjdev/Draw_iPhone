@@ -1355,10 +1355,15 @@
             dataDict = [NSMutableDictionary dictionary];
             [dataDict setObject:data forKey:PARA_DRAW_DATA];
         }
-        
-        return [PPNetworkRequest uploadRequest:baseURL 
-                                     imageData:imageData
-                                      imageKey:PARA_DRAW_IMAGE
+
+        NSMutableDictionary *imageDict = nil;
+        if (imageData) {
+            imageDict = [NSMutableDictionary dictionary];
+            [imageDict setObject:imageData forKey:PARA_DRAW_IMAGE];
+        }
+
+        return [PPNetworkRequest uploadRequest:baseURL
+                                imageDataDict:imageDict
                                   postDataDict:dataDict 
                            constructURLHandler:constructURLHandler 
                                responseHandler:responseHandler 
@@ -1413,10 +1418,14 @@
         dataDict = [NSMutableDictionary dictionary];
         [dataDict setObject:data forKey:PARA_DRAW_DATA];
     }
+    NSMutableDictionary *imageDict = nil;
+    if (imageData) {
+        imageDict = [NSMutableDictionary dictionary];
+        [imageDict setObject:imageData forKey:PARA_DRAW_IMAGE];
+    }
     
     return [PPNetworkRequest uploadRequest:baseURL
-                                 imageData:imageData
-                                  imageKey:PARA_DRAW_IMAGE
+                             imageDataDict:imageDict
                               postDataDict:dataDict
                        constructURLHandler:constructURLHandler
                            responseHandler:responseHandler

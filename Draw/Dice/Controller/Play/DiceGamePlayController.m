@@ -28,6 +28,7 @@
 #import "DiceConfigManager.h"
 #import "CallDiceView.h"
 #import "CustomDiceManager.h"
+#import "NotificationName.h"
 
 
 #define AVATAR_TAG_OFFSET   8000

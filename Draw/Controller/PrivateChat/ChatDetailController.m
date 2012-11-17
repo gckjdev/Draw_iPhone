@@ -482,7 +482,9 @@
 {
     [controller dismissModalViewControllerAnimated:YES];
 }
-- (void)didController:(OfflineDrawViewController *)controller clickSubmit:(NSMutableArray*)drawActionList
+- (void)didController:(OfflineDrawViewController *)controller
+     submitActionList:(NSMutableArray *)drawActionList
+            drawImage:(UIImage *)drawImage
 {
     [controller dismissModalViewControllerAnimated:YES];
     [self sendDrawMessage:drawActionList];

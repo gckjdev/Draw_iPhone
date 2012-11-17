@@ -103,23 +103,30 @@
         [dataDict setObject:drawData forKey:PARA_DRAW_DATA];
     }
 
-    NSData *iData = nil;
-    NSString *iKey = nil;
-    if (contentType == 2) {
-        iData = image;
-        iKey = PARA_IMAGE;
-    }else if(contentType == 4){
-        iData = drawImage;
-        iKey = PARA_DRAW_IMAGE;
+//    NSData *iData = nil;
+//    NSString *iKey = nil;
+//    if (contentType == 2) {
+//        iData = image;
+//        iKey = PARA_IMAGE;
+//    }else if(contentType == 4){
+//        iData = drawImage;
+//        iKey = PARA_DRAW_IMAGE;
+//    }
+    NSMutableDictionary *imageDict = [NSMutableDictionary dictionaryWithCapacity:2];
+    if (drawImage) {
+        [imageDict setObject:drawImage forKey:PARA_DRAW_IMAGE];
     }
-    
+    if (image) {
+        [imageDict setObject:image forKey:PARA_IMAGE];
+    }
+
     return [PPNetworkRequest uploadRequest:baseURL
-                                 imageData:iData
-                                  imageKey:iKey
+                             imageDataDict:imageDict
                               postDataDict:dataDict
                        constructURLHandler:constructURLHandler
                            responseHandler:responseHandler
                                     output:output];
+
 }
 
 @end

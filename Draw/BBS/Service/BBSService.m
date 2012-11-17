@@ -150,6 +150,24 @@ BBSService *_staticBBSService;
 }
 
 
+- (PBBBSDraw *)buildBBSDraw:(NSArray *)drawActionList
+{
+    PBBBSDraw *bbsDraw = nil;
+    NSMutableArray *pbDrawActionList = [NSMutableArray arrayWithCapacity:drawActionList.count];
+    for (DrawAction *action in drawActionList) {
+        PBDrawAction * pbAction = [[DrawDataService defaultService]
+                                   buildPBDrawAction:action];
+        [pbDrawActionList addObject:pbAction];
+    }
+    if ([pbDrawActionList count] != 0) {
+        PBBBSDraw_Builder *builder = [[PBBBSDraw_Builder alloc] init];
+        [builder addAllDrawActionList:pbDrawActionList];
+        bbsDraw = [builder build];
+        [builder release];
+    }
+    return bbsDraw;
+}
+
 
 - (void)createPostWithBoardId:(NSString *)boardId
                          text:(NSString *)text
@@ -168,12 +186,16 @@ BBSService *_staticBBSService;
         NSString *avatar = [[UserManager defaultManager] avatarURL];
         
         BBSPostContentType type = ContentTypeText;
+        
+        NSData *drawData = nil;
+        
         if (image) {
             type = ContentTypeImage;
         }else if (drawImage) {
             type = ContentTypeDraw;
+            PBBBSDraw *bbsDraw = [self buildBBSDraw:drawActionList];
+            drawData = [bbsDraw data];
         }
-        
 //        DrawDataService de
 //        BBSNetwork
         CommonNetworkOutput *output = [BBSNetwork createPost:TRAFFIC_SERVER_URL
@@ -187,7 +209,7 @@ BBSService *_staticBBSService;
                                                  contentType:type
                                                         text:text
                                                        image:[image data]
-                                                    drawData:nil
+                                                    drawData:drawData
                                                    drawImage:[drawImage data]];
         
         PBBBSPost *post = nil;

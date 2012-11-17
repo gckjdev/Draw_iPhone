@@ -25,6 +25,7 @@
 #import "CommonUserInfoView.h"
 #import "NotificationManager.h"
 #import "MyFriend.h"
+#import "NotificationName.h"
 
 @interface FriendRoomController ()
 
@@ -396,9 +397,6 @@
     
     _currentSelectRoom = room;    
 }
-
-
-
 
 #pragma mark - Draw Game Service Delegate
 
