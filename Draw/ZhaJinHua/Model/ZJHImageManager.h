@@ -80,5 +80,5 @@
 
 - (UIImage *)roomBackgroundImage;
 - (UIImage *)roomTitleBgImage;
-
+- (UIImage *)moneyTreePopupMessageBackground;
 @end

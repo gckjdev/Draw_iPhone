@@ -85,6 +85,8 @@
 @class PBBBSDraw_Builder;
 @class PBBBSPost;
 @class PBBBSPost_Builder;
+@class PBBBSReward;
+@class PBBBSReward_Builder;
 @class PBBBSUser;
 @class PBBBSUser_Builder;
 @class PBCommentInfo;

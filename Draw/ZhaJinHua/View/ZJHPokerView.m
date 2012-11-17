@@ -212,6 +212,21 @@
     }
 }
 
+- (void)setShowCardFlag:(int)cardId animation:(BOOL)animation
+{
+    if (self.pokerView1.poker.pokerId == cardId) {
+        [self.pokerView1 setShowCardFlag:animation];
+    }
+    
+    if (self.pokerView2.poker.pokerId == cardId) {
+        [self.pokerView2 setShowCardFlag:animation];
+    }
+    
+    if (self.pokerView3.poker.pokerId == cardId) {
+        [self.pokerView3 setShowCardFlag:animation];
+    }
+}
+
 - (void)foldCards:(BOOL)animation
 {
     [self clearBomb];

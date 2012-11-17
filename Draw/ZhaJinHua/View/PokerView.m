@@ -39,7 +39,6 @@
 @synthesize tickImageView = _tickImageView;
 @synthesize bodyImageView = _bodyImageView;
 @synthesize popupView = _popupView;
-@synthesize locateLabel = _locateLabel;
 @synthesize isFaceUp = _isFaceUp;
 @synthesize delegate = _delegate;
 
@@ -55,7 +54,6 @@
     [_tickImageView release];
     [_bodyImageView release];
     [_popupView release];
-    [_locateLabel release];
     [super dealloc];
 }
 
@@ -247,40 +245,45 @@
 
 - (UIView *)createShowCardButton
 {
-
-    UIView *view = [[[UIView alloc] initWithFrame:CGRectMake(0, 0, SHOW_CARD_VIEW_WIDTH, SHOW_CARD_VIEW__HEIGHT)] autorelease];
-    UIImageView *imageView = [[[UIImageView alloc] initWithFrame:view.bounds] autorelease];
-    imageView.image = [[ZJHImageManager defaultManager] showCardButtonBgImage];
-    UIButton *button = [[[UIButton alloc] initWithFrame:CGRectMake(SHOW_CARD_BUTTON_X_OFFSET, SHOW_CARD_BUTTON_Y_OFFSET, SHOW_CARD_BUTTON_WIDTH, SHOW_CARD_BUTTON_HEIGHT)] autorelease];
-    [button.titleLabel setFont:SHOW_CARD_BUTTON_FONT];
-    [button setTitle:@"亮牌" forState:UIControlStateNormal];
-    [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    UIView *view = [[[UIButton alloc] initWithFrame:CGRectMake(0, 0, SHOW_CARD_VIEW_WIDTH, SHOW_CARD_VIEW__HEIGHT)] autorelease];
+    
+    UIButton *button = [[[UIButton alloc] initWithFrame:view.bounds] autorelease];
+    button.backgroundColor = [UIColor clearColor];
     [button addTarget:self action:@selector(clickShowCardButton:) forControlEvents:UIControlEventTouchUpInside];
 
+    UIImageView *imageView = [[[UIImageView alloc] initWithFrame:view.bounds] autorelease];
+    imageView.image = [[ZJHImageManager defaultManager] showCardButtonBgImage];
+    
+    UILabel *label = [[[UILabel alloc] initWithFrame:CGRectMake(SHOW_CARD_BUTTON_X_OFFSET, SHOW_CARD_BUTTON_Y_OFFSET, SHOW_CARD_BUTTON_WIDTH, SHOW_CARD_BUTTON_HEIGHT)] autorelease];
+    [label setFont:SHOW_CARD_BUTTON_FONT];
+    [label setText:@"亮牌"];
+    label.textAlignment = UITextAlignmentCenter;
+    [label setTextColor:[UIColor whiteColor]];
+    label.backgroundColor = [UIColor clearColor];
+    
+    
     [view addSubview:imageView];
+    [view addSubview:label];
     [view addSubview:button];
     
     return view;
 }
 
 - (void)popupShowCardButtonInView:(UIView *)inView
-                        aboveView:(UIView *)aboveView
 {
     UIView *showCardButton = [self createShowCardButton];
+
+    self.popupView = [[[CMPopTipView alloc] initWithCustomViewWithoutBubble:showCardButton] autorelease];
+    self.popupView.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.25];
     
-    self.popupView = [[[CMPopTipView alloc] initWithCustomView:showCardButton needBubblePath:NO] autorelease];
-    self.popupView.backgroundColor = [UIColor clearColor];
-    
-    [self.popupView presentPointingAtView:self.locateLabel
+    [self.popupView presentPointingAtView:self
                                    inView:inView
-                                aboveView:aboveView
                                  animated:YES
                            pointDirection:PointDirectionDown];
     
-    [self.popupView performSelector:@selector(dismissAnimated:)
-                         withObject:[NSNumber numberWithBool:YES]
-                         afterDelay:3.0];
-    
+    [self performSelector:@selector(dismissShowCardButton)
+               withObject:nil
+               afterDelay:3.0];
 }
 
 - (BOOL)showCardButtonIsPopup
@@ -292,22 +295,20 @@
 {
     PPDebug(@"didClickShowCardButton");
     [self dismissShowCardButton];
-    [self setShowCardFlagImage];
     
-    self.tickImageView.image = [UIImage imageNamed:@""];
     if ([self.delegate respondsToSelector:@selector(didClickShowCardButton:)]) {
         [self.delegate didClickShowCardButton:self];
     }
 }
 
-- (void)setShowCardFlagImage
+- (void)setShowCardFlag:(BOOL)animation
 {
     UIImageView *imageView = [[[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 50, 63)] autorelease];
     imageView.image = [[ZJHImageManager defaultManager] showCardFlagImage];
     imageView.center = CGPointMake(self.frame.size.width/2, self.frame.size.height/2);
     [self addSubview:imageView];
     
-    [imageView.layer addAnimation:[AnimationManager appearAnimationFrom:0.5 to:1 duration:0.8] forKey:nil];
+    [imageView.layer addAnimation:[AnimationManager appearAnimationFrom:0.5 to:1 duration:(animation ? 0.8 : 0)] forKey:nil];
 }
 
 

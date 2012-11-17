@@ -14,6 +14,8 @@
 #import "AnimationManager.h"
 #import "NSMutableArray+Queue.h"
 
+#define EARN_COIN_EACH_LEVEL (50)
+
 @implementation MoneyTree
 @synthesize isMature = _isMature;
 
@@ -59,8 +61,8 @@
     if (self) {
         [self init];
         
-        int pointSize = [DeviceDetection isIPAD]?32:16;
-        _rewardView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height/2)];
+        int pointSize = [DeviceDetection isIPAD]?26:13;
+        _rewardView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height/4)];
         _rewardCoinView = [[UIImageView alloc] initWithImage:[ShareImageManager defaultManager].rewardCoin];
         [_rewardCoinView setFrame:CGRectMake(_rewardView.frame.size.width/2-_rewardView.frame.size.height, 0, _rewardView.frame.size.height, _rewardView.frame.size.height)];
         _rewardCoinLabel = [[UILabel alloc] initWithFrame:CGRectMake(_rewardView.frame.size.width/2, 0, _rewardView.frame.size.width, _rewardView.frame.size.height)];
@@ -107,13 +109,17 @@
 {
     _isMature = isMature;
     if (isMature) {
+        _hasEverMature = YES;
         [self showOneCoin];
     } else {
         while ([_layerQueue peek]) {
             CALayer* layer = [_layerQueue dequeue];
             [layer removeFromSuperlayer];
         }
-        [self setImage:[[ZJHImageManager defaultManager] moneyTreeImage] forState:UIControlStateNormal];
+        if (!_hasEverMature) {
+            [self setImage:[[ZJHImageManager defaultManager] moneyTreeImage] forState:UIControlStateNormal];
+        }
+        
     }
 }
 
@@ -198,7 +204,7 @@
 
 - (int)calAwardCoinByLevel:(int)level
 {
-    return level * 50;
+    return level * EARN_COIN_EACH_LEVEL;
 }
 
 - (void)rewardCoins:(int)coinsCount

@@ -28,6 +28,7 @@
                         image:(UIImage *)image
                drawActionList:(NSArray *)drawActionList
                     drawImage:(UIImage *)drawImage
+                        bonus:(NSInteger)bonus
                      delegate:(id<BBSServiceDelegate>)delegate;
 
 @end

@@ -42,7 +42,7 @@
 
 - (void)showInView:(UIView *)view
 {
-    self.frame = view.bounds;
+    self.frame = CGRectMake(0, 0, view.bounds.size.width, view.bounds.size.height);
     [view addSubview:self];
 }
 
