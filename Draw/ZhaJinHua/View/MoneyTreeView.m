@@ -10,6 +10,7 @@
 #import "AnimationManager.h"
 #import "AudioManager.h"
 #import "ZJHSoundManager.h"
+#import "AutoCreateViewByXib.h"
 
 @implementation MoneyTreeView
 
@@ -22,17 +23,7 @@
     return self;
 }
 
-+ (id)createView
-{
-    NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"MoneyTreeView" owner:self options:nil];
-    // Grab a pointer to the first object (presumably the custom cell, as that's all the XIB should contain).
-    if (topLevelObjects == nil || [topLevelObjects count] <= 0){
-        return nil;
-    }
-    
-    return [topLevelObjects objectAtIndex:0];
-}
-
+AUTO_CREATE_VIEW_BY_XIB(MoneyTreeView)
 + (MoneyTreeView*)createMoneyTreeView
 {
     MoneyTreeView* view = [MoneyTreeView createView];
