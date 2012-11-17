@@ -192,9 +192,6 @@ static ZJHGameService *_defaultService;
 
 - (BOOL)canICompareCard
 {
-    PPDebug(@"[[self myPlayInfo] canCompareCard] ＝ %d", [[self myPlayInfo] canCompareCard]);
-    PPDebug(@"[[self compareUserIdList] count] = %d", [[self compareUserIdList] count]);
-    PPDebug(@"self.session.myTurnTimes = %d", self.session.myTurnTimes);
     return [self isGamePlaying] && [self isMyTurn] && [[self myPlayInfo] canCompareCard] && (self.session.myTurnTimes >=2) && ([[self compareUserIdList] count] > 0);
 }
 
