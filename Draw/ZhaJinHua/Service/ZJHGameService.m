@@ -205,7 +205,12 @@ static ZJHGameService *_defaultService;
     return [[_gameState userPlayInfo:userId] canCompareCard] && ![_userManager isMe:userId];
 }
 
-- (NSString *)myCardType
+- (PBZJHCardType)myCardType
+{
+    return [[self myPlayInfo] cardType];
+}
+
+- (NSString *)myCardTypeString
 {
     return [[self myPlayInfo] cardTypeString];
 }

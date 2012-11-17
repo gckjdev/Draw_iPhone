@@ -637,5 +637,11 @@ static ZJHImageManager* shareInstance;
     return [_resService imageByName:@"zjh_money_tree_popMessage_background" inResourcePackage:RESOURCE_PACKAGE_ZJH];
 }
 
+- (UIImage *)zjhCardTypesNoteBgImage
+{
+    return [[_resService imageByName:@"zjh_card_types_not_bg" inResourcePackage:RESOURCE_PACKAGE_ZJH] stretchableImageWithLeftCapWidth:50 topCapHeight:0];
+}
+
+
 
 @end

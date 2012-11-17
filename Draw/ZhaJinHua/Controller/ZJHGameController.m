@@ -1089,7 +1089,7 @@ compareCardWith:(NSString*)targetUserId
 {
     _cardTypeBgImageView.hidden = YES;
     _cardTypeLabel.hidden = NO;
-    _cardTypeLabel.text = [_gameService myCardType];
+    _cardTypeLabel.text = [_gameService myCardTypeString];
 
     [_cardTypeLabel.layer addAnimation:[AnimationManager appearAnimationFrom:0.5 to:1.0 duration:0.5] forKey:nil];
 }

@@ -81,4 +81,6 @@
 - (UIImage *)roomBackgroundImage;
 - (UIImage *)roomTitleBgImage;
 - (UIImage *)moneyTreePopupMessageBackground;
+
+- (UIImage *)zjhCardTypesNoteBgImage;
 @end
