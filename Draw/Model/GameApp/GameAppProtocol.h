@@ -27,6 +27,7 @@
 
 - (NSString*)sinaAppKey;
 - (NSString*)sinaAppSecret;
+- (NSString*)sinaAppRedirectURI;
 
 - (NSString*)qqAppKey;
 - (NSString*)qqAppSecret;
@@ -40,5 +41,7 @@
 - (NSString*)askFollowMessage;
 - (NSString*)sinaWeiboId;
 - (NSString*)qqWeiboId;
+
+
 
 @end

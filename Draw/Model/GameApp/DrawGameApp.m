@@ -76,6 +76,11 @@
     return @"ff89c2f5667b0199ee7a8bad6c44b265";    
 }
 
+- (NSString*)sinaAppRedirectURI
+{
+    return @"http://";
+}
+
 - (NSString*)qqAppKey
 {
     return @"801123669";    

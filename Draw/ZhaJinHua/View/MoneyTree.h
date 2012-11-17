@@ -25,6 +25,7 @@
     UIView* _rewardView;
     UIImageView* _rewardCoinView;
     NSMutableArray*  _layerQueue;
+    BOOL _hasEverMature;
 }
 @property (assign, nonatomic) CFTimeInterval growthTime;
 @property (assign, nonatomic) BOOL isMature;

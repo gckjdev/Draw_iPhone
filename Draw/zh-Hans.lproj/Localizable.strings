@@ -1118,7 +1118,7 @@
 "kCardTypeThreeOfAKind" = "豹子";
 "kCardTypeSpecial" = "特殊";
 "kCardTypeUnknow" = "未知";
-"kRemainTimes" = "00:%2d:%2d:";
+"kRemainTimes" = "00:%02d:%02d";
 "kMatureMessage" = "成熟";
 "kZJHRoomTitle" = "诈金花";
 /*********************** 炸金花国际化字符串结束 *************************/

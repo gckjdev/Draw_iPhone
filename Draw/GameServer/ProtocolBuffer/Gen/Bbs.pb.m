@@ -961,6 +961,328 @@ static PBBBSContent* defaultPBBBSContentInstance = nil;
 }
 @end
 
+@interface PBBBSReward ()
+@property int32_t bonus;
+@property int32_t status;
+@property (retain) PBBBSUser* winner;
+@property int32_t awardDate;
+@end
+
+@implementation PBBBSReward
+
+- (BOOL) hasBonus {
+  return !!hasBonus_;
+}
+- (void) setHasBonus:(BOOL) value {
+  hasBonus_ = !!value;
+}
+@synthesize bonus;
+- (BOOL) hasStatus {
+  return !!hasStatus_;
+}
+- (void) setHasStatus:(BOOL) value {
+  hasStatus_ = !!value;
+}
+@synthesize status;
+- (BOOL) hasWinner {
+  return !!hasWinner_;
+}
+- (void) setHasWinner:(BOOL) value {
+  hasWinner_ = !!value;
+}
+@synthesize winner;
+- (BOOL) hasAwardDate {
+  return !!hasAwardDate_;
+}
+- (void) setHasAwardDate:(BOOL) value {
+  hasAwardDate_ = !!value;
+}
+@synthesize awardDate;
+- (void) dealloc {
+  self.winner = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.bonus = 0;
+    self.status = 0;
+    self.winner = [PBBBSUser defaultInstance];
+    self.awardDate = 0;
+  }
+  return self;
+}
+static PBBBSReward* defaultPBBBSRewardInstance = nil;
++ (void) initialize {
+  if (self == [PBBBSReward class]) {
+    defaultPBBBSRewardInstance = [[PBBBSReward alloc] init];
+  }
+}
++ (PBBBSReward*) defaultInstance {
+  return defaultPBBBSRewardInstance;
+}
+- (PBBBSReward*) defaultInstance {
+  return defaultPBBBSRewardInstance;
+}
+- (BOOL) isInitialized {
+  if (!self.hasBonus) {
+    return NO;
+  }
+  if (!self.hasStatus) {
+    return NO;
+  }
+  if (self.hasWinner) {
+    if (!self.winner.isInitialized) {
+      return NO;
+    }
+  }
+  return YES;
+}
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
+  if (self.hasBonus) {
+    [output writeInt32:1 value:self.bonus];
+  }
+  if (self.hasStatus) {
+    [output writeInt32:2 value:self.status];
+  }
+  if (self.hasWinner) {
+    [output writeMessage:3 value:self.winner];
+  }
+  if (self.hasAwardDate) {
+    [output writeInt32:4 value:self.awardDate];
+  }
+  [self.unknownFields writeToCodedOutputStream:output];
+}
+- (int32_t) serializedSize {
+  int32_t size = memoizedSerializedSize;
+  if (size != -1) {
+    return size;
+  }
+
+  size = 0;
+  if (self.hasBonus) {
+    size += computeInt32Size(1, self.bonus);
+  }
+  if (self.hasStatus) {
+    size += computeInt32Size(2, self.status);
+  }
+  if (self.hasWinner) {
+    size += computeMessageSize(3, self.winner);
+  }
+  if (self.hasAwardDate) {
+    size += computeInt32Size(4, self.awardDate);
+  }
+  size += self.unknownFields.serializedSize;
+  memoizedSerializedSize = size;
+  return size;
+}
++ (PBBBSReward*) parseFromData:(NSData*) data {
+  return (PBBBSReward*)[[[PBBBSReward builder] mergeFromData:data] build];
+}
++ (PBBBSReward*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBBBSReward*)[[[PBBBSReward builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+}
++ (PBBBSReward*) parseFromInputStream:(NSInputStream*) input {
+  return (PBBBSReward*)[[[PBBBSReward builder] mergeFromInputStream:input] build];
+}
++ (PBBBSReward*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBBBSReward*)[[[PBBBSReward builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (PBBBSReward*) parseFromCodedInputStream:(PBCodedInputStream*) input {
+  return (PBBBSReward*)[[[PBBBSReward builder] mergeFromCodedInputStream:input] build];
+}
++ (PBBBSReward*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBBBSReward*)[[[PBBBSReward builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (PBBBSReward_Builder*) builder {
+  return [[[PBBBSReward_Builder alloc] init] autorelease];
+}
++ (PBBBSReward_Builder*) builderWithPrototype:(PBBBSReward*) prototype {
+  return [[PBBBSReward builder] mergeFrom:prototype];
+}
+- (PBBBSReward_Builder*) builder {
+  return [PBBBSReward builder];
+}
+@end
+
+@interface PBBBSReward_Builder()
+@property (retain) PBBBSReward* result;
+@end
+
+@implementation PBBBSReward_Builder
+@synthesize result;
+- (void) dealloc {
+  self.result = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.result = [[[PBBBSReward alloc] init] autorelease];
+  }
+  return self;
+}
+- (PBGeneratedMessage*) internalGetResult {
+  return result;
+}
+- (PBBBSReward_Builder*) clear {
+  self.result = [[[PBBBSReward alloc] init] autorelease];
+  return self;
+}
+- (PBBBSReward_Builder*) clone {
+  return [PBBBSReward builderWithPrototype:result];
+}
+- (PBBBSReward*) defaultInstance {
+  return [PBBBSReward defaultInstance];
+}
+- (PBBBSReward*) build {
+  [self checkInitialized];
+  return [self buildPartial];
+}
+- (PBBBSReward*) buildPartial {
+  PBBBSReward* returnMe = [[result retain] autorelease];
+  self.result = nil;
+  return returnMe;
+}
+- (PBBBSReward_Builder*) mergeFrom:(PBBBSReward*) other {
+  if (other == [PBBBSReward defaultInstance]) {
+    return self;
+  }
+  if (other.hasBonus) {
+    [self setBonus:other.bonus];
+  }
+  if (other.hasStatus) {
+    [self setStatus:other.status];
+  }
+  if (other.hasWinner) {
+    [self mergeWinner:other.winner];
+  }
+  if (other.hasAwardDate) {
+    [self setAwardDate:other.awardDate];
+  }
+  [self mergeUnknownFields:other.unknownFields];
+  return self;
+}
+- (PBBBSReward_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
+  return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
+}
+- (PBBBSReward_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
+  while (YES) {
+    int32_t tag = [input readTag];
+    switch (tag) {
+      case 0:
+        [self setUnknownFields:[unknownFields build]];
+        return self;
+      default: {
+        if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
+          [self setUnknownFields:[unknownFields build]];
+          return self;
+        }
+        break;
+      }
+      case 8: {
+        [self setBonus:[input readInt32]];
+        break;
+      }
+      case 16: {
+        [self setStatus:[input readInt32]];
+        break;
+      }
+      case 26: {
+        PBBBSUser_Builder* subBuilder = [PBBBSUser builder];
+        if (self.hasWinner) {
+          [subBuilder mergeFrom:self.winner];
+        }
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self setWinner:[subBuilder buildPartial]];
+        break;
+      }
+      case 32: {
+        [self setAwardDate:[input readInt32]];
+        break;
+      }
+    }
+  }
+}
+- (BOOL) hasBonus {
+  return result.hasBonus;
+}
+- (int32_t) bonus {
+  return result.bonus;
+}
+- (PBBBSReward_Builder*) setBonus:(int32_t) value {
+  result.hasBonus = YES;
+  result.bonus = value;
+  return self;
+}
+- (PBBBSReward_Builder*) clearBonus {
+  result.hasBonus = NO;
+  result.bonus = 0;
+  return self;
+}
+- (BOOL) hasStatus {
+  return result.hasStatus;
+}
+- (int32_t) status {
+  return result.status;
+}
+- (PBBBSReward_Builder*) setStatus:(int32_t) value {
+  result.hasStatus = YES;
+  result.status = value;
+  return self;
+}
+- (PBBBSReward_Builder*) clearStatus {
+  result.hasStatus = NO;
+  result.status = 0;
+  return self;
+}
+- (BOOL) hasWinner {
+  return result.hasWinner;
+}
+- (PBBBSUser*) winner {
+  return result.winner;
+}
+- (PBBBSReward_Builder*) setWinner:(PBBBSUser*) value {
+  result.hasWinner = YES;
+  result.winner = value;
+  return self;
+}
+- (PBBBSReward_Builder*) setWinnerBuilder:(PBBBSUser_Builder*) builderForValue {
+  return [self setWinner:[builderForValue build]];
+}
+- (PBBBSReward_Builder*) mergeWinner:(PBBBSUser*) value {
+  if (result.hasWinner &&
+      result.winner != [PBBBSUser defaultInstance]) {
+    result.winner =
+      [[[PBBBSUser builderWithPrototype:result.winner] mergeFrom:value] buildPartial];
+  } else {
+    result.winner = value;
+  }
+  result.hasWinner = YES;
+  return self;
+}
+- (PBBBSReward_Builder*) clearWinner {
+  result.hasWinner = NO;
+  result.winner = [PBBBSUser defaultInstance];
+  return self;
+}
+- (BOOL) hasAwardDate {
+  return result.hasAwardDate;
+}
+- (int32_t) awardDate {
+  return result.awardDate;
+}
+- (PBBBSReward_Builder*) setAwardDate:(int32_t) value {
+  result.hasAwardDate = YES;
+  result.awardDate = value;
+  return self;
+}
+- (PBBBSReward_Builder*) clearAwardDate {
+  result.hasAwardDate = NO;
+  result.awardDate = 0;
+  return self;
+}
+@end
+
 @interface PBBBSPost ()
 @property (retain) NSString* postId;
 @property (retain) NSString* boardId;
@@ -972,6 +1294,7 @@ static PBBBSContent* defaultPBBBSContentInstance = nil;
 @property int32_t modifyDate;
 @property (retain) PBBBSUser* createUser;
 @property (retain) PBBBSContent* content;
+@property (retain) PBBBSReward* reward;
 @end
 
 @implementation PBBBSPost
@@ -1046,12 +1369,20 @@ static PBBBSContent* defaultPBBBSContentInstance = nil;
   hasContent_ = !!value;
 }
 @synthesize content;
+- (BOOL) hasReward {
+  return !!hasReward_;
+}
+- (void) setHasReward:(BOOL) value {
+  hasReward_ = !!value;
+}
+@synthesize reward;
 - (void) dealloc {
   self.postId = nil;
   self.boardId = nil;
   self.appId = nil;
   self.createUser = nil;
   self.content = nil;
+  self.reward = nil;
   [super dealloc];
 }
 - (id) init {
@@ -1066,6 +1397,7 @@ static PBBBSContent* defaultPBBBSContentInstance = nil;
     self.modifyDate = 0;
     self.createUser = [PBBBSUser defaultInstance];
     self.content = [PBBBSContent defaultInstance];
+    self.reward = [PBBBSReward defaultInstance];
   }
   return self;
 }
@@ -1118,6 +1450,11 @@ static PBBBSPost* defaultPBBBSPostInstance = nil;
   if (!self.content.isInitialized) {
     return NO;
   }
+  if (self.hasReward) {
+    if (!self.reward.isInitialized) {
+      return NO;
+    }
+  }
   return YES;
 }
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
@@ -1150,6 +1487,9 @@ static PBBBSPost* defaultPBBBSPostInstance = nil;
   }
   if (self.hasContent) {
     [output writeMessage:10 value:self.content];
+  }
+  if (self.hasReward) {
+    [output writeMessage:11 value:self.reward];
   }
   [self.unknownFields writeToCodedOutputStream:output];
 }
@@ -1189,6 +1529,9 @@ static PBBBSPost* defaultPBBBSPostInstance = nil;
   }
   if (self.hasContent) {
     size += computeMessageSize(10, self.content);
+  }
+  if (self.hasReward) {
+    size += computeMessageSize(11, self.reward);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -1295,6 +1638,9 @@ static PBBBSPost* defaultPBBBSPostInstance = nil;
   if (other.hasContent) {
     [self mergeContent:other.content];
   }
+  if (other.hasReward) {
+    [self mergeReward:other.reward];
+  }
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }
@@ -1364,6 +1710,15 @@ static PBBBSPost* defaultPBBBSPostInstance = nil;
         }
         [input readMessage:subBuilder extensionRegistry:extensionRegistry];
         [self setContent:[subBuilder buildPartial]];
+        break;
+      }
+      case 90: {
+        PBBBSReward_Builder* subBuilder = [PBBBSReward builder];
+        if (self.hasReward) {
+          [subBuilder mergeFrom:self.reward];
+        }
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self setReward:[subBuilder buildPartial]];
         break;
       }
     }
@@ -1555,6 +1910,36 @@ static PBBBSPost* defaultPBBBSPostInstance = nil;
 - (PBBBSPost_Builder*) clearContent {
   result.hasContent = NO;
   result.content = [PBBBSContent defaultInstance];
+  return self;
+}
+- (BOOL) hasReward {
+  return result.hasReward;
+}
+- (PBBBSReward*) reward {
+  return result.reward;
+}
+- (PBBBSPost_Builder*) setReward:(PBBBSReward*) value {
+  result.hasReward = YES;
+  result.reward = value;
+  return self;
+}
+- (PBBBSPost_Builder*) setRewardBuilder:(PBBBSReward_Builder*) builderForValue {
+  return [self setReward:[builderForValue build]];
+}
+- (PBBBSPost_Builder*) mergeReward:(PBBBSReward*) value {
+  if (result.hasReward &&
+      result.reward != [PBBBSReward defaultInstance]) {
+    result.reward =
+      [[[PBBBSReward builderWithPrototype:result.reward] mergeFrom:value] buildPartial];
+  } else {
+    result.reward = value;
+  }
+  result.hasReward = YES;
+  return self;
+}
+- (PBBBSPost_Builder*) clearReward {
+  result.hasReward = NO;
+  result.reward = [PBBBSReward defaultInstance];
   return self;
 }
 @end
