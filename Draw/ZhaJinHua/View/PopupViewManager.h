@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "ChipsSelectView.h"
+#import "ZJHCardTypesView.h"
 
 @interface PopupViewManager : NSObject
 
@@ -19,5 +20,11 @@
                           delegate:(id<ChipsSelectViewProtocol>)delegate;
 
 - (void)dismissChipsSelectView;
+
+- (void)popupCardTypesWithCardType:(PBZJHCardType)cardType
+                            atView:(UIView *)atView
+                            inView:(UIView *)inView;
+
+- (void)dismissCardTypesView;
 
 @end

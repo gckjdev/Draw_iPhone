@@ -83,4 +83,5 @@
 - (UIImage *)moneyTreePopupMessageBackground;
 
 - (UIImage *)zjhCardTypesNoteBgImage;
+- (UIImage *)specialCardTypeImage;
 @end

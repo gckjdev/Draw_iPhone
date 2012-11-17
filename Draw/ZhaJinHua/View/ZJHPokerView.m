@@ -18,7 +18,7 @@
 #define BOMB_BUTTON_WIDTH [DeviceDetection isIPAD] ? 54 : 27
 #define BOMB_BUTTON_HEIGHT [DeviceDetection isIPAD] ? 64 : 32
 
-#define CARD_TYPE_STRING_FONT [UIFont boldSystemFontOfSize:([DeviceDetection isIPAD] ? 21 :13)]
+#define CARD_TYPE_STRING_FONT [UIFont boldSystemFontOfSize:([DeviceDetection isIPAD] ? 21 :12)]
 
 @interface ZJHPokerView ()
 {

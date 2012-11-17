@@ -8,15 +8,16 @@
 
 #import <UIKit/UIKit.h>
 #import "ZhaJinHua.pb.h"
+#import "RRSGlowLabel.h"
 
 @interface ZJHCardTypesView : UIView
 @property (retain, nonatomic) IBOutlet UIImageView *bgImageView;
-@property (retain, nonatomic) IBOutlet UILabel *threeOfAKindLabel;
-@property (retain, nonatomic) IBOutlet UILabel *straightFlushLabel;
-@property (retain, nonatomic) IBOutlet UILabel *flushLabel;
-@property (retain, nonatomic) IBOutlet UILabel *straightLabel;
-@property (retain, nonatomic) IBOutlet UILabel *pairLabel;
-@property (retain, nonatomic) IBOutlet UILabel *highCardLabel;
+@property (retain, nonatomic) IBOutlet RRSGlowLabel *threeOfAKindLabel;
+@property (retain, nonatomic) IBOutlet RRSGlowLabel *straightFlushLabel;
+@property (retain, nonatomic) IBOutlet RRSGlowLabel *flushLabel;
+@property (retain, nonatomic) IBOutlet RRSGlowLabel *straightLabel;
+@property (retain, nonatomic) IBOutlet RRSGlowLabel *pairLabel;
+@property (retain, nonatomic) IBOutlet RRSGlowLabel *highCardLabel;
 
 + (UIView *)cardTypesViewWithCardType:(PBZJHCardType)cardType;
 
