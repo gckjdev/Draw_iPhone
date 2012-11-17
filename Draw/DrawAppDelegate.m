@@ -57,6 +57,10 @@
 #import "FeedManager.h"
 
 #import "MyPaintManager.h"
+
+#import "PPSNSIntegerationService.h"
+#import "PPSinaWeiboService.h"
+
 NSString* GlobalGetServerURL()
 {    
     return [ConfigManager getAPIServerURL];
@@ -263,6 +267,12 @@ NSString* GlobalGetBoardServerURL()
     self.window.rootViewController = resourceTestController;
     //*/
     
+    // for weibo testing
+    PPSinaWeiboService* sinaWeiboService = [[PPSinaWeiboService alloc] initWithAppKey:[GameApp sinaAppKey]
+                                                                            appSecret:[GameApp sinaAppSecret]
+                                                                       appRedirectURI:[GameApp sinaAppRedirectURI]];
+    [[PPSNSIntegerationService defaultService] addSNS:sinaWeiboService];
+    
     [self.window makeKeyAndVisible];
     
     // Fetch Server List At Background
@@ -403,7 +413,9 @@ NSString* GlobalGetBoardServerURL()
 
 - (BOOL)handleURL:(NSURL*)url
 {
-    if ([[url absoluteString] hasPrefix:@"wx"]){
+    if ([[PPSNSIntegerationService defaultService] handleOpenURL:url]){        
+    }
+    else if ([[url absoluteString] hasPrefix:@"wx"]){
         return [WXApi handleOpenURL:url delegate:self];;
     }
     return [[[FacebookSNSService defaultService] facebook] handleOpenURL:url];
