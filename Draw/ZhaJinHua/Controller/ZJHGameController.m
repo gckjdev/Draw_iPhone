@@ -627,7 +627,6 @@ compareCardWith:(NSString*)targetUserId
     ZJHPokerView* otherPokerView = [self getPokersViewByUserId:targetUserId];
     CGPoint pokerViewOrgPoint = pokerView.center;
     CGPoint otherPokerViewOrgPoint = otherPokerView.center;
-    _isComparing = YES;
     
     [UIView animateWithDuration:1 animations:^{
         pokerView.layer.position = CGPointMake(self.view.center.x, self.view.center.y - COMPARE_CARD_OFFSET);
@@ -1006,11 +1005,6 @@ compareCardWith:(NSString*)targetUserId
     self.autoBetButton.selected = [_gameService isMeAutoBet];
     [self.autoBetButton setTitleColor:(self.autoBetButton.userInteractionEnabled ? TITLE_COLOR_WHEN_ENABLE : TITLE_COLOR_WHEN_DISABLE) forState:UIControlStateNormal];
     [self.autoBetButton setBackgroundImage:(self.autoBetButton.userInteractionEnabled ? [_imageManager autoBetBtnBgImage] : [_imageManager autoBetBtnDisableBgImage]) forState:UIControlStateNormal];
-    
-    if ([_gameService isMyTurn]) {
-//        PPDebug(@"[_gameService canICompareCard] = %d", [_gameService canICompareCard]);
-//        PPDebug(@"self.isComparing = %d", self.isComparing);
-    }
     
     self.compareCardButton.userInteractionEnabled = [_gameService canICompareCard] && !self.isComparing;
     [self.compareCardButton setTitleColor:(self.compareCardButton.userInteractionEnabled ? TITLE_COLOR_WHEN_ENABLE : TITLE_COLOR_WHEN_DISABLE) forState:UIControlStateNormal];
