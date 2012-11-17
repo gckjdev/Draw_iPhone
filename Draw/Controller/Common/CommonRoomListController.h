@@ -23,7 +23,7 @@ typedef enum {
 typedef enum {
     canJoinGame = 0,
     NotEnoughCoin
-}JoinGameErrorCode;
+}PrejoinGameErrorCode;
 
 @class PBGameSession;
 @class CommonSearchView;
@@ -48,13 +48,14 @@ typedef enum {
 
 - (void)didQueryUser:(NSString *)userId;
 
-- (CGPoint)searchViewPoint;
-- (void)updateOnlineUserCount;
-- (void)enterGame;
+- (CGPoint)getSearchViewPosition;
+- (void)handleUpdateOnlineUserCount;
+- (void)handleDidJoinGame;
 - (void)handleNoRoomMessage;
-- (JoinGameErrorCode)meetJoinGameCondition;
-- (void)handleJoinGameError:(JoinGameErrorCode)errorCode;
-- (void)updateRoomList;
-- (void)connectServerSuccessfully;
+- (PrejoinGameErrorCode)handlePrejoinGameCheck;
+- (PrejoinGameErrorCode)handlePrejoinGameCheckBySessionId:(int)sessionId;
+- (void)handleJoinGameError:(PrejoinGameErrorCode)errorCode;
+- (void)handleUpdateRoomList;
+- (void)handleDidConnectServer;
 
 @end

@@ -99,20 +99,42 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (CGPoint)searchViewPoint
+- (CGPoint)getSearchViewPosition
 {
     return CGPointMake(self.view.center.x, self.friendRoomButton.center.y);
 }
-- (void)updateOnlineUserCount
+- (void)handleUpdateOnlineUserCount
 {
     NSString* userCount = [NSString stringWithFormat:NSLS(@"kOnlineUser"),[_gameService onlineUserCount]];
     [self.titleFontButton setTitle:[NSString stringWithFormat:@"%@(%@)",[self title], userCount] forState:UIControlStateNormal];
 }
-- (void)enterGame
+- (void)handleDidJoinGame
 {
     ZJHGameController* vc = [[[ZJHGameController alloc] init] autorelease];
     [self.navigationController pushViewController:vc animated:YES];
 }
+- (PrejoinGameErrorCode)handlePrejoinGameCheck
+{
+    return canJoinGame;
+}
+- (PrejoinGameErrorCode)handlePrejoinGameCheckBySessionId:(int)sessionId
+{
+    return canJoinGame;
+}
+- (void)handleJoinGameError:(PrejoinGameErrorCode)errorCode
+{
+    
+}
+- (void)handleUpdateRoomList
+{
+    self.emptyListTips.hidden = YES;
+}
+- (void)handleDidConnectServer
+{
+    self.fastEntryButton.enabled = YES;
+    self.createRoomButton.enabled = YES;
+}
+
 - (void)handleNoRoomMessage
 {
     self.emptyListTips.hidden = NO;
@@ -122,25 +144,6 @@
     if (_searchView) {
         [self.emptyListTips setText:NSLS(@"kSearchEmpty")];
     }
-}
-- (JoinGameErrorCode)meetJoinGameCondition
-{
-    return canJoinGame;
-}
-- (void)handleJoinGameError:(JoinGameErrorCode)errorCode
-{
-    
-}
-
-- (void)updateRoomList
-{
-    self.emptyListTips.hidden = YES;
-}
-
-- (void)connectServerSuccessfully
-{
-    self.fastEntryButton.enabled = YES;
-    self.createRoomButton.enabled = YES;
 }
 
 - (void)dealloc {
