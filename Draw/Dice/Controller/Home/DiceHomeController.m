@@ -44,6 +44,7 @@
 #import "ZJHGameService.h"
 #import "ZJHGameController.h"
 #import "PPResourceService.h"
+#import "NotificationName.h"
 #import "ZJHRoomListController.h"
 
 #define KEY_LAST_AWARD_DATE     @"last_award_day"
@@ -317,7 +318,7 @@
     [self.view addSubview:diceBtn];
     //[diceBtn addTarget:self action:@selector(clickAwardDice:) forControlEvents:UIControlEventTouchUpInside];
     diceBtn.tag = AWARD_DICE_TAG;
-    CAAnimation* rolling = [AnimationManager rotationAnimationWithRoundCount:-50 duration:25];
+    CAAnimation* rolling = [AnimationManager rotateAnimationWithRoundCount:-50 duration:25];
     rolling.removedOnCompletion = YES;
     rolling.delegate = self;
     [diceBtn.layer addAnimation:rolling forKey:@"roll"];

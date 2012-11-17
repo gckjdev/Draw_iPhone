@@ -256,7 +256,7 @@
     }
     [self.popupButton setTitle:message forState:UIControlStateNormal];
     [self.popupButton setHidden:NO];
-    CAAnimation *animation = [AnimationManager missingAnimationWithDuration:5];
+    CAAnimation *animation = [AnimationManager disappearAnimationWithDuration:5];
     [self.popupButton.layer addAnimation:animation forKey:@"DismissAnimation"];
     
 }

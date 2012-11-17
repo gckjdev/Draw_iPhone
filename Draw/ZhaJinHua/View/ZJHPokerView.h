@@ -61,7 +61,9 @@ typedef enum {
 - (void)makeSectorShape:(ZJHPokerSectorType)sectorType animation:(BOOL)animation;
 
 // 自己看牌时，调用这个接口，把自己三张牌都翻过来。
-- (void)faceUpCards:(ZJHPokerXMotionType)xMotiontype animation:(BOOL)animation;
+- (void)faceUpCardsWithCardType:(NSString *)cardType
+                    xMotiontype:(ZJHPokerXMotionType)xMotiontype
+                      animation:(BOOL)animation;
 
 // 别人亮牌时，调用这个接口，把自己那张亮的牌翻过来。
 - (void)faceUpCard:(int)cardId animation:(BOOL)animation;

@@ -59,8 +59,8 @@
     if (self) {
         [self init];
         
-        int pointSize = [DeviceDetection isIPAD]?32:16;
-        _rewardView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height/2)];
+        int pointSize = [DeviceDetection isIPAD]?26:13;
+        _rewardView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height/4)];
         _rewardCoinView = [[UIImageView alloc] initWithImage:[ShareImageManager defaultManager].rewardCoin];
         [_rewardCoinView setFrame:CGRectMake(_rewardView.frame.size.width/2-_rewardView.frame.size.height, 0, _rewardView.frame.size.height, _rewardView.frame.size.height)];
         _rewardCoinLabel = [[UILabel alloc] initWithFrame:CGRectMake(_rewardView.frame.size.width/2, 0, _rewardView.frame.size.width, _rewardView.frame.size.height)];
@@ -145,7 +145,7 @@
     lightLayer.position = CGPointMake(coinLayer.position.x + coinLayer.bounds.size.width/4, coinLayer.position.y + coinLayer.bounds.size.height/4);
     [self.layer addSublayer:lightLayer];
     
-    CAAnimation* shining = [AnimationManager missingAnimationWithDuration:1];
+    CAAnimation* shining = [AnimationManager disappearAnimationWithDuration:1];
     shining.autoreverses = YES;
     shining.repeatCount = 1000;
     [lightLayer addAnimation:shining forKey:nil];

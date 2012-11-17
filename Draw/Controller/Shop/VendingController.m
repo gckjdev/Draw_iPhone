@@ -320,15 +320,15 @@ static VendingController* staticVendingController = nil;
                                                              delegate:self 
                                                      removeCompeleted:NO];
     
-    CAAnimation* rolling = [AnimationManager rotationAnimationWithRoundCount:1 
-                                                                    duration:TIME_FROME_CENTER_TO_SIDE];
+    CAAnimation* rolling = [AnimationManager rotateAnimationWithRoundCount:1 
+                                                                  duration:TIME_FROME_CENTER_TO_SIDE];
     rolling.delegate = self;
     rolling.beginTime =FALLING_TIME;
     rolling.autoreverses = YES;
     rolling.removedOnCompletion = NO;
     
-    CAAnimation* rRolling = [AnimationManager rotationAnimationWithRoundCount:-1 
-                                                                     duration:TIME_FROME_CENTER_TO_SIDE];
+    CAAnimation* rRolling = [AnimationManager rotateAnimationWithRoundCount:-1 
+                                                                   duration:TIME_FROME_CENTER_TO_SIDE];
     rRolling.delegate = self;
     rRolling.beginTime =FALLING_TIME + 2*TIME_FROME_CENTER_TO_SIDE;
     rRolling.autoreverses = YES;
@@ -366,7 +366,7 @@ static VendingController* staticVendingController = nil;
     enLarge.beginTime = moveToCenter.beginTime + moveToCenter.duration;
     //enLarge.removedOnCompletion = NO;
     
-    CAAnimation* disappear = [AnimationManager missingAnimationWithDuration:ENLARGE_DURATION];
+    CAAnimation* disappear = [AnimationManager disappearAnimationWithDuration:ENLARGE_DURATION];
     disappear.beginTime = moveToCenter.beginTime + moveToCenter.duration;
     disappear.removedOnCompletion = NO;
     

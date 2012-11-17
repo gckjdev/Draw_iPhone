@@ -30,6 +30,8 @@
 #import "ZJHScreenConfig.h"
 #import "MoneyTreeView.h"
 #import "AnimationManager.h"
+#import "RoomTitleView.h"
+#import "NotificationName.h"
 
 #define AVATAR_VIEW_TAG_OFFSET   4000
 #define AVATAR_PLACE_VIEW_OFFSET    8000
@@ -168,44 +170,16 @@
     [self.settingButton setBackgroundImage:[_imageManager settingButtonImage] forState:UIControlStateNormal] ;
     [self.chatButton setBackgroundImage:[_imageManager chatButtonImage] forState:UIControlStateNormal] ;
     self.vsImageView.image = [_imageManager vsImage];
-    
     [self.autoBetButton setBackgroundImage:[_imageManager autoBetBtnOnBgImage] forState:UIControlStateSelected];
-    [self updateZJHButtons];
-    
+    self.cardTypeBgImageView.image = [_imageManager cardTypeBgImage];
+
     for (int tag = USER_TOTAL_BET_BG_IMAGE_VIEW_OFFSET; tag < USER_TOTAL_BET_BG_IMAGE_VIEW_OFFSET + UserPositionMax; tag ++) {
         [((UIImageView *)[self.view viewWithTag:tag]) setImage:[_imageManager userTotalBetBgImage]];
     }
 }
 
-- (void)viewDidLoad
+- (void)setBeautifulLabels
 {
-    [super viewDidLoad];
-    
-    
-    // Do any additional setup after loading the view from its nib.
-    
-    [self setImages];
-    
-    //demonstrate inner shadow
-//    self.roomNameLabel.shadowColor = nil;
-//    self.roomNameLabel.shadowOffset = CGSizeMake(0.0f, 2.0f);
-//    self.roomNameLabel.shadowColor = [UIColor colorWithWhite:0.0f alpha:0.75f];
-//    self.roomNameLabel.shadowBlur = 5.0f;
-    
-    self.roomNameLabel.shadowColor = [UIColor colorWithWhite:1.0f alpha:0.8f];
-    self.roomNameLabel.shadowOffset = CGSizeMake(0.5f, 0.5f);
-    self.roomNameLabel.shadowBlur = 1.0f;
-    self.roomNameLabel.innerShadowColor = [UIColor colorWithWhite:0.0f alpha:0.8f];
-    self.roomNameLabel.innerShadowOffset = CGSizeMake(1.0f, 2.0f);
-    self.roomNameLabel.text = [_gameService getRoomName];
-    
-    //demonstrate gradient fill
-    self.totalBetLabel.gradientStartColor = [UIColor colorWithRed:254.0/255.0 green:241.0/255.0 blue:67.0/255.0 alpha:1];
-    self.totalBetLabel.gradientEndColor = [UIColor colorWithRed:238.0/255.0 green:159.0/255.0 blue:7.0/255.0 alpha:1];
-    
-    self.singleBetLabel.gradientStartColor = [UIColor colorWithRed:187.0/255.0 green:252.0/255.0 blue:252.0/255.0 alpha:1];
-    self.singleBetLabel.gradientEndColor = [UIColor colorWithRed:0 green:1 blue:1 alpha:1];
-
     self.totalBetNoteLabel.shadowColor = nil;
     self.totalBetNoteLabel.shadowOffset = CGSizeMake(0.0f, 2.0f);
     self.totalBetNoteLabel.shadowColor = [UIColor colorWithWhite:0.0f alpha:0.75f];
@@ -216,44 +190,72 @@
     self.singleBetNoteLabel.shadowColor = [UIColor colorWithWhite:0.0f alpha:0.75f];
     self.singleBetNoteLabel.shadowBlur = 5.0f;
     
-    self.cardTypeLabel.gradientStartColor = [UIColor colorWithRed:254.0/255.0 green:241.0/255.0 blue:67.0/255.0 alpha:1];
-    self.cardTypeLabel.gradientEndColor = [UIColor colorWithRed:238.0/255.0 green:159.0/255.0 blue:7.0/255.0 alpha:1];
-    
+    self.totalBetLabel.gradientStartColor = [UIColor colorWithRed:254.0/255.0 green:241.0/255.0 blue:67.0/255.0 alpha:1];
+    self.totalBetLabel.gradientEndColor = [UIColor colorWithRed:238.0/255.0 green:159.0/255.0 blue:7.0/255.0 alpha:1];
     self.totalBetLabel.shadowColor = nil;
     self.totalBetLabel.shadowOffset = CGSizeMake(0.0f, 2.0f);
     self.totalBetLabel.shadowColor = [UIColor colorWithWhite:0.0f alpha:0.75f];
     self.totalBetLabel.shadowBlur = 5.0f;
     
-    self.cardTypeBgImageView.image = [_imageManager cardTypeBgImage];
+    self.singleBetLabel.gradientStartColor = [UIColor colorWithRed:187.0/255.0 green:252.0/255.0 blue:252.0/255.0 alpha:1];
+    self.singleBetLabel.gradientEndColor = [UIColor colorWithRed:0 green:1 blue:1 alpha:1];
+    self.singleBetLabel.shadowColor = nil;
+    self.singleBetLabel.shadowOffset = CGSizeMake(0.0f, 2.0f);
+    self.singleBetLabel.shadowColor = [UIColor colorWithWhite:0.0f alpha:0.75f];
+    self.singleBetLabel.shadowBlur = 5.0f;
     
+    self.cardTypeLabel.gradientStartColor = [UIColor colorWithRed:254.0/255.0 green:241.0/255.0 blue:67.0/255.0 alpha:1];
+    self.cardTypeLabel.gradientEndColor = [UIColor colorWithRed:238.0/255.0 green:159.0/255.0 blue:7.0/255.0 alpha:1];
+    self.cardTypeLabel.shadowColor = nil;
+    self.cardTypeLabel.shadowOffset = CGSizeMake(0.0f, 2.0f);
+    self.cardTypeLabel.shadowColor = [UIColor colorWithWhite:0.0f alpha:0.75f];
+    self.cardTypeLabel.shadowBlur = 5.0f;
+}
+
+- (void)initMoneyTree
+{
+    self.moneyTreeView = [MoneyTreeView createMoneyTreeView];
+    self.moneyTreeView.growthTime = 10;
+    [self.moneyTreeView startGrowing];
+    [self.moneyTreeView showInView:self.moneyTreeHolder];
+}
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    
+    // Do any additional setup after loading the view from its nib.
+    
+    [self setImages];
+    [self setBeautifulLabels];
+
+    // room title.
+    [RoomTitleView showRoomTitle:[_gameService getRoomName]inView:self.view];
+    
+    // dealer view.
+    self.dealerView.delegate = self;
+    
+    // avatars.
     [self initAllAvatars];
     [self updateAllUsersAvatar];
     
-    // hidden views below
+    // total bet and single bet.
     [self updateTotalBetAndSingleBet];
-
-    [self hideAllUserTotalBet];
     
-    [self updateView];
-    
-    self.dealerView.delegate = self;
-    
-    self.moneyTreeView = [MoneyTreeView createMoneyTreeView];
-    self.moneyTreeView.growthTime = 10;
-    [self.moneyTreeView growMoneyTree];
-    [self.view addSubview:self.moneyTreeView];
-    [self.moneyTreeView setFrame:self.moneyTreeHolder.frame];
-    
-    [_audioManager setBackGroundMusicWithURL:[_soundManager gameBGM]];
-}
-
-- (void)updateView
-{
-    if ([_gameService gameState] == nil) {
-        return;
+    // pokers and user bet.
+    if ([_gameService gameState] != nil) {
+        [self updateAllUsersPokers];
+        [self updateAllUserTotalBet];
     }
-    [self updateAllUsersPokers];
-    [self updateAllUserTotalBet];
+
+    // money tree.
+    [self initMoneyTree];
+    
+    // operation buttons.
+    [self updateZJHButtons];
+    
+    // background music.
+    [_audioManager setBackGroundMusicWithURL:[_soundManager gameBGM]];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -366,6 +368,7 @@
 - (void)bet:(BOOL)autoBet
 {
     [[self getMyAvatarView] stopReciprocal];
+    [self disableAllZJHButtons];
     [_gameService bet:autoBet];
 }
 
@@ -394,22 +397,19 @@
 - (IBAction)clickCompareCardButton:(id)sender
 {
     self.isComparing = YES;
-    [self disableZJHButtons];
+    [self updateZJHButtons];
 }
 
 - (IBAction)clickCheckCardButton:(id)sender
 {
-    [[self getMyPokersView] faceUpCards:ZJHPokerXMotionTypeNone animation:YES];
-    [self showMyCardType];
     [_gameService checkCard];
 }
 
 - (IBAction)clickFoldCardButton:(id)sender
 {
     [[self getMyAvatarView] stopReciprocal];
-    [[self getMyPokersView] foldCards:YES];
+    [self disableAllZJHButtons];
     [_gameService foldCard];
-    [self setIsComparing:NO];
 }
 
 - (IBAction)clickQuitButton:(id)sender
@@ -437,12 +437,7 @@
     }
     [_audioManager playSoundByURL:soundURL];
     [_audioManager playSoundByURL:[_soundManager betSoundEffect]];
-
-    //    [_audioManager playSoundByURL:[_soundManager betSoundEffect]];
     
-    [self updateZJHButtons];
-    [self dismissAllPopupView];
-
     [self.betTable someBetFrom:[self getPositionByUserId:_userManager.userId]
                      chipValue:_gameService.gameState.singleBet
                          count:[_gameService betCountOfUser:_userManager.userId]];
@@ -454,6 +449,11 @@
 
 - (void)checkCardSuccess
 {
+    [[self getMyPokersView] faceUpCardsWithCardType:nil
+                                        xMotiontype:ZJHPokerXMotionTypeNone
+                                          animation:YES];
+    [self showMyCardType];
+    
     BOOL gender = [_userManager.gender isEqualToString:@"m"];
     [_audioManager playSoundByURL:[_soundManager checkCardHumanSound:gender]];
     [_audioManager playSoundByURL:[_soundManager checkCardSoundEffect]];
@@ -463,10 +463,9 @@
 
 - (void)foldCardSuccess
 {
+    [[self getMyPokersView] foldCards:YES];
     [_audioManager playSoundByURL:_soundManager.foldCardSoundEffect];
     [_audioManager playSoundByURL:[_soundManager foldCardHumanSound:[@"m" isEqualToString:_userManager.gender]]];
-    [self updateZJHButtons];
-    [self dismissAllPopupView];
 }
 
 - (void)showCardSuccess
@@ -521,6 +520,18 @@
     [self allBet];
 }
 
+- (void)showAllUserGameResult
+{
+    for (PBGameUser* user in _gameService.session.userList) {
+        ZJHAvatarView* avatar = [self getAvatarViewByUserId:user.userId];
+        if ([[_gameService winner] isEqualToString:user.userId]) {
+            [avatar showWinCoins:_gameService.gameState.totalBet];
+        } else {
+            [avatar showLoseCoins:[_gameService totalBetOfUser:user.userId]];
+        }
+    }
+}
+
 - (void)gameOver
 {
     [self updateZJHButtons];
@@ -529,6 +540,7 @@
     [self someoneWon:[_gameService winner]];
 
     [self faceupUserCards];
+    [self showAllUserGameResult];
     [self performSelector:@selector(resetGame) withObject:nil afterDelay:9.0];
 }
 
@@ -543,7 +555,11 @@
 - (void)faceupUserCards
 {
     for (NSString *userId in [_gameService.gameState.usersInfo allKeys]) {
-        [[self getPokersViewByUserId:userId] faceUpCards:[self getPokerXMotionTypeByPosition:[self getPositionByUserId:userId]] animation:YES];
+        if (_cardTypeLabel.hidden == YES) {
+            [self showMyCardType];
+        }
+        NSString *cardType = [_userManager isMe:userId] ? nil : [_gameService cardTypeOfUser:userId];
+        [[self getPokersViewByUserId:userId] faceUpCardsWithCardType:cardType xMotiontype:[self getPokerXMotionTypeByPosition:[self getPositionByUserId:userId]] animation:YES];
     }
 }
 
@@ -611,7 +627,7 @@ compareCardWith:(NSString*)targetUserId
     ZJHPokerView* otherPokerView = [self getPokersViewByUserId:targetUserId];
     CGPoint pokerViewOrgPoint = pokerView.center;
     CGPoint otherPokerViewOrgPoint = otherPokerView.center;
-    _isComparing = YES;
+//    _isComparing = YES;
     
     [UIView animateWithDuration:1 animations:^{
         pokerView.layer.position = CGPointMake(self.view.center.x, self.view.center.y - COMPARE_CARD_OFFSET);
@@ -661,14 +677,13 @@ compareCardWith:(NSString*)targetUserId
 - (void)showCompareCardResult:(NSArray*)userResultList initiator:(NSString*)initiatorId
 {
     [self clearAllAvatarReciprocals];
-    self.isComparing = NO;
     if (userResultList.count == 2 && !_isShowingComparing) {
         _isShowingComparing = YES;
         PBUserResult* result1 = [userResultList objectAtIndex:0];
         PBUserResult* result2 = [userResultList objectAtIndex:1];
         
         if ([result1.userId isEqualToString:_userManager.userId] || [result2.userId isEqualToString:_userManager.userId]) {
-            [self disableCheckCardAndFoldCardButtons];
+            [self disableAllZJHButtons];
         }
         
         [self someone:initiatorId
@@ -761,7 +776,6 @@ compareCardWith:(NSString*)targetUserId
     for (NSString* userId in _gameService.compareUserIdList) {
         ZJHPokerView* pokerView = [self getPokersViewByUserId:userId];
         [pokerView showBomb];
-
     }
 }
 
@@ -925,11 +939,6 @@ compareCardWith:(NSString*)targetUserId
 - (void)reciprocalEnd:(ZJHAvatarView*)view
 {
     PPDebug(@"################# [controller: %@] TIME OUT: auto fold ##################", [self description]);
-    if (_isComparing) {
-        [self bet:NO];
-        self.isComparing = NO;
-        return;
-    }
     [self clickFoldCardButton:nil];
 }
 
@@ -953,7 +962,8 @@ compareCardWith:(NSString*)targetUserId
 - (void)didClickBombButton:(ZJHPokerView *)zjhPokerView
 {
     ZJHAvatarView* avatar = (ZJHAvatarView*)[self.view viewWithTag:(AVATAR_VIEW_TAG_OFFSET+zjhPokerView.tag - POKERS_VIEW_TAG_OFFSET)];
-    //    [self someone:[_userManager userId] compareCardWith:avatar.userInfo.userId didWin:YES];
+    [[self getMyAvatarView] stopReciprocal];
+    [self disableAllZJHButtons];
     [self compareToUser:avatar.userInfo.userId];
 }
 
@@ -961,9 +971,8 @@ compareCardWith:(NSString*)targetUserId
 
 - (void)didSelectChip:(int)chipValue
 {
-    PPDebug(@"didSelectChip: %d", chipValue);
     [[self getMyAvatarView] stopReciprocal];
-    [_popupViewManager dismissChipsSelectView];
+    [self disableAllZJHButtons];
     [_gameService raiseBet:chipValue];
 }
 
@@ -973,35 +982,18 @@ compareCardWith:(NSString*)targetUserId
     [_popupViewManager dismissChipsSelectView];
 }
 
-- (void)disableZJHButtons
+- (void)enableFoldCardButton
 {
-    self.betButton.userInteractionEnabled = NO;
-    [self.betButton setTitleColor:TITLE_COLOR_WHEN_DISABLE forState:UIControlStateNormal];
-    [self.betButton setBackgroundImage:[_imageManager betBtnDisableBgImage] forState:UIControlStateNormal];
-    
-    self.raiseBetButton.userInteractionEnabled = NO;
-    [self.raiseBetButton setTitleColor:TITLE_COLOR_WHEN_DISABLE forState:UIControlStateNormal];
-    [self.raiseBetButton setBackgroundImage:[_imageManager raiseBetBtnDisableBgImage] forState:UIControlStateNormal];
-    
-    self.autoBetButton.userInteractionEnabled = NO;
-    [self.autoBetButton setTitleColor:TITLE_COLOR_WHEN_DISABLE forState:UIControlStateNormal];
-    [self.autoBetButton setBackgroundImage:[_imageManager autoBetBtnDisableBgImage] forState:UIControlStateNormal];
-    
-    self.compareCardButton.userInteractionEnabled = NO;
-    [self.compareCardButton setTitleColor:TITLE_COLOR_WHEN_DISABLE forState:UIControlStateNormal];
-    [self.compareCardButton setBackgroundImage:[_imageManager compareCardBtnDisableBgImage] forState:UIControlStateNormal];
-    
-    self.checkCardButton.userInteractionEnabled = NO;
-    [self.checkCardButton setTitleColor:TITLE_COLOR_WHEN_DISABLE forState:UIControlStateNormal];
-    [self.checkCardButton setBackgroundImage:[_imageManager checkCardBtnDisableBgImage] forState:UIControlStateNormal];
-    
-//    self.foldCardButton.userInteractionEnabled = NO;
-//    [self.foldCardButton setTitleColor:TITLE_COLOR_WHEN_DISABLE forState:UIControlStateNormal];
-//    [self.foldCardButton setBackgroundImage:[_imageManager foldCardBtnDisableBgImage] forState:UIControlStateNormal];
+    self.foldCardButton.userInteractionEnabled = YES;
+    [self.foldCardButton setTitleColor:TITLE_COLOR_WHEN_ENABLE forState:UIControlStateNormal];
+    [self.foldCardButton setBackgroundImage:[_imageManager foldCardBtnBgImage] forState:UIControlStateNormal];
 }
+
 
 - (void)updateZJHButtons
 {
+    [self dismissAllPopupView];
+    
     self.betButton.userInteractionEnabled = [_gameService canIBet];
     [self.betButton setTitleColor:(self.betButton.userInteractionEnabled ? TITLE_COLOR_WHEN_ENABLE : TITLE_COLOR_WHEN_DISABLE) forState:UIControlStateNormal];
     [self.betButton setBackgroundImage:(self.betButton.userInteractionEnabled ? [_imageManager betBtnBgImage] : [_imageManager betBtnDisableBgImage]) forState:UIControlStateNormal];
@@ -1015,21 +1007,46 @@ compareCardWith:(NSString*)targetUserId
     [self.autoBetButton setTitleColor:(self.autoBetButton.userInteractionEnabled ? TITLE_COLOR_WHEN_ENABLE : TITLE_COLOR_WHEN_DISABLE) forState:UIControlStateNormal];
     [self.autoBetButton setBackgroundImage:(self.autoBetButton.userInteractionEnabled ? [_imageManager autoBetBtnBgImage] : [_imageManager autoBetBtnDisableBgImage]) forState:UIControlStateNormal];
     
-    self.compareCardButton.userInteractionEnabled = [_gameService canICompareCard];
+    if ([_gameService isMyTurn]) {
+//        PPDebug(@"[_gameService canICompareCard] = %d", [_gameService canICompareCard]);
+//        PPDebug(@"self.isComparing = %d", self.isComparing);
+    }
+    
+    self.compareCardButton.userInteractionEnabled = [_gameService canICompareCard] && !self.isComparing;
     [self.compareCardButton setTitleColor:(self.compareCardButton.userInteractionEnabled ? TITLE_COLOR_WHEN_ENABLE : TITLE_COLOR_WHEN_DISABLE) forState:UIControlStateNormal];
     [self.compareCardButton setBackgroundImage:(self.compareCardButton.userInteractionEnabled ? [_imageManager compareCardBtnBgImage] : [_imageManager compareCardBtnDisableBgImage]) forState:UIControlStateNormal];
 
-    self.checkCardButton.userInteractionEnabled = [_gameService canICheckCard];
+    self.checkCardButton.userInteractionEnabled = [_gameService canICheckCard] && !self.dealerView.isDealing;
     [self.checkCardButton setTitleColor:(self.checkCardButton.userInteractionEnabled ? TITLE_COLOR_WHEN_ENABLE : TITLE_COLOR_WHEN_DISABLE) forState:UIControlStateNormal];
     [self.checkCardButton setBackgroundImage:(self.checkCardButton.userInteractionEnabled ? [_imageManager checkCardBtnBgImage] : [_imageManager checkCardBtnDisableBgImage]) forState:UIControlStateNormal];
 
-    self.foldCardButton.userInteractionEnabled = [_gameService canIFoldCard];
+    self.foldCardButton.userInteractionEnabled = [_gameService canIFoldCard] && !self.dealerView.isDealing;
     [self.foldCardButton setTitleColor:(self.foldCardButton.userInteractionEnabled ? TITLE_COLOR_WHEN_ENABLE : TITLE_COLOR_WHEN_DISABLE) forState:UIControlStateNormal];
     [self.foldCardButton setBackgroundImage:(self.foldCardButton.userInteractionEnabled ? [_imageManager foldCardBtnBgImage] : [_imageManager foldCardBtnDisableBgImage]) forState:UIControlStateNormal];
 }
 
-- (void)disableCheckCardAndFoldCardButtons
+- (void)disableAllZJHButtons
 {
+    [self dismissAllPopupView];
+    self.isComparing = NO;
+   
+    self.betButton.userInteractionEnabled = NO;
+    [self.betButton setTitleColor:TITLE_COLOR_WHEN_DISABLE forState:UIControlStateNormal];
+    [self.betButton setBackgroundImage:[_imageManager betBtnDisableBgImage] forState:UIControlStateNormal];
+    
+    self.raiseBetButton.userInteractionEnabled = NO;
+    [self.raiseBetButton setTitleColor:TITLE_COLOR_WHEN_DISABLE forState:UIControlStateNormal];
+    [self.raiseBetButton setBackgroundImage:[_imageManager raiseBetBtnDisableBgImage] forState:UIControlStateNormal];
+    
+    self.autoBetButton.userInteractionEnabled = NO;
+    self.autoBetButton.selected = [_gameService isMeAutoBet];
+    [self.autoBetButton setTitleColor:TITLE_COLOR_WHEN_DISABLE forState:UIControlStateNormal];
+    [self.autoBetButton setBackgroundImage:[_imageManager autoBetBtnDisableBgImage] forState:UIControlStateNormal];
+    
+    self.compareCardButton.userInteractionEnabled = NO;
+    [self.compareCardButton setTitleColor:TITLE_COLOR_WHEN_DISABLE forState:UIControlStateNormal];
+    [self.compareCardButton setBackgroundImage:[_imageManager compareCardBtnDisableBgImage] forState:UIControlStateNormal];
+    
     self.checkCardButton.userInteractionEnabled = NO;
     [self.checkCardButton setTitleColor:TITLE_COLOR_WHEN_DISABLE forState:UIControlStateNormal];
     [self.checkCardButton setBackgroundImage:[_imageManager checkCardBtnDisableBgImage] forState:UIControlStateNormal];
@@ -1050,31 +1067,13 @@ compareCardWith:(NSString*)targetUserId
 {
     _cardTypeBgImageView.hidden = NO;
     
-    CABasicAnimation * roateAni = [CABasicAnimation animationWithKeyPath:@"transform.rotation.z"];
-    roateAni.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionLinear];
-    roateAni.fromValue = [NSNumber numberWithFloat:0];
-    roateAni.toValue = [NSNumber numberWithFloat:(-M_PI * 2)];
-    roateAni.duration = 1 ;
-    roateAni.repeatCount = 2;
-    roateAni.removedOnCompletion = YES;
+    CAAnimation * roateAni = [AnimationManager circlingAnimationWithDirection:AntiClockWise duration:1 repeatedCount:2];
     
-    CABasicAnimation * caseInAni = [CABasicAnimation
-                                    animationWithKeyPath:@"opacity"];
-    caseInAni.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionLinear];
-    caseInAni.fromValue = [NSNumber numberWithInt:0.5];
-    caseInAni.toValue = [NSNumber numberWithInt:1];
-    caseInAni.duration = 1.0 ;
-    caseInAni.fillMode = kCAFillModeForwards;
+    CAAnimation * caseInAni = [AnimationManager appearAnimationFrom:0.5 to:1 duration:1.0];
     
-    CABasicAnimation * caseOutAni = [CABasicAnimation
-                                    animationWithKeyPath:@"opacity"];
-    caseOutAni.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionLinear];
-    caseOutAni.fromValue = [NSNumber numberWithInt:1];
-    caseOutAni.toValue = [NSNumber numberWithInt:0.5];
-    caseOutAni.duration = 1.0 ;
+    CAAnimation * caseOutAni = [AnimationManager disappearAnimationWithDuration:1.0];
     caseOutAni.beginTime = 1.0;
-    caseOutAni.fillMode = kCAFillModeForwards;
-    
+        
     CAAnimationGroup* animGroup = [CAAnimationGroup animation];
     animGroup.removedOnCompletion = YES;
     animGroup.duration = 2;
@@ -1086,8 +1085,6 @@ compareCardWith:(NSString*)targetUserId
     [_cardTypeBgImageView.layer addAnimation:animGroup forKey:nil];
     
     [self performSelector:@selector(showMyCardTypeString) withObject:nil afterDelay:animGroup.duration];
-    
-
 }
 
 - (void)showMyCardTypeString
@@ -1095,6 +1092,8 @@ compareCardWith:(NSString*)targetUserId
     _cardTypeBgImageView.hidden = YES;
     _cardTypeLabel.hidden = NO;
     _cardTypeLabel.text = [_gameService myCardType];
+
+    [_cardTypeLabel.layer addAnimation:[AnimationManager appearAnimationFrom:0.5 to:1.0 duration:0.5] forKey:nil];
 }
 
 - (void)hideMyCardType

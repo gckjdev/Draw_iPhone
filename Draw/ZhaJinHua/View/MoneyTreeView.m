@@ -40,6 +40,12 @@
     return view;
 }
 
+- (void)showInView:(UIView *)view
+{
+    self.frame = CGRectMake(0, 0, view.bounds.size.width, view.bounds.size.height);
+    [view addSubview:self];
+}
+
 - (void)popupMatureMessage
 {
     [self.popMessageLabel setText:[NSString stringWithFormat:NSLS(@"kMatureMessage")]];
@@ -88,7 +94,7 @@
 }
 
 
-- (void)growMoneyTree
+- (void)startGrowing
 {
     [self killTreeTimer];
     _remainTime = self.growthTime;
@@ -125,7 +131,7 @@
 - (void)getMoney:(int)money fromTree:(MoneyTree*)tree
 {
     [[AudioManager defaultManager] playSoundByURL:[ZJHSoundManager defaultManager].betSoundEffect];
-    [self growMoneyTree];
+    [self startGrowing];
 }
 - (void)coinDidRaiseUp:(MoneyTree*)tree
 {
