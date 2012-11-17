@@ -1007,6 +1007,11 @@ compareCardWith:(NSString*)targetUserId
     [self.autoBetButton setTitleColor:(self.autoBetButton.userInteractionEnabled ? TITLE_COLOR_WHEN_ENABLE : TITLE_COLOR_WHEN_DISABLE) forState:UIControlStateNormal];
     [self.autoBetButton setBackgroundImage:(self.autoBetButton.userInteractionEnabled ? [_imageManager autoBetBtnBgImage] : [_imageManager autoBetBtnDisableBgImage]) forState:UIControlStateNormal];
     
+    if ([_gameService isMyTurn]) {
+//        PPDebug(@"[_gameService canICompareCard] = %d", [_gameService canICompareCard]);
+//        PPDebug(@"self.isComparing = %d", self.isComparing);
+    }
+    
     self.compareCardButton.userInteractionEnabled = [_gameService canICompareCard] && !self.isComparing;
     [self.compareCardButton setTitleColor:(self.compareCardButton.userInteractionEnabled ? TITLE_COLOR_WHEN_ENABLE : TITLE_COLOR_WHEN_DISABLE) forState:UIControlStateNormal];
     [self.compareCardButton setBackgroundImage:(self.compareCardButton.userInteractionEnabled ? [_imageManager compareCardBtnBgImage] : [_imageManager compareCardBtnDisableBgImage]) forState:UIControlStateNormal];

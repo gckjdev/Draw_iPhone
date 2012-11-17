@@ -26,6 +26,8 @@
 
 - (UIImage*)showCardButtonBgImage;
 - (UIImage*)showCardButtonDisableBgImage;
+- (UIImage *)showCardFlagImage;
+
 
 - (UIImage*)chipImageForChipValue:(int)chipValue;
 
@@ -78,4 +80,5 @@
 
 - (UIImage *)roomBackgroundImage;
 - (UIImage *)roomTitleBgImage;
+
 @end
