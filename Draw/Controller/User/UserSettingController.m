@@ -29,6 +29,8 @@
 #import "GameNetworkConstants.h"
 #import "AdService.h"
 #import "CustomDiceSettingViewController.h"
+#import "PPSNSIntegerationService.h"
+#import "PPSNSCommonService.h"
 
 enum{
     SECTION_USER = 0,
@@ -779,10 +781,19 @@ enum {
 }
 
 - (void)bindSina
-{    
+{
     _currentLoginType = REGISTER_TYPE_SINA;
+
+    /* rem by Benson for test
     [[SinaSNSService defaultService] logout];
-    [[SinaSNSService defaultService] startLogin:self];                                            
+    [[SinaSNSService defaultService] startLogin:self];
+    */
+    
+    [[[PPSNSIntegerationService defaultService] snsServiceByType:TYPE_SINA] login:^{
+        PPDebug(@"SINA Login Success");
+    } failureBlock:^(NSError *error) {
+        PPDebug(@"SINA Login Failure");
+    }];
 }
 
 - (void)bindFacebook

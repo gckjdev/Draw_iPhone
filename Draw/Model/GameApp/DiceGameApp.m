@@ -68,13 +68,21 @@
 
 - (NSString*)sinaAppKey
 {
-    return @"562852192";    
+//    return @"562852192";
+    return @"3163067274";
 }
 
 - (NSString*)sinaAppSecret
 {
-    return @"6271c4259ae38213ddf6f8b1b6ba7766";    
+//    return @"6271c4259ae38213ddf6f8b1b6ba7766";
+    return @"d677917b0c2855d36674c1d0339326bd";
 }
+
+- (NSString*)sinaAppRedirectURI
+{
+    return @"http://www.drawlively.com";
+}
+
 
 - (NSString*)qqAppKey
 {
