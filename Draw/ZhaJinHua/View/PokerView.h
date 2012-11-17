@@ -41,7 +41,6 @@
 @property (retain, nonatomic) IBOutlet UIImageView *tickImageView;
 @property (retain, nonatomic) IBOutlet UIImageView *bodyImageView;
 @property (retain, nonatomic) IBOutlet UIImageView *backImageView;
-@property (retain, nonatomic) IBOutlet UILabel *locateLabel;
 
 + (id)createPokerViewWithPoker:(Poker *)poker
                          frame:(CGRect)frame
@@ -50,9 +49,7 @@
 - (void)enableUserInterface;
 
 - (BOOL)showCardButtonIsPopup;
-- (void)popupShowCardButtonInView:(UIView *)inView
-                        aboveView:(UIView *)aboveView;
-
+- (void)popupShowCardButtonInView:(UIView *)inView;
 - (void)dismissShowCardButton;
 
 - (void)faceDown:(BOOL)animation;
@@ -64,5 +61,7 @@
            animation:(BOOL)animation;
 
 - (void)backToOriginPosition:(BOOL)animation;
+
+- (void)setShowCardFlag:(BOOL)animation;
 
 @end

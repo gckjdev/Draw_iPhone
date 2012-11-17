@@ -337,7 +337,8 @@
     
     [self registerNotificationWithName:NOTIFICATION_SHOW_CARD_RESPONSE
                                    usingBlock:^(NSNotification *notification) {
-                                       [self showCardSuccess];
+                                        NSArray *cardIds = [[[CommonGameNetworkService userInfoToMessage:notification.userInfo] showCardRequest] cardIdsList];
+                                       [self showCardSuccess:cardIds];
                                    }];
     
     [self registerNotificationWithName:NOTIFICATION_COMPARE_CARD_REQUEST
@@ -468,8 +469,11 @@
     [_audioManager playSoundByURL:[_soundManager foldCardHumanSound:[@"m" isEqualToString:_userManager.gender]]];
 }
 
-- (void)showCardSuccess
+- (void)showCardSuccess:(NSArray *)cardIds
 {
+    for (NSNumber *cardId in cardIds) {
+        [[self getMyPokersView] setShowCardFlag:cardId.intValue animation:YES];
+    }
     [self updateZJHButtons];
 }
 
@@ -627,7 +631,6 @@ compareCardWith:(NSString*)targetUserId
     ZJHPokerView* otherPokerView = [self getPokersViewByUserId:targetUserId];
     CGPoint pokerViewOrgPoint = pokerView.center;
     CGPoint otherPokerViewOrgPoint = otherPokerView.center;
-//    _isComparing = YES;
     
     [UIView animateWithDuration:1 animations:^{
         pokerView.layer.position = CGPointMake(self.view.center.x, self.view.center.y - COMPARE_CARD_OFFSET);
@@ -950,7 +953,7 @@ compareCardWith:(NSString*)targetUserId
         return;
     }
     
-    pokerView.showCardButtonIsPopup ? [pokerView dismissShowCardButton] : [pokerView popupShowCardButtonInView:self.view aboveView:nil];
+    pokerView.showCardButtonIsPopup ? [pokerView dismissShowCardButton] : [pokerView popupShowCardButtonInView:self.view];
 }
 
 - (void)didClickShowCardButton:(PokerView *)pokerView
@@ -1006,11 +1009,6 @@ compareCardWith:(NSString*)targetUserId
     self.autoBetButton.selected = [_gameService isMeAutoBet];
     [self.autoBetButton setTitleColor:(self.autoBetButton.userInteractionEnabled ? TITLE_COLOR_WHEN_ENABLE : TITLE_COLOR_WHEN_DISABLE) forState:UIControlStateNormal];
     [self.autoBetButton setBackgroundImage:(self.autoBetButton.userInteractionEnabled ? [_imageManager autoBetBtnBgImage] : [_imageManager autoBetBtnDisableBgImage]) forState:UIControlStateNormal];
-    
-    if ([_gameService isMyTurn]) {
-//        PPDebug(@"[_gameService canICompareCard] = %d", [_gameService canICompareCard]);
-//        PPDebug(@"self.isComparing = %d", self.isComparing);
-    }
     
     self.compareCardButton.userInteractionEnabled = [_gameService canICompareCard] && !self.isComparing;
     [self.compareCardButton setTitleColor:(self.compareCardButton.userInteractionEnabled ? TITLE_COLOR_WHEN_ENABLE : TITLE_COLOR_WHEN_DISABLE) forState:UIControlStateNormal];
