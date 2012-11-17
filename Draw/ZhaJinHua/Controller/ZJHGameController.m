@@ -953,7 +953,7 @@ compareCardWith:(NSString*)targetUserId
         return;
     }
     
-    pokerView.showCardButtonIsPopup ? [pokerView dismissShowCardButton] : [pokerView popupShowCardButtonInView:self.view aboveView:nil];
+    pokerView.showCardButtonIsPopup ? [pokerView dismissShowCardButton] : [pokerView popupShowCardButtonInView:self.view];
 }
 
 - (void)didClickShowCardButton:(PokerView *)pokerView
