@@ -30,7 +30,8 @@
                               text:(NSString *)text
                              image:(NSData *)image
                           drawData:(NSData *)drawData
-                         drawImage:(NSData *)drawImage;
+                         drawImage:(NSData *)drawImage
+                             bonus:(NSInteger)bonus;
 
 
 

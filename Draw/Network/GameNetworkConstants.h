@@ -475,6 +475,7 @@
 #define METHOD_GET_BBSBOARD_LIST @"gbbl"
 #define METHOD_CREATE_POST @"cp"
 #define PARA_BOARDID @"bid"
+#define PARA_BONUS @"bn"
 
 #define REGISTER_TYPE_EMAIL     1
 #define REGISTER_TYPE_SINA      2

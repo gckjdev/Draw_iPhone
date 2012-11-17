@@ -61,6 +61,7 @@
                              image:(NSData *)image
                           drawData:(NSData *)drawData
                          drawImage:(NSData *)drawImage
+                             bonus:(NSInteger)bonus
 {
     CommonNetworkOutput* output = [[[CommonNetworkOutput alloc] init] autorelease];
     
@@ -88,6 +89,7 @@
         
         str = [str stringByAddQueryParameter:PARA_CONTENT_TYPE intValue:contentType];
         str = [str stringByAddQueryParameter:PARA_TEXT_CONTENT value:text];
+        str = [str stringByAddQueryParameter:PARA_BONUS intValue:bonus];
         return str;
     };
     
