@@ -32,6 +32,15 @@ message PBBBSContent{
     optional PBBBSDraw drawData = 22;
 }
 
+
+message PBBBSReward
+{
+    required int32 bonus = 1;
+    required int32 status = 2;
+    optional PBBBSUser winner = 3;
+    optional int32 awardDate = 4;
+}
+
 message PBBBSPost{
     required string postId = 1;
     required string boardId = 2;
@@ -43,6 +52,7 @@ message PBBBSPost{
     required int32 modifyDate = 8;
     required PBBBSUser createUser = 9;
     required PBBBSContent content = 10;
+    optional PBBBSReward reward = 11;
 }
 
 message PBBBSAction{
