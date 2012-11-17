@@ -1707,10 +1707,10 @@
 		CAB15E8715AD41C300502106 /* PickPenView.m in Sources */ = {isa = PBXBuildFile; fileRef = CAB15E8215AD41C300502106 /* PickPenView.m */; };
 		CAB15E8815AD41C300502106 /* PickView.m in Sources */ = {isa = PBXBuildFile; fileRef = CAB15E8415AD41C300502106 /* PickView.m */; };
 		CAB15E8B15AD41E600502106 /* PickToolView.m in Sources */ = {isa = PBXBuildFile; fileRef = CAB15E8A15AD41E600502106 /* PickToolView.m */; };
-		CAB16466165778CB005C4F3D /* PostDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAB16464165778CB005C4F3D /* PostDetailController.m */; };
-		CAB16467165778CB005C4F3D /* PostDetailController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAB16465165778CB005C4F3D /* PostDetailController.xib */; };
-		CAB1646B165778EB005C4F3D /* PostListController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAB16469165778EB005C4F3D /* PostListController.m */; };
-		CAB1646C165778EB005C4F3D /* PostListController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAB1646A165778EB005C4F3D /* PostListController.xib */; };
+		CAB1647016577AF5005C4F3D /* BBSPostListController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAB1646E16577AF5005C4F3D /* BBSPostListController.m */; };
+		CAB1647116577AF5005C4F3D /* BBSPostListController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAB1646F16577AF5005C4F3D /* BBSPostListController.xib */; };
+		CAB1647516577B11005C4F3D /* BBSPostDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAB1647316577B11005C4F3D /* BBSPostDetailController.m */; };
+		CAB1647616577B11005C4F3D /* BBSPostDetailController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAB1647416577B11005C4F3D /* BBSPostDetailController.xib */; };
 		CAB3DBDD1516DACD00E7DBC4 /* SelectWordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CAB3DBDB1516DACD00E7DBC4 /* SelectWordCell.m */; };
 		CAB3DBDE1516DACD00E7DBC4 /* SelectWordCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAB3DBDC1516DACD00E7DBC4 /* SelectWordCell.xib */; };
 		CAB9D0591568B96800D4F249 /* FriendRoomController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAB9D0581568B96800D4F249 /* FriendRoomController~ipad.xib */; };
@@ -4248,12 +4248,12 @@
 		CAB15E8415AD41C300502106 /* PickView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PickView.m; sourceTree = "<group>"; };
 		CAB15E8915AD41E600502106 /* PickToolView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PickToolView.h; sourceTree = "<group>"; };
 		CAB15E8A15AD41E600502106 /* PickToolView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PickToolView.m; sourceTree = "<group>"; };
-		CAB16463165778CB005C4F3D /* PostDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PostDetailController.h; path = View/PostDetailController.h; sourceTree = "<group>"; };
-		CAB16464165778CB005C4F3D /* PostDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PostDetailController.m; path = View/PostDetailController.m; sourceTree = "<group>"; };
-		CAB16465165778CB005C4F3D /* PostDetailController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PostDetailController.xib; path = View/PostDetailController.xib; sourceTree = "<group>"; };
-		CAB16468165778EB005C4F3D /* PostListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostListController.h; sourceTree = "<group>"; };
-		CAB16469165778EB005C4F3D /* PostListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostListController.m; sourceTree = "<group>"; };
-		CAB1646A165778EB005C4F3D /* PostListController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PostListController.xib; sourceTree = "<group>"; };
+		CAB1646D16577AF5005C4F3D /* BBSPostListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBSPostListController.h; sourceTree = "<group>"; };
+		CAB1646E16577AF5005C4F3D /* BBSPostListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBSPostListController.m; sourceTree = "<group>"; };
+		CAB1646F16577AF5005C4F3D /* BBSPostListController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BBSPostListController.xib; sourceTree = "<group>"; };
+		CAB1647216577B11005C4F3D /* BBSPostDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBSPostDetailController.h; sourceTree = "<group>"; };
+		CAB1647316577B11005C4F3D /* BBSPostDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBSPostDetailController.m; sourceTree = "<group>"; };
+		CAB1647416577B11005C4F3D /* BBSPostDetailController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BBSPostDetailController.xib; sourceTree = "<group>"; };
 		CAB3DBDA1516DACD00E7DBC4 /* SelectWordCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectWordCell.h; sourceTree = "<group>"; };
 		CAB3DBDB1516DACD00E7DBC4 /* SelectWordCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectWordCell.m; sourceTree = "<group>"; };
 		CAB3DBDC1516DACD00E7DBC4 /* SelectWordCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SelectWordCell.xib; sourceTree = "<group>"; };
@@ -7368,9 +7368,6 @@
 			isa = PBXGroup;
 			children = (
 				CA4151AA165502630062A638 /* View */,
-				CAB16463165778CB005C4F3D /* PostDetailController.h */,
-				CAB16464165778CB005C4F3D /* PostDetailController.m */,
-				CAB16465165778CB005C4F3D /* PostDetailController.xib */,
 				CA415134165395E30062A638 /* BBSBoardController.h */,
 				CA415135165395E30062A638 /* BBSBoardController.m */,
 				CA415136165395E30062A638 /* BBSBoardController.xib */,
@@ -7378,9 +7375,12 @@
 				CA9A274A1655E9DE00B7A0DA /* CreatePostController.h */,
 				CA9A274B1655E9DE00B7A0DA /* CreatePostController.m */,
 				CA9A274C1655E9DE00B7A0DA /* CreatePostController.xib */,
-				CAB16468165778EB005C4F3D /* PostListController.h */,
-				CAB16469165778EB005C4F3D /* PostListController.m */,
-				CAB1646A165778EB005C4F3D /* PostListController.xib */,
+				CAB1646D16577AF5005C4F3D /* BBSPostListController.h */,
+				CAB1646E16577AF5005C4F3D /* BBSPostListController.m */,
+				CAB1646F16577AF5005C4F3D /* BBSPostListController.xib */,
+				CAB1647216577B11005C4F3D /* BBSPostDetailController.h */,
+				CAB1647316577B11005C4F3D /* BBSPostDetailController.m */,
+				CAB1647416577B11005C4F3D /* BBSPostDetailController.xib */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -11259,8 +11259,8 @@
 				A4BE1F43165730C600406B98 /* zjh_show_card_flag@2x.png in Resources */,
 				A41CF5391657446F0011AE45 /* chips_select_bg_image@2x.png in Resources */,
 				C286625716576B7900D7EA27 /* zjh_money_tree_popMessage_background@2x.png in Resources */,
-				CAB16467165778CB005C4F3D /* PostDetailController.xib in Resources */,
-				CAB1646C165778EB005C4F3D /* PostListController.xib in Resources */,
+				CAB1647116577AF5005C4F3D /* BBSPostListController.xib in Resources */,
+				CAB1647616577B11005C4F3D /* BBSPostDetailController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -11874,8 +11874,8 @@
 				C298ED27165603ED000B5753 /* MoneyTreeView.m in Sources */,
 				A4BE1E7016567D9000406B98 /* RoomTitleView.m in Sources */,
 				C286625A1657713900D7EA27 /* OldSinaWeiboRequest.m in Sources */,
-				CAB16466165778CB005C4F3D /* PostDetailController.m in Sources */,
-				CAB1646B165778EB005C4F3D /* PostListController.m in Sources */,
+				CAB1647016577AF5005C4F3D /* BBSPostListController.m in Sources */,
+				CAB1647516577B11005C4F3D /* BBSPostDetailController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
