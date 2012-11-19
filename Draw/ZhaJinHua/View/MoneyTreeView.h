@@ -25,5 +25,6 @@
 - (void)showInView:(UIView *)view;
 
 - (void)startGrowing;
+- (void)killMoneyTree;
 
 @end

@@ -84,4 +84,6 @@
 
 - (UIImage *)zjhCardTypesNoteBgImage;
 - (UIImage *)specialCardTypeImage;
+
+- (UIImage *)dispatcherImage;
 @end

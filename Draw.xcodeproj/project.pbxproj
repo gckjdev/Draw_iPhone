@@ -273,6 +273,7 @@
 		A4DF0589160D735E00246A40 /* CutItemAction.m in Sources */ = {isa = PBXBuildFile; fileRef = A4DF0588160D735E00246A40 /* CutItemAction.m */; };
 		A4E7876A16366FF8003557AD /* ZhaJinHua.proto in Resources */ = {isa = PBXBuildFile; fileRef = A4E7876916366FF8003557AD /* ZhaJinHua.proto */; };
 		A4E787941636753F003557AD /* ZJHGameState.m in Sources */ = {isa = PBXBuildFile; fileRef = A4E787931636753F003557AD /* ZJHGameState.m */; };
+		C20BAEEB165A287000FD62E6 /* dispatcher.png in Resources */ = {isa = PBXBuildFile; fileRef = C20BAEEA165A287000FD62E6 /* dispatcher.png */; };
 		C20D4B1115DE45B100074885 /* CommonDiceDialog.xib in Resources */ = {isa = PBXBuildFile; fileRef = C20D4B1015DE45B100074885 /* CommonDiceDialog.xib */; };
 		C20D4B2515E1D78800074885 /* CommonInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = C20D4B2415E1D78800074885 /* CommonInfoView.m */; };
 		C20D4B2715E21C0400074885 /* DiceInputDialog.xib in Resources */ = {isa = PBXBuildFile; fileRef = C20D4B2615E21C0200074885 /* DiceInputDialog.xib */; };
@@ -2334,6 +2335,7 @@
 		A4E7876916366FF8003557AD /* ZhaJinHua.proto */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ZhaJinHua.proto; sourceTree = "<group>"; };
 		A4E787921636753F003557AD /* ZJHGameState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJHGameState.h; sourceTree = "<group>"; };
 		A4E787931636753F003557AD /* ZJHGameState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJHGameState.m; sourceTree = "<group>"; };
+		C20BAEEA165A287000FD62E6 /* dispatcher.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dispatcher.png; sourceTree = "<group>"; };
 		C20D4B1015DE45B100074885 /* CommonDiceDialog.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommonDiceDialog.xib; sourceTree = "<group>"; };
 		C20D4B2315E1D78800074885 /* CommonInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonInfoView.h; sourceTree = "<group>"; };
 		C20D4B2415E1D78800074885 /* CommonInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonInfoView.m; sourceTree = "<group>"; };
@@ -5168,6 +5170,7 @@
 		A4BE1E801656A46100406B98 /* poker */ = {
 			isa = PBXGroup;
 			children = (
+				C20BAEEA165A287000FD62E6 /* dispatcher.png */,
 				A4BE1E811656A46100406B98 /* poker_back_bg@2x.png */,
 				A4BE1E821656A46100406B98 /* poker_body */,
 				A4BE1E8A1656A46100406B98 /* poker_fold_back_bg@2x.png */,
@@ -11561,6 +11564,7 @@
 				C28662BF1659DDF900D7EA27 /* ZJHRoomListController~ipad.xib in Resources */,
 				CAA79944165A18DA00429611 /* BBSPostCell.xib in Resources */,
 				CAA79949165A1A1C00429611 /* BBSPostCommentCell.xib in Resources */,
+				C20BAEEB165A287000FD62E6 /* dispatcher.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

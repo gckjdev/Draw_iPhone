@@ -149,15 +149,18 @@
     coinLayer.position = position;
     [self.layer addSublayer:coinLayer];
     
-    CALayer* lightLayer = [self shiningLightLayer];
-    lightLayer.position = CGPointMake(coinLayer.position.x + coinLayer.bounds.size.width/4, coinLayer.position.y + coinLayer.bounds.size.height/4);
-    [self.layer addSublayer:lightLayer];
-    
-    CAAnimation* shining = [AnimationManager disappearAnimationWithDuration:1];
-    shining.autoreverses = YES;
-    shining.repeatCount = 1000;
-    [lightLayer addAnimation:shining forKey:nil];
-    
+    CAAnimation* coinGrowAnim = [AnimationManager scaleAnimationWithFromScale:0.01 toScale:1.1 duration:1 delegate:self removeCompeleted:YES];
+    [CATransaction setCompletionBlock:^{
+        CALayer* lightLayer = [self shiningLightLayer];
+        lightLayer.position = CGPointMake(coinLayer.position.x + coinLayer.bounds.size.width/4, coinLayer.position.y + coinLayer.bounds.size.height/4);
+        [self.layer addSublayer:lightLayer];
+        
+        CAAnimation* shining = [AnimationManager disappearAnimationWithDuration:1];
+        shining.autoreverses = YES;
+        shining.repeatCount = 1000;
+        [lightLayer addAnimation:shining forKey:nil];
+    }];
+    [coinLayer addAnimation:coinGrowAnim forKey:nil];
     
     if (_delegate && [_delegate respondsToSelector:@selector(treeDidMature:)]) {
         [_delegate treeDidMature:self];
@@ -166,7 +169,7 @@
 
 - (void)tooMature
 {
-    [self addCoinAtPosition:CGPointMake(self.frame.size.width*0.25, self.frame.size.height/4)];
+    [self addCoinAtPosition:CGPointMake(self.frame.size.width*0.3, self.frame.size.height/4)];
 }
 
 - (void)startGrowthTimer:(CFTimeInterval)timeInterval
@@ -212,7 +215,6 @@
 - (void)rewardCoins:(int)coinsCount
            duration:(float)duration
 {
-    
     
     [_rewardCoinLabel setText:[NSString stringWithFormat:@"%+d",coinsCount]];
     _rewardView.center = CGPointMake(self.frame.size.width/2, self.frame.size.height + _rewardView.frame.size.height);
