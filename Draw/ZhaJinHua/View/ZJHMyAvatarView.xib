@@ -114,11 +114,11 @@
 						</object>
 						<nil key="IBUIHighlightedColor"/>
 						<int key="IBUIBaselineAdjustment">0</int>
-						<object class="IBUIFontDescription" key="IBUIFontDescription" id="751770586">
+						<object class="IBUIFontDescription" key="IBUIFontDescription" id="727939167">
 							<int key="type">1</int>
 							<double key="pointSize">10</double>
 						</object>
-						<object class="NSFont" key="IBUIFont" id="577861201">
+						<object class="NSFont" key="IBUIFont" id="978533307">
 							<string key="NSName">Helvetica</string>
 							<double key="NSSize">10</double>
 							<int key="NSfFlags">16</int>
@@ -159,8 +159,8 @@
 						<nil key="IBUIHighlightedColor"/>
 						<int key="IBUIBaselineAdjustment">0</int>
 						<float key="IBUIMinimumFontSize">8</float>
-						<reference key="IBUIFontDescription" ref="751770586"/>
-						<reference key="IBUIFont" ref="577861201"/>
+						<reference key="IBUIFontDescription" ref="727939167"/>
+						<reference key="IBUIFont" ref="978533307"/>
 					</object>
 					<object class="IBUIView" id="43205741">
 						<reference key="NSNextResponder" ref="669070084"/>
