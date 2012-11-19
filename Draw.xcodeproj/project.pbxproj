@@ -316,6 +316,8 @@
 		C28207E31552D974006FBB0F /* AudioManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C28207E21552D974006FBB0F /* AudioManager.m */; };
 		C284E87F1531D89800DD5B77 /* AboutUsController.m in Sources */ = {isa = PBXBuildFile; fileRef = C284E87D1531D89800DD5B77 /* AboutUsController.m */; };
 		C284E8801531D89800DD5B77 /* AboutUsController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C284E87E1531D89800DD5B77 /* AboutUsController.xib */; };
+		C28662BE1659DDF900D7EA27 /* ZJHRoomListCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C28662BC1659DDF700D7EA27 /* ZJHRoomListCell~ipad.xib */; };
+		C28662BF1659DDF900D7EA27 /* ZJHRoomListController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C28662BD1659DDF800D7EA27 /* ZJHRoomListController~ipad.xib */; };
 		C28E7C081602DAC600F4B6A5 /* DoubleKillItemAction.m in Sources */ = {isa = PBXBuildFile; fileRef = C28E7C071602DAC600F4B6A5 /* DoubleKillItemAction.m */; };
 		C28E7C0E1602E5B200F4B6A5 /* IncTimeItemAction.m in Sources */ = {isa = PBXBuildFile; fileRef = C28E7C0D1602E5B100F4B6A5 /* IncTimeItemAction.m */; };
 		C28E7C111602E5E000F4B6A5 /* DecTimeItemAction.m in Sources */ = {isa = PBXBuildFile; fileRef = C28E7C101602E5DD00F4B6A5 /* DecTimeItemAction.m */; };
@@ -2396,6 +2398,8 @@
 		C284E87D1531D89800DD5B77 /* AboutUsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutUsController.m; sourceTree = "<group>"; };
 		C284E87E1531D89800DD5B77 /* AboutUsController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AboutUsController.xib; sourceTree = "<group>"; };
 		C286628B16578BCB00D7EA27 /* AutoCreateViewByXib.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AutoCreateViewByXib.h; sourceTree = "<group>"; };
+		C28662BC1659DDF700D7EA27 /* ZJHRoomListCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ZJHRoomListCell~ipad.xib"; sourceTree = "<group>"; };
+		C28662BD1659DDF800D7EA27 /* ZJHRoomListController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ZJHRoomListController~ipad.xib"; sourceTree = "<group>"; };
 		C28E7C061602DAC600F4B6A5 /* DoubleKillItemAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DoubleKillItemAction.h; sourceTree = "<group>"; };
 		C28E7C071602DAC600F4B6A5 /* DoubleKillItemAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DoubleKillItemAction.m; sourceTree = "<group>"; };
 		C28E7C0C1602E5AF00F4B6A5 /* IncTimeItemAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IncTimeItemAction.h; sourceTree = "<group>"; };
@@ -5526,6 +5530,8 @@
 		C250AD0A1653A7E500003E15 /* room */ = {
 			isa = PBXGroup;
 			children = (
+				C28662BC1659DDF700D7EA27 /* ZJHRoomListCell~ipad.xib */,
+				C28662BD1659DDF800D7EA27 /* ZJHRoomListController~ipad.xib */,
 				C250AD0B1653A7F400003E15 /* ZJHRoomListController.xib */,
 				C250AD0C1653A7F400003E15 /* ZJHRoomListCell.xib */,
 				C250AD0D1653A7F400003E15 /* ZJHRoomListCell.h */,
@@ -11540,6 +11546,8 @@
 				A41CF58316578EF90011AE45 /* ZJHCardTypesView~ipad.xib in Resources */,
 				CAA7992B1659D28700429611 /* BBSPostDetailController.xib in Resources */,
 				CAA7992D1659D28700429611 /* BBSPostListController.xib in Resources */,
+				C28662BE1659DDF900D7EA27 /* ZJHRoomListCell~ipad.xib in Resources */,
+				C28662BF1659DDF900D7EA27 /* ZJHRoomListController~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
