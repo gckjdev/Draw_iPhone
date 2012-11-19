@@ -573,7 +573,7 @@
     [self someoneWon:[_gameService winner]];
 
     [self faceupUserCards];
-    [self showAllUserGameResult];
+    [self performSelector:@selector(showAllUserGameResult) withObject:nil afterDelay:3.0];
     [self performSelector:@selector(resetGame) withObject:nil afterDelay:9.0];
 }
 
