@@ -1114,8 +1114,8 @@
 "kZJHBet" = "Bet";
 "kZJHRaise" = "Raise";
 "kZJHAutoBet" = "Auto";
-"kZJHCheck" = "Check";
-"kZJHCompare" = "Compare";
+"kZJHCheck" = "CHK";
+"kZJHCompare" = "CMP";
 "kZJHFold" = "Fold";
 
 /*********************** 炸金花国际化字符串结束 *************************/
