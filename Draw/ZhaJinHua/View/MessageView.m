@@ -61,8 +61,7 @@
         imageView.tag = BACKGROUND_IMAGE_VIEW_TAG;
         imageView.image = bgImage;
         
-
-        
+        self.frame = imageView.frame;
         self.backgroundColor = [UIColor clearColor];
         [self addSubview:imageView];
         [self addSubview:label];
