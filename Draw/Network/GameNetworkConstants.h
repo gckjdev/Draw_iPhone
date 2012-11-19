@@ -473,9 +473,12 @@
 
 #pragma mark BBS Constant
 #define METHOD_GET_BBSBOARD_LIST @"gbbl"
+#define METHOD_GET_BBSPOST_LIST @"gbpl"
 #define METHOD_CREATE_POST @"cp"
 #define PARA_BOARDID @"bid"
 #define PARA_BONUS @"bn"
+#define PARA_RANGETYPE @"rt"
+
 
 #define REGISTER_TYPE_EMAIL     1
 #define REGISTER_TYPE_SINA      2

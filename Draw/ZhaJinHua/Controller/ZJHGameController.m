@@ -987,6 +987,8 @@ compareCardWith:(NSString*)targetUserId
     [self setCardTypeBgImageView:nil];
     [self setCardTypeButton:nil];
     [self setWaitGameNoteLabel:nil];
+    [self.moneyTreeView killMoneyTree];
+    [self setMoneyTreeHolder:nil];
     [super viewDidUnload];
 }
 

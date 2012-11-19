@@ -17,6 +17,8 @@
 #define DEAL_TIMEINTERVAL   0.33
 #define DEAL_ANIMATION_DURATION 0.33
 
+#define DISPATCHER_FRAME ([DeviceDetection isIPAD]?CGRectMake(0, 0, 106, 85):CGRectMake(0, 0, 53, 43))
+
 @implementation DealPoint
 @synthesize x;
 @synthesize y;
@@ -53,7 +55,7 @@
 {
     self = [super initWithCoder:aDecoder];
     if (self) {
-        _dispatcher = [self cardLayer];
+        _dispatcher = [self dispatcherLayer];
         _dispatcher.position = CGPointMake(self.frame.size.width/2, 0);
         [_dispatcher setOpacity:0];
         [self.layer addSublayer:_dispatcher];
@@ -103,6 +105,15 @@
     UIImage* back = [[ZJHImageManager defaultManager] pokerBackImage];
     layer.contents = (id)[back CGImage];
     layer.bounds = CGRectMake(0, 0, SMALL_POKER_VIEW_WIDTH, SMALL_POKER_VIEW_HEIGHT);
+    return layer;
+}
+
+- (CALayer*)dispatcherLayer
+{
+    CALayer* layer= [CALayer layer];
+    UIImage* back = [[ZJHImageManager defaultManager] dispatcherImage];
+    layer.contents = (id)[back CGImage];
+    layer.bounds = DISPATCHER_FRAME;
     return layer;
 }
 

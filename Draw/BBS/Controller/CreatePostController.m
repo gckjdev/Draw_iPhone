@@ -216,7 +216,7 @@
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    self.bonus = (buttonIndex + 1) * 100;
+    self.bonus = buttonIndex * 100;
     [self updateToolButtons];
 }
 

@@ -647,4 +647,9 @@ static ZJHImageManager* shareInstance;
     return [_resService imageByName:@"zjh_special_card_type_image" inResourcePackage:RESOURCE_PACKAGE_ZJH];
 }
 
+- (UIImage*)dispatcherImage
+{
+    return [_resService imageByName:@"dispatcher" inResourcePackage:RESOURCE_PACKAGE_ZJH];
+}
+
 @end
