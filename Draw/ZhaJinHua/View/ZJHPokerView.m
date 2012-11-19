@@ -169,6 +169,8 @@
     [self.pokerView3 enableUserInterface];
     
     [self xMotion:xMotiontype animation:animation];
+    
+
     [self performSelector:@selector(showCardType:) withObject:cardType afterDelay:MOVE_ANIMATION_DURATION];
 }
 

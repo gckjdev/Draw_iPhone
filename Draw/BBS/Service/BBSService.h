@@ -9,6 +9,11 @@
 #import "CommonService.h"
 #import "BBSManager.h"
 
+typedef enum{
+    RangeTypeNew = 0,
+    RangeTypeHot = 1,
+}RangeType;
+
 @protocol BBSServiceDelegate <NSObject>
 
 @optional
@@ -17,7 +22,22 @@
 
 - (void)didCreatePost:(PBBBSPost *)post
            resultCode:(NSInteger)resultCode;
+
+
+- (void)didGetBBSBoard:(NSString *)boardId
+              postList:(NSArray *)postList
+             rangeType:(RangeType)rangeType
+            resultCode:(NSInteger)resultCode;
+
+- (void)didGetUser:(NSString *)userId
+              postList:(NSArray *)postList
+            resultCode:(NSInteger)resultCode;
+
 @end
+
+
+
+
 @interface BBSService : CommonService
 
 + (id)defaultService;
@@ -31,4 +51,12 @@
                         bonus:(NSInteger)bonus
                      delegate:(id<BBSServiceDelegate>)delegate;
 
+- (void)getBBSPostListWithBoardId:(NSString *)boardId
+                        targetUid:(NSString *)targetUid
+                        rangeType:(RangeType)rangeType
+                           offset:(NSInteger)offset
+                            limit:(NSInteger)limit
+                         delegate:(id<BBSServiceDelegate>)delegate;
+
+- (PBBBSUser *)myself;
 @end

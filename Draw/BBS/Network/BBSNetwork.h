@@ -33,6 +33,15 @@
                          drawImage:(NSData *)drawImage
                              bonus:(NSInteger)bonus;
 
++ (CommonNetworkOutput*)getPostList:(NSString*)baseURL
+                              appId:(NSString*)appId
+                         deviceType:(int)deviceType
+                             userId:(NSString*)userId
+                          targetUid:(NSString*)targetUid
+                            boardId:(NSString*)boardId
+                          rangeType:(NSInteger)rangeType
+                             offset:(NSInteger)offset
+                              limit:(NSInteger)limit;
 
 
 

@@ -9,6 +9,7 @@
 #import "BBSBoardController.h"
 #import "BBSBoardCell.h"
 #import "CreatePostController.h"
+#import "BBSPostListController.h"
 
 @interface BBSBoardController ()
 {
@@ -158,7 +159,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     PBBBSBoard *sBoard = [self boardForIndexPath:indexPath];
-    [CreatePostController enterControllerWithBoard:sBoard fromController:self];
+    [BBSPostListController enterPostListControllerWithBBSBoard:sBoard fromController:self];
 }
 
 @end

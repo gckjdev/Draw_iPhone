@@ -32,7 +32,7 @@
         str = [str stringByAddQueryParameter:PARA_USERID value:userId];
         str = [str stringByAddQueryParameter:PARA_DEVICETYPE intValue:deviceType];
         str = [str stringByAddQueryParameter:PARA_FORMAT value:FINDDRAW_FORMAT_PROTOCOLBUFFER];
-                
+        
         return str;
     };
     
@@ -105,15 +105,6 @@
         [dataDict setObject:drawData forKey:PARA_DRAW_DATA];
     }
 
-//    NSData *iData = nil;
-//    NSString *iKey = nil;
-//    if (contentType == 2) {
-//        iData = image;
-//        iKey = PARA_IMAGE;
-//    }else if(contentType == 4){
-//        iData = drawImage;
-//        iKey = PARA_DRAW_IMAGE;
-//    }
     NSMutableDictionary *imageDict = [NSMutableDictionary dictionaryWithCapacity:2];
     if (drawImage) {
         [imageDict setObject:drawImage forKey:PARA_DRAW_IMAGE];
@@ -131,4 +122,48 @@
 
 }
 
+
++ (CommonNetworkOutput*)getPostList:(NSString*)baseURL
+                              appId:(NSString*)appId
+                         deviceType:(int)deviceType
+                             userId:(NSString*)userId
+                          targetUid:(NSString*)targetUid
+                            boardId:(NSString*)boardId
+                          rangeType:(NSInteger)rangeType
+                             offset:(NSInteger)offset
+                              limit:(NSInteger)limit;
+
+{
+    CommonNetworkOutput* output = [[[CommonNetworkOutput alloc] init] autorelease];
+    
+    ConstructURLBlock constructURLHandler = ^NSString *(NSString *baseURL) {
+        
+        // set input parameters
+        NSString* str = [NSString stringWithString:baseURL];
+        
+        str = [str stringByAddQueryParameter:METHOD value:METHOD_GET_BBSPOST_LIST];
+        str = [str stringByAddQueryParameter:PARA_APPID value:appId];
+        str = [str stringByAddQueryParameter:PARA_USERID value:userId];
+        str = [str stringByAddQueryParameter:PARA_TARGETUSERID value:targetUid];
+        str = [str stringByAddQueryParameter:PARA_BOARDID value:boardId];
+        str = [str stringByAddQueryParameter:PARA_DEVICETYPE intValue:deviceType];
+        str = [str stringByAddQueryParameter:PARA_RANGETYPE intValue:rangeType];
+        str = [str stringByAddQueryParameter:PARA_OFFSET intValue:offset];
+        str = [str stringByAddQueryParameter:PARA_LIMIT intValue:limit];
+        str = [str stringByAddQueryParameter:PARA_FORMAT value:FINDDRAW_FORMAT_PROTOCOLBUFFER];
+        
+        return str;
+    };
+    
+    PPNetworkResponseBlock responseHandler = ^(NSDictionary *dict, CommonNetworkOutput *output) {
+        return;
+    };
+    
+    return [PPNetworkRequest sendRequest:baseURL
+                     constructURLHandler:constructURLHandler
+                         responseHandler:responseHandler
+                            outputFormat:FORMAT_PB
+                                  output:output];
+    
+}
 @end
