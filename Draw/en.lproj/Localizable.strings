@@ -1108,8 +1108,8 @@
 
 "kZJHRoomTitle" = "3Card R%d";
 
-"kZJHTotalBet" = "Total";
-"kZJHSingleBet" = "Single";
+"kZJHTotalBet" = "Total:";
+"kZJHSingleBet" = "Ante:";
 
 "kZJHBet" = "Bet";
 "kZJHRaise" = "Raise";

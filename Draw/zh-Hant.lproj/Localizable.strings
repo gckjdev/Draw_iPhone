@@ -1108,8 +1108,8 @@
 
 "kZJHRoomTitle" = "詐金花%d號房";
 
-"kZJHTotalBet" = "總註";
-"kZJHSingleBet" = "單註";
+"kZJHTotalBet" = "總註:";
+"kZJHSingleBet" = "單註:";
 
 "kZJHBet" = "跟註";
 "kZJHRaise" = "加註";

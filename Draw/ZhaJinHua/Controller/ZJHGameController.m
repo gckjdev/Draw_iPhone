@@ -218,8 +218,8 @@
     self.cardTypeLabel.shadowColor = [UIColor colorWithWhite:0.0f alpha:0.75f];
     self.cardTypeLabel.shadowBlur = 5.0f;
 
-    self.totalBetLabel.text = NSLS(@"kZJHTotalBet");
-    self.singleBetLabel.text = NSLS(@"kZJHSingleBet");
+    self.totalBetNoteLabel.text = NSLS(@"kZJHTotalBet");
+    self.singleBetNoteLabel.text = NSLS(@"kZJHSingleBet");
     
     [self.betButton setTitle:NSLS(@"kZJHBet") forState:UIControlStateNormal];
     [self.raiseBetButton setTitle:NSLS(@"kZJHRaise") forState:UIControlStateNormal];
