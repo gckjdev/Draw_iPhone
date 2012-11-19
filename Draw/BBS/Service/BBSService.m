@@ -137,9 +137,10 @@ BBSService *_staticBBSService;
         }
         @catch (NSException *exception) {
             PPDebug(@"<getBBSBoardList>exception = %@",[exception debugDescription]);
+            list = nil;
         }
         @finally {
-            list = nil;
+            
         }
         dispatch_async(dispatch_get_main_queue(), ^{
             if (delegate && [delegate respondsToSelector:@selector(didGetBBSBoardList:resultCode:)]) {
@@ -235,6 +236,81 @@ BBSService *_staticBBSService;
         dispatch_async(dispatch_get_main_queue(), ^{
             if (delegate && [delegate respondsToSelector:@selector(didCreatePost:resultCode:)]) {
                 [delegate didCreatePost:post resultCode:output.resultCode];
+            }
+        });
+    });
+}
+
+
+- (PBBBSUser *)myself
+{
+    PBBBSUser_Builder *builder = [[PBBBSUser_Builder alloc] init];
+    NSString *userId = [[UserManager defaultManager] userId];
+    NSString *nickName = [[UserManager defaultManager] nickName];
+    NSString *gender = [[UserManager defaultManager] gender];
+    NSString *avatar = [[UserManager defaultManager] avatarURL];
+    [builder setUserId:userId];
+    [builder setNickName:nickName];
+    [builder setGender:([gender isEqualToString:@"m"])];
+    [builder setAvatar:avatar];
+    PBBBSUser *user = [builder build];
+    [builder release];
+    return user;
+}
+
+- (void)getBBSPostListWithBoardId:(NSString *)boardId
+                        targetUid:(NSString *)targetUid
+                        rangeType:(RangeType)rangeType
+                           offset:(NSInteger)offset
+                            limit:(NSInteger)limit
+                         delegate:(id<BBSServiceDelegate>)delegate;
+{
+    dispatch_async(workingQueue, ^{
+        NSInteger deviceType = [DeviceDetection deviceType];
+        NSString *appId = [ConfigManager appId];
+        NSString *userId = [[UserManager defaultManager] userId];
+        
+        CommonNetworkOutput *output = [BBSNetwork getPostList:TRAFFIC_SERVER_URL
+                                                        appId:appId
+                                                   deviceType:deviceType
+                                                       userId:userId
+                                                    targetUid:targetUid
+                                                      boardId:boardId
+                                                    rangeType:rangeType
+                                                       offset:offset
+                                                        limit:limit];
+        
+        NSInteger resultCode = [output resultCode];
+        NSArray *list = nil;
+        @try {
+            if (output.resultCode == ERROR_SUCCESS && [output.responseData length] > 0) {
+                DataQueryResponse *response = [DataQueryResponse parseFromData:output.responseData];
+                resultCode = [response resultCode];
+                list = [response bbsPostList];
+            }
+        }
+        @catch (NSException *exception) {
+            PPDebug(@"<getBBSBoardList>exception = %@",[exception debugDescription]);
+            list = nil;
+        }
+        @finally {
+
+        }
+
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (delegate) {
+                if (boardId != nil && [delegate respondsToSelector:@selector(didGetBBSBoard:postList:rangeType:resultCode:)]) {
+                    
+                    [delegate didGetBBSBoard:boardId postList:list
+                                   rangeType:rangeType
+                                  resultCode:resultCode];
+                    
+                }else if(userId != nil && [delegate respondsToSelector:@selector(didGetUser:postList:resultCode:)]){
+                    
+                    [delegate didGetUser:userId postList:list
+                              resultCode:resultCode];
+                    
+                }
             }
         });
     });

@@ -8,24 +8,54 @@
 
 #import "BBSPostListController.h"
 #import "Bbs.pb.h"
-@interface BBSPostListController ()
+#import "CreatePostController.h"
 
+@interface BBSPostListController ()
+{
+    RangeType _rangeType;
+}
 @end
 
 @implementation BBSPostListController
+
+
++ (BBSPostListController *)enterPostListControllerWithBBSBoard:(PBBBSBoard *)board
+                                                fromController:(UIViewController *)fromController
+{
+    BBSPostListController *pl = [[BBSPostListController alloc] init];
+    [pl setBbsBoard:board];
+    [fromController.navigationController pushViewController:pl animated:YES];
+    [pl release];
+    return pl;
+}
+
++ (BBSPostListController *)enterPostListControllerWithBBSUser:(PBBBSUser *)bbsUser
+                                               fromController:(UIViewController *)fromController
+{
+    BBSPostListController *pl = [[BBSPostListController alloc] init];
+    [pl setBbsUser:bbsUser];
+    [fromController.navigationController pushViewController:pl animated:YES];
+    [pl release];
+    return pl;
+}
+
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        _rangeType = RangeTypeNew;
     }
     return self;
 }
 
+//#define POST_LIST_TAB 100
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self clickTab:_rangeType];
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -48,8 +78,103 @@
     [super viewDidUnload];
 }
 - (IBAction)clickCreatePostButton:(id)sender {
+    if (self.bbsBoard) {
+        CreatePostController *cp = [[CreatePostController alloc]
+                                    initWithBoard:self.bbsBoard];
+        [self.navigationController pushViewController:cp animated:YES];
+    }else{
+        PPDebug(@"<clickCreatePostButton>: board is nil");
+    }
 }
 
-- (IBAction)clickRankButton:(id)sender {
+- (NSInteger)rangeTypeToTabID:(RangeType)rangeType
+{
+    return rangeType * 100;
 }
+
+- (NSInteger)tabIDToRangeType:(NSInteger)tabID
+{
+    return tabID / 100;
+}
+
+
+- (IBAction)clickRankButton:(id)sender {
+    if (RangeTypeHot == _rangeType) {
+        _rangeType = RangeTypeNew;
+        [self.rankButton setTitle:NSLS(@"kNew") forState:UIControlStateNormal];
+    }else{
+        _rangeType = RangeTypeHot;
+        [self.rankButton setTitle:NSLS(@"kHot") forState:UIControlStateNormal];
+    }
+    NSInteger tabID = [self tabIDToRangeType:_rangeType];
+    self.rankButton.tag = tabID;
+    [self clickTab:tabID];
+}
+
+
+
+#pragma mark - common tab controller delegate
+
+
+- (NSInteger)tabCount
+{
+    return 2;
+}
+- (NSInteger)currentTabIndex
+{
+    return _defaultTabIndex;
+}
+- (NSInteger)fetchDataLimitForTabIndex:(NSInteger)index
+{
+    return 10;
+}
+- (NSInteger)tabIDforIndex:(NSInteger)index
+{
+//    return POST_LIST_TAB;
+    NSInteger tabs[] = {RangeTypeNew, RangeTypeHot};
+    return tabs[index];
+}
+- (NSString *)tabTitleforIndex:(NSInteger)index
+{
+    return nil;
+}
+- (void)serviceLoadDataForTabID:(NSInteger)tabID
+{
+    NSInteger rangeType = [self rangeTypeToTabID:tabID];
+    TableTab *tab = [_tabManager tabForID:tabID];
+    [[BBSService defaultService] getBBSPostListWithBoardId:_bbsBoard.boardId
+                                                 targetUid:_bbsUser.userId
+                                                 rangeType:rangeType
+                                                    offset:tab.offset
+                                                     limit:tab.limit
+                                                  delegate:self];
+}
+
+#pragma mark - bbs service delegate
+- (void)didGetBBSBoard:(NSString *)boardId
+              postList:(NSArray *)postList
+             rangeType:(RangeType)rangeType
+            resultCode:(NSInteger)resultCode
+{
+    NSInteger tabID = [self rangeTypeToTabID:rangeType];
+    if (resultCode == 0) {
+        [self finishLoadDataForTabID:tabID resultList:postList];
+    }else{
+        [self failLoadDataForTabID:tabID];
+    }
+}
+
+- (void)didGetUser:(NSString *)userId
+          postList:(NSArray *)postList
+        resultCode:(NSInteger)resultCode
+{
+    NSInteger tabID = [self rangeTypeToTabID:_rangeType];
+    if (resultCode == 0) {
+        [self finishLoadDataForTabID:tabID resultList:postList];
+    }else{
+        [self failLoadDataForTabID:tabID];
+    }
+}
+
+
 @end
