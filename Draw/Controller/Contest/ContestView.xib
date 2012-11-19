@@ -70,7 +70,7 @@
 					</object>
 					<object class="IBUIWebView" id="395969670">
 						<reference key="NSNextResponder" ref="93199463"/>
-						<int key="NSvFlags">258</int>
+						<int key="NSvFlags">274</int>
 						<string key="NSFrame">{{10, 15}, {300, 315}}</string>
 						<reference key="NSSuperview" ref="93199463"/>
 						<reference key="NSWindow"/>

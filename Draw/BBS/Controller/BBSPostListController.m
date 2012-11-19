@@ -7,7 +7,7 @@
 //
 
 #import "BBSPostListController.h"
-
+#import "Bbs.pb.h"
 @interface BBSPostListController ()
 
 @end
@@ -35,4 +35,21 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)dealloc {
+    [_backButton release];
+    [_createPostButton release];
+    [_rankButton release];
+    [super dealloc];
+}
+- (void)viewDidUnload {
+    [self setBackButton:nil];
+    [self setCreatePostButton:nil];
+    [self setRankButton:nil];
+    [super viewDidUnload];
+}
+- (IBAction)clickCreatePostButton:(id)sender {
+}
+
+- (IBAction)clickRankButton:(id)sender {
+}
 @end

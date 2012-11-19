@@ -54,7 +54,7 @@
 					</object>
 					<object class="IBUIWebView" id="54689904">
 						<reference key="NSNextResponder" ref="421994044"/>
-						<int key="NSvFlags">272</int>
+						<int key="NSvFlags">274</int>
 						<string key="NSFrame">{{20, 45}, {280, 380}}</string>
 						<reference key="NSSuperview" ref="421994044"/>
 						<reference key="NSWindow"/>

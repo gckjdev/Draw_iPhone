@@ -48,7 +48,9 @@
 
 - (BOOL)canUserCompareCard:(NSString *)userId;
 
-- (NSString *)myCardType;
+- (PBZJHCardType)myCardType;
+- (NSString *)myCardTypeString;
+
 - (NSString *)cardTypeOfUser:(NSString *)userId;
 - (BOOL)doIWin;
 - (NSString *)winner;

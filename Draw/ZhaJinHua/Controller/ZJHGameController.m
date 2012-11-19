@@ -105,6 +105,7 @@
     [_roomNameLabel release];
 
     [_cardTypeBgImageView release];
+    [_cardTypeButton release];
     [super dealloc];
 }
 
@@ -929,6 +930,7 @@ compareCardWith:(NSString*)targetUserId
     [self setCardTypeLabel:nil];
     [self setRoomNameLabel:nil];
     [self setCardTypeBgImageView:nil];
+    [self setCardTypeButton:nil];
     [super viewDidUnload];
 }
 
@@ -1089,7 +1091,8 @@ compareCardWith:(NSString*)targetUserId
 {
     _cardTypeBgImageView.hidden = YES;
     _cardTypeLabel.hidden = NO;
-    _cardTypeLabel.text = [_gameService myCardType];
+    _cardTypeButton.hidden = NO;
+    _cardTypeLabel.text = [_gameService myCardTypeString];
 
     [_cardTypeLabel.layer addAnimation:[AnimationManager appearAnimationFrom:0.5 to:1.0 duration:0.5] forKey:nil];
 }
@@ -1097,6 +1100,7 @@ compareCardWith:(NSString*)targetUserId
 - (void)hideMyCardType
 {
     _cardTypeLabel.hidden = YES;
+    _cardTypeButton.hidden = YES;
     _cardTypeBgImageView.hidden = YES;
 }
 
@@ -1257,5 +1261,8 @@ compareCardWith:(NSString*)targetUserId
     [self popupView:view atPosition:[self getPositionByUserId:userId]];
 }
 
+- (IBAction)clickMyCardTypeButton:(id)sender {
+    [_popupViewManager popupCardTypesWithCardType:[_gameService myCardType] atView:[self getMyAvatarView] inView:self.view];
+}
 
 @end
