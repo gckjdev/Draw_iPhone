@@ -1689,7 +1689,6 @@
 		CA99D3E815332A2D00477383 /* NSURL+QAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = CA99D3E615332A2D00477383 /* NSURL+QAdditions.m */; };
 		CA9A274D1655E9DE00B7A0DA /* CreatePostController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA9A274B1655E9DE00B7A0DA /* CreatePostController.m */; };
 		CA9A274E1655E9DE00B7A0DA /* CreatePostController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA9A274C1655E9DE00B7A0DA /* CreatePostController.xib */; };
-		CA9A27511655EA3800B7A0DA /* PostListController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA9A27501655EA3800B7A0DA /* PostListController.m */; };
 		CA9AA976150F423C009D1CB6 /* DrawUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = CA9AA975150F423C009D1CB6 /* DrawUtils.m */; };
 		CA9B4EC016103726008C6A97 /* TopPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = CA9B4EBF16103726008C6A97 /* TopPlayer.m */; };
 		CA9C8CBD15E0D94A006E447B /* XQueryComponents.m in Sources */ = {isa = PBXBuildFile; fileRef = CA9C8CBC15E0D94A006E447B /* XQueryComponents.m */; };
@@ -1734,6 +1733,10 @@
 		CAA7992B1659D28700429611 /* BBSPostDetailController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAA799261659D28700429611 /* BBSPostDetailController.xib */; };
 		CAA7992C1659D28700429611 /* BBSPostListController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA799281659D28700429611 /* BBSPostListController.m */; };
 		CAA7992D1659D28700429611 /* BBSPostListController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAA799291659D28700429611 /* BBSPostListController.xib */; };
+		CAA79942165A178700429611 /* BBSPostCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA79941165A178700429611 /* BBSPostCell.m */; };
+		CAA79944165A18DA00429611 /* BBSPostCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAA79943165A18DA00429611 /* BBSPostCell.xib */; };
+		CAA79947165A19F600429611 /* BBSPostCommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA79946165A19F600429611 /* BBSPostCommentCell.m */; };
+		CAA79949165A1A1C00429611 /* BBSPostCommentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAA79948165A1A1B00429611 /* BBSPostCommentCell.xib */; };
 		CAA9C427159BF41B00398EC5 /* ShareService.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA9C426159BF41B00398EC5 /* ShareService.m */; };
 		CAA9C435159CA97100398EC5 /* LmWallService.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA9C434159CA97100398EC5 /* LmWallService.m */; };
 		CAACE19915F499E6002EB53A /* SuperDrawView.m in Sources */ = {isa = PBXBuildFile; fileRef = CAACE19815F499E6002EB53A /* SuperDrawView.m */; };
@@ -4245,8 +4248,6 @@
 		CA9A274A1655E9DE00B7A0DA /* CreatePostController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreatePostController.h; sourceTree = "<group>"; };
 		CA9A274B1655E9DE00B7A0DA /* CreatePostController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreatePostController.m; sourceTree = "<group>"; };
 		CA9A274C1655E9DE00B7A0DA /* CreatePostController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CreatePostController.xib; sourceTree = "<group>"; };
-		CA9A274F1655EA3800B7A0DA /* PostListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostListController.h; sourceTree = "<group>"; };
-		CA9A27501655EA3800B7A0DA /* PostListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostListController.m; sourceTree = "<group>"; };
 		CA9AA974150F423C009D1CB6 /* DrawUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawUtils.h; sourceTree = "<group>"; };
 		CA9AA975150F423C009D1CB6 /* DrawUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawUtils.m; sourceTree = "<group>"; };
 		CA9B4EBE16103726008C6A97 /* TopPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TopPlayer.h; sourceTree = "<group>"; };
@@ -4331,6 +4332,12 @@
 		CAA799271659D28700429611 /* BBSPostListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBSPostListController.h; sourceTree = "<group>"; };
 		CAA799281659D28700429611 /* BBSPostListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBSPostListController.m; sourceTree = "<group>"; };
 		CAA799291659D28700429611 /* BBSPostListController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BBSPostListController.xib; sourceTree = "<group>"; };
+		CAA79940165A178700429611 /* BBSPostCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBSPostCell.h; sourceTree = "<group>"; };
+		CAA79941165A178700429611 /* BBSPostCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBSPostCell.m; sourceTree = "<group>"; };
+		CAA79943165A18DA00429611 /* BBSPostCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BBSPostCell.xib; sourceTree = "<group>"; };
+		CAA79945165A19F600429611 /* BBSPostCommentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBSPostCommentCell.h; sourceTree = "<group>"; };
+		CAA79946165A19F600429611 /* BBSPostCommentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBSPostCommentCell.m; sourceTree = "<group>"; };
+		CAA79948165A1A1B00429611 /* BBSPostCommentCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BBSPostCommentCell.xib; sourceTree = "<group>"; };
 		CAA9C425159BF41B00398EC5 /* ShareService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareService.h; sourceTree = "<group>"; };
 		CAA9C426159BF41B00398EC5 /* ShareService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareService.m; sourceTree = "<group>"; };
 		CAA9C433159CA97100398EC5 /* LmWallService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LmWallService.h; sourceTree = "<group>"; };
@@ -7524,8 +7531,12 @@
 				CA4151AE165502640062A638 /* BBSBoardSection.h */,
 				CA4151AF165502640062A638 /* BBSBoardSection.m */,
 				CA4151B0165502640062A638 /* BBSBoardSection.xib */,
-				CA9A274F1655EA3800B7A0DA /* PostListController.h */,
-				CA9A27501655EA3800B7A0DA /* PostListController.m */,
+				CAA79940165A178700429611 /* BBSPostCell.h */,
+				CAA79941165A178700429611 /* BBSPostCell.m */,
+				CAA79943165A18DA00429611 /* BBSPostCell.xib */,
+				CAA79945165A19F600429611 /* BBSPostCommentCell.h */,
+				CAA79946165A19F600429611 /* BBSPostCommentCell.m */,
+				CAA79948165A1A1B00429611 /* BBSPostCommentCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -11548,6 +11559,8 @@
 				CAA7992D1659D28700429611 /* BBSPostListController.xib in Resources */,
 				C28662BE1659DDF900D7EA27 /* ZJHRoomListCell~ipad.xib in Resources */,
 				C28662BF1659DDF900D7EA27 /* ZJHRoomListController~ipad.xib in Resources */,
+				CAA79944165A18DA00429611 /* BBSPostCell.xib in Resources */,
+				CAA79949165A1A1C00429611 /* BBSPostCommentCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -12157,7 +12170,6 @@
 				CA4151B3165502640062A638 /* BBSBoardSection.m in Sources */,
 				A40D71DD16553575000CC598 /* FXLabel.m in Sources */,
 				CA9A274D1655E9DE00B7A0DA /* CreatePostController.m in Sources */,
-				CA9A27511655EA3800B7A0DA /* PostListController.m in Sources */,
 				C298ED27165603ED000B5753 /* MoneyTreeView.m in Sources */,
 				A4BE1E7016567D9000406B98 /* RoomTitleView.m in Sources */,
 				CA881509165743E500E29BB1 /* OldSinaWeiboRequest.m in Sources */,
@@ -12186,6 +12198,8 @@
 				A41CF58B165790380011AE45 /* RRSGlowLabel.m in Sources */,
 				CAA7992A1659D28700429611 /* BBSPostDetailController.m in Sources */,
 				CAA7992C1659D28700429611 /* BBSPostListController.m in Sources */,
+				CAA79942165A178700429611 /* BBSPostCell.m in Sources */,
+				CAA79947165A19F600429611 /* BBSPostCommentCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
