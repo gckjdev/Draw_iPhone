@@ -76,6 +76,11 @@
 
 - (CGPoint)getRandomCenterPoint
 {
+    if (_visibleLayerQueue.count < 20) {
+        int randomX = random()%((int)self.frame.size.width/4);
+        int randomY = random()%((int)self.frame.size.height/4);
+        return CGPointMake(self.frame.size.width*0.375+randomX, self.frame.size.height/6+randomY);
+    }
     int randomX = random()%((int)self.frame.size.width/2);
     int randomY = random()%((int)self.frame.size.height/2);
     return CGPointMake(self.frame.size.width/4+randomX, self.frame.size.height/8+randomY);

@@ -130,6 +130,7 @@
 {
     if ([self handlePrejoinGameCheck] == canJoinGame) {
         [_gameService joinGameRequest];
+        [self showActivityWithText:NSLS(@"kJoiningGame")];
     } else {
         [self handleJoinGameError:[self handlePrejoinGameCheck]];
     }
@@ -146,6 +147,7 @@
 - (void)refreshRooms:(id)sender
 {
     [_gameService getRoomList:0 count:ROOMS_COUNT_PER_PAGE];
+//    [self showActivityWithText:NSLS(@"kRefreshingRoomList")];
 }
 
 - (void)clearRefreshRoomsTimer
