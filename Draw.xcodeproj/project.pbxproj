@@ -1728,6 +1728,10 @@
 		CAA47816152FF70D005EDB24 /* PassWordDialog.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAA47814152FF70D005EDB24 /* PassWordDialog.xib */; };
 		CAA754BD150A02EA00B9391E /* SelectWordController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA754BB150A02EA00B9391E /* SelectWordController.m */; };
 		CAA754BE150A02EA00B9391E /* SelectWordController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAA754BC150A02EA00B9391E /* SelectWordController.xib */; };
+		CAA7992A1659D28700429611 /* BBSPostDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA799251659D28700429611 /* BBSPostDetailController.m */; };
+		CAA7992B1659D28700429611 /* BBSPostDetailController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAA799261659D28700429611 /* BBSPostDetailController.xib */; };
+		CAA7992C1659D28700429611 /* BBSPostListController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA799281659D28700429611 /* BBSPostListController.m */; };
+		CAA7992D1659D28700429611 /* BBSPostListController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAA799291659D28700429611 /* BBSPostListController.xib */; };
 		CAA9C427159BF41B00398EC5 /* ShareService.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA9C426159BF41B00398EC5 /* ShareService.m */; };
 		CAA9C435159CA97100398EC5 /* LmWallService.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA9C434159CA97100398EC5 /* LmWallService.m */; };
 		CAACE19915F499E6002EB53A /* SuperDrawView.m in Sources */ = {isa = PBXBuildFile; fileRef = CAACE19815F499E6002EB53A /* SuperDrawView.m */; };
@@ -3152,10 +3156,10 @@
 		CA41512E165395A30062A638 /* BBSManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBSManager.m; sourceTree = "<group>"; };
 		CA415130165395A30062A638 /* BBSService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBSService.h; sourceTree = "<group>"; };
 		CA415131165395A30062A638 /* BBSService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBSService.m; sourceTree = "<group>"; };
-		CA415134165395E30062A638 /* BBSBoardController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBSBoardController.h; sourceTree = "<group>"; };
-		CA415135165395E30062A638 /* BBSBoardController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBSBoardController.m; sourceTree = "<group>"; };
-		CA415136165395E30062A638 /* BBSBoardController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BBSBoardController.xib; sourceTree = "<group>"; };
-		CA415139165396410062A638 /* BBSBoardController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "BBSBoardController~ipad.xib"; sourceTree = "<group>"; };
+		CA415134165395E30062A638 /* BBSBoardController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BBSBoardController.h; path = ../BBSBoardController.h; sourceTree = "<group>"; };
+		CA415135165395E30062A638 /* BBSBoardController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BBSBoardController.m; path = ../BBSBoardController.m; sourceTree = "<group>"; };
+		CA415136165395E30062A638 /* BBSBoardController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = BBSBoardController.xib; path = ../BBSBoardController.xib; sourceTree = "<group>"; };
+		CA415139165396410062A638 /* BBSBoardController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = "BBSBoardController~ipad.xib"; path = "../BBSBoardController~ipad.xib"; sourceTree = "<group>"; };
 		CA41513C16539B650062A638 /* BBSNetwork.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBSNetwork.h; sourceTree = "<group>"; };
 		CA41513D16539B650062A638 /* BBSNetwork.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBSNetwork.m; sourceTree = "<group>"; };
 		CA4151AB165502640062A638 /* BBSBoardCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBSBoardCell.h; sourceTree = "<group>"; };
@@ -4317,6 +4321,12 @@
 		CAA754BB150A02EA00B9391E /* SelectWordController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectWordController.m; sourceTree = "<group>"; };
 		CAA754BC150A02EA00B9391E /* SelectWordController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SelectWordController.xib; sourceTree = "<group>"; };
 		CAA791C21627B58A00AEA6E5 /* MainDataModel 12.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "MainDataModel 12.xcdatamodel"; sourceTree = "<group>"; };
+		CAA799241659D28700429611 /* BBSPostDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBSPostDetailController.h; sourceTree = "<group>"; };
+		CAA799251659D28700429611 /* BBSPostDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBSPostDetailController.m; sourceTree = "<group>"; };
+		CAA799261659D28700429611 /* BBSPostDetailController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BBSPostDetailController.xib; sourceTree = "<group>"; };
+		CAA799271659D28700429611 /* BBSPostListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBSPostListController.h; sourceTree = "<group>"; };
+		CAA799281659D28700429611 /* BBSPostListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBSPostListController.m; sourceTree = "<group>"; };
+		CAA799291659D28700429611 /* BBSPostListController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BBSPostListController.xib; sourceTree = "<group>"; };
 		CAA9C425159BF41B00398EC5 /* ShareService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareService.h; sourceTree = "<group>"; };
 		CAA9C426159BF41B00398EC5 /* ShareService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareService.m; sourceTree = "<group>"; };
 		CAA9C433159CA97100398EC5 /* LmWallService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LmWallService.h; sourceTree = "<group>"; };
@@ -7465,14 +7475,9 @@
 		CA41512B165395A30062A638 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				CAA7992F1659D2AC00429611 /* Post */,
+				CAA7992E1659D29500429611 /* Board */,
 				CA4151AA165502630062A638 /* View */,
-				CA415134165395E30062A638 /* BBSBoardController.h */,
-				CA415135165395E30062A638 /* BBSBoardController.m */,
-				CA415136165395E30062A638 /* BBSBoardController.xib */,
-				CA415139165396410062A638 /* BBSBoardController~ipad.xib */,
-				CA9A274A1655E9DE00B7A0DA /* CreatePostController.h */,
-				CA9A274B1655E9DE00B7A0DA /* CreatePostController.m */,
-				CA9A274C1655E9DE00B7A0DA /* CreatePostController.xib */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -9724,6 +9729,34 @@
 			path = AdsMoGoAdapter;
 			sourceTree = "<group>";
 		};
+		CAA7992E1659D29500429611 /* Board */ = {
+			isa = PBXGroup;
+			children = (
+				CA415134165395E30062A638 /* BBSBoardController.h */,
+				CA415135165395E30062A638 /* BBSBoardController.m */,
+				CA415136165395E30062A638 /* BBSBoardController.xib */,
+				CA415139165396410062A638 /* BBSBoardController~ipad.xib */,
+			);
+			name = Board;
+			path = View;
+			sourceTree = "<group>";
+		};
+		CAA7992F1659D2AC00429611 /* Post */ = {
+			isa = PBXGroup;
+			children = (
+				CAA799241659D28700429611 /* BBSPostDetailController.h */,
+				CAA799251659D28700429611 /* BBSPostDetailController.m */,
+				CAA799261659D28700429611 /* BBSPostDetailController.xib */,
+				CAA799271659D28700429611 /* BBSPostListController.h */,
+				CAA799281659D28700429611 /* BBSPostListController.m */,
+				CAA799291659D28700429611 /* BBSPostListController.xib */,
+				CA9A274A1655E9DE00B7A0DA /* CreatePostController.h */,
+				CA9A274B1655E9DE00B7A0DA /* CreatePostController.m */,
+				CA9A274C1655E9DE00B7A0DA /* CreatePostController.xib */,
+			);
+			name = Post;
+			sourceTree = "<group>";
+		};
 		CAA9C424159BF40A00398EC5 /* Share */ = {
 			isa = PBXGroup;
 			children = (
@@ -11505,6 +11538,8 @@
 				A41CF57F16578D230011AE45 /* zjh_money_tree_popMessage_background@2x.png in Resources */,
 				A41CF58116578E400011AE45 /* zjh_special_card_type_image@2x.png in Resources */,
 				A41CF58316578EF90011AE45 /* ZJHCardTypesView~ipad.xib in Resources */,
+				CAA7992B1659D28700429611 /* BBSPostDetailController.xib in Resources */,
+				CAA7992D1659D28700429611 /* BBSPostListController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -12141,6 +12176,8 @@
 				CA8815E01657457200E29BB1 /* SinaWeiboRequest.m in Sources */,
 				A41CF57816578D0B0011AE45 /* ZJHCardTypesView.m in Sources */,
 				A41CF58B165790380011AE45 /* RRSGlowLabel.m in Sources */,
+				CAA7992A1659D28700429611 /* BBSPostDetailController.m in Sources */,
+				CAA7992C1659D28700429611 /* BBSPostListController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

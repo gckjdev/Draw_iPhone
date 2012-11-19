@@ -206,8 +206,10 @@
     UIActionSheet *as = [[UIActionSheet alloc] initWithTitle:NSLS(@"kReward")
                                                     delegate:self
                                            cancelButtonTitle:NSLS(@"kCancel")
-                                      destructiveButtonTitle:NSLS(@"100")
-                                           otherButtonTitles:@"200",@"300", nil];
+                                      destructiveButtonTitle:NSLS(@"0")
+                                           otherButtonTitles:@"100",@"200",@"300", nil];
+    [as setDestructiveButtonIndex:self.bonus/100];
+    
     [as showInView:self.view];
     [as release];
 }
