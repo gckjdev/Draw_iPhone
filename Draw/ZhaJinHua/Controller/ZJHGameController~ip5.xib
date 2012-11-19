@@ -191,7 +191,7 @@
 						<int key="NSvFlags">269</int>
 						<string key="NSFrame">{{104.5, 433}, {111, 57}}</string>
 						<reference key="NSSuperview" ref="483638841"/>
-						<reference key="NSNextKeyView" ref="43419799"/>
+						<reference key="NSNextKeyView" ref="775215902"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<reference key="IBUIBackgroundColor" ref="846204045"/>
 						<int key="IBUITag">8000</int>
@@ -864,7 +864,7 @@
 							<string key="NSResourceName">zjh_vs.png</string>
 						</object>
 					</object>
-					<object class="IBUIView" id="43419799">
+					<object class="IBUIView" id="775215902">
 						<reference key="NSNextResponder" ref="483638841"/>
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{216, 433}, {62, 57}}</string>
@@ -1098,7 +1098,7 @@
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">moneyTreeHolder</string>
 						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="43419799"/>
+						<reference key="destination" ref="775215902"/>
 					</object>
 					<int key="connectionID">3903</int>
 				</object>
@@ -1290,7 +1290,7 @@
 							<reference ref="993921492"/>
 							<reference ref="734801503"/>
 							<reference ref="882465781"/>
-							<reference ref="43419799"/>
+							<reference ref="775215902"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -1540,7 +1540,7 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">3902</int>
-						<reference key="object" ref="43419799"/>
+						<reference key="object" ref="775215902"/>
 						<reference key="parent" ref="483638841"/>
 					</object>
 				</array>

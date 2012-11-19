@@ -15,6 +15,7 @@
 #import "NSMutableArray+Queue.h"
 
 #define EARN_COIN_EACH_LEVEL (50)
+#define COIN_RADIUS ([DeviceDetection isIPAD]?28:14)
 
 @implementation MoneyTree
 @synthesize isMature = _isMature;
@@ -40,6 +41,7 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
+        
         // Initialization code
     }
     return self;
@@ -84,7 +86,7 @@
     CALayer* coinLayer = [CALayer layer];
     UIImage* coinImage = [ZJHImageManager defaultManager].moneyTreeCoinImage;
     coinLayer.contents = (id)[coinImage CGImage];
-    [coinLayer setBounds:CGRectMake(0, 0, coinImage.size.width, coinImage.size.height)];
+    [coinLayer setBounds:CGRectMake(0, 0, COIN_RADIUS, COIN_RADIUS)];
     [_layerQueue enqueue:coinLayer];
     return coinLayer;
 }
@@ -94,14 +96,14 @@
     CALayer* layer = [CALayer layer];
     UIImage* layerImage = [ZJHImageManager defaultManager].moneyTreeCoinLightImage;
     layer.contents = (id)[layerImage CGImage];
-    [layer setBounds:CGRectMake(0, 0, layerImage.size.width, layerImage.size.height)];
+    [layer setBounds:CGRectMake(0, 0, COIN_RADIUS, COIN_RADIUS)];
     [_layerQueue enqueue:layer];
     return layer;
 }
 
 - (void)showOneCoin
 {
-    [self setImage:[ZJHImageManager defaultManager].bigMoneyTreeImage forState:UIControlStateNormal];
+    [self setBackgroundImage:[ZJHImageManager defaultManager].bigMoneyTreeImage forState:UIControlStateNormal];
     [self addCoinAtPosition:CGPointMake(self.frame.size.width*0.75, self.frame.size.height/2)];
 }
 
@@ -117,7 +119,7 @@
             [layer removeFromSuperlayer];
         }
         if (!_hasEverMature) {
-            [self setImage:[[ZJHImageManager defaultManager] moneyTreeImage] forState:UIControlStateNormal];
+            [self setBackgroundImage:[[ZJHImageManager defaultManager] moneyTreeImage] forState:UIControlStateNormal];
         }
         
     }
