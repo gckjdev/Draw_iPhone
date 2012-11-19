@@ -217,6 +217,16 @@
     self.cardTypeLabel.shadowOffset = CGSizeMake(0.0f, 2.0f);
     self.cardTypeLabel.shadowColor = [UIColor colorWithWhite:0.0f alpha:0.75f];
     self.cardTypeLabel.shadowBlur = 5.0f;
+
+    self.totalBetNoteLabel.text = NSLS(@"kZJHTotalBet");
+    self.singleBetNoteLabel.text = NSLS(@"kZJHSingleBet");
+    
+    [self.betButton setTitle:NSLS(@"kZJHBet") forState:UIControlStateNormal];
+    [self.raiseBetButton setTitle:NSLS(@"kZJHRaise") forState:UIControlStateNormal];
+    [self.autoBetButton setTitle:NSLS(@"kZJHAutoBet") forState:UIControlStateNormal];
+    [self.checkCardButton setTitle:NSLS(@"kZJHCheck") forState:UIControlStateNormal];
+    [self.compareCardButton setTitle:NSLS(@"kZJHCompare") forState:UIControlStateNormal];
+    [self.foldCardButton setTitle:NSLS(@"kZJHFold") forState:UIControlStateNormal];
 }
 
 - (void)initMoneyTree
@@ -268,21 +278,42 @@
     [self updateWaitGameNoteLabel];
 }
 
+#define WAIT_GAME_NOTE_DISAPPEAR_DURATION (2.0)
 - (void)updateWaitGameNoteLabel
 {
     if ([_gameService isGamePlaying]) {
-        [self.waitGameNoteLabel.layer addAnimation:[AnimationManager moveVerticalAnimationFrom:self.waitGameNoteLabel.center.y to:self.waitGameNoteLabel.center.y - ([DeviceDetection isIPAD] ? 50 : 25) duration:1.0] forKey:nil];
+        if (self.waitGameNoteLabel.hidden == YES) {
+            return;
+        }
+        self.waitGameNoteLabel.text = NSLS(@"kGameBegin");
         
-        [self.waitGameNoteLabel.layer addAnimation:[AnimationManager disappearAnimationWithDuration:1] forKey:nil];
-        [self.waitGameNoteLabel performSelector:@selector(setHidden:) withObject:[NSNumber numberWithBool:YES] afterDelay:1];
+        [self.waitGameNoteLabel.layer addAnimation:[AnimationManager moveVerticalAnimationFrom:self.waitGameNoteLabel.center.y to:self.waitGameNoteLabel.center.y - ([DeviceDetection isIPAD] ? 100 : 50) duration:WAIT_GAME_NOTE_DISAPPEAR_DURATION] forKey:nil];
+        
+        [self.waitGameNoteLabel.layer addAnimation:[AnimationManager disappearAnimationWithDuration:WAIT_GAME_NOTE_DISAPPEAR_DURATION] forKey:nil];
+        [self.waitGameNoteLabel performSelector:@selector(setHidden:) withObject:[NSNumber numberWithBool:YES] afterDelay:WAIT_GAME_NOTE_DISAPPEAR_DURATION];
     }else {
         self.waitGameNoteLabel.hidden = NO;
+        
         if (_gameService.session.roundNumber == 0) {
-            self.waitGameNoteLabel.text = @"k等待游戏开始...";
+            if ([_gameService.session.userList count] < 2) {
+                if ([self.waitGameNoteLabel.text isEqualToString:NSLS(@"kWaitingForMoreUsers")]) {
+                    return;
+                }
+                self.waitGameNoteLabel.text = NSLS(@"kWaitingForMoreUsers");
+            }else {
+                if ([self.waitGameNoteLabel.text isEqualToString:NSLS(@"kWaitingForStart")]) {
+                    return;
+                }
+                self.waitGameNoteLabel.text = NSLS(@"kWaitingForStart");
+            }
         }else {
-            self.waitGameNoteLabel.text = @"k等待下一轮...";
+            if ([self.waitGameNoteLabel.text isEqualToString:NSLS(@"kWaittingForNextTurn")]) {
+                return;
+            }
+            self.waitGameNoteLabel.text = NSLS(@"kWaittingForNextTurn");
         }
-        [self.waitGameNoteLabel.layer addAnimation:[AnimationManager appearAnimationFrom:0.5 to:1 duration:0.8] forKey:nil];
+        
+        [self.waitGameNoteLabel.layer addAnimation:[AnimationManager appearAnimationFrom:0.7 to:1 duration:0.8] forKey:nil];
     }
 }
 
@@ -511,6 +542,7 @@
 - (void)roomChanged
 {
     [self updateAllUsersAvatar];
+    [self updateWaitGameNoteLabel];
     
     for (NSString *userId in [_gameService.session.deletedUserList allKeys]) {
         [self hideTotalBetOfPosition:[self getPositionByUserId:userId]];
@@ -955,6 +987,8 @@ compareCardWith:(NSString*)targetUserId
     [self setCardTypeBgImageView:nil];
     [self setCardTypeButton:nil];
     [self setWaitGameNoteLabel:nil];
+    [self.moneyTreeView killMoneyTree];
+    [self setMoneyTreeHolder:nil];
     [super viewDidUnload];
 }
 
@@ -1100,6 +1134,10 @@ compareCardWith:(NSString*)targetUserId
 
 - (void)showMyCardType
 {
+    if (![LocaleUtils supportChinese]) {
+        return;
+    }
+    
     _cardTypeBgImageView.hidden = NO;
     
     CAAnimation * roateAni = [AnimationManager circlingAnimationWithDirection:AntiClockWise duration:1 repeatedCount:2];
@@ -1259,7 +1297,8 @@ compareCardWith:(NSString*)targetUserId
 - (void)popupBetMessageAtUser:(NSString *)userId
 {
     UserPosition pos = [self getPositionByUserId:userId];
-    MessageView *view = [MessageView messageViewWithMessage:@"跟注" font:ACTION_LABEL_FONT textColor:[UIColor blackColor] textAlignment:UITextAlignmentCenter bgImage:[_imageManager betActionImage:pos]];
+    
+    MessageView *view = [MessageView messageViewWithMessage:NSLS(@"kZJHBet") font:ACTION_LABEL_FONT textColor:[UIColor blackColor] textAlignment:UITextAlignmentCenter bgImage:[_imageManager betActionImage:pos]];
     
     [self popupView:view atPosition:[self getPositionByUserId:userId]];
 }
@@ -1267,7 +1306,8 @@ compareCardWith:(NSString*)targetUserId
 - (void)popupRaiseBetMessageAtUser:(NSString *)userId
 {
     UserPosition pos = [self getPositionByUserId:userId];
-    MessageView *view = [MessageView messageViewWithMessage:@"加注" font:ACTION_LABEL_FONT textColor:[UIColor blackColor]textAlignment:UITextAlignmentCenter bgImage:[_imageManager raiseBetActionImage:pos]];
+    
+    MessageView *view = [MessageView messageViewWithMessage:NSLS(@"kZJHRaise") font:ACTION_LABEL_FONT textColor:[UIColor blackColor]textAlignment:UITextAlignmentCenter bgImage:[_imageManager raiseBetActionImage:pos]];
     
     [self popupView:view atPosition:[self getPositionByUserId:userId]];
 }
@@ -1275,7 +1315,8 @@ compareCardWith:(NSString*)targetUserId
 - (void)popupCheckCardMessageAtUser:(NSString *)userId
 {
     UserPosition pos = [self getPositionByUserId:userId];
-    MessageView *view = [MessageView messageViewWithMessage:@"看牌" font:ACTION_LABEL_FONT textColor:[UIColor blackColor]textAlignment:UITextAlignmentCenter bgImage:[_imageManager checkCardActionImage:pos]];
+
+    MessageView *view = [MessageView messageViewWithMessage:NSLS(@"kZJHCheck") font:ACTION_LABEL_FONT textColor:[UIColor blackColor]textAlignment:UITextAlignmentCenter bgImage:[_imageManager checkCardActionImage:pos]];
     
     [self popupView:view atPosition:[self getPositionByUserId:userId]];
 }
@@ -1283,7 +1324,7 @@ compareCardWith:(NSString*)targetUserId
 - (void)popupCompareCardMessageAtUser:(NSString *)userId
 {
     UserPosition pos = [self getPositionByUserId:userId];
-    MessageView *view = [MessageView messageViewWithMessage:@"比牌" font:ACTION_LABEL_FONT textColor:[UIColor blackColor]textAlignment:UITextAlignmentCenter bgImage:[_imageManager compareCardActionImage:pos]];
+    MessageView *view = [MessageView messageViewWithMessage:NSLS(@"kZJHCompare") font:ACTION_LABEL_FONT textColor:[UIColor blackColor]textAlignment:UITextAlignmentCenter bgImage:[_imageManager compareCardActionImage:pos]];
     
     [self popupView:view atPosition:[self getPositionByUserId:userId]];
 }
@@ -1291,7 +1332,7 @@ compareCardWith:(NSString*)targetUserId
 - (void)popupFoldCardMessageAtUser:(NSString *)userId
 {
     UserPosition pos = [self getPositionByUserId:userId];
-    MessageView *view = [MessageView messageViewWithMessage:@"弃牌" font:ACTION_LABEL_FONT textColor:[UIColor blackColor]textAlignment:UITextAlignmentCenter bgImage:[_imageManager foldCardActionImage:pos]];
+    MessageView *view = [MessageView messageViewWithMessage:NSLS(@"kZJHFold") font:ACTION_LABEL_FONT textColor:[UIColor blackColor]textAlignment:UITextAlignmentCenter bgImage:[_imageManager foldCardActionImage:pos]];
     
     [self popupView:view atPosition:[self getPositionByUserId:userId]];
 }

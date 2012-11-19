@@ -900,10 +900,10 @@
 "kOpenDiceMessage" = "Challenge";
 "kScrambleToOpenDiceMessage" = "Challenge";
 
-"kWaittingForNextTurn" = "Waiting...";
-"kWaitingForMoreUsers" = "Waiting...";
-"kWaitingForStart" = "Waiting...";
-"kGameBegin" = "Game starts...";
+"kWaittingForNextTurn" = "Wait for next turn...";
+"kWaitingForMoreUsers" = "Wait for more users...";
+"kWaitingForStart" = "Wait for start...";
+"kGameBegin" = "Game start...";
 "kNearBy" = "NearBy";
 "kWhoseRoom" = "%@'s room";
 
@@ -959,9 +959,6 @@
 "kDiceFeedbackTips" = "Don't hesitate to send your feedback to us. Just do it right now!";
 
 "kDiceRoom" = "Liar Dice Room %d";
-
-
-"kWaitingForMoreUsers" = "Waiting...";
 
 "kDice_share_message_body" = "I found a very funny game recently. Its name is '%@'.\nHere is the AppStore download URL:\n%@";
 "kDice_email_subject" = "Share a funny iOS game - Liar Dice";
@@ -1096,6 +1093,29 @@
 
 /*********************** 大话骰子国际化字符串结束 *************************/
 
+"kCardTypeHighCard" = "散牌";
+"kCardTypePair" = "对子";
+"kCardTypeStraight" = "顺子";
+"kCardTypeFlush" = "金花";
+"kCardTypeStraightFlush" = "顺金";
+"kCardTypeThreeOfAKind" = "豹子";
+"kCardTypeSpecial" = "特殊";
+"kCardTypeUnknow" = "未知";
+
 "kRemainTimes" = "00:%02d:%02d";
 "kMatureMessage" = "Mature";
-"kZJHRoomTitle" = "3Card";
+"kZJHGameTitle" = "3Card";
+
+"kZJHRoomTitle" = "3Card R%d";
+
+"kZJHTotalBet" = "Total:";
+"kZJHSingleBet" = "Ante:";
+
+"kZJHBet" = "Bet";
+"kZJHRaise" = "Raise";
+"kZJHAutoBet" = "Auto";
+"kZJHCheck" = "Check";
+"kZJHCompare" = "Compare";
+"kZJHFold" = "Fold";
+
+/*********************** 炸金花国际化字符串结束 *************************/

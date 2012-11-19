@@ -98,6 +98,12 @@ AUTO_CREATE_VIEW_BY_XIB(MoneyTreeView)
     [_timer retain];
 }
 
+- (void)killMoneyTree
+{
+    [self killTreeTimer];
+    [self.moneyTree kill];
+}
+
 /*
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.
