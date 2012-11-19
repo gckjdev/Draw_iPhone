@@ -190,7 +190,7 @@
 						<int key="NSvFlags">269</int>
 						<string key="NSFrame">{{104.5, 433}, {111, 57}}</string>
 						<reference key="NSSuperview" ref="483638841"/>
-						<reference key="NSNextKeyView" ref="107431730"/>
+						<reference key="NSNextKeyView" ref="43419799"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<reference key="IBUIBackgroundColor" ref="846204045"/>
 						<int key="IBUITag">8000</int>
@@ -605,7 +605,7 @@
 						<int key="NSvFlags">-2147483356</int>
 						<string key="NSFrame">{{219, 368}, {30, 30}}</string>
 						<reference key="NSSuperview" ref="483638841"/>
-						<reference key="NSNextKeyView"/>
+						<reference key="NSNextKeyView" ref="882465781"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -632,7 +632,7 @@
 						<int key="NSvFlags">-2147483356</int>
 						<string key="NSFrame">{{219, 368}, {30, 30}}</string>
 						<reference key="NSSuperview" ref="483638841"/>
-						<reference key="NSNextKeyView" ref="675463111"/>
+						<reference key="NSNextKeyView" ref="962014495"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -652,7 +652,7 @@
 						<int key="NSvFlags">-2147483356</int>
 						<string key="NSFrame">{{220, 395}, {50, 17}}</string>
 						<reference key="NSSuperview" ref="483638841"/>
-						<reference key="NSNextKeyView" ref="882465781"/>
+						<reference key="NSNextKeyView" ref="675463111"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<int key="IBUITag">3000</int>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
@@ -862,29 +862,46 @@
 							<string key="NSResourceName">zjh_vs.png</string>
 						</object>
 					</object>
-					<object class="IBUIButton" id="107431730">
+					<object class="IBUIView" id="43419799">
 						<reference key="NSNextResponder" ref="483638841"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{221, 448}, {39, 40}}</string>
+						<string key="NSFrame">{{216, 433}, {62, 57}}</string>
 						<reference key="NSSuperview" ref="483638841"/>
 						<reference key="NSNextKeyView" ref="145363908"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
-						<bool key="IBUIOpaque">NO</bool>
+						<reference key="IBUIBackgroundColor" ref="846204045"/>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-						<int key="IBUIContentHorizontalAlignment">0</int>
-						<int key="IBUIContentVerticalAlignment">0</int>
-						<reference key="IBUIHighlightedTitleColor" ref="129307563"/>
-						<object class="NSColor" key="IBUINormalTitleColor">
+					</object>
+					<object class="IBUILabel" id="909526062">
+						<reference key="NSNextResponder" ref="483638841"/>
+						<int key="NSvFlags">292</int>
+						<string key="NSFrame">{{85, 263}, {150, 21}}</string>
+						<reference key="NSSuperview" ref="483638841"/>
+						<string key="NSReuseIdentifierKey">_NS:9</string>
+						<bool key="IBUIOpaque">NO</bool>
+						<bool key="IBUIClipsSubviews">YES</bool>
+						<int key="IBUIContentMode">7</int>
+						<bool key="IBUIUserInteractionEnabled">NO</bool>
+						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+						<string key="IBUIText">等待游戏开始...</string>
+						<object class="NSColor" key="IBUITextColor">
 							<int key="NSColorSpace">1</int>
-							<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
+							<bytes key="NSRGB">MSAxIDEAA</bytes>
+							<reference key="NSCustomColorSpace" ref="347090418"/>
 						</object>
-						<reference key="IBUINormalTitleShadowColor" ref="395620140"/>
-						<object class="NSCustomResource" key="IBUINormalImage">
-							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">zjh_money_tree@2x.png</string>
+						<nil key="IBUIHighlightedColor"/>
+						<int key="IBUIBaselineAdjustment">0</int>
+						<int key="IBUITextAlignment">1</int>
+						<object class="IBUIFontDescription" key="IBUIFontDescription">
+							<int key="type">1</int>
+							<double key="pointSize">14</double>
 						</object>
-						<reference key="IBUIFontDescription" ref="670079205"/>
-						<reference key="IBUIFont" ref="669435553"/>
+						<object class="NSFont" key="IBUIFont">
+							<string key="NSName">Helvetica</string>
+							<double key="NSSize">14</double>
+							<int key="NSfFlags">16</int>
+						</object>
+						<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
 					</object>
 				</array>
 				<string key="NSFrame">{{0, 20}, {320, 548}}</string>
@@ -1107,6 +1124,22 @@
 					<int key="connectionID">3901</int>
 				</object>
 				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">moneyTreeHolder</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="43419799"/>
+					</object>
+					<int key="connectionID">3903</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">waitGameNoteLabel</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="909526062"/>
+					</object>
+					<int key="connectionID">3905</int>
+				</object>
+				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">clickSettingButton:</string>
 						<reference key="source" ref="1054681330"/>
@@ -1290,11 +1323,12 @@
 							<reference ref="859829263"/>
 							<reference ref="863054290"/>
 							<reference ref="876385374"/>
-							<reference ref="107431730"/>
 							<reference ref="153235675"/>
 							<reference ref="993921492"/>
 							<reference ref="734801503"/>
 							<reference ref="882465781"/>
+							<reference ref="43419799"/>
+							<reference ref="909526062"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -1398,12 +1432,6 @@
 					<object class="IBObjectRecord">
 						<int key="objectID">840</int>
 						<reference key="object" ref="10053604"/>
-						<array class="NSMutableArray" key="children"/>
-						<reference key="parent" ref="483638841"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">937</int>
-						<reference key="object" ref="107431730"/>
 						<array class="NSMutableArray" key="children"/>
 						<reference key="parent" ref="483638841"/>
 					</object>
@@ -1548,6 +1576,16 @@
 						<reference key="object" ref="882465781"/>
 						<reference key="parent" ref="483638841"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">3902</int>
+						<reference key="object" ref="43419799"/>
+						<reference key="parent" ref="483638841"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">3904</int>
+						<reference key="object" ref="909526062"/>
+						<reference key="parent" ref="483638841"/>
+					</object>
 				</array>
 			</object>
 			<dictionary class="NSMutableDictionary" key="flattenedProperties">
@@ -1601,6 +1639,9 @@
 				<string key="3891.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="3895.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="3899.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+				<string key="3902.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+				<string key="3904.CustomClassName">FXLabel</string>
+				<string key="3904.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="4.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="43.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="56.CustomClassName">FXLabel</string>
@@ -1612,8 +1653,6 @@
 				<string key="840.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="841.CustomClassName">FXLabel</string>
 				<string key="841.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<string key="937.CustomClassName">MoneyTree</string>
-				<string key="937.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="977.CustomClassName">ZJHPokerView</string>
 				<string key="977.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 			</dictionary>
@@ -1621,7 +1660,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">3901</int>
+			<int key="maxID">3905</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes"/>
 		<int key="IBDocument.localizationMode">0</int>
@@ -1640,7 +1679,6 @@
 			<string key="zjh_game_bg_ip5@2x.jpg">{640, 1096}</string>
 			<string key="zjh_game_setting@2x.png">{72, 71}</string>
 			<string key="zjh_game_total_bet_bg@2x.png">{329, 43}</string>
-			<string key="zjh_money_tree@2x.png">{88, 103}</string>
 			<string key="zjh_raise_bet@2x.png">{98, 60}</string>
 			<string key="zjh_runaway@2x.png">{72, 72}</string>
 			<string key="zjh_user_bet_bg@2x.png">{100, 34}</string>

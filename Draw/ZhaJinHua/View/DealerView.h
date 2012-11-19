@@ -29,6 +29,7 @@
 
 @interface DealerView : UIView {
     int _remainCards;
+    CALayer* _dispatcher;
 }
 @property (assign, nonatomic) id<DealerViewDelegate> delegate;
 @property (readonly, assign, nonatomic) BOOL isDealing;

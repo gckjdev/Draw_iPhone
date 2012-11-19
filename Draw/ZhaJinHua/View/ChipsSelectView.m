@@ -17,8 +17,8 @@
 #define CHIPS_COUNT 4
 
 
-#define CHIPS_SELECT_VIEW_WIDTH 154 
-#define CHIPS_SELECT_VIEW_HEIGHT 47
+#define CHIPS_SELECT_VIEW_WIDTH ([DeviceDetection isIPAD] ? 308 : 154) 
+#define CHIPS_SELECT_VIEW_HEIGHT ([DeviceDetection isIPAD] ? 94 : 47)
 
 @interface ChipsSelectView()
 
@@ -62,7 +62,7 @@
     int i = 0;
     CGRect frame = CGRectMake(0, 0, CHIP_VIEW_WIDTH, CHIP_VIEW_HEIGHT);
     for (NSNumber *chipValue in [[ZJHGameService defaultService] chipValues]) {
-        frame = CGRectMake(i++ * (CHIP_VIEW_WIDTH + CHIP_GAP), CHIP_Y_OFFSET, CHIP_VIEW_WIDTH, CHIP_VIEW_HEIGHT);
+        frame = CGRectMake(i++ * (CHIP_VIEW_WIDTH + CHIP_GAP) + CHIP_GAP, CHIP_Y_OFFSET, CHIP_VIEW_WIDTH, CHIP_VIEW_HEIGHT);
         ChipView *chipView = [ChipView chipViewWithFrame:frame chipValue:chipValue.intValue delegate:self];
         
         if (chipValue.intValue <= [[[ZJHGameService defaultService] gameState] singleBet]) {

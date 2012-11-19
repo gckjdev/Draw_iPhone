@@ -49,6 +49,18 @@
     return self;
 }
 
+- (id)initWithCoder:(NSCoder *)aDecoder
+{
+    self = [super initWithCoder:aDecoder];
+    if (self) {
+        _dispatcher = [self cardLayer];
+        _dispatcher.position = CGPointMake(self.frame.size.width/2, 0);
+        [_dispatcher setOpacity:0];
+        [self.layer addSublayer:_dispatcher];
+    }
+    return self;
+}
+
 - (void)removeFromSuperview
 {
     self.delegate = nil;
@@ -85,15 +97,21 @@
 //    };
 //}
 
+- (CALayer*)cardLayer
+{
+    CALayer* layer= [CALayer layer];
+    UIImage* back = [[ZJHImageManager defaultManager] pokerBackImage];
+    layer.contents = (id)[back CGImage];
+    layer.bounds = CGRectMake(0, 0, SMALL_POKER_VIEW_WIDTH, SMALL_POKER_VIEW_HEIGHT);
+    return layer;
+}
+
 - (void)dealCard:(id)point
 {
     [[AudioManager defaultManager] playSoundByURL:[ZJHSoundManager defaultManager].dealCard];
     
     CGPoint destinationPoint = CGPointMake(((DealPoint*)point).x, ((DealPoint*)point).y);
-    CALayer* layer= [CALayer layer];
-    UIImage* back = [[ZJHImageManager defaultManager] pokerBackImage];
-    layer.contents = (id)[back CGImage];
-    layer.bounds = CGRectMake(0, 0, SMALL_POKER_VIEW_WIDTH, SMALL_POKER_VIEW_HEIGHT);
+    CALayer* layer= [self cardLayer];
 //    layer.shouldRasterize = YES;
     layer.position = CGPointMake(self.frame.size.width/2, self.frame.size.height/2);
     [self.layer addSublayer:layer];
@@ -110,10 +128,8 @@
         [CATransaction setCompletionBlock:^{
             if (_delegate && [_delegate respondsToSelector:@selector(didDealFinish:)]) {
                 _isDealing = NO;
+                [self dispatchDisappear];
                 [_delegate didDealFinish:self];
-                for (CALayer* layer in [self.layer sublayers]) {
-                    [layer setOpacity:0];
-                }
             }
 //            PPDebug(@"<test> deal finish!");
         }];
@@ -125,8 +141,30 @@
     _remainCards--;
 }
 
-- (void)dealWithPositionArray:(NSArray*)array
-                        times:(int)times
+- (void)dispatchAppear:(NSArray*)array times:(int)times
+{
+    _dispatcher.opacity = 1;
+    CAAnimation* appear = [AnimationManager translationAnimationFrom:CGPointMake(self.frame.size.width/2, 0) to:CGPointMake(self.frame.size.width/2, self.frame.size.height/2) duration:1 delegate:self removeCompeleted:NO];
+    [CATransaction setCompletionBlock:^{
+        [self startDeal:array times:times];
+    }];
+    [_dispatcher addAnimation:appear forKey:nil];
+}
+
+- (void)dispatchDisappear
+{
+    CAAnimation* disappear = [AnimationManager translationAnimationFrom:CGPointMake(self.frame.size.width/2, self.frame.size.height/2) to:CGPointMake(self.frame.size.width/2, 0) duration:1 delegate:self removeCompeleted:NO];
+    [CATransaction setCompletionBlock:^{
+        [_dispatcher setOpacity:0];
+        for (CALayer* layer in [self.layer sublayers]) {
+            [layer setOpacity:0];
+        }
+    }];
+    [_dispatcher addAnimation:disappear forKey:nil];
+    
+}
+
+- (void)startDeal:(NSArray*)array times:(int)times
 {
     _isDealing = YES;
     float delay = 0;
@@ -135,9 +173,15 @@
         for (DealPoint* point in array) {
             [self performSelector:@selector(dealCard:) withObject:point afterDelay:delay];
             delay = delay + DEAL_TIMEINTERVAL;
-
+            
         }
     }
+}
+
+- (void)dealWithPositionArray:(NSArray*)array
+                        times:(int)times
+{
+    [self dispatchAppear:array times:times];
 }
 
 

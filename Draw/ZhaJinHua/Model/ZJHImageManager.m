@@ -639,7 +639,7 @@ static ZJHImageManager* shareInstance;
 
 - (UIImage *)zjhCardTypesNoteBgImage
 {
-    return [[_resService imageByName:@"zjh_card_types_not_bg" inResourcePackage:RESOURCE_PACKAGE_ZJH] stretchableImageWithLeftCapWidth:50 topCapHeight:0];
+    return [[_resService imageByName:@"zjh_card_types_note_bg" inResourcePackage:RESOURCE_PACKAGE_ZJH] stretchableImageWithLeftCapWidth:50 topCapHeight:0];
 }
 
 - (UIImage *)specialCardTypeImage
