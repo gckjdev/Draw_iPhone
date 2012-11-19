@@ -40,9 +40,7 @@ static PopupViewManager *_defaultManager;
     
     ChipsSelectView *chipsSelectView = [ChipsSelectView createChipsSelectView:delegate];
 
-    if (self.chipsSelectPopupView == nil) {
-        self.chipsSelectPopupView = [[[CMPopTipView alloc] initWithCustomViewWithoutBubble:chipsSelectView] autorelease];
-    }
+    self.chipsSelectPopupView = [[[CMPopTipView alloc] initWithCustomViewWithoutBubble:chipsSelectView] autorelease];
     
     [self.chipsSelectPopupView presentPointingAtView:atView inView:inView aboveView:aboveView animated:YES pointDirection:PointDirectionAuto];
     
@@ -66,10 +64,8 @@ static PopupViewManager *_defaultManager;
     
     UIView *cardTypesView = [ZJHCardTypesView cardTypesViewWithCardType:cardType];
     
-    if (self.cardTypesPopupView == nil) {
-        self.cardTypesPopupView = [[[CMPopTipView alloc] initWithCustomView:cardTypesView needBubblePath:NO] autorelease];
-        self.chipsSelectPopupView.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0];
-    }
+    self.cardTypesPopupView = [[[CMPopTipView alloc] initWithCustomView:cardTypesView pointerSize:6.0] autorelease];
+    self.cardTypesPopupView.backgroundColor = [UIColor clearColor];
     
     [self.cardTypesPopupView presentPointingAtView:atView inView:inView animated:YES];
     
@@ -80,7 +76,7 @@ static PopupViewManager *_defaultManager;
 
 - (void)dismissCardTypesView
 {
-    [self.chipsSelectPopupView dismissAnimated:YES];
+    [self.cardTypesPopupView dismissAnimated:YES];
 }
 
 @end

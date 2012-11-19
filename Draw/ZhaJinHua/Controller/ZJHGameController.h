@@ -57,6 +57,7 @@
 @property (retain, nonatomic) IBOutlet UIImageView *cardTypeBgImageView;
 @property (retain, nonatomic) IBOutlet FXLabel *roomNameLabel;
 
+@property (retain, nonatomic) IBOutlet FXLabel *waitGameNoteLabel;
 
 
 @end
