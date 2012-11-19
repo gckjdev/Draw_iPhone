@@ -84,13 +84,11 @@
 						<nil key="IBUIHighlightedColor"/>
 						<int key="IBUIBaselineAdjustment">0</int>
 						<object class="IBUIFontDescription" key="IBUIFontDescription">
-							<string key="name">Avenir-Medium</string>
-							<string key="family">Avenir</string>
-							<int key="traits">0</int>
+							<int key="type">2</int>
 							<double key="pointSize">10</double>
 						</object>
 						<object class="NSFont" key="IBUIFont">
-							<string key="NSName">Helvetica</string>
+							<string key="NSName">Helvetica-Bold</string>
 							<double key="NSSize">10</double>
 							<int key="NSfFlags">16</int>
 						</object>
@@ -116,15 +114,13 @@
 						</object>
 						<nil key="IBUIHighlightedColor"/>
 						<int key="IBUIBaselineAdjustment">0</int>
-						<object class="IBUIFontDescription" key="IBUIFontDescription" id="258912737">
-							<string key="name">Avenir-Medium</string>
-							<string key="family">Avenir</string>
-							<int key="traits">0</int>
-							<double key="pointSize">8</double>
+						<object class="IBUIFontDescription" key="IBUIFontDescription" id="678292256">
+							<int key="type">1</int>
+							<double key="pointSize">10</double>
 						</object>
-						<object class="NSFont" key="IBUIFont" id="780157721">
+						<object class="NSFont" key="IBUIFont" id="223236558">
 							<string key="NSName">Helvetica</string>
-							<double key="NSSize">8</double>
+							<double key="NSSize">10</double>
 							<int key="NSfFlags">16</int>
 						</object>
 						<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
@@ -163,8 +159,8 @@
 						<nil key="IBUIHighlightedColor"/>
 						<int key="IBUIBaselineAdjustment">0</int>
 						<float key="IBUIMinimumFontSize">7</float>
-						<reference key="IBUIFontDescription" ref="258912737"/>
-						<reference key="IBUIFont" ref="780157721"/>
+						<reference key="IBUIFontDescription" ref="678292256"/>
+						<reference key="IBUIFont" ref="223236558"/>
 					</object>
 					<object class="IBUIView" id="43205741">
 						<reference key="NSNextResponder" ref="669070084"/>
@@ -419,8 +415,8 @@
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="coin@2x.png">{16, 16}</string>
-			<string key="zjh_my_avatar_bg@2x.png">{16, 16}</string>
+			<string key="coin@2x.png">{64, 68}</string>
+			<string key="zjh_my_avatar_bg@2x.png">{222, 114}</string>
 		</dictionary>
 		<string key="IBCocoaTouchPluginVersion">1926</string>
 	</data>

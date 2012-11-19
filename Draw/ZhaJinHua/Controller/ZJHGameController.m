@@ -714,7 +714,7 @@ compareCardWith:(NSString*)targetUserId
         PBUserResult* result2 = [userResultList objectAtIndex:1];
         
         if ([result1.userId isEqualToString:_userManager.userId] || [result2.userId isEqualToString:_userManager.userId]) {
-            [self disableAllZJHButtons];
+            [self disableCheckCardButtonAndFoldCardButton];
         }
         
         [self someone:initiatorId
@@ -1069,6 +1069,17 @@ compareCardWith:(NSString*)targetUserId
     [self.compareCardButton setTitleColor:TITLE_COLOR_WHEN_DISABLE forState:UIControlStateNormal];
     [self.compareCardButton setBackgroundImage:[_imageManager compareCardBtnDisableBgImage] forState:UIControlStateNormal];
     
+    self.checkCardButton.userInteractionEnabled = NO;
+    [self.checkCardButton setTitleColor:TITLE_COLOR_WHEN_DISABLE forState:UIControlStateNormal];
+    [self.checkCardButton setBackgroundImage:[_imageManager checkCardBtnDisableBgImage] forState:UIControlStateNormal];
+    
+    self.foldCardButton.userInteractionEnabled = NO;
+    [self.foldCardButton setTitleColor:TITLE_COLOR_WHEN_DISABLE forState:UIControlStateNormal];
+    [self.foldCardButton setBackgroundImage:[_imageManager foldCardBtnDisableBgImage] forState:UIControlStateNormal];
+}
+
+- (void)disableCheckCardButtonAndFoldCardButton
+{
     self.checkCardButton.userInteractionEnabled = NO;
     [self.checkCardButton setTitleColor:TITLE_COLOR_WHEN_DISABLE forState:UIControlStateNormal];
     [self.checkCardButton setBackgroundImage:[_imageManager checkCardBtnDisableBgImage] forState:UIControlStateNormal];
