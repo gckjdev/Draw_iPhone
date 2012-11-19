@@ -58,10 +58,18 @@
     //        _roundAvatar.center = CGPointMake(self.frame.size.width/2, self.frame.size.height/2);
     [view addSubview:view.roundAvatar];
 //    view.roundAvatar.delegate = view;
-    
+    [view initRewardLabel];
     [view addTapGuesture];
     
     return view;
+}
+
+- (void)initRewardLabel
+{
+    self.rewardCoinLabel.shadowColor = nil;
+    self.rewardCoinLabel.shadowOffset = CGSizeMake(0.0f, 2.0f);
+    self.rewardCoinLabel.shadowColor = [UIColor colorWithWhite:0.0f alpha:0.75f];
+    self.rewardCoinLabel.shadowBlur = 5.0f;
 }
 
 
@@ -246,7 +254,7 @@
     [self bringSubviewToFront:_rewardCoinView];
     [_rewardCoinLabel setText:[NSString stringWithFormat:@"%+d",coinsCount]];
     _rewardCoinLabel.textColor = (coinsCount >= 0) ? [UIColor redColor] : [UIColor greenColor];
-    _rewardCoinView.center = CGPointMake(self.frame.size.width/2, self.frame.size.height + _rewardCoinView.frame.size.height);
+    _rewardCoinView.center = self.nickNameLabel.center;
     _rewardCoinView.alpha = 1;
     _rewardCoinView.hidden = NO;
     [UIView animateWithDuration: duration

@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "DiceAvatarView.h"
+#import "FXLabel.h"
 
 @class PBGameUser;
 @class ZJHAvatarView;
@@ -30,7 +31,7 @@
 @property (assign, nonatomic) id<ZJHAvatarViewDelegate> delegate;
 @property (retain, nonatomic) PBGameUser* userInfo;
 @property (retain, nonatomic) IBOutlet UIView *rewardCoinView;
-@property (retain, nonatomic) IBOutlet UILabel *rewardCoinLabel;
+@property (retain, nonatomic) IBOutlet FXLabel *rewardCoinLabel;
 @property (retain, nonatomic) IBOutlet UIImageView *coinImageView;
 
 - (void)updateByPBGameUser:(PBGameUser*)user;
