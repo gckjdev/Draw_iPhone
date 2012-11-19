@@ -40,7 +40,7 @@
 }
 
 + (ZJHGameState *)fromPBZJHGameState:(PBZJHGameState *)gameState
-{
+{    
     return [[[ZJHGameState alloc] initWithPBZJHGameState:gameState] autorelease];
 }
 

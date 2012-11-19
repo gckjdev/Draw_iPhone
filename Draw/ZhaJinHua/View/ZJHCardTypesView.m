@@ -9,6 +9,7 @@
 #import "ZJHCardTypesView.h"
 #import "ZJHImageManager.h"
 #import "CMPopTipView.h"
+#import <QuartzCore/QuartzCore.h>
 
 #define MY_CARD_TYPE_LABEL_TEXT_COLOR [UIColor colorWithRed:126.0/255.0 green:1 blue:1 alpha:1]
 
@@ -17,9 +18,9 @@
 
 @implementation ZJHCardTypesView
 
-+ (id)createPokerView
++ (id)createZJHCardTypesView
 {
-    NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"PokerView" owner:self options:nil];
+    NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"ZJHCardTypesView" owner:self options:nil];
     // Grab a pointer to the first object (presumably the custom cell, as that's all the XIB should contain).
     if (topLevelObjects == nil || [topLevelObjects count] <= 0){
         return nil;
@@ -32,8 +33,8 @@
 
 + (UIView *)normalCardTypesViewWithCardType:(PBZJHCardType)cardType
 {
-    ZJHCardTypesView *view = [self createPokerView];
-    view.bgImageView.image = [[ZJHImageManager defaultManager] cardTypeBgImage];
+    ZJHCardTypesView *view = [self createZJHCardTypesView];
+    view.bgImageView.image = [[ZJHImageManager defaultManager] zjhCardTypesNoteBgImage];
     
     RRSGlowLabel *label = nil;
     switch (cardType) {
@@ -68,7 +69,9 @@
     label.textColor = MY_CARD_TYPE_LABEL_TEXT_COLOR;
     label.glowColor = label.textColor;
     label.glowOffset = CGSizeMake(0.0, 0.0);
-    label.glowAmount = 30.0;
+    label.glowAmount = 20000.0;
+    
+    [label setNeedsDisplay];
     
     return view;
 }

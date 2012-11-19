@@ -106,6 +106,7 @@
 
     [_cardTypeBgImageView release];
     [_cardTypeButton release];
+    [_waitGameNoteLabel release];
     [super dealloc];
 }
 
@@ -181,6 +182,11 @@
 
 - (void)setBeautifulLabels
 {
+    self.waitGameNoteLabel.shadowColor = nil;
+    self.waitGameNoteLabel.shadowOffset = CGSizeMake(0.0f, 2.0f);
+    self.waitGameNoteLabel.shadowColor = [UIColor colorWithWhite:0.0f alpha:0.75f];
+    self.waitGameNoteLabel.shadowBlur = 5.0f;
+    
     self.totalBetNoteLabel.shadowColor = nil;
     self.totalBetNoteLabel.shadowOffset = CGSizeMake(0.0f, 2.0f);
     self.totalBetNoteLabel.shadowColor = [UIColor colorWithWhite:0.0f alpha:0.75f];
@@ -257,6 +263,25 @@
     
     // background music.
     [_audioManager setBackGroundMusicWithURL:[_soundManager gameBGM]];
+    
+    // waitting label
+    [self updateWaitGameNoteLabel];
+}
+
+- (void)updateWaitGameNoteLabel
+{
+    if ([_gameService isGamePlaying]) {
+        [self.waitGameNoteLabel.layer addAnimation:[AnimationManager disappearAnimationWithDuration:1] forKey:nil];
+        [self.waitGameNoteLabel performSelector:@selector(setHidden:) withObject:[NSNumber numberWithBool:YES] afterDelay:1];
+    }else {
+        self.waitGameNoteLabel.hidden = NO;
+        if (_gameService.session.roundNumber == 0) {
+            self.waitGameNoteLabel.text = @"k等待游戏开始...";
+        }else {
+            self.waitGameNoteLabel.text = @"k等待下一轮...";
+        }
+        [self.waitGameNoteLabel.layer addAnimation:[AnimationManager appearAnimationFrom:0.5 to:1 duration:0.8] forKey:nil];
+    }
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -484,7 +509,6 @@
 - (void)roomChanged
 {
     [self updateAllUsersAvatar];
-    [self updateWaittingForNextTurnNotLabel];
     
     for (NSString *userId in [_gameService.session.deletedUserList allKeys]) {
         [self hideTotalBetOfPosition:[self getPositionByUserId:userId]];
@@ -515,7 +539,8 @@
 
 - (void)gameStart
 {
-//    PPDebug(@"<ZJHGameController> game start!");
+    [self updateWaitGameNoteLabel];
+
     [self.dealerView dealWithPositionArray:[self dealPointsArray]
                                      times:CARDS_COUNT];
     [self updateTotalBetAndSingleBet];
@@ -539,6 +564,7 @@
 
 - (void)gameOver
 {
+
     [self updateZJHButtons];
     [self clearAllAvatarReciprocals];
 
@@ -555,6 +581,7 @@
     [self hideMyCardType];
     [self clearAllUserPokers];
     [self hideAllUserTotalBet];
+    [self updateWaitGameNoteLabel];
 }
 
 - (void)faceupUserCards
@@ -862,12 +889,6 @@ compareCardWith:(NSString*)targetUserId
     }
 }
 
-
-- (void)updateWaittingForNextTurnNotLabel
-{
-    
-}
-
 - (ZJHPokerView*)getMyPokersView
 {
     return (ZJHPokerView*)[self.view viewWithTag:(POKERS_VIEW_TAG_OFFSET+UserPositionCenter)];
@@ -931,6 +952,7 @@ compareCardWith:(NSString*)targetUserId
     [self setRoomNameLabel:nil];
     [self setCardTypeBgImageView:nil];
     [self setCardTypeButton:nil];
+    [self setWaitGameNoteLabel:nil];
     [super viewDidUnload];
 }
 
@@ -1084,7 +1106,7 @@ compareCardWith:(NSString*)targetUserId
 
     [_cardTypeBgImageView.layer addAnimation:animGroup forKey:nil];
     
-    [self performSelector:@selector(showMyCardTypeString) withObject:nil afterDelay:animGroup.duration];
+    [self performSelector:@selector(showMyCardTypeString) withObject:nil afterDelay:caseInAni.duration];
 }
 
 - (void)showMyCardTypeString
@@ -1262,7 +1284,7 @@ compareCardWith:(NSString*)targetUserId
 }
 
 - (IBAction)clickMyCardTypeButton:(id)sender {
-    [_popupViewManager popupCardTypesWithCardType:[_gameService myCardType] atView:[self getMyAvatarView] inView:self.view];
+    [_popupViewManager popupCardTypesWithCardType:[_gameService myCardType] atView:[self getMyPokersView] inView:self.view];
 }
 
 @end
