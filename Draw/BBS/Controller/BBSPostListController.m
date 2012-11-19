@@ -9,6 +9,7 @@
 #import "BBSPostListController.h"
 #import "Bbs.pb.h"
 #import "CreatePostController.h"
+#import "BBSPostCell.h"
 
 @interface BBSPostListController ()
 {
@@ -52,10 +53,21 @@
 
 //#define POST_LIST_TAB 100
 
+- (NSInteger)rangeTypeToTabID:(RangeType)rangeType
+{
+    return rangeType * 100;
+}
+
+- (NSInteger)tabIDToRangeType:(NSInteger)tabID
+{
+    return tabID / 100;
+}
+
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self clickTab:_rangeType];
+    [self clickTab:[self rangeTypeToTabID:_rangeType]];
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -79,23 +91,12 @@
 }
 - (IBAction)clickCreatePostButton:(id)sender {
     if (self.bbsBoard) {
-        CreatePostController *cp = [[CreatePostController alloc]
-                                    initWithBoard:self.bbsBoard];
-        [self.navigationController pushViewController:cp animated:YES];
+        [CreatePostController enterControllerWithBoard:self.bbsBoard fromController:self];
     }else{
         PPDebug(@"<clickCreatePostButton>: board is nil");
     }
 }
 
-- (NSInteger)rangeTypeToTabID:(RangeType)rangeType
-{
-    return rangeType * 100;
-}
-
-- (NSInteger)tabIDToRangeType:(NSInteger)tabID
-{
-    return tabID / 100;
-}
 
 
 - (IBAction)clickRankButton:(id)sender {
@@ -106,7 +107,7 @@
         _rangeType = RangeTypeHot;
         [self.rankButton setTitle:NSLS(@"kHot") forState:UIControlStateNormal];
     }
-    NSInteger tabID = [self tabIDToRangeType:_rangeType];
+    NSInteger tabID = [self rangeTypeToTabID:_rangeType];
     self.rankButton.tag = tabID;
     [self clickTab:tabID];
 }
@@ -130,9 +131,10 @@
 }
 - (NSInteger)tabIDforIndex:(NSInteger)index
 {
+    return [self rangeTypeToTabID:index];
 //    return POST_LIST_TAB;
-    NSInteger tabs[] = {RangeTypeNew, RangeTypeHot};
-    return tabs[index];
+//    NSInteger tabs[] = {RangeTypeNew, RangeTypeHot};
+//    return tabs[index];
 }
 - (NSString *)tabTitleforIndex:(NSInteger)index
 {
@@ -140,7 +142,7 @@
 }
 - (void)serviceLoadDataForTabID:(NSInteger)tabID
 {
-    NSInteger rangeType = [self rangeTypeToTabID:tabID];
+    NSInteger rangeType = [self tabIDToRangeType:tabID];
     TableTab *tab = [_tabManager tabForID:tabID];
     [[BBSService defaultService] getBBSPostListWithBoardId:_bbsBoard.boardId
                                                  targetUid:_bbsUser.userId
@@ -176,5 +178,45 @@
     }
 }
 
+
+
+#pragma mark - table view delegate
+- (PBBBSPost *)postForIndexPath:(NSIndexPath *)indexPath
+{
+    NSArray *dList = self.tabDataList;
+    if (indexPath.row >= [dList count]) {
+        return nil;
+    }
+    PBBBSPost *post = [self.tabDataList objectAtIndex:indexPath.row];
+    return post;
+}
+
+
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    PBBBSPost *post = [self.tabDataList objectAtIndex:indexPath.row];
+	return [BBSPostCell getCellHeightWithBBSPost:post];
+}
+
+
+- (UITableViewCell *)tableView:(UITableView *)theTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    NSString *CellIdentifier = [BBSPostCell getCellIdentifier];
+	BBSPostCell *cell = [theTableView dequeueReusableCellWithIdentifier:CellIdentifier];
+	if (cell == nil) {
+		cell = [BBSPostCell createCell:self];
+	}
+    PBBBSPost *post = [self postForIndexPath:indexPath];
+    [cell updateCellWithBBSPost:post];
+	return cell;
+	
+}
+
+//- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    PBBBSBoard *sBoard = [self boardForIndexPath:indexPath];
+//    [BBSPostListController enterPostListControllerWithBBSBoard:sBoard fromController:self];
+//}
 
 @end

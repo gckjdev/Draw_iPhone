@@ -176,6 +176,10 @@
 
 - (void)showCardType:(NSString *)cardType
 {
+    if (![LocaleUtils supportChinese]) {
+        return;
+    }
+    
     CGFloat height = ([DeviceDetection isIPAD] ? 25 : 15);
     CGFloat offsetY = ([DeviceDetection isIPAD] ? -8 : -5);
     FXLabel *label = [[[FXLabel alloc] initWithFrame:CGRectMake(0, offsetY - height, self.pokerView2.frame.size.width, height)] autorelease];

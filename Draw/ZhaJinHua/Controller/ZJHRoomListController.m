@@ -13,7 +13,7 @@
 #import "ZJHGameController.h"
 #import "DiceColorManager.h"
 
-#define BUTTON_FONT_SIZE ([DeviceDetection isIPAD]?40:20)
+#define BUTTON_FONT_SIZE ([DeviceDetection isIPAD] ? 40 : 20)
 
 @interface ZJHRoomListController ()
 
@@ -60,7 +60,7 @@
 
 - (NSString*)title
 {
-    return NSLS(@"kZJHRoomTitle");
+    return NSLS(@"kZJHGameTitle");
 }
 
 #pragma mark - TableView delegate methods
@@ -120,8 +120,27 @@
 }
 - (void)handleDidJoinGame
 {
-    ZJHGameController* vc = [[[ZJHGameController alloc] init] autorelease];
-    [self.navigationController pushViewController:vc animated:YES];
+    ZJHGameController* vc = nil;
+    switch ([DeviceDetection deviceScreenType]) {
+        case DEVICE_SCREEN_IPAD:
+        case DEVICE_SCREEN_NEW_IPAD:
+            vc = [[[ZJHGameController alloc] initWithNibName:@"ZJHGameController~ipad" bundle:[NSBundle mainBundle]] autorelease];
+            break;
+            
+        case DEVICE_SCREEN_IPHONE5:
+            vc = [[[ZJHGameController alloc] initWithNibName:@"ZJHGameController~ip5" bundle:[NSBundle mainBundle]] autorelease];
+            break;
+            
+        case DEVICE_SCREEN_IPHONE:
+            vc = [[[ZJHGameController alloc] initWithNibName:@"ZJHGameController" bundle:[NSBundle mainBundle]] autorelease];
+            break;
+            
+        default:
+            break;
+    }
+    
+    [self.navigationController pushViewController:vc
+                                         animated:YES];
 }
 - (PrejoinGameErrorCode)handlePrejoinGameCheck
 {
