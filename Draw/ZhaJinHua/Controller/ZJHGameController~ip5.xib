@@ -916,7 +916,7 @@
 						<reference key="IBUIBackgroundColor" ref="846204045"/>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 					</object>
-					<object class="IBUILabel" id="445912778">
+					<object class="IBUILabel" id="697421644">
 						<reference key="NSNextResponder" ref="483638841"/>
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{85, 263}, {150, 21}}</string>
@@ -928,7 +928,7 @@
 						<int key="IBUIContentMode">7</int>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-						<string key="IBUIText">k等待游戏开始</string>
+						<string key="IBUIText">等待游戏开始...</string>
 						<object class="NSColor" key="IBUITextColor">
 							<int key="NSColorSpace">1</int>
 							<bytes key="NSRGB">MSAxIDEAA</bytes>
@@ -1181,7 +1181,7 @@
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">waitGameNoteLabel</string>
 						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="445912778"/>
+						<reference key="destination" ref="697421644"/>
 					</object>
 					<int key="connectionID">3905</int>
 				</object>
@@ -1374,7 +1374,7 @@
 							<reference ref="734801503"/>
 							<reference ref="882465781"/>
 							<reference ref="43419799"/>
-							<reference ref="445912778"/>
+							<reference ref="697421644"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -1629,7 +1629,7 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">3904</int>
-						<reference key="object" ref="445912778"/>
+						<reference key="object" ref="697421644"/>
 						<reference key="parent" ref="483638841"/>
 					</object>
 				</array>
