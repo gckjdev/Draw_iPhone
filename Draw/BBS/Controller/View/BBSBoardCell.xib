@@ -284,31 +284,37 @@
 					<object class="IBObjectRecord">
 						<int key="objectID">4</int>
 						<reference key="object" ref="64363694"/>
+						<array class="NSMutableArray" key="children"/>
 						<reference key="parent" ref="1051945929"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">5</int>
 						<reference key="object" ref="463908999"/>
+						<array class="NSMutableArray" key="children"/>
 						<reference key="parent" ref="1051945929"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">6</int>
 						<reference key="object" ref="616477797"/>
+						<array class="NSMutableArray" key="children"/>
 						<reference key="parent" ref="1051945929"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">7</int>
 						<reference key="object" ref="199586885"/>
+						<array class="NSMutableArray" key="children"/>
 						<reference key="parent" ref="1051945929"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">8</int>
 						<reference key="object" ref="563120045"/>
+						<array class="NSMutableArray" key="children"/>
 						<reference key="parent" ref="1051945929"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">9</int>
 						<reference key="object" ref="472990039"/>
+						<array class="NSMutableArray" key="children"/>
 						<reference key="parent" ref="1051945929"/>
 					</object>
 				</array>
@@ -331,7 +337,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">15</int>
+			<int key="maxID">39</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">

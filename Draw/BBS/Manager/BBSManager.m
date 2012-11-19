@@ -80,7 +80,7 @@ BBSManager *_staticBBSManager;
 }
 +(void)printBBSContent:(PBBBSContent *)content
 {
-    PPDebug(@"Content:[text = %@])",content.text);
+    PPDebug(@"Content:[text = %@,type = %d, image = %@, thumb = %@, drawImage = %@, drawThumb = %@]",content.text,content.type,content.imageUrl,content.thumbImageUrl,content.drawImageUrl,content.drawThumbUrl);
 }
 +(void)printBBSUser:(PBBBSUser *)user
 {
