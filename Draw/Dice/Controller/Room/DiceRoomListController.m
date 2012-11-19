@@ -25,6 +25,7 @@
 #import "CoinShopController.h"
 #import "LmWallService.h"
 #import "DiceUserInfoView.h"
+#import "PPResourceService.h"
 
 #define KEY_GAME_MESSAGE @"KEY_GAME_MESSAGE"
 #define ROOMS_COUNT_PER_PAGE  20

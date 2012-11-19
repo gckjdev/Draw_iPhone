@@ -1101,7 +1101,20 @@
 "kCardTypeThreeOfAKind" = "豹子";
 "kCardTypeSpecial" = "特殊";
 "kCardTypeUnknow" = "未知";
-"kRemainTimes" = "00:%02d:%02d";
+
+"kRemainTimes" = "%02d:%02d";
 "kMatureMessage" = "成熟";
-"kZJHRoomTitle" = "詐金花";
+"kZJHGameTitle" = "詐金花";
+
+"kZJHRoomTitle" = "詐金花%d號房";
+
+"kZJHTotalBet" = "總註";
+"kZJHSingleBet" = "單註";
+
+"kZJHBet" = "跟註";
+"kZJHRaise" = "加註";
+"kZJHAutoBet" = "跟到底";
+"kZJHCheck" = "看牌";
+"kZJHCompare" = "比牌";
+"kZJHFold" = "棄牌";
 /*********************** 炸金花国际化字符串结束 *************************/

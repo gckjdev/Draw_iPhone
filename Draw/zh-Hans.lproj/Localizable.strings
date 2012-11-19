@@ -929,7 +929,7 @@
 "kOpenDiceMessage" = "开";
 "kScrambleToOpenDiceMessage" = "抢开";
 
-"kWaittingForNextTurn" = "等待下轮...";
+"kWaittingForNextTurn" = "等待下一轮...";
 "kWaitingForMoreUsers" = "等待更多用户...";
 "kWaitingForStart" = "等待游戏开始...";
 "kGameBegin" = "游戏开始了...";
@@ -1118,9 +1118,24 @@
 "kCardTypeThreeOfAKind" = "豹子";
 "kCardTypeSpecial" = "特殊";
 "kCardTypeUnknow" = "未知";
-"kRemainTimes" = "00:%02d:%02d";
+
+"kRemainTimes" = "%02d:%02d";
 "kMatureMessage" = "成熟";
-"kZJHRoomTitle" = "诈金花";
+"kZJHGameTitle" = "诈金花";
+
+"kZJHRoomTitle" = "诈金花%d号房";
+
+"kZJHTotalBet" = "总注";
+"kZJHSingleBet" = "单注";
+
+"kZJHBet" = "跟注";
+"kZJHRaise" = "加注";
+"kZJHAutoBet" = "跟到底";
+"kZJHCheck" = "看牌";
+"kZJHCompare" = "比牌";
+"kZJHFold" = "弃牌";
+
+
 /*********************** 炸金花国际化字符串结束 *************************/
 
 
