@@ -85,17 +85,29 @@ AUTO_CREATE_VIEW_BY_XIB(MoneyTreeView)
     }
 }
 
+- (void)startTreeTimerWithRemainTime:(CFTimeInterval)remainTime
+{
+    [self killTreeTimer];
+    _remainTime = remainTime;
+    self.popMessageBody.layer.opacity = 0;
+    _timer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(update:) userInfo:nil repeats:YES];
+    [_timer retain];
+}
 
 - (void)startGrowing
 {
-    [self killTreeTimer];
-    _remainTime = self.growthTime;
-    self.moneyTree.growthTime = _remainTime;
-    [self.moneyTree startGrow];
-    self.popMessageBody.layer.opacity = 0;
+    self.moneyTree.growthTime = self.growthTime;
+    self.moneyTree.gainTime = self.gainTime;
+    self.moneyTree.coinValue = self.coinValue;
+    _remainTime = self.growthTime + self.gainTime;
     
-    _timer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(update:) userInfo:nil repeats:YES];
-    [_timer retain];
+    [self.moneyTree startGrow];
+    [self startTreeTimerWithRemainTime:_remainTime];
+}
+
+- (void)startGrowingCoin
+{
+    [self startTreeTimerWithRemainTime:self.gainTime];
 }
 
 - (void)killMoneyTree
@@ -129,7 +141,7 @@ AUTO_CREATE_VIEW_BY_XIB(MoneyTreeView)
 - (void)getMoney:(int)money fromTree:(MoneyTree*)tree
 {
     [[AudioManager defaultManager] playSoundByURL:[ZJHSoundManager defaultManager].betSoundEffect];
-    [self startGrowing];
+    [self startGrowingCoin];
 }
 - (void)coinDidRaiseUp:(MoneyTree*)tree
 {

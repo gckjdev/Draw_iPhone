@@ -232,7 +232,9 @@
 - (void)initMoneyTree
 {
     self.moneyTreeView = [MoneyTreeView createMoneyTreeView];
-    self.moneyTreeView.growthTime = 10;
+    self.moneyTreeView.growthTime = [ConfigManager getTreeMatureTime];
+    self.moneyTreeView.gainTime = [ConfigManager getTreeGainTime];
+    self.moneyTreeView.coinValue = [ConfigManager getTreeCoinVale];
     [self.moneyTreeView startGrowing];
     [self.moneyTreeView showInView:self.moneyTreeHolder];
 }

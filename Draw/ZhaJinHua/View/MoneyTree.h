@@ -25,11 +25,13 @@
     UIView* _rewardView;
     UIImageView* _rewardCoinView;
     NSMutableArray*  _layerQueue;
-    BOOL _hasEverMature;
 }
 @property (assign, nonatomic) CFTimeInterval growthTime;
+@property (assign, nonatomic) CFTimeInterval gainTime;
 @property (assign, nonatomic) BOOL isMature;
 @property (assign, nonatomic) id<MoneyTreeDelegate> delegate;
+@property (assign, nonatomic) NSInteger coinsOnTree;
+@property (assign, nonatomic) NSInteger coinValue;
 
 - (void)startGrow;
 - (void)kill;

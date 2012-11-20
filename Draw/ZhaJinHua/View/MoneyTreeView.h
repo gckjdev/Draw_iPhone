@@ -20,6 +20,8 @@
 @property (retain, nonatomic) IBOutlet UIView *popMessageBody;
 
 @property (assign, nonatomic) CFTimeInterval growthTime;
+@property (assign, nonatomic) CFTimeInterval gainTime;
+@property (assign, nonatomic) NSInteger      coinValue;
 
 + (MoneyTreeView*)createMoneyTreeView;
 - (void)showInView:(UIView *)view;
