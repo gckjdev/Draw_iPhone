@@ -1742,6 +1742,8 @@
 		CAA9C435159CA97100398EC5 /* LmWallService.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA9C434159CA97100398EC5 /* LmWallService.m */; };
 		CAACE19915F499E6002EB53A /* SuperDrawView.m in Sources */ = {isa = PBXBuildFile; fileRef = CAACE19815F499E6002EB53A /* SuperDrawView.m */; };
 		CAAE4A8315790F480012F6B8 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = CAAE4A8215790F480012F6B8 /* libsqlite3.dylib */; };
+		CAAFBEB2165B199100E5E1C0 /* PPSNSStorageService.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAFBEB1165B199100E5E1C0 /* PPSNSStorageService.m */; };
+		CAAFBEB5165B70DC00E5E1C0 /* PPResourceCacheService.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAFBEB4165B70DB00E5E1C0 /* PPResourceCacheService.m */; };
 		CAB15E8515AD41C300502106 /* PickColorView.m in Sources */ = {isa = PBXBuildFile; fileRef = CAB15E7E15AD41C300502106 /* PickColorView.m */; };
 		CAB15E8615AD41C300502106 /* PickEraserView.m in Sources */ = {isa = PBXBuildFile; fileRef = CAB15E8015AD41C300502106 /* PickEraserView.m */; };
 		CAB15E8715AD41C300502106 /* PickPenView.m in Sources */ = {isa = PBXBuildFile; fileRef = CAB15E8215AD41C300502106 /* PickPenView.m */; };
@@ -4347,6 +4349,10 @@
 		CAACE19715F499E6002EB53A /* SuperDrawView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SuperDrawView.h; sourceTree = "<group>"; };
 		CAACE19815F499E6002EB53A /* SuperDrawView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SuperDrawView.m; sourceTree = "<group>"; };
 		CAAE4A8215790F480012F6B8 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		CAAFBEB0165B199000E5E1C0 /* PPSNSStorageService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPSNSStorageService.h; sourceTree = "<group>"; };
+		CAAFBEB1165B199100E5E1C0 /* PPSNSStorageService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPSNSStorageService.m; sourceTree = "<group>"; };
+		CAAFBEB3165B70DB00E5E1C0 /* PPResourceCacheService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPResourceCacheService.h; sourceTree = "<group>"; };
+		CAAFBEB4165B70DB00E5E1C0 /* PPResourceCacheService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPResourceCacheService.m; sourceTree = "<group>"; };
 		CAB15E7D15AD41C300502106 /* PickColorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PickColorView.h; sourceTree = "<group>"; };
 		CAB15E7E15AD41C300502106 /* PickColorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PickColorView.m; sourceTree = "<group>"; };
 		CAB15E7F15AD41C300502106 /* PickEraserView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PickEraserView.h; sourceTree = "<group>"; };
@@ -8266,6 +8272,8 @@
 				CA7AFD01164E05A10039E07F /* PPResourceTestViewController.xib */,
 				CA7AFD02164E05A10039E07F /* PPResourceUtils.h */,
 				CA7AFD03164E05A10039E07F /* PPResourceUtils.m */,
+				CAAFBEB3165B70DB00E5E1C0 /* PPResourceCacheService.h */,
+				CAAFBEB4165B70DB00E5E1C0 /* PPResourceCacheService.m */,
 			);
 			path = PPResource;
 			sourceTree = "<group>";
@@ -8401,6 +8409,8 @@
 				CA8815B01657446900E29BB1 /* PPSNSCommonService.h */,
 				CA8815B11657446900E29BB1 /* PPSNSCommonService.m */,
 				CA8815B21657446900E29BB1 /* PPSNSConstants.h */,
+				CAAFBEB0165B199000E5E1C0 /* PPSNSStorageService.h */,
+				CAAFBEB1165B199100E5E1C0 /* PPSNSStorageService.m */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -12204,6 +12214,8 @@
 				CAA7992C1659D28700429611 /* BBSPostListController.m in Sources */,
 				CAA79942165A178700429611 /* BBSPostCell.m in Sources */,
 				CAA79947165A19F600429611 /* BBSPostCommentCell.m in Sources */,
+				CAAFBEB2165B199100E5E1C0 /* PPSNSStorageService.m in Sources */,
+				CAAFBEB5165B70DC00E5E1C0 /* PPResourceCacheService.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
