@@ -305,7 +305,8 @@
         
         [self.waitGameNoteLabel.layer addAnimation:[AnimationManager moveVerticalAnimationFrom:self.waitGameNoteLabel.center.y to:self.waitGameNoteLabel.center.y - ([DeviceDetection isIPAD] ? 100 : 50) duration:WAIT_GAME_NOTE_DISAPPEAR_DURATION] forKey:nil];
         
-        [self.waitGameNoteLabel.layer addAnimation:[AnimationManager disappearAnimationWithDuration:1.0] forKey:nil];
+        [self.waitGameNoteLabel.layer addAnimation:[AnimationManager disappearAnimationWithDuration:WAIT_GAME_NOTE_DISAPPEAR_DURATION] forKey:nil];
+        
         [self.waitGameNoteLabel performSelector:@selector(setHidden:) withObject:[NSNumber numberWithBool:YES] afterDelay:WAIT_GAME_NOTE_DISAPPEAR_DURATION];
     }else {
         self.waitGameNoteLabel.hidden = NO;
@@ -921,6 +922,11 @@ compareCardWith:(NSString*)targetUserId
             pokerSize = CGSizeMake(SMALL_POKER_VIEW_WIDTH, SMALL_POKER_VIEW_HEIGHT);
             gap = SMALL_POKER_GAP;
         }
+        
+//        PPDebug(@"##############################################");
+//        PPDebug(@"user: %@", [_gameService.session getNickNameByUserId:user.userId]);
+//        PPDebug(@"already check card: %d", userPlayInfo.alreadCheckCard);
+//        PPDebug(@"##############################################");
         [pokerView updateWithPokers:[_gameService pokersOfUser:user.userId]
                                size:pokerSize
                                 gap:gap];
