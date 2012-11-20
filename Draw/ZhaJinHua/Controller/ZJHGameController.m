@@ -296,7 +296,7 @@
         
         [self.waitGameNoteLabel.layer addAnimation:[AnimationManager moveVerticalAnimationFrom:self.waitGameNoteLabel.center.y to:self.waitGameNoteLabel.center.y - ([DeviceDetection isIPAD] ? 100 : 50) duration:WAIT_GAME_NOTE_DISAPPEAR_DURATION] forKey:nil];
         
-        [self.waitGameNoteLabel.layer addAnimation:[AnimationManager disappearAnimationFrom:1.0 to:0 duration:WAIT_GAME_NOTE_DISAPPEAR_DURATION] forKey:nil];
+        [self.waitGameNoteLabel.layer addAnimation:[AnimationManager disappearAnimationWithDuration:1.0] forKey:nil];
         [self.waitGameNoteLabel performSelector:@selector(setHidden:) withObject:[NSNumber numberWithBool:YES] afterDelay:WAIT_GAME_NOTE_DISAPPEAR_DURATION];
     }else {
         self.waitGameNoteLabel.hidden = NO;
