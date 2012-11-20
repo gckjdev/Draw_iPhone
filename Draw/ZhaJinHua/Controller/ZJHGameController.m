@@ -241,7 +241,9 @@
 
 - (void)initBetTable
 {
-
+    if ([_gameService.session isMeStanderBy]) {
+        [self.betTable betSome];
+    }
 }
 
 - (void)viewDidLoad
