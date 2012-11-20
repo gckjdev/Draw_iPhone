@@ -87,7 +87,7 @@
 		<string>dice_icon_72.png</string>
 	</array>
 	<key>CFResourceTest</key>
-	<true/>
+	<false/>
 	<key>CFServerTest</key>
 	<false/>
 </dict>
