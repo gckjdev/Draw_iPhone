@@ -259,7 +259,7 @@
     
     UILabel *label = [[[UILabel alloc] initWithFrame:CGRectMake(SHOW_CARD_BUTTON_X_OFFSET, SHOW_CARD_BUTTON_Y_OFFSET, SHOW_CARD_BUTTON_WIDTH, SHOW_CARD_BUTTON_HEIGHT)] autorelease];
     [label setFont:SHOW_CARD_BUTTON_FONT];
-    [label setText:@"亮牌"];
+    [label setText:NSLS(@"kShowCard")];
     label.textAlignment = UITextAlignmentCenter;
     [label setTextColor:[UIColor whiteColor]];
     label.backgroundColor = [UIColor clearColor];
