@@ -265,7 +265,7 @@
     if ([_gameService isGamePlaying]) {
         [self updateAllUsersPokers];
         [self updateAllUserTotalBet];
-        [self.betTable betSome];
+        [self.betTable betSome:[_gameService.gameState totalBet] minSingleBet:((NSNumber*)[_gameService.chipValues objectAtIndex:0]).intValue];
     }
 
     // money tree.

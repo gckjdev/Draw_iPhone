@@ -11,6 +11,7 @@
 #import "AudioManager.h"
 #import "ZJHSoundManager.h"
 #import "AutoCreateViewByXib.h"
+#import "ZJHImageManager.h"
 
 @implementation MoneyTreeView
 @synthesize moneyTree = _moneyTree;
@@ -31,6 +32,7 @@ AUTO_CREATE_VIEW_BY_XIB(MoneyTreeView)
 {
     MoneyTreeView* view = [MoneyTreeView createView];
     view.moneyTree.delegate = view;
+    [view.popMessageBackgroundImageView setImage:[ZJHImageManager defaultManager].moneyTreePopupMessageBackground];
     return view;
 }
 
