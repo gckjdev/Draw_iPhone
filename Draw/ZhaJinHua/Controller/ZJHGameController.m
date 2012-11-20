@@ -602,12 +602,12 @@
 
 - (void)showAllUserGameResult
 {
-    for (PBGameUser* user in _gameService.session.userList) {
-        ZJHAvatarView* avatar = [self getAvatarViewByUserId:user.userId];
-        if ([[_gameService winner] isEqualToString:user.userId]) {
+    for (NSString* userId in [[[_gameService gameState] usersInfo] allKeys]) {
+        ZJHAvatarView* avatar = [self getAvatarViewByUserId:userId];
+        if ([[_gameService winner] isEqualToString:userId]) {
             [avatar showWinCoins:_gameService.gameState.totalBet];
         } else {
-            [avatar showLoseCoins:[_gameService totalBetOfUser:user.userId]];
+            [avatar showLoseCoins:[_gameService totalBetOfUser:userId]];
         }
     }
 }
