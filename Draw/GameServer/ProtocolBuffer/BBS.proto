@@ -55,22 +55,32 @@ message PBBBSPost{
     optional PBBBSReward reward = 11;
 }
 
+
+
+message PBBBSActionSource{
+    required string postId = 1;
+    required string postUid = 2;
+
+    //if is reply
+    optional string actionId = 3;
+    optional string actionUid = 4;
+    optional int32 actionType = 5;
+    optional string briefText = 6;
+}
+
 message PBBBSAction{
     required string actionId = 1;
-
-    //comment or reply or support
-
-    required int32 type =2;
-    required string postId = 3;
-    required string appId = 4;
+    required int32 type = 2;
+    required PBBBSUser createUser = 3;
     required int32 deviceType = 5;
     required int32 createDate = 6;
-    required PBBBSUser createUser = 7;
+    optional int32 replyCount = 7;
+
     optional PBBBSContent content = 8;
 
-    //reply for reply
-    optional PBBBSUser sourceUser = 20; 
-    optional PBBBSContent sourceContent = 21;
+    //Source Action
+    optional PBBBSActionSource source = 9;
+
 }
 
 
