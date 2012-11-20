@@ -581,7 +581,25 @@ static ZJHImageManager* shareInstance;
 
 - (UIImage *)gameBgImage
 {
-    return [_resService imageByName:@"zjh_game_bg" inResourcePackage:RESOURCE_PACKAGE_ZJH];
+    switch ([DeviceDetection deviceScreenType]) {
+        case DEVICE_SCREEN_IPAD:
+        case DEVICE_SCREEN_NEW_IPAD:
+            return [_resService imageByName:@"zjh_game_bg_ipad" inResourcePackage:RESOURCE_PACKAGE_ZJH];
+            break;
+            
+        case DEVICE_SCREEN_IPHONE5:
+            return [_resService imageByName:@"zjh_game_bg_ip5" inResourcePackage:RESOURCE_PACKAGE_ZJH];
+            break;
+            
+        case DEVICE_SCREEN_IPHONE:
+            return [_resService imageByName:@"zjh_game_bg" inResourcePackage:RESOURCE_PACKAGE_ZJH];
+            break;
+            
+        default:
+            break;
+    }
+    
+    return nil;
 }
 
 - (UIImage *)totalBetBgImage
@@ -598,7 +616,22 @@ static ZJHImageManager* shareInstance;
 
 - (UIImage *)buttonsHolderBgImage
 {
-    return [_resService imageByName:@"zjh_button_holder_bg" inResourcePackage:RESOURCE_PACKAGE_ZJH];
+    switch ([DeviceDetection deviceScreenType]) {
+        case DEVICE_SCREEN_IPAD:
+        case DEVICE_SCREEN_NEW_IPAD:
+            [_resService imageByName:@"zjh_button_holder_bg_ipad" inResourcePackage:RESOURCE_PACKAGE_ZJH];
+            break;
+            
+        case DEVICE_SCREEN_IPHONE5:
+        case DEVICE_SCREEN_IPHONE:
+            return [_resService imageByName:@"zjh_button_holder_bg" inResourcePackage:RESOURCE_PACKAGE_ZJH];
+            break;
+            
+        default:
+            break;
+    }
+    
+    return nil;
 }
 
 - (UIImage *)runawayButtonImage
@@ -634,7 +667,7 @@ static ZJHImageManager* shareInstance;
 
 - (UIImage *)moneyTreePopupMessageBackground
 {
-    return [_resService imageByName:@"zjh_money_tree_popMessage_background" inResourcePackage:RESOURCE_PACKAGE_ZJH];
+    return [_resService imageByName:@"zjh_money_tree_pop_message_bg" inResourcePackage:RESOURCE_PACKAGE_ZJH];
 }
 
 - (UIImage *)zjhCardTypesNoteBgImage
