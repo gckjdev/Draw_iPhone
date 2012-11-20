@@ -46,7 +46,7 @@
 - (BOOL)canICompareCard;
 - (BOOL)canIShowCard:(int)cardId;
 
-- (BOOL)canUserCompareCard:(NSString *)userId;
+- (BOOL)canUserBeCompared:(NSString *)userId;
 
 - (PBZJHCardType)myCardType;
 - (NSString *)myCardTypeString;
