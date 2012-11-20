@@ -1102,7 +1102,7 @@
 "kCardTypeSpecial" = "特殊";
 "kCardTypeUnknow" = "未知";
 
-"kRemainTimes" = "00:%02d:%02d";
+"kRemainTimes" = "%02d:%02d";
 "kMatureMessage" = "Mature";
 "kZJHGameTitle" = "3Card";
 
