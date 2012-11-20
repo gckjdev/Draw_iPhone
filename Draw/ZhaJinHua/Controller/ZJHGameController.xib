@@ -882,8 +882,8 @@
 					</object>
 					<object class="IBUILabel" id="1018745468">
 						<reference key="NSNextResponder" ref="483638841"/>
-						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{85, 220}, {150, 21}}</string>
+						<int key="NSvFlags">-2147483356</int>
+						<string key="NSFrame">{{60, 220}, {200, 21}}</string>
 						<reference key="NSSuperview" ref="483638841"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>

@@ -141,7 +141,6 @@ static DiceGameService* _defaultService;
 
 - (void)handleMoreOnGameOverNotificationRequest:(GameMessage *)message
 {
-    self.diceSession.status = GameStatusOver;
     NSMutableDictionary *resultDic= [NSMutableDictionary dictionary];
     for(PBUserResult *result in [[[message gameOverNotificationRequest] gameResult] userResultList])
     {

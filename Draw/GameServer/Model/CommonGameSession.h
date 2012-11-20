@@ -9,9 +9,11 @@
 #import <Foundation/Foundation.h>
 
 typedef enum{
-    GameStatusOver = 0,
-    GameStatusPlaying = 1,
-} GameStatus;
+    GameStatusInit = 0,             // 从加入房间的第一个玩家收到JoinGameResponse到下发GameStartNotification消息的这段时间。
+    GameStatusWait = 1,             // 从GameOverNotification到下一个GameStartNotification这段时间。
+    GameStatusPlaying = 2,          // 从下发GameStartNotifiction到NextPlayerStart这段时间。
+    GameStatusActualPlaying = 3     // 从第一个NextPlayerStart到GameOverNotification这段时间。
+} CommonSessionStatus;
 
 @class PBGameSession;
 @class PBGameUser;
@@ -25,12 +27,12 @@ typedef enum{
 @property (nonatomic, assign) int sessionId;
 @property (nonatomic, retain) NSString *hostUserId;
 @property (nonatomic, retain) NSString *userId;
-@property (nonatomic, assign) GameStatus status;
+@property (nonatomic, assign) CommonSessionStatus status;
 @property (nonatomic, assign) NSInteger roundNumber;
 @property (nonatomic, retain) NSString *currentPlayUserId;
 @property (nonatomic, assign) NSInteger myTurnTimes;
 @property (nonatomic, assign) int ruleType;
-@property (nonatomic, assign) BOOL isMeStanderBy;
+@property (nonatomic, assign) BOOL isMeStandBy;
 
 - (void)fromPBGameSession:(PBGameSession*)pbSession userId:(NSString*)userId;
 

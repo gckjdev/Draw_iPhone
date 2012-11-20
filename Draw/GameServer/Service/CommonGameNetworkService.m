@@ -194,7 +194,7 @@
     self.session.status = GameStatusPlaying;
     self.session.myTurnTimes = 0;
     self.session.roundNumber ++;
-    self.session.isMeStanderBy = NO;
+    self.session.isMeStandBy = NO;
     [self.session.deletedUserList removeAllObjects];
     [self handleMoreOnGameStartNotificationRequest:message];
     [self postNotification:NOTIFICATION_GAME_START_NOTIFICATION_REQUEST message:message];
@@ -202,7 +202,7 @@
 
 - (void)handleGameOverNotificationRequest:(GameMessage*)message
 {
-    self.session.status = GameStatusOver;
+    self.session.status = GameStatusWait;
     [self handleMoreOnGameOverNotificationRequest:message];
     [self postNotification:NOTIFICATION_GAME_OVER_NOTIFICATION_REQUEST message:message];
 }
@@ -210,6 +210,7 @@
 - (void)handleNextPlayerStartNotificationRequest:(GameMessage *)message
 {
     PPDebug(@"(*************** next player: %@ *****************", [message currentPlayUserId]);
+    self.session.status = GameStatusActualPlaying;
     self.session.currentPlayUserId = [message currentPlayUserId];
     if ([self isMyTurn]) {
         self.session.myTurnTimes++;
