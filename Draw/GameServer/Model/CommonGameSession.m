@@ -32,6 +32,7 @@
 @synthesize currentPlayUserId = _currentPlayUserId;
 @synthesize ruleType = _ruleType;
 @synthesize myTurnTimes = _myTurnTimes;
+@synthesize isMeStanderBy = _isMeStanderBy;
 
 - (void)dealloc
 {
@@ -56,6 +57,7 @@
         
     self.roundNumber = 0;
     self.myTurnTimes = 0;
+    self.isMeStanderBy = NO;
     return self;
 }
 

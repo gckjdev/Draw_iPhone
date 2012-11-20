@@ -284,6 +284,10 @@
 
 - (void)updateWaitGameNoteLabel
 {
+    if (_gameService.session.isMeStanderBy && [_gameService isGamePlaying]) {
+        return;
+    }
+    
     if ([_gameService isGamePlaying]) {
         if (self.waitGameNoteLabel.hidden == YES) {
             return;

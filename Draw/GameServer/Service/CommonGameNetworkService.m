@@ -194,6 +194,7 @@
     self.session.status = GameStatusPlaying;
     self.session.myTurnTimes = 0;
     self.session.roundNumber ++;
+    self.session.isMeStanderBy = NO;
     [self.session.deletedUserList removeAllObjects];
     [self handleMoreOnGameStartNotificationRequest:message];
     [self postNotification:NOTIFICATION_GAME_START_NOTIFICATION_REQUEST message:message];

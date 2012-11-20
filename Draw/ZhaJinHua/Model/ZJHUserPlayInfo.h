@@ -35,10 +35,13 @@
 - (BOOL)hasShield;
 
 - (BOOL)canAutoBet;
-- (BOOL)canCompareCard;
 - (BOOL)canCheckCard;
 - (BOOL)canFoldCard;
 - (BOOL)canShowCard:(int)cardId;
+- (BOOL)canCompareCard;
+
+- (BOOL)canBeCompared;
+
 
 - (NSString *)cardTypeString;
 

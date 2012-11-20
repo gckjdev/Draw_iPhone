@@ -92,19 +92,7 @@
     return YES;
 }
 
-- (BOOL)canCompareCard
-{
-    if (_alreadFoldCard || _alreadCompareLose) {
-        return NO;
-    }
-    
-    if (_lastAction == PBZJHUserActionShowCard
-        && [[self faceUpPokers] count] < [_pokers count]) {
-        return NO;
-    }
-    
-    return YES;
-}
+
 
 - (BOOL)canCheckCard
 {
@@ -133,6 +121,29 @@
     }
     
     return NO;
+}
+
+- (BOOL)canCompareCard
+{
+    if (_alreadFoldCard || _alreadCompareLose) {
+        return NO;
+    }
+    
+    return YES;
+}
+
+- (BOOL)canBeCompared
+{
+    if (_alreadFoldCard || _alreadCompareLose) {
+        return NO;
+    }
+    
+    if (_lastAction == PBZJHUserActionShowCard
+        && [[self faceUpPokers] count] < [_pokers count]) {
+        return NO;
+    }
+    
+    return YES;
 }
 
 - (BOOL)hasShield
