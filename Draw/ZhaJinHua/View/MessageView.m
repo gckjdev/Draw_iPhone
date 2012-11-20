@@ -16,8 +16,8 @@
 
 #define LABEL_LEFT_OFFSET ([DeviceDetection isIPAD] ? 5.0 : 2.5)
 #define LABEL_RIGHT_OFFSET ([DeviceDetection isIPAD] ? 5.0 : 2.5)
-#define LABEL_TOP_OFFSET ([DeviceDetection isIPAD] ? 2 : 1)
-#define LABEL_BOTTOM_OFFSET ([DeviceDetection isIPAD] ? 14 : 7)
+#define LABEL_TOP_OFFSET ([DeviceDetection isIPAD] ? 5 : 1)
+#define LABEL_BOTTOM_OFFSET ([DeviceDetection isIPAD] ? 10 : 7)
 
 
 #define LABEL_TAG 200
@@ -85,7 +85,7 @@
     if([DeviceDetection isIPAD])
     {
         size.width *= 1.5;
-        size.height *= 1.5;
+        size.height *= 1.0;
     }
 
     CGRect rect = CGRectMake(0, 0, size.width, size.height);
