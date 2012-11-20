@@ -491,7 +491,7 @@ static ZJHGameService *_defaultService;
         return self.session.roomName;
     }
     
-    return [NSString stringWithFormat:NSLS(@"k炸金花%d号房"), self.session.sessionId];
+    return [NSString stringWithFormat:NSLS(@"kZJHRoomTitle"), self.session.sessionId];
 }
 
 @end

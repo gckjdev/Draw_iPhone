@@ -789,11 +789,26 @@ enum {
     [[SinaSNSService defaultService] startLogin:self];
     */
     
-    [[[PPSNSIntegerationService defaultService] snsServiceByType:TYPE_SINA] login:^{
+    PPSNSCommonService* service = [[PPSNSIntegerationService defaultService] snsServiceByType:TYPE_SINA];
+    
+    [service login:^(NSDictionary *userInfo) {
         PPDebug(@"SINA Login Success");
+
+        [self showActivityWithText:NSLS(@"Loading")];
+        
+        [service readMyUserInfo:^(NSDictionary *userInfo) {
+            [self hideActivity];
+            PPDebug(@"SINA readMyUserInfo Success, userInfo=%@", [userInfo description]);
+        } failureBlock:^(NSError *error) {
+            [self hideActivity];
+            PPDebug(@"SINA readMyUserInfo Failure");
+        }];
+        
     } failureBlock:^(NSError *error) {
         PPDebug(@"SINA Login Failure");
     }];
+     
+
 }
 
 - (void)bindFacebook

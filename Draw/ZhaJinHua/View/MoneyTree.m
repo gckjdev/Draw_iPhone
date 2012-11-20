@@ -97,30 +97,32 @@
     UIImage* layerImage = [ZJHImageManager defaultManager].moneyTreeCoinLightImage;
     layer.contents = (id)[layerImage CGImage];
     [layer setBounds:CGRectMake(0, 0, COIN_RADIUS, COIN_RADIUS)];
-    [_layerQueue enqueue:layer];
+//    [_layerQueue enqueue:layer];
     return layer;
 }
 
 - (void)showOneCoin
 {
-    [self setBackgroundImage:[ZJHImageManager defaultManager].bigMoneyTreeImage forState:UIControlStateNormal];
+    self.coinsOnTree ++;
     [self addCoinAtPosition:CGPointMake(self.frame.size.width*0.75, self.frame.size.height/2)];
+    [self killTimer];
+    [self startGrowCoinTimer:self.gainTime selector:@selector(showTwoCoin)];
+}
+
+- (void)showTwoCoin
+{
+    self.coinsOnTree ++;
+    [self addCoinAtPosition:CGPointMake(self.frame.size.width*0.35, self.frame.size.height/4)];
 }
 
 - (void)setIsMature:(BOOL)isMature
 {
     _isMature = isMature;
     if (isMature) {
-        _hasEverMature = YES;
-        [self showOneCoin];
+        [self setBackgroundImage:[ZJHImageManager defaultManager].bigMoneyTreeImage forState:UIControlStateNormal];
     } else {
-        while ([_layerQueue peek]) {
-            CALayer* layer = [_layerQueue dequeue];
-            [layer removeFromSuperlayer];
-        }
-        if (!_hasEverMature) {
-            [self setBackgroundImage:[[ZJHImageManager defaultManager] moneyTreeImage] forState:UIControlStateNormal];
-        }
+        
+        [self setBackgroundImage:[[ZJHImageManager defaultManager] moneyTreeImage] forState:UIControlStateNormal];
         
     }
 }
@@ -138,9 +140,9 @@
 
 - (void)mature
 {
+    PPDebug(@"<MoneyTree> Money tree is mature ,now start to grow coin");
     [self setIsMature:YES];
-    [self killTimer];
-    [self startMatureTimer:self.growthTime/2];
+    [self startGrowCoin];
 }
 
 - (void)addCoinAtPosition:(CGPoint)position
@@ -152,8 +154,8 @@
     CAAnimation* coinGrowAnim = [AnimationManager scaleAnimationWithFromScale:0.01 toScale:1.1 duration:1 delegate:self removeCompeleted:YES];
     [CATransaction setCompletionBlock:^{
         CALayer* lightLayer = [self shiningLightLayer];
-        lightLayer.position = CGPointMake(coinLayer.position.x + coinLayer.bounds.size.width/4, coinLayer.position.y + coinLayer.bounds.size.height/4);
-        [self.layer addSublayer:lightLayer];
+        lightLayer.position = CGPointMake(coinLayer.bounds.size.width*0.75, coinLayer.bounds.size.width*0.75);
+        [coinLayer addSublayer:lightLayer];
         
         CAAnimation* shining = [AnimationManager disappearAnimationWithDuration:1];
         shining.autoreverses = YES;
@@ -167,10 +169,7 @@
     }
 }
 
-- (void)tooMature
-{
-    [self addCoinAtPosition:CGPointMake(self.frame.size.width*0.3, self.frame.size.height/4)];
-}
+
 
 - (void)startGrowthTimer:(CFTimeInterval)timeInterval
 {
@@ -182,11 +181,22 @@
     [_treeTimer retain];
 }
 
-- (void)startMatureTimer:(CFTimeInterval)timeInterval
+//- (void)startMatureTimer:(CFTimeInterval)timeInterval
+//{
+//    _treeTimer = [NSTimer scheduledTimerWithTimeInterval:timeInterval
+//                                                  target:self
+//                                                selector:@selector(tooMature)
+//                                                userInfo:nil
+//                                                 repeats:NO];
+//    [_treeTimer retain];
+//}
+
+- (void)startGrowCoinTimer:(CFTimeInterval)timeInterval
+                  selector:(SEL)aSelector
 {
     _treeTimer = [NSTimer scheduledTimerWithTimeInterval:timeInterval
                                                   target:self
-                                                selector:@selector(tooMature)
+                                                selector:aSelector
                                                 userInfo:nil
                                                  repeats:NO];
     [_treeTimer retain];
@@ -194,22 +204,25 @@
 
 - (void)startGrow
 {
-    PPDebug(@"<MoneyTree> tree start growth");
+    PPDebug(@"<MoneyTree> tree start grow up");
     [self killTimer];
     [self setIsMature:NO];
     [self startGrowthTimer:self.growthTime];
     
 }
 
+- (void)startGrowCoin
+{
+    PPDebug(@"<MoneyTree> tree start grow coin");
+    [self killTimer];
+    [self startGrowCoinTimer:self.gainTime selector:@selector(showOneCoin)];
+}
+
+
 - (void)kill
 {
     [self killTimer];
     
-}
-
-- (int)calAwardCoinByLevel:(int)level
-{
-    return level * EARN_COIN_EACH_LEVEL;
 }
 
 - (void)rewardCoins:(int)coinsCount
@@ -252,21 +265,47 @@
     
 }
 
+//- (void)showCoinsDrops
+//{
+//    CALayer* leftCoin = [self coinLayer];
+//    CALayer* rightCoin = [self coinLayer];
+//    [self.layer addSublayer:leftCoin];
+//    [self.layer addSublayer:rightCoin];
+//    CAAnimation* leftDropAnim = [AnimationManager bezierCurveStart:CGPointMake(self.frame.size.width*0.3, self.frame.size.height*0.25) controlPoint1:CGPointMake(self.frame.size.width/2, 0) controlPoint2:CGPointMake(self.frame.size.width/2, 0) endPoint:CGPointMake(self.frame.size.width/2, self.frame.size.height) duration:1 delegate:nil];
+//     CAAnimation* rightDropAnim = [AnimationManager bezierCurveStart:CGPointMake(self.frame.size.width*0.75, self.frame.size.height/2) controlPoint1:CGPointMake(self.frame.size.width/2, 0) controlPoint2:CGPointMake(self.frame.size.width/2, 0) endPoint:CGPointMake(self.frame.size.width/2, self.frame.size.height) duration:1 delegate:nil];
+//    [leftCoin addAnimation:leftDropAnim forKey:nil];
+//    [rightCoin addAnimation:rightDropAnim forKey:nil];
+//    
+//}
+
 - (void)clickTree:(id)sender
 {
-    if (_isMature) {
-        self.isMature = NO;
+    if (self.coinsOnTree > 0) {
         if (_delegate && [_delegate respondsToSelector:@selector(getMoney:fromTree:)]) {
-            [_delegate getMoney:[self calAwardCoinByLevel:[LevelService defaultService].level] fromTree:self];
+            [_delegate getMoney:(_coinValue * _coinsOnTree) fromTree:self];
         }
-        [self rewardCoins:[self calAwardCoinByLevel:[LevelService defaultService].level] duration:1];
-        
-        [self startGrow];
+        [self rewardCoins:(self.coinValue * _coinsOnTree) duration:1];
+//        [self showCoinsDrops];
+        [self gain];
+        [self startGrowCoin];
 
     } else {
         if (_delegate && [_delegate respondsToSelector:@selector(moneyTreeNotMature:)]) {
             [_delegate moneyTreeNotMature:self];
         }
+    }
+}
+
+- (void)gain
+{
+    _coinsOnTree = 0;
+    while ([_layerQueue peek]) {
+        CALayer* layer = [_layerQueue dequeue];
+        CAAnimation* dropAnim = [AnimationManager bezierCurveStart:layer.position controlPoint1:CGPointMake(self.frame.size.width/2, 0) controlPoint2:CGPointMake(self.frame.size.width/2, 0) endPoint:CGPointMake(self.frame.size.width/2, self.frame.size.height) duration:1 delegate:self];
+        [CATransaction setCompletionBlock:^{
+            [layer removeFromSuperlayer];
+        }];
+        [layer addAnimation:dropAnim forKey:nil];
     }
 }
 

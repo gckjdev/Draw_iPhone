@@ -16,6 +16,9 @@
 #define POKER_VIEW_ROTATE_ANCHOR_POINT CGPointMake(0, 0)
 #define SHOW_CARD_FLAG_IMAGE_TAG 308
 
+#define CARD_LIGHT_WIDTH ([DeviceDetection isIPAD] ? 100 : 50)
+#define CARD_LIGHT_HEIGHT ([DeviceDetection isIPAD] ? 126 : 63)
+
 @interface PokerView ()
 {
     CGPoint _originCenter;
@@ -303,7 +306,7 @@
 
 - (void)setShowCardFlag:(BOOL)animation
 {
-    UIImageView *imageView = [[[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 50, 63)] autorelease];
+    UIImageView *imageView = [[[UIImageView alloc] initWithFrame:CGRectMake(0, 0, CARD_LIGHT_WIDTH, CARD_LIGHT_HEIGHT)] autorelease];
     imageView.image = [[ZJHImageManager defaultManager] showCardFlagImage];
     imageView.center = CGPointMake(self.frame.size.width/2, self.frame.size.height/2);
     [self addSubview:imageView];

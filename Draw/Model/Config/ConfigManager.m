@@ -411,7 +411,19 @@
 + (int)getTreeMatureTime
 {
     return [MobClickUtils getIntValueByKey:@"ZJH_TREE_MATURE_TIME"
-                              defaultValue:10];
+                              defaultValue:60];
+}
+
++ (int)getTreeGainTime
+{
+    return [MobClickUtils getIntValueByKey:@"ZJH_TREE_GAIN_TIME"
+                              defaultValue:60];
+}
+
++ (int)getTreeCoinVale
+{
+    return [MobClickUtils getIntValueByKey:@"ZJH_TREE_COIN_VALUE"
+                              defaultValue:25];
 }
 
 + (int)getZJHMaxAutoBetCount
