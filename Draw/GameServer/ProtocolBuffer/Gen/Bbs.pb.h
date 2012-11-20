@@ -5,6 +5,8 @@
 #import "GameBasic.pb.h"
 
 @class PBBBSAction;
+@class PBBBSActionSource;
+@class PBBBSActionSource_Builder;
 @class PBBBSAction_Builder;
 @class PBBBSBoard;
 @class PBBBSBoard_Builder;
@@ -492,49 +494,134 @@
 - (PBBBSPost_Builder*) clearReward;
 @end
 
+@interface PBBBSActionSource : PBGeneratedMessage {
+@private
+  BOOL hasActionType_:1;
+  BOOL hasPostId_:1;
+  BOOL hasPostUid_:1;
+  BOOL hasActionId_:1;
+  BOOL hasActionUid_:1;
+  BOOL hasBriefText_:1;
+  int32_t actionType;
+  NSString* postId;
+  NSString* postUid;
+  NSString* actionId;
+  NSString* actionUid;
+  NSString* briefText;
+}
+- (BOOL) hasPostId;
+- (BOOL) hasPostUid;
+- (BOOL) hasActionId;
+- (BOOL) hasActionUid;
+- (BOOL) hasActionType;
+- (BOOL) hasBriefText;
+@property (readonly, retain) NSString* postId;
+@property (readonly, retain) NSString* postUid;
+@property (readonly, retain) NSString* actionId;
+@property (readonly, retain) NSString* actionUid;
+@property (readonly) int32_t actionType;
+@property (readonly, retain) NSString* briefText;
+
++ (PBBBSActionSource*) defaultInstance;
+- (PBBBSActionSource*) defaultInstance;
+
+- (BOOL) isInitialized;
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
+- (PBBBSActionSource_Builder*) builder;
++ (PBBBSActionSource_Builder*) builder;
++ (PBBBSActionSource_Builder*) builderWithPrototype:(PBBBSActionSource*) prototype;
+
++ (PBBBSActionSource*) parseFromData:(NSData*) data;
++ (PBBBSActionSource*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBBBSActionSource*) parseFromInputStream:(NSInputStream*) input;
++ (PBBBSActionSource*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBBBSActionSource*) parseFromCodedInputStream:(PBCodedInputStream*) input;
++ (PBBBSActionSource*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+@end
+
+@interface PBBBSActionSource_Builder : PBGeneratedMessage_Builder {
+@private
+  PBBBSActionSource* result;
+}
+
+- (PBBBSActionSource*) defaultInstance;
+
+- (PBBBSActionSource_Builder*) clear;
+- (PBBBSActionSource_Builder*) clone;
+
+- (PBBBSActionSource*) build;
+- (PBBBSActionSource*) buildPartial;
+
+- (PBBBSActionSource_Builder*) mergeFrom:(PBBBSActionSource*) other;
+- (PBBBSActionSource_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (PBBBSActionSource_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+
+- (BOOL) hasPostId;
+- (NSString*) postId;
+- (PBBBSActionSource_Builder*) setPostId:(NSString*) value;
+- (PBBBSActionSource_Builder*) clearPostId;
+
+- (BOOL) hasPostUid;
+- (NSString*) postUid;
+- (PBBBSActionSource_Builder*) setPostUid:(NSString*) value;
+- (PBBBSActionSource_Builder*) clearPostUid;
+
+- (BOOL) hasActionId;
+- (NSString*) actionId;
+- (PBBBSActionSource_Builder*) setActionId:(NSString*) value;
+- (PBBBSActionSource_Builder*) clearActionId;
+
+- (BOOL) hasActionUid;
+- (NSString*) actionUid;
+- (PBBBSActionSource_Builder*) setActionUid:(NSString*) value;
+- (PBBBSActionSource_Builder*) clearActionUid;
+
+- (BOOL) hasActionType;
+- (int32_t) actionType;
+- (PBBBSActionSource_Builder*) setActionType:(int32_t) value;
+- (PBBBSActionSource_Builder*) clearActionType;
+
+- (BOOL) hasBriefText;
+- (NSString*) briefText;
+- (PBBBSActionSource_Builder*) setBriefText:(NSString*) value;
+- (PBBBSActionSource_Builder*) clearBriefText;
+@end
+
 @interface PBBBSAction : PBGeneratedMessage {
 @private
   BOOL hasType_:1;
   BOOL hasDeviceType_:1;
   BOOL hasCreateDate_:1;
+  BOOL hasReplyCount_:1;
   BOOL hasActionId_:1;
-  BOOL hasPostId_:1;
-  BOOL hasAppId_:1;
   BOOL hasCreateUser_:1;
   BOOL hasContent_:1;
-  BOOL hasSourceUser_:1;
-  BOOL hasSourceContent_:1;
+  BOOL hasSource_:1;
   int32_t type;
   int32_t deviceType;
   int32_t createDate;
+  int32_t replyCount;
   NSString* actionId;
-  NSString* postId;
-  NSString* appId;
   PBBBSUser* createUser;
   PBBBSContent* content;
-  PBBBSUser* sourceUser;
-  PBBBSContent* sourceContent;
+  PBBBSActionSource* source;
 }
 - (BOOL) hasActionId;
 - (BOOL) hasType;
-- (BOOL) hasPostId;
-- (BOOL) hasAppId;
+- (BOOL) hasCreateUser;
 - (BOOL) hasDeviceType;
 - (BOOL) hasCreateDate;
-- (BOOL) hasCreateUser;
+- (BOOL) hasReplyCount;
 - (BOOL) hasContent;
-- (BOOL) hasSourceUser;
-- (BOOL) hasSourceContent;
+- (BOOL) hasSource;
 @property (readonly, retain) NSString* actionId;
 @property (readonly) int32_t type;
-@property (readonly, retain) NSString* postId;
-@property (readonly, retain) NSString* appId;
+@property (readonly, retain) PBBBSUser* createUser;
 @property (readonly) int32_t deviceType;
 @property (readonly) int32_t createDate;
-@property (readonly, retain) PBBBSUser* createUser;
+@property (readonly) int32_t replyCount;
 @property (readonly, retain) PBBBSContent* content;
-@property (readonly, retain) PBBBSUser* sourceUser;
-@property (readonly, retain) PBBBSContent* sourceContent;
+@property (readonly, retain) PBBBSActionSource* source;
 
 + (PBBBSAction*) defaultInstance;
 - (PBBBSAction*) defaultInstance;
@@ -580,15 +667,12 @@
 - (PBBBSAction_Builder*) setType:(int32_t) value;
 - (PBBBSAction_Builder*) clearType;
 
-- (BOOL) hasPostId;
-- (NSString*) postId;
-- (PBBBSAction_Builder*) setPostId:(NSString*) value;
-- (PBBBSAction_Builder*) clearPostId;
-
-- (BOOL) hasAppId;
-- (NSString*) appId;
-- (PBBBSAction_Builder*) setAppId:(NSString*) value;
-- (PBBBSAction_Builder*) clearAppId;
+- (BOOL) hasCreateUser;
+- (PBBBSUser*) createUser;
+- (PBBBSAction_Builder*) setCreateUser:(PBBBSUser*) value;
+- (PBBBSAction_Builder*) setCreateUserBuilder:(PBBBSUser_Builder*) builderForValue;
+- (PBBBSAction_Builder*) mergeCreateUser:(PBBBSUser*) value;
+- (PBBBSAction_Builder*) clearCreateUser;
 
 - (BOOL) hasDeviceType;
 - (int32_t) deviceType;
@@ -600,12 +684,10 @@
 - (PBBBSAction_Builder*) setCreateDate:(int32_t) value;
 - (PBBBSAction_Builder*) clearCreateDate;
 
-- (BOOL) hasCreateUser;
-- (PBBBSUser*) createUser;
-- (PBBBSAction_Builder*) setCreateUser:(PBBBSUser*) value;
-- (PBBBSAction_Builder*) setCreateUserBuilder:(PBBBSUser_Builder*) builderForValue;
-- (PBBBSAction_Builder*) mergeCreateUser:(PBBBSUser*) value;
-- (PBBBSAction_Builder*) clearCreateUser;
+- (BOOL) hasReplyCount;
+- (int32_t) replyCount;
+- (PBBBSAction_Builder*) setReplyCount:(int32_t) value;
+- (PBBBSAction_Builder*) clearReplyCount;
 
 - (BOOL) hasContent;
 - (PBBBSContent*) content;
@@ -614,19 +696,12 @@
 - (PBBBSAction_Builder*) mergeContent:(PBBBSContent*) value;
 - (PBBBSAction_Builder*) clearContent;
 
-- (BOOL) hasSourceUser;
-- (PBBBSUser*) sourceUser;
-- (PBBBSAction_Builder*) setSourceUser:(PBBBSUser*) value;
-- (PBBBSAction_Builder*) setSourceUserBuilder:(PBBBSUser_Builder*) builderForValue;
-- (PBBBSAction_Builder*) mergeSourceUser:(PBBBSUser*) value;
-- (PBBBSAction_Builder*) clearSourceUser;
-
-- (BOOL) hasSourceContent;
-- (PBBBSContent*) sourceContent;
-- (PBBBSAction_Builder*) setSourceContent:(PBBBSContent*) value;
-- (PBBBSAction_Builder*) setSourceContentBuilder:(PBBBSContent_Builder*) builderForValue;
-- (PBBBSAction_Builder*) mergeSourceContent:(PBBBSContent*) value;
-- (PBBBSAction_Builder*) clearSourceContent;
+- (BOOL) hasSource;
+- (PBBBSActionSource*) source;
+- (PBBBSAction_Builder*) setSource:(PBBBSActionSource*) value;
+- (PBBBSAction_Builder*) setSourceBuilder:(PBBBSActionSource_Builder*) builderForValue;
+- (PBBBSAction_Builder*) mergeSource:(PBBBSActionSource*) value;
+- (PBBBSAction_Builder*) clearSource;
 @end
 
 @interface PBBBSBoard : PBGeneratedMessage {

@@ -16,6 +16,10 @@
 @interface CreatePostController ()
 {
     PBBBSBoard *_bbsBoard;
+    
+    PBBBSAction *_sourceAction;
+    PBBBSPost *_sourcePost;
+    
     UIImage *_image;
     UIImage *_drawImage;
     NSString *_text;
@@ -30,6 +34,11 @@
 @property(nonatomic, retain)NSMutableArray *drawActionList;
 @property(nonatomic, retain)NSString *text;
 @property(nonatomic, assign)NSInteger bonus;
+
+@property(nonatomic, retain) PBBBSAction *sourceAction;
+@property(nonatomic, retain) PBBBSPost *sourcePost;
+
+
 @end
 
 @implementation CreatePostController
@@ -41,6 +50,9 @@
 @synthesize imagePicker = _imagePicker;
 @synthesize text = _text;
 @synthesize bonus = _bonus;
+@synthesize sourceAction = _sourceAction;
+@synthesize sourcePost = _sourcePost;
+
 
 - (void)dealloc
 {
@@ -54,6 +66,9 @@
     PPRelease(_graffitiButton);
     PPRelease(_imageButton);
     PPRelease(_rewardButton);
+    PPRelease (_sourceAction);
+    PPRelease (_sourcePost);
+
     [super dealloc];
 }
 - (id)initWithBoard:(PBBBSBoard *)board
@@ -72,6 +87,18 @@
     [fromController presentModalViewController:cp animated:YES];
     return cp;
 }
+
++ (CreatePostController *)enterControllerWithSourecePost:(PBBBSPost *)post
+                                            sourceAction:(PBBBSAction *)action
+                                          fromController:(UIViewController *)fromController
+{
+    CreatePostController *cp = [[[CreatePostController alloc] init] autorelease];
+    cp.sourceAction = action;
+    cp.sourcePost = post;
+    [fromController presentModalViewController:cp animated:YES];
+    return cp;
+}
+
 
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil

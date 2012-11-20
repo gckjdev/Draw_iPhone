@@ -213,6 +213,19 @@
 	
 }
 
+#pragma mark - BBSPost cell delegate
+- (void)didClickSupportButtonWithPost:(PBBBSPost *)post
+{
+    
+}
+- (void)didClickReplyButtonWithPost:(PBBBSPost *)post
+{
+    [CreatePostController enterControllerWithSourecePost:post
+                                            sourceAction:nil
+                                          fromController:self];
+}
+
+
 //- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 //{
 //    PBBBSBoard *sBoard = [self boardForIndexPath:indexPath];

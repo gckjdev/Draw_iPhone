@@ -76,6 +76,8 @@
 @class OpenDiceResponse;
 @class OpenDiceResponse_Builder;
 @class PBBBSAction;
+@class PBBBSActionSource;
+@class PBBBSActionSource_Builder;
 @class PBBBSAction_Builder;
 @class PBBBSBoard;
 @class PBBBSBoard_Builder;
