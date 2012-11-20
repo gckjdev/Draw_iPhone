@@ -8,12 +8,13 @@
 
 #import "CommonTabController.h"
 #import "BBSService.h"
+#import "BBSPostCell.h"
 
 @class PBBBSPost;
 @class PBBBSUser;
 @class PBBBSBoard;
 
-@interface BBSPostListController : CommonTabController<BBSServiceDelegate>
+@interface BBSPostListController : CommonTabController<BBSServiceDelegate, BBSPostCellDelegate>
 {
     
 }

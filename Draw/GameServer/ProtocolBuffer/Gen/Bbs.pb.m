@@ -1944,17 +1944,393 @@ static PBBBSPost* defaultPBBBSPostInstance = nil;
 }
 @end
 
+@interface PBBBSActionSource ()
+@property (retain) NSString* postId;
+@property (retain) NSString* postUid;
+@property (retain) NSString* actionId;
+@property (retain) NSString* actionUid;
+@property int32_t actionType;
+@property (retain) NSString* briefText;
+@end
+
+@implementation PBBBSActionSource
+
+- (BOOL) hasPostId {
+  return !!hasPostId_;
+}
+- (void) setHasPostId:(BOOL) value {
+  hasPostId_ = !!value;
+}
+@synthesize postId;
+- (BOOL) hasPostUid {
+  return !!hasPostUid_;
+}
+- (void) setHasPostUid:(BOOL) value {
+  hasPostUid_ = !!value;
+}
+@synthesize postUid;
+- (BOOL) hasActionId {
+  return !!hasActionId_;
+}
+- (void) setHasActionId:(BOOL) value {
+  hasActionId_ = !!value;
+}
+@synthesize actionId;
+- (BOOL) hasActionUid {
+  return !!hasActionUid_;
+}
+- (void) setHasActionUid:(BOOL) value {
+  hasActionUid_ = !!value;
+}
+@synthesize actionUid;
+- (BOOL) hasActionType {
+  return !!hasActionType_;
+}
+- (void) setHasActionType:(BOOL) value {
+  hasActionType_ = !!value;
+}
+@synthesize actionType;
+- (BOOL) hasBriefText {
+  return !!hasBriefText_;
+}
+- (void) setHasBriefText:(BOOL) value {
+  hasBriefText_ = !!value;
+}
+@synthesize briefText;
+- (void) dealloc {
+  self.postId = nil;
+  self.postUid = nil;
+  self.actionId = nil;
+  self.actionUid = nil;
+  self.briefText = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.postId = @"";
+    self.postUid = @"";
+    self.actionId = @"";
+    self.actionUid = @"";
+    self.actionType = 0;
+    self.briefText = @"";
+  }
+  return self;
+}
+static PBBBSActionSource* defaultPBBBSActionSourceInstance = nil;
++ (void) initialize {
+  if (self == [PBBBSActionSource class]) {
+    defaultPBBBSActionSourceInstance = [[PBBBSActionSource alloc] init];
+  }
+}
++ (PBBBSActionSource*) defaultInstance {
+  return defaultPBBBSActionSourceInstance;
+}
+- (PBBBSActionSource*) defaultInstance {
+  return defaultPBBBSActionSourceInstance;
+}
+- (BOOL) isInitialized {
+  if (!self.hasPostId) {
+    return NO;
+  }
+  if (!self.hasPostUid) {
+    return NO;
+  }
+  return YES;
+}
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
+  if (self.hasPostId) {
+    [output writeString:1 value:self.postId];
+  }
+  if (self.hasPostUid) {
+    [output writeString:2 value:self.postUid];
+  }
+  if (self.hasActionId) {
+    [output writeString:3 value:self.actionId];
+  }
+  if (self.hasActionUid) {
+    [output writeString:4 value:self.actionUid];
+  }
+  if (self.hasActionType) {
+    [output writeInt32:5 value:self.actionType];
+  }
+  if (self.hasBriefText) {
+    [output writeString:6 value:self.briefText];
+  }
+  [self.unknownFields writeToCodedOutputStream:output];
+}
+- (int32_t) serializedSize {
+  int32_t size = memoizedSerializedSize;
+  if (size != -1) {
+    return size;
+  }
+
+  size = 0;
+  if (self.hasPostId) {
+    size += computeStringSize(1, self.postId);
+  }
+  if (self.hasPostUid) {
+    size += computeStringSize(2, self.postUid);
+  }
+  if (self.hasActionId) {
+    size += computeStringSize(3, self.actionId);
+  }
+  if (self.hasActionUid) {
+    size += computeStringSize(4, self.actionUid);
+  }
+  if (self.hasActionType) {
+    size += computeInt32Size(5, self.actionType);
+  }
+  if (self.hasBriefText) {
+    size += computeStringSize(6, self.briefText);
+  }
+  size += self.unknownFields.serializedSize;
+  memoizedSerializedSize = size;
+  return size;
+}
++ (PBBBSActionSource*) parseFromData:(NSData*) data {
+  return (PBBBSActionSource*)[[[PBBBSActionSource builder] mergeFromData:data] build];
+}
++ (PBBBSActionSource*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBBBSActionSource*)[[[PBBBSActionSource builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+}
++ (PBBBSActionSource*) parseFromInputStream:(NSInputStream*) input {
+  return (PBBBSActionSource*)[[[PBBBSActionSource builder] mergeFromInputStream:input] build];
+}
++ (PBBBSActionSource*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBBBSActionSource*)[[[PBBBSActionSource builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (PBBBSActionSource*) parseFromCodedInputStream:(PBCodedInputStream*) input {
+  return (PBBBSActionSource*)[[[PBBBSActionSource builder] mergeFromCodedInputStream:input] build];
+}
++ (PBBBSActionSource*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBBBSActionSource*)[[[PBBBSActionSource builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (PBBBSActionSource_Builder*) builder {
+  return [[[PBBBSActionSource_Builder alloc] init] autorelease];
+}
++ (PBBBSActionSource_Builder*) builderWithPrototype:(PBBBSActionSource*) prototype {
+  return [[PBBBSActionSource builder] mergeFrom:prototype];
+}
+- (PBBBSActionSource_Builder*) builder {
+  return [PBBBSActionSource builder];
+}
+@end
+
+@interface PBBBSActionSource_Builder()
+@property (retain) PBBBSActionSource* result;
+@end
+
+@implementation PBBBSActionSource_Builder
+@synthesize result;
+- (void) dealloc {
+  self.result = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.result = [[[PBBBSActionSource alloc] init] autorelease];
+  }
+  return self;
+}
+- (PBGeneratedMessage*) internalGetResult {
+  return result;
+}
+- (PBBBSActionSource_Builder*) clear {
+  self.result = [[[PBBBSActionSource alloc] init] autorelease];
+  return self;
+}
+- (PBBBSActionSource_Builder*) clone {
+  return [PBBBSActionSource builderWithPrototype:result];
+}
+- (PBBBSActionSource*) defaultInstance {
+  return [PBBBSActionSource defaultInstance];
+}
+- (PBBBSActionSource*) build {
+  [self checkInitialized];
+  return [self buildPartial];
+}
+- (PBBBSActionSource*) buildPartial {
+  PBBBSActionSource* returnMe = [[result retain] autorelease];
+  self.result = nil;
+  return returnMe;
+}
+- (PBBBSActionSource_Builder*) mergeFrom:(PBBBSActionSource*) other {
+  if (other == [PBBBSActionSource defaultInstance]) {
+    return self;
+  }
+  if (other.hasPostId) {
+    [self setPostId:other.postId];
+  }
+  if (other.hasPostUid) {
+    [self setPostUid:other.postUid];
+  }
+  if (other.hasActionId) {
+    [self setActionId:other.actionId];
+  }
+  if (other.hasActionUid) {
+    [self setActionUid:other.actionUid];
+  }
+  if (other.hasActionType) {
+    [self setActionType:other.actionType];
+  }
+  if (other.hasBriefText) {
+    [self setBriefText:other.briefText];
+  }
+  [self mergeUnknownFields:other.unknownFields];
+  return self;
+}
+- (PBBBSActionSource_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
+  return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
+}
+- (PBBBSActionSource_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
+  while (YES) {
+    int32_t tag = [input readTag];
+    switch (tag) {
+      case 0:
+        [self setUnknownFields:[unknownFields build]];
+        return self;
+      default: {
+        if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
+          [self setUnknownFields:[unknownFields build]];
+          return self;
+        }
+        break;
+      }
+      case 10: {
+        [self setPostId:[input readString]];
+        break;
+      }
+      case 18: {
+        [self setPostUid:[input readString]];
+        break;
+      }
+      case 26: {
+        [self setActionId:[input readString]];
+        break;
+      }
+      case 34: {
+        [self setActionUid:[input readString]];
+        break;
+      }
+      case 40: {
+        [self setActionType:[input readInt32]];
+        break;
+      }
+      case 50: {
+        [self setBriefText:[input readString]];
+        break;
+      }
+    }
+  }
+}
+- (BOOL) hasPostId {
+  return result.hasPostId;
+}
+- (NSString*) postId {
+  return result.postId;
+}
+- (PBBBSActionSource_Builder*) setPostId:(NSString*) value {
+  result.hasPostId = YES;
+  result.postId = value;
+  return self;
+}
+- (PBBBSActionSource_Builder*) clearPostId {
+  result.hasPostId = NO;
+  result.postId = @"";
+  return self;
+}
+- (BOOL) hasPostUid {
+  return result.hasPostUid;
+}
+- (NSString*) postUid {
+  return result.postUid;
+}
+- (PBBBSActionSource_Builder*) setPostUid:(NSString*) value {
+  result.hasPostUid = YES;
+  result.postUid = value;
+  return self;
+}
+- (PBBBSActionSource_Builder*) clearPostUid {
+  result.hasPostUid = NO;
+  result.postUid = @"";
+  return self;
+}
+- (BOOL) hasActionId {
+  return result.hasActionId;
+}
+- (NSString*) actionId {
+  return result.actionId;
+}
+- (PBBBSActionSource_Builder*) setActionId:(NSString*) value {
+  result.hasActionId = YES;
+  result.actionId = value;
+  return self;
+}
+- (PBBBSActionSource_Builder*) clearActionId {
+  result.hasActionId = NO;
+  result.actionId = @"";
+  return self;
+}
+- (BOOL) hasActionUid {
+  return result.hasActionUid;
+}
+- (NSString*) actionUid {
+  return result.actionUid;
+}
+- (PBBBSActionSource_Builder*) setActionUid:(NSString*) value {
+  result.hasActionUid = YES;
+  result.actionUid = value;
+  return self;
+}
+- (PBBBSActionSource_Builder*) clearActionUid {
+  result.hasActionUid = NO;
+  result.actionUid = @"";
+  return self;
+}
+- (BOOL) hasActionType {
+  return result.hasActionType;
+}
+- (int32_t) actionType {
+  return result.actionType;
+}
+- (PBBBSActionSource_Builder*) setActionType:(int32_t) value {
+  result.hasActionType = YES;
+  result.actionType = value;
+  return self;
+}
+- (PBBBSActionSource_Builder*) clearActionType {
+  result.hasActionType = NO;
+  result.actionType = 0;
+  return self;
+}
+- (BOOL) hasBriefText {
+  return result.hasBriefText;
+}
+- (NSString*) briefText {
+  return result.briefText;
+}
+- (PBBBSActionSource_Builder*) setBriefText:(NSString*) value {
+  result.hasBriefText = YES;
+  result.briefText = value;
+  return self;
+}
+- (PBBBSActionSource_Builder*) clearBriefText {
+  result.hasBriefText = NO;
+  result.briefText = @"";
+  return self;
+}
+@end
+
 @interface PBBBSAction ()
 @property (retain) NSString* actionId;
 @property int32_t type;
-@property (retain) NSString* postId;
-@property (retain) NSString* appId;
+@property (retain) PBBBSUser* createUser;
 @property int32_t deviceType;
 @property int32_t createDate;
-@property (retain) PBBBSUser* createUser;
+@property int32_t replyCount;
 @property (retain) PBBBSContent* content;
-@property (retain) PBBBSUser* sourceUser;
-@property (retain) PBBBSContent* sourceContent;
+@property (retain) PBBBSActionSource* source;
 @end
 
 @implementation PBBBSAction
@@ -1973,20 +2349,13 @@ static PBBBSPost* defaultPBBBSPostInstance = nil;
   hasType_ = !!value;
 }
 @synthesize type;
-- (BOOL) hasPostId {
-  return !!hasPostId_;
+- (BOOL) hasCreateUser {
+  return !!hasCreateUser_;
 }
-- (void) setHasPostId:(BOOL) value {
-  hasPostId_ = !!value;
+- (void) setHasCreateUser:(BOOL) value {
+  hasCreateUser_ = !!value;
 }
-@synthesize postId;
-- (BOOL) hasAppId {
-  return !!hasAppId_;
-}
-- (void) setHasAppId:(BOOL) value {
-  hasAppId_ = !!value;
-}
-@synthesize appId;
+@synthesize createUser;
 - (BOOL) hasDeviceType {
   return !!hasDeviceType_;
 }
@@ -2001,13 +2370,13 @@ static PBBBSPost* defaultPBBBSPostInstance = nil;
   hasCreateDate_ = !!value;
 }
 @synthesize createDate;
-- (BOOL) hasCreateUser {
-  return !!hasCreateUser_;
+- (BOOL) hasReplyCount {
+  return !!hasReplyCount_;
 }
-- (void) setHasCreateUser:(BOOL) value {
-  hasCreateUser_ = !!value;
+- (void) setHasReplyCount:(BOOL) value {
+  hasReplyCount_ = !!value;
 }
-@synthesize createUser;
+@synthesize replyCount;
 - (BOOL) hasContent {
   return !!hasContent_;
 }
@@ -2015,42 +2384,30 @@ static PBBBSPost* defaultPBBBSPostInstance = nil;
   hasContent_ = !!value;
 }
 @synthesize content;
-- (BOOL) hasSourceUser {
-  return !!hasSourceUser_;
+- (BOOL) hasSource {
+  return !!hasSource_;
 }
-- (void) setHasSourceUser:(BOOL) value {
-  hasSourceUser_ = !!value;
+- (void) setHasSource:(BOOL) value {
+  hasSource_ = !!value;
 }
-@synthesize sourceUser;
-- (BOOL) hasSourceContent {
-  return !!hasSourceContent_;
-}
-- (void) setHasSourceContent:(BOOL) value {
-  hasSourceContent_ = !!value;
-}
-@synthesize sourceContent;
+@synthesize source;
 - (void) dealloc {
   self.actionId = nil;
-  self.postId = nil;
-  self.appId = nil;
   self.createUser = nil;
   self.content = nil;
-  self.sourceUser = nil;
-  self.sourceContent = nil;
+  self.source = nil;
   [super dealloc];
 }
 - (id) init {
   if ((self = [super init])) {
     self.actionId = @"";
     self.type = 0;
-    self.postId = @"";
-    self.appId = @"";
+    self.createUser = [PBBBSUser defaultInstance];
     self.deviceType = 0;
     self.createDate = 0;
-    self.createUser = [PBBBSUser defaultInstance];
+    self.replyCount = 0;
     self.content = [PBBBSContent defaultInstance];
-    self.sourceUser = [PBBBSUser defaultInstance];
-    self.sourceContent = [PBBBSContent defaultInstance];
+    self.source = [PBBBSActionSource defaultInstance];
   }
   return self;
 }
@@ -2073,19 +2430,13 @@ static PBBBSAction* defaultPBBBSActionInstance = nil;
   if (!self.hasType) {
     return NO;
   }
-  if (!self.hasPostId) {
-    return NO;
-  }
-  if (!self.hasAppId) {
+  if (!self.hasCreateUser) {
     return NO;
   }
   if (!self.hasDeviceType) {
     return NO;
   }
   if (!self.hasCreateDate) {
-    return NO;
-  }
-  if (!self.hasCreateUser) {
     return NO;
   }
   if (!self.createUser.isInitialized) {
@@ -2096,13 +2447,8 @@ static PBBBSAction* defaultPBBBSActionInstance = nil;
       return NO;
     }
   }
-  if (self.hasSourceUser) {
-    if (!self.sourceUser.isInitialized) {
-      return NO;
-    }
-  }
-  if (self.hasSourceContent) {
-    if (!self.sourceContent.isInitialized) {
+  if (self.hasSource) {
+    if (!self.source.isInitialized) {
       return NO;
     }
   }
@@ -2115,11 +2461,8 @@ static PBBBSAction* defaultPBBBSActionInstance = nil;
   if (self.hasType) {
     [output writeInt32:2 value:self.type];
   }
-  if (self.hasPostId) {
-    [output writeString:3 value:self.postId];
-  }
-  if (self.hasAppId) {
-    [output writeString:4 value:self.appId];
+  if (self.hasCreateUser) {
+    [output writeMessage:3 value:self.createUser];
   }
   if (self.hasDeviceType) {
     [output writeInt32:5 value:self.deviceType];
@@ -2127,17 +2470,14 @@ static PBBBSAction* defaultPBBBSActionInstance = nil;
   if (self.hasCreateDate) {
     [output writeInt32:6 value:self.createDate];
   }
-  if (self.hasCreateUser) {
-    [output writeMessage:7 value:self.createUser];
+  if (self.hasReplyCount) {
+    [output writeInt32:7 value:self.replyCount];
   }
   if (self.hasContent) {
     [output writeMessage:8 value:self.content];
   }
-  if (self.hasSourceUser) {
-    [output writeMessage:20 value:self.sourceUser];
-  }
-  if (self.hasSourceContent) {
-    [output writeMessage:21 value:self.sourceContent];
+  if (self.hasSource) {
+    [output writeMessage:9 value:self.source];
   }
   [self.unknownFields writeToCodedOutputStream:output];
 }
@@ -2154,11 +2494,8 @@ static PBBBSAction* defaultPBBBSActionInstance = nil;
   if (self.hasType) {
     size += computeInt32Size(2, self.type);
   }
-  if (self.hasPostId) {
-    size += computeStringSize(3, self.postId);
-  }
-  if (self.hasAppId) {
-    size += computeStringSize(4, self.appId);
+  if (self.hasCreateUser) {
+    size += computeMessageSize(3, self.createUser);
   }
   if (self.hasDeviceType) {
     size += computeInt32Size(5, self.deviceType);
@@ -2166,17 +2503,14 @@ static PBBBSAction* defaultPBBBSActionInstance = nil;
   if (self.hasCreateDate) {
     size += computeInt32Size(6, self.createDate);
   }
-  if (self.hasCreateUser) {
-    size += computeMessageSize(7, self.createUser);
+  if (self.hasReplyCount) {
+    size += computeInt32Size(7, self.replyCount);
   }
   if (self.hasContent) {
     size += computeMessageSize(8, self.content);
   }
-  if (self.hasSourceUser) {
-    size += computeMessageSize(20, self.sourceUser);
-  }
-  if (self.hasSourceContent) {
-    size += computeMessageSize(21, self.sourceContent);
+  if (self.hasSource) {
+    size += computeMessageSize(9, self.source);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -2259,11 +2593,8 @@ static PBBBSAction* defaultPBBBSActionInstance = nil;
   if (other.hasType) {
     [self setType:other.type];
   }
-  if (other.hasPostId) {
-    [self setPostId:other.postId];
-  }
-  if (other.hasAppId) {
-    [self setAppId:other.appId];
+  if (other.hasCreateUser) {
+    [self mergeCreateUser:other.createUser];
   }
   if (other.hasDeviceType) {
     [self setDeviceType:other.deviceType];
@@ -2271,17 +2602,14 @@ static PBBBSAction* defaultPBBBSActionInstance = nil;
   if (other.hasCreateDate) {
     [self setCreateDate:other.createDate];
   }
-  if (other.hasCreateUser) {
-    [self mergeCreateUser:other.createUser];
+  if (other.hasReplyCount) {
+    [self setReplyCount:other.replyCount];
   }
   if (other.hasContent) {
     [self mergeContent:other.content];
   }
-  if (other.hasSourceUser) {
-    [self mergeSourceUser:other.sourceUser];
-  }
-  if (other.hasSourceContent) {
-    [self mergeSourceContent:other.sourceContent];
+  if (other.hasSource) {
+    [self mergeSource:other.source];
   }
   [self mergeUnknownFields:other.unknownFields];
   return self;
@@ -2313,11 +2641,12 @@ static PBBBSAction* defaultPBBBSActionInstance = nil;
         break;
       }
       case 26: {
-        [self setPostId:[input readString]];
-        break;
-      }
-      case 34: {
-        [self setAppId:[input readString]];
+        PBBBSUser_Builder* subBuilder = [PBBBSUser builder];
+        if (self.hasCreateUser) {
+          [subBuilder mergeFrom:self.createUser];
+        }
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self setCreateUser:[subBuilder buildPartial]];
         break;
       }
       case 40: {
@@ -2328,13 +2657,8 @@ static PBBBSAction* defaultPBBBSActionInstance = nil;
         [self setCreateDate:[input readInt32]];
         break;
       }
-      case 58: {
-        PBBBSUser_Builder* subBuilder = [PBBBSUser builder];
-        if (self.hasCreateUser) {
-          [subBuilder mergeFrom:self.createUser];
-        }
-        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
-        [self setCreateUser:[subBuilder buildPartial]];
+      case 56: {
+        [self setReplyCount:[input readInt32]];
         break;
       }
       case 66: {
@@ -2346,22 +2670,13 @@ static PBBBSAction* defaultPBBBSActionInstance = nil;
         [self setContent:[subBuilder buildPartial]];
         break;
       }
-      case 162: {
-        PBBBSUser_Builder* subBuilder = [PBBBSUser builder];
-        if (self.hasSourceUser) {
-          [subBuilder mergeFrom:self.sourceUser];
+      case 74: {
+        PBBBSActionSource_Builder* subBuilder = [PBBBSActionSource builder];
+        if (self.hasSource) {
+          [subBuilder mergeFrom:self.source];
         }
         [input readMessage:subBuilder extensionRegistry:extensionRegistry];
-        [self setSourceUser:[subBuilder buildPartial]];
-        break;
-      }
-      case 170: {
-        PBBBSContent_Builder* subBuilder = [PBBBSContent builder];
-        if (self.hasSourceContent) {
-          [subBuilder mergeFrom:self.sourceContent];
-        }
-        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
-        [self setSourceContent:[subBuilder buildPartial]];
+        [self setSource:[subBuilder buildPartial]];
         break;
       }
     }
@@ -2399,36 +2714,34 @@ static PBBBSAction* defaultPBBBSActionInstance = nil;
   result.type = 0;
   return self;
 }
-- (BOOL) hasPostId {
-  return result.hasPostId;
+- (BOOL) hasCreateUser {
+  return result.hasCreateUser;
 }
-- (NSString*) postId {
-  return result.postId;
+- (PBBBSUser*) createUser {
+  return result.createUser;
 }
-- (PBBBSAction_Builder*) setPostId:(NSString*) value {
-  result.hasPostId = YES;
-  result.postId = value;
+- (PBBBSAction_Builder*) setCreateUser:(PBBBSUser*) value {
+  result.hasCreateUser = YES;
+  result.createUser = value;
   return self;
 }
-- (PBBBSAction_Builder*) clearPostId {
-  result.hasPostId = NO;
-  result.postId = @"";
+- (PBBBSAction_Builder*) setCreateUserBuilder:(PBBBSUser_Builder*) builderForValue {
+  return [self setCreateUser:[builderForValue build]];
+}
+- (PBBBSAction_Builder*) mergeCreateUser:(PBBBSUser*) value {
+  if (result.hasCreateUser &&
+      result.createUser != [PBBBSUser defaultInstance]) {
+    result.createUser =
+      [[[PBBBSUser builderWithPrototype:result.createUser] mergeFrom:value] buildPartial];
+  } else {
+    result.createUser = value;
+  }
+  result.hasCreateUser = YES;
   return self;
 }
-- (BOOL) hasAppId {
-  return result.hasAppId;
-}
-- (NSString*) appId {
-  return result.appId;
-}
-- (PBBBSAction_Builder*) setAppId:(NSString*) value {
-  result.hasAppId = YES;
-  result.appId = value;
-  return self;
-}
-- (PBBBSAction_Builder*) clearAppId {
-  result.hasAppId = NO;
-  result.appId = @"";
+- (PBBBSAction_Builder*) clearCreateUser {
+  result.hasCreateUser = NO;
+  result.createUser = [PBBBSUser defaultInstance];
   return self;
 }
 - (BOOL) hasDeviceType {
@@ -2463,34 +2776,20 @@ static PBBBSAction* defaultPBBBSActionInstance = nil;
   result.createDate = 0;
   return self;
 }
-- (BOOL) hasCreateUser {
-  return result.hasCreateUser;
+- (BOOL) hasReplyCount {
+  return result.hasReplyCount;
 }
-- (PBBBSUser*) createUser {
-  return result.createUser;
+- (int32_t) replyCount {
+  return result.replyCount;
 }
-- (PBBBSAction_Builder*) setCreateUser:(PBBBSUser*) value {
-  result.hasCreateUser = YES;
-  result.createUser = value;
+- (PBBBSAction_Builder*) setReplyCount:(int32_t) value {
+  result.hasReplyCount = YES;
+  result.replyCount = value;
   return self;
 }
-- (PBBBSAction_Builder*) setCreateUserBuilder:(PBBBSUser_Builder*) builderForValue {
-  return [self setCreateUser:[builderForValue build]];
-}
-- (PBBBSAction_Builder*) mergeCreateUser:(PBBBSUser*) value {
-  if (result.hasCreateUser &&
-      result.createUser != [PBBBSUser defaultInstance]) {
-    result.createUser =
-      [[[PBBBSUser builderWithPrototype:result.createUser] mergeFrom:value] buildPartial];
-  } else {
-    result.createUser = value;
-  }
-  result.hasCreateUser = YES;
-  return self;
-}
-- (PBBBSAction_Builder*) clearCreateUser {
-  result.hasCreateUser = NO;
-  result.createUser = [PBBBSUser defaultInstance];
+- (PBBBSAction_Builder*) clearReplyCount {
+  result.hasReplyCount = NO;
+  result.replyCount = 0;
   return self;
 }
 - (BOOL) hasContent {
@@ -2523,64 +2822,34 @@ static PBBBSAction* defaultPBBBSActionInstance = nil;
   result.content = [PBBBSContent defaultInstance];
   return self;
 }
-- (BOOL) hasSourceUser {
-  return result.hasSourceUser;
+- (BOOL) hasSource {
+  return result.hasSource;
 }
-- (PBBBSUser*) sourceUser {
-  return result.sourceUser;
+- (PBBBSActionSource*) source {
+  return result.source;
 }
-- (PBBBSAction_Builder*) setSourceUser:(PBBBSUser*) value {
-  result.hasSourceUser = YES;
-  result.sourceUser = value;
+- (PBBBSAction_Builder*) setSource:(PBBBSActionSource*) value {
+  result.hasSource = YES;
+  result.source = value;
   return self;
 }
-- (PBBBSAction_Builder*) setSourceUserBuilder:(PBBBSUser_Builder*) builderForValue {
-  return [self setSourceUser:[builderForValue build]];
+- (PBBBSAction_Builder*) setSourceBuilder:(PBBBSActionSource_Builder*) builderForValue {
+  return [self setSource:[builderForValue build]];
 }
-- (PBBBSAction_Builder*) mergeSourceUser:(PBBBSUser*) value {
-  if (result.hasSourceUser &&
-      result.sourceUser != [PBBBSUser defaultInstance]) {
-    result.sourceUser =
-      [[[PBBBSUser builderWithPrototype:result.sourceUser] mergeFrom:value] buildPartial];
+- (PBBBSAction_Builder*) mergeSource:(PBBBSActionSource*) value {
+  if (result.hasSource &&
+      result.source != [PBBBSActionSource defaultInstance]) {
+    result.source =
+      [[[PBBBSActionSource builderWithPrototype:result.source] mergeFrom:value] buildPartial];
   } else {
-    result.sourceUser = value;
+    result.source = value;
   }
-  result.hasSourceUser = YES;
+  result.hasSource = YES;
   return self;
 }
-- (PBBBSAction_Builder*) clearSourceUser {
-  result.hasSourceUser = NO;
-  result.sourceUser = [PBBBSUser defaultInstance];
-  return self;
-}
-- (BOOL) hasSourceContent {
-  return result.hasSourceContent;
-}
-- (PBBBSContent*) sourceContent {
-  return result.sourceContent;
-}
-- (PBBBSAction_Builder*) setSourceContent:(PBBBSContent*) value {
-  result.hasSourceContent = YES;
-  result.sourceContent = value;
-  return self;
-}
-- (PBBBSAction_Builder*) setSourceContentBuilder:(PBBBSContent_Builder*) builderForValue {
-  return [self setSourceContent:[builderForValue build]];
-}
-- (PBBBSAction_Builder*) mergeSourceContent:(PBBBSContent*) value {
-  if (result.hasSourceContent &&
-      result.sourceContent != [PBBBSContent defaultInstance]) {
-    result.sourceContent =
-      [[[PBBBSContent builderWithPrototype:result.sourceContent] mergeFrom:value] buildPartial];
-  } else {
-    result.sourceContent = value;
-  }
-  result.hasSourceContent = YES;
-  return self;
-}
-- (PBBBSAction_Builder*) clearSourceContent {
-  result.hasSourceContent = NO;
-  result.sourceContent = [PBBBSContent defaultInstance];
+- (PBBBSAction_Builder*) clearSource {
+  result.hasSource = NO;
+  result.source = [PBBBSActionSource defaultInstance];
   return self;
 }
 @end

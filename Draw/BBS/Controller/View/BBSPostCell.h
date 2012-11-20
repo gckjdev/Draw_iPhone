@@ -9,9 +9,18 @@
 #import "PPTableViewCell.h"
 #import "Bbs.pb.h"
 
+@protocol BBSPostCellDelegate <NSObject>
+
+@optional
+- (void)didClickSupportButtonWithPost:(PBBBSPost *)post;
+- (void)didClickReplyButtonWithPost:(PBBBSPost *)post;
+
+@end
+
 @interface BBSPostCell : PPTableViewCell
 {
     PBBBSPost *_post;
+    id<BBSPostCellDelegate> _delegate;
 }
 @property (retain, nonatomic) IBOutlet UIImageView *avatar;
 
@@ -23,6 +32,7 @@
 @property (retain, nonatomic) IBOutlet UIButton *comment;
 @property (retain, nonatomic) IBOutlet UILabel *reward;
 @property (retain, nonatomic) PBBBSPost *post;
+//@property (assign, nonatomic) id<BBSPostCellDelegate>delegate;
 
 - (IBAction)clickSupportButton:(id)sender;
 - (IBAction)clickCommentButton:(id)sender;

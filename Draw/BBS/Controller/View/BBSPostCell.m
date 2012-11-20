@@ -25,6 +25,7 @@
 #define CONTENT_FONT [UIFont systemFontOfSize:15]
 @implementation BBSPostCell
 @synthesize post = _post;
+//@synthesize delegate = _delegate;
 
 + (id)createCell:(id)delegate
 {
@@ -39,7 +40,7 @@
     
     BBSPostCell *cell = ((BBSPostCell*)[topLevelObjects objectAtIndex:0]);
     cell.content.numberOfLines = CONTENT_TEXT_LINE;
-    [cell.content setLineBreakMode:NSLineBreakByCharWrapping];
+    [cell.content setLineBreakMode:NSLineBreakByTruncatingTail];
     cell.content.font = CONTENT_FONT;
     cell.delegate = delegate;
     
@@ -171,8 +172,16 @@
     [super dealloc];
 }
 - (IBAction)clickSupportButton:(id)sender {
+    if (delegate && [delegate respondsToSelector:
+                     @selector(didClickSupportButtonWithPost:)]) {
+        [delegate didClickSupportButtonWithPost:self.post];
+    }
 }
 
 - (IBAction)clickCommentButton:(id)sender {
+    if (delegate && [delegate respondsToSelector:
+                     @selector(didClickReplyButtonWithPost:)]) {
+        [delegate didClickReplyButtonWithPost:self.post];
+    }
 }
 @end
