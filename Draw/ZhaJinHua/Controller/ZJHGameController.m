@@ -28,7 +28,6 @@
 #import "CommonMessageCenter.h"
 #import "ZJHSettingView.h"
 #import "ZJHScreenConfig.h"
-#import "MoneyTreeView.h"
 #import "AnimationManager.h"
 #import "RoomTitleView.h"
 #import "NotificationName.h"
@@ -235,8 +234,16 @@
     self.moneyTreeView.growthTime = [ConfigManager getTreeMatureTime];
     self.moneyTreeView.gainTime = [ConfigManager getTreeGainTime];
     self.moneyTreeView.coinValue = [ConfigManager getTreeCoinVale];
+    self.moneyTreeView.delegate = self;
     [self.moneyTreeView startGrowing];
     [self.moneyTreeView showInView:self.moneyTreeHolder];
+}
+
+- (void)initBetTable
+{
+    if ([_gameService.session isMeStanderBy]) {
+        [self.betTable betSome];
+    }
 }
 
 - (void)viewDidLoad
@@ -278,6 +285,8 @@
     
     // waitting label
     [self updateWaitGameNoteLabel];
+    
+    [self initBetTable];
 }
 
 #define WAIT_GAME_NOTE_DISAPPEAR_DURATION (2.0)
@@ -1346,6 +1355,13 @@ compareCardWith:(NSString*)targetUserId
 
 - (IBAction)clickMyCardTypeButton:(id)sender {
     [_popupViewManager popupCardTypesWithCardType:[_gameService myCardType] atView:[self getMyPokersView] inView:self.view];
+}
+
+#pragma mark - money tree view delegate
+- (void)didGainMoney:(int)money fromTree:(MoneyTreeView *)treeView
+{
+    [[AccountService defaultService] chargeAccount:money source:MoneyTreeAward];
+    [self updateMyAvatar];
 }
 
 @end
