@@ -41,6 +41,7 @@ static PopupViewManager *_defaultManager;
     ChipsSelectView *chipsSelectView = [ChipsSelectView createChipsSelectView:delegate];
 
     self.chipsSelectPopupView = [[[CMPopTipView alloc] initWithCustomViewWithoutBubble:chipsSelectView] autorelease];
+    self.chipsSelectPopupView.disableTapToDismiss = YES;
     
     [self.chipsSelectPopupView presentPointingAtView:atView inView:inView aboveView:aboveView animated:YES pointDirection:PointDirectionAuto];
     
@@ -65,6 +66,7 @@ static PopupViewManager *_defaultManager;
     UIView *cardTypesView = [ZJHCardTypesView cardTypesViewWithCardType:cardType];
     
     self.cardTypesPopupView = [[[CMPopTipView alloc] initWithCustomView:cardTypesView pointerSize:6.0] autorelease];
+    self.cardTypesPopupView.disableTapToDismiss = YES;
     self.cardTypesPopupView.backgroundColor = [UIColor clearColor];
     
     [self.cardTypesPopupView presentPointingAtView:atView inView:inView animated:YES];

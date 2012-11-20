@@ -900,9 +900,9 @@
 "kOpenDiceMessage" = "Challenge";
 "kScrambleToOpenDiceMessage" = "Challenge";
 
-"kWaittingForNextTurn" = "Wait for next turn...";
-"kWaitingForMoreUsers" = "Wait for more users...";
-"kWaitingForStart" = "Wait for start...";
+"kWaittingForNextTurn" = "Waiting for next turn...";
+"kWaitingForMoreUsers" = "Waiting for more players...";
+"kWaitingForStart" = "Waiting for start...";
 "kGameBegin" = "Game start...";
 "kNearBy" = "NearBy";
 "kWhoseRoom" = "%@'s room";
