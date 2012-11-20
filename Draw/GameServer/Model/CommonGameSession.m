@@ -32,6 +32,7 @@
 @synthesize currentPlayUserId = _currentPlayUserId;
 @synthesize ruleType = _ruleType;
 @synthesize myTurnTimes = _myTurnTimes;
+@synthesize isMeStanderBy = _isMeStanderBy;
 
 - (void)dealloc
 {
@@ -54,8 +55,7 @@
     _userList = [[NSMutableArray alloc] init];
     _deletedUserList = [[NSMutableDictionary alloc] init];
         
-    self.roundNumber = 0;
-    self.myTurnTimes = 0;
+
     return self;
 }
 
@@ -81,9 +81,9 @@
     
     self.ruleType = pbSession.ruleType;
     // set turn information
-//    [session.currentTurn setRound:1];
-//    [session.currentTurn setNextPlayUserId:[pbSession nextPlayUserId]];
-//    [session.currentTurn setCurrentPlayUserId:[pbSession currentPlayUserId]];
+    self.roundNumber = 0;
+    self.myTurnTimes = 0;
+    self.isMeStanderBy = YES;
     
     return;
 }

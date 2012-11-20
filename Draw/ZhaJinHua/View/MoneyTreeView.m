@@ -13,6 +13,7 @@
 #import "AutoCreateViewByXib.h"
 
 @implementation MoneyTreeView
+@synthesize moneyTree = _moneyTree;
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -24,6 +25,7 @@
 }
 
 AUTO_CREATE_VIEW_BY_XIB(MoneyTreeView)
+
 
 + (MoneyTreeView*)createMoneyTreeView
 {
@@ -142,6 +144,9 @@ AUTO_CREATE_VIEW_BY_XIB(MoneyTreeView)
 {
     [[AudioManager defaultManager] playSoundByURL:[ZJHSoundManager defaultManager].betSoundEffect];
     [self startGrowingCoin];
+    if (_delegate && [_delegate respondsToSelector:@selector(didGainMoney:fromTree:)]){
+        [_delegate didGainMoney:money fromTree:self];
+    }
 }
 - (void)coinDidRaiseUp:(MoneyTree*)tree
 {

@@ -200,9 +200,9 @@ static ZJHGameService *_defaultService;
     return [self isGamePlaying] && [self isMyTurn] && [[self myPlayInfo] canShowCard:cardId];
 }
 
-- (BOOL)canUserCompareCard:(NSString *)userId
+- (BOOL)canUserBeCompared:(NSString *)userId
 {
-    return [[_gameState userPlayInfo:userId] canCompareCard] && ![_userManager isMe:userId];
+    return [[_gameState userPlayInfo:userId] canBeCompared] && ![_userManager isMe:userId];
 }
 
 - (PBZJHCardType)myCardType
@@ -477,7 +477,7 @@ static ZJHGameService *_defaultService;
 {
     NSMutableArray *arr = [NSMutableArray array];
     for (PBGameUser *user in self.session.userList) {
-        if ([self canUserCompareCard:user.userId]) {
+        if ([self canUserBeCompared:user.userId]) {
             [arr addObject:user.userId];
         }
     }

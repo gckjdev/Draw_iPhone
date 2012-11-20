@@ -13,6 +13,7 @@
 #import "ChipsSelectView.h"
 #import "ZJHImageManager.h"
 #import "FXLabel.h"
+#import "MoneyTreeView.h"
 
 @class ZJHGameService;
 @class UserManager;
@@ -21,9 +22,8 @@
 @class ZJHImageManager;
 @class AccountService;
 @class BetTable;
-@class MoneyTreeView;
 
-@interface ZJHGameController : PPViewController <ZJHPokerViewProtocol, ZJHAvatarViewDelegate, DealerViewDelegate, ChipsSelectViewProtocol> {
+@interface ZJHGameController : PPViewController <ZJHPokerViewProtocol, ZJHAvatarViewDelegate, DealerViewDelegate, ChipsSelectViewProtocol, MoneyTreeViewDelegate> {
     BOOL _isComparing;
     BOOL _isShowingComparing;
 }
