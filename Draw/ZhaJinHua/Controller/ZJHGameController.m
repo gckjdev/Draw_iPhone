@@ -239,6 +239,11 @@
     [self.moneyTreeView showInView:self.moneyTreeHolder];
 }
 
+- (void)initBetTable
+{
+
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -278,6 +283,8 @@
     
     // waitting label
     [self updateWaitGameNoteLabel];
+    
+    [self initBetTable];
 }
 
 #define WAIT_GAME_NOTE_DISAPPEAR_DURATION (2.0)
