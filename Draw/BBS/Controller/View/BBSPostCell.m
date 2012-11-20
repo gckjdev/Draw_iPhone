@@ -12,6 +12,17 @@
 #import "UserManager.h"
 #import "TimeUtils.h"
 
+#define SPACE_CONTENT_TOP 35
+#define SPACE_CONTENT_BOTTOM_IMAGE 100 //IMAGE TYPE OR DRAW TYPE
+#define SPACE_CONTENT_BOTTOM_TEXT 40 //TEXT TYPE
+#define IMAGE_HEIGHT 80 
+#define CONTENT_TEXT_LINE 10
+
+#define CONTENT_WIDTH 240
+#define CONTENT_MAX_HEIGHT 200
+
+#define Y_CONTENT_TEXT 5
+#define CONTENT_FONT [UIFont systemFontOfSize:15]
 @implementation BBSPostCell
 @synthesize post = _post;
 
@@ -26,9 +37,13 @@
         return nil;
     }
     
-    ((PPTableViewCell*)[topLevelObjects objectAtIndex:0]).delegate = delegate;
+    BBSPostCell *cell = ((BBSPostCell*)[topLevelObjects objectAtIndex:0]);
+    cell.content.numberOfLines = CONTENT_TEXT_LINE;
+    [cell.content setLineBreakMode:NSLineBreakByCharWrapping];
+    cell.content.font = CONTENT_FONT;
+    cell.delegate = delegate;
     
-    return [topLevelObjects objectAtIndex:0];
+    return cell;
 }
 
 + (NSString*)getCellIdentifier
@@ -36,9 +51,36 @@
     return @"BBSPostCell";
 }
 
++ (NSString *)thumImageUrlForContent:(PBBBSContent *)content
+{
+    if (content.type == ContentTypeImage) {
+       return content.thumbImageUrl;
+    }else if(content.type == ContentTypeDraw){
+       return content.drawThumbUrl;
+    }
+    return nil;
+}
+
+
++ (CGFloat)heightForContentText:(NSString *)text
+{
+    CGSize size = [text sizeWithFont:CONTENT_FONT constrainedToSize:CGSizeMake(CONTENT_WIDTH, CONTENT_MAX_HEIGHT) lineBreakMode:NSLineBreakByCharWrapping];
+    size.height += 2*Y_CONTENT_TEXT;
+    return size.height;
+}
+
 + (CGFloat)getCellHeightWithBBSPost:(PBBBSPost *)post
 {
-    return 184;
+    PBBBSContent * content = post.content;
+    CGFloat height = [BBSPostCell heightForContentText:content.text];
+    BOOL hasImage = ([[BBSPostCell thumImageUrlForContent:content] length] != 0);
+    
+    if (hasImage) {
+        height += (SPACE_CONTENT_TOP + SPACE_CONTENT_BOTTOM_IMAGE);
+    }else{
+        height += (SPACE_CONTENT_TOP + SPACE_CONTENT_BOTTOM_TEXT);
+    }
+    return height;
 }
 
 - (void)updateUserInfo:(PBBBSUser *)user
@@ -56,21 +98,23 @@
     
     [BBSManager printBBSContent:content];
     [self.content setText:content.text];
-    NSURL *url = nil;
-    if (content.type == ContentTypeImage) {
-        url = [NSURL URLWithString:content.thumbImageUrl];
-    }else if(content.type == ContentTypeDraw){
-        url = [NSURL URLWithString:content.drawThumbUrl];
-    }
     
-//    PPDebug(@"<updateContent>,type = %d, URL = %@",content.type, url);
+    //reset the size
+    CGRect frame = self.content.frame;
+    frame.size.height = [BBSPostCell heightForContentText:content.text];
+    self.content.frame = frame;
     
-    if (url != nil) {
-        [self.image setImageWithURL:url success:^(UIImage *image, BOOL cached) {
+    NSString *url = [BBSPostCell thumImageUrlForContent:content];
+    if ([url length] != 0) {
+        self.image.hidden = NO;
+        [self.image setImageWithURL:[NSURL URLWithString:url]
+                            success:^(UIImage *image, BOOL cached) {
             //TODO scale the imageView
         } failure:^(NSError *error) {
             //TODO set defalt image.
         }];
+    }else{
+        self.image.hidden = YES;
     }
 }
 
