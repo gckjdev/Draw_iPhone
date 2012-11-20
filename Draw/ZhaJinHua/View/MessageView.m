@@ -16,8 +16,8 @@
 
 #define LABEL_LEFT_OFFSET ([DeviceDetection isIPAD] ? 5.0 : 2.5)
 #define LABEL_RIGHT_OFFSET ([DeviceDetection isIPAD] ? 5.0 : 2.5)
-#define LABEL_TOP_OFFSET ([DeviceDetection isIPAD] ? 5 : 1)
-#define LABEL_BOTTOM_OFFSET ([DeviceDetection isIPAD] ? 10 : 7)
+#define LABEL_TOP_OFFSET ([DeviceDetection isIPAD] ? 3 : 1)
+#define LABEL_BOTTOM_OFFSET ([DeviceDetection isIPAD] ? 13 : 7)
 
 
 #define LABEL_TAG 200

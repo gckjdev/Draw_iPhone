@@ -30,6 +30,7 @@ typedef enum{
 @property (nonatomic, retain) NSString *currentPlayUserId;
 @property (nonatomic, assign) NSInteger myTurnTimes;
 @property (nonatomic, assign) int ruleType;
+@property (nonatomic, assign) BOOL isMeStanderBy;
 
 - (void)fromPBGameSession:(PBGameSession*)pbSession userId:(NSString*)userId;
 
