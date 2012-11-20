@@ -242,7 +242,7 @@
 - (void)initBetTable
 {
     if ([_gameService.session isMeStanderBy]) {
-        [self.betTable betSome];
+        [self.betTable betSome:[_gameService.gameState totalBet] minSingleBet:((NSNumber*)[_gameService.chipValues objectAtIndex:0]).intValue];
     }
 }
 
