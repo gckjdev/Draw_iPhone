@@ -21,6 +21,6 @@
 
 - (void)userWonAllChips:(UserPosition)position;
 - (void)clearAllChips;
-
+- (void)betSome;
 
 @end

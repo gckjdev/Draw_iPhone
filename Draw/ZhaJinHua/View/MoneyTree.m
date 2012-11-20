@@ -61,7 +61,8 @@
 {
     self = [super initWithCoder:aDecoder];
     if (self) {
-        [self init];
+        [self addTarget:self action:@selector(clickTree:) forControlEvents:UIControlEventTouchUpInside];
+        _layerQueue = [[NSMutableArray alloc] init];
         
         int pointSize = [DeviceDetection isIPAD]?26:13;
         _rewardView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height/4)];
@@ -104,7 +105,8 @@
 - (void)showOneCoin
 {
     self.coinsOnTree ++;
-    [self addCoinAtPosition:CGPointMake(self.frame.size.width*0.75, self.frame.size.height/2)];
+    CGPoint coinPos = CGPointMake(self.frame.size.width*0.75, self.frame.size.height/2);
+    [self addCoinAtPosition:coinPos];
     [self killTimer];
     [self startGrowCoinTimer:self.gainTime selector:@selector(showTwoCoin)];
 }

@@ -8,7 +8,14 @@
 
 #import <UIKit/UIKit.h>
 #import "MoneyTree.h"
+@class MoneyTreeView;
 
+@protocol MoneyTreeViewDelegate <NSObject>
+
+- (void)didGainMoney:(int)money
+            fromTree:(MoneyTreeView*)treeView;
+
+@end
 
 @interface MoneyTreeView : UIView <MoneyTreeDelegate>{
     NSTimer* _timer;
@@ -22,6 +29,7 @@
 @property (assign, nonatomic) CFTimeInterval growthTime;
 @property (assign, nonatomic) CFTimeInterval gainTime;
 @property (assign, nonatomic) NSInteger      coinValue;
+@property (assign, nonatomic) id<MoneyTreeViewDelegate> delegate;
 
 + (MoneyTreeView*)createMoneyTreeView;
 - (void)showInView:(UIView *)view;

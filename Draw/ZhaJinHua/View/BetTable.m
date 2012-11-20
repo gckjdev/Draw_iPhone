@@ -158,6 +158,21 @@
 }
 
 
+- (void)betSome
+{
+    int randomCount = rand()%20;
+    while (randomCount --) {
+        CALayer* layer = [CALayer layer];
+        UIImage* chipImage = [[ZJHImageManager defaultManager] chipImageForChipValue:5];
+        [layer setContents:(id)[chipImage CGImage]];
+        layer.bounds = CGRectMake(0, 0, CHIP_VIEW_WIDTH, CHIP_VIEW_HEIGHT);
+        //    layer.shouldRasterize = YES;
+        layer.position = [self getRandomCenterPoint];
+        [self.layer addSublayer:layer];
+        [_visibleLayerQueue enqueue:layer];
+    }
+}
+
 /*
  // Only override drawRect: if you perform custom drawing.
  // An empty implementation adversely affects performance during animation.
