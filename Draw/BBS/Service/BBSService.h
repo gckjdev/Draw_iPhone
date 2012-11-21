@@ -23,7 +23,6 @@ typedef enum{
 - (void)didCreatePost:(PBBBSPost *)post
            resultCode:(NSInteger)resultCode;
 
-
 - (void)didGetBBSBoard:(NSString *)boardId
               postList:(NSArray *)postList
              rangeType:(RangeType)rangeType
@@ -33,6 +32,20 @@ typedef enum{
               postList:(NSArray *)postList
             resultCode:(NSInteger)resultCode;
 
+- (void)didCreateAction:(PBBBSAction *)action
+                 atPost:(PBBBSPost *)post
+            replyAction:(PBBBSAction *)replyAction
+           resultCode:(NSInteger)resultCode;
+
+- (void)didGetActionList:(NSArray *)actionList
+               belowPost:(NSString *)postId
+              actionType:(BBSActionType)actionType
+              resultCode:(NSInteger)resultCode;
+
+- (void)didGetActionList:(NSArray *)actionList
+               targetUid:(NSString *)targetUid
+              resultCode:(NSInteger)resultCode;
+
 @end
 
 
@@ -41,8 +54,13 @@ typedef enum{
 @interface BBSService : CommonService
 
 + (id)defaultService;
+
+#pragma mark - bbs board methods
 - (void)getBBSBoardList:(id<BBSServiceDelegate>) delegate;
 
+
+
+#pragma mark - bbs post methods
 - (void)createPostWithBoardId:(NSString *)boardId
                          text:(NSString *)text
                         image:(UIImage *)image
@@ -57,6 +75,31 @@ typedef enum{
                            offset:(NSInteger)offset
                             limit:(NSInteger)limit
                          delegate:(id<BBSServiceDelegate>)delegate;
+
+#pragma mark - bbs action methods
+
+- (void)createActionWithPost:(PBBBSPost *)post
+                sourceAction:(PBBBSAction *)action
+                  actionType:(BBSActionType)actionType
+                        text:(NSString *)text
+                       image:(UIImage *)image
+              drawActionList:(NSArray *)drawActionList
+                   drawImage:(UIImage *)drawImage
+                    delegate:(id<BBSServiceDelegate>)delegate;
+
+- (void)getBBSActionListWithPostId:(NSString *)postId
+                        actionType:(BBSActionType)actionType
+                            offset:(NSInteger)offset
+                             limit:(NSInteger)limit
+                          delegate:(id<BBSServiceDelegate>)delegate;
+
+- (void)getBBSActionListWithTargetUid:(NSString *)targetUid
+                            offset:(NSInteger)offset
+                             limit:(NSInteger)limit
+                          delegate:(id<BBSServiceDelegate>)delegate;
+
+
+#pragma mark - bbs user methods
 
 - (PBBBSUser *)myself;
 @end

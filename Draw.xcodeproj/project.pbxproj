@@ -319,6 +319,7 @@
 		C21309D615E73A590072A18E /* UIGlossyButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C21309D315E73A590072A18E /* UIGlossyButton.m */; };
 		C21309D715E73A590072A18E /* UIView+LayerEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = C21309D515E73A590072A18E /* UIView+LayerEffects.m */; };
 		C21309FB15E774390072A18E /* DiceColorManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C21309FA15E774390072A18E /* DiceColorManager.m */; };
+		C223232D165C659E00D7ECE4 /* ZJHSettingView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C223232C165C659E00D7ECE4 /* ZJHSettingView~ipad.xib */; };
 		C223396A164E3CA100D2C123 /* AppleOpenALSupport.c in Sources */ = {isa = PBXBuildFile; fileRef = C2233961164E3CA100D2C123 /* AppleOpenALSupport.c */; };
 		C223396B164E3CA100D2C123 /* CMOpenALSound.m in Sources */ = {isa = PBXBuildFile; fileRef = C2233964164E3CA100D2C123 /* CMOpenALSound.m */; };
 		C223396C164E3CA100D2C123 /* CMOpenALSoundManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C2233966164E3CA100D2C123 /* CMOpenALSoundManager.m */; };
@@ -2387,6 +2388,7 @@
 		C21309D515E73A590072A18E /* UIView+LayerEffects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+LayerEffects.m"; sourceTree = "<group>"; };
 		C21309F915E774390072A18E /* DiceColorManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiceColorManager.h; sourceTree = "<group>"; };
 		C21309FA15E774390072A18E /* DiceColorManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiceColorManager.m; sourceTree = "<group>"; };
+		C223232C165C659E00D7ECE4 /* ZJHSettingView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ZJHSettingView~ipad.xib"; sourceTree = "<group>"; };
 		C2233961164E3CA100D2C123 /* AppleOpenALSupport.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = AppleOpenALSupport.c; sourceTree = "<group>"; };
 		C2233962164E3CA100D2C123 /* AppleOpenALSupport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppleOpenALSupport.h; sourceTree = "<group>"; };
 		C2233963164E3CA100D2C123 /* CMOpenALSound.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMOpenALSound.h; sourceTree = "<group>"; };
@@ -5486,6 +5488,7 @@
 				C298ED24165603ED000B5753 /* MoneyTreeView.xib */,
 				C298ED25165603ED000B5753 /* MoneyTreeView~ipad.xib */,
 				C239366316522858001BD5C6 /* ZJHSettingView.xib */,
+				C223232C165C659E00D7ECE4 /* ZJHSettingView~ipad.xib */,
 				C239366416522858001BD5C6 /* ZJHSettingView.h */,
 				C239366516522858001BD5C6 /* ZJHSettingView.m */,
 				A4A132631650E86900665109 /* MessageView.h */,
@@ -11575,6 +11578,7 @@
 				A405C90A165B874500E7610F /* raise_bet.mp3 in Resources */,
 				A405C90B165B874500E7610F /* raise_bet1_F.mp3 in Resources */,
 				A405C90C165B874500E7610F /* raise_bet1_M.mp3 in Resources */,
+				C223232D165C659E00D7ECE4 /* ZJHSettingView~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

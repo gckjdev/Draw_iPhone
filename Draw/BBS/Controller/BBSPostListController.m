@@ -91,7 +91,7 @@
 }
 - (IBAction)clickCreatePostButton:(id)sender {
     if (self.bbsBoard) {
-        [CreatePostController enterControllerWithBoard:self.bbsBoard fromController:self];
+        [CreatePostController enterControllerWithBoard:self.bbsBoard fromController:self].delegate = self;
     }else{
         PPDebug(@"<clickCreatePostButton>: board is nil");
     }
@@ -223,6 +223,15 @@
     [CreatePostController enterControllerWithSourecePost:post
                                             sourceAction:nil
                                           fromController:self];
+}
+
+- (void)didController:(CreatePostController *)controller
+        CreateNewPost:(PBBBSPost *)post
+{
+    if (post) {
+        [self.tabDataList insertObject:post atIndex:0];
+        [self.dataTableView reloadData];
+    }
 }
 
 

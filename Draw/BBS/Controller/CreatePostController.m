@@ -52,7 +52,7 @@
 @synthesize bonus = _bonus;
 @synthesize sourceAction = _sourceAction;
 @synthesize sourcePost = _sourcePost;
-
+@synthesize delegate = _delegate;
 
 - (void)dealloc
 {
@@ -194,13 +194,27 @@
     if (![self checkAndSetSendingInfo]) {
         return;
     }
-    [[BBSService defaultService] createPostWithBoardId:_bbsBoard.boardId
-                                                  text:self.text
-                                                 image:self.image
-                                        drawActionList:self.drawActionList
-                                             drawImage:self.drawImage
-                                                 bonus:self.bonus
-                                              delegate:self];
+    //if has source post, then send an action, or create a new post
+    if (self.sourcePost) {
+        
+        [[BBSService defaultService] createActionWithPost:self.sourcePost
+                                             sourceAction:self.sourceAction
+                                               actionType:ActionTypeComment
+                                                     text:self.text
+                                                    image:self.image
+                                           drawActionList:self.drawActionList
+                                                drawImage:self.drawImage
+                                                 delegate:self];
+        
+    }else{
+        [[BBSService defaultService] createPostWithBoardId:_bbsBoard.boardId
+                                                      text:self.text
+                                                     image:self.image
+                                            drawActionList:self.drawActionList
+                                                 drawImage:self.drawImage
+                                                     bonus:self.bonus
+                                                  delegate:self];
+    }
 }
 
 - (IBAction)clickGraffitiButton:(id)sender {
@@ -267,6 +281,10 @@
     if (resultCode == 0) {
         PPDebug(@"<didCreatePost>create post successful!");
         [BBSManager printBBSPost:post];
+        if (self.delegate && [self.delegate
+                              respondsToSelector:@selector(didController:CreateNewPost:)]) {
+            [self.delegate didController:self CreateNewPost:post];
+        }
         [self dismissModalViewControllerAnimated:YES];
     }else{
         PPDebug(@"<didCreatePost>create post fail.result code = %d",resultCode);

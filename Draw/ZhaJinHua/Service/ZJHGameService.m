@@ -158,7 +158,7 @@ static ZJHGameService *_defaultService;
 
 - (BOOL)canRaise
 {
-    if (_gameState.singleBet < [[self.chipValues objectAtIndex:([self.chipValues count] - 1)] intValue]) {
+    if (_gameState.singleBet < [[self.chipValues lastObject] intValue]) {
         return YES;
     }else{
         return NO;
@@ -455,7 +455,7 @@ static ZJHGameService *_defaultService;
 - (NSString *)getServerListString
 {
     return @"58.215.172.169:8018";
-    return @"192.168.1.5:8018";
+//    return @"192.168.1.5:8018";
 }
 
 - (ZJHUserPlayInfo *)myPlayInfo
@@ -492,6 +492,11 @@ static ZJHGameService *_defaultService;
     }
     
     return [NSString stringWithFormat:NSLS(@"kZJHRoomTitle"), self.session.sessionId];
+}
+
+- (int)compareCost
+{
+    return [[[self chipValues] lastObject] intValue];
 }
 
 @end
