@@ -1,14 +1,14 @@
 //
-//  BBSPostCommentCell.m
+//  BBSPostActionCell.m
 //  Draw
 //
-//  Created by gamy on 12-11-19.
+//  Created by gamy on 12-11-21.
 //
 //
 
-#import "BBSPostCommentCell.h"
+#import "BBSPostActionCell.h"
 
-@implementation BBSPostCommentCell
+@implementation BBSPostActionCell
 
 - (id)initWithFrame:(CGRect)frame
 {
