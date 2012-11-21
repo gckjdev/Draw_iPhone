@@ -158,12 +158,13 @@
 }
 
 
-- (void)betSome
+- (void)betSome:(int)totalBet
+   minSingleBet:(int)singleBet
 {
-    int randomCount = rand()%20;
+    int randomCount = totalBet/singleBet;
     while (randomCount --) {
         CALayer* layer = [CALayer layer];
-        UIImage* chipImage = [[ZJHImageManager defaultManager] chipImageForChipValue:5];
+        UIImage* chipImage = [[ZJHImageManager defaultManager] chipImageForChipValue:singleBet];
         [layer setContents:(id)[chipImage CGImage]];
         layer.bounds = CGRectMake(0, 0, CHIP_VIEW_WIDTH, CHIP_VIEW_HEIGHT);
         //    layer.shouldRasterize = YES;

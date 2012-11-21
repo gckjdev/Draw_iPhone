@@ -617,7 +617,7 @@ static ZJHImageManager* shareInstance;
     switch ([DeviceDetection deviceScreenType]) {
         case DEVICE_SCREEN_IPAD:
         case DEVICE_SCREEN_NEW_IPAD:
-            [_resService imageByName:@"zjh_button_holder_bg_ipad" inResourcePackage:RESOURCE_PACKAGE_ZJH];
+            return [_resService imageByName:@"zjh_button_holder_bg_ipad" inResourcePackage:RESOURCE_PACKAGE_ZJH];
             break;
             
         case DEVICE_SCREEN_IPHONE5:

@@ -32,7 +32,7 @@
 @synthesize currentPlayUserId = _currentPlayUserId;
 @synthesize ruleType = _ruleType;
 @synthesize myTurnTimes = _myTurnTimes;
-@synthesize isMeStanderBy = _isMeStanderBy;
+@synthesize isMeStandBy = _isMeStandBy;
 
 - (void)dealloc
 {
@@ -81,9 +81,14 @@
     
     self.ruleType = pbSession.ruleType;
     // set turn information
+    
     self.roundNumber = 0;
     self.myTurnTimes = 0;
-    self.isMeStanderBy = YES;
+    self.isMeStandBy = YES;
+//    [session.currentTurn setRound:1];
+//    [session.currentTurn setNextPlayUserId:[pbSession nextPlayUserId]];
+//    [session.currentTurn setCurrentPlayUserId:[pbSession currentPlayUserId]];
+
     
     return;
 }
@@ -219,7 +224,7 @@
 
 - (BOOL)isGamePlaying
 {
-    return (_status == GameStatusPlaying);
+    return (_status == GameStatusPlaying || _status == GameStatusActualPlaying);
 }
 
 @end

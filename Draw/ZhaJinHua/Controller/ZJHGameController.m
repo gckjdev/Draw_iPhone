@@ -239,13 +239,6 @@
     [self.moneyTreeView showInView:self.moneyTreeHolder];
 }
 
-- (void)initBetTable
-{
-    if ([_gameService.session isMeStanderBy]) {
-        [self.betTable betSome];
-    }
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -269,9 +262,10 @@
     [self updateTotalBetAndSingleBet];
     
     // pokers and user bet.
-    if ([_gameService gameState] != nil) {
+    if ([_gameService isGamePlaying]) {
         [self updateAllUsersPokers];
         [self updateAllUserTotalBet];
+        [self.betTable betSome:[_gameService.gameState totalBet] minSingleBet:((NSNumber*)[_gameService.chipValues objectAtIndex:0]).intValue];
     }
 
     // money tree.
@@ -285,15 +279,16 @@
     
     // waitting label
     [self updateWaitGameNoteLabel];
-    
-    [self initBetTable];
 }
 
 #define WAIT_GAME_NOTE_DISAPPEAR_DURATION (2.0)
 
 - (void)updateWaitGameNoteLabel
 {
-    if (_gameService.session.isMeStanderBy && [_gameService isGamePlaying]) {
+    PPDebug(@"isMeStandy: %d", _gameService.session.isMeStandBy);
+        PPDebug(@"[_gameService isGamePlaying]: %d", [_gameService isGamePlaying]);
+    if (_gameService.session.isMeStandBy && [_gameService isGamePlaying]) {
+        self.waitGameNoteLabel.hidden = YES;
         return;
     }
     

@@ -21,6 +21,7 @@
 
 - (void)userWonAllChips:(UserPosition)position;
 - (void)clearAllChips;
-- (void)betSome;
+- (void)betSome:(int)totalBet
+   minSingleBet:(int)singleBet;
 
 @end
