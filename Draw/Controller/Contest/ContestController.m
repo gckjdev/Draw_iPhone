@@ -32,6 +32,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        _contestViewList = [[NSMutableArray alloc] init];
     }
     return self;
 }
@@ -81,7 +82,6 @@
     UIColor *bgColor = [UIColor colorWithRed:245.0/255.0 green:240.0/255.0 blue:220./255. alpha:1.0];
     [self.view setBackgroundColor:bgColor];
     [self initCustomPageControl];
-    _contestViewList = [[NSMutableArray alloc] init];
     [self getContestList];
     [self.noContestTipLabel setHidden:YES];
     [self.noContestTipLabel setText:NSLS(@"kNoContestTips")];

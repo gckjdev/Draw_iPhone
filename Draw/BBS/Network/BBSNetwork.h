@@ -18,6 +18,8 @@
                                  userId:(NSString*)userId
                              deviceType:(int)deviceType;
 
+
+#pragma mark - post methods
 + (CommonNetworkOutput*)createPost:(NSString*)baseURL
                              appId:(NSString*)appId
                         deviceType:(int)deviceType
@@ -44,32 +46,27 @@
                               limit:(NSInteger)limit;
 
 
++ (CommonNetworkOutput*)createAction:(NSString*)baseURL
+                               appId:(NSString*)appId
+                          deviceType:(int)deviceType
+//user info
+                              userId:(NSString*)userId
+                            nickName:(NSString*)nickName
+                              gender:(NSString*)gender
+                              avatar:(NSString*)avatar
+//source
+                              postId:(NSString*)postId
+                             postUid:(NSString *)postUid
+                       sourceAtionId:(NSString*)sourceAtionId
+                           actionUid:(NSString *)actionUid
+                    sourceActionType:(NSInteger)sourceActionType
+//data
+                         contentType:(NSInteger)contentType
+                          actionType:(NSInteger)actionType
+                                text:(NSString *)text
+                               image:(NSData *)image
+                            drawData:(NSData *)drawData
+                           drawImage:(NSData *)drawImage;
 
-//- (void)createPostWithBoardId:(NSString *)boardId
-//                         text:(NSString *)text
-//                        image:(UIImage *)image
-//               drawActionList:(NSArray *)drawActionList
-//                    drawImage:(UIImage *)drawImage
-//                     delegate:(id<BBSServiceDelegate>)delegate
-//{
-//    dispatch_async(workingQueue, ^{
-//        NSInteger deviceType = [DeviceDetection deviceType];
-//        NSString *appId = [ConfigManager appId];
-//        
-//        NSString *userId = [[UserManager defaultManager] userId];
-//        NSString *nickName = [[UserManager defaultManager] nickName];
-//        NSString *gender = [[UserManager defaultManager] gender];
-//        NSString *avatar = [[UserManager defaultManager] avatarURL];
-//        
-//        BBSPostContentType type = ContentTypeText;
-//        if (image) {
-//            type = ContentTypeImage;
-//        }else if (drawImage) {
-//            type = ContentTypeDraw;
-//        }
-//        
-//        
-//    });
-//}
 
 @end
