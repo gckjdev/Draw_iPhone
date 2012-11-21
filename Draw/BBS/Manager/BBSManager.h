@@ -21,6 +21,12 @@ typedef enum {
     ContentTypeDraw = 4
 }BBSPostContentType;
 
+typedef enum {
+    ActionTypeNO = 0,
+    ActionTypeComment,
+    ActionTypeReply,
+    ActionTypeSupport,
+}BBSActionType;
 
 @interface BBSManager : NSObject
 {
