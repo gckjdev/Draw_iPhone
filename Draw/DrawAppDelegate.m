@@ -60,6 +60,8 @@
 
 #import "PPSNSIntegerationService.h"
 #import "PPSinaWeiboService.h"
+#import "PPTecentWeiboService.h"
+#import "PPFacebookService.h"
 
 NSString* GlobalGetServerURL()
 {    
@@ -226,6 +228,7 @@ NSString* GlobalGetBoardServerURL()
         [self checkAppVersion:[ConfigManager appId]];
     }
 
+//    QDebug(@"test Quick debug %@", @"Hello");
     
     // Show Root View
     self.window.rootViewController = navigationController;
@@ -271,7 +274,17 @@ NSString* GlobalGetBoardServerURL()
     PPSinaWeiboService* sinaWeiboService = [[PPSinaWeiboService alloc] initWithAppKey:[GameApp sinaAppKey]
                                                                             appSecret:[GameApp sinaAppSecret]
                                                                        appRedirectURI:[GameApp sinaAppRedirectURI]];
+    PPTecentWeiboService* qqWeiboService = [[PPTecentWeiboService alloc] initWithAppKey:[GameApp qqAppKey]
+                                                                            appSecret:[GameApp qqAppSecret]
+                                                                       appRedirectURI:[GameApp qqAppRedirectURI]];
+//    PPFacebookService* facebookService = [[PPFacebookService alloc] initWithAppKey:[GameApp facebookAppKey]
+//                                                                           appSecret:[GameApp facebookAppSecret]
+//                                                                      appRedirectURI:nil];
+
+    
     [[PPSNSIntegerationService defaultService] addSNS:sinaWeiboService];
+    [[PPSNSIntegerationService defaultService] addSNS:qqWeiboService];
+//    [[PPSNSIntegerationService defaultService] addSNS:facebookService];
     
     [self.window makeKeyAndVisible];
     

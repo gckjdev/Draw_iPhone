@@ -773,11 +773,32 @@ enum {
 
 - (void)bindQQ
 {
+    /*
     self.navigationController.navigationBarHidden = NO;
     self.navigationController.navigationItem.title = NSLS(@"微博授权");                    
     
     _currentLoginType = REGISTER_TYPE_QQ;
-    [[QQWeiboService defaultService] startLogin:self];                        
+    [[QQWeiboService defaultService] startLogin:self];
+     */
+    
+    PPSNSCommonService* service = [[PPSNSIntegerationService defaultService] snsServiceByType:TYPE_QQ];
+    
+    [service login:^(NSDictionary *userInfo) {
+        PPDebug(@"QQ Login Success");
+        
+        [self showActivityWithText:NSLS(@"Loading")];
+        
+        [service readMyUserInfo:^(NSDictionary *userInfo) {
+            [self hideActivity];
+            PPDebug(@"QQ readMyUserInfo Success, userInfo=%@", [userInfo description]);
+        } failureBlock:^(NSError *error) {
+            [self hideActivity];
+            PPDebug(@"QQ readMyUserInfo Failure");
+        }];
+        
+    } failureBlock:^(NSError *error) {
+        PPDebug(@"QQ Login Failure");
+    }];
 }
 
 - (void)bindSina

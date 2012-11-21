@@ -180,13 +180,13 @@
 + (BOOL)useLmWall
 {
 //    return YES;
-    return ([MobClickUtils getIntValueByKey:@"WALL_TYPE" defaultValue:2] == 1);
+    return ([MobClickUtils getIntValueByKey:@"WALL_TYPE" defaultValue:WallTypeLimei] == WallTypeLimei);
 }
 
 + (WallType)wallType
 {
-    return WallTypeLimei;
-//    return ([MobClickUtils getIntValueByKey:@"NEW_WALL_TYPE" defaultValue:WallTypeWanpu] == 1);
+//    return WallTypeLimei;
+    return [MobClickUtils getIntValueByKey:@"NEW_WALL_TYPE" defaultValue:WallTypeLimei];
 }
 
 + (BOOL)removeAdByIAP

@@ -94,6 +94,11 @@
     return @"967bcfd366aa27e542f00db52ef5981d";    
 }
 
+- (NSString*)qqAppRedirectURI
+{
+    return @"http://www.drawlively.com/dice/";
+}
+
 - (NSString*)facebookAppKey
 {
     return @"451387761588871";    
