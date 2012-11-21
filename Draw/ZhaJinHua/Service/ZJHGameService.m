@@ -249,6 +249,11 @@ static ZJHGameService *_defaultService;
     for (PBUserResult *userResult in message.gameOverNotificationRequest.zjhgameResult.userResultList) {
         if (userResult.win) {
             self.gameState.winner = userResult.userId;
+
+        }
+        
+        if ([_userManager isMe:userResult.userId]) {
+            _myBalance += userResult.gainCoins;
         }
     }
 }
@@ -328,6 +333,11 @@ static ZJHGameService *_defaultService;
         if (!result.win) {
             userPlayInfo.alreadCompareLose = YES;
             userPlayInfo.isAutoBet = NO;
+        }
+        
+        // 如果我是发起者，并且我输了，扣钱
+        if ([_userManager isMe:message.userId] && !result.win) {
+            _myBalance += result.gainCoins;
         }
     }
 }
@@ -454,8 +464,8 @@ static ZJHGameService *_defaultService;
 
 - (NSString *)getServerListString
 {
-    return @"58.215.172.169:8018";
-//    return @"192.168.1.5:8018";
+//    return @"58.215.172.169:8018";
+    return @"192.168.1.5:8018";
 }
 
 - (ZJHUserPlayInfo *)myPlayInfo
@@ -494,9 +504,24 @@ static ZJHGameService *_defaultService;
     return [NSString stringWithFormat:NSLS(@"kZJHRoomTitle"), self.session.sessionId];
 }
 
-- (int)compareCost
+//- (int)compareCost
+//{
+//    return [[[self chipValues] lastObject] intValue];
+//}
+
+- (void)chargeAccount:(int)amount
+               source:(BalanceSourceType)source
 {
-    return [[[self chipValues] lastObject] intValue];
+    [_accountService chargeAccount:amount source:source];
+    _myBalance = [_accountService getBalance];
+}
+
+- (BOOL)canIQuitGame
+{
+    if (!self.session.isMeStandBy && [self isGamePlaying] && ![[self myPlayInfo] alreadFoldCard] && ![[self myPlayInfo] alreadCompareLose])
+        return NO;
+    
+    return YES;
 }
 
 @end

@@ -60,6 +60,11 @@
 
 - (NSString *)getRoomName;
 
-- (int)compareCost;
+//- (int)compareCost;
+
+- (void)chargeAccount:(int)amount
+               source:(BalanceSourceType)source;
+
+- (BOOL)canIQuitGame;
 
 @end

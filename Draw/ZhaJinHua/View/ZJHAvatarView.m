@@ -249,6 +249,10 @@
 
 - (void)showWinCoins:(int)coinsCount
 {
+    if (coinsCount == 0) {
+        return;
+    }
+    
     float duration = 3;
     [self.coinImageView setImage:[ShareImageManager defaultManager].coinImage];
     [self bringSubviewToFront:_rewardCoinView];
