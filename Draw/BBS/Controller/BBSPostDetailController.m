@@ -7,6 +7,8 @@
 //
 
 #import "BBSPostDetailController.h"
+#import "BBSPostActionCell.h"
+
 
 @interface BBSPostDetailController ()
 @property (nonatomic, retain)PBBBSPost *post;
@@ -121,5 +123,72 @@ typedef enum{
         [self failLoadDataForTabID:tabID];
     }
 }
+
+
+#pragma mark - table view delegate
+- (PBBBSAction *)actionForIndexPath:(NSIndexPath *)indexPath
+{
+    NSArray *dList = self.tabDataList;
+    if (indexPath.row >= [dList count]) {
+        return nil;
+    }
+    PBBBSAction *action = [self.tabDataList objectAtIndex:indexPath.row];
+    return action;
+}
+
+
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    PBBBSAction *action = [self.tabDataList objectAtIndex:indexPath.row];
+	return [BBSPostActionCell getCellHeightWithBBSAction:action];
+}
+
+
+- (UITableViewCell *)tableView:(UITableView *)theTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    NSString *CellIdentifier = [BBSPostActionCell getCellIdentifier];
+	BBSPostActionCell *cell = [theTableView dequeueReusableCellWithIdentifier:CellIdentifier];
+	if (cell == nil) {
+		cell = [BBSPostActionCell createCell:self];
+	}
+    PBBBSAction *action = [self actionForIndexPath:indexPath];
+    [cell updateCellWithBBSAction:action];
+	return cell;	
+}
+
+#pragma mark - bbs post action cell delegate
+- (void)didClickReplyButtonWithAction:(PBBBSAction *)action
+{
+    [CreatePostController enterControllerWithSourecePost:self.post
+                                            sourceAction:action
+                                          fromController:self].delegate = self;
+}
+- (void)didClickPayButtonWithAction:(PBBBSAction *)action
+{
+    PPDebug(@"<didClickPayButtonWithAction>");
+}
+
+#pragma mark - CreatePostController delegate
+- (void)didController:(CreatePostController *)controller
+      CreateNewAction:(PBBBSAction *)action
+{
+    if (action) {
+        TableTab *tab = nil;
+        if (action.type == ActionTypeSupport) {
+            tab = [_tabManager tabForID:Support];
+        }else if(action.type == ActionTypeComment){
+            tab = [_tabManager tabForID:Comment];
+        }
+        [tab.dataList insertObject:action atIndex:0];
+        if (tab == self.currentTab) {
+            [self.dataTableView reloadData];
+            //TODO change Setcion
+//            NSArray *paths = [NSArray arrayWithObject:[NSIndexPath indexPathForRow:0 inSection:0]];
+//            [self.dataTableView reloadRowsAtIndexPaths:paths withRowAnimation:UITableViewRowAnimationFade];
+        }
+    }
+}
+
 
 @end

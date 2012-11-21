@@ -23,7 +23,6 @@
     id<BBSPostCellDelegate> _delegate;
 }
 @property (retain, nonatomic) IBOutlet UIImageView *avatar;
-
 @property (retain, nonatomic) IBOutlet UILabel *nickName;
 @property (retain, nonatomic) IBOutlet UILabel *content;
 @property (retain, nonatomic) IBOutlet UILabel *timestamp;

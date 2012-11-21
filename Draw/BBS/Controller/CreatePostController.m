@@ -280,7 +280,6 @@
 {
     if (resultCode == 0) {
         PPDebug(@"<didCreatePost>create post successful!");
-        [BBSManager printBBSPost:post];
         if (self.delegate && [self.delegate
                               respondsToSelector:@selector(didController:CreateNewPost:)]) {
             [self.delegate didController:self CreateNewPost:post];
@@ -289,6 +288,27 @@
     }else{
         PPDebug(@"<didCreatePost>create post fail.result code = %d",resultCode);
     }
+}
+
+- (void)didCreateAction:(PBBBSAction *)action
+                 atPost:(PBBBSPost *)post
+            replyAction:(PBBBSAction *)replyAction
+             resultCode:(NSInteger)resultCode
+{
+    if (resultCode == 0) {
+        PPDebug(@"<didCreateAction>create action successful!");
+        if (self.delegate && [self.delegate
+                              respondsToSelector:@selector(didController:CreateNewAction:)]) {
+            [self.delegate didController:self CreateNewAction:action];
+        }
+        [self dismissModalViewControllerAnimated:YES];
+    }else{
+        PPDebug(@"<didCreateAction>create action fail.result code = %d",resultCode);
+    }
+
+//    - (void)didController:(CreatePostController *)controller
+//CreateNewAction:(PBBBSAction *)action;
+
 }
 
 

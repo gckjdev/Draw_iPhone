@@ -21,6 +21,9 @@
 @optional
 - (void)didController:(CreatePostController *)controller
         CreateNewPost:(PBBBSPost *)post;
+
+- (void)didController:(CreatePostController *)controller
+      CreateNewAction:(PBBBSAction *)action;
 @end
 
 
