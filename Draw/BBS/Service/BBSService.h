@@ -35,6 +35,7 @@ typedef enum{
 
 - (void)didCreateAction:(PBBBSAction *)action
                  atPost:(PBBBSPost *)post
+            replyAction:(PBBBSAction *)replyAction
            resultCode:(NSInteger)resultCode;
 
 

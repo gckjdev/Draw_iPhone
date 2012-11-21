@@ -194,13 +194,31 @@
     if (![self checkAndSetSendingInfo]) {
         return;
     }
-    [[BBSService defaultService] createPostWithBoardId:_bbsBoard.boardId
-                                                  text:self.text
-                                                 image:self.image
-                                        drawActionList:self.drawActionList
-                                             drawImage:self.drawImage
-                                                 bonus:self.bonus
-                                              delegate:self];
+    //if has source post, then send an action, or create a new post
+    if (self.sourcePost) {
+        BBSActionType actionType = ActionTypeComment;
+        if (self.sourceAction) {
+            actionType = ActionTypeReply;
+        }
+        
+        [[BBSService defaultService] createActionWithPost:self.sourcePost
+                                             sourceAction:self.sourceAction
+                                               actionType:actionType
+                                                     text:self.text
+                                                    image:self.image
+                                           drawActionList:self.drawActionList
+                                                drawImage:self.drawImage
+                                                 delegate:self];
+        
+    }else{
+        [[BBSService defaultService] createPostWithBoardId:_bbsBoard.boardId
+                                                      text:self.text
+                                                     image:self.image
+                                            drawActionList:self.drawActionList
+                                                 drawImage:self.drawImage
+                                                     bonus:self.bonus
+                                                  delegate:self];
+    }
 }
 
 - (IBAction)clickGraffitiButton:(id)sender {

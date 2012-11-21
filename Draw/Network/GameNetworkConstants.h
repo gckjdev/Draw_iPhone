@@ -479,6 +479,16 @@
 #define PARA_BONUS @"bn"
 #define PARA_RANGETYPE @"rt"
 
+#define METHOD_GET_CONTEST_TOP_OPUS @"gcto"
+#define PARA_ACTIONID @"aid"
+#define PARA_THUMB_IMAGE @"timg"
+#define PARA_DRAW_THUMB @"dti"
+#define PARA_ACTION_UID @"auid"
+#define PARA_POST_UID @"puid"
+#define PARA_BRIEF_TEXT @"btxt"
+#define PARA_SOURCE_ACTION_TYPE @"sat"
+#define METHOD_CREATE_BBS_ACTION @"cba"
+
 
 #define REGISTER_TYPE_EMAIL     1
 #define REGISTER_TYPE_SINA      2
