@@ -131,6 +131,81 @@ BBSService *_staticBBSService;
     return bbsDraw;
 }
 
+
+- (PBBBSActionSource *)buildActionSourceWithPostId:(NSString *)postId
+                                           postUid:(NSString *)postUid
+                                          actionId:(NSString *)actionId
+                                         actionUid:(NSString *)actionUid
+                                        actionType:(BBSActionType)actionType
+                                         briefText:(NSString *)briefText
+{
+    PBBBSActionSource_Builder *builder = [[PBBBSActionSource_Builder alloc] init];
+    builder.postId = postId;
+    [builder setPostUid:postUid];
+    [builder setActionId:actionId];
+    [builder setActionUid:actionUid];
+    [builder setActionType:actionType];
+    [builder setBriefText:briefText];
+    PBBBSActionSource *source = [builder build];
+    [builder release];
+    return source;
+}
+
+- (PBBBSAction *)buildActionWithActionId:(NSString *)actionId
+                                    type:(BBSActionType)type
+                                   appId:(NSString*)appId
+                              deviceType:(int)deviceType
+                                  userId:(NSString*)userId
+                                nickName:(NSString*)nickName
+                                  gender:(NSString*)gender
+                                  avatar:(NSString*)avatar
+                              createDate:(NSDate *)createDate
+                              replyCount:(NSInteger)replyCount
+                             contentType:(NSInteger)contentType
+                                    text:(NSString *)text
+                                imageUrl:(NSString *)imageUrl
+                           thumbImageUrl:(NSString *)thumbImageUrl
+                            drawImageUrl:(NSString *)drawImageUrl
+                       drawImageThumbUrl:(NSString *)drawImageThumbUrl
+                            sourcePostId:(NSString *)sourcePostId
+                           sourcePostUid:(NSString *)sourcePostUid
+                          sourceActionId:(NSString *)sourceActionId
+                         sourceActionUid:(NSString *)sourceActionUid
+                        sourceActionType:(BBSActionType)sourceActionType
+                         sourceBriefText:(NSString *)sourceBriefText
+
+{
+    PBBBSAction_Builder *builder = [[PBBBSAction_Builder alloc] init];
+    [builder setActionId:actionId];
+    [builder setType:type];
+    [builder setDeviceType:deviceType];
+    [builder setCreateDate:[createDate timeIntervalSince1970]];
+    [builder setReplyCount:replyCount];
+    PBBBSUser *createUser = [self buildPBBBSUserWithUserId:userId
+                                                  nickName:nickName
+                                                    gender:gender
+                                                    avatar:avatar];
+    [builder setCreateUser:createUser];
+    PBBBSContent *content = [self buildPBBBSContentWithType:contentType
+                                                       text:text
+                                                   imageUrl:imageUrl
+                                              thumbImageUrl:thumbImageUrl
+                                               drawImageUrl:drawImageUrl
+                                          drawImageThumbUrl:drawImageThumbUrl];
+    [builder setContent:content];
+    PBBBSActionSource *source = [self buildActionSourceWithPostId:sourcePostId
+                                                          postUid:sourcePostUid
+                                                         actionId:sourceActionId
+                                                        actionUid:sourceActionUid
+                                                       actionType:sourceActionType
+                                                        briefText:sourceBriefText];
+    [builder setSource:source];
+
+    PBBBSAction *action = [builder build];
+    [builder release];
+    return action;
+}
+
 //#pragma mark - change data with remote.
 #pragma mark - bbs board methods
 
@@ -221,6 +296,10 @@ BBSService *_staticBBSService;
         PBBBSPost *post = nil;
         if (output.resultCode == ERROR_SUCCESS) {
             NSString *postId = [output.jsonDataDict objectForKey:PARA_POSTID];
+            NSString *imageURL = [output.jsonDataDict objectForKey:PARA_IMAGE];
+            NSString *thumbURL = [output.jsonDataDict objectForKey:PARA_THUMB_IMAGE];
+            NSString *drawImageURL = [output.jsonDataDict objectForKey:PARA_DRAW_IMAGE];
+            NSString *drawThumbURL = [output.jsonDataDict objectForKey:PARA_THUMB_IMAGE];
             post = [self buildPBBBSPostWithPostId:postId
                                                        appId:appId
                                                   deviceType:deviceType
@@ -231,10 +310,10 @@ BBSService *_staticBBSService;
                                                      boradId:boardId
                                                  contentType:type
                                                         text:text
-                                                    imageUrl:nil
-                                               thumbImageUrl:nil
-                                                drawImageUrl:nil
-                                           drawImageThumbUrl:nil];
+                                                    imageUrl:imageURL
+                                               thumbImageUrl:thumbURL
+                                                drawImageUrl:drawImageURL
+                                           drawImageThumbUrl:drawThumbURL];
         }
         dispatch_async(dispatch_get_main_queue(), ^{
             if (delegate && [delegate respondsToSelector:@selector(didCreatePost:resultCode:)]) {
@@ -320,9 +399,11 @@ BBSService *_staticBBSService;
 }
 
 
+#define BRIEF_TEXT_LENGTH 70
+
 #pragma mark - bbs action methods
-- (void)createActionWithPost:(PBBBSPost *)post
-                sourceAction:(PBBBSAction *)action
+- (void)createActionWithPost:(PBBBSPost *)sourcePost
+                sourceAction:(PBBBSAction *)sourceAction
                   actionType:(BBSActionType)actionType
                         text:(NSString *)text
                        image:(UIImage *)image
@@ -330,7 +411,98 @@ BBSService *_staticBBSService;
                    drawImage:(UIImage *)drawImage
                     delegate:(id<BBSServiceDelegate>)delegate
 {
-    
+    dispatch_async(workingQueue, ^{
+        NSInteger deviceType = [DeviceDetection deviceType];
+        NSString *appId = [ConfigManager appId];
+        
+        NSString *userId = [[UserManager defaultManager] userId];
+        NSString *nickName = [[UserManager defaultManager] nickName];
+        NSString *gender = [[UserManager defaultManager] gender];
+        NSString *avatar = [[UserManager defaultManager] avatarURL];
+        
+        BBSPostContentType contentType = ContentTypeText;
+        
+        NSData *drawData = nil;
+        
+        if (image) {
+            contentType = ContentTypeImage;
+        }else if (drawImage) {
+            contentType = ContentTypeDraw;
+            PBBBSDraw *bbsDraw = [self buildBBSDraw:drawActionList];
+            drawData = [bbsDraw data];
+        }
+        
+        NSString *briefText = nil;
+        if (sourceAction == nil) {
+            briefText = sourcePost.content.text;
+        }else{
+            briefText = sourceAction.content.text;
+        }
+        if ([briefText length] > BRIEF_TEXT_LENGTH) {
+            briefText = [briefText substringToIndex:BRIEF_TEXT_LENGTH];
+        }        
+        CommonNetworkOutput *output = [BBSNetwork createAction:TRAFFIC_SERVER_URL
+                                                         appId:appId
+                                                    deviceType:deviceType
+                                                        userId:userId
+                                                      nickName:nickName
+                                                        gender:gender
+                                                        avatar:avatar
+                                       //source
+                                                  sourcePostId:sourcePost.postId
+                                                 sourcePostUid:sourcePost.createUser.userId
+                                                 sourceAtionId:sourceAction.actionId
+                                               sourceActionUid:sourceAction.createUser.userId
+                                              sourceActionType:sourceAction.type
+                                                     briefText:briefText
+                                       //content
+                                                   contentType:contentType
+                                                    actionType:actionType
+                                                          text:text
+                                                         image:[image data]
+                                                      drawData:drawData
+                                                     drawImage:[drawImage data]];
+        NSInteger resultCode = [output resultCode];
+        PBBBSAction *action = nil;
+        if (resultCode == ERROR_SUCCESS) {
+            NSString *actionId = [output.jsonDataDict objectForKey:PARA_ACTIONID];
+            NSString *imageURL = [output.jsonDataDict objectForKey:PARA_IMAGE];
+            NSString *thumbURL = [output.jsonDataDict objectForKey:PARA_THUMB_IMAGE];
+            NSString *drawImageURL = [output.jsonDataDict objectForKey:PARA_DRAW_IMAGE];
+            NSString *drawThumbURL = [output.jsonDataDict objectForKey:PARA_THUMB_IMAGE];
+            
+            action = [self buildActionWithActionId:actionId
+                                              type:actionType
+                                             appId:appId
+                                        deviceType:deviceType
+                                            userId:userId
+                                          nickName:nickName
+                                            gender:gender
+                                            avatar:avatar
+                                        createDate:[NSDate date]
+                                        replyCount:0
+                                       contentType:contentType
+                                              text:text
+                                          imageUrl:imageURL
+                                     thumbImageUrl:thumbURL
+                                      drawImageUrl:drawImageURL
+                                 drawImageThumbUrl:drawThumbURL
+                                      sourcePostId:sourcePost.postId
+                                     sourcePostUid:sourcePost.createUser.userId
+                                    sourceActionId:sourceAction.actionId
+                                   sourceActionUid:sourceAction.createUser.userId
+                                  sourceActionType:sourceAction.type
+                                   sourceBriefText:briefText];
+        }
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (delegate && [delegate respondsToSelector:@selector(didCreateAction:atPost:replyAction:resultCode:)]) {
+                [delegate didCreateAction:action atPost:sourcePost
+                              replyAction:sourceAction
+                               resultCode:resultCode];
+            }
+        });
+    });
+
 }
 
 

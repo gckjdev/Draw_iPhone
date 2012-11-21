@@ -55,11 +55,12 @@
                               gender:(NSString*)gender
                               avatar:(NSString*)avatar
 //source
-                              postId:(NSString*)postId
-                             postUid:(NSString *)postUid
+                        sourcePostId:(NSString*)sourcePostId
+                       sourcePostUid:(NSString *)sourcePostUid
                        sourceAtionId:(NSString*)sourceAtionId
-                           actionUid:(NSString *)actionUid
+                     sourceActionUid:(NSString *)sourceActionUid
                     sourceActionType:(NSInteger)sourceActionType
+                           briefText:(NSString *)briefText
 //data
                          contentType:(NSInteger)contentType
                           actionType:(NSInteger)actionType
