@@ -1949,6 +1949,7 @@ static PBBBSPost* defaultPBBBSPostInstance = nil;
 @property (retain) NSString* postUid;
 @property (retain) NSString* actionId;
 @property (retain) NSString* actionUid;
+@property (retain) NSString* actionNick;
 @property int32_t actionType;
 @property (retain) NSString* briefText;
 @end
@@ -1983,6 +1984,13 @@ static PBBBSPost* defaultPBBBSPostInstance = nil;
   hasActionUid_ = !!value;
 }
 @synthesize actionUid;
+- (BOOL) hasActionNick {
+  return !!hasActionNick_;
+}
+- (void) setHasActionNick:(BOOL) value {
+  hasActionNick_ = !!value;
+}
+@synthesize actionNick;
 - (BOOL) hasActionType {
   return !!hasActionType_;
 }
@@ -2002,6 +2010,7 @@ static PBBBSPost* defaultPBBBSPostInstance = nil;
   self.postUid = nil;
   self.actionId = nil;
   self.actionUid = nil;
+  self.actionNick = nil;
   self.briefText = nil;
   [super dealloc];
 }
@@ -2011,6 +2020,7 @@ static PBBBSPost* defaultPBBBSPostInstance = nil;
     self.postUid = @"";
     self.actionId = @"";
     self.actionUid = @"";
+    self.actionNick = @"";
     self.actionType = 0;
     self.briefText = @"";
   }
@@ -2050,11 +2060,14 @@ static PBBBSActionSource* defaultPBBBSActionSourceInstance = nil;
   if (self.hasActionUid) {
     [output writeString:4 value:self.actionUid];
   }
+  if (self.hasActionNick) {
+    [output writeString:5 value:self.actionNick];
+  }
   if (self.hasActionType) {
-    [output writeInt32:5 value:self.actionType];
+    [output writeInt32:6 value:self.actionType];
   }
   if (self.hasBriefText) {
-    [output writeString:6 value:self.briefText];
+    [output writeString:7 value:self.briefText];
   }
   [self.unknownFields writeToCodedOutputStream:output];
 }
@@ -2077,11 +2090,14 @@ static PBBBSActionSource* defaultPBBBSActionSourceInstance = nil;
   if (self.hasActionUid) {
     size += computeStringSize(4, self.actionUid);
   }
+  if (self.hasActionNick) {
+    size += computeStringSize(5, self.actionNick);
+  }
   if (self.hasActionType) {
-    size += computeInt32Size(5, self.actionType);
+    size += computeInt32Size(6, self.actionType);
   }
   if (self.hasBriefText) {
-    size += computeStringSize(6, self.briefText);
+    size += computeStringSize(7, self.briefText);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -2170,6 +2186,9 @@ static PBBBSActionSource* defaultPBBBSActionSourceInstance = nil;
   if (other.hasActionUid) {
     [self setActionUid:other.actionUid];
   }
+  if (other.hasActionNick) {
+    [self setActionNick:other.actionNick];
+  }
   if (other.hasActionType) {
     [self setActionType:other.actionType];
   }
@@ -2213,11 +2232,15 @@ static PBBBSActionSource* defaultPBBBSActionSourceInstance = nil;
         [self setActionUid:[input readString]];
         break;
       }
-      case 40: {
+      case 42: {
+        [self setActionNick:[input readString]];
+        break;
+      }
+      case 48: {
         [self setActionType:[input readInt32]];
         break;
       }
-      case 50: {
+      case 58: {
         [self setBriefText:[input readString]];
         break;
       }
@@ -2286,6 +2309,22 @@ static PBBBSActionSource* defaultPBBBSActionSourceInstance = nil;
 - (PBBBSActionSource_Builder*) clearActionUid {
   result.hasActionUid = NO;
   result.actionUid = @"";
+  return self;
+}
+- (BOOL) hasActionNick {
+  return result.hasActionNick;
+}
+- (NSString*) actionNick {
+  return result.actionNick;
+}
+- (PBBBSActionSource_Builder*) setActionNick:(NSString*) value {
+  result.hasActionNick = YES;
+  result.actionNick = value;
+  return self;
+}
+- (PBBBSActionSource_Builder*) clearActionNick {
+  result.hasActionNick = NO;
+  result.actionNick = @"";
   return self;
 }
 - (BOOL) hasActionType {

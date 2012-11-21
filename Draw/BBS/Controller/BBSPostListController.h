@@ -9,12 +9,13 @@
 #import "CommonTabController.h"
 #import "BBSService.h"
 #import "BBSPostCell.h"
+#import "CreatePostController.h"
 
 @class PBBBSPost;
 @class PBBBSUser;
 @class PBBBSBoard;
 
-@interface BBSPostListController : CommonTabController<BBSServiceDelegate, BBSPostCellDelegate>
+@interface BBSPostListController : CommonTabController<BBSServiceDelegate, BBSPostCellDelegate, CreatePostControllerDelegate>
 {
     
 }
@@ -25,6 +26,7 @@
 @property (retain, nonatomic) IBOutlet UIButton *rankButton;
 @property (retain, nonatomic) PBBBSBoard *bbsBoard;
 @property (retain, nonatomic) PBBBSUser *bbsUser;
+
 
 - (IBAction)clickCreatePostButton:(id)sender;
 - (IBAction)clickRankButton:(id)sender;

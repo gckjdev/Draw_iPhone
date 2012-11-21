@@ -181,6 +181,7 @@
                        sourcePostUid:(NSString *)sourcePostUid
                        sourceAtionId:(NSString*)sourceAtionId
                      sourceActionUid:(NSString *)sourceActionUid
+                sourceActionNickName:(NSString *)sourceActionNickName
                     sourceActionType:(NSInteger)sourceActionType
                            briefText:(NSString *)briefText
 //data
@@ -214,6 +215,7 @@
         str = [str stringByAddQueryParameter:PARA_ACTIONID value:sourceAtionId];
         str = [str stringByAddQueryParameter:PARA_POST_UID value:sourcePostUid];
         str = [str stringByAddQueryParameter:PARA_ACTION_UID value:sourceActionUid];
+        str = [str stringByAddQueryParameter:PARA_ACTION_NICKNAME value:sourceActionNickName];
         
         str = [str stringByAddQueryParameter:PARA_SOURCE_ACTION_TYPE intValue:sourceActionType];
         str = [str stringByAddQueryParameter:PARA_BRIEF_TEXT value:briefText];
@@ -254,6 +256,48 @@
                                     output:output];
     
     
+}
++ (CommonNetworkOutput*)getActionList:(NSString*)baseURL
+                                appId:(NSString *)appId
+                           deviceType:(NSInteger)deviceType
+                               userId:(NSString *)userId
+                            targetUid:(NSString *)targetUid
+                               postId:(NSString *)postId
+                           actionType:(NSInteger)actionType
+                               offset:(NSInteger)offset
+                                limit:(NSInteger)limit
+{
+    CommonNetworkOutput* output = [[[CommonNetworkOutput alloc] init] autorelease];
+    
+    ConstructURLBlock constructURLHandler = ^NSString *(NSString *baseURL) {
+        
+        // set input parameters
+        NSString* str = [NSString stringWithString:baseURL];
+        
+        str = [str stringByAddQueryParameter:METHOD value:METHOD_GET_BBSACTION_LIST];
+        str = [str stringByAddQueryParameter:PARA_APPID value:appId];
+        str = [str stringByAddQueryParameter:PARA_USERID value:userId];
+        str = [str stringByAddQueryParameter:PARA_DEVICETYPE intValue:deviceType];
+        str = [str stringByAddQueryParameter:PARA_TARGETUSERID value:targetUid];
+        str = [str stringByAddQueryParameter:PARA_POSTID value:postId];
+        str = [str stringByAddQueryParameter:PARA_ACTION_TYPE intValue:actionType];
+        str = [str stringByAddQueryParameter:PARA_OFFSET intValue:offset];
+        str = [str stringByAddQueryParameter:PARA_LIMIT intValue:limit];
+        str = [str stringByAddQueryParameter:PARA_FORMAT value:FINDDRAW_FORMAT_PROTOCOLBUFFER];
+        
+        return str;
+    };
+    
+    PPNetworkResponseBlock responseHandler = ^(NSDictionary *dict, CommonNetworkOutput *output) {
+        return;
+    };
+    
+    return [PPNetworkRequest sendRequest:baseURL
+                     constructURLHandler:constructURLHandler
+                         responseHandler:responseHandler
+                            outputFormat:FORMAT_PB
+                                  output:output];
+        
 }
 
 @end
