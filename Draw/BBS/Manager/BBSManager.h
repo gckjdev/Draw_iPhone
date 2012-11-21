@@ -23,8 +23,7 @@ typedef enum {
 
 typedef enum {
     ActionTypeNO = 0,
-    ActionTypeComment,
-    ActionTypeReply,
+    ActionTypeComment, //comment and reply
     ActionTypeSupport,
 }BBSActionType;
 

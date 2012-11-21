@@ -23,7 +23,6 @@ typedef enum{
 - (void)didCreatePost:(PBBBSPost *)post
            resultCode:(NSInteger)resultCode;
 
-
 - (void)didGetBBSBoard:(NSString *)boardId
               postList:(NSArray *)postList
              rangeType:(RangeType)rangeType
@@ -38,6 +37,14 @@ typedef enum{
             replyAction:(PBBBSAction *)replyAction
            resultCode:(NSInteger)resultCode;
 
+- (void)didGetActionList:(NSArray *)actionList
+               belowPost:(NSString *)postId
+              actionType:(BBSActionType)actionType
+              resultCode:(NSInteger)resultCode;
+
+- (void)didGetActionList:(NSArray *)actionList
+               targetUid:(NSString *)targetUid
+              resultCode:(NSInteger)resultCode;
 
 @end
 
@@ -79,6 +86,18 @@ typedef enum{
               drawActionList:(NSArray *)drawActionList
                    drawImage:(UIImage *)drawImage
                     delegate:(id<BBSServiceDelegate>)delegate;
+
+- (void)getBBSActionListWithPostId:(NSString *)postId
+                        actionType:(BBSActionType)actionType
+                            offset:(NSInteger)offset
+                             limit:(NSInteger)limit
+                          delegate:(id<BBSServiceDelegate>)delegate;
+
+- (void)getBBSActionListWithTargetUid:(NSString *)targetUid
+                            offset:(NSInteger)offset
+                             limit:(NSInteger)limit
+                          delegate:(id<BBSServiceDelegate>)delegate;
+
 
 #pragma mark - bbs user methods
 

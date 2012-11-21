@@ -501,24 +501,28 @@
   BOOL hasPostUid_:1;
   BOOL hasActionId_:1;
   BOOL hasActionUid_:1;
+  BOOL hasActionNick_:1;
   BOOL hasBriefText_:1;
   int32_t actionType;
   NSString* postId;
   NSString* postUid;
   NSString* actionId;
   NSString* actionUid;
+  NSString* actionNick;
   NSString* briefText;
 }
 - (BOOL) hasPostId;
 - (BOOL) hasPostUid;
 - (BOOL) hasActionId;
 - (BOOL) hasActionUid;
+- (BOOL) hasActionNick;
 - (BOOL) hasActionType;
 - (BOOL) hasBriefText;
 @property (readonly, retain) NSString* postId;
 @property (readonly, retain) NSString* postUid;
 @property (readonly, retain) NSString* actionId;
 @property (readonly, retain) NSString* actionUid;
+@property (readonly, retain) NSString* actionNick;
 @property (readonly) int32_t actionType;
 @property (readonly, retain) NSString* briefText;
 
@@ -575,6 +579,11 @@
 - (NSString*) actionUid;
 - (PBBBSActionSource_Builder*) setActionUid:(NSString*) value;
 - (PBBBSActionSource_Builder*) clearActionUid;
+
+- (BOOL) hasActionNick;
+- (NSString*) actionNick;
+- (PBBBSActionSource_Builder*) setActionNick:(NSString*) value;
+- (PBBBSActionSource_Builder*) clearActionNick;
 
 - (BOOL) hasActionType;
 - (int32_t) actionType;

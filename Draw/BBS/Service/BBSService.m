@@ -299,7 +299,7 @@ BBSService *_staticBBSService;
             NSString *imageURL = [output.jsonDataDict objectForKey:PARA_IMAGE];
             NSString *thumbURL = [output.jsonDataDict objectForKey:PARA_THUMB_IMAGE];
             NSString *drawImageURL = [output.jsonDataDict objectForKey:PARA_DRAW_IMAGE];
-            NSString *drawThumbURL = [output.jsonDataDict objectForKey:PARA_THUMB_IMAGE];
+            NSString *drawThumbURL = [output.jsonDataDict objectForKey:PARA_DRAW_THUMB];
             post = [self buildPBBBSPostWithPostId:postId
                                                        appId:appId
                                                   deviceType:deviceType
@@ -453,6 +453,7 @@ BBSService *_staticBBSService;
                                                  sourcePostUid:sourcePost.createUser.userId
                                                  sourceAtionId:sourceAction.actionId
                                                sourceActionUid:sourceAction.createUser.userId
+                                          sourceActionNickName:sourceAction.createUser.nickName
                                               sourceActionType:sourceAction.type
                                                      briefText:briefText
                                        //content
@@ -504,8 +505,93 @@ BBSService *_staticBBSService;
     });
 
 }
-
-
-
-
+- (void)getBBSActionListWithPostId:(NSString *)postId
+                        actionType:(BBSActionType)actionType
+                            offset:(NSInteger)offset
+                             limit:(NSInteger)limit
+                          delegate:(id<BBSServiceDelegate>)delegate;
+{
+    dispatch_async(workingQueue, ^{
+        NSInteger deviceType = [DeviceDetection deviceType];
+        NSString *appId = [ConfigManager appId];
+        NSString *userId = [[UserManager defaultManager] userId];
+        
+        CommonNetworkOutput *output = [BBSNetwork getActionList:TRAFFIC_SERVER_URL
+                                                          appId:appId
+                                                     deviceType:deviceType
+                                                         userId:userId
+                                                      targetUid:nil
+                                                         postId:postId
+                                                     actionType:actionType
+                                                         offset:offset
+                                                          limit:limit];
+        
+        NSInteger resultCode = [output resultCode];
+        NSArray *list = nil;
+        @try {
+            if (output.resultCode == ERROR_SUCCESS && [output.responseData length] > 0) {
+                DataQueryResponse *response = [DataQueryResponse parseFromData:output.responseData];
+                resultCode = [response resultCode];
+                list = [response bbsActionList];
+            }
+        }
+        @catch (NSException *exception) {
+            PPDebug(@"<getBBSBoardList>exception = %@",[exception debugDescription]);
+            list = nil;
+        }
+        @finally {
+            
+        }
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (delegate && [delegate respondsToSelector:@selector(didGetActionList:belowPost:actionType:resultCode:)]) {
+                [delegate didGetActionList:list belowPost:postId actionType:actionType resultCode:resultCode];
+            };
+        });
+    });
+}
+- (void)getBBSActionListWithTargetUid:(NSString *)targetUid
+                               offset:(NSInteger)offset
+                                limit:(NSInteger)limit
+                             delegate:(id<BBSServiceDelegate>)delegate
+{
+    dispatch_async(workingQueue, ^{
+        NSInteger deviceType = [DeviceDetection deviceType];
+        NSString *appId = [ConfigManager appId];
+        NSString *userId = [[UserManager defaultManager] userId];
+        
+        CommonNetworkOutput *output = [BBSNetwork getActionList:TRAFFIC_SERVER_URL
+                                                          appId:appId
+                                                     deviceType:deviceType
+                                                         userId:userId
+                                                      targetUid:targetUid
+                                                         postId:nil
+                                                     actionType:ActionTypeNO
+                                                         offset:offset
+                                                          limit:limit];
+        
+        NSInteger resultCode = [output resultCode];
+        NSArray *list = nil;
+        @try {
+            if (output.resultCode == ERROR_SUCCESS && [output.responseData length] > 0) {
+                DataQueryResponse *response = [DataQueryResponse parseFromData:output.responseData];
+                resultCode = [response resultCode];
+                list = [response bbsActionList];
+            }
+        }
+        @catch (NSException *exception) {
+            PPDebug(@"<getBBSBoardList>exception = %@",[exception debugDescription]);
+            list = nil;
+        }
+        @finally {
+            
+        }
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (delegate && [delegate respondsToSelector:@selector(didGetActionList:targetUid:resultCode:)]) {
+                [delegate didGetActionList:list targetUid:targetUid resultCode:resultCode];
+            };
+        });
+    });
+}
 @end
