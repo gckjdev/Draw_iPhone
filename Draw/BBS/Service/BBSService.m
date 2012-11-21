@@ -113,8 +113,26 @@ BBSService *_staticBBSService;
     return post;
 }
 
+- (PBBBSDraw *)buildBBSDraw:(NSArray *)drawActionList
+{
+    PBBBSDraw *bbsDraw = nil;
+    NSMutableArray *pbDrawActionList = [NSMutableArray arrayWithCapacity:drawActionList.count];
+    for (DrawAction *action in drawActionList) {
+        PBDrawAction * pbAction = [[DrawDataService defaultService]
+                                   buildPBDrawAction:action];
+        [pbDrawActionList addObject:pbAction];
+    }
+    if ([pbDrawActionList count] != 0) {
+        PBBBSDraw_Builder *builder = [[PBBBSDraw_Builder alloc] init];
+        [builder addAllDrawActionList:pbDrawActionList];
+        bbsDraw = [builder build];
+        [builder release];
+    }
+    return bbsDraw;
+}
 
-#pragma mark - change data with remote.
+//#pragma mark - change data with remote.
+#pragma mark - bbs board methods
 
 - (void)getBBSBoardList:(id<BBSServiceDelegate>) delegate
 {
@@ -151,24 +169,9 @@ BBSService *_staticBBSService;
 }
 
 
-- (PBBBSDraw *)buildBBSDraw:(NSArray *)drawActionList
-{
-    PBBBSDraw *bbsDraw = nil;
-    NSMutableArray *pbDrawActionList = [NSMutableArray arrayWithCapacity:drawActionList.count];
-    for (DrawAction *action in drawActionList) {
-        PBDrawAction * pbAction = [[DrawDataService defaultService]
-                                   buildPBDrawAction:action];
-        [pbDrawActionList addObject:pbAction];
-    }
-    if ([pbDrawActionList count] != 0) {
-        PBBBSDraw_Builder *builder = [[PBBBSDraw_Builder alloc] init];
-        [builder addAllDrawActionList:pbDrawActionList];
-        bbsDraw = [builder build];
-        [builder release];
-    }
-    return bbsDraw;
-}
 
+
+#pragma mark - bbs post methods
 
 - (void)createPostWithBoardId:(NSString *)boardId
                          text:(NSString *)text
@@ -315,5 +318,22 @@ BBSService *_staticBBSService;
         });
     });
 }
+
+
+#pragma mark - bbs action methods
+- (void)createActionWithPost:(PBBBSPost *)post
+                sourceAction:(PBBBSAction *)action
+                  actionType:(BBSActionType)actionType
+                        text:(NSString *)text
+                       image:(UIImage *)image
+              drawActionList:(NSArray *)drawActionList
+                   drawImage:(UIImage *)drawImage
+                    delegate:(id<BBSServiceDelegate>)delegate
+{
+    
+}
+
+
+
 
 @end

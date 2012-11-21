@@ -33,6 +33,11 @@ typedef enum{
               postList:(NSArray *)postList
             resultCode:(NSInteger)resultCode;
 
+- (void)didCreateAction:(PBBBSAction *)action
+                 atPost:(PBBBSPost *)post
+           resultCode:(NSInteger)resultCode;
+
+
 @end
 
 
@@ -41,8 +46,13 @@ typedef enum{
 @interface BBSService : CommonService
 
 + (id)defaultService;
+
+#pragma mark - bbs board methods
 - (void)getBBSBoardList:(id<BBSServiceDelegate>) delegate;
 
+
+
+#pragma mark - bbs post methods
 - (void)createPostWithBoardId:(NSString *)boardId
                          text:(NSString *)text
                         image:(UIImage *)image
@@ -57,6 +67,19 @@ typedef enum{
                            offset:(NSInteger)offset
                             limit:(NSInteger)limit
                          delegate:(id<BBSServiceDelegate>)delegate;
+
+#pragma mark - bbs action methods
+
+- (void)createActionWithPost:(PBBBSPost *)post
+                sourceAction:(PBBBSAction *)action
+                  actionType:(BBSActionType)actionType
+                        text:(NSString *)text
+                       image:(UIImage *)image
+              drawActionList:(NSArray *)drawActionList
+                   drawImage:(UIImage *)drawImage
+                    delegate:(id<BBSServiceDelegate>)delegate;
+
+#pragma mark - bbs user methods
 
 - (PBBBSUser *)myself;
 @end
