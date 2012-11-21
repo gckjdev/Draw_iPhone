@@ -35,71 +35,6 @@
          shouldBeEnabled = "Yes"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
-         filePath = "../Common_iPhone_20/Components/Component-Service/PPSNSService/SinaWeibo/PPSinaWeiboRequest.m"
-         timestampString = "375074175.319029"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "169"
-         endingLineNumber = "169"
-         landmarkName = "-sinaweiboDidLogOut:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "Yes"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "../Common_iPhone_20/Components/Component-Service/PPSNSService/SinaWeibo/PPSinaWeiboRequest.m"
-         timestampString = "375074175.319029"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "181"
-         endingLineNumber = "181"
-         landmarkName = "-sinaweiboLogInDidCancel:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "Yes"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "../Common_iPhone_20/Components/Component-Service/PPSNSService/SinaWeibo/PPSinaWeiboRequest.m"
-         timestampString = "375074175.319029"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "192"
-         endingLineNumber = "192"
-         landmarkName = "-sinaweibo:logInDidFailWithError:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "Yes"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "../Common_iPhone_20/Components/Component-Service/PPSNSService/SinaWeibo/PPSinaWeiboRequest.m"
-         timestampString = "375074175.319029"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "203"
-         endingLineNumber = "203"
-         landmarkName = "-sinaweibo:accessTokenInvalidOrExpired:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "Yes"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "../Common_iPhone_20/Components/Component-Service/PPSNSService/SinaWeibo/PPSinaWeiboRequest.m"
-         timestampString = "375074175.319029"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "89"
-         endingLineNumber = "89"
-         landmarkName = "-handleOpenURL:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "Yes"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
          filePath = "../Common_iPhone_20/3PP-SDK/SinaWeiBoSDK_SSO/SinaWeibo.m"
          timestampString = "374825417.961891"
          startingColumnNumber = "9223372036854775807"
@@ -107,6 +42,19 @@
          startingLineNumber = "500"
          endingLineNumber = "500"
          landmarkName = "-handleOpenURL:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "../Common_iPhone_20/Components/Component-Service/PPSNSService/SinaWeibo/PPSinaWeiboRequest.m"
+         timestampString = "375171672.844232"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "247"
+         endingLineNumber = "247"
+         landmarkName = "-request:didFinishLoadingWithResult:"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

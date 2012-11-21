@@ -183,4 +183,9 @@
     [self setBackgroundImageView:nil];
     [super viewDidUnload];
 }
+
+- (void)didQueryUser:(NSString *)userId
+{
+    return;
+}
 @end

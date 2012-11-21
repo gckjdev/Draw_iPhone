@@ -78,7 +78,7 @@
 
 - (NSString*)sinaAppRedirectURI
 {
-    return @"http://";
+    return @"http://www.drawlively.com";
 }
 
 - (NSString*)qqAppKey
@@ -89,6 +89,11 @@
 - (NSString*)qqAppSecret
 {
     return @"30169d80923b984109ee24ade9914a5c";    
+}
+
+- (NSString*)qqAppRedirectURI
+{
+    return @"http://caicaihuahua.me";    
 }
 
 - (NSString*)facebookAppKey
