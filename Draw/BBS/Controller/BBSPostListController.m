@@ -231,7 +231,8 @@
 {
     if (post) {
         [self.tabDataList insertObject:post atIndex:0];
-        [self.dataTableView reloadData];
+        NSArray *paths = [NSArray arrayWithObject:[NSIndexPath indexPathForRow:0 inSection:0]];
+        [self.dataTableView reloadRowsAtIndexPaths:paths withRowAnimation:UITableViewRowAnimationFade];
     }
 }
 
