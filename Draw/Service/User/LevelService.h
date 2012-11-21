@@ -16,6 +16,13 @@ enum {
     AWARD = 2
 };
 
+typedef enum {
+    LevelSourceDraw = 0,
+    LevelSourceDice,
+    LevelSourceZhajinhua,
+    LevelSourceCount
+}LevelSource;
+
 #define OFFLINE_DRAW_EXP    ([ConfigManager getOffLineDrawExp])
 #define OFFLINE_GUESS_EXP   ([ConfigManager getOffLineGuessExp])
 #define NORMAL_EXP          ([ConfigManager getOnLineGuessExp])
@@ -39,8 +46,8 @@ enum {
 
 + (LevelService*)defaultService;
 
-- (void)setLevel:(NSInteger)level;
-- (void)setExperience:(long)experience;
+//- (void)setLevel:(NSInteger)level;
+//- (void)setExperience:(long)experience;
 - (int)level;
 - (long)experience;
 
@@ -60,6 +67,30 @@ enum {
 - (void)syncExpAndLevel:(int)type;
 - (void)syncExpAndLevel:(int)type awardExp:(long)awardExp;
 
-- (void)initLevelDict;
+//- (void)initLevelDict;
+//methods below for the one
+- (int)levelForSource:(LevelSource)source;
+- (long)experienceForSource:(LevelSource)source;
+
+- (void)addExp:(long)exp
+      delegate:(id<LevelServiceDelegate>)delegate
+     forSource:(LevelSource)source;
+
+- (void)minusExp:(long)exp
+        delegate:(id<LevelServiceDelegate>)delegate
+       forSource:(LevelSource)source;
+
+- (void)awardExp:(long)exp
+        delegate:(id<LevelServiceDelegate>)delegate
+       forSource:(LevelSource)source;
+
+
+- (void)syncExpAndLevel:(PPViewController*)viewController
+                   type:(int)type
+              forSource:(LevelSource)source;
+- (void)syncExpAndLevel:(int)type
+              forSource:(LevelSource)source;
+- (void)syncExpAndLevel:(int)type awardExp:(long)awardExp
+              forSource:(LevelSource)source;
 
 @end
