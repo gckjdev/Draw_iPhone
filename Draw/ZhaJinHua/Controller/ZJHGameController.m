@@ -259,13 +259,14 @@
     [self updateAllUsersAvatar];
     
     // total bet and single bet.
-    [self updateTotalBetAndSingleBet];
+    [self clearTotalBetAndSingleBet];
     
     // pokers and user bet.
     if ([_gameService isGamePlaying]) {
         [self updateAllUsersPokers];
         [self updateAllUserTotalBet];
         [self.betTable betSome:[_gameService.gameState totalBet] minSingleBet:((NSNumber*)[_gameService.chipValues objectAtIndex:0]).intValue];
+        [self updateTotalBetAndSingleBet];
     }
 
     // money tree.
@@ -499,6 +500,7 @@
 
 - (void)betSuccess
 {
+    [[self getMyAvatarView] stopReciprocal];
     ZJHUserPlayInfo *userPlayInfo = [_gameService userPlayInfo:_userManager.userId];
     BOOL gender = [_userManager.gender isEqualToString:@"m"];
     NSURL* soundURL;
@@ -535,6 +537,7 @@
 
 - (void)foldCardSuccess
 {
+    [[self getMyAvatarView] stopReciprocal];
     [[self getMyPokersView] foldCards:YES];
     [_audioManager playSoundByURL:_soundManager.foldCardSoundEffect];
     [_audioManager playSoundByURL:[_soundManager foldCardHumanSound:[@"m" isEqualToString:_userManager.gender]]];
@@ -628,6 +631,7 @@
     [self clearAllUserPokers];
     [self hideAllUserTotalBet];
     [self updateWaitGameNoteLabel];
+    [self clearTotalBetAndSingleBet];
 }
 
 - (void)faceupUserCards
@@ -1214,6 +1218,12 @@ compareCardWith:(NSString*)targetUserId
 {
     self.totalBetLabel.text = [self int2String:_gameService.gameState.totalBet];
     self.singleBetLabel.text = [self int2String:_gameService.gameState.singleBet];
+}
+
+- (void)clearTotalBetAndSingleBet
+{
+    self.totalBetLabel.text = @"0";
+    self.singleBetLabel.text = @"0";
 }
 
 - (void)updateAllUserTotalBet

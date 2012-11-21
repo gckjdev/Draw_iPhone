@@ -60,4 +60,6 @@
 
 - (NSString *)getRoomName;
 
+- (int)compareCost;
+
 @end

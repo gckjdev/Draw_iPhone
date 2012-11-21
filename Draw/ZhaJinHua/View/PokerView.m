@@ -244,7 +244,7 @@
 #define SHOW_CARD_BUTTON_WIDTH ([DeviceDetection isIPAD] ? 56 : 35)
 #define SHOW_CARD_BUTTON_HEIGHT ([DeviceDetection isIPAD] ? 40 : 25)
 
-#define SHOW_CARD_BUTTON_FONT ([DeviceDetection isIPAD] ? [UIFont systemFontOfSize:18] : [UIFont systemFontOfSize:13])
+#define SHOW_CARD_BUTTON_FONT ([DeviceDetection isIPAD] ? [UIFont systemFontOfSize:18] : [UIFont systemFontOfSize:12])
 
 - (UIView *)createShowCardButton
 {
@@ -263,7 +263,6 @@
     label.textAlignment = UITextAlignmentCenter;
     [label setTextColor:[UIColor whiteColor]];
     label.backgroundColor = [UIColor clearColor];
-    
     
     [view addSubview:imageView];
     [view addSubview:label];
