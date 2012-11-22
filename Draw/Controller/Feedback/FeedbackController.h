@@ -8,9 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "PPViewController.h"
-#import "SNSServiceDelegate.h"
 
-@interface FeedbackController : PPViewController <UITableViewDelegate, UITableViewDataSource, UIActionSheetDelegate, SNSServiceDelegate> {
+@interface FeedbackController : PPViewController <UITableViewDelegate, UITableViewDataSource, UIActionSheetDelegate> {
     NSInteger buttonIndexSMS;
     NSInteger buttonIndexEmail;
     NSInteger buttonIndexSinaWeibo;

@@ -11,9 +11,6 @@
 #import "ShareImageManager.h"
 #import "UIImageUtil.h"
 #import "UserManager.h"
-#import "SinaSNSService.h"
-#import "FacebookSNSService.h"
-#import "QQWeiboService.h"
 #import "GifView.h"
 #import "StringUtil.h"
 #import "PPDebug.h"
@@ -21,6 +18,8 @@
 #import "DeviceDetection.h"
 #import "CommonMessageCenter.h"
 #import "MyFriend.h"
+#import "PPSNSIntegerationService.h"
+#import "PPSNSConstants.h"
 
 #define PATTERN_TAG_OFFSET 20120403
 #define IPAD_INFUSEVIEW_FRAME CGRectMake(31*2.4,130*2.13,259*2.4,259*2.13)
@@ -168,8 +167,60 @@ enum {
 {
 }
 
+- (void)publishWeibo:(NSString*)text imagePath:(NSString*)imagePath
+{
+    [[PPSNSIntegerationService defaultService] publishWeiboToAll:text
+                                                   imageFilePath:imagePath
+                                                    successBlock:^(int snsType, PPSNSCommonService *snsService, NSDictionary *userInfo) {
+                                                        PPDebug(@"%@ publish weibo succ", [snsService snsName]);
+                                                        
+                                                        [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kPublishWeiboSucc") delayTime:1 isHappy:YES];
+                                                        
+                                                        int earnCoins = [[AccountService defaultService] rewardForShareWeibo];
+                                                        if (earnCoins > 0){
+                                                            NSString* msg = [NSString stringWithFormat:NSLS(@"kPublishWeiboSuccAndEarnCoins"), earnCoins];
+                                                            [self popupMessage:msg title:nil];
+                                                        }
+                                                        else{
+                                                            //[self popupMessage:NSLS(@"kPublishWeiboSucc") title:nil];
+                                                            [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kPublishWeiboSucc") delayTime:1 isHappy:YES];
+                                                        }
+                                                        [self.navigationController popViewControllerAnimated:YES];
+                                                        
+                                                    }
+                                                    failureBlock:^(int snsType, PPSNSCommonService *snsService, NSError *error) {
+                                                        
+                                                        PPDebug(@"%@ publish weibo failure", [snsService snsName]);
+                                                        [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kPublishWeiboFail") delayTime:1 isHappy:NO];
+                                                        
+                                                    }];
+}
+
 - (void)clickOk:(CommonDialog *)dialog
 {
+    
+    [self publishWeibo:self.shareTextField.text imagePath:self.imageFilePath];
+
+    
+//    [self hideActivity];
+//    if (result == 0){
+//        int earnCoins = [[AccountService defaultService] rewardForShareWeibo];
+//        if (earnCoins > 0){
+//            NSString* msg = [NSString stringWithFormat:NSLS(@"kPublishWeiboSuccAndEarnCoins"), earnCoins];
+//            [self popupMessage:msg title:nil];
+//        }
+//        else{
+//            //[self popupMessage:NSLS(@"kPublishWeiboSucc") title:nil];
+//            [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kPublishWeiboSucc") delayTime:1 isHappy:YES];
+//        }
+//        [self.navigationController popViewControllerAnimated:YES];
+//    }
+//    else{
+//        //[self popupMessage:NSLS(@"kPublishWeiboFail") title:nil];
+//        [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kPublishWeiboFail") delayTime:1 isHappy:NO];
+//    }
+    
+    /*
     if ([[UserManager defaultManager] hasBindQQWeibo] && _snsType == QQ_WEIBO){
 //        [self showActivityWithText:NSLS(@"kSendingRequest")];
         PPDebug(@"publish to qq!");
@@ -201,6 +252,7 @@ enum {
         [self.navigationController popViewControllerAnimated:YES];
         
     }
+     */
 }
 
 - (IBAction)publish:(id)sender
@@ -249,6 +301,10 @@ enum {
             return;
         }
     }
+    
+    [self publishWeibo:self.shareTextField.text imagePath:path];
+    
+    /*
     if ([[UserManager defaultManager] hasBindQQWeibo] && _snsType == QQ_WEIBO){
 //        [self showActivityWithText:NSLS(@"kSendingRequest")];
         [[QQWeiboService defaultService] publishWeibo:self.shareTextField.text 
@@ -277,6 +333,7 @@ enum {
         [self.navigationController popViewControllerAnimated:YES];
         PPDebug(@"publish to facebook!");
     }
+     */
 }
 
 - (void)didPublishWeibo:(int)result
@@ -435,20 +492,21 @@ enum {
     [self hideActivity];
     NSString* publishText = self.text;
     if (user.isQQUser 
-        && [[UserManager defaultManager] hasBindQQWeibo] 
+        && [[UserManager defaultManager] hasBindQQWeibo]
+        && [[[PPSNSIntegerationService defaultService] snsServiceByType:TYPE_QQ] isAuthorizeExpired] == NO
         && _snsType == QQ_WEIBO){
         publishText = [publishText stringByAppendingFormat:@" @%@",user.qqId];       
     }
     
     if (user.isSinaUser 
         && [[UserManager defaultManager] hasBindSinaWeibo]
-        && [[SinaSNSService defaultService] isAuthorizeExpired] == NO 
+        && [[[PPSNSIntegerationService defaultService] snsServiceByType:TYPE_SINA] isAuthorizeExpired] == NO
         && _snsType == SINA_WEIBO){
         publishText = [publishText stringByAppendingFormat:@" @%@",user.sinaNick];
     }
     
     if (user.isFacebookUser 
-        && [[UserManager defaultManager] hasBindFacebook] 
+        && [[UserManager defaultManager] hasBindFacebook]        
         && _snsType == FACEBOOK){
         //publishText = [publishText stringByAppendingString:facebookId];          
     }

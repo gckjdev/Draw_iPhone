@@ -14,7 +14,7 @@
 #import "PPNetworkRequest.h"
 #import "UIDevice+IdentifierAddition.h"
 #import "UIImageExt.h"
-#import "SNSConstants.h"
+#import "PPSNSConstants.h"
 #import "AccountManager.h"
 #import "InputDialog.h"
 #import "RegisterUserController.h"
@@ -23,7 +23,6 @@
 #import "FriendManager.h"
 #import "LevelService.h"
 #import "UserService.h"
-#import "QQWeiboService.h"
 #import "ConfigManager.h"
 #import "TopPlayer.h"
 #import "MyFriend.h"
@@ -676,7 +675,8 @@ static UserService* _defaultUserService;
             
                 [[UserManager defaultManager] setLocation:location];
 
-                [[QQWeiboService defaultService] saveToken:qqAccessToken secret:qqAccessSecret];
+                // TODO:SNS
+//                [[QQWeiboService defaultService] saveToken:qqAccessToken secret:qqAccessSecret];
                 
                 
                 [[LevelService defaultService] setLevel:levelSring.intValue];

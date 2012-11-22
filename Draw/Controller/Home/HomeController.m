@@ -22,7 +22,6 @@
 #import "ShareImageManager.h"
 #import "AccountService.h"
 #import "CommonDialog.h"
-#import "FacebookSNSService.h"
 #import "ItemShopController.h"
 #import "RouterTrafficServer.h"
 #import "StringUtil.h"

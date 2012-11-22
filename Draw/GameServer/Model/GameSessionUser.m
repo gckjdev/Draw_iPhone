@@ -8,7 +8,7 @@
 
 #import "GameSessionUser.h"
 #import "GameBasic.pb.h"
-#import "SNSConstants.h"
+#import "PPSNSConstants.h"
 
 @implementation GameSessionUser
 

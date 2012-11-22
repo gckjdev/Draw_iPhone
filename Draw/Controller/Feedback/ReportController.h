@@ -7,16 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "SinaSNSService.h"
 #import "UserService.h"
+#import "PPViewController.h"
+
 typedef enum {
     SUBMIT_BUG = 0,
     SUBMIT_FEEDBACK,
     ADD_WORD
 }ReportType;
 
-
-@interface ReportController : PPViewController <UITextViewDelegate ,SNSServiceDelegate, UITextFieldDelegate, UserServiceDelegate> {
+@interface ReportController : PPViewController <UITextViewDelegate, UITextFieldDelegate, UserServiceDelegate> {
     ReportType _reportType;
     NSString* _lastReport;
     NSString* _formatWords;

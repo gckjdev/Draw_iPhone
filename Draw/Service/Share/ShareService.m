@@ -7,15 +7,14 @@
 //
 
 #import "ShareService.h"
-#import "SinaSNSService.h"
-#import "QQWeiboService.h"
-#import "FacebookSNSService.h"
 #import "UserManager.h"
 #import "StringUtil.h"
 #import "GameNetworkRequest.h"
 #import "GameNetworkConstants.h"
 #import "ConfigManager.h"
 #import "PPNetworkRequest.h"
+#import "PPSNSConstants.h"
+#import "PPSNSIntegerationService.h"
 
 @implementation ShareService
 
@@ -112,8 +111,18 @@ static ShareService* _defaultService;
             if (output.resultCode == ERROR_SUCCESS) {
                 sinaNick = [output.jsonDataDict objectForKey:PARA_SINA_NICKNAME];
                 qqId = [output.jsonDataDict objectForKey:PARA_QQ_ID];
-            }            
+            }
             
+            NSString* textForQQ = [self getWeiboText:TYPE_QQ drawUserNickName:qqId isDrawByMe:isDrawByMe drawWord:drawWord];
+            [[[PPSNSIntegerationService defaultService] snsServiceByType:TYPE_QQ] publishWeibo:textForQQ imageFilePath:imagePath successBlock:NULL failureBlock:NULL];
+            
+            NSString* textForSina = [self getWeiboText:TYPE_SINA drawUserNickName:sinaNick isDrawByMe:isDrawByMe drawWord:drawWord];
+            [[[PPSNSIntegerationService defaultService] snsServiceByType:TYPE_SINA] publishWeibo:textForSina imageFilePath:imagePath successBlock:NULL failureBlock:NULL];
+            
+            NSString* textForFacebook = [self getWeiboText:TYPE_FACEBOOK drawUserNickName:@"" isDrawByMe:isDrawByMe drawWord:drawWord];
+            [[[PPSNSIntegerationService defaultService] snsServiceByType:TYPE_FACEBOOK] publishWeibo:textForFacebook imageFilePath:imagePath successBlock:NULL failureBlock:NULL];
+
+            /*
             if ([[UserManager defaultManager] hasBindQQWeibo]){
                 NSString* textForQQ = [self getWeiboText:TYPE_QQ drawUserNickName:qqId isDrawByMe:isDrawByMe drawWord:drawWord];
                 [[QQWeiboService defaultService] publishWeibo:textForQQ
@@ -134,6 +143,7 @@ static ShareService* _defaultService;
                                                     imageFilePath:imagePath 
                                                          delegate:nil];                
             }
+             */
         });
     });
 
