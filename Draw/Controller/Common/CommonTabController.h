@@ -27,6 +27,15 @@
 //- (void)startToLoadDataForTabID:(NSInteger)tabID;
 @end
 
+typedef enum{
+ 
+    PullRefreshTypeNone = 0,
+    PullRefreshTypeHeader = 1,
+    PullRefreshTypeFooter = 0x1 << 1,
+    PullRefreshTypeBoth = PullRefreshTypeHeader | PullRefreshTypeFooter,
+
+}PullRefreshType;
+
 @interface CommonTabController : PPTableViewController<CommonTabControllerDelegate>
 {
     TableTabManager *_tabManager;
@@ -34,10 +43,13 @@
 }
 
 
+
+
 //common xib and action
 @property(nonatomic, retain)IBOutlet UILabel *titleLabel;
 @property(nonatomic, retain)IBOutlet UILabel *noDataTipLabl;
-@property(nonatomic, assign, getter = isSupportPullRefresh)BOOL supportPullRefresh;
+@property (nonatomic, assign)PullRefreshType pullRefreshType;
+
 - (IBAction)clickBackButton:(id)sender;
 - (IBAction)clickTabButton:(id)sender;
 - (IBAction)clickRefreshButton:(id)sender;

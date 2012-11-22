@@ -48,7 +48,7 @@
 #define SEARCH_BUTTON_TAG 20121025
 - (void)viewDidLoad
 {
-//    [self setSupportPullRefresh:NO];
+    [self setPullRefreshType:PullRefreshTypeFooter];
     [super viewDidLoad];
     [self.titleLabel setText:NSLS(@"kSearchUser")];
     

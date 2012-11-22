@@ -10,23 +10,36 @@
 
 @implementation BBSPostDetailCell
 
-- (id)initWithFrame:(CGRect)frame
++ (BBSPostDetailCell *)createCell:(id)delegate
 {
-    self = [super initWithFrame:frame];
-    if (self) {
-        // Initialization code
+    NSString *identifier = [BBSPostDetailCell getCellIdentifier];
+    NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:identifier owner:self options:nil];
+    if (topLevelObjects == nil || [topLevelObjects count] <= 0){
+        return nil;
     }
-    return self;
+    BBSPostDetailCell *view = [topLevelObjects objectAtIndex:0];
+    //    view.delegate = delegate;
+    return  view;
 }
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect
++ (NSString*)getCellIdentifier
 {
-    // Drawing code
+    return @"BBSPostDetailCell";
 }
-*/
+
++ (CGFloat)getCellHeight
+{
+    return 120.0f;
+}
+
+- (void)updateTextContentWithContent:(PBBBSContent *)content
+{
+    [self.textContent setText:content.text];
+}
+- (void)updateCellWithPost:(PBBBSPost *)post
+{
+    [self updateTextContentWithContent:post.content];
+}
 
 - (void)dealloc {
     [_textContent release];

@@ -79,7 +79,7 @@
 
 - (void)viewDidLoad
 {
-    [self setSupportPullRefresh:YES];
+    [self setPullRefreshType:PullRefreshTypeHeader];
     [super viewDidLoad];
 
     //use local data

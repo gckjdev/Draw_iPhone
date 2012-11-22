@@ -11,8 +11,9 @@
 #import "BBSService.h"
 #import "BBSPostActionCell.h"
 #import "CreatePostController.h"
+#import "BBSPostActionHeaderView.h"
 
-@interface BBSPostDetailController : CommonTabController<BBSServiceDelegate, BBSPostActionCellDelegate, CreatePostControllerDelegate>
+@interface BBSPostDetailController : CommonTabController<BBSServiceDelegate, BBSPostActionCellDelegate, CreatePostControllerDelegate, BBSPostActionHeaderViewDelegate>
 {
     
 }

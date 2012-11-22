@@ -553,7 +553,7 @@ typedef enum{
 
 - (void)viewDidLoad
 {
-    [self setSupportPullRefresh:NO];
+    [self setPullRefreshType:PullRefreshTypeNone];
     [super viewDidLoad]; 
     
     ShareImageManager* imageManager = [ShareImageManager defaultManager];
