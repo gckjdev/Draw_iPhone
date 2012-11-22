@@ -784,6 +784,12 @@
 		CA427070162002E100C6CCAE /* SuperHomeController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA42706F162002E100C6CCAE /* SuperHomeController~ipad.xib */; };
 		CA42E3CA15F4617A00790B3C /* TableTab.m in Sources */ = {isa = PBXBuildFile; fileRef = CA42E3C715F4617A00790B3C /* TableTab.m */; };
 		CA42E3CB15F4617A00790B3C /* TableTabManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA42E3C915F4617A00790B3C /* TableTabManager.m */; };
+		CA42FE02165DCCDB0097453A /* BBSPostDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA42FE01165DCCDB0097453A /* BBSPostDetailCell.m */; };
+		CA42FE05165DCD470097453A /* BBSPostActionHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA42FE04165DCD470097453A /* BBSPostActionHeaderView.m */; };
+		CA42FE08165DCD8D0097453A /* BBSPostDetailUserCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA42FE07165DCD8D0097453A /* BBSPostDetailUserCell.m */; };
+		CA42FE0A165DCDA30097453A /* BBSPostDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA42FE09165DCDA30097453A /* BBSPostDetailCell.xib */; };
+		CA42FE0C165DCDBC0097453A /* BBSPostActionHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA42FE0B165DCDBC0097453A /* BBSPostActionHeaderView.xib */; };
+		CA42FE0E165DCDCD0097453A /* BBSPostDetailUserCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA42FE0D165DCDCD0097453A /* BBSPostDetailUserCell.xib */; };
 		CA4FF001152AEFDF00F0AC88 /* ColorGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = CA4FF000152AEFDF00F0AC88 /* ColorGroup.m */; };
 		CA4FF00A152AF21900F0AC88 /* ColorShopCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA4FF008152AF21900F0AC88 /* ColorShopCell.m */; };
 		CA4FF00B152AF21900F0AC88 /* ColorShopCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA4FF009152AF21900F0AC88 /* ColorShopCell.xib */; };
@@ -3216,6 +3222,15 @@
 		CA42E3C715F4617A00790B3C /* TableTab.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableTab.m; sourceTree = "<group>"; };
 		CA42E3C815F4617A00790B3C /* TableTabManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableTabManager.h; sourceTree = "<group>"; };
 		CA42E3C915F4617A00790B3C /* TableTabManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableTabManager.m; sourceTree = "<group>"; };
+		CA42FE00165DCCDB0097453A /* BBSPostDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBSPostDetailCell.h; sourceTree = "<group>"; };
+		CA42FE01165DCCDB0097453A /* BBSPostDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBSPostDetailCell.m; sourceTree = "<group>"; };
+		CA42FE03165DCD470097453A /* BBSPostActionHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBSPostActionHeaderView.h; sourceTree = "<group>"; };
+		CA42FE04165DCD470097453A /* BBSPostActionHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBSPostActionHeaderView.m; sourceTree = "<group>"; };
+		CA42FE06165DCD8D0097453A /* BBSPostDetailUserCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBSPostDetailUserCell.h; sourceTree = "<group>"; };
+		CA42FE07165DCD8D0097453A /* BBSPostDetailUserCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBSPostDetailUserCell.m; sourceTree = "<group>"; };
+		CA42FE09165DCDA30097453A /* BBSPostDetailCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BBSPostDetailCell.xib; sourceTree = "<group>"; };
+		CA42FE0B165DCDBC0097453A /* BBSPostActionHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BBSPostActionHeaderView.xib; sourceTree = "<group>"; };
+		CA42FE0D165DCDCD0097453A /* BBSPostDetailUserCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BBSPostDetailUserCell.xib; sourceTree = "<group>"; };
 		CA4AF8C015D23A4E00734FAC /* MainDataModel 7.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "MainDataModel 7.xcdatamodel"; sourceTree = "<group>"; };
 		CA4F066F1546F66500A38C84 /* MainDataModel 3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "MainDataModel 3.xcdatamodel"; sourceTree = "<group>"; };
 		CA4FEFFF152AEFDF00F0AC88 /* ColorGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorGroup.h; sourceTree = "<group>"; };
@@ -7549,6 +7564,15 @@
 				CAE51894165CCB33006157CC /* BBSPostActionCell.h */,
 				CAE51895165CCB33006157CC /* BBSPostActionCell.m */,
 				CAE51897165CCB55006157CC /* BBSPostActionCell.xib */,
+				CA42FE00165DCCDB0097453A /* BBSPostDetailCell.h */,
+				CA42FE01165DCCDB0097453A /* BBSPostDetailCell.m */,
+				CA42FE09165DCDA30097453A /* BBSPostDetailCell.xib */,
+				CA42FE03165DCD470097453A /* BBSPostActionHeaderView.h */,
+				CA42FE04165DCD470097453A /* BBSPostActionHeaderView.m */,
+				CA42FE0B165DCDBC0097453A /* BBSPostActionHeaderView.xib */,
+				CA42FE06165DCD8D0097453A /* BBSPostDetailUserCell.h */,
+				CA42FE07165DCD8D0097453A /* BBSPostDetailUserCell.m */,
+				CA42FE0D165DCDCD0097453A /* BBSPostDetailUserCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -11579,6 +11603,9 @@
 				A405C90C165B874500E7610F /* raise_bet1_M.mp3 in Resources */,
 				C223232D165C659E00D7ECE4 /* ZJHSettingView~ipad.xib in Resources */,
 				CAE51898165CCB55006157CC /* BBSPostActionCell.xib in Resources */,
+				CA42FE0A165DCDA30097453A /* BBSPostDetailCell.xib in Resources */,
+				CA42FE0C165DCDBC0097453A /* BBSPostActionHeaderView.xib in Resources */,
+				CA42FE0E165DCDCD0097453A /* BBSPostDetailUserCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -12220,6 +12247,9 @@
 				CAAFBEB2165B199100E5E1C0 /* PPSNSStorageService.m in Sources */,
 				CAAFBEB5165B70DC00E5E1C0 /* PPResourceCacheService.m in Sources */,
 				CAE51896165CCB33006157CC /* BBSPostActionCell.m in Sources */,
+				CA42FE02165DCCDB0097453A /* BBSPostDetailCell.m in Sources */,
+				CA42FE05165DCD470097453A /* BBSPostActionHeaderView.m in Sources */,
+				CA42FE08165DCD8D0097453A /* BBSPostDetailUserCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -20,4 +20,5 @@
 + (BBSPostDetailController *)enterPostDetailControllerWithPost:(PBBBSPost *)post
                                                 fromController:(UIViewController *)fromController
                                                       animated:(BOOL)animated;
+- (IBAction)clickSupportButton:(id)sender;
 @end

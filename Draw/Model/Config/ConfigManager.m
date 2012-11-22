@@ -315,6 +315,11 @@
     return [MobClickUtils getIntValueByKey:@"LIAR_DICE_EXP" defaultValue:5];
 }
 
++ (int)getZhajinhuaExp
+{
+    return [MobClickUtils getIntValueByKey:@"LIAR_DICE_EXP" defaultValue:5];
+}
+
 + (int)getDiceFleeCoin
 {
     return [MobClickUtils getIntValueByKey:@"DICE_FLEE_COIN_COIN" defaultValue:200];
