@@ -136,6 +136,7 @@ BBSService *_staticBBSService;
                                            postUid:(NSString *)postUid
                                           actionId:(NSString *)actionId
                                          actionUid:(NSString *)actionUid
+                              sourceActionNickName:(NSString *)sourceActionNickName
                                         actionType:(BBSActionType)actionType
                                          briefText:(NSString *)briefText
 {
@@ -144,6 +145,7 @@ BBSService *_staticBBSService;
     [builder setPostUid:postUid];
     [builder setActionId:actionId];
     [builder setActionUid:actionUid];
+    [builder setActionNick:sourceActionNickName];
     [builder setActionType:actionType];
     [builder setBriefText:briefText];
     PBBBSActionSource *source = [builder build];
@@ -171,6 +173,7 @@ BBSService *_staticBBSService;
                            sourcePostUid:(NSString *)sourcePostUid
                           sourceActionId:(NSString *)sourceActionId
                          sourceActionUid:(NSString *)sourceActionUid
+                    sourceActionNickName:(NSString *)sourceActionNickName
                         sourceActionType:(BBSActionType)sourceActionType
                          sourceBriefText:(NSString *)sourceBriefText
 
@@ -196,7 +199,7 @@ BBSService *_staticBBSService;
     PBBBSActionSource *source = [self buildActionSourceWithPostId:sourcePostId
                                                           postUid:sourcePostUid
                                                          actionId:sourceActionId
-                                                        actionUid:sourceActionUid
+                                                        actionUid:sourceActionUid sourceActionNickName:sourceActionNickName
                                                        actionType:sourceActionType
                                                         briefText:sourceBriefText];
     [builder setSource:source];
@@ -420,7 +423,7 @@ BBSService *_staticBBSService;
         NSString *gender = [[UserManager defaultManager] gender];
         NSString *avatar = [[UserManager defaultManager] avatarURL];
         
-        BBSPostContentType contentType = ContentTypeText;
+        BBSPostContentType contentType = ContentTypeNo;
         
         NSData *drawData = nil;
         
@@ -430,6 +433,8 @@ BBSService *_staticBBSService;
             contentType = ContentTypeDraw;
             PBBBSDraw *bbsDraw = [self buildBBSDraw:drawActionList];
             drawData = [bbsDraw data];
+        }else if([text length] != 0){
+            contentType = ContentTypeText;
         }
         
         NSString *briefText = nil;
@@ -470,7 +475,7 @@ BBSService *_staticBBSService;
             NSString *imageURL = [output.jsonDataDict objectForKey:PARA_IMAGE];
             NSString *thumbURL = [output.jsonDataDict objectForKey:PARA_THUMB_IMAGE];
             NSString *drawImageURL = [output.jsonDataDict objectForKey:PARA_DRAW_IMAGE];
-            NSString *drawThumbURL = [output.jsonDataDict objectForKey:PARA_THUMB_IMAGE];
+            NSString *drawThumbURL = [output.jsonDataDict objectForKey:PARA_DRAW_THUMB];
             
             action = [self buildActionWithActionId:actionId
                                               type:actionType
@@ -492,6 +497,7 @@ BBSService *_staticBBSService;
                                      sourcePostUid:sourcePost.createUser.userId
                                     sourceActionId:sourceAction.actionId
                                    sourceActionUid:sourceAction.createUser.userId
+                              sourceActionNickName:sourceAction.createUser.nickName
                                   sourceActionType:sourceAction.type
                                    sourceBriefText:briefText];
         }

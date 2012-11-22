@@ -34,6 +34,7 @@ typedef enum{
 }
 
 
+
 - (void)dealloc
 {
     PPRelease(_post);
@@ -181,14 +182,28 @@ typedef enum{
             tab = [_tabManager tabForID:Comment];
         }
         [tab.dataList insertObject:action atIndex:0];
-        if (tab == self.currentTab) {
-            [self.dataTableView reloadData];
-            //TODO change Setcion
-//            NSArray *paths = [NSArray arrayWithObject:[NSIndexPath indexPathForRow:0 inSection:0]];
-//            [self.dataTableView reloadRowsAtIndexPaths:paths withRowAnimation:UITableViewRowAnimationFade];
-        }
+        [self clickTabButton:(UIButton *)[self.view viewWithTag:tab.tabID]];
     }
 }
 
+#pragma mark - BBSService delegate
+- (void)didCreateAction:(PBBBSAction *)action
+                 atPost:(PBBBSPost *)post
+            replyAction:(PBBBSAction *)replyAction
+             resultCode:(NSInteger)resultCode
+{
+    [self didController:nil CreateNewAction:action];
+}
+
+- (IBAction)clickSupportButton:(id)sender {
+    [[BBSService defaultService] createActionWithPost:self.post
+                                         sourceAction:nil
+                                           actionType:ActionTypeSupport
+                                                 text:nil
+                                                image:nil
+                                       drawActionList:nil
+                                            drawImage:nil
+                                             delegate:self];
+}
 
 @end
