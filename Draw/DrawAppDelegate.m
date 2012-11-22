@@ -108,7 +108,51 @@ NSString* GlobalGetBoardServerURL()
 
 
 
+- (void)weiboTest
+{
+    // test image
+    NSString* imagePath = @"/Users/qqn_pipi/Library/Application Support/iPhone Simulator/6.0/Applications/C9E97DA6-3CAB-4075-9903-B2584730D7E7/Library/Caches/ImageCache/7bfbb47435afe434611f332d56cce462";
+    
+    [[PPSNSIntegerationService defaultService] publishWeiboToAll:[NSString stringWithFormat:@"人生 %d", rand() % 10]
+                                                   imageFilePath:imagePath
+                                                    successBlock:^(int snsType, PPSNSCommonService *snsService, NSDictionary *userInfo) {
+                                                        PPDebug(@"%@ publish weibo succ", [snsService snsName]);
+                                                    }
+                                                    failureBlock:^(int snsType, PPSNSCommonService *snsService, NSError *error) {
+                                                        PPDebug(@"%@ publish weibo failure", [snsService snsName]);
+                                                    }];
+    
+    
+//    [[[PPSNSIntegerationService defaultService] snsServiceByType:TYPE_SINA] publishWeibo:@"人生" imageFilePath:imagePath successBlock:^(NSDictionary *userInfo) {
+////     [sinaWeiboService publishWeibo:@"人生就是这样子" imageFilePath:nil successBlock:^(NSDictionary *userInfo) {
+//        PPDebug(@"sina weibo publish ok");
+//     } failureBlock:^(NSError *error) {
+//         PPDebug(@"sina weibo publish failure");
+//     }];
 
+    
+    /*
+    [sinaWeiboService followUser:@"欢乐大话骰" successBlock:^(NSDictionary *userInfo) {
+        PPDebug(@"sina follow user ok");
+    } failureBlock:^(NSError *error) {
+        PPDebug(@"sina follow user failure");
+    }];
+    
+    [qqWeiboService followUser:@"liardice" successBlock:^(NSDictionary *userInfo) {
+        PPDebug(@"qq follow user ok");
+    } failureBlock:^(NSError *error) {
+        PPDebug(@"qq follow user failure");
+    }];
+    */
+    
+    
+    //    [qqWeiboService publishWeibo:@"人生" imageFilePath:imagePath successBlock:^(NSDictionary *userInfo) {
+    //    [qqWeiboService publishWeibo:@"人生就是这样子" imageFilePath:nil successBlock:^(NSDictionary *userInfo) {
+    //        PPDebug(@"qq weibo publish ok");
+    //    } failureBlock:^(NSError *error) {
+    //        PPDebug(@"qq weibo publish failure");
+    //    }];
+}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -285,6 +329,9 @@ NSString* GlobalGetBoardServerURL()
     [[PPSNSIntegerationService defaultService] addSNS:sinaWeiboService];
     [[PPSNSIntegerationService defaultService] addSNS:qqWeiboService];
     [[PPSNSIntegerationService defaultService] addSNS:facebookService];
+    
+//    [self weiboTest];
+    
     
     [self.window makeKeyAndVisible];
     

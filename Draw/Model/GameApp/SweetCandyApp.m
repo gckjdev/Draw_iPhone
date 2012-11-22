@@ -71,6 +71,12 @@
     return @"ff89c2f5667b0199ee7a8bad6c44b265";    
 }
 
+- (NSString*)sinaAppRedirectURI
+{
+    return @"";
+}
+
+
 - (NSString*)qqAppKey
 {
     return @"801123669";    
@@ -79,6 +85,11 @@
 - (NSString*)qqAppSecret
 {
     return @"30169d80923b984109ee24ade9914a5c";    
+}
+
+- (NSString*)qqAppRedirectURI
+{
+    return @"";
 }
 
 - (NSString*)facebookAppKey
