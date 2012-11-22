@@ -28,4 +28,9 @@
 }
 */
 
+- (void)dealloc {
+    [_textContent release];
+    [_imageContent release];
+    [super dealloc];
+}
 @end

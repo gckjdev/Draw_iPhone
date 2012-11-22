@@ -10,4 +10,7 @@
 
 @interface BBSPostDetailCell : PPTableViewCell
 
+@property (retain, nonatomic) IBOutlet UILabel *textContent;
+@property (retain, nonatomic) IBOutlet UIImageView *imageContent;
+
 @end

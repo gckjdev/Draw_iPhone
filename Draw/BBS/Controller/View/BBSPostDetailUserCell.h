@@ -10,4 +10,6 @@
 
 @interface BBSPostDetailUserCell : UIView
 
+@property (retain, nonatomic) IBOutlet UIImageView *avatar;
+@property (retain, nonatomic) IBOutlet UILabel *nickName;
 @end

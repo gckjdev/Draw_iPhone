@@ -28,4 +28,14 @@
 }
 */
 
+- (void)dealloc {
+    [_support release];
+    [_comment release];
+    [super dealloc];
+}
+- (IBAction)clickSupport:(id)sender {
+}
+
+- (IBAction)clickComment:(id)sender {
+}
 @end

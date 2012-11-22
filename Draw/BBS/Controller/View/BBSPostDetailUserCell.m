@@ -28,4 +28,9 @@
 }
 */
 
+- (void)dealloc {
+    [_avatar release];
+    [_nickName release];
+    [super dealloc];
+}
 @end
