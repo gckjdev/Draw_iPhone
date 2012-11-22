@@ -771,6 +771,30 @@ enum {
     
 }
 
+- (void)bindSNS:(int)snsType
+{
+    PPSNSCommonService* service = [[PPSNSIntegerationService defaultService] snsServiceByType:snsType];
+    NSString* name = [service snsName];
+    
+    [service login:^(NSDictionary *userInfo) {
+        PPDebug(@"%@ Login Success", name);
+        
+        [self showActivityWithText:NSLS(@"Loading")];
+        
+        [service readMyUserInfo:^(NSDictionary *userInfo) {
+            [self hideActivity];
+            PPDebug(@"%@ readMyUserInfo Success, userInfo=%@", name, [userInfo description]);
+            [[UserService defaultService] updateUserWithSNSUserInfo:[userManager userId] userInfo:userInfo viewController:self];
+        } failureBlock:^(NSError *error) {
+            [self hideActivity];
+            PPDebug(@"%@ readMyUserInfo Failure", name);
+        }];
+        
+    } failureBlock:^(NSError *error) {
+        PPDebug(@"%@ Login Failure", name);
+    }];
+}
+
 - (void)bindQQ
 {
     /*
@@ -781,61 +805,30 @@ enum {
     [[QQWeiboService defaultService] startLogin:self];
      */
     
-    PPSNSCommonService* service = [[PPSNSIntegerationService defaultService] snsServiceByType:TYPE_QQ];
-    
-    [service login:^(NSDictionary *userInfo) {
-        PPDebug(@"QQ Login Success");
-        
-        [self showActivityWithText:NSLS(@"Loading")];
-        
-        [service readMyUserInfo:^(NSDictionary *userInfo) {
-            [self hideActivity];
-            PPDebug(@"QQ readMyUserInfo Success, userInfo=%@", [userInfo description]);
-        } failureBlock:^(NSError *error) {
-            [self hideActivity];
-            PPDebug(@"QQ readMyUserInfo Failure");
-        }];
-        
-    } failureBlock:^(NSError *error) {
-        PPDebug(@"QQ Login Failure");
-    }];
+    [self bindSNS:TYPE_QQ];
 }
 
 - (void)bindSina
 {
-    _currentLoginType = REGISTER_TYPE_SINA;
 
     /* rem by Benson for test
+     _currentLoginType = REGISTER_TYPE_SINA;
     [[SinaSNSService defaultService] logout];
     [[SinaSNSService defaultService] startLogin:self];
     */
     
-    PPSNSCommonService* service = [[PPSNSIntegerationService defaultService] snsServiceByType:TYPE_SINA];
-    
-    [service login:^(NSDictionary *userInfo) {
-        PPDebug(@"SINA Login Success");
-
-        [self showActivityWithText:NSLS(@"Loading")];
-        
-        [service readMyUserInfo:^(NSDictionary *userInfo) {
-            [self hideActivity];
-            PPDebug(@"SINA readMyUserInfo Success, userInfo=%@", [userInfo description]);
-        } failureBlock:^(NSError *error) {
-            [self hideActivity];
-            PPDebug(@"SINA readMyUserInfo Failure");
-        }];
-        
-    } failureBlock:^(NSError *error) {
-        PPDebug(@"SINA Login Failure");
-    }];
-     
-
+    [self bindSNS:TYPE_SINA];
 }
 
 - (void)bindFacebook
 {
+    /*
     _currentLoginType = REGISTER_TYPE_FACEBOOK;
     [[FacebookSNSService defaultService] startLogin:self];                        
+    */
+
+    // TODO facebook not tested
+    [self bindSNS:TYPE_FACEBOOK];
 }
 
 - (void)askRebindQQ

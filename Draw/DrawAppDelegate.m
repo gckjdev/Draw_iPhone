@@ -277,14 +277,14 @@ NSString* GlobalGetBoardServerURL()
     PPTecentWeiboService* qqWeiboService = [[PPTecentWeiboService alloc] initWithAppKey:[GameApp qqAppKey]
                                                                             appSecret:[GameApp qqAppSecret]
                                                                        appRedirectURI:[GameApp qqAppRedirectURI]];
-//    PPFacebookService* facebookService = [[PPFacebookService alloc] initWithAppKey:[GameApp facebookAppKey]
-//                                                                           appSecret:[GameApp facebookAppSecret]
-//                                                                      appRedirectURI:nil];
+    PPFacebookService* facebookService = [[PPFacebookService alloc] initWithAppKey:[GameApp facebookAppKey]
+                                                                           appSecret:[GameApp facebookAppSecret]
+                                                                      appRedirectURI:nil];
 
     
     [[PPSNSIntegerationService defaultService] addSNS:sinaWeiboService];
     [[PPSNSIntegerationService defaultService] addSNS:qqWeiboService];
-//    [[PPSNSIntegerationService defaultService] addSNS:facebookService];
+    [[PPSNSIntegerationService defaultService] addSNS:facebookService];
     
     [self.window makeKeyAndVisible];
     
