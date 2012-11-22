@@ -466,7 +466,7 @@
         NSString* userId = [[UserManager defaultManager] userId];
         [_networkClient sendQuitGameRequest:userId sessionId:_session.sessionId];
     }
-    [self disconnectServer];    
+    [self disconnectServer];
 }
 
 #pragma mark - notification methods

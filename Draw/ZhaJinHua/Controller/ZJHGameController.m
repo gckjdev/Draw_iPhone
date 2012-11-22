@@ -242,6 +242,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [_gameService syncAccount:self];
     
     // Do any additional setup after loading the view from its nib.
     
@@ -488,35 +489,8 @@
 
 - (IBAction)clickQuitButton:(id)sender
 {
-    if (![_gameService canIQuitGame]) {
-        [self popupRunAwayAlertMessage];
-        return;
-    }
-    
     [_gameService quitGame];
     [self.navigationController popViewControllerAnimated:YES];
-}
-
-- (void)popupRunAwayAlertMessage
-{
-    NSString *message = [NSString stringWithFormat:NSLS(@"kDedutCoinQuitGameAlertMessage"), [ConfigManager getZJHFleeCoin]];
-    CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kQuitGameAlertTitle")
-                                                       message:message
-                                                         style:CommonDialogStyleDoubleButton
-                                                      delegate:self
-                                                         theme:CommonDialogThemeDice];
-    [dialog showInView:self.view];
- 
-}
-
-- (void)clickOk:(CommonDialog *)dialog
-{
-    [_gameService quitGame];
-    [self.navigationController popViewControllerAnimated:YES];
-}
-
-- (void)clickBack:(CommonDialog *)dialog
-{
 }
 
 - (IBAction)clickSettingButton:(id)sender
@@ -590,6 +564,7 @@
     for (NSString *userId in [_gameService.session.deletedUserList allKeys]) {
         [self hideTotalBetOfPosition:[self getPositionByUserId:userId]];
         [[self getPokersViewByUserId:userId] clear];
+        [_gameService.gameState.usersInfo removeObjectForKey:userId];
     }
 }
 
@@ -629,16 +604,21 @@
 
 - (void)showAllUserGameResult
 {
-    for (NSString* userId in [[[_gameService gameState] usersInfo] allKeys]) {
-        ZJHAvatarView* avatar = [self getAvatarViewByUserId:userId];
-        if ([[_gameService winner] isEqualToString:userId]) {
-            [avatar showWinCoins:_gameService.gameState.totalBet];
-        } else {
-            [avatar showLoseCoins:[_gameService totalBetOfUser:userId]];
+    for (NSString *userId in [_gameService.gameState.usersInfo allKeys]) {
+        ZJHAvatarView *avatar = [self getAvatarViewByUserId:userId];
+        if (avatar.userInfo == nil) {
+            continue;
+        }
+        
+        if ([userId isEqualToString:_gameService.winner]) {
+            [avatar showWinCoins:[[_gameService userPlayInfo:userId] resultAward]];
+        }else {
+            [avatar showLoseCoins:[[_gameService userPlayInfo:userId] totalBet]];
         }
     }
     
     [[self getMyAvatarView] update];
+    [_gameService syncAccount:nil];
 }
 
 - (void)gameOver
@@ -1404,6 +1384,11 @@
 - (void)didGainMoney:(int)money fromTree:(MoneyTreeView *)treeView
 {
     [_gameService chargeAccount:money source:MoneyTreeAward];
+    [[self getMyAvatarView] update];
+}
+
+- (void)didSyncFinish
+{
     [[self getMyAvatarView] update];
 }
 

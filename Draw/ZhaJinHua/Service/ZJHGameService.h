@@ -60,11 +60,8 @@
 
 - (NSString *)getRoomName;
 
-//- (int)compareCost;
-
 - (void)chargeAccount:(int)amount
                source:(BalanceSourceType)source;
-
-- (BOOL)canIQuitGame;
+- (void)syncAccount:(id<AccountServiceDelegate>)delegate;
 
 @end

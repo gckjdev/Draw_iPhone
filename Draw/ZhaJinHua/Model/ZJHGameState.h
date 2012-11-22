@@ -13,7 +13,7 @@
 @property (assign, nonatomic) int totalBet;
 @property (assign, nonatomic) int singleBet;
 @property (retain, nonatomic) NSString *winner;
-@property (readonly, retain, nonatomic) NSDictionary *usersInfo;
+@property (retain, nonatomic) NSMutableDictionary *usersInfo;
 
 + (ZJHGameState *)fromPBZJHGameState:(PBZJHGameState *)gameState;
 

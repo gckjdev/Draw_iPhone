@@ -20,7 +20,6 @@ static ZJHGameService *_defaultService;
 {
     UserManager *_userManager;
     AccountService *_accountService;
-    int _myBalance;
 }
 
 @property (readwrite, retain, nonatomic) ZJHGameState *gameState;
@@ -153,7 +152,7 @@ static ZJHGameService *_defaultService;
 
 - (BOOL)isMyBalanceEnough
 {
-    return _myBalance >= _gameState.singleBet * [self myBetCount];
+    return [self myBalance] >= _gameState.singleBet * [self myBetCount];
 }
 
 - (BOOL)canRaise
@@ -234,7 +233,6 @@ static ZJHGameService *_defaultService;
 
 - (void)handleMoreOnJoinGameResponse:(GameMessage*)message
 {
-    _myBalance = [_accountService getBalance];
     self.gameState = [ZJHGameState fromPBZJHGameState:message.joinGameResponse.zjhGameState];
 }
 
@@ -245,16 +243,13 @@ static ZJHGameService *_defaultService;
 
 - (void)handleMoreOnGameOverNotificationRequest:(GameMessage*)message
 {
-    [_accountService syncAccount:self forceServer:YES];
-    for (PBUserResult *userResult in message.gameOverNotificationRequest.zjhgameResult.userResultList) {
-        if (userResult.win) {
-            self.gameState.winner = userResult.userId;
-
+    for (PBUserResult *result in message.gameOverNotificationRequest.zjhgameResult.userResultList) {
+        
+        if (result.win) {
+            self.gameState.winner = result.userId;
         }
         
-        if ([_userManager isMe:userResult.userId]) {
-            _myBalance += userResult.gainCoins;
-        }
+        [self userPlayInfo:result.userId].resultAward = result.gainCoins;
     }
 }
 
@@ -265,10 +260,6 @@ static ZJHGameService *_defaultService;
     ZJHUserPlayInfo *userPlayInfo = [_gameState userPlayInfo:message.userId];
     if (userPlayInfo == nil) {
         return;
-    }
-    
-    if ([_userManager isMe:userPlayInfo.userId]) {
-        _myBalance -= message.betRequest.singleBet * message.betRequest.count;
     }
     
     PPDebug(@"################### User: %@, bet #####################", userPlayInfo.userId);
@@ -335,10 +326,7 @@ static ZJHGameService *_defaultService;
             userPlayInfo.isAutoBet = NO;
         }
         
-        // 如果我是发起者，并且我输了，扣钱
-        if ([_userManager isMe:message.userId] && !result.win) {
-            _myBalance += result.gainCoins;
-        }
+        userPlayInfo.compareAward += result.gainCoins;
     }
 }
 
@@ -473,14 +461,9 @@ static ZJHGameService *_defaultService;
     return [_gameState userPlayInfo:_userManager.userId];
 }
 
-- (void)didSyncFinish
-{
-    _myBalance = [_accountService getBalance];
-}
-
 - (int)myBalance
 {
-    return _myBalance;
+    return [_accountService getBalance] - [[self myPlayInfo] totalBet] + [[self myPlayInfo] compareAward] + [[self myPlayInfo] resultAward];
 }
 
 - (NSArray *)compareUserIdList
@@ -504,24 +487,15 @@ static ZJHGameService *_defaultService;
     return [NSString stringWithFormat:NSLS(@"kZJHRoomTitle"), self.session.sessionId];
 }
 
-//- (int)compareCost
-//{
-//    return [[[self chipValues] lastObject] intValue];
-//}
-
 - (void)chargeAccount:(int)amount
                source:(BalanceSourceType)source
 {
     [_accountService chargeAccount:amount source:source];
-    _myBalance = [_accountService getBalance];
 }
 
-- (BOOL)canIQuitGame
+- (void)syncAccount:(id<AccountServiceDelegate>)delegate
 {
-    if (!self.session.isMeStandBy && [self isGamePlaying] && ![[self myPlayInfo] alreadFoldCard] && ![[self myPlayInfo] alreadCompareLose])
-        return NO;
-    
-    return YES;
+    [_accountService syncAccount:delegate forceServer:YES];
 }
 
 @end
