@@ -12,7 +12,6 @@
 @implementation CommonTabController
 @synthesize titleLabel = _titleLabel;
 @synthesize noDataTipLabl = _noDataTipLabl;
-@synthesize supportPullRefresh = _supportPullRefresh;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -20,7 +19,7 @@
     if (self) {
         // Custom initialization
         PPDebug(@"initWithNibName = %@", nibNameOrNil);
-        self.supportPullRefresh = YES;
+        self.pullRefreshType = PullRefreshTypeBoth;
         _tabManager = [[TableTabManager alloc] init];
     }
     return self;
@@ -88,9 +87,11 @@
 
 - (void)viewDidLoad
 {
-    if (self.isSupportPullRefresh) {
+    if ((self.pullRefreshType & PullRefreshTypeFooter) != 0) {
+        [self setSupportRefreshFooter:YES];
+    }
+    if ((self.pullRefreshType & PullRefreshTypeHeader) != 0) {
         [self setSupportRefreshHeader:YES];
-        [self setSupportRefreshFooter:YES];        
     }
     [super viewDidLoad];
     [self initTabs];

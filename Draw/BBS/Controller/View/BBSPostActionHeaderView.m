@@ -10,23 +10,33 @@
 
 @implementation BBSPostActionHeaderView
 
-- (id)initWithFrame:(CGRect)frame
++ (BBSPostActionHeaderView *)createView:(id<BBSPostActionHeaderViewDelegate>)delegate
 {
-    self = [super initWithFrame:frame];
-    if (self) {
-        // Initialization code
+    NSString *identifier = [BBSPostActionHeaderView getViewIdentifier];
+    NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:identifier owner:self options:nil];
+    if (topLevelObjects == nil || [topLevelObjects count] <= 0){
+        return nil;
     }
-    return self;
+    BBSPostActionHeaderView *view = [topLevelObjects objectAtIndex:0];
+    view.delegate = delegate;
+    return  view;
 }
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect
++ (NSString *)getViewIdentifier
 {
-    // Drawing code
+    return @"BBSPostActionHeaderView";
 }
-*/
++ (CGFloat)getViewHeight
+{
+    return 40;
+}
+- (void)updateViewWithPost:(PBBBSPost *)post
+{
+    [self.support setTitle:[NSString stringWithFormat:@"SP(%d)",post.supportCount]
+                  forState:UIControlStateNormal];
+    [self.comment setTitle:[NSString stringWithFormat:@"CM(%d)",post.replyCount]
+                  forState:UIControlStateNormal];
+}
 
 - (void)dealloc {
     [_support release];
@@ -34,8 +44,14 @@
     [super dealloc];
 }
 - (IBAction)clickSupport:(id)sender {
+    if (self.delegate && [self.delegate respondsToSelector:@selector(didClickSupportTabButton)]) {
+        [self.delegate didClickSupportTabButton];
+    }
 }
 
 - (IBAction)clickComment:(id)sender {
+    if (self.delegate && [self.delegate respondsToSelector:@selector(didClickCommentTabButton)]) {
+        [self.delegate didClickCommentTabButton];
+    }
 }
 @end
