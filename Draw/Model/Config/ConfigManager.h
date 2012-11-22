@@ -92,6 +92,7 @@ typedef enum{
 + (int)getOffLineDrawExp;
 + (int)getOffLineGuessExp;
 + (int)getLiarDiceExp;
++ (int)getZhajinhuaExp;
 
 + (int)getDiceFleeCoin;
 + (int)getZJHFleeCoin;

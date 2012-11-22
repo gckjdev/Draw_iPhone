@@ -14,6 +14,18 @@
 @class PBBBSBoard;
 @class PBBBSAction;
 @class PBBBSPost;
+@class CreatePostController;
+
+@protocol CreatePostControllerDelegate <NSObject>
+
+@optional
+- (void)didController:(CreatePostController *)controller
+        CreateNewPost:(PBBBSPost *)post;
+
+- (void)didController:(CreatePostController *)controller
+      CreateNewAction:(PBBBSAction *)action;
+@end
+
 
 @interface CreatePostController : PPViewController<BBSServiceDelegate, ChangeAvatarDelegate, OfflineDrawDelegate, UIActionSheetDelegate>
 {
@@ -25,6 +37,9 @@
 @property (retain, nonatomic) IBOutlet UITextView *textView;
 
 @property (retain, nonatomic) IBOutlet UIButton *rewardButton;
+
+@property (assign, nonatomic) id<CreatePostControllerDelegate>delegate;
+
 //- (id)initWithBoard:(PBBBSBoard *)board;
 + (CreatePostController *)enterControllerWithBoard:(PBBBSBoard *)board
                                     fromController:(UIViewController *)fromController;

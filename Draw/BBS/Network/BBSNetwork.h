@@ -59,6 +59,7 @@
                        sourcePostUid:(NSString *)sourcePostUid
                        sourceAtionId:(NSString*)sourceAtionId
                      sourceActionUid:(NSString *)sourceActionUid
+                sourceActionNickName:(NSString *)sourceActionNickName
                     sourceActionType:(NSInteger)sourceActionType
                            briefText:(NSString *)briefText
 //data
@@ -69,5 +70,15 @@
                             drawData:(NSData *)drawData
                            drawImage:(NSData *)drawImage;
 
+
++ (CommonNetworkOutput*)getActionList:(NSString*)baseURL
+                                appId:(NSString *)appId
+                           deviceType:(NSInteger)deviceType
+                               userId:(NSString *)userId
+                            targetUid:(NSString *)targetUid
+                               postId:(NSString *)postId
+                           actionType:(NSInteger)actionType
+                               offset:(NSInteger)offset
+                                limit:(NSInteger)limit;
 
 @end

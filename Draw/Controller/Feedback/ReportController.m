@@ -7,7 +7,7 @@
 //
 
 #import "ReportController.h"
-#import "SNSServiceDelegate.h"
+#import "PPViewController.h"
 #import "ShareImageManager.h"
 #import "DeviceDetection.h"
 #import "StringUtil.h"

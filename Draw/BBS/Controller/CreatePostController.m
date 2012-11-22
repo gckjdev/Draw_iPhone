@@ -52,7 +52,7 @@
 @synthesize bonus = _bonus;
 @synthesize sourceAction = _sourceAction;
 @synthesize sourcePost = _sourcePost;
-
+@synthesize delegate = _delegate;
 
 - (void)dealloc
 {
@@ -196,14 +196,10 @@
     }
     //if has source post, then send an action, or create a new post
     if (self.sourcePost) {
-        BBSActionType actionType = ActionTypeComment;
-        if (self.sourceAction) {
-            actionType = ActionTypeReply;
-        }
         
         [[BBSService defaultService] createActionWithPost:self.sourcePost
                                              sourceAction:self.sourceAction
-                                               actionType:actionType
+                                               actionType:ActionTypeComment
                                                      text:self.text
                                                     image:self.image
                                            drawActionList:self.drawActionList
@@ -284,11 +280,35 @@
 {
     if (resultCode == 0) {
         PPDebug(@"<didCreatePost>create post successful!");
-        [BBSManager printBBSPost:post];
+        if (self.delegate && [self.delegate
+                              respondsToSelector:@selector(didController:CreateNewPost:)]) {
+            [self.delegate didController:self CreateNewPost:post];
+        }
         [self dismissModalViewControllerAnimated:YES];
     }else{
         PPDebug(@"<didCreatePost>create post fail.result code = %d",resultCode);
     }
+}
+
+- (void)didCreateAction:(PBBBSAction *)action
+                 atPost:(PBBBSPost *)post
+            replyAction:(PBBBSAction *)replyAction
+             resultCode:(NSInteger)resultCode
+{
+    if (resultCode == 0) {
+        PPDebug(@"<didCreateAction>create action successful!");
+        if (self.delegate && [self.delegate
+                              respondsToSelector:@selector(didController:CreateNewAction:)]) {
+            [self.delegate didController:self CreateNewAction:action];
+        }
+        [self dismissModalViewControllerAnimated:YES];
+    }else{
+        PPDebug(@"<didCreateAction>create action fail.result code = %d",resultCode);
+    }
+
+//    - (void)didController:(CreatePostController *)controller
+//CreateNewAction:(PBBBSAction *)action;
+
 }
 
 

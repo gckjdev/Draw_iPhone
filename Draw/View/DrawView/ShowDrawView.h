@@ -55,7 +55,7 @@ typedef enum{
 - (void)playFromDrawActionIndex:(NSInteger)index;
 - (void)addDrawAction:(DrawAction *)action play:(BOOL)play;
 - (void)setShowPenHidden:(BOOL)showPenHidden;
-- (void)showImage:(UIImage *)image;
+//- (void)showImage:(UIImage *)image;
 - (BOOL)isShowPenHidden;
 
 @end

@@ -10,6 +10,7 @@
 #import "Bbs.pb.h"
 #import "CreatePostController.h"
 #import "BBSPostCell.h"
+#import "BBSPostDetailController.h"
 
 @interface BBSPostListController ()
 {
@@ -91,7 +92,7 @@
 }
 - (IBAction)clickCreatePostButton:(id)sender {
     if (self.bbsBoard) {
-        [CreatePostController enterControllerWithBoard:self.bbsBoard fromController:self];
+        [CreatePostController enterControllerWithBoard:self.bbsBoard fromController:self].delegate = self;
     }else{
         PPDebug(@"<clickCreatePostButton>: board is nil");
     }
@@ -225,11 +226,23 @@
                                           fromController:self];
 }
 
+- (void)didController:(CreatePostController *)controller
+        CreateNewPost:(PBBBSPost *)post
+{
+    if (post) {
+        [self.tabDataList insertObject:post atIndex:0];
+        NSArray *paths = [NSArray arrayWithObject:[NSIndexPath indexPathForRow:0 inSection:0]];
+        [self.dataTableView reloadRowsAtIndexPaths:paths withRowAnimation:UITableViewRowAnimationFade];
+    }
+}
 
-//- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-//{
-//    PBBBSBoard *sBoard = [self boardForIndexPath:indexPath];
-//    [BBSPostListController enterPostListControllerWithBBSBoard:sBoard fromController:self];
-//}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    PBBBSPost *post = [self postForIndexPath:indexPath];
+    [BBSPostDetailController enterPostDetailControllerWithPost:post
+                                                fromController:self
+                                                      animated:YES];
+}
 
 @end

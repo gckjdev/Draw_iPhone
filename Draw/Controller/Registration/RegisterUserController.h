@@ -9,13 +9,11 @@
 #import <UIKit/UIKit.h>
 #import "UserService.h"
 #import "PPViewController.h"
-#import "SNSServiceDelegate.h"
-#import "SNSConstants.h"
 #import "PassWordDialog.h"
 #import "DrawDataService.h"
 #import "RemoteDrawView.h"
 
-@interface RegisterUserController : PPViewController<UserServiceDelegate, SNSServiceDelegate, UITextFieldDelegate, InputDialogDelegate, DrawDataServiceDelegate, RemoteDrawViewDelegate>
+@interface RegisterUserController : PPViewController<UserServiceDelegate, UITextFieldDelegate, InputDialogDelegate, DrawDataServiceDelegate, RemoteDrawViewDelegate>
 {
     int _currentLoginType;
 }

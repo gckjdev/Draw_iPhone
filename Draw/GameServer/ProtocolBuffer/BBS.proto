@@ -64,8 +64,9 @@ message PBBBSActionSource{
     //if is reply
     optional string actionId = 3;
     optional string actionUid = 4;
-    optional int32 actionType = 5;
-    optional string briefText = 6;
+    optional string actionNick = 5;
+    optional int32 actionType = 6;
+    optional string briefText = 7;
 }
 
 message PBBBSAction{

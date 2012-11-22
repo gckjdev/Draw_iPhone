@@ -474,6 +474,7 @@
 #pragma mark BBS Constant
 #define METHOD_GET_BBSBOARD_LIST @"gbbl"
 #define METHOD_GET_BBSPOST_LIST @"gbpl"
+#define METHOD_GET_BBSACTION_LIST @"gbal"
 #define METHOD_CREATE_POST @"cp"
 #define PARA_BOARDID @"bid"
 #define PARA_BONUS @"bn"
@@ -484,6 +485,7 @@
 #define PARA_THUMB_IMAGE @"timg"
 #define PARA_DRAW_THUMB @"dti"
 #define PARA_ACTION_UID @"auid"
+#define PARA_ACTION_NICKNAME @"ann"
 #define PARA_POST_UID @"puid"
 #define PARA_BRIEF_TEXT @"btxt"
 #define PARA_SOURCE_ACTION_TYPE @"sat"

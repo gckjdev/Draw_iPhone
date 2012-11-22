@@ -254,7 +254,7 @@
         return;
     }
     
-    float duration = 1;
+    float duration = 3;
     [self.coinImageView setImage:[ShareImageManager defaultManager].coinImage];
     [self bringSubviewToFront:_rewardCoinView];
     [_rewardCoinLabel setText:[NSString stringWithFormat:@"%+d",coinsCount]];

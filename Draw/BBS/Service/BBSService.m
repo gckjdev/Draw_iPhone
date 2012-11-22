@@ -136,6 +136,7 @@ BBSService *_staticBBSService;
                                            postUid:(NSString *)postUid
                                           actionId:(NSString *)actionId
                                          actionUid:(NSString *)actionUid
+                              sourceActionNickName:(NSString *)sourceActionNickName
                                         actionType:(BBSActionType)actionType
                                          briefText:(NSString *)briefText
 {
@@ -144,6 +145,7 @@ BBSService *_staticBBSService;
     [builder setPostUid:postUid];
     [builder setActionId:actionId];
     [builder setActionUid:actionUid];
+    [builder setActionNick:sourceActionNickName];
     [builder setActionType:actionType];
     [builder setBriefText:briefText];
     PBBBSActionSource *source = [builder build];
@@ -171,6 +173,7 @@ BBSService *_staticBBSService;
                            sourcePostUid:(NSString *)sourcePostUid
                           sourceActionId:(NSString *)sourceActionId
                          sourceActionUid:(NSString *)sourceActionUid
+                    sourceActionNickName:(NSString *)sourceActionNickName
                         sourceActionType:(BBSActionType)sourceActionType
                          sourceBriefText:(NSString *)sourceBriefText
 
@@ -196,7 +199,7 @@ BBSService *_staticBBSService;
     PBBBSActionSource *source = [self buildActionSourceWithPostId:sourcePostId
                                                           postUid:sourcePostUid
                                                          actionId:sourceActionId
-                                                        actionUid:sourceActionUid
+                                                        actionUid:sourceActionUid sourceActionNickName:sourceActionNickName
                                                        actionType:sourceActionType
                                                         briefText:sourceBriefText];
     [builder setSource:source];
@@ -299,7 +302,7 @@ BBSService *_staticBBSService;
             NSString *imageURL = [output.jsonDataDict objectForKey:PARA_IMAGE];
             NSString *thumbURL = [output.jsonDataDict objectForKey:PARA_THUMB_IMAGE];
             NSString *drawImageURL = [output.jsonDataDict objectForKey:PARA_DRAW_IMAGE];
-            NSString *drawThumbURL = [output.jsonDataDict objectForKey:PARA_THUMB_IMAGE];
+            NSString *drawThumbURL = [output.jsonDataDict objectForKey:PARA_DRAW_THUMB];
             post = [self buildPBBBSPostWithPostId:postId
                                                        appId:appId
                                                   deviceType:deviceType
@@ -420,7 +423,7 @@ BBSService *_staticBBSService;
         NSString *gender = [[UserManager defaultManager] gender];
         NSString *avatar = [[UserManager defaultManager] avatarURL];
         
-        BBSPostContentType contentType = ContentTypeText;
+        BBSPostContentType contentType = ContentTypeNo;
         
         NSData *drawData = nil;
         
@@ -430,6 +433,8 @@ BBSService *_staticBBSService;
             contentType = ContentTypeDraw;
             PBBBSDraw *bbsDraw = [self buildBBSDraw:drawActionList];
             drawData = [bbsDraw data];
+        }else if([text length] != 0){
+            contentType = ContentTypeText;
         }
         
         NSString *briefText = nil;
@@ -453,6 +458,7 @@ BBSService *_staticBBSService;
                                                  sourcePostUid:sourcePost.createUser.userId
                                                  sourceAtionId:sourceAction.actionId
                                                sourceActionUid:sourceAction.createUser.userId
+                                          sourceActionNickName:sourceAction.createUser.nickName
                                               sourceActionType:sourceAction.type
                                                      briefText:briefText
                                        //content
@@ -469,7 +475,7 @@ BBSService *_staticBBSService;
             NSString *imageURL = [output.jsonDataDict objectForKey:PARA_IMAGE];
             NSString *thumbURL = [output.jsonDataDict objectForKey:PARA_THUMB_IMAGE];
             NSString *drawImageURL = [output.jsonDataDict objectForKey:PARA_DRAW_IMAGE];
-            NSString *drawThumbURL = [output.jsonDataDict objectForKey:PARA_THUMB_IMAGE];
+            NSString *drawThumbURL = [output.jsonDataDict objectForKey:PARA_DRAW_THUMB];
             
             action = [self buildActionWithActionId:actionId
                                               type:actionType
@@ -491,6 +497,7 @@ BBSService *_staticBBSService;
                                      sourcePostUid:sourcePost.createUser.userId
                                     sourceActionId:sourceAction.actionId
                                    sourceActionUid:sourceAction.createUser.userId
+                              sourceActionNickName:sourceAction.createUser.nickName
                                   sourceActionType:sourceAction.type
                                    sourceBriefText:briefText];
         }
@@ -504,8 +511,93 @@ BBSService *_staticBBSService;
     });
 
 }
-
-
-
-
+- (void)getBBSActionListWithPostId:(NSString *)postId
+                        actionType:(BBSActionType)actionType
+                            offset:(NSInteger)offset
+                             limit:(NSInteger)limit
+                          delegate:(id<BBSServiceDelegate>)delegate;
+{
+    dispatch_async(workingQueue, ^{
+        NSInteger deviceType = [DeviceDetection deviceType];
+        NSString *appId = [ConfigManager appId];
+        NSString *userId = [[UserManager defaultManager] userId];
+        
+        CommonNetworkOutput *output = [BBSNetwork getActionList:TRAFFIC_SERVER_URL
+                                                          appId:appId
+                                                     deviceType:deviceType
+                                                         userId:userId
+                                                      targetUid:nil
+                                                         postId:postId
+                                                     actionType:actionType
+                                                         offset:offset
+                                                          limit:limit];
+        
+        NSInteger resultCode = [output resultCode];
+        NSArray *list = nil;
+        @try {
+            if (output.resultCode == ERROR_SUCCESS && [output.responseData length] > 0) {
+                DataQueryResponse *response = [DataQueryResponse parseFromData:output.responseData];
+                resultCode = [response resultCode];
+                list = [response bbsActionList];
+            }
+        }
+        @catch (NSException *exception) {
+            PPDebug(@"<getBBSBoardList>exception = %@",[exception debugDescription]);
+            list = nil;
+        }
+        @finally {
+            
+        }
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (delegate && [delegate respondsToSelector:@selector(didGetActionList:belowPost:actionType:resultCode:)]) {
+                [delegate didGetActionList:list belowPost:postId actionType:actionType resultCode:resultCode];
+            };
+        });
+    });
+}
+- (void)getBBSActionListWithTargetUid:(NSString *)targetUid
+                               offset:(NSInteger)offset
+                                limit:(NSInteger)limit
+                             delegate:(id<BBSServiceDelegate>)delegate
+{
+    dispatch_async(workingQueue, ^{
+        NSInteger deviceType = [DeviceDetection deviceType];
+        NSString *appId = [ConfigManager appId];
+        NSString *userId = [[UserManager defaultManager] userId];
+        
+        CommonNetworkOutput *output = [BBSNetwork getActionList:TRAFFIC_SERVER_URL
+                                                          appId:appId
+                                                     deviceType:deviceType
+                                                         userId:userId
+                                                      targetUid:targetUid
+                                                         postId:nil
+                                                     actionType:ActionTypeNO
+                                                         offset:offset
+                                                          limit:limit];
+        
+        NSInteger resultCode = [output resultCode];
+        NSArray *list = nil;
+        @try {
+            if (output.resultCode == ERROR_SUCCESS && [output.responseData length] > 0) {
+                DataQueryResponse *response = [DataQueryResponse parseFromData:output.responseData];
+                resultCode = [response resultCode];
+                list = [response bbsActionList];
+            }
+        }
+        @catch (NSException *exception) {
+            PPDebug(@"<getBBSBoardList>exception = %@",[exception debugDescription]);
+            list = nil;
+        }
+        @finally {
+            
+        }
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (delegate && [delegate respondsToSelector:@selector(didGetActionList:targetUid:resultCode:)]) {
+                [delegate didGetActionList:list targetUid:targetUid resultCode:resultCode];
+            };
+        });
+    });
+}
 @end

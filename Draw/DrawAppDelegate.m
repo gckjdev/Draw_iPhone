@@ -16,12 +16,9 @@
 #import "HomeController.h"
 #import "RegisterUserController.h"
 #import "OnlineGuessDrawController.h"
-#import "SinaSNSService.h"
-#import "QQWeiboService.h"
 #import "RouterService.h"
 #import "AccountManager.h"
 #import "AccountService.h"
-#import "FacebookSNSService.h"
 #import "PriceService.h"
 #import "DeviceDetection.h"
 #import "NetworkDetector.h"
@@ -60,6 +57,8 @@
 
 #import "PPSNSIntegerationService.h"
 #import "PPSinaWeiboService.h"
+#import "PPTecentWeiboService.h"
+#import "PPFacebookService.h"
 
 NSString* GlobalGetServerURL()
 {    
@@ -106,7 +105,51 @@ NSString* GlobalGetBoardServerURL()
 
 
 
+- (void)weiboTest
+{
+    // test image
+    NSString* imagePath = @"/Users/qqn_pipi/Library/Application Support/iPhone Simulator/6.0/Applications/C9E97DA6-3CAB-4075-9903-B2584730D7E7/Library/Caches/ImageCache/7bfbb47435afe434611f332d56cce462";
+    
+    [[PPSNSIntegerationService defaultService] publishWeiboToAll:[NSString stringWithFormat:@"人生 %d", rand() % 10]
+                                                   imageFilePath:imagePath
+                                                    successBlock:^(int snsType, PPSNSCommonService *snsService, NSDictionary *userInfo) {
+                                                        PPDebug(@"%@ publish weibo succ", [snsService snsName]);
+                                                    }
+                                                    failureBlock:^(int snsType, PPSNSCommonService *snsService, NSError *error) {
+                                                        PPDebug(@"%@ publish weibo failure", [snsService snsName]);
+                                                    }];
+    
+    
+//    [[[PPSNSIntegerationService defaultService] snsServiceByType:TYPE_SINA] publishWeibo:@"人生" imageFilePath:imagePath successBlock:^(NSDictionary *userInfo) {
+////     [sinaWeiboService publishWeibo:@"人生就是这样子" imageFilePath:nil successBlock:^(NSDictionary *userInfo) {
+//        PPDebug(@"sina weibo publish ok");
+//     } failureBlock:^(NSError *error) {
+//         PPDebug(@"sina weibo publish failure");
+//     }];
 
+    
+    /*
+    [sinaWeiboService followUser:@"欢乐大话骰" successBlock:^(NSDictionary *userInfo) {
+        PPDebug(@"sina follow user ok");
+    } failureBlock:^(NSError *error) {
+        PPDebug(@"sina follow user failure");
+    }];
+    
+    [qqWeiboService followUser:@"liardice" successBlock:^(NSDictionary *userInfo) {
+        PPDebug(@"qq follow user ok");
+    } failureBlock:^(NSError *error) {
+        PPDebug(@"qq follow user failure");
+    }];
+    */
+    
+    
+    //    [qqWeiboService publishWeibo:@"人生" imageFilePath:imagePath successBlock:^(NSDictionary *userInfo) {
+    //    [qqWeiboService publishWeibo:@"人生就是这样子" imageFilePath:nil successBlock:^(NSDictionary *userInfo) {
+    //        PPDebug(@"qq weibo publish ok");
+    //    } failureBlock:^(NSError *error) {
+    //        PPDebug(@"qq weibo publish failure");
+    //    }];
+}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -152,13 +195,13 @@ NSString* GlobalGetBoardServerURL()
     [MobClick updateOnlineConfig];
     
     // Init SNS Service
-    [[SinaSNSService defaultService] setAppKey:[GameApp sinaAppKey]         // @"2831348933" 
-                                        Secret:[GameApp sinaAppSecret]];    // @"ff89c2f5667b0199ee7a8bad6c44b265"];
-    [[QQWeiboService defaultService] setAppKey:[GameApp qqAppKey]           // @"801123669" 
-                                        Secret:[GameApp qqAppSecret]];      // @"30169d80923b984109ee24ade9914a5c"];        
-    [[FacebookSNSService defaultService] setAppId:[GameApp facebookAppKey]  //@"352182988165711" 
-                                           appKey:[GameApp facebookAppKey]  //@"352182988165711" 
-                                        Secret:[GameApp facebookAppSecret]]; //@"51c65d7fbef9858a5d8bc60014d33ce2"];
+//    [[SinaSNSService defaultService] setAppKey:[GameApp sinaAppKey]         // @"2831348933" 
+//                                        Secret:[GameApp sinaAppSecret]];    // @"ff89c2f5667b0199ee7a8bad6c44b265"];
+//    [[QQWeiboService defaultService] setAppKey:[GameApp qqAppKey]           // @"801123669" 
+//                                        Secret:[GameApp qqAppSecret]];      // @"30169d80923b984109ee24ade9914a5c"];        
+//    [[FacebookSNSService defaultService] setAppId:[GameApp facebookAppKey]  //@"352182988165711" 
+//                                           appKey:[GameApp facebookAppKey]  //@"352182988165711" 
+//                                        Secret:[GameApp facebookAppSecret]]; //@"51c65d7fbef9858a5d8bc60014d33ce2"];
     
     
     // Init Account Service and Sync Balance and Item
@@ -226,6 +269,7 @@ NSString* GlobalGetBoardServerURL()
         [self checkAppVersion:[ConfigManager appId]];
     }
 
+//    QDebug(@"test Quick debug %@", @"Hello");
     
     // Show Root View
     self.window.rootViewController = navigationController;
@@ -271,7 +315,20 @@ NSString* GlobalGetBoardServerURL()
     PPSinaWeiboService* sinaWeiboService = [[PPSinaWeiboService alloc] initWithAppKey:[GameApp sinaAppKey]
                                                                             appSecret:[GameApp sinaAppSecret]
                                                                        appRedirectURI:[GameApp sinaAppRedirectURI]];
+    PPTecentWeiboService* qqWeiboService = [[PPTecentWeiboService alloc] initWithAppKey:[GameApp qqAppKey]
+                                                                            appSecret:[GameApp qqAppSecret]
+                                                                       appRedirectURI:[GameApp qqAppRedirectURI]];
+    PPFacebookService* facebookService = [[PPFacebookService alloc] initWithAppKey:[GameApp facebookAppKey]
+                                                                           appSecret:[GameApp facebookAppSecret]
+                                                                      appRedirectURI:nil];
+
+    
     [[PPSNSIntegerationService defaultService] addSNS:sinaWeiboService];
+    [[PPSNSIntegerationService defaultService] addSNS:qqWeiboService];
+    [[PPSNSIntegerationService defaultService] addSNS:facebookService];
+    
+//    [self weiboTest];
+    
     
     [self.window makeKeyAndVisible];
     
@@ -418,7 +475,7 @@ NSString* GlobalGetBoardServerURL()
     else if ([[url absoluteString] hasPrefix:@"wx"]){
         return [WXApi handleOpenURL:url delegate:self];;
     }
-    return [[[FacebookSNSService defaultService] facebook] handleOpenURL:url];
+//    return [[[FacebookSNSService defaultService] facebook] handleOpenURL:url];
 }
 
 
