@@ -8,7 +8,7 @@
 
 #import "BBSBoardCell.h"
 #import "UIImageView+WebCache.h"
-#import "Bbs.pb.h"
+#import "BBSModelExt.h"
 #import "TimeUtils.h"
 #import "BBSManager.h"
 

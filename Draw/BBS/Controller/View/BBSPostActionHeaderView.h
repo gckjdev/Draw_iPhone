@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "Bbs.pb.h"
+#import "BBSModelExt.h"
 
 @protocol BBSPostActionHeaderViewDelegate <NSObject>
 

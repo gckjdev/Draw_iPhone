@@ -7,7 +7,7 @@
 //
 
 #import "PPTableViewCell.h"
-#import "Bbs.pb.h"
+#import "BBSModelExt.h"
 
 @interface BBSPostDetailCell : PPTableViewCell
 

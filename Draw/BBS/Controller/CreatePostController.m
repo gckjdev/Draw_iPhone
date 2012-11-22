@@ -8,7 +8,7 @@
 
 #import "CreatePostController.h"
 #import "BBSService.h"
-#import "Bbs.pb.h"
+#import "BBSModelExt.h"
 #import "UIImageExt.h"
 #import "OfflineDrawViewController.h"
 #import "ShareImageManager.h"

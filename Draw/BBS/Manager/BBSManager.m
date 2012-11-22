@@ -7,7 +7,6 @@
 //
 
 #import "BBSManager.h"
-#import "Bbs.pb.h"
 #import "GameMessage.pb.h"
 
 @implementation BBSManager

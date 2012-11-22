@@ -76,16 +76,6 @@
     return @"BBSPostActionCell";
 }
 
-+ (NSString *)thumImageUrlForContent:(PBBBSContent *)content
-{
-    if (content.type == ContentTypeImage) {
-        return content.thumbImageUrl;
-    }else if(content.type == ContentTypeDraw){
-        return content.drawThumbUrl;
-    }
-    return nil;
-}
-
 
 + (CGFloat)heightForContentText:(NSString *)text
 {
@@ -110,11 +100,9 @@
 + (CGFloat)getCellHeightWithBBSAction:(PBBBSAction *)action
 {
     NSString *text = [BBSPostActionCell contentTextForAction:action];
-    PBBBSContent * content = action.content;
-    
     CGFloat height = [BBSPostActionCell heightForContentText:text];
-    CGFloat hasImage = ([[BBSPostActionCell thumImageUrlForContent:content] length] != 0);
-    if (hasImage) {
+
+    if (action.content.hasThumbImage) {
         height += (SPACE_CONTENT_TOP + SPACE_CONTENT_BOTTOM_IMAGE);
     }else{
         height += (SPACE_CONTENT_TOP + SPACE_CONTENT_BOTTOM_TEXT);
@@ -124,12 +112,8 @@
 
 - (void)updateUserInfo:(PBBBSUser *)user
 {
-    [self.avatar setImageWithURL:[NSURL URLWithString:user.avatar]];
-    if ([[UserManager defaultManager] isMe:user.userId]) {
-        [self.nickName setText:NSLS(@"kMe")];
-    }else{
-        [self.nickName setText:user.nickName];
-    }
+    [self.nickName setText:user.showNick];
+    [self.avatar setImageWithURL:user.avatarURL placeholderImage:user.defaultAvatar];
 }
 
 - (void)updateContentWithAction:(PBBBSAction *)action
@@ -143,15 +127,9 @@
     frame.size.height = [BBSPostActionCell heightForContentText:text];
     self.content.frame = frame;
         
-    NSString *url = [BBSPostActionCell thumImageUrlForContent:action.content];
-    if ([url length] != 0) {
-        self.image.hidden = NO;
-        [self.image setImageWithURL:[NSURL URLWithString:url]
-                            success:^(UIImage *image, BOOL cached) {
-                                //TODO scale the imageView
-                            } failure:^(NSError *error) {
-                                //TODO set defalt image.
-                            }];
+    if (action.content.hasThumbImage) {
+        [self.image setImageWithURL:action.content.thumbImageURL placeholderImage:nil];
+        self.image.hidden = YES;
     }else{
         self.image.hidden = YES;
     }

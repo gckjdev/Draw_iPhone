@@ -7,7 +7,7 @@
 //
 
 #import "PPTableViewCell.h"
-#import "Bbs.pb.h"
+#import "BBSModelExt.h"
 
 @protocol BBSPostCellDelegate <NSObject>
 

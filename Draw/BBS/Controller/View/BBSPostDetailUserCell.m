@@ -7,7 +7,7 @@
 //
 
 #import "BBSPostDetailUserCell.h"
-#import "Bbs.pb.h"
+#import "BBSModelExt.h"
 #import "UIImageView+WebCache.h"
 #import "UserManager.h"
 #import "ShareImageManager.h"
