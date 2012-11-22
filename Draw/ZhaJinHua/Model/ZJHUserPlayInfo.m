@@ -51,6 +51,8 @@
         self.alreadFoldCard = pbZJHUserPlayInfo.alreadFoldCard;
         self.alreadShowCard = pbZJHUserPlayInfo.alreadShowCard;
         self.alreadCompareLose = pbZJHUserPlayInfo.alreadCompareLose;
+        self.compareAward = 0;
+        self.resultAward = 0;
     }
     
     return self;

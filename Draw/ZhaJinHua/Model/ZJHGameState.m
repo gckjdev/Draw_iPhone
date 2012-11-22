@@ -10,7 +10,6 @@
 
 @interface ZJHGameState ()
 
-@property (readwrite, retain, nonatomic) NSDictionary *usersInfo;
 
 @end
 
@@ -56,7 +55,7 @@
 
 #pragma mark -  pravite methods
 
-- (NSDictionary *)usersPlayInfoFromPBZJHUserPlayInfoList:(NSArray *)pbUserPlayInfoList
+- (NSMutableDictionary *)usersPlayInfoFromPBZJHUserPlayInfoList:(NSArray *)pbUserPlayInfoList
 {
     NSMutableDictionary *usersInfo = [NSMutableDictionary dictionary];
     

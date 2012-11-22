@@ -325,6 +325,11 @@
     return [MobClickUtils getIntValueByKey:@"DICE_FLEE_COIN_COIN" defaultValue:200];
 }
 
++ (int)getZJHFleeCoin
+{
+    return [MobClickUtils getIntValueByKey:@"ZJH_FLEE_COIN_COIN" defaultValue:200];
+}
+
 + (int)getDiceThresholdCoinWithNormalRule
 {
     return [MobClickUtils getIntValueByKey:@"DICE_THRESHOLD_COIN" defaultValue:200];

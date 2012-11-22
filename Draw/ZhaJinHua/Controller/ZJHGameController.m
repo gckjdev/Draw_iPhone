@@ -242,6 +242,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [_gameService syncAccount:self];
     
     // Do any additional setup after loading the view from its nib.
     
@@ -422,7 +423,8 @@
                                    usingBlock:^(NSNotification *notification) {
                                        NSArray* userResultList = [[[CommonGameNetworkService userInfoToMessage:notification.userInfo] compareCardResponse] userResultList];
                                        NSString *userId = [[CommonGameNetworkService userInfoToMessage:notification.userInfo] userId];
-                                       [self showCompareCardResult:userResultList initiator:userId];
+                                       
+                                       [self someoneCompareCard:userId resultList:userResultList];
                                    }];
     
     [self registerNotificationWithName:NOTIFICATION_GAME_OVER_NOTIFICATION_REQUEST
@@ -518,7 +520,7 @@
     
     [self updateTotalBetAndSingleBet];
     [self updateUserTotalBet:_userManager.userId];
-    [self updateMyAvatar];
+    [[self getMyAvatarView] update];
 }
 
 - (void)checkCardSuccess
@@ -562,6 +564,7 @@
     for (NSString *userId in [_gameService.session.deletedUserList allKeys]) {
         [self hideTotalBetOfPosition:[self getPositionByUserId:userId]];
         [[self getPokersViewByUserId:userId] clear];
+        [_gameService.gameState.usersInfo removeObjectForKey:userId];
     }
 }
 
@@ -595,25 +598,31 @@
     [self updateTotalBetAndSingleBet];
     [self updateAllUserTotalBet];
 //    [self updateAllUsersAvatar]; //some times all room notification post before registered, and update all user avatar method will no longer called, here fix it  --kira
-    [self updateMyAvatar];
+    [[self getMyAvatarView] update];
     [self allBet];
 }
 
 - (void)showAllUserGameResult
 {
-    for (NSString* userId in [[[_gameService gameState] usersInfo] allKeys]) {
-        ZJHAvatarView* avatar = [self getAvatarViewByUserId:userId];
-        if ([[_gameService winner] isEqualToString:userId]) {
-            [avatar showWinCoins:_gameService.gameState.totalBet];
-        } else {
-            [avatar showLoseCoins:[_gameService totalBetOfUser:userId]];
+    for (NSString *userId in [_gameService.gameState.usersInfo allKeys]) {
+        ZJHAvatarView *avatar = [self getAvatarViewByUserId:userId];
+        if (avatar.userInfo == nil) {
+            continue;
+        }
+        
+        if ([userId isEqualToString:_gameService.winner]) {
+            [avatar showWinCoins:[[_gameService userPlayInfo:userId] resultAward]];
+        }else {
+            [avatar showLoseCoins:[[_gameService userPlayInfo:userId] totalBet]];
         }
     }
+    
+    [[self getMyAvatarView] update];
+    [_gameService syncAccount:nil];
 }
 
 - (void)gameOver
 {
-
     [self updateZJHButtons];
     [self clearAllAvatarReciprocals];
 
@@ -697,11 +706,15 @@
 
 #define COMPARE_CARD_OFFSET  ([DeviceDetection isIPAD]?60:30)
 
-- (void)someone:(NSString*)userId
-compareCardWith:(NSString*)targetUserId
-         didWin:(BOOL)didWin
-      initiator:(NSString*)initiatorId
+- (void)showCompareCardResult:(NSArray*)resultList
+                  initiatorId:(NSString*)initiatorId
 {
+    PBUserResult* result1 = [resultList objectAtIndex:0];
+    PBUserResult* result2 = [resultList objectAtIndex:1];
+    NSString *userId = initiatorId;
+    NSString *targetUserId = [result1.userId isEqualToString:userId] ?result2.userId : result1.userId;
+    BOOL didWin = [result1.userId isEqualToString:initiatorId] ? result1.win :result2.win;
+    
     BOOL gender = [_gameService.session getUserByUserId:initiatorId].gender;
     [_audioManager playSoundByURL:[_soundManager compareCardHumanSound:gender]];
     [_audioManager playSoundByURL:[_soundManager compareCardSoundEffect]];
@@ -751,31 +764,37 @@ compareCardWith:(NSString*)targetUserId
                 self.vsImageView.hidden = YES;
             } completion:^(BOOL finished) {
                 _isShowingComparing = NO;
+                
+                for (PBUserResult *result in resultList) {
+                    [[self getAvatarViewByUserId:result.userId] showWinCoins:result.gainCoins];
+                }
+                
+                if ([_userManager isMe:userId]) {
+                    [[self getMyAvatarView] update];
+                }
             }];
         }];
     }];
 }
 
-- (void)showCompareCardResult:(NSArray*)userResultList initiator:(NSString*)initiatorId
+- (void)someoneCompareCard:(NSString*)initiatorId resultList:(NSArray *)resultList
 {
     [self clearAllAvatarReciprocals];
-    if (userResultList.count == 2 && !_isShowingComparing) {
+    
+    if (![_userManager isMe:initiatorId]) {
+        [self popupCompareCardMessageAtUser:initiatorId];
+    }
+    
+    if (resultList.count == 2 && !_isShowingComparing) {
         _isShowingComparing = YES;
-        PBUserResult* result1 = [userResultList objectAtIndex:0];
-        PBUserResult* result2 = [userResultList objectAtIndex:1];
+        PBUserResult* result1 = [resultList objectAtIndex:0];
+        PBUserResult* result2 = [resultList objectAtIndex:1];
         
         if ([result1.userId isEqualToString:_userManager.userId] || [result2.userId isEqualToString:_userManager.userId]) {
             [self disableCheckCardButtonAndFoldCardButton];
         }
         
-        [self someone:initiatorId
-      compareCardWith:[result2.userId isEqualToString:initiatorId]?result1.userId:result2.userId
-               didWin:[result1.userId isEqualToString:initiatorId]?result1.win:result2.win
-            initiator:initiatorId];
-    }
-    
-    if (![_userManager isMe:initiatorId]) {
-        [self popupCompareCardMessageAtUser:initiatorId];
+        [self showCompareCardResult:resultList initiatorId:initiatorId];
     }
 }
 
@@ -1295,13 +1314,6 @@ compareCardWith:(NSString*)targetUserId
     }
 }
 
-
-
-- (void)updateMyAvatar
-{
-    [(ZJHMyAvatarView*)[self getAvatarViewByPosition:UserPositionCenter] update];
-}
-
 - (void)popupView:(UIView *)view
        atPosition:(UserPosition)position
 {
@@ -1372,8 +1384,13 @@ compareCardWith:(NSString*)targetUserId
 #pragma mark - money tree view delegate
 - (void)didGainMoney:(int)money fromTree:(MoneyTreeView *)treeView
 {
-    [[AccountService defaultService] chargeAccount:money source:MoneyTreeAward];
-    [self updateMyAvatar];
+    [_gameService chargeAccount:money source:MoneyTreeAward];
+    [[self getMyAvatarView] update];
+}
+
+- (void)didSyncFinish
+{
+    [[self getMyAvatarView] update];
 }
 
 @end

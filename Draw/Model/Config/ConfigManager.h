@@ -95,6 +95,7 @@ typedef enum{
 + (int)getZhajinhuaExp;
 
 + (int)getDiceFleeCoin;
++ (int)getZJHFleeCoin;
 
 + (int)getDiceThresholdCoinWithNormalRule;
 + (int)getDiceThresholdCoinWithHightRule;

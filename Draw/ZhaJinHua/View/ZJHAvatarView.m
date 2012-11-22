@@ -11,6 +11,7 @@
 #import "HKGirlFontLabel.h"
 #import "ZJHImageManager.h"
 #import "ShareImageManager.h"
+#import <QuartzCore/QuartzCore.h>
 
 @interface ZJHAvatarView ()
 
@@ -252,6 +253,7 @@
     if (coinsCount == 0) {
         return;
     }
+    
     float duration = 3;
     [self.coinImageView setImage:[ShareImageManager defaultManager].coinImage];
     [self bringSubviewToFront:_rewardCoinView];
@@ -260,6 +262,7 @@
     _rewardCoinView.center = self.nickNameLabel.center;
     _rewardCoinView.alpha = 1;
     _rewardCoinView.hidden = NO;
+    [_rewardCoinView.layer removeAllAnimations];
     [UIView animateWithDuration: duration
                           delay: 0
                         options: UIViewAnimationOptionCurveLinear
