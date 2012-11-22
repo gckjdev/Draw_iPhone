@@ -259,7 +259,7 @@
     [self bringSubviewToFront:_rewardCoinView];
     [_rewardCoinLabel setText:[NSString stringWithFormat:@"%+d",coinsCount]];
     _rewardCoinLabel.textColor = (coinsCount >= 0) ? [UIColor redColor] : [UIColor greenColor];
-    _rewardCoinView.center = self.nickNameLabel.center;
+    _rewardCoinView.center = CGPointMake(_rewardCoinView.center.x, self.nickNameLabel.center.y);
     _rewardCoinView.alpha = 1;
     _rewardCoinView.hidden = NO;
     [_rewardCoinView.layer removeAllAnimations];
