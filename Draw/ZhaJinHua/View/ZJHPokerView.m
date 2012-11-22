@@ -17,6 +17,7 @@
 
 #define BOMB_BUTTON_WIDTH [DeviceDetection isIPAD] ? 54 : 27
 #define BOMB_BUTTON_HEIGHT [DeviceDetection isIPAD] ? 64 : 32
+#define CARD_TYPE_LABEL_TAG 200
 
 #define CARD_TYPE_STRING_FONT [UIFont boldSystemFontOfSize:([DeviceDetection isIPAD] ? 21 :12)]
 
@@ -99,6 +100,7 @@
 - (void)clear
 {
     for (UIView *view in [self subviews]) {
+        [view.layer removeAllAnimations];
         [view removeFromSuperview];
     }
 }
@@ -197,6 +199,7 @@
     label.shadowBlur = 5.0f;
 
     label.text = cardType;
+    label.tag = CARD_TYPE_LABEL_TAG;
     
     [label.layer addAnimation:[AnimationManager appearAnimationFrom:0 to:1 duration:0.5] forKey:nil];
     
