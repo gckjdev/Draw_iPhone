@@ -60,7 +60,7 @@
 
 
 - (void)update{
-    [self.levelLabel setText:[NSString stringWithFormat:@"LV.%d",[LevelService defaultService].level]];
+    [self.levelLabel setText:[NSString stringWithFormat:@"LV.%d",[[LevelService defaultService] levelForSource:LevelSourceZhajinhua]]];
     [self.coinsLabel setText:[NSString stringWithFormat:@"x%d",[ZJHGameService defaultService].myBalance]];
 }
 

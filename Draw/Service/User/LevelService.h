@@ -28,6 +28,7 @@ typedef enum {
 #define NORMAL_EXP          ([ConfigManager getOnLineGuessExp])
 #define DRAWER_EXP          ([ConfigManager getOnLineDrawExp])
 #define LIAR_DICE_EXP       ([ConfigManager getLiarDiceExp])
+#define ZHAJINHUA_EXP       ([ConfigManager getZhajinhuaExp])
 
 //#define REWARD_EXP  5
 
@@ -84,10 +85,6 @@ typedef enum {
         delegate:(id<LevelServiceDelegate>)delegate
        forSource:(LevelSource)source;
 
-
-- (void)syncExpAndLevel:(PPViewController*)viewController
-                   type:(int)type
-              forSource:(LevelSource)source;
 - (void)syncExpAndLevel:(int)type
               forSource:(LevelSource)source;
 - (void)syncExpAndLevel:(int)type awardExp:(long)awardExp

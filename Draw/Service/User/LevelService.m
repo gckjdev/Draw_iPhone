@@ -336,18 +336,18 @@ static LevelService* _defaultLevelService;
 - (int)levelForSource:(LevelSource)source
 {
     NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
-    NSDictionary* levelDic = [userDefaults objectForKey:KEY_LEVEL_DIC];
+    NSMutableDictionary* levelDic = [userDefaults objectForKey:KEY_LEVEL_DIC];
     if (levelDic) {
-        return ((NSNumber*)[levelDic objectForKey:[NSString stringWithFormat:@"%d",source]]).intValue;
+        return ((NSNumber*)[levelDic objectForKey:[self getGameIdBySource:source]]).intValue;
     }
     return 1;
 }
 - (long)experienceForSource:(LevelSource)source
 {
     NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
-    NSDictionary* levelDic = [userDefaults objectForKey:KEY_EXP_DIC];
+    NSMutableDictionary* levelDic = [userDefaults objectForKey:KEY_EXP_DIC];
     if (levelDic) {
-        return ((NSNumber*)[levelDic objectForKey:[NSString stringWithFormat:@"%d",source]]).longValue;
+        return ((NSNumber*)[levelDic objectForKey:[self getGameIdBySource:source]]).longValue;
     }
     return 0;
 }
@@ -360,11 +360,11 @@ static LevelService* _defaultLevelService;
     
     PPDebug(@"<setLevel> level=%d", level);
     NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
-    NSMutableDictionary* levelDic = (NSMutableDictionary*)[userDefaults objectForKey:KEY_LEVEL_DIC];
+    NSMutableDictionary* levelDic = (NSMutableDictionary*)[[userDefaults objectForKey:KEY_LEVEL_DIC] mutableCopy];
     if (!levelDic) {
         levelDic = [[[NSMutableDictionary alloc] initWithCapacity:LevelSourceCount] autorelease];
     }
-    [levelDic setObject:[NSNumber numberWithInt:level] forKey:[self stringByInteger:source]];
+    [levelDic setObject:[NSNumber numberWithInt:level] forKey:[self getGameIdBySource:source]];
     [userDefaults setObject:levelDic forKey:KEY_LEVEL_DIC];
     [userDefaults synchronize];
 }
@@ -376,11 +376,11 @@ static LevelService* _defaultLevelService;
     
     PPDebug(@"<setExperience> experience=%ld", experience);
     NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
-    NSMutableDictionary* expDic = (NSMutableDictionary*)[userDefaults objectForKey:KEY_EXP_DIC];
+    NSMutableDictionary* expDic = (NSMutableDictionary*)[[userDefaults objectForKey:KEY_EXP_DIC] mutableCopy];
     if (!expDic) {
         expDic = [[[NSMutableDictionary alloc] initWithCapacity:LevelSourceCount] autorelease];
     }
-    [expDic setObject:[NSNumber numberWithLong:experience] forKey:[self stringByInteger:source]];
+    [expDic setObject:[NSNumber numberWithLong:experience] forKey:[self getGameIdBySource:source]];
     [userDefaults setObject:expDic forKey:KEY_EXP_DIC];
     [userDefaults synchronize];
 }
@@ -428,57 +428,6 @@ static LevelService* _defaultLevelService;
     
 }
 
-- (void)syncExpAndLevel:(PPViewController*)viewController
-                   type:(int)type
-              forSource:(LevelSource)source
-{
-    if ([[UserManager defaultManager] hasUser] == NO){
-        PPDebug(@"<syncExpAndLevel> but user not found yet.");
-        return;
-    }
-    
-    //[viewController showActivityWithText:NSLS(@"kRegisteringUser")];
-    dispatch_async(workingQueue, ^{
-        
-        CommonNetworkOutput* output = nil;
-        output = [GameNetworkRequest syncExpAndLevel:SERVER_URL
-                                               appId:[ConfigManager appId]
-                                              gameId:[self getGameIdBySource:source]
-                                              userId:[UserManager defaultManager].userId
-                                               level:[self level]
-                                                 exp:[self experience]
-                                                type:type
-                                            awardExp:0];
-        
-        dispatch_async(dispatch_get_main_queue(), ^{
-            //[viewController hideActivity];
-            if (output.resultCode == ERROR_SUCCESS) {
-                if (type == SYNC) {
-                    NSString* level = [output.jsonDataDict objectForKey:PARA_LEVEL];
-                    NSString* exp = [output.jsonDataDict objectForKey:PARA_EXP];
-                    if (level) {
-                        [self setLevel:level.intValue];
-                    }
-                    if (exp) {
-                        [self setExperience:exp.intValue];
-                    }
-                    
-                }
-            }
-            else if (output.resultCode == ERROR_NETWORK) {
-                // TODO, add log here
-                //                [viewController popupUnhappyMessage:NSLS(@"kSystemFailure") title:nil];
-            }
-            else if (output.resultCode == ERROR_USERID_NOT_FOUND) {
-                // TODO, add log here
-            }
-            else {
-                // TODO, add log here
-            }
-        });
-        
-    });
-}
 - (void)syncExpAndLevel:(int)type
               forSource:(LevelSource)source
 {
@@ -511,8 +460,8 @@ static LevelService* _defaultLevelService;
                 if (type == SYNC) {
                     NSString* level = [output.jsonDataDict objectForKey:PARA_LEVEL];
                     NSString* exp = [output.jsonDataDict objectForKey:PARA_EXP];
-                    [self setExperience:exp.intValue];
-                    [self setLevel:level.intValue];
+                    [self setExperience:exp.intValue forSource:source];
+                    [self setLevel:level.intValue forSource:source];
                 }
                 
             }
@@ -545,7 +494,7 @@ static LevelService* _defaultLevelService;
             case LevelSourceZhajinhua:
                 return @"ZhaJinHua";
             default:
-            break;
+                break;
     }
     return nil;
 }
