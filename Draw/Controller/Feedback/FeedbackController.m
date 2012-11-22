@@ -12,15 +12,14 @@
 #import "DrawAppDelegate.h"
 #import "AboutUsController.h"
 #import "UserManager.h"
-#import "SinaSNSService.h"
-#import "QQWeiboService.h"
-#import "FacebookSNSService.h"
 #import "UFPController.h"
 #import "PPDebug.h"
 #import "DeviceDetection.h"
 #import "ConfigManager.h"
 #import "CommonMessageCenter.h"
 #import "AccountService.h"
+#import "PPSNSIntegerationService.h"
+#import "PPSNSConstants.h"
 
 #define HEIGHT_FOR_IPHONE   50
 #define HEIGHT_FOR_IPHONE5  60
@@ -192,49 +191,35 @@ enum {
         }
         [self sendEmailTo:nil ccRecipients:nil bccRecipients:nil subject:emailSubject body:shareBody isHTML:NO delegate:self];
     } else if (buttonIndex == buttonIndexSinaWeibo) {
-        if ([[UserManager defaultManager] hasBindSinaWeibo]){
-            [[SinaSNSService defaultService] publishWeibo:shareBody delegate:self];
-        }
+        
+        [[[PPSNSIntegerationService defaultService] snsServiceByType:TYPE_SINA] publishWeibo:shareBody
+                                                                               imageFilePath:nil
+                                                                                successBlock:NULL
+                                                                                failureBlock:NULL];
+        
+//        if ([[UserManager defaultManager] hasBindSinaWeibo]){
+//            [[SinaSNSService defaultService] publishWeibo:shareBody delegate:self];
+//        }
     } else if (buttonIndex == buttonIndexQQWeibo) {
-        if ([[UserManager defaultManager] hasBindQQWeibo]){
-            [[QQWeiboService defaultService] publishWeibo:shareBody delegate:self];
-        }
+        [[[PPSNSIntegerationService defaultService] snsServiceByType:TYPE_QQ] publishWeibo:shareBody
+                                                                               imageFilePath:nil
+                                                                                successBlock:NULL
+                                                                                failureBlock:NULL];
+        
+//        if ([[UserManager defaultManager] hasBindQQWeibo]){
+//            [[QQWeiboService defaultService] publishWeibo:shareBody delegate:self];
+//        }
     } else if (buttonIndex == buttonIndexFacebook) {
-        if ([[UserManager defaultManager] hasBindFacebook]){
-            [[FacebookSNSService defaultService] publishWeibo:shareBody delegate:self];
-        }
+        [[[PPSNSIntegerationService defaultService] snsServiceByType:TYPE_FACEBOOK] publishWeibo:shareBody
+                                                                               imageFilePath:nil
+                                                                                successBlock:NULL
+                                                                                failureBlock:NULL];
+//        if ([[UserManager defaultManager] hasBindFacebook]){
+//            [[FacebookSNSService defaultService] publishWeibo:shareBody delegate:self];
+//        }
     }
     
-//    switch (buttonIndex) {
-//        case SHARE_VIA_SMS: {
-//            [self sendSms:nil body:shareBody];
-//        } break;
-//        case SHARE_VIA_EMAIL: {
-//            NSString *emailSubject = nil;
-//            if (isDrawApp()) {
-//                emailSubject = NSLS(@"kEmail_subject");
-//            }else if (isDiceApp()) {
-//                emailSubject = NSLS(@"kDice_email_subject");
-//            }
-//            [self sendEmailTo:nil ccRecipients:nil bccRecipients:nil subject:emailSubject body:shareBody isHTML:NO delegate:self];
-//        } break;
-//        case SHARE_VIA_FACEBOOK: {
-//            if ([[UserManager defaultManager] hasBindSinaWeibo]){
-//                [[SinaSNSService defaultService] publishWeibo:shareBody delegate:self];
-//            }
-//            
-//            if ([[UserManager defaultManager] hasBindQQWeibo]){
-//                [[QQWeiboService defaultService] publishWeibo:shareBody delegate:self];
-//            }
-//            
-//            if ([[UserManager defaultManager] hasBindFacebook]){
-//                [[FacebookSNSService defaultService] publishWeibo:shareBody delegate:self];
-//            } 
-//        } break;
-//        default:
-//            break;
-//    }
-//
+
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -288,11 +273,27 @@ enum {
     
     else if (indexPath.row == rowOfFollow){
         if ([[UserManager defaultManager] hasBindQQWeibo]){
-            [[QQWeiboService defaultService] followUser:[GameApp qqWeiboId] delegate:self];
+            
+            [[[PPSNSIntegerationService defaultService] snsServiceByType:TYPE_QQ] followUser:nil
+                                                                                      userId:[GameApp qqWeiboId]
+                                                                                successBlock:^(NSDictionary *userInfo) {
+            } failureBlock:^(NSError *error) {
+                
+            }];
+            
+//            [[QQWeiboService defaultService] followUser:[GameApp qqWeiboId] delegate:self];
         }
         
         if ([[UserManager defaultManager] hasBindSinaWeibo]){
-            [[SinaSNSService defaultService] followUser:[GameApp sinaWeiboId] delegate:self];
+            
+            [[[PPSNSIntegerationService defaultService] snsServiceByType:TYPE_SINA] followUser:[GameApp sinaWeiboId]
+                                                                                        userId:nil
+                                                                                  successBlock:^(NSDictionary *userInfo) {
+            } failureBlock:^(NSError *error) {
+                
+            }];
+            
+//            [[SinaSNSService defaultService] followUser:[GameApp sinaWeiboId] delegate:self];
         }
     }
     

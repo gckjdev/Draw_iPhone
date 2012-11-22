@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 #import <MessageUI/MessageUI.h>
-#import "SNSServiceDelegate.h"
 #import "PPViewController.h"
 #import "CommonDialog.h"
 #import "UserService.h"
@@ -21,7 +20,7 @@ typedef enum {
 
 //@class SynthesisView;
 
-@interface ShareEditController : PPViewController <UIActionSheetDelegate, SNSServiceDelegate, MFMailComposeViewControllerDelegate, CommonDialogDelegate, UserServiceDelegate> {
+@interface ShareEditController : PPViewController <UIActionSheetDelegate, MFMailComposeViewControllerDelegate, CommonDialogDelegate, UserServiceDelegate> {
     SnsType _snsType;
 }
 

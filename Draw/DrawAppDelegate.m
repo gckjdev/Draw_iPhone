@@ -16,12 +16,9 @@
 #import "HomeController.h"
 #import "RegisterUserController.h"
 #import "OnlineGuessDrawController.h"
-#import "SinaSNSService.h"
-#import "QQWeiboService.h"
 #import "RouterService.h"
 #import "AccountManager.h"
 #import "AccountService.h"
-#import "FacebookSNSService.h"
 #import "PriceService.h"
 #import "DeviceDetection.h"
 #import "NetworkDetector.h"
@@ -198,13 +195,13 @@ NSString* GlobalGetBoardServerURL()
     [MobClick updateOnlineConfig];
     
     // Init SNS Service
-    [[SinaSNSService defaultService] setAppKey:[GameApp sinaAppKey]         // @"2831348933" 
-                                        Secret:[GameApp sinaAppSecret]];    // @"ff89c2f5667b0199ee7a8bad6c44b265"];
-    [[QQWeiboService defaultService] setAppKey:[GameApp qqAppKey]           // @"801123669" 
-                                        Secret:[GameApp qqAppSecret]];      // @"30169d80923b984109ee24ade9914a5c"];        
-    [[FacebookSNSService defaultService] setAppId:[GameApp facebookAppKey]  //@"352182988165711" 
-                                           appKey:[GameApp facebookAppKey]  //@"352182988165711" 
-                                        Secret:[GameApp facebookAppSecret]]; //@"51c65d7fbef9858a5d8bc60014d33ce2"];
+//    [[SinaSNSService defaultService] setAppKey:[GameApp sinaAppKey]         // @"2831348933" 
+//                                        Secret:[GameApp sinaAppSecret]];    // @"ff89c2f5667b0199ee7a8bad6c44b265"];
+//    [[QQWeiboService defaultService] setAppKey:[GameApp qqAppKey]           // @"801123669" 
+//                                        Secret:[GameApp qqAppSecret]];      // @"30169d80923b984109ee24ade9914a5c"];        
+//    [[FacebookSNSService defaultService] setAppId:[GameApp facebookAppKey]  //@"352182988165711" 
+//                                           appKey:[GameApp facebookAppKey]  //@"352182988165711" 
+//                                        Secret:[GameApp facebookAppSecret]]; //@"51c65d7fbef9858a5d8bc60014d33ce2"];
     
     
     // Init Account Service and Sync Balance and Item
@@ -478,7 +475,7 @@ NSString* GlobalGetBoardServerURL()
     else if ([[url absoluteString] hasPrefix:@"wx"]){
         return [WXApi handleOpenURL:url delegate:self];;
     }
-    return [[[FacebookSNSService defaultService] facebook] handleOpenURL:url];
+//    return [[[FacebookSNSService defaultService] facebook] handleOpenURL:url];
 }
 
 

@@ -17,10 +17,9 @@
 #import "AccountManager.h"
 #import "ItemManager.h"
 #import "GameNetworkConstants.h"
-#import "SNSConstants.h"
 #import "GameBasic.pb.h"
 #import "SDWebImageManager.h"
-
+#import "PPSNSConstants.h"
 
 #define KEY_USERID          @"USER_KEY_USERID"
 #define KEY_NICKNAME        @"USER_KEY_NICKNAME"

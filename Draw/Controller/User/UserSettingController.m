@@ -23,14 +23,12 @@
 #import "LevelService.h"
 #import "MyWordsController.h"
 #import "StringUtil.h"
-#import "SinaSNSService.h"
-#import "QQWeiboService.h"
-#import "FacebookSNSService.h"
 #import "GameNetworkConstants.h"
 #import "AdService.h"
 #import "CustomDiceSettingViewController.h"
 #import "PPSNSIntegerationService.h"
 #import "PPSNSCommonService.h"
+#import "PPSNSConstants.h"
 
 enum{
     SECTION_USER = 0,
@@ -501,7 +499,7 @@ enum {
             {
                 [cell.textLabel setText:NSLS(@"kSetSinaWeibo")];
                 if ([_userManager hasBindSinaWeibo]){
-                    if ([[SinaSNSService defaultService] isAuthorizeExpired]){
+                    if ([[[PPSNSIntegerationService defaultService] snsServiceByType:TYPE_SINA] isAuthorizeExpired]){
                         [cell.detailTextLabel setText:NSLS(@"kWeiboExpired")];
                     }
                     else{
@@ -530,7 +528,7 @@ enum {
             {
                 [cell.textLabel setText:NSLS(@"kSetFacebook")];
                 if ([_userManager hasBindFacebook]){
-                    if ([[FacebookSNSService defaultService] isAuthorizeExpired]){
+                    if ([[[PPSNSIntegerationService defaultService] snsServiceByType:TYPE_FACEBOOK] isAuthorizeExpired]){
                         [cell.detailTextLabel setText:NSLS(@"kWeiboExpired")];
                     }
                     else{
@@ -674,7 +672,7 @@ enum {
                 break;
             case ROW_SINA_WEIBO:
             {
-                if ([_userManager hasBindSinaWeibo] == NO || [[SinaSNSService defaultService] isAuthorizeExpired]){
+                if ([_userManager hasBindSinaWeibo] == NO || [[[PPSNSIntegerationService defaultService] snsServiceByType:TYPE_SINA] isAuthorizeExpired]){
                     [self bindSina];
                 }
                 else{
@@ -697,7 +695,7 @@ enum {
             case ROW_FACEBOOK:
             {
                 
-                if ([_userManager hasBindFacebook] == NO || [[FacebookSNSService defaultService] isAuthorizeExpired]){
+                if ([_userManager hasBindFacebook] == NO || [[[PPSNSIntegerationService defaultService] snsServiceByType:TYPE_FACEBOOK] isAuthorizeExpired]){
                     [self bindFacebook];
                 }
                 else{
@@ -726,12 +724,14 @@ enum {
     switch (_currentLoginType){
         case REGISTER_TYPE_QQ:
         {
-            [[QQWeiboService defaultService] askFollow];            
+            // TODO:SNS Ask Follow
+//            [[QQWeiboService defaultService] askFollow];            
         }
             break;
         case REGISTER_TYPE_SINA:
         {
-            [[SinaSNSService defaultService] askFollow];                        
+            // TODO:SNS Ask Follow
+//            [[SinaSNSService defaultService] askFollow];
         }
             break;
             

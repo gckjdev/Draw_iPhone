@@ -14,18 +14,18 @@
 #import "CompleteUserInfoController.h"
 #import "StringUtil.h"
 #import "PPDebug.h"
-#import "SinaSNSService.h"
-#import "QQWeiboService.h"
 #import "GameNetworkConstants.h"
 #import "AccountService.h"
 #import "ShareImageManager.h"
-#import "FacebookSNSService.h"
 #import "UserManager.h"
 #import "RemoteDrawView.h"
 #import "GameBasic.pb.h"
 #import "ShowRemoteDrawController.h"
 #import "DeviceDetection.h"
 #import "CommonMessageCenter.h"
+#import "PPSNSCommonService.h"
+#import "PPSNSIntegerationService.h"
+#import "PPSNSConstants.h"
 
 @implementation RegisterUserController
 @synthesize backgroundImageView;
@@ -211,31 +211,63 @@
     [[UserService defaultService] registerUser:userId password:@"" viewController:self];    
 }
 
+- (void)snsLogin:(PPSNSType)snsType
+{
+    PPSNSCommonService* service = [[PPSNSIntegerationService defaultService] snsServiceByType:snsType];
+    NSString* name = [service snsName];
+    
+    [service login:^(NSDictionary *userInfo) {
+        PPDebug(@"%@ Login Success", name);
+        
+        [self showActivityWithText:NSLS(@"Loading")];
+        
+        [service readMyUserInfo:^(NSDictionary *userInfo) {
+            PPDebug(@"%@ readMyUserInfo Success, userInfo=%@", name, [userInfo description]);
+            [self hideActivity];
+            [[UserService defaultService] registerUserWithSNSUserInfo:userInfo viewController:self];
+        }
+        failureBlock:^(NSError *error) {
+            PPDebug(@"%@ readMyUserInfo Failure", name);
+            [self hideActivity];
+            [self.navigationController popViewControllerAnimated:YES];
+        }];
+        
+    } failureBlock:^(NSError *error) {
+        PPDebug(@"%@ Login Failure", name);
+    }];
+}
+
 - (IBAction)clickSinaLogin:(id)sender
 {
     [self.view endEditing:YES];
     
-//    self.navigationController.navigationBarHidden = NO;
-//    self.navigationController.navigationItem.title = NSLS(@"微博授权");
-    _currentLoginType = REGISTER_TYPE_SINA;
-    [[SinaSNSService defaultService] startLogin:self];
+//    _currentLoginType = REGISTER_TYPE_SINA;
+//    [[SinaSNSService defaultService] startLogin:self];
+
+    [self snsLogin:TYPE_SINA];
 }
 
 - (IBAction)clickQQLogin:(id)sender
 {
     [self.view endEditing:YES];
-    _currentLoginType = REGISTER_TYPE_QQ;
-    
-    self.navigationController.navigationBarHidden = NO;
-    self.navigationController.navigationItem.title = NSLS(@"微博授权");
-    [[QQWeiboService defaultService] startLogin:self];
+//    _currentLoginType = REGISTER_TYPE_QQ;
+//    
+//    self.navigationController.navigationBarHidden = NO;
+//    self.navigationController.navigationItem.title = NSLS(@"微博授权");
+//    [[QQWeiboService defaultService] startLogin:self];
+
+    [self snsLogin:TYPE_QQ];
+
 }
 
 - (IBAction)clickFacebookLogin:(id)sender
 {
     [self.view endEditing:YES];
-    _currentLoginType = REGISTER_TYPE_FACEBOOK;
-    [[FacebookSNSService defaultService] startLogin:self];
+//    _currentLoginType = REGISTER_TYPE_FACEBOOK;
+//    [[FacebookSNSService defaultService] startLogin:self];
+
+    [self snsLogin:TYPE_FACEBOOK];
+
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
@@ -293,11 +325,13 @@
         
         switch (_currentLoginType) {
             case REGISTER_TYPE_SINA:
-                [[SinaSNSService defaultService] askFollow];
+                // TODO:SNS askFollow
+//                [[SinaSNSService defaultService] askFollow];
                 break;
             
             case REGISTER_TYPE_QQ:
-                [[QQWeiboService defaultService] askFollow];
+                // TODO:SNS askFollow
+//                [[QQWeiboService defaultService] askFollow];
                 break;
 
             default:
