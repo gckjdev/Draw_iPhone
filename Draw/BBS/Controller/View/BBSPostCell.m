@@ -52,15 +52,15 @@
     return @"BBSPostCell";
 }
 
-+ (NSString *)thumImageUrlForContent:(PBBBSContent *)content
-{
-    if (content.type == ContentTypeImage) {
-       return content.thumbImageUrl;
-    }else if(content.type == ContentTypeDraw){
-       return content.drawThumbUrl;
-    }
-    return nil;
-}
+//+ (NSString *)thumImageUrlForContent:(PBBBSContent *)content
+//{
+//    if (content.type == ContentTypeImage) {
+//       return content.thumbImageUrl;
+//    }else if(content.type == ContentTypeDraw){
+//       return content.drawThumbUrl;
+//    }
+//    return nil;
+//}
 
 
 + (CGFloat)heightForContentText:(NSString *)text
@@ -74,9 +74,8 @@
 {
     PBBBSContent * content = post.content;
     CGFloat height = [BBSPostCell heightForContentText:content.text];
-    BOOL hasImage = ([[BBSPostCell thumImageUrlForContent:content] length] != 0);
     
-    if (hasImage) {
+    if (post.content.hasThumbImage) {
         height += (SPACE_CONTENT_TOP + SPACE_CONTENT_BOTTOM_IMAGE);
     }else{
         height += (SPACE_CONTENT_TOP + SPACE_CONTENT_BOTTOM_TEXT);
@@ -86,12 +85,8 @@
 
 - (void)updateUserInfo:(PBBBSUser *)user
 {
-    [self.avatar setImageWithURL:[NSURL URLWithString:user.avatar]];
-    if ([[UserManager defaultManager] isMe:user.userId]) {
-        [self.nickName setText:NSLS(@"kMe")];
-    }else{
-        [self.nickName setText:user.nickName];
-    }
+    [self.nickName setText:user.showNick];
+    [self.avatar setImageWithURL:user.avatarURL placeholderImage:user.defaultAvatar];
 }
 
 - (void)updateContent:(PBBBSContent *)content
@@ -104,16 +99,10 @@
     CGRect frame = self.content.frame;
     frame.size.height = [BBSPostCell heightForContentText:content.text];
     self.content.frame = frame;
-    
-    NSString *url = [BBSPostCell thumImageUrlForContent:content];
-    if ([url length] != 0) {
+  
+    if (content.hasThumbImage) {
+        [self.image setImageWithURL:content.thumbImageURL placeholderImage:nil];
         self.image.hidden = NO;
-        [self.image setImageWithURL:[NSURL URLWithString:url]
-                            success:^(UIImage *image, BOOL cached) {
-            //TODO scale the imageView
-        } failure:^(NSError *error) {
-            //TODO set defalt image.
-        }];
     }else{
         self.image.hidden = YES;
     }

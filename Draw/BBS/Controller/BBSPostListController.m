@@ -7,7 +7,7 @@
 //
 
 #import "BBSPostListController.h"
-#import "Bbs.pb.h"
+#import "BBSModelExt.h"
 #import "CreatePostController.h"
 #import "BBSPostCell.h"
 #import "BBSPostDetailController.h"

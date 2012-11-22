@@ -782,6 +782,7 @@
 		CA42FE0A165DCDA30097453A /* BBSPostDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA42FE09165DCDA30097453A /* BBSPostDetailCell.xib */; };
 		CA42FE0C165DCDBC0097453A /* BBSPostActionHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA42FE0B165DCDBC0097453A /* BBSPostActionHeaderView.xib */; };
 		CA42FE0E165DCDCD0097453A /* BBSPostDetailUserCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA42FE0D165DCDCD0097453A /* BBSPostDetailUserCell.xib */; };
+		CA42FE27165E24850097453A /* BBSModelExt.m in Sources */ = {isa = PBXBuildFile; fileRef = CA42FE26165E24850097453A /* BBSModelExt.m */; };
 		CA4FF001152AEFDF00F0AC88 /* ColorGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = CA4FF000152AEFDF00F0AC88 /* ColorGroup.m */; };
 		CA4FF00A152AF21900F0AC88 /* ColorShopCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA4FF008152AF21900F0AC88 /* ColorShopCell.m */; };
 		CA4FF00B152AF21900F0AC88 /* ColorShopCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA4FF009152AF21900F0AC88 /* ColorShopCell.xib */; };
@@ -3178,6 +3179,8 @@
 		CA42FE09165DCDA30097453A /* BBSPostDetailCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BBSPostDetailCell.xib; sourceTree = "<group>"; };
 		CA42FE0B165DCDBC0097453A /* BBSPostActionHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BBSPostActionHeaderView.xib; sourceTree = "<group>"; };
 		CA42FE0D165DCDCD0097453A /* BBSPostDetailUserCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BBSPostDetailUserCell.xib; sourceTree = "<group>"; };
+		CA42FE25165E24850097453A /* BBSModelExt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBSModelExt.h; sourceTree = "<group>"; };
+		CA42FE26165E24850097453A /* BBSModelExt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBSModelExt.m; sourceTree = "<group>"; };
 		CA4AF8C015D23A4E00734FAC /* MainDataModel 7.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "MainDataModel 7.xcdatamodel"; sourceTree = "<group>"; };
 		CA4F066F1546F66500A38C84 /* MainDataModel 3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "MainDataModel 3.xcdatamodel"; sourceTree = "<group>"; };
 		CA4FEFFF152AEFDF00F0AC88 /* ColorGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorGroup.h; sourceTree = "<group>"; };
@@ -7346,6 +7349,7 @@
 		CA41512A165395A30062A638 /* BBS */ = {
 			isa = PBXGroup;
 			children = (
+				CA42FE24165E24850097453A /* Model */,
 				CA41513B16539B210062A638 /* Network */,
 				CA41512B165395A30062A638 /* Controller */,
 				CA41512C165395A30062A638 /* Manager */,
@@ -7545,6 +7549,15 @@
 				CA42E3C915F4617A00790B3C /* TableTabManager.m */,
 			);
 			path = TableTab;
+			sourceTree = "<group>";
+		};
+		CA42FE24165E24850097453A /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				CA42FE25165E24850097453A /* BBSModelExt.h */,
+				CA42FE26165E24850097453A /* BBSModelExt.m */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		CA51816A15A2D79700AD5A78 /* CustomStatueBar */ = {
@@ -11973,6 +11986,7 @@
 				CA42FE05165DCD470097453A /* BBSPostActionHeaderView.m in Sources */,
 				CA42FE08165DCD8D0097453A /* BBSPostDetailUserCell.m in Sources */,
 				CAEE45BD165E14D5001E02F1 /* SFHFKeychainUtils.m in Sources */,
+				CA42FE27165E24850097453A /* BBSModelExt.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

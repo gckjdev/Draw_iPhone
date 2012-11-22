@@ -7,7 +7,7 @@
 //
 
 #import "BBSBoardSection.h"
-#import "Bbs.pb.h"
+#import "BBSModelExt.h"
 #import "UIImageView+WebCache.h"
 @implementation BBSBoardSection
 
