@@ -10,6 +10,7 @@
 #import "Bbs.pb.h"
 #import "CreatePostController.h"
 #import "BBSPostCell.h"
+#import "BBSPostDetailController.h"
 
 @interface BBSPostListController ()
 {
@@ -230,15 +231,18 @@
 {
     if (post) {
         [self.tabDataList insertObject:post atIndex:0];
-        [self.dataTableView reloadData];
+        NSArray *paths = [NSArray arrayWithObject:[NSIndexPath indexPathForRow:0 inSection:0]];
+        [self.dataTableView reloadRowsAtIndexPaths:paths withRowAnimation:UITableViewRowAnimationFade];
     }
 }
 
 
-//- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-//{
-//    PBBBSBoard *sBoard = [self boardForIndexPath:indexPath];
-//    [BBSPostListController enterPostListControllerWithBBSBoard:sBoard fromController:self];
-//}
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    PBBBSPost *post = [self postForIndexPath:indexPath];
+    [BBSPostDetailController enterPostDetailControllerWithPost:post
+                                                fromController:self
+                                                      animated:YES];
+}
 
 @end

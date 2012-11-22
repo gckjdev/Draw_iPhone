@@ -7,7 +7,17 @@
 //
 
 #import "CommonTabController.h"
+#import "BBSManager.h"
+#import "BBSService.h"
+#import "BBSPostActionCell.h"
+#import "CreatePostController.h"
 
-@interface BBSPostDetailController : CommonTabController
+@interface BBSPostDetailController : CommonTabController<BBSServiceDelegate, BBSPostActionCellDelegate, CreatePostControllerDelegate>
+{
+    
+}
 
++ (BBSPostDetailController *)enterPostDetailControllerWithPost:(PBBBSPost *)post
+                                                fromController:(UIViewController *)fromController
+                                                      animated:(BOOL)animated;
 @end

@@ -160,15 +160,15 @@
 
 
 - (void)dealloc {
-    [_avatar release];
-    [_nickName release];
-    [_content release];
-    [_timestamp release];
-    [_image release];
-    [_support release];
-    [_comment release];
+    PPRelease(_avatar);
+    PPRelease(_nickName);
+    PPRelease(_content);
+    PPRelease(_timestamp);
+    PPRelease(_image);
+    PPRelease(_support);
+    PPRelease(_comment);
     PPRelease(_post);
-    [_reward release];
+    PPRelease(_reward);
     [super dealloc];
 }
 - (IBAction)clickSupportButton:(id)sender {

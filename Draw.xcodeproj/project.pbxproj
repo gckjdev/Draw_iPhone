@@ -1737,8 +1737,6 @@
 		CAA7992D1659D28700429611 /* BBSPostListController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAA799291659D28700429611 /* BBSPostListController.xib */; };
 		CAA79942165A178700429611 /* BBSPostCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA79941165A178700429611 /* BBSPostCell.m */; };
 		CAA79944165A18DA00429611 /* BBSPostCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAA79943165A18DA00429611 /* BBSPostCell.xib */; };
-		CAA79947165A19F600429611 /* BBSPostCommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA79946165A19F600429611 /* BBSPostCommentCell.m */; };
-		CAA79949165A1A1C00429611 /* BBSPostCommentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAA79948165A1A1B00429611 /* BBSPostCommentCell.xib */; };
 		CAA9C427159BF41B00398EC5 /* ShareService.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA9C426159BF41B00398EC5 /* ShareService.m */; };
 		CAA9C435159CA97100398EC5 /* LmWallService.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA9C434159CA97100398EC5 /* LmWallService.m */; };
 		CAACE19915F499E6002EB53A /* SuperDrawView.m in Sources */ = {isa = PBXBuildFile; fileRef = CAACE19815F499E6002EB53A /* SuperDrawView.m */; };
@@ -1808,6 +1806,8 @@
 		CAE1BA95162EB9DE00AA0C05 /* highlight_mask@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAE1BA94162EB9DE00AA0C05 /* highlight_mask@2x.png */; };
 		CAE2CABE151B2ECA0062ED37 /* Account.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE2CABD151B2ECA0062ED37 /* Account.m */; };
 		CAE2CAC1151B2F7C0062ED37 /* Item.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE2CAC0151B2F7C0062ED37 /* Item.m */; };
+		CAE51896165CCB33006157CC /* BBSPostActionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE51895165CCB33006157CC /* BBSPostActionCell.m */; };
+		CAE51898165CCB55006157CC /* BBSPostActionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAE51897165CCB55006157CC /* BBSPostActionCell.xib */; };
 		CAE8B15115E4A24F0098A565 /* BoardPanel~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAE8B15015E4A24E0098A565 /* BoardPanel~ipad.xib */; };
 		CAEE2B1E1613EA6F00CD9088 /* ReplayView.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEE2B1D1613EA6F00CD9088 /* ReplayView.m */; };
 		CAEE2B201613EAB400CD9088 /* ReplayView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAEE2B1F1613EAB400CD9088 /* ReplayView.xib */; };
@@ -4341,9 +4341,6 @@
 		CAA79940165A178700429611 /* BBSPostCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBSPostCell.h; sourceTree = "<group>"; };
 		CAA79941165A178700429611 /* BBSPostCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBSPostCell.m; sourceTree = "<group>"; };
 		CAA79943165A18DA00429611 /* BBSPostCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BBSPostCell.xib; sourceTree = "<group>"; };
-		CAA79945165A19F600429611 /* BBSPostCommentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBSPostCommentCell.h; sourceTree = "<group>"; };
-		CAA79946165A19F600429611 /* BBSPostCommentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBSPostCommentCell.m; sourceTree = "<group>"; };
-		CAA79948165A1A1B00429611 /* BBSPostCommentCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BBSPostCommentCell.xib; sourceTree = "<group>"; };
 		CAA9C425159BF41B00398EC5 /* ShareService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareService.h; sourceTree = "<group>"; };
 		CAA9C426159BF41B00398EC5 /* ShareService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareService.m; sourceTree = "<group>"; };
 		CAA9C433159CA97100398EC5 /* LmWallService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LmWallService.h; sourceTree = "<group>"; };
@@ -4448,6 +4445,9 @@
 		CAE2CABF151B2F7C0062ED37 /* Item.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Item.h; sourceTree = "<group>"; };
 		CAE2CAC0151B2F7C0062ED37 /* Item.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Item.m; sourceTree = "<group>"; };
 		CAE32603160199AA00AD77C3 /* MainDataModel 10.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "MainDataModel 10.xcdatamodel"; sourceTree = "<group>"; };
+		CAE51894165CCB33006157CC /* BBSPostActionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBSPostActionCell.h; sourceTree = "<group>"; };
+		CAE51895165CCB33006157CC /* BBSPostActionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBSPostActionCell.m; sourceTree = "<group>"; };
+		CAE51897165CCB55006157CC /* BBSPostActionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BBSPostActionCell.xib; sourceTree = "<group>"; };
 		CAE57D27153BD77F00C4C63A /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		CAE57D2B153BD7B000C4C63A /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		CAE8B15015E4A24E0098A565 /* BoardPanel~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = "BoardPanel~ipad.xib"; path = "Draw/Board/Controller/BoardPanel~ipad.xib"; sourceTree = SOURCE_ROOT; };
@@ -7546,9 +7546,9 @@
 				CAA79940165A178700429611 /* BBSPostCell.h */,
 				CAA79941165A178700429611 /* BBSPostCell.m */,
 				CAA79943165A18DA00429611 /* BBSPostCell.xib */,
-				CAA79945165A19F600429611 /* BBSPostCommentCell.h */,
-				CAA79946165A19F600429611 /* BBSPostCommentCell.m */,
-				CAA79948165A1A1B00429611 /* BBSPostCommentCell.xib */,
+				CAE51894165CCB33006157CC /* BBSPostActionCell.h */,
+				CAE51895165CCB33006157CC /* BBSPostActionCell.m */,
+				CAE51897165CCB55006157CC /* BBSPostActionCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -11443,7 +11443,6 @@
 				C28662BE1659DDF900D7EA27 /* ZJHRoomListCell~ipad.xib in Resources */,
 				C28662BF1659DDF900D7EA27 /* ZJHRoomListController~ipad.xib in Resources */,
 				CAA79944165A18DA00429611 /* BBSPostCell.xib in Resources */,
-				CAA79949165A1A1C00429611 /* BBSPostCommentCell.xib in Resources */,
 				A405C887165B874500E7610F /* chip_100@2x.png in Resources */,
 				A405C888165B874500E7610F /* chip_10@2x.png in Resources */,
 				A405C889165B874500E7610F /* chip_250@2x.png in Resources */,
@@ -11579,6 +11578,7 @@
 				A405C90B165B874500E7610F /* raise_bet1_F.mp3 in Resources */,
 				A405C90C165B874500E7610F /* raise_bet1_M.mp3 in Resources */,
 				C223232D165C659E00D7ECE4 /* ZJHSettingView~ipad.xib in Resources */,
+				CAE51898165CCB55006157CC /* BBSPostActionCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -12217,9 +12217,9 @@
 				CAA7992A1659D28700429611 /* BBSPostDetailController.m in Sources */,
 				CAA7992C1659D28700429611 /* BBSPostListController.m in Sources */,
 				CAA79942165A178700429611 /* BBSPostCell.m in Sources */,
-				CAA79947165A19F600429611 /* BBSPostCommentCell.m in Sources */,
 				CAAFBEB2165B199100E5E1C0 /* PPSNSStorageService.m in Sources */,
 				CAAFBEB5165B70DC00E5E1C0 /* PPResourceCacheService.m in Sources */,
+				CAE51896165CCB33006157CC /* BBSPostActionCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
