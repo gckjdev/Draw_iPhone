@@ -170,7 +170,6 @@
     if (_delegate && [_delegate respondsToSelector:@selector(didClickOnAvatar:)]) {
         [_delegate didClickOnAvatar:self];
     }
-    [self showLoseCoins:999];
 }
 
 - (void)setAvatarUrl:(NSString *)url gender:(BOOL)gender
