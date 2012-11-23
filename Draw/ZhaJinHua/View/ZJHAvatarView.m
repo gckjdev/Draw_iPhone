@@ -11,7 +11,7 @@
 #import "HKGirlFontLabel.h"
 #import "ZJHImageManager.h"
 #import "ShareImageManager.h"
-#import <QuartzCore/QuartzCore.h>
+#import "AnimationManager.h"
 
 @interface ZJHAvatarView ()
 
@@ -248,51 +248,59 @@
     }
 }
 
+- (void)showPopCoinAnimation
+{
+    CGPoint destination = CGPointMake(self.frame.size.width/2                                                            , -1*_rewardCoinView.frame.size.height);
+    //    CAAnimation* moveUp = [AnimationManager translationAnimationFrom:CGPointMake(_rewardCoinView.center.x, self.nickNameLabel.center.y) to:destination duration:duration];
+    CAAnimation* moveUp = [AnimationManager translationAnimationFrom:CGPointMake(_rewardCoinView.center.x, self.nickNameLabel.center.y)
+                                                                  to:destination
+                                                            duration:2
+                                                            delegate:self
+                                                    removeCompeleted:NO];
+    
+    CAAnimation* disappear = [AnimationManager disappearAnimationWithDuration:1];
+    disappear.beginTime = moveUp.duration;
+    disappear.removedOnCompletion = NO;
+    
+    //method2:放入动画数组，统一处理！
+    CAAnimationGroup* animGroup    = [CAAnimationGroup animation];
+    
+    //设置动画代理
+    animGroup.delegate = self;
+    
+    animGroup.removedOnCompletion = NO;
+    
+    animGroup.duration             = disappear.beginTime+disappear.duration;
+    animGroup.timingFunction      = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+//    animGroup.repeatCount         = 1;//FLT_MAX;  //"forever";
+    animGroup.fillMode             = kCAFillModeForwards;
+    animGroup.animations             = [NSArray arrayWithObjects:moveUp, disappear, nil];
+    [animGroup setValue:@"MOVE_UP"  forKey:@"ANIM_GROUP"];
+    
+    [_rewardCoinView.layer addAnimation:animGroup forKey:@"ANIM_GROUP"];
+}
+
 - (void)showWinCoins:(int)coinsCount
 {
+    PPDebug(@"<test>%@ win %d golds", self.nickNameLabel.text, coinsCount);
+    
     if (coinsCount == 0) {
         return;
     }
-    
-    float duration = 3;
+    [_rewardCoinView.layer removeAllAnimations];
     [self.coinImageView setImage:[ShareImageManager defaultManager].coinImage];
     [self bringSubviewToFront:_rewardCoinView];
     [_rewardCoinLabel setText:[NSString stringWithFormat:@"%+d",coinsCount]];
     _rewardCoinLabel.textColor = (coinsCount >= 0) ? [UIColor redColor] : [UIColor greenColor];
-    _rewardCoinView.center = self.nickNameLabel.center;
-    _rewardCoinView.alpha = 1;
+    _rewardCoinView.layer.opacity = 1;
     _rewardCoinView.hidden = NO;
-    [_rewardCoinView.layer removeAllAnimations];
-    [UIView animateWithDuration: duration
-                          delay: 0
-                        options: UIViewAnimationOptionCurveLinear
-                     animations: ^{
-                         _rewardCoinView.center = CGPointMake(self.frame.size.width/2                                                            , -1*_rewardCoinView.frame.size.height);
-                     }
-                     completion: ^(BOOL finished){
-                         
-                         //code that runs when this animation finishes
-                     }
-     ];
     
-    [UIView animateWithDuration: duration
-                          delay: duration
-                        options: UIViewAnimationOptionCurveLinear
-                     animations: ^{
-                         //view2.center = CGPointMake(x2, y2);
-                         _rewardCoinView.alpha = 0;
-                     }
-                     completion: ^(BOOL finished){
-                         //PPDebug(@"dismiss finish");
-                         _rewardCoinView.hidden = YES;
-                         //code that runs when this animation finishes
-                     }
-     ];
+    [self showPopCoinAnimation];
 }
 - (void)showLoseCoins:(int)coins
 {
     [self showWinCoins:-coins];
+    
 }
-
 
 @end

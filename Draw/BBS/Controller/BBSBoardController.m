@@ -51,6 +51,11 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+- (IBAction)clickMyPostList:(id)sender {
+    [BBSPostListController enterPostListControllerWithBBSUser:[[BBSService defaultService] myself]
+                                               fromController:self];
+}
+
 //- (void)openAllSubBoards
 //{
 ////    for (PBBBSBoard *pBoard in self.parentBoardList) {
