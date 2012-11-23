@@ -29,6 +29,7 @@
 #import "PPSNSIntegerationService.h"
 #import "PPSNSCommonService.h"
 #import "PPSNSConstants.h"
+#import "GameSNSService.h"
 
 enum{
     SECTION_USER = 0,
@@ -719,22 +720,22 @@ enum {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
+#define FOLLOW_SINA_KEY @"FOLLOW_SINA_KEY"
+#define FOLLOW_QQ_KEY   @"FOLLOW_QQ_KEY"
+
 - (void)askFollow
 {
     switch (_currentLoginType){
         case REGISTER_TYPE_QQ:
         {
-            // TODO:SNS Ask Follow
-//            [[QQWeiboService defaultService] askFollow];            
+//            [[QQWeiboService defaultService] askFollow];
         }
             break;
         case REGISTER_TYPE_SINA:
         {
-            // TODO:SNS Ask Follow
 //            [[SinaSNSService defaultService] askFollow];
-        }
             break;
-            
+        }
         default:
             break;
     }
@@ -785,6 +786,10 @@ enum {
             [self hideActivity];
             PPDebug(@"%@ readMyUserInfo Success, userInfo=%@", name, [userInfo description]);
             [[UserService defaultService] updateUserWithSNSUserInfo:[userManager userId] userInfo:userInfo viewController:self];
+            
+            // ask follow official weibo account here
+            [GameSNSService askFollow:snsType snsWeiboId:[service officialWeiboId]];
+            
         } failureBlock:^(NSError *error) {
             [self hideActivity];
             PPDebug(@"%@ readMyUserInfo Failure", name);
