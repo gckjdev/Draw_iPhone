@@ -26,6 +26,7 @@
 #import "PPSNSCommonService.h"
 #import "PPSNSIntegerationService.h"
 #import "PPSNSConstants.h"
+#import "GameSNSService.h"
 
 @implementation RegisterUserController
 @synthesize backgroundImageView;
@@ -322,21 +323,25 @@
         else{
             [self.navigationController popToRootViewControllerAnimated:YES];            
         }
-        
-        switch (_currentLoginType) {
-            case REGISTER_TYPE_SINA:
-                // TODO:SNS askFollow
-//                [[SinaSNSService defaultService] askFollow];
-                break;
-            
-            case REGISTER_TYPE_QQ:
-                // TODO:SNS askFollow
-//                [[QQWeiboService defaultService] askFollow];
-                break;
 
+        PPSNSType snsType = TYPE_EMAIL;
+        switch (_currentLoginType) {
+            case REGISTER_TYPE_QQ:
+            {
+                snsType = TYPE_QQ;
+            }
+                break;
+            case REGISTER_TYPE_SINA:
+            {
+                snsType = TYPE_SINA;
+            }
+                break;
+                
             default:
                 break;
         }
+        
+        [GameSNSService askFollowOfficialWeibo:snsType];
     }
     else{        
         // do nothing here
