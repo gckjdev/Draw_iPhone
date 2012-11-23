@@ -102,7 +102,7 @@
   
     if (content.hasThumbImage) {
         [self.image setImageWithURL:content.thumbImageURL placeholderImage:nil];
-        self.image.hidden = YES;
+        self.image.hidden = NO;
     }else{
         self.image.hidden = YES;
     }

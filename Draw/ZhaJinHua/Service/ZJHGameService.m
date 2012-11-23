@@ -452,8 +452,8 @@ static ZJHGameService *_defaultService;
 
 - (NSString *)getServerListString
 {
-//    return @"58.215.172.169:8018";
-    return @"192.168.1.5:8018";
+    return @"58.215.172.169:8018"; 
+//    return @"192.168.1.5:8018";
 }
 
 - (ZJHUserPlayInfo *)myPlayInfo
@@ -463,7 +463,11 @@ static ZJHGameService *_defaultService;
 
 - (int)myBalance
 {
-    return [_accountService getBalance] - [[self myPlayInfo] totalBet] + [[self myPlayInfo] compareAward] + [[self myPlayInfo] resultAward];
+    int balance = [_accountService getBalance] - [[self myPlayInfo] totalBet] + [[self myPlayInfo] compareAward] + [[self myPlayInfo] resultAward];
+    if (balance < 0) {
+        return 0;
+    }
+    return balance;
 }
 
 - (NSArray *)compareUserIdList

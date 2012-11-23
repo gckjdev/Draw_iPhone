@@ -15,5 +15,6 @@
 
 }
 - (IBAction)clickBackButton:(id)sender;
+- (IBAction)clickMyPostList:(id)sender;
 
 @end

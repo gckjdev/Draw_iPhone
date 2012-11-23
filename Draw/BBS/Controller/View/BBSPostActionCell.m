@@ -84,22 +84,10 @@
     return size.height;
 }
 
-+ (NSString *)contentTextForAction:(PBBBSAction *)action
-{
-    if (action.type == ActionTypeSupport) {
-        return NSLS(@"kSupport");
-    }
-    NSString *text = action.content.text;
-    if (action.source.hasActionId) {
-        NSString *nick = [action.source actionNick];
-        text = [NSString stringWithFormat:@"k回复%@: %@",nick,text];
-    }
-    return text;
-}
 
 + (CGFloat)getCellHeightWithBBSAction:(PBBBSAction *)action
 {
-    NSString *text = [BBSPostActionCell contentTextForAction:action];
+    NSString *text = action.showText;
     CGFloat height = [BBSPostActionCell heightForContentText:text];
 
     if (action.content.hasThumbImage) {
@@ -118,8 +106,7 @@
 
 - (void)updateContentWithAction:(PBBBSAction *)action
 {
-    
-    NSString *text = [BBSPostActionCell contentTextForAction:action];
+    NSString *text = [action showText];
     [self.content setText:text];
     
     //reset the size
@@ -129,7 +116,7 @@
         
     if (action.content.hasThumbImage) {
         [self.image setImageWithURL:action.content.thumbImageURL placeholderImage:nil];
-        self.image.hidden = YES;
+        self.image.hidden = NO;
     }else{
         self.image.hidden = YES;
     }
@@ -142,21 +129,11 @@
 }
 
 
-- (void)updateSupportContent
-{
-    [self.content setText:NSLS(@"kSupport")];
-}
-
 - (void)updateCellWithBBSAction:(PBBBSAction *)action
 {
     self.action = action;
     [self updateUserInfo:action.createUser];
-//    if (action.type == ActionTypeSupport) {
-//        [self updateSupportContent];
-//    }else{
     [self updateContentWithAction:action];
-//    }
-
     [self updateTimeStamp:action.createDate];
 }
 

@@ -182,7 +182,7 @@ typedef enum{
             if (DetailRowUser == indexPath.row) {
                 return [BBSPostDetailUserCell getCellHeight];
             }else if(DetailRowContent == indexPath.row){
-                return  [BBSPostDetailCell getCellHeight];
+                return  [BBSPostDetailCell getCellHeightWithPost:self.post];
             }
         }
         case SectionAction:
