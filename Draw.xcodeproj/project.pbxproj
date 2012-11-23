@@ -1786,6 +1786,7 @@
 		CAEE2B4316142D5C00CD9088 /* ReplyCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAEE2B4116142D5A00CD9088 /* ReplyCell.xib */; };
 		CAEE2B4516142E3900CD9088 /* ReplyCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAEE2B4416142E3800CD9088 /* ReplyCell~ipad.xib */; };
 		CAEE45BD165E14D5001E02F1 /* SFHFKeychainUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEE45BC165E14D5001E02F1 /* SFHFKeychainUtils.m */; };
+		CAEE45D1165E2DFE001E02F1 /* GameSNSService.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEE45D0165E2DFE001E02F1 /* GameSNSService.m */; };
 		CAEECDAA15DDEEF700FA5A2A /* Board.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEECD9715DDEEF700FA5A2A /* Board.m */; };
 		CAEECDAB15DDEEF700FA5A2A /* BoardManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEECD9915DDEEF700FA5A2A /* BoardManager.m */; };
 		CAEECDAC15DDEEF700FA5A2A /* BoardNetwork.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEECD9C15DDEEF700FA5A2A /* BoardNetwork.m */; };
@@ -4380,6 +4381,8 @@
 		CAEE2B4416142E3800CD9088 /* ReplyCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ReplyCell~ipad.xib"; sourceTree = "<group>"; };
 		CAEE45BB165E14D5001E02F1 /* SFHFKeychainUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFHFKeychainUtils.h; sourceTree = "<group>"; };
 		CAEE45BC165E14D5001E02F1 /* SFHFKeychainUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFHFKeychainUtils.m; sourceTree = "<group>"; };
+		CAEE45CF165E2DFE001E02F1 /* GameSNSService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameSNSService.h; sourceTree = "<group>"; };
+		CAEE45D0165E2DFE001E02F1 /* GameSNSService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameSNSService.m; sourceTree = "<group>"; };
 		CAEECCD115DB46AD00FA5A2A /* MainDataModel 8.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "MainDataModel 8.xcdatamodel"; sourceTree = "<group>"; };
 		CAEECCD215DBB0B000FA5A2A /* MainDataModel 9.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "MainDataModel 9.xcdatamodel"; sourceTree = "<group>"; };
 		CAEECD9615DDEEF700FA5A2A /* Board.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Board.h; sourceTree = "<group>"; };
@@ -5952,6 +5955,7 @@
 		CA103B371509A55000F60C03 /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				CAEE45CE165E2DEC001E02F1 /* SNS */,
 				CA89747B16087678003A95F7 /* Contest */,
 				C2F48BCE15BE4484005C4D72 /* Recommend */,
 				CA02B52515AC240700B2A3E2 /* Item */,
@@ -9818,6 +9822,15 @@
 			path = SFHFKeychainUtils;
 			sourceTree = "<group>";
 		};
+		CAEE45CE165E2DEC001E02F1 /* SNS */ = {
+			isa = PBXGroup;
+			children = (
+				CAEE45CF165E2DFE001E02F1 /* GameSNSService.h */,
+				CAEE45D0165E2DFE001E02F1 /* GameSNSService.m */,
+			);
+			path = SNS;
+			sourceTree = "<group>";
+		};
 		CAEECD9015DDEEF700FA5A2A /* Board */ = {
 			isa = PBXGroup;
 			children = (
@@ -11987,6 +12000,7 @@
 				CA42FE08165DCD8D0097453A /* BBSPostDetailUserCell.m in Sources */,
 				CAEE45BD165E14D5001E02F1 /* SFHFKeychainUtils.m in Sources */,
 				CA42FE27165E24850097453A /* BBSModelExt.m in Sources */,
+				CAEE45D1165E2DFE001E02F1 /* GameSNSService.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
