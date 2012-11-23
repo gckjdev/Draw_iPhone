@@ -170,6 +170,7 @@
     if (_delegate && [_delegate respondsToSelector:@selector(didClickOnAvatar:)]) {
         [_delegate didClickOnAvatar:self];
     }
+    [self showLoseCoins:999];
 }
 
 - (void)setAvatarUrl:(NSString *)url gender:(BOOL)gender
@@ -272,7 +273,7 @@
     
     animGroup.duration             = disappear.beginTime+disappear.duration;
     animGroup.timingFunction      = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-    animGroup.repeatCount         = 1;//FLT_MAX;  //"forever";
+//    animGroup.repeatCount         = 1;//FLT_MAX;  //"forever";
     animGroup.fillMode             = kCAFillModeForwards;
     animGroup.animations             = [NSArray arrayWithObjects:moveUp, disappear, nil];
     [animGroup setValue:@"MOVE_UP"  forKey:@"ANIM_GROUP"];
@@ -282,10 +283,12 @@
 
 - (void)showWinCoins:(int)coinsCount
 {
-    [_rewardCoinView.layer removeAllAnimations];
+    PPDebug(@"<test>%@ win %d golds", self.nickNameLabel.text, coinsCount);
+    
     if (coinsCount == 0) {
         return;
     }
+    [_rewardCoinView.layer removeAllAnimations];
     [self.coinImageView setImage:[ShareImageManager defaultManager].coinImage];
     [self bringSubviewToFront:_rewardCoinView];
     [_rewardCoinLabel setText:[NSString stringWithFormat:@"%+d",coinsCount]];
@@ -298,6 +301,7 @@
 - (void)showLoseCoins:(int)coins
 {
     [self showWinCoins:-coins];
+    
 }
 
 @end
