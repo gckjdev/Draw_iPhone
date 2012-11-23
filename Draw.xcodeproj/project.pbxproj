@@ -783,6 +783,8 @@
 		CA42FE0C165DCDBC0097453A /* BBSPostActionHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA42FE0B165DCDBC0097453A /* BBSPostActionHeaderView.xib */; };
 		CA42FE0E165DCDCD0097453A /* BBSPostDetailUserCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA42FE0D165DCDCD0097453A /* BBSPostDetailUserCell.xib */; };
 		CA42FE27165E24850097453A /* BBSModelExt.m in Sources */ = {isa = PBXBuildFile; fileRef = CA42FE26165E24850097453A /* BBSModelExt.m */; };
+		CA42FE2C165F1F0C0097453A /* BBSActionListController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA42FE2A165F1F0C0097453A /* BBSActionListController.m */; };
+		CA42FE2D165F1F0C0097453A /* BBSActionListController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA42FE2B165F1F0C0097453A /* BBSActionListController.xib */; };
 		CA4FF001152AEFDF00F0AC88 /* ColorGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = CA4FF000152AEFDF00F0AC88 /* ColorGroup.m */; };
 		CA4FF00A152AF21900F0AC88 /* ColorShopCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA4FF008152AF21900F0AC88 /* ColorShopCell.m */; };
 		CA4FF00B152AF21900F0AC88 /* ColorShopCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA4FF009152AF21900F0AC88 /* ColorShopCell.xib */; };
@@ -3181,6 +3183,9 @@
 		CA42FE0D165DCDCD0097453A /* BBSPostDetailUserCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BBSPostDetailUserCell.xib; sourceTree = "<group>"; };
 		CA42FE25165E24850097453A /* BBSModelExt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBSModelExt.h; sourceTree = "<group>"; };
 		CA42FE26165E24850097453A /* BBSModelExt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBSModelExt.m; sourceTree = "<group>"; };
+		CA42FE29165F1F0C0097453A /* BBSActionListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBSActionListController.h; sourceTree = "<group>"; };
+		CA42FE2A165F1F0C0097453A /* BBSActionListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBSActionListController.m; sourceTree = "<group>"; };
+		CA42FE2B165F1F0C0097453A /* BBSActionListController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BBSActionListController.xib; sourceTree = "<group>"; };
 		CA4AF8C015D23A4E00734FAC /* MainDataModel 7.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "MainDataModel 7.xcdatamodel"; sourceTree = "<group>"; };
 		CA4F066F1546F66500A38C84 /* MainDataModel 3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "MainDataModel 3.xcdatamodel"; sourceTree = "<group>"; };
 		CA4FEFFF152AEFDF00F0AC88 /* ColorGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorGroup.h; sourceTree = "<group>"; };
@@ -7361,6 +7366,7 @@
 		CA41512B165395A30062A638 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				CA42FE28165F1AF10097453A /* Action */,
 				CAA7992F1659D2AC00429611 /* Post */,
 				CAA7992E1659D29500429611 /* Board */,
 				CA4151AA165502630062A638 /* View */,
@@ -7558,6 +7564,16 @@
 				CA42FE26165E24850097453A /* BBSModelExt.m */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		CA42FE28165F1AF10097453A /* Action */ = {
+			isa = PBXGroup;
+			children = (
+				CA42FE29165F1F0C0097453A /* BBSActionListController.h */,
+				CA42FE2A165F1F0C0097453A /* BBSActionListController.m */,
+				CA42FE2B165F1F0C0097453A /* BBSActionListController.xib */,
+			);
+			name = Action;
 			sourceTree = "<group>";
 		};
 		CA51816A15A2D79700AD5A78 /* CustomStatueBar */ = {
@@ -11363,6 +11379,7 @@
 				CA42FE0A165DCDA30097453A /* BBSPostDetailCell.xib in Resources */,
 				CA42FE0C165DCDBC0097453A /* BBSPostActionHeaderView.xib in Resources */,
 				CA42FE0E165DCDCD0097453A /* BBSPostDetailUserCell.xib in Resources */,
+				CA42FE2D165F1F0C0097453A /* BBSActionListController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -11987,6 +12004,7 @@
 				CA42FE08165DCD8D0097453A /* BBSPostDetailUserCell.m in Sources */,
 				CAEE45BD165E14D5001E02F1 /* SFHFKeychainUtils.m in Sources */,
 				CA42FE27165E24850097453A /* BBSModelExt.m in Sources */,
+				CA42FE2C165F1F0C0097453A /* BBSActionListController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
