@@ -44,10 +44,10 @@
     return @"BBSPostDetailCell";
 }
 
-+ (CGFloat)getCellHeight
-{
-    return 120.0f;
-}
+//+ (CGFloat)getCellHeight
+//{
+//    return 120.0f;
+//}
 
 + (CGFloat)getTextContentHeightWithText:(NSString *)text
 {

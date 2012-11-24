@@ -26,9 +26,12 @@ static LmWallService* _defaultService;
 
 + (LmWallService*)defaultService
 {
-    if (_defaultService == nil){
-        _defaultService = [[LmWallService alloc] init];
-    }
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        if (_defaultService == nil){
+            _defaultService = [[LmWallService alloc] init];
+        }
+    });
     
     return _defaultService;
 }

@@ -48,8 +48,11 @@ typedef enum {
 
 @interface PBBBSAction (ActionExt)
 
+- (BOOL)isCommet;
+- (BOOL)isReply;
+- (BOOL)isSupport;
 - (NSString *)showText;
-
+- (NSString *)showSourceText;
 @end
 
 @interface PBBBSActionSource (ActionSourceExt)
@@ -57,8 +60,6 @@ typedef enum {
 - (BOOL)commentToMe;
 - (BOOL)replyToMe;
 - (NSString *)replyNick;
-- (BOOL)isCommet;
-- (BOOL)isReply;
 
 @end
 

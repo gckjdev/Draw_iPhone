@@ -78,7 +78,8 @@
 
 - (NSString*)sinaAppRedirectURI
 {
-    return @"http://www.drawlively.com";
+//    return @"http://www.drawlively.com";
+    return @"http://";
 }
 
 - (NSString*)qqAppKey
