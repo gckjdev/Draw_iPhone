@@ -737,6 +737,7 @@
 		CA42FE2D165F1F0C0097453A /* BBSActionListController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA42FE2B165F1F0C0097453A /* BBSActionListController.xib */; };
 		CA42FE4B165F2FF30097453A /* BBSUserActionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA42FE49165F2FF30097453A /* BBSUserActionCell.m */; };
 		CA42FE4C165F2FF30097453A /* BBSUserActionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA42FE4A165F2FF30097453A /* BBSUserActionCell.xib */; };
+		CA42FE861660B73A0097453A /* DrawGameAnimationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA42FE851660B73A0097453A /* DrawGameAnimationManager.m */; };
 		CA4FF001152AEFDF00F0AC88 /* ColorGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = CA4FF000152AEFDF00F0AC88 /* ColorGroup.m */; };
 		CA4FF00A152AF21900F0AC88 /* ColorShopCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA4FF008152AF21900F0AC88 /* ColorShopCell.m */; };
 		CA4FF00B152AF21900F0AC88 /* ColorShopCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA4FF009152AF21900F0AC88 /* ColorShopCell.xib */; };
@@ -3079,6 +3080,8 @@
 		CA42FE48165F2FF30097453A /* BBSUserActionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBSUserActionCell.h; sourceTree = "<group>"; };
 		CA42FE49165F2FF30097453A /* BBSUserActionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBSUserActionCell.m; sourceTree = "<group>"; };
 		CA42FE4A165F2FF30097453A /* BBSUserActionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BBSUserActionCell.xib; sourceTree = "<group>"; };
+		CA42FE841660B73A0097453A /* DrawGameAnimationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawGameAnimationManager.h; sourceTree = "<group>"; };
+		CA42FE851660B73A0097453A /* DrawGameAnimationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawGameAnimationManager.m; sourceTree = "<group>"; };
 		CA4AF8C015D23A4E00734FAC /* MainDataModel 7.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "MainDataModel 7.xcdatamodel"; sourceTree = "<group>"; };
 		CA4F066F1546F66500A38C84 /* MainDataModel 3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "MainDataModel 3.xcdatamodel"; sourceTree = "<group>"; };
 		CA4FEFFF152AEFDF00F0AC88 /* ColorGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorGroup.h; sourceTree = "<group>"; };
@@ -7217,6 +7220,15 @@
 			name = Action;
 			sourceTree = "<group>";
 		};
+		CA42FE831660B7390097453A /* Animation */ = {
+			isa = PBXGroup;
+			children = (
+				CA42FE841660B73A0097453A /* DrawGameAnimationManager.h */,
+				CA42FE851660B73A0097453A /* DrawGameAnimationManager.m */,
+			);
+			path = Animation;
+			sourceTree = "<group>";
+		};
 		CA51816A15A2D79700AD5A78 /* CustomStatueBar */ = {
 			isa = PBXGroup;
 			children = (
@@ -8800,6 +8812,7 @@
 		CAECE0291503B25500BC2404 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				CA42FE831660B7390097453A /* Animation */,
 				CA913A2E1653431900B6387F /* Resource */,
 				CA1882A91648C7C7000942D6 /* Storage */,
 				C2E7401C1629500A0037E7F6 /* UseItemScene */,
@@ -12063,6 +12076,7 @@
 				CAFE008516609CEC00441D77 /* FacetimeService.m in Sources */,
 				CAFE008616609CEC00441D77 /* FacetimeUserInfoView.m in Sources */,
 				CAFE008916609CEC00441D77 /* MatchingFacetimeUserView.m in Sources */,
+				CA42FE861660B73A0097453A /* DrawGameAnimationManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
