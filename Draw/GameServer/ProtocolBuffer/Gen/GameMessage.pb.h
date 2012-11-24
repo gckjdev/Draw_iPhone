@@ -91,6 +91,8 @@
 @class PBBBSReward_Builder;
 @class PBBBSUser;
 @class PBBBSUser_Builder;
+@class PBColor;
+@class PBColor_Builder;
 @class PBCommentInfo;
 @class PBCommentInfo_Builder;
 @class PBDice;
@@ -121,6 +123,12 @@
 @class PBMessageStat;
 @class PBMessageStat_Builder;
 @class PBMessage_Builder;
+@class PBNoCompressDrawAction;
+@class PBNoCompressDrawAction_Builder;
+@class PBNoCompressDrawData;
+@class PBNoCompressDrawData_Builder;
+@class PBPoint;
+@class PBPoint_Builder;
 @class PBPoker;
 @class PBPoker_Builder;
 @class PBSNSUser;

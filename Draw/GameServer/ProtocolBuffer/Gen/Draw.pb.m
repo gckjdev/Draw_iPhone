@@ -2759,3 +2759,1109 @@ static PBFeed* defaultPBFeedInstance = nil;
 }
 @end
 
+@interface PBPoint ()
+@property Float32 x;
+@property Float32 y;
+@end
+
+@implementation PBPoint
+
+- (BOOL) hasX {
+  return !!hasX_;
+}
+- (void) setHasX:(BOOL) value {
+  hasX_ = !!value;
+}
+@synthesize x;
+- (BOOL) hasY {
+  return !!hasY_;
+}
+- (void) setHasY:(BOOL) value {
+  hasY_ = !!value;
+}
+@synthesize y;
+- (void) dealloc {
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.x = 0;
+    self.y = 0;
+  }
+  return self;
+}
+static PBPoint* defaultPBPointInstance = nil;
++ (void) initialize {
+  if (self == [PBPoint class]) {
+    defaultPBPointInstance = [[PBPoint alloc] init];
+  }
+}
++ (PBPoint*) defaultInstance {
+  return defaultPBPointInstance;
+}
+- (PBPoint*) defaultInstance {
+  return defaultPBPointInstance;
+}
+- (BOOL) isInitialized {
+  if (!self.hasX) {
+    return NO;
+  }
+  if (!self.hasY) {
+    return NO;
+  }
+  return YES;
+}
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
+  if (self.hasX) {
+    [output writeFloat:1 value:self.x];
+  }
+  if (self.hasY) {
+    [output writeFloat:2 value:self.y];
+  }
+  [self.unknownFields writeToCodedOutputStream:output];
+}
+- (int32_t) serializedSize {
+  int32_t size = memoizedSerializedSize;
+  if (size != -1) {
+    return size;
+  }
+
+  size = 0;
+  if (self.hasX) {
+    size += computeFloatSize(1, self.x);
+  }
+  if (self.hasY) {
+    size += computeFloatSize(2, self.y);
+  }
+  size += self.unknownFields.serializedSize;
+  memoizedSerializedSize = size;
+  return size;
+}
++ (PBPoint*) parseFromData:(NSData*) data {
+  return (PBPoint*)[[[PBPoint builder] mergeFromData:data] build];
+}
++ (PBPoint*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBPoint*)[[[PBPoint builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+}
++ (PBPoint*) parseFromInputStream:(NSInputStream*) input {
+  return (PBPoint*)[[[PBPoint builder] mergeFromInputStream:input] build];
+}
++ (PBPoint*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBPoint*)[[[PBPoint builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (PBPoint*) parseFromCodedInputStream:(PBCodedInputStream*) input {
+  return (PBPoint*)[[[PBPoint builder] mergeFromCodedInputStream:input] build];
+}
++ (PBPoint*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBPoint*)[[[PBPoint builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (PBPoint_Builder*) builder {
+  return [[[PBPoint_Builder alloc] init] autorelease];
+}
++ (PBPoint_Builder*) builderWithPrototype:(PBPoint*) prototype {
+  return [[PBPoint builder] mergeFrom:prototype];
+}
+- (PBPoint_Builder*) builder {
+  return [PBPoint builder];
+}
+@end
+
+@interface PBPoint_Builder()
+@property (retain) PBPoint* result;
+@end
+
+@implementation PBPoint_Builder
+@synthesize result;
+- (void) dealloc {
+  self.result = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.result = [[[PBPoint alloc] init] autorelease];
+  }
+  return self;
+}
+- (PBGeneratedMessage*) internalGetResult {
+  return result;
+}
+- (PBPoint_Builder*) clear {
+  self.result = [[[PBPoint alloc] init] autorelease];
+  return self;
+}
+- (PBPoint_Builder*) clone {
+  return [PBPoint builderWithPrototype:result];
+}
+- (PBPoint*) defaultInstance {
+  return [PBPoint defaultInstance];
+}
+- (PBPoint*) build {
+  [self checkInitialized];
+  return [self buildPartial];
+}
+- (PBPoint*) buildPartial {
+  PBPoint* returnMe = [[result retain] autorelease];
+  self.result = nil;
+  return returnMe;
+}
+- (PBPoint_Builder*) mergeFrom:(PBPoint*) other {
+  if (other == [PBPoint defaultInstance]) {
+    return self;
+  }
+  if (other.hasX) {
+    [self setX:other.x];
+  }
+  if (other.hasY) {
+    [self setY:other.y];
+  }
+  [self mergeUnknownFields:other.unknownFields];
+  return self;
+}
+- (PBPoint_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
+  return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
+}
+- (PBPoint_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
+  while (YES) {
+    int32_t tag = [input readTag];
+    switch (tag) {
+      case 0:
+        [self setUnknownFields:[unknownFields build]];
+        return self;
+      default: {
+        if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
+          [self setUnknownFields:[unknownFields build]];
+          return self;
+        }
+        break;
+      }
+      case 13: {
+        [self setX:[input readFloat]];
+        break;
+      }
+      case 21: {
+        [self setY:[input readFloat]];
+        break;
+      }
+    }
+  }
+}
+- (BOOL) hasX {
+  return result.hasX;
+}
+- (Float32) x {
+  return result.x;
+}
+- (PBPoint_Builder*) setX:(Float32) value {
+  result.hasX = YES;
+  result.x = value;
+  return self;
+}
+- (PBPoint_Builder*) clearX {
+  result.hasX = NO;
+  result.x = 0;
+  return self;
+}
+- (BOOL) hasY {
+  return result.hasY;
+}
+- (Float32) y {
+  return result.y;
+}
+- (PBPoint_Builder*) setY:(Float32) value {
+  result.hasY = YES;
+  result.y = value;
+  return self;
+}
+- (PBPoint_Builder*) clearY {
+  result.hasY = NO;
+  result.y = 0;
+  return self;
+}
+@end
+
+@interface PBColor ()
+@property Float32 red;
+@property Float32 blue;
+@property Float32 green;
+@property Float32 alpha;
+@end
+
+@implementation PBColor
+
+- (BOOL) hasRed {
+  return !!hasRed_;
+}
+- (void) setHasRed:(BOOL) value {
+  hasRed_ = !!value;
+}
+@synthesize red;
+- (BOOL) hasBlue {
+  return !!hasBlue_;
+}
+- (void) setHasBlue:(BOOL) value {
+  hasBlue_ = !!value;
+}
+@synthesize blue;
+- (BOOL) hasGreen {
+  return !!hasGreen_;
+}
+- (void) setHasGreen:(BOOL) value {
+  hasGreen_ = !!value;
+}
+@synthesize green;
+- (BOOL) hasAlpha {
+  return !!hasAlpha_;
+}
+- (void) setHasAlpha:(BOOL) value {
+  hasAlpha_ = !!value;
+}
+@synthesize alpha;
+- (void) dealloc {
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.red = 0;
+    self.blue = 0;
+    self.green = 0;
+    self.alpha = 0;
+  }
+  return self;
+}
+static PBColor* defaultPBColorInstance = nil;
++ (void) initialize {
+  if (self == [PBColor class]) {
+    defaultPBColorInstance = [[PBColor alloc] init];
+  }
+}
++ (PBColor*) defaultInstance {
+  return defaultPBColorInstance;
+}
+- (PBColor*) defaultInstance {
+  return defaultPBColorInstance;
+}
+- (BOOL) isInitialized {
+  if (!self.hasRed) {
+    return NO;
+  }
+  if (!self.hasBlue) {
+    return NO;
+  }
+  if (!self.hasGreen) {
+    return NO;
+  }
+  if (!self.hasAlpha) {
+    return NO;
+  }
+  return YES;
+}
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
+  if (self.hasRed) {
+    [output writeFloat:1 value:self.red];
+  }
+  if (self.hasBlue) {
+    [output writeFloat:2 value:self.blue];
+  }
+  if (self.hasGreen) {
+    [output writeFloat:3 value:self.green];
+  }
+  if (self.hasAlpha) {
+    [output writeFloat:4 value:self.alpha];
+  }
+  [self.unknownFields writeToCodedOutputStream:output];
+}
+- (int32_t) serializedSize {
+  int32_t size = memoizedSerializedSize;
+  if (size != -1) {
+    return size;
+  }
+
+  size = 0;
+  if (self.hasRed) {
+    size += computeFloatSize(1, self.red);
+  }
+  if (self.hasBlue) {
+    size += computeFloatSize(2, self.blue);
+  }
+  if (self.hasGreen) {
+    size += computeFloatSize(3, self.green);
+  }
+  if (self.hasAlpha) {
+    size += computeFloatSize(4, self.alpha);
+  }
+  size += self.unknownFields.serializedSize;
+  memoizedSerializedSize = size;
+  return size;
+}
++ (PBColor*) parseFromData:(NSData*) data {
+  return (PBColor*)[[[PBColor builder] mergeFromData:data] build];
+}
++ (PBColor*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBColor*)[[[PBColor builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+}
++ (PBColor*) parseFromInputStream:(NSInputStream*) input {
+  return (PBColor*)[[[PBColor builder] mergeFromInputStream:input] build];
+}
++ (PBColor*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBColor*)[[[PBColor builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (PBColor*) parseFromCodedInputStream:(PBCodedInputStream*) input {
+  return (PBColor*)[[[PBColor builder] mergeFromCodedInputStream:input] build];
+}
++ (PBColor*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBColor*)[[[PBColor builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (PBColor_Builder*) builder {
+  return [[[PBColor_Builder alloc] init] autorelease];
+}
++ (PBColor_Builder*) builderWithPrototype:(PBColor*) prototype {
+  return [[PBColor builder] mergeFrom:prototype];
+}
+- (PBColor_Builder*) builder {
+  return [PBColor builder];
+}
+@end
+
+@interface PBColor_Builder()
+@property (retain) PBColor* result;
+@end
+
+@implementation PBColor_Builder
+@synthesize result;
+- (void) dealloc {
+  self.result = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.result = [[[PBColor alloc] init] autorelease];
+  }
+  return self;
+}
+- (PBGeneratedMessage*) internalGetResult {
+  return result;
+}
+- (PBColor_Builder*) clear {
+  self.result = [[[PBColor alloc] init] autorelease];
+  return self;
+}
+- (PBColor_Builder*) clone {
+  return [PBColor builderWithPrototype:result];
+}
+- (PBColor*) defaultInstance {
+  return [PBColor defaultInstance];
+}
+- (PBColor*) build {
+  [self checkInitialized];
+  return [self buildPartial];
+}
+- (PBColor*) buildPartial {
+  PBColor* returnMe = [[result retain] autorelease];
+  self.result = nil;
+  return returnMe;
+}
+- (PBColor_Builder*) mergeFrom:(PBColor*) other {
+  if (other == [PBColor defaultInstance]) {
+    return self;
+  }
+  if (other.hasRed) {
+    [self setRed:other.red];
+  }
+  if (other.hasBlue) {
+    [self setBlue:other.blue];
+  }
+  if (other.hasGreen) {
+    [self setGreen:other.green];
+  }
+  if (other.hasAlpha) {
+    [self setAlpha:other.alpha];
+  }
+  [self mergeUnknownFields:other.unknownFields];
+  return self;
+}
+- (PBColor_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
+  return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
+}
+- (PBColor_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
+  while (YES) {
+    int32_t tag = [input readTag];
+    switch (tag) {
+      case 0:
+        [self setUnknownFields:[unknownFields build]];
+        return self;
+      default: {
+        if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
+          [self setUnknownFields:[unknownFields build]];
+          return self;
+        }
+        break;
+      }
+      case 13: {
+        [self setRed:[input readFloat]];
+        break;
+      }
+      case 21: {
+        [self setBlue:[input readFloat]];
+        break;
+      }
+      case 29: {
+        [self setGreen:[input readFloat]];
+        break;
+      }
+      case 37: {
+        [self setAlpha:[input readFloat]];
+        break;
+      }
+    }
+  }
+}
+- (BOOL) hasRed {
+  return result.hasRed;
+}
+- (Float32) red {
+  return result.red;
+}
+- (PBColor_Builder*) setRed:(Float32) value {
+  result.hasRed = YES;
+  result.red = value;
+  return self;
+}
+- (PBColor_Builder*) clearRed {
+  result.hasRed = NO;
+  result.red = 0;
+  return self;
+}
+- (BOOL) hasBlue {
+  return result.hasBlue;
+}
+- (Float32) blue {
+  return result.blue;
+}
+- (PBColor_Builder*) setBlue:(Float32) value {
+  result.hasBlue = YES;
+  result.blue = value;
+  return self;
+}
+- (PBColor_Builder*) clearBlue {
+  result.hasBlue = NO;
+  result.blue = 0;
+  return self;
+}
+- (BOOL) hasGreen {
+  return result.hasGreen;
+}
+- (Float32) green {
+  return result.green;
+}
+- (PBColor_Builder*) setGreen:(Float32) value {
+  result.hasGreen = YES;
+  result.green = value;
+  return self;
+}
+- (PBColor_Builder*) clearGreen {
+  result.hasGreen = NO;
+  result.green = 0;
+  return self;
+}
+- (BOOL) hasAlpha {
+  return result.hasAlpha;
+}
+- (Float32) alpha {
+  return result.alpha;
+}
+- (PBColor_Builder*) setAlpha:(Float32) value {
+  result.hasAlpha = YES;
+  result.alpha = value;
+  return self;
+}
+- (PBColor_Builder*) clearAlpha {
+  result.hasAlpha = NO;
+  result.alpha = 0;
+  return self;
+}
+@end
+
+@interface PBNoCompressDrawAction ()
+@property int32_t type;
+@property (retain) NSMutableArray* mutablePointList;
+@property (retain) PBColor* color;
+@property Float32 width;
+@property int32_t penType;
+@end
+
+@implementation PBNoCompressDrawAction
+
+- (BOOL) hasType {
+  return !!hasType_;
+}
+- (void) setHasType:(BOOL) value {
+  hasType_ = !!value;
+}
+@synthesize type;
+@synthesize mutablePointList;
+- (BOOL) hasColor {
+  return !!hasColor_;
+}
+- (void) setHasColor:(BOOL) value {
+  hasColor_ = !!value;
+}
+@synthesize color;
+- (BOOL) hasWidth {
+  return !!hasWidth_;
+}
+- (void) setHasWidth:(BOOL) value {
+  hasWidth_ = !!value;
+}
+@synthesize width;
+- (BOOL) hasPenType {
+  return !!hasPenType_;
+}
+- (void) setHasPenType:(BOOL) value {
+  hasPenType_ = !!value;
+}
+@synthesize penType;
+- (void) dealloc {
+  self.mutablePointList = nil;
+  self.color = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.type = 0;
+    self.color = [PBColor defaultInstance];
+    self.width = 0;
+    self.penType = 0;
+  }
+  return self;
+}
+static PBNoCompressDrawAction* defaultPBNoCompressDrawActionInstance = nil;
++ (void) initialize {
+  if (self == [PBNoCompressDrawAction class]) {
+    defaultPBNoCompressDrawActionInstance = [[PBNoCompressDrawAction alloc] init];
+  }
+}
++ (PBNoCompressDrawAction*) defaultInstance {
+  return defaultPBNoCompressDrawActionInstance;
+}
+- (PBNoCompressDrawAction*) defaultInstance {
+  return defaultPBNoCompressDrawActionInstance;
+}
+- (NSArray*) pointList {
+  return mutablePointList;
+}
+- (PBPoint*) pointAtIndex:(int32_t) index {
+  id value = [mutablePointList objectAtIndex:index];
+  return value;
+}
+- (BOOL) isInitialized {
+  if (!self.hasType) {
+    return NO;
+  }
+  for (PBPoint* element in self.pointList) {
+    if (!element.isInitialized) {
+      return NO;
+    }
+  }
+  if (self.hasColor) {
+    if (!self.color.isInitialized) {
+      return NO;
+    }
+  }
+  return YES;
+}
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
+  if (self.hasType) {
+    [output writeInt32:1 value:self.type];
+  }
+  for (PBPoint* element in self.pointList) {
+    [output writeMessage:2 value:element];
+  }
+  if (self.hasColor) {
+    [output writeMessage:3 value:self.color];
+  }
+  if (self.hasWidth) {
+    [output writeFloat:4 value:self.width];
+  }
+  if (self.hasPenType) {
+    [output writeInt32:5 value:self.penType];
+  }
+  [self.unknownFields writeToCodedOutputStream:output];
+}
+- (int32_t) serializedSize {
+  int32_t size = memoizedSerializedSize;
+  if (size != -1) {
+    return size;
+  }
+
+  size = 0;
+  if (self.hasType) {
+    size += computeInt32Size(1, self.type);
+  }
+  for (PBPoint* element in self.pointList) {
+    size += computeMessageSize(2, element);
+  }
+  if (self.hasColor) {
+    size += computeMessageSize(3, self.color);
+  }
+  if (self.hasWidth) {
+    size += computeFloatSize(4, self.width);
+  }
+  if (self.hasPenType) {
+    size += computeInt32Size(5, self.penType);
+  }
+  size += self.unknownFields.serializedSize;
+  memoizedSerializedSize = size;
+  return size;
+}
++ (PBNoCompressDrawAction*) parseFromData:(NSData*) data {
+  return (PBNoCompressDrawAction*)[[[PBNoCompressDrawAction builder] mergeFromData:data] build];
+}
++ (PBNoCompressDrawAction*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBNoCompressDrawAction*)[[[PBNoCompressDrawAction builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+}
++ (PBNoCompressDrawAction*) parseFromInputStream:(NSInputStream*) input {
+  return (PBNoCompressDrawAction*)[[[PBNoCompressDrawAction builder] mergeFromInputStream:input] build];
+}
++ (PBNoCompressDrawAction*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBNoCompressDrawAction*)[[[PBNoCompressDrawAction builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (PBNoCompressDrawAction*) parseFromCodedInputStream:(PBCodedInputStream*) input {
+  return (PBNoCompressDrawAction*)[[[PBNoCompressDrawAction builder] mergeFromCodedInputStream:input] build];
+}
++ (PBNoCompressDrawAction*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBNoCompressDrawAction*)[[[PBNoCompressDrawAction builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (PBNoCompressDrawAction_Builder*) builder {
+  return [[[PBNoCompressDrawAction_Builder alloc] init] autorelease];
+}
++ (PBNoCompressDrawAction_Builder*) builderWithPrototype:(PBNoCompressDrawAction*) prototype {
+  return [[PBNoCompressDrawAction builder] mergeFrom:prototype];
+}
+- (PBNoCompressDrawAction_Builder*) builder {
+  return [PBNoCompressDrawAction builder];
+}
+@end
+
+@interface PBNoCompressDrawAction_Builder()
+@property (retain) PBNoCompressDrawAction* result;
+@end
+
+@implementation PBNoCompressDrawAction_Builder
+@synthesize result;
+- (void) dealloc {
+  self.result = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.result = [[[PBNoCompressDrawAction alloc] init] autorelease];
+  }
+  return self;
+}
+- (PBGeneratedMessage*) internalGetResult {
+  return result;
+}
+- (PBNoCompressDrawAction_Builder*) clear {
+  self.result = [[[PBNoCompressDrawAction alloc] init] autorelease];
+  return self;
+}
+- (PBNoCompressDrawAction_Builder*) clone {
+  return [PBNoCompressDrawAction builderWithPrototype:result];
+}
+- (PBNoCompressDrawAction*) defaultInstance {
+  return [PBNoCompressDrawAction defaultInstance];
+}
+- (PBNoCompressDrawAction*) build {
+  [self checkInitialized];
+  return [self buildPartial];
+}
+- (PBNoCompressDrawAction*) buildPartial {
+  PBNoCompressDrawAction* returnMe = [[result retain] autorelease];
+  self.result = nil;
+  return returnMe;
+}
+- (PBNoCompressDrawAction_Builder*) mergeFrom:(PBNoCompressDrawAction*) other {
+  if (other == [PBNoCompressDrawAction defaultInstance]) {
+    return self;
+  }
+  if (other.hasType) {
+    [self setType:other.type];
+  }
+  if (other.mutablePointList.count > 0) {
+    if (result.mutablePointList == nil) {
+      result.mutablePointList = [NSMutableArray array];
+    }
+    [result.mutablePointList addObjectsFromArray:other.mutablePointList];
+  }
+  if (other.hasColor) {
+    [self mergeColor:other.color];
+  }
+  if (other.hasWidth) {
+    [self setWidth:other.width];
+  }
+  if (other.hasPenType) {
+    [self setPenType:other.penType];
+  }
+  [self mergeUnknownFields:other.unknownFields];
+  return self;
+}
+- (PBNoCompressDrawAction_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
+  return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
+}
+- (PBNoCompressDrawAction_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
+  while (YES) {
+    int32_t tag = [input readTag];
+    switch (tag) {
+      case 0:
+        [self setUnknownFields:[unknownFields build]];
+        return self;
+      default: {
+        if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
+          [self setUnknownFields:[unknownFields build]];
+          return self;
+        }
+        break;
+      }
+      case 8: {
+        [self setType:[input readInt32]];
+        break;
+      }
+      case 18: {
+        PBPoint_Builder* subBuilder = [PBPoint builder];
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self addPoint:[subBuilder buildPartial]];
+        break;
+      }
+      case 26: {
+        PBColor_Builder* subBuilder = [PBColor builder];
+        if (self.hasColor) {
+          [subBuilder mergeFrom:self.color];
+        }
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self setColor:[subBuilder buildPartial]];
+        break;
+      }
+      case 37: {
+        [self setWidth:[input readFloat]];
+        break;
+      }
+      case 40: {
+        [self setPenType:[input readInt32]];
+        break;
+      }
+    }
+  }
+}
+- (BOOL) hasType {
+  return result.hasType;
+}
+- (int32_t) type {
+  return result.type;
+}
+- (PBNoCompressDrawAction_Builder*) setType:(int32_t) value {
+  result.hasType = YES;
+  result.type = value;
+  return self;
+}
+- (PBNoCompressDrawAction_Builder*) clearType {
+  result.hasType = NO;
+  result.type = 0;
+  return self;
+}
+- (NSArray*) pointList {
+  if (result.mutablePointList == nil) { return [NSArray array]; }
+  return result.mutablePointList;
+}
+- (PBPoint*) pointAtIndex:(int32_t) index {
+  return [result pointAtIndex:index];
+}
+- (PBNoCompressDrawAction_Builder*) replacePointAtIndex:(int32_t) index with:(PBPoint*) value {
+  [result.mutablePointList replaceObjectAtIndex:index withObject:value];
+  return self;
+}
+- (PBNoCompressDrawAction_Builder*) addAllPoint:(NSArray*) values {
+  if (result.mutablePointList == nil) {
+    result.mutablePointList = [NSMutableArray array];
+  }
+  [result.mutablePointList addObjectsFromArray:values];
+  return self;
+}
+- (PBNoCompressDrawAction_Builder*) clearPointList {
+  result.mutablePointList = nil;
+  return self;
+}
+- (PBNoCompressDrawAction_Builder*) addPoint:(PBPoint*) value {
+  if (result.mutablePointList == nil) {
+    result.mutablePointList = [NSMutableArray array];
+  }
+  [result.mutablePointList addObject:value];
+  return self;
+}
+- (BOOL) hasColor {
+  return result.hasColor;
+}
+- (PBColor*) color {
+  return result.color;
+}
+- (PBNoCompressDrawAction_Builder*) setColor:(PBColor*) value {
+  result.hasColor = YES;
+  result.color = value;
+  return self;
+}
+- (PBNoCompressDrawAction_Builder*) setColorBuilder:(PBColor_Builder*) builderForValue {
+  return [self setColor:[builderForValue build]];
+}
+- (PBNoCompressDrawAction_Builder*) mergeColor:(PBColor*) value {
+  if (result.hasColor &&
+      result.color != [PBColor defaultInstance]) {
+    result.color =
+      [[[PBColor builderWithPrototype:result.color] mergeFrom:value] buildPartial];
+  } else {
+    result.color = value;
+  }
+  result.hasColor = YES;
+  return self;
+}
+- (PBNoCompressDrawAction_Builder*) clearColor {
+  result.hasColor = NO;
+  result.color = [PBColor defaultInstance];
+  return self;
+}
+- (BOOL) hasWidth {
+  return result.hasWidth;
+}
+- (Float32) width {
+  return result.width;
+}
+- (PBNoCompressDrawAction_Builder*) setWidth:(Float32) value {
+  result.hasWidth = YES;
+  result.width = value;
+  return self;
+}
+- (PBNoCompressDrawAction_Builder*) clearWidth {
+  result.hasWidth = NO;
+  result.width = 0;
+  return self;
+}
+- (BOOL) hasPenType {
+  return result.hasPenType;
+}
+- (int32_t) penType {
+  return result.penType;
+}
+- (PBNoCompressDrawAction_Builder*) setPenType:(int32_t) value {
+  result.hasPenType = YES;
+  result.penType = value;
+  return self;
+}
+- (PBNoCompressDrawAction_Builder*) clearPenType {
+  result.hasPenType = NO;
+  result.penType = 0;
+  return self;
+}
+@end
+
+@interface PBNoCompressDrawData ()
+@property (retain) NSMutableArray* mutableDrawActionListList;
+@end
+
+@implementation PBNoCompressDrawData
+
+@synthesize mutableDrawActionListList;
+- (void) dealloc {
+  self.mutableDrawActionListList = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+  }
+  return self;
+}
+static PBNoCompressDrawData* defaultPBNoCompressDrawDataInstance = nil;
++ (void) initialize {
+  if (self == [PBNoCompressDrawData class]) {
+    defaultPBNoCompressDrawDataInstance = [[PBNoCompressDrawData alloc] init];
+  }
+}
++ (PBNoCompressDrawData*) defaultInstance {
+  return defaultPBNoCompressDrawDataInstance;
+}
+- (PBNoCompressDrawData*) defaultInstance {
+  return defaultPBNoCompressDrawDataInstance;
+}
+- (NSArray*) drawActionListList {
+  return mutableDrawActionListList;
+}
+- (PBNoCompressDrawAction*) drawActionListAtIndex:(int32_t) index {
+  id value = [mutableDrawActionListList objectAtIndex:index];
+  return value;
+}
+- (BOOL) isInitialized {
+  for (PBNoCompressDrawAction* element in self.drawActionListList) {
+    if (!element.isInitialized) {
+      return NO;
+    }
+  }
+  return YES;
+}
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
+  for (PBNoCompressDrawAction* element in self.drawActionListList) {
+    [output writeMessage:1 value:element];
+  }
+  [self.unknownFields writeToCodedOutputStream:output];
+}
+- (int32_t) serializedSize {
+  int32_t size = memoizedSerializedSize;
+  if (size != -1) {
+    return size;
+  }
+
+  size = 0;
+  for (PBNoCompressDrawAction* element in self.drawActionListList) {
+    size += computeMessageSize(1, element);
+  }
+  size += self.unknownFields.serializedSize;
+  memoizedSerializedSize = size;
+  return size;
+}
++ (PBNoCompressDrawData*) parseFromData:(NSData*) data {
+  return (PBNoCompressDrawData*)[[[PBNoCompressDrawData builder] mergeFromData:data] build];
+}
++ (PBNoCompressDrawData*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBNoCompressDrawData*)[[[PBNoCompressDrawData builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+}
++ (PBNoCompressDrawData*) parseFromInputStream:(NSInputStream*) input {
+  return (PBNoCompressDrawData*)[[[PBNoCompressDrawData builder] mergeFromInputStream:input] build];
+}
++ (PBNoCompressDrawData*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBNoCompressDrawData*)[[[PBNoCompressDrawData builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (PBNoCompressDrawData*) parseFromCodedInputStream:(PBCodedInputStream*) input {
+  return (PBNoCompressDrawData*)[[[PBNoCompressDrawData builder] mergeFromCodedInputStream:input] build];
+}
++ (PBNoCompressDrawData*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBNoCompressDrawData*)[[[PBNoCompressDrawData builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (PBNoCompressDrawData_Builder*) builder {
+  return [[[PBNoCompressDrawData_Builder alloc] init] autorelease];
+}
++ (PBNoCompressDrawData_Builder*) builderWithPrototype:(PBNoCompressDrawData*) prototype {
+  return [[PBNoCompressDrawData builder] mergeFrom:prototype];
+}
+- (PBNoCompressDrawData_Builder*) builder {
+  return [PBNoCompressDrawData builder];
+}
+@end
+
+@interface PBNoCompressDrawData_Builder()
+@property (retain) PBNoCompressDrawData* result;
+@end
+
+@implementation PBNoCompressDrawData_Builder
+@synthesize result;
+- (void) dealloc {
+  self.result = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.result = [[[PBNoCompressDrawData alloc] init] autorelease];
+  }
+  return self;
+}
+- (PBGeneratedMessage*) internalGetResult {
+  return result;
+}
+- (PBNoCompressDrawData_Builder*) clear {
+  self.result = [[[PBNoCompressDrawData alloc] init] autorelease];
+  return self;
+}
+- (PBNoCompressDrawData_Builder*) clone {
+  return [PBNoCompressDrawData builderWithPrototype:result];
+}
+- (PBNoCompressDrawData*) defaultInstance {
+  return [PBNoCompressDrawData defaultInstance];
+}
+- (PBNoCompressDrawData*) build {
+  [self checkInitialized];
+  return [self buildPartial];
+}
+- (PBNoCompressDrawData*) buildPartial {
+  PBNoCompressDrawData* returnMe = [[result retain] autorelease];
+  self.result = nil;
+  return returnMe;
+}
+- (PBNoCompressDrawData_Builder*) mergeFrom:(PBNoCompressDrawData*) other {
+  if (other == [PBNoCompressDrawData defaultInstance]) {
+    return self;
+  }
+  if (other.mutableDrawActionListList.count > 0) {
+    if (result.mutableDrawActionListList == nil) {
+      result.mutableDrawActionListList = [NSMutableArray array];
+    }
+    [result.mutableDrawActionListList addObjectsFromArray:other.mutableDrawActionListList];
+  }
+  [self mergeUnknownFields:other.unknownFields];
+  return self;
+}
+- (PBNoCompressDrawData_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
+  return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
+}
+- (PBNoCompressDrawData_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
+  while (YES) {
+    int32_t tag = [input readTag];
+    switch (tag) {
+      case 0:
+        [self setUnknownFields:[unknownFields build]];
+        return self;
+      default: {
+        if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
+          [self setUnknownFields:[unknownFields build]];
+          return self;
+        }
+        break;
+      }
+      case 10: {
+        PBNoCompressDrawAction_Builder* subBuilder = [PBNoCompressDrawAction builder];
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self addDrawActionList:[subBuilder buildPartial]];
+        break;
+      }
+    }
+  }
+}
+- (NSArray*) drawActionListList {
+  if (result.mutableDrawActionListList == nil) { return [NSArray array]; }
+  return result.mutableDrawActionListList;
+}
+- (PBNoCompressDrawAction*) drawActionListAtIndex:(int32_t) index {
+  return [result drawActionListAtIndex:index];
+}
+- (PBNoCompressDrawData_Builder*) replaceDrawActionListAtIndex:(int32_t) index with:(PBNoCompressDrawAction*) value {
+  [result.mutableDrawActionListList replaceObjectAtIndex:index withObject:value];
+  return self;
+}
+- (PBNoCompressDrawData_Builder*) addAllDrawActionList:(NSArray*) values {
+  if (result.mutableDrawActionListList == nil) {
+    result.mutableDrawActionListList = [NSMutableArray array];
+  }
+  [result.mutableDrawActionListList addObjectsFromArray:values];
+  return self;
+}
+- (PBNoCompressDrawData_Builder*) clearDrawActionListList {
+  result.mutableDrawActionListList = nil;
+  return self;
+}
+- (PBNoCompressDrawData_Builder*) addDrawActionList:(PBNoCompressDrawAction*) value {
+  if (result.mutableDrawActionListList == nil) {
+    result.mutableDrawActionListList = [NSMutableArray array];
+  }
+  [result.mutableDrawActionListList addObject:value];
+  return self;
+}
+@end
+

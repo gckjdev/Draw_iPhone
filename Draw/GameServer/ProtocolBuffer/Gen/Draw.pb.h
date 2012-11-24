@@ -4,6 +4,8 @@
 
 #import "GameBasic.pb.h"
 
+@class PBColor;
+@class PBColor_Builder;
 @class PBCommentInfo;
 @class PBCommentInfo_Builder;
 @class PBDraw;
@@ -26,6 +28,12 @@
 @class PBMessageStat;
 @class PBMessageStat_Builder;
 @class PBMessage_Builder;
+@class PBNoCompressDrawAction;
+@class PBNoCompressDrawAction_Builder;
+@class PBNoCompressDrawData;
+@class PBNoCompressDrawData_Builder;
+@class PBPoint;
+@class PBPoint_Builder;
 @class PBSNSUser;
 @class PBSNSUser_Builder;
 @class PBUserResult;
@@ -666,5 +674,273 @@
 - (Float64) contestScore;
 - (PBFeed_Builder*) setContestScore:(Float64) value;
 - (PBFeed_Builder*) clearContestScore;
+@end
+
+@interface PBPoint : PBGeneratedMessage {
+@private
+  BOOL hasX_:1;
+  BOOL hasY_:1;
+  Float32 x;
+  Float32 y;
+}
+- (BOOL) hasX;
+- (BOOL) hasY;
+@property (readonly) Float32 x;
+@property (readonly) Float32 y;
+
++ (PBPoint*) defaultInstance;
+- (PBPoint*) defaultInstance;
+
+- (BOOL) isInitialized;
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
+- (PBPoint_Builder*) builder;
++ (PBPoint_Builder*) builder;
++ (PBPoint_Builder*) builderWithPrototype:(PBPoint*) prototype;
+
++ (PBPoint*) parseFromData:(NSData*) data;
++ (PBPoint*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBPoint*) parseFromInputStream:(NSInputStream*) input;
++ (PBPoint*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBPoint*) parseFromCodedInputStream:(PBCodedInputStream*) input;
++ (PBPoint*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+@end
+
+@interface PBPoint_Builder : PBGeneratedMessage_Builder {
+@private
+  PBPoint* result;
+}
+
+- (PBPoint*) defaultInstance;
+
+- (PBPoint_Builder*) clear;
+- (PBPoint_Builder*) clone;
+
+- (PBPoint*) build;
+- (PBPoint*) buildPartial;
+
+- (PBPoint_Builder*) mergeFrom:(PBPoint*) other;
+- (PBPoint_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (PBPoint_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+
+- (BOOL) hasX;
+- (Float32) x;
+- (PBPoint_Builder*) setX:(Float32) value;
+- (PBPoint_Builder*) clearX;
+
+- (BOOL) hasY;
+- (Float32) y;
+- (PBPoint_Builder*) setY:(Float32) value;
+- (PBPoint_Builder*) clearY;
+@end
+
+@interface PBColor : PBGeneratedMessage {
+@private
+  BOOL hasRed_:1;
+  BOOL hasBlue_:1;
+  BOOL hasGreen_:1;
+  BOOL hasAlpha_:1;
+  Float32 red;
+  Float32 blue;
+  Float32 green;
+  Float32 alpha;
+}
+- (BOOL) hasRed;
+- (BOOL) hasBlue;
+- (BOOL) hasGreen;
+- (BOOL) hasAlpha;
+@property (readonly) Float32 red;
+@property (readonly) Float32 blue;
+@property (readonly) Float32 green;
+@property (readonly) Float32 alpha;
+
++ (PBColor*) defaultInstance;
+- (PBColor*) defaultInstance;
+
+- (BOOL) isInitialized;
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
+- (PBColor_Builder*) builder;
++ (PBColor_Builder*) builder;
++ (PBColor_Builder*) builderWithPrototype:(PBColor*) prototype;
+
++ (PBColor*) parseFromData:(NSData*) data;
++ (PBColor*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBColor*) parseFromInputStream:(NSInputStream*) input;
++ (PBColor*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBColor*) parseFromCodedInputStream:(PBCodedInputStream*) input;
++ (PBColor*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+@end
+
+@interface PBColor_Builder : PBGeneratedMessage_Builder {
+@private
+  PBColor* result;
+}
+
+- (PBColor*) defaultInstance;
+
+- (PBColor_Builder*) clear;
+- (PBColor_Builder*) clone;
+
+- (PBColor*) build;
+- (PBColor*) buildPartial;
+
+- (PBColor_Builder*) mergeFrom:(PBColor*) other;
+- (PBColor_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (PBColor_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+
+- (BOOL) hasRed;
+- (Float32) red;
+- (PBColor_Builder*) setRed:(Float32) value;
+- (PBColor_Builder*) clearRed;
+
+- (BOOL) hasBlue;
+- (Float32) blue;
+- (PBColor_Builder*) setBlue:(Float32) value;
+- (PBColor_Builder*) clearBlue;
+
+- (BOOL) hasGreen;
+- (Float32) green;
+- (PBColor_Builder*) setGreen:(Float32) value;
+- (PBColor_Builder*) clearGreen;
+
+- (BOOL) hasAlpha;
+- (Float32) alpha;
+- (PBColor_Builder*) setAlpha:(Float32) value;
+- (PBColor_Builder*) clearAlpha;
+@end
+
+@interface PBNoCompressDrawAction : PBGeneratedMessage {
+@private
+  BOOL hasWidth_:1;
+  BOOL hasType_:1;
+  BOOL hasPenType_:1;
+  BOOL hasColor_:1;
+  Float32 width;
+  int32_t type;
+  int32_t penType;
+  PBColor* color;
+  NSMutableArray* mutablePointList;
+}
+- (BOOL) hasType;
+- (BOOL) hasColor;
+- (BOOL) hasWidth;
+- (BOOL) hasPenType;
+@property (readonly) int32_t type;
+@property (readonly, retain) PBColor* color;
+@property (readonly) Float32 width;
+@property (readonly) int32_t penType;
+- (NSArray*) pointList;
+- (PBPoint*) pointAtIndex:(int32_t) index;
+
++ (PBNoCompressDrawAction*) defaultInstance;
+- (PBNoCompressDrawAction*) defaultInstance;
+
+- (BOOL) isInitialized;
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
+- (PBNoCompressDrawAction_Builder*) builder;
++ (PBNoCompressDrawAction_Builder*) builder;
++ (PBNoCompressDrawAction_Builder*) builderWithPrototype:(PBNoCompressDrawAction*) prototype;
+
++ (PBNoCompressDrawAction*) parseFromData:(NSData*) data;
++ (PBNoCompressDrawAction*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBNoCompressDrawAction*) parseFromInputStream:(NSInputStream*) input;
++ (PBNoCompressDrawAction*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBNoCompressDrawAction*) parseFromCodedInputStream:(PBCodedInputStream*) input;
++ (PBNoCompressDrawAction*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+@end
+
+@interface PBNoCompressDrawAction_Builder : PBGeneratedMessage_Builder {
+@private
+  PBNoCompressDrawAction* result;
+}
+
+- (PBNoCompressDrawAction*) defaultInstance;
+
+- (PBNoCompressDrawAction_Builder*) clear;
+- (PBNoCompressDrawAction_Builder*) clone;
+
+- (PBNoCompressDrawAction*) build;
+- (PBNoCompressDrawAction*) buildPartial;
+
+- (PBNoCompressDrawAction_Builder*) mergeFrom:(PBNoCompressDrawAction*) other;
+- (PBNoCompressDrawAction_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (PBNoCompressDrawAction_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+
+- (BOOL) hasType;
+- (int32_t) type;
+- (PBNoCompressDrawAction_Builder*) setType:(int32_t) value;
+- (PBNoCompressDrawAction_Builder*) clearType;
+
+- (NSArray*) pointList;
+- (PBPoint*) pointAtIndex:(int32_t) index;
+- (PBNoCompressDrawAction_Builder*) replacePointAtIndex:(int32_t) index with:(PBPoint*) value;
+- (PBNoCompressDrawAction_Builder*) addPoint:(PBPoint*) value;
+- (PBNoCompressDrawAction_Builder*) addAllPoint:(NSArray*) values;
+- (PBNoCompressDrawAction_Builder*) clearPointList;
+
+- (BOOL) hasColor;
+- (PBColor*) color;
+- (PBNoCompressDrawAction_Builder*) setColor:(PBColor*) value;
+- (PBNoCompressDrawAction_Builder*) setColorBuilder:(PBColor_Builder*) builderForValue;
+- (PBNoCompressDrawAction_Builder*) mergeColor:(PBColor*) value;
+- (PBNoCompressDrawAction_Builder*) clearColor;
+
+- (BOOL) hasWidth;
+- (Float32) width;
+- (PBNoCompressDrawAction_Builder*) setWidth:(Float32) value;
+- (PBNoCompressDrawAction_Builder*) clearWidth;
+
+- (BOOL) hasPenType;
+- (int32_t) penType;
+- (PBNoCompressDrawAction_Builder*) setPenType:(int32_t) value;
+- (PBNoCompressDrawAction_Builder*) clearPenType;
+@end
+
+@interface PBNoCompressDrawData : PBGeneratedMessage {
+@private
+  NSMutableArray* mutableDrawActionListList;
+}
+- (NSArray*) drawActionListList;
+- (PBNoCompressDrawAction*) drawActionListAtIndex:(int32_t) index;
+
++ (PBNoCompressDrawData*) defaultInstance;
+- (PBNoCompressDrawData*) defaultInstance;
+
+- (BOOL) isInitialized;
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
+- (PBNoCompressDrawData_Builder*) builder;
++ (PBNoCompressDrawData_Builder*) builder;
++ (PBNoCompressDrawData_Builder*) builderWithPrototype:(PBNoCompressDrawData*) prototype;
+
++ (PBNoCompressDrawData*) parseFromData:(NSData*) data;
++ (PBNoCompressDrawData*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBNoCompressDrawData*) parseFromInputStream:(NSInputStream*) input;
++ (PBNoCompressDrawData*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBNoCompressDrawData*) parseFromCodedInputStream:(PBCodedInputStream*) input;
++ (PBNoCompressDrawData*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+@end
+
+@interface PBNoCompressDrawData_Builder : PBGeneratedMessage_Builder {
+@private
+  PBNoCompressDrawData* result;
+}
+
+- (PBNoCompressDrawData*) defaultInstance;
+
+- (PBNoCompressDrawData_Builder*) clear;
+- (PBNoCompressDrawData_Builder*) clone;
+
+- (PBNoCompressDrawData*) build;
+- (PBNoCompressDrawData*) buildPartial;
+
+- (PBNoCompressDrawData_Builder*) mergeFrom:(PBNoCompressDrawData*) other;
+- (PBNoCompressDrawData_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (PBNoCompressDrawData_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+
+- (NSArray*) drawActionListList;
+- (PBNoCompressDrawAction*) drawActionListAtIndex:(int32_t) index;
+- (PBNoCompressDrawData_Builder*) replaceDrawActionListAtIndex:(int32_t) index with:(PBNoCompressDrawAction*) value;
+- (PBNoCompressDrawData_Builder*) addDrawActionList:(PBNoCompressDrawAction*) value;
+- (PBNoCompressDrawData_Builder*) addAllDrawActionList:(NSArray*) values;
+- (PBNoCompressDrawData_Builder*) clearDrawActionListList;
 @end
 

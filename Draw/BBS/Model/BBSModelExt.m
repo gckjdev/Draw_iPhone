@@ -99,6 +99,17 @@
     return nil;
 }
 
+- (NSString *)contentText
+{
+    if (self.type == ActionTypeSupport) {
+        return NSLS(@"kSupport");
+    }
+    if (self.type == ActionTypeComment) {
+        return self.content.text;
+    }
+    return nil;
+}
+
 - (NSString *)showSourceText
 {
     //回复我的评论

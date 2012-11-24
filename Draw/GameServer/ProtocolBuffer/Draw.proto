@@ -92,3 +92,30 @@ message PBFeed {
 
 }
 
+
+message PBPoint
+{
+  required float x = 1;
+  required float y = 2;
+}
+
+message PBColor
+{
+  required float red = 1;
+  required float blue = 2;
+  required float green = 3;
+  required float alpha = 4;
+}
+
+message PBNoCompressDrawAction{
+    required int32 type = 1;                 // 0 : draw, 1 : clean draw
+    repeated PBPoint point = 2;
+    optional PBColor color = 3;
+    optional float width = 4;
+    optional int32 penType = 5;
+}
+
+message PBNoCompressDrawData
+{
+  repeated PBNoCompressDrawAction drawActionList = 1;
+}

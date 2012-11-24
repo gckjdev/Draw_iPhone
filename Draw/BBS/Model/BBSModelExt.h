@@ -51,6 +51,7 @@ typedef enum {
 - (BOOL)isCommet;
 - (BOOL)isReply;
 - (BOOL)isSupport;
+- (NSString *)contentText;
 - (NSString *)showText;
 - (NSString *)showSourceText;
 @end

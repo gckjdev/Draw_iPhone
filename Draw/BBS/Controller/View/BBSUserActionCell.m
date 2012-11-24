@@ -18,10 +18,13 @@
 #import "TimeUtils.h"
 
 #define SPACE_CONTENT_TOP 35
+#define SPACE_CONTENT_IMAGE 10
+#define SPACE_IMAGE_SOURCE 10
 #define SPACE_SOURCE_BOTTOM 10
 
 #define SPACE_TEXT_SOURCE_IMAGE 100
 #define SPACE_TEXT_SOURCE_NO_IMAGE 10
+
 
 #define IMAGE_HEIGHT 80
 
@@ -117,7 +120,7 @@
 
 + (CGFloat)getCellHeightWithBBSAction:(PBBBSAction *)action
 {
-    CGFloat contentHeight = [BBSUserActionCell heightForContentText:action.content.text];
+    CGFloat contentHeight = [BBSUserActionCell heightForContentText:action.contentText];
     CGFloat sourceHeight = [BBSUserActionCell heightForSourceText:action.showSourceText];
     CGFloat height = contentHeight + sourceHeight;
     if (action.content.hasThumbImage) {
@@ -125,6 +128,7 @@
     }else{
         height += (SPACE_CONTENT_TOP + SPACE_TEXT_SOURCE_NO_IMAGE + SPACE_SOURCE_BOTTOM);
     }
+    PPDebug(@"\n<getCellHeightWithBBSAction>,height = %f.\n",height);
     return height;
 }
 
@@ -134,41 +138,50 @@
     [self.avatar setImageWithURL:user.avatarURL placeholderImage:user.defaultAvatar];
 }
 
-- (void)resetView:(UIView *)view height:(CGFloat)height
+- (void)resetView:(UIView *)view y:(CGFloat)y height:(CGFloat)height
 {
     CGRect frame = view.frame;
-//    frame.size.height = [BBSUserActionCell heightForContentText:action.content.text];
     frame.size.height = height;
-    self.content.frame = frame;
+    frame.origin.y = y;
+    view.frame = frame;
 }
 
 - (void)updateContentWithAction:(PBBBSAction *)action
 {
-    NSString *text = [action showText];
-    [self.content setText:text];
-
+    [self.content setText:action.contentText];
+    [self.source setText:action.showSourceText];
     //reset the content size
-    CGFloat height = [BBSUserActionCell heightForContentText:action.content.text];
-    [self resetView:self.content height:height];
-    
-    height = [BBSUserActionCell heightForSourceText:action.showSourceText];
-    [self resetView:self.source height:height];
+    CGFloat height = [BBSUserActionCell heightForContentText:action.contentText];
+    [self resetView:self.content y:CGRectGetMinY(self.content.frame) height:height];
 
-    
+
+
+    //set image frame
     if (action.content.hasThumbImage) {
         [self.image setImageWithURL:action.content.thumbImageURL placeholderImage:nil];
-        //reset image frmae center
-        
-        CGFloat y1 = CGRectGetMaxY(self.content.frame);
-        CGFloat y2 = CGRectGetMidY(self.source.frame);
-        CGFloat y = (y1+y2) / 2;
-        CGFloat x = self.bounds.size.width / 2;
-        self.image.center = CGPointMake(x, y);
-        
+        //reset image frame center
         self.image.hidden = NO;
+
+        CGFloat y = CGRectGetMaxY(self.content.frame) + SPACE_CONTENT_IMAGE;
+        CGFloat width = IMAGE_HEIGHT;
+        CGFloat height = IMAGE_HEIGHT;
+        CGFloat x =  (self.bounds.size.width - width) / 2;
+        self.image.frame = CGRectMake(x, y, width, height);
+
+        //set source frame
+        y = CGRectGetMaxY(self.image.frame) + SPACE_IMAGE_SOURCE;
+        height = [BBSUserActionCell heightForSourceText:action.showSourceText];
+        [self resetView:self.source y:y height:height];
     }else{
         self.image.hidden = YES;
+        
+        //set source frame
+        CGFloat y = CGRectGetMaxY(self.content.frame) + SPACE_TEXT_SOURCE_NO_IMAGE;
+        height = [BBSUserActionCell heightForSourceText:action.showSourceText];
+        [self resetView:self.source y:y height:height];
     }
+    
+    PPDebug(@"\n====<print>====\ncontent frame = %@,\nimage frame = %@,\nsource frame = %@,\n</print>",NSStringFromCGRect(self.content.frame),NSStringFromCGRect(self.image.frame),NSStringFromCGRect(self.source.frame));
 }
 
 - (void)updateTimeStamp:(NSInteger)timeInterval
