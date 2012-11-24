@@ -318,6 +318,8 @@
 		C223396D164E3CA100D2C123 /* DebugOutput.m in Sources */ = {isa = PBXBuildFile; fileRef = C2233968164E3CA100D2C123 /* DebugOutput.m */; };
 		C223397F164E41C900D2C123 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C223397E164E41C800D2C123 /* OpenAL.framework */; };
 		C225866E15EF5AA4009D686D /* GCServer.m in Sources */ = {isa = PBXBuildFile; fileRef = C225866D15EF5AA4009D686D /* GCServer.m */; };
+		C22CDE15166081C100844C93 /* CommonStarryDialog.xib in Resources */ = {isa = PBXBuildFile; fileRef = C22CDE14166081C100844C93 /* CommonStarryDialog.xib */; };
+		C22CDE171660823C00844C93 /* CommonStarryDialog~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C22CDE161660823C00844C93 /* CommonStarryDialog~ipad.xib */; };
 		C22E21871608664F00DE3035 /* DiceRobotItemAction.m in Sources */ = {isa = PBXBuildFile; fileRef = C22E21861608664F00DE3035 /* DiceRobotItemAction.m */; };
 		C239366616522858001BD5C6 /* ZJHSettingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C239366316522858001BD5C6 /* ZJHSettingView.xib */; };
 		C239366716522858001BD5C6 /* ZJHSettingView.m in Sources */ = {isa = PBXBuildFile; fileRef = C239366516522858001BD5C6 /* ZJHSettingView.m */; };
@@ -2345,6 +2347,8 @@
 		C223397E164E41C800D2C123 /* OpenAL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenAL.framework; path = System/Library/Frameworks/OpenAL.framework; sourceTree = SDKROOT; };
 		C225866C15EF5AA4009D686D /* GCServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCServer.h; sourceTree = "<group>"; };
 		C225866D15EF5AA4009D686D /* GCServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCServer.m; sourceTree = "<group>"; };
+		C22CDE14166081C100844C93 /* CommonStarryDialog.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommonStarryDialog.xib; sourceTree = "<group>"; };
+		C22CDE161660823C00844C93 /* CommonStarryDialog~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "CommonStarryDialog~ipad.xib"; sourceTree = "<group>"; };
 		C22E21851608664F00DE3035 /* DiceRobotItemAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiceRobotItemAction.h; sourceTree = "<group>"; };
 		C22E21861608664F00DE3035 /* DiceRobotItemAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiceRobotItemAction.m; sourceTree = "<group>"; };
 		C239366316522858001BD5C6 /* ZJHSettingView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZJHSettingView.xib; sourceTree = "<group>"; };
@@ -6657,8 +6661,10 @@
 				CA322192151F64F90039A384 /* CommonDialog.m */,
 				CA322193151F64F90039A384 /* CommonDialog.xib */,
 				C20D4B1015DE45B100074885 /* CommonDiceDialog.xib */,
+				C22CDE14166081C100844C93 /* CommonStarryDialog.xib */,
 				A3FAE0DD15536EF0008B5827 /* CommonDialog~ipad.xib */,
 				C213093D15E393030072A18E /* CommonDiceDialog~ipad.xib */,
+				C22CDE161660823C00844C93 /* CommonStarryDialog~ipad.xib */,
 				CA1377ED1525A2D700B5790B /* ShareImageManager.h */,
 				CA1377EE1525A2D700B5790B /* ShareImageManager.m */,
 				CA959892152F546F0093FEDB /* InputDialog.h */,
@@ -11435,6 +11441,8 @@
 				CAFE004C166072AB00441D77 /* oowrong.mp3 in Resources */,
 				CAFE004D166072AB00441D77 /* pushMessage.mp3 in Resources */,
 				CAFE004E166072AB00441D77 /* wrong.wav in Resources */,
+				C22CDE15166081C100844C93 /* CommonStarryDialog.xib in Resources */,
+				C22CDE171660823C00844C93 /* CommonStarryDialog~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
