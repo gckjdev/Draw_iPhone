@@ -26,6 +26,8 @@
     NSMutableArray *_drawActionList;
     ChangeAvatar *_imagePicker;
     NSInteger _bonus;
+    
+    BBSManager *_bbsManager;
 }
 @property(nonatomic, retain)PBBBSBoard *bbsBoard;
 @property(nonatomic, retain)ChangeAvatar *imagePicker;
@@ -106,6 +108,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        _bbsManager = [BBSManager defaultManager];
     }
     return self;
 }
@@ -151,49 +154,14 @@
     [super viewDidUnload];
 }
 
-#define TEXT_LENGTH_MIN 5
-#define TEXT_LENGTH_MAX 3000
 #define IMAGE_SIZE_MAX 1500
-- (BOOL)checkAndSetSendingInfo
-{
-
-    self.text = self.textView.text;
-    //create image post
-    if (self.image) {
-        if ([self.text length] == 0) {
-            self.text = NSLS(@"kImage");
-        }
-        return YES;
-    }
-    
-    //crate draw post.
-    if (self.drawImage) {
-        if ([self.text length] == 0) {
-            self.text = NSLS(@"kGraffiti");
-        }
-        return YES;
-    }
-    
-    //create text post
-    if ([self.text length] < TEXT_LENGTH_MIN) {
-        PPDebug(@"<checkSendingInfo> text length less than %d", TEXT_LENGTH_MIN);
-        return NO;
-    }
-    if ([self.text length] > TEXT_LENGTH_MAX) {
-        PPDebug(@"<checkSendingInfo> text length more than %d", TEXT_LENGTH_MAX);
-        return NO;
-    }
-    return YES;
-}
 
 - (IBAction)clickBackButton:(id)sender {
     [self dismissModalViewControllerAnimated:YES];
 }
 
 - (IBAction)clickSubmitButton:(id)sender {
-    if (![self checkAndSetSendingInfo]) {
-        return;
-    }
+
     //if has source post, then send an action, or create a new post
     if (self.sourcePost) {
         

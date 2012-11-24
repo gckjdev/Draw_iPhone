@@ -32,6 +32,45 @@ BBSService *_staticBBSService;
     return _staticBBSService;
 }
 
+#pragma mark - checking method
+
+- (NSInteger)checkFrequent
+{
+    BBSManager *_bbsManager = [BBSManager defaultManager];
+    if ([_bbsManager isCreationFrequent]) {
+        PPDebug(@"<checkWithText> to frequent!!!");
+        return ERROR_BBS_TEXT_TOO_FREQUENT;
+    }else{
+        return ERROR_SUCCESS;
+    }
+}
+
+- (NSInteger)checkWithText:(NSString *)text contentType:(BBSPostContentType)type
+{
+    BBSManager *_bbsManager = [BBSManager defaultManager];
+    if (type == ContentTypeText) {
+        if ([text length] < [_bbsManager textMinLength]) {
+            PPDebug(@"<checkWithText> text(%@) to short!!!",text);
+            return ERROR_BBS_TEXT_TOO_SHORT;
+        }else if ([text length] > [_bbsManager textMaxLength]){
+            PPDebug(@"<checkWithText> text(%@) to long!!!",text);
+            return ERROR_BBS_TEXT_TOO_LONG;
+        }
+    }
+    return ERROR_SUCCESS;
+}
+
+
+- (NSString *)defaultTextForContentType:(BBSPostContentType)type
+{
+    if (ContentTypeDraw == type) {
+        return NSLS(@"kDraw");
+    }
+    if (ContentTypeImage == type) {
+        return NSLS(@"kImage");
+    }
+    return nil;
+}
 
 #pragma mark - pb data builder
 
@@ -260,18 +299,13 @@ BBSService *_staticBBSService;
                      delegate:(id<BBSServiceDelegate>)delegate
 {
     dispatch_async(workingQueue, ^{
-        NSInteger deviceType = [DeviceDetection deviceType];
-        NSString *appId = [ConfigManager appId];
         
-        NSString *userId = [[UserManager defaultManager] userId];
-        NSString *nickName = [[UserManager defaultManager] nickName];
-        NSString *gender = [[UserManager defaultManager] gender];
-        NSString *avatar = [[UserManager defaultManager] avatarURL];
+        NSString *nText = text;
+        PBBBSPost *post = nil;
         
         BBSPostContentType type = ContentTypeText;
         
         NSData *drawData = nil;
-        
         if (image) {
             type = ContentTypeImage;
         }else if (drawImage) {
@@ -279,48 +313,70 @@ BBSService *_staticBBSService;
             PBBBSDraw *bbsDraw = [self buildBBSDraw:drawActionList];
             drawData = [bbsDraw data];
         }
-//        DrawDataService de
-//        BBSNetwork
-        CommonNetworkOutput *output = [BBSNetwork createPost:TRAFFIC_SERVER_URL
-                                                       appId:appId
-                                                  deviceType:deviceType
-                                                      userId:userId
-                                                    nickName:nickName
-                                                      gender:gender
-                                                      avatar:avatar
-                                                     boradId:boardId
-                                                 contentType:type
-                                                        text:text
-                                                       image:[image data]
-                                                    drawData:drawData
-                                                   drawImage:[drawImage data]
-                                                       bonus:bonus];
         
-        PBBBSPost *post = nil;
-        if (output.resultCode == ERROR_SUCCESS) {
-            NSString *postId = [output.jsonDataDict objectForKey:PARA_POSTID];
-            NSString *imageURL = [output.jsonDataDict objectForKey:PARA_IMAGE];
-            NSString *thumbURL = [output.jsonDataDict objectForKey:PARA_THUMB_IMAGE];
-            NSString *drawImageURL = [output.jsonDataDict objectForKey:PARA_DRAW_IMAGE];
-            NSString *drawThumbURL = [output.jsonDataDict objectForKey:PARA_DRAW_THUMB];
-            post = [self buildPBBBSPostWithPostId:postId
-                                                       appId:appId
-                                                  deviceType:deviceType
-                                                      userId:userId
-                                                    nickName:nickName
-                                                      gender:gender
-                                                      avatar:avatar
-                                                     boradId:boardId
-                                                 contentType:type
-                                                        text:text
-                                                    imageUrl:imageURL
-                                               thumbImageUrl:thumbURL
-                                                drawImageUrl:drawImageURL
-                                           drawImageThumbUrl:drawThumbURL];
+        NSInteger resultCode = [self checkFrequent];
+        if (resultCode == ERROR_SUCCESS){
+            resultCode = [self checkWithText:text contentType:type];
         }
+        if (resultCode == ERROR_SUCCESS) {
+            if ([text length] == 0) {
+                nText = [self defaultTextForContentType:type];
+            }
+            NSInteger deviceType = [DeviceDetection deviceType];
+            NSString *appId = [ConfigManager appId];
+            
+            NSString *userId = [[UserManager defaultManager] userId];
+            NSString *nickName = [[UserManager defaultManager] nickName];
+            NSString *gender = [[UserManager defaultManager] gender];
+            NSString *avatar = [[UserManager defaultManager] avatarURL];
+            
+            //        DrawDataService de
+            //        BBSNetwork
+            CommonNetworkOutput *output = [BBSNetwork createPost:TRAFFIC_SERVER_URL
+                                                           appId:appId
+                                                      deviceType:deviceType
+                                                          userId:userId
+                                                        nickName:nickName
+                                                          gender:gender
+                                                          avatar:avatar
+                                                         boradId:boardId
+                                                     contentType:type
+                                                            text:nText
+                                                           image:[image data]
+                                                        drawData:drawData
+                                                       drawImage:[drawImage data]
+                                                           bonus:bonus];
+            
+
+            resultCode = output.resultCode;
+            
+            if (resultCode == ERROR_SUCCESS) {
+                NSString *postId = [output.jsonDataDict objectForKey:PARA_POSTID];
+                NSString *imageURL = [output.jsonDataDict objectForKey:PARA_IMAGE];
+                NSString *thumbURL = [output.jsonDataDict objectForKey:PARA_THUMB_IMAGE];
+                NSString *drawImageURL = [output.jsonDataDict objectForKey:PARA_DRAW_IMAGE];
+                NSString *drawThumbURL = [output.jsonDataDict objectForKey:PARA_DRAW_THUMB];
+                post = [self buildPBBBSPostWithPostId:postId
+                                                appId:appId
+                                           deviceType:deviceType
+                                               userId:userId
+                                             nickName:nickName
+                                               gender:gender
+                                               avatar:avatar
+                                              boradId:boardId
+                                          contentType:type
+                                                 text:nText
+                                             imageUrl:imageURL
+                                        thumbImageUrl:thumbURL
+                                         drawImageUrl:drawImageURL
+                                    drawImageThumbUrl:drawThumbURL];
+                [[BBSManager defaultManager] updateLastCreationDate];
+            }
+        }
+        
         dispatch_async(dispatch_get_main_queue(), ^{
             if (delegate && [delegate respondsToSelector:@selector(didCreatePost:resultCode:)]) {
-                [delegate didCreatePost:post resultCode:output.resultCode];
+                [delegate didCreatePost:post resultCode:resultCode];
             }
         });
     });
@@ -415,13 +471,12 @@ BBSService *_staticBBSService;
                     delegate:(id<BBSServiceDelegate>)delegate
 {
     dispatch_async(workingQueue, ^{
-        NSInteger deviceType = [DeviceDetection deviceType];
-        NSString *appId = [ConfigManager appId];
+
+        NSString *nText = text;
+        NSInteger resultCode = ERROR_SUCCESS;
+        PBBBSAction *action = nil;
         
-        NSString *userId = [[UserManager defaultManager] userId];
-        NSString *nickName = [[UserManager defaultManager] nickName];
-        NSString *gender = [[UserManager defaultManager] gender];
-        NSString *avatar = [[UserManager defaultManager] avatarURL];
+        
         
         BBSPostContentType contentType = ContentTypeNo;
         
@@ -436,71 +491,91 @@ BBSService *_staticBBSService;
         }else if([text length] != 0){
             contentType = ContentTypeText;
         }
-        
-        NSString *briefText = nil;
-        if (sourceAction == nil) {
-            briefText = sourcePost.content.text;
-        }else{
-            briefText = sourceAction.content.text;
+        resultCode = [self checkFrequent];
+        if (resultCode == ERROR_SUCCESS && actionType == ActionTypeComment) {
+            resultCode = [self checkWithText:text contentType:contentType];
         }
-        if ([briefText length] > BRIEF_TEXT_LENGTH) {
-            briefText = [briefText substringToIndex:BRIEF_TEXT_LENGTH];
-        }        
-        CommonNetworkOutput *output = [BBSNetwork createAction:TRAFFIC_SERVER_URL
-                                                         appId:appId
-                                                    deviceType:deviceType
-                                                        userId:userId
-                                                      nickName:nickName
-                                                        gender:gender
-                                                        avatar:avatar
-                                       //source
-                                                  sourcePostId:sourcePost.postId
-                                                 sourcePostUid:sourcePost.createUser.userId
-                                                 sourceAtionId:sourceAction.actionId
-                                               sourceActionUid:sourceAction.createUser.userId
-                                          sourceActionNickName:sourceAction.createUser.nickName
-                                              sourceActionType:sourceAction.type
-                                                     briefText:briefText
-                                       //content
-                                                   contentType:contentType
-                                                    actionType:actionType
-                                                          text:text
-                                                         image:[image data]
-                                                      drawData:drawData
-                                                     drawImage:[drawImage data]];
-        NSInteger resultCode = [output resultCode];
-        PBBBSAction *action = nil;
         if (resultCode == ERROR_SUCCESS) {
-            NSString *actionId = [output.jsonDataDict objectForKey:PARA_ACTIONID];
-            NSString *imageURL = [output.jsonDataDict objectForKey:PARA_IMAGE];
-            NSString *thumbURL = [output.jsonDataDict objectForKey:PARA_THUMB_IMAGE];
-            NSString *drawImageURL = [output.jsonDataDict objectForKey:PARA_DRAW_IMAGE];
-            NSString *drawThumbURL = [output.jsonDataDict objectForKey:PARA_DRAW_THUMB];
             
-            action = [self buildActionWithActionId:actionId
-                                              type:actionType
-                                             appId:appId
-                                        deviceType:deviceType
-                                            userId:userId
-                                          nickName:nickName
-                                            gender:gender
-                                            avatar:avatar
-                                        createDate:[NSDate date]
-                                        replyCount:0
-                                       contentType:contentType
-                                              text:text
-                                          imageUrl:imageURL
-                                     thumbImageUrl:thumbURL
-                                      drawImageUrl:drawImageURL
-                                 drawImageThumbUrl:drawThumbURL
-                                      sourcePostId:sourcePost.postId
-                                     sourcePostUid:sourcePost.createUser.userId
-                                    sourceActionId:sourceAction.actionId
-                                   sourceActionUid:sourceAction.createUser.userId
-                              sourceActionNickName:sourceAction.createUser.nickName
-                                  sourceActionType:sourceAction.type
-                                   sourceBriefText:briefText];
+            if ([text length] == 0) {
+                nText = [self defaultTextForContentType:contentType];
+            }
+            NSInteger deviceType = [DeviceDetection deviceType];
+            NSString *appId = [ConfigManager appId];
+            
+            NSString *userId = [[UserManager defaultManager] userId];
+            NSString *nickName = [[UserManager defaultManager] nickName];
+            NSString *gender = [[UserManager defaultManager] gender];
+            NSString *avatar = [[UserManager defaultManager] avatarURL];
+            
+            NSString *briefText = nil;
+            if (sourceAction == nil) {
+                briefText = sourcePost.content.text;
+            }else{
+                briefText = sourceAction.content.text;
+            }
+            if ([briefText length] > BRIEF_TEXT_LENGTH) {
+                briefText = [briefText substringToIndex:BRIEF_TEXT_LENGTH];
+            }
+            CommonNetworkOutput *output = [BBSNetwork createAction:TRAFFIC_SERVER_URL
+                                                             appId:appId
+                                                        deviceType:deviceType
+                                                            userId:userId
+                                                          nickName:nickName
+                                                            gender:gender
+                                                            avatar:avatar
+                                           //source
+                                                      sourcePostId:sourcePost.postId
+                                                     sourcePostUid:sourcePost.createUser.userId
+                                                     sourceAtionId:sourceAction.actionId
+                                                   sourceActionUid:sourceAction.createUser.userId
+                                              sourceActionNickName:sourceAction.createUser.nickName
+                                                  sourceActionType:sourceAction.type
+                                                         briefText:briefText
+                                           //content
+                                                       contentType:contentType
+                                                        actionType:actionType
+                                                              text:nText
+                                                             image:[image data]
+                                                          drawData:drawData
+                                                         drawImage:[drawImage data]];
+            resultCode = [output resultCode];
+            if (resultCode == ERROR_SUCCESS) {
+                NSString *actionId = [output.jsonDataDict objectForKey:PARA_ACTIONID];
+                NSString *imageURL = [output.jsonDataDict objectForKey:PARA_IMAGE];
+                NSString *thumbURL = [output.jsonDataDict objectForKey:PARA_THUMB_IMAGE];
+                NSString *drawImageURL = [output.jsonDataDict objectForKey:PARA_DRAW_IMAGE];
+                NSString *drawThumbURL = [output.jsonDataDict objectForKey:PARA_DRAW_THUMB];
+                
+                action = [self buildActionWithActionId:actionId
+                                                  type:actionType
+                                                 appId:appId
+                                            deviceType:deviceType
+                                                userId:userId
+                                              nickName:nickName
+                                                gender:gender
+                                                avatar:avatar
+                                            createDate:[NSDate date]
+                                            replyCount:0
+                                           contentType:contentType
+                                                  text:nText
+                                              imageUrl:imageURL
+                                         thumbImageUrl:thumbURL
+                                          drawImageUrl:drawImageURL
+                                     drawImageThumbUrl:drawThumbURL
+                                          sourcePostId:sourcePost.postId
+                                         sourcePostUid:sourcePost.createUser.userId
+                                        sourceActionId:sourceAction.actionId
+                                       sourceActionUid:sourceAction.createUser.userId
+                                  sourceActionNickName:sourceAction.createUser.nickName
+                                      sourceActionType:sourceAction.type
+                                       sourceBriefText:briefText];
+                [[BBSManager defaultManager] updateLastCreationDate];
+            }
         }
+        
+        
+
         dispatch_async(dispatch_get_main_queue(), ^{
             if (delegate && [delegate respondsToSelector:@selector(didCreateAction:atPost:replyAction:resultCode:)]) {
                 [delegate didCreateAction:action atPost:sourcePost

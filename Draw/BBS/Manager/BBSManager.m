@@ -72,6 +72,43 @@ BBSManager *_staticBBSManager;
     return [_boardDict objectForKey:boardId];
 }
 
+#pragma mark - create post&&action limit
+
+#define FREQUENCY_KEY @"FREQUENCY_KEY"
+- (void)updateLastCreationDate
+{
+    NSTimeInterval interval = [[NSDate date] timeIntervalSince1970];
+    NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
+    [ud setDouble:interval forKey:FREQUENCY_KEY];
+    [ud synchronize];
+}
+
+- (NSTimeInterval)lastCreationDateInterval
+{
+    NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
+    return [ud doubleForKey:FREQUENCY_KEY];
+}
+
+- (NSTimeInterval)creationFrequency
+{
+    return 15; //10 seconds
+}
+- (BOOL)isCreationFrequent
+{
+    NSTimeInterval it =[[NSDate date] timeIntervalSince1970] - [self lastCreationDateInterval];
+    return (it < [self creationFrequency]);
+}
+
+- (NSUInteger)textMaxLength
+{
+    return 3000;
+}
+
+- (NSUInteger)textMinLength
+{
+    return 5;
+}
+
 
 +(void)printBBSBoard:(PBBBSBoard *)board
 {

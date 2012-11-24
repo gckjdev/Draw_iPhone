@@ -22,10 +22,20 @@
 -(NSArray *)parentBoardList;
 -(NSArray *)sbuBoardListForBoardId:(NSString *)boardId;
 
+//create limit
+- (void)updateLastCreationDate;
+- (NSTimeInterval)creationFrequency;
+- (BOOL)isCreationFrequent;
+
+- (NSUInteger)textMaxLength;
+- (NSUInteger)textMinLength;
+
+
 +(void)printBBSBoard:(PBBBSBoard *)board;
 +(void)printBBSContent:(PBBBSContent *)content;
 +(void)printBBSUser:(PBBBSUser *)user;
 +(void)printBBSPost:(PBBBSPost *)post;
 +(void)printBBSAction:(PBBBSAction *)action;
+
 
 @end
