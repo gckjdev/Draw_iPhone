@@ -18,7 +18,7 @@
 
 + (BBSPostDetailCell *)createCell:(id)delegate;
 + (NSString*)getCellIdentifier;
-+ (CGFloat)getCellHeight;
+//+ (CGFloat)getCellHeight;
 + (CGFloat)getCellHeightWithPost:(PBBBSPost *)post;
 - (void)updateCellWithPost:(PBBBSPost *)post;
 

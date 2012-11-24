@@ -6,8 +6,15 @@
 //
 //
 
-#import "PPTableViewController.h"
+#import "CommonTabController.h"
+#import "BBSService.h"
 
-@interface BBSActionListController : PPTableViewController
+@interface BBSActionListController : CommonTabController<BBSServiceDelegate>
+{
+    
+}
+
+
++ (BBSActionListController *)enterActionListControllerFromController:(UIViewController *)fromController animated:(BOOL)animated;
 
 @end

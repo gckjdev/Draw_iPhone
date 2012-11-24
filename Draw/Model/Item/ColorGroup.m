@@ -122,7 +122,7 @@
         }
         case PACKAGE_6:
         {
-            NSInteger values[] = {85,60,22,149,156,83,225,4356,187,10,27,83,0,50};
+            NSInteger values[] = {85,60,22,149,156,83,225,255,187,10,27,83,0,50,255};
             colorValues = values;
             break;            
         }
@@ -211,10 +211,8 @@
         case GRADUAL_GRAY:
         {
             NSInteger values[] = {229,230,231, 208,210,211, 146,148,151, 88,89,91, 35,31,32};
-//            return values;
             colorValues = values;
-            break; //gray
-        }
+            break;        }
         case GRADUAL_RED:
         {
             NSInteger values[] = {249,218,204,243,173,157,238,135,118,233,92,78,229,28,45};
