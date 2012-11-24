@@ -163,6 +163,7 @@
 - (IBAction)clickSubmitButton:(id)sender {
 
     //if has source post, then send an action, or create a new post
+    self.text = self.textView.text;
     if (self.sourcePost) {
         
         [[BBSService defaultService] createActionWithPost:self.sourcePost
