@@ -1736,17 +1736,10 @@
 		CAFEFFB4166072AB00441D77 /* DrawColor.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFEFEF8166072AB00441D77 /* DrawColor.m */; };
 		CAFEFFB5166072AB00441D77 /* DrawUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFEFEFA166072AB00441D77 /* DrawUtils.m */; };
 		CAFEFFB6166072AB00441D77 /* TraditionalChineseWord.strings in Resources */ = {isa = PBXBuildFile; fileRef = CAFEFEFD166072AB00441D77 /* TraditionalChineseWord.strings */; };
-		CAFEFFB7166072AB00441D77 /* CN_Words_Dict.plist in Resources */ = {isa = PBXBuildFile; fileRef = CAFEFEFF166072AB00441D77 /* CN_Words_Dict.plist */; };
-		CAFEFFB8166072AB00441D77 /* EN_Words_Dict.plist in Resources */ = {isa = PBXBuildFile; fileRef = CAFEFF00166072AB00441D77 /* EN_Words_Dict.plist */; };
-		CAFEFFB9166072AB00441D77 /* words.plist in Resources */ = {isa = PBXBuildFile; fileRef = CAFEFF01166072AB00441D77 /* words.plist */; };
 		CAFEFFBA166072AB00441D77 /* wordbase.zip in Resources */ = {isa = PBXBuildFile; fileRef = CAFEFF02166072AB00441D77 /* wordbase.zip */; };
 		CAFEFFBB166072AB00441D77 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAFEFF03166072AB00441D77 /* Default-568h@2x.png */; };
 		CAFEFFBC166072AB00441D77 /* Default-Portrait.png in Resources */ = {isa = PBXBuildFile; fileRef = CAFEFF05166072AB00441D77 /* Default-Portrait.png */; };
 		CAFEFFBD166072AB00441D77 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAFEFF07166072AB00441D77 /* Default@2x.png */; };
-		CAFEFFBE166072AB00441D77 /* new_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = CAFEFF0C166072AB00441D77 /* new_icon.png */; };
-		CAFEFFBF166072AB00441D77 /* new_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAFEFF0D166072AB00441D77 /* new_icon@2x.png */; };
-		CAFEFFC0166072AB00441D77 /* new_icon_ipad1.png in Resources */ = {isa = PBXBuildFile; fileRef = CAFEFF0E166072AB00441D77 /* new_icon_ipad1.png */; };
-		CAFEFFC1166072AB00441D77 /* new_icon_ipad2.png in Resources */ = {isa = PBXBuildFile; fileRef = CAFEFF0F166072AB00441D77 /* new_icon_ipad2.png */; };
 		CAFEFFC2166072AB00441D77 /* new_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = CAFEFF10166072AB00441D77 /* new_icon.png */; };
 		CAFEFFC3166072AB00441D77 /* new_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAFEFF11166072AB00441D77 /* new_icon@2x.png */; };
 		CAFEFFC4166072AB00441D77 /* new_icon_ipad1.png in Resources */ = {isa = PBXBuildFile; fileRef = CAFEFF12166072AB00441D77 /* new_icon_ipad1.png */; };
@@ -4262,17 +4255,10 @@
 		CAFEFEF9166072AB00441D77 /* DrawUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawUtils.h; sourceTree = "<group>"; };
 		CAFEFEFA166072AB00441D77 /* DrawUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawUtils.m; sourceTree = "<group>"; };
 		CAFEFEFD166072AB00441D77 /* TraditionalChineseWord.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = TraditionalChineseWord.strings; sourceTree = "<group>"; };
-		CAFEFEFF166072AB00441D77 /* CN_Words_Dict.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = CN_Words_Dict.plist; sourceTree = "<group>"; };
-		CAFEFF00166072AB00441D77 /* EN_Words_Dict.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = EN_Words_Dict.plist; sourceTree = "<group>"; };
-		CAFEFF01166072AB00441D77 /* words.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = words.plist; sourceTree = "<group>"; };
 		CAFEFF02166072AB00441D77 /* wordbase.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = wordbase.zip; sourceTree = "<group>"; };
 		CAFEFF04166072AB00441D77 /* en */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = en; path = "en.lproj/Default-568h@2x.png"; sourceTree = "<group>"; };
 		CAFEFF06166072AB00441D77 /* en */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = en; path = "en.lproj/Default-Portrait.png"; sourceTree = "<group>"; };
 		CAFEFF08166072AB00441D77 /* en */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = en; path = "en.lproj/Default@2x.png"; sourceTree = "<group>"; };
-		CAFEFF0C166072AB00441D77 /* new_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = new_icon.png; sourceTree = "<group>"; };
-		CAFEFF0D166072AB00441D77 /* new_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "new_icon@2x.png"; sourceTree = "<group>"; };
-		CAFEFF0E166072AB00441D77 /* new_icon_ipad1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = new_icon_ipad1.png; sourceTree = "<group>"; };
-		CAFEFF0F166072AB00441D77 /* new_icon_ipad2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = new_icon_ipad2.png; sourceTree = "<group>"; };
 		CAFEFF10166072AB00441D77 /* new_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = new_icon.png; sourceTree = "<group>"; };
 		CAFEFF11166072AB00441D77 /* new_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "new_icon@2x.png"; sourceTree = "<group>"; };
 		CAFEFF12166072AB00441D77 /* new_icon_ipad1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = new_icon_ipad1.png; sourceTree = "<group>"; };
@@ -9734,51 +9720,20 @@
 			isa = PBXGroup;
 			children = (
 				CAFEFEFD166072AB00441D77 /* TraditionalChineseWord.strings */,
-				CAFEFEFE166072AB00441D77 /* wordbase */,
 				CAFEFF02166072AB00441D77 /* wordbase.zip */,
 			);
 			path = Data;
 			sourceTree = "<group>";
 		};
-		CAFEFEFE166072AB00441D77 /* wordbase */ = {
-			isa = PBXGroup;
-			children = (
-				CAFEFEFF166072AB00441D77 /* CN_Words_Dict.plist */,
-				CAFEFF00166072AB00441D77 /* EN_Words_Dict.plist */,
-				CAFEFF01166072AB00441D77 /* words.plist */,
-			);
-			path = wordbase;
-			sourceTree = "<group>";
-		};
 		CAFEFF09166072AB00441D77 /* Icons */ = {
 			isa = PBXGroup;
 			children = (
-				CAFEFF0A166072AB00441D77 /* 2 */,
-				CAFEFF0B166072AB00441D77 /* 3 */,
 				CAFEFF10166072AB00441D77 /* new_icon.png */,
 				CAFEFF11166072AB00441D77 /* new_icon@2x.png */,
 				CAFEFF12166072AB00441D77 /* new_icon_ipad1.png */,
 				CAFEFF13166072AB00441D77 /* new_icon_ipad2.png */,
 			);
 			path = Icons;
-			sourceTree = "<group>";
-		};
-		CAFEFF0A166072AB00441D77 /* 2 */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = 2;
-			sourceTree = "<group>";
-		};
-		CAFEFF0B166072AB00441D77 /* 3 */ = {
-			isa = PBXGroup;
-			children = (
-				CAFEFF0C166072AB00441D77 /* new_icon.png */,
-				CAFEFF0D166072AB00441D77 /* new_icon@2x.png */,
-				CAFEFF0E166072AB00441D77 /* new_icon_ipad1.png */,
-				CAFEFF0F166072AB00441D77 /* new_icon_ipad2.png */,
-			);
-			path = 3;
 			sourceTree = "<group>";
 		};
 		CAFEFF14166072AB00441D77 /* Images */ = {
@@ -11335,17 +11290,10 @@
 				CAFEFBC316606E4900441D77 /* SinaWeibo.bundle in Resources */,
 				CAFEFBC716606E4900441D77 /* Language.strings in Resources */,
 				CAFEFFB6166072AB00441D77 /* TraditionalChineseWord.strings in Resources */,
-				CAFEFFB7166072AB00441D77 /* CN_Words_Dict.plist in Resources */,
-				CAFEFFB8166072AB00441D77 /* EN_Words_Dict.plist in Resources */,
-				CAFEFFB9166072AB00441D77 /* words.plist in Resources */,
 				CAFEFFBA166072AB00441D77 /* wordbase.zip in Resources */,
 				CAFEFFBB166072AB00441D77 /* Default-568h@2x.png in Resources */,
 				CAFEFFBC166072AB00441D77 /* Default-Portrait.png in Resources */,
 				CAFEFFBD166072AB00441D77 /* Default@2x.png in Resources */,
-				CAFEFFBE166072AB00441D77 /* new_icon.png in Resources */,
-				CAFEFFBF166072AB00441D77 /* new_icon@2x.png in Resources */,
-				CAFEFFC0166072AB00441D77 /* new_icon_ipad1.png in Resources */,
-				CAFEFFC1166072AB00441D77 /* new_icon_ipad2.png in Resources */,
 				CAFEFFC2166072AB00441D77 /* new_icon.png in Resources */,
 				CAFEFFC3166072AB00441D77 /* new_icon@2x.png in Resources */,
 				CAFEFFC4166072AB00441D77 /* new_icon_ipad1.png in Resources */,
