@@ -90,14 +90,45 @@
         return NSLS(@"kSupport");
     }
     if (self.type == ActionTypeComment) {
-        if ([self.source isCommet]) {
+        if ([self isCommet]) {
             return self.content.text;
-        }else if([self.source isReply]){
+        }else if([self isReply]){
             return [NSString stringWithFormat:@"kReply %@: %@",self.createUser.showNick, self.content.text];
         }
     }
     return nil;
 }
+
+- (NSString *)showSourceText
+{
+    //回复我的评论
+    //回复我的帖子
+    NSString *srcText = self.source.briefText;
+    if ([self isSupport]) {
+        //如果是顶贴
+        return [NSString stringWithFormat:@"kSupportMyPost：%@",srcText];
+    }else if([self isCommet]){
+        return [NSString stringWithFormat:@"kCommentMyPost：%@",srcText];
+    }else if([self isReply]){
+        return [NSString stringWithFormat:@"kReplyMyComment：%@",srcText];
+    }
+    return nil;
+//    self.source
+}
+
+- (BOOL)isCommet
+{
+    return !self.source.hasActionId;
+}
+- (BOOL)isReply
+{
+    return self.source.hasActionId;
+}
+- (BOOL)isSupport
+{
+    return self.source.actionType == ActionTypeSupport;
+}
+
 
 @end
 
@@ -124,14 +155,7 @@
     }
     return self.actionNick;
 }
-- (BOOL)isCommet
-{
-    return !self.hasActionId;
-}
-- (BOOL)isReply
-{
-    return self.hasActionId;    
-}
+
 
 
 @end

@@ -10,6 +10,7 @@
 #import "BBSBoardCell.h"
 #import "CreatePostController.h"
 #import "BBSPostListController.h"
+#import "BBSActionListController.h"
 
 @interface BBSBoardController ()
 {
@@ -54,6 +55,10 @@
 - (IBAction)clickMyPostList:(id)sender {
     [BBSPostListController enterPostListControllerWithBBSUser:[[BBSService defaultService] myself]
                                                fromController:self];
+}
+
+- (IBAction)clickMyAction:(id)sender {
+    [BBSActionListController enterActionListControllerFromController:self animated:YES];
 }
 
 //- (void)openAllSubBoards
