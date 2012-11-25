@@ -454,5 +454,5 @@ message DataQueryResponse {
   repeated PBBBSBoard bbsBoard = 51;
   repeated PBBBSPost bbsPost = 52;
   repeated PBBBSAction bbsAction = 53;
-
+  optional PBBBSDraw bbsDrawData = 54;
 }

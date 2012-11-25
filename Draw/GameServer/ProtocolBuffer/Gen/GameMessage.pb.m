@@ -16444,6 +16444,7 @@ static GameMessage* defaultGameMessageInstance = nil;
 @property (retain) NSMutableArray* mutableBbsBoardList;
 @property (retain) NSMutableArray* mutableBbsPostList;
 @property (retain) NSMutableArray* mutableBbsActionList;
+@property (retain) PBBBSDraw* bbsDrawData;
 @end
 
 @implementation DataQueryResponse
@@ -16469,6 +16470,13 @@ static GameMessage* defaultGameMessageInstance = nil;
 @synthesize mutableBbsBoardList;
 @synthesize mutableBbsPostList;
 @synthesize mutableBbsActionList;
+- (BOOL) hasBbsDrawData {
+  return !!hasBbsDrawData_;
+}
+- (void) setHasBbsDrawData:(BOOL) value {
+  hasBbsDrawData_ = !!value;
+}
+@synthesize bbsDrawData;
 - (void) dealloc {
   self.mutableDrawDataList = nil;
   self.mutableMessageList = nil;
@@ -16477,12 +16485,14 @@ static GameMessage* defaultGameMessageInstance = nil;
   self.mutableBbsBoardList = nil;
   self.mutableBbsPostList = nil;
   self.mutableBbsActionList = nil;
+  self.bbsDrawData = nil;
   [super dealloc];
 }
 - (id) init {
   if ((self = [super init])) {
     self.resultCode = 0;
     self.totalCount = 0;
+    self.bbsDrawData = [PBBBSDraw defaultInstance];
   }
   return self;
 }
@@ -16586,6 +16596,11 @@ static DataQueryResponse* defaultDataQueryResponseInstance = nil;
       return NO;
     }
   }
+  if (self.hasBbsDrawData) {
+    if (!self.bbsDrawData.isInitialized) {
+      return NO;
+    }
+  }
   return YES;
 }
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
@@ -16615,6 +16630,9 @@ static DataQueryResponse* defaultDataQueryResponseInstance = nil;
   }
   for (PBBBSAction* element in self.bbsActionList) {
     [output writeMessage:53 value:element];
+  }
+  if (self.hasBbsDrawData) {
+    [output writeMessage:54 value:self.bbsDrawData];
   }
   [self.unknownFields writeToCodedOutputStream:output];
 }
@@ -16651,6 +16669,9 @@ static DataQueryResponse* defaultDataQueryResponseInstance = nil;
   }
   for (PBBBSAction* element in self.bbsActionList) {
     size += computeMessageSize(53, element);
+  }
+  if (self.hasBbsDrawData) {
+    size += computeMessageSize(54, self.bbsDrawData);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -16775,6 +16796,9 @@ static DataQueryResponse* defaultDataQueryResponseInstance = nil;
     }
     [result.mutableBbsActionList addObjectsFromArray:other.mutableBbsActionList];
   }
+  if (other.hasBbsDrawData) {
+    [self mergeBbsDrawData:other.bbsDrawData];
+  }
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }
@@ -16844,6 +16868,15 @@ static DataQueryResponse* defaultDataQueryResponseInstance = nil;
         PBBBSAction_Builder* subBuilder = [PBBBSAction builder];
         [input readMessage:subBuilder extensionRegistry:extensionRegistry];
         [self addBbsAction:[subBuilder buildPartial]];
+        break;
+      }
+      case 434: {
+        PBBBSDraw_Builder* subBuilder = [PBBBSDraw builder];
+        if (self.hasBbsDrawData) {
+          [subBuilder mergeFrom:self.bbsDrawData];
+        }
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self setBbsDrawData:[subBuilder buildPartial]];
         break;
       }
     }
@@ -17082,6 +17115,36 @@ static DataQueryResponse* defaultDataQueryResponseInstance = nil;
     result.mutableBbsActionList = [NSMutableArray array];
   }
   [result.mutableBbsActionList addObject:value];
+  return self;
+}
+- (BOOL) hasBbsDrawData {
+  return result.hasBbsDrawData;
+}
+- (PBBBSDraw*) bbsDrawData {
+  return result.bbsDrawData;
+}
+- (DataQueryResponse_Builder*) setBbsDrawData:(PBBBSDraw*) value {
+  result.hasBbsDrawData = YES;
+  result.bbsDrawData = value;
+  return self;
+}
+- (DataQueryResponse_Builder*) setBbsDrawDataBuilder:(PBBBSDraw_Builder*) builderForValue {
+  return [self setBbsDrawData:[builderForValue build]];
+}
+- (DataQueryResponse_Builder*) mergeBbsDrawData:(PBBBSDraw*) value {
+  if (result.hasBbsDrawData &&
+      result.bbsDrawData != [PBBBSDraw defaultInstance]) {
+    result.bbsDrawData =
+      [[[PBBBSDraw builderWithPrototype:result.bbsDrawData] mergeFrom:value] buildPartial];
+  } else {
+    result.bbsDrawData = value;
+  }
+  result.hasBbsDrawData = YES;
+  return self;
+}
+- (DataQueryResponse_Builder*) clearBbsDrawData {
+  result.hasBbsDrawData = NO;
+  result.bbsDrawData = [PBBBSDraw defaultInstance];
   return self;
 }
 @end
