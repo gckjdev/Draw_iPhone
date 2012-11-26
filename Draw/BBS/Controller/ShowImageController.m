@@ -24,6 +24,8 @@
 
 - (void)showImage;
 - (IBAction)clickMask:(id)sender;
+- (IBAction)clickCloseButton:(id)sender;
+- (IBAction)clickSaveButton:(id)sender;
 
 @end
 
@@ -57,6 +59,7 @@
     ShowImageController *sic = [[[ShowImageController alloc] init] autorelease];
     sic.url = imageURL;
     [fromController presentModalViewController:sic animated:animated];
+//    [fromController.navigationController pushViewController:sic animated:animated];
     return sic;
 }
 
@@ -101,33 +104,45 @@
 - (void)adjustImageSize
 {
     CGSize imageSize = self.image.size;
+//    self.scrollView.frame = self.view.bounds;
     CGSize scrollViewSize = self.scrollView.bounds.size;
     
     if (imageSize.width <= scrollViewSize.width && imageSize.height <= scrollViewSize.height) {
-        CGRect frame = self.scrollView.frame;
+        CGRect frame = self.imageView.frame;
         frame.size = imageSize;
-        self.scrollView.frame = frame;
+//        self.scrollView.frame = frame;
         self.scrollView.contentSize = imageSize;
         self.imageView.frame = self.scrollView.bounds;
-        self.imageView.center = self.scrollView.center;
+        self.imageView.center = CGPointMake(imageSize.width / 2, self.scrollView.center.y);
         return;
     }
     
     if (_scale) {
         CGFloat xs = imageSize.width / scrollViewSize.width;
         CGFloat ys = imageSize.height / scrollViewSize.height;
-        if (xs < ys) {
+        CGSize showSize = CGSizeZero;
+        if (xs > ys) {
+            CGFloat width = scrollViewSize.width;
+            CGFloat height = imageSize.height / xs;
+            showSize = CGSizeMake(width, height);
             
+        }else{
+            CGFloat height = scrollViewSize.height;
+            CGFloat width = imageSize.width / ys;
+            showSize = CGSizeMake(width, height);
         }
+        self.scrollView.contentSize = showSize;
+        CGRect frame = self.imageView.frame;
+        frame.size = showSize;
+        self.imageView.frame = frame;
+        self.imageView.center = CGPointMake(showSize.width / 2, self.scrollView.center.y);
         
     }else{
-        CGRect frame = self.scrollView.frame;
+        CGRect frame = self.imageView.frame;
         frame.size = imageSize;
-//        self.scrollView.frame = self.fr;
+        self.imageView.frame = frame;
         self.scrollView.contentSize = imageSize;
-        self.imageView.frame = self.scrollView.bounds;
-        self.imageView.center = self.scrollView.center;
-
+        self.imageView.center = CGPointMake(imageSize.width / 2, self.scrollView.center.y);
     }
     _scale = !_scale;
 }
@@ -139,5 +154,13 @@
 
 - (IBAction)clickMask:(id)sender {
     [self adjustImageSize];
+}
+
+- (IBAction)clickCloseButton:(id)sender {
+    [self dismissModalViewControllerAnimated:YES];
+//    [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (IBAction)clickSaveButton:(id)sender {
 }
 @end

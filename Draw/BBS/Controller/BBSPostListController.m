@@ -12,6 +12,7 @@
 #import "BBSPostCell.h"
 #import "BBSPostDetailController.h"
 #import "ReplayGraffitiController.h"
+#import "ShowImageController.h"
 
 @interface BBSPostListController ()
 {
@@ -267,7 +268,7 @@
 
 - (void)didClickImageWithURL:(NSURL *)url
 {
-    //TODO enter show image Controller
+    [ShowImageController enterControllerWithImageURL:url fromController:self animated:YES];
 }
 
 - (void)didClickDrawImageWithPost:(PBBBSPost *)post

@@ -11,6 +11,7 @@
 #import "BBSPostDetailCell.h"
 #import "BBSPostDetailUserCell.h"
 #import "ReplayGraffitiController.h"
+#import "ShowImageController.h"
 
 @interface BBSPostDetailController ()
 @property (nonatomic, retain)PBBBSPost *post;
@@ -346,7 +347,7 @@ typedef enum{
 
 - (void)didClickImageWithURL:(NSURL *)url
 {
-    //TODO enter show image Controller
+    [ShowImageController enterControllerWithImageURL:url fromController:self animated:YES];
 }
 
 - (void)didClickDrawImageWithAction:(PBBBSAction *)action

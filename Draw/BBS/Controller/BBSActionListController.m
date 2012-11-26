@@ -10,6 +10,7 @@
 #import "UserManager.h"
 #import "BBSUserActionCell.h"
 #import "ReplayGraffitiController.h"
+#import "ShowImageController.h"
 
 @interface BBSActionListController ()
 
@@ -151,7 +152,7 @@
 
 - (void)didClickImageWithURL:(NSURL *)url
 {
-    //TODO enter show image Controller
+    [ShowImageController enterControllerWithImageURL:url fromController:self animated:YES];
 }
 
 - (void)didClickDrawImageWithAction:(PBBBSAction *)action
