@@ -418,6 +418,7 @@
 		C2E90FF815BD553A00828562 /* RecommendedAppsController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2E90FF515BD553800828562 /* RecommendedAppsController.xib */; };
 		C2E90FF915BD553A00828562 /* RecommendedAppsController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2E90FF615BD553900828562 /* RecommendedAppsController~ipad.xib */; };
 		C2EBB8EC164A1B200024D605 /* ZJHSoundManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C2EBB8EB164A1B200024D605 /* ZJHSoundManager.m */; };
+		C2EE13CA1663591800ADBE2E /* StarryLoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = C2EE13C91663591800ADBE2E /* StarryLoadingView.m */; };
 		C2F2CF981639165500995DCB /* ZJHImageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C2F2CF971639165500995DCB /* ZJHImageManager.m */; };
 		C2F2CFB3163932C000995DCB /* ZJHAvatarView.m in Sources */ = {isa = PBXBuildFile; fileRef = C2F2CFB2163932C000995DCB /* ZJHAvatarView.m */; };
 		C2F48BD115BE4484005C4D72 /* RecommendAppService.m in Sources */ = {isa = PBXBuildFile; fileRef = C2F48BD015BE4484005C4D72 /* RecommendAppService.m */; };
@@ -2501,6 +2502,8 @@
 		C2E90FF615BD553900828562 /* RecommendedAppsController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "RecommendedAppsController~ipad.xib"; sourceTree = "<group>"; };
 		C2EBB8EA164A1B200024D605 /* ZJHSoundManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJHSoundManager.h; sourceTree = "<group>"; };
 		C2EBB8EB164A1B200024D605 /* ZJHSoundManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJHSoundManager.m; sourceTree = "<group>"; };
+		C2EE13C81663591800ADBE2E /* StarryLoadingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StarryLoadingView.h; sourceTree = "<group>"; };
+		C2EE13C91663591800ADBE2E /* StarryLoadingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StarryLoadingView.m; sourceTree = "<group>"; };
 		C2F2CF961639165500995DCB /* ZJHImageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJHImageManager.h; sourceTree = "<group>"; };
 		C2F2CF971639165500995DCB /* ZJHImageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJHImageManager.m; sourceTree = "<group>"; };
 		C2F2CFB1163932C000995DCB /* ZJHAvatarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJHAvatarView.h; sourceTree = "<group>"; };
@@ -5643,6 +5646,15 @@
 			path = Recommend;
 			sourceTree = "<group>";
 		};
+		C2EE13C71663591800ADBE2E /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				C2EE13C81663591800ADBE2E /* StarryLoadingView.h */,
+				C2EE13C91663591800ADBE2E /* StarryLoadingView.m */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
 		C2F48BCE15BE4484005C4D72 /* Recommend */ = {
 			isa = PBXGroup;
 			children = (
@@ -8513,6 +8525,7 @@
 		CA9AA963150F4071009D1CB6 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				C2EE13C71663591800ADBE2E /* Common */,
 				CAB15E7C15AD41C300502106 /* PickView */,
 				A461C9251565E3700076FD9C /* ChatMessageView */,
 				CA051DAE1546802D00D0A00A /* DrawView */,
@@ -12083,6 +12096,7 @@
 				CAFE008916609CEC00441D77 /* MatchingFacetimeUserView.m in Sources */,
 				CA42FE861660B73A0097453A /* DrawGameAnimationManager.m in Sources */,
 				CAC790FB1663194F009B4053 /* BBSTableViewCell.m in Sources */,
+				C2EE13CA1663591800ADBE2E /* StarryLoadingView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
