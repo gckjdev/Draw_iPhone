@@ -15,6 +15,7 @@
 
 #define COMMON_DIALOG_THEME_DRAW    @"CommonDialog"
 #define COMMON_DIALOG_THEME_DICE    @"CommonDiceDialog"
+#define COMMON_DIALOG_THEME_STARRY    @"CommonStarryDialog"
 
 @implementation CommonDialog
 @synthesize oKButton = _OKButton;
@@ -130,6 +131,9 @@
         } break;
         case CommonDialogThemeDraw: {
             view = (CommonDialog*)[self createInfoViewByXibName:COMMON_DIALOG_THEME_DRAW];
+        } break;
+        case CommonDialogThemeStarry: {
+            view = (CommonDialog*)[self createInfoViewByXibName:COMMON_DIALOG_THEME_STARRY];
         } break;
         default:
             PPDebug(@"<CommonDialog> theme %d do not exist",theme);
