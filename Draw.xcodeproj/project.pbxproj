@@ -418,6 +418,7 @@
 		C2E90FF815BD553A00828562 /* RecommendedAppsController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2E90FF515BD553800828562 /* RecommendedAppsController.xib */; };
 		C2E90FF915BD553A00828562 /* RecommendedAppsController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2E90FF615BD553900828562 /* RecommendedAppsController~ipad.xib */; };
 		C2EBB8EC164A1B200024D605 /* ZJHSoundManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C2EBB8EB164A1B200024D605 /* ZJHSoundManager.m */; };
+		C2EE13B31663130700ADBE2E /* StarryLoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = C2EE13B21663130600ADBE2E /* StarryLoadingView.m */; };
 		C2F2CF981639165500995DCB /* ZJHImageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C2F2CF971639165500995DCB /* ZJHImageManager.m */; };
 		C2F2CFB3163932C000995DCB /* ZJHAvatarView.m in Sources */ = {isa = PBXBuildFile; fileRef = C2F2CFB2163932C000995DCB /* ZJHAvatarView.m */; };
 		C2F48BD115BE4484005C4D72 /* RecommendAppService.m in Sources */ = {isa = PBXBuildFile; fileRef = C2F48BD015BE4484005C4D72 /* RecommendAppService.m */; };
@@ -2500,6 +2501,8 @@
 		C2E90FF615BD553900828562 /* RecommendedAppsController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "RecommendedAppsController~ipad.xib"; sourceTree = "<group>"; };
 		C2EBB8EA164A1B200024D605 /* ZJHSoundManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJHSoundManager.h; sourceTree = "<group>"; };
 		C2EBB8EB164A1B200024D605 /* ZJHSoundManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJHSoundManager.m; sourceTree = "<group>"; };
+		C2EE13B11663130600ADBE2E /* StarryLoadingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StarryLoadingView.h; sourceTree = "<group>"; };
+		C2EE13B21663130600ADBE2E /* StarryLoadingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StarryLoadingView.m; sourceTree = "<group>"; };
 		C2F2CF961639165500995DCB /* ZJHImageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJHImageManager.h; sourceTree = "<group>"; };
 		C2F2CF971639165500995DCB /* ZJHImageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJHImageManager.m; sourceTree = "<group>"; };
 		C2F2CFB1163932C000995DCB /* ZJHAvatarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJHAvatarView.h; sourceTree = "<group>"; };
@@ -6686,6 +6689,8 @@
 				C299BED51653297500C21E2F /* CommonRoomListController.m */,
 				C299BED7165333E800C21E2F /* CommonRoomListCell.h */,
 				C299BED8165333E800C21E2F /* CommonRoomListCell.m */,
+				C2EE13B11663130600ADBE2E /* StarryLoadingView.h */,
+				C2EE13B21663130600ADBE2E /* StarryLoadingView.m */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -12077,6 +12082,7 @@
 				CAFE008616609CEC00441D77 /* FacetimeUserInfoView.m in Sources */,
 				CAFE008916609CEC00441D77 /* MatchingFacetimeUserView.m in Sources */,
 				CA42FE861660B73A0097453A /* DrawGameAnimationManager.m in Sources */,
+				C2EE13B31663130700ADBE2E /* StarryLoadingView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
