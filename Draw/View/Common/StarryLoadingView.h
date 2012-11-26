@@ -9,7 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @interface StarryLoadingView : UIView {
-	UIActivityIndicatorView *_activity;
+//	UIActivityIndicatorView *_activity;
+    NSTimer *_timer;
 	BOOL _hidden;
     
 	NSString *_title;

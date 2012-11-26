@@ -418,6 +418,7 @@
 		C2E90FF815BD553A00828562 /* RecommendedAppsController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2E90FF515BD553800828562 /* RecommendedAppsController.xib */; };
 		C2E90FF915BD553A00828562 /* RecommendedAppsController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2E90FF615BD553900828562 /* RecommendedAppsController~ipad.xib */; };
 		C2EBB8EC164A1B200024D605 /* ZJHSoundManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C2EBB8EB164A1B200024D605 /* ZJHSoundManager.m */; };
+		C2EE13CA1663591800ADBE2E /* StarryLoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = C2EE13C91663591800ADBE2E /* StarryLoadingView.m */; };
 		C2F2CF981639165500995DCB /* ZJHImageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C2F2CF971639165500995DCB /* ZJHImageManager.m */; };
 		C2F2CFB3163932C000995DCB /* ZJHAvatarView.m in Sources */ = {isa = PBXBuildFile; fileRef = C2F2CFB2163932C000995DCB /* ZJHAvatarView.m */; };
 		C2F48BD115BE4484005C4D72 /* RecommendAppService.m in Sources */ = {isa = PBXBuildFile; fileRef = C2F48BD015BE4484005C4D72 /* RecommendAppService.m */; };
@@ -1510,7 +1511,8 @@
 		CAC4DCE81545286C00A42CF2 /* TransactionReceiptManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC4DCE71545286B00A42CF2 /* TransactionReceiptManager.m */; };
 		CAC4DCEB154542A200A42CF2 /* TransactionReceipt.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC4DCEA154542A200A42CF2 /* TransactionReceipt.m */; };
 		CAC790FB1663194F009B4053 /* BBSTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC790FA1663194F009B4053 /* BBSTableViewCell.m */; };
-		CAC7911116635D54009B4053 /* ShowImageController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC7911016635D54009B4053 /* ShowImageController.m */; };
+		CAC7912716635F9F009B4053 /* ShowImageController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC7912616635F9F009B4053 /* ShowImageController.m */; };
+		CAC7912916635FB3009B4053 /* ShowImageController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAC7912816635FB3009B4053 /* ShowImageController.xib */; };
 		CACC084E1532B02600D9F8E9 /* ShareAction.m in Sources */ = {isa = PBXBuildFile; fileRef = CACC084D1532B02600D9F8E9 /* ShareAction.m */; };
 		CACF87A415EB4D2D003FA6B6 /* DiceSettingView.m in Sources */ = {isa = PBXBuildFile; fileRef = CACF87A215EB4D2D003FA6B6 /* DiceSettingView.m */; };
 		CACF87A515EB4D2D003FA6B6 /* DiceSettingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CACF87A315EB4D2D003FA6B6 /* DiceSettingView.xib */; };
@@ -2502,6 +2504,8 @@
 		C2E90FF615BD553900828562 /* RecommendedAppsController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "RecommendedAppsController~ipad.xib"; sourceTree = "<group>"; };
 		C2EBB8EA164A1B200024D605 /* ZJHSoundManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJHSoundManager.h; sourceTree = "<group>"; };
 		C2EBB8EB164A1B200024D605 /* ZJHSoundManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJHSoundManager.m; sourceTree = "<group>"; };
+		C2EE13C81663591800ADBE2E /* StarryLoadingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StarryLoadingView.h; sourceTree = "<group>"; };
+		C2EE13C91663591800ADBE2E /* StarryLoadingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StarryLoadingView.m; sourceTree = "<group>"; };
 		C2F2CF961639165500995DCB /* ZJHImageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJHImageManager.h; sourceTree = "<group>"; };
 		C2F2CF971639165500995DCB /* ZJHImageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJHImageManager.m; sourceTree = "<group>"; };
 		C2F2CFB1163932C000995DCB /* ZJHAvatarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJHAvatarView.h; sourceTree = "<group>"; };
@@ -3961,8 +3965,9 @@
 		CAC4DCEA154542A200A42CF2 /* TransactionReceipt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransactionReceipt.m; sourceTree = "<group>"; };
 		CAC790F91663194F009B4053 /* BBSTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBSTableViewCell.h; sourceTree = "<group>"; };
 		CAC790FA1663194F009B4053 /* BBSTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBSTableViewCell.m; sourceTree = "<group>"; };
-		CAC7910F16635D54009B4053 /* ShowImageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowImageController.h; sourceTree = "<group>"; };
-		CAC7911016635D54009B4053 /* ShowImageController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowImageController.m; sourceTree = "<group>"; };
+		CAC7912516635F9F009B4053 /* ShowImageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowImageController.h; sourceTree = "<group>"; };
+		CAC7912616635F9F009B4053 /* ShowImageController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowImageController.m; sourceTree = "<group>"; };
+		CAC7912816635FB3009B4053 /* ShowImageController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShowImageController.xib; sourceTree = "<group>"; };
 		CACC084C1532B02600D9F8E9 /* ShareAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareAction.h; sourceTree = "<group>"; };
 		CACC084D1532B02600D9F8E9 /* ShareAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareAction.m; sourceTree = "<group>"; };
 		CACF87A115EB4D2D003FA6B6 /* DiceSettingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiceSettingView.h; sourceTree = "<group>"; };
@@ -5646,6 +5651,15 @@
 			path = Recommend;
 			sourceTree = "<group>";
 		};
+		C2EE13C71663591800ADBE2E /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				C2EE13C81663591800ADBE2E /* StarryLoadingView.h */,
+				C2EE13C91663591800ADBE2E /* StarryLoadingView.m */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
 		C2F48BCE15BE4484005C4D72 /* Recommend */ = {
 			isa = PBXGroup;
 			children = (
@@ -7075,7 +7089,7 @@
 		CA41512B165395A30062A638 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				CAC7910E16635D2F009B4053 /* Common */,
+				CAC7912416635F91009B4053 /* Common */,
 				CA42FE28165F1AF10097453A /* Action */,
 				CAA7992F1659D2AC00429611 /* Post */,
 				CAA7992E1659D29500429611 /* Board */,
@@ -8517,6 +8531,7 @@
 		CA9AA963150F4071009D1CB6 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				C2EE13C71663591800ADBE2E /* Common */,
 				CAB15E7C15AD41C300502106 /* PickView */,
 				A461C9251565E3700076FD9C /* ChatMessageView */,
 				CA051DAE1546802D00D0A00A /* DrawView */,
@@ -8737,11 +8752,12 @@
 			path = Home;
 			sourceTree = "<group>";
 		};
-		CAC7910E16635D2F009B4053 /* Common */ = {
+		CAC7912416635F91009B4053 /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				CAC7910F16635D54009B4053 /* ShowImageController.h */,
-				CAC7911016635D54009B4053 /* ShowImageController.m */,
+				CAC7912516635F9F009B4053 /* ShowImageController.h */,
+				CAC7912616635F9F009B4053 /* ShowImageController.m */,
+				CAC7912816635FB3009B4053 /* ShowImageController.xib */,
 			);
 			name = Common;
 			sourceTree = "<group>";
@@ -11468,6 +11484,7 @@
 				CAFE008816609CEC00441D77 /* FacetimeUserInfoView~ipad.xib in Resources */,
 				CAFE008A16609CEC00441D77 /* MatchingFacetimeUserView.xib in Resources */,
 				CAFE008B16609CEC00441D77 /* MatchingFacetimeUserView~ipad.xib in Resources */,
+				CAC7912916635FB3009B4053 /* ShowImageController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -12096,7 +12113,8 @@
 				CAFE008916609CEC00441D77 /* MatchingFacetimeUserView.m in Sources */,
 				CA42FE861660B73A0097453A /* DrawGameAnimationManager.m in Sources */,
 				CAC790FB1663194F009B4053 /* BBSTableViewCell.m in Sources */,
-				CAC7911116635D54009B4053 /* ShowImageController.m in Sources */,
+				C2EE13CA1663591800ADBE2E /* StarryLoadingView.m in Sources */,
+				CAC7912716635F9F009B4053 /* ShowImageController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

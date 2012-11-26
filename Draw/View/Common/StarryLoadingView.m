@@ -61,9 +61,9 @@
     
     _title = [ttl copy];
     _message = [msg copy];
-    _activity = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
-    _activity.transform = [self isIPAD] ? CGAffineTransformMakeScale(2.0, 2.0) : CGAffineTransformIdentity;
-    [self addSubview:_activity];
+//    _activity = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
+//    _activity.transform = [self isIPAD] ? CGAffineTransformMakeScale(2.0, 2.0) : CGAffineTransformIdentity;
+//    [self addSubview:_activity];
     _hidden = YES;
     self.backgroundColor = [UIColor clearColor];
 	
@@ -89,12 +89,12 @@
 	if([_message length] < 1) s2.height = 0;
 	
 	
-	rHeight = (s1.height + s2.height + (HEIGHT_MARGIN*2) + 10 + _activity.frame.size.height);
+	rHeight = (s1.height + s2.height + (HEIGHT_MARGIN*2) + 10 + 30);
 	rWidth = width = (s2.width > s1.width) ? (int) s2.width : (int) s1.width;
 	rWidth += WIDTH_MARGIN * 2;
 	x = (WIDTH_OF_LOADING_VIEW - rWidth) / 2;
 	
-	_activity.center = CGPointMake(WIDTH_OF_LOADING_VIEW/2,HEIGHT_MARGIN + _activity.frame.size.height/2);
+//	_activity.center = CGPointMake(WIDTH_OF_LOADING_VIEW/2,HEIGHT_MARGIN + _activity.frame.size.height/2);
 	
 	
 	//NSLog(@"DRAW RECT %d %f",rHeight,self.frame.size.height);
@@ -105,68 +105,97 @@
 	[[UIColor colorWithRed:0 green:0 blue:0 alpha:0.75] set];
     
     //set background image
-	[UIView drawRoundRectangleInRect:r withRadius:10.0];
+	self.backgroundImageView = [[UIImageView alloc] initWithFrame:r];
+    [self addSubview:self.backgroundImageView];
 	
 	
 	// DRAW FIRST TEXT
 	[[UIColor whiteColor] set];
-	r = CGRectMake(x+WIDTH_MARGIN, _activity.frame.size.height + 10 + HEIGHT_MARGIN, width, s1.height);
-	CGSize s = [_title drawInRect:r withFont:titleFont lineBreakMode:UILineBreakModeTailTruncation alignment:UITextAlignmentCenter];
+	r = CGRectMake(x+WIDTH_MARGIN, 30 + 10 + HEIGHT_MARGIN, width, s1.height);
+//	CGSize s = [_title drawInRect:r withFont:titleFont lineBreakMode:UILineBreakModeTailTruncation alignment:UITextAlignmentCenter];
+    CGSize s = [self calculateHeightOfTextFromWidth:_title font:titleFont width:HEIGHT_OF_LOADING_VIEW linebreak:UILineBreakModeTailTruncation];
+    self.titleLabel = [[[UILabel alloc] initWithFrame:r] autorelease];
+    [self addSubview:self.titleLabel];
 	
 	
 	// DRAW SECOND TEXT
 	r.origin.y += s.height;
 	r.size.height = s2.height;
-	[_message drawInRect:r withFont:messageFont lineBreakMode:UILineBreakModeCharacterWrap alignment:UITextAlignmentCenter];
+//	[_message drawInRect:r withFont:messageFont lineBreakMode:UILineBreakModeCharacterWrap alignment:UITextAlignmentCenter];
+    self.messageLabe = [[[UILabel alloc] initWithFrame:r] autorelease];
+    [self addSubview:self.titleLabel];
 }
 
-- (void) drawRect:(CGRect)rect {
-	
-	if(_hidden) return;
-	int width, rWidth, rHeight, x;
-	
-	UIFont *titleFont = FONT_OF_TITLE;
-	UIFont *messageFont = FONT_OF_MESSAGE;
-	
-	CGSize s1 = [self calculateHeightOfTextFromWidth:_title font:titleFont width:HEIGHT_OF_LOADING_VIEW linebreak:UILineBreakModeTailTruncation];
-	CGSize s2 = [self calculateHeightOfTextFromWidth:_message font:messageFont width:HEIGHT_OF_LOADING_VIEW linebreak:UILineBreakModeCharacterWrap];
-	
-	if([_title length] < 1) s1.height = 0;
-	if([_message length] < 1) s2.height = 0;
-	
-	
-	rHeight = (s1.height + s2.height + (HEIGHT_MARGIN*2) + 10 + _activity.frame.size.height);
-	rWidth = width = (s2.width > s1.width) ? (int) s2.width : (int) s1.width;
-	rWidth += WIDTH_MARGIN * 2;
-	x = (WIDTH_OF_LOADING_VIEW - rWidth) / 2;
-	
-	_activity.center = CGPointMake(WIDTH_OF_LOADING_VIEW/2,HEIGHT_MARGIN + _activity.frame.size.height/2);
-	
-	
-	//NSLog(@"DRAW RECT %d %f",rHeight,self.frame.size.height);
-	
-	// DRAW ROUNDED RECTANGLE
-	[[UIColor colorWithRed:0 green:0 blue:0 alpha:0.9] set];
-	CGRect r = CGRectMake(x, 0, rWidth,rHeight);
-	[[UIColor colorWithRed:0 green:0 blue:0 alpha:0.75] set];
-	[UIView drawRoundRectangleInRect:r withRadius:10.0];
-	
-	
-	// DRAW FIRST TEXT
-	[[UIColor whiteColor] set];
-	r = CGRectMake(x+WIDTH_MARGIN, _activity.frame.size.height + 10 + HEIGHT_MARGIN, width, s1.height);
-	CGSize s = [_title drawInRect:r withFont:titleFont lineBreakMode:UILineBreakModeTailTruncation alignment:UITextAlignmentCenter];
-	
-	
-	// DRAW SECOND TEXT
-	r.origin.y += s.height;
-	r.size.height = s2.height;
-	[_message drawInRect:r withFont:messageFont lineBreakMode:UILineBreakModeCharacterWrap alignment:UITextAlignmentCenter];
-	
-	
-	
+//- (void) drawRect:(CGRect)rect {
+//	
+//	if(_hidden) return;
+//	int width, rWidth, rHeight, x;
+//	
+//	UIFont *titleFont = FONT_OF_TITLE;
+//	UIFont *messageFont = FONT_OF_MESSAGE;
+//	
+//	CGSize s1 = [self calculateHeightOfTextFromWidth:_title font:titleFont width:HEIGHT_OF_LOADING_VIEW linebreak:UILineBreakModeTailTruncation];
+//	CGSize s2 = [self calculateHeightOfTextFromWidth:_message font:messageFont width:HEIGHT_OF_LOADING_VIEW linebreak:UILineBreakModeCharacterWrap];
+//	
+//	if([_title length] < 1) s1.height = 0;
+//	if([_message length] < 1) s2.height = 0;
+//	
+//	
+//	rHeight = (s1.height + s2.height + (HEIGHT_MARGIN*2) + 10 + _activity.frame.size.height);
+//	rWidth = width = (s2.width > s1.width) ? (int) s2.width : (int) s1.width;
+//	rWidth += WIDTH_MARGIN * 2;
+//	x = (WIDTH_OF_LOADING_VIEW - rWidth) / 2;
+//	
+//	_activity.center = CGPointMake(WIDTH_OF_LOADING_VIEW/2,HEIGHT_MARGIN + _activity.frame.size.height/2);
+//	
+//	
+//	//NSLog(@"DRAW RECT %d %f",rHeight,self.frame.size.height);
+//	
+//	// DRAW ROUNDED RECTANGLE
+//	[[UIColor colorWithRed:0 green:0 blue:0 alpha:0.9] set];
+//	CGRect r = CGRectMake(x, 0, rWidth,rHeight);
+//	[[UIColor colorWithRed:0 green:0 blue:0 alpha:0.75] set];
+//	[UIView drawRoundRectangleInRect:r withRadius:10.0];
+//	
+//	
+//	// DRAW FIRST TEXT
+//	[[UIColor whiteColor] set];
+//	r = CGRectMake(x+WIDTH_MARGIN, _activity.frame.size.height + 10 + HEIGHT_MARGIN, width, s1.height);
+//	CGSize s = [_title drawInRect:r withFont:titleFont lineBreakMode:UILineBreakModeTailTruncation alignment:UITextAlignmentCenter];
+//	
+//	
+//	// DRAW SECOND TEXT
+//	r.origin.y += s.height;
+//	r.size.height = s2.height;
+//	[_message drawInRect:r withFont:messageFont lineBreakMode:UILineBreakModeCharacterWrap alignment:UITextAlignmentCenter];
+//	
+//	
+//	
+//}
+//
+
+- (void)update
+{
+    [self setBackgroundColor:[UIColor colorWithRed:(rand()%255)/255.0 green:(rand()%255)/255.0 blue:(rand()%255)/255.0 alpha:1]];
 }
 
+- (void)killTimer
+{
+    if (_timer) {
+        if ([_timer isValid]) {
+            [_timer invalidate];
+        }
+        [_timer release];
+        _timer = nil;
+    }
+}
+
+- (void)startFlashingBackground
+{
+    [self killTimer];
+    _timer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(update) userInfo:nil repeats:YES];
+    [_timer retain];
+}
 
 - (void) setTitle:(NSString*)str{
 	[_title release];
@@ -198,15 +227,18 @@
 - (void) startAnimating{
 	if(!_hidden) return;
 	_hidden = NO;
-	[self setNeedsDisplay];
-	[_activity startAnimating];
+    
+    [self startFlashingBackground];
+//	[self setNeedsDisplay];
+//	[_activity startAnimating];
 	
 }
 - (void) stopAnimating{
 	if(_hidden) return;
 	_hidden = YES;
-	[self setNeedsDisplay];
-	[_activity stopAnimating];
+    [self killTimer];
+//	[self setNeedsDisplay];
+//	[_activity stopAnimating];
 	
 }
 
@@ -245,7 +277,7 @@
 
 
 - (void) dealloc{
-	[_activity release];
+//	[_activity release];
 	[_title release];
 	[_message release];
     [_backgroundImageView release];
