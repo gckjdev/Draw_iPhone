@@ -12,6 +12,6 @@
 @class PBDraw;
 @interface DrawManager : NSObject
 
-
++ (NSMutableArray *)parseFromPBDrawActionList:(NSArray *)pbDrawActions;
 + (Draw *)parseFromPBdraw:(PBDraw *)pbDraw;
 @end

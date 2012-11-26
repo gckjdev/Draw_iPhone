@@ -8,13 +8,14 @@
 
 #import <Foundation/Foundation.h>
 #import "BBSModelExt.h"
-
+#import "StorageManager.h"
 
 
 @interface BBSManager : NSObject
 {
     NSArray *_boardList;
     NSMutableDictionary *_boardDict;
+    StorageManager *_storageManager;
 }
 @property(nonatomic, retain)NSArray *boardList;
 
@@ -30,6 +31,12 @@
 - (NSUInteger)textMaxLength;
 - (NSUInteger)textMinLength;
 
+
+//Cache
+- (void)cacheBBSDrawData:(PBBBSDraw *)draw forKey:(NSString *)key;
+- (PBBBSDraw *)loadBBSDrawDataFromCacheWithKey:(NSString *)key;
+- (void)deleteAllBBSDrawDataCache;
+- (void)deleteOldBBSDrawDataCache;
 
 +(void)printBBSBoard:(PBBBSBoard *)board;
 +(void)printBBSContent:(PBBBSContent *)content;

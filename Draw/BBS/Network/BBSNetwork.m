@@ -300,4 +300,147 @@
         
 }
 
+
++ (CommonNetworkOutput*)deleteBBSPost:(NSString*)baseURL
+                                appId:(NSString *)appId
+                           deviceType:(NSInteger)deviceType
+                               userId:(NSString *)userId
+                               postId:(NSString *)postId
+{
+    CommonNetworkOutput* output = [[[CommonNetworkOutput alloc] init] autorelease];
+    
+    ConstructURLBlock constructURLHandler = ^NSString *(NSString *baseURL) {
+        
+        // set input parameters
+        NSString* str = [NSString stringWithString:baseURL];
+        
+        str = [str stringByAddQueryParameter:METHOD value:METHOD_DELETE_BBSPOST];
+        str = [str stringByAddQueryParameter:PARA_APPID value:appId];
+        str = [str stringByAddQueryParameter:PARA_USERID value:userId];
+        str = [str stringByAddQueryParameter:PARA_DEVICETYPE intValue:deviceType];
+        str = [str stringByAddQueryParameter:PARA_POSTID value:postId];
+        
+        return str;
+    };
+    
+    PPNetworkResponseBlock responseHandler = ^(NSDictionary *dict, CommonNetworkOutput *output) {
+        output.jsonDataDict = [dict objectForKey:RET_DATA];      
+        return;
+    };
+    
+    return [PPNetworkRequest sendRequest:baseURL
+                     constructURLHandler:constructURLHandler
+                         responseHandler:responseHandler
+                            outputFormat:FORMAT_JSON
+                                  output:output];    
+
+}
+
++ (CommonNetworkOutput*)deleteBBSAction:(NSString*)baseURL
+                                  appId:(NSString *)appId
+                             deviceType:(NSInteger)deviceType
+                                 userId:(NSString *)userId
+                               actionId:(NSString *)actionId
+{
+    CommonNetworkOutput* output = [[[CommonNetworkOutput alloc] init] autorelease];
+    
+    ConstructURLBlock constructURLHandler = ^NSString *(NSString *baseURL) {
+        
+        // set input parameters
+        NSString* str = [NSString stringWithString:baseURL];
+        
+        str = [str stringByAddQueryParameter:METHOD value:METHOD_DELETE_BBSACTION];
+        str = [str stringByAddQueryParameter:PARA_APPID value:appId];
+        str = [str stringByAddQueryParameter:PARA_USERID value:userId];
+        str = [str stringByAddQueryParameter:PARA_DEVICETYPE intValue:deviceType];
+        str = [str stringByAddQueryParameter:PARA_ACTIONID value:actionId];
+        
+        return str;
+    };
+    
+    PPNetworkResponseBlock responseHandler = ^(NSDictionary *dict, CommonNetworkOutput *output) {
+        output.jsonDataDict = [dict objectForKey:RET_DATA];      
+        return;
+    };
+    
+    return [PPNetworkRequest sendRequest:baseURL
+                     constructURLHandler:constructURLHandler
+                         responseHandler:responseHandler
+                            outputFormat:FORMAT_JSON
+                                  output:output];
+
+}
+
++ (CommonNetworkOutput*)getBBSPost:(NSString*)baseURL
+                             appId:(NSString *)appId
+                        deviceType:(NSInteger)deviceType
+                            userId:(NSString *)userId
+                            postId:(NSString *)postId
+{
+    CommonNetworkOutput* output = [[[CommonNetworkOutput alloc] init] autorelease];
+    
+    ConstructURLBlock constructURLHandler = ^NSString *(NSString *baseURL) {
+        
+        // set input parameters
+        NSString* str = [NSString stringWithString:baseURL];
+        
+        str = [str stringByAddQueryParameter:METHOD value:METHOD_GET_BBSPOST];
+        str = [str stringByAddQueryParameter:PARA_APPID value:appId];
+        str = [str stringByAddQueryParameter:PARA_USERID value:userId];
+        str = [str stringByAddQueryParameter:PARA_DEVICETYPE intValue:deviceType];
+        str = [str stringByAddQueryParameter:PARA_POSTID value:postId];
+        str = [str stringByAddQueryParameter:PARA_FORMAT value:FINDDRAW_FORMAT_PROTOCOLBUFFER];
+        
+        return str;
+    };
+    
+    PPNetworkResponseBlock responseHandler = ^(NSDictionary *dict, CommonNetworkOutput *output) {
+        return;
+    };
+    
+    return [PPNetworkRequest sendRequest:baseURL
+                     constructURLHandler:constructURLHandler
+                         responseHandler:responseHandler
+                            outputFormat:FORMAT_PB
+                                  output:output];
+
+}
+
++ (CommonNetworkOutput*)getBBSDrawData:(NSString*)baseURL
+                                 appId:(NSString *)appId
+                            deviceType:(NSInteger)deviceType
+                                userId:(NSString *)userId
+                                postId:(NSString *)postId
+                              actionId:(NSString *)actionId
+{
+    CommonNetworkOutput* output = [[[CommonNetworkOutput alloc] init] autorelease];
+    
+    ConstructURLBlock constructURLHandler = ^NSString *(NSString *baseURL) {
+        
+        // set input parameters
+        NSString* str = [NSString stringWithString:baseURL];
+        
+        str = [str stringByAddQueryParameter:METHOD value:METHOD_GET_BBS_DRAWDATA];
+        str = [str stringByAddQueryParameter:PARA_APPID value:appId];
+        str = [str stringByAddQueryParameter:PARA_USERID value:userId];
+        str = [str stringByAddQueryParameter:PARA_DEVICETYPE intValue:deviceType];
+        str = [str stringByAddQueryParameter:PARA_POSTID value:postId];
+        str = [str stringByAddQueryParameter:PARA_ACTIONID value:actionId];
+        str = [str stringByAddQueryParameter:PARA_FORMAT value:FINDDRAW_FORMAT_PROTOCOLBUFFER];
+        
+        return str;
+    };
+    
+    PPNetworkResponseBlock responseHandler = ^(NSDictionary *dict, CommonNetworkOutput *output) {
+        return;
+    };
+    
+    return [PPNetworkRequest sendRequest:baseURL
+                     constructURLHandler:constructURLHandler
+                         responseHandler:responseHandler
+                            outputFormat:FORMAT_PB
+                                  output:output];
+
+}
+
 @end
