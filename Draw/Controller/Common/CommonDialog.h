@@ -18,7 +18,8 @@ typedef enum {
 
 typedef enum {
     CommonDialogThemeDraw = 0,
-    CommonDialogThemeDice = 1
+    CommonDialogThemeDice = 1,
+    CommonDialogThemeStarry,
 }CommonDialogTheme;
 
 @protocol CommonDialogDelegate <NSObject>
