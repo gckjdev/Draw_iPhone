@@ -188,7 +188,6 @@
 						<string key="NSFrame">{{276, 150}, {40, 20}}</string>
 						<reference key="NSSuperview" ref="137148075"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -438,7 +437,7 @@
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
 				<object class="IBPartialClassDescription">
 					<string key="className">BBSPostCell</string>
-					<string key="superclassName">BBSTableViewCell</string>
+					<string key="superclassName">PPTableViewCell</string>
 					<dictionary class="NSMutableDictionary" key="actions">
 						<string key="clickCommentButton:">id</string>
 						<string key="clickSupportButton:">id</string>
@@ -507,6 +506,7 @@
 					<string key="superclassName">PPTableViewCell</string>
 					<dictionary class="NSMutableDictionary" key="outlets">
 						<string key="avatar">UIImageView</string>
+						<string key="avatarMask">UIButton</string>
 						<string key="content">UILabel</string>
 						<string key="image">UIImageView</string>
 						<string key="imageMask">UIButton</string>
@@ -517,6 +517,10 @@
 						<object class="IBToOneOutletInfo" key="avatar">
 							<string key="name">avatar</string>
 							<string key="candidateClassName">UIImageView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="avatarMask">
+							<string key="name">avatarMask</string>
+							<string key="candidateClassName">UIButton</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="content">
 							<string key="name">content</string>
