@@ -46,6 +46,25 @@ typedef enum{
                targetUid:(NSString *)targetUid
               resultCode:(NSInteger)resultCode;
 
+//delete methods
+- (void)didDeleteBBSPost:(NSString *)postId
+              resultCode:(NSInteger)resultCode;
+
+- (void)didDeleteBBSAction:(NSString *)actionId
+                resultCode:(NSInteger)resultCode;
+
+//get draw action list methods
+- (void)didGetBBSDrawActionList:(NSMutableArray *)drawActionList
+                         postId:(NSString *)postId
+                       actionId:(NSString *)actionId
+                     fromRemote:(BOOL)fromRemote
+                     resultCode:(NSInteger)resultCode;
+
+//get post detail method
+- (void)didGetBBSPost:(PBBBSPost *)post
+               postId:(NSString *)postId
+           resultCode:(NSInteger)resultCode;
+
 @end
 
 
@@ -97,6 +116,21 @@ typedef enum{
                             offset:(NSInteger)offset
                              limit:(NSInteger)limit
                           delegate:(id<BBSServiceDelegate>)delegate;
+
+
+#pragma common methods
+- (void)getBBSDrawDataWithPostId:(NSString *)postId
+                        actionId:(NSString *)actionId
+                        delegate:(id<BBSServiceDelegate>)delegate;
+
+- (void)getBBSPostWithPostId:(NSString *)postId
+                    delegate:(id<BBSServiceDelegate>)delegate;
+
+- (void)deletePostWithPostId:(NSString *)postId
+                    delegate:(id<BBSServiceDelegate>)delegate;
+
+- (void)deleteActionWithActionId:(NSString *)actionId
+                        delegate:(id<BBSServiceDelegate>)delegate;
 
 
 #pragma mark - bbs user methods

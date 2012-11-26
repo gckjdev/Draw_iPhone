@@ -14,7 +14,7 @@
 @implementation DrawManager
 
 
-+ (NSArray *)parseFromPBDrawActionList:(NSArray *)pbDrawActions
++ (NSMutableArray *)parseFromPBDrawActionList:(NSArray *)pbDrawActions
 {
     if ([pbDrawActions count] == 0) {
         return nil;

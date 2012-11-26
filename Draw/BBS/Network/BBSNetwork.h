@@ -81,4 +81,30 @@
                                offset:(NSInteger)offset
                                 limit:(NSInteger)limit;
 
+//delete method
++ (CommonNetworkOutput*)deleteBBSPost:(NSString*)baseURL
+                                appId:(NSString *)appId
+                           deviceType:(NSInteger)deviceType
+                               userId:(NSString *)userId
+                               postId:(NSString *)postId;
+
++ (CommonNetworkOutput*)deleteBBSAction:(NSString*)baseURL
+                                  appId:(NSString *)appId
+                             deviceType:(NSInteger)deviceType
+                                 userId:(NSString *)userId
+                               actionId:(NSString *)actionId;
+
++ (CommonNetworkOutput*)getBBSPost:(NSString*)baseURL
+                             appId:(NSString *)appId
+                        deviceType:(NSInteger)deviceType
+                            userId:(NSString *)userId
+                            postId:(NSString *)postId;
+
++ (CommonNetworkOutput*)getBBSDrawData:(NSString*)baseURL
+                                 appId:(NSString *)appId
+                            deviceType:(NSInteger)deviceType
+                                userId:(NSString *)userId
+                                postId:(NSString *)postId
+                              actionId:(NSString *)actionId;
+
 @end

@@ -20,6 +20,10 @@
 #import "DrawDataService.h"
 #import "UIImageExt.h"
 
+#import "DrawAction.h"
+#import "DrawManager.h"
+
+
 BBSService *_staticBBSService;
 
 @implementation BBSService
@@ -675,4 +679,158 @@ BBSService *_staticBBSService;
         });
     });
 }
+
+#pragma common methods
+
+- (void)getBBSDrawDataWithPostId:(NSString *)postId
+                        actionId:(NSString *)actionId
+                        delegate:(id<BBSServiceDelegate>)delegate
+{
+    dispatch_async(workingQueue, ^{
+        NSString *userId = [[UserManager defaultManager] userId];
+        NSString *appId = [ConfigManager appId];
+        
+        BOOL fromRemote = NO;
+        NSInteger resultCode = ERROR_SUCCESS;
+        NSMutableArray *drawActionList = nil;
+        
+        //load from local data
+        BBSManager *_bbsManager = [BBSManager defaultManager];
+        NSString *key = postId;
+        if ([key length] == 0) {
+            key = actionId;
+        }
+        PBBBSDraw *draw = [_bbsManager loadBBSDrawDataFromCacheWithKey:key];
+        
+        //load from remote
+        if (draw == nil) {
+            
+            PPDebug(@"<getBBSDrawDataWithPostId> load data from remote service");
+            
+            fromRemote = YES;
+            CommonNetworkOutput *output = [BBSNetwork getBBSDrawData:TRAFFIC_SERVER_URL
+                                                               appId:appId
+                                                          deviceType:[DeviceDetection deviceType]
+                                                              userId:userId
+                                                              postId:postId
+                                                            actionId:actionId];
+            resultCode = [output resultCode];
+            @try {
+                if (output.resultCode == ERROR_SUCCESS && [output.responseData length] > 0) {
+                    DataQueryResponse *response = [DataQueryResponse parseFromData:output.responseData];
+                    resultCode = [response resultCode];
+                    draw = [response bbsDrawData];
+                    [_bbsManager cacheBBSDrawData:draw forKey:key];
+                }
+            }
+            @catch (NSException *exception) {
+                PPDebug(@"<getBBSBoardList>exception = %@",[exception debugDescription]);
+                drawActionList = nil;
+            }
+            @finally {
+                
+            }
+        }
+        //parse draw data
+        NSArray *list = [draw drawActionListList];
+        drawActionList = [DrawManager parseFromPBDrawActionList:list];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (delegate && [delegate respondsToSelector:@selector(didGetBBSDrawActionList:postId:actionId:fromRemote:resultCode:)]) {
+                [delegate didGetBBSDrawActionList:drawActionList
+                                           postId:postId
+                                         actionId:actionId
+                                       fromRemote:fromRemote
+                                       resultCode:resultCode];
+            }
+        });
+    });
+}
+
+- (void)getBBSPostWithPostId:(NSString *)postId
+                    delegate:(id<BBSServiceDelegate>)delegate
+{
+    dispatch_async(workingQueue, ^{
+        NSString *userId = [[UserManager defaultManager] userId];
+        NSString *appId = [ConfigManager appId];
+        NSInteger deviceType = [DeviceDetection deviceType];
+        CommonNetworkOutput *output = [BBSNetwork getBBSPost:TRAFFIC_SERVER_URL
+                                                       appId:appId
+                                                  deviceType:deviceType
+                                                      userId:userId
+                                                      postId:postId];
+        
+        NSInteger resultCode = [output resultCode];
+        
+        PBBBSPost *post = nil;
+        @try {
+            if (output.resultCode == ERROR_SUCCESS && [output.responseData length] > 0) {
+                DataQueryResponse *response = [DataQueryResponse parseFromData:output.responseData];
+                resultCode = [response resultCode];
+                NSArray *list = [response bbsPostList];
+                if ([list count] != 0) {
+                    post = [response bbsPostAtIndex:0];
+                }
+            }
+        }
+        @catch (NSException *exception) {
+            PPDebug(@"<getBBSBoardList>exception = %@",[exception debugDescription]);
+            post = nil;
+        }
+        @finally {
+            
+        }
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (delegate && [delegate respondsToSelector:@selector(didGetBBSPost:postId:resultCode:)]) {
+                [delegate didGetBBSPost:post postId:postId resultCode:resultCode];
+            }
+        });
+    });
+}
+
+- (void)deletePostWithPostId:(NSString *)postId
+                    delegate:(id<BBSServiceDelegate>)delegate
+{
+    dispatch_async(workingQueue, ^{
+        NSString *userId = [[UserManager defaultManager] userId];
+        NSString *appId = [ConfigManager appId];
+        NSInteger deviceType = [DeviceDetection deviceType];
+        CommonNetworkOutput *output = [BBSNetwork deleteBBSPost:TRAFFIC_SERVER_URL
+                                                          appId:appId
+                                                     deviceType:deviceType
+                                                         userId:userId
+                                                         postId:postId];
+        NSInteger resultCode = [output resultCode];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (delegate && [delegate respondsToSelector:@selector(didDeleteBBSPost:resultCode:)]) {
+                [delegate didDeleteBBSPost:postId resultCode:resultCode];
+            }
+        });
+    });
+}
+
+- (void)deleteActionWithActionId:(NSString *)actionId
+                        delegate:(id<BBSServiceDelegate>)delegate
+{
+    dispatch_async(workingQueue, ^{
+        NSString *userId = [[UserManager defaultManager] userId];
+        NSString *appId = [ConfigManager appId];
+        NSInteger deviceType = [DeviceDetection deviceType];
+        CommonNetworkOutput *output = [BBSNetwork deleteBBSAction:TRAFFIC_SERVER_URL
+                                                            appId:appId
+                                                       deviceType:deviceType
+                                                           userId:userId
+                                                         actionId:actionId];
+        NSInteger resultCode = [output resultCode];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (delegate && [delegate respondsToSelector:@selector(didDeleteBBSAction:resultCode:)]) {
+                [delegate didDeleteBBSAction:actionId resultCode:resultCode];
+            }
+        });
+    });
+    
+}
+
 @end

@@ -13,7 +13,8 @@
 
 BBSManager *_staticBBSManager;
 
-
+#define DRAW_DATA_CACHE_DIR @"bbs/drawData"
+#define CACHE_LIFE_TIME 3600 * 24 * 5
 @synthesize boardList = _boardList;
 
 - (id)init
@@ -21,6 +22,8 @@ BBSManager *_staticBBSManager;
     self = [super init];
     if (self) {
         _boardDict = [[NSMutableDictionary alloc] init];
+        _storageManager = [[StorageManager alloc] initWithStoreType:StorageTypeCache
+                                                      directoryName:DRAW_DATA_CACHE_DIR];
     }
     return self;
 }
@@ -37,6 +40,7 @@ BBSManager *_staticBBSManager;
 {
     PPRelease(_boardList);
     PPRelease(_boardDict);
+    PPRelease(_storageManager);
     [super dealloc];
 }
 
@@ -107,6 +111,28 @@ BBSManager *_staticBBSManager;
 - (NSUInteger)textMinLength
 {
     return 5;
+}
+
+#pragma draw data Cache
+- (void)cacheBBSDrawData:(PBBBSDraw *)draw forKey:(NSString *)key
+{
+    [_storageManager saveData:[draw data] forKey:key];
+}
+- (PBBBSDraw *)loadBBSDrawDataFromCacheWithKey:(NSString *)key
+{
+    NSData *data = [_storageManager dataForKey:key];
+    if (data) {
+        return [PBBBSDraw parseFromData:data];
+    }
+    return nil;
+}
+- (void)deleteAllBBSDrawDataCache
+{
+    [_storageManager removeAllData];
+}
+- (void)deleteOldBBSDrawDataCache
+{
+    [_storageManager removeOldFilestimeIntervalSinceNow:CACHE_LIFE_TIME];
 }
 
 
