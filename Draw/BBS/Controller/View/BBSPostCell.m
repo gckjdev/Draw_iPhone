@@ -159,4 +159,26 @@
         [delegate didClickReplyButtonWithPost:self.post];
     }
 }
+
+#pragma mark - Click avatar && image
+
+- (void)clickAvatarButton:(id)sender
+{
+    if (delegate && [delegate respondsToSelector:@selector(didClickUserAvatar:)]) {
+        [delegate didClickUserAvatar:self.post.createUser];
+    }
+}
+- (void)clickImageButton:(id)sender
+{
+    //show draw...
+    if (self.post.content.type == ContentTypeDraw && delegate
+        && [delegate respondsToSelector:@selector(didClickDrawImageWithPost:)]) {
+        [delegate didClickDrawImageWithPost:self.post];
+    //show image...
+    }else if(self.post.content.type == ContentTypeImage && delegate &&
+             [delegate respondsToSelector:@selector(didClickImageWithURL:)])
+    {
+        [delegate didClickImageWithURL:self.post.content.largeImageURL];
+    }
+}
 @end

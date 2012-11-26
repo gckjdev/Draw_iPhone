@@ -19,6 +19,29 @@
 @synthesize superController = _superController;
 
 
++ (void)initMaskViewsWithCell:(BBSTableViewCell *)cell
+{
+    cell.avatarMask = [UIButton buttonWithType:UIButtonTypeCustom];
+    [cell.avatarMask setClipsToBounds:YES];
+    cell.avatarMask.autoresizingMask = 63;
+    [cell.avatarMask setFrame:cell.avatar.bounds];
+    [cell.avatarMask addTarget:cell action:@selector(clickAvatarButton:)
+              forControlEvents:UIControlEventTouchUpInside];
+    [cell.avatar addSubview:cell.avatarMask];
+    
+    cell.imageMask = [UIButton buttonWithType:UIButtonTypeCustom];
+    cell.imageMask.autoresizingMask = 63;
+    [cell.imageMask setFrame:cell.image.bounds];
+    [cell.imageMask addTarget:cell action:@selector(clickImageButton:)
+             forControlEvents:UIControlEventTouchUpInside];
+    [cell.imageMask setClipsToBounds:YES];
+    [cell.image addSubview:cell.imageMask];
+
+    [cell.image setUserInteractionEnabled:YES];
+    [cell.avatar setUserInteractionEnabled:YES];
+
+}
+
 + (id)createCellWithIdentifier:(NSString *)identifier
                       delegate:(id)delegate
 {
@@ -30,9 +53,8 @@
     }
     
     BBSTableViewCell  *cell = (BBSTableViewCell *)[topLevelObjects objectAtIndex:0];
-    
     cell.delegate = delegate;
-    
+    [BBSTableViewCell initMaskViewsWithCell:cell];
     return cell;
 
 }
@@ -48,6 +70,15 @@
     PPRelease(_avatarMask);
     PPRelease(_superController);
     [super dealloc];
+}
+
+- (void)clickAvatarButton:(id)sender
+{
+    PPDebug(@"<clickAvatarButton>");
+}
+- (void)clickImageButton:(id)sender
+{
+    PPDebug(@"<clickImageButton>");    
 }
 
 @end

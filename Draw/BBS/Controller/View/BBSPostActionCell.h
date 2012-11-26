@@ -10,7 +10,7 @@
 
 @class PBBBSAction;
 
-@protocol BBSPostActionCellDelegate <NSObject>
+@protocol BBSPostActionCellDelegate <BBSTableViewCellDelegate>
 
 @optional
 - (void)didClickReplyButtonWithAction:(PBBBSAction *)action;
