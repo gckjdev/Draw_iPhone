@@ -1509,6 +1509,7 @@
 		CAC4DCE215450E8F00A42CF2 /* StoreKitUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC4DCE115450E8F00A42CF2 /* StoreKitUtils.m */; };
 		CAC4DCE81545286C00A42CF2 /* TransactionReceiptManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC4DCE71545286B00A42CF2 /* TransactionReceiptManager.m */; };
 		CAC4DCEB154542A200A42CF2 /* TransactionReceipt.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC4DCEA154542A200A42CF2 /* TransactionReceipt.m */; };
+		CAC790FB1663194F009B4053 /* BBSTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC790FA1663194F009B4053 /* BBSTableViewCell.m */; };
 		CACC084E1532B02600D9F8E9 /* ShareAction.m in Sources */ = {isa = PBXBuildFile; fileRef = CACC084D1532B02600D9F8E9 /* ShareAction.m */; };
 		CACF87A415EB4D2D003FA6B6 /* DiceSettingView.m in Sources */ = {isa = PBXBuildFile; fileRef = CACF87A215EB4D2D003FA6B6 /* DiceSettingView.m */; };
 		CACF87A515EB4D2D003FA6B6 /* DiceSettingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CACF87A315EB4D2D003FA6B6 /* DiceSettingView.xib */; };
@@ -3957,6 +3958,8 @@
 		CAC4DCE71545286B00A42CF2 /* TransactionReceiptManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransactionReceiptManager.m; sourceTree = "<group>"; };
 		CAC4DCE9154542A100A42CF2 /* TransactionReceipt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransactionReceipt.h; sourceTree = "<group>"; };
 		CAC4DCEA154542A200A42CF2 /* TransactionReceipt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransactionReceipt.m; sourceTree = "<group>"; };
+		CAC790F91663194F009B4053 /* BBSTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBSTableViewCell.h; sourceTree = "<group>"; };
+		CAC790FA1663194F009B4053 /* BBSTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBSTableViewCell.m; sourceTree = "<group>"; };
 		CACC084C1532B02600D9F8E9 /* ShareAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareAction.h; sourceTree = "<group>"; };
 		CACC084D1532B02600D9F8E9 /* ShareAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareAction.m; sourceTree = "<group>"; };
 		CACF87A115EB4D2D003FA6B6 /* DiceSettingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiceSettingView.h; sourceTree = "<group>"; };
@@ -7131,6 +7134,8 @@
 				CA42FE48165F2FF30097453A /* BBSUserActionCell.h */,
 				CA42FE49165F2FF30097453A /* BBSUserActionCell.m */,
 				CA42FE4A165F2FF30097453A /* BBSUserActionCell.xib */,
+				CAC790F91663194F009B4053 /* BBSTableViewCell.h */,
+				CAC790FA1663194F009B4053 /* BBSTableViewCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -12077,6 +12082,7 @@
 				CAFE008616609CEC00441D77 /* FacetimeUserInfoView.m in Sources */,
 				CAFE008916609CEC00441D77 /* MatchingFacetimeUserView.m in Sources */,
 				CA42FE861660B73A0097453A /* DrawGameAnimationManager.m in Sources */,
+				CAC790FB1663194F009B4053 /* BBSTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

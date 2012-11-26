@@ -6,7 +6,7 @@
 //
 //
 
-#import "PPTableViewCell.h"
+#import "BBSTableViewCell.h"
 
 @class PBBBSAction;
 
@@ -18,16 +18,11 @@
 
 @end
 
-@interface BBSPostActionCell : PPTableViewCell
+@interface BBSPostActionCell : BBSTableViewCell
 {
     
 }
 
-@property (retain, nonatomic) IBOutlet UIImageView *avatar;
-@property (retain, nonatomic) IBOutlet UILabel *nickName;
-@property (retain, nonatomic) IBOutlet UILabel *content;
-@property (retain, nonatomic) IBOutlet UILabel *timestamp;
-@property (retain, nonatomic) IBOutlet UIImageView *image;
 @property (retain, nonatomic) IBOutlet UIButton *reply;
 @property (retain, nonatomic) PBBBSAction *action;
 

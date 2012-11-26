@@ -42,21 +42,11 @@
 
 
 @implementation BBSUserActionCell
-@synthesize avatar = _avatar;
-@synthesize nickName = _nickName;
-@synthesize content = _content;
-@synthesize timestamp = _timestamp;
-@synthesize image = _image;
 @synthesize source = _source;
 @synthesize action = _action;
 
 - (void)dealloc
 {
-    PPRelease(_avatar);
-    PPRelease(_nickName);
-    PPRelease(_content);
-    PPRelease(_timestamp);
-    PPRelease(_image);
     PPRelease(_source);
     PPRelease(_action);
     [super dealloc];
@@ -69,16 +59,8 @@
 
 + (id)createCell:(id)delegate
 {
-    NSString* cellId = [self getCellIdentifier];
-    //    NSLog(@"cellId = %@", cellId);
-    NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:cellId owner:self options:nil];
-    // Grab a pointer to the first object (presumably the custom cell, as that's all the XIB should contain).
-    if (topLevelObjects == nil || [topLevelObjects count] <= 0){
-        NSLog(@"create %@ but cannot find cell object from Nib", cellId);
-        return nil;
-    }
+    BBSUserActionCell *cell = [BBSTableViewCell createCellWithIdentifier:[self getCellIdentifier] delegate:delegate];
     
-    BBSUserActionCell *cell = ((BBSUserActionCell*)[topLevelObjects objectAtIndex:0]);
     cell.content.numberOfLines = 0;
     [cell.content setLineBreakMode:NSLineBreakByTruncatingTail];
     cell.content.font = CONTENT_FONT;
@@ -86,9 +68,6 @@
     cell.source.numberOfLines = 0;
     [cell.source setLineBreakMode:NSLineBreakByTruncatingTail];
     cell.source.font = SOURCE_FONT;
-
-    
-    cell.delegate = delegate;
     
     return cell;
 }

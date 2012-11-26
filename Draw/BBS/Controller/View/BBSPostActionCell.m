@@ -26,48 +26,23 @@
 
 
 @implementation BBSPostActionCell
-@synthesize avatar = _avatar;
-@synthesize nickName = _nickName;
-@synthesize content = _content;
-@synthesize timestamp = _timestamp;
-@synthesize image = _image;
 @synthesize reply = _reply;
 @synthesize action = _action;
 
 - (void)dealloc
 {
-    PPRelease(_avatar);
-    PPRelease(_nickName);
-    PPRelease(_content);
-    PPRelease(_timestamp);
-    PPRelease(_image);
     PPRelease(_reply);
     PPRelease(_action);
     [super dealloc];
 }
 
 
-
-
-//@synthesize delegate = _delegate;
-
 + (id)createCell:(id)delegate
-{
-    NSString* cellId = [self getCellIdentifier];
-    //    NSLog(@"cellId = %@", cellId);
-    NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:cellId owner:self options:nil];
-    // Grab a pointer to the first object (presumably the custom cell, as that's all the XIB should contain).
-    if (topLevelObjects == nil || [topLevelObjects count] <= 0){
-        NSLog(@"create %@ but cannot find cell object from Nib", cellId);
-        return nil;
-    }
-    
-    BBSPostActionCell *cell = ((BBSPostActionCell*)[topLevelObjects objectAtIndex:0]);
+{    
+    BBSPostActionCell  *cell = [BBSTableViewCell createCellWithIdentifier:[self getCellIdentifier] delegate:delegate];
     cell.content.numberOfLines = CONTENT_TEXT_LINE;
     [cell.content setLineBreakMode:NSLineBreakByTruncatingTail];
     cell.content.font = CONTENT_FONT;
-    cell.delegate = delegate;
-    
     return cell;
 }
 

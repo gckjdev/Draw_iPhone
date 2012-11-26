@@ -6,10 +6,10 @@
 //
 //
 
-#import "PPTableViewCell.h"
+#import "BBSTableViewCell.h"
 #import "BBSModelExt.h"
 
-@interface BBSUserActionCell : PPTableViewCell
+@interface BBSUserActionCell : BBSTableViewCell
 
 
 @property (retain, nonatomic) IBOutlet UIImageView *avatar;

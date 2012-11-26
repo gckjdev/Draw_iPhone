@@ -29,20 +29,11 @@
 
 + (id)createCell:(id)delegate
 {
-    NSString* cellId = [self getCellIdentifier];
-    //    NSLog(@"cellId = %@", cellId);
-    NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:cellId owner:self options:nil];
-    // Grab a pointer to the first object (presumably the custom cell, as that's all the XIB should contain).
-    if (topLevelObjects == nil || [topLevelObjects count] <= 0){
-        NSLog(@"create %@ but cannot find cell object from Nib", cellId);
-        return nil;
-    }
+    BBSPostCell *cell = [BBSTableViewCell createCellWithIdentifier:[self getCellIdentifier] delegate:delegate];
     
-    BBSPostCell *cell = ((BBSPostCell*)[topLevelObjects objectAtIndex:0]);
     cell.content.numberOfLines = CONTENT_TEXT_LINE;
     [cell.content setLineBreakMode:NSLineBreakByTruncatingTail];
     cell.content.font = CONTENT_FONT;
-    cell.delegate = delegate;
     
     return cell;
 }
@@ -149,11 +140,6 @@
 
 
 - (void)dealloc {
-    PPRelease(_avatar);
-    PPRelease(_nickName);
-    PPRelease(_content);
-    PPRelease(_timestamp);
-    PPRelease(_image);
     PPRelease(_support);
     PPRelease(_comment);
     PPRelease(_post);
