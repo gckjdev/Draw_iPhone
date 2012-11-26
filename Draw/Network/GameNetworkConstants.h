@@ -477,10 +477,10 @@
 #define METHOD_GET_BBSACTION_LIST @"gbal"
 #define METHOD_CREATE_POST @"cp"
 
-#define METHOD_DELETE_BBSPOST "dbp"
-#define METHOD_DELETE_BBSACTION "dba"
-#define METHOD_GET_BBSPOST "gbp"
-#define METHOD_GET_BBS_DRAWDATA "gbd"
+#define METHOD_DELETE_BBSPOST @"dbp"
+#define METHOD_DELETE_BBSACTION @"dba"
+#define METHOD_GET_BBSPOST @"gbp"
+#define METHOD_GET_BBS_DRAWDATA @"gbd"
 
 
 #define PARA_BOARDID @"bid"

@@ -10,7 +10,7 @@
 #import "BBSPostActionCell.h"
 #import "BBSPostDetailCell.h"
 #import "BBSPostDetailUserCell.h"
-
+#import "ReplayGraffitiController.h"
 
 @interface BBSPostDetailController ()
 @property (nonatomic, retain)PBBBSPost *post;
@@ -301,6 +301,22 @@ typedef enum{
     [self didController:nil CreateNewAction:action];
 }
 
+
+- (void)didGetBBSDrawActionList:(NSMutableArray *)drawActionList
+                         postId:(NSString *)postId
+                       actionId:(NSString *)actionId
+                     fromRemote:(BOOL)fromRemote
+                     resultCode:(NSInteger)resultCode
+{
+    if (resultCode == 0) {
+        ReplayGraffitiController *pg = [[ReplayGraffitiController alloc]
+                                        initWithDrawActionList:drawActionList];
+        [self.navigationController pushViewController:pg animated:YES];
+        [pg release];
+    }else{
+        PPDebug(@"<didGetBBSDrawActionList> fail!, resultCode = %d",resultCode);
+    }
+}
 - (IBAction)clickSupportButton:(id)sender {
     [[BBSService defaultService] createActionWithPost:self.post
                                          sourceAction:nil
@@ -322,5 +338,22 @@ typedef enum{
     [self clickTab:Comment];
 }
 
+- (void)didClickUserAvatar:(PBBBSUser *)user
+{
+    //TODO show user info
+    PPDebug(@"<didClickUserAvatar>, userId = %@",user.userId);
+}
+
+- (void)didClickImageWithURL:(NSURL *)url
+{
+    //TODO enter show image Controller
+}
+
+- (void)didClickDrawImageWithAction:(PBBBSAction *)action
+{
+    [[BBSService defaultService] getBBSDrawDataWithPostId:nil
+                                                 actionId:action.actionId
+                                                 delegate:self];
+}
 
 @end

@@ -7,6 +7,17 @@
 //
 
 #import "PPTableViewCell.h"
+#import "Bbs.pb.h"
+
+@protocol BBSTableViewCellDelegate <NSObject>
+
+@optional
+- (void)didClickUserAvatar:(PBBBSUser *)user;
+- (void)didClickImageWithURL:(NSURL *)url;
+- (void)didClickDrawImageWithPost:(PBBBSPost *)post;
+- (void)didClickDrawImageWithAction:(PBBBSAction *)action;
+
+@end
 
 @class PPTableViewController;
 
@@ -25,11 +36,14 @@
 @property (retain, nonatomic) IBOutlet UILabel *content;
 @property (retain, nonatomic) IBOutlet UILabel *timestamp;
 @property (retain, nonatomic) IBOutlet UIImageView *image;
-@property (retain, nonatomic) IBOutlet UIButton *imageMask;
-@property (retain, nonatomic) IBOutlet UIButton *avatarMask;
+@property (retain, nonatomic) UIButton *imageMask;
+@property (retain, nonatomic) UIButton *avatarMask;
 @property (retain, nonatomic) PPTableViewController *superController;
 
 + (id )createCellWithIdentifier:(NSString *)identifier
                                       delegate:(id)delegate;
+
+- (void)clickAvatarButton:(id)sender;
+- (void)clickImageButton:(id)sender;
 
 @end

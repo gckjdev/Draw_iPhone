@@ -10,7 +10,7 @@
 #import "BBSModelExt.h"
 
 
-@protocol BBSPostCellDelegate <NSObject>
+@protocol BBSPostCellDelegate <BBSTableViewCellDelegate>
 
 @optional
 - (void)didClickSupportButtonWithPost:(PBBBSPost *)post;

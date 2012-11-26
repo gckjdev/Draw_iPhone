@@ -9,6 +9,7 @@
 #import "BBSActionListController.h"
 #import "UserManager.h"
 #import "BBSUserActionCell.h"
+#import "ReplayGraffitiController.h"
 
 @interface BBSActionListController ()
 
@@ -92,6 +93,21 @@
     }
 }
 
+- (void)didGetBBSDrawActionList:(NSMutableArray *)drawActionList
+                         postId:(NSString *)postId
+                       actionId:(NSString *)actionId
+                     fromRemote:(BOOL)fromRemote
+                     resultCode:(NSInteger)resultCode
+{
+    if (resultCode == 0) {
+        ReplayGraffitiController *pg = [[ReplayGraffitiController alloc]
+                                        initWithDrawActionList:drawActionList];
+        [self.navigationController pushViewController:pg animated:YES];
+        [pg release];
+    }else{
+        PPDebug(@"<didGetBBSDrawActionList> fail!, resultCode = %d",resultCode);
+    }
+}
 
 #pragma mark - table view delegate
 - (PBBBSAction *)actionForIndexPath:(NSIndexPath *)indexPath
@@ -126,7 +142,23 @@
 	
 }
 
+#pragma mark - cell delegate
+- (void)didClickUserAvatar:(PBBBSUser *)user
+{
+    //TODO show user info
+    PPDebug(@"<didClickUserAvatar>, userId = %@",user.userId);
+}
 
+- (void)didClickImageWithURL:(NSURL *)url
+{
+    //TODO enter show image Controller
+}
 
+- (void)didClickDrawImageWithAction:(PBBBSAction *)action
+{
+    [[BBSService defaultService] getBBSDrawDataWithPostId:nil
+                                                 actionId:action.actionId
+                                                 delegate:self];
+}
 
 @end

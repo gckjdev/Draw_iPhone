@@ -178,4 +178,28 @@
     [self updateTimeStamp:action.createDate];
 }
 
+
+#pragma mark - action delegate
+- (void)clickAvatarButton:(id)sender
+{
+    if (delegate && [delegate respondsToSelector:@selector(didClickUserAvatar:)]) {
+        [delegate didClickUserAvatar:self.action.createUser];
+    }
+}
+- (void)clickImageButton:(id)sender
+{
+    //show draw...
+    if (self.action.content.type == ContentTypeDraw && delegate
+        && [delegate respondsToSelector:@selector(didClickDrawImageWithAction:)]) {
+        [delegate didClickDrawImageWithAction:self.action];
+        
+        //show image...
+    }else if(self.action.content.type == ContentTypeImage && delegate &&
+             [delegate respondsToSelector:@selector(didClickImageWithURL:)])
+    {
+        [delegate didClickImageWithURL:self.action.content.largeImageURL];
+    }
+}
+
+
 @end

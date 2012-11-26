@@ -11,6 +11,7 @@
 #import "CreatePostController.h"
 #import "BBSPostCell.h"
 #import "BBSPostDetailController.h"
+#import "ReplayGraffitiController.h"
 
 @interface BBSPostListController ()
 {
@@ -179,7 +180,21 @@
     }
 }
 
-
+- (void)didGetBBSDrawActionList:(NSMutableArray *)drawActionList
+                         postId:(NSString *)postId
+                       actionId:(NSString *)actionId
+                     fromRemote:(BOOL)fromRemote
+                     resultCode:(NSInteger)resultCode
+{
+    if (resultCode == 0) {
+        ReplayGraffitiController *pg = [[ReplayGraffitiController alloc]
+                                        initWithDrawActionList:drawActionList];
+        [self.navigationController pushViewController:pg animated:YES];
+        [pg release];
+    }else{
+        PPDebug(@"<didGetBBSDrawActionList> fail!, resultCode = %d",resultCode);
+    }
+}
 
 #pragma mark - table view delegate
 - (PBBBSPost *)postForIndexPath:(NSIndexPath *)indexPath
@@ -214,6 +229,14 @@
 	
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    PBBBSPost *post = [self postForIndexPath:indexPath];
+    [BBSPostDetailController enterPostDetailControllerWithPost:post
+                                                fromController:self
+                                                      animated:YES];
+}
+
 #pragma mark - BBSPost cell delegate
 - (void)didClickSupportButtonWithPost:(PBBBSPost *)post
 {
@@ -236,13 +259,19 @@
     }
 }
 
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+- (void)didClickUserAvatar:(PBBBSUser *)user
 {
-    PBBBSPost *post = [self postForIndexPath:indexPath];
-    [BBSPostDetailController enterPostDetailControllerWithPost:post
-                                                fromController:self
-                                                      animated:YES];
+    //TODO show user info
+    PPDebug(@"<didClickUserAvatar>, userId = %@",user.userId);
 }
 
+- (void)didClickImageWithURL:(NSURL *)url
+{
+    //TODO enter show image Controller
+}
+
+- (void)didClickDrawImageWithPost:(PBBBSPost *)post
+{
+    [[BBSService defaultService] getBBSDrawDataWithPostId:post.postId actionId:nil delegate:self];
+}
 @end
