@@ -11,6 +11,7 @@
 #import "CreatePostController.h"
 #import "BBSPostListController.h"
 #import "BBSActionListController.h"
+#import "BBSImageManager.h"
 
 @interface BBSBoardController ()
 {
@@ -19,6 +20,14 @@
     NSMutableSet *_openBoardSet;
 }
 @property(nonatomic, retain)NSArray *parentBoardList;
+- (IBAction)clickBackButton:(id)sender;
+- (IBAction)clickMyPostList:(id)sender;
+- (IBAction)clickMyAction:(id)sender;
+
+@property (retain, nonatomic) IBOutlet UIButton *backButton;
+@property (retain, nonatomic) IBOutlet UIButton *myPostButton;
+@property (retain, nonatomic) IBOutlet UIButton *myActionButton;
+@property (retain, nonatomic) IBOutlet UIButton *badge;
 
 @end
 
@@ -35,9 +44,15 @@
     return self;
 }
 
+- (void)initViews
+{
+    
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self initViews];
     [[BBSService defaultService] getBBSBoardList:self];
     // Do any additional setup after loading the view from its nib.
 }
@@ -172,4 +187,18 @@
     [BBSPostListController enterPostListControllerWithBBSBoard:sBoard fromController:self];
 }
 
+- (void)dealloc {
+    [_backButton release];
+    [_myPostButton release];
+    [_myActionButton release];
+    [_badge release];
+    [super dealloc];
+}
+- (void)viewDidUnload {
+    [self setBackButton:nil];
+    [self setMyPostButton:nil];
+    [self setMyActionButton:nil];
+    [self setBadge:nil];
+    [super viewDidUnload];
+}
 @end

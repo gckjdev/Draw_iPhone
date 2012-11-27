@@ -15,4 +15,6 @@
 #define RESOURCE_PACKAGE_COMMON     @"common_core"
 #define RESOURCE_PACKAGE_ZJH_AUDIO  @"zhajinhua_audio"
 
+#define RESOURCE_PACKAGE_BBS        @"bbs"
+
 #endif

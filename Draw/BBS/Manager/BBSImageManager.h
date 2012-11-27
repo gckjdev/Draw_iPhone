@@ -9,5 +9,17 @@
 #import <Foundation/Foundation.h>
 
 @interface BBSImageManager : NSObject
-
+{
+    
+}
+- (UIImage *)bbsBadgeImage;
+- (UIImage *)bbsBoardBgImage;
+- (UIImage *)bbsBoardLastBgImage;
+- (UIImage *)bbsBoardLineImage;
+- (UIImage *)bbsButtonLeftImage;
+- (UIImage *)bbsButtonRightImage;
+- (UIImage *)bbsSectionBgImage;
+- (UIImage *)bbsSwitchBgImage;
+- (UIImage *)bbsSwitchDownImage;
+- (UIImage *)bbsSwitchRightImage;
 @end
