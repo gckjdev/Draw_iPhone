@@ -154,6 +154,8 @@
 
 - (IBAction)clickMask:(id)sender {
     [self adjustImageSize];
+    UIButton *button = sender;
+    button.frame = self.imageView.frame;
 }
 
 - (IBAction)clickCloseButton:(id)sender {
@@ -162,5 +164,6 @@
 }
 
 - (IBAction)clickSaveButton:(id)sender {
+    
 }
 @end

@@ -2897,7 +2897,7 @@ static PBBBSAction* defaultPBBBSActionInstance = nil;
 @property (retain) NSString* boardId;
 @property int32_t type;
 @property (retain) NSString* name;
-@property int32_t topicCount;
+@property int32_t actionCount;
 @property int32_t postCount;
 @property (retain) NSString* icon;
 @property (retain) NSString* parentBoardId;
@@ -2928,13 +2928,13 @@ static PBBBSAction* defaultPBBBSActionInstance = nil;
   hasName_ = !!value;
 }
 @synthesize name;
-- (BOOL) hasTopicCount {
-  return !!hasTopicCount_;
+- (BOOL) hasActionCount {
+  return !!hasActionCount_;
 }
-- (void) setHasTopicCount:(BOOL) value {
-  hasTopicCount_ = !!value;
+- (void) setHasActionCount:(BOOL) value {
+  hasActionCount_ = !!value;
 }
-@synthesize topicCount;
+@synthesize actionCount;
 - (BOOL) hasPostCount {
   return !!hasPostCount_;
 }
@@ -2984,7 +2984,7 @@ static PBBBSAction* defaultPBBBSActionInstance = nil;
     self.boardId = @"";
     self.type = 0;
     self.name = @"";
-    self.topicCount = 0;
+    self.actionCount = 0;
     self.postCount = 0;
     self.icon = @"";
     self.parentBoardId = @"";
@@ -3015,7 +3015,7 @@ static PBBBSBoard* defaultPBBBSBoardInstance = nil;
   if (!self.hasName) {
     return NO;
   }
-  if (!self.hasTopicCount) {
+  if (!self.hasActionCount) {
     return NO;
   }
   if (!self.hasPostCount) {
@@ -3041,8 +3041,8 @@ static PBBBSBoard* defaultPBBBSBoardInstance = nil;
   if (self.hasIcon) {
     [output writeString:4 value:self.icon];
   }
-  if (self.hasTopicCount) {
-    [output writeInt32:5 value:self.topicCount];
+  if (self.hasActionCount) {
+    [output writeInt32:5 value:self.actionCount];
   }
   if (self.hasPostCount) {
     [output writeInt32:6 value:self.postCount];
@@ -3077,8 +3077,8 @@ static PBBBSBoard* defaultPBBBSBoardInstance = nil;
   if (self.hasIcon) {
     size += computeStringSize(4, self.icon);
   }
-  if (self.hasTopicCount) {
-    size += computeInt32Size(5, self.topicCount);
+  if (self.hasActionCount) {
+    size += computeInt32Size(5, self.actionCount);
   }
   if (self.hasPostCount) {
     size += computeInt32Size(6, self.postCount);
@@ -3176,8 +3176,8 @@ static PBBBSBoard* defaultPBBBSBoardInstance = nil;
   if (other.hasName) {
     [self setName:other.name];
   }
-  if (other.hasTopicCount) {
-    [self setTopicCount:other.topicCount];
+  if (other.hasActionCount) {
+    [self setActionCount:other.actionCount];
   }
   if (other.hasPostCount) {
     [self setPostCount:other.postCount];
@@ -3232,7 +3232,7 @@ static PBBBSBoard* defaultPBBBSBoardInstance = nil;
         break;
       }
       case 40: {
-        [self setTopicCount:[input readInt32]];
+        [self setActionCount:[input readInt32]];
         break;
       }
       case 48: {
@@ -3307,20 +3307,20 @@ static PBBBSBoard* defaultPBBBSBoardInstance = nil;
   result.name = @"";
   return self;
 }
-- (BOOL) hasTopicCount {
-  return result.hasTopicCount;
+- (BOOL) hasActionCount {
+  return result.hasActionCount;
 }
-- (int32_t) topicCount {
-  return result.topicCount;
+- (int32_t) actionCount {
+  return result.actionCount;
 }
-- (PBBBSBoard_Builder*) setTopicCount:(int32_t) value {
-  result.hasTopicCount = YES;
-  result.topicCount = value;
+- (PBBBSBoard_Builder*) setActionCount:(int32_t) value {
+  result.hasActionCount = YES;
+  result.actionCount = value;
   return self;
 }
-- (PBBBSBoard_Builder*) clearTopicCount {
-  result.hasTopicCount = NO;
-  result.topicCount = 0;
+- (PBBBSBoard_Builder*) clearActionCount {
+  result.hasActionCount = NO;
+  result.actionCount = 0;
   return self;
 }
 - (BOOL) hasPostCount {

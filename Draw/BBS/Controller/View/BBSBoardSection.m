@@ -29,7 +29,7 @@
 {
     self.bbsBoard = board;
     [self.name setText:board.name];
-    [self.topicCount setText:[NSString stringWithFormat:@"Topic:%d",board.topicCount]];
+    [self.topicCount setText:[NSString stringWithFormat:@"Reply:%d",board.actionCount]];
     [self.postCount setText:[NSString stringWithFormat:@"Post:%d",board.postCount]];
     NSURL *url = [NSURL URLWithString:board.icon];
     [self.icon setImageWithURL:url success:^(UIImage *image, BOOL cached) {

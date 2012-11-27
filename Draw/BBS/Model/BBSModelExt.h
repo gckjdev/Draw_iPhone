@@ -46,6 +46,12 @@ typedef enum {
 @end
 
 
+@interface PBBBSPost (PostExt)
+
+- (BOOL)canDelete;
+- (BOOL)isMyPost;
+@end
+
 @interface PBBBSAction (ActionExt)
 
 - (BOOL)isCommet;
@@ -54,6 +60,8 @@ typedef enum {
 - (NSString *)contentText;
 - (NSString *)showText;
 - (NSString *)showSourceText;
+- (BOOL)canDelete;
+- (BOOL)isMyAction;
 @end
 
 @interface PBBBSActionSource (ActionSourceExt)

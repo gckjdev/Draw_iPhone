@@ -716,7 +716,7 @@
 @interface PBBBSBoard : PBGeneratedMessage {
 @private
   BOOL hasType_:1;
-  BOOL hasTopicCount_:1;
+  BOOL hasActionCount_:1;
   BOOL hasPostCount_:1;
   BOOL hasBoardId_:1;
   BOOL hasName_:1;
@@ -725,7 +725,7 @@
   BOOL hasDesc_:1;
   BOOL hasLastPost_:1;
   int32_t type;
-  int32_t topicCount;
+  int32_t actionCount;
   int32_t postCount;
   NSString* boardId;
   NSString* name;
@@ -737,7 +737,7 @@
 - (BOOL) hasBoardId;
 - (BOOL) hasType;
 - (BOOL) hasName;
-- (BOOL) hasTopicCount;
+- (BOOL) hasActionCount;
 - (BOOL) hasPostCount;
 - (BOOL) hasIcon;
 - (BOOL) hasParentBoardId;
@@ -746,7 +746,7 @@
 @property (readonly, retain) NSString* boardId;
 @property (readonly) int32_t type;
 @property (readonly, retain) NSString* name;
-@property (readonly) int32_t topicCount;
+@property (readonly) int32_t actionCount;
 @property (readonly) int32_t postCount;
 @property (readonly, retain) NSString* icon;
 @property (readonly, retain) NSString* parentBoardId;
@@ -802,10 +802,10 @@
 - (PBBBSBoard_Builder*) setName:(NSString*) value;
 - (PBBBSBoard_Builder*) clearName;
 
-- (BOOL) hasTopicCount;
-- (int32_t) topicCount;
-- (PBBBSBoard_Builder*) setTopicCount:(int32_t) value;
-- (PBBBSBoard_Builder*) clearTopicCount;
+- (BOOL) hasActionCount;
+- (int32_t) actionCount;
+- (PBBBSBoard_Builder*) setActionCount:(int32_t) value;
+- (PBBBSBoard_Builder*) clearActionCount;
 
 - (BOOL) hasPostCount;
 - (int32_t) postCount;

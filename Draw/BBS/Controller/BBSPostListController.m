@@ -197,6 +197,29 @@
     }
 }
 
+- (void)didDeleteBBSPost:(NSString *)postId resultCode:(NSInteger)resultCode
+{
+    if (resultCode == 0) {
+        PBBBSPost *p = nil;
+        NSInteger row = 0;
+        for (PBBBSPost *post in self.tabDataList) {
+            if ([post.postId isEqualToString:postId]) {
+                p = post;
+                break;
+            }
+            row ++;
+        }
+        if (p) {
+            [self.tabDataList removeObject:p];
+            NSIndexPath *indexPath = [NSIndexPath indexPathForRow:row inSection:0];
+            NSArray *indexPaths = [NSArray arrayWithObject:indexPath];
+            [self.dataTableView deleteRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationFade];
+        }
+    }else{
+        PPDebug(@"<didDeleteBBSPost>fail to delete post, postId = %@, resultCode = %d",postId, resultCode);
+    }
+}
+
 #pragma mark - table view delegate
 - (PBBBSPost *)postForIndexPath:(NSIndexPath *)indexPath
 {
@@ -207,8 +230,6 @@
     PBBBSPost *post = [self.tabDataList objectAtIndex:indexPath.row];
     return post;
 }
-
-
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -236,6 +257,33 @@
     [BBSPostDetailController enterPostDetailControllerWithPost:post
                                                 fromController:self
                                                       animated:YES];
+}
+
+
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    PBBBSPost *post = [self postForIndexPath:indexPath];
+    if (post && post.canDelete) {
+        return YES;
+    }
+    return NO;
+}
+
+- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return UITableViewCellEditingStyleDelete;
+}
+- (NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return NSLS(@"kDelete");
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    PBBBSPost *post = [self postForIndexPath:indexPath];
+    if (post && post.canDelete) {
+        [[BBSService defaultService] deletePostWithPostId:post.postId delegate:self];
+    }
 }
 
 #pragma mark - BBSPost cell delegate
@@ -275,4 +323,7 @@
 {
     [[BBSService defaultService] getBBSDrawDataWithPostId:post.postId actionId:nil delegate:self];
 }
+
+
+
 @end
