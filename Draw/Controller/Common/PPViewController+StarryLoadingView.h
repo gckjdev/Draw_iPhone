@@ -10,4 +10,9 @@
 
 @interface PPViewController (StarryLoadingView)
 
+- (void)showStarryLoadingWithText:(NSString*)loadingText withCenter:(CGPoint)point;
+- (void)showStarryLoadingWithText:(NSString*)loadingText;
+- (void)showStarryLoading;
+- (void)hideStarryLoading;
+
 @end

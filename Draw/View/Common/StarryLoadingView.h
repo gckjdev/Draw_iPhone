@@ -16,18 +16,22 @@
 	NSString *_title;
 	NSString *_message;
 	float radius;
+    UIView* _maskView;
+    UIView* _superView;
 }
 @property (copy,nonatomic) NSString *title;
 @property (copy,nonatomic) NSString *message;
 @property (assign,nonatomic) float radius;
 @property (retain, nonatomic) UIImageView*  backgroundImageView;
 @property (retain, nonatomic) UILabel*      titleLabel;
-@property (retain, nonatomic) UILabel*      messageLabe;
+@property (retain, nonatomic) UILabel*      messageLabel;
+@property (retain, nonatomic) UIView*       loadingView;
+@property (retain, nonatomic) UIView*       superView;
 
 - (id) initWithTitle:(NSString*)title message:(NSString*)message;
 - (id) initWithTitle:(NSString*)title;
 
 - (void) startAnimating;
 - (void) stopAnimating;
-
+- (void)showInView:(UIView*)superView;
 @end
