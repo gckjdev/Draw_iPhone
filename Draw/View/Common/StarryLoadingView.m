@@ -49,11 +49,12 @@
 #define FONT_OF_MESSAGE_IPAD [UIFont systemFontOfSize:12*2]
 #define FONT_OF_MESSAGE ([self isIPAD] ? (FONT_OF_MESSAGE_IPAD) : (FONT_OF_MESSAGE_IPHONE))
 
-#define LOADING_CENTER_SIZE (CGSizeMake(30, 30))
+#define LOADING_CENTER_SIZE ([DeviceDetection isIPAD]?CGSizeMake(123, 92):CGSizeMake(62, 46))
 
 - (BOOL) isIPAD
 {
     return (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad);
+    
 }
 
 - (id) initWithTitle:(NSString*)ttl message:(NSString*)msg{
@@ -107,6 +108,7 @@
     
     //set background image
 	self.backgroundImageView = [[[UIImageView alloc] init] autorelease];
+    [self.backgroundImageView setImage:[UIImage imageNamed:@"starryBg.png"]];
     [self.loadingView addSubview:self.backgroundImageView];
 	
 	
@@ -130,7 +132,9 @@
     [self.messageLabel setText:_title];
     [self.messageLabel setTextColor:[UIColor whiteColor]];
     [self.messageLabel setBackgroundColor:[UIColor clearColor]];
-    [self.messageLabel setNumberOfLines:2];
+    [self.messageLabel setNumberOfLines:3];
+    [self.messageLabel setLineBreakMode:UILineBreakModeCharacterWrap];
+    [self.messageLabel setFont:FONT_OF_MESSAGE];
     [self.loadingView addSubview:self.messageLabel];
     
     [self addSubview:self.loadingView];
@@ -201,6 +205,8 @@
 	UIFont *messageFont = FONT_OF_MESSAGE;
     CGSize s1 = [self calculateHeightOfTextFromWidth:_title font:titleFont width:HEIGHT_OF_LOADING_VIEW linebreak:UILineBreakModeTailTruncation];
 	CGSize s2 = [self calculateHeightOfTextFromWidth:_message font:messageFont width:HEIGHT_OF_LOADING_VIEW linebreak:UILineBreakModeCharacterWrap];
+    
+    
     
     [self.loadingView setFrame:CGRectMake(0, 0, MAX(s1.width, s2.width), s1.height + s2.height + LOADING_CENTER_SIZE.height)];
     [self.loadingView setCenter:CGPointMake(_superView.bounds.size.width/2, _superView.bounds.size.height/2)];
