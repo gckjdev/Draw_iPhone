@@ -10,4 +10,19 @@
 
 @interface BBSFontManager : NSObject
 
++ (id)defaultManager;
+
+- (UIFont *)indexTabFont;
+- (UIFont *)indexTitleFont;
+- (UIFont *)indexCountFont;
+- (UIFont *)indexBadgeFont;
+
+- (UIFont *)indexLastPostTextFont;
+- (UIFont *)indexLastPostNickFont;
+- (UIFont *)indexLastPostDateFont;
+
+- (UIFont *)indexBoardNameFont;
+- (UIFont *)indexSectionNameFont;
+
+
 @end

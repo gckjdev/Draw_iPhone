@@ -9,7 +9,9 @@
 #import <Foundation/Foundation.h>
 #import "BBSModelExt.h"
 #import "StorageManager.h"
-
+#import "BBSImageManager.h"
+#import "BBSFontManager.h"
+#import "BBSColorManager.h"
 
 @interface BBSManager : NSObject
 {

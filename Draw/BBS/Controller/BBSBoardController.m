@@ -11,12 +11,17 @@
 #import "CreatePostController.h"
 #import "BBSPostListController.h"
 #import "BBSActionListController.h"
-#import "BBSImageManager.h"
+//#import "BBSManager.h"
 
 @interface BBSBoardController ()
 {
     NSArray *_parentBoardList;
     BBSManager *_bbsManager;
+    
+    BBSImageManager *_bbsImageManager;
+    BBSColorManager *_bbsColorManager;
+    BBSFontManager *_bbsFontManager;
+    
     NSMutableSet *_openBoardSet;
 }
 @property(nonatomic, retain)NSArray *parentBoardList;
@@ -24,10 +29,12 @@
 - (IBAction)clickMyPostList:(id)sender;
 - (IBAction)clickMyAction:(id)sender;
 
+@property (retain, nonatomic) IBOutlet UILabel *titleLabel;
 @property (retain, nonatomic) IBOutlet UIButton *backButton;
 @property (retain, nonatomic) IBOutlet UIButton *myPostButton;
 @property (retain, nonatomic) IBOutlet UIButton *myActionButton;
 @property (retain, nonatomic) IBOutlet UIButton *badge;
+@property (retain, nonatomic) IBOutlet UIImageView *bgImageView;
 
 @end
 
@@ -39,6 +46,10 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         _bbsManager = [BBSManager defaultManager];
+        _bbsImageManager = [BBSImageManager defaultManager];
+        _bbsFontManager = [BBSFontManager defaultManager];
+        _bbsColorManager = [BBSColorManager defaultManager];
+        
         _openBoardSet = [[NSMutableSet alloc] init];
     }
     return self;
@@ -46,7 +57,38 @@
 
 - (void)initViews
 {
+    [self.backButton setImage:[_bbsImageManager bbsBackImage] forState:UIControlStateNormal];
+
+    //title label
+    [self.titleLabel setFont:[_bbsFontManager indexTitleFont]];
+    [self.titleLabel setText:NSLS(@"kBBS")];
+    [self.titleLabel setTextColor:[_bbsColorManager indexTitleColor]];
     
+    //action button
+    [self.myActionButton.titleLabel setFont:[_bbsFontManager indexTabFont]];
+
+    [self.myActionButton setBackgroundImage:[_bbsImageManager bbsButtonLeftImage]
+                                    forState:UIControlStateNormal];
+    [self.myActionButton setTitle:NSLS(@"kMine") forState:UIControlStateNormal];
+    [self.myActionButton setTitleColor:[_bbsColorManager tabTitleColor] forState:UIControlStateNormal];
+    
+    //post button
+    [self.myPostButton setBackgroundImage:[_bbsImageManager bbsButtonRightImage]
+                                   forState:UIControlStateNormal];
+    [self.myPostButton.titleLabel setFont:[_bbsFontManager indexTabFont]];
+    [self.myPostButton setTitle:NSLS(@"kComment") forState:UIControlStateNormal];
+    [self.myPostButton setTitleColor:[_bbsColorManager tabTitleColor] forState:UIControlStateNormal];
+    
+    //badge
+    [self.badge setUserInteractionEnabled:NO];
+    [self.badge setBackgroundImage:[_bbsImageManager bbsBadgeImage]
+                                 forState:UIControlStateNormal];
+    [self.badge.titleLabel setFont:[_bbsFontManager indexBadgeFont]];
+    [self.badge setTitle:@"25" forState:UIControlStateNormal];
+    [self.badge setTitleColor:[_bbsColorManager badgeColor] forState:UIControlStateNormal];
+    
+    //back ground
+    [self.bgImageView setImage:[_bbsImageManager bbsBGImage]];
 }
 
 - (void)viewDidLoad
@@ -192,6 +234,8 @@
     [_myPostButton release];
     [_myActionButton release];
     [_badge release];
+    [_titleLabel release];
+    [_bgImageView release];
     [super dealloc];
 }
 - (void)viewDidUnload {
@@ -199,6 +243,8 @@
     [self setMyPostButton:nil];
     [self setMyActionButton:nil];
     [self setBadge:nil];
+    [self setTitleLabel:nil];
+    [self setBgImageView:nil];
     [super viewDidUnload];
 }
 @end

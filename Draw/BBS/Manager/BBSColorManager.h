@@ -10,4 +10,13 @@
 
 @interface BBSColorManager : NSObject
 
++ (id)defaultManager;
+- (UIColor *)indexTitleColor;
+- (UIColor *)badgeColor;
+- (UIColor *)tabTitleColor;
+- (UIColor *)sectionTitleColor;
+- (UIColor *)boardTitleColor;
+- (UIColor *)pinkTitleColor;
+- (UIColor *)postNumberColor;
+- (UIColor *)normalTextColor;
 @end
