@@ -40,6 +40,8 @@ BBSService *_staticBBSService;
 
 - (NSInteger)checkFrequent
 {
+    return ERROR_SUCCESS;
+    
     BBSManager *_bbsManager = [BBSManager defaultManager];
     if ([_bbsManager isCreationFrequent]) {
         PPDebug(@"<checkWithText> to frequent!!!");
@@ -465,17 +467,20 @@ BBSService *_staticBBSService;
 #define BRIEF_TEXT_LENGTH 70
 
 #pragma mark - bbs action methods
-- (void)createActionWithPost:(PBBBSPost *)sourcePost
-                sourceAction:(PBBBSAction *)sourceAction
-                  actionType:(BBSActionType)actionType
-                        text:(NSString *)text
-                       image:(UIImage *)image
-              drawActionList:(NSArray *)drawActionList
-                   drawImage:(UIImage *)drawImage
-                    delegate:(id<BBSServiceDelegate>)delegate
+
+- (void)createActionWithPostId:(NSString *)postId
+                       PostUid:(NSString *)postUid
+                      postText:(NSString *)postText
+                  sourceAction:(PBBBSAction *)sourceAction
+                    actionType:(BBSActionType)actionType
+                          text:(NSString *)text
+                         image:(UIImage *)image
+                drawActionList:(NSArray *)drawActionList
+                     drawImage:(UIImage *)drawImage
+                      delegate:(id<BBSServiceDelegate>)delegate
 {
     dispatch_async(workingQueue, ^{
-
+        
         NSString *nText = text;
         NSInteger resultCode = ERROR_SUCCESS;
         PBBBSAction *action = nil;
@@ -514,7 +519,7 @@ BBSService *_staticBBSService;
             
             NSString *briefText = nil;
             if (sourceAction == nil) {
-                briefText = sourcePost.content.text;
+                briefText = postText;
             }else{
                 briefText = sourceAction.content.text;
             }
@@ -529,8 +534,8 @@ BBSService *_staticBBSService;
                                                             gender:gender
                                                             avatar:avatar
                                            //source
-                                                      sourcePostId:sourcePost.postId
-                                                     sourcePostUid:sourcePost.createUser.userId
+                                                      sourcePostId:postId
+                                                     sourcePostUid:postUid
                                                      sourceAtionId:sourceAction.actionId
                                                    sourceActionUid:sourceAction.createUser.userId
                                               sourceActionNickName:sourceAction.createUser.nickName
@@ -567,8 +572,8 @@ BBSService *_staticBBSService;
                                          thumbImageUrl:thumbURL
                                           drawImageUrl:drawImageURL
                                      drawImageThumbUrl:drawThumbURL
-                                          sourcePostId:sourcePost.postId
-                                         sourcePostUid:sourcePost.createUser.userId
+                                          sourcePostId:postId
+                                         sourcePostUid:postUid
                                         sourceActionId:sourceAction.actionId
                                        sourceActionUid:sourceAction.createUser.userId
                                   sourceActionNickName:sourceAction.createUser.nickName
@@ -579,10 +584,10 @@ BBSService *_staticBBSService;
         }
         
         
-
+        
         dispatch_async(dispatch_get_main_queue(), ^{
             if (delegate && [delegate respondsToSelector:@selector(didCreateAction:atPost:replyAction:resultCode:)]) {
-                [delegate didCreateAction:action atPost:sourcePost
+                [delegate didCreateAction:action atPost:postId
                               replyAction:sourceAction
                                resultCode:resultCode];
             }
@@ -590,6 +595,32 @@ BBSService *_staticBBSService;
     });
 
 }
+
+//- (void)createActionWithPost:(PBBBSPost *)sourcePost
+//                sourceAction:(PBBBSAction *)sourceAction
+//                  actionType:(BBSActionType)actionType
+//                        text:(NSString *)text
+//                       image:(UIImage *)image
+//              drawActionList:(NSArray *)drawActionList
+//                   drawImage:(UIImage *)drawImage
+//                    delegate:(id<BBSServiceDelegate>)delegate
+//{
+//    NSString *postId = sourcePost.postId;
+//    NSString *postUid = sourcePost.createUser.userId;
+//    NSString *postText = sourcePost.content.text;
+//    
+//    [self createActionWithPostId:postId
+//                         PostUid:postUid
+//                        postText:postText
+//                    sourceAction:sourceAction
+//                      actionType:actionType
+//                            text:text
+//                           image:image
+//                  drawActionList:drawActionList
+//                       drawImage:drawImage
+//                        delegate:delegate];
+//}
+
 - (void)getBBSActionListWithPostId:(NSString *)postId
                         actionType:(BBSActionType)actionType
                             offset:(NSInteger)offset

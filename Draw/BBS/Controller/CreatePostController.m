@@ -18,7 +18,12 @@
     PBBBSBoard *_bbsBoard;
     
     PBBBSAction *_sourceAction;
-    PBBBSPost *_sourcePost;
+//    PBBBSPost *_sourcePost;
+
+    //post info
+    NSString *_postId;
+    NSString *_postUid;
+    NSString *_postText;
     
     UIImage *_image;
     UIImage *_drawImage;
@@ -38,7 +43,11 @@
 @property(nonatomic, assign)NSInteger bonus;
 
 @property(nonatomic, retain) PBBBSAction *sourceAction;
-@property(nonatomic, retain) PBBBSPost *sourcePost;
+//@property(nonatomic, retain) PBBBSPost *sourcePost;
+
+@property(nonatomic, retain) NSString *postId;
+@property(nonatomic, retain) NSString *postUid;
+@property(nonatomic, retain) NSString *postText;
 
 
 @end
@@ -53,7 +62,10 @@
 @synthesize text = _text;
 @synthesize bonus = _bonus;
 @synthesize sourceAction = _sourceAction;
-@synthesize sourcePost = _sourcePost;
+
+@synthesize postText = _postText;
+@synthesize postId = _postId;
+@synthesize postUid = _postUid;
 @synthesize delegate = _delegate;
 
 - (void)dealloc
@@ -69,7 +81,9 @@
     PPRelease(_imageButton);
     PPRelease(_rewardButton);
     PPRelease (_sourceAction);
-    PPRelease (_sourcePost);
+    PPRelease(_postUid);
+    PPRelease(_postId);
+    PPRelease(_postText);
 
     [super dealloc];
 }
@@ -96,11 +110,31 @@
 {
     CreatePostController *cp = [[[CreatePostController alloc] init] autorelease];
     cp.sourceAction = action;
-    cp.sourcePost = post;
+
+    cp.postId = post.postId;
+    cp.postUid = post.createUser.userId;
+    cp.postText = post.content.text;
+    
     [fromController presentModalViewController:cp animated:YES];
     return cp;
 }
 
++ (CreatePostController *)enterControllerWithSourecePostId:(NSString *)postId
+                                                   postUid:(NSString *)postUid
+                                                  postText:(NSString *)postText
+                                              sourceAction:(PBBBSAction *)action
+                                            fromController:(UIViewController *)fromController
+{
+    CreatePostController *cp = [[[CreatePostController alloc] init] autorelease];
+    cp.sourceAction = action;
+    
+    cp.postId = postId;
+    cp.postUid = postUid;
+    cp.postText = postText;
+    
+    [fromController presentModalViewController:cp animated:YES];
+    return cp;    
+}
 
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -164,16 +198,18 @@
 
     //if has source post, then send an action, or create a new post
     self.text = self.textView.text;
-    if (self.sourcePost) {
+    if ([self.postId length] != 0) {
         
-        [[BBSService defaultService] createActionWithPost:self.sourcePost
-                                             sourceAction:self.sourceAction
-                                               actionType:ActionTypeComment
-                                                     text:self.text
-                                                    image:self.image
-                                           drawActionList:self.drawActionList
-                                                drawImage:self.drawImage
-                                                 delegate:self];
+        [[BBSService defaultService] createActionWithPostId:self.postId
+                                                    PostUid:self.postUid
+                                                   postText:self.postText
+                                               sourceAction:self.sourceAction
+                                                 actionType:ActionTypeComment
+                                                       text:self.text
+                                                      image:self.image
+                                             drawActionList:self.drawActionList
+                                                  drawImage:self.drawImage
+                                                   delegate:self];
         
     }else{
         [[BBSService defaultService] createPostWithBoardId:_bbsBoard.boardId
@@ -260,7 +296,7 @@
 }
 
 - (void)didCreateAction:(PBBBSAction *)action
-                 atPost:(PBBBSPost *)post
+                 atPost:(NSString *)postId
             replyAction:(PBBBSAction *)replyAction
              resultCode:(NSInteger)resultCode
 {

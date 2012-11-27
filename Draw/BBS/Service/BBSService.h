@@ -33,9 +33,9 @@ typedef enum{
             resultCode:(NSInteger)resultCode;
 
 - (void)didCreateAction:(PBBBSAction *)action
-                 atPost:(PBBBSPost *)post
+                 atPost:(NSString *)postId
             replyAction:(PBBBSAction *)replyAction
-           resultCode:(NSInteger)resultCode;
+             resultCode:(NSInteger)resultCode;
 
 - (void)didGetActionList:(NSArray *)actionList
                belowPost:(NSString *)postId
@@ -96,15 +96,25 @@ typedef enum{
                          delegate:(id<BBSServiceDelegate>)delegate;
 
 #pragma mark - bbs action methods
+- (void)createActionWithPostId:(NSString *)postId
+                       PostUid:(NSString *)postUid
+                      postText:(NSString *)postText
+                  sourceAction:(PBBBSAction *)sourceAction
+                    actionType:(BBSActionType)actionType
+                          text:(NSString *)text
+                         image:(UIImage *)image
+                drawActionList:(NSArray *)drawActionList
+                     drawImage:(UIImage *)drawImage
+                      delegate:(id<BBSServiceDelegate>)delegate;
 
-- (void)createActionWithPost:(PBBBSPost *)post
-                sourceAction:(PBBBSAction *)action
-                  actionType:(BBSActionType)actionType
-                        text:(NSString *)text
-                       image:(UIImage *)image
-              drawActionList:(NSArray *)drawActionList
-                   drawImage:(UIImage *)drawImage
-                    delegate:(id<BBSServiceDelegate>)delegate;
+//- (void)createActionWithPost:(PBBBSPost *)post
+//                sourceAction:(PBBBSAction *)action
+//                  actionType:(BBSActionType)actionType
+//                        text:(NSString *)text
+//                       image:(UIImage *)image
+//              drawActionList:(NSArray *)drawActionList
+//                   drawImage:(UIImage *)drawImage
+//                    delegate:(id<BBSServiceDelegate>)delegate;
 
 - (void)getBBSActionListWithPostId:(NSString *)postId
                         actionType:(BBSActionType)actionType

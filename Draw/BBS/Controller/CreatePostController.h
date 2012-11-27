@@ -47,6 +47,11 @@
 + (CreatePostController *)enterControllerWithSourecePost:(PBBBSPost *)post
                                             sourceAction:(PBBBSAction *)action
                                           fromController:(UIViewController *)fromController;
++ (CreatePostController *)enterControllerWithSourecePostId:(NSString *)postId
+                                                   postUid:(NSString *)postUid
+                                                  postText:(NSString *)postText
+                                              sourceAction:(PBBBSAction *)action
+                                          fromController:(UIViewController *)fromController;
 
 - (IBAction)clickBackButton:(id)sender;
 

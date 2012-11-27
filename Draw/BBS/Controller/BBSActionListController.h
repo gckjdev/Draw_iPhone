@@ -9,7 +9,7 @@
 #import "CommonTabController.h"
 #import "BBSService.h"
 
-@interface BBSActionListController : CommonTabController<BBSServiceDelegate>
+@interface BBSActionListController : CommonTabController<BBSServiceDelegate, UIActionSheetDelegate>
 {
     
 }
