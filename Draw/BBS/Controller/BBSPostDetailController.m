@@ -322,7 +322,7 @@ typedef enum{
 
 #pragma mark - BBSService delegate
 - (void)didCreateAction:(PBBBSAction *)action
-                 atPost:(PBBBSPost *)post
+                 atPost:(NSString *)postId
             replyAction:(PBBBSAction *)replyAction
              resultCode:(NSInteger)resultCode
 {
