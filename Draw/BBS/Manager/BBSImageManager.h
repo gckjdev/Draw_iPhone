@@ -12,6 +12,8 @@
 {
     
 }
+
++ (id)defaultManager;
 - (UIImage *)bbsBadgeImage;
 - (UIImage *)bbsBoardBgImage;
 - (UIImage *)bbsBoardLastBgImage;
@@ -22,4 +24,8 @@
 - (UIImage *)bbsSwitchBgImage;
 - (UIImage *)bbsSwitchDownImage;
 - (UIImage *)bbsSwitchRightImage;
+
+- (UIImage *)bbsBackImage;
+- (UIImage *)bbsBGImage;
+
 @end

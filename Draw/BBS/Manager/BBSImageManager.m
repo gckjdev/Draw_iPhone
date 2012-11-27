@@ -10,6 +10,9 @@
 #import "PPResourceService.h"
 #import "GameResource.h"
 
+
+//BBSImageManager *_staticBBSImageManager;
+
 @interface BBSImageManager ()
 {
     PPResourceService *_resService;
@@ -22,7 +25,7 @@
 static BBSImageManager* _staticBBSImageManager;
 
 
-+ (BBSImageManager*)defaultManager
++ (id)defaultManager
 {
     if (_staticBBSImageManager == nil) {
         _staticBBSImageManager = [[BBSImageManager alloc] init];
@@ -88,6 +91,16 @@ static BBSImageManager* _staticBBSImageManager;
 {
      return [_resService imageByName:@"bbs_switch_right"
                    inResourcePackage:RESOURCE_PACKAGE_BBS];
+}
+- (UIImage *)bbsBackImage
+{
+    return [_resService imageByName:@"bbs_back"
+                  inResourcePackage:RESOURCE_PACKAGE_BBS];
+}
+- (UIImage *)bbsBGImage
+{
+    return [_resService imageByName:@"bbs_bg"
+                  inResourcePackage:RESOURCE_PACKAGE_BBS];   
 }
 
 @end
