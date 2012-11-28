@@ -430,6 +430,8 @@
 		C2EE142C1664CB3600ADBE2E /* loading_planet@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2EE14231664CB3600ADBE2E /* loading_planet@2x.png */; };
 		C2EE142D1664CB3600ADBE2E /* starryBg.png in Resources */ = {isa = PBXBuildFile; fileRef = C2EE14241664CB3600ADBE2E /* starryBg.png */; };
 		C2EE14301664EF5000ADBE2E /* CommonImageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C2EE142F1664EF5000ADBE2E /* CommonImageManager.m */; };
+		C2EE145E1665FE4F00ADBE2E /* UIView+MDCShineEffect.m in Sources */ = {isa = PBXBuildFile; fileRef = C2EE145D1665FE4F00ADBE2E /* UIView+MDCShineEffect.m */; };
+		C2EE14601665FE9300ADBE2E /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2EE145F1665FE9300ADBE2E /* CoreImage.framework */; };
 		C2F2CF981639165500995DCB /* ZJHImageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C2F2CF971639165500995DCB /* ZJHImageManager.m */; };
 		C2F2CFB3163932C000995DCB /* ZJHAvatarView.m in Sources */ = {isa = PBXBuildFile; fileRef = C2F2CFB2163932C000995DCB /* ZJHAvatarView.m */; };
 		C2F48BD115BE4484005C4D72 /* RecommendAppService.m in Sources */ = {isa = PBXBuildFile; fileRef = C2F48BD015BE4484005C4D72 /* RecommendAppService.m */; };
@@ -2546,6 +2548,9 @@
 		C2EE14241664CB3600ADBE2E /* starryBg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = starryBg.png; sourceTree = "<group>"; };
 		C2EE142E1664EF5000ADBE2E /* CommonImageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonImageManager.h; sourceTree = "<group>"; };
 		C2EE142F1664EF5000ADBE2E /* CommonImageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonImageManager.m; sourceTree = "<group>"; };
+		C2EE145C1665FE4F00ADBE2E /* UIView+MDCShineEffect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+MDCShineEffect.h"; sourceTree = "<group>"; };
+		C2EE145D1665FE4F00ADBE2E /* UIView+MDCShineEffect.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+MDCShineEffect.m"; sourceTree = "<group>"; };
+		C2EE145F1665FE9300ADBE2E /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
 		C2F2CF961639165500995DCB /* ZJHImageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJHImageManager.h; sourceTree = "<group>"; };
 		C2F2CF971639165500995DCB /* ZJHImageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJHImageManager.m; sourceTree = "<group>"; };
 		C2F2CFB1163932C000995DCB /* ZJHAvatarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJHAvatarView.h; sourceTree = "<group>"; };
@@ -4583,6 +4588,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C2EE14601665FE9300ADBE2E /* CoreImage.framework in Frameworks */,
 				CA8815CF1657447800E29BB1 /* libicucore.dylib in Frameworks */,
 				C223397F164E41C900D2C123 /* OpenAL.framework in Frameworks */,
 				CA67B8AA15EB292E002050DB /* EventKitUI.framework in Frameworks */,
@@ -5736,6 +5742,15 @@
 			path = "Starry Images";
 			sourceTree = "<group>";
 		};
+		C2EE145B1665FE4F00ADBE2E /* MDCShineEffect */ = {
+			isa = PBXGroup;
+			children = (
+				C2EE145C1665FE4F00ADBE2E /* UIView+MDCShineEffect.h */,
+				C2EE145D1665FE4F00ADBE2E /* UIView+MDCShineEffect.m */,
+			);
+			path = MDCShineEffect;
+			sourceTree = "<group>";
+		};
 		C2F48BCE15BE4484005C4D72 /* Recommend */ = {
 			isa = PBXGroup;
 			children = (
@@ -6400,6 +6415,7 @@
 		CA103D9F1509A56100F60C03 /* Core-Utils-View */ = {
 			isa = PBXGroup;
 			children = (
+				C2EE145B1665FE4F00ADBE2E /* MDCShineEffect */,
 				A45AA836162FC0140030D668 /* UIPlaceholderTextView */,
 				A41A665615C921DA00066E9B /* UISlideImageView */,
 				CA103DA01509A56100F60C03 /* AlertView */,
@@ -7419,6 +7435,7 @@
 		CA745D211503B1B500600024 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C2EE145F1665FE9300ADBE2E /* CoreImage.framework */,
 				CA8815CE1657447800E29BB1 /* libicucore.dylib */,
 				C223397E164E41C800D2C123 /* OpenAL.framework */,
 				CA67B8A915EB292E002050DB /* EventKitUI.framework */,
@@ -12291,6 +12308,7 @@
 				CAC791741664BD09009B4053 /* BBSColorManager.m in Sources */,
 				C2EE14301664EF5000ADBE2E /* CommonImageManager.m in Sources */,
 				CAC7919B1665AD1B009B4053 /* BBSViewManager.m in Sources */,
+				C2EE145E1665FE4F00ADBE2E /* UIView+MDCShineEffect.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
