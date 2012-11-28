@@ -269,12 +269,12 @@
 }
 
 - (void)dealloc {
-    [_backButton release];
-    [_myPostButton release];
-    [_myActionButton release];
-    [_badge release];
-    [_titleLabel release];
-    [_bgImageView release];
+    PPRelease(_backButton);
+    PPRelease(_myPostButton);
+    PPRelease(_myActionButton);
+    PPRelease(_badge);
+    PPRelease(_titleLabel);
+    PPRelease(_bgImageView);
     [super dealloc];
 }
 - (void)viewDidUnload {

@@ -107,14 +107,14 @@
 }
 
 - (void)dealloc {
-    [_icon release];
-    [_name release];
-    [_statistic release];
-    [_lastPost release];
-    [_author release];
-    [_timestamp release];
-    [_bgImageView release];
-    [_splitLine release];
+    PPRelease(_icon);
+    PPRelease(_name);
+    PPRelease(_statistic);
+    PPRelease(_lastPost);
+    PPRelease(_author);
+    PPRelease(_timestamp);
+    PPRelease(_bgImageView);
+    PPRelease(_splitLine);
     [super dealloc];
 }
 @end

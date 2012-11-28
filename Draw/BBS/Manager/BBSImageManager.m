@@ -41,17 +41,28 @@ static BBSImageManager* _staticBBSImageManager;
     return self;
 }
 
+
+- (NSString *)fixImageName:(NSString *)imageName
+{
+    if([DeviceDetection isIPAD]){
+        return [NSString stringWithFormat:@"%@@2x",imageName];
+    }
+    return imageName;
+}
+
 - (UIImage *)stretchableImageWithImageName:(NSString *)name
                          inResourcePackage:(NSString *)package
 {
-    UIImage *image = [_resService imageByName:name
+    NSString *imageName = [self fixImageName:name];
+    UIImage *image = [_resService imageByName:imageName
                             inResourcePackage:package];
     return [image stretchableImageWithLeftCapWidth:image.size.width/2.0 topCapHeight:image.size.height/2.0];
 }
 
+
 - (UIImage *)bbsBadgeImage
 {
-     return [_resService imageByName:@"bbs_badge"
+     return [self stretchableImageWithImageName:@"bbs_badge"
                    inResourcePackage:RESOURCE_PACKAGE_BBS];
 }
 - (UIImage *)bbsBoardBgImage
@@ -72,12 +83,12 @@ static BBSImageManager* _staticBBSImageManager;
 }
 - (UIImage *)bbsButtonLeftImage
 {
-     return [_resService imageByName:@"bbs_button_left"
+     return [self stretchableImageWithImageName:@"bbs_button_left"
                    inResourcePackage:RESOURCE_PACKAGE_BBS];
 }
 - (UIImage *)bbsButtonRightImage
 {
-     return [_resService imageByName:@"bbs_button_right"
+     return [self stretchableImageWithImageName:@"bbs_button_right"
                    inResourcePackage:RESOURCE_PACKAGE_BBS];
 }
 - (UIImage *)bbsSectionBgImage
@@ -87,22 +98,22 @@ static BBSImageManager* _staticBBSImageManager;
 }
 - (UIImage *)bbsSwitchBgImage
 {
-     return [_resService imageByName:@"bbs_switch_bg"
+     return [self stretchableImageWithImageName:@"bbs_switch_bg"
                    inResourcePackage:RESOURCE_PACKAGE_BBS];
 }
 - (UIImage *)bbsSwitchDownImage
 {
-     return [_resService imageByName:@"bbs_switch_down"
+     return [self stretchableImageWithImageName:@"bbs_switch_down"
                    inResourcePackage:RESOURCE_PACKAGE_BBS];
 }
 - (UIImage *)bbsSwitchRightImage
 {
-     return [_resService imageByName:@"bbs_switch_right"
+    return [self stretchableImageWithImageName:@"bbs_switch_right"
                    inResourcePackage:RESOURCE_PACKAGE_BBS];
 }
 - (UIImage *)bbsBackImage
 {
-    return [_resService imageByName:@"bbs_back"
+    return [self stretchableImageWithImageName:@"bbs_back"
                   inResourcePackage:RESOURCE_PACKAGE_BBS];
 }
 - (UIImage *)bbsBGImage

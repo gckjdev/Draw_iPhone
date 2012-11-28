@@ -81,9 +81,9 @@
 }
 
 - (void)dealloc {
-    [_backButton release];
-    [_createPostButton release];
-    [_rankButton release];
+    PPRelease(_backButton);
+    PPRelease(_createPostButton);
+    PPRelease(_rankButton);
     [super dealloc];
 }
 - (void)viewDidUnload {

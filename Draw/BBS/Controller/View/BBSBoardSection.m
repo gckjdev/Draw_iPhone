@@ -71,11 +71,11 @@
     return @"BBSBoardSection";
 }
 - (void)dealloc {
-    [_icon release];
-    [_name release];
+    PPRelease(_icon);
+    PPRelease(_name);
     PPRelease(_bbsBoard);
-    [_bgImageView release];
-    [_switchButton release];
+    PPRelease(_bgImageView);
+    PPRelease(_switchButton);
     [super dealloc];
 }
 @end

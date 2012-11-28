@@ -38,8 +38,8 @@
 				<array class="NSMutableArray" key="NSSubviews">
 					<object class="IBUIImageView" id="554808312">
 						<reference key="NSNextResponder" ref="1051945929"/>
-						<int key="NSvFlags">274</int>
-						<string key="NSFrame">{{15, 0}, {270, 44}}</string>
+						<int key="NSvFlags">277</int>
+						<string key="NSFrame">{{35, 0}, {630, 88}}</string>
 						<reference key="NSSuperview" ref="1051945929"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="64363694"/>
@@ -50,7 +50,7 @@
 					<object class="IBUIImageView" id="64363694">
 						<reference key="NSNextResponder" ref="1051945929"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{20, 8}, {27, 28}}</string>
+						<string key="NSFrame">{{51, 16}, {54, 55}}</string>
 						<reference key="NSSuperview" ref="1051945929"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="463908999"/>
@@ -61,7 +61,7 @@
 					<object class="IBUILabel" id="463908999">
 						<reference key="NSNextResponder" ref="1051945929"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{55, 4}, {90, 20}}</string>
+						<string key="NSFrame">{{119, 8}, {210, 40}}</string>
 						<reference key="NSSuperview" ref="1051945929"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="199586885"/>
@@ -93,7 +93,7 @@
 					<object class="IBUILabel" id="616477797">
 						<reference key="NSNextResponder" ref="1051945929"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{153, 4}, {44, 20}}</string>
+						<string key="NSFrame">{{341, 8}, {102, 40}}</string>
 						<reference key="NSSuperview" ref="1051945929"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="563120045"/>
@@ -114,7 +114,7 @@
 					<object class="IBUILabel" id="199586885">
 						<reference key="NSNextResponder" ref="1051945929"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{55, 20}, {153, 20}}</string>
+						<string key="NSFrame">{{119, 40}, {357, 40}}</string>
 						<reference key="NSSuperview" ref="1051945929"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="616477797"/>
@@ -135,7 +135,7 @@
 					<object class="IBUILabel" id="563120045">
 						<reference key="NSNextResponder" ref="1051945929"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{198, 4}, {82, 20}}</string>
+						<string key="NSFrame">{{451, 8}, {202, 40}}</string>
 						<reference key="NSSuperview" ref="1051945929"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="472990039"/>
@@ -157,7 +157,7 @@
 					<object class="IBUILabel" id="472990039">
 						<reference key="NSNextResponder" ref="1051945929"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{198, 20}, {82, 20}}</string>
+						<string key="NSFrame">{{484, 40}, {169, 40}}</string>
 						<reference key="NSSuperview" ref="1051945929"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="901991654"/>
@@ -186,7 +186,7 @@
 					<object class="IBUIImageView" id="901991654">
 						<reference key="NSNextResponder" ref="1051945929"/>
 						<int key="NSvFlags">265</int>
-						<string key="NSFrame">{{55, 43}, {223, 1}}</string>
+						<string key="NSFrame">{{128, 86}, {520, 2}}</string>
 						<reference key="NSSuperview" ref="1051945929"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView"/>
@@ -199,7 +199,7 @@
 						</object>
 					</object>
 				</array>
-				<string key="NSFrameSize">{300, 44}</string>
+				<string key="NSFrameSize">{700, 88}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="554808312"/>
@@ -386,7 +386,70 @@
 			<nil key="sourceID"/>
 			<int key="maxID">44</int>
 		</object>
-		<object class="IBClassDescriber" key="IBDocument.Classes"/>
+		<object class="IBClassDescriber" key="IBDocument.Classes">
+			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
+				<object class="IBPartialClassDescription">
+					<string key="className">BBSBoardCell</string>
+					<string key="superclassName">PPTableViewCell</string>
+					<dictionary class="NSMutableDictionary" key="outlets">
+						<string key="author">UILabel</string>
+						<string key="bgImageView">UIImageView</string>
+						<string key="icon">UIImageView</string>
+						<string key="lastPost">UILabel</string>
+						<string key="name">UILabel</string>
+						<string key="splitLine">UIImageView</string>
+						<string key="statistic">UILabel</string>
+						<string key="timestamp">UILabel</string>
+					</dictionary>
+					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
+						<object class="IBToOneOutletInfo" key="author">
+							<string key="name">author</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="bgImageView">
+							<string key="name">bgImageView</string>
+							<string key="candidateClassName">UIImageView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="icon">
+							<string key="name">icon</string>
+							<string key="candidateClassName">UIImageView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="lastPost">
+							<string key="name">lastPost</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="name">
+							<string key="name">name</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="splitLine">
+							<string key="name">splitLine</string>
+							<string key="candidateClassName">UIImageView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="statistic">
+							<string key="name">statistic</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="timestamp">
+							<string key="name">timestamp</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+					</dictionary>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/BBSBoardCell.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">PPTableViewCell</string>
+					<string key="superclassName">UITableViewCell</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/PPTableViewCell.h</string>
+					</object>
+				</object>
+			</array>
+		</object>
 		<int key="IBDocument.localizationMode">0</int>
 		<string key="IBDocument.TargetRuntimeIdentifier">IBCocoaTouchFramework</string>
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>

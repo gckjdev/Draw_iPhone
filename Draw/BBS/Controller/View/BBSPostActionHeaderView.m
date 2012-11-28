@@ -39,8 +39,8 @@
 }
 
 - (void)dealloc {
-    [_support release];
-    [_comment release];
+    PPRelease(_support);
+    PPRelease(_comment);
     [super dealloc];
 }
 - (IBAction)clickSupport:(id)sender {

@@ -100,9 +100,9 @@
 }
 
 - (void)dealloc {
-    [_textContent release];
-    [_imageContent release];
-    [_time release];
+    PPRelease(_textContent);
+    PPRelease(_imageContent);
+    PPRelease(_time);
     [super dealloc];
 }
 @end

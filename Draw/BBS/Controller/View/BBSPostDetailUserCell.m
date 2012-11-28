@@ -64,8 +64,8 @@
 
 
 - (void)dealloc {
-    [_avatar release];
-    [_nickName release];
+    PPRelease(_avatar);
+    PPRelease(_nickName);
     [super dealloc];
 }
 @end
