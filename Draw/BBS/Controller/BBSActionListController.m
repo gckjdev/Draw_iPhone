@@ -10,9 +10,14 @@
 #import "UserManager.h"
 #import "BBSUserActionCell.h"
 #import "ReplayGraffitiController.h"
+#import "ShowImageController.h"
+#import "CreatePostController.h"
+#import "BBSPostDetailController.h"
 
 @interface BBSActionListController ()
-
+{
+    PBBBSAction *_selectedAction;
+}
 @end
 
 #define TAB_ID 100
@@ -109,6 +114,17 @@
     }
 }
 
+- (void)didGetBBSPost:(PBBBSPost *)post postId:(NSString *)postId resultCode:(NSInteger)resultCode
+{
+    if (resultCode == 0) {
+        [BBSPostDetailController enterPostDetailControllerWithPost:post
+                                                    fromController:self
+                                                          animated:YES];
+    }else{
+        PPDebug(@"<didGetBBSPost>fail to get post, postId = %@, resultCode = %d",postId, resultCode);
+    }
+}
+
 #pragma mark - table view delegate
 - (PBBBSAction *)actionForIndexPath:(NSIndexPath *)indexPath
 {
@@ -142,6 +158,21 @@
 	
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    _selectedAction = [self actionForIndexPath:indexPath];
+    //show action sheet
+    
+    UIActionSheet *actionSheet = [[UIActionSheet alloc]
+                                  initWithTitle:NSLS(@"kOption")
+                                  delegate:self
+                                  cancelButtonTitle:NSLS(@"kCancel")
+                                  destructiveButtonTitle:NSLS(@"kReply")
+                                  otherButtonTitles:NSLS(@"kPostDetail"), nil];
+    [actionSheet showInView:self.view];
+    [actionSheet release];
+}
+
 #pragma mark - cell delegate
 - (void)didClickUserAvatar:(PBBBSUser *)user
 {
@@ -151,7 +182,7 @@
 
 - (void)didClickImageWithURL:(NSURL *)url
 {
-    //TODO enter show image Controller
+    [ShowImageController enterControllerWithImageURL:url fromController:self animated:YES];
 }
 
 - (void)didClickDrawImageWithAction:(PBBBSAction *)action
@@ -160,5 +191,38 @@
                                                  actionId:action.actionId
                                                  delegate:self];
 }
+
+#pragma mark - action sheet delegate
+
+enum{
+    IndexReply = 0,
+    IndexDetail = 1,
+//    IndexDelete = 2,
+};
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    NSString *postId = _selectedAction.source.postId;
+    switch (buttonIndex) {
+        case IndexReply:
+        {
+            NSString *postUid = _selectedAction.source.postUid;
+            [CreatePostController enterControllerWithSourecePostId:postId
+                                                           postUid:postUid
+                                                          postText:nil
+                                                      sourceAction:_selectedAction
+                                                    fromController:self];
+        }
+            break;
+        case IndexDetail:
+        {
+            [[BBSService defaultService] getBBSPostWithPostId:postId delegate:self];
+        }
+            break;
+        default:
+            break;
+    }
+}
+
 
 @end

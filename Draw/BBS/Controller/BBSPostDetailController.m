@@ -11,6 +11,7 @@
 #import "BBSPostDetailCell.h"
 #import "BBSPostDetailUserCell.h"
 #import "ReplayGraffitiController.h"
+#import "ShowImageController.h"
 
 @interface BBSPostDetailController ()
 @property (nonatomic, retain)PBBBSPost *post;
@@ -264,6 +265,33 @@ typedef enum{
 }
 
 
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    PBBBSAction *action = [self actionForIndexPath:indexPath];
+    if (action && action.canDelete) {
+        return YES;
+    }
+    return NO;
+}
+
+- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return UITableViewCellEditingStyleDelete;
+}
+- (NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return NSLS(@"kDelete");
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    PBBBSAction *action = [self actionForIndexPath:indexPath];
+    if (action && action.canDelete) {
+        [[BBSService defaultService] deleteActionWithActionId:action.actionId delegate:self];
+    }
+}
+
+
 #pragma mark - bbs post action cell delegate
 - (void)didClickReplyButtonWithAction:(PBBBSAction *)action
 {
@@ -294,7 +322,7 @@ typedef enum{
 
 #pragma mark - BBSService delegate
 - (void)didCreateAction:(PBBBSAction *)action
-                 atPost:(PBBBSPost *)post
+                 atPost:(NSString *)postId
             replyAction:(PBBBSAction *)replyAction
              resultCode:(NSInteger)resultCode
 {
@@ -328,6 +356,29 @@ typedef enum{
                                              delegate:self];
 }
 
+- (void)didDeleteBBSAction:(NSString *)actionId resultCode:(NSInteger)resultCode
+{
+    if (resultCode == 0) {
+        PBBBSAction *act = nil;
+        NSInteger row = 0;
+        for (PBBBSAction *action in self.tabDataList) {
+            if ([action.actionId isEqualToString:actionId]) {
+                act = action;
+                break;
+            }
+            row ++;
+        }
+        if (act) {
+            [self.tabDataList removeObject:act];
+            NSIndexPath *indexPath = [NSIndexPath indexPathForRow:row inSection:SectionAction];
+            NSArray *indexPaths = [NSArray arrayWithObject:indexPath];
+            [self.dataTableView deleteRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationFade];
+        }
+    }else{
+        PPDebug(@"<didDeleteBBSAction>fail to delete action, actionId = %@, resultCode = %d",actionId, resultCode);
+    }
+}
+
 #pragma mark - action header view
 - (void)didClickSupportTabButton
 {
@@ -346,7 +397,7 @@ typedef enum{
 
 - (void)didClickImageWithURL:(NSURL *)url
 {
-    //TODO enter show image Controller
+    [ShowImageController enterControllerWithImageURL:url fromController:self animated:YES];
 }
 
 - (void)didClickDrawImageWithAction:(PBBBSAction *)action

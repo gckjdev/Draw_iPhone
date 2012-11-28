@@ -49,11 +49,12 @@
 #define FONT_OF_MESSAGE_IPAD [UIFont systemFontOfSize:12*2]
 #define FONT_OF_MESSAGE ([self isIPAD] ? (FONT_OF_MESSAGE_IPAD) : (FONT_OF_MESSAGE_IPHONE))
 
-
+#define LOADING_CENTER_SIZE ([DeviceDetection isIPAD]?CGSizeMake(123, 92):CGSizeMake(62, 46))
 
 - (BOOL) isIPAD
 {
     return (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad);
+    
 }
 
 - (id) initWithTitle:(NSString*)ttl message:(NSString*)msg{
@@ -66,7 +67,7 @@
 //    [self addSubview:_activity];
     _hidden = YES;
     self.backgroundColor = [UIColor clearColor];
-	
+	[self initView];
 	return self;
 }
 - (id) initWithTitle:(NSString*)ttl{
@@ -74,56 +75,69 @@
 	return self;
 }
 
-- (void)initView:(CGRect)rect
+- (void)initView
 {
-    if(_hidden) return;
-	int width, rWidth, rHeight, x;
-	
-	UIFont *titleFont = FONT_OF_TITLE;
-	UIFont *messageFont = FONT_OF_MESSAGE;
-	
-	CGSize s1 = [self calculateHeightOfTextFromWidth:_title font:titleFont width:HEIGHT_OF_LOADING_VIEW linebreak:UILineBreakModeTailTruncation];
-	CGSize s2 = [self calculateHeightOfTextFromWidth:_message font:messageFont width:HEIGHT_OF_LOADING_VIEW linebreak:UILineBreakModeCharacterWrap];
-	
-	if([_title length] < 1) s1.height = 0;
-	if([_message length] < 1) s2.height = 0;
-	
-	
-	rHeight = (s1.height + s2.height + (HEIGHT_MARGIN*2) + 10 + 30);
-	rWidth = width = (s2.width > s1.width) ? (int) s2.width : (int) s1.width;
-	rWidth += WIDTH_MARGIN * 2;
-	x = (WIDTH_OF_LOADING_VIEW - rWidth) / 2;
-	
+//	int width, rWidth, rHeight, x;
+//	
+//	UIFont *titleFont = FONT_OF_TITLE;
+//	UIFont *messageFont = FONT_OF_MESSAGE;
+//	
+//	CGSize s1 = [self calculateHeightOfTextFromWidth:_title font:titleFont width:HEIGHT_OF_LOADING_VIEW linebreak:UILineBreakModeTailTruncation];
+//	CGSize s2 = [self calculateHeightOfTextFromWidth:_message font:messageFont width:HEIGHT_OF_LOADING_VIEW linebreak:UILineBreakModeCharacterWrap];
+//	
+//	if([_title length] < 1) s1.height = 0;
+//	if([_message length] < 1) s2.height = 0;
+//	
+//	
+//	rHeight = (s1.height + s2.height + (HEIGHT_MARGIN*2) + 10 + 30);
+//	rWidth = width = (s2.width > s1.width) ? (int) s2.width : (int) s1.width;
+//	rWidth += WIDTH_MARGIN * 2;
+//	x = (WIDTH_OF_LOADING_VIEW - rWidth) / 2;
+//	
 //	_activity.center = CGPointMake(WIDTH_OF_LOADING_VIEW/2,HEIGHT_MARGIN + _activity.frame.size.height/2);
 	
 	
 	//NSLog(@"DRAW RECT %d %f",rHeight,self.frame.size.height);
 	
 	// DRAW ROUNDED RECTANGLE
-	[[UIColor colorWithRed:0 green:0 blue:0 alpha:0.9] set];
-	CGRect r = CGRectMake(x, 0, rWidth,rHeight);
-	[[UIColor colorWithRed:0 green:0 blue:0 alpha:0.75] set];
+//	[[UIColor colorWithRed:0 green:0 blue:0 alpha:0.9] set];
+//	CGRect r = CGRectMake(x, 0, rWidth,rHeight);
+//	[[UIColor colorWithRed:0 green:0 blue:0 alpha:0.75] set];
+    
+    self.loadingView = [[[UIView alloc] init] autorelease];
     
     //set background image
-	self.backgroundImageView = [[UIImageView alloc] initWithFrame:r];
-    [self addSubview:self.backgroundImageView];
+	self.backgroundImageView = [[[UIImageView alloc] init] autorelease];
+    [self.backgroundImageView setImage:[UIImage imageNamed:@"starryBg.png"]];
+    [self.loadingView addSubview:self.backgroundImageView];
 	
 	
 	// DRAW FIRST TEXT
-	[[UIColor whiteColor] set];
-	r = CGRectMake(x+WIDTH_MARGIN, 30 + 10 + HEIGHT_MARGIN, width, s1.height);
+//	[[UIColor whiteColor] set];
+//	r = CGRectMake(x+WIDTH_MARGIN, 30 + 10 + HEIGHT_MARGIN, width, s1.height);
 //	CGSize s = [_title drawInRect:r withFont:titleFont lineBreakMode:UILineBreakModeTailTruncation alignment:UITextAlignmentCenter];
-    CGSize s = [self calculateHeightOfTextFromWidth:_title font:titleFont width:HEIGHT_OF_LOADING_VIEW linebreak:UILineBreakModeTailTruncation];
-    self.titleLabel = [[[UILabel alloc] initWithFrame:r] autorelease];
-    [self addSubview:self.titleLabel];
+//    CGSize s = [self calculateHeightOfTextFromWidth:_title font:titleFont width:HEIGHT_OF_LOADING_VIEW linebreak:UILineBreakModeTailTruncation];
+    self.titleLabel = [[[UILabel alloc] init] autorelease];
+    [self.titleLabel setText:_title];
+    [self.titleLabel setTextColor:[UIColor whiteColor]];
+    [self.titleLabel setBackgroundColor:[UIColor clearColor]];
+    [self.loadingView addSubview:self.titleLabel];
 	
 	
 	// DRAW SECOND TEXT
-	r.origin.y += s.height;
-	r.size.height = s2.height;
+//	r.origin.y += s.height;
+//	r.size.height = s2.height;
 //	[_message drawInRect:r withFont:messageFont lineBreakMode:UILineBreakModeCharacterWrap alignment:UITextAlignmentCenter];
-    self.messageLabe = [[[UILabel alloc] initWithFrame:r] autorelease];
-    [self addSubview:self.titleLabel];
+    self.messageLabel = [[[UILabel alloc] init] autorelease];
+    [self.messageLabel setText:_title];
+    [self.messageLabel setTextColor:[UIColor whiteColor]];
+    [self.messageLabel setBackgroundColor:[UIColor clearColor]];
+    [self.messageLabel setNumberOfLines:3];
+    [self.messageLabel setLineBreakMode:UILineBreakModeCharacterWrap];
+    [self.messageLabel setFont:FONT_OF_MESSAGE];
+    [self.loadingView addSubview:self.messageLabel];
+    
+    [self addSubview:self.loadingView];
 }
 
 //- (void) drawRect:(CGRect)rect {
@@ -174,9 +188,43 @@
 //}
 //
 
+- (void)showInView:(UIView*)superView
+{
+    _superView = superView;
+    [self adjustSize];
+    [_superView addSubview:self];
+    [_superView bringSubviewToFront:self];
+}
+
+- (void)adjustSize
+{
+    [self setFrame:_superView.bounds];
+    PPDebug(@"<test-kira> super bounds = (%.2f, %.2f, %.2f, %.2f)", _superView.frame.origin.x, _superView.frame.origin.y, _superView.frame.size.width, _superView.frame.size.height);
+    
+    UIFont *titleFont = FONT_OF_TITLE;
+	UIFont *messageFont = FONT_OF_MESSAGE;
+    CGSize s1 = [self calculateHeightOfTextFromWidth:_title font:titleFont width:HEIGHT_OF_LOADING_VIEW linebreak:UILineBreakModeTailTruncation];
+	CGSize s2 = [self calculateHeightOfTextFromWidth:_message font:messageFont width:HEIGHT_OF_LOADING_VIEW linebreak:UILineBreakModeCharacterWrap];
+    
+    
+    
+    [self.loadingView setFrame:CGRectMake(0, 0, MAX(s1.width, s2.width), s1.height + s2.height + LOADING_CENTER_SIZE.height)];
+    [self.loadingView setCenter:CGPointMake(_superView.bounds.size.width/2, _superView.bounds.size.height/2)];
+    [self.backgroundImageView setFrame:CGRectMake(0, 0, self.loadingView.frame.size.width, self.loadingView.frame.size.height)];
+    
+    PPDebug(@"<test-kira> loading view's size = (%.2f, %.2f), center = (%.2f, %.2f)", self.loadingView.frame.size.width, self.loadingView.frame.size.height, self.loadingView.center.x, self.loadingView.center.y);
+    
+    [self.titleLabel setFrame:CGRectMake(0, 0, s1.width, s1.height)];
+    [self.messageLabel setFrame:CGRectMake(0, 0, s2.width, s2.height)];
+    
+    [self.titleLabel setCenter:CGPointMake(self.loadingView.frame.size.width/2, s1.height/2)];
+    [self.messageLabel setCenter:CGPointMake(self.loadingView.frame.size.width/2, s1.height + s2.height/2 + LOADING_CENTER_SIZE.height)];
+    
+}
+
 - (void)update
 {
-    [self setBackgroundColor:[UIColor colorWithRed:(rand()%255)/255.0 green:(rand()%255)/255.0 blue:(rand()%255)/255.0 alpha:1]];
+    [self.loadingView setBackgroundColor:[UIColor colorWithRed:(rand()%255)/255.0 green:(rand()%255)/255.0 blue:(rand()%255)/255.0 alpha:1]];
 }
 
 - (void)killTimer
@@ -210,7 +258,9 @@
 - (void) setMessage:(NSString*)str{
 	[_message release];
 	_message = [str copy];
-	[self setNeedsDisplay];
+    [self.messageLabel setText:str];
+    [self adjustSize];
+//	[self setNeedsDisplay];
 }
 - (NSString*) message{
 	return _message;
@@ -282,7 +332,8 @@
 	[_message release];
     [_backgroundImageView release];
     [_titleLabel release];
-    [_messageLabe release];
+    [_messageLabel release];
+    [_loadingView release];
 	[super dealloc];
 }
 

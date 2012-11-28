@@ -138,7 +138,7 @@ BBSManager *_staticBBSManager;
 
 +(void)printBBSBoard:(PBBBSBoard *)board
 {
-    PPDebug(@"Board:[boardId = %@,\n type = %d,\n name = %@,\n icon = %@,\n parentBoardId = %@,\n lastPost = %@,\n topicCount = %d,\n postCount = %d,\n desc = %@]",board.boardId, board.type,board.name,board.icon,board.parentBoardId,[board.lastPost description],board.topicCount,board.postCount,board.desc);
+    PPDebug(@"Board:[boardId = %@,\n type = %d,\n name = %@,\n icon = %@,\n parentBoardId = %@,\n lastPost = %@,\n actionCount = %d,\n postCount = %d,\n desc = %@]",board.boardId, board.type,board.name,board.icon,board.parentBoardId,[board.lastPost description],board.actionCount,board.postCount,board.desc);
 }
 +(void)printBBSContent:(PBBBSContent *)content
 {

@@ -89,7 +89,7 @@ message PBBBSBoard{
     required string boardId = 1;
     required int32 type =2; //1 for parent board, 2 for sub board
     required string name = 3;
-    required int32 topicCount = 5;
+    required int32 actionCount = 5;
     required int32 postCount = 6;
 
     optional string icon = 4;

@@ -82,6 +82,20 @@
 @end
 
 
+@implementation PBBBSPost (PostExt)
+
+- (BOOL)canDelete
+{
+    return [self isMyPost];
+}
+- (BOOL)isMyPost
+{
+    return [[UserManager defaultManager] isMe:self.createUser.userId];
+}
+
+
+@end
+
 @implementation PBBBSAction (ActionExt)
 
 - (NSString *)showText
@@ -140,6 +154,15 @@
     return self.source.actionType == ActionTypeSupport;
 }
 
+- (BOOL)canDelete
+{
+    return [self isMyAction];
+}
+
+- (BOOL)isMyAction
+{
+    return [[UserManager defaultManager] isMe:self.createUser.userId];
+}
 
 @end
 
