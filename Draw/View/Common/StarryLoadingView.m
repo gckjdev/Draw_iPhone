@@ -7,6 +7,8 @@
 //
 
 #import "StarryLoadingView.h"
+#import "CommonImageManager.h"
+#import "UIView+MDCShineEffect.h"
 
 @interface StarryLoadingView (PrivateMethods)
 - (CGSize) calculateHeightOfTextFromWidth:(NSString*)text font: (UIFont*)withFont width:(float)width linebreak:(UILineBreakMode)lineBreakMode;
@@ -45,7 +47,7 @@
 #define FONT_OF_TITLE_IPAD [UIFont boldSystemFontOfSize:16*2]
 #define FONT_OF_TITLE ([self isIPAD] ? (FONT_OF_TITLE_IPAD) : (FONT_OF_TITLE_IPHONE))
 
-#define FONT_OF_MESSAGE_IPHONE [UIFont systemFontOfSize:12]
+#define FONT_OF_MESSAGE_IPHONE [UIFont systemFontOfSize:20]
 #define FONT_OF_MESSAGE_IPAD [UIFont systemFontOfSize:12*2]
 #define FONT_OF_MESSAGE ([self isIPAD] ? (FONT_OF_MESSAGE_IPAD) : (FONT_OF_MESSAGE_IPHONE))
 
@@ -108,8 +110,12 @@
     
     //set background image
 	self.backgroundImageView = [[[UIImageView alloc] init] autorelease];
-    [self.backgroundImageView setImage:[UIImage imageNamed:@"starryBg.png"]];
+    [self.backgroundImageView setImage:[CommonImageManager defaultManager].starryBackgroundImage];
     [self.loadingView addSubview:self.backgroundImageView];
+    
+    _planetView = [[[UIImageView alloc] initWithImage:[CommonImageManager defaultManager].planetImage] autorelease];
+    [_planetView setFrame:CGRectMake(0, 0, LOADING_CENTER_SIZE.width, LOADING_CENTER_SIZE.height)];
+    [self.loadingView addSubview:_planetView];
 	
 	
 	// DRAW FIRST TEXT
@@ -135,9 +141,14 @@
     [self.messageLabel setNumberOfLines:3];
     [self.messageLabel setLineBreakMode:UILineBreakModeCharacterWrap];
     [self.messageLabel setFont:FONT_OF_MESSAGE];
+//    [self.messageLabel shineWithRepeatCount:HUGE_VALF duration:4.5 maskWidth:200.0f];
     [self.loadingView addSubview:self.messageLabel];
     
+    
+    
     [self addSubview:self.loadingView];
+    
+    
 }
 
 //- (void) drawRect:(CGRect)rect {
@@ -208,7 +219,7 @@
     
     
     
-    [self.loadingView setFrame:CGRectMake(0, 0, MAX(s1.width, s2.width), s1.height + s2.height + LOADING_CENTER_SIZE.height)];
+    [self.loadingView setFrame:CGRectMake(0, 0, MAX(s1.width, s2.width)*2, (s1.height + s2.height + LOADING_CENTER_SIZE.height)*1.5)];
     [self.loadingView setCenter:CGPointMake(_superView.bounds.size.width/2, _superView.bounds.size.height/2)];
     [self.backgroundImageView setFrame:CGRectMake(0, 0, self.loadingView.frame.size.width, self.loadingView.frame.size.height)];
     
@@ -220,6 +231,11 @@
     [self.titleLabel setCenter:CGPointMake(self.loadingView.frame.size.width/2, s1.height/2)];
     [self.messageLabel setCenter:CGPointMake(self.loadingView.frame.size.width/2, s1.height + s2.height/2 + LOADING_CENTER_SIZE.height)];
     
+    [_planetView setCenter:CGPointMake(self.loadingView.frame.size.width/2, self.loadingView.frame.size.height/2)];
+                                       
+    [self.messageLabel setCenter:CGPointMake(self.loadingView.frame.size.width/2, self.loadingView.frame.size.height/2 + (_planetView.frame.size.height + self.messageLabel.frame.size.height)/2)];
+    
+    [self.messageLabel addUnlockShiningEffectDuration:2.5];
 }
 
 - (void)update
@@ -334,6 +350,7 @@
     [_titleLabel release];
     [_messageLabel release];
     [_loadingView release];
+    [_planetView release];
 	[super dealloc];
 }
 

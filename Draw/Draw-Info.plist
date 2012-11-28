@@ -16,7 +16,7 @@
 		<string>new_icon_ipad2.png</string>
 	</array>
 	<key>CFBundleIdentifier</key>
-	<string>com.orange.draw</string>
+	<string>com.orange.dice</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
@@ -87,7 +87,7 @@
 		<string>dice_icon_72.png</string>
 	</array>
 	<key>CFResourceTest</key>
-	<false/>
+	<true/>
 	<key>CFServerTest</key>
 	<false/>
 </dict>
