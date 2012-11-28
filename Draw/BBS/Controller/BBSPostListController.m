@@ -293,9 +293,9 @@
 }
 - (void)didClickReplyButtonWithPost:(PBBBSPost *)post
 {
-    [CreatePostController enterControllerWithSourecePost:post
-                                            sourceAction:nil
-                                          fromController:self];
+//    [CreatePostController enterControllerWithSourecePost:post
+//                                            sourceAction:nil
+//                                          fromController:self];
 }
 
 - (void)didController:(CreatePostController *)controller

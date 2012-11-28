@@ -36,7 +36,7 @@ static BBSFontManager* _staticBBSFontManager;
 }
 - (UIFont *)indexCountFont
 {
-    return ISIPHONE ? FONT(10) : FONT(20);
+    return ISIPHONE ? FONT(11) : FONT(22);
 }
 - (UIFont *)indexLastPostTextFont
 {
@@ -44,7 +44,7 @@ static BBSFontManager* _staticBBSFontManager;
 }
 - (UIFont *)indexLastPostNickFont
 {
-    return ISIPHONE ? FONT(9) : FONT(18);
+    return ISIPHONE ? FONT(11) : FONT(22);
 }
 - (UIFont *)indexLastPostDateFont
 {

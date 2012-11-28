@@ -24,6 +24,45 @@
     }
     BBSBoardCell *view = [topLevelObjects objectAtIndex:0];
     view.delegate = delegate;
+    
+    
+    BBSImageManager *imageManager = [BBSImageManager defaultManager];
+    BBSColorManager *colorManager = [BBSColorManager defaultManager];
+    BBSFontManager *fontManager = [BBSFontManager defaultManager];
+
+    [view.splitLine setImage:[imageManager bbsBoardLineImage]];
+    
+    [BBSViewManager updateLable:view.name
+                        bgColor:[UIColor clearColor]
+                           font:[fontManager indexBoardNameFont]
+                      textColor:[colorManager boardTitleColor]
+                           text:nil];
+    
+    [BBSViewManager updateLable:view.statistic
+                        bgColor:[UIColor clearColor]
+                           font:[fontManager indexCountFont]
+                      textColor:[colorManager postNumberColor]
+                           text:nil];
+
+    [BBSViewManager updateLable:view.author
+                        bgColor:[UIColor clearColor]
+                           font:[fontManager indexLastPostNickFont]
+                      textColor:[colorManager normalTextColor]
+                           text:nil];
+    
+    [BBSViewManager updateLable:view.lastPost
+                        bgColor:[UIColor clearColor]
+                           font:[fontManager indexLastPostTextFont]
+                      textColor:[colorManager normalTextColor]
+                           text:nil];
+    
+    [BBSViewManager updateLable:view.timestamp
+                        bgColor:[UIColor clearColor]
+                           font:[fontManager indexLastPostDateFont]
+                      textColor:[colorManager normalTextColor]
+                           text:nil];
+
+
     return  view;
 }
 
@@ -32,22 +71,39 @@
     return @"BBSBoardCell";
 }
 
-+ (CGFloat)getCellHeight
++ (CGFloat)getCellHeightLastBoard:(BOOL)isLastBoard
 {
-    return 85.0f;
+    if (!isLastBoard) {
+        return [DeviceDetection isIPAD] ? 88 : 44;
+    }else{
+        return [DeviceDetection isIPAD] ? 90 : 46;
+    }
 }
 
 - (void)updateCellWithBoard:(PBBBSBoard *)board
+                isLastBoard:(BOOL)isLastBoard
 {
+
+    [self.icon setImageWithURL:board.iconURL];
+    
     [self.icon setImageWithURL:[NSURL URLWithString:board.icon]];
     [self.name setText:board.name];
-    self.statistic.text = [NSString stringWithFormat:@"%d / %d",board.actionCount, board.postCount];
+    
+    self.statistic.text = [NSString stringWithFormat:@"%d", board.postCount];
     self.lastPost.text = [board.lastPost.content text];
     [self.author setText:board.lastPost.createUser.nickName];
     NSDate *date = [NSDate dateWithTimeIntervalSince1970:board.lastPost.createDate];
     self.timestamp.text = dateToChineseString(date);
     
-    [BBSManager printBBSPost:board.lastPost];
+    BBSImageManager *imageManager = [BBSImageManager defaultManager];
+    
+    if (!isLastBoard) {
+        [self.bgImageView setImage:[imageManager bbsBoardBgImage]];
+        self.splitLine.hidden = NO;
+    }else{
+        [self.bgImageView setImage:[imageManager bbsBoardLastBgImage]];
+        self.splitLine.hidden = YES;
+    }
 }
 
 - (void)dealloc {
@@ -57,6 +113,8 @@
     [_lastPost release];
     [_author release];
     [_timestamp release];
+    [_bgImageView release];
+    [_splitLine release];
     [super dealloc];
 }
 @end

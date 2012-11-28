@@ -22,7 +22,14 @@
 @property (retain, nonatomic) IBOutlet UILabel *lastPost;
 @property (retain, nonatomic) IBOutlet UILabel *author;
 @property (retain, nonatomic) IBOutlet UILabel *timestamp;
+@property (retain, nonatomic) IBOutlet UIImageView *bgImageView;
+@property (retain, nonatomic) IBOutlet UIImageView *splitLine;
 
 + (BBSBoardCell *)createCell:(id)delegate;
-- (void)updateCellWithBoard:(PBBBSBoard *)board;
+
++ (CGFloat)getCellHeightLastBoard:(BOOL)isLastBoard;
+
+- (void)updateCellWithBoard:(PBBBSBoard *)board
+                isLastBoard:(BOOL)isLastBoard;
+
 @end

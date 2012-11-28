@@ -77,10 +77,6 @@
 							<int key="NSColorSpace">3</int>
 							<bytes key="NSWhite">MC41AA</bytes>
 						</object>
-						<object class="NSCustomResource" key="IBUINormalImage">
-							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">bbs_back@2x.png</string>
-						</object>
 						<object class="IBUIFontDescription" key="IBUIFontDescription" id="711961393">
 							<int key="type">2</int>
 							<double key="pointSize">15</double>
@@ -94,31 +90,27 @@
 					<object class="IBUITableView" id="404444200">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">274</int>
-						<string key="NSFrame">{{0, 72}, {320, 388}}</string>
+						<string key="NSFrame">{{10, 72}, {300, 388}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
-						<object class="NSColor" key="IBUIBackgroundColor">
-							<int key="NSColorSpace">1</int>
-							<bytes key="NSRGB">MCAwIDAgMAA</bytes>
-							<string key="IBUIColorCocoaTouchKeyPath">groupTableViewBackgroundColor</string>
-						</object>
+						<reference key="IBUIBackgroundColor" ref="820051261"/>
 						<bool key="IBUIClipsSubviews">YES</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<bool key="IBUIAlwaysBounceVertical">YES</bool>
-						<int key="IBUIStyle">1</int>
-						<int key="IBUISeparatorStyle">2</int>
+						<bool key="IBUIShowsHorizontalScrollIndicator">NO</bool>
+						<bool key="IBUIShowsVerticalScrollIndicator">NO</bool>
 						<int key="IBUISectionIndexMinimumDisplayRowCount">0</int>
 						<bool key="IBUIShowsSelectionImmediatelyOnTouchBegin">YES</bool>
 						<float key="IBUIRowHeight">44</float>
-						<float key="IBUISectionHeaderHeight">10</float>
-						<float key="IBUISectionFooterHeight">10</float>
+						<float key="IBUISectionHeaderHeight">22</float>
+						<float key="IBUISectionFooterHeight">22</float>
 					</object>
 					<object class="IBUIButton" id="573896052">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{253, 17}, {38, 26}}</string>
+						<string key="NSFrame">{{215, 17}, {38, 26}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="346183547"/>
@@ -134,17 +126,13 @@
 							<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
 						</object>
 						<reference key="IBUINormalTitleShadowColor" ref="786954922"/>
-						<object class="NSCustomResource" key="IBUINormalBackgroundImage">
-							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">bbs_button_right@2x.png</string>
-						</object>
 						<reference key="IBUIFontDescription" ref="711961393"/>
 						<reference key="IBUIFont" ref="196150653"/>
 					</object>
 					<object class="IBUIButton" id="897782820">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{215, 17}, {38, 26}}</string>
+						<string key="NSFrame">{{252, 17}, {38, 26}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="573896052"/>
@@ -153,17 +141,12 @@
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<int key="IBUIContentHorizontalAlignment">0</int>
 						<int key="IBUIContentVerticalAlignment">0</int>
-						<string key="IBUINormalTitle">My</string>
 						<reference key="IBUIHighlightedTitleColor" ref="820051261"/>
 						<object class="NSColor" key="IBUINormalTitleColor">
 							<int key="NSColorSpace">1</int>
 							<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
 						</object>
 						<reference key="IBUINormalTitleShadowColor" ref="786954922"/>
-						<object class="NSCustomResource" key="IBUINormalBackgroundImage">
-							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">bbs_button_left@2x.png</string>
-						</object>
 						<reference key="IBUIFontDescription" ref="711961393"/>
 						<reference key="IBUIFont" ref="196150653"/>
 					</object>
@@ -216,10 +199,6 @@
 						<reference key="IBUIHighlightedTitleColor" ref="820051261"/>
 						<reference key="IBUINormalTitleColor" ref="820051261"/>
 						<reference key="IBUINormalTitleShadowColor" ref="786954922"/>
-						<object class="NSCustomResource" key="IBUINormalBackgroundImage">
-							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">bbs_badge@2x.png</string>
-						</object>
 						<object class="IBUIFontDescription" key="IBUIFontDescription">
 							<int key="type">2</int>
 							<double key="pointSize">11</double>
@@ -559,13 +538,10 @@
 		<string key="IBDocument.TargetRuntimeIdentifier">IBCocoaTouchFramework</string>
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
-		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="bbs_back@2x.png">{60, 53}</string>
-			<string key="bbs_badge@2x.png">{43, 41}</string>
-			<string key="bbs_bg@2x.jpg">{640, 960}</string>
-			<string key="bbs_button_left@2x.png">{75, 51}</string>
-			<string key="bbs_button_right@2x.png">{76, 51}</string>
-		</dictionary>
+		<object class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
+			<string key="NS.key.0">bbs_bg@2x.jpg</string>
+			<string key="NS.object.0">{640, 960}</string>
+		</object>
 		<string key="IBCocoaTouchPluginVersion">1926</string>
 	</data>
 </archive>

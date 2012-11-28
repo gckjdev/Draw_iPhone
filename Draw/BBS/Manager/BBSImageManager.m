@@ -9,7 +9,7 @@
 #import "BBSImageManager.h"
 #import "PPResourceService.h"
 #import "GameResource.h"
-
+#import "ShareImageManager.h"
 
 //BBSImageManager *_staticBBSImageManager;
 
@@ -41,6 +41,13 @@ static BBSImageManager* _staticBBSImageManager;
     return self;
 }
 
+- (UIImage *)stretchableImageWithImageName:(NSString *)name
+                         inResourcePackage:(NSString *)package
+{
+    UIImage *image = [_resService imageByName:name
+                            inResourcePackage:package];
+    return [image stretchableImageWithLeftCapWidth:image.size.width/2.0 topCapHeight:image.size.height/2.0];
+}
 
 - (UIImage *)bbsBadgeImage
 {
@@ -49,17 +56,18 @@ static BBSImageManager* _staticBBSImageManager;
 }
 - (UIImage *)bbsBoardBgImage
 {
-     return [_resService imageByName:@"bbs_board_bg"
+    return [self stretchableImageWithImageName:@"bbs_board_bg"
                    inResourcePackage:RESOURCE_PACKAGE_BBS];
 }
 - (UIImage *)bbsBoardLastBgImage
 {
-     return [_resService imageByName:@"bbs_board_last_bg"
+     return [self stretchableImageWithImageName:@"bbs_board_last_bg"
                    inResourcePackage:RESOURCE_PACKAGE_BBS];
+    
 }
 - (UIImage *)bbsBoardLineImage
 {
-     return [_resService imageByName:@"bbs_board_line"
+     return [self stretchableImageWithImageName:@"bbs_board_line"
                    inResourcePackage:RESOURCE_PACKAGE_BBS];
 }
 - (UIImage *)bbsButtonLeftImage
@@ -74,7 +82,7 @@ static BBSImageManager* _staticBBSImageManager;
 }
 - (UIImage *)bbsSectionBgImage
 {
-     return [_resService imageByName:@"bbs_section_bg"
+     return [self stretchableImageWithImageName:@"bbs_section_bg"
                    inResourcePackage:RESOURCE_PACKAGE_BBS];
 }
 - (UIImage *)bbsSwitchBgImage

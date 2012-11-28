@@ -12,6 +12,7 @@
 #import "BBSImageManager.h"
 #import "BBSFontManager.h"
 #import "BBSColorManager.h"
+#import "BBSViewManager.h"
 
 @interface BBSManager : NSObject
 {

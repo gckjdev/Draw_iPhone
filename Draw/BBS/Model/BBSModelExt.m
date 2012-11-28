@@ -93,7 +93,19 @@
     return [[UserManager defaultManager] isMe:self.createUser.userId];
 }
 
+- (NSString *)postUid
+{
+    return self.createUser.userId;
+}
+- (NSString *)postText
+{
+    return self.content.text;
+}
 
+- (NSDate *)cDate
+{
+    return [NSDate dateWithTimeIntervalSince1970:self.createDate];
+}
 @end
 
 @implementation PBBBSAction (ActionExt)
@@ -190,7 +202,17 @@
     return self.actionNick;
 }
 
-
-
 @end
 
+
+@implementation PBBBSBoard (BoardExt)
+
+- (NSURL *)iconURL
+{
+    if (self.icon) {
+        return [NSURL URLWithString:self.icon];
+    }
+    return nil;
+}
+
+@end

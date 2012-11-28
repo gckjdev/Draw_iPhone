@@ -11,7 +11,7 @@
 #import "CreatePostController.h"
 #import "BBSPostListController.h"
 #import "BBSActionListController.h"
-//#import "BBSManager.h"
+//#import "BBSViewManager.h"
 
 @interface BBSBoardController ()
 {
@@ -59,33 +59,41 @@
 {
     [self.backButton setImage:[_bbsImageManager bbsBackImage] forState:UIControlStateNormal];
 
-    //title label
-    [self.titleLabel setFont:[_bbsFontManager indexTitleFont]];
-    [self.titleLabel setText:NSLS(@"kBBS")];
-    [self.titleLabel setTextColor:[_bbsColorManager indexTitleColor]];
     
-    //action button
-    [self.myActionButton.titleLabel setFont:[_bbsFontManager indexTabFont]];
-
-    [self.myActionButton setBackgroundImage:[_bbsImageManager bbsButtonLeftImage]
-                                    forState:UIControlStateNormal];
-    [self.myActionButton setTitle:NSLS(@"kMine") forState:UIControlStateNormal];
-    [self.myActionButton setTitleColor:[_bbsColorManager tabTitleColor] forState:UIControlStateNormal];
+    [BBSViewManager updateLable:self.titleLabel
+                        bgColor:[UIColor clearColor]
+                           font:[_bbsFontManager indexTitleFont]
+                      textColor:[_bbsColorManager indexTitleColor]
+                           text:NSLS(@"kBBS")];
     
-    //post button
-    [self.myPostButton setBackgroundImage:[_bbsImageManager bbsButtonRightImage]
-                                   forState:UIControlStateNormal];
-    [self.myPostButton.titleLabel setFont:[_bbsFontManager indexTabFont]];
-    [self.myPostButton setTitle:NSLS(@"kComment") forState:UIControlStateNormal];
-    [self.myPostButton setTitleColor:[_bbsColorManager tabTitleColor] forState:UIControlStateNormal];
+    [BBSViewManager updateButton:self.myPostButton
+                         bgColor:[UIColor clearColor]
+                         bgImage:[_bbsImageManager bbsButtonLeftImage]
+                           image:nil
+                            font:[_bbsFontManager indexTabFont]
+                      titleColor:[_bbsColorManager tabTitleColor]
+                           title:NSLS(@"kMine")
+                        forState:UIControlStateNormal];
+    
+    [BBSViewManager updateButton:self.myActionButton
+                         bgColor:[UIColor clearColor]
+                         bgImage:[_bbsImageManager bbsButtonRightImage]
+                           image:nil
+                            font:[_bbsFontManager indexTabFont]
+                      titleColor:[_bbsColorManager tabTitleColor]
+                           title:NSLS(@"kComment")
+                        forState:UIControlStateNormal];
     
     //badge
+    [BBSViewManager updateButton:self.badge
+                         bgColor:[UIColor clearColor]
+                         bgImage:[_bbsImageManager bbsBadgeImage]
+                           image:nil
+                            font:[_bbsFontManager indexBadgeFont]
+                      titleColor:[_bbsColorManager badgeColor]
+                           title:NSLS(@"25")
+                        forState:UIControlStateNormal];
     [self.badge setUserInteractionEnabled:NO];
-    [self.badge setBackgroundImage:[_bbsImageManager bbsBadgeImage]
-                                 forState:UIControlStateNormal];
-    [self.badge.titleLabel setFont:[_bbsFontManager indexBadgeFont]];
-    [self.badge setTitle:@"25" forState:UIControlStateNormal];
-    [self.badge setTitleColor:[_bbsColorManager badgeColor] forState:UIControlStateNormal];
     
     //back ground
     [self.bgImageView setImage:[_bbsImageManager bbsBGImage]];
@@ -134,7 +142,10 @@
     if (resultCode == 0) {
         self.parentBoardList = [_bbsManager parentBoardList];
         [_openBoardSet removeAllObjects];
-        [_openBoardSet addObjectsFromArray:_parentBoardList];
+        if ([_parentBoardList count] != 0) {
+            NSObject *firstSection = [_parentBoardList objectAtIndex:0];
+            [_openBoardSet addObject:firstSection];
+        }
     }else{
         PPDebug(@"<didGetBBSBoardList>: fail.");
     }
@@ -144,26 +155,45 @@
 
 #pragma mark table view delegate
 
+- (BOOL)isIndexPathLastCell:(NSIndexPath *)indexPath
+{
+    PBBBSBoard *pBoard = [_parentBoardList objectAtIndex:indexPath.section];
+    NSArray *subList = [_bbsManager sbuBoardListForBoardId:pBoard.boardId];
+    if ([subList count] != 0 && indexPath.row == ([subList count] - 1)) {
+        return YES;
+    }
+    return NO;
+}
+
 - (void)didClickBoardSection:(BBSBoardSection *)boardSection
                     bbsBoard:(PBBBSBoard*)bbsBoard
 {
     if (![_openBoardSet containsObject:bbsBoard]) {
+        [_openBoardSet removeAllObjects];
         [_openBoardSet addObject:bbsBoard];
     }else{
         [_openBoardSet removeObject:bbsBoard];
     }
-    NSInteger section = [_parentBoardList indexOfObject:bbsBoard];
-    if (section != NSNotFound) {
-        [self.dataTableView reloadSections:[NSIndexSet indexSetWithIndex:section]
-                          withRowAnimation:UITableViewRowAnimationFade];
-    }
+    NSIndexSet *indexSet = [NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, _parentBoardList.count)];
+    
+    [self.dataTableView reloadSections:indexSet withRowAnimation:UITableViewRowAnimationFade];
+
 }
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    PBBBSBoard *board = [_parentBoardList objectAtIndex:section];
     BBSBoardSection *header = [BBSBoardSection createBoardSectionView:self];
-    [header setViewWithBoard:board];
+    PBBBSBoard *board = [_parentBoardList objectAtIndex:section];
+    BOOL isOpen = [_openBoardSet containsObject:board];
+
+    [header setViewWithBoard:board isOpen:isOpen];
+    
     return header;
+}
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
+{
+    UIView *footer = [[[UIView alloc] init] autorelease];
+    [footer setBackgroundColor:[UIColor clearColor]];
+    return footer;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
@@ -171,9 +201,16 @@
     return [BBSBoardSection getViewHeight];
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+{
+    return [DeviceDetection isIPAD] ? 20 : 10;
+}
+
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{	
-	return [BBSBoardCell getCellHeight];
+{
+	BOOL flag = [self isIndexPathLastCell:indexPath];
+	CGFloat height = [BBSBoardCell getCellHeightLastBoard:flag];
+    return height;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -198,6 +235,7 @@
 }
 
 
+
 - (PBBBSBoard *)boardForIndexPath:(NSIndexPath *)indexPath
 {
     PBBBSBoard *pBoard = [_parentBoardList objectAtIndex:indexPath.section];
@@ -217,7 +255,8 @@
 		cell = [BBSBoardCell createCell:self];
 	}
     PBBBSBoard *sBoard = [self boardForIndexPath:indexPath];
-    [cell updateCellWithBoard:sBoard];
+    BOOL flag = [self isIndexPathLastCell:indexPath];
+    [cell updateCellWithBoard:sBoard isLastBoard:flag];
     
 	return cell;
 	
