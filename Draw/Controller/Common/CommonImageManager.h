@@ -24,4 +24,7 @@
 - (UIImage*)starryDialogBackgroundImage;
 - (UIImage*)starryDialogBackgroundSideImage;
 
+- (UIImage*)starryLoadingLight;
+- (UIImage*)starryLoadingStar;
+
 @end

@@ -18,6 +18,8 @@
 	float radius;
     UIView* _maskView;
     UIView* _superView;
+    UIImageView* _starView;
+    UIImageView* _lightView;
 }
 @property (copy,nonatomic) NSString *title;
 @property (copy,nonatomic) NSString *message;

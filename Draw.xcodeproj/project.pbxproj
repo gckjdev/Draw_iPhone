@@ -425,7 +425,6 @@
 		C2EE14271664CB3600ADBE2E /* dialog_no@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2EE141E1664CB3600ADBE2E /* dialog_no@2x.png */; };
 		C2EE14281664CB3600ADBE2E /* dialog_smallbg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2EE141F1664CB3600ADBE2E /* dialog_smallbg@2x.png */; };
 		C2EE14291664CB3600ADBE2E /* dialog_yes@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2EE14201664CB3600ADBE2E /* dialog_yes@2x.png */; };
-		C2EE142B1664CB3600ADBE2E /* loading_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2EE14221664CB3600ADBE2E /* loading_bg@2x.png */; };
 		C2EE142C1664CB3600ADBE2E /* loading_planet@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2EE14231664CB3600ADBE2E /* loading_planet@2x.png */; };
 		C2EE142D1664CB3600ADBE2E /* starryBg.png in Resources */ = {isa = PBXBuildFile; fileRef = C2EE14241664CB3600ADBE2E /* starryBg.png */; };
 		C2EE14301664EF5000ADBE2E /* CommonImageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C2EE142F1664EF5000ADBE2E /* CommonImageManager.m */; };
@@ -2553,7 +2552,6 @@
 		C2EE141E1664CB3600ADBE2E /* dialog_no@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dialog_no@2x.png"; sourceTree = "<group>"; };
 		C2EE141F1664CB3600ADBE2E /* dialog_smallbg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dialog_smallbg@2x.png"; sourceTree = "<group>"; };
 		C2EE14201664CB3600ADBE2E /* dialog_yes@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dialog_yes@2x.png"; sourceTree = "<group>"; };
-		C2EE14221664CB3600ADBE2E /* loading_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "loading_bg@2x.png"; sourceTree = "<group>"; };
 		C2EE14231664CB3600ADBE2E /* loading_planet@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "loading_planet@2x.png"; sourceTree = "<group>"; };
 		C2EE14241664CB3600ADBE2E /* starryBg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = starryBg.png; sourceTree = "<group>"; };
 		C2EE142E1664EF5000ADBE2E /* CommonImageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonImageManager.h; sourceTree = "<group>"; };
@@ -5759,7 +5757,6 @@
 				C2EE141E1664CB3600ADBE2E /* dialog_no@2x.png */,
 				C2EE141F1664CB3600ADBE2E /* dialog_smallbg@2x.png */,
 				C2EE14201664CB3600ADBE2E /* dialog_yes@2x.png */,
-				C2EE14221664CB3600ADBE2E /* loading_bg@2x.png */,
 				C2EE14231664CB3600ADBE2E /* loading_planet@2x.png */,
 				C2EE14241664CB3600ADBE2E /* starryBg.png */,
 			);
@@ -11767,7 +11764,6 @@
 				C2EE14271664CB3600ADBE2E /* dialog_no@2x.png in Resources */,
 				C2EE14281664CB3600ADBE2E /* dialog_smallbg@2x.png in Resources */,
 				C2EE14291664CB3600ADBE2E /* dialog_yes@2x.png in Resources */,
-				C2EE142B1664CB3600ADBE2E /* loading_bg@2x.png in Resources */,
 				C2EE142C1664CB3600ADBE2E /* loading_planet@2x.png in Resources */,
 				C2EE142D1664CB3600ADBE2E /* starryBg.png in Resources */,
 				CAC791C4166608AA009B4053 /* BBSBoardCell~ipad.xib in Resources */,
