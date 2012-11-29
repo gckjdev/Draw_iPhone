@@ -32,7 +32,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(CommonImageManager)
 
 - (UIImage*)starryBackgroundImage
 {
-    return [_resService imageByName:@"starryBg" inResourcePackage:RESOURCE_PACKAGE_COMMON];
+    return [_resService imageByName:@"loading_bg" inResourcePackage:RESOURCE_PACKAGE_COMMON];
 }
 - (UIImage*)planetImage
 {
@@ -58,6 +58,15 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(CommonImageManager)
 - (UIImage*)starryDialogBackgroundSideImage
 {
     return [UIImage strectchableImageName:@"dialog_smallbg"];
+}
+
+- (UIImage*)starryLoadingLight
+{
+    return [_resService imageByName:@"light" inResourcePackage:RESOURCE_PACKAGE_COMMON];
+}
+- (UIImage*)starryLoadingStar
+{
+    return [_resService imageByName:@"star" inResourcePackage:RESOURCE_PACKAGE_COMMON];
 }
 
 @end

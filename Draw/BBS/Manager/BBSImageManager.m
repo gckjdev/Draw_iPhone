@@ -125,30 +125,41 @@ static BBSImageManager* _staticBBSImageManager;
 
 
 //Post list
-- (UIImage *)bbsPostCommentImage{
-    return [self stretchableImageWithImageName:@"bbs_post_comment"
-                             inResourcePackage:RESOURCE_PACKAGE_BBS];
-
-}
 - (UIImage *)bbsPostContentBGImage{
     return [self stretchableImageWithImageName:@"bbs_post_content_bg"
                              inResourcePackage:RESOURCE_PACKAGE_BBS];
 
 }
 - (UIImage *)bbsPostEditImage{
-    return [self stretchableImageWithImageName:@"bbs_post_edit"
-                             inResourcePackage:RESOURCE_PACKAGE_BBS];
+    NSString *imageName = [self fixImageName:@"bbs_post_edit"];
+    return [_resService imageByName:imageName
+                  inResourcePackage:RESOURCE_PACKAGE_BBS];
 }
 - (UIImage *)bbsPostHotImage{
-    return [self stretchableImageWithImageName:@"bbs_post_hot"
-                             inResourcePackage:RESOURCE_PACKAGE_BBS];
+    NSString *imageName = [self fixImageName:@"bbs_post_hot"];
+    return [_resService imageByName:imageName
+                  inResourcePackage:RESOURCE_PACKAGE_BBS];
+}
+- (UIImage *)bbsPostNewImage{
+    NSString *imageName = [self fixImageName:@"bbs_post_new"];
+    return [_resService imageByName:imageName
+                  inResourcePackage:RESOURCE_PACKAGE_BBS];
 }
 - (UIImage *)bbsPostRewardImage{
-    return [self stretchableImageWithImageName:@"bbs_post_reward"
-                             inResourcePackage:RESOURCE_PACKAGE_BBS];
+    NSString *imageName = [self fixImageName:@"bbs_post_reward"];
+    return [_resService imageByName:imageName
+                  inResourcePackage:RESOURCE_PACKAGE_BBS];
 }
 - (UIImage *)bbsPostSupportImage{
-    return [self stretchableImageWithImageName:@"bbs_post_support"
-                             inResourcePackage:RESOURCE_PACKAGE_BBS];
+    NSString *imageName = [self fixImageName:@"bbs_post_support"];
+    return [_resService imageByName:imageName
+                  inResourcePackage:RESOURCE_PACKAGE_BBS];
 }
+- (UIImage *)bbsPostCommentImage{
+    NSString *imageName = [self fixImageName:@"bbs_post_comment"];
+    return [_resService imageByName:imageName
+                  inResourcePackage:RESOURCE_PACKAGE_BBS];
+    
+}
+
 @end

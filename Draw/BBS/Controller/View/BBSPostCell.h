@@ -23,9 +23,10 @@
     PBBBSPost *_post;
     id<BBSPostCellDelegate> _delegate;
 }
+@property (retain, nonatomic) IBOutlet UIImageView *bgImageView;
 @property (retain, nonatomic) IBOutlet UIButton *support;
 @property (retain, nonatomic) IBOutlet UIButton *comment;
-@property (retain, nonatomic) IBOutlet UILabel *reward;
+@property (retain, nonatomic) IBOutlet UIButton *reward;
 @property (retain, nonatomic) PBBBSPost *post;
 
 - (IBAction)clickSupportButton:(id)sender;

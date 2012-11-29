@@ -15,6 +15,13 @@ enum BBSBoardType {
 };
 
 typedef enum {
+    RewardStatusNo = 0,
+    RewardStatusOn = 1,
+    RewardStatusOff = 2
+}BBSRewardStatus;
+
+
+typedef enum {
     ContentTypeNo = 0,
     ContentTypeText = 1,
     ContentTypeImage = 2,
