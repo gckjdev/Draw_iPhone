@@ -47,8 +47,8 @@
 #define FONT_OF_TITLE_IPAD [UIFont boldSystemFontOfSize:16*2]
 #define FONT_OF_TITLE ([self isIPAD] ? (FONT_OF_TITLE_IPAD) : (FONT_OF_TITLE_IPHONE))
 
-#define FONT_OF_MESSAGE_IPHONE [UIFont systemFontOfSize:20]
-#define FONT_OF_MESSAGE_IPAD [UIFont systemFontOfSize:12*2]
+#define FONT_OF_MESSAGE_IPHONE [UIFont systemFontOfSize:16]
+#define FONT_OF_MESSAGE_IPAD [UIFont systemFontOfSize:16*2]
 #define FONT_OF_MESSAGE ([self isIPAD] ? (FONT_OF_MESSAGE_IPAD) : (FONT_OF_MESSAGE_IPHONE))
 
 #define LOADING_CENTER_SIZE ([DeviceDetection isIPAD]?CGSizeMake(123, 92):CGSizeMake(62, 46))
@@ -207,33 +207,49 @@
     [_superView bringSubviewToFront:self];
 }
 
+- (CGSize)calLoadingViewSize
+{
+
+    CGSize s1 = self.titleLabel.frame.size;
+	CGSize s2 = self.messageLabel.frame.size;
+    
+    CGFloat height = s1.height*2 + _planetView.frame.size.height + s2.height;
+    CGFloat width = height/0.618;
+    
+    return CGSizeMake(width, height);
+}
+
+
 - (void)adjustSize
 {
     [self setFrame:_superView.bounds];
+    [_titleLabel setText:@"test"];
     PPDebug(@"<test-kira> super bounds = (%.2f, %.2f, %.2f, %.2f)", _superView.frame.origin.x, _superView.frame.origin.y, _superView.frame.size.width, _superView.frame.size.height);
     
     UIFont *titleFont = FONT_OF_TITLE;
 	UIFont *messageFont = FONT_OF_MESSAGE;
-    CGSize s1 = [self calculateHeightOfTextFromWidth:_title font:titleFont width:HEIGHT_OF_LOADING_VIEW linebreak:UILineBreakModeTailTruncation];
+    CGSize s1 = [self calculateHeightOfTextFromWidth:@" " font:titleFont width:HEIGHT_OF_LOADING_VIEW linebreak:UILineBreakModeTailTruncation];
 	CGSize s2 = [self calculateHeightOfTextFromWidth:_message font:messageFont width:HEIGHT_OF_LOADING_VIEW linebreak:UILineBreakModeCharacterWrap];
     
+    [self.titleLabel setFrame:CGRectMake(0, 0, s1.width, s1.height)];
+    [self.messageLabel setFrame:CGRectMake(0, 0, s2.width, s2.height)];
     
-    
-    [self.loadingView setFrame:CGRectMake(0, 0, MAX(s1.width, s2.width)*2, (s1.height + s2.height + LOADING_CENTER_SIZE.height)*1.5)];
+    CGSize loadingViewSize = [self calLoadingViewSize];
+    [self.loadingView setFrame:CGRectMake(0, 0, loadingViewSize.width, loadingViewSize.height)];
     [self.loadingView setCenter:CGPointMake(_superView.bounds.size.width/2, _superView.bounds.size.height/2)];
     [self.backgroundImageView setFrame:CGRectMake(0, 0, self.loadingView.frame.size.width, self.loadingView.frame.size.height)];
     
     PPDebug(@"<test-kira> loading view's size = (%.2f, %.2f), center = (%.2f, %.2f)", self.loadingView.frame.size.width, self.loadingView.frame.size.height, self.loadingView.center.x, self.loadingView.center.y);
     
-    [self.titleLabel setFrame:CGRectMake(0, 0, s1.width, s1.height)];
-    [self.messageLabel setFrame:CGRectMake(0, 0, s2.width, s2.height)];
     
-    [self.titleLabel setCenter:CGPointMake(self.loadingView.frame.size.width/2, s1.height/2)];
-    [self.messageLabel setCenter:CGPointMake(self.loadingView.frame.size.width/2, s1.height + s2.height/2 + LOADING_CENTER_SIZE.height)];
     
-    [_planetView setCenter:CGPointMake(self.loadingView.frame.size.width/2, self.loadingView.frame.size.height/2)];
+    [self.titleLabel setCenter:CGPointMake(self.loadingView.frame.size.width/2, s1.height)];
+    [_planetView setCenter:CGPointMake(self.loadingView.frame.size.width/2, self.titleLabel.center.y + self.titleLabel.frame.size.height/2 + _planetView.frame.size.height/2)];
+    [self.messageLabel setCenter:CGPointMake(self.loadingView.frame.size.width/2, _planetView.center.y + _planetView.frame.size.height/2 + self.messageLabel.frame.size.height/2)];
+    
+    
                                        
-    [self.messageLabel setCenter:CGPointMake(self.loadingView.frame.size.width/2, self.loadingView.frame.size.height/2 + (_planetView.frame.size.height + self.messageLabel.frame.size.height)/2)];
+//    [self.messageLabel setCenter:CGPointMake(self.loadingView.frame.size.width/2, s1.height + _planetView.frame.size.height + self.messageLabel.frame.size.height/2)];
     
     [self.messageLabel addUnlockShiningEffectDuration:2.5];
 }
