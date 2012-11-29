@@ -9,6 +9,7 @@
 #import "StarryLoadingView.h"
 #import "CommonImageManager.h"
 #import "UIView+MDCShineEffect.h"
+#import "AnimationManager.h"
 
 @interface StarryLoadingView (PrivateMethods)
 - (CGSize) calculateHeightOfTextFromWidth:(NSString*)text font: (UIFont*)withFont width:(float)width linebreak:(UILineBreakMode)lineBreakMode;
@@ -112,6 +113,14 @@
 	self.backgroundImageView = [[[UIImageView alloc] init] autorelease];
     [self.backgroundImageView setImage:[CommonImageManager defaultManager].starryBackgroundImage];
     [self.loadingView addSubview:self.backgroundImageView];
+    
+    _starView = [[[UIImageView alloc] init] autorelease];
+    [_starView setImage:[CommonImageManager defaultManager].starryLoadingStar];
+    [self.loadingView addSubview:_starView];
+    
+    _lightView = [[[UIImageView alloc] init] autorelease];
+    [_lightView setImage:[CommonImageManager defaultManager].starryLoadingLight];
+    [self.loadingView addSubview:_lightView];
     
     _planetView = [[[UIImageView alloc] initWithImage:[CommonImageManager defaultManager].planetImage] autorelease];
     [_planetView setFrame:CGRectMake(0, 0, LOADING_CENTER_SIZE.width, LOADING_CENTER_SIZE.height)];
@@ -238,6 +247,8 @@
     [self.loadingView setFrame:CGRectMake(0, 0, loadingViewSize.width, loadingViewSize.height)];
     [self.loadingView setCenter:CGPointMake(_superView.bounds.size.width/2, _superView.bounds.size.height/2)];
     [self.backgroundImageView setFrame:CGRectMake(0, 0, self.loadingView.frame.size.width, self.loadingView.frame.size.height)];
+    [_starView setFrame:self.backgroundImageView.frame];
+    [_lightView setFrame:self.backgroundImageView.frame];
     
     PPDebug(@"<test-kira> loading view's size = (%.2f, %.2f), center = (%.2f, %.2f)", self.loadingView.frame.size.width, self.loadingView.frame.size.height, self.loadingView.center.x, self.loadingView.center.y);
     
@@ -256,7 +267,7 @@
 
 - (void)update
 {
-    [self.loadingView setBackgroundColor:[UIColor colorWithRed:(rand()%255)/255.0 green:(rand()%255)/255.0 blue:(rand()%255)/255.0 alpha:1]];
+//    [self.loadingView setBackgroundColor:[UIColor colorWithRed:(rand()%255)/255.0 green:(rand()%255)/255.0 blue:(rand()%255)/255.0 alpha:1]];
 }
 
 - (void)killTimer
@@ -275,6 +286,14 @@
     [self killTimer];
     _timer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(update) userInfo:nil repeats:YES];
     [_timer retain];
+    
+    CAAnimation* flashing = [AnimationManager disappearAnimationFrom:0 to:1 delay:0 duration:0.4];
+    CAAnimation* flashing2 = [AnimationManager disappearAnimationFrom:1 to:0 delay:0 duration:0.4];
+    flashing.autoreverses = YES;
+    flashing2.autoreverses = YES;
+    
+    [_starView.layer addAnimation:flashing forKey:nil];
+//    [_lightView.layer addAnimation:flashing2 forKey:nil];
 }
 
 - (void) setTitle:(NSString*)str{
