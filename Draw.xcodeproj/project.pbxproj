@@ -1552,6 +1552,8 @@
 		CAC791D61666192B009B4053 /* bbs_post_reward@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAC791D01666192A009B4053 /* bbs_post_reward@2x.png */; };
 		CAC791D71666192B009B4053 /* bbs_post_support@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAC791D11666192A009B4053 /* bbs_post_support@2x.png */; };
 		CAC791EB16670AB7009B4053 /* bbs_post_new@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAC791EA16670AB7009B4053 /* bbs_post_new@2x.png */; };
+		CAC7921116675DA0009B4053 /* BBSPostListController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAC7921016675DA0009B4053 /* BBSPostListController~ipad.xib */; };
+		CAC7921316675DB8009B4053 /* BBSPostCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAC7921216675DB7009B4053 /* BBSPostCell~ipad.xib */; };
 		CACC084E1532B02600D9F8E9 /* ShareAction.m in Sources */ = {isa = PBXBuildFile; fileRef = CACC084D1532B02600D9F8E9 /* ShareAction.m */; };
 		CACF87A415EB4D2D003FA6B6 /* DiceSettingView.m in Sources */ = {isa = PBXBuildFile; fileRef = CACF87A215EB4D2D003FA6B6 /* DiceSettingView.m */; };
 		CACF87A515EB4D2D003FA6B6 /* DiceSettingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CACF87A315EB4D2D003FA6B6 /* DiceSettingView.xib */; };
@@ -4054,6 +4056,8 @@
 		CAC791D01666192A009B4053 /* bbs_post_reward@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bbs_post_reward@2x.png"; sourceTree = "<group>"; };
 		CAC791D11666192A009B4053 /* bbs_post_support@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bbs_post_support@2x.png"; sourceTree = "<group>"; };
 		CAC791EA16670AB7009B4053 /* bbs_post_new@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bbs_post_new@2x.png"; sourceTree = "<group>"; };
+		CAC7921016675DA0009B4053 /* BBSPostListController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "BBSPostListController~ipad.xib"; sourceTree = "<group>"; };
+		CAC7921216675DB7009B4053 /* BBSPostCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "BBSPostCell~ipad.xib"; sourceTree = "<group>"; };
 		CACC084C1532B02600D9F8E9 /* ShareAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareAction.h; sourceTree = "<group>"; };
 		CACC084D1532B02600D9F8E9 /* ShareAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareAction.m; sourceTree = "<group>"; };
 		CACF87A115EB4D2D003FA6B6 /* DiceSettingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiceSettingView.h; sourceTree = "<group>"; };
@@ -8760,6 +8764,7 @@
 				CAA799271659D28700429611 /* BBSPostListController.h */,
 				CAA799281659D28700429611 /* BBSPostListController.m */,
 				CAA799291659D28700429611 /* BBSPostListController.xib */,
+				CAC7921016675DA0009B4053 /* BBSPostListController~ipad.xib */,
 				CA9A274A1655E9DE00B7A0DA /* CreatePostController.h */,
 				CA9A274B1655E9DE00B7A0DA /* CreatePostController.m */,
 				CA9A274C1655E9DE00B7A0DA /* CreatePostController.xib */,
@@ -8974,6 +8979,7 @@
 				CAA79940165A178700429611 /* BBSPostCell.h */,
 				CAA79941165A178700429611 /* BBSPostCell.m */,
 				CAA79943165A18DA00429611 /* BBSPostCell.xib */,
+				CAC7921216675DB7009B4053 /* BBSPostCell~ipad.xib */,
 			);
 			name = PostCell;
 			sourceTree = "<group>";
@@ -11777,6 +11783,8 @@
 				C2EE1475166706BC00ADBE2E /* light.png in Resources */,
 				C2EE1476166706BC00ADBE2E /* star.png in Resources */,
 				CAC791EB16670AB7009B4053 /* bbs_post_new@2x.png in Resources */,
+				CAC7921116675DA0009B4053 /* BBSPostListController~ipad.xib in Resources */,
+				CAC7921316675DB8009B4053 /* BBSPostCell~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
