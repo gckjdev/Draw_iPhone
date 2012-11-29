@@ -85,8 +85,11 @@
         titleName = self.bbsBoard.fullName;
         [self.createPostButton setImage:[_bbsImageManager bbsPostEditImage]
                                forState:UIControlStateNormal];
+        [self.rankButton setImage:[_bbsImageManager bbsPostNewImage]
+                         forState:UIControlStateNormal];
+
         [self.rankButton setImage:[_bbsImageManager bbsPostHotImage]
-                               forState:UIControlStateNormal];
+                               forState:UIControlStateSelected];
 
     }else if(self.bbsUser){
         titleName = self.bbsUser.showNick;
@@ -99,10 +102,8 @@
                       textColor:[_bbsColorManager bbsTitleColor]
                            text:titleName];
     
-    
-    //back ground
-
-//    self.b
+    [self.refreshFooterView setBackgroundColor:[UIColor clearColor]];
+    [self.refreshHeaderView setBackgroundColor:[UIColor clearColor]];    
 }
 
 - (void)viewDidLoad
@@ -146,10 +147,10 @@
 - (IBAction)clickRankButton:(id)sender {
     if (RangeTypeHot == _rangeType) {
         _rangeType = RangeTypeNew;
-//        [self.rankButton setTitle:NSLS(@"kNew") forState:UIControlStateNormal];
+        self.rankButton.selected = NO;
     }else{
         _rangeType = RangeTypeHot;
-//        [self.rankButton setTitle:NSLS(@"kHot") forState:UIControlStateNormal];
+        self.rankButton.selected = YES;
     }
     NSInteger tabID = [self rangeTypeToTabID:_rangeType];
     self.rankButton.tag = tabID;
@@ -176,9 +177,6 @@
 - (NSInteger)tabIDforIndex:(NSInteger)index
 {
     return [self rangeTypeToTabID:index];
-//    return POST_LIST_TAB;
-//    NSInteger tabs[] = {RangeTypeNew, RangeTypeHot};
-//    return tabs[index];
 }
 - (NSString *)tabTitleforIndex:(NSInteger)index
 {

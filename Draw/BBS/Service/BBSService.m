@@ -114,6 +114,16 @@ BBSService *_staticBBSService;
     return content;
 }
 
+- (PBBBSReward *)buildPBBBSRewardWithBounus:(NSInteger)bonus
+{
+    PBBBSReward_Builder *builder = [[PBBBSReward_Builder alloc] init];
+    [builder setBonus:bonus];
+    [builder setStatus:RewardStatusOn];
+    PBBBSReward *reward = [builder build];
+    [builder release];
+    return reward;
+}
+
 - (PBBBSPost *)buildPBBBSPostWithPostId:(NSString *)postId
                                   appId:(NSString*)appId
                              deviceType:(int)deviceType
@@ -128,6 +138,7 @@ BBSService *_staticBBSService;
                           thumbImageUrl:(NSString *)thumbImageUrl
                            drawImageUrl:(NSString *)drawImageUrl
                       drawImageThumbUrl:(NSString *)drawImageThumbUrl
+                                  bonus:(NSInteger)bonus
 {
     PBBBSPost_Builder *builder = [[PBBBSPost_Builder alloc] init];
     [builder setPostId:postId];
@@ -152,6 +163,9 @@ BBSService *_staticBBSService;
                                                drawImageUrl:drawImageUrl
                                           drawImageThumbUrl:drawImageThumbUrl];
     [builder setContent:content];
+    
+    PBBBSReward *reward = [self buildPBBBSRewardWithBounus:bonus];
+    [builder setReward:reward];
     
     PBBBSPost *post = [builder build];
     [builder release];
@@ -375,7 +389,8 @@ BBSService *_staticBBSService;
                                              imageUrl:imageURL
                                         thumbImageUrl:thumbURL
                                          drawImageUrl:drawImageURL
-                                    drawImageThumbUrl:drawThumbURL];
+                                    drawImageThumbUrl:drawThumbURL
+                                                bonus:bonus];
                 [[BBSManager defaultManager] updateLastCreationDate];
             }
         }

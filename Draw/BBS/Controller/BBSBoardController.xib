@@ -90,9 +90,10 @@
 					<object class="IBUITableView" id="404444200">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">274</int>
-						<string key="NSFrame">{{10, 72}, {300, 388}}</string>
+						<string key="NSFrame">{{10, 60}, {300, 400}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<reference key="IBUIBackgroundColor" ref="820051261"/>
 						<bool key="IBUIClipsSubviews">YES</bool>

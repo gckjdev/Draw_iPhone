@@ -33,6 +33,7 @@
 - (UIImage *)bbsPostContentBGImage;
 - (UIImage *)bbsPostEditImage;
 - (UIImage *)bbsPostHotImage;
+- (UIImage *)bbsPostNewImage;
 - (UIImage *)bbsPostRewardImage;
 - (UIImage *)bbsPostSupportImage;
 @end
