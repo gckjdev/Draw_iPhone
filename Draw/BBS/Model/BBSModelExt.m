@@ -9,6 +9,7 @@
 #import "BBSModelExt.h"
 #import "UserManager.h"
 #import "ShareImageManager.h"
+#import "BBSManager.h"
 
 @implementation PBBBSContent (ContentExt)
 - (BOOL)hasThumbImage
@@ -213,6 +214,18 @@
         return [NSURL URLWithString:self.icon];
     }
     return nil;
+}
+- (PBBBSBoard *)parentBoard
+{
+    return [[BBSManager defaultManager] parentBoardOfsubBoard:self];
+}
+- (NSString *)fullName
+{
+    PBBBSBoard *pBoard = [self parentBoard];
+    if (pBoard) {
+        return [NSString stringWithFormat:@"%@/%@",pBoard.name,self.name];
+    }
+    return self.name;
 }
 
 @end

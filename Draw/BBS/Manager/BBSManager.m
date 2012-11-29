@@ -76,6 +76,24 @@ BBSManager *_staticBBSManager;
     return [_boardDict objectForKey:boardId];
 }
 
+- (PBBBSBoard *)boardForBoardId:(NSString *)boardId
+{
+    for (PBBBSBoard *board in self.boardList) {
+        if ([board.boardId isEqualToString:boardId]) {
+            return board;
+        }
+    }
+    return nil;
+}
+- (PBBBSBoard *)parentBoardOfsubBoard:(PBBBSBoard *)subBoard
+{
+    if (subBoard) {
+        return [self boardForBoardId:subBoard.parentBoardId];
+    }
+    return nil;
+}
+
+
 #pragma mark - create post&&action limit
 
 #define FREQUENCY_KEY @"FREQUENCY_KEY"

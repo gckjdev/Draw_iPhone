@@ -28,4 +28,11 @@
 - (UIImage *)bbsBackImage;
 - (UIImage *)bbsBGImage;
 
+//Post List
+- (UIImage *)bbsPostCommentImage;
+- (UIImage *)bbsPostContentBGImage;
+- (UIImage *)bbsPostEditImage;
+- (UIImage *)bbsPostHotImage;
+- (UIImage *)bbsPostRewardImage;
+- (UIImage *)bbsPostSupportImage;
 @end

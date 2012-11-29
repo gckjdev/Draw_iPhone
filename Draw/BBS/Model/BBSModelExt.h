@@ -77,6 +77,7 @@ typedef enum {
 
 @interface PBBBSBoard (BoardExt)
 - (NSURL *)iconURL;
-
+- (PBBBSBoard *)parentBoard;
+- (NSString *)fullName;
 @end
 

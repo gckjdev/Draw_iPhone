@@ -26,6 +26,9 @@
 -(NSArray *)parentBoardList;
 -(NSArray *)sbuBoardListForBoardId:(NSString *)boardId;
 
+- (PBBBSBoard *)boardForBoardId:(NSString *)boardId;
+- (PBBBSBoard *)parentBoardOfsubBoard:(PBBBSBoard *)subBoard;
+
 //create limit
 - (void)updateLastCreationDate;
 - (NSTimeInterval)creationFrequency;

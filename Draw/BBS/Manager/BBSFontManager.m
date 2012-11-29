@@ -30,7 +30,7 @@ static BBSFontManager* _staticBBSFontManager;
 {
     return ISIPHONE ? FONT(12) : FONT(24);
 }
-- (UIFont *)indexTitleFont
+- (UIFont *)bbsTitleFont
 {
     return ISIPHONE ? BOLDFONT(18) : BOLDFONT(36);
 }
@@ -62,5 +62,23 @@ static BBSFontManager* _staticBBSFontManager;
 - (UIFont *)indexBadgeFont
 {
     return ISIPHONE ? BOLDFONT(11) : BOLDFONT(22);
+}
+
+
+//Post list font
+- (UIFont *)postNickFont{
+   return ISIPHONE ? FONT(15) : FONT(15*2); 
+}
+- (UIFont *)postContentFont{
+    return ISIPHONE ? FONT(15) : FONT(15*2);
+}
+- (UIFont *)postDateFont{
+    return ISIPHONE ? FONT(9) : FONT(9*2);
+}
+- (UIFont *)postRewardFont{
+    return ISIPHONE ? FONT(8) : FONT(8*2);
+}
+- (UIFont *)postActionFont{
+     return ISIPHONE ? FONT(8) : FONT(8*2);
 }
 @end

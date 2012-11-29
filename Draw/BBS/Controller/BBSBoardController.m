@@ -62,8 +62,8 @@
     
     [BBSViewManager updateLable:self.titleLabel
                         bgColor:[UIColor clearColor]
-                           font:[_bbsFontManager indexTitleFont]
-                      textColor:[_bbsColorManager indexTitleColor]
+                           font:[_bbsFontManager bbsTitleFont]
+                      textColor:[_bbsColorManager bbsTitleColor]
                            text:NSLS(@"kBBS")];
     
     [BBSViewManager updateButton:self.myPostButton

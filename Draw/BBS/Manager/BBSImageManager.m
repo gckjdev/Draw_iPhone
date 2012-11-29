@@ -122,4 +122,33 @@ static BBSImageManager* _staticBBSImageManager;
                   inResourcePackage:RESOURCE_PACKAGE_BBS];   
 }
 
+
+
+//Post list
+- (UIImage *)bbsPostCommentImage{
+    return [self stretchableImageWithImageName:@"bbs_post_comment"
+                             inResourcePackage:RESOURCE_PACKAGE_BBS];
+
+}
+- (UIImage *)bbsPostContentBGImage{
+    return [self stretchableImageWithImageName:@"bbs_post_content_bg"
+                             inResourcePackage:RESOURCE_PACKAGE_BBS];
+
+}
+- (UIImage *)bbsPostEditImage{
+    return [self stretchableImageWithImageName:@"bbs_post_edit"
+                             inResourcePackage:RESOURCE_PACKAGE_BBS];
+}
+- (UIImage *)bbsPostHotImage{
+    return [self stretchableImageWithImageName:@"bbs_post_hot"
+                             inResourcePackage:RESOURCE_PACKAGE_BBS];
+}
+- (UIImage *)bbsPostRewardImage{
+    return [self stretchableImageWithImageName:@"bbs_post_reward"
+                             inResourcePackage:RESOURCE_PACKAGE_BBS];
+}
+- (UIImage *)bbsPostSupportImage{
+    return [self stretchableImageWithImageName:@"bbs_post_support"
+                             inResourcePackage:RESOURCE_PACKAGE_BBS];
+}
 @end
