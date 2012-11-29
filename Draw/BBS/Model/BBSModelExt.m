@@ -9,6 +9,7 @@
 #import "BBSModelExt.h"
 #import "UserManager.h"
 #import "ShareImageManager.h"
+#import "BBSManager.h"
 
 @implementation PBBBSContent (ContentExt)
 - (BOOL)hasThumbImage
@@ -93,7 +94,19 @@
     return [[UserManager defaultManager] isMe:self.createUser.userId];
 }
 
+- (NSString *)postUid
+{
+    return self.createUser.userId;
+}
+- (NSString *)postText
+{
+    return self.content.text;
+}
 
+- (NSDate *)cDate
+{
+    return [NSDate dateWithTimeIntervalSince1970:self.createDate];
+}
 @end
 
 @implementation PBBBSAction (ActionExt)
@@ -190,7 +203,29 @@
     return self.actionNick;
 }
 
-
-
 @end
 
+
+@implementation PBBBSBoard (BoardExt)
+
+- (NSURL *)iconURL
+{
+    if (self.icon) {
+        return [NSURL URLWithString:self.icon];
+    }
+    return nil;
+}
+- (PBBBSBoard *)parentBoard
+{
+    return [[BBSManager defaultManager] parentBoardOfsubBoard:self];
+}
+- (NSString *)fullName
+{
+    PBBBSBoard *pBoard = [self parentBoard];
+    if (pBoard) {
+        return [NSString stringWithFormat:@"%@/%@",pBoard.name,self.name];
+    }
+    return self.name;
+}
+
+@end

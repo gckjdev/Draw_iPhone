@@ -11,9 +11,11 @@
 @interface BBSFontManager : NSObject
 
 + (id)defaultManager;
+//common
+- (UIFont *)bbsTitleFont;
 
+//index page font
 - (UIFont *)indexTabFont;
-- (UIFont *)indexTitleFont;
 - (UIFont *)indexCountFont;
 - (UIFont *)indexBadgeFont;
 
@@ -23,6 +25,13 @@
 
 - (UIFont *)indexBoardNameFont;
 - (UIFont *)indexSectionNameFont;
+
+//post list font
+- (UIFont *)postNickFont;
+- (UIFont *)postContentFont;
+- (UIFont *)postDateFont;
+- (UIFont *)postRewardFont;
+- (UIFont *)postActionFont;
 
 
 @end

@@ -27,6 +27,7 @@
 @property (retain, nonatomic) UILabel*      messageLabel;
 @property (retain, nonatomic) UIView*       loadingView;
 @property (retain, nonatomic) UIView*       superView;
+@property (retain, nonatomic) UIImageView*  planetView;
 
 - (id) initWithTitle:(NSString*)title message:(NSString*)message;
 - (id) initWithTitle:(NSString*)title;

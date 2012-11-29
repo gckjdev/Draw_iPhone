@@ -80,7 +80,7 @@
     PPRelease(_graffitiButton);
     PPRelease(_imageButton);
     PPRelease(_rewardButton);
-    PPRelease (_sourceAction);
+    PPRelease(_sourceAction);
     PPRelease(_postUid);
     PPRelease(_postId);
     PPRelease(_postText);

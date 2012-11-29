@@ -207,10 +207,7 @@ typedef enum{
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
     if (section == SectionAction) {
-        BBSPostActionHeaderView *headerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:[BBSPostActionHeaderView getViewIdentifier]];
-        if (headerView == nil) {
-            headerView = [BBSPostActionHeaderView createView:self];
-        }
+        BBSPostActionHeaderView *headerView = [BBSPostActionHeaderView createView:self];
         [headerView updateViewWithPost:self.post];
         return headerView;
     }
@@ -346,14 +343,22 @@ typedef enum{
     }
 }
 - (IBAction)clickSupportButton:(id)sender {
-    [[BBSService defaultService] createActionWithPost:self.post
-                                         sourceAction:nil
-                                           actionType:ActionTypeSupport
-                                                 text:nil
-                                                image:nil
-                                       drawActionList:nil
-                                            drawImage:nil
-                                             delegate:self];
+    [[BBSService defaultService] createActionWithPostId:self.post.postId
+                                                PostUid:self.post.postUid
+                                               postText:self.post.postText
+                                           sourceAction:nil
+                                             actionType:ActionTypeSupport
+                                                   text:nil
+                                                  image:nil
+                                         drawActionList:nil
+                                              drawImage:nil
+                                               delegate:self];
+}
+
+- (IBAction)clickReplyButton:(id)sender {
+    [CreatePostController enterControllerWithSourecePost:self.post
+                                            sourceAction:nil
+                                          fromController:self];
 }
 
 - (void)didDeleteBBSAction:(NSString *)actionId resultCode:(NSInteger)resultCode

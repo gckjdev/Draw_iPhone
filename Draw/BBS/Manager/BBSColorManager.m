@@ -20,7 +20,7 @@ static BBSColorManager* _staticBBSColorManager;
     }
     return _staticBBSColorManager;
 }
-- (UIColor *)indexTitleColor
+- (UIColor *)bbsTitleColor
 {
     return [UIColor whiteColor];
 }
@@ -53,5 +53,20 @@ static BBSColorManager* _staticBBSColorManager;
     return [UIColor colorWithRed:0x44/255.0 green:0x65/255.0 blue:0x87/255.0 alpha:1];
 }
 
-
+//post list color
+- (UIColor *)postNickColor{
+    return [UIColor colorWithRed:0x2c/255.0 green:0x4c/255.0 blue:0x6e/255.0 alpha:1];
+}
+- (UIColor *)postDateColor{
+    return [UIColor colorWithRed:0x73/255.0 green:0x8d/255.0 blue:0xa8/255.0 alpha:1];
+}
+- (UIColor *)postRewardColor{
+    return [UIColor colorWithRed:0xc9/255.0 green:0x75/255.0 blue:0x07/255.0 alpha:1];
+}
+- (UIColor *)postActionColor{
+    return [UIColor colorWithRed:0x73/255.0 green:0x8d/255.0 blue:0xa8/255.0 alpha:1];
+}
+- (UIColor *)postAvatarColor{
+    return [UIColor colorWithRed:0x7c/255.0 green:0xb3/255.0 blue:0xde/255.0 alpha:1];
+}
 @end

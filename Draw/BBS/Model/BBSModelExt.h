@@ -50,6 +50,9 @@ typedef enum {
 
 - (BOOL)canDelete;
 - (BOOL)isMyPost;
+- (NSString *)postUid;
+- (NSString *)postText;
+- (NSDate *)cDate;
 @end
 
 @interface PBBBSAction (ActionExt)
@@ -72,4 +75,9 @@ typedef enum {
 
 @end
 
+@interface PBBBSBoard (BoardExt)
+- (NSURL *)iconURL;
+- (PBBBSBoard *)parentBoard;
+- (NSString *)fullName;
+@end
 

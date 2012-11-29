@@ -9,7 +9,7 @@
 #import "BBSImageManager.h"
 #import "PPResourceService.h"
 #import "GameResource.h"
-
+#import "ShareImageManager.h"
 
 //BBSImageManager *_staticBBSImageManager;
 
@@ -42,59 +42,78 @@ static BBSImageManager* _staticBBSImageManager;
 }
 
 
+- (NSString *)fixImageName:(NSString *)imageName
+{
+    if([DeviceDetection isIPAD]){
+        return [NSString stringWithFormat:@"%@@2x",imageName];
+    }
+    return imageName;
+}
+
+- (UIImage *)stretchableImageWithImageName:(NSString *)name
+                         inResourcePackage:(NSString *)package
+{
+    NSString *imageName = [self fixImageName:name];
+    UIImage *image = [_resService imageByName:imageName
+                            inResourcePackage:package];
+    return [image stretchableImageWithLeftCapWidth:image.size.width/2.0 topCapHeight:image.size.height/2.0];
+}
+
+
 - (UIImage *)bbsBadgeImage
 {
-     return [_resService imageByName:@"bbs_badge"
+     return [self stretchableImageWithImageName:@"bbs_badge"
                    inResourcePackage:RESOURCE_PACKAGE_BBS];
 }
 - (UIImage *)bbsBoardBgImage
 {
-     return [_resService imageByName:@"bbs_board_bg"
+    return [self stretchableImageWithImageName:@"bbs_board_bg"
                    inResourcePackage:RESOURCE_PACKAGE_BBS];
 }
 - (UIImage *)bbsBoardLastBgImage
 {
-     return [_resService imageByName:@"bbs_board_last_bg"
+     return [self stretchableImageWithImageName:@"bbs_board_last_bg"
                    inResourcePackage:RESOURCE_PACKAGE_BBS];
+    
 }
 - (UIImage *)bbsBoardLineImage
 {
-     return [_resService imageByName:@"bbs_board_line"
+     return [self stretchableImageWithImageName:@"bbs_board_line"
                    inResourcePackage:RESOURCE_PACKAGE_BBS];
 }
 - (UIImage *)bbsButtonLeftImage
 {
-     return [_resService imageByName:@"bbs_button_left"
+     return [self stretchableImageWithImageName:@"bbs_button_left"
                    inResourcePackage:RESOURCE_PACKAGE_BBS];
 }
 - (UIImage *)bbsButtonRightImage
 {
-     return [_resService imageByName:@"bbs_button_right"
+     return [self stretchableImageWithImageName:@"bbs_button_right"
                    inResourcePackage:RESOURCE_PACKAGE_BBS];
 }
 - (UIImage *)bbsSectionBgImage
 {
-     return [_resService imageByName:@"bbs_section_bg"
+     return [self stretchableImageWithImageName:@"bbs_section_bg"
                    inResourcePackage:RESOURCE_PACKAGE_BBS];
 }
 - (UIImage *)bbsSwitchBgImage
 {
-     return [_resService imageByName:@"bbs_switch_bg"
+     return [self stretchableImageWithImageName:@"bbs_switch_bg"
                    inResourcePackage:RESOURCE_PACKAGE_BBS];
 }
 - (UIImage *)bbsSwitchDownImage
 {
-     return [_resService imageByName:@"bbs_switch_down"
+     return [self stretchableImageWithImageName:@"bbs_switch_down"
                    inResourcePackage:RESOURCE_PACKAGE_BBS];
 }
 - (UIImage *)bbsSwitchRightImage
 {
-     return [_resService imageByName:@"bbs_switch_right"
+    return [self stretchableImageWithImageName:@"bbs_switch_right"
                    inResourcePackage:RESOURCE_PACKAGE_BBS];
 }
 - (UIImage *)bbsBackImage
 {
-    return [_resService imageByName:@"bbs_back"
+    return [self stretchableImageWithImageName:@"bbs_back"
                   inResourcePackage:RESOURCE_PACKAGE_BBS];
 }
 - (UIImage *)bbsBGImage
@@ -103,4 +122,33 @@ static BBSImageManager* _staticBBSImageManager;
                   inResourcePackage:RESOURCE_PACKAGE_BBS];   
 }
 
+
+
+//Post list
+- (UIImage *)bbsPostCommentImage{
+    return [self stretchableImageWithImageName:@"bbs_post_comment"
+                             inResourcePackage:RESOURCE_PACKAGE_BBS];
+
+}
+- (UIImage *)bbsPostContentBGImage{
+    return [self stretchableImageWithImageName:@"bbs_post_content_bg"
+                             inResourcePackage:RESOURCE_PACKAGE_BBS];
+
+}
+- (UIImage *)bbsPostEditImage{
+    return [self stretchableImageWithImageName:@"bbs_post_edit"
+                             inResourcePackage:RESOURCE_PACKAGE_BBS];
+}
+- (UIImage *)bbsPostHotImage{
+    return [self stretchableImageWithImageName:@"bbs_post_hot"
+                             inResourcePackage:RESOURCE_PACKAGE_BBS];
+}
+- (UIImage *)bbsPostRewardImage{
+    return [self stretchableImageWithImageName:@"bbs_post_reward"
+                             inResourcePackage:RESOURCE_PACKAGE_BBS];
+}
+- (UIImage *)bbsPostSupportImage{
+    return [self stretchableImageWithImageName:@"bbs_post_support"
+                             inResourcePackage:RESOURCE_PACKAGE_BBS];
+}
 @end

@@ -12,6 +12,7 @@
 #import "BBSImageManager.h"
 #import "BBSFontManager.h"
 #import "BBSColorManager.h"
+#import "BBSViewManager.h"
 
 @interface BBSManager : NSObject
 {
@@ -24,6 +25,9 @@
 +(BBSManager *)defaultManager;
 -(NSArray *)parentBoardList;
 -(NSArray *)sbuBoardListForBoardId:(NSString *)boardId;
+
+- (PBBBSBoard *)boardForBoardId:(NSString *)boardId;
+- (PBBBSBoard *)parentBoardOfsubBoard:(PBBBSBoard *)subBoard;
 
 //create limit
 - (void)updateLastCreationDate;

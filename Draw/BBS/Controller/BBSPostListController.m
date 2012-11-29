@@ -17,7 +17,12 @@
 @interface BBSPostListController ()
 {
     RangeType _rangeType;
+    BBSImageManager *_bbsImageManager;
+    BBSColorManager *_bbsColorManager;
+    BBSFontManager *_bbsFontManager;
+    BBSManager *_bbsManager;
 }
+@property (retain, nonatomic) IBOutlet UIImageView *bgImageView;
 @end
 
 @implementation BBSPostListController
@@ -50,6 +55,10 @@
     if (self) {
         // Custom initialization
         _rangeType = RangeTypeNew;
+        _bbsImageManager = [BBSImageManager defaultManager];
+        _bbsFontManager = [BBSFontManager defaultManager];
+        _bbsColorManager = [BBSColorManager defaultManager];
+        _bbsManager = [BBSManager defaultManager];
     }
     return self;
 }
@@ -65,11 +74,41 @@
 {
     return tabID / 100;
 }
+- (void)initViews
+{
+    [self.backButton setImage:[_bbsImageManager bbsBackImage] forState:UIControlStateNormal];
+    [self.bgImageView setImage:[_bbsImageManager bbsBGImage]];
+    
+    NSString *titleName = nil;
+    
+    if (self.bbsBoard) {
+        titleName = self.bbsBoard.fullName;
+        [self.createPostButton setImage:[_bbsImageManager bbsPostEditImage]
+                               forState:UIControlStateNormal];
+        [self.rankButton setImage:[_bbsImageManager bbsPostHotImage]
+                               forState:UIControlStateNormal];
 
+    }else if(self.bbsUser){
+        titleName = self.bbsUser.showNick;
+        self.createPostButton.hidden = YES;
+        self.rankButton.hidden = YES;
+    }
+    [BBSViewManager updateLable:self.titleLabel
+                        bgColor:[UIColor clearColor]
+                           font:[_bbsFontManager bbsTitleFont]
+                      textColor:[_bbsColorManager bbsTitleColor]
+                           text:titleName];
+    
+    
+    //back ground
+
+//    self.b
+}
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self initViews];
     [self clickTab:[self rangeTypeToTabID:_rangeType]];
     // Do any additional setup after loading the view from its nib.
 }
@@ -81,15 +120,17 @@
 }
 
 - (void)dealloc {
-    [_backButton release];
-    [_createPostButton release];
-    [_rankButton release];
+    PPRelease(_backButton);
+    PPRelease(_createPostButton);
+    PPRelease(_rankButton);
+    [_bgImageView release];
     [super dealloc];
 }
 - (void)viewDidUnload {
     [self setBackButton:nil];
     [self setCreatePostButton:nil];
     [self setRankButton:nil];
+    [self setBgImageView:nil];
     [super viewDidUnload];
 }
 - (IBAction)clickCreatePostButton:(id)sender {
@@ -105,10 +146,10 @@
 - (IBAction)clickRankButton:(id)sender {
     if (RangeTypeHot == _rangeType) {
         _rangeType = RangeTypeNew;
-        [self.rankButton setTitle:NSLS(@"kNew") forState:UIControlStateNormal];
+//        [self.rankButton setTitle:NSLS(@"kNew") forState:UIControlStateNormal];
     }else{
         _rangeType = RangeTypeHot;
-        [self.rankButton setTitle:NSLS(@"kHot") forState:UIControlStateNormal];
+//        [self.rankButton setTitle:NSLS(@"kHot") forState:UIControlStateNormal];
     }
     NSInteger tabID = [self rangeTypeToTabID:_rangeType];
     self.rankButton.tag = tabID;
@@ -293,9 +334,9 @@
 }
 - (void)didClickReplyButtonWithPost:(PBBBSPost *)post
 {
-    [CreatePostController enterControllerWithSourecePost:post
-                                            sourceAction:nil
-                                          fromController:self];
+//    [CreatePostController enterControllerWithSourecePost:post
+//                                            sourceAction:nil
+//                                          fromController:self];
 }
 
 - (void)didController:(CreatePostController *)controller

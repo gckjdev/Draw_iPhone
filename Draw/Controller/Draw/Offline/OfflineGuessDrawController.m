@@ -671,8 +671,12 @@
         if (image == nil) {
             [self.showView show];            
             image = [showView createImage];
-            NSData *data = UIImageJPEGRepresentation(image, 0.6);
-            image = [UIImage imageWithData:data];            
+
+            // Don't compress data
+            /*
+            NSData *data = [image data];
+            image = [UIImage imageWithData:data];
+            */
         }
         
         ResultController *result = [[ResultController alloc] initWithImage:image

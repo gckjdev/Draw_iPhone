@@ -12,6 +12,7 @@
 #import "DiceImageManager.h"
 #import "FontButton.h"
 #import "LocaleUtils.h"
+#import "CommonImageManager.h"
 
 #define COMMON_DIALOG_THEME_DRAW    @"CommonDialog"
 #define COMMON_DIALOG_THEME_DICE    @"CommonDiceDialog"
@@ -44,12 +45,32 @@
     [_messageLabel release];
     [_titleLabel release];
     [_contentBackground release];
+    [_frontBackgroundImageView release];
     [super dealloc];
+}
+
+- (void)initStarryTheme
+{
+    [self.contentBackground setImage:[CommonImageManager defaultManager].starryDialogBackgroundImage];
+    [self.frontBackgroundImageView setImage:[CommonImageManager defaultManager].starryDialogBackgroundSideImage];
+    
 }
 
 - (void)initTitlesWithTheme:(CommonDialogTheme)theme
 {
 
+}
+
+- (void)initViewByTheme:(CommonDialogTheme)theme
+{
+    switch (theme) {
+        case CommonDialogThemeStarry:
+            [self initStarryTheme];
+            break;
+            
+        default:
+            break;
+    }
 }
 
 - (void)initButtonsWithTheme:(CommonDialogTheme)theme
@@ -151,6 +172,7 @@
         [view initButtonsWithStyle:aStyle];
         [view initButtonsWithTheme:theme];
         [view initTitlesWithTheme:theme];
+        [view initViewByTheme:theme];
         view.tag = 0;
     }
     return view;

@@ -16,7 +16,10 @@
           textColor:(UIColor *)textColor
                text:(NSString *)text
 {
-    
+    [label setBackgroundColor:bgColor];
+    [label setFont:font];
+    [label setTextColor:textColor];
+    [label setText:text];
 }
 
 + (void)updateButton:(UIButton *)button
@@ -28,7 +31,12 @@
                title:(NSString *)title
             forState:(UIControlState)state
 {
-    
+    [button setBackgroundColor:bgColor];
+    [button setBackgroundImage:bgImage forState:state];
+    [button setImage:image forState:state];
+    [button.titleLabel setFont:font];
+    [button setTitleColor:titleColor forState:state];
+    [button setTitle:title forState:state];
 }
 
 @end

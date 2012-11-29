@@ -26,13 +26,14 @@
 }
 @property (retain, nonatomic) IBOutlet UIImageView *icon;
 @property (retain, nonatomic) IBOutlet UILabel *name;
-@property (retain, nonatomic) IBOutlet UILabel *topicCount;
-@property (retain, nonatomic) IBOutlet UILabel *postCount;
+@property (retain, nonatomic) IBOutlet UIImageView *bgImageView;
+@property (retain, nonatomic) IBOutlet UIButton *switchButton;
 @property (assign, nonatomic) id<BBSBoardSectionDelegate> delegate;
 @property (retain, nonatomic) PBBBSBoard *bbsBoard;
 
 + (BBSBoardSection *)createBoardSectionView:(id<BBSBoardSectionDelegate>)delegate;
-- (void)setViewWithBoard:(PBBBSBoard *)board;
+- (void)setViewWithBoard:(PBBBSBoard *)board isOpen:(BOOL)isOpen;
 - (IBAction)clickMaskButton:(id)sender;
 + (CGFloat)getViewHeight;
++ (NSString *)getViewIdentifer;
 @end

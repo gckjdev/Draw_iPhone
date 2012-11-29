@@ -11,7 +11,7 @@
 @interface BBSColorManager : NSObject
 
 + (id)defaultManager;
-- (UIColor *)indexTitleColor;
+- (UIColor *)bbsTitleColor;
 - (UIColor *)badgeColor;
 - (UIColor *)tabTitleColor;
 - (UIColor *)sectionTitleColor;
@@ -19,4 +19,12 @@
 - (UIColor *)pinkTitleColor;
 - (UIColor *)postNumberColor;
 - (UIColor *)normalTextColor;
+
+//post list color
+- (UIColor *)postNickColor;
+- (UIColor *)postDateColor;
+- (UIColor *)postRewardColor;
+- (UIColor *)postActionColor;
+- (UIColor *)postAvatarColor;
+
 @end
