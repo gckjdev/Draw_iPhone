@@ -13,21 +13,22 @@
 #import "TimeUtils.h"
 #import <QuartzCore/QuartzCore.h>
 
+
 #define ISIPAD [DeviceDetection isIPAD]
 
-#define SPACE_CONTENT_TOP 30
-#define SPACE_CONTENT_BOTTOM_IMAGE 120 //IMAGE TYPE OR DRAW TYPE
-#define SPACE_CONTENT_BOTTOM_TEXT 40 //TEXT TYPE
-#define IMAGE_HEIGHT 80 
-#define CONTENT_TEXT_LINE 10
+#define SPACE_CONTENT_TOP (ISIPAD ? (2.33 * 30) : 30)
+#define SPACE_CONTENT_BOTTOM_IMAGE (ISIPAD ? (2.33 * 120) : 120) //IMAGE TYPE OR DRAW TYPE
+#define SPACE_CONTENT_BOTTOM_TEXT (ISIPAD ? (2.33 * 40) : 40) //TEXT TYPE
+#define IMAGE_HEIGHT (ISIPAD ? (2.33 * 80) : 80)
+#define CONTENT_TEXT_LINE (ISIPAD ? (2.33 * 10) : 10)
+#define CONTENT_WIDTH (ISIPAD ? (2.33 * 206) : 206)
+#define CONTENT_MAX_HEIGHT (ISIPAD ? (2.33 * 200) : 200)
+#define Y_CONTENT_TEXT (ISIPAD ? (2.33 * 5) : 5)
 
-#define CONTENT_WIDTH 206
-#define CONTENT_MAX_HEIGHT 200
-
-#define Y_CONTENT_TEXT 5
 #define CONTENT_FONT [[BBSFontManager defaultManager] postContentFont]
 
 #define BORDER_WIDTH ISIPAD ? 5 : 2.5
+#define IMAGE_CORNER_RADIUS ISIPAD ? 10 : 5
 
 @implementation BBSPostCell
 @synthesize post = _post;
@@ -47,7 +48,7 @@
     cell.avatar.layer.masksToBounds = YES;
     [cell.avatar.layer setBorderWidth:BORDER_WIDTH];
 
-    [cell.image.layer setCornerRadius:5];
+    [cell.image.layer setCornerRadius:IMAGE_CORNER_RADIUS];
     cell.image.layer.masksToBounds = YES;
 
     
