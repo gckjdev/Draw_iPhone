@@ -18,4 +18,10 @@
 - (UIImage*)starryBackgroundImage;
 - (UIImage*)planetImage;
 
+- (UIImage*)starryDialogClickImage;
+- (UIImage*)starryDialogCrossImage;
+- (UIImage*)starryDialogButtonBackgroundImage;
+- (UIImage*)starryDialogBackgroundImage;
+- (UIImage*)starryDialogBackgroundSideImage;
+
 @end
