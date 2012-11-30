@@ -2,41 +2,76 @@
 //  BBSPostDetailCell.m
 //  Draw
 //
-//  Created by gamy on 12-11-22.
+//  Created by gamy on 12-11-19.
 //
 //
 
 #import "BBSPostDetailCell.h"
 #import "UIImageView+WebCache.h"
+#import "BBSManager.h"
+#import "UserManager.h"
 #import "TimeUtils.h"
 
-#define SPACE_CONTENT_TOP 10
-#define TEXT_WIDTH 300
-#define TEXT_MAX_HEIGHT 999999999
-#define IMAGE_HEIGHT 150
-#define SPACE_TEXT_IMAGE 10
-#define Y_CONTENT_TEXT 5
-#define SPACE_CONTENT_BOTTOM_IMAGE (200) //IMAGE TYPE OR DRAW TYPE
-#define SPACE_CONTENT_BOTTOM_TEXT 40 //TEXT TYPE
 
-#define CONTENT_FONT [UIFont systemFontOfSize:16]
+
+
+
+#define SPACE_CONTENT_TOP (ISIPAD ? (2.33 * 30) : 30)
+//#define SPACE_CONTENT_BOTTOM_IMAGE_REWARD (ISIPAD ? (2.33 * 120) : 120) //IMAGE TYPE OR DRAW TYPE
+#define SPACE_CONTENT_BOTTOM_IMAGE (ISIPAD ? (2.33 * 120) : 120) //IMAGE TYPE OR DRAW TYPE
+//#define SPACE_CONTENT_BOTTOM_TEXT_REWARD (ISIPAD ? (2.33 * 40) : 40) //TEXT TYPE
+#define SPACE_CONTENT_BOTTOM_TEXT (ISIPAD ? (2.33 * 40) : 40) //TEXT TYPE
+#define IMAGE_HEIGHT (ISIPAD ? (2.33 * 80) : 80)
+#define CONTENT_TEXT_LINE (0)
+#define CONTENT_WIDTH (ISIPAD ? (2.33 * 206) : 206)
+#define CONTENT_MAX_HEIGHT 99999999
+#define Y_CONTENT_TEXT (ISIPAD ? (2.33 * 5) : 5)
+
+#define CONTENT_FONT [[BBSFontManager defaultManager] postContentFont]
+
+
 @implementation BBSPostDetailCell
+@synthesize post = _post;
+//@synthesize delegate = _delegate;
 
-+ (BBSPostDetailCell *)createCell:(id)delegate
+
+
++ (void)updateViews:(BBSPostDetailCell *)cell
 {
-    NSString *identifier = [BBSPostDetailCell getCellIdentifier];
-    NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:identifier owner:self options:nil];
-    if (topLevelObjects == nil || [topLevelObjects count] <= 0){
-        return nil;
-    }
-    BBSPostDetailCell *view = [topLevelObjects objectAtIndex:0];
-    //    view.delegate = delegate;
+    BBSImageManager *_bbsImageManager = [BBSImageManager defaultManager];
+    BBSColorManager *_bbsColorManager = [BBSColorManager defaultManager];
+    BBSFontManager *_bbsFontManager = [BBSFontManager defaultManager];
 
-    [view.textContent setNumberOfLines:0];
-    [view.textContent setLineBreakMode:NSLineBreakByCharWrapping];
-    [view.textContent setFont:CONTENT_FONT];
     
-    return  view;
+    
+    //action
+    [BBSViewManager updateButton:cell.reward
+                         bgColor:[UIColor clearColor]
+                         bgImage:nil
+                           image:[_bbsImageManager bbsPostRewardImage]
+                            font:[_bbsFontManager postRewardFont]
+                      titleColor:[_bbsColorManager postRewardColor]
+                           title:nil forState:UIControlStateNormal];
+    
+    [BBSViewManager updateButton:cell.reward
+                         bgColor:[UIColor clearColor]
+                         bgImage:nil
+                           image:[_bbsImageManager bbsPostRewardedImage]
+                            font:[_bbsFontManager postRewardFont]
+                      titleColor:[_bbsColorManager postRewardedColor]
+                           title:nil forState:UIControlStateSelected];
+
+}
+
++ (id)createCell:(id)delegate
+{
+    BBSPostDetailCell *cell = [BBSTableViewCell createCellWithIdentifier:[self getCellIdentifier] delegate:delegate];
+    
+    cell.content.numberOfLines = CONTENT_TEXT_LINE;
+    [cell.content setLineBreakMode:NSLineBreakByTruncatingTail];
+    cell.content.font = CONTENT_FONT;
+    [BBSPostDetailCell updateViews:cell];
+    return cell;
 }
 
 + (NSString*)getCellIdentifier
@@ -44,65 +79,146 @@
     return @"BBSPostDetailCell";
 }
 
-//+ (CGFloat)getCellHeight
+//+ (NSString *)thumImageUrlForContent:(PBBBSContent *)content
 //{
-//    return 120.0f;
+//    if (content.type == ContentTypeImage) {
+//       return content.thumbImageUrl;
+//    }else if(content.type == ContentTypeDraw){
+//       return content.drawThumbUrl;
+//    }
+//    return nil;
 //}
 
-+ (CGFloat)getTextContentHeightWithText:(NSString *)text
+
++ (CGFloat)heightForContentText:(NSString *)text
 {
-    CGSize size = [text sizeWithFont:CONTENT_FONT constrainedToSize:CGSizeMake(TEXT_WIDTH, TEXT_MAX_HEIGHT) lineBreakMode:NSLineBreakByCharWrapping];
+    CGSize size = [text sizeWithFont:CONTENT_FONT constrainedToSize:CGSizeMake(CONTENT_WIDTH, CONTENT_MAX_HEIGHT) lineBreakMode:NSLineBreakByCharWrapping];
     size.height += 2*Y_CONTENT_TEXT;
     return size.height;
 }
 
-+ (CGFloat)getCellHeightWithPost:(PBBBSPost *)post
++ (CGFloat)getCellHeightWithBBSPost:(PBBBSPost *)post
 {
-    CGFloat height = [BBSPostDetailCell getTextContentHeightWithText:post.content.text];
+    PBBBSContent * content = post.content;
+    CGFloat height = [BBSPostDetailCell heightForContentText:content.text];
+    height += SPACE_CONTENT_TOP;
     if (post.content.hasThumbImage) {
-        height += (SPACE_CONTENT_TOP + SPACE_CONTENT_BOTTOM_IMAGE);
+//        if (post.hasReward) {
+//            height += SPACE_CONTENT_BOTTOM_IMAGE_REWARD;
+//        }else{
+            height += SPACE_CONTENT_BOTTOM_IMAGE;
+//        }
     }else{
-        height += (SPACE_CONTENT_TOP + SPACE_CONTENT_BOTTOM_TEXT);
+//        if (post.hasReward) {
+//            height += SPACE_CONTENT_BOTTOM_TEXT_REWARD;
+//        }else{
+            height += SPACE_CONTENT_BOTTOM_TEXT;
+//        }
     }
     return height;
+}
 
+- (void)updateUserInfo:(PBBBSUser *)user
+{
+    [self.nickName setText:user.showNick];
+    [self.avatar setImageWithURL:user.avatarURL placeholderImage:user.defaultAvatar];
 }
 
 - (void)updateContent:(PBBBSContent *)content
 {
-    [self.textContent setText:content.text];
+    
+    [BBSManager printBBSContent:content];
+    [self.content setText:content.text];
     
     //reset the size
-    CGRect frame = self.textContent.frame;
-    frame.size.height = [BBSPostDetailCell getTextContentHeightWithText:content.text];
-    self.textContent.frame = frame;
-    
+    CGRect frame = self.content.frame;
+    frame.size.height = [BBSPostDetailCell heightForContentText:content.text];
+    self.content.frame = frame;
+  
     if (content.hasThumbImage) {
-        [self.imageContent setImageWithURL:content.thumbImageURL placeholderImage:nil];
-        self.imageContent.hidden = NO;
+        [self.image setImageWithURL:content.thumbImageURL placeholderImage:nil];
+        self.image.hidden = NO;
     }else{
-        self.imageContent.hidden = YES;
+        self.image.hidden = YES;
+    }
+}
+
+- (void)updateTimeStamp:(NSInteger)timeInterval
+{
+    NSDate *date = [NSDate dateWithTimeIntervalSince1970:timeInterval];
+    [self.timestamp setText:dateToChineseString(date)];
+}
+
+
+- (void)updateReward:(PBBBSReward *)reward
+{
+    self.reward.hidden = NO;
+    if (reward.bonus > 0) {
+        self.reward.hidden = NO;
+        if (reward.hasWinner) {
+            [self.reward setSelected:YES];
+            [self.reward setTitle:[NSString stringWithFormat:@"%d",reward.bonus]
+                          forState:UIControlStateSelected];
+        }else{
+            [self.reward setSelected:NO];
+            [self.reward setTitle:[NSString stringWithFormat:@"%d",reward.bonus]
+                          forState:UIControlStateNormal];
+        }
+    }else{
+        self.reward.hidden = YES;
     }
 }
 
 
-- (void)updateTime:(NSInteger)time
+- (void)updateCellWithBBSPost:(PBBBSPost *)post
 {
-    NSDate *date = [NSDate dateWithTimeIntervalSince1970:time];
-    NSString *dateString = dateToLocaleString(date);
-    [self.time setText:dateString];
-
-}
-- (void)updateCellWithPost:(PBBBSPost *)post
-{
+    self.post = post;
+    [self updateUserInfo:post.createUser];
     [self updateContent:post.content];
-    [self updateTime:post.createDate];
+    [self updateTimeStamp:post.createDate];
+    [self updateReward:post.reward];
 }
+
+
 
 - (void)dealloc {
-    PPRelease(_textContent);
-    PPRelease(_imageContent);
-    PPRelease(_time);
+    PPRelease(_post);
+    PPRelease(_reward);
     [super dealloc];
+}
+- (IBAction)clickSupportButton:(id)sender {
+    if (delegate && [delegate respondsToSelector:
+                     @selector(didClickSupportButtonWithPost:)]) {
+        [delegate didClickSupportButtonWithPost:self.post];
+    }
+}
+
+- (IBAction)clickCommentButton:(id)sender {
+    if (delegate && [delegate respondsToSelector:
+                     @selector(didClickReplyButtonWithPost:)]) {
+        [delegate didClickReplyButtonWithPost:self.post];
+    }
+}
+
+#pragma mark - Click avatar && image
+
+- (void)clickAvatarButton:(id)sender
+{
+    if (delegate && [delegate respondsToSelector:@selector(didClickUserAvatar:)]) {
+        [delegate didClickUserAvatar:self.post.createUser];
+    }
+}
+- (void)clickImageButton:(id)sender
+{
+    //show draw...
+    if (self.post.content.type == ContentTypeDraw && delegate
+        && [delegate respondsToSelector:@selector(didClickDrawImageWithPost:)]) {
+        [delegate didClickDrawImageWithPost:self.post];
+    //show image...
+    }else if(self.post.content.type == ContentTypeImage && delegate &&
+             [delegate respondsToSelector:@selector(didClickImageWithURL:)])
+    {
+        [delegate didClickImageWithURL:self.post.content.largeImageURL];
+    }
 }
 @end
