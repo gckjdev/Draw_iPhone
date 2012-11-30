@@ -63,6 +63,9 @@ static BBSColorManager* _staticBBSColorManager;
 - (UIColor *)postRewardColor{
     return [UIColor colorWithRed:0xc9/255.0 green:0x75/255.0 blue:0x07/255.0 alpha:1];
 }
+- (UIColor *)postRewardedColor{
+    return [UIColor colorWithRed:0x70/255.0 green:0x70/255.0 blue:0x70/255.0 alpha:1];
+}
 - (UIColor *)postActionColor{
     return [UIColor colorWithRed:0x73/255.0 green:0x8d/255.0 blue:0xa8/255.0 alpha:1];
 }

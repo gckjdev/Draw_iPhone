@@ -35,5 +35,6 @@
 - (UIImage *)bbsPostHotImage;
 - (UIImage *)bbsPostNewImage;
 - (UIImage *)bbsPostRewardImage;
+- (UIImage *)bbsPostRewardedImage;
 - (UIImage *)bbsPostSupportImage;
 @end

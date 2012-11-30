@@ -26,5 +26,5 @@
 - (UIColor *)postRewardColor;
 - (UIColor *)postActionColor;
 - (UIColor *)postAvatarColor;
-
+- (UIColor *)postRewardedColor;
 @end

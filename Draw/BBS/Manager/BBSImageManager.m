@@ -150,6 +150,12 @@ static BBSImageManager* _staticBBSImageManager;
     return [_resService imageByName:imageName
                   inResourcePackage:RESOURCE_PACKAGE_BBS];
 }
+- (UIImage *)bbsPostRewardedImage{
+    NSString *imageName = [self fixImageName:@"bbs_post_rewarded"];
+    return [_resService imageByName:imageName
+                  inResourcePackage:RESOURCE_PACKAGE_BBS];
+}
+
 - (UIImage *)bbsPostSupportImage{
     NSString *imageName = [self fixImageName:@"bbs_post_support"];
     return [_resService imageByName:imageName
