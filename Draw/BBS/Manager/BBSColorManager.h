@@ -27,4 +27,8 @@
 - (UIColor *)postActionColor;
 - (UIColor *)postAvatarColor;
 - (UIColor *)postRewardedColor;
+
+//post detail color
+- (UIColor *)detailDefaultColor;
+- (UIColor *)detailHeaderSelectedColor;
 @end

@@ -18,13 +18,14 @@
 @end
 
 @interface BBSPostActionHeaderView : UIView
-
 {
-    
+    UIButton *_selectedButton;
 }
 @property (retain, nonatomic) IBOutlet UIButton *support;
 @property (retain, nonatomic) IBOutlet UIButton *comment;
 @property (assign, nonatomic) id<BBSPostActionHeaderViewDelegate>delegate;
+@property (retain, nonatomic) IBOutlet UIImageView *selectedLine;
+@property (retain, nonatomic) IBOutlet UIImageView *splitLine;
 
 - (IBAction)clickSupport:(id)sender;
 - (IBAction)clickComment:(id)sender;

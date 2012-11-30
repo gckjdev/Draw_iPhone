@@ -81,4 +81,18 @@ static BBSFontManager* _staticBBSFontManager;
 - (UIFont *)postActionFont{
      return ISIPHONE ? FONT(8) : FONT(8*2);
 }
+
+//post detail font
+- (UIFont *)detailHeaderFont
+{
+    return ISIPHONE ? BOLDFONT(12) : BOLDFONT(12*2);
+}
+- (UIFont *)detailActionFont
+{
+    return ISIPHONE ? BOLDFONT(14) : BOLDFONT(14*2);
+}
+- (UIFont *)detailRewardActionFont
+{
+    return ISIPHONE ? BOLDFONT(12) : BOLDFONT(12*2);
+}
 @end
