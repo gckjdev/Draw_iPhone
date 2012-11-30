@@ -65,6 +65,10 @@
     _shouldResize = YES;
     [self.contentBackground setImage:[CommonImageManager defaultManager].starryDialogBackgroundImage];
     [self.frontBackgroundImageView setImage:[CommonImageManager defaultManager].starryDialogBackgroundSideImage];
+    [self.oKButton setBackgroundImage:[CommonImageManager defaultManager].starryDialogButtonBackgroundImage forState:UIControlStateNormal];
+    [self.backButton setBackgroundImage:[CommonImageManager defaultManager].starryDialogButtonBackgroundImage forState:UIControlStateNormal];
+    [self.oKButton setImage:[CommonImageManager defaultManager].starryDialogClickImage forState:UIControlStateNormal];
+    [self.backButton setImage:[CommonImageManager defaultManager].starryDialogCrossImage forState:UIControlStateNormal];
     
 }
 

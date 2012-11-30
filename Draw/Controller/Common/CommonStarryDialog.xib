@@ -79,7 +79,7 @@
 							</object>
 							<object class="IBUILabel" id="629992164">
 								<reference key="NSNextResponder" ref="59743781"/>
-								<int key="NSvFlags">319</int>
+								<int key="NSvFlags">293</int>
 								<string key="NSFrame">{{-1, 7}, {250, 29}}</string>
 								<reference key="NSSuperview" ref="59743781"/>
 								<reference key="NSNextKeyView" ref="131314975"/>
@@ -114,7 +114,7 @@
 							</object>
 							<object class="IBUIButton" id="762229273">
 								<reference key="NSNextResponder" ref="59743781"/>
-								<int key="NSvFlags">319</int>
+								<int key="NSvFlags">269</int>
 								<string key="NSFrame">{{20, 113}, {81, 26}}</string>
 								<reference key="NSSuperview" ref="59743781"/>
 								<reference key="NSNextKeyView" ref="189298594"/>
@@ -132,7 +132,7 @@
 								<reference key="IBUINormalTitleShadowColor" ref="977175967"/>
 								<object class="NSCustomResource" key="IBUINormalImage">
 									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">dialog_no@2x.png</string>
+									<string key="NSResourceName">dialog_no.png</string>
 								</object>
 								<object class="NSCustomResource" key="IBUINormalBackgroundImage" id="422296307">
 									<string key="NSClassName">NSImage</string>
@@ -150,9 +150,10 @@
 							</object>
 							<object class="IBUIButton" id="189298594">
 								<reference key="NSNextResponder" ref="59743781"/>
-								<int key="NSvFlags">319</int>
+								<int key="NSvFlags">269</int>
 								<string key="NSFrame">{{149, 113}, {81, 26}}</string>
 								<reference key="NSSuperview" ref="59743781"/>
+								<reference key="NSNextKeyView"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<int key="IBUIContentHorizontalAlignment">0</int>
@@ -167,7 +168,7 @@
 								<reference key="IBUINormalTitleShadowColor" ref="977175967"/>
 								<object class="NSCustomResource" key="IBUINormalImage">
 									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">dialog_yes@2x.png</string>
+									<string key="NSResourceName">dialog_yes.png</string>
 								</object>
 								<reference key="IBUINormalBackgroundImage" ref="422296307"/>
 								<reference key="IBUIFontDescription" ref="49880677"/>
@@ -175,7 +176,7 @@
 							</object>
 							<object class="IBUILabel" id="130876593">
 								<reference key="NSNextResponder" ref="59743781"/>
-								<int key="NSvFlags">319</int>
+								<int key="NSvFlags">301</int>
 								<string key="NSFrame">{{20, 38}, {210, 62}}</string>
 								<reference key="NSSuperview" ref="59743781"/>
 								<reference key="NSNextKeyView" ref="762229273"/>
@@ -337,10 +338,10 @@
 						<reference key="object" ref="59743781"/>
 						<array class="NSMutableArray" key="children">
 							<reference ref="189298594"/>
-							<reference ref="762229273"/>
 							<reference ref="629992164"/>
 							<reference ref="131314975"/>
 							<reference ref="887624945"/>
+							<reference ref="762229273"/>
 							<reference ref="130876593"/>
 						</array>
 						<reference key="parent" ref="887022054"/>
@@ -411,9 +412,9 @@
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
 			<string key="dialog_bg@2x.png">{264, 152}</string>
-			<string key="dialog_frame@2x.png">{88, 34}</string>
-			<string key="dialog_no@2x.png">{18, 18}</string>
-			<string key="dialog_yes@2x.png">{18, 18}</string>
+			<string key="dialog_frame@2x.png">{176, 68}</string>
+			<string key="dialog_no.png">{16, 16}</string>
+			<string key="dialog_yes.png">{16, 16}</string>
 		</dictionary>
 		<string key="IBCocoaTouchPluginVersion">1926</string>
 	</data>
