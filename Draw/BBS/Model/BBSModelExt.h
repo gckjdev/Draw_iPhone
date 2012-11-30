@@ -60,6 +60,9 @@ typedef enum {
 - (NSString *)postUid;
 - (NSString *)postText;
 - (NSDate *)cDate;
+//- (BOOL)hasReward;
+- (NSInteger)rewardBonus;
+- (BOOL)rewarded;
 @end
 
 @interface PBBBSAction (ActionExt)

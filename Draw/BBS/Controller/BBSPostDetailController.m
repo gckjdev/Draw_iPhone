@@ -15,6 +15,8 @@
 
 @interface BBSPostDetailController ()
 @property (nonatomic, retain)PBBBSPost *post;
+@property (retain, nonatomic) IBOutlet UIButton *backButton;
+//@property (retain, nonatomic) IBOutlet UILabel *titleLabel;
 
 @end
 
@@ -25,8 +27,8 @@ typedef enum{
 }Section;
 
 typedef enum {
-    DetailRowUser = 0,
-    DetailRowContent = 1,
+    DetailRowUser = -1,
+    DetailRowContent = 0,
     DetailRowCount,
 }DetailRow;
 
@@ -53,6 +55,8 @@ typedef enum{
 - (void)dealloc
 {
     PPRelease(_post);
+    [_backButton release];
+//    [_titleLabel release];
     [super dealloc];
 }
 
@@ -183,7 +187,7 @@ typedef enum{
             if (DetailRowUser == indexPath.row) {
                 return [BBSPostDetailUserCell getCellHeight];
             }else if(DetailRowContent == indexPath.row){
-                return  [BBSPostDetailCell getCellHeightWithPost:self.post];
+                return  [BBSPostDetailCell getCellHeightWithBBSPost:self.post];
             }
         }
         case SectionAction:
@@ -239,7 +243,7 @@ typedef enum{
                 }else if(DetailRowContent == indexPath.row){
                     NSString *CellIdentifier = [BBSPostDetailCell getCellIdentifier];
                     BBSPostDetailCell *cell = [self getTableViewCell:theTableView cellIdentifier:CellIdentifier cellClass:[BBSPostDetailCell class]];
-                    [cell updateCellWithPost:self.post];
+                    [cell updateCellWithBBSPost:self.post];
                     return cell;
                 }
             }
@@ -412,4 +416,9 @@ typedef enum{
                                                  delegate:self];
 }
 
+- (void)viewDidUnload {
+    [self setBackButton:nil];
+    [self setTitleLabel:nil];
+    [super viewDidUnload];
+}
 @end

@@ -116,6 +116,9 @@ BBSService *_staticBBSService;
 
 - (PBBBSReward *)buildPBBBSRewardWithBounus:(NSInteger)bonus
 {
+    if (bonus <= 0) {
+        return nil;
+    }
     PBBBSReward_Builder *builder = [[PBBBSReward_Builder alloc] init];
     [builder setBonus:bonus];
     [builder setStatus:RewardStatusOn];
@@ -165,7 +168,10 @@ BBSService *_staticBBSService;
     [builder setContent:content];
     
     PBBBSReward *reward = [self buildPBBBSRewardWithBounus:bonus];
-    [builder setReward:reward];
+    if (reward) {
+        [builder setReward:reward];        
+    }
+
     
     PBBBSPost *post = [builder build];
     [builder release];
