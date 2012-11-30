@@ -641,6 +641,7 @@
 		CA12507F1667399300AFCC04 /* PPSmartUpdateData.m in Sources */ = {isa = PBXBuildFile; fileRef = CA12507E1667399300AFCC04 /* PPSmartUpdateData.m */; };
 		CA1250821667445300AFCC04 /* PPSmartUpdateDataUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1250811667445300AFCC04 /* PPSmartUpdateDataUtils.m */; };
 		CA1250AA1668654900AFCC04 /* BlockUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1250A91668654900AFCC04 /* BlockUtils.m */; };
+		CA1250AE1668804700AFCC04 /* PPSmartDataTest.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1250AD1668804600AFCC04 /* PPSmartDataTest.m */; };
 		CA13771B152425CF00B5790B /* RouterService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA13771A152425CF00B5790B /* RouterService.m */; };
 		CA1377221524283A00B5790B /* TrafficServerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1377211524283A00B5790B /* TrafficServerManager.m */; };
 		CA1377291524598700B5790B /* MainDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CA1377271524598700B5790B /* MainDataModel.xcdatamodeld */; };
@@ -2974,6 +2975,9 @@
 		CA1250811667445300AFCC04 /* PPSmartUpdateDataUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPSmartUpdateDataUtils.m; sourceTree = "<group>"; };
 		CA1250A81668654900AFCC04 /* BlockUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlockUtils.h; sourceTree = "<group>"; };
 		CA1250A91668654900AFCC04 /* BlockUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlockUtils.m; sourceTree = "<group>"; };
+		CA1250AB16687F1B00AFCC04 /* PPDataConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PPDataConstants.h; sourceTree = "<group>"; };
+		CA1250AC1668804600AFCC04 /* PPSmartDataTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPSmartDataTest.h; sourceTree = "<group>"; };
+		CA1250AD1668804600AFCC04 /* PPSmartDataTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPSmartDataTest.m; sourceTree = "<group>"; };
 		CA137719152425CF00B5790B /* RouterService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RouterService.h; sourceTree = "<group>"; };
 		CA13771A152425CF00B5790B /* RouterService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RouterService.m; sourceTree = "<group>"; };
 		CA1377201524283A00B5790B /* TrafficServerManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrafficServerManager.h; sourceTree = "<group>"; };
@@ -7089,6 +7093,7 @@
 			isa = PBXGroup;
 			children = (
 				CA12507C1667397F00AFCC04 /* PPSmartUpdateData */,
+				CA1250AB16687F1B00AFCC04 /* PPDataConstants.h */,
 			);
 			path = PPConfigData;
 			sourceTree = "<group>";
@@ -7100,6 +7105,8 @@
 				CA12507E1667399300AFCC04 /* PPSmartUpdateData.m */,
 				CA1250801667445300AFCC04 /* PPSmartUpdateDataUtils.h */,
 				CA1250811667445300AFCC04 /* PPSmartUpdateDataUtils.m */,
+				CA1250AC1668804600AFCC04 /* PPSmartDataTest.h */,
+				CA1250AD1668804600AFCC04 /* PPSmartDataTest.m */,
 			);
 			path = PPSmartUpdateData;
 			sourceTree = "<group>";
@@ -12495,6 +12502,7 @@
 				CA12507F1667399300AFCC04 /* PPSmartUpdateData.m in Sources */,
 				CA1250821667445300AFCC04 /* PPSmartUpdateDataUtils.m in Sources */,
 				CA1250AA1668654900AFCC04 /* BlockUtils.m in Sources */,
+				CA1250AE1668804700AFCC04 /* PPSmartDataTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
