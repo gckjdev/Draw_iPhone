@@ -37,4 +37,17 @@
 - (UIImage *)bbsPostRewardImage;
 - (UIImage *)bbsPostRewardedImage;
 - (UIImage *)bbsPostSupportImage;
+
+//post detail
+- (UIImage*)bbsDetailComment;
+- (UIImage*)bbsDetailOptionUp;
+- (UIImage*)bbsDetailReply;
+- (UIImage*)bbsDetailSupport;
+- (UIImage*)bbsDetailThumb;
+
+- (UIImage*)bbsDetailOption;
+- (UIImage*)bbsDetailOptionBubble;
+- (UIImage*)bbsDetailSelectedLine;
+- (UIImage*)bbsDetailSplitLine;
+- (UIImage*)bbsDetailToolbar;
 @end

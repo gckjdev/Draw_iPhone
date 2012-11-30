@@ -113,13 +113,12 @@ static BBSImageManager* _staticBBSImageManager;
 }
 - (UIImage *)bbsBackImage
 {
-    return [self stretchableImageWithImageName:@"bbs_back"
-                  inResourcePackage:RESOURCE_PACKAGE_BBS];
+    return [self stretchableImageWithImageName:@"bbs_back" inResourcePackage:RESOURCE_PACKAGE_BBS];
 }
 - (UIImage *)bbsBGImage
 {
     return [_resService imageByName:@"bbs_bg"
-                  inResourcePackage:RESOURCE_PACKAGE_BBS];   
+                  inResourcePackage:RESOURCE_PACKAGE_BBS];
 }
 
 
@@ -168,4 +167,52 @@ static BBSImageManager* _staticBBSImageManager;
     
 }
 
+
+//bbs post detail
+- (UIImage*)bbsDetailComment{
+    NSString *imageName = [self fixImageName:@"bbs_detail_comment"];
+    return [_resService imageByName:imageName
+                  inResourcePackage:RESOURCE_PACKAGE_BBS];
+}
+- (UIImage*)bbsDetailOptionUp{
+    NSString *imageName = [self fixImageName:@"bbs_detail_option_up"];
+    return [_resService imageByName:imageName
+                  inResourcePackage:RESOURCE_PACKAGE_BBS];
+
+}
+- (UIImage*)bbsDetailReply{
+    NSString *imageName = [self fixImageName:@"bbs_detail_reply"];
+    return [_resService imageByName:imageName
+                  inResourcePackage:RESOURCE_PACKAGE_BBS];
+}
+- (UIImage*)bbsDetailSupport{
+    NSString *imageName = [self fixImageName:@"bbs_detail_support"];
+    return [_resService imageByName:imageName
+                  inResourcePackage:RESOURCE_PACKAGE_BBS];
+}
+- (UIImage*)bbsDetailThumb{
+    NSString *imageName = [self fixImageName:@"bbs_detail_thumb"];
+    return [_resService imageByName:imageName
+                  inResourcePackage:RESOURCE_PACKAGE_BBS];
+}
+- (UIImage*)bbsDetailOption{
+     return [self stretchableImageWithImageName:@"bbs_detail_option"
+                              inResourcePackage:RESOURCE_PACKAGE_BBS];
+}
+- (UIImage*)bbsDetailOptionBubble{
+     return [self stretchableImageWithImageName:@"bbs_detail_option_bubble"
+                              inResourcePackage:RESOURCE_PACKAGE_BBS];
+}
+- (UIImage*)bbsDetailSelectedLine{
+     return [self stretchableImageWithImageName:@"bbs_detail_selected_line"
+                              inResourcePackage:RESOURCE_PACKAGE_BBS];
+}
+- (UIImage*)bbsDetailSplitLine{
+    return [self stretchableImageWithImageName:@"bbs_detail_splitLine"
+                             inResourcePackage:RESOURCE_PACKAGE_BBS];
+}
+- (UIImage*)bbsDetailToolbar{
+    return [self stretchableImageWithImageName:@"bbs_detail_toolbar"
+                             inResourcePackage:RESOURCE_PACKAGE_BBS];
+}
 @end
