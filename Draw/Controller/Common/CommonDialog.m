@@ -18,6 +18,17 @@
 #define COMMON_DIALOG_THEME_DICE    @"CommonDiceDialog"
 #define COMMON_DIALOG_THEME_STARRY    @"CommonStarryDialog"
 
+#define FONT_OF_TITLE_IPHONE [UIFont boldSystemFontOfSize:18]
+#define FONT_OF_TITLE_IPAD [UIFont boldSystemFontOfSize:18*2]
+#define FONT_OF_TITLE ([DeviceDetection isIPAD] ? (FONT_OF_TITLE_IPAD) : (FONT_OF_TITLE_IPHONE))
+
+#define FONT_OF_MESSAGE_IPHONE [UIFont systemFontOfSize:14]
+#define FONT_OF_MESSAGE_IPAD [UIFont systemFontOfSize:14*2]
+#define FONT_OF_MESSAGE ([DeviceDetection isIPAD] ? (FONT_OF_MESSAGE_IPAD) : (FONT_OF_MESSAGE_IPHONE))
+
+#define UP_SEPERATOR    ([DeviceDetection isIPAD]?14:7)
+#define DOWN_SEPERATOR  ([DeviceDetection isIPAD]?26:13)
+
 @implementation CommonDialog
 @synthesize oKButton = _OKButton;
 @synthesize backButton = _backButton;
@@ -71,6 +82,29 @@
         default:
             break;
     }
+}
+
+- (CGSize) calculateHeightOfTextFromWidth:(NSString*)text font: (UIFont*)withFont width:(float)width linebreak:(UILineBreakMode)lineBreakMode{
+	return [text sizeWithFont:withFont
+			constrainedToSize:CGSizeMake(width, FLT_MAX)
+				lineBreakMode:lineBreakMode];
+}
+
+- (void)resize
+{
+    CGSize titleSize = [self calculateHeightOfTextFromWidth:self.titleLabel.text font:FONT_OF_TITLE width:self.titleLabel.frame.size.width linebreak:UILineBreakModeWordWrap];
+    CGSize messageSize = [self calculateHeightOfTextFromWidth:self.messageLabel.text font:FONT_OF_TITLE width:self.messageLabel.frame.size.width linebreak:UILineBreakModeWordWrap];
+    
+    [self.titleLabel setFrame:CGRectMake(self.contentView.frame.size.width/2 - titleSize.width/2, UP_SEPERATOR, titleSize.width, titleSize.height)];
+    [self.messageLabel setFrame:CGRectMake(self.contentView.frame.size.width/2 - messageSize.width/2, UP_SEPERATOR + titleSize.height, messageSize.width, messageSize.height)];
+    
+    [self.contentView setFrame:CGRectMake(0, 0, self.contentView.frame.size.width, UP_SEPERATOR + DOWN_SEPERATOR + titleSize.height + messageSize.height + self.oKButton.frame.size.height)];
+    [self.contentView setCenter:CGPointMake(self.frame.size.width/2, self.frame.size.height/2)];
+    
+    [self.oKButton setCenter:CGPointMake(self.oKButton.center.x, self.contentView.frame.size.height - DOWN_SEPERATOR - self.oKButton.frame.size.height/2)];
+    [self.backButton setCenter:CGPointMake(self.backButton.center.x, self.contentView.frame.size.height - DOWN_SEPERATOR - self.backButton.frame.size.height/2)];
+    
+    [self.messageLabel setCenter:CGPointMake(self.contentView.frame.size.width/2, self.contentView.frame.size.height/2)];
 }
 
 - (void)initButtonsWithTheme:(CommonDialogTheme)theme
@@ -219,12 +253,16 @@
         [self.messageLabel setTextAlignment:UITextAlignmentCenter];
     }
     [self.messageLabel setText:message];
+    [self resize];
 }
 
 - (IBAction)clickOk:(id)sender
 {
     if (_delegate && [_delegate respondsToSelector:@selector(clickOk:)]) {
         [_delegate clickOk:self];
+    }
+    if (_clickOkBlock != nil) {
+        _clickOkBlock();
     }
     [self disappear];
 }
@@ -233,6 +271,9 @@
 {
     if (_delegate && [_delegate respondsToSelector:@selector(clickBack:)]) {
         [_delegate clickBack:self];
+    }
+    if (_clickBackBlock != nil) {
+        _clickBackBlock();
     }
     [self disappear];
 }
@@ -245,6 +286,18 @@
     }
     return self;
 }
+
+- (void)setClickOkBlock:(DialogSelectionBlock)block
+{
+    [_clickOkBlock release];
+    _clickOkBlock = [block copy];
+}
+- (void)setClickBackBlock:(DialogSelectionBlock)block
+{
+    [_clickBackBlock release];
+    _clickBackBlock = [block copy];
+}
+
 
 /*
  // Only override drawRect: if you perform custom drawing.

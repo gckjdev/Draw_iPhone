@@ -44,15 +44,15 @@
 #define HEIGHT_OF_LOADING_VIEW_IPAD (HEIGHT_OF_LOADING_VIEW_IPHONE*2)
 #define HEIGHT_OF_LOADING_VIEW ([self isIPAD] ? (HEIGHT_OF_LOADING_VIEW_IPAD) : (HEIGHT_OF_LOADING_VIEW_IPHONE))
 
-#define FONT_OF_TITLE_IPHONE [UIFont boldSystemFontOfSize:16]
-#define FONT_OF_TITLE_IPAD [UIFont boldSystemFontOfSize:16*2]
+#define FONT_OF_TITLE_IPHONE [UIFont boldSystemFontOfSize:13]
+#define FONT_OF_TITLE_IPAD [UIFont boldSystemFontOfSize:13*2]
 #define FONT_OF_TITLE ([self isIPAD] ? (FONT_OF_TITLE_IPAD) : (FONT_OF_TITLE_IPHONE))
 
-#define FONT_OF_MESSAGE_IPHONE [UIFont systemFontOfSize:16]
-#define FONT_OF_MESSAGE_IPAD [UIFont systemFontOfSize:16*2]
+#define FONT_OF_MESSAGE_IPHONE [UIFont systemFontOfSize:13]
+#define FONT_OF_MESSAGE_IPAD [UIFont systemFontOfSize:13*2]
 #define FONT_OF_MESSAGE ([self isIPAD] ? (FONT_OF_MESSAGE_IPAD) : (FONT_OF_MESSAGE_IPHONE))
 
-#define LOADING_CENTER_SIZE ([DeviceDetection isIPAD]?CGSizeMake(123, 92):CGSizeMake(62, 46))
+#define LOADING_CENTER_SIZE ([DeviceDetection isIPAD]?CGSizeMake(62, 46):CGSizeMake(31, 23))
 
 - (BOOL) isIPAD
 {
@@ -232,7 +232,6 @@
 - (void)adjustSize
 {
     [self setFrame:_superView.bounds];
-    [_titleLabel setText:@"test"];
     PPDebug(@"<test-kira> super bounds = (%.2f, %.2f, %.2f, %.2f)", _superView.frame.origin.x, _superView.frame.origin.y, _superView.frame.size.width, _superView.frame.size.height);
     
     UIFont *titleFont = FONT_OF_TITLE;
@@ -287,13 +286,17 @@
     _timer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(update) userInfo:nil repeats:YES];
     [_timer retain];
     
-    CAAnimation* flashing = [AnimationManager disappearAnimationFrom:0 to:1 delay:0 duration:0.4];
-    CAAnimation* flashing2 = [AnimationManager disappearAnimationFrom:1 to:0 delay:0 duration:0.4];
+    CAAnimation* flashing = [AnimationManager disappearAnimationFrom:0 to:1 delay:0 duration:1];
+    CAAnimation* flashing2 = [AnimationManager disappearAnimationFrom:1 to:0 delay:0 duration:1];
+    [flashing2 setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut]];
+    [flashing setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut]];
     flashing.autoreverses = YES;
+    flashing.repeatCount = HUGE_VAL;
     flashing2.autoreverses = YES;
+    flashing2.repeatCount = HUGE_VAL;
     
     [_starView.layer addAnimation:flashing forKey:nil];
-//    [_lightView.layer addAnimation:flashing2 forKey:nil];
+    [_lightView.layer addAnimation:flashing2 forKey:nil];
 }
 
 - (void) setTitle:(NSString*)str{

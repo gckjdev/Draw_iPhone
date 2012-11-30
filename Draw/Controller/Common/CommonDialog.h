@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "commonInfoView.h"
+
 @class FontButton;
 @class CommonDialog;
 @class FontLabel;
@@ -22,6 +23,8 @@ typedef enum {
     CommonDialogThemeStarry,
 }CommonDialogTheme;
 
+typedef void (^DialogSelectionBlock)(void);
+
 @protocol CommonDialogDelegate <NSObject>
  @optional
 - (void)clickOk:(CommonDialog *)dialog;
@@ -29,6 +32,8 @@ typedef enum {
 @end
 
 @interface CommonDialog : CommonInfoView {
+    DialogSelectionBlock _clickOkBlock;
+    DialogSelectionBlock _clickBackBlock;
     
 }
 
@@ -53,4 +58,8 @@ typedef enum {
 - (void)setMessage:(NSString *)message;
 - (void)initButtonsWithTheme:(CommonDialogTheme)theme;
 + (CommonDialogTheme)globalGetTheme;
+
+- (void)setClickOkBlock:(DialogSelectionBlock)block;
+- (void)setClickBackBlock:(DialogSelectionBlock)block;
+
 @end

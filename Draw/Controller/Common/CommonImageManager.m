@@ -32,7 +32,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(CommonImageManager)
 
 - (UIImage*)starryBackgroundImage
 {
-    return [_resService imageByName:@"loading_bg" inResourcePackage:RESOURCE_PACKAGE_COMMON];
+    return [_resService imageByName:@"starryBg" inResourcePackage:RESOURCE_PACKAGE_COMMON];
 }
 - (UIImage*)planetImage
 {
