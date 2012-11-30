@@ -14,9 +14,19 @@
 #import "ShowImageController.h"
 
 @interface BBSPostDetailController ()
+{
+    BBSImageManager *_bbsImageManager;
+    BBSColorManager *_bbsColorManager;
+    BBSFontManager *_bbsFontManager;
+    
+    BBSPostActionHeaderView *_header;
+}
 @property (nonatomic, retain)PBBBSPost *post;
 @property (retain, nonatomic) IBOutlet UIButton *backButton;
-//@property (retain, nonatomic) IBOutlet UILabel *titleLabel;
+@property (retain, nonatomic) IBOutlet UIImageView *bgImageView;
+@property (retain, nonatomic) IBOutlet UIImageView *toolBarBG;
+@property (retain, nonatomic) IBOutlet UIButton *supportButton;
+@property (retain, nonatomic) IBOutlet UIButton *commentButton;
 
 @end
 
@@ -55,8 +65,12 @@ typedef enum{
 - (void)dealloc
 {
     PPRelease(_post);
-    [_backButton release];
-//    [_titleLabel release];
+    PPRelease(_backButton);
+    PPRelease(_bgImageView);
+    PPRelease(_toolBarBG);
+    PPRelease(_supportButton);
+    PPRelease(_commentButton);
+    PPRelease(_header);
     [super dealloc];
 }
 
@@ -65,15 +79,56 @@ typedef enum{
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-        _defaultTabIndex = 1;
+        _defaultTabIndex = 0;
+        
+        _bbsImageManager = [BBSImageManager defaultManager];
+        _bbsFontManager = [BBSFontManager defaultManager];
+        _bbsColorManager = [BBSColorManager defaultManager];
+
     }
     return self;
+}
+
+- (void)initViews
+{
+    
+    [self.backButton setImage:[_bbsImageManager bbsBackImage] forState:UIControlStateNormal];
+    [self.bgImageView setImage:[_bbsImageManager bbsBGImage]];
+    [self.toolBarBG setImage:[_bbsImageManager bbsDetailToolbar]];
+
+    [BBSViewManager updateLable:self.titleLabel
+                        bgColor:[UIColor clearColor]
+                           font:[_bbsFontManager bbsTitleFont]
+                      textColor:[_bbsColorManager bbsTitleColor]
+                           text:NSLS(@"kPostDetail")];
+    
+    [self.refreshFooterView setBackgroundColor:[UIColor clearColor]];
+    
+    [BBSViewManager updateButton:self.supportButton
+                         bgColor:[UIColor clearColor]
+                         bgImage:[_bbsImageManager bbsDetailSupport]
+                           image:nil
+                            font:[_bbsFontManager detailActionFont]
+                      titleColor:[_bbsColorManager detailDefaultColor]
+                           title:NSLS(@"kSupport")
+                        forState:UIControlStateNormal];
+    
+    [BBSViewManager updateButton:self.commentButton
+                         bgColor:[UIColor clearColor]
+                         bgImage:[_bbsImageManager bbsDetailComment]
+                           image:nil
+                            font:[_bbsFontManager detailActionFont]
+                      titleColor:[_bbsColorManager detailDefaultColor]
+                           title:NSLS(@"kComment")
+                        forState:UIControlStateNormal];
+
 }
 
 - (void)viewDidLoad
 {
     [self setPullRefreshType:PullRefreshTypeFooter];
     [super viewDidLoad];
+    [self initViews];
     [self clickTab:Comment];
 //    [self clickTabButton:self.currentTabButton];
 }
@@ -100,7 +155,7 @@ typedef enum{
 }
 - (NSInteger)tabIDforIndex:(NSInteger)index
 {
-    NSInteger tabIDs[] = {Support,Comment};
+    NSInteger tabIDs[] = {Comment, Support};
     return tabIDs[index];
 }
 - (NSString *)tabTitleforIndex:(NSInteger)index
@@ -211,9 +266,11 @@ typedef enum{
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
     if (section == SectionAction) {
-        BBSPostActionHeaderView *headerView = [BBSPostActionHeaderView createView:self];
-        [headerView updateViewWithPost:self.post];
-        return headerView;
+        if (_header == nil) {
+            _header = [[BBSPostActionHeaderView createView:self] retain];
+        }
+        [_header updateViewWithPost:self.post];
+        return _header;
     }
     return nil;
 }
@@ -419,6 +476,10 @@ typedef enum{
 - (void)viewDidUnload {
     [self setBackButton:nil];
     [self setTitleLabel:nil];
+    [self setBgImageView:nil];
+    [self setToolBarBG:nil];
+    [self setSupportButton:nil];
+    [self setCommentButton:nil];
     [super viewDidUnload];
 }
 @end

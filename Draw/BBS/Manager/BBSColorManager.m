@@ -72,4 +72,12 @@ static BBSColorManager* _staticBBSColorManager;
 - (UIColor *)postAvatarColor{
     return [UIColor colorWithRed:0x7c/255.0 green:0xb3/255.0 blue:0xde/255.0 alpha:1];
 }
+
+//post detail color
+- (UIColor *)detailDefaultColor{
+    return [UIColor colorWithRed:0x61/255.0 green:0x8d/255.0 blue:0xb4/255.0 alpha:1];
+}
+- (UIColor *)detailHeaderSelectedColor{
+    return [UIColor colorWithRed:0xce/255.0 green:0xd7/255.0 blue:0xe1/255.0 alpha:1];
+}
 @end
