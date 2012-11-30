@@ -243,26 +243,19 @@ WordManager *GlobalGetWordManager()
     self = [super init];
     if (self) {
         //load data
-        NSString* bundlePath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:WORD_BASE_ZIP_NAME];
         NSNumber* version = [[NSBundle mainBundle] objectForInfoDictionaryKey:WORD_BASE_KEY];
         
         [PPSmartUpdateDataUtils initPaths];
         _smartData = [[PPSmartUpdateData alloc] initWithName:WORD_BASE_ZIP_NAME
                                                         type:SMART_UPDATE_DATA_TYPE_ZIP
-                                                initDataPath:bundlePath
-                                             initDataVersion:[version stringValue]
-                                              isAutoDownload:YES];
+                                                  bundlePath:WORD_BASE_ZIP_NAME
+                                             initDataVersion:[version stringValue]];
         
-        [_smartData checkHasUpdate:^(BOOL hasNewVersion, NSString *latestVersion) {
-            if (hasNewVersion){
-                [_smartData downloadData:^(BOOL isAlreadyExisted, NSString *dataFilePath) {
-                } failureBlock:^(NSError *error) {
-                } downloadDataVersion:latestVersion];
-            }
+        [_smartData checkUpdateAndDownload:^(BOOL isAlreadyExisted, NSString *dataFilePath) {
+            PPDebug(@"checkUpdateAndDownload successfully");
         } failureBlock:^(NSError *error) {
-            
+            PPDebug(@"checkUpdateAndDownload failure error=%@", [error description]);
         }];
-        
 
     }
     return self;

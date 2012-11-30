@@ -642,6 +642,9 @@
 		CA1250821667445300AFCC04 /* PPSmartUpdateDataUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1250811667445300AFCC04 /* PPSmartUpdateDataUtils.m */; };
 		CA1250AA1668654900AFCC04 /* BlockUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1250A91668654900AFCC04 /* BlockUtils.m */; };
 		CA1250AE1668804700AFCC04 /* PPSmartDataTest.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1250AD1668804600AFCC04 /* PPSmartDataTest.m */; };
+		CA1250C71668BB4100AFCC04 /* GameConfigData.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1250C61668BB4100AFCC04 /* GameConfigData.m */; };
+		CA1250CA1668BB5000AFCC04 /* GameConfigDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1250C91668BB5000AFCC04 /* GameConfigDataManager.m */; };
+		CA1250CD1668BB6800AFCC04 /* GameConfigDataUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1250CC1668BB6800AFCC04 /* GameConfigDataUtils.m */; };
 		CA13771B152425CF00B5790B /* RouterService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA13771A152425CF00B5790B /* RouterService.m */; };
 		CA1377221524283A00B5790B /* TrafficServerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1377211524283A00B5790B /* TrafficServerManager.m */; };
 		CA1377291524598700B5790B /* MainDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CA1377271524598700B5790B /* MainDataModel.xcdatamodeld */; };
@@ -2979,6 +2982,13 @@
 		CA1250AB16687F1B00AFCC04 /* PPDataConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PPDataConstants.h; sourceTree = "<group>"; };
 		CA1250AC1668804600AFCC04 /* PPSmartDataTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPSmartDataTest.h; sourceTree = "<group>"; };
 		CA1250AD1668804600AFCC04 /* PPSmartDataTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPSmartDataTest.m; sourceTree = "<group>"; };
+		CA1250C51668BB4100AFCC04 /* GameConfigData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameConfigData.h; sourceTree = "<group>"; };
+		CA1250C61668BB4100AFCC04 /* GameConfigData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameConfigData.m; sourceTree = "<group>"; };
+		CA1250C81668BB5000AFCC04 /* GameConfigDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameConfigDataManager.h; sourceTree = "<group>"; };
+		CA1250C91668BB5000AFCC04 /* GameConfigDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameConfigDataManager.m; sourceTree = "<group>"; };
+		CA1250CB1668BB6800AFCC04 /* GameConfigDataUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameConfigDataUtils.h; sourceTree = "<group>"; };
+		CA1250CC1668BB6800AFCC04 /* GameConfigDataUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameConfigDataUtils.m; sourceTree = "<group>"; };
+		CA1250CE1668BB8000AFCC04 /* GameConfigDataConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameConfigDataConstants.h; sourceTree = "<group>"; };
 		CA137719152425CF00B5790B /* RouterService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RouterService.h; sourceTree = "<group>"; };
 		CA13771A152425CF00B5790B /* RouterService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RouterService.m; sourceTree = "<group>"; };
 		CA1377201524283A00B5790B /* TrafficServerManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrafficServerManager.h; sourceTree = "<group>"; };
@@ -8865,6 +8875,13 @@
 			children = (
 				CAC13244154C28C8000A8C8F /* ConfigManager.h */,
 				CAC13245154C28C8000A8C8F /* ConfigManager.m */,
+				CA1250C51668BB4100AFCC04 /* GameConfigData.h */,
+				CA1250C61668BB4100AFCC04 /* GameConfigData.m */,
+				CA1250C81668BB5000AFCC04 /* GameConfigDataManager.h */,
+				CA1250C91668BB5000AFCC04 /* GameConfigDataManager.m */,
+				CA1250CB1668BB6800AFCC04 /* GameConfigDataUtils.h */,
+				CA1250CC1668BB6800AFCC04 /* GameConfigDataUtils.m */,
+				CA1250CE1668BB8000AFCC04 /* GameConfigDataConstants.h */,
 			);
 			path = Config;
 			sourceTree = "<group>";
@@ -12509,6 +12526,9 @@
 				CA1250AA1668654900AFCC04 /* BlockUtils.m in Sources */,
 				CA1250AE1668804700AFCC04 /* PPSmartDataTest.m in Sources */,
 				CAC792931668B371009B4053 /* BBSPopupSelectionView.m in Sources */,
+				CA1250C71668BB4100AFCC04 /* GameConfigData.m in Sources */,
+				CA1250CA1668BB5000AFCC04 /* GameConfigDataManager.m in Sources */,
+				CA1250CD1668BB6800AFCC04 /* GameConfigDataUtils.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
