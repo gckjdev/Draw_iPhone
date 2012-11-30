@@ -66,7 +66,7 @@
 }
 - (void)updateButtons
 {
-    
+    NSInteger i = 0;
 }
 
 - (void)showInView:(UIView *)view showAbovePoint:(CGPoint )point
