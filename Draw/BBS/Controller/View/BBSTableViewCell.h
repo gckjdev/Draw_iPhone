@@ -9,6 +9,8 @@
 #import "PPTableViewCell.h"
 #import "Bbs.pb.h"
 
+#define ISIPAD [DeviceDetection isIPAD]
+
 @protocol BBSTableViewCellDelegate <NSObject>
 
 @optional
@@ -36,6 +38,7 @@
 @property (retain, nonatomic) IBOutlet UILabel *content;
 @property (retain, nonatomic) IBOutlet UILabel *timestamp;
 @property (retain, nonatomic) IBOutlet UIImageView *image;
+@property (retain, nonatomic) IBOutlet UIImageView *bgImageView;
 @property (retain, nonatomic) UIButton *imageMask;
 @property (retain, nonatomic) UIButton *avatarMask;
 @property (retain, nonatomic) PPTableViewController *superController;

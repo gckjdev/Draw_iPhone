@@ -107,6 +107,16 @@
 {
     return [NSDate dateWithTimeIntervalSince1970:self.createDate];
 }
+
+- (NSInteger)rewardBonus
+{
+    return self.reward.bonus;
+}
+- (BOOL)rewarded
+{
+    return [self.reward hasWinner];
+}
+
 @end
 
 @implementation PBBBSAction (ActionExt)

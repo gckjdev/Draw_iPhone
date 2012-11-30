@@ -38,7 +38,7 @@
 				<reference key="NSNextResponder"/>
 				<int key="NSvFlags">274</int>
 				<array class="NSMutableArray" key="NSSubviews">
-					<object class="IBUIImageView" id="376429796">
+					<object class="IBUIImageView" id="589784927">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">274</int>
 						<string key="NSFrameSize">{320, 460}</string>
@@ -88,7 +88,7 @@
 					<object class="IBUIButton" id="394291360">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{14, 16}, {30, 27}}</string>
+						<string key="NSFrame">{{10, 16}, {30, 27}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="246817004"/>
@@ -189,7 +189,7 @@
 				<string key="NSFrame">{{0, 20}, {320, 460}}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
-				<reference key="NSNextKeyView" ref="376429796"/>
+				<reference key="NSNextKeyView" ref="589784927"/>
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">3</int>
 					<bytes key="NSWhite">MQA</bytes>
@@ -259,7 +259,7 @@
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">bgImageView</string>
 						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="376429796"/>
+						<reference key="destination" ref="589784927"/>
 					</object>
 					<int key="connectionID">22</int>
 				</object>
@@ -324,7 +324,7 @@
 							<reference ref="678576899"/>
 							<reference ref="733351719"/>
 							<reference ref="394291360"/>
-							<reference ref="376429796"/>
+							<reference ref="589784927"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -366,7 +366,7 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">20</int>
-						<reference key="object" ref="376429796"/>
+						<reference key="object" ref="589784927"/>
 						<reference key="parent" ref="191373211"/>
 					</object>
 				</array>

@@ -2,24 +2,36 @@
 //  BBSPostDetailCell.h
 //  Draw
 //
-//  Created by gamy on 12-11-22.
+//  Created by gamy on 12-11-19.
 //
 //
 
-#import "PPTableViewCell.h"
+#import "BBSTableViewCell.h"
 #import "BBSModelExt.h"
 
-@interface BBSPostDetailCell : PPTableViewCell
 
-@property (retain, nonatomic) IBOutlet UILabel *textContent;
-@property (retain, nonatomic) IBOutlet UIImageView *imageContent;
-@property (retain, nonatomic) IBOutlet UILabel *time;
+@protocol BBSPostDetailCellDelegate <BBSTableViewCellDelegate>
+
+@optional
+- (void)didClickSupportButtonWithPost:(PBBBSPost *)post;
+- (void)didClickReplyButtonWithPost:(PBBBSPost *)post;
+
+@end
+
+@interface BBSPostDetailCell : BBSTableViewCell
+{
+    PBBBSPost *_post;
+    id<BBSPostDetailCellDelegate> _delegate;
+}
+
+@property (retain, nonatomic) IBOutlet UIButton *reward;
+@property (retain, nonatomic) PBBBSPost *post;
 
 
-+ (BBSPostDetailCell *)createCell:(id)delegate;
+
++ (id)createCell:(id)delegate;
 + (NSString*)getCellIdentifier;
-//+ (CGFloat)getCellHeight;
-+ (CGFloat)getCellHeightWithPost:(PBBBSPost *)post;
-- (void)updateCellWithPost:(PBBBSPost *)post;
++ (CGFloat)getCellHeightWithBBSPost:(PBBBSPost *)post;
+- (void)updateCellWithBBSPost:(PBBBSPost *)post;
 
 @end

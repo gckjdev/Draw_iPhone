@@ -11,10 +11,10 @@
 #import "BBSManager.h"
 #import "UserManager.h"
 #import "TimeUtils.h"
-#import <QuartzCore/QuartzCore.h>
 
 
-#define ISIPAD [DeviceDetection isIPAD]
+
+
 
 #define SPACE_CONTENT_TOP (ISIPAD ? (2.33 * 30) : 30)
 #define SPACE_CONTENT_BOTTOM_IMAGE (ISIPAD ? (2.33 * 120) : 120) //IMAGE TYPE OR DRAW TYPE
@@ -27,8 +27,6 @@
 
 #define CONTENT_FONT [[BBSFontManager defaultManager] postContentFont]
 
-#define BORDER_WIDTH ISIPAD ? 5 : 2.5
-#define IMAGE_CORNER_RADIUS ISIPAD ? 10 : 5
 
 @implementation BBSPostCell
 @synthesize post = _post;
@@ -42,36 +40,7 @@
     BBSColorManager *_bbsColorManager = [BBSColorManager defaultManager];
     BBSFontManager *_bbsFontManager = [BBSFontManager defaultManager];
 
-    //avatar
-    [cell.avatar.layer setBorderColor:([_bbsColorManager postAvatarColor].CGColor)];
-    [cell.avatar.layer setCornerRadius:cell.avatar.frame.size.width/2];
-    cell.avatar.layer.masksToBounds = YES;
-    [cell.avatar.layer setBorderWidth:BORDER_WIDTH];
-
-    [cell.image.layer setCornerRadius:IMAGE_CORNER_RADIUS];
-    cell.image.layer.masksToBounds = YES;
-
     
-    //nick
-    [BBSViewManager updateLable:cell.nickName
-                        bgColor:[UIColor clearColor]
-                           font:[_bbsFontManager postNickFont]
-                      textColor:[_bbsColorManager postNickColor]
-                           text:nil];
-    
-    //content
-    [cell.bgImageView setImage:[_bbsImageManager bbsPostContentBGImage]];
-    [BBSViewManager updateLable:cell.content
-                        bgColor:[UIColor clearColor]
-                           font:[_bbsFontManager postContentFont]
-                      textColor:[UIColor blackColor]
-                           text:nil];
-    
-    [BBSViewManager updateLable:cell.timestamp
-                        bgColor:[UIColor clearColor]
-                           font:[_bbsFontManager postDateFont]
-                      textColor:[_bbsColorManager postDateColor]
-                           text:nil];
     
     //action
     [BBSViewManager updateButton:cell.reward
@@ -81,6 +50,15 @@
                             font:[_bbsFontManager postRewardFont]
                       titleColor:[_bbsColorManager postRewardColor]
                            title:nil forState:UIControlStateNormal];
+    
+    [BBSViewManager updateButton:cell.reward
+                         bgColor:[UIColor clearColor]
+                         bgImage:nil
+                           image:[_bbsImageManager bbsPostRewardedImage]
+                            font:[_bbsFontManager postRewardFont]
+                      titleColor:[_bbsColorManager postRewardedColor]
+                           title:nil forState:UIControlStateSelected];
+
     [BBSViewManager updateButton:cell.comment
                          bgColor:[UIColor clearColor]
                          bgImage:nil
@@ -190,11 +168,17 @@
 - (void)updateReward:(PBBBSReward *)reward
 {
     self.reward.hidden = NO;
-    if (reward.hasWinner) {
-        [self.reward setTitle:NSLS(@"WIN") forState:UIControlStateNormal];
-    }else if(reward.bonus > 0){
-        [self.reward setTitle:[NSString stringWithFormat:@"%d",reward.bonus]
-                     forState:UIControlStateNormal];
+    if (reward.bonus > 0) {
+        self.reward.hidden = NO;
+        if (reward.hasWinner) {
+            [self.reward setSelected:YES];
+            [self.reward setTitle:[NSString stringWithFormat:@"%d",reward.bonus]
+                          forState:UIControlStateSelected];
+        }else{
+            [self.reward setSelected:NO];
+            [self.reward setTitle:[NSString stringWithFormat:@"%d",reward.bonus]
+                          forState:UIControlStateNormal];
+        }
     }else{
         self.reward.hidden = YES;
     }
@@ -217,7 +201,6 @@
     PPRelease(_comment);
     PPRelease(_post);
     PPRelease(_reward);
-    [_bgImageView release];
     [super dealloc];
 }
 - (IBAction)clickSupportButton:(id)sender {
