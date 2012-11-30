@@ -11,9 +11,12 @@
 #import "PPDebug.h"
 #import "SSZipArchive.h"
 #import "FileUtil.h"
+#import "PPSmartUpdateData.h"
+#import "PPSmartUpdateDataUtils.h"
 
 @interface WordManager() {
     
+    PPSmartUpdateData* _smartData;
 }
 
 + (NSString *)wordDir;
@@ -57,6 +60,8 @@ WordManager *GlobalGetWordManager()
     [manager loadDictByWithLanguage:[[UserManager defaultManager] getLanguageType]];
     return manager;
 }
+
+
 
 #define WORD_BASE_KEY @"CFWordBaseVersion"
 #define WORD_DIR @"word"
@@ -238,6 +243,27 @@ WordManager *GlobalGetWordManager()
     self = [super init];
     if (self) {
         //load data
+        NSString* bundlePath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:WORD_BASE_ZIP_NAME];
+        NSNumber* version = [[NSBundle mainBundle] objectForInfoDictionaryKey:WORD_BASE_KEY];
+        
+        [PPSmartUpdateDataUtils initPaths];
+        _smartData = [[PPSmartUpdateData alloc] initWithName:WORD_BASE_ZIP_NAME
+                                                        type:SMART_UPDATE_DATA_TYPE_ZIP
+                                                initDataPath:bundlePath
+                                             initDataVersion:[version stringValue]
+                                              isAutoDownload:YES];
+        
+        [_smartData checkHasUpdate:^(BOOL hasNewVersion, NSString *latestVersion) {
+            if (hasNewVersion){
+                [_smartData downloadData:^(BOOL isAlreadyExisted, NSString *dataFilePath) {
+                } failureBlock:^(NSError *error) {
+                } downloadDataVersion:latestVersion];
+            }
+        } failureBlock:^(NSError *error) {
+            
+        }];
+        
+
     }
     return self;
 }
