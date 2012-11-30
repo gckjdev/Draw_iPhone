@@ -8,6 +8,16 @@
 
 #import <UIKit/UIKit.h>
 
+@class BBSPopupSelectionView;
+@protocol BBSPopupSelectionViewDelegate <NSObject>
+
+- (void)selectionView:(BBSPopupSelectionView *)selectionView didSelectedButtonIndex:(NSInteger)index;
+
+@end
+
 @interface BBSPopupSelectionView : UIView
 
+- (id)initWithTitles:(NSArray *)titles
+            delegate:(id<BBSPopupSelectionViewDelegate>)delegate;
+- (void)showInView:(UIView *)view showAbovePoint:(CGPoint )point;
 @end
