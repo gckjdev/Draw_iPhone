@@ -62,6 +62,7 @@
 
 - (void)initStarryTheme
 {
+    _shouldResize = YES;
     [self.contentBackground setImage:[CommonImageManager defaultManager].starryDialogBackgroundImage];
     [self.frontBackgroundImageView setImage:[CommonImageManager defaultManager].starryDialogBackgroundSideImage];
     
@@ -92,19 +93,22 @@
 
 - (void)resize
 {
+    if (!_shouldResize) {
+        return;
+    }
     CGSize titleSize = [self calculateHeightOfTextFromWidth:self.titleLabel.text font:FONT_OF_TITLE width:self.titleLabel.frame.size.width linebreak:UILineBreakModeWordWrap];
-    CGSize messageSize = [self calculateHeightOfTextFromWidth:self.messageLabel.text font:FONT_OF_TITLE width:self.messageLabel.frame.size.width linebreak:UILineBreakModeWordWrap];
-    
-    [self.titleLabel setFrame:CGRectMake(self.contentView.frame.size.width/2 - titleSize.width/2, UP_SEPERATOR, titleSize.width, titleSize.height)];
-    [self.messageLabel setFrame:CGRectMake(self.contentView.frame.size.width/2 - messageSize.width/2, UP_SEPERATOR + titleSize.height, messageSize.width, messageSize.height)];
+    CGSize messageSize = [self calculateHeightOfTextFromWidth:self.messageLabel.text font:FONT_OF_TITLE width:self.messageLabel.frame.size.width linebreak:UILineBreakModeCharacterWrap];
     
     [self.contentView setFrame:CGRectMake(0, 0, self.contentView.frame.size.width, UP_SEPERATOR + DOWN_SEPERATOR + titleSize.height + messageSize.height + self.oKButton.frame.size.height)];
     [self.contentView setCenter:CGPointMake(self.frame.size.width/2, self.frame.size.height/2)];
     
+    [self.titleLabel setFrame:CGRectMake(self.contentView.frame.size.width/2 - titleSize.width/2, UP_SEPERATOR, titleSize.width, titleSize.height)];
+    [self.messageLabel setFrame:CGRectMake(self.contentView.frame.size.width/2 - messageSize.width/2, UP_SEPERATOR + titleSize.height, messageSize.width, messageSize.height)];
+    
+    
+    
     [self.oKButton setCenter:CGPointMake(self.oKButton.center.x, self.contentView.frame.size.height - DOWN_SEPERATOR - self.oKButton.frame.size.height/2)];
     [self.backButton setCenter:CGPointMake(self.backButton.center.x, self.contentView.frame.size.height - DOWN_SEPERATOR - self.backButton.frame.size.height/2)];
-    
-    [self.messageLabel setCenter:CGPointMake(self.contentView.frame.size.width/2, self.contentView.frame.size.height/2)];
 }
 
 - (void)initButtonsWithTheme:(CommonDialogTheme)theme
@@ -296,6 +300,32 @@
 {
     [_clickBackBlock release];
     _clickBackBlock = [block copy];
+}
+
++ (CommonDialog *)createDialogWithTitle:(NSString *)title
+                                message:(NSString *)message
+                                  style:(CommonDialogStyle)aStyle
+                               delegate:(id<CommonDialogDelegate>)aDelegate
+                           clickOkBlock:(DialogSelectionBlock)block1
+                       clickCancelBlock:(DialogSelectionBlock)block2
+{
+    CommonDialog* dialog = [self createDialogWithTitle:title message:message style:aStyle delegate:aDelegate];
+    [dialog setClickOkBlock:block1];
+    [dialog setClickBackBlock:block2];
+    return dialog;
+}
++ (CommonDialog *)createDialogWithTitle:(NSString *)title
+                                message:(NSString *)message
+                                  style:(CommonDialogStyle)aStyle
+                               delegate:(id<CommonDialogDelegate>)aDelegate
+                                  theme:(CommonDialogTheme)theme
+                           clickOkBlock:(DialogSelectionBlock)block1
+                       clickCancelBlock:(DialogSelectionBlock)block2
+{
+    CommonDialog* dialog = [self createDialogWithTitle:title message:message style:aStyle delegate:aDelegate theme:theme];
+    [dialog setClickOkBlock:block1];
+    [dialog setClickBackBlock:block2];
+    return dialog;
 }
 
 
