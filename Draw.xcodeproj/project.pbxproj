@@ -640,6 +640,7 @@
 		CA1042031509C06E00F60C03 /* RoomController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA1042011509C06E00F60C03 /* RoomController.xib */; };
 		CA12507F1667399300AFCC04 /* PPSmartUpdateData.m in Sources */ = {isa = PBXBuildFile; fileRef = CA12507E1667399300AFCC04 /* PPSmartUpdateData.m */; };
 		CA1250821667445300AFCC04 /* PPSmartUpdateDataUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1250811667445300AFCC04 /* PPSmartUpdateDataUtils.m */; };
+		CA1250AA1668654900AFCC04 /* BlockUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1250A91668654900AFCC04 /* BlockUtils.m */; };
 		CA13771B152425CF00B5790B /* RouterService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA13771A152425CF00B5790B /* RouterService.m */; };
 		CA1377221524283A00B5790B /* TrafficServerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1377211524283A00B5790B /* TrafficServerManager.m */; };
 		CA1377291524598700B5790B /* MainDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CA1377271524598700B5790B /* MainDataModel.xcdatamodeld */; };
@@ -2971,6 +2972,8 @@
 		CA12507E1667399300AFCC04 /* PPSmartUpdateData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPSmartUpdateData.m; sourceTree = "<group>"; };
 		CA1250801667445300AFCC04 /* PPSmartUpdateDataUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPSmartUpdateDataUtils.h; sourceTree = "<group>"; };
 		CA1250811667445300AFCC04 /* PPSmartUpdateDataUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPSmartUpdateDataUtils.m; sourceTree = "<group>"; };
+		CA1250A81668654900AFCC04 /* BlockUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlockUtils.h; sourceTree = "<group>"; };
+		CA1250A91668654900AFCC04 /* BlockUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlockUtils.m; sourceTree = "<group>"; };
 		CA137719152425CF00B5790B /* RouterService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RouterService.h; sourceTree = "<group>"; };
 		CA13771A152425CF00B5790B /* RouterService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RouterService.m; sourceTree = "<group>"; };
 		CA1377201524283A00B5790B /* TrafficServerManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrafficServerManager.h; sourceTree = "<group>"; };
@@ -6229,6 +6232,7 @@
 		CA103D4C1509A56100F60C03 /* Core-Utils-Misc */ = {
 			isa = PBXGroup;
 			children = (
+				CA1250A71668653000AFCC04 /* Block */,
 				C225866B15EF5A73009D686D /* Server */,
 				CA9C8CBA15E0D94A006E447B /* URL */,
 				C28207E01552D974006FBB0F /* Audio */,
@@ -7098,6 +7102,15 @@
 				CA1250811667445300AFCC04 /* PPSmartUpdateDataUtils.m */,
 			);
 			path = PPSmartUpdateData;
+			sourceTree = "<group>";
+		};
+		CA1250A71668653000AFCC04 /* Block */ = {
+			isa = PBXGroup;
+			children = (
+				CA1250A81668654900AFCC04 /* BlockUtils.h */,
+				CA1250A91668654900AFCC04 /* BlockUtils.m */,
+			);
+			path = Block;
 			sourceTree = "<group>";
 		};
 		CA137718152425BD00B5790B /* Router */ = {
@@ -12481,6 +12494,7 @@
 				C2EE145E1665FE4F00ADBE2E /* UIView+MDCShineEffect.m in Sources */,
 				CA12507F1667399300AFCC04 /* PPSmartUpdateData.m in Sources */,
 				CA1250821667445300AFCC04 /* PPSmartUpdateDataUtils.m in Sources */,
+				CA1250AA1668654900AFCC04 /* BlockUtils.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
