@@ -1,0 +1,9 @@
+
+package game;
+
+option java_package = "com.orange.network.game.protocol.model";
+option java_outer_classname = "ConfigProtos";
+
+message PBConfig {
+}
+

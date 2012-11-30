@@ -645,6 +645,8 @@
 		CA1250C71668BB4100AFCC04 /* GameConfigData.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1250C61668BB4100AFCC04 /* GameConfigData.m */; };
 		CA1250CA1668BB5000AFCC04 /* GameConfigDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1250C91668BB5000AFCC04 /* GameConfigDataManager.m */; };
 		CA1250CD1668BB6800AFCC04 /* GameConfigDataUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1250CC1668BB6800AFCC04 /* GameConfigDataUtils.m */; };
+		CA1250D01668BCBD00AFCC04 /* Config.proto in Resources */ = {isa = PBXBuildFile; fileRef = CA1250CF1668BCBD00AFCC04 /* Config.proto */; };
+		CA1250D31668BD5200AFCC04 /* Config.pb.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1250D21668BD5200AFCC04 /* Config.pb.m */; };
 		CA13771B152425CF00B5790B /* RouterService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA13771A152425CF00B5790B /* RouterService.m */; };
 		CA1377221524283A00B5790B /* TrafficServerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1377211524283A00B5790B /* TrafficServerManager.m */; };
 		CA1377291524598700B5790B /* MainDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CA1377271524598700B5790B /* MainDataModel.xcdatamodeld */; };
@@ -2989,6 +2991,9 @@
 		CA1250CB1668BB6800AFCC04 /* GameConfigDataUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameConfigDataUtils.h; sourceTree = "<group>"; };
 		CA1250CC1668BB6800AFCC04 /* GameConfigDataUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameConfigDataUtils.m; sourceTree = "<group>"; };
 		CA1250CE1668BB8000AFCC04 /* GameConfigDataConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameConfigDataConstants.h; sourceTree = "<group>"; };
+		CA1250CF1668BCBD00AFCC04 /* Config.proto */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Config.proto; sourceTree = "<group>"; };
+		CA1250D11668BD5200AFCC04 /* Config.pb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Config.pb.h; sourceTree = "<group>"; };
+		CA1250D21668BD5200AFCC04 /* Config.pb.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Config.pb.m; sourceTree = "<group>"; };
 		CA137719152425CF00B5790B /* RouterService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RouterService.h; sourceTree = "<group>"; };
 		CA13771A152425CF00B5790B /* RouterService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RouterService.m; sourceTree = "<group>"; };
 		CA1377201524283A00B5790B /* TrafficServerManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrafficServerManager.h; sourceTree = "<group>"; };
@@ -8682,6 +8687,7 @@
 				A4B763A115C25208003B4E72 /* Dice.proto */,
 				A4E7876916366FF8003557AD /* ZhaJinHua.proto */,
 				CA4150C1165345620062A638 /* BBS.proto */,
+				CA1250CF1668BCBD00AFCC04 /* Config.proto */,
 			);
 			path = ProtocolBuffer;
 			sourceTree = "<group>";
@@ -8689,6 +8695,8 @@
 		CA96E274150DE87A00292335 /* Gen */ = {
 			isa = PBXGroup;
 			children = (
+				CA1250D11668BD5200AFCC04 /* Config.pb.h */,
+				CA1250D21668BD5200AFCC04 /* Config.pb.m */,
 				CA913A501653532000B6387F /* Bbs.pb.h */,
 				CA913A511653532000B6387F /* Bbs.pb.m */,
 				CA7ACA6A16367548001B273C /* ZhaJinHua.pb.h */,
@@ -11884,6 +11892,7 @@
 				CAC7925416685D42009B4053 /* bbs_detail_support@2x.png in Resources */,
 				CAC7925516685D42009B4053 /* bbs_detail_thumb@2x.png in Resources */,
 				CAC7925616685D42009B4053 /* bbs_detail_toolbar@2x.jpg in Resources */,
+				CA1250D01668BCBD00AFCC04 /* Config.proto in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -12529,6 +12538,7 @@
 				CA1250C71668BB4100AFCC04 /* GameConfigData.m in Sources */,
 				CA1250CA1668BB5000AFCC04 /* GameConfigDataManager.m in Sources */,
 				CA1250CD1668BB6800AFCC04 /* GameConfigDataUtils.m in Sources */,
+				CA1250D31668BD5200AFCC04 /* Config.pb.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
