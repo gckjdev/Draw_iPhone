@@ -7,6 +7,7 @@
 //
 
 #import "BBSPopupSelectionView.h"
+#import "BBSViewManager.h"
 
 #define ISIPAD [DeviceDetection isIPAD]
 
@@ -54,11 +55,12 @@
     CGFloat width = count * BUTTON_SIZE.width + (count - 1) *SPACE_BUTTON_BUTTON;
     width += (SPACE_LEFTRIGHT_BUTTON * 2);
     CGFloat height = BUTTON_SIZE.height + SPACE_TOP_BUTTON + SPACE_BOTTOM_BUTTON;
-    CGFloat y = height + point.y;
+    CGFloat y = -height + point.y;
     CGFloat x = 0;
     //if tip at left
     if (point.x < view.center.x) {
         x = point.x - SPACE_LEFTRIGHT_TIP;
+        
     }else{
         x = point.x + SPACE_LEFTRIGHT_TIP - width;
     }
@@ -67,16 +69,77 @@
 - (void)updateButtons
 {
     NSInteger i = 0;
+    for(NSString *title in _titles){
+        UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+//        [button setBackgroundImage:[[BBSImageManager defaultManager] optionButtonBGImage]
+//                          forState:UIControlStateNormal];
+        CGFloat y = SPACE_TOP_BUTTON;
+        CGFloat x = SPACE_LEFTRIGHT_BUTTON + i *(SPACE_BUTTON_BUTTON + BUTTON_SIZE.width);
+        button.frame = CGRectMake(x, y, BUTTON_SIZE.width, BUTTON_SIZE.height);
+        button.tag = i;
+        [button addTarget:self
+                   action:@selector(clickButton:)
+         forControlEvents:UIControlEventTouchUpInside];
+        
+        ++i;
+        [self addSubview:button];
+        
+        
+        BBSImageManager *imageManager = [BBSImageManager defaultManager];
+        BBSFontManager *fontManager = [BBSFontManager defaultManager];
+        
+        [BBSViewManager updateButton:button
+                             bgColor:[UIColor clearColor]
+                             bgImage:[imageManager optionButtonBGImage]
+                               image:nil
+                                font:[fontManager detailOptionActionFont]
+                          titleColor:[UIColor whiteColor]
+                               title:title
+                            forState:UIControlStateNormal];
+        
+    }
 }
 
-- (void)showInView:(UIView *)view showAbovePoint:(CGPoint )point
+- (void)updateBGImageWithView:(UIView *)view showAbovePoint:(CGPoint )point
+{
+    UIImageView *bgImage = [[UIImageView alloc] initWithFrame:self.bounds];
+    [self addSubview:bgImage];
+    if (point.x < view.center.x) {
+        [bgImage setImage:[[BBSImageManager defaultManager] optionLeftBGImage]];
+    }else{
+        [bgImage setImage:[[BBSImageManager defaultManager] optionRightBGImage]];
+    }
+}
+
+#define ANIMATION_TIME 0.5
+
+- (void)showInView:(UIView *)view showAbovePoint:(CGPoint )point animated:(BOOL)animated
 {
     [view addSubview:self];
     [self updateFrameWithSuperView:view
                     showAbovePoint:point];
+    [self updateBGImageWithView:view
+                 showAbovePoint:point];
+    
     [self updateButtons];
-//    [sel]
+    if (animated) {
+        self.alpha = 0;
+        [UIView animateWithDuration:ANIMATION_TIME animations:^{
+            self.alpha = 1;
+        }];
+    }
 }
 
-
+- (void)clickButton:(UIButton *)button
+{
+    if (self.delegate && [self.delegate respondsToSelector:@selector(selectionView:didSelectedButtonIndex:)]) {
+        [self.delegate selectionView:self didSelectedButtonIndex:button.tag];
+    }
+    self.alpha = 1;
+    [UIView animateWithDuration:ANIMATION_TIME animations:^{
+        self.alpha = 0.0;
+    } completion:^(BOOL finished) {
+        [self removeFromSuperview];
+    }];
+}
 @end

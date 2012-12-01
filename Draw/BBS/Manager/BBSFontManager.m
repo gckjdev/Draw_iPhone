@@ -91,7 +91,7 @@ static BBSFontManager* _staticBBSFontManager;
 {
     return ISIPHONE ? BOLDFONT(14) : BOLDFONT(14*2);
 }
-- (UIFont *)detailRewardActionFont
+- (UIFont *)detailOptionActionFont
 {
     return ISIPHONE ? BOLDFONT(12) : BOLDFONT(12*2);
 }

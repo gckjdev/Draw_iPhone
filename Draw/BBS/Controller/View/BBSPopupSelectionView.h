@@ -19,5 +19,5 @@
 
 - (id)initWithTitles:(NSArray *)titles
             delegate:(id<BBSPopupSelectionViewDelegate>)delegate;
-- (void)showInView:(UIView *)view showAbovePoint:(CGPoint )point;
+- (void)showInView:(UIView *)view showAbovePoint:(CGPoint )point animated:(BOOL)animated;
 @end
