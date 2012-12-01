@@ -647,6 +647,8 @@
 		CA1250CD1668BB6800AFCC04 /* GameConfigDataUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1250CC1668BB6800AFCC04 /* GameConfigDataUtils.m */; };
 		CA1250D01668BCBD00AFCC04 /* Config.proto in Resources */ = {isa = PBXBuildFile; fileRef = CA1250CF1668BCBD00AFCC04 /* Config.proto */; };
 		CA1250D31668BD5200AFCC04 /* Config.pb.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1250D21668BD5200AFCC04 /* Config.pb.m */; };
+		CA1250D71669EB5900AFCC04 /* default_config.pb in Resources */ = {isa = PBXBuildFile; fileRef = CA1250D51669EB5900AFCC04 /* default_config.pb */; };
+		CA1250D81669EB5900AFCC04 /* default_config_version.txt in Resources */ = {isa = PBXBuildFile; fileRef = CA1250D61669EB5900AFCC04 /* default_config_version.txt */; };
 		CA13771B152425CF00B5790B /* RouterService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA13771A152425CF00B5790B /* RouterService.m */; };
 		CA1377221524283A00B5790B /* TrafficServerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1377211524283A00B5790B /* TrafficServerManager.m */; };
 		CA1377291524598700B5790B /* MainDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CA1377271524598700B5790B /* MainDataModel.xcdatamodeld */; };
@@ -2994,6 +2996,8 @@
 		CA1250CF1668BCBD00AFCC04 /* Config.proto */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Config.proto; sourceTree = "<group>"; };
 		CA1250D11668BD5200AFCC04 /* Config.pb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Config.pb.h; sourceTree = "<group>"; };
 		CA1250D21668BD5200AFCC04 /* Config.pb.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Config.pb.m; sourceTree = "<group>"; };
+		CA1250D51669EB5900AFCC04 /* default_config.pb */ = {isa = PBXFileReference; lastKnownFileType = file; path = default_config.pb; sourceTree = "<group>"; };
+		CA1250D61669EB5900AFCC04 /* default_config_version.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = default_config_version.txt; sourceTree = "<group>"; };
 		CA137719152425CF00B5790B /* RouterService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RouterService.h; sourceTree = "<group>"; };
 		CA13771A152425CF00B5790B /* RouterService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RouterService.m; sourceTree = "<group>"; };
 		CA1377201524283A00B5790B /* TrafficServerManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrafficServerManager.h; sourceTree = "<group>"; };
@@ -7138,6 +7142,15 @@
 			path = Block;
 			sourceTree = "<group>";
 		};
+		CA1250D41669EB5900AFCC04 /* Config */ = {
+			isa = PBXGroup;
+			children = (
+				CA1250D51669EB5900AFCC04 /* default_config.pb */,
+				CA1250D61669EB5900AFCC04 /* default_config_version.txt */,
+			);
+			path = Config;
+			sourceTree = "<group>";
+		};
 		CA137718152425BD00B5790B /* Router */ = {
 			isa = PBXGroup;
 			children = (
@@ -8897,6 +8910,7 @@
 		CAC25BF915EDFB8A007456FA /* CommonResource */ = {
 			isa = PBXGroup;
 			children = (
+				CA1250D41669EB5900AFCC04 /* Config */,
 				EA856C3315F0A65700178323 /* Images */,
 				CAC25BFA15EDFB8A007456FA /* BottomMenu */,
 			);
@@ -11893,6 +11907,8 @@
 				CAC7925516685D42009B4053 /* bbs_detail_thumb@2x.png in Resources */,
 				CAC7925616685D42009B4053 /* bbs_detail_toolbar@2x.jpg in Resources */,
 				CA1250D01668BCBD00AFCC04 /* Config.proto in Resources */,
+				CA1250D71669EB5900AFCC04 /* default_config.pb in Resources */,
+				CA1250D81669EB5900AFCC04 /* default_config_version.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

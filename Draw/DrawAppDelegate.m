@@ -355,7 +355,9 @@ NSString* GlobalGetBoardServerURL()
     //sync level details
     [[LevelService defaultService] syncExpAndLevel:SYNC];
     
-    [GameConfigDataManager createTestConfigData];
+//    [GameConfigDataManager createTestConfigData];
+  
+    [GameConfigDataManager defaultInstance];
     
     return YES;
 }
