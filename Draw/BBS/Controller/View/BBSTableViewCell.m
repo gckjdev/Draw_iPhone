@@ -45,7 +45,7 @@
     [cell.image setUserInteractionEnabled:YES];
     [cell.avatar setUserInteractionEnabled:YES];
     
-
+    [cell.content setLineBreakMode:NSLineBreakByTruncatingTail];
     
     BBSImageManager *_bbsImageManager = [BBSImageManager defaultManager];
     BBSColorManager *_bbsColorManager = [BBSColorManager defaultManager];

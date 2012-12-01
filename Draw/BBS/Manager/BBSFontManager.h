@@ -36,6 +36,6 @@
 //post detail font
 - (UIFont *)detailHeaderFont;
 - (UIFont *)detailActionFont;
-- (UIFont *)detailRewardActionFont;
+- (UIFont *)detailOptionActionFont;
 
 @end

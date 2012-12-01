@@ -57,6 +57,7 @@ typedef enum {
 
 - (BOOL)canDelete;
 - (BOOL)isMyPost;
+- (BOOL)canPay;
 - (NSString *)postUid;
 - (NSString *)postText;
 - (NSDate *)cDate;

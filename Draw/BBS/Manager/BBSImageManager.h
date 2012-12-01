@@ -14,6 +14,8 @@
 }
 
 + (id)defaultManager;
+
+#pragma mark - Index Page image
 - (UIImage *)bbsBadgeImage;
 - (UIImage *)bbsBoardBgImage;
 - (UIImage *)bbsBoardLastBgImage;
@@ -25,10 +27,14 @@
 - (UIImage *)bbsSwitchDownImage;
 - (UIImage *)bbsSwitchRightImage;
 
+#pragma mark - Common image
 - (UIImage *)bbsBackImage;
 - (UIImage *)bbsBGImage;
+- (UIImage *)optionLeftBGImage;
+- (UIImage *)optionRightBGImage;
+- (UIImage *)optionButtonBGImage;
 
-//Post List
+#pragma mark - Post List image
 - (UIImage *)bbsPostCommentImage;
 - (UIImage *)bbsPostContentBGImage;
 - (UIImage *)bbsPostEditImage;
@@ -38,7 +44,7 @@
 - (UIImage *)bbsPostRewardedImage;
 - (UIImage *)bbsPostSupportImage;
 
-//post detail
+#pragma mark - Post detail image
 - (UIImage*)bbsDetailComment;
 - (UIImage*)bbsDetailOptionUp;
 - (UIImage*)bbsDetailReply;

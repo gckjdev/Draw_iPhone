@@ -94,6 +94,11 @@
     return [[UserManager defaultManager] isMe:self.createUser.userId];
 }
 
+- (BOOL)canPay
+{
+   return [self isMyPost] && [self hasReward] && ![self rewarded];
+}
+
 - (NSString *)postUid
 {
     return self.createUser.userId;

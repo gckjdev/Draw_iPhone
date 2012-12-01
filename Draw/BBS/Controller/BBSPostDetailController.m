@@ -20,6 +20,7 @@
     BBSFontManager *_bbsFontManager;
     
     BBSPostActionHeaderView *_header;
+    PBBBSAction *_selectedAction;
 }
 @property (nonatomic, retain)PBBBSPost *post;
 @property (retain, nonatomic) IBOutlet UIButton *backButton;
@@ -33,14 +34,15 @@
 typedef enum{
     SectionDetail = 0,
     SectionAction = 1,
+    SectionActionList = 2,
     SectionCount,
 }Section;
 
-typedef enum {
-    DetailRowUser = -1,
-    DetailRowContent = 0,
-    DetailRowCount,
-}DetailRow;
+//typedef enum {
+//    DetailRowUser = -1,
+//    DetailRowContent = 0,
+//    DetailRowCount,
+//}DetailRow;
 
 typedef enum{
     Support = 100,
@@ -205,7 +207,7 @@ typedef enum{
 #pragma mark - table view delegate
 - (PBBBSAction *)actionForIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.section != SectionAction) {
+    if (indexPath.section != SectionActionList) {
         return nil;
     }
     NSArray *dList = self.tabDataList;
@@ -224,12 +226,12 @@ typedef enum{
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     switch (section) {
-        case SectionDetail:
-            return DetailRowCount;
-            break;
-        case SectionAction:
+        case SectionActionList:
             return [super tableView:tableView numberOfRowsInSection:section];
-//            return [self.tabDataList count];
+            
+        case SectionAction:
+        case SectionDetail:
+            return 1;
         default:
             return 0;
     }
@@ -239,41 +241,39 @@ typedef enum{
     switch (indexPath.section) {
         case SectionDetail:
         {
-            if (DetailRowUser == indexPath.row) {
-                return [BBSPostDetailUserCell getCellHeight];
-            }else if(DetailRowContent == indexPath.row){
-                return  [BBSPostDetailCell getCellHeightWithBBSPost:self.post];
-            }
+            return  [BBSPostDetailCell getCellHeightWithBBSPost:self.post];
         }
-        case SectionAction:
+        case SectionActionList:
         {
             PBBBSAction *action = [self.tabDataList objectAtIndex:indexPath.row];
             return [BBSPostActionCell getCellHeightWithBBSAction:action];
         }
+        case SectionAction:
+            return [BBSPostActionHeaderView getViewHeight];
         default:
             break;
     }
     return 44;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
-{
-    if (section == SectionAction) {
-        return [BBSPostActionHeaderView getViewHeight];
-    }
-    return 0;
-}
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
-{
-    if (section == SectionAction) {
-        if (_header == nil) {
-            _header = [[BBSPostActionHeaderView createView:self] retain];
-        }
-        [_header updateViewWithPost:self.post];
-        return _header;
-    }
-    return nil;
-}
+//- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+//{
+//    if (section == SectionAction) {
+//        return [BBSPostActionHeaderView getViewHeight];
+//    }
+//    return 0;
+//}
+//- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+//{
+//    if (section == SectionAction) {
+//        if (_header == nil) {
+//            _header = [[BBSPostActionHeaderView createView:self] retain];
+//        }
+//        [_header updateViewWithPost:self.post];
+//        return _header;
+//    }
+//    return nil;
+//}
 
 - (id)getTableViewCell:(UITableView *)tableView
         cellIdentifier:(NSString *)cellIdentifier
@@ -290,22 +290,12 @@ typedef enum{
     switch (indexPath.section) {
         case SectionDetail:
             {
-                if (DetailRowUser == indexPath.row) {
-                    NSString *CellIdentifier = [BBSPostDetailUserCell getCellIdentifier];
-                    BBSPostDetailUserCell *cell = [self getTableViewCell:theTableView cellIdentifier:CellIdentifier cellClass:[BBSPostDetailUserCell class]];
-                    [cell updateCellWithUser:self.post.createUser];
-                    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-                    return cell;
-                    
-                }else if(DetailRowContent == indexPath.row){
-                    NSString *CellIdentifier = [BBSPostDetailCell getCellIdentifier];
-                    BBSPostDetailCell *cell = [self getTableViewCell:theTableView cellIdentifier:CellIdentifier cellClass:[BBSPostDetailCell class]];
-                    [cell updateCellWithBBSPost:self.post];
-                    return cell;
-                }
+                NSString *CellIdentifier = [BBSPostDetailCell getCellIdentifier];
+                BBSPostDetailCell *cell = [self getTableViewCell:theTableView cellIdentifier:CellIdentifier cellClass:[BBSPostDetailCell class]];
+                [cell updateCellWithBBSPost:self.post];
+                return cell;
             }
-            break;
-        case SectionAction:
+        case SectionActionList:
             {
                 NSString *CellIdentifier = [BBSPostActionCell getCellIdentifier];
                 BBSPostActionCell *cell = [theTableView dequeueReusableCellWithIdentifier:CellIdentifier];
@@ -313,9 +303,22 @@ typedef enum{
                     cell = [BBSPostActionCell createCell:self];
                 }
                 PBBBSAction *action = [self actionForIndexPath:indexPath];
-                [cell updateCellWithBBSAction:action];
+                [cell updateCellWithBBSAction:action post:self.post];
+                if ([self.post canPay] && action == _selectedAction) {
+                    [cell showOption:YES];
+                }else{
+                    [cell showOption:NO];
+                }
                 return cell;
             }
+        case SectionAction:
+        {
+            if (_header == nil) {
+                _header = [[BBSPostActionHeaderView createView:self] retain];
+            }
+            [_header updateViewWithPost:self.post];
+            return _header;
+        }
         default:
             break;
     }
@@ -349,6 +352,19 @@ typedef enum{
     }
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.section == SectionActionList && [self.post canPay]) {
+        PBBBSAction *action = [self actionForIndexPath:indexPath];
+        if (action != _selectedAction && action.type == ActionTypeComment) {
+            _selectedAction = action;
+        }else{
+            _selectedAction = nil;
+        }
+        NSArray *indexPaths = [NSArray arrayWithObject:indexPath];
+        [tableView reloadRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationNone];
+    }
+}
 
 #pragma mark - bbs post action cell delegate
 - (void)didClickReplyButtonWithAction:(PBBBSAction *)action
@@ -356,10 +372,12 @@ typedef enum{
     [CreatePostController enterControllerWithSourecePost:self.post
                                             sourceAction:action
                                           fromController:self].delegate = self;
+    _selectedAction = nil;
 }
 - (void)didClickPayButtonWithAction:(PBBBSAction *)action
 {
     PPDebug(@"<didClickPayButtonWithAction>");
+    _selectedAction = nil;
 }
 
 #pragma mark - CreatePostController delegate

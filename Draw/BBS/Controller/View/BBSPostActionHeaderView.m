@@ -66,6 +66,7 @@
     BBSPostActionHeaderView *view = [topLevelObjects objectAtIndex:0];
     view.delegate = delegate;
     [view initViews];
+    [view setSelectionStyle:UITableViewCellSelectionStyleNone];
     return  view;
 }
 
@@ -75,7 +76,7 @@
 }
 + (CGFloat)getViewHeight
 {
-    return 40;
+    return 60;
 }
 - (void)updateViewWithPost:(PBBBSPost *)post
 {
