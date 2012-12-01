@@ -92,7 +92,7 @@
                              bgColor:[UIColor clearColor]
                              bgImage:[imageManager optionButtonBGImage]
                                image:nil
-                                font:[fontManager detailOptionActionFont]
+                                font:[fontManager bbsOptionTitleFont]
                           titleColor:[UIColor whiteColor]
                                title:title
                             forState:UIControlStateNormal];

@@ -39,14 +39,23 @@
     [super dealloc];
 }
 
+- (void)initViews
+{
+    self.content.numberOfLines = CONTENT_TEXT_LINE;
+    [self.content setLineBreakMode:NSLineBreakByTruncatingTail];
+    self.content.font = CONTENT_FONT;
+    [self.content setLineBreakMode:NSLineBreakByCharWrapping];
+    
+    BBSImageManager *imageManager = [BBSImageManager defaultManager];
+    [self.option setImage:[imageManager bbsDetailOptionUp]];
+    [self.reply setImage:[imageManager bbsDetailReply] forState:UIControlStateNormal];
+
+}
 
 + (id)createCell:(id)delegate
 {    
     BBSPostActionCell  *cell = [BBSTableViewCell createCellWithIdentifier:[self getCellIdentifier] delegate:delegate];
-    cell.content.numberOfLines = CONTENT_TEXT_LINE;
-    [cell.content setLineBreakMode:NSLineBreakByTruncatingTail];
-    cell.content.font = CONTENT_FONT;
-    [cell.content setLineBreakMode:NSLineBreakByCharWrapping];
+    [cell initViews];
     return cell;
 }
 

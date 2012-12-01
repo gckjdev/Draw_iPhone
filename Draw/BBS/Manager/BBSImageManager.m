@@ -258,5 +258,35 @@ static BBSImageManager* _staticBBSImageManager;
 }
 
 
-
+#pragma mark - Creation Page image
+- (UIImage *)bbsCreateDrawDisable{
+    return [self stretchableImageWithImageName:@"bbs_create_draw_disable" inResourcePackage:RESOURCE_PACKAGE_BBS];
+}
+- (UIImage *)bbsCreateDrawEnable{
+     return [self stretchableImageWithImageName:@"bbs_create_draw_enable" inResourcePackage:RESOURCE_PACKAGE_BBS];
+}
+- (UIImage *)bbsCreateImageDisable{
+     return [self stretchableImageWithImageName:@"bbs_create_image_disable" inResourcePackage:RESOURCE_PACKAGE_BBS];
+}
+- (UIImage *)bbsCreateImageEnable{
+     return [self stretchableImageWithImageName:@"bbs_create_image_enable" inResourcePackage:RESOURCE_PACKAGE_BBS];
+}
+- (UIImage *)bbsCreateInputBg{
+     return [self stretchableImageWithImageName:@"bbs_create_reward_option" inResourcePackage:RESOURCE_PACKAGE_BBS];
+}
+- (UIImage *)bbsCreateRewardBg{
+    NSString *imageName = [self fixImageName:@"bbs_create_input_bg"];
+    return [_resService imageByName:imageName
+                  inResourcePackage:RESOURCE_PACKAGE_BBS];
+}
+- (UIImage *)bbsCreateRewardOptionBG{
+    NSString *imageName = [self fixImageName:@"bbs_create_reward_bg"];
+    return [_resService imageByName:imageName
+                  inResourcePackage:RESOURCE_PACKAGE_BBS];
+}
+- (UIImage *)bbsCreateSubmitBg{
+    NSString *imageName = [self fixImageName:@"bbs_create_submit_bg"];
+    return [_resService imageByName:imageName
+                  inResourcePackage:RESOURCE_PACKAGE_BBS];
+}
 @end

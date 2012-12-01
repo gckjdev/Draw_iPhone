@@ -25,9 +25,11 @@
 }
 
 @property (retain, nonatomic) IBOutlet UIButton *reply;
+@property (retain, nonatomic) IBOutlet UIImageView *option;
+
 @property (retain, nonatomic) PBBBSAction *action;
 @property (retain, nonatomic) PBBBSPost *post;
-@property (retain, nonatomic) IBOutlet UIImageView *option;
+
 
 - (IBAction)clickRepyButton:(id)sender;
 + (id)createCell:(id)delegate;

@@ -56,4 +56,15 @@
 - (UIImage*)bbsDetailSelectedLine;
 - (UIImage*)bbsDetailSplitLine;
 - (UIImage*)bbsDetailToolbar;
+
+#pragma mark -Creation page image
+
+- (UIImage *)bbsCreateDrawDisable;
+- (UIImage *)bbsCreateDrawEnable;
+- (UIImage *)bbsCreateImageDisable;
+- (UIImage *)bbsCreateImageEnable;
+- (UIImage *)bbsCreateInputBg;
+- (UIImage *)bbsCreateRewardBg;
+- (UIImage *)bbsCreateRewardOptionBG;
+- (UIImage *)bbsCreateSubmitBg;
 @end

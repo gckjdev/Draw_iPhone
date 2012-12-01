@@ -76,7 +76,7 @@
 }
 + (CGFloat)getViewHeight
 {
-    return 60;
+    return 50;
 }
 - (void)updateViewWithPost:(PBBBSPost *)post
 {
