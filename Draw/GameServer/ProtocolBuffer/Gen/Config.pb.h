@@ -4,6 +4,10 @@
 
 @class PBConfig;
 @class PBConfig_Builder;
+@class PBPrice;
+@class PBPrice_Builder;
+@class PBZJHConfig;
+@class PBZJHConfig_Builder;
 
 @interface ConfigRoot : NSObject {
 }
@@ -11,9 +15,126 @@
 + (void) registerAllExtensions:(PBMutableExtensionRegistry*) registry;
 @end
 
-@interface PBConfig : PBGeneratedMessage {
+@interface PBPrice : PBGeneratedMessage {
+@private
+  BOOL hasAmount_:1;
+  BOOL hasPrice_:1;
+  BOOL hasProductId_:1;
+  BOOL hasSavePercent_:1;
+  NSString* amount;
+  NSString* price;
+  NSString* productId;
+  NSString* savePercent;
+}
+- (BOOL) hasAmount;
+- (BOOL) hasPrice;
+- (BOOL) hasProductId;
+- (BOOL) hasSavePercent;
+@property (readonly, retain) NSString* amount;
+@property (readonly, retain) NSString* price;
+@property (readonly, retain) NSString* productId;
+@property (readonly, retain) NSString* savePercent;
+
++ (PBPrice*) defaultInstance;
+- (PBPrice*) defaultInstance;
+
+- (BOOL) isInitialized;
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
+- (PBPrice_Builder*) builder;
++ (PBPrice_Builder*) builder;
++ (PBPrice_Builder*) builderWithPrototype:(PBPrice*) prototype;
+
++ (PBPrice*) parseFromData:(NSData*) data;
++ (PBPrice*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBPrice*) parseFromInputStream:(NSInputStream*) input;
++ (PBPrice*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBPrice*) parseFromCodedInputStream:(PBCodedInputStream*) input;
++ (PBPrice*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+@end
+
+@interface PBPrice_Builder : PBGeneratedMessage_Builder {
+@private
+  PBPrice* result;
+}
+
+- (PBPrice*) defaultInstance;
+
+- (PBPrice_Builder*) clear;
+- (PBPrice_Builder*) clone;
+
+- (PBPrice*) build;
+- (PBPrice*) buildPartial;
+
+- (PBPrice_Builder*) mergeFrom:(PBPrice*) other;
+- (PBPrice_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (PBPrice_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+
+- (BOOL) hasAmount;
+- (NSString*) amount;
+- (PBPrice_Builder*) setAmount:(NSString*) value;
+- (PBPrice_Builder*) clearAmount;
+
+- (BOOL) hasPrice;
+- (NSString*) price;
+- (PBPrice_Builder*) setPrice:(NSString*) value;
+- (PBPrice_Builder*) clearPrice;
+
+- (BOOL) hasProductId;
+- (NSString*) productId;
+- (PBPrice_Builder*) setProductId:(NSString*) value;
+- (PBPrice_Builder*) clearProductId;
+
+- (BOOL) hasSavePercent;
+- (NSString*) savePercent;
+- (PBPrice_Builder*) setSavePercent:(NSString*) value;
+- (PBPrice_Builder*) clearSavePercent;
+@end
+
+@interface PBZJHConfig : PBGeneratedMessage {
 @private
 }
+
++ (PBZJHConfig*) defaultInstance;
+- (PBZJHConfig*) defaultInstance;
+
+- (BOOL) isInitialized;
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
+- (PBZJHConfig_Builder*) builder;
++ (PBZJHConfig_Builder*) builder;
++ (PBZJHConfig_Builder*) builderWithPrototype:(PBZJHConfig*) prototype;
+
++ (PBZJHConfig*) parseFromData:(NSData*) data;
++ (PBZJHConfig*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBZJHConfig*) parseFromInputStream:(NSInputStream*) input;
++ (PBZJHConfig*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBZJHConfig*) parseFromCodedInputStream:(PBCodedInputStream*) input;
++ (PBZJHConfig*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+@end
+
+@interface PBZJHConfig_Builder : PBGeneratedMessage_Builder {
+@private
+  PBZJHConfig* result;
+}
+
+- (PBZJHConfig*) defaultInstance;
+
+- (PBZJHConfig_Builder*) clear;
+- (PBZJHConfig_Builder*) clone;
+
+- (PBZJHConfig*) build;
+- (PBZJHConfig*) buildPartial;
+
+- (PBZJHConfig_Builder*) mergeFrom:(PBZJHConfig*) other;
+- (PBZJHConfig_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (PBZJHConfig_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+@end
+
+@interface PBConfig : PBGeneratedMessage {
+@private
+  NSMutableArray* mutableCoinPriceList;
+}
+- (NSArray*) coinPriceList;
+- (PBPrice*) coinPriceAtIndex:(int32_t) index;
 
 + (PBConfig*) defaultInstance;
 - (PBConfig*) defaultInstance;
@@ -48,5 +169,12 @@
 - (PBConfig_Builder*) mergeFrom:(PBConfig*) other;
 - (PBConfig_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
 - (PBConfig_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+
+- (NSArray*) coinPriceList;
+- (PBPrice*) coinPriceAtIndex:(int32_t) index;
+- (PBConfig_Builder*) replaceCoinPriceAtIndex:(int32_t) index with:(PBPrice*) value;
+- (PBConfig_Builder*) addCoinPrice:(PBPrice*) value;
+- (PBConfig_Builder*) addAllCoinPrice:(NSArray*) values;
+- (PBConfig_Builder*) clearCoinPriceList;
 @end
 

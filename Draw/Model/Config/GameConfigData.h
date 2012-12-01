@@ -7,7 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Config.pb.h"
 
 @interface GameConfigData : NSObject
+
+@property (nonatomic, retain) PBConfig* config;
+
+- (id)initWithName:(NSString*)bundleName;
+
+
 
 @end
