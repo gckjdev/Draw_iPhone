@@ -8,6 +8,14 @@
 
 #import <Foundation/Foundation.h>
 
+@class PBConfig;
+
 @interface GameConfigDataManager : NSObject
+
++ (GameConfigDataManager*)defaultInstance;
+
+@property (nonatomic, readonly) PBConfig* defaultConfig;
+
++ (void)createTestConfigData;
 
 @end

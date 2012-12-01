@@ -19,12 +19,455 @@ static PBExtensionRegistry* extensionRegistry = nil;
 }
 @end
 
+@interface PBPrice ()
+@property (retain) NSString* amount;
+@property (retain) NSString* price;
+@property (retain) NSString* productId;
+@property (retain) NSString* savePercent;
+@end
+
+@implementation PBPrice
+
+- (BOOL) hasAmount {
+  return !!hasAmount_;
+}
+- (void) setHasAmount:(BOOL) value {
+  hasAmount_ = !!value;
+}
+@synthesize amount;
+- (BOOL) hasPrice {
+  return !!hasPrice_;
+}
+- (void) setHasPrice:(BOOL) value {
+  hasPrice_ = !!value;
+}
+@synthesize price;
+- (BOOL) hasProductId {
+  return !!hasProductId_;
+}
+- (void) setHasProductId:(BOOL) value {
+  hasProductId_ = !!value;
+}
+@synthesize productId;
+- (BOOL) hasSavePercent {
+  return !!hasSavePercent_;
+}
+- (void) setHasSavePercent:(BOOL) value {
+  hasSavePercent_ = !!value;
+}
+@synthesize savePercent;
+- (void) dealloc {
+  self.amount = nil;
+  self.price = nil;
+  self.productId = nil;
+  self.savePercent = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.amount = @"";
+    self.price = @"";
+    self.productId = @"";
+    self.savePercent = @"";
+  }
+  return self;
+}
+static PBPrice* defaultPBPriceInstance = nil;
++ (void) initialize {
+  if (self == [PBPrice class]) {
+    defaultPBPriceInstance = [[PBPrice alloc] init];
+  }
+}
++ (PBPrice*) defaultInstance {
+  return defaultPBPriceInstance;
+}
+- (PBPrice*) defaultInstance {
+  return defaultPBPriceInstance;
+}
+- (BOOL) isInitialized {
+  if (!self.hasAmount) {
+    return NO;
+  }
+  if (!self.hasPrice) {
+    return NO;
+  }
+  return YES;
+}
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
+  if (self.hasAmount) {
+    [output writeString:1 value:self.amount];
+  }
+  if (self.hasPrice) {
+    [output writeString:2 value:self.price];
+  }
+  if (self.hasProductId) {
+    [output writeString:3 value:self.productId];
+  }
+  if (self.hasSavePercent) {
+    [output writeString:4 value:self.savePercent];
+  }
+  [self.unknownFields writeToCodedOutputStream:output];
+}
+- (int32_t) serializedSize {
+  int32_t size = memoizedSerializedSize;
+  if (size != -1) {
+    return size;
+  }
+
+  size = 0;
+  if (self.hasAmount) {
+    size += computeStringSize(1, self.amount);
+  }
+  if (self.hasPrice) {
+    size += computeStringSize(2, self.price);
+  }
+  if (self.hasProductId) {
+    size += computeStringSize(3, self.productId);
+  }
+  if (self.hasSavePercent) {
+    size += computeStringSize(4, self.savePercent);
+  }
+  size += self.unknownFields.serializedSize;
+  memoizedSerializedSize = size;
+  return size;
+}
++ (PBPrice*) parseFromData:(NSData*) data {
+  return (PBPrice*)[[[PBPrice builder] mergeFromData:data] build];
+}
++ (PBPrice*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBPrice*)[[[PBPrice builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+}
++ (PBPrice*) parseFromInputStream:(NSInputStream*) input {
+  return (PBPrice*)[[[PBPrice builder] mergeFromInputStream:input] build];
+}
++ (PBPrice*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBPrice*)[[[PBPrice builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (PBPrice*) parseFromCodedInputStream:(PBCodedInputStream*) input {
+  return (PBPrice*)[[[PBPrice builder] mergeFromCodedInputStream:input] build];
+}
++ (PBPrice*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBPrice*)[[[PBPrice builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (PBPrice_Builder*) builder {
+  return [[[PBPrice_Builder alloc] init] autorelease];
+}
++ (PBPrice_Builder*) builderWithPrototype:(PBPrice*) prototype {
+  return [[PBPrice builder] mergeFrom:prototype];
+}
+- (PBPrice_Builder*) builder {
+  return [PBPrice builder];
+}
+@end
+
+@interface PBPrice_Builder()
+@property (retain) PBPrice* result;
+@end
+
+@implementation PBPrice_Builder
+@synthesize result;
+- (void) dealloc {
+  self.result = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.result = [[[PBPrice alloc] init] autorelease];
+  }
+  return self;
+}
+- (PBGeneratedMessage*) internalGetResult {
+  return result;
+}
+- (PBPrice_Builder*) clear {
+  self.result = [[[PBPrice alloc] init] autorelease];
+  return self;
+}
+- (PBPrice_Builder*) clone {
+  return [PBPrice builderWithPrototype:result];
+}
+- (PBPrice*) defaultInstance {
+  return [PBPrice defaultInstance];
+}
+- (PBPrice*) build {
+  [self checkInitialized];
+  return [self buildPartial];
+}
+- (PBPrice*) buildPartial {
+  PBPrice* returnMe = [[result retain] autorelease];
+  self.result = nil;
+  return returnMe;
+}
+- (PBPrice_Builder*) mergeFrom:(PBPrice*) other {
+  if (other == [PBPrice defaultInstance]) {
+    return self;
+  }
+  if (other.hasAmount) {
+    [self setAmount:other.amount];
+  }
+  if (other.hasPrice) {
+    [self setPrice:other.price];
+  }
+  if (other.hasProductId) {
+    [self setProductId:other.productId];
+  }
+  if (other.hasSavePercent) {
+    [self setSavePercent:other.savePercent];
+  }
+  [self mergeUnknownFields:other.unknownFields];
+  return self;
+}
+- (PBPrice_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
+  return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
+}
+- (PBPrice_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
+  while (YES) {
+    int32_t tag = [input readTag];
+    switch (tag) {
+      case 0:
+        [self setUnknownFields:[unknownFields build]];
+        return self;
+      default: {
+        if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
+          [self setUnknownFields:[unknownFields build]];
+          return self;
+        }
+        break;
+      }
+      case 10: {
+        [self setAmount:[input readString]];
+        break;
+      }
+      case 18: {
+        [self setPrice:[input readString]];
+        break;
+      }
+      case 26: {
+        [self setProductId:[input readString]];
+        break;
+      }
+      case 34: {
+        [self setSavePercent:[input readString]];
+        break;
+      }
+    }
+  }
+}
+- (BOOL) hasAmount {
+  return result.hasAmount;
+}
+- (NSString*) amount {
+  return result.amount;
+}
+- (PBPrice_Builder*) setAmount:(NSString*) value {
+  result.hasAmount = YES;
+  result.amount = value;
+  return self;
+}
+- (PBPrice_Builder*) clearAmount {
+  result.hasAmount = NO;
+  result.amount = @"";
+  return self;
+}
+- (BOOL) hasPrice {
+  return result.hasPrice;
+}
+- (NSString*) price {
+  return result.price;
+}
+- (PBPrice_Builder*) setPrice:(NSString*) value {
+  result.hasPrice = YES;
+  result.price = value;
+  return self;
+}
+- (PBPrice_Builder*) clearPrice {
+  result.hasPrice = NO;
+  result.price = @"";
+  return self;
+}
+- (BOOL) hasProductId {
+  return result.hasProductId;
+}
+- (NSString*) productId {
+  return result.productId;
+}
+- (PBPrice_Builder*) setProductId:(NSString*) value {
+  result.hasProductId = YES;
+  result.productId = value;
+  return self;
+}
+- (PBPrice_Builder*) clearProductId {
+  result.hasProductId = NO;
+  result.productId = @"";
+  return self;
+}
+- (BOOL) hasSavePercent {
+  return result.hasSavePercent;
+}
+- (NSString*) savePercent {
+  return result.savePercent;
+}
+- (PBPrice_Builder*) setSavePercent:(NSString*) value {
+  result.hasSavePercent = YES;
+  result.savePercent = value;
+  return self;
+}
+- (PBPrice_Builder*) clearSavePercent {
+  result.hasSavePercent = NO;
+  result.savePercent = @"";
+  return self;
+}
+@end
+
+@interface PBZJHConfig ()
+@end
+
+@implementation PBZJHConfig
+
+- (void) dealloc {
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+  }
+  return self;
+}
+static PBZJHConfig* defaultPBZJHConfigInstance = nil;
++ (void) initialize {
+  if (self == [PBZJHConfig class]) {
+    defaultPBZJHConfigInstance = [[PBZJHConfig alloc] init];
+  }
+}
++ (PBZJHConfig*) defaultInstance {
+  return defaultPBZJHConfigInstance;
+}
+- (PBZJHConfig*) defaultInstance {
+  return defaultPBZJHConfigInstance;
+}
+- (BOOL) isInitialized {
+  return YES;
+}
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
+  [self.unknownFields writeToCodedOutputStream:output];
+}
+- (int32_t) serializedSize {
+  int32_t size = memoizedSerializedSize;
+  if (size != -1) {
+    return size;
+  }
+
+  size = 0;
+  size += self.unknownFields.serializedSize;
+  memoizedSerializedSize = size;
+  return size;
+}
++ (PBZJHConfig*) parseFromData:(NSData*) data {
+  return (PBZJHConfig*)[[[PBZJHConfig builder] mergeFromData:data] build];
+}
++ (PBZJHConfig*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBZJHConfig*)[[[PBZJHConfig builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+}
++ (PBZJHConfig*) parseFromInputStream:(NSInputStream*) input {
+  return (PBZJHConfig*)[[[PBZJHConfig builder] mergeFromInputStream:input] build];
+}
++ (PBZJHConfig*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBZJHConfig*)[[[PBZJHConfig builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (PBZJHConfig*) parseFromCodedInputStream:(PBCodedInputStream*) input {
+  return (PBZJHConfig*)[[[PBZJHConfig builder] mergeFromCodedInputStream:input] build];
+}
++ (PBZJHConfig*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBZJHConfig*)[[[PBZJHConfig builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (PBZJHConfig_Builder*) builder {
+  return [[[PBZJHConfig_Builder alloc] init] autorelease];
+}
++ (PBZJHConfig_Builder*) builderWithPrototype:(PBZJHConfig*) prototype {
+  return [[PBZJHConfig builder] mergeFrom:prototype];
+}
+- (PBZJHConfig_Builder*) builder {
+  return [PBZJHConfig builder];
+}
+@end
+
+@interface PBZJHConfig_Builder()
+@property (retain) PBZJHConfig* result;
+@end
+
+@implementation PBZJHConfig_Builder
+@synthesize result;
+- (void) dealloc {
+  self.result = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.result = [[[PBZJHConfig alloc] init] autorelease];
+  }
+  return self;
+}
+- (PBGeneratedMessage*) internalGetResult {
+  return result;
+}
+- (PBZJHConfig_Builder*) clear {
+  self.result = [[[PBZJHConfig alloc] init] autorelease];
+  return self;
+}
+- (PBZJHConfig_Builder*) clone {
+  return [PBZJHConfig builderWithPrototype:result];
+}
+- (PBZJHConfig*) defaultInstance {
+  return [PBZJHConfig defaultInstance];
+}
+- (PBZJHConfig*) build {
+  [self checkInitialized];
+  return [self buildPartial];
+}
+- (PBZJHConfig*) buildPartial {
+  PBZJHConfig* returnMe = [[result retain] autorelease];
+  self.result = nil;
+  return returnMe;
+}
+- (PBZJHConfig_Builder*) mergeFrom:(PBZJHConfig*) other {
+  if (other == [PBZJHConfig defaultInstance]) {
+    return self;
+  }
+  [self mergeUnknownFields:other.unknownFields];
+  return self;
+}
+- (PBZJHConfig_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
+  return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
+}
+- (PBZJHConfig_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
+  while (YES) {
+    int32_t tag = [input readTag];
+    switch (tag) {
+      case 0:
+        [self setUnknownFields:[unknownFields build]];
+        return self;
+      default: {
+        if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
+          [self setUnknownFields:[unknownFields build]];
+          return self;
+        }
+        break;
+      }
+    }
+  }
+}
+@end
+
 @interface PBConfig ()
+@property (retain) NSMutableArray* mutableCoinPriceList;
 @end
 
 @implementation PBConfig
 
+@synthesize mutableCoinPriceList;
 - (void) dealloc {
+  self.mutableCoinPriceList = nil;
   [super dealloc];
 }
 - (id) init {
@@ -44,10 +487,25 @@ static PBConfig* defaultPBConfigInstance = nil;
 - (PBConfig*) defaultInstance {
   return defaultPBConfigInstance;
 }
+- (NSArray*) coinPriceList {
+  return mutableCoinPriceList;
+}
+- (PBPrice*) coinPriceAtIndex:(int32_t) index {
+  id value = [mutableCoinPriceList objectAtIndex:index];
+  return value;
+}
 - (BOOL) isInitialized {
+  for (PBPrice* element in self.coinPriceList) {
+    if (!element.isInitialized) {
+      return NO;
+    }
+  }
   return YES;
 }
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
+  for (PBPrice* element in self.coinPriceList) {
+    [output writeMessage:1 value:element];
+  }
   [self.unknownFields writeToCodedOutputStream:output];
 }
 - (int32_t) serializedSize {
@@ -57,6 +515,9 @@ static PBConfig* defaultPBConfigInstance = nil;
   }
 
   size = 0;
+  for (PBPrice* element in self.coinPriceList) {
+    size += computeMessageSize(1, element);
+  }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
   return size;
@@ -132,6 +593,12 @@ static PBConfig* defaultPBConfigInstance = nil;
   if (other == [PBConfig defaultInstance]) {
     return self;
   }
+  if (other.mutableCoinPriceList.count > 0) {
+    if (result.mutableCoinPriceList == nil) {
+      result.mutableCoinPriceList = [NSMutableArray array];
+    }
+    [result.mutableCoinPriceList addObjectsFromArray:other.mutableCoinPriceList];
+  }
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }
@@ -153,8 +620,43 @@ static PBConfig* defaultPBConfigInstance = nil;
         }
         break;
       }
+      case 10: {
+        PBPrice_Builder* subBuilder = [PBPrice builder];
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self addCoinPrice:[subBuilder buildPartial]];
+        break;
+      }
     }
   }
+}
+- (NSArray*) coinPriceList {
+  if (result.mutableCoinPriceList == nil) { return [NSArray array]; }
+  return result.mutableCoinPriceList;
+}
+- (PBPrice*) coinPriceAtIndex:(int32_t) index {
+  return [result coinPriceAtIndex:index];
+}
+- (PBConfig_Builder*) replaceCoinPriceAtIndex:(int32_t) index with:(PBPrice*) value {
+  [result.mutableCoinPriceList replaceObjectAtIndex:index withObject:value];
+  return self;
+}
+- (PBConfig_Builder*) addAllCoinPrice:(NSArray*) values {
+  if (result.mutableCoinPriceList == nil) {
+    result.mutableCoinPriceList = [NSMutableArray array];
+  }
+  [result.mutableCoinPriceList addObjectsFromArray:values];
+  return self;
+}
+- (PBConfig_Builder*) clearCoinPriceList {
+  result.mutableCoinPriceList = nil;
+  return self;
+}
+- (PBConfig_Builder*) addCoinPrice:(PBPrice*) value {
+  if (result.mutableCoinPriceList == nil) {
+    result.mutableCoinPriceList = [NSMutableArray array];
+  }
+  [result.mutableCoinPriceList addObject:value];
+  return self;
 }
 @end
 
