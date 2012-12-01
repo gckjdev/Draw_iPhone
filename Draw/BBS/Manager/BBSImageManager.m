@@ -106,6 +106,12 @@ static BBSImageManager* _staticBBSImageManager;
                   inResourcePackage:RESOURCE_PACKAGE_BBS];
 }
 
+- (UIImage *)bbsActionSheetBG
+{
+    return [self stretchableImageWithImageName:@"bbs_action_sheet_bg"
+                             inResourcePackage:RESOURCE_PACKAGE_BBS];
+}
+
 //index image
 #pragma mark - Index page image
 - (UIImage *)bbsBadgeImage
@@ -289,4 +295,6 @@ static BBSImageManager* _staticBBSImageManager;
     return [_resService imageByName:imageName
                   inResourcePackage:RESOURCE_PACKAGE_BBS];
 }
+
+
 @end

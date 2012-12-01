@@ -15,6 +15,14 @@
 
 + (id)defaultManager;
 
+#pragma mark - Common image
+- (UIImage *)bbsBackImage;
+- (UIImage *)bbsBGImage;
+- (UIImage *)optionLeftBGImage;
+- (UIImage *)optionRightBGImage;
+- (UIImage *)optionButtonBGImage;
+- (UIImage *)bbsActionSheetBG;
+
 #pragma mark - Index Page image
 - (UIImage *)bbsBadgeImage;
 - (UIImage *)bbsBoardBgImage;
@@ -27,12 +35,6 @@
 - (UIImage *)bbsSwitchDownImage;
 - (UIImage *)bbsSwitchRightImage;
 
-#pragma mark - Common image
-- (UIImage *)bbsBackImage;
-- (UIImage *)bbsBGImage;
-- (UIImage *)optionLeftBGImage;
-- (UIImage *)optionRightBGImage;
-- (UIImage *)optionButtonBGImage;
 
 #pragma mark - Post List image
 - (UIImage *)bbsPostCommentImage;
@@ -67,4 +69,8 @@
 - (UIImage *)bbsCreateRewardBg;
 - (UIImage *)bbsCreateRewardOptionBG;
 - (UIImage *)bbsCreateSubmitBg;
+
+//#pragma mark - User Action actionSheet
+
+
 @end
