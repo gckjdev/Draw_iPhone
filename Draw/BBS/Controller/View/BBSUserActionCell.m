@@ -115,7 +115,6 @@
     }else{
         height += (SPACE_CONTENT_TOP + SPACE_TEXT_SOURCE_NO_IMAGE + SPACE_SOURCE_BOTTOM);
     }
-    PPDebug(@"\n<getCellHeightWithBBSAction>,height = %f.\n",height);
     return height;
 }
 

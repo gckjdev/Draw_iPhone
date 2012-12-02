@@ -185,18 +185,23 @@
 	
 }
 
+#define ACTION_SHEET_TAG 10212
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    
+    UIView *as = [self.view viewWithTag:ACTION_SHEET_TAG];
+    if (as) {
+        [as removeFromSuperview];
+        return;
+    }
     _selectedAction = [self actionForIndexPath:indexPath];
     //show action sheet
-    
-    UIActionSheet *actionSheet = [[UIActionSheet alloc]
-                                  initWithTitle:NSLS(@"kOption")
-                                  delegate:self
-                                  cancelButtonTitle:NSLS(@"kCancel")
-                                  destructiveButtonTitle:NSLS(@"kReply")
-                                  otherButtonTitles:NSLS(@"kPostDetail"), nil];
-    [actionSheet showInView:self.view];
+
+    NSArray *titles = [NSArray arrayWithObjects:NSLS(@"kReply"),NSLS(@"kPostDetail"),NSLS(@"kCancel"), nil];
+    BBSActionSheet *actionSheet = [[BBSActionSheet alloc] initWithTitles:titles delegate:self];
+    actionSheet.tag = ACTION_SHEET_TAG;
+    [actionSheet showInView:self.view showAtPoint:self.view.center animated:YES];
     [actionSheet release];
 }
 
@@ -227,10 +232,10 @@ enum{
 //    IndexDelete = 2,
 };
 
-- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+- (void)actionSheet:(BBSActionSheet *)actionSheet didSelectedButtonIndex:(NSInteger)index
 {
     NSString *postId = _selectedAction.source.postId;
-    switch (buttonIndex) {
+    switch (index) {
         case IndexReply:
         {
             NSString *postUid = _selectedAction.source.postUid;
