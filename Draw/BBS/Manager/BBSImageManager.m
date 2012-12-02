@@ -278,15 +278,15 @@ static BBSImageManager* _staticBBSImageManager;
      return [self stretchableImageWithImageName:@"bbs_create_image_enable" inResourcePackage:RESOURCE_PACKAGE_BBS];
 }
 - (UIImage *)bbsCreateInputBg{
-     return [self stretchableImageWithImageName:@"bbs_create_reward_option" inResourcePackage:RESOURCE_PACKAGE_BBS];
+     return [self stretchableImageWithImageName:@"bbs_create_input_bg" inResourcePackage:RESOURCE_PACKAGE_BBS];
 }
 - (UIImage *)bbsCreateRewardBg{
-    NSString *imageName = [self fixImageName:@"bbs_create_input_bg"];
+    NSString *imageName = [self fixImageName:@"bbs_create_reward_bg"];
     return [_resService imageByName:imageName
                   inResourcePackage:RESOURCE_PACKAGE_BBS];
 }
 - (UIImage *)bbsCreateRewardOptionBG{
-    NSString *imageName = [self fixImageName:@"bbs_create_reward_bg"];
+    NSString *imageName = [self fixImageName:@"bbs_create_reward_option"];
     return [_resService imageByName:imageName
                   inResourcePackage:RESOURCE_PACKAGE_BBS];
 }

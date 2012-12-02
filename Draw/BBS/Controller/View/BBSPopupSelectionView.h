@@ -11,6 +11,7 @@
 @class BBSPopupSelectionView;
 @protocol BBSPopupSelectionViewDelegate <NSObject>
 
+@optional
 - (void)selectionView:(BBSPopupSelectionView *)selectionView didSelectedButtonIndex:(NSInteger)index;
 
 @end
