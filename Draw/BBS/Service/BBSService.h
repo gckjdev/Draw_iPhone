@@ -65,6 +65,9 @@ typedef enum{
                postId:(NSString *)postId
            resultCode:(NSInteger)resultCode;
 
+- (void)didPayBBSRewardWithPost:(PBBBSPost *)post
+                         action:(PBBBSAction *)action
+                     resultCode:(NSInteger)resultCode;
 @end
 
 
@@ -94,6 +97,8 @@ typedef enum{
                            offset:(NSInteger)offset
                             limit:(NSInteger)limit
                          delegate:(id<BBSServiceDelegate>)delegate;
+
+//- (void)pay
 
 #pragma mark - bbs action methods
 - (void)createActionWithPostId:(NSString *)postId
@@ -127,6 +132,9 @@ typedef enum{
                              limit:(NSInteger)limit
                           delegate:(id<BBSServiceDelegate>)delegate;
 
+- (void)payRewardWithPost:(PBBBSPost *)post
+                   action:(PBBBSAction *)action
+                 delegate:(id<BBSServiceDelegate>)delegate;
 
 #pragma common methods
 - (void)getBBSDrawDataWithPostId:(NSString *)postId

@@ -37,6 +37,7 @@
 #pragma mark post detail font
 - (UIFont *)detailHeaderFont;
 - (UIFont *)detailActionFont;
+- (UIFont *)actionSourceFont;
 
 #pragma mark creation font
 - (UIFont *)creationDefaulFont;

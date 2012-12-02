@@ -13,11 +13,14 @@
 #import "ShowImageController.h"
 #import "CreatePostController.h"
 #import "BBSPostDetailController.h"
+#import "BBSManager.h"
 
 @interface BBSActionListController ()
 {
     PBBBSAction *_selectedAction;
 }
+@property (retain, nonatomic) IBOutlet UIButton *backButton;
+@property (retain, nonatomic) IBOutlet UIImageView *bgImageView;
 @end
 
 #define TAB_ID 100
@@ -42,9 +45,33 @@
     return self;
 }
 
+- (void)initViews
+{
+    
+    BBSImageManager *_bbsImageManager = [BBSImageManager defaultManager];
+    BBSFontManager *_bbsFontManager = [BBSFontManager defaultManager];
+    BBSColorManager *_bbsColorManager = [BBSColorManager defaultManager];
+
+    [self.backButton setImage:[_bbsImageManager bbsBackImage] forState:UIControlStateNormal];
+    [self.bgImageView setImage:[_bbsImageManager bbsBGImage]];
+    
+    
+    [BBSViewManager updateLable:self.titleLabel
+                        bgColor:[UIColor clearColor]
+                           font:[_bbsFontManager bbsTitleFont]
+                      textColor:[_bbsColorManager bbsTitleColor]
+                           text:NSLS(@"kMyComment")];
+    
+    [self.refreshFooterView setBackgroundColor:[UIColor clearColor]];
+    [self.refreshHeaderView setBackgroundColor:[UIColor clearColor]];
+
+    
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self initViews];
     [self clickTab:TAB_ID];
 }
 
@@ -225,4 +252,14 @@ enum{
 }
 
 
+- (void)dealloc {
+    [_backButton release];
+    [_bgImageView release];
+    [super dealloc];
+}
+- (void)viewDidUnload {
+    [self setBackButton:nil];
+    [self setBgImageView:nil];
+    [super viewDidUnload];
+}
 @end

@@ -378,6 +378,9 @@ typedef enum{
 {
     PPDebug(@"<didClickPayButtonWithAction>");
     _selectedAction = nil;
+    [[BBSService defaultService] payRewardWithPost:self.post
+                                            action:action
+                                          delegate:self];
 }
 
 #pragma mark - CreatePostController delegate
@@ -388,11 +391,13 @@ typedef enum{
         TableTab *tab = nil;
         if (action.type == ActionTypeSupport) {
             tab = [_tabManager tabForID:Support];
+            [tab.dataList insertObject:action atIndex:0];
+            [_header clickSupport:_header.support];
         }else if(action.type == ActionTypeComment){
             tab = [_tabManager tabForID:Comment];
+            [tab.dataList insertObject:action atIndex:0];
+            [_header clickComment:_header.comment];
         }
-        [tab.dataList insertObject:action atIndex:0];
-        [self clickTabButton:(UIButton *)[self.view viewWithTag:tab.tabID]];
     }
 }
 
@@ -402,10 +407,21 @@ typedef enum{
             replyAction:(PBBBSAction *)replyAction
              resultCode:(NSInteger)resultCode
 {
+    
     [self didController:nil CreateNewAction:action];
 }
 
-
+- (void)didPayBBSRewardWithPost:(PBBBSPost *)post
+                         action:(PBBBSAction *)action
+                     resultCode:(NSInteger)resultCode
+{
+    if (resultCode == 0) {
+        [post setPay:YES];
+        [self.dataTableView reloadData];
+    }else{
+        PPDebug(@"<didPayBBSRewardWithPost>fail to pay, postId = %@, actionId = %@",post.postId, action.actionId);
+    }
+}
 - (void)didGetBBSDrawActionList:(NSMutableArray *)drawActionList
                          postId:(NSString *)postId
                        actionId:(NSString *)actionId
@@ -437,7 +453,7 @@ typedef enum{
 - (IBAction)clickReplyButton:(id)sender {
     [CreatePostController enterControllerWithSourecePost:self.post
                                             sourceAction:nil
-                                          fromController:self];
+                                          fromController:self].delegate = self;
 }
 
 - (void)didDeleteBBSAction:(NSString *)actionId resultCode:(NSInteger)resultCode

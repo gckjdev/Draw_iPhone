@@ -42,7 +42,6 @@
 - (void)initViews
 {
     self.content.numberOfLines = CONTENT_TEXT_LINE;
-    [self.content setLineBreakMode:NSLineBreakByTruncatingTail];
     self.content.font = CONTENT_FONT;
     [self.content setLineBreakMode:NSLineBreakByCharWrapping];
     

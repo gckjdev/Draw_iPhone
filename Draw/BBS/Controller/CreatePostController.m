@@ -213,7 +213,7 @@
                         bgColor:[UIColor clearColor]
                            font:[fontManager bbsTitleFont]
                       textColor:[colorManager bbsTitleColor]
-                           text:NSLS(@"kPostDetail")];
+                           text:NSLS(@"kComment")];
     
     
     [BBSViewManager updateButton:self.rewardButton
@@ -233,6 +233,10 @@
                       titleColor:[colorManager creationDefaultColor]
                            title:NSLS(@"k提交")
                         forState:UIControlStateNormal];
+    if (self.sourceAction) {
+        self.rewardButton.hidden = YES;
+        [self.titleLabel setText:NSLS(@"kReply")];
+    }
 }
 
 - (void)viewDidLoad

@@ -278,20 +278,24 @@
   BOOL hasBonus_:1;
   BOOL hasStatus_:1;
   BOOL hasAwardDate_:1;
+  BOOL hasActionId_:1;
   BOOL hasWinner_:1;
   int32_t bonus;
   int32_t status;
   int32_t awardDate;
+  NSString* actionId;
   PBBBSUser* winner;
 }
 - (BOOL) hasBonus;
 - (BOOL) hasStatus;
 - (BOOL) hasWinner;
 - (BOOL) hasAwardDate;
+- (BOOL) hasActionId;
 @property (readonly) int32_t bonus;
 @property (readonly) int32_t status;
 @property (readonly, retain) PBBBSUser* winner;
 @property (readonly) int32_t awardDate;
+@property (readonly, retain) NSString* actionId;
 
 + (PBBBSReward*) defaultInstance;
 - (PBBBSReward*) defaultInstance;
@@ -348,6 +352,11 @@
 - (int32_t) awardDate;
 - (PBBBSReward_Builder*) setAwardDate:(int32_t) value;
 - (PBBBSReward_Builder*) clearAwardDate;
+
+- (BOOL) hasActionId;
+- (NSString*) actionId;
+- (PBBBSReward_Builder*) setActionId:(NSString*) value;
+- (PBBBSReward_Builder*) clearActionId;
 @end
 
 @interface PBBBSPost : PBGeneratedMessage {

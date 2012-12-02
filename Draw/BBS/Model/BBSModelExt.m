@@ -79,7 +79,10 @@
     }
     return nil;
 }
-
+- (NSString *)genderString
+{
+    return [self gender] ? @"m" : @"f";
+}
 @end
 
 
@@ -96,7 +99,7 @@
 
 - (BOOL)canPay
 {
-   return [self isMyPost] && [self hasReward] && ![self rewarded];
+   return [self isMyPost] && [self hasReward] && ![self hasPay];
 }
 
 - (NSString *)postUid
@@ -117,9 +120,22 @@
 {
     return self.reward.bonus;
 }
-- (BOOL)rewarded
+
+#define POST_PAY_KEY_PRE @"POST_PAY"
+
+- (void)setPay:(BOOL)pay
 {
-    return [self.reward hasWinner];
+    NSString *key = [NSString stringWithFormat:@"%@_%@",POST_PAY_KEY_PRE,self.postId];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setBool:pay forKey:key];
+}
+
+- (BOOL)hasPay
+{
+    if([self.reward hasWinner]) return YES;
+    NSString *key = [NSString stringWithFormat:@"%@_%@",POST_PAY_KEY_PRE,self.postId];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    return [defaults boolForKey:key];
 }
 
 @end

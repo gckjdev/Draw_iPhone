@@ -966,6 +966,7 @@ static PBBBSContent* defaultPBBBSContentInstance = nil;
 @property int32_t status;
 @property (retain) PBBBSUser* winner;
 @property int32_t awardDate;
+@property (retain) NSString* actionId;
 @end
 
 @implementation PBBBSReward
@@ -998,8 +999,16 @@ static PBBBSContent* defaultPBBBSContentInstance = nil;
   hasAwardDate_ = !!value;
 }
 @synthesize awardDate;
+- (BOOL) hasActionId {
+  return !!hasActionId_;
+}
+- (void) setHasActionId:(BOOL) value {
+  hasActionId_ = !!value;
+}
+@synthesize actionId;
 - (void) dealloc {
   self.winner = nil;
+  self.actionId = nil;
   [super dealloc];
 }
 - (id) init {
@@ -1008,6 +1017,7 @@ static PBBBSContent* defaultPBBBSContentInstance = nil;
     self.status = 0;
     self.winner = [PBBBSUser defaultInstance];
     self.awardDate = 0;
+    self.actionId = @"";
   }
   return self;
 }
@@ -1050,6 +1060,9 @@ static PBBBSReward* defaultPBBBSRewardInstance = nil;
   if (self.hasAwardDate) {
     [output writeInt32:4 value:self.awardDate];
   }
+  if (self.hasActionId) {
+    [output writeString:5 value:self.actionId];
+  }
   [self.unknownFields writeToCodedOutputStream:output];
 }
 - (int32_t) serializedSize {
@@ -1070,6 +1083,9 @@ static PBBBSReward* defaultPBBBSRewardInstance = nil;
   }
   if (self.hasAwardDate) {
     size += computeInt32Size(4, self.awardDate);
+  }
+  if (self.hasActionId) {
+    size += computeStringSize(5, self.actionId);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -1158,6 +1174,9 @@ static PBBBSReward* defaultPBBBSRewardInstance = nil;
   if (other.hasAwardDate) {
     [self setAwardDate:other.awardDate];
   }
+  if (other.hasActionId) {
+    [self setActionId:other.actionId];
+  }
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }
@@ -1198,6 +1217,10 @@ static PBBBSReward* defaultPBBBSRewardInstance = nil;
       }
       case 32: {
         [self setAwardDate:[input readInt32]];
+        break;
+      }
+      case 42: {
+        [self setActionId:[input readString]];
         break;
       }
     }
@@ -1279,6 +1302,22 @@ static PBBBSReward* defaultPBBBSRewardInstance = nil;
 - (PBBBSReward_Builder*) clearAwardDate {
   result.hasAwardDate = NO;
   result.awardDate = 0;
+  return self;
+}
+- (BOOL) hasActionId {
+  return result.hasActionId;
+}
+- (NSString*) actionId {
+  return result.actionId;
+}
+- (PBBBSReward_Builder*) setActionId:(NSString*) value {
+  result.hasActionId = YES;
+  result.actionId = value;
+  return self;
+}
+- (PBBBSReward_Builder*) clearActionId {
+  result.hasActionId = NO;
+  result.actionId = @"";
   return self;
 }
 @end

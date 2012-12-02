@@ -32,6 +32,8 @@
 - (UIColor *)detailDefaultColor;
 - (UIColor *)detailHeaderSelectedColor;
 
+- (UIColor *)userActionSplitColor;//758ba2
+
 #pragma mark - creation color
 - (UIColor *)creationDefaultColor;
 @end
