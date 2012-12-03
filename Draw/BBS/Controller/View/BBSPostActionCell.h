@@ -19,7 +19,7 @@
 
 @end
 
-@interface BBSPostActionCell : BBSTableViewCell<BBSPopupSelectionViewDelegate>
+@interface BBSPostActionCell : BBSTableViewCell<BBSOptionViewDelegate>
 {
     
 }

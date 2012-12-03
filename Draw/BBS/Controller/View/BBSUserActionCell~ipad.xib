@@ -432,15 +432,10 @@
 					<string key="className">BBSUserActionCell</string>
 					<string key="superclassName">BBSTableViewCell</string>
 					<dictionary class="NSMutableDictionary" key="outlets">
-						<string key="popPosBtn">UIButton</string>
 						<string key="source">UILabel</string>
 						<string key="splitLine">UIView</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
-						<object class="IBToOneOutletInfo" key="popPosBtn">
-							<string key="name">popPosBtn</string>
-							<string key="candidateClassName">UIButton</string>
-						</object>
 						<object class="IBToOneOutletInfo" key="source">
 							<string key="name">source</string>
 							<string key="candidateClassName">UILabel</string>

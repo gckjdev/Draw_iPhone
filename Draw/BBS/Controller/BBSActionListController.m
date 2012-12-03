@@ -181,28 +181,36 @@
 	}
     PBBBSAction *action = [self actionForIndexPath:indexPath];
     [cell updateCellWithBBSAction:action];
+    
 	return cell;
 	
 }
 
 #define ACTION_SHEET_TAG 10212
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+- (void)showActionSheetInPoint:(CGPoint)point
 {
-    
     UIView *as = [self.view viewWithTag:ACTION_SHEET_TAG];
     if (as) {
         [as removeFromSuperview];
         return;
     }
-    _selectedAction = [self actionForIndexPath:indexPath];
     //show action sheet
-
+    
     NSArray *titles = [NSArray arrayWithObjects:NSLS(@"kReply"),NSLS(@"kPostDetail"),NSLS(@"kCancel"), nil];
     BBSActionSheet *actionSheet = [[BBSActionSheet alloc] initWithTitles:titles delegate:self];
     actionSheet.tag = ACTION_SHEET_TAG;
-    [actionSheet showInView:self.view showAtPoint:self.view.center animated:YES];
+    [actionSheet showInView:self.view showAtPoint:point animated:YES];
+    [actionSheet setMaskViewColor:[UIColor lightGrayColor]];
     [actionSheet release];
+
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+    _selectedAction = [self actionForIndexPath:indexPath];
+    [self showActionSheetInPoint:self.view.center];
 }
 
 #pragma mark - cell delegate
@@ -232,7 +240,7 @@ enum{
 //    IndexDelete = 2,
 };
 
-- (void)actionSheet:(BBSActionSheet *)actionSheet didSelectedButtonIndex:(NSInteger)index
+- (void)optionView:(BBSOptionView *)optionView didSelectedButtonIndex:(NSInteger)index
 {
     NSString *postId = _selectedAction.source.postId;
     switch (index) {

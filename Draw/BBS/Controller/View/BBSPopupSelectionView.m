@@ -20,38 +20,17 @@
 
 #define BUTTON_SIZE (ISIPAD ? CGSizeMake(82,43) : CGSizeMake(41,22))
 
-@interface BBSPopupSelectionView ()
-{
-    NSArray *_titles;
-}
-@property(nonatomic, retain)NSArray *titles;
-@property(nonatomic, assign)id<BBSPopupSelectionViewDelegate>delegate;
-
-@end
-
 @implementation BBSPopupSelectionView
-
-- (id)initWithTitles:(NSArray *)titles
-            delegate:(id<BBSPopupSelectionViewDelegate>)delegate;
-{
-    self = [super init];
-    if (self) {
-        self.titles = titles;
-        self.delegate = delegate;
-    }
-    return self;
-}
 
 - (void)dealloc
 {
-    PPRelease(_titles);
     [super dealloc];
 }
 
 
 - (void)updateFrameWithSuperView:(UIView *)view showAbovePoint:(CGPoint )point
 {
-    NSInteger count = [_titles count];
+    NSInteger count = [self.titles count];
     CGFloat width = count * BUTTON_SIZE.width + (count - 1) *SPACE_BUTTON_BUTTON;
     width += (SPACE_LEFTRIGHT_BUTTON * 2);
     CGFloat height = BUTTON_SIZE.height + SPACE_TOP_BUTTON + SPACE_BOTTOM_BUTTON;
@@ -64,25 +43,23 @@
     }else{
         x = point.x + SPACE_LEFTRIGHT_TIP - width;
     }
-    self.frame = CGRectMake(x, y, width, height);
+    self.contentView.frame = CGRectMake(x, y, width, height);
 }
 - (void)updateButtons
 {
     NSInteger i = 0;
-    for(NSString *title in _titles){
+    for(NSString *title in self.titles){
         UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-//        [button setBackgroundImage:[[BBSImageManager defaultManager] optionButtonBGImage]
-//                          forState:UIControlStateNormal];
         CGFloat y = SPACE_TOP_BUTTON;
         CGFloat x = SPACE_LEFTRIGHT_BUTTON + i *(SPACE_BUTTON_BUTTON + BUTTON_SIZE.width);
         button.frame = CGRectMake(x, y, BUTTON_SIZE.width, BUTTON_SIZE.height);
         button.tag = i;
         [button addTarget:self
-                   action:@selector(clickButton:)
+                   action:@selector(clickOptionButton:)
          forControlEvents:UIControlEventTouchUpInside];
         
         ++i;
-        [self addSubview:button];
+        [self.contentView addSubview:button];
         
         
         BBSImageManager *imageManager = [BBSImageManager defaultManager];
@@ -102,12 +79,10 @@
 
 - (void)updateBGImageWithView:(UIView *)view showAbovePoint:(CGPoint )point
 {
-    UIImageView *bgImage = [[[UIImageView alloc] initWithFrame:self.bounds] autorelease];
-    [self addSubview:bgImage];
     if (point.x < view.center.x) {
-        [bgImage setImage:[[BBSImageManager defaultManager] optionLeftBGImage]];
+        [self.bgImageView setImage:[[BBSImageManager defaultManager] optionLeftBGImage]];
     }else{
-        [bgImage setImage:[[BBSImageManager defaultManager] optionRightBGImage]];
+        [self.bgImageView setImage:[[BBSImageManager defaultManager] optionRightBGImage]];
     }
 }
 
@@ -115,31 +90,13 @@
 
 - (void)showInView:(UIView *)view showAbovePoint:(CGPoint )point animated:(BOOL)animated
 {
-    [view addSubview:self];
     [self updateFrameWithSuperView:view
                     showAbovePoint:point];
     [self updateBGImageWithView:view
                  showAbovePoint:point];
     
     [self updateButtons];
-    if (animated) {
-        self.alpha = 0;
-        [UIView animateWithDuration:ANIMATION_TIME animations:^{
-            self.alpha = 1;
-        }];
-    }
+    [self showInView:view animated:animated];
 }
 
-- (void)clickButton:(UIButton *)button
-{
-    if (self.delegate && [self.delegate respondsToSelector:@selector(selectionView:didSelectedButtonIndex:)]) {
-        [self.delegate selectionView:self didSelectedButtonIndex:button.tag];
-    }
-    self.alpha = 1;
-    [UIView animateWithDuration:ANIMATION_TIME animations:^{
-        self.alpha = 0.0;
-    } completion:^(BOOL finished) {
-        [self removeFromSuperview];
-    }];
-}
 @end

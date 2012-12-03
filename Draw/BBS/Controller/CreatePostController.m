@@ -344,7 +344,7 @@
     }
 }
 
-- (void)selectionView:(BBSPopupSelectionView *)selectionView didSelectedButtonIndex:(NSInteger)index
+- (void)optionView:(BBSOptionView *)optionView didSelectedButtonIndex:(NSInteger)index
 {
     self.bonus = index * 100;
     [self updateToolButtons];
