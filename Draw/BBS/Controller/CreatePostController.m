@@ -14,6 +14,7 @@
 #import "ShareImageManager.h"
 #import "BBSPopupSelectionView.h"
 #import "GameNetworkConstants.h"
+#import "AccountService.h"
 
 @interface CreatePostController ()
 {
@@ -359,8 +360,14 @@
 
 - (void)optionView:(BBSOptionView *)optionView didSelectedButtonIndex:(NSInteger)index
 {
-    self.bonus = index * 100;
-    [self updateToolButtons];
+    NSInteger bonus = index * 100;
+    if ([[AccountService defaultService] hasEnoughCoins:bonus]) {
+        self.bonus = index * 100;
+        [self updateToolButtons];
+    }else{
+        NSString *msg = [NSString stringWithFormat:NSLS("kCoinsNotEnoughTips"),bonus];
+        [self popupMessage:NSLS(msg) title:nil];
+    }
 }
 
 - (void)didImageSelected:(UIImage*)image
@@ -385,6 +392,9 @@
         if (self.delegate && [self.delegate
                               respondsToSelector:@selector(didController:CreateNewPost:)]) {
             [self.delegate didController:self CreateNewPost:post];
+        }
+        if (self.bonus > 0) {
+            [[AccountService defaultService] deductAccount:self.bonus source:BBSReward];
         }
         [self dismissModalViewControllerAnimated:YES];
     }else{
