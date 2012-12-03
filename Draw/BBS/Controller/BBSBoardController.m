@@ -57,14 +57,9 @@
 
 - (void)initViews
 {
-    [self.backButton setImage:[_bbsImageManager bbsBackImage] forState:UIControlStateNormal];
-
-    
-    [BBSViewManager updateLable:self.titleLabel
-                        bgColor:[UIColor clearColor]
-                           font:[_bbsFontManager bbsTitleFont]
-                      textColor:[_bbsColorManager bbsTitleColor]
-                           text:NSLS(@"kBBS")];
+    [BBSViewManager updateDefaultTitleLabel:self.titleLabel text:NSLS(@"kBBS")];
+    [BBSViewManager updateDefaultBackButton:self.backButton];
+    [BBSViewManager updateDefaultTableView:self.dataTableView];
     
     [BBSViewManager updateButton:self.myPostButton
                          bgColor:[UIColor clearColor]

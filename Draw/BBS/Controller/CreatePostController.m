@@ -201,19 +201,20 @@
     BBSImageManager *imageManager = [BBSImageManager defaultManager];
     BBSColorManager *colorManager = [BBSColorManager defaultManager];
     BBSFontManager *fontManager = [BBSFontManager defaultManager];
+    
     [self.bgImageView setImage:[imageManager bbsBGImage]];
     [self.graffitiButton setImage:[imageManager bbsCreateDrawEnable] forState:UIControlStateNormal];
     [self.imageButton setImage:[imageManager bbsCreateImageEnable] forState:UIControlStateNormal];
-    [self.backButton setImage:[imageManager bbsBackImage] forState:UIControlStateNormal];
+//    [self.backButton setImage:[imageManager bbsBackImage] forState:UIControlStateNormal];
     [self.inputBG setImage:[imageManager bbsCreateInputBg]];
     [self.textView setTextColor:[UIColor blackColor]];
     [self.textView setFont:[fontManager postContentFont]];
     
-    [BBSViewManager updateLable:self.titleLabel
-                        bgColor:[UIColor clearColor]
-                           font:[fontManager bbsTitleFont]
-                      textColor:[colorManager bbsTitleColor]
-                           text:NSLS(@"kComment")];
+//    [BBSViewManager updateLable:self.titleLabel
+//                        bgColor:[UIColor clearColor]
+//                           font:[fontManager bbsTitleFont]
+//                      textColor:[colorManager bbsTitleColor]
+//                           text:NSLS(@"kComment")];
     
     
     [BBSViewManager updateButton:self.rewardButton
@@ -233,10 +234,18 @@
                       titleColor:[colorManager creationDefaultColor]
                            title:NSLS(@"k提交")
                         forState:UIControlStateNormal];
+
+    NSString *titleName = nil;
+    
     if (self.sourceAction) {
         self.rewardButton.hidden = YES;
-        [self.titleLabel setText:NSLS(@"kReply")];
+        titleName = NSLS(@"kReply");
+    }else{
+        titleName = NSLS(@"kComment");        
     }
+    [BBSViewManager updateDefaultTitleLabel:self.titleLabel text:titleName];
+    [BBSViewManager updateDefaultBackButton:self.backButton];
+
 }
 
 - (void)viewDidLoad
@@ -328,6 +337,7 @@
 }
 
 #define SELECTION_VIEW_TAG 100
+#define SELECTION_VIEW_OFFSET ([DeviceDetection isIPAD] ? 30 : 7)
 - (IBAction)clickRewardButton:(id)sender {
     BBSPopupSelectionView *selectionView = (BBSPopupSelectionView *)[self.view
                                                                      viewWithTag:SELECTION_VIEW_TAG];
@@ -338,7 +348,7 @@
         selectionView = [[BBSPopupSelectionView alloc] initWithTitles:titiles delegate:self];
         selectionView.tag = SELECTION_VIEW_TAG;
         CGPoint point = self.rewardButton.center;
-        point.y -= 13;
+        point.y -=  SELECTION_VIEW_OFFSET;
         [selectionView showInView:self.view showAbovePoint:point animated:YES];
         [selectionView release];
     }

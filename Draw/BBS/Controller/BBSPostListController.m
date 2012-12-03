@@ -76,7 +76,10 @@
 }
 - (void)initViews
 {
-    [self.backButton setImage:[_bbsImageManager bbsBackImage] forState:UIControlStateNormal];
+//    [self.backButton setImage:[_bbsImageManager bbsBackImage] forState:UIControlStateNormal];
+    
+
+    
     [self.bgImageView setImage:[_bbsImageManager bbsBGImage]];
     
     NSString *titleName = nil;
@@ -96,11 +99,10 @@
         self.createPostButton.hidden = YES;
         self.rankButton.hidden = YES;
     }
-    [BBSViewManager updateLable:self.titleLabel
-                        bgColor:[UIColor clearColor]
-                           font:[_bbsFontManager bbsTitleFont]
-                      textColor:[_bbsColorManager bbsTitleColor]
-                           text:titleName];
+    
+    [BBSViewManager updateDefaultTitleLabel:self.titleLabel text:titleName];
+    [BBSViewManager updateDefaultBackButton:self.backButton];
+    [BBSViewManager updateDefaultTableView:self.dataTableView];
     
     [self.refreshFooterView setBackgroundColor:[UIColor clearColor]];
     [self.refreshHeaderView setBackgroundColor:[UIColor clearColor]];    

@@ -85,6 +85,10 @@ static BBSColorManager* _staticBBSColorManager;
 - (UIColor *)userActionSplitColor{
     return [UIColor colorWithRed:0x75/255.0 green:0x8b/255.0 blue:0xa2/255.0 alpha:1];
 }
+
+- (UIColor *)userActionSourceColor{
+    return [UIColor grayColor];
+}
 #pragma mark - creation color
 - (UIColor *)creationDefaultColor{
     return [UIColor colorWithRed:0x2c/255.0 green:0x4c/255.0 blue:0x6e/255.0 alpha:1];
