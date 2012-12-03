@@ -54,7 +54,8 @@
 
 #define LOADING_CENTER_SIZE ([DeviceDetection isIPAD]?CGSizeMake(62, 46):CGSizeMake(31, 23))
 
-#define SEPERATOR   ([DeviceDetection isIPAD]?10:5)
+#define SEPERATOR   ([DeviceDetection isIPAD]?40:20)
+#define CORNER_RADIUS   ([DeviceDetection isIPAD]?20:10)
 
 - (BOOL) isIPAD
 {
@@ -158,7 +159,8 @@
 //    [self.messageLabel shineWithRepeatCount:HUGE_VALF duration:4.5 maskWidth:200.0f];
     [self.loadingView addSubview:self.messageLabel];
     
-    
+    [self.loadingView.layer setCornerRadius:CORNER_RADIUS];
+    [self.loadingView.layer setMasksToBounds:YES];
     
     [self addSubview:self.loadingView];
     
