@@ -1,29 +1,29 @@
 //
-//  DiceGameApp.m
+//  ZJHGameApp.m
 //  Draw
 //
-//  Created by  on 12-8-25.
-//  Copyright (c) 2012年 __MyCompanyName__. All rights reserved.
+//  Created by qqn_pipi on 12-12-3.
+//
 //
 
-#import "DiceGameApp.h"
+#import "ZJHGameApp.h"
 #import "MobClickUtils.h"
 
-@implementation DiceGameApp
+@implementation ZJHGameApp
 
 - (NSString*)appId
 {
-    return DICE_APP_ID;
+    return ZJH_APP_ID;
 }
 
 - (NSString*)gameId
 {
-    return DICE_GAME_ID;    
+    return ZHAJINHUA_GAME_ID;
 }
 
 - (NSString*)umengId
 {
-    return DICE_UMENG_ID;
+    return ZJH_UMENG_ID;
 }
 
 - (BOOL)disableAd
@@ -33,61 +33,53 @@
 
 - (NSString*)background
 {
-    return DICE_BACKGROUND;
+    return ZJH_BACKGROUND;
 }
 
 - (NSString*)lmwallId
 {
-    return DICE_LM_WALL_ID;
+    return ZJH_LM_WALL_ID;
 }
 
 - (NSString*)lmAdPublisherId
 {
-    return DICE_LM_AD_ID;
+    return ZJH_LM_AD_ID;
 }
 
 - (NSString*)aderAdPublisherId
 {
-    return DICE_ADER_AD_ID;
+    return ZJH_ADER_AD_ID;
 }
 
 - (NSString*)mangoAdPublisherId
 {
-    return DICE_MANGO_AD_ID;
+    return ZJH_MANGO_AD_ID;
 }
 
 - (NSString*)defaultBroadImage
 {
-    return @"dice_default_board.jpg";
+    return @"zjh_default_board.jpg";
 }
 
 - (NSString *)defaultAdBoardImage
 {
-    return @"dice_default_board_ad.jpg";
+    return @"zjh_default_board_ad.jpg";
 }
 
 - (NSString*)sinaAppKey
 {
-//    return @"562852192";
-//    return @"3163067274";
     return @"3580615797";
-
-
 }
 
 - (NSString*)sinaAppSecret
 {
-//    return @"6271c4259ae38213ddf6f8b1b6ba7766";
-//    return @"d677917b0c2855d36674c1d0339326bd";
-    
-    return @"74c79adc97a9f81cda5d69af38f5c716";    
+    return @"74c79adc97a9f81cda5d69af38f5c716";
 }
 
 - (NSString*)sinaAppRedirectURI
 {
     return @"http://www.drawlively.com/happypoker";
 }
-
 
 - (NSString*)qqAppKey
 {
@@ -106,7 +98,7 @@
 
 - (NSString*)facebookAppKey
 {
-    return @"451387761588871";    
+    return @"451387761588871";
 }
 
 - (NSString*)facebookAppSecret
@@ -121,12 +113,12 @@
 
 - (NSString*)removeAdProductId
 {
-    return [MobClickUtils getStringValueByKey:@"AD_IAP_ID" defaultValue:@"com.orange.dice.removead"];    
+    return [MobClickUtils getStringValueByKey:@"AD_IAP_ID" defaultValue:@"com.orange.zjh.removead"];
 }
 
 - (NSString*)askFollowTitle
 {
-    return @"关注官方微博";    
+    return @"关注官方微博";
 }
 
 - (NSString*)askFollowMessage
@@ -143,6 +135,5 @@
 {
     return @"happypoker";
 }
-
 
 @end
