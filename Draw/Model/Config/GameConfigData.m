@@ -57,7 +57,7 @@
         if (data != nil){
             self.config = [PBConfig parseFromData:data];
             PPDebug(@"<readConfigData> parse config data %@ successfully", _smartData.name);
-            PPDebug(@"test value = %@", _config.test);
+            PPDebug(@"test value = %d", _config.diceConfig.betAnteHighRoom);
 //            PPDebug(@"Config Price List = %@", [_config.coinPriceList description]);
         }
         else{
