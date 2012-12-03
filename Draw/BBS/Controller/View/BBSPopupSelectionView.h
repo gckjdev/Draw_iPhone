@@ -11,6 +11,7 @@
 @class BBSPopupSelectionView;
 @protocol BBSPopupSelectionViewDelegate <NSObject>
 
+@optional
 - (void)selectionView:(BBSPopupSelectionView *)selectionView didSelectedButtonIndex:(NSInteger)index;
 
 @end
@@ -19,5 +20,5 @@
 
 - (id)initWithTitles:(NSArray *)titles
             delegate:(id<BBSPopupSelectionViewDelegate>)delegate;
-- (void)showInView:(UIView *)view showAbovePoint:(CGPoint )point;
+- (void)showInView:(UIView *)view showAbovePoint:(CGPoint )point animated:(BOOL)animated;
 @end

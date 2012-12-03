@@ -50,6 +50,7 @@ typedef enum {
 - (BOOL)isMe;
 - (UIImage *)defaultAvatar;
 - (NSURL *)avatarURL;
+- (NSString *)genderString;
 @end
 
 
@@ -57,12 +58,15 @@ typedef enum {
 
 - (BOOL)canDelete;
 - (BOOL)isMyPost;
+- (BOOL)canPay;
 - (NSString *)postUid;
 - (NSString *)postText;
 - (NSDate *)cDate;
-//- (BOOL)hasReward;
 - (NSInteger)rewardBonus;
-- (BOOL)rewarded;
+
+- (void)setPay:(BOOL)pay;
+- (BOOL)hasPay;
+
 @end
 
 @interface PBBBSAction (ActionExt)

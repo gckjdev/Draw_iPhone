@@ -7,6 +7,7 @@
 //
 
 #import "BBSTableViewCell.h"
+#import "BBSPopupSelectionView.h"
 
 @class PBBBSAction;
 
@@ -18,20 +19,24 @@
 
 @end
 
-@interface BBSPostActionCell : BBSTableViewCell
+@interface BBSPostActionCell : BBSTableViewCell<BBSPopupSelectionViewDelegate>
 {
     
 }
 
 @property (retain, nonatomic) IBOutlet UIButton *reply;
+@property (retain, nonatomic) IBOutlet UIImageView *option;
+
 @property (retain, nonatomic) PBBBSAction *action;
+@property (retain, nonatomic) PBBBSPost *post;
+
 
 - (IBAction)clickRepyButton:(id)sender;
-- (IBAction)clickPayButton:(id)sender;
 + (id)createCell:(id)delegate;
 + (NSString*)getCellIdentifier;
-+ (CGFloat)getCellHeightWithBBSAction:(PBBBSAction *)post;
-- (void)updateCellWithBBSAction:(PBBBSAction *)post;
++ (CGFloat)getCellHeightWithBBSAction:(PBBBSAction *)action;
+- (void)updateCellWithBBSAction:(PBBBSAction *)action post:(PBBBSPost *)post;
+- (void)showOption:(BOOL)show;
 
 
 @end

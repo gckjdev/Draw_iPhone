@@ -17,7 +17,7 @@
 
 @end
 
-@interface BBSPostActionHeaderView : UIView
+@interface BBSPostActionHeaderView : UITableViewCell
 {
     UIButton *_selectedButton;
 }

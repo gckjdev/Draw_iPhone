@@ -208,10 +208,12 @@ BBSService *_staticBBSService;
     PBBBSActionSource_Builder *builder = [[PBBBSActionSource_Builder alloc] init];
     builder.postId = postId;
     [builder setPostUid:postUid];
-    [builder setActionId:actionId];
-    [builder setActionUid:actionUid];
-    [builder setActionNick:sourceActionNickName];
-    [builder setActionType:actionType];
+    if ([actionId length] > 0) {
+        [builder setActionId:actionId];
+        [builder setActionUid:actionUid];
+        [builder setActionNick:sourceActionNickName];
+        [builder setActionType:actionType];
+    }
     [builder setBriefText:briefText];
     PBBBSActionSource *source = [builder build];
     [builder release];
@@ -731,6 +733,41 @@ BBSService *_staticBBSService;
         });
     });
 }
+
+- (void)payRewardWithPost:(PBBBSPost *)post
+                   action:(PBBBSAction *)action
+                 delegate:(id<BBSServiceDelegate>)delegate
+{
+    dispatch_async(workingQueue, ^{
+        NSString *userId = [[UserManager defaultManager] userId];
+        NSString *appId = [ConfigManager appId];
+        NSInteger deviceType = [DeviceDetection deviceType];
+        PBBBSUser *aUser = action.createUser;
+        
+        CommonNetworkOutput *output = [BBSNetwork payReward:TRAFFIC_SERVER_URL
+                                                     userId:userId
+                                                      appId:appId
+                                                 deviceType:deviceType
+                                                     postId:post.postId
+                                                   actionId:action.actionId
+                                                  actionUid:aUser.userId
+                                                 actionNick:aUser.nickName
+                                               actionGender:aUser.genderString
+                                               actionAvatar:aUser.avatar];
+        
+        NSInteger resultCode = [output resultCode];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (delegate && [delegate respondsToSelector:@selector(didPayBBSRewardWithPost:action:resultCode:)]) {
+                [delegate didPayBBSRewardWithPost:post
+                                           action:action
+                                       resultCode:resultCode];
+            }
+        });
+    });
+
+}
+
 
 #pragma common methods
 

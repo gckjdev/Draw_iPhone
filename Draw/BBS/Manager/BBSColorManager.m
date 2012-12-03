@@ -53,7 +53,7 @@ static BBSColorManager* _staticBBSColorManager;
     return [UIColor colorWithRed:0x44/255.0 green:0x65/255.0 blue:0x87/255.0 alpha:1];
 }
 
-//post list color
+#pragma mark - post list color
 - (UIColor *)postNickColor{
     return [UIColor colorWithRed:0x2c/255.0 green:0x4c/255.0 blue:0x6e/255.0 alpha:1];
 }
@@ -73,11 +73,20 @@ static BBSColorManager* _staticBBSColorManager;
     return [UIColor colorWithRed:0x7c/255.0 green:0xb3/255.0 blue:0xde/255.0 alpha:1];
 }
 
-//post detail color
+#pragma mark - post detail color
 - (UIColor *)detailDefaultColor{
     return [UIColor colorWithRed:0x61/255.0 green:0x8d/255.0 blue:0xb4/255.0 alpha:1];
 }
 - (UIColor *)detailHeaderSelectedColor{
     return [UIColor colorWithRed:0xce/255.0 green:0xd7/255.0 blue:0xe1/255.0 alpha:1];
+}
+
+
+- (UIColor *)userActionSplitColor{
+    return [UIColor colorWithRed:0x75/255.0 green:0x8b/255.0 blue:0xa2/255.0 alpha:1];
+}
+#pragma mark - creation color
+- (UIColor *)creationDefaultColor{
+    return [UIColor colorWithRed:0x2c/255.0 green:0x4c/255.0 blue:0x6e/255.0 alpha:1];
 }
 @end

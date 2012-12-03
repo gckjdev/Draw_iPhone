@@ -728,12 +728,12 @@
             break;
         case MenuButtonTypeContest:
         {
-//            BBSBoardController *bbs = [[BBSBoardController alloc] init];
-//            [self.navigationController pushViewController:bbs animated:YES];
-//            [bbs release];
-            ContestController *cc = [[ContestController alloc] init];
-            [self.navigationController pushViewController:cc animated:YES];
-            [cc release];
+            BBSBoardController *bbs = [[BBSBoardController alloc] init];
+            [self.navigationController pushViewController:bbs animated:YES];
+            [bbs release];
+//            ContestController *cc = [[ContestController alloc] init];
+//            [self.navigationController pushViewController:cc animated:YES];
+//            [cc release];
         }
             break;
         case MenuButtonTypeTop:

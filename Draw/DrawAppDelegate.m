@@ -60,6 +60,8 @@
 #import "PPTecentWeiboService.h"
 #import "PPFacebookService.h"
 
+#import "GameConfigDataManager.h"
+
 NSString* GlobalGetServerURL()
 {    
     return [ConfigManager getAPIServerURL];
@@ -352,6 +354,10 @@ NSString* GlobalGetBoardServerURL()
     
     //sync level details
     [[LevelService defaultService] syncExpAndLevel:SYNC];
+    
+//    [GameConfigDataManager createTestConfigData];
+  
+    [GameConfigDataManager defaultInstance];
     
     return YES;
 }

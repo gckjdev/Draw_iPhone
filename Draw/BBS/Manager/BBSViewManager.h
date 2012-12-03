@@ -7,6 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "BBSImageManager.h"
+#import "BBSColorManager.h"
+#import "BBSFontManager.h"
 
 @interface BBSViewManager : NSObject
 

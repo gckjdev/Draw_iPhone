@@ -1,38 +1,38 @@
 //
-//  BBSPopupSelectionView.m
+//  BBSActionSheet.m
 //  Draw
 //
-//  Created by gamy on 12-11-30.
+//  Created by gamy on 12-12-3.
 //
 //
 
-#import "BBSPopupSelectionView.h"
+#import "BBSActionSheet.h"
 #import "BBSViewManager.h"
 
 #define ISIPAD [DeviceDetection isIPAD]
 
-#define SPACE_TOP_BUTTON (ISIPAD ? 7*2 : 7)
-#define SPACE_BOTTOM_BUTTON (ISIPAD ? 15*2 : 15)
-#define SPACE_LEFTRIGHT_BUTTON (ISIPAD ? 8*2 : 8)
-#define SPACE_BUTTON_BUTTON (ISIPAD ? 7*2 : 7)
+#define SPACE_LEFTRIGHT_BUTTON (ISIPAD ? 18*2 : 18)
+#define SPACE_TOPBOTTOM_BUTTON (ISIPAD ? 12*2 : 12)
 
-#define SPACE_LEFTRIGHT_TIP (ISIPAD ? 30*2 : 30)
+#define SPACE_BUTTON_BUTTON (ISIPAD ? 10*2 : 10)
 
-#define BUTTON_SIZE (ISIPAD ? CGSizeMake(82,43) : CGSizeMake(41,22))
+#define BUTTON_SIZE (ISIPAD ? CGSizeMake(120,56) : CGSizeMake(60,28))
 
-@interface BBSPopupSelectionView ()
+@interface BBSActionSheet()
 {
     NSArray *_titles;
 }
 @property(nonatomic, retain)NSArray *titles;
-@property(nonatomic, assign)id<BBSPopupSelectionViewDelegate>delegate;
+@property(nonatomic, assign)id<BBSActionSheetDelegate> delegate;
+
 
 @end
 
-@implementation BBSPopupSelectionView
+@implementation BBSActionSheet
+
 
 - (id)initWithTitles:(NSArray *)titles
-            delegate:(id<BBSPopupSelectionViewDelegate>)delegate;
+            delegate:(id<BBSActionSheetDelegate>)delegate;
 {
     self = [super init];
     if (self) {
@@ -48,39 +48,32 @@
     [super dealloc];
 }
 
-
-- (void)updateFrameWithSuperView:(UIView *)view showAbovePoint:(CGPoint )point
+- (void)updateFrameWithSuperView:(UIView *)view showAtPoint:(CGPoint )point
 {
     NSInteger count = [_titles count];
-    CGFloat width = count * BUTTON_SIZE.width + (count - 1) *SPACE_BUTTON_BUTTON;
-    width += (SPACE_LEFTRIGHT_BUTTON * 2);
-    CGFloat height = BUTTON_SIZE.height + SPACE_TOP_BUTTON + SPACE_BOTTOM_BUTTON;
-    CGFloat y = -height + point.y;
-    CGFloat x = 0;
-    //if tip at left
-    if (point.x < view.center.x) {
-        x = point.x - SPACE_LEFTRIGHT_TIP;
-        
-    }else{
-        x = point.x + SPACE_LEFTRIGHT_TIP - width;
-    }
-    self.frame = CGRectMake(x, y, width, height);
+    CGFloat width = BUTTON_SIZE.width + SPACE_LEFTRIGHT_BUTTON * 2;
+    
+    CGFloat height = BUTTON_SIZE.height * count;
+    height += SPACE_BUTTON_BUTTON * (count - 1);
+    height += 2 * SPACE_TOPBOTTOM_BUTTON;
+    
+    self.frame = CGRectMake(0, 0, width, height);
+    self.center = point;
 }
 - (void)updateButtons
 {
     NSInteger i = 0;
     for(NSString *title in _titles){
         UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-//        [button setBackgroundImage:[[BBSImageManager defaultManager] optionButtonBGImage]
-//                          forState:UIControlStateNormal];
-        CGFloat y = SPACE_TOP_BUTTON;
-        CGFloat x = SPACE_LEFTRIGHT_BUTTON + i *(SPACE_BUTTON_BUTTON + BUTTON_SIZE.width);
+        //        [button setBackgroundImage:[[BBSImageManager defaultManager] optionButtonBGImage]
+        //                          forState:UIControlStateNormal];
+        CGFloat y = SPACE_TOPBOTTOM_BUTTON + i *(SPACE_BUTTON_BUTTON + BUTTON_SIZE.height);
+        CGFloat x = SPACE_LEFTRIGHT_BUTTON; 
         button.frame = CGRectMake(x, y, BUTTON_SIZE.width, BUTTON_SIZE.height);
         button.tag = i;
         [button addTarget:self
                    action:@selector(clickButton:)
          forControlEvents:UIControlEventTouchUpInside];
-        
         ++i;
         [self addSubview:button];
         
@@ -100,26 +93,21 @@
     }
 }
 
-- (void)updateBGImageWithView:(UIView *)view showAbovePoint:(CGPoint )point
+- (void)updateBGImageWithView:(UIView *)view showAtPoint:(CGPoint )point
 {
     UIImageView *bgImage = [[[UIImageView alloc] initWithFrame:self.bounds] autorelease];
     [self addSubview:bgImage];
-    if (point.x < view.center.x) {
-        [bgImage setImage:[[BBSImageManager defaultManager] optionLeftBGImage]];
-    }else{
-        [bgImage setImage:[[BBSImageManager defaultManager] optionRightBGImage]];
-    }
+    [bgImage setImage:[[BBSImageManager defaultManager] bbsActionSheetBG]];
 }
 
 #define ANIMATION_TIME 0.5
 
-- (void)showInView:(UIView *)view showAbovePoint:(CGPoint )point animated:(BOOL)animated
+- (void)showInView:(UIView *)view showAtPoint:(CGPoint )point animated:(BOOL)animated
 {
     [view addSubview:self];
-    [self updateFrameWithSuperView:view
-                    showAbovePoint:point];
+    [self updateFrameWithSuperView:view showAtPoint:point];
     [self updateBGImageWithView:view
-                 showAbovePoint:point];
+                 showAtPoint:point];
     
     [self updateButtons];
     if (animated) {
@@ -142,4 +130,7 @@
         [self removeFromSuperview];
     }];
 }
+
+
+
 @end

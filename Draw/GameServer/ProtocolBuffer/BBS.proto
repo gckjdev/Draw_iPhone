@@ -39,6 +39,7 @@ message PBBBSReward
     required int32 status = 2;
     optional PBBBSUser winner = 3;
     optional int32 awardDate = 4;
+    optional string actionId = 5;
 }
 
 message PBBBSPost{

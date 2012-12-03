@@ -10,6 +10,7 @@
 #import "BBSService.h"
 #import "ChangeAvatar.h"
 #import "OfflineDrawViewController.h"
+#import "BBSPopupSelectionView.h"
 
 @class PBBBSBoard;
 @class PBBBSAction;
@@ -27,16 +28,21 @@
 @end
 
 
-@interface CreatePostController : PPViewController<BBSServiceDelegate, ChangeAvatarDelegate, OfflineDrawDelegate, UIActionSheetDelegate>
+@interface CreatePostController : PPViewController<BBSServiceDelegate, ChangeAvatarDelegate, OfflineDrawDelegate, BBSPopupSelectionViewDelegate>
 {
     
 }
 
+@property (retain, nonatomic) IBOutlet UILabel *titleLabel;
 @property (retain, nonatomic) IBOutlet UIButton *graffitiButton;
 @property (retain, nonatomic) IBOutlet UIButton *imageButton;
 @property (retain, nonatomic) IBOutlet UITextView *textView;
-
+@property (retain, nonatomic) IBOutlet UIImageView *bgImageView;
 @property (retain, nonatomic) IBOutlet UIButton *rewardButton;
+@property (retain, nonatomic) IBOutlet UIView *panel;
+@property (retain, nonatomic) IBOutlet UIButton *backButton;
+@property (retain, nonatomic) IBOutlet UIButton *submitButton;
+@property (retain, nonatomic) IBOutlet UIImageView *inputBG;
 
 @property (assign, nonatomic) id<CreatePostControllerDelegate>delegate;
 

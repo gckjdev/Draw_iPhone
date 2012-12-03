@@ -371,6 +371,54 @@
 
 }
 
++ (CommonNetworkOutput*)payReward:(NSString*)baseURL
+                           userId:(NSString *)userId
+                            appId:(NSString *)appId
+                       deviceType:(NSInteger)deviceType
+//post info
+                           postId:(NSString *)postId
+//action info
+                         actionId:(NSString *)actionId
+                        actionUid:(NSString *)actionUid
+                       actionNick:(NSString *)actionNick
+                     actionGender:(NSString *)actionGender
+                     actionAvatar:(NSString *)actionAvatar
+{
+    CommonNetworkOutput* output = [[[CommonNetworkOutput alloc] init] autorelease];
+    
+    ConstructURLBlock constructURLHandler = ^NSString *(NSString *baseURL) {
+        
+        // set input parameters
+        NSString* str = [NSString stringWithString:baseURL];
+        
+        str = [str stringByAddQueryParameter:METHOD value:METHOD_PAY_BBS_REWARD];
+        str = [str stringByAddQueryParameter:PARA_APPID value:appId];
+        str = [str stringByAddQueryParameter:PARA_USERID value:userId];
+        str = [str stringByAddQueryParameter:PARA_DEVICETYPE intValue:deviceType];
+        str = [str stringByAddQueryParameter:PARA_ACTIONID value:actionId];
+
+        str = [str stringByAddQueryParameter:PARA_POSTID value:postId];
+        str = [str stringByAddQueryParameter:PARA_ACTION_UID value:actionUid];
+        str = [str stringByAddQueryParameter:PARA_NICKNAME value:actionNick];
+        str = [str stringByAddQueryParameter:PARA_GENDER value:actionGender];
+        str = [str stringByAddQueryParameter:PARA_AVATAR value:actionAvatar];
+        
+        return str;
+    };
+    
+    PPNetworkResponseBlock responseHandler = ^(NSDictionary *dict, CommonNetworkOutput *output) {
+        output.jsonDataDict = [dict objectForKey:RET_DATA];
+        return;
+    };
+    
+    return [PPNetworkRequest sendRequest:baseURL
+                     constructURLHandler:constructURLHandler
+                         responseHandler:responseHandler
+                            outputFormat:FORMAT_JSON
+                                  output:output];
+}
+
+
 + (CommonNetworkOutput*)getBBSPost:(NSString*)baseURL
                              appId:(NSString *)appId
                         deviceType:(NSInteger)deviceType

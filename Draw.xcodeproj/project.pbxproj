@@ -647,6 +647,8 @@
 		CA1250CD1668BB6800AFCC04 /* GameConfigDataUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1250CC1668BB6800AFCC04 /* GameConfigDataUtils.m */; };
 		CA1250D01668BCBD00AFCC04 /* Config.proto in Resources */ = {isa = PBXBuildFile; fileRef = CA1250CF1668BCBD00AFCC04 /* Config.proto */; };
 		CA1250D31668BD5200AFCC04 /* Config.pb.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1250D21668BD5200AFCC04 /* Config.pb.m */; };
+		CA1250EE1669EDD800AFCC04 /* default_config.pb in Resources */ = {isa = PBXBuildFile; fileRef = CA1250EC1669EDD800AFCC04 /* default_config.pb */; };
+		CA1250EF1669EDD800AFCC04 /* default_config_version.txt in Resources */ = {isa = PBXBuildFile; fileRef = CA1250ED1669EDD800AFCC04 /* default_config_version.txt */; };
 		CA13771B152425CF00B5790B /* RouterService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA13771A152425CF00B5790B /* RouterService.m */; };
 		CA1377221524283A00B5790B /* TrafficServerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1377211524283A00B5790B /* TrafficServerManager.m */; };
 		CA1377291524598700B5790B /* MainDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CA1377271524598700B5790B /* MainDataModel.xcdatamodeld */; };
@@ -771,6 +773,7 @@
 		CA51BD761525DEDE00C77E50 /* Reward.m in Sources */ = {isa = PBXBuildFile; fileRef = CA51BD751525DEDE00C77E50 /* Reward.m */; };
 		CA639117152FEA3D007564C6 /* RouterTrafficServer.m in Sources */ = {isa = PBXBuildFile; fileRef = CA639116152FEA3D007564C6 /* RouterTrafficServer.m */; };
 		CA63911A152FEA4F007564C6 /* PriceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CA639119152FEA4F007564C6 /* PriceModel.m */; };
+		CA659774166BD41F00A239E1 /* BBSActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = CA659773166BD41E00A239E1 /* BBSActionSheet.m */; };
 		CA65C0641615A01700EE1C1C /* MyCommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA65C0611615A01700EE1C1C /* MyCommentCell.m */; };
 		CA65C0651615A01700EE1C1C /* MyCommentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA65C0621615A01700EE1C1C /* MyCommentCell.xib */; };
 		CA65C0661615A01700EE1C1C /* MyCommentCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA65C0631615A01700EE1C1C /* MyCommentCell~ipad.xib */; };
@@ -1495,6 +1498,15 @@
 		CAB15E8B15AD41E600502106 /* PickToolView.m in Sources */ = {isa = PBXBuildFile; fileRef = CAB15E8A15AD41E600502106 /* PickToolView.m */; };
 		CAB3DBDD1516DACD00E7DBC4 /* SelectWordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CAB3DBDB1516DACD00E7DBC4 /* SelectWordCell.m */; };
 		CAB3DBDE1516DACD00E7DBC4 /* SelectWordCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAB3DBDC1516DACD00E7DBC4 /* SelectWordCell.xib */; };
+		CAB5DE531669FF7600A23011 /* bbs_create_draw_disable@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAB5DE4B1669FF7600A23011 /* bbs_create_draw_disable@2x.png */; };
+		CAB5DE541669FF7600A23011 /* bbs_create_draw_enable@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAB5DE4C1669FF7600A23011 /* bbs_create_draw_enable@2x.png */; };
+		CAB5DE551669FF7600A23011 /* bbs_create_image_disable@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAB5DE4D1669FF7600A23011 /* bbs_create_image_disable@2x.png */; };
+		CAB5DE561669FF7600A23011 /* bbs_create_image_enable@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAB5DE4E1669FF7600A23011 /* bbs_create_image_enable@2x.png */; };
+		CAB5DE571669FF7600A23011 /* bbs_create_input_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAB5DE4F1669FF7600A23011 /* bbs_create_input_bg@2x.png */; };
+		CAB5DE581669FF7600A23011 /* bbs_create_reward_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAB5DE501669FF7600A23011 /* bbs_create_reward_bg@2x.png */; };
+		CAB5DE591669FF7600A23011 /* bbs_create_reward_option@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAB5DE511669FF7600A23011 /* bbs_create_reward_option@2x.png */; };
+		CAB5DE5A1669FF7600A23011 /* bbs_create_submit_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAB5DE521669FF7600A23011 /* bbs_create_submit_bg@2x.png */; };
+		CAB5DE5C166A00B600A23011 /* bbs_action_sheet_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAB5DE5B166A00B600A23011 /* bbs_action_sheet_bg@2x.png */; };
 		CAB9D0591568B96800D4F249 /* FriendRoomController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAB9D0581568B96800D4F249 /* FriendRoomController~ipad.xib */; };
 		CAC13246154C28C8000A8C8F /* ConfigManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC13245154C28C8000A8C8F /* ConfigManager.m */; };
 		CAC25BFF15EDFB8A007456FA /* bm_feedback@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAC25BFB15EDFB8A007456FA /* bm_feedback@2x.png */; };
@@ -2994,6 +3006,8 @@
 		CA1250CF1668BCBD00AFCC04 /* Config.proto */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Config.proto; sourceTree = "<group>"; };
 		CA1250D11668BD5200AFCC04 /* Config.pb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Config.pb.h; sourceTree = "<group>"; };
 		CA1250D21668BD5200AFCC04 /* Config.pb.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Config.pb.m; sourceTree = "<group>"; };
+		CA1250EC1669EDD800AFCC04 /* default_config.pb */ = {isa = PBXFileReference; lastKnownFileType = file; path = default_config.pb; sourceTree = "<group>"; };
+		CA1250ED1669EDD800AFCC04 /* default_config_version.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = default_config_version.txt; sourceTree = "<group>"; };
 		CA137719152425CF00B5790B /* RouterService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RouterService.h; sourceTree = "<group>"; };
 		CA13771A152425CF00B5790B /* RouterService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RouterService.m; sourceTree = "<group>"; };
 		CA1377201524283A00B5790B /* TrafficServerManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrafficServerManager.h; sourceTree = "<group>"; };
@@ -3204,6 +3218,8 @@
 		CA639116152FEA3D007564C6 /* RouterTrafficServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RouterTrafficServer.m; sourceTree = "<group>"; };
 		CA639118152FEA4F007564C6 /* PriceModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PriceModel.h; sourceTree = "<group>"; };
 		CA639119152FEA4F007564C6 /* PriceModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PriceModel.m; sourceTree = "<group>"; };
+		CA659772166BD41E00A239E1 /* BBSActionSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBSActionSheet.h; sourceTree = "<group>"; };
+		CA659773166BD41E00A239E1 /* BBSActionSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBSActionSheet.m; sourceTree = "<group>"; };
 		CA65C0601615A01700EE1C1C /* MyCommentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyCommentCell.h; sourceTree = "<group>"; };
 		CA65C0611615A01700EE1C1C /* MyCommentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyCommentCell.m; sourceTree = "<group>"; };
 		CA65C0621615A01700EE1C1C /* MyCommentCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyCommentCell.xib; sourceTree = "<group>"; };
@@ -4013,6 +4029,15 @@
 		CAB3DBDA1516DACD00E7DBC4 /* SelectWordCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectWordCell.h; sourceTree = "<group>"; };
 		CAB3DBDB1516DACD00E7DBC4 /* SelectWordCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectWordCell.m; sourceTree = "<group>"; };
 		CAB3DBDC1516DACD00E7DBC4 /* SelectWordCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SelectWordCell.xib; sourceTree = "<group>"; };
+		CAB5DE4B1669FF7600A23011 /* bbs_create_draw_disable@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bbs_create_draw_disable@2x.png"; sourceTree = "<group>"; };
+		CAB5DE4C1669FF7600A23011 /* bbs_create_draw_enable@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bbs_create_draw_enable@2x.png"; sourceTree = "<group>"; };
+		CAB5DE4D1669FF7600A23011 /* bbs_create_image_disable@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bbs_create_image_disable@2x.png"; sourceTree = "<group>"; };
+		CAB5DE4E1669FF7600A23011 /* bbs_create_image_enable@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bbs_create_image_enable@2x.png"; sourceTree = "<group>"; };
+		CAB5DE4F1669FF7600A23011 /* bbs_create_input_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bbs_create_input_bg@2x.png"; sourceTree = "<group>"; };
+		CAB5DE501669FF7600A23011 /* bbs_create_reward_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bbs_create_reward_bg@2x.png"; sourceTree = "<group>"; };
+		CAB5DE511669FF7600A23011 /* bbs_create_reward_option@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bbs_create_reward_option@2x.png"; sourceTree = "<group>"; };
+		CAB5DE521669FF7600A23011 /* bbs_create_submit_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bbs_create_submit_bg@2x.png"; sourceTree = "<group>"; };
+		CAB5DE5B166A00B600A23011 /* bbs_action_sheet_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bbs_action_sheet_bg@2x.png"; sourceTree = "<group>"; };
 		CAB9D0581568B96800D4F249 /* FriendRoomController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "FriendRoomController~ipad.xib"; sourceTree = "<group>"; };
 		CAC13244154C28C8000A8C8F /* ConfigManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConfigManager.h; sourceTree = "<group>"; };
 		CAC13245154C28C8000A8C8F /* ConfigManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConfigManager.m; sourceTree = "<group>"; };
@@ -7138,6 +7163,15 @@
 			path = Block;
 			sourceTree = "<group>";
 		};
+		CA1250EB1669EDD800AFCC04 /* Config */ = {
+			isa = PBXGroup;
+			children = (
+				CA1250EC1669EDD800AFCC04 /* default_config.pb */,
+				CA1250ED1669EDD800AFCC04 /* default_config_version.txt */,
+			);
+			path = Config;
+			sourceTree = "<group>";
+		};
 		CA137718152425BD00B5790B /* Router */ = {
 			isa = PBXGroup;
 			children = (
@@ -8878,6 +8912,21 @@
 			path = PickView;
 			sourceTree = "<group>";
 		};
+		CAB5DE4A1669FF7600A23011 /* Creation */ = {
+			isa = PBXGroup;
+			children = (
+				CAB5DE4B1669FF7600A23011 /* bbs_create_draw_disable@2x.png */,
+				CAB5DE4C1669FF7600A23011 /* bbs_create_draw_enable@2x.png */,
+				CAB5DE4D1669FF7600A23011 /* bbs_create_image_disable@2x.png */,
+				CAB5DE4E1669FF7600A23011 /* bbs_create_image_enable@2x.png */,
+				CAB5DE4F1669FF7600A23011 /* bbs_create_input_bg@2x.png */,
+				CAB5DE501669FF7600A23011 /* bbs_create_reward_bg@2x.png */,
+				CAB5DE511669FF7600A23011 /* bbs_create_reward_option@2x.png */,
+				CAB5DE521669FF7600A23011 /* bbs_create_submit_bg@2x.png */,
+			);
+			path = Creation;
+			sourceTree = "<group>";
+		};
 		CAC13243154C28B9000A8C8F /* Config */ = {
 			isa = PBXGroup;
 			children = (
@@ -8897,6 +8946,7 @@
 		CAC25BF915EDFB8A007456FA /* CommonResource */ = {
 			isa = PBXGroup;
 			children = (
+				CA1250EB1669EDD800AFCC04 /* Config */,
 				EA856C3315F0A65700178323 /* Images */,
 				CAC25BFA15EDFB8A007456FA /* BottomMenu */,
 			);
@@ -8978,6 +9028,7 @@
 		CAC7913D1664AD0B009B4053 /* Image */ = {
 			isa = PBXGroup;
 			children = (
+				CAB5DE4A1669FF7600A23011 /* Creation */,
 				CAC7922D166855B0009B4053 /* Action */,
 				CAC7913F1664AD0B009B4053 /* Board */,
 				CAC7922E166855B1009B4053 /* Detail */,
@@ -9007,6 +9058,7 @@
 		CAC7914A1664AD0B009B4053 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				CAB5DE5B166A00B600A23011 /* bbs_action_sheet_bg@2x.png */,
 				CAC792AA1668D6B0009B4053 /* bbs_option_bg@2x.png */,
 				CAC792AB1668D6B0009B4053 /* bbs_option_bubble@2x.png */,
 				CAC7914B1664AD0B009B4053 /* bbs_back@2x.png */,
@@ -9099,6 +9151,8 @@
 				CAC790FA1663194F009B4053 /* BBSTableViewCell.m */,
 				CAC792911668B371009B4053 /* BBSPopupSelectionView.h */,
 				CAC792921668B371009B4053 /* BBSPopupSelectionView.m */,
+				CA659772166BD41E00A239E1 /* BBSActionSheet.h */,
+				CA659773166BD41E00A239E1 /* BBSActionSheet.m */,
 			);
 			name = Common;
 			sourceTree = "<group>";
@@ -11893,6 +11947,17 @@
 				CA1250D01668BCBD00AFCC04 /* Config.proto in Resources */,
 				CAC792AC1668D6B0009B4053 /* bbs_option_bg@2x.png in Resources */,
 				CAC792AD1668D6B0009B4053 /* bbs_option_bubble@2x.png in Resources */,
+				CA1250EE1669EDD800AFCC04 /* default_config.pb in Resources */,
+				CA1250EF1669EDD800AFCC04 /* default_config_version.txt in Resources */,
+				CAB5DE531669FF7600A23011 /* bbs_create_draw_disable@2x.png in Resources */,
+				CAB5DE541669FF7600A23011 /* bbs_create_draw_enable@2x.png in Resources */,
+				CAB5DE551669FF7600A23011 /* bbs_create_image_disable@2x.png in Resources */,
+				CAB5DE561669FF7600A23011 /* bbs_create_image_enable@2x.png in Resources */,
+				CAB5DE571669FF7600A23011 /* bbs_create_input_bg@2x.png in Resources */,
+				CAB5DE581669FF7600A23011 /* bbs_create_reward_bg@2x.png in Resources */,
+				CAB5DE591669FF7600A23011 /* bbs_create_reward_option@2x.png in Resources */,
+				CAB5DE5A1669FF7600A23011 /* bbs_create_submit_bg@2x.png in Resources */,
+				CAB5DE5C166A00B600A23011 /* bbs_action_sheet_bg@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -12539,6 +12604,7 @@
 				CA1250CA1668BB5000AFCC04 /* GameConfigDataManager.m in Sources */,
 				CA1250CD1668BB6800AFCC04 /* GameConfigDataUtils.m in Sources */,
 				CA1250D31668BD5200AFCC04 /* Config.pb.m in Sources */,
+				CA659774166BD41F00A239E1 /* BBSActionSheet.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

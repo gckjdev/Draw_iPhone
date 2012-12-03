@@ -25,14 +25,20 @@ static BBSFontManager* _staticBBSFontManager;
     return _staticBBSFontManager;
 }
 
-
-- (UIFont *)indexTabFont
-{
-    return ISIPHONE ? FONT(12) : FONT(24);
-}
+#pragma mark common font
 - (UIFont *)bbsTitleFont
 {
     return ISIPHONE ? BOLDFONT(18) : BOLDFONT(36);
+}
+- (UIFont *)bbsOptionTitleFont
+{
+    return ISIPHONE ? BOLDFONT(12) : BOLDFONT(12*2);
+}
+
+#pragma mark index page font
+- (UIFont *)indexTabFont
+{
+    return ISIPHONE ? FONT(12) : FONT(24);
 }
 - (UIFont *)indexCountFont
 {
@@ -64,7 +70,7 @@ static BBSFontManager* _staticBBSFontManager;
     return ISIPHONE ? BOLDFONT(11) : BOLDFONT(22);
 }
 
-
+#pragma mark post list page font
 //Post list font
 - (UIFont *)postNickFont{
    return ISIPHONE ? FONT(15) : FONT(15*2); 
@@ -82,6 +88,7 @@ static BBSFontManager* _staticBBSFontManager;
      return ISIPHONE ? FONT(8) : FONT(8*2);
 }
 
+#pragma mark post detail page font
 //post detail font
 - (UIFont *)detailHeaderFont
 {
@@ -91,7 +98,12 @@ static BBSFontManager* _staticBBSFontManager;
 {
     return ISIPHONE ? BOLDFONT(14) : BOLDFONT(14*2);
 }
-- (UIFont *)detailRewardActionFont
+- (UIFont *)actionSourceFont{
+    return ISIPHONE ? FONT(13) : FONT(13*2);
+}
+
+#pragma mark creation font
+- (UIFont *)creationDefaulFont
 {
     return ISIPHONE ? BOLDFONT(12) : BOLDFONT(12*2);
 }
