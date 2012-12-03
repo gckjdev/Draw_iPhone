@@ -69,34 +69,39 @@
 - (NSString*)sinaAppKey
 {
 //    return @"562852192";
-    return @"3163067274";
+//    return @"3163067274";
+    return @"3580615797";
+
+
 }
 
 - (NSString*)sinaAppSecret
 {
 //    return @"6271c4259ae38213ddf6f8b1b6ba7766";
-    return @"d677917b0c2855d36674c1d0339326bd";
+//    return @"d677917b0c2855d36674c1d0339326bd";
+    
+    return @"74c79adc97a9f81cda5d69af38f5c716";    
 }
 
 - (NSString*)sinaAppRedirectURI
 {
-    return @"http://www.drawlively.com";
+    return @"http://www.drawlively.com/happypoker";
 }
 
 
 - (NSString*)qqAppKey
 {
-    return @"801229596";    
+    return @"801281270";
 }
 
 - (NSString*)qqAppSecret
 {
-    return @"967bcfd366aa27e542f00db52ef5981d";    
+    return @"dd9f4acd9e875b38db72bb20fee99911";
 }
 
 - (NSString*)qqAppRedirectURI
 {
-    return @"http://www.drawlively.com/dice/";
+    return @"http://www.drawlively.com/happy";
 }
 
 - (NSString*)facebookAppKey
@@ -126,17 +131,17 @@
 
 - (NSString*)askFollowMessage
 {
-    return @"关注和收听欢乐大话骰官方微博，第一时间可以接收最新的消息";
+    return @"关注和收听官方微博，第一时间可以接收最新的消息";
 }
 
 - (NSString*)sinaWeiboId
 {
-    return @"欢乐大话骰";
+    return @"欢乐棋牌手机版";
 }
 
 - (NSString*)qqWeiboId
 {
-    return @"liardice";
+    return @"happypoker";
 }
 
 
