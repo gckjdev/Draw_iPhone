@@ -194,6 +194,7 @@
                                                     offset:tab.offset
                                                      limit:tab.limit
                                                   delegate:self];
+    [self showActivityWithText:NSLS(@"kLoading")];
 }
 
 #pragma mark - bbs service delegate

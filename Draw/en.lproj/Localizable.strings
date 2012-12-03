@@ -1120,3 +1120,23 @@
 "kShowCard" = "Show";
 
 /*********************** 炸金花国际化字符串结束 *************************/
+
+
+/*********************** BBS国际化字符串开始 *************************/
+"kBBS" = "BBS";
+"kCreatePost" = "Create Post";
+"kMyComment" = "My Comment";
+"kPostDetail" = "Post Detail";
+"kPublish" = "Publish";
+"kReward" = "Reward";
+"kSupport" = "Support";
+
+"kSupportCount" = "Support(%d)";
+"kCommentCount" = "Comment(%d)";
+
+"kReplyUserPost" = "Reply to %@: %@";
+"kSupportMyPost" = "Support my post: %@";
+"kCommentMyPost" = "Comment my post: %@";
+"kReplyMyComment" = "Reply to my comment: %@";
+
+/*********************** BBS国际化字符串结束 *************************/

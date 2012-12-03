@@ -1140,3 +1140,21 @@
 /*********************** 炸金花国际化字符串结束 *************************/
 
 
+/*********************** BBS国际化字符串开始 *************************/
+
+"kBBS" = "BBS";
+"kCreatePost" = "新建帖子";
+"kMyComment" = "我的评论";
+"kPostDetail" = "帖子详情";
+"kPublish" = "发布";
+"kReward" = "悬赏";
+"kSupport" = "顶";
+
+"kSupportCount" = "顶(%d)";
+"kCommentCount" = "评论(%d)";
+
+"kReplyUserPost" = "回复 %@: %@";
+"kSupportMyPost" = "顶我的帖子: %@";
+"kCommentMyPost" = "评论我的帖子: %@";
+"kReplyMyComment" = "回复我: %@";
+/*********************** BBS国际化字符串结束 *************************/

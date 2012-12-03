@@ -53,7 +53,7 @@
     if ([DeviceDetection isIPAD]) {
         titleLabel.frame = CGRectMake(194,26,380,76);
     }else{
-        titleLabel.frame = CGRectMake(100,12,120,35);
+        titleLabel.frame = CGRectMake(85,12,150,35);
     }
 }
 + (void)updateDefaultBackButton:(UIButton *)backButton

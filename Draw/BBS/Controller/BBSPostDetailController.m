@@ -176,7 +176,7 @@ typedef enum{
                                                      offset:tab.offset
                                                       limit:tab.limit
                                                    delegate:self];
-
+    [self showActivityWithText:NSLS(@"kLoading")];
 }
 
 
@@ -356,8 +356,8 @@ typedef enum{
         }else{
             _selectedAction = nil;
         }
-        NSArray *indexPaths = [NSArray arrayWithObject:indexPath];
-        [tableView reloadRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationNone];
+//        [tableView reloadData];
+        [tableView reloadRowsAtIndexPaths:[tableView indexPathsForVisibleRows] withRowAnimation:UITableViewRowAnimationNone];
     }
 }
 

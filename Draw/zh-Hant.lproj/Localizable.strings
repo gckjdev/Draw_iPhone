@@ -1120,3 +1120,23 @@
 "kShowCard" = "亮牌";
 
 /*********************** 炸金花国际化字符串结束 *************************/
+
+
+/*********************** BBS国际化字符串开始 *************************/
+
+"kBBS" = "BBS";
+"kCreatePost" = "新建帖子";
+"kMyComment" = "我的評論";
+"kPostDetail" = "帖子詳情";
+"kPublish" = "發布";
+"kReward" = "懸賞";
+"kSupport" = "頂";
+
+"kSupportCount" = "頂(%d)";
+"kCommentCount" = "評論(%d)";
+
+"kReplyUserPost" = "回復 %@: %@";
+"kSupportMyPost" = "頂我的帖子: %@";
+"kCommentMyPost" = "評論我的帖子: %@";
+"kReplyMyComment" = "回復我: %@";
+/*********************** BBS国际化字符串结束 *************************/

@@ -176,7 +176,7 @@
         [self.rewardButton setTitle:[NSString stringWithFormat:@"+%d",self.bonus]
                            forState:UIControlStateNormal];
     }else{
-        [self.rewardButton setTitle:NSLS(@"k悬赏")
+        [self.rewardButton setTitle:NSLS(@"kReward")
                            forState:UIControlStateNormal];        
     }
 }
@@ -223,7 +223,7 @@
                            image:[imageManager bbsCreateRewardOptionBG]
                             font:[fontManager creationDefaulFont]
                       titleColor:[colorManager creationDefaultColor]
-                           title:NSLS(@"k悬赏")
+                           title:NSLS(@"kReward")
                         forState:UIControlStateNormal];
     
     [BBSViewManager updateButton:self.submitButton
@@ -232,16 +232,17 @@
                            image:nil
                             font:[fontManager creationDefaulFont]
                       titleColor:[colorManager creationDefaultColor]
-                           title:NSLS(@"k提交")
+                           title:NSLS(@"kPublish")
                         forState:UIControlStateNormal];
 
     NSString *titleName = nil;
     
-    if (self.sourceAction) {
+    if ([self.postId length] != 0) {
         self.rewardButton.hidden = YES;
-        titleName = NSLS(@"kReply");
+        titleName = _sourceAction != nil ? NSLS(@"kReply") :  NSLS(@"kComment");
     }else{
-        titleName = NSLS(@"kComment");        
+        self.rewardButton.hidden = NO;
+        titleName = NSLS(@"kCreatePost");
     }
     [BBSViewManager updateDefaultTitleLabel:self.titleLabel text:titleName];
     [BBSViewManager updateDefaultBackButton:self.backButton];
@@ -308,6 +309,7 @@
                                                      bonus:self.bonus
                                                   delegate:self];
     }
+    [self showActivityWithText:NSLS(@"kSending")];
 }
 
 - (IBAction)clickGraffitiButton:(id)sender {
@@ -387,6 +389,7 @@
     }else{
         PPDebug(@"<didCreatePost>create post fail.result code = %d",resultCode);
     }
+    [self hideActivity];
 }
 
 - (void)didCreateAction:(PBBBSAction *)action
@@ -404,6 +407,7 @@
     }else{
         PPDebug(@"<didCreateAction>create action fail.result code = %d",resultCode);
     }
+    [self hideActivity];
 }
 
 

@@ -180,7 +180,7 @@ enum{
     UIView *optionView = [self viewWithTag:OPTION_VIEW_TAG];
     [optionView removeFromSuperview];
     if (show) {
-        NSArray *titles = [NSArray arrayWithObjects:NSLS(@"k奖赏"),NSLS(@"k回复"), nil];
+        NSArray *titles = [NSArray arrayWithObjects:NSLS(@"kReward"),NSLS(@"kReply"), nil];
         BBSPopupSelectionView *selectView = [[[BBSPopupSelectionView alloc] initWithTitles:titles delegate:self] autorelease];
         selectView.tag = OPTION_VIEW_TAG;
         CGPoint point = self.option.center;

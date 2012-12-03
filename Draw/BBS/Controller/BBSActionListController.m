@@ -104,6 +104,7 @@
                                                         offset:tab.offset
                                                          limit:tab.limit
                                                       delegate:self];
+    [self showActivityWithText:NSLS(@"kLoading")];
 }
 
 - (void)didGetActionList:(NSArray *)actionList targetUid:(NSString *)targetUid resultCode:(NSInteger)resultCode
