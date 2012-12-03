@@ -15,7 +15,7 @@
 @interface ZJHUserPlayInfo : NSObject
 
 @property (readonly, copy, nonatomic) NSString *userId;
-@property (retain, nonatomic) NSArray *pokers;
+@property (retain, nonatomic) NSMutableArray *pokers;
 @property (assign, nonatomic) PBZJHCardType cardType;
 @property (assign, nonatomic) int totalBet;
 @property (assign, nonatomic) BOOL isAutoBet;
@@ -30,6 +30,8 @@
 
 + (ZJHUserPlayInfo *)fromPBZJHUserPlayInfo:(PBZJHUserPlayInfo *)pbZJHUserPlayInfo;
 
+- (void)changePoker:(int)oldCardId
+           newPoker:(PBPoker *)poker;
 - (void)setPokersFaceUp:(NSArray *)pokerIds;
 - (Poker *)poker:(int)pokerId;
 - (int)betCount;
@@ -41,11 +43,11 @@
 - (BOOL)canFoldCard;
 - (BOOL)canShowCard:(int)cardId;
 - (BOOL)canCompareCard;
-
+- (BOOL)canChangeCard;
 - (BOOL)canBeCompared;
 
 
 - (NSString *)cardTypeString;
-
+//- (int)changeCardTimes;
 
 @end

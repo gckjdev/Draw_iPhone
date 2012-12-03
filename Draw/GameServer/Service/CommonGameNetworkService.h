@@ -44,6 +44,7 @@
 @property (nonatomic, assign) int                   serverPort;
 @property (nonatomic, retain) NSMutableArray        *roomList;
 @property (nonatomic, retain) CommonGameSession     *session;
+@property (nonatomic, assign) int                   rule;           // 游戏规则类型，用来区分不同的游戏场，如普通场和高级场。
 
 - (BOOL)isConnected;
 //- (void)connectServer:(id<CommonGameServiceDelegate>)delegate;
@@ -61,7 +62,7 @@
 - (void)clearDisconnectTimer;
 
 - (void)getRoomList;
-- (void)getRoomList:(int)startIndex 
+- (void)getRoomList:(int)startIndex
               count:(int)count;
 
 - (void)getRoomList:(int)startIndex 

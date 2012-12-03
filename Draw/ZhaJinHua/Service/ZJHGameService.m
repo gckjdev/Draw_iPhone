@@ -13,6 +13,7 @@
 #import "CommonGameSession.h"
 #import "UserManager.h"
 #import "ConfigManager.h"
+#import "ZJHRuleConfigFactory.h"
 
 static ZJHGameService *_defaultService;
 
@@ -138,16 +139,24 @@ static ZJHGameService *_defaultService;
                                 cardIds:cardIds];
 }
 
-- (void)showCards:(NSArray *)cardIds
+- (void)changeCard:(int)cardId
 {
-    [_networkClient sendShowCardRequest:self.userId
-                              sessionId:self.session.sessionId
-                                cardIds:cardIds];
+    [_networkClient sendChangeCardRequest:self.userId
+                                sessionId:self.session.sessionId
+                                   cardId:cardId];
 }
+
+
+//- (void)showCards:(NSArray *)cardIds
+//{
+//    [_networkClient sendShowCardRequest:self.userId
+//                              sessionId:self.session.sessionId
+//                                cardIds:cardIds];
+//}
 
 - (NSArray *)chipValues
 {
-    return [NSArray arrayWithObjects:[NSNumber numberWithInt:5], [NSNumber numberWithInt:10], [NSNumber numberWithInt:25], [NSNumber numberWithInt:50], nil];
+    return [[ZJHRuleConfigFactory createRuleConfigWithRule:self.rule] chipValues];
 }
 
 - (BOOL)isMyBalanceEnough
@@ -199,6 +208,11 @@ static ZJHGameService *_defaultService;
     return [self isGamePlaying] && [self isMyTurn] && [[self myPlayInfo] canShowCard:cardId];
 }
 
+- (BOOL)canIChangeCard
+{
+    return [self isGamePlaying] && [self isMyTurn] && [[self myPlayInfo] canChangeCard] && ([self.session myTurnTimes]%3!=0) && ([self.session myTurnTimes]!=0);
+}
+
 - (BOOL)canUserBeCompared:(NSString *)userId
 {
     return [[_gameState userPlayInfo:userId] canBeCompared] && ![_userManager isMe:userId];
@@ -243,7 +257,7 @@ static ZJHGameService *_defaultService;
 
 - (void)handleMoreOnGameOverNotificationRequest:(GameMessage*)message
 {
-    for (PBUserResult *result in message.gameOverNotificationRequest.zjhgameResult.userResultList) {
+    for (PBUserResult *result in message.gameOverNotificationRequest.zjhGameResult.userResultList) {
         
         if (result.win) {
             self.gameState.winner = result.userId;
@@ -312,6 +326,18 @@ static ZJHGameService *_defaultService;
     userPlayInfo.lastAction = PBZJHUserActionShowCard;
     userPlayInfo.alreadShowCard = YES;    
     [userPlayInfo setPokersFaceUp:message.showCardRequest.cardIdsList];
+}
+
+- (void)updateChangeCardModel:(GameMessage *)message
+{
+    ZJHUserPlayInfo *userPlayInfo = [_gameState userPlayInfo:message.userId];
+    if (userPlayInfo == nil) {
+        return;
+    }
+    
+    userPlayInfo.lastAction = PBZJHUserActionChangeCard;
+    userPlayInfo.cardType = message.changeCardResponse.cardType;
+    [userPlayInfo changePoker:message.changeCardResponse.oldCardId newPoker:message.changeCardResponse.newPoker];
 }
 
 - (void)updateCompareCardModel:(GameMessage *)message
@@ -400,6 +426,20 @@ static ZJHGameService *_defaultService;
     }
 }
 
+- (void)handleChangeCardRequest:(GameMessage *)message
+{
+    [self updateChangeCardModel:message];
+    [self postNotification:NOTIFICATION_CHANGE_CARD_REQUEST message:message];
+}
+
+- (void)handleChangeCardResponse:(GameMessage *)message
+{
+    if (message.resultCode == 0) {
+        [self updateChangeCardModel:message];
+        [self postNotification:NOTIFICATION_CHANGE_CARD_RESPONSE message:message];
+    }
+}
+
 - (void)handleCustomMessage:(GameMessage*)message
 {
     switch ([message command]){
@@ -444,6 +484,14 @@ static ZJHGameService *_defaultService;
             [self handleShowCardResponse:message];
             break;
             
+        case GameCommandTypeChangeCardRequest:
+            [self handleChangeCardRequest:message];
+            break;
+            
+        case GameCommandTypeChangeCardResponse:
+            [self handleChangeCardResponse:message];
+            break;
+            
         default:
             PPDebug(@"<handleCustomMessage> unknown command=%d", [message command]);
             break;
@@ -452,10 +500,7 @@ static ZJHGameService *_defaultService;
 
 - (NSString *)getServerListString
 {
-    return @"58.215.172.169:8018"; 
-//    return @"192.168.1.5:8018";
-    return @"127.0.0.1:8018";
-
+    return [[ZJHRuleConfigFactory createRuleConfigWithRule:self.rule] getServerListString];
 }
 
 - (ZJHUserPlayInfo *)myPlayInfo

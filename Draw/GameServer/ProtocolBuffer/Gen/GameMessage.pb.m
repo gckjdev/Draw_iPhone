@@ -5716,6 +5716,473 @@ static CompareCardResponse* defaultCompareCardResponseInstance = nil;
 }
 @end
 
+@interface ChangeCardRequest ()
+@property int32_t cardId;
+@end
+
+@implementation ChangeCardRequest
+
+- (BOOL) hasCardId {
+  return !!hasCardId_;
+}
+- (void) setHasCardId:(BOOL) value {
+  hasCardId_ = !!value;
+}
+@synthesize cardId;
+- (void) dealloc {
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.cardId = 0;
+  }
+  return self;
+}
+static ChangeCardRequest* defaultChangeCardRequestInstance = nil;
++ (void) initialize {
+  if (self == [ChangeCardRequest class]) {
+    defaultChangeCardRequestInstance = [[ChangeCardRequest alloc] init];
+  }
+}
++ (ChangeCardRequest*) defaultInstance {
+  return defaultChangeCardRequestInstance;
+}
+- (ChangeCardRequest*) defaultInstance {
+  return defaultChangeCardRequestInstance;
+}
+- (BOOL) isInitialized {
+  if (!self.hasCardId) {
+    return NO;
+  }
+  return YES;
+}
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
+  if (self.hasCardId) {
+    [output writeInt32:1 value:self.cardId];
+  }
+  [self.unknownFields writeToCodedOutputStream:output];
+}
+- (int32_t) serializedSize {
+  int32_t size = memoizedSerializedSize;
+  if (size != -1) {
+    return size;
+  }
+
+  size = 0;
+  if (self.hasCardId) {
+    size += computeInt32Size(1, self.cardId);
+  }
+  size += self.unknownFields.serializedSize;
+  memoizedSerializedSize = size;
+  return size;
+}
++ (ChangeCardRequest*) parseFromData:(NSData*) data {
+  return (ChangeCardRequest*)[[[ChangeCardRequest builder] mergeFromData:data] build];
+}
++ (ChangeCardRequest*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (ChangeCardRequest*)[[[ChangeCardRequest builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+}
++ (ChangeCardRequest*) parseFromInputStream:(NSInputStream*) input {
+  return (ChangeCardRequest*)[[[ChangeCardRequest builder] mergeFromInputStream:input] build];
+}
++ (ChangeCardRequest*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (ChangeCardRequest*)[[[ChangeCardRequest builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (ChangeCardRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input {
+  return (ChangeCardRequest*)[[[ChangeCardRequest builder] mergeFromCodedInputStream:input] build];
+}
++ (ChangeCardRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (ChangeCardRequest*)[[[ChangeCardRequest builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (ChangeCardRequest_Builder*) builder {
+  return [[[ChangeCardRequest_Builder alloc] init] autorelease];
+}
++ (ChangeCardRequest_Builder*) builderWithPrototype:(ChangeCardRequest*) prototype {
+  return [[ChangeCardRequest builder] mergeFrom:prototype];
+}
+- (ChangeCardRequest_Builder*) builder {
+  return [ChangeCardRequest builder];
+}
+@end
+
+@interface ChangeCardRequest_Builder()
+@property (retain) ChangeCardRequest* result;
+@end
+
+@implementation ChangeCardRequest_Builder
+@synthesize result;
+- (void) dealloc {
+  self.result = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.result = [[[ChangeCardRequest alloc] init] autorelease];
+  }
+  return self;
+}
+- (PBGeneratedMessage*) internalGetResult {
+  return result;
+}
+- (ChangeCardRequest_Builder*) clear {
+  self.result = [[[ChangeCardRequest alloc] init] autorelease];
+  return self;
+}
+- (ChangeCardRequest_Builder*) clone {
+  return [ChangeCardRequest builderWithPrototype:result];
+}
+- (ChangeCardRequest*) defaultInstance {
+  return [ChangeCardRequest defaultInstance];
+}
+- (ChangeCardRequest*) build {
+  [self checkInitialized];
+  return [self buildPartial];
+}
+- (ChangeCardRequest*) buildPartial {
+  ChangeCardRequest* returnMe = [[result retain] autorelease];
+  self.result = nil;
+  return returnMe;
+}
+- (ChangeCardRequest_Builder*) mergeFrom:(ChangeCardRequest*) other {
+  if (other == [ChangeCardRequest defaultInstance]) {
+    return self;
+  }
+  if (other.hasCardId) {
+    [self setCardId:other.cardId];
+  }
+  [self mergeUnknownFields:other.unknownFields];
+  return self;
+}
+- (ChangeCardRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
+  return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
+}
+- (ChangeCardRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
+  while (YES) {
+    int32_t tag = [input readTag];
+    switch (tag) {
+      case 0:
+        [self setUnknownFields:[unknownFields build]];
+        return self;
+      default: {
+        if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
+          [self setUnknownFields:[unknownFields build]];
+          return self;
+        }
+        break;
+      }
+      case 8: {
+        [self setCardId:[input readInt32]];
+        break;
+      }
+    }
+  }
+}
+- (BOOL) hasCardId {
+  return result.hasCardId;
+}
+- (int32_t) cardId {
+  return result.cardId;
+}
+- (ChangeCardRequest_Builder*) setCardId:(int32_t) value {
+  result.hasCardId = YES;
+  result.cardId = value;
+  return self;
+}
+- (ChangeCardRequest_Builder*) clearCardId {
+  result.hasCardId = NO;
+  result.cardId = 0;
+  return self;
+}
+@end
+
+@interface ChangeCardResponse ()
+@property int32_t oldCardId;
+@property (retain) PBPoker* newPoker;
+@property PBZJHCardType cardType;
+@end
+
+@implementation ChangeCardResponse
+
+- (BOOL) hasOldCardId {
+  return !!hasOldCardId_;
+}
+- (void) setHasOldCardId:(BOOL) value {
+  hasOldCardId_ = !!value;
+}
+@synthesize oldCardId;
+- (BOOL) hasNewPoker {
+  return !!hasNewPoker_;
+}
+- (void) setHasNewPoker:(BOOL) value {
+  hasNewPoker_ = !!value;
+}
+@synthesize newPoker;
+- (BOOL) hasCardType {
+  return !!hasCardType_;
+}
+- (void) setHasCardType:(BOOL) value {
+  hasCardType_ = !!value;
+}
+@synthesize cardType;
+- (void) dealloc {
+  self.newPoker = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.oldCardId = 0;
+    self.newPoker = [PBPoker defaultInstance];
+    self.cardType = PBZJHCardTypeUnknow;
+  }
+  return self;
+}
+static ChangeCardResponse* defaultChangeCardResponseInstance = nil;
++ (void) initialize {
+  if (self == [ChangeCardResponse class]) {
+    defaultChangeCardResponseInstance = [[ChangeCardResponse alloc] init];
+  }
+}
++ (ChangeCardResponse*) defaultInstance {
+  return defaultChangeCardResponseInstance;
+}
+- (ChangeCardResponse*) defaultInstance {
+  return defaultChangeCardResponseInstance;
+}
+- (BOOL) isInitialized {
+  if (!self.hasOldCardId) {
+    return NO;
+  }
+  if (!self.hasNewPoker) {
+    return NO;
+  }
+  if (!self.newPoker.isInitialized) {
+    return NO;
+  }
+  return YES;
+}
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
+  if (self.hasOldCardId) {
+    [output writeInt32:1 value:self.oldCardId];
+  }
+  if (self.hasNewPoker) {
+    [output writeMessage:2 value:self.newPoker];
+  }
+  if (self.hasCardType) {
+    [output writeEnum:3 value:self.cardType];
+  }
+  [self.unknownFields writeToCodedOutputStream:output];
+}
+- (int32_t) serializedSize {
+  int32_t size = memoizedSerializedSize;
+  if (size != -1) {
+    return size;
+  }
+
+  size = 0;
+  if (self.hasOldCardId) {
+    size += computeInt32Size(1, self.oldCardId);
+  }
+  if (self.hasNewPoker) {
+    size += computeMessageSize(2, self.newPoker);
+  }
+  if (self.hasCardType) {
+    size += computeEnumSize(3, self.cardType);
+  }
+  size += self.unknownFields.serializedSize;
+  memoizedSerializedSize = size;
+  return size;
+}
++ (ChangeCardResponse*) parseFromData:(NSData*) data {
+  return (ChangeCardResponse*)[[[ChangeCardResponse builder] mergeFromData:data] build];
+}
++ (ChangeCardResponse*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (ChangeCardResponse*)[[[ChangeCardResponse builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+}
++ (ChangeCardResponse*) parseFromInputStream:(NSInputStream*) input {
+  return (ChangeCardResponse*)[[[ChangeCardResponse builder] mergeFromInputStream:input] build];
+}
++ (ChangeCardResponse*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (ChangeCardResponse*)[[[ChangeCardResponse builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (ChangeCardResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input {
+  return (ChangeCardResponse*)[[[ChangeCardResponse builder] mergeFromCodedInputStream:input] build];
+}
++ (ChangeCardResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (ChangeCardResponse*)[[[ChangeCardResponse builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (ChangeCardResponse_Builder*) builder {
+  return [[[ChangeCardResponse_Builder alloc] init] autorelease];
+}
++ (ChangeCardResponse_Builder*) builderWithPrototype:(ChangeCardResponse*) prototype {
+  return [[ChangeCardResponse builder] mergeFrom:prototype];
+}
+- (ChangeCardResponse_Builder*) builder {
+  return [ChangeCardResponse builder];
+}
+@end
+
+@interface ChangeCardResponse_Builder()
+@property (retain) ChangeCardResponse* result;
+@end
+
+@implementation ChangeCardResponse_Builder
+@synthesize result;
+- (void) dealloc {
+  self.result = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.result = [[[ChangeCardResponse alloc] init] autorelease];
+  }
+  return self;
+}
+- (PBGeneratedMessage*) internalGetResult {
+  return result;
+}
+- (ChangeCardResponse_Builder*) clear {
+  self.result = [[[ChangeCardResponse alloc] init] autorelease];
+  return self;
+}
+- (ChangeCardResponse_Builder*) clone {
+  return [ChangeCardResponse builderWithPrototype:result];
+}
+- (ChangeCardResponse*) defaultInstance {
+  return [ChangeCardResponse defaultInstance];
+}
+- (ChangeCardResponse*) build {
+  [self checkInitialized];
+  return [self buildPartial];
+}
+- (ChangeCardResponse*) buildPartial {
+  ChangeCardResponse* returnMe = [[result retain] autorelease];
+  self.result = nil;
+  return returnMe;
+}
+- (ChangeCardResponse_Builder*) mergeFrom:(ChangeCardResponse*) other {
+  if (other == [ChangeCardResponse defaultInstance]) {
+    return self;
+  }
+  if (other.hasOldCardId) {
+    [self setOldCardId:other.oldCardId];
+  }
+  if (other.hasNewPoker) {
+    [self mergeNewPoker:other.newPoker];
+  }
+  if (other.hasCardType) {
+    [self setCardType:other.cardType];
+  }
+  [self mergeUnknownFields:other.unknownFields];
+  return self;
+}
+- (ChangeCardResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
+  return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
+}
+- (ChangeCardResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
+  while (YES) {
+    int32_t tag = [input readTag];
+    switch (tag) {
+      case 0:
+        [self setUnknownFields:[unknownFields build]];
+        return self;
+      default: {
+        if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
+          [self setUnknownFields:[unknownFields build]];
+          return self;
+        }
+        break;
+      }
+      case 8: {
+        [self setOldCardId:[input readInt32]];
+        break;
+      }
+      case 18: {
+        PBPoker_Builder* subBuilder = [PBPoker builder];
+        if (self.hasNewPoker) {
+          [subBuilder mergeFrom:self.newPoker];
+        }
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self setNewPoker:[subBuilder buildPartial]];
+        break;
+      }
+      case 24: {
+        int32_t value = [input readEnum];
+        if (PBZJHCardTypeIsValidValue(value)) {
+          [self setCardType:value];
+        } else {
+          [unknownFields mergeVarintField:3 value:value];
+        }
+        break;
+      }
+    }
+  }
+}
+- (BOOL) hasOldCardId {
+  return result.hasOldCardId;
+}
+- (int32_t) oldCardId {
+  return result.oldCardId;
+}
+- (ChangeCardResponse_Builder*) setOldCardId:(int32_t) value {
+  result.hasOldCardId = YES;
+  result.oldCardId = value;
+  return self;
+}
+- (ChangeCardResponse_Builder*) clearOldCardId {
+  result.hasOldCardId = NO;
+  result.oldCardId = 0;
+  return self;
+}
+- (BOOL) hasNewPoker {
+  return result.hasNewPoker;
+}
+- (PBPoker*) newPoker {
+  return result.newPoker;
+}
+- (ChangeCardResponse_Builder*) setNewPoker:(PBPoker*) value {
+  result.hasNewPoker = YES;
+  result.newPoker = value;
+  return self;
+}
+- (ChangeCardResponse_Builder*) setNewPokerBuilder:(PBPoker_Builder*) builderForValue {
+  return [self setNewPoker:[builderForValue build]];
+}
+- (ChangeCardResponse_Builder*) mergeNewPoker:(PBPoker*) value {
+  if (result.hasNewPoker &&
+      result.newPoker != [PBPoker defaultInstance]) {
+    result.newPoker =
+      [[[PBPoker builderWithPrototype:result.newPoker] mergeFrom:value] buildPartial];
+  } else {
+    result.newPoker = value;
+  }
+  result.hasNewPoker = YES;
+  return self;
+}
+- (ChangeCardResponse_Builder*) clearNewPoker {
+  result.hasNewPoker = NO;
+  result.newPoker = [PBPoker defaultInstance];
+  return self;
+}
+- (BOOL) hasCardType {
+  return result.hasCardType;
+}
+- (PBZJHCardType) cardType {
+  return result.cardType;
+}
+- (ChangeCardResponse_Builder*) setCardType:(PBZJHCardType) value {
+  result.hasCardType = YES;
+  result.cardType = value;
+  return self;
+}
+- (ChangeCardResponse_Builder*) clearCardType {
+  result.hasCardType = NO;
+  result.cardType = PBZJHCardTypeUnknow;
+  return self;
+}
+@end
+
 @interface JoinGameRequest ()
 @property (retain) NSString* userId;
 @property (retain) NSString* gameId;
@@ -9183,7 +9650,7 @@ static BetDiceResponse* defaultBetDiceResponseInstance = nil;
 
 @interface GameOverNotificationRequest ()
 @property (retain) PBDiceGameResult* gameResult;
-@property (retain) PBZJHGameResult* zjhgameResult;
+@property (retain) PBZJHGameResult* zjhGameResult;
 @end
 
 @implementation GameOverNotificationRequest
@@ -9195,22 +9662,22 @@ static BetDiceResponse* defaultBetDiceResponseInstance = nil;
   hasGameResult_ = !!value;
 }
 @synthesize gameResult;
-- (BOOL) hasZjhgameResult {
-  return !!hasZjhgameResult_;
+- (BOOL) hasZjhGameResult {
+  return !!hasZjhGameResult_;
 }
-- (void) setHasZjhgameResult:(BOOL) value {
-  hasZjhgameResult_ = !!value;
+- (void) setHasZjhGameResult:(BOOL) value {
+  hasZjhGameResult_ = !!value;
 }
-@synthesize zjhgameResult;
+@synthesize zjhGameResult;
 - (void) dealloc {
   self.gameResult = nil;
-  self.zjhgameResult = nil;
+  self.zjhGameResult = nil;
   [super dealloc];
 }
 - (id) init {
   if ((self = [super init])) {
     self.gameResult = [PBDiceGameResult defaultInstance];
-    self.zjhgameResult = [PBZJHGameResult defaultInstance];
+    self.zjhGameResult = [PBZJHGameResult defaultInstance];
   }
   return self;
 }
@@ -9232,8 +9699,8 @@ static GameOverNotificationRequest* defaultGameOverNotificationRequestInstance =
       return NO;
     }
   }
-  if (self.hasZjhgameResult) {
-    if (!self.zjhgameResult.isInitialized) {
+  if (self.hasZjhGameResult) {
+    if (!self.zjhGameResult.isInitialized) {
       return NO;
     }
   }
@@ -9243,8 +9710,8 @@ static GameOverNotificationRequest* defaultGameOverNotificationRequestInstance =
   if (self.hasGameResult) {
     [output writeMessage:1 value:self.gameResult];
   }
-  if (self.hasZjhgameResult) {
-    [output writeMessage:2 value:self.zjhgameResult];
+  if (self.hasZjhGameResult) {
+    [output writeMessage:2 value:self.zjhGameResult];
   }
   [self.unknownFields writeToCodedOutputStream:output];
 }
@@ -9258,8 +9725,8 @@ static GameOverNotificationRequest* defaultGameOverNotificationRequestInstance =
   if (self.hasGameResult) {
     size += computeMessageSize(1, self.gameResult);
   }
-  if (self.hasZjhgameResult) {
-    size += computeMessageSize(2, self.zjhgameResult);
+  if (self.hasZjhGameResult) {
+    size += computeMessageSize(2, self.zjhGameResult);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -9339,8 +9806,8 @@ static GameOverNotificationRequest* defaultGameOverNotificationRequestInstance =
   if (other.hasGameResult) {
     [self mergeGameResult:other.gameResult];
   }
-  if (other.hasZjhgameResult) {
-    [self mergeZjhgameResult:other.zjhgameResult];
+  if (other.hasZjhGameResult) {
+    [self mergeZjhGameResult:other.zjhGameResult];
   }
   [self mergeUnknownFields:other.unknownFields];
   return self;
@@ -9374,11 +9841,11 @@ static GameOverNotificationRequest* defaultGameOverNotificationRequestInstance =
       }
       case 18: {
         PBZJHGameResult_Builder* subBuilder = [PBZJHGameResult builder];
-        if (self.hasZjhgameResult) {
-          [subBuilder mergeFrom:self.zjhgameResult];
+        if (self.hasZjhGameResult) {
+          [subBuilder mergeFrom:self.zjhGameResult];
         }
         [input readMessage:subBuilder extensionRegistry:extensionRegistry];
-        [self setZjhgameResult:[subBuilder buildPartial]];
+        [self setZjhGameResult:[subBuilder buildPartial]];
         break;
       }
     }
@@ -9414,34 +9881,34 @@ static GameOverNotificationRequest* defaultGameOverNotificationRequestInstance =
   result.gameResult = [PBDiceGameResult defaultInstance];
   return self;
 }
-- (BOOL) hasZjhgameResult {
-  return result.hasZjhgameResult;
+- (BOOL) hasZjhGameResult {
+  return result.hasZjhGameResult;
 }
-- (PBZJHGameResult*) zjhgameResult {
-  return result.zjhgameResult;
+- (PBZJHGameResult*) zjhGameResult {
+  return result.zjhGameResult;
 }
-- (GameOverNotificationRequest_Builder*) setZjhgameResult:(PBZJHGameResult*) value {
-  result.hasZjhgameResult = YES;
-  result.zjhgameResult = value;
+- (GameOverNotificationRequest_Builder*) setZjhGameResult:(PBZJHGameResult*) value {
+  result.hasZjhGameResult = YES;
+  result.zjhGameResult = value;
   return self;
 }
-- (GameOverNotificationRequest_Builder*) setZjhgameResultBuilder:(PBZJHGameResult_Builder*) builderForValue {
-  return [self setZjhgameResult:[builderForValue build]];
+- (GameOverNotificationRequest_Builder*) setZjhGameResultBuilder:(PBZJHGameResult_Builder*) builderForValue {
+  return [self setZjhGameResult:[builderForValue build]];
 }
-- (GameOverNotificationRequest_Builder*) mergeZjhgameResult:(PBZJHGameResult*) value {
-  if (result.hasZjhgameResult &&
-      result.zjhgameResult != [PBZJHGameResult defaultInstance]) {
-    result.zjhgameResult =
-      [[[PBZJHGameResult builderWithPrototype:result.zjhgameResult] mergeFrom:value] buildPartial];
+- (GameOverNotificationRequest_Builder*) mergeZjhGameResult:(PBZJHGameResult*) value {
+  if (result.hasZjhGameResult &&
+      result.zjhGameResult != [PBZJHGameResult defaultInstance]) {
+    result.zjhGameResult =
+      [[[PBZJHGameResult builderWithPrototype:result.zjhGameResult] mergeFrom:value] buildPartial];
   } else {
-    result.zjhgameResult = value;
+    result.zjhGameResult = value;
   }
-  result.hasZjhgameResult = YES;
+  result.hasZjhGameResult = YES;
   return self;
 }
-- (GameOverNotificationRequest_Builder*) clearZjhgameResult {
-  result.hasZjhgameResult = NO;
-  result.zjhgameResult = [PBZJHGameResult defaultInstance];
+- (GameOverNotificationRequest_Builder*) clearZjhGameResult {
+  result.hasZjhGameResult = NO;
+  result.zjhGameResult = [PBZJHGameResult defaultInstance];
   return self;
 }
 @end
@@ -13022,6 +13489,8 @@ static FacetimeChatResponse* defaultFacetimeChatResponseInstance = nil;
 @property (retain) ShowCardResponse* showCardResponse;
 @property (retain) CompareCardRequest* compareCardRequest;
 @property (retain) CompareCardResponse* compareCardResponse;
+@property (retain) ChangeCardRequest* changeCardRequest;
+@property (retain) ChangeCardResponse* changeCardResponse;
 @property int32_t startOffset;
 @property int32_t maxCount;
 @property int32_t timeStamp;
@@ -13422,6 +13891,20 @@ static FacetimeChatResponse* defaultFacetimeChatResponseInstance = nil;
   hasCompareCardResponse_ = !!value;
 }
 @synthesize compareCardResponse;
+- (BOOL) hasChangeCardRequest {
+  return !!hasChangeCardRequest_;
+}
+- (void) setHasChangeCardRequest:(BOOL) value {
+  hasChangeCardRequest_ = !!value;
+}
+@synthesize changeCardRequest;
+- (BOOL) hasChangeCardResponse {
+  return !!hasChangeCardResponse_;
+}
+- (void) setHasChangeCardResponse:(BOOL) value {
+  hasChangeCardResponse_ = !!value;
+}
+@synthesize changeCardResponse;
 - (BOOL) hasStartOffset {
   return !!hasStartOffset_;
 }
@@ -13500,6 +13983,8 @@ static FacetimeChatResponse* defaultFacetimeChatResponseInstance = nil;
   self.showCardResponse = nil;
   self.compareCardRequest = nil;
   self.compareCardResponse = nil;
+  self.changeCardRequest = nil;
+  self.changeCardResponse = nil;
   self.mac = nil;
   [super dealloc];
 }
@@ -13561,6 +14046,8 @@ static FacetimeChatResponse* defaultFacetimeChatResponseInstance = nil;
     self.showCardResponse = [ShowCardResponse defaultInstance];
     self.compareCardRequest = [CompareCardRequest defaultInstance];
     self.compareCardResponse = [CompareCardResponse defaultInstance];
+    self.changeCardRequest = [ChangeCardRequest defaultInstance];
+    self.changeCardResponse = [ChangeCardResponse defaultInstance];
     self.startOffset = 0;
     self.maxCount = 0;
     self.timeStamp = 0;
@@ -13689,6 +14176,16 @@ static GameMessage* defaultGameMessageInstance = nil;
   }
   if (self.hasCompareCardResponse) {
     if (!self.compareCardResponse.isInitialized) {
+      return NO;
+    }
+  }
+  if (self.hasChangeCardRequest) {
+    if (!self.changeCardRequest.isInitialized) {
+      return NO;
+    }
+  }
+  if (self.hasChangeCardResponse) {
+    if (!self.changeCardResponse.isInitialized) {
       return NO;
     }
   }
@@ -13862,6 +14359,12 @@ static GameMessage* defaultGameMessageInstance = nil;
   }
   if (self.hasCompareCardResponse) {
     [output writeMessage:160 value:self.compareCardResponse];
+  }
+  if (self.hasChangeCardRequest) {
+    [output writeMessage:161 value:self.changeCardRequest];
+  }
+  if (self.hasChangeCardResponse) {
+    [output writeMessage:162 value:self.changeCardResponse];
   }
   if (self.hasStartOffset) {
     [output writeInt32:1000 value:self.startOffset];
@@ -14051,6 +14554,12 @@ static GameMessage* defaultGameMessageInstance = nil;
   }
   if (self.hasCompareCardResponse) {
     size += computeMessageSize(160, self.compareCardResponse);
+  }
+  if (self.hasChangeCardRequest) {
+    size += computeMessageSize(161, self.changeCardRequest);
+  }
+  if (self.hasChangeCardResponse) {
+    size += computeMessageSize(162, self.changeCardResponse);
   }
   if (self.hasStartOffset) {
     size += computeInt32Size(1000, self.startOffset);
@@ -14306,6 +14815,12 @@ static GameMessage* defaultGameMessageInstance = nil;
   }
   if (other.hasCompareCardResponse) {
     [self mergeCompareCardResponse:other.compareCardResponse];
+  }
+  if (other.hasChangeCardRequest) {
+    [self mergeChangeCardRequest:other.changeCardRequest];
+  }
+  if (other.hasChangeCardResponse) {
+    [self mergeChangeCardResponse:other.changeCardResponse];
   }
   if (other.hasStartOffset) {
     [self setStartOffset:other.startOffset];
@@ -14807,6 +15322,24 @@ static GameMessage* defaultGameMessageInstance = nil;
         }
         [input readMessage:subBuilder extensionRegistry:extensionRegistry];
         [self setCompareCardResponse:[subBuilder buildPartial]];
+        break;
+      }
+      case 1290: {
+        ChangeCardRequest_Builder* subBuilder = [ChangeCardRequest builder];
+        if (self.hasChangeCardRequest) {
+          [subBuilder mergeFrom:self.changeCardRequest];
+        }
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self setChangeCardRequest:[subBuilder buildPartial]];
+        break;
+      }
+      case 1298: {
+        ChangeCardResponse_Builder* subBuilder = [ChangeCardResponse builder];
+        if (self.hasChangeCardResponse) {
+          [subBuilder mergeFrom:self.changeCardResponse];
+        }
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self setChangeCardResponse:[subBuilder buildPartial]];
         break;
       }
       case 8000: {
@@ -16366,6 +16899,66 @@ static GameMessage* defaultGameMessageInstance = nil;
 - (GameMessage_Builder*) clearCompareCardResponse {
   result.hasCompareCardResponse = NO;
   result.compareCardResponse = [CompareCardResponse defaultInstance];
+  return self;
+}
+- (BOOL) hasChangeCardRequest {
+  return result.hasChangeCardRequest;
+}
+- (ChangeCardRequest*) changeCardRequest {
+  return result.changeCardRequest;
+}
+- (GameMessage_Builder*) setChangeCardRequest:(ChangeCardRequest*) value {
+  result.hasChangeCardRequest = YES;
+  result.changeCardRequest = value;
+  return self;
+}
+- (GameMessage_Builder*) setChangeCardRequestBuilder:(ChangeCardRequest_Builder*) builderForValue {
+  return [self setChangeCardRequest:[builderForValue build]];
+}
+- (GameMessage_Builder*) mergeChangeCardRequest:(ChangeCardRequest*) value {
+  if (result.hasChangeCardRequest &&
+      result.changeCardRequest != [ChangeCardRequest defaultInstance]) {
+    result.changeCardRequest =
+      [[[ChangeCardRequest builderWithPrototype:result.changeCardRequest] mergeFrom:value] buildPartial];
+  } else {
+    result.changeCardRequest = value;
+  }
+  result.hasChangeCardRequest = YES;
+  return self;
+}
+- (GameMessage_Builder*) clearChangeCardRequest {
+  result.hasChangeCardRequest = NO;
+  result.changeCardRequest = [ChangeCardRequest defaultInstance];
+  return self;
+}
+- (BOOL) hasChangeCardResponse {
+  return result.hasChangeCardResponse;
+}
+- (ChangeCardResponse*) changeCardResponse {
+  return result.changeCardResponse;
+}
+- (GameMessage_Builder*) setChangeCardResponse:(ChangeCardResponse*) value {
+  result.hasChangeCardResponse = YES;
+  result.changeCardResponse = value;
+  return self;
+}
+- (GameMessage_Builder*) setChangeCardResponseBuilder:(ChangeCardResponse_Builder*) builderForValue {
+  return [self setChangeCardResponse:[builderForValue build]];
+}
+- (GameMessage_Builder*) mergeChangeCardResponse:(ChangeCardResponse*) value {
+  if (result.hasChangeCardResponse &&
+      result.changeCardResponse != [ChangeCardResponse defaultInstance]) {
+    result.changeCardResponse =
+      [[[ChangeCardResponse builderWithPrototype:result.changeCardResponse] mergeFrom:value] buildPartial];
+  } else {
+    result.changeCardResponse = value;
+  }
+  result.hasChangeCardResponse = YES;
+  return self;
+}
+- (GameMessage_Builder*) clearChangeCardResponse {
+  result.hasChangeCardResponse = NO;
+  result.changeCardResponse = [ChangeCardResponse defaultInstance];
   return self;
 }
 - (BOOL) hasStartOffset {

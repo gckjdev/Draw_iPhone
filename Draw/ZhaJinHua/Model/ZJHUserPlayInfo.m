@@ -8,8 +8,11 @@
 
 #import "ZJHUserPlayInfo.h"
 
+#define ZJH_MAX_NUM_CHANGE_CARD 3
+
 @interface ZJHUserPlayInfo ()
 @property (readwrite, copy, nonatomic) NSString *userId;
+@property (retain, nonatomic) NSMutableArray *replacedPokers;
 
 @end
 
@@ -34,6 +37,7 @@
 {
     [_userId release];
     [_pokers release];
+    [_replacedPokers release];
     [super dealloc];
 }
 
@@ -51,8 +55,9 @@
         self.alreadFoldCard = pbZJHUserPlayInfo.alreadFoldCard;
         self.alreadShowCard = pbZJHUserPlayInfo.alreadShowCard;
         self.alreadCompareLose = pbZJHUserPlayInfo.alreadCompareLose;
-        self.compareAward = 0;
-        self.resultAward = 0;
+        self.replacedPokers = [NSMutableArray array];
+//        self.compareAward = 0;
+//        self.resultAward = 0;
     }
     
     return self;
@@ -134,6 +139,19 @@
     return YES;
 }
 
+- (BOOL)canChangeCard
+{
+    if (!_alreadCheckCard || _alreadFoldCard || _alreadCompareLose) {
+        return NO;
+    }
+    
+    if ([self changeCardTimes] >= ZJH_MAX_NUM_CHANGE_CARD) {
+        return NO;
+    }
+    
+    return YES;
+}
+
 - (BOOL)canBeCompared
 {
     if (_alreadFoldCard || _alreadCompareLose) {
@@ -182,7 +200,7 @@
     return nil;
 }
 
-- (NSArray *)pokersFormPBPokers:(NSArray *)pbPokers
+- (NSMutableArray *)pokersFormPBPokers:(NSArray *)pbPokers
 {
     if ([pbPokers count] < ZJH_NUM_POKER_PER_USER) {
         PPDebug(@"WARNNING: pbPokers count less than %d", ZJH_NUM_POKER_PER_USER);
@@ -250,6 +268,23 @@
             return @"";
             break;
     }
+}
+
+- (void)changePoker:(int)oldCardId
+           newPoker:(PBPoker *)newPoker
+{
+    for (Poker *poker in _pokers) {
+        if (poker.pokerId == oldCardId) {
+            [_replacedPokers addObject:poker];
+            [_pokers removeObject:poker];
+            [_pokers addObject:[Poker pokerFromPBPoker:newPoker]];
+        }
+    }
+}
+
+- (int)changeCardTimes
+{
+    return [_replacedPokers count];
 }
 
 @end
