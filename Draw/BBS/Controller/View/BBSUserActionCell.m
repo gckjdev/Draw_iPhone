@@ -17,25 +17,27 @@
 #import "UserManager.h"
 #import "TimeUtils.h"
 
-#define SPACE_CONTENT_TOP 35
-#define SPACE_CONTENT_IMAGE 10
-#define SPACE_IMAGE_SOURCE 15
-#define SPACE_SOURCE_BOTTOM 20
+#define SPACE_CONTENT_TOP (ISIPAD ? 35 * 2 : 35)
+#define SPACE_CONTENT_IMAGE (ISIPAD ? 10 * 2 : 10)
+#define SPACE_IMAGE_SOURCE (ISIPAD ? 15 * 2 : 15)
+#define SPACE_SOURCE_BOTTOM (ISIPAD ? 20 * 2 : 20)
 
-#define SPACE_TEXT_SOURCE_IMAGE 100
-#define SPACE_TEXT_SOURCE_NO_IMAGE 10
+#define SPACE_TEXT_SOURCE_IMAGE (ISIPAD ? 100 * 2 : 100)
+#define SPACE_TEXT_SOURCE_NO_IMAGE (ISIPAD ? 10 * 2 : 10)
 
-#define SPACE_SPLITLINE_SOURCE 5
+#define SPACE_SPLITLINE_SOURCE (ISIPAD ? 5 * 2 : 5)
 
-#define IMAGE_HEIGHT 80
+#define IMAGE_HEIGHT (ISIPAD ? 80 * 2 : 80)
 
-#define CONTENT_WIDTH 206
-#define SOURCE_WIDTH 206
+#define CONTENT_WIDTH (ISIPAD ? 206 * 2 : 206)
+#define SOURCE_WIDTH (ISIPAD ? 206 * 2 : 206)
+
+#define SOURCE_MAX_HEIGHT (ISIPAD ? 40 * 2 : 40)
+
+#define Y_CONTENT_TEXT (ISIPAD ? 5 * 2 : 5)
+#define Y_SOURCE_TEXT (ISIPAD ? 5 * 2 : 5)
+
 #define CONTENT_MAX_HEIGHT 99999999
-#define SOURCE_MAX_HEIGHT 40
-
-#define Y_CONTENT_TEXT 5
-#define Y_SOURCE_TEXT 5
 
 #define CONTENT_FONT [[BBSFontManager defaultManager] postContentFont]
 #define SOURCE_FONT [[BBSFontManager defaultManager] actionSourceFont]
