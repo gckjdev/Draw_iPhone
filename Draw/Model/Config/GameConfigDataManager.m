@@ -76,6 +76,15 @@ static dispatch_once_t onceToken;
         [builder addCoinPrices:[priceBuilder build]];
     }
     
+    PBZJHConfig_Builder* zjhBuilder = [PBZJHConfig builder];
+    [builder setZjhConfig:[zjhBuilder build]];
+    
+    PBDiceConfig_Builder* diceBuilder = [PBDiceConfig builder];
+    [builder setDiceConfig:[diceBuilder build]];
+
+    PBDrawConfig_Builder* drawBuilder = [PBDrawConfig builder];
+    [builder setDrawConfig:[drawBuilder build]];
+    
     PBConfig* config = [builder build];
     NSData* data = [config data];
 

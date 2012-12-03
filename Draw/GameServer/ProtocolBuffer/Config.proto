@@ -59,7 +59,7 @@ message PBDrawConfig{
     optional string defaultOnlineEnServerAddress = 1 [default="106.187.89.232"];
     optional int32 defaultOnlineEnServerPort = 2 [default=9000];
     optional string defaultOnlineCnServerAddress = 3 [default="www.place100.com"];
-    optional int32 defaultOnlineEnServerPort = 4 [default=9000];
+    optional int32 defaultOnlineCnServerPort = 4 [default=9000];
 
 
     // reward config
@@ -71,11 +71,9 @@ message PBDrawConfig{
     
     optional int32 shareReward = 15 [default=10];
     optional int32 followReward = 16 [default=1000];
-    
-
 
     // level up reward
-    optional int32 levelUpFlower = 17 [default=2];
+    optional int32 levelUpFlower = 21 [default=2];
 
 
     // exp config
@@ -96,32 +94,30 @@ message PBConfig {
     repeated PBPrice coinPrices = 1; 
     optional int32 balanceDeviation = 2 [default=4000];
 
-
-    
-
     // servers
     optional string trafficAPIServerURL = 30 [default="http://www.place100.com:8100/api/i?"];
     optional string userAPIServerURL = 31 [default="http://www.you100.me:8001/api/i?"];
 
-    optional string musicHomeCnURL = 31 [default="http://m.easou.com/col.e?id=112"];
-    optional string musicHomeEnURL = 31 [default="http://mp3skull.com/"];
-
+    // music download home
+    optional string musicHomeCnURL = 41 [default="http://m.easou.com/col.e?id=112"];
+    optional string musicHomeEnURL = 42 [default="http://mp3skull.com/"];
 
     // misc
     optional bool enableReview = 61 [default=true];
     optional bool inReview = 62 [default=false];
     optional string inReviewVersion = 63;
     
-    optional int32 postponeTime = 64;
-    optional int32 urgeTime = 65;
+    optional int32 postponeTime = 64 [default=10];
+    optional int32 urgeTime = 65 [default=5];
     
-    // wall
+    // ad & wall
+    optional bool enableAd = 70 [default=true];
     optional bool enableWall = 71 [default=true];
     optional int32 wallType = 72 [default=1];
     
     // for game config
     optional PBDrawConfig drawConfig = 100;
     optional PBDiceConfig diceConfig = 101;
-    optional PBZJHConfig zjhConfig = 102;
+    optional PBZJHConfig zjhConfig   = 102;
 }
 

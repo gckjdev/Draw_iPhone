@@ -321,15 +321,78 @@ static PBPrice* defaultPBPriceInstance = nil;
 @end
 
 @interface PBZJHConfig ()
+@property int32_t levelExp;
+@property int32_t runwayCoin;
+@property int32_t maxAutoBetCount;
+@property int32_t treeMatureTime;
+@property int32_t treeGainTime;
+@property int32_t treeCoinValue;
+@property int32_t shareReward;
 @end
 
 @implementation PBZJHConfig
 
+- (BOOL) hasLevelExp {
+  return !!hasLevelExp_;
+}
+- (void) setHasLevelExp:(BOOL) value {
+  hasLevelExp_ = !!value;
+}
+@synthesize levelExp;
+- (BOOL) hasRunwayCoin {
+  return !!hasRunwayCoin_;
+}
+- (void) setHasRunwayCoin:(BOOL) value {
+  hasRunwayCoin_ = !!value;
+}
+@synthesize runwayCoin;
+- (BOOL) hasMaxAutoBetCount {
+  return !!hasMaxAutoBetCount_;
+}
+- (void) setHasMaxAutoBetCount:(BOOL) value {
+  hasMaxAutoBetCount_ = !!value;
+}
+@synthesize maxAutoBetCount;
+- (BOOL) hasTreeMatureTime {
+  return !!hasTreeMatureTime_;
+}
+- (void) setHasTreeMatureTime:(BOOL) value {
+  hasTreeMatureTime_ = !!value;
+}
+@synthesize treeMatureTime;
+- (BOOL) hasTreeGainTime {
+  return !!hasTreeGainTime_;
+}
+- (void) setHasTreeGainTime:(BOOL) value {
+  hasTreeGainTime_ = !!value;
+}
+@synthesize treeGainTime;
+- (BOOL) hasTreeCoinValue {
+  return !!hasTreeCoinValue_;
+}
+- (void) setHasTreeCoinValue:(BOOL) value {
+  hasTreeCoinValue_ = !!value;
+}
+@synthesize treeCoinValue;
+- (BOOL) hasShareReward {
+  return !!hasShareReward_;
+}
+- (void) setHasShareReward:(BOOL) value {
+  hasShareReward_ = !!value;
+}
+@synthesize shareReward;
 - (void) dealloc {
   [super dealloc];
 }
 - (id) init {
   if ((self = [super init])) {
+    self.levelExp = 5;
+    self.runwayCoin = 200;
+    self.maxAutoBetCount = 5;
+    self.treeMatureTime = 60;
+    self.treeGainTime = 60;
+    self.treeCoinValue = 25;
+    self.shareReward = 100;
   }
   return self;
 }
@@ -349,6 +412,27 @@ static PBZJHConfig* defaultPBZJHConfigInstance = nil;
   return YES;
 }
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
+  if (self.hasLevelExp) {
+    [output writeInt32:1 value:self.levelExp];
+  }
+  if (self.hasRunwayCoin) {
+    [output writeInt32:2 value:self.runwayCoin];
+  }
+  if (self.hasMaxAutoBetCount) {
+    [output writeInt32:3 value:self.maxAutoBetCount];
+  }
+  if (self.hasTreeMatureTime) {
+    [output writeInt32:30 value:self.treeMatureTime];
+  }
+  if (self.hasTreeGainTime) {
+    [output writeInt32:31 value:self.treeGainTime];
+  }
+  if (self.hasTreeCoinValue) {
+    [output writeInt32:32 value:self.treeCoinValue];
+  }
+  if (self.hasShareReward) {
+    [output writeInt32:40 value:self.shareReward];
+  }
   [self.unknownFields writeToCodedOutputStream:output];
 }
 - (int32_t) serializedSize {
@@ -358,6 +442,27 @@ static PBZJHConfig* defaultPBZJHConfigInstance = nil;
   }
 
   size = 0;
+  if (self.hasLevelExp) {
+    size += computeInt32Size(1, self.levelExp);
+  }
+  if (self.hasRunwayCoin) {
+    size += computeInt32Size(2, self.runwayCoin);
+  }
+  if (self.hasMaxAutoBetCount) {
+    size += computeInt32Size(3, self.maxAutoBetCount);
+  }
+  if (self.hasTreeMatureTime) {
+    size += computeInt32Size(30, self.treeMatureTime);
+  }
+  if (self.hasTreeGainTime) {
+    size += computeInt32Size(31, self.treeGainTime);
+  }
+  if (self.hasTreeCoinValue) {
+    size += computeInt32Size(32, self.treeCoinValue);
+  }
+  if (self.hasShareReward) {
+    size += computeInt32Size(40, self.shareReward);
+  }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
   return size;
@@ -433,6 +538,27 @@ static PBZJHConfig* defaultPBZJHConfigInstance = nil;
   if (other == [PBZJHConfig defaultInstance]) {
     return self;
   }
+  if (other.hasLevelExp) {
+    [self setLevelExp:other.levelExp];
+  }
+  if (other.hasRunwayCoin) {
+    [self setRunwayCoin:other.runwayCoin];
+  }
+  if (other.hasMaxAutoBetCount) {
+    [self setMaxAutoBetCount:other.maxAutoBetCount];
+  }
+  if (other.hasTreeMatureTime) {
+    [self setTreeMatureTime:other.treeMatureTime];
+  }
+  if (other.hasTreeGainTime) {
+    [self setTreeGainTime:other.treeGainTime];
+  }
+  if (other.hasTreeCoinValue) {
+    [self setTreeCoinValue:other.treeCoinValue];
+  }
+  if (other.hasShareReward) {
+    [self setShareReward:other.shareReward];
+  }
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }
@@ -454,27 +580,1757 @@ static PBZJHConfig* defaultPBZJHConfigInstance = nil;
         }
         break;
       }
+      case 8: {
+        [self setLevelExp:[input readInt32]];
+        break;
+      }
+      case 16: {
+        [self setRunwayCoin:[input readInt32]];
+        break;
+      }
+      case 24: {
+        [self setMaxAutoBetCount:[input readInt32]];
+        break;
+      }
+      case 240: {
+        [self setTreeMatureTime:[input readInt32]];
+        break;
+      }
+      case 248: {
+        [self setTreeGainTime:[input readInt32]];
+        break;
+      }
+      case 256: {
+        [self setTreeCoinValue:[input readInt32]];
+        break;
+      }
+      case 320: {
+        [self setShareReward:[input readInt32]];
+        break;
+      }
     }
   }
+}
+- (BOOL) hasLevelExp {
+  return result.hasLevelExp;
+}
+- (int32_t) levelExp {
+  return result.levelExp;
+}
+- (PBZJHConfig_Builder*) setLevelExp:(int32_t) value {
+  result.hasLevelExp = YES;
+  result.levelExp = value;
+  return self;
+}
+- (PBZJHConfig_Builder*) clearLevelExp {
+  result.hasLevelExp = NO;
+  result.levelExp = 5;
+  return self;
+}
+- (BOOL) hasRunwayCoin {
+  return result.hasRunwayCoin;
+}
+- (int32_t) runwayCoin {
+  return result.runwayCoin;
+}
+- (PBZJHConfig_Builder*) setRunwayCoin:(int32_t) value {
+  result.hasRunwayCoin = YES;
+  result.runwayCoin = value;
+  return self;
+}
+- (PBZJHConfig_Builder*) clearRunwayCoin {
+  result.hasRunwayCoin = NO;
+  result.runwayCoin = 200;
+  return self;
+}
+- (BOOL) hasMaxAutoBetCount {
+  return result.hasMaxAutoBetCount;
+}
+- (int32_t) maxAutoBetCount {
+  return result.maxAutoBetCount;
+}
+- (PBZJHConfig_Builder*) setMaxAutoBetCount:(int32_t) value {
+  result.hasMaxAutoBetCount = YES;
+  result.maxAutoBetCount = value;
+  return self;
+}
+- (PBZJHConfig_Builder*) clearMaxAutoBetCount {
+  result.hasMaxAutoBetCount = NO;
+  result.maxAutoBetCount = 5;
+  return self;
+}
+- (BOOL) hasTreeMatureTime {
+  return result.hasTreeMatureTime;
+}
+- (int32_t) treeMatureTime {
+  return result.treeMatureTime;
+}
+- (PBZJHConfig_Builder*) setTreeMatureTime:(int32_t) value {
+  result.hasTreeMatureTime = YES;
+  result.treeMatureTime = value;
+  return self;
+}
+- (PBZJHConfig_Builder*) clearTreeMatureTime {
+  result.hasTreeMatureTime = NO;
+  result.treeMatureTime = 60;
+  return self;
+}
+- (BOOL) hasTreeGainTime {
+  return result.hasTreeGainTime;
+}
+- (int32_t) treeGainTime {
+  return result.treeGainTime;
+}
+- (PBZJHConfig_Builder*) setTreeGainTime:(int32_t) value {
+  result.hasTreeGainTime = YES;
+  result.treeGainTime = value;
+  return self;
+}
+- (PBZJHConfig_Builder*) clearTreeGainTime {
+  result.hasTreeGainTime = NO;
+  result.treeGainTime = 60;
+  return self;
+}
+- (BOOL) hasTreeCoinValue {
+  return result.hasTreeCoinValue;
+}
+- (int32_t) treeCoinValue {
+  return result.treeCoinValue;
+}
+- (PBZJHConfig_Builder*) setTreeCoinValue:(int32_t) value {
+  result.hasTreeCoinValue = YES;
+  result.treeCoinValue = value;
+  return self;
+}
+- (PBZJHConfig_Builder*) clearTreeCoinValue {
+  result.hasTreeCoinValue = NO;
+  result.treeCoinValue = 25;
+  return self;
+}
+- (BOOL) hasShareReward {
+  return result.hasShareReward;
+}
+- (int32_t) shareReward {
+  return result.shareReward;
+}
+- (PBZJHConfig_Builder*) setShareReward:(int32_t) value {
+  result.hasShareReward = YES;
+  result.shareReward = value;
+  return self;
+}
+- (PBZJHConfig_Builder*) clearShareReward {
+  result.hasShareReward = NO;
+  result.shareReward = 100;
+  return self;
+}
+@end
+
+@interface PBDiceConfig ()
+@property int32_t shareReward;
+@property int32_t followReward;
+@property int32_t levelExp;
+@property int32_t levelUpRewardCut;
+@property int32_t runwayCoin;
+@property int32_t normalRoomThreshhold;
+@property int32_t highRoomThreshhold;
+@property int32_t superHighRoomThreshhold;
+@property int32_t betAnteNormalRoom;
+@property int32_t betAnteHighRoom;
+@property int32_t betAnteSuperHighRoom;
+@property int32_t dailyGift;
+@property int32_t dailyGiftIncreament;
+@end
+
+@implementation PBDiceConfig
+
+- (BOOL) hasShareReward {
+  return !!hasShareReward_;
+}
+- (void) setHasShareReward:(BOOL) value {
+  hasShareReward_ = !!value;
+}
+@synthesize shareReward;
+- (BOOL) hasFollowReward {
+  return !!hasFollowReward_;
+}
+- (void) setHasFollowReward:(BOOL) value {
+  hasFollowReward_ = !!value;
+}
+@synthesize followReward;
+- (BOOL) hasLevelExp {
+  return !!hasLevelExp_;
+}
+- (void) setHasLevelExp:(BOOL) value {
+  hasLevelExp_ = !!value;
+}
+@synthesize levelExp;
+- (BOOL) hasLevelUpRewardCut {
+  return !!hasLevelUpRewardCut_;
+}
+- (void) setHasLevelUpRewardCut:(BOOL) value {
+  hasLevelUpRewardCut_ = !!value;
+}
+@synthesize levelUpRewardCut;
+- (BOOL) hasRunwayCoin {
+  return !!hasRunwayCoin_;
+}
+- (void) setHasRunwayCoin:(BOOL) value {
+  hasRunwayCoin_ = !!value;
+}
+@synthesize runwayCoin;
+- (BOOL) hasNormalRoomThreshhold {
+  return !!hasNormalRoomThreshhold_;
+}
+- (void) setHasNormalRoomThreshhold:(BOOL) value {
+  hasNormalRoomThreshhold_ = !!value;
+}
+@synthesize normalRoomThreshhold;
+- (BOOL) hasHighRoomThreshhold {
+  return !!hasHighRoomThreshhold_;
+}
+- (void) setHasHighRoomThreshhold:(BOOL) value {
+  hasHighRoomThreshhold_ = !!value;
+}
+@synthesize highRoomThreshhold;
+- (BOOL) hasSuperHighRoomThreshhold {
+  return !!hasSuperHighRoomThreshhold_;
+}
+- (void) setHasSuperHighRoomThreshhold:(BOOL) value {
+  hasSuperHighRoomThreshhold_ = !!value;
+}
+@synthesize superHighRoomThreshhold;
+- (BOOL) hasBetAnteNormalRoom {
+  return !!hasBetAnteNormalRoom_;
+}
+- (void) setHasBetAnteNormalRoom:(BOOL) value {
+  hasBetAnteNormalRoom_ = !!value;
+}
+@synthesize betAnteNormalRoom;
+- (BOOL) hasBetAnteHighRoom {
+  return !!hasBetAnteHighRoom_;
+}
+- (void) setHasBetAnteHighRoom:(BOOL) value {
+  hasBetAnteHighRoom_ = !!value;
+}
+@synthesize betAnteHighRoom;
+- (BOOL) hasBetAnteSuperHighRoom {
+  return !!hasBetAnteSuperHighRoom_;
+}
+- (void) setHasBetAnteSuperHighRoom:(BOOL) value {
+  hasBetAnteSuperHighRoom_ = !!value;
+}
+@synthesize betAnteSuperHighRoom;
+- (BOOL) hasDailyGift {
+  return !!hasDailyGift_;
+}
+- (void) setHasDailyGift:(BOOL) value {
+  hasDailyGift_ = !!value;
+}
+@synthesize dailyGift;
+- (BOOL) hasDailyGiftIncreament {
+  return !!hasDailyGiftIncreament_;
+}
+- (void) setHasDailyGiftIncreament:(BOOL) value {
+  hasDailyGiftIncreament_ = !!value;
+}
+@synthesize dailyGiftIncreament;
+- (void) dealloc {
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.shareReward = 100;
+    self.followReward = 1000;
+    self.levelExp = 5;
+    self.levelUpRewardCut = 2;
+    self.runwayCoin = 200;
+    self.normalRoomThreshhold = 200;
+    self.highRoomThreshhold = 2000;
+    self.superHighRoomThreshhold = 10000;
+    self.betAnteNormalRoom = 50;
+    self.betAnteHighRoom = 100;
+    self.betAnteSuperHighRoom = 200;
+    self.dailyGift = 70;
+    self.dailyGiftIncreament = 12;
+  }
+  return self;
+}
+static PBDiceConfig* defaultPBDiceConfigInstance = nil;
++ (void) initialize {
+  if (self == [PBDiceConfig class]) {
+    defaultPBDiceConfigInstance = [[PBDiceConfig alloc] init];
+  }
+}
++ (PBDiceConfig*) defaultInstance {
+  return defaultPBDiceConfigInstance;
+}
+- (PBDiceConfig*) defaultInstance {
+  return defaultPBDiceConfigInstance;
+}
+- (BOOL) isInitialized {
+  return YES;
+}
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
+  if (self.hasShareReward) {
+    [output writeInt32:1 value:self.shareReward];
+  }
+  if (self.hasFollowReward) {
+    [output writeInt32:2 value:self.followReward];
+  }
+  if (self.hasLevelExp) {
+    [output writeInt32:10 value:self.levelExp];
+  }
+  if (self.hasLevelUpRewardCut) {
+    [output writeInt32:11 value:self.levelUpRewardCut];
+  }
+  if (self.hasRunwayCoin) {
+    [output writeInt32:21 value:self.runwayCoin];
+  }
+  if (self.hasNormalRoomThreshhold) {
+    [output writeInt32:31 value:self.normalRoomThreshhold];
+  }
+  if (self.hasHighRoomThreshhold) {
+    [output writeInt32:32 value:self.highRoomThreshhold];
+  }
+  if (self.hasSuperHighRoomThreshhold) {
+    [output writeInt32:33 value:self.superHighRoomThreshhold];
+  }
+  if (self.hasBetAnteNormalRoom) {
+    [output writeInt32:41 value:self.betAnteNormalRoom];
+  }
+  if (self.hasBetAnteHighRoom) {
+    [output writeInt32:42 value:self.betAnteHighRoom];
+  }
+  if (self.hasBetAnteSuperHighRoom) {
+    [output writeInt32:43 value:self.betAnteSuperHighRoom];
+  }
+  if (self.hasDailyGift) {
+    [output writeInt32:51 value:self.dailyGift];
+  }
+  if (self.hasDailyGiftIncreament) {
+    [output writeInt32:52 value:self.dailyGiftIncreament];
+  }
+  [self.unknownFields writeToCodedOutputStream:output];
+}
+- (int32_t) serializedSize {
+  int32_t size = memoizedSerializedSize;
+  if (size != -1) {
+    return size;
+  }
+
+  size = 0;
+  if (self.hasShareReward) {
+    size += computeInt32Size(1, self.shareReward);
+  }
+  if (self.hasFollowReward) {
+    size += computeInt32Size(2, self.followReward);
+  }
+  if (self.hasLevelExp) {
+    size += computeInt32Size(10, self.levelExp);
+  }
+  if (self.hasLevelUpRewardCut) {
+    size += computeInt32Size(11, self.levelUpRewardCut);
+  }
+  if (self.hasRunwayCoin) {
+    size += computeInt32Size(21, self.runwayCoin);
+  }
+  if (self.hasNormalRoomThreshhold) {
+    size += computeInt32Size(31, self.normalRoomThreshhold);
+  }
+  if (self.hasHighRoomThreshhold) {
+    size += computeInt32Size(32, self.highRoomThreshhold);
+  }
+  if (self.hasSuperHighRoomThreshhold) {
+    size += computeInt32Size(33, self.superHighRoomThreshhold);
+  }
+  if (self.hasBetAnteNormalRoom) {
+    size += computeInt32Size(41, self.betAnteNormalRoom);
+  }
+  if (self.hasBetAnteHighRoom) {
+    size += computeInt32Size(42, self.betAnteHighRoom);
+  }
+  if (self.hasBetAnteSuperHighRoom) {
+    size += computeInt32Size(43, self.betAnteSuperHighRoom);
+  }
+  if (self.hasDailyGift) {
+    size += computeInt32Size(51, self.dailyGift);
+  }
+  if (self.hasDailyGiftIncreament) {
+    size += computeInt32Size(52, self.dailyGiftIncreament);
+  }
+  size += self.unknownFields.serializedSize;
+  memoizedSerializedSize = size;
+  return size;
+}
++ (PBDiceConfig*) parseFromData:(NSData*) data {
+  return (PBDiceConfig*)[[[PBDiceConfig builder] mergeFromData:data] build];
+}
++ (PBDiceConfig*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBDiceConfig*)[[[PBDiceConfig builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+}
++ (PBDiceConfig*) parseFromInputStream:(NSInputStream*) input {
+  return (PBDiceConfig*)[[[PBDiceConfig builder] mergeFromInputStream:input] build];
+}
++ (PBDiceConfig*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBDiceConfig*)[[[PBDiceConfig builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (PBDiceConfig*) parseFromCodedInputStream:(PBCodedInputStream*) input {
+  return (PBDiceConfig*)[[[PBDiceConfig builder] mergeFromCodedInputStream:input] build];
+}
++ (PBDiceConfig*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBDiceConfig*)[[[PBDiceConfig builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (PBDiceConfig_Builder*) builder {
+  return [[[PBDiceConfig_Builder alloc] init] autorelease];
+}
++ (PBDiceConfig_Builder*) builderWithPrototype:(PBDiceConfig*) prototype {
+  return [[PBDiceConfig builder] mergeFrom:prototype];
+}
+- (PBDiceConfig_Builder*) builder {
+  return [PBDiceConfig builder];
+}
+@end
+
+@interface PBDiceConfig_Builder()
+@property (retain) PBDiceConfig* result;
+@end
+
+@implementation PBDiceConfig_Builder
+@synthesize result;
+- (void) dealloc {
+  self.result = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.result = [[[PBDiceConfig alloc] init] autorelease];
+  }
+  return self;
+}
+- (PBGeneratedMessage*) internalGetResult {
+  return result;
+}
+- (PBDiceConfig_Builder*) clear {
+  self.result = [[[PBDiceConfig alloc] init] autorelease];
+  return self;
+}
+- (PBDiceConfig_Builder*) clone {
+  return [PBDiceConfig builderWithPrototype:result];
+}
+- (PBDiceConfig*) defaultInstance {
+  return [PBDiceConfig defaultInstance];
+}
+- (PBDiceConfig*) build {
+  [self checkInitialized];
+  return [self buildPartial];
+}
+- (PBDiceConfig*) buildPartial {
+  PBDiceConfig* returnMe = [[result retain] autorelease];
+  self.result = nil;
+  return returnMe;
+}
+- (PBDiceConfig_Builder*) mergeFrom:(PBDiceConfig*) other {
+  if (other == [PBDiceConfig defaultInstance]) {
+    return self;
+  }
+  if (other.hasShareReward) {
+    [self setShareReward:other.shareReward];
+  }
+  if (other.hasFollowReward) {
+    [self setFollowReward:other.followReward];
+  }
+  if (other.hasLevelExp) {
+    [self setLevelExp:other.levelExp];
+  }
+  if (other.hasLevelUpRewardCut) {
+    [self setLevelUpRewardCut:other.levelUpRewardCut];
+  }
+  if (other.hasRunwayCoin) {
+    [self setRunwayCoin:other.runwayCoin];
+  }
+  if (other.hasNormalRoomThreshhold) {
+    [self setNormalRoomThreshhold:other.normalRoomThreshhold];
+  }
+  if (other.hasHighRoomThreshhold) {
+    [self setHighRoomThreshhold:other.highRoomThreshhold];
+  }
+  if (other.hasSuperHighRoomThreshhold) {
+    [self setSuperHighRoomThreshhold:other.superHighRoomThreshhold];
+  }
+  if (other.hasBetAnteNormalRoom) {
+    [self setBetAnteNormalRoom:other.betAnteNormalRoom];
+  }
+  if (other.hasBetAnteHighRoom) {
+    [self setBetAnteHighRoom:other.betAnteHighRoom];
+  }
+  if (other.hasBetAnteSuperHighRoom) {
+    [self setBetAnteSuperHighRoom:other.betAnteSuperHighRoom];
+  }
+  if (other.hasDailyGift) {
+    [self setDailyGift:other.dailyGift];
+  }
+  if (other.hasDailyGiftIncreament) {
+    [self setDailyGiftIncreament:other.dailyGiftIncreament];
+  }
+  [self mergeUnknownFields:other.unknownFields];
+  return self;
+}
+- (PBDiceConfig_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
+  return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
+}
+- (PBDiceConfig_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
+  while (YES) {
+    int32_t tag = [input readTag];
+    switch (tag) {
+      case 0:
+        [self setUnknownFields:[unknownFields build]];
+        return self;
+      default: {
+        if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
+          [self setUnknownFields:[unknownFields build]];
+          return self;
+        }
+        break;
+      }
+      case 8: {
+        [self setShareReward:[input readInt32]];
+        break;
+      }
+      case 16: {
+        [self setFollowReward:[input readInt32]];
+        break;
+      }
+      case 80: {
+        [self setLevelExp:[input readInt32]];
+        break;
+      }
+      case 88: {
+        [self setLevelUpRewardCut:[input readInt32]];
+        break;
+      }
+      case 168: {
+        [self setRunwayCoin:[input readInt32]];
+        break;
+      }
+      case 248: {
+        [self setNormalRoomThreshhold:[input readInt32]];
+        break;
+      }
+      case 256: {
+        [self setHighRoomThreshhold:[input readInt32]];
+        break;
+      }
+      case 264: {
+        [self setSuperHighRoomThreshhold:[input readInt32]];
+        break;
+      }
+      case 328: {
+        [self setBetAnteNormalRoom:[input readInt32]];
+        break;
+      }
+      case 336: {
+        [self setBetAnteHighRoom:[input readInt32]];
+        break;
+      }
+      case 344: {
+        [self setBetAnteSuperHighRoom:[input readInt32]];
+        break;
+      }
+      case 408: {
+        [self setDailyGift:[input readInt32]];
+        break;
+      }
+      case 416: {
+        [self setDailyGiftIncreament:[input readInt32]];
+        break;
+      }
+    }
+  }
+}
+- (BOOL) hasShareReward {
+  return result.hasShareReward;
+}
+- (int32_t) shareReward {
+  return result.shareReward;
+}
+- (PBDiceConfig_Builder*) setShareReward:(int32_t) value {
+  result.hasShareReward = YES;
+  result.shareReward = value;
+  return self;
+}
+- (PBDiceConfig_Builder*) clearShareReward {
+  result.hasShareReward = NO;
+  result.shareReward = 100;
+  return self;
+}
+- (BOOL) hasFollowReward {
+  return result.hasFollowReward;
+}
+- (int32_t) followReward {
+  return result.followReward;
+}
+- (PBDiceConfig_Builder*) setFollowReward:(int32_t) value {
+  result.hasFollowReward = YES;
+  result.followReward = value;
+  return self;
+}
+- (PBDiceConfig_Builder*) clearFollowReward {
+  result.hasFollowReward = NO;
+  result.followReward = 1000;
+  return self;
+}
+- (BOOL) hasLevelExp {
+  return result.hasLevelExp;
+}
+- (int32_t) levelExp {
+  return result.levelExp;
+}
+- (PBDiceConfig_Builder*) setLevelExp:(int32_t) value {
+  result.hasLevelExp = YES;
+  result.levelExp = value;
+  return self;
+}
+- (PBDiceConfig_Builder*) clearLevelExp {
+  result.hasLevelExp = NO;
+  result.levelExp = 5;
+  return self;
+}
+- (BOOL) hasLevelUpRewardCut {
+  return result.hasLevelUpRewardCut;
+}
+- (int32_t) levelUpRewardCut {
+  return result.levelUpRewardCut;
+}
+- (PBDiceConfig_Builder*) setLevelUpRewardCut:(int32_t) value {
+  result.hasLevelUpRewardCut = YES;
+  result.levelUpRewardCut = value;
+  return self;
+}
+- (PBDiceConfig_Builder*) clearLevelUpRewardCut {
+  result.hasLevelUpRewardCut = NO;
+  result.levelUpRewardCut = 2;
+  return self;
+}
+- (BOOL) hasRunwayCoin {
+  return result.hasRunwayCoin;
+}
+- (int32_t) runwayCoin {
+  return result.runwayCoin;
+}
+- (PBDiceConfig_Builder*) setRunwayCoin:(int32_t) value {
+  result.hasRunwayCoin = YES;
+  result.runwayCoin = value;
+  return self;
+}
+- (PBDiceConfig_Builder*) clearRunwayCoin {
+  result.hasRunwayCoin = NO;
+  result.runwayCoin = 200;
+  return self;
+}
+- (BOOL) hasNormalRoomThreshhold {
+  return result.hasNormalRoomThreshhold;
+}
+- (int32_t) normalRoomThreshhold {
+  return result.normalRoomThreshhold;
+}
+- (PBDiceConfig_Builder*) setNormalRoomThreshhold:(int32_t) value {
+  result.hasNormalRoomThreshhold = YES;
+  result.normalRoomThreshhold = value;
+  return self;
+}
+- (PBDiceConfig_Builder*) clearNormalRoomThreshhold {
+  result.hasNormalRoomThreshhold = NO;
+  result.normalRoomThreshhold = 200;
+  return self;
+}
+- (BOOL) hasHighRoomThreshhold {
+  return result.hasHighRoomThreshhold;
+}
+- (int32_t) highRoomThreshhold {
+  return result.highRoomThreshhold;
+}
+- (PBDiceConfig_Builder*) setHighRoomThreshhold:(int32_t) value {
+  result.hasHighRoomThreshhold = YES;
+  result.highRoomThreshhold = value;
+  return self;
+}
+- (PBDiceConfig_Builder*) clearHighRoomThreshhold {
+  result.hasHighRoomThreshhold = NO;
+  result.highRoomThreshhold = 2000;
+  return self;
+}
+- (BOOL) hasSuperHighRoomThreshhold {
+  return result.hasSuperHighRoomThreshhold;
+}
+- (int32_t) superHighRoomThreshhold {
+  return result.superHighRoomThreshhold;
+}
+- (PBDiceConfig_Builder*) setSuperHighRoomThreshhold:(int32_t) value {
+  result.hasSuperHighRoomThreshhold = YES;
+  result.superHighRoomThreshhold = value;
+  return self;
+}
+- (PBDiceConfig_Builder*) clearSuperHighRoomThreshhold {
+  result.hasSuperHighRoomThreshhold = NO;
+  result.superHighRoomThreshhold = 10000;
+  return self;
+}
+- (BOOL) hasBetAnteNormalRoom {
+  return result.hasBetAnteNormalRoom;
+}
+- (int32_t) betAnteNormalRoom {
+  return result.betAnteNormalRoom;
+}
+- (PBDiceConfig_Builder*) setBetAnteNormalRoom:(int32_t) value {
+  result.hasBetAnteNormalRoom = YES;
+  result.betAnteNormalRoom = value;
+  return self;
+}
+- (PBDiceConfig_Builder*) clearBetAnteNormalRoom {
+  result.hasBetAnteNormalRoom = NO;
+  result.betAnteNormalRoom = 50;
+  return self;
+}
+- (BOOL) hasBetAnteHighRoom {
+  return result.hasBetAnteHighRoom;
+}
+- (int32_t) betAnteHighRoom {
+  return result.betAnteHighRoom;
+}
+- (PBDiceConfig_Builder*) setBetAnteHighRoom:(int32_t) value {
+  result.hasBetAnteHighRoom = YES;
+  result.betAnteHighRoom = value;
+  return self;
+}
+- (PBDiceConfig_Builder*) clearBetAnteHighRoom {
+  result.hasBetAnteHighRoom = NO;
+  result.betAnteHighRoom = 100;
+  return self;
+}
+- (BOOL) hasBetAnteSuperHighRoom {
+  return result.hasBetAnteSuperHighRoom;
+}
+- (int32_t) betAnteSuperHighRoom {
+  return result.betAnteSuperHighRoom;
+}
+- (PBDiceConfig_Builder*) setBetAnteSuperHighRoom:(int32_t) value {
+  result.hasBetAnteSuperHighRoom = YES;
+  result.betAnteSuperHighRoom = value;
+  return self;
+}
+- (PBDiceConfig_Builder*) clearBetAnteSuperHighRoom {
+  result.hasBetAnteSuperHighRoom = NO;
+  result.betAnteSuperHighRoom = 200;
+  return self;
+}
+- (BOOL) hasDailyGift {
+  return result.hasDailyGift;
+}
+- (int32_t) dailyGift {
+  return result.dailyGift;
+}
+- (PBDiceConfig_Builder*) setDailyGift:(int32_t) value {
+  result.hasDailyGift = YES;
+  result.dailyGift = value;
+  return self;
+}
+- (PBDiceConfig_Builder*) clearDailyGift {
+  result.hasDailyGift = NO;
+  result.dailyGift = 70;
+  return self;
+}
+- (BOOL) hasDailyGiftIncreament {
+  return result.hasDailyGiftIncreament;
+}
+- (int32_t) dailyGiftIncreament {
+  return result.dailyGiftIncreament;
+}
+- (PBDiceConfig_Builder*) setDailyGiftIncreament:(int32_t) value {
+  result.hasDailyGiftIncreament = YES;
+  result.dailyGiftIncreament = value;
+  return self;
+}
+- (PBDiceConfig_Builder*) clearDailyGiftIncreament {
+  result.hasDailyGiftIncreament = NO;
+  result.dailyGiftIncreament = 12;
+  return self;
+}
+@end
+
+@interface PBDrawConfig ()
+@property (retain) NSString* defaultOnlineEnServerAddress;
+@property int32_t defaultOnlineEnServerPort;
+@property (retain) NSString* defaultOnlineCnServerAddress;
+@property int32_t defaultOnlineCnServerPort;
+@property int32_t guessReward;
+@property int32_t tomatoReward;
+@property int32_t tomatoExp;
+@property int32_t flowerReward;
+@property int32_t flowerExp;
+@property int32_t shareReward;
+@property int32_t followReward;
+@property int32_t levelUpFlower;
+@property int32_t onlineDrawExp;
+@property int32_t onlineGuessExp;
+@property int32_t offlineDrawExp;
+@property int32_t offlineGuessExp;
+@property int32_t maxItemTimesOnNormalOpus;
+@property int32_t maxItemTimesOnContestOpus;
+@end
+
+@implementation PBDrawConfig
+
+- (BOOL) hasDefaultOnlineEnServerAddress {
+  return !!hasDefaultOnlineEnServerAddress_;
+}
+- (void) setHasDefaultOnlineEnServerAddress:(BOOL) value {
+  hasDefaultOnlineEnServerAddress_ = !!value;
+}
+@synthesize defaultOnlineEnServerAddress;
+- (BOOL) hasDefaultOnlineEnServerPort {
+  return !!hasDefaultOnlineEnServerPort_;
+}
+- (void) setHasDefaultOnlineEnServerPort:(BOOL) value {
+  hasDefaultOnlineEnServerPort_ = !!value;
+}
+@synthesize defaultOnlineEnServerPort;
+- (BOOL) hasDefaultOnlineCnServerAddress {
+  return !!hasDefaultOnlineCnServerAddress_;
+}
+- (void) setHasDefaultOnlineCnServerAddress:(BOOL) value {
+  hasDefaultOnlineCnServerAddress_ = !!value;
+}
+@synthesize defaultOnlineCnServerAddress;
+- (BOOL) hasDefaultOnlineCnServerPort {
+  return !!hasDefaultOnlineCnServerPort_;
+}
+- (void) setHasDefaultOnlineCnServerPort:(BOOL) value {
+  hasDefaultOnlineCnServerPort_ = !!value;
+}
+@synthesize defaultOnlineCnServerPort;
+- (BOOL) hasGuessReward {
+  return !!hasGuessReward_;
+}
+- (void) setHasGuessReward:(BOOL) value {
+  hasGuessReward_ = !!value;
+}
+@synthesize guessReward;
+- (BOOL) hasTomatoReward {
+  return !!hasTomatoReward_;
+}
+- (void) setHasTomatoReward:(BOOL) value {
+  hasTomatoReward_ = !!value;
+}
+@synthesize tomatoReward;
+- (BOOL) hasTomatoExp {
+  return !!hasTomatoExp_;
+}
+- (void) setHasTomatoExp:(BOOL) value {
+  hasTomatoExp_ = !!value;
+}
+@synthesize tomatoExp;
+- (BOOL) hasFlowerReward {
+  return !!hasFlowerReward_;
+}
+- (void) setHasFlowerReward:(BOOL) value {
+  hasFlowerReward_ = !!value;
+}
+@synthesize flowerReward;
+- (BOOL) hasFlowerExp {
+  return !!hasFlowerExp_;
+}
+- (void) setHasFlowerExp:(BOOL) value {
+  hasFlowerExp_ = !!value;
+}
+@synthesize flowerExp;
+- (BOOL) hasShareReward {
+  return !!hasShareReward_;
+}
+- (void) setHasShareReward:(BOOL) value {
+  hasShareReward_ = !!value;
+}
+@synthesize shareReward;
+- (BOOL) hasFollowReward {
+  return !!hasFollowReward_;
+}
+- (void) setHasFollowReward:(BOOL) value {
+  hasFollowReward_ = !!value;
+}
+@synthesize followReward;
+- (BOOL) hasLevelUpFlower {
+  return !!hasLevelUpFlower_;
+}
+- (void) setHasLevelUpFlower:(BOOL) value {
+  hasLevelUpFlower_ = !!value;
+}
+@synthesize levelUpFlower;
+- (BOOL) hasOnlineDrawExp {
+  return !!hasOnlineDrawExp_;
+}
+- (void) setHasOnlineDrawExp:(BOOL) value {
+  hasOnlineDrawExp_ = !!value;
+}
+@synthesize onlineDrawExp;
+- (BOOL) hasOnlineGuessExp {
+  return !!hasOnlineGuessExp_;
+}
+- (void) setHasOnlineGuessExp:(BOOL) value {
+  hasOnlineGuessExp_ = !!value;
+}
+@synthesize onlineGuessExp;
+- (BOOL) hasOfflineDrawExp {
+  return !!hasOfflineDrawExp_;
+}
+- (void) setHasOfflineDrawExp:(BOOL) value {
+  hasOfflineDrawExp_ = !!value;
+}
+@synthesize offlineDrawExp;
+- (BOOL) hasOfflineGuessExp {
+  return !!hasOfflineGuessExp_;
+}
+- (void) setHasOfflineGuessExp:(BOOL) value {
+  hasOfflineGuessExp_ = !!value;
+}
+@synthesize offlineGuessExp;
+- (BOOL) hasMaxItemTimesOnNormalOpus {
+  return !!hasMaxItemTimesOnNormalOpus_;
+}
+- (void) setHasMaxItemTimesOnNormalOpus:(BOOL) value {
+  hasMaxItemTimesOnNormalOpus_ = !!value;
+}
+@synthesize maxItemTimesOnNormalOpus;
+- (BOOL) hasMaxItemTimesOnContestOpus {
+  return !!hasMaxItemTimesOnContestOpus_;
+}
+- (void) setHasMaxItemTimesOnContestOpus:(BOOL) value {
+  hasMaxItemTimesOnContestOpus_ = !!value;
+}
+@synthesize maxItemTimesOnContestOpus;
+- (void) dealloc {
+  self.defaultOnlineEnServerAddress = nil;
+  self.defaultOnlineCnServerAddress = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.defaultOnlineEnServerAddress = @"106.187.89.232";
+    self.defaultOnlineEnServerPort = 9000;
+    self.defaultOnlineCnServerAddress = @"www.place100.com";
+    self.defaultOnlineCnServerPort = 9000;
+    self.guessReward = 3;
+    self.tomatoReward = -3;
+    self.tomatoExp = -5;
+    self.flowerReward = 3;
+    self.flowerExp = 5;
+    self.shareReward = 10;
+    self.followReward = 1000;
+    self.levelUpFlower = 2;
+    self.onlineDrawExp = 15;
+    self.onlineGuessExp = 10;
+    self.offlineDrawExp = 15;
+    self.offlineGuessExp = 2;
+    self.maxItemTimesOnNormalOpus = 10;
+    self.maxItemTimesOnContestOpus = 3;
+  }
+  return self;
+}
+static PBDrawConfig* defaultPBDrawConfigInstance = nil;
++ (void) initialize {
+  if (self == [PBDrawConfig class]) {
+    defaultPBDrawConfigInstance = [[PBDrawConfig alloc] init];
+  }
+}
++ (PBDrawConfig*) defaultInstance {
+  return defaultPBDrawConfigInstance;
+}
+- (PBDrawConfig*) defaultInstance {
+  return defaultPBDrawConfigInstance;
+}
+- (BOOL) isInitialized {
+  return YES;
+}
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
+  if (self.hasDefaultOnlineEnServerAddress) {
+    [output writeString:1 value:self.defaultOnlineEnServerAddress];
+  }
+  if (self.hasDefaultOnlineEnServerPort) {
+    [output writeInt32:2 value:self.defaultOnlineEnServerPort];
+  }
+  if (self.hasDefaultOnlineCnServerAddress) {
+    [output writeString:3 value:self.defaultOnlineCnServerAddress];
+  }
+  if (self.hasDefaultOnlineCnServerPort) {
+    [output writeInt32:4 value:self.defaultOnlineCnServerPort];
+  }
+  if (self.hasGuessReward) {
+    [output writeInt32:10 value:self.guessReward];
+  }
+  if (self.hasTomatoReward) {
+    [output writeInt32:11 value:self.tomatoReward];
+  }
+  if (self.hasTomatoExp) {
+    [output writeInt32:12 value:self.tomatoExp];
+  }
+  if (self.hasFlowerReward) {
+    [output writeInt32:13 value:self.flowerReward];
+  }
+  if (self.hasFlowerExp) {
+    [output writeInt32:14 value:self.flowerExp];
+  }
+  if (self.hasShareReward) {
+    [output writeInt32:15 value:self.shareReward];
+  }
+  if (self.hasFollowReward) {
+    [output writeInt32:16 value:self.followReward];
+  }
+  if (self.hasLevelUpFlower) {
+    [output writeInt32:21 value:self.levelUpFlower];
+  }
+  if (self.hasOnlineDrawExp) {
+    [output writeInt32:30 value:self.onlineDrawExp];
+  }
+  if (self.hasOnlineGuessExp) {
+    [output writeInt32:31 value:self.onlineGuessExp];
+  }
+  if (self.hasOfflineDrawExp) {
+    [output writeInt32:32 value:self.offlineDrawExp];
+  }
+  if (self.hasOfflineGuessExp) {
+    [output writeInt32:33 value:self.offlineGuessExp];
+  }
+  if (self.hasMaxItemTimesOnNormalOpus) {
+    [output writeInt32:41 value:self.maxItemTimesOnNormalOpus];
+  }
+  if (self.hasMaxItemTimesOnContestOpus) {
+    [output writeInt32:42 value:self.maxItemTimesOnContestOpus];
+  }
+  [self.unknownFields writeToCodedOutputStream:output];
+}
+- (int32_t) serializedSize {
+  int32_t size = memoizedSerializedSize;
+  if (size != -1) {
+    return size;
+  }
+
+  size = 0;
+  if (self.hasDefaultOnlineEnServerAddress) {
+    size += computeStringSize(1, self.defaultOnlineEnServerAddress);
+  }
+  if (self.hasDefaultOnlineEnServerPort) {
+    size += computeInt32Size(2, self.defaultOnlineEnServerPort);
+  }
+  if (self.hasDefaultOnlineCnServerAddress) {
+    size += computeStringSize(3, self.defaultOnlineCnServerAddress);
+  }
+  if (self.hasDefaultOnlineCnServerPort) {
+    size += computeInt32Size(4, self.defaultOnlineCnServerPort);
+  }
+  if (self.hasGuessReward) {
+    size += computeInt32Size(10, self.guessReward);
+  }
+  if (self.hasTomatoReward) {
+    size += computeInt32Size(11, self.tomatoReward);
+  }
+  if (self.hasTomatoExp) {
+    size += computeInt32Size(12, self.tomatoExp);
+  }
+  if (self.hasFlowerReward) {
+    size += computeInt32Size(13, self.flowerReward);
+  }
+  if (self.hasFlowerExp) {
+    size += computeInt32Size(14, self.flowerExp);
+  }
+  if (self.hasShareReward) {
+    size += computeInt32Size(15, self.shareReward);
+  }
+  if (self.hasFollowReward) {
+    size += computeInt32Size(16, self.followReward);
+  }
+  if (self.hasLevelUpFlower) {
+    size += computeInt32Size(21, self.levelUpFlower);
+  }
+  if (self.hasOnlineDrawExp) {
+    size += computeInt32Size(30, self.onlineDrawExp);
+  }
+  if (self.hasOnlineGuessExp) {
+    size += computeInt32Size(31, self.onlineGuessExp);
+  }
+  if (self.hasOfflineDrawExp) {
+    size += computeInt32Size(32, self.offlineDrawExp);
+  }
+  if (self.hasOfflineGuessExp) {
+    size += computeInt32Size(33, self.offlineGuessExp);
+  }
+  if (self.hasMaxItemTimesOnNormalOpus) {
+    size += computeInt32Size(41, self.maxItemTimesOnNormalOpus);
+  }
+  if (self.hasMaxItemTimesOnContestOpus) {
+    size += computeInt32Size(42, self.maxItemTimesOnContestOpus);
+  }
+  size += self.unknownFields.serializedSize;
+  memoizedSerializedSize = size;
+  return size;
+}
++ (PBDrawConfig*) parseFromData:(NSData*) data {
+  return (PBDrawConfig*)[[[PBDrawConfig builder] mergeFromData:data] build];
+}
++ (PBDrawConfig*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBDrawConfig*)[[[PBDrawConfig builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+}
++ (PBDrawConfig*) parseFromInputStream:(NSInputStream*) input {
+  return (PBDrawConfig*)[[[PBDrawConfig builder] mergeFromInputStream:input] build];
+}
++ (PBDrawConfig*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBDrawConfig*)[[[PBDrawConfig builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (PBDrawConfig*) parseFromCodedInputStream:(PBCodedInputStream*) input {
+  return (PBDrawConfig*)[[[PBDrawConfig builder] mergeFromCodedInputStream:input] build];
+}
++ (PBDrawConfig*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBDrawConfig*)[[[PBDrawConfig builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (PBDrawConfig_Builder*) builder {
+  return [[[PBDrawConfig_Builder alloc] init] autorelease];
+}
++ (PBDrawConfig_Builder*) builderWithPrototype:(PBDrawConfig*) prototype {
+  return [[PBDrawConfig builder] mergeFrom:prototype];
+}
+- (PBDrawConfig_Builder*) builder {
+  return [PBDrawConfig builder];
+}
+@end
+
+@interface PBDrawConfig_Builder()
+@property (retain) PBDrawConfig* result;
+@end
+
+@implementation PBDrawConfig_Builder
+@synthesize result;
+- (void) dealloc {
+  self.result = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.result = [[[PBDrawConfig alloc] init] autorelease];
+  }
+  return self;
+}
+- (PBGeneratedMessage*) internalGetResult {
+  return result;
+}
+- (PBDrawConfig_Builder*) clear {
+  self.result = [[[PBDrawConfig alloc] init] autorelease];
+  return self;
+}
+- (PBDrawConfig_Builder*) clone {
+  return [PBDrawConfig builderWithPrototype:result];
+}
+- (PBDrawConfig*) defaultInstance {
+  return [PBDrawConfig defaultInstance];
+}
+- (PBDrawConfig*) build {
+  [self checkInitialized];
+  return [self buildPartial];
+}
+- (PBDrawConfig*) buildPartial {
+  PBDrawConfig* returnMe = [[result retain] autorelease];
+  self.result = nil;
+  return returnMe;
+}
+- (PBDrawConfig_Builder*) mergeFrom:(PBDrawConfig*) other {
+  if (other == [PBDrawConfig defaultInstance]) {
+    return self;
+  }
+  if (other.hasDefaultOnlineEnServerAddress) {
+    [self setDefaultOnlineEnServerAddress:other.defaultOnlineEnServerAddress];
+  }
+  if (other.hasDefaultOnlineEnServerPort) {
+    [self setDefaultOnlineEnServerPort:other.defaultOnlineEnServerPort];
+  }
+  if (other.hasDefaultOnlineCnServerAddress) {
+    [self setDefaultOnlineCnServerAddress:other.defaultOnlineCnServerAddress];
+  }
+  if (other.hasDefaultOnlineCnServerPort) {
+    [self setDefaultOnlineCnServerPort:other.defaultOnlineCnServerPort];
+  }
+  if (other.hasGuessReward) {
+    [self setGuessReward:other.guessReward];
+  }
+  if (other.hasTomatoReward) {
+    [self setTomatoReward:other.tomatoReward];
+  }
+  if (other.hasTomatoExp) {
+    [self setTomatoExp:other.tomatoExp];
+  }
+  if (other.hasFlowerReward) {
+    [self setFlowerReward:other.flowerReward];
+  }
+  if (other.hasFlowerExp) {
+    [self setFlowerExp:other.flowerExp];
+  }
+  if (other.hasShareReward) {
+    [self setShareReward:other.shareReward];
+  }
+  if (other.hasFollowReward) {
+    [self setFollowReward:other.followReward];
+  }
+  if (other.hasLevelUpFlower) {
+    [self setLevelUpFlower:other.levelUpFlower];
+  }
+  if (other.hasOnlineDrawExp) {
+    [self setOnlineDrawExp:other.onlineDrawExp];
+  }
+  if (other.hasOnlineGuessExp) {
+    [self setOnlineGuessExp:other.onlineGuessExp];
+  }
+  if (other.hasOfflineDrawExp) {
+    [self setOfflineDrawExp:other.offlineDrawExp];
+  }
+  if (other.hasOfflineGuessExp) {
+    [self setOfflineGuessExp:other.offlineGuessExp];
+  }
+  if (other.hasMaxItemTimesOnNormalOpus) {
+    [self setMaxItemTimesOnNormalOpus:other.maxItemTimesOnNormalOpus];
+  }
+  if (other.hasMaxItemTimesOnContestOpus) {
+    [self setMaxItemTimesOnContestOpus:other.maxItemTimesOnContestOpus];
+  }
+  [self mergeUnknownFields:other.unknownFields];
+  return self;
+}
+- (PBDrawConfig_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
+  return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
+}
+- (PBDrawConfig_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
+  while (YES) {
+    int32_t tag = [input readTag];
+    switch (tag) {
+      case 0:
+        [self setUnknownFields:[unknownFields build]];
+        return self;
+      default: {
+        if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
+          [self setUnknownFields:[unknownFields build]];
+          return self;
+        }
+        break;
+      }
+      case 10: {
+        [self setDefaultOnlineEnServerAddress:[input readString]];
+        break;
+      }
+      case 16: {
+        [self setDefaultOnlineEnServerPort:[input readInt32]];
+        break;
+      }
+      case 26: {
+        [self setDefaultOnlineCnServerAddress:[input readString]];
+        break;
+      }
+      case 32: {
+        [self setDefaultOnlineCnServerPort:[input readInt32]];
+        break;
+      }
+      case 80: {
+        [self setGuessReward:[input readInt32]];
+        break;
+      }
+      case 88: {
+        [self setTomatoReward:[input readInt32]];
+        break;
+      }
+      case 96: {
+        [self setTomatoExp:[input readInt32]];
+        break;
+      }
+      case 104: {
+        [self setFlowerReward:[input readInt32]];
+        break;
+      }
+      case 112: {
+        [self setFlowerExp:[input readInt32]];
+        break;
+      }
+      case 120: {
+        [self setShareReward:[input readInt32]];
+        break;
+      }
+      case 128: {
+        [self setFollowReward:[input readInt32]];
+        break;
+      }
+      case 168: {
+        [self setLevelUpFlower:[input readInt32]];
+        break;
+      }
+      case 240: {
+        [self setOnlineDrawExp:[input readInt32]];
+        break;
+      }
+      case 248: {
+        [self setOnlineGuessExp:[input readInt32]];
+        break;
+      }
+      case 256: {
+        [self setOfflineDrawExp:[input readInt32]];
+        break;
+      }
+      case 264: {
+        [self setOfflineGuessExp:[input readInt32]];
+        break;
+      }
+      case 328: {
+        [self setMaxItemTimesOnNormalOpus:[input readInt32]];
+        break;
+      }
+      case 336: {
+        [self setMaxItemTimesOnContestOpus:[input readInt32]];
+        break;
+      }
+    }
+  }
+}
+- (BOOL) hasDefaultOnlineEnServerAddress {
+  return result.hasDefaultOnlineEnServerAddress;
+}
+- (NSString*) defaultOnlineEnServerAddress {
+  return result.defaultOnlineEnServerAddress;
+}
+- (PBDrawConfig_Builder*) setDefaultOnlineEnServerAddress:(NSString*) value {
+  result.hasDefaultOnlineEnServerAddress = YES;
+  result.defaultOnlineEnServerAddress = value;
+  return self;
+}
+- (PBDrawConfig_Builder*) clearDefaultOnlineEnServerAddress {
+  result.hasDefaultOnlineEnServerAddress = NO;
+  result.defaultOnlineEnServerAddress = @"106.187.89.232";
+  return self;
+}
+- (BOOL) hasDefaultOnlineEnServerPort {
+  return result.hasDefaultOnlineEnServerPort;
+}
+- (int32_t) defaultOnlineEnServerPort {
+  return result.defaultOnlineEnServerPort;
+}
+- (PBDrawConfig_Builder*) setDefaultOnlineEnServerPort:(int32_t) value {
+  result.hasDefaultOnlineEnServerPort = YES;
+  result.defaultOnlineEnServerPort = value;
+  return self;
+}
+- (PBDrawConfig_Builder*) clearDefaultOnlineEnServerPort {
+  result.hasDefaultOnlineEnServerPort = NO;
+  result.defaultOnlineEnServerPort = 9000;
+  return self;
+}
+- (BOOL) hasDefaultOnlineCnServerAddress {
+  return result.hasDefaultOnlineCnServerAddress;
+}
+- (NSString*) defaultOnlineCnServerAddress {
+  return result.defaultOnlineCnServerAddress;
+}
+- (PBDrawConfig_Builder*) setDefaultOnlineCnServerAddress:(NSString*) value {
+  result.hasDefaultOnlineCnServerAddress = YES;
+  result.defaultOnlineCnServerAddress = value;
+  return self;
+}
+- (PBDrawConfig_Builder*) clearDefaultOnlineCnServerAddress {
+  result.hasDefaultOnlineCnServerAddress = NO;
+  result.defaultOnlineCnServerAddress = @"www.place100.com";
+  return self;
+}
+- (BOOL) hasDefaultOnlineCnServerPort {
+  return result.hasDefaultOnlineCnServerPort;
+}
+- (int32_t) defaultOnlineCnServerPort {
+  return result.defaultOnlineCnServerPort;
+}
+- (PBDrawConfig_Builder*) setDefaultOnlineCnServerPort:(int32_t) value {
+  result.hasDefaultOnlineCnServerPort = YES;
+  result.defaultOnlineCnServerPort = value;
+  return self;
+}
+- (PBDrawConfig_Builder*) clearDefaultOnlineCnServerPort {
+  result.hasDefaultOnlineCnServerPort = NO;
+  result.defaultOnlineCnServerPort = 9000;
+  return self;
+}
+- (BOOL) hasGuessReward {
+  return result.hasGuessReward;
+}
+- (int32_t) guessReward {
+  return result.guessReward;
+}
+- (PBDrawConfig_Builder*) setGuessReward:(int32_t) value {
+  result.hasGuessReward = YES;
+  result.guessReward = value;
+  return self;
+}
+- (PBDrawConfig_Builder*) clearGuessReward {
+  result.hasGuessReward = NO;
+  result.guessReward = 3;
+  return self;
+}
+- (BOOL) hasTomatoReward {
+  return result.hasTomatoReward;
+}
+- (int32_t) tomatoReward {
+  return result.tomatoReward;
+}
+- (PBDrawConfig_Builder*) setTomatoReward:(int32_t) value {
+  result.hasTomatoReward = YES;
+  result.tomatoReward = value;
+  return self;
+}
+- (PBDrawConfig_Builder*) clearTomatoReward {
+  result.hasTomatoReward = NO;
+  result.tomatoReward = -3;
+  return self;
+}
+- (BOOL) hasTomatoExp {
+  return result.hasTomatoExp;
+}
+- (int32_t) tomatoExp {
+  return result.tomatoExp;
+}
+- (PBDrawConfig_Builder*) setTomatoExp:(int32_t) value {
+  result.hasTomatoExp = YES;
+  result.tomatoExp = value;
+  return self;
+}
+- (PBDrawConfig_Builder*) clearTomatoExp {
+  result.hasTomatoExp = NO;
+  result.tomatoExp = -5;
+  return self;
+}
+- (BOOL) hasFlowerReward {
+  return result.hasFlowerReward;
+}
+- (int32_t) flowerReward {
+  return result.flowerReward;
+}
+- (PBDrawConfig_Builder*) setFlowerReward:(int32_t) value {
+  result.hasFlowerReward = YES;
+  result.flowerReward = value;
+  return self;
+}
+- (PBDrawConfig_Builder*) clearFlowerReward {
+  result.hasFlowerReward = NO;
+  result.flowerReward = 3;
+  return self;
+}
+- (BOOL) hasFlowerExp {
+  return result.hasFlowerExp;
+}
+- (int32_t) flowerExp {
+  return result.flowerExp;
+}
+- (PBDrawConfig_Builder*) setFlowerExp:(int32_t) value {
+  result.hasFlowerExp = YES;
+  result.flowerExp = value;
+  return self;
+}
+- (PBDrawConfig_Builder*) clearFlowerExp {
+  result.hasFlowerExp = NO;
+  result.flowerExp = 5;
+  return self;
+}
+- (BOOL) hasShareReward {
+  return result.hasShareReward;
+}
+- (int32_t) shareReward {
+  return result.shareReward;
+}
+- (PBDrawConfig_Builder*) setShareReward:(int32_t) value {
+  result.hasShareReward = YES;
+  result.shareReward = value;
+  return self;
+}
+- (PBDrawConfig_Builder*) clearShareReward {
+  result.hasShareReward = NO;
+  result.shareReward = 10;
+  return self;
+}
+- (BOOL) hasFollowReward {
+  return result.hasFollowReward;
+}
+- (int32_t) followReward {
+  return result.followReward;
+}
+- (PBDrawConfig_Builder*) setFollowReward:(int32_t) value {
+  result.hasFollowReward = YES;
+  result.followReward = value;
+  return self;
+}
+- (PBDrawConfig_Builder*) clearFollowReward {
+  result.hasFollowReward = NO;
+  result.followReward = 1000;
+  return self;
+}
+- (BOOL) hasLevelUpFlower {
+  return result.hasLevelUpFlower;
+}
+- (int32_t) levelUpFlower {
+  return result.levelUpFlower;
+}
+- (PBDrawConfig_Builder*) setLevelUpFlower:(int32_t) value {
+  result.hasLevelUpFlower = YES;
+  result.levelUpFlower = value;
+  return self;
+}
+- (PBDrawConfig_Builder*) clearLevelUpFlower {
+  result.hasLevelUpFlower = NO;
+  result.levelUpFlower = 2;
+  return self;
+}
+- (BOOL) hasOnlineDrawExp {
+  return result.hasOnlineDrawExp;
+}
+- (int32_t) onlineDrawExp {
+  return result.onlineDrawExp;
+}
+- (PBDrawConfig_Builder*) setOnlineDrawExp:(int32_t) value {
+  result.hasOnlineDrawExp = YES;
+  result.onlineDrawExp = value;
+  return self;
+}
+- (PBDrawConfig_Builder*) clearOnlineDrawExp {
+  result.hasOnlineDrawExp = NO;
+  result.onlineDrawExp = 15;
+  return self;
+}
+- (BOOL) hasOnlineGuessExp {
+  return result.hasOnlineGuessExp;
+}
+- (int32_t) onlineGuessExp {
+  return result.onlineGuessExp;
+}
+- (PBDrawConfig_Builder*) setOnlineGuessExp:(int32_t) value {
+  result.hasOnlineGuessExp = YES;
+  result.onlineGuessExp = value;
+  return self;
+}
+- (PBDrawConfig_Builder*) clearOnlineGuessExp {
+  result.hasOnlineGuessExp = NO;
+  result.onlineGuessExp = 10;
+  return self;
+}
+- (BOOL) hasOfflineDrawExp {
+  return result.hasOfflineDrawExp;
+}
+- (int32_t) offlineDrawExp {
+  return result.offlineDrawExp;
+}
+- (PBDrawConfig_Builder*) setOfflineDrawExp:(int32_t) value {
+  result.hasOfflineDrawExp = YES;
+  result.offlineDrawExp = value;
+  return self;
+}
+- (PBDrawConfig_Builder*) clearOfflineDrawExp {
+  result.hasOfflineDrawExp = NO;
+  result.offlineDrawExp = 15;
+  return self;
+}
+- (BOOL) hasOfflineGuessExp {
+  return result.hasOfflineGuessExp;
+}
+- (int32_t) offlineGuessExp {
+  return result.offlineGuessExp;
+}
+- (PBDrawConfig_Builder*) setOfflineGuessExp:(int32_t) value {
+  result.hasOfflineGuessExp = YES;
+  result.offlineGuessExp = value;
+  return self;
+}
+- (PBDrawConfig_Builder*) clearOfflineGuessExp {
+  result.hasOfflineGuessExp = NO;
+  result.offlineGuessExp = 2;
+  return self;
+}
+- (BOOL) hasMaxItemTimesOnNormalOpus {
+  return result.hasMaxItemTimesOnNormalOpus;
+}
+- (int32_t) maxItemTimesOnNormalOpus {
+  return result.maxItemTimesOnNormalOpus;
+}
+- (PBDrawConfig_Builder*) setMaxItemTimesOnNormalOpus:(int32_t) value {
+  result.hasMaxItemTimesOnNormalOpus = YES;
+  result.maxItemTimesOnNormalOpus = value;
+  return self;
+}
+- (PBDrawConfig_Builder*) clearMaxItemTimesOnNormalOpus {
+  result.hasMaxItemTimesOnNormalOpus = NO;
+  result.maxItemTimesOnNormalOpus = 10;
+  return self;
+}
+- (BOOL) hasMaxItemTimesOnContestOpus {
+  return result.hasMaxItemTimesOnContestOpus;
+}
+- (int32_t) maxItemTimesOnContestOpus {
+  return result.maxItemTimesOnContestOpus;
+}
+- (PBDrawConfig_Builder*) setMaxItemTimesOnContestOpus:(int32_t) value {
+  result.hasMaxItemTimesOnContestOpus = YES;
+  result.maxItemTimesOnContestOpus = value;
+  return self;
+}
+- (PBDrawConfig_Builder*) clearMaxItemTimesOnContestOpus {
+  result.hasMaxItemTimesOnContestOpus = NO;
+  result.maxItemTimesOnContestOpus = 3;
+  return self;
 }
 @end
 
 @interface PBConfig ()
 @property (retain) NSMutableArray* mutableCoinPricesList;
-@property (retain) NSString* test;
+@property int32_t balanceDeviation;
+@property (retain) NSString* trafficApiserverUrl;
+@property (retain) NSString* userApiserverUrl;
+@property (retain) NSString* musicHomeCnUrl;
+@property (retain) NSString* musicHomeEnUrl;
+@property BOOL enableReview;
+@property BOOL inReview;
+@property (retain) NSString* inReviewVersion;
+@property int32_t postponeTime;
+@property int32_t urgeTime;
+@property BOOL enableAd;
+@property BOOL enableWall;
+@property int32_t wallType;
+@property (retain) PBDrawConfig* drawConfig;
+@property (retain) PBDiceConfig* diceConfig;
 @property (retain) PBZJHConfig* zjhConfig;
 @end
 
 @implementation PBConfig
 
 @synthesize mutableCoinPricesList;
-- (BOOL) hasTest {
-  return !!hasTest_;
+- (BOOL) hasBalanceDeviation {
+  return !!hasBalanceDeviation_;
 }
-- (void) setHasTest:(BOOL) value {
-  hasTest_ = !!value;
+- (void) setHasBalanceDeviation:(BOOL) value {
+  hasBalanceDeviation_ = !!value;
 }
-@synthesize test;
+@synthesize balanceDeviation;
+- (BOOL) hasTrafficApiserverUrl {
+  return !!hasTrafficApiserverUrl_;
+}
+- (void) setHasTrafficApiserverUrl:(BOOL) value {
+  hasTrafficApiserverUrl_ = !!value;
+}
+@synthesize trafficApiserverUrl;
+- (BOOL) hasUserApiserverUrl {
+  return !!hasUserApiserverUrl_;
+}
+- (void) setHasUserApiserverUrl:(BOOL) value {
+  hasUserApiserverUrl_ = !!value;
+}
+@synthesize userApiserverUrl;
+- (BOOL) hasMusicHomeCnUrl {
+  return !!hasMusicHomeCnUrl_;
+}
+- (void) setHasMusicHomeCnUrl:(BOOL) value {
+  hasMusicHomeCnUrl_ = !!value;
+}
+@synthesize musicHomeCnUrl;
+- (BOOL) hasMusicHomeEnUrl {
+  return !!hasMusicHomeEnUrl_;
+}
+- (void) setHasMusicHomeEnUrl:(BOOL) value {
+  hasMusicHomeEnUrl_ = !!value;
+}
+@synthesize musicHomeEnUrl;
+- (BOOL) hasEnableReview {
+  return !!hasEnableReview_;
+}
+- (void) setHasEnableReview:(BOOL) value {
+  hasEnableReview_ = !!value;
+}
+- (BOOL) enableReview {
+  return !!enableReview_;
+}
+- (void) setEnableReview:(BOOL) value {
+  enableReview_ = !!value;
+}
+- (BOOL) hasInReview {
+  return !!hasInReview_;
+}
+- (void) setHasInReview:(BOOL) value {
+  hasInReview_ = !!value;
+}
+- (BOOL) inReview {
+  return !!inReview_;
+}
+- (void) setInReview:(BOOL) value {
+  inReview_ = !!value;
+}
+- (BOOL) hasInReviewVersion {
+  return !!hasInReviewVersion_;
+}
+- (void) setHasInReviewVersion:(BOOL) value {
+  hasInReviewVersion_ = !!value;
+}
+@synthesize inReviewVersion;
+- (BOOL) hasPostponeTime {
+  return !!hasPostponeTime_;
+}
+- (void) setHasPostponeTime:(BOOL) value {
+  hasPostponeTime_ = !!value;
+}
+@synthesize postponeTime;
+- (BOOL) hasUrgeTime {
+  return !!hasUrgeTime_;
+}
+- (void) setHasUrgeTime:(BOOL) value {
+  hasUrgeTime_ = !!value;
+}
+@synthesize urgeTime;
+- (BOOL) hasEnableAd {
+  return !!hasEnableAd_;
+}
+- (void) setHasEnableAd:(BOOL) value {
+  hasEnableAd_ = !!value;
+}
+- (BOOL) enableAd {
+  return !!enableAd_;
+}
+- (void) setEnableAd:(BOOL) value {
+  enableAd_ = !!value;
+}
+- (BOOL) hasEnableWall {
+  return !!hasEnableWall_;
+}
+- (void) setHasEnableWall:(BOOL) value {
+  hasEnableWall_ = !!value;
+}
+- (BOOL) enableWall {
+  return !!enableWall_;
+}
+- (void) setEnableWall:(BOOL) value {
+  enableWall_ = !!value;
+}
+- (BOOL) hasWallType {
+  return !!hasWallType_;
+}
+- (void) setHasWallType:(BOOL) value {
+  hasWallType_ = !!value;
+}
+@synthesize wallType;
+- (BOOL) hasDrawConfig {
+  return !!hasDrawConfig_;
+}
+- (void) setHasDrawConfig:(BOOL) value {
+  hasDrawConfig_ = !!value;
+}
+@synthesize drawConfig;
+- (BOOL) hasDiceConfig {
+  return !!hasDiceConfig_;
+}
+- (void) setHasDiceConfig:(BOOL) value {
+  hasDiceConfig_ = !!value;
+}
+@synthesize diceConfig;
 - (BOOL) hasZjhConfig {
   return !!hasZjhConfig_;
 }
@@ -484,13 +2340,33 @@ static PBZJHConfig* defaultPBZJHConfigInstance = nil;
 @synthesize zjhConfig;
 - (void) dealloc {
   self.mutableCoinPricesList = nil;
-  self.test = nil;
+  self.trafficApiserverUrl = nil;
+  self.userApiserverUrl = nil;
+  self.musicHomeCnUrl = nil;
+  self.musicHomeEnUrl = nil;
+  self.inReviewVersion = nil;
+  self.drawConfig = nil;
+  self.diceConfig = nil;
   self.zjhConfig = nil;
   [super dealloc];
 }
 - (id) init {
   if ((self = [super init])) {
-    self.test = @"hello";
+    self.balanceDeviation = 4000;
+    self.trafficApiserverUrl = @"http://www.place100.com:8100/api/i?";
+    self.userApiserverUrl = @"http://www.you100.me:8001/api/i?";
+    self.musicHomeCnUrl = @"http://m.easou.com/col.e?id=112";
+    self.musicHomeEnUrl = @"http://mp3skull.com/";
+    self.enableReview = YES;
+    self.inReview = NO;
+    self.inReviewVersion = @"";
+    self.postponeTime = 10;
+    self.urgeTime = 5;
+    self.enableAd = YES;
+    self.enableWall = YES;
+    self.wallType = 1;
+    self.drawConfig = [PBDrawConfig defaultInstance];
+    self.diceConfig = [PBDiceConfig defaultInstance];
     self.zjhConfig = [PBZJHConfig defaultInstance];
   }
   return self;
@@ -526,11 +2402,53 @@ static PBConfig* defaultPBConfigInstance = nil;
   for (PBPrice* element in self.coinPricesList) {
     [output writeMessage:1 value:element];
   }
-  if (self.hasTest) {
-    [output writeString:2 value:self.test];
+  if (self.hasBalanceDeviation) {
+    [output writeInt32:2 value:self.balanceDeviation];
+  }
+  if (self.hasTrafficApiserverUrl) {
+    [output writeString:30 value:self.trafficApiserverUrl];
+  }
+  if (self.hasUserApiserverUrl) {
+    [output writeString:31 value:self.userApiserverUrl];
+  }
+  if (self.hasMusicHomeCnUrl) {
+    [output writeString:41 value:self.musicHomeCnUrl];
+  }
+  if (self.hasMusicHomeEnUrl) {
+    [output writeString:42 value:self.musicHomeEnUrl];
+  }
+  if (self.hasEnableReview) {
+    [output writeBool:61 value:self.enableReview];
+  }
+  if (self.hasInReview) {
+    [output writeBool:62 value:self.inReview];
+  }
+  if (self.hasInReviewVersion) {
+    [output writeString:63 value:self.inReviewVersion];
+  }
+  if (self.hasPostponeTime) {
+    [output writeInt32:64 value:self.postponeTime];
+  }
+  if (self.hasUrgeTime) {
+    [output writeInt32:65 value:self.urgeTime];
+  }
+  if (self.hasEnableAd) {
+    [output writeBool:70 value:self.enableAd];
+  }
+  if (self.hasEnableWall) {
+    [output writeBool:71 value:self.enableWall];
+  }
+  if (self.hasWallType) {
+    [output writeInt32:72 value:self.wallType];
+  }
+  if (self.hasDrawConfig) {
+    [output writeMessage:100 value:self.drawConfig];
+  }
+  if (self.hasDiceConfig) {
+    [output writeMessage:101 value:self.diceConfig];
   }
   if (self.hasZjhConfig) {
-    [output writeMessage:100 value:self.zjhConfig];
+    [output writeMessage:102 value:self.zjhConfig];
   }
   [self.unknownFields writeToCodedOutputStream:output];
 }
@@ -544,11 +2462,53 @@ static PBConfig* defaultPBConfigInstance = nil;
   for (PBPrice* element in self.coinPricesList) {
     size += computeMessageSize(1, element);
   }
-  if (self.hasTest) {
-    size += computeStringSize(2, self.test);
+  if (self.hasBalanceDeviation) {
+    size += computeInt32Size(2, self.balanceDeviation);
+  }
+  if (self.hasTrafficApiserverUrl) {
+    size += computeStringSize(30, self.trafficApiserverUrl);
+  }
+  if (self.hasUserApiserverUrl) {
+    size += computeStringSize(31, self.userApiserverUrl);
+  }
+  if (self.hasMusicHomeCnUrl) {
+    size += computeStringSize(41, self.musicHomeCnUrl);
+  }
+  if (self.hasMusicHomeEnUrl) {
+    size += computeStringSize(42, self.musicHomeEnUrl);
+  }
+  if (self.hasEnableReview) {
+    size += computeBoolSize(61, self.enableReview);
+  }
+  if (self.hasInReview) {
+    size += computeBoolSize(62, self.inReview);
+  }
+  if (self.hasInReviewVersion) {
+    size += computeStringSize(63, self.inReviewVersion);
+  }
+  if (self.hasPostponeTime) {
+    size += computeInt32Size(64, self.postponeTime);
+  }
+  if (self.hasUrgeTime) {
+    size += computeInt32Size(65, self.urgeTime);
+  }
+  if (self.hasEnableAd) {
+    size += computeBoolSize(70, self.enableAd);
+  }
+  if (self.hasEnableWall) {
+    size += computeBoolSize(71, self.enableWall);
+  }
+  if (self.hasWallType) {
+    size += computeInt32Size(72, self.wallType);
+  }
+  if (self.hasDrawConfig) {
+    size += computeMessageSize(100, self.drawConfig);
+  }
+  if (self.hasDiceConfig) {
+    size += computeMessageSize(101, self.diceConfig);
   }
   if (self.hasZjhConfig) {
-    size += computeMessageSize(100, self.zjhConfig);
+    size += computeMessageSize(102, self.zjhConfig);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -631,8 +2591,50 @@ static PBConfig* defaultPBConfigInstance = nil;
     }
     [result.mutableCoinPricesList addObjectsFromArray:other.mutableCoinPricesList];
   }
-  if (other.hasTest) {
-    [self setTest:other.test];
+  if (other.hasBalanceDeviation) {
+    [self setBalanceDeviation:other.balanceDeviation];
+  }
+  if (other.hasTrafficApiserverUrl) {
+    [self setTrafficApiserverUrl:other.trafficApiserverUrl];
+  }
+  if (other.hasUserApiserverUrl) {
+    [self setUserApiserverUrl:other.userApiserverUrl];
+  }
+  if (other.hasMusicHomeCnUrl) {
+    [self setMusicHomeCnUrl:other.musicHomeCnUrl];
+  }
+  if (other.hasMusicHomeEnUrl) {
+    [self setMusicHomeEnUrl:other.musicHomeEnUrl];
+  }
+  if (other.hasEnableReview) {
+    [self setEnableReview:other.enableReview];
+  }
+  if (other.hasInReview) {
+    [self setInReview:other.inReview];
+  }
+  if (other.hasInReviewVersion) {
+    [self setInReviewVersion:other.inReviewVersion];
+  }
+  if (other.hasPostponeTime) {
+    [self setPostponeTime:other.postponeTime];
+  }
+  if (other.hasUrgeTime) {
+    [self setUrgeTime:other.urgeTime];
+  }
+  if (other.hasEnableAd) {
+    [self setEnableAd:other.enableAd];
+  }
+  if (other.hasEnableWall) {
+    [self setEnableWall:other.enableWall];
+  }
+  if (other.hasWallType) {
+    [self setWallType:other.wallType];
+  }
+  if (other.hasDrawConfig) {
+    [self mergeDrawConfig:other.drawConfig];
+  }
+  if (other.hasDiceConfig) {
+    [self mergeDiceConfig:other.diceConfig];
   }
   if (other.hasZjhConfig) {
     [self mergeZjhConfig:other.zjhConfig];
@@ -664,11 +2666,77 @@ static PBConfig* defaultPBConfigInstance = nil;
         [self addCoinPrices:[subBuilder buildPartial]];
         break;
       }
-      case 18: {
-        [self setTest:[input readString]];
+      case 16: {
+        [self setBalanceDeviation:[input readInt32]];
+        break;
+      }
+      case 242: {
+        [self setTrafficApiserverUrl:[input readString]];
+        break;
+      }
+      case 250: {
+        [self setUserApiserverUrl:[input readString]];
+        break;
+      }
+      case 330: {
+        [self setMusicHomeCnUrl:[input readString]];
+        break;
+      }
+      case 338: {
+        [self setMusicHomeEnUrl:[input readString]];
+        break;
+      }
+      case 488: {
+        [self setEnableReview:[input readBool]];
+        break;
+      }
+      case 496: {
+        [self setInReview:[input readBool]];
+        break;
+      }
+      case 506: {
+        [self setInReviewVersion:[input readString]];
+        break;
+      }
+      case 512: {
+        [self setPostponeTime:[input readInt32]];
+        break;
+      }
+      case 520: {
+        [self setUrgeTime:[input readInt32]];
+        break;
+      }
+      case 560: {
+        [self setEnableAd:[input readBool]];
+        break;
+      }
+      case 568: {
+        [self setEnableWall:[input readBool]];
+        break;
+      }
+      case 576: {
+        [self setWallType:[input readInt32]];
         break;
       }
       case 802: {
+        PBDrawConfig_Builder* subBuilder = [PBDrawConfig builder];
+        if (self.hasDrawConfig) {
+          [subBuilder mergeFrom:self.drawConfig];
+        }
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self setDrawConfig:[subBuilder buildPartial]];
+        break;
+      }
+      case 810: {
+        PBDiceConfig_Builder* subBuilder = [PBDiceConfig builder];
+        if (self.hasDiceConfig) {
+          [subBuilder mergeFrom:self.diceConfig];
+        }
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self setDiceConfig:[subBuilder buildPartial]];
+        break;
+      }
+      case 818: {
         PBZJHConfig_Builder* subBuilder = [PBZJHConfig builder];
         if (self.hasZjhConfig) {
           [subBuilder mergeFrom:self.zjhConfig];
@@ -709,20 +2777,272 @@ static PBConfig* defaultPBConfigInstance = nil;
   [result.mutableCoinPricesList addObject:value];
   return self;
 }
-- (BOOL) hasTest {
-  return result.hasTest;
+- (BOOL) hasBalanceDeviation {
+  return result.hasBalanceDeviation;
 }
-- (NSString*) test {
-  return result.test;
+- (int32_t) balanceDeviation {
+  return result.balanceDeviation;
 }
-- (PBConfig_Builder*) setTest:(NSString*) value {
-  result.hasTest = YES;
-  result.test = value;
+- (PBConfig_Builder*) setBalanceDeviation:(int32_t) value {
+  result.hasBalanceDeviation = YES;
+  result.balanceDeviation = value;
   return self;
 }
-- (PBConfig_Builder*) clearTest {
-  result.hasTest = NO;
-  result.test = @"hello";
+- (PBConfig_Builder*) clearBalanceDeviation {
+  result.hasBalanceDeviation = NO;
+  result.balanceDeviation = 4000;
+  return self;
+}
+- (BOOL) hasTrafficApiserverUrl {
+  return result.hasTrafficApiserverUrl;
+}
+- (NSString*) trafficApiserverUrl {
+  return result.trafficApiserverUrl;
+}
+- (PBConfig_Builder*) setTrafficApiserverUrl:(NSString*) value {
+  result.hasTrafficApiserverUrl = YES;
+  result.trafficApiserverUrl = value;
+  return self;
+}
+- (PBConfig_Builder*) clearTrafficApiserverUrl {
+  result.hasTrafficApiserverUrl = NO;
+  result.trafficApiserverUrl = @"http://www.place100.com:8100/api/i?";
+  return self;
+}
+- (BOOL) hasUserApiserverUrl {
+  return result.hasUserApiserverUrl;
+}
+- (NSString*) userApiserverUrl {
+  return result.userApiserverUrl;
+}
+- (PBConfig_Builder*) setUserApiserverUrl:(NSString*) value {
+  result.hasUserApiserverUrl = YES;
+  result.userApiserverUrl = value;
+  return self;
+}
+- (PBConfig_Builder*) clearUserApiserverUrl {
+  result.hasUserApiserverUrl = NO;
+  result.userApiserverUrl = @"http://www.you100.me:8001/api/i?";
+  return self;
+}
+- (BOOL) hasMusicHomeCnUrl {
+  return result.hasMusicHomeCnUrl;
+}
+- (NSString*) musicHomeCnUrl {
+  return result.musicHomeCnUrl;
+}
+- (PBConfig_Builder*) setMusicHomeCnUrl:(NSString*) value {
+  result.hasMusicHomeCnUrl = YES;
+  result.musicHomeCnUrl = value;
+  return self;
+}
+- (PBConfig_Builder*) clearMusicHomeCnUrl {
+  result.hasMusicHomeCnUrl = NO;
+  result.musicHomeCnUrl = @"http://m.easou.com/col.e?id=112";
+  return self;
+}
+- (BOOL) hasMusicHomeEnUrl {
+  return result.hasMusicHomeEnUrl;
+}
+- (NSString*) musicHomeEnUrl {
+  return result.musicHomeEnUrl;
+}
+- (PBConfig_Builder*) setMusicHomeEnUrl:(NSString*) value {
+  result.hasMusicHomeEnUrl = YES;
+  result.musicHomeEnUrl = value;
+  return self;
+}
+- (PBConfig_Builder*) clearMusicHomeEnUrl {
+  result.hasMusicHomeEnUrl = NO;
+  result.musicHomeEnUrl = @"http://mp3skull.com/";
+  return self;
+}
+- (BOOL) hasEnableReview {
+  return result.hasEnableReview;
+}
+- (BOOL) enableReview {
+  return result.enableReview;
+}
+- (PBConfig_Builder*) setEnableReview:(BOOL) value {
+  result.hasEnableReview = YES;
+  result.enableReview = value;
+  return self;
+}
+- (PBConfig_Builder*) clearEnableReview {
+  result.hasEnableReview = NO;
+  result.enableReview = YES;
+  return self;
+}
+- (BOOL) hasInReview {
+  return result.hasInReview;
+}
+- (BOOL) inReview {
+  return result.inReview;
+}
+- (PBConfig_Builder*) setInReview:(BOOL) value {
+  result.hasInReview = YES;
+  result.inReview = value;
+  return self;
+}
+- (PBConfig_Builder*) clearInReview {
+  result.hasInReview = NO;
+  result.inReview = NO;
+  return self;
+}
+- (BOOL) hasInReviewVersion {
+  return result.hasInReviewVersion;
+}
+- (NSString*) inReviewVersion {
+  return result.inReviewVersion;
+}
+- (PBConfig_Builder*) setInReviewVersion:(NSString*) value {
+  result.hasInReviewVersion = YES;
+  result.inReviewVersion = value;
+  return self;
+}
+- (PBConfig_Builder*) clearInReviewVersion {
+  result.hasInReviewVersion = NO;
+  result.inReviewVersion = @"";
+  return self;
+}
+- (BOOL) hasPostponeTime {
+  return result.hasPostponeTime;
+}
+- (int32_t) postponeTime {
+  return result.postponeTime;
+}
+- (PBConfig_Builder*) setPostponeTime:(int32_t) value {
+  result.hasPostponeTime = YES;
+  result.postponeTime = value;
+  return self;
+}
+- (PBConfig_Builder*) clearPostponeTime {
+  result.hasPostponeTime = NO;
+  result.postponeTime = 10;
+  return self;
+}
+- (BOOL) hasUrgeTime {
+  return result.hasUrgeTime;
+}
+- (int32_t) urgeTime {
+  return result.urgeTime;
+}
+- (PBConfig_Builder*) setUrgeTime:(int32_t) value {
+  result.hasUrgeTime = YES;
+  result.urgeTime = value;
+  return self;
+}
+- (PBConfig_Builder*) clearUrgeTime {
+  result.hasUrgeTime = NO;
+  result.urgeTime = 5;
+  return self;
+}
+- (BOOL) hasEnableAd {
+  return result.hasEnableAd;
+}
+- (BOOL) enableAd {
+  return result.enableAd;
+}
+- (PBConfig_Builder*) setEnableAd:(BOOL) value {
+  result.hasEnableAd = YES;
+  result.enableAd = value;
+  return self;
+}
+- (PBConfig_Builder*) clearEnableAd {
+  result.hasEnableAd = NO;
+  result.enableAd = YES;
+  return self;
+}
+- (BOOL) hasEnableWall {
+  return result.hasEnableWall;
+}
+- (BOOL) enableWall {
+  return result.enableWall;
+}
+- (PBConfig_Builder*) setEnableWall:(BOOL) value {
+  result.hasEnableWall = YES;
+  result.enableWall = value;
+  return self;
+}
+- (PBConfig_Builder*) clearEnableWall {
+  result.hasEnableWall = NO;
+  result.enableWall = YES;
+  return self;
+}
+- (BOOL) hasWallType {
+  return result.hasWallType;
+}
+- (int32_t) wallType {
+  return result.wallType;
+}
+- (PBConfig_Builder*) setWallType:(int32_t) value {
+  result.hasWallType = YES;
+  result.wallType = value;
+  return self;
+}
+- (PBConfig_Builder*) clearWallType {
+  result.hasWallType = NO;
+  result.wallType = 1;
+  return self;
+}
+- (BOOL) hasDrawConfig {
+  return result.hasDrawConfig;
+}
+- (PBDrawConfig*) drawConfig {
+  return result.drawConfig;
+}
+- (PBConfig_Builder*) setDrawConfig:(PBDrawConfig*) value {
+  result.hasDrawConfig = YES;
+  result.drawConfig = value;
+  return self;
+}
+- (PBConfig_Builder*) setDrawConfigBuilder:(PBDrawConfig_Builder*) builderForValue {
+  return [self setDrawConfig:[builderForValue build]];
+}
+- (PBConfig_Builder*) mergeDrawConfig:(PBDrawConfig*) value {
+  if (result.hasDrawConfig &&
+      result.drawConfig != [PBDrawConfig defaultInstance]) {
+    result.drawConfig =
+      [[[PBDrawConfig builderWithPrototype:result.drawConfig] mergeFrom:value] buildPartial];
+  } else {
+    result.drawConfig = value;
+  }
+  result.hasDrawConfig = YES;
+  return self;
+}
+- (PBConfig_Builder*) clearDrawConfig {
+  result.hasDrawConfig = NO;
+  result.drawConfig = [PBDrawConfig defaultInstance];
+  return self;
+}
+- (BOOL) hasDiceConfig {
+  return result.hasDiceConfig;
+}
+- (PBDiceConfig*) diceConfig {
+  return result.diceConfig;
+}
+- (PBConfig_Builder*) setDiceConfig:(PBDiceConfig*) value {
+  result.hasDiceConfig = YES;
+  result.diceConfig = value;
+  return self;
+}
+- (PBConfig_Builder*) setDiceConfigBuilder:(PBDiceConfig_Builder*) builderForValue {
+  return [self setDiceConfig:[builderForValue build]];
+}
+- (PBConfig_Builder*) mergeDiceConfig:(PBDiceConfig*) value {
+  if (result.hasDiceConfig &&
+      result.diceConfig != [PBDiceConfig defaultInstance]) {
+    result.diceConfig =
+      [[[PBDiceConfig builderWithPrototype:result.diceConfig] mergeFrom:value] buildPartial];
+  } else {
+    result.diceConfig = value;
+  }
+  result.hasDiceConfig = YES;
+  return self;
+}
+- (PBConfig_Builder*) clearDiceConfig {
+  result.hasDiceConfig = NO;
+  result.diceConfig = [PBDiceConfig defaultInstance];
   return self;
 }
 - (BOOL) hasZjhConfig {
