@@ -188,7 +188,7 @@ enum{
         [selectView showInView:self showAbovePoint:point animated:YES];
     }
 }
-- (void)selectionView:(BBSPopupSelectionView *)selectionView didSelectedButtonIndex:(NSInteger)index
+- (void)optionView:(BBSOptionView *)optionView didSelectedButtonIndex:(NSInteger)index
 {
     if (index == OptionPay) {
         if (self.delegate && [self.delegate respondsToSelector:@selector(didClickPayButtonWithAction:)]) {

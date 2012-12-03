@@ -302,7 +302,7 @@
 		A4E40099166C44F6001D2658 /* ZJHRuleConfigFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = A4E40096166C44F6001D2658 /* ZJHRuleConfigFactory.m */; };
 		A4E7876A16366FF8003557AD /* ZhaJinHua.proto in Resources */ = {isa = PBXBuildFile; fileRef = A4E7876916366FF8003557AD /* ZhaJinHua.proto */; };
 		A4E787941636753F003557AD /* ZJHGameState.m in Sources */ = {isa = PBXBuildFile; fileRef = A4E787931636753F003557AD /* ZJHGameState.m */; };
-		A4F6711A166C5E7900FF85CA /* ArrowView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4F67119166C5E7900FF85CA /* ArrowView.m */; };
+		A4F6712F166C878100FF85CA /* ArrowView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4F6712E166C878100FF85CA /* ArrowView.m */; };
 		C20D4B1115DE45B100074885 /* CommonDiceDialog.xib in Resources */ = {isa = PBXBuildFile; fileRef = C20D4B1015DE45B100074885 /* CommonDiceDialog.xib */; };
 		C20D4B2515E1D78800074885 /* CommonInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = C20D4B2415E1D78800074885 /* CommonInfoView.m */; };
 		C20D4B2715E21C0400074885 /* DiceInputDialog.xib in Resources */ = {isa = PBXBuildFile; fileRef = C20D4B2615E21C0200074885 /* DiceInputDialog.xib */; };
@@ -757,10 +757,8 @@
 		CA42E3CB15F4617A00790B3C /* TableTabManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA42E3C915F4617A00790B3C /* TableTabManager.m */; };
 		CA42FE02165DCCDB0097453A /* BBSPostDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA42FE01165DCCDB0097453A /* BBSPostDetailCell.m */; };
 		CA42FE05165DCD470097453A /* BBSPostActionHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA42FE04165DCD470097453A /* BBSPostActionHeaderView.m */; };
-		CA42FE08165DCD8D0097453A /* BBSPostDetailUserCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA42FE07165DCD8D0097453A /* BBSPostDetailUserCell.m */; };
 		CA42FE0A165DCDA30097453A /* BBSPostDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA42FE09165DCDA30097453A /* BBSPostDetailCell.xib */; };
 		CA42FE0C165DCDBC0097453A /* BBSPostActionHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA42FE0B165DCDBC0097453A /* BBSPostActionHeaderView.xib */; };
-		CA42FE0E165DCDCD0097453A /* BBSPostDetailUserCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA42FE0D165DCDCD0097453A /* BBSPostDetailUserCell.xib */; };
 		CA42FE27165E24850097453A /* BBSModelExt.m in Sources */ = {isa = PBXBuildFile; fileRef = CA42FE26165E24850097453A /* BBSModelExt.m */; };
 		CA42FE2C165F1F0C0097453A /* BBSActionListController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA42FE2A165F1F0C0097453A /* BBSActionListController.m */; };
 		CA42FE2D165F1F0C0097453A /* BBSActionListController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA42FE2B165F1F0C0097453A /* BBSActionListController.xib */; };
@@ -778,6 +776,14 @@
 		CA639117152FEA3D007564C6 /* RouterTrafficServer.m in Sources */ = {isa = PBXBuildFile; fileRef = CA639116152FEA3D007564C6 /* RouterTrafficServer.m */; };
 		CA63911A152FEA4F007564C6 /* PriceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CA639119152FEA4F007564C6 /* PriceModel.m */; };
 		CA659774166BD41F00A239E1 /* BBSActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = CA659773166BD41E00A239E1 /* BBSActionSheet.m */; };
+		CA659789166C58B900A239E1 /* BBSOptionView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA659788166C58B800A239E1 /* BBSOptionView.m */; };
+		CA65978B166C7C1E00A239E1 /* BBSActionListController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA65978A166C7C1E00A239E1 /* BBSActionListController~ipad.xib */; };
+		CA65978E166C7C3600A239E1 /* BBSPostDetailController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA65978C166C7C3500A239E1 /* BBSPostDetailController~ipad.xib */; };
+		CA65978F166C7C3600A239E1 /* CreatePostController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA65978D166C7C3500A239E1 /* CreatePostController~ipad.xib */; };
+		CA659791166C7D0300A239E1 /* BBSUserActionCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA659790166C7D0300A239E1 /* BBSUserActionCell~ipad.xib */; };
+		CA659793166C7D2400A239E1 /* BBSPostActionCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA659792166C7D2400A239E1 /* BBSPostActionCell~ipad.xib */; };
+		CA659795166C7D3800A239E1 /* BBSPostActionHeaderView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA659794166C7D3800A239E1 /* BBSPostActionHeaderView~ipad.xib */; };
+		CA659797166C7DAD00A239E1 /* BBSPostDetailCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA659796166C7DAD00A239E1 /* BBSPostDetailCell~ipad.xib */; };
 		CA65C0641615A01700EE1C1C /* MyCommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA65C0611615A01700EE1C1C /* MyCommentCell.m */; };
 		CA65C0651615A01700EE1C1C /* MyCommentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA65C0621615A01700EE1C1C /* MyCommentCell.xib */; };
 		CA65C0661615A01700EE1C1C /* MyCommentCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA65C0631615A01700EE1C1C /* MyCommentCell~ipad.xib */; };
@@ -2407,8 +2413,8 @@
 		A4E7876916366FF8003557AD /* ZhaJinHua.proto */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ZhaJinHua.proto; sourceTree = "<group>"; };
 		A4E787921636753F003557AD /* ZJHGameState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJHGameState.h; sourceTree = "<group>"; };
 		A4E787931636753F003557AD /* ZJHGameState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJHGameState.m; sourceTree = "<group>"; };
-		A4F67118166C5E7900FF85CA /* ArrowView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArrowView.h; sourceTree = "<group>"; };
-		A4F67119166C5E7900FF85CA /* ArrowView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArrowView.m; sourceTree = "<group>"; };
+		A4F6712D166C878100FF85CA /* ArrowView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArrowView.h; sourceTree = "<group>"; };
+		A4F6712E166C878100FF85CA /* ArrowView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArrowView.m; sourceTree = "<group>"; };
 		C20D4B1015DE45B100074885 /* CommonDiceDialog.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommonDiceDialog.xib; sourceTree = "<group>"; };
 		C20D4B2315E1D78800074885 /* CommonInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonInfoView.h; sourceTree = "<group>"; };
 		C20D4B2415E1D78800074885 /* CommonInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonInfoView.m; sourceTree = "<group>"; };
@@ -3195,11 +3201,8 @@
 		CA42FE01165DCCDB0097453A /* BBSPostDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBSPostDetailCell.m; sourceTree = "<group>"; };
 		CA42FE03165DCD470097453A /* BBSPostActionHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBSPostActionHeaderView.h; sourceTree = "<group>"; };
 		CA42FE04165DCD470097453A /* BBSPostActionHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBSPostActionHeaderView.m; sourceTree = "<group>"; };
-		CA42FE06165DCD8D0097453A /* BBSPostDetailUserCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBSPostDetailUserCell.h; sourceTree = "<group>"; };
-		CA42FE07165DCD8D0097453A /* BBSPostDetailUserCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBSPostDetailUserCell.m; sourceTree = "<group>"; };
 		CA42FE09165DCDA30097453A /* BBSPostDetailCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BBSPostDetailCell.xib; sourceTree = "<group>"; };
 		CA42FE0B165DCDBC0097453A /* BBSPostActionHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BBSPostActionHeaderView.xib; sourceTree = "<group>"; };
-		CA42FE0D165DCDCD0097453A /* BBSPostDetailUserCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BBSPostDetailUserCell.xib; sourceTree = "<group>"; };
 		CA42FE25165E24850097453A /* BBSModelExt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBSModelExt.h; sourceTree = "<group>"; };
 		CA42FE26165E24850097453A /* BBSModelExt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBSModelExt.m; sourceTree = "<group>"; };
 		CA42FE29165F1F0C0097453A /* BBSActionListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBSActionListController.h; sourceTree = "<group>"; };
@@ -3232,6 +3235,15 @@
 		CA639119152FEA4F007564C6 /* PriceModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PriceModel.m; sourceTree = "<group>"; };
 		CA659772166BD41E00A239E1 /* BBSActionSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBSActionSheet.h; sourceTree = "<group>"; };
 		CA659773166BD41E00A239E1 /* BBSActionSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBSActionSheet.m; sourceTree = "<group>"; };
+		CA659787166C58B800A239E1 /* BBSOptionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBSOptionView.h; sourceTree = "<group>"; };
+		CA659788166C58B800A239E1 /* BBSOptionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBSOptionView.m; sourceTree = "<group>"; };
+		CA65978A166C7C1E00A239E1 /* BBSActionListController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "BBSActionListController~ipad.xib"; sourceTree = "<group>"; };
+		CA65978C166C7C3500A239E1 /* BBSPostDetailController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "BBSPostDetailController~ipad.xib"; sourceTree = "<group>"; };
+		CA65978D166C7C3500A239E1 /* CreatePostController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "CreatePostController~ipad.xib"; sourceTree = "<group>"; };
+		CA659790166C7D0300A239E1 /* BBSUserActionCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "BBSUserActionCell~ipad.xib"; sourceTree = "<group>"; };
+		CA659792166C7D2400A239E1 /* BBSPostActionCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "BBSPostActionCell~ipad.xib"; sourceTree = "<group>"; };
+		CA659794166C7D3800A239E1 /* BBSPostActionHeaderView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "BBSPostActionHeaderView~ipad.xib"; sourceTree = "<group>"; };
+		CA659796166C7DAD00A239E1 /* BBSPostDetailCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "BBSPostDetailCell~ipad.xib"; sourceTree = "<group>"; };
 		CA65C0601615A01700EE1C1C /* MyCommentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyCommentCell.h; sourceTree = "<group>"; };
 		CA65C0611615A01700EE1C1C /* MyCommentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyCommentCell.m; sourceTree = "<group>"; };
 		CA65C0621615A01700EE1C1C /* MyCommentCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyCommentCell.xib; sourceTree = "<group>"; };
@@ -5569,6 +5581,8 @@
 		A4E7878116367338003557AD /* View */ = {
 			isa = PBXGroup;
 			children = (
+				A4F6712D166C878100FF85CA /* ArrowView.h */,
+				A4F6712E166C878100FF85CA /* ArrowView.m */,
 				A41CF57516578D0B0011AE45 /* ZJHCardTypesView.h */,
 				A41CF57616578D0B0011AE45 /* ZJHCardTypesView.m */,
 				A41CF57716578D0B0011AE45 /* ZJHCardTypesView.xib */,
@@ -5616,8 +5630,6 @@
 				A4BE1E6F16567D9000406B98 /* RoomTitleView.m */,
 				A4BE1E7116567DC400406B98 /* RoomTitleView.xib */,
 				A4BE1E751656847000406B98 /* RoomTitleView~ipad.xib */,
-				A4F67118166C5E7900FF85CA /* ArrowView.h */,
-				A4F67119166C5E7900FF85CA /* ArrowView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -7486,6 +7498,7 @@
 				CA42FE29165F1F0C0097453A /* BBSActionListController.h */,
 				CA42FE2A165F1F0C0097453A /* BBSActionListController.m */,
 				CA42FE2B165F1F0C0097453A /* BBSActionListController.xib */,
+				CA65978A166C7C1E00A239E1 /* BBSActionListController~ipad.xib */,
 			);
 			name = Action;
 			sourceTree = "<group>";
@@ -8883,6 +8896,7 @@
 				CAA799241659D28700429611 /* BBSPostDetailController.h */,
 				CAA799251659D28700429611 /* BBSPostDetailController.m */,
 				CAA799261659D28700429611 /* BBSPostDetailController.xib */,
+				CA65978C166C7C3500A239E1 /* BBSPostDetailController~ipad.xib */,
 				CAA799271659D28700429611 /* BBSPostListController.h */,
 				CAA799281659D28700429611 /* BBSPostListController.m */,
 				CAA799291659D28700429611 /* BBSPostListController.xib */,
@@ -8890,6 +8904,7 @@
 				CA9A274A1655E9DE00B7A0DA /* CreatePostController.h */,
 				CA9A274B1655E9DE00B7A0DA /* CreatePostController.m */,
 				CA9A274C1655E9DE00B7A0DA /* CreatePostController.xib */,
+				CA65978D166C7C3500A239E1 /* CreatePostController~ipad.xib */,
 			);
 			name = Post;
 			sourceTree = "<group>";
@@ -9134,9 +9149,7 @@
 				CA42FE00165DCCDB0097453A /* BBSPostDetailCell.h */,
 				CA42FE01165DCCDB0097453A /* BBSPostDetailCell.m */,
 				CA42FE09165DCDA30097453A /* BBSPostDetailCell.xib */,
-				CA42FE06165DCD8D0097453A /* BBSPostDetailUserCell.h */,
-				CA42FE07165DCD8D0097453A /* BBSPostDetailUserCell.m */,
-				CA42FE0D165DCDCD0097453A /* BBSPostDetailUserCell.xib */,
+				CA659796166C7DAD00A239E1 /* BBSPostDetailCell~ipad.xib */,
 			);
 			name = PostDetail;
 			sourceTree = "<group>";
@@ -9147,9 +9160,11 @@
 				CAE51894165CCB33006157CC /* BBSPostActionCell.h */,
 				CAE51895165CCB33006157CC /* BBSPostActionCell.m */,
 				CAE51897165CCB55006157CC /* BBSPostActionCell.xib */,
+				CA659792166C7D2400A239E1 /* BBSPostActionCell~ipad.xib */,
 				CA42FE03165DCD470097453A /* BBSPostActionHeaderView.h */,
 				CA42FE04165DCD470097453A /* BBSPostActionHeaderView.m */,
 				CA42FE0B165DCDBC0097453A /* BBSPostActionHeaderView.xib */,
+				CA659794166C7D3800A239E1 /* BBSPostActionHeaderView~ipad.xib */,
 			);
 			name = PostAction;
 			sourceTree = "<group>";
@@ -9160,6 +9175,7 @@
 				CA42FE48165F2FF30097453A /* BBSUserActionCell.h */,
 				CA42FE49165F2FF30097453A /* BBSUserActionCell.m */,
 				CA42FE4A165F2FF30097453A /* BBSUserActionCell.xib */,
+				CA659790166C7D0300A239E1 /* BBSUserActionCell~ipad.xib */,
 			);
 			name = UserAction;
 			sourceTree = "<group>";
@@ -9173,6 +9189,8 @@
 				CAC792921668B371009B4053 /* BBSPopupSelectionView.m */,
 				CA659772166BD41E00A239E1 /* BBSActionSheet.h */,
 				CA659773166BD41E00A239E1 /* BBSActionSheet.m */,
+				CA659787166C58B800A239E1 /* BBSOptionView.h */,
+				CA659788166C58B800A239E1 /* BBSOptionView.m */,
 			);
 			name = Common;
 			sourceTree = "<group>";
@@ -11747,7 +11765,6 @@
 				CAE51898165CCB55006157CC /* BBSPostActionCell.xib in Resources */,
 				CA42FE0A165DCDA30097453A /* BBSPostDetailCell.xib in Resources */,
 				CA42FE0C165DCDBC0097453A /* BBSPostActionHeaderView.xib in Resources */,
-				CA42FE0E165DCDCD0097453A /* BBSPostDetailUserCell.xib in Resources */,
 				CA42FE2D165F1F0C0097453A /* BBSActionListController.xib in Resources */,
 				CA42FE4C165F2FF30097453A /* BBSUserActionCell.xib in Resources */,
 				CAFEFAEE16606E4900441D77 /* FBDialog.bundle in Resources */,
@@ -11978,6 +11995,13 @@
 				CAB5DE591669FF7600A23011 /* bbs_create_reward_option@2x.png in Resources */,
 				CAB5DE5A1669FF7600A23011 /* bbs_create_submit_bg@2x.png in Resources */,
 				CAB5DE5C166A00B600A23011 /* bbs_action_sheet_bg@2x.png in Resources */,
+				CA65978B166C7C1E00A239E1 /* BBSActionListController~ipad.xib in Resources */,
+				CA65978E166C7C3600A239E1 /* BBSPostDetailController~ipad.xib in Resources */,
+				CA65978F166C7C3600A239E1 /* CreatePostController~ipad.xib in Resources */,
+				CA659791166C7D0300A239E1 /* BBSUserActionCell~ipad.xib in Resources */,
+				CA659793166C7D2400A239E1 /* BBSPostActionCell~ipad.xib in Resources */,
+				CA659795166C7D3800A239E1 /* BBSPostActionHeaderView~ipad.xib in Resources */,
+				CA659797166C7DAD00A239E1 /* BBSPostDetailCell~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -12520,7 +12544,6 @@
 				CAE51896165CCB33006157CC /* BBSPostActionCell.m in Sources */,
 				CA42FE02165DCCDB0097453A /* BBSPostDetailCell.m in Sources */,
 				CA42FE05165DCD470097453A /* BBSPostActionHeaderView.m in Sources */,
-				CA42FE08165DCD8D0097453A /* BBSPostDetailUserCell.m in Sources */,
 				CA42FE27165E24850097453A /* BBSModelExt.m in Sources */,
 				CA42FE2C165F1F0C0097453A /* BBSActionListController.m in Sources */,
 				CA42FE4B165F2FF30097453A /* BBSUserActionCell.m in Sources */,
@@ -12628,7 +12651,8 @@
 				A4E40097166C44F6001D2658 /* ZJHBeginnerRuleConfig.m in Sources */,
 				A4E40098166C44F6001D2658 /* ZJHRuleConfig.m in Sources */,
 				A4E40099166C44F6001D2658 /* ZJHRuleConfigFactory.m in Sources */,
-				A4F6711A166C5E7900FF85CA /* ArrowView.m in Sources */,
+				CA659789166C58B900A239E1 /* BBSOptionView.m in Sources */,
+				A4F6712F166C878100FF85CA /* ArrowView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
