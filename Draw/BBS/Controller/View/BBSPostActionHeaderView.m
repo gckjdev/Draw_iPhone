@@ -76,7 +76,7 @@
 }
 + (CGFloat)getViewHeight
 {
-    return [DeviceDetection isIPAD] ? 100 : 50;
+    return [DeviceDetection isIPAD] ? 50 * 2.33 : 50;
 }
 - (void)updateViewWithPost:(PBBBSPost *)post
 {

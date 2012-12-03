@@ -56,6 +56,7 @@
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
+//    [picker dismissModalViewControllerAnimated:YES];
     UIImage *image = [info objectForKey:UIImagePickerControllerEditedImage];
     if (image != nil){
         if ([_superViewController respondsToSelector:@selector(didImageSelected:)])
@@ -70,14 +71,23 @@
             }
             
             [_superViewController didImageSelected:image];
+            
     }
-    
-    [_superViewController dismissModalViewControllerAnimated:YES];
+    if ([DeviceDetection isIPAD]) {
+        [_popoverController dismissPopoverAnimated:YES];
+    }else{
+        [picker dismissModalViewControllerAnimated:YES];
+    }
+
 }
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
 {
-    [_superViewController dismissModalViewControllerAnimated:YES];
+    if ([DeviceDetection isIPAD]) {
+        [_popoverController dismissPopoverAnimated:YES];
+    }else{
+        [picker dismissModalViewControllerAnimated:YES];
+    }
 }
 
 

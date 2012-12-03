@@ -17,25 +17,25 @@
 #import "UserManager.h"
 #import "TimeUtils.h"
 
-#define SPACE_CONTENT_TOP (ISIPAD ? 35 * 2 : 35)
-#define SPACE_CONTENT_IMAGE (ISIPAD ? 10 * 2 : 10)
-#define SPACE_IMAGE_SOURCE (ISIPAD ? 15 * 2 : 15)
-#define SPACE_SOURCE_BOTTOM (ISIPAD ? 20 * 2 : 20)
+#define SPACE_CONTENT_TOP (ISIPAD ? 35 * 2.33 : 35)
+#define SPACE_CONTENT_IMAGE (ISIPAD ? 10 * 2.33 : 10)
+#define SPACE_IMAGE_SOURCE (ISIPAD ? 15 * 2.33 : 15)
+#define SPACE_SOURCE_BOTTOM (ISIPAD ? 20 * 2.33 : 20)
 
-#define SPACE_TEXT_SOURCE_IMAGE (ISIPAD ? 100 * 2 : 100)
-#define SPACE_TEXT_SOURCE_NO_IMAGE (ISIPAD ? 10 * 2 : 10)
+#define SPACE_TEXT_SOURCE_IMAGE (ISIPAD ? 100 * 2.33 : 100)
+#define SPACE_TEXT_SOURCE_NO_IMAGE (ISIPAD ? 10 * 2.33 : 10)
 
-#define SPACE_SPLITLINE_SOURCE (ISIPAD ? 5 * 2 : 5)
+#define SPACE_SPLITLINE_SOURCE (ISIPAD ? 5 * 2.33 : 5)
 
-#define IMAGE_HEIGHT (ISIPAD ? 80 * 2 : 80)
+#define IMAGE_HEIGHT (ISIPAD ? 80 * 2.33 : 80)
 
-#define CONTENT_WIDTH (ISIPAD ? 206 * 2 : 206)
-#define SOURCE_WIDTH (ISIPAD ? 206 * 2 : 206)
+#define CONTENT_WIDTH (ISIPAD ? 206 * 2.33 : 206)
+#define SOURCE_WIDTH (ISIPAD ? 206 * 2.33 : 206)
 
-#define SOURCE_MAX_HEIGHT (ISIPAD ? 40 * 2 : 40)
+#define SOURCE_MAX_HEIGHT (ISIPAD ? 40 * 2.33 : 40)
 
-#define Y_CONTENT_TEXT (ISIPAD ? 5 * 2 : 5)
-#define Y_SOURCE_TEXT (ISIPAD ? 5 * 2 : 5)
+#define Y_CONTENT_TEXT (ISIPAD ? 5 * 2.33 : 5)
+#define Y_SOURCE_TEXT (ISIPAD ? 5 * 2.33 : 5)
 
 #define CONTENT_MAX_HEIGHT 99999999
 
@@ -70,7 +70,9 @@
     self.source.numberOfLines = 0;
     [self.source setLineBreakMode:NSLineBreakByTruncatingTail];
     self.source.font = SOURCE_FONT;
-
+    [self.source setTextColor:[[BBSColorManager defaultManager]
+                               userActionSourceColor]]
+    ;
     [self.splitLine setBackgroundColor:[[BBSColorManager defaultManager] userActionSplitColor]];
 }
 
@@ -153,7 +155,7 @@
         y = CGRectGetMaxY(self.content.frame) + SPACE_CONTENT_IMAGE;
         CGFloat width = IMAGE_HEIGHT;
         CGFloat height = IMAGE_HEIGHT;
-        CGFloat x =  (self.bounds.size.width - width) / 2;
+        CGFloat x =  CGRectGetMinX(self.image.frame);
         self.image.frame = CGRectMake(x, y, width, height);
 
         //set source frame

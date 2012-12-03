@@ -93,18 +93,14 @@ typedef enum{
 - (void)initViews
 {
     
-    [self.backButton setImage:[_bbsImageManager bbsBackImage] forState:UIControlStateNormal];
     [self.bgImageView setImage:[_bbsImageManager bbsBGImage]];
-    [self.toolBarBG setImage:[_bbsImageManager bbsDetailToolbar]];
 
-    [BBSViewManager updateLable:self.titleLabel
-                        bgColor:[UIColor clearColor]
-                           font:[_bbsFontManager bbsTitleFont]
-                      textColor:[_bbsColorManager bbsTitleColor]
-                           text:NSLS(@"kPostDetail")];
+
+    [BBSViewManager updateDefaultTitleLabel:self.titleLabel text:NSLS(@"kPostDetail")];
+    [BBSViewManager updateDefaultBackButton:self.backButton];
     
     [self.refreshFooterView setBackgroundColor:[UIColor clearColor]];
-    
+    [self.toolBarBG setImage:[_bbsImageManager bbsDetailToolbar]];
     [BBSViewManager updateButton:self.supportButton
                          bgColor:[UIColor clearColor]
                          bgImage:[_bbsImageManager bbsDetailSupport]

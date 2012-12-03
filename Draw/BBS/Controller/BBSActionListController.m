@@ -49,19 +49,11 @@
 {
     
     BBSImageManager *_bbsImageManager = [BBSImageManager defaultManager];
-    BBSFontManager *_bbsFontManager = [BBSFontManager defaultManager];
-    BBSColorManager *_bbsColorManager = [BBSColorManager defaultManager];
+    [BBSViewManager updateDefaultTitleLabel:self.titleLabel text:NSLS(@"kMyComment")];
+    [BBSViewManager updateDefaultBackButton:self.backButton];
+    [BBSViewManager updateDefaultTableView:self.dataTableView];
 
-    [self.backButton setImage:[_bbsImageManager bbsBackImage] forState:UIControlStateNormal];
     [self.bgImageView setImage:[_bbsImageManager bbsBGImage]];
-    
-    
-    [BBSViewManager updateLable:self.titleLabel
-                        bgColor:[UIColor clearColor]
-                           font:[_bbsFontManager bbsTitleFont]
-                      textColor:[_bbsColorManager bbsTitleColor]
-                           text:NSLS(@"kMyComment")];
-    
     [self.refreshFooterView setBackgroundColor:[UIColor clearColor]];
     [self.refreshHeaderView setBackgroundColor:[UIColor clearColor]];
 

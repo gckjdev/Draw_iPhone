@@ -28,4 +28,11 @@
                title:(NSString *)title
             forState:(UIControlState)state;
 
+
++ (void)updateDefaultTitleLabel:(UILabel *)titleLabel
+                           text:(NSString *)text;
++ (void)updateDefaultBackButton:(UIButton *)backButton;
++ (void)updateDefaultTableView:(UITableView *)tableView;
+
+
 @end
