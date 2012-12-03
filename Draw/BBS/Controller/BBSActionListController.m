@@ -21,6 +21,8 @@
 }
 @property (retain, nonatomic) IBOutlet UIButton *backButton;
 @property (retain, nonatomic) IBOutlet UIImageView *bgImageView;
+@property (retain, nonatomic) IBOutlet UIButton *refreshButton;
+//- (IBAction)clickRefreshButton:(id)sender;
 @end
 
 #define TAB_ID 100
@@ -56,7 +58,7 @@
     [self.bgImageView setImage:[_bbsImageManager bbsBGImage]];
     [self.refreshFooterView setBackgroundColor:[UIColor clearColor]];
     [self.refreshHeaderView setBackgroundColor:[UIColor clearColor]];
-
+    [self.refreshButton setImage:[_bbsImageManager bbsRefreshImage] forState:UIControlStateNormal];
     
 }
 
@@ -261,11 +263,15 @@ enum{
 - (void)dealloc {
     [_backButton release];
     [_bgImageView release];
+    [_refreshButton release];
     [super dealloc];
 }
 - (void)viewDidUnload {
     [self setBackButton:nil];
     [self setBgImageView:nil];
+    [self setRefreshButton:nil];
     [super viewDidUnload];
 }
+//- (IBAction)clickRefreshButton:(id)sender {
+//}
 @end

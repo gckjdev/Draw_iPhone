@@ -833,6 +833,7 @@
 		CA7C7E041587213100406BFB /* Feed.m in Sources */ = {isa = PBXBuildFile; fileRef = CA7C7E031587213100406BFB /* Feed.m */; };
 		CA7C7E071587214300406BFB /* FeedManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA7C7E061587214300406BFB /* FeedManager.m */; };
 		CA7C7E0B158721B200406BFB /* FeedService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA7C7E0A158721B200406BFB /* FeedService.m */; };
+		CA837C2B166CDFAD005718AA /* bbs_refresh@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA837C2A166CDFAD005718AA /* bbs_refresh@2x.png */; };
 		CA841821164CE4AA00713014 /* graffiti@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA841820164CE4AA00713014 /* graffiti@2x.png */; };
 		CA8815CF1657447800E29BB1 /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = CA8815CE1657447800E29BB1 /* libicucore.dylib */; };
 		CA89737516071335003A95F7 /* Contest.m in Sources */ = {isa = PBXBuildFile; fileRef = CA89737416071335003A95F7 /* Contest.m */; };
@@ -3310,6 +3311,7 @@
 		CA7C7E061587214300406BFB /* FeedManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedManager.m; sourceTree = "<group>"; };
 		CA7C7E09158721B200406BFB /* FeedService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedService.h; sourceTree = "<group>"; };
 		CA7C7E0A158721B200406BFB /* FeedService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedService.m; sourceTree = "<group>"; };
+		CA837C2A166CDFAD005718AA /* bbs_refresh@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bbs_refresh@2x.png"; sourceTree = "<group>"; };
 		CA841820164CE4AA00713014 /* graffiti@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "graffiti@2x.png"; sourceTree = "<group>"; };
 		CA8815CE1657447800E29BB1 /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
 		CA89737316071335003A95F7 /* Contest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Contest.h; sourceTree = "<group>"; };
@@ -9094,6 +9096,7 @@
 		CAC7914A1664AD0B009B4053 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				CA837C2A166CDFAD005718AA /* bbs_refresh@2x.png */,
 				CAB5DE5B166A00B600A23011 /* bbs_action_sheet_bg@2x.png */,
 				CAC792AA1668D6B0009B4053 /* bbs_option_bg@2x.png */,
 				CAC792AB1668D6B0009B4053 /* bbs_option_bubble@2x.png */,
@@ -11923,6 +11926,7 @@
 				C28A23C6166C90F7007C9EA5 /* fallingCoin.png in Resources */,
 				C28A23C7166C90F7007C9EA5 /* fallingstars.png in Resources */,
 				C28A23C9166C9102007C9EA5 /* fallingCoinBGM.mp3 in Resources */,
+				CA837C2B166CDFAD005718AA /* bbs_refresh@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

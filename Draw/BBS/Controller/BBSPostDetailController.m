@@ -27,6 +27,7 @@
 @property (retain, nonatomic) IBOutlet UIImageView *toolBarBG;
 @property (retain, nonatomic) IBOutlet UIButton *supportButton;
 @property (retain, nonatomic) IBOutlet UIButton *commentButton;
+@property (retain, nonatomic) IBOutlet UIButton *refreshButton;
 
 @end
 
@@ -72,6 +73,7 @@ typedef enum{
     PPRelease(_supportButton);
     PPRelease(_commentButton);
     PPRelease(_header);
+    [_refreshButton release];
     [super dealloc];
 }
 
@@ -94,6 +96,7 @@ typedef enum{
 {
     
     [self.bgImageView setImage:[_bbsImageManager bbsBGImage]];
+    [self.refreshButton setImage:[_bbsImageManager bbsRefreshImage] forState:UIControlStateNormal];
 
 
     [BBSViewManager updateDefaultTitleLabel:self.titleLabel text:NSLS(@"kPostDetail")];
@@ -509,6 +512,7 @@ typedef enum{
     [self setToolBarBG:nil];
     [self setSupportButton:nil];
     [self setCommentButton:nil];
+    [self setRefreshButton:nil];
     [super viewDidUnload];
 }
 @end
