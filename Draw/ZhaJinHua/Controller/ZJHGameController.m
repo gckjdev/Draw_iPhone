@@ -859,6 +859,8 @@
     if ([_userManager isMe:userId]) {
         [_audioManager playSoundByURL:[_soundManager gameWin]];
         [_audioManager playSoundByURL:[_soundManager fullMoney]];
+        _coinView = [[[coinView alloc] initWithFrame:self.view.frame] autorelease];
+        [self.view addSubview:_coinView];
     } else {
         [_audioManager playSoundByURL:[_soundManager gameOver]];
     }
@@ -1391,6 +1393,12 @@
 - (void)didSyncFinish
 {
     [[self getMyAvatarView] update];
+}
+
+- (void)coinAnimationFinished
+{
+    [_coinView removeFromSuperview];
+    _coinView = nil;
 }
 
 @end
