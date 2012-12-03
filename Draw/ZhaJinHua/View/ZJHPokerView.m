@@ -12,11 +12,9 @@
 #import "AnimationManager.h"
 #import "FXLabel.h"
 #import "AnimationManager.h"
+#import "ArrowView.h"
 
 #define TAG_BOMB_BUTTON 300
-
-#define BOMB_BUTTON_WIDTH [DeviceDetection isIPAD] ? 54 : 27
-#define BOMB_BUTTON_HEIGHT [DeviceDetection isIPAD] ? 64 : 32
 #define CARD_TYPE_LABEL_TAG 200
 
 #define CARD_TYPE_STRING_FONT [UIFont boldSystemFontOfSize:([DeviceDetection isIPAD] ? 21 :12)]
@@ -274,29 +272,9 @@
 - (void)showBomb
 {
     [self clearBomb];
-    
-    UIButton *bomb = [[[UIButton alloc] initWithFrame:CGRectMake(0, 0, BOMB_BUTTON_WIDTH, BOMB_BUTTON_HEIGHT)] autorelease];
+    UIButton *bomb = [ArrowView arrowWithCenter:CGPointMake(self.frame.size.width/2, self.frame.size.height/2 - ([DeviceDetection isIPAD] ? 10 : 5))];
     bomb.tag = TAG_BOMB_BUTTON;
-    [bomb setBackgroundImage:[[ZJHImageManager defaultManager] bombImage] forState:UIControlStateNormal];
     [bomb addTarget:self action:@selector(clickBomb:) forControlEvents:UIControlEventTouchUpInside];
-    bomb.center = CGPointMake(self.frame.size.width/2, self.frame.size.height/2 - ([DeviceDetection isIPAD] ? 10 : 5));
-    
-    UIImageView *imageView = [[[UIImageView alloc] initWithFrame:bomb.bounds] autorelease];
-    imageView.image = [[ZJHImageManager defaultManager] bombImageLight];
-    imageView.userInteractionEnabled = NO;
-    [bomb addSubview:imageView];
-        
-    CGFloat originY = bomb.layer.position.y - ([DeviceDetection isIPAD] ? 20 : 10);
-    CGFloat toY = bomb.layer.position.y;
-    
-    CAAnimation *moveVerticalAni = [AnimationManager moveVerticalAnimationFrom:originY to:toY duration:1.0];
-    moveVerticalAni.repeatCount = 1000;
-    [bomb.layer addAnimation:moveVerticalAni forKey:nil];
-    
-    CAAnimation *appearAni = [AnimationManager appearAnimationFrom:0 to:1 duration:1.0];
-    appearAni.repeatCount = 1000;
-    [imageView.layer addAnimation:appearAni forKey:nil];
-    
     [self addSubview:bomb];
 }
 
@@ -330,6 +308,13 @@
 - (void)clearBomb
 {
     [[self viewWithTag:TAG_BOMB_BUTTON] removeFromSuperview];
+}
+
+- (void)showChangeCard
+{
+    [self clearBomb];
+
+    
 }
 
 @end

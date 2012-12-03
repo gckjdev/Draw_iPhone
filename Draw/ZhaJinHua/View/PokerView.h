@@ -64,4 +64,6 @@
 
 - (void)setShowCardFlag:(BOOL)animation;
 
+- (void)showArrow;
+
 @end

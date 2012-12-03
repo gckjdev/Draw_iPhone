@@ -106,6 +106,7 @@
     [_cardTypeBgImageView release];
     [_cardTypeButton release];
     [_waitGameNoteLabel release];
+    [_changeCardButton release];
     [super dealloc];
 }
 
@@ -1030,6 +1031,7 @@
     [self setWaitGameNoteLabel:nil];
     [self.moneyTreeView killMoneyTree];
     [self setMoneyTreeHolder:nil];
+    [self setChangeCardButton:nil];
     [super viewDidUnload];
 }
 
@@ -1393,4 +1395,7 @@
     [[self getMyAvatarView] update];
 }
 
+- (IBAction)clickChangeCardButton:(id)sender {
+    
+}
 @end
