@@ -349,6 +349,14 @@
 		C284E8801531D89800DD5B77 /* AboutUsController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C284E87E1531D89800DD5B77 /* AboutUsController.xib */; };
 		C28662BE1659DDF900D7EA27 /* ZJHRoomListCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C28662BC1659DDF700D7EA27 /* ZJHRoomListCell~ipad.xib */; };
 		C28662BF1659DDF900D7EA27 /* ZJHRoomListController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C28662BD1659DDF800D7EA27 /* ZJHRoomListController~ipad.xib */; };
+		C28A23C1166C90E2007C9EA5 /* OpenGLTexture3D.m in Sources */ = {isa = PBXBuildFile; fileRef = C28A23BE166C90E2007C9EA5 /* OpenGLTexture3D.m */; };
+		C28A23C2166C90E2007C9EA5 /* ParticleEmitter3D.m in Sources */ = {isa = PBXBuildFile; fileRef = C28A23C0166C90E2007C9EA5 /* ParticleEmitter3D.m */; };
+		C28A23C6166C90F7007C9EA5 /* fallingCoin.png in Resources */ = {isa = PBXBuildFile; fileRef = C28A23C4166C90F7007C9EA5 /* fallingCoin.png */; };
+		C28A23C7166C90F7007C9EA5 /* fallingstars.png in Resources */ = {isa = PBXBuildFile; fileRef = C28A23C5166C90F7007C9EA5 /* fallingstars.png */; };
+		C28A23C9166C9102007C9EA5 /* fallingCoinBGM.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C28A23C8166C9102007C9EA5 /* fallingCoinBGM.mp3 */; };
+		C28A23CF166C9123007C9EA5 /* FallingCoinImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = C28A23CC166C9123007C9EA5 /* FallingCoinImageView.m */; };
+		C28A23D0166C9123007C9EA5 /* FallingCoinView.m in Sources */ = {isa = PBXBuildFile; fileRef = C28A23CE166C9123007C9EA5 /* FallingCoinView.m */; };
+		C28A23D2166C92C1007C9EA5 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C28A23D1166C92C1007C9EA5 /* OpenGLES.framework */; };
 		C28E7C081602DAC600F4B6A5 /* DoubleKillItemAction.m in Sources */ = {isa = PBXBuildFile; fileRef = C28E7C071602DAC600F4B6A5 /* DoubleKillItemAction.m */; };
 		C28E7C0E1602E5B200F4B6A5 /* IncTimeItemAction.m in Sources */ = {isa = PBXBuildFile; fileRef = C28E7C0D1602E5B100F4B6A5 /* IncTimeItemAction.m */; };
 		C28E7C111602E5E000F4B6A5 /* DecTimeItemAction.m in Sources */ = {isa = PBXBuildFile; fileRef = C28E7C101602E5DD00F4B6A5 /* DecTimeItemAction.m */; };
@@ -2465,6 +2473,20 @@
 		C286628B16578BCB00D7EA27 /* AutoCreateViewByXib.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AutoCreateViewByXib.h; sourceTree = "<group>"; };
 		C28662BC1659DDF700D7EA27 /* ZJHRoomListCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ZJHRoomListCell~ipad.xib"; sourceTree = "<group>"; };
 		C28662BD1659DDF800D7EA27 /* ZJHRoomListController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ZJHRoomListController~ipad.xib"; sourceTree = "<group>"; };
+		C28A23BB166C90E2007C9EA5 /* ConstantsAndMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConstantsAndMacros.h; sourceTree = "<group>"; };
+		C28A23BC166C90E2007C9EA5 /* OpenGLCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenGLCommon.h; sourceTree = "<group>"; };
+		C28A23BD166C90E2007C9EA5 /* OpenGLTexture3D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenGLTexture3D.h; sourceTree = "<group>"; };
+		C28A23BE166C90E2007C9EA5 /* OpenGLTexture3D.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenGLTexture3D.m; sourceTree = "<group>"; };
+		C28A23BF166C90E2007C9EA5 /* ParticleEmitter3D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParticleEmitter3D.h; sourceTree = "<group>"; };
+		C28A23C0166C90E2007C9EA5 /* ParticleEmitter3D.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParticleEmitter3D.m; sourceTree = "<group>"; };
+		C28A23C4166C90F7007C9EA5 /* fallingCoin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fallingCoin.png; sourceTree = "<group>"; };
+		C28A23C5166C90F7007C9EA5 /* fallingstars.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fallingstars.png; sourceTree = "<group>"; };
+		C28A23C8166C9102007C9EA5 /* fallingCoinBGM.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = fallingCoinBGM.mp3; sourceTree = "<group>"; };
+		C28A23CB166C9123007C9EA5 /* FallingCoinImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FallingCoinImageView.h; sourceTree = "<group>"; };
+		C28A23CC166C9123007C9EA5 /* FallingCoinImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FallingCoinImageView.m; sourceTree = "<group>"; };
+		C28A23CD166C9123007C9EA5 /* FallingCoinView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FallingCoinView.h; sourceTree = "<group>"; };
+		C28A23CE166C9123007C9EA5 /* FallingCoinView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FallingCoinView.m; sourceTree = "<group>"; };
+		C28A23D1166C92C1007C9EA5 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		C28E7C061602DAC600F4B6A5 /* DoubleKillItemAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DoubleKillItemAction.h; sourceTree = "<group>"; };
 		C28E7C071602DAC600F4B6A5 /* DoubleKillItemAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DoubleKillItemAction.m; sourceTree = "<group>"; };
 		C28E7C0C1602E5AF00F4B6A5 /* IncTimeItemAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IncTimeItemAction.h; sourceTree = "<group>"; };
@@ -4668,6 +4690,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C28A23D2166C92C1007C9EA5 /* OpenGLES.framework in Frameworks */,
 				C2EE14601665FE9300ADBE2E /* CoreImage.framework in Frameworks */,
 				CA8815CF1657447800E29BB1 /* libicucore.dylib in Frameworks */,
 				C223397F164E41C900D2C123 /* OpenAL.framework in Frameworks */,
@@ -4803,6 +4826,7 @@
 		A405C7F7165B874500E7610F /* Image */ = {
 			isa = PBXGroup;
 			children = (
+				C28A23C3166C90F7007C9EA5 /* fallingCoin */,
 				A405C7F8165B874500E7610F /* chip */,
 				A405C800165B874500E7610F /* poker */,
 				A405C82E165B874500E7610F /* room */,
@@ -4977,6 +5001,7 @@
 		A405C867165B874500E7610F /* sounds */ = {
 			isa = PBXGroup;
 			children = (
+				C28A23C8166C9102007C9EA5 /* fallingCoinBGM.mp3 */,
 				A405C868165B874500E7610F /* bet.mp3 */,
 				A405C869165B874500E7610F /* bet1_F.mp3 */,
 				A405C86A165B874500E7610F /* bet1_M.mp3 */,
@@ -5537,6 +5562,7 @@
 		A4E7878116367338003557AD /* View */ = {
 			isa = PBXGroup;
 			children = (
+				C28A23CA166C9123007C9EA5 /* coinView */,
 				A4F6712D166C878100FF85CA /* ArrowView.h */,
 				A4F6712E166C878100FF85CA /* ArrowView.m */,
 				A41CF57516578D0B0011AE45 /* ZJHCardTypesView.h */,
@@ -5669,6 +5695,48 @@
 				C28207E21552D974006FBB0F /* AudioManager.m */,
 			);
 			path = Audio;
+			sourceTree = "<group>";
+		};
+		C28A23B9166C90E2007C9EA5 /* Core-Utils-OpenGL */ = {
+			isa = PBXGroup;
+			children = (
+				C28A23BA166C90E2007C9EA5 /* particle */,
+			);
+			path = "Core-Utils-OpenGL";
+			sourceTree = "<group>";
+		};
+		C28A23BA166C90E2007C9EA5 /* particle */ = {
+			isa = PBXGroup;
+			children = (
+				C28A23BB166C90E2007C9EA5 /* ConstantsAndMacros.h */,
+				C28A23BC166C90E2007C9EA5 /* OpenGLCommon.h */,
+				C28A23BD166C90E2007C9EA5 /* OpenGLTexture3D.h */,
+				C28A23BE166C90E2007C9EA5 /* OpenGLTexture3D.m */,
+				C28A23BF166C90E2007C9EA5 /* ParticleEmitter3D.h */,
+				C28A23C0166C90E2007C9EA5 /* ParticleEmitter3D.m */,
+			);
+			path = particle;
+			sourceTree = "<group>";
+		};
+		C28A23C3166C90F7007C9EA5 /* fallingCoin */ = {
+			isa = PBXGroup;
+			children = (
+				C28A23C4166C90F7007C9EA5 /* fallingCoin.png */,
+				C28A23C5166C90F7007C9EA5 /* fallingstars.png */,
+			);
+			name = fallingCoin;
+			path = Draw/ZhaJinHua/Resource/fallingCoin;
+			sourceTree = SOURCE_ROOT;
+		};
+		C28A23CA166C9123007C9EA5 /* coinView */ = {
+			isa = PBXGroup;
+			children = (
+				C28A23CB166C9123007C9EA5 /* FallingCoinImageView.h */,
+				C28A23CC166C9123007C9EA5 /* FallingCoinImageView.m */,
+				C28A23CD166C9123007C9EA5 /* FallingCoinView.h */,
+				C28A23CE166C9123007C9EA5 /* FallingCoinView.m */,
+			);
+			path = coinView;
 			sourceTree = "<group>";
 		};
 		C2916CBD1606B9C300B0996E /* DiceRobotManager */ = {
@@ -5924,6 +5992,7 @@
 		CA103B391509A56000F60C03 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				C28A23B9166C90E2007C9EA5 /* Core-Utils-OpenGL */,
 				C2A3CC04161590FF00663271 /* Core-Utils-Animation */,
 				CA103F491509A9FD00F60C03 /* Core-3PP */,
 				CA103CC21509A56000F60C03 /* Core-Application */,
@@ -7521,6 +7590,7 @@
 		CA745D211503B1B500600024 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C28A23D1166C92C1007C9EA5 /* OpenGLES.framework */,
 				C2EE145F1665FE9300ADBE2E /* CoreImage.framework */,
 				CA8815CE1657447800E29BB1 /* libicucore.dylib */,
 				C223397E164E41C800D2C123 /* OpenAL.framework */,
@@ -11850,6 +11920,9 @@
 				CA659793166C7D2400A239E1 /* BBSPostActionCell~ipad.xib in Resources */,
 				CA659795166C7D3800A239E1 /* BBSPostActionHeaderView~ipad.xib in Resources */,
 				CA659797166C7DAD00A239E1 /* BBSPostDetailCell~ipad.xib in Resources */,
+				C28A23C6166C90F7007C9EA5 /* fallingCoin.png in Resources */,
+				C28A23C7166C90F7007C9EA5 /* fallingstars.png in Resources */,
+				C28A23C9166C9102007C9EA5 /* fallingCoinBGM.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -12493,6 +12566,10 @@
 				A4E40099166C44F6001D2658 /* ZJHRuleConfigFactory.m in Sources */,
 				CA659789166C58B900A239E1 /* BBSOptionView.m in Sources */,
 				A4F6712F166C878100FF85CA /* ArrowView.m in Sources */,
+				C28A23C1166C90E2007C9EA5 /* OpenGLTexture3D.m in Sources */,
+				C28A23C2166C90E2007C9EA5 /* ParticleEmitter3D.m in Sources */,
+				C28A23CF166C9123007C9EA5 /* FallingCoinImageView.m in Sources */,
+				C28A23D0166C9123007C9EA5 /* FallingCoinView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

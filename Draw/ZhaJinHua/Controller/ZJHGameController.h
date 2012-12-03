@@ -16,7 +16,7 @@
 #import "MoneyTreeView.h"
 #import "CommonDialog.h"
 #import "AccountService.h"
-#import "coinView.h"
+#import "FallingCoinView.h"
 
 @class ZJHGameService;
 @class UserManager;
