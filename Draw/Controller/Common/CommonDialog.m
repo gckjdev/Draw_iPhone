@@ -13,6 +13,7 @@
 #import "FontButton.h"
 #import "LocaleUtils.h"
 #import "CommonImageManager.h"
+#import "UIImageUtil.h"
 
 #define COMMON_DIALOG_THEME_DRAW    @"CommonDialog"
 #define COMMON_DIALOG_THEME_DICE    @"CommonDiceDialog"
@@ -67,8 +68,8 @@
     [self.frontBackgroundImageView setImage:[CommonImageManager defaultManager].starryDialogBackgroundSideImage];
     [self.oKButton setBackgroundImage:[CommonImageManager defaultManager].starryDialogButtonBackgroundImage forState:UIControlStateNormal];
     [self.backButton setBackgroundImage:[CommonImageManager defaultManager].starryDialogButtonBackgroundImage forState:UIControlStateNormal];
-    [self.oKButton setImage:[CommonImageManager defaultManager].starryDialogClickImage forState:UIControlStateNormal];
-    [self.backButton setImage:[CommonImageManager defaultManager].starryDialogCrossImage forState:UIControlStateNormal];
+    [self.oKButton setImage:[UIImage shrinkImage:[CommonImageManager defaultManager].starryDialogClickImage withRate:0.8] forState:UIControlStateNormal];
+    [self.backButton setImage:[UIImage shrinkImage:[CommonImageManager defaultManager].starryDialogCrossImage withRate:0.8] forState:UIControlStateNormal];
     
 }
 
@@ -91,7 +92,7 @@
 
 - (CGSize) calculateHeightOfTextFromWidth:(NSString*)text font: (UIFont*)withFont width:(float)width linebreak:(UILineBreakMode)lineBreakMode{
 	return [text sizeWithFont:withFont
-			constrainedToSize:CGSizeMake(width, FLT_MAX)
+			constrainedToSize:CGSizeMake(width, 960)
 				lineBreakMode:lineBreakMode];
 }
 
@@ -101,14 +102,20 @@
         return;
     }
     CGSize titleSize = [self calculateHeightOfTextFromWidth:self.titleLabel.text font:FONT_OF_TITLE width:self.titleLabel.frame.size.width linebreak:UILineBreakModeWordWrap];
-    CGSize messageSize = [self calculateHeightOfTextFromWidth:self.messageLabel.text font:FONT_OF_TITLE width:self.messageLabel.frame.size.width linebreak:UILineBreakModeCharacterWrap];
+    CGSize messageSize = [self calculateHeightOfTextFromWidth:self.messageLabel.text font:FONT_OF_TITLE width:self.messageLabel.frame.size.width linebreak:UILineBreakModeWordWrap];
+//    [self.messageLabel setBackgroundColor:[UIColor whiteColor]];
+//    [self.titleLabel setBackgroundColor:[UIColor whiteColor]];
     
     [self.contentView setFrame:CGRectMake(0, 0, self.contentView.frame.size.width, UP_SEPERATOR + DOWN_SEPERATOR + titleSize.height + messageSize.height + self.oKButton.frame.size.height)];
     [self.contentView setCenter:CGPointMake(self.frame.size.width/2, self.frame.size.height/2)];
     
+    PPDebug(@"<test>content h = %.2f",self.contentView.frame.size.height);
+    
     [self.titleLabel setFrame:CGRectMake(self.contentView.frame.size.width/2 - titleSize.width/2, UP_SEPERATOR, titleSize.width, titleSize.height)];
     [self.messageLabel setFrame:CGRectMake(self.contentView.frame.size.width/2 - messageSize.width/2, UP_SEPERATOR + titleSize.height, messageSize.width, messageSize.height)];
+    [self.messageLabel setFont:FONT_OF_MESSAGE];
     
+    PPDebug(@"<test>message (%.2f, %.2f)",self.messageLabel.frame.origin.y, self.messageLabel.frame.size.height);
     
     
     [self.oKButton setCenter:CGPointMake(self.oKButton.center.x, self.contentView.frame.size.height - DOWN_SEPERATOR - self.oKButton.frame.size.height/2)];
