@@ -95,7 +95,11 @@
                                forState:UIControlStateSelected];
 
     }else if(self.bbsUser){
-        titleName = self.bbsUser.showNick;
+        if ([self.bbsUser isMe]) {
+            titleName = NSLS(@"kMyPost");
+        }else{
+            titleName = self.nibName;
+        }
         self.createPostButton.hidden = YES;
         self.rankButton.hidden = YES;
     }

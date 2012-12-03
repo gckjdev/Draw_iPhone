@@ -40,7 +40,7 @@ BBSService *_staticBBSService;
 
 - (NSInteger)checkFrequent
 {
-    return ERROR_SUCCESS;
+//    return ERROR_SUCCESS;
     
     BBSManager *_bbsManager = [BBSManager defaultManager];
     if ([_bbsManager isCreationFrequent]) {

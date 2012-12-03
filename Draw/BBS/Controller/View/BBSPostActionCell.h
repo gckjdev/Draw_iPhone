@@ -26,6 +26,7 @@
 
 @property (retain, nonatomic) IBOutlet UIButton *reply;
 @property (retain, nonatomic) IBOutlet UIImageView *option;
+@property (retain, nonatomic) IBOutlet UIImageView *supportImage;
 
 @property (retain, nonatomic) PBBBSAction *action;
 @property (retain, nonatomic) PBBBSPost *post;

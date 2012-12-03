@@ -19,8 +19,9 @@
 //@property (retain, nonatomic) IBOutlet UIImageView *image;
 @property (retain, nonatomic) IBOutlet UILabel *source;
 @property (retain, nonatomic) PBBBSAction *action;
-
+@property (retain, nonatomic) IBOutlet UIImageView *supportImage;
 @property (retain, nonatomic) IBOutlet UIView *splitLine;
+
 + (id)createCell:(id)delegate;
 + (NSString*)getCellIdentifier;
 + (CGFloat)getCellHeightWithBBSAction:(PBBBSAction *)post;

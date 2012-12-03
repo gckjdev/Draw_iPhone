@@ -13,6 +13,7 @@
 #import "OfflineDrawViewController.h"
 #import "ShareImageManager.h"
 #import "BBSPopupSelectionView.h"
+#import "GameNetworkConstants.h"
 
 @interface CreatePostController ()
 {
@@ -388,6 +389,22 @@
         [self dismissModalViewControllerAnimated:YES];
     }else{
         PPDebug(@"<didCreatePost>create post fail.result code = %d",resultCode);
+        switch (resultCode) {
+            case ERROR_BBS_TEXT_TOO_SHORT:
+                [self popupMessage:[NSString stringWithFormat:NSLS(@"kTextTooShot"),
+                                    [[BBSManager defaultManager] textMinLength]] title:nil];
+                break;
+            case ERROR_BBS_TEXT_TOO_LONG:
+                [self popupMessage:[NSString stringWithFormat:NSLS(@"kTextTooLong"),
+                                    [[BBSManager defaultManager] textMaxLength]] title:nil];
+                break;
+            case ERROR_BBS_TEXT_TOO_FREQUENT:
+                [self popupMessage:NSLS(@"kTextTooFrequent") title:nil];
+                break;
+            default:
+                [self popupMessage:NSLS(@"kNetworkError") title:nil];
+                break;
+        }
     }
     [self hideActivity];
 }
@@ -426,6 +443,18 @@
     self.drawImage = drawImage;
     self.drawActionList = drawActionList;
     [self updateToolButtons];
+}
+
+#pragma mark textview delegate
+- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
+{
+    if ([text isEqualToString:@"\n"]) {
+        if ([textView.text length] != 0) {
+            [self clickSubmitButton:self.submitButton];
+        }
+        return NO;
+    }
+    return YES;
 }
 
 @end
