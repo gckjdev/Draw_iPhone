@@ -12,6 +12,7 @@
 #import "UIImageExt.h"
 #import "OfflineDrawViewController.h"
 #import "ShareImageManager.h"
+#import "BBSPopupSelectionView.h"
 
 @interface CreatePostController ()
 {
@@ -50,6 +51,7 @@
 @property(nonatomic, retain) NSString *postText;
 
 
+
 @end
 
 @implementation CreatePostController
@@ -85,6 +87,12 @@
     PPRelease(_postId);
     PPRelease(_postText);
 
+    [_bgImageView release];
+    [_panel release];
+    [_titleLabel release];
+    [_backButton release];
+    [_submitButton release];
+    [_inputBG release];
     [super dealloc];
 }
 - (id)initWithBoard:(PBBBSBoard *)board
@@ -149,29 +157,94 @@
 
 - (void)updateToolButtons
 {
-    ShareImageManager *imageManager = [ShareImageManager defaultManager];
+    BBSImageManager *imageManager = [BBSImageManager defaultManager];
     if (self.drawImage) {
         [self.graffitiButton setImage:self.drawImage
                              forState:UIControlStateNormal];
     }else{
-        [self.graffitiButton setImage:[imageManager greenImage]
+        [self.graffitiButton setImage:[imageManager bbsCreateDrawEnable]
                              forState:UIControlStateNormal];
     }
     if (self.image) {
         [self.imageButton setImage:self.image
                           forState:UIControlStateNormal];
     }else{
-        [self.imageButton setImage:[imageManager redImage]
+        [self.imageButton setImage:[imageManager bbsCreateImageEnable]
                           forState:UIControlStateNormal];
     }
-    [self.rewardButton setTitle:[NSString stringWithFormat:@"%d",self.bonus]
-                       forState:UIControlStateNormal];
+    if (self.bonus > 0) {
+        [self.rewardButton setTitle:[NSString stringWithFormat:@"+%d",self.bonus]
+                           forState:UIControlStateNormal];
+    }else{
+        [self.rewardButton setTitle:NSLS(@"k悬赏")
+                           forState:UIControlStateNormal];        
+    }
+}
+
+- (void)keyboardWillShowWithRect:(CGRect)keyboardRect
+{
+    PPDebug(@"<keyboardWillShowWithRect> keyboardRect = %@",NSStringFromCGRect(keyboardRect));
+    CGRect frame = self.panel.frame;
+    CGSize size = CGSizeMake(frame.size.width, keyboardRect.origin.y);
+    frame.size = size;
+    
+    [UIView animateWithDuration:0.3 animations:^{
+        self.panel.frame = frame;
+    }];
+
+}
+
+
+- (void)initViews
+{
+    
+    BBSImageManager *imageManager = [BBSImageManager defaultManager];
+    BBSColorManager *colorManager = [BBSColorManager defaultManager];
+    BBSFontManager *fontManager = [BBSFontManager defaultManager];
+    [self.bgImageView setImage:[imageManager bbsBGImage]];
+    [self.graffitiButton setImage:[imageManager bbsCreateDrawEnable] forState:UIControlStateNormal];
+    [self.imageButton setImage:[imageManager bbsCreateImageEnable] forState:UIControlStateNormal];
+    [self.backButton setImage:[imageManager bbsBackImage] forState:UIControlStateNormal];
+    [self.inputBG setImage:[imageManager bbsCreateInputBg]];
+    [self.textView setTextColor:[UIColor blackColor]];
+    [self.textView setFont:[fontManager postContentFont]];
+    
+    [BBSViewManager updateLable:self.titleLabel
+                        bgColor:[UIColor clearColor]
+                           font:[fontManager bbsTitleFont]
+                      textColor:[colorManager bbsTitleColor]
+                           text:NSLS(@"kComment")];
+    
+    
+    [BBSViewManager updateButton:self.rewardButton
+                         bgColor:[UIColor clearColor]
+                         bgImage:[imageManager bbsCreateRewardBg]
+                           image:[imageManager bbsCreateRewardOptionBG]
+                            font:[fontManager creationDefaulFont]
+                      titleColor:[colorManager creationDefaultColor]
+                           title:NSLS(@"k悬赏")
+                        forState:UIControlStateNormal];
+    
+    [BBSViewManager updateButton:self.submitButton
+                         bgColor:[UIColor clearColor]
+                         bgImage:[imageManager bbsCreateSubmitBg]
+                           image:nil
+                            font:[fontManager creationDefaulFont]
+                      titleColor:[colorManager creationDefaultColor]
+                           title:NSLS(@"k提交")
+                        forState:UIControlStateNormal];
+    if (self.sourceAction) {
+        self.rewardButton.hidden = YES;
+        [self.titleLabel setText:NSLS(@"kReply")];
+    }
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self initViews];
     [self updateToolButtons];
+    [self.textView becomeFirstResponder];
 }
 
 - (void)didReceiveMemoryWarning
@@ -185,6 +258,12 @@
     [self setGraffitiButton:nil];
     [self setImageButton:nil];
     [self setRewardButton:nil];
+    [self setBgImageView:nil];
+    [self setPanel:nil];
+    [self setTitleLabel:nil];
+    [self setBackButton:nil];
+    [self setSubmitButton:nil];
+    [self setInputBG:nil];
     [super viewDidUnload];
 }
 
@@ -248,21 +327,26 @@
     [self.imagePicker showSelectionView:self];
 }
 
+#define SELECTION_VIEW_TAG 100
 - (IBAction)clickRewardButton:(id)sender {
-    UIActionSheet *as = [[UIActionSheet alloc] initWithTitle:NSLS(@"kReward")
-                                                    delegate:self
-                                           cancelButtonTitle:NSLS(@"kCancel")
-                                      destructiveButtonTitle:NSLS(@"0")
-                                           otherButtonTitles:@"100",@"200",@"300", nil];
-    [as setDestructiveButtonIndex:self.bonus/100];
-    
-    [as showInView:self.view];
-    [as release];
+    BBSPopupSelectionView *selectionView = (BBSPopupSelectionView *)[self.view
+                                                                     viewWithTag:SELECTION_VIEW_TAG];
+    if (selectionView) {
+        [selectionView removeFromSuperview];
+    }else{
+        NSArray *titiles = [NSArray arrayWithObjects:NSLS(@"kNone"),@"100",@"200",@"300",nil];
+        selectionView = [[BBSPopupSelectionView alloc] initWithTitles:titiles delegate:self];
+        selectionView.tag = SELECTION_VIEW_TAG;
+        CGPoint point = self.rewardButton.center;
+        point.y -= 13;
+        [selectionView showInView:self.view showAbovePoint:point animated:YES];
+        [selectionView release];
+    }
 }
 
-- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+- (void)selectionView:(BBSPopupSelectionView *)selectionView didSelectedButtonIndex:(NSInteger)index
 {
-    self.bonus = buttonIndex * 100;
+    self.bonus = index * 100;
     [self updateToolButtons];
 }
 
@@ -310,10 +394,6 @@
     }else{
         PPDebug(@"<didCreateAction>create action fail.result code = %d",resultCode);
     }
-
-//    - (void)didController:(CreatePostController *)controller
-//CreateNewAction:(PBBBSAction *)action;
-
 }
 
 

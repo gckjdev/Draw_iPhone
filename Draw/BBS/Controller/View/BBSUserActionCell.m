@@ -19,25 +19,26 @@
 
 #define SPACE_CONTENT_TOP 35
 #define SPACE_CONTENT_IMAGE 10
-#define SPACE_IMAGE_SOURCE 10
-#define SPACE_SOURCE_BOTTOM 10
+#define SPACE_IMAGE_SOURCE 15
+#define SPACE_SOURCE_BOTTOM 20
 
 #define SPACE_TEXT_SOURCE_IMAGE 100
 #define SPACE_TEXT_SOURCE_NO_IMAGE 10
 
+#define SPACE_SPLITLINE_SOURCE 5
 
 #define IMAGE_HEIGHT 80
 
-#define CONTENT_WIDTH 240
-#define SOURCE_WIDTH 240
+#define CONTENT_WIDTH 206
+#define SOURCE_WIDTH 206
 #define CONTENT_MAX_HEIGHT 99999999
-#define SOURCE_MAX_HEIGHT 99999999
+#define SOURCE_MAX_HEIGHT 40
 
 #define Y_CONTENT_TEXT 5
 #define Y_SOURCE_TEXT 5
 
-#define CONTENT_FONT [UIFont systemFontOfSize:15]
-#define SOURCE_FONT [UIFont systemFontOfSize:13]
+#define CONTENT_FONT [[BBSFontManager defaultManager] postContentFont]
+#define SOURCE_FONT [[BBSFontManager defaultManager] actionSourceFont]
 
 
 
@@ -49,6 +50,7 @@
 {
     PPRelease(_source);
     PPRelease(_action);
+    [_splitLine release];
     [super dealloc];
 }
 
@@ -57,18 +59,24 @@
 
 //@synthesize delegate = _delegate;
 
+- (void)initViews
+{
+    self.content.numberOfLines = 0;
+    self.content.font = CONTENT_FONT;
+    [self.content setLineBreakMode:NSLineBreakByCharWrapping];
+
+    self.source.numberOfLines = 0;
+    [self.source setLineBreakMode:NSLineBreakByTruncatingTail];
+    self.source.font = SOURCE_FONT;
+
+    [self.splitLine setBackgroundColor:[[BBSColorManager defaultManager] userActionSplitColor]];
+}
+
 + (id)createCell:(id)delegate
 {
     BBSUserActionCell *cell = [BBSTableViewCell createCellWithIdentifier:[self getCellIdentifier] delegate:delegate];
     
-    cell.content.numberOfLines = 0;
-    [cell.content setLineBreakMode:NSLineBreakByTruncatingTail];
-    cell.content.font = CONTENT_FONT;
-    
-    cell.source.numberOfLines = 0;
-    [cell.source setLineBreakMode:NSLineBreakByTruncatingTail];
-    cell.source.font = SOURCE_FONT;
-    
+    [cell initViews];
     return cell;
 }
 
@@ -91,7 +99,7 @@
 {
     CGSize size = [text sizeWithFont:SOURCE_FONT
                    constrainedToSize:CGSizeMake(SOURCE_WIDTH, SOURCE_MAX_HEIGHT)
-                       lineBreakMode:NSLineBreakByCharWrapping];
+                       lineBreakMode:NSLineBreakByTruncatingTail];
     size.height += 2*Y_SOURCE_TEXT;
     return size.height;
 }
@@ -107,7 +115,6 @@
     }else{
         height += (SPACE_CONTENT_TOP + SPACE_TEXT_SOURCE_NO_IMAGE + SPACE_SOURCE_BOTTOM);
     }
-    PPDebug(@"\n<getCellHeightWithBBSAction>,height = %f.\n",height);
     return height;
 }
 
@@ -133,7 +140,7 @@
     CGFloat height = [BBSUserActionCell heightForContentText:action.contentText];
     [self resetView:self.content y:CGRectGetMinY(self.content.frame) height:height];
 
-
+    CGFloat y = 0;
 
     //set image frame
     if (action.content.hasThumbImage) {
@@ -141,7 +148,7 @@
         //reset image frame center
         self.image.hidden = NO;
 
-        CGFloat y = CGRectGetMaxY(self.content.frame) + SPACE_CONTENT_IMAGE;
+        y = CGRectGetMaxY(self.content.frame) + SPACE_CONTENT_IMAGE;
         CGFloat width = IMAGE_HEIGHT;
         CGFloat height = IMAGE_HEIGHT;
         CGFloat x =  (self.bounds.size.width - width) / 2;
@@ -155,12 +162,13 @@
         self.image.hidden = YES;
         
         //set source frame
-        CGFloat y = CGRectGetMaxY(self.content.frame) + SPACE_TEXT_SOURCE_NO_IMAGE;
+        y = CGRectGetMaxY(self.content.frame) + SPACE_TEXT_SOURCE_NO_IMAGE;
         height = [BBSUserActionCell heightForSourceText:action.showSourceText];
         [self resetView:self.source y:y height:height];
     }
     
-    PPDebug(@"\n====<print>====\ncontent frame = %@,\nimage frame = %@,\nsource frame = %@,\n</print>",NSStringFromCGRect(self.content.frame),NSStringFromCGRect(self.image.frame),NSStringFromCGRect(self.source.frame));
+    [self resetView:self.splitLine y:(y-SPACE_SPLITLINE_SOURCE) height:1];
+//    PPDebug(@"\n====<print>====\ncontent frame = %@,\nimage frame = %@,\nsource frame = %@,\n</print>",NSStringFromCGRect(self.content.frame),NSStringFromCGRect(self.image.frame),NSStringFromCGRect(self.source.frame));
 }
 
 - (void)updateTimeStamp:(NSInteger)timeInterval

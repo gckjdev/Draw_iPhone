@@ -48,11 +48,13 @@
 #define FONT_OF_TITLE_IPAD [UIFont boldSystemFontOfSize:13*2]
 #define FONT_OF_TITLE ([self isIPAD] ? (FONT_OF_TITLE_IPAD) : (FONT_OF_TITLE_IPHONE))
 
-#define FONT_OF_MESSAGE_IPHONE [UIFont systemFontOfSize:13]
-#define FONT_OF_MESSAGE_IPAD [UIFont systemFontOfSize:13*2]
+#define FONT_OF_MESSAGE_IPHONE [UIFont systemFontOfSize:11]
+#define FONT_OF_MESSAGE_IPAD [UIFont systemFontOfSize:11*2]
 #define FONT_OF_MESSAGE ([self isIPAD] ? (FONT_OF_MESSAGE_IPAD) : (FONT_OF_MESSAGE_IPHONE))
 
 #define LOADING_CENTER_SIZE ([DeviceDetection isIPAD]?CGSizeMake(62, 46):CGSizeMake(31, 23))
+
+#define SEPERATOR   ([DeviceDetection isIPAD]?10:5)
 
 - (BOOL) isIPAD
 {
@@ -112,14 +114,17 @@
     //set background image
 	self.backgroundImageView = [[[UIImageView alloc] init] autorelease];
     [self.backgroundImageView setImage:[CommonImageManager defaultManager].starryBackgroundImage];
+    [self.backgroundImageView setAutoresizingMask:!UIViewAutoresizingNone];
     [self.loadingView addSubview:self.backgroundImageView];
     
     _starView = [[[UIImageView alloc] init] autorelease];
     [_starView setImage:[CommonImageManager defaultManager].starryLoadingStar];
+    [_starView setAutoresizingMask:!UIViewAutoresizingNone];
     [self.loadingView addSubview:_starView];
     
     _lightView = [[[UIImageView alloc] init] autorelease];
     [_lightView setImage:[CommonImageManager defaultManager].starryLoadingLight];
+    [_lightView setAutoresizingMask:!UIViewAutoresizingNone];
     [self.loadingView addSubview:_lightView];
     
     _planetView = [[[UIImageView alloc] initWithImage:[CommonImageManager defaultManager].planetImage] autorelease];
@@ -216,87 +221,80 @@
     [_superView bringSubviewToFront:self];
 }
 
-- (CGSize)calLoadingViewSize
+- (CGSize)calMaxLoadingViewSize
 {
-
-    CGSize s1 = self.titleLabel.frame.size;
-	CGSize s2 = self.messageLabel.frame.size;
+//    UIFont *titleFont = FONT_OF_TITLE;
+	UIFont *messageFont = FONT_OF_MESSAGE;
     
-    CGFloat height = s1.height*2 + _planetView.frame.size.height + s2.height;
+//    CGSize s1 = [self calculateHeightOfTextFromWidth:@" " font:titleFont width:HEIGHT_OF_LOADING_VIEW linebreak:UILineBreakModeTailTruncation];
+	CGSize s2 = [self calculateHeightOfTextFromWidth:@" " font:messageFont width:HEIGHT_OF_LOADING_VIEW linebreak:UILineBreakModeCharacterWrap];
+    
+    CGFloat height = SEPERATOR*3 + _planetView.frame.size.height + s2.height*2;
     CGFloat width = height/0.618;
     
     return CGSizeMake(width, height);
 }
 
+- (CGSize)calLoadingViewSize
+{
+    
+    CGFloat height = SEPERATOR*3 + _planetView.frame.size.height + self.messageLabel.frame.size.height;
+    CGFloat width = height/0.618;
+    
+    return CGSizeMake(width, height);
+}
 
 - (void)adjustSize
 {
     [self setFrame:_superView.bounds];
-    PPDebug(@"<test-kira> super bounds = (%.2f, %.2f, %.2f, %.2f)", _superView.frame.origin.x, _superView.frame.origin.y, _superView.frame.size.width, _superView.frame.size.height);
     
-    UIFont *titleFont = FONT_OF_TITLE;
+//    UIFont *titleFont = FONT_OF_TITLE;
 	UIFont *messageFont = FONT_OF_MESSAGE;
-    CGSize s1 = [self calculateHeightOfTextFromWidth:@" " font:titleFont width:HEIGHT_OF_LOADING_VIEW linebreak:UILineBreakModeTailTruncation];
-	CGSize s2 = [self calculateHeightOfTextFromWidth:_message font:messageFont width:HEIGHT_OF_LOADING_VIEW linebreak:UILineBreakModeCharacterWrap];
+//    CGSize s1 = [self calculateHeightOfTextFromWidth:@" " font:titleFont width:HEIGHT_OF_LOADING_VIEW linebreak:UILineBreakModeTailTruncation];
+	CGSize messageSingleLineSize = [self calculateHeightOfTextFromWidth:@" " font:messageFont width:HEIGHT_OF_LOADING_VIEW linebreak:UILineBreakModeCharacterWrap];
     
-    [self.titleLabel setFrame:CGRectMake(0, 0, s1.width, s1.height)];
-    [self.messageLabel setFrame:CGRectMake(0, 0, s2.width, s2.height)];
+//    [self.titleLabel setFrame:CGRectMake(0, 0, s1.width, s1.height)];
+//    [self.messageLabel setFrame:CGRectMake(0, 0, s2.width, s2.height)];
+    
+    
+    
+    CGSize messageSize = [self calculateHeightOfTextFromWidth:_message font:messageFont width:[self calMaxLoadingViewSize].width*0.8 linebreak:UILineBreakModeCharacterWrap];
+    
+    if (messageSize.height >= messageSingleLineSize.height*2) {
+        messageSize = CGSizeMake(messageSize.width, messageSingleLineSize.height*2);
+    }
+    
+    [self.messageLabel setFrame:CGRectMake(0, 0, messageSize.width, messageSize.height)];
+    
     
     CGSize loadingViewSize = [self calLoadingViewSize];
     [self.loadingView setFrame:CGRectMake(0, 0, loadingViewSize.width, loadingViewSize.height)];
     [self.loadingView setCenter:CGPointMake(_superView.bounds.size.width/2, _superView.bounds.size.height/2)];
     [self.backgroundImageView setFrame:CGRectMake(0, 0, self.loadingView.frame.size.width, self.loadingView.frame.size.height)];
+    
     [_starView setFrame:self.backgroundImageView.frame];
     [_lightView setFrame:self.backgroundImageView.frame];
     
-    PPDebug(@"<test-kira> loading view's size = (%.2f, %.2f), center = (%.2f, %.2f)", self.loadingView.frame.size.width, self.loadingView.frame.size.height, self.loadingView.center.x, self.loadingView.center.y);
-    
-    
-    
-    [self.titleLabel setCenter:CGPointMake(self.loadingView.frame.size.width/2, s1.height)];
-    [_planetView setCenter:CGPointMake(self.loadingView.frame.size.width/2, self.titleLabel.center.y + self.titleLabel.frame.size.height/2 + _planetView.frame.size.height/2)];
-    [self.messageLabel setCenter:CGPointMake(self.loadingView.frame.size.width/2, _planetView.center.y + _planetView.frame.size.height/2 + self.messageLabel.frame.size.height/2)];
-    
-    
-                                       
-//    [self.messageLabel setCenter:CGPointMake(self.loadingView.frame.size.width/2, s1.height + _planetView.frame.size.height + self.messageLabel.frame.size.height/2)];
+//    [self.titleLabel setCenter:CGPointMake(self.loadingView.frame.size.width/2, s1.height)];
+    [_planetView setCenter:CGPointMake(self.loadingView.frame.size.width/2, SEPERATOR + _planetView.frame.size.height/2)];
+    [self.messageLabel setCenter:CGPointMake(self.loadingView.frame.size.width/2, SEPERATOR*2 + _planetView.frame.size.height + self.messageLabel.frame.size.height/2)];
+
     
     [self.messageLabel addUnlockShiningEffectDuration:2.5];
 }
-
-- (void)update
-{
-//    [self.loadingView setBackgroundColor:[UIColor colorWithRed:(rand()%255)/255.0 green:(rand()%255)/255.0 blue:(rand()%255)/255.0 alpha:1]];
-}
-
-- (void)killTimer
-{
-    if (_timer) {
-        if ([_timer isValid]) {
-            [_timer invalidate];
-        }
-        [_timer release];
-        _timer = nil;
-    }
-}
-
 - (void)startFlashingBackground
 {
-    [self killTimer];
-    _timer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(update) userInfo:nil repeats:YES];
-    [_timer retain];
-    
-    CAAnimation* flashing = [AnimationManager disappearAnimationFrom:0 to:1 delay:0 duration:1];
-    CAAnimation* flashing2 = [AnimationManager disappearAnimationFrom:1 to:0 delay:0 duration:1];
-    [flashing2 setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut]];
-    [flashing setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut]];
-    flashing.autoreverses = YES;
-    flashing.repeatCount = HUGE_VAL;
-    flashing2.autoreverses = YES;
-    flashing2.repeatCount = HUGE_VAL;
+    CAAnimation* flashing = [AnimationManager flashAnimationFrom:0 to:1 duration:1];
+    CAAnimation* flashing2 = [AnimationManager flashAnimationFrom:1 to:0 duration:1];
     
     [_starView.layer addAnimation:flashing forKey:nil];
     [_lightView.layer addAnimation:flashing2 forKey:nil];
+}
+
+- (void)stopFlashingBackground
+{
+    [_starView.layer removeAllAnimations];
+    [_lightView.layer removeAllAnimations];
 }
 
 - (void) setTitle:(NSString*)str{
@@ -333,16 +331,11 @@
 	_hidden = NO;
     
     [self startFlashingBackground];
-//	[self setNeedsDisplay];
-//	[_activity startAnimating];
-	
 }
 - (void) stopAnimating{
 	if(_hidden) return;
 	_hidden = YES;
-    [self killTimer];
-//	[self setNeedsDisplay];
-//	[_activity stopAnimating];
+    [self stopFlashingBackground];
 	
 }
 

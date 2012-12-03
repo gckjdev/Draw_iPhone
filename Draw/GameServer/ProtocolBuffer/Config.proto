@@ -1,0 +1,20 @@
+
+package game;
+
+option java_package = "com.orange.network.game.protocol.model";
+option java_outer_classname = "ConfigProtos";
+
+message PBPrice{
+    required string amount = 1;             // 获得金币／道具数量
+    required string price  = 2;             // 价格
+    optional string productId = 3;          // 对应的IAP产品ID
+    optional string savePercent = 4;        // 节省的百分比，如节省20%为20
+}
+
+message PBZJHConfig{
+}
+
+message PBConfig {
+    repeated PBPrice coinPrice = 1; 
+}
+

@@ -150,22 +150,22 @@
 }
 
 
-- (void)updateReward:(PBBBSReward *)reward
+- (void)updateReward:(PBBBSPost *)post
 {
-    self.reward.hidden = NO;
-    if (reward.bonus > 0) {
-        self.reward.hidden = NO;
-        if (reward.hasWinner) {
+    PBBBSReward *reward = post.reward;
+    if (post.hasReward) {
+        if ([post hasPay]) {
             [self.reward setSelected:YES];
             [self.reward setTitle:[NSString stringWithFormat:@"%d",reward.bonus]
-                          forState:UIControlStateSelected];
+                         forState:UIControlStateSelected];
         }else{
             [self.reward setSelected:NO];
             [self.reward setTitle:[NSString stringWithFormat:@"%d",reward.bonus]
-                          forState:UIControlStateNormal];
+                         forState:UIControlStateNormal];
         }
+        self.reward.hidden = NO;
     }else{
-        self.reward.hidden = YES;
+        [self.reward setHidden:YES];
     }
 }
 
@@ -176,7 +176,7 @@
     [self updateUserInfo:post.createUser];
     [self updateContent:post.content];
     [self updateTimeStamp:post.createDate];
-    [self updateReward:post.reward];
+    [self updateReward:post];
 }
 
 

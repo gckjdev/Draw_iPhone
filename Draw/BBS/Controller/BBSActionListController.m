@@ -13,11 +13,14 @@
 #import "ShowImageController.h"
 #import "CreatePostController.h"
 #import "BBSPostDetailController.h"
+#import "BBSManager.h"
 
 @interface BBSActionListController ()
 {
     PBBBSAction *_selectedAction;
 }
+@property (retain, nonatomic) IBOutlet UIButton *backButton;
+@property (retain, nonatomic) IBOutlet UIImageView *bgImageView;
 @end
 
 #define TAB_ID 100
@@ -42,9 +45,33 @@
     return self;
 }
 
+- (void)initViews
+{
+    
+    BBSImageManager *_bbsImageManager = [BBSImageManager defaultManager];
+    BBSFontManager *_bbsFontManager = [BBSFontManager defaultManager];
+    BBSColorManager *_bbsColorManager = [BBSColorManager defaultManager];
+
+    [self.backButton setImage:[_bbsImageManager bbsBackImage] forState:UIControlStateNormal];
+    [self.bgImageView setImage:[_bbsImageManager bbsBGImage]];
+    
+    
+    [BBSViewManager updateLable:self.titleLabel
+                        bgColor:[UIColor clearColor]
+                           font:[_bbsFontManager bbsTitleFont]
+                      textColor:[_bbsColorManager bbsTitleColor]
+                           text:NSLS(@"kMyComment")];
+    
+    [self.refreshFooterView setBackgroundColor:[UIColor clearColor]];
+    [self.refreshHeaderView setBackgroundColor:[UIColor clearColor]];
+
+    
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self initViews];
     [self clickTab:TAB_ID];
 }
 
@@ -158,18 +185,23 @@
 	
 }
 
+#define ACTION_SHEET_TAG 10212
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    
+    UIView *as = [self.view viewWithTag:ACTION_SHEET_TAG];
+    if (as) {
+        [as removeFromSuperview];
+        return;
+    }
     _selectedAction = [self actionForIndexPath:indexPath];
     //show action sheet
-    
-    UIActionSheet *actionSheet = [[UIActionSheet alloc]
-                                  initWithTitle:NSLS(@"kOption")
-                                  delegate:self
-                                  cancelButtonTitle:NSLS(@"kCancel")
-                                  destructiveButtonTitle:NSLS(@"kReply")
-                                  otherButtonTitles:NSLS(@"kPostDetail"), nil];
-    [actionSheet showInView:self.view];
+
+    NSArray *titles = [NSArray arrayWithObjects:NSLS(@"kReply"),NSLS(@"kPostDetail"),NSLS(@"kCancel"), nil];
+    BBSActionSheet *actionSheet = [[BBSActionSheet alloc] initWithTitles:titles delegate:self];
+    actionSheet.tag = ACTION_SHEET_TAG;
+    [actionSheet showInView:self.view showAtPoint:self.view.center animated:YES];
     [actionSheet release];
 }
 
@@ -200,10 +232,10 @@ enum{
 //    IndexDelete = 2,
 };
 
-- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+- (void)actionSheet:(BBSActionSheet *)actionSheet didSelectedButtonIndex:(NSInteger)index
 {
     NSString *postId = _selectedAction.source.postId;
-    switch (buttonIndex) {
+    switch (index) {
         case IndexReply:
         {
             NSString *postUid = _selectedAction.source.postUid;
@@ -225,4 +257,14 @@ enum{
 }
 
 
+- (void)dealloc {
+    [_backButton release];
+    [_bgImageView release];
+    [super dealloc];
+}
+- (void)viewDidUnload {
+    [self setBackButton:nil];
+    [self setBgImageView:nil];
+    [super viewDidUnload];
+}
 @end

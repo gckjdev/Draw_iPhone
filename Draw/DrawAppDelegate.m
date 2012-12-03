@@ -60,6 +60,8 @@
 #import "PPTecentWeiboService.h"
 #import "PPFacebookService.h"
 
+#import "GameConfigDataManager.h"
+
 NSString* GlobalGetServerURL()
 {    
     return [ConfigManager getAPIServerURL];
@@ -156,11 +158,13 @@ NSString* GlobalGetBoardServerURL()
     srand(time(0));
     
     application.applicationIconBadgeNumber = 0;
+
+    [WordManager defaultManager];
     
     if (isDrawApp()) {
         [WordManager unZipFiles];
     } else if (isDiceApp()){
-        [DiceFontManager unZipFiles]; 
+        [DiceFontManager unZipFiles];
         [[DiceHelpManager defaultManager] unzipHelpFiles];
     }
     
@@ -350,6 +354,10 @@ NSString* GlobalGetBoardServerURL()
     
     //sync level details
     [[LevelService defaultService] syncExpAndLevel:SYNC];
+    
+//    [GameConfigDataManager createTestConfigData];
+  
+    [GameConfigDataManager defaultInstance];
     
     return YES;
 }

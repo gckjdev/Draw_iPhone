@@ -20,11 +20,20 @@
 - (UIColor *)postNumberColor;
 - (UIColor *)normalTextColor;
 
-//post list color
+#pragma mark - post list color
 - (UIColor *)postNickColor;
 - (UIColor *)postDateColor;
 - (UIColor *)postRewardColor;
 - (UIColor *)postActionColor;
 - (UIColor *)postAvatarColor;
 - (UIColor *)postRewardedColor;
+
+#pragma mark - post detail color
+- (UIColor *)detailDefaultColor;
+- (UIColor *)detailHeaderSelectedColor;
+
+- (UIColor *)userActionSplitColor;//758ba2
+
+#pragma mark - creation color
+- (UIColor *)creationDefaultColor;
 @end

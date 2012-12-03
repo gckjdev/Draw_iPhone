@@ -81,6 +81,19 @@
                                offset:(NSInteger)offset
                                 limit:(NSInteger)limit;
 
++ (CommonNetworkOutput*)payReward:(NSString*)baseURL
+                           userId:(NSString *)userId
+                            appId:(NSString *)appId
+                       deviceType:(NSInteger)deviceType
+//post info
+                           postId:(NSString *)postId
+//action info
+                         actionId:(NSString *)actionId
+                        actionUid:(NSString *)actionUid
+                       actionNick:(NSString *)actionNick
+                     actionGender:(NSString *)actionGender
+                     actionAvatar:(NSString *)actionAvatar;
+
 //delete method
 + (CommonNetworkOutput*)deleteBBSPost:(NSString*)baseURL
                                 appId:(NSString *)appId

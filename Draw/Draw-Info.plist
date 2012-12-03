@@ -90,5 +90,7 @@
 	<true/>
 	<key>CFServerTest</key>
 	<false/>
+	<key>CFConfigVersion</key>
+	<string>1.0</string>
 </dict>
 </plist>
