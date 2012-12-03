@@ -14,7 +14,7 @@
 @property (nonatomic, retain) PBConfig* config;
 
 - (id)initWithName:(NSString*)bundleName;
-
+- (void)autoUpdate;
 
 
 @end

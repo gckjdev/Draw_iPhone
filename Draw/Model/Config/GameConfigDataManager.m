@@ -39,6 +39,7 @@ static dispatch_once_t onceToken;
 {
     self = [super init];    
     _defaultConfigData = [[GameConfigData alloc] initWithName:DEFAULT_CONFIG_FILE];
+    [_defaultConfigData autoUpdate];
     return self;
 }
                           
@@ -72,15 +73,24 @@ static dispatch_once_t onceToken;
         [priceBuilder setSavePercent:[saves objectAtIndex:i]];
         [priceBuilder setProductId:[productIds objectAtIndex:i]];
         
-        [builder addCoinPrice:[priceBuilder build]];
+        [builder addCoinPrices:[priceBuilder build]];
     }
+    
+    PBZJHConfig_Builder* zjhBuilder = [PBZJHConfig builder];
+    [builder setZjhConfig:[zjhBuilder build]];
+    
+    PBDiceConfig_Builder* diceBuilder = [PBDiceConfig builder];
+    [builder setDiceConfig:[diceBuilder build]];
+
+    PBDrawConfig_Builder* drawBuilder = [PBDrawConfig builder];
+    [builder setDrawConfig:[drawBuilder build]];
     
     PBConfig* config = [builder build];
     NSData* data = [config data];
 
     [data writeToFile:path atomically:YES];
     
-    NSString* version = @"1.0";
+    NSString* version = @"1.00001";
     [version writeToFile:versionPath atomically:YES encoding:NSUTF8StringEncoding error:nil];
 }
 

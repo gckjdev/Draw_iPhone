@@ -12,9 +12,12 @@
 #import <QuartzCore/QuartzCore.h>
 #import "CMPopTipView.h"
 #import "AnimationManager.h"
+#import "ArrowView.h"
 
 #define POKER_VIEW_ROTATE_ANCHOR_POINT CGPointMake(0, 0)
 #define SHOW_CARD_FLAG_IMAGE_TAG 308
+
+#define ARROW_TAG 444
 
 #define CARD_LIGHT_WIDTH ([DeviceDetection isIPAD] ? 100 : 50)
 #define CARD_LIGHT_HEIGHT ([DeviceDetection isIPAD] ? 126 : 63)
@@ -312,6 +315,16 @@
     
     [imageView.layer addAnimation:[AnimationManager appearAnimationFrom:0.5 to:1 duration:(animation ? 0.8 : 0)] forKey:nil];
 }
+
+- (void)showArrow
+{
+    UIButton *arrow = [ArrowView arrowWithCenter:CGPointMake(self.frame.size.width/2, self.frame.size.height/2 - ([DeviceDetection isIPAD] ? 10 : 5))];
+    arrow.tag = ARROW_TAG;
+    [arrow addTarget:self action:@selector(clickArrow:) forControlEvents:UIControlEventTouchUpInside];
+    [self addSubview:arrow];
+    
+}
+
 
 
 @end

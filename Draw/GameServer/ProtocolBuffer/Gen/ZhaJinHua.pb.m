@@ -20,6 +20,17 @@ static PBExtensionRegistry* extensionRegistry = nil;
 }
 @end
 
+BOOL PBZJHRuleTypeIsValidValue(PBZJHRuleType value) {
+  switch (value) {
+    case PBZJHRuleTypeBeginer:
+    case PBZJHRuleTypeNormal:
+    case PBZJHRuleTypeRich:
+    case PBZJHRuleTypeDual:
+      return YES;
+    default:
+      return NO;
+  }
+}
 BOOL PBZJHCardTypeIsValidValue(PBZJHCardType value) {
   switch (value) {
     case PBZJHCardTypeUnknow:

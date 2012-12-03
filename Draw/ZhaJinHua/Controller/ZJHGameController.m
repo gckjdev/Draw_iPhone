@@ -106,6 +106,7 @@
     [_cardTypeBgImageView release];
     [_cardTypeButton release];
     [_waitGameNoteLabel release];
+    [_changeCardButton release];
     [super dealloc];
 }
 
@@ -859,6 +860,8 @@
     if ([_userManager isMe:userId]) {
         [_audioManager playSoundByURL:[_soundManager gameWin]];
         [_audioManager playSoundByURL:[_soundManager fullMoney]];
+        _coinView = [[[coinView alloc] initWithFrame:self.view.frame] autorelease];
+        [self.view addSubview:_coinView];
     } else {
         [_audioManager playSoundByURL:[_soundManager gameOver]];
     }
@@ -1030,6 +1033,7 @@
     [self setWaitGameNoteLabel:nil];
     [self.moneyTreeView killMoneyTree];
     [self setMoneyTreeHolder:nil];
+    [self setChangeCardButton:nil];
     [super viewDidUnload];
 }
 
@@ -1391,6 +1395,18 @@
 - (void)didSyncFinish
 {
     [[self getMyAvatarView] update];
+}
+
+
+- (void)coinAnimationFinished
+{
+    [_coinView removeFromSuperview];
+    _coinView = nil;
+}
+
+
+- (IBAction)clickChangeCardButton:(id)sender {
+    
 }
 
 @end

@@ -83,4 +83,6 @@ typedef enum {
 - (void)showBomb;
 - (void)clearBomb;
 
+- (void)showChangeCard;
+
 @end

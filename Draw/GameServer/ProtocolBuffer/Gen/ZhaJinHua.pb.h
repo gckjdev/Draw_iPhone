@@ -35,6 +35,15 @@
 @class PBZJHUserPoker;
 @class PBZJHUserPoker_Builder;
 typedef enum {
+  PBZJHRuleTypeBeginer = 0,
+  PBZJHRuleTypeNormal = 1,
+  PBZJHRuleTypeRich = 2,
+  PBZJHRuleTypeDual = 3,
+} PBZJHRuleType;
+
+BOOL PBZJHRuleTypeIsValidValue(PBZJHRuleType value);
+
+typedef enum {
   PBZJHCardTypeUnknow = 0,
   PBZJHCardTypeHighCard = 1,
   PBZJHCardTypePair = 2,

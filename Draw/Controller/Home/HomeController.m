@@ -46,9 +46,8 @@
 #import "LmWallService.h"
 #import "AdService.h"
 #import "VendingController.h"
-#import "RecommendedAppsController.h"
-
-#import "FacetimeMainController.h"
+//#import "RecommendedAppsController.h"
+//#import "FacetimeMainController.h"
 
 
 #import "BoardPanel.h"
@@ -522,9 +521,10 @@
 
 - (IBAction)clickRecommend:(id)sender
 {
+    /* rem by Benson to disable the feature
     RecommendedAppsController* vc = [[[RecommendedAppsController alloc] init] autorelease];
     [self.navigationController pushViewController:vc animated:YES];
-    
+    */
 }
 
 - (BOOL)isRegistered

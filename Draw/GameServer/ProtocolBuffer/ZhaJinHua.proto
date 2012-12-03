@@ -6,6 +6,13 @@ package game;
 option java_package = "com.orange.network.game.protocol.model";
 option java_outer_classname = "ZhaJinHuaProtos";
 
+enum PBZJHRuleType{
+    BEGINER = 0;
+    NORMAL = 1;
+    RICH = 2;
+    DUAL = 3;
+}
+
 enum PBZJHCardType{
   UNKNOW = 0;                 // 未知
   HIGH_CARD = 1;              // 散牌
