@@ -30,4 +30,9 @@
                   sessionId:(int)sessionId
                     cardIds:(NSArray *)cardIds;
 
+- (void)sendChangeCardRequest:(NSString *)userId
+                    sessionId:(int)sessionId
+                       cardId:(int)cardId;
+
+
 @end

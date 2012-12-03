@@ -150,6 +150,15 @@ message CompareCardResponse{
   repeated PBUserResult userResult = 2;   // 比牌结果
 }
 
+message ChangeCardRequest{
+  required int32 cardId = 1;
+}
+
+message ChangeCardResponse{
+  required int32 oldCardId = 1;
+  required PBPoker newPoker = 2;
+  optional PBZJHCardType cardType = 3  [default = UNKNOW];      // 牌类型
+}
 
 message JoinGameRequest {
   required string userId = 1;                    // 用户ID
@@ -244,7 +253,7 @@ message BetDiceResponse {
 
 message GameOverNotificationRequest {
   optional PBDiceGameResult gameResult = 1;                 // 默认为大话骰
-  optional PBZJHGameResult ZJHGameResult = 2;               // 炸金花
+  optional PBZJHGameResult zjhGameResult = 2;               // 炸金花
 } 
   
 message GameOverNotificationResponse{
@@ -427,6 +436,8 @@ message GameMessage {
   optional CompareCardRequest compareCardRequest = 159;
   optional CompareCardResponse compareCardResponse = 160;
   
+  optional ChangeCardRequest changeCardRequest = 161;
+  optional ChangeCardResponse changeCardResponse = 162;
   
   // Normal
   optional int32 startOffset = 1000;        // 返回记录列表中的开始记录位置

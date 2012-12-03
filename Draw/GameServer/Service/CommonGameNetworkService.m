@@ -21,6 +21,7 @@
 @synthesize roomList = _roomList;
 @synthesize session = _session;
 @synthesize serverStringList = _serverStringList;
+@synthesize rule = _rule;
 
 - (void)dealloc
 {    

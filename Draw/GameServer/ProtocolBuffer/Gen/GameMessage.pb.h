@@ -21,6 +21,10 @@
 @class CallDiceRequest_Builder;
 @class CallDiceResponse;
 @class CallDiceResponse_Builder;
+@class ChangeCardRequest;
+@class ChangeCardRequest_Builder;
+@class ChangeCardResponse;
+@class ChangeCardResponse_Builder;
 @class CheckCardRequest;
 @class CheckCardRequest_Builder;
 @class CheckCardResponse;
@@ -1642,6 +1646,122 @@ BOOL BetTypeIsValidValue(BetType value);
 - (CompareCardResponse_Builder*) clearUserResultList;
 @end
 
+@interface ChangeCardRequest : PBGeneratedMessage {
+@private
+  BOOL hasCardId_:1;
+  int32_t cardId;
+}
+- (BOOL) hasCardId;
+@property (readonly) int32_t cardId;
+
++ (ChangeCardRequest*) defaultInstance;
+- (ChangeCardRequest*) defaultInstance;
+
+- (BOOL) isInitialized;
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
+- (ChangeCardRequest_Builder*) builder;
++ (ChangeCardRequest_Builder*) builder;
++ (ChangeCardRequest_Builder*) builderWithPrototype:(ChangeCardRequest*) prototype;
+
++ (ChangeCardRequest*) parseFromData:(NSData*) data;
++ (ChangeCardRequest*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (ChangeCardRequest*) parseFromInputStream:(NSInputStream*) input;
++ (ChangeCardRequest*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (ChangeCardRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input;
++ (ChangeCardRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+@end
+
+@interface ChangeCardRequest_Builder : PBGeneratedMessage_Builder {
+@private
+  ChangeCardRequest* result;
+}
+
+- (ChangeCardRequest*) defaultInstance;
+
+- (ChangeCardRequest_Builder*) clear;
+- (ChangeCardRequest_Builder*) clone;
+
+- (ChangeCardRequest*) build;
+- (ChangeCardRequest*) buildPartial;
+
+- (ChangeCardRequest_Builder*) mergeFrom:(ChangeCardRequest*) other;
+- (ChangeCardRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (ChangeCardRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+
+- (BOOL) hasCardId;
+- (int32_t) cardId;
+- (ChangeCardRequest_Builder*) setCardId:(int32_t) value;
+- (ChangeCardRequest_Builder*) clearCardId;
+@end
+
+@interface ChangeCardResponse : PBGeneratedMessage {
+@private
+  BOOL hasOldCardId_:1;
+  BOOL hasNewPoker_:1;
+  BOOL hasCardType_:1;
+  int32_t oldCardId;
+  PBPoker* newPoker;
+  PBZJHCardType cardType;
+}
+- (BOOL) hasOldCardId;
+- (BOOL) hasNewPoker;
+- (BOOL) hasCardType;
+@property (readonly) int32_t oldCardId;
+@property (readonly, retain) PBPoker* newPoker;
+@property (readonly) PBZJHCardType cardType;
+
++ (ChangeCardResponse*) defaultInstance;
+- (ChangeCardResponse*) defaultInstance;
+
+- (BOOL) isInitialized;
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
+- (ChangeCardResponse_Builder*) builder;
++ (ChangeCardResponse_Builder*) builder;
++ (ChangeCardResponse_Builder*) builderWithPrototype:(ChangeCardResponse*) prototype;
+
++ (ChangeCardResponse*) parseFromData:(NSData*) data;
++ (ChangeCardResponse*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (ChangeCardResponse*) parseFromInputStream:(NSInputStream*) input;
++ (ChangeCardResponse*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (ChangeCardResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input;
++ (ChangeCardResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+@end
+
+@interface ChangeCardResponse_Builder : PBGeneratedMessage_Builder {
+@private
+  ChangeCardResponse* result;
+}
+
+- (ChangeCardResponse*) defaultInstance;
+
+- (ChangeCardResponse_Builder*) clear;
+- (ChangeCardResponse_Builder*) clone;
+
+- (ChangeCardResponse*) build;
+- (ChangeCardResponse*) buildPartial;
+
+- (ChangeCardResponse_Builder*) mergeFrom:(ChangeCardResponse*) other;
+- (ChangeCardResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (ChangeCardResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+
+- (BOOL) hasOldCardId;
+- (int32_t) oldCardId;
+- (ChangeCardResponse_Builder*) setOldCardId:(int32_t) value;
+- (ChangeCardResponse_Builder*) clearOldCardId;
+
+- (BOOL) hasNewPoker;
+- (PBPoker*) newPoker;
+- (ChangeCardResponse_Builder*) setNewPoker:(PBPoker*) value;
+- (ChangeCardResponse_Builder*) setNewPokerBuilder:(PBPoker_Builder*) builderForValue;
+- (ChangeCardResponse_Builder*) mergeNewPoker:(PBPoker*) value;
+- (ChangeCardResponse_Builder*) clearNewPoker;
+
+- (BOOL) hasCardType;
+- (PBZJHCardType) cardType;
+- (ChangeCardResponse_Builder*) setCardType:(PBZJHCardType) value;
+- (ChangeCardResponse_Builder*) clearCardType;
+@end
+
 @interface JoinGameRequest : PBGeneratedMessage {
 @private
   BOOL hasIsRobot_:1;
@@ -2500,14 +2620,14 @@ BOOL BetTypeIsValidValue(BetType value);
 @interface GameOverNotificationRequest : PBGeneratedMessage {
 @private
   BOOL hasGameResult_:1;
-  BOOL hasZjhgameResult_:1;
+  BOOL hasZjhGameResult_:1;
   PBDiceGameResult* gameResult;
-  PBZJHGameResult* zjhgameResult;
+  PBZJHGameResult* zjhGameResult;
 }
 - (BOOL) hasGameResult;
-- (BOOL) hasZjhgameResult;
+- (BOOL) hasZjhGameResult;
 @property (readonly, retain) PBDiceGameResult* gameResult;
-@property (readonly, retain) PBZJHGameResult* zjhgameResult;
+@property (readonly, retain) PBZJHGameResult* zjhGameResult;
 
 + (GameOverNotificationRequest*) defaultInstance;
 - (GameOverNotificationRequest*) defaultInstance;
@@ -2550,12 +2670,12 @@ BOOL BetTypeIsValidValue(BetType value);
 - (GameOverNotificationRequest_Builder*) mergeGameResult:(PBDiceGameResult*) value;
 - (GameOverNotificationRequest_Builder*) clearGameResult;
 
-- (BOOL) hasZjhgameResult;
-- (PBZJHGameResult*) zjhgameResult;
-- (GameOverNotificationRequest_Builder*) setZjhgameResult:(PBZJHGameResult*) value;
-- (GameOverNotificationRequest_Builder*) setZjhgameResultBuilder:(PBZJHGameResult_Builder*) builderForValue;
-- (GameOverNotificationRequest_Builder*) mergeZjhgameResult:(PBZJHGameResult*) value;
-- (GameOverNotificationRequest_Builder*) clearZjhgameResult;
+- (BOOL) hasZjhGameResult;
+- (PBZJHGameResult*) zjhGameResult;
+- (GameOverNotificationRequest_Builder*) setZjhGameResult:(PBZJHGameResult*) value;
+- (GameOverNotificationRequest_Builder*) setZjhGameResultBuilder:(PBZJHGameResult_Builder*) builderForValue;
+- (GameOverNotificationRequest_Builder*) mergeZjhGameResult:(PBZJHGameResult*) value;
+- (GameOverNotificationRequest_Builder*) clearZjhGameResult;
 @end
 
 @interface GameOverNotificationResponse : PBGeneratedMessage {
@@ -3414,6 +3534,7 @@ BOOL BetTypeIsValidValue(BetType value);
   BOOL hasUserId_:1;
   BOOL hasToUserId_:1;
   BOOL hasCurrentPlayUserId_:1;
+  BOOL hasUseItemResponse_:1;
   BOOL hasUseItemRequest_:1;
   BOOL hasBetDiceResponse_:1;
   BOOL hasBetDiceRequest_:1;
@@ -3424,8 +3545,6 @@ BOOL BetTypeIsValidValue(BetType value);
   BOOL hasRegisterRoomsNotificationRequest_:1;
   BOOL hasGameOverNotificationResponse_:1;
   BOOL hasGameOverNotificationRequest_:1;
-  BOOL hasOpenDiceResponse_:1;
-  BOOL hasUseItemResponse_:1;
   BOOL hasBetRequest_:1;
   BOOL hasBetResponse_:1;
   BOOL hasCheckCardRequest_:1;
@@ -3436,6 +3555,8 @@ BOOL BetTypeIsValidValue(BetType value);
   BOOL hasShowCardResponse_:1;
   BOOL hasCompareCardRequest_:1;
   BOOL hasCompareCardResponse_:1;
+  BOOL hasChangeCardRequest_:1;
+  BOOL hasChangeCardResponse_:1;
   BOOL hasJoinGameRequest_:1;
   BOOL hasJoinGameResponse_:1;
   BOOL hasStartGameRequest_:1;
@@ -3460,6 +3581,7 @@ BOOL BetTypeIsValidValue(BetType value);
   BOOL hasCallDiceRequest_:1;
   BOOL hasCallDiceResponse_:1;
   BOOL hasOpenDiceRequest_:1;
+  BOOL hasOpenDiceResponse_:1;
   BOOL hasCompleteReason_:1;
   BOOL hasResultCode_:1;
   BOOL hasCommand_:1;
@@ -3474,6 +3596,7 @@ BOOL BetTypeIsValidValue(BetType value);
   NSString* userId;
   NSString* toUserId;
   NSString* currentPlayUserId;
+  UseItemResponse* useItemResponse;
   UseItemRequest* useItemRequest;
   BetDiceResponse* betDiceResponse;
   BetDiceRequest* betDiceRequest;
@@ -3484,8 +3607,6 @@ BOOL BetTypeIsValidValue(BetType value);
   RegisterRoomsNotificationRequest* registerRoomsNotificationRequest;
   GameOverNotificationResponse* gameOverNotificationResponse;
   GameOverNotificationRequest* gameOverNotificationRequest;
-  OpenDiceResponse* openDiceResponse;
-  UseItemResponse* useItemResponse;
   BetRequest* betRequest;
   BetResponse* betResponse;
   CheckCardRequest* checkCardRequest;
@@ -3496,6 +3617,8 @@ BOOL BetTypeIsValidValue(BetType value);
   ShowCardResponse* showCardResponse;
   CompareCardRequest* compareCardRequest;
   CompareCardResponse* compareCardResponse;
+  ChangeCardRequest* changeCardRequest;
+  ChangeCardResponse* changeCardResponse;
   JoinGameRequest* joinGameRequest;
   JoinGameResponse* joinGameResponse;
   StartGameRequest* startGameRequest;
@@ -3520,6 +3643,7 @@ BOOL BetTypeIsValidValue(BetType value);
   CallDiceRequest* callDiceRequest;
   CallDiceResponse* callDiceResponse;
   OpenDiceRequest* openDiceRequest;
+  OpenDiceResponse* openDiceResponse;
   GameCompleteReason completeReason;
   GameResultCode resultCode;
   GameCommandType command;
@@ -3580,6 +3704,8 @@ BOOL BetTypeIsValidValue(BetType value);
 - (BOOL) hasShowCardResponse;
 - (BOOL) hasCompareCardRequest;
 - (BOOL) hasCompareCardResponse;
+- (BOOL) hasChangeCardRequest;
+- (BOOL) hasChangeCardResponse;
 - (BOOL) hasStartOffset;
 - (BOOL) hasMaxCount;
 - (BOOL) hasTimeStamp;
@@ -3640,6 +3766,8 @@ BOOL BetTypeIsValidValue(BetType value);
 @property (readonly, retain) ShowCardResponse* showCardResponse;
 @property (readonly, retain) CompareCardRequest* compareCardRequest;
 @property (readonly, retain) CompareCardResponse* compareCardResponse;
+@property (readonly, retain) ChangeCardRequest* changeCardRequest;
+@property (readonly, retain) ChangeCardResponse* changeCardResponse;
 @property (readonly) int32_t startOffset;
 @property (readonly) int32_t maxCount;
 @property (readonly) int32_t timeStamp;
@@ -4050,6 +4178,20 @@ BOOL BetTypeIsValidValue(BetType value);
 - (GameMessage_Builder*) setCompareCardResponseBuilder:(CompareCardResponse_Builder*) builderForValue;
 - (GameMessage_Builder*) mergeCompareCardResponse:(CompareCardResponse*) value;
 - (GameMessage_Builder*) clearCompareCardResponse;
+
+- (BOOL) hasChangeCardRequest;
+- (ChangeCardRequest*) changeCardRequest;
+- (GameMessage_Builder*) setChangeCardRequest:(ChangeCardRequest*) value;
+- (GameMessage_Builder*) setChangeCardRequestBuilder:(ChangeCardRequest_Builder*) builderForValue;
+- (GameMessage_Builder*) mergeChangeCardRequest:(ChangeCardRequest*) value;
+- (GameMessage_Builder*) clearChangeCardRequest;
+
+- (BOOL) hasChangeCardResponse;
+- (ChangeCardResponse*) changeCardResponse;
+- (GameMessage_Builder*) setChangeCardResponse:(ChangeCardResponse*) value;
+- (GameMessage_Builder*) setChangeCardResponseBuilder:(ChangeCardResponse_Builder*) builderForValue;
+- (GameMessage_Builder*) mergeChangeCardResponse:(ChangeCardResponse*) value;
+- (GameMessage_Builder*) clearChangeCardResponse;
 
 - (BOOL) hasStartOffset;
 - (int32_t) startOffset;

@@ -11,6 +11,8 @@
 #import "ZJHGameNotification.h"
 #import "AccountService.h"
 
+
+
 @interface ZJHGameService : CommonGameNetworkService <AccountServiceDelegate>
 
 @property (readonly, retain, nonatomic) ZJHGameState *gameState;
@@ -33,7 +35,8 @@
 - (void)foldCard;                               // 弃牌
 - (void)compareCard:(NSString*)toUserId;        // 比牌
 - (void)showCard:(int)cardId;                   // 亮牌(单张)
-- (void)showCards:(NSArray *)cardIds;           // 亮牌(多张)；目前该接口没用到
+//- (void)showCards:(NSArray *)cardIds;           // 亮牌(多张)；目前该接口没用到
+- (void)changeCard:(int)cardId;
 
 - (NSArray *)chipValues;
 - (BOOL)isMyBalanceEnough;
@@ -47,6 +50,7 @@
 - (BOOL)canIShowCard:(int)cardId;
 
 - (BOOL)canUserBeCompared:(NSString *)userId;
+- (BOOL)canIChangeCard;
 
 - (PBZJHCardType)myCardType;
 - (NSString *)myCardTypeString;

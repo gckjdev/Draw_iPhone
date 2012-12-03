@@ -99,4 +99,25 @@
     [self sendData:[gameMessage data]];
 }
 
+- (void)sendChangeCardRequest:(NSString *)userId
+                    sessionId:(int)sessionId
+                       cardId:(int)cardId
+{
+    {
+        ChangeCardRequest_Builder *changeCardRequestBuilder = [[[ChangeCardRequest_Builder alloc] init] autorelease];
+        [changeCardRequestBuilder setCardId:cardId];
+        ChangeCardRequest *changeCardRequest = [changeCardRequestBuilder build];
+        
+        GameMessage_Builder *messageBuilder = [[[GameMessage_Builder alloc] init] autorelease];
+        [messageBuilder setCommand:GameCommandTypeChangeCardRequest];
+        [messageBuilder setMessageId:[self generateMessageId]];
+        [messageBuilder setUserId:userId];
+        [messageBuilder setSessionId:sessionId];
+        [messageBuilder setChangeCardRequest:changeCardRequest];
+        
+        GameMessage* gameMessage = [self build:messageBuilder];
+        [self sendData:[gameMessage data]];
+    }
+}
+
 @end

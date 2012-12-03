@@ -92,6 +92,8 @@ enum GameCommandType {
   COMPARE_CARD_REQUEST = 811;       // 比牌
   COMPARE_CARD_RESPONSE = 812;
 
+  CHANGE_CARD_REQUEST = 813;        // 换牌
+  CHANGE_CARD_RESPONSE = 814;       
   
   // server --> client
   
