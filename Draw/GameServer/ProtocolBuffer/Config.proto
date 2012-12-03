@@ -13,9 +13,9 @@ message PBPrice{
 
 message PBZJHConfig{
 
-    optional int32 levelExp = 1 [default=5];
-    optional int32 runwayCoin = 2 [default=200];
-    optional int32 maxAutoBetCount = 3 [default=5];
+    optional int32 levelExp = 1 [default=5];                // 每玩一局的经验值
+    optional int32 runwayCoin = 2 [default=200];            // 逃跑扣减的金币
+    optional int32 maxAutoBetCount = 3 [default=5];         // 
     
     // money tree
     optional int32 treeMatureTime = 30 [default=60];
