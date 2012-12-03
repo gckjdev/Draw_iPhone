@@ -131,10 +131,18 @@
 
 @interface PBConfig : PBGeneratedMessage {
 @private
-  NSMutableArray* mutableCoinPriceList;
+  BOOL hasTest_:1;
+  BOOL hasZjhConfig_:1;
+  NSString* test;
+  PBZJHConfig* zjhConfig;
+  NSMutableArray* mutableCoinPricesList;
 }
-- (NSArray*) coinPriceList;
-- (PBPrice*) coinPriceAtIndex:(int32_t) index;
+- (BOOL) hasTest;
+- (BOOL) hasZjhConfig;
+@property (readonly, retain) NSString* test;
+@property (readonly, retain) PBZJHConfig* zjhConfig;
+- (NSArray*) coinPricesList;
+- (PBPrice*) coinPricesAtIndex:(int32_t) index;
 
 + (PBConfig*) defaultInstance;
 - (PBConfig*) defaultInstance;
@@ -170,11 +178,23 @@
 - (PBConfig_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
 - (PBConfig_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 
-- (NSArray*) coinPriceList;
-- (PBPrice*) coinPriceAtIndex:(int32_t) index;
-- (PBConfig_Builder*) replaceCoinPriceAtIndex:(int32_t) index with:(PBPrice*) value;
-- (PBConfig_Builder*) addCoinPrice:(PBPrice*) value;
-- (PBConfig_Builder*) addAllCoinPrice:(NSArray*) values;
-- (PBConfig_Builder*) clearCoinPriceList;
+- (NSArray*) coinPricesList;
+- (PBPrice*) coinPricesAtIndex:(int32_t) index;
+- (PBConfig_Builder*) replaceCoinPricesAtIndex:(int32_t) index with:(PBPrice*) value;
+- (PBConfig_Builder*) addCoinPrices:(PBPrice*) value;
+- (PBConfig_Builder*) addAllCoinPrices:(NSArray*) values;
+- (PBConfig_Builder*) clearCoinPricesList;
+
+- (BOOL) hasTest;
+- (NSString*) test;
+- (PBConfig_Builder*) setTest:(NSString*) value;
+- (PBConfig_Builder*) clearTest;
+
+- (BOOL) hasZjhConfig;
+- (PBZJHConfig*) zjhConfig;
+- (PBConfig_Builder*) setZjhConfig:(PBZJHConfig*) value;
+- (PBConfig_Builder*) setZjhConfigBuilder:(PBZJHConfig_Builder*) builderForValue;
+- (PBConfig_Builder*) mergeZjhConfig:(PBZJHConfig*) value;
+- (PBConfig_Builder*) clearZjhConfig;
 @end
 

@@ -55,7 +55,10 @@
     @try {
         NSData* data = [NSData dataWithContentsOfFile:dataPath];
         if (data != nil){
-            _config = [PBConfig parseFromData:data];
+            self.config = [PBConfig parseFromData:data];
+            PPDebug(@"<readConfigData> parse config data %@ successfully", _smartData.name);
+            PPDebug(@"test value = %@", _config.test);
+//            PPDebug(@"Config Price List = %@", [_config.coinPriceList description]);
         }
         else{
             PPDebug(@"[WARN] Init config data %@ data file empty", dataPath);
@@ -67,6 +70,18 @@
     }
     @finally {
     }
+}
+
+- (void)autoUpdate
+{
+    [_smartData checkUpdateAndDownload:^(BOOL isAlreadyExisted, NSString *dataFilePath) {
+        if (!isAlreadyExisted){
+            // reload config data
+            [self readConfigData];
+        }
+    } failureBlock:^(NSError *error) {
+        PPDebug(@"<autoUpdate> failure due to error(%@)", [error description]);
+    }];
 }
 
 

@@ -38,7 +38,7 @@
 #import "NotificationManager.h"
 #import "LmWallService.h"
 #import "UserStatusService.h"
-#import "FacetimeService.h"
+//#import "FacetimeService.h"
 #import "DiceGameService.h"
 //#import "DiceFontManager.h"
 #import "WordManager.h"
@@ -355,8 +355,7 @@ NSString* GlobalGetBoardServerURL()
     //sync level details
     [[LevelService defaultService] syncExpAndLevel:SYNC];
     
-//    [GameConfigDataManager createTestConfigData];
-  
+    [GameConfigDataManager createTestConfigData];  
     [GameConfigDataManager defaultInstance];
     
     return YES;
@@ -422,7 +421,7 @@ NSString* GlobalGetBoardServerURL()
     [[MusicItemManager defaultManager] saveMusicItems];
     
     [[UserStatusService defaultService] stop];
-    [[FacetimeService defaultService] disconnectServer];
+//    [[FacetimeService defaultService] disconnectServer];
     
     [[FriendManager defaultManager] removeAllDeletedFriends];
     

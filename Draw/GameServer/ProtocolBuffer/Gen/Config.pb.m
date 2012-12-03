@@ -460,18 +460,38 @@ static PBZJHConfig* defaultPBZJHConfigInstance = nil;
 @end
 
 @interface PBConfig ()
-@property (retain) NSMutableArray* mutableCoinPriceList;
+@property (retain) NSMutableArray* mutableCoinPricesList;
+@property (retain) NSString* test;
+@property (retain) PBZJHConfig* zjhConfig;
 @end
 
 @implementation PBConfig
 
-@synthesize mutableCoinPriceList;
+@synthesize mutableCoinPricesList;
+- (BOOL) hasTest {
+  return !!hasTest_;
+}
+- (void) setHasTest:(BOOL) value {
+  hasTest_ = !!value;
+}
+@synthesize test;
+- (BOOL) hasZjhConfig {
+  return !!hasZjhConfig_;
+}
+- (void) setHasZjhConfig:(BOOL) value {
+  hasZjhConfig_ = !!value;
+}
+@synthesize zjhConfig;
 - (void) dealloc {
-  self.mutableCoinPriceList = nil;
+  self.mutableCoinPricesList = nil;
+  self.test = nil;
+  self.zjhConfig = nil;
   [super dealloc];
 }
 - (id) init {
   if ((self = [super init])) {
+    self.test = @"hello";
+    self.zjhConfig = [PBZJHConfig defaultInstance];
   }
   return self;
 }
@@ -487,15 +507,15 @@ static PBConfig* defaultPBConfigInstance = nil;
 - (PBConfig*) defaultInstance {
   return defaultPBConfigInstance;
 }
-- (NSArray*) coinPriceList {
-  return mutableCoinPriceList;
+- (NSArray*) coinPricesList {
+  return mutableCoinPricesList;
 }
-- (PBPrice*) coinPriceAtIndex:(int32_t) index {
-  id value = [mutableCoinPriceList objectAtIndex:index];
+- (PBPrice*) coinPricesAtIndex:(int32_t) index {
+  id value = [mutableCoinPricesList objectAtIndex:index];
   return value;
 }
 - (BOOL) isInitialized {
-  for (PBPrice* element in self.coinPriceList) {
+  for (PBPrice* element in self.coinPricesList) {
     if (!element.isInitialized) {
       return NO;
     }
@@ -503,8 +523,14 @@ static PBConfig* defaultPBConfigInstance = nil;
   return YES;
 }
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
-  for (PBPrice* element in self.coinPriceList) {
+  for (PBPrice* element in self.coinPricesList) {
     [output writeMessage:1 value:element];
+  }
+  if (self.hasTest) {
+    [output writeString:2 value:self.test];
+  }
+  if (self.hasZjhConfig) {
+    [output writeMessage:100 value:self.zjhConfig];
   }
   [self.unknownFields writeToCodedOutputStream:output];
 }
@@ -515,8 +541,14 @@ static PBConfig* defaultPBConfigInstance = nil;
   }
 
   size = 0;
-  for (PBPrice* element in self.coinPriceList) {
+  for (PBPrice* element in self.coinPricesList) {
     size += computeMessageSize(1, element);
+  }
+  if (self.hasTest) {
+    size += computeStringSize(2, self.test);
+  }
+  if (self.hasZjhConfig) {
+    size += computeMessageSize(100, self.zjhConfig);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -593,11 +625,17 @@ static PBConfig* defaultPBConfigInstance = nil;
   if (other == [PBConfig defaultInstance]) {
     return self;
   }
-  if (other.mutableCoinPriceList.count > 0) {
-    if (result.mutableCoinPriceList == nil) {
-      result.mutableCoinPriceList = [NSMutableArray array];
+  if (other.mutableCoinPricesList.count > 0) {
+    if (result.mutableCoinPricesList == nil) {
+      result.mutableCoinPricesList = [NSMutableArray array];
     }
-    [result.mutableCoinPriceList addObjectsFromArray:other.mutableCoinPriceList];
+    [result.mutableCoinPricesList addObjectsFromArray:other.mutableCoinPricesList];
+  }
+  if (other.hasTest) {
+    [self setTest:other.test];
+  }
+  if (other.hasZjhConfig) {
+    [self mergeZjhConfig:other.zjhConfig];
   }
   [self mergeUnknownFields:other.unknownFields];
   return self;
@@ -623,39 +661,98 @@ static PBConfig* defaultPBConfigInstance = nil;
       case 10: {
         PBPrice_Builder* subBuilder = [PBPrice builder];
         [input readMessage:subBuilder extensionRegistry:extensionRegistry];
-        [self addCoinPrice:[subBuilder buildPartial]];
+        [self addCoinPrices:[subBuilder buildPartial]];
+        break;
+      }
+      case 18: {
+        [self setTest:[input readString]];
+        break;
+      }
+      case 802: {
+        PBZJHConfig_Builder* subBuilder = [PBZJHConfig builder];
+        if (self.hasZjhConfig) {
+          [subBuilder mergeFrom:self.zjhConfig];
+        }
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self setZjhConfig:[subBuilder buildPartial]];
         break;
       }
     }
   }
 }
-- (NSArray*) coinPriceList {
-  if (result.mutableCoinPriceList == nil) { return [NSArray array]; }
-  return result.mutableCoinPriceList;
+- (NSArray*) coinPricesList {
+  if (result.mutableCoinPricesList == nil) { return [NSArray array]; }
+  return result.mutableCoinPricesList;
 }
-- (PBPrice*) coinPriceAtIndex:(int32_t) index {
-  return [result coinPriceAtIndex:index];
+- (PBPrice*) coinPricesAtIndex:(int32_t) index {
+  return [result coinPricesAtIndex:index];
 }
-- (PBConfig_Builder*) replaceCoinPriceAtIndex:(int32_t) index with:(PBPrice*) value {
-  [result.mutableCoinPriceList replaceObjectAtIndex:index withObject:value];
+- (PBConfig_Builder*) replaceCoinPricesAtIndex:(int32_t) index with:(PBPrice*) value {
+  [result.mutableCoinPricesList replaceObjectAtIndex:index withObject:value];
   return self;
 }
-- (PBConfig_Builder*) addAllCoinPrice:(NSArray*) values {
-  if (result.mutableCoinPriceList == nil) {
-    result.mutableCoinPriceList = [NSMutableArray array];
+- (PBConfig_Builder*) addAllCoinPrices:(NSArray*) values {
+  if (result.mutableCoinPricesList == nil) {
+    result.mutableCoinPricesList = [NSMutableArray array];
   }
-  [result.mutableCoinPriceList addObjectsFromArray:values];
+  [result.mutableCoinPricesList addObjectsFromArray:values];
   return self;
 }
-- (PBConfig_Builder*) clearCoinPriceList {
-  result.mutableCoinPriceList = nil;
+- (PBConfig_Builder*) clearCoinPricesList {
+  result.mutableCoinPricesList = nil;
   return self;
 }
-- (PBConfig_Builder*) addCoinPrice:(PBPrice*) value {
-  if (result.mutableCoinPriceList == nil) {
-    result.mutableCoinPriceList = [NSMutableArray array];
+- (PBConfig_Builder*) addCoinPrices:(PBPrice*) value {
+  if (result.mutableCoinPricesList == nil) {
+    result.mutableCoinPricesList = [NSMutableArray array];
   }
-  [result.mutableCoinPriceList addObject:value];
+  [result.mutableCoinPricesList addObject:value];
+  return self;
+}
+- (BOOL) hasTest {
+  return result.hasTest;
+}
+- (NSString*) test {
+  return result.test;
+}
+- (PBConfig_Builder*) setTest:(NSString*) value {
+  result.hasTest = YES;
+  result.test = value;
+  return self;
+}
+- (PBConfig_Builder*) clearTest {
+  result.hasTest = NO;
+  result.test = @"hello";
+  return self;
+}
+- (BOOL) hasZjhConfig {
+  return result.hasZjhConfig;
+}
+- (PBZJHConfig*) zjhConfig {
+  return result.zjhConfig;
+}
+- (PBConfig_Builder*) setZjhConfig:(PBZJHConfig*) value {
+  result.hasZjhConfig = YES;
+  result.zjhConfig = value;
+  return self;
+}
+- (PBConfig_Builder*) setZjhConfigBuilder:(PBZJHConfig_Builder*) builderForValue {
+  return [self setZjhConfig:[builderForValue build]];
+}
+- (PBConfig_Builder*) mergeZjhConfig:(PBZJHConfig*) value {
+  if (result.hasZjhConfig &&
+      result.zjhConfig != [PBZJHConfig defaultInstance]) {
+    result.zjhConfig =
+      [[[PBZJHConfig builderWithPrototype:result.zjhConfig] mergeFrom:value] buildPartial];
+  } else {
+    result.zjhConfig = value;
+  }
+  result.hasZjhConfig = YES;
+  return self;
+}
+- (PBConfig_Builder*) clearZjhConfig {
+  result.hasZjhConfig = NO;
+  result.zjhConfig = [PBZJHConfig defaultInstance];
   return self;
 }
 @end

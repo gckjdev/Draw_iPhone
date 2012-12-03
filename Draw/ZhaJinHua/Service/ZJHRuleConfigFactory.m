@@ -21,6 +21,9 @@
         default:
             break;
     }
+    
+    PPDebug(@"<createRuleConfigWithRule> but nil rule object return");
+    return nil;
 }
 
 @end
