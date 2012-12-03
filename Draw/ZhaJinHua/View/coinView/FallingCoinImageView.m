@@ -8,7 +8,7 @@
 
 #import "FallingCoinImageView.h"
 
-@implementation coinImageView
+@implementation FallingCoinImageView
 
 @synthesize coinImage;
 
