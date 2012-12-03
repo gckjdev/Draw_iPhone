@@ -9,7 +9,6 @@
 #import "BBSPostDetailController.h"
 #import "BBSPostActionCell.h"
 #import "BBSPostDetailCell.h"
-#import "BBSPostDetailUserCell.h"
 #import "ReplayGraffitiController.h"
 #import "ShowImageController.h"
 

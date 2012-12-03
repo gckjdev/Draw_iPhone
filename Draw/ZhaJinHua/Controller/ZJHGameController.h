@@ -61,6 +61,7 @@
 @property (retain, nonatomic) IBOutlet FXLabel *roomNameLabel;
 
 @property (retain, nonatomic) IBOutlet FXLabel *waitGameNoteLabel;
+@property (retain, nonatomic) IBOutlet UIButton *changeCardButton;
 
 
 @end
