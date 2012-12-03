@@ -17,7 +17,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import <AudioToolbox/AudioToolbox.h>
 
-@implementation coinView
+@implementation FallingCoinView
 
 @synthesize emitters;
 @synthesize images;
@@ -36,7 +36,7 @@
 	context = nil;
     
     [self destroyFramebuffer];
-	
+	[super dealloc];
 }
 
 - (id)initWithFrame:(CGRect)frame withNum:(NSInteger)num
@@ -88,9 +88,9 @@
         
         coinTimer = [NSTimer scheduledTimerWithTimeInterval:0.09 target:self selector:@selector(timerFired:) userInfo:nil repeats:YES];
         
-        NSString *path = [[NSBundle mainBundle] pathForResource:@"bgm_coin_01" ofType:@"mp3"];
+        NSString *path = [[NSBundle mainBundle] pathForResource:@"fallingCoinBGM" ofType:@"mp3"];
 		SystemSoundID soundID;
-		AudioServicesCreateSystemSoundID((__bridge CFURLRef)[NSURL fileURLWithPath:path], &soundID);
+		AudioServicesCreateSystemSoundID((CFURLRef)[NSURL fileURLWithPath:path], &soundID);
 		AudioServicesPlaySystemSound (soundID);
     }
     return self;
@@ -124,7 +124,7 @@
     }
     
         
-    for (__strong coinImageView *delview in deleteimages)
+    for (__strong FallingCoinImageView *delview in deleteimages)
     {
         [images removeObject:delview];
         delview = nil;
@@ -141,7 +141,7 @@
     
     [deleteemitters removeAllObjects];
     
-    for (coinImageView *view in images)
+    for (FallingCoinImageView *view in images)
     {
             [view tick];
             
@@ -294,7 +294,7 @@
     
     point.y = -point.y;
     
-    NSString *path = [[NSBundle mainBundle] pathForResource:@"stars2" ofType:@"png"];
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"fallingstars" ofType:@"png"];
 	OpenGLTexture3D *texture = [[OpenGLTexture3D alloc] initWithFilename:path width:16 height:16];
 	ParticleEmitter3D *pEmitter = [[ParticleEmitter3D alloc] initWithName:@"jj"
                                                      position:Vertex3DMake(point.x,point.y, -2.0)
@@ -326,7 +326,7 @@
 
 -(void)creatimage:(CGPoint)point
 {
-    coinImageView* view = [[coinImageView alloc]initWithFrame:CGRectMake(point.x, point.y, IMAGEVIEW_WIDTH, IMAGEVIEW_WIDTH)];
+    FallingCoinImageView* view = [[FallingCoinImageView alloc]initWithFrame:CGRectMake(point.x, point.y, IMAGEVIEW_WIDTH, IMAGEVIEW_WIDTH)];
     [self addSubview:view];
     
     [images addObject:view];

@@ -7,7 +7,7 @@
 //
 #define COINPOINT_OFFSET 
 
-@protocol coinViewDelegate <NSObject>
+@protocol FallingCoinViewDelegate <NSObject>
 
 -(void)coinAnimationFinished;
 
@@ -16,7 +16,7 @@
 @class coinImageView;
 @class ParticleEmitter3D;
 
-@interface coinView : UIView
+@interface FallingCoinView : UIView
 {
     EAGLContext         *context;
     GLuint              viewRenderbuffer, viewFramebuffer;
@@ -37,7 +37,7 @@
 @property (nonatomic,strong) NSMutableArray                 *images;
 @property (nonatomic,strong) NSMutableArray                 *deleteemitters;
 @property (nonatomic,strong) NSMutableArray                 *deleteimages;
-@property (nonatomic,assign) id<coinViewDelegate>             coindelegate;
+@property (nonatomic,assign) id<FallingCoinViewDelegate>             coindelegate;
 
 -(void)initOpenGl;
 -(BOOL)createFramebuffer;

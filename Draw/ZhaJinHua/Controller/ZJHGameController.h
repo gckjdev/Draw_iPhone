@@ -25,10 +25,10 @@
 @class ZJHImageManager;
 @class BetTable;
 
-@interface ZJHGameController : PPViewController <ZJHPokerViewProtocol, ZJHAvatarViewDelegate, DealerViewDelegate, ChipsSelectViewProtocol, MoneyTreeViewDelegate, CommonDialogDelegate, AccountServiceDelegate, coinViewDelegate> {
+@interface ZJHGameController : PPViewController <ZJHPokerViewProtocol, ZJHAvatarViewDelegate, DealerViewDelegate, ChipsSelectViewProtocol, MoneyTreeViewDelegate, CommonDialogDelegate, AccountServiceDelegate, FallingCoinViewDelegate> {
     BOOL _isComparing;
     BOOL _isShowingComparing;
-    coinView* _coinView;
+    FallingCoinView* _coinView;
 }
 
 @property (retain, nonatomic) IBOutlet UIImageView *gameBgImageView;

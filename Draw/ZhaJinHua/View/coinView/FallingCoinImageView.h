@@ -7,7 +7,7 @@
 //
 #define IMAGEVIEW_WIDTH 30.0f
 
-@interface coinImageView : UIImageView
+@interface FallingCoinImageView : UIImageView
 {
     int iindex;
 }
