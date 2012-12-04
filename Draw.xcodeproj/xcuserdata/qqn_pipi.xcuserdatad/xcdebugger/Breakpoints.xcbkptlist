@@ -44,18 +44,5 @@
          landmarkName = "-saveUserId:email:password:nickName:qqId:qqAccessToken:qqAccessTokenSecret:sinaId:sinaAccessToken:sinaAccessTokenSecret:facebookId:avatarURL:balance:items:gender:"
          landmarkType = "5">
       </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "Yes"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "Draw/Controller/User/UserSettingController.m"
-         timestampString = "376307755.92106"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "517"
-         endingLineNumber = "517"
-         landmarkName = "-tableView:cellForRowAtIndexPath:"
-         landmarkType = "5">
-      </FileBreakpoint>
    </FileBreakpoints>
 </Bucket>

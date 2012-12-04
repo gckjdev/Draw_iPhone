@@ -420,7 +420,7 @@ NSString* GlobalGetBoardServerURL()
     [[UserStatusService defaultService] stop];
 //    [[FacetimeService defaultService] disconnectServer];
     
-    [[FriendManager defaultManager] removeAllDeletedFriends];
+//    [[FriendManager defaultManager] removeAllDeletedFriends];
     
 }
 
@@ -574,6 +574,7 @@ NSString* GlobalGetBoardServerURL()
     if([resp isKindOfClass:[SendMessageToWXResp class]])
     {
         if (resp.errCode == WXSuccess){
+            [UIUtils alert:@"已成功分享至微信"];
             PPDebug(@"<onResp> weixin response success");
         }else {
             PPDebug(@"<onResp> weixin response fail");
