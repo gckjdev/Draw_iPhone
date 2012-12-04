@@ -19,8 +19,10 @@
     NSArray *_boardList;
     NSMutableDictionary *_boardDict;
     StorageManager *_storageManager;
+    NSMutableArray *_tempPostList;
 }
 @property(nonatomic, retain)NSArray *boardList;
+@property(nonatomic, retain)NSMutableArray *tempPostList;
 
 +(BBSManager *)defaultManager;
 -(NSArray *)parentBoardList;
@@ -34,10 +36,21 @@
 - (NSTimeInterval)creationFrequency;
 - (BOOL)isCreationFrequent;
 
+//support limit
+- (NSUInteger)supportMaxTimes;
+- (void)increasePostSupportTimes:(NSString *)postId;
+- (BOOL)canSupportPost:(NSString *)postId;
+
+//content
 - (NSUInteger)textMaxLength;
 - (NSUInteger)textMinLength;
 
+//temp post list methods
 
+- (PBBBSPost *)inceasePost:(PBBBSPost *)post
+              commentCount:(NSInteger)inc;
+- (PBBBSPost *)inceasePost:(PBBBSPost *)post
+              supportCount:(NSInteger)inc;
 //Cache
 - (void)cacheBBSDrawData:(PBBBSDraw *)draw forKey:(NSString *)key;
 - (PBBBSDraw *)loadBBSDrawDataFromCacheWithKey:(NSString *)key;

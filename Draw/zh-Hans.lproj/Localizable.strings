@@ -1160,6 +1160,8 @@
 "kReward" = "悬赏";
 "kSupport" = "顶";
 "kMyPost" = "我的帖子";
+"kBBSDraw" = "分享涂鸦。";
+"kBBSImage" = "分享图片.";
 
 "kSupportCount" = "顶(%d)";
 "kCommentCount" = "评论(%d)";
@@ -1172,8 +1174,12 @@
 "kTextTooShot" = "帖子的字数不能少于%d个字哦。";
 "kTextTooLong" = "帖子的字数不能多于%d个字哦。";
 "kTextTooFrequent" = "你发帖太频繁了，先休息一下再发吧。";
+"kSupportTimesLimit" = "每张帖子最多只能顶 %d 次哦。";
 "kNetworkError" = "网络连接错误，请检查网络设置。";
 
+"kWarning" = "警告";
+"kClearImageData" = "之前选择的图像将被清除，你要继续吗？";
+"kClearDrawData" = "之前的画画数据将被清除，你要继续吗？";
 
 
 /*********************** BBS国际化字符串结束 *************************/

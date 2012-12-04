@@ -148,11 +148,7 @@
     }
 }
 
-- (void)updateTimeStamp:(NSInteger)timeInterval
-{
-    NSDate *date = [NSDate dateWithTimeIntervalSince1970:timeInterval];
-    [self.timestamp setText:dateToChineseString(date)];
-}
+
 
 - (void)updateSupportCount:(NSInteger)supportCount
               commentCount:(NSInteger)commentCount
@@ -188,7 +184,7 @@
     self.post = post;
     [self updateUserInfo:post.createUser];
     [self updateContent:post.content];
-    [self updateTimeStamp:post.createDate];
+    [self.timestamp setText:post.createDateString];
     [self updateSupportCount:post.supportCount commentCount:post.replyCount];
     [self updateReward:post];
 }

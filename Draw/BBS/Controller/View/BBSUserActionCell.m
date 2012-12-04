@@ -198,19 +198,13 @@
     [self resetView:self.splitLine y:(y-SPACE_SPLITLINE_SOURCE) height:1];
 }
 
-- (void)updateTimeStamp:(NSInteger)timeInterval
-{
-    NSDate *date = [NSDate dateWithTimeIntervalSince1970:timeInterval];
-    [self.timestamp setText:dateToChineseString(date)];
-}
-
 
 - (void)updateCellWithBBSAction:(PBBBSAction *)action
 {
     self.action = action;
     [self updateUserInfo:action.createUser];
     [self updateContentWithAction:action];
-    [self updateTimeStamp:action.createDate];
+    [[self timestamp] setText:action.createDateString];
 }
 
 
