@@ -66,7 +66,7 @@ typedef enum {
 
 - (void)setPay:(BOOL)pay;
 - (BOOL)hasPay;
-
+- (NSString *)createDateString;
 @end
 
 @interface PBBBSAction (ActionExt)
@@ -79,6 +79,8 @@ typedef enum {
 - (NSString *)showSourceText;
 - (BOOL)canDelete;
 - (BOOL)isMyAction;
+- (NSDate *)cDate;
+- (NSString *)createDateString;
 @end
 
 @interface PBBBSActionSource (ActionSourceExt)

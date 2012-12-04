@@ -15,6 +15,7 @@
 #import "BBSPopupSelectionView.h"
 #import "GameNetworkConstants.h"
 #import "AccountService.h"
+#import <QuartzCore/QuartzCore.h>
 
 @interface CreatePostController ()
 {
@@ -56,6 +57,9 @@
 
 @end
 
+#define ISIPAD [DeviceDetection isIPAD]
+#define BUTTON_CORNER_RADIUS ISIPAD ? 4 : 2
+
 @implementation CreatePostController
 @synthesize bbsBoard = _bbsBoard;
 @synthesize image = _image;
@@ -89,12 +93,13 @@
     PPRelease(_postId);
     PPRelease(_postText);
 
-    [_bgImageView release];
-    [_panel release];
-    [_titleLabel release];
-    [_backButton release];
-    [_submitButton release];
-    [_inputBG release];
+    PPRelease(_bgImageView);
+    PPRelease(_panel);
+    PPRelease(_titleLabel);
+    PPRelease(_backButton);
+    PPRelease(_submitButton);
+    PPRelease(_inputBG);
+    
     [super dealloc];
 }
 - (id)initWithBoard:(PBBBSBoard *)board
@@ -157,22 +162,33 @@
     return self;
 }
 
+- (void)roundToolButton:(UIButton *)button cornerRadius:(CGFloat)radius
+{
+    button.layer.cornerRadius = radius;
+    button.layer.masksToBounds = YES;
+}
+
 - (void)updateToolButtons
 {
     BBSImageManager *imageManager = [BBSImageManager defaultManager];
     if (self.drawImage) {
         [self.graffitiButton setImage:self.drawImage
                              forState:UIControlStateNormal];
+        [self roundToolButton:self.graffitiButton cornerRadius:BUTTON_CORNER_RADIUS];
+
     }else{
         [self.graffitiButton setImage:[imageManager bbsCreateDrawEnable]
                              forState:UIControlStateNormal];
+        [self roundToolButton:self.graffitiButton cornerRadius:0];
     }
     if (self.image) {
         [self.imageButton setImage:self.image
                           forState:UIControlStateNormal];
+        [self roundToolButton:self.imageButton cornerRadius:BUTTON_CORNER_RADIUS];
     }else{
         [self.imageButton setImage:[imageManager bbsCreateImageEnable]
                           forState:UIControlStateNormal];
+        [self roundToolButton:self.imageButton cornerRadius:0];
     }
     if (self.bonus > 0) {
         [self.rewardButton setTitle:[NSString stringWithFormat:@"+%d",self.bonus]
@@ -314,32 +330,77 @@
     [self showActivityWithText:NSLS(@"kSending")];
 }
 
-- (IBAction)clickGraffitiButton:(id)sender {
-    //TODO alert to clear image data.
-    
-    //clear image data
-    self.image = nil;
-    [self updateToolButtons];
-    
-    OfflineDrawViewController *odc = [[OfflineDrawViewController alloc] initWithTargetType:TypeGraffiti delegate:self];
-    [self presentModalViewController:odc animated:YES];
+#define ALERT_CLEAR_IMAGE_TAG 201212041
+#define ALERT_CLEAR_DRAW_TAG 201212042
 
+- (void)showClearImageAlert
+{
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLS(@"kWarning")
+                                                    message:NSLS(@"kClearImageData")
+                                                   delegate:self
+                                          cancelButtonTitle:NSLS(@"kCancel")
+                                          otherButtonTitles:NSLS(@"kOK"),nil];
+    
+    alert.tag = ALERT_CLEAR_IMAGE_TAG;
+    [alert show];
+    [alert release];
 }
 
-- (IBAction)clickImageButton:(id)sender {
-    //TODO alert to clear graffiti data
+- (void)showClearDrawDataAlert
+{
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLS(@"kWarning")
+                                                    message:NSLS(@"kClearDrawData")
+                                                   delegate:self
+                                          cancelButtonTitle:NSLS(@"kCancel")
+                                          otherButtonTitles:NSLS(@"kOK"),nil];
     
-    //clear graffiti data
-    self.drawActionList = nil;
-    self.drawImage = nil;
-    [self updateToolButtons];
-    
-    self.imagePicker = [[ChangeAvatar alloc] init];
+    alert.tag = ALERT_CLEAR_DRAW_TAG;
+    [alert show];
+    [alert release];
+}
+
+
+- (void)startToDraw
+{
+    OfflineDrawViewController *odc = [[[OfflineDrawViewController alloc]
+                                      initWithTargetType:TypeGraffiti delegate:self] autorelease];
+    [self presentModalViewController:odc animated:YES];
+}
+- (void)startToSelectImage
+{
+    self.imagePicker = [[[ChangeAvatar alloc] init] autorelease];
     [self.imagePicker setAutoRoundRect:NO];
     [self.imagePicker setImageSize:CGSizeMake(0, 0)];
     [self.imagePicker showSelectionView:self];
 }
+- (IBAction)clickGraffitiButton:(id)sender {
+    if (self.image) {
+        [self showClearImageAlert];
+    }else{
+        [self startToDraw];
+    }
+}
 
+- (IBAction)clickImageButton:(id)sender {
+    if (self.drawActionList) {
+        [self showClearDrawDataAlert];
+    }else{
+        [self startToSelectImage];
+    }
+}
+
+#pragma mark -alert view delegate
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 1) {
+        if (alertView.tag == ALERT_CLEAR_IMAGE_TAG) {
+            [self startToDraw];
+        }else if(alertView.tag == ALERT_CLEAR_DRAW_TAG){
+            [self startToSelectImage];
+        }
+    }
+}
 #define SELECTION_VIEW_TAG 100
 #define SELECTION_VIEW_OFFSET ([DeviceDetection isIPAD] ? 30 : 7)
 - (IBAction)clickRewardButton:(id)sender {
@@ -365,13 +426,16 @@
         self.bonus = index * 100;
         [self updateToolButtons];
     }else{
-        NSString *msg = [NSString stringWithFormat:NSLS("kCoinsNotEnoughTips"),bonus];
-        [self popupMessage:NSLS(msg) title:nil];
+        NSString *msg = [NSString stringWithFormat:NSLS(@"kCoinsNotEnoughTips"),bonus];
+        msg = NSLS(msg);
     }
 }
 
 - (void)didImageSelected:(UIImage*)image
 {
+    self.drawActionList = nil;
+    self.drawImage = nil;
+
     if ([[image data] length] > IMAGE_SIZE_MAX) {
         NSData *data = UIImageJPEGRepresentation(image, 0.3);
         if (data) {
@@ -384,9 +448,37 @@
     [self updateToolButtons];
 }
 
+- (void)alertError:(NSInteger)errorCode
+{
+    NSString *msg = nil;
+    switch (errorCode) {
+        case ERROR_BBS_TEXT_TOO_SHORT:
+            msg = [NSString stringWithFormat:NSLS(@"kTextTooShot"),
+                   [[BBSManager defaultManager] textMinLength]];
+            break;
+        case ERROR_BBS_TEXT_TOO_LONG:
+            msg = [NSString stringWithFormat:NSLS(@"kTextTooLong"),
+                   [[BBSManager defaultManager] textMaxLength]];
+            break;
+        case ERROR_BBS_TEXT_TOO_FREQUENT:
+            msg = NSLS(@"kTextTooFrequent");
+            break;
+        case ERROR_BBS_POST_SUPPORT_TIMES_LIMIT:
+            msg = [NSString stringWithFormat:NSLS(@"kSupportTimesLimit"),
+                   [[BBSManager defaultManager] supportMaxTimes]];
+            break;
+        default:
+            msg = NSLS(@"kNetworkError");
+            break;
+    }
+    [UIUtils alert:msg];
+
+}
+
 - (void)didCreatePost:(PBBBSPost *)post
            resultCode:(NSInteger)resultCode
 {
+    [self hideActivity];
     if (resultCode == 0) {
         PPDebug(@"<didCreatePost>create post successful!");
         if (self.delegate && [self.delegate
@@ -399,24 +491,9 @@
         [self dismissModalViewControllerAnimated:YES];
     }else{
         PPDebug(@"<didCreatePost>create post fail.result code = %d",resultCode);
-        switch (resultCode) {
-            case ERROR_BBS_TEXT_TOO_SHORT:
-                [self popupMessage:[NSString stringWithFormat:NSLS(@"kTextTooShot"),
-                                    [[BBSManager defaultManager] textMinLength]] title:nil];
-                break;
-            case ERROR_BBS_TEXT_TOO_LONG:
-                [self popupMessage:[NSString stringWithFormat:NSLS(@"kTextTooLong"),
-                                    [[BBSManager defaultManager] textMaxLength]] title:nil];
-                break;
-            case ERROR_BBS_TEXT_TOO_FREQUENT:
-                [self popupMessage:NSLS(@"kTextTooFrequent") title:nil];
-                break;
-            default:
-                [self popupMessage:NSLS(@"kNetworkError") title:nil];
-                break;
-        }
+        [self alertError:resultCode];
     }
-    [self hideActivity];
+
 }
 
 - (void)didCreateAction:(PBBBSAction *)action
@@ -424,6 +501,7 @@
             replyAction:(PBBBSAction *)replyAction
              resultCode:(NSInteger)resultCode
 {
+    [self hideActivity];
     if (resultCode == 0) {
         PPDebug(@"<didCreateAction>create action successful!");
         if (self.delegate && [self.delegate
@@ -433,8 +511,8 @@
         [self dismissModalViewControllerAnimated:YES];
     }else{
         PPDebug(@"<didCreateAction>create action fail.result code = %d",resultCode);
+        [self alertError:resultCode];
     }
-    [self hideActivity];
 }
 
 
@@ -450,6 +528,7 @@
             drawImage:(UIImage *)drawImage
 {
     [controller dismissModalViewControllerAnimated:YES];
+    self.image = nil;
     self.drawImage = drawImage;
     self.drawActionList = drawActionList;
     [self updateToolButtons];

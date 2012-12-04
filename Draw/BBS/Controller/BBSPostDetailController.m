@@ -11,6 +11,8 @@
 #import "BBSPostDetailCell.h"
 #import "ReplayGraffitiController.h"
 #import "ShowImageController.h"
+#import "GameNetworkConstants.h"
+
 
 @interface BBSPostDetailController ()
 {
@@ -390,10 +392,18 @@ typedef enum{
         if (action.type == ActionTypeSupport) {
             tab = [_tabManager tabForID:Support];
             [tab.dataList insertObject:action atIndex:0];
+            
+            self.post = [[BBSManager defaultManager] inceasePost:self.post
+                                                    supportCount:1];
+            
             [_header clickSupport:_header.support];
         }else if(action.type == ActionTypeComment){
             tab = [_tabManager tabForID:Comment];
             [tab.dataList insertObject:action atIndex:0];
+            
+            self.post = [[BBSManager defaultManager] inceasePost:self.post
+                                                    commentCount:1];
+            
             [_header clickComment:_header.comment];
         }
     }
@@ -405,8 +415,34 @@ typedef enum{
             replyAction:(PBBBSAction *)replyAction
              resultCode:(NSInteger)resultCode
 {
-    
-    [self didController:nil CreateNewAction:action];
+    if (resultCode == 0) {
+        [self didController:nil CreateNewAction:action];
+    }else{
+        PPDebug(@"<didCreatePost>create post fail.result code = %d",resultCode);
+        NSString *msg = nil;
+        switch (resultCode) {
+            case ERROR_BBS_TEXT_TOO_SHORT:
+                msg = [NSString stringWithFormat:NSLS(@"kTextTooShot"),
+                       [[BBSManager defaultManager] textMinLength]];
+                break;
+            case ERROR_BBS_TEXT_TOO_LONG:
+                msg = [NSString stringWithFormat:NSLS(@"kTextTooLong"),
+                       [[BBSManager defaultManager] textMaxLength]];
+                break;
+            case ERROR_BBS_TEXT_TOO_FREQUENT:
+                msg = NSLS(@"kTextTooFrequent");
+                break;
+            case ERROR_BBS_POST_SUPPORT_TIMES_LIMIT:
+                msg = [NSString stringWithFormat:NSLS(@"kSupportTimesLimit"),
+                       [[BBSManager defaultManager] supportMaxTimes]];
+                break;
+            default:
+                msg = NSLS(@"kNetworkError");
+                break;
+        }
+        [UIUtils alert:msg];
+    }
+
 }
 
 - (void)didPayBBSRewardWithPost:(PBBBSPost *)post
@@ -468,9 +504,12 @@ typedef enum{
         }
         if (act) {
             [self.tabDataList removeObject:act];
-            NSIndexPath *indexPath = [NSIndexPath indexPathForRow:row inSection:SectionAction];
-            NSArray *indexPaths = [NSArray arrayWithObject:indexPath];
-            [self.dataTableView deleteRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationFade];
+            if (act.type == ActionTypeComment) {
+                self.post = [[BBSManager defaultManager] inceasePost:self.post commentCount:-1];
+            }else if(act.type == ActionTypeSupport){
+                self.post = [[BBSManager defaultManager] inceasePost:self.post supportCount:-1];
+            }
+            [self.dataTableView reloadData];
         }
     }else{
         PPDebug(@"<didDeleteBBSAction>fail to delete action, actionId = %@, resultCode = %d",actionId, resultCode);

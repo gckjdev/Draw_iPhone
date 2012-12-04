@@ -13,6 +13,7 @@
 #import "CMPopTipView.h"
 #import "AnimationManager.h"
 #import "ArrowView.h"
+#import "ZJHRuleConfigFactory.h"
 
 #define POKER_VIEW_ROTATE_ANCHOR_POINT CGPointMake(0, 0)
 #define SHOW_CARD_FLAG_IMAGE_TAG 308
@@ -21,6 +22,7 @@
 
 #define CARD_LIGHT_WIDTH ([DeviceDetection isIPAD] ? 100 : 50)
 #define CARD_LIGHT_HEIGHT ([DeviceDetection isIPAD] ? 126 : 63)
+
 
 @interface PokerView ()
 {
@@ -233,52 +235,16 @@
     }
 }
 
-- (void)dismissShowCardButton
+- (void)dismissButtons
 {
     [self.popupView dismissAnimated:YES];
 }
 
-#define SHOW_CARD_VIEW_WIDTH ([DeviceDetection isIPAD] ? 72 : 43)
-#define SHOW_CARD_VIEW__HEIGHT ([DeviceDetection isIPAD] ? 60 : 36)
-
-#define SHOW_CARD_BUTTON_X_OFFSET ([DeviceDetection isIPAD] ? 8 : 4)
-#define SHOW_CARD_BUTTON_Y_OFFSET ([DeviceDetection isIPAD] ? 8 : 4)
-
-#define SHOW_CARD_BUTTON_WIDTH ([DeviceDetection isIPAD] ? 56 : 35)
-#define SHOW_CARD_BUTTON_HEIGHT ([DeviceDetection isIPAD] ? 40 : 25)
-
-#define SHOW_CARD_BUTTON_FONT ([DeviceDetection isIPAD] ? [UIFont systemFontOfSize:18] : [UIFont systemFontOfSize:12])
-
-- (UIView *)createShowCardButton
+- (void)popupButtonsInView:(UIView *)inView
 {
-    UIView *view = [[[UIButton alloc] initWithFrame:CGRectMake(0, 0, SHOW_CARD_VIEW_WIDTH, SHOW_CARD_VIEW__HEIGHT)] autorelease];
-    
-    UIButton *button = [[[UIButton alloc] initWithFrame:view.bounds] autorelease];
-    button.backgroundColor = [UIColor clearColor];
-    [button addTarget:self action:@selector(clickShowCardButton:) forControlEvents:UIControlEventTouchUpInside];
+    UIView *buttons = [[ZJHRuleConfigFactory createRuleConfig] createButtons:self];
 
-    UIImageView *imageView = [[[UIImageView alloc] initWithFrame:view.bounds] autorelease];
-    imageView.image = [[ZJHImageManager defaultManager] showCardButtonBgImage];
-    
-    UILabel *label = [[[UILabel alloc] initWithFrame:CGRectMake(SHOW_CARD_BUTTON_X_OFFSET, SHOW_CARD_BUTTON_Y_OFFSET, SHOW_CARD_BUTTON_WIDTH, SHOW_CARD_BUTTON_HEIGHT)] autorelease];
-    [label setFont:SHOW_CARD_BUTTON_FONT];
-    [label setText:NSLS(@"kShowCard")];
-    label.textAlignment = UITextAlignmentCenter;
-    [label setTextColor:[UIColor whiteColor]];
-    label.backgroundColor = [UIColor clearColor];
-    
-    [view addSubview:imageView];
-    [view addSubview:label];
-    [view addSubview:button];
-    
-    return view;
-}
-
-- (void)popupShowCardButtonInView:(UIView *)inView
-{
-    UIView *showCardButton = [self createShowCardButton];
-
-    self.popupView = [[[CMPopTipView alloc] initWithCustomViewWithoutBubble:showCardButton] autorelease];
+    self.popupView = [[[CMPopTipView alloc] initWithCustomViewWithoutBubble:buttons] autorelease];
     self.popupView.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.25];
     
     [self.popupView presentPointingAtView:self
@@ -286,24 +252,14 @@
                                  animated:YES
                            pointDirection:PointDirectionDown];
     
-    [self performSelector:@selector(dismissShowCardButton)
+    [self performSelector:@selector(dismissButtons)
                withObject:nil
                afterDelay:3.0];
 }
 
-- (BOOL)showCardButtonIsPopup
+- (BOOL)buttonsIsPopup
 {
     return self.popupView.isPopup;
-}
-
-- (void)clickShowCardButton:(id)sender
-{
-    PPDebug(@"didClickShowCardButton");
-    [self dismissShowCardButton];
-    
-    if ([self.delegate respondsToSelector:@selector(didClickShowCardButton:)]) {
-        [self.delegate didClickShowCardButton:self];
-    }
 }
 
 - (void)setShowCardFlag:(BOOL)animation
@@ -316,15 +272,38 @@
     [imageView.layer addAnimation:[AnimationManager appearAnimationFrom:0.5 to:1 duration:(animation ? 0.8 : 0)] forKey:nil];
 }
 
-- (void)showArrow
+- (void)changeToCard:(Poker *)poker animation:(BOOL)animation
 {
-    UIButton *arrow = [ArrowView arrowWithCenter:CGPointMake(self.frame.size.width/2, self.frame.size.height/2 - ([DeviceDetection isIPAD] ? 10 : 5))];
-    arrow.tag = ARROW_TAG;
-    [arrow addTarget:self action:@selector(clickArrow:) forControlEvents:UIControlEventTouchUpInside];
-    [self addSubview:arrow];
+    [self.layer addAnimation:[AnimationManager disappearAnimationWithDuration:1.0] forKey:nil];
     
+    self.poker = poker;
+    self.isFaceUp = poker.faceUp;
+    
+    self.frontBgImageView.image = [[ZJHImageManager defaultManager] pokerFrontBgImage];
+    self.rankImageView.image = [[ZJHImageManager defaultManager] pokerRankImage:poker];
+    self.suitImageView.image = [[ZJHImageManager defaultManager] pokerSuitImage:poker];
+    self.bodyImageView.image = [[ZJHImageManager defaultManager] pokerBodyImage:poker];
+    
+    self.backImageView.hidden = poker.faceUp;
+    self.frontView.hidden = !poker.faceUp;
+    
+    [self.layer addAnimation:[AnimationManager appearAnimationFrom:0 to:1.0 delay:1.0 duration:1.0] forKey:nil];
 }
 
+- (void)clickShowCardButton:(id)sender
+{
+    if ([_delegate respondsToSelector:@selector(didClickShowCardButton:)]) {
+        [_delegate didClickShowCardButton:self];
+    }
+}
+
+- (void)clickChangeCardButton:(id)sender
+{
+    [self dismissButtons];
+    if ([_delegate respondsToSelector:@selector(didClickChangeCardButton:)]) {
+        [_delegate didClickChangeCardButton:self];
+    }
+}
 
 
 @end

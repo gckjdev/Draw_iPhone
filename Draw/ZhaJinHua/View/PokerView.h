@@ -25,6 +25,7 @@
 @optional
 - (void)didClickPokerView:(PokerView *)pokerView;
 - (void)didClickShowCardButton:(PokerView *)pokerView;
+- (void)didClickChangeCardButton:(PokerView *)pokerView;
 
 @end
 
@@ -48,9 +49,9 @@
 
 - (void)enableUserInterface;
 
-- (BOOL)showCardButtonIsPopup;
-- (void)popupShowCardButtonInView:(UIView *)inView;
-- (void)dismissShowCardButton;
+- (BOOL)buttonsIsPopup;
+- (void)popupButtonsInView:(UIView *)inView;
+- (void)dismissButtons;
 
 - (void)faceDown:(BOOL)animation;
 - (void)faceUp:(BOOL)animation;
@@ -63,7 +64,6 @@
 - (void)backToOriginPosition:(BOOL)animation;
 
 - (void)setShowCardFlag:(BOOL)animation;
-
-- (void)showArrow;
+- (void)changeToCard:(Poker *)poker animation:(BOOL)animation;
 
 @end

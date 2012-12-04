@@ -142,10 +142,9 @@
     }
 }
 
-- (void)updateTimeStamp:(NSInteger)timeInterval
+- (void)updateTimeStamp:(PBBBSPost *)post
 {
-    NSDate *date = [NSDate dateWithTimeIntervalSince1970:timeInterval];
-    [self.timestamp setText:dateToChineseString(date)];
+    [self.timestamp setText:post.createDateString];
 }
 
 
@@ -174,7 +173,7 @@
     self.post = post;
     [self updateUserInfo:post.createUser];
     [self updateContent:post.content];
-    [self updateTimeStamp:post.createDate];
+    [self updateTimeStamp:post];
     [self updateReward:post];
 }
 

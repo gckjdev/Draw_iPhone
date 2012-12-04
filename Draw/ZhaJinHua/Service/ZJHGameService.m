@@ -156,7 +156,7 @@ static ZJHGameService *_defaultService;
 
 - (NSArray *)chipValues
 {
-    return [[ZJHRuleConfigFactory createRuleConfigWithRule:self.rule] chipValues];
+    return [[ZJHRuleConfigFactory createRuleConfig] chipValues];
 }
 
 - (BOOL)isMyBalanceEnough
@@ -210,7 +210,7 @@ static ZJHGameService *_defaultService;
 
 - (BOOL)canIChangeCard
 {
-    return [self isGamePlaying] && [self isMyTurn] && [[self myPlayInfo] canChangeCard] && ([self.session myTurnTimes]%3!=0) && ([self.session myTurnTimes]!=0);
+    return [self isGamePlaying] && [self isMyTurn] && [[self myPlayInfo] canChangeCard] && ([self.session myTurnTimes]%4==0);
 }
 
 - (BOOL)canUserBeCompared:(NSString *)userId
@@ -500,7 +500,7 @@ static ZJHGameService *_defaultService;
 
 - (NSString *)getServerListString
 {
-    return [[ZJHRuleConfigFactory createRuleConfigWithRule:self.rule] getServerListString];
+    return [[ZJHRuleConfigFactory createRuleConfig] getServerListString];
 }
 
 - (ZJHUserPlayInfo *)myPlayInfo
@@ -548,5 +548,11 @@ static ZJHGameService *_defaultService;
 {
     [_accountService syncAccount:delegate forceServer:YES];
 }
+
+- (NSArray *)myReplacedCards
+{
+    return [[self myPlayInfo] replacedPokers];
+}
+
 
 @end

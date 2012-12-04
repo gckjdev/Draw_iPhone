@@ -107,8 +107,6 @@
 		A405C8B8165B874500E7610F /* avatar_default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A405C82F165B874500E7610F /* avatar_default@2x.png */; };
 		A405C8B9165B874500E7610F /* chips_select_bg_image@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A405C830165B874500E7610F /* chips_select_bg_image@2x.png */; };
 		A405C8BA165B874500E7610F /* item_box@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A405C831165B874500E7610F /* item_box@2x.png */; };
-		A405C8BB165B874500E7610F /* show_card_button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A405C832165B874500E7610F /* show_card_button@2x.png */; };
-		A405C8BC165B874500E7610F /* show_card_button_disable@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A405C833165B874500E7610F /* show_card_button_disable@2x.png */; };
 		A405C8BD165B874500E7610F /* zjh_bet1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A405C835165B874500E7610F /* zjh_bet1@2x.png */; };
 		A405C8BE165B874500E7610F /* zjh_bet2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A405C836165B874500E7610F /* zjh_bet2@2x.png */; };
 		A405C8BF165B874500E7610F /* zjh_check_card1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A405C837165B874500E7610F /* zjh_check_card1@2x.png */; };
@@ -266,6 +264,10 @@
 		A47FF99E15DB9ADB00EE8125 /* DiceItemService.m in Sources */ = {isa = PBXBuildFile; fileRef = A47FF99D15DB9ADB00EE8125 /* DiceItemService.m */; };
 		A48E827415E871CE002DB480 /* DiceHelpManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A48E827315E871CE002DB480 /* DiceHelpManager.m */; };
 		A48E827615E8AB1B002DB480 /* ChatView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A48E827515E8AB1A002DB480 /* ChatView.xib */; };
+		A49A083A166D95EF003E0F75 /* show_card_button_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A49A0837166D95EF003E0F75 /* show_card_button_bg@2x.png */; };
+		A49A083B166D95EF003E0F75 /* show_card_button_popup_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A49A0838166D95EF003E0F75 /* show_card_button_popup_bg@2x.png */; };
+		A49A083C166D95EF003E0F75 /* show_change_card_button_popup_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A49A0839166D95EF003E0F75 /* show_change_card_button_popup_bg@2x.png */; };
+		A49A083F166DA68D003E0F75 /* ReplacedPoker.m in Sources */ = {isa = PBXBuildFile; fileRef = A49A083E166DA68D003E0F75 /* ReplacedPoker.m */; };
 		A4A132651650E86900665109 /* MessageView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4A132641650E86900665109 /* MessageView.m */; };
 		A4AB18F315E359B90097CC7A /* ChatViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A4AB18F115E359B90097CC7A /* ChatViewCell.m */; };
 		A4AB18F415E359B90097CC7A /* ChatViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4AB18F215E359B90097CC7A /* ChatViewCell.xib */; };
@@ -2128,8 +2130,6 @@
 		A405C82F165B874500E7610F /* avatar_default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "avatar_default@2x.png"; sourceTree = "<group>"; };
 		A405C830165B874500E7610F /* chips_select_bg_image@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chips_select_bg_image@2x.png"; sourceTree = "<group>"; };
 		A405C831165B874500E7610F /* item_box@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "item_box@2x.png"; sourceTree = "<group>"; };
-		A405C832165B874500E7610F /* show_card_button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "show_card_button@2x.png"; sourceTree = "<group>"; };
-		A405C833165B874500E7610F /* show_card_button_disable@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "show_card_button_disable@2x.png"; sourceTree = "<group>"; };
 		A405C835165B874500E7610F /* zjh_bet1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zjh_bet1@2x.png"; sourceTree = "<group>"; };
 		A405C836165B874500E7610F /* zjh_bet2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zjh_bet2@2x.png"; sourceTree = "<group>"; };
 		A405C837165B874500E7610F /* zjh_check_card1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zjh_check_card1@2x.png"; sourceTree = "<group>"; };
@@ -2345,6 +2345,11 @@
 		A48E827215E871CE002DB480 /* DiceHelpManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiceHelpManager.h; sourceTree = "<group>"; };
 		A48E827315E871CE002DB480 /* DiceHelpManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiceHelpManager.m; sourceTree = "<group>"; };
 		A48E827515E8AB1A002DB480 /* ChatView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChatView.xib; sourceTree = "<group>"; };
+		A49A0837166D95EF003E0F75 /* show_card_button_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "show_card_button_bg@2x.png"; sourceTree = "<group>"; };
+		A49A0838166D95EF003E0F75 /* show_card_button_popup_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "show_card_button_popup_bg@2x.png"; sourceTree = "<group>"; };
+		A49A0839166D95EF003E0F75 /* show_change_card_button_popup_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "show_change_card_button_popup_bg@2x.png"; sourceTree = "<group>"; };
+		A49A083D166DA68D003E0F75 /* ReplacedPoker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReplacedPoker.h; sourceTree = "<group>"; };
+		A49A083E166DA68D003E0F75 /* ReplacedPoker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReplacedPoker.m; sourceTree = "<group>"; };
 		A4A132631650E86900665109 /* MessageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageView.h; sourceTree = "<group>"; };
 		A4A132641650E86900665109 /* MessageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageView.m; sourceTree = "<group>"; };
 		A4AB18F015E359B90097CC7A /* ChatViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatViewCell.h; sourceTree = "<group>"; };
@@ -4929,11 +4934,12 @@
 		A405C82E165B874500E7610F /* room */ = {
 			isa = PBXGroup;
 			children = (
+				A49A0837166D95EF003E0F75 /* show_card_button_bg@2x.png */,
+				A49A0838166D95EF003E0F75 /* show_card_button_popup_bg@2x.png */,
+				A49A0839166D95EF003E0F75 /* show_change_card_button_popup_bg@2x.png */,
 				A405C82F165B874500E7610F /* avatar_default@2x.png */,
 				A405C830165B874500E7610F /* chips_select_bg_image@2x.png */,
 				A405C831165B874500E7610F /* item_box@2x.png */,
-				A405C832165B874500E7610F /* show_card_button@2x.png */,
-				A405C833165B874500E7610F /* show_card_button_disable@2x.png */,
 				A405C834165B874500E7610F /* zjh_actions */,
 				A405C83F165B874500E7610F /* zjh_arrow@2x.png */,
 				A405C840165B874500E7610F /* zjh_arrow_light@2x.png */,
@@ -5535,6 +5541,8 @@
 				A44B622C1637B80600A8045B /* Poker.m */,
 				C2F2CF961639165500995DCB /* ZJHImageManager.h */,
 				C2F2CF971639165500995DCB /* ZJHImageManager.m */,
+				A49A083D166DA68D003E0F75 /* ReplacedPoker.h */,
+				A49A083E166DA68D003E0F75 /* ReplacedPoker.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -11611,8 +11619,6 @@
 				A405C8B8165B874500E7610F /* avatar_default@2x.png in Resources */,
 				A405C8B9165B874500E7610F /* chips_select_bg_image@2x.png in Resources */,
 				A405C8BA165B874500E7610F /* item_box@2x.png in Resources */,
-				A405C8BB165B874500E7610F /* show_card_button@2x.png in Resources */,
-				A405C8BC165B874500E7610F /* show_card_button_disable@2x.png in Resources */,
 				A405C8BD165B874500E7610F /* zjh_bet1@2x.png in Resources */,
 				A405C8BE165B874500E7610F /* zjh_bet2@2x.png in Resources */,
 				A405C8BF165B874500E7610F /* zjh_check_card1@2x.png in Resources */,
@@ -11932,6 +11938,9 @@
 				C28A23C7166C90F7007C9EA5 /* fallingstars.png in Resources */,
 				C28A23C9166C9102007C9EA5 /* fallingCoinBGM.mp3 in Resources */,
 				CA837C2B166CDFAD005718AA /* bbs_refresh@2x.png in Resources */,
+				A49A083A166D95EF003E0F75 /* show_card_button_bg@2x.png in Resources */,
+				A49A083B166D95EF003E0F75 /* show_card_button_popup_bg@2x.png in Resources */,
+				A49A083C166D95EF003E0F75 /* show_change_card_button_popup_bg@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -12580,6 +12589,7 @@
 				C28A23CF166C9123007C9EA5 /* FallingCoinImageView.m in Sources */,
 				C28A23D0166C9123007C9EA5 /* FallingCoinView.m in Sources */,
 				CA8A27EF166CE57500D1A2D6 /* ZJHGameApp.m in Sources */,
+				A49A083F166DA68D003E0F75 /* ReplacedPoker.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

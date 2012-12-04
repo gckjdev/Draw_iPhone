@@ -428,6 +428,16 @@
                                        [self someoneCompareCard:userId resultList:userResultList];
                                    }];
     
+    [self registerNotificationWithName:NOTIFICATION_CHANGE_CARD_REQUEST
+                            usingBlock:^(NSNotification *notification) {
+                                [self someoneChangeCard];
+                            }];
+    
+    [self registerNotificationWithName:NOTIFICATION_CHANGE_CARD_RESPONSE
+                            usingBlock:^(NSNotification *notification) {
+                                [self changeCardSuccess];
+                            }];
+    
     [self registerNotificationWithName:NOTIFICATION_GAME_OVER_NOTIFICATION_REQUEST
                                    usingBlock:^(NSNotification *notification) {
                                        [self gameOver];
@@ -799,6 +809,17 @@
     }
 }
 
+- (void)someoneChangeCard
+{
+}
+
+- (void)changeCardSuccess
+{
+    ReplacedPoker *replacedPoker = [[_gameService myReplacedCards] lastObject];
+    [[self getMyAvatarView] changeCard:replacedPoker.oldPoker.pokerId toCard:replacedPoker.newPoker animation:YES];
+}
+
+
 - (ZJHPokerSectorType)getPokerSectorTypeByPosition:(UserPosition)position
 {
     switch (position) {
@@ -1063,17 +1084,20 @@
 
 - (void)didClickPokerView:(PokerView *)pokerView
 {
-    if (![_gameService canIShowCard:pokerView.poker.pokerId]) {
-        return;
-    }
-    
-    pokerView.showCardButtonIsPopup ? [pokerView dismissShowCardButton] : [pokerView popupShowCardButtonInView:self.view];
+    [[self getMyPokersView] dismissButtons];
+    pokerView.buttonsIsPopup ? [pokerView dismissButtons] : [pokerView popupButtonsInView:self.view];
 }
 
 - (void)didClickShowCardButton:(PokerView *)pokerView
 {
     PPDebug(@"didClickShowCardButton: card rank: %d, suit = %d", pokerView.poker.rank, pokerView.poker.suit);
     [_gameService showCard:pokerView.poker.pokerId];
+}
+
+- (void)didClickChangeCardButton:(PokerView *)pokerView
+{
+    PPDebug(@"didClickChangeCardButton: card rank: %d, suit = %d", pokerView.poker.rank, pokerView.poker.suit);
+    [_gameService changeCard:pokerView.poker.pokerId];
 }
 
 - (void)didClickBombButton:(ZJHPokerView *)zjhPokerView
@@ -1095,7 +1119,7 @@
 
 - (void)dismissAllPopupView
 {
-    [[self getMyPokersView] dismissShowCardButtons];
+    [[self getMyPokersView] dismissButtons];
     [_popupViewManager dismissChipsSelectView];
 }
 
@@ -1109,7 +1133,7 @@
 
 - (void)updateZJHButtons
 {
-    [self dismissAllPopupView];
+    [_popupViewManager dismissChipsSelectView];
     
     self.betButton.userInteractionEnabled = [_gameService canIBet];
     [self.betButton setTitleColor:(self.betButton.userInteractionEnabled ? TITLE_COLOR_WHEN_ENABLE : TITLE_COLOR_WHEN_DISABLE) forState:UIControlStateNormal];
@@ -1411,11 +1435,6 @@
 {
     [_coinView removeFromSuperview];
     _coinView = nil;
-}
-
-
-- (IBAction)clickChangeCardButton:(id)sender {
-    
 }
 
 @end

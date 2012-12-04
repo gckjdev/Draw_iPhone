@@ -10,9 +10,10 @@
 
 #import <Foundation/Foundation.h>
 #import "ZJHruleConfig.h"
+#import "ZhaJinHua.pb.h"
 
 @interface ZJHRuleConfigFactory : NSObject
 
-+ (id<ZJHRuleProtocol>)createRuleConfigWithRule:(ZJHRule)rule;
++ (id<ZJHRuleProtocol>)createRuleConfig;
 
 @end

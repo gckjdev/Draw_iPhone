@@ -12,5 +12,6 @@
 @interface GameSNSService : NSObject
 
 + (void)askFollow:(PPSNSType)snsType snsWeiboId:(NSString*)weiboId;
++ (void)askFollowOfficialWeibo:(PPSNSType)snsType;
 
 @end

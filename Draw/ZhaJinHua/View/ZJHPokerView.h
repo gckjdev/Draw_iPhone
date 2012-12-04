@@ -39,6 +39,8 @@ typedef enum {
 @optional
 - (void)didClickPokerView:(PokerView *)pokerView;
 - (void)didClickShowCardButton:(PokerView *)pokerView;
+- (void)didClickChangeCardButton:(PokerView *)pokerView;
+
 - (void)didClickBombButton:(ZJHPokerView *)zjhPokerView;
 
 @end
@@ -54,7 +56,7 @@ typedef enum {
                     size:(CGSize)size
                      gap:(CGFloat)gap;
 
-- (void)dismissShowCardButtons;
+- (void)dismissButtons;
 - (void)clear;
 
 // 别人看牌时，调用这个接口，把牌摊成扇形
@@ -71,6 +73,7 @@ typedef enum {
 // 自己亮牌时，调用这个接口，把自己那张亮的牌设置标志。
 - (void)setShowCardFlag:(int)cardId animation:(BOOL)animation;
 
+- (void)changeCard:(int)cardId toCard:(Poker *)poker animation:(BOOL)animation;
 
 // 别人或自己弃牌，调用这个接口，表示弃牌
 - (void)foldCards:(BOOL)animation;
@@ -82,7 +85,5 @@ typedef enum {
 
 - (void)showBomb;
 - (void)clearBomb;
-
-- (void)showChangeCard;
 
 @end

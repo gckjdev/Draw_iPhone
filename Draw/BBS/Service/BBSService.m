@@ -40,12 +40,21 @@ BBSService *_staticBBSService;
 
 - (NSInteger)checkFrequent
 {
-//    return ERROR_SUCCESS;
-    
     BBSManager *_bbsManager = [BBSManager defaultManager];
     if ([_bbsManager isCreationFrequent]) {
-        PPDebug(@"<checkWithText> to frequent!!!");
+        PPDebug(@"<checkFrequent> to frequent!!!");
         return ERROR_BBS_TEXT_TOO_FREQUENT;
+    }else{
+        return ERROR_SUCCESS;
+    }
+}
+
+- (NSInteger)checkCanSupportPost:(NSString *)postId
+{
+    BBSManager *_bbsManager = [BBSManager defaultManager];
+    if (![_bbsManager canSupportPost:postId]) {
+        PPDebug(@"<checkCanSupportPost> to frequent!!!");
+        return ERROR_BBS_POST_SUPPORT_TIMES_LIMIT;
     }else{
         return ERROR_SUCCESS;
     }
@@ -70,10 +79,10 @@ BBSService *_staticBBSService;
 - (NSString *)defaultTextForContentType:(BBSPostContentType)type
 {
     if (ContentTypeDraw == type) {
-        return NSLS(@"kDraw");
+        return NSLS(@"kBBSDraw");
     }
     if (ContentTypeImage == type) {
-        return NSLS(@"kImage");
+        return NSLS(@"kBBSImage");
     }
     return nil;
 }
@@ -507,23 +516,31 @@ BBSService *_staticBBSService;
         NSString *nText = text;
         NSInteger resultCode = ERROR_SUCCESS;
         PBBBSAction *action = nil;
-        
-        
+    
         
         BBSPostContentType contentType = ContentTypeNo;
         
         NSData *drawData = nil;
         
-        if (image) {
-            contentType = ContentTypeImage;
-        }else if (drawImage) {
-            contentType = ContentTypeDraw;
-            PBBBSDraw *bbsDraw = [self buildBBSDraw:drawActionList];
-            drawData = [bbsDraw data];
-        }else if([text length] != 0){
-            contentType = ContentTypeText;
+        if (actionType == ActionTypeSupport) {
+            resultCode = [self checkCanSupportPost:postId];
         }
-        resultCode = [self checkFrequent];
+        if (resultCode == ERROR_SUCCESS) {
+            resultCode = [self checkFrequent];
+        }
+
+        if(resultCode == ERROR_SUCCESS){
+            if (image) {
+                contentType = ContentTypeImage;
+            }else if (drawImage) {
+                contentType = ContentTypeDraw;
+                PBBBSDraw *bbsDraw = [self buildBBSDraw:drawActionList];
+                drawData = [bbsDraw data];
+            }else if([text length] != 0){
+                contentType = ContentTypeText;
+            }
+        }
+        
         if (resultCode == ERROR_SUCCESS && actionType == ActionTypeComment) {
             resultCode = [self checkWithText:text contentType:contentType];
         }
@@ -573,6 +590,7 @@ BBSService *_staticBBSService;
                                                          drawImage:[drawImage data]];
             resultCode = [output resultCode];
             if (resultCode == ERROR_SUCCESS) {
+                [[BBSManager defaultManager] increasePostSupportTimes:postId];
                 NSString *actionId = [output.jsonDataDict objectForKey:PARA_ACTIONID];
                 NSString *imageURL = [output.jsonDataDict objectForKey:PARA_IMAGE];
                 NSString *thumbURL = [output.jsonDataDict objectForKey:PARA_THUMB_IMAGE];
@@ -605,8 +623,6 @@ BBSService *_staticBBSService;
                 [[BBSManager defaultManager] updateLastCreationDate];
             }
         }
-        
-        
         
         dispatch_async(dispatch_get_main_queue(), ^{
             if (delegate && [delegate respondsToSelector:@selector(didCreateAction:atPost:replyAction:resultCode:)]) {

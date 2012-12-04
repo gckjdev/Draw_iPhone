@@ -31,6 +31,14 @@
 "kPALM" = "%@ send a location request to you";
 "kPRLM" = "%@ reply your location request";
 "kPRRLM" = "%@ reject your location request";
+
+//bbs 5.2
+"kPBP" = "%@ pays you %@ icons at post: %@...";
+"kPBC" = "%@ comments your forum post: %@...";
+"kPBR"= "%@ replys to your forum post: %@...";
+"kPBS" = "%@ supports your forum post: %@...";
+
+
 /*********************** Notification end *************************/
 
 "kStart" = "Online";
@@ -1118,12 +1126,14 @@
 "kZJHCompare" = "CMP";
 "kZJHFold" = "Fold";
 "kShowCard" = "Show";
+"kChangeCard" = "Change";
+/*********************** 炸金花国际化字符串结束 *************************/
 
 /*********************** 炸金花国际化字符串结束 *************************/
 
 
 /*********************** BBS国际化字符串开始 *************************/
-"kBBS" = "BBS";
+"kBBS" = "Forum";
 "kCreatePost" = "Create Post";
 "kMyComment" = "My Comment";
 "kPostDetail" = "Post Detail";
@@ -1131,6 +1141,8 @@
 "kReward" = "Reward";
 "kSupport" = "Support";
 "kMyPost" = "My Post";
+"kBBSDraw" = "Share painting.";
+"kBBSImage" = "Share image.";
 
 "kSupportCount" = "Support(%d)";
 "kCommentCount" = "Comment(%d)";
@@ -1143,5 +1155,10 @@
 "kTextTooShot" = "Text length can't be less than %d!";
 "kTextTooLong" = "Text length can't be more than %d!";
 "kTextTooFrequent" = "You send post too frequent, wait a minute.";
+"kSupportTimesLimit" = "Support times limit! You can only support %d times.";
 "kNetworkError" = "Network is error, please try it again";
+
+"kWarning" = "Warning";
+"kClearImageData" = "The selected image will be clear, continue?";
+"kClearDrawData" = "The draw data will be clear, continue?";
 /*********************** BBS国际化字符串结束 *************************/

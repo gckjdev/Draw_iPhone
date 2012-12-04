@@ -124,11 +124,6 @@
 
 }
 
-- (void)updateTimeStamp:(NSInteger)timeInterval
-{
-    NSDate *date = [NSDate dateWithTimeIntervalSince1970:timeInterval];
-    [self.timestamp setText:dateToChineseString(date)];
-}
 
 
 - (void)updateCellWithBBSAction:(PBBBSAction *)action post:(PBBBSPost *)post
@@ -137,7 +132,7 @@
     self.post = post;
     
     [self updateUserInfo:action.createUser];
-    [self updateTimeStamp:action.createDate];
+    [self.timestamp setText:action.createDateString];
     [self updateReplyAction];
     
     if ([action isSupport]) {

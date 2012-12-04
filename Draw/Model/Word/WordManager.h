@@ -43,7 +43,7 @@
 + (NSString *)changeToTraditionalChinese:(NSString *)text; 
 + (NSString *)removeSpaceFromString:(NSString *)string;
 - (void)clearWordBaseDictionary;
-+ (void)unZipFiles;
+//+ (void)unZipFiles;
 @end
 
 extern WordManager *GlobalGetWordManager();
