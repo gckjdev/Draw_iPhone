@@ -76,18 +76,18 @@
 }
 + (CGFloat)getViewHeight
 {
-    return [DeviceDetection isIPAD] ? 100 : 50;
+    return [DeviceDetection isIPAD] ? 50 * 2.33 : 50;
 }
 - (void)updateViewWithPost:(PBBBSPost *)post
 {
-    [self.comment setTitle:[NSString stringWithFormat:@"k评论(%d)",post.replyCount]
+    [self.comment setTitle:[NSString stringWithFormat:NSLS(@"kCommentCount"),post.replyCount]
                   forState:UIControlStateNormal];
-    [self.support setTitle:[NSString stringWithFormat:@"k顶(%d)",post.supportCount]
+    [self.support setTitle:[NSString stringWithFormat:NSLS(@"kSupportCount"),post.supportCount]
                   forState:UIControlStateNormal];
     
-    [self.comment setTitle:[NSString stringWithFormat:@"k评论(%d)",post.replyCount]
+    [self.comment setTitle:[NSString stringWithFormat:NSLS(@"kCommentCount"),post.replyCount]
                   forState:UIControlStateSelected];
-    [self.support setTitle:[NSString stringWithFormat:@"k顶(%d)",post.supportCount]
+    [self.support setTitle:[NSString stringWithFormat:NSLS(@"kSupportCount"),post.supportCount]
                   forState:UIControlStateSelected];
 
     

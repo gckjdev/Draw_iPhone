@@ -112,6 +112,11 @@ static BBSImageManager* _staticBBSImageManager;
                              inResourcePackage:RESOURCE_PACKAGE_BBS];
 }
 
+- (UIImage *)bbsRefreshImage
+{
+    return [self stretchableImageWithImageName:@"bbs_refresh" inResourcePackage:RESOURCE_PACKAGE_BBS];
+}
+
 //index image
 #pragma mark - Index page image
 - (UIImage *)bbsBadgeImage

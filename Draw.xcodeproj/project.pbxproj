@@ -107,7 +107,8 @@
 		A405C8B8165B874500E7610F /* avatar_default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A405C82F165B874500E7610F /* avatar_default@2x.png */; };
 		A405C8B9165B874500E7610F /* chips_select_bg_image@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A405C830165B874500E7610F /* chips_select_bg_image@2x.png */; };
 		A405C8BA165B874500E7610F /* item_box@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A405C831165B874500E7610F /* item_box@2x.png */; };
-		A405C8BB165B874500E7610F /* show_card_button_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A405C832165B874500E7610F /* show_card_button_bg@2x.png */; };
+		A405C8BB165B874500E7610F /* show_card_button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A405C832165B874500E7610F /* show_card_button@2x.png */; };
+		A405C8BC165B874500E7610F /* show_card_button_disable@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A405C833165B874500E7610F /* show_card_button_disable@2x.png */; };
 		A405C8BD165B874500E7610F /* zjh_bet1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A405C835165B874500E7610F /* zjh_bet1@2x.png */; };
 		A405C8BE165B874500E7610F /* zjh_bet2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A405C836165B874500E7610F /* zjh_bet2@2x.png */; };
 		A405C8BF165B874500E7610F /* zjh_check_card1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A405C837165B874500E7610F /* zjh_check_card1@2x.png */; };
@@ -265,8 +266,9 @@
 		A47FF99E15DB9ADB00EE8125 /* DiceItemService.m in Sources */ = {isa = PBXBuildFile; fileRef = A47FF99D15DB9ADB00EE8125 /* DiceItemService.m */; };
 		A48E827415E871CE002DB480 /* DiceHelpManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A48E827315E871CE002DB480 /* DiceHelpManager.m */; };
 		A48E827615E8AB1B002DB480 /* ChatView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A48E827515E8AB1A002DB480 /* ChatView.xib */; };
-		A49A0823166CA5BF003E0F75 /* show_card_button_popup_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A49A0821166CA5BF003E0F75 /* show_card_button_popup_bg@2x.png */; };
-		A49A0824166CA5BF003E0F75 /* show_change_card_button_popup_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A49A0822166CA5BF003E0F75 /* show_change_card_button_popup_bg@2x.png */; };
+		A49A083A166D95EF003E0F75 /* show_card_button_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A49A0837166D95EF003E0F75 /* show_card_button_bg@2x.png */; };
+		A49A083B166D95EF003E0F75 /* show_card_button_popup_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A49A0838166D95EF003E0F75 /* show_card_button_popup_bg@2x.png */; };
+		A49A083C166D95EF003E0F75 /* show_change_card_button_popup_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A49A0839166D95EF003E0F75 /* show_change_card_button_popup_bg@2x.png */; };
 		A4A132651650E86900665109 /* MessageView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4A132641650E86900665109 /* MessageView.m */; };
 		A4AB18F315E359B90097CC7A /* ChatViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A4AB18F115E359B90097CC7A /* ChatViewCell.m */; };
 		A4AB18F415E359B90097CC7A /* ChatViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4AB18F215E359B90097CC7A /* ChatViewCell.xib */; };
@@ -350,6 +352,14 @@
 		C284E8801531D89800DD5B77 /* AboutUsController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C284E87E1531D89800DD5B77 /* AboutUsController.xib */; };
 		C28662BE1659DDF900D7EA27 /* ZJHRoomListCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C28662BC1659DDF700D7EA27 /* ZJHRoomListCell~ipad.xib */; };
 		C28662BF1659DDF900D7EA27 /* ZJHRoomListController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C28662BD1659DDF800D7EA27 /* ZJHRoomListController~ipad.xib */; };
+		C28A23C1166C90E2007C9EA5 /* OpenGLTexture3D.m in Sources */ = {isa = PBXBuildFile; fileRef = C28A23BE166C90E2007C9EA5 /* OpenGLTexture3D.m */; };
+		C28A23C2166C90E2007C9EA5 /* ParticleEmitter3D.m in Sources */ = {isa = PBXBuildFile; fileRef = C28A23C0166C90E2007C9EA5 /* ParticleEmitter3D.m */; };
+		C28A23C6166C90F7007C9EA5 /* fallingCoin.png in Resources */ = {isa = PBXBuildFile; fileRef = C28A23C4166C90F7007C9EA5 /* fallingCoin.png */; };
+		C28A23C7166C90F7007C9EA5 /* fallingstars.png in Resources */ = {isa = PBXBuildFile; fileRef = C28A23C5166C90F7007C9EA5 /* fallingstars.png */; };
+		C28A23C9166C9102007C9EA5 /* fallingCoinBGM.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C28A23C8166C9102007C9EA5 /* fallingCoinBGM.mp3 */; };
+		C28A23CF166C9123007C9EA5 /* FallingCoinImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = C28A23CC166C9123007C9EA5 /* FallingCoinImageView.m */; };
+		C28A23D0166C9123007C9EA5 /* FallingCoinView.m in Sources */ = {isa = PBXBuildFile; fileRef = C28A23CE166C9123007C9EA5 /* FallingCoinView.m */; };
+		C28A23D2166C92C1007C9EA5 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C28A23D1166C92C1007C9EA5 /* OpenGLES.framework */; };
 		C28E7C081602DAC600F4B6A5 /* DoubleKillItemAction.m in Sources */ = {isa = PBXBuildFile; fileRef = C28E7C071602DAC600F4B6A5 /* DoubleKillItemAction.m */; };
 		C28E7C0E1602E5B200F4B6A5 /* IncTimeItemAction.m in Sources */ = {isa = PBXBuildFile; fileRef = C28E7C0D1602E5B100F4B6A5 /* IncTimeItemAction.m */; };
 		C28E7C111602E5E000F4B6A5 /* DecTimeItemAction.m in Sources */ = {isa = PBXBuildFile; fileRef = C28E7C101602E5DD00F4B6A5 /* DecTimeItemAction.m */; };
@@ -414,14 +424,8 @@
 		C2E6629F152463B900487601 /* ShareEditController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2E6629D152463B900487601 /* ShareEditController.m */; };
 		C2E662A0152463B900487601 /* ShareEditController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2E6629E152463B900487601 /* ShareEditController.xib */; };
 		C2E7401F1629500A0037E7F6 /* UseItemScene.m in Sources */ = {isa = PBXBuildFile; fileRef = C2E7401E1629500A0037E7F6 /* UseItemScene.m */; };
-		C2E90FE015BD3F2D00828562 /* RecommendedAppCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C2E90FDB15BD3F2D00828562 /* RecommendedAppCell.m */; };
-		C2E90FE115BD3F2D00828562 /* RecommendedAppCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2E90FDC15BD3F2D00828562 /* RecommendedAppCell.xib */; };
 		C2E90FEB15BD44DA00828562 /* RecommendApp.m in Sources */ = {isa = PBXBuildFile; fileRef = C2E90FEA15BD44DA00828562 /* RecommendApp.m */; };
 		C2E90FEE15BD454200828562 /* RecommendAppManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C2E90FED15BD454200828562 /* RecommendAppManager.m */; };
-		C2E90FF015BD51F200828562 /* RecommendedAppCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2E90FEF15BD51F100828562 /* RecommendedAppCell~ipad.xib */; };
-		C2E90FF715BD553A00828562 /* RecommendedAppsController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2E90FF415BD553700828562 /* RecommendedAppsController.m */; };
-		C2E90FF815BD553A00828562 /* RecommendedAppsController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2E90FF515BD553800828562 /* RecommendedAppsController.xib */; };
-		C2E90FF915BD553A00828562 /* RecommendedAppsController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2E90FF615BD553900828562 /* RecommendedAppsController~ipad.xib */; };
 		C2EBB8EC164A1B200024D605 /* ZJHSoundManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C2EBB8EB164A1B200024D605 /* ZJHSoundManager.m */; };
 		C2EE13CA1663591800ADBE2E /* StarryLoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = C2EE13C91663591800ADBE2E /* StarryLoadingView.m */; };
 		C2EE13E01664839E00ADBE2E /* PPViewController+StarryLoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = C2EE13DF1664839E00ADBE2E /* PPViewController+StarryLoadingView.m */; };
@@ -439,7 +443,6 @@
 		C2EE1476166706BC00ADBE2E /* star.png in Resources */ = {isa = PBXBuildFile; fileRef = C2EE1474166706BB00ADBE2E /* star.png */; };
 		C2F2CF981639165500995DCB /* ZJHImageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C2F2CF971639165500995DCB /* ZJHImageManager.m */; };
 		C2F2CFB3163932C000995DCB /* ZJHAvatarView.m in Sources */ = {isa = PBXBuildFile; fileRef = C2F2CFB2163932C000995DCB /* ZJHAvatarView.m */; };
-		C2F48BD115BE4484005C4D72 /* RecommendAppService.m in Sources */ = {isa = PBXBuildFile; fileRef = C2F48BD015BE4484005C4D72 /* RecommendAppService.m */; };
 		C2F947D21533D91E0034C895 /* UFPController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2F947D01533D91E0034C895 /* UFPController.m */; };
 		C2F947D31533D91E0034C895 /* UFPController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2F947D11533D91E0034C895 /* UFPController.xib */; };
 		C2F947D61533E2570034C895 /* UMTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C2F947D51533E2560034C895 /* UMTableViewCell.m */; };
@@ -833,6 +836,7 @@
 		CA7C7E041587213100406BFB /* Feed.m in Sources */ = {isa = PBXBuildFile; fileRef = CA7C7E031587213100406BFB /* Feed.m */; };
 		CA7C7E071587214300406BFB /* FeedManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA7C7E061587214300406BFB /* FeedManager.m */; };
 		CA7C7E0B158721B200406BFB /* FeedService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA7C7E0A158721B200406BFB /* FeedService.m */; };
+		CA837C2B166CDFAD005718AA /* bbs_refresh@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA837C2A166CDFAD005718AA /* bbs_refresh@2x.png */; };
 		CA841821164CE4AA00713014 /* graffiti@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA841820164CE4AA00713014 /* graffiti@2x.png */; };
 		CA8815CF1657447800E29BB1 /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = CA8815CE1657447800E29BB1 /* libicucore.dylib */; };
 		CA89737516071335003A95F7 /* Contest.m in Sources */ = {isa = PBXBuildFile; fileRef = CA89737416071335003A95F7 /* Contest.m */; };
@@ -868,6 +872,7 @@
 		CA89747E16087699003A95F7 /* ContestService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA89747D16087699003A95F7 /* ContestService.m */; };
 		CA89748316087BE2003A95F7 /* ContestController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA89748116087BE2003A95F7 /* ContestController.m */; };
 		CA89748416087BE2003A95F7 /* ContestController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA89748216087BE2003A95F7 /* ContestController.xib */; };
+		CA8A27EF166CE57500D1A2D6 /* ZJHGameApp.m in Sources */ = {isa = PBXBuildFile; fileRef = CA8A27EE166CE57500D1A2D6 /* ZJHGameApp.m */; };
 		CA8D602A1531C98400E016ED /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA8D602C1531C98400E016ED /* Default@2x.png */; };
 		CA8D60631531EC5500E016ED /* ReplayController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA8D60611531EC5500E016ED /* ReplayController.m */; };
 		CA8D60641531EC5500E016ED /* ReplayController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA8D60621531EC5500E016ED /* ReplayController.xib */; };
@@ -1714,17 +1719,6 @@
 		CAFE004C166072AB00441D77 /* oowrong.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CAFEFFAE166072AB00441D77 /* oowrong.mp3 */; };
 		CAFE004D166072AB00441D77 /* pushMessage.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CAFEFFAF166072AB00441D77 /* pushMessage.mp3 */; };
 		CAFE004E166072AB00441D77 /* wrong.wav in Resources */ = {isa = PBXBuildFile; fileRef = CAFEFFB0166072AB00441D77 /* wrong.wav */; };
-		CAFE008116609CEC00441D77 /* FacetimeMainController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFE006516609CEC00441D77 /* FacetimeMainController.m */; };
-		CAFE008216609CEC00441D77 /* FacetimeMainController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAFE006616609CEC00441D77 /* FacetimeMainController.xib */; };
-		CAFE008316609CEC00441D77 /* FacetimeMainController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAFE006716609CEC00441D77 /* FacetimeMainController~ipad.xib */; };
-		CAFE008416609CEC00441D77 /* FacetimeNetworkClient.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFE006B16609CEC00441D77 /* FacetimeNetworkClient.m */; };
-		CAFE008516609CEC00441D77 /* FacetimeService.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFE006D16609CEC00441D77 /* FacetimeService.m */; };
-		CAFE008616609CEC00441D77 /* FacetimeUserInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFE007216609CEC00441D77 /* FacetimeUserInfoView.m */; };
-		CAFE008716609CEC00441D77 /* FacetimeUserInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAFE007316609CEC00441D77 /* FacetimeUserInfoView.xib */; };
-		CAFE008816609CEC00441D77 /* FacetimeUserInfoView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAFE007416609CEC00441D77 /* FacetimeUserInfoView~ipad.xib */; };
-		CAFE008916609CEC00441D77 /* MatchingFacetimeUserView.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFE007616609CEC00441D77 /* MatchingFacetimeUserView.m */; };
-		CAFE008A16609CEC00441D77 /* MatchingFacetimeUserView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAFE007716609CEC00441D77 /* MatchingFacetimeUserView.xib */; };
-		CAFE008B16609CEC00441D77 /* MatchingFacetimeUserView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAFE007816609CEC00441D77 /* MatchingFacetimeUserView~ipad.xib */; };
 		CAFEFAED16606E4900441D77 /* Facebook.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFEF87516606E4700441D77 /* Facebook.m */; };
 		CAFEFAEE16606E4900441D77 /* FBDialog.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CAFEF87716606E4700441D77 /* FBDialog.bundle */; };
 		CAFEFAEF16606E4900441D77 /* FBDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFEF87916606E4700441D77 /* FBDialog.m */; };
@@ -2137,7 +2131,8 @@
 		A405C82F165B874500E7610F /* avatar_default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "avatar_default@2x.png"; sourceTree = "<group>"; };
 		A405C830165B874500E7610F /* chips_select_bg_image@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chips_select_bg_image@2x.png"; sourceTree = "<group>"; };
 		A405C831165B874500E7610F /* item_box@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "item_box@2x.png"; sourceTree = "<group>"; };
-		A405C832165B874500E7610F /* show_card_button_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "show_card_button_bg@2x.png"; sourceTree = "<group>"; };
+		A405C832165B874500E7610F /* show_card_button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "show_card_button@2x.png"; sourceTree = "<group>"; };
+		A405C833165B874500E7610F /* show_card_button_disable@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "show_card_button_disable@2x.png"; sourceTree = "<group>"; };
 		A405C835165B874500E7610F /* zjh_bet1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zjh_bet1@2x.png"; sourceTree = "<group>"; };
 		A405C836165B874500E7610F /* zjh_bet2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zjh_bet2@2x.png"; sourceTree = "<group>"; };
 		A405C837165B874500E7610F /* zjh_check_card1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zjh_check_card1@2x.png"; sourceTree = "<group>"; };
@@ -2353,8 +2348,9 @@
 		A48E827215E871CE002DB480 /* DiceHelpManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiceHelpManager.h; sourceTree = "<group>"; };
 		A48E827315E871CE002DB480 /* DiceHelpManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiceHelpManager.m; sourceTree = "<group>"; };
 		A48E827515E8AB1A002DB480 /* ChatView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChatView.xib; sourceTree = "<group>"; };
-		A49A0821166CA5BF003E0F75 /* show_card_button_popup_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "show_card_button_popup_bg@2x.png"; sourceTree = "<group>"; };
-		A49A0822166CA5BF003E0F75 /* show_change_card_button_popup_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "show_change_card_button_popup_bg@2x.png"; sourceTree = "<group>"; };
+		A49A0837166D95EF003E0F75 /* show_card_button_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "show_card_button_bg@2x.png"; sourceTree = "<group>"; };
+		A49A0838166D95EF003E0F75 /* show_card_button_popup_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "show_card_button_popup_bg@2x.png"; sourceTree = "<group>"; };
+		A49A0839166D95EF003E0F75 /* show_change_card_button_popup_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "show_change_card_button_popup_bg@2x.png"; sourceTree = "<group>"; };
 		A4A132631650E86900665109 /* MessageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageView.h; sourceTree = "<group>"; };
 		A4A132641650E86900665109 /* MessageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageView.m; sourceTree = "<group>"; };
 		A4AB18F015E359B90097CC7A /* ChatViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatViewCell.h; sourceTree = "<group>"; };
@@ -2485,6 +2481,20 @@
 		C286628B16578BCB00D7EA27 /* AutoCreateViewByXib.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AutoCreateViewByXib.h; sourceTree = "<group>"; };
 		C28662BC1659DDF700D7EA27 /* ZJHRoomListCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ZJHRoomListCell~ipad.xib"; sourceTree = "<group>"; };
 		C28662BD1659DDF800D7EA27 /* ZJHRoomListController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ZJHRoomListController~ipad.xib"; sourceTree = "<group>"; };
+		C28A23BB166C90E2007C9EA5 /* ConstantsAndMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConstantsAndMacros.h; sourceTree = "<group>"; };
+		C28A23BC166C90E2007C9EA5 /* OpenGLCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenGLCommon.h; sourceTree = "<group>"; };
+		C28A23BD166C90E2007C9EA5 /* OpenGLTexture3D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenGLTexture3D.h; sourceTree = "<group>"; };
+		C28A23BE166C90E2007C9EA5 /* OpenGLTexture3D.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenGLTexture3D.m; sourceTree = "<group>"; };
+		C28A23BF166C90E2007C9EA5 /* ParticleEmitter3D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParticleEmitter3D.h; sourceTree = "<group>"; };
+		C28A23C0166C90E2007C9EA5 /* ParticleEmitter3D.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParticleEmitter3D.m; sourceTree = "<group>"; };
+		C28A23C4166C90F7007C9EA5 /* fallingCoin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fallingCoin.png; sourceTree = "<group>"; };
+		C28A23C5166C90F7007C9EA5 /* fallingstars.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fallingstars.png; sourceTree = "<group>"; };
+		C28A23C8166C9102007C9EA5 /* fallingCoinBGM.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = fallingCoinBGM.mp3; sourceTree = "<group>"; };
+		C28A23CB166C9123007C9EA5 /* FallingCoinImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FallingCoinImageView.h; sourceTree = "<group>"; };
+		C28A23CC166C9123007C9EA5 /* FallingCoinImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FallingCoinImageView.m; sourceTree = "<group>"; };
+		C28A23CD166C9123007C9EA5 /* FallingCoinView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FallingCoinView.h; sourceTree = "<group>"; };
+		C28A23CE166C9123007C9EA5 /* FallingCoinView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FallingCoinView.m; sourceTree = "<group>"; };
+		C28A23D1166C92C1007C9EA5 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		C28E7C061602DAC600F4B6A5 /* DoubleKillItemAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DoubleKillItemAction.h; sourceTree = "<group>"; };
 		C28E7C071602DAC600F4B6A5 /* DoubleKillItemAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DoubleKillItemAction.m; sourceTree = "<group>"; };
 		C28E7C0C1602E5AF00F4B6A5 /* IncTimeItemAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IncTimeItemAction.h; sourceTree = "<group>"; };
@@ -2583,18 +2593,10 @@
 		C2E6629E152463B900487601 /* ShareEditController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShareEditController.xib; sourceTree = "<group>"; };
 		C2E7401D1629500A0037E7F6 /* UseItemScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UseItemScene.h; sourceTree = "<group>"; };
 		C2E7401E1629500A0037E7F6 /* UseItemScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UseItemScene.m; sourceTree = "<group>"; };
-		C2E90FDA15BD3F2D00828562 /* RecommendedAppCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecommendedAppCell.h; sourceTree = "<group>"; };
-		C2E90FDB15BD3F2D00828562 /* RecommendedAppCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecommendedAppCell.m; sourceTree = "<group>"; };
-		C2E90FDC15BD3F2D00828562 /* RecommendedAppCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RecommendedAppCell.xib; sourceTree = "<group>"; };
 		C2E90FE915BD44DA00828562 /* RecommendApp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecommendApp.h; sourceTree = "<group>"; };
 		C2E90FEA15BD44DA00828562 /* RecommendApp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecommendApp.m; sourceTree = "<group>"; };
 		C2E90FEC15BD454200828562 /* RecommendAppManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecommendAppManager.h; sourceTree = "<group>"; };
 		C2E90FED15BD454200828562 /* RecommendAppManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecommendAppManager.m; sourceTree = "<group>"; };
-		C2E90FEF15BD51F100828562 /* RecommendedAppCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "RecommendedAppCell~ipad.xib"; sourceTree = "<group>"; };
-		C2E90FF315BD553700828562 /* RecommendedAppsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecommendedAppsController.h; sourceTree = "<group>"; };
-		C2E90FF415BD553700828562 /* RecommendedAppsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecommendedAppsController.m; sourceTree = "<group>"; };
-		C2E90FF515BD553800828562 /* RecommendedAppsController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RecommendedAppsController.xib; sourceTree = "<group>"; };
-		C2E90FF615BD553900828562 /* RecommendedAppsController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "RecommendedAppsController~ipad.xib"; sourceTree = "<group>"; };
 		C2EBB8EA164A1B200024D605 /* ZJHSoundManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJHSoundManager.h; sourceTree = "<group>"; };
 		C2EBB8EB164A1B200024D605 /* ZJHSoundManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJHSoundManager.m; sourceTree = "<group>"; };
 		C2EE13C81663591800ADBE2E /* StarryLoadingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StarryLoadingView.h; sourceTree = "<group>"; };
@@ -2619,8 +2621,6 @@
 		C2F2CF971639165500995DCB /* ZJHImageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJHImageManager.m; sourceTree = "<group>"; };
 		C2F2CFB1163932C000995DCB /* ZJHAvatarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJHAvatarView.h; sourceTree = "<group>"; };
 		C2F2CFB2163932C000995DCB /* ZJHAvatarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJHAvatarView.m; sourceTree = "<group>"; };
-		C2F48BCF15BE4484005C4D72 /* RecommendAppService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecommendAppService.h; sourceTree = "<group>"; };
-		C2F48BD015BE4484005C4D72 /* RecommendAppService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecommendAppService.m; sourceTree = "<group>"; };
 		C2F947CF1533D91E0034C895 /* UFPController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UFPController.h; sourceTree = "<group>"; };
 		C2F947D01533D91E0034C895 /* UFPController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UFPController.m; sourceTree = "<group>"; };
 		C2F947D11533D91E0034C895 /* UFPController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UFPController.xib; sourceTree = "<group>"; };
@@ -3318,6 +3318,7 @@
 		CA7C7E061587214300406BFB /* FeedManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedManager.m; sourceTree = "<group>"; };
 		CA7C7E09158721B200406BFB /* FeedService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedService.h; sourceTree = "<group>"; };
 		CA7C7E0A158721B200406BFB /* FeedService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedService.m; sourceTree = "<group>"; };
+		CA837C2A166CDFAD005718AA /* bbs_refresh@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bbs_refresh@2x.png"; sourceTree = "<group>"; };
 		CA841820164CE4AA00713014 /* graffiti@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "graffiti@2x.png"; sourceTree = "<group>"; };
 		CA8815CE1657447800E29BB1 /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
 		CA89737316071335003A95F7 /* Contest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Contest.h; sourceTree = "<group>"; };
@@ -3367,6 +3368,8 @@
 		CA89748016087BE2003A95F7 /* ContestController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContestController.h; sourceTree = "<group>"; };
 		CA89748116087BE2003A95F7 /* ContestController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContestController.m; sourceTree = "<group>"; };
 		CA89748216087BE2003A95F7 /* ContestController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContestController.xib; sourceTree = "<group>"; };
+		CA8A27ED166CE57500D1A2D6 /* ZJHGameApp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJHGameApp.h; sourceTree = "<group>"; };
+		CA8A27EE166CE57500D1A2D6 /* ZJHGameApp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJHGameApp.m; sourceTree = "<group>"; };
 		CA8D60601531EC5500E016ED /* ReplayController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReplayController.h; sourceTree = "<group>"; };
 		CA8D60611531EC5500E016ED /* ReplayController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReplayController.m; sourceTree = "<group>"; };
 		CA8D60621531EC5500E016ED /* ReplayController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReplayController.xib; sourceTree = "<group>"; };
@@ -4230,22 +4233,6 @@
 		CAF10AFA151C665D008C4512 /* AccountManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountManager.m; sourceTree = "<group>"; };
 		CAF10AFC151C666D008C4512 /* ItemManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemManager.h; sourceTree = "<group>"; };
 		CAF10AFD151C666E008C4512 /* ItemManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemManager.m; sourceTree = "<group>"; };
-		CAFE006416609CEC00441D77 /* FacetimeMainController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FacetimeMainController.h; sourceTree = "<group>"; };
-		CAFE006516609CEC00441D77 /* FacetimeMainController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FacetimeMainController.m; sourceTree = "<group>"; };
-		CAFE006616609CEC00441D77 /* FacetimeMainController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FacetimeMainController.xib; sourceTree = "<group>"; };
-		CAFE006716609CEC00441D77 /* FacetimeMainController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "FacetimeMainController~ipad.xib"; sourceTree = "<group>"; };
-		CAFE006A16609CEC00441D77 /* FacetimeNetworkClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FacetimeNetworkClient.h; sourceTree = "<group>"; };
-		CAFE006B16609CEC00441D77 /* FacetimeNetworkClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FacetimeNetworkClient.m; sourceTree = "<group>"; };
-		CAFE006C16609CEC00441D77 /* FacetimeService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FacetimeService.h; sourceTree = "<group>"; };
-		CAFE006D16609CEC00441D77 /* FacetimeService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FacetimeService.m; sourceTree = "<group>"; };
-		CAFE007116609CEC00441D77 /* FacetimeUserInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FacetimeUserInfoView.h; sourceTree = "<group>"; };
-		CAFE007216609CEC00441D77 /* FacetimeUserInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FacetimeUserInfoView.m; sourceTree = "<group>"; };
-		CAFE007316609CEC00441D77 /* FacetimeUserInfoView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FacetimeUserInfoView.xib; sourceTree = "<group>"; };
-		CAFE007416609CEC00441D77 /* FacetimeUserInfoView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "FacetimeUserInfoView~ipad.xib"; sourceTree = "<group>"; };
-		CAFE007516609CEC00441D77 /* MatchingFacetimeUserView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MatchingFacetimeUserView.h; sourceTree = "<group>"; };
-		CAFE007616609CEC00441D77 /* MatchingFacetimeUserView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MatchingFacetimeUserView.m; sourceTree = "<group>"; };
-		CAFE007716609CEC00441D77 /* MatchingFacetimeUserView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MatchingFacetimeUserView.xib; sourceTree = "<group>"; };
-		CAFE007816609CEC00441D77 /* MatchingFacetimeUserView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "MatchingFacetimeUserView~ipad.xib"; sourceTree = "<group>"; };
 		CAFEF87416606E4700441D77 /* Facebook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Facebook.h; sourceTree = "<group>"; };
 		CAFEF87516606E4700441D77 /* Facebook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Facebook.m; sourceTree = "<group>"; };
 		CAFEF87616606E4700441D77 /* FBConnect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBConnect.h; sourceTree = "<group>"; };
@@ -4714,6 +4701,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C28A23D2166C92C1007C9EA5 /* OpenGLES.framework in Frameworks */,
 				C2EE14601665FE9300ADBE2E /* CoreImage.framework in Frameworks */,
 				CA8815CF1657447800E29BB1 /* libicucore.dylib in Frameworks */,
 				C223397F164E41C900D2C123 /* OpenAL.framework in Frameworks */,
@@ -4849,6 +4837,7 @@
 		A405C7F7165B874500E7610F /* Image */ = {
 			isa = PBXGroup;
 			children = (
+				C28A23C3166C90F7007C9EA5 /* fallingCoin */,
 				A405C7F8165B874500E7610F /* chip */,
 				A405C800165B874500E7610F /* poker */,
 				A405C82E165B874500E7610F /* room */,
@@ -4946,12 +4935,14 @@
 		A405C82E165B874500E7610F /* room */ = {
 			isa = PBXGroup;
 			children = (
-				A49A0821166CA5BF003E0F75 /* show_card_button_popup_bg@2x.png */,
-				A49A0822166CA5BF003E0F75 /* show_change_card_button_popup_bg@2x.png */,
+				A49A0837166D95EF003E0F75 /* show_card_button_bg@2x.png */,
+				A49A0838166D95EF003E0F75 /* show_card_button_popup_bg@2x.png */,
+				A49A0839166D95EF003E0F75 /* show_change_card_button_popup_bg@2x.png */,
 				A405C82F165B874500E7610F /* avatar_default@2x.png */,
 				A405C830165B874500E7610F /* chips_select_bg_image@2x.png */,
 				A405C831165B874500E7610F /* item_box@2x.png */,
-				A405C832165B874500E7610F /* show_card_button_bg@2x.png */,
+				A405C832165B874500E7610F /* show_card_button@2x.png */,
+				A405C833165B874500E7610F /* show_card_button_disable@2x.png */,
 				A405C834165B874500E7610F /* zjh_actions */,
 				A405C83F165B874500E7610F /* zjh_arrow@2x.png */,
 				A405C840165B874500E7610F /* zjh_arrow_light@2x.png */,
@@ -5024,6 +5015,7 @@
 		A405C867165B874500E7610F /* sounds */ = {
 			isa = PBXGroup;
 			children = (
+				C28A23C8166C9102007C9EA5 /* fallingCoinBGM.mp3 */,
 				A405C868165B874500E7610F /* bet.mp3 */,
 				A405C869165B874500E7610F /* bet1_F.mp3 */,
 				A405C86A165B874500E7610F /* bet1_M.mp3 */,
@@ -5584,6 +5576,7 @@
 		A4E7878116367338003557AD /* View */ = {
 			isa = PBXGroup;
 			children = (
+				C28A23CA166C9123007C9EA5 /* coinView */,
 				A4F6712D166C878100FF85CA /* ArrowView.h */,
 				A4F6712E166C878100FF85CA /* ArrowView.m */,
 				A41CF57516578D0B0011AE45 /* ZJHCardTypesView.h */,
@@ -5718,6 +5711,48 @@
 			path = Audio;
 			sourceTree = "<group>";
 		};
+		C28A23B9166C90E2007C9EA5 /* Core-Utils-OpenGL */ = {
+			isa = PBXGroup;
+			children = (
+				C28A23BA166C90E2007C9EA5 /* particle */,
+			);
+			path = "Core-Utils-OpenGL";
+			sourceTree = "<group>";
+		};
+		C28A23BA166C90E2007C9EA5 /* particle */ = {
+			isa = PBXGroup;
+			children = (
+				C28A23BB166C90E2007C9EA5 /* ConstantsAndMacros.h */,
+				C28A23BC166C90E2007C9EA5 /* OpenGLCommon.h */,
+				C28A23BD166C90E2007C9EA5 /* OpenGLTexture3D.h */,
+				C28A23BE166C90E2007C9EA5 /* OpenGLTexture3D.m */,
+				C28A23BF166C90E2007C9EA5 /* ParticleEmitter3D.h */,
+				C28A23C0166C90E2007C9EA5 /* ParticleEmitter3D.m */,
+			);
+			path = particle;
+			sourceTree = "<group>";
+		};
+		C28A23C3166C90F7007C9EA5 /* fallingCoin */ = {
+			isa = PBXGroup;
+			children = (
+				C28A23C4166C90F7007C9EA5 /* fallingCoin.png */,
+				C28A23C5166C90F7007C9EA5 /* fallingstars.png */,
+			);
+			name = fallingCoin;
+			path = Draw/ZhaJinHua/Resource/fallingCoin;
+			sourceTree = SOURCE_ROOT;
+		};
+		C28A23CA166C9123007C9EA5 /* coinView */ = {
+			isa = PBXGroup;
+			children = (
+				C28A23CB166C9123007C9EA5 /* FallingCoinImageView.h */,
+				C28A23CC166C9123007C9EA5 /* FallingCoinImageView.m */,
+				C28A23CD166C9123007C9EA5 /* FallingCoinView.h */,
+				C28A23CE166C9123007C9EA5 /* FallingCoinView.m */,
+			);
+			path = coinView;
+			sourceTree = "<group>";
+		};
 		C2916CBD1606B9C300B0996E /* DiceRobotManager */ = {
 			isa = PBXGroup;
 			children = (
@@ -5826,21 +5861,6 @@
 			path = UseItemScene;
 			sourceTree = "<group>";
 		};
-		C2E90FD915BD3F2C00828562 /* Recommend */ = {
-			isa = PBXGroup;
-			children = (
-				C2E90FF315BD553700828562 /* RecommendedAppsController.h */,
-				C2E90FF415BD553700828562 /* RecommendedAppsController.m */,
-				C2E90FF515BD553800828562 /* RecommendedAppsController.xib */,
-				C2E90FF615BD553900828562 /* RecommendedAppsController~ipad.xib */,
-				C2E90FDA15BD3F2D00828562 /* RecommendedAppCell.h */,
-				C2E90FDB15BD3F2D00828562 /* RecommendedAppCell.m */,
-				C2E90FDC15BD3F2D00828562 /* RecommendedAppCell.xib */,
-				C2E90FEF15BD51F100828562 /* RecommendedAppCell~ipad.xib */,
-			);
-			path = Recommend;
-			sourceTree = "<group>";
-		};
 		C2E90FE815BD44DA00828562 /* Recommend */ = {
 			isa = PBXGroup;
 			children = (
@@ -5884,15 +5904,6 @@
 				C2EE145D1665FE4F00ADBE2E /* UIView+MDCShineEffect.m */,
 			);
 			path = MDCShineEffect;
-			sourceTree = "<group>";
-		};
-		C2F48BCE15BE4484005C4D72 /* Recommend */ = {
-			isa = PBXGroup;
-			children = (
-				C2F48BCF15BE4484005C4D72 /* RecommendAppService.h */,
-				C2F48BD015BE4484005C4D72 /* RecommendAppService.m */,
-			);
-			path = Recommend;
 			sourceTree = "<group>";
 		};
 		CA02B52515AC240700B2A3E2 /* Item */ = {
@@ -5977,7 +5988,6 @@
 			children = (
 				CAEE45E2165F5590001E02F1 /* SNS */,
 				CA89747B16087678003A95F7 /* Contest */,
-				C2F48BCE15BE4484005C4D72 /* Recommend */,
 				CA02B52515AC240700B2A3E2 /* Item */,
 				CAA9C424159BF40A00398EC5 /* Share */,
 				CA7C7E081587219600406BFB /* Feed */,
@@ -5996,6 +6006,7 @@
 		CA103B391509A56000F60C03 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				C28A23B9166C90E2007C9EA5 /* Core-Utils-OpenGL */,
 				C2A3CC04161590FF00663271 /* Core-Utils-Animation */,
 				CA103F491509A9FD00F60C03 /* Core-3PP */,
 				CA103CC21509A56000F60C03 /* Core-Application */,
@@ -7567,6 +7578,8 @@
 				CA427060161FFEDC00C6CCAE /* SmsDrawApp.m */,
 				CA427062161FFEE800C6CCAE /* AvatarDrawApp.h */,
 				CA427063161FFEE800C6CCAE /* AvatarDrawApp.m */,
+				CA8A27ED166CE57500D1A2D6 /* ZJHGameApp.h */,
+				CA8A27EE166CE57500D1A2D6 /* ZJHGameApp.m */,
 			);
 			path = GameApp;
 			sourceTree = "<group>";
@@ -7593,6 +7606,7 @@
 		CA745D211503B1B500600024 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C28A23D1166C92C1007C9EA5 /* OpenGLES.framework */,
 				C2EE145F1665FE9300ADBE2E /* CoreImage.framework */,
 				CA8815CE1657447800E29BB1 /* libicucore.dylib */,
 				C223397E164E41C800D2C123 /* OpenAL.framework */,
@@ -9096,6 +9110,7 @@
 		CAC7914A1664AD0B009B4053 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				CA837C2A166CDFAD005718AA /* bbs_refresh@2x.png */,
 				CAB5DE5B166A00B600A23011 /* bbs_action_sheet_bg@2x.png */,
 				CAC792AA1668D6B0009B4053 /* bbs_option_bg@2x.png */,
 				CAC792AB1668D6B0009B4053 /* bbs_option_bubble@2x.png */,
@@ -9280,7 +9295,6 @@
 			children = (
 				CA89747F16087BBD003A95F7 /* Contest */,
 				CA8973F51607230E003A95F7 /* Feed */,
-				C2E90FD915BD3F2C00828562 /* Recommend */,
 				CA22DCCD157CAFFC009C95CB /* Result */,
 				EAF5AFCD155E2DB4008CD8EE /* MusicSettings */,
 				A30A28441580C2AE006CA3CC /* PrivateChat */,
@@ -9423,82 +9437,10 @@
 		CAFE006116609CEC00441D77 /* SocialFeatures */ = {
 			isa = PBXGroup;
 			children = (
-				CAFE006216609CEC00441D77 /* Facetime */,
 				CAFE007916609CEC00441D77 /* LocateFriend */,
 				CAFE007D16609CEC00441D77 /* PrivateSms */,
 			);
 			path = SocialFeatures;
-			sourceTree = "<group>";
-		};
-		CAFE006216609CEC00441D77 /* Facetime */ = {
-			isa = PBXGroup;
-			children = (
-				CAFE006316609CEC00441D77 /* Controller */,
-				CAFE006816609CEC00441D77 /* Model */,
-				CAFE006916609CEC00441D77 /* Network */,
-				CAFE006E16609CEC00441D77 /* Resource */,
-				CAFE006F16609CEC00441D77 /* Service */,
-				CAFE007016609CEC00441D77 /* View */,
-			);
-			path = Facetime;
-			sourceTree = "<group>";
-		};
-		CAFE006316609CEC00441D77 /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-				CAFE006416609CEC00441D77 /* FacetimeMainController.h */,
-				CAFE006516609CEC00441D77 /* FacetimeMainController.m */,
-				CAFE006616609CEC00441D77 /* FacetimeMainController.xib */,
-				CAFE006716609CEC00441D77 /* FacetimeMainController~ipad.xib */,
-			);
-			path = Controller;
-			sourceTree = "<group>";
-		};
-		CAFE006816609CEC00441D77 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		CAFE006916609CEC00441D77 /* Network */ = {
-			isa = PBXGroup;
-			children = (
-				CAFE006A16609CEC00441D77 /* FacetimeNetworkClient.h */,
-				CAFE006B16609CEC00441D77 /* FacetimeNetworkClient.m */,
-				CAFE006C16609CEC00441D77 /* FacetimeService.h */,
-				CAFE006D16609CEC00441D77 /* FacetimeService.m */,
-			);
-			path = Network;
-			sourceTree = "<group>";
-		};
-		CAFE006E16609CEC00441D77 /* Resource */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Resource;
-			sourceTree = "<group>";
-		};
-		CAFE006F16609CEC00441D77 /* Service */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Service;
-			sourceTree = "<group>";
-		};
-		CAFE007016609CEC00441D77 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				CAFE007116609CEC00441D77 /* FacetimeUserInfoView.h */,
-				CAFE007216609CEC00441D77 /* FacetimeUserInfoView.m */,
-				CAFE007316609CEC00441D77 /* FacetimeUserInfoView.xib */,
-				CAFE007416609CEC00441D77 /* FacetimeUserInfoView~ipad.xib */,
-				CAFE007516609CEC00441D77 /* MatchingFacetimeUserView.h */,
-				CAFE007616609CEC00441D77 /* MatchingFacetimeUserView.m */,
-				CAFE007716609CEC00441D77 /* MatchingFacetimeUserView.xib */,
-				CAFE007816609CEC00441D77 /* MatchingFacetimeUserView~ipad.xib */,
-			);
-			path = View;
 			sourceTree = "<group>";
 		};
 		CAFE007916609CEC00441D77 /* LocateFriend */ = {
@@ -10829,10 +10771,6 @@
 				C2433A2915AC025A00325A76 /* CommonItemInfoView.xib in Resources */,
 				C2433A2B15AC028400325A76 /* CommonItemInfoView~ipad.xib in Resources */,
 				CA50A01715BA5BF400CAB603 /* ResultController~ipad.xib in Resources */,
-				C2E90FE115BD3F2D00828562 /* RecommendedAppCell.xib in Resources */,
-				C2E90FF015BD51F200828562 /* RecommendedAppCell~ipad.xib in Resources */,
-				C2E90FF815BD553A00828562 /* RecommendedAppsController.xib in Resources */,
-				C2E90FF915BD553A00828562 /* RecommendedAppsController~ipad.xib in Resources */,
 				A4B763A215C25208003B4E72 /* Draw.proto in Resources */,
 				A4B763A315C25208003B4E72 /* Dice.proto in Resources */,
 				A4B7640515C28F8E003B4E72 /* DiceGamePlayController.xib in Resources */,
@@ -11682,7 +11620,8 @@
 				A405C8B8165B874500E7610F /* avatar_default@2x.png in Resources */,
 				A405C8B9165B874500E7610F /* chips_select_bg_image@2x.png in Resources */,
 				A405C8BA165B874500E7610F /* item_box@2x.png in Resources */,
-				A405C8BB165B874500E7610F /* show_card_button_bg@2x.png in Resources */,
+				A405C8BB165B874500E7610F /* show_card_button@2x.png in Resources */,
+				A405C8BC165B874500E7610F /* show_card_button_disable@2x.png in Resources */,
 				A405C8BD165B874500E7610F /* zjh_bet1@2x.png in Resources */,
 				A405C8BE165B874500E7610F /* zjh_bet2@2x.png in Resources */,
 				A405C8BF165B874500E7610F /* zjh_check_card1@2x.png in Resources */,
@@ -11935,12 +11874,6 @@
 				CAFE004E166072AB00441D77 /* wrong.wav in Resources */,
 				C22CDE15166081C100844C93 /* CommonStarryDialog.xib in Resources */,
 				C22CDE171660823C00844C93 /* CommonStarryDialog~ipad.xib in Resources */,
-				CAFE008216609CEC00441D77 /* FacetimeMainController.xib in Resources */,
-				CAFE008316609CEC00441D77 /* FacetimeMainController~ipad.xib in Resources */,
-				CAFE008716609CEC00441D77 /* FacetimeUserInfoView.xib in Resources */,
-				CAFE008816609CEC00441D77 /* FacetimeUserInfoView~ipad.xib in Resources */,
-				CAFE008A16609CEC00441D77 /* MatchingFacetimeUserView.xib in Resources */,
-				CAFE008B16609CEC00441D77 /* MatchingFacetimeUserView~ipad.xib in Resources */,
 				CAC7912916635FB3009B4053 /* ShowImageController.xib in Resources */,
 				CAC7914E1664AD0B009B4053 /* bbs_badge@2x.png in Resources */,
 				CAC7914F1664AD0B009B4053 /* bbs_board_bg@2x.png in Resources */,
@@ -12004,8 +11937,13 @@
 				CA659793166C7D2400A239E1 /* BBSPostActionCell~ipad.xib in Resources */,
 				CA659795166C7D3800A239E1 /* BBSPostActionHeaderView~ipad.xib in Resources */,
 				CA659797166C7DAD00A239E1 /* BBSPostDetailCell~ipad.xib in Resources */,
-				A49A0823166CA5BF003E0F75 /* show_card_button_popup_bg@2x.png in Resources */,
-				A49A0824166CA5BF003E0F75 /* show_change_card_button_popup_bg@2x.png in Resources */,
+				C28A23C6166C90F7007C9EA5 /* fallingCoin.png in Resources */,
+				C28A23C7166C90F7007C9EA5 /* fallingstars.png in Resources */,
+				C28A23C9166C9102007C9EA5 /* fallingCoinBGM.mp3 in Resources */,
+				CA837C2B166CDFAD005718AA /* bbs_refresh@2x.png in Resources */,
+				A49A083A166D95EF003E0F75 /* show_card_button_bg@2x.png in Resources */,
+				A49A083B166D95EF003E0F75 /* show_card_button_popup_bg@2x.png in Resources */,
+				A49A083C166D95EF003E0F75 /* show_change_card_button_popup_bg@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -12336,11 +12274,8 @@
 				CAB15E8815AD41C300502106 /* PickView.m in Sources */,
 				CAB15E8B15AD41E600502106 /* PickToolView.m in Sources */,
 				CA50A01515B938B700CAB603 /* UserStatusService.m in Sources */,
-				C2E90FE015BD3F2D00828562 /* RecommendedAppCell.m in Sources */,
 				C2E90FEB15BD44DA00828562 /* RecommendApp.m in Sources */,
 				C2E90FEE15BD454200828562 /* RecommendAppManager.m in Sources */,
-				C2E90FF715BD553A00828562 /* RecommendedAppsController.m in Sources */,
-				C2F48BD115BE4484005C4D72 /* RecommendAppService.m in Sources */,
 				A4B763A815C25218003B4E72 /* Draw.pb.m in Sources */,
 				CA91FC7F15C27BE700E9C1CD /* CommonGameNetworkClient.m in Sources */,
 				CA91FC8215C27BF700E9C1CD /* CommonGameNetworkService.m in Sources */,
@@ -12626,11 +12561,6 @@
 				CAFEFEE216606FC200441D77 /* UIView+LayerEffects.m in Sources */,
 				CAFEFFB4166072AB00441D77 /* DrawColor.m in Sources */,
 				CAFEFFB5166072AB00441D77 /* DrawUtils.m in Sources */,
-				CAFE008116609CEC00441D77 /* FacetimeMainController.m in Sources */,
-				CAFE008416609CEC00441D77 /* FacetimeNetworkClient.m in Sources */,
-				CAFE008516609CEC00441D77 /* FacetimeService.m in Sources */,
-				CAFE008616609CEC00441D77 /* FacetimeUserInfoView.m in Sources */,
-				CAFE008916609CEC00441D77 /* MatchingFacetimeUserView.m in Sources */,
 				CA42FE861660B73A0097453A /* DrawGameAnimationManager.m in Sources */,
 				CAC790FB1663194F009B4053 /* BBSTableViewCell.m in Sources */,
 				C2EE13CA1663591800ADBE2E /* StarryLoadingView.m in Sources */,
@@ -12657,6 +12587,11 @@
 				A4E40099166C44F6001D2658 /* ZJHRuleConfigFactory.m in Sources */,
 				CA659789166C58B900A239E1 /* BBSOptionView.m in Sources */,
 				A4F6712F166C878100FF85CA /* ArrowView.m in Sources */,
+				C28A23C1166C90E2007C9EA5 /* OpenGLTexture3D.m in Sources */,
+				C28A23C2166C90E2007C9EA5 /* ParticleEmitter3D.m in Sources */,
+				C28A23CF166C9123007C9EA5 /* FallingCoinImageView.m in Sources */,
+				C28A23D0166C9123007C9EA5 /* FallingCoinView.m in Sources */,
+				CA8A27EF166CE57500D1A2D6 /* ZJHGameApp.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

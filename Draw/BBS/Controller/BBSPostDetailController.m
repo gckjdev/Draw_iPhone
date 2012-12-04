@@ -27,6 +27,7 @@
 @property (retain, nonatomic) IBOutlet UIImageView *toolBarBG;
 @property (retain, nonatomic) IBOutlet UIButton *supportButton;
 @property (retain, nonatomic) IBOutlet UIButton *commentButton;
+@property (retain, nonatomic) IBOutlet UIButton *refreshButton;
 
 @end
 
@@ -72,6 +73,7 @@ typedef enum{
     PPRelease(_supportButton);
     PPRelease(_commentButton);
     PPRelease(_header);
+    [_refreshButton release];
     [super dealloc];
 }
 
@@ -93,18 +95,15 @@ typedef enum{
 - (void)initViews
 {
     
-    [self.backButton setImage:[_bbsImageManager bbsBackImage] forState:UIControlStateNormal];
     [self.bgImageView setImage:[_bbsImageManager bbsBGImage]];
-    [self.toolBarBG setImage:[_bbsImageManager bbsDetailToolbar]];
+    [self.refreshButton setImage:[_bbsImageManager bbsRefreshImage] forState:UIControlStateNormal];
 
-    [BBSViewManager updateLable:self.titleLabel
-                        bgColor:[UIColor clearColor]
-                           font:[_bbsFontManager bbsTitleFont]
-                      textColor:[_bbsColorManager bbsTitleColor]
-                           text:NSLS(@"kPostDetail")];
+
+    [BBSViewManager updateDefaultTitleLabel:self.titleLabel text:NSLS(@"kPostDetail")];
+    [BBSViewManager updateDefaultBackButton:self.backButton];
     
     [self.refreshFooterView setBackgroundColor:[UIColor clearColor]];
-    
+    [self.toolBarBG setImage:[_bbsImageManager bbsDetailToolbar]];
     [BBSViewManager updateButton:self.supportButton
                          bgColor:[UIColor clearColor]
                          bgImage:[_bbsImageManager bbsDetailSupport]
@@ -180,7 +179,7 @@ typedef enum{
                                                      offset:tab.offset
                                                       limit:tab.limit
                                                    delegate:self];
-
+    [self showActivityWithText:NSLS(@"kLoading")];
 }
 
 
@@ -360,8 +359,8 @@ typedef enum{
         }else{
             _selectedAction = nil;
         }
-        NSArray *indexPaths = [NSArray arrayWithObject:indexPath];
-        [tableView reloadRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationNone];
+//        [tableView reloadData];
+        [tableView reloadRowsAtIndexPaths:[tableView indexPathsForVisibleRows] withRowAnimation:UITableViewRowAnimationNone];
     }
 }
 
@@ -513,6 +512,7 @@ typedef enum{
     [self setToolBarBG:nil];
     [self setSupportButton:nil];
     [self setCommentButton:nil];
+    [self setRefreshButton:nil];
     [super viewDidUnload];
 }
 @end

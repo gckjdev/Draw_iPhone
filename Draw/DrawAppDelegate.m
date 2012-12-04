@@ -38,7 +38,7 @@
 #import "NotificationManager.h"
 #import "LmWallService.h"
 #import "UserStatusService.h"
-#import "FacetimeService.h"
+//#import "FacetimeService.h"
 #import "DiceGameService.h"
 //#import "DiceFontManager.h"
 #import "WordManager.h"
@@ -71,8 +71,8 @@ NSString* GlobalGetServerURL()
 
 NSString* GlobalGetTrafficServerURL()
 {
-    return [ConfigManager getTrafficAPIServerURL];
-//    return @"http://192.168.1.123:8100/api/i?";
+//    return [ConfigManager getTrafficAPIServerURL];
+    return @"http://192.168.1.123:8100/api/i?";
 //    return @"http://192.168.1.198:8100/api/i?";
 }
 
@@ -355,8 +355,7 @@ NSString* GlobalGetBoardServerURL()
     //sync level details
     [[LevelService defaultService] syncExpAndLevel:SYNC];
     
-//    [GameConfigDataManager createTestConfigData];
-  
+    [GameConfigDataManager createTestConfigData];  
     [GameConfigDataManager defaultInstance];
     
     return YES;
@@ -422,7 +421,7 @@ NSString* GlobalGetBoardServerURL()
     [[MusicItemManager defaultManager] saveMusicItems];
     
     [[UserStatusService defaultService] stop];
-    [[FacetimeService defaultService] disconnectServer];
+//    [[FacetimeService defaultService] disconnectServer];
     
     [[FriendManager defaultManager] removeAllDeletedFriends];
     

@@ -13,18 +13,19 @@
 #import "TimeUtils.h"
 #import "BBSPopupSelectionView.h"
 
-#define SPACE_CONTENT_TOP (ISIPAD ? 25 * 2 : 30)
-#define SPACE_CONTENT_BOTTOM_IMAGE (ISIPAD ? 100 * 2 : 100) //IMAGE TYPE OR DRAW TYPE
-#define SPACE_CONTENT_BOTTOM_TEXT (ISIPAD ? 15 * 2 : 15) //TEXT TYPE
-#define IMAGE_HEIGHT (ISIPAD ? 186 : 80)
+#define SPACE_CONTENT_TOP (ISIPAD ? 77 : 35)
+#define SPACE_CONTENT_BOTTOM_IMAGE (ISIPAD ? 100 * 2.5 : 100) //IMAGE TYPE OR DRAW TYPE
+#define SPACE_CONTENT_BOTTOM_TEXT (ISIPAD ? 40 : 15) //TEXT TYPE
+#define IMAGE_HEIGHT (ISIPAD ? 80 * 2.33 : 80)
 #define CONTENT_TEXT_LINE (1000)
 
-#define CONTENT_WIDTH (ISIPAD ? 396 : 170)
+#define CONTENT_WIDTH (ISIPAD ?  170 * 2.33 : 170)
 #define CONTENT_MAX_HEIGHT (99999999)
 
-#define Y_CONTENT_TEXT (ISIPAD ? 5 * 2 : 5)
+#define Y_CONTENT_TEXT (ISIPAD ? 5 * 2.33 : 5)
 #define CONTENT_FONT [[BBSFontManager defaultManager] postContentFont]
 
+#define HEIGHT_SUPPORT (ISIPAD ? 80 * 2.33: 80)
 
 @implementation BBSPostActionCell
 @synthesize reply = _reply;
@@ -36,6 +37,7 @@
     PPRelease(_action);
     PPRelease(_post);
     PPRelease(_option);
+    [_supportImage release];
     [super dealloc];
 }
 
@@ -48,7 +50,8 @@
     BBSImageManager *imageManager = [BBSImageManager defaultManager];
     [self.option setImage:[imageManager bbsDetailOptionUp]];
     [self.reply setImage:[imageManager bbsDetailReply] forState:UIControlStateNormal];
-
+    [self.supportImage setImage:[[BBSImageManager defaultManager] bbsPostSupportImage]];
+    
 }
 
 + (id)createCell:(id)delegate
@@ -74,6 +77,9 @@
 
 + (CGFloat)getCellHeightWithBBSAction:(PBBBSAction *)action
 {
+    if ([action isSupport]) {
+        return HEIGHT_SUPPORT;
+    }
     NSString *text = action.showText;
     CGFloat height = [BBSPostActionCell heightForContentText:text];
 
@@ -129,10 +135,20 @@
 {
     self.action = action;
     self.post = post;
+    
     [self updateUserInfo:action.createUser];
-    [self updateContentWithAction:action];
     [self updateTimeStamp:action.createDate];
     [self updateReplyAction];
+    
+    if ([action isSupport]) {
+        [self.supportImage setHidden:NO];
+        self.content.hidden = YES;
+        self.image.hidden = YES;
+    }else{
+        [self.supportImage setHidden:YES];
+        self.content.hidden = NO;
+        [self updateContentWithAction:action];        
+    }    
 }
 
 
@@ -180,7 +196,7 @@ enum{
     UIView *optionView = [self viewWithTag:OPTION_VIEW_TAG];
     [optionView removeFromSuperview];
     if (show) {
-        NSArray *titles = [NSArray arrayWithObjects:NSLS(@"k奖赏"),NSLS(@"k回复"), nil];
+        NSArray *titles = [NSArray arrayWithObjects:NSLS(@"kReward"),NSLS(@"kReply"), nil];
         BBSPopupSelectionView *selectView = [[[BBSPopupSelectionView alloc] initWithTitles:titles delegate:self] autorelease];
         selectView.tag = OPTION_VIEW_TAG;
         CGPoint point = self.option.center;

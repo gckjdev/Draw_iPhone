@@ -249,39 +249,40 @@
     return [MobClickUtils getIntValueByKey:@"REWARD_CUT_FOR_LVL_UP" defaultValue:2];
 }
 
-+ (NSString*)getRecommendAppLinkZh
-{
-    return [MobClickUtils getStringValueByKey:@"ENGLISH_RECOMMEND_APP" defaultValue:@"http://you100.me:8080/dat/app_zh.txt"];
-}
-+ (NSString*)getRecommendAppLinkZht
-{
-    return [MobClickUtils getStringValueByKey:@"CHINESE_SIMPLIFY_APP" defaultValue:@"http://you100.me:8080/dat/app_zht.txt"];
-}
-+ (NSString*)getRecommendAppLinkEn
-{
-    return [MobClickUtils getStringValueByKey:@"CHINESE_TRADITIONAL_APP" defaultValue:@"http://you100.me:8080/dat/app_en.txt"];
-}
+//+ (NSString*)getRecommendAppLinkZh
+//{
+//    return [MobClickUtils getStringValueByKey:@"ENGLISH_RECOMMEND_APP" defaultValue:@"http://you100.me:8080/dat/app_zh.txt"];
+//}
+//+ (NSString*)getRecommendAppLinkZht
+//{
+//    return [MobClickUtils getStringValueByKey:@"CHINESE_SIMPLIFY_APP" defaultValue:@"http://you100.me:8080/dat/app_zht.txt"];
+//}
+//+ (NSString*)getRecommendAppLinkEn
+//{
+//    return [MobClickUtils getStringValueByKey:@"CHINESE_TRADITIONAL_APP" defaultValue:@"http://you100.me:8080/dat/app_en.txt"];
+//}
 
-+ (NSString*)getRecommendAppLink
-{
-    if ([LocaleUtils isChina]) {
-        return [ConfigManager getRecommendAppLinkZh];
-    } else  if ([LocaleUtils isOtherChina]){
-        return [ConfigManager getRecommendAppLinkZht];
-    } else {
-        return [ConfigManager getRecommendAppLinkEn];
-    }
-}
+//+ (NSString*)getRecommendAppLink
+//{
+//    if ([LocaleUtils isChina]) {
+//        return [ConfigManager getRecommendAppLinkZh];
+//    } else  if ([LocaleUtils isOtherChina]){
+//        return [ConfigManager getRecommendAppLinkZht];
+//    } else {
+//        return [ConfigManager getRecommendAppLinkEn];
+//    }
+//}
 
 + (BOOL)isShowRecommendApp
 {
-    return [MobClickUtils getBoolValueByKey:@"SHOW_RECOMMEND_APP" defaultValue:NO];
+    return NO;
+//    return [MobClickUtils getBoolValueByKey:@"SHOW_RECOMMEND_APP" defaultValue:NO];
 }
 
-+ (NSString*)getFacetimeServerListString
-{
-    return [MobClickUtils getStringValueByKey:@"FACETIME_SERVER_LIST" defaultValue:@"192.168.1.5:8191"];
-}
+//+ (NSString*)getFacetimeServerListString
+//{
+//    return [MobClickUtils getStringValueByKey:@"FACETIME_SERVER_LIST" defaultValue:@"192.168.1.5:8191"];
+//}
 
 + (NSString *)currentVersion
 {

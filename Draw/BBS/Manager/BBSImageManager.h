@@ -22,6 +22,7 @@
 - (UIImage *)optionRightBGImage;
 - (UIImage *)optionButtonBGImage;
 - (UIImage *)bbsActionSheetBG;
+- (UIImage *)bbsRefreshImage;
 
 #pragma mark - Index Page image
 - (UIImage *)bbsBadgeImage;

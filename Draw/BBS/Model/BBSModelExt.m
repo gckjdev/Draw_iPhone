@@ -151,7 +151,9 @@
         if ([self isCommet]) {
             return self.content.text;
         }else if([self isReply]){
-            return [NSString stringWithFormat:@"kReply %@: %@",self.createUser.showNick, self.content.text];
+            return [NSString stringWithFormat:NSLS(@"kReplyUserPost"),
+                    self.createUser.showNick,
+                    self.content.text];
         }
     }
     return nil;
@@ -175,11 +177,11 @@
     NSString *srcText = self.source.briefText;
     if ([self isSupport]) {
         //如果是顶贴
-        return [NSString stringWithFormat:@"kSupportMyPost：%@",srcText];
+        return [NSString stringWithFormat:NSLS(@"kSupportMyPost"),srcText];
     }else if([self isCommet]){
-        return [NSString stringWithFormat:@"kCommentMyPost：%@",srcText];
+        return [NSString stringWithFormat:NSLS(@"kCommentMyPost"),srcText];
     }else if([self isReply]){
-        return [NSString stringWithFormat:@"kReplyMyComment：%@",srcText];
+        return [NSString stringWithFormat:NSLS(@"kReplyMyComment"),srcText];
     }
     return nil;
 //    self.source

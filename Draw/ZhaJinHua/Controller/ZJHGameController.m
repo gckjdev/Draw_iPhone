@@ -855,15 +855,26 @@
     [self popupFoldCardMessageAtUser:userId];
 }
 
+- (void)fallCoins:(int)coinsNum
+{
+    _coinView = [[[FallingCoinView alloc]initWithFrame:self.view.frame withNum:coinsNum] autorelease];
+    _coinView.coindelegate = self;
+    [self.view addSubview:_coinView];
+}
+
 - (void)someoneWon:(NSString*)userId
 {
     if ([_userManager isMe:userId]) {
         [_audioManager playSoundByURL:[_soundManager gameWin]];
         [_audioManager playSoundByURL:[_soundManager fullMoney]];
+        
+        [self fallCoins:[[_gameService userPlayInfo:userId] resultAward]];
     } else {
         [_audioManager playSoundByURL:[_soundManager gameOver]];
     }
     [self.betTable userWonAllChips:[self getPositionByUserId:userId]];
+    
+    
 }
 
 
@@ -1392,7 +1403,16 @@
     [[self getMyAvatarView] update];
 }
 
+
+- (void)coinAnimationFinished
+{
+    [_coinView removeFromSuperview];
+    _coinView = nil;
+}
+
+
 - (IBAction)clickChangeCardButton:(id)sender {
     
 }
+
 @end

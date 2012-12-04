@@ -57,14 +57,9 @@
 
 - (void)initViews
 {
-    [self.backButton setImage:[_bbsImageManager bbsBackImage] forState:UIControlStateNormal];
-
-    
-    [BBSViewManager updateLable:self.titleLabel
-                        bgColor:[UIColor clearColor]
-                           font:[_bbsFontManager bbsTitleFont]
-                      textColor:[_bbsColorManager bbsTitleColor]
-                           text:NSLS(@"kBBS")];
+    [BBSViewManager updateDefaultTitleLabel:self.titleLabel text:NSLS(@"kBBS")];
+    [BBSViewManager updateDefaultBackButton:self.backButton];
+    [BBSViewManager updateDefaultTableView:self.dataTableView];
     
     [BBSViewManager updateButton:self.myPostButton
                          bgColor:[UIColor clearColor]
@@ -104,6 +99,9 @@
     [super viewDidLoad];
     [self initViews];
     [[BBSService defaultService] getBBSBoardList:self];
+    if ([[[BBSManager defaultManager] boardList] count] != 0) {
+        [self showActivityWithText:NSLS(@"kLoading")];
+    }
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -126,19 +124,12 @@
     [BBSActionListController enterActionListControllerFromController:self animated:YES];
 }
 
-//- (void)openAllSubBoards
-//{
-////    for (PBBBSBoard *pBoard in self.parentBoardList) {
-////        NSArray *sBoards = [_bbsManager sbuBoardListForBoardId:pBoard.boardId];
-////        [_openBoardSet addObjectsFromArray:sBoards];
-////    }
-//}
-
 #pragma mark bbs borad delegate
 
 - (void)didGetBBSBoardList:(NSArray *)boardList
                resultCode:(NSInteger)resultCode
 {
+    [self hideActivity];
     if (resultCode == 0) {
         self.parentBoardList = [_bbsManager parentBoardList];
         [_openBoardSet removeAllObjects];

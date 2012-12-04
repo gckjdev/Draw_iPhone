@@ -39,7 +39,7 @@
 					<object class="IBUIImageView" id="215228051">
 						<reference key="NSNextResponder" ref="594756960"/>
 						<int key="NSvFlags">276</int>
-						<string key="NSFrame">{{50, 0}, {245, 239}}</string>
+						<string key="NSFrame">{{116, 0}, {571, 557}}</string>
 						<reference key="NSSuperview" ref="594756960"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="966452623"/>
@@ -54,7 +54,7 @@
 					<object class="IBUIImageView" id="843713007">
 						<reference key="NSNextResponder" ref="594756960"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrameSize">{45, 45}</string>
+						<string key="NSFrameSize">{105, 105}</string>
 						<reference key="NSSuperview" ref="594756960"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="215228051"/>
@@ -65,7 +65,7 @@
 					<object class="IBUILabel" id="966452623">
 						<reference key="NSNextResponder" ref="594756960"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{78, 9}, {124, 21}}</string>
+						<string key="NSFrame">{{182, 21}, {289, 49}}</string>
 						<reference key="NSSuperview" ref="594756960"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="351332590"/>
@@ -96,8 +96,8 @@
 					</object>
 					<object class="IBUILabel" id="351332590">
 						<reference key="NSNextResponder" ref="594756960"/>
-						<int key="NSvFlags">289</int>
-						<string key="NSFrame">{{202, 9}, {82, 21}}</string>
+						<int key="NSvFlags">292</int>
+						<string key="NSFrame">{{471, 21}, {191, 49}}</string>
 						<reference key="NSSuperview" ref="594756960"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="683632117"/>
@@ -126,10 +126,10 @@
 					<object class="IBUILabel" id="683632117">
 						<reference key="NSNextResponder" ref="594756960"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{78, 35}, {206, 45}}</string>
+						<string key="NSFrame">{{182, 81}, {480, 105}}</string>
 						<reference key="NSSuperview" ref="594756960"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="188712504"/>
+						<reference key="NSNextKeyView" ref="761158709"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<object class="NSColor" key="IBUIBackgroundColor" id="246164423">
 							<int key="NSColorSpace">3</int>
@@ -148,12 +148,12 @@
 						<reference key="IBUIFontDescription" ref="862346347"/>
 						<reference key="IBUIFont" ref="262074176"/>
 						<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
-						<double key="preferredMaxLayoutWidth">206</double>
+						<double key="preferredMaxLayoutWidth">480</double>
 					</object>
 					<object class="IBUIImageView" id="188712504">
 						<reference key="NSNextResponder" ref="594756960"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{78, 92}, {85, 80}}</string>
+						<string key="NSFrame">{{182, 214}, {198, 186}}</string>
 						<reference key="NSSuperview" ref="594756960"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="167618898"/>
@@ -165,7 +165,7 @@
 					<object class="IBUILabel" id="167618898">
 						<reference key="NSNextResponder" ref="594756960"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{78, 180}, {206, 50}}</string>
+						<string key="NSFrame">{{182, 419}, {480, 116}}</string>
 						<reference key="NSSuperview" ref="594756960"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="394007561"/>
@@ -191,14 +191,15 @@
 							<int key="NSfFlags">16</int>
 						</object>
 						<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
-						<double key="preferredMaxLayoutWidth">206</double>
+						<double key="preferredMaxLayoutWidth">480</double>
 					</object>
 					<object class="IBUIView" id="394007561">
 						<reference key="NSNextResponder" ref="594756960"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{78, 200}, {206, 1}}</string>
+						<string key="NSFrame">{{182, 466}, {480, 2}}</string>
 						<reference key="NSSuperview" ref="594756960"/>
 						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<object class="NSColor" key="IBUIBackgroundColor">
 							<int key="NSColorSpace">1</int>
@@ -206,8 +207,19 @@
 						</object>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 					</object>
+					<object class="IBUIImageView" id="761158709">
+						<reference key="NSNextResponder" ref="594756960"/>
+						<int key="NSvFlags">292</int>
+						<string key="NSFrame">{{189, 81}, {25, 29}}</string>
+						<reference key="NSSuperview" ref="594756960"/>
+						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView" ref="188712504"/>
+						<string key="NSReuseIdentifierKey">_NS:9</string>
+						<bool key="IBUIUserInteractionEnabled">NO</bool>
+						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+					</object>
 				</array>
-				<string key="NSFrameSize">{300, 250}</string>
+				<string key="NSFrameSize">{700, 583}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="843713007"/>
@@ -286,6 +298,14 @@
 					</object>
 					<int key="connectionID">42</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">supportImage</string>
+						<reference key="source" ref="594756960"/>
+						<reference key="destination" ref="761158709"/>
+					</object>
+					<int key="connectionID">46</int>
+				</object>
 			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<array key="orderedObjects">
@@ -318,6 +338,7 @@
 							<reference ref="188712504"/>
 							<reference ref="394007561"/>
 							<reference ref="167618898"/>
+							<reference ref="761158709"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -361,6 +382,11 @@
 						<reference key="object" ref="394007561"/>
 						<reference key="parent" ref="594756960"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">45</int>
+						<reference key="object" ref="761158709"/>
+						<reference key="parent" ref="594756960"/>
+					</object>
 				</array>
 			</object>
 			<dictionary class="NSMutableDictionary" key="flattenedProperties">
@@ -377,12 +403,13 @@
 				<string key="36.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="38.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="40.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+				<string key="45.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 			</dictionary>
 			<dictionary class="NSMutableDictionary" key="unlocalizedProperties"/>
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">44</int>
+			<int key="maxID">46</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -434,6 +461,7 @@
 					<dictionary class="NSMutableDictionary" key="outlets">
 						<string key="source">UILabel</string>
 						<string key="splitLine">UIView</string>
+						<string key="supportImage">UIImageView</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
 						<object class="IBToOneOutletInfo" key="source">
@@ -443,6 +471,10 @@
 						<object class="IBToOneOutletInfo" key="splitLine">
 							<string key="name">splitLine</string>
 							<string key="candidateClassName">UIView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="supportImage">
+							<string key="name">supportImage</string>
+							<string key="candidateClassName">UIImageView</string>
 						</object>
 					</dictionary>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">

@@ -99,7 +99,7 @@ static BBSFontManager* _staticBBSFontManager;
     return ISIPHONE ? BOLDFONT(14) : BOLDFONT(14*2);
 }
 - (UIFont *)actionSourceFont{
-    return ISIPHONE ? FONT(13) : FONT(13*2);
+    return ISIPHONE ? FONT(12) : FONT(12*2);
 }
 
 #pragma mark creation font
