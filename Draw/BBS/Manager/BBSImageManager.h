@@ -29,6 +29,10 @@
 - (UIImage *)bbsBoardBgImage;
 - (UIImage *)bbsBoardLastBgImage;
 - (UIImage *)bbsBoardLineImage;
+
+- (UIImage *)bbsBoardMineImage;
+- (UIImage *)bbsBoardCommentImage;
+
 - (UIImage *)bbsButtonLeftImage;
 - (UIImage *)bbsButtonRightImage;
 - (UIImage *)bbsSectionBgImage;
