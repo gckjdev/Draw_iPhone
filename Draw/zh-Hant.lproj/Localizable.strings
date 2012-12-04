@@ -237,6 +237,8 @@
 "kShare_via_Facebook" = "通過Facebook分享";
 "kShare_via_Twitter" = "通過Twitter分享";
 "kShare_via_Weixin" = "分享到微信";
+"kShare_via_Weixin_Timeline" = "分享到微信朋友圈";
+"kShare_via_Weixin_Friend" = "分享給微信好友";
 "kWeixinNotInstall" = "對不起，您沒有安裝微信或微信版本較低，無法發送微信消息!";
 
 "Message" = "消息";

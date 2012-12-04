@@ -8,7 +8,7 @@
 	<string>${PRODUCT_NAME}</string>
 	<key>CFBundleExecutable</key>
 	<string>${EXECUTABLE_NAME}</string>
-	<key>Icon files DRAW</key>
+	<key>CFBundleIconFiles</key>
 	<array>
 		<string>new_icon.png</string>
 		<string>new_icon@2x.png</string>
@@ -16,7 +16,7 @@
 		<string>new_icon_ipad2.png</string>
 	</array>
 	<key>CFBundleIdentifier</key>
-	<string>com.orange.dice</string>
+	<string>com.orange.draw</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
@@ -27,7 +27,7 @@
 	<string>6.0</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
-	<key>CFBundleURLTypes</key>
+	<key>URL types DICE</key>
 	<array>
 		<dict>
 			<key>CFBundleURLSchemes</key>
@@ -37,7 +37,7 @@
 			</array>
 		</dict>
 	</array>
-	<key>URL types DRAW</key>
+	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
 			<key>CFBundleURLSchemes</key>
@@ -79,7 +79,7 @@
 	<string>DiceDefault</string>
 	<key>Launch image Draw</key>
 	<string>Default</string>
-	<key>CFBundleIconFiles</key>
+	<key>Icon files DICE</key>
 	<array>
 		<string>dice_icon_57.png</string>
 		<string>dice_icon_57@2x.png</string>

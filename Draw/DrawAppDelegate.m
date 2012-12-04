@@ -232,6 +232,7 @@ NSString* GlobalGetBoardServerURL()
     [self initImageCacheManager];
     
     if (isDrawApp() == YES){
+        PPDebug(@"Init Weixin SDK");
         [WXApi registerApp:@"wx427a2f57bc4456d1"];
     }
     
@@ -476,13 +477,11 @@ NSString* GlobalGetBoardServerURL()
 
 - (BOOL)handleURL:(NSURL*)url
 {
-    if ([[PPSNSIntegerationService defaultService] handleOpenURL:url]){        
-    }
-    else if ([[url absoluteString] hasPrefix:@"wx"]){
+    if ([[url absoluteString] hasPrefix:@"wx"]){
         return [WXApi handleOpenURL:url delegate:self];;
     }
-//    return [[[FacebookSNSService defaultService] facebook] handleOpenURL:url];
-
+    else if ([[PPSNSIntegerationService defaultService] handleOpenURL:url]){
+    }
 
     return YES;
 }
