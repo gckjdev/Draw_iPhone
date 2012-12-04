@@ -1138,7 +1138,8 @@
 "kPostDetail" = "帖子詳情";
 "kPublish" = "發布";
 "kReward" = "懸賞";
-"kSupport" = "頂";
+"kBBSSupport" = "頂";
+"kBBSReply" = "回復";
 "kMyPost" = "我的帖子";
 
 "kBBSDraw" = "分享塗鴉。";
