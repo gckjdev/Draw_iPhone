@@ -156,7 +156,7 @@ static ZJHGameService *_defaultService;
 
 - (NSArray *)chipValues
 {
-    return [[ZJHRuleConfigFactory createRuleConfigWithRule:self.rule] chipValues];
+    return [[ZJHRuleConfigFactory createRuleConfig] chipValues];
 }
 
 - (BOOL)isMyBalanceEnough
@@ -500,7 +500,7 @@ static ZJHGameService *_defaultService;
 
 - (NSString *)getServerListString
 {
-    return [[ZJHRuleConfigFactory createRuleConfigWithRule:self.rule] getServerListString];
+    return [[ZJHRuleConfigFactory createRuleConfig] getServerListString];
 }
 
 - (ZJHUserPlayInfo *)myPlayInfo
