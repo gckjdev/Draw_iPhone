@@ -236,6 +236,8 @@
 "kShare_via_Facebook" = "Share via Facebook";
 "kShare_via_Twitter" = "Share via Twitter";
 "kShare_via_Weixin" = "Share via WeChat";
+"kShare_via_Weixin_Timeline" = "Share to WeChat Timeline";
+"kShare_via_Weixin_Friend" = "Share to WeChat Friend";
 "kWeixinNotInstall" = "You do not have to install WeChat, unable to send!";
 
 "Message" = "Message";
