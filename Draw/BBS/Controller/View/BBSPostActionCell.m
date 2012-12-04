@@ -25,6 +25,7 @@
 #define Y_CONTENT_TEXT (ISIPAD ? 5 * 2.33 : 5)
 #define CONTENT_FONT [[BBSFontManager defaultManager] postContentFont]
 
+#define HEIGHT_SUPPORT (ISIPAD ? 80 * 2.33: 80)
 
 @implementation BBSPostActionCell
 @synthesize reply = _reply;
@@ -36,6 +37,7 @@
     PPRelease(_action);
     PPRelease(_post);
     PPRelease(_option);
+    [_supportImage release];
     [super dealloc];
 }
 
@@ -48,7 +50,8 @@
     BBSImageManager *imageManager = [BBSImageManager defaultManager];
     [self.option setImage:[imageManager bbsDetailOptionUp]];
     [self.reply setImage:[imageManager bbsDetailReply] forState:UIControlStateNormal];
-
+    [self.supportImage setImage:[[BBSImageManager defaultManager] bbsPostSupportImage]];
+    
 }
 
 + (id)createCell:(id)delegate
@@ -74,6 +77,9 @@
 
 + (CGFloat)getCellHeightWithBBSAction:(PBBBSAction *)action
 {
+    if ([action isSupport]) {
+        return HEIGHT_SUPPORT;
+    }
     NSString *text = action.showText;
     CGFloat height = [BBSPostActionCell heightForContentText:text];
 
@@ -129,10 +135,20 @@
 {
     self.action = action;
     self.post = post;
+    
     [self updateUserInfo:action.createUser];
-    [self updateContentWithAction:action];
     [self updateTimeStamp:action.createDate];
     [self updateReplyAction];
+    
+    if ([action isSupport]) {
+        [self.supportImage setHidden:NO];
+        self.content.hidden = YES;
+        self.image.hidden = YES;
+    }else{
+        [self.supportImage setHidden:YES];
+        self.content.hidden = NO;
+        [self updateContentWithAction:action];        
+    }    
 }
 
 

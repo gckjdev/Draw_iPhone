@@ -1118,6 +1118,7 @@
 "kZJHCompare" = "比牌";
 "kZJHFold" = "棄牌";
 "kShowCard" = "亮牌";
+"kChangeCard" = "換牌";
 
 /*********************** 炸金花国际化字符串结束 *************************/
 
@@ -1131,6 +1132,7 @@
 "kPublish" = "發布";
 "kReward" = "懸賞";
 "kSupport" = "頂";
+"kMyPost" = "我的帖子";
 
 "kSupportCount" = "頂(%d)";
 "kCommentCount" = "評論(%d)";
@@ -1139,4 +1141,10 @@
 "kSupportMyPost" = "頂我的帖子: %@";
 "kCommentMyPost" = "評論我的帖子: %@";
 "kReplyMyComment" = "回復我: %@";
+
+"kTextTooShot" = "帖子的字數不能少於%d個字哦。";
+"kTextTooLong" = "帖子的字數不能多於%d個字哦。";
+"kTextTooFrequent" = "妳發帖太頻繁了，先休息壹下再發吧。";
+"kNetworkError" = "網絡連接錯誤，請檢查網絡設置。";
+
 /*********************** BBS国际化字符串结束 *************************/

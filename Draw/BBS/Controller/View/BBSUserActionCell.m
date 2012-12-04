@@ -42,7 +42,7 @@
 #define CONTENT_FONT [[BBSFontManager defaultManager] postContentFont]
 #define SOURCE_FONT [[BBSFontManager defaultManager] actionSourceFont]
 
-
+#define SPACE_TOP_SOURCE_SUPPORT (ISIPAD ? 60 * 2.33 : 60)
 
 @implementation BBSUserActionCell
 @synthesize source = _source;
@@ -53,6 +53,7 @@
     PPRelease(_source);
     PPRelease(_action);
     [_splitLine release];
+    [_supportImage release];
     [super dealloc];
 }
 
@@ -74,6 +75,7 @@
                                userActionSourceColor]]
     ;
     [self.splitLine setBackgroundColor:[[BBSColorManager defaultManager] userActionSplitColor]];
+    [self.supportImage setImage:[[BBSImageManager defaultManager] bbsPostSupportImage]];
 }
 
 + (id)createCell:(id)delegate
@@ -111,8 +113,12 @@
 
 + (CGFloat)getCellHeightWithBBSAction:(PBBBSAction *)action
 {
-    CGFloat contentHeight = [BBSUserActionCell heightForContentText:action.contentText];
     CGFloat sourceHeight = [BBSUserActionCell heightForSourceText:action.showSourceText];
+    if ([action isSupport]) {
+        return sourceHeight + SPACE_TOP_SOURCE_SUPPORT + SPACE_SOURCE_BOTTOM;
+    }
+
+    CGFloat contentHeight = [BBSUserActionCell heightForContentText:action.contentText];
     CGFloat height = contentHeight + sourceHeight;
     if (action.content.hasThumbImage) {
         height += (SPACE_CONTENT_TOP + SPACE_TEXT_SOURCE_IMAGE) + SPACE_SOURCE_BOTTOM;
@@ -138,8 +144,26 @@
 
 - (void)updateContentWithAction:(PBBBSAction *)action
 {
-    [self.content setText:action.contentText];
     [self.source setText:action.showSourceText];
+    if ([action isSupport]) {
+        self.supportImage.hidden = NO;
+        self.content.hidden = YES;
+        self.image.hidden = YES;
+        
+        CGFloat y = SPACE_TOP_SOURCE_SUPPORT;
+        CGFloat height = [BBSUserActionCell heightForSourceText:action.showSourceText];
+        [self resetView:self.source y:y height:height];
+        [self resetView:self.splitLine
+                      y:(y - SPACE_SPLITLINE_SOURCE)
+                 height:1];
+        return;
+    }else{
+        self.supportImage.hidden = YES;
+        self.content.hidden = NO;
+    }
+    
+    [self.content setText:action.contentText];
+    
     //reset the content size
     CGFloat height = [BBSUserActionCell heightForContentText:action.contentText];
     [self resetView:self.content y:CGRectGetMinY(self.content.frame) height:height];
@@ -172,7 +196,6 @@
     }
     
     [self resetView:self.splitLine y:(y-SPACE_SPLITLINE_SOURCE) height:1];
-//    PPDebug(@"\n====<print>====\ncontent frame = %@,\nimage frame = %@,\nsource frame = %@,\n</print>",NSStringFromCGRect(self.content.frame),NSStringFromCGRect(self.image.frame),NSStringFromCGRect(self.source.frame));
 }
 
 - (void)updateTimeStamp:(NSInteger)timeInterval

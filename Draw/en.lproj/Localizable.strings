@@ -1118,6 +1118,8 @@
 "kZJHCompare" = "CMP";
 "kZJHFold" = "Fold";
 "kShowCard" = "Show";
+"kChangeCard" = "Change";
+/*********************** 炸金花国际化字符串结束 *************************/
 
 /*********************** 炸金花国际化字符串结束 *************************/
 
@@ -1130,6 +1132,7 @@
 "kPublish" = "Publish";
 "kReward" = "Reward";
 "kSupport" = "Support";
+"kMyPost" = "My Post";
 
 "kSupportCount" = "Support(%d)";
 "kCommentCount" = "Comment(%d)";
@@ -1139,4 +1142,8 @@
 "kCommentMyPost" = "Comment my post: %@";
 "kReplyMyComment" = "Reply to my comment: %@";
 
+"kTextTooShot" = "Text length can't be less than %d!";
+"kTextTooLong" = "Text length can't be more than %d!";
+"kTextTooFrequent" = "You send post too frequent, wait a minute.";
+"kNetworkError" = "Network is error, please try it again";
 /*********************** BBS国际化字符串结束 *************************/

@@ -129,7 +129,7 @@
 						<string key="NSFrame">{{182, 81}, {480, 105}}</string>
 						<reference key="NSSuperview" ref="594756960"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="188712504"/>
+						<reference key="NSNextKeyView" ref="761158709"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<object class="NSColor" key="IBUIBackgroundColor" id="246164423">
 							<int key="NSColorSpace">3</int>
@@ -205,6 +205,17 @@
 							<int key="NSColorSpace">1</int>
 							<bytes key="NSRGB">MC4zMTM3MjU0OTAyIDAuNzQ1MDk4MDM5MiAwLjE0NTA5ODAzOTIAA</bytes>
 						</object>
+						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+					</object>
+					<object class="IBUIImageView" id="761158709">
+						<reference key="NSNextResponder" ref="594756960"/>
+						<int key="NSvFlags">292</int>
+						<string key="NSFrame">{{189, 81}, {25, 29}}</string>
+						<reference key="NSSuperview" ref="594756960"/>
+						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView" ref="188712504"/>
+						<string key="NSReuseIdentifierKey">_NS:9</string>
+						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 					</object>
 				</array>
@@ -287,6 +298,14 @@
 					</object>
 					<int key="connectionID">42</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">supportImage</string>
+						<reference key="source" ref="594756960"/>
+						<reference key="destination" ref="761158709"/>
+					</object>
+					<int key="connectionID">46</int>
+				</object>
 			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<array key="orderedObjects">
@@ -319,6 +338,7 @@
 							<reference ref="188712504"/>
 							<reference ref="394007561"/>
 							<reference ref="167618898"/>
+							<reference ref="761158709"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -362,6 +382,11 @@
 						<reference key="object" ref="394007561"/>
 						<reference key="parent" ref="594756960"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">45</int>
+						<reference key="object" ref="761158709"/>
+						<reference key="parent" ref="594756960"/>
+					</object>
 				</array>
 			</object>
 			<dictionary class="NSMutableDictionary" key="flattenedProperties">
@@ -378,12 +403,13 @@
 				<string key="36.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="38.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="40.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+				<string key="45.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 			</dictionary>
 			<dictionary class="NSMutableDictionary" key="unlocalizedProperties"/>
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">44</int>
+			<int key="maxID">46</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -435,6 +461,7 @@
 					<dictionary class="NSMutableDictionary" key="outlets">
 						<string key="source">UILabel</string>
 						<string key="splitLine">UIView</string>
+						<string key="supportImage">UIImageView</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
 						<object class="IBToOneOutletInfo" key="source">
@@ -444,6 +471,10 @@
 						<object class="IBToOneOutletInfo" key="splitLine">
 							<string key="name">splitLine</string>
 							<string key="candidateClassName">UIView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="supportImage">
+							<string key="name">supportImage</string>
+							<string key="candidateClassName">UIImageView</string>
 						</object>
 					</dictionary>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">

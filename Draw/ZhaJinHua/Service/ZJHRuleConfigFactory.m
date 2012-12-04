@@ -11,10 +11,10 @@
 
 @implementation ZJHRuleConfigFactory
 
-+ (ZJHRuleConfig *)createRuleConfigWithRule:(ZJHRule)rule
++ (ZJHRuleConfig *)createRuleConfig
 {
-    switch (rule) {
-        case ZJHRuleBeginer:
+    switch ([[ZJHGameService defaultService] rule]) {
+        case PBZJHRuleTypeBeginer:
             return [[[ZJHBeginnerRuleConfig alloc] init] autorelease];
             break;
             
@@ -22,7 +22,6 @@
             break;
     }
     
-    PPDebug(@"<createRuleConfigWithRule> but nil rule object return");
     return nil;
 }
 
