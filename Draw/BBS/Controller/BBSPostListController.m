@@ -335,13 +335,11 @@
 #pragma mark - BBSPost cell delegate
 - (void)didClickSupportButtonWithPost:(PBBBSPost *)post
 {
-    
+    //TODO ENTER DETAIL CONTROLLER
 }
 - (void)didClickReplyButtonWithPost:(PBBBSPost *)post
 {
-//    [CreatePostController enterControllerWithSourecePost:post
-//                                            sourceAction:nil
-//                                          fromController:self];
+    //TODO ENTER DETAIL CONTROLLER
 }
 
 - (void)didController:(CreatePostController *)controller
