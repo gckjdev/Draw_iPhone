@@ -35,13 +35,26 @@
          shouldBeEnabled = "Yes"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
-         filePath = "../Common_iPhone_20/3PP-SDK/SinaWeiBoSDK_SSO/SinaWeibo.m"
-         timestampString = "374825417.961891"
+         filePath = "Draw/Model/User/UserManager.m"
+         timestampString = "376307708.940088"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "500"
-         endingLineNumber = "500"
-         landmarkName = "-handleOpenURL:"
+         startingLineNumber = "556"
+         endingLineNumber = "556"
+         landmarkName = "-saveUserId:email:password:nickName:qqId:qqAccessToken:qqAccessTokenSecret:sinaId:sinaAccessToken:sinaAccessTokenSecret:facebookId:avatarURL:balance:items:gender:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "Draw/Controller/User/UserSettingController.m"
+         timestampString = "376307755.92106"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "517"
+         endingLineNumber = "517"
+         landmarkName = "-tableView:cellForRowAtIndexPath:"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

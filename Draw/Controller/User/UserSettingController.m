@@ -517,7 +517,12 @@ enum {
             {
                 [cell.textLabel setText:NSLS(@"kSetQQWeibo")];
                 if ([_userManager hasBindQQWeibo]){
-                    [cell.detailTextLabel setText:NSLS(@"kWeiboSet")];
+                    if ([[[PPSNSIntegerationService defaultService] snsServiceByType:TYPE_QQ] isAuthorizeExpired]){
+                        [cell.detailTextLabel setText:NSLS(@"kWeiboExpired")];
+                    }
+                    else{
+                        [cell.detailTextLabel setText:NSLS(@"kWeiboSet")];
+                    }
                 }
                 else{
                     [cell.detailTextLabel setText:NSLS(@"kNotSet")];
@@ -802,26 +807,11 @@ enum {
 
 - (void)bindQQ
 {
-    /*
-    self.navigationController.navigationBarHidden = NO;
-    self.navigationController.navigationItem.title = NSLS(@"微博授权");                    
-    
-    _currentLoginType = REGISTER_TYPE_QQ;
-    [[QQWeiboService defaultService] startLogin:self];
-     */
-    
     [self bindSNS:TYPE_QQ];
 }
 
 - (void)bindSina
-{
-
-    /* rem by Benson for test
-     _currentLoginType = REGISTER_TYPE_SINA;
-    [[SinaSNSService defaultService] logout];
-    [[SinaSNSService defaultService] startLogin:self];
-    */
-    
+{   
     [self bindSNS:TYPE_SINA];
 }
 

@@ -290,7 +290,10 @@ enum {
                                                                                         userId:nil
                                                                                   successBlock:^(NSDictionary *userInfo) {
             } failureBlock:^(NSError *error) {
-                
+                if (error.code == 20506){
+                    //already follow
+                    [self popupMessage:@"谢谢，你已经成功关注了官方微博" title:nil];
+                }
             }];
             
 //            [[SinaSNSService defaultService] followUser:[GameApp sinaWeiboId] delegate:self];
