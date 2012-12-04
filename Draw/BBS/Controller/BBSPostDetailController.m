@@ -392,10 +392,18 @@ typedef enum{
         if (action.type == ActionTypeSupport) {
             tab = [_tabManager tabForID:Support];
             [tab.dataList insertObject:action atIndex:0];
+            
+            self.post = [[BBSManager defaultManager] inceasePost:self.post
+                                                    supportCount:1];
+            
             [_header clickSupport:_header.support];
         }else if(action.type == ActionTypeComment){
             tab = [_tabManager tabForID:Comment];
             [tab.dataList insertObject:action atIndex:0];
+            
+            self.post = [[BBSManager defaultManager] inceasePost:self.post
+                                                    commentCount:1];
+            
             [_header clickComment:_header.comment];
         }
     }
@@ -411,22 +419,28 @@ typedef enum{
         [self didController:nil CreateNewAction:action];
     }else{
         PPDebug(@"<didCreatePost>create post fail.result code = %d",resultCode);
+        NSString *msg = nil;
         switch (resultCode) {
             case ERROR_BBS_TEXT_TOO_SHORT:
-                [self popupMessage:[NSString stringWithFormat:NSLS(@"kTextTooShot"),
-                                    [[BBSManager defaultManager] textMinLength]] title:nil];
+                msg = [NSString stringWithFormat:NSLS(@"kTextTooShot"),
+                       [[BBSManager defaultManager] textMinLength]];
                 break;
             case ERROR_BBS_TEXT_TOO_LONG:
-                [self popupMessage:[NSString stringWithFormat:NSLS(@"kTextTooLong"),
-                                    [[BBSManager defaultManager] textMaxLength]] title:nil];
+                msg = [NSString stringWithFormat:NSLS(@"kTextTooLong"),
+                       [[BBSManager defaultManager] textMaxLength]];
                 break;
             case ERROR_BBS_TEXT_TOO_FREQUENT:
-                [self popupMessage:NSLS(@"kTextTooFrequent") title:nil];
+                msg = NSLS(@"kTextTooFrequent");
+                break;
+            case ERROR_BBS_POST_SUPPORT_TIMES_LIMIT:
+                msg = [NSString stringWithFormat:NSLS(@"kSupportTimesLimit"),
+                       [[BBSManager defaultManager] supportMaxTimes]];
                 break;
             default:
-                [self popupMessage:NSLS(@"kNetworkError") title:nil];
+                msg = NSLS(@"kNetworkError");
                 break;
         }
+        [UIUtils alert:msg];
     }
 
 }
@@ -490,9 +504,12 @@ typedef enum{
         }
         if (act) {
             [self.tabDataList removeObject:act];
-            NSIndexPath *indexPath = [NSIndexPath indexPathForRow:row inSection:SectionActionList];
-            NSArray *indexPaths = [NSArray arrayWithObject:indexPath];
-            [self.dataTableView deleteRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationFade];
+            if (act.type == ActionTypeComment) {
+                self.post = [[BBSManager defaultManager] inceasePost:self.post commentCount:-1];
+            }else if(act.type == ActionTypeSupport){
+                self.post = [[BBSManager defaultManager] inceasePost:self.post supportCount:-1];
+            }
+            [self.dataTableView reloadData];
         }
     }else{
         PPDebug(@"<didDeleteBBSAction>fail to delete action, actionId = %@, resultCode = %d",actionId, resultCode);

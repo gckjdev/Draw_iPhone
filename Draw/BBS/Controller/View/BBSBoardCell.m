@@ -92,8 +92,7 @@
     self.statistic.text = [NSString stringWithFormat:@"%d", board.postCount];
     self.lastPost.text = [board.lastPost.content text];
     [self.author setText:board.lastPost.createUser.nickName];
-    NSDate *date = [NSDate dateWithTimeIntervalSince1970:board.lastPost.createDate];
-    self.timestamp.text = dateToChineseString(date);
+    self.timestamp.text = board.lastPost.createDateString;
     
     BBSImageManager *imageManager = [BBSImageManager defaultManager];
     

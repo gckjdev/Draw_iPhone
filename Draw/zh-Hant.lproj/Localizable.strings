@@ -1141,6 +1141,9 @@
 "kSupport" = "頂";
 "kMyPost" = "我的帖子";
 
+"kBBSDraw" = "分享塗鴉。";
+"kBBSImage" = "分享圖片.";
+
 "kSupportCount" = "頂(%d)";
 "kCommentCount" = "評論(%d)";
 
@@ -1153,5 +1156,9 @@
 "kTextTooLong" = "帖子的字數不能多於%d個字哦。";
 "kTextTooFrequent" = "妳發帖太頻繁了，先休息壹下再發吧。";
 "kNetworkError" = "網絡連接錯誤，請檢查網絡設置。";
+"kSupportTimesLimit" = "每張帖子最多只能頂 %d 次哦。";
 
+"kWarning" = "警告";
+"kClearImageData" = "之前選擇的圖像將被清除，妳要繼續嗎？";
+"kClearDrawData" = "之前的畫畫數據將被清除，妳要繼續嗎？";
 /*********************** BBS国际化字符串结束 *************************/

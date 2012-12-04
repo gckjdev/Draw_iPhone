@@ -23,6 +23,8 @@
     BBSManager *_bbsManager;
 }
 @property (retain, nonatomic) IBOutlet UIImageView *bgImageView;
+
+- (void)updateTempPostListWithTabID:(NSInteger)tabID;
 @end
 
 @implementation BBSPostListController
@@ -127,6 +129,7 @@
 }
 
 - (void)dealloc {
+    [_bbsManager setTempPostList:nil];
     PPRelease(_backButton);
     PPRelease(_createPostButton);
     PPRelease(_rankButton);
@@ -161,6 +164,7 @@
     NSInteger tabID = [self rangeTypeToTabID:_rangeType];
     self.rankButton.tag = tabID;
     [self clickTab:tabID];
+    [self updateTempPostListWithTabID:tabID];
 }
 
 
@@ -213,6 +217,14 @@
     }else{
         [self failLoadDataForTabID:tabID];
     }
+    [self updateTempPostListWithTabID:tabID];
+}
+- (void)updateTempPostListWithTabID:(NSInteger)tabID
+{
+    TableTab *tab = [_tabManager tabForID:tabID];
+    if (tab) {
+        [_bbsManager setTempPostList:tab.dataList];
+    }
 }
 
 - (void)didGetUser:(NSString *)userId
@@ -225,6 +237,7 @@
     }else{
         [self failLoadDataForTabID:tabID];
     }
+    [self updateTempPostListWithTabID:tabID];
 }
 
 - (void)didGetBBSDrawActionList:(NSMutableArray *)drawActionList
