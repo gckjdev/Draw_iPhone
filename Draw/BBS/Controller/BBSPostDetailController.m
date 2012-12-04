@@ -11,6 +11,8 @@
 #import "BBSPostDetailCell.h"
 #import "ReplayGraffitiController.h"
 #import "ShowImageController.h"
+#import "GameNetworkConstants.h"
+
 
 @interface BBSPostDetailController ()
 {
@@ -405,8 +407,28 @@ typedef enum{
             replyAction:(PBBBSAction *)replyAction
              resultCode:(NSInteger)resultCode
 {
-    
-    [self didController:nil CreateNewAction:action];
+    if (resultCode == 0) {
+        [self didController:nil CreateNewAction:action];
+    }else{
+        PPDebug(@"<didCreatePost>create post fail.result code = %d",resultCode);
+        switch (resultCode) {
+            case ERROR_BBS_TEXT_TOO_SHORT:
+                [self popupMessage:[NSString stringWithFormat:NSLS(@"kTextTooShot"),
+                                    [[BBSManager defaultManager] textMinLength]] title:nil];
+                break;
+            case ERROR_BBS_TEXT_TOO_LONG:
+                [self popupMessage:[NSString stringWithFormat:NSLS(@"kTextTooLong"),
+                                    [[BBSManager defaultManager] textMaxLength]] title:nil];
+                break;
+            case ERROR_BBS_TEXT_TOO_FREQUENT:
+                [self popupMessage:NSLS(@"kTextTooFrequent") title:nil];
+                break;
+            default:
+                [self popupMessage:NSLS(@"kNetworkError") title:nil];
+                break;
+        }
+    }
+
 }
 
 - (void)didPayBBSRewardWithPost:(PBBBSPost *)post
@@ -468,7 +490,7 @@ typedef enum{
         }
         if (act) {
             [self.tabDataList removeObject:act];
-            NSIndexPath *indexPath = [NSIndexPath indexPathForRow:row inSection:SectionAction];
+            NSIndexPath *indexPath = [NSIndexPath indexPathForRow:row inSection:SectionActionList];
             NSArray *indexPaths = [NSArray arrayWithObject:indexPath];
             [self.dataTableView deleteRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationFade];
         }

@@ -31,6 +31,14 @@
 "kPALM" = "%@ send a location request to you";
 "kPRLM" = "%@ reply your location request";
 "kPRRLM" = "%@ reject your location request";
+
+//bbs 5.2
+"kPBP" = "%@ pays you %@ icons at post: %@...";
+"kPBC" = "%@ comments your post: %@...";
+"kPBR"= "%@ replys to your post: %@...";
+"kPBS" = "%@ supports your post: %@...";
+
+
 /*********************** Notification end *************************/
 
 "kStart" = "Online";
