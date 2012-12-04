@@ -210,7 +210,7 @@ static ZJHGameService *_defaultService;
 
 - (BOOL)canIChangeCard
 {
-    return [self isGamePlaying] && [self isMyTurn] && [[self myPlayInfo] canChangeCard] && ([self.session myTurnTimes]%3!=0) && ([self.session myTurnTimes]!=0);
+    return [self isGamePlaying] && [self isMyTurn] && [[self myPlayInfo] canChangeCard] && ([self.session myTurnTimes]%4==0);
 }
 
 - (BOOL)canUserBeCompared:(NSString *)userId
@@ -548,5 +548,11 @@ static ZJHGameService *_defaultService;
 {
     [_accountService syncAccount:delegate forceServer:YES];
 }
+
+- (NSArray *)myReplacedCards
+{
+    return [[self myPlayInfo] replacedPokers];
+}
+
 
 @end

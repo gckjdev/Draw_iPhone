@@ -267,6 +267,7 @@
 		A49A083A166D95EF003E0F75 /* show_card_button_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A49A0837166D95EF003E0F75 /* show_card_button_bg@2x.png */; };
 		A49A083B166D95EF003E0F75 /* show_card_button_popup_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A49A0838166D95EF003E0F75 /* show_card_button_popup_bg@2x.png */; };
 		A49A083C166D95EF003E0F75 /* show_change_card_button_popup_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A49A0839166D95EF003E0F75 /* show_change_card_button_popup_bg@2x.png */; };
+		A49A083F166DA68D003E0F75 /* ReplacedPoker.m in Sources */ = {isa = PBXBuildFile; fileRef = A49A083E166DA68D003E0F75 /* ReplacedPoker.m */; };
 		A4A132651650E86900665109 /* MessageView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4A132641650E86900665109 /* MessageView.m */; };
 		A4AB18F315E359B90097CC7A /* ChatViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A4AB18F115E359B90097CC7A /* ChatViewCell.m */; };
 		A4AB18F415E359B90097CC7A /* ChatViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4AB18F215E359B90097CC7A /* ChatViewCell.xib */; };
@@ -2347,6 +2348,8 @@
 		A49A0837166D95EF003E0F75 /* show_card_button_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "show_card_button_bg@2x.png"; sourceTree = "<group>"; };
 		A49A0838166D95EF003E0F75 /* show_card_button_popup_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "show_card_button_popup_bg@2x.png"; sourceTree = "<group>"; };
 		A49A0839166D95EF003E0F75 /* show_change_card_button_popup_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "show_change_card_button_popup_bg@2x.png"; sourceTree = "<group>"; };
+		A49A083D166DA68D003E0F75 /* ReplacedPoker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReplacedPoker.h; sourceTree = "<group>"; };
+		A49A083E166DA68D003E0F75 /* ReplacedPoker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReplacedPoker.m; sourceTree = "<group>"; };
 		A4A132631650E86900665109 /* MessageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageView.h; sourceTree = "<group>"; };
 		A4A132641650E86900665109 /* MessageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageView.m; sourceTree = "<group>"; };
 		A4AB18F015E359B90097CC7A /* ChatViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatViewCell.h; sourceTree = "<group>"; };
@@ -5538,6 +5541,8 @@
 				A44B622C1637B80600A8045B /* Poker.m */,
 				C2F2CF961639165500995DCB /* ZJHImageManager.h */,
 				C2F2CF971639165500995DCB /* ZJHImageManager.m */,
+				A49A083D166DA68D003E0F75 /* ReplacedPoker.h */,
+				A49A083E166DA68D003E0F75 /* ReplacedPoker.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -12584,6 +12589,7 @@
 				C28A23CF166C9123007C9EA5 /* FallingCoinImageView.m in Sources */,
 				C28A23D0166C9123007C9EA5 /* FallingCoinView.m in Sources */,
 				CA8A27EF166CE57500D1A2D6 /* ZJHGameApp.m in Sources */,
+				A49A083F166DA68D003E0F75 /* ReplacedPoker.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

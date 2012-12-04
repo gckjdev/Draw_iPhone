@@ -68,4 +68,6 @@
                source:(BalanceSourceType)source;
 - (void)syncAccount:(id<AccountServiceDelegate>)delegate;
 
+- (NSArray *)myReplacedCards;
+
 @end
