@@ -7,6 +7,7 @@
 //
 
 #import "ZJHBeginnerRuleConfig.h"
+#import "ZJHImageManager.h"
 
 @implementation ZJHBeginnerRuleConfig
 
@@ -20,5 +21,47 @@
     return @"58.215.172.169:8018";
 }
 
+- (UIView *)createButtons:(PokerView *)pokerView
+{
+    UIView *view = [[[UIButton alloc] initWithFrame:CGRectMake(0, 0, TWO_BUTTONS_HOLDER_VIEW_WIDTH, TWO_BUTTONS_HOLDER_VIEW_HEIGHT)] autorelease];
+    
+    UIImageView *imageView = [[[UIImageView alloc] initWithFrame:view.bounds] autorelease];
+    imageView.image = [[ZJHImageManager defaultManager] twoButtonsHolderBgImage];
+    
+    UIButton *showCardButton = [[[UIButton alloc] initWithFrame:CGRectMake(SHOW_CARD_BUTTON_X_OFFSET, SHOW_CARD_BUTTON_Y_OFFSET, BUTTON_WIDTH, BUTTON_HEIGHT)] autorelease];
+    [showCardButton setBackgroundImage:[[ZJHImageManager defaultManager] showCardButtonBgImage] forState:UIControlStateNormal];
+    [showCardButton setTitle:NSLS(@"kShowCard") forState:UIControlStateNormal];
+    showCardButton.titleLabel.font = BUTTON_FONT;
+    showCardButton.titleLabel.textAlignment = UITextAlignmentCenter;
+
+    if ([[ZJHGameService defaultService] canIShowCard:pokerView.poker.pokerId]) {
+        showCardButton.titleLabel.textColor = [UIColor whiteColor];
+        [showCardButton addTarget:pokerView action:@selector(clickShowCardButton:) forControlEvents:UIControlEventTouchUpInside];
+    }else{
+        showCardButton.titleLabel.textColor = [UIColor lightGrayColor];
+        showCardButton.enabled = NO;
+    }
+
+    
+    UIButton *changeCardButton = [[[UIButton alloc] initWithFrame:CGRectMake(CHANGE_CARD_BUTTON_X_OFFSET, CHANGE_CARD_BUTTON_Y_OFFSET, BUTTON_WIDTH, BUTTON_HEIGHT)] autorelease];
+    [changeCardButton setBackgroundImage:[[ZJHImageManager defaultManager] showCardButtonBgImage] forState:UIControlStateNormal];
+    [changeCardButton setTitle:NSLS(@"kChangeCard") forState:UIControlStateNormal];
+    changeCardButton.titleLabel.font = BUTTON_FONT;
+    changeCardButton.titleLabel.textAlignment = UITextAlignmentCenter;
+    
+    if ([[ZJHGameService defaultService] canIShowCard:pokerView.poker.pokerId]) {
+        changeCardButton.titleLabel.textColor = [UIColor whiteColor];
+        [changeCardButton addTarget:pokerView action:@selector(clickChangeCardButton:) forControlEvents:UIControlEventTouchUpInside];
+    }else{
+        changeCardButton.titleLabel.textColor = [UIColor lightGrayColor];
+        changeCardButton.enabled = NO;
+    }
+    
+    [view addSubview:imageView];
+    [view addSubview:showCardButton];
+    [view addSubview:changeCardButton];
+    
+    return view;
+}
 
 @end

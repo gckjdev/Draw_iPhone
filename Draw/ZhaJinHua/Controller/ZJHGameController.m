@@ -1052,11 +1052,8 @@
 
 - (void)didClickPokerView:(PokerView *)pokerView
 {
-    if (![_gameService canIShowCard:pokerView.poker.pokerId]) {
-        return;
-    }
-    
-    pokerView.showCardButtonIsPopup ? [pokerView dismissShowCardButton] : [pokerView popupShowCardButtonInView:self.view];
+    [[self getMyPokersView] dismissButtons];
+    pokerView.buttonsIsPopup ? [pokerView dismissButtons] : [pokerView popupButtonsInView:self.view];
 }
 
 - (void)didClickShowCardButton:(PokerView *)pokerView
@@ -1084,7 +1081,7 @@
 
 - (void)dismissAllPopupView
 {
-    [[self getMyPokersView] dismissShowCardButtons];
+    [[self getMyPokersView] dismissButtons];
     [_popupViewManager dismissChipsSelectView];
 }
 

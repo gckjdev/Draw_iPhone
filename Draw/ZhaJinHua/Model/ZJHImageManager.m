@@ -146,13 +146,23 @@ static ZJHImageManager* shareInstance;
 
 - (UIImage*)showCardButtonBgImage
 {
-    return [_resService imageByName:@"show_card_button" inResourcePackage:RESOURCE_PACKAGE_ZJH];
+    return [_resService imageByName:@"show_card_button_bg" inResourcePackage:RESOURCE_PACKAGE_ZJH];
 }
 
-- (UIImage*)showCardButtonDisableBgImage
+- (UIImage *)twoButtonsHolderBgImage
 {
-    return [_resService imageByName:@"show_card_button_disable" inResourcePackage:RESOURCE_PACKAGE_ZJH];
+    return [_resService imageByName:@"show_change_card_button_popup_bg" inResourcePackage:RESOURCE_PACKAGE_ZJH];
 }
+
+- (UIImage *)oneButtonHolderBgImage
+{
+    return [_resService imageByName:@"show_card_button_popup_bg" inResourcePackage:RESOURCE_PACKAGE_ZJH];
+}
+
+//- (UIImage*)showCardButtonDisableBgImage
+//{
+//    return [_resService imageByName:@"show_card_button_disable" inResourcePackage:RESOURCE_PACKAGE_ZJH];
+//}
 
 - (UIImage *)showCardFlagImage
 {

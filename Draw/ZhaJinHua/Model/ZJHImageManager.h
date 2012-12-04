@@ -25,7 +25,9 @@
 - (UIImage*)pokerLoseBackImage;
 
 - (UIImage*)showCardButtonBgImage;
-- (UIImage*)showCardButtonDisableBgImage;
+- (UIImage *)twoButtonsHolderBgImage;
+- (UIImage *)oneButtonHolderBgImage;
+//- (UIImage*)showCardButtonDisableBgImage;
 - (UIImage *)showCardFlagImage;
 
 
