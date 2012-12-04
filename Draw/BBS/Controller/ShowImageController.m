@@ -158,6 +158,8 @@
     if (self.image) {
         [self showImage];
     }else{
+//        NSURL *url = [NSURL URLWithString:@"http://misc.clzg.cn/bbs/day_100127/1001271911c732c2cf8a7830ac.jpg"];
+
         [self.imageView setImageWithURL:self.url placeholderImage:nil success:^(UIImage *image, BOOL cached) {
             self.image = image;
             [self showImage];

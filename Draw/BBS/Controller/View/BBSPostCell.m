@@ -141,13 +141,14 @@
     self.content.frame = frame;
   
     if (content.hasThumbImage) {
-            [self.image setImageWithURL:content.thumbImageURL
-                       placeholderImage:nil
-                                success:^(UIImage *image, BOOL cached) {
-                                    [self updateImageViewFrameWithImage:image];
-                                } failure:^(NSError *error) {
-                                    
-            }];
+//        NSURL *url = [NSURL URLWithString:@"http://misc.clzg.cn/bbs/day_100127/1001271911c732c2cf8a7830ac.jpg"];
+        [self.image setImageWithURL:content.thumbImageURL
+                   placeholderImage:nil
+                            success:^(UIImage *image, BOOL cached) {
+                                [self updateImageViewFrameWithImage:image];
+                            } failure:^(NSError *error) {
+                                
+        }];
 
         self.image.hidden = NO;
     }else{
