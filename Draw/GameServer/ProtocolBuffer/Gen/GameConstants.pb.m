@@ -115,7 +115,8 @@ BOOL GameCommandTypeIsValidValue(GameCommandType value) {
     case GameCommandTypeLocalFoldCard:
     case GameCommandTypeLocalShowCard:
     case GameCommandTypeLocalCompareCard:
-    case GameCommandTypeNotCurrentTurnLocalFoldCard:
+    case GameCommandTypeLocalNotCurrentTurnFoldCard:
+    case GameCommandTypeLocalChangeCard:
     case GameCommandTypeRoomNotificationRequest:
     case GameCommandTypeRoomNotificationResponse:
     case GameCommandTypeRollDiceBeginNotificationRequest:
@@ -162,6 +163,7 @@ BOOL GameResultCodeIsValidValue(GameResultCode value) {
     case GameResultCodeErrorCannotShowCard:
     case GameResultCodeErrorAlreadyCompareCard:
     case GameResultCodeErrorCannotCompareCard:
+    case GameResultCodeErrorExcessChahgeQuota:
     case GameResultCodeErrorUnknownItem:
     case GameResultCodeErrorExcessTimeLimit:
     case GameResultCodeErrorSystemHandlerNotFound:
