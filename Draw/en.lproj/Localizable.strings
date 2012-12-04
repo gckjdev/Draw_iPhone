@@ -1164,4 +1164,6 @@
 "kWarning" = "Warning";
 "kClearImageData" = "The selected image will be clear, continue?";
 "kClearDrawData" = "The draw data will be clear, continue?";
+"kSaveImageSuccess" = "Save image successfully.";
+
 /*********************** BBS国际化字符串结束 *************************/
