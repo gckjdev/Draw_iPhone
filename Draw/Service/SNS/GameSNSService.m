@@ -41,8 +41,7 @@
                           
                       } failureBlock:^(NSError *error) {
                           
-                          PPDebug(@"askFollow but follow user %@ failure", snsService.officialWeiboId);
-                          
+                          PPDebug(@"askFollowOfficialWeibo but follow user failure, error=%@", [error description]);
                       }];
     
 }
@@ -74,8 +73,7 @@
         
     } failureBlock:^(NSError *error) {
         
-        PPDebug(@"askFollow but follow user %@ failure", weiboId);
-        
+        PPDebug(@"askFollow but follow user %@ failure, error=%@", weiboId, [error description]);
     }];
     
 }
