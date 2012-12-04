@@ -86,7 +86,7 @@
                            image:nil
                             font:[_bbsFontManager indexBadgeFont]
                       titleColor:[_bbsColorManager badgeColor]
-                           title:NSLS(@"25")
+                           title:nil
                         forState:UIControlStateNormal];
     [self.badge setUserInteractionEnabled:NO];
     
@@ -94,10 +94,23 @@
     [self.bgImageView setImage:[_bbsImageManager bbsBGImage]];
 }
 
+- (void)updateBadge
+{
+    int number = 0;
+    if (number > 0 ) {
+        [self.badge setTitle:[NSString stringWithFormat:@"%d",number] forState:UIControlStateNormal];
+        self.badge.hidden = NO;
+    }else{
+        [self.badge setTitle:nil forState:UIControlStateNormal];
+        self.badge.hidden = YES;
+    }
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     [self initViews];
+    [self updateBadge];
     [[BBSService defaultService] getBBSBoardList:self];
     if ([[[BBSManager defaultManager] boardList] count] != 0) {
         [self showActivityWithText:NSLS(@"kLoading")];

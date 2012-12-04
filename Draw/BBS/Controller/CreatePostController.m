@@ -387,6 +387,7 @@
 - (void)didCreatePost:(PBBBSPost *)post
            resultCode:(NSInteger)resultCode
 {
+    [self hideActivity];
     if (resultCode == 0) {
         PPDebug(@"<didCreatePost>create post successful!");
         if (self.delegate && [self.delegate
@@ -416,7 +417,7 @@
                 break;
         }
     }
-    [self hideActivity];
+
 }
 
 - (void)didCreateAction:(PBBBSAction *)action
