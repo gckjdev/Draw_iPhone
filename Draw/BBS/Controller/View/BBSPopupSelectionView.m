@@ -18,7 +18,7 @@
 
 #define SPACE_LEFTRIGHT_TIP (ISIPAD ? 30*2 : 30)
 
-#define BUTTON_SIZE (ISIPAD ? CGSizeMake(82,43) : CGSizeMake(41,22))
+#define BUTTON_SIZE (ISIPAD ? CGSizeMake(100,46) : CGSizeMake(47,22))
 
 @implementation BBSPopupSelectionView
 

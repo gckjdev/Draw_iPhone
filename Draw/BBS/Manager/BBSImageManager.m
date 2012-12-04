@@ -140,6 +140,18 @@ static BBSImageManager* _staticBBSImageManager;
      return [self stretchableImageWithImageName:@"bbs_board_line"
                    inResourcePackage:RESOURCE_PACKAGE_BBS];
 }
+
+- (UIImage *)bbsBoardMineImage
+{
+    return [self stretchableImageWithImageName:@"bbs_board_mine"
+                             inResourcePackage:RESOURCE_PACKAGE_BBS];
+}
+- (UIImage *)bbsBoardCommentImage
+{
+    return [self stretchableImageWithImageName:@"bbs_board_comment"
+                             inResourcePackage:RESOURCE_PACKAGE_BBS];
+}
+
 - (UIImage *)bbsButtonLeftImage
 {
      return [self stretchableImageWithImageName:@"bbs_button_left"

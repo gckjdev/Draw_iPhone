@@ -60,25 +60,12 @@
     [BBSViewManager updateDefaultTitleLabel:self.titleLabel text:NSLS(@"kBBS")];
     [BBSViewManager updateDefaultBackButton:self.backButton];
     [BBSViewManager updateDefaultTableView:self.dataTableView];
+
     
-    [BBSViewManager updateButton:self.myPostButton
-                         bgColor:[UIColor clearColor]
-                         bgImage:[_bbsImageManager bbsButtonLeftImage]
-                           image:nil
-                            font:[_bbsFontManager indexTabFont]
-                      titleColor:[_bbsColorManager tabTitleColor]
-                           title:NSLS(@"kMine")
-                        forState:UIControlStateNormal];
+    [self.myPostButton setImage:[_bbsImageManager bbsBoardMineImage] forState:UIControlStateNormal];
     
-    [BBSViewManager updateButton:self.myActionButton
-                         bgColor:[UIColor clearColor]
-                         bgImage:[_bbsImageManager bbsButtonRightImage]
-                           image:nil
-                            font:[_bbsFontManager indexTabFont]
-                      titleColor:[_bbsColorManager tabTitleColor]
-                           title:NSLS(@"kComment")
-                        forState:UIControlStateNormal];
-    
+    [self.myActionButton setImage:[_bbsImageManager bbsBoardCommentImage] forState:UIControlStateNormal];
+
     //badge
     [BBSViewManager updateButton:self.badge
                          bgColor:[UIColor clearColor]

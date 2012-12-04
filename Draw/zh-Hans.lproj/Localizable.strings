@@ -237,6 +237,8 @@
 "kShare_via_Facebook" = "通过Facebook分享";
 "kShare_via_Twitter" = "通过Twitter分享";
 "kShare_via_Weixin" = "分享到微信";
+"kShare_via_Weixin_Timeline" = "分享到微信朋友圈";
+"kShare_via_Weixin_Friend" = "分享给微信好友";
 "kWeixinNotInstall" = "对不起，您没有安装微信或微信版本较低，无法发送微信消息!";
 
 "Message" = "消息";
@@ -1156,7 +1158,9 @@
 "kPostDetail" = "帖子详情";
 "kPublish" = "发布";
 "kReward" = "悬赏";
-"kSupport" = "顶";
+"kBBSSupport" = "顶";
+"kBBSReply" = "回复";
+
 "kMyPost" = "我的帖子";
 "kBBSDraw" = "分享涂鸦。";
 "kBBSImage" = "分享图片.";

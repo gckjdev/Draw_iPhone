@@ -21,7 +21,8 @@
 {
     NSInteger buttonIndexAlbum;
     NSInteger buttonIndexEmail;
-    NSInteger buttonIndexWeixin;
+    NSInteger buttonIndexWeixinTimeline;
+    NSInteger buttonIndexWeixinFriend;
     NSInteger buttonIndexSinaWeibo;
     NSInteger buttonIndexQQWeibo;
     NSInteger buttonIndexFacebook;
@@ -83,7 +84,8 @@
 {
     buttonIndexAlbum = -1;
     buttonIndexEmail = -1;
-    buttonIndexWeixin = -1;
+    buttonIndexWeixinTimeline = -1;
+    buttonIndexWeixinFriend = -1;
     buttonIndexSinaWeibo = -1;
     buttonIndexQQWeibo = -1;
     buttonIndexFacebook = -1;
@@ -99,8 +101,13 @@
     int buttonIndex = buttonIndexEmail;
     if (self.isGIF == NO) {
         buttonIndex ++;
-        [shareOptions addButtonWithTitle:NSLS(@"kShare_via_Weixin")];
-        buttonIndexWeixin = buttonIndex;
+        [shareOptions addButtonWithTitle:NSLS(@"kShare_via_Weixin_Timeline")];
+        buttonIndexWeixinTimeline = buttonIndex;
+
+        buttonIndex ++;
+        [shareOptions addButtonWithTitle:NSLS(@"kShare_via_Weixin_Friend")];
+        buttonIndexWeixinFriend = buttonIndex;
+    
     }
     
     if ([[UserManager defaultManager] hasBindSinaWeibo]){
@@ -204,7 +211,7 @@
     [controller release];    
 }
 
-- (void)shareViaWeixin
+- (void)shareViaWeixin:(int)scene
 {
     if ([WXApi isWXAppInstalled] == NO || [WXApi isWXAppSupportApi] == NO)
     {
@@ -213,7 +220,7 @@
         WXMediaMessage *message = [WXMediaMessage message];
         message.title = _drawWord;
         UIImage *image = [UIImage imageWithContentsOfFile:_imageFilePath];
-        UIImage *thumbImage = [image imageByScalingAndCroppingForSize:CGSizeMake(100, 100)];
+        UIImage *thumbImage = [image imageByScalingAndCroppingForSize:CGSizeMake(250, 250)];
         [message setThumbImage:thumbImage];
         WXImageObject *ext = [WXImageObject object];
         ext.imageData = [NSData dataWithContentsOfFile:_imageFilePath] ;
@@ -223,7 +230,7 @@
         SendMessageToWXReq* req = [[SendMessageToWXReq alloc] init];
         req.bText = NO;
         req.message = message;
-        req.scene = WXSceneTimeline;
+        req.scene = scene;
         
         [WXApi sendReq:req];
         [req release];
@@ -235,20 +242,19 @@
     if (buttonIndex == actionSheet.cancelButtonIndex) {
         PPDebug(@"<ShareAction> Click Cancel");
         return;
-    }
-    
+    }    
     else if (buttonIndex == buttonIndexAlbum){
         [[MyPaintManager defaultManager] savePhoto:_imageFilePath];
     }
-    
     else if (buttonIndex == buttonIndexEmail) {
          [self shareViaEmail];
     }
-    
-    else if (buttonIndex == buttonIndexWeixin){
-        [self shareViaWeixin];
+    else if (buttonIndex == buttonIndexWeixinTimeline){
+        [self shareViaWeixin:WXSceneTimeline];
     }
-    
+    else if (buttonIndex == buttonIndexWeixinFriend){
+        [self shareViaWeixin:WXSceneSession];
+    }    
     else if (buttonIndex == buttonIndexSinaWeibo)
     {
         [self shareViaSNS:SINA_WEIBO];

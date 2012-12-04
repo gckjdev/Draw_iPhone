@@ -99,7 +99,7 @@
 
 - (void)updateReplyAction
 {
-    BOOL flag = [self.post canPay] && self.action.type == ActionTypeComment;
+    BOOL flag = [self.post canPay] && self.action.type == ActionTypeComment && ![self.action isMyAction];
     [self.reply setHidden:flag];
     [self.option setHidden:!flag];
 }
