@@ -365,7 +365,7 @@
         self.bonus = index * 100;
         [self updateToolButtons];
     }else{
-        NSString *msg = [NSString stringWithFormat:NSLS("kCoinsNotEnoughTips"),bonus];
+        NSString *msg = [NSString stringWithFormat:NSLS(@"kCoinsNotEnoughTips"),bonus];
         [self popupMessage:NSLS(msg) title:nil];
     }
 }

@@ -16,13 +16,10 @@
 
 @interface WordManager() {
     
-    PPSmartUpdateData* _smartData;
+    
 }
 
-+ (NSString *)wordDir;
-+ (NSString *)cnWordDictPath;
-+ (NSString *)enWordDictPath;
-+ (NSString *)wordBaseDictPath;
+@property (nonatomic, retain) PPSmartUpdateData* smartData;
 
 @end
 
@@ -67,6 +64,7 @@ WordManager *GlobalGetWordManager()
 #define WORD_DIR @"word"
 #define WORD_BASE_ZIP_NAME @"wordbase.zip"
 
+/*
 + (BOOL)needUnZip
 {
     NSNumber *plistVersion = [[NSBundle mainBundle] objectForInfoDictionaryKey:WORD_BASE_KEY];
@@ -80,6 +78,7 @@ WordManager *GlobalGetWordManager()
     
     return NO;
 }
+*/
 
 + (void)updateWordBaseVersion
 {
@@ -87,26 +86,31 @@ WordManager *GlobalGetWordManager()
     [[NSUserDefaults standardUserDefaults] setInteger:plistVersion.integerValue forKey:WORD_BASE_KEY];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
-+ (NSString *)wordDir
+
+- (NSString *)wordDir
 {
-    return [[FileUtil getAppCacheDir] stringByAppendingPathComponent:WORD_DIR];
-}
-+ (NSString *)cnWordDictPath
-{
-    NSString *fileName = @"CN_Words_Dict.plist"; 
-    return [[WordManager wordDir] stringByAppendingPathComponent:fileName];
-}
-+ (NSString *)enWordDictPath
-{
-    NSString *fileName = @"EN_Words_Dict.plist"; 
-    return [[WordManager wordDir] stringByAppendingPathComponent:fileName];    
-}
-+ (NSString *)wordBaseDictPath
-{
-    NSString *fileName = @"words.plist"; 
-    return [[WordManager wordDir] stringByAppendingPathComponent:fileName];        
+    return [_smartData currentDataPath];
 }
 
+- (NSString *)cnWordDictPath
+{
+    NSString *fileName = @"CN_Words_Dict.plist"; 
+    return [[self wordDir] stringByAppendingPathComponent:fileName];
+}
+
+- (NSString *)enWordDictPath
+{
+    NSString *fileName = @"EN_Words_Dict.plist"; 
+    return [[self wordDir] stringByAppendingPathComponent:fileName];
+}
+
+- (NSString *)wordBaseDictPath
+{
+    NSString *fileName = @"words.plist"; 
+    return [[self wordDir] stringByAppendingPathComponent:fileName];
+}
+
+/*
 + (void)unZipFiles
 {
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
@@ -158,16 +162,13 @@ WordManager *GlobalGetWordManager()
     });
     
 }
+*/
 
 
 - (NSDictionary *)getWordBaseDictionary
 {
-//    if (wordBaseDictionary == nil) {
-        NSDictionary *dict = [NSDictionary dictionaryWithContentsOfFile:WORD_BASE];    
-        return dict;
-//        [wordBaseDictionary retain];
-//    }
-//    return wordBaseDictionary;
+    NSDictionary *dict = [NSDictionary dictionaryWithContentsOfFile:[self wordBaseDictPath]];
+    return dict;
 }
 
 - (void)clearWordBaseDictionary
@@ -229,9 +230,9 @@ WordManager *GlobalGetWordManager()
     }else{
         NSDictionary *pathDictionary = nil;
         if (languageType == ChineseType) {
-            pathDictionary = [NSDictionary dictionaryWithContentsOfFile:CN_WORD_DICT];            
+            pathDictionary = [NSDictionary dictionaryWithContentsOfFile:[self cnWordDictPath]];
         }else {
-            pathDictionary = [NSDictionary dictionaryWithContentsOfFile:EN_WORD_DICT];            
+            pathDictionary = [NSDictionary dictionaryWithContentsOfFile:[self enWordDictPath]];
         }
         self.wordDict = [self parsePathDict:pathDictionary];
         self.languageType = languageType;
@@ -263,6 +264,7 @@ WordManager *GlobalGetWordManager()
 
 - (void)dealloc
 {
+    [_smartData release];
     [_wordDict release];
 //    [wordBaseDictionary release];
     [super dealloc];
