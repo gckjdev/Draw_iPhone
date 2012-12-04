@@ -64,5 +64,6 @@
 - (void)backToOriginPosition:(BOOL)animation;
 
 - (void)setShowCardFlag:(BOOL)animation;
+- (void)changeToCard:(Poker *)poker animation:(BOOL)animation;
 
 @end

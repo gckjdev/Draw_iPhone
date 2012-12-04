@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "ZhaJinHua.pb.h"
 #import "Poker.h"
+#import "ReplacedPoker.h"
 
 #define ZJH_NUM_POKER_PER_USER 3
 
@@ -27,6 +28,7 @@
 @property (assign, nonatomic) BOOL alreadCompareLose;
 @property (assign, nonatomic) int compareAward;
 @property (assign, nonatomic) int resultAward;
+@property (retain, nonatomic) NSMutableArray *replacedPokers;
 
 + (ZJHUserPlayInfo *)fromPBZJHUserPlayInfo:(PBZJHUserPlayInfo *)pbZJHUserPlayInfo;
 

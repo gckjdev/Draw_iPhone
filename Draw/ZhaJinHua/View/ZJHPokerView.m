@@ -234,6 +234,21 @@
     }
 }
 
+- (void)changeCard:(int)cardId toCard:(Poker *)poker animation:(BOOL)animation
+{
+    if (self.pokerView1.poker.pokerId == cardId) {
+        [self.pokerView1 changeToCard:poker animation:animation];
+    }
+    
+    if (self.pokerView2.poker.pokerId == cardId) {
+        [self.pokerView2 changeToCard:poker animation:animation];
+    }
+    
+    if (self.pokerView3.poker.pokerId == cardId) {
+        [self.pokerView3 changeToCard:poker animation:animation];
+    }
+}
+
 - (void)foldCards:(BOOL)animation
 {
     [self clearBomb];
@@ -300,6 +315,7 @@
 
 - (void)didClickShowCardButton:(PokerView *)pokerView
 {
+    [self dismissButtons];
     if ([_delegate respondsToSelector:@selector(didClickShowCardButton:)]) {
         [_delegate didClickShowCardButton:pokerView];
     }
@@ -307,6 +323,7 @@
 
 - (void)didClickChangeCardButton:(PokerView *)pokerView;
 {
+    [self dismissButtons];
     if ([_delegate respondsToSelector:@selector(didClickChangeCardButton:)]) {
         [_delegate didClickChangeCardButton:pokerView];
     }

@@ -71,7 +71,6 @@
             return CGPointMake(self.frame.size.width/2, 0);
             break;
     };
-    
 }
 
 - (CGPoint)getRandomCenterPoint

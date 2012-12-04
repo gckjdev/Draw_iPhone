@@ -12,7 +12,6 @@
 
 @interface ZJHUserPlayInfo ()
 @property (readwrite, copy, nonatomic) NSString *userId;
-@property (retain, nonatomic) NSMutableArray *replacedPokers;
 
 @end
 
@@ -275,7 +274,7 @@
 {
     for (Poker *poker in _pokers) {
         if (poker.pokerId == oldCardId) {
-            [_replacedPokers addObject:poker];
+            [_replacedPokers addObject:[ReplacedPoker replacedPokerWithOldPoker:poker newPoker:[Poker pokerFromPBPoker:newPoker]]];
             [_pokers removeObject:poker];
             [_pokers addObject:[Poker pokerFromPBPoker:newPoker]];
         }
