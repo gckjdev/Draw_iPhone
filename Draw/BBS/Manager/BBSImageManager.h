@@ -77,5 +77,6 @@
 
 //#pragma mark - User Action actionSheet
 
+- (CGSize)image:(UIImage *)image sizeWithConstHeight:(CGFloat)height maxWidth:(CGFloat)maxWidth;
 
 @end

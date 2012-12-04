@@ -314,4 +314,19 @@ static BBSImageManager* _staticBBSImageManager;
 }
 
 
+- (CGSize)image:(UIImage *)image sizeWithConstHeight:(CGFloat)constHeight
+       maxWidth:(CGFloat)maxWidth
+
+{
+    if (image) {
+        CGSize imageSize = image.size;
+        CGFloat h = imageSize.height / constHeight;
+        CGFloat width = imageSize.width / h;
+        if (width > maxWidth) {
+            width = maxWidth;
+        }
+        return CGSizeMake(width, constHeight);
+    }
+    return CGSizeZero;
+}
 @end
