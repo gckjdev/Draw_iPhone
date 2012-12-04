@@ -151,7 +151,7 @@
 - (NSString *)showText
 {
     if (self.type == ActionTypeSupport) {
-        return NSLS(@"kSupport");
+        return NSLS(@"kBBSSupport");
     }
     if (self.type == ActionTypeComment) {
         if ([self isCommet]) {
@@ -168,7 +168,7 @@
 - (NSString *)contentText
 {
     if (self.type == ActionTypeSupport) {
-        return NSLS(@"kSupport");
+        return NSLS(@"kBBSSupport");
     }
     if (self.type == ActionTypeComment) {
         return self.content.text;

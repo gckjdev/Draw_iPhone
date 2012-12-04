@@ -197,7 +197,7 @@
     actionSheet.tag = ACTION_SHEET_TAG;
     [actionSheet showInView:self.view showAtPoint:point animated:YES];
     [actionSheet setMaskViewColor:[UIColor lightGrayColor]];
-    [actionSheet release];
+    PPRelease(actionSheet);
 
 }
 

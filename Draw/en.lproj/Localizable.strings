@@ -1139,9 +1139,10 @@
 "kCreatePost" = "Create Post";
 "kMyComment" = "My Comment";
 "kPostDetail" = "Post Detail";
-"kPublish" = "Publish";
+"kPublish" = "Send";
 "kReward" = "Reward";
-"kSupport" = "Support";
+"kBBSSupport" = "UP";
+"kBBSReply" = "RE";
 "kMyPost" = "My Post";
 "kBBSDraw" = "Share painting.";
 "kBBSImage" = "Share image.";

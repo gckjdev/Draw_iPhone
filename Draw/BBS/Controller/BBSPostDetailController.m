@@ -112,7 +112,7 @@ typedef enum{
                            image:nil
                             font:[_bbsFontManager detailActionFont]
                       titleColor:[_bbsColorManager detailDefaultColor]
-                           title:NSLS(@"kSupport")
+                           title:NSLS(@"kBBSSupport")
                         forState:UIControlStateNormal];
     
     [BBSViewManager updateButton:self.commentButton
@@ -121,7 +121,7 @@ typedef enum{
                            image:nil
                             font:[_bbsFontManager detailActionFont]
                       titleColor:[_bbsColorManager detailDefaultColor]
-                           title:NSLS(@"kComment")
+                           title:NSLS(@"kBBSReply")
                         forState:UIControlStateNormal];
 
 }
@@ -304,7 +304,7 @@ typedef enum{
                 }
                 PBBBSAction *action = [self actionForIndexPath:indexPath];
                 [cell updateCellWithBBSAction:action post:self.post];
-                if ([self.post canPay] && action == _selectedAction) {
+                if ([self.post canPay] && action == _selectedAction && ![action isMyAction]) {
                     [cell showOption:YES];
                 }else{
                     [cell showOption:NO];

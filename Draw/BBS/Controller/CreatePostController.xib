@@ -154,7 +154,7 @@
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<int key="IBUIContentHorizontalAlignment">0</int>
 								<int key="IBUIContentVerticalAlignment">0</int>
-								<string key="IBUINormalTitle">k提交</string>
+								<string key="IBUINormalTitle">Send</string>
 								<reference key="IBUIHighlightedTitleColor" ref="601660250"/>
 								<object class="NSColor" key="IBUINormalTitleColor">
 									<int key="NSColorSpace">1</int>
@@ -206,6 +206,7 @@
 								<string key="NSFrame">{{275, 406}, {24, 23}}</string>
 								<reference key="NSSuperview" ref="399887529"/>
 								<reference key="NSWindow"/>
+								<reference key="NSNextKeyView"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -227,7 +228,7 @@
 							<object class="IBUIButton" id="182883062">
 								<reference key="NSNextResponder" ref="399887529"/>
 								<int key="NSvFlags">268</int>
-								<string key="NSFrame">{{22, 406}, {50, 23}}</string>
+								<string key="NSFrame">{{22, 406}, {70, 23}}</string>
 								<reference key="NSSuperview" ref="399887529"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="453295058"/>
@@ -238,13 +239,13 @@
 								<int key="IBUIContentVerticalAlignment">0</int>
 								<double key="IBUITitleEdgeInsets.top">0.0</double>
 								<double key="IBUITitleEdgeInsets.bottom">0.0</double>
-								<double key="IBUITitleEdgeInsets.left">-27</double>
+								<double key="IBUITitleEdgeInsets.left">-32</double>
 								<double key="IBUITitleEdgeInsets.right">0.0</double>
 								<double key="IBUIImageEdgeInsets.top">0.0</double>
 								<double key="IBUIImageEdgeInsets.bottom">0.0</double>
-								<double key="IBUIImageEdgeInsets.left">31</double>
+								<double key="IBUIImageEdgeInsets.left">43</double>
 								<double key="IBUIImageEdgeInsets.right">0.0</double>
-								<string key="IBUINormalTitle">悬赏</string>
+								<string key="IBUINormalTitle">Reward</string>
 								<reference key="IBUIHighlightedTitleColor" ref="601660250"/>
 								<object class="NSColor" key="IBUINormalTitleColor">
 									<int key="NSColorSpace">1</int>
