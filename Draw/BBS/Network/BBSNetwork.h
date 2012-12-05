@@ -16,7 +16,8 @@
 + (CommonNetworkOutput*)getBBSBoardList:(NSString*)baseURL
                                   appId:(NSString*)appId
                                  userId:(NSString*)userId
-                             deviceType:(int)deviceType;
+                             deviceType:(int)deviceType
+                                 gameId:(NSString *)gameId;
 
 
 #pragma mark - post methods

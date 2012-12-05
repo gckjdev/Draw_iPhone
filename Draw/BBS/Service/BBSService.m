@@ -293,10 +293,12 @@ BBSService *_staticBBSService;
     dispatch_async(workingQueue, ^{
         NSString *userId = [[UserManager defaultManager] userId];
         NSString *appId = [ConfigManager appId];
+        NSString *gameId = [ConfigManager gameId];
         CommonNetworkOutput *output = [BBSNetwork getBBSBoardList:TRAFFIC_SERVER_URL
                                                             appId:appId
                                                            userId:userId
-                                                       deviceType:1];
+                                                       deviceType:1
+                                                           gameId:gameId];
         NSInteger resultCode = [output resultCode];
         NSArray *list = nil;
         @try {
