@@ -679,7 +679,7 @@ static UserService* _defaultUserService;
 //                [[QQWeiboService defaultService] saveToken:qqAccessToken secret:qqAccessSecret];
                 
                 
-                [[LevelService defaultService] setLevel:levelSring.intValue];
+                [[LevelService defaultService] setLevel:levelSring.integerValue];
                 [[LevelService defaultService] setExperience:expSring.intValue];
                 
                 if ([ConfigManager isProVersion]){
