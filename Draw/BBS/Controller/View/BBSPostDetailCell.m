@@ -20,7 +20,7 @@
 #define SPACE_CONTENT_BOTTOM_IMAGE (ISIPAD ? (2.33 * 120) : 120) //IMAGE TYPE OR DRAW TYPE
 
 #define SPACE_CONTENT_BOTTOM_TEXT (ISIPAD ? (2.33 * 40) : 40) //TEXT TYPE
-#define IMAGE_HEIGHT (ISIPAD ? (2.33 * 80) : 80)
+//#define IMAGE_HEIGHT (ISIPAD ? (2.33 * 80) : 80)
 #define CONTENT_TEXT_LINE (0)
 #define CONTENT_WIDTH (ISIPAD ? (2.33 * 206) : 206)
 #define CONTENT_MAX_HEIGHT 99999999
@@ -135,7 +135,14 @@
     self.content.frame = frame;
   
     if (content.hasThumbImage) {
-        [self.image setImageWithURL:content.thumbImageURL placeholderImage:nil];
+        [self.image setImageWithURL:content.thumbImageURL
+                   placeholderImage:nil
+                            success:^(UIImage *image, BOOL cached) {
+            [self updateImageViewFrameWithImage:image];
+        } failure:^(NSError *error) {
+            
+        }];
+
         self.image.hidden = NO;
     }else{
         self.image.hidden = YES;

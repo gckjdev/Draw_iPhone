@@ -100,6 +100,19 @@
 
 }
 
+- (void)updateImageViewFrameWithImage:(UIImage *)image
+{
+    if (image) {
+        CGSize size = [[BBSImageManager defaultManager]
+                       image:image
+                       sizeWithConstHeight:IMAGE_HEIGHT
+                       maxWidth:CGRectGetWidth(self.content.frame)];
+        CGRect frame = self.image.frame;
+        frame.size = size;
+        self.image.frame = frame;
+    }
+}
+
 - (void)dealloc
 {
     PPRelease(_avatar);

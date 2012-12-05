@@ -1489,6 +1489,7 @@
 		CAA1AFC7159EAB1700504C98 /* libstdc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = CAA1AFC6159EAB1600504C98 /* libstdc++.dylib */; };
 		CAA27FB5166E083500513F58 /* bbs_board_comment@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAA27FB3166E083500513F58 /* bbs_board_comment@2x.png */; };
 		CAA27FB6166E083500513F58 /* bbs_board_mine@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAA27FB4166E083500513F58 /* bbs_board_mine@2x.png */; };
+		CAA27FB8166E661500513F58 /* ShowImageController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAA27FB7166E661500513F58 /* ShowImageController~ipad.xib */; };
 		CAA361DB15529F530081D3EB /* HomeController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAA361DA15529F530081D3EB /* HomeController~ipad.xib */; };
 		CAA362421558C3090081D3EB /* Friend.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA362411558C3090081D3EB /* Friend.m */; };
 		CAA362451558C3400081D3EB /* FriendManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA362441558C3400081D3EB /* FriendManager.m */; };
@@ -4015,6 +4016,7 @@
 		CAA1AFC6159EAB1600504C98 /* libstdc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.dylib"; path = "usr/lib/libstdc++.dylib"; sourceTree = SDKROOT; };
 		CAA27FB3166E083500513F58 /* bbs_board_comment@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bbs_board_comment@2x.png"; sourceTree = "<group>"; };
 		CAA27FB4166E083500513F58 /* bbs_board_mine@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bbs_board_mine@2x.png"; sourceTree = "<group>"; };
+		CAA27FB7166E661500513F58 /* ShowImageController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ShowImageController~ipad.xib"; sourceTree = "<group>"; };
 		CAA361DA15529F530081D3EB /* HomeController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "HomeController~ipad.xib"; sourceTree = "<group>"; };
 		CAA361FF1553AAE00081D3EB /* MainDataModel 4.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "MainDataModel 4.xcdatamodel"; sourceTree = "<group>"; };
 		CAA362401558C3090081D3EB /* Friend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Friend.h; sourceTree = "<group>"; };
@@ -9068,6 +9070,7 @@
 				CAC7912516635F9F009B4053 /* ShowImageController.h */,
 				CAC7912616635F9F009B4053 /* ShowImageController.m */,
 				CAC7912816635FB3009B4053 /* ShowImageController.xib */,
+				CAA27FB7166E661500513F58 /* ShowImageController~ipad.xib */,
 			);
 			name = Common;
 			sourceTree = "<group>";
@@ -11949,6 +11952,7 @@
 				A49A083C166D95EF003E0F75 /* show_change_card_button_popup_bg@2x.png in Resources */,
 				CAA27FB5166E083500513F58 /* bbs_board_comment@2x.png in Resources */,
 				CAA27FB6166E083500513F58 /* bbs_board_mine@2x.png in Resources */,
+				CAA27FB8166E661500513F58 /* ShowImageController~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

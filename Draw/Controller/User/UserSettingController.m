@@ -781,6 +781,8 @@ enum {
 {
     PPSNSCommonService* service = [[PPSNSIntegerationService defaultService] snsServiceByType:snsType];
     NSString* name = [service snsName];
+
+    [service logout];
     
     [service login:^(NSDictionary *userInfo) {
         PPDebug(@"%@ Login Success", name);
@@ -817,12 +819,6 @@ enum {
 
 - (void)bindFacebook
 {
-    /*
-    _currentLoginType = REGISTER_TYPE_FACEBOOK;
-    [[FacebookSNSService defaultService] startLogin:self];                        
-    */
-
-    // TODO facebook not tested
     [self bindSNS:TYPE_FACEBOOK];
 }
 
