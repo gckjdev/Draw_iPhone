@@ -26,6 +26,9 @@
 #import "ConfigManager.h"
 #import "TopPlayer.h"
 #import "MyFriend.h"
+#import "PPSNSIntegerationService.h"
+#import "PPSNSCommonService.h"
+#import "PPSNSStorageService.h"
 
 @implementation UserService
 
@@ -233,24 +236,7 @@ static UserService* _defaultUserService;
                    facebookAccessToken:facebookAccessToken
                     facebookExpireDate:facebookExpireDate
                                  email:nil];
-        
-//        [GameNetworkRequest registerUserBySNS:SERVER_URL
-//                                        snsId:loginId
-//                                 registerType:loginIdType
-//                                        appId:appId
-//                                  deviceToken:deviceToken
-//                                     nickName:[userInfo objectForKey:SNS_NICK_NAME]
-//                                       avatar:[userInfo objectForKey:SNS_USER_IMAGE_URL]
-//                                  accessToken:[userInfo objectForKey:SNS_OAUTH_TOKEN]
-//                            accessTokenSecret:[userInfo objectForKey:SNS_OAUTH_TOKEN_SECRET]
-//                                     province:[[userInfo objectForKey:SNS_PROVINCE] intValue]
-//                                         city:[[userInfo objectForKey:SNS_CITY] intValue]
-//                                     location:[userInfo objectForKey:SNS_LOCATION]
-//                                       gender:[userInfo objectForKey:SNS_GENDER]
-//                                     birthday:[userInfo objectForKey:SNS_BIRTHDAY]
-//                                       domain:[userInfo objectForKey:SNS_DOMAIN]
-//                                     deviceId:deviceId];                
-        
+  
         dispatch_async(dispatch_get_main_queue(), ^{
             
             [viewController hideActivity];
@@ -327,6 +313,9 @@ static UserService* _defaultUserService;
                                        avatar:[userInfo objectForKey:SNS_USER_IMAGE_URL]
                                   accessToken:[userInfo objectForKey:SNS_OAUTH_TOKEN]
                             accessTokenSecret:[userInfo objectForKey:SNS_OAUTH_TOKEN_SECRET]
+                                 refreshToken:[userInfo objectForKey:SNS_REFRESH_TOKEN]
+                                   expireDate:[userInfo objectForKey:SNS_EXPIRATION_DATE]
+                                     qqOpenId:[userInfo objectForKey:SNS_QQ_OPEN_ID]
                                      province:[[userInfo objectForKey:SNS_PROVINCE] intValue]
                                          city:[[userInfo objectForKey:SNS_CITY] intValue]
                                      location:[userInfo objectForKey:SNS_LOCATION]
@@ -688,6 +677,25 @@ static UserService* _defaultUserService;
                 NSString* levelSring = [output.jsonDataDict objectForKey:PARA_LEVEL];
                 NSString* expSring = [output.jsonDataDict objectForKey:PARA_EXP];
                 
+                NSString* sinaRefreshToken = [output.jsonDataDict objectForKey:PARA_SINA_REFRESH_TOKEN];
+                int       sinaExpireTime = [[output.jsonDataDict objectForKey:PARA_SINA_EXPIRE_DATE] intValue];
+                NSDate*   sinaExpireDate = nil;
+                if (sinaExpireTime)
+                    sinaExpireDate = [NSDate dateWithTimeIntervalSince1970:sinaExpireTime];
+                
+                NSString* qqRefreshToken = [output.jsonDataDict objectForKey:PARA_QQ_REFRESH_TOKEN];
+                int       qqExpireTime = [[output.jsonDataDict objectForKey:PARA_QQ_EXPIRE_DATE] intValue];
+                NSDate*   qqExpireDate = nil;
+                if (qqExpireTime)
+                    qqExpireDate = [NSDate dateWithTimeIntervalSince1970:qqExpireTime];
+                NSString* qqOpenId = [output.jsonDataDict objectForKey:PARA_QQ_OPEN_ID];
+
+                NSString* facebookToken = [output.jsonDataDict objectForKey:PARA_FACEBOOK_ACCESS_TOKEN];
+                int       facebookExpireTime = [[output.jsonDataDict objectForKey:PARA_FACEBOOK_EXPIRE_DATE] intValue];
+                NSDate*   facebookExpireDate = nil;
+                if (facebookExpireTime)
+                    facebookExpireDate = [NSDate dateWithTimeIntervalSince1970:facebookExpireTime];
+                
                 
                 if (nickName == nil || [nickName length] == 0) {
                     nickName = [output.jsonDataDict objectForKey:PARA_SINA_NICKNAME];
@@ -715,6 +723,28 @@ static UserService* _defaultUserService;
             
                 [[UserManager defaultManager] setLocation:location];
 
+                PPSNSCommonService* sinaSNSService = [[PPSNSIntegerationService defaultService] snsServiceByType:TYPE_SINA];
+                [sinaSNSService saveAccessToken:sinaAccessToken
+                                   refreshToken:sinaRefreshToken
+                                     expireDate:sinaExpireDate
+                                         userId:sinaId
+                                       qqOpenId:nil];
+
+                PPSNSCommonService* qqSNSService = [[PPSNSIntegerationService defaultService] snsServiceByType:TYPE_QQ];
+                [qqSNSService saveAccessToken:qqAccessToken
+                                   refreshToken:qqRefreshToken
+                                     expireDate:qqExpireDate
+                                         userId:qqId
+                                       qqOpenId:nil];
+
+                PPSNSCommonService* facebookSNSService = [[PPSNSIntegerationService defaultService] snsServiceByType:TYPE_FACEBOOK];
+                [facebookSNSService saveAccessToken:facebookToken
+                                   refreshToken:nil
+                                     expireDate:facebookExpireDate
+                                         userId:facebookId
+                                       qqOpenId:nil];
+                
+                
                 // TODO:SNS
 //                [[QQWeiboService defaultService] saveToken:qqAccessToken secret:qqAccessSecret];
                 

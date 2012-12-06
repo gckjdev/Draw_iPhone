@@ -181,6 +181,9 @@
                                    avatar:(NSString*)avatar
                               accessToken:(NSString*)accessToken
                         accessTokenSecret:(NSString*)accessTokenSecret
+                             refreshToken:(NSString*)refreshToken
+                               expireDate:(NSDate*)expireDate
+                                 qqOpenId:(NSString*)qqOpenId
                                  province:(int)province
                                      city:(int)city
                                  location:(NSString*)location
@@ -217,6 +220,11 @@
         str = [str stringByAddQueryParameter:PARA_DEVICEMODEL value:[UIDevice currentDevice].model];
         str = [str stringByAddQueryParameter:PARA_DEVICEOS value:deviceOS];
         str = [str stringByAddQueryParameter:PARA_DEVICETYPE intValue:DEVICE_TYPE_IOS];
+
+        str = [str stringByAddQueryParameter:PARA_REFRESH_TOKEN value:refreshToken];
+        str = [str stringByAddQueryParameter:PARA_QQ_OPEN_ID value:qqOpenId];
+        str = [str stringByAddQueryParameter:PARA_EXPIRE_DATE intValue:[expireDate timeIntervalSince1970]];
+        
         
         return str;
     };
@@ -242,6 +250,9 @@
                                    avatar:(NSString*)avatar
                               accessToken:(NSString*)accessToken
                         accessTokenSecret:(NSString*)accessTokenSecret
+                             refreshToken:(NSString*)refreshToken
+                               expireDate:(NSDate*)expireDate
+                                 qqOpenId:(NSString*)qqOpenId
                                  province:(int)province
                                      city:(int)city
                                  location:(NSString*)location
@@ -280,6 +291,14 @@
         str = [str stringByAddQueryParameter:PARA_DEVICEMODEL value:[UIDevice currentDevice].model];
         str = [str stringByAddQueryParameter:PARA_DEVICEOS value:deviceOS];
         str = [str stringByAddQueryParameter:PARA_DEVICETYPE intValue:DEVICE_TYPE_IOS];
+        
+        if (refreshToken)
+            str = [str stringByAddQueryParameter:PARA_REFRESH_TOKEN value:refreshToken];
+        if (qqOpenId)
+            str = [str stringByAddQueryParameter:PARA_QQ_OPEN_ID value:qqOpenId];
+        if (expireDate)
+            str = [str stringByAddQueryParameter:PARA_EXPIRE_DATE intValue:[expireDate timeIntervalSince1970]];
+        
         return str;
     };
     

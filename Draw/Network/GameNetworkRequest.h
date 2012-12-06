@@ -28,6 +28,9 @@
                                    avatar:(NSString*)avatar
                               accessToken:(NSString*)accessToken
                         accessTokenSecret:(NSString*)accessTokenSecret
+                             refreshToken:(NSString*)refreshToken
+                               expireDate:(NSDate*)expireDate
+                                 qqOpenId:(NSString*)qqOpenId
                                  province:(int)province
                                      city:(int)city
                                  location:(NSString*)location
@@ -51,6 +54,9 @@
                                    avatar:(NSString*)avatar
                               accessToken:(NSString*)accessToken
                         accessTokenSecret:(NSString*)accessTokenSecret
+                             refreshToken:(NSString*)refreshToken
+                               expireDate:(NSDate*)expireDate
+                                 qqOpenId:(NSString*)qqOpenId
                                  province:(int)province
                                      city:(int)city
                                  location:(NSString*)location

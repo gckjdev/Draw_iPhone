@@ -280,6 +280,7 @@
 #define PARA_QQ_REFRESH_TOKEN           @"qrt"
 #define PARA_QQ_EXPIRE_DATE             @"qed"
 #define PARA_QQ_OPEN_ID                 @"qqoid"
+#define PARA_REFRESH_TOKEN              @"rto"
 
 #define PARA_DOMAIN                     @"d"
 #define PARA_SNS_ID                     @"sid"
