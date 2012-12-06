@@ -149,6 +149,13 @@ static UserService* _defaultUserService;
     NSString* qqToken = nil;
     NSString* qqTokenSecret = nil;
     NSString* sinaToken = nil;
+    NSString* sinaRefreshToken = nil;
+    NSDate*   sinaExpireDate = nil;
+    NSString* qqRefreshToken = nil;
+    NSDate*   qqExpireDate = nil;
+    NSString* qqOpenId = nil;
+    NSString* facebookAccessToken = nil;
+    NSDate*   facebookExpireDate = nil;
 
     NSString* newNickName = nil;
     if ([[[UserManager defaultManager] nickName] length] == 0){
@@ -164,11 +171,14 @@ static UserService* _defaultUserService;
         PPDebug(@"<updateUserWithSNSUserInfo> avatar exists, no change");
     }
     
+    
     switch (loginIdType) {
         case REGISTER_TYPE_SINA:
             sinaId = loginId;
             sinaNickName = nickName;
             sinaToken = [userInfo objectForKey:SNS_OAUTH_TOKEN];
+            sinaExpireDate = [userInfo objectForKey:SNS_EXPIRATION_DATE];
+            sinaRefreshToken = [userInfo objectForKey:SNS_REFRESH_TOKEN];
             break;
         
         case REGISTER_TYPE_QQ:
@@ -176,10 +186,14 @@ static UserService* _defaultUserService;
             qqNickName = nickName;
             qqToken = [userInfo objectForKey:SNS_OAUTH_TOKEN];
             qqTokenSecret = [userInfo objectForKey:SNS_OAUTH_TOKEN_SECRET];
+            qqExpireDate = [userInfo objectForKey:SNS_EXPIRATION_DATE];
+            qqRefreshToken = [userInfo objectForKey:SNS_REFRESH_TOKEN];
             break;
             
         case REGISTER_TYPE_FACEBOOK:
             facebookId = loginId;
+            facebookAccessToken = [userInfo objectForKey:SNS_OAUTH_TOKEN];
+            facebookExpireDate = [userInfo objectForKey:SNS_EXPIRATION_DATE];
             break;
             
         default:
@@ -188,11 +202,37 @@ static UserService* _defaultUserService;
     
     PPDebug(@"<updateUserWithSNSUserInfo> userId=%@, userInfo=%@", userId, [userInfo description]);
     
-    [viewController showActivityWithText:NSLS(@"kUpdatingUser")];    
-    dispatch_async(workingQueue, ^{            
+    [viewController showActivityWithText:NSLS(@"kUpdatingUser")];
+    dispatch_async(workingQueue, ^{
         
         CommonNetworkOutput* output = 
-        [GameNetworkRequest updateUser:SERVER_URL appId:appId userId:userId deviceId:nil deviceToken:nil nickName:newNickName gender:gender password:nil avatar:avatar location:location sinaId:sinaId sinaNickName:sinaNickName sinaToken:sinaToken sinaSecret:nil qqId:qqId qqNickName:qqNickName qqToken:qqToken qqTokenSecret:qqTokenSecret facebookId:facebookId email:nil];
+        [GameNetworkRequest updateUser:SERVER_URL
+                                 appId:appId
+                                userId:userId
+                              deviceId:nil
+                           deviceToken:nil
+                              nickName:newNickName
+                                gender:gender
+                              password:nil
+                                avatar:avatar
+                              location:location
+                                sinaId:sinaId
+                          sinaNickName:sinaNickName
+                             sinaToken:sinaToken
+                             sinaSecret:nil
+                      sinaRefreshToken:sinaRefreshToken
+                        sinaExpireDate:sinaExpireDate
+                                  qqId:qqId
+                            qqNickName:qqNickName
+                               qqToken:qqToken         
+                         qqTokenSecret:qqTokenSecret
+                        qqRefreshToken:qqRefreshToken
+                          qqExpireDate:qqExpireDate
+                              qqOpenId:qqOpenId         
+                            facebookId:facebookId
+                   facebookAccessToken:facebookAccessToken
+                    facebookExpireDate:facebookExpireDate
+                                 email:nil];
         
 //        [GameNetworkRequest registerUserBySNS:SERVER_URL
 //                                        snsId:loginId
@@ -705,6 +745,7 @@ static UserService* _defaultUserService;
     
 }
 
+/*
 - (void)updateAllUserInfo
 {
     NSString* userId = [[UserManager defaultManager] userId];
@@ -764,6 +805,7 @@ static UserService* _defaultUserService;
         });
     });
 }
+*/
 
 - (void)getStatistic:(PPViewController<UserServiceDelegate>*)viewController
 {

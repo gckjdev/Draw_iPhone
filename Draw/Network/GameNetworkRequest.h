@@ -358,18 +358,25 @@
                           nickName:(NSString*)nickName
                             gender:(NSString*)gender
                           password:(NSString*)newPassword
-                            avatar:(NSString*)avatar 
-                          location:(NSString*)location 
-                            sinaId:(NSString*)sinaId 
+                            avatar:(NSString*)avatar
+                          location:(NSString*)location
+                            sinaId:(NSString*)sinaId
                       sinaNickName:(NSString*)sinaNickName
-                         sinaToken:(NSString*)sinaToken 
-                        sinaSecret:(NSString*)sinaSecret 
-                              qqId:(NSString*)qqId 
+                         sinaToken:(NSString*)sinaToken
+                        sinaSecret:(NSString*)sinaSecret
+                  sinaRefreshToken:(NSString*)sinaRefreshToken
+                    sinaExpireDate:(NSDate*)sinaExpireDate
+                              qqId:(NSString*)qqId
                         qqNickName:(NSString*)qqNickName
-                           qqToken:(NSString*)qqToken 
-                     qqTokenSecret:(NSString*)qqTokenSecret 
-                        facebookId:(NSString*)facebookId 
-                             email:(NSString*)email;
+                           qqToken:(NSString*)qqToken
+                     qqTokenSecret:(NSString*)qqTokenSecret
+                    qqRefreshToken:(NSString*)qqRefreshToken
+                      qqExpireDate:(NSDate*)qqExpireDate
+                          qqOpenId:(NSString*)qqOpenId
+                        facebookId:(NSString*)facebookId
+               facebookAccessToken:(NSString*)facebookAccessToken
+                facebookExpireDate:(NSDate*)facebookExpireDate
+                             email:(NSString *)email;
 
 + (CommonNetworkOutput*)getStatistics:(NSString*)baseURL 
                                 appId:(NSString *)appId 
