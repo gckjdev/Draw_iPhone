@@ -1144,8 +1144,8 @@
 "kBBSSupport" = "UP";
 "kBBSReply" = "RE";
 "kMyPost" = "My Post";
-"kBBSDraw" = "Share painting.";
-"kBBSImage" = "Share image.";
+"kBBSDraw" = "painting";
+"kBBSImage" = "image";
 
 "kSupportCount" = "Support(%d)";
 "kCommentCount" = "Comment(%d)";

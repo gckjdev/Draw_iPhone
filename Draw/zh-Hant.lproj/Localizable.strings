@@ -1144,8 +1144,8 @@
 "kBBSReply" = "回復";
 "kMyPost" = "我的帖子";
 
-"kBBSDraw" = "分享塗鴉。";
-"kBBSImage" = "分享圖片.";
+"kBBSDraw" = "塗鴉";
+"kBBSImage" = "圖片";
 
 "kSupportCount" = "頂(%d)";
 "kCommentCount" = "評論(%d)";
