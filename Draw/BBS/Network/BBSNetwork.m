@@ -15,10 +15,10 @@
 
 
 + (CommonNetworkOutput*)getBBSBoardList:(NSString*)baseURL
-                                 appId:(NSString*)appId
-                                userId:(NSString*)userId
-                            deviceType:(int)deviceType
-
+                                  appId:(NSString*)appId
+                                 userId:(NSString*)userId
+                             deviceType:(int)deviceType
+                                 gameId:(NSString *)gameId
 {
     CommonNetworkOutput* output = [[[CommonNetworkOutput alloc] init] autorelease];
     
@@ -31,6 +31,7 @@
         str = [str stringByAddQueryParameter:PARA_APPID value:appId];
         str = [str stringByAddQueryParameter:PARA_USERID value:userId];
         str = [str stringByAddQueryParameter:PARA_DEVICETYPE intValue:deviceType];
+        str = [str stringByAddQueryParameter:PARA_GAME_ID value:gameId];
         str = [str stringByAddQueryParameter:PARA_FORMAT value:FINDDRAW_FORMAT_PROTOCOLBUFFER];
         
         return str;
