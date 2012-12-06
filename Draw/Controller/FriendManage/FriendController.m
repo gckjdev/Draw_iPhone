@@ -21,7 +21,7 @@
 #import "RoomService.h"
 #import "WXApi.h"
 #import "DrawAppDelegate.h"
-#import "CommonUserInfoView.h"
+#import "DrawUserInfoView.h"
 #import "ConfigManager.h"
 #import "NotificationManager.h"
 #import "DiceUserInfoView.h"
@@ -335,7 +335,7 @@ typedef enum{
 - (void)showUserInfo:(MyFriend *)friend
 {
     if (isDrawApp()) {
-        [CommonUserInfoView showFriend:friend 
+        [DrawUserInfoView showFriend:friend 
                             infoInView:self
                             needUpdate:YES];
         

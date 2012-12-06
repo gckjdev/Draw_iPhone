@@ -18,9 +18,10 @@
 #import "LmWallService.h"
 #import "CommonRoomListCell.h"
 #import "UserManager.h"
-#import "CommonUserInfoView.h"
+#import "DrawUserInfoView.h"
 #import "MyFriend.h"
-
+#import "PPViewController+StarryLoadingView.h"
+#import "CommonDialog.h"
 
 
 #define KEY_GAME_MESSAGE @"KEY_GAME_MESSAGE"
@@ -326,8 +327,14 @@
 #pragma mark - Button action
 
 - (IBAction)clickBackButton:(id)sender {
-    [_gameService quitGame];
-    [self.navigationController popViewControllerAnimated:YES];
+    CommonDialog* dialog = [CommonDialog createDialogWithTitle:nil message:@"确定退出游戏吗？确定退出游戏吗？确定退出游戏吗？" style:CommonDialogStyleDoubleButton delegate:nil theme:CommonDialogThemeStarry
+                            ];
+    [dialog setClickOkBlock:^{
+        [self.navigationController popViewControllerAnimated:YES];
+    }];
+    [dialog showInView:self.view];
+//    [_gameService quitGame];
+//    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (IBAction)clickFastEntryButton:(id)sender {
@@ -342,6 +349,7 @@
     }else {
         [self handleJoinGameError:[self handlePrejoinGameCheck]];
     }
+    [self showStarryLoadingWithText:@"Creating room."];
 }
 
 - (void)showCreateRoomView
@@ -499,7 +507,7 @@
                                         avatar:nil
                                         gender:nil
                                          level:1];
-    [CommonUserInfoView showFriend:friend infoInView:self needUpdate:YES];
+    [DrawUserInfoView showFriend:friend infoInView:self needUpdate:YES];
 }
 
 

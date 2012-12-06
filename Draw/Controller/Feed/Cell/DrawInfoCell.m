@@ -15,7 +15,7 @@
 #import "TimeUtils.h"
 #import <QuartzCore/QuartzCore.h>
 #import "UIImageView+WebCache.h"
-#import "CommonUserInfoView.h"
+#import "DrawUserInfoView.h"
 
 @implementation DrawInfoCell
 @synthesize drawImage;
