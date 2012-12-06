@@ -16,7 +16,7 @@
 #import "MyFriend.h"
 #import "FriendManager.h"
 //#import "ChatMessage.h"
-#import "CommonUserInfoView.h"
+#import "DrawUserInfoView.h"
 #import "DiceUserInfoView.h"
 #import "MessageStat.h"
 #import "PPMessageManager.h"
@@ -302,7 +302,7 @@
 {
     MyFriend *aFriend = [self friendOfIndex:aIndexPath.row];
     if (isDrawApp()) {
-        [CommonUserInfoView showFriend:aFriend infoInView:self needUpdate:YES];
+        [DrawUserInfoView showFriend:aFriend infoInView:self needUpdate:YES];
     }
     if (isDiceApp()) {
         [DiceUserInfoView showFriend:aFriend infoInView:self canChat:YES needUpdate:YES];

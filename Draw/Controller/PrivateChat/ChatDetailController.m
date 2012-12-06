@@ -21,7 +21,7 @@
 #import "DrawAppDelegate.h"
 #import "ChatDetailCell.h"
 #import "CommonMessageCenter.h"
-#import "CommonUserInfoView.h"
+#import "DrawUserInfoView.h"
 #import "DiceUserInfoView.h"
 #import "GameNetworkConstants.h"
 #import "ChatListController.h"
@@ -505,7 +505,7 @@
                                             gender:_messageStat.friendGenderString 
                                              level:1];
         if (isDrawApp()) {
-            [CommonUserInfoView showFriend:friend infoInView:self needUpdate:YES];
+            [DrawUserInfoView showFriend:friend infoInView:self needUpdate:YES];
         }
         if (isDiceApp()) {
             [DiceUserInfoView showFriend:friend infoInView:self canChat:YES needUpdate:YES];

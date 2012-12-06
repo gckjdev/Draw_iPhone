@@ -12,7 +12,7 @@
 #import "CommentCell.h"
 #import "CommentFeed.h"
 #import "TableTabManager.h"
-#import "CommonUserInfoView.h"
+#import "DrawUserInfoView.h"
 #import "OfflineGuessDrawController.h"
 #import "CommentController.h"
 #import "ShareService.h"
@@ -314,7 +314,7 @@ enum{
                                                 avatar:feedUser.avatar
                                                 gender:feedUser.genderString
                                                  level:1];
-            [CommonUserInfoView showFriend:friend infoInView:self needUpdate:YES];
+            [DrawUserInfoView showFriend:friend infoInView:self needUpdate:YES];
 
         }
             break;
@@ -411,7 +411,7 @@ enum{
                                         avatar:nil
                                         gender:@"m"
                                          level:1];
-    [CommonUserInfoView showFriend:friend infoInView:self needUpdate:YES];
+    [DrawUserInfoView showFriend:friend infoInView:self needUpdate:YES];
 }
 
 - (void)viewDidAppear:(BOOL)animated

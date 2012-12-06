@@ -346,6 +346,9 @@
 		C2615A9D1597FBB900CEEC66 /* CommonUserInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = C2615A9C1597FBB800CEEC66 /* CommonUserInfoView.m */; };
 		C2615A9F1597FBEC00CEEC66 /* CommonUserInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2615A9E1597FBEB00CEEC66 /* CommonUserInfoView.xib */; };
 		C2615AA11597FC0C00CEEC66 /* CommonUserInfoView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2615AA01597FC0B00CEEC66 /* CommonUserInfoView~ipad.xib */; };
+		C26224C916702DB2008BF3FB /* DrawUserInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C26224C516702DB1008BF3FB /* DrawUserInfoView.xib */; };
+		C26224CA16702DB2008BF3FB /* DrawUserInfoView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C26224C616702DB1008BF3FB /* DrawUserInfoView~ipad.xib */; };
+		C26224CB16702DB2008BF3FB /* DrawUserInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = C26224C716702DB1008BF3FB /* DrawUserInfoView.m */; };
 		C28207E31552D974006FBB0F /* AudioManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C28207E21552D974006FBB0F /* AudioManager.m */; };
 		C284E87F1531D89800DD5B77 /* AboutUsController.m in Sources */ = {isa = PBXBuildFile; fileRef = C284E87D1531D89800DD5B77 /* AboutUsController.m */; };
 		C284E8801531D89800DD5B77 /* AboutUsController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C284E87E1531D89800DD5B77 /* AboutUsController.xib */; };
@@ -2475,6 +2478,10 @@
 		C2615A9C1597FBB800CEEC66 /* CommonUserInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonUserInfoView.m; sourceTree = "<group>"; };
 		C2615A9E1597FBEB00CEEC66 /* CommonUserInfoView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommonUserInfoView.xib; sourceTree = "<group>"; };
 		C2615AA01597FC0B00CEEC66 /* CommonUserInfoView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "CommonUserInfoView~ipad.xib"; sourceTree = "<group>"; };
+		C26224C516702DB1008BF3FB /* DrawUserInfoView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DrawUserInfoView.xib; sourceTree = "<group>"; };
+		C26224C616702DB1008BF3FB /* DrawUserInfoView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "DrawUserInfoView~ipad.xib"; sourceTree = "<group>"; };
+		C26224C716702DB1008BF3FB /* DrawUserInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawUserInfoView.m; sourceTree = "<group>"; };
+		C26224C816702DB2008BF3FB /* DrawUserInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawUserInfoView.h; sourceTree = "<group>"; };
 		C28207E11552D974006FBB0F /* AudioManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioManager.h; sourceTree = "<group>"; };
 		C28207E21552D974006FBB0F /* AudioManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioManager.m; sourceTree = "<group>"; };
 		C284E87C1531D89800DD5B77 /* AboutUsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutUsController.h; sourceTree = "<group>"; };
@@ -6906,6 +6913,10 @@
 		CA1041D51509B6E700F60C03 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				C26224C516702DB1008BF3FB /* DrawUserInfoView.xib */,
+				C26224C616702DB1008BF3FB /* DrawUserInfoView~ipad.xib */,
+				C26224C716702DB1008BF3FB /* DrawUserInfoView.m */,
+				C26224C816702DB2008BF3FB /* DrawUserInfoView.h */,
 				C2D9A502159D4C4100794B24 /* CommonSnsInfoView.h */,
 				C2D9A503159D4C4100794B24 /* CommonSnsInfoView.m */,
 				C29B8A1E1563B02000B9707D /* CommonMessageCenter.h */,
@@ -11953,6 +11964,8 @@
 				CAA27FB5166E083500513F58 /* bbs_board_comment@2x.png in Resources */,
 				CAA27FB6166E083500513F58 /* bbs_board_mine@2x.png in Resources */,
 				CAA27FB8166E661500513F58 /* ShowImageController~ipad.xib in Resources */,
+				C26224C916702DB2008BF3FB /* DrawUserInfoView.xib in Resources */,
+				C26224CA16702DB2008BF3FB /* DrawUserInfoView~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -12602,6 +12615,7 @@
 				C28A23D0166C9123007C9EA5 /* FallingCoinView.m in Sources */,
 				CA8A27EF166CE57500D1A2D6 /* ZJHGameApp.m in Sources */,
 				A49A083F166DA68D003E0F75 /* ReplacedPoker.m in Sources */,
+				C26224CB16702DB2008BF3FB /* DrawUserInfoView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

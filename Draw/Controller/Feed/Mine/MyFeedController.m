@@ -11,7 +11,7 @@
 #import "ShareImageManager.h"
 #import "ShowFeedController.h"
 #import "FeedCell.h"
-#import "CommonUserInfoView.h"
+#import "DrawUserInfoView.h"
 #import "CommonMessageCenter.h"
 #import "CommonDialog.h"
 #import "StatisticManager.h"
@@ -728,6 +728,6 @@ typedef enum{
                                         avatar:nil
                                         gender:genderString
                                          level:1];
-    [CommonUserInfoView showFriend:friend infoInView:self needUpdate:YES];
+    [DrawUserInfoView showFriend:friend infoInView:self needUpdate:YES];
 }
 @end
