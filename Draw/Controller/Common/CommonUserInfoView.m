@@ -7,7 +7,6 @@
 //
 
 #import "CommonUserInfoView.h"
-#import "ShareImageManager.h"
 #import "AnimationManager.h"
 #import "LocaleUtils.h"
 #import "MyFriend.h"
@@ -27,40 +26,21 @@
 #define RUN_IN_TIME 0.4
 
 @implementation CommonUserInfoView
-@synthesize backgroundImageView;
-@synthesize mask;
-@synthesize contentView;
-@synthesize userName;
-@synthesize snsTagImageView;
-@synthesize genderLabel;
-@synthesize locationLabel;
-@synthesize playWithUserLabel;
-@synthesize chatToUserLabel;
-@synthesize drawToUserButton;
-@synthesize exploreUserFeedButton;
-@synthesize chatToUserButton;
-@synthesize followUserButton;
-@synthesize statusLabel;
-@synthesize levelLabel;
-@synthesize targetFriend;
-@synthesize superViewController = _superViewController;
 
 - (void)dealloc {
-    PPRelease(backgroundImageView);
-    PPRelease(mask);
-    PPRelease(contentView);
-    PPRelease(userName);
-    PPRelease(snsTagImageView);
-    PPRelease(genderLabel);
-    PPRelease(locationLabel);
-    PPRelease(playWithUserLabel);
-    PPRelease(chatToUserLabel);
-    PPRelease(drawToUserButton);
-    PPRelease(exploreUserFeedButton);
-    PPRelease(chatToUserButton);
-    PPRelease(followUserButton);
-    PPRelease(statusLabel);
-    PPRelease(levelLabel);
+    PPRelease(_backgroundImageView);
+    PPRelease(_mask);
+    PPRelease(_userName);
+    PPRelease(_snsTagImageView);
+    PPRelease(_genderLabel);
+    PPRelease(_locationLabel);
+    PPRelease(_chatToUserButton);
+    PPRelease(_followUserButton);
+    PPRelease(_statusLabel);
+    PPRelease(_levelLabel);
+    [_genderImageView release];
+    [_coinsLabel release];
+    [_avatarHolderView release];
     [super dealloc];
 }
 
@@ -71,12 +51,6 @@
         // Initialization code
     }
     return self;
-}
-
-- (void)initTitle
-{
-    [self.playWithUserLabel setText:NSLS(@"kPlayWithHim")];
-    [self.chatToUserLabel setText:NSLS(@"kChatToHim")];
 }
 
 #define AVATAR_FRAME [DeviceDetection isIPAD]?CGRectMake(43, 100, 100, 91):CGRectMake(18, 46, 42, 42)
@@ -96,29 +70,19 @@
 - (void)initAvatar
 {
     CGRect rect = AVATAR_FRAME;
-    AvatarView* view = [[[AvatarView alloc] initWithUrlString:targetFriend.avatar
+    AvatarView* view = [[[AvatarView alloc] initWithUrlString:_targetFriend.avatar
                                                        frame:rect
-                                                      gender:targetFriend.isMale
-                                                       level:targetFriend.level] autorelease];
+                                                      gender:_targetFriend.isMale
+                                                       level:_targetFriend.level] autorelease];
     view.tag = SUBVIEW_AVATAR_TAG;
     [self.contentView addSubview:view];
 }
 
-- (void)initButton
-{
-    [self.chatToUserButton setTitle:NSLS(@"kChat") forState:UIControlStateNormal];
-    [self.chatToUserButton setBackgroundImage:[ShareImageManager defaultManager].orangeImage forState:UIControlStateNormal];
-    [self.drawToUserButton setTitle:NSLS(@"kDrawToHim") forState:UIControlStateNormal];
-    [self.drawToUserButton setBackgroundImage:[ShareImageManager defaultManager].orangeImage forState:UIControlStateNormal];
-    [self.exploreUserFeedButton setTitle:NSLS(@"kExploreHim") forState:UIControlStateNormal];
-    [self.exploreUserFeedButton setBackgroundImage:[ShareImageManager defaultManager].orangeImage forState:UIControlStateNormal];
-}
-
 - (void)initLevelAndName
 {
-    [self.levelLabel setText:[NSString stringWithFormat:@"LV.%d",targetFriend.level]];
-    NSString *nickName = targetFriend.nickName;
-    [self.userName setText:targetFriend.nickName];
+    [self.levelLabel setText:[NSString stringWithFormat:@"LV.%d",_targetFriend.level]];
+    NSString *nickName = _targetFriend.nickName;
+    [self.userName setText:_targetFriend.nickName];
     if (nickName) {
         
         UIFont* font = [DeviceDetection isIPAD]?[UIFont systemFontOfSize:26]:[UIFont systemFontOfSize:13];
@@ -141,13 +105,13 @@
 
 - (void)initLocation
 {
-    NSString* location = [LocaleUtils isTraditionalChinese]?[WordManager changeToTraditionalChinese:targetFriend.location]:targetFriend.location;
+    NSString* location = [LocaleUtils isTraditionalChinese]?[WordManager changeToTraditionalChinese:_targetFriend.location]:_targetFriend.location;
     [self.locationLabel setText:location];
 }
 
 - (void)initGender
 {
-    NSString* gender = [targetFriend genderDesc];
+    NSString* gender = [_targetFriend genderDesc];
     [self.genderLabel setText:gender];
 }
 
@@ -156,9 +120,9 @@
 
     CommonSnsInfoView* view = [[[CommonSnsInfoView alloc] 
                                 initWithFrame:self.snsTagImageView.frame                                 
-                                hasSina:targetFriend.isSinaUser
-                                hasQQ:targetFriend.isQQUser
-                                hasFacebook:targetFriend.isFacebookUser]
+                                hasSina:_targetFriend.isSinaUser
+                                hasQQ:_targetFriend.isQQUser
+                                hasFacebook:_targetFriend.isFacebookUser]
                                autorelease];
     view.tag = SUBVIEW_SNSVIEW_TAG;
     [self.contentView addSubview:view];
@@ -168,29 +132,20 @@
 {
     //set followbutton or statusLabel
     self.statusLabel.hidden = self.followUserButton.hidden = YES;
-    [self.followUserButton setBackgroundImage:[[ShareImageManager defaultManager] normalButtonImage] forState:UIControlStateNormal];
 
     BOOL isMe = [[[UserManager defaultManager] userId] 
-                 isEqualToString:targetFriend.friendUserId];
+                 isEqualToString:_targetFriend.friendUserId];
     
     if (isMe) {
-        statusLabel.hidden = NO;
-        statusLabel.text = NSLS(@"kMyself");
-    }else if(targetFriend.hasFollow){
-        statusLabel.hidden = NO;
-        statusLabel.text = NSLS(@"kAlreadyBeFriend");
+        _statusLabel.hidden = NO;
+        _statusLabel.text = NSLS(@"kMyself");
+    }else if(_targetFriend.hasFollow){
+        _statusLabel.hidden = NO;
+        _statusLabel.text = NSLS(@"kAlreadyBeFriend");
     }else{
         self.followUserButton.hidden = NO; 
         [self.followUserButton setTitle:NSLS(@"kFollowMe") forState:UIControlStateNormal];
     }
-}
-
-- (void)updateCommonView
-{
-    //common info
-    [self.backgroundImageView setImage:[ShareImageManager defaultManager].friendDetailBgImage];
-    [self initTitle];
-    [self initButton];    
 }
 
 - (void)updateUserInfoView
@@ -206,61 +161,29 @@
 }
 - (void)initView
 {
-    [self updateCommonView];
-    [self updateUserInfoView];
+    PPDebug(@"<CommonUserInfoView>need impletement by sub class");
 }
 
 + (CommonUserInfoView*)createUserInfoView
 {
-    NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"CommonUserInfoView" owner:self options:nil];
-    if (topLevelObjects == nil || [topLevelObjects count] <= 0){
-        NSLog(@"create <CommonUserInfoView> but cannot find cell object from Nib");
-        return nil;
-    }
-    CommonUserInfoView* view =  (CommonUserInfoView*)[topLevelObjects objectAtIndex:0];
-    
-    CAAnimation *runIn = [AnimationManager scaleAnimationWithFromScale:0.1 toScale:1 duration:RUN_IN_TIME delegate:self removeCompeleted:NO];
-    [view.contentView.layer addAnimation:runIn forKey:@"runIn"];
-    
-    return view;
-}
-
-
-
-
-#pragma mark - show and dismiss animations
-- (void)startRunOutAnimation
-{
-    CAAnimation *runOut = [AnimationManager scaleAnimationWithFromScale:1 toScale:0.1 duration:RUN_OUT_TIME delegate:self removeCompeleted:NO];
-    [runOut setValue:@"runOut" forKey:@"AnimationKey"];
-    [self.contentView.layer addAnimation:runOut forKey:@"runOut"];
-    
-}
-
-- (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag
-{
-    NSString* value = [anim valueForKey:@"AnimationKey"];
-    if ([value isEqualToString:@"runOut"]) {
-        [self setHidden:YES];
-        [self removeFromSuperview];
-    }
+    return (CommonUserInfoView*)[self createInfoViewByXibName:@"CommonUserInfoView"];
 }
 
 #pragma mark - click action.
 - (IBAction)clickMask:(id)sender
 {
-    [self startRunOutAnimation];
+    [self disappear];
 }
 
 - (IBAction)clickFollowButton:(id)sender
 {
-    [[FriendService defaultService] followUser:targetFriend.friendUserId withDelegate:self];
-    [self.superViewController showActivityWithText:NSLS(@"kFollowing")];
+    [[FriendService defaultService] followUser:_targetFriend.friendUserId withDelegate:self];
+    [_superViewController showActivityWithText:NSLS(@"kFollowing")];
 }
 
 - (void)didFollowUser:(int)resultCode
 {
-    [self.superViewController hideActivity];
+    [_superViewController hideActivity];
     if (resultCode != 0) {
         [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kFollowFailed")
                                                        delayTime:1.5 
@@ -275,37 +198,22 @@
     }
 }
 
-- (IBAction)drawToHim:(id)sender
-{
-    [SelectWordController startSelectWordFrom:self.superViewController targetUid:targetFriend.friendUserId];
-}
-
 - (IBAction)talkToHim:(id)sender
 {
-    if ([self.superViewController isKindOfClass:[ChatDetailController class]]) {
-        ChatDetailController *currentController = (ChatDetailController *)self.superViewController;
-        if ([currentController.fid isEqualToString:targetFriend.friendUserId])
+    if ([_superViewController isKindOfClass:[ChatDetailController class]]) {
+        ChatDetailController *currentController = (ChatDetailController *)_superViewController;
+        if ([currentController.fid isEqualToString:_targetFriend.friendUserId])
         {
-            [self clickMask:mask];
+            [self clickMask:_mask];
         }
     }
     else {
-        MessageStat *stat = [MessageStat messageStatWithFriend:targetFriend];
+        MessageStat *stat = [MessageStat messageStatWithFriend:_targetFriend];
         ChatDetailController *controller = [[ChatDetailController alloc] initWithMessageStat:stat];
-        [self.superViewController.navigationController pushViewController:controller 
+        [_superViewController.navigationController pushViewController:controller
                                                                  animated:YES];
         [controller release];
     }
-}
-
-- (IBAction)seeHisFeed:(id)sender
-{
-    UserFeedController *userFeed = [[UserFeedController alloc] 
-                                    initWithUserId: targetFriend.friendUserId 
-                                    nickName:targetFriend.nickName];
-    [self.superViewController.navigationController
-     pushViewController:userFeed animated:YES];
-    [userFeed release];
 }
 
 
@@ -314,22 +222,19 @@
            superController:(PPViewController *)superController
 {
     self.targetFriend = afriend;
-    self.superViewController = superController;
+    _superViewController = superController;
 }
 
 
 - (void)show
 {
-    self.frame = self.superViewController.view.frame;
-    [self initView];
-    self.followUserButton.hidden = YES;
-    [self.superViewController.view addSubview:self];
+    [self showInView:_superViewController.view];
 }
 
 - (void)updateInfoFromService
 {
-    if ([targetFriend.friendUserId length] != 0) {
-        [[UserService defaultService] getUserSimpleInfoByUserId:targetFriend.friendUserId
+    if ([_targetFriend.friendUserId length] != 0) {
+        [[UserService defaultService] getUserSimpleInfoByUserId:_targetFriend.friendUserId
                                                        delegate:self];
     }
 }

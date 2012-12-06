@@ -349,6 +349,8 @@
 		C26224C916702DB2008BF3FB /* DrawUserInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C26224C516702DB1008BF3FB /* DrawUserInfoView.xib */; };
 		C26224CA16702DB2008BF3FB /* DrawUserInfoView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C26224C616702DB1008BF3FB /* DrawUserInfoView~ipad.xib */; };
 		C26224CB16702DB2008BF3FB /* DrawUserInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = C26224C716702DB1008BF3FB /* DrawUserInfoView.m */; };
+		C26224CE1670849C008BF3FB /* ZJHUserInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = C26224CD1670849C008BF3FB /* ZJHUserInfoView.m */; };
+		C26224D116708E61008BF3FB /* CommonRoundAvatarView.m in Sources */ = {isa = PBXBuildFile; fileRef = C26224CF16708E61008BF3FB /* CommonRoundAvatarView.m */; };
 		C28207E31552D974006FBB0F /* AudioManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C28207E21552D974006FBB0F /* AudioManager.m */; };
 		C284E87F1531D89800DD5B77 /* AboutUsController.m in Sources */ = {isa = PBXBuildFile; fileRef = C284E87D1531D89800DD5B77 /* AboutUsController.m */; };
 		C284E8801531D89800DD5B77 /* AboutUsController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C284E87E1531D89800DD5B77 /* AboutUsController.xib */; };
@@ -2482,6 +2484,10 @@
 		C26224C616702DB1008BF3FB /* DrawUserInfoView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "DrawUserInfoView~ipad.xib"; sourceTree = "<group>"; };
 		C26224C716702DB1008BF3FB /* DrawUserInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawUserInfoView.m; sourceTree = "<group>"; };
 		C26224C816702DB2008BF3FB /* DrawUserInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawUserInfoView.h; sourceTree = "<group>"; };
+		C26224CC1670849C008BF3FB /* ZJHUserInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJHUserInfoView.h; sourceTree = "<group>"; };
+		C26224CD1670849C008BF3FB /* ZJHUserInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJHUserInfoView.m; sourceTree = "<group>"; };
+		C26224CF16708E61008BF3FB /* CommonRoundAvatarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonRoundAvatarView.m; sourceTree = "<group>"; };
+		C26224D016708E61008BF3FB /* CommonRoundAvatarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonRoundAvatarView.h; sourceTree = "<group>"; };
 		C28207E11552D974006FBB0F /* AudioManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioManager.h; sourceTree = "<group>"; };
 		C28207E21552D974006FBB0F /* AudioManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioManager.m; sourceTree = "<group>"; };
 		C284E87C1531D89800DD5B77 /* AboutUsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutUsController.h; sourceTree = "<group>"; };
@@ -5588,6 +5594,8 @@
 		A4E7878116367338003557AD /* View */ = {
 			isa = PBXGroup;
 			children = (
+				C26224CC1670849C008BF3FB /* ZJHUserInfoView.h */,
+				C26224CD1670849C008BF3FB /* ZJHUserInfoView.m */,
 				C28A23CA166C9123007C9EA5 /* coinView */,
 				A4F6712D166C878100FF85CA /* ArrowView.h */,
 				A4F6712E166C878100FF85CA /* ArrowView.m */,
@@ -5887,6 +5895,8 @@
 		C2EE13C71663591800ADBE2E /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				C26224CF16708E61008BF3FB /* CommonRoundAvatarView.m */,
+				C26224D016708E61008BF3FB /* CommonRoundAvatarView.h */,
 				C2EE13C81663591800ADBE2E /* StarryLoadingView.h */,
 				C2EE13C91663591800ADBE2E /* StarryLoadingView.m */,
 			);
@@ -12616,6 +12626,8 @@
 				CA8A27EF166CE57500D1A2D6 /* ZJHGameApp.m in Sources */,
 				A49A083F166DA68D003E0F75 /* ReplacedPoker.m in Sources */,
 				C26224CB16702DB2008BF3FB /* DrawUserInfoView.m in Sources */,
+				C26224CE1670849C008BF3FB /* ZJHUserInfoView.m in Sources */,
+				C26224D116708E61008BF3FB /* CommonRoundAvatarView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
