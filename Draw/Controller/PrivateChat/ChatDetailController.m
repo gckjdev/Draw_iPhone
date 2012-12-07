@@ -297,6 +297,7 @@
 {
     OfflineDrawViewController *odc = [[OfflineDrawViewController alloc] initWithTargetType:TypeGraffiti delegate:self];
     [self presentModalViewController:odc animated:YES];
+    [odc release];
 }
 
 
@@ -641,8 +642,8 @@
                       otherButtonTitles:otherOperation, nil];
     }
     [actionSheet showInView:self.view];
-    [actionSheet release];
     actionSheet.tag = tag;
+    [actionSheet release];
     _selectedMessage = message;
 }
 

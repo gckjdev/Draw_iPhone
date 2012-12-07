@@ -322,6 +322,7 @@
     [pEmitter startEmitting];
     
     [emitters addObject:pEmitter];
+    [pEmitter release];
 }
 
 -(void)creatimage:(CGPoint)point
@@ -330,6 +331,7 @@
     [self addSubview:view];
     
     [images addObject:view];
+    [view release];
 }
 
 //如果有对父类addsubview的回调请替换此方法

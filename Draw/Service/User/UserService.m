@@ -735,7 +735,7 @@ static UserService* _defaultUserService;
                                    refreshToken:qqRefreshToken
                                      expireDate:qqExpireDate
                                          userId:qqId
-                                       qqOpenId:nil];
+                                       qqOpenId:qqOpenId];
 
                 PPSNSCommonService* facebookSNSService = [[PPSNSIntegerationService defaultService] snsServiceByType:TYPE_FACEBOOK];
                 [facebookSNSService saveAccessToken:facebookToken

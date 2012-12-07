@@ -362,11 +362,12 @@ static LevelService* _defaultLevelService;
     NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
     NSMutableDictionary* levelDic = (NSMutableDictionary*)[[userDefaults objectForKey:KEY_LEVEL_DIC] mutableCopy];
     if (!levelDic) {
-        levelDic = [[[NSMutableDictionary alloc] initWithCapacity:LevelSourceCount] autorelease];
+        levelDic = [[NSMutableDictionary alloc] initWithCapacity:LevelSourceCount];
     }
     [levelDic setObject:[NSNumber numberWithInt:level] forKey:[self getGameIdBySource:source]];
     [userDefaults setObject:levelDic forKey:KEY_LEVEL_DIC];
     [userDefaults synchronize];
+    [levelDic release];
 }
 - (void)setExperience:(long)experience
             forSource:(LevelSource)source
@@ -378,11 +379,12 @@ static LevelService* _defaultLevelService;
     NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
     NSMutableDictionary* expDic = (NSMutableDictionary*)[[userDefaults objectForKey:KEY_EXP_DIC] mutableCopy];
     if (!expDic) {
-        expDic = [[[NSMutableDictionary alloc] initWithCapacity:LevelSourceCount] autorelease];
+        expDic = [[NSMutableDictionary alloc] initWithCapacity:LevelSourceCount];
     }
     [expDic setObject:[NSNumber numberWithLong:experience] forKey:[self getGameIdBySource:source]];
     [userDefaults setObject:expDic forKey:KEY_EXP_DIC];
     [userDefaults synchronize];
+    [expDic release];
 }
 
 - (void)addExp:(long)exp
