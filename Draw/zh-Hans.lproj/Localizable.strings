@@ -837,6 +837,7 @@
 
 "kContest" = "画画大赛";
 "kRank" = "画榜";
+"kContestRank" = "比赛作品";
 "kNoRankPlayer" = "暂时没有达人榜数据。";
 "kNoRankHistory" = "暂时没有总榜数据。";
 "kNoRankHot" = "暂时没有热榜数据。";
@@ -867,7 +868,7 @@
 "kCoinsForFollowUs" = "+%d金币";
 "kFollowUs" = "关注官方微博";
 
-"kDetail" = "详细";
+"kContestRule" = "规则";
 "kFailLoad" = "获取数据失败，请稍后再试。";
 "kContestOpus" = "参赛作品";
 "kTop" = "画榜";

@@ -85,7 +85,7 @@ typedef enum{
 {
     [super viewDidLoad];    
     [self initTabButtons];
-    [self.titleLabel setText:NSLS(@"kRank")];
+    [self.titleLabel setText:NSLS(@"kContestRank")];
 }
 
 - (void)viewDidUnload

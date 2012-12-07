@@ -72,7 +72,7 @@
     [self refreshRequest];
     [self refreshCount];
     [self.webView.scrollView setScrollEnabled:NO];
-    [self.detailLabel setText:NSLS(@"kDetail")];
+    [self.detailLabel setText:NSLS(@"kContestRule")];
 }
 
 - (void)refreshRequest
