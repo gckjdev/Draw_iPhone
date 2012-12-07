@@ -72,6 +72,8 @@
 - (UIImage *)foldCardActionImage:(UserPosition)position;
 
 - (UIImage *)gameBgImage;
+- (UIImage *)dualGameBgImage;
+
 - (UIImage *)totalBetBgImage;
 - (UIImage *)userTotalBetBgImage;
 - (UIImage *)buttonsHolderBgImage;

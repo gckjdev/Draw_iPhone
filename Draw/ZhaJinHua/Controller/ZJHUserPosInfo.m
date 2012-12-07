@@ -1,0 +1,48 @@
+//
+//  ZJHUserPosInfo.m
+//  Draw
+//
+//  Created by 王 小涛 on 12-12-4.
+//
+//
+
+#import "ZJHUserPosInfo.h"
+
+@implementation ZJHUserPosInfo
+
+- (void)dealloc
+{
+    [_avatar release];
+    [_pokersView release];
+    [_totalBetLabel release];
+    [_totalBetBg release];
+    [super dealloc];
+}
+
+- (ZJHUserPosInfo *)initWithPos:(UserPosition)pos
+                         avatar:(ZJHAvatarView*)avatar
+                     pokersView:(ZJHPokerView*)pokersView
+                  totalBetLabel:(UILabel *)totalBetLabel
+                     totalBetBg:(UIImageView *)totalBetBg;
+{
+    if (self = [super init]) {
+        self.avatar = avatar;
+        self.pos = pos;
+        self.pokersView = pokersView;
+        self.totalBetLabel = totalBetLabel;
+        self.totalBetBg = totalBetBg;
+    }
+    
+    return self;
+}
+
++ (ZJHUserPosInfo *)userPosInfoWithPos:(UserPosition)pos
+                                avatar:(ZJHAvatarView*)avatar
+                            pokersView:(ZJHPokerView*)pokersView
+                         totalBetLabel:(UILabel *)totalBetLabel
+                            totalBetBg:(UIImageView *)totalBetBg;
+{
+    return [[ZJHUserPosInfo alloc] initWithPos:pos avatar:avatar pokersView:pokersView totalBetLabel:totalBetLabel totalBetBg:totalBetBg];
+}
+
+@end

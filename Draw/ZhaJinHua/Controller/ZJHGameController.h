@@ -31,6 +31,27 @@
     FallingCoinView* _coinView;
 }
 
+@property (retain, nonatomic) IBOutlet UIView *rightTopAvatar;
+@property (retain, nonatomic) IBOutlet UIView *rightAvatar;
+@property (retain, nonatomic) IBOutlet UIView *centerAvatar;
+@property (retain, nonatomic) IBOutlet UIView *leftAvatar;
+@property (retain, nonatomic) IBOutlet UIView *leftTopAvatar;
+@property (retain, nonatomic) IBOutlet ZJHPokerView *leftTopPokers;
+@property (retain, nonatomic) IBOutlet ZJHPokerView *rightTopPokers;
+@property (retain, nonatomic) IBOutlet ZJHPokerView *leftPokers;
+@property (retain, nonatomic) IBOutlet ZJHPokerView *rightPokers;
+@property (retain, nonatomic) IBOutlet ZJHPokerView *centerPokers;
+@property (retain, nonatomic) IBOutlet UIImageView *centerTotalBetBg;
+@property (retain, nonatomic) IBOutlet UIImageView *rightTotalBetBg;
+@property (retain, nonatomic) IBOutlet UIImageView *leftTotalBetBg;
+@property (retain, nonatomic) IBOutlet UIImageView *rightTopTotalBetBg;
+@property (retain, nonatomic) IBOutlet UIImageView *leftTopTotalBetBg;
+@property (retain, nonatomic) IBOutlet UILabel *centerTotalBet;
+@property (retain, nonatomic) IBOutlet UILabel *leftTotalBet;
+@property (retain, nonatomic) IBOutlet UILabel *rightTotalBet;
+@property (retain, nonatomic) IBOutlet UILabel *rightTopTotalBet;
+@property (retain, nonatomic) IBOutlet UILabel *leftTopTotalBet;
+
 @property (retain, nonatomic) IBOutlet UIImageView *gameBgImageView;
 @property (retain, nonatomic) IBOutlet UIImageView *totalBetBgImageView;
 @property (retain, nonatomic) IBOutlet UIImageView *buttonsHolderBgImageView;
@@ -61,7 +82,6 @@
 @property (retain, nonatomic) IBOutlet FXLabel *roomNameLabel;
 
 @property (retain, nonatomic) IBOutlet FXLabel *waitGameNoteLabel;
-@property (retain, nonatomic) IBOutlet UIButton *changeCardButton;
 
 
 @end

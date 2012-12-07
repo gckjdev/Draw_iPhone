@@ -8,6 +8,7 @@
 
 #import "ZJHBeginnerRuleConfig.h"
 #import "ZJHImageManager.h"
+#import "ZJHGameController.h"
 
 #define TEXT_COLOR_ENABLED [UIColor colorWithRed:199.0/255.0 green:252.0/255.0 blue:254.0/255.0 alpha:1]
 #define TEXT_COLOR_DISENABLED [UIColor colorWithRed:68.0/255.0 green:109.0/255.0 blue:110.0/255.0 alpha:1]
@@ -17,11 +18,6 @@
 - (NSArray *)chipValues
 {
     return [NSArray arrayWithObjects:[NSNumber numberWithInt:5], [NSNumber numberWithInt:10], [NSNumber numberWithInt:25], [NSNumber numberWithInt:50], nil];
-}
-
-- (NSString *)getServerListString
-{
-    return @"58.215.172.169:8018";
 }
 
 - (UIView *)createButtons:(PokerView *)pokerView
@@ -68,5 +64,81 @@
     
     return view;
 }
+
+- (int)maxPlayerNum
+{
+    return 5;
+}
+
+- (UIImage *)gameBgImage
+{
+    return [[ZJHImageManager defaultManager] gameBgImage];
+}
+
+
+- (NSMutableDictionary *)initAllAvatar:(ZJHGameController *)controller
+{    
+    NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithCapacity:[self maxPlayerNum]];
+    
+    ZJHMyAvatarView *myAvatar = [self bigAvatarWithFrame:controller.centerAvatar.frame];
+    
+    [dic setValue:[ZJHUserPosInfo userPosInfoWithPos:UserPositionCenter
+                                              avatar:myAvatar
+                                          pokersView:controller.centerPokers
+                                       totalBetLabel:controller.centerTotalBet
+                                          totalBetBg:controller.centerTotalBetBg]
+           forKey:[NSString stringWithFormat:@"%d", UserPositionCenter]];
+    
+    [dic setValue:[ZJHUserPosInfo userPosInfoWithPos:UserPositionLeft
+                                              avatar:[self avatarWithFrame:controller.leftAvatar.frame]
+                                          pokersView:controller.leftPokers
+                                       totalBetLabel:controller.leftTotalBet
+                                          totalBetBg:controller.leftTotalBetBg]
+           forKey:[NSString stringWithFormat:@"%d", UserPositionLeft]];
+
+    [dic setValue:[ZJHUserPosInfo userPosInfoWithPos:UserPositionLeftTop
+                                              avatar:[self avatarWithFrame:controller.leftTopAvatar.frame]
+                                          pokersView:controller.leftTopPokers
+                                       totalBetLabel:controller.leftTopTotalBet
+                                          totalBetBg:controller.leftTopTotalBetBg]
+           forKey:[NSString stringWithFormat:@"%d", UserPositionLeftTop]];
+    
+    [dic setValue:[ZJHUserPosInfo userPosInfoWithPos:UserPositionRight
+                                              avatar:[self avatarWithFrame:controller.rightAvatar.frame]
+                                          pokersView:controller.rightPokers
+                                       totalBetLabel:controller.rightTotalBet
+                                          totalBetBg:controller.rightTotalBetBg]
+           forKey:[NSString stringWithFormat:@"%d", UserPositionRight]];
+
+    [dic setValue:[ZJHUserPosInfo userPosInfoWithPos:UserPositionRightTop
+                                              avatar:[self avatarWithFrame:controller.rightTopAvatar.frame]
+                                          pokersView:controller.rightTopPokers
+                                       totalBetLabel:controller.rightTopTotalBet
+                                          totalBetBg:controller.rightTopTotalBetBg]
+           forKey:[NSString stringWithFormat:@"%d", UserPositionRightTop]];
+    
+    return dic;
+}
+
+- (ZJHMyAvatarView *)bigAvatarWithFrame:(CGRect)frame
+{
+    ZJHMyAvatarView* myAvatar = [ZJHMyAvatarView createZJHMyAvatarView];
+    [myAvatar setFrame:frame];
+    
+    return myAvatar;
+}
+
+
+- (ZJHAvatarView *)avatarWithFrame:(CGRect)frame
+{
+    ZJHAvatarView* avatar = [ZJHAvatarView createZJHAvatarView];
+    [avatar setFrame:frame];
+    
+    return avatar;
+}
+
+
+
+
 
 @end

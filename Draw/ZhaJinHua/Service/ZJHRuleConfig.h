@@ -9,6 +9,10 @@
 #import <Foundation/Foundation.h>
 #import "ZJHGameService.h"
 #import "PokerView.h"
+#import "ZJHImageManager.h"
+#import "ZJHUserPosInfo.h"
+
+@class ZJHGameController;
 
 #define TWO_BUTTONS_HOLDER_VIEW_WIDTH ([DeviceDetection isIPAD] ? 214 : 107)
 #define TWO_BUTTONS_HOLDER_VIEW_HEIGHT ([DeviceDetection isIPAD] ? 94 : 47)
@@ -27,15 +31,12 @@
 
 #define BUTTON_FONT ([DeviceDetection isIPAD] ? [UIFont systemFontOfSize:18] : [UIFont systemFontOfSize:12])
 
-@protocol ZJHRuleProtocol <NSObject>
+@interface ZJHRuleConfig : NSObject
 
-@required
 - (NSArray *)chipValues;
-- (NSString *)getServerListString;
 - (UIView *)createButtons:(PokerView *)pokerView;
-
-@end
-
-@interface ZJHRuleConfig : NSObject 
+- (int)maxPlayerNum;
+- (UIImage *)gameBgImage;
+- (NSDictionary *)initAllAvatar:(ZJHGameController *)controller;
 
 @end

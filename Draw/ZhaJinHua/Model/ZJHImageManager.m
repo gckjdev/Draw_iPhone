@@ -612,6 +612,29 @@ static ZJHImageManager* shareInstance;
     return nil;
 }
 
+- (UIImage *)dualGameBgImage
+{
+    switch ([DeviceDetection deviceScreenType]) {
+        case DEVICE_SCREEN_IPAD:
+        case DEVICE_SCREEN_NEW_IPAD:
+            return [_resService imageByName:@"zjh_game_bg_ipad_dual" inResourcePackage:RESOURCE_PACKAGE_ZJH];
+            break;
+            
+        case DEVICE_SCREEN_IPHONE5:
+            return [_resService imageByName:@"zjh_game_bg_ip5_dual" inResourcePackage:RESOURCE_PACKAGE_ZJH];
+            break;
+            
+        case DEVICE_SCREEN_IPHONE:
+            return [_resService imageByName:@"zjh_game_bg_dual" inResourcePackage:RESOURCE_PACKAGE_ZJH];
+            break;
+            
+        default:
+            break;
+    }
+    
+    return nil;
+}
+
 - (UIImage *)totalBetBgImage
 {
     return [_resService imageByName:@"zjh_game_total_bet_bg" inResourcePackage:RESOURCE_PACKAGE_ZJH];
