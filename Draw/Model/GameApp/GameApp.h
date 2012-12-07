@@ -15,27 +15,27 @@
 #define DRAW_APP_BUNDLE_ID      @"com.orange.draw"
 #define DRAW_APP_PRO_BUNDLE_ID  @"com.orange.drawpro"
 #define DICE_APP_BUNDLE_ID      @"com.orange.dice"
-#define ZJH_APP_BUNDLE_ID       @"com.orange.zjh"
+#define ZJH_APP_BUNDLE_ID       @"com.orange.zhajinhua"
 
 // App ID
 #define DRAW_APP_ID             @"513819630"
 #define DRAW_PRO_APP_ID         @"541354772"
 #define DICE_PRO_APP_ID         @"557072001"
 #define DICE_APP_ID             @"557072001"
-#define ZJH_APP_ID              @""
+#define ZJH_APP_ID              @"585525675"
 #define CANDY_APP_ID            @"test"
 
 // game ID
 #define DRAW_GAME_ID            @"Draw"
 #define DICE_GAME_ID            @"Dice"
 #define CANDY_GAME_ID           @"Candy"
-#define ZHAJINHUA_GAME_ID       @"ZhaJinHua"
+#define ZHAJINHUA_GAME_ID       @"Zhajinhua"
 
 // Umeng ID
 #define DRAW_UMENG_ID           @"4f83980852701565c500003a"
 #define DICE_UMENG_ID           @"503b13225270150f45000059"
 #define CANDY_UMENG_ID          @"4f83980852701565c500003a" // TO BE CHANGED
-#define ZJH_UMENG_ID            @"" // TO BE CHANGED
+#define ZJH_UMENG_ID            @"50c1883752701537100000af" 
 
 // Lm Ad Wall ID
 #define DRAW_LM_WALL_ID         @"ed21340370b99ad5bd2a5e304e3ea6c4"
