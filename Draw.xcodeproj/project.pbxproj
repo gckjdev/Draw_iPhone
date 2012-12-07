@@ -271,6 +271,12 @@
 		A4A132651650E86900665109 /* MessageView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4A132641650E86900665109 /* MessageView.m */; };
 		A4A4F8EA1671982B00EFC465 /* ZJHGameController_dual.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4A4F8E71671982A00EFC465 /* ZJHGameController_dual.xib */; };
 		A4A4F8EB1671982B00EFC465 /* ZJHUserPosInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = A4A4F8E91671982B00EFC465 /* ZJHUserPosInfo.m */; };
+		A4A4F9011671BFE800EFC465 /* zjh_game_bg_dual@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A4A4F8FE1671BFE800EFC465 /* zjh_game_bg_dual@2x.jpg */; };
+		A4A4F9021671BFE800EFC465 /* zjh_game_bg_ip5_dual@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A4A4F8FF1671BFE800EFC465 /* zjh_game_bg_ip5_dual@2x.jpg */; };
+		A4A4F9031671BFE800EFC465 /* zjh_game_bg_ipad_dual@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A4A4F9001671BFE800EFC465 /* zjh_game_bg_ipad_dual@2x.jpg */; };
+		A4A4F9131671C3EB00EFC465 /* ZJHBeginnerRuleConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = A4A4F90E1671C3EB00EFC465 /* ZJHBeginnerRuleConfig.m */; };
+		A4A4F9141671C3EB00EFC465 /* ZJHRuleConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = A4A4F9101671C3EB00EFC465 /* ZJHRuleConfig.m */; };
+		A4A4F9151671C3EB00EFC465 /* ZJHRuleConfigFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = A4A4F9121671C3EB00EFC465 /* ZJHRuleConfigFactory.m */; };
 		A4AB18F315E359B90097CC7A /* ChatViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A4AB18F115E359B90097CC7A /* ChatViewCell.m */; };
 		A4AB18F415E359B90097CC7A /* ChatViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4AB18F215E359B90097CC7A /* ChatViewCell.xib */; };
 		A4AC51EB15C9111C0041DC86 /* DiceSelectedView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4AC51EA15C9111C0041DC86 /* DiceSelectedView.m */; };
@@ -301,9 +307,6 @@
 		A4D3B15E1560E4F80013C882 /* MessageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A4D3B15D1560E4F80013C882 /* MessageManager.m */; };
 		A4DF0556160C25B400246A40 /* ReverseItemAction.m in Sources */ = {isa = PBXBuildFile; fileRef = A4DF0555160C25B400246A40 /* ReverseItemAction.m */; };
 		A4DF0589160D735E00246A40 /* CutItemAction.m in Sources */ = {isa = PBXBuildFile; fileRef = A4DF0588160D735E00246A40 /* CutItemAction.m */; };
-		A4E40097166C44F6001D2658 /* ZJHBeginnerRuleConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = A4E40092166C44F6001D2658 /* ZJHBeginnerRuleConfig.m */; };
-		A4E40098166C44F6001D2658 /* ZJHRuleConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = A4E40094166C44F6001D2658 /* ZJHRuleConfig.m */; };
-		A4E40099166C44F6001D2658 /* ZJHRuleConfigFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = A4E40096166C44F6001D2658 /* ZJHRuleConfigFactory.m */; };
 		A4E7876A16366FF8003557AD /* ZhaJinHua.proto in Resources */ = {isa = PBXBuildFile; fileRef = A4E7876916366FF8003557AD /* ZhaJinHua.proto */; };
 		A4E787941636753F003557AD /* ZJHGameState.m in Sources */ = {isa = PBXBuildFile; fileRef = A4E787931636753F003557AD /* ZJHGameState.m */; };
 		A4F6712F166C878100FF85CA /* ArrowView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4F6712E166C878100FF85CA /* ArrowView.m */; };
@@ -2366,6 +2369,15 @@
 		A4A4F8E71671982A00EFC465 /* ZJHGameController_dual.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZJHGameController_dual.xib; sourceTree = "<group>"; };
 		A4A4F8E81671982B00EFC465 /* ZJHUserPosInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJHUserPosInfo.h; sourceTree = "<group>"; };
 		A4A4F8E91671982B00EFC465 /* ZJHUserPosInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJHUserPosInfo.m; sourceTree = "<group>"; };
+		A4A4F8FE1671BFE800EFC465 /* zjh_game_bg_dual@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "zjh_game_bg_dual@2x.jpg"; sourceTree = "<group>"; };
+		A4A4F8FF1671BFE800EFC465 /* zjh_game_bg_ip5_dual@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "zjh_game_bg_ip5_dual@2x.jpg"; sourceTree = "<group>"; };
+		A4A4F9001671BFE800EFC465 /* zjh_game_bg_ipad_dual@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "zjh_game_bg_ipad_dual@2x.jpg"; sourceTree = "<group>"; };
+		A4A4F90D1671C3EB00EFC465 /* ZJHBeginnerRuleConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJHBeginnerRuleConfig.h; sourceTree = "<group>"; };
+		A4A4F90E1671C3EB00EFC465 /* ZJHBeginnerRuleConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJHBeginnerRuleConfig.m; sourceTree = "<group>"; };
+		A4A4F90F1671C3EB00EFC465 /* ZJHRuleConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJHRuleConfig.h; sourceTree = "<group>"; };
+		A4A4F9101671C3EB00EFC465 /* ZJHRuleConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJHRuleConfig.m; sourceTree = "<group>"; };
+		A4A4F9111671C3EB00EFC465 /* ZJHRuleConfigFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJHRuleConfigFactory.h; sourceTree = "<group>"; };
+		A4A4F9121671C3EB00EFC465 /* ZJHRuleConfigFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJHRuleConfigFactory.m; sourceTree = "<group>"; };
 		A4AB18F015E359B90097CC7A /* ChatViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatViewCell.h; sourceTree = "<group>"; };
 		A4AB18F115E359B90097CC7A /* ChatViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatViewCell.m; sourceTree = "<group>"; };
 		A4AB18F215E359B90097CC7A /* ChatViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChatViewCell.xib; sourceTree = "<group>"; };
@@ -2415,12 +2427,6 @@
 		A4DF0555160C25B400246A40 /* ReverseItemAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReverseItemAction.m; sourceTree = "<group>"; };
 		A4DF0587160D735E00246A40 /* CutItemAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CutItemAction.h; sourceTree = "<group>"; };
 		A4DF0588160D735E00246A40 /* CutItemAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CutItemAction.m; sourceTree = "<group>"; };
-		A4E40091166C44F6001D2658 /* ZJHBeginnerRuleConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJHBeginnerRuleConfig.h; sourceTree = "<group>"; };
-		A4E40092166C44F6001D2658 /* ZJHBeginnerRuleConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJHBeginnerRuleConfig.m; sourceTree = "<group>"; };
-		A4E40093166C44F6001D2658 /* ZJHRuleConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJHRuleConfig.h; sourceTree = "<group>"; };
-		A4E40094166C44F6001D2658 /* ZJHRuleConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJHRuleConfig.m; sourceTree = "<group>"; };
-		A4E40095166C44F6001D2658 /* ZJHRuleConfigFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJHRuleConfigFactory.h; sourceTree = "<group>"; };
-		A4E40096166C44F6001D2658 /* ZJHRuleConfigFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJHRuleConfigFactory.m; sourceTree = "<group>"; };
 		A4E7876916366FF8003557AD /* ZhaJinHua.proto */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ZhaJinHua.proto; sourceTree = "<group>"; };
 		A4E787921636753F003557AD /* ZJHGameState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJHGameState.h; sourceTree = "<group>"; };
 		A4E787931636753F003557AD /* ZJHGameState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJHGameState.m; sourceTree = "<group>"; };
@@ -4960,6 +4966,9 @@
 		A405C82E165B874500E7610F /* room */ = {
 			isa = PBXGroup;
 			children = (
+				A4A4F8FE1671BFE800EFC465 /* zjh_game_bg_dual@2x.jpg */,
+				A4A4F8FF1671BFE800EFC465 /* zjh_game_bg_ip5_dual@2x.jpg */,
+				A4A4F9001671BFE800EFC465 /* zjh_game_bg_ipad_dual@2x.jpg */,
 				C26EBE5F16719B6B00E8B38D /* ZJHUserInfoBackground.png */,
 				A49A0837166D95EF003E0F75 /* show_card_button_bg@2x.png */,
 				A49A0838166D95EF003E0F75 /* show_card_button_popup_bg@2x.png */,
@@ -5542,15 +5551,21 @@
 		A4E7877D16367338003557AD /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				A4A4F8E71671982A00EFC465 /* ZJHGameController_dual.xib */,
-				A4A4F8E81671982B00EFC465 /* ZJHUserPosInfo.h */,
-				A4A4F8E91671982B00EFC465 /* ZJHUserPosInfo.m */,
 				C250AD0A1653A7E500003E15 /* room */,
 				A42EA4391653415F0080BB95 /* ZJHGameController~ip5.xib */,
 				A42EA3331651F0220080BB95 /* ZJHGameController~ipad.xib */,
+				A4A4F8E71671982A00EFC465 /* ZJHGameController_dual.xib */,
 				A44B6223163787F500A8045B /* ZJHGameController.h */,
 				A44B6224163787F500A8045B /* ZJHGameController.m */,
 				A44B6225163787F500A8045B /* ZJHGameController.xib */,
+				A4A4F8E81671982B00EFC465 /* ZJHUserPosInfo.h */,
+				A4A4F8E91671982B00EFC465 /* ZJHUserPosInfo.m */,
+				A4A4F90D1671C3EB00EFC465 /* ZJHBeginnerRuleConfig.h */,
+				A4A4F90E1671C3EB00EFC465 /* ZJHBeginnerRuleConfig.m */,
+				A4A4F90F1671C3EB00EFC465 /* ZJHRuleConfig.h */,
+				A4A4F9101671C3EB00EFC465 /* ZJHRuleConfig.m */,
+				A4A4F9111671C3EB00EFC465 /* ZJHRuleConfigFactory.h */,
+				A4A4F9121671C3EB00EFC465 /* ZJHRuleConfigFactory.m */,
 				A42EA46D165365690080BB95 /* ZJHScreenConfig.h */,
 				A42EA46E1653656A0080BB95 /* ZJHScreenConfig.m */,
 				A42EA470165367270080BB95 /* ZJHConstance.h */,
@@ -5589,12 +5604,6 @@
 		A4E7878016367338003557AD /* Service */ = {
 			isa = PBXGroup;
 			children = (
-				A4E40091166C44F6001D2658 /* ZJHBeginnerRuleConfig.h */,
-				A4E40092166C44F6001D2658 /* ZJHBeginnerRuleConfig.m */,
-				A4E40093166C44F6001D2658 /* ZJHRuleConfig.h */,
-				A4E40094166C44F6001D2658 /* ZJHRuleConfig.m */,
-				A4E40095166C44F6001D2658 /* ZJHRuleConfigFactory.h */,
-				A4E40096166C44F6001D2658 /* ZJHRuleConfigFactory.m */,
 				A44B621D163786D500A8045B /* ZJHGameService.h */,
 				A44B621E163786D500A8045B /* ZJHGameService.m */,
 				A44B627D163E7AD100A8045B /* ZJHGameNotification.h */,
@@ -11989,6 +11998,9 @@
 				C26224CA16702DB2008BF3FB /* DrawUserInfoView~ipad.xib in Resources */,
 				A4A4F8EA1671982B00EFC465 /* ZJHGameController_dual.xib in Resources */,
 				C26EBE6016719B6B00E8B38D /* ZJHUserInfoBackground.png in Resources */,
+				A4A4F9011671BFE800EFC465 /* zjh_game_bg_dual@2x.jpg in Resources */,
+				A4A4F9021671BFE800EFC465 /* zjh_game_bg_ip5_dual@2x.jpg in Resources */,
+				A4A4F9031671BFE800EFC465 /* zjh_game_bg_ipad_dual@2x.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -12627,9 +12639,6 @@
 				CA1250CD1668BB6800AFCC04 /* GameConfigDataUtils.m in Sources */,
 				CA1250D31668BD5200AFCC04 /* Config.pb.m in Sources */,
 				CA659774166BD41F00A239E1 /* BBSActionSheet.m in Sources */,
-				A4E40097166C44F6001D2658 /* ZJHBeginnerRuleConfig.m in Sources */,
-				A4E40098166C44F6001D2658 /* ZJHRuleConfig.m in Sources */,
-				A4E40099166C44F6001D2658 /* ZJHRuleConfigFactory.m in Sources */,
 				CA659789166C58B900A239E1 /* BBSOptionView.m in Sources */,
 				A4F6712F166C878100FF85CA /* ArrowView.m in Sources */,
 				C28A23C1166C90E2007C9EA5 /* OpenGLTexture3D.m in Sources */,
@@ -12642,6 +12651,9 @@
 				C26224CE1670849C008BF3FB /* ZJHUserInfoView.m in Sources */,
 				C26224D116708E61008BF3FB /* CommonRoundAvatarView.m in Sources */,
 				A4A4F8EB1671982B00EFC465 /* ZJHUserPosInfo.m in Sources */,
+				A4A4F9131671C3EB00EFC465 /* ZJHBeginnerRuleConfig.m in Sources */,
+				A4A4F9141671C3EB00EFC465 /* ZJHRuleConfig.m in Sources */,
+				A4A4F9151671C3EB00EFC465 /* ZJHRuleConfigFactory.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

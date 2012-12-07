@@ -920,6 +920,70 @@
 					<int key="connectionID">3906</int>
 				</object>
 				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">centerUpPokers</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="235632527"/>
+					</object>
+					<int key="connectionID">3915</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">centerPokers</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="906806925"/>
+					</object>
+					<int key="connectionID">3916</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">centerTotalBetBg</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="130240245"/>
+					</object>
+					<int key="connectionID">3917</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">centerTotalBet</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="675463111"/>
+					</object>
+					<int key="connectionID">3918</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">centerUpTotalBetBg</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="541768009"/>
+					</object>
+					<int key="connectionID">3919</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">centerUpTotalBet</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="116997832"/>
+					</object>
+					<int key="connectionID">3920</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">centerAvatar</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="735002969"/>
+					</object>
+					<int key="connectionID">3921</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">centerUpAvatar</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="859319420"/>
+					</object>
+					<int key="connectionID">3922</int>
+				</object>
+				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">clickSettingButton:</string>
 						<reference key="source" ref="1054681330"/>
@@ -1311,7 +1375,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">3914</int>
+			<int key="maxID">3922</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes"/>
 		<int key="IBDocument.localizationMode">0</int>

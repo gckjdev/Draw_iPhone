@@ -135,6 +135,10 @@
     [_rightTopTotalBet release];
     [_leftTopTotalBet release];
     
+    [_centerUpPokers release];
+    [_centerUpTotalBetBg release];
+    [_centerUpTotalBet release];
+    [_centerUpAvatar release];
     [super dealloc];
 }
 
@@ -1120,6 +1124,10 @@
     [self setRightTotalBet:nil];
     [self setRightTopTotalBet:nil];
     [self setLeftTopTotalBet:nil];
+    [self setCenterUpPokers:nil];
+    [self setCenterUpTotalBetBg:nil];
+    [self setCenterUpTotalBet:nil];
+    [self setCenterUpAvatar:nil];
     [super viewDidUnload];
 }
 
