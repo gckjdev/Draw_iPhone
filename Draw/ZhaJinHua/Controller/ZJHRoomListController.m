@@ -12,6 +12,7 @@
 #import "UserManager.h"
 #import "ZJHGameController.h"
 #import "DiceColorManager.h"
+#import "ZJHUserInfoView.h"
 
 #define BUTTON_FONT_SIZE ([DeviceDetection isIPAD] ? 40 : 20)
 
@@ -186,6 +187,12 @@
 
 - (void)didQueryUser:(NSString *)userId
 {
+    MyFriend *friend = [MyFriend friendWithFid:userId
+                                      nickName:nil
+                                        avatar:nil
+                                        gender:nil
+                                         level:1];
+    [ZJHUserInfoView showFriend:friend infoInView:self needUpdate:YES];
     return;
 }
 @end

@@ -7,6 +7,7 @@
 //
 
 #import "ZJHUserInfoView.h"
+#import "ZJHImageManager.h"
 
 @implementation ZJHUserInfoView
 
@@ -17,6 +18,11 @@
         // Initialization code
     }
     return self;
+}
+
+- (void)initView
+{
+    [self.backgroundImageView setImage:[ZJHImageManager defaultManager].ZJHUserInfoBackgroundImage];
 }
 
 /*
