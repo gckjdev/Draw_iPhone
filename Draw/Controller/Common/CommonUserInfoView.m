@@ -21,6 +21,7 @@
 #import "WordManager.h"
 #import "CommonSnsInfoView.h"
 #import "MessageStat.h"
+#import "CommonRoundAvatarView.h"
 
 #define RUN_OUT_TIME 0.2
 #define RUN_IN_TIME 0.4
@@ -40,7 +41,7 @@
     PPRelease(_levelLabel);
     [_genderImageView release];
     [_coinsLabel release];
-    [_avatarHolderView release];
+    [_avatarView release];
     [super dealloc];
 }
 
@@ -69,13 +70,20 @@
 
 - (void)initAvatar
 {
-    CGRect rect = AVATAR_FRAME;
-    AvatarView* view = [[[AvatarView alloc] initWithUrlString:_targetFriend.avatar
-                                                       frame:rect
-                                                      gender:_targetFriend.isMale
-                                                       level:_targetFriend.level] autorelease];
-    view.tag = SUBVIEW_AVATAR_TAG;
-    [self.contentView addSubview:view];
+//    CGRect rect = AVATAR_FRAME;
+//    AvatarView* view = [[[AvatarView alloc] initWithUrlString:_targetFriend.avatar
+//                                                       frame:rect
+//                                                      gender:_targetFriend.isMale
+//                                                       level:_targetFriend.level] autorelease];
+//    view.tag = SUBVIEW_AVATAR_TAG;
+//    [self.contentView addSubview:view];
+    [self.avatarView setUrlString:_targetFriend.avatar
+                           userId:_targetFriend.friendUserId
+                           gender:[@"m" isEqualToString:_targetFriend.gender ]
+                            level:_targetFriend.level
+                       drunkPoint:0
+                           wealth:_targetFriend.coins];
+    [self.avatarView setAvatarStyle:AvatarViewStyle_Square];
 }
 
 - (void)initLevelAndName
@@ -218,11 +226,13 @@
 
 
 #pragma mark - main process methods.
-- (void)initViewWithFriend:(MyFriend *)afriend 
+- (void)initViewWithFriend:(MyFriend *)afriend
            superController:(PPViewController *)superController
 {
     self.targetFriend = afriend;
     _superViewController = superController;
+    
+    [self initView];
 }
 
 

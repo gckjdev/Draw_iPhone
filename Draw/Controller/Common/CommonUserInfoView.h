@@ -12,6 +12,7 @@
 #import "CommonInfoView.h"
 @class PPViewController;
 @class MyFriend;
+@class CommonRoundAvatarView;
 
 @interface CommonUserInfoView : CommonInfoView<FriendServiceDelegate, UserServiceDelegate>
 {
@@ -29,7 +30,7 @@
 @property (retain, nonatomic) IBOutlet UILabel *statusLabel;
 @property (retain, nonatomic) IBOutlet UILabel *levelLabel;
 @property (retain, nonatomic) IBOutlet UIImageView *genderImageView;
-@property (retain, nonatomic) IBOutlet UIView *avatarHolderView;
+@property (retain, nonatomic) IBOutlet CommonRoundAvatarView *avatarView;
 
 @property (retain, nonatomic) IBOutlet UIImageView *backgroundImageView;
 @property (retain, nonatomic) IBOutlet UILabel *coinsLabel;
