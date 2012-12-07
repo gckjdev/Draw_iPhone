@@ -194,6 +194,26 @@
     }
 }
 
+- (void)killTimer
+{
+    if (coinTimer) {
+        if ([coinTimer isValid]) {
+            [coinTimer invalidate];
+        }
+        coinTimer = nil;
+        
+    }
+    
+}
+
+- (void)removeFromSuperview
+{
+    [self killTimer];
+    coindelegate = nil;
+}
+
+
+
 -(void)initOpenGl
 {
     CAEAGLLayer *eaglLayer = (CAEAGLLayer*) self.layer;
