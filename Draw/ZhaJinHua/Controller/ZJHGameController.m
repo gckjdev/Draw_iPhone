@@ -854,6 +854,7 @@
 {
     ReplacedPoker *replacedPoker = [[_gameService myReplacedCards] lastObject];
     [[self getMyPokersView] changeCard:replacedPoker.oldPoker.pokerId toCard:replacedPoker.newPoker animation:YES];
+    [self showMyCardType];
 }
 
 
@@ -1285,6 +1286,8 @@
     if (![LocaleUtils supportChinese]) {
         return;
     }
+    
+    [self hideMyCardType];
     
     _cardTypeBgImageView.hidden = NO;
     

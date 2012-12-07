@@ -49,7 +49,7 @@
 - (BOOL)canIShowCard:(int)cardId;
 
 - (BOOL)canUserBeCompared:(NSString *)userId;
-- (BOOL)canIChangeCard;
+- (BOOL)canIChangeCard:(int)cardId;
 
 - (PBZJHCardType)myCardType;
 - (NSString *)myCardTypeString;

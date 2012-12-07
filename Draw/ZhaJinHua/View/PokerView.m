@@ -272,15 +272,22 @@
 
 - (void)changeToCard:(Poker *)poker animation:(BOOL)animation
 {
-    [self.layer addAnimation:[AnimationManager disappearAnimationWithDuration:1.0] forKey:nil];
-    
-    self.poker = poker;
-    
-    self.rankImageView.image = [[ZJHImageManager defaultManager] pokerRankImage:poker];
-    self.suitImageView.image = [[ZJHImageManager defaultManager] pokerSuitImage:poker];
-    self.bodyImageView.image = [[ZJHImageManager defaultManager] pokerBodyImage:poker];
-    
-    [self.layer addAnimation:[AnimationManager appearAnimationFrom:0 to:1.0 delay:1.0 duration:1.0] forKey:nil];
+    [UIView animateWithDuration:1.0 delay:0 options:UIViewAnimationCurveEaseInOut animations:^{
+        self.alpha = 0;
+    } completion:^(BOOL finished) {
+        
+        [UIView animateWithDuration:1.0 delay:0 options:UIViewAnimationCurveEaseIn animations:^{
+            self.poker = poker;
+            
+            self.rankImageView.image = [[ZJHImageManager defaultManager] pokerRankImage:poker];
+            self.suitImageView.image = [[ZJHImageManager defaultManager] pokerSuitImage:poker];
+            self.bodyImageView.image = [[ZJHImageManager defaultManager] pokerBodyImage:poker];
+            
+            self.alpha = 1.0;
+        } completion:^(BOOL finished) {
+            
+        }];
+    }];
 }
 
 - (void)clickShowCardButton:(id)sender

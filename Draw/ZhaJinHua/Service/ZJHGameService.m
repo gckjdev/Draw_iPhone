@@ -204,9 +204,9 @@ static ZJHGameService *_defaultService;
     return [self isGamePlaying] && [self isMyTurn] && [[self myPlayInfo] canShowCard:cardId];
 }
 
-- (BOOL)canIChangeCard
+- (BOOL)canIChangeCard:(int)cardId
 {
-    return [self isGamePlaying] && [self isMyTurn] && [[self myPlayInfo] canChangeCard] && ([self.session myTurnTimes]%4==0);
+    return [self isGamePlaying] && [self isMyTurn] && [[self myPlayInfo] canChangeCard:cardId] && ([self.session myTurnTimes] >= ([[self myPlayInfo] changeCardTimes] + 1) * 4);
 }
 
 - (BOOL)canUserBeCompared:(NSString *)userId

@@ -144,6 +144,10 @@
         return NO;
     }
     
+    if ([self lastAction] == PBZJHUserActionChangeCard) {
+        return NO;
+    }
+    
     if (!_alreadCheckCard || _alreadFoldCard || _alreadCompareLose) {
         return NO;
     }
