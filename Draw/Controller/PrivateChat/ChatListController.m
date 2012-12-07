@@ -21,6 +21,7 @@
 #import "MessageStat.h"
 #import "PPMessageManager.h"
 #import "UserManager.h"
+#import "CommonUserInfoView.h"
 
 @interface ChatListController ()
 
@@ -302,12 +303,7 @@
 - (void)didClickAvatar:(NSIndexPath *)aIndexPath
 {
     MyFriend *aFriend = [self friendOfIndex:aIndexPath.row];
-    if (isDrawApp()) {
-        [DrawUserInfoView showFriend:aFriend infoInView:self needUpdate:YES];
-    }
-    if (isDiceApp()) {
-        [DiceUserInfoView showFriend:aFriend infoInView:self canChat:YES needUpdate:YES];
-    }
+    [CommonUserInfoView showFriend:aFriend inController:self needUpdate:YES canChat:YES];
 }
 
 

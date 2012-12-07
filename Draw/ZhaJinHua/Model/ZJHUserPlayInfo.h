@@ -50,6 +50,6 @@
 
 
 - (NSString *)cardTypeString;
-//- (int)changeCardTimes;
+- (int)changeCardTimes;
 
 @end

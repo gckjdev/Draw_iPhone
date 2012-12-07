@@ -22,6 +22,13 @@
 #import "CommonSnsInfoView.h"
 #import "MessageStat.h"
 #import "CommonRoundAvatarView.h"
+#import "CommonImageManager.h"
+#import "StringUtil.h"
+
+
+#import "DrawUserInfoView.h"
+#import "DiceUserInfoView.h"
+#import "ZJHUserInfoView.h"
 
 #define RUN_OUT_TIME 0.2
 #define RUN_IN_TIME 0.4
@@ -100,8 +107,14 @@
 
 - (void)initGender
 {
-    NSString* gender = [_targetFriend genderDesc];
-    [self.genderLabel setText:gender];
+    CommonImageManager* manager = [CommonImageManager defaultManager];
+    UIImage* image = [@"m" isEqualToString:_targetFriend.gender]?manager.maleImage:manager.femaleImage;
+    [self.genderImageView setImage:image];
+}
+
+- (void)initBalance
+{
+    [self.coinsLabel setText:[NSString stringWithInt:_targetFriend.coins]];
 }
 
 - (void)initSNSInfo
@@ -146,12 +159,13 @@
     [self initGender];
     [self initSNSInfo];
     [self initAvatar];
-    [self initFollowStatus]; 
+    [self initFollowStatus];
+    [self initBalance];
 }
 
 - (void)initView
 {
-    PPDebug(@"<CommonUserInfoView>need impletement by sub class");
+    
 }
 
 + (CommonUserInfoView*)createUserInfoView
@@ -245,6 +259,35 @@
     if (needUpdate) {
         [view updateInfoFromService];
     }
+}
+
++ (void)showFriend:(MyFriend *)afriend
+      inController:(PPViewController *)superController
+        needUpdate:(BOOL)needUpdate
+           canChat:(BOOL)canChat
+{
+    if (isDrawApp()) {
+        [DrawUserInfoView showFriend:afriend
+                          infoInView:superController
+                          needUpdate:needUpdate];
+        return;
+    }
+    if (isDiceApp()) {
+        [DiceUserInfoView showFriend:afriend
+                          infoInView:superController
+                             canChat:canChat
+                          needUpdate:needUpdate];
+        return;
+    }
+    if (isZhajinhuaApp()) {
+        [ZJHUserInfoView showFriend:afriend
+                         infoInView:superController
+                         needUpdate:needUpdate];
+        return;
+    }
+    [CommonUserInfoView showFriend:afriend
+                        infoInView:superController
+                        needUpdate:needUpdate];
 }
 
 #pragma mark - user service delegate

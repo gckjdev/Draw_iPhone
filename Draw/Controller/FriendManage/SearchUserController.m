@@ -16,6 +16,7 @@
 #import "FriendCell.h"
 #import "DrawUserInfoView.h"
 #import "DiceUserInfoView.h"
+#import "CommonUserInfoView.h"
 
 @interface SearchUserController ()
 
@@ -119,12 +120,8 @@
     if (friend == nil) {
         return;
     }
-    if (isDrawApp()) {
-        [DrawUserInfoView showFriend:friend infoInView:self needUpdate:YES];
-    }else if(isDiceApp())
-    {
-        [DiceUserInfoView showFriend:friend infoInView:self canChat:YES needUpdate:YES];
-    }
+    [CommonUserInfoView showFriend:friend inController:self needUpdate:YES canChat:YES];
+    
 }
 
 

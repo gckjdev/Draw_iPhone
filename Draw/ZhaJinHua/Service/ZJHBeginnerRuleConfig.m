@@ -50,7 +50,7 @@
     changeCardButton.titleLabel.font = BUTTON_FONT;
     changeCardButton.titleLabel.textAlignment = UITextAlignmentCenter;
     
-    if ([[ZJHGameService defaultService] canIChangeCard]) {
+    if ([[ZJHGameService defaultService] canIChangeCard:pokerView.poker.pokerId]) {
         [changeCardButton setTitleColor:TEXT_COLOR_ENABLED forState:UIControlStateNormal];
         [changeCardButton addTarget:pokerView action:@selector(clickChangeCardButton:) forControlEvents:UIControlEventTouchUpInside];
     }else{

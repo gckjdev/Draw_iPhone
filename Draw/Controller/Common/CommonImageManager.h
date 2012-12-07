@@ -27,4 +27,6 @@
 - (UIImage*)starryLoadingLight;
 - (UIImage*)starryLoadingStar;
 
+- (UIImage *)maleImage;
+- (UIImage *)femaleImage;
 @end

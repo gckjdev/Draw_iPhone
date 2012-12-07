@@ -69,4 +69,13 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(CommonImageManager)
     return [_resService imageByName:@"star" inResourcePackage:RESOURCE_PACKAGE_COMMON];
 }
 
+- (UIImage *)maleImage
+{
+    return [_resService imageByName:@"maleImage" inResourcePackage:RESOURCE_PACKAGE_COMMON];
+}
+- (UIImage *)femaleImage
+{
+    return [_resService imageByName:@"femaleImage" inResourcePackage:RESOURCE_PACKAGE_COMMON];
+}
+
 @end
