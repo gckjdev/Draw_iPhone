@@ -89,26 +89,7 @@
 - (void)initLevelAndName
 {
     [self.levelLabel setText:[NSString stringWithFormat:@"LV.%d",_targetFriend.level]];
-    NSString *nickName = _targetFriend.nickName;
     [self.userName setText:_targetFriend.nickName];
-    if (nickName) {
-        
-        UIFont* font = [DeviceDetection isIPAD]?[UIFont systemFontOfSize:26]:[UIFont systemFontOfSize:13];
-        float maxWidth = [DeviceDetection isIPAD]?224:101;
-        CGSize nameSize = [nickName sizeWithFont:font];
-        if (nameSize.width < maxWidth) {
-            [self.userName setFrame:CGRectMake(self.userName.frame.origin.x, 
-                                               self.userName.frame.origin.y, 
-                                               nameSize.width, 
-                                               self.userName.frame.size.height)];
-            [self.levelLabel setFrame:CGRectMake(self.userName.frame.origin.x
-                                                 +nameSize.width, 
-                                                 self.levelLabel.frame.origin.y, 
-                                                 self.levelLabel.frame.size.width, 
-                                                 self.levelLabel.frame.size.height)];
-        }
-    }
-
 }
 
 - (void)initLocation
@@ -167,6 +148,7 @@
     [self initAvatar];
     [self initFollowStatus]; 
 }
+
 - (void)initView
 {
     PPDebug(@"<CommonUserInfoView>need impletement by sub class");

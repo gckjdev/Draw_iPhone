@@ -8,6 +8,7 @@
 
 #import "ZJHUserInfoView.h"
 #import "ZJHImageManager.h"
+#import "UserManager.h"
 
 @implementation ZJHUserInfoView
 
@@ -20,9 +21,31 @@
     return self;
 }
 
++ (ZJHUserInfoView*)createUserInfoView
+{
+    return (ZJHUserInfoView*)[self createInfoViewByXibName:@"CommonUserInfoView"];
+}
+
 - (void)initView
 {
-    [self.backgroundImageView setImage:[ZJHImageManager defaultManager].ZJHUserInfoBackgroundImage];
+    
+}
+
++ (void)showFriend:(MyFriend*)afriend
+        infoInView:(PPViewController*)superController
+        needUpdate:(BOOL)needUpdate //if need update the info from service.
+{
+    if ([[UserManager defaultManager] isMe:afriend.friendUserId]) {
+        return;
+    }
+    
+    ZJHUserInfoView *view = [ZJHUserInfoView createUserInfoView];
+    [view initViewWithFriend:afriend superController:superController];
+    [view.backgroundImageView setImage:[ZJHImageManager defaultManager].ZJHUserInfoBackgroundImage];
+    [view show];
+    if (needUpdate) {
+        [view updateInfoFromService];
+    }
 }
 
 /*

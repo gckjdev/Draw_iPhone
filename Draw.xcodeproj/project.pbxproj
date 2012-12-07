@@ -353,6 +353,7 @@
 		C26224CB16702DB2008BF3FB /* DrawUserInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = C26224C716702DB1008BF3FB /* DrawUserInfoView.m */; };
 		C26224CE1670849C008BF3FB /* ZJHUserInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = C26224CD1670849C008BF3FB /* ZJHUserInfoView.m */; };
 		C26224D116708E61008BF3FB /* CommonRoundAvatarView.m in Sources */ = {isa = PBXBuildFile; fileRef = C26224CF16708E61008BF3FB /* CommonRoundAvatarView.m */; };
+		C26EBE6016719B6B00E8B38D /* ZJHUserInfoBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = C26EBE5F16719B6B00E8B38D /* ZJHUserInfoBackground.png */; };
 		C28207E31552D974006FBB0F /* AudioManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C28207E21552D974006FBB0F /* AudioManager.m */; };
 		C284E87F1531D89800DD5B77 /* AboutUsController.m in Sources */ = {isa = PBXBuildFile; fileRef = C284E87D1531D89800DD5B77 /* AboutUsController.m */; };
 		C284E8801531D89800DD5B77 /* AboutUsController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C284E87E1531D89800DD5B77 /* AboutUsController.xib */; };
@@ -2493,6 +2494,7 @@
 		C26224CD1670849C008BF3FB /* ZJHUserInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJHUserInfoView.m; sourceTree = "<group>"; };
 		C26224CF16708E61008BF3FB /* CommonRoundAvatarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonRoundAvatarView.m; sourceTree = "<group>"; };
 		C26224D016708E61008BF3FB /* CommonRoundAvatarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonRoundAvatarView.h; sourceTree = "<group>"; };
+		C26EBE5F16719B6B00E8B38D /* ZJHUserInfoBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ZJHUserInfoBackground.png; sourceTree = "<group>"; };
 		C28207E11552D974006FBB0F /* AudioManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioManager.h; sourceTree = "<group>"; };
 		C28207E21552D974006FBB0F /* AudioManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioManager.m; sourceTree = "<group>"; };
 		C284E87C1531D89800DD5B77 /* AboutUsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutUsController.h; sourceTree = "<group>"; };
@@ -4958,6 +4960,7 @@
 		A405C82E165B874500E7610F /* room */ = {
 			isa = PBXGroup;
 			children = (
+				C26EBE5F16719B6B00E8B38D /* ZJHUserInfoBackground.png */,
 				A49A0837166D95EF003E0F75 /* show_card_button_bg@2x.png */,
 				A49A0838166D95EF003E0F75 /* show_card_button_popup_bg@2x.png */,
 				A49A0839166D95EF003E0F75 /* show_change_card_button_popup_bg@2x.png */,
@@ -11985,6 +11988,7 @@
 				C26224C916702DB2008BF3FB /* DrawUserInfoView.xib in Resources */,
 				C26224CA16702DB2008BF3FB /* DrawUserInfoView~ipad.xib in Resources */,
 				A4A4F8EA1671982B00EFC465 /* ZJHGameController_dual.xib in Resources */,
+				C26EBE6016719B6B00E8B38D /* ZJHUserInfoBackground.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
