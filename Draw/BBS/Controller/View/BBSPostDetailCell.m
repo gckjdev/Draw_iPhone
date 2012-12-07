@@ -126,7 +126,6 @@
 - (void)updateContent:(PBBBSContent *)content
 {
     
-    [BBSManager printBBSContent:content];
     [self.content setText:content.text];
     
     //reset the size

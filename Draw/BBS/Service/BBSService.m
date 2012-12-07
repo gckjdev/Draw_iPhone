@@ -60,17 +60,24 @@ BBSService *_staticBBSService;
     }
 }
 
-- (NSInteger)checkWithText:(NSString *)text contentType:(BBSPostContentType)type
+- (NSInteger)checkWithText:(NSString *)text
+               contentType:(BBSPostContentType)type
+                    isPost:(BOOL)isPost
 {
     BBSManager *_bbsManager = [BBSManager defaultManager];
     if (type == ContentTypeText) {
-        if ([text length] < [_bbsManager textMinLength]) {
-            PPDebug(@"<checkWithText> text(%@) to short!!!",text);
-            return ERROR_BBS_TEXT_TOO_SHORT;
-        }else if ([text length] > [_bbsManager textMaxLength]){
-            PPDebug(@"<checkWithText> text(%@) to long!!!",text);
-            return ERROR_BBS_TEXT_TOO_LONG;
-        }
+         if ([text length] < [_bbsManager textMinLength]) {
+             PPDebug(@"<checkWithText> text(%@) to short!!!",text);
+             return ERROR_BBS_TEXT_TOO_SHORT;
+         } else if (isPost && [text length] > [_bbsManager postTextMaxLength]){
+             //post text
+             PPDebug(@"<checkWithText> post text(%@) to long!!!",text);
+             return ERROR_BBS_TEXT_TOO_LONG;
+         } else if (!isPost && [text length] > [_bbsManager commentTextMaxLength]){
+             //post text
+             PPDebug(@"<checkWithText> comment text(%@) to long!!!",text);
+             return ERROR_BBS_TEXT_TOO_LONG;
+         }
     }
     return ERROR_SUCCESS;
 }
@@ -355,7 +362,7 @@ BBSService *_staticBBSService;
         
         NSInteger resultCode = [self checkFrequent];
         if (resultCode == ERROR_SUCCESS){
-            resultCode = [self checkWithText:text contentType:type];
+            resultCode = [self checkWithText:text contentType:type isPost:YES];
         }
         if (resultCode == ERROR_SUCCESS) {
             if ([text length] == 0) {
@@ -544,7 +551,9 @@ BBSService *_staticBBSService;
         }
         
         if (resultCode == ERROR_SUCCESS && actionType == ActionTypeComment) {
-            resultCode = [self checkWithText:text contentType:contentType];
+            resultCode = [self checkWithText:text
+                                 contentType:contentType
+                                      isPost:NO];
         }
         if (resultCode == ERROR_SUCCESS) {
             
@@ -637,30 +646,6 @@ BBSService *_staticBBSService;
 
 }
 
-//- (void)createActionWithPost:(PBBBSPost *)sourcePost
-//                sourceAction:(PBBBSAction *)sourceAction
-//                  actionType:(BBSActionType)actionType
-//                        text:(NSString *)text
-//                       image:(UIImage *)image
-//              drawActionList:(NSArray *)drawActionList
-//                   drawImage:(UIImage *)drawImage
-//                    delegate:(id<BBSServiceDelegate>)delegate
-//{
-//    NSString *postId = sourcePost.postId;
-//    NSString *postUid = sourcePost.createUser.userId;
-//    NSString *postText = sourcePost.content.text;
-//    
-//    [self createActionWithPostId:postId
-//                         PostUid:postUid
-//                        postText:postText
-//                    sourceAction:sourceAction
-//                      actionType:actionType
-//                            text:text
-//                           image:image
-//                  drawActionList:drawActionList
-//                       drawImage:drawImage
-//                        delegate:delegate];
-//}
 
 - (void)getBBSActionListWithPostId:(NSString *)postId
                         actionType:(BBSActionType)actionType

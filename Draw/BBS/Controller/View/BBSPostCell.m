@@ -131,8 +131,6 @@
 
 - (void)updateContent:(PBBBSContent *)content
 {
-    
-    [BBSManager printBBSContent:content];
     [self.content setText:content.text];
     
     //reset the size
@@ -141,7 +139,6 @@
     self.content.frame = frame;
   
     if (content.hasThumbImage) {
-//        NSURL *url = [NSURL URLWithString:@"http://misc.clzg.cn/bbs/day_100127/1001271911c732c2cf8a7830ac.jpg"];
         [self.image setImageWithURL:content.thumbImageURL
                    placeholderImage:nil
                             success:^(UIImage *image, BOOL cached) {

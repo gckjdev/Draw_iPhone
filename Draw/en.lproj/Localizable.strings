@@ -1158,7 +1158,7 @@
 
 "kTextTooShot" = "Text length can't be less than %d!";
 "kTextTooLong" = "Text length can't be more than %d!";
-"kTextTooFrequent" = "You send post too frequent, wait a minute.";
+"kTextTooFrequent" = "You send post too frequent, the interval can't less than %d seconds.";
 "kSupportTimesLimit" = "Support times limit! You can only support %d times.";
 "kNetworkError" = "Network is error, please try it again";
 

@@ -571,7 +571,7 @@
 "kContestSubmitSuccQuitMsg" = "谢谢您的参与！";
 
 "kContestNotRunning" = "对不起，比赛已经结束或者尚未开始，您不能参加。";
-"kContesSummitCountEnough" = "对不起，你已经提交了%d作品了，留点机会给别人哦。";
+"kContesSummitCountEnough" = "对不起，你已经提交了%d幅作品了，留点机会给别人哦。";
 
 //"kDedutCoinChangeOpusAlertMessage" = "如果更换一幅作品，系统将会扣除1个金币哦。";
 //"kNoCoinChangeOpusMessage" = "更换作品需要扣除1个金币，你的账户余额不足，是不是现在购买一些金币？";
@@ -1176,7 +1176,7 @@
 
 "kTextTooShot" = "帖子的字数不能少于%d个字哦。";
 "kTextTooLong" = "帖子的字数不能多于%d个字哦。";
-"kTextTooFrequent" = "你发帖太频繁了，先休息一下再发吧。";
+"kTextTooFrequent" = "你发帖太频繁了，时间间隔不能小于 %d 秒哦。";
 "kSupportTimesLimit" = "每张帖子最多只能顶 %d 次哦。";
 "kNetworkError" = "网络连接错误，请检查网络设置。";
 
