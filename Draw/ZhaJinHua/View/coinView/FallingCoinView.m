@@ -92,6 +92,7 @@
 		SystemSoundID soundID;
 		AudioServicesCreateSystemSoundID((CFURLRef)[NSURL fileURLWithPath:path], &soundID);
 		AudioServicesPlaySystemSound (soundID);
+        self.userInteractionEnabled = NO;
     }
     return self;
 }
