@@ -9,5 +9,5 @@
 #import <Foundation/Foundation.h>
 #import "ZJHRuleConfig.h"
 
-@interface ZJHBeginnerRuleConfig : ZJHRuleConfig <ZJHRuleProtocol>
+@interface ZJHBeginnerRuleConfig : ZJHRuleConfig
 @end

@@ -154,10 +154,6 @@ static ZJHGameService *_defaultService;
 //                                cardIds:cardIds];
 //}
 
-- (NSArray *)chipValues
-{
-    return [[ZJHRuleConfigFactory createRuleConfig] chipValues];
-}
 
 - (BOOL)isMyBalanceEnough
 {
@@ -500,7 +496,8 @@ static ZJHGameService *_defaultService;
 
 - (NSString *)getServerListString
 {
-    return [[ZJHRuleConfigFactory createRuleConfig] getServerListString];
+//    return @"58.215.172.169:8027";
+        return @"192.168.1.5:8027";
 }
 
 - (ZJHUserPlayInfo *)myPlayInfo

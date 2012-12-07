@@ -45,7 +45,7 @@
 - (BOOL)canFoldCard;
 - (BOOL)canShowCard:(int)cardId;
 - (BOOL)canCompareCard;
-- (BOOL)canChangeCard;
+- (BOOL)canChangeCard:(int)cardId;
 - (BOOL)canBeCompared;
 
 

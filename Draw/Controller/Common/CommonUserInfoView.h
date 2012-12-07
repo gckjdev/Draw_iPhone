@@ -41,6 +41,10 @@
 + (void)showFriend:(MyFriend*)afriend
         infoInView:(UIViewController*)superController
         needUpdate:(BOOL)needUpdate; //if need update the info from service.
-- (void)initView;//
 
+- (void)initView;//
+- (void)initViewWithFriend:(MyFriend *)afriend
+           superController:(PPViewController *)superController;
+- (void)show;
+- (void)updateInfoFromService;
 @end
