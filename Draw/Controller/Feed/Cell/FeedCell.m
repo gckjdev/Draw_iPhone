@@ -202,7 +202,7 @@
 
             CGFloat xScale = currentFrame.size.width / normalFrame.size.width;
             CGFloat yScale = currentFrame.size.height / normalFrame.size.height;        
-            self.showView = [[ShowDrawView alloc] initWithFrame:self.drawImageView.frame];
+            self.showView = [[[ShowDrawView alloc] initWithFrame:self.drawImageView.frame] autorelease];
             self.showView.drawActionList = [DrawAction scaleActionList:draw.drawActionList xScale:xScale yScale:yScale];
             [self addSubview:self.showView];
             [self.showView show];

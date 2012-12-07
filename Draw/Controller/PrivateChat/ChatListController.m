@@ -272,6 +272,7 @@
 {
     FriendController *fc = [[FriendController alloc] initWithDelegate:self];
     [self.navigationController pushViewController:fc animated:YES];
+    [fc release];
 }
 
 

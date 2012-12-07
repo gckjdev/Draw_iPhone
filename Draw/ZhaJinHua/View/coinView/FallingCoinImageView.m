@@ -32,6 +32,7 @@
     CGImageRef subImageRef = CGImageCreateWithImageInRect(coinImage.CGImage,rc);
     UIImage *subImage = [UIImage imageWithCGImage:subImageRef scale:1.0 orientation:coinImage.imageOrientation];
     [self setImage:subImage];
+    CGImageRelease(subImageRef);
     
     ++iindex;
     

@@ -131,8 +131,7 @@
     
     
     UIImage *image = nil;
-    BOOL isShowAd = [[AdService defaultService] isShowAd];
-    isShowAd = NO; // set by Benson to disable Ad in board  
+    BOOL isShowAd = NO; // [[AdService defaultService] isShowAd];
     if (isShowAd){
         image = [[ShareImageManager defaultManager] defaultAdBoardImage];
     }else{
@@ -145,8 +144,7 @@
 - (void)viewWillAppear
 {
 //    PPDebug(@"default board view will appear");
-    BOOL isShowAd = [[AdService defaultService] isShowAd];
-    isShowAd = NO; // set by Benson to disable Ad in board  
+    BOOL isShowAd = NO; [[AdService defaultService] isShowAd];
     if (isShowAd){
             PPDebug(@"default board refresh adview");            
             [self clearAllAdView];

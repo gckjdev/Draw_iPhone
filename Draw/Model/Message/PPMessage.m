@@ -43,10 +43,10 @@
 {
     PPMessage *message = nil;
     if ([[pbMessage drawDataList] count] != 0) {
-        message = [[DrawMessage alloc] initWithPBMessage:pbMessage];
+        message = [[[DrawMessage alloc] initWithPBMessage:pbMessage] autorelease];
         message.messageType = MessageTypeDraw;
     }else{
-        message = [[TextMessage alloc] initWithPBMessage:pbMessage];
+        message = [[[TextMessage alloc] initWithPBMessage:pbMessage] autorelease];
         message.messageType = MessageTypeText;
     }
     return message;
@@ -218,6 +218,7 @@
         for (PBDrawAction *action in pbAList) {
             DrawAction *da = [[DrawAction alloc] initWithPBDrawAction:action];
             [_drawActionList addObject:da];
+            [da release];
         }
     }
     return self;

@@ -32,7 +32,7 @@
 
 + (BBSActionListController *)enterActionListControllerFromController:(UIViewController *)fromController animated:(BOOL)animated
 {
-    BBSActionListController *ba = [[BBSActionListController alloc] init];
+    BBSActionListController *ba = [[[BBSActionListController alloc] init] autorelease];
     [fromController.navigationController pushViewController:ba animated:animated];
     return ba;
 }

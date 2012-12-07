@@ -171,24 +171,24 @@ NSString* GlobalGetBoardServerURL()
      [[PPResourceService defaultService] addExplicitResourcePackage:resourcePackages1];
      [[PPResourceService defaultService] addImplicitResourcePackage:resourcePackages2];
      
-     PPResourceTestViewController* resourceTestController = [[PPResourceTestViewController alloc] init];
+     PPResourceTestViewController* resourceTestController = [[[PPResourceTestViewController alloc] init] autorelease];
      self.window.rootViewController = resourceTestController;
 }
 
 - (void)initSNSService
 {
-    PPSinaWeiboService* sinaWeiboService = [[PPSinaWeiboService alloc] initWithAppKey:[GameApp sinaAppKey]
+    PPSinaWeiboService* sinaWeiboService = [[[PPSinaWeiboService alloc] initWithAppKey:[GameApp sinaAppKey]
                                                                             appSecret:[GameApp sinaAppSecret]
                                                                        appRedirectURI:[GameApp sinaAppRedirectURI]
-                                                                      officialWeiboId:[GameApp sinaWeiboId]];
-    PPTecentWeiboService* qqWeiboService = [[PPTecentWeiboService alloc] initWithAppKey:[GameApp qqAppKey]
+                                                                      officialWeiboId:[GameApp sinaWeiboId]] autorelease];
+    PPTecentWeiboService* qqWeiboService = [[[PPTecentWeiboService alloc] initWithAppKey:[GameApp qqAppKey]
                                                                               appSecret:[GameApp qqAppSecret]
                                                                          appRedirectURI:[GameApp qqAppRedirectURI]
-                                                                        officialWeiboId:[GameApp qqWeiboId]];
-    PPFacebookService* facebookService = [[PPFacebookService alloc] initWithAppKey:[GameApp facebookAppKey]
+                                                                        officialWeiboId:[GameApp qqWeiboId]] autorelease];
+    PPFacebookService* facebookService = [[[PPFacebookService alloc] initWithAppKey:[GameApp facebookAppKey]
                                                                          appSecret:[GameApp facebookAppSecret]
                                                                     appRedirectURI:nil
-                                                                   officialWeiboId:nil];
+                                                                   officialWeiboId:nil] autorelease];
     
     
     [[PPSNSIntegerationService defaultService] addSNS:sinaWeiboService];
