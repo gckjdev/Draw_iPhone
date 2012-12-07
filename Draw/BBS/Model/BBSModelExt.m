@@ -10,6 +10,8 @@
 #import "UserManager.h"
 #import "ShareImageManager.h"
 #import "BBSManager.h"
+#import "TimeUtils.h"
+
 
 @implementation PBBBSContent (ContentExt)
 - (BOOL)hasThumbImage
@@ -137,6 +139,10 @@
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     return [defaults boolForKey:key];
 }
+- (NSString *)createDateString
+{
+    return dateToTimeLineString(self.cDate);
+}
 
 @end
 
@@ -145,7 +151,7 @@
 - (NSString *)showText
 {
     if (self.type == ActionTypeSupport) {
-        return NSLS(@"kSupport");
+        return NSLS(@"kBBSSupport");
     }
     if (self.type == ActionTypeComment) {
         if ([self isCommet]) {
@@ -162,7 +168,7 @@
 - (NSString *)contentText
 {
     if (self.type == ActionTypeSupport) {
-        return NSLS(@"kSupport");
+        return NSLS(@"kBBSSupport");
     }
     if (self.type == ActionTypeComment) {
         return self.content.text;
@@ -197,7 +203,7 @@
 }
 - (BOOL)isSupport
 {
-    return self.source.actionType == ActionTypeSupport;
+    return self.type == ActionTypeSupport;
 }
 
 - (BOOL)canDelete
@@ -210,6 +216,15 @@
     return [[UserManager defaultManager] isMe:self.createUser.userId];
 }
 
+- (NSDate *)cDate
+{
+    return [NSDate dateWithTimeIntervalSince1970:self.createDate];
+}
+
+- (NSString *)createDateString
+{
+    return dateToTimeLineString(self.cDate);
+}
 @end
 
 @implementation PBBBSActionSource (ActionSourceExt)

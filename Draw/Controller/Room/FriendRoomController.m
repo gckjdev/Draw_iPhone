@@ -22,7 +22,7 @@
 #import "DeviceDetection.h"
 #import "WordManager.h"
 #import "LevelService.h"
-#import "CommonUserInfoView.h"
+#import "DrawUserInfoView.h"
 #import "NotificationManager.h"
 #import "MyFriend.h"
 #import "NotificationName.h"
@@ -240,7 +240,7 @@
     RoomUser *roomUser = room.creator;
 
     MyFriend *friend = [MyFriend friendWithFid:roomUser.userId nickName:roomUser.nickName avatar:roomUser.avatar gender:roomUser.gender level:1];
-    [CommonUserInfoView showFriend:friend infoInView:self needUpdate:YES];
+    [DrawUserInfoView showFriend:friend infoInView:self needUpdate:YES];
 }
 
 

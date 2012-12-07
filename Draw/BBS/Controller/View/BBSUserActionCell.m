@@ -27,7 +27,7 @@
 
 #define SPACE_SPLITLINE_SOURCE (ISIPAD ? 5 * 2.33 : 5)
 
-#define IMAGE_HEIGHT (ISIPAD ? 80 * 2.33 : 80)
+//#define IMAGE_HEIGHT (ISIPAD ? 80 * 2.33 : 80)
 
 #define CONTENT_WIDTH (ISIPAD ? 206 * 2.33 : 206)
 #define SOURCE_WIDTH (ISIPAD ? 206 * 2.33 : 206)
@@ -172,7 +172,11 @@
 
     //set image frame
     if (action.content.hasThumbImage) {
-        [self.image setImageWithURL:action.content.thumbImageURL placeholderImage:nil];
+        [self.image setImageWithURL:action.content.thumbImageURL placeholderImage:nil success:^(UIImage *image, BOOL cached) {
+            [self updateImageViewFrameWithImage:image];
+        } failure:^(NSError *error) {
+            
+        }];
         //reset image frame center
         self.image.hidden = NO;
 
@@ -198,19 +202,13 @@
     [self resetView:self.splitLine y:(y-SPACE_SPLITLINE_SOURCE) height:1];
 }
 
-- (void)updateTimeStamp:(NSInteger)timeInterval
-{
-    NSDate *date = [NSDate dateWithTimeIntervalSince1970:timeInterval];
-    [self.timestamp setText:dateToChineseString(date)];
-}
-
 
 - (void)updateCellWithBBSAction:(PBBBSAction *)action
 {
     self.action = action;
     [self updateUserInfo:action.createUser];
     [self updateContentWithAction:action];
-    [self updateTimeStamp:action.createDate];
+    [[self timestamp] setText:action.createDateString];
 }
 
 

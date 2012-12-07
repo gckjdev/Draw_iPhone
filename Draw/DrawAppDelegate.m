@@ -153,16 +153,76 @@ NSString* GlobalGetBoardServerURL()
     //    }];
 }
 
+- (void)testResourcePackage
+{
+     NSSet* resourcePackages1 = [NSSet setWithObjects:
+     [PPResourcePackage resourcePackageWithName:@"common_core" type:PPResourceImage],
+     [PPResourcePackage resourcePackageWithName:@"draw_core" type:PPResourceImage],
+     [PPResourcePackage resourcePackageWithName:@"dice_core" type:PPResourceImage],
+     nil];
+     
+     NSSet* resourcePackages2 = [NSSet setWithObjects:
+     [PPResourcePackage resourcePackageWithName:@"dice_beautiful" type:PPResourceImage],
+     [PPResourcePackage resourcePackageWithName:@"dice_music" type:PPResourceImage],
+     [PPResourcePackage resourcePackageWithName:@"dice_voice" type:PPResourceImage],
+     [PPResourcePackage resourcePackageWithName:@"dice_help" type:PPResourceImage],
+     nil];
+     
+     [[PPResourceService defaultService] addExplicitResourcePackage:resourcePackages1];
+     [[PPResourceService defaultService] addImplicitResourcePackage:resourcePackages2];
+     
+     PPResourceTestViewController* resourceTestController = [[[PPResourceTestViewController alloc] init] autorelease];
+     self.window.rootViewController = resourceTestController;
+}
+
+- (void)initSNSService
+{
+    PPSinaWeiboService* sinaWeiboService = [[[PPSinaWeiboService alloc] initWithAppKey:[GameApp sinaAppKey]
+                                                                            appSecret:[GameApp sinaAppSecret]
+                                                                       appRedirectURI:[GameApp sinaAppRedirectURI]
+                                                                      officialWeiboId:[GameApp sinaWeiboId]] autorelease];
+    PPTecentWeiboService* qqWeiboService = [[[PPTecentWeiboService alloc] initWithAppKey:[GameApp qqAppKey]
+                                                                              appSecret:[GameApp qqAppSecret]
+                                                                         appRedirectURI:[GameApp qqAppRedirectURI]
+                                                                        officialWeiboId:[GameApp qqWeiboId]] autorelease];
+    PPFacebookService* facebookService = [[[PPFacebookService alloc] initWithAppKey:[GameApp facebookAppKey]
+                                                                         appSecret:[GameApp facebookAppSecret]
+                                                                    appRedirectURI:nil
+                                                                   officialWeiboId:nil] autorelease];
+    
+    
+    [[PPSNSIntegerationService defaultService] addSNS:sinaWeiboService];
+    [[PPSNSIntegerationService defaultService] addSNS:qqWeiboService];
+    [[PPSNSIntegerationService defaultService] addSNS:facebookService];    
+}
+
+- (void)initResourceService
+{
+    NSSet* explicitsResourcePackages = [NSSet setWithObjects:
+                                        [PPResourcePackage resourcePackageWithName:RESOURCE_PACKAGE_COMMON type:PPResourceImage],
+                                        [PPResourcePackage resourcePackageWithName:RESOURCE_PACKAGE_ZJH type:PPResourceImage],
+                                        [PPResourcePackage resourcePackageWithName:RESOURCE_PACKAGE_DICE type:PPResourceImage],
+                                        [PPResourcePackage resourcePackageWithName:RESOURCE_PACKAGE_DRAW type:PPResourceImage],
+                                        nil];
+    
+    NSSet* implicitResourcePackages = [NSSet setWithObjects:
+                                       [PPResourcePackage resourcePackageWithName:RESOURCE_PACKAGE_ZJH_AUDIO type:PPResourceAudio],
+                                       nil];
+    
+    [[PPResourceService defaultService] addExplicitResourcePackage:explicitsResourcePackages];
+    [[PPResourceService defaultService] addImplicitResourcePackage:implicitResourcePackages];
+    
+}
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     srand(time(0));
     
     application.applicationIconBadgeNumber = 0;
 
-    [WordManager defaultManager];
     
     if (isDrawApp()) {
-        [WordManager unZipFiles];
+        [WordManager defaultManager];
     } else if (isDiceApp()){
         [DiceFontManager unZipFiles];
         [[DiceHelpManager defaultManager] unzipHelpFiles];
@@ -170,7 +230,8 @@ NSString* GlobalGetBoardServerURL()
     
     [self initImageCacheManager];
     
-    if (isDiceApp() == NO){
+    if (isDrawApp() == YES){
+        PPDebug(@"Init Weixin SDK");
         [WXApi registerApp:@"wx427a2f57bc4456d1"];
     }
     
@@ -197,16 +258,6 @@ NSString* GlobalGetBoardServerURL()
                  reportPolicy:BATCH 
                     channelId:[ConfigManager getChannelId]];
     [MobClick updateOnlineConfig];
-    
-    // Init SNS Service
-//    [[SinaSNSService defaultService] setAppKey:[GameApp sinaAppKey]         // @"2831348933" 
-//                                        Secret:[GameApp sinaAppSecret]];    // @"ff89c2f5667b0199ee7a8bad6c44b265"];
-//    [[QQWeiboService defaultService] setAppKey:[GameApp qqAppKey]           // @"801123669" 
-//                                        Secret:[GameApp qqAppSecret]];      // @"30169d80923b984109ee24ade9914a5c"];        
-//    [[FacebookSNSService defaultService] setAppId:[GameApp facebookAppKey]  //@"352182988165711" 
-//                                           appKey:[GameApp facebookAppKey]  //@"352182988165711" 
-//                                        Secret:[GameApp facebookAppSecret]]; //@"51c65d7fbef9858a5d8bc60014d33ce2"];
-    
     
     // Init Account Service and Sync Balance and Item
     [[AccountService defaultService] syncAccount:nil forceServer:YES];
@@ -272,70 +323,15 @@ NSString* GlobalGetBoardServerURL()
     else if (isAskBindDevice == NO){        
         [self checkAppVersion:[ConfigManager appId]];
     }
-
-//    QDebug(@"test Quick debug %@", @"Hello");
     
     // Show Root View
     self.window.rootViewController = navigationController;
     
+    // Init Resource Service
+    [self initResourceService];
     
-    // TODO define game resource constants
-    NSSet* explicitsResourcePackages = [NSSet setWithObjects:
-                               [PPResourcePackage resourcePackageWithName:RESOURCE_PACKAGE_COMMON type:PPResourceImage],
-                               [PPResourcePackage resourcePackageWithName:RESOURCE_PACKAGE_ZJH type:PPResourceImage],
-                               [PPResourcePackage resourcePackageWithName:RESOURCE_PACKAGE_DICE type:PPResourceImage],
-                               [PPResourcePackage resourcePackageWithName:RESOURCE_PACKAGE_DRAW type:PPResourceImage],
-                               nil];
-    
-    NSSet* implicitResourcePackages = [NSSet setWithObjects:
-                                        [PPResourcePackage resourcePackageWithName:RESOURCE_PACKAGE_ZJH_AUDIO type:PPResourceAudio],
-                                        nil];
-    
-    [[PPResourceService defaultService] addExplicitResourcePackage:explicitsResourcePackages];
-    [[PPResourceService defaultService] addImplicitResourcePackage:implicitResourcePackages];
-    
-    /*
-    NSSet* resourcePackages1 = [NSSet setWithObjects:
-                               [PPResourcePackage resourcePackageWithName:@"common_core" type:PPResourceImage],
-                               [PPResourcePackage resourcePackageWithName:@"draw_core" type:PPResourceImage],
-                               [PPResourcePackage resourcePackageWithName:@"dice_core" type:PPResourceImage],                               
-                               nil];
-    
-    NSSet* resourcePackages2 = [NSSet setWithObjects:
-                                [PPResourcePackage resourcePackageWithName:@"dice_beautiful" type:PPResourceImage],
-                                [PPResourcePackage resourcePackageWithName:@"dice_music" type:PPResourceImage],
-                                [PPResourcePackage resourcePackageWithName:@"dice_voice" type:PPResourceImage],
-                                [PPResourcePackage resourcePackageWithName:@"dice_help" type:PPResourceImage],
-                                nil];
-    
-    [[PPResourceService defaultService] addExplicitResourcePackage:resourcePackages1];
-    [[PPResourceService defaultService] addImplicitResourcePackage:resourcePackages2];
-
-    PPResourceTestViewController* resourceTestController = [[PPResourceTestViewController alloc] init];
-    self.window.rootViewController = resourceTestController;
-    //*/
-    
-    // for weibo testing
-    PPSinaWeiboService* sinaWeiboService = [[PPSinaWeiboService alloc] initWithAppKey:[GameApp sinaAppKey]
-                                                                            appSecret:[GameApp sinaAppSecret]
-                                                                       appRedirectURI:[GameApp sinaAppRedirectURI]
-                                                                      officialWeiboId:[GameApp sinaWeiboId]];
-    PPTecentWeiboService* qqWeiboService = [[PPTecentWeiboService alloc] initWithAppKey:[GameApp qqAppKey]
-                                                                            appSecret:[GameApp qqAppSecret]
-                                                                       appRedirectURI:[GameApp qqAppRedirectURI]
-                                                                        officialWeiboId:[GameApp qqWeiboId]];
-    PPFacebookService* facebookService = [[PPFacebookService alloc] initWithAppKey:[GameApp facebookAppKey]
-                                                                           appSecret:[GameApp facebookAppSecret]
-                                                                      appRedirectURI:nil
-                                                                   officialWeiboId:nil];
-
-    
-    [[PPSNSIntegerationService defaultService] addSNS:sinaWeiboService];
-    [[PPSNSIntegerationService defaultService] addSNS:qqWeiboService];
-    [[PPSNSIntegerationService defaultService] addSNS:facebookService];
-    
-//    [self weiboTest];
-    
+    // Init SNS service
+    [self initSNSService];    
     
     [self.window makeKeyAndVisible];
     
@@ -355,8 +351,8 @@ NSString* GlobalGetBoardServerURL()
     //sync level details
     [[LevelService defaultService] syncExpAndLevel:SYNC];
     
-    [GameConfigDataManager createTestConfigData];  
-    [GameConfigDataManager defaultInstance];
+//    [GameConfigDataManager createTestConfigData];  
+//    [GameConfigDataManager defaultInstance];
     
     return YES;
 }
@@ -423,7 +419,7 @@ NSString* GlobalGetBoardServerURL()
     [[UserStatusService defaultService] stop];
 //    [[FacetimeService defaultService] disconnectServer];
     
-    [[FriendManager defaultManager] removeAllDeletedFriends];
+//    [[FriendManager defaultManager] removeAllDeletedFriends];
     
 }
 
@@ -480,12 +476,13 @@ NSString* GlobalGetBoardServerURL()
 
 - (BOOL)handleURL:(NSURL*)url
 {
-    if ([[PPSNSIntegerationService defaultService] handleOpenURL:url]){        
-    }
-    else if ([[url absoluteString] hasPrefix:@"wx"]){
+    if ([[url absoluteString] hasPrefix:@"wx"]){
         return [WXApi handleOpenURL:url delegate:self];;
     }
-//    return [[[FacebookSNSService defaultService] facebook] handleOpenURL:url];
+    else if ([[PPSNSIntegerationService defaultService] handleOpenURL:url]){
+    }
+
+    return YES;
 }
 
 
@@ -576,6 +573,7 @@ NSString* GlobalGetBoardServerURL()
     if([resp isKindOfClass:[SendMessageToWXResp class]])
     {
         if (resp.errCode == WXSuccess){
+            [UIUtils alert:@"已成功分享至微信"];
             PPDebug(@"<onResp> weixin response success");
         }else {
             PPDebug(@"<onResp> weixin response fail");

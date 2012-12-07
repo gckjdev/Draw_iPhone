@@ -271,6 +271,16 @@
 #define PARA_QQ_DOMAIN                  @"qd"
 #define PARA_GPS                        @"gps"
 #define PARA_FACEBOOK_NICKNAME          @"fn"
+#define PARA_FACEBOOK_ACCESS_TOKEN      @"fat"
+#define PARA_FACEBOOK_EXPIRE_DATE       @"fed"
+
+#define PARA_SINA_REFRESH_TOKEN         @"srt"
+#define PARA_SINA_EXPIRE_DATE           @"sed"
+
+#define PARA_QQ_REFRESH_TOKEN           @"qrt"
+#define PARA_QQ_EXPIRE_DATE             @"qed"
+#define PARA_QQ_OPEN_ID                 @"qqoid"
+#define PARA_REFRESH_TOKEN              @"rto"
 
 #define PARA_DOMAIN                     @"d"
 #define PARA_SNS_ID                     @"sid"
@@ -547,6 +557,7 @@
 #define ERROR_BBS_TEXT_TOO_SHORT        30001
 #define ERROR_BBS_TEXT_TOO_LONG         30002
 #define ERROR_BBS_TEXT_TOO_FREQUENT     30003
+#define ERROR_BBS_POST_SUPPORT_TIMES_LIMIT 30004
 
 #define REJECT_ASK_LOCATION             1
 #define ACCEPT_ASK_LOCATION             0

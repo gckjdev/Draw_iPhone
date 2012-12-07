@@ -32,7 +32,7 @@
 
 + (BBSActionListController *)enterActionListControllerFromController:(UIViewController *)fromController animated:(BOOL)animated
 {
-    BBSActionListController *ba = [[BBSActionListController alloc] init];
+    BBSActionListController *ba = [[[BBSActionListController alloc] init] autorelease];
     [fromController.navigationController pushViewController:ba animated:animated];
     return ba;
 }
@@ -197,7 +197,7 @@
     actionSheet.tag = ACTION_SHEET_TAG;
     [actionSheet showInView:self.view showAtPoint:point animated:YES];
     [actionSheet setMaskViewColor:[UIColor lightGrayColor]];
-    [actionSheet release];
+    PPRelease(actionSheet);
 
 }
 

@@ -29,6 +29,10 @@
 - (UIImage *)bbsBoardBgImage;
 - (UIImage *)bbsBoardLastBgImage;
 - (UIImage *)bbsBoardLineImage;
+
+- (UIImage *)bbsBoardMineImage;
+- (UIImage *)bbsBoardCommentImage;
+
 - (UIImage *)bbsButtonLeftImage;
 - (UIImage *)bbsButtonRightImage;
 - (UIImage *)bbsSectionBgImage;
@@ -73,5 +77,6 @@
 
 //#pragma mark - User Action actionSheet
 
+- (CGSize)image:(UIImage *)image sizeWithConstHeight:(CGFloat)height maxWidth:(CGFloat)maxWidth;
 
 @end

@@ -10,7 +10,7 @@
 #import "TableTabManager.h"
 #import "ShareImageManager.h"
 #import "ShowFeedController.h"
-#import "CommonUserInfoView.h"
+#import "DrawUserInfoView.h"
 #import "Contest.h"
 #import "UseItemScene.h"
 #import "MyFriend.h"
@@ -357,7 +357,7 @@ typedef enum{
                                         avatar:player.avatar
                                         gender:genderString
                                          level:1];
-    [CommonUserInfoView showFriend:friend infoInView:self needUpdate:YES];
+    [DrawUserInfoView showFriend:friend infoInView:self needUpdate:YES];
 }
 
 @end

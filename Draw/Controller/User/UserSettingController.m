@@ -517,7 +517,12 @@ enum {
             {
                 [cell.textLabel setText:NSLS(@"kSetQQWeibo")];
                 if ([_userManager hasBindQQWeibo]){
-                    [cell.detailTextLabel setText:NSLS(@"kWeiboSet")];
+                    if ([[[PPSNSIntegerationService defaultService] snsServiceByType:TYPE_QQ] isAuthorizeExpired]){
+                        [cell.detailTextLabel setText:NSLS(@"kWeiboExpired")];
+                    }
+                    else{
+                        [cell.detailTextLabel setText:NSLS(@"kWeiboSet")];
+                    }
                 }
                 else{
                     [cell.detailTextLabel setText:NSLS(@"kNotSet")];
@@ -776,6 +781,8 @@ enum {
 {
     PPSNSCommonService* service = [[PPSNSIntegerationService defaultService] snsServiceByType:snsType];
     NSString* name = [service snsName];
+
+    [service logout];
     
     [service login:^(NSDictionary *userInfo) {
         PPDebug(@"%@ Login Success", name);
@@ -802,37 +809,16 @@ enum {
 
 - (void)bindQQ
 {
-    /*
-    self.navigationController.navigationBarHidden = NO;
-    self.navigationController.navigationItem.title = NSLS(@"微博授权");                    
-    
-    _currentLoginType = REGISTER_TYPE_QQ;
-    [[QQWeiboService defaultService] startLogin:self];
-     */
-    
     [self bindSNS:TYPE_QQ];
 }
 
 - (void)bindSina
-{
-
-    /* rem by Benson for test
-     _currentLoginType = REGISTER_TYPE_SINA;
-    [[SinaSNSService defaultService] logout];
-    [[SinaSNSService defaultService] startLogin:self];
-    */
-    
+{   
     [self bindSNS:TYPE_SINA];
 }
 
 - (void)bindFacebook
 {
-    /*
-    _currentLoginType = REGISTER_TYPE_FACEBOOK;
-    [[FacebookSNSService defaultService] startLogin:self];                        
-    */
-
-    // TODO facebook not tested
     [self bindSNS:TYPE_FACEBOOK];
 }
 

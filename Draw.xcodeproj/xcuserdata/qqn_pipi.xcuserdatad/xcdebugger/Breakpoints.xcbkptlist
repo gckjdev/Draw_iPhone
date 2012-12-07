@@ -31,18 +31,5 @@
          landmarkName = "-displayComposerSheetTo:ccRecipients:bccRecipients:subject:body:isHTML:delegate:"
          landmarkType = "5">
       </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "Yes"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "../Common_iPhone_20/3PP-SDK/SinaWeiBoSDK_SSO/SinaWeibo.m"
-         timestampString = "374825417.961891"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "500"
-         endingLineNumber = "500"
-         landmarkName = "-handleOpenURL:"
-         landmarkType = "5">
-      </FileBreakpoint>
    </FileBreakpoints>
 </Bucket>

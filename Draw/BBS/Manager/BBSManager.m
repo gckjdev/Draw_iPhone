@@ -41,6 +41,7 @@ BBSManager *_staticBBSManager;
     PPRelease(_boardList);
     PPRelease(_boardDict);
     PPRelease(_storageManager);
+    PPRelease(_tempPostList);
     [super dealloc];
 }
 
@@ -121,6 +122,45 @@ BBSManager *_staticBBSManager;
     return (it < [self creationFrequency]);
 }
 
+#pragma support times limit
+#define SUPPORT_TIMES_KEY @"FREQUENCY_KEY"
+- (NSUInteger)supportMaxTimes
+{
+    return 2;
+}
+
+- (NSString *)supportTimesKeyForPostId:(NSString *)postId
+{
+    if ([postId length] != 0) {
+       return [NSString stringWithFormat:@"%@_%@",SUPPORT_TIMES_KEY, postId];
+    }
+    return nil;
+}
+
+- (void)increasePostSupportTimes:(NSString *)postId
+{
+    NSString *key = [self supportTimesKeyForPostId:postId];
+    if (key) {
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        int count = [defaults integerForKey:key];
+        [defaults setInteger:++count forKey:key];
+        [defaults synchronize];
+    }
+}
+- (BOOL)canSupportPost:(NSString *)postId
+{
+    NSString *key = [self supportTimesKeyForPostId:postId];
+    if (key) {
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        int count = [defaults integerForKey:key];
+        return count < [self supportMaxTimes];
+    }
+    return YES;
+}
+
+
+#pragma mark content text limit
+
 - (NSUInteger)textMaxLength
 {
     return 3000;
@@ -130,6 +170,38 @@ BBSManager *_staticBBSManager;
 {
     return 5;
 }
+
+//return new post
+- (PBBBSPost *)inceasePost:(PBBBSPost *)post
+              commentCount:(NSInteger)inc
+{
+    NSInteger index = [self.tempPostList indexOfObject:post];
+    if (index >=0 && index < [self.tempPostList count]) {
+        PBBBSPost_Builder *builder = [PBBBSPost builderWithPrototype:post];
+        int count = post.replyCount + inc;
+        [builder setReplyCount:count];
+        PBBBSPost *nPost = [builder build];
+        [self.tempPostList replaceObjectAtIndex:index withObject:nPost];
+        return nPost;
+    }
+    return post;
+}
+
+- (PBBBSPost *)inceasePost:(PBBBSPost *)post
+              supportCount:(NSInteger)inc
+{
+    NSInteger index = [self.tempPostList indexOfObject:post];
+    if (index >=0 && index < [self.tempPostList count]) {
+        PBBBSPost_Builder *builder = [PBBBSPost builderWithPrototype:post];
+        int count = post.supportCount + inc;
+        [builder setSupportCount:count];
+        PBBBSPost *nPost = [builder build];
+        [self.tempPostList replaceObjectAtIndex:index withObject:nPost];
+        return nPost;
+    }
+    return post;
+}
+
 
 #pragma draw data Cache
 - (void)cacheBBSDrawData:(PBBBSDraw *)draw forKey:(NSString *)key

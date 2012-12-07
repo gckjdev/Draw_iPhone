@@ -181,6 +181,9 @@
                                    avatar:(NSString*)avatar
                               accessToken:(NSString*)accessToken
                         accessTokenSecret:(NSString*)accessTokenSecret
+                             refreshToken:(NSString*)refreshToken
+                               expireDate:(NSDate*)expireDate
+                                 qqOpenId:(NSString*)qqOpenId
                                  province:(int)province
                                      city:(int)city
                                  location:(NSString*)location
@@ -217,6 +220,11 @@
         str = [str stringByAddQueryParameter:PARA_DEVICEMODEL value:[UIDevice currentDevice].model];
         str = [str stringByAddQueryParameter:PARA_DEVICEOS value:deviceOS];
         str = [str stringByAddQueryParameter:PARA_DEVICETYPE intValue:DEVICE_TYPE_IOS];
+
+        str = [str stringByAddQueryParameter:PARA_REFRESH_TOKEN value:refreshToken];
+        str = [str stringByAddQueryParameter:PARA_QQ_OPEN_ID value:qqOpenId];
+        str = [str stringByAddQueryParameter:PARA_EXPIRE_DATE intValue:[expireDate timeIntervalSince1970]];
+        
         
         return str;
     };
@@ -242,6 +250,9 @@
                                    avatar:(NSString*)avatar
                               accessToken:(NSString*)accessToken
                         accessTokenSecret:(NSString*)accessTokenSecret
+                             refreshToken:(NSString*)refreshToken
+                               expireDate:(NSDate*)expireDate
+                                 qqOpenId:(NSString*)qqOpenId
                                  province:(int)province
                                      city:(int)city
                                  location:(NSString*)location
@@ -280,6 +291,14 @@
         str = [str stringByAddQueryParameter:PARA_DEVICEMODEL value:[UIDevice currentDevice].model];
         str = [str stringByAddQueryParameter:PARA_DEVICEOS value:deviceOS];
         str = [str stringByAddQueryParameter:PARA_DEVICETYPE intValue:DEVICE_TYPE_IOS];
+        
+        if (refreshToken)
+            str = [str stringByAddQueryParameter:PARA_REFRESH_TOKEN value:refreshToken];
+        if (qqOpenId)
+            str = [str stringByAddQueryParameter:PARA_QQ_OPEN_ID value:qqOpenId];
+        if (expireDate)
+            str = [str stringByAddQueryParameter:PARA_EXPIRE_DATE intValue:[expireDate timeIntervalSince1970]];
+        
         return str;
     };
     
@@ -1988,12 +2007,19 @@
                             sinaId:(NSString*)sinaId 
                       sinaNickName:(NSString*)sinaNickName
                          sinaToken:(NSString*)sinaToken 
-                        sinaSecret:(NSString*)sinaSecret 
+                        sinaSecret:(NSString*)sinaSecret
+                  sinaRefreshToken:(NSString*)sinaRefreshToken
+                    sinaExpireDate:(NSDate*)sinaExpireDate
                               qqId:(NSString*)qqId 
                         qqNickName:(NSString*)qqNickName
                            qqToken:(NSString*)qqToken 
-                     qqTokenSecret:(NSString*)qqTokenSecret 
-                        facebookId:(NSString*)facebookId 
+                     qqTokenSecret:(NSString*)qqTokenSecret
+                    qqRefreshToken:(NSString*)qqRefreshToken
+                      qqExpireDate:(NSDate*)qqExpireDate
+                          qqOpenId:(NSString*)qqOpenId
+                        facebookId:(NSString*)facebookId
+               facebookAccessToken:(NSString*)facebookAccessToken
+                facebookExpireDate:(NSDate*)facebookExpireDate
                              email:(NSString *)email
 {
     CommonNetworkOutput* output = [[[CommonNetworkOutput alloc] init] autorelease];
@@ -2023,13 +2049,26 @@
         str = [str stringByAddQueryParameter:PARA_SINA_ACCESS_TOKEN value:sinaToken];
         str = [str stringByAddQueryParameter:PARA_SINA_ACCESS_TOKEN_SECRET value:sinaSecret];
         str = [str stringByAddQueryParameter:PARA_SINA_NICKNAME value:sinaNickName];
-        
+        str = [str stringByAddQueryParameter:PARA_SINA_REFRESH_TOKEN value:sinaRefreshToken];
+        if (sinaExpireDate){
+            str = [str stringByAddQueryParameter:PARA_SINA_EXPIRE_DATE intValue:[sinaExpireDate timeIntervalSince1970]];
+        }
+               
         str = [str stringByAddQueryParameter:PARA_QQ_ID value:qqId];
         str = [str stringByAddQueryParameter:PARA_QQ_ACCESS_TOKEN value:qqToken];
         str = [str stringByAddQueryParameter:PARA_QQ_ACCESS_TOKEN_SECRET value:qqTokenSecret];
         str = [str stringByAddQueryParameter:PARA_QQ_NICKNAME value:qqNickName];
+        str = [str stringByAddQueryParameter:PARA_QQ_OPEN_ID value:qqOpenId];
+        str = [str stringByAddQueryParameter:PARA_QQ_REFRESH_TOKEN value:qqRefreshToken];
+        if (qqExpireDate){
+            str = [str stringByAddQueryParameter:PARA_QQ_EXPIRE_DATE intValue:[qqExpireDate timeIntervalSince1970]];
+        }
         
         str = [str stringByAddQueryParameter:PARA_FACEBOOKID value:facebookId];
+        str = [str stringByAddQueryParameter:PARA_FACEBOOK_ACCESS_TOKEN value:facebookAccessToken];
+        if (facebookExpireDate){
+            str = [str stringByAddQueryParameter:PARA_FACEBOOK_EXPIRE_DATE intValue:[facebookExpireDate timeIntervalSince1970]];
+        }
         
         str = [str stringByAddQueryParameter:PARA_COUNTRYCODE value:[LocaleUtils getCountryCode]];
         str = [str stringByAddQueryParameter:PARA_LANGUAGE value:[LocaleUtils getLanguageCode]];

@@ -26,6 +26,9 @@
 #import "ConfigManager.h"
 #import "TopPlayer.h"
 #import "MyFriend.h"
+#import "PPSNSIntegerationService.h"
+#import "PPSNSCommonService.h"
+#import "PPSNSStorageService.h"
 
 @implementation UserService
 
@@ -149,6 +152,13 @@ static UserService* _defaultUserService;
     NSString* qqToken = nil;
     NSString* qqTokenSecret = nil;
     NSString* sinaToken = nil;
+    NSString* sinaRefreshToken = nil;
+    NSDate*   sinaExpireDate = nil;
+    NSString* qqRefreshToken = nil;
+    NSDate*   qqExpireDate = nil;
+    NSString* qqOpenId = nil;
+    NSString* facebookAccessToken = nil;
+    NSDate*   facebookExpireDate = nil;
 
     NSString* newNickName = nil;
     if ([[[UserManager defaultManager] nickName] length] == 0){
@@ -164,11 +174,14 @@ static UserService* _defaultUserService;
         PPDebug(@"<updateUserWithSNSUserInfo> avatar exists, no change");
     }
     
+    
     switch (loginIdType) {
         case REGISTER_TYPE_SINA:
             sinaId = loginId;
             sinaNickName = nickName;
             sinaToken = [userInfo objectForKey:SNS_OAUTH_TOKEN];
+            sinaExpireDate = [userInfo objectForKey:SNS_EXPIRATION_DATE];
+            sinaRefreshToken = [userInfo objectForKey:SNS_REFRESH_TOKEN];
             break;
         
         case REGISTER_TYPE_QQ:
@@ -176,10 +189,14 @@ static UserService* _defaultUserService;
             qqNickName = nickName;
             qqToken = [userInfo objectForKey:SNS_OAUTH_TOKEN];
             qqTokenSecret = [userInfo objectForKey:SNS_OAUTH_TOKEN_SECRET];
+            qqExpireDate = [userInfo objectForKey:SNS_EXPIRATION_DATE];
+            qqRefreshToken = [userInfo objectForKey:SNS_REFRESH_TOKEN];
             break;
             
         case REGISTER_TYPE_FACEBOOK:
             facebookId = loginId;
+            facebookAccessToken = [userInfo objectForKey:SNS_OAUTH_TOKEN];
+            facebookExpireDate = [userInfo objectForKey:SNS_EXPIRATION_DATE];
             break;
             
         default:
@@ -188,29 +205,38 @@ static UserService* _defaultUserService;
     
     PPDebug(@"<updateUserWithSNSUserInfo> userId=%@, userInfo=%@", userId, [userInfo description]);
     
-    [viewController showActivityWithText:NSLS(@"kUpdatingUser")];    
-    dispatch_async(workingQueue, ^{            
+    [viewController showActivityWithText:NSLS(@"kUpdatingUser")];
+    dispatch_async(workingQueue, ^{
         
         CommonNetworkOutput* output = 
-        [GameNetworkRequest updateUser:SERVER_URL appId:appId userId:userId deviceId:nil deviceToken:nil nickName:newNickName gender:gender password:nil avatar:avatar location:location sinaId:sinaId sinaNickName:sinaNickName sinaToken:sinaToken sinaSecret:nil qqId:qqId qqNickName:qqNickName qqToken:qqToken qqTokenSecret:qqTokenSecret facebookId:facebookId email:nil];
-        
-//        [GameNetworkRequest registerUserBySNS:SERVER_URL
-//                                        snsId:loginId
-//                                 registerType:loginIdType
-//                                        appId:appId
-//                                  deviceToken:deviceToken
-//                                     nickName:[userInfo objectForKey:SNS_NICK_NAME]
-//                                       avatar:[userInfo objectForKey:SNS_USER_IMAGE_URL]
-//                                  accessToken:[userInfo objectForKey:SNS_OAUTH_TOKEN]
-//                            accessTokenSecret:[userInfo objectForKey:SNS_OAUTH_TOKEN_SECRET]
-//                                     province:[[userInfo objectForKey:SNS_PROVINCE] intValue]
-//                                         city:[[userInfo objectForKey:SNS_CITY] intValue]
-//                                     location:[userInfo objectForKey:SNS_LOCATION]
-//                                       gender:[userInfo objectForKey:SNS_GENDER]
-//                                     birthday:[userInfo objectForKey:SNS_BIRTHDAY]
-//                                       domain:[userInfo objectForKey:SNS_DOMAIN]
-//                                     deviceId:deviceId];                
-        
+        [GameNetworkRequest updateUser:SERVER_URL
+                                 appId:appId
+                                userId:userId
+                              deviceId:nil
+                           deviceToken:nil
+                              nickName:newNickName
+                                gender:gender
+                              password:nil
+                                avatar:avatar
+                              location:location
+                                sinaId:sinaId
+                          sinaNickName:sinaNickName
+                             sinaToken:sinaToken
+                             sinaSecret:nil
+                      sinaRefreshToken:sinaRefreshToken
+                        sinaExpireDate:sinaExpireDate
+                                  qqId:qqId
+                            qqNickName:qqNickName
+                               qqToken:qqToken         
+                         qqTokenSecret:qqTokenSecret
+                        qqRefreshToken:qqRefreshToken
+                          qqExpireDate:qqExpireDate
+                              qqOpenId:qqOpenId         
+                            facebookId:facebookId
+                   facebookAccessToken:facebookAccessToken
+                    facebookExpireDate:facebookExpireDate
+                                 email:nil];
+  
         dispatch_async(dispatch_get_main_queue(), ^{
             
             [viewController hideActivity];
@@ -287,6 +313,9 @@ static UserService* _defaultUserService;
                                        avatar:[userInfo objectForKey:SNS_USER_IMAGE_URL]
                                   accessToken:[userInfo objectForKey:SNS_OAUTH_TOKEN]
                             accessTokenSecret:[userInfo objectForKey:SNS_OAUTH_TOKEN_SECRET]
+                                 refreshToken:[userInfo objectForKey:SNS_REFRESH_TOKEN]
+                                   expireDate:[userInfo objectForKey:SNS_EXPIRATION_DATE]
+                                     qqOpenId:[userInfo objectForKey:SNS_QQ_OPEN_ID]
                                      province:[[userInfo objectForKey:SNS_PROVINCE] intValue]
                                          city:[[userInfo objectForKey:SNS_CITY] intValue]
                                      location:[userInfo objectForKey:SNS_LOCATION]
@@ -648,6 +677,25 @@ static UserService* _defaultUserService;
                 NSString* levelSring = [output.jsonDataDict objectForKey:PARA_LEVEL];
                 NSString* expSring = [output.jsonDataDict objectForKey:PARA_EXP];
                 
+                NSString* sinaRefreshToken = [output.jsonDataDict objectForKey:PARA_SINA_REFRESH_TOKEN];
+                int       sinaExpireTime = [[output.jsonDataDict objectForKey:PARA_SINA_EXPIRE_DATE] intValue];
+                NSDate*   sinaExpireDate = nil;
+                if (sinaExpireTime)
+                    sinaExpireDate = [NSDate dateWithTimeIntervalSince1970:sinaExpireTime];
+                
+                NSString* qqRefreshToken = [output.jsonDataDict objectForKey:PARA_QQ_REFRESH_TOKEN];
+                int       qqExpireTime = [[output.jsonDataDict objectForKey:PARA_QQ_EXPIRE_DATE] intValue];
+                NSDate*   qqExpireDate = nil;
+                if (qqExpireTime)
+                    qqExpireDate = [NSDate dateWithTimeIntervalSince1970:qqExpireTime];
+                NSString* qqOpenId = [output.jsonDataDict objectForKey:PARA_QQ_OPEN_ID];
+
+                NSString* facebookToken = [output.jsonDataDict objectForKey:PARA_FACEBOOK_ACCESS_TOKEN];
+                int       facebookExpireTime = [[output.jsonDataDict objectForKey:PARA_FACEBOOK_EXPIRE_DATE] intValue];
+                NSDate*   facebookExpireDate = nil;
+                if (facebookExpireTime)
+                    facebookExpireDate = [NSDate dateWithTimeIntervalSince1970:facebookExpireTime];
+                
                 
                 if (nickName == nil || [nickName length] == 0) {
                     nickName = [output.jsonDataDict objectForKey:PARA_SINA_NICKNAME];
@@ -675,11 +723,33 @@ static UserService* _defaultUserService;
             
                 [[UserManager defaultManager] setLocation:location];
 
+                PPSNSCommonService* sinaSNSService = [[PPSNSIntegerationService defaultService] snsServiceByType:TYPE_SINA];
+                [sinaSNSService saveAccessToken:sinaAccessToken
+                                   refreshToken:sinaRefreshToken
+                                     expireDate:sinaExpireDate
+                                         userId:sinaId
+                                       qqOpenId:nil];
+
+                PPSNSCommonService* qqSNSService = [[PPSNSIntegerationService defaultService] snsServiceByType:TYPE_QQ];
+                [qqSNSService saveAccessToken:qqAccessToken
+                                   refreshToken:qqRefreshToken
+                                     expireDate:qqExpireDate
+                                         userId:qqId
+                                       qqOpenId:qqOpenId];
+
+                PPSNSCommonService* facebookSNSService = [[PPSNSIntegerationService defaultService] snsServiceByType:TYPE_FACEBOOK];
+                [facebookSNSService saveAccessToken:facebookToken
+                                   refreshToken:nil
+                                     expireDate:facebookExpireDate
+                                         userId:facebookId
+                                       qqOpenId:nil];
+                
+                
                 // TODO:SNS
 //                [[QQWeiboService defaultService] saveToken:qqAccessToken secret:qqAccessSecret];
                 
                 
-                [[LevelService defaultService] setLevel:levelSring.intValue];
+                [[LevelService defaultService] setLevel:levelSring.integerValue];
                 [[LevelService defaultService] setExperience:expSring.intValue];
                 
                 if ([ConfigManager isProVersion]){
@@ -705,6 +775,7 @@ static UserService* _defaultUserService;
     
 }
 
+/*
 - (void)updateAllUserInfo
 {
     NSString* userId = [[UserManager defaultManager] userId];
@@ -764,6 +835,7 @@ static UserService* _defaultUserService;
         });
     });
 }
+*/
 
 - (void)getStatistic:(PPViewController<UserServiceDelegate>*)viewController
 {

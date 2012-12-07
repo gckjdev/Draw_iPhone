@@ -12,7 +12,7 @@
 #import "DeviceDetection.h"
 #import "LocaleUtils.h"
 #import "WordManager.h"
-#import "CommonUserInfoView.h"
+#import "DrawUserInfoView.h"
 #import "ShareImageManager.h"
 #import "CommentFeed.h"
 #import "MyFriend.h"
@@ -177,6 +177,6 @@
                                         avatar:nil
                                         gender:nil
                                          level:1];
-    [CommonUserInfoView showFriend:friend infoInView:_superViewController needUpdate:YES];
+    [DrawUserInfoView showFriend:friend infoInView:_superViewController needUpdate:YES];
 }
 @end

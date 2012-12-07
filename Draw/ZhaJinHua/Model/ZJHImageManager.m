@@ -11,6 +11,7 @@
 #import "ShareImageManager.h"
 #import "PPResourceService.h"
 #import "GameResource.h"
+#import "UIImageUtil.h"
 //#import "UIImageUtil.h"
 
 @interface ZJHImageManager()
@@ -713,6 +714,11 @@ static ZJHImageManager* shareInstance;
 - (UIImage*)dispatcherImage
 {
     return [_resService imageByName:@"dispatcher" inResourcePackage:RESOURCE_PACKAGE_ZJH];
+}
+
+- (UIImage*)ZJHUserInfoBackgroundImage
+{
+    return [UIImage strectchableImageName:@"ZJHUserInfoBackground.png"];
 }
 
 @end

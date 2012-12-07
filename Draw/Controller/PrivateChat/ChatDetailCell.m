@@ -17,7 +17,7 @@
 #import "LocaleUtils.h"
 #import "PPMessage.h"
 #import "UIImageView+WebCache.h"
-#import "CommonUserInfoView.h"
+#import "DrawUserInfoView.h"
 #import "DiceUserInfoView.h"
 #import "GameApp.h"
 #import "MyFriend.h"
@@ -421,7 +421,7 @@ CGRect CGRectFrom(CGPoint origin, CGSize size){
                                             gender:_messageStat.friendGenderString 
                                              level:1];
         if (isDrawApp()) {
-            [CommonUserInfoView showFriend:friend infoInView:self.superController needUpdate:YES];
+            [DrawUserInfoView showFriend:friend infoInView:self.superController needUpdate:YES];
         }
         if (isDiceApp()) {
             [DiceUserInfoView showFriend:friend infoInView:self.superController canChat:YES needUpdate:YES];

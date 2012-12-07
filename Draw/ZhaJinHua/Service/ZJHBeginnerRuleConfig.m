@@ -28,7 +28,7 @@
     imageView.image = [[ZJHImageManager defaultManager] twoButtonsHolderBgImage];
     
     UIButton *showCardButton = [[[UIButton alloc] initWithFrame:CGRectMake(SHOW_CARD_BUTTON_X_OFFSET, SHOW_CARD_BUTTON_Y_OFFSET, BUTTON_WIDTH, BUTTON_HEIGHT)] autorelease];
-    showCardButton.tag = SHOW_CARD_BUTTON_TAG;
+//    showCardButton.tag = SHOW_CARD_BUTTON_TAG;
     [showCardButton setBackgroundImage:[[ZJHImageManager defaultManager] showCardButtonBgImage] forState:UIControlStateNormal];
     [showCardButton setTitle:NSLS(@"kShowCard") forState:UIControlStateNormal];
     showCardButton.titleLabel.font = BUTTON_FONT;
@@ -44,7 +44,7 @@
 
     
     UIButton *changeCardButton = [[[UIButton alloc] initWithFrame:CGRectMake(CHANGE_CARD_BUTTON_X_OFFSET, CHANGE_CARD_BUTTON_Y_OFFSET, BUTTON_WIDTH, BUTTON_HEIGHT)] autorelease];
-    changeCardButton.tag = CHANGE_CARD_BUTTON_TAG;
+//    changeCardButton.tag = CHANGE_CARD_BUTTON_TAG;
     [changeCardButton setBackgroundImage:[[ZJHImageManager defaultManager] showCardButtonBgImage] forState:UIControlStateNormal];
     [changeCardButton setTitle:NSLS(@"kChangeCard") forState:UIControlStateNormal];
     changeCardButton.titleLabel.font = BUTTON_FONT;

@@ -32,6 +32,7 @@
 #import "RoomTitleView.h"
 #import "NotificationName.h"
 #import "ZJHRuleConfigFactory.h"
+#import "ZJHUserInfoView.h"
 
 #define AVATAR_VIEW_TAG_OFFSET   4000
 //#define AVATAR_PLACE_VIEW_OFFSET    8000
@@ -979,7 +980,6 @@
     }
     
     [[self getMyAvatarView] updateByPBGameUser:[_userManager toPBGameUser]];
-    [[self getMyAvatarView] setDelegate:self];
     
     // set user on seat
     for (PBGameUser* user in _gameService.session.userList) {
@@ -987,6 +987,8 @@
         
         UserPosition pos = [self getPositionByUserId:user.userId];
         [[[self getUserPosInfoByPos:pos] avatar] updateByPBGameUser:user];
+        [[[self getUserPosInfoByPos:pos] avatar] setDelegate:self];
+
     }
 }
 
@@ -1124,12 +1126,18 @@
 
 - (void)didClickOnAvatar:(ZJHAvatarView*)view
 {
-    
+    MyFriend *friend = [MyFriend friendWithFid:view.userInfo.userId
+                                      nickName:nil
+                                        avatar:nil
+                                        gender:nil
+                                         level:1];
+    [ZJHUserInfoView showFriend:friend infoInView:self needUpdate:YES];
 }
 
 - (void)reciprocalEnd:(ZJHAvatarView*)view
 {
     PPDebug(@"################# [controller: %@] TIME OUT: auto fold ##################", [self description]);
+    if ([_userManager isMe:view.userInfo.userId])
     [self clickFoldCardButton:nil];
 }
 

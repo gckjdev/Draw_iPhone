@@ -36,7 +36,7 @@
 #import "AccountManager.h"
 #import "CoinShopController.h"
 #import "ShowFeedController.h"
-#import "CommonUserInfoView.h"
+#import "DrawUserInfoView.h"
 #import "FeedService.h"
 #import "DrawGameAnimationManager.h"
 #import "ItemService.h"
@@ -857,7 +857,7 @@
                                         avatar:nil
                                         gender:nil
                                          level:1];
-    [CommonUserInfoView showFriend:friend infoInView:self needUpdate:YES];
+    [DrawUserInfoView showFriend:friend infoInView:self needUpdate:YES];
 
 }
 

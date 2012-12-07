@@ -12,7 +12,7 @@
 #import "ShowFeedController.h"
 #import "FeedCell.h"
 #import "CommonMessageCenter.h"
-#import "CommonUserInfoView.h"
+#import "DrawUserInfoView.h"
 #import "UseItemScene.h"
 typedef enum{
     UserTypeFeed = FeedListTypeUserFeed,

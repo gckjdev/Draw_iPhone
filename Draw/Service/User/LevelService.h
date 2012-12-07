@@ -90,4 +90,7 @@ typedef enum {
 - (void)syncExpAndLevel:(int)type awardExp:(long)awardExp
               forSource:(LevelSource)source;
 
+- (void)setExperience:(long)experience;
+- (void)setLevel:(NSInteger)level;
+
 @end

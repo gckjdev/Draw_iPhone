@@ -619,12 +619,17 @@ sinaAccessTokenSecret:(NSString*)sinaAccessTokenSecret
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     LanguageType type = [userDefaults integerForKey:KEY_LANGUAGE];
     if (type == 0) {
+        /* rem by Benson
         if ([LocaleUtils isChina] || [LocaleUtils isOtherChina] ||
             [LocaleUtils isChinese] || [LocaleUtils isTraditionalChinese]){
             type = ChineseType;
         }else{
             type = EnglishType;
         }
+        */
+        
+        // it's Chinese by default due to English Draw & Guess has no many users, so we just focus on Chinese
+        type = ChineseType;
         [self setLanguageType:type];
     }
     return type;
@@ -642,10 +647,8 @@ sinaAccessTokenSecret:(NSString*)sinaAccessTokenSecret
 - (BOOL)hasBindQQWeibo
 {
     NSObject *obj = [[NSUserDefaults standardUserDefaults] objectForKey:KEY_QQ_LOGINID];
-    NSString* token = [self qqToken];
-    NSString* secret = [self qqTokenSecret];
-    
-    if (obj != nil && [token length] > 0 && [secret length] > 0) {
+    NSString* token = [self qqToken];    
+    if (obj != nil && [token length] > 0) {
         return YES;
     }
     return NO;

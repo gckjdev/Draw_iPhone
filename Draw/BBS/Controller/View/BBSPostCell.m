@@ -19,7 +19,7 @@
 #define SPACE_CONTENT_TOP (ISIPAD ? (2.33 * 30) : 30)
 #define SPACE_CONTENT_BOTTOM_IMAGE (ISIPAD ? (2.33 * 120) : 120) //IMAGE TYPE OR DRAW TYPE
 #define SPACE_CONTENT_BOTTOM_TEXT (ISIPAD ? (2.33 * 40) : 40) //TEXT TYPE
-#define IMAGE_HEIGHT (ISIPAD ? (2.33 * 80) : 80)
+//#define IMAGE_HEIGHT (ISIPAD ? (2.33 * 80) : 80)
 #define CONTENT_TEXT_LINE (ISIPAD ? (2.33 * 10) : 10)
 #define CONTENT_WIDTH (ISIPAD ? (2.33 * 206) : 206)
 #define CONTENT_MAX_HEIGHT (ISIPAD ? (2.33 * 200) : 200)
@@ -141,18 +141,22 @@
     self.content.frame = frame;
   
     if (content.hasThumbImage) {
-        [self.image setImageWithURL:content.thumbImageURL placeholderImage:nil];
+//        NSURL *url = [NSURL URLWithString:@"http://misc.clzg.cn/bbs/day_100127/1001271911c732c2cf8a7830ac.jpg"];
+        [self.image setImageWithURL:content.thumbImageURL
+                   placeholderImage:nil
+                            success:^(UIImage *image, BOOL cached) {
+                                [self updateImageViewFrameWithImage:image];
+                            } failure:^(NSError *error) {
+                                
+        }];
+
         self.image.hidden = NO;
     }else{
         self.image.hidden = YES;
     }
 }
 
-- (void)updateTimeStamp:(NSInteger)timeInterval
-{
-    NSDate *date = [NSDate dateWithTimeIntervalSince1970:timeInterval];
-    [self.timestamp setText:dateToChineseString(date)];
-}
+
 
 - (void)updateSupportCount:(NSInteger)supportCount
               commentCount:(NSInteger)commentCount
@@ -188,7 +192,7 @@
     self.post = post;
     [self updateUserInfo:post.createUser];
     [self updateContent:post.content];
-    [self updateTimeStamp:post.createDate];
+    [self.timestamp setText:post.createDateString];
     [self updateSupportCount:post.supportCount commentCount:post.replyCount];
     [self updateReward:post];
 }

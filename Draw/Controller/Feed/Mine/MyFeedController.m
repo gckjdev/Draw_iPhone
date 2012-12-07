@@ -11,7 +11,7 @@
 #import "ShareImageManager.h"
 #import "ShowFeedController.h"
 #import "FeedCell.h"
-#import "CommonUserInfoView.h"
+#import "DrawUserInfoView.h"
 #import "CommonMessageCenter.h"
 #import "CommonDialog.h"
 #import "StatisticManager.h"
@@ -105,14 +105,19 @@ typedef enum{
 {
     DrawFeed *drawFeed = [[DrawFeed alloc] init];
     drawFeed.feedId = feed.opusId;
+    
     FeedUser *feedUser = [[FeedUser alloc]initWithUserId:feed.opusCreator
                                                 nickName:nil
                                                   avatar:nil
                                                   gender:YES];
     drawFeed.feedUser = feedUser;
+    [feedUser release];
+
     CommentController *cc = [[CommentController alloc] initWithFeed:drawFeed commentFeed:_selectedCommentFeed];
     [self presentModalViewController:cc animated:YES];
     [cc release];
+    
+    [drawFeed release];
 }
 
 
@@ -728,6 +733,6 @@ typedef enum{
                                         avatar:nil
                                         gender:genderString
                                          level:1];
-    [CommonUserInfoView showFriend:friend infoInView:self needUpdate:YES];
+    [DrawUserInfoView showFriend:friend infoInView:self needUpdate:YES];
 }
 @end

@@ -14,7 +14,7 @@
 #import "TimeUtils.h"
 #import "CommonDialog.h"
 #import "FriendCell.h"
-#import "CommonUserInfoView.h"
+#import "DrawUserInfoView.h"
 #import "DiceUserInfoView.h"
 
 @interface SearchUserController ()
@@ -120,7 +120,7 @@
         return;
     }
     if (isDrawApp()) {
-        [CommonUserInfoView showFriend:friend infoInView:self needUpdate:YES];
+        [DrawUserInfoView showFriend:friend infoInView:self needUpdate:YES];
     }else if(isDiceApp())
     {
         [DiceUserInfoView showFriend:friend infoInView:self canChat:YES needUpdate:YES];

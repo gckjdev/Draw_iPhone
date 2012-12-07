@@ -237,6 +237,8 @@
 "kShare_via_Facebook" = "通過Facebook分享";
 "kShare_via_Twitter" = "通過Twitter分享";
 "kShare_via_Weixin" = "分享到微信";
+"kShare_via_Weixin_Timeline" = "分享到微信朋友圈";
+"kShare_via_Weixin_Friend" = "分享給微信好友";
 "kWeixinNotInstall" = "對不起，您沒有安裝微信或微信版本較低，無法發送微信消息!";
 
 "Message" = "消息";
@@ -279,20 +281,20 @@
 "kSay something..." = "";
 "kShare_via_SMS" = "短信分享給朋友";
 
-"kShare_message_body" = "你還在玩離線版的Draw Something遊戲？太慢了！我們短暫的青春等不起！現在我用燃燒的生命發出內心的吶喊！隆重推荐一款在線版的猜畫遊戲——《%@》！不要再等待！不要再猶豫了！趕緊下載吧！\n%@";
+"kShare_message_body" = "推荐一款好玩的iPhone/iPad畫畫娛樂應用［%@］ %@";
 
-"kEmail_subject" = "分享［猜猜畫畫］移動版遊戲";
+"kEmail_subject" = "分享［猜猜畫畫］iPhone/iPad版遊戲";
 
 "kCreating_gif" = "正在生成GIF動畫文件中... 文件可能比較大，請耐心等待";
 
-"kShareOtherTextAuto" = "我在玩%@，對手真油菜花！TA畫的是［%@］，沒想到吧~！我也木有想到！果斷圍觀啊！%@ #猜猜畫畫美圖分享# http://itunes.apple.com/cn/app/cai-cai-hua-hua/id513819630?mt=8";
+"kShareOtherTextAuto" = "我在玩%@，TA畫的是［%@］，沒想到吧~！我也木有想到！果斷圍觀啊！%@ #猜猜畫畫美圖分享# http://itunes.apple.com/cn/app/cai-cai-hua-hua/id513819630?mt=8";
 
 "kShareMeTextAuto" = "我在玩%@，快來圍觀我畫了什麼吧！畫的詞是［%@］，看來我畫工還不錯！#猜猜畫畫美圖分享# http://itunes .apple.com/cn/app/cai-cai-hua-hua/id513819630?mt=8";
 
-"kShareOtherText" = "我在玩@猜猜畫畫手機版，對手真油菜花！TA畫的是［%@］，沒想到吧~！我也木有想到！果斷圍觀啊！#猜猜畫畫美圖分享# http://caicaihuahua.me";
+"kShareOtherText" = "我在玩@猜猜畫畫手機版，TA畫的是［%@］，沒想到吧~！我也木有想到！果斷圍觀啊！#猜猜畫畫美圖分享# http://caicaihuahua.me";
 "kShareMeText" = "我在玩@猜猜畫畫手機版，快來圍觀我畫了什麼吧！畫的詞是［%@］，看來我畫工還不錯！#猜猜畫畫美圖分享# http://caicaihuahua.me";
 
-"kShareGIFOtherText" = "我在玩@猜猜畫畫手機版，對手真油菜花！TA畫的是［%@］，沒想到吧~！我也木有想到！果斷圍觀啊！#猜猜畫畫動畫炫圖分享# http://caicaihuahua.me";
+"kShareGIFOtherText" = "我在玩@猜猜畫畫手機版，TA畫的是［%@］，沒想到吧~！我也木有想到！果斷圍觀啊！#猜猜畫畫動畫炫圖分享# http://caicaihuahua.me";
 "kShareGIFMeText" = "我在玩@猜猜畫畫手機版，快來圍觀我的動畫炫圖！畫的詞是［%@］，看來我畫工還不錯！#猜猜畫畫動畫炫圖分享# http://caicaihuahua.me";
 
 "kShareSend" = "發送微博";
@@ -1138,8 +1140,12 @@
 "kPostDetail" = "帖子詳情";
 "kPublish" = "發布";
 "kReward" = "懸賞";
-"kSupport" = "頂";
+"kBBSSupport" = "頂";
+"kBBSReply" = "回復";
 "kMyPost" = "我的帖子";
+
+"kBBSDraw" = "塗鴉";
+"kBBSImage" = "圖片";
 
 "kSupportCount" = "頂(%d)";
 "kCommentCount" = "評論(%d)";
@@ -1153,5 +1159,10 @@
 "kTextTooLong" = "帖子的字數不能多於%d個字哦。";
 "kTextTooFrequent" = "妳發帖太頻繁了，先休息壹下再發吧。";
 "kNetworkError" = "網絡連接錯誤，請檢查網絡設置。";
+"kSupportTimesLimit" = "每張帖子最多只能頂 %d 次哦。";
 
+"kWarning" = "警告";
+"kClearImageData" = "之前選擇的圖像將被清除，妳要繼續嗎？";
+"kClearDrawData" = "之前的畫畫數據將被清除，妳要繼續嗎？";
+"kSaveImageSuccess" = "保存成功";
 /*********************** BBS国际化字符串结束 *************************/

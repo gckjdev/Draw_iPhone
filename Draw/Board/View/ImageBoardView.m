@@ -86,9 +86,7 @@
         ImageBoard *board = (ImageBoard *)self.board;
         NSString *imageUrl = board.imageUrl;
         
-        BOOL isShowAd = [[AdService defaultService] isShowAd];
-        isShowAd = NO; // set by Benson to disable Ad in board  
-        
+        BOOL isShowAd = NO; //[[AdService defaultService] isShowAd];
         if (isShowAd) {
             if ([LocaleUtils isChinese]) {
                 imageUrl = board.cnAdImageUrl;

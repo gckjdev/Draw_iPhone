@@ -90,4 +90,5 @@
 - (UIImage *)specialCardTypeImage;
 
 - (UIImage *)dispatcherImage;
+- (UIImage*)ZJHUserInfoBackgroundImage;
 @end

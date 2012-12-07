@@ -34,9 +34,9 @@
 
 //bbs 5.2
 "kPBP" = "%@ pays you %@ icons at post: %@...";
-"kPBC" = "%@ comments your post: %@...";
-"kPBR"= "%@ replys to your post: %@...";
-"kPBS" = "%@ supports your post: %@...";
+"kPBC" = "%@ comments your forum post: %@...";
+"kPBR"= "%@ replys to your forum post: %@...";
+"kPBS" = "%@ supports your forum post: %@...";
 
 
 /*********************** Notification end *************************/
@@ -236,6 +236,8 @@
 "kShare_via_Facebook" = "Share via Facebook";
 "kShare_via_Twitter" = "Share via Twitter";
 "kShare_via_Weixin" = "Share via WeChat";
+"kShare_via_Weixin_Timeline" = "Share to WeChat Timeline";
+"kShare_via_Weixin_Friend" = "Share to WeChat Friend";
 "kWeixinNotInstall" = "You do not have to install WeChat, unable to send!";
 
 "Message" = "Message";
@@ -1133,14 +1135,17 @@
 
 
 /*********************** BBS国际化字符串开始 *************************/
-"kBBS" = "BBS";
+"kBBS" = "Forum";
 "kCreatePost" = "Create Post";
 "kMyComment" = "My Comment";
 "kPostDetail" = "Post Detail";
-"kPublish" = "Publish";
+"kPublish" = "Send";
 "kReward" = "Reward";
-"kSupport" = "Support";
+"kBBSSupport" = "UP";
+"kBBSReply" = "RE";
 "kMyPost" = "My Post";
+"kBBSDraw" = "painting";
+"kBBSImage" = "image";
 
 "kSupportCount" = "Support(%d)";
 "kCommentCount" = "Comment(%d)";
@@ -1153,5 +1158,12 @@
 "kTextTooShot" = "Text length can't be less than %d!";
 "kTextTooLong" = "Text length can't be more than %d!";
 "kTextTooFrequent" = "You send post too frequent, wait a minute.";
+"kSupportTimesLimit" = "Support times limit! You can only support %d times.";
 "kNetworkError" = "Network is error, please try it again";
+
+"kWarning" = "Warning";
+"kClearImageData" = "The selected image will be clear, continue?";
+"kClearDrawData" = "The draw data will be clear, continue?";
+"kSaveImageSuccess" = "Save image successfully.";
+
 /*********************** BBS国际化字符串结束 *************************/

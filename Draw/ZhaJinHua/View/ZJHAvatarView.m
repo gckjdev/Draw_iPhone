@@ -76,9 +76,11 @@
 
 - (void)addTapGuesture
 {
+    [self.roundAvatar setGestureRecognizerEnable:NO];
+    
     UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickOnAvatar)];
     tapGestureRecognizer.numberOfTapsRequired = 1;
-    [self addGestureRecognizer:tapGestureRecognizer];
+    [self addGestureRecognizer:tapGestureRecognizer];    
     [tapGestureRecognizer release];
 }
 

@@ -138,7 +138,7 @@ static ChatService *_chatService = nil;
         
         //location request
         BOOL hasLocation = NO;
-        double latitude, longitude;
+        double latitude = 0.0f, longitude = 0.0f;
         
         //location response
         NSInteger replyResult = ACCEPT_ASK_LOCATION;

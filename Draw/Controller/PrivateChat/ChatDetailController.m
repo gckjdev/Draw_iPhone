@@ -21,7 +21,7 @@
 #import "DrawAppDelegate.h"
 #import "ChatDetailCell.h"
 #import "CommonMessageCenter.h"
-#import "CommonUserInfoView.h"
+#import "DrawUserInfoView.h"
 #import "DiceUserInfoView.h"
 #import "GameNetworkConstants.h"
 #import "ChatListController.h"
@@ -297,6 +297,7 @@
 {
     OfflineDrawViewController *odc = [[OfflineDrawViewController alloc] initWithTargetType:TypeGraffiti delegate:self];
     [self presentModalViewController:odc animated:YES];
+    [odc release];
 }
 
 
@@ -505,7 +506,7 @@
                                             gender:_messageStat.friendGenderString 
                                              level:1];
         if (isDrawApp()) {
-            [CommonUserInfoView showFriend:friend infoInView:self needUpdate:YES];
+            [DrawUserInfoView showFriend:friend infoInView:self needUpdate:YES];
         }
         if (isDiceApp()) {
             [DiceUserInfoView showFriend:friend infoInView:self canChat:YES needUpdate:YES];
@@ -641,8 +642,8 @@
                       otherButtonTitles:otherOperation, nil];
     }
     [actionSheet showInView:self.view];
-    [actionSheet release];
     actionSheet.tag = tag;
+    [actionSheet release];
     _selectedMessage = message;
 }
 
