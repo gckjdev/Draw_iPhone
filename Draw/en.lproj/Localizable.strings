@@ -819,6 +819,7 @@
 
 "kContest" = "Contest";
 "kRank" = "Top";
+"kContestRank" = "Contest Opus";
 "kNoRankPlayer" = "No data";
 "kNoRankHistory" = "No data";
 "kNoRankHot" = "No data";
@@ -848,7 +849,7 @@
 "kCoinsForFollowUs" = "+%d coins";
 "kFollowUs" = "Follow us";
 
-"kDetail" = "Detail";
+"kContestRule" = "Rule";
 "kFailLoad" = "Fail to load data, please try it later.";
 "kContestOpus" = "Opus for contest";
 "kTop" = "Top";

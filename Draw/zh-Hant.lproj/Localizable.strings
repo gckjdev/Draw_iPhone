@@ -818,7 +818,8 @@
 
 
 "kContest" = "畫畫比賽";
-"kRank" = "排行榜";
+"kRank" = "畫榜";
+"kContestRank" = "比賽作品";
 "kNoRankPlayer" = "暫時沒有達人榜數據。";
 "kNoRankHistory" = "暫時沒有總榜數據。";
 "kNoRankHot" = "暫時沒有熱榜數據。";
@@ -848,7 +849,7 @@
 "kCoinsForFollowUs" = "+%d金幣";
 "kFollowUs" = "關注官方微博";
 
-"kDetail" = "詳細";
+"kContestRule" = "規則";
 "kFailLoad" = "獲取數據失敗，請稍後再試。";
 "kContestOpus" = "參賽作品";
 "kTop" = "排行榜";

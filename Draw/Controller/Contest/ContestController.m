@@ -179,6 +179,7 @@
             [self updateScorollViewWithContestList:contestList];
         }else{
             [_noContestTipLabel setHidden:NO];
+            [self.pageControl setNumberOfPages:0];
         }
     }else{
 
