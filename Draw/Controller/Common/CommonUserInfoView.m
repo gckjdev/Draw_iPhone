@@ -22,6 +22,7 @@
 #import "CommonSnsInfoView.h"
 #import "MessageStat.h"
 #import "CommonRoundAvatarView.h"
+#import "CommonImageManager.h"
 
 #define RUN_OUT_TIME 0.2
 #define RUN_IN_TIME 0.4
@@ -100,8 +101,9 @@
 
 - (void)initGender
 {
-    NSString* gender = [_targetFriend genderDesc];
-    [self.genderLabel setText:gender];
+    CommonImageManager* manager = [CommonImageManager defaultManager];
+    UIImage* image = [@"m" isEqualToString:_targetFriend.gender]?manager.maleImage:manager.femaleImage;
+    [self.genderImageView setImage:image];
 }
 
 - (void)initSNSInfo
@@ -151,7 +153,7 @@
 
 - (void)initView
 {
-    PPDebug(@"<CommonUserInfoView>need impletement by sub class");
+    
 }
 
 + (CommonUserInfoView*)createUserInfoView
