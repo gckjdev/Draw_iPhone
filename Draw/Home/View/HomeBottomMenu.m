@@ -10,15 +10,28 @@
 
 @implementation HomeBottomMenu
 
-- (id)initWithFrame:(CGRect)frame
++ (id)createView:(id)delegate
 {
-    self = [super initWithFrame:frame];
-    if (self) {
-        // Initialization code
+    NSString* identifier = [HomeBottomMenu getViewIdentifier];
+    NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:identifier owner:self options:nil];
+    if (topLevelObjects == nil || [topLevelObjects count] <= 0){
+        NSLog(@"create %@ but cannot find view object from Nib", identifier);
+        return nil;
     }
-    return self;
+    HomeCommonView<HomeCommonViewProtocol> *view = [topLevelObjects objectAtIndex:0];
+    view.delegate = delegate;
+    [view updateView];
+    return view;
 }
 
++ (NSString *)getViewIdentifier
+{
+    return @"HomeBottomMenu";
+}
+- (void)updateView
+{
+    
+}
 
 
 @end

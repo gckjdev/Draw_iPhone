@@ -10,22 +10,28 @@
 
 @implementation HomeMainMenuPanel
 
-- (id)initWithFrame:(CGRect)frame
++ (id)createView:(id)delegate
 {
-    self = [super initWithFrame:frame];
-    if (self) {
-        // Initialization code
+    NSString* identifier = [HomeMainMenuPanel getViewIdentifier];
+    NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:identifier owner:self options:nil];
+    if (topLevelObjects == nil || [topLevelObjects count] <= 0){
+        NSLog(@"create %@ but cannot find view object from Nib", identifier);
+        return nil;
     }
-    return self;
+    HomeCommonView<HomeCommonViewProtocol> *view = [topLevelObjects objectAtIndex:0];
+    view.delegate = delegate;
+    [view updateView];
+    return view;
+}
++ (NSString *)getViewIdentifier
+{
+    return @"HomeMainMenuPanel";
 }
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect
+- (void)updateView
 {
-    // Drawing code
+    
 }
-*/
+
 
 @end

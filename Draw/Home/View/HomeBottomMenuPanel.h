@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface HomeBottomMenuPanel : UIView
+#import "HomeCommonView.h"
+@interface HomeBottomMenuPanel : HomeCommonView<HomeCommonViewProtocol>
 
 @end
