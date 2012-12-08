@@ -8,12 +8,18 @@
 
 #import <UIKit/UIKit.h>
 
+
+@protocol HomeCommonViewDelegate <NSObject>
+
+@end
+
 @protocol HomeCommonViewProtocol <NSObject>
 
-+ (id)createView:(id)delegate;
++ (id)createView:(id<HomeCommonViewDelegate>)delegate;
 + (NSString *)getViewIdentifier;
 - (void)updateView;
 @end
+
 
 @interface HomeCommonView : UIView
 {

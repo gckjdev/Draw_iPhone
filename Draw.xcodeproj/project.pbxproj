@@ -736,6 +736,7 @@
 		CA1DA9681673301B0078B5A9 /* HomeMainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA1DA9671673301A0078B5A9 /* HomeMainMenu.xib */; };
 		CA1DA96A167330300078B5A9 /* HomeBottomMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA1DA9691673302E0078B5A9 /* HomeBottomMenu.xib */; };
 		CA1DA96D1673320C0078B5A9 /* HomeCommonView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1DA96C1673320A0078B5A9 /* HomeCommonView.m */; };
+		CA1DA9701673437A0078B5A9 /* HomeMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1DA96F167343770078B5A9 /* HomeMenuView.m */; };
 		CA22DCD2157CAFFD009C95CB /* ResultController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA22DCCF157CAFFD009C95CB /* ResultController.m */; };
 		CA22DCD3157CAFFD009C95CB /* ResultController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA22DCD0157CAFFD009C95CB /* ResultController.xib */; };
 		CA22DCED157CB00A009C95CB /* OnlineDrawViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA22DCE0157CB00A009C95CB /* OnlineDrawViewController.m */; };
@@ -3189,6 +3190,8 @@
 		CA1DA9691673302E0078B5A9 /* HomeBottomMenu.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeBottomMenu.xib; sourceTree = "<group>"; };
 		CA1DA96B167332090078B5A9 /* HomeCommonView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeCommonView.h; sourceTree = "<group>"; };
 		CA1DA96C1673320A0078B5A9 /* HomeCommonView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeCommonView.m; sourceTree = "<group>"; };
+		CA1DA96E167343740078B5A9 /* HomeMenuView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeMenuView.h; sourceTree = "<group>"; };
+		CA1DA96F167343770078B5A9 /* HomeMenuView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeMenuView.m; sourceTree = "<group>"; };
 		CA22DCCE157CAFFD009C95CB /* ResultController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResultController.h; sourceTree = "<group>"; };
 		CA22DCCF157CAFFD009C95CB /* ResultController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResultController.m; sourceTree = "<group>"; };
 		CA22DCD0157CAFFD009C95CB /* ResultController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ResultController.xib; sourceTree = "<group>"; };
@@ -7481,6 +7484,15 @@
 		CA1DA94B16732CDF0078B5A9 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				CA1DA972167345FD0078B5A9 /* Menu */,
+				CA1DA971167345F10078B5A9 /* Panel */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		CA1DA971167345F10078B5A9 /* Panel */ = {
+			isa = PBXGroup;
+			children = (
 				CA1DA96B167332090078B5A9 /* HomeCommonView.h */,
 				CA1DA96C1673320A0078B5A9 /* HomeCommonView.m */,
 				CA1DA94C16732E200078B5A9 /* HomeHeaderPanel.h */,
@@ -7492,14 +7504,23 @@
 				CA1DA95816732EEC0078B5A9 /* HomeBottomMenuPanel.h */,
 				CA1DA95916732EED0078B5A9 /* HomeBottomMenuPanel.m */,
 				CA1DA96116732FCE0078B5A9 /* HomeBottomMenuPanel.xib */,
+			);
+			name = Panel;
+			sourceTree = "<group>";
+		};
+		CA1DA972167345FD0078B5A9 /* Menu */ = {
+			isa = PBXGroup;
+			children = (
 				CA1DA95B16732F0F0078B5A9 /* HomeMainMenu.h */,
 				CA1DA95C16732F100078B5A9 /* HomeMainMenu.m */,
 				CA1DA9671673301A0078B5A9 /* HomeMainMenu.xib */,
 				CA1DA95E16732F910078B5A9 /* HomeBottomMenu.h */,
 				CA1DA95F16732F920078B5A9 /* HomeBottomMenu.m */,
 				CA1DA9691673302E0078B5A9 /* HomeBottomMenu.xib */,
+				CA1DA96E167343740078B5A9 /* HomeMenuView.h */,
+				CA1DA96F167343770078B5A9 /* HomeMenuView.m */,
 			);
-			path = View;
+			name = Menu;
 			sourceTree = "<group>";
 		};
 		CA22DCCD157CAFFC009C95CB /* Result */ = {
@@ -12844,6 +12865,7 @@
 				CA1DA95D16732F110078B5A9 /* HomeMainMenu.m in Sources */,
 				CA1DA96016732F920078B5A9 /* HomeBottomMenu.m in Sources */,
 				CA1DA96D1673320C0078B5A9 /* HomeCommonView.m in Sources */,
+				CA1DA9701673437A0078B5A9 /* HomeMenuView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

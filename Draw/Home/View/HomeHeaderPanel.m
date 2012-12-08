@@ -10,7 +10,7 @@
 
 @implementation HomeHeaderPanel
 
-+ (id)createView:(id)delegate
++ (id)createView:(id<HomeCommonViewDelegate>)delegate
 {
     NSString* identifier = [HomeHeaderPanel getViewIdentifier];
     NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:identifier owner:self options:nil];

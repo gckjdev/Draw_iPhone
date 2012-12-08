@@ -8,10 +8,16 @@
 
 #import "HomeMainMenu.h"
 
+@interface HomeMainMenu ()
+
+- (IBAction)clickButton:(id)sender;
+
+@end
+
 @implementation HomeMainMenu
 
 
-+ (id)createView:(id)delegate
++ (id)createView:(id<HomeCommonViewDelegate>)delegate
 {
     NSString* identifier = [HomeMainMenu getViewIdentifier];
     NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:identifier owner:self options:nil];
@@ -34,5 +40,7 @@
     
 }
 
-
+- (void)dealloc {
+    [super dealloc];
+}
 @end

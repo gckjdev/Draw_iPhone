@@ -10,7 +10,7 @@
 
 @implementation HomeBottomMenuPanel
 
-+ (id)createView:(id)delegate
++ (id)createView:(id<HomeCommonViewDelegate>)delegate
 {
     NSString* identifier = [HomeBottomMenuPanel getViewIdentifier];
     NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:identifier owner:self options:nil];

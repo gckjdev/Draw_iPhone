@@ -8,9 +8,14 @@
 
 #import "HomeBottomMenu.h"
 
+@interface HomeBottomMenu ()
+
+- (IBAction)clickButton:(id)sender;
+@end
+
 @implementation HomeBottomMenu
 
-+ (id)createView:(id)delegate
++ (id)createView:(id<HomeCommonViewDelegate>)delegate
 {
     NSString* identifier = [HomeBottomMenu getViewIdentifier];
     NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:identifier owner:self options:nil];
@@ -30,8 +35,10 @@
 }
 - (void)updateView
 {
-    
+   [self.button setBackgroundColor:[UIColor clearColor]];
 }
-
+- (void)dealloc {
+    [super dealloc];
+}
 
 @end
