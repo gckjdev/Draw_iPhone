@@ -136,4 +136,19 @@
     return @"happypoker";
 }
 
+- (NSString*)feedbackTips
+{
+    return NSLS(@"kZJHFeedbackTips");
+}
+
+- (NSString*)shareMessageBody
+{
+    return NSLS(@"kZJH_share_message_body");
+}
+
+- (NSString*)shareEmailSubject
+{
+    return NSLS(@"kZJH_email_subject");
+}
+
 @end
