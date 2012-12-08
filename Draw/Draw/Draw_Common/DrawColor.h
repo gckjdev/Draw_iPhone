@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+
+@class PBColor;
 @interface DrawColor : NSObject <NSCoding>
 {
     CGFloat _red;
@@ -17,6 +19,7 @@
     UIColor *_color;
 }
 
+
 @property(nonatomic, readonly)CGFloat red;
 @property(nonatomic, readonly)CGFloat green;
 @property(nonatomic, readonly)CGFloat blue;
@@ -24,6 +27,8 @@
 //@property(nonatomic, retain)UIColor color;
 
 - (id)initWithRed:(CGFloat)red green:(CGFloat)green blue:(CGFloat)blue alpha:(CGFloat)alpha;
+- (id)initWithPBColor:(PBColor *)color;
+- (PBColor *)toPBColor;
 
 - (BOOL)isEqual:(id)object;
 - (UIColor *)color;

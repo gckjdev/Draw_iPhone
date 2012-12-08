@@ -23,37 +23,13 @@
 
 @class MyPaint;
 @class PBDraw;
+@class PBNoCompressDrawData;
 
 @interface MyPaintManager : NSObject
 {
     StorageManager *_imageManager;
     StorageManager *_drawDataManager;
 }
-//+ (NSString*)getMyPaintImagePathByCapacityPath:(NSString*)path;
-//+ (NSString *)constructImagePath:(NSString *)imageName;
-//+ (NSString *)constructDataPath:(NSString *)dataName;
-//
-//+ (NSData *)drawDataFromDataPath:(NSString *)path;
-
-//- (MyPaint *)createDraft:(UIImage *)image
-//                    data:(NSMutableArray*)drawActionList 
-//                language:(LanguageType)language
-//                drawWord:(NSString*)drawWord 
-//                   level:(WordLevel)level
-//               targetUid:(NSString *)targetUid;
-//
-//- (BOOL)updateDraft:(MyPaint *)draft 
-//              image:(UIImage *)image
-//               data:(NSMutableArray*)drawActionList;
-//
-//
-//
-//- (BOOL)createMyPaintWithImage:(NSString*)image
-//                          data:(NSData*)data
-//                    drawUserId:(NSString*)drawUserId
-//              drawUserNickName:(NSString*)drawUserNickName
-//                      drawByMe:(BOOL)drawByMe
-//                      drawWord:(NSString*)drawWord;
 
 
 
@@ -92,12 +68,17 @@
                     pbDrawData:(PBDraw*)pbDrawData;
 
 - (MyPaint *)createDraft:(UIImage *)image
-              pbDrawData:(PBDraw*)pbDrawData
-               targetUid:(NSString *)targetUid;
+    pbNoCompressDrawData:(PBNoCompressDrawData *)pbNoCompressDrawData
+               targetUid:(NSString *)targetUid
+               contestId:(NSString *)contestId
+                  userId:(NSString *)userId
+                nickName:(NSString *)nickName
+                    word:(Word *)word
+                language:(NSInteger)language;
 
 - (BOOL)updateDraft:(MyPaint *)draft
               image:(UIImage *)image
-        pbDrawData:(PBDraw*)pbDrawData;
+pbNoCompressDrawData:(PBNoCompressDrawData*)pbNoCompressDrawData;
 
 - (NSMutableArray *)drawActionListForPaint:(MyPaint *)paint;
 - (NSString *)imagePathForPaint:(MyPaint *)paint;

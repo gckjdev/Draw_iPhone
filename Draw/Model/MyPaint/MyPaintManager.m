@@ -17,6 +17,8 @@
 #import "Draw.h"
 #include <ImageIO/ImageIO.h>
 #import <QuartzCore/QuartzCore.h>
+#import "Draw.pb.h"
+#import "DrawAction.h"
 
 #define SUFFIX_NUMBER 100
 @interface MyPaintManager()
@@ -36,11 +38,18 @@ static MyPaintManager* _defaultManager;
 
 #define DRAW_ACTION_DATA_SUFFIX @".dat"
 #define PBDRAW_DATA_SUFFIX @"_pb.dat"
+#define PBNOCOMPRESS_DRAWDATA_SUFFIX @"_npb.dat"
 #define IMAGE_SUFFIX @".png"
 
 - (BOOL)saveDataAsPBDraw:(MyPaint *)paint
 {
     NSRange range = [paint.dataFilePath rangeOfString:PBDRAW_DATA_SUFFIX];
+    return range.length != 0;
+}
+
+- (BOOL)saveDataAsPBNOCompressDrawData:(MyPaint *)paint
+{
+    NSRange range = [paint.dataFilePath rangeOfString:PBNOCOMPRESS_DRAWDATA_SUFFIX];
     return range.length != 0;
 }
 
@@ -57,6 +66,14 @@ static MyPaintManager* _defaultManager;
                           PBDRAW_DATA_SUFFIX];
     return fileName;
 
+}
+
+- (NSString *)pbNoCompressDrawDataFileName
+{
+    NSString* fileName = [NSString stringWithFormat:@"%@%@", [NSString GetUUID],
+                          PBNOCOMPRESS_DRAWDATA_SUFFIX];
+    return fileName;
+    
 }
 
 - (NSString *)imageFileName
@@ -121,20 +138,11 @@ static MyPaintManager* _defaultManager;
                     delegate:(id<MyPaintManagerDelegate>)delegate
 {
     CoreDataManager* dataManager = GlobalGetCoreDataManager();
-    dispatch_queue_t queue = dispatch_get_main_queue(); //dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);    
-//    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-    if (queue) {
-        dispatch_async(queue, ^{
-            NSArray *array = [dataManager execute:@"findOnlyMyPaints" sortBy:@"createDate" returnFields:nil ascending:NO offset:offset limit:limit];
-            [self transferDrawDataToPath:array];
-            dispatch_async(dispatch_get_main_queue(), ^{
-                if (delegate && [delegate respondsToSelector:@selector(didGetMyPaints:)]) {
-                    [delegate didGetMyPaints:array];
-                } 
-            });
-        });        
+    NSArray *array = [dataManager execute:@"findOnlyMyPaints" sortBy:@"createDate" returnFields:nil ascending:NO offset:offset limit:limit];
+    [self transferDrawDataToPath:array];
+    if (delegate && [delegate respondsToSelector:@selector(didGetMyPaints:)]) {
+        [delegate didGetMyPaints:array];
     }
-    
 }
 
 - (void)findAllPaintsFrom:(NSInteger)offset 
@@ -142,23 +150,12 @@ static MyPaintManager* _defaultManager;
                      delegate:(id<MyPaintManagerDelegate>)delegate
 {
     CoreDataManager* dataManager = GlobalGetCoreDataManager();
-    dispatch_queue_t queue = dispatch_get_main_queue(); //dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-    
-//    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-    if (queue) {
-        dispatch_async(queue, ^{
-//            PPDebug(@"before find");
-            NSArray *array = [dataManager execute:@"findAllMyPaints" sortBy:@"createDate" returnFields:nil ascending:NO offset:offset limit:limit];
-//            PPDebug(@"after find");
-            [self transferDrawDataToPath:array];
-            dispatch_async(dispatch_get_main_queue(), ^{
-                if (delegate && [delegate respondsToSelector:@selector(didGetAllPaints:)]) {
-                    [delegate didGetAllPaints:array];
-                } 
-            });
-        });        
-    }
+    NSArray *array = [dataManager execute:@"findAllMyPaints" sortBy:@"createDate" returnFields:nil ascending:NO offset:offset limit:limit];
+    [self transferDrawDataToPath:array];
 
+    if (delegate && [delegate respondsToSelector:@selector(didGetAllPaints:)]) {
+        [delegate didGetAllPaints:array];
+    }
 }
 
 - (void)findAllDraftsFrom:(NSInteger)offset 
@@ -166,18 +163,12 @@ static MyPaintManager* _defaultManager;
                  delegate:(id<MyPaintManagerDelegate>)delegate
 {
     CoreDataManager* dataManager = GlobalGetCoreDataManager();
-    dispatch_queue_t queue = dispatch_get_main_queue(); //dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-    if (queue) {
-        dispatch_async(queue, ^{
-            NSArray *array = [dataManager execute:@"findAllDrafts" sortBy:@"createDate" returnFields:nil ascending:NO offset:offset limit:limit];
-            [self transferDrawDataToPath:array];
-            dispatch_async(dispatch_get_main_queue(), ^{
-                if (delegate && [delegate respondsToSelector:@selector(didGetAllDrafts:)]) {
-                    [delegate didGetAllDrafts:array];
-                } 
-            });
-        });        
-    }
+    NSArray *array = [dataManager execute:@"findAllDrafts" sortBy:@"createDate" returnFields:nil ascending:NO offset:offset limit:limit];
+    [self transferDrawDataToPath:array];
+
+    if (delegate && [delegate respondsToSelector:@selector(didGetAllDrafts:)]) {
+        [delegate didGetAllDrafts:array];
+    } 
 }
 
 
@@ -310,11 +301,40 @@ static MyPaintManager* _defaultManager;
     [newMyPaint setLanguage:[NSNumber numberWithInt:pbDrawData.language]];
     [newMyPaint setLevel:[NSNumber numberWithInt:pbDrawData.level]];
 
+}
 
+- (void)initMyPaint:(MyPaint *)newMyPaint
+              image:(UIImage*)image
+pbNoCompressDrawData:(PBNoCompressDrawData*)pbNoCompressDrawData
+             userId:(NSString *)userId
+           nickName:(NSString *)nickName
+               word:(Word *)word
+           language:(NSInteger)language
+
+{
+    NSString *imageFileName = [self imageFileName];
+    NSString *pbDataFileName = [self pbNoCompressDrawDataFileName];
+    
+    [_imageManager saveImage:image forKey:imageFileName];
+    [_drawDataManager saveData:[pbNoCompressDrawData data] forKey:pbDataFileName];
+    
+    
+    [newMyPaint setDataFilePath:pbDataFileName];
+    [newMyPaint setImage:imageFileName];
+    
+    BOOL drawByMe = [[UserManager defaultManager] isMe:userId];
+    
+    [newMyPaint setDrawByMe:[NSNumber numberWithBool:drawByMe]];
+    [newMyPaint setDrawUserId:userId];
+    [newMyPaint setDrawUserNickName:nickName];
+    [newMyPaint setCreateDate:[NSDate date]];
+    [newMyPaint setDrawWord:word.text];
+    [newMyPaint setLevel:[NSNumber numberWithInt:word.level]];
+    [newMyPaint setLanguage:[NSNumber numberWithInt:language]];
 }
 
 - (BOOL)createMyPaintWithImage:(UIImage*)image
-                    pbDrawData:(PBDraw*)pbDrawData
+                    pbDrawData:(PBDraw*)pbDrawData 
 {
     CoreDataManager* dataManager = GlobalGetCoreDataManager();
     MyPaint* newMyPaint = [dataManager insert:@"MyPaint"];
@@ -328,14 +348,25 @@ static MyPaintManager* _defaultManager;
 }
 
 - (MyPaint *)createDraft:(UIImage *)image
-              pbDrawData:(PBDraw*)pbDrawData
+    pbNoCompressDrawData:(PBNoCompressDrawData *)pbNoCompressDrawData
                targetUid:(NSString *)targetUid
+               contestId:(NSString *)contestId
+                  userId:(NSString *)userId
+                nickName:(NSString *)nickName
+                    word:(Word *)word
+                language:(NSInteger)language
 {
     CoreDataManager* dataManager = GlobalGetCoreDataManager();
     MyPaint* newMyPaint = [dataManager insert:@"MyPaint"];
-    
-    [self initMyPaint:newMyPaint image:image pbDrawData:pbDrawData];
+    [self initMyPaint:newMyPaint
+                image:image
+ pbNoCompressDrawData:pbNoCompressDrawData
+               userId:userId
+             nickName:nickName
+                 word:word
+             language:language];
     [newMyPaint setTargetUserId:targetUid];
+    [newMyPaint setContestId:contestId];
     [newMyPaint setDraft:[NSNumber numberWithBool:YES]];
     PPDebug(@"<createDraft> %@", [newMyPaint description]);
     [dataManager save];
@@ -344,7 +375,7 @@ static MyPaintManager* _defaultManager;
 
 - (BOOL)updateDraft:(MyPaint *)draft
               image:(UIImage *)image
-         pbDrawData:(PBDraw*)pbDrawData
+    pbNoCompressDrawData:(PBNoCompressDrawData *)pbNoCompressDrawData
 {
     if (draft) {
         NSString *imageFileName = [draft image];
@@ -359,20 +390,21 @@ static MyPaintManager* _defaultManager;
         }
         //update draw data.
         if ([pbDataFileName length] != 0) {
-            if ([self saveDataAsPBDraw:draft]) {
-                [_drawDataManager saveData:[pbDrawData data] forKey:pbDataFileName];
+            if ([self saveDataAsPBNOCompressDrawData:draft]) {
+                [_drawDataManager saveData:[pbNoCompressDrawData data] forKey:pbDataFileName];
             }else{
                 //if old data save as action list, remove old data
                 [_drawDataManager removeDataForKey:pbDataFileName];
                 
                 //save and rename path.
-                pbDataFileName = [self pbDataFileName];
-                [_drawDataManager saveData:[pbDrawData data] forKey:pbDataFileName];
+                pbDataFileName = [self pbNoCompressDrawDataFileName];
+                [_drawDataManager saveData:[pbNoCompressDrawData data] forKey:pbDataFileName];
                 [draft setDataFilePath:pbDataFileName];
             }
 
         }else{
-            [_drawDataManager saveData:[pbDrawData data] forKey:pbDataFileName];
+            pbDataFileName = [self pbNoCompressDrawDataFileName];
+            [_drawDataManager saveData:[pbNoCompressDrawData data] forKey:pbDataFileName];
             [draft setDataFilePath:pbDataFileName];
         }
         [self save];
@@ -385,7 +417,11 @@ static MyPaintManager* _defaultManager;
     NSData *drawData = nil;
     if ([paint.dataFilePath length] != 0) {
         //save file data
-        if ([self saveDataAsPBDraw:paint]) {
+        if ([self saveDataAsPBNOCompressDrawData:paint]) {
+            drawData = [_drawDataManager dataForKey:paint.dataFilePath];
+            PBNoCompressDrawData *nDraw = [PBNoCompressDrawData parseFromData:drawData];
+            return [DrawAction pbNoCompressDrawDataToDrawActionList:nDraw];
+        }else if ([self saveDataAsPBDraw:paint]) {
             drawData = [_drawDataManager dataForKey:paint.dataFilePath];
             PBDraw *pbDraw = [PBDraw parseFromData:drawData];
             Draw *draw = [[[Draw alloc] initWithPBDraw:pbDraw] autorelease];

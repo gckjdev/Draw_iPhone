@@ -674,6 +674,10 @@ enum{
             }
             
         }
+        if (self.draft) {
+            [[MyPaintManager defaultManager] deleteMyPaint:self.draft];
+            self.draft = nil;
+        }
     }
 }
 
@@ -756,7 +760,6 @@ enum{
         
         [[LevelService defaultService] addExp:OFFLINE_DRAW_EXP delegate:self];
         if (self.draft) {
-            NSLog(@"before delete draft, temp = %@",[self.draft description]);
             [[MyPaintManager defaultManager] deleteMyPaint:self.draft];
             self.draft = nil;
         }
@@ -784,14 +787,13 @@ enum{
                       language:languageType];
     return pbDraw;
 }
+- (PBNoCompressDrawData *)noCompressDrawData
+{
+    return [DrawAction drawActionListToPBNoCompressDrawData:drawView.drawActionList];
+}
 
 - (void)saveDraft:(BOOL)showResult
 {
-//due to unknow bugs, ignore the code below.
-    
-//    return;
-    
-    
     if (targetType == TypeGraffiti || targetType == TypeContest) {
         return;
     }
@@ -804,16 +806,22 @@ enum{
 
     @try {
         
-        
+        MyPaintManager *pManager = [MyPaintManager defaultManager];
         if (self.draft) {
             NSLog(@"<Draw Log>update old draft");
-            result = [[MyPaintManager defaultManager]
-                      updateDraft:self.draft image:image
-                      pbDrawData:self.pbDraw];
+            result = [pManager updateDraft:self.draft
+                                     image:image
+                      pbNoCompressDrawData:self.noCompressDrawData];
         }else{
-            self.draft = [[MyPaintManager defaultManager]
-                          createDraft:image pbDrawData:self.pbDraw
-                          targetUid:_targetUid];
+            UserManager *userManager = [UserManager defaultManager];
+            self.draft = [pManager createDraft:image
+                          pbNoCompressDrawData:self.noCompressDrawData
+                                     targetUid:_targetUid
+                                     contestId:self.contest.contestId
+                                        userId:[userManager userId]
+                                      nickName:[userManager nickName]
+                                          word:_word
+                                      language:languageType];
             
             if (self.draft) {
                 result = YES;
