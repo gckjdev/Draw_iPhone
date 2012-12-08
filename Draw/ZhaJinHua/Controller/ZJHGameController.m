@@ -497,6 +497,7 @@
 
 - (IBAction)clickBetButton:(id)sender {
     [self bet:NO];
+    [_audioManager playSoundByURL:_soundManager.clickButtonSound];
 }
 
 - (IBAction)clickRaiseBetButton:(id)sender
@@ -505,6 +506,7 @@
                                            inView:self.view
                                         aboveView:nil
                                          delegate:self];
+    [_audioManager playSoundByURL:_soundManager.clickButtonSound];
 }
 
 - (IBAction)clickAutoBetButton:(id)sender
@@ -515,17 +517,20 @@
     if ([_gameService isMeAutoBet] == YES && [_gameService isMyTurn]) {
         [self bet:YES];
     }
+    [_audioManager playSoundByURL:_soundManager.clickButtonSound];
 }
 
 - (IBAction)clickCompareCardButton:(id)sender
 {
     self.isComparing = YES;
     [self updateZJHButtons];
+    [_audioManager playSoundByURL:_soundManager.clickButtonSound];
 }
 
 - (IBAction)clickCheckCardButton:(id)sender
 {
     [_gameService checkCard];
+    [_audioManager playSoundByURL:_soundManager.clickButtonSound];
 }
 
 - (IBAction)clickFoldCardButton:(id)sender
@@ -533,17 +538,20 @@
     [[self getMyAvatarView] stopReciprocal];
     [self disableAllZJHButtons];
     [_gameService foldCard];
+    [_audioManager playSoundByURL:_soundManager.clickButtonSound];
 }
 
 - (IBAction)clickQuitButton:(id)sender
 {
     [_gameService quitGame];
     [self.navigationController popViewControllerAnimated:YES];
+    [_audioManager playSoundByURL:_soundManager.clickButtonSound];
 }
 
 - (IBAction)clickSettingButton:(id)sender
 {
     [[ZJHSettingView createZJHSettingView] showInView:self.view];
+    [_audioManager playSoundByURL:_soundManager.clickButtonSound];
 }
 
 #pragma mark - player action response

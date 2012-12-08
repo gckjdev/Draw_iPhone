@@ -400,7 +400,7 @@ static VendingController* staticVendingController = nil;
                 _itemList = [[NSMutableArray alloc] initWithObjects:[Item tips], [Item colors], [Item tomato], [Item flower], nil]; 
             }
             
-            if (isDiceApp()) {
+            if (isDiceApp() || isZhajinhuaApp()) {
                 _itemList = [[NSMutableArray alloc] initWithObjects:[Item removeAd], [Item rollAgain], [Item cut], [Item peek], [Item postpone], [Item urge], [Item turtle], [Item diceRobot], [Item reverse], [Item patriotDice], [Item goldenDice], [Item woodDice], [Item blueCrystalDice], [Item pinkCrystalDice], [Item greenCrystalDice], [Item purpleCrystalDice], [Item blueDiamondDice], [Item pinkDiamondDice], [Item greenDiamondDice], [Item purpleDiamondDice], nil];       
             }
         }
@@ -409,7 +409,7 @@ static VendingController* staticVendingController = nil;
                 _itemList = [[NSMutableArray alloc] initWithObjects:[Item removeAd], [Item tips], [Item colors], [Item tomato], [Item flower], [Item iceCreamPen], [Item brushPen], [Item featherPen], [Item waterPen], nil];
             }
             
-            if (isDiceApp()) {
+            if (isDiceApp() || isZhajinhuaApp()) {
                 _itemList = [[NSMutableArray alloc] initWithObjects:[Item removeAd], [Item rollAgain], [Item cut], [Item peek], [Item postpone], [Item urge], [Item turtle], [Item diceRobot], [Item reverse], [Item patriotDice], [Item goldenDice], [Item woodDice], [Item blueCrystalDice], [Item pinkCrystalDice], [Item greenCrystalDice], [Item purpleCrystalDice], [Item blueDiamondDice], [Item pinkDiamondDice], [Item greenDiamondDice], [Item purpleDiamondDice], nil];
             }
 

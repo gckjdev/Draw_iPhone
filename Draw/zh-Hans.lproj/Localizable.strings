@@ -993,13 +993,19 @@
 "kFastEntry" = "快速加入";
 "kDiceEnterPassword" = "房间密码(可选)";
 
-"kDiceFeedbackTips" = "欢迎加入欢乐大话骰QQ群:228119679, 关注官方微博 @欢乐大话骰";
+"kDiceFeedbackTips" = "欢迎加入QQ群:228119679, 关注官方新浪微博 @欢乐棋牌";
+
+"kZJHFeedbackTips" = "欢迎加入QQ群:228119679, 关注官方新浪微博 @欢乐棋牌";
 
 "kDiceRoom" = "欢乐大话%d号房";
 
 "kDice_share_message_body" = "亲爱的朋友，今天向您隆重推出一款全新的多人在线游戏——《%@》。这款游戏可以说是目前最好玩的大话骰游戏，马上下载试玩吧。\n%@";
 
 "kDice_email_subject" = "分享［欢乐大话骰］移动版游戏";
+
+"kZJH_share_message_body" = "亲爱的朋友，今天向您隆重推出一款全新的多人在线游戏——《%@》。这款游戏可以说是目前最好玩的扑克牌游戏，马上下载试玩吧。\n%@";
+
+"kZJH_email_subject" = "分享［诈金花］iPhone/iPad版游戏";
 
 "kJoining" = "正在进入房间";
 "kCreatingRoom" = "正在创建房间";
