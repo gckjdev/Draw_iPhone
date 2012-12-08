@@ -982,10 +982,11 @@
 
 "kDiceRoom" = "歡樂大話骰%d號房";
 
-
-
 "kDice_share_message_body" = "你還以為大話骰只能在夜店玩嗎？隆重推荐一款手機版的大話骰——《%@》！不要再等待！不要再猶豫了！趕緊下載！\n%@";
 "kDice_email_subject" = "分享［歡樂大話骰］移動版遊戲";
+
+"kZJH_share_message_body" = "親愛的朋友，今天向您隆重推出一款全新的多人在線遊戲——《%@》。這款遊戲可以說是目前最好玩的撲克牌遊戲，馬上下載試玩吧。 \n%@";
+"kZJH_email_subject" = "分享［詐金花］iPhone/iPad版遊戲";
 
 "kJoining" = "正在進入房間";
 "kCreatingRoom" = "正在創建房間";

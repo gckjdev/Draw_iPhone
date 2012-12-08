@@ -43,6 +43,8 @@
 - (NSString*)sinaWeiboId;
 - (NSString*)qqWeiboId;
 
-
+- (NSString*)shareMessageBody;
+- (NSString*)shareEmailSubject;
+- (NSString*)feedbackTips;
 
 @end

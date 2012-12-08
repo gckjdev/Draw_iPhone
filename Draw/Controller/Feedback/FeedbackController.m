@@ -87,7 +87,7 @@
         numberOfRows = count;
         
         dataTableView.frame = CGRectMake(dataTableView.frame.origin.x, dataTableView.frame.origin.y, dataTableView.frame.size.width, DRAW_TABLE_HEIGHT);
-    }else if (isDiceApp()) {
+    }else{ // if (isDiceApp()) {
         rowOfShare = count++;
         rowOfFollow = count++;
         rowOfReportBug = count++;
@@ -172,23 +172,31 @@ enum {
     
     
     NSString *shareBodyModel =nil;
-    if (isDrawApp()) {
-        shareBodyModel = NSLS(@"kShare_message_body");
-    }else if (isDiceApp()) {
-        shareBodyModel = NSLS(@"kDice_share_message_body");
-    }
+    
+    shareBodyModel = [GameApp shareMessageBody];
+    
+//    if (isDrawApp()) {
+//        shareBodyModel = NSLS(@"kShare_message_body");
+//    }else if (isDiceApp()) {
+//        shareBodyModel = NSLS(@"kDice_share_message_body");
+//    }else if (isZhajinhuaApp()){
+//        shareBodyModel = NSLS(@"kZJH_share_message_body");
+//    }
     
     NSString *shareBody = [NSString stringWithFormat:shareBodyModel, NSLocalizedStringFromTable(@"CFBundleDisplayName", @"InfoPlist", @""),[UIUtils getAppLink:[ConfigManager appId]]];
     
     if (buttonIndex == buttonIndexSMS) {
         [self sendSms:nil body:shareBody];
     } else if (buttonIndex == buttonIndexEmail) {
-        NSString *emailSubject = nil;
-        if (isDrawApp()) {
-            emailSubject = NSLS(@"kEmail_subject");
-        }else if (isDiceApp()) {
-            emailSubject = NSLS(@"kDice_email_subject");
-        }
+        NSString *emailSubject = [GameApp shareEmailSubject];
+//        if (isDrawApp()) {
+//            emailSubject = NSLS(@"kEmail_subject");
+//        }else if (isDiceApp()) {
+//            emailSubject = NSLS(@"kDice_email_subject");
+//        }
+//        else if (isZhajinhuaApp()){
+//            emailSubject = NSLS(@"kZJH_email_subject");
+//        }
         [self sendEmailTo:nil ccRecipients:nil bccRecipients:nil subject:emailSubject body:shareBody isHTML:NO delegate:self];
     } else if (buttonIndex == buttonIndexSinaWeibo) {
         
