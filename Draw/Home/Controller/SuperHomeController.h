@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PPViewController.h"
 
-@interface SuperHomeController : UIViewController
-
+@interface SuperHomeController : PPViewController
+{
+    
+}
 @end
