@@ -7,7 +7,8 @@
 //
 
 #import "DiceUserInfoView.h"
+#import "CommonUserInfoView.h"
 
-@interface ZJHUserInfoView : DiceUserInfoView
+@interface ZJHUserInfoView : CommonUserInfoView
 
 @end

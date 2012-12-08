@@ -8,6 +8,7 @@
 
 #import "BBSManager.h"
 #import "GameMessage.pb.h"
+#import "ConfigManager.h"
 
 @implementation BBSManager
 
@@ -112,9 +113,9 @@ BBSManager *_staticBBSManager;
     return [ud doubleForKey:FREQUENCY_KEY];
 }
 
-- (NSTimeInterval)creationFrequency
+- (NSInteger)creationFrequency
 {
-    return 15; //10 seconds
+    return [ConfigManager getBBSCreationFrequency];
 }
 - (BOOL)isCreationFrequent
 {
@@ -126,7 +127,7 @@ BBSManager *_staticBBSManager;
 #define SUPPORT_TIMES_KEY @"FREQUENCY_KEY"
 - (NSUInteger)supportMaxTimes
 {
-    return 2;
+    return [ConfigManager getBBSSupportMaxTimes];
 }
 
 - (NSString *)supportTimesKeyForPostId:(NSString *)postId
@@ -143,7 +144,7 @@ BBSManager *_staticBBSManager;
     if (key) {
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         int count = [defaults integerForKey:key];
-        [defaults setInteger:++count forKey:key];
+        [defaults setInteger:count+1 forKey:key];
         [defaults synchronize];
     }
 }
@@ -163,12 +164,21 @@ BBSManager *_staticBBSManager;
 
 - (NSUInteger)textMaxLength
 {
-    return 3000;
+    return [ConfigManager getBBSPostMaxLength];
+}
+- (NSUInteger)postTextMaxLength
+{
+    return [ConfigManager getBBSPostMaxLength];
+}
+
+- (NSUInteger)commentTextMaxLength
+{
+    return [ConfigManager getBBSCommentMaxLength];
 }
 
 - (NSUInteger)textMinLength
 {
-    return 5;
+    return [ConfigManager getBBSTextMinLength];
 }
 
 //return new post
@@ -225,7 +235,7 @@ BBSManager *_staticBBSManager;
     [_storageManager removeOldFilestimeIntervalSinceNow:CACHE_LIFE_TIME];
 }
 
-
+/*
 +(void)printBBSBoard:(PBBBSBoard *)board
 {
     PPDebug(@"Board:[boardId = %@,\n type = %d,\n name = %@,\n icon = %@,\n parentBoardId = %@,\n lastPost = %@,\n actionCount = %d,\n postCount = %d,\n desc = %@]",board.boardId, board.type,board.name,board.icon,board.parentBoardId,[board.lastPost description],board.actionCount,board.postCount,board.desc);
@@ -249,5 +259,5 @@ BBSManager *_staticBBSManager;
 {
     
 }
-
+*/
 @end

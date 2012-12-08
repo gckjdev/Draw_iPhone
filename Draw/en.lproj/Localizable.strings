@@ -819,6 +819,7 @@
 
 "kContest" = "Contest";
 "kRank" = "Top";
+"kContestRank" = "Contest Opus";
 "kNoRankPlayer" = "No data";
 "kNoRankHistory" = "No data";
 "kNoRankHot" = "No data";
@@ -848,7 +849,7 @@
 "kCoinsForFollowUs" = "+%d coins";
 "kFollowUs" = "Follow us";
 
-"kDetail" = "Detail";
+"kContestRule" = "Rule";
 "kFailLoad" = "Fail to load data, please try it later.";
 "kContestOpus" = "Opus for contest";
 "kTop" = "Top";
@@ -1162,7 +1163,7 @@
 
 "kTextTooShot" = "Text length can't be less than %d!";
 "kTextTooLong" = "Text length can't be more than %d!";
-"kTextTooFrequent" = "You send post too frequent, wait a minute.";
+"kTextTooFrequent" = "You send post too frequent, the interval can't less than %d seconds.";
 "kSupportTimesLimit" = "Support times limit! You can only support %d times.";
 "kNetworkError" = "Network is error, please try it again";
 

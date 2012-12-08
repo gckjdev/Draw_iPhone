@@ -40,7 +40,7 @@
 					<object class="IBUIImageView" id="748535968">
 						<reference key="NSNextResponder" ref="421994044"/>
 						<int key="NSvFlags">272</int>
-						<string key="NSFrame">{{9, 20}, {302, 420}}</string>
+						<string key="NSFrame">{{0, 20}, {320, 420}}</string>
 						<reference key="NSSuperview" ref="421994044"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="54689904"/>
@@ -55,7 +55,7 @@
 					<object class="IBUIWebView" id="54689904">
 						<reference key="NSNextResponder" ref="421994044"/>
 						<int key="NSvFlags">274</int>
-						<string key="NSFrame">{{20, 45}, {280, 380}}</string>
+						<string key="NSFrame">{{10, 45}, {300, 380}}</string>
 						<reference key="NSSuperview" ref="421994044"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="167940551"/>
@@ -64,15 +64,17 @@
 							<bytes key="NSWhite">MCAwAA</bytes>
 						</object>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+						<bool key="IBUIScalesPageToFit">YES</bool>
 						<int key="IBUIDataDetectorTypes">1</int>
 						<bool key="IBUIDetectsPhoneNumbers">YES</bool>
 					</object>
 					<object class="IBUIButton" id="167940551">
 						<reference key="NSNextResponder" ref="421994044"/>
 						<int key="NSvFlags">289</int>
-						<string key="NSFrame">{{276, 30}, {35, 35}}</string>
+						<string key="NSFrame">{{285, 22}, {35, 35}}</string>
 						<reference key="NSSuperview" ref="421994044"/>
 						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<int key="IBUIContentHorizontalAlignment">0</int>

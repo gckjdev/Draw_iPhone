@@ -9,15 +9,22 @@
 #import <Foundation/Foundation.h>
 #import "ZJHGameService.h"
 #import "PokerView.h"
+#import "ZJHImageManager.h"
+#import "ZJHUserPosInfo.h"
+
+@class ZJHGameController;
 
 #define TWO_BUTTONS_HOLDER_VIEW_WIDTH ([DeviceDetection isIPAD] ? 214 : 107)
 #define TWO_BUTTONS_HOLDER_VIEW_HEIGHT ([DeviceDetection isIPAD] ? 94 : 47)
 
+#define ONE_BUTTON_HOLDER_VIEW_WIDTH ([DeviceDetection isIPAD] ? 214 : 107)
+#define ONE_BUTTON_HOLDER_VIEW_HEIGHT ([DeviceDetection isIPAD] ? 94 : 47)
+
 #define BUTTON_WIDTH ([DeviceDetection isIPAD] ? 75 : 37)
 #define BUTTON_HEIGHT ([DeviceDetection isIPAD] ? 39 : 19)
 
-#define SHOW_CARD_BUTTON_TAG 200
-#define CHANGE_CARD_BUTTON_TAG 201
+//#define SHOW_CARD_BUTTON_TAG 200
+//#define CHANGE_CARD_BUTTON_TAG 201
 
 #define SHOW_CARD_BUTTON_X_OFFSET ([DeviceDetection isIPAD] ? 20 : 10)
 #define SHOW_CARD_BUTTON_Y_OFFSET ([DeviceDetection isIPAD] ? 20 : 10)
@@ -27,15 +34,12 @@
 
 #define BUTTON_FONT ([DeviceDetection isIPAD] ? [UIFont systemFontOfSize:18] : [UIFont systemFontOfSize:12])
 
-@protocol ZJHRuleProtocol <NSObject>
+@interface ZJHRuleConfig : NSObject
 
-@required
 - (NSArray *)chipValues;
-- (NSString *)getServerListString;
 - (UIView *)createButtons:(PokerView *)pokerView;
-
-@end
-
-@interface ZJHRuleConfig : NSObject 
+- (int)maxPlayerNum;
+- (UIImage *)gameBgImage;
+- (NSDictionary *)initAllAvatar:(ZJHGameController *)controller;
 
 @end

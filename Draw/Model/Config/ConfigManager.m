@@ -442,6 +442,37 @@
     return 5;
 }
 
+#pragma mark - BBS online attributes
++ (int)getBBSCreationFrequency
+{
+    return [MobClickUtils getIntValueByKey:@"BBS_CREATE_INTERVAL"
+                              defaultValue:10];
+}
+//support limit
++ (int)getBBSSupportMaxTimes
+{
+    return [MobClickUtils getIntValueByKey:@"BBS_SUPPORT_TIMES_LIMIT"
+                               defaultValue:1];
+}
+
++ (int)getBBSCommentMaxLength
+{
+    return [MobClickUtils getIntValueByKey:@"BBS_COMMENT_MAX_LENGTH"
+                              defaultValue:500];
+}
+
+//content
++ (int)getBBSPostMaxLength
+{
+    return [MobClickUtils getIntValueByKey:@"BBS_POST_MAX_LENGTH"
+                              defaultValue:3000];
+}
++ (int)getBBSTextMinLength
+{
+    return [MobClickUtils getIntValueByKey:@"BBS_TEXT_MIN_LENGTH"
+                              defaultValue:5];
+}
+
 
 #define KEY_AUTO_SAVE @"AutoSave"
 + (BOOL)isAutoSave

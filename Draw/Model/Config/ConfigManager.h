@@ -137,4 +137,14 @@ typedef enum{
 
 + (int)getZJHMaxAutoBetCount;
 
+
+#pragma mark - BBS online attributes
++ (int)getBBSCreationFrequency;
+//support limit
++ (int)getBBSSupportMaxTimes;
+//content
++ (int)getBBSPostMaxLength;
++ (int)getBBSCommentMaxLength;
++ (int)getBBSTextMinLength;
+
 @end

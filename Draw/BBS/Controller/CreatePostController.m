@@ -461,7 +461,8 @@
                    [[BBSManager defaultManager] textMaxLength]];
             break;
         case ERROR_BBS_TEXT_TOO_FREQUENT:
-            msg = NSLS(@"kTextTooFrequent");
+            msg = [NSString stringWithFormat:NSLS(@"kTextTooFrequent"),
+                   [[BBSManager defaultManager] creationFrequency]];
             break;
         case ERROR_BBS_POST_SUPPORT_TIMES_LIMIT:
             msg = [NSString stringWithFormat:NSLS(@"kSupportTimesLimit"),

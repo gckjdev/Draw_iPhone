@@ -16,7 +16,7 @@
 @interface ZJHGameService : CommonGameNetworkService <AccountServiceDelegate>
 
 @property (readonly, retain, nonatomic) ZJHGameState *gameState;
-
+@property (retain, nonatomic) NSArray *chipValues;
 + (ZJHGameService*)defaultService;
 
 - (ZJHUserPlayInfo *)userPlayInfo:(NSString *)userId;
@@ -38,7 +38,6 @@
 //- (void)showCards:(NSArray *)cardIds;           // 亮牌(多张)；目前该接口没用到
 - (void)changeCard:(int)cardId;
 
-- (NSArray *)chipValues;
 - (BOOL)isMyBalanceEnough;
 
 - (BOOL)canIBet;
@@ -50,7 +49,7 @@
 - (BOOL)canIShowCard:(int)cardId;
 
 - (BOOL)canUserBeCompared:(NSString *)userId;
-- (BOOL)canIChangeCard;
+- (BOOL)canIChangeCard:(int)cardId;
 
 - (PBZJHCardType)myCardType;
 - (NSString *)myCardTypeString;

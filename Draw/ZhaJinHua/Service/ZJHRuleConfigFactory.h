@@ -14,6 +14,6 @@
 
 @interface ZJHRuleConfigFactory : NSObject
 
-+ (id<ZJHRuleProtocol>)createRuleConfig;
++ (ZJHRuleConfig *)createRuleConfig;
 
 @end

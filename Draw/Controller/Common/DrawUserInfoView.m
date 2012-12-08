@@ -212,9 +212,9 @@
 
 + (DrawUserInfoView*)createUserInfoView
 {
-    NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"CommonUserInfoView" owner:self options:nil];
+    NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"DrawUserInfoView" owner:self options:nil];
     if (topLevelObjects == nil || [topLevelObjects count] <= 0){
-        NSLog(@"create <CommonUserInfoView> but cannot find cell object from Nib");
+        NSLog(@"create <DrawUserInfoView> but cannot find cell object from Nib");
         return nil;
     }
     DrawUserInfoView* view =  (DrawUserInfoView*)[topLevelObjects objectAtIndex:0];

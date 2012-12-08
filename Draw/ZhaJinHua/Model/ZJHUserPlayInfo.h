@@ -45,11 +45,11 @@
 - (BOOL)canFoldCard;
 - (BOOL)canShowCard:(int)cardId;
 - (BOOL)canCompareCard;
-- (BOOL)canChangeCard;
+- (BOOL)canChangeCard:(int)cardId;
 - (BOOL)canBeCompared;
 
 
 - (NSString *)cardTypeString;
-//- (int)changeCardTimes;
+- (int)changeCardTimes;
 
 @end

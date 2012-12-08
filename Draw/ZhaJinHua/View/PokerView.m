@@ -240,10 +240,8 @@
     [self.popupView dismissAnimated:YES];
 }
 
-- (void)popupButtonsInView:(UIView *)inView
+- (void)popupButtons:(UIView *)buttons InView:(UIView *)inView
 {
-    UIView *buttons = [[ZJHRuleConfigFactory createRuleConfig] createButtons:self];
-
     self.popupView = [[[CMPopTipView alloc] initWithCustomViewWithoutBubble:buttons] autorelease];
     self.popupView.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.25];
     
@@ -274,20 +272,22 @@
 
 - (void)changeToCard:(Poker *)poker animation:(BOOL)animation
 {
-    [self.layer addAnimation:[AnimationManager disappearAnimationWithDuration:1.0] forKey:nil];
-    
-    self.poker = poker;
-    self.isFaceUp = poker.faceUp;
-    
-    self.frontBgImageView.image = [[ZJHImageManager defaultManager] pokerFrontBgImage];
-    self.rankImageView.image = [[ZJHImageManager defaultManager] pokerRankImage:poker];
-    self.suitImageView.image = [[ZJHImageManager defaultManager] pokerSuitImage:poker];
-    self.bodyImageView.image = [[ZJHImageManager defaultManager] pokerBodyImage:poker];
-    
-    self.backImageView.hidden = poker.faceUp;
-    self.frontView.hidden = !poker.faceUp;
-    
-    [self.layer addAnimation:[AnimationManager appearAnimationFrom:0 to:1.0 delay:1.0 duration:1.0] forKey:nil];
+    [UIView animateWithDuration:1.0 delay:0 options:UIViewAnimationCurveEaseInOut animations:^{
+        self.alpha = 0;
+    } completion:^(BOOL finished) {
+        
+        [UIView animateWithDuration:1.0 delay:0 options:UIViewAnimationCurveEaseIn animations:^{
+            self.poker = poker;
+            
+            self.rankImageView.image = [[ZJHImageManager defaultManager] pokerRankImage:poker];
+            self.suitImageView.image = [[ZJHImageManager defaultManager] pokerSuitImage:poker];
+            self.bodyImageView.image = [[ZJHImageManager defaultManager] pokerBodyImage:poker];
+            
+            self.alpha = 1.0;
+        } completion:^(BOOL finished) {
+            
+        }];
+    }];
 }
 
 - (void)clickShowCardButton:(id)sender

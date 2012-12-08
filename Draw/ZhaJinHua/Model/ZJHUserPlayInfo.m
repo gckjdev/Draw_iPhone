@@ -120,13 +120,13 @@
 
 - (BOOL)canShowCard:(int)cardId
 {
-    for (Poker *poker in _pokers) {
-        if (cardId == poker.pokerId) {
-            return !poker.faceUp;
-        }
+    Poker *poker = [self poker:cardId];
+    if(poker != nil)
+    {
+        return !poker.faceUp;
+    }else {
+        return NO;
     }
-    
-    return NO;
 }
 
 - (BOOL)canCompareCard
@@ -138,8 +138,16 @@
     return YES;
 }
 
-- (BOOL)canChangeCard
+- (BOOL)canChangeCard:(int)cardId
 {
+    if ([[self poker:cardId] faceUp] == YES) {
+        return NO;
+    }
+    
+    if ([self lastAction] == PBZJHUserActionChangeCard) {
+        return NO;
+    }
+    
     if (!_alreadCheckCard || _alreadFoldCard || _alreadCompareLose) {
         return NO;
     }
@@ -272,12 +280,11 @@
 - (void)changePoker:(int)oldCardId
            newPoker:(PBPoker *)newPoker
 {
-    for (Poker *poker in _pokers) {
-        if (poker.pokerId == oldCardId) {
-            [_replacedPokers addObject:[ReplacedPoker replacedPokerWithOldPoker:poker newPoker:[Poker pokerFromPBPoker:newPoker]]];
-            [_pokers removeObject:poker];
-            [_pokers addObject:[Poker pokerFromPBPoker:newPoker]];
-        }
+    Poker *oldPoker = [self poker:oldCardId];
+    if (oldPoker != nil){
+        [_replacedPokers addObject:[ReplacedPoker replacedPokerWithOldPoker:oldPoker newPoker:[Poker pokerFromPBPoker:newPoker]]];
+        [_pokers removeObject:oldPoker];
+        [_pokers addObject:[Poker pokerFromPBPoker:newPoker]];
     }
 }
 

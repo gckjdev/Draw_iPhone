@@ -59,8 +59,8 @@
         self.contestId = [dict objectForKey:PARA_CONTESTID];
 
         if ([DeviceDetection isIPAD]) {
-            self.contestUrl = [dict objectForKey:PARA_CONTEST_IPAD_URL];
-            self.statementUrl = [dict objectForKey:PARA_STATEMENT_IPAD_URL];            
+        self.contestUrl = [dict objectForKey:PARA_CONTEST_IPAD_URL];
+        self.statementUrl = [dict objectForKey:PARA_STATEMENT_IPAD_URL];            
         }else{
             self.contestUrl = [dict objectForKey:PARA_CONTEST_URL];
             self.statementUrl = [dict objectForKey:PARA_STATEMENT_URL];

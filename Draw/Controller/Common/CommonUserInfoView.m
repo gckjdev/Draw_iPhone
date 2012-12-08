@@ -21,6 +21,14 @@
 #import "WordManager.h"
 #import "CommonSnsInfoView.h"
 #import "MessageStat.h"
+#import "CommonRoundAvatarView.h"
+#import "CommonImageManager.h"
+#import "StringUtil.h"
+
+
+#import "DrawUserInfoView.h"
+#import "DiceUserInfoView.h"
+#import "ZJHUserInfoView.h"
 
 #define RUN_OUT_TIME 0.2
 #define RUN_IN_TIME 0.4
@@ -40,7 +48,7 @@
     PPRelease(_levelLabel);
     [_genderImageView release];
     [_coinsLabel release];
-    [_avatarHolderView release];
+    [_avatarView release];
     [super dealloc];
 }
 
@@ -69,38 +77,26 @@
 
 - (void)initAvatar
 {
-    CGRect rect = AVATAR_FRAME;
-    AvatarView* view = [[[AvatarView alloc] initWithUrlString:_targetFriend.avatar
-                                                       frame:rect
-                                                      gender:_targetFriend.isMale
-                                                       level:_targetFriend.level] autorelease];
-    view.tag = SUBVIEW_AVATAR_TAG;
-    [self.contentView addSubview:view];
+//    CGRect rect = AVATAR_FRAME;
+//    AvatarView* view = [[[AvatarView alloc] initWithUrlString:_targetFriend.avatar
+//                                                       frame:rect
+//                                                      gender:_targetFriend.isMale
+//                                                       level:_targetFriend.level] autorelease];
+//    view.tag = SUBVIEW_AVATAR_TAG;
+//    [self.contentView addSubview:view];
+    [self.avatarView setUrlString:_targetFriend.avatar
+                           userId:_targetFriend.friendUserId
+                           gender:[@"m" isEqualToString:_targetFriend.gender ]
+                            level:_targetFriend.level
+                       drunkPoint:0
+                           wealth:_targetFriend.coins];
+    [self.avatarView setAvatarStyle:AvatarViewStyle_Square];
 }
 
 - (void)initLevelAndName
 {
     [self.levelLabel setText:[NSString stringWithFormat:@"LV.%d",_targetFriend.level]];
-    NSString *nickName = _targetFriend.nickName;
     [self.userName setText:_targetFriend.nickName];
-    if (nickName) {
-        
-        UIFont* font = [DeviceDetection isIPAD]?[UIFont systemFontOfSize:26]:[UIFont systemFontOfSize:13];
-        float maxWidth = [DeviceDetection isIPAD]?224:101;
-        CGSize nameSize = [nickName sizeWithFont:font];
-        if (nameSize.width < maxWidth) {
-            [self.userName setFrame:CGRectMake(self.userName.frame.origin.x, 
-                                               self.userName.frame.origin.y, 
-                                               nameSize.width, 
-                                               self.userName.frame.size.height)];
-            [self.levelLabel setFrame:CGRectMake(self.userName.frame.origin.x
-                                                 +nameSize.width, 
-                                                 self.levelLabel.frame.origin.y, 
-                                                 self.levelLabel.frame.size.width, 
-                                                 self.levelLabel.frame.size.height)];
-        }
-    }
-
 }
 
 - (void)initLocation
@@ -111,8 +107,14 @@
 
 - (void)initGender
 {
-    NSString* gender = [_targetFriend genderDesc];
-    [self.genderLabel setText:gender];
+    CommonImageManager* manager = [CommonImageManager defaultManager];
+    UIImage* image = [@"m" isEqualToString:_targetFriend.gender]?manager.maleImage:manager.femaleImage;
+    [self.genderImageView setImage:image];
+}
+
+- (void)initBalance
+{
+    [self.coinsLabel setText:[NSString stringWithInt:_targetFriend.coins]];
 }
 
 - (void)initSNSInfo
@@ -157,11 +159,13 @@
     [self initGender];
     [self initSNSInfo];
     [self initAvatar];
-    [self initFollowStatus]; 
+    [self initFollowStatus];
+    [self initBalance];
 }
+
 - (void)initView
 {
-    PPDebug(@"<CommonUserInfoView>need impletement by sub class");
+    
 }
 
 + (CommonUserInfoView*)createUserInfoView
@@ -218,11 +222,13 @@
 
 
 #pragma mark - main process methods.
-- (void)initViewWithFriend:(MyFriend *)afriend 
+- (void)initViewWithFriend:(MyFriend *)afriend
            superController:(PPViewController *)superController
 {
     self.targetFriend = afriend;
     _superViewController = superController;
+    
+    [self initView];
 }
 
 
@@ -253,6 +259,35 @@
     if (needUpdate) {
         [view updateInfoFromService];
     }
+}
+
++ (void)showFriend:(MyFriend *)afriend
+      inController:(PPViewController *)superController
+        needUpdate:(BOOL)needUpdate
+           canChat:(BOOL)canChat
+{
+    if (isDrawApp()) {
+        [DrawUserInfoView showFriend:afriend
+                          infoInView:superController
+                          needUpdate:needUpdate];
+        return;
+    }
+    if (isDiceApp()) {
+        [DiceUserInfoView showFriend:afriend
+                          infoInView:superController
+                             canChat:canChat
+                          needUpdate:needUpdate];
+        return;
+    }
+    if (isZhajinhuaApp()) {
+        [ZJHUserInfoView showFriend:afriend
+                         infoInView:superController
+                         needUpdate:needUpdate];
+        return;
+    }
+    [CommonUserInfoView showFriend:afriend
+                        infoInView:superController
+                        needUpdate:needUpdate];
 }
 
 #pragma mark - user service delegate

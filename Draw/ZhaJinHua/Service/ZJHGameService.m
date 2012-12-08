@@ -154,10 +154,6 @@ static ZJHGameService *_defaultService;
 //                                cardIds:cardIds];
 //}
 
-- (NSArray *)chipValues
-{
-    return [[ZJHRuleConfigFactory createRuleConfig] chipValues];
-}
 
 - (BOOL)isMyBalanceEnough
 {
@@ -208,9 +204,9 @@ static ZJHGameService *_defaultService;
     return [self isGamePlaying] && [self isMyTurn] && [[self myPlayInfo] canShowCard:cardId];
 }
 
-- (BOOL)canIChangeCard
+- (BOOL)canIChangeCard:(int)cardId
 {
-    return [self isGamePlaying] && [self isMyTurn] && [[self myPlayInfo] canChangeCard] && ([self.session myTurnTimes]%4==0);
+    return [self isGamePlaying] && [self isMyTurn] && [[self myPlayInfo] canChangeCard:cardId] && ([self.session myTurnTimes] >= ([[self myPlayInfo] changeCardTimes] + 1) * 4);
 }
 
 - (BOOL)canUserBeCompared:(NSString *)userId
@@ -500,7 +496,8 @@ static ZJHGameService *_defaultService;
 
 - (NSString *)getServerListString
 {
-    return [[ZJHRuleConfigFactory createRuleConfig] getServerListString];
+//    return @"58.215.172.169:8027";
+        return @"192.168.1.5:8027";
 }
 
 - (ZJHUserPlayInfo *)myPlayInfo

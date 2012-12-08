@@ -50,7 +50,7 @@
 - (void)enableUserInterface;
 
 - (BOOL)buttonsIsPopup;
-- (void)popupButtonsInView:(UIView *)inView;
+- (void)popupButtons:(UIView *)buttons InView:(UIView *)inView;
 - (void)dismissButtons;
 
 - (void)faceDown:(BOOL)animation;

@@ -10,8 +10,11 @@
 #import "FriendService.h"
 #import "UserService.h"
 #import "CommonInfoView.h"
+
+
 @class PPViewController;
 @class MyFriend;
+@class CommonRoundAvatarView;
 
 @interface CommonUserInfoView : CommonInfoView<FriendServiceDelegate, UserServiceDelegate>
 {
@@ -29,7 +32,7 @@
 @property (retain, nonatomic) IBOutlet UILabel *statusLabel;
 @property (retain, nonatomic) IBOutlet UILabel *levelLabel;
 @property (retain, nonatomic) IBOutlet UIImageView *genderImageView;
-@property (retain, nonatomic) IBOutlet UIView *avatarHolderView;
+@property (retain, nonatomic) IBOutlet CommonRoundAvatarView *avatarView;
 
 @property (retain, nonatomic) IBOutlet UIImageView *backgroundImageView;
 @property (retain, nonatomic) IBOutlet UILabel *coinsLabel;
@@ -37,9 +40,14 @@
 //use MyFriend as the model
 @property (retain, nonatomic) MyFriend* targetFriend;
 
-+ (void)showFriend:(MyFriend*)afriend
-        infoInView:(UIViewController*)superController
-        needUpdate:(BOOL)needUpdate; //if need update the info from service.
-- (void)initView;//
++ (void)showFriend:(MyFriend *)afriend
+      inController:(PPViewController *)superController
+        needUpdate:(BOOL)needUpdate
+           canChat:(BOOL)canChat;
 
+- (void)initView;//
+- (void)initViewWithFriend:(MyFriend *)afriend
+           superController:(PPViewController *)superController;
+- (void)show;
+- (void)updateInfoFromService;
 @end
