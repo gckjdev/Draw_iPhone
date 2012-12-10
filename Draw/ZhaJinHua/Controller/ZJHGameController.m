@@ -554,9 +554,8 @@
 - (IBAction)clickQuitButton:(id)sender
 {
     if (![_gameService.session isMeStandBy] && ([_gameService.session isGamePlaying])) {
-        NSString *message = [NSString stringWithFormat:NSLS(@"kDedutCoinQuitGameAlertMessage"), [ConfigManager getDiceFleeCoin]];
         CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kQuitGameAlertTitle")
-                                                           message:message
+                                                           message:NSLS(@"kZJHQuitGameAlertMessage")
                                                              style:CommonDialogStyleDoubleButton
                                                           delegate:nil
                                                              theme:CommonDialogThemeDice clickOkBlock:^{

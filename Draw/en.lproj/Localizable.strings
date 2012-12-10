@@ -1149,6 +1149,7 @@
 "kZJHFold" = "Fold";
 "kShowCard" = "Show";
 "kChangeCard" = "Change";
+"kZJHQuitGameAlertMessage" = "If you quit game ,you will lose all chips you have bet";
 /*********************** 炸金花国际化字符串结束 *************************/
 
 
