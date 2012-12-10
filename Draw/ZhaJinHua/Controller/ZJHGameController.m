@@ -1583,6 +1583,7 @@
 - (void)coinAnimationFinished
 {
     [_coinView removeFromSuperview];
+    _coinView.hidden = YES;
     _coinView = nil;
 }
 
