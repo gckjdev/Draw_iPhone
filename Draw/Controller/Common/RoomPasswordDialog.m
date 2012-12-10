@@ -63,7 +63,10 @@
     [self.titleLabel setTitle:title forState:UIControlStateNormal];
     
     [self.okButton setRoyButtonWithColor:[UIColor colorWithRed:120.0/255.0 green:230.0/255.0 blue:160.0/255.0 alpha:0.95]];
+    [self.okButton.titleLabel setFont:[UIFont systemFontOfSize:fontSize]];
+    
     [self.cancelButton setRoyButtonWithColor:[UIColor colorWithRed:236.0/255.0 green:247.0/255.0 blue:63.0/255.0 alpha:0.95]];
+    [self.cancelButton.titleLabel setFont:[UIFont systemFontOfSize:fontSize]];
     
     [self.cancelButton setTitle:NSLS(@"kCancel") forState:UIControlStateNormal];
     [self.okButton setTitle:NSLS(@"kOK") forState:UIControlStateNormal];

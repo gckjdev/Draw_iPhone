@@ -680,7 +680,8 @@
     [self updateWaitGameNoteLabel];
 
     [self.dealerView dealWithPositionArray:[self dealPointsArray]
-                                     times:CARDS_COUNT];
+                                     times:CARDS_COUNT
+                                isDualGame:YES];
     [self updateTotalBetAndSingleBet];
     [self updateAllUserTotalBet];
     
@@ -689,6 +690,8 @@
     }
     
     [self allBet];
+    
+    [self coinAnimationFinished];
 }
 
 - (void)showAllUserGameResult
@@ -977,7 +980,7 @@
 {
     _coinView = [[[FallingCoinView alloc]initWithFrame:self.view.frame withNum:coinsNum] autorelease];
     _coinView.coindelegate = self;
-    [self.view insertSubview:_coinView belowSubview:self.runawayButton];
+    [self.view addSubview:_coinView];
     
 }
 

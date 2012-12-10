@@ -61,6 +61,7 @@
     DiceImageManager* diceImgManager = [DiceImageManager defaultManager];
     float fontSize = [DeviceDetection isIPAD] ? 40 : 20;
     
+    
     [self.targetTextField setBackground:[diceImgManager inputBackgroundImage]];
     [self.titleLabel setTitle:title forState:UIControlStateNormal];
     
@@ -68,7 +69,10 @@
     [self.cancelButton setRoyButtonWithColor:[UIColor colorWithRed:236.0/255.0 green:247.0/255.0 blue:63.0/255.0 alpha:0.95]];
     
     [self.cancelButton setTitle:NSLS(@"kCancel") forState:UIControlStateNormal];
+    [self.cancelButton.titleLabel setFont:[UIFont boldSystemFontOfSize:fontSize]];
     [self.okButton setTitle:NSLS(@"kOK") forState:UIControlStateNormal];
+    [self.okButton.titleLabel setFont:[UIFont boldSystemFontOfSize:fontSize]];
+    
     self.titleLabel.titleLabel.font = [UIFont boldSystemFontOfSize:fontSize];
     self.titleLabel.titleLabel.adjustsFontSizeToFitWidth = YES;
     self.titleLabel.titleLabel.lineBreakMode = UILineBreakModeTailTruncation;
