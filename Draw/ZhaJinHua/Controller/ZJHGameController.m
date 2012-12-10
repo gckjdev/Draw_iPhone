@@ -543,8 +543,25 @@
 
 - (IBAction)clickQuitButton:(id)sender
 {
-    [_gameService quitGame];
-    [self.navigationController popViewControllerAnimated:YES];
+    if (![_gameService.session isMeStandBy] && ([_gameService.session isGamePlaying])) {
+        NSString *message = [NSString stringWithFormat:NSLS(@"kDedutCoinQuitGameAlertMessage"), [ConfigManager getDiceFleeCoin]];
+        CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kQuitGameAlertTitle")
+                                                           message:message
+                                                             style:CommonDialogStyleDoubleButton
+                                                          delegate:nil
+                                                             theme:CommonDialogThemeDice clickOkBlock:^{
+                                                                 [_gameService quitGame];
+                                                                 [self.navigationController popViewControllerAnimated:YES];
+                                                                 [_audioManager playSoundByURL:_soundManager.clickButtonSound];
+                                                             } clickCancelBlock:^{
+                                                                 [_audioManager playSoundByURL:_soundManager.clickButtonSound];
+                                                             }];
+        [dialog.contentBackground setImage:[ZJHImageManager defaultManager].ZJHUserInfoBackgroundImage];
+        [dialog showInView:self.view];
+    } else {
+        [_gameService quitGame];
+        [self.navigationController popViewControllerAnimated:YES];
+    }
     [_audioManager playSoundByURL:_soundManager.clickButtonSound];
 }
 
@@ -1141,7 +1158,10 @@
                                         avatar:nil
                                         gender:nil
                                          level:1];
-    [ZJHUserInfoView showFriend:friend infoInView:self needUpdate:YES];
+    [ZJHUserInfoView showFriend:friend
+                   inController:self
+                     needUpdate:YES
+                        canChat:NO];
 }
 
 - (void)reciprocalEnd:(ZJHAvatarView*)view

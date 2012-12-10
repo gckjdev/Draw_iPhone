@@ -448,6 +448,14 @@
 		C2EE14601665FE9300ADBE2E /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2EE145F1665FE9300ADBE2E /* CoreImage.framework */; };
 		C2EE1475166706BC00ADBE2E /* light.png in Resources */ = {isa = PBXBuildFile; fileRef = C2EE1473166706BB00ADBE2E /* light.png */; };
 		C2EE1476166706BC00ADBE2E /* star.png in Resources */ = {isa = PBXBuildFile; fileRef = C2EE1474166706BB00ADBE2E /* star.png */; };
+		C2EF181616758EEF00E5A9C5 /* ZJHPassWordDialog.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2EF180E16758EEF00E5A9C5 /* ZJHPassWordDialog.xib */; };
+		C2EF181716758EEF00E5A9C5 /* ZJHRoomPasswordDialog~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2EF180F16758EEF00E5A9C5 /* ZJHRoomPasswordDialog~ipad.xib */; };
+		C2EF181816758EEF00E5A9C5 /* CommonZJHDialog.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2EF181016758EEF00E5A9C5 /* CommonZJHDialog.xib */; };
+		C2EF181916758EEF00E5A9C5 /* ZJHInputDialog.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2EF181116758EEF00E5A9C5 /* ZJHInputDialog.xib */; };
+		C2EF181A16758EEF00E5A9C5 /* ZJHRoomPasswordDialog.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2EF181216758EEF00E5A9C5 /* ZJHRoomPasswordDialog.xib */; };
+		C2EF181B16758EEF00E5A9C5 /* CommonZJHDialog~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2EF181316758EEF00E5A9C5 /* CommonZJHDialog~ipad.xib */; };
+		C2EF181C16758EEF00E5A9C5 /* ZJHInputDialog~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2EF181416758EEF00E5A9C5 /* ZJHInputDialog~ipad.xib */; };
+		C2EF181D16758EEF00E5A9C5 /* ZJHPassWordDialog~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2EF181516758EEF00E5A9C5 /* ZJHPassWordDialog~ipad.xib */; };
 		C2F2CF981639165500995DCB /* ZJHImageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C2F2CF971639165500995DCB /* ZJHImageManager.m */; };
 		C2F2CFB3163932C000995DCB /* ZJHAvatarView.m in Sources */ = {isa = PBXBuildFile; fileRef = C2F2CFB2163932C000995DCB /* ZJHAvatarView.m */; };
 		C2F947D21533D91E0034C895 /* UFPController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2F947D01533D91E0034C895 /* UFPController.m */; };
@@ -2676,6 +2684,14 @@
 		C2EE145F1665FE9300ADBE2E /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
 		C2EE1473166706BB00ADBE2E /* light.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = light.png; sourceTree = "<group>"; };
 		C2EE1474166706BB00ADBE2E /* star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = star.png; sourceTree = "<group>"; };
+		C2EF180E16758EEF00E5A9C5 /* ZJHPassWordDialog.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZJHPassWordDialog.xib; sourceTree = "<group>"; };
+		C2EF180F16758EEF00E5A9C5 /* ZJHRoomPasswordDialog~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ZJHRoomPasswordDialog~ipad.xib"; sourceTree = "<group>"; };
+		C2EF181016758EEF00E5A9C5 /* CommonZJHDialog.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommonZJHDialog.xib; sourceTree = "<group>"; };
+		C2EF181116758EEF00E5A9C5 /* ZJHInputDialog.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZJHInputDialog.xib; sourceTree = "<group>"; };
+		C2EF181216758EEF00E5A9C5 /* ZJHRoomPasswordDialog.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZJHRoomPasswordDialog.xib; sourceTree = "<group>"; };
+		C2EF181316758EEF00E5A9C5 /* CommonZJHDialog~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "CommonZJHDialog~ipad.xib"; sourceTree = "<group>"; };
+		C2EF181416758EEF00E5A9C5 /* ZJHInputDialog~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ZJHInputDialog~ipad.xib"; sourceTree = "<group>"; };
+		C2EF181516758EEF00E5A9C5 /* ZJHPassWordDialog~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ZJHPassWordDialog~ipad.xib"; sourceTree = "<group>"; };
 		C2F2CF961639165500995DCB /* ZJHImageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJHImageManager.h; sourceTree = "<group>"; };
 		C2F2CF971639165500995DCB /* ZJHImageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJHImageManager.m; sourceTree = "<group>"; };
 		C2F2CFB1163932C000995DCB /* ZJHAvatarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJHAvatarView.h; sourceTree = "<group>"; };
@@ -7016,6 +7032,14 @@
 		CA1041D51509B6E700F60C03 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				C2EF180E16758EEF00E5A9C5 /* ZJHPassWordDialog.xib */,
+				C2EF180F16758EEF00E5A9C5 /* ZJHRoomPasswordDialog~ipad.xib */,
+				C2EF181016758EEF00E5A9C5 /* CommonZJHDialog.xib */,
+				C2EF181116758EEF00E5A9C5 /* ZJHInputDialog.xib */,
+				C2EF181216758EEF00E5A9C5 /* ZJHRoomPasswordDialog.xib */,
+				C2EF181316758EEF00E5A9C5 /* CommonZJHDialog~ipad.xib */,
+				C2EF181416758EEF00E5A9C5 /* ZJHInputDialog~ipad.xib */,
+				C2EF181516758EEF00E5A9C5 /* ZJHPassWordDialog~ipad.xib */,
 				C26224C516702DB1008BF3FB /* DrawUserInfoView.xib */,
 				C26224C616702DB1008BF3FB /* DrawUserInfoView~ipad.xib */,
 				C26224C716702DB1008BF3FB /* DrawUserInfoView.m */,
@@ -12192,6 +12216,14 @@
 				CA1DA9681673301B0078B5A9 /* HomeMainMenu.xib in Resources */,
 				CA1DA96A167330300078B5A9 /* HomeBottomMenu.xib in Resources */,
 				CA1DAA31167583130078B5A9 /* DrawHomeHeaderPanel.xib in Resources */,
+				C2EF181616758EEF00E5A9C5 /* ZJHPassWordDialog.xib in Resources */,
+				C2EF181716758EEF00E5A9C5 /* ZJHRoomPasswordDialog~ipad.xib in Resources */,
+				C2EF181816758EEF00E5A9C5 /* CommonZJHDialog.xib in Resources */,
+				C2EF181916758EEF00E5A9C5 /* ZJHInputDialog.xib in Resources */,
+				C2EF181A16758EEF00E5A9C5 /* ZJHRoomPasswordDialog.xib in Resources */,
+				C2EF181B16758EEF00E5A9C5 /* CommonZJHDialog~ipad.xib in Resources */,
+				C2EF181C16758EEF00E5A9C5 /* ZJHInputDialog~ipad.xib in Resources */,
+				C2EF181D16758EEF00E5A9C5 /* ZJHPassWordDialog~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

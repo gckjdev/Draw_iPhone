@@ -15,7 +15,8 @@
 
 typedef enum {
     CommonInputDialogThemeDraw = 0,
-    CommonInputDialogThemeDice = 1
+    CommonInputDialogThemeDice = 1,
+    CommonInputDialogThemeZJH,
 }CommonInputDialogTheme;
 
 @class InputDialog;

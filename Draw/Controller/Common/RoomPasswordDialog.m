@@ -11,6 +11,7 @@
 #import "AnimationManager.h"
 #import "FontButton.h"
 #import "DiceImageManager.h"
+#import "ZJHImageManager.h"
 
 @implementation RoomPasswordDialog
 @synthesize passwordField;
@@ -25,8 +26,12 @@
     DiceImageManager* diceImgManager = [DiceImageManager defaultManager];
     float fontSize = [DeviceDetection isIPAD] ? 40 : 20;
     switch (theme) {
-        case CommonInputDialogThemeDice:{ 
+        case CommonInputDialogThemeZJH:
+        case CommonInputDialogThemeDice:{
             [self.contentBackground setImage:[DiceImageManager defaultManager].helpBackgroundImage];
+            if (theme == CommonInputDialogThemeZJH) {
+                [self.contentBackground setImage:[ZJHImageManager defaultManager].ZJHUserInfoBackgroundImage];
+            }
             self.isPasswordOptional = YES;
             [self.targetTextField setBackground:[diceImgManager inputBackgroundImage]];
             [self.titleLabel.fontLable setText:title];

@@ -14,6 +14,7 @@
 #import "LocaleUtils.h"
 #import "CommonImageManager.h"
 #import "UIImageUtil.h"
+#import "ZJHImageManager.h"
 
 #define COMMON_DIALOG_THEME_DRAW    @"CommonDialog"
 #define COMMON_DIALOG_THEME_DICE    @"CommonDiceDialog"
@@ -204,6 +205,10 @@
         } break;
         case CommonDialogThemeStarry: {
             view = (CommonDialog*)[self createInfoViewByXibName:COMMON_DIALOG_THEME_STARRY];
+        } break;
+        case CommonDialogThemeZJH: {
+            view = (CommonDialog*)[self createInfoViewByXibName:COMMON_DIALOG_THEME_DICE];
+            [view.contentBackground setImage:[ZJHImageManager defaultManager].ZJHUserInfoBackgroundImage];
         } break;
         default:
             PPDebug(@"<CommonDialog> theme %d do not exist",theme);

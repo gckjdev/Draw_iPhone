@@ -14,6 +14,7 @@
 #import "StringUtil.h"
 #import "FontButton.h"
 #import "DiceImageManager.h"
+#import "ZJHImageManager.h"
 
 @implementation PassWordDialog
 @synthesize anotherPasswordTextField;
@@ -45,6 +46,28 @@
             [self.oldPasswordTextField setBackground:[diceImgManager inputBackgroundImage]];
             
         } break;
+        case CommonInputDialogThemeZJH: {
+            [self.targetTextField setBackground:[diceImgManager inputBackgroundImage]];
+            [self.titleLabel.titleLabel setText:title];
+            
+            [self.cancelButton setBackgroundImage:[diceImgManager fastGameBtnBgImage]
+                                         forState:UIControlStateNormal];
+            [self.okButton setBackgroundImage:[diceImgManager diceQuitBtnImage]
+                                     forState:UIControlStateNormal];
+            
+            [self.cancelButton.fontLable setText:NSLS(@"kCancel")];
+            [self.okButton.fontLable setText:NSLS(@"kOK")];
+            self.titleLabel.titleLabel.font = [UIFont boldSystemFontOfSize:fontSize];
+            self.titleLabel.titleLabel.adjustsFontSizeToFitWidth = YES;
+            self.titleLabel.titleLabel.lineBreakMode = UILineBreakModeTailTruncation;
+            
+            [self.targetTextField setBackground:[diceImgManager inputBackgroundImage]];
+            [self.anotherPasswordTextField setBackground:[diceImgManager inputBackgroundImage]];
+            [self.oldPasswordTextField setBackground:[diceImgManager inputBackgroundImage]];
+            [self.bgView setImage:[ZJHImageManager defaultManager].ZJHUserInfoBackgroundImage];
+            
+        }break;
+            
         case CommonInputDialogThemeDraw: 
         default: {
             [self.targetTextField setBackground:[imageManager inputImage]];
@@ -61,6 +84,8 @@
             [self.anotherPasswordTextField setBackground:[imageManager inputImage]];
             [self.oldPasswordTextField setBackground:[imageManager inputImage]];
         }break;
+            
+            
     }
     [self.targetTextField setPlaceholder:NSLS(@"kNicknameHolder")];
     [self.oldPasswordTextField setPlaceholder:NSLS(@"kOldPasswordHolder")];
@@ -119,6 +144,9 @@
         } break;
         case CommonInputDialogThemeDraw: {
             view = (PassWordDialog*)[self createInfoViewByXibName:PASSWORD_DIALOG];
+        } break;
+        case CommonInputDialogThemeZJH: {
+            view = (PassWordDialog*)[self createInfoViewByXibName:DICE_PASSWORD_DIALOG];
         } break;
         default:
             PPDebug(@"<PassWordDialog> theme %d do not exist",theme);

@@ -496,7 +496,7 @@ static ZJHGameService *_defaultService;
 
 - (NSString *)getServerListString
 {
-//    return @"58.215.172.169:8027";
+    return @"58.215.172.169:8027";
         return @"192.168.1.5:8027";
 }
 
