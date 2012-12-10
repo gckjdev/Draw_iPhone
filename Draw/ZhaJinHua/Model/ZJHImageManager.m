@@ -634,11 +634,11 @@ static ZJHImageManager* shareInstance;
     switch ([DeviceDetection deviceScreenType]) {
         case DEVICE_SCREEN_IPAD:
         case DEVICE_SCREEN_NEW_IPAD:
-            return [_resService imageByName:@"zjh_game_bg_ipad_dual" inResourcePackage:RESOURCE_PACKAGE_ZJH];
+            return [_resService imageByName:@"zjh_game_bg_dual_ipad" inResourcePackage:RESOURCE_PACKAGE_ZJH];
             break;
             
         case DEVICE_SCREEN_IPHONE5:
-            return [_resService imageByName:@"zjh_game_bg_ip5_dual" inResourcePackage:RESOURCE_PACKAGE_ZJH];
+            return [_resService imageByName:@"zjh_game_bg_dual_ip5" inResourcePackage:RESOURCE_PACKAGE_ZJH];
             break;
             
         case DEVICE_SCREEN_IPHONE:

@@ -305,8 +305,10 @@
 		A4D6A766167591D3008DC151 /* ZJHRuleConfigFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = A4D6A762167591D3008DC151 /* ZJHRuleConfigFactory.m */; };
 		A4D6A76B16759201008DC151 /* avatar_default_big@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4D6A76716759201008DC151 /* avatar_default_big@2x.png */; };
 		A4D6A76C16759201008DC151 /* zjh_game_bg_dual@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A4D6A76816759201008DC151 /* zjh_game_bg_dual@2x.jpg */; };
-		A4D6A76D16759201008DC151 /* zjh_game_bg_ip5_dual@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A4D6A76916759201008DC151 /* zjh_game_bg_ip5_dual@2x.jpg */; };
-		A4D6A76E16759201008DC151 /* zjh_game_bg_ipad_dual@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A4D6A76A16759201008DC151 /* zjh_game_bg_ipad_dual@2x.jpg */; };
+		A4D6A77116759321008DC151 /* ZJHGameController_dual~ip5.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4D6A76F16759321008DC151 /* ZJHGameController_dual~ip5.xib */; };
+		A4D6A77216759321008DC151 /* ZJHGameController_dual~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4D6A77016759321008DC151 /* ZJHGameController_dual~ipad.xib */; };
+		A4D6A775167593D8008DC151 /* zjh_game_bg_dual_ip5@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A4D6A773167593D8008DC151 /* zjh_game_bg_dual_ip5@2x.jpg */; };
+		A4D6A776167593D8008DC151 /* zjh_game_bg_dual_ipad@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A4D6A774167593D8008DC151 /* zjh_game_bg_dual_ipad@2x.jpg */; };
 		A4DF0556160C25B400246A40 /* ReverseItemAction.m in Sources */ = {isa = PBXBuildFile; fileRef = A4DF0555160C25B400246A40 /* ReverseItemAction.m */; };
 		A4DF0589160D735E00246A40 /* CutItemAction.m in Sources */ = {isa = PBXBuildFile; fileRef = A4DF0588160D735E00246A40 /* CutItemAction.m */; };
 		A4E7876A16366FF8003557AD /* ZhaJinHua.proto in Resources */ = {isa = PBXBuildFile; fileRef = A4E7876916366FF8003557AD /* ZhaJinHua.proto */; };
@@ -2471,8 +2473,10 @@
 		A4D6A762167591D3008DC151 /* ZJHRuleConfigFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJHRuleConfigFactory.m; sourceTree = "<group>"; };
 		A4D6A76716759201008DC151 /* avatar_default_big@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "avatar_default_big@2x.png"; sourceTree = "<group>"; };
 		A4D6A76816759201008DC151 /* zjh_game_bg_dual@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "zjh_game_bg_dual@2x.jpg"; sourceTree = "<group>"; };
-		A4D6A76916759201008DC151 /* zjh_game_bg_ip5_dual@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "zjh_game_bg_ip5_dual@2x.jpg"; sourceTree = "<group>"; };
-		A4D6A76A16759201008DC151 /* zjh_game_bg_ipad_dual@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "zjh_game_bg_ipad_dual@2x.jpg"; sourceTree = "<group>"; };
+		A4D6A76F16759321008DC151 /* ZJHGameController_dual~ip5.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ZJHGameController_dual~ip5.xib"; sourceTree = "<group>"; };
+		A4D6A77016759321008DC151 /* ZJHGameController_dual~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ZJHGameController_dual~ipad.xib"; sourceTree = "<group>"; };
+		A4D6A773167593D8008DC151 /* zjh_game_bg_dual_ip5@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "zjh_game_bg_dual_ip5@2x.jpg"; sourceTree = "<group>"; };
+		A4D6A774167593D8008DC151 /* zjh_game_bg_dual_ipad@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "zjh_game_bg_dual_ipad@2x.jpg"; sourceTree = "<group>"; };
 		A4DF0554160C25B400246A40 /* ReverseItemAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReverseItemAction.h; sourceTree = "<group>"; };
 		A4DF0555160C25B400246A40 /* ReverseItemAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReverseItemAction.m; sourceTree = "<group>"; };
 		A4DF0587160D735E00246A40 /* CutItemAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CutItemAction.h; sourceTree = "<group>"; };
@@ -5069,10 +5073,10 @@
 		A405C82E165B874500E7610F /* room */ = {
 			isa = PBXGroup;
 			children = (
+				A4D6A773167593D8008DC151 /* zjh_game_bg_dual_ip5@2x.jpg */,
+				A4D6A774167593D8008DC151 /* zjh_game_bg_dual_ipad@2x.jpg */,
 				A4D6A76716759201008DC151 /* avatar_default_big@2x.png */,
 				A4D6A76816759201008DC151 /* zjh_game_bg_dual@2x.jpg */,
-				A4D6A76916759201008DC151 /* zjh_game_bg_ip5_dual@2x.jpg */,
-				A4D6A76A16759201008DC151 /* zjh_game_bg_ipad_dual@2x.jpg */,
 				C26EBE5F16719B6B00E8B38D /* ZJHUserInfoBackground.png */,
 				A49A0837166D95EF003E0F75 /* show_card_button_bg@2x.png */,
 				A49A0838166D95EF003E0F75 /* show_card_button_popup_bg@2x.png */,
@@ -5655,6 +5659,7 @@
 		A4E7877D16367338003557AD /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				C250AD0A1653A7E500003E15 /* room */,
 				A4D6A75B167591D3008DC151 /* ZJHDualRuleConfig.h */,
 				A4D6A75C167591D3008DC151 /* ZJHDualRuleConfig.m */,
 				A4D6A75D167591D3008DC151 /* ZJHNormalRuleConfig.h */,
@@ -5664,9 +5669,10 @@
 				A4D6A761167591D3008DC151 /* ZJHRuleConfigFactory.h */,
 				A4D6A762167591D3008DC151 /* ZJHRuleConfigFactory.m */,
 				A4A4F8E71671982A00EFC465 /* ZJHGameController_dual.xib */,
+				A4D6A76F16759321008DC151 /* ZJHGameController_dual~ip5.xib */,
+				A4D6A77016759321008DC151 /* ZJHGameController_dual~ipad.xib */,
 				A4A4F8E81671982B00EFC465 /* ZJHUserPosInfo.h */,
 				A4A4F8E91671982B00EFC465 /* ZJHUserPosInfo.m */,
-				C250AD0A1653A7E500003E15 /* room */,
 				A42EA4391653415F0080BB95 /* ZJHGameController~ip5.xib */,
 				A42EA3331651F0220080BB95 /* ZJHGameController~ipad.xib */,
 				A44B6223163787F500A8045B /* ZJHGameController.h */,
@@ -12243,8 +12249,10 @@
 				C2EF181D16758EEF00E5A9C5 /* ZJHPassWordDialog~ipad.xib in Resources */,
 				A4D6A76B16759201008DC151 /* avatar_default_big@2x.png in Resources */,
 				A4D6A76C16759201008DC151 /* zjh_game_bg_dual@2x.jpg in Resources */,
-				A4D6A76D16759201008DC151 /* zjh_game_bg_ip5_dual@2x.jpg in Resources */,
-				A4D6A76E16759201008DC151 /* zjh_game_bg_ipad_dual@2x.jpg in Resources */,
+				A4D6A77116759321008DC151 /* ZJHGameController_dual~ip5.xib in Resources */,
+				A4D6A77216759321008DC151 /* ZJHGameController_dual~ipad.xib in Resources */,
+				A4D6A775167593D8008DC151 /* zjh_game_bg_dual_ip5@2x.jpg in Resources */,
+				A4D6A776167593D8008DC151 /* zjh_game_bg_dual_ipad@2x.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
