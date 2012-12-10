@@ -11,7 +11,6 @@
 #import "GameNetworkRequest.h"
 #import "UserManager.h"
 #import "PPViewController.h"
-#import "PPNetworkRequest.h"
 #import "UIDevice+IdentifierAddition.h"
 #import "UIImageExt.h"
 #import "PPSNSConstants.h"
@@ -25,10 +24,11 @@
 #import "UserService.h"
 #import "ConfigManager.h"
 #import "TopPlayer.h"
-#import "MyFriend.h"
 #import "PPSNSIntegerationService.h"
 #import "PPSNSCommonService.h"
 #import "PPSNSStorageService.h"
+#import "PPNetworkRequest.h"
+#import "MyFriend.h"
 
 @implementation UserService
 
@@ -877,6 +877,24 @@ static UserService* _defaultUserService;
     });
 
 }
+
+- (MyFriend*)getUserSimpleInfo:(NSString *)userId
+{
+    NSString *fromUserId = [[UserManager defaultManager] userId];
+    CommonNetworkOutput* output = [GameNetworkRequest getUserSimpleInfo:SERVER_URL
+                                                                 userId:fromUserId
+                                                                  appId:[ConfigManager appId]
+                                                                 gameId:[ConfigManager gameId]
+                                                               ByUserId:userId];
+    MyFriend *user = nil;
+    if (output.resultCode == ERROR_SUCCESS) {
+        user = [MyFriend friendWithDict:output.jsonDataDict];
+        user.friendUserId = userId;
+    }
+    
+    return user;
+}
+
 
 - (void)getUserSimpleInfoByUserId:(NSString *)targetUserId
                          delegate:(id<UserServiceDelegate>)delegate{

@@ -122,18 +122,22 @@
 - (void)handleDidJoinGame
 {
     ZJHGameController* vc = nil;
+    NSString *xibName = nil;
     switch ([DeviceDetection deviceScreenType]) {
         case DEVICE_SCREEN_IPAD:
         case DEVICE_SCREEN_NEW_IPAD:
-            vc = [[[ZJHGameController alloc] initWithNibName:@"ZJHGameController~ipad" bundle:[NSBundle mainBundle]] autorelease];
+            xibName = (_gameService.rule == PBZJHRuleTypeDual) ? @"ZJHGameController_dual~ipad" : @"ZJHGameController~ipad";
+            vc = [[[ZJHGameController alloc] initWithNibName:xibName bundle:[NSBundle mainBundle]] autorelease];
             break;
             
         case DEVICE_SCREEN_IPHONE5:
-            vc = [[[ZJHGameController alloc] initWithNibName:@"ZJHGameController~ip5" bundle:[NSBundle mainBundle]] autorelease];
+            xibName = (_gameService.rule == PBZJHRuleTypeDual) ? @"ZJHGameController_dual~ip5" : @"ZJHGameController~ip5";
+            vc = [[[ZJHGameController alloc] initWithNibName:xibName bundle:[NSBundle mainBundle]] autorelease];
             break;
             
         case DEVICE_SCREEN_IPHONE:
-            vc = [[[ZJHGameController alloc] initWithNibName:@"ZJHGameController" bundle:[NSBundle mainBundle]] autorelease];
+            xibName = (_gameService.rule == PBZJHRuleTypeDual) ? @"ZJHGameController_dual" : @"ZJHGameController";
+            vc = [[[ZJHGameController alloc] initWithNibName:xibName bundle:[NSBundle mainBundle]] autorelease];
             break;
             
         default:

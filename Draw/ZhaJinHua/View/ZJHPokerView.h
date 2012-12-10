@@ -22,7 +22,7 @@ typedef enum {
     ZJHPokerSectorTypeNone = 0,
     ZJHPokerSectorTypeRight = 1,        // 左边的牌固定，右边两张牌向右扇开
     ZJHPokerSectorTypeLeft = 2,         // 右边的牌固定，左边两张牌向左扇开
-    ZJHPokerSectorTypeCenter = 3        // 中间的牌固定，两边往外扇开
+    ZJHPokerSectorTypeCenterUp = 3        // 中间的牌固定，两边往外扇开
 } ZJHPokerSectorType;
 
 typedef enum {

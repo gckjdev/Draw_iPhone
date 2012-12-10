@@ -45,6 +45,7 @@
 @property (nonatomic, retain) NSMutableArray        *roomList;
 @property (nonatomic, retain) CommonGameSession     *session;
 @property (nonatomic, assign) int                   rule;           // 游戏规则类型，用来区分不同的游戏场，如普通场和高级场。
+@property (retain, nonatomic) NSMutableDictionary *userSimpleInfo;
 
 - (BOOL)isConnected;
 //- (void)connectServer:(id<CommonGameServiceDelegate>)delegate;
@@ -57,6 +58,7 @@
 - (void)handleMoreOnGameOverNotificationRequest:(GameMessage*)message;
 - (void)handleMoreOnJoinGameResponse:(GameMessage*)message;
 - (void)handleMoreOnNextPlayerStartNotificationRequest:(GameMessage*)message;
+- (void)handleMoreOnRoomNotificationRequest:(GameMessage*)message;
 
 - (void)startDisconnectTimer;
 - (void)clearDisconnectTimer;
@@ -104,5 +106,6 @@
 
 - (BOOL)isMyTurn;
 - (BOOL)isGamePlaying;
+- (void)getAccount;
 
 @end

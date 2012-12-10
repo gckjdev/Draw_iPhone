@@ -22,6 +22,8 @@
 - (ZJHUserPosInfo *)initWithPos:(UserPosition)pos
                          avatar:(ZJHAvatarView*)avatar
                      pokersView:(ZJHPokerView*)pokersView
+                      pokerSize:(CGSize)pokerSize
+                            gap:(CGFloat)gap
                   totalBetLabel:(UILabel *)totalBetLabel
                      totalBetBg:(UIImageView *)totalBetBg;
 {
@@ -31,6 +33,8 @@
         self.pokersView = pokersView;
         self.totalBetLabel = totalBetLabel;
         self.totalBetBg = totalBetBg;
+        self.pokerSize = pokerSize;
+        self.gap = gap;
     }
     
     return self;
@@ -39,10 +43,20 @@
 + (ZJHUserPosInfo *)userPosInfoWithPos:(UserPosition)pos
                                 avatar:(ZJHAvatarView*)avatar
                             pokersView:(ZJHPokerView*)pokersView
+                             pokerSize:(CGSize)pokerSize
+                                   gap:(CGFloat)gap
                          totalBetLabel:(UILabel *)totalBetLabel
                             totalBetBg:(UIImageView *)totalBetBg;
 {
-    return [[ZJHUserPosInfo alloc] initWithPos:pos avatar:avatar pokersView:pokersView totalBetLabel:totalBetLabel totalBetBg:totalBetBg];
+    return [[ZJHUserPosInfo alloc] initWithPos:pos
+                                        avatar:avatar
+                                    pokersView:pokersView
+                                     pokerSize:pokerSize
+                                           gap:gap
+                                 totalBetLabel:totalBetLabel
+                                    totalBetBg:totalBetBg];
 }
+
+
 
 @end

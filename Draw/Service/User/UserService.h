@@ -85,4 +85,7 @@
 
 - (void)getTopPlayer:(NSInteger)offset limit:(NSInteger)limit delegate:(id<UserServiceDelegate>)delegate;
 
+// a network block method to query user basic info
+- (MyFriend*)getUserSimpleInfo:(NSString *)userId;
+
 @end

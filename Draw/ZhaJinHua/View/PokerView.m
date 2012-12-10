@@ -141,7 +141,7 @@
     return;
 }
 
-- (void)setAcnhorPoint:(CGPoint)anchorPoint
+- (void)setAnchorPoint:(CGPoint)anchorPoint
 {
     CGPoint oldAnchorPoint = self.layer.anchorPoint;
     CGPoint newAnchorPoint = anchorPoint;
@@ -161,7 +161,7 @@
         return;
     }
 
-    [self setAcnhorPoint:CGPointMake(0.5, 1)];
+    [self setAnchorPoint:CGPointMake(0.5, 1)];
     
     CFTimeInterval duration = animation ? ROTATE_ANIMATION_DURATION : 0;
     CABasicAnimation * rotation = [CABasicAnimation       animationWithKeyPath:@"transform.rotation.z"];
@@ -176,7 +176,7 @@
     _angle = angle;
     
     if (angle == 0) {
-        [self setAcnhorPoint:CGPointMake(0.5, 0.5)];
+        [self setAnchorPoint:CGPointMake(0.5, 0.5)];
     }
     
     return;
@@ -270,19 +270,23 @@
     [imageView.layer addAnimation:[AnimationManager appearAnimationFrom:0.5 to:1 duration:(animation ? 0.8 : 0)] forKey:nil];
 }
 
+- (void)changeToCard:(Poker *)poker
+{
+    self.poker = poker;
+    
+    self.rankImageView.image = [[ZJHImageManager defaultManager] pokerRankImage:poker];
+    self.suitImageView.image = [[ZJHImageManager defaultManager] pokerSuitImage:poker];
+    self.bodyImageView.image = [[ZJHImageManager defaultManager] pokerBodyImage:poker];
+}
+
 - (void)changeToCard:(Poker *)poker animation:(BOOL)animation
 {
+
     [UIView animateWithDuration:1.0 delay:0 options:UIViewAnimationCurveEaseInOut animations:^{
         self.alpha = 0;
     } completion:^(BOOL finished) {
-        
+        [self changeToCard:poker];
         [UIView animateWithDuration:1.0 delay:0 options:UIViewAnimationCurveEaseIn animations:^{
-            self.poker = poker;
-            
-            self.rankImageView.image = [[ZJHImageManager defaultManager] pokerRankImage:poker];
-            self.suitImageView.image = [[ZJHImageManager defaultManager] pokerSuitImage:poker];
-            self.bodyImageView.image = [[ZJHImageManager defaultManager] pokerBodyImage:poker];
-            
             self.alpha = 1.0;
         } completion:^(BOOL finished) {
             

@@ -285,6 +285,7 @@
     self.ruleConfig = [ZJHRuleConfigFactory createRuleConfig];
     _gameService.chipValues = [_ruleConfig chipValues];
     [_gameService syncAccount:self];
+    [_gameService getAccount];
 
     // Do any additional setup after loading the view from its nib.
     
@@ -471,12 +472,17 @@
     
     [self registerNotificationWithName:NOTIFICATION_CHANGE_CARD_REQUEST
                             usingBlock:^(NSNotification *notification) {
-                                [self someoneChangeCard];
+                                [self someoneChangeCard:[[CommonGameNetworkService userInfoToMessage:notification.userInfo] userId]];
                             }];
     
     [self registerNotificationWithName:NOTIFICATION_CHANGE_CARD_RESPONSE
                             usingBlock:^(NSNotification *notification) {
                                 [self changeCardSuccess];
+                            }];
+    
+    [self registerNotificationWithName:NOTIFICATION_BALANCE_UPDATED
+                            usingBlock:^(NSNotification *notification) {
+                                [self balanceUpdated];
                             }];
     
     [self registerNotificationWithName:NOTIFICATION_GAME_OVER_NOTIFICATION_REQUEST
@@ -618,6 +624,10 @@
         [[self getPokersViewByUserId:userId] clear];
         [_gameService.gameState.usersInfo removeObjectForKey:userId];
     }
+    
+    
+    
+    
 }
 
 
@@ -643,14 +653,20 @@
 
 - (void)gameStart
 {
+    PPDebug(@"########################### Game Start :%@ ####################", self.description);
+    [self updateAllUsersAvatar];
+    
     [self updateWaitGameNoteLabel];
 
     [self.dealerView dealWithPositionArray:[self dealPointsArray]
                                      times:CARDS_COUNT];
     [self updateTotalBetAndSingleBet];
     [self updateAllUserTotalBet];
-//    [self updateAllUsersAvatar]; //some times all room notification post before registered, and update all user avatar method will no longer called, here fix it  --kira
-    [[self getMyAvatarView] update];
+    
+    for (PBGameUser *user in _gameService.session.userList) {
+        [[self getAvatarViewByUserId:user.userId] updateByPBGameUser:[_gameService.session getUserByUserId:user.userId]];
+    }
+    
     [self allBet];
 }
 
@@ -667,10 +683,12 @@
         }else {
             [avatar showLoseCoins:[[_gameService userPlayInfo:userId] totalBet]];
         }
+        
+        [[self getAvatarViewByUserId:userId] updateByPBGameUser:[_gameService.session getUserByUserId:userId]];
     }
     
-    [[self getMyAvatarView] update];
-    [_gameService syncAccount:nil];
+    [_gameService syncAccount:self];
+    [_gameService getAccount];
 }
 
 - (void)gameOver
@@ -746,6 +764,7 @@
                          count:[_gameService betCountOfUser:userId]];
     [self updateTotalBetAndSingleBet];
     [self updateUserTotalBet:userId];
+    [[self getAvatarViewByUserId:userId] updateByPBGameUser:[_gameService.session getUserByUserId:userId]];
 }
 
 - (void)someoneShowCard:(NSString*)userId cardIds:(NSArray *)cardIds
@@ -819,10 +838,7 @@
                 
                 for (PBUserResult *result in resultList) {
                     [[self getAvatarViewByUserId:result.userId] showWinCoins:result.gainCoins];
-                }
-                
-                if ([_userManager isMe:userId]) {
-                    [[self getMyAvatarView] update];
+                    [[self getAvatarViewByUserId:result.userId] updateByPBGameUser:[_gameService.session getUserByUserId:result.userId]];
                 }
             }];
         }];
@@ -850,8 +866,13 @@
     }
 }
 
-- (void)someoneChangeCard
+- (void)someoneChangeCard:(NSString *)userId
 {
+    PPDebug(@"########################### Someone Change Card :%@ ####################", [self getPokersViewByUserId:userId].description);
+
+    ReplacedPoker *replacedPoker = [[_gameService replacedCardsOfUser:userId] lastObject];
+
+    [[self getPokersViewByUserId:userId] changeCard:replacedPoker.oldPoker.pokerId toCard:replacedPoker.newPoker animation:YES];
 }
 
 - (void)changeCardSuccess
@@ -861,6 +882,12 @@
     [self showMyCardType];
 }
 
+- (void)balanceUpdated
+{
+    for (PBGameUser *user in _gameService.session.userList) {
+        [[self getAvatarViewByUserId:user.userId] updateByPBGameUser:user];
+    }
+}
 
 - (ZJHPokerSectorType)getPokerSectorTypeByPosition:(UserPosition)position
 {
@@ -873,6 +900,10 @@
         case UserPositionRight:
         case UserPositionRightTop:
             return ZJHPokerSectorTypeLeft;
+            break;
+            
+        case UserPositionCenterUp:
+            return ZJHPokerSectorTypeCenterUp;
             break;
             
         default:
@@ -893,6 +924,9 @@
         case UserPositionRightTop:
             return ZJHPokerXMotionTypeLeft;
             break;
+            
+        case UserPositionCenterUp:
+            return ZJHPokerXMotionTypeCenter;
             
         default:
             return ZJHPokerXMotionTypeNone;
@@ -984,8 +1018,6 @@
         [userPosInfo.avatar resetAvatar];
     }
     
-    [[self getMyAvatarView] updateByPBGameUser:[_userManager toPBGameUser]];
-    
     // set user on seat
     for (PBGameUser* user in _gameService.session.userList) {
         PPDebug(@"<ZJHGameController>Get user--%@, sitting at %d",user.nickName, user.seatId);
@@ -993,33 +1025,24 @@
         UserPosition pos = [self getPositionByUserId:user.userId];
         [[[self getUserPosInfoByPos:pos] avatar] updateByPBGameUser:user];
         [[[self getUserPosInfoByPos:pos] avatar] setDelegate:self];
-
     }
 }
 
 - (void)updateAllUsersPokers
 {
     for (PBGameUser *user in _gameService.session.userList) {
-        ZJHPokerView *pokerView = [self getPokersViewByUserId:user.userId];
-        ZJHUserPlayInfo *userPlayInfo = [_gameService userPlayInfo:user.userId];
 
-        CGSize pokerSize;
-        CGFloat gap;
-        if ([_userManager isMe:user.userId]) {
-            pokerSize = CGSizeMake(BIG_POKER_VIEW_WIDTH, BIG_POKER_VIEW_HEIGHT);
-            gap = BIG_POKER_GAP;
-        }else {
-            pokerSize = CGSizeMake(SMALL_POKER_VIEW_WIDTH, SMALL_POKER_VIEW_HEIGHT);
-            gap = SMALL_POKER_GAP;
-        }
+        ZJHUserPlayInfo *userPlayInfo = [_gameService userPlayInfo:user.userId];
+        ZJHUserPosInfo *userPosInfo = [self getUserPosInfoByUserId:user.userId];
+        ZJHPokerView *pokerView = userPosInfo.pokersView;
         
 //        PPDebug(@"##############################################");
 //        PPDebug(@"user: %@", [_gameService.session getNickNameByUserId:user.userId]);
 //        PPDebug(@"already check card: %d", userPlayInfo.alreadCheckCard);
 //        PPDebug(@"##############################################");
         [pokerView updateWithPokers:[_gameService pokersOfUser:user.userId]
-                               size:pokerSize
-                                gap:gap];
+                               size:userPosInfo.pokerSize
+                                gap:userPosInfo.gap];
         
         if (userPlayInfo.alreadCheckCard) {
             [pokerView makeSectorShape:[self getPokerSectorTypeByPosition:[self getPositionByUserId:user.userId]] animation:YES];
@@ -1054,7 +1077,8 @@
 {
     PBGameUser* user = [_gameService.session getUserByUserId:userId];
     PBGameUser* selfUser = [self getSelfUser];
-    return ([_ruleConfig maxPlayerNum] + (user.seatId - selfUser.seatId))%[_ruleConfig maxPlayerNum];
+    int seatIndex = ([_ruleConfig maxPlayerNum] + (user.seatId - selfUser.seatId))%[_ruleConfig maxPlayerNum];
+    return [_ruleConfig positionBySeatIndex:seatIndex];
 }
 
 - (ZJHPokerView*)getPokersViewByUserId:(NSString*)userId
@@ -1075,6 +1099,16 @@
 - (ZJHUserPosInfo *)getUserPosInfoByPos:(UserPosition)pos
 {
     return [_userPosInfoDic valueForKey:[NSString stringWithFormat:@"%d", pos]];
+}
+
+- (ZJHUserPosInfo *)getUserPosInfoByUserId:(NSString *)userId
+{
+    for (ZJHUserPosInfo *userPosInfo in [_userPosInfoDic allValues]) {
+        if ([userPosInfo.avatar.userInfo.userId isEqualToString:userId]) {
+            return userPosInfo;
+        }
+    }
+    return nil;
 }
 
 - (void)viewDidUnload {
@@ -1515,7 +1549,7 @@
 
 - (void)didSyncFinish
 {
-    [[self getMyAvatarView] update];
+    [[self getMyAvatarView] update]; 
 }
 
 

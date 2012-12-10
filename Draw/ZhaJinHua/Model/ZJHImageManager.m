@@ -371,6 +371,17 @@ static ZJHImageManager* shareInstance;
 {
     return [_resService imageByName:@"avatar_default" inResourcePackage:RESOURCE_PACKAGE_ZJH];
 }
+
+- (UIImage*)noUserBigAvatarBackground
+{
+    return [_resService imageByName:@"avatar_default_big" inResourcePackage:RESOURCE_PACKAGE_ZJH];
+}
+
+- (UIImage *)coinsImage
+{
+    return [_resService imageByName:@"coin" inResourcePackage:RESOURCE_PACKAGE_ZJH];
+}
+
 - (UIImage*)avatarBackground
 {
     return [_resService imageByName:@"zjh_other_plyer_avatar" inResourcePackage:RESOURCE_PACKAGE_ZJH];

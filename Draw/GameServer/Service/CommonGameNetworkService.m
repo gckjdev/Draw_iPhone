@@ -13,6 +13,16 @@
 #import "UserManager.h"
 #import "CommonGameSession.h"
 #import "NotificationName.h"
+#import "UserService.h"
+#import "MyFriend.h"
+
+@interface CommonGameNetworkService()
+{
+    dispatch_queue_t _getUserInfoQueue;
+}
+
+@end
+
 
 @implementation CommonGameNetworkService
 
@@ -31,6 +41,7 @@
     PPRelease(_session);
     PPRelease(_serverAddress);   
     PPRelease(_roomList);
+    PPRelease(_userSimpleInfo);
     
     [_networkClient disconnect];
     PPRelease(_networkClient);
@@ -43,6 +54,8 @@
     self = [super init];
     if (self) {
         _roomList = [[NSMutableArray alloc] init];
+        _getUserInfoQueue = dispatch_queue_create("ZJHGameServiceGetUserInfoQueue", NULL);
+        self.userSimpleInfo = [NSMutableDictionary dictionary];
     }
 
     return self;
@@ -248,6 +261,10 @@
 {
 }
 
+- (void)handleMoreOnRoomNotificationRequest:(GameMessage*)message
+{
+}
+
 - (void)handleJoinGameResponse:(GameMessage*)message
 {
     dispatch_async(dispatch_get_main_queue(), ^{ 
@@ -257,6 +274,7 @@
             [_session fromPBGameSession:pbSession userId:[self userId]];
             PPDebug(@"<handleJoinGameResponse> Create Session = %@", [self.session description]);
 
+            [self getAccount];
             [self handleMoreOnJoinGameResponse:message];
         }
         [self postNotification:NOTIFICATION_JOIN_GAME_RESPONSE message:message];
@@ -275,11 +293,15 @@
                 int sessionId = [sessionChanged sessionId];
                 if (sessionId == _session.sessionId){
                     // current play session
-                    [_session updateSession:sessionChanged];   
+                    [_session updateSession:sessionChanged];
+                    
+                    if ([sessionChanged usersAddedList]){
+                        [self getAccount];
+                    }
                 }
             }
         }
-        
+        [self handleMoreOnRoomNotificationRequest:message];
         [self postNotification:NOTIFICATION_ROOM message:message];
     });
 }
@@ -569,6 +591,47 @@
 - (BOOL)isGamePlaying
 {
     return [self.session isGamePlaying];
+}
+
+- (void)getAccount
+{
+    [_userSimpleInfo removeAllObjects];
+    NSArray* userArray = [self.session userList];
+    dispatch_async(_getUserInfoQueue, ^{
+        
+        //获取concurrent queue
+        dispatch_queue_t aQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+        
+        //创建1个queue group
+        dispatch_group_t queueGroup = dispatch_group_create();
+        
+        for (PBGameUser *user in userArray) {
+            if ([self.userId isEqualToString:user.userId]) {
+                continue;
+            }
+            
+            dispatch_group_async(queueGroup, aQueue, ^{
+                MyFriend *userInfo = [[UserService defaultService] getUserSimpleInfo:user.userId];
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [_userSimpleInfo setValue:userInfo forKey:user.userId];
+                    PPDebug(@"<getUserInfo> complete %@ %@ %ld", user.userId, userInfo.nickName, userInfo.coins);
+                });
+            });
+        }
+        
+        //等待组内任务全部完成
+        PPDebug(@"wait for getting all user info");
+        dispatch_group_wait(queueGroup, DISPATCH_TIME_FOREVER);
+        PPDebug(@"all user info get finished.");
+        
+        //释放组
+        dispatch_release(queueGroup);
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self postNotification:NOTIFICATION_BALANCE_UPDATED message:nil];
+        });
+        
+    });
 }
 
 @end

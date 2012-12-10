@@ -14,6 +14,7 @@
 #import "UserManager.h"
 #import "ConfigManager.h"
 #import "ZJHRuleConfigFactory.h"
+#import "MyFriend.h"
 
 static ZJHGameService *_defaultService;
 
@@ -21,10 +22,11 @@ static ZJHGameService *_defaultService;
 {
     UserManager *_userManager;
     AccountService *_accountService;
+//    dispatch_queue_t _getUserInfoQueue;
 }
 
 @property (readwrite, retain, nonatomic) ZJHGameState *gameState;
-
+//@property (retain, nonatomic) NSMutableDictionary *userSimpleInfo;
 @end
 
 @implementation ZJHGameService
@@ -49,9 +51,18 @@ static ZJHGameService *_defaultService;
         _networkClient = [CommonGameNetworkClient defaultInstance];
         _userManager = [UserManager defaultManager];
         _accountService = [AccountService defaultService];
+//        _getUserInfoQueue = dispatch_queue_create("ZJHGameServiceGetUserInfoQueue", NULL);
+//        self.userSimpleInfo = [NSMutableDictionary dictionary];
     }
 
     return self;
+}
+
+- (void)dealloc
+{
+//    dispatch_release(_getUserInfoQueue);
+//    [_userSimpleInfo release];
+    [super dealloc];
 }
 
 #pragma mark - public methods
@@ -497,7 +508,23 @@ static ZJHGameService *_defaultService;
 - (NSString *)getServerListString
 {
 //    return @"58.215.172.169:8027";
-        return @"192.168.1.5:8027";
+    switch (self.rule) {
+        case PBZJHRuleTypeDual:
+//            return @"58.215.172.169:8030";
+            return @"192.168.1.5:8027";
+
+            break;
+            
+        case PBZJHRuleTypeNormal:
+            return @"192.168.1.5:8027";
+            break;
+            
+        default:
+            return @"192.168.1.5:8027";
+            break;
+    }
+    
+    return nil;
 }
 
 - (ZJHUserPlayInfo *)myPlayInfo
@@ -512,6 +539,29 @@ static ZJHGameService *_defaultService;
         return 0;
     }
     return balance;
+}
+
+- (int)balanceOfUser:(NSString *)userId
+{
+    if (userId == nil) {
+        return 0;
+    }
+    
+    int balance = [[self.userSimpleInfo valueForKey:userId] coins] - [[self userPlayInfo:userId] totalBet] + [[self userPlayInfo:userId] compareAward] + [[self userPlayInfo:userId] resultAward];
+    
+    if (balance < 0) {
+        return 0;
+    }
+    return balance;
+}
+
+- (int)levelOfUser:(NSString *)userId
+{
+    if (userId == nil) {
+        return -1;
+    }
+        
+    return [[self.userSimpleInfo valueForKey:userId] level];
 }
 
 - (NSArray *)compareUserIdList
@@ -546,9 +596,63 @@ static ZJHGameService *_defaultService;
     [_accountService syncAccount:delegate forceServer:YES];
 }
 
+//- (void)getAccount
+//{
+//    [_userSimpleInfo removeAllObjects];
+//    NSArray* userArray = [self.session userList];
+//    dispatch_async(_getUserInfoQueue, ^{
+//        
+//        //获取concurrent queue
+//        dispatch_queue_t aQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+//        
+//        //创建1个queue group
+//        dispatch_group_t queueGroup = dispatch_group_create();
+//
+//        for (PBGameUser *user in userArray) {
+//            if ([_userManager isMe:user.userId]) {
+//                continue;
+//            }
+//            
+//            dispatch_group_async(queueGroup, aQueue, ^{
+//                MyFriend *userInfo = [[UserService defaultService] getUserSimpleInfo:user.userId];
+//                dispatch_async(dispatch_get_main_queue(), ^{
+//                    [_userSimpleInfo setValue:userInfo forKey:user.userId];
+//                    PPDebug(@"<getUserInfo> complete %@ %@ %ld", user.userId, userInfo.nickName, userInfo.coins);
+//                });
+//            });
+//        }
+//        
+//        //等待组内任务全部完成
+//        PPDebug(@"wait for getting all user info");
+//        dispatch_group_wait(queueGroup, DISPATCH_TIME_FOREVER);
+//        PPDebug(@"all user info get finished.");
+//        
+//        //释放组
+//        dispatch_release(queueGroup);
+//        
+//        dispatch_async(dispatch_get_main_queue(), ^{
+//            [self postNotification:NOTIFICATION_BALANCE_UPDATED message:nil];
+//        });
+//        
+//    });
+//
+//}
+
+//- (void)didGetUserInfo:(MyFriend *)user resultCode:(NSInteger)resultCode
+//{
+//    if (resultCode == ERROR_SUCCESS) {
+//        [self userPlayInfo:user.friendUserId].coins = user.coins;
+//    }
+//}
+
 - (NSArray *)myReplacedCards
 {
     return [[self myPlayInfo] replacedPokers];
+}
+
+- (NSArray *)replacedCardsOfUser:(NSString *)userId
+{
+    return [[self userPlayInfo:userId] replacedPokers];
 }
 
 

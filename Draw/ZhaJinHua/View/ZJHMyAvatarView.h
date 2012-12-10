@@ -11,6 +11,7 @@
 @interface ZJHMyAvatarView : ZJHAvatarView
 @property (retain, nonatomic) IBOutlet UILabel *levelLabel;
 @property (retain, nonatomic) IBOutlet UILabel *coinsLabel;
+@property (retain, nonatomic) IBOutlet UIImageView *coinsImageView;
 
 + (ZJHMyAvatarView*)createZJHMyAvatarView;
 - (void)update;

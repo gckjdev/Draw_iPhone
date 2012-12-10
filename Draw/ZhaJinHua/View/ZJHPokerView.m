@@ -103,22 +103,28 @@
     }
 }
 
+#define GAP_RATIO_BETWEEN_CARDS 0.5
+
 - (void)makeSectorShape:(ZJHPokerSectorType)sectorType animation:(BOOL)animation
 {
     switch (sectorType) {
         case ZJHPokerSectorTypeRight:
-            [self.pokerView2 rotateToAngle:(M_PI * (1.0/12.0)) animation:animation];
-            [self.pokerView3 rotateToAngle:(M_PI * (1.0/6.0)) animation:animation];
+            [self.pokerView2 rotateToAngle:(M_PI * (1.0/12.0))
+                                 animation:animation];
+            [self.pokerView3 rotateToAngle:(M_PI * (1.0/6.0))
+                                 animation:animation];
             break;
             
         case ZJHPokerSectorTypeLeft:
-            [self.pokerView2 rotateToAngle:(-M_PI * (1.0/12.0)) animation:animation];
-            [self.pokerView1 rotateToAngle:(-M_PI * (1.0/6.0)) animation:animation];
+            [self.pokerView2 rotateToAngle:(-M_PI * (1.0/12.0))
+                                 animation:animation];
+            [self.pokerView1 rotateToAngle:(-M_PI * (1.0/6.0))
+                                animation:animation];
             break;
             
-        case ZJHPokerSectorTypeCenter:
-            [self.pokerView1 rotateToAngle:(-M_PI * (1.0/12.0)) animation:animation];
-            [self.pokerView3 rotateToAngle:(M_PI * (1.0/12.0)) animation:animation];
+        case ZJHPokerSectorTypeCenterUp:
+            [self.pokerView1 moveToCenter:CGPointMake(self.pokerView2.center.x - self.pokerView2.frame.size.width, self.pokerView2.center.y) animation:animation];
+            [self.pokerView3 moveToCenter:CGPointMake(self.pokerView2.center.x + self.pokerView2.frame.size.width, self.pokerView2.center.y) animation:animation];
             break;
             
         default:
@@ -126,7 +132,6 @@
     }
 }
 
-#define GAP_RATIO_BETWEEN_CARDS 0.5
 - (void)xMotion:(ZJHPokerXMotionType)xMotiontype animation:(BOOL)animation
 {
     switch (xMotiontype) {
@@ -135,14 +140,14 @@
             [self.pokerView3 moveToCenter:CGPointMake(self.pokerView1.center.x + 2 * self.pokerView1.frame.size.width * GAP_RATIO_BETWEEN_CARDS, self.pokerView1.center.y) animation:animation];
             break;
             
-        case ZJHPokerSectorTypeLeft:
+        case ZJHPokerXMotionTypeLeft:
             [self.pokerView2 moveToCenter:CGPointMake(self.pokerView3.center.x - self.pokerView3.frame.size.width * GAP_RATIO_BETWEEN_CARDS, self.pokerView3.center.y) animation:animation];
             [self.pokerView1 moveToCenter:CGPointMake(self.pokerView3.center.x - 2 * self.pokerView3.frame.size.width * GAP_RATIO_BETWEEN_CARDS, self.pokerView3.center.y) animation:animation];
             break;
             
-        case ZJHPokerSectorTypeCenter:
-            [self.pokerView1 moveToCenter:CGPointMake(self.pokerView2.center.x - self.pokerView2.frame.size.width * GAP_RATIO_BETWEEN_CARDS, self.pokerView2.center.y) animation:animation];
-            [self.pokerView3 moveToCenter:CGPointMake(self.pokerView2.center.x + self.pokerView2.frame.size.width * GAP_RATIO_BETWEEN_CARDS, self.pokerView2.center.y) animation:animation];
+        case ZJHPokerXMotionTypeCenter:
+            [self.pokerView1 moveToCenter:CGPointMake(self.pokerView2.center.x - self.pokerView2.frame.size.width, self.pokerView2.center.y) animation:animation];
+            [self.pokerView3 moveToCenter:CGPointMake(self.pokerView2.center.x + self.pokerView2.frame.size.width, self.pokerView2.center.y) animation:animation];
             break;
             
         default:
