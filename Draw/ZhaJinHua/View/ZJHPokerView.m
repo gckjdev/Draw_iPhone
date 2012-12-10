@@ -204,7 +204,7 @@
     }
     CGFloat offsetX = ([DeviceDetection isIPAD] ? 32 : 20);
 
-    CGPoint center = CGPointMake(self.pokerView3.frame.origin.x + self.pokerView3.frame.size.width + offsetX, self.pokerView3.center.y);
+    CGPoint center = CGPointMake(self.pokerView3.frame.origin.x + self.pokerView3.frame.size.width + offsetX, self.pokerView3.center.y + 3);
     
     FXLabel *label = [self cardTypeLabelWithCenter:center
                                           cardType:cardType];

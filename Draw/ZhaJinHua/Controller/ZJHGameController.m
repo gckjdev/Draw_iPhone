@@ -819,12 +819,12 @@
     [UIView animateWithDuration:1 animations:^{
         pokerView.layer.position = CGPointMake(self.view.center.x, self.view.center.y - COMPARE_CARD_OFFSET);
         otherPokerView.layer.position = CGPointMake(self.view.center.x, self.view.center.y + COMPARE_CARD_OFFSET);
-        if ([_userManager isMe:userId]) {
-            pokerView.layer.transform = CATransform3DMakeScale(28/35.0, 37/48.0, 1);
-        }
-        if ([_userManager isMe:targetUserId ]) {
-            otherPokerView.layer.transform = CATransform3DMakeScale(28/35.0, 37/48.0, 1);
-        }
+//        if ([_userManager isMe:userId]) {
+//            pokerView.layer.transform = CATransform3DMakeScale(28/35.0, 37/48.0, 1);
+//        }
+//        if ([_userManager isMe:targetUserId]) {
+//            otherPokerView.layer.transform = CATransform3DMakeScale(28/35.0, 37/48.0, 1);
+//        }
         
     } completion:^(BOOL finished) {
         self.vsImageView.hidden = NO;
