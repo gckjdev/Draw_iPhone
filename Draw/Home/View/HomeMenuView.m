@@ -18,7 +18,7 @@
 {
     [self.button setImage:icon forState:UIControlStateNormal];
     [self.button setTitle:title forState:UIControlStateNormal];
-    [self setTag:type];
+    [self setType:type];
 }
 
 - (void)updateBadge:(NSInteger)count
@@ -167,8 +167,42 @@
 }
 
 - (IBAction)clickButton:(id)sender {
-    if (self.delegate && [self.delegate respondsToSelector:@selector(didClickMenu:tag:)]) {
-        [self.delegate didClickMenu:self tag:self.tag];
+    if (self.delegate && [self.delegate respondsToSelector:@selector(didClickMenu:type:)]) {
+        [self.delegate didClickMenu:self type:self.type];
     }
 }
 @end
+
+int *getDrawMainMenuTypeList()
+{
+    int static list[] = {
+        HomeMenuTypeDrawDraw,
+        HomeMenuTypeDrawGuess,
+        HomeMenuTypeDrawGame,
+        HomeMenuTypeDrawTimeline,
+        HomeMenuTypeDrawRank,
+        HomeMenuTypeDrawContest,
+        HomeMenuTypeDrawBBS,
+        HomeMenuTypeEnd
+    };
+    return list;
+}
+int *getDrawBottomMenuTypeList()
+{
+    int static list[] = {
+        HomeMenuTypeDrawHome,
+        HomeMenuTypeDrawOpus,
+        HomeMenuTypeDrawMessage,
+        HomeMenuTypeDrawSetting,
+        HomeMenuTypeEnd
+    };
+    return list;    
+}
+int *getZJHMainMenuTypeList()
+{
+    return NULL;
+}
+int *getZJHBottomMenuTypeList()
+{
+    return NULL;
+}

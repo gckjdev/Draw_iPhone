@@ -90,12 +90,12 @@
 }
 
 - (void)dealloc {
-    [_displayBG release];
-    [_avatar release];
-    [_nickName release];
-    [_coin release];
-    [_level release];
-    [_chargeButton release];
+    PPRelease(_displayBG);
+    PPRelease(_avatar);
+    PPRelease(_nickName);
+    PPRelease(_coin);
+    PPRelease(_level);
+    PPRelease(_chargeButton);
     [super dealloc];
 }
 - (IBAction)clickChargeButton:(id)sender {

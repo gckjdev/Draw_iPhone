@@ -7,6 +7,22 @@
 //
 
 #import "HomeMainMenuPanel.h"
+#import "HomeMenuView.h"
+
+
+@interface HomeMainMenuPanel ()
+{
+    NSInteger _pageCount;
+    NSInteger _nemuCount;
+}
+
+@property (retain, nonatomic) IBOutlet UIButton *previous;
+@property (retain, nonatomic) IBOutlet UIScrollView *scrollView;
+@property (retain, nonatomic) IBOutlet UIButton *next;
+- (IBAction)clickPageButton:(id)sender;
+
+- (HomeMenuView *)getMenuViewWithType:(HomeMenuType)type;
+@end
 
 @implementation HomeMainMenuPanel
 
@@ -23,15 +39,174 @@
     [view updateView];
     return view;
 }
+
 + (NSString *)getViewIdentifier
 {
     return @"HomeMainMenuPanel";
 }
 
+#define PER_ROW_NUMBER 3
+#define PER_LINE_NUMBER 2
+#define PER_PAGE_NUMBER (PER_ROW_NUMBER * PER_LINE_NUMBER)
+
+#define SCROLLVIEW_WIDTH (self.scrollView.frame.size.width)
+#define SCROLLVIEW_HEIGHT (self.scrollView.frame.size.height)
+
+- (HomeMenuView *)viewWithType:(HomeMenuType)type
+                          page:(NSInteger)page
+                         index:(NSInteger)index
+{
+    HomeMenuView *view = [HomeMenuView menuViewWithType:type badge:0 delegate:self];
+    CGFloat x = page * SCROLLVIEW_WIDTH;
+    NSInteger row = index % PER_ROW_NUMBER;
+    CGFloat viewWidth = view.frame.size.width;
+    x += viewWidth * row;
+    CGFloat y = 0;
+    
+    NSInteger line = index / PER_ROW_NUMBER;
+    if (line > 0) {
+        CGFloat viewHeight = view.frame.size.height;
+        y += viewHeight;
+    }
+
+    CGRect frame = view.frame;
+    frame.origin = CGPointMake(x, y);
+    view.frame = frame;
+    return view;
+}
+
 - (void)updateView
 {
+    int *list = NULL;
+    if (gameAppType() == GameAppTypeDraw) {
+        list = getDrawMainMenuTypeList();
+    }else if(gameAppType() == GameAppTypeZJH){
+        list = getZJHMainMenuTypeList();
+    }
     
+    _pageCount = 0;
+    _nemuCount = 0;
+    NSInteger index = 0;
+    
+    while(list != NULL && (*list) != HomeMenuTypeEnd) {
+        HomeMenuType type = *list;
+        HomeMenuView *view = [self viewWithType:type page:_pageCount index:index];
+        [self.scrollView addSubview:view];
+        
+        list++;
+        if ((++ _nemuCount) >= PER_ROW_NUMBER) {
+            _pageCount ++;
+            index = 0;
+        }else{
+            index ++;
+        }
+    }
+    
+    if(_nemuCount % PER_PAGE_NUMBER > 0){
+        _pageCount ++;
+    }
+    CGFloat width = self.scrollView.frame.size.width;
+    CGFloat height = self.scrollView.frame.size.height;
+    self.scrollView.contentSize = CGSizeMake(width * _pageCount, height);
+}
+
+- (HomeMenuView *)getMenuViewWithType:(HomeMenuType)type
+{
+    for (HomeMenuView *view in self.subviews) {
+        if ([view isKindOfClass:[HomeMenuView class]] && view.type == type) {
+            return view;
+        }
+    }
+    return nil;
+}
+
+- (void)updateMenu:(HomeMenuType)type badge:(NSInteger)badge
+{
+    HomeMenuView *view = [self getMenuViewWithType:type];
+    [view updateBadge:badge];
+}
+
+- (void)dealloc {
+    [_scrollView release];
+    [_previous release];
+    [_next release];
+    [super dealloc];
+}
+
+#pragma mark Page methods
+
+- (NSInteger)currentPage
+{
+    CGFloat x = self.scrollView.contentOffset.x;
+    return  x / SCROLLVIEW_WIDTH;
+}
+
+- (NSInteger)pageCount
+{
+    return _pageCount;
+}
+
+- (BOOL)isFirstPage
+{
+    return [self currentPage] == 0;
+}
+
+- (BOOL)isLastPage
+{
+    return [self currentPage] >= ([self pageCount] - 1);
+}
+
+- (void)updatePageButton
+{
+    [self.previous setHidden:[self isFirstPage]];
+    [self.next setHidden:[self isLastPage]];
+}
+
+- (void)scrollToPage:(NSInteger)page
+{
+    if (page >= 0 && page < [self pageCount]) {
+        CGRect frame = self.scrollView.frame;
+        frame.origin.x = page * SCROLLVIEW_WIDTH;
+        [self.scrollView scrollRectToVisible:frame animated:YES];
+    }
+}
+
+- (void)prevoiusPage
+{
+    if (![self isFirstPage]) {
+        [self scrollToPage:([self currentPage] - 1)];
+    }
+}
+- (void)nextPage
+{
+    if (![self isLastPage]) {
+        [self scrollToPage:([self currentPage] + 1)];
+    }
+}
+- (IBAction)clickPageButton:(id)sender {
+    if (sender == self.previous) {
+        [self previous];
+    }else if (sender == self.next){
+        [self next];
+    }
+}
+
+#pragma mark - Scroll View delegate
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
+{
+    [self updatePageButton];    
+}
+- (void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView
+{
+    [self updatePageButton];
 }
 
 
+#pragma mark - Home Menu View Delegate
+
+- (void)didClickMenu:(HomeMenuView *)menu type:(HomeMenuType)type
+{
+    
+}
 @end
