@@ -34,6 +34,7 @@
 @property (retain, nonatomic) IBOutlet UIView *rightTopAvatar;
 @property (retain, nonatomic) IBOutlet UIView *rightAvatar;
 @property (retain, nonatomic) IBOutlet UIView *centerAvatar;
+@property (retain, nonatomic) IBOutlet UIView *centerUpAvatar;
 @property (retain, nonatomic) IBOutlet UIView *leftAvatar;
 @property (retain, nonatomic) IBOutlet UIView *leftTopAvatar;
 @property (retain, nonatomic) IBOutlet ZJHPokerView *leftTopPokers;
@@ -41,12 +42,15 @@
 @property (retain, nonatomic) IBOutlet ZJHPokerView *leftPokers;
 @property (retain, nonatomic) IBOutlet ZJHPokerView *rightPokers;
 @property (retain, nonatomic) IBOutlet ZJHPokerView *centerPokers;
+@property (retain, nonatomic) IBOutlet ZJHPokerView *centerUpPokers;
 @property (retain, nonatomic) IBOutlet UIImageView *centerTotalBetBg;
+@property (retain, nonatomic) IBOutlet UIImageView *centerUpTotalBetBg;
 @property (retain, nonatomic) IBOutlet UIImageView *rightTotalBetBg;
 @property (retain, nonatomic) IBOutlet UIImageView *leftTotalBetBg;
 @property (retain, nonatomic) IBOutlet UIImageView *rightTopTotalBetBg;
 @property (retain, nonatomic) IBOutlet UIImageView *leftTopTotalBetBg;
 @property (retain, nonatomic) IBOutlet UILabel *centerTotalBet;
+@property (retain, nonatomic) IBOutlet UILabel *centerUpTotalBet;
 @property (retain, nonatomic) IBOutlet UILabel *leftTotalBet;
 @property (retain, nonatomic) IBOutlet UILabel *rightTotalBet;
 @property (retain, nonatomic) IBOutlet UILabel *rightTopTotalBet;

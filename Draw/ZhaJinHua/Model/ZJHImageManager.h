@@ -36,6 +36,7 @@
 - (UIImage*)chipsSelectViewBgImage;
 
 - (UIImage*)noUserAvatarBackground;
+- (UIImage*)noUserBigAvatarBackground;
 - (UIImage*)avatarBackground;
 - (UIImage*)myAvatarBackground;
 
@@ -91,4 +92,6 @@
 
 - (UIImage *)dispatcherImage;
 - (UIImage*)ZJHUserInfoBackgroundImage;
+- (UIImage *)coinsImage;
+
 @end

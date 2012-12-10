@@ -371,6 +371,17 @@ static ZJHImageManager* shareInstance;
 {
     return [_resService imageByName:@"avatar_default" inResourcePackage:RESOURCE_PACKAGE_ZJH];
 }
+
+- (UIImage*)noUserBigAvatarBackground
+{
+    return [_resService imageByName:@"avatar_default_big" inResourcePackage:RESOURCE_PACKAGE_ZJH];
+}
+
+- (UIImage *)coinsImage
+{
+    return [_resService imageByName:@"coin" inResourcePackage:RESOURCE_PACKAGE_ZJH];
+}
+
 - (UIImage*)avatarBackground
 {
     return [_resService imageByName:@"zjh_other_plyer_avatar" inResourcePackage:RESOURCE_PACKAGE_ZJH];
@@ -494,6 +505,7 @@ static ZJHImageManager* shareInstance;
 {
     switch (position) {
         case UserPositionCenter:
+        case UserPositionCenterUp:
         case UserPositionLeft:
         case UserPositionLeftTop:
             return [[_resService imageByName:@"zjh_bet1" inResourcePackage:RESOURCE_PACKAGE_ZJH] stretchableImageWithLeftCapWidth:24 topCapHeight:10];
@@ -514,6 +526,7 @@ static ZJHImageManager* shareInstance;
 {
     switch (position) {
         case UserPositionCenter:
+        case UserPositionCenterUp:
         case UserPositionLeft:
         case UserPositionLeftTop:
             return [[_resService imageByName:@"zjh_raise_bet1" inResourcePackage:RESOURCE_PACKAGE_ZJH] stretchableImageWithLeftCapWidth:24 topCapHeight:10];
@@ -534,6 +547,7 @@ static ZJHImageManager* shareInstance;
 {
     switch (position) {
         case UserPositionCenter:
+        case UserPositionCenterUp:
         case UserPositionLeft:
         case UserPositionLeftTop:
             return [[_resService imageByName:@"zjh_check_card1" inResourcePackage:RESOURCE_PACKAGE_ZJH] stretchableImageWithLeftCapWidth:24 topCapHeight:10];
@@ -554,6 +568,7 @@ static ZJHImageManager* shareInstance;
 {
     switch (position) {
         case UserPositionCenter:
+        case UserPositionCenterUp:
         case UserPositionLeft:
         case UserPositionLeftTop:
             return [[_resService imageByName:@"zjh_compare_card1" inResourcePackage:RESOURCE_PACKAGE_ZJH] stretchableImageWithLeftCapWidth:24 topCapHeight:10];
@@ -574,6 +589,7 @@ static ZJHImageManager* shareInstance;
 {
     switch (position) {
         case UserPositionCenter:
+        case UserPositionCenterUp:
         case UserPositionLeft:
         case UserPositionLeftTop:
             return [[_resService imageByName:@"zjh_fold_card1" inResourcePackage:RESOURCE_PACKAGE_ZJH] stretchableImageWithLeftCapWidth:24 topCapHeight:10];
@@ -618,11 +634,11 @@ static ZJHImageManager* shareInstance;
     switch ([DeviceDetection deviceScreenType]) {
         case DEVICE_SCREEN_IPAD:
         case DEVICE_SCREEN_NEW_IPAD:
-            return [_resService imageByName:@"zjh_game_bg_ipad_dual" inResourcePackage:RESOURCE_PACKAGE_ZJH];
+            return [_resService imageByName:@"zjh_game_bg_dual_ipad" inResourcePackage:RESOURCE_PACKAGE_ZJH];
             break;
             
         case DEVICE_SCREEN_IPHONE5:
-            return [_resService imageByName:@"zjh_game_bg_ip5_dual" inResourcePackage:RESOURCE_PACKAGE_ZJH];
+            return [_resService imageByName:@"zjh_game_bg_dual_ip5" inResourcePackage:RESOURCE_PACKAGE_ZJH];
             break;
             
         case DEVICE_SCREEN_IPHONE:

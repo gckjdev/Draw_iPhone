@@ -299,11 +299,18 @@
 		A4CE58E616324998003DB23A /* ChatView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4CE58E516324998003DB23A /* ChatView~ipad.xib */; };
 		A4D3B15B1560E4B50013C882 /* ExpressionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A4D3B1591560E4B50013C882 /* ExpressionManager.m */; };
 		A4D3B15E1560E4F80013C882 /* MessageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A4D3B15D1560E4F80013C882 /* MessageManager.m */; };
+		A4D6A763167591D3008DC151 /* ZJHDualRuleConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = A4D6A75C167591D3008DC151 /* ZJHDualRuleConfig.m */; };
+		A4D6A764167591D3008DC151 /* ZJHNormalRuleConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = A4D6A75E167591D3008DC151 /* ZJHNormalRuleConfig.m */; };
+		A4D6A765167591D3008DC151 /* ZJHRuleConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = A4D6A760167591D3008DC151 /* ZJHRuleConfig.m */; };
+		A4D6A766167591D3008DC151 /* ZJHRuleConfigFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = A4D6A762167591D3008DC151 /* ZJHRuleConfigFactory.m */; };
+		A4D6A76B16759201008DC151 /* avatar_default_big@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4D6A76716759201008DC151 /* avatar_default_big@2x.png */; };
+		A4D6A76C16759201008DC151 /* zjh_game_bg_dual@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A4D6A76816759201008DC151 /* zjh_game_bg_dual@2x.jpg */; };
+		A4D6A77116759321008DC151 /* ZJHGameController_dual~ip5.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4D6A76F16759321008DC151 /* ZJHGameController_dual~ip5.xib */; };
+		A4D6A775167593D8008DC151 /* zjh_game_bg_dual_ip5@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A4D6A773167593D8008DC151 /* zjh_game_bg_dual_ip5@2x.jpg */; };
+		A4D6A776167593D8008DC151 /* zjh_game_bg_dual_ipad@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A4D6A774167593D8008DC151 /* zjh_game_bg_dual_ipad@2x.jpg */; };
+		A4D6A7781675B4C3008DC151 /* ZJHGameController_dual~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4D6A7771675B4C3008DC151 /* ZJHGameController_dual~ipad.xib */; };
 		A4DF0556160C25B400246A40 /* ReverseItemAction.m in Sources */ = {isa = PBXBuildFile; fileRef = A4DF0555160C25B400246A40 /* ReverseItemAction.m */; };
 		A4DF0589160D735E00246A40 /* CutItemAction.m in Sources */ = {isa = PBXBuildFile; fileRef = A4DF0588160D735E00246A40 /* CutItemAction.m */; };
-		A4E40097166C44F6001D2658 /* ZJHBeginnerRuleConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = A4E40092166C44F6001D2658 /* ZJHBeginnerRuleConfig.m */; };
-		A4E40098166C44F6001D2658 /* ZJHRuleConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = A4E40094166C44F6001D2658 /* ZJHRuleConfig.m */; };
-		A4E40099166C44F6001D2658 /* ZJHRuleConfigFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = A4E40096166C44F6001D2658 /* ZJHRuleConfigFactory.m */; };
 		A4E7876A16366FF8003557AD /* ZhaJinHua.proto in Resources */ = {isa = PBXBuildFile; fileRef = A4E7876916366FF8003557AD /* ZhaJinHua.proto */; };
 		A4E787941636753F003557AD /* ZJHGameState.m in Sources */ = {isa = PBXBuildFile; fileRef = A4E787931636753F003557AD /* ZJHGameState.m */; };
 		A4F6712F166C878100FF85CA /* ArrowView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4F6712E166C878100FF85CA /* ArrowView.m */; };
@@ -448,6 +455,14 @@
 		C2EE14601665FE9300ADBE2E /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2EE145F1665FE9300ADBE2E /* CoreImage.framework */; };
 		C2EE1475166706BC00ADBE2E /* light.png in Resources */ = {isa = PBXBuildFile; fileRef = C2EE1473166706BB00ADBE2E /* light.png */; };
 		C2EE1476166706BC00ADBE2E /* star.png in Resources */ = {isa = PBXBuildFile; fileRef = C2EE1474166706BB00ADBE2E /* star.png */; };
+		C2EF181616758EEF00E5A9C5 /* ZJHPassWordDialog.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2EF180E16758EEF00E5A9C5 /* ZJHPassWordDialog.xib */; };
+		C2EF181716758EEF00E5A9C5 /* ZJHRoomPasswordDialog~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2EF180F16758EEF00E5A9C5 /* ZJHRoomPasswordDialog~ipad.xib */; };
+		C2EF181816758EEF00E5A9C5 /* CommonZJHDialog.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2EF181016758EEF00E5A9C5 /* CommonZJHDialog.xib */; };
+		C2EF181916758EEF00E5A9C5 /* ZJHInputDialog.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2EF181116758EEF00E5A9C5 /* ZJHInputDialog.xib */; };
+		C2EF181A16758EEF00E5A9C5 /* ZJHRoomPasswordDialog.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2EF181216758EEF00E5A9C5 /* ZJHRoomPasswordDialog.xib */; };
+		C2EF181B16758EEF00E5A9C5 /* CommonZJHDialog~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2EF181316758EEF00E5A9C5 /* CommonZJHDialog~ipad.xib */; };
+		C2EF181C16758EEF00E5A9C5 /* ZJHInputDialog~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2EF181416758EEF00E5A9C5 /* ZJHInputDialog~ipad.xib */; };
+		C2EF181D16758EEF00E5A9C5 /* ZJHPassWordDialog~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2EF181516758EEF00E5A9C5 /* ZJHPassWordDialog~ipad.xib */; };
 		C2F2CF981639165500995DCB /* ZJHImageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C2F2CF971639165500995DCB /* ZJHImageManager.m */; };
 		C2F2CFB3163932C000995DCB /* ZJHAvatarView.m in Sources */ = {isa = PBXBuildFile; fileRef = C2F2CFB2163932C000995DCB /* ZJHAvatarView.m */; };
 		C2F947D21533D91E0034C895 /* UFPController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2F947D01533D91E0034C895 /* UFPController.m */; };
@@ -2448,16 +2463,24 @@
 		A4D3B1591560E4B50013C882 /* ExpressionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExpressionManager.m; sourceTree = "<group>"; };
 		A4D3B15C1560E4F80013C882 /* MessageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageManager.h; sourceTree = "<group>"; };
 		A4D3B15D1560E4F80013C882 /* MessageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageManager.m; sourceTree = "<group>"; };
+		A4D6A75B167591D3008DC151 /* ZJHDualRuleConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJHDualRuleConfig.h; sourceTree = "<group>"; };
+		A4D6A75C167591D3008DC151 /* ZJHDualRuleConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJHDualRuleConfig.m; sourceTree = "<group>"; };
+		A4D6A75D167591D3008DC151 /* ZJHNormalRuleConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJHNormalRuleConfig.h; sourceTree = "<group>"; };
+		A4D6A75E167591D3008DC151 /* ZJHNormalRuleConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJHNormalRuleConfig.m; sourceTree = "<group>"; };
+		A4D6A75F167591D3008DC151 /* ZJHRuleConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJHRuleConfig.h; sourceTree = "<group>"; };
+		A4D6A760167591D3008DC151 /* ZJHRuleConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJHRuleConfig.m; sourceTree = "<group>"; };
+		A4D6A761167591D3008DC151 /* ZJHRuleConfigFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJHRuleConfigFactory.h; sourceTree = "<group>"; };
+		A4D6A762167591D3008DC151 /* ZJHRuleConfigFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJHRuleConfigFactory.m; sourceTree = "<group>"; };
+		A4D6A76716759201008DC151 /* avatar_default_big@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "avatar_default_big@2x.png"; sourceTree = "<group>"; };
+		A4D6A76816759201008DC151 /* zjh_game_bg_dual@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "zjh_game_bg_dual@2x.jpg"; sourceTree = "<group>"; };
+		A4D6A76F16759321008DC151 /* ZJHGameController_dual~ip5.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ZJHGameController_dual~ip5.xib"; sourceTree = "<group>"; };
+		A4D6A773167593D8008DC151 /* zjh_game_bg_dual_ip5@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "zjh_game_bg_dual_ip5@2x.jpg"; sourceTree = "<group>"; };
+		A4D6A774167593D8008DC151 /* zjh_game_bg_dual_ipad@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "zjh_game_bg_dual_ipad@2x.jpg"; sourceTree = "<group>"; };
+		A4D6A7771675B4C3008DC151 /* ZJHGameController_dual~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ZJHGameController_dual~ipad.xib"; sourceTree = "<group>"; };
 		A4DF0554160C25B400246A40 /* ReverseItemAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReverseItemAction.h; sourceTree = "<group>"; };
 		A4DF0555160C25B400246A40 /* ReverseItemAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReverseItemAction.m; sourceTree = "<group>"; };
 		A4DF0587160D735E00246A40 /* CutItemAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CutItemAction.h; sourceTree = "<group>"; };
 		A4DF0588160D735E00246A40 /* CutItemAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CutItemAction.m; sourceTree = "<group>"; };
-		A4E40091166C44F6001D2658 /* ZJHBeginnerRuleConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJHBeginnerRuleConfig.h; sourceTree = "<group>"; };
-		A4E40092166C44F6001D2658 /* ZJHBeginnerRuleConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJHBeginnerRuleConfig.m; sourceTree = "<group>"; };
-		A4E40093166C44F6001D2658 /* ZJHRuleConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJHRuleConfig.h; sourceTree = "<group>"; };
-		A4E40094166C44F6001D2658 /* ZJHRuleConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJHRuleConfig.m; sourceTree = "<group>"; };
-		A4E40095166C44F6001D2658 /* ZJHRuleConfigFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJHRuleConfigFactory.h; sourceTree = "<group>"; };
-		A4E40096166C44F6001D2658 /* ZJHRuleConfigFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJHRuleConfigFactory.m; sourceTree = "<group>"; };
 		A4E7876916366FF8003557AD /* ZhaJinHua.proto */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ZhaJinHua.proto; sourceTree = "<group>"; };
 		A4E787921636753F003557AD /* ZJHGameState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJHGameState.h; sourceTree = "<group>"; };
 		A4E787931636753F003557AD /* ZJHGameState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJHGameState.m; sourceTree = "<group>"; };
@@ -2676,6 +2699,14 @@
 		C2EE145F1665FE9300ADBE2E /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
 		C2EE1473166706BB00ADBE2E /* light.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = light.png; sourceTree = "<group>"; };
 		C2EE1474166706BB00ADBE2E /* star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = star.png; sourceTree = "<group>"; };
+		C2EF180E16758EEF00E5A9C5 /* ZJHPassWordDialog.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZJHPassWordDialog.xib; sourceTree = "<group>"; };
+		C2EF180F16758EEF00E5A9C5 /* ZJHRoomPasswordDialog~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ZJHRoomPasswordDialog~ipad.xib"; sourceTree = "<group>"; };
+		C2EF181016758EEF00E5A9C5 /* CommonZJHDialog.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommonZJHDialog.xib; sourceTree = "<group>"; };
+		C2EF181116758EEF00E5A9C5 /* ZJHInputDialog.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZJHInputDialog.xib; sourceTree = "<group>"; };
+		C2EF181216758EEF00E5A9C5 /* ZJHRoomPasswordDialog.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZJHRoomPasswordDialog.xib; sourceTree = "<group>"; };
+		C2EF181316758EEF00E5A9C5 /* CommonZJHDialog~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "CommonZJHDialog~ipad.xib"; sourceTree = "<group>"; };
+		C2EF181416758EEF00E5A9C5 /* ZJHInputDialog~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ZJHInputDialog~ipad.xib"; sourceTree = "<group>"; };
+		C2EF181516758EEF00E5A9C5 /* ZJHPassWordDialog~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ZJHPassWordDialog~ipad.xib"; sourceTree = "<group>"; };
 		C2F2CF961639165500995DCB /* ZJHImageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJHImageManager.h; sourceTree = "<group>"; };
 		C2F2CF971639165500995DCB /* ZJHImageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJHImageManager.m; sourceTree = "<group>"; };
 		C2F2CFB1163932C000995DCB /* ZJHAvatarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJHAvatarView.h; sourceTree = "<group>"; };
@@ -5042,6 +5073,10 @@
 		A405C82E165B874500E7610F /* room */ = {
 			isa = PBXGroup;
 			children = (
+				A4D6A773167593D8008DC151 /* zjh_game_bg_dual_ip5@2x.jpg */,
+				A4D6A774167593D8008DC151 /* zjh_game_bg_dual_ipad@2x.jpg */,
+				A4D6A76716759201008DC151 /* avatar_default_big@2x.png */,
+				A4D6A76816759201008DC151 /* zjh_game_bg_dual@2x.jpg */,
 				C26EBE5F16719B6B00E8B38D /* ZJHUserInfoBackground.png */,
 				A49A0837166D95EF003E0F75 /* show_card_button_bg@2x.png */,
 				A49A0838166D95EF003E0F75 /* show_card_button_popup_bg@2x.png */,
@@ -5624,12 +5659,22 @@
 		A4E7877D16367338003557AD /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				C250AD0A1653A7E500003E15 /* room */,
+				A4D6A75B167591D3008DC151 /* ZJHDualRuleConfig.h */,
+				A4D6A75C167591D3008DC151 /* ZJHDualRuleConfig.m */,
+				A4D6A75D167591D3008DC151 /* ZJHNormalRuleConfig.h */,
+				A4D6A75E167591D3008DC151 /* ZJHNormalRuleConfig.m */,
+				A4D6A75F167591D3008DC151 /* ZJHRuleConfig.h */,
+				A4D6A760167591D3008DC151 /* ZJHRuleConfig.m */,
+				A4D6A761167591D3008DC151 /* ZJHRuleConfigFactory.h */,
+				A4D6A762167591D3008DC151 /* ZJHRuleConfigFactory.m */,
 				A4A4F8E71671982A00EFC465 /* ZJHGameController_dual.xib */,
+				A4D6A76F16759321008DC151 /* ZJHGameController_dual~ip5.xib */,
 				A4A4F8E81671982B00EFC465 /* ZJHUserPosInfo.h */,
 				A4A4F8E91671982B00EFC465 /* ZJHUserPosInfo.m */,
-				C250AD0A1653A7E500003E15 /* room */,
 				A42EA4391653415F0080BB95 /* ZJHGameController~ip5.xib */,
 				A42EA3331651F0220080BB95 /* ZJHGameController~ipad.xib */,
+				A4D6A7771675B4C3008DC151 /* ZJHGameController_dual~ipad.xib */,
 				A44B6223163787F500A8045B /* ZJHGameController.h */,
 				A44B6224163787F500A8045B /* ZJHGameController.m */,
 				A44B6225163787F500A8045B /* ZJHGameController.xib */,
@@ -5671,12 +5716,6 @@
 		A4E7878016367338003557AD /* Service */ = {
 			isa = PBXGroup;
 			children = (
-				A4E40091166C44F6001D2658 /* ZJHBeginnerRuleConfig.h */,
-				A4E40092166C44F6001D2658 /* ZJHBeginnerRuleConfig.m */,
-				A4E40093166C44F6001D2658 /* ZJHRuleConfig.h */,
-				A4E40094166C44F6001D2658 /* ZJHRuleConfig.m */,
-				A4E40095166C44F6001D2658 /* ZJHRuleConfigFactory.h */,
-				A4E40096166C44F6001D2658 /* ZJHRuleConfigFactory.m */,
 				A44B621D163786D500A8045B /* ZJHGameService.h */,
 				A44B621E163786D500A8045B /* ZJHGameService.m */,
 				A44B627D163E7AD100A8045B /* ZJHGameNotification.h */,
@@ -7031,30 +7070,38 @@
 				CA322193151F64F90039A384 /* CommonDialog.xib */,
 				C20D4B1015DE45B100074885 /* CommonDiceDialog.xib */,
 				C22CDE14166081C100844C93 /* CommonStarryDialog.xib */,
+				C2EF181016758EEF00E5A9C5 /* CommonZJHDialog.xib */,
 				A3FAE0DD15536EF0008B5827 /* CommonDialog~ipad.xib */,
 				C213093D15E393030072A18E /* CommonDiceDialog~ipad.xib */,
 				C22CDE161660823C00844C93 /* CommonStarryDialog~ipad.xib */,
+				C2EF181316758EEF00E5A9C5 /* CommonZJHDialog~ipad.xib */,
 				CA1377ED1525A2D700B5790B /* ShareImageManager.h */,
 				CA1377EE1525A2D700B5790B /* ShareImageManager.m */,
 				CA959892152F546F0093FEDB /* InputDialog.h */,
 				CA959893152F54700093FEDB /* InputDialog.m */,
 				CA959894152F54700093FEDB /* InputDialog.xib */,
 				C20D4B2615E21C0200074885 /* DiceInputDialog.xib */,
+				C2EF181116758EEF00E5A9C5 /* ZJHInputDialog.xib */,
 				A3FAE0DF15536F43008B5827 /* InputDialog~ipad.xib */,
 				C213093F15E3931F0072A18E /* DiceInputDialog~ipad.xib */,
+				C2EF181416758EEF00E5A9C5 /* ZJHInputDialog~ipad.xib */,
 				CAA47812152FF70D005EDB24 /* PassWordDialog.h */,
 				CAA47813152FF70D005EDB24 /* PassWordDialog.m */,
 				CAA47814152FF70D005EDB24 /* PassWordDialog.xib */,
 				C20D4B2815E21CC000074885 /* DicePassWordDialog.xib */,
+				C2EF180E16758EEF00E5A9C5 /* ZJHPassWordDialog.xib */,
 				A3FAE0E315536FE3008B5827 /* PassWordDialog~ipad.xib */,
 				C213094115E393320072A18E /* DicePassWordDialog~ipad.xib */,
+				C2EF181516758EEF00E5A9C5 /* ZJHPassWordDialog~ipad.xib */,
 				C2B3E9931555175B00CCF52C /* DrawConstants.h */,
 				CA31D8261561F70D00199A24 /* RoomPasswordDialog.h */,
 				CA31D8271561F70D00199A24 /* RoomPasswordDialog.m */,
 				CA31D8281561F70D00199A24 /* RoomPasswordDialog.xib */,
 				C20D4B2A15E220B400074885 /* DiceRoomPasswordDialog.xib */,
+				C2EF181216758EEF00E5A9C5 /* ZJHRoomPasswordDialog.xib */,
 				CA31D82B1561F72C00199A24 /* RoomPasswordDialog~ipad.xib */,
 				C213094315E393400072A18E /* DiceRoomPasswordDialog~ipad.xib */,
+				C2EF180F16758EEF00E5A9C5 /* ZJHRoomPasswordDialog~ipad.xib */,
 				C2615A9B1597FBB700CEEC66 /* CommonUserInfoView.h */,
 				C2615A9C1597FBB800CEEC66 /* CommonUserInfoView.m */,
 				C2615A9E1597FBEB00CEEC66 /* CommonUserInfoView.xib */,
@@ -12192,6 +12239,20 @@
 				CA1DA9681673301B0078B5A9 /* HomeMainMenu.xib in Resources */,
 				CA1DA96A167330300078B5A9 /* HomeBottomMenu.xib in Resources */,
 				CA1DAA31167583130078B5A9 /* DrawHomeHeaderPanel.xib in Resources */,
+				C2EF181616758EEF00E5A9C5 /* ZJHPassWordDialog.xib in Resources */,
+				C2EF181716758EEF00E5A9C5 /* ZJHRoomPasswordDialog~ipad.xib in Resources */,
+				C2EF181816758EEF00E5A9C5 /* CommonZJHDialog.xib in Resources */,
+				C2EF181916758EEF00E5A9C5 /* ZJHInputDialog.xib in Resources */,
+				C2EF181A16758EEF00E5A9C5 /* ZJHRoomPasswordDialog.xib in Resources */,
+				C2EF181B16758EEF00E5A9C5 /* CommonZJHDialog~ipad.xib in Resources */,
+				C2EF181C16758EEF00E5A9C5 /* ZJHInputDialog~ipad.xib in Resources */,
+				C2EF181D16758EEF00E5A9C5 /* ZJHPassWordDialog~ipad.xib in Resources */,
+				A4D6A76B16759201008DC151 /* avatar_default_big@2x.png in Resources */,
+				A4D6A76C16759201008DC151 /* zjh_game_bg_dual@2x.jpg in Resources */,
+				A4D6A77116759321008DC151 /* ZJHGameController_dual~ip5.xib in Resources */,
+				A4D6A775167593D8008DC151 /* zjh_game_bg_dual_ip5@2x.jpg in Resources */,
+				A4D6A776167593D8008DC151 /* zjh_game_bg_dual_ipad@2x.jpg in Resources */,
+				A4D6A7781675B4C3008DC151 /* ZJHGameController_dual~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -12830,9 +12891,6 @@
 				CA1250CD1668BB6800AFCC04 /* GameConfigDataUtils.m in Sources */,
 				CA1250D31668BD5200AFCC04 /* Config.pb.m in Sources */,
 				CA659774166BD41F00A239E1 /* BBSActionSheet.m in Sources */,
-				A4E40097166C44F6001D2658 /* ZJHBeginnerRuleConfig.m in Sources */,
-				A4E40098166C44F6001D2658 /* ZJHRuleConfig.m in Sources */,
-				A4E40099166C44F6001D2658 /* ZJHRuleConfigFactory.m in Sources */,
 				CA659789166C58B900A239E1 /* BBSOptionView.m in Sources */,
 				A4F6712F166C878100FF85CA /* ArrowView.m in Sources */,
 				C28A23C1166C90E2007C9EA5 /* OpenGLTexture3D.m in Sources */,
@@ -12854,6 +12912,10 @@
 				CA1DA95A16732EED0078B5A9 /* HomeBottomMenuPanel.m in Sources */,
 				CA1DA96D1673320C0078B5A9 /* HomeCommonView.m in Sources */,
 				CA1DA9701673437A0078B5A9 /* HomeMenuView.m in Sources */,
+				A4D6A763167591D3008DC151 /* ZJHDualRuleConfig.m in Sources */,
+				A4D6A764167591D3008DC151 /* ZJHNormalRuleConfig.m in Sources */,
+				A4D6A765167591D3008DC151 /* ZJHRuleConfig.m in Sources */,
+				A4D6A766167591D3008DC151 /* ZJHRuleConfigFactory.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -13,17 +13,21 @@
 #import "ZJHPokerView.h"
 
 @interface ZJHUserPosInfo : NSObject
-@property (retain, nonatomic) ZJHAvatarView *avatar;
+@property (assign, nonatomic) ZJHAvatarView *avatar;
 
 @property (assign, nonatomic) UserPosition pos;
 
-@property (retain, nonatomic) ZJHPokerView *pokersView;
-@property (retain, nonatomic) UILabel *totalBetLabel;
-@property (retain, nonatomic) UIImageView *totalBetBg;
+@property (assign, nonatomic) ZJHPokerView *pokersView;
+@property (assign, nonatomic) CGSize pokerSize;
+@property (assign, nonatomic) CGFloat gap;
+@property (assign, nonatomic) UILabel *totalBetLabel;
+@property (assign, nonatomic) UIImageView *totalBetBg;
 
 + (ZJHUserPosInfo *)userPosInfoWithPos:(UserPosition)pos
                                 avatar:(ZJHAvatarView*)avatar
                             pokersView:(ZJHPokerView*)pokersView
+                             pokerSize:(CGSize)pokerSize
+                                   gap:(CGFloat)gap
                          totalBetLabel:(UILabel *)totalBetLabel
                             totalBetBg:(UIImageView *)totalBetBg;
 

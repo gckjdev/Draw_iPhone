@@ -7,15 +7,20 @@
 //
 
 #import "ZJHRuleConfigFactory.h"
-#import "ZJHBeginnerRuleConfig.h"
+#import "ZJHNormalRuleConfig.h"
+#import "ZJHDualRuleConfig.h"
 
 @implementation ZJHRuleConfigFactory
 
 + (ZJHRuleConfig *)createRuleConfig
 {
     switch ([[ZJHGameService defaultService] rule]) {
-        case PBZJHRuleTypeBeginer:
-            return [[[ZJHBeginnerRuleConfig alloc] init] autorelease];
+        case PBZJHRuleTypeNormal:
+            return [[[ZJHNormalRuleConfig alloc] init] autorelease];
+            break;
+            
+        case PBZJHRuleTypeDual:
+            return [[[ZJHDualRuleConfig alloc] init] autorelease];
             break;
             
         default:

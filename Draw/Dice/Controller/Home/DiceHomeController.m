@@ -667,6 +667,7 @@
         
         [self showActivityWithText:NSLS(@"kConnectingServer")];
         
+        [[ZJHGameService defaultService] setRule:PBZJHRuleTypeDual];
         [[ZJHGameService defaultService] connectServer];
         
     } failure:^(NSError *error, UIView* downloadView) {

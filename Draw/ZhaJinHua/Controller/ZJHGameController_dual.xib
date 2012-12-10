@@ -68,7 +68,7 @@
 					<object class="IBUIView" id="358253513">
 						<reference key="NSNextResponder" ref="483638841"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{32, 111}, {256, 278}}</string>
+						<string key="NSFrame">{{10, 142}, {300, 250}}</string>
 						<reference key="NSSuperview" ref="483638841"/>
 						<reference key="NSNextKeyView" ref="609306115"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
@@ -358,7 +358,6 @@
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{272, 421}, {45, 30}}</string>
 						<reference key="NSSuperview" ref="483638841"/>
-						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -398,7 +397,6 @@
 						<reference key="IBUIShadowColor" ref="321640810"/>
 						<string key="IBUIShadowOffset">{0, 1}</string>
 						<int key="IBUIBaselineAdjustment">0</int>
-						<int key="IBUITextAlignment">1</int>
 						<object class="IBUIFontDescription" key="IBUIFontDescription" id="144605954">
 							<int key="type">1</int>
 							<double key="pointSize">13</double>
@@ -462,7 +460,6 @@
 						<reference key="IBUIShadowColor" ref="321640810"/>
 						<string key="IBUIShadowOffset">{0, 1}</string>
 						<int key="IBUIBaselineAdjustment">0</int>
-						<int key="IBUITextAlignment">1</int>
 						<reference key="IBUIFontDescription" ref="144605954"/>
 						<reference key="IBUIFont" ref="645857597"/>
 						<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
@@ -504,7 +501,7 @@
 					<object class="IBUIView" id="235632527">
 						<reference key="NSNextResponder" ref="483638841"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{106, 111}, {108, 48}}</string>
+						<string key="NSFrame">{{137, 111}, {46, 48}}</string>
 						<reference key="NSSuperview" ref="483638841"/>
 						<reference key="NSNextKeyView" ref="541768009"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
@@ -920,6 +917,70 @@
 					<int key="connectionID">3906</int>
 				</object>
 				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">centerUpPokers</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="235632527"/>
+					</object>
+					<int key="connectionID">3915</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">centerPokers</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="906806925"/>
+					</object>
+					<int key="connectionID">3916</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">centerTotalBetBg</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="130240245"/>
+					</object>
+					<int key="connectionID">3917</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">centerTotalBet</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="675463111"/>
+					</object>
+					<int key="connectionID">3918</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">centerUpTotalBetBg</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="541768009"/>
+					</object>
+					<int key="connectionID">3919</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">centerUpTotalBet</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="116997832"/>
+					</object>
+					<int key="connectionID">3920</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">centerAvatar</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="735002969"/>
+					</object>
+					<int key="connectionID">3921</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">centerUpAvatar</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="859319420"/>
+					</object>
+					<int key="connectionID">3922</int>
+				</object>
+				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">clickSettingButton:</string>
 						<reference key="source" ref="1054681330"/>
@@ -1311,7 +1372,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">3914</int>
+			<int key="maxID">3922</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes"/>
 		<int key="IBDocument.localizationMode">0</int>

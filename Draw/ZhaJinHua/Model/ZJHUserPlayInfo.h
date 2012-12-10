@@ -28,6 +28,7 @@
 @property (assign, nonatomic) BOOL alreadCompareLose;
 @property (assign, nonatomic) int compareAward;
 @property (assign, nonatomic) int resultAward;
+
 @property (retain, nonatomic) NSMutableArray *replacedPokers;
 
 + (ZJHUserPlayInfo *)fromPBZJHUserPlayInfo:(PBZJHUserPlayInfo *)pbZJHUserPlayInfo;

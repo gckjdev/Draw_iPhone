@@ -12,10 +12,12 @@
 
 #define INPUT_DIALOG_THEME_DRAW @"InputDialog"
 #define INPUT_DIALOG_THEME_DICE @"DiceInputDialog"
+#define INPUT_DIALOG_THEME_ZJH @"ZJHInputDialog"
 
 typedef enum {
     CommonInputDialogThemeDraw = 0,
-    CommonInputDialogThemeDice = 1
+    CommonInputDialogThemeDice,
+    CommonInputDialogThemeZJH,
 }CommonInputDialogTheme;
 
 @class InputDialog;

@@ -327,14 +327,14 @@
 #pragma mark - Button action
 
 - (IBAction)clickBackButton:(id)sender {
-    CommonDialog* dialog = [CommonDialog createDialogWithTitle:nil message:@"确定退出游戏吗？确定退出游戏吗？确定退出游戏吗？" style:CommonDialogStyleDoubleButton delegate:nil theme:CommonDialogThemeStarry
-                            ];
-    [dialog setClickOkBlock:^{
-        [self.navigationController popViewControllerAnimated:YES];
-    }];
-    [dialog showInView:self.view];
-//    [_gameService quitGame];
-//    [self.navigationController popViewControllerAnimated:YES];
+//    CommonDialog* dialog = [CommonDialog createDialogWithTitle:nil message:@"确定退出游戏吗？确定退出游戏吗？确定退出游戏吗？" style:CommonDialogStyleDoubleButton delegate:nil theme:CommonDialogThemeStarry
+//                            ];
+//    [dialog setClickOkBlock:^{
+//        [self.navigationController popViewControllerAnimated:YES];
+//    }];
+//    [dialog showInView:self.view];
+    [_gameService quitGame];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (IBAction)clickFastEntryButton:(id)sender {
@@ -349,14 +349,12 @@
     }else {
         [self handleJoinGameError:[self handlePrejoinGameCheck]];
     }
-    [self showStarryLoadingWithText:@"Creating room."];
 }
 
 - (void)showCreateRoomView
 { 
     RoomPasswordDialog *inputDialog = [RoomPasswordDialog dialogWith:NSLS(@"kCreateRoom")
-                                                            delegate:self
-                                                               theme:CommonDialogThemeDice];
+                                                            delegate:self];
     inputDialog.targetTextField.text = [[UserManager defaultManager] defaultUserRoomName];
     inputDialog.targetTextField.placeholder = NSLS(@"kInputWordPlaceholder");
     inputDialog.passwordField.placeholder = NSLS(@"kDiceEnterPassword");
@@ -402,7 +400,7 @@
 {
     InputDialog *inputDialog = [InputDialog dialogWith:NSLS(@"kPassword")
                                               delegate:self
-                                                 theme:CommonDialogThemeDice];
+                                                 theme:CommonInputDialogThemeZJH];
     inputDialog.targetTextField.text = nil;
     inputDialog.targetTextField.placeholder = NSLS(@"kEnterPassword");
     [inputDialog showInView:self.view];

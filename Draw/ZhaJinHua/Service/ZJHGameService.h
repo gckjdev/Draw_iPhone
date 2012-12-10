@@ -10,10 +10,11 @@
 #import "ZJHGameState.h"
 #import "ZJHGameNotification.h"
 #import "AccountService.h"
+#import "UserService.h"
 
 
 
-@interface ZJHGameService : CommonGameNetworkService <AccountServiceDelegate>
+@interface ZJHGameService : CommonGameNetworkService <AccountServiceDelegate, UserServiceDelegate>
 
 @property (readonly, retain, nonatomic) ZJHGameState *gameState;
 @property (retain, nonatomic) NSArray *chipValues;
@@ -58,6 +59,8 @@
 - (BOOL)doIWin;
 - (NSString *)winner;
 - (int)myBalance;
+- (int)balanceOfUser:(NSString *)userId;
+- (int)levelOfUser:(NSString *)userId;
 
 - (NSArray *)compareUserIdList;
 
@@ -66,7 +69,11 @@
 - (void)chargeAccount:(int)amount
                source:(BalanceSourceType)source;
 - (void)syncAccount:(id<AccountServiceDelegate>)delegate;
+//- (void)getAccount;
 
 - (NSArray *)myReplacedCards;
+- (NSArray *)replacedCardsOfUser:(NSString *)userId;
+
+- (BOOL)coinsNeedToJoinGame;
 
 @end

@@ -10,6 +10,7 @@
 
 #define ROOM_PASSWORD_DIALOG    @"RoomPasswordDialog"
 #define DICE_ROOM_PASSWORD_DIALOG   @"DiceRoomPasswordDialog"
+#define ZJH_ROOM_PASSWORD_DIALOG   @"ZJHRoomPasswordDialog"
 
 @interface RoomPasswordDialog : InputDialog
 @property (retain, nonatomic) IBOutlet UITextField *passwordField;

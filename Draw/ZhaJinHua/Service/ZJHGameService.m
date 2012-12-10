@@ -14,6 +14,7 @@
 #import "UserManager.h"
 #import "ConfigManager.h"
 #import "ZJHRuleConfigFactory.h"
+#import "MyFriend.h"
 
 static ZJHGameService *_defaultService;
 
@@ -21,10 +22,11 @@ static ZJHGameService *_defaultService;
 {
     UserManager *_userManager;
     AccountService *_accountService;
+//    dispatch_queue_t _getUserInfoQueue;
 }
 
 @property (readwrite, retain, nonatomic) ZJHGameState *gameState;
-
+//@property (retain, nonatomic) NSMutableDictionary *userSimpleInfo;
 @end
 
 @implementation ZJHGameService
@@ -49,9 +51,18 @@ static ZJHGameService *_defaultService;
         _networkClient = [CommonGameNetworkClient defaultInstance];
         _userManager = [UserManager defaultManager];
         _accountService = [AccountService defaultService];
+//        _getUserInfoQueue = dispatch_queue_create("ZJHGameServiceGetUserInfoQueue", NULL);
+//        self.userSimpleInfo = [NSMutableDictionary dictionary];
     }
 
     return self;
+}
+
+- (void)dealloc
+{
+//    dispatch_release(_getUserInfoQueue);
+//    [_userSimpleInfo release];
+    [super dealloc];
 }
 
 #pragma mark - public methods
@@ -497,7 +508,23 @@ static ZJHGameService *_defaultService;
 - (NSString *)getServerListString
 {
 //    return @"58.215.172.169:8027";
-        return @"192.168.1.5:8027";
+    switch (self.rule) {
+        case PBZJHRuleTypeDual:
+//            return @"58.215.172.169:8030";
+            return @"192.168.1.5:8027";
+
+            break;
+            
+        case PBZJHRuleTypeNormal:
+            return @"192.168.1.5:8027";
+            break;
+            
+        default:
+            return @"192.168.1.5:8027";
+            break;
+    }
+    
+    return nil;
 }
 
 - (ZJHUserPlayInfo *)myPlayInfo
@@ -512,6 +539,29 @@ static ZJHGameService *_defaultService;
         return 0;
     }
     return balance;
+}
+
+- (int)balanceOfUser:(NSString *)userId
+{
+    if (userId == nil) {
+        return 0;
+    }
+    
+    int balance = [[self.userSimpleInfo valueForKey:userId] coins] - [[self userPlayInfo:userId] totalBet] + [[self userPlayInfo:userId] compareAward] + [[self userPlayInfo:userId] resultAward];
+    
+    if (balance < 0) {
+        return 0;
+    }
+    return balance;
+}
+
+- (int)levelOfUser:(NSString *)userId
+{
+    if (userId == nil) {
+        return -1;
+    }
+        
+    return [[self.userSimpleInfo valueForKey:userId] level];
 }
 
 - (NSArray *)compareUserIdList
@@ -551,5 +601,14 @@ static ZJHGameService *_defaultService;
     return [[self myPlayInfo] replacedPokers];
 }
 
+- (NSArray *)replacedCardsOfUser:(NSString *)userId
+{
+    return [[self userPlayInfo:userId] replacedPokers];
+}
+
+- (BOOL)coinsNeedToJoinGame
+{
+    return [[[self chipValues] lastObject] intValue] * 8;
+}
 
 @end

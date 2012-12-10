@@ -11,6 +11,7 @@
 #import "PokerView.h"
 #import "ZJHImageManager.h"
 #import "ZJHUserPosInfo.h"
+#import "ZJHGameController.h"
 
 @class ZJHGameController;
 
@@ -34,12 +35,21 @@
 
 #define BUTTON_FONT ([DeviceDetection isIPAD] ? [UIFont systemFontOfSize:18] : [UIFont systemFontOfSize:12])
 
+
+#define TEXT_COLOR_ENABLED [UIColor colorWithRed:199.0/255.0 green:252.0/255.0 blue:254.0/255.0 alpha:1]
+#define TEXT_COLOR_DISENABLED [UIColor colorWithRed:68.0/255.0 green:109.0/255.0 blue:110.0/255.0 alpha:1]
+
 @interface ZJHRuleConfig : NSObject
 
+// methods may be need to be replaced in sub class.
 - (NSArray *)chipValues;
-- (UIView *)createButtons:(PokerView *)pokerView;
 - (int)maxPlayerNum;
 - (UIImage *)gameBgImage;
 - (NSDictionary *)initAllAvatar:(ZJHGameController *)controller;
+- (UserPosition)positionBySeatIndex:(int)index;
+
+- (UIView *)createButtons:(PokerView *)pokerView;
+- (ZJHMyAvatarView *)bigAvatarWithFrame:(CGRect)frame;
+- (ZJHAvatarView *)avatarWithFrame:(CGRect)frame;
 
 @end

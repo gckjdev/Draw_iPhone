@@ -10,7 +10,8 @@
 #import "AccountService.h"
 #import "LevelService.h"
 #import "ZJHGameService.h"
-
+#import "UserManager.h"
+#import "ZJHImageManager.h"
 
 @implementation ZJHMyAvatarView
 
@@ -49,17 +50,39 @@
     view.roundAvatar.delegate = view;
     
     [view addTapGuesture];
+    view.coinsImageView.hidden = YES;
     
     return view;
 }
 
 - (void)resetAvatar
 {
+    [super resetAvatar];
 
+    [self.backgroundImageView setImage:[ZJHImageManager defaultManager].noUserBigAvatarBackground];
+    
+    [self.levelLabel setText:nil];
+    [self.coinsLabel setText:nil];
+    self.coinsImageView.hidden = YES;
 }
 
+// 别人的头像用这个方法。
+- (void)updateByPBGameUser:(PBGameUser *)user
+{
+    [super updateByPBGameUser:user];
+    
+    if ([[UserManager defaultManager] isMe:user.userId]) {
+        [self update];
+    }else{
+        self.coinsImageView.hidden = NO;
+        [self.levelLabel setText:[NSString stringWithFormat:@"LV.%d",[[ZJHGameService defaultService] levelOfUser:user.userId]]];
+        [self.coinsLabel setText:[NSString stringWithFormat:@"x%d",[[ZJHGameService defaultService] balanceOfUser:user.userId]]];
+    }
+}
 
+// 自己的头像用这个方法。
 - (void)update{
+    self.coinsImageView.hidden = NO;
     [self.levelLabel setText:[NSString stringWithFormat:@"LV.%d",[[LevelService defaultService] levelForSource:LevelSourceZhajinhua]]];
     [self.coinsLabel setText:[NSString stringWithFormat:@"x%d",[ZJHGameService defaultService].myBalance]];
 }
@@ -76,6 +99,7 @@
 - (void)dealloc {
     [_levelLabel release];
     [_coinsLabel release];
+    [_coinsImageView release];
     [super dealloc];
 }
 @end
