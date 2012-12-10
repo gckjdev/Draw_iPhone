@@ -61,14 +61,18 @@
     DiceImageManager* diceImgManager = [DiceImageManager defaultManager];
     float fontSize = [DeviceDetection isIPAD] ? 40 : 20;
     
+    
     [self.targetTextField setBackground:[diceImgManager inputBackgroundImage]];
-    [self.titleLabel.titleLabel setText:title];
+    [self.titleLabel setTitle:title forState:UIControlStateNormal];
     
     [self.okButton setRoyButtonWithColor:[UIColor colorWithRed:244.0/255.0 green:93.0/255.0 blue:93.0/255.0 alpha:0.95]];
     [self.cancelButton setRoyButtonWithColor:[UIColor colorWithRed:236.0/255.0 green:247.0/255.0 blue:63.0/255.0 alpha:0.95]];
     
     [self.cancelButton setTitle:NSLS(@"kCancel") forState:UIControlStateNormal];
+    [self.cancelButton.titleLabel setFont:[UIFont boldSystemFontOfSize:fontSize]];
     [self.okButton setTitle:NSLS(@"kOK") forState:UIControlStateNormal];
+    [self.okButton.titleLabel setFont:[UIFont boldSystemFontOfSize:fontSize]];
+    
     self.titleLabel.titleLabel.font = [UIFont boldSystemFontOfSize:fontSize];
     self.titleLabel.titleLabel.adjustsFontSizeToFitWidth = YES;
     self.titleLabel.titleLabel.lineBreakMode = UILineBreakModeTailTruncation;
@@ -158,6 +162,7 @@
         } break;
         case CommonInputDialogThemeZJH: {
             view = (InputDialog*)[self createInfoViewByXibName:INPUT_DIALOG_THEME_ZJH];
+            view.bgView.image = [[ZJHImageManager defaultManager] ZJHUserInfoBackgroundImage];
         } break;
         default:
             PPDebug(@"<CommonDialog> theme %d do not exist",theme);
