@@ -52,21 +52,21 @@
     [self.passwordField setBackground:[imageManager inputImage]];
 }
 
-- (void)initByDice:(NSString*)title
+- (void)initByZJH:(NSString*)title
 {
     DiceImageManager* diceImgManager = [DiceImageManager defaultManager];
     float fontSize = [DeviceDetection isIPAD] ? 40 : 20;
     
-    [self.contentBackground setImage:[DiceImageManager defaultManager].helpBackgroundImage];
+    [self.contentBackground setImage:[ZJHImageManager defaultManager].ZJHUserInfoBackgroundImage];
     self.isPasswordOptional = YES;
     [self.targetTextField setBackground:[diceImgManager inputBackgroundImage]];
-    [self.titleLabel.fontLable setText:title];
+    [self.titleLabel setTitle:title forState:UIControlStateNormal];
     
     [self.okButton setRoyButtonWithColor:[UIColor colorWithRed:120.0/255.0 green:230.0/255.0 blue:160.0/255.0 alpha:0.95]];
     [self.cancelButton setRoyButtonWithColor:[UIColor colorWithRed:236.0/255.0 green:247.0/255.0 blue:63.0/255.0 alpha:0.95]];
     
-    [self.cancelButton.fontLable setText:NSLS(@"kCancel")];
-    [self.okButton.fontLable setText:NSLS(@"kOK")];
+    [self.cancelButton setTitle:NSLS(@"kCancel") forState:UIControlStateNormal];
+    [self.okButton setTitle:NSLS(@"kOK") forState:UIControlStateNormal];
     self.titleLabel.titleLabel.font = [UIFont boldSystemFontOfSize:fontSize];
     self.titleLabel.titleLabel.adjustsFontSizeToFitWidth = YES;
     self.titleLabel.titleLabel.lineBreakMode = UILineBreakModeTailTruncation;
@@ -74,13 +74,11 @@
     [self.passwordField setBackground:[diceImgManager inputBackgroundImage]];
 }
 
-- (void)initByZJH:(NSString*)title
+- (void)initByDice:(NSString*)title
 {
     DiceImageManager* diceImgManager = [DiceImageManager defaultManager];
     float fontSize = [DeviceDetection isIPAD] ? 40 : 20;
     
-    [self.cancelButton setTitle:NSLS(@"kCancel") forState:UIControlStateNormal];
-    [self.okButton setTitle:NSLS(@"kOK") forState:UIControlStateNormal];
     [self.contentBackground setImage:[DiceImageManager defaultManager].helpBackgroundImage];
     self.isPasswordOptional = YES;
     [self.targetTextField setBackground:[diceImgManager inputBackgroundImage]];
