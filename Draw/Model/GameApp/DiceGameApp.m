@@ -144,5 +144,19 @@
     return @"happypoker";
 }
 
+- (NSString*)feedbackTips
+{
+    return NSLS(@"kDiceFeedbackTips");
+}
+
+- (NSString*)shareMessageBody
+{
+    return NSLS(@"kDice_share_message_body");
+}
+
+- (NSString*)shareEmailSubject
+{
+    return NSLS(@"kDice_email_subject");
+}
 
 @end

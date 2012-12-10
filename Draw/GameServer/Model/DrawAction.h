@@ -11,6 +11,8 @@
 @class Paint;
 @class PBDrawAction;
 @class DrawColor;
+@class PBNoCompressDrawAction;
+@class PBNoCompressDrawData;
 
 typedef enum {
     
@@ -24,6 +26,10 @@ typedef enum {
 
 @property (nonatomic, assign) DRAW_ACTION_TYPE type;
 @property (nonatomic, retain) Paint *paint;
+
+- (id)initWithPBNoCompressDrawAction:(PBNoCompressDrawAction *)action;
+- (PBNoCompressDrawAction *)toPBNoCompressDrawAction;
+
 - (NSInteger)pointCount;
 - (id)initWithPBDrawAction:(PBDrawAction *)action;
 - (id)initWithType:(DRAW_ACTION_TYPE)aType paint:(Paint*)aPaint;
@@ -48,6 +54,10 @@ typedef enum {
 + (NSInteger)pointCountForActions:(NSArray *)actionList;
 + (double)calculateSpeed:(NSArray *)actionList;
 + (double)calculateSpeed:(NSArray *)actionList defaultSpeed:(double)defaultSpeed maxSecond:(NSInteger)second;
+
+
++ (NSMutableArray *)pbNoCompressDrawDataToDrawActionList:(PBNoCompressDrawData *)data;
++ (PBNoCompressDrawData *)drawActionListToPBNoCompressDrawData:(NSArray *)drawActionList;
 
 - (BOOL)isChangeBackAction;
 - (BOOL)isCleanAction;

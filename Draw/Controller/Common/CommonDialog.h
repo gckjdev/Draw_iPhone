@@ -20,6 +20,7 @@ typedef enum {
 typedef enum {
     CommonDialogThemeDraw = 0,
     CommonDialogThemeDice = 1,
+    CommonDialogThemeZJH,
     CommonDialogThemeStarry,
 }CommonDialogTheme;
 

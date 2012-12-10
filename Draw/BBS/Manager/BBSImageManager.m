@@ -226,7 +226,7 @@ static BBSImageManager* _staticBBSImageManager;
 - (UIImage *)bbsPostCommentImage{
     NSString *imageName = [self fixImageName:@"bbs_post_comment"];
     return [_resService imageByName:imageName
-                  inResourcePackage:RESOURCE_PACKAGE_BBS];
+                  inResourcePackage:RESOURCE_PACKAGE_DRAW];
     
 }
 

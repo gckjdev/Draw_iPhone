@@ -138,4 +138,20 @@
     return @"drawlively";
 }
 
+- (NSString*)feedbackTips
+{
+    return NSLS(@"kFeedbackTips");
+}
+
+- (NSString*)shareMessageBody
+{
+    return NSLS(@"kShare_message_body");
+}
+
+- (NSString*)shareEmailSubject
+{
+    return NSLS(@"kEmail_subject");    
+}
+
+
 @end

@@ -33,7 +33,7 @@
 
 //create limit
 - (void)updateLastCreationDate;
-- (NSTimeInterval)creationFrequency;
+- (NSInteger)creationFrequency;
 - (BOOL)isCreationFrequent;
 
 //support limit
@@ -43,6 +43,8 @@
 
 //content
 - (NSUInteger)textMaxLength;
+- (NSUInteger)postTextMaxLength;
+- (NSUInteger)commentTextMaxLength;
 - (NSUInteger)textMinLength;
 
 //temp post list methods
@@ -57,11 +59,11 @@
 - (void)deleteAllBBSDrawDataCache;
 - (void)deleteOldBBSDrawDataCache;
 
-+(void)printBBSBoard:(PBBBSBoard *)board;
-+(void)printBBSContent:(PBBBSContent *)content;
-+(void)printBBSUser:(PBBBSUser *)user;
-+(void)printBBSPost:(PBBBSPost *)post;
-+(void)printBBSAction:(PBBBSAction *)action;
+//+(void)printBBSBoard:(PBBBSBoard *)board;
+//+(void)printBBSContent:(PBBBSContent *)content;
+//+(void)printBBSUser:(PBBBSUser *)user;
+//+(void)printBBSPost:(PBBBSPost *)post;
+//+(void)printBBSAction:(PBBBSAction *)action;
 
 
 @end

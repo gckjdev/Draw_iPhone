@@ -2,13 +2,13 @@
 <archive type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="8.00">
 	<data>
 		<int key="IBDocument.SystemTarget">1536</int>
-		<string key="IBDocument.SystemVersion">11E53</string>
-		<string key="IBDocument.InterfaceBuilderVersion">2840</string>
-		<string key="IBDocument.AppKitVersion">1138.47</string>
-		<string key="IBDocument.HIToolboxVersion">569.00</string>
+		<string key="IBDocument.SystemVersion">12A269</string>
+		<string key="IBDocument.InterfaceBuilderVersion">2844</string>
+		<string key="IBDocument.AppKitVersion">1187</string>
+		<string key="IBDocument.HIToolboxVersion">624.00</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-			<string key="NS.object.0">1926</string>
+			<string key="NS.object.0">1930</string>
 		</object>
 		<array key="IBDocument.IntegratedClassDependencies">
 			<string>IBProxyObject</string>
@@ -79,7 +79,7 @@
 					<object class="IBUITableView" id="370940758">
 						<reference key="NSNextResponder" ref="25482459"/>
 						<int key="NSvFlags">319</int>
-						<string key="NSFrame">{{0, 104}, {780, 770}}</string>
+						<string key="NSFrame">{{0, 196}, {780, 678}}</string>
 						<reference key="NSSuperview" ref="25482459"/>
 						<reference key="NSNextKeyView" ref="703224615"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
@@ -221,7 +221,7 @@
 					</object>
 					<object class="IBUIButton" id="703224615">
 						<reference key="NSNextResponder" ref="25482459"/>
-						<int key="NSvFlags">-2147483329</int>
+						<int key="NSvFlags">319</int>
 						<string key="NSFrame">{{172, 115}, {216, 63}}</string>
 						<reference key="NSSuperview" ref="25482459"/>
 						<reference key="NSNextKeyView" ref="407714080"/>
@@ -248,7 +248,7 @@
 					</object>
 					<object class="IBUIButton" id="407714080">
 						<reference key="NSNextResponder" ref="25482459"/>
-						<int key="NSvFlags">-2147483329</int>
+						<int key="NSvFlags">319</int>
 						<string key="NSFrame">{{388, 115}, {216, 63}}</string>
 						<reference key="NSSuperview" ref="25482459"/>
 						<reference key="NSNextKeyView" ref="143734441"/>
@@ -659,6 +659,6 @@
 			<string key="dice_tabright_unselect@2x.png">{184, 59}</string>
 			<string key="room_search@2x.png">{57, 51}</string>
 		</dictionary>
-		<string key="IBCocoaTouchPluginVersion">1926</string>
+		<string key="IBCocoaTouchPluginVersion">1930</string>
 	</data>
 </archive>

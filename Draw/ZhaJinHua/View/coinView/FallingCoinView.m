@@ -92,6 +92,7 @@
 		SystemSoundID soundID;
 		AudioServicesCreateSystemSoundID((CFURLRef)[NSURL fileURLWithPath:path], &soundID);
 		AudioServicesPlaySystemSound (soundID);
+        self.userInteractionEnabled = NO;
     }
     return self;
 }
@@ -192,6 +193,26 @@
         }
     }
 }
+
+- (void)killTimer
+{
+    if (coinTimer) {
+        if ([coinTimer isValid]) {
+            [coinTimer invalidate];
+        }
+        coinTimer = nil;
+        
+    }
+    
+}
+
+- (void)removeFromSuperview
+{
+    [self killTimer];
+    coindelegate = nil;
+}
+
+
 
 -(void)initOpenGl
 {

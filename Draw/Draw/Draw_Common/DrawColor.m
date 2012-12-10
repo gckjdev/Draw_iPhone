@@ -7,6 +7,7 @@
 //
 
 #import "DrawColor.h"
+#import "Draw.pb.h"
 
 @implementation DrawColor
 @synthesize red = _red;
@@ -68,6 +69,34 @@
         self.color = [UIColor colorWithRed:red green:green blue:blue alpha:alpha];
     }
     return self;
+}
+
+- (id)initWithPBColor:(PBColor *)color
+{
+    self = [super init];
+    if(self){
+        _red = color.red;
+        _green = color.green;
+        _blue = color.blue;
+        _alpha = color.alpha;
+        self.color = [UIColor colorWithRed:_red
+                                     green:_green
+                                      blue:_blue
+                                     alpha:_alpha];
+    }
+    return self;
+}
+
+- (PBColor *)toPBColor
+{
+    PBColor_Builder *builder = [[PBColor_Builder alloc] init];
+    [builder setRed:self.red];
+    [builder setGreen:self.green];
+    [builder setBlue:self.blue];
+    [builder setAlpha:self.alpha];
+    PBColor *color = [builder build];
+    [builder release];
+    return color;
 }
 - (UIColor *)color
 {

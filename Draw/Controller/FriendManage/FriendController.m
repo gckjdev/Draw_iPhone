@@ -27,6 +27,7 @@
 #import "DiceUserInfoView.h"
 #import "FriendService.h"
 #import "MyFriend.h"
+#import "CommonUserInfoView.h"
 
 @interface FriendController ()
 {
@@ -334,17 +335,7 @@ typedef enum{
 
 - (void)showUserInfo:(MyFriend *)friend
 {
-    if (isDrawApp()) {
-        [DrawUserInfoView showFriend:friend 
-                            infoInView:self
-                            needUpdate:YES];
-        
-    }else if (isDiceApp()) {
-        [DiceUserInfoView showFriend:friend 
-                          infoInView:self 
-                             canChat:YES 
-                          needUpdate:YES];
-    }
+    [CommonUserInfoView showFriend:friend inController:self needUpdate:YES canChat:YES];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath

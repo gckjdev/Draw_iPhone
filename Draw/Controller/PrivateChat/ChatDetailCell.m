@@ -22,6 +22,7 @@
 #import "GameApp.h"
 #import "MyFriend.h"
 #import "MessageStat.h"
+#import "CommonUserInfoView.h"
 
 CGRect CGRectFrom(CGPoint origin, CGSize size){
     return CGRectMake(origin.x, origin.y, size.width, size.height); 
@@ -420,12 +421,7 @@ CGRect CGRectFrom(CGPoint origin, CGSize size){
                                             avatar:_messageStat.friendAvatar
                                             gender:_messageStat.friendGenderString 
                                              level:1];
-        if (isDrawApp()) {
-            [DrawUserInfoView showFriend:friend infoInView:self.superController needUpdate:YES];
-        }
-        if (isDiceApp()) {
-            [DiceUserInfoView showFriend:friend infoInView:self.superController canChat:YES needUpdate:YES];
-        }        
+        [CommonUserInfoView showFriend:friend inController:self.superController needUpdate:YES canChat:YES];
     }}
 
 - (IBAction)clickContentButton:(id)sender {

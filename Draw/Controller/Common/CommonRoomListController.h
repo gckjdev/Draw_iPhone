@@ -45,6 +45,9 @@ typedef enum {
 - (void)showPasswordDialog;
 - (void)checkAndJoinGame:(int)sessionId;
 - (void)checkAndJoinGame;
+- (void)pauseRefreshingRooms;
+- (void)continueRefreshingRooms;
+- (void)refreshRoomsByFilter:(CommonRoomFilter)filter;
 
 - (void)didQueryUser:(NSString *)userId;
 

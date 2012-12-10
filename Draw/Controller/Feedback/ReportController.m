@@ -228,20 +228,21 @@
         case SUBMIT_BUG: {
             [self.reporterTitle setText:NSLS(@"kReport_bug")];
             [self.contentText setText:NSLS(@"kHave_problems?")];
-            if (isDrawApp()) {
-                [self.tips setTitle:NSLS(@"kFeedbackTips") forState:UIControlStateNormal];
-            }else {
-                [self.tips setTitle:NSLS(@"kDiceFeedbackTips") forState:UIControlStateNormal];
-            }
+            
+            [self.tips setTitle:[GameApp feedbackTips] forState:UIControlStateNormal];
+//            }else {
+//                [self.tips setTitle:NSLS(@"kDiceFeedbackTips") forState:UIControlStateNormal];
+//            }
         } break;
         case SUBMIT_FEEDBACK: {
             [self.reporterTitle setText:NSLS(@"kAdvices")];
             [self.contentText setText:NSLS(@"kSay something...")];
-            if (isDrawApp()) {
-                [self.tips setTitle:NSLS(@"kFeedbackTips") forState:UIControlStateNormal];
-            }else {
-                [self.tips setTitle:NSLS(@"kDiceFeedbackTips") forState:UIControlStateNormal];
-            }
+            [self.tips setTitle:[GameApp feedbackTips] forState:UIControlStateNormal];
+//            if (isDrawApp()) {
+//                [self.tips setTitle:NSLS(@"kFeedbackTips") forState:UIControlStateNormal];
+//            }else {
+//                [self.tips setTitle:NSLS(@"kDiceFeedbackTips") forState:UIControlStateNormal];
+//            }
         } break;
         case ADD_WORD: {
             [self.reporterTitle setText:NSLS(@"kAddWords")];

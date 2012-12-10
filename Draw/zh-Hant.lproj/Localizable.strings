@@ -870,7 +870,7 @@
 "kCanotSendItemToOpus" = "不能在同一個作品上使用超過%d次同樣的道具";
 "kCanotSendItemToContestOpus" = "不能在同一個比賽作品上使用超過%d次同樣的道具";
 "kContestNotRunning" = "對不起，比賽已經結束或者尚未開始，您不能參加。";
-"kContesSummitCountEnough" = "對不起，你已經提交了%d作品了，留點機會給別人哦。";
+"kContesSummitCountEnough" = "對不起，你已經提交了%d幅作品了，留點機會給別人哦。";
 
 "kOpusMy" = "我的";
 "kOpusRank" = "排行";
@@ -983,10 +983,11 @@
 
 "kDiceRoom" = "歡樂大話骰%d號房";
 
-
-
 "kDice_share_message_body" = "你還以為大話骰只能在夜店玩嗎？隆重推荐一款手機版的大話骰——《%@》！不要再等待！不要再猶豫了！趕緊下載！\n%@";
 "kDice_email_subject" = "分享［歡樂大話骰］移動版遊戲";
+
+"kZJH_share_message_body" = "親愛的朋友，今天向您隆重推出一款全新的多人在線遊戲——《%@》。這款遊戲可以說是目前最好玩的撲克牌遊戲，馬上下載試玩吧。 \n%@";
+"kZJH_email_subject" = "分享［詐金花］iPhone/iPad版遊戲";
 
 "kJoining" = "正在進入房間";
 "kCreatingRoom" = "正在創建房間";
@@ -1158,7 +1159,7 @@
 
 "kTextTooShot" = "帖子的字數不能少於%d個字哦。";
 "kTextTooLong" = "帖子的字數不能多於%d個字哦。";
-"kTextTooFrequent" = "妳發帖太頻繁了，先休息壹下再發吧。";
+"kTextTooFrequent" = "妳發帖太頻繁了，時間間隔不能小於 %d 秒哦。";
 "kNetworkError" = "網絡連接錯誤，請檢查網絡設置。";
 "kSupportTimesLimit" = "每張帖子最多只能頂 %d 次哦。";
 

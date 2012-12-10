@@ -507,6 +507,7 @@
 
 - (IBAction)clickBetButton:(id)sender {
     [self bet:NO];
+    [_audioManager playSoundByURL:_soundManager.clickButtonSound];
 }
 
 - (IBAction)clickRaiseBetButton:(id)sender
@@ -515,6 +516,7 @@
                                            inView:self.view
                                         aboveView:nil
                                          delegate:self];
+    [_audioManager playSoundByURL:_soundManager.clickButtonSound];
 }
 
 - (IBAction)clickAutoBetButton:(id)sender
@@ -525,17 +527,20 @@
     if ([_gameService isMeAutoBet] == YES && [_gameService isMyTurn]) {
         [self bet:YES];
     }
+    [_audioManager playSoundByURL:_soundManager.clickButtonSound];
 }
 
 - (IBAction)clickCompareCardButton:(id)sender
 {
     self.isComparing = YES;
     [self updateZJHButtons];
+    [_audioManager playSoundByURL:_soundManager.clickButtonSound];
 }
 
 - (IBAction)clickCheckCardButton:(id)sender
 {
     [_gameService checkCard];
+    [_audioManager playSoundByURL:_soundManager.clickButtonSound];
 }
 
 - (IBAction)clickFoldCardButton:(id)sender
@@ -543,17 +548,37 @@
     [[self getMyAvatarView] stopReciprocal];
     [self disableAllZJHButtons];
     [_gameService foldCard];
+    [_audioManager playSoundByURL:_soundManager.clickButtonSound];
 }
 
 - (IBAction)clickQuitButton:(id)sender
 {
-    [_gameService quitGame];
-    [self.navigationController popViewControllerAnimated:YES];
+    if (![_gameService.session isMeStandBy] && ([_gameService.session isGamePlaying])) {
+        NSString *message = [NSString stringWithFormat:NSLS(@"kDedutCoinQuitGameAlertMessage"), [ConfigManager getDiceFleeCoin]];
+        CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kQuitGameAlertTitle")
+                                                           message:message
+                                                             style:CommonDialogStyleDoubleButton
+                                                          delegate:nil
+                                                             theme:CommonDialogThemeDice clickOkBlock:^{
+                                                                 [_gameService quitGame];
+                                                                 [self.navigationController popViewControllerAnimated:YES];
+                                                                 [_audioManager playSoundByURL:_soundManager.clickButtonSound];
+                                                             } clickCancelBlock:^{
+                                                                 [_audioManager playSoundByURL:_soundManager.clickButtonSound];
+                                                             }];
+        [dialog.contentBackground setImage:[ZJHImageManager defaultManager].ZJHUserInfoBackgroundImage];
+        [dialog showInView:self.view];
+    } else {
+        [_gameService quitGame];
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+    [_audioManager playSoundByURL:_soundManager.clickButtonSound];
 }
 
 - (IBAction)clickSettingButton:(id)sender
 {
     [[ZJHSettingView createZJHSettingView] showInView:self.view];
+    [_audioManager playSoundByURL:_soundManager.clickButtonSound];
 }
 
 #pragma mark - player action response
@@ -952,7 +977,8 @@
 {
     _coinView = [[[FallingCoinView alloc]initWithFrame:self.view.frame withNum:coinsNum] autorelease];
     _coinView.coindelegate = self;
-    [self.view addSubview:_coinView];
+    [self.view insertSubview:_coinView belowSubview:self.runawayButton];
+    
 }
 
 - (void)someoneWon:(NSString*)userId
@@ -1170,7 +1196,10 @@
                                         avatar:nil
                                         gender:nil
                                          level:1];
-    [ZJHUserInfoView showFriend:friend infoInView:self needUpdate:YES];
+    [ZJHUserInfoView showFriend:friend
+                   inController:self
+                     needUpdate:YES
+                        canChat:NO];
 }
 
 - (void)reciprocalEnd:(ZJHAvatarView*)view

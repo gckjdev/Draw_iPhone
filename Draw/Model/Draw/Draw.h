@@ -13,6 +13,7 @@
 @class DrawAction;
 @class Word;
 @class PBDraw;
+//@class pbcom
 //@class LanguageType;
 
 @interface Draw : NSObject<NSCoding>
@@ -43,4 +44,5 @@
 
 - (id)initWithPBDraw:(PBDraw *)pbDraw;
 
+//- (id)initWithPBDraw:(PBDraw *)pbDraw;
 @end
