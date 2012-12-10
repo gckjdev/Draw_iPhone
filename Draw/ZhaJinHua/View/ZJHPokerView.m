@@ -202,7 +202,7 @@
     if (![LocaleUtils supportChinese]) {
         return;
     }
-    CGFloat offsetX = ([DeviceDetection isIPAD] ? 32 : 20);
+    CGFloat offsetX = ([DeviceDetection isIPAD] ? 48 : 20);
 
     CGPoint center = CGPointMake(self.pokerView3.frame.origin.x + self.pokerView3.frame.size.width + offsetX, self.pokerView3.center.y + 3);
     
