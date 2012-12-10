@@ -74,4 +74,6 @@
 - (NSArray *)myReplacedCards;
 - (NSArray *)replacedCardsOfUser:(NSString *)userId;
 
+- (BOOL)coinsNeedToJoinGame;
+
 @end

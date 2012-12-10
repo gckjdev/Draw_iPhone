@@ -274,7 +274,7 @@
 		A4A4F9011671BFE800EFC465 /* zjh_game_bg_dual@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A4A4F8FE1671BFE800EFC465 /* zjh_game_bg_dual@2x.jpg */; };
 		A4A4F9021671BFE800EFC465 /* zjh_game_bg_ip5_dual@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A4A4F8FF1671BFE800EFC465 /* zjh_game_bg_ip5_dual@2x.jpg */; };
 		A4A4F9031671BFE800EFC465 /* zjh_game_bg_ipad_dual@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A4A4F9001671BFE800EFC465 /* zjh_game_bg_ipad_dual@2x.jpg */; };
-		A4A4F9131671C3EB00EFC465 /* ZJHBeginnerRuleConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = A4A4F90E1671C3EB00EFC465 /* ZJHBeginnerRuleConfig.m */; };
+		A4A4F9131671C3EB00EFC465 /* ZJHNormalRuleConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = A4A4F90E1671C3EB00EFC465 /* ZJHNormalRuleConfig.m */; };
 		A4A4F9141671C3EB00EFC465 /* ZJHRuleConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = A4A4F9101671C3EB00EFC465 /* ZJHRuleConfig.m */; };
 		A4A4F9151671C3EB00EFC465 /* ZJHRuleConfigFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = A4A4F9121671C3EB00EFC465 /* ZJHRuleConfigFactory.m */; };
 		A4A4F9181671C45900EFC465 /* ZJHDualRuleConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = A4A4F9171671C45900EFC465 /* ZJHDualRuleConfig.m */; };
@@ -2374,8 +2374,8 @@
 		A4A4F8FE1671BFE800EFC465 /* zjh_game_bg_dual@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "zjh_game_bg_dual@2x.jpg"; sourceTree = "<group>"; };
 		A4A4F8FF1671BFE800EFC465 /* zjh_game_bg_ip5_dual@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "zjh_game_bg_ip5_dual@2x.jpg"; sourceTree = "<group>"; };
 		A4A4F9001671BFE800EFC465 /* zjh_game_bg_ipad_dual@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "zjh_game_bg_ipad_dual@2x.jpg"; sourceTree = "<group>"; };
-		A4A4F90D1671C3EB00EFC465 /* ZJHBeginnerRuleConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJHBeginnerRuleConfig.h; sourceTree = "<group>"; };
-		A4A4F90E1671C3EB00EFC465 /* ZJHBeginnerRuleConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJHBeginnerRuleConfig.m; sourceTree = "<group>"; };
+		A4A4F90D1671C3EB00EFC465 /* ZJHNormalRuleConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJHNormalRuleConfig.h; sourceTree = "<group>"; };
+		A4A4F90E1671C3EB00EFC465 /* ZJHNormalRuleConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJHNormalRuleConfig.m; sourceTree = "<group>"; };
 		A4A4F90F1671C3EB00EFC465 /* ZJHRuleConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJHRuleConfig.h; sourceTree = "<group>"; };
 		A4A4F9101671C3EB00EFC465 /* ZJHRuleConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJHRuleConfig.m; sourceTree = "<group>"; };
 		A4A4F9111671C3EB00EFC465 /* ZJHRuleConfigFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJHRuleConfigFactory.h; sourceTree = "<group>"; };
@@ -5566,8 +5566,8 @@
 				A44B6225163787F500A8045B /* ZJHGameController.xib */,
 				A4A4F8E81671982B00EFC465 /* ZJHUserPosInfo.h */,
 				A4A4F8E91671982B00EFC465 /* ZJHUserPosInfo.m */,
-				A4A4F90D1671C3EB00EFC465 /* ZJHBeginnerRuleConfig.h */,
-				A4A4F90E1671C3EB00EFC465 /* ZJHBeginnerRuleConfig.m */,
+				A4A4F90D1671C3EB00EFC465 /* ZJHNormalRuleConfig.h */,
+				A4A4F90E1671C3EB00EFC465 /* ZJHNormalRuleConfig.m */,
 				A4A4F9161671C45900EFC465 /* ZJHDualRuleConfig.h */,
 				A4A4F9171671C45900EFC465 /* ZJHDualRuleConfig.m */,
 				A4A4F90F1671C3EB00EFC465 /* ZJHRuleConfig.h */,
@@ -12660,7 +12660,7 @@
 				C26224CE1670849C008BF3FB /* ZJHUserInfoView.m in Sources */,
 				C26224D116708E61008BF3FB /* CommonRoundAvatarView.m in Sources */,
 				A4A4F8EB1671982B00EFC465 /* ZJHUserPosInfo.m in Sources */,
-				A4A4F9131671C3EB00EFC465 /* ZJHBeginnerRuleConfig.m in Sources */,
+				A4A4F9131671C3EB00EFC465 /* ZJHNormalRuleConfig.m in Sources */,
 				A4A4F9141671C3EB00EFC465 /* ZJHRuleConfig.m in Sources */,
 				A4A4F9151671C3EB00EFC465 /* ZJHRuleConfigFactory.m in Sources */,
 				A4A4F9181671C45900EFC465 /* ZJHDualRuleConfig.m in Sources */,

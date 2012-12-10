@@ -1,17 +1,17 @@
 //
-//  ZJHBeginnerRuleConfig.m
+//  ZJHNormalRuleConfig.m
 //  Draw
 //
 //  Created by 王 小涛 on 12-11-30.
 //
 //
 
-#import "ZJHBeginnerRuleConfig.h"
+#import "ZJHNormalRuleConfig.h"
 #import "ZJHImageManager.h"
 #import "ZJHGameController.h"
 
 
-@implementation ZJHBeginnerRuleConfig
+@implementation ZJHNormalRuleConfig
 
 - (NSArray *)chipValues
 {

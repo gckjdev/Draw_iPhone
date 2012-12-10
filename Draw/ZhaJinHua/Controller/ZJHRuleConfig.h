@@ -48,7 +48,6 @@
 - (NSDictionary *)initAllAvatar:(ZJHGameController *)controller;
 - (UserPosition)positionBySeatIndex:(int)index;
 
-
 - (UIView *)createButtons:(PokerView *)pokerView;
 - (ZJHMyAvatarView *)bigAvatarWithFrame:(CGRect)frame;
 - (ZJHAvatarView *)avatarWithFrame:(CGRect)frame;

@@ -624,10 +624,6 @@
         [[self getPokersViewByUserId:userId] clear];
         [_gameService.gameState.usersInfo removeObjectForKey:userId];
     }
-    
-    
-    
-    
 }
 
 

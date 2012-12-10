@@ -596,55 +596,6 @@ static ZJHGameService *_defaultService;
     [_accountService syncAccount:delegate forceServer:YES];
 }
 
-//- (void)getAccount
-//{
-//    [_userSimpleInfo removeAllObjects];
-//    NSArray* userArray = [self.session userList];
-//    dispatch_async(_getUserInfoQueue, ^{
-//        
-//        //获取concurrent queue
-//        dispatch_queue_t aQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-//        
-//        //创建1个queue group
-//        dispatch_group_t queueGroup = dispatch_group_create();
-//
-//        for (PBGameUser *user in userArray) {
-//            if ([_userManager isMe:user.userId]) {
-//                continue;
-//            }
-//            
-//            dispatch_group_async(queueGroup, aQueue, ^{
-//                MyFriend *userInfo = [[UserService defaultService] getUserSimpleInfo:user.userId];
-//                dispatch_async(dispatch_get_main_queue(), ^{
-//                    [_userSimpleInfo setValue:userInfo forKey:user.userId];
-//                    PPDebug(@"<getUserInfo> complete %@ %@ %ld", user.userId, userInfo.nickName, userInfo.coins);
-//                });
-//            });
-//        }
-//        
-//        //等待组内任务全部完成
-//        PPDebug(@"wait for getting all user info");
-//        dispatch_group_wait(queueGroup, DISPATCH_TIME_FOREVER);
-//        PPDebug(@"all user info get finished.");
-//        
-//        //释放组
-//        dispatch_release(queueGroup);
-//        
-//        dispatch_async(dispatch_get_main_queue(), ^{
-//            [self postNotification:NOTIFICATION_BALANCE_UPDATED message:nil];
-//        });
-//        
-//    });
-//
-//}
-
-//- (void)didGetUserInfo:(MyFriend *)user resultCode:(NSInteger)resultCode
-//{
-//    if (resultCode == ERROR_SUCCESS) {
-//        [self userPlayInfo:user.friendUserId].coins = user.coins;
-//    }
-//}
-
 - (NSArray *)myReplacedCards
 {
     return [[self myPlayInfo] replacedPokers];
@@ -655,5 +606,9 @@ static ZJHGameService *_defaultService;
     return [[self userPlayInfo:userId] replacedPokers];
 }
 
+- (BOOL)coinsNeedToJoinGame
+{
+    return [[[self chipValues] lastObject] intValue] * 8;
+}
 
 @end

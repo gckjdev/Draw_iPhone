@@ -8,7 +8,6 @@
 
 #import "ZJHDualRuleConfig.h"
 
-#import "ZJHBeginnerRuleConfig.h"
 #import "ZJHImageManager.h"
 #import "ZJHPokerView.h"
 
