@@ -13,7 +13,7 @@
 @interface HomeMainMenuPanel ()
 {
     NSInteger _pageCount;
-    NSInteger _nemuCount;
+    NSInteger _menuCount;
 }
 
 @property (retain, nonatomic) IBOutlet UIButton *previous;
@@ -22,6 +22,9 @@
 - (IBAction)clickPageButton:(id)sender;
 
 - (HomeMenuView *)getMenuViewWithType:(HomeMenuType)type;
+- (void)updatePageButton;
+- (void)animatePageButtons;
+
 @end
 
 @implementation HomeMainMenuPanel
@@ -34,7 +37,7 @@
         NSLog(@"create %@ but cannot find view object from Nib", identifier);
         return nil;
     }
-    HomeCommonView<HomeCommonViewProtocol> *view = [topLevelObjects objectAtIndex:0];
+    HomeMainMenuPanel<HomeCommonViewProtocol> *view = [topLevelObjects objectAtIndex:0];
     view.delegate = delegate;
     [view updateView];
     return view;
@@ -72,6 +75,12 @@
     CGRect frame = view.frame;
     frame.origin = CGPointMake(x, y);
     view.frame = frame;
+    if (line == 1) {
+        view.autoresizingMask = UIViewAutoresizingFlexibleTopMargin + UIViewAutoresizingFlexibleLeftMargin;
+    }else{
+        view.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin + UIViewAutoresizingFlexibleLeftMargin;
+    }
+    
     return view;
 }
 
@@ -85,29 +94,34 @@
     }
     
     _pageCount = 0;
-    _nemuCount = 0;
+    _menuCount = 0;
     NSInteger index = 0;
-    
     while(list != NULL && (*list) != HomeMenuTypeEnd) {
         HomeMenuType type = *list;
         HomeMenuView *view = [self viewWithType:type page:_pageCount index:index];
         [self.scrollView addSubview:view];
         
         list++;
-        if ((++ _nemuCount) >= PER_ROW_NUMBER) {
-            _pageCount ++;
+
+        if ((++_menuCount) % PER_PAGE_NUMBER == 0) {
+            _pageCount = _menuCount / PER_PAGE_NUMBER;
             index = 0;
         }else{
             index ++;
         }
     }
-    
-    if(_nemuCount % PER_PAGE_NUMBER > 0){
-        _pageCount ++;
+    _pageCount = _menuCount / PER_PAGE_NUMBER;
+    if (_menuCount % PER_PAGE_NUMBER != 0) {
+        _pageCount++;
     }
+
     CGFloat width = self.scrollView.frame.size.width;
     CGFloat height = self.scrollView.frame.size.height;
     self.scrollView.contentSize = CGSizeMake(width * _pageCount, height);
+    self.scrollView.delegate = self;
+
+    [self updatePageButton];
+    [self performSelector:@selector(animatePageButtons) withObject:nil afterDelay:1];
 }
 
 - (HomeMenuView *)getMenuViewWithType:(HomeMenuType)type
@@ -156,6 +170,28 @@
     return [self currentPage] >= ([self pageCount] - 1);
 }
 
+
+#define AMPLITUDE [DeviceDetection isIPAD] ? 15 * 2 : 15
+- (void)animatePageButtons
+{
+    
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationDuration:1];
+    [UIView setAnimationRepeatAutoreverses:YES];
+    [UIView setAnimationRepeatCount:MAXFLOAT];
+    [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
+    CGPoint center = self.previous.center;
+    
+    center.x += AMPLITUDE;
+    self.previous.center = center;
+    
+    center = self.next.center;
+    center.x -= AMPLITUDE;
+    self.next.center = center;
+    
+    [UIView commitAnimations];
+}
+
 - (void)updatePageButton
 {
     [self.previous setHidden:[self isFirstPage]];
@@ -171,7 +207,7 @@
     }
 }
 
-- (void)prevoiusPage
+- (void)previousPage
 {
     if (![self isFirstPage]) {
         [self scrollToPage:([self currentPage] - 1)];
@@ -185,9 +221,9 @@
 }
 - (IBAction)clickPageButton:(id)sender {
     if (sender == self.previous) {
-        [self previous];
+        [self previousPage];
     }else if (sender == self.next){
-        [self next];
+        [self nextPage];
     }
 }
 

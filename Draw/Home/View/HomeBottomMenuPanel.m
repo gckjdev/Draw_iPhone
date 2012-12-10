@@ -78,6 +78,7 @@
             [self addSubview:view];
             [array addObject:view];
         }
+        list++;
     }
     
     if (_menuCount > 0) {
@@ -97,12 +98,18 @@
     }
     NSInteger count = _menuCount - 1;
     DrawImageManager *imageManager = [DrawImageManager defaultManager];
-    CGFloat space = WIDTH / count;
+    CGFloat space = WIDTH / _menuCount;
     for (NSInteger i = 0; i < count; ++ i) {
-        CGFloat x = space * i;
-        CGRect frame = CGRectMake(0, x, 2, HEIGHT);
+
+        CGRect frame = CGRectMake(0, 0, 4, HEIGHT*0.5);
+        PPDebug(@"#%d: frame = %@",i, NSStringFromCGRect(frame));
         UIImageView *line = [[UIImageView alloc] initWithFrame:frame];
         [self addSubview:line];
+        
+        CGFloat x = space * (i+1);
+        CGFloat y = self.center.y;
+        line.center = CGPointMake(x, y);
+        
         line.image = imageManager.drawHomeSplitline;
         [line release];
     }

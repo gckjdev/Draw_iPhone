@@ -21,9 +21,9 @@
 @property (retain, nonatomic) IBOutlet UIImageView *displayBG;
 @property (retain, nonatomic) IBOutlet UIImageView *avatar;
 @property (retain, nonatomic) IBOutlet UILabel *nickName;
-@property (retain, nonatomic) IBOutlet UIButton *coin;
 @property (retain, nonatomic) IBOutlet UILabel *level;
 @property (retain, nonatomic) IBOutlet UIButton *chargeButton;
+@property (retain, nonatomic) IBOutlet UILabel *coin;
 - (IBAction)clickChargeButton:(id)sender;
 
 @end
@@ -84,18 +84,19 @@
     //coin
     NSInteger coin = [[AccountManager defaultManager] account].balance.intValue;
     NSString *coinString = [NSString stringWithFormat:@"%d",coin];
-    [self.coin setTitle:coinString forState:UIControlStateNormal];
+    [self.coin setText:coinString];
     
     //charge button
+    [self.chargeButton.layer setTransform:CATransform3DMakeRotation(0.12, 0, 0, 1)];
 }
 
 - (void)dealloc {
     PPRelease(_displayBG);
     PPRelease(_avatar);
     PPRelease(_nickName);
-    PPRelease(_coin);
     PPRelease(_level);
     PPRelease(_chargeButton);
+    PPRelease(_coin);
     [super dealloc];
 }
 - (IBAction)clickChargeButton:(id)sender {

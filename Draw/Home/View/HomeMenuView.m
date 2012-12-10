@@ -17,7 +17,12 @@
               type:(HomeMenuType)type
 {
     [self.button setImage:icon forState:UIControlStateNormal];
-    [self.button setTitle:title forState:UIControlStateNormal];
+    if (self.title) {
+        [self.title setText:title];
+    }else{
+        [self.button setTitle:title forState:UIControlStateNormal];
+    }
+    
     [self setType:type];
 }
 
@@ -40,38 +45,42 @@
     switch (type) {
         //draw main menu
         case HomeMenuTypeDrawDraw :{
-            return NSLS(@"HomeMenuTypeDrawDraw");
+            return NSLS(@"kHomeMenuTypeDrawDraw");
         }
         case HomeMenuTypeDrawGuess:{
-            return NSLS(@"HomeMenuTypeDrawGuess");
+            return NSLS(@"kHomeMenuTypeDrawGuess");
         }
         case HomeMenuTypeDrawGame:{
-            return NSLS(@"HomeMenuTypeDrawGame");
+            return NSLS(@"kHomeMenuTypeDrawGame");
         }
         case HomeMenuTypeDrawTimeline:{
-            return NSLS(@"HomeMenuTypeDrawTimeline");
+            return NSLS(@"kHomeMenuTypeDrawTimeline");
         }
         case HomeMenuTypeDrawRank:{
-            return NSLS(@"HomeMenuTypeDrawRank");
+            return NSLS(@"kHomeMenuTypeDrawRank");
         }
         case HomeMenuTypeDrawContest:{
-            return NSLS(@"HomeMenuTypeDrawContest");
+            return NSLS(@"kHomeMenuTypeDrawContest");
         }
         case HomeMenuTypeDrawBBS:{
-            return NSLS(@"HomeMenuTypeDrawBBS");
+            return NSLS(@"kHomeMenuTypeDrawBBS");
         }
+        case HomeMenuTypeDrawShop:{
+            return NSLS(@"HomeMenuTypeDrawShop");
+        }
+
         //draw bottom menu
         case HomeMenuTypeDrawHome :{
-            return NSLS(@"HomeMenuTypeDrawHome");
+            return NSLS(@"kHomeMenuTypeDrawHome");
         } 
         case HomeMenuTypeDrawOpus:{ 
-            return NSLS(@"HomeMenuTypeDrawOpus");
+            return NSLS(@"kHomeMenuTypeDrawOpus");
         } 
         case HomeMenuTypeDrawMessage:{ 
-            return NSLS(@"HomeMenuTypeDrawMessage");
+            return NSLS(@"kHomeMenuTypeDrawMessage");
         } 
         case HomeMenuTypeDrawSetting:{ 
-            return NSLS(@"HomeMenuTypeDrawSetting");
+            return NSLS(@"kHomeMenuTypeDrawSetting");
         } 
         default:
         return nil;
@@ -103,6 +112,9 @@
         case HomeMenuTypeDrawBBS:{
             return [imageManager drawHomeBbs];
         }
+        case HomeMenuTypeDrawShop:{
+            return [imageManager drawHomeShop];
+        }
             //draw bottom menu
         case HomeMenuTypeDrawHome :{
             return [imageManager drawHomeHome];
@@ -116,6 +128,7 @@
         case HomeMenuTypeDrawSetting:{
             return [imageManager drawHomeSetting];
         }
+            
         default:
             return nil;
     }
@@ -130,7 +143,7 @@
     }
     HomeCommonView<HomeCommonViewProtocol> *view = [topLevelObjects objectAtIndex:0];
     view.delegate = delegate;
-    [view updateView];
+//    [view updateView];
     return view;
 }
 
@@ -163,6 +176,7 @@
 - (void)dealloc {
     PPRelease(_button);
     [_badge release];
+    [_title release];
     [super dealloc];
 }
 
@@ -183,6 +197,7 @@ int *getDrawMainMenuTypeList()
         HomeMenuTypeDrawRank,
         HomeMenuTypeDrawContest,
         HomeMenuTypeDrawBBS,
+        HomeMenuTypeDrawShop,
         HomeMenuTypeEnd
     };
     return list;

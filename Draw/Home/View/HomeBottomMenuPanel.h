@@ -10,6 +10,16 @@
 #import "HomeCommonView.h"
 #import "HomeMenuView.h"
 
+@class HomeBottomMenuPanel;
+
+@protocol HomeBottomMenuPanelDelegate <HomeCommonViewDelegate>
+
+@optional
+- (void)homeBottomMenuPanel:(HomeBottomMenuPanel *)bottomMenuPanel
+             didClickMenu:(HomeMenuView *)menu
+                 menuType:(HomeMenuType)type;
+@end
+
 
 @interface HomeBottomMenuPanel : HomeCommonView<HomeCommonViewProtocol, HomeMenuViewDelegate>
 {

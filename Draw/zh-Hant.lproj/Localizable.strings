@@ -907,6 +907,19 @@
 "kImageMessage" = "圖片消息";
 "kVoiceMessage" = "語音消息";
 "kResend" = "重發";
+
+"kHomeMenuTypeDrawDraw" = "畫畫";
+"kHomeMenuTypeDrawGuess" = "猜畫";
+"kHomeMenuTypeDrawGame" = "遊戲";
+"kHomeMenuTypeDrawTimeline" = "動態";
+"kHomeMenuTypeDrawRank" = "畫榜";
+"kHomeMenuTypeDrawContest" = "比賽";
+"kHomeMenuTypeDrawBBS" = "論壇";
+"kHomeMenuTypeDrawHome" = "主頁";
+"kHomeMenuTypeDrawOpus" = "作品";
+"kHomeMenuTypeDrawMessage" = "消息";
+"kHomeMenuTypeDrawSetting" = "設置";
+"HomeMenuTypeDrawShop" = "商店";
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 

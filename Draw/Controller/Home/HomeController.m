@@ -66,6 +66,7 @@
 
 #import "BBSBoardController.h"
 
+#import "DrawHomeViewController.h"
 
 @interface HomeController()
 {
@@ -205,6 +206,14 @@
     [self enterNextControllerWityType:self.notificationType];
     
     [NSTimer scheduledTimerWithTimeInterval:300 target:self selector:@selector(handleStaticTimer:) userInfo:nil repeats:YES];
+    
+//    [self performSelector:@selector(enterNext) withObject:nil afterDelay:3];
+}
+
+- (void)enterNext
+{
+    DrawHomeViewController *dhc = [[[DrawHomeViewController alloc] init] autorelease];
+    [self.navigationController pushViewController:dhc animated:NO];
 }
 
 - (void)registerDrawGameNotificationWithName:(NSString *)name 
@@ -607,7 +616,7 @@
 
 - (IBAction)clickFacetime:(id)sender
 {
-
+    [self enterNext];
 //    [[BBSService defaultService] getBBSBoardList:nil];
 //    BBSBoardController *bbs = [[BBSBoardController alloc] init];
 //    [self.navigationController pushViewController:bbs animated:YES];

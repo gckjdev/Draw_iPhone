@@ -923,6 +923,19 @@
 "kImageMessage" = "图片消息";
 "kVoiceMessage" = "语音消息";
 "kResend" = "重发";
+
+"kHomeMenuTypeDrawDraw" = "画画";
+"kHomeMenuTypeDrawGuess" = "猜画";
+"kHomeMenuTypeDrawGame" = "游戏";
+"kHomeMenuTypeDrawTimeline" = "动态";
+"kHomeMenuTypeDrawRank" = "画榜";
+"kHomeMenuTypeDrawContest" = "比赛";
+"kHomeMenuTypeDrawBBS" = "论坛";
+"kHomeMenuTypeDrawHome" = "主页";
+"kHomeMenuTypeDrawOpus" = "作品";
+"kHomeMenuTypeDrawMessage" = "消息";
+"kHomeMenuTypeDrawSetting" = "设置";
+"HomeMenuTypeDrawShop" = "商店";
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 

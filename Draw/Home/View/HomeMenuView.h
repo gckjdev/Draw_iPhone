@@ -22,7 +22,8 @@ typedef enum{
     HomeMenuTypeDrawRank,
     HomeMenuTypeDrawContest,
     HomeMenuTypeDrawBBS,
-
+    HomeMenuTypeDrawShop,
+    
     //draw bottom menu
     HomeMenuTypeDrawBottomBegin = 1500,
     HomeMenuTypeDrawHome = 1500,
@@ -50,6 +51,7 @@ typedef enum{
 @property (retain, nonatomic) IBOutlet UIButton *badge;
 @property (retain, nonatomic) IBOutlet UIButton *button;
 @property (assign, nonatomic) HomeMenuType type;
+@property (retain, nonatomic) IBOutlet UILabel *title;
 
 - (IBAction)clickButton:(id)sender;
 
