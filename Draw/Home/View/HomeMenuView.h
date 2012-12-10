@@ -12,7 +12,8 @@
 
 typedef enum{
     //draw main menu
-    HomeMenuTypeDrawDraw = 100,
+    HomeMenuTypeDrawMainBegin = 1000,
+    HomeMenuTypeDrawDraw = 1000,
     HomeMenuTypeDrawGuess,
     HomeMenuTypeDrawGame,
     HomeMenuTypeDrawTimeline,
@@ -21,14 +22,18 @@ typedef enum{
     HomeMenuTypeDrawBBS,
 
     //draw bottom menu
-    HomeMenuTypeDrawHome,
+    HomeMenuTypeDrawBottomBegin = 1500,
+    HomeMenuTypeDrawHome = 1500,
     HomeMenuTypeDrawOpus,
     HomeMenuTypeDrawMessage,
     HomeMenuTypeDrawSetting,
     
-    //ZJH main menu
+    //ZJH main menu start at 2000
+    HomeMenuTypeZJHMainBegin = 2000,
     
-    //ZJH bottom menu
+    //ZJH bottom menu start at 2500
+    HomeMenuTypeZJHBottomBegin = 2500,
+    
 }HomeMenuType;
 
 @protocol HomeMenuViewDelegate <HomeCommonViewDelegate>
@@ -40,12 +45,18 @@ typedef enum{
 
 
 @interface HomeMenuView : HomeCommonView
+@property (retain, nonatomic) IBOutlet UIButton *badge;
 
 @property (retain, nonatomic) IBOutlet UIButton *button;
 - (IBAction)clickButton:(id)sender;
 
 - (void)updateIcon:(UIImage *)icon
              title:(NSString *)title
-               tag:(NSInteger)tag;
+              type:(HomeMenuType)type;
 
+- (void)updateBadge:(NSInteger)count;
+
++ (HomeMenuView *)menuViewWithType:(HomeMenuType)type
+                             badge:(NSInteger)badge
+                          delegate:(id<HomeCommonViewDelegate>)delegate;
 @end

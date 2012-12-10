@@ -7,6 +7,26 @@
 //
 
 #import "HomeHeaderPanel.h"
+#import "UIImageView+WebCache.h"
+#import "UserManager.h"
+#import "LevelService.h"
+#import "AccountManager.h"
+#import "AccountService.h"
+#import <QuartzCore/QuartzCore.h>
+
+@interface HomeHeaderPanel ()
+{
+    
+}
+@property (retain, nonatomic) IBOutlet UIImageView *displayBG;
+@property (retain, nonatomic) IBOutlet UIImageView *avatar;
+@property (retain, nonatomic) IBOutlet UILabel *nickName;
+@property (retain, nonatomic) IBOutlet UIButton *coin;
+@property (retain, nonatomic) IBOutlet UILabel *level;
+@property (retain, nonatomic) IBOutlet UIButton *chargeButton;
+- (IBAction)clickChargeButton:(id)sender;
+
+@end
 
 @implementation HomeHeaderPanel
 
@@ -26,11 +46,61 @@
 
 + (NSString *)getViewIdentifier
 {
-    return @"HomeHeaderPanel";
-}
-- (void)updateView
-{
-    
+    if (gameAppType() == GameAppTypeDraw) {
+        return @"DrawHomeHeaderPanel";
+    } else if (gameAppType() == GameAppTypeZJH) {
+        return @"ZJHHomeHeaderPanel";
+    }
+    return nil;
 }
 
+
+- (void)updateView
+{
+    self.backgroundColor = [UIColor clearColor];
+    
+    //avatar
+    [self.avatar.layer setMasksToBounds:YES];
+    [self.avatar.layer setCornerRadius:(self.avatar.frame.size.width / 2)];
+    [self.avatar.layer setBorderWidth:3];
+    UIColor *borderColor = [UIColor colorWithRed:131./225 green:200./225 blue:43./225 alpha:1];
+    [self.avatar.layer setBorderColor:borderColor.CGColor];
+    
+    
+    UserManager *userManager = [UserManager defaultManager];
+    if ([userManager avatarImage]) {
+        [self.avatar setImage:[userManager avatarImage]];
+    }else if([[userManager avatarURL] length] != 0){
+        [self.avatar setImageWithURL:[NSURL URLWithString:[userManager avatarURL]]];
+    }
+    
+    //nick
+    [self.nickName setText:userManager.nickName];
+
+    //level
+    NSInteger level = [[LevelService defaultService] level];
+    [self.level setText:[NSString stringWithFormat:@"LV %d",level]];
+    
+    //coin
+    NSInteger coin = [[AccountManager defaultManager] account].balance.intValue;
+    NSString *coinString = [NSString stringWithFormat:@"%d",coin];
+    [self.coin setTitle:coinString forState:UIControlStateNormal];
+    
+    //charge button
+}
+
+- (void)dealloc {
+    [_displayBG release];
+    [_avatar release];
+    [_nickName release];
+    [_coin release];
+    [_level release];
+    [_chargeButton release];
+    [super dealloc];
+}
+- (IBAction)clickChargeButton:(id)sender {
+    if (self.delegate && [self.delegate respondsToSelector:@selector(didClickChargeButton:)]) {
+        [self.delegate didClickChargeButton:sender];
+    }
+}
 @end
