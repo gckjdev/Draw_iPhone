@@ -926,7 +926,8 @@
 {
     _coinView = [[[FallingCoinView alloc]initWithFrame:self.view.frame withNum:coinsNum] autorelease];
     _coinView.coindelegate = self;
-    [self.view addSubview:_coinView];
+    [self.view insertSubview:_coinView belowSubview:self.runawayButton];
+    
 }
 
 - (void)someoneWon:(NSString*)userId

@@ -373,6 +373,7 @@
                                          roomType:filter
                                           keyword:nil
                                            gameId:[ConfigManager gameId]];
+    _currentRoomType = filter;
 }
 
 

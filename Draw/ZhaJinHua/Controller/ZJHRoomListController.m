@@ -49,6 +49,9 @@
     [self.fastEntryButton setRoyButtonWithColor:[DiceColorManager dialogYellowColor]];
     [self.fastEntryButton setTitleColor:[UIColor darkTextColor] forState:UIControlStateNormal];
     [self.fastEntryButton.titleLabel setFont:[UIFont systemFontOfSize:BUTTON_FONT_SIZE]];
+    
+    [self.allRoomButton setTitle:NSLS(@"kAll") forState:UIControlStateNormal];
+    [self.friendRoomButton setTitle:NSLS(@"kFriend") forState:UIControlStateNormal];
 }
 
 - (void)viewDidLoad
@@ -56,6 +59,8 @@
     [super viewDidLoad];
     [self initButtons];
     [self.backgroundImageView setImage:[ZJHImageManager defaultManager].roomBackgroundImage];
+    
+    
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -192,7 +197,33 @@
                                         avatar:nil
                                         gender:nil
                                          level:1];
-    [ZJHUserInfoView showFriend:friend infoInView:self needUpdate:YES];
+    [ZJHUserInfoView showFriend:friend inController:self needUpdate:YES canChat:YES];
     return;
+}
+
+- (IBAction)clickAll:(id)sender
+{
+    [self.allRoomButton setSelected:YES];
+    [self.friendRoomButton setSelected:NO];
+    [self.nearByRoomButton setSelected:NO];
+    [self refreshRoomsByFilter:CommonRoomFilterAllRoom];
+    [self continueRefreshingRooms];
+    [self showActivityWithText:NSLS(@"kRefreshingRoomList")];
+}
+- (IBAction)clickFriendRoom:(id)sender
+{
+    [self.allRoomButton setSelected:NO];
+    [self.friendRoomButton setSelected:YES];
+    [self.nearByRoomButton setSelected:NO];
+    [self refreshRoomsByFilter:CommonRoomFilterFriendRoom];
+    [self pauseRefreshingRooms];
+    [self showActivityWithText:NSLS(@"kSearchingRoom")];
+}
+- (IBAction)clickNearBy:(id)sender
+{
+    [self.allRoomButton setSelected:NO];
+    [self.friendRoomButton setSelected:NO];
+    [self.nearByRoomButton setSelected:YES];
+    [self refreshRoomsByFilter:CommonRoomFilterNearByRoom];
 }
 @end
