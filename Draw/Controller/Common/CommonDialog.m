@@ -19,6 +19,7 @@
 #define COMMON_DIALOG_THEME_DRAW    @"CommonDialog"
 #define COMMON_DIALOG_THEME_DICE    @"CommonDiceDialog"
 #define COMMON_DIALOG_THEME_STARRY    @"CommonStarryDialog"
+#define COMMON_DIALOG_THEME_ZJH    @"CommonZJHDialog"
 
 #define FONT_OF_TITLE_IPHONE [UIFont boldSystemFontOfSize:18]
 #define FONT_OF_TITLE_IPAD [UIFont boldSystemFontOfSize:18*2]
@@ -207,7 +208,7 @@
             view = (CommonDialog*)[self createInfoViewByXibName:COMMON_DIALOG_THEME_STARRY];
         } break;
         case CommonDialogThemeZJH: {
-            view = (CommonDialog*)[self createInfoViewByXibName:COMMON_DIALOG_THEME_DICE];
+            view = (CommonDialog*)[self createInfoViewByXibName:COMMON_DIALOG_THEME_ZJH];
             [view.contentBackground setImage:[ZJHImageManager defaultManager].ZJHUserInfoBackgroundImage];
         } break;
         default:
