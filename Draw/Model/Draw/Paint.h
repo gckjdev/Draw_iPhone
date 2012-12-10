@@ -25,6 +25,10 @@
 @property(nonatomic,retain)NSMutableArray *pointList;
 
 
+- (id)initWithWidth:(CGFloat)width
+              color:(DrawColor *)color
+            penType:(ItemType)penType
+          pointList:(NSMutableArray *)pointList;
 
 - (id)initWithWidth:(CGFloat)width color:(DrawColor*)color;
 - (id)initWithWidth:(CGFloat)width intColor:(NSInteger)color numberPointList:(NSArray *)numberPointList;

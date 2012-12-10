@@ -47,6 +47,22 @@
     return self;
 }
 
+- (id)initWithWidth:(CGFloat)width
+              color:(DrawColor *)color
+            penType:(ItemType)penType
+          pointList:(NSMutableArray *)pointList
+{
+    self = [super init];
+    if (self) {
+        self.width = width;
+        self.color = color;
+        self.penType = penType;
+        self.pointList = pointList;
+    }
+    return self;
+}
+
+
 - (id)initWithWidth:(CGFloat)width intColor:(NSInteger)color numberPointList:(NSArray *)numberPointList
 {
     self = [super init];

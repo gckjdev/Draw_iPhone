@@ -58,8 +58,8 @@
 #define DEFAULT_SIMPLING_DISTANCE (5.0)
 #define DEFAULT_LINE_WIDTH (2.0 * 1.414)
 
-#define REVOKE_PAINT_COUNT 25
-#define REVOKE_CACHE_COUNT 5
+#define REVOKE_PAINT_COUNT 30
+#define REVOKE_CACHE_COUNT 10
 
 @implementation DrawView
 
