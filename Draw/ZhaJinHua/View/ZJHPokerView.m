@@ -17,6 +17,7 @@
 #define TAG_BOMB_BUTTON 300
 #define CARD_TYPE_LABEL_TAG 200
 
+#define CARD_TYPE_LABEL_HEIGHT ([DeviceDetection isIPAD] ? 25 : 15)
 #define CARD_TYPE_STRING_FONT [UIFont boldSystemFontOfSize:([DeviceDetection isIPAD] ? 21 :12)]
 
 @interface ZJHPokerView ()
@@ -175,39 +176,66 @@
     
     [self xMotion:xMotiontype animation:animation];
     
-
-    [self performSelector:@selector(showCardType:) withObject:cardType afterDelay:MOVE_ANIMATION_DURATION];
+    if (xMotiontype == ZJHPokerXMotionTypeCenter) {
+        [self performSelector:@selector(showCardTypeOnLeft:) withObject:cardType afterDelay:MOVE_ANIMATION_DURATION];
+    }else {
+        [self performSelector:@selector(showCardTypeOnTop:) withObject:cardType afterDelay:MOVE_ANIMATION_DURATION];
+    }
 }
 
-- (void)showCardType:(NSString *)cardType
+- (void)showCardTypeOnTop:(NSString *)cardType
 {
     if (![LocaleUtils supportChinese]) {
         return;
     }
     
-    CGFloat height = ([DeviceDetection isIPAD] ? 25 : 15);
     CGFloat offsetY = ([DeviceDetection isIPAD] ? -8 : -5);
-    FXLabel *label = [[[FXLabel alloc] initWithFrame:CGRectMake(0, offsetY - height, self.pokerView2.frame.size.width, height)] autorelease];
-    label.center = CGPointMake(self.pokerView2.center.x, label.center.y);
+    CGPoint center = CGPointMake(self.pokerView2.center.x, offsetY - CARD_TYPE_LABEL_HEIGHT/2);
+    
+    FXLabel *label = [self cardTypeLabelWithCenter:center
+                                          cardType:cardType];
+    [self addSubview:label];
+}
+
+- (void)showCardTypeOnLeft:(NSString *)cardType
+{
+    if (![LocaleUtils supportChinese]) {
+        return;
+    }
+    CGFloat offsetX = ([DeviceDetection isIPAD] ? 32 : 20);
+
+    CGPoint center = CGPointMake(self.pokerView3.frame.origin.x + self.pokerView3.frame.size.width + offsetX, self.pokerView3.center.y);
+    
+    FXLabel *label = [self cardTypeLabelWithCenter:center
+                                          cardType:cardType];
+    [self addSubview:label];
+}
+
+- (FXLabel *)cardTypeLabelWithCenter:(CGPoint)center
+                            cardType:(NSString *)cardType
+{
+    FXLabel *label = [[[FXLabel alloc] initWithFrame:CGRectMake(0, 0, self.pokerView2.frame.size.width, CARD_TYPE_LABEL_HEIGHT)] autorelease];
+    label.center = center;
     label.backgroundColor = [UIColor clearColor];
     label.font = CARD_TYPE_STRING_FONT;
     
     label.textAlignment = UITextAlignmentCenter;
-
+    
     label.gradientStartColor = [UIColor colorWithRed:254.0/255.0 green:241.0/255.0 blue:67.0/255.0 alpha:1];
     label.gradientEndColor = [UIColor colorWithRed:238.0/255.0 green:159.0/255.0 blue:7.0/255.0 alpha:1];
     label.shadowColor = nil;
     label.shadowOffset = CGSizeMake(0.0f, 2.0f);
     label.shadowColor = [UIColor colorWithWhite:0.0f alpha:0.75f];
     label.shadowBlur = 5.0f;
-
+    
     label.text = cardType;
     label.tag = CARD_TYPE_LABEL_TAG;
     
     [label.layer addAnimation:[AnimationManager appearAnimationFrom:0 to:1 duration:0.5] forKey:nil];
     
-    [self addSubview:label];
+    return label;
 }
+
 
 - (void)faceUpCard:(int)cardId animation:(BOOL)animation
 {

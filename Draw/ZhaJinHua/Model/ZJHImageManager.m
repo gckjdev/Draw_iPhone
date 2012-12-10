@@ -505,6 +505,7 @@ static ZJHImageManager* shareInstance;
 {
     switch (position) {
         case UserPositionCenter:
+        case UserPositionCenterUp:
         case UserPositionLeft:
         case UserPositionLeftTop:
             return [[_resService imageByName:@"zjh_bet1" inResourcePackage:RESOURCE_PACKAGE_ZJH] stretchableImageWithLeftCapWidth:24 topCapHeight:10];
@@ -525,6 +526,7 @@ static ZJHImageManager* shareInstance;
 {
     switch (position) {
         case UserPositionCenter:
+        case UserPositionCenterUp:
         case UserPositionLeft:
         case UserPositionLeftTop:
             return [[_resService imageByName:@"zjh_raise_bet1" inResourcePackage:RESOURCE_PACKAGE_ZJH] stretchableImageWithLeftCapWidth:24 topCapHeight:10];
@@ -545,6 +547,7 @@ static ZJHImageManager* shareInstance;
 {
     switch (position) {
         case UserPositionCenter:
+        case UserPositionCenterUp:
         case UserPositionLeft:
         case UserPositionLeftTop:
             return [[_resService imageByName:@"zjh_check_card1" inResourcePackage:RESOURCE_PACKAGE_ZJH] stretchableImageWithLeftCapWidth:24 topCapHeight:10];
@@ -565,6 +568,7 @@ static ZJHImageManager* shareInstance;
 {
     switch (position) {
         case UserPositionCenter:
+        case UserPositionCenterUp:
         case UserPositionLeft:
         case UserPositionLeftTop:
             return [[_resService imageByName:@"zjh_compare_card1" inResourcePackage:RESOURCE_PACKAGE_ZJH] stretchableImageWithLeftCapWidth:24 topCapHeight:10];
@@ -585,6 +589,7 @@ static ZJHImageManager* shareInstance;
 {
     switch (position) {
         case UserPositionCenter:
+        case UserPositionCenterUp:
         case UserPositionLeft:
         case UserPositionLeftTop:
             return [[_resService imageByName:@"zjh_fold_card1" inResourcePackage:RESOURCE_PACKAGE_ZJH] stretchableImageWithLeftCapWidth:24 topCapHeight:10];
