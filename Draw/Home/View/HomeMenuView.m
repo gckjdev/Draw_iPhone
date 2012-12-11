@@ -42,6 +42,7 @@
 
 + (NSString *)titleForType:(HomeMenuType)type
 {
+
     switch (type) {
         //draw main menu
         case HomeMenuTypeDrawDraw :{
@@ -70,6 +71,7 @@
         }
 
         //draw bottom menu
+        /*
         case HomeMenuTypeDrawHome :{
             return NSLS(@"kHomeMenuTypeDrawHome");
         } 
@@ -82,6 +84,7 @@
         case HomeMenuTypeDrawSetting:{ 
             return NSLS(@"kHomeMenuTypeDrawSetting");
         } 
+        */
         default:
         return nil;
     }
@@ -127,6 +130,15 @@
         }
         case HomeMenuTypeDrawSetting:{
             return [imageManager drawHomeSetting];
+        }
+        case HomeMenuTypeDrawMore:{
+            return [imageManager drawHomeMore];
+        }
+        case HomeMenuTypeDrawMe:{
+            return [imageManager drawHomeMe];
+        }
+        case HomeMenuTypeDrawFriend:{
+            return [imageManager drawHomeFriend];
         }
             
         default:
@@ -205,10 +217,11 @@ int *getDrawMainMenuTypeList()
 int *getDrawBottomMenuTypeList()
 {
     int static list[] = {
-        HomeMenuTypeDrawHome,
+        HomeMenuTypeDrawMe,
         HomeMenuTypeDrawOpus,
+        HomeMenuTypeDrawFriend,
         HomeMenuTypeDrawMessage,
-        HomeMenuTypeDrawSetting,
+        HomeMenuTypeDrawMore,
         HomeMenuTypeEnd
     };
     return list;    

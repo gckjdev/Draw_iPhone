@@ -192,7 +192,6 @@
     [UIView setAnimationRepeatAutoreverses:YES];
     [UIView setAnimationRepeatCount:MAXFLOAT];
     [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
-//    CGPoint center = self.previous.center;
     
     center.x += AMPLITUDE;
     self.previous.center = center;

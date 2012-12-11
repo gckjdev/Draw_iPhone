@@ -11,8 +11,9 @@
 #import "HomeHeaderPanel.h"
 #import "HomeMainMenuPanel.h"
 #import "HomeBottomMenuPanel.h"
+#import "UserService.h"
 
-@interface SuperHomeController : PPViewController<HomeCommonViewDelegate>
+@interface SuperHomeController : PPViewController<HomeCommonViewDelegate, UserServiceDelegate>
 {
     
 }
@@ -20,5 +21,8 @@
 @property(nonatomic, retain)HomeHeaderPanel *homeHeaderPanel;
 @property(nonatomic, retain)HomeMainMenuPanel *homeMainMenuPanel;
 @property(nonatomic, retain)HomeBottomMenuPanel *homeBottomMenuPanel;
+
+- (BOOL)isRegistered;
+- (void)toRegister;
 
 @end

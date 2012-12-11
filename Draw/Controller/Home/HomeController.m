@@ -76,8 +76,6 @@
 }
 - (void)playBackgroundMusic;
 - (void)enterNextControllerWityType:(NotificationType) type;
-- (BOOL)isRegistered;
-- (void)toRegister;
 - (void)updateBoardPanelWithBoards:(NSArray *)boards;
 @end
 
@@ -161,11 +159,6 @@
 }
 */
 
-- (void)handleStaticTimer:(NSTimer *)theTimer
-{
-    PPDebug(@"<handleStaticTimer>: get static");
-    [[UserService defaultService] getStatistic:self];   
-}
 
 - (void)viewDidLoad
 {        
@@ -206,9 +199,7 @@
 //    }
 
     [self enterNextControllerWityType:self.notificationType];
-    
-    [NSTimer scheduledTimerWithTimeInterval:300 target:self selector:@selector(handleStaticTimer:) userInfo:nil repeats:YES];
-    
+        
 }
 
 
@@ -258,8 +249,7 @@
 {    
     [self registerDrawGameNotification];
     
-    [self updateAllBadge];
-    [[UserService defaultService] getStatistic:self];   
+    [[UserService defaultService] getStatistic:self];
     [UIApplication sharedApplication].idleTimerDisabled = NO;
     [[DrawGameService defaultService] registerObserver:self];
 //    [self loadBoards];
@@ -539,17 +529,7 @@
     */
 }
 
-- (BOOL)isRegistered
-{
-    return [[UserManager defaultManager] hasUser];
-}
 
-- (void)toRegister
-{
-    RegisterUserController *ruc = [[RegisterUserController alloc] init];
-    [self.navigationController pushViewController:ruc animated:YES];
-    [ruc release];
-}
 
 
 #pragma mark - draw data service delegate
@@ -577,59 +557,18 @@
 
 
 
-- (void)updateAllBadge
-{
-    StatisticManager *manager = [StatisticManager defaultManager];
-    
-    [self.homeBottomMenuPanel updateMenu:HomeMenuTypeDrawMessage badge:manager.messageCount];
-    [self.homeBottomMenuPanel updateMenu:HomeMenuTypeDrawFriend badge:manager.fanCount];
-    
-    long timelineCount = manager.feedCount + manager.commentCount + manager.drawToMeCount;
-    [self.homeMainMenuPanel updateMenu:HomeMenuTypeDrawTimeline badge:timelineCount];
 
-/*
-    [self.bottomMenuPanel setMenuBadge:manager.messageCount forMenuType:MenuButtonTypeChat];
-    [self.bottomMenuPanel setMenuBadge:manager.fanCount
-                           forMenuType:MenuButtonTypeFriend];
-    [self.menuPanel setMenuBadge:manager.roomCount
-                     forMenuType:MenuButtonTypeFriendPlay];
-    
-    long timelineCount = manager.feedCount + manager.commentCount + manager.drawToMeCount;
-    [self.menuPanel setMenuBadge:timelineCount 
-                     forMenuType:MenuButtonTypeTimeline];
-*/
-    
-}
-
-- (void)didGetStatistic:(int)resultCode 
-              feedCount:(long)feedCount 
-           messageCount:(long)messageCount 
-               fanCount:(long)fanCount 
-              roomCount:(long)roomCount
-           commentCount:(long)commentCount
-          drawToMeCount:(long)drawToMeCount
-{
-    if (resultCode == 0) {
-        PPDebug(@"<didGetStatistic>:feedCount = %ld, messageCount = %ld, fanCount = %ld", feedCount,messageCount,fanCount);     
-        
-        //store the counts.
-        StatisticManager *manager = [StatisticManager defaultManager];
-        [manager setFeedCount:feedCount];
-        [manager setMessageCount:messageCount];
-        [manager setFanCount:fanCount];
-        [manager setRoomCount:roomCount];
-        [manager setCommentCount:commentCount];
-        [manager setDrawToMeCount:drawToMeCount];
-
-        [self updateAllBadge];
-    }
-}
 
 - (void)homeMainMenuPanel:(HomeMainMenuPanel *)mainMenuPanel
              didClickMenu:(HomeMenuView *)menu
                  menuType:(HomeMenuType)type
 {
     PPDebug(@"<homeMainMenuPanel>, click type = %d", type);
+    if ([self isRegistered] == NO) {
+        [self toRegister];
+        return;
+    }
+
     switch (type) {
         case HomeMenuTypeDrawGame:
         {
@@ -680,11 +619,6 @@
             
         case HomeMenuTypeDrawTimeline:
         {
-            
-            //            MyFeedController *frc = [[MyFeedController alloc] init];
-            //            [self.navigationController pushViewController:frc animated:YES];
-            //            [frc release];
-            
             [MyFeedController enterControllerWithIndex:0 fromController:self animated:YES];
             [menu updateBadge:0];
         }
@@ -729,10 +663,14 @@
                    menuType:(HomeMenuType)type
 {
     PPDebug(@"<homeBottomMenuPanel>, click type = %d", type);
-    
+    if ([self isRegistered] == NO) {
+        [self toRegister];
+        return;
+    }
+
     switch (type) {
             //For Bottom Menus
-        case HomeMenuTypeDrawSetting:
+        case HomeMenuTypeDrawMe:
         {
             UserSettingController *settings = [[UserSettingController alloc] init];
             [self.navigationController pushViewController:settings animated:YES];
@@ -765,7 +703,7 @@
             
         }
             break;
-        case HomeMenuTypeDrawOther:
+        case HomeMenuTypeDrawMore:
         {
             FeedbackController* feedBack = [[FeedbackController alloc] init];
             [self.navigationController pushViewController:feedBack animated:YES];

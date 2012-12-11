@@ -15,6 +15,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import "FeedService.h"
 #import "Feed.h"
+#import "DrawImageManager.h"
 
 @interface HomeHeaderPanel ()
 {
@@ -61,7 +62,7 @@
 
 
 #define IMAGE_NUMBER_PER_PAGE 3
-#define SPACE_IMAGE (ISIPAD ? 5 * 2 : 5)
+#define SPACE_IMAGE (ISIPAD ? 4 * 2 : 4)
 #define DISPLAY_SIZE (self.displayScrollView.frame.size)
 #define SCROLL_INTERVAL 10
 #define TOP_DRAW_NUMBER 6
@@ -141,6 +142,9 @@
         frame.origin = origin;
         imageView.frame = frame;
         
+        [imageView.layer setMasksToBounds:YES];
+        [imageView.layer setCornerRadius:(self.imageWidth / 20)];
+        
         return imageView;
     }
     return nil;
@@ -211,8 +215,9 @@
 
     [self.displayScrollView setHidden:YES];
     
+    self.displayBG.image = [[DrawImageManager defaultManager] drawHomeDisplayBG];
     //update display view.
-    if (gameAppType() == GameAppTypeDraw) {
+    if (isDrawApp()) {
         [self updateDisplayView];
     }
 }
@@ -224,7 +229,7 @@
     PPRelease(_level);
     PPRelease(_chargeButton);
     PPRelease(_coin);
-    [_displayScrollView release];
+    PPRelease(_displayScrollView);
     [super dealloc];
 }
 - (IBAction)clickChargeButton:(id)sender {

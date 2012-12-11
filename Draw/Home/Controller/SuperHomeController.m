@@ -9,8 +9,14 @@
 #import "SuperHomeController.h"
 #import "HomeMenuView.h"
 #import "CoinShopController.h"
+#import "StatisticManager.h"
+#import "UserManager.h"
+#import "RegisterUserController.h"
 
 @interface SuperHomeController ()
+{
+    
+}
 
 @end
 
@@ -67,9 +73,7 @@
 - (void)addBottomMenuView
 {
     self.homeBottomMenuPanel = [HomeBottomMenuPanel createView:self];
-//    self.bottomMenuPanel.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleBottomMargin;
     [self.view addSubview:self.homeBottomMenuPanel];
-    //TODO update frame
     [self updateView:self.homeBottomMenuPanel originY:BOTTOM_MENU_ORIGIN_Y];
 }
 
@@ -87,12 +91,16 @@
     if (!ISIPAD) {
         self.view.frame = [[UIScreen mainScreen] bounds];
     }
+    
+    [NSTimer scheduledTimerWithTimeInterval:300 target:self selector:@selector(handleStaticTimer:) userInfo:nil repeats:YES];
+
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
     [self.homeMainMenuPanel animatePageButtons];
+    [self updateAllBadge];
 }
 
 - (void)viewDidUnload
@@ -108,6 +116,48 @@
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark - get && update statistic
+- (void)handleStaticTimer:(NSTimer *)theTimer
+{
+    PPDebug(@"<handleStaticTimer>: get static");
+    [[UserService defaultService] getStatistic:self];
+}
+
+- (void)updateAllBadge
+{
+    StatisticManager *manager = [StatisticManager defaultManager];
+    
+    [self.homeBottomMenuPanel updateMenu:HomeMenuTypeDrawMessage badge:manager.messageCount];
+    [self.homeBottomMenuPanel updateMenu:HomeMenuTypeDrawFriend badge:manager.fanCount];
+    
+    long timelineCount = manager.feedCount + manager.commentCount + manager.drawToMeCount;
+    [self.homeMainMenuPanel updateMenu:HomeMenuTypeDrawTimeline badge:timelineCount];
+    
+}
+
+- (void)didGetStatistic:(int)resultCode
+              feedCount:(long)feedCount
+           messageCount:(long)messageCount
+               fanCount:(long)fanCount
+              roomCount:(long)roomCount
+           commentCount:(long)commentCount
+          drawToMeCount:(long)drawToMeCount
+{
+    if (resultCode == 0) {
+        PPDebug(@"<didGetStatistic>:feedCount = %ld, messageCount = %ld, fanCount = %ld", feedCount,messageCount,fanCount);
+        
+        //store the counts.
+        StatisticManager *manager = [StatisticManager defaultManager];
+        [manager setFeedCount:feedCount];
+        [manager setMessageCount:messageCount];
+        [manager setFanCount:fanCount];
+        [manager setRoomCount:roomCount];
+        [manager setCommentCount:commentCount];
+        [manager setDrawToMeCount:drawToMeCount];
+        
+        [self updateAllBadge];
+    }
+}
 
 #pragma mark - Panels Delegate
 
@@ -119,5 +169,18 @@
     
 }
 
+#pragma mark register
+
+- (BOOL)isRegistered
+{
+    return [[UserManager defaultManager] hasUser];
+}
+
+- (void)toRegister
+{
+    RegisterUserController *ruc = [[RegisterUserController alloc] init];
+    [self.navigationController pushViewController:ruc animated:YES];
+    [ruc release];
+}
 
 @end

@@ -29,9 +29,10 @@ typedef enum{
     HomeMenuTypeDrawHome = 1500,
     HomeMenuTypeDrawOpus,
     HomeMenuTypeDrawMessage,
-    HomeMenuTypeDrawSetting,
     HomeMenuTypeDrawFriend,
-    HomeMenuTypeDrawOther,
+    HomeMenuTypeDrawMore,
+    HomeMenuTypeDrawMe,
+    HomeMenuTypeDrawSetting,
     
     //ZJH main menu start at 2000
     HomeMenuTypeZJHMainBegin = 2000,

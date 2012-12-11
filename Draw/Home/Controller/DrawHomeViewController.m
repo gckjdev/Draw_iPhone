@@ -206,7 +206,7 @@ DrawHomeViewController *_staticDrawHomeViewController = nil;
             
         }
             break;
-        case HomeMenuTypeDrawOther:
+        case HomeMenuTypeDrawMore:
         {
             FeedbackController* feedBack = [[FeedbackController alloc] init];
             [self.navigationController pushViewController:feedBack animated:YES];
