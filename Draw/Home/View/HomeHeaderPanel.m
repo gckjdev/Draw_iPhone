@@ -100,8 +100,8 @@
     [super dealloc];
 }
 - (IBAction)clickChargeButton:(id)sender {
-    if (self.delegate && [self.delegate respondsToSelector:@selector(didClickChargeButton:)]) {
-        [self.delegate didClickChargeButton:sender];
+    if (self.delegate && [self.delegate respondsToSelector:@selector(homeHeaderPanel:didClickChargeButton:)]) {
+        [self.delegate homeHeaderPanel:self didClickChargeButton:sender];
     }
 }
 @end

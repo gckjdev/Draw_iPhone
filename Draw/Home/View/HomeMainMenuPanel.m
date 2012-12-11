@@ -243,6 +243,8 @@
 
 - (void)didClickMenu:(HomeMenuView *)menu type:(HomeMenuType)type
 {
-    
+    if (self.delegate && [self.delegate respondsToSelector:@selector(homeMainMenuPanel:didClickMenu:menuType:)]) {
+        [self.delegate homeMainMenuPanel:self didClickMenu:menu menuType:type];
+    }
 }
 @end

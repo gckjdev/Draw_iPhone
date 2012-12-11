@@ -142,6 +142,8 @@
 #pragma mark - Home Menu View Delegate
 - (void)didClickMenu:(HomeMenuView *)menu type:(HomeMenuType)type
 {
-    
+    if (self.delegate && [self.delegate respondsToSelector:@selector(homeBottomMenuPanel:didClickMenu:menuType:)]) {
+        [self.delegate homeBottomMenuPanel:self didClickMenu:menu menuType:type];
+    }
 }
 @end
