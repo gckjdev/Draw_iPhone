@@ -328,7 +328,6 @@
     
     // background music.
     [_audioManager setBackGroundMusicWithURL:[_soundManager gameBGM]];
-    [_audioManager backgroundMusicStop];
     // waitting label
     [self updateWaitGameNoteLabel];
 }
