@@ -79,13 +79,13 @@
 - (void)getFeedList:(FeedListType)feedListType 
              offset:(NSInteger)offset 
               limit:(NSInteger)limit 
-           delegate:(PPViewController<FeedServiceDelegate> *)delegate;
+           delegate:(id<FeedServiceDelegate>)delegate;
 
 - (void)getContestOpusList:(int)type 
                  contestId:(NSString *)contestId
                     offset:(NSInteger)offset 
                      limit:(NSInteger)limit 
-                  delegate:(PPViewController<FeedServiceDelegate> *)delegate;
+                  delegate:(id<FeedServiceDelegate>)delegate;
 
 - (void)getOpusCommentList:(NSString *)opusId 
                       type:(int)type

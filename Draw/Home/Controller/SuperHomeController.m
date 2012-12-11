@@ -14,7 +14,7 @@
 
 @end
 
-#define ISIPAD [DeviceDetection isIPAD]
+
 #define MAIN_MENU_ORIGIN_Y ISIPAD ? 365 : 170
 #define BOTTOM_MENU_ORIGIN_Y ISIPAD ? (1004-97) : 422
 
