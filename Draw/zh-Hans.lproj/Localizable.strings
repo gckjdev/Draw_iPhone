@@ -1167,6 +1167,17 @@
 "kChangeCard" = "换牌";
 
 "kZJHQuitGameAlertMessage" = "现在离开游戏你会失去所有你已下的赌注！确定要走？";
+
+
+"kHurryUp" = "快点吧，我等到花儿都谢了";
+"kNiceToSeeYou" = "大家好";
+"kDareToBetToDie" = "敢跟老子火拼一把吗";
+"kIWillFollowAnyWay" = "你敢跟，我就敢跟，谁怕谁啊";
+"kBadLuck" = "运气真差，老拿烂牌";
+"kILeaveForAMoment" = "我先离开一会";
+"kIWantToGoNow" = "我要走啦，下次再玩";
+"kShutUp" = "别吵啦，专心游戏";
+
 /*********************** 炸金花国际化字符串结束 *************************/
 
 

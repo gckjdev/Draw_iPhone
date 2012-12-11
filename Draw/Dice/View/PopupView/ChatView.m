@@ -10,9 +10,8 @@
 #import "ExpressionManager.h"
 #import "ChatViewCell.h"
 #import "LocaleUtils.h"
-//#import "DiceChatMsgManager.h"
-#import "DiceImageManager.h"
 #import "ShareImageManager.h"
+#import "PPResourceService.h"
 
 #define WIDTH_EXPRESSION_VIEW   ([DeviceDetection isIPAD] ? 68: 34)
 #define HEIGHT_EXPRESSION_VIEW WIDTH_EXPRESSION_VIEW
@@ -27,11 +26,10 @@
 @interface ChatView()
 {
     ExpressionManager *_expressionManager;
-//    DiceChatMsgManager *_messageManager;
+    PPResourceService *_resService;
 }
 
 @property (retain, nonatomic) CMPopTipView *popTipView;
-//@property (retain, nonatomic) NSTimer *timer;
 
 @end
 
@@ -47,7 +45,6 @@
 @synthesize popTipView = _popTipView;
 @synthesize inputTextView = _inputTextView;
 @synthesize inputTextViewBgImageView = _inputTextViewBgImageView;
-//@synthesize timer = _timer;
 
 - (void)dealloc
 {
@@ -58,6 +55,7 @@
     [_pageController release];
     [_inputTextView release];
     [_inputTextViewBgImageView release];
+    [_closeButton release];
     [super dealloc];
 }
 
@@ -76,8 +74,9 @@
 - (void)loadContent
 {
     _expressionManager = [ExpressionManager defaultManager];
-//    _messageManager = [DiceChatMsgManager defaultManager];
-    _bgImageView.image = [[DiceImageManager defaultManager] popupBackgroundImage];
+    _resService = [PPResourceService defaultService];
+    _bgImageView.image = [[_resService imageByName:[getGameApp() chatViewBgImageName] inResourcePackage:[getGameApp() resourcesPackage]] stretchableImageWithLeftCapWidth:30 topCapHeight:30];
+    [_closeButton setBackgroundImage:[_resService imageByName:[getGameApp() popupViewCloseBtnBgImageName] inResourcePackage:[getGameApp() resourcesPackage]] forState:UIControlStateNormal]; 
     self.pageController.hidesForSinglePage = YES;
     self.pageController.defersCurrentPageDisplay = YES;
     self.inputTextView.delegate = self;
@@ -86,7 +85,7 @@
     [self addTarget:self action:@selector(clickChatView:) forControlEvents:UIControlEventTouchUpInside];
     [self.inputTextView setRoundRectStyleWithBorderColor:[UIColor clearColor]];
     [self.inputTextView setBackgroundColor:[UIColor clearColor]];
-    [self.inputTextViewBgImageView setImage:[[DiceImageManager defaultManager] inputTextBgImage]];
+    self.inputTextViewBgImageView.image =  [[_resService imageByName:[getGameApp() chatViewInputTextBgImageName] inResourcePackage:[getGameApp() resourcesPackage]] stretchableImageWithLeftCapWidth:14 topCapHeight:12];
     [self initCustomPageControl];
     [self addExpressions];
 }

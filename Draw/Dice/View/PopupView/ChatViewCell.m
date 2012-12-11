@@ -7,8 +7,8 @@
 //
 
 #import "ChatViewCell.h"
-#import "DiceImageManager.h"
-
+//#import "DiceImageManager.h"
+#import "PPResourceService.h"
 
 #define HEIGHT_CHATVIEWCELL ([DeviceDetection isIPAD] ? 76: 38)
 #define SIZE_FONT_CHATVIEWCEL   ([DeviceDetection isIPAD] ? 28: 14)
@@ -51,7 +51,8 @@
     CGSize size = [message.content sizeWithFont:[UIFont systemFontOfSize:SIZE_FONT_CHATVIEWCEL] constrainedToSize:withinSize lineBreakMode:UILineBreakModeTailTruncation];
     
     messageButton.frame = CGRectMake(0, 0, size.width + 30, messageButton.frame.size.height);
-    [messageButton setBackgroundImage:[[DiceImageManager defaultManager] diceChatMsgBgImage] forState:UIControlStateNormal];
+    
+    [messageButton setBackgroundImage:[[[PPResourceService defaultService] imageByName:[getGameApp() chatViewMsgBgImageName] inResourcePackage:[getGameApp() resourcesPackage]] stretchableImageWithLeftCapWidth:20 topCapHeight:0] forState:UIControlStateNormal];
     
     messageButton.fontLable.text = message.content;
     
@@ -59,6 +60,7 @@
     messageButton.fontLable.frame = CGRectMake(10, 3, fontLabelFrame.size.width, fontLabelFrame.size.height);
 
     messageButton.fontLable.textAlignment = UITextAlignmentLeft;
+    messageButton.fontLable.textColor = [getGameApp() chatViewMsgTextColor];
     [messageButton setImage:nil forState:UIControlStateNormal];
 }
 

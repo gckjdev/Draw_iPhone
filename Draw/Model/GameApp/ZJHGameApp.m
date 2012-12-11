@@ -8,6 +8,7 @@
 
 #import "ZJHGameApp.h"
 #import "MobClickUtils.h"
+#import "ZJHChatMsgManager.h"
 
 @implementation ZJHGameApp
 
@@ -149,6 +150,41 @@
 - (NSString*)shareEmailSubject
 {
     return NSLS(@"kZJH_email_subject");
+}
+
+- (NSString *)resourcesPackage
+{
+    return RESOURCE_PACKAGE_ZJH;
+}
+
+- (id<ChatMsgManagerProtocol>)getChatMsgManager
+{
+    return [ZJHChatMsgManager defaultManager];
+}
+
+- (NSString *)chatViewBgImageName
+{
+    return @"zjh_chat_view_bg";
+}
+
+- (NSString *)chatViewInputTextBgImageName
+{
+    return @"zjh_chat_view_input_text_bg";
+}
+
+- (NSString *)popupViewCloseBtnBgImageName
+{
+    return @"zjh_popup_view_close_btn_bg";
+}
+
+- (NSString *)chatViewMsgBgImageName
+{
+    return @"zjh_chat_view_msg_bg";
+}
+
+- (UIColor *)chatViewMsgTextColor
+{
+    return [UIColor whiteColor];
 }
 
 @end

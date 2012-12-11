@@ -1150,6 +1150,15 @@
 "kShowCard" = "Show";
 "kChangeCard" = "Change";
 "kZJHQuitGameAlertMessage" = "If you quit game ,you will lose all chips you have bet";
+
+"kHurryUp" = "Hurry up";
+"kNiceToSeeYou" = "Hello, ladies and gentlemen";
+"kDareToBetToDie" = "Come on";
+"kIWillFollowAnyWay" = "If you jump, I jump";
+"kBadLuck" = "Bad luck";
+"kILeaveForAMoment" = "I'll leave for a moment";
+"kIWantToGoNow" = "I wanna go, see u next time";
+"kShutUp" = "All shut up";
 /*********************** 炸金花国际化字符串结束 *************************/
 
 
