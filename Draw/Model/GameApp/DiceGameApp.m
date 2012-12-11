@@ -8,6 +8,7 @@
 
 #import "DiceGameApp.h"
 #import "MobClickUtils.h"
+#import "DiceChatMsgManager.h"
 
 @implementation DiceGameApp
 
@@ -157,6 +158,11 @@
 - (NSString*)shareEmailSubject
 {
     return NSLS(@"kDice_email_subject");
+}
+
+- (id<ChatMsgManagerProtocol>)getChatMsgManager
+{
+    return [DiceChatMsgManager defaultManager];
 }
 
 @end

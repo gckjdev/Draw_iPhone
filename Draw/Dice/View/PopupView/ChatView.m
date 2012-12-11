@@ -10,8 +10,7 @@
 #import "ExpressionManager.h"
 #import "ChatViewCell.h"
 #import "LocaleUtils.h"
-#import "DiceChatMsgManager.h"
-//#import "GifView.h"
+//#import "DiceChatMsgManager.h"
 #import "DiceImageManager.h"
 #import "ShareImageManager.h"
 
@@ -28,7 +27,7 @@
 @interface ChatView()
 {
     ExpressionManager *_expressionManager;
-    DiceChatMsgManager *_messageManager;
+//    DiceChatMsgManager *_messageManager;
 }
 
 @property (retain, nonatomic) CMPopTipView *popTipView;
@@ -77,7 +76,7 @@
 - (void)loadContent
 {
     _expressionManager = [ExpressionManager defaultManager];
-    _messageManager = [DiceChatMsgManager defaultManager];
+//    _messageManager = [DiceChatMsgManager defaultManager];
     _bgImageView.image = [[DiceImageManager defaultManager] popupBackgroundImage];
     self.pageController.hidesForSinglePage = YES;
     self.pageController.defersCurrentPageDisplay = YES;
@@ -197,7 +196,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [[_messageManager messages] count];
+    return [[[GameApp getChatMsgManager] messages] count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -208,7 +207,7 @@
         cell = [ChatViewCell createCell:self];
     }
     
-    [cell setCellData:[[_messageManager messages] objectAtIndex:indexPath.row]];
+    [cell setCellData:[[[GameApp getChatMsgManager] messages] objectAtIndex:indexPath.row]];
     cell.delegate = self;
     
     return cell;

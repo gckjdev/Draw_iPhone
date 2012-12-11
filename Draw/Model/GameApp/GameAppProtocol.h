@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "ChatMsgManagerProtocol.h"
 
 @protocol GameAppProtocol <NSObject>
 
@@ -46,5 +47,7 @@
 - (NSString*)shareMessageBody;
 - (NSString*)shareEmailSubject;
 - (NSString*)feedbackTips;
+
+- (id<ChatMsgManagerProtocol>)getChatMsgManager;
 
 @end
