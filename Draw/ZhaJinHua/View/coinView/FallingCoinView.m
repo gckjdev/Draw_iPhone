@@ -36,34 +36,27 @@
 	context = nil;
     
     [self destroyFramebuffer];
+    [self killTimer];
+    coindelegate = nil;
 	[super dealloc];
 }
 
-- (id)initWithFrame:(CGRect)frame withNum:(NSInteger)num
+- (id)initWithFrame:(CGRect)frame withNum:(NSInteger)num valuePerCoin:(NSInteger)value
 {
     self = [super initWithFrame:frame];
     if (self) {
-        [self setMultipleTouchEnabled:YES];
-        self.userInteractionEnabled = YES;
+//        [self setMultipleTouchEnabled:YES];
+        self.userInteractionEnabled = NO;
         iticktime = 0;
         coindelegate = nil;
         
         curCoinNum = 0;
-        if (num < 3000)
-        {
+        coinTotleNum = num/value;
+        if (coinTotleNum < 3) {
             coinTotleNum = 3;
         }
-        else if(num >= 3000 && num < 6000)
-        {
-            coinTotleNum = 4;
-        }
-        else if(num >=6000 && num < 9000)
-        {
-            coinTotleNum = 5;
-        }
-        else if(num >= 9000)
-        {
-            coinTotleNum = 6;
+        if (coinTotleNum > 10) {
+            coinTotleNum = 10;
         }
         
         coinPoint = CGPointMake(frame.size.width / 2 - 20.0f, 0.0f);
@@ -92,7 +85,7 @@
 		SystemSoundID soundID;
 		AudioServicesCreateSystemSoundID((CFURLRef)[NSURL fileURLWithPath:path], &soundID);
 		AudioServicesPlaySystemSound (soundID);
-        self.userInteractionEnabled = NO;
+//        self.userInteractionEnabled = NO;
     }
     return self;
 }
@@ -184,13 +177,11 @@
     
     if(curCoinNum == coinTotleNum && [images count] == 0 && [emitters count] == 0)
     {
-        [coinTimer invalidate];
-        coinTimer = nil;
-        
-        if(coindelegate != nil)
-        {
-            [coindelegate coinAnimationFinished];
-        }
+            if(coindelegate != nil)
+            {
+                [coindelegate coinAnimationFinished];
+            }
+        [self removeFromSuperview];
     }
 }
 
@@ -210,6 +201,7 @@
 {
     [self killTimer];
     coindelegate = nil;
+    [super removeFromSuperview];
 }
 
 

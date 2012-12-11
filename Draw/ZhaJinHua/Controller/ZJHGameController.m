@@ -998,7 +998,7 @@
 
 - (void)fallCoins:(int)coinsNum
 {
-    _coinView = [[[FallingCoinView alloc]initWithFrame:self.view.frame withNum:coinsNum] autorelease];
+    _coinView = [[[FallingCoinView alloc]initWithFrame:self.view.frame withNum:coinsNum valuePerCoin:10] autorelease];
     _coinView.coindelegate = self;
     [self.view addSubview:_coinView];
     
@@ -1641,8 +1641,6 @@
 
 - (void)coinAnimationFinished
 {
-    [_coinView removeFromSuperview];
-    _coinView.hidden = YES;
     _coinView = nil;
 }
 
