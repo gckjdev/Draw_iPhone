@@ -44,6 +44,6 @@
 -(void)destroyFramebuffer;
 -(void)createmitter:(CGPoint) point;
 -(void)creatimage:(CGPoint) point;
--(id)initWithFrame:(CGRect)frame withNum:(NSInteger)num;
+-(id)initWithFrame:(CGRect)frame withNum:(NSInteger)num valuePerCoin:(NSInteger)value;
 
 @end

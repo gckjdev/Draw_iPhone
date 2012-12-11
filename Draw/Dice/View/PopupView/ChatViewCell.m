@@ -17,7 +17,7 @@
 
 @interface ChatViewCell ()
 
-@property (retain, nonatomic) DiceChatMessage *message;
+@property (retain, nonatomic) CommonChatMessage *message;
 
 @end
 
@@ -43,7 +43,7 @@
     return @"ChatViewCell";
 }
 
-- (void)setCellData:(DiceChatMessage *)message
+- (void)setCellData:(CommonChatMessage *)message
 {
     self.message = message;
     

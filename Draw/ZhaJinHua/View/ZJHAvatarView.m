@@ -309,6 +309,8 @@
 - (void)showExpression:(UIImage *)image
 {
     UIImageView *view = [[[UIImageView alloc] initWithFrame:self.roundAvatarPlaceView.frame] autorelease];
+    view.transform = CGAffineTransformMakeScale(1.05, 1.05);
+    view.center = self.roundAvatarPlaceView.center;
     view.image = image;
     CAAnimation *moveVerticalAni = [AnimationManager moveVerticalAnimationFrom:view.center.y to:view.center.y - ([DeviceDetection isIPAD] ? 20 : 10) duration:0.5];
     moveVerticalAni.repeatCount = 3;

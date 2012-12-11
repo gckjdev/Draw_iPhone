@@ -998,7 +998,7 @@
 
 - (void)fallCoins:(int)coinsNum
 {
-    _coinView = [[[FallingCoinView alloc]initWithFrame:self.view.frame withNum:coinsNum] autorelease];
+    _coinView = [[[FallingCoinView alloc]initWithFrame:self.view.frame withNum:coinsNum valuePerCoin:10] autorelease];
     _coinView.coindelegate = self;
     [self.view addSubview:_coinView];
     
@@ -1547,7 +1547,10 @@
     CGPoint point = [ZJHScreenConfig getChatMessageViewOriginByPosition:position];
     if (position == UserPositionCenter) {
         point.y -= view.frame.size.height;
+    }else if (position == UserPositionRight || position == UserPositionRightTop){
+        point.x -= view.frame.size.width;
     }
+    
     view.frame = CGRectMake(point.x, point.y, view.frame.size.width, view.frame.size.height);
     [self.view addSubview:view];
     
@@ -1638,8 +1641,6 @@
 
 - (void)coinAnimationFinished
 {
-    [_coinView removeFromSuperview];
-    _coinView.hidden = YES;
     _coinView = nil;
 }
 
@@ -1669,7 +1670,7 @@
     [_gameService chatWithExpression:key];
 }
 
-- (void)didClickMessage:(DiceChatMessage *)message
+- (void)didClickMessage:(CommonChatMessage *)message
 {
     [self.chatView dismissAnimated:YES];
     

@@ -26,15 +26,15 @@ typedef struct{
 #define CHAT_MESSAGE_MAX_HEIGHT ([DeviceDetection isIPAD] ? 300 : 150)
 #define CHAT_MESSAGE_MIN_HEIGHT 20
 
-#define ACTION_MESSAGE_LABEL_LEFT_OFFSET ([DeviceDetection isIPAD] ? 5.0 : 2.5)
-#define ACTION_MESSAGE_LABEL_RIGHT_OFFSET ([DeviceDetection isIPAD] ? 5.0 : 2.5)
+#define ACTION_MESSAGE_LABEL_LEFT_OFFSET ([DeviceDetection isIPAD] ? 10.0 : 2.5)
+#define ACTION_MESSAGE_LABEL_RIGHT_OFFSET ([DeviceDetection isIPAD] ? 10.0 : 2.5)
 #define ACTION_MESSAGE_LABEL_TOP_OFFSET ([DeviceDetection isIPAD] ? 5 : 1)
 #define ACTION_MESSAGE_LABEL_BOTTOM_OFFSET ([DeviceDetection isIPAD] ? 11 : 7)
 
-#define CHAT_MESSAGE_LABEL_LEFT_OFFSET ([DeviceDetection isIPAD] ? 5.0 : 2.5)
-#define CHAT_MESSAGE_LABEL_RIGHT_OFFSET ([DeviceDetection isIPAD] ? 5.0 : 2.5)
-#define CHAT_MESSAGE_LABEL_TOP_OFFSET ([DeviceDetection isIPAD] ? 5 : 1)
-#define CHAT_MESSAGE_LABEL_BOTTOM_OFFSET ([DeviceDetection isIPAD] ? 11 : 7)
+//#define CHAT_MESSAGE_LABEL_LEFT_OFFSET ([DeviceDetection isIPAD] ? 5.0 : 2.5)
+//#define CHAT_MESSAGE_LABEL_RIGHT_OFFSET ([DeviceDetection isIPAD] ? 5.0 : 2.5)
+//#define CHAT_MESSAGE_LABEL_TOP_OFFSET ([DeviceDetection isIPAD] ? 5 : 1)
+//#define CHAT_MESSAGE_LABEL_BOTTOM_OFFSET ([DeviceDetection isIPAD] ? 11 : 7)
 
 
 #define ACTION_MESSAGE_LABEL_TAG 200
@@ -140,33 +140,33 @@ typedef struct{
     Offset offset;
     switch (pos) {
         case UserPositionCenter:
-            offset.leftOffset = ([DeviceDetection isIPAD] ? 14.0 : 7);
-            offset.rightOffset = ([DeviceDetection isIPAD] ? 14.0 : 7);
+            offset.leftOffset = ([DeviceDetection isIPAD] ? 14 : 7);
+            offset.rightOffset = ([DeviceDetection isIPAD] ? 14 : 7);
             offset.topOffset = ([DeviceDetection isIPAD] ? 12 : 6);
             offset.bottomOffset = ([DeviceDetection isIPAD] ? 15 : 10);
             break;
             
         case UserPositionCenterUp:
-            offset.leftOffset = ([DeviceDetection isIPAD] ? 14.0 : 5);
-            offset.rightOffset = ([DeviceDetection isIPAD] ? 14.0 : 5);
+            offset.leftOffset = ([DeviceDetection isIPAD] ? 14 : 5);
+            offset.rightOffset = ([DeviceDetection isIPAD] ? 14 : 5);
             offset.topOffset = ([DeviceDetection isIPAD] ? 15 : 10);
             offset.bottomOffset = ([DeviceDetection isIPAD] ? 12 : 6);
             break;
             
         case UserPositionLeft:
         case UserPositionLeftTop:
-            offset.leftOffset = ([DeviceDetection isIPAD] ? 11 : 7);
-            offset.rightOffset = ([DeviceDetection isIPAD] ? 5.0 : 2.5);
-            offset.topOffset = ([DeviceDetection isIPAD] ? 5 : 1);
-            offset.bottomOffset = ([DeviceDetection isIPAD] ? 5.0 : 2.5);
+            offset.leftOffset = ([DeviceDetection isIPAD] ? 15 : 10);
+            offset.rightOffset = ([DeviceDetection isIPAD] ? 12 : 6);
+            offset.topOffset = ([DeviceDetection isIPAD] ? 14 : 5);
+            offset.bottomOffset = ([DeviceDetection isIPAD] ? 14 : 5);
             break;
             
         case UserPositionRight:
         case UserPositionRightTop:
-            offset.leftOffset = ([DeviceDetection isIPAD] ? 5.0 : 2.5);
-            offset.rightOffset = ([DeviceDetection isIPAD] ? 11 : 7);
-            offset.topOffset = ([DeviceDetection isIPAD] ? 5 : 1);
-            offset.bottomOffset = ([DeviceDetection isIPAD] ? 5.0 : 2.5);
+            offset.leftOffset = ([DeviceDetection isIPAD] ? 12 : 6);
+            offset.rightOffset = ([DeviceDetection isIPAD] ? 15 : 10);
+            offset.topOffset = ([DeviceDetection isIPAD] ? 14 : 5);
+            offset.bottomOffset = ([DeviceDetection isIPAD] ? 14 : 5);
             break;
             
         default:
@@ -190,11 +190,11 @@ typedef struct{
 //    size.width = size.width * 1.1;
     size.height = (size.height < ACTION_MESSAGE_MIN_HEIGHT) ? ACTION_MESSAGE_MIN_HEIGHT : size.height;
     
-    if([DeviceDetection isIPAD])
-    {
-        size.width *= 1.5;
-        size.height *= 1.0;
-    }
+//    if([DeviceDetection isIPAD])
+//    {
+//        size.width *= 1.5;
+//        size.height *= 1.0;
+//    }
 
     CGRect rect = CGRectMake(0, 0, size.width, size.height);
     

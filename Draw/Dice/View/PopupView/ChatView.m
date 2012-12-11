@@ -242,7 +242,7 @@
 //}
 
 #pragma mark - ChatViewCellDelegate
-- (void)didClickMessage:(DiceChatMessage *)message
+- (void)didClickMessage:(CommonChatMessage *)message
 {
     if ([_delegate respondsToSelector:@selector(didClickMessage:)]) {
         [_delegate didClickMessage:message];
@@ -288,7 +288,7 @@
 - (void)sendText:text
 {
     NSString *content = text;
-    DiceChatMessage *message = [[[DiceChatMessage alloc] initWithMessageId:CUSTOM_MESSAGE_ID content:content voiceId:-1] autorelease];
+    CommonChatMessage *message = [[[CommonChatMessage alloc] initWithMessageId:CUSTOM_MESSAGE_ID content:content voiceId:-1] autorelease];
     if ([_delegate respondsToSelector:@selector(didClickMessage:)]) {
         [_delegate didClickMessage:message];
     }

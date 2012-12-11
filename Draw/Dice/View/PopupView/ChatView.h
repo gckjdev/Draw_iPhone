@@ -18,7 +18,7 @@
 @optional
 - (void)didClickCloseButton;
 - (void)didClickExepression:(NSString *)key;
-- (void)didClickMessage:(DiceChatMessage *)message;
+- (void)didClickMessage:(CommonChatMessage *)message;
 
 @end
 

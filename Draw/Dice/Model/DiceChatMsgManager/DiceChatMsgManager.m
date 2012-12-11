@@ -7,7 +7,7 @@
 //
 
 #import "DiceChatMsgManager.h"
-#import "DiceChatMessage.h"
+#import "CommonChatMessage.h"
 #import "LocaleUtils.h"
 
 
@@ -43,39 +43,39 @@ static DiceChatMsgManager *_defaultManager = nil;
 - (id)init
 {    
     if (self = [super init]) {
-        DiceChatMessage *message1 = [[[DiceChatMessage alloc] initWithMessageId:1 
+        CommonChatMessage *message1 = [[[CommonChatMessage alloc] initWithMessageId:1
                                                                 content:NSLS(@"kPayAttentionToMe") 
                                                                 voiceId:1] autorelease];
         
-        DiceChatMessage *message2 = [[[DiceChatMessage alloc] initWithMessageId:2 
+        CommonChatMessage *message2 = [[[CommonChatMessage alloc] initWithMessageId:2 
                                                                 content:NSLS(@"kNoMatterWhatYouCallIWillOpen") 
                                                                 voiceId:2] autorelease];
         
-        DiceChatMessage *message3 = [[[DiceChatMessage alloc] initWithMessageId:3 
+        CommonChatMessage *message3 = [[[CommonChatMessage alloc] initWithMessageId:3 
                                                                 content:NSLS(@"kDoYouDareToOpen") 
                                                                 voiceId:3] autorelease];
         
-        DiceChatMessage *message4 = [[[DiceChatMessage alloc] initWithMessageId:4 
+        CommonChatMessage *message4 = [[[CommonChatMessage alloc] initWithMessageId:4 
                                                                 content:NSLS(@"kBelieveItOrNotAnywayIBelieved") 
                                                                 voiceId:4] autorelease];
         
-        DiceChatMessage *message5 = [[[DiceChatMessage alloc] initWithMessageId:5
+        CommonChatMessage *message5 = [[[CommonChatMessage alloc] initWithMessageId:5
                                                                 content:NSLS(@"kAttentionWilds") 
                                                                 voiceId:5] autorelease];
         
-        DiceChatMessage *message6 = [[[DiceChatMessage alloc] initWithMessageId:6 
+        CommonChatMessage *message6 = [[[CommonChatMessage alloc] initWithMessageId:6 
                                                                 content:NSLS(@"kDontGoAndPlayMore") 
                                                                 voiceId:6] autorelease];
         
-        DiceChatMessage *message7 = [[[DiceChatMessage alloc] initWithMessageId:7 
+        CommonChatMessage *message7 = [[[CommonChatMessage alloc] initWithMessageId:7 
                                                                 content:NSLS(@"kCheatMeNotSoEasy") 
                                                                 voiceId:7] autorelease];
         
-        DiceChatMessage *message8 = [[[DiceChatMessage alloc] initWithMessageId:8 
+        CommonChatMessage *message8 = [[[CommonChatMessage alloc] initWithMessageId:8 
                                                                 content:NSLS(@"kYouAreFooled") 
                                                                 voiceId:8] autorelease];
         
-        DiceChatMessage *message9 = [[[DiceChatMessage alloc] initWithMessageId:9 
+        CommonChatMessage *message9 = [[[CommonChatMessage alloc] initWithMessageId:9 
                                                                 content:NSLS(@"kIWantToGoSeeUNextTime") 
                                                                 voiceId:9] autorelease];
         
@@ -99,7 +99,7 @@ static DiceChatMsgManager *_defaultManager = nil;
 
 - (int)voiceIdForMessageId:(int)messageId
 {
-    for (DiceChatMessage *message in _messages) {
+    for (CommonChatMessage *message in _messages) {
         if (messageId == message.messageId) {
             return message.voiceId;
         }
@@ -110,7 +110,7 @@ static DiceChatMsgManager *_defaultManager = nil;
 
 - (NSString *)contentForMessageId:(int)messageId
 {
-    for (DiceChatMessage *message in _messages) {
+    for (CommonChatMessage *message in _messages) {
         if (messageId == message.messageId) {
             return message.content;
         }
