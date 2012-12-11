@@ -20,47 +20,98 @@
 @synthesize isPasswordOptional = _isPasswordOptional;
 @synthesize contentBackground;
 
-- (void)initWithTheme:(CommonInputDialogTheme)theme title:(NSString*)title
++ (CommonInputDialogTheme)getTheme
+{
+    if (isDrawApp()) {
+        return CommonInputDialogThemeDraw;
+    }
+    if (isDiceApp()) {
+        return CommonInputDialogThemeZJH;
+    }
+    if (isZhajinhuaApp()) {
+        return CommonInputDialogThemeZJH;
+    }
+    return CommonInputDialogThemeDraw;
+}
+
+- (void)initByDraw:(NSString*)title
 {
     ShareImageManager *imageManager = [ShareImageManager defaultManager];
+    float fontSize = [DeviceDetection isIPAD] ? 40 : 20;
+    
+    [self.targetTextField setBackground:[imageManager inputImage]];
+    [self setDialogTitle:title];
+    [self.cancelButton setBackgroundImage:[imageManager greenImage] forState:UIControlStateNormal];
+    [self.cancelButton setTitle:NSLS(@"kCancel") forState:UIControlStateNormal];
+    [self.okButton setTitle:NSLS(@"kOK") forState:UIControlStateNormal];
+    [self.okButton setBackgroundImage:[imageManager redImage] forState:UIControlStateNormal];
+    self.titleLabel.titleLabel.font = [UIFont boldSystemFontOfSize:fontSize];
+    self.titleLabel.titleLabel.adjustsFontSizeToFitWidth = YES;
+    self.titleLabel.titleLabel.lineBreakMode = UILineBreakModeTailTruncation;
+    [self.targetTextField setBackground:[imageManager inputImage]];
+    [self.passwordField setBackground:[imageManager inputImage]];
+}
+
+- (void)initByZJH:(NSString*)title
+{
     DiceImageManager* diceImgManager = [DiceImageManager defaultManager];
     float fontSize = [DeviceDetection isIPAD] ? 40 : 20;
+    
+    [self.contentBackground setImage:[ZJHImageManager defaultManager].ZJHUserInfoBackgroundImage];
+    self.isPasswordOptional = YES;
+    [self.targetTextField setBackground:[diceImgManager inputBackgroundImage]];
+    [self.titleLabel setTitle:title forState:UIControlStateNormal];
+    
+    [self.okButton setRoyButtonWithColor:[UIColor colorWithRed:120.0/255.0 green:230.0/255.0 blue:160.0/255.0 alpha:0.95]];
+    [self.okButton.titleLabel setFont:[UIFont systemFontOfSize:fontSize]];
+    
+    [self.cancelButton setRoyButtonWithColor:[UIColor colorWithRed:236.0/255.0 green:247.0/255.0 blue:63.0/255.0 alpha:0.95]];
+    [self.cancelButton.titleLabel setFont:[UIFont systemFontOfSize:fontSize]];
+    
+    [self.cancelButton setTitle:NSLS(@"kCancel") forState:UIControlStateNormal];
+    [self.okButton setTitle:NSLS(@"kOK") forState:UIControlStateNormal];
+    self.titleLabel.titleLabel.font = [UIFont boldSystemFontOfSize:fontSize];
+    self.titleLabel.titleLabel.adjustsFontSizeToFitWidth = YES;
+    self.titleLabel.titleLabel.lineBreakMode = UILineBreakModeTailTruncation;
+    [self.targetTextField setBackground:[diceImgManager inputBackgroundImage]];
+    [self.passwordField setBackground:[diceImgManager inputBackgroundImage]];
+}
+
+- (void)initByDice:(NSString*)title
+{
+    DiceImageManager* diceImgManager = [DiceImageManager defaultManager];
+    float fontSize = [DeviceDetection isIPAD] ? 40 : 20;
+    
+    [self.contentBackground setImage:[DiceImageManager defaultManager].helpBackgroundImage];
+    self.isPasswordOptional = YES;
+    [self.targetTextField setBackground:[diceImgManager inputBackgroundImage]];
+    [self.titleLabel.fontLable setText:title];
+    
+    [self.okButton setRoyButtonWithColor:[UIColor colorWithRed:120.0/255.0 green:230.0/255.0 blue:160.0/255.0 alpha:0.95]];
+    [self.cancelButton setRoyButtonWithColor:[UIColor colorWithRed:236.0/255.0 green:247.0/255.0 blue:63.0/255.0 alpha:0.95]];
+    
+    [self.cancelButton.fontLable setText:NSLS(@"kCancel")];
+    [self.okButton.fontLable setText:NSLS(@"kOK")];
+    self.titleLabel.fontLable.font = [UIFont boldSystemFontOfSize:fontSize];
+    self.titleLabel.fontLable.adjustsFontSizeToFitWidth = YES;
+    self.titleLabel.fontLable.lineBreakMode = UILineBreakModeTailTruncation;
+    [self.targetTextField setBackground:[diceImgManager inputBackgroundImage]];
+    [self.passwordField setBackground:[diceImgManager inputBackgroundImage]];
+}
+
+- (void)initWithTheme:(CommonInputDialogTheme)theme title:(NSString*)title
+{
     switch (theme) {
-        case CommonInputDialogThemeZJH:
+        case CommonInputDialogThemeZJH: {
+            [self initByZJH:title];
+        } break;
         case CommonInputDialogThemeDice:{
-            [self.contentBackground setImage:[DiceImageManager defaultManager].helpBackgroundImage];
-            if (theme == CommonInputDialogThemeZJH) {
-                [self.contentBackground setImage:[ZJHImageManager defaultManager].ZJHUserInfoBackgroundImage];
-            }
-            self.isPasswordOptional = YES;
-            [self.targetTextField setBackground:[diceImgManager inputBackgroundImage]];
-            [self.titleLabel.fontLable setText:title];
-            
-            [self.okButton setRoyButtonWithColor:[UIColor colorWithRed:120.0/255.0 green:230.0/255.0 blue:160.0/255.0 alpha:0.95]];
-            [self.cancelButton setRoyButtonWithColor:[UIColor colorWithRed:236.0/255.0 green:247.0/255.0 blue:63.0/255.0 alpha:0.95]];
-            
-            [self.cancelButton.fontLable setText:NSLS(@"kCancel")];
-            [self.okButton.fontLable setText:NSLS(@"kOK")];
-            self.titleLabel.fontLable.font = [UIFont boldSystemFontOfSize:fontSize];
-            self.titleLabel.fontLable.adjustsFontSizeToFitWidth = YES;
-            self.titleLabel.fontLable.lineBreakMode = UILineBreakModeTailTruncation;
-            [self.targetTextField setBackground:[diceImgManager inputBackgroundImage]];
-            [self.passwordField setBackground:[diceImgManager inputBackgroundImage]];
+            [self initByDice:title];
             
         } break;
         case CommonInputDialogThemeDraw: 
         default: {
-            [self.targetTextField setBackground:[imageManager inputImage]];
-            [self setDialogTitle:title];
-            [self.cancelButton setBackgroundImage:[imageManager greenImage] forState:UIControlStateNormal];
-            [self.cancelButton setTitle:NSLS(@"kCancel") forState:UIControlStateNormal];
-            [self.okButton setTitle:NSLS(@"kOK") forState:UIControlStateNormal];
-            [self.okButton setBackgroundImage:[imageManager redImage] forState:UIControlStateNormal];
-            self.titleLabel.titleLabel.font = [UIFont boldSystemFontOfSize:fontSize];
-            self.titleLabel.titleLabel.adjustsFontSizeToFitWidth = YES;
-            self.titleLabel.titleLabel.lineBreakMode = UILineBreakModeTailTruncation;
-            [self.targetTextField setBackground:[imageManager inputImage]];
-            [self.passwordField setBackground:[imageManager inputImage]];
+            [self initByDraw:title];
         }break;
     }
     [self.targetTextField setPlaceholder:NSLS(@"kNicknameHolder")];
@@ -83,28 +134,9 @@
 
 + (RoomPasswordDialog *)dialogWith:(NSString *)title delegate:(id<InputDialogDelegate>)delegate
 {
-    NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"RoomPasswordDialog" owner:self options:nil];
-    if (topLevelObjects == nil || [topLevelObjects count] <= 0){
-        NSLog(@"create <RoomPasswordDialog> but cannot find cell object from Nib");
-        return nil;
-    }
-    RoomPasswordDialog* view =  (RoomPasswordDialog*)[topLevelObjects objectAtIndex:0];
-    
-    //init the button
-    ShareImageManager *imageManager = [ShareImageManager defaultManager];
-    
-    [view updateTextFields];
-    
-    [view setDialogTitle:title];
-    
-    [view.cancelButton setBackgroundImage:[imageManager greenImage] forState:UIControlStateNormal];
-    [view.cancelButton setTitle:NSLS(@"kCancel") forState:UIControlStateNormal];
-    [view.okButton setTitle:NSLS(@"kOK") forState:UIControlStateNormal];
-    [view.okButton setBackgroundImage:[imageManager redImage] forState:UIControlStateNormal];
-    view.delegate = delegate;
-    view.roomNameLabel.text = NSLS(@"kRoomNameLabel");
-    view.passwordLabel.text = NSLS(@"kRoomPasswordLabel");
-    return view;
+    CommonInputDialogTheme theme = [RoomPasswordDialog getTheme];
+    PPDebug(@"*********** theme = %d", theme);
+    return [RoomPasswordDialog dialogWith:title delegate:delegate theme:theme];
 }
 
 + (RoomPasswordDialog *)createDialogWithTheme:(CommonInputDialogTheme)theme
@@ -116,6 +148,10 @@
         } break;
         case CommonInputDialogThemeDraw: {
             view = (RoomPasswordDialog*)[self createInfoViewByXibName:ROOM_PASSWORD_DIALOG];
+        } break;
+        case CommonInputDialogThemeZJH: {
+            view = (RoomPasswordDialog*)[self createInfoViewByXibName:ZJH_ROOM_PASSWORD_DIALOG];
+            [view.bgView setImage:[ZJHImageManager defaultManager].ZJHUserInfoBackgroundImage];
         } break;
         default:
             PPDebug(@"<RoomPasswordDialog> theme %d do not exist",theme);
@@ -131,18 +167,9 @@
 {
     RoomPasswordDialog* view = [self createDialogWithTheme:theme];
     if (view) {
-        //init the button
+
         [view initWithTheme:theme title:title];
-//        ShareImageManager *imageManager = [ShareImageManager defaultManager];
-//        
-//        [view updateTextFields];
-//        
-//        [view setDialogTitle:title];
-//        
-//        [view.cancelButton setBackgroundImage:[imageManager greenImage] forState:UIControlStateNormal];
-//        [view.cancelButton setTitle:NSLS(@"kCancel") forState:UIControlStateNormal];
-//        [view.okButton setTitle:NSLS(@"kOK") forState:UIControlStateNormal];
-//        [view.okButton setBackgroundImage:[imageManager redImage] forState:UIControlStateNormal];
+
         view.delegate = delegate;
         
     }

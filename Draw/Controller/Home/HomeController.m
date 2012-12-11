@@ -66,6 +66,7 @@
 
 #import "BBSBoardController.h"
 
+#import "DrawHomeViewController.h"
 
 @interface HomeController()
 {
@@ -130,7 +131,7 @@
     }
 }
 
-
+/*
 - (void)loadBoards
 {
     NSArray *borads = [[BoardManager defaultManager] boardList];
@@ -158,7 +159,7 @@
     
     [self.view addSubview:_bottomMenuPanel];
 }
-
+*/
 
 - (void)handleStaticTimer:(NSTimer *)theTimer
 {
@@ -175,10 +176,12 @@
         self.recommendButton.hidden = YES;
     }
     
-    [super viewDidLoad];    
+    [super viewDidLoad];
+    /*
     [self loadMainMenu];
     [self loadBottomMenu];
-//    [self loadBoards];
+    [self loadBoards];
+     */
     [self playBackgroundMusic];
     
     // set text
@@ -205,19 +208,25 @@
     [self enterNextControllerWityType:self.notificationType];
     
     [NSTimer scheduledTimerWithTimeInterval:300 target:self selector:@selector(handleStaticTimer:) userInfo:nil repeats:YES];
+    
 }
+
+
 
 - (void)registerDrawGameNotificationWithName:(NSString *)name 
                                   usingBlock:(void (^)(NSNotification *note))block
-{    
+{
+    /*
     [self registerNotificationWithName:name 
                                 object:nil 
                                  queue:[NSOperationQueue mainQueue] 
                             usingBlock:block];
+     */
 }
 
 - (void)registerDrawGameNotification
-{    
+{
+    /*
     [self registerNotificationWithName:BOARD_UPDATE_NOTIFICATION // TODO set right name here
                                 object:nil
                                  queue:[NSOperationQueue mainQueue]
@@ -237,6 +246,7 @@
                                 [_boardPanel stopTimer];                                
                                 
                             }]; 
+ */
 }
 
 - (void)unregisterDrawGameNotification
@@ -252,7 +262,7 @@
     [[UserService defaultService] getStatistic:self];   
     [UIApplication sharedApplication].idleTimerDisabled = NO;
     [[DrawGameService defaultService] registerObserver:self];
-    [self loadBoards];
+//    [self loadBoards];
     [super viewDidAppear:animated];
 
 }
@@ -260,8 +270,10 @@
 - (void)viewDidDisappear:(BOOL)animated
 {
     [self unregisterDrawGameNotification];
+    /*
     [_boardPanel clearAds];
     [_boardPanel stopTimer];
+     */
     [self hideActivity];
     [[DrawGameService defaultService] unregisterObserver:self];
     [super viewDidDisappear:animated];
@@ -569,6 +581,13 @@
 {
     StatisticManager *manager = [StatisticManager defaultManager];
     
+    [self.homeBottomMenuPanel updateMenu:HomeMenuTypeDrawMessage badge:manager.messageCount];
+    [self.homeBottomMenuPanel updateMenu:HomeMenuTypeDrawFriend badge:manager.fanCount];
+    
+    long timelineCount = manager.feedCount + manager.commentCount + manager.drawToMeCount;
+    [self.homeMainMenuPanel updateMenu:HomeMenuTypeDrawTimeline badge:timelineCount];
+
+/*
     [self.bottomMenuPanel setMenuBadge:manager.messageCount forMenuType:MenuButtonTypeChat];
     [self.bottomMenuPanel setMenuBadge:manager.fanCount
                            forMenuType:MenuButtonTypeFriend];
@@ -578,7 +597,8 @@
     long timelineCount = manager.feedCount + manager.commentCount + manager.drawToMeCount;
     [self.menuPanel setMenuBadge:timelineCount 
                      forMenuType:MenuButtonTypeTimeline];
-
+*/
+    
 }
 
 - (void)didGetStatistic:(int)resultCode 
@@ -605,9 +625,163 @@
     }
 }
 
+- (void)homeMainMenuPanel:(HomeMainMenuPanel *)mainMenuPanel
+             didClickMenu:(HomeMenuView *)menu
+                 menuType:(HomeMenuType)type
+{
+    PPDebug(@"<homeMainMenuPanel>, click type = %d", type);
+    switch (type) {
+        case HomeMenuTypeDrawGame:
+        {
+            [self showActivityWithText:NSLS(@"kJoiningGame")];
+            NSString* userId = [_userManager userId];
+            NSString* nickName = [_userManager nickName];
+            
+            if (userId == nil){
+                userId = [NSString GetUUID];
+            }
+            
+            if (nickName == nil){
+                nickName = NSLS(@"guest");
+            }
+            
+            if ([[DrawGameService defaultService] isConnected]){
+                [[DrawGameService defaultService] joinGame:userId
+                                                  nickName:nickName
+                                                    avatar:[_userManager avatarURL]
+                                                    gender:[_userManager isUserMale]
+                                                  location:[_userManager location]
+                                                 userLevel:[[LevelService defaultService] level]
+                                            guessDiffLevel:[ConfigManager guessDifficultLevel]
+                                               snsUserData:[_userManager snsUserData]];
+            }
+            else{
+                
+                [self showActivityWithText:NSLS(@"kConnectingServer")];
+                [[RouterService defaultService] tryFetchServerList:self];
+            }
+            
+        }
+            
+            break;
+        case HomeMenuTypeDrawDraw:
+        {
+            SelectWordController *sc = [[SelectWordController alloc] initWithType:OfflineDraw];
+            [self.navigationController pushViewController:sc animated:YES];
+            [sc release];
+        }
+            break;
+        case HomeMenuTypeDrawGuess:
+        {
+            [self showActivityWithText:NSLS(@"kLoading")];
+            [[DrawDataService defaultService] matchDraw:self];
+        }
+            break;
+            
+        case HomeMenuTypeDrawTimeline:
+        {
+            
+            //            MyFeedController *frc = [[MyFeedController alloc] init];
+            //            [self.navigationController pushViewController:frc animated:YES];
+            //            [frc release];
+            
+            [MyFeedController enterControllerWithIndex:0 fromController:self animated:YES];
+            [menu updateBadge:0];
+        }
+            break;
+        case HomeMenuTypeDrawShop:
+        {
+            VendingController* vc = [[VendingController alloc] init];
+            [self.navigationController pushViewController:vc animated:YES];
+            [vc release];
+        }
+            break;
+        case HomeMenuTypeDrawContest:
+        {
+            ContestController *cc = [[ContestController alloc] init];
+            [self.navigationController pushViewController:cc animated:YES];
+            [cc release];
+        }
+            break;
+        case HomeMenuTypeDrawBBS:{
+            BBSBoardController *bbs = [[BBSBoardController alloc] init];
+            [self.navigationController pushViewController:bbs animated:YES];
+            [bbs release];
+            
+        }
+            break;
+        case HomeMenuTypeDrawRank:
+        {
+            HotController *hc = [[HotController alloc] init];
+            [self.navigationController pushViewController:hc animated:YES];
+            [hc release];
+        }
+            break;
+            
+        default:
+            break;
+    }
+    
+}
+
+- (void)homeBottomMenuPanel:(HomeBottomMenuPanel *)bottomMenuPanel
+               didClickMenu:(HomeMenuView *)menu
+                   menuType:(HomeMenuType)type
+{
+    PPDebug(@"<homeBottomMenuPanel>, click type = %d", type);
+    
+    switch (type) {
+            //For Bottom Menus
+        case HomeMenuTypeDrawSetting:
+        {
+            UserSettingController *settings = [[UserSettingController alloc] init];
+            [self.navigationController pushViewController:settings animated:YES];
+            [settings release];
+        }
+            
+            break;
+        case HomeMenuTypeDrawOpus:
+        {
+            ShareController* share = [[ShareController alloc] init ];
+            [self.navigationController pushViewController:share animated:YES];
+            [share release];
+            
+        }
+            break;
+        case HomeMenuTypeDrawFriend:
+        {
+            FriendController *mfc = [[FriendController alloc] init];
+            [self.navigationController pushViewController:mfc animated:YES];
+            [mfc release];
+            [menu updateBadge:0];
+        }
+            break;
+        case HomeMenuTypeDrawMessage:
+        {
+            ChatListController *controller = [[ChatListController alloc] init];
+            [self.navigationController pushViewController:controller animated:YES];
+            [controller release];
+            [menu updateBadge:0];
+            
+        }
+            break;
+        case HomeMenuTypeDrawOther:
+        {
+            FeedbackController* feedBack = [[FeedbackController alloc] init];
+            [self.navigationController pushViewController:feedBack animated:YES];
+            [feedBack release];
+            
+        }
+            break;
+
+        default:
+            break;
+    }
+}
+
+
 - (IBAction)clickFacetime:(id)sender
 {
-
 //    [[BBSService defaultService] getBBSBoardList:nil];
 //    BBSBoardController *bbs = [[BBSBoardController alloc] init];
 //    [self.navigationController pushViewController:bbs animated:YES];
@@ -621,7 +795,7 @@
 
 //#define BOARD_PANEL_TAG 201208241
 #pragma mark - board service delegate
-
+/*
 - (void)cleanBoardPanel
 {
     for (UIView *view in self.view.subviews) {
@@ -641,159 +815,5 @@
 
 }
 
-
-#pragma mark - Button Menu delegate
-
-- (void)didClickMenuButton:(MenuButton *)menuButton
-{
-    PPDebug(@"menu button type = %d", menuButton.type);
-    if (![self isRegistered]) {
-        [self toRegister];
-        return;
-    }
-    
-    MenuButtonType type = menuButton.type;
-    switch (type) {
-        case MenuButtonTypeOnlinePlay:
-        {
-            [self showActivityWithText:NSLS(@"kJoiningGame")];
-            NSString* userId = [_userManager userId];
-            NSString* nickName = [_userManager nickName];
-            
-            if (userId == nil){
-                userId = [NSString GetUUID];
-            }
-            
-            if (nickName == nil){
-                nickName = NSLS(@"guest");
-            }
-            
-            if ([[DrawGameService defaultService] isConnected]){        
-                [[DrawGameService defaultService] joinGame:userId
-                                                  nickName:nickName
-                                                    avatar:[_userManager avatarURL]
-                                                    gender:[_userManager isUserMale]
-                                                  location:[_userManager location]  
-                                                 userLevel:[[LevelService defaultService] level]
-                                            guessDiffLevel:[ConfigManager guessDifficultLevel]
-                                               snsUserData:[_userManager snsUserData]];    
-            }
-            else{
-                
-                [self showActivityWithText:NSLS(@"kConnectingServer")];        
-                [[RouterService defaultService] tryFetchServerList:self];        
-            }
-            
-        }
-            
-            break;
-        case MenuButtonTypeOfflineDraw:
-        {
-            SelectWordController *sc = [[SelectWordController alloc] initWithType:OfflineDraw];
-            [self.navigationController pushViewController:sc animated:YES];
-            [sc release];
-        }
-            break;
-        case MenuButtonTypeOfflineGuess:
-        {
-            [self showActivityWithText:NSLS(@"kLoading")];
-            [[DrawDataService defaultService] matchDraw:self];
-        }
-            break;
-        case MenuButtonTypeFriendPlay:
-        {
-            FriendRoomController *frc = [[FriendRoomController alloc] init];
-            [self.navigationController pushViewController:frc animated:YES];
-            [frc release];
-            [_menuPanel setMenuBadge:0 forMenuType:type];
-        }
-            break;
-        case MenuButtonTypeTimeline:
-        {
-            
-//            MyFeedController *frc = [[MyFeedController alloc] init];
-//            [self.navigationController pushViewController:frc animated:YES];
-//            [frc release];
-
-            [MyFeedController enterControllerWithIndex:0 fromController:self animated:YES];
-            [_menuPanel setMenuBadge:0 forMenuType:type];
-        }
-            break;
-        case MenuButtonTypeShop:
-        {
-            VendingController* vc = [[VendingController alloc] init];
-            [self.navigationController pushViewController:vc animated:YES];
-            [vc release];
-        }
-            break;
-        case MenuButtonTypeContest:
-        {
-            BBSBoardController *bbs = [[BBSBoardController alloc] init];
-            [self.navigationController pushViewController:bbs animated:YES];
-            [bbs release];
-//            ContestController *cc = [[ContestController alloc] init];
-//            [self.navigationController pushViewController:cc animated:YES];
-//            [cc release];
-        }
-            break;
-        case MenuButtonTypeTop:
-        {
-            HotController *hc = [[HotController alloc] init];
-            [self.navigationController pushViewController:hc animated:YES];
-            [hc release];
-        }
-            break;
-            
-        
-        //For Bottom Menus
-        case MenuButtonTypeSettings:
-        {
-            UserSettingController *settings = [[UserSettingController alloc] init];
-            [self.navigationController pushViewController:settings animated:YES];
-            [settings release];
-        }
-            
-            break;
-        case MenuButtonTypeOpus:
-        {   
-            ShareController* share = [[ShareController alloc] init ];
-            [self.navigationController pushViewController:share animated:YES];
-            [share release];
-            
-        }
-            break;
-        case MenuButtonTypeFriend:
-        {
-            FriendController *mfc = [[FriendController alloc] init];
-            [self.navigationController pushViewController:mfc animated:YES];
-            [mfc release];
-            [_bottomMenuPanel setMenuBadge:0 forMenuType:MenuButtonTypeFriend];
-        }
-            break;
-        case MenuButtonTypeChat:
-        {
-            ChatListController *controller = [[ChatListController alloc] init];
-            [self.navigationController pushViewController:controller animated:YES];
-            [controller release];
-            
-            [_bottomMenuPanel setMenuBadge:0 forMenuType:type];
-            
-        }
-            break;
-        case MenuButtonTypeFeedback:
-        {
-            FeedbackController* feedBack = [[FeedbackController alloc] init];
-            [self.navigationController pushViewController:feedBack animated:YES];
-            [feedBack release];
-            
-        }
-            break;
-        case MenuButtonTypeCheckIn:
-
-        default:
-            break;
-    }
-
-}
-
+*/
 @end

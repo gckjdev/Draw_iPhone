@@ -21,9 +21,10 @@
 @property (retain, nonatomic) IBOutlet UIImageView *displayBG;
 @property (retain, nonatomic) IBOutlet UIImageView *avatar;
 @property (retain, nonatomic) IBOutlet UILabel *nickName;
-@property (retain, nonatomic) IBOutlet UIButton *coin;
 @property (retain, nonatomic) IBOutlet UILabel *level;
 @property (retain, nonatomic) IBOutlet UIButton *chargeButton;
+@property (retain, nonatomic) IBOutlet UILabel *coin;
+
 - (IBAction)clickChargeButton:(id)sender;
 
 @end
@@ -82,25 +83,26 @@
     [self.level setText:[NSString stringWithFormat:@"LV %d",level]];
     
     //coin
-    NSInteger coin = [[AccountManager defaultManager] account].balance.intValue;
+    NSInteger coin = [[AccountService defaultService] getBalance];//[[AccountManager defaultManager] account].balance.intValue;
     NSString *coinString = [NSString stringWithFormat:@"%d",coin];
-    [self.coin setTitle:coinString forState:UIControlStateNormal];
+    [self.coin setText:coinString];
     
     //charge button
+    [self.chargeButton.layer setTransform:CATransform3DMakeRotation(0.12, 0, 0, 1)];
 }
 
 - (void)dealloc {
-    [_displayBG release];
-    [_avatar release];
-    [_nickName release];
-    [_coin release];
-    [_level release];
-    [_chargeButton release];
+    PPRelease(_displayBG);
+    PPRelease(_avatar);
+    PPRelease(_nickName);
+    PPRelease(_level);
+    PPRelease(_chargeButton);
+    PPRelease(_coin);
     [super dealloc];
 }
 - (IBAction)clickChargeButton:(id)sender {
-    if (self.delegate && [self.delegate respondsToSelector:@selector(didClickChargeButton:)]) {
-        [self.delegate didClickChargeButton:sender];
+    if (self.delegate && [self.delegate respondsToSelector:@selector(homeHeaderPanel:didClickChargeButton:)]) {
+        [self.delegate homeHeaderPanel:self didClickChargeButton:sender];
     }
 }
 @end

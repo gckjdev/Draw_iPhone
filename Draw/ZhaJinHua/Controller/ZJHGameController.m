@@ -575,9 +575,8 @@
 - (IBAction)clickQuitButton:(id)sender
 {
     if (![_gameService.session isMeStandBy] && ([_gameService.session isGamePlaying])) {
-        NSString *message = [NSString stringWithFormat:NSLS(@"kDedutCoinQuitGameAlertMessage"), [ConfigManager getDiceFleeCoin]];
         CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kQuitGameAlertTitle")
-                                                           message:message
+                                                           message:NSLS(@"kZJHQuitGameAlertMessage")
                                                              style:CommonDialogStyleDoubleButton
                                                           delegate:nil
                                                              theme:CommonDialogThemeDice clickOkBlock:^{
@@ -701,7 +700,8 @@
     [self updateWaitGameNoteLabel];
 
     [self.dealerView dealWithPositionArray:[self dealPointsArray]
-                                     times:CARDS_COUNT];
+                                     times:CARDS_COUNT
+                                isDualGame:YES];
     [self updateTotalBetAndSingleBet];
     [self updateAllUserTotalBet];
     
@@ -710,6 +710,8 @@
     }
     
     [self allBet];
+    
+    [self coinAnimationFinished];
 }
 
 - (void)showAllUserGameResult
@@ -998,7 +1000,7 @@
 {
     _coinView = [[[FallingCoinView alloc]initWithFrame:self.view.frame withNum:coinsNum] autorelease];
     _coinView.coindelegate = self;
-    [self.view insertSubview:_coinView belowSubview:self.runawayButton];
+    [self.view addSubview:_coinView];
     
 }
 
@@ -1637,6 +1639,7 @@
 - (void)coinAnimationFinished
 {
     [_coinView removeFromSuperview];
+    _coinView.hidden = YES;
     _coinView = nil;
 }
 

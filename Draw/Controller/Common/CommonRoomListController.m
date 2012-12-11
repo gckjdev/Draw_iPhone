@@ -354,8 +354,7 @@
 - (void)showCreateRoomView
 { 
     RoomPasswordDialog *inputDialog = [RoomPasswordDialog dialogWith:NSLS(@"kCreateRoom")
-                                                            delegate:self
-                                                               theme:CommonDialogThemeDice];
+                                                            delegate:self];
     inputDialog.targetTextField.text = [[UserManager defaultManager] defaultUserRoomName];
     inputDialog.targetTextField.placeholder = NSLS(@"kInputWordPlaceholder");
     inputDialog.passwordField.placeholder = NSLS(@"kDiceEnterPassword");
@@ -401,7 +400,7 @@
 {
     InputDialog *inputDialog = [InputDialog dialogWith:NSLS(@"kPassword")
                                               delegate:self
-                                                 theme:CommonDialogThemeDice];
+                                                 theme:CommonInputDialogThemeZJH];
     inputDialog.targetTextField.text = nil;
     inputDialog.targetTextField.placeholder = NSLS(@"kEnterPassword");
     [inputDialog showInView:self.view];

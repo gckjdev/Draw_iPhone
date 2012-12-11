@@ -9,10 +9,14 @@
 #import <UIKit/UIKit.h>
 #import "HomeCommonView.h"
 
+
+@class HomeHeaderPanel;
+
 @protocol HomeHeaderPanelDelegate <HomeCommonViewDelegate>
 
 @optional
-- (void)didClickChargeButton:(UIButton *)button;
+- (void)homeHeaderPanel:(HomeHeaderPanel *)headerPanel
+   didClickChargeButton:(UIButton *)button;
 
 @end
 

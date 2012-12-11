@@ -896,6 +896,20 @@
 "kImageMessage" = "Image Message";
 "kVoiceMessage" = "Voice Message";
 "kResend" = "Resend";
+
+
+"kHomeMenuTypeDrawDraw" = "Draw";
+"kHomeMenuTypeDrawGuess" = "Guess";
+"kHomeMenuTypeDrawGame" = "Game";
+"kHomeMenuTypeDrawTimeline" = "Timeline";
+"kHomeMenuTypeDrawRank" = "Rank";
+"kHomeMenuTypeDrawContest" = "Contest";
+"kHomeMenuTypeDrawBBS" = "Forum";
+"kHomeMenuTypeDrawHome" = "Home";
+"kHomeMenuTypeDrawOpus" = "Opus";
+"kHomeMenuTypeDrawMessage" = "Message";
+"kHomeMenuTypeDrawSetting" = "Setting";
+"HomeMenuTypeDrawShop" = "Shop";
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 
@@ -1135,9 +1149,9 @@
 "kZJHFold" = "Fold";
 "kShowCard" = "Show";
 "kChangeCard" = "Change";
+"kZJHQuitGameAlertMessage" = "If you quit game ,you will lose all chips you have bet";
 /*********************** 炸金花国际化字符串结束 *************************/
 
-/*********************** 炸金花国际化字符串结束 *************************/
 
 
 /*********************** BBS国际化字符串开始 *************************/

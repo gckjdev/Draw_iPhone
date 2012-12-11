@@ -152,24 +152,64 @@
     _remainCards--;
 }
 
-- (void)dispatchAppear:(NSArray*)array times:(int)times
+
+
+- (CGPoint)getAppearPointByDirection:(DispatcherAppearDirection)direction
+{
+    switch (direction) {
+        case DispatcherAppearDirectionTop:
+            CGPointMake(self.frame.size.width/2, 0);
+            break;
+        case DispatcherAppearDirectionLeft:
+            return CGPointMake(0, self.frame.size.height/2);
+        case DispatcherAppearDirectionDown:
+            return CGPointMake(self.frame.size.width/2, self.frame.size.height);
+        case DispatcherAppearDirectionRight:
+            return CGPointMake(self.frame.size.width, self.frame.size.height/2);
+        default:
+            return CGPointMake(self.frame.size.width/2, 0);
+            break;
+    }
+    return CGPointMake(0, 0);
+}
+
+- (void)dispatchAppear:(NSArray*)array
+                 times:(int)times
+                  from:(DispatcherAppearDirection)direction
 {
     _dispatcher.opacity = 1;
-    CAAnimation* appear = [AnimationManager translationAnimationFrom:CGPointMake(self.frame.size.width/2, 0) to:CGPointMake(self.frame.size.width/2, self.frame.size.height/2) duration:1 delegate:self removeCompeleted:NO];
+    CAAnimation* appear = [AnimationManager translationAnimationFrom:[self getAppearPointByDirection:direction]
+                                                                  to:CGPointMake(self.frame.size.width/2, self.frame.size.height/2)
+                                                            duration:1
+                                                            delegate:self
+                                                    removeCompeleted:NO];
     [CATransaction setCompletionBlock:^{
         [self startDeal:array times:times];
     }];
     [_dispatcher addAnimation:appear forKey:nil];
+    
+    _dispatcherFrom = direction;
+}
+
+- (void)dispatchAppear:(NSArray*)array times:(int)times
+{
+    [self dispatchAppear:array times:times from:DispatcherAppearDirectionTop];
 }
 
 - (void)dispatchDisappear
 {
-    CAAnimation* disappear = [AnimationManager translationAnimationFrom:CGPointMake(self.frame.size.width/2, self.frame.size.height/2) to:CGPointMake(self.frame.size.width/2, 0) duration:1 delegate:self removeCompeleted:NO];
+    //hide all cards
+    for (CALayer* layer in [self.layer sublayers]) {
+        [layer setOpacity:0];
+    }
+    _dispatcher.opacity = 1;
+    
+    CAAnimation* disappear = [AnimationManager translationAnimationFrom:CGPointMake(self.frame.size.width/2, self.frame.size.height/2) to:[self getAppearPointByDirection:_dispatcherFrom] duration:1 delegate:self removeCompeleted:NO];
     [CATransaction setCompletionBlock:^{
         [_dispatcher setOpacity:0];
-        for (CALayer* layer in [self.layer sublayers]) {
-            [layer setOpacity:0];
-        }
+//        for (CALayer* layer in [self.layer sublayers]) {
+//            [layer setOpacity:0];
+//        }
     }];
     [_dispatcher addAnimation:disappear forKey:nil];
     
@@ -193,6 +233,17 @@
                         times:(int)times
 {
     [self dispatchAppear:array times:times];
+}
+
+- (void)dealWithPositionArray:(NSArray*)array
+                        times:(int)times
+                   isDualGame:(BOOL)isDualGame
+{
+    if (isDualGame) {
+        [self dispatchAppear:array times:times from:DispatcherAppearDirectionLeft];
+    } else {
+        [self dispatchAppear:array times:times];
+    }
 }
 
 

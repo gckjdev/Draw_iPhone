@@ -8,6 +8,22 @@
 
 #import <UIKit/UIKit.h>
 #import "HomeCommonView.h"
-@interface HomeMainMenuPanel : HomeCommonView<HomeCommonViewProtocol>
+#import "HomeMenuView.h"
 
+@class HomeMainMenuPanel;
+
+@protocol HomeMainMenuPanelDelegate <HomeCommonViewDelegate>
+
+@optional
+- (void)homeMainMenuPanel:(HomeMainMenuPanel *)mainMenuPanel
+             didClickMenu:(HomeMenuView *)menu
+                 menuType:(HomeMenuType)type;
+@end
+
+
+@interface HomeMainMenuPanel : HomeCommonView<HomeCommonViewProtocol, UIScrollViewDelegate, HomeMenuViewDelegate>
+{
+    
+}
+- (void)updateMenu:(HomeMenuType)type badge:(NSInteger)badge;
 @end
