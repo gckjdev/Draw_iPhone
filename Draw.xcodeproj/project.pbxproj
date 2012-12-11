@@ -442,6 +442,19 @@
 		C2B3E93E155373FD00CCF52C /* ShareCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2B3E93D155373FD00CCF52C /* ShareCell~ipad.xib */; };
 		C2B3E9401553740400CCF52C /* ReplayController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2B3E93F1553740400CCF52C /* ReplayController~ipad.xib */; };
 		C2B3E9421553741600CCF52C /* MyPaintButton~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2B3E9411553741600CCF52C /* MyPaintButton~ipad.xib */; };
+		C2B5376116772ECF00725802 /* zjh_dialog_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = C2B5375316772ECF00725802 /* zjh_dialog_bg.png */; };
+		C2B5376216772ECF00725802 /* zjh_dialog_btn.png in Resources */ = {isa = PBXBuildFile; fileRef = C2B5375416772ECF00725802 /* zjh_dialog_btn.png */; };
+		C2B5376316772ECF00725802 /* zjh_input_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = C2B5375516772ECF00725802 /* zjh_input_bg.png */; };
+		C2B5376416772ECF00725802 /* zjh_audio_off@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2B5375716772ECF00725802 /* zjh_audio_off@2x.png */; };
+		C2B5376516772ECF00725802 /* zjh_audio_on@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2B5375816772ECF00725802 /* zjh_audio_on@2x.png */; };
+		C2B5376616772ECF00725802 /* zjh_close_btn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2B5375916772ECF00725802 /* zjh_close_btn@2x.png */; };
+		C2B5376716772ECF00725802 /* zjh_music_off@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2B5375A16772ECF00725802 /* zjh_music_off@2x.png */; };
+		C2B5376816772ECF00725802 /* zjh_music_on@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2B5375B16772ECF00725802 /* zjh_music_on@2x.png */; };
+		C2B5376916772ECF00725802 /* zjh_setting_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = C2B5375C16772ECF00725802 /* zjh_setting_bg.png */; };
+		C2B5376A16772ECF00725802 /* zjh_settingleft_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2B5375D16772ECF00725802 /* zjh_settingleft_selected@2x.png */; };
+		C2B5376B16772ECF00725802 /* zjh_settingleft_unselect@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2B5375E16772ECF00725802 /* zjh_settingleft_unselect@2x.png */; };
+		C2B5376C16772ECF00725802 /* zjh_settingright_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2B5375F16772ECF00725802 /* zjh_settingright_selected@2x.png */; };
+		C2B5376D16772ECF00725802 /* zjh_settingright_unselect@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2B5376016772ECF00725802 /* zjh_settingright_unselect@2x.png */; };
 		C2C1BF4515A2A9B6001A2BFC /* UIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C2C1BF4415A2A9B6001A2BFC /* UIManager.m */; };
 		C2C54CEB1640C45B005561DA /* BetTable.m in Sources */ = {isa = PBXBuildFile; fileRef = C2C54CEA1640C45B005561DA /* BetTable.m */; };
 		C2C54CFE1640F85C005561DA /* NSMutableArray+Queue.m in Sources */ = {isa = PBXBuildFile; fileRef = C2C54CFD1640F85C005561DA /* NSMutableArray+Queue.m */; };
@@ -2698,6 +2711,19 @@
 		C2B3E93F1553740400CCF52C /* ReplayController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ReplayController~ipad.xib"; sourceTree = "<group>"; };
 		C2B3E9411553741600CCF52C /* MyPaintButton~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "MyPaintButton~ipad.xib"; sourceTree = "<group>"; };
 		C2B3E9931555175B00CCF52C /* DrawConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DrawConstants.h; sourceTree = "<group>"; };
+		C2B5375316772ECF00725802 /* zjh_dialog_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = zjh_dialog_bg.png; sourceTree = "<group>"; };
+		C2B5375416772ECF00725802 /* zjh_dialog_btn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = zjh_dialog_btn.png; sourceTree = "<group>"; };
+		C2B5375516772ECF00725802 /* zjh_input_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = zjh_input_bg.png; sourceTree = "<group>"; };
+		C2B5375716772ECF00725802 /* zjh_audio_off@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zjh_audio_off@2x.png"; sourceTree = "<group>"; };
+		C2B5375816772ECF00725802 /* zjh_audio_on@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zjh_audio_on@2x.png"; sourceTree = "<group>"; };
+		C2B5375916772ECF00725802 /* zjh_close_btn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zjh_close_btn@2x.png"; sourceTree = "<group>"; };
+		C2B5375A16772ECF00725802 /* zjh_music_off@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zjh_music_off@2x.png"; sourceTree = "<group>"; };
+		C2B5375B16772ECF00725802 /* zjh_music_on@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zjh_music_on@2x.png"; sourceTree = "<group>"; };
+		C2B5375C16772ECF00725802 /* zjh_setting_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = zjh_setting_bg.png; sourceTree = "<group>"; };
+		C2B5375D16772ECF00725802 /* zjh_settingleft_selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zjh_settingleft_selected@2x.png"; sourceTree = "<group>"; };
+		C2B5375E16772ECF00725802 /* zjh_settingleft_unselect@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zjh_settingleft_unselect@2x.png"; sourceTree = "<group>"; };
+		C2B5375F16772ECF00725802 /* zjh_settingright_selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zjh_settingright_selected@2x.png"; sourceTree = "<group>"; };
+		C2B5376016772ECF00725802 /* zjh_settingright_unselect@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zjh_settingright_unselect@2x.png"; sourceTree = "<group>"; };
 		C2C1BF4315A2A9B6001A2BFC /* UIManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UIManager.h; path = UI/UIManager.h; sourceTree = "<group>"; };
 		C2C1BF4415A2A9B6001A2BFC /* UIManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UIManager.m; path = UI/UIManager.m; sourceTree = "<group>"; };
 		C2C54CE91640C45B005561DA /* BetTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BetTable.h; sourceTree = "<group>"; };
@@ -5035,6 +5061,8 @@
 		A405C7F7165B874500E7610F /* Image */ = {
 			isa = PBXGroup;
 			children = (
+				C2B5375216772ECF00725802 /* dialogs */,
+				C2B5375616772ECF00725802 /* settings */,
 				A4CCE7161676F0FC00F90726 /* fallingCoin */,
 				A405C7F8165B874500E7610F /* chip */,
 				A405C800165B874500E7610F /* poker */,
@@ -6069,6 +6097,33 @@
 				C2B002EB160C4FA000AC5F3B /* UserManager+DiceUserManager.m */,
 			);
 			path = DiceUserManager;
+			sourceTree = "<group>";
+		};
+		C2B5375216772ECF00725802 /* dialogs */ = {
+			isa = PBXGroup;
+			children = (
+				C2B5375316772ECF00725802 /* zjh_dialog_bg.png */,
+				C2B5375416772ECF00725802 /* zjh_dialog_btn.png */,
+				C2B5375516772ECF00725802 /* zjh_input_bg.png */,
+			);
+			path = dialogs;
+			sourceTree = "<group>";
+		};
+		C2B5375616772ECF00725802 /* settings */ = {
+			isa = PBXGroup;
+			children = (
+				C2B5375716772ECF00725802 /* zjh_audio_off@2x.png */,
+				C2B5375816772ECF00725802 /* zjh_audio_on@2x.png */,
+				C2B5375916772ECF00725802 /* zjh_close_btn@2x.png */,
+				C2B5375A16772ECF00725802 /* zjh_music_off@2x.png */,
+				C2B5375B16772ECF00725802 /* zjh_music_on@2x.png */,
+				C2B5375C16772ECF00725802 /* zjh_setting_bg.png */,
+				C2B5375D16772ECF00725802 /* zjh_settingleft_selected@2x.png */,
+				C2B5375E16772ECF00725802 /* zjh_settingleft_unselect@2x.png */,
+				C2B5375F16772ECF00725802 /* zjh_settingright_selected@2x.png */,
+				C2B5376016772ECF00725802 /* zjh_settingright_unselect@2x.png */,
+			);
+			path = settings;
 			sourceTree = "<group>";
 		};
 		C2C1BF4215A2A884001A2BFC /* UI */ = {
@@ -12379,6 +12434,19 @@
 				CAAE322616772CEA006E3050 /* draw_home_friend@2x.png in Resources */,
 				CAAE322716772CEA006E3050 /* draw_home_me@2x.png in Resources */,
 				CAAE322816772CEA006E3050 /* draw_home_more@2x.png in Resources */,
+				C2B5376116772ECF00725802 /* zjh_dialog_bg.png in Resources */,
+				C2B5376216772ECF00725802 /* zjh_dialog_btn.png in Resources */,
+				C2B5376316772ECF00725802 /* zjh_input_bg.png in Resources */,
+				C2B5376416772ECF00725802 /* zjh_audio_off@2x.png in Resources */,
+				C2B5376516772ECF00725802 /* zjh_audio_on@2x.png in Resources */,
+				C2B5376616772ECF00725802 /* zjh_close_btn@2x.png in Resources */,
+				C2B5376716772ECF00725802 /* zjh_music_off@2x.png in Resources */,
+				C2B5376816772ECF00725802 /* zjh_music_on@2x.png in Resources */,
+				C2B5376916772ECF00725802 /* zjh_setting_bg.png in Resources */,
+				C2B5376A16772ECF00725802 /* zjh_settingleft_selected@2x.png in Resources */,
+				C2B5376B16772ECF00725802 /* zjh_settingleft_unselect@2x.png in Resources */,
+				C2B5376C16772ECF00725802 /* zjh_settingright_selected@2x.png in Resources */,
+				C2B5376D16772ECF00725802 /* zjh_settingright_unselect@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
