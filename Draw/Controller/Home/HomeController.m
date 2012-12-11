@@ -732,7 +732,7 @@
     
     switch (type) {
             //For Bottom Menus
-        case HomeMenuTypeDrawSetting:
+        case HomeMenuTypeDrawMe:
         {
             UserSettingController *settings = [[UserSettingController alloc] init];
             [self.navigationController pushViewController:settings animated:YES];
@@ -765,7 +765,7 @@
             
         }
             break;
-        case HomeMenuTypeDrawOther:
+        case HomeMenuTypeDrawMore:
         {
             FeedbackController* feedBack = [[FeedbackController alloc] init];
             [self.navigationController pushViewController:feedBack animated:YES];

@@ -1589,6 +1589,9 @@
 		CAA9C427159BF41B00398EC5 /* ShareService.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA9C426159BF41B00398EC5 /* ShareService.m */; };
 		CAA9C435159CA97100398EC5 /* LmWallService.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA9C434159CA97100398EC5 /* LmWallService.m */; };
 		CAACE19915F499E6002EB53A /* SuperDrawView.m in Sources */ = {isa = PBXBuildFile; fileRef = CAACE19815F499E6002EB53A /* SuperDrawView.m */; };
+		CAAE320E16772999006E3050 /* draw_home_friend@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAAE320B16772999006E3050 /* draw_home_friend@2x.png */; };
+		CAAE320F16772999006E3050 /* draw_home_me@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAAE320C16772999006E3050 /* draw_home_me@2x.png */; };
+		CAAE321016772999006E3050 /* draw_home_more@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAAE320D16772999006E3050 /* draw_home_more@2x.png */; };
 		CAAE4A8315790F480012F6B8 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = CAAE4A8215790F480012F6B8 /* libsqlite3.dylib */; };
 		CAAFBEB5165B70DC00E5E1C0 /* PPResourceCacheService.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAFBEB4165B70DB00E5E1C0 /* PPResourceCacheService.m */; };
 		CAB15E8515AD41C300502106 /* PickColorView.m in Sources */ = {isa = PBXBuildFile; fileRef = CAB15E7E15AD41C300502106 /* PickColorView.m */; };
@@ -4229,6 +4232,9 @@
 		CAA9C434159CA97100398EC5 /* LmWallService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LmWallService.m; sourceTree = "<group>"; };
 		CAACE19715F499E6002EB53A /* SuperDrawView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SuperDrawView.h; sourceTree = "<group>"; };
 		CAACE19815F499E6002EB53A /* SuperDrawView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SuperDrawView.m; sourceTree = "<group>"; };
+		CAAE320B16772999006E3050 /* draw_home_friend@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "draw_home_friend@2x.png"; sourceTree = "<group>"; };
+		CAAE320C16772999006E3050 /* draw_home_me@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "draw_home_me@2x.png"; sourceTree = "<group>"; };
+		CAAE320D16772999006E3050 /* draw_home_more@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "draw_home_more@2x.png"; sourceTree = "<group>"; };
 		CAAE4A8215790F480012F6B8 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		CAAFBEB3165B70DB00E5E1C0 /* PPResourceCacheService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPResourceCacheService.h; sourceTree = "<group>"; };
 		CAAFBEB4165B70DB00E5E1C0 /* PPResourceCacheService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPResourceCacheService.m; sourceTree = "<group>"; };
@@ -7571,6 +7577,9 @@
 		CA1DA9181673234F0078B5A9 /* HomePage */ = {
 			isa = PBXGroup;
 			children = (
+				CAAE320B16772999006E3050 /* draw_home_friend@2x.png */,
+				CAAE320C16772999006E3050 /* draw_home_me@2x.png */,
+				CAAE320D16772999006E3050 /* draw_home_more@2x.png */,
 				CAD083011676E4A2007B6B65 /* draw_home_header_bg@2x.png */,
 				CAD083021676E4A2007B6B65 /* draw_home_wood_bg@2x.png */,
 				CA1DA919167323500078B5A9 /* draw_home_badge@2x.png */,
@@ -12365,6 +12374,9 @@
 				A4CCE7151676F0C100F90726 /* zjh_game_bg_dual.jpg in Resources */,
 				A4CCE7191676F0FC00F90726 /* fallingCoin.png in Resources */,
 				A4CCE71A1676F0FC00F90726 /* fallingstars.png in Resources */,
+				CAAE320E16772999006E3050 /* draw_home_friend@2x.png in Resources */,
+				CAAE320F16772999006E3050 /* draw_home_me@2x.png in Resources */,
+				CAAE321016772999006E3050 /* draw_home_more@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -26,6 +26,12 @@
 - (UIImage *)drawHomeOpus;
 - (UIImage *)drawHomeSetting;
 
+- (UIImage *)drawHomeMore;
+- (UIImage *)drawHomeMe;
+- (UIImage *)drawHomeFriend;
 
+//
 - (UIImage *)drawHomeSplitline;
+- (UIImage *)drawHomeDisplayBG;
+
 @end

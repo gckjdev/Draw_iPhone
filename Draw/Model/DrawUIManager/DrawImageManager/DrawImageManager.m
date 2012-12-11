@@ -10,6 +10,7 @@
 //#import "PPResourceService.h"
 //#import "GameResource.h"
 #import "ShareImageManager.h"
+#import "UIImageUtil.h"
 
 //DrawImageManager *_staticDrawImageManager;
 static DrawImageManager * _staticDrawImageManager;
@@ -99,6 +100,24 @@ static DrawImageManager * _staticDrawImageManager;
     NSString *imageName = [self fixImageName:@"draw_home_setting"];
     return [UIImage imageNamed:imageName];
 }
+
+- (UIImage *)drawHomeMore
+{
+    NSString *imageName = [self fixImageName:@"draw_home_more"];
+    return [UIImage imageNamed:imageName];
+}
+- (UIImage *)drawHomeMe
+{
+    NSString *imageName = [self fixImageName:@"draw_home_me"];
+    return [UIImage imageNamed:imageName];
+}
+- (UIImage *)drawHomeFriend
+{
+    NSString *imageName = [self fixImageName:@"draw_home_friend"];
+    return [UIImage imageNamed:imageName];   
+}
+
+
 - (UIImage *)drawHomeShop{
     NSString *imageName = [self fixImageName:@"draw_home_shop"];
     return [UIImage imageNamed:imageName];
@@ -114,8 +133,12 @@ static DrawImageManager * _staticDrawImageManager;
 
 //stretcable
 - (UIImage *)drawHomeSplitline{
-    
     return [self stretchableImageWithImageName:@"draw_home_splitline"
                              leftCapWidthScale:0.5 topCapHeightScale:0.5];
+}
+
+- (UIImage *)drawHomeDisplayBG
+{
+    return [UIImage strectchableImageName:@"draw_home_displaybg@2x"];
 }
 @end
