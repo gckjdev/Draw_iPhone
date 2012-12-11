@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "HomeCommonView.h"
-
+#import "FeedService.h"
 
 @class HomeHeaderPanel;
 
@@ -20,7 +20,7 @@
 
 @end
 
-@interface HomeHeaderPanel : HomeCommonView<HomeCommonViewProtocol>
+@interface HomeHeaderPanel : HomeCommonView<HomeCommonViewProtocol, FeedServiceDelegate>
 {
     
 }

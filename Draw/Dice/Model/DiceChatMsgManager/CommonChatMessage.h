@@ -1,5 +1,5 @@
 //
-//  DiceChatMessage.h
+//  CommonChatMessage.h
 //  Draw
 //
 //  Created by 小涛 王 on 12-8-23.
@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #define CUSTOM_MESSAGE_ID 99999
 
-@interface DiceChatMessage : NSObject
+@interface CommonChatMessage : NSObject
 
 - (id)initWithMessageId:(int)messageId 
                 content:(NSString *)content
