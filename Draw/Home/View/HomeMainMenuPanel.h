@@ -26,4 +26,5 @@
     
 }
 - (void)updateMenu:(HomeMenuType)type badge:(NSInteger)badge;
+- (void)animatePageButtons;
 @end

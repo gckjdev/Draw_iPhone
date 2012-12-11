@@ -15,8 +15,8 @@
 @end
 
 #define ISIPAD [DeviceDetection isIPAD]
-#define MAIN_MENU_ORIGIN_Y ISIPAD ? 350 : 170
-#define BOTTOM_MENU_ORIGIN_Y ISIPAD ? (1004-76) : 422
+#define MAIN_MENU_ORIGIN_Y ISIPAD ? 365 : 170
+#define BOTTOM_MENU_ORIGIN_Y ISIPAD ? (1004-97) : 422
 
 @implementation SuperHomeController
 
@@ -80,8 +80,8 @@
     if (!ISIPAD) {
         self.view.frame = CGRectMake(0, 0, 320, 460);
     }
-    [self addHeaderView];
     [self addMainMenuView];
+    [self addHeaderView];
     [self addBottomMenuView];
     
     if (!ISIPAD) {
@@ -89,6 +89,11 @@
     }
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [self.homeMainMenuPanel animatePageButtons];
+}
 
 - (void)viewDidUnload
 {

@@ -23,7 +23,7 @@
 
 - (HomeMenuView *)getMenuViewWithType:(HomeMenuType)type;
 - (void)updatePageButton;
-- (void)animatePageButtons;
+
 
 @end
 
@@ -172,15 +172,27 @@
 
 
 #define AMPLITUDE [DeviceDetection isIPAD] ? 15 * 2 : 15
+#define SPACE_PAGE_EDAGE 10
+
 - (void)animatePageButtons
 {
+
+    CGPoint center = self.next.center;
+    CGFloat halfWidth = self.next.frame.size.width / 2;
+    center.x = [self bounds].size.width - SPACE_PAGE_EDAGE - halfWidth;
+    self.next.center = center;
+
     
-    [UIView beginAnimations:nil context:NULL];
+    center = self.previous.center;
+    center.x = SPACE_PAGE_EDAGE + halfWidth;
+    self.previous.center = center;
+    
+    [UIView beginAnimations:@"Animated" context:NULL];
     [UIView setAnimationDuration:1];
     [UIView setAnimationRepeatAutoreverses:YES];
     [UIView setAnimationRepeatCount:MAXFLOAT];
     [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
-    CGPoint center = self.previous.center;
+//    CGPoint center = self.previous.center;
     
     center.x += AMPLITUDE;
     self.previous.center = center;
