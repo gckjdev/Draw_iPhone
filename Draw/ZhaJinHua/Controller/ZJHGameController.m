@@ -1547,7 +1547,10 @@
     CGPoint point = [ZJHScreenConfig getChatMessageViewOriginByPosition:position];
     if (position == UserPositionCenter) {
         point.y -= view.frame.size.height;
+    }else if (position == UserPositionRight || position == UserPositionRightTop){
+        point.x -= view.frame.size.width;
     }
+    
     view.frame = CGRectMake(point.x, point.y, view.frame.size.width, view.frame.size.height);
     [self.view addSubview:view];
     
