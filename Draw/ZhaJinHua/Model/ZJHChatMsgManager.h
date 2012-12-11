@@ -1,5 +1,5 @@
 //
-//  DiceChatMsgManager.h
+//  ZJHChatMsgManager.h
 //  Draw
 //
 //  Created by 小涛 王 on 12-8-23.
@@ -10,8 +10,8 @@
 #import "ChatMsgManagerProtocol.h"
 
 
-@interface DiceChatMsgManager  : NSObject <ChatMsgManagerProtocol>
+@interface ZJHChatMsgManager  : NSObject <ChatMsgManagerProtocol>
 
-+ (DiceChatMsgManager*)defaultManager;
++ (ZJHChatMsgManager*)defaultManager;
 
 @end

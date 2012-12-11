@@ -48,6 +48,12 @@
 - (NSString*)shareEmailSubject;
 - (NSString*)feedbackTips;
 
+- (NSString *)resourcesPackage;
 - (id<ChatMsgManagerProtocol>)getChatMsgManager;
+- (NSString *)chatViewBgImageName;
+- (NSString *)chatViewInputTextBgImageName;
+- (NSString *)popupViewCloseBtnBgImageName;
+- (NSString *)chatViewMsgBgImageName;
+- (UIColor *)chatViewMsgTextColor;
 
 @end

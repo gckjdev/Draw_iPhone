@@ -160,9 +160,39 @@
     return NSLS(@"kDice_email_subject");
 }
 
+- (NSString *)resourcesPackage
+{
+    return RESOURCE_PACKAGE_DICE;
+}
+
 - (id<ChatMsgManagerProtocol>)getChatMsgManager
 {
     return [DiceChatMsgManager defaultManager];
+}
+
+- (NSString *)chatViewBgImageName
+{
+    return @"dice_popup_bg";
+}
+
+- (NSString *)chatViewInputTextBgImageName
+{
+    return @"input_text_bg";
+}
+
+- (NSString *)popupViewCloseBtnBgImageName
+{
+    return @"clean_input";
+}
+
+- (NSString *)chatViewMsgBgImageName
+{
+    return @"dice_message_tip";
+}
+
+- (UIColor *)chatViewMsgTextColor
+{
+    return [UIColor blackColor];
 }
 
 @end

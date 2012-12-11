@@ -314,6 +314,13 @@
 		A4CCE74516771A6D00F90726 /* face_sleep@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4CCE73816771A6D00F90726 /* face_sleep@2x.png */; };
 		A4CCE74616771A6D00F90726 /* face_smile@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4CCE73916771A6D00F90726 /* face_smile@2x.png */; };
 		A4CCE74716771A6D00F90726 /* face_wry@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4CCE73A16771A6D00F90726 /* face_wry@2x.png */; };
+		A4CCE75D1677238C00F90726 /* CommonGameUser.m in Sources */ = {isa = PBXBuildFile; fileRef = A4CCE7581677238C00F90726 /* CommonGameUser.m */; };
+		A4CCE75E1677238C00F90726 /* SNSUser.m in Sources */ = {isa = PBXBuildFile; fileRef = A4CCE75A1677238C00F90726 /* SNSUser.m */; };
+		A4CCE75F1677238C00F90726 /* ZJHChatMsgManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A4CCE75C1677238C00F90726 /* ZJHChatMsgManager.m */; };
+		A4CCE7641677342300F90726 /* zjh_chat_view_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4CCE7601677342300F90726 /* zjh_chat_view_bg@2x.png */; };
+		A4CCE7651677342300F90726 /* zjh_chat_view_input_text_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4CCE7611677342300F90726 /* zjh_chat_view_input_text_bg@2x.png */; };
+		A4CCE7661677342300F90726 /* zjh_chat_view_msg_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4CCE7621677342300F90726 /* zjh_chat_view_msg_bg@2x.png */; };
+		A4CCE7671677342300F90726 /* zjh_popup_view_close_btn_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4CCE7631677342300F90726 /* zjh_popup_view_close_btn_bg@2x.png */; };
 		A4CE58E316324447003DB23A /* point_pic3@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4CE58E116324447003DB23A /* point_pic3@2x.png */; };
 		A4CE58E416324447003DB23A /* point_pic4@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4CE58E216324447003DB23A /* point_pic4@2x.png */; };
 		A4CE58E616324998003DB23A /* ChatView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4CE58E516324998003DB23A /* ChatView~ipad.xib */; };
@@ -2503,6 +2510,16 @@
 		A4CCE73916771A6D00F90726 /* face_smile@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "face_smile@2x.png"; sourceTree = "<group>"; };
 		A4CCE73A16771A6D00F90726 /* face_wry@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "face_wry@2x.png"; sourceTree = "<group>"; };
 		A4CCE7541677206D00F90726 /* ChatMsgManagerProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatMsgManagerProtocol.h; sourceTree = "<group>"; };
+		A4CCE7571677238C00F90726 /* CommonGameUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonGameUser.h; sourceTree = "<group>"; };
+		A4CCE7581677238C00F90726 /* CommonGameUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonGameUser.m; sourceTree = "<group>"; };
+		A4CCE7591677238C00F90726 /* SNSUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SNSUser.h; sourceTree = "<group>"; };
+		A4CCE75A1677238C00F90726 /* SNSUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SNSUser.m; sourceTree = "<group>"; };
+		A4CCE75B1677238C00F90726 /* ZJHChatMsgManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJHChatMsgManager.h; sourceTree = "<group>"; };
+		A4CCE75C1677238C00F90726 /* ZJHChatMsgManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJHChatMsgManager.m; sourceTree = "<group>"; };
+		A4CCE7601677342300F90726 /* zjh_chat_view_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zjh_chat_view_bg@2x.png"; sourceTree = "<group>"; };
+		A4CCE7611677342300F90726 /* zjh_chat_view_input_text_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zjh_chat_view_input_text_bg@2x.png"; sourceTree = "<group>"; };
+		A4CCE7621677342300F90726 /* zjh_chat_view_msg_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zjh_chat_view_msg_bg@2x.png"; sourceTree = "<group>"; };
+		A4CCE7631677342300F90726 /* zjh_popup_view_close_btn_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zjh_popup_view_close_btn_bg@2x.png"; sourceTree = "<group>"; };
 		A4CE58E116324447003DB23A /* point_pic3@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "point_pic3@2x.png"; sourceTree = "<group>"; };
 		A4CE58E216324447003DB23A /* point_pic4@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "point_pic4@2x.png"; sourceTree = "<group>"; };
 		A4CE58E516324998003DB23A /* ChatView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ChatView~ipad.xib"; sourceTree = "<group>"; };
@@ -5127,6 +5144,10 @@
 		A405C82E165B874500E7610F /* room */ = {
 			isa = PBXGroup;
 			children = (
+				A4CCE7601677342300F90726 /* zjh_chat_view_bg@2x.png */,
+				A4CCE7611677342300F90726 /* zjh_chat_view_input_text_bg@2x.png */,
+				A4CCE7621677342300F90726 /* zjh_chat_view_msg_bg@2x.png */,
+				A4CCE7631677342300F90726 /* zjh_popup_view_close_btn_bg@2x.png */,
 				A4CCE70C1676F0C100F90726 /* chat_message_bg_center_up@2x.png */,
 				A4CCE70D1676F0C100F90726 /* chat_message_bg_center@2x.png */,
 				A4CCE70E1676F0C100F90726 /* chat_message_bg_left@2x.png */,
@@ -5777,6 +5798,12 @@
 		A4E7877E16367338003557AD /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				A4CCE7571677238C00F90726 /* CommonGameUser.h */,
+				A4CCE7581677238C00F90726 /* CommonGameUser.m */,
+				A4CCE7591677238C00F90726 /* SNSUser.h */,
+				A4CCE75A1677238C00F90726 /* SNSUser.m */,
+				A4CCE75B1677238C00F90726 /* ZJHChatMsgManager.h */,
+				A4CCE75C1677238C00F90726 /* ZJHChatMsgManager.m */,
 				C2EBB8EA164A1B200024D605 /* ZJHSoundManager.h */,
 				C2EBB8EB164A1B200024D605 /* ZJHSoundManager.m */,
 				A4E787921636753F003557AD /* ZJHGameState.h */,
@@ -12367,6 +12394,10 @@
 				A4CCE74516771A6D00F90726 /* face_sleep@2x.png in Resources */,
 				A4CCE74616771A6D00F90726 /* face_smile@2x.png in Resources */,
 				A4CCE74716771A6D00F90726 /* face_wry@2x.png in Resources */,
+				A4CCE7641677342300F90726 /* zjh_chat_view_bg@2x.png in Resources */,
+				A4CCE7651677342300F90726 /* zjh_chat_view_input_text_bg@2x.png in Resources */,
+				A4CCE7661677342300F90726 /* zjh_chat_view_msg_bg@2x.png in Resources */,
+				A4CCE7671677342300F90726 /* zjh_popup_view_close_btn_bg@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -13031,6 +13062,9 @@
 				A4D6A765167591D3008DC151 /* ZJHRuleConfig.m in Sources */,
 				A4D6A766167591D3008DC151 /* ZJHRuleConfigFactory.m in Sources */,
 				CA1DAA591675CF470078B5A9 /* DrawHomeViewController.m in Sources */,
+				A4CCE75D1677238C00F90726 /* CommonGameUser.m in Sources */,
+				A4CCE75E1677238C00F90726 /* SNSUser.m in Sources */,
+				A4CCE75F1677238C00F90726 /* ZJHChatMsgManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
