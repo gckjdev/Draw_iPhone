@@ -43,13 +43,13 @@
 						<string key="NSFrameSize">{320, 163}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="1006200176"/>
+						<reference key="NSNextKeyView" ref="210643890"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<object class="NSCustomResource" key="IBUIImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">draw_home_header_bg@2x.jpg</string>
+							<string key="NSResourceName">draw_home_header_bg@2x.png</string>
 						</object>
 					</object>
 					<object class="IBUIImageView" id="210643890">
@@ -88,7 +88,7 @@
 						<string key="NSFrame">{{7, 7}, {50, 50}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="536620801"/>
+						<reference key="NSNextKeyView" ref="1006200176"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -103,7 +103,7 @@
 						<string key="NSFrame">{{77, 8}, {186, 21}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="210643890"/>
+						<reference key="NSNextKeyView" ref="536620801"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -220,6 +220,7 @@
 						<string key="NSFrame">{{98, 27}, {78, 23}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView" ref="893143396"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -244,7 +245,7 @@
 						<string key="NSFrame">{{77, 30}, {19, 18}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="893143396"/>
+						<reference key="NSNextKeyView" ref="795360296"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -468,6 +469,7 @@
 					<dictionary class="NSMutableDictionary" key="outlets">
 						<string key="avatar">UIImageView</string>
 						<string key="chargeButton">UIButton</string>
+						<string key="coin">UILabel</string>
 						<string key="displayBG">UIImageView</string>
 						<string key="level">UILabel</string>
 						<string key="nickName">UILabel</string>
@@ -480,6 +482,10 @@
 						<object class="IBToOneOutletInfo" key="chargeButton">
 							<string key="name">chargeButton</string>
 							<string key="candidateClassName">UIButton</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="coin">
+							<string key="name">coin</string>
+							<string key="candidateClassName">UILabel</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="displayBG">
 							<string key="name">displayBG</string>
@@ -510,7 +516,7 @@
 			<string key="draw_home_banner@2x.png">{640, 285}</string>
 			<string key="draw_home_coin@2x.png">{29, 25}</string>
 			<string key="draw_home_displaybg@2x.png">{180, 63}</string>
-			<string key="draw_home_header_bg@2x.jpg">{639, 310}</string>
+			<string key="draw_home_header_bg@2x.png">{640, 325}</string>
 			<string key="draw_home_task@2x.png">{110, 137}</string>
 		</dictionary>
 		<string key="IBCocoaTouchPluginVersion">1926</string>

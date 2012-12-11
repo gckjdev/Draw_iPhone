@@ -66,6 +66,7 @@
 
 - (UIImage*)vsImage;
 
+- (UIImage *)chatMesssgeBgImage:(UserPosition)position;
 - (UIImage *)betActionImage:(UserPosition)position;
 - (UIImage *)raiseBetActionImage:(UserPosition)position;
 - (UIImage *)checkCardActionImage:(UserPosition)position;

@@ -24,6 +24,7 @@
 @property (retain, nonatomic) IBOutlet UILabel *level;
 @property (retain, nonatomic) IBOutlet UIButton *chargeButton;
 @property (retain, nonatomic) IBOutlet UILabel *coin;
+
 - (IBAction)clickChargeButton:(id)sender;
 
 @end
@@ -82,7 +83,7 @@
     [self.level setText:[NSString stringWithFormat:@"LV %d",level]];
     
     //coin
-    NSInteger coin = [[AccountManager defaultManager] account].balance.intValue;
+    NSInteger coin = [[AccountService defaultService] getBalance];//[[AccountManager defaultManager] account].balance.intValue;
     NSString *coinString = [NSString stringWithFormat:@"%d",coin];
     [self.coin setText:coinString];
     
@@ -100,8 +101,8 @@
     [super dealloc];
 }
 - (IBAction)clickChargeButton:(id)sender {
-    if (self.delegate && [self.delegate respondsToSelector:@selector(didClickChargeButton:)]) {
-        [self.delegate didClickChargeButton:sender];
+    if (self.delegate && [self.delegate respondsToSelector:@selector(homeHeaderPanel:didClickChargeButton:)]) {
+        [self.delegate homeHeaderPanel:self didClickChargeButton:sender];
     }
 }
 @end

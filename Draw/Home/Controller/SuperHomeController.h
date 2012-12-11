@@ -17,8 +17,8 @@
     
 }
 
-@property(nonatomic, retain)HomeHeaderPanel *headerPanel;
-@property(nonatomic, retain)HomeMainMenuPanel *mainMenuPanel;
-@property(nonatomic, retain)HomeBottomMenuPanel *bottomMenuPanel;
+@property(nonatomic, retain)HomeHeaderPanel *homeHeaderPanel;
+@property(nonatomic, retain)HomeMainMenuPanel *homeMainMenuPanel;
+@property(nonatomic, retain)HomeBottomMenuPanel *homeBottomMenuPanel;
 
 @end

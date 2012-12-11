@@ -9,60 +9,57 @@
 #import "ExpressionManager.h"
 #import "PPDebug.h"
 
-#define KEY_PNG_SMILE @"[smile]"
+#define KEY_SMILE @"[smile]"
 #define VALUE_PNG_SMILE @"face_smile.png"
-
-#define KEY_GIF_SMILE @"[smile]"            //兼容老版本
 #define VALUE_GIF_SMILE @"face_smile.gif"
 
-#define KEY_PNG_PROUD @"[proud]"
+#define KEY_PROUD @"[proud]"
 #define VALUE_PNG_PROUD @"face_proud.png"
-
-#define KEY_GIF_PROUD @"[proud]"
 #define VALUE_GIF_PROUD @"face_proud.gif"
 
-#define KEY_PNG_EMBARRASS @"[embarrass]"
-#define VALUE_PNG_EMBARRASS @"face_embarrass.png"
-
-#define KEY_GIF_EMBARRASS @"[embarrass]"
-#define VALUE_GIF_EMBARRASS @"face_embarrass.gif"
-
-#define KEY_PNG_WRY @"[wry]"
+#define KEY_WRY @"[wry]"
 #define VALUE_PNG_WRY @"face_wry.png"
-
-#define KEY_GIF_WRY @"[wry]"
 #define VALUE_GIF_WRY @"face_wry.gif"
 
-#define KEY_PNG_ANGER @"[anger]"
-#define VALUE_PNG_ANGER @"face_anger.png"
+#define KEY_EMBARRASS @"[embarrass]"
+#define VALUE_PNG_EMBARRASS @"face_embarrass.png"
+#define VALUE_GIF_EMBARRASS @"face_embarrass.gif"
 
-#define KEY_GIF_ANGER @"[anger]"
+#define KEY_ANGER @"[anger]"
+#define VALUE_PNG_ANGER @"face_anger.png"
 #define VALUE_GIF_ANGER @"face_anger.gif"
 
-
-#define KEY_GIF_HAPPY @"@happy@"
+#define KEY_HAPPY @"@happy@"
+#define VALUE_PNG_HAPPY @"face_happy.png"
 #define VALUE_GIF_HAPPY @"face_happy.gif"
 
-#define KEY_GIF_CRAZY @"@crazy@"
-#define VALUE_GIF_CRAZY @"face_crazy.gif"
-
-#define KEY_GIF_CRY @"@cry@"
+#define KEY_CRY @"@cry@"
+#define VALUE_PNG_CRY @"face_cry.png"
 #define VALUE_GIF_CRY @"face_cry.gif"
 
-#define KEY_GIF_LOVELY @"@lovely@"
-#define VALUE_GIF_LOVELY @"face_lovely.gif"
-
-#define KEY_GIF_RANDY @"@randy@"
+#define KEY_RANDY @"@randy@"
+#define VALUE_PNG_RANDY @"face_randy.png"
 #define VALUE_GIF_RANDY @"face_randy.gif"
 
-#define KEY_GIF_SHOCK @"@shock@"
+#define KEY_SHOCK @"@shock@"
+#define VALUE_PNG_SHOCK @"face_shock.png"
 #define VALUE_GIF_SHOCK @"face_shock.gif"
 
-#define KEY_GIF_SHY @"@shy@"
+#define KEY_SHY @"@shy@"
+#define VALUE_PNG_SHY @"face_shy.png"
 #define VALUE_GIF_SHY @"face_shy.gif"
 
-#define KEY_GIF_SLEEP @"@sleep@"
+#define KEY_SLEEP @"@sleep@"
+#define VALUE_PNG_SLEEP @"face_sleep.png"
 #define VALUE_GIF_SLEEP @"face_sleep.gif"
+
+#define KEY_CRAZY @"@crazy@"
+#define VALUE_PNG_CRAZY @"face_crazy.png"
+#define VALUE_GIF_CRAZY @"face_crazy.gif"
+
+#define KEY_LOVELY @"@lovely@"
+#define VALUE_PNG_LOVELY @"face_lovely.png"
+#define VALUE_GIF_LOVELY @"face_lovely.gif"
 
 
 static ExpressionManager *_instance = nil;
@@ -94,26 +91,60 @@ static ExpressionManager *_instance = nil;
 {
     self = [super init];
     if (self) {
-        _pngKeys = [[NSArray arrayWithObjects:KEY_PNG_SMILE, KEY_PNG_PROUD, KEY_PNG_EMBARRASS, KEY_PNG_WRY, KEY_PNG_ANGER, nil] retain];
-        _pngValues = [[NSArray arrayWithObjects:VALUE_PNG_SMILE, VALUE_PNG_PROUD, VALUE_PNG_EMBARRASS, VALUE_PNG_WRY, VALUE_PNG_ANGER, nil] retain];
+        _pngKeys = [[NSArray arrayWithObjects:
+                     KEY_SMILE,
+                     KEY_HAPPY,
+                     KEY_CRY,
+                     KEY_EMBARRASS,
+                     KEY_ANGER,
+                     
+                     KEY_RANDY,
+                     KEY_SHOCK,
+                     KEY_SHY,
+                     KEY_SLEEP,
+                     KEY_CRAZY,
+                     
+                     KEY_PROUD,
+                     KEY_LOVELY,
+                     KEY_WRY,
+                     nil] retain];
+        
+        _pngValues = [[NSArray arrayWithObjects:
+                       VALUE_PNG_SMILE,
+                       VALUE_PNG_HAPPY,
+                       VALUE_PNG_CRY,
+                       VALUE_PNG_EMBARRASS,
+                       VALUE_PNG_ANGER,
+                       
+                       VALUE_PNG_RANDY,
+                       VALUE_PNG_SHOCK,
+                       VALUE_PNG_SHY,
+                       VALUE_PNG_SLEEP,
+                       VALUE_PNG_CRAZY,
+                       
+                       VALUE_PNG_PROUD,
+                       VALUE_PNG_LOVELY,
+                       VALUE_PNG_WRY,
+                       nil] retain];
+        
         _pngExpressionDictionary = [[NSDictionary dictionaryWithObjects:_pngValues forKeys:_pngKeys] retain];
         
         _gifKeys = [[NSArray arrayWithObjects:
-                     KEY_GIF_SMILE,
-                     KEY_GIF_HAPPY,
-                     KEY_GIF_CRY, 
-                     KEY_GIF_EMBARRASS,
-                     KEY_GIF_ANGER,
+                     KEY_SMILE,
+                     KEY_HAPPY,
+                     KEY_CRY, 
+                     KEY_EMBARRASS,
+                     KEY_ANGER,
 
-                     KEY_GIF_RANDY, 
-                     KEY_GIF_SHOCK, 
-                     KEY_GIF_SHY, 
-                     KEY_GIF_SLEEP,
-                     KEY_GIF_CRAZY, 
+                     KEY_RANDY, 
+                     KEY_SHOCK, 
+                     KEY_SHY, 
+                     KEY_SLEEP,
+                     KEY_CRAZY, 
 
-                     KEY_GIF_PROUD,
-                     KEY_GIF_LOVELY, 
-                     KEY_GIF_WRY, 
+                     KEY_PROUD,
+                     KEY_LOVELY, 
+                     KEY_WRY, 
                      
                      nil] retain];
         _gifValues = [[NSArray arrayWithObjects:

@@ -7,22 +7,24 @@
 //
 
 #import "SuperHomeController.h"
+#import "HomeMenuView.h"
+#import "CoinShopController.h"
 
 @interface SuperHomeController ()
 
 @end
 
 #define ISIPAD [DeviceDetection isIPAD]
-#define MAIN_MENU_ORIGIN_Y ISIPAD ? 350 : 170
-#define BOTTOM_MENU_ORIGIN_Y ISIPAD ? (1004-76) : 422
+#define MAIN_MENU_ORIGIN_Y ISIPAD ? 365 : 170
+#define BOTTOM_MENU_ORIGIN_Y ISIPAD ? (1004-97) : 422
 
 @implementation SuperHomeController
 
 -(void)dealloc
 {
-    PPRelease(_bottomMenuPanel);
-    PPRelease(_headerPanel);
-    PPRelease(_mainMenuPanel);
+    PPRelease(_homeBottomMenuPanel);
+    PPRelease(_homeHeaderPanel);
+    PPRelease(_homeMainMenuPanel);
     [super dealloc];
 }
 
@@ -46,29 +48,29 @@
 
 - (void)addHeaderView
 {
-    self.headerPanel = [HomeHeaderPanel createView:self];
-    [self.view addSubview:self.headerPanel];
-    [self updateView:self.headerPanel originY:0];
+    self.homeHeaderPanel = [HomeHeaderPanel createView:self];
+    [self.view addSubview:self.homeHeaderPanel];
+    [self updateView:self.homeHeaderPanel originY:0];
 }
 
 
 
 - (void)addMainMenuView
 {
-    self.mainMenuPanel = [HomeMainMenuPanel createView:self];
-    [self.view addSubview:self.mainMenuPanel];
+    self.homeMainMenuPanel = [HomeMainMenuPanel createView:self];
+    [self.view addSubview:self.homeMainMenuPanel];
 //    self.mainMenuPanel.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleHeight;
     //TODO update frame
-    [self updateView:self.mainMenuPanel originY:MAIN_MENU_ORIGIN_Y];
+    [self updateView:self.homeMainMenuPanel originY:MAIN_MENU_ORIGIN_Y];
 }
 
 - (void)addBottomMenuView
 {
-    self.bottomMenuPanel = [HomeBottomMenuPanel createView:self];
+    self.homeBottomMenuPanel = [HomeBottomMenuPanel createView:self];
 //    self.bottomMenuPanel.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleBottomMargin;
-    [self.view addSubview:self.bottomMenuPanel];
+    [self.view addSubview:self.homeBottomMenuPanel];
     //TODO update frame
-    [self updateView:self.bottomMenuPanel originY:BOTTOM_MENU_ORIGIN_Y];
+    [self updateView:self.homeBottomMenuPanel originY:BOTTOM_MENU_ORIGIN_Y];
 }
 
 - (void)viewDidLoad
@@ -78,8 +80,8 @@
     if (!ISIPAD) {
         self.view.frame = CGRectMake(0, 0, 320, 460);
     }
-    [self addHeaderView];
     [self addMainMenuView];
+    [self addHeaderView];
     [self addBottomMenuView];
     
     if (!ISIPAD) {
@@ -87,12 +89,17 @@
     }
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [self.homeMainMenuPanel animatePageButtons];
+}
 
 - (void)viewDidUnload
 {
-    self.headerPanel = nil;
-    self.mainMenuPanel = nil;
-    self.bottomMenuPanel = nil;
+    self.homeHeaderPanel = nil;
+    self.homeMainMenuPanel = nil;
+    self.homeBottomMenuPanel = nil;
     [super viewDidUnload];
 }
 - (void)didReceiveMemoryWarning
@@ -100,5 +107,17 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+
+#pragma mark - Panels Delegate
+
+- (void)homeHeaderPanel:(HomeHeaderPanel *)headerPanel
+   didClickChargeButton:(UIButton *)button
+{
+    CoinShopController* controller = [[[CoinShopController alloc] init] autorelease];
+    [self.navigationController pushViewController:controller animated:YES];
+    
+}
+
 
 @end

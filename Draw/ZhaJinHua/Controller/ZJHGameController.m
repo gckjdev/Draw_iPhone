@@ -33,6 +33,7 @@
 #import "NotificationName.h"
 #import "ZJHRuleConfigFactory.h"
 #import "ZJHUserInfoView.h"
+#import "ExpressionManager.h"
 
 #define AVATAR_VIEW_TAG_OFFSET   4000
 //#define AVATAR_PLACE_VIEW_OFFSET    8000
@@ -58,11 +59,12 @@
     PopupViewManager *_popupViewManager;
     ZJHSoundManager  *_soundManager;
     CommonMessageCenter* _msgCenter;
+    ExpressionManager *_expManager;
 }
 @property (assign, nonatomic) BOOL  isComparing;
 @property (retain, nonatomic) ZJHRuleConfig *ruleConfig;
 @property (retain, nonatomic) NSDictionary *userPosInfoDic;
-
+@property (retain, nonatomic) ChatView *chatView;
 @end
 
 @implementation ZJHGameController
@@ -139,25 +141,28 @@
     [_centerUpTotalBetBg release];
     [_centerUpTotalBet release];
     [_centerUpAvatar release];
+    [_chatView release];
     [super dealloc];
 }
 
-- (id)init
-{
-    self = [super init];
-    if (self) {
-        _gameService = [ZJHGameService defaultService];
-        _userManager = [UserManager defaultManager];
-        _imageManager = [ZJHImageManager defaultManager];
-        _levelService = [LevelService defaultService];
-        _audioManager = [AudioManager defaultManager];
-        _popupViewManager = [PopupViewManager defaultManager];
-        _soundManager = [ZJHSoundManager defaultManager];
-        _msgCenter = [CommonMessageCenter defaultCenter];
-    }
-    
-    return self;
-}
+//- (id)init
+//{
+//    self = [super init];
+//    if (self) {
+//        _gameService = [ZJHGameService defaultService];
+//        _userManager = [UserManager defaultManager];
+//        _imageManager = [ZJHImageManager defaultManager];
+//        _levelService = [LevelService defaultService];
+//        _audioManager = [AudioManager defaultManager];
+//        _popupViewManager = [PopupViewManager defaultManager];
+//        _soundManager = [ZJHSoundManager defaultManager];
+//        _msgCenter = [CommonMessageCenter defaultCenter];
+//        _expManager = [ExpressionManager defaultManager];
+//
+//    }
+//    
+//    return self;
+//}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -172,6 +177,8 @@
         _popupViewManager = [PopupViewManager defaultManager];
         _soundManager = [ZJHSoundManager defaultManager];
         _msgCenter = [CommonMessageCenter defaultCenter];
+        _expManager = [ExpressionManager defaultManager];
+
     }
     return self;
 }
@@ -483,6 +490,20 @@
     [self registerNotificationWithName:NOTIFICATION_BALANCE_UPDATED
                             usingBlock:^(NSNotification *notification) {
                                 [self balanceUpdated];
+                            }];
+    
+    [self registerNotificationWithName:NOTIFICAIION_CHAT_REQUEST
+                            usingBlock:^(NSNotification *notification) {
+                                GameMessage *message = [CommonGameNetworkService userInfoToMessage:notification.userInfo];
+                                
+                                if (message.chatRequest.contentType == 1) {
+                                    [self someoneSendMessage:message.chatRequest.content
+                                              contentVoiceId:message.chatRequest.contentVoiceId
+                                                      userId:message.userId];
+                                }else if (message.chatRequest.contentType == 2) {
+                                    [self someoneSendExpression:message.chatRequest.expressionId
+                                                         userId:message.userId];
+                                }
                             }];
     
     [self registerNotificationWithName:NOTIFICATION_GAME_OVER_NOTIFICATION_REQUEST
@@ -1041,7 +1062,7 @@
     for (ZJHUserPosInfo *userPosInfo in [_userPosInfoDic allValues]) {
         [userPosInfo.avatar resetAvatar];
     }
-    
+
     // set user on seat
     for (PBGameUser* user in _gameService.session.userList) {
         PPDebug(@"<ZJHGameController>Get user--%@, sitting at %d",user.nickName, user.seatId);
@@ -1500,10 +1521,10 @@
     }
 }
 
-- (void)popupView:(UIView *)view
-       atPosition:(UserPosition)position
+- (void)popupActionMessageView:(UIView *)view
+                    atPosition:(UserPosition)position
 {
-    CGPoint point = [ZJHScreenConfig getMessageViewOriginByPosition:position];
+    CGPoint point = [ZJHScreenConfig getActionMessageViewOriginByPosition:position];
     view.frame = CGRectMake(point.x, point.y, view.frame.size.width, view.frame.size.height);
     [self.view addSubview:view];
 
@@ -1520,47 +1541,85 @@
     }];
 }
 
+- (void)popupChatMessageView:(UIView *)view
+                  atPosition:(UserPosition)position
+{
+    CGPoint point = [ZJHScreenConfig getChatMessageViewOriginByPosition:position];
+    if (position == UserPositionCenter) {
+        point.y -= view.frame.size.height;
+    }else if (position == UserPositionRight || position == UserPositionRightTop){
+        point.x -= view.frame.size.width;
+    }
+    
+    view.frame = CGRectMake(point.x, point.y, view.frame.size.width, view.frame.size.height);
+    [self.view addSubview:view];
+    
+    [UIView animateWithDuration:0.3 animations:^{
+        view.alpha = 1;
+    } completion:^(BOOL finished) {
+        [UIView animateWithDuration:1.5 delay:0.5 options:UIViewAnimationCurveEaseInOut animations:^{
+            view.alpha = 1;
+        } completion:^(BOOL finished) {
+            [UIView animateWithDuration:1.0 delay:2.0 options:UIViewAnimationCurveEaseInOut animations:^{
+                view.alpha = 0;
+            } completion:^(BOOL finished) {
+                [view removeFromSuperview];
+            }];
+        }];
+    }];
+}
+
+- (void)popupChatMessageAtUser:(NSString *)userId
+                       message:(NSString *)message
+{
+    UserPosition pos = [self getPositionByUserId:userId];
+    
+    MessageView *view = [MessageView chatMessageViewWithMessage:message font:ACTION_LABEL_FONT textColor:[UIColor whiteColor] textAlignment:UITextAlignmentLeft bgImage:[_imageManager chatMesssgeBgImage:pos] pos:pos];
+    
+    [self popupChatMessageView:view atPosition:[self getPositionByUserId:userId]];
+}
+
 - (void)popupBetMessageAtUser:(NSString *)userId
 {
     UserPosition pos = [self getPositionByUserId:userId];
     
-    MessageView *view = [MessageView messageViewWithMessage:NSLS(@"kZJHBet") font:ACTION_LABEL_FONT textColor:[UIColor blackColor] textAlignment:UITextAlignmentCenter bgImage:[_imageManager betActionImage:pos]];
+    MessageView *view = [MessageView actionMessageViewWithMessage:NSLS(@"kZJHBet") font:ACTION_LABEL_FONT textColor:[UIColor blackColor] textAlignment:UITextAlignmentCenter bgImage:[_imageManager betActionImage:pos]];
     
-    [self popupView:view atPosition:[self getPositionByUserId:userId]];
+    [self popupActionMessageView:view atPosition:[self getPositionByUserId:userId]];
 }
 
 - (void)popupRaiseBetMessageAtUser:(NSString *)userId
 {
     UserPosition pos = [self getPositionByUserId:userId];
     
-    MessageView *view = [MessageView messageViewWithMessage:NSLS(@"kZJHRaise") font:ACTION_LABEL_FONT textColor:[UIColor blackColor]textAlignment:UITextAlignmentCenter bgImage:[_imageManager raiseBetActionImage:pos]];
+    MessageView *view = [MessageView actionMessageViewWithMessage:NSLS(@"kZJHRaise") font:ACTION_LABEL_FONT textColor:[UIColor blackColor]textAlignment:UITextAlignmentCenter bgImage:[_imageManager raiseBetActionImage:pos]];
     
-    [self popupView:view atPosition:[self getPositionByUserId:userId]];
+    [self popupActionMessageView:view atPosition:[self getPositionByUserId:userId]];
 }
 
 - (void)popupCheckCardMessageAtUser:(NSString *)userId
 {
     UserPosition pos = [self getPositionByUserId:userId];
 
-    MessageView *view = [MessageView messageViewWithMessage:NSLS(@"kZJHCheck") font:ACTION_LABEL_FONT textColor:[UIColor blackColor]textAlignment:UITextAlignmentCenter bgImage:[_imageManager checkCardActionImage:pos]];
+    MessageView *view = [MessageView actionMessageViewWithMessage:NSLS(@"kZJHCheck") font:ACTION_LABEL_FONT textColor:[UIColor blackColor]textAlignment:UITextAlignmentCenter bgImage:[_imageManager checkCardActionImage:pos]];
     
-    [self popupView:view atPosition:[self getPositionByUserId:userId]];
+    [self popupActionMessageView:view atPosition:[self getPositionByUserId:userId]];
 }
 
 - (void)popupCompareCardMessageAtUser:(NSString *)userId
 {
     UserPosition pos = [self getPositionByUserId:userId];
-    MessageView *view = [MessageView messageViewWithMessage:NSLS(@"kZJHCompare") font:ACTION_LABEL_FONT textColor:[UIColor blackColor]textAlignment:UITextAlignmentCenter bgImage:[_imageManager compareCardActionImage:pos]];
+    MessageView *view = [MessageView actionMessageViewWithMessage:NSLS(@"kZJHCompare") font:ACTION_LABEL_FONT textColor:[UIColor blackColor]textAlignment:UITextAlignmentCenter bgImage:[_imageManager compareCardActionImage:pos]];
     
-    [self popupView:view atPosition:[self getPositionByUserId:userId]];
+    [self popupActionMessageView:view atPosition:[self getPositionByUserId:userId]];
 }
 
 - (void)popupFoldCardMessageAtUser:(NSString *)userId
 {
     UserPosition pos = [self getPositionByUserId:userId];
-    MessageView *view = [MessageView messageViewWithMessage:NSLS(@"kZJHFold") font:ACTION_LABEL_FONT textColor:[UIColor blackColor]textAlignment:UITextAlignmentCenter bgImage:[_imageManager foldCardActionImage:pos]];
+    MessageView *view = [MessageView actionMessageViewWithMessage:NSLS(@"kZJHFold") font:ACTION_LABEL_FONT textColor:[UIColor blackColor]textAlignment:UITextAlignmentCenter bgImage:[_imageManager foldCardActionImage:pos]];
     
-    [self popupView:view atPosition:[self getPositionByUserId:userId]];
+    [self popupActionMessageView:view atPosition:[self getPositionByUserId:userId]];
 }
 
 - (IBAction)clickMyCardTypeButton:(id)sender {
@@ -1583,6 +1642,54 @@
 - (void)coinAnimationFinished
 {
     _coinView = nil;
+}
+
+- (IBAction)clickChatButton:(id)sender {
+    if (self.chatView == nil) {
+        self.chatView = [ChatView createChatView];
+        [_chatView loadContent];
+        _chatView.delegate = self;
+    }
+    
+    [_chatView popupAtView:[self getMyAvatarView]
+                   inView:self.view
+             aboveSubView:nil
+                 animated:YES
+           pointDirection:PointDirectionAuto];
+}
+
+- (void)didClickCloseButton
+{
+    [self.chatView dismissAnimated:YES];
+}
+
+- (void)didClickExepression:(NSString *)key
+{
+    [self.chatView dismissAnimated:YES];
+    [[self getMyAvatarView] showExpression:[_expManager pngExpressionForKey:key]];
+    [_gameService chatWithExpression:key];
+}
+
+- (void)didClickMessage:(DiceChatMessage *)message
+{
+    [self.chatView dismissAnimated:YES];
+    
+    [self popupChatMessageAtUser:_userManager.userId message:message.content];
+    [_gameService chatWithContent:message.content contentVoiceId:[NSString stringWithFormat:@"%d", message.voiceId]];
+}
+
+- (void)someoneSendMessage:(NSString *)content
+            contentVoiceId:(NSString *)contentVoiceId
+                    userId:(NSString *)userId
+{
+    [self popupChatMessageAtUser:userId message:content];
+}
+
+- (void)someoneSendExpression:(NSString *)key
+                       userId:(NSString *)userId
+{
+    ZJHAvatarView *avatar = [self getAvatarViewByUserId:userId];
+    [avatar showExpression:[_expManager pngExpressionForKey:key]];
 }
 
 @end

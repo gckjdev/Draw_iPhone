@@ -49,7 +49,7 @@
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<object class="NSCustomResource" key="IBUIImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">draw_home_wood_bg@2x.jpg</string>
+							<string key="NSResourceName">draw_home_wood_bg@2x.png</string>
 						</object>
 					</object>
 					<object class="IBUIScrollView" id="792576939">
@@ -79,6 +79,7 @@
 						<string key="NSFrame">{{291, 234}, {19, 17}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -335,7 +336,7 @@
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
 			<string key="draw_home_front_page@2x.png">{37, 34}</string>
 			<string key="draw_home_nextpage@2x.png">{37, 34}</string>
-			<string key="draw_home_wood_bg@2x.jpg">{840, 860}</string>
+			<string key="draw_home_wood_bg@2x.png">{640, 550}</string>
 		</dictionary>
 		<string key="IBCocoaTouchPluginVersion">1926</string>
 	</data>

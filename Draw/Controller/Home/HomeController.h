@@ -16,12 +16,14 @@
 #import "UserService.h"
 #import "BoardService.h"
 #import "MenuButton.h"
+#import "SuperHomeController.h"
+
 
 @class UserManager;
 @class MenuPanel;
 @class BottomMenuPanel;
 
-@interface HomeController : PPViewController<DrawGameServiceDelegate, RouterServiceDelegate, CommonDialogDelegate,DrawDataServiceDelegate, UserServiceDelegate,BoardServiceDelegate,MenuButtonDelegate>
+@interface HomeController : SuperHomeController<DrawGameServiceDelegate, RouterServiceDelegate, CommonDialogDelegate,DrawDataServiceDelegate, UserServiceDelegate,BoardServiceDelegate,MenuButtonDelegate>
 {
     BOOL        _isTryJoinGame;  
     UserManager *_userManager;

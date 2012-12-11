@@ -7,13 +7,21 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ZJHConstance.h"
 
 @interface MessageView : UIView
 
-+ messageViewWithMessage:(NSString *)message
++ actionMessageViewWithMessage:(NSString *)message
                     font:(UIFont *)font
                textColor:(UIColor *)textColor
            textAlignment:(UITextAlignment)textAlignment
                  bgImage:(UIImage*)bgImage;
+
++ chatMessageViewWithMessage:(NSString *)message
+                        font:(UIFont *)font
+                   textColor:(UIColor *)textColor
+               textAlignment:(UITextAlignment)textAlignment
+                     bgImage:(UIImage*)bgImage
+                         pos:(UserPosition)pos;
 
 @end

@@ -7,7 +7,14 @@
 //
 
 #import "SuperHomeController.h"
+#import "RouterService.h"
+#import "DrawDataService.h"
+#import "DrawGameService.h"
+#import "OfflineGuessDrawController.h"
 
-@interface DrawHomeViewController : SuperHomeController
-
+@interface DrawHomeViewController : SuperHomeController<RouterServiceDelegate, DrawDataServiceDelegate, DrawGameServiceDelegate>
+{
+    
+}
++ (id)defaultInstance;
 @end
