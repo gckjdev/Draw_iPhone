@@ -19,7 +19,7 @@
 
 @interface HomeHeaderPanel ()
 {
-    
+    NSMutableArray *_feedList;
 }
 @property (retain, nonatomic) IBOutlet UIImageView *displayBG;
 @property (retain, nonatomic) IBOutlet UIImageView *avatar;
@@ -29,7 +29,10 @@
 @property (retain, nonatomic) IBOutlet UILabel *coin;
 @property (retain, nonatomic) IBOutlet UIScrollView *displayScrollView;
 
+@property (retain, nonatomic) NSMutableArray *feedList;
+
 - (IBAction)clickChargeButton:(id)sender;
+- (IBAction)clickAvatarButton:(id)sender;
 
 @end
 
@@ -59,7 +62,7 @@
     return nil;
 }
 
-
+#pragma mark - Display Top Draw...
 
 #define IMAGE_NUMBER_PER_PAGE 3
 #define SPACE_IMAGE (ISIPAD ? 4 * 2 : 4)
@@ -120,6 +123,16 @@
     [NSTimer scheduledTimerWithTimeInterval:SCROLL_INTERVAL target:self selector:@selector(handleTimer:) userInfo:nil repeats:YES];
 }
 
+- (void)clickDrawImage:(id)sender
+{
+    if (self.delegate && [self.delegate respondsToSelector:@selector(homeHeaderPanel:didClickDrawImage:)]) {
+        UIButton *button = sender;
+        NSInteger tag = button.tag;
+        DrawFeed *feed = [self.feedList objectAtIndex:tag];
+        [self.delegate homeHeaderPanel:self didClickDrawImage:feed];
+    }
+}
+
 - (UIImageView *)imageForFeed:(DrawFeed *)feed index:(NSInteger)index
 {
     if (feed && (feed.drawImage != nil || [feed.drawImageUrl length] != 0)) {
@@ -145,6 +158,12 @@
         [imageView.layer setMasksToBounds:YES];
         [imageView.layer setCornerRadius:(self.imageWidth / 20)];
         
+        UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+        button.tag = index;
+        button.frame = imageView.bounds;
+        [button addTarget:self action:@selector(clickDrawImage:) forControlEvents:UIControlEventTouchUpInside];
+        [imageView addSubview:button];
+        imageView.userInteractionEnabled = YES;
         return imageView;
     }
     return nil;
@@ -157,6 +176,9 @@
             resultCode:(NSInteger)resultCode
 {
     if (resultCode == 0 && [feedList count] != 0) {
+
+        self.feedList = [NSMutableArray arrayWithArray:feedList];
+        
         PPDebug(@"<didGetFeedList> ready to display images");
         [self.displayScrollView setHidden:NO];
         //display image.
@@ -179,6 +201,8 @@
     }
 }
 
+#pragma mark - UpdateView
+
 - (void)updateView
 {
     self.backgroundColor = [UIColor clearColor];
@@ -190,13 +214,17 @@
     UIColor *borderColor = [UIColor colorWithRed:131./225 green:200./225 blue:43./225 alpha:1];
     [self.avatar.layer setBorderColor:borderColor.CGColor];
     
-    
     UserManager *userManager = [UserManager defaultManager];
     if ([userManager avatarImage]) {
         [self.avatar setImage:[userManager avatarImage]];
     }else if([[userManager avatarURL] length] != 0){
         [self.avatar setImageWithURL:[NSURL URLWithString:[userManager avatarURL]]];
     }
+    
+    UIButton *mask = [UIButton buttonWithType:UIControlStateNormal];
+    mask.frame = self.avatar.frame;
+    [self addSubview:mask];
+    [mask addTarget:self action:@selector(clickAvatarButton:) forControlEvents:UIControlEventTouchUpInside];
     
     //nick
     [self.nickName setText:userManager.nickName];
@@ -230,6 +258,7 @@
     PPRelease(_chargeButton);
     PPRelease(_coin);
     PPRelease(_displayScrollView);
+    PPRelease(_feedList);
     [super dealloc];
 }
 - (IBAction)clickChargeButton:(id)sender {
@@ -237,4 +266,10 @@
         [self.delegate homeHeaderPanel:self didClickChargeButton:sender];
     }
 }
+- (IBAction)clickAvatarButton:(id)sender {
+    if (self.delegate && [self.delegate respondsToSelector:@selector(homeHeaderPanel:didClickAvatarButton:)]) {
+        [self.delegate homeHeaderPanel:self didClickAvatarButton:sender];
+    }
+}
+
 @end

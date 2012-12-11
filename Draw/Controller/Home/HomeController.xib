@@ -236,7 +236,7 @@
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
 				<object class="IBPartialClassDescription">
 					<string key="className">HomeController</string>
-					<string key="superclassName">PPViewController</string>
+					<string key="superclassName">SuperHomeController</string>
 					<dictionary class="NSMutableDictionary" key="outlets">
 						<string key="facetimeButton">UIButton</string>
 						<string key="recommendButton">UIButton</string>
@@ -262,6 +262,14 @@
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
 						<string key="minorKey">./Classes/PPViewController.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">SuperHomeController</string>
+					<string key="superclassName">PPViewController</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/SuperHomeController.h</string>
 					</object>
 				</object>
 			</array>

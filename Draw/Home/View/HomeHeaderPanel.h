@@ -11,12 +11,19 @@
 #import "FeedService.h"
 
 @class HomeHeaderPanel;
+@class DrawFeed;
 
 @protocol HomeHeaderPanelDelegate <HomeCommonViewDelegate>
 
 @optional
 - (void)homeHeaderPanel:(HomeHeaderPanel *)headerPanel
    didClickChargeButton:(UIButton *)button;
+
+- (void)homeHeaderPanel:(HomeHeaderPanel *)headerPanel
+   didClickAvatarButton:(UIButton *)button;
+
+- (void)homeHeaderPanel:(HomeHeaderPanel *)headerPanel
+   didClickDrawImage:(DrawFeed *)drawFeed;
 
 @end
 
