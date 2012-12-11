@@ -1669,6 +1669,12 @@
 		CACC084E1532B02600D9F8E9 /* ShareAction.m in Sources */ = {isa = PBXBuildFile; fileRef = CACC084D1532B02600D9F8E9 /* ShareAction.m */; };
 		CACF87A415EB4D2D003FA6B6 /* DiceSettingView.m in Sources */ = {isa = PBXBuildFile; fileRef = CACF87A215EB4D2D003FA6B6 /* DiceSettingView.m */; };
 		CACF87A515EB4D2D003FA6B6 /* DiceSettingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CACF87A315EB4D2D003FA6B6 /* DiceSettingView.xib */; };
+		CAD082F71676E0E8007B6B65 /* HomeBottomMenu~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAD082F51676E0E7007B6B65 /* HomeBottomMenu~ipad.xib */; };
+		CAD082F81676E0E8007B6B65 /* HomeMainMenu~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAD082F61676E0E7007B6B65 /* HomeMainMenu~ipad.xib */; };
+		CAD082FC1676E0F8007B6B65 /* HomeBottomMenuPanel~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAD082F91676E0F6007B6B65 /* HomeBottomMenuPanel~ipad.xib */; };
+		CAD082FD1676E0F8007B6B65 /* HomeMainMenuPanel~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAD082FA1676E0F7007B6B65 /* HomeMainMenuPanel~ipad.xib */; };
+		CAD082FE1676E0F8007B6B65 /* ZJHHomeHeaderPanel~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAD082FB1676E0F7007B6B65 /* ZJHHomeHeaderPanel~ipad.xib */; };
+		CAD083001676E124007B6B65 /* DrawHomeHeaderPanel~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAD082FF1676E123007B6B65 /* DrawHomeHeaderPanel~ipad.xib */; };
 		CAD6EACF15805D780004A483 /* DrawManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CAD6EACE15805D780004A483 /* DrawManager.m */; };
 		CAD9C7121574CCFA00F2C8E1 /* fireworks1.png in Resources */ = {isa = PBXBuildFile; fileRef = CAD9C7101574CCF900F2C8E1 /* fireworks1.png */; };
 		CAD9C7131574CCFA00F2C8E1 /* fireworks2.png in Resources */ = {isa = PBXBuildFile; fileRef = CAD9C7111574CCFA00F2C8E1 /* fireworks2.png */; };
@@ -4310,6 +4316,12 @@
 		CACF87A115EB4D2D003FA6B6 /* DiceSettingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiceSettingView.h; sourceTree = "<group>"; };
 		CACF87A215EB4D2D003FA6B6 /* DiceSettingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiceSettingView.m; sourceTree = "<group>"; };
 		CACF87A315EB4D2D003FA6B6 /* DiceSettingView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DiceSettingView.xib; sourceTree = "<group>"; };
+		CAD082F51676E0E7007B6B65 /* HomeBottomMenu~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "HomeBottomMenu~ipad.xib"; sourceTree = "<group>"; };
+		CAD082F61676E0E7007B6B65 /* HomeMainMenu~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "HomeMainMenu~ipad.xib"; sourceTree = "<group>"; };
+		CAD082F91676E0F6007B6B65 /* HomeBottomMenuPanel~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "HomeBottomMenuPanel~ipad.xib"; sourceTree = "<group>"; };
+		CAD082FA1676E0F7007B6B65 /* HomeMainMenuPanel~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "HomeMainMenuPanel~ipad.xib"; sourceTree = "<group>"; };
+		CAD082FB1676E0F7007B6B65 /* ZJHHomeHeaderPanel~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ZJHHomeHeaderPanel~ipad.xib"; sourceTree = "<group>"; };
+		CAD082FF1676E123007B6B65 /* DrawHomeHeaderPanel~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "DrawHomeHeaderPanel~ipad.xib"; sourceTree = "<group>"; };
 		CAD18C83156B9125003ADDC0 /* MainDataModel 5.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "MainDataModel 5.xcdatamodel"; sourceTree = "<group>"; };
 		CAD6EACD15805D780004A483 /* DrawManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawManager.h; sourceTree = "<group>"; };
 		CAD6EACE15805D780004A483 /* DrawManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawManager.m; sourceTree = "<group>"; };
@@ -7544,13 +7556,17 @@
 				CA1DA94C16732E200078B5A9 /* HomeHeaderPanel.h */,
 				CA1DA94D16732E200078B5A9 /* HomeHeaderPanel.m */,
 				CA1DA96316732FEC0078B5A9 /* ZJHHomeHeaderPanel.xib */,
+				CAD082FB1676E0F7007B6B65 /* ZJHHomeHeaderPanel~ipad.xib */,
 				CA1DAA30167583120078B5A9 /* DrawHomeHeaderPanel.xib */,
+				CAD082FF1676E123007B6B65 /* DrawHomeHeaderPanel~ipad.xib */,
 				CA1DA95516732ECF0078B5A9 /* HomeMainMenuPanel.h */,
 				CA1DA95616732ED00078B5A9 /* HomeMainMenuPanel.m */,
 				CA1DA965167330060078B5A9 /* HomeMainMenuPanel.xib */,
+				CAD082FA1676E0F7007B6B65 /* HomeMainMenuPanel~ipad.xib */,
 				CA1DA95816732EEC0078B5A9 /* HomeBottomMenuPanel.h */,
 				CA1DA95916732EED0078B5A9 /* HomeBottomMenuPanel.m */,
 				CA1DA96116732FCE0078B5A9 /* HomeBottomMenuPanel.xib */,
+				CAD082F91676E0F6007B6B65 /* HomeBottomMenuPanel~ipad.xib */,
 			);
 			name = Panel;
 			sourceTree = "<group>";
@@ -7558,6 +7574,8 @@
 		CA1DA972167345FD0078B5A9 /* Menu */ = {
 			isa = PBXGroup;
 			children = (
+				CAD082F51676E0E7007B6B65 /* HomeBottomMenu~ipad.xib */,
+				CAD082F61676E0E7007B6B65 /* HomeMainMenu~ipad.xib */,
 				CA1DA9671673301A0078B5A9 /* HomeMainMenu.xib */,
 				CA1DA9691673302E0078B5A9 /* HomeBottomMenu.xib */,
 				CA1DA96E167343740078B5A9 /* HomeMenuView.h */,
@@ -12262,6 +12280,12 @@
 				A4D6A776167593D8008DC151 /* zjh_game_bg_dual_ipad@2x.jpg in Resources */,
 				A4D6A7781675B4C3008DC151 /* ZJHGameController_dual~ipad.xib in Resources */,
 				CA1DAA5A1675CF470078B5A9 /* DrawHomeViewController.xib in Resources */,
+				CAD082F71676E0E8007B6B65 /* HomeBottomMenu~ipad.xib in Resources */,
+				CAD082F81676E0E8007B6B65 /* HomeMainMenu~ipad.xib in Resources */,
+				CAD082FC1676E0F8007B6B65 /* HomeBottomMenuPanel~ipad.xib in Resources */,
+				CAD082FD1676E0F8007B6B65 /* HomeMainMenuPanel~ipad.xib in Resources */,
+				CAD082FE1676E0F8007B6B65 /* ZJHHomeHeaderPanel~ipad.xib in Resources */,
+				CAD083001676E124007B6B65 /* DrawHomeHeaderPanel~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

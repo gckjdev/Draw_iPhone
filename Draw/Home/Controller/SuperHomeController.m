@@ -8,6 +8,7 @@
 
 #import "SuperHomeController.h"
 #import "HomeMenuView.h"
+#import "CoinShopController.h"
 
 @interface SuperHomeController ()
 
@@ -108,7 +109,10 @@
 - (void)homeHeaderPanel:(HomeHeaderPanel *)headerPanel
    didClickChargeButton:(UIButton *)button
 {
-    PPDebug(@"<homeHeaderPanel>: didClickChargeButton");
+    CoinShopController* controller = [[[CoinShopController alloc] init] autorelease];
+    [self.navigationController pushViewController:controller animated:YES];
+    
 }
+
 
 @end
