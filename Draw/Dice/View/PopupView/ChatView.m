@@ -11,7 +11,7 @@
 #import "ChatViewCell.h"
 #import "LocaleUtils.h"
 #import "DiceChatMsgManager.h"
-#import "GifView.h"
+//#import "GifView.h"
 #import "DiceImageManager.h"
 #import "ShareImageManager.h"
 
@@ -107,7 +107,7 @@
 
 - (void)addExpressions
 {
-    int expsCount = [[_expressionManager allGifKeys] count];
+    int expsCount = [[_expressionManager allPngKeys] count];
     int pageCount = expsCount / 5 + (expsCount % 5 == 0 ? 0 : 1);
     
     _expressionsHolderView.pagingEnabled = YES;
@@ -124,7 +124,7 @@
 
 - (void)addExpressionsToView:(UIView *)view pageIndex:(int)pageIndex
 {
-    NSArray *allKeys = [_expressionManager allGifKeys];
+    NSArray *allKeys = [_expressionManager allPngKeys];
     
     int start = pageIndex * EXPRESSION_COUNT_PER_PAGE;
     int end = MIN((pageIndex + 1) * EXPRESSION_COUNT_PER_PAGE, [allKeys count]);
@@ -146,6 +146,7 @@
      pointDirection:(PointDirection)pointDirection
 {
     [self dismissAnimated:YES];
+
 //    [self createTimer];
     self.popTipView = [[[CMPopTipView alloc] initWithCustomView:self needBubblePath:NO] autorelease];
     _popTipView.delegate = self;
@@ -172,7 +173,8 @@
     UIButton *button = [[[UIButton alloc] initWithFrame:frame] autorelease];
     
     CGRect expframe = CGRectMake(0, 0, WIDTH_EXPRESSION, HEIGHT_EXPRESSION);
-    GifView *view = [_expressionManager gifExpressionForKey:key frame:expframe];
+    UIImageView *view = [[[UIImageView alloc] initWithFrame:expframe] autorelease];
+    view.image = [_expressionManager pngExpressionForKey:key];
     view.userInteractionEnabled = NO;
     view.center = CGPointMake(button.frame.size.width/2, button.frame.size.height/2);
     [button addSubview:view];

@@ -501,6 +501,31 @@ static ZJHImageManager* shareInstance;
     return [_resService imageByName:@"zjh_vs" inResourcePackage:RESOURCE_PACKAGE_ZJH];
 }
 
+- (UIImage *)chatMesssgeBgImage:(UserPosition)position;
+{
+    switch (position) {
+        case UserPositionCenter:
+            return [[_resService imageByName:@"chat_message_bg_center" inResourcePackage:RESOURCE_PACKAGE_ZJH] stretchableImageWithLeftCapWidth:12 topCapHeight:15];
+
+        case UserPositionCenterUp:
+            return [[_resService imageByName:@"chat_message_bg_center_up" inResourcePackage:RESOURCE_PACKAGE_ZJH] stretchableImageWithLeftCapWidth:12 topCapHeight:20];
+
+        case UserPositionLeft:
+        case UserPositionLeftTop:
+            return [[_resService imageByName:@"chat_message_bg_left" inResourcePackage:RESOURCE_PACKAGE_ZJH] stretchableImageWithLeftCapWidth:12 topCapHeight:12];
+
+            
+        case UserPositionRight:
+        case UserPositionRightTop:
+            return [[_resService imageByName:@"chat_message_bg_right" inResourcePackage:RESOURCE_PACKAGE_ZJH] stretchableImageWithLeftCapWidth:12 topCapHeight:12];
+            break;
+            
+        default:
+            return nil;
+            break;
+    }
+}
+
 - (UIImage *)betActionImage:(UserPosition)position
 {
     switch (position) {

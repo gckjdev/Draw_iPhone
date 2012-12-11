@@ -17,6 +17,7 @@
 #import "CommonDialog.h"
 #import "AccountService.h"
 #import "FallingCoinView.h"
+#import "ChatView.h"
 
 @class ZJHGameService;
 @class UserManager;
@@ -25,7 +26,7 @@
 @class ZJHImageManager;
 @class BetTable;
 
-@interface ZJHGameController : PPViewController <ZJHPokerViewProtocol, ZJHAvatarViewDelegate, DealerViewDelegate, ChipsSelectViewProtocol, MoneyTreeViewDelegate, CommonDialogDelegate, AccountServiceDelegate, FallingCoinViewDelegate> {
+@interface ZJHGameController : PPViewController <ZJHPokerViewProtocol, ZJHAvatarViewDelegate, DealerViewDelegate, ChipsSelectViewProtocol, MoneyTreeViewDelegate, CommonDialogDelegate, AccountServiceDelegate, FallingCoinViewDelegate, ChatViewDelegate> {
     BOOL _isComparing;
     BOOL _isShowingComparing;
     FallingCoinView* _coinView;

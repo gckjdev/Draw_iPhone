@@ -45,5 +45,6 @@
 - (void)stopReciprocal;
 - (void)showWinCoins:(int)coins;
 - (void)showLoseCoins:(int)coins;
+- (void)showExpression:(UIImage *)image;
 
 @end
