@@ -507,20 +507,20 @@ static ZJHGameService *_defaultService;
 
 - (NSString *)getServerListString
 {
-//    return @"58.215.172.169:8027";
     switch (self.rule) {
         case PBZJHRuleTypeDual:
-//            return @"58.215.172.169:8030";
-            return @"192.168.1.5:8027";
-
+            return @"192.168.1.5:8030";
             break;
             
         case PBZJHRuleTypeNormal:
-            return @"192.168.1.5:8027";
+            return @"192.168.1.5:8028";
+            break;
+            
+        case PBZJHRuleTypeRich:
+            return @"192.168.1.5:8029";
             break;
             
         default:
-            return @"192.168.1.5:8027";
             break;
     }
     

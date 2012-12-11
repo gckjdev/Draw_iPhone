@@ -299,10 +299,27 @@
     
     [self showPopCoinAnimation];
 }
+
 - (void)showLoseCoins:(int)coins
 {
     [self showWinCoins:-coins];
     
+}
+
+- (void)showExpression:(UIImage *)image
+{
+    UIImageView *view = [[[UIImageView alloc] initWithFrame:self.roundAvatarPlaceView.frame] autorelease];
+    view.image = image;
+    CAAnimation *moveVerticalAni = [AnimationManager moveVerticalAnimationFrom:view.center.y to:view.center.y - ([DeviceDetection isIPAD] ? 20 : 10) duration:0.5];
+    moveVerticalAni.repeatCount = 3;
+    moveVerticalAni.autoreverses = YES;
+    [view.layer addAnimation:moveVerticalAni forKey:nil];
+    
+    CAAnimation *appearAni = [AnimationManager disappearAnimationFrom:1 to:0 delay:3 duration:1];
+    
+    [view.layer addAnimation:appearAni forKey:nil];
+    [self addSubview:view];
+    [view performSelector:@selector(removeFromSuperview) withObject:nil afterDelay:4];
 }
 
 @end

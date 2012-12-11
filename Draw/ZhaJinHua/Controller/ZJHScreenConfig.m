@@ -8,49 +8,55 @@
 
 #import "ZJHScreenConfig.h"
 
-#define LEFT_TOP_MESSAGE_VIEW_POSITION CGPointMake(64, 106)
-#define RIGHT_TOP_MESSAGE_VIEW_POSITION CGPointMake(221, 106)
-#define LEFT_MESSAGE_VIEW_POSITION CGPointMake(64, 230)
-#define RIGHT_MESSAGE_VIEW_POSITION CGPointMake(221, 230)
-#define CENTER_UP_MESSAGE_VIEW_POSITION CGPointMake(214, 130)
+#define LEFT_TOP_ACTION_MESSAGE_VIEW_POSITION CGPointMake(64, 106)
+#define RIGHT_TOP_ACTION_MESSAGE_VIEW_POSITION CGPointMake(221, 106)
+#define LEFT_ACTION_MESSAGE_VIEW_POSITION CGPointMake(64, 230)
+#define RIGHT_ACTION_MESSAGE_VIEW_POSITION CGPointMake(221, 230)
+#define CENTER_UP_ACTION_MESSAGE_VIEW_POSITION CGPointMake(214, 130)
+#define CENTER_UP_CHAT_MESSAGE_VIEW_POSITION CGPointMake(106, 110)
+#define CENTER_CHAT_MESSAGE_VIEW_POSITION CGPointMake(106, 355)
 
 
-#define LEFT_TOP_MESSAGE_VIEW_POSITION_IPHONE5 CGPointMake(64, 144)
-#define RIGHT_TOP_MESSAGE_VIEW_POSITION_IPHONE5 CGPointMake(221, 144)
-#define LEFT_MESSAGE_VIEW_POSITION_IPHONE5 CGPointMake(64, 281)
-#define RIGHT_MESSAGE_VIEW_POSITION_IPHONE5 CGPointMake(221, 281)
-#define CENTER_UP_MESSAGE_VIEW_POSITION_IPHONE5 CGPointMake(214, 145)
+#define LEFT_TOP_ACTION_MESSAGE_VIEW_POSITION_IPHONE5 CGPointMake(64, 144)
+#define RIGHT_TOP_ACTION_MESSAGE_VIEW_POSITION_IPHONE5 CGPointMake(221, 144)
+#define LEFT_ACTION_MESSAGE_VIEW_POSITION_IPHONE5 CGPointMake(64, 281)
+#define RIGHT_ACTION_MESSAGE_VIEW_POSITION_IPHONE5 CGPointMake(221, 281)
+#define CENTER_UP_ACTION_MESSAGE_VIEW_POSITION_IPHONE5 CGPointMake(214, 145)
+#define CENTER_UP_CHAT_MESSAGE_VIEW_POSITION_IPHONE5 CGPointMake(106, 122)
+#define CENTER_CHAT_MESSAGE_VIEW_POSITION_IPHONE5 CGPointMake(106, 430)
 
-#define LEFT_TOP_MESSAGE_VIEW_POSITION_IPAD CGPointMake(174, 260)
-#define RIGHT_TOP_MESSAGE_VIEW_POSITION_IPAD CGPointMake(523, 260)
-#define LEFT_MESSAGE_VIEW_POSITION_IPAD CGPointMake(174, 508)
-#define RIGHT_MESSAGE_VIEW_POSITION_IPAD CGPointMake(523, 508)
-#define CENTER_UP_MESSAGE_VIEW_POSITION_IPAD CGPointMake(500, 310)
+#define LEFT_TOP_ACTION_MESSAGE_VIEW_POSITION_IPAD CGPointMake(174, 260)
+#define RIGHT_TOP_ACTION_MESSAGE_VIEW_POSITION_IPAD CGPointMake(523, 260)
+#define LEFT_ACTION_MESSAGE_VIEW_POSITION_IPAD CGPointMake(174, 508)
+#define RIGHT_ACTION_MESSAGE_VIEW_POSITION_IPAD CGPointMake(523, 508)
+#define CENTER_UP_ACTION_MESSAGE_VIEW_POSITION_IPAD CGPointMake(500, 310)
+#define CENTER_UP_CHAT_MESSAGE_VIEW_POSITION_IPAD CGPointMake(276, 269)
+#define CENTER_CHAT_MESSAGE_VIEW_POSITION_IPAD CGPointMake(276, 788)
 
 @implementation ZJHScreenConfig
 
 
-+ (CGPoint)getMessageViewOriginByPosition:(UserPosition)position
++ (CGPoint)getActionMessageViewOriginByPosition:(UserPosition)position
 {
     switch (position) {
         case UserPositionLeftTop:
-            return [ZJHScreenConfig getLeftTopMessageViewOrigin];
+            return [ZJHScreenConfig getLeftTopActionMessageViewOrigin];
             break;
             
         case UserPositionLeft:
-            return [ZJHScreenConfig getLeftMessageViewOrigin];
+            return [ZJHScreenConfig getLeftActionMessageViewOrigin];
             break;
             
         case UserPositionRightTop:
-            return [ZJHScreenConfig getRightTopMessageViewOrigin];
+            return [ZJHScreenConfig getRightTopActionMessageViewOrigin];
             break;
             
         case UserPositionRight:
-            return [ZJHScreenConfig getRightMessageViewOrigin];
+            return [ZJHScreenConfig getRightActionMessageViewOrigin];
             break;
             
         case UserPositionCenterUp:
-            return [ZJHScreenConfig getCenterUpMessageViewOrigin];
+            return [ZJHScreenConfig getCenterUpActionMessageViewOrigin];
             break;
             
         default:
@@ -59,20 +65,20 @@
     }
 }
 
-+ (CGPoint)getLeftTopMessageViewOrigin
++ (CGPoint)getLeftTopActionMessageViewOrigin
 {
     switch ([DeviceDetection deviceScreenType]) {
         case DEVICE_SCREEN_IPAD:
         case DEVICE_SCREEN_NEW_IPAD:
-            return LEFT_TOP_MESSAGE_VIEW_POSITION_IPAD;
+            return LEFT_TOP_ACTION_MESSAGE_VIEW_POSITION_IPAD;
             break;
             
         case DEVICE_SCREEN_IPHONE5:
-            return LEFT_TOP_MESSAGE_VIEW_POSITION_IPHONE5;
+            return LEFT_TOP_ACTION_MESSAGE_VIEW_POSITION_IPHONE5;
             break;
             
         case DEVICE_SCREEN_IPHONE:
-            return LEFT_TOP_MESSAGE_VIEW_POSITION;
+            return LEFT_TOP_ACTION_MESSAGE_VIEW_POSITION;
             break;
             
         default:
@@ -81,20 +87,20 @@
     }
 }
 
-+ (CGPoint)getLeftMessageViewOrigin
++ (CGPoint)getLeftActionMessageViewOrigin
 {
     switch ([DeviceDetection deviceScreenType]) {
         case DEVICE_SCREEN_IPAD:
         case DEVICE_SCREEN_NEW_IPAD:
-            return LEFT_MESSAGE_VIEW_POSITION_IPAD;
+            return LEFT_ACTION_MESSAGE_VIEW_POSITION_IPAD;
             break;
             
         case DEVICE_SCREEN_IPHONE5:
-            return LEFT_MESSAGE_VIEW_POSITION_IPHONE5;
+            return LEFT_ACTION_MESSAGE_VIEW_POSITION_IPHONE5;
             break;
             
         case DEVICE_SCREEN_IPHONE:
-            return LEFT_MESSAGE_VIEW_POSITION;
+            return LEFT_ACTION_MESSAGE_VIEW_POSITION;
             break;
             
         default:
@@ -104,20 +110,20 @@
 }
 
 
-+ (CGPoint)getRightTopMessageViewOrigin
++ (CGPoint)getRightTopActionMessageViewOrigin
 {
     switch ([DeviceDetection deviceScreenType]) {
         case DEVICE_SCREEN_IPAD:
         case DEVICE_SCREEN_NEW_IPAD:
-            return RIGHT_TOP_MESSAGE_VIEW_POSITION_IPAD;
+            return RIGHT_TOP_ACTION_MESSAGE_VIEW_POSITION_IPAD;
             break;
             
         case DEVICE_SCREEN_IPHONE5:
-            return RIGHT_TOP_MESSAGE_VIEW_POSITION_IPHONE5;
+            return RIGHT_TOP_ACTION_MESSAGE_VIEW_POSITION_IPHONE5;
             break;
             
         case DEVICE_SCREEN_IPHONE:
-            return RIGHT_TOP_MESSAGE_VIEW_POSITION;
+            return RIGHT_TOP_ACTION_MESSAGE_VIEW_POSITION;
             break;
             
         default:
@@ -127,20 +133,20 @@
 }
 
 
-+ (CGPoint)getRightMessageViewOrigin
++ (CGPoint)getRightActionMessageViewOrigin
 {
     switch ([DeviceDetection deviceScreenType]) {
         case DEVICE_SCREEN_IPAD:
         case DEVICE_SCREEN_NEW_IPAD:
-            return RIGHT_MESSAGE_VIEW_POSITION_IPAD;
+            return RIGHT_ACTION_MESSAGE_VIEW_POSITION_IPAD;
             break;
             
         case DEVICE_SCREEN_IPHONE5:
-            return RIGHT_MESSAGE_VIEW_POSITION_IPHONE5;
+            return RIGHT_ACTION_MESSAGE_VIEW_POSITION_IPHONE5;
             break;
             
         case DEVICE_SCREEN_IPHONE:
-            return RIGHT_MESSAGE_VIEW_POSITION;
+            return RIGHT_ACTION_MESSAGE_VIEW_POSITION;
             break;
             
         default:
@@ -149,20 +155,20 @@
     }
 }
 
-+ (CGPoint)getCenterUpMessageViewOrigin
++ (CGPoint)getCenterUpActionMessageViewOrigin
 {
     switch ([DeviceDetection deviceScreenType]) {
         case DEVICE_SCREEN_IPAD:
         case DEVICE_SCREEN_NEW_IPAD:
-            return CENTER_UP_MESSAGE_VIEW_POSITION_IPAD;
+            return CENTER_UP_ACTION_MESSAGE_VIEW_POSITION_IPAD;
             break;
             
         case DEVICE_SCREEN_IPHONE5:
-            return CENTER_UP_MESSAGE_VIEW_POSITION_IPHONE5;
+            return CENTER_UP_ACTION_MESSAGE_VIEW_POSITION_IPHONE5;
             break;
             
         case DEVICE_SCREEN_IPHONE:
-            return CENTER_UP_MESSAGE_VIEW_POSITION;
+            return CENTER_UP_ACTION_MESSAGE_VIEW_POSITION;
             break;
             
         default:
@@ -170,5 +176,85 @@
             break;
     }
 }
+
++ (CGPoint)getCenterUpChatMessageViewOrigin
+{
+    switch ([DeviceDetection deviceScreenType]) {
+        case DEVICE_SCREEN_IPAD:
+        case DEVICE_SCREEN_NEW_IPAD:
+            return CENTER_UP_CHAT_MESSAGE_VIEW_POSITION_IPAD;
+            break;
+            
+        case DEVICE_SCREEN_IPHONE5:
+            return CENTER_UP_CHAT_MESSAGE_VIEW_POSITION_IPHONE5;
+            break;
+            
+        case DEVICE_SCREEN_IPHONE:
+            return CENTER_UP_CHAT_MESSAGE_VIEW_POSITION;
+            break;
+            
+        default:
+            return CGPointMake(0, 0);
+            break;
+    }
+}
+
++ (CGPoint)getCenterChatMessageViewOrigin
+{
+    switch ([DeviceDetection deviceScreenType]) {
+        case DEVICE_SCREEN_IPAD:
+        case DEVICE_SCREEN_NEW_IPAD:
+            return CENTER_CHAT_MESSAGE_VIEW_POSITION_IPAD;
+            break;
+            
+        case DEVICE_SCREEN_IPHONE5:
+            return CENTER_CHAT_MESSAGE_VIEW_POSITION_IPHONE5;
+            break;
+            
+        case DEVICE_SCREEN_IPHONE:
+            return CENTER_CHAT_MESSAGE_VIEW_POSITION;
+            break;
+            
+        default:
+            return CGPointMake(0, 0);
+            break;
+    }
+}
+
+
+
++ (CGPoint)getChatMessageViewOriginByPosition:(UserPosition)position
+{
+    switch (position) {
+        case UserPositionLeftTop:
+            return [ZJHScreenConfig getLeftTopActionMessageViewOrigin];
+            break;
+            
+        case UserPositionLeft:
+            return [ZJHScreenConfig getLeftActionMessageViewOrigin];
+            break;
+            
+        case UserPositionRightTop:
+            return [ZJHScreenConfig getRightTopActionMessageViewOrigin];
+            break;
+            
+        case UserPositionRight:
+            return [ZJHScreenConfig getRightActionMessageViewOrigin];
+            break;
+            
+        case UserPositionCenterUp:
+            return [ZJHScreenConfig getCenterUpChatMessageViewOrigin];
+            break;
+            
+        case UserPositionCenter:
+            return [ZJHScreenConfig getCenterChatMessageViewOrigin];
+            break;
+            
+        default:
+            return CGPointMake(0, 0);
+            break;
+    }
+}
+
 
 @end

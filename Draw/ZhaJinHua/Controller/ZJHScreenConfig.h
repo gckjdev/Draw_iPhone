@@ -13,6 +13,7 @@
 
 @interface ZJHScreenConfig : NSObject
 
-+ (CGPoint)getMessageViewOriginByPosition:(UserPosition)position;
++ (CGPoint)getActionMessageViewOriginByPosition:(UserPosition)position;
++ (CGPoint)getChatMessageViewOriginByPosition:(UserPosition)position;
 
 @end
