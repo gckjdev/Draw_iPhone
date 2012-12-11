@@ -13,6 +13,8 @@
 #import "AccountManager.h"
 #import "AccountService.h"
 #import <QuartzCore/QuartzCore.h>
+#import "FeedService.h"
+#import "Feed.h"
 
 @interface HomeHeaderPanel ()
 {
@@ -24,6 +26,7 @@
 @property (retain, nonatomic) IBOutlet UILabel *level;
 @property (retain, nonatomic) IBOutlet UIButton *chargeButton;
 @property (retain, nonatomic) IBOutlet UILabel *coin;
+@property (retain, nonatomic) IBOutlet UIScrollView *displayScrollView;
 
 - (IBAction)clickChargeButton:(id)sender;
 
@@ -55,6 +58,122 @@
     return nil;
 }
 
+
+
+#define IMAGE_NUMBER_PER_PAGE 3
+#define SPACE_IMAGE (ISIPAD ? 5 * 2 : 5)
+#define DISPLAY_SIZE (self.displayScrollView.frame.size)
+#define SCROLL_INTERVAL 10
+#define TOP_DRAW_NUMBER 6
+
+- (void)updateDisplayView
+{
+    //get top 6 draw feed.
+    [[FeedService defaultService] getFeedList:FeedListTypeHot
+                                       offset:0
+                                        limit:TOP_DRAW_NUMBER
+                                     delegate:self];
+}
+
+- (CGFloat)imageWidth
+{
+    NSInteger spaceNumber = IMAGE_NUMBER_PER_PAGE - 1;
+    CGFloat width = ((DISPLAY_SIZE.width - (SPACE_IMAGE * spaceNumber)) / IMAGE_NUMBER_PER_PAGE);
+    return width;
+}
+
+- (CGFloat)imageHeight
+{
+    return (DISPLAY_SIZE.height);
+}
+
+- (void)handleTimer:(NSTimer *)theTimer
+{
+    NSInteger totalPage = self.displayScrollView.contentSize.width / DISPLAY_SIZE.width;
+    if (totalPage > 1) {
+        CGRect visibleFrame = CGRectZero;
+        CGFloat offsetX = self.displayScrollView.contentOffset.x;
+        NSInteger currentPage = offsetX / DISPLAY_SIZE.width;
+        if (currentPage < totalPage - 1) {
+            //next page
+            offsetX += DISPLAY_SIZE.width;
+            visibleFrame = self.displayScrollView.bounds;
+            visibleFrame.origin.x = offsetX;
+            
+            [self.displayScrollView scrollRectToVisible:visibleFrame
+                                               animated:YES];
+        }else{
+            //first page
+            visibleFrame = self.displayScrollView.bounds;
+            visibleFrame.origin.x = 0;
+        }
+        
+        [self.displayScrollView scrollRectToVisible:visibleFrame
+                                           animated:YES];
+
+    }
+}
+
+- (void)startDisplayAnimation
+{
+    [NSTimer scheduledTimerWithTimeInterval:SCROLL_INTERVAL target:self selector:@selector(handleTimer:) userInfo:nil repeats:YES];
+}
+
+- (UIImageView *)imageForFeed:(DrawFeed *)feed index:(NSInteger)index
+{
+    if (feed && (feed.drawImage != nil || [feed.drawImageUrl length] != 0)) {
+        CGRect frame = CGRectMake(0, 0, self.imageWidth, self.imageHeight);
+        UIImageView *imageView = [[[UIImageView alloc] initWithFrame:frame]
+                                  autorelease];
+        if (feed.drawImage) {
+            [imageView setImage:feed.drawImage];
+        }else{
+            [imageView setImageWithURL:[NSURL URLWithString:feed.drawImageUrl]];
+        }
+        
+        NSInteger page = index / IMAGE_NUMBER_PER_PAGE;
+        NSInteger number = index % IMAGE_NUMBER_PER_PAGE;
+        
+        CGFloat x = page * DISPLAY_SIZE.width;
+        x += number * (self.imageWidth + SPACE_IMAGE);
+        
+        CGPoint origin = CGPointMake(x, 0);
+        frame.origin = origin;
+        imageView.frame = frame;
+        
+        return imageView;
+    }
+    return nil;
+}
+
+
+
+- (void)didGetFeedList:(NSArray *)feedList
+          feedListType:(FeedListType)type
+            resultCode:(NSInteger)resultCode
+{
+    if (resultCode == 0 && [feedList count] != 0) {
+        PPDebug(@"<didGetFeedList> ready to display images");
+        [self.displayScrollView setHidden:NO];
+        //display image.
+        NSInteger i = 0;
+        for (DrawFeed *feed in feedList) {
+            UIImageView *iv = [self imageForFeed:feed index:i];
+            if (iv) {
+                ++i;
+                [self.displayScrollView addSubview:iv];
+            }
+        }
+        
+        //update the scroll view frame
+        NSInteger page = i / IMAGE_NUMBER_PER_PAGE;
+        if (i % IMAGE_NUMBER_PER_PAGE != 0) {
+            page ++;
+        }
+        self.displayScrollView.contentSize = CGSizeMake(DISPLAY_SIZE.width * page, DISPLAY_SIZE.height);
+        [self startDisplayAnimation];
+    }
+}
 
 - (void)updateView
 {
@@ -89,6 +208,13 @@
     
     //charge button
     [self.chargeButton.layer setTransform:CATransform3DMakeRotation(0.12, 0, 0, 1)];
+
+    [self.displayScrollView setHidden:YES];
+    
+    //update display view.
+    if (gameAppType() == GameAppTypeDraw) {
+        [self updateDisplayView];
+    }
 }
 
 - (void)dealloc {
@@ -98,6 +224,7 @@
     PPRelease(_level);
     PPRelease(_chargeButton);
     PPRelease(_coin);
+    [_displayScrollView release];
     [super dealloc];
 }
 - (IBAction)clickChargeButton:(id)sender {

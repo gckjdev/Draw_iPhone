@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
+#define ISIPAD [DeviceDetection isIPAD]
 
 @protocol HomeCommonViewDelegate <NSObject>
 

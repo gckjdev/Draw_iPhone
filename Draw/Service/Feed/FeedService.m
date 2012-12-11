@@ -32,7 +32,7 @@ static FeedService *_staticFeedService = nil;
 - (void)getFeedList:(FeedListType)feedListType 
              offset:(NSInteger)offset 
               limit:(NSInteger)limit 
-           delegate:(PPViewController<FeedServiceDelegate> *)delegate;
+           delegate:(id<FeedServiceDelegate>)delegate
 {
     
     NSString *userId = [[UserManager defaultManager] userId];
@@ -85,7 +85,7 @@ static FeedService *_staticFeedService = nil;
                  contestId:(NSString *)contestId
                     offset:(NSInteger)offset 
                      limit:(NSInteger)limit 
-                  delegate:(PPViewController<FeedServiceDelegate> *)delegate
+                  delegate:(id<FeedServiceDelegate>)delegate
 {
     
     NSString *userId = [[UserManager defaultManager] userId];
