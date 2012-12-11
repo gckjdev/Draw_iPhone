@@ -726,7 +726,6 @@
 		CA1DA93A167323500078B5A9 /* draw_home_draw@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA1DA921167323500078B5A9 /* draw_home_draw@2x.png */; };
 		CA1DA93B167323500078B5A9 /* draw_home_front_page@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA1DA922167323500078B5A9 /* draw_home_front_page@2x.png */; };
 		CA1DA93C167323500078B5A9 /* draw_home_guess@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA1DA923167323500078B5A9 /* draw_home_guess@2x.png */; };
-		CA1DA93D167323500078B5A9 /* draw_home_header_bg@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CA1DA924167323500078B5A9 /* draw_home_header_bg@2x.jpg */; };
 		CA1DA93E167323500078B5A9 /* draw_home_home@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA1DA925167323500078B5A9 /* draw_home_home@2x.png */; };
 		CA1DA93F167323500078B5A9 /* draw_home_message@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA1DA926167323500078B5A9 /* draw_home_message@2x.png */; };
 		CA1DA940167323500078B5A9 /* draw_home_money@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA1DA927167323500078B5A9 /* draw_home_money@2x.png */; };
@@ -739,7 +738,6 @@
 		CA1DA947167323500078B5A9 /* draw_home_task@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA1DA92E167323500078B5A9 /* draw_home_task@2x.png */; };
 		CA1DA948167323500078B5A9 /* draw_home_timeline@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA1DA92F167323500078B5A9 /* draw_home_timeline@2x.png */; };
 		CA1DA949167323500078B5A9 /* draw_home_top@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA1DA930167323500078B5A9 /* draw_home_top@2x.png */; };
-		CA1DA94A167323500078B5A9 /* draw_home_wood_bg@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CA1DA931167323500078B5A9 /* draw_home_wood_bg@2x.jpg */; };
 		CA1DA94E16732E200078B5A9 /* HomeHeaderPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1DA94D16732E200078B5A9 /* HomeHeaderPanel.m */; };
 		CA1DA95716732ED00078B5A9 /* HomeMainMenuPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1DA95616732ED00078B5A9 /* HomeMainMenuPanel.m */; };
 		CA1DA95A16732EED0078B5A9 /* HomeBottomMenuPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1DA95916732EED0078B5A9 /* HomeBottomMenuPanel.m */; };
@@ -3196,7 +3194,6 @@
 		CA1DA921167323500078B5A9 /* draw_home_draw@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "draw_home_draw@2x.png"; sourceTree = "<group>"; };
 		CA1DA922167323500078B5A9 /* draw_home_front_page@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "draw_home_front_page@2x.png"; sourceTree = "<group>"; };
 		CA1DA923167323500078B5A9 /* draw_home_guess@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "draw_home_guess@2x.png"; sourceTree = "<group>"; };
-		CA1DA924167323500078B5A9 /* draw_home_header_bg@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "draw_home_header_bg@2x.jpg"; sourceTree = "<group>"; };
 		CA1DA925167323500078B5A9 /* draw_home_home@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "draw_home_home@2x.png"; sourceTree = "<group>"; };
 		CA1DA926167323500078B5A9 /* draw_home_message@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "draw_home_message@2x.png"; sourceTree = "<group>"; };
 		CA1DA927167323500078B5A9 /* draw_home_money@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "draw_home_money@2x.png"; sourceTree = "<group>"; };
@@ -3209,7 +3206,6 @@
 		CA1DA92E167323500078B5A9 /* draw_home_task@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "draw_home_task@2x.png"; sourceTree = "<group>"; };
 		CA1DA92F167323500078B5A9 /* draw_home_timeline@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "draw_home_timeline@2x.png"; sourceTree = "<group>"; };
 		CA1DA930167323500078B5A9 /* draw_home_top@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "draw_home_top@2x.png"; sourceTree = "<group>"; };
-		CA1DA931167323500078B5A9 /* draw_home_wood_bg@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "draw_home_wood_bg@2x.jpg"; sourceTree = "<group>"; };
 		CA1DA94C16732E200078B5A9 /* HomeHeaderPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeHeaderPanel.h; sourceTree = "<group>"; };
 		CA1DA94D16732E200078B5A9 /* HomeHeaderPanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeHeaderPanel.m; sourceTree = "<group>"; };
 		CA1DA95516732ECF0078B5A9 /* HomeMainMenuPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeMainMenuPanel.h; sourceTree = "<group>"; };
@@ -7521,7 +7517,6 @@
 				CA1DA921167323500078B5A9 /* draw_home_draw@2x.png */,
 				CA1DA922167323500078B5A9 /* draw_home_front_page@2x.png */,
 				CA1DA923167323500078B5A9 /* draw_home_guess@2x.png */,
-				CA1DA924167323500078B5A9 /* draw_home_header_bg@2x.jpg */,
 				CA1DA925167323500078B5A9 /* draw_home_home@2x.png */,
 				CA1DA926167323500078B5A9 /* draw_home_message@2x.png */,
 				CA1DA927167323500078B5A9 /* draw_home_money@2x.png */,
@@ -7534,7 +7529,6 @@
 				CA1DA92E167323500078B5A9 /* draw_home_task@2x.png */,
 				CA1DA92F167323500078B5A9 /* draw_home_timeline@2x.png */,
 				CA1DA930167323500078B5A9 /* draw_home_top@2x.png */,
-				CA1DA931167323500078B5A9 /* draw_home_wood_bg@2x.jpg */,
 			);
 			path = HomePage;
 			sourceTree = "<group>";
@@ -12245,7 +12239,6 @@
 				CA1DA93A167323500078B5A9 /* draw_home_draw@2x.png in Resources */,
 				CA1DA93B167323500078B5A9 /* draw_home_front_page@2x.png in Resources */,
 				CA1DA93C167323500078B5A9 /* draw_home_guess@2x.png in Resources */,
-				CA1DA93D167323500078B5A9 /* draw_home_header_bg@2x.jpg in Resources */,
 				CA1DA93E167323500078B5A9 /* draw_home_home@2x.png in Resources */,
 				CA1DA93F167323500078B5A9 /* draw_home_message@2x.png in Resources */,
 				CA1DA940167323500078B5A9 /* draw_home_money@2x.png in Resources */,
@@ -12258,7 +12251,6 @@
 				CA1DA947167323500078B5A9 /* draw_home_task@2x.png in Resources */,
 				CA1DA948167323500078B5A9 /* draw_home_timeline@2x.png in Resources */,
 				CA1DA949167323500078B5A9 /* draw_home_top@2x.png in Resources */,
-				CA1DA94A167323500078B5A9 /* draw_home_wood_bg@2x.jpg in Resources */,
 				CA1DA96216732FCF0078B5A9 /* HomeBottomMenuPanel.xib in Resources */,
 				CA1DA96416732FED0078B5A9 /* ZJHHomeHeaderPanel.xib in Resources */,
 				CA1DA966167330070078B5A9 /* HomeMainMenuPanel.xib in Resources */,
