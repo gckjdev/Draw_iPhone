@@ -1400,7 +1400,7 @@
     [self showExpression:expressionId userId:userId];
 }
 
-- (void)didClickMessage:(DiceChatMessage *)message
+- (void)didClickMessage:(CommonChatMessage *)message
 {
     self.chatButton.selected = NO;
     [_popupView dismissChatView];

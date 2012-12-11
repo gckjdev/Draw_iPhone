@@ -1672,7 +1672,7 @@
     [_gameService chatWithExpression:key];
 }
 
-- (void)didClickMessage:(DiceChatMessage *)message
+- (void)didClickMessage:(CommonChatMessage *)message
 {
     [self.chatView dismissAnimated:YES];
     
