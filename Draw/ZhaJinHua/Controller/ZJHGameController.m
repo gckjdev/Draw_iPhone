@@ -1665,9 +1665,10 @@
 - (void)didClickExepression:(NSString *)key
 {
     [self.chatView dismissAnimated:YES];
-    [[self getMyAvatarView] showExpression:[_expManager pngExpressionForKey:key]];
+    [[self getMyAvatarView] showExpression:key];
     [_gameService chatWithExpression:key];
 }
+
 
 - (void)didClickMessage:(CommonChatMessage *)message
 {
@@ -1688,7 +1689,7 @@
                        userId:(NSString *)userId
 {
     ZJHAvatarView *avatar = [self getAvatarViewByUserId:userId];
-    [avatar showExpression:[_expManager pngExpressionForKey:key]];
+    [avatar showExpression:key];
 }
 
 @end

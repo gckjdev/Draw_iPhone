@@ -12,6 +12,7 @@
 #import "ZJHImageManager.h"
 #import "ShareImageManager.h"
 #import "AnimationManager.h"
+#import "ExpressionManager.h"
 
 @interface ZJHAvatarView ()
 
@@ -306,22 +307,39 @@
     
 }
 
-- (void)showExpression:(UIImage *)image
+- (void)showExpression:(NSString *)key
 {
-    UIImageView *view = [[[UIImageView alloc] initWithFrame:self.roundAvatarPlaceView.frame] autorelease];
-    view.transform = CGAffineTransformMakeScale(1.05, 1.05);
-    view.center = self.roundAvatarPlaceView.center;
-    view.image = image;
-    CAAnimation *moveVerticalAni = [AnimationManager moveVerticalAnimationFrom:view.center.y to:view.center.y - ([DeviceDetection isIPAD] ? 20 : 10) duration:0.5];
-    moveVerticalAni.repeatCount = 3;
-    moveVerticalAni.autoreverses = YES;
-    [view.layer addAnimation:moveVerticalAni forKey:nil];
+    GifView *view = [[ExpressionManager defaultManager] gifExpressionForKey:key frame:self.roundAvatarPlaceView.frame];
     
-    CAAnimation *appearAni = [AnimationManager disappearAnimationFrom:1 to:0 delay:3 duration:1];
+    view.userInteractionEnabled = NO;
+    [self.roundAvatarPlaceView addSubview:view];
     
-    [view.layer addAnimation:appearAni forKey:nil];
-    [self addSubview:view];
-    [view performSelector:@selector(removeFromSuperview) withObject:nil afterDelay:4];
+    [UIView animateWithDuration:1 delay:6.0 options:UIViewAnimationCurveLinear animations:^{
+        view.alpha = 0;
+    } completion:^(BOOL finished) {
+        [view removeFromSuperview];
+    }];
 }
+
+
+//- (void)showExpression:(UIImage *)image
+//{
+//    UIImageView *view = [[[UIImageView alloc] initWithFrame:self.roundAvatarPlaceView.frame] autorelease];
+//    view.transform = CGAffineTransformMakeScale(1.05, 1.05);
+//    view.center = self.roundAvatarPlaceView.center;
+//    view.image = image;
+//    CAAnimation *moveVerticalAni = [AnimationManager moveVerticalAnimationFrom:view.center.y to:view.center.y - ([DeviceDetection isIPAD] ? 20 : 10) duration:0.5];
+//    moveVerticalAni.repeatCount = 3;
+//    moveVerticalAni.autoreverses = YES;
+//    [view.layer addAnimation:moveVerticalAni forKey:nil];
+//    
+//    CAAnimation *appearAni = [AnimationManager disappearAnimationFrom:1 to:0 delay:3 duration:1];
+//    
+//    [view.layer addAnimation:appearAni forKey:nil];
+//    [self addSubview:view];
+//    [view performSelector:@selector(removeFromSuperview) withObject:nil afterDelay:4];
+//}
+
+
 
 @end
