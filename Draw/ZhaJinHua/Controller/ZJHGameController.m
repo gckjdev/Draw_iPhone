@@ -579,14 +579,13 @@
                                                            message:NSLS(@"kZJHQuitGameAlertMessage")
                                                              style:CommonDialogStyleDoubleButton
                                                           delegate:nil
-                                                             theme:CommonDialogThemeDice clickOkBlock:^{
+                                                             clickOkBlock:^{
                                                                  [_gameService quitGame];
                                                                  [self.navigationController popViewControllerAnimated:YES];
                                                                  [_audioManager playSoundByURL:_soundManager.clickButtonSound];
                                                              } clickCancelBlock:^{
                                                                  [_audioManager playSoundByURL:_soundManager.clickButtonSound];
                                                              }];
-        [dialog.contentBackground setImage:[ZJHImageManager defaultManager].ZJHUserInfoBackgroundImage];
         [dialog showInView:self.view];
     } else {
         [_gameService quitGame];
