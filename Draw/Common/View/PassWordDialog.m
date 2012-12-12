@@ -96,9 +96,10 @@
 
 - (void)initView:(NSString*)title
 {
+    [super initView:title];
     float fontSize = [DeviceDetection isIPAD] ? 40 : 20;
     [self.targetTextField setBackground:[[GameApp getImageManager] inputDialogInputBgImage]];
-    [self.titleLabel.fontLable setText:title];
+    [self.titleLabel setTitle:title forState:UIControlStateNormal];
     
     [self.cancelButton setBackgroundImage:[[GameApp getImageManager] inputDialogLeftBtnImage]
                                  forState:UIControlStateNormal];
