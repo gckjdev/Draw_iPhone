@@ -9,7 +9,7 @@
 #import "DiceGameApp.h"
 #import "MobClickUtils.h"
 #import "DiceChatMsgManager.h"
-#import "DiceFontManager.h"
+#import "FileUtil.h"
 
 @implementation DiceGameApp
 

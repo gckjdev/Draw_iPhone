@@ -1,5 +1,5 @@
 //
-//  DiceHelpManager.h
+//  CommonHelpManager
 //  Draw
 //
 //  Created by 小涛 王 on 12-8-25.
@@ -8,9 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
-@interface DiceHelpManager : NSObject
+@interface CommonHelpManager : NSObject
 
-+ (DiceHelpManager*)defaultManager;
++ (CommonHelpManager*)defaultManager;
 
 - (void)unzipHelpFiles;
 

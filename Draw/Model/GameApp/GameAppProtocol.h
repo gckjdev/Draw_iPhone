@@ -61,4 +61,5 @@
 - (NSString *)gameRulesButtonBgImageNameForSelected;
 - (NSString *)itemsUsageButtonBgImageNameForNormal;
 - (NSString *)itemsUsageButtonBgImageNameForSelected;
+
 @end
