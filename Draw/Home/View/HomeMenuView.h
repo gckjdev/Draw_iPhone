@@ -36,9 +36,21 @@ typedef enum{
     
     //ZJH main menu start at 2000
     HomeMenuTypeZJHMainBegin = 2000,
+    HomeMenuTypeZJHHelp = 2000,
+    HomeMenuTypeZJHStart,
+//    HomeMenuTypeZJHBBS,
+    HomeMenuTypeZJHRichSite,
+    HomeMenuTypeZJHNormalSite,
+    HomeMenuTypeZJHVSSite,
     
     //ZJH bottom menu start at 2500
     HomeMenuTypeZJHBottomBegin = 2500,
+//    HomeMenuTypeZJHHome = 2500,
+//    HomeMenuTypeZJHMessage,
+//    HomeMenuTypeZJHFriend,
+//    HomeMenuTypeZJHMore,
+//    HomeMenuTypeZJHMe,
+//    HomeMenuTypeZJHSetting,
     
 }HomeMenuType;
 

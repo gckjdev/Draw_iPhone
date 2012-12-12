@@ -909,9 +909,17 @@
 "kHomeMenuTypeDrawOpus" = "Opus";
 "kHomeMenuTypeDrawMessage" = "Message";
 "kHomeMenuTypeDrawSetting" = "Setting";
-"HomeMenuTypeDrawShop" = "Shop";
+"kHomeMenuTypeDrawShop" = "Shop";
 
 "kCharge" = "Charge";
+"kFreeCoin" = "Free coin";
+
+"kHomeMenuTypeZJHHelp" = "Help";
+"kHomeMenuTypeZJHStart" = "Start";
+"kHomeMenuTypeZJHRichSite" = "Rich";
+"kHomeMenuTypeZJHNormalSite" = "Nomal";
+"kHomeMenuTypeZJHVSSite" = "VS";
+
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 

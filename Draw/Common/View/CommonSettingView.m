@@ -7,10 +7,11 @@
 //
 
 #import "CommonSettingView.h"
-#import "DiceImageManager.h"
 #import "AudioManager.h"
 #import "AutoCreateViewByXib.h"
 #import "GameApp.h"
+#import "ZJHImageManager.h"
+#import "ShareImageManager.h"
 
 @interface CommonSettingView ()
 
@@ -27,7 +28,7 @@
 @synthesize closeButton;
 
 AUTO_CREATE_VIEW_BY_XIB(CommonSettingView)
-+ (id)createDiceSettingView
++ (id)createSettingView
 {
     return [CommonSettingView createView];
 }
@@ -35,11 +36,11 @@ AUTO_CREATE_VIEW_BY_XIB(CommonSettingView)
 - (void)showInView:(UIView *)view
 {
     self.frame = view.bounds;
-    bgImageView.image = [[DiceImageManager defaultManager] popupBackgroundImage];
+    bgImageView.image = [[GameApp getImageManager] settingsBgImage];
     
-    musicImageView.image = [[AudioManager defaultManager] isMusicOn] ? [[DiceImageManager defaultManager] diceMusicOnImage] : [[DiceImageManager defaultManager] diceMusicOffImage];
+    musicImageView.image = [[AudioManager defaultManager] isMusicOn] ? [[GameApp getImageManager] musicOn] : [[GameApp getImageManager] musicOff];
     
-    audioImageView.image = [[AudioManager defaultManager] isSoundOn] ? [[DiceImageManager defaultManager] diceAudioOnImage] : [[DiceImageManager defaultManager] diceAudioOffImage];
+    audioImageView.image = [[AudioManager defaultManager] isSoundOn] ? [[GameApp getImageManager] audioOn] : [[GameApp getImageManager] audioOff];
 
     musicOnButton.selected = [[AudioManager defaultManager] isMusicOn];
     musicOffButton.selected = ![[AudioManager defaultManager] isMusicOn];
@@ -51,6 +52,16 @@ AUTO_CREATE_VIEW_BY_XIB(CommonSettingView)
     musicOffButton.titleLabel.textColor = [[AudioManager defaultManager] isMusicOn] ? [UIColor blackColor] : [UIColor whiteColor];
     audioOnButton.titleLabel.textColor = [[AudioManager defaultManager] isSoundOn] ? [UIColor whiteColor] : [UIColor blackColor];
     audioOffButton.titleLabel.textColor = [[AudioManager defaultManager] isSoundOn] ? [UIColor blackColor] : [UIColor whiteColor];
+    
+    [self.audioOnButton setBackgroundImage:[[GameApp getImageManager] settingsLeftSelected] forState:UIControlStateSelected];
+    [self.audioOnButton setBackgroundImage:[[GameApp getImageManager] settingsLeftUnselected] forState:UIControlStateNormal];
+    [self.audioOffButton setBackgroundImage:[[GameApp getImageManager] settingsRightSelected] forState:UIControlStateSelected];
+    [self.audioOffButton setBackgroundImage:[[GameApp getImageManager] settingsRightUnselected] forState:UIControlStateNormal];
+    [self.musicOnButton setBackgroundImage:[[GameApp getImageManager] settingsLeftSelected] forState:UIControlStateSelected];
+    [self.musicOnButton setBackgroundImage:[[GameApp getImageManager] settingsLeftUnselected] forState:UIControlStateNormal];
+    [self.musicOffButton setBackgroundImage:[[GameApp getImageManager] settingsRightSelected] forState:UIControlStateSelected];
+    [self.musicOffButton setBackgroundImage:[[GameApp getImageManager] settingsRightUnselected] forState:UIControlStateNormal];
+    
     
     [super showInView:view];
 }
@@ -71,7 +82,7 @@ AUTO_CREATE_VIEW_BY_XIB(CommonSettingView)
 - (IBAction)clickMusicOnButton:(id)sender {
     musicOnButton.selected = YES;
     musicOffButton.selected = NO;
-    musicImageView.image = [[DiceImageManager defaultManager] diceMusicOnImage];
+    musicImageView.image = [[GameApp getImageManager] musicOn];
     musicOnButton.titleLabel.textColor = [UIColor whiteColor];
     musicOffButton.titleLabel.textColor = [UIColor blackColor];
     
@@ -82,7 +93,7 @@ AUTO_CREATE_VIEW_BY_XIB(CommonSettingView)
 - (IBAction)clickMusicOffButton:(id)sender {
     musicOnButton.selected = NO;
     musicOffButton.selected = YES;
-    musicImageView.image = [[DiceImageManager defaultManager] diceMusicOffImage];
+    musicImageView.image = [[GameApp getImageManager] musicOff];
     musicOnButton.titleLabel.textColor = [UIColor blackColor];
     musicOffButton.titleLabel.textColor = [UIColor whiteColor];
     
@@ -93,7 +104,7 @@ AUTO_CREATE_VIEW_BY_XIB(CommonSettingView)
 - (IBAction)clickAudioOnButton:(id)sender {
     audioOnButton.selected = YES;
     audioOffButton.selected = NO;
-    audioImageView.image = [[DiceImageManager defaultManager] diceAudioOnImage];
+    audioImageView.image = [[GameApp getImageManager] audioOn];
     audioOnButton.titleLabel.textColor = [UIColor whiteColor];
     audioOffButton.titleLabel.textColor = [UIColor blackColor];
     
@@ -104,7 +115,7 @@ AUTO_CREATE_VIEW_BY_XIB(CommonSettingView)
 - (IBAction)clickAudioOffButton:(id)sender {
     audioOnButton.selected = NO;
     audioOffButton.selected = YES;
-    audioImageView.image = [[DiceImageManager defaultManager] diceAudioOffImage];
+    audioImageView.image = [[GameApp getImageManager] audioOff];
     audioOnButton.titleLabel.textColor = [UIColor blackColor];
     audioOffButton.titleLabel.textColor = [UIColor whiteColor];
     
