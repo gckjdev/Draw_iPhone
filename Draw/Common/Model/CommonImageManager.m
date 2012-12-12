@@ -12,7 +12,7 @@
 
 #import "PPResourceService.h"
 
-@implementation CommonImageManager
+@implementation CommonImageManager 
 
 SYNTHESIZE_SINGLETON_FOR_CLASS(CommonImageManager)
 

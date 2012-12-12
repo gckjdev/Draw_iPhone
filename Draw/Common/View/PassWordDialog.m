@@ -94,6 +94,33 @@
     
 }
 
+- (void)initView:(NSString*)title
+{
+    float fontSize = [DeviceDetection isIPAD] ? 40 : 20;
+    [self.targetTextField setBackground:[[GameApp getImageManager] inputDialogInputBgImage]];
+    [self.titleLabel.fontLable setText:title];
+    
+    [self.cancelButton setBackgroundImage:[[GameApp getImageManager] inputDialogLeftBtnImage]
+                                 forState:UIControlStateNormal];
+    [self.okButton setBackgroundImage:[[GameApp getImageManager] inputDialogRightBtnImage]
+                             forState:UIControlStateNormal];
+    
+    [self.cancelButton setTitle:NSLS(@"kCancel") forState:UIControlStateNormal];
+    [self.okButton setTitle:NSLS(@"kOK") forState:UIControlStateNormal];
+    self.titleLabel.titleLabel.font = [UIFont boldSystemFontOfSize:fontSize];
+    self.titleLabel.titleLabel.adjustsFontSizeToFitWidth = YES;
+    self.titleLabel.titleLabel.lineBreakMode = UILineBreakModeTailTruncation;
+    
+    [self.targetTextField setBackground:[[GameApp getImageManager] inputDialogInputBgImage]];
+    [self.anotherPasswordTextField setBackground:[[GameApp getImageManager] inputDialogInputBgImage]];
+    [self.oldPasswordTextField setBackground:[[GameApp getImageManager] inputDialogInputBgImage]];
+    
+    [self.targetTextField setPlaceholder:NSLS(@"kNicknameHolder")];
+    [self.oldPasswordTextField setPlaceholder:NSLS(@"kOldPasswordHolder")];
+    [self.anotherPasswordTextField setPlaceholder:NSLS(@"kNewPasswordHolder")];
+    [self.targetTextField setPlaceholder:NSLS(@"kConfirmPasswordHolder")];
+}
+
 - (void)updateTextFields
 {
     ShareImageManager *imageManager = [ShareImageManager defaultManager];
@@ -108,23 +135,9 @@
 
 + (PassWordDialog *)dialogWith:(NSString *)title delegate:(id<InputDialogDelegate>)delegate
 {
-    NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"PassWordDialog" owner:self options:nil];
-    if (topLevelObjects == nil || [topLevelObjects count] <= 0){
-        NSLog(@"create <PassWordDialog> but cannot find cell object from Nib");
-        return nil;
-    }
-    PassWordDialog* view =  (PassWordDialog*)[topLevelObjects objectAtIndex:0];
-    
-    //init the button
-    ShareImageManager *imageManager = [ShareImageManager defaultManager];
-    
-    [view updateTextFields];
-    
-    [view setDialogTitle:title];
-    [view.cancelButton setBackgroundImage:[imageManager greenImage] forState:UIControlStateNormal];
-    [view.cancelButton setTitle:NSLS(@"kCancel") forState:UIControlStateNormal];
-    [view.okButton setTitle:NSLS(@"kOK") forState:UIControlStateNormal];
-    [view.okButton setBackgroundImage:[imageManager redImage] forState:UIControlStateNormal];
+
+    PassWordDialog* view =  (PassWordDialog*)[self createInfoViewByXibName:[GameApp getPasswordDialogXibName]];
+    [view initView:title];
     view.delegate = delegate;
     
     UserManager *userManager = [UserManager defaultManager];
@@ -173,6 +186,7 @@
     }
     return  view;
 }
+
 
 - (void)decreaseView:(UIView *)view height:(CGFloat)height
 {

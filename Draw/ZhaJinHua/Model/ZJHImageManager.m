@@ -817,9 +817,37 @@ static ZJHImageManager* shareInstance;
     return [_resService imageByName:@"zjh_settingright_unselect" inResourcePackage:RESOURCE_PACKAGE_ZJH];
 }
 
+#pragma mark - dialog image manager protocol
+
+- (UIImage*)commonDialogBgImage
+{
+    return [_resService imageByName:@"zjh_dialog_bg" inResourcePackage:RESOURCE_PACKAGE_ZJH];
+}
+- (UIImage*)commonDialogLeftBtnImage
+{
+    return [_resService imageByName:@"zjh_dialog_btn" inResourcePackage:RESOURCE_PACKAGE_ZJH];
+}
+- (UIImage*)commonDialogRightBtnImage
+{
+    return [_resService imageByName:@"zjh_dialog_btn" inResourcePackage:RESOURCE_PACKAGE_ZJH];
+}
+
 - (UIImage *)inputDialogBgImage
 {
+    return [_resService imageByName:@"zjh_dialog_bg" inResourcePackage:RESOURCE_PACKAGE_ZJH];
+}
+
+- (UIImage*)inputDialogInputBgImage
+{
     return [UIImage strectchableImageName:@"zjh_input_bg.png"];
+}
+- (UIImage*)inputDialogLeftBtnImage
+{
+    return [_resService imageByName:@"zjh_dialog_btn" inResourcePackage:RESOURCE_PACKAGE_ZJH];
+}
+- (UIImage*)inputDialogRightBtnImage
+{
+    return [_resService imageByName:@"zjh_dialog_btn" inResourcePackage:RESOURCE_PACKAGE_ZJH];
 }
 
 @end

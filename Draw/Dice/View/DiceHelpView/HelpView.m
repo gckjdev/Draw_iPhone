@@ -7,13 +7,12 @@
 //
 
 #import "HelpView.h"
-#import "DiceHelpManager.h"
-#import "DiceImageManager.h"
+#import "CommonHelpManager.h"
 #import "PPResourceService.h"
 
 @interface HelpView ()
 {
-    DiceHelpManager *_helpManager;
+    CommonHelpManager *_helpManager;
     AnimationType _animationType;
     PPResourceService *_resService;
 }
@@ -56,7 +55,7 @@
 
 - (void)initialize
 {
-    _helpManager = [DiceHelpManager defaultManager];
+    _helpManager = [CommonHelpManager defaultManager];
     _resService = [PPResourceService defaultService];
     
     bgImageView.image = [[_resService imageByName:[getGameApp() helpViewBgImageName] inResourcePackage:[getGameApp() resourcesPackage]] stretchableImageWithLeftCapWidth:20 topCapHeight:20];

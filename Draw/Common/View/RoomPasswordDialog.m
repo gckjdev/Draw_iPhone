@@ -121,6 +121,38 @@
     self.passwordLabel.text = NSLS(@"kRoomPasswordLabel");
 }
 
+- (void)initView:(NSString*)title
+{
+    float fontSize = [DeviceDetection isIPAD] ? 40 : 20;
+    
+    [self.contentBackground setImage:[[GameApp getImageManager] inputDialogBgImage]];
+    self.isPasswordOptional = YES;
+    [self.titleLabel setTitle:title forState:UIControlStateNormal];
+    
+    [self.okButton setBackgroundImage:[[GameApp getImageManager] inputDialogRightBtnImage]forState:UIControlStateNormal];
+    [self.okButton.titleLabel setFont:[UIFont systemFontOfSize:fontSize]];
+    
+    [self.cancelButton setBackgroundImage:[[GameApp getImageManager] inputDialogLeftBtnImage] forState:UIControlStateNormal];
+    [self.cancelButton.titleLabel setFont:[UIFont systemFontOfSize:fontSize]];
+    
+    [self.okButton setRoyButtonWithColor:[UIColor colorWithRed:120.0/255.0 green:230.0/255.0 blue:160.0/255.0 alpha:0.95]];
+    [self.cancelButton setRoyButtonWithColor:[UIColor colorWithRed:236.0/255.0 green:247.0/255.0 blue:63.0/255.0 alpha:0.95]];
+    
+    [self.cancelButton setTitle:NSLS(@"kCancel") forState:UIControlStateNormal];
+    [self.okButton setTitle:NSLS(@"kOK") forState:UIControlStateNormal];
+    self.titleLabel.titleLabel.font = [UIFont boldSystemFontOfSize:fontSize];
+    self.titleLabel.titleLabel.adjustsFontSizeToFitWidth = YES;
+    self.titleLabel.titleLabel.lineBreakMode = UILineBreakModeTailTruncation;
+    [self.targetTextField setBackground:[[GameApp getImageManager] inputDialogInputBgImage]];
+    [self.passwordField setBackground:[[GameApp getImageManager] inputDialogInputBgImage]];
+    
+    [self.targetTextField setPlaceholder:NSLS(@"kNicknameHolder")];
+    [self.passwordField setPlaceholder:NSLS(@"kRoomPasswordHolder")];
+    [self.targetTextField setPlaceholder:NSLS(@"kRoomNameHolder")];
+    self.roomNameLabel.text = NSLS(@"kRoomNameLabel");
+    self.passwordLabel.text = NSLS(@"kRoomPasswordLabel");
+}
+
 - (void)updateTextFields
 {
     ShareImageManager *imageManager = [ShareImageManager defaultManager];
@@ -134,8 +166,10 @@
 
 + (RoomPasswordDialog *)dialogWith:(NSString *)title delegate:(id<InputDialogDelegate>)delegate
 {
-    CommonInputDialogTheme theme = [RoomPasswordDialog getTheme];
-    return [RoomPasswordDialog dialogWith:title delegate:delegate theme:theme];
+    RoomPasswordDialog* view = (RoomPasswordDialog*)[self createInfoViewByXibName:[GameApp getRoomPasswordDialogXibName]];
+    [view initView:title];
+    view.delegate = delegate;
+    return view;
 }
 
 + (RoomPasswordDialog *)createDialogWithTheme:(CommonInputDialogTheme)theme
