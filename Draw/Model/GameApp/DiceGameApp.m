@@ -195,4 +195,29 @@
     return [UIColor blackColor];
 }
 
+- (NSString *)helpViewBgImageName
+{
+    return @"dice_popup_bg";
+}
+
+- (NSString *)gameRulesButtonBgImageNameForNormal
+{
+    return @"dice_tableft_unselect";
+}
+
+- (NSString *)gameRulesButtonBgImageNameForSelected
+{
+    return @"dice_tableft_selected";
+}
+
+- (NSString *)itemsUsageButtonBgImageNameForNormal
+{
+    return @"dice_tabright_unselect";
+}
+
+- (NSString *)itemsUsageButtonBgImageNameForSelected
+{
+    return @"dice_tabright_selected";
+}
+
 @end

@@ -56,4 +56,10 @@
 - (NSString *)chatViewMsgBgImageName;
 - (UIColor *)chatViewMsgTextColor;
 
+- (NSString *)helpViewBgImageName;
+- (NSString *)gameRulesButtonBgImageNameForNormal;
+- (NSString *)gameRulesButtonBgImageNameForSelected;
+- (NSString *)itemsUsageButtonBgImageNameForNormal;
+- (NSString *)itemsUsageButtonBgImageNameForSelected;
+
 @end
