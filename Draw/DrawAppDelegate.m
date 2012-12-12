@@ -290,6 +290,7 @@ NSString* GlobalGetBoardServerURL()
     }
 
     // Init Home Controller As Root View Controller
+    // TODO BENSON ZJH
     PPViewController* rootController = nil;
     if (isDiceApp() || isZhajinhuaApp()){
         self.diceHomeController = [[[DiceHomeController alloc] init] autorelease];

@@ -78,18 +78,29 @@ static LevelService* _defaultLevelService;
 
 - (NSString*)upgradeMessage:(int)newLevel
 {
+    return [GameApp upgradeMessage:newLevel];
+    
+    /*
     if (isDiceApp()) {
         return [NSString stringWithFormat:NSLS(@"kDiceUpgradeMsg"),newLevel,[ConfigManager diceCutAwardForLevelUp]];
     }
     return [NSString stringWithFormat:NSLS(@"kUpgradeMsg"),newLevel,[ConfigManager flowerAwardFordLevelUp]];
+    */
 }
 
 - (NSString*)degradeMessage:(int)newLevel
 {
+    return [GameApp degradeMessage:newLevel];
+    
+    /*
     if (isDiceApp()) {
+     return [NSString stringWithFormat:NSLS(@"kDiceUpgradeMsg"),newLevel,[ConfigManager diceCutAwardForLevelUp]];
+     
         return [NSString stringWithFormat:NSLS(@"kDiceDegradeMsg"),newLevel];
     }
+     return [NSString stringWithFormat:NSLS(@"kUpgradeMsg"),newLevel,[ConfigManager flowerAwardFordLevelUp]];
     return [NSString stringWithFormat:NSLS(@"kUpgradeMsg"),newLevel,[ConfigManager flowerAwardFordLevelUp]];
+    */
 }
 
 - (int)level

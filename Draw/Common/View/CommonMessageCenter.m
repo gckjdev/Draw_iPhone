@@ -25,6 +25,8 @@ CommonMessageViewTheme globalGetTheme() {
     if (isDiceApp()) {
         return CommonMessageViewThemeDice;
     }
+    
+    //TODO Check For ZJH    
     return CommonMessageViewThemeDraw;
 }
 
@@ -238,6 +240,7 @@ CommonMessageViewTheme globalGetTheme() {
 	UIImage *img = nil;
 	if([ar count] > INDEX_OF_IMAGE) img = [[_messages objectAtIndex:0] objectAtIndex:INDEX_OF_IMAGE];
     [_messageView setImage:img];
+    [_messageView.messageBackgroundView setImage:[UIImage imageNamed:[GameApp popupMessageDialogBackgroundImage]]];
 	if (!img) {
         [_messageView.messageLabel setCenter:CGPointMake(_messageView.bounds.size.width/2, _messageView.messageLabel.center.y+horizon)];
         [_messageView.messageLabel setTextAlignment:UITextAlignmentCenter];
