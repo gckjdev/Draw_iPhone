@@ -268,5 +268,14 @@
     return @"dialogue@2x.png";
 }
 
+- (NSString *)roomListCellBgImageName
+{
+    return @"dice_room_item";
+}
+
+- (NSString *)roomListCellDualBgImageName
+{
+    return @"";
+}
 
 @end

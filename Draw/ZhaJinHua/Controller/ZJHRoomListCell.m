@@ -10,6 +10,7 @@
 #import "GameBasic.pb.h"
 #import "DiceImageManager.h"
 #import "ZJHGameService.h"
+#import "PPResourceService.h"
 
 #define TAG_USER_VIEW 101
 
@@ -47,7 +48,10 @@
     } else {
         [self.roomNameLabel setText:session.name];
     }
-    [self.backgroundImageView setImage:[DiceImageManager defaultManager].roomCellBackgroundImage];
+//    [self.backgroundImageView setImage:[DiceImageManager defaultManager].roomCellBackgroundImage];
+    NSString *imageName = ([[ZJHGameService defaultService] rule]== PBZJHRuleTypeDual ?[getGameApp() roomListCellDualBgImageName] : [getGameApp() roomListCellBgImageName]);
+    [self.backgroundImageView setImage:[[PPResourceService defaultService] imageByName:imageName inResourcePackage:[getGameApp() resourcesPackage]]];
+
     for (int i = 0; i < 6; i ++) {
         DiceAvatarView* avatar = (DiceAvatarView*)[self viewWithTag:(i + TAG_USER_VIEW)];
         avatar.delegate = self;
