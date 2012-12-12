@@ -195,6 +195,7 @@
 				<reference key="NSSuperview"/>
 				<reference key="NSNextKeyView" ref="956424433"/>
 				<string key="NSReuseIdentifierKey">_NS:9</string>
+				<string key="IBUIRestorationIdentifier">ZJHRoomListCell</string>
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 				<reference key="IBUIContentView" ref="956424433"/>
 				<string key="IBUIReuseIdentifier">DiceRoomListCell</string>
@@ -329,7 +330,7 @@
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<object class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
 			<string key="NS.key.0">dice_line@2x.png</string>
-			<string key="NS.object.0">{16, 16}</string>
+			<string key="NS.object.0">{2, 2}</string>
 		</object>
 		<string key="IBCocoaTouchPluginVersion">1926</string>
 	</data>

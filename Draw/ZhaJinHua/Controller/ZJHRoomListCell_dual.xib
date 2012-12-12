@@ -141,9 +141,10 @@
 				<reference key="NSSuperview"/>
 				<reference key="NSNextKeyView" ref="956424433"/>
 				<string key="NSReuseIdentifierKey">_NS:9</string>
+				<string key="IBUIRestorationIdentifier">ZJHRoomListCell_dual</string>
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 				<reference key="IBUIContentView" ref="956424433"/>
-				<string key="IBUIReuseIdentifier">DiceRoomListCell_dual</string>
+				<string key="IBUIReuseIdentifier">ZJHRoomListCell_dual</string>
 				<real value="70" key="IBUIRowHeight"/>
 			</object>
 		</array>

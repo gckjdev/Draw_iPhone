@@ -26,7 +26,7 @@
 
 + (NSString *)getCellIdentifier
 {
-    return @"ZJHRoomListCell";
+    return ([[ZJHGameService defaultService] rule]== PBZJHRuleTypeDual ? @"ZJHRoomListCell_dual" : @"ZJHRoomListCell");
 }
 
 #define HEIGHT_ZJH_ROOM_LIST_CELL  ([DeviceDetection isIPAD] ? 204: 102)
@@ -35,7 +35,7 @@
 
 + (CGFloat)getCellHeight
 {
-    return ([[ZJHGameService defaultService] rule]== PBZJHRuleTypeDual ? HEIGHT_ZJH_ROOM_LIST_CELL_DUAL : HEIGHT_ZJH_ROOM_LIST_CELL);;
+    return ([[ZJHGameService defaultService] rule]== PBZJHRuleTypeDual ? HEIGHT_ZJH_ROOM_LIST_CELL_DUAL : HEIGHT_ZJH_ROOM_LIST_CELL);
 }
 
 - (void)setCellInfo:(PBGameSession *)session;
