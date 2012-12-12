@@ -22,6 +22,7 @@
 #import "MyFriend.h"
 #import "PPViewController+StarryLoadingView.h"
 #import "CommonDialog.h"
+#import "GameApp.h"
 
 
 #define KEY_GAME_MESSAGE @"KEY_GAME_MESSAGE"
@@ -286,6 +287,10 @@
     [self unregisterAllNotifications];
 }
 
+- (void)initView
+{
+    
+}
 
 - (void)viewDidLoad
 {
@@ -293,6 +298,9 @@
     
     _isRefreshing = YES;
     [self handleUpdateOnlineUserCount];
+    
+    [self initView];
+    
     //    [[NSNotificationCenter defaultCenter] addObserver:self
     //                                             selector:@selector(roomsDidUpdate:)
     //                                                 name:ROOMS_DID_UPDATE
