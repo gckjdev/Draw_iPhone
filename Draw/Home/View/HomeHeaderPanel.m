@@ -76,7 +76,7 @@
         //get top 6 draw feed.
         [[FeedService defaultService] getFeedList:FeedListTypeHot
                                            offset:0
-                                            limit:TOP_DRAW_NUMBER
+                                            limit:TOP_DRAW_NUMBER + 3
                                          delegate:self];        
     }else{
         [self.displayScrollView setHidden:NO];
@@ -181,7 +181,14 @@
 {
     if (resultCode == 0 && [feedList count] != 0) {
 
+        //get Top 6 feed
+//        if ([feedList count] <= TOP_DRAW_NUMBER) {
         self.feedList = [NSMutableArray arrayWithArray:feedList];
+//        }else{
+//            NSArray *temp = [feedList subarrayWithRange:NSMakeRange(0, TOP_DRAW_NUMBER)];
+//            self.feedList = [NSMutableArray arrayWithArray:temp];
+//        }
+        
         
         PPDebug(@"<didGetFeedList> ready to display images");
         [self.displayScrollView setHidden:NO];
@@ -192,6 +199,9 @@
             if (iv) {
                 ++i;
                 [self.displayScrollView addSubview:iv];
+            }
+            if (i >= TOP_DRAW_NUMBER) {
+                break;
             }
         }
         
