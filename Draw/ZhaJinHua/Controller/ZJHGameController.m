@@ -1674,6 +1674,10 @@
 {
     [self.chatView dismissAnimated:YES];
     
+    if ([message.content length] == 0) {
+        return;
+    }
+    
     [self popupChatMessageAtUser:_userManager.userId message:message.content];
     [_gameService chatWithContent:message.content contentVoiceId:[NSString stringWithFormat:@"%d", message.voiceId]];
 }
