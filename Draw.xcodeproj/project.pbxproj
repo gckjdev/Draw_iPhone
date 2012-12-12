@@ -2560,6 +2560,7 @@
 		C213091A15E349E20072A18E /* DiceUserInfoView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "DiceUserInfoView~ipad.xib"; sourceTree = "<group>"; };
 		C21309F915E774390072A18E /* DiceColorManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiceColorManager.h; sourceTree = "<group>"; };
 		C21309FA15E774390072A18E /* DiceColorManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiceColorManager.m; sourceTree = "<group>"; };
+		C2144C48167816B400F2C8BC /* DialogImageManagerProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DialogImageManagerProtocol.h; sourceTree = "<group>"; };
 		C223232C165C659E00D7ECE4 /* ZJHSettingView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ZJHSettingView~ipad.xib"; sourceTree = "<group>"; };
 		C2233961164E3CA100D2C123 /* AppleOpenALSupport.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = AppleOpenALSupport.c; sourceTree = "<group>"; };
 		C2233962164E3CA100D2C123 /* AppleOpenALSupport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppleOpenALSupport.h; sourceTree = "<group>"; };
@@ -6223,6 +6224,7 @@
 				C2B5381E1677712300725802 /* ZJHPassWordDialog~ipad.xib */,
 				C2B5381F1677712300725802 /* ZJHRoomPasswordDialog.xib */,
 				C2B538201677712300725802 /* ZJHRoomPasswordDialog~ipad.xib */,
+				C2144C48167816B400F2C8BC /* DialogImageManagerProtocol.h */,
 			);
 			path = View;
 			sourceTree = "<group>";
