@@ -609,14 +609,8 @@
             
         case MenuButtonTypeDiceHelp:
         {
-            UIView* helpView = [self.view viewWithTag:DICE_HELP_VIEW_TAG];
-            if (helpView){
-                [self.view bringSubviewToFront:helpView];
-            }
-            else{            
-                HelpView *view = [HelpView createHelpView:@"ZJHHelpView"];
-                [view showInView:self.view];
-            }
+            HelpView *view = [HelpView createHelpView:@"ZJHHelpView"];
+            [view showInView:self.view];
         }
             break;
             //For Bottom Menus
