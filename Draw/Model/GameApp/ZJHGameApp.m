@@ -9,11 +9,8 @@
 #import "ZJHGameApp.h"
 #import "MobClickUtils.h"
 #import "ZJHChatMsgManager.h"
-<<<<<<< HEAD
 #import "ConfigManager.h"
-=======
 #import "ZJHImageManager.h"
->>>>>>> 0edba34253f40ae00a1e0b63b96e521cec00e4e7
 
 @implementation ZJHGameApp
 

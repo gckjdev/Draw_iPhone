@@ -72,12 +72,9 @@
 - (NSString *)itemsUsageButtonBgImageNameForNormal;
 - (NSString *)itemsUsageButtonBgImageNameForSelected;
 
-<<<<<<< HEAD
 - (NSString *)upgradeMessage:(int)newLevel;
 - (NSString *)degradeMessage:(int)newLevel;
 
 - (NSString *)popupMessageDialogBackgroundImage;
 
-=======
->>>>>>> 0edba34253f40ae00a1e0b63b96e521cec00e4e7
 @end
