@@ -56,13 +56,7 @@
 
 + (NSString *)getViewIdentifier
 {
-//    return @"ZJHHomeHeaderPanel";
-    if (isDrawApp()) {
-        return @"DrawHomeHeaderPanel";
-    } else if (isZhajinhuaApp()) {
-        return @"ZJHHomeHeaderPanel";
-    }
-    return nil;
+    return [GameApp homeHeaderViewId];
 }
 
 #pragma mark - Display Top Draw...
