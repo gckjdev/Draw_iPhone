@@ -38,6 +38,8 @@
 - (UIImage *)roomListRightBtnUnselectedImage;
 - (UIImage *)roomListBackBtnImage;
 - (UIImage *)roomListCellBgImage;
+- (UIImage *)roomListCreateRoomBtnBgImage;
+- (UIImage *)roomListFastEntryBtnBgImage;
 
 
 @end

@@ -861,7 +861,7 @@ static ZJHImageManager* shareInstance;
 }
 - (UIImage *)roomListLeftBtnUnselectedImage
 {
-    return [_resService imageByName:@"zjh_tableft_unselected" inResourcePackage:RESOURCE_PACKAGE_ZJH];
+    return [_resService imageByName:@"zjh_tableft_unselect" inResourcePackage:RESOURCE_PACKAGE_ZJH];
 }
 - (UIImage *)roomListRightBtnSelectedImage
 {
@@ -869,15 +869,24 @@ static ZJHImageManager* shareInstance;
 }
 - (UIImage *)roomListRightBtnUnselectedImage
 {
-    return [_resService imageByName:@"zjh_tabright_unselected" inResourcePackage:RESOURCE_PACKAGE_ZJH];
+    return [_resService imageByName:@"zjh_tabright_unselect" inResourcePackage:RESOURCE_PACKAGE_ZJH];
 }
 - (UIImage *)roomListBackBtnImage
 {
-    return [_resService imageByName:@"zjh_dialog_btn" inResourcePackage:RESOURCE_PACKAGE_ZJH];
+    return [_resService imageByName:@"zjh_back" inResourcePackage:RESOURCE_PACKAGE_ZJH];
 }
 - (UIImage *)roomListCellBgImage
 {
     return [_resService imageByName:@"zjh_room_item" inResourcePackage:RESOURCE_PACKAGE_ZJH];
+}
+
+- (UIImage *)roomListCreateRoomBtnBgImage
+{
+    return [_resService imageByName:@"zjh_dialog_btn" inResourcePackage:RESOURCE_PACKAGE_ZJH];
+}
+- (UIImage *)roomListFastEntryBtnBgImage
+{
+    return [_resService imageByName:@"zjh_dialog_btn" inResourcePackage:RESOURCE_PACKAGE_ZJH];
 }
 
 @end
