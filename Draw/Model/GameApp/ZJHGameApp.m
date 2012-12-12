@@ -255,7 +255,7 @@
 
 - (NSString *)roomListCellBgImageName
 {
-    return @"";
+    return @"zjh_room_item";
 }
 
 - (NSString *)roomListCellDualBgImageName

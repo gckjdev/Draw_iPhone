@@ -7,6 +7,7 @@
 //
 
 #import "CommonRoomListCell.h"
+#import "GameBasic.pb.h"
 
 @implementation CommonRoomListCell
 
@@ -19,7 +20,10 @@
     return self;
 }
 
-
+- (void)setCellInfo:(PBGameSession *)session
+{
+    
+}
 
 /*
 // Only override drawRect: if you perform custom drawing.

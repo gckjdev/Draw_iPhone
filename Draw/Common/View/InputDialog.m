@@ -65,8 +65,8 @@
     [self.targetTextField setBackground:[diceImgManager inputBackgroundImage]];
     [self.titleLabel setTitle:title forState:UIControlStateNormal];
     
-    [self.okButton setRoyButtonWithColor:[UIColor colorWithRed:244.0/255.0 green:93.0/255.0 blue:93.0/255.0 alpha:0.95]];
-    [self.cancelButton setRoyButtonWithColor:[UIColor colorWithRed:236.0/255.0 green:247.0/255.0 blue:63.0/255.0 alpha:0.95]];
+//    [self.okButton setRoyButtonWithColor:[UIColor colorWithRed:244.0/255.0 green:93.0/255.0 blue:93.0/255.0 alpha:0.95]];
+//    [self.cancelButton setRoyButtonWithColor:[UIColor colorWithRed:236.0/255.0 green:247.0/255.0 blue:63.0/255.0 alpha:0.95]];
     
     [self.cancelButton setTitle:NSLS(@"kCancel") forState:UIControlStateNormal];
     [self.cancelButton.titleLabel setFont:[UIFont boldSystemFontOfSize:fontSize]];
@@ -88,8 +88,8 @@
     [self.targetTextField setBackground:[diceImgManager inputBackgroundImage]];
     [self.titleLabel setTitle:title forState:UIControlStateNormal];
     
-    [self.okButton setRoyButtonWithColor:[UIColor colorWithRed:244.0/255.0 green:93.0/255.0 blue:93.0/255.0 alpha:0.95]];
-    [self.cancelButton setRoyButtonWithColor:[UIColor colorWithRed:236.0/255.0 green:247.0/255.0 blue:63.0/255.0 alpha:0.95]];
+//    [self.okButton setRoyButtonWithColor:[UIColor colorWithRed:244.0/255.0 green:93.0/255.0 blue:93.0/255.0 alpha:0.95]];
+//    [self.cancelButton setRoyButtonWithColor:[UIColor colorWithRed:236.0/255.0 green:247.0/255.0 blue:63.0/255.0 alpha:0.95]];
     
     [self.cancelButton setTitle:NSLS(@"kCancel") forState:UIControlStateNormal];
     [self.cancelButton.titleLabel setFont:[UIFont boldSystemFontOfSize:fontSize]];

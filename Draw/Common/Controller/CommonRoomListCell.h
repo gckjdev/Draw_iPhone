@@ -7,6 +7,7 @@
 //
 
 #import "PPTableViewCell.h"
+@class PBGameSession;
 
 @protocol CommonRoomListCellDelegate <NSObject>
 
@@ -17,5 +18,7 @@
 @interface CommonRoomListCell : PPTableViewCell
 
 @property (assign, nonatomic) id<CommonRoomListCellDelegate> delegate;
+
+- (void)setCellInfo:(PBGameSession *)session;
 
 @end
