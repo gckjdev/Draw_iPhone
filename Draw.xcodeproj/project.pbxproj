@@ -805,6 +805,9 @@
 		CA12614016785F0D00DD96F4 /* zjh_home_start@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA12611A16785F0D00DD96F4 /* zjh_home_start@2x.png */; };
 		CA12614116785F0D00DD96F4 /* zjh_home_vs_site@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA12611B16785F0D00DD96F4 /* zjh_home_vs_site@2x.png */; };
 		CA1261431678614200DD96F4 /* draw_home_opus@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA1261421678614200DD96F4 /* draw_home_opus@2x.png */; };
+		CA12616F167880CE00DD96F4 /* ZJHHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA12616C167880CE00DD96F4 /* ZJHHomeViewController.m */; };
+		CA126170167880CE00DD96F4 /* ZJHHomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA12616D167880CE00DD96F4 /* ZJHHomeViewController.xib */; };
+		CA126171167880CE00DD96F4 /* ZJHHomeViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA12616E167880CE00DD96F4 /* ZJHHomeViewController~ipad.xib */; };
 		CA13771B152425CF00B5790B /* RouterService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA13771A152425CF00B5790B /* RouterService.m */; };
 		CA1377221524283A00B5790B /* TrafficServerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1377211524283A00B5790B /* TrafficServerManager.m */; };
 		CA1377291524598700B5790B /* MainDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CA1377271524598700B5790B /* MainDataModel.xcdatamodeld */; };
@@ -852,8 +855,6 @@
 		CA1DA96D1673320C0078B5A9 /* HomeCommonView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1DA96C1673320A0078B5A9 /* HomeCommonView.m */; };
 		CA1DA9701673437A0078B5A9 /* HomeMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1DA96F167343770078B5A9 /* HomeMenuView.m */; };
 		CA1DAA31167583130078B5A9 /* DrawHomeHeaderPanel~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA1DAA30167583120078B5A9 /* DrawHomeHeaderPanel~ipad.xib */; };
-		CA1DAA591675CF470078B5A9 /* DrawHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1DAA571675CF460078B5A9 /* DrawHomeViewController.m */; };
-		CA1DAA5A1675CF470078B5A9 /* DrawHomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA1DAA581675CF460078B5A9 /* DrawHomeViewController.xib */; };
 		CA22DCD2157CAFFD009C95CB /* ResultController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA22DCCF157CAFFD009C95CB /* ResultController.m */; };
 		CA22DCD3157CAFFD009C95CB /* ResultController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA22DCD0157CAFFD009C95CB /* ResultController.xib */; };
 		CA22DCED157CB00A009C95CB /* OnlineDrawViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA22DCE0157CB00A009C95CB /* OnlineDrawViewController.m */; };
@@ -3352,6 +3353,10 @@
 		CA12611A16785F0D00DD96F4 /* zjh_home_start@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zjh_home_start@2x.png"; sourceTree = "<group>"; };
 		CA12611B16785F0D00DD96F4 /* zjh_home_vs_site@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zjh_home_vs_site@2x.png"; sourceTree = "<group>"; };
 		CA1261421678614200DD96F4 /* draw_home_opus@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "draw_home_opus@2x.png"; sourceTree = "<group>"; };
+		CA12616B167880CE00DD96F4 /* ZJHHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJHHomeViewController.h; sourceTree = "<group>"; };
+		CA12616C167880CE00DD96F4 /* ZJHHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJHHomeViewController.m; sourceTree = "<group>"; };
+		CA12616D167880CE00DD96F4 /* ZJHHomeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZJHHomeViewController.xib; sourceTree = "<group>"; };
+		CA12616E167880CE00DD96F4 /* ZJHHomeViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ZJHHomeViewController~ipad.xib"; sourceTree = "<group>"; };
 		CA137719152425CF00B5790B /* RouterService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RouterService.h; sourceTree = "<group>"; };
 		CA13771A152425CF00B5790B /* RouterService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RouterService.m; sourceTree = "<group>"; };
 		CA1377201524283A00B5790B /* TrafficServerManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrafficServerManager.h; sourceTree = "<group>"; };
@@ -3427,9 +3432,6 @@
 		CA1DA96E167343740078B5A9 /* HomeMenuView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeMenuView.h; sourceTree = "<group>"; };
 		CA1DA96F167343770078B5A9 /* HomeMenuView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeMenuView.m; sourceTree = "<group>"; };
 		CA1DAA30167583120078B5A9 /* DrawHomeHeaderPanel~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "DrawHomeHeaderPanel~ipad.xib"; sourceTree = "<group>"; };
-		CA1DAA561675CF450078B5A9 /* DrawHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawHomeViewController.h; sourceTree = "<group>"; };
-		CA1DAA571675CF460078B5A9 /* DrawHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawHomeViewController.m; sourceTree = "<group>"; };
-		CA1DAA581675CF460078B5A9 /* DrawHomeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DrawHomeViewController.xib; sourceTree = "<group>"; };
 		CA22DCCE157CAFFD009C95CB /* ResultController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResultController.h; sourceTree = "<group>"; };
 		CA22DCCF157CAFFD009C95CB /* ResultController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResultController.m; sourceTree = "<group>"; };
 		CA22DCD0157CAFFD009C95CB /* ResultController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ResultController.xib; sourceTree = "<group>"; };
@@ -8151,11 +8153,12 @@
 		CA427066161FFF7800C6CCAE /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				CA12616B167880CE00DD96F4 /* ZJHHomeViewController.h */,
+				CA12616C167880CE00DD96F4 /* ZJHHomeViewController.m */,
+				CA12616D167880CE00DD96F4 /* ZJHHomeViewController.xib */,
+				CA12616E167880CE00DD96F4 /* ZJHHomeViewController~ipad.xib */,
 				CA42706A1620028E00C6CCAE /* SuperHomeController.h */,
 				CA42706B1620028E00C6CCAE /* SuperHomeController.m */,
-				CA1DAA561675CF450078B5A9 /* DrawHomeViewController.h */,
-				CA1DAA571675CF460078B5A9 /* DrawHomeViewController.m */,
-				CA1DAA581675CF460078B5A9 /* DrawHomeViewController.xib */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -12596,7 +12599,6 @@
 				A4D6A775167593D8008DC151 /* zjh_game_bg_dual_ip5@2x.jpg in Resources */,
 				A4D6A776167593D8008DC151 /* zjh_game_bg_dual_ipad@2x.jpg in Resources */,
 				A4D6A7781675B4C3008DC151 /* ZJHGameController_dual~ipad.xib in Resources */,
-				CA1DAA5A1675CF470078B5A9 /* DrawHomeViewController.xib in Resources */,
 				CAD082F71676E0E8007B6B65 /* HomeBottomMenu~ipad.xib in Resources */,
 				CAD082F81676E0E8007B6B65 /* HomeMainMenu~ipad.xib in Resources */,
 				CAD082FC1676E0F8007B6B65 /* HomeBottomMenuPanel~ipad.xib in Resources */,
@@ -12750,6 +12752,8 @@
 				A4B45F6316787822009EA231 /* face_wry.gif in Resources */,
 				A4B45F6616787D82009EA231 /* ZJHRoomListCell_dual.xib in Resources */,
 				A4B45F6716787D82009EA231 /* ZJHRoomListCell_dual~ipad.xib in Resources */,
+				CA126170167880CE00DD96F4 /* ZJHHomeViewController.xib in Resources */,
+				CA126171167880CE00DD96F4 /* ZJHHomeViewController~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -13398,7 +13402,6 @@
 				A4D6A764167591D3008DC151 /* ZJHNormalRuleConfig.m in Sources */,
 				A4D6A765167591D3008DC151 /* ZJHRuleConfig.m in Sources */,
 				A4D6A766167591D3008DC151 /* ZJHRuleConfigFactory.m in Sources */,
-				CA1DAA591675CF470078B5A9 /* DrawHomeViewController.m in Sources */,
 				C2B538211677712300725802 /* CommonRoomListCell.m in Sources */,
 				C2B538221677712300725802 /* CommonRoomListController.m in Sources */,
 				C2B538231677712300725802 /* CommonImageManager.m in Sources */,
@@ -13418,6 +13421,7 @@
 				A4CCE7A8167824B300F90726 /* HelpView.m in Sources */,
 				A4B45F081678670C009EA231 /* CommonHelpManager.m in Sources */,
 				C2F1DEC416786E1C002D8408 /* CommonSettingView.m in Sources */,
+				CA12616F167880CE00DD96F4 /* ZJHHomeViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
