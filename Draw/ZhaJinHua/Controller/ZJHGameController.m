@@ -700,7 +700,7 @@
 
     [self.dealerView dealWithPositionArray:[self dealPointsArray]
                                      times:CARDS_COUNT
-                                isDualGame:YES];
+                                isDualGame:[_gameService rule] == PBZJHRuleTypeDual];
     [self updateTotalBetAndSingleBet];
     [self updateAllUserTotalBet];
     
