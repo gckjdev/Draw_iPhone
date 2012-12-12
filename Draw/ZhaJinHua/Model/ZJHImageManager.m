@@ -762,4 +762,64 @@ static ZJHImageManager* shareInstance;
     return [UIImage strectchableImageName:@"ZJHUserInfoBackground.png"];
 }
 
+- (UIImage *)dialogBgImage
+{
+    return [_resService imageByName:@"zjh_dialog_bg" inResourcePackage:RESOURCE_PACKAGE_ZJH];
+}
+
+- (UIImage *)dialogBtnImage
+{
+    return [_resService imageByName:@"zjh_dialog_btn" inResourcePackage:RESOURCE_PACKAGE_ZJH];
+}
+
+- (UIImage *)audioOff
+{
+    return [_resService imageByName:@"zjh_audio_off" inResourcePackage:RESOURCE_PACKAGE_ZJH];
+}
+
+- (UIImage *)audioOn
+{
+    return [_resService imageByName:@"zjh_audio_on" inResourcePackage:RESOURCE_PACKAGE_ZJH];
+}
+
+- (UIImage *)musicOn
+{
+    return [_resService imageByName:@"zjh_music_on" inResourcePackage:RESOURCE_PACKAGE_ZJH];
+}
+
+- (UIImage *)musicOff
+{
+    return [_resService imageByName:@"zjh_music_off" inResourcePackage:RESOURCE_PACKAGE_ZJH];
+}
+
+- (UIImage *)settingsBgImage
+{
+    return [_resService imageByName:@"zjh_setting_bg" inResourcePackage:RESOURCE_PACKAGE_ZJH];
+}
+
+- (UIImage *)settingsLeftSelected
+{
+    return [_resService imageByName:@"zjh_settingleft_selected" inResourcePackage:RESOURCE_PACKAGE_ZJH];
+}
+
+- (UIImage *)settingsLeftUnselected
+{
+    return [_resService imageByName:@"zjh_settingleft_unselect" inResourcePackage:RESOURCE_PACKAGE_ZJH];
+}
+
+- (UIImage *)settingsRightSelected
+{
+    return [_resService imageByName:@"zjh_settingright_selected" inResourcePackage:RESOURCE_PACKAGE_ZJH];
+}
+
+- (UIImage *)settingsRightUnselected
+{
+    return [_resService imageByName:@"zjh_settingright_unselect" inResourcePackage:RESOURCE_PACKAGE_ZJH];
+}
+
+- (UIImage *)inputDialogBgImage
+{
+    return [UIImage strectchableImageName:@"zjh_input_bg.png"];
+}
+
 @end
