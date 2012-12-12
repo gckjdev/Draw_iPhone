@@ -22,10 +22,14 @@
 #import "HelpView.h"
 #import "ZJHRoomListController.h"
 #import "ZJHGameService.h"
+#import "NotificationName.h"
+#import "ZJHGameController.h"
+#import "UserManager+DiceUserManager.h"
 
 @interface ZJHHomeViewController ()
 {
     ZJHGameService *_gameService;
+    BOOL _isConnecting;
 }
 @end
 
@@ -56,7 +60,66 @@ ZJHHomeViewController *_staticZJHHomeViewController = nil;
     _gameService  = [ZJHGameService defaultService];
     PPDebug(@"ZJHHomeViewController view did load");
     // Do any additional setup after loading the view from its nib.
+    
+    [self registerNetworkDisconnectedNotification];
 }
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [self registerJoinGameResponseNotification];
+    [self registerNetworkConnectedNotification];
+}
+
+- (void)viewDidDisappear:(BOOL)animated
+{
+    
+    [self unregisterJoinGameResponseNotification];
+    [self unregisterNetworkConnectedNotification];
+    [super viewDidDisappear:animated];
+}
+
+- (void)registerJoinGameResponseNotification
+{
+    [self registerNotificationWithName:NOTIFICATION_JOIN_GAME_RESPONSE
+                            usingBlock:^(NSNotification *note) {
+                                [self handleJoinGameResponse];
+                            }];
+}
+
+- (void)unregisterJoinGameResponseNotification
+{
+    [self unregisterNotificationWithName:NOTIFICATION_JOIN_GAME_RESPONSE];
+}
+
+
+- (void)registerNetworkConnectedNotification
+{
+    [self registerNotificationWithName:NOTIFICATION_NETWORK_CONNECTED // TODO set right name here
+                            usingBlock:^(NSNotification *note) {
+                                [self handleConnectedResponse];
+                            }];
+}
+
+- (void)unregisterNetworkConnectedNotification
+{
+    [self unregisterNotificationWithName:NOTIFICATION_NETWORK_CONNECTED];
+}
+
+
+- (void)registerNetworkDisconnectedNotification
+{
+    [self registerNotificationWithName:NOTIFICATION_NETWORK_DISCONNECTED // TODO set right name here
+                            usingBlock:^(NSNotification *note) {
+                                [self handleDisconnectWithError:[CommonGameNetworkService userInfoToError:note.userInfo]];
+                            }];
+}
+
+- (void)unregisterNetworkDisconnectedNotification
+{
+    [self unregisterNotificationWithName:NOTIFICATION_NETWORK_DISCONNECTED];
+}
+
 
 - (void)didReceiveMemoryWarning
 {
@@ -77,6 +140,15 @@ ZJHHomeViewController *_staticZJHHomeViewController = nil;
             break;
         }
         case HomeMenuTypeZJHStart: {
+            
+            if (_isConnecting) {
+                return;
+            }
+            
+            [self showActivityWithText:NSLS(@"kConnectingServer")];
+            [[ZJHGameService defaultService] setRule:PBZJHRuleTypeNormal];
+            [[ZJHGameService defaultService] connectServer];
+
             break;
         }
         case HomeMenuTypeDrawBBS: {
@@ -155,6 +227,62 @@ ZJHHomeViewController *_staticZJHHomeViewController = nil;
             break;
     }
 }
+
+- (void)handleJoinGameResponse
+{    
+    [self hideActivity];
+        
+    ZJHGameController* vc = nil;
+    NSString *xibName = nil;
+    switch ([DeviceDetection deviceScreenType]) {
+        case DEVICE_SCREEN_IPAD:
+        case DEVICE_SCREEN_NEW_IPAD:
+            xibName = (_gameService.rule == PBZJHRuleTypeDual) ? @"ZJHGameController_dual~ipad" : @"ZJHGameController~ipad";
+            vc = [[[ZJHGameController alloc] initWithNibName:xibName bundle:[NSBundle mainBundle]] autorelease];
+            break;
+            
+        case DEVICE_SCREEN_IPHONE5:
+            xibName = (_gameService.rule == PBZJHRuleTypeDual) ? @"ZJHGameController_dual~ip5" : @"ZJHGameController~ip5";
+            vc = [[[ZJHGameController alloc] initWithNibName:xibName bundle:[NSBundle mainBundle]] autorelease];
+            break;
+            
+        case DEVICE_SCREEN_IPHONE:
+            xibName = (_gameService.rule == PBZJHRuleTypeDual) ? @"ZJHGameController_dual" : @"ZJHGameController";
+            vc = [[[ZJHGameController alloc] initWithNibName:xibName bundle:[NSBundle mainBundle]] autorelease];
+            break;
+            
+        default:
+            break;
+    }
+    
+    [self.navigationController pushViewController:vc
+                                         animated:YES];
+}
+
+- (void)handleConnectedResponse
+{
+    PPDebug(@"%@ <didConnected>", [self description]);
+    _isConnecting = NO;
+    
+    [self hideActivity];
+    [self showActivityWithText:NSLS(@"kJoiningGame")];
+    [_gameService joinGameRequestWithCustomUser:[[UserManager defaultManager] toDicePBGameUser]];
+}
+
+- (void)handleDisconnectWithError:(NSError *)error
+{
+    PPDebug(@"diconnect error: %@", [error description]);
+    
+    _isConnecting = NO;
+    [self hideActivity];
+    
+    if (error != nil) {
+        [self.navigationController popToRootViewControllerAnimated:YES];
+        [self popupUnhappyMessage:NSLS(@"kNetworkBroken") title:@""];
+    }
+}
+
+
 
 
 @end

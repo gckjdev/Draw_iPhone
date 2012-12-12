@@ -121,7 +121,7 @@
 					<object class="IBUILabel" id="405998467">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{235, 141}, {400, 42}}</string>
+						<string key="NSFrame">{{235, 140}, {400, 42}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<bool key="IBUIOpaque">NO</bool>
@@ -137,7 +137,7 @@
 						</object>
 						<nil key="IBUIHighlightedColor"/>
 						<reference key="IBUIShadowColor" ref="795456264"/>
-						<string key="IBUIShadowOffset">{0, 1}</string>
+						<string key="IBUIShadowOffset">{2, 2}</string>
 						<int key="IBUIBaselineAdjustment">1</int>
 						<float key="IBUIMinimumFontSize">10</float>
 						<object class="IBUIFontDescription" key="IBUIFontDescription" id="856400491">
@@ -165,17 +165,20 @@
 						<string key="IBUIText">Label</string>
 						<reference key="IBUITextColor" ref="795456264"/>
 						<nil key="IBUIHighlightedColor"/>
-						<reference key="IBUIShadowColor" ref="795456264"/>
-						<string key="IBUIShadowOffset">{0, 1}</string>
+						<object class="NSColor" key="IBUIShadowColor">
+							<int key="NSColorSpace">3</int>
+							<bytes key="NSWhite">MAA</bytes>
+						</object>
+						<string key="IBUIShadowOffset">{2, 2}</string>
 						<int key="IBUIBaselineAdjustment">1</int>
 						<float key="IBUIMinimumFontSize">10</float>
 						<int key="IBUITextAlignment">1</int>
 						<object class="IBUIFontDescription" key="IBUIFontDescription">
-							<int key="type">2</int>
+							<int key="type">1</int>
 							<double key="pointSize">40</double>
 						</object>
 						<object class="NSFont" key="IBUIFont">
-							<string key="NSName">Helvetica-Bold</string>
+							<string key="NSName">Helvetica</string>
 							<double key="NSSize">40</double>
 							<int key="NSfFlags">16</int>
 						</object>
@@ -247,7 +250,7 @@
 						<reference key="IBUITextColor" ref="330685956"/>
 						<nil key="IBUIHighlightedColor"/>
 						<reference key="IBUIShadowColor" ref="795456264"/>
-						<string key="IBUIShadowOffset">{0, 1}</string>
+						<string key="IBUIShadowOffset">{2, 2}</string>
 						<int key="IBUIBaselineAdjustment">0</int>
 						<float key="IBUIMinimumFontSize">10</float>
 						<reference key="IBUIFontDescription" ref="856400491"/>
@@ -419,9 +422,9 @@
 							<reference ref="2479171"/>
 							<reference ref="669003164"/>
 							<reference ref="480143"/>
-							<reference ref="405998467"/>
 							<reference ref="110287863"/>
 							<reference ref="1009240368"/>
+							<reference ref="405998467"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>

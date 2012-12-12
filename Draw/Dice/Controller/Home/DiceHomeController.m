@@ -63,7 +63,6 @@
     NSTimeInterval interval;
     BOOL hasGetLocalBoardList;
     
-    BOOL _isZJH;
     PPResourceService *_resService;
 }
 
@@ -189,31 +188,6 @@
 {
     PPDebug(@"<%@> NOTIFICATION_JOIN_GAME_RESPONSE", [self description]);
     [self hideActivity];
-    if (_isZJH) {
-        ZJHGameController* vc = nil;
-        switch ([DeviceDetection deviceScreenType]) {
-            case DEVICE_SCREEN_IPAD:
-            case DEVICE_SCREEN_NEW_IPAD:
-                vc = [[[ZJHGameController alloc] initWithNibName:@"ZJHGameController~ipad" bundle:[NSBundle mainBundle]] autorelease];
-                break;
-                
-            case DEVICE_SCREEN_IPHONE5:
-                vc = [[[ZJHGameController alloc] initWithNibName:@"ZJHGameController~ip5" bundle:[NSBundle mainBundle]] autorelease];
-                break;
-                
-            case DEVICE_SCREEN_IPHONE:
-                vc = [[[ZJHGameController alloc] initWithNibName:@"ZJHGameController" bundle:[NSBundle mainBundle]] autorelease];
-                break;
-                
-            default:
-                break;
-        }
-        
-        [self.navigationController pushViewController:vc
-                                             animated:YES];
-        _isZJH = NO;
-        return ;
-    }
     if(_isTryJoinGame) {
         if ([message resultCode] == GameResultCodeSuccess){
             DiceGamePlayController *controller = [[[DiceGamePlayController alloc] init] autorelease];
@@ -480,12 +454,6 @@
     [self hideActivity];
     
     // for zhajinhua test
-    if (_isZJH){
-        ZJHRoomListController* vc = [[[ZJHRoomListController alloc] init] autorelease];
-        [self.navigationController pushViewController:vc animated:YES];
-        
-        return;
-    }
     
     if (_isTryJoinGame){
         if ([DiceConfigManager meetJoinGameCondictionWithRuleType:DiceGameRuleTypeRuleNormal]) {
@@ -656,17 +624,17 @@
 
 - (IBAction)clickZhaJinHuaButton:(id)sender {
     
-    [_resService startDownloadInView:self.view backgroundImage:@"DiceDefault" resourcePackageName:@"zhajinhua_core" success:^(BOOL alreadyExisted) {
-        _isZJH = YES;
-        
-        [self showActivityWithText:NSLS(@"kConnectingServer")];
-        
-        [[ZJHGameService defaultService] setRule:PBZJHRuleTypeNormal];
-        [[ZJHGameService defaultService] connectServer];
-        
-    } failure:^(NSError *error, UIView* downloadView) {
-        [self popupMessage:@"Fail to load resources" title:@""];
-    }];
+//    [_resService startDownloadInView:self.view backgroundImage:@"DiceDefault" resourcePackageName:@"zhajinhua_core" success:^(BOOL alreadyExisted) {
+//        _isZJH = YES;
+//        
+//        [self showActivityWithText:NSLS(@"kConnectingServer")];
+//        
+//        [[ZJHGameService defaultService] setRule:PBZJHRuleTypeNormal];
+//        [[ZJHGameService defaultService] connectServer];
+//        
+//    } failure:^(NSError *error, UIView* downloadView) {
+//        [self popupMessage:@"Fail to load resources" title:@""];
+//    }];
 }
 
 @end

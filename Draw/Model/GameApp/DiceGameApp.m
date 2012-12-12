@@ -268,6 +268,16 @@
     return @"dialogue@2x.png";
 }
 
+- (BOOL)supportWeixin
+{
+    return NO;
+}
+
+- (NSString*)homeHeaderViewId
+{
+    return @"DiceHomeHeaderPanel";
+}
+
 - (NSString *)roomListCellBgImageName
 {
     return @"dice_room_item";

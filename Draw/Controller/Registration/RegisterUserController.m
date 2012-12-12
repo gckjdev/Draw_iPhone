@@ -94,16 +94,8 @@
         facebookButton.hidden = NO;        
     }
     
-    [self addRemoteDraw];
-    
-//    if (isDrawApp()){
-//        [[DrawDataService defaultService] findRecentDraw:self];
-//    }
-//    else{
-
+    [self addRemoteDraw];    
     [self.userIdTextField becomeFirstResponder];
-    
-//    }
 }
 
 - (void)viewDidAppear:(BOOL)animated
