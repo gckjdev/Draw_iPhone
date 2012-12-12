@@ -81,15 +81,37 @@
 
 - (void)initByDrawTheme:(NSString*)title
 {
-    ShareImageManager *imageManager = [ShareImageManager defaultManager];
+    DiceImageManager* diceImgManager = [DiceImageManager defaultManager];
     float fontSize = [DeviceDetection isIPAD] ? 40 : 20;
     
-    [self.targetTextField setBackground:[imageManager inputImage]];
+    
+    [self.targetTextField setBackground:[diceImgManager inputBackgroundImage]];
+    [self.titleLabel setTitle:title forState:UIControlStateNormal];
+    
+    [self.okButton setRoyButtonWithColor:[UIColor colorWithRed:244.0/255.0 green:93.0/255.0 blue:93.0/255.0 alpha:0.95]];
+    [self.cancelButton setRoyButtonWithColor:[UIColor colorWithRed:236.0/255.0 green:247.0/255.0 blue:63.0/255.0 alpha:0.95]];
+    
+    [self.cancelButton setTitle:NSLS(@"kCancel") forState:UIControlStateNormal];
+    [self.cancelButton.titleLabel setFont:[UIFont boldSystemFontOfSize:fontSize]];
+    [self.okButton setTitle:NSLS(@"kOK") forState:UIControlStateNormal];
+    [self.okButton.titleLabel setFont:[UIFont boldSystemFontOfSize:fontSize]];
+    
+    self.titleLabel.titleLabel.font = [UIFont boldSystemFontOfSize:fontSize];
+    self.titleLabel.titleLabel.adjustsFontSizeToFitWidth = YES;
+    self.titleLabel.titleLabel.lineBreakMode = UILineBreakModeTailTruncation;
+    [self.bgView setImage:[ZJHImageManager defaultManager].ZJHUserInfoBackgroundImage];
+}
+
+- (void)initView:(NSString*)title
+{
+    float fontSize = [DeviceDetection isIPAD] ? 40 : 20;
+    
+    [self.targetTextField setBackground:[[GameApp getImageManager] inputDialogInputBgImage]];
     [self setDialogTitle:title];
-    [self.cancelButton setBackgroundImage:[imageManager greenImage] forState:UIControlStateNormal];
+    [self.cancelButton setBackgroundImage:[[GameApp getImageManager] inputDialogLeftBtnImage] forState:UIControlStateNormal];
     [self.cancelButton setTitle:NSLS(@"kCancel") forState:UIControlStateNormal];
     [self.okButton setTitle:NSLS(@"kOK") forState:UIControlStateNormal];
-    [self.okButton setBackgroundImage:[imageManager redImage] forState:UIControlStateNormal];
+    [self.okButton setBackgroundImage:[[GameApp getImageManager] inputDialogRightBtnImage] forState:UIControlStateNormal];
     self.titleLabel.titleLabel.font = [UIFont boldSystemFontOfSize:fontSize];
     self.titleLabel.titleLabel.adjustsFontSizeToFitWidth = YES;
     self.titleLabel.titleLabel.lineBreakMode = UILineBreakModeTailTruncation;
@@ -140,10 +162,10 @@
 + (InputDialog *)dialogWith:(NSString *)title delegate:(id<InputDialogDelegate>)delegate
 {
 
-    InputDialog* view =  (InputDialog*)[self createInfoViewByXibName:INPUT_DIALOG_THEME_DRAW];
+    InputDialog* view =  (InputDialog*)[self createInfoViewByXibName:[GameApp getInputDialogXibName]];
     
     //init the button
-    [view initWithTheme:CommonInputDialogThemeDraw title:title]; 
+    [view initView:title];
     view.delegate = delegate;
     view.tag = 0;
     return view;

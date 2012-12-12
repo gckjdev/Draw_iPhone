@@ -492,4 +492,83 @@ static DiceImageManager *_defaultManager = nil;
 //    return [UIImage strectchableImageName:@"input_text_bg.png" leftCapWidth:8 topCapHeight:8];
 }
 
+#pragma mark - dialog image manager protocol
+
+- (UIImage*)commonDialogBgImage
+{
+    return [UIImage strectchableImageName:@"dice_help_bg.png" leftCapWidth:50 topCapHeight:50];
+}
+- (UIImage*)commonDialogLeftBtnImage
+{
+    return nil;
+}
+- (UIImage*)commonDialogRightBtnImage
+{
+    return nil;
+}
+
+- (UIImage *)inputDialogBgImage
+{
+    return [UIImage strectchableImageName:@"dice_input_bg.png" leftCapWidth:15 topCapHeight:15];
+}
+
+- (UIImage*)inputDialogInputBgImage
+{
+    return [UIImage strectchableImageName:@"input_text_bg.png"];
+}
+- (UIImage*)inputDialogLeftBtnImage
+{
+    return nil;
+}
+- (UIImage*)inputDialogRightBtnImage
+{
+    return nil;
+}
+
+- (UIImage *)audioOff
+{
+    return [UIImage imageNamed:@"audio_off.png"];
+}
+
+- (UIImage *)audioOn
+{
+    return [UIImage imageNamed:@"audio_on.png"];
+}
+
+- (UIImage *)musicOn
+{
+    return [UIImage imageNamed:@"music_on.png"];
+}
+
+- (UIImage *)musicOff
+{
+    return [UIImage imageNamed:@"music_off.png"];
+}
+
+- (UIImage *)settingsBgImage
+{
+    return [UIImage strectchableImageName:@"dice_popup_bg.png"];
+}
+
+- (UIImage *)settingsLeftSelected
+{
+    return [UIImage imageNamed:@"settingleft_selected.png"];
+}
+
+- (UIImage *)settingsLeftUnselected
+{
+    return [UIImage imageNamed:@"settingleft_unselect.png"];
+}
+
+- (UIImage *)settingsRightSelected
+{
+    return [UIImage imageNamed:@"settingright_selected.png"];
+}
+
+- (UIImage *)settingsRightUnselected
+{
+    return [UIImage imageNamed:@"settingright_unselect.png"];
+}
+
+
 @end

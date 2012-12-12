@@ -2595,7 +2595,6 @@
 		C213091A15E349E20072A18E /* DiceUserInfoView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "DiceUserInfoView~ipad.xib"; sourceTree = "<group>"; };
 		C21309F915E774390072A18E /* DiceColorManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiceColorManager.h; sourceTree = "<group>"; };
 		C21309FA15E774390072A18E /* DiceColorManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiceColorManager.m; sourceTree = "<group>"; };
-		C2144C48167816B400F2C8BC /* DialogImageManagerProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DialogImageManagerProtocol.h; sourceTree = "<group>"; };
 		C223232C165C659E00D7ECE4 /* ZJHSettingView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ZJHSettingView~ipad.xib"; sourceTree = "<group>"; };
 		C2233961164E3CA100D2C123 /* AppleOpenALSupport.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = AppleOpenALSupport.c; sourceTree = "<group>"; };
 		C2233962164E3CA100D2C123 /* AppleOpenALSupport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppleOpenALSupport.h; sourceTree = "<group>"; };
@@ -2838,6 +2837,7 @@
 		C2EE145F1665FE9300ADBE2E /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
 		C2EE1473166706BB00ADBE2E /* light.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = light.png; sourceTree = "<group>"; };
 		C2EE1474166706BB00ADBE2E /* star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = star.png; sourceTree = "<group>"; };
+		C2F1DEBF16786BEA002D8408 /* ImageManagerProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageManagerProtocol.h; sourceTree = "<group>"; };
 		C2F2CF961639165500995DCB /* ZJHImageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJHImageManager.h; sourceTree = "<group>"; };
 		C2F2CF971639165500995DCB /* ZJHImageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJHImageManager.m; sourceTree = "<group>"; };
 		C2F2CFB1163932C000995DCB /* ZJHAvatarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJHAvatarView.h; sourceTree = "<group>"; };
@@ -6247,6 +6247,7 @@
 		C2B537EC1677712300725802 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				C2F1DEBF16786BEA002D8408 /* ImageManagerProtocol.h */,
 				C2B537ED1677712300725802 /* CommonDialog.h */,
 				C2B537EE1677712300725802 /* CommonDialog.m */,
 				C2B537EF1677712300725802 /* CommonDialog.xib */,
@@ -6299,7 +6300,6 @@
 				C2B5381E1677712300725802 /* ZJHPassWordDialog~ipad.xib */,
 				C2B5381F1677712300725802 /* ZJHRoomPasswordDialog.xib */,
 				C2B538201677712300725802 /* ZJHRoomPasswordDialog~ipad.xib */,
-				C2144C48167816B400F2C8BC /* DialogImageManagerProtocol.h */,
 			);
 			path = View;
 			sourceTree = "<group>";
