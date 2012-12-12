@@ -253,4 +253,16 @@
 //    return @"zjh_dialog_bg.png";
 }
 
+- (NSString *)roomListCellBgImageName
+{
+    return @"";
+}
+
+- (NSString *)roomListCellDualBgImageName
+{
+    return @"zjh_room_list_cell_bg_dual";
+}
+
+
+
 @end

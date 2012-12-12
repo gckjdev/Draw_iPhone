@@ -77,5 +77,7 @@
 
 - (NSString *)popupMessageDialogBackgroundImage;
 
+- (NSString *)roomListCellBgImageName;
+- (NSString *)roomListCellDualBgImageName;
 
 @end
