@@ -67,24 +67,26 @@
             return NSLS(@"kHomeMenuTypeDrawBBS");
         }
         case HomeMenuTypeDrawShop:{
-            return NSLS(@"HomeMenuTypeDrawShop");
+            return NSLS(@"kHomeMenuTypeDrawShop");
         }
 
-        //draw bottom menu
-        /*
-        case HomeMenuTypeDrawHome :{
-            return NSLS(@"kHomeMenuTypeDrawHome");
-        } 
-        case HomeMenuTypeDrawOpus:{ 
-            return NSLS(@"kHomeMenuTypeDrawOpus");
-        } 
-        case HomeMenuTypeDrawMessage:{ 
-            return NSLS(@"kHomeMenuTypeDrawMessage");
-        } 
-        case HomeMenuTypeDrawSetting:{ 
-            return NSLS(@"kHomeMenuTypeDrawSetting");
-        } 
-        */
+        //ZJH
+        case HomeMenuTypeZJHHelp:{
+            return NSLS(@"kHomeMenuTypeZJHHelp");
+        }
+        case HomeMenuTypeZJHStart:{
+            return NSLS(@"kHomeMenuTypeZJHStart");
+        }
+        case HomeMenuTypeZJHRichSite:{
+            return NSLS(@"kHomeMenuTypeZJHRichSite");
+        }
+        case HomeMenuTypeZJHNormalSite:{
+            return NSLS(@"kHomeMenuTypeZJHNormalSite");
+        }
+        case HomeMenuTypeZJHVSSite:{
+            return NSLS(@"kHomeMenuTypeZJHVSSite");
+        }
+
         default:
         return nil;
     }
@@ -141,6 +143,22 @@
             return [imageManager drawHomeFriend];
         }
             
+        //ZJH
+        case HomeMenuTypeZJHHelp:{
+            return [imageManager zjhHomeHelp];
+        }
+        case HomeMenuTypeZJHStart:{
+            return [imageManager zjhHomeStart];
+        }
+        case HomeMenuTypeZJHRichSite:{
+            return [imageManager zjhHomeRichSite];
+        }
+        case HomeMenuTypeZJHNormalSite:{
+            return [imageManager zjhHomeNormalSite];
+        }
+        case HomeMenuTypeZJHVSSite:{
+            return [imageManager zjhHomeVSSite];
+        }
         default:
             return nil;
     }
@@ -162,9 +180,9 @@
 
 + (NSString *)identifierForType:(HomeMenuType)type
 {
-    if (type < HomeMenuTypeDrawBottomBegin) {
+    if (type < HomeMenuTypeDrawBottomBegin || (type >= HomeMenuTypeZJHMainBegin && type < HomeMenuTypeZJHBottomBegin)) {
         return @"HomeMainMenu";
-    }else if(type < HomeMenuTypeZJHMainBegin){
+    }else{
         return @"HomeBottomMenu";
     }
     return nil;
@@ -228,9 +246,25 @@ int *getDrawBottomMenuTypeList()
 }
 int *getZJHMainMenuTypeList()
 {
-    return NULL;
+    int static list[] = {
+        HomeMenuTypeZJHHelp,
+        HomeMenuTypeZJHStart,
+        HomeMenuTypeDrawBBS,
+        HomeMenuTypeZJHRichSite,
+        HomeMenuTypeZJHNormalSite,
+        HomeMenuTypeZJHVSSite,
+        HomeMenuTypeEnd
+    };
+    return list;
 }
 int *getZJHBottomMenuTypeList()
 {
-    return NULL;
+    int static list[] = {
+        HomeMenuTypeDrawMe,
+        HomeMenuTypeDrawFriend,
+        HomeMenuTypeDrawMessage,
+        HomeMenuTypeDrawMore,
+        HomeMenuTypeEnd
+    };
+    return list;
 }

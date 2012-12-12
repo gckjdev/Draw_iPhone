@@ -20,6 +20,9 @@
    didClickChargeButton:(UIButton *)button;
 
 - (void)homeHeaderPanel:(HomeHeaderPanel *)headerPanel
+   didClickFreeCoinButton:(UIButton *)button;
+
+- (void)homeHeaderPanel:(HomeHeaderPanel *)headerPanel
    didClickAvatarButton:(UIButton *)button;
 
 - (void)homeHeaderPanel:(HomeHeaderPanel *)headerPanel

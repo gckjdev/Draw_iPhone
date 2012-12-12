@@ -8,7 +8,7 @@
 
 #import "ZJHGameApp.h"
 #import "MobClickUtils.h"
-//#import "ZJHChatMsgManager.h"
+#import "ZJHChatMsgManager.h"
 #import "ZJHImageManager.h"
 
 @implementation ZJHGameApp
@@ -160,7 +160,7 @@
 
 - (id<ChatMsgManagerProtocol>)getChatMsgManager
 {
-//    return [ZJHChatMsgManager defaultManager];
+    return [ZJHChatMsgManager defaultManager];
 }
 
 - (NSString *)chatViewBgImageName
