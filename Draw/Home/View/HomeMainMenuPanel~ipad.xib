@@ -49,7 +49,7 @@
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<object class="NSCustomResource" key="IBUIImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">draw_home_wood_bg@2x.png</string>
+							<string key="NSResourceName">common_home_wood_bg@2x.png</string>
 						</object>
 					</object>
 					<object class="IBUIScrollView" id="792576939">
@@ -78,6 +78,7 @@
 						<string key="NSFrame">{{713, 492}, {45, 43}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -98,7 +99,7 @@
 						</object>
 						<object class="NSCustomResource" key="IBUINormalImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">draw_home_nextpage@2x.png</string>
+							<string key="NSResourceName">common_home_nextpage@2x.png</string>
 						</object>
 						<object class="IBUIFontDescription" key="IBUIFontDescription" id="258912653">
 							<int key="type">2</int>
@@ -131,7 +132,7 @@
 						<reference key="IBUINormalTitleShadowColor" ref="35306506"/>
 						<object class="NSCustomResource" key="IBUINormalImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">draw_home_front_page@2x.png</string>
+							<string key="NSResourceName">common_home_front_page@2x.png</string>
 						</object>
 						<reference key="IBUIFontDescription" ref="258912653"/>
 						<reference key="IBUIFont" ref="248804984"/>
@@ -332,9 +333,9 @@
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="draw_home_front_page@2x.png">{37, 34}</string>
-			<string key="draw_home_nextpage@2x.png">{37, 34}</string>
-			<string key="draw_home_wood_bg@2x.png">{640, 550}</string>
+			<string key="common_home_front_page@2x.png">{37, 34}</string>
+			<string key="common_home_nextpage@2x.png">{37, 34}</string>
+			<string key="common_home_wood_bg@2x.png">{640, 550}</string>
 		</dictionary>
 		<string key="IBCocoaTouchPluginVersion">1926</string>
 	</data>

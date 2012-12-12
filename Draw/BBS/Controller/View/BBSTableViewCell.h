@@ -9,7 +9,7 @@
 #import "PPTableViewCell.h"
 #import "Bbs.pb.h"
 
-#define ISIPAD [DeviceDetection isIPAD]
+//#define ISIPAD [DeviceDetection isIPAD]
 #define IMAGE_HEIGHT (ISIPAD ? 80 * 2.33 : 80)
 
 @protocol BBSTableViewCellDelegate <NSObject>

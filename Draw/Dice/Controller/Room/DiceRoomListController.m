@@ -327,9 +327,9 @@
     // Do any additional setup after loading the view from its nib.
     self.view.backgroundColor = [UIColor colorWithPatternImage:[self bgImage]];
     
-    [createRoomButton setRoyButtonWithColor:[DiceColorManager dialoggreenColor]];
-    
-    [fastEntryButton setRoyButtonWithColor:[DiceColorManager dialogYellowColor]];
+//    [createRoomButton setRoyButtonWithColor:[DiceColorManager dialoggreenColor]];
+//    
+//    [fastEntryButton setRoyButtonWithColor:[DiceColorManager dialogYellowColor]];
     
     [self.titleFontButton.fontLable setTextColor:[UIColor whiteColor]]; 
     [self.allRoomButton.fontLable setTextColor:[UIColor whiteColor]]; 
@@ -563,7 +563,7 @@
 - (IBAction)clickHelpButton:(id)sender {
     if (!helpButton.selected) {
         helpButton.selected = YES;
-        DiceHelpView *view = [DiceHelpView createDiceHelpView];
+        HelpView *view = [HelpView createHelpView:@"DiceHelpView"];
         view.delegate = self;
         [view showInView:self.view];
     }

@@ -188,6 +188,7 @@
     return [UIColor whiteColor];
 }
 
+
 - (id<DialogImageManagerProtocol>)getImageManager
 {
     return [ZJHImageManager defaultManager];
@@ -207,6 +208,32 @@
 - (NSString*)getRoomPasswordDialogXibName
 {
     return @"ZJHRoomPasswordDialog";
+}
+
+- (NSString *)helpViewBgImageName
+{
+    return @"zjh_help_view_bg";
+}
+
+- (NSString *)gameRulesButtonBgImageNameForNormal
+{
+    return nil;
+}
+
+- (NSString *)gameRulesButtonBgImageNameForSelected
+{
+    return @"zjh_game_rule_btn_bg_selected";
+}
+
+- (NSString *)itemsUsageButtonBgImageNameForNormal
+{
+    return nil;
+}
+
+- (NSString *)itemsUsageButtonBgImageNameForSelected
+{
+    return nil;
+
 }
 
 @end

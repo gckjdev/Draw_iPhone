@@ -101,6 +101,7 @@
 {
     [super viewDidAppear:animated];
     [self.homeMainMenuPanel animatePageButtons];
+    [self.homeHeaderPanel updateView];
     [self updateAllBadge];
 }
 

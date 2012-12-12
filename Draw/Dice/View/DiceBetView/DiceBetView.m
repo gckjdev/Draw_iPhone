@@ -124,8 +124,8 @@
     _winOdds = winOdds;
     _loseOdds = loseOdds;
     
-    [betWinButton setRoyButtonWithColor:[UIColor yellowColor]];
-    [betLoseButton setRoyButtonWithColor:[UIColor yellowColor]];
+//    [betWinButton setRoyButtonWithColor:[UIColor yellowColor]];
+//    [betLoseButton setRoyButtonWithColor:[UIColor yellowColor]];
 }
 
 - (void)dismiss

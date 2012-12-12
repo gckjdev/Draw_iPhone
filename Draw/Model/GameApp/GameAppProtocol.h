@@ -57,11 +57,19 @@
 - (NSString *)chatViewMsgBgImageName;
 - (UIColor *)chatViewMsgTextColor;
 
+
 - (id<DialogImageManagerProtocol>)getImageManager;
 - (NSString*)getCommonDialogXibName;
 - (NSString*)getInputDialogXibName;
 - (NSString*)getPasswordDialogXibName;
 - (NSString*)getRoomPasswordDialogXibName;
 
+
+
+- (NSString *)helpViewBgImageName;
+- (NSString *)gameRulesButtonBgImageNameForNormal;
+- (NSString *)gameRulesButtonBgImageNameForSelected;
+- (NSString *)itemsUsageButtonBgImageNameForNormal;
+- (NSString *)itemsUsageButtonBgImageNameForSelected;
 
 @end

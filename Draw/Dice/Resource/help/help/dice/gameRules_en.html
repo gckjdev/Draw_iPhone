@@ -1,0 +1,60 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<link href="style.css" rel="stylesheet" type="text/css" />
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+</head>
+<body>
+<div id="content">
+  <div class="explain">
+	  <p>Liar dice is a popular game in bars games . If you are familiar with the game rules, you can just skip the section <B>Rules of Happy Field</B> below.</p>
+<hr />
+<p><h2>Rules</h2></p>
+	<ul>
+		<li>Each dice has 6 sides, with minimum face value of 2, and maximum face value of 1, as is in ascending order: 2 3 4 5 6 1. </li>
+		<li>The face value 1 is often WILD, which means that it count as the face of current bid, except it is explicitly bidded or any player bids WILDS.</li>
+		<li>If current game is WILDS, player can bid a quantity double times or more of current bid quantity to break the WILDS.</li>
+		<li>The first bidder should bid the quantity starting from the number of players. For example, if there is two players, then the first bidder should bid 2*X, 3*X, etc.</li>
+		<li>If the quantity is the  same as number of players, it means that the player bids for WILDS.</li>
+		<li>If the player doesn't make a decision of bidding or challenging in 15 seconds, system will automatically bid for him/her, or challenge the current bid(If it is  impossible to bid more).</li>
+		<li>If the player flees or suffers connection off, our system will take over the game for him/her.</li>
+	</ul>
+<hr />
+<p><h2>Game Process</h2></p>
+	<ul>
+		<li>Roll dices: at the beginning of the round,  each player rolls their five dices under their cups, and keep them concealed . </li>
+		<li>First bid: in first round,the player who first enter the room bid first; after that round, the player who lose in last round do the first bid.</li>
+		<li>Bidding: The first player begins bidding, picking a face and a quantity. The quantity is the claim of how many of the chosen face have been rolled in total on the table.</li>
+		<li>Each player has two choices during his turn: make a higher bid, or challenge the previous bid. Raising the bid means either increasing the quantity, or the face value, or both, If the current player challenges the current bid, all dice are unconcealed. If the bid is valid, the bidder wins. Otherwise, the challenger wins.</li>
+		<li>Challenge: in normal way, player may challenge his previous player, which is call <B>Normal Challege</B>. A player can also challenge any one immediately that player bids, which is called <B>Rush Challenge</B>.</li>
+		<li>When any player is challenged, the other players(excpet the challenger and the challenged player) can bet that whether challenger wins or the challenged player wins.The odds are described below in Awards section.</li>
+	</ul>
+<hr />
+<p><h2>Rules of Carnival Field</h2></p>
+<p>The rules are based on the those of Happy Field, plus the extra items described below:</p>
+	<ul>
+		<li><B>Net</B>: If your all dices are of the same face value, which is called "<B>Net</B>", e.g. Six of a kind, it may counts as quantity of SEVEN, which means you have 7x6,not 5x6.</li>
+		<li><B>Wai</B>: If your all dices are composed of only two kind of face value, among which one kind MUST BE value One, the other kind may be any of the other five face value except one, which is called "<B>Wai</B>", you may get quantity of SIX if One is not WILD,  e.g. 1 2 2 2 2, may count as 6x2.i</li>
+		<li><B>Snake</B>: Quite like Straight in Pokers, it means any dice is different with any other dice in its face value, which is called "<B>Snake</B>", e.g. 1 3 4 5 6, which may count as nothing.</li>
+		<li> The coins you gain in this field are also calculated in different way, it is exactly bound to this formula: <B>GainCoins = ( | current bid quantity - exact quantity on table | + 1) * ante</B>, in which ante is 100 coins. The loser will be cut off the same quantity of coins as winner. e.g. A bids 8x2, B challenges A, and it turns out there is exactly 10x2 on table, so A gains 300 coins , while B gets 300 coins deducted.</li>
+		<li> To get entry permit into this field, you are required to have more than <B>2,000</B> coins in your pocket.</li>
+	</ul>
+<hr />
+<p><h2>Rules of Crazy Field</h2></p>
+<p>The rules are based on the those of Carnival Field, plus the extra items described below:</p>
+	<ul>
+		<li>On the very beginnig of the  game, the ante is 50 coins. As the each player bids, the ante raises by 50 coins.e.g. If there are three player bidding in a game, the ante is 200 coins.</li>
+		<li>To get entry permit into this field, you are required to have more than <B>10,000</B> coins in your pocket.</li> 
+	</ul>
+<hr />
+<p><h2>Awards</h2></p>
+	<ul>
+		<li>In Happy Field, the winner gains 100 coins bonus, while the loser gets 100 coins deducted. All players gain 3 expirience. </li>
+		<li>In Carnival Field and Crazy Field, the quantity of coins are bound to the fore-mentioned formula.</li> 
+		<li>If a player bets, and he/she wins, he/she will gain coins of quantity of odds multiplyed by ante, the ante is variable in different fields, the odds will show immediately after a play challenges.However if he/she loses, he/she will just get coins of quantity of ante deducted.</li>
+	</ul>
+</div>
+</div>
+</body>
+</html>

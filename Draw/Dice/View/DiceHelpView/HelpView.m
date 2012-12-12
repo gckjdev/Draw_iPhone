@@ -1,24 +1,26 @@
 //
-//  DiceHelpView.m
+//  HelpView.m
 //  Draw
 //
 //  Created by 小涛 王 on 12-8-24.
 //  Copyright (c) 2012年 甘橙软件. All rights reserved.
 //
 
-#import "DiceHelpView.h"
+#import "HelpView.h"
 #import "DiceHelpManager.h"
 #import "DiceImageManager.h"
+#import "PPResourceService.h"
 
-@interface DiceHelpView ()
+@interface HelpView ()
 {
     DiceHelpManager *_helpManager;
     AnimationType _animationType;
+    PPResourceService *_resService;
 }
 
 @end
 
-@implementation DiceHelpView
+@implementation HelpView
 
 @synthesize delegate = _delegate;
 
@@ -35,12 +37,13 @@
     [itemsUsageButton release];
     [bgImageView release];
     [indicator release];
+    [_closeButton release];
     [super dealloc];
 }
 
-+ (id)createDiceHelpView
++ (id)createHelpView:(NSString *)nibName
 {
-    NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"DiceHelpView" owner:self options:nil];
+    NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:nibName owner:self options:nil];
     // Grab a pointer to the first object (presumably the custom cell, as that's all the XIB should contain).  
     if (topLevelObjects == nil || [topLevelObjects count] <= 0){
         return nil;
@@ -54,9 +57,22 @@
 - (void)initialize
 {
     _helpManager = [DiceHelpManager defaultManager];
+    _resService = [PPResourceService defaultService];
     
-    bgImageView.image = [[DiceImageManager defaultManager] popupBackgroundImage];
+    bgImageView.image = [[_resService imageByName:[getGameApp() helpViewBgImageName] inResourcePackage:[getGameApp() resourcesPackage]] stretchableImageWithLeftCapWidth:20 topCapHeight:20];
+    
+    [self.closeButton setBackgroundImage:[_resService imageByName:[getGameApp() popupViewCloseBtnBgImageName] inResourcePackage:[getGameApp() resourcesPackage]]  forState:UIControlStateNormal];
+    
     webView.delegate = self;
+    
+    [gameRulesButton setBackgroundImage:[_resService imageByName:[getGameApp() gameRulesButtonBgImageNameForNormal] inResourcePackage:[getGameApp() resourcesPackage]] forState:UIControlStateNormal];
+    
+    [gameRulesButton setBackgroundImage:[_resService imageByName:[getGameApp() gameRulesButtonBgImageNameForSelected] inResourcePackage:[getGameApp() resourcesPackage]] forState:UIControlStateSelected];
+    
+    [itemsUsageButton setBackgroundImage:[_resService imageByName:[getGameApp() itemsUsageButtonBgImageNameForNormal] inResourcePackage:[getGameApp() resourcesPackage]] forState:UIControlStateNormal];
+    
+    [itemsUsageButton setBackgroundImage:[_resService imageByName:[getGameApp() itemsUsageButtonBgImageNameForSelected] inResourcePackage:[getGameApp() resourcesPackage]] forState:UIControlStateSelected];
+    
     gameRulesButton.selected = YES;
     itemsUsageButton.selected = NO;
     indicator.hidesWhenStopped = YES;
@@ -221,6 +237,7 @@
     
     // Request from a url, load request to web view.
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    PPDebug(@"Help URL: %@", request.description);
     if (request) {
         [webView loadRequest:request];        
     }

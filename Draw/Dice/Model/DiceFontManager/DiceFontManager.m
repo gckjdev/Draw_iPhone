@@ -15,7 +15,7 @@
 
 #define FONT_ZIP_NAME   @"font.zip"
 #define FONT_DIR        @"font"
-#define FONT_NAME       @"diceFont"
+
 
 static DiceFontManager *_defaultManager = nil;
 

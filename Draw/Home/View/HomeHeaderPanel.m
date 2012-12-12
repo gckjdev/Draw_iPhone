@@ -72,11 +72,15 @@
 
 - (void)updateDisplayView
 {
-    //get top 6 draw feed.
-    [[FeedService defaultService] getFeedList:FeedListTypeHot
-                                       offset:0
-                                        limit:TOP_DRAW_NUMBER
-                                     delegate:self];
+    if ([self.feedList count] == 0) {
+        //get top 6 draw feed.
+        [[FeedService defaultService] getFeedList:FeedListTypeHot
+                                           offset:0
+                                            limit:TOP_DRAW_NUMBER + 3
+                                         delegate:self];        
+    }else{
+        [self.displayScrollView setHidden:NO];
+    }
 }
 
 - (CGFloat)imageWidth
@@ -177,7 +181,14 @@
 {
     if (resultCode == 0 && [feedList count] != 0) {
 
+        //get Top 6 feed
+//        if ([feedList count] <= TOP_DRAW_NUMBER) {
         self.feedList = [NSMutableArray arrayWithArray:feedList];
+//        }else{
+//            NSArray *temp = [feedList subarrayWithRange:NSMakeRange(0, TOP_DRAW_NUMBER)];
+//            self.feedList = [NSMutableArray arrayWithArray:temp];
+//        }
+        
         
         PPDebug(@"<didGetFeedList> ready to display images");
         [self.displayScrollView setHidden:NO];
@@ -188,6 +199,9 @@
             if (iv) {
                 ++i;
                 [self.displayScrollView addSubview:iv];
+            }
+            if (i >= TOP_DRAW_NUMBER) {
+                break;
             }
         }
         
@@ -213,6 +227,7 @@
     [self.avatar.layer setBorderWidth:3];
     UIColor *borderColor = [UIColor colorWithRed:131./225 green:200./225 blue:43./225 alpha:1];
     [self.avatar.layer setBorderColor:borderColor.CGColor];
+    [self.nickName setTextColor:borderColor];
     
     UserManager *userManager = [UserManager defaultManager];
     if ([userManager avatarImage]) {
@@ -240,13 +255,17 @@
     
     //charge button
     [self.chargeButton.layer setTransform:CATransform3DMakeRotation(0.12, 0, 0, 1)];
-
+    [self.chargeButton setTitle:NSLS(@"kCharge") forState:UIControlStateNormal];
+    
     [self.displayScrollView setHidden:YES];
     
-    self.displayBG.image = [[DrawImageManager defaultManager] drawHomeDisplayBG];
+
     //update display view.
     if (isDrawApp()) {
         [self updateDisplayView];
+        self.displayBG.image = [[DrawImageManager defaultManager] drawHomeDisplayBG];
+    }else{
+        self.displayBG.hidden = YES;
     }
 }
 

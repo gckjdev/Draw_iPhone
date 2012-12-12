@@ -101,7 +101,7 @@
 					<object class="IBUILabel" id="1006200176">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{77, 8}, {186, 21}}</string>
+						<string key="NSFrame">{{77, 3}, {186, 21}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="536620801"/>
@@ -121,13 +121,13 @@
 						</object>
 						<nil key="IBUIHighlightedColor"/>
 						<int key="IBUIBaselineAdjustment">0</int>
-						<object class="IBUIFontDescription" key="IBUIFontDescription">
-							<int key="type">1</int>
-							<double key="pointSize">14</double>
+						<object class="IBUIFontDescription" key="IBUIFontDescription" id="527482490">
+							<int key="type">2</int>
+							<double key="pointSize">12</double>
 						</object>
-						<object class="NSFont" key="IBUIFont">
-							<string key="NSName">Helvetica</string>
-							<double key="NSSize">14</double>
+						<object class="NSFont" key="IBUIFont" id="993753928">
+							<string key="NSName">Helvetica-Bold</string>
+							<double key="NSSize">12</double>
 							<int key="NSfFlags">16</int>
 						</object>
 						<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
@@ -150,7 +150,7 @@
 					<object class="IBUIButton" id="794634109">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{271, 2}, {50, 40}}</string>
+						<string key="NSFrame">{{268, 2}, {50, 40}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="851899362"/>
@@ -159,7 +159,7 @@
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<int key="IBUIContentHorizontalAlignment">0</int>
 						<int key="IBUIContentVerticalAlignment">0</int>
-						<string key="IBUINormalTitle">充值</string>
+						<string key="IBUINormalTitle">Charge</string>
 						<object class="NSColor" key="IBUIHighlightedTitleColor">
 							<int key="NSColorSpace">3</int>
 							<bytes key="NSWhite">MQA</bytes>
@@ -173,20 +173,13 @@
 							<int key="NSColorSpace">3</int>
 							<bytes key="NSWhite">MC41AA</bytes>
 						</object>
-						<object class="IBUIFontDescription" key="IBUIFontDescription">
-							<int key="type">2</int>
-							<double key="pointSize">15</double>
-						</object>
-						<object class="NSFont" key="IBUIFont">
-							<string key="NSName">Helvetica-Bold</string>
-							<double key="NSSize">15</double>
-							<int key="NSfFlags">16</int>
-						</object>
+						<reference key="IBUIFontDescription" ref="527482490"/>
+						<reference key="IBUIFont" ref="993753928"/>
 					</object>
 					<object class="IBUILabel" id="893143396">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{182, 30}, {40, 21}}</string>
+						<string key="NSFrame">{{182, 26}, {40, 21}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="66942430"/>
@@ -204,13 +197,13 @@
 						</object>
 						<nil key="IBUIHighlightedColor"/>
 						<int key="IBUIBaselineAdjustment">0</int>
-						<object class="IBUIFontDescription" key="IBUIFontDescription" id="213619288">
-							<int key="type">1</int>
-							<double key="pointSize">12</double>
+						<object class="IBUIFontDescription" key="IBUIFontDescription" id="516712098">
+							<int key="type">2</int>
+							<double key="pointSize">10</double>
 						</object>
-						<object class="NSFont" key="IBUIFont" id="1062819336">
-							<string key="NSName">Helvetica</string>
-							<double key="NSSize">12</double>
+						<object class="NSFont" key="IBUIFont" id="1018361380">
+							<string key="NSName">Helvetica-Bold</string>
+							<double key="NSSize">10</double>
 							<int key="NSfFlags">16</int>
 						</object>
 						<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
@@ -218,7 +211,7 @@
 					<object class="IBUILabel" id="795360296">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{98, 27}, {78, 23}}</string>
+						<string key="NSFrame">{{96, 25}, {78, 23}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="893143396"/>
@@ -236,14 +229,14 @@
 						</object>
 						<nil key="IBUIHighlightedColor"/>
 						<int key="IBUIBaselineAdjustment">0</int>
-						<reference key="IBUIFontDescription" ref="213619288"/>
-						<reference key="IBUIFont" ref="1062819336"/>
+						<reference key="IBUIFontDescription" ref="516712098"/>
+						<reference key="IBUIFont" ref="1018361380"/>
 						<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
 					</object>
 					<object class="IBUIImageView" id="536620801">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{77, 30}, {19, 18}}</string>
+						<string key="NSFrame">{{77, 29}, {16, 15}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="795360296"/>
@@ -252,7 +245,7 @@
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<object class="NSCustomResource" key="IBUIImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">draw_home_coin@2x.png</string>
+							<string key="NSResourceName">common_home_coin@2x.png</string>
 						</object>
 					</object>
 					<object class="IBUIScrollView" id="984452997">
@@ -381,8 +374,8 @@
 							<reference ref="794634109"/>
 							<reference ref="893143396"/>
 							<reference ref="536620801"/>
-							<reference ref="795360296"/>
 							<reference ref="984452997"/>
+							<reference ref="795360296"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -556,8 +549,8 @@
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
+			<string key="common_home_coin@2x.png">{29, 25}</string>
 			<string key="draw_home_banner@2x.png">{640, 285}</string>
-			<string key="draw_home_coin@2x.png">{29, 25}</string>
 			<string key="draw_home_displaybg@2x.png">{180, 63}</string>
 			<string key="draw_home_header_bg@2x.png">{640, 325}</string>
 			<string key="draw_home_task@2x.png">{110, 137}</string>

@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
+#define FONT_NAME       @"diceFont"
 
 @interface DiceFontManager : NSObject
 

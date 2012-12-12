@@ -910,6 +910,8 @@
 "kHomeMenuTypeDrawMessage" = "Message";
 "kHomeMenuTypeDrawSetting" = "Setting";
 "HomeMenuTypeDrawShop" = "Shop";
+
+"kCharge" = "Charge";
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 
