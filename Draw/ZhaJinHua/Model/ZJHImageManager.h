@@ -95,4 +95,16 @@
 - (UIImage*)ZJHUserInfoBackgroundImage;
 - (UIImage *)coinsImage;
 
+- (UIImage *)dialogBgImage;
+- (UIImage *)dialogBtnImage;
+- (UIImage *)audioOff;
+- (UIImage *)audioOn;
+- (UIImage *)musicOn;
+- (UIImage *)musicOff;
+- (UIImage *)settingsBgImage;
+- (UIImage *)settingsLeftSelected;
+- (UIImage *)settingsLeftUnselected;
+- (UIImage *)settingsRightSelected;
+- (UIImage *)settingsRightUnselected;
+- (UIImage *)inputDialogBgImage;
 @end
