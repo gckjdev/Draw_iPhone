@@ -310,9 +310,10 @@
 - (void)showExpression:(NSString *)key
 {
     GifView *view = [[ExpressionManager defaultManager] gifExpressionForKey:key frame:self.roundAvatarPlaceView.frame];
+    view.center = self.roundAvatarPlaceView.center;
     
     view.userInteractionEnabled = NO;
-    [self.roundAvatarPlaceView addSubview:view];
+    [self addSubview:view];
     
     [UIView animateWithDuration:1 delay:6.0 options:UIViewAnimationCurveLinear animations:^{
         view.alpha = 0;
