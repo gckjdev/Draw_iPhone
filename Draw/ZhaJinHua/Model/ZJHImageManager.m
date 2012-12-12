@@ -839,7 +839,8 @@ static ZJHImageManager* shareInstance;
 
 - (UIImage*)inputDialogInputBgImage
 {
-    return [UIImage strectchableImageName:@"zjh_input_bg.png"];
+//    return [UIImage strectchableImageName:@"zjh_input_bg.png" leftCapWidth:15 topCapHeight:15];
+    return [UIImage strectchableImageName:@"zjh_input_bg"];
 }
 - (UIImage*)inputDialogLeftBtnImage
 {
