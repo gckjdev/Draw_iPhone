@@ -303,6 +303,8 @@
 		A4B45F6116787822009EA231 /* face_sleep.gif in Resources */ = {isa = PBXBuildFile; fileRef = A4B45F5416787822009EA231 /* face_sleep.gif */; };
 		A4B45F6216787822009EA231 /* face_smile.gif in Resources */ = {isa = PBXBuildFile; fileRef = A4B45F5516787822009EA231 /* face_smile.gif */; };
 		A4B45F6316787822009EA231 /* face_wry.gif in Resources */ = {isa = PBXBuildFile; fileRef = A4B45F5616787822009EA231 /* face_wry.gif */; };
+		A4B45F6616787D82009EA231 /* ZJHRoomListCell_dual.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4B45F6416787D80009EA231 /* ZJHRoomListCell_dual.xib */; };
+		A4B45F6716787D82009EA231 /* ZJHRoomListCell_dual~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4B45F6516787D81009EA231 /* ZJHRoomListCell_dual~ipad.xib */; };
 		A4B763A215C25208003B4E72 /* Draw.proto in Resources */ = {isa = PBXBuildFile; fileRef = A4B763A015C25208003B4E72 /* Draw.proto */; };
 		A4B763A315C25208003B4E72 /* Dice.proto in Resources */ = {isa = PBXBuildFile; fileRef = A4B763A115C25208003B4E72 /* Dice.proto */; };
 		A4B763A815C25218003B4E72 /* Draw.pb.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B763A515C25218003B4E72 /* Draw.pb.m */; };
@@ -2548,6 +2550,8 @@
 		A4B45F5416787822009EA231 /* face_sleep.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = face_sleep.gif; sourceTree = "<group>"; };
 		A4B45F5516787822009EA231 /* face_smile.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = face_smile.gif; sourceTree = "<group>"; };
 		A4B45F5616787822009EA231 /* face_wry.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = face_wry.gif; sourceTree = "<group>"; };
+		A4B45F6416787D80009EA231 /* ZJHRoomListCell_dual.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZJHRoomListCell_dual.xib; sourceTree = "<group>"; };
+		A4B45F6516787D81009EA231 /* ZJHRoomListCell_dual~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ZJHRoomListCell_dual~ipad.xib"; sourceTree = "<group>"; };
 		A4B763A015C25208003B4E72 /* Draw.proto */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Draw.proto; sourceTree = "<group>"; };
 		A4B763A115C25208003B4E72 /* Dice.proto */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Dice.proto; sourceTree = "<group>"; };
 		A4B763A415C25218003B4E72 /* Draw.pb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Draw.pb.h; sourceTree = "<group>"; };
@@ -6135,14 +6139,16 @@
 		C250AD0A1653A7E500003E15 /* room */ = {
 			isa = PBXGroup;
 			children = (
-				C28662BC1659DDF700D7EA27 /* ZJHRoomListCell~ipad.xib */,
-				C28662BD1659DDF800D7EA27 /* ZJHRoomListController~ipad.xib */,
-				C250AD0B1653A7F400003E15 /* ZJHRoomListController.xib */,
-				C250AD0C1653A7F400003E15 /* ZJHRoomListCell.xib */,
 				C250AD0D1653A7F400003E15 /* ZJHRoomListCell.h */,
 				C250AD0E1653A7F400003E15 /* ZJHRoomListCell.m */,
+				C250AD0C1653A7F400003E15 /* ZJHRoomListCell.xib */,
+				C28662BC1659DDF700D7EA27 /* ZJHRoomListCell~ipad.xib */,
+				A4B45F6416787D80009EA231 /* ZJHRoomListCell_dual.xib */,
+				A4B45F6516787D81009EA231 /* ZJHRoomListCell_dual~ipad.xib */,
 				C250AD0F1653A7F400003E15 /* ZJHRoomListController.h */,
 				C250AD101653A7F400003E15 /* ZJHRoomListController.m */,
+				C250AD0B1653A7F400003E15 /* ZJHRoomListController.xib */,
+				C28662BD1659DDF800D7EA27 /* ZJHRoomListController~ipad.xib */,
 			);
 			name = room;
 			sourceTree = "<group>";
@@ -12742,6 +12748,8 @@
 				A4B45F6116787822009EA231 /* face_sleep.gif in Resources */,
 				A4B45F6216787822009EA231 /* face_smile.gif in Resources */,
 				A4B45F6316787822009EA231 /* face_wry.gif in Resources */,
+				A4B45F6616787D82009EA231 /* ZJHRoomListCell_dual.xib in Resources */,
+				A4B45F6716787D82009EA231 /* ZJHRoomListCell_dual~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
