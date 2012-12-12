@@ -28,9 +28,11 @@
 @property (retain, nonatomic) IBOutlet UIButton *chargeButton;
 @property (retain, nonatomic) IBOutlet UILabel *coin;
 @property (retain, nonatomic) IBOutlet UIScrollView *displayScrollView;
+@property (retain, nonatomic) IBOutlet UIButton *freeCoin;
 
 @property (retain, nonatomic) NSMutableArray *feedList;
 
+- (IBAction)clickFreeCoinButton:(id)sender;
 - (IBAction)clickChargeButton:(id)sender;
 - (IBAction)clickAvatarButton:(id)sender;
 
@@ -54,9 +56,10 @@
 
 + (NSString *)getViewIdentifier
 {
-    if (gameAppType() == GameAppTypeDraw) {
+    return @"ZJHHomeHeaderPanel";
+    if (isDrawApp()) {
         return @"DrawHomeHeaderPanel";
-    } else if (gameAppType() == GameAppTypeZJH) {
+    } else if (isZhajinhuaApp()) {
         return @"ZJHHomeHeaderPanel";
     }
     return nil;
@@ -182,13 +185,7 @@
     if (resultCode == 0 && [feedList count] != 0) {
 
         //get Top 6 feed
-//        if ([feedList count] <= TOP_DRAW_NUMBER) {
         self.feedList = [NSMutableArray arrayWithArray:feedList];
-//        }else{
-//            NSArray *temp = [feedList subarrayWithRange:NSMakeRange(0, TOP_DRAW_NUMBER)];
-//            self.feedList = [NSMutableArray arrayWithArray:temp];
-//        }
-        
         
         PPDebug(@"<didGetFeedList> ready to display images");
         [self.displayScrollView setHidden:NO];
@@ -254,7 +251,6 @@
     [self.coin setText:coinString];
     
     //charge button
-    [self.chargeButton.layer setTransform:CATransform3DMakeRotation(0.12, 0, 0, 1)];
     [self.chargeButton setTitle:NSLS(@"kCharge") forState:UIControlStateNormal];
     
     [self.displayScrollView setHidden:YES];
@@ -264,8 +260,14 @@
     if (isDrawApp()) {
         [self updateDisplayView];
         self.displayBG.image = [[DrawImageManager defaultManager] drawHomeDisplayBG];
+        [self.chargeButton.layer setTransform:CATransform3DMakeRotation(0.12, 0, 0, 1)];
     }else{
         self.displayBG.hidden = YES;
+        DrawImageManager *imageManager = [DrawImageManager defaultManager];
+        [self.chargeButton setBackgroundImage:[imageManager zjhHomeChargeBG]
+                                     forState:UIControlStateNormal];
+        [self.freeCoin setBackgroundImage:[imageManager zjhHomeFreeCoinBG]
+                                 forState:UIControlStateNormal];
     }
 }
 
@@ -278,8 +280,15 @@
     PPRelease(_coin);
     PPRelease(_displayScrollView);
     PPRelease(_feedList);
+    [_freeCoin release];
     [super dealloc];
 }
+- (IBAction)clickFreeCoinButton:(id)sender {
+    if (self.delegate && [self.delegate respondsToSelector:@selector(homeHeaderPanel:didClickFreeCoinButton:)]) {
+        [self.delegate homeHeaderPanel:self didClickFreeCoinButton:sender];
+    }
+}
+
 - (IBAction)clickChargeButton:(id)sender {
     if (self.delegate && [self.delegate respondsToSelector:@selector(homeHeaderPanel:didClickChargeButton:)]) {
         [self.delegate homeHeaderPanel:self didClickChargeButton:sender];

@@ -163,4 +163,17 @@ static DrawImageManager * _staticDrawImageManager;
     return [UIImage imageNamed:imageName];
 }
 
+- (UIImage *)zjhHomeChargeBG
+{
+    return [self stretchableImageWithImageName:@"zjh_home_charge_bg"
+                             leftCapWidthScale:0.5 topCapHeightScale:0.5];
+
+}
+- (UIImage *)zjhHomeFreeCoinBG
+{
+    return [self stretchableImageWithImageName:@"zjh_home_freecoin_bg"
+                             leftCapWidthScale:0.5 topCapHeightScale:0.5];    
+}
+
+
 @end
