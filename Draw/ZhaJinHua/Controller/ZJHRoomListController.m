@@ -50,8 +50,8 @@
 //    [self.fastEntryButton setTitleColor:[UIColor darkTextColor] forState:UIControlStateNormal];
 //    [self.fastEntryButton.titleLabel setFont:[UIFont systemFontOfSize:BUTTON_FONT_SIZE]];
 //    
-//    [self.allRoomButton setTitle:NSLS(@"kAll") forState:UIControlStateNormal];
-//    [self.friendRoomButton setTitle:NSLS(@"kFriend") forState:UIControlStateNormal];
+    [self.allRoomButton setTitle:NSLS(@"kAll") forState:UIControlStateNormal];
+    [self.friendRoomButton setTitle:NSLS(@"kFriend") forState:UIControlStateNormal];
     
     
 }

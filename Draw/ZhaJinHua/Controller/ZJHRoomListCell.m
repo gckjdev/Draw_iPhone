@@ -39,8 +39,9 @@
     return ([[ZJHGameService defaultService] rule]== PBZJHRuleTypeDual ? HEIGHT_ZJH_ROOM_LIST_CELL_DUAL : HEIGHT_ZJH_ROOM_LIST_CELL);
 }
 
-- (void)setCellInfo:(PBGameSession *)session;
+- (void)setCellInfo:(PBGameSession *)session
 {
+    [super setCellInfo:session];
     self.roomNameLabel.textColor = ([[ZJHGameService defaultService] rule]== PBZJHRuleTypeDual ? [UIColor colorWithRed:107 green:124 blue:126 alpha:1] : [UIColor colorWithRed:209 green:233 blue:219 alpha:1]);
 
     if (session.name == nil || session.name.length <= 0) {
