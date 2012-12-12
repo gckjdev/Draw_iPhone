@@ -14,6 +14,7 @@
 #import "DiceImageManager.h"
 
 #import "DiceFontManager.h"
+#import "ConfigManager.h"
 
 #import "FileUtil.h"
 
@@ -251,5 +252,21 @@
     return @"dice_tabright_selected";
 
 }
+
+- (NSString *)upgradeMessage:(int)newLevel
+{
+    return [NSString stringWithFormat:NSLS(@"kDiceUpgradeMsg"),newLevel,[ConfigManager diceCutAwardForLevelUp]];    
+}
+
+- (NSString *)degradeMessage:(int)newLevel
+{
+    return [NSString stringWithFormat:NSLS(@"kDiceDegradeMsg"),newLevel];
+}
+
+- (NSString *)popupMessageDialogBackgroundImage
+{
+    return @"dialogue@2x.png";
+}
+
 
 @end

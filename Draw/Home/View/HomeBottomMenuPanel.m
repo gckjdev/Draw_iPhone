@@ -70,6 +70,7 @@
     }else if(gameAppType() == GameAppTypeZJH){
         list = getZJHBottomMenuTypeList();
     }
+//    list = getZJHBottomMenuTypeList();
     _menuCount = 0;
     NSMutableArray *array = [NSMutableArray array];
     while (list != NULL && (*list) != HomeMenuTypeEnd) {

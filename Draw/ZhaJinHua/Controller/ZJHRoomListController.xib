@@ -669,14 +669,14 @@
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="dice_back@2x.png">{57, 57}</string>
-			<string key="dice_room_header@2x.png">{640, 94}</string>
-			<string key="dice_room_help@2x.png">{57, 57}</string>
-			<string key="dice_tableft_selected@2x.png">{184, 59}</string>
-			<string key="dice_tableft_unselect@2x.png">{184, 59}</string>
-			<string key="dice_tabright_selected@2x.png">{184, 59}</string>
-			<string key="dice_tabright_unselect@2x.png">{184, 59}</string>
-			<string key="room_search@2x.png">{57, 51}</string>
+			<string key="dice_back@2x.png">{16, 16}</string>
+			<string key="dice_room_header@2x.png">{16, 16}</string>
+			<string key="dice_room_help@2x.png">{16, 16}</string>
+			<string key="dice_tableft_selected@2x.png">{16, 16}</string>
+			<string key="dice_tableft_unselect@2x.png">{16, 16}</string>
+			<string key="dice_tabright_selected@2x.png">{16, 16}</string>
+			<string key="dice_tabright_unselect@2x.png">{16, 16}</string>
+			<string key="room_search@2x.png">{16, 16}</string>
 		</dictionary>
 		<string key="IBCocoaTouchPluginVersion">1926</string>
 	</data>

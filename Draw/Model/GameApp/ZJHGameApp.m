@@ -9,6 +9,7 @@
 #import "ZJHGameApp.h"
 #import "MobClickUtils.h"
 #import "ZJHChatMsgManager.h"
+#import "ConfigManager.h"
 #import "ZJHImageManager.h"
 
 @implementation ZJHGameApp
@@ -234,6 +235,22 @@
 {
     return nil;
 
+}
+
+- (NSString *)upgradeMessage:(int)newLevel
+{
+    return [NSString stringWithFormat:NSLS(@"kZJHUpgradeMsg"),newLevel];
+}
+
+- (NSString *)degradeMessage:(int)newLevel
+{
+    return [NSString stringWithFormat:NSLS(@"kZJHDegradeMsg"),newLevel];
+}
+
+- (NSString *)popupMessageDialogBackgroundImage
+{
+    return @"dialogue@2x.png";
+//    return @"zjh_dialog_bg.png";
 }
 
 @end

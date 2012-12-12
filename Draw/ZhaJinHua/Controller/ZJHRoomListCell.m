@@ -9,6 +9,7 @@
 #import "ZJHRoomListCell.h"
 #import "GameBasic.pb.h"
 #import "DiceImageManager.h"
+#import "ZJHGameService.h"
 
 #define TAG_USER_VIEW 101
 
@@ -29,14 +30,18 @@
 }
 
 #define HEIGHT_ZJH_ROOM_LIST_CELL  ([DeviceDetection isIPAD] ? 204: 102)
+#define HEIGHT_ZJH_ROOM_LIST_CELL_DUAL  ([DeviceDetection isIPAD] ? 204: 70)
+
 
 + (CGFloat)getCellHeight
 {
-    return HEIGHT_ZJH_ROOM_LIST_CELL;
+    return ([[ZJHGameService defaultService] rule]== PBZJHRuleTypeDual ? HEIGHT_ZJH_ROOM_LIST_CELL_DUAL : HEIGHT_ZJH_ROOM_LIST_CELL);;
 }
 
 - (void)setCellInfo:(PBGameSession *)session;
 {
+    self.roomNameLabel.textColor = ([[ZJHGameService defaultService] rule]== PBZJHRuleTypeDual ? [UIColor colorWithRed:107 green:124 blue:126 alpha:1] : [UIColor colorWithRed:209 green:233 blue:219 alpha:1]);
+
     if (session.name == nil || session.name.length <= 0) {
         [self.roomNameLabel setText:[NSString stringWithFormat:@"%lld",session.sessionId]];
     } else {

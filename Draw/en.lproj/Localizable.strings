@@ -1030,6 +1030,10 @@
 "kDailyAwardCoin" = "You got %d coins";
 "kDiceUpgradeMsg" = "Congratulations!You upgraded to level %d, [cut] +%d";
 "kDiceDegradeMsg" = "You play terribly, now degrade to level %d";
+
+"kZJHUpgradeMsg" = "Congratulations! You upgraded to level %d";
+"kZJHDegradeMsg" = "You play terribly, now degrade to level %d";
+
 "kClickMe" = "Click me!";
 
 "kDiceSnake" = "Snake";

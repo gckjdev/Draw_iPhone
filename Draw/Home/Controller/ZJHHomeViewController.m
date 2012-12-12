@@ -19,10 +19,13 @@
 #import "FeedbackController.h"
 #import "VendingController.h"
 
+#import "HelpView.h"
+#import "ZJHRoomListController.h"
+#import "ZJHGameService.h"
 
 @interface ZJHHomeViewController ()
 {
-    
+    ZJHGameService *_gameService;
 }
 @end
 
@@ -50,6 +53,7 @@ ZJHHomeViewController *_staticZJHHomeViewController = nil;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    _gameService  = [ZJHGameService defaultService];
     PPDebug(@"ZJHHomeViewController view did load");
     // Do any additional setup after loading the view from its nib.
 }
@@ -68,6 +72,8 @@ ZJHHomeViewController *_staticZJHHomeViewController = nil;
 {
     switch (type) {
         case HomeMenuTypeZJHHelp: {
+            HelpView *view = [HelpView createHelpView:@"ZJHHelpView"];
+            [view showInView:self.view];
             break;
         }
         case HomeMenuTypeZJHStart: {
@@ -81,12 +87,21 @@ ZJHHomeViewController *_staticZJHHomeViewController = nil;
             break;
         }
         case HomeMenuTypeZJHRichSite: {
+            [_gameService setRule:PBZJHRuleTypeRich];
+            ZJHRoomListController* vc = [[[ZJHRoomListController alloc] init] autorelease];
+            [self.navigationController pushViewController:vc animated:YES];
             break;
         } 
         case HomeMenuTypeZJHNormalSite: {
+            [_gameService setRule:PBZJHRuleTypeNormal];
+            ZJHRoomListController* vc = [[[ZJHRoomListController alloc] init] autorelease];
+            [self.navigationController pushViewController:vc animated:YES];
             break;
         } 
         case HomeMenuTypeZJHVSSite: {
+            [_gameService setRule:PBZJHRuleTypeDual];
+            ZJHRoomListController* vc = [[[ZJHRoomListController alloc] init] autorelease];
+            [self.navigationController pushViewController:vc animated:YES];
             break;
         }
         default:

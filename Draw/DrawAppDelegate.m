@@ -61,6 +61,7 @@
 #import "PPFacebookService.h"
 
 #import "GameConfigDataManager.h"
+#import "ZJHHomeViewController.h"
 
 NSString* GlobalGetServerURL()
 {    
@@ -290,12 +291,16 @@ NSString* GlobalGetBoardServerURL()
     }
 
     // Init Home Controller As Root View Controller
+    // TODO BENSON ZJH
     PPViewController* rootController = nil;
-    if (isDiceApp() || isZhajinhuaApp()){
+    if (isDiceApp()){
         self.diceHomeController = [[[DiceHomeController alloc] init] autorelease];
         rootController = _diceHomeController;
-    }
-    else{
+    }else if (isZhajinhuaApp())
+    {
+        ZJHHomeViewController *controller = [[[ZJHHomeViewController alloc] init] autorelease];
+        rootController = controller;
+    }else{
         self.homeController = [[[HomeController alloc] init] autorelease];     
         rootController = _homeController;
     }
