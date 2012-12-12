@@ -31,7 +31,7 @@
 #define FONT_OF_MESSAGE ([DeviceDetection isIPAD] ? (FONT_OF_MESSAGE_IPAD) : (FONT_OF_MESSAGE_IPHONE))
 
 #define UP_SEPERATOR    ([DeviceDetection isIPAD]?14:7)
-#define DOWN_SEPERATOR  ([DeviceDetection isIPAD]?26:13)
+#define DOWN_SEPERATOR  ([DeviceDetection isIPAD]?52:26)
 
 @implementation CommonDialog
 @synthesize oKButton = _OKButton;
@@ -112,14 +112,9 @@
     [self.contentView setFrame:CGRectMake(0, 0, self.contentView.frame.size.width, UP_SEPERATOR + DOWN_SEPERATOR + titleSize.height + messageSize.height + self.oKButton.frame.size.height)];
     [self.contentView setCenter:CGPointMake(self.frame.size.width/2, self.frame.size.height/2)];
     
-    PPDebug(@"<test>content h = %.2f",self.contentView.frame.size.height);
-    
     [self.titleLabel setFrame:CGRectMake(self.contentView.frame.size.width/2 - titleSize.width/2, UP_SEPERATOR, titleSize.width, titleSize.height)];
     [self.messageLabel setFrame:CGRectMake(self.contentView.frame.size.width/2 - messageSize.width/2, UP_SEPERATOR + titleSize.height, messageSize.width, messageSize.height)];
     [self.messageLabel setFont:FONT_OF_MESSAGE];
-    
-    PPDebug(@"<test>message (%.2f, %.2f)",self.messageLabel.frame.origin.y, self.messageLabel.frame.size.height);
-    
     
     [self.oKButton setCenter:CGPointMake(self.oKButton.center.x, self.contentView.frame.size.height - DOWN_SEPERATOR - self.oKButton.frame.size.height/2)];
     [self.backButton setCenter:CGPointMake(self.backButton.center.x, self.contentView.frame.size.height - DOWN_SEPERATOR - self.backButton.frame.size.height/2)];
@@ -171,9 +166,6 @@
     [self.backButton setTitle:NSLS(@"kCancel") forState:UIControlStateNormal];
     
     [self.contentBackground setImage:[[GameApp getImageManager] commonDialogBgImage]];
-    
-    [self.oKButton setRoyButtonWithColor:[UIColor colorWithRed:244.0/255.0 green:93.0/255.0 blue:93.0/255.0 alpha:0.95]];
-    [self.backButton setRoyButtonWithColor:[UIColor colorWithRed:236.0/255.0 green:247.0/255.0 blue:63.0/255.0 alpha:0.95]];
     
     [self.oKButton setBackgroundImage:[[GameApp getImageManager] commonDialogRightBtnImage] forState:UIControlStateNormal];
     [self.backButton setBackgroundImage:[[GameApp getImageManager] commonDialogRightBtnImage] forState:UIControlStateNormal];
@@ -257,7 +249,7 @@
                                   style:(CommonDialogStyle)aStyle 
                                delegate:(id<CommonDialogDelegate>)aDelegate
 {
-    CommonDialog* view = [CommonDialog createDialogWithStyle:aStyle theme:[self globalGetTheme]];
+    CommonDialog* view = [CommonDialog createDialogWithStyle:aStyle];
     view.delegate = aDelegate;
     [view setTitle:title];
     [view setMessage:message];
