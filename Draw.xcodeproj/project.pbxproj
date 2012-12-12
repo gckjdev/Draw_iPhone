@@ -1588,6 +1588,7 @@
 		CA9C8CC015E0DE88006E447B /* JumpHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = CA9C8CBF15E0DE88006E447B /* JumpHandler.m */; };
 		CA9D5F4A1616F2040082E258 /* HotController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA9D5F491616F2040082E258 /* HotController~ipad.xib */; };
 		CA9D5F4D161700A70082E258 /* ContestFeed.m in Sources */ = {isa = PBXBuildFile; fileRef = CA9D5F4C161700A50082E258 /* ContestFeed.m */; };
+		CA9D7299167883A20075CF93 /* dialogue@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA9D7298167883A20075CF93 /* dialogue@2x.png */; };
 		CAA0E6A615147DFF00FD8C3E /* Word.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA0E6A515147DFF00FD8C3E /* Word.m */; };
 		CAA0E6A915147F6E00FD8C3E /* WordManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA0E6A815147F6E00FD8C3E /* WordManager.m */; };
 		CAA1AA3F159D78C200504C98 /* AdService.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA1AA3E159D78C200504C98 /* AdService.m */; };
@@ -1756,7 +1757,6 @@
 		CAF10AFE151C666E008C4512 /* ItemManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF10AFD151C666E008C4512 /* ItemManager.m */; };
 		CAFE0000166072AB00441D77 /* detail_save@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAFEFF53166072AB00441D77 /* detail_save@2x.png */; };
 		CAFE0001166072AB00441D77 /* detail_tomato@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAFEFF54166072AB00441D77 /* detail_tomato@2x.png */; };
-		CAFE0002166072AB00441D77 /* dialogue@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAFEFF55166072AB00441D77 /* dialogue@2x.png */; };
 		CAFE0003166072AB00441D77 /* draw_guess2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAFEFF56166072AB00441D77 /* draw_guess2@2x.png */; };
 		CAFE0004166072AB00441D77 /* draw_share@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAFEFF57166072AB00441D77 /* draw_share@2x.png */; };
 		CAFE0005166072AB00441D77 /* draw_default_board@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAFEFF58166072AB00441D77 /* draw_default_board@2x.png */; };
@@ -4244,6 +4244,7 @@
 		CA9D5F491616F2040082E258 /* HotController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "HotController~ipad.xib"; sourceTree = "<group>"; };
 		CA9D5F4B161700A40082E258 /* ContestFeed.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContestFeed.h; sourceTree = "<group>"; };
 		CA9D5F4C161700A50082E258 /* ContestFeed.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContestFeed.m; sourceTree = "<group>"; };
+		CA9D7298167883A20075CF93 /* dialogue@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dialogue@2x.png"; sourceTree = "<group>"; };
 		CAA0E6A415147DFF00FD8C3E /* Word.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Word.h; sourceTree = "<group>"; };
 		CAA0E6A515147DFF00FD8C3E /* Word.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Word.m; sourceTree = "<group>"; };
 		CAA0E6A715147F6E00FD8C3E /* WordManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WordManager.h; sourceTree = "<group>"; };
@@ -4764,7 +4765,6 @@
 		CAFEFF52166072AB00441D77 /* detail_replay@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "detail_replay@2x.png"; sourceTree = "<group>"; };
 		CAFEFF53166072AB00441D77 /* detail_save@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "detail_save@2x.png"; sourceTree = "<group>"; };
 		CAFEFF54166072AB00441D77 /* detail_tomato@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "detail_tomato@2x.png"; sourceTree = "<group>"; };
-		CAFEFF55166072AB00441D77 /* dialogue@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dialogue@2x.png"; sourceTree = "<group>"; };
 		CAFEFF56166072AB00441D77 /* draw_guess2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "draw_guess2@2x.png"; sourceTree = "<group>"; };
 		CAFEFF57166072AB00441D77 /* draw_share@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "draw_share@2x.png"; sourceTree = "<group>"; };
 		CAFEFF59166072AB00441D77 /* en */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = en; path = "en.lproj/draw_default_board@2x.png"; sourceTree = "<group>"; };
@@ -10664,7 +10664,6 @@
 				CAFEFF36166072AB00441D77 /* button */,
 				CAFEFF41166072AB00441D77 /* contest */,
 				CAFEFF4D166072AB00441D77 /* detail */,
-				CAFEFF55166072AB00441D77 /* dialogue@2x.png */,
 				CAFEFF56166072AB00441D77 /* draw_guess2@2x.png */,
 				CAFEFF57166072AB00441D77 /* draw_share@2x.png */,
 				CAFEFF58166072AB00441D77 /* draw_default_board@2x.png */,
@@ -10891,6 +10890,7 @@
 		EA856C3315F0A65700178323 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				CA9D7298167883A20075CF93 /* dialogue@2x.png */,
 				A4CCE72D16771A6D00F90726 /* exps */,
 				CA1DA9181673234F0078B5A9 /* HomePage */,
 				CA1DA90F167322BE0078B5A9 /* BottomMenu */,
@@ -12242,7 +12242,6 @@
 				CAFEFFFF166072AB00441D77 /* detail_replay@2x.png in Resources */,
 				CAFE0000166072AB00441D77 /* detail_save@2x.png in Resources */,
 				CAFE0001166072AB00441D77 /* detail_tomato@2x.png in Resources */,
-				CAFE0002166072AB00441D77 /* dialogue@2x.png in Resources */,
 				CAFE0003166072AB00441D77 /* draw_guess2@2x.png in Resources */,
 				CAFE0004166072AB00441D77 /* draw_share@2x.png in Resources */,
 				CAFE0005166072AB00441D77 /* draw_default_board@2x.png in Resources */,
@@ -12516,6 +12515,7 @@
 				A4CCE7B11678304C00F90726 /* zjh_game_rule_btn_bg_selected@2x.png in Resources */,
 				A4CCE7B21678304C00F90726 /* zjh_help_view_bg@2x.png in Resources */,
 				A4CCE7B61678355E00F90726 /* ZJHHelpView~ipad.xib in Resources */,
+				CA9D7299167883A20075CF93 /* dialogue@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -1048,6 +1048,10 @@
 "kDailyAwardCoin" = "恭喜你捡到了%d个金币";
 "kDiceUpgradeMsg" = "恭喜！您刚刚升到第%d级, 【劈】+%d";
 "kDiceDegradeMsg" = "噢，你玩得太不认真了，都降到%d级了";
+
+"kZJHUpgradeMsg" = "恭喜！您刚刚升到第%d级";
+"kZJHDegradeMsg" = "噢，你玩得太不认真了，都降到%d级了";
+
 "kClickMe" = "点我一下";
 
 "kDiceSnake" = "蛇骰";

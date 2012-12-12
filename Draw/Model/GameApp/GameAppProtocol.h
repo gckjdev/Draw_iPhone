@@ -61,4 +61,10 @@
 - (NSString *)gameRulesButtonBgImageNameForSelected;
 - (NSString *)itemsUsageButtonBgImageNameForNormal;
 - (NSString *)itemsUsageButtonBgImageNameForSelected;
+
+- (NSString *)upgradeMessage:(int)newLevel;
+- (NSString *)degradeMessage:(int)newLevel;
+
+- (NSString *)popupMessageDialogBackgroundImage;
+
 @end

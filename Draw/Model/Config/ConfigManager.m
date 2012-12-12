@@ -216,18 +216,12 @@
 
 + (int)getShareFriendReward
 {
-    if (isDiceApp()) {
-        return [MobClickUtils getIntValueByKey:@"SHARE_DICE_AWARD_COIN" defaultValue:100];
-    }
-    return [MobClickUtils getIntValueByKey:@"REWARD_SHARE_APP" defaultValue:10];
+    return [MobClickUtils getIntValueByKey:@"REWARD_SHARE_APP" defaultValue:100];
 }
 
 + (int)getFollowReward
 {
-    if (isDiceApp()) {
-        return [MobClickUtils getIntValueByKey:@"FOLLOW_DICE_AWARD_COIN" defaultValue:1000];
-    }
-    return [MobClickUtils getIntValueByKey:@"FOLLOW_DRAW_AWARD_COIN" defaultValue:1000];    
+    return [MobClickUtils getIntValueByKey:@"FOLLOW_AWARD_COIN" defaultValue:1000];
 }
 
 + (int)getShareWeiboReward
