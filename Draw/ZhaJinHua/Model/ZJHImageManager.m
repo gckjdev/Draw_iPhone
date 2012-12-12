@@ -851,4 +851,33 @@ static ZJHImageManager* shareInstance;
     return [_resService imageByName:@"zjh_dialog_btn" inResourcePackage:RESOURCE_PACKAGE_ZJH];
 }
 
+- (UIImage *)roomListBgImage
+{
+    return [_resService imageByName:@"zjh_bg" inResourcePackage:RESOURCE_PACKAGE_ZJH];
+}
+- (UIImage *)roomListLeftBtnSelectedImage
+{
+    return [_resService imageByName:@"zjh_tableft_selected" inResourcePackage:RESOURCE_PACKAGE_ZJH];
+}
+- (UIImage *)roomListLeftBtnUnselectedImage
+{
+    return [_resService imageByName:@"zjh_tableft_unselected" inResourcePackage:RESOURCE_PACKAGE_ZJH];
+}
+- (UIImage *)roomListRightBtnSelectedImage
+{
+    return [_resService imageByName:@"zjh_tabright_selected" inResourcePackage:RESOURCE_PACKAGE_ZJH];
+}
+- (UIImage *)roomListRightBtnUnselectedImage
+{
+    return [_resService imageByName:@"zjh_tabright_unselected" inResourcePackage:RESOURCE_PACKAGE_ZJH];
+}
+- (UIImage *)roomListBackBtnImage
+{
+    return [_resService imageByName:@"zjh_dialog_btn" inResourcePackage:RESOURCE_PACKAGE_ZJH];
+}
+- (UIImage *)roomListCellBgImage
+{
+    return [_resService imageByName:@"zjh_room_item" inResourcePackage:RESOURCE_PACKAGE_ZJH];
+}
+
 @end
