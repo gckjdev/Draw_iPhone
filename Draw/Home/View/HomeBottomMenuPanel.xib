@@ -40,17 +40,20 @@
 						<int key="NSvFlags">274</int>
 						<string key="NSFrameSize">{320, 38}</string>
 						<reference key="NSSuperview" ref="191373211"/>
+						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<object class="NSCustomResource" key="IBUIImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">draw_home_bottom_bg@2x.png</string>
+							<string key="NSResourceName">common_home_bottom_bg@2x.png</string>
 						</object>
 					</object>
 				</array>
 				<string key="NSFrameSize">{320, 38}</string>
 				<reference key="NSSuperview"/>
+				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="380610758"/>
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">3</int>
@@ -138,7 +141,7 @@
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<object class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="NS.key.0">draw_home_bottom_bg@2x.png</string>
+			<string key="NS.key.0">common_home_bottom_bg@2x.png</string>
 			<string key="NS.object.0">{640, 73}</string>
 		</object>
 		<string key="IBCocoaTouchPluginVersion">1926</string>

@@ -100,7 +100,7 @@
 						<reference key="IBUINormalTitleShadowColor" ref="837388397"/>
 						<object class="NSCustomResource" key="IBUINormalBackgroundImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">draw_home_badge@2x.png</string>
+							<string key="NSResourceName">common_home_badge@2x.png</string>
 						</object>
 						<reference key="IBUIFontDescription" ref="846188212"/>
 						<reference key="IBUIFont" ref="153163793"/>
@@ -111,6 +111,7 @@
 						<string key="NSFrame">{{0, 84}, {107, 21}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -308,7 +309,7 @@
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="draw_home_badge@2x.png">{28, 28}</string>
+			<string key="common_home_badge@2x.png">{28, 28}</string>
 			<string key="draw_home_draw">{16, 16}</string>
 		</dictionary>
 		<string key="IBCocoaTouchPluginVersion">1926</string>
