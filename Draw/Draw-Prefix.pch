@@ -16,4 +16,6 @@
     #import "DeviceDetection.h"
     #import "GameApp.h"
     #import "GameResource.h"
+    #define ISIPAD [DeviceDetection isIPAD]
+
 #endif

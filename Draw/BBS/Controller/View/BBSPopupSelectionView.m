@@ -9,7 +9,7 @@
 #import "BBSPopupSelectionView.h"
 #import "BBSViewManager.h"
 
-#define ISIPAD [DeviceDetection isIPAD]
+//#define ISIPAD [DeviceDetection isIPAD]
 
 #define SPACE_TOP_BUTTON (ISIPAD ? 7*2 : 7)
 #define SPACE_BOTTOM_BUTTON (ISIPAD ? 15*2 : 15)

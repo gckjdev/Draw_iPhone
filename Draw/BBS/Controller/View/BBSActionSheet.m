@@ -9,7 +9,7 @@
 #import "BBSActionSheet.h"
 #import "BBSViewManager.h"
 
-#define ISIPAD [DeviceDetection isIPAD]
+//#define ISIPAD [DeviceDetection isIPAD]
 
 #define SPACE_LEFTRIGHT_BUTTON (ISIPAD ? 18*2 : 18)
 #define SPACE_TOPBOTTOM_BUTTON (ISIPAD ? 12*2 : 12)

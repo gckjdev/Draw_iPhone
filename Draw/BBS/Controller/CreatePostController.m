@@ -57,7 +57,7 @@
 
 @end
 
-#define ISIPAD [DeviceDetection isIPAD]
+//#define ISIPAD [DeviceDetection isIPAD]
 #define BUTTON_CORNER_RADIUS ISIPAD ? 4 : 2
 
 @implementation CreatePostController
