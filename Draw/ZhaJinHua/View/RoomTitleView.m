@@ -34,6 +34,7 @@
     view.titleLabel.shadowColor = [UIColor colorWithRed:50.0/255.0 green:29.0/255.0 blue:9.0/255.0 alpha:0.8];
     view.titleLabel.shadowOffset = CGSizeMake(-1.0f, -1.0f);
     view.titleLabel.shadowBlur = 1.0f;
+    view.titleLabel.numberOfLines = 1;
 //    view.titleLabel.innerShadowColor = [UIColor colorWithWhite:0.0f alpha:0.8f];
 //    view.titleLabel.innerShadowOffset = CGSizeMake(1.0f, 1.0f);
     return view;
