@@ -62,12 +62,45 @@ static DrawImageManager * _staticDrawImageManager;
 }
 
 
+//Common
 - (UIImage *)drawHomeBbs
 {
-    NSString *imageName = [self fixImageName:@"draw_home_bbs"];
+    NSString *imageName = [self fixImageName:@"common_home_bbs"];
     return [UIImage imageNamed:imageName];
-
 }
+- (UIImage *)drawHomeHome{
+    NSString *imageName = [self fixImageName:@"common_home_home"];
+    return [UIImage imageNamed:imageName];
+}
+- (UIImage *)drawHomeMessage{
+    NSString *imageName = [self fixImageName:@"common_home_message"];
+    return [UIImage imageNamed:imageName];
+}
+- (UIImage *)drawHomeSetting{
+    NSString *imageName = [self fixImageName:@"common_home_setting"];
+    return [UIImage imageNamed:imageName];
+}
+- (UIImage *)drawHomeMe
+{
+    NSString *imageName = [self fixImageName:@"common_home_me"];
+    return [UIImage imageNamed:imageName];
+}
+- (UIImage *)drawHomeFriend
+{
+    NSString *imageName = [self fixImageName:@"common_home_friend"];
+    return [UIImage imageNamed:imageName];
+}
+- (UIImage *)drawHomeShop{
+    NSString *imageName = [self fixImageName:@"common_home_shop"];
+    return [UIImage imageNamed:imageName];
+}
+- (UIImage *)drawHomeMore
+{
+    NSString *imageName = [self fixImageName:@"common_home_more"];
+    return [UIImage imageNamed:imageName];
+}
+
+//Draw
 - (UIImage *)drawHomeContest{
     NSString *imageName = [self fixImageName:@"draw_home_contest"];
     return [UIImage imageNamed:imageName];
@@ -80,14 +113,6 @@ static DrawImageManager * _staticDrawImageManager;
     NSString *imageName = [self fixImageName:@"draw_home_guess"];
     return [UIImage imageNamed:imageName];
 }
-- (UIImage *)drawHomeHome{
-    NSString *imageName = [self fixImageName:@"draw_home_home"];
-    return [UIImage imageNamed:imageName];
-}
-- (UIImage *)drawHomeMessage{
-    NSString *imageName = [self fixImageName:@"draw_home_message"];
-    return [UIImage imageNamed:imageName];
-}
 - (UIImage *)drawHomeOnlineGuess{
     NSString *imageName = [self fixImageName:@"draw_home_online_guess"];
     return [UIImage imageNamed:imageName];
@@ -96,32 +121,7 @@ static DrawImageManager * _staticDrawImageManager;
     NSString *imageName = [self fixImageName:@"draw_home_opus"];
     return [UIImage imageNamed:imageName];
 }
-- (UIImage *)drawHomeSetting{
-    NSString *imageName = [self fixImageName:@"draw_home_setting"];
-    return [UIImage imageNamed:imageName];
-}
 
-- (UIImage *)drawHomeMore
-{
-    NSString *imageName = [self fixImageName:@"draw_home_more"];
-    return [UIImage imageNamed:imageName];
-}
-- (UIImage *)drawHomeMe
-{
-    NSString *imageName = [self fixImageName:@"draw_home_me"];
-    return [UIImage imageNamed:imageName];
-}
-- (UIImage *)drawHomeFriend
-{
-    NSString *imageName = [self fixImageName:@"draw_home_friend"];
-    return [UIImage imageNamed:imageName];   
-}
-
-
-- (UIImage *)drawHomeShop{
-    NSString *imageName = [self fixImageName:@"draw_home_shop"];
-    return [UIImage imageNamed:imageName];
-}
 - (UIImage *)drawHomeTimeline{
     NSString *imageName = [self fixImageName:@"draw_home_timeline"];
     return [UIImage imageNamed:imageName];
@@ -133,7 +133,7 @@ static DrawImageManager * _staticDrawImageManager;
 
 //stretcable
 - (UIImage *)drawHomeSplitline{
-    return [self stretchableImageWithImageName:@"draw_home_splitline"
+    return [self stretchableImageWithImageName:@"common_home_splitline"
                              leftCapWidthScale:0.5 topCapHeightScale:0.5];
 }
 
@@ -141,4 +141,39 @@ static DrawImageManager * _staticDrawImageManager;
 {
     return [UIImage strectchableImageName:@"draw_home_displaybg@2x"];
 }
+
+- (UIImage *)zjhHomeHelp{
+    NSString *imageName = [self fixImageName:@"zjh_home_help"];
+    return [UIImage imageNamed:imageName];
+}
+- (UIImage *)zjhHomeNormalSite{
+    NSString *imageName = [self fixImageName:@"zjh_home_normal_site"];
+    return [UIImage imageNamed:imageName];
+}
+- (UIImage *)zjhHomeRichSite{
+    NSString *imageName = [self fixImageName:@"zjh_home_rich_site"];
+    return [UIImage imageNamed:imageName];
+}
+- (UIImage *)zjhHomeStart{
+    NSString *imageName = [self fixImageName:@"zjh_home_start"];
+    return [UIImage imageNamed:imageName];
+}
+- (UIImage *)zjhHomeVSSite{
+    NSString *imageName = [self fixImageName:@"zjh_home_vs_site"];
+    return [UIImage imageNamed:imageName];
+}
+
+- (UIImage *)zjhHomeChargeBG
+{
+    return [self stretchableImageWithImageName:@"zjh_home_charge_bg"
+                             leftCapWidthScale:0.5 topCapHeightScale:0.5];
+
+}
+- (UIImage *)zjhHomeFreeCoinBG
+{
+    return [self stretchableImageWithImageName:@"zjh_home_freecoin_bg"
+                             leftCapWidthScale:0.5 topCapHeightScale:0.5];    
+}
+
+
 @end

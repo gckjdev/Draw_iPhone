@@ -3,12 +3,20 @@
 	<data>
 		<int key="IBDocument.SystemTarget">1536</int>
 		<string key="IBDocument.SystemVersion">12A269</string>
+<<<<<<< HEAD
 		<string key="IBDocument.InterfaceBuilderVersion">2840</string>
+=======
+		<string key="IBDocument.InterfaceBuilderVersion">2844</string>
+>>>>>>> 0edba34253f40ae00a1e0b63b96e521cec00e4e7
 		<string key="IBDocument.AppKitVersion">1187</string>
 		<string key="IBDocument.HIToolboxVersion">624.00</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+<<<<<<< HEAD
 			<string key="NS.object.0">1926</string>
+=======
+			<string key="NS.object.0">1930</string>
+>>>>>>> 0edba34253f40ae00a1e0b63b96e521cec00e4e7
 		</object>
 		<array key="IBDocument.IntegratedClassDependencies">
 			<string>IBProxyObject</string>
@@ -214,6 +222,10 @@
 			<string key="dialogue@2x.png">{16, 16}</string>
 			<string key="face_wry@2x.png">{61, 61}</string>
 		</dictionary>
+<<<<<<< HEAD
 		<string key="IBCocoaTouchPluginVersion">1926</string>
+=======
+		<string key="IBCocoaTouchPluginVersion">1930</string>
+>>>>>>> 0edba34253f40ae00a1e0b63b96e521cec00e4e7
 	</data>
 </archive>

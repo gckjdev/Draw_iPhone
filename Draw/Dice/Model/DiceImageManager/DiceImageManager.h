@@ -7,8 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "ImageManagerProtocol.h"
 
-@interface DiceImageManager : NSObject
+@interface DiceImageManager : NSObject <ImageManagerProtocol>
 
 + (DiceImageManager*)defaultManager;
 
@@ -87,12 +88,6 @@
                                    dice:(int)dice;
 - (UIImage*)customOpenDiceImageWithDiceName:(NSString*)name 
                                        dice:(int)dice;
-
-
-
-//- (UIImage *)diceNormalRoomBgImage;
-//- (UIImage *)diceHighRoomBgImage;
-//- (UIImage *)diceSuperHighRoomBgImage;
 
 - (UIImage *)diceNormalRoomListBgImage;
 - (UIImage *)diceHighRoomListBgImage;

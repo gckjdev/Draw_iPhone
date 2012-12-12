@@ -9,7 +9,11 @@
 #import "ZJHGameApp.h"
 #import "MobClickUtils.h"
 #import "ZJHChatMsgManager.h"
+<<<<<<< HEAD
 #import "ConfigManager.h"
+=======
+#import "ZJHImageManager.h"
+>>>>>>> 0edba34253f40ae00a1e0b63b96e521cec00e4e7
 
 @implementation ZJHGameApp
 
@@ -189,6 +193,27 @@
 }
 
 
+- (id<ImageManagerProtocol>)getImageManager
+{
+    return [ZJHImageManager defaultManager];
+}
+- (NSString*)getCommonDialogXibName
+{
+    return @"CommonZJHDialog";
+}
+- (NSString*)getInputDialogXibName
+{
+    return @"ZJHInputDialog";
+}
+- (NSString*)getPasswordDialogXibName
+{
+    return @"ZJHPasswordDialog";
+}
+- (NSString*)getRoomPasswordDialogXibName
+{
+    return @"ZJHRoomPasswordDialog";
+}
+
 - (NSString *)helpViewBgImageName
 {
     return @"zjh_help_view_bg";
@@ -212,6 +237,7 @@
 - (NSString *)itemsUsageButtonBgImageNameForSelected
 {
     return nil;
+
 }
 
 - (NSString *)upgradeMessage:(int)newLevel

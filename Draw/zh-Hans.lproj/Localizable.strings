@@ -935,9 +935,17 @@
 "kHomeMenuTypeDrawOpus" = "作品";
 "kHomeMenuTypeDrawMessage" = "消息";
 "kHomeMenuTypeDrawSetting" = "设置";
-"HomeMenuTypeDrawShop" = "商店";
+"kHomeMenuTypeDrawShop" = "商店";
 
 "kCharge" = "充值";
+"kFreeCoin" = "免费金币";
+
+"kHomeMenuTypeZJHHelp" = "帮助";
+"kHomeMenuTypeZJHStart" = "快速开始";
+"kHomeMenuTypeZJHRichSite" = "富豪场";
+"kHomeMenuTypeZJHNormalSite" = "普通场";
+"kHomeMenuTypeZJHVSSite" = "单挑场";
+
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 

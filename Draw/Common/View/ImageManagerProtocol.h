@@ -9,7 +9,8 @@
 #import <Foundation/Foundation.h>
 @class UIImage;
 
-@protocol DialogImageManagerProtocol <NSObject>
+@protocol ImageManagerProtocol <NSObject>
+@required
 
 - (UIImage*)commonDialogBgImage;
 - (UIImage*)commonDialogLeftBtnImage;
@@ -20,7 +21,14 @@
 - (UIImage*)inputDialogLeftBtnImage;
 - (UIImage*)inputDialogRightBtnImage;
 
-
-
+- (UIImage *)audioOff;
+- (UIImage *)audioOn;
+- (UIImage *)musicOn;
+- (UIImage *)musicOff;
+- (UIImage *)settingsBgImage;
+- (UIImage *)settingsLeftSelected;
+- (UIImage *)settingsLeftUnselected;
+- (UIImage *)settingsRightSelected;
+- (UIImage *)settingsRightUnselected;
 
 @end

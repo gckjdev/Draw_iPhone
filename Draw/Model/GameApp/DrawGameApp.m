@@ -10,6 +10,7 @@
 #import "MobClickUtils.h"
 #import "ConfigManager.h"
 
+
 @implementation DrawGameApp
 
 - (NSString*)appId
@@ -168,5 +169,7 @@
 {
     return @"dialogue@2x.png";
 }
+
+
 
 @end

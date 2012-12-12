@@ -53,4 +53,15 @@
 //    return self;
 //}
 
+- (void)setTitle:(NSString *)title forState:(UIControlState)state
+{
+    [self.fontLable setText:title];
+}
+
+- (UILabel*)titleLabel
+{
+    return self.fontLable;
+}
+
+
 @end

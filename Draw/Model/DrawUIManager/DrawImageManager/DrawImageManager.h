@@ -34,4 +34,14 @@
 - (UIImage *)drawHomeSplitline;
 - (UIImage *)drawHomeDisplayBG;
 
+//ZJH Image
+- (UIImage *)zjhHomeHelp;
+- (UIImage *)zjhHomeNormalSite;
+- (UIImage *)zjhHomeRichSite;
+- (UIImage *)zjhHomeStart;
+- (UIImage *)zjhHomeVSSite;
+
+- (UIImage *)zjhHomeChargeBG;
+- (UIImage *)zjhHomeFreeCoinBG;
+
 @end

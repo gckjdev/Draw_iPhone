@@ -9,8 +9,16 @@
 #import "DiceGameApp.h"
 #import "MobClickUtils.h"
 #import "DiceChatMsgManager.h"
+
+
+#import "DiceImageManager.h"
+
 #import "DiceFontManager.h"
 #import "ConfigManager.h"
+
+#import "FileUtil.h"
+
+
 
 @implementation DiceGameApp
 
@@ -197,6 +205,28 @@
     return [UIColor blackColor];
 }
 
+
+- (id<ImageManagerProtocol>)getImageManager
+{
+    return [DiceImageManager defaultManager];
+}
+- (NSString*)getCommonDialogXibName
+{
+    return @"CommonDiceDialog";
+}
+- (NSString*)getInputDialogXibName
+{
+    return @"DiceInputDialog";
+}
+- (NSString*)setRoyButtonWithColor
+{
+    return @"DicePasswordDialog";
+}
+- (NSString*)getRoomPasswordDialogXibName
+{
+    return @"DiceRoomPasswordDialog";
+}
+
 - (NSString *)helpViewBgImageName
 {
     return @"dice_popup_bg";
@@ -220,6 +250,7 @@
 - (NSString *)itemsUsageButtonBgImageNameForSelected
 {
     return @"dice_tabright_selected";
+
 }
 
 - (NSString *)upgradeMessage:(int)newLevel

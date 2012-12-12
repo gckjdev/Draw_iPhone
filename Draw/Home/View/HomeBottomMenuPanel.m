@@ -41,6 +41,7 @@
     return @"HomeBottomMenuPanel";
 }
 
+
 - (HomeMenuView *)viewWithType:(HomeMenuType)type
                          index:(NSInteger)index
 {
@@ -74,6 +75,9 @@
     while (list != NULL && (*list) != HomeMenuTypeEnd) {
         HomeMenuType type = (*list);
         HomeMenuView *view = [self viewWithType:type index:_menuCount++];
+        
+        //TODO update view width
+        
         if (view) {
             [self addSubview:view];
             [array addObject:view];
@@ -83,10 +87,13 @@
     
     if (_menuCount > 0) {
         CGFloat width = WIDTH / _menuCount;
+        CGFloat x = 0;
         for (HomeMenuView *view in array) {
             CGRect frame = view.frame;
+            frame.origin = CGPointMake(x, frame.origin.y);
             frame.size = CGSizeMake(width, frame.size.height);
             view.frame = frame;
+            x += width;
         }
     }
 }

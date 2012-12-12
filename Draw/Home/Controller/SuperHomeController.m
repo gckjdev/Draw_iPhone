@@ -13,6 +13,8 @@
 #import "UserManager.h"
 #import "RegisterUserController.h"
 #import "UserSettingController.h"
+#import "LmWallService.h"
+#import "UIUtils.h"
 
 @interface SuperHomeController ()
 {
@@ -174,6 +176,14 @@
     CoinShopController* controller = [[[CoinShopController alloc] init] autorelease];
     [self.navigationController pushViewController:controller animated:YES];
     
+}
+
+- (void)homeHeaderPanel:(HomeHeaderPanel *)headerPanel
+ didClickFreeCoinButton:(UIButton *)button
+{
+    [UIUtils alertWithTitle:@"免费金币获取提示" msg:@"下载免费应用即可获取金币！下载完应用一定要打开才可以获得奖励哦！"];
+    [[LmWallService defaultService] show:self];
+
 }
 
 - (void)homeHeaderPanel:(HomeHeaderPanel *)headerPanel
