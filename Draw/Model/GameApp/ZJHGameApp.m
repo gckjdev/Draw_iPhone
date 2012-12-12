@@ -204,7 +204,7 @@
 }
 - (NSString*)getPasswordDialogXibName
 {
-    return @"ZJHPasswordDialog";
+    return @"ZJHPassWordDialog";
 }
 - (NSString*)getRoomPasswordDialogXibName
 {
