@@ -276,6 +276,7 @@
 		A4B45F0416786682009EA231 /* style.css in Resources */ = {isa = PBXBuildFile; fileRef = A4B45EFF16786682009EA231 /* style.css */; };
 		A4B45F0516786682009EA231 /* help.zip in Resources */ = {isa = PBXBuildFile; fileRef = A4B45F0016786682009EA231 /* help.zip */; };
 		A4B45F081678670C009EA231 /* CommonHelpManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B45F071678670C009EA231 /* CommonHelpManager.m */; };
+		A4B45F2E16787545009EA231 /* zjh_bg@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A4B45F2D16787545009EA231 /* zjh_bg@2x.jpg */; };
 		A4B763A215C25208003B4E72 /* Draw.proto in Resources */ = {isa = PBXBuildFile; fileRef = A4B763A015C25208003B4E72 /* Draw.proto */; };
 		A4B763A315C25208003B4E72 /* Dice.proto in Resources */ = {isa = PBXBuildFile; fileRef = A4B763A115C25208003B4E72 /* Dice.proto */; };
 		A4B763A815C25218003B4E72 /* Draw.pb.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B763A515C25218003B4E72 /* Draw.pb.m */; };
@@ -2494,6 +2495,7 @@
 		A4B45F0016786682009EA231 /* help.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = help.zip; sourceTree = "<group>"; };
 		A4B45F061678670C009EA231 /* CommonHelpManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonHelpManager.h; sourceTree = "<group>"; };
 		A4B45F071678670C009EA231 /* CommonHelpManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonHelpManager.m; sourceTree = "<group>"; };
+		A4B45F2D16787545009EA231 /* zjh_bg@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "zjh_bg@2x.jpg"; sourceTree = "<group>"; };
 		A4B763A015C25208003B4E72 /* Draw.proto */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Draw.proto; sourceTree = "<group>"; };
 		A4B763A115C25208003B4E72 /* Dice.proto */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Dice.proto; sourceTree = "<group>"; };
 		A4B763A415C25218003B4E72 /* Draw.pb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Draw.pb.h; sourceTree = "<group>"; };
@@ -5221,6 +5223,7 @@
 		A405C82E165B874500E7610F /* room */ = {
 			isa = PBXGroup;
 			children = (
+				A4B45F2D16787545009EA231 /* zjh_bg@2x.jpg */,
 				A4CCE7AF1678304C00F90726 /* zjh_game_rule_btn_bg_selected@2x.png */,
 				A4CCE7B01678304C00F90726 /* zjh_help_view_bg@2x.png */,
 				A4CCE77A1677398E00F90726 /* zjh_chat_view_bg@2x.png */,
@@ -12626,6 +12629,7 @@
 				A4B45F0516786682009EA231 /* help.zip in Resources */,
 				C2F1DEC516786E1C002D8408 /* CommonSettingView.xib in Resources */,
 				C2F1DEC616786E1C002D8408 /* CommonSettingView~ipad.xib in Resources */,
+				A4B45F2E16787545009EA231 /* zjh_bg@2x.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
