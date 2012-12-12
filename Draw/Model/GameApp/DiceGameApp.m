@@ -205,7 +205,7 @@
 }
 
 
-- (id<DialogImageManagerProtocol>)getImageManager
+- (id<ImageManagerProtocol>)getImageManager
 {
     return [DiceImageManager defaultManager];
 }

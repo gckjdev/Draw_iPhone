@@ -7,10 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "DialogImageManagerProtocol.h"
+#import "ImageManagerProtocol.h"
 @class PPResourceService;
 
-@interface CommonImageManager : NSObject <DialogImageManagerProtocol>{
+@interface CommonImageManager : NSObject <ImageManagerProtocol>{
     PPResourceService*  _resService;
 }
 

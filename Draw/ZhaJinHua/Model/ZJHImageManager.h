@@ -9,9 +9,9 @@
 #import <Foundation/Foundation.h>
 #import "Poker.h"
 #import "ZJHConstance.h"
-#import "DialogImageManagerProtocol.h"
+#import "ImageManagerProtocol.h"
 
-@interface ZJHImageManager : NSObject <DialogImageManagerProtocol>
+@interface ZJHImageManager : NSObject <ImageManagerProtocol>
 
 + (ZJHImageManager*)defaultManager;
 

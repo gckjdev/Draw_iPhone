@@ -189,7 +189,7 @@
 }
 
 
-- (id<DialogImageManagerProtocol>)getImageManager
+- (id<ImageManagerProtocol>)getImageManager
 {
     return [ZJHImageManager defaultManager];
 }
