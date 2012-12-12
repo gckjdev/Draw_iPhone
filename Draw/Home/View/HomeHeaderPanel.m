@@ -56,6 +56,7 @@
 
 + (NSString *)getViewIdentifier
 {
+//    return @"ZJHHomeHeaderPanel";
     if (isDrawApp()) {
         return @"DrawHomeHeaderPanel";
     } else if (isZhajinhuaApp()) {
@@ -251,6 +252,7 @@
     
     //charge button
     [self.chargeButton setTitle:NSLS(@"kCharge") forState:UIControlStateNormal];
+    [self.freeCoin setTitle:NSLS(@"kFreeCoin") forState:UIControlStateNormal];
     
     [self.displayScrollView setHidden:YES];
     

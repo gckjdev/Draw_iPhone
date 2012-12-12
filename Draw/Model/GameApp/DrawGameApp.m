@@ -8,6 +8,7 @@
 
 #import "DrawGameApp.h"
 #import "MobClickUtils.h"
+#import "ConfigManager.h"
 
 
 @implementation DrawGameApp
@@ -154,6 +155,20 @@
     return NSLS(@"kEmail_subject");    
 }
 
+- (NSString *)upgradeMessage:(int)newLevel
+{
+    return [NSString stringWithFormat:NSLS(@"kUpgradeMsg"),newLevel,[ConfigManager flowerAwardFordLevelUp]];
+}
+
+- (NSString *)degradeMessage:(int)newLevel
+{
+    return [NSString stringWithFormat:NSLS(@"kDegradeMsg"),newLevel,[ConfigManager flowerAwardFordLevelUp]];
+}
+
+- (NSString *)popupMessageDialogBackgroundImage
+{
+    return @"dialogue@2x.png";
+}
 
 
 

@@ -87,7 +87,7 @@
         numberOfRows = count;
         
         dataTableView.frame = CGRectMake(dataTableView.frame.origin.x, dataTableView.frame.origin.y, dataTableView.frame.size.width, DRAW_TABLE_HEIGHT);
-    }else{ // if (isDiceApp()) {
+    }else{ 
         rowOfShare = count++;
         rowOfFollow = count++;
         rowOfReportBug = count++;
@@ -175,28 +175,14 @@ enum {
     
     shareBodyModel = [GameApp shareMessageBody];
     
-//    if (isDrawApp()) {
-//        shareBodyModel = NSLS(@"kShare_message_body");
-//    }else if (isDiceApp()) {
-//        shareBodyModel = NSLS(@"kDice_share_message_body");
-//    }else if (isZhajinhuaApp()){
-//        shareBodyModel = NSLS(@"kZJH_share_message_body");
-//    }
-    
+
     NSString *shareBody = [NSString stringWithFormat:shareBodyModel, NSLocalizedStringFromTable(@"CFBundleDisplayName", @"InfoPlist", @""),[UIUtils getAppLink:[ConfigManager appId]]];
     
     if (buttonIndex == buttonIndexSMS) {
         [self sendSms:nil body:shareBody];
     } else if (buttonIndex == buttonIndexEmail) {
         NSString *emailSubject = [GameApp shareEmailSubject];
-//        if (isDrawApp()) {
-//            emailSubject = NSLS(@"kEmail_subject");
-//        }else if (isDiceApp()) {
-//            emailSubject = NSLS(@"kDice_email_subject");
-//        }
-//        else if (isZhajinhuaApp()){
-//            emailSubject = NSLS(@"kZJH_email_subject");
-//        }
+
         [self sendEmailTo:nil ccRecipients:nil bccRecipients:nil subject:emailSubject body:shareBody isHTML:NO delegate:self];
     } else if (buttonIndex == buttonIndexSinaWeibo) {
         
@@ -205,26 +191,20 @@ enum {
                                                                                 successBlock:NULL
                                                                                 failureBlock:NULL];
         
-//        if ([[UserManager defaultManager] hasBindSinaWeibo]){
-//            [[SinaSNSService defaultService] publishWeibo:shareBody delegate:self];
-//        }
+
     } else if (buttonIndex == buttonIndexQQWeibo) {
         [[[PPSNSIntegerationService defaultService] snsServiceByType:TYPE_QQ] publishWeibo:shareBody
                                                                                imageFilePath:nil
                                                                                 successBlock:NULL
                                                                                 failureBlock:NULL];
         
-//        if ([[UserManager defaultManager] hasBindQQWeibo]){
-//            [[QQWeiboService defaultService] publishWeibo:shareBody delegate:self];
-//        }
+
     } else if (buttonIndex == buttonIndexFacebook) {
         [[[PPSNSIntegerationService defaultService] snsServiceByType:TYPE_FACEBOOK] publishWeibo:shareBody
                                                                                imageFilePath:nil
                                                                                 successBlock:NULL
                                                                                 failureBlock:NULL];
-//        if ([[UserManager defaultManager] hasBindFacebook]){
-//            [[FacebookSNSService defaultService] publishWeibo:shareBody delegate:self];
-//        }
+
     }
     
 
