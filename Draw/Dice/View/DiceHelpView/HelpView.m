@@ -1,16 +1,16 @@
 //
-//  DiceHelpView.m
+//  HelpView.m
 //  Draw
 //
 //  Created by 小涛 王 on 12-8-24.
 //  Copyright (c) 2012年 甘橙软件. All rights reserved.
 //
 
-#import "DiceHelpView.h"
+#import "HelpView.h"
 #import "DiceHelpManager.h"
 #import "DiceImageManager.h"
 
-@interface DiceHelpView ()
+@interface HelpView ()
 {
     DiceHelpManager *_helpManager;
     AnimationType _animationType;
@@ -18,7 +18,7 @@
 
 @end
 
-@implementation DiceHelpView
+@implementation HelpView
 
 @synthesize delegate = _delegate;
 
@@ -38,7 +38,7 @@
     [super dealloc];
 }
 
-+ (id)createDiceHelpView
++ (id)createHelpView
 {
     NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"DiceHelpView" owner:self options:nil];
     // Grab a pointer to the first object (presumably the custom cell, as that's all the XIB should contain).  
@@ -221,6 +221,7 @@
     
     // Request from a url, load request to web view.
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    PPDebug(@"Help URL: %@", request.description);
     if (request) {
         [webView loadRequest:request];        
     }

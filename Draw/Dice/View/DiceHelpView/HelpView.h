@@ -1,5 +1,5 @@
 //
-//  DiceHelpView.h
+//  HelpView.h
 //  Draw
 //
 //  Created by 小涛 王 on 12-8-24.
@@ -20,18 +20,18 @@ typedef enum {
 } AnimationType;
 
 
-@protocol DiceHelpViewDelegate <NSObject>
+@protocol HelpViewDelegate <NSObject>
 
 @required
 - (void)didHelpViewHide;
 
 @end
 
-@interface DiceHelpView : UIView <UIWebViewDelegate>
+@interface HelpView : UIView <UIWebViewDelegate>
 
-@property (assign, nonatomic) id<DiceHelpViewDelegate> delegate;
+@property (assign, nonatomic) id<HelpViewDelegate> delegate;
 
-+ (id)createDiceHelpView;
++ (id)createHelpView;
 
 - (void)showInView:(UIView *)view;
 

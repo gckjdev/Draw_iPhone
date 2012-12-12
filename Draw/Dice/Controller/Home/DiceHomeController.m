@@ -31,7 +31,7 @@
 #import "DiceConfigManager.h"
 #import "ConfigManager.h"
 #import "LmWallService.h"
-#import "DiceHelpView.h"
+#import "HelpView.h"
 
 #import "RegisterUserController.h"
 
@@ -614,7 +614,7 @@
                 [self.view bringSubviewToFront:helpView];
             }
             else{            
-                DiceHelpView *view = [DiceHelpView createDiceHelpView];
+                HelpView *view = [HelpView createHelpView];
                 [view showInView:self.view];
             }
         }

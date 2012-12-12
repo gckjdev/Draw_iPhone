@@ -10,6 +10,20 @@
 
 @implementation ZJHRuleConfig
 
+- (NSArray *)chipValues
+{
+    return nil;
+}
+- (int)maxPlayerNum
+{
+    return 0;
+}
+
+- (UIImage *)gameBgImage
+{
+    return nil;
+}
+
 - (UIView *)createButtons:(PokerView *)pokerView
 {
     UIView *view = [[[UIButton alloc] initWithFrame:CGRectMake(0, 0, TWO_BUTTONS_HOLDER_VIEW_WIDTH, TWO_BUTTONS_HOLDER_VIEW_HEIGHT)] autorelease];
