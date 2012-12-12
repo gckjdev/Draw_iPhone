@@ -121,11 +121,11 @@
 						</object>
 						<nil key="IBUIHighlightedColor"/>
 						<int key="IBUIBaselineAdjustment">0</int>
-						<object class="IBUIFontDescription" key="IBUIFontDescription" id="936250150">
+						<object class="IBUIFontDescription" key="IBUIFontDescription" id="527482490">
 							<int key="type">2</int>
 							<double key="pointSize">12</double>
 						</object>
-						<object class="NSFont" key="IBUIFont" id="433385826">
+						<object class="NSFont" key="IBUIFont" id="993753928">
 							<string key="NSName">Helvetica-Bold</string>
 							<double key="NSSize">12</double>
 							<int key="NSfFlags">16</int>
@@ -173,8 +173,8 @@
 							<int key="NSColorSpace">3</int>
 							<bytes key="NSWhite">MC41AA</bytes>
 						</object>
-						<reference key="IBUIFontDescription" ref="936250150"/>
-						<reference key="IBUIFont" ref="433385826"/>
+						<reference key="IBUIFontDescription" ref="527482490"/>
+						<reference key="IBUIFont" ref="993753928"/>
 					</object>
 					<object class="IBUILabel" id="893143396">
 						<reference key="NSNextResponder" ref="191373211"/>
@@ -245,7 +245,7 @@
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<object class="NSCustomResource" key="IBUIImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">draw_home_coin@2x.png</string>
+							<string key="NSResourceName">common_home_coin@2x.png</string>
 						</object>
 					</object>
 					<object class="IBUIScrollView" id="984452997">
@@ -549,8 +549,8 @@
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
+			<string key="common_home_coin@2x.png">{29, 25}</string>
 			<string key="draw_home_banner@2x.png">{640, 285}</string>
-			<string key="draw_home_coin@2x.png">{29, 25}</string>
 			<string key="draw_home_displaybg@2x.png">{180, 63}</string>
 			<string key="draw_home_header_bg@2x.png">{640, 325}</string>
 			<string key="draw_home_task@2x.png">{110, 137}</string>

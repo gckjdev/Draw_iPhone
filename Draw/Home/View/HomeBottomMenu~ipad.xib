@@ -96,7 +96,7 @@
 						</object>
 						<object class="NSCustomResource" key="IBUINormalBackgroundImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">draw_home_badge@2x.png</string>
+							<string key="NSResourceName">common_home_badge@2x.png</string>
 						</object>
 						<object class="IBUIFontDescription" key="IBUIFontDescription">
 							<int key="type">1</int>
@@ -263,7 +263,7 @@
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<object class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="NS.key.0">draw_home_badge@2x.png</string>
+			<string key="NS.key.0">common_home_badge@2x.png</string>
 			<string key="NS.object.0">{28, 28}</string>
 		</object>
 		<string key="IBCocoaTouchPluginVersion">1926</string>
