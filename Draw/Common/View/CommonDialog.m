@@ -143,8 +143,8 @@
             [self.oKButton.fontLable setText:NSLS(@"kOK")];
 
             [self.contentBackground setImage:[diceImgManager popupBackgroundImage]];
-            [self.oKButton setRoyButtonWithColor:[UIColor colorWithRed:244.0/255.0 green:93.0/255.0 blue:93.0/255.0 alpha:0.95]];
-            [self.backButton setRoyButtonWithColor:[UIColor colorWithRed:236.0/255.0 green:247.0/255.0 blue:63.0/255.0 alpha:0.95]];
+//            [self.oKButton setRoyButtonWithColor:[UIColor colorWithRed:244.0/255.0 green:93.0/255.0 blue:93.0/255.0 alpha:0.95]];
+//            [self.backButton setRoyButtonWithColor:[UIColor colorWithRed:236.0/255.0 green:247.0/255.0 blue:63.0/255.0 alpha:0.95]];
         } break;
         case CommonDialogThemeDraw:
             [self.oKButton setBackgroundImage:[imgManager redImage] forState:UIControlStateNormal];

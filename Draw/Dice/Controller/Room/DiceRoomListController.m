@@ -327,9 +327,9 @@
     // Do any additional setup after loading the view from its nib.
     self.view.backgroundColor = [UIColor colorWithPatternImage:[self bgImage]];
     
-    [createRoomButton setRoyButtonWithColor:[DiceColorManager dialoggreenColor]];
-    
-    [fastEntryButton setRoyButtonWithColor:[DiceColorManager dialogYellowColor]];
+//    [createRoomButton setRoyButtonWithColor:[DiceColorManager dialoggreenColor]];
+//    
+//    [fastEntryButton setRoyButtonWithColor:[DiceColorManager dialogYellowColor]];
     
     [self.titleFontButton.fontLable setTextColor:[UIColor whiteColor]]; 
     [self.allRoomButton.fontLable setTextColor:[UIColor whiteColor]]; 

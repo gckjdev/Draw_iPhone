@@ -87,8 +87,8 @@
     [self.targetTextField setBackground:[diceImgManager inputBackgroundImage]];
     [self.titleLabel.fontLable setText:title];
     
-    [self.okButton setRoyButtonWithColor:[UIColor colorWithRed:120.0/255.0 green:230.0/255.0 blue:160.0/255.0 alpha:0.95]];
-    [self.cancelButton setRoyButtonWithColor:[UIColor colorWithRed:236.0/255.0 green:247.0/255.0 blue:63.0/255.0 alpha:0.95]];
+//    [self.okButton setRoyButtonWithColor:[UIColor colorWithRed:120.0/255.0 green:230.0/255.0 blue:160.0/255.0 alpha:0.95]];
+//    [self.cancelButton setRoyButtonWithColor:[UIColor colorWithRed:236.0/255.0 green:247.0/255.0 blue:63.0/255.0 alpha:0.95]];
     
     [self.cancelButton.fontLable setText:NSLS(@"kCancel")];
     [self.okButton.fontLable setText:NSLS(@"kOK")];
