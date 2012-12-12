@@ -68,6 +68,7 @@ ZJHHomeViewController *_staticZJHHomeViewController = nil;
 {
     switch (type) {
         case HomeMenuTypeZJHHelp: {
+            
             break;
         }
         case HomeMenuTypeZJHStart: {
