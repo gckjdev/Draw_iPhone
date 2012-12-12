@@ -67,6 +67,7 @@
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{114, 26}, {92, 29}}</string>
 						<reference key="NSSuperview" ref="811135455"/>
+						<reference key="NSNextKeyView" ref="509728187"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
@@ -147,6 +148,7 @@
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{142, 201}, {37, 37}}</string>
 						<reference key="NSSuperview" ref="811135455"/>
+						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -322,7 +324,7 @@
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<object class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
 			<string key="NS.key.0">clean_input@2x.png</string>
-			<string key="NS.object.0">{57, 57}</string>
+			<string key="NS.object.0">{16, 16}</string>
 		</object>
 		<string key="IBCocoaTouchPluginVersion">1926</string>
 	</data>

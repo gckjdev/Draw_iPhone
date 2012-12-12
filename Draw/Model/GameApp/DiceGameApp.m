@@ -10,9 +10,13 @@
 #import "MobClickUtils.h"
 #import "DiceChatMsgManager.h"
 
+
 #import "DiceImageManager.h"
 
 #import "DiceFontManager.h"
+
+#import "FileUtil.h"
+
 
 
 @implementation DiceGameApp
@@ -213,7 +217,7 @@
 {
     return @"DiceInputDialog";
 }
-- (NSString*)getPasswordDialogXibName
+- (NSString*)setRoyButtonWithColor
 {
     return @"DicePasswordDialog";
 }

@@ -144,7 +144,7 @@
      pointDirection:(PointDirection)pointDirection
 {
     [self dismissAnimated:YES];
-
+    self.inputTextView.text = nil;
 //    [self createTimer];
     self.popTipView = [[[CMPopTipView alloc] initWithCustomView:self needBubblePath:NO] autorelease];
     _popTipView.delegate = self;
