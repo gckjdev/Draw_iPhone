@@ -12,6 +12,7 @@
 #import "StatisticManager.h"
 #import "UserManager.h"
 #import "RegisterUserController.h"
+#import "UserSettingController.h"
 
 @interface SuperHomeController ()
 {
@@ -164,9 +165,27 @@
 - (void)homeHeaderPanel:(HomeHeaderPanel *)headerPanel
    didClickChargeButton:(UIButton *)button
 {
+    if ([self isRegistered] == NO) {
+        [self toRegister];
+        return;
+    }
+
     CoinShopController* controller = [[[CoinShopController alloc] init] autorelease];
     [self.navigationController pushViewController:controller animated:YES];
     
+}
+
+- (void)homeHeaderPanel:(HomeHeaderPanel *)headerPanel
+   didClickAvatarButton:(UIButton *)button
+{
+    if ([self isRegistered] == NO) {
+        [self toRegister];
+        return;
+    }
+
+    UserSettingController *us = [[UserSettingController alloc] init];
+    [self.navigationController pushViewController:us animated:YES];
+    [us release];
 }
 
 #pragma mark register

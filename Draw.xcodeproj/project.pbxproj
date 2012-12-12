@@ -46,10 +46,7 @@
 		A3F66CC115820B2E000BFF9A /* ChatService.m in Sources */ = {isa = PBXBuildFile; fileRef = A3F66CC015820B2D000BFF9A /* ChatService.m */; };
 		A3FAE0DA15536E8D008B5827 /* RoomController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3FAE0D915536E8D008B5827 /* RoomController~ipad.xib */; };
 		A3FAE0DC15536EBB008B5827 /* UserSettingController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3FAE0DB15536EBB008B5827 /* UserSettingController~ipad.xib */; };
-		A3FAE0DE15536EF0008B5827 /* CommonDialog~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3FAE0DD15536EF0008B5827 /* CommonDialog~ipad.xib */; };
-		A3FAE0E015536F43008B5827 /* InputDialog~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3FAE0DF15536F43008B5827 /* InputDialog~ipad.xib */; };
 		A3FAE0E215536F8E008B5827 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3FAE0E115536F8E008B5827 /* AudioToolbox.framework */; };
-		A3FAE0E415536FE3008B5827 /* PassWordDialog~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3FAE0E315536FE3008B5827 /* PassWordDialog~ipad.xib */; };
 		A3FAE0E61553701B008B5827 /* RegisterUserController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3FAE0E51553701B008B5827 /* RegisterUserController~ipad.xib */; };
 		A3FAE0E815537040008B5827 /* CompleteUserInfoController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3FAE0E715537040008B5827 /* CompleteUserInfoController~ipad.xib */; };
 		A404A9AB16426545007CA21A /* ChipsSelectView.m in Sources */ = {isa = PBXBuildFile; fileRef = A404A9AA16426545007CA21A /* ChipsSelectView.m */; };
@@ -198,7 +195,6 @@
 		A42C520615E614D2001D8208 /* CommonChatMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = A42C520315E614D2001D8208 /* CommonChatMessage.m */; };
 		A42C520715E614D2001D8208 /* DiceChatMsgManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A42C520515E614D2001D8208 /* DiceChatMsgManager.m */; };
 		A42C520B15E614E5001D8208 /* DiceSoundManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A42C520A15E614E5001D8208 /* DiceSoundManager.m */; };
-		A42C528615E756CF001D8208 /* HelpView.m in Sources */ = {isa = PBXBuildFile; fileRef = A42C528415E756CF001D8208 /* HelpView.m */; };
 		A42C528715E756CF001D8208 /* DiceHelpView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A42C528515E756CF001D8208 /* DiceHelpView.xib */; };
 		A42C93C915FF28D60090D6B6 /* CommonDiceItemAction.m in Sources */ = {isa = PBXBuildFile; fileRef = A42C93C815FF28D60090D6B6 /* CommonDiceItemAction.m */; };
 		A42C93E015FF344D0090D6B6 /* RollAgainItemAction.m in Sources */ = {isa = PBXBuildFile; fileRef = A42C93DF15FF344D0090D6B6 /* RollAgainItemAction.m */; };
@@ -318,9 +314,10 @@
 		A4CCE77F1677398E00F90726 /* zjh_chat_view_input_text_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4CCE77B1677398E00F90726 /* zjh_chat_view_input_text_bg@2x.png */; };
 		A4CCE7801677398E00F90726 /* zjh_chat_view_msg_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4CCE77C1677398E00F90726 /* zjh_chat_view_msg_bg@2x.png */; };
 		A4CCE7811677398E00F90726 /* zjh_popup_view_close_btn_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4CCE77D1677398E00F90726 /* zjh_popup_view_close_btn_bg@2x.png */; };
-		A4CCE78816781C7400F90726 /* CommonGameUser.m in Sources */ = {isa = PBXBuildFile; fileRef = A4CCE78316781C7400F90726 /* CommonGameUser.m */; };
-		A4CCE78916781C7400F90726 /* SNSUser.m in Sources */ = {isa = PBXBuildFile; fileRef = A4CCE78516781C7400F90726 /* SNSUser.m */; };
-		A4CCE78A16781C7400F90726 /* ZJHChatMsgManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A4CCE78716781C7400F90726 /* ZJHChatMsgManager.m */; };
+		A4CCE7A3167823BC00F90726 /* CommonGameUser.m in Sources */ = {isa = PBXBuildFile; fileRef = A4CCE79E167823BC00F90726 /* CommonGameUser.m */; };
+		A4CCE7A4167823BC00F90726 /* SNSUser.m in Sources */ = {isa = PBXBuildFile; fileRef = A4CCE7A0167823BC00F90726 /* SNSUser.m */; };
+		A4CCE7A5167823BC00F90726 /* ZJHChatMsgManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A4CCE7A2167823BC00F90726 /* ZJHChatMsgManager.m */; };
+		A4CCE7A8167824B300F90726 /* HelpView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4CCE7A7167824B300F90726 /* HelpView.m */; };
 		A4CE58E316324447003DB23A /* point_pic3@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4CE58E116324447003DB23A /* point_pic3@2x.png */; };
 		A4CE58E416324447003DB23A /* point_pic4@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4CE58E216324447003DB23A /* point_pic4@2x.png */; };
 		A4CE58E616324998003DB23A /* ChatView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4CE58E516324998003DB23A /* ChatView~ipad.xib */; };
@@ -341,17 +338,9 @@
 		A4E7876A16366FF8003557AD /* ZhaJinHua.proto in Resources */ = {isa = PBXBuildFile; fileRef = A4E7876916366FF8003557AD /* ZhaJinHua.proto */; };
 		A4E787941636753F003557AD /* ZJHGameState.m in Sources */ = {isa = PBXBuildFile; fileRef = A4E787931636753F003557AD /* ZJHGameState.m */; };
 		A4F6712F166C878100FF85CA /* ArrowView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4F6712E166C878100FF85CA /* ArrowView.m */; };
-		C20D4B1115DE45B100074885 /* CommonDiceDialog.xib in Resources */ = {isa = PBXBuildFile; fileRef = C20D4B1015DE45B100074885 /* CommonDiceDialog.xib */; };
 		C20D4B2515E1D78800074885 /* CommonInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = C20D4B2415E1D78800074885 /* CommonInfoView.m */; };
-		C20D4B2715E21C0400074885 /* DiceInputDialog.xib in Resources */ = {isa = PBXBuildFile; fileRef = C20D4B2615E21C0200074885 /* DiceInputDialog.xib */; };
-		C20D4B2915E21CC600074885 /* DicePassWordDialog.xib in Resources */ = {isa = PBXBuildFile; fileRef = C20D4B2815E21CC000074885 /* DicePassWordDialog.xib */; };
-		C20D4B2B15E220B600074885 /* DiceRoomPasswordDialog.xib in Resources */ = {isa = PBXBuildFile; fileRef = C20D4B2A15E220B400074885 /* DiceRoomPasswordDialog.xib */; };
 		C20D4B4F15E3274E00074885 /* DiceGamePlayController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C20D4B4E15E3274E00074885 /* DiceGamePlayController~ipad.xib */; };
 		C213091B15E349E20072A18E /* DiceUserInfoView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C213091A15E349E20072A18E /* DiceUserInfoView~ipad.xib */; };
-		C213093E15E393040072A18E /* CommonDiceDialog~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C213093D15E393030072A18E /* CommonDiceDialog~ipad.xib */; };
-		C213094015E3931F0072A18E /* DiceInputDialog~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C213093F15E3931F0072A18E /* DiceInputDialog~ipad.xib */; };
-		C213094215E393320072A18E /* DicePassWordDialog~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C213094115E393320072A18E /* DicePassWordDialog~ipad.xib */; };
-		C213094415E393410072A18E /* DiceRoomPasswordDialog~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C213094315E393400072A18E /* DiceRoomPasswordDialog~ipad.xib */; };
 		C21309FB15E774390072A18E /* DiceColorManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C21309FA15E774390072A18E /* DiceColorManager.m */; };
 		C223232D165C659E00D7ECE4 /* ZJHSettingView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C223232C165C659E00D7ECE4 /* ZJHSettingView~ipad.xib */; };
 		C223396A164E3CA100D2C123 /* AppleOpenALSupport.c in Sources */ = {isa = PBXBuildFile; fileRef = C2233961164E3CA100D2C123 /* AppleOpenALSupport.c */; };
@@ -360,8 +349,6 @@
 		C223396D164E3CA100D2C123 /* DebugOutput.m in Sources */ = {isa = PBXBuildFile; fileRef = C2233968164E3CA100D2C123 /* DebugOutput.m */; };
 		C223397F164E41C900D2C123 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C223397E164E41C800D2C123 /* OpenAL.framework */; };
 		C225866E15EF5AA4009D686D /* GCServer.m in Sources */ = {isa = PBXBuildFile; fileRef = C225866D15EF5AA4009D686D /* GCServer.m */; };
-		C22CDE15166081C100844C93 /* CommonStarryDialog.xib in Resources */ = {isa = PBXBuildFile; fileRef = C22CDE14166081C100844C93 /* CommonStarryDialog.xib */; };
-		C22CDE171660823C00844C93 /* CommonStarryDialog~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C22CDE161660823C00844C93 /* CommonStarryDialog~ipad.xib */; };
 		C22E21871608664F00DE3035 /* DiceRobotItemAction.m in Sources */ = {isa = PBXBuildFile; fileRef = C22E21861608664F00DE3035 /* DiceRobotItemAction.m */; };
 		C239366616522858001BD5C6 /* ZJHSettingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C239366316522858001BD5C6 /* ZJHSettingView.xib */; };
 		C239366716522858001BD5C6 /* ZJHSettingView.m in Sources */ = {isa = PBXBuildFile; fileRef = C239366516522858001BD5C6 /* ZJHSettingView.m */; };
@@ -379,14 +366,7 @@
 		C25C079E15D5F11700E8DD8D /* UIImage+Filtrr.m in Sources */ = {isa = PBXBuildFile; fileRef = C25C079915D5F11700E8DD8D /* UIImage+Filtrr.m */; };
 		C25C079F15D5F11700E8DD8D /* UIImage+FiltrrCompositions.m in Sources */ = {isa = PBXBuildFile; fileRef = C25C079B15D5F11700E8DD8D /* UIImage+FiltrrCompositions.m */; };
 		C25C07A015D5F11700E8DD8D /* UIImage+Scale.m in Sources */ = {isa = PBXBuildFile; fileRef = C25C079D15D5F11700E8DD8D /* UIImage+Scale.m */; };
-		C2615A9D1597FBB900CEEC66 /* CommonUserInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = C2615A9C1597FBB800CEEC66 /* CommonUserInfoView.m */; };
-		C2615A9F1597FBEC00CEEC66 /* CommonUserInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2615A9E1597FBEB00CEEC66 /* CommonUserInfoView.xib */; };
-		C2615AA11597FC0C00CEEC66 /* CommonUserInfoView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2615AA01597FC0B00CEEC66 /* CommonUserInfoView~ipad.xib */; };
-		C26224C916702DB2008BF3FB /* DrawUserInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C26224C516702DB1008BF3FB /* DrawUserInfoView.xib */; };
-		C26224CA16702DB2008BF3FB /* DrawUserInfoView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C26224C616702DB1008BF3FB /* DrawUserInfoView~ipad.xib */; };
-		C26224CB16702DB2008BF3FB /* DrawUserInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = C26224C716702DB1008BF3FB /* DrawUserInfoView.m */; };
 		C26224CE1670849C008BF3FB /* ZJHUserInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = C26224CD1670849C008BF3FB /* ZJHUserInfoView.m */; };
-		C26224D116708E61008BF3FB /* CommonRoundAvatarView.m in Sources */ = {isa = PBXBuildFile; fileRef = C26224CF16708E61008BF3FB /* CommonRoundAvatarView.m */; };
 		C26EBE6016719B6B00E8B38D /* ZJHUserInfoBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = C26EBE5F16719B6B00E8B38D /* ZJHUserInfoBackground.png */; };
 		C28207E31552D974006FBB0F /* AudioManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C28207E21552D974006FBB0F /* AudioManager.m */; };
 		C284E87F1531D89800DD5B77 /* AboutUsController.m in Sources */ = {isa = PBXBuildFile; fileRef = C284E87D1531D89800DD5B77 /* AboutUsController.m */; };
@@ -419,16 +399,11 @@
 		C298ED27165603ED000B5753 /* MoneyTreeView.m in Sources */ = {isa = PBXBuildFile; fileRef = C298ED23165603ED000B5753 /* MoneyTreeView.m */; };
 		C298ED28165603ED000B5753 /* MoneyTreeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C298ED24165603ED000B5753 /* MoneyTreeView.xib */; };
 		C298ED29165603ED000B5753 /* MoneyTreeView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C298ED25165603ED000B5753 /* MoneyTreeView~ipad.xib */; };
-		C299BED61653297500C21E2F /* CommonRoomListController.m in Sources */ = {isa = PBXBuildFile; fileRef = C299BED51653297500C21E2F /* CommonRoomListController.m */; };
-		C299BED9165333E800C21E2F /* CommonRoomListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C299BED8165333E800C21E2F /* CommonRoomListCell.m */; };
 		C29A300B15CA17FE00BD0B73 /* HKGirlFontLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = C29A300A15CA17FE00BD0B73 /* HKGirlFontLabel.m */; };
 		C29B5F541642749900EF4AB4 /* DealerView.m in Sources */ = {isa = PBXBuildFile; fileRef = C29B5F531642749900EF4AB4 /* DealerView.m */; };
 		C29B5F961644C74500EF4AB4 /* ZJHAvatarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C29B5F951644C74500EF4AB4 /* ZJHAvatarView.xib */; };
 		C29B5FB81644CAAD00EF4AB4 /* ZJHMyAvatarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C29B5FB71644CAAD00EF4AB4 /* ZJHMyAvatarView.xib */; };
 		C29B5FBB1644CB9C00EF4AB4 /* ZJHMyAvatarView.m in Sources */ = {isa = PBXBuildFile; fileRef = C29B5FBA1644CB9C00EF4AB4 /* ZJHMyAvatarView.m */; };
-		C29B8A211563B02000B9707D /* CommonMessageCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = C29B8A1F1563B02000B9707D /* CommonMessageCenter.m */; };
-		C29B8A221563B02000B9707D /* CommonMessageView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C29B8A201563B02000B9707D /* CommonMessageView.xib */; };
-		C29B8AA8156760FF00B9707D /* CommonMessageView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C29B8AA7156760FE00B9707D /* CommonMessageView~ipad.xib */; };
 		C29C12DE152AE23E009B9E5F /* ShareCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C29C12DD152AE23D009B9E5F /* ShareCell.xib */; };
 		C29C12E1152AE2A7009B9E5F /* ShareCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C29C12E0152AE2A7009B9E5F /* ShareCell.m */; };
 		C2A09762152ECDEA006535F7 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2A09761152ECDEA006535F7 /* ImageIO.framework */; };
@@ -462,11 +437,55 @@
 		C2B5376B16772ECF00725802 /* zjh_settingleft_unselect@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2B5375E16772ECF00725802 /* zjh_settingleft_unselect@2x.png */; };
 		C2B5376C16772ECF00725802 /* zjh_settingright_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2B5375F16772ECF00725802 /* zjh_settingright_selected@2x.png */; };
 		C2B5376D16772ECF00725802 /* zjh_settingright_unselect@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2B5376016772ECF00725802 /* zjh_settingright_unselect@2x.png */; };
+		C2B538211677712300725802 /* CommonRoomListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C2B537E61677712300725802 /* CommonRoomListCell.m */; };
+		C2B538221677712300725802 /* CommonRoomListController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2B537E81677712300725802 /* CommonRoomListController.m */; };
+		C2B538231677712300725802 /* CommonImageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C2B537EB1677712300725802 /* CommonImageManager.m */; };
+		C2B538241677712300725802 /* CommonDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = C2B537EE1677712300725802 /* CommonDialog.m */; };
+		C2B538251677712300725802 /* CommonDialog.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2B537EF1677712300725802 /* CommonDialog.xib */; };
+		C2B538261677712300725802 /* CommonDialog~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2B537F01677712300725802 /* CommonDialog~ipad.xib */; };
+		C2B538271677712300725802 /* CommonDiceDialog.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2B537F11677712300725802 /* CommonDiceDialog.xib */; };
+		C2B538281677712300725802 /* CommonDiceDialog~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2B537F21677712300725802 /* CommonDiceDialog~ipad.xib */; };
+		C2B538291677712300725802 /* CommonMessageCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = C2B537F41677712300725802 /* CommonMessageCenter.m */; };
+		C2B5382A1677712300725802 /* CommonMessageView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2B537F51677712300725802 /* CommonMessageView.xib */; };
+		C2B5382B1677712300725802 /* CommonMessageView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2B537F61677712300725802 /* CommonMessageView~ipad.xib */; };
+		C2B5382C1677712300725802 /* CommonRoundAvatarView.m in Sources */ = {isa = PBXBuildFile; fileRef = C2B537F81677712300725802 /* CommonRoundAvatarView.m */; };
+		C2B5382D1677712300725802 /* CommonSnsInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = C2B537FA1677712300725802 /* CommonSnsInfoView.m */; };
+		C2B5382E1677712300725802 /* CommonStarryDialog.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2B537FB1677712300725802 /* CommonStarryDialog.xib */; };
+		C2B5382F1677712300725802 /* CommonStarryDialog~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2B537FC1677712300725802 /* CommonStarryDialog~ipad.xib */; };
+		C2B538301677712300725802 /* CommonUserInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = C2B537FE1677712300725802 /* CommonUserInfoView.m */; };
+		C2B538311677712300725802 /* CommonUserInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2B537FF1677712300725802 /* CommonUserInfoView.xib */; };
+		C2B538321677712300725802 /* CommonUserInfoView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2B538001677712300725802 /* CommonUserInfoView~ipad.xib */; };
+		C2B538331677712300725802 /* CommonZJHDialog.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2B538011677712300725802 /* CommonZJHDialog.xib */; };
+		C2B538341677712300725802 /* CommonZJHDialog~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2B538021677712300725802 /* CommonZJHDialog~ipad.xib */; };
+		C2B538351677712300725802 /* DiceInputDialog.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2B538031677712300725802 /* DiceInputDialog.xib */; };
+		C2B538361677712300725802 /* DiceInputDialog~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2B538041677712300725802 /* DiceInputDialog~ipad.xib */; };
+		C2B538371677712300725802 /* DicePassWordDialog.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2B538051677712300725802 /* DicePassWordDialog.xib */; };
+		C2B538381677712300725802 /* DicePassWordDialog~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2B538061677712300725802 /* DicePassWordDialog~ipad.xib */; };
+		C2B538391677712300725802 /* DiceRoomPasswordDialog.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2B538071677712300725802 /* DiceRoomPasswordDialog.xib */; };
+		C2B5383A1677712300725802 /* DiceRoomPasswordDialog~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2B538081677712300725802 /* DiceRoomPasswordDialog~ipad.xib */; };
+		C2B5383B1677712300725802 /* DrawUserInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = C2B5380A1677712300725802 /* DrawUserInfoView.m */; };
+		C2B5383C1677712300725802 /* DrawUserInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2B5380B1677712300725802 /* DrawUserInfoView.xib */; };
+		C2B5383D1677712300725802 /* DrawUserInfoView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2B5380C1677712300725802 /* DrawUserInfoView~ipad.xib */; };
+		C2B5383E1677712300725802 /* InputDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = C2B5380E1677712300725802 /* InputDialog.m */; };
+		C2B5383F1677712300725802 /* InputDialog.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2B5380F1677712300725802 /* InputDialog.xib */; };
+		C2B538401677712300725802 /* InputDialog~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2B538101677712300725802 /* InputDialog~ipad.xib */; };
+		C2B538411677712300725802 /* PassWordDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = C2B538121677712300725802 /* PassWordDialog.m */; };
+		C2B538421677712300725802 /* PassWordDialog.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2B538131677712300725802 /* PassWordDialog.xib */; };
+		C2B538431677712300725802 /* PassWordDialog~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2B538141677712300725802 /* PassWordDialog~ipad.xib */; };
+		C2B538441677712300725802 /* RoomPasswordDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = C2B538161677712300725802 /* RoomPasswordDialog.m */; };
+		C2B538451677712300725802 /* RoomPasswordDialog.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2B538171677712300725802 /* RoomPasswordDialog.xib */; };
+		C2B538461677712300725802 /* RoomPasswordDialog~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2B538181677712300725802 /* RoomPasswordDialog~ipad.xib */; };
+		C2B538471677712300725802 /* StarryLoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = C2B5381A1677712300725802 /* StarryLoadingView.m */; };
+		C2B538481677712300725802 /* ZJHInputDialog.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2B5381B1677712300725802 /* ZJHInputDialog.xib */; };
+		C2B538491677712300725802 /* ZJHInputDialog~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2B5381C1677712300725802 /* ZJHInputDialog~ipad.xib */; };
+		C2B5384A1677712300725802 /* ZJHPassWordDialog.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2B5381D1677712300725802 /* ZJHPassWordDialog.xib */; };
+		C2B5384B1677712300725802 /* ZJHPassWordDialog~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2B5381E1677712300725802 /* ZJHPassWordDialog~ipad.xib */; };
+		C2B5384C1677712300725802 /* ZJHRoomPasswordDialog.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2B5381F1677712300725802 /* ZJHRoomPasswordDialog.xib */; };
+		C2B5384D1677712300725802 /* ZJHRoomPasswordDialog~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2B538201677712300725802 /* ZJHRoomPasswordDialog~ipad.xib */; };
 		C2C1BF4515A2A9B6001A2BFC /* UIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C2C1BF4415A2A9B6001A2BFC /* UIManager.m */; };
 		C2C54CEB1640C45B005561DA /* BetTable.m in Sources */ = {isa = PBXBuildFile; fileRef = C2C54CEA1640C45B005561DA /* BetTable.m */; };
 		C2C54CFE1640F85C005561DA /* NSMutableArray+Queue.m in Sources */ = {isa = PBXBuildFile; fileRef = C2C54CFD1640F85C005561DA /* NSMutableArray+Queue.m */; };
 		C2C54D011640F878005561DA /* NSMutableArray+Stack.m in Sources */ = {isa = PBXBuildFile; fileRef = C2C54D001640F878005561DA /* NSMutableArray+Stack.m */; };
-		C2D9A504159D4C4100794B24 /* CommonSnsInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = C2D9A503159D4C4100794B24 /* CommonSnsInfoView.m */; };
 		C2DD4F0D1610412500556CC7 /* DiceRobotDecisionView.m in Sources */ = {isa = PBXBuildFile; fileRef = C2DD4F0C1610412500556CC7 /* DiceRobotDecisionView.m */; };
 		C2E5241915218E21008913CC /* AnimationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C2E5241815218E21008913CC /* AnimationManager.m */; };
 		C2E662611521B91900487601 /* ReportController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2E6625F1521B91900487601 /* ReportController.m */; };
@@ -479,7 +498,6 @@
 		C2E90FEB15BD44DA00828562 /* RecommendApp.m in Sources */ = {isa = PBXBuildFile; fileRef = C2E90FEA15BD44DA00828562 /* RecommendApp.m */; };
 		C2E90FEE15BD454200828562 /* RecommendAppManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C2E90FED15BD454200828562 /* RecommendAppManager.m */; };
 		C2EBB8EC164A1B200024D605 /* ZJHSoundManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C2EBB8EB164A1B200024D605 /* ZJHSoundManager.m */; };
-		C2EE13CA1663591800ADBE2E /* StarryLoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = C2EE13C91663591800ADBE2E /* StarryLoadingView.m */; };
 		C2EE13E01664839E00ADBE2E /* PPViewController+StarryLoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = C2EE13DF1664839E00ADBE2E /* PPViewController+StarryLoadingView.m */; };
 		C2EE14251664CB3600ADBE2E /* dialog_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2EE141C1664CB3600ADBE2E /* dialog_bg@2x.png */; };
 		C2EE14261664CB3600ADBE2E /* dialog_frame@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2EE141D1664CB3600ADBE2E /* dialog_frame@2x.png */; };
@@ -488,19 +506,10 @@
 		C2EE14291664CB3600ADBE2E /* dialog_yes@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2EE14201664CB3600ADBE2E /* dialog_yes@2x.png */; };
 		C2EE142C1664CB3600ADBE2E /* loading_planet@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2EE14231664CB3600ADBE2E /* loading_planet@2x.png */; };
 		C2EE142D1664CB3600ADBE2E /* starryBg.png in Resources */ = {isa = PBXBuildFile; fileRef = C2EE14241664CB3600ADBE2E /* starryBg.png */; };
-		C2EE14301664EF5000ADBE2E /* CommonImageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C2EE142F1664EF5000ADBE2E /* CommonImageManager.m */; };
 		C2EE145E1665FE4F00ADBE2E /* UIView+MDCShineEffect.m in Sources */ = {isa = PBXBuildFile; fileRef = C2EE145D1665FE4F00ADBE2E /* UIView+MDCShineEffect.m */; };
 		C2EE14601665FE9300ADBE2E /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2EE145F1665FE9300ADBE2E /* CoreImage.framework */; };
 		C2EE1475166706BC00ADBE2E /* light.png in Resources */ = {isa = PBXBuildFile; fileRef = C2EE1473166706BB00ADBE2E /* light.png */; };
 		C2EE1476166706BC00ADBE2E /* star.png in Resources */ = {isa = PBXBuildFile; fileRef = C2EE1474166706BB00ADBE2E /* star.png */; };
-		C2EF181616758EEF00E5A9C5 /* ZJHPassWordDialog.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2EF180E16758EEF00E5A9C5 /* ZJHPassWordDialog.xib */; };
-		C2EF181716758EEF00E5A9C5 /* ZJHRoomPasswordDialog~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2EF180F16758EEF00E5A9C5 /* ZJHRoomPasswordDialog~ipad.xib */; };
-		C2EF181816758EEF00E5A9C5 /* CommonZJHDialog.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2EF181016758EEF00E5A9C5 /* CommonZJHDialog.xib */; };
-		C2EF181916758EEF00E5A9C5 /* ZJHInputDialog.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2EF181116758EEF00E5A9C5 /* ZJHInputDialog.xib */; };
-		C2EF181A16758EEF00E5A9C5 /* ZJHRoomPasswordDialog.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2EF181216758EEF00E5A9C5 /* ZJHRoomPasswordDialog.xib */; };
-		C2EF181B16758EEF00E5A9C5 /* CommonZJHDialog~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2EF181316758EEF00E5A9C5 /* CommonZJHDialog~ipad.xib */; };
-		C2EF181C16758EEF00E5A9C5 /* ZJHInputDialog~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2EF181416758EEF00E5A9C5 /* ZJHInputDialog~ipad.xib */; };
-		C2EF181D16758EEF00E5A9C5 /* ZJHPassWordDialog~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2EF181516758EEF00E5A9C5 /* ZJHPassWordDialog~ipad.xib */; };
 		C2F2CF981639165500995DCB /* ZJHImageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C2F2CF971639165500995DCB /* ZJHImageManager.m */; };
 		C2F2CFB3163932C000995DCB /* ZJHAvatarView.m in Sources */ = {isa = PBXBuildFile; fileRef = C2F2CFB2163932C000995DCB /* ZJHAvatarView.m */; };
 		C2F947D21533D91E0034C895 /* UFPController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2F947D01533D91E0034C895 /* UFPController.m */; };
@@ -803,9 +812,6 @@
 		CA22DCFE157CB3E9009C95CB /* OfflineGuessDrawController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA22DCF7157CB3E9009C95CB /* OfflineGuessDrawController.m */; };
 		CA22DCFF157CB3E9009C95CB /* OfflineGuessDrawController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA22DCF8157CB3E9009C95CB /* OfflineGuessDrawController.xib */; };
 		CA22DD03157CB440009C95CB /* OfflineGuessDrawController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA22DD02157CB440009C95CB /* OfflineGuessDrawController~ipad.xib */; };
-		CA31D8291561F70E00199A24 /* RoomPasswordDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = CA31D8271561F70D00199A24 /* RoomPasswordDialog.m */; };
-		CA31D82A1561F70E00199A24 /* RoomPasswordDialog.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA31D8281561F70D00199A24 /* RoomPasswordDialog.xib */; };
-		CA31D82C1561F72C00199A24 /* RoomPasswordDialog~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA31D82B1561F72C00199A24 /* RoomPasswordDialog~ipad.xib */; };
 		CA322102151B6A670039A384 /* GameNetworkRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = CA322101151B6A670039A384 /* GameNetworkRequest.m */; };
 		CA322105151B6BE60039A384 /* UserService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA322104151B6BE60039A384 /* UserService.m */; };
 		CA322109151B6C6F0039A384 /* CompleteUserInfoController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA322107151B6C6F0039A384 /* CompleteUserInfoController.m */; };
@@ -813,8 +819,6 @@
 		CA32213D151DEDE10039A384 /* ChangeAvatar.m in Sources */ = {isa = PBXBuildFile; fileRef = CA32213C151DEDE10039A384 /* ChangeAvatar.m */; };
 		CA322185151F62C00039A384 /* CoinShopController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA322183151F62C00039A384 /* CoinShopController.m */; };
 		CA322186151F62C00039A384 /* CoinShopController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA322184151F62C00039A384 /* CoinShopController.xib */; };
-		CA322194151F64F90039A384 /* CommonDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = CA322192151F64F90039A384 /* CommonDialog.m */; };
-		CA322195151F64F90039A384 /* CommonDialog.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA322193151F64F90039A384 /* CommonDialog.xib */; };
 		CA3221A4151F657F0039A384 /* FeedbackController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3221A2151F657F0039A384 /* FeedbackController.m */; };
 		CA3221A5151F657F0039A384 /* FeedbackController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA3221A3151F657F0039A384 /* FeedbackController.xib */; };
 		CA3221A9151F65AE0039A384 /* UserSettingController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3221A7151F65AD0039A384 /* UserSettingController.m */; };
@@ -1565,8 +1569,6 @@
 		CA913A521653532000B6387F /* Bbs.pb.m in Sources */ = {isa = PBXBuildFile; fileRef = CA913A511653532000B6387F /* Bbs.pb.m */; };
 		CA91FC7F15C27BE700E9C1CD /* CommonGameNetworkClient.m in Sources */ = {isa = PBXBuildFile; fileRef = CA91FC7E15C27BE700E9C1CD /* CommonGameNetworkClient.m */; };
 		CA91FC8215C27BF700E9C1CD /* CommonGameNetworkService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA91FC8115C27BF700E9C1CD /* CommonGameNetworkService.m */; };
-		CA959895152F54700093FEDB /* InputDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = CA959893152F54700093FEDB /* InputDialog.m */; };
-		CA959896152F54700093FEDB /* InputDialog.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA959894152F54700093FEDB /* InputDialog.xib */; };
 		CA963A5615C7C5A8007ACFB9 /* CommonGameSession.m in Sources */ = {isa = PBXBuildFile; fileRef = CA963A5515C7C5A8007ACFB9 /* CommonGameSession.m */; };
 		CA963A5915C7C5D4007ACFB9 /* DiceGameSession.m in Sources */ = {isa = PBXBuildFile; fileRef = CA963A5815C7C5D3007ACFB9 /* DiceGameSession.m */; };
 		CA96E26E150DE4FD00292335 /* GameSession.m in Sources */ = {isa = PBXBuildFile; fileRef = CA96E26D150DE4FD00292335 /* GameSession.m */; };
@@ -1596,8 +1598,6 @@
 		CAA362421558C3090081D3EB /* Friend.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA362411558C3090081D3EB /* Friend.m */; };
 		CAA362451558C3400081D3EB /* FriendManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA362441558C3400081D3EB /* FriendManager.m */; };
 		CAA362481558C3780081D3EB /* FriendService.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA362471558C3780081D3EB /* FriendService.m */; };
-		CAA47815152FF70D005EDB24 /* PassWordDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA47813152FF70D005EDB24 /* PassWordDialog.m */; };
-		CAA47816152FF70D005EDB24 /* PassWordDialog.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAA47814152FF70D005EDB24 /* PassWordDialog.xib */; };
 		CAA754BD150A02EA00B9391E /* SelectWordController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA754BB150A02EA00B9391E /* SelectWordController.m */; };
 		CAA754BE150A02EA00B9391E /* SelectWordController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAA754BC150A02EA00B9391E /* SelectWordController.xib */; };
 		CAA7992A1659D28700429611 /* BBSPostDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA799251659D28700429611 /* BBSPostDetailController.m */; };
@@ -2178,10 +2178,7 @@
 		A3F66CC015820B2D000BFF9A /* ChatService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatService.m; sourceTree = "<group>"; };
 		A3FAE0D915536E8D008B5827 /* RoomController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "RoomController~ipad.xib"; sourceTree = "<group>"; };
 		A3FAE0DB15536EBB008B5827 /* UserSettingController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "UserSettingController~ipad.xib"; sourceTree = "<group>"; };
-		A3FAE0DD15536EF0008B5827 /* CommonDialog~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "CommonDialog~ipad.xib"; sourceTree = "<group>"; };
-		A3FAE0DF15536F43008B5827 /* InputDialog~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "InputDialog~ipad.xib"; sourceTree = "<group>"; };
 		A3FAE0E115536F8E008B5827 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
-		A3FAE0E315536FE3008B5827 /* PassWordDialog~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "PassWordDialog~ipad.xib"; sourceTree = "<group>"; };
 		A3FAE0E51553701B008B5827 /* RegisterUserController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "RegisterUserController~ipad.xib"; sourceTree = "<group>"; };
 		A3FAE0E715537040008B5827 /* CompleteUserInfoController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "CompleteUserInfoController~ipad.xib"; sourceTree = "<group>"; };
 		A404A9A916426545007CA21A /* ChipsSelectView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChipsSelectView.h; sourceTree = "<group>"; };
@@ -2341,8 +2338,6 @@
 		A42C520515E614D2001D8208 /* DiceChatMsgManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiceChatMsgManager.m; sourceTree = "<group>"; };
 		A42C520915E614E5001D8208 /* DiceSoundManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiceSoundManager.h; sourceTree = "<group>"; };
 		A42C520A15E614E5001D8208 /* DiceSoundManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiceSoundManager.m; sourceTree = "<group>"; };
-		A42C528315E756CF001D8208 /* HelpView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpView.h; sourceTree = "<group>"; };
-		A42C528415E756CF001D8208 /* HelpView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpView.m; sourceTree = "<group>"; };
 		A42C528515E756CF001D8208 /* DiceHelpView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DiceHelpView.xib; sourceTree = "<group>"; };
 		A42C93C715FF28D60090D6B6 /* CommonDiceItemAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonDiceItemAction.h; sourceTree = "<group>"; };
 		A42C93C815FF28D60090D6B6 /* CommonDiceItemAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonDiceItemAction.m; sourceTree = "<group>"; };
@@ -2530,12 +2525,14 @@
 		A4CCE77B1677398E00F90726 /* zjh_chat_view_input_text_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zjh_chat_view_input_text_bg@2x.png"; sourceTree = "<group>"; };
 		A4CCE77C1677398E00F90726 /* zjh_chat_view_msg_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zjh_chat_view_msg_bg@2x.png"; sourceTree = "<group>"; };
 		A4CCE77D1677398E00F90726 /* zjh_popup_view_close_btn_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zjh_popup_view_close_btn_bg@2x.png"; sourceTree = "<group>"; };
-		A4CCE78216781C7400F90726 /* CommonGameUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonGameUser.h; sourceTree = "<group>"; };
-		A4CCE78316781C7400F90726 /* CommonGameUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonGameUser.m; sourceTree = "<group>"; };
-		A4CCE78416781C7400F90726 /* SNSUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SNSUser.h; sourceTree = "<group>"; };
-		A4CCE78516781C7400F90726 /* SNSUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SNSUser.m; sourceTree = "<group>"; };
-		A4CCE78616781C7400F90726 /* ZJHChatMsgManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJHChatMsgManager.h; sourceTree = "<group>"; };
-		A4CCE78716781C7400F90726 /* ZJHChatMsgManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJHChatMsgManager.m; sourceTree = "<group>"; };
+		A4CCE79D167823BC00F90726 /* CommonGameUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonGameUser.h; sourceTree = "<group>"; };
+		A4CCE79E167823BC00F90726 /* CommonGameUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonGameUser.m; sourceTree = "<group>"; };
+		A4CCE79F167823BC00F90726 /* SNSUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SNSUser.h; sourceTree = "<group>"; };
+		A4CCE7A0167823BC00F90726 /* SNSUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SNSUser.m; sourceTree = "<group>"; };
+		A4CCE7A1167823BC00F90726 /* ZJHChatMsgManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJHChatMsgManager.h; sourceTree = "<group>"; };
+		A4CCE7A2167823BC00F90726 /* ZJHChatMsgManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJHChatMsgManager.m; sourceTree = "<group>"; };
+		A4CCE7A6167824B300F90726 /* HelpView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpView.h; sourceTree = "<group>"; };
+		A4CCE7A7167824B300F90726 /* HelpView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpView.m; sourceTree = "<group>"; };
 		A4CE58E116324447003DB23A /* point_pic3@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "point_pic3@2x.png"; sourceTree = "<group>"; };
 		A4CE58E216324447003DB23A /* point_pic4@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "point_pic4@2x.png"; sourceTree = "<group>"; };
 		A4CE58E516324998003DB23A /* ChatView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ChatView~ipad.xib"; sourceTree = "<group>"; };
@@ -2566,20 +2563,13 @@
 		A4E787931636753F003557AD /* ZJHGameState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJHGameState.m; sourceTree = "<group>"; };
 		A4F6712D166C878100FF85CA /* ArrowView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArrowView.h; sourceTree = "<group>"; };
 		A4F6712E166C878100FF85CA /* ArrowView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArrowView.m; sourceTree = "<group>"; };
-		C20D4B1015DE45B100074885 /* CommonDiceDialog.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommonDiceDialog.xib; sourceTree = "<group>"; };
 		C20D4B2315E1D78800074885 /* CommonInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonInfoView.h; sourceTree = "<group>"; };
 		C20D4B2415E1D78800074885 /* CommonInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonInfoView.m; sourceTree = "<group>"; };
-		C20D4B2615E21C0200074885 /* DiceInputDialog.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DiceInputDialog.xib; sourceTree = "<group>"; };
-		C20D4B2815E21CC000074885 /* DicePassWordDialog.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DicePassWordDialog.xib; sourceTree = "<group>"; };
-		C20D4B2A15E220B400074885 /* DiceRoomPasswordDialog.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DiceRoomPasswordDialog.xib; sourceTree = "<group>"; };
 		C20D4B4E15E3274E00074885 /* DiceGamePlayController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "DiceGamePlayController~ipad.xib"; sourceTree = "<group>"; };
 		C213091A15E349E20072A18E /* DiceUserInfoView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "DiceUserInfoView~ipad.xib"; sourceTree = "<group>"; };
-		C213093D15E393030072A18E /* CommonDiceDialog~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "CommonDiceDialog~ipad.xib"; sourceTree = "<group>"; };
-		C213093F15E3931F0072A18E /* DiceInputDialog~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "DiceInputDialog~ipad.xib"; sourceTree = "<group>"; };
-		C213094115E393320072A18E /* DicePassWordDialog~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "DicePassWordDialog~ipad.xib"; sourceTree = "<group>"; };
-		C213094315E393400072A18E /* DiceRoomPasswordDialog~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "DiceRoomPasswordDialog~ipad.xib"; sourceTree = "<group>"; };
 		C21309F915E774390072A18E /* DiceColorManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiceColorManager.h; sourceTree = "<group>"; };
 		C21309FA15E774390072A18E /* DiceColorManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiceColorManager.m; sourceTree = "<group>"; };
+		C2144C48167816B400F2C8BC /* DialogImageManagerProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DialogImageManagerProtocol.h; sourceTree = "<group>"; };
 		C223232C165C659E00D7ECE4 /* ZJHSettingView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ZJHSettingView~ipad.xib"; sourceTree = "<group>"; };
 		C2233961164E3CA100D2C123 /* AppleOpenALSupport.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = AppleOpenALSupport.c; sourceTree = "<group>"; };
 		C2233962164E3CA100D2C123 /* AppleOpenALSupport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppleOpenALSupport.h; sourceTree = "<group>"; };
@@ -2593,8 +2583,6 @@
 		C223397E164E41C800D2C123 /* OpenAL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenAL.framework; path = System/Library/Frameworks/OpenAL.framework; sourceTree = SDKROOT; };
 		C225866C15EF5AA4009D686D /* GCServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCServer.h; sourceTree = "<group>"; };
 		C225866D15EF5AA4009D686D /* GCServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCServer.m; sourceTree = "<group>"; };
-		C22CDE14166081C100844C93 /* CommonStarryDialog.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommonStarryDialog.xib; sourceTree = "<group>"; };
-		C22CDE161660823C00844C93 /* CommonStarryDialog~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "CommonStarryDialog~ipad.xib"; sourceTree = "<group>"; };
 		C22E21851608664F00DE3035 /* DiceRobotItemAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiceRobotItemAction.h; sourceTree = "<group>"; };
 		C22E21861608664F00DE3035 /* DiceRobotItemAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiceRobotItemAction.m; sourceTree = "<group>"; };
 		C239366316522858001BD5C6 /* ZJHSettingView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZJHSettingView.xib; sourceTree = "<group>"; };
@@ -2622,18 +2610,8 @@
 		C25C079B15D5F11700E8DD8D /* UIImage+FiltrrCompositions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+FiltrrCompositions.m"; sourceTree = "<group>"; };
 		C25C079C15D5F11700E8DD8D /* UIImage+Scale.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Scale.h"; sourceTree = "<group>"; };
 		C25C079D15D5F11700E8DD8D /* UIImage+Scale.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Scale.m"; sourceTree = "<group>"; };
-		C2615A9B1597FBB700CEEC66 /* CommonUserInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonUserInfoView.h; sourceTree = "<group>"; };
-		C2615A9C1597FBB800CEEC66 /* CommonUserInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonUserInfoView.m; sourceTree = "<group>"; };
-		C2615A9E1597FBEB00CEEC66 /* CommonUserInfoView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommonUserInfoView.xib; sourceTree = "<group>"; };
-		C2615AA01597FC0B00CEEC66 /* CommonUserInfoView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "CommonUserInfoView~ipad.xib"; sourceTree = "<group>"; };
-		C26224C516702DB1008BF3FB /* DrawUserInfoView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DrawUserInfoView.xib; sourceTree = "<group>"; };
-		C26224C616702DB1008BF3FB /* DrawUserInfoView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "DrawUserInfoView~ipad.xib"; sourceTree = "<group>"; };
-		C26224C716702DB1008BF3FB /* DrawUserInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawUserInfoView.m; sourceTree = "<group>"; };
-		C26224C816702DB2008BF3FB /* DrawUserInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawUserInfoView.h; sourceTree = "<group>"; };
 		C26224CC1670849C008BF3FB /* ZJHUserInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJHUserInfoView.h; sourceTree = "<group>"; };
 		C26224CD1670849C008BF3FB /* ZJHUserInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJHUserInfoView.m; sourceTree = "<group>"; };
-		C26224CF16708E61008BF3FB /* CommonRoundAvatarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonRoundAvatarView.m; sourceTree = "<group>"; };
-		C26224D016708E61008BF3FB /* CommonRoundAvatarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonRoundAvatarView.h; sourceTree = "<group>"; };
 		C26EBE5F16719B6B00E8B38D /* ZJHUserInfoBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ZJHUserInfoBackground.png; sourceTree = "<group>"; };
 		C28207E11552D974006FBB0F /* AudioManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioManager.h; sourceTree = "<group>"; };
 		C28207E21552D974006FBB0F /* AudioManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioManager.m; sourceTree = "<group>"; };
@@ -2686,10 +2664,6 @@
 		C298ED23165603ED000B5753 /* MoneyTreeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoneyTreeView.m; sourceTree = "<group>"; };
 		C298ED24165603ED000B5753 /* MoneyTreeView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MoneyTreeView.xib; sourceTree = "<group>"; };
 		C298ED25165603ED000B5753 /* MoneyTreeView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "MoneyTreeView~ipad.xib"; sourceTree = "<group>"; };
-		C299BED41653297500C21E2F /* CommonRoomListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonRoomListController.h; sourceTree = "<group>"; };
-		C299BED51653297500C21E2F /* CommonRoomListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonRoomListController.m; sourceTree = "<group>"; };
-		C299BED7165333E800C21E2F /* CommonRoomListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonRoomListCell.h; sourceTree = "<group>"; };
-		C299BED8165333E800C21E2F /* CommonRoomListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonRoomListCell.m; sourceTree = "<group>"; };
 		C29A300915CA17FE00BD0B73 /* HKGirlFontLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HKGirlFontLabel.h; path = FontLabel/HKGirlFontLabel.h; sourceTree = "<group>"; };
 		C29A300A15CA17FE00BD0B73 /* HKGirlFontLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HKGirlFontLabel.m; path = FontLabel/HKGirlFontLabel.m; sourceTree = "<group>"; };
 		C29B5F521642749900EF4AB4 /* DealerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DealerView.h; sourceTree = "<group>"; };
@@ -2698,10 +2672,6 @@
 		C29B5FB71644CAAD00EF4AB4 /* ZJHMyAvatarView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZJHMyAvatarView.xib; sourceTree = "<group>"; };
 		C29B5FB91644CB9C00EF4AB4 /* ZJHMyAvatarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJHMyAvatarView.h; sourceTree = "<group>"; };
 		C29B5FBA1644CB9C00EF4AB4 /* ZJHMyAvatarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJHMyAvatarView.m; sourceTree = "<group>"; };
-		C29B8A1E1563B02000B9707D /* CommonMessageCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonMessageCenter.h; sourceTree = "<group>"; };
-		C29B8A1F1563B02000B9707D /* CommonMessageCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonMessageCenter.m; sourceTree = "<group>"; };
-		C29B8A201563B02000B9707D /* CommonMessageView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommonMessageView.xib; sourceTree = "<group>"; };
-		C29B8AA7156760FE00B9707D /* CommonMessageView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "CommonMessageView~ipad.xib"; sourceTree = "<group>"; };
 		C29C12DD152AE23D009B9E5F /* ShareCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShareCell.xib; sourceTree = "<group>"; };
 		C29C12DF152AE2A6009B9E5F /* ShareCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareCell.h; sourceTree = "<group>"; };
 		C29C12E0152AE2A7009B9E5F /* ShareCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareCell.m; sourceTree = "<group>"; };
@@ -2741,6 +2711,64 @@
 		C2B5375E16772ECF00725802 /* zjh_settingleft_unselect@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zjh_settingleft_unselect@2x.png"; sourceTree = "<group>"; };
 		C2B5375F16772ECF00725802 /* zjh_settingright_selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zjh_settingright_selected@2x.png"; sourceTree = "<group>"; };
 		C2B5376016772ECF00725802 /* zjh_settingright_unselect@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zjh_settingright_unselect@2x.png"; sourceTree = "<group>"; };
+		C2B537E51677712300725802 /* CommonRoomListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonRoomListCell.h; sourceTree = "<group>"; };
+		C2B537E61677712300725802 /* CommonRoomListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonRoomListCell.m; sourceTree = "<group>"; };
+		C2B537E71677712300725802 /* CommonRoomListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonRoomListController.h; sourceTree = "<group>"; };
+		C2B537E81677712300725802 /* CommonRoomListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonRoomListController.m; sourceTree = "<group>"; };
+		C2B537EA1677712300725802 /* CommonImageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonImageManager.h; sourceTree = "<group>"; };
+		C2B537EB1677712300725802 /* CommonImageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonImageManager.m; sourceTree = "<group>"; };
+		C2B537ED1677712300725802 /* CommonDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonDialog.h; sourceTree = "<group>"; };
+		C2B537EE1677712300725802 /* CommonDialog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonDialog.m; sourceTree = "<group>"; };
+		C2B537EF1677712300725802 /* CommonDialog.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommonDialog.xib; sourceTree = "<group>"; };
+		C2B537F01677712300725802 /* CommonDialog~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "CommonDialog~ipad.xib"; sourceTree = "<group>"; };
+		C2B537F11677712300725802 /* CommonDiceDialog.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommonDiceDialog.xib; sourceTree = "<group>"; };
+		C2B537F21677712300725802 /* CommonDiceDialog~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "CommonDiceDialog~ipad.xib"; sourceTree = "<group>"; };
+		C2B537F31677712300725802 /* CommonMessageCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonMessageCenter.h; sourceTree = "<group>"; };
+		C2B537F41677712300725802 /* CommonMessageCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonMessageCenter.m; sourceTree = "<group>"; };
+		C2B537F51677712300725802 /* CommonMessageView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommonMessageView.xib; sourceTree = "<group>"; };
+		C2B537F61677712300725802 /* CommonMessageView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "CommonMessageView~ipad.xib"; sourceTree = "<group>"; };
+		C2B537F71677712300725802 /* CommonRoundAvatarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonRoundAvatarView.h; sourceTree = "<group>"; };
+		C2B537F81677712300725802 /* CommonRoundAvatarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonRoundAvatarView.m; sourceTree = "<group>"; };
+		C2B537F91677712300725802 /* CommonSnsInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonSnsInfoView.h; sourceTree = "<group>"; };
+		C2B537FA1677712300725802 /* CommonSnsInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonSnsInfoView.m; sourceTree = "<group>"; };
+		C2B537FB1677712300725802 /* CommonStarryDialog.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommonStarryDialog.xib; sourceTree = "<group>"; };
+		C2B537FC1677712300725802 /* CommonStarryDialog~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "CommonStarryDialog~ipad.xib"; sourceTree = "<group>"; };
+		C2B537FD1677712300725802 /* CommonUserInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonUserInfoView.h; sourceTree = "<group>"; };
+		C2B537FE1677712300725802 /* CommonUserInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonUserInfoView.m; sourceTree = "<group>"; };
+		C2B537FF1677712300725802 /* CommonUserInfoView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommonUserInfoView.xib; sourceTree = "<group>"; };
+		C2B538001677712300725802 /* CommonUserInfoView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "CommonUserInfoView~ipad.xib"; sourceTree = "<group>"; };
+		C2B538011677712300725802 /* CommonZJHDialog.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommonZJHDialog.xib; sourceTree = "<group>"; };
+		C2B538021677712300725802 /* CommonZJHDialog~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "CommonZJHDialog~ipad.xib"; sourceTree = "<group>"; };
+		C2B538031677712300725802 /* DiceInputDialog.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DiceInputDialog.xib; sourceTree = "<group>"; };
+		C2B538041677712300725802 /* DiceInputDialog~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "DiceInputDialog~ipad.xib"; sourceTree = "<group>"; };
+		C2B538051677712300725802 /* DicePassWordDialog.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DicePassWordDialog.xib; sourceTree = "<group>"; };
+		C2B538061677712300725802 /* DicePassWordDialog~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "DicePassWordDialog~ipad.xib"; sourceTree = "<group>"; };
+		C2B538071677712300725802 /* DiceRoomPasswordDialog.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DiceRoomPasswordDialog.xib; sourceTree = "<group>"; };
+		C2B538081677712300725802 /* DiceRoomPasswordDialog~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "DiceRoomPasswordDialog~ipad.xib"; sourceTree = "<group>"; };
+		C2B538091677712300725802 /* DrawUserInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawUserInfoView.h; sourceTree = "<group>"; };
+		C2B5380A1677712300725802 /* DrawUserInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawUserInfoView.m; sourceTree = "<group>"; };
+		C2B5380B1677712300725802 /* DrawUserInfoView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DrawUserInfoView.xib; sourceTree = "<group>"; };
+		C2B5380C1677712300725802 /* DrawUserInfoView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "DrawUserInfoView~ipad.xib"; sourceTree = "<group>"; };
+		C2B5380D1677712300725802 /* InputDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InputDialog.h; sourceTree = "<group>"; };
+		C2B5380E1677712300725802 /* InputDialog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InputDialog.m; sourceTree = "<group>"; };
+		C2B5380F1677712300725802 /* InputDialog.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InputDialog.xib; sourceTree = "<group>"; };
+		C2B538101677712300725802 /* InputDialog~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "InputDialog~ipad.xib"; sourceTree = "<group>"; };
+		C2B538111677712300725802 /* PassWordDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PassWordDialog.h; sourceTree = "<group>"; };
+		C2B538121677712300725802 /* PassWordDialog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PassWordDialog.m; sourceTree = "<group>"; };
+		C2B538131677712300725802 /* PassWordDialog.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PassWordDialog.xib; sourceTree = "<group>"; };
+		C2B538141677712300725802 /* PassWordDialog~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "PassWordDialog~ipad.xib"; sourceTree = "<group>"; };
+		C2B538151677712300725802 /* RoomPasswordDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoomPasswordDialog.h; sourceTree = "<group>"; };
+		C2B538161677712300725802 /* RoomPasswordDialog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoomPasswordDialog.m; sourceTree = "<group>"; };
+		C2B538171677712300725802 /* RoomPasswordDialog.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RoomPasswordDialog.xib; sourceTree = "<group>"; };
+		C2B538181677712300725802 /* RoomPasswordDialog~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "RoomPasswordDialog~ipad.xib"; sourceTree = "<group>"; };
+		C2B538191677712300725802 /* StarryLoadingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StarryLoadingView.h; sourceTree = "<group>"; };
+		C2B5381A1677712300725802 /* StarryLoadingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StarryLoadingView.m; sourceTree = "<group>"; };
+		C2B5381B1677712300725802 /* ZJHInputDialog.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZJHInputDialog.xib; sourceTree = "<group>"; };
+		C2B5381C1677712300725802 /* ZJHInputDialog~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ZJHInputDialog~ipad.xib"; sourceTree = "<group>"; };
+		C2B5381D1677712300725802 /* ZJHPassWordDialog.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZJHPassWordDialog.xib; sourceTree = "<group>"; };
+		C2B5381E1677712300725802 /* ZJHPassWordDialog~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ZJHPassWordDialog~ipad.xib"; sourceTree = "<group>"; };
+		C2B5381F1677712300725802 /* ZJHRoomPasswordDialog.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZJHRoomPasswordDialog.xib; sourceTree = "<group>"; };
+		C2B538201677712300725802 /* ZJHRoomPasswordDialog~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ZJHRoomPasswordDialog~ipad.xib"; sourceTree = "<group>"; };
 		C2C1BF4315A2A9B6001A2BFC /* UIManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UIManager.h; path = UI/UIManager.h; sourceTree = "<group>"; };
 		C2C1BF4415A2A9B6001A2BFC /* UIManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UIManager.m; path = UI/UIManager.m; sourceTree = "<group>"; };
 		C2C54CE91640C45B005561DA /* BetTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BetTable.h; sourceTree = "<group>"; };
@@ -2749,8 +2777,6 @@
 		C2C54CFD1640F85C005561DA /* NSMutableArray+Queue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+Queue.m"; sourceTree = "<group>"; };
 		C2C54CFF1640F878005561DA /* NSMutableArray+Stack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+Stack.h"; sourceTree = "<group>"; };
 		C2C54D001640F878005561DA /* NSMutableArray+Stack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+Stack.m"; sourceTree = "<group>"; };
-		C2D9A502159D4C4100794B24 /* CommonSnsInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonSnsInfoView.h; sourceTree = "<group>"; };
-		C2D9A503159D4C4100794B24 /* CommonSnsInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonSnsInfoView.m; sourceTree = "<group>"; };
 		C2DD4F0B1610412500556CC7 /* DiceRobotDecisionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiceRobotDecisionView.h; sourceTree = "<group>"; };
 		C2DD4F0C1610412500556CC7 /* DiceRobotDecisionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiceRobotDecisionView.m; sourceTree = "<group>"; };
 		C2E5241715218E21008913CC /* AnimationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnimationManager.h; sourceTree = "<group>"; };
@@ -2772,8 +2798,6 @@
 		C2E90FED15BD454200828562 /* RecommendAppManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecommendAppManager.m; sourceTree = "<group>"; };
 		C2EBB8EA164A1B200024D605 /* ZJHSoundManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJHSoundManager.h; sourceTree = "<group>"; };
 		C2EBB8EB164A1B200024D605 /* ZJHSoundManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJHSoundManager.m; sourceTree = "<group>"; };
-		C2EE13C81663591800ADBE2E /* StarryLoadingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StarryLoadingView.h; sourceTree = "<group>"; };
-		C2EE13C91663591800ADBE2E /* StarryLoadingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StarryLoadingView.m; sourceTree = "<group>"; };
 		C2EE13DE1664839E00ADBE2E /* PPViewController+StarryLoadingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PPViewController+StarryLoadingView.h"; sourceTree = "<group>"; };
 		C2EE13DF1664839E00ADBE2E /* PPViewController+StarryLoadingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PPViewController+StarryLoadingView.m"; sourceTree = "<group>"; };
 		C2EE141C1664CB3600ADBE2E /* dialog_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dialog_bg@2x.png"; sourceTree = "<group>"; };
@@ -2783,21 +2807,11 @@
 		C2EE14201664CB3600ADBE2E /* dialog_yes@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dialog_yes@2x.png"; sourceTree = "<group>"; };
 		C2EE14231664CB3600ADBE2E /* loading_planet@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "loading_planet@2x.png"; sourceTree = "<group>"; };
 		C2EE14241664CB3600ADBE2E /* starryBg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = starryBg.png; sourceTree = "<group>"; };
-		C2EE142E1664EF5000ADBE2E /* CommonImageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonImageManager.h; sourceTree = "<group>"; };
-		C2EE142F1664EF5000ADBE2E /* CommonImageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonImageManager.m; sourceTree = "<group>"; };
 		C2EE145C1665FE4F00ADBE2E /* UIView+MDCShineEffect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+MDCShineEffect.h"; sourceTree = "<group>"; };
 		C2EE145D1665FE4F00ADBE2E /* UIView+MDCShineEffect.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+MDCShineEffect.m"; sourceTree = "<group>"; };
 		C2EE145F1665FE9300ADBE2E /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
 		C2EE1473166706BB00ADBE2E /* light.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = light.png; sourceTree = "<group>"; };
 		C2EE1474166706BB00ADBE2E /* star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = star.png; sourceTree = "<group>"; };
-		C2EF180E16758EEF00E5A9C5 /* ZJHPassWordDialog.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZJHPassWordDialog.xib; sourceTree = "<group>"; };
-		C2EF180F16758EEF00E5A9C5 /* ZJHRoomPasswordDialog~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ZJHRoomPasswordDialog~ipad.xib"; sourceTree = "<group>"; };
-		C2EF181016758EEF00E5A9C5 /* CommonZJHDialog.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommonZJHDialog.xib; sourceTree = "<group>"; };
-		C2EF181116758EEF00E5A9C5 /* ZJHInputDialog.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZJHInputDialog.xib; sourceTree = "<group>"; };
-		C2EF181216758EEF00E5A9C5 /* ZJHRoomPasswordDialog.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZJHRoomPasswordDialog.xib; sourceTree = "<group>"; };
-		C2EF181316758EEF00E5A9C5 /* CommonZJHDialog~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "CommonZJHDialog~ipad.xib"; sourceTree = "<group>"; };
-		C2EF181416758EEF00E5A9C5 /* ZJHInputDialog~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ZJHInputDialog~ipad.xib"; sourceTree = "<group>"; };
-		C2EF181516758EEF00E5A9C5 /* ZJHPassWordDialog~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ZJHPassWordDialog~ipad.xib"; sourceTree = "<group>"; };
 		C2F2CF961639165500995DCB /* ZJHImageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJHImageManager.h; sourceTree = "<group>"; };
 		C2F2CF971639165500995DCB /* ZJHImageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJHImageManager.m; sourceTree = "<group>"; };
 		C2F2CFB1163932C000995DCB /* ZJHAvatarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJHAvatarView.h; sourceTree = "<group>"; };
@@ -3329,10 +3343,6 @@
 		CA22DCF8157CB3E9009C95CB /* OfflineGuessDrawController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OfflineGuessDrawController.xib; sourceTree = "<group>"; };
 		CA22DD01157CB40B009C95CB /* OfflineGuessDrawController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OfflineGuessDrawController.h; sourceTree = "<group>"; };
 		CA22DD02157CB440009C95CB /* OfflineGuessDrawController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "OfflineGuessDrawController~ipad.xib"; sourceTree = "<group>"; };
-		CA31D8261561F70D00199A24 /* RoomPasswordDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoomPasswordDialog.h; sourceTree = "<group>"; };
-		CA31D8271561F70D00199A24 /* RoomPasswordDialog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoomPasswordDialog.m; sourceTree = "<group>"; };
-		CA31D8281561F70D00199A24 /* RoomPasswordDialog.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RoomPasswordDialog.xib; sourceTree = "<group>"; };
-		CA31D82B1561F72C00199A24 /* RoomPasswordDialog~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "RoomPasswordDialog~ipad.xib"; sourceTree = "<group>"; };
 		CA322100151B6A670039A384 /* GameNetworkRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameNetworkRequest.h; sourceTree = "<group>"; };
 		CA322101151B6A670039A384 /* GameNetworkRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameNetworkRequest.m; sourceTree = "<group>"; };
 		CA322103151B6BE60039A384 /* UserService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserService.h; sourceTree = "<group>"; };
@@ -3346,9 +3356,6 @@
 		CA322182151F62C00039A384 /* CoinShopController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoinShopController.h; sourceTree = "<group>"; };
 		CA322183151F62C00039A384 /* CoinShopController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoinShopController.m; sourceTree = "<group>"; };
 		CA322184151F62C00039A384 /* CoinShopController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CoinShopController.xib; sourceTree = "<group>"; };
-		CA322191151F64F90039A384 /* CommonDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonDialog.h; sourceTree = "<group>"; };
-		CA322192151F64F90039A384 /* CommonDialog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonDialog.m; sourceTree = "<group>"; };
-		CA322193151F64F90039A384 /* CommonDialog.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommonDialog.xib; sourceTree = "<group>"; };
 		CA3221A1151F657F0039A384 /* FeedbackController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedbackController.h; sourceTree = "<group>"; };
 		CA3221A2151F657F0039A384 /* FeedbackController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedbackController.m; sourceTree = "<group>"; };
 		CA3221A3151F657F0039A384 /* FeedbackController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FeedbackController.xib; sourceTree = "<group>"; };
@@ -4202,9 +4209,6 @@
 		CA91FC7E15C27BE700E9C1CD /* CommonGameNetworkClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonGameNetworkClient.m; sourceTree = "<group>"; };
 		CA91FC8015C27BF700E9C1CD /* CommonGameNetworkService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonGameNetworkService.h; sourceTree = "<group>"; };
 		CA91FC8115C27BF700E9C1CD /* CommonGameNetworkService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonGameNetworkService.m; sourceTree = "<group>"; };
-		CA959892152F546F0093FEDB /* InputDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InputDialog.h; sourceTree = "<group>"; };
-		CA959893152F54700093FEDB /* InputDialog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InputDialog.m; sourceTree = "<group>"; };
-		CA959894152F54700093FEDB /* InputDialog.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InputDialog.xib; sourceTree = "<group>"; };
 		CA963A5415C7C5A8007ACFB9 /* CommonGameSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonGameSession.h; sourceTree = "<group>"; };
 		CA963A5515C7C5A8007ACFB9 /* CommonGameSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonGameSession.m; sourceTree = "<group>"; };
 		CA963A5715C7C5D3007ACFB9 /* DiceGameSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiceGameSession.h; sourceTree = "<group>"; };
@@ -4254,9 +4258,6 @@
 		CAA362441558C3400081D3EB /* FriendManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendManager.m; sourceTree = "<group>"; };
 		CAA362461558C3780081D3EB /* FriendService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendService.h; sourceTree = "<group>"; };
 		CAA362471558C3780081D3EB /* FriendService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendService.m; sourceTree = "<group>"; };
-		CAA47812152FF70D005EDB24 /* PassWordDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PassWordDialog.h; sourceTree = "<group>"; };
-		CAA47813152FF70D005EDB24 /* PassWordDialog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PassWordDialog.m; sourceTree = "<group>"; };
-		CAA47814152FF70D005EDB24 /* PassWordDialog.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PassWordDialog.xib; sourceTree = "<group>"; };
 		CAA754BA150A02EA00B9391E /* SelectWordController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectWordController.h; sourceTree = "<group>"; };
 		CAA754BB150A02EA00B9391E /* SelectWordController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectWordController.m; sourceTree = "<group>"; };
 		CAA754BC150A02EA00B9391E /* SelectWordController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SelectWordController.xib; sourceTree = "<group>"; };
@@ -5357,8 +5358,8 @@
 		A42C528215E756CF001D8208 /* DiceHelpView */ = {
 			isa = PBXGroup;
 			children = (
-				A42C528315E756CF001D8208 /* HelpView.h */,
-				A42C528415E756CF001D8208 /* HelpView.m */,
+				A4CCE7A6167824B300F90726 /* HelpView.h */,
+				A4CCE7A7167824B300F90726 /* HelpView.m */,
 				A42C528515E756CF001D8208 /* DiceHelpView.xib */,
 				EA9A315215E9D5CE0059288A /* DiceHelpView~ipad.xib */,
 			);
@@ -5832,12 +5833,12 @@
 		A4E7877E16367338003557AD /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				A4CCE78216781C7400F90726 /* CommonGameUser.h */,
-				A4CCE78316781C7400F90726 /* CommonGameUser.m */,
-				A4CCE78416781C7400F90726 /* SNSUser.h */,
-				A4CCE78516781C7400F90726 /* SNSUser.m */,
-				A4CCE78616781C7400F90726 /* ZJHChatMsgManager.h */,
-				A4CCE78716781C7400F90726 /* ZJHChatMsgManager.m */,
+				A4CCE79D167823BC00F90726 /* CommonGameUser.h */,
+				A4CCE79E167823BC00F90726 /* CommonGameUser.m */,
+				A4CCE79F167823BC00F90726 /* SNSUser.h */,
+				A4CCE7A0167823BC00F90726 /* SNSUser.m */,
+				A4CCE7A1167823BC00F90726 /* ZJHChatMsgManager.h */,
+				A4CCE7A2167823BC00F90726 /* ZJHChatMsgManager.m */,
 				C2EBB8EA164A1B200024D605 /* ZJHSoundManager.h */,
 				C2EBB8EB164A1B200024D605 /* ZJHSoundManager.m */,
 				A4E787921636753F003557AD /* ZJHGameState.h */,
@@ -6153,6 +6154,96 @@
 			path = settings;
 			sourceTree = "<group>";
 		};
+		C2B537E31677712300725802 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				C2B537E41677712300725802 /* Controller */,
+				C2B537E91677712300725802 /* Model */,
+				C2B537EC1677712300725802 /* View */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		C2B537E41677712300725802 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				C2B537E51677712300725802 /* CommonRoomListCell.h */,
+				C2B537E61677712300725802 /* CommonRoomListCell.m */,
+				C2B537E71677712300725802 /* CommonRoomListController.h */,
+				C2B537E81677712300725802 /* CommonRoomListController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		C2B537E91677712300725802 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				C2B537EA1677712300725802 /* CommonImageManager.h */,
+				C2B537EB1677712300725802 /* CommonImageManager.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		C2B537EC1677712300725802 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				C2B537ED1677712300725802 /* CommonDialog.h */,
+				C2B537EE1677712300725802 /* CommonDialog.m */,
+				C2B537EF1677712300725802 /* CommonDialog.xib */,
+				C2B537F01677712300725802 /* CommonDialog~ipad.xib */,
+				C2B537F11677712300725802 /* CommonDiceDialog.xib */,
+				C2B537F21677712300725802 /* CommonDiceDialog~ipad.xib */,
+				C2B537F31677712300725802 /* CommonMessageCenter.h */,
+				C2B537F41677712300725802 /* CommonMessageCenter.m */,
+				C2B537F51677712300725802 /* CommonMessageView.xib */,
+				C2B537F61677712300725802 /* CommonMessageView~ipad.xib */,
+				C2B537F71677712300725802 /* CommonRoundAvatarView.h */,
+				C2B537F81677712300725802 /* CommonRoundAvatarView.m */,
+				C2B537F91677712300725802 /* CommonSnsInfoView.h */,
+				C2B537FA1677712300725802 /* CommonSnsInfoView.m */,
+				C2B537FB1677712300725802 /* CommonStarryDialog.xib */,
+				C2B537FC1677712300725802 /* CommonStarryDialog~ipad.xib */,
+				C2B537FD1677712300725802 /* CommonUserInfoView.h */,
+				C2B537FE1677712300725802 /* CommonUserInfoView.m */,
+				C2B537FF1677712300725802 /* CommonUserInfoView.xib */,
+				C2B538001677712300725802 /* CommonUserInfoView~ipad.xib */,
+				C2B538011677712300725802 /* CommonZJHDialog.xib */,
+				C2B538021677712300725802 /* CommonZJHDialog~ipad.xib */,
+				C2B538031677712300725802 /* DiceInputDialog.xib */,
+				C2B538041677712300725802 /* DiceInputDialog~ipad.xib */,
+				C2B538051677712300725802 /* DicePassWordDialog.xib */,
+				C2B538061677712300725802 /* DicePassWordDialog~ipad.xib */,
+				C2B538071677712300725802 /* DiceRoomPasswordDialog.xib */,
+				C2B538081677712300725802 /* DiceRoomPasswordDialog~ipad.xib */,
+				C2B538091677712300725802 /* DrawUserInfoView.h */,
+				C2B5380A1677712300725802 /* DrawUserInfoView.m */,
+				C2B5380B1677712300725802 /* DrawUserInfoView.xib */,
+				C2B5380C1677712300725802 /* DrawUserInfoView~ipad.xib */,
+				C2B5380D1677712300725802 /* InputDialog.h */,
+				C2B5380E1677712300725802 /* InputDialog.m */,
+				C2B5380F1677712300725802 /* InputDialog.xib */,
+				C2B538101677712300725802 /* InputDialog~ipad.xib */,
+				C2B538111677712300725802 /* PassWordDialog.h */,
+				C2B538121677712300725802 /* PassWordDialog.m */,
+				C2B538131677712300725802 /* PassWordDialog.xib */,
+				C2B538141677712300725802 /* PassWordDialog~ipad.xib */,
+				C2B538151677712300725802 /* RoomPasswordDialog.h */,
+				C2B538161677712300725802 /* RoomPasswordDialog.m */,
+				C2B538171677712300725802 /* RoomPasswordDialog.xib */,
+				C2B538181677712300725802 /* RoomPasswordDialog~ipad.xib */,
+				C2B538191677712300725802 /* StarryLoadingView.h */,
+				C2B5381A1677712300725802 /* StarryLoadingView.m */,
+				C2B5381B1677712300725802 /* ZJHInputDialog.xib */,
+				C2B5381C1677712300725802 /* ZJHInputDialog~ipad.xib */,
+				C2B5381D1677712300725802 /* ZJHPassWordDialog.xib */,
+				C2B5381E1677712300725802 /* ZJHPassWordDialog~ipad.xib */,
+				C2B5381F1677712300725802 /* ZJHRoomPasswordDialog.xib */,
+				C2B538201677712300725802 /* ZJHRoomPasswordDialog~ipad.xib */,
+				C2144C48167816B400F2C8BC /* DialogImageManagerProtocol.h */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		C2C1BF4215A2A884001A2BFC /* UI */ = {
 			isa = PBXGroup;
 			children = (
@@ -6189,17 +6280,6 @@
 				C2E90FEA15BD44DA00828562 /* RecommendApp.m */,
 			);
 			path = Recommend;
-			sourceTree = "<group>";
-		};
-		C2EE13C71663591800ADBE2E /* Common */ = {
-			isa = PBXGroup;
-			children = (
-				C26224CF16708E61008BF3FB /* CommonRoundAvatarView.m */,
-				C26224D016708E61008BF3FB /* CommonRoundAvatarView.h */,
-				C2EE13C81663591800ADBE2E /* StarryLoadingView.h */,
-				C2EE13C91663591800ADBE2E /* StarryLoadingView.m */,
-			);
-			path = Common;
 			sourceTree = "<group>";
 		};
 		C2EE141B1664CB3600ADBE2E /* Starry Images */ = {
@@ -7222,67 +7302,13 @@
 		CA1041D51509B6E700F60C03 /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				C26224C516702DB1008BF3FB /* DrawUserInfoView.xib */,
-				C26224C616702DB1008BF3FB /* DrawUserInfoView~ipad.xib */,
-				C26224C716702DB1008BF3FB /* DrawUserInfoView.m */,
-				C26224C816702DB2008BF3FB /* DrawUserInfoView.h */,
-				C2D9A502159D4C4100794B24 /* CommonSnsInfoView.h */,
-				C2D9A503159D4C4100794B24 /* CommonSnsInfoView.m */,
-				C29B8A1E1563B02000B9707D /* CommonMessageCenter.h */,
-				C29B8A1F1563B02000B9707D /* CommonMessageCenter.m */,
-				C29B8A201563B02000B9707D /* CommonMessageView.xib */,
-				C29B8AA7156760FE00B9707D /* CommonMessageView~ipad.xib */,
-				CA322191151F64F90039A384 /* CommonDialog.h */,
-				CA322192151F64F90039A384 /* CommonDialog.m */,
-				CA322193151F64F90039A384 /* CommonDialog.xib */,
-				C20D4B1015DE45B100074885 /* CommonDiceDialog.xib */,
-				C22CDE14166081C100844C93 /* CommonStarryDialog.xib */,
-				C2EF181016758EEF00E5A9C5 /* CommonZJHDialog.xib */,
-				A3FAE0DD15536EF0008B5827 /* CommonDialog~ipad.xib */,
-				C213093D15E393030072A18E /* CommonDiceDialog~ipad.xib */,
-				C22CDE161660823C00844C93 /* CommonStarryDialog~ipad.xib */,
-				C2EF181316758EEF00E5A9C5 /* CommonZJHDialog~ipad.xib */,
 				CA1377ED1525A2D700B5790B /* ShareImageManager.h */,
 				CA1377EE1525A2D700B5790B /* ShareImageManager.m */,
-				CA959892152F546F0093FEDB /* InputDialog.h */,
-				CA959893152F54700093FEDB /* InputDialog.m */,
-				CA959894152F54700093FEDB /* InputDialog.xib */,
-				C20D4B2615E21C0200074885 /* DiceInputDialog.xib */,
-				C2EF181116758EEF00E5A9C5 /* ZJHInputDialog.xib */,
-				A3FAE0DF15536F43008B5827 /* InputDialog~ipad.xib */,
-				C213093F15E3931F0072A18E /* DiceInputDialog~ipad.xib */,
-				C2EF181416758EEF00E5A9C5 /* ZJHInputDialog~ipad.xib */,
-				CAA47812152FF70D005EDB24 /* PassWordDialog.h */,
-				CAA47813152FF70D005EDB24 /* PassWordDialog.m */,
-				CAA47814152FF70D005EDB24 /* PassWordDialog.xib */,
-				C20D4B2815E21CC000074885 /* DicePassWordDialog.xib */,
-				C2EF180E16758EEF00E5A9C5 /* ZJHPassWordDialog.xib */,
-				A3FAE0E315536FE3008B5827 /* PassWordDialog~ipad.xib */,
-				C213094115E393320072A18E /* DicePassWordDialog~ipad.xib */,
-				C2EF181516758EEF00E5A9C5 /* ZJHPassWordDialog~ipad.xib */,
 				C2B3E9931555175B00CCF52C /* DrawConstants.h */,
-				CA31D8261561F70D00199A24 /* RoomPasswordDialog.h */,
-				CA31D8271561F70D00199A24 /* RoomPasswordDialog.m */,
-				CA31D8281561F70D00199A24 /* RoomPasswordDialog.xib */,
-				C20D4B2A15E220B400074885 /* DiceRoomPasswordDialog.xib */,
-				C2EF181216758EEF00E5A9C5 /* ZJHRoomPasswordDialog.xib */,
-				CA31D82B1561F72C00199A24 /* RoomPasswordDialog~ipad.xib */,
-				C213094315E393400072A18E /* DiceRoomPasswordDialog~ipad.xib */,
-				C2EF180F16758EEF00E5A9C5 /* ZJHRoomPasswordDialog~ipad.xib */,
-				C2615A9B1597FBB700CEEC66 /* CommonUserInfoView.h */,
-				C2615A9C1597FBB800CEEC66 /* CommonUserInfoView.m */,
-				C2615A9E1597FBEB00CEEC66 /* CommonUserInfoView.xib */,
-				C2615AA01597FC0B00CEEC66 /* CommonUserInfoView~ipad.xib */,
 				CA3F2F1C1609BDCA0059667B /* CommonTabController.h */,
 				CA3F2F1D1609BDCA0059667B /* CommonTabController.m */,
-				C299BED41653297500C21E2F /* CommonRoomListController.h */,
-				C299BED51653297500C21E2F /* CommonRoomListController.m */,
-				C299BED7165333E800C21E2F /* CommonRoomListCell.h */,
-				C299BED8165333E800C21E2F /* CommonRoomListCell.m */,
 				C2EE13DE1664839E00ADBE2E /* PPViewController+StarryLoadingView.h */,
 				C2EE13DF1664839E00ADBE2E /* PPViewController+StarryLoadingView.m */,
-				C2EE142E1664EF5000ADBE2E /* CommonImageManager.h */,
-				C2EE142F1664EF5000ADBE2E /* CommonImageManager.m */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -8091,6 +8117,7 @@
 		CA745D281503B1B500600024 /* Draw */ = {
 			isa = PBXGroup;
 			children = (
+				C2B537E31677712300725802 /* Common */,
 				CAFEFBE816606FC100441D77 /* Components */,
 				CAFEF86B16606E4700441D77 /* 3PP-SDK */,
 				CA103B391509A56000F60C03 /* Core */,
@@ -9259,7 +9286,6 @@
 		CA9AA963150F4071009D1CB6 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				C2EE13C71663591800ADBE2E /* Common */,
 				CAB15E7C15AD41C300502106 /* PickView */,
 				A461C9251565E3700076FD9C /* ChatMessageView */,
 				CA051DAE1546802D00D0A00A /* DrawView */,
@@ -11102,7 +11128,6 @@
 				CAB3DBDE1516DACD00E7DBC4 /* SelectWordCell.xib in Resources */,
 				CA32210A151B6C6F0039A384 /* CompleteUserInfoController.xib in Resources */,
 				CA322186151F62C00039A384 /* CoinShopController.xib in Resources */,
-				CA322195151F64F90039A384 /* CommonDialog.xib in Resources */,
 				CA3221A5151F657F0039A384 /* FeedbackController.xib in Resources */,
 				CA3221AA151F65AE0039A384 /* UserSettingController.xib in Resources */,
 				CA41C945152010FF00013DC8 /* ItemShopController.xib in Resources */,
@@ -11113,8 +11138,6 @@
 				CA1377F21525A7CB00B5790B /* Localizable.strings in Resources */,
 				C29C12DE152AE23E009B9E5F /* ShareCell.xib in Resources */,
 				CA4FF00B152AF21900F0AC88 /* ColorShopCell.xib in Resources */,
-				CA959896152F54700093FEDB /* InputDialog.xib in Resources */,
-				CAA47816152FF70D005EDB24 /* PassWordDialog.xib in Resources */,
 				CA8D602A1531C98400E016ED /* Default@2x.png in Resources */,
 				C284E8801531D89800DD5B77 /* AboutUsController.xib in Resources */,
 				CA8D60641531EC5500E016ED /* ReplayController.xib in Resources */,
@@ -11126,9 +11149,6 @@
 				CA0378241553696100CF41E3 /* SelectWordController~ipad.xib in Resources */,
 				A3FAE0DA15536E8D008B5827 /* RoomController~ipad.xib in Resources */,
 				A3FAE0DC15536EBB008B5827 /* UserSettingController~ipad.xib in Resources */,
-				A3FAE0DE15536EF0008B5827 /* CommonDialog~ipad.xib in Resources */,
-				A3FAE0E015536F43008B5827 /* InputDialog~ipad.xib in Resources */,
-				A3FAE0E415536FE3008B5827 /* PassWordDialog~ipad.xib in Resources */,
 				A3FAE0E61553701B008B5827 /* RegisterUserController~ipad.xib in Resources */,
 				A3FAE0E815537040008B5827 /* CompleteUserInfoController~ipad.xib in Resources */,
 				C2B3E932155373C400CCF52C /* FeedbackController~ipad.xib in Resources */,
@@ -11157,18 +11177,14 @@
 				EAF5AFD5155E2DD3008CD8EE /* MusicSettingController.xib in Resources */,
 				EAF5AFDA155E2EDF008CD8EE /* MusicSettingController~ipad.xib in Resources */,
 				EAF5AFDF155E2F30008CD8EE /* MusicSettingCell.xib in Resources */,
-				CA31D82A1561F70E00199A24 /* RoomPasswordDialog.xib in Resources */,
-				CA31D82C1561F72C00199A24 /* RoomPasswordDialog~ipad.xib in Resources */,
 				A3D11BF61562306A00248B4C /* FriendCell.xib in Resources */,
 				A3D11BF71562306A00248B4C /* FriendCell~ipad.xib in Resources */,
 				A3C129E11563A6ED00C021A7 /* RemoteDrawView.xib in Resources */,
 				A3C129E21563A6ED00C021A7 /* RemoteDrawView~ipad.xib in Resources */,
-				C29B8A221563B02000B9707D /* CommonMessageView.xib in Resources */,
 				A318FD0015650F680075860F /* ShowRemoteDrawController.xib in Resources */,
 				A318FD0115650F680075860F /* ShowRemoteDrawController~ipad.xib in Resources */,
 				A461C94115662BC30076FD9C /* ChatController~ipad.xib in Resources */,
 				A461C94215662BC30076FD9C /* MessageCell~ipad.xib in Resources */,
-				C29B8AA8156760FF00B9707D /* CommonMessageView~ipad.xib in Resources */,
 				EAE8A5611567ECEA002508D1 /* MusicSettingCell~ipad.xib in Resources */,
 				CAB9D0591568B96800D4F249 /* FriendRoomController~ipad.xib in Resources */,
 				CAD9C7121574CCFA00F2C8E1 /* fireworks1.png in Resources */,
@@ -11206,8 +11222,6 @@
 				A387F099158853EF00DC7C5D /* SelectChatFriendController~ipad.xib in Resources */,
 				EA01D157158BAB1600920A64 /* ReplayGraffitiController.xib in Resources */,
 				EA01D158158BAB1600920A64 /* ReplayGraffitiController~ipad.xib in Resources */,
-				C2615A9F1597FBEC00CEEC66 /* CommonUserInfoView.xib in Resources */,
-				C2615AA11597FC0C00CEEC66 /* CommonUserInfoView~ipad.xib in Resources */,
 				C2433A0015AAB02400325A76 /* VendingController.xib in Resources */,
 				C2433A0215AAB06D00325A76 /* VendingController~ipad.xib in Resources */,
 				C2433A2915AC025A00325A76 /* CommonItemInfoView.xib in Resources */,
@@ -11220,20 +11234,12 @@
 				A4B7640915C28F8E003B4E72 /* DiceRoomListController.xib in Resources */,
 				C296872C15DCE03F006968BA /* DiceItemInfoView.xib in Resources */,
 				C296872E15DCE03F006968BA /* DiceUserInfoView.xib in Resources */,
-				C20D4B1115DE45B100074885 /* CommonDiceDialog.xib in Resources */,
 				CAEECE1515DF8D5200FA5A2A /* BoardPanel.xib in Resources */,
-				C20D4B2715E21C0400074885 /* DiceInputDialog.xib in Resources */,
-				C20D4B2915E21CC600074885 /* DicePassWordDialog.xib in Resources */,
-				C20D4B2B15E220B600074885 /* DiceRoomPasswordDialog.xib in Resources */,
 				EA18147115E2427C00CAF901 /* DiceRoomListCell~ipad.xib in Resources */,
 				EA18147215E2427C00CAF901 /* DiceRoomListController~ipad.xib in Resources */,
 				C20D4B4F15E3274E00074885 /* DiceGamePlayController~ipad.xib in Resources */,
 				C213091B15E349E20072A18E /* DiceUserInfoView~ipad.xib in Resources */,
 				A4AB18F415E359B90097CC7A /* ChatViewCell.xib in Resources */,
-				C213093E15E393040072A18E /* CommonDiceDialog~ipad.xib in Resources */,
-				C213094015E3931F0072A18E /* DiceInputDialog~ipad.xib in Resources */,
-				C213094215E393320072A18E /* DicePassWordDialog~ipad.xib in Resources */,
-				C213094415E393410072A18E /* DiceRoomPasswordDialog~ipad.xib in Resources */,
 				CAE8B15115E4A24F0098A565 /* BoardPanel~ipad.xib in Resources */,
 				A42C528715E756CF001D8208 /* DiceHelpView.xib in Resources */,
 				EA18012E15E77DA100DF9440 /* ChatViewCell~ipad.xib in Resources */,
@@ -12305,8 +12311,6 @@
 				CAFE004C166072AB00441D77 /* oowrong.mp3 in Resources */,
 				CAFE004D166072AB00441D77 /* pushMessage.mp3 in Resources */,
 				CAFE004E166072AB00441D77 /* wrong.wav in Resources */,
-				C22CDE15166081C100844C93 /* CommonStarryDialog.xib in Resources */,
-				C22CDE171660823C00844C93 /* CommonStarryDialog~ipad.xib in Resources */,
 				CAC7912916635FB3009B4053 /* ShowImageController.xib in Resources */,
 				CAC7914E1664AD0B009B4053 /* bbs_badge@2x.png in Resources */,
 				CAC7914F1664AD0B009B4053 /* bbs_board_bg@2x.png in Resources */,
@@ -12378,8 +12382,6 @@
 				CAA27FB5166E083500513F58 /* bbs_board_comment@2x.png in Resources */,
 				CAA27FB6166E083500513F58 /* bbs_board_mine@2x.png in Resources */,
 				CAA27FB8166E661500513F58 /* ShowImageController~ipad.xib in Resources */,
-				C26224C916702DB2008BF3FB /* DrawUserInfoView.xib in Resources */,
-				C26224CA16702DB2008BF3FB /* DrawUserInfoView~ipad.xib in Resources */,
 				A4A4F8EA1671982B00EFC465 /* ZJHGameController_dual.xib in Resources */,
 				C26EBE6016719B6B00E8B38D /* ZJHUserInfoBackground.png in Resources */,
 				CA1DA914167322BE0078B5A9 /* bm_chat@2x.png in Resources */,
@@ -12415,14 +12417,6 @@
 				CA1DA9681673301B0078B5A9 /* HomeMainMenu.xib in Resources */,
 				CA1DA96A167330300078B5A9 /* HomeBottomMenu.xib in Resources */,
 				CA1DAA31167583130078B5A9 /* DrawHomeHeaderPanel~ipad.xib in Resources */,
-				C2EF181616758EEF00E5A9C5 /* ZJHPassWordDialog.xib in Resources */,
-				C2EF181716758EEF00E5A9C5 /* ZJHRoomPasswordDialog~ipad.xib in Resources */,
-				C2EF181816758EEF00E5A9C5 /* CommonZJHDialog.xib in Resources */,
-				C2EF181916758EEF00E5A9C5 /* ZJHInputDialog.xib in Resources */,
-				C2EF181A16758EEF00E5A9C5 /* ZJHRoomPasswordDialog.xib in Resources */,
-				C2EF181B16758EEF00E5A9C5 /* CommonZJHDialog~ipad.xib in Resources */,
-				C2EF181C16758EEF00E5A9C5 /* ZJHInputDialog~ipad.xib in Resources */,
-				C2EF181D16758EEF00E5A9C5 /* ZJHPassWordDialog~ipad.xib in Resources */,
 				A4D6A76B16759201008DC151 /* avatar_default_big@2x.png in Resources */,
 				A4D6A76C16759201008DC151 /* zjh_game_bg_dual@2x.jpg in Resources */,
 				A4D6A77116759321008DC151 /* ZJHGameController_dual~ip5.xib in Resources */,
@@ -12478,6 +12472,38 @@
 				A4CCE77F1677398E00F90726 /* zjh_chat_view_input_text_bg@2x.png in Resources */,
 				A4CCE7801677398E00F90726 /* zjh_chat_view_msg_bg@2x.png in Resources */,
 				A4CCE7811677398E00F90726 /* zjh_popup_view_close_btn_bg@2x.png in Resources */,
+				C2B538251677712300725802 /* CommonDialog.xib in Resources */,
+				C2B538261677712300725802 /* CommonDialog~ipad.xib in Resources */,
+				C2B538271677712300725802 /* CommonDiceDialog.xib in Resources */,
+				C2B538281677712300725802 /* CommonDiceDialog~ipad.xib in Resources */,
+				C2B5382A1677712300725802 /* CommonMessageView.xib in Resources */,
+				C2B5382B1677712300725802 /* CommonMessageView~ipad.xib in Resources */,
+				C2B5382E1677712300725802 /* CommonStarryDialog.xib in Resources */,
+				C2B5382F1677712300725802 /* CommonStarryDialog~ipad.xib in Resources */,
+				C2B538311677712300725802 /* CommonUserInfoView.xib in Resources */,
+				C2B538321677712300725802 /* CommonUserInfoView~ipad.xib in Resources */,
+				C2B538331677712300725802 /* CommonZJHDialog.xib in Resources */,
+				C2B538341677712300725802 /* CommonZJHDialog~ipad.xib in Resources */,
+				C2B538351677712300725802 /* DiceInputDialog.xib in Resources */,
+				C2B538361677712300725802 /* DiceInputDialog~ipad.xib in Resources */,
+				C2B538371677712300725802 /* DicePassWordDialog.xib in Resources */,
+				C2B538381677712300725802 /* DicePassWordDialog~ipad.xib in Resources */,
+				C2B538391677712300725802 /* DiceRoomPasswordDialog.xib in Resources */,
+				C2B5383A1677712300725802 /* DiceRoomPasswordDialog~ipad.xib in Resources */,
+				C2B5383C1677712300725802 /* DrawUserInfoView.xib in Resources */,
+				C2B5383D1677712300725802 /* DrawUserInfoView~ipad.xib in Resources */,
+				C2B5383F1677712300725802 /* InputDialog.xib in Resources */,
+				C2B538401677712300725802 /* InputDialog~ipad.xib in Resources */,
+				C2B538421677712300725802 /* PassWordDialog.xib in Resources */,
+				C2B538431677712300725802 /* PassWordDialog~ipad.xib in Resources */,
+				C2B538451677712300725802 /* RoomPasswordDialog.xib in Resources */,
+				C2B538461677712300725802 /* RoomPasswordDialog~ipad.xib in Resources */,
+				C2B538481677712300725802 /* ZJHInputDialog.xib in Resources */,
+				C2B538491677712300725802 /* ZJHInputDialog~ipad.xib in Resources */,
+				C2B5384A1677712300725802 /* ZJHPassWordDialog.xib in Resources */,
+				C2B5384B1677712300725802 /* ZJHPassWordDialog~ipad.xib in Resources */,
+				C2B5384C1677712300725802 /* ZJHRoomPasswordDialog.xib in Resources */,
+				C2B5384D1677712300725802 /* ZJHRoomPasswordDialog~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -12691,7 +12717,6 @@
 				CAF10AFE151C666E008C4512 /* ItemManager.m in Sources */,
 				CA32213D151DEDE10039A384 /* ChangeAvatar.m in Sources */,
 				CA322185151F62C00039A384 /* CoinShopController.m in Sources */,
-				CA322194151F64F90039A384 /* CommonDialog.m in Sources */,
 				CA3221A4151F657F0039A384 /* FeedbackController.m in Sources */,
 				CA3221A9151F65AE0039A384 /* UserSettingController.m in Sources */,
 				CA41C944152010FF00013DC8 /* ItemShopController.m in Sources */,
@@ -12716,10 +12741,8 @@
 				CA4FF001152AEFDF00F0AC88 /* ColorGroup.m in Sources */,
 				CA4FF00A152AF21900F0AC88 /* ColorShopCell.m in Sources */,
 				CA355F00152C03F200A14823 /* UserItem.m in Sources */,
-				CA959895152F54700093FEDB /* InputDialog.m in Sources */,
 				CA639117152FEA3D007564C6 /* RouterTrafficServer.m in Sources */,
 				CA63911A152FEA4F007564C6 /* PriceModel.m in Sources */,
-				CAA47815152FF70D005EDB24 /* PassWordDialog.m in Sources */,
 				C284E87F1531D89800DD5B77 /* AboutUsController.m in Sources */,
 				CA8D60631531EC5500E016ED /* ReplayController.m in Sources */,
 				CACC084E1532B02600D9F8E9 /* ShareAction.m in Sources */,
@@ -12759,12 +12782,10 @@
 				EAE0D149155FBC4900827DF9 /* MusicItemManager.m in Sources */,
 				A4D3B15B1560E4B50013C882 /* ExpressionManager.m in Sources */,
 				A4D3B15E1560E4F80013C882 /* MessageManager.m in Sources */,
-				CA31D8291561F70E00199A24 /* RoomPasswordDialog.m in Sources */,
 				A3D11BF51562306A00248B4C /* FriendCell.m in Sources */,
 				A3C129D81563A6B600C021A7 /* DrawDataService.m in Sources */,
 				A3C129E01563A6ED00C021A7 /* RemoteDrawView.m in Sources */,
 				A3C129E51563A70E00C021A7 /* Draw.m in Sources */,
-				C29B8A211563B02000B9707D /* CommonMessageCenter.m in Sources */,
 				A318FCFF15650F680075860F /* ShowRemoteDrawController.m in Sources */,
 				A461C9281565E3700076FD9C /* ChatMessageView.m in Sources */,
 				C246F3581577633B003C284F /* LevelService.m in Sources */,
@@ -12792,10 +12813,8 @@
 				EA01D156158BAB1600920A64 /* ReplayGraffitiController.m in Sources */,
 				A3DE093F15908AB700E2C746 /* ChatDetailCell.m in Sources */,
 				CAE0C8971591A2ED008CDA62 /* NotificationManager.m in Sources */,
-				C2615A9D1597FBB900CEEC66 /* CommonUserInfoView.m in Sources */,
 				CAA9C427159BF41B00398EC5 /* ShareService.m in Sources */,
 				CAA9C435159CA97100398EC5 /* LmWallService.m in Sources */,
-				C2D9A504159D4C4100794B24 /* CommonSnsInfoView.m in Sources */,
 				CAA1AA3F159D78C200504C98 /* AdService.m in Sources */,
 				C2C1BF4515A2A9B6001A2BFC /* UIManager.m in Sources */,
 				CA51816D15A2D79700AD5A78 /* CustomStatueBar.m in Sources */,
@@ -12865,7 +12884,6 @@
 				A42C520615E614D2001D8208 /* CommonChatMessage.m in Sources */,
 				A42C520715E614D2001D8208 /* DiceChatMsgManager.m in Sources */,
 				A42C520B15E614E5001D8208 /* DiceSoundManager.m in Sources */,
-				A42C528615E756CF001D8208 /* HelpView.m in Sources */,
 				C21309FB15E774390072A18E /* DiceColorManager.m in Sources */,
 				A48E827415E871CE002DB480 /* DiceHelpManager.m in Sources */,
 				CA67B87115E89B09002050DB /* DrawGameApp.m in Sources */,
@@ -12992,8 +13010,6 @@
 				A4A132651650E86900665109 /* MessageView.m in Sources */,
 				A43FF3281650E9EF00B490B7 /* DiceMessageView.m in Sources */,
 				C239366716522858001BD5C6 /* ZJHSettingView.m in Sources */,
-				C299BED61653297500C21E2F /* CommonRoomListController.m in Sources */,
-				C299BED9165333E800C21E2F /* CommonRoomListCell.m in Sources */,
 				CA913A521653532000B6387F /* Bbs.pb.m in Sources */,
 				A42EA46F1653656A0080BB95 /* ZJHScreenConfig.m in Sources */,
 				CA415132165395A30062A638 /* BBSManager.m in Sources */,
@@ -13097,13 +13113,11 @@
 				CAFEFFB5166072AB00441D77 /* DrawUtils.m in Sources */,
 				CA42FE861660B73A0097453A /* DrawGameAnimationManager.m in Sources */,
 				CAC790FB1663194F009B4053 /* BBSTableViewCell.m in Sources */,
-				C2EE13CA1663591800ADBE2E /* StarryLoadingView.m in Sources */,
 				CAC7912716635F9F009B4053 /* ShowImageController.m in Sources */,
 				C2EE13E01664839E00ADBE2E /* PPViewController+StarryLoadingView.m in Sources */,
 				CAC7915C1664AD2C009B4053 /* BBSImageManager.m in Sources */,
 				CAC791711664BCF3009B4053 /* BBSFontManager.m in Sources */,
 				CAC791741664BD09009B4053 /* BBSColorManager.m in Sources */,
-				C2EE14301664EF5000ADBE2E /* CommonImageManager.m in Sources */,
 				CAC7919B1665AD1B009B4053 /* BBSViewManager.m in Sources */,
 				C2EE145E1665FE4F00ADBE2E /* UIView+MDCShineEffect.m in Sources */,
 				CA12507F1667399300AFCC04 /* PPSmartUpdateData.m in Sources */,
@@ -13124,9 +13138,7 @@
 				C28A23D0166C9123007C9EA5 /* FallingCoinView.m in Sources */,
 				CA8A27EF166CE57500D1A2D6 /* ZJHGameApp.m in Sources */,
 				A49A083F166DA68D003E0F75 /* ReplacedPoker.m in Sources */,
-				C26224CB16702DB2008BF3FB /* DrawUserInfoView.m in Sources */,
 				C26224CE1670849C008BF3FB /* ZJHUserInfoView.m in Sources */,
-				C26224D116708E61008BF3FB /* CommonRoundAvatarView.m in Sources */,
 				A4A4F8EB1671982B00EFC465 /* ZJHUserPosInfo.m in Sources */,
 				CA1DA905167321090078B5A9 /* DrawColorManager.m in Sources */,
 				CA1DA9081673211E0078B5A9 /* DrawFontManager.m in Sources */,
@@ -13142,9 +13154,23 @@
 				A4D6A765167591D3008DC151 /* ZJHRuleConfig.m in Sources */,
 				A4D6A766167591D3008DC151 /* ZJHRuleConfigFactory.m in Sources */,
 				CA1DAA591675CF470078B5A9 /* DrawHomeViewController.m in Sources */,
-				A4CCE78816781C7400F90726 /* CommonGameUser.m in Sources */,
-				A4CCE78916781C7400F90726 /* SNSUser.m in Sources */,
-				A4CCE78A16781C7400F90726 /* ZJHChatMsgManager.m in Sources */,
+				C2B538211677712300725802 /* CommonRoomListCell.m in Sources */,
+				C2B538221677712300725802 /* CommonRoomListController.m in Sources */,
+				C2B538231677712300725802 /* CommonImageManager.m in Sources */,
+				C2B538241677712300725802 /* CommonDialog.m in Sources */,
+				C2B538291677712300725802 /* CommonMessageCenter.m in Sources */,
+				C2B5382C1677712300725802 /* CommonRoundAvatarView.m in Sources */,
+				C2B5382D1677712300725802 /* CommonSnsInfoView.m in Sources */,
+				C2B538301677712300725802 /* CommonUserInfoView.m in Sources */,
+				C2B5383B1677712300725802 /* DrawUserInfoView.m in Sources */,
+				C2B5383E1677712300725802 /* InputDialog.m in Sources */,
+				C2B538411677712300725802 /* PassWordDialog.m in Sources */,
+				C2B538441677712300725802 /* RoomPasswordDialog.m in Sources */,
+				C2B538471677712300725802 /* StarryLoadingView.m in Sources */,
+				A4CCE7A3167823BC00F90726 /* CommonGameUser.m in Sources */,
+				A4CCE7A4167823BC00F90726 /* SNSUser.m in Sources */,
+				A4CCE7A5167823BC00F90726 /* ZJHChatMsgManager.m in Sources */,
+				A4CCE7A8167824B300F90726 /* HelpView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -13378,8 +13404,8 @@
 					armv7,
 					armv6,
 				);
-				CODE_SIGN_IDENTITY = "iPhone Developer: Lingzhe Peng (4JW9JNLMWA)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Lingzhe Peng (4JW9JNLMWA)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Lingzhe Peng (9WG829Y3AG)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Lingzhe Peng (9WG829Y3AG)";
 				COMPRESS_PNG_FILES = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -13393,8 +13419,8 @@
 					"../Common_iPhone_20/3PP-SDK/QWeiboSDK4iOS/**",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
-				PROVISIONING_PROFILE = "8C9352B7-156B-47AF-AA40-39E4517161A8";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "8C9352B7-156B-47AF-AA40-39E4517161A8";
+				PROVISIONING_PROFILE = "B6900C1C-652D-4108-A6DD-7D3DEC301766";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "B6900C1C-652D-4108-A6DD-7D3DEC301766";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -13407,8 +13433,8 @@
 					armv7,
 					armv6,
 				);
-				CODE_SIGN_IDENTITY = "iPhone Developer: Lingzhe Peng (4JW9JNLMWA)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Lingzhe Peng (4JW9JNLMWA)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Lingzhe Peng (9WG829Y3AG)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Lingzhe Peng (9WG829Y3AG)";
 				COMPRESS_PNG_FILES = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_VERSION = "";
@@ -13420,8 +13446,8 @@
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
-				PROVISIONING_PROFILE = "8C9352B7-156B-47AF-AA40-39E4517161A8";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "8C9352B7-156B-47AF-AA40-39E4517161A8";
+				PROVISIONING_PROFILE = "B6900C1C-652D-4108-A6DD-7D3DEC301766";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "B6900C1C-652D-4108-A6DD-7D3DEC301766";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -13431,8 +13457,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Lingzhe Peng (4JW9JNLMWA)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Lingzhe Peng (4JW9JNLMWA)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Lingzhe Peng (9WG829Y3AG)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Lingzhe Peng (9WG829Y3AG)";
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -13486,8 +13512,8 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "8C9352B7-156B-47AF-AA40-39E4517161A8";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "8C9352B7-156B-47AF-AA40-39E4517161A8";
+				PROVISIONING_PROFILE = "B6900C1C-652D-4108-A6DD-7D3DEC301766";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "B6900C1C-652D-4108-A6DD-7D3DEC301766";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -13496,8 +13522,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Lingzhe Peng (4JW9JNLMWA)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Lingzhe Peng (4JW9JNLMWA)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Lingzhe Peng (9WG829Y3AG)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Lingzhe Peng (9WG829Y3AG)";
 				COPY_PHASE_STRIP = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -13550,8 +13576,8 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "8C9352B7-156B-47AF-AA40-39E4517161A8";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "8C9352B7-156B-47AF-AA40-39E4517161A8";
+				PROVISIONING_PROFILE = "B6900C1C-652D-4108-A6DD-7D3DEC301766";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "B6900C1C-652D-4108-A6DD-7D3DEC301766";
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;
 			};

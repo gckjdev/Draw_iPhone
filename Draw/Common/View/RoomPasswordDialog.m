@@ -13,6 +13,7 @@
 #import "DiceImageManager.h"
 #import "ZJHImageManager.h"
 
+
 @implementation RoomPasswordDialog
 @synthesize passwordField;
 @synthesize roomNameLabel;
@@ -54,18 +55,17 @@
 
 - (void)initByZJH:(NSString*)title
 {
-    DiceImageManager* diceImgManager = [DiceImageManager defaultManager];
+    ZJHImageManager*  zjhImgManager = [ZJHImageManager defaultManager];
     float fontSize = [DeviceDetection isIPAD] ? 40 : 20;
     
-    [self.contentBackground setImage:[ZJHImageManager defaultManager].ZJHUserInfoBackgroundImage];
+    [self.contentBackground setImage:zjhImgManager.dialogBgImage];
     self.isPasswordOptional = YES;
-    [self.targetTextField setBackground:[diceImgManager inputBackgroundImage]];
     [self.titleLabel setTitle:title forState:UIControlStateNormal];
     
-    [self.okButton setRoyButtonWithColor:[UIColor colorWithRed:120.0/255.0 green:230.0/255.0 blue:160.0/255.0 alpha:0.95]];
+    [self.okButton setBackgroundImage:zjhImgManager.dialogBtnImage forState:UIControlStateNormal];
     [self.okButton.titleLabel setFont:[UIFont systemFontOfSize:fontSize]];
     
-    [self.cancelButton setRoyButtonWithColor:[UIColor colorWithRed:236.0/255.0 green:247.0/255.0 blue:63.0/255.0 alpha:0.95]];
+    [self.cancelButton setBackgroundImage:zjhImgManager.dialogBtnImage forState:UIControlStateNormal];
     [self.cancelButton.titleLabel setFont:[UIFont systemFontOfSize:fontSize]];
     
     [self.cancelButton setTitle:NSLS(@"kCancel") forState:UIControlStateNormal];
@@ -73,8 +73,8 @@
     self.titleLabel.titleLabel.font = [UIFont boldSystemFontOfSize:fontSize];
     self.titleLabel.titleLabel.adjustsFontSizeToFitWidth = YES;
     self.titleLabel.titleLabel.lineBreakMode = UILineBreakModeTailTruncation;
-    [self.targetTextField setBackground:[diceImgManager inputBackgroundImage]];
-    [self.passwordField setBackground:[diceImgManager inputBackgroundImage]];
+    [self.targetTextField setBackground:[zjhImgManager inputDialogBgImage]];
+    [self.passwordField setBackground:[zjhImgManager inputDialogBgImage]];
 }
 
 - (void)initByDice:(NSString*)title
@@ -135,7 +135,6 @@
 + (RoomPasswordDialog *)dialogWith:(NSString *)title delegate:(id<InputDialogDelegate>)delegate
 {
     CommonInputDialogTheme theme = [RoomPasswordDialog getTheme];
-    PPDebug(@"*********** theme = %d", theme);
     return [RoomPasswordDialog dialogWith:title delegate:delegate theme:theme];
 }
 

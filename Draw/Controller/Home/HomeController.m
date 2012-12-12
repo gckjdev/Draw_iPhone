@@ -46,6 +46,8 @@
 #import "LmWallService.h"
 #import "AdService.h"
 #import "VendingController.h"
+#import "ShowFeedController.h"
+
 //#import "RecommendedAppsController.h"
 //#import "FacetimeMainController.h"
 
@@ -717,6 +719,17 @@
     }
 }
 
+- (void)homeHeaderPanel:(HomeHeaderPanel *)headerPanel
+      didClickDrawImage:(DrawFeed *)drawFeed
+{
+    if ([self isRegistered] == NO) {
+        [self toRegister];
+        return;
+    }
+    ShowFeedController *sf = [[ShowFeedController alloc] initWithFeed:drawFeed];
+    [self.navigationController pushViewController:sf animated:YES];
+    [sf release];
+}
 
 - (IBAction)clickFacetime:(id)sender
 {
