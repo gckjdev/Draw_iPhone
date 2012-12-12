@@ -305,6 +305,7 @@
 		A4B45F6316787822009EA231 /* face_wry.gif in Resources */ = {isa = PBXBuildFile; fileRef = A4B45F5616787822009EA231 /* face_wry.gif */; };
 		A4B45F6616787D82009EA231 /* ZJHRoomListCell_dual.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4B45F6416787D80009EA231 /* ZJHRoomListCell_dual.xib */; };
 		A4B45F6716787D82009EA231 /* ZJHRoomListCell_dual~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4B45F6516787D81009EA231 /* ZJHRoomListCell_dual~ipad.xib */; };
+		A4B45F9116788389009EA231 /* zjh_room_list_cell_bg_dual@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4B45F9016788389009EA231 /* zjh_room_list_cell_bg_dual@2x.png */; };
 		A4B763A215C25208003B4E72 /* Draw.proto in Resources */ = {isa = PBXBuildFile; fileRef = A4B763A015C25208003B4E72 /* Draw.proto */; };
 		A4B763A315C25208003B4E72 /* Dice.proto in Resources */ = {isa = PBXBuildFile; fileRef = A4B763A115C25208003B4E72 /* Dice.proto */; };
 		A4B763A815C25218003B4E72 /* Draw.pb.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B763A515C25218003B4E72 /* Draw.pb.m */; };
@@ -462,15 +463,11 @@
 		C2B3E93E155373FD00CCF52C /* ShareCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2B3E93D155373FD00CCF52C /* ShareCell~ipad.xib */; };
 		C2B3E9401553740400CCF52C /* ReplayController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2B3E93F1553740400CCF52C /* ReplayController~ipad.xib */; };
 		C2B3E9421553741600CCF52C /* MyPaintButton~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2B3E9411553741600CCF52C /* MyPaintButton~ipad.xib */; };
-		C2B5376116772ECF00725802 /* zjh_dialog_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = C2B5375316772ECF00725802 /* zjh_dialog_bg.png */; };
-		C2B5376216772ECF00725802 /* zjh_dialog_btn.png in Resources */ = {isa = PBXBuildFile; fileRef = C2B5375416772ECF00725802 /* zjh_dialog_btn.png */; };
-		C2B5376316772ECF00725802 /* zjh_input_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = C2B5375516772ECF00725802 /* zjh_input_bg.png */; };
 		C2B5376416772ECF00725802 /* zjh_audio_off@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2B5375716772ECF00725802 /* zjh_audio_off@2x.png */; };
 		C2B5376516772ECF00725802 /* zjh_audio_on@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2B5375816772ECF00725802 /* zjh_audio_on@2x.png */; };
 		C2B5376616772ECF00725802 /* zjh_close_btn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2B5375916772ECF00725802 /* zjh_close_btn@2x.png */; };
 		C2B5376716772ECF00725802 /* zjh_music_off@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2B5375A16772ECF00725802 /* zjh_music_off@2x.png */; };
 		C2B5376816772ECF00725802 /* zjh_music_on@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2B5375B16772ECF00725802 /* zjh_music_on@2x.png */; };
-		C2B5376916772ECF00725802 /* zjh_setting_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = C2B5375C16772ECF00725802 /* zjh_setting_bg.png */; };
 		C2B5376A16772ECF00725802 /* zjh_settingleft_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2B5375D16772ECF00725802 /* zjh_settingleft_selected@2x.png */; };
 		C2B5376B16772ECF00725802 /* zjh_settingleft_unselect@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2B5375E16772ECF00725802 /* zjh_settingleft_unselect@2x.png */; };
 		C2B5376C16772ECF00725802 /* zjh_settingright_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2B5375F16772ECF00725802 /* zjh_settingright_selected@2x.png */; };
@@ -551,6 +548,10 @@
 		C2F1DEC416786E1C002D8408 /* CommonSettingView.m in Sources */ = {isa = PBXBuildFile; fileRef = C2F1DEC116786E1C002D8408 /* CommonSettingView.m */; };
 		C2F1DEC516786E1C002D8408 /* CommonSettingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2F1DEC216786E1C002D8408 /* CommonSettingView.xib */; };
 		C2F1DEC616786E1C002D8408 /* CommonSettingView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2F1DEC316786E1C002D8408 /* CommonSettingView~ipad.xib */; };
+		C2F1DF02167882BE002D8408 /* zjh_dialog_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2F1DEFF167882BE002D8408 /* zjh_dialog_bg@2x.png */; };
+		C2F1DF03167882BE002D8408 /* zjh_dialog_btn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2F1DF00167882BE002D8408 /* zjh_dialog_btn@2x.png */; };
+		C2F1DF04167882BE002D8408 /* zjh_input_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2F1DF01167882BE002D8408 /* zjh_input_bg@2x.png */; };
+		C2F1DF06167882CA002D8408 /* zjh_setting_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2F1DF05167882CA002D8408 /* zjh_setting_bg@2x.png */; };
 		C2F2CF981639165500995DCB /* ZJHImageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C2F2CF971639165500995DCB /* ZJHImageManager.m */; };
 		C2F2CFB3163932C000995DCB /* ZJHAvatarView.m in Sources */ = {isa = PBXBuildFile; fileRef = C2F2CFB2163932C000995DCB /* ZJHAvatarView.m */; };
 		C2F947D21533D91E0034C895 /* UFPController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2F947D01533D91E0034C895 /* UFPController.m */; };
@@ -2553,6 +2554,7 @@
 		A4B45F5616787822009EA231 /* face_wry.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = face_wry.gif; sourceTree = "<group>"; };
 		A4B45F6416787D80009EA231 /* ZJHRoomListCell_dual.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZJHRoomListCell_dual.xib; sourceTree = "<group>"; };
 		A4B45F6516787D81009EA231 /* ZJHRoomListCell_dual~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ZJHRoomListCell_dual~ipad.xib"; sourceTree = "<group>"; };
+		A4B45F9016788389009EA231 /* zjh_room_list_cell_bg_dual@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zjh_room_list_cell_bg_dual@2x.png"; sourceTree = "<group>"; };
 		A4B763A015C25208003B4E72 /* Draw.proto */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Draw.proto; sourceTree = "<group>"; };
 		A4B763A115C25208003B4E72 /* Dice.proto */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Dice.proto; sourceTree = "<group>"; };
 		A4B763A415C25218003B4E72 /* Draw.pb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Draw.pb.h; sourceTree = "<group>"; };
@@ -2785,15 +2787,11 @@
 		C2B3E93F1553740400CCF52C /* ReplayController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ReplayController~ipad.xib"; sourceTree = "<group>"; };
 		C2B3E9411553741600CCF52C /* MyPaintButton~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "MyPaintButton~ipad.xib"; sourceTree = "<group>"; };
 		C2B3E9931555175B00CCF52C /* DrawConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DrawConstants.h; sourceTree = "<group>"; };
-		C2B5375316772ECF00725802 /* zjh_dialog_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = zjh_dialog_bg.png; sourceTree = "<group>"; };
-		C2B5375416772ECF00725802 /* zjh_dialog_btn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = zjh_dialog_btn.png; sourceTree = "<group>"; };
-		C2B5375516772ECF00725802 /* zjh_input_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = zjh_input_bg.png; sourceTree = "<group>"; };
 		C2B5375716772ECF00725802 /* zjh_audio_off@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zjh_audio_off@2x.png"; sourceTree = "<group>"; };
 		C2B5375816772ECF00725802 /* zjh_audio_on@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zjh_audio_on@2x.png"; sourceTree = "<group>"; };
 		C2B5375916772ECF00725802 /* zjh_close_btn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zjh_close_btn@2x.png"; sourceTree = "<group>"; };
 		C2B5375A16772ECF00725802 /* zjh_music_off@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zjh_music_off@2x.png"; sourceTree = "<group>"; };
 		C2B5375B16772ECF00725802 /* zjh_music_on@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zjh_music_on@2x.png"; sourceTree = "<group>"; };
-		C2B5375C16772ECF00725802 /* zjh_setting_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = zjh_setting_bg.png; sourceTree = "<group>"; };
 		C2B5375D16772ECF00725802 /* zjh_settingleft_selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zjh_settingleft_selected@2x.png"; sourceTree = "<group>"; };
 		C2B5375E16772ECF00725802 /* zjh_settingleft_unselect@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zjh_settingleft_unselect@2x.png"; sourceTree = "<group>"; };
 		C2B5375F16772ECF00725802 /* zjh_settingright_selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zjh_settingright_selected@2x.png"; sourceTree = "<group>"; };
@@ -2904,6 +2902,10 @@
 		C2F1DEC116786E1C002D8408 /* CommonSettingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonSettingView.m; sourceTree = "<group>"; };
 		C2F1DEC216786E1C002D8408 /* CommonSettingView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommonSettingView.xib; sourceTree = "<group>"; };
 		C2F1DEC316786E1C002D8408 /* CommonSettingView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "CommonSettingView~ipad.xib"; sourceTree = "<group>"; };
+		C2F1DEFF167882BE002D8408 /* zjh_dialog_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zjh_dialog_bg@2x.png"; sourceTree = "<group>"; };
+		C2F1DF00167882BE002D8408 /* zjh_dialog_btn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zjh_dialog_btn@2x.png"; sourceTree = "<group>"; };
+		C2F1DF01167882BE002D8408 /* zjh_input_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zjh_input_bg@2x.png"; sourceTree = "<group>"; };
+		C2F1DF05167882CA002D8408 /* zjh_setting_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zjh_setting_bg@2x.png"; sourceTree = "<group>"; };
 		C2F2CF961639165500995DCB /* ZJHImageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJHImageManager.h; sourceTree = "<group>"; };
 		C2F2CF971639165500995DCB /* ZJHImageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJHImageManager.m; sourceTree = "<group>"; };
 		C2F2CFB1163932C000995DCB /* ZJHAvatarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJHAvatarView.h; sourceTree = "<group>"; };
@@ -5282,6 +5284,7 @@
 		A405C82E165B874500E7610F /* room */ = {
 			isa = PBXGroup;
 			children = (
+				A4B45F9016788389009EA231 /* zjh_room_list_cell_bg_dual@2x.png */,
 				A4B45F2D16787545009EA231 /* zjh_bg@2x.jpg */,
 				A4CCE7AF1678304C00F90726 /* zjh_game_rule_btn_bg_selected@2x.png */,
 				A4CCE7B01678304C00F90726 /* zjh_help_view_bg@2x.png */,
@@ -6294,9 +6297,9 @@
 		C2B5375216772ECF00725802 /* dialogs */ = {
 			isa = PBXGroup;
 			children = (
-				C2B5375316772ECF00725802 /* zjh_dialog_bg.png */,
-				C2B5375416772ECF00725802 /* zjh_dialog_btn.png */,
-				C2B5375516772ECF00725802 /* zjh_input_bg.png */,
+				C2F1DEFF167882BE002D8408 /* zjh_dialog_bg@2x.png */,
+				C2F1DF00167882BE002D8408 /* zjh_dialog_btn@2x.png */,
+				C2F1DF01167882BE002D8408 /* zjh_input_bg@2x.png */,
 			);
 			path = dialogs;
 			sourceTree = "<group>";
@@ -6304,12 +6307,12 @@
 		C2B5375616772ECF00725802 /* settings */ = {
 			isa = PBXGroup;
 			children = (
+				C2F1DF05167882CA002D8408 /* zjh_setting_bg@2x.png */,
 				C2B5375716772ECF00725802 /* zjh_audio_off@2x.png */,
 				C2B5375816772ECF00725802 /* zjh_audio_on@2x.png */,
 				C2B5375916772ECF00725802 /* zjh_close_btn@2x.png */,
 				C2B5375A16772ECF00725802 /* zjh_music_off@2x.png */,
 				C2B5375B16772ECF00725802 /* zjh_music_on@2x.png */,
-				C2B5375C16772ECF00725802 /* zjh_setting_bg.png */,
 				C2B5375D16772ECF00725802 /* zjh_settingleft_selected@2x.png */,
 				C2B5375E16772ECF00725802 /* zjh_settingleft_unselect@2x.png */,
 				C2B5375F16772ECF00725802 /* zjh_settingright_selected@2x.png */,
@@ -12625,15 +12628,11 @@
 				A4CCE74516771A6D00F90726 /* face_sleep@2x.png in Resources */,
 				A4CCE74616771A6D00F90726 /* face_smile@2x.png in Resources */,
 				A4CCE74716771A6D00F90726 /* face_wry@2x.png in Resources */,
-				C2B5376116772ECF00725802 /* zjh_dialog_bg.png in Resources */,
-				C2B5376216772ECF00725802 /* zjh_dialog_btn.png in Resources */,
-				C2B5376316772ECF00725802 /* zjh_input_bg.png in Resources */,
 				C2B5376416772ECF00725802 /* zjh_audio_off@2x.png in Resources */,
 				C2B5376516772ECF00725802 /* zjh_audio_on@2x.png in Resources */,
 				C2B5376616772ECF00725802 /* zjh_close_btn@2x.png in Resources */,
 				C2B5376716772ECF00725802 /* zjh_music_off@2x.png in Resources */,
 				C2B5376816772ECF00725802 /* zjh_music_on@2x.png in Resources */,
-				C2B5376916772ECF00725802 /* zjh_setting_bg.png in Resources */,
 				C2B5376A16772ECF00725802 /* zjh_settingleft_selected@2x.png in Resources */,
 				C2B5376B16772ECF00725802 /* zjh_settingleft_unselect@2x.png in Resources */,
 				C2B5376C16772ECF00725802 /* zjh_settingright_selected@2x.png in Resources */,
@@ -12754,6 +12753,11 @@
 				A4B45F6716787D82009EA231 /* ZJHRoomListCell_dual~ipad.xib in Resources */,
 				CA126170167880CE00DD96F4 /* ZJHHomeViewController.xib in Resources */,
 				CA126171167880CE00DD96F4 /* ZJHHomeViewController~ipad.xib in Resources */,
+				C2F1DF02167882BE002D8408 /* zjh_dialog_bg@2x.png in Resources */,
+				C2F1DF03167882BE002D8408 /* zjh_dialog_btn@2x.png in Resources */,
+				C2F1DF04167882BE002D8408 /* zjh_input_bg@2x.png in Resources */,
+				C2F1DF06167882CA002D8408 /* zjh_setting_bg@2x.png in Resources */,
+				A4B45F9116788389009EA231 /* zjh_room_list_cell_bg_dual@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
