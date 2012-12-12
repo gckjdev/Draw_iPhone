@@ -31,4 +31,15 @@
 - (UIImage *)settingsRightSelected;
 - (UIImage *)settingsRightUnselected;
 
+- (UIImage *)roomListBgImage;
+- (UIImage *)roomListLeftBtnSelectedImage;
+- (UIImage *)roomListLeftBtnUnselectedImage;
+- (UIImage *)roomListRightBtnSelectedImage;
+- (UIImage *)roomListRightBtnUnselectedImage;
+- (UIImage *)roomListBackBtnImage;
+- (UIImage *)roomListCellBgImage;
+- (UIImage *)roomListCreateRoomBtnBgImage;
+- (UIImage *)roomListFastEntryBtnBgImage;
+
+
 @end

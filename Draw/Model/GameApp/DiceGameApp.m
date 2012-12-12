@@ -278,5 +278,14 @@
     return @"DiceHomeHeaderPanel";
 }
 
+- (NSString *)roomListCellBgImageName
+{
+    return @"dice_room_item";
+}
+
+- (NSString *)roomListCellDualBgImageName
+{
+    return @"";
+}
 
 @end

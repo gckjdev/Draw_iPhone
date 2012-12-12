@@ -2,13 +2,13 @@
 <archive type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="8.00">
 	<data>
 		<int key="IBDocument.SystemTarget">1536</int>
-		<string key="IBDocument.SystemVersion">11E53</string>
-		<string key="IBDocument.InterfaceBuilderVersion">2840</string>
-		<string key="IBDocument.AppKitVersion">1138.47</string>
-		<string key="IBDocument.HIToolboxVersion">569.00</string>
+		<string key="IBDocument.SystemVersion">12A269</string>
+		<string key="IBDocument.InterfaceBuilderVersion">2844</string>
+		<string key="IBDocument.AppKitVersion">1187</string>
+		<string key="IBDocument.HIToolboxVersion">624.00</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-			<string key="NS.object.0">1926</string>
+			<string key="NS.object.0">1930</string>
 		</object>
 		<array key="IBDocument.IntegratedClassDependencies">
 			<string>IBProxyObject</string>
@@ -46,31 +46,19 @@
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{50, 0}, {265, 101}}</string>
 								<reference key="NSSuperview" ref="956424433"/>
+								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="780803708"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 							</object>
-							<object class="IBUIImageView" id="979450192">
-								<reference key="NSNextResponder" ref="956424433"/>
-								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{68, 37}, {237, 1}}</string>
-								<reference key="NSSuperview" ref="956424433"/>
-								<reference key="NSNextKeyView" ref="83313951"/>
-								<string key="NSReuseIdentifierKey">_NS:9</string>
-								<bool key="IBUIUserInteractionEnabled">NO</bool>
-								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-								<object class="NSCustomResource" key="IBUIImage">
-									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">dice_line@2x.png</string>
-								</object>
-							</object>
 							<object class="IBUILabel" id="780803708">
 								<reference key="NSNextResponder" ref="956424433"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{74, 8}, {229, 25}}</string>
+								<string key="NSFrame">{{74, 13}, {229, 25}}</string>
 								<reference key="NSSuperview" ref="956424433"/>
-								<reference key="NSNextKeyView" ref="979450192"/>
+								<reference key="NSWindow"/>
+								<reference key="NSNextKeyView"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
@@ -104,6 +92,7 @@
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{7, 8}, {42, 44}}</string>
 								<reference key="NSSuperview" ref="956424433"/>
+								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="978668417"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<object class="NSColor" key="IBUIBackgroundColor">
@@ -121,6 +110,7 @@
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{71, 46}, {42, 44}}</string>
 								<reference key="NSSuperview" ref="956424433"/>
+								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="108793412"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<object class="NSColor" key="IBUIBackgroundColor">
@@ -136,6 +126,7 @@
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{134, 46}, {42, 44}}</string>
 								<reference key="NSSuperview" ref="956424433"/>
+								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="562000748"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<object class="NSColor" key="IBUIBackgroundColor">
@@ -151,6 +142,7 @@
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{195, 46}, {42, 44}}</string>
 								<reference key="NSSuperview" ref="956424433"/>
+								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="715107468"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<object class="NSColor" key="IBUIBackgroundColor">
@@ -166,6 +158,7 @@
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{258, 46}, {42, 44}}</string>
 								<reference key="NSSuperview" ref="956424433"/>
+								<reference key="NSWindow"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<object class="NSColor" key="IBUIBackgroundColor">
 									<int key="NSColorSpace">3</int>
@@ -178,6 +171,7 @@
 						</array>
 						<string key="NSFrameSize">{320, 101}</string>
 						<reference key="NSSuperview" ref="81896483"/>
+						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="298098795"/>
 						<string key="NSReuseIdentifierKey">_NS:11</string>
 						<object class="NSColor" key="IBUIBackgroundColor">
@@ -193,6 +187,7 @@
 				</array>
 				<string key="NSFrameSize">{320, 102}</string>
 				<reference key="NSSuperview"/>
+				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="956424433"/>
 				<string key="NSReuseIdentifierKey">_NS:9</string>
 				<string key="IBUIRestorationIdentifier">ZJHRoomListCell</string>
@@ -243,7 +238,6 @@
 						<int key="objectID">3</int>
 						<reference key="object" ref="81896483"/>
 						<array class="NSMutableArray" key="children">
-							<reference ref="979450192"/>
 							<reference ref="978668417"/>
 							<reference ref="83313951"/>
 							<reference ref="298098795"/>
@@ -290,11 +284,6 @@
 						<reference key="object" ref="108793412"/>
 						<reference key="parent" ref="81896483"/>
 					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">4</int>
-						<reference key="object" ref="979450192"/>
-						<reference key="parent" ref="81896483"/>
-					</object>
 				</array>
 			</object>
 			<dictionary class="NSMutableDictionary" key="flattenedProperties">
@@ -308,7 +297,6 @@
 				<string key="12.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="3.CustomClassName">ZJHRoomListCell</string>
 				<string key="3.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<string key="4.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="5.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="7.CustomClassName">DiceAvatarView</string>
 				<string key="7.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -323,15 +311,60 @@
 			<nil key="sourceID"/>
 			<int key="maxID">19</int>
 		</object>
-		<object class="IBClassDescriber" key="IBDocument.Classes"/>
+		<object class="IBClassDescriber" key="IBDocument.Classes">
+			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
+				<object class="IBPartialClassDescription">
+					<string key="className">CommonRoomListCell</string>
+					<string key="superclassName">PPTableViewCell</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/CommonRoomListCell.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">DiceAvatarView</string>
+					<string key="superclassName">UIView</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/DiceAvatarView.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">PPTableViewCell</string>
+					<string key="superclassName">UITableViewCell</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/PPTableViewCell.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">ZJHRoomListCell</string>
+					<string key="superclassName">CommonRoomListCell</string>
+					<dictionary class="NSMutableDictionary" key="outlets">
+						<string key="backgroundImageView">UIImageView</string>
+						<string key="roomNameLabel">UILabel</string>
+					</dictionary>
+					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
+						<object class="IBToOneOutletInfo" key="backgroundImageView">
+							<string key="name">backgroundImageView</string>
+							<string key="candidateClassName">UIImageView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="roomNameLabel">
+							<string key="name">roomNameLabel</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+					</dictionary>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/ZJHRoomListCell.h</string>
+					</object>
+				</object>
+			</array>
+		</object>
 		<int key="IBDocument.localizationMode">0</int>
 		<string key="IBDocument.TargetRuntimeIdentifier">IBCocoaTouchFramework</string>
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
-		<object class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="NS.key.0">dice_line@2x.png</string>
-			<string key="NS.object.0">{2, 2}</string>
-		</object>
-		<string key="IBCocoaTouchPluginVersion">1926</string>
+		<string key="IBCocoaTouchPluginVersion">1930</string>
 	</data>
 </archive>

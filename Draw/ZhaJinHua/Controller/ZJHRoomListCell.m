@@ -10,6 +10,7 @@
 #import "GameBasic.pb.h"
 #import "DiceImageManager.h"
 #import "ZJHGameService.h"
+#import "PPResourceService.h"
 
 #define TAG_USER_VIEW 101
 
@@ -38,8 +39,9 @@
     return ([[ZJHGameService defaultService] rule]== PBZJHRuleTypeDual ? HEIGHT_ZJH_ROOM_LIST_CELL_DUAL : HEIGHT_ZJH_ROOM_LIST_CELL);
 }
 
-- (void)setCellInfo:(PBGameSession *)session;
+- (void)setCellInfo:(PBGameSession *)session
 {
+    [super setCellInfo:session];
     self.roomNameLabel.textColor = ([[ZJHGameService defaultService] rule]== PBZJHRuleTypeDual ? [UIColor colorWithRed:107 green:124 blue:126 alpha:1] : [UIColor colorWithRed:209 green:233 blue:219 alpha:1]);
 
     if (session.name == nil || session.name.length <= 0) {
@@ -47,7 +49,10 @@
     } else {
         [self.roomNameLabel setText:session.name];
     }
-    [self.backgroundImageView setImage:[DiceImageManager defaultManager].roomCellBackgroundImage];
+//    [self.backgroundImageView setImage:[DiceImageManager defaultManager].roomCellBackgroundImage];
+    NSString *imageName = ([[ZJHGameService defaultService] rule]== PBZJHRuleTypeDual ?[getGameApp() roomListCellDualBgImageName] : [getGameApp() roomListCellBgImageName]);
+    [self.backgroundImageView setImage:[[PPResourceService defaultService] imageByName:imageName inResourcePackage:[getGameApp() resourcesPackage]]];
+
     for (int i = 0; i < 6; i ++) {
         DiceAvatarView* avatar = (DiceAvatarView*)[self viewWithTag:(i + TAG_USER_VIEW)];
         avatar.delegate = self;

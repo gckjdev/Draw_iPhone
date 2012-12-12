@@ -9,6 +9,7 @@
 #import "ZJHRuleConfigFactory.h"
 #import "ZJHNormalRuleConfig.h"
 #import "ZJHDualRuleConfig.h"
+#import "ZJHRichRuleConfig.h"
 
 @implementation ZJHRuleConfigFactory
 
@@ -21,6 +22,10 @@
             
         case PBZJHRuleTypeDual:
             return [[[ZJHDualRuleConfig alloc] init] autorelease];
+            break;
+            
+        case PBZJHRuleTypeRich:
+            return [[[ZJHRichRuleConfig alloc] init] autorelease];
             break;
             
         default:

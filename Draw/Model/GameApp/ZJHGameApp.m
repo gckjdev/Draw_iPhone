@@ -261,6 +261,16 @@
 {
     return @"ZJHHomeHeaderPanel";
 }
+    
+- (NSString *)roomListCellBgImageName
+{
+    return @"zjh_room_item";
+}
+
+- (NSString *)roomListCellDualBgImageName
+{
+    return @"zjh_room_list_cell_bg_dual";
+}
 
 
 @end
