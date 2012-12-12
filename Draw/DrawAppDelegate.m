@@ -227,17 +227,19 @@ NSString* GlobalGetBoardServerURL()
     } else if (isDiceApp()){
         [DiceFontManager unZipFiles];
     }
+    
+    // TODO Benson Check whether this is duplicate
     [[CommonHelpManager defaultManager] unzipHelpFiles];
 
     
     [self initImageCacheManager];
     
-    if (isDrawApp() == YES){
+    if ([GameApp supportWeixin] == YES){
         PPDebug(@"Init Weixin SDK");
         [WXApi registerApp:@"wx427a2f57bc4456d1"];
     }
     
-    //init sounds
+    // TODO Check whether this is required or not?
     NSArray* drawSoundArray = [NSArray arrayWithObjects:
                                 @"ding.m4a", 
                                 @"dingding.mp3", 
@@ -247,7 +249,6 @@ NSString* GlobalGetBoardServerURL()
                                 @"rolling.mp3",
                                @"open.aiff", nil];
     NSArray* diceArray = [[DiceSoundManager defaultManager] diceSoundNameArray];
-
     if (isDrawApp()){
         [[AudioManager defaultManager] initSounds:drawSoundArray];        
     }
@@ -263,13 +264,6 @@ NSString* GlobalGetBoardServerURL()
     
     // Init Account Service and Sync Balance and Item
     [[AccountService defaultService] syncAccount:nil forceServer:YES];
-    
-//    if (isDrawApp()){
-//        [[AccountService defaultService] syncAccountAndItem];
-//    }
-//    else{
-//        
-//    }
     
     if (isDrawApp()){
         [[RouterService defaultService] fetchServerListAtBackground];    
@@ -291,7 +285,6 @@ NSString* GlobalGetBoardServerURL()
     }
 
     // Init Home Controller As Root View Controller
-    // TODO BENSON ZJH
     PPViewController* rootController = nil;
     if (isDiceApp()){
         self.diceHomeController = [[[DiceHomeController alloc] init] autorelease];
@@ -301,7 +294,7 @@ NSString* GlobalGetBoardServerURL()
         ZJHHomeViewController *controller = [[[ZJHHomeViewController alloc] init] autorelease];
         rootController = controller;
     }else{
-        self.homeController = [[[HomeController alloc] init] autorelease];     
+        self.homeController = [[[HomeController alloc] init] autorelease];
         rootController = _homeController;
     }
     

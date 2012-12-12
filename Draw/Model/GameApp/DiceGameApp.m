@@ -268,5 +268,15 @@
     return @"dialogue@2x.png";
 }
 
+- (BOOL)supportWeixin
+{
+    return YES;
+}
+
+- (NSString*)homeHeaderViewId
+{
+    return @"DiceHomeHeaderPanel";
+}
+
 
 @end

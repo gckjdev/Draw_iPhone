@@ -250,7 +250,17 @@
 - (NSString *)popupMessageDialogBackgroundImage
 {
     return @"dialogue@2x.png";
-//    return @"zjh_dialog_bg.png";
 }
+
+- (BOOL)supportWeixin
+{
+    return YES;
+}
+
+- (NSString*)homeHeaderViewId
+{
+    return @"ZJHHomeHeaderPanel";
+}
+
 
 @end

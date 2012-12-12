@@ -77,5 +77,7 @@
 
 - (NSString *)popupMessageDialogBackgroundImage;
 
+- (BOOL)supportWeixin;
+- (NSString*)homeHeaderViewId;
 
 @end
