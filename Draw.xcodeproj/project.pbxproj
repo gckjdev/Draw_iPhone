@@ -4882,9 +4882,9 @@
 		CAFEFF5B166072AB00441D77 /* en */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = en; path = "en.lproj/name@2x.png"; sourceTree = "<group>"; };
 		CAFEFF5D166072AB00441D77 /* en */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = en; path = en.lproj/unloadbg.png; sourceTree = "<group>"; };
 		CAFEFF5E166072AB00441D77 /* experience@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "experience@2x.png"; sourceTree = "<group>"; };
-		CAFEFF60166072AB00441D77 /* face_anger@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "face_anger@2x.png"; sourceTree = "<group>"; };
-		CAFEFF61166072AB00441D77 /* face_embarrass@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "face_embarrass@2x.png"; sourceTree = "<group>"; };
-		CAFEFF62166072AB00441D77 /* face_proud@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "face_proud@2x.png"; sourceTree = "<group>"; };
+		CAFEFF60166072AB00441D77 /* face_anger@2x.png */ = {isa = PBXFileReference; explicitFileType = image.icns; path = "face_anger@2x.png"; sourceTree = "<group>"; };
+		CAFEFF61166072AB00441D77 /* face_embarrass@2x.png */ = {isa = PBXFileReference; explicitFileType = image.icns; path = "face_embarrass@2x.png"; sourceTree = "<group>"; };
+		CAFEFF62166072AB00441D77 /* face_proud@2x.png */ = {isa = PBXFileReference; explicitFileType = image.icns; path = "face_proud@2x.png"; sourceTree = "<group>"; };
 		CAFEFF66166072AB00441D77 /* copper_cup@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "copper_cup@2x.png"; sourceTree = "<group>"; };
 		CAFEFF67166072AB00441D77 /* gold_cup@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gold_cup@2x.png"; sourceTree = "<group>"; };
 		CAFEFF68166072AB00441D77 /* guessed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "guessed@2x.png"; sourceTree = "<group>"; };
