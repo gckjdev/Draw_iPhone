@@ -318,6 +318,10 @@
 		A4CCE7A4167823BC00F90726 /* SNSUser.m in Sources */ = {isa = PBXBuildFile; fileRef = A4CCE7A0167823BC00F90726 /* SNSUser.m */; };
 		A4CCE7A5167823BC00F90726 /* ZJHChatMsgManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A4CCE7A2167823BC00F90726 /* ZJHChatMsgManager.m */; };
 		A4CCE7A8167824B300F90726 /* HelpView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4CCE7A7167824B300F90726 /* HelpView.m */; };
+		A4CCE7AB1678276D00F90726 /* ZJHHelpView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4CCE7A91678276D00F90726 /* ZJHHelpView.xib */; };
+		A4CCE7AE1678279100F90726 /* ZJHHelpView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4CCE7AD1678279000F90726 /* ZJHHelpView~ipad.xib */; };
+		A4CCE7B11678304C00F90726 /* zjh_game_rule_btn_bg_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4CCE7AF1678304C00F90726 /* zjh_game_rule_btn_bg_selected@2x.png */; };
+		A4CCE7B21678304C00F90726 /* zjh_help_view_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4CCE7B01678304C00F90726 /* zjh_help_view_bg@2x.png */; };
 		A4CE58E316324447003DB23A /* point_pic3@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4CE58E116324447003DB23A /* point_pic3@2x.png */; };
 		A4CE58E416324447003DB23A /* point_pic4@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4CE58E216324447003DB23A /* point_pic4@2x.png */; };
 		A4CE58E616324998003DB23A /* ChatView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4CE58E516324998003DB23A /* ChatView~ipad.xib */; };
@@ -2533,6 +2537,10 @@
 		A4CCE7A2167823BC00F90726 /* ZJHChatMsgManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJHChatMsgManager.m; sourceTree = "<group>"; };
 		A4CCE7A6167824B300F90726 /* HelpView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpView.h; sourceTree = "<group>"; };
 		A4CCE7A7167824B300F90726 /* HelpView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpView.m; sourceTree = "<group>"; };
+		A4CCE7A91678276D00F90726 /* ZJHHelpView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZJHHelpView.xib; sourceTree = "<group>"; };
+		A4CCE7AD1678279000F90726 /* ZJHHelpView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ZJHHelpView~ipad.xib"; sourceTree = "<group>"; };
+		A4CCE7AF1678304C00F90726 /* zjh_game_rule_btn_bg_selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zjh_game_rule_btn_bg_selected@2x.png"; sourceTree = "<group>"; };
+		A4CCE7B01678304C00F90726 /* zjh_help_view_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zjh_help_view_bg@2x.png"; sourceTree = "<group>"; };
 		A4CE58E116324447003DB23A /* point_pic3@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "point_pic3@2x.png"; sourceTree = "<group>"; };
 		A4CE58E216324447003DB23A /* point_pic4@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "point_pic4@2x.png"; sourceTree = "<group>"; };
 		A4CE58E516324998003DB23A /* ChatView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ChatView~ipad.xib"; sourceTree = "<group>"; };
@@ -5179,6 +5187,8 @@
 		A405C82E165B874500E7610F /* room */ = {
 			isa = PBXGroup;
 			children = (
+				A4CCE7AF1678304C00F90726 /* zjh_game_rule_btn_bg_selected@2x.png */,
+				A4CCE7B01678304C00F90726 /* zjh_help_view_bg@2x.png */,
 				A4CCE77A1677398E00F90726 /* zjh_chat_view_bg@2x.png */,
 				A4CCE77B1677398E00F90726 /* zjh_chat_view_input_text_bg@2x.png */,
 				A4CCE77C1677398E00F90726 /* zjh_chat_view_msg_bg@2x.png */,
@@ -5877,6 +5887,8 @@
 		A4E7878116367338003557AD /* View */ = {
 			isa = PBXGroup;
 			children = (
+				A4CCE7AD1678279000F90726 /* ZJHHelpView~ipad.xib */,
+				A4CCE7A91678276D00F90726 /* ZJHHelpView.xib */,
 				C26224CC1670849C008BF3FB /* ZJHUserInfoView.h */,
 				C26224CD1670849C008BF3FB /* ZJHUserInfoView.m */,
 				C28A23CA166C9123007C9EA5 /* coinView */,
@@ -12504,6 +12516,10 @@
 				C2B5384B1677712300725802 /* ZJHPassWordDialog~ipad.xib in Resources */,
 				C2B5384C1677712300725802 /* ZJHRoomPasswordDialog.xib in Resources */,
 				C2B5384D1677712300725802 /* ZJHRoomPasswordDialog~ipad.xib in Resources */,
+				A4CCE7AB1678276D00F90726 /* ZJHHelpView.xib in Resources */,
+				A4CCE7AE1678279100F90726 /* ZJHHelpView~ipad.xib in Resources */,
+				A4CCE7B11678304C00F90726 /* zjh_game_rule_btn_bg_selected@2x.png in Resources */,
+				A4CCE7B21678304C00F90726 /* zjh_help_view_bg@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

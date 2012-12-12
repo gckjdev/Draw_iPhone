@@ -9,11 +9,13 @@
 #import "HelpView.h"
 #import "DiceHelpManager.h"
 #import "DiceImageManager.h"
+#import "PPResourceService.h"
 
 @interface HelpView ()
 {
     DiceHelpManager *_helpManager;
     AnimationType _animationType;
+    PPResourceService *_resService;
 }
 
 @end
@@ -35,6 +37,7 @@
     [itemsUsageButton release];
     [bgImageView release];
     [indicator release];
+    [_closeButton release];
     [super dealloc];
 }
 
@@ -54,9 +57,22 @@
 - (void)initialize
 {
     _helpManager = [DiceHelpManager defaultManager];
+    _resService = [PPResourceService defaultService];
     
-    bgImageView.image = [[DiceImageManager defaultManager] popupBackgroundImage];
+    bgImageView.image = [_resService imageByName:[getGameApp() helpViewBgImageName] inResourcePackage:[getGameApp() resourcesPackage]];
+    
+    [self.closeButton setBackgroundImage:[_resService imageByName:[getGameApp() popupViewCloseBtnBgImageName] inResourcePackage:[getGameApp() resourcesPackage]] forState:UIControlStateNormal];
+    
     webView.delegate = self;
+    
+    [gameRulesButton setBackgroundImage:[_resService imageByName:[getGameApp() gameRulesButtonBgImageNameForNormal] inResourcePackage:[getGameApp() resourcesPackage]] forState:UIControlStateNormal];
+    
+    [gameRulesButton setBackgroundImage:[_resService imageByName:[getGameApp() gameRulesButtonBgImageNameForSelected] inResourcePackage:[getGameApp() resourcesPackage]] forState:UIControlStateSelected];
+    
+    [itemsUsageButton setBackgroundImage:[_resService imageByName:[getGameApp() itemsUsageButtonBgImageNameForNormal] inResourcePackage:[getGameApp() resourcesPackage]] forState:UIControlStateNormal];
+    
+    [itemsUsageButton setBackgroundImage:[_resService imageByName:[getGameApp() itemsUsageButtonBgImageNameForSelected] inResourcePackage:[getGameApp() resourcesPackage]] forState:UIControlStateSelected];
+    
     gameRulesButton.selected = YES;
     itemsUsageButton.selected = NO;
     indicator.hidesWhenStopped = YES;

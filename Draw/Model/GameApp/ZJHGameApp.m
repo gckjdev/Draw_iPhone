@@ -187,4 +187,29 @@
     return [UIColor whiteColor];
 }
 
+- (NSString *)helpViewBgImageName
+{
+    return @"zjh_help_view_bg";
+}
+
+- (NSString *)gameRulesButtonBgImageNameForNormal
+{
+    return @"";
+}
+
+- (NSString *)gameRulesButtonBgImageNameForSelected
+{
+    return @"zjh_game_rule_btn_bg_selected";
+}
+
+- (NSString *)itemsUsageButtonBgImageNameForNormal
+{
+    return @"";
+}
+
+- (NSString *)itemsUsageButtonBgImageNameForSelected
+{
+    return @"";
+}
+
 @end

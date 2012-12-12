@@ -36,6 +36,7 @@ typedef enum {
 - (void)showInView:(UIView *)view;
 
 //- (void)showInView:(UIView *)view animationType:(AnimationType)animationType;
+@property (retain, nonatomic) IBOutlet FontButton *closeButton;
 
 @property (retain, nonatomic) IBOutlet UIImageView *bgImageView;
 @property (retain, nonatomic) IBOutlet UIWebView *webView;
