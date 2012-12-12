@@ -65,6 +65,7 @@
 
 - (void)dealloc {
     _searchView.disappearDelegate = nil;
+    [_backgroundImageView release];
     [self clearRefreshRoomsTimer];
     PPRelease(_currentSession);
     [super dealloc];
@@ -289,7 +290,15 @@
 
 - (void)initView
 {
-    
+    [self.backgroundImageView setImage:[[GameApp getImageManager] roomListBgImage]];
+    [self.backButton setImage:[[GameApp getImageManager] roomListBackBtnImage] forState:UIControlStateNormal];
+    [self.allRoomButton setBackgroundImage:[[GameApp getImageManager] roomListLeftBtnSelectedImage] forState:UIControlStateSelected];
+    [self.allRoomButton setBackgroundImage:[[GameApp getImageManager] roomListLeftBtnUnselectedImage] forState:UIControlStateNormal];
+    [self.friendRoomButton setBackgroundImage:[[GameApp getImageManager] roomListRightBtnSelectedImage] forState:UIControlStateSelected];
+    [self.friendRoomButton setBackgroundImage:[[GameApp getImageManager] roomListRightBtnUnselectedImage] forState:UIControlStateNormal];
+    [self.createRoomButton setBackgroundImage:[[GameApp getImageManager] roomListCreateRoomBtnBgImage] forState:UIControlStateNormal];
+    [self.fastEntryButton setBackgroundImage:[[GameApp getImageManager] roomListFastEntryBtnBgImage] forState:UIControlStateNormal];
+
 }
 
 - (void)viewDidLoad

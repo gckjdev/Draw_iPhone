@@ -42,6 +42,17 @@ typedef enum {
 
 @property (retain, nonatomic) PBGameSession* currentSession;
 
+@property (retain, nonatomic) IBOutlet UIButton *titleFontButton;
+@property (retain, nonatomic) IBOutlet UIButton *helpButton;
+@property (retain, nonatomic) IBOutlet UIButton *createRoomButton;
+@property (retain, nonatomic) IBOutlet UIButton *fastEntryButton;
+@property (retain, nonatomic) IBOutlet UIButton *allRoomButton;
+@property (retain, nonatomic) IBOutlet UIButton *friendRoomButton;
+@property (retain, nonatomic) IBOutlet UIButton *nearByRoomButton;
+@property (retain, nonatomic) IBOutlet UILabel *emptyListTips;
+@property (retain, nonatomic) IBOutlet UIImageView *backgroundImageView;
+@property (retain, nonatomic) IBOutlet UIButton *backButton;
+
 - (void)showPasswordDialog;
 - (void)checkAndJoinGame:(int)sessionId;
 - (void)checkAndJoinGame;
@@ -60,5 +71,5 @@ typedef enum {
 - (void)handleJoinGameError:(PrejoinGameErrorCode)errorCode;
 - (void)handleUpdateRoomList;
 - (void)handleDidConnectServer;
-
+- (void)initView;
 @end
