@@ -417,7 +417,7 @@
 {
     InputDialog *inputDialog = [InputDialog dialogWith:NSLS(@"kPassword")
                                               delegate:self
-                                                 theme:CommonInputDialogThemeZJH];
+                                                 ];
     inputDialog.targetTextField.text = nil;
     inputDialog.targetTextField.placeholder = NSLS(@"kEnterPassword");
     [inputDialog showInView:self.view];
