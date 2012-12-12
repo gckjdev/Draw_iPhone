@@ -614,7 +614,7 @@
                 [self.view bringSubviewToFront:helpView];
             }
             else{            
-                HelpView *view = [HelpView createHelpView];
+                HelpView *view = [HelpView createHelpView:@"ZJHHelpView"];
                 [view showInView:self.view];
             }
         }

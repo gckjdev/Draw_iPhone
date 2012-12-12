@@ -563,7 +563,7 @@
 - (IBAction)clickHelpButton:(id)sender {
     if (!helpButton.selected) {
         helpButton.selected = YES;
-        HelpView *view = [HelpView createHelpView];
+        HelpView *view = [HelpView createHelpView:@"DiceHelpView"];
         view.delegate = self;
         [view showInView:self.view];
     }

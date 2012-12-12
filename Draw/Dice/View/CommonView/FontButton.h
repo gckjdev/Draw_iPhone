@@ -8,9 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "FontLabel.h"
-#import "UIGlossyButton.h"
+//#import "UIGlossyButton.h"
 
-@interface FontButton : UIGlossyButton
+@interface FontButton : UIButton
 
 @property (retain, nonatomic) FontLabel *fontLable;
 

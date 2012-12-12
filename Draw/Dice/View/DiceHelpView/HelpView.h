@@ -31,7 +31,7 @@ typedef enum {
 
 @property (assign, nonatomic) id<HelpViewDelegate> delegate;
 
-+ (id)createHelpView;
++ (id)createHelpView:(NSString *)nibName;
 
 - (void)showInView:(UIView *)view;
 

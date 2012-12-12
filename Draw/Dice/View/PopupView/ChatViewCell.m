@@ -25,11 +25,10 @@
 
 @synthesize delegate = _delegate;
 @synthesize message = _message;
-@synthesize messageButton;
 
 - (void)dealloc {
     [_message release];
-    [messageButton release];
+    [_messageButton release];
     [super dealloc];
 }
 
@@ -50,18 +49,14 @@
     CGSize withinSize = MAX_SIZE_MESSAGE;
     CGSize size = [message.content sizeWithFont:[UIFont systemFontOfSize:SIZE_FONT_CHATVIEWCEL] constrainedToSize:withinSize lineBreakMode:UILineBreakModeTailTruncation];
     
-    messageButton.frame = CGRectMake(0, 0, size.width + 30, messageButton.frame.size.height);
+    CGRect frame = CGRectMake(0, 0, size.width + 20, self.messageButton.frame.size.height);
+    self.messageButton.frame = frame;
+        
+    [self.messageButton setBackgroundImage:[[[PPResourceService defaultService] imageByName:[getGameApp() chatViewMsgBgImageName] inResourcePackage:[getGameApp() resourcesPackage]] stretchableImageWithLeftCapWidth:20 topCapHeight:0] forState:UIControlStateNormal];
     
-    [messageButton setBackgroundImage:[[[PPResourceService defaultService] imageByName:[getGameApp() chatViewMsgBgImageName] inResourcePackage:[getGameApp() resourcesPackage]] stretchableImageWithLeftCapWidth:20 topCapHeight:0] forState:UIControlStateNormal];
-    
-    messageButton.fontLable.text = message.content;
-    
-    CGRect fontLabelFrame = messageButton.fontLable.frame;
-    messageButton.fontLable.frame = CGRectMake(10, 3, fontLabelFrame.size.width, fontLabelFrame.size.height);
-
-    messageButton.fontLable.textAlignment = UITextAlignmentLeft;
-    messageButton.fontLable.textColor = [getGameApp() chatViewMsgTextColor];
-    [messageButton setImage:nil forState:UIControlStateNormal];
+    [self.messageButton setTitle:message.content forState:UIControlStateNormal];
+    self.messageButton.titleLabel.font = [UIFont systemFontOfSize:SIZE_FONT_CHATVIEWCEL];
+    [self.messageButton setTitleColor:[getGameApp() chatViewMsgTextColor] forState:UIControlStateNormal];
 }
 
 
