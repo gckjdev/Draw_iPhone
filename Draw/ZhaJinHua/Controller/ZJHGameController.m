@@ -34,6 +34,7 @@
 #import "ZJHRuleConfigFactory.h"
 #import "ZJHUserInfoView.h"
 #import "ExpressionManager.h"
+#import "CommonSettingView.h"
 
 #define AVATAR_VIEW_TAG_OFFSET   4000
 //#define AVATAR_PLACE_VIEW_OFFSET    8000
@@ -596,7 +597,7 @@
 
 - (IBAction)clickSettingButton:(id)sender
 {
-    [[ZJHSettingView createZJHSettingView] showInView:self.view];
+    [[CommonSettingView createSettingView] showInView:self.view];
     [_audioManager playSoundByURL:_soundManager.clickButtonSound];
 }
 

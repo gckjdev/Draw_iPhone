@@ -21,6 +21,6 @@
 @property (retain, nonatomic) IBOutlet UIButton *audioOffButton;
 @property (retain, nonatomic) IBOutlet UIButton *closeButton;
 
-+ (id)createDiceSettingView;
++ (id)createSettingView;
 
 @end
