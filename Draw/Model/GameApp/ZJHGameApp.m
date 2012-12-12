@@ -8,7 +8,8 @@
 
 #import "ZJHGameApp.h"
 #import "MobClickUtils.h"
-#import "ZJHChatMsgManager.h"
+//#import "ZJHChatMsgManager.h"
+#import "ZJHImageManager.h"
 
 @implementation ZJHGameApp
 
@@ -159,7 +160,7 @@
 
 - (id<ChatMsgManagerProtocol>)getChatMsgManager
 {
-    return [ZJHChatMsgManager defaultManager];
+//    return [ZJHChatMsgManager defaultManager];
 }
 
 - (NSString *)chatViewBgImageName
@@ -185,6 +186,27 @@
 - (UIColor *)chatViewMsgTextColor
 {
     return [UIColor whiteColor];
+}
+
+- (id<DialogImageManagerProtocol>)getImageManager
+{
+    return [ZJHImageManager defaultManager];
+}
+- (NSString*)getCommonDialogXibName
+{
+    return @"CommonZJHDialog";
+}
+- (NSString*)getInputDialogXibName
+{
+    return @"ZJHInputDialog";
+}
+- (NSString*)getPasswordDialogXibName
+{
+    return @"ZJHPasswordDialog";
+}
+- (NSString*)getRoomPasswordDialogXibName
+{
+    return @"ZJHRoomPasswordDialog";
 }
 
 @end

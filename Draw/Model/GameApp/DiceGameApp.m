@@ -9,6 +9,7 @@
 #import "DiceGameApp.h"
 #import "MobClickUtils.h"
 #import "DiceChatMsgManager.h"
+#import "DiceImageManager.h"
 
 @implementation DiceGameApp
 
@@ -193,6 +194,27 @@
 - (UIColor *)chatViewMsgTextColor
 {
     return [UIColor blackColor];
+}
+
+- (id<DialogImageManagerProtocol>)getImageManager
+{
+    return [DiceImageManager defaultManager];
+}
+- (NSString*)getCommonDialogXibName
+{
+    return @"CommonDiceDialog";
+}
+- (NSString*)getInputDialogXibName
+{
+    return @"DiceInputDialog";
+}
+- (NSString*)getPasswordDialogXibName
+{
+    return @"DicePasswordDialog";
+}
+- (NSString*)getRoomPasswordDialogXibName
+{
+    return @"DiceRoomPasswordDialog";
 }
 
 @end

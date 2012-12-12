@@ -20,7 +20,15 @@
 - (UIImage*)inputDialogLeftBtnImage;
 - (UIImage*)inputDialogRightBtnImage;
 
-
+- (UIImage *)audioOff;
+- (UIImage *)audioOn;
+- (UIImage *)musicOn;
+- (UIImage *)musicOff;
+- (UIImage *)settingsBgImage;
+- (UIImage *)settingsLeftSelected;
+- (UIImage *)settingsLeftUnselected;
+- (UIImage *)settingsRightSelected;
+- (UIImage *)settingsRightUnselected;
 
 
 @end

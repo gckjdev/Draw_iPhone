@@ -7,8 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "DialogImageManagerProtocol.h"
 
-@interface DiceImageManager : NSObject
+@interface DiceImageManager : NSObject <DialogImageManagerProtocol>
 
 + (DiceImageManager*)defaultManager;
 

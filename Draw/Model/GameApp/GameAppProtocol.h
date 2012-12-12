@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "ChatMsgManagerProtocol.h"
+#import "DialogImageManagerProtocol.h"
 
 @protocol GameAppProtocol <NSObject>
 
@@ -55,5 +56,12 @@
 - (NSString *)popupViewCloseBtnBgImageName;
 - (NSString *)chatViewMsgBgImageName;
 - (UIColor *)chatViewMsgTextColor;
+
+- (id<DialogImageManagerProtocol>)getImageManager;
+- (NSString*)getCommonDialogXibName;
+- (NSString*)getInputDialogXibName;
+- (NSString*)getPasswordDialogXibName;
+- (NSString*)getRoomPasswordDialogXibName;
+
 
 @end

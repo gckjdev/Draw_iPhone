@@ -9,8 +9,9 @@
 #import <Foundation/Foundation.h>
 #import "Poker.h"
 #import "ZJHConstance.h"
+#import "DialogImageManagerProtocol.h"
 
-@interface ZJHImageManager : NSObject
+@interface ZJHImageManager : NSObject <DialogImageManagerProtocol>
 
 + (ZJHImageManager*)defaultManager;
 
@@ -97,14 +98,6 @@
 
 - (UIImage *)dialogBgImage;
 - (UIImage *)dialogBtnImage;
-- (UIImage *)audioOff;
-- (UIImage *)audioOn;
-- (UIImage *)musicOn;
-- (UIImage *)musicOff;
-- (UIImage *)settingsBgImage;
-- (UIImage *)settingsLeftSelected;
-- (UIImage *)settingsLeftUnselected;
-- (UIImage *)settingsRightSelected;
-- (UIImage *)settingsRightUnselected;
+
 - (UIImage *)inputDialogBgImage;
 @end

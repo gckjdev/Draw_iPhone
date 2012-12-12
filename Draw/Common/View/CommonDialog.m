@@ -15,6 +15,7 @@
 #import "CommonImageManager.h"
 #import "UIImageUtil.h"
 #import "ZJHImageManager.h"
+#import "GameApp.h"
 
 #define COMMON_DIALOG_THEME_DRAW    @"CommonDialog"
 #define COMMON_DIALOG_THEME_DICE    @"CommonDiceDialog"
@@ -156,6 +157,28 @@
     }
 }
 
+- (void)initView
+{
+    [self.messageLabel setNumberOfLines:5];
+    
+    if ([LocaleUtils isChinese]) {
+        [self.messageLabel setLineBreakMode:UILineBreakModeCharacterWrap];
+    }else {
+        [self.messageLabel setLineBreakMode:UILineBreakModeWordWrap];
+    }
+    
+    [self.oKButton setTitle:NSLS(@"kOK") forState:UIControlStateNormal];
+    [self.backButton setTitle:NSLS(@"kCancel") forState:UIControlStateNormal];
+    
+    [self.contentBackground setImage:[[GameApp getImageManager] commonDialogBgImage]];
+    
+    [self.oKButton setRoyButtonWithColor:[UIColor colorWithRed:244.0/255.0 green:93.0/255.0 blue:93.0/255.0 alpha:0.95]];
+    [self.backButton setRoyButtonWithColor:[UIColor colorWithRed:236.0/255.0 green:247.0/255.0 blue:63.0/255.0 alpha:0.95]];
+    
+    [self.oKButton setBackgroundImage:[[GameApp getImageManager] commonDialogRightBtnImage] forState:UIControlStateNormal];
+    [self.backButton setBackgroundImage:[[GameApp getImageManager] commonDialogRightBtnImage] forState:UIControlStateNormal];
+}
+
 - (void)initButtonsWithStyle:(CommonDialogStyle)aStyle
 {
 //    ShareImageManager *imageManager = [ShareImageManager defaultManager];
@@ -179,16 +202,10 @@
 
 + (CommonDialog *)createDialogWithStyle:(CommonDialogStyle)aStyle
 {
-    CommonDialog* view =  (CommonDialog*)[self createInfoViewByXibName:COMMON_DIALOG_THEME_DRAW];
+    CommonDialog* view =  (CommonDialog*)[self createInfoViewByXibName:[GameApp getCommonDialogXibName]];
     [view initButtonsWithStyle:aStyle];
-    [view initButtonsWithTheme:[CommonDialog globalGetTheme]];
+    [view initView];
     [view appear];
-    
-    //init the button
-//    ShareImageManager *imageManager = [ShareImageManager defaultManager];
-//    [view.backButton setBackgroundImage:[imageManager greenImage] forState:UIControlStateNormal];
-    [view.backButton setTitle:NSLS(@"kCancel") forState:UIControlStateNormal];
-    [view.oKButton setTitle:NSLS(@"kOK") forState:UIControlStateNormal];
     view.tag = 0;
     return view;
     
