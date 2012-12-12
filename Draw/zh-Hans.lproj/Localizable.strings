@@ -936,6 +936,8 @@
 "kHomeMenuTypeDrawMessage" = "消息";
 "kHomeMenuTypeDrawSetting" = "设置";
 "HomeMenuTypeDrawShop" = "商店";
+
+"kCharge" = "充值";
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 
