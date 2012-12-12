@@ -305,6 +305,7 @@
 		A4B45F6316787822009EA231 /* face_wry.gif in Resources */ = {isa = PBXBuildFile; fileRef = A4B45F5616787822009EA231 /* face_wry.gif */; };
 		A4B45F6616787D82009EA231 /* ZJHRoomListCell_dual.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4B45F6416787D80009EA231 /* ZJHRoomListCell_dual.xib */; };
 		A4B45F6716787D82009EA231 /* ZJHRoomListCell_dual~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4B45F6516787D81009EA231 /* ZJHRoomListCell_dual~ipad.xib */; };
+		A4B45F69167881CA009EA231 /* zjh_room_list_cell_bg_dual@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4B45F68167881CA009EA231 /* zjh_room_list_cell_bg_dual@2x.png */; };
 		A4B763A215C25208003B4E72 /* Draw.proto in Resources */ = {isa = PBXBuildFile; fileRef = A4B763A015C25208003B4E72 /* Draw.proto */; };
 		A4B763A315C25208003B4E72 /* Dice.proto in Resources */ = {isa = PBXBuildFile; fileRef = A4B763A115C25208003B4E72 /* Dice.proto */; };
 		A4B763A815C25218003B4E72 /* Draw.pb.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B763A515C25218003B4E72 /* Draw.pb.m */; };
@@ -2552,6 +2553,7 @@
 		A4B45F5616787822009EA231 /* face_wry.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = face_wry.gif; sourceTree = "<group>"; };
 		A4B45F6416787D80009EA231 /* ZJHRoomListCell_dual.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZJHRoomListCell_dual.xib; sourceTree = "<group>"; };
 		A4B45F6516787D81009EA231 /* ZJHRoomListCell_dual~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ZJHRoomListCell_dual~ipad.xib"; sourceTree = "<group>"; };
+		A4B45F68167881CA009EA231 /* zjh_room_list_cell_bg_dual@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zjh_room_list_cell_bg_dual@2x.png"; sourceTree = "<group>"; };
 		A4B763A015C25208003B4E72 /* Draw.proto */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Draw.proto; sourceTree = "<group>"; };
 		A4B763A115C25208003B4E72 /* Dice.proto */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Dice.proto; sourceTree = "<group>"; };
 		A4B763A415C25218003B4E72 /* Draw.pb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Draw.pb.h; sourceTree = "<group>"; };
@@ -5280,6 +5282,7 @@
 		A405C82E165B874500E7610F /* room */ = {
 			isa = PBXGroup;
 			children = (
+				A4B45F68167881CA009EA231 /* zjh_room_list_cell_bg_dual@2x.png */,
 				A4B45F2D16787545009EA231 /* zjh_bg@2x.jpg */,
 				A4CCE7AF1678304C00F90726 /* zjh_game_rule_btn_bg_selected@2x.png */,
 				A4CCE7B01678304C00F90726 /* zjh_help_view_bg@2x.png */,
@@ -12750,6 +12753,7 @@
 				A4B45F6316787822009EA231 /* face_wry.gif in Resources */,
 				A4B45F6616787D82009EA231 /* ZJHRoomListCell_dual.xib in Resources */,
 				A4B45F6716787D82009EA231 /* ZJHRoomListCell_dual~ipad.xib in Resources */,
+				A4B45F69167881CA009EA231 /* zjh_room_list_cell_bg_dual@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
