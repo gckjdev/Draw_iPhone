@@ -68,7 +68,7 @@
 
 #import "BBSBoardController.h"
 
-#import "DrawHomeViewController.h"
+//#import "DrawHomeViewController.h"
 
 @interface HomeController()
 {

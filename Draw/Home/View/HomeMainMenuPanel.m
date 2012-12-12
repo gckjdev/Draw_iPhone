@@ -92,7 +92,6 @@
     }else if(gameAppType() == GameAppTypeZJH){
         list = getZJHMainMenuTypeList();
     }
-    list = getZJHMainMenuTypeList();
     
     _pageCount = 0;
     _menuCount = 0;

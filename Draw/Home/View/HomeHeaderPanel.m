@@ -56,7 +56,6 @@
 
 + (NSString *)getViewIdentifier
 {
-    return @"ZJHHomeHeaderPanel";
     if (isDrawApp()) {
         return @"DrawHomeHeaderPanel";
     } else if (isZhajinhuaApp()) {
