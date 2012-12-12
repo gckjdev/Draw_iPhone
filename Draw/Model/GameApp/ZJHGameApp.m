@@ -187,6 +187,7 @@
     return [UIColor whiteColor];
 }
 
+
 - (NSString *)helpViewBgImageName
 {
     return @"zjh_help_view_bg";
@@ -194,7 +195,7 @@
 
 - (NSString *)gameRulesButtonBgImageNameForNormal
 {
-    return @"";
+    return nil;
 }
 
 - (NSString *)gameRulesButtonBgImageNameForSelected
@@ -204,12 +205,12 @@
 
 - (NSString *)itemsUsageButtonBgImageNameForNormal
 {
-    return @"";
+    return nil;
 }
 
 - (NSString *)itemsUsageButtonBgImageNameForSelected
 {
-    return @"";
+    return nil;
 }
 
 @end

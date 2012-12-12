@@ -21,8 +21,8 @@
 @interface ChatViewCell : PPTableViewCell
 
 @property (assign, nonatomic) id<ChatViewCellDelegate> delegate;
-@property (retain, nonatomic) IBOutlet FontButton *messageButton;
 
+@property (retain, nonatomic) IBOutlet UIButton *messageButton;
 - (void)setCellData:(CommonChatMessage *)message;
 
 @end

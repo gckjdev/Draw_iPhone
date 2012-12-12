@@ -41,9 +41,9 @@
     [super dealloc];
 }
 
-+ (id)createHelpView
++ (id)createHelpView:(NSString *)nibName
 {
-    NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"DiceHelpView" owner:self options:nil];
+    NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:nibName owner:self options:nil];
     // Grab a pointer to the first object (presumably the custom cell, as that's all the XIB should contain).  
     if (topLevelObjects == nil || [topLevelObjects count] <= 0){
         return nil;
@@ -59,9 +59,9 @@
     _helpManager = [DiceHelpManager defaultManager];
     _resService = [PPResourceService defaultService];
     
-    bgImageView.image = [_resService imageByName:[getGameApp() helpViewBgImageName] inResourcePackage:[getGameApp() resourcesPackage]];
+    bgImageView.image = [[_resService imageByName:[getGameApp() helpViewBgImageName] inResourcePackage:[getGameApp() resourcesPackage]] stretchableImageWithLeftCapWidth:20 topCapHeight:20];
     
-    [self.closeButton setBackgroundImage:[_resService imageByName:[getGameApp() popupViewCloseBtnBgImageName] inResourcePackage:[getGameApp() resourcesPackage]] forState:UIControlStateNormal];
+    [self.closeButton setBackgroundImage:[_resService imageByName:[getGameApp() popupViewCloseBtnBgImageName] inResourcePackage:[getGameApp() resourcesPackage]]  forState:UIControlStateNormal];
     
     webView.delegate = self;
     

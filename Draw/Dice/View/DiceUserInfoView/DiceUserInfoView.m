@@ -91,9 +91,9 @@
 
 - (void)initButton
 {
-    [self.followUserButton setRoyButtonWithColor:[DiceColorManager dialogRedColor]];
-    [self.chatButton setRoyButtonWithColor:[DiceColorManager dialoggreenColor]];
-    [self.chatButton.fontLable setText:NSLS(@"kChatToHim")];
+//    [self.followUserButton setRoyButtonWithColor:[DiceColorManager dialogRedColor]];
+//    [self.chatButton setRoyButtonWithColor:[DiceColorManager dialoggreenColor]];
+//    [self.chatButton.fontLable setText:NSLS(@"kChatToHim")];
 }
 
 - (void)initLevelAndName

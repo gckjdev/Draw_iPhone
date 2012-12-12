@@ -42,11 +42,11 @@
 
 - (void)initButtons
 {
-    [self.createRoomButton setRoyButtonWithColor:[DiceColorManager dialoggreenColor]];
+//    [self.createRoomButton setRoyButtonWithColor:[DiceColorManager dialoggreenColor]];
     [self.createRoomButton.titleLabel setFont:[UIFont systemFontOfSize:BUTTON_FONT_SIZE]];
     [self.createRoomButton setTitleColor:[UIColor darkTextColor] forState:UIControlStateNormal];
     
-    [self.fastEntryButton setRoyButtonWithColor:[DiceColorManager dialogYellowColor]];
+//    [self.fastEntryButton setRoyButtonWithColor:[DiceColorManager dialogYellowColor]];
     [self.fastEntryButton setTitleColor:[UIColor darkTextColor] forState:UIControlStateNormal];
     [self.fastEntryButton.titleLabel setFont:[UIFont systemFontOfSize:BUTTON_FONT_SIZE]];
     
