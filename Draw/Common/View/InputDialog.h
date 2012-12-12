@@ -57,5 +57,5 @@ typedef enum {
                    delegate:(id<InputDialogDelegate>)delegate 
                       theme:(CommonInputDialogTheme)theme;
 
-
+- (void)initView:(NSString*)title;
 @end

@@ -700,7 +700,7 @@
 
     [self.dealerView dealWithPositionArray:[self dealPointsArray]
                                      times:CARDS_COUNT
-                                isDualGame:YES];
+                                isDualGame:[_gameService rule] == PBZJHRuleTypeDual];
     [self updateTotalBetAndSingleBet];
     [self updateAllUserTotalBet];
     
@@ -1673,6 +1673,10 @@
 - (void)didClickMessage:(CommonChatMessage *)message
 {
     [self.chatView dismissAnimated:YES];
+    
+    if ([message.content length] == 0) {
+        return;
+    }
     
     [self popupChatMessageAtUser:_userManager.userId message:message.content];
     [_gameService chatWithContent:message.content contentVoiceId:[NSString stringWithFormat:@"%d", message.voiceId]];

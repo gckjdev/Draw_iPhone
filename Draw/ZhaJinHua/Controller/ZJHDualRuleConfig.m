@@ -15,7 +15,7 @@
 
 - (NSArray *)chipValues
 {
-    return [NSArray arrayWithObjects:[NSNumber numberWithInt:25], [NSNumber numberWithInt:50], [NSNumber numberWithInt:100], [NSNumber numberWithInt:250], nil];
+    return [NSArray arrayWithObjects:[NSNumber numberWithInt:10], [NSNumber numberWithInt:25], [NSNumber numberWithInt:50], [NSNumber numberWithInt:100], nil];
 }
 
 - (int)maxPlayerNum

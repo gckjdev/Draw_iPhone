@@ -106,6 +106,7 @@
 {
     float fontSize = [DeviceDetection isIPAD] ? 40 : 20;
     
+    [self.bgView setImage:[[GameApp getImageManager] inputDialogBgImage]];
     [self.targetTextField setBackground:[[GameApp getImageManager] inputDialogInputBgImage]];
     [self setDialogTitle:title];
     [self.cancelButton setBackgroundImage:[[GameApp getImageManager] inputDialogLeftBtnImage] forState:UIControlStateNormal];
