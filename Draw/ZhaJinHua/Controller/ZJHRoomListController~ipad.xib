@@ -142,7 +142,6 @@
 						<string key="NSFrame">{{393, 908}, {340, 80}}</string>
 						<reference key="NSSuperview" ref="25482459"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -177,10 +176,6 @@
 							<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
 						</object>
 						<reference key="IBUINormalTitleShadowColor" ref="993983616"/>
-						<object class="NSCustomResource" key="IBUINormalImage">
-							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">dice_back@2x.png</string>
-						</object>
 						<object class="IBUIFontDescription" key="IBUIFontDescription" id="825306558">
 							<int key="type">2</int>
 							<double key="pointSize">15</double>
@@ -519,6 +514,15 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">clickAll:</string>
+						<reference key="source" ref="703224615"/>
+						<reference key="destination" ref="372490531"/>
+						<int key="IBEventType">7</int>
+					</object>
+					<int key="connectionID">38</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">clickBackButton:</string>
 						<reference key="source" ref="657076153"/>
 						<reference key="destination" ref="372490531"/>
@@ -703,7 +707,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">37</int>
+			<int key="maxID">38</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -807,6 +811,25 @@
 				<object class="IBPartialClassDescription">
 					<string key="className">ZJHRoomListController</string>
 					<string key="superclassName">CommonRoomListController</string>
+					<dictionary class="NSMutableDictionary" key="actions">
+						<string key="clickAll:">id</string>
+						<string key="clickFriendRoom:">id</string>
+						<string key="clickNearBy:">id</string>
+					</dictionary>
+					<dictionary class="NSMutableDictionary" key="actionInfosByName">
+						<object class="IBActionInfo" key="clickAll:">
+							<string key="name">clickAll:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="clickFriendRoom:">
+							<string key="name">clickFriendRoom:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="clickNearBy:">
+							<string key="name">clickNearBy:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+					</dictionary>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
 						<string key="minorKey">./Classes/ZJHRoomListController.h</string>
@@ -819,7 +842,6 @@
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="dice_back@2x.png">{57, 57}</string>
 			<string key="dice_room_header@2x.png">{640, 94}</string>
 			<string key="dice_room_help@2x.png">{57, 57}</string>
 			<string key="dice_tableft_selected@2x.png">{184, 59}</string>

@@ -1218,10 +1218,10 @@
                                         avatar:nil
                                         gender:nil
                                          level:1];
-    [ZJHUserInfoView showFriend:friend
-                   inController:self
-                     needUpdate:YES
-                        canChat:NO];
+    [CommonUserInfoView showFriend:friend
+                      inController:self
+                        needUpdate:YES
+                           canChat:NO];
 }
 
 - (void)reciprocalEnd:(ZJHAvatarView*)view

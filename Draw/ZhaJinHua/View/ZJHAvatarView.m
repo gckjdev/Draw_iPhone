@@ -229,7 +229,7 @@
 
 - (void)updateByPBGameUser:(PBGameUser*)user
 {
-    [self resetAvatar];
+//    [self resetAvatar];
     [self updateBackgroundByUser:user];
     [self updateNicknameByUser:user];
     [self updateAvatarByUser:user];
