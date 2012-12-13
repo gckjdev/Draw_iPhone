@@ -110,10 +110,10 @@
 						<int key="IBUIContentHorizontalAlignment">0</int>
 						<int key="IBUIContentVerticalAlignment">0</int>
 						<double key="IBUIContentEdgeInsets.top">0.0</double>
-						<double key="IBUIContentEdgeInsets.bottom">3</double>
+						<double key="IBUIContentEdgeInsets.bottom">2</double>
 						<double key="IBUIContentEdgeInsets.left">0.0</double>
 						<double key="IBUIContentEdgeInsets.right">0.0</double>
-						<string key="IBUINormalTitle">Charge</string>
+						<string key="IBUINormalTitle">充值</string>
 						<object class="NSColor" key="IBUIHighlightedTitleColor" id="287676737">
 							<int key="NSColorSpace">3</int>
 							<bytes key="NSWhite">MQA</bytes>
@@ -156,8 +156,8 @@
 						<double key="IBUIContentEdgeInsets.top">0.0</double>
 						<double key="IBUIContentEdgeInsets.bottom">0.0</double>
 						<double key="IBUIContentEdgeInsets.left">0.0</double>
-						<double key="IBUIContentEdgeInsets.right">3</double>
-						<string key="IBUINormalTitle">Free Coin</string>
+						<double key="IBUIContentEdgeInsets.right">2</double>
+						<string key="IBUINormalTitle">免费金币</string>
 						<reference key="IBUIHighlightedTitleColor" ref="287676737"/>
 						<reference key="IBUINormalTitleColor" ref="443922836"/>
 						<reference key="IBUINormalTitleShadowColor" ref="441971509"/>

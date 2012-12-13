@@ -104,7 +104,7 @@
 						<int key="IBUIContentHorizontalAlignment">0</int>
 						<int key="IBUIContentVerticalAlignment">0</int>
 						<double key="IBUIContentEdgeInsets.top">0.0</double>
-						<double key="IBUIContentEdgeInsets.bottom">6</double>
+						<double key="IBUIContentEdgeInsets.bottom">3</double>
 						<double key="IBUIContentEdgeInsets.left">0.0</double>
 						<double key="IBUIContentEdgeInsets.right">0.0</double>
 						<string key="IBUINormalTitle">充值</string>
@@ -125,13 +125,13 @@
 							<string key="NSClassName">NSImage</string>
 							<string key="NSResourceName">zjh_home_charge_bg@2x.png</string>
 						</object>
-						<object class="IBUIFontDescription" key="IBUIFontDescription" id="807429243">
+						<object class="IBUIFontDescription" key="IBUIFontDescription" id="1008108839">
 							<int key="type">2</int>
-							<double key="pointSize">21</double>
+							<double key="pointSize">19</double>
 						</object>
-						<object class="NSFont" key="IBUIFont" id="194001569">
+						<object class="NSFont" key="IBUIFont" id="1017436972">
 							<string key="NSName">Helvetica-Bold</string>
-							<double key="NSSize">21</double>
+							<double key="NSSize">19</double>
 							<int key="NSfFlags">16</int>
 						</object>
 					</object>
@@ -146,7 +146,7 @@
 						<int key="IBUIContentHorizontalAlignment">0</int>
 						<int key="IBUIContentVerticalAlignment">0</int>
 						<double key="IBUIContentEdgeInsets.top">0.0</double>
-						<double key="IBUIContentEdgeInsets.bottom">6</double>
+						<double key="IBUIContentEdgeInsets.bottom">3</double>
 						<double key="IBUIContentEdgeInsets.left">0.0</double>
 						<double key="IBUIContentEdgeInsets.right">0.0</double>
 						<string key="IBUINormalTitle">免费金币</string>
@@ -157,8 +157,8 @@
 							<string key="NSClassName">NSImage</string>
 							<string key="NSResourceName">zjh_home_freecoin_bg@2x.png</string>
 						</object>
-						<reference key="IBUIFontDescription" ref="807429243"/>
-						<reference key="IBUIFont" ref="194001569"/>
+						<reference key="IBUIFontDescription" ref="1008108839"/>
+						<reference key="IBUIFont" ref="1017436972"/>
 					</object>
 					<object class="IBUILabel" id="1006200176">
 						<reference key="NSNextResponder" ref="191373211"/>
@@ -213,11 +213,11 @@
 						</object>
 						<nil key="IBUIHighlightedColor"/>
 						<int key="IBUIBaselineAdjustment">0</int>
-						<object class="IBUIFontDescription" key="IBUIFontDescription" id="478945266">
+						<object class="IBUIFontDescription" key="IBUIFontDescription" id="717329082">
 							<int key="type">2</int>
 							<double key="pointSize">20</double>
 						</object>
-						<object class="NSFont" key="IBUIFont" id="679195828">
+						<object class="NSFont" key="IBUIFont" id="636476845">
 							<string key="NSName">Helvetica-Bold</string>
 							<double key="NSSize">20</double>
 							<int key="NSfFlags">16</int>
@@ -244,8 +244,8 @@
 						</object>
 						<nil key="IBUIHighlightedColor"/>
 						<int key="IBUIBaselineAdjustment">0</int>
-						<reference key="IBUIFontDescription" ref="478945266"/>
-						<reference key="IBUIFont" ref="679195828"/>
+						<reference key="IBUIFontDescription" ref="717329082"/>
+						<reference key="IBUIFont" ref="636476845"/>
 						<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
 					</object>
 					<object class="IBUIImageView" id="536620801">
