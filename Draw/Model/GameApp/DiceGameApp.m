@@ -218,9 +218,9 @@
 {
     return @"DiceInputDialog";
 }
-- (NSString*)setRoyButtonWithColor
+- (NSString*)getPasswordDialogXibName
 {
-    return @"DicePasswordDialog";
+    return @"DicePassWordDialog";
 }
 - (NSString*)getRoomPasswordDialogXibName
 {
