@@ -9,6 +9,7 @@
 // buttons images
 #import "LocaleUtils.h"
 #import "UserManager.h"
+#import "ImageManagerProtocol.h"
 
 //#define DEFAULT_AVATAR_BUNDLE   ([[UserManager defaultManager] defaultAvatar])
 
@@ -24,7 +25,7 @@
 #define WORD_NORMAL_CELL_BACKGROUND @"normal.png"
 #define WORD_HARD_CELL_BACKGROUND @"hard.png"
 
-@interface ShareImageManager : NSObject
+@interface ShareImageManager : NSObject <ImageManagerProtocol>
 
 + (ShareImageManager*)defaultManager;
 

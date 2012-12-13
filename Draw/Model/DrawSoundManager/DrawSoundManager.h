@@ -10,4 +10,11 @@
 
 @interface DrawSoundManager : NSObject
 
++ (DrawSoundManager*)defaultManager;
+- (NSString*)clickWordSound;
+- (NSString*)someoneEnterRoomSound;
+- (NSString*)guessWrongSound;
+- (NSString*)guessCorrectSound;
+- (NSString*)congratulationsSound;
+
 @end

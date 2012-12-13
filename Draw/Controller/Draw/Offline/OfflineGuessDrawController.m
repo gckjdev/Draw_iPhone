@@ -44,6 +44,7 @@
 #import "UIImageExt.h"
 #import "UseItemScene.h"
 #import "MyFriend.h"
+#import "DrawSoundManager.h"
 
 #define PAPER_VIEW_TAG 20120403
 #define TOOLVIEW_CENTER (([DeviceDetection isIPAD]) ? CGPointMake(695, 920):CGPointMake(284, 424))
@@ -295,7 +296,7 @@
 
 - (void)clickPickingButton:(UIButton *)button target:(UIButton *)target text:(NSString *)text
 {
-    [[AudioManager defaultManager] playSoundById:CLICK_WORD];
+    [[AudioManager defaultManager] playSoundByName:[DrawSoundManager defaultManager].clickWordSound];
     if ([text length] != 0) {
         if (target) {
             [self setButton:target title:text enabled:YES];
@@ -662,7 +663,7 @@
             self.draw = self.feed.drawData;            
         }
         [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kGuessCorrect") delayTime:1 isHappy:YES];
-        [[AudioManager defaultManager] playSoundById:BINGO];
+        [[AudioManager defaultManager] playSoundByName:[DrawSoundManager defaultManager].guessCorrectSound];
         [self setWordButtonsEnabled:NO];
     
         NSInteger score = [_draw.word score]; // * [ConfigManager guessDifficultLevel];
@@ -702,7 +703,7 @@
 
     }else{
         [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kGuessWrong") delayTime:1 isHappy:NO];
-        [[AudioManager defaultManager] playSoundById:WRONG];
+        [[AudioManager defaultManager] playSoundByName:[DrawSoundManager defaultManager].guessWrongSound];
     }
 }
 
@@ -767,7 +768,6 @@
     
     NSInteger amout = [[ItemManager defaultManager] amountForItem:toolView.itemType];
     if(amout <= 0){
-        //TODO go the shopping page.
         CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kNoItemTitle") message:NSLS(@"kNoItemMessage") style:CommonDialogStyleDoubleButton delegate:self];
         dialog.tag = ITEM_TAG_OFFSET + toolView.itemType;
         [dialog showInView:self.view];
@@ -887,7 +887,6 @@
     {
         [[CommonMessageCenter defaultCenter]postMessageWithText:NSLS(@"kNotEnoughCoin") delayTime:1 isHappy:NO];
     }
-    //TODO : add other situation deal method
 }
 
 

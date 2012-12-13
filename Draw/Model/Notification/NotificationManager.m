@@ -13,6 +13,7 @@
 #import "DrawConstants.h"
 #import "DeviceDetection.h"
 #import "StatisticManager.h"
+#import "DrawSoundManager.h"
 
 #pragma mark - inner class Status message
 
@@ -142,9 +143,8 @@ NotificationManager *_staticNotificationManager = nil;
     statusMessage.type = type;
     statusMessage.count = count;
     [statueBar changeMessge:statusMessage.description];
-    [[AudioManager defaultManager] playSoundById:CLICK_WORD];
+    [[AudioManager defaultManager] playSoundByName:[DrawSoundManager defaultManager].clickWordSound];
     [[AudioManager defaultManager] vibrate];
- //TODO resave   
 }
 
 - (void)hideNotification

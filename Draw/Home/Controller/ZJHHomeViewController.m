@@ -94,7 +94,7 @@ ZJHHomeViewController *_staticZJHHomeViewController = nil;
 
 - (void)registerNetworkConnectedNotification
 {
-    [self registerNotificationWithName:NOTIFICATION_NETWORK_CONNECTED // TODO set right name here
+    [self registerNotificationWithName:NOTIFICATION_NETWORK_CONNECTED
                             usingBlock:^(NSNotification *note) {
                                 [self handleConnectedResponse];
                             }];
@@ -108,7 +108,7 @@ ZJHHomeViewController *_staticZJHHomeViewController = nil;
 
 - (void)registerNetworkDisconnectedNotification
 {
-    [self registerNotificationWithName:NOTIFICATION_NETWORK_DISCONNECTED // TODO set right name here
+    [self registerNotificationWithName:NOTIFICATION_NETWORK_DISCONNECTED 
                             usingBlock:^(NSNotification *note) {
                                 [self handleDisconnectWithError:[CommonGameNetworkService userInfoToError:note.userInfo]];
                             }];

@@ -32,6 +32,7 @@
 #import "ChatMessageView.h"
 #import "WordManager.h"
 //#import "SpeechService.h"
+#import "DrawSoundManager.h"
 
 #define MAX_CHANGE_ROOM_PER_DAY     5
 
@@ -543,7 +544,7 @@
 
 - (void)didNewUserJoinGame:(GameMessage *)message
 {
-    [[AudioManager defaultManager] playSoundById:ENTER_ROOM];
+    [[AudioManager defaultManager] playSoundByName:[DrawSoundManager defaultManager].someoneEnterRoomSound];
     [self updateGameUsers]; 
     [self updateOnlineUserLabel];
 
@@ -582,7 +583,6 @@
     
     if (![[[DrawGameService defaultService] userId] isEqualToString:[message userId]]) {
         [self showChatMessageViewOnUser:[message userId] title:nil message:NSLS(@"kQuickMessage")];
-        [[AudioManager defaultManager] playSoundById:QUICK_QUICK];
     }
 
 }
@@ -628,7 +628,6 @@
     if (![[[DrawGameService defaultService] userId] isEqualToString:[message userId]]) {
         [self prolongStartTimer];
         [self showChatMessageViewOnUser:[message userId] title:nil message:NSLS(@"kWaitMessage")];
-        [[AudioManager defaultManager] playSoundById:WAIT_WAIT];
     }
 }
 

@@ -398,6 +398,7 @@
 		C242479116797AE9008B4E14 /* dice_green_roy_button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C242478E16797AE9008B4E14 /* dice_green_roy_button@2x.png */; };
 		C242479216797AE9008B4E14 /* dice_yellow_roy_button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C242478F16797AE9008B4E14 /* dice_yellow_roy_button@2x.png */; };
 		C242479316797AE9008B4E14 /* dice_red_roy_button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C242479016797AE9008B4E14 /* dice_red_roy_button@2x.png */; };
+		C242479716798A2B008B4E14 /* DrawSoundManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C242479616798A2B008B4E14 /* DrawSoundManager.m */; };
 		C24339FF15AAB02400325A76 /* VendingController.m in Sources */ = {isa = PBXBuildFile; fileRef = C24339FD15AAB01D00325A76 /* VendingController.m */; };
 		C2433A0015AAB02400325A76 /* VendingController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C24339FE15AAB02000325A76 /* VendingController.xib */; };
 		C2433A0215AAB06D00325A76 /* VendingController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2433A0115AAB06C00325A76 /* VendingController~ipad.xib */; };
@@ -2697,6 +2698,8 @@
 		C242478E16797AE9008B4E14 /* dice_green_roy_button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dice_green_roy_button@2x.png"; sourceTree = "<group>"; };
 		C242478F16797AE9008B4E14 /* dice_yellow_roy_button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dice_yellow_roy_button@2x.png"; sourceTree = "<group>"; };
 		C242479016797AE9008B4E14 /* dice_red_roy_button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dice_red_roy_button@2x.png"; sourceTree = "<group>"; };
+		C242479516798A2B008B4E14 /* DrawSoundManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawSoundManager.h; sourceTree = "<group>"; };
+		C242479616798A2B008B4E14 /* DrawSoundManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawSoundManager.m; sourceTree = "<group>"; };
 		C24339FC15AAB01C00325A76 /* VendingController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VendingController.h; sourceTree = "<group>"; };
 		C24339FD15AAB01D00325A76 /* VendingController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VendingController.m; sourceTree = "<group>"; };
 		C24339FE15AAB02000325A76 /* VendingController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VendingController.xib; sourceTree = "<group>"; };
@@ -6172,6 +6175,15 @@
 				C225866D15EF5AA4009D686D /* GCServer.m */,
 			);
 			path = Server;
+			sourceTree = "<group>";
+		};
+		C2424794167989FD008B4E14 /* DrawSoundManager */ = {
+			isa = PBXGroup;
+			children = (
+				C242479516798A2B008B4E14 /* DrawSoundManager.h */,
+				C242479616798A2B008B4E14 /* DrawSoundManager.m */,
+			);
+			path = DrawSoundManager;
 			sourceTree = "<group>";
 		};
 		C250AD0A1653A7E500003E15 /* room */ = {
@@ -10033,6 +10045,7 @@
 		CAECE0291503B25500BC2404 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				C2424794167989FD008B4E14 /* DrawSoundManager */,
 				CA1DA8FE167320EA0078B5A9 /* DrawUIManager */,
 				CA42FE831660B7390097453A /* Animation */,
 				CA913A2E1653431900B6387F /* Resource */,
@@ -13484,6 +13497,7 @@
 				C2F1DEC416786E1C002D8408 /* CommonSettingView.m in Sources */,
 				CA12616F167880CE00DD96F4 /* ZJHHomeViewController.m in Sources */,
 				A4B45FCA1678C2C2009EA231 /* ZJHRichRuleConfig.m in Sources */,
+				C242479716798A2B008B4E14 /* DrawSoundManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
