@@ -891,11 +891,13 @@ static ZJHImageManager* shareInstance;
 
 - (UIImage *)userInfoFollowBtnImage
 {
-    return [_resService imageByName:@"zjh_user_info_follow" inResourcePackage:RESOURCE_PACKAGE_ZJH];
+//    return [_resService imageByName:@"zjh_user_info_follow" inResourcePackage:RESOURCE_PACKAGE_ZJH];
+    return [UIImage strectchableImageName:@"zjh_dialog_btn"];
 }
 - (UIImage *)userInfoTalkBtnImage
 {
-    return [_resService imageByName:@"zjh_user_info_talk" inResourcePackage:RESOURCE_PACKAGE_ZJH];
+//    return [_resService imageByName:@"zjh_user_info_talk" inResourcePackage:RESOURCE_PACKAGE_ZJH];
+    return [UIImage strectchableImageName:@"zjh_dialog_btn"];
 }
 
 @end
