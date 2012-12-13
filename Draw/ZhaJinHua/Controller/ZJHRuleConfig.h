@@ -42,6 +42,8 @@
 @interface ZJHRuleConfig : NSObject
 
 // methods may be need to be replaced in sub class.
+- (BOOL)isCoinsEnough;
+- (int)coinsNeedToJoinGame;
 - (NSArray *)chipValues;
 - (int)maxPlayerNum;
 - (UIImage *)gameBgImage;

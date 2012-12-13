@@ -755,6 +755,9 @@
     [self hideAllUserTotalBet];
     [self updateWaitGameNoteLabel];
     [self clearTotalBetAndSingleBet];
+    if ([_ruleConfig isCoinsEnough]) {
+        [self.navigationController popToRootViewControllerAnimated:YES];
+    }
 }
 
 - (void)faceupUserCards

@@ -609,9 +609,4 @@ static ZJHGameService *_defaultService;
     return [[self userPlayInfo:userId] replacedPokers];
 }
 
-- (BOOL)coinsNeedToJoinGame
-{
-    return [[[self chipValues] lastObject] intValue] * 8;
-}
-
 @end

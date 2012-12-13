@@ -25,6 +25,9 @@
 #import "NotificationName.h"
 #import "ZJHGameController.h"
 #import "UserManager+DiceUserManager.h"
+#import "ZJHRuleConfigFactory.h"
+#import "CoinShopController.h"
+#import "LmWallService.h"
 
 @interface ZJHHomeViewController ()
 {
@@ -144,8 +147,15 @@ ZJHHomeViewController *_staticZJHHomeViewController = nil;
                 return;
             }
             
-            [self showActivityWithText:NSLS(@"kConnectingServer")];
             [[ZJHGameService defaultService] setRule:PBZJHRuleTypeNormal];
+            
+            ZJHRuleConfig *ruleConfig = [ZJHRuleConfigFactory createRuleConfig];
+            if(![ruleConfig isCoinsEnough]){
+                [self showCoinsNotEnoughView:[ruleConfig coinsNeedToJoinGame]];
+                return;
+            }
+            
+            [self showActivityWithText:NSLS(@"kConnectingServer")];
             [[ZJHGameService defaultService] connectServer];
 
             break;
@@ -159,18 +169,39 @@ ZJHHomeViewController *_staticZJHHomeViewController = nil;
         }
         case HomeMenuTypeZJHRichSite: {
             [_gameService setRule:PBZJHRuleTypeRich];
+            
+            ZJHRuleConfig *ruleConfig = [ZJHRuleConfigFactory createRuleConfig];
+            if(![ruleConfig isCoinsEnough]){
+                [self showCoinsNotEnoughView:[ruleConfig coinsNeedToJoinGame]];
+                return;
+            }
+            
             ZJHRoomListController* vc = [[[ZJHRoomListController alloc] init] autorelease];
             [self.navigationController pushViewController:vc animated:YES];
             break;
         } 
         case HomeMenuTypeZJHNormalSite: {
             [_gameService setRule:PBZJHRuleTypeNormal];
+            
+            ZJHRuleConfig *ruleConfig = [ZJHRuleConfigFactory createRuleConfig];
+            if(![ruleConfig isCoinsEnough]){
+                [self showCoinsNotEnoughView:[ruleConfig coinsNeedToJoinGame]];
+                return;
+            }
+            
             ZJHRoomListController* vc = [[[ZJHRoomListController alloc] init] autorelease];
             [self.navigationController pushViewController:vc animated:YES];
             break;
         } 
         case HomeMenuTypeZJHVSSite: {
             [_gameService setRule:PBZJHRuleTypeDual];
+            
+            ZJHRuleConfig *ruleConfig = [ZJHRuleConfigFactory createRuleConfig];
+            if(![ruleConfig isCoinsEnough]){
+                [self showCoinsNotEnoughView:[ruleConfig coinsNeedToJoinGame]];
+                return;
+            }
+            
             ZJHRoomListController* vc = [[[ZJHRoomListController alloc] init] autorelease];
             [self.navigationController pushViewController:vc animated:YES];
             break;
@@ -281,7 +312,34 @@ ZJHHomeViewController *_staticZJHHomeViewController = nil;
     }
 }
 
+- (void)showCoinsNotEnoughView:(int)thresholdCoins
+{
+    NSString *message = nil;
+    if ([ConfigManager wallEnabled]) {
+        message = [NSString stringWithFormat:NSLS(@"kCoinsNotEnoughAndGetFreeCoins"), thresholdCoins];
+    }else {
+        message = [NSString stringWithFormat:NSLS(@"kCoinsNotEnoughAndEnterCoinsShop"), thresholdCoins];
+    }
+    
+    CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"kNotEnoughCoin") message:message style:CommonDialogStyleDoubleButton delegate:self];
+    [dialog showInView:self.view];
+}
 
+- (void)clickOk:(CommonDialog *)dialog
+{
+    if ([ConfigManager wallEnabled]) {
+        [UIUtils alertWithTitle:@"免费金币获取提示" msg:@"下载免费应用即可获取金币！下载完应用一定要打开才可以获得奖励哦！"];
+        [[LmWallService defaultService] show:self];
+    }else {
+        CoinShopController* controller = [[[CoinShopController alloc] init] autorelease];
+        [self.navigationController pushViewController:controller animated:YES];
+    }
+}
+
+- (void)clickBack:(CommonDialog *)dialog
+{
+    
+}
 
 
 @end

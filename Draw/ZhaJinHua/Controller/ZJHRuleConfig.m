@@ -10,10 +10,21 @@
 
 @implementation ZJHRuleConfig
 
+- (BOOL)isCoinsEnough
+{
+    return [[ZJHGameService defaultService] myBalance] >= [self coinsNeedToJoinGame];
+}
+
+- (int)coinsNeedToJoinGame
+{
+    return ([[[self chipValues] lastObject] intValue] * 8);
+}
+
 - (NSArray *)chipValues
 {
     return nil;
 }
+
 - (int)maxPlayerNum
 {
     return 0;
