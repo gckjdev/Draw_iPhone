@@ -239,24 +239,24 @@ NSString* GlobalGetBoardServerURL()
         [WXApi registerApp:@"wx427a2f57bc4456d1"];
     }
     
-    // TODO Check whether this is required or not?
-    NSArray* drawSoundArray = [NSArray arrayWithObjects:
-                                @"ding.m4a", 
-                                @"dingding.mp3", 
-                                @"correct.mp3", 
-                                @"oowrong.mp3", 
-                                @"congratulations.mp3", 
-                                @"rolling.mp3",
-                               @"open.aiff", nil];
-    NSArray* diceArray = [[DiceSoundManager defaultManager] diceSoundNameArray];
-    if (isDrawApp()){
-        [[AudioManager defaultManager] initSounds:drawSoundArray];        
-    }
-    else{
-        [[AudioManager defaultManager] initSounds:[drawSoundArray arrayByAddingObjectsFromArray:diceArray]];        
-    }
-        
-    // init mob click 
+//    // TODO Check whether this is required or not?
+//    NSArray* drawSoundArray = [NSArray arrayWithObjects:
+//                                @"ding.m4a", 
+//                                @"dingding.mp3", 
+//                                @"correct.mp3", 
+//                                @"oowrong.mp3", 
+//                                @"congratulations.mp3", 
+//                                @"rolling.mp3",
+//                               @"open.aiff", nil];
+//    NSArray* diceArray = [[DiceSoundManager defaultManager] diceSoundNameArray];
+//    if (isDrawApp()){
+//        [[AudioManager defaultManager] initSounds:drawSoundArray];        
+//    }
+//    else{
+//        [[AudioManager defaultManager] initSounds:[drawSoundArray arrayByAddingObjectsFromArray:diceArray]];        
+//    }
+//        
+    // init mob click
     [MobClick startWithAppkey:[GameApp umengId]
                  reportPolicy:BATCH 
                     channelId:[ConfigManager getChannelId]];

@@ -108,7 +108,7 @@
 							<object class="IBUIButton" id="892863268">
 								<reference key="NSNextResponder" ref="613159573"/>
 								<int key="NSvFlags">301</int>
-								<string key="NSFrame">{{39, 188}, {162, 72}}</string>
+								<string key="NSFrame">{{39, 199}, {162, 72}}</string>
 								<reference key="NSSuperview" ref="613159573"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="523235243"/>
@@ -136,9 +136,10 @@
 							<object class="IBUIButton" id="523235243">
 								<reference key="NSNextResponder" ref="613159573"/>
 								<int key="NSvFlags">301</int>
-								<string key="NSFrame">{{304, 188}, {162, 72}}</string>
+								<string key="NSFrame">{{304, 199}, {162, 72}}</string>
 								<reference key="NSSuperview" ref="613159573"/>
 								<reference key="NSWindow"/>
+								<reference key="NSNextKeyView"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<int key="IBUIContentHorizontalAlignment">0</int>
@@ -165,7 +166,7 @@
 								<int key="IBUIContentMode">7</int>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-								<string key="IBUIText">确定要退出游戏吗？确定要退出游戏吗？</string>
+								<string key="IBUIText">确定要退出游戏吗？确定要退出游戏吗？确定要退出游戏吗？确定要退出游戏吗？</string>
 								<object class="NSColor" key="IBUITextColor">
 									<int key="NSColorSpace">1</int>
 									<bytes key="NSRGB">MC4yOTgwMzkyMTU3IDAuMTQ5MDE5NjA3OCAwLjA0NzA1ODgyMzUzAA</bytes>

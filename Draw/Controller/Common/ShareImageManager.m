@@ -653,5 +653,87 @@ static UIImage* _whitePaperImage;
     return  [UIImage strectchableImageName:@"point_pic4.png"];
 }
 
+#pragma mark - dialog image manager protocol
+
+- (UIImage*)commonDialogBgImage
+{
+    return nil;
+}
+- (UIImage*)commonDialogLeftBtnImage
+{
+    return nil;
+}
+- (UIImage*)commonDialogRightBtnImage
+{
+    return nil;
+}
+
+- (UIImage *)inputDialogBgImage
+{
+    return nil;
+}
+
+- (UIImage*)inputDialogInputBgImage
+{
+    //    return [UIImage strectchableImageName:@"zjh_input_bg.png" leftCapWidth:15 topCapHeight:15];
+    return nil;
+}
+- (UIImage*)inputDialogLeftBtnImage
+{
+    return nil;
+}
+- (UIImage*)inputDialogRightBtnImage
+{
+    return nil;
+}
+
+- (UIImage *)roomListBgImage
+{
+    return nil;
+}
+- (UIImage *)roomListLeftBtnSelectedImage
+{
+    return nil;
+}
+- (UIImage *)roomListLeftBtnUnselectedImage
+{
+    return nil;
+}
+- (UIImage *)roomListRightBtnSelectedImage
+{
+    return nil;
+}
+- (UIImage *)roomListRightBtnUnselectedImage
+{
+    return nil;
+}
+- (UIImage *)roomListBackBtnImage
+{
+    return nil;
+}
+- (UIImage *)roomListCellBgImage
+{
+    return nil;
+}
+
+- (UIImage *)roomListCreateRoomBtnBgImage
+{
+    return nil;
+}
+- (UIImage *)roomListFastEntryBtnBgImage
+{
+    return nil;
+}
+
+- (UIImage *)userInfoFollowBtnImage
+{
+    return nil;
+}
+- (UIImage *)userInfoTalkBtnImage
+{
+    return nil;
+}
+
+
 @end
 

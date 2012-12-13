@@ -43,6 +43,7 @@
 #import "DrawFeed.h"
 #import "ShowFeedController.h"
 #import "UseItemScene.h"
+#import "DrawSoundManager.h"
 
 #define CONTINUE_TIME 10
 
@@ -327,7 +328,7 @@
         BalanceSourceType type = (_isMyPaint) ? DrawRewardType : GuessRewardType;
         [[AccountService defaultService] chargeAccount:self.score source:type];    
         
-        [[AudioManager defaultManager] playSoundById:GAME_WIN];
+        [[AudioManager defaultManager] playSoundByName:[DrawSoundManager defaultManager].congratulationsSound];
     }
 
     //init experience.

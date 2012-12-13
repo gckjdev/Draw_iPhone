@@ -41,12 +41,12 @@ static DiceImageManager *_defaultManager = nil;
 
 - (UIImage *)createRoomBtnBgImage
 {
-    return [UIImage strectchableImageName:@"dice_play.png" leftCapWidth:15 topCapHeight:15];
+    return [UIImage imageNamed:@"dice_yellow_roy_button.png"];
 }
 
 - (UIImage *)fastGameBtnBgImage
 {
-    return [UIImage strectchableImageName:@"dice_create_room.png" leftCapWidth:15 topCapHeight:15];
+    return [UIImage imageNamed:@"dice_green_roy_button.png" ];
 }
 
 - (UIImage *)graySafaImage
@@ -568,6 +568,33 @@ static DiceImageManager *_defaultManager = nil;
 - (UIImage *)settingsRightUnselected
 {
     return [UIImage imageNamed:@"settingright_unselect.png"];
+}
+
+- (UIImage *)roomListBackBtnImage
+{
+    return nil;
+}
+- (UIImage *)roomListCellBgImage
+{
+    return nil;
+}
+
+- (UIImage *)roomListCreateRoomBtnBgImage
+{
+    return [UIImage imageNamed:@"dice_yellow_roy_button.png"];
+}
+- (UIImage *)roomListFastEntryBtnBgImage
+{
+    return [UIImage imageNamed:@"dice_green_roy_button.png"];
+}
+
+- (UIImage *)userInfoFollowBtnImage
+{
+    return [UIImage imageNamed:@"dice_red_roy_button.png"];
+}
+- (UIImage *)userInfoTalkBtnImage
+{
+    return [UIImage imageNamed:@"dice_yellow_roy_button.png"];
 }
 
 
