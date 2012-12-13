@@ -238,11 +238,11 @@
 
     //level
     NSInteger level = [[LevelService defaultService] level];
-    [self.level setText:[NSString stringWithFormat:@"LV %d",level]];
+    [self.level setText:[NSString stringWithFormat:@"LV: %d",level]];
     
     //coin
     NSInteger coin = [[AccountService defaultService] getBalance];//[[AccountManager defaultManager] account].balance.intValue;
-    NSString *coinString = [NSString stringWithFormat:@"x%d",coin];
+    NSString *coinString = [NSString stringWithFormat:@"x %d",coin];
     [self.coin setText:coinString];
     
     //charge button

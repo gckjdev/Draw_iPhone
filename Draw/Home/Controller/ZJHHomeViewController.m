@@ -25,9 +25,14 @@
 #import "NotificationName.h"
 #import "ZJHGameController.h"
 #import "UserManager+DiceUserManager.h"
+
+#import "RegisterUserController.h"
+
 #import "ZJHRuleConfigFactory.h"
 #import "CoinShopController.h"
 #import "LmWallService.h"
+#import "AudioManager.h"
+#import "ZJHSoundManager.h"
 
 @interface ZJHHomeViewController ()
 {
@@ -135,6 +140,13 @@ ZJHHomeViewController *_staticZJHHomeViewController = nil;
              didClickMenu:(HomeMenuView *)menu
                  menuType:(HomeMenuType)type
 {
+    if (![self isRegistered]) {
+        [self toRegister];
+        return;
+    }
+    
+    [[AudioManager defaultManager] playSoundByURL:[ZJHSoundManager defaultManager].clickButtonSound];
+    
     switch (type) {
         case HomeMenuTypeZJHHelp: {
             HelpView *view = [HelpView createHelpView:@"ZJHHelpView"];

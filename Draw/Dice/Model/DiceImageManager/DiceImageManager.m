@@ -500,11 +500,11 @@ static DiceImageManager *_defaultManager = nil;
 }
 - (UIImage*)commonDialogLeftBtnImage
 {
-    return nil;
+    return [UIImage imageNamed:@"dice_yellow_roy_button.png"];
 }
 - (UIImage*)commonDialogRightBtnImage
 {
-    return nil;
+    return [UIImage imageNamed:@"dice_red_roy_button.png"];
 }
 
 - (UIImage *)inputDialogBgImage
@@ -518,11 +518,11 @@ static DiceImageManager *_defaultManager = nil;
 }
 - (UIImage*)inputDialogLeftBtnImage
 {
-    return nil;
+    return [UIImage imageNamed:@"dice_yellow_roy_button.png"];
 }
 - (UIImage*)inputDialogRightBtnImage
 {
-    return nil;
+    return [UIImage imageNamed:@"dice_red_roy_button.png"];
 }
 
 - (UIImage *)audioOff
@@ -597,5 +597,25 @@ static DiceImageManager *_defaultManager = nil;
     return [UIImage imageNamed:@"dice_yellow_roy_button.png"];
 }
 
+- (UIImage *)roomListBgImage
+{
+    return nil;
+}
+- (UIImage *)roomListLeftBtnSelectedImage
+{
+    return nil;
+}
+- (UIImage *)roomListLeftBtnUnselectedImage
+{
+    return nil;
+}
+- (UIImage *)roomListRightBtnSelectedImage
+{
+    return nil;
+}
+- (UIImage *)roomListRightBtnUnselectedImage
+{
+    return nil;
+}
 
 @end
