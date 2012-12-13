@@ -1236,8 +1236,11 @@
 
 #pragma mark - poker view protocol
 
-- (void)didClickPokerView:(PokerView *)pokerView
+- (void)didClickPokerView:(PokerView *)pokerView zjhPokersView:(ZJHPokerView *)zjhPokersView
 {
+    if (zjhPokersView != [self getMyPokersView]) {
+        return;
+    }
     [[self getMyPokersView] dismissButtons];
     pokerView.buttonsIsPopup ? [pokerView dismissButtons] : [pokerView popupButtons:[_ruleConfig createButtons:pokerView]  InView:self.view];
 }

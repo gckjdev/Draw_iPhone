@@ -37,7 +37,8 @@ typedef enum {
 @protocol ZJHPokerViewProtocol <NSObject>
 
 @optional
-- (void)didClickPokerView:(PokerView *)pokerView;
+- (void)didClickPokerView:(PokerView *)pokerView
+            zjhPokersView:(ZJHPokerView *)zjhPokersView;
 - (void)didClickShowCardButton:(PokerView *)pokerView;
 - (void)didClickChangeCardButton:(PokerView *)pokerView;
 

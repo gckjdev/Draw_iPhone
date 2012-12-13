@@ -341,8 +341,8 @@
 
 - (void)didClickPokerView:(PokerView *)pokerView
 {
-    if ([_delegate respondsToSelector:@selector(didClickPokerView:)]) {
-        [_delegate didClickPokerView:pokerView];
+    if ([_delegate respondsToSelector:@selector(didClickPokerView:zjhPokersView:)]) {
+        [_delegate didClickPokerView:pokerView zjhPokersView:self];
     }
 }
 
