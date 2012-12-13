@@ -812,7 +812,6 @@ sinaAccessTokenSecret:(NSString*)sinaAccessTokenSecret
     [builder setLocation:[self location]];
     [builder setGender:[self.gender isEqualToString:@"m"]];
     [builder setFacetimeId:[self facetimeId]];
-    // TODO add other parameters
     
     return [builder build];
 }
@@ -834,7 +833,6 @@ sinaAccessTokenSecret:(NSString*)sinaAccessTokenSecret
     for (PBKeyValue* kValue in keyValueArray) {
         [builder addAttributes:kValue];
     }
-    // TODO add other parameters
     
     return [builder build];
 }

@@ -61,7 +61,6 @@
 
 - (void)viewDidLoad
 {
-    // TODO for test
 //    int i = rand() % 100;
 //    self.userIdTextField.text = [NSString stringWithFormat:@"mark_%d@21cn.com", i];
 

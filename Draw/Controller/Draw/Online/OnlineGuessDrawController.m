@@ -590,7 +590,6 @@
         //[self popupMessage:[NSString stringWithFormat:NSLS(@"kSendFlowerMessage"),REWARD_EXP, REWARD_COINS] title:nil];
     }
     
-    // TODO show animation here
 }
 
 #pragma mark - Common Dialog Delegate
@@ -703,7 +702,6 @@
 {
     NSInteger amout = [[ItemManager defaultManager] amountForItem:toolView.itemType];
     if(amout <= 0){
-        //TODO go the shopping page.
         CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kNoItemTitle") message:NSLS(@"kNoItemMessage") style:CommonDialogStyleDoubleButton delegate:self];
         dialog.tag = ITEM_TAG_OFFSET + toolView.itemType;
         [dialog showInView:self.view];
@@ -841,7 +839,6 @@
     {
         [[CommonMessageCenter defaultCenter]postMessageWithText:NSLS(@"kNotEnoughCoin") delayTime:1 isHappy:NO];
     }
-    //TODO : add other situation deal method
 }
 
 @end

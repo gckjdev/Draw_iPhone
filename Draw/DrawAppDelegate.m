@@ -72,8 +72,8 @@ NSString* GlobalGetServerURL()
 
 NSString* GlobalGetTrafficServerURL()
 {
-//    return [ConfigManager getTrafficAPIServerURL];
-    return @"http://192.168.1.14:8100/api/i?";
+    return [ConfigManager getTrafficAPIServerURL];
+//    return @"http://192.168.1.14:8100/api/i?";
 //    return @"http://192.168.1.198:8100/api/i?";
 }
 
@@ -228,9 +228,7 @@ NSString* GlobalGetBoardServerURL()
         [DiceFontManager unZipFiles];
     }
     
-    // TODO Benson Check whether this is duplicate
     [[CommonHelpManager defaultManager] unzipHelpFiles];
-
     
     [self initImageCacheManager];
     
@@ -239,24 +237,26 @@ NSString* GlobalGetBoardServerURL()
         [WXApi registerApp:@"wx427a2f57bc4456d1"];
     }
     
-//    // TODO Check whether this is required or not?
-//    NSArray* drawSoundArray = [NSArray arrayWithObjects:
-//                                @"ding.m4a", 
-//                                @"dingding.mp3", 
-//                                @"correct.mp3", 
-//                                @"oowrong.mp3", 
-//                                @"congratulations.mp3", 
-//                                @"rolling.mp3",
-//                               @"open.aiff", nil];
-//    NSArray* diceArray = [[DiceSoundManager defaultManager] diceSoundNameArray];
-//    if (isDrawApp()){
-//        [[AudioManager defaultManager] initSounds:drawSoundArray];        
-//    }
-//    else{
-//        [[AudioManager defaultManager] initSounds:[drawSoundArray arrayByAddingObjectsFromArray:diceArray]];        
-//    }
-//        
-    // init mob click
+    // TODO Check whether this is required or not?
+    /*
+    NSArray* drawSoundArray = [NSArray arrayWithObjects:
+                                @"ding.m4a", 
+                                @"dingding.mp3", 
+                                @"correct.mp3", 
+                                @"oowrong.mp3", 
+                                @"congratulations.mp3", 
+                                @"rolling.mp3",
+                               @"open.aiff", nil];
+    NSArray* diceArray = [[DiceSoundManager defaultManager] diceSoundNameArray];
+    if (isDrawApp()){
+        [[AudioManager defaultManager] initSounds:drawSoundArray];        
+    }
+    else{
+        [[AudioManager defaultManager] initSounds:[drawSoundArray arrayByAddingObjectsFromArray:diceArray]];        
+    }
+    */
+        
+    // init mob click 
     [MobClick startWithAppkey:[GameApp umengId]
                  reportPolicy:BATCH 
                     channelId:[ConfigManager getChannelId]];
