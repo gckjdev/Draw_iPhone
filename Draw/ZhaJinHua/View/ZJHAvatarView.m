@@ -310,6 +310,14 @@
 - (void)showExpression:(NSString *)key
 {
     GifView *view = [[ExpressionManager defaultManager] gifExpressionForKey:key frame:self.roundAvatarPlaceView.frame];
+    view.autoresizingMask =
+    !UIViewAutoresizingFlexibleLeftMargin |
+    !UIViewAutoresizingFlexibleRightMargin |
+    !UIViewAutoresizingFlexibleTopMargin |
+    !UIViewAutoresizingFlexibleBottomMargin |
+    UIViewAutoresizingFlexibleWidth |
+    UIViewAutoresizingFlexibleHeight;
+    
     view.center = self.roundAvatarPlaceView.center;
     
     view.userInteractionEnabled = NO;
