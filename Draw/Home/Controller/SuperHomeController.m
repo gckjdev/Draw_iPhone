@@ -69,6 +69,7 @@
     self.homeMainMenuPanel = [HomeMainMenuPanel createView:self];
     [self.view addSubview:self.homeMainMenuPanel];
 //    self.mainMenuPanel.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleHeight;
+
     //TODO update frame
     [self updateView:self.homeMainMenuPanel originY:MAIN_MENU_ORIGIN_Y];
 }
