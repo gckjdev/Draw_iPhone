@@ -722,6 +722,9 @@
         }
         
         if ([userId isEqualToString:_gameService.winner]) {
+            if ([_userManager isMe:userId]) {
+                continue;
+            }
             [avatar showWinCoins:[[_gameService userPlayInfo:userId] resultAward]];
         }else {
             [avatar showLoseCoins:[[_gameService userPlayInfo:userId] totalBet]];
