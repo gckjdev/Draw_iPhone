@@ -101,7 +101,7 @@ static UIImage* _whitePaperImage;
 
 - (UIImage *)inputImage
 {
-    return [UIImage strectchableImageName:@"inputbg.png"];
+    return [UIImage strectchableImageName:@"inputbg"];
 }
 
 - (UIImage *)pickEasyWordCellImage

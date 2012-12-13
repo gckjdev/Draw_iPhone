@@ -155,7 +155,8 @@
 {
     self.titleLabel.text = self.messageStat.friendNickName;
     inputTextView.returnKeyType = UIReturnKeySend;
-
+    [self.inputTextBackgroundImage setImage:
+     [[ShareImageManager defaultManager] inputImage]];
 }
 
 
@@ -277,6 +278,8 @@
         if (_delegate && [_delegate respondsToSelector:@selector(didMessageStat:createNewMessage:)]) {
             [_delegate didMessageStat:self.messageStat createNewMessage:message];
         }
+        self.inputTextView.text = nil;
+        [self textViewDidChange:self.inputTextView];
     } else {
         
     }
