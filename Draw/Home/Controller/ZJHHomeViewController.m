@@ -73,7 +73,6 @@ ZJHHomeViewController *_staticZJHHomeViewController = nil;
 
 - (void)viewDidDisappear:(BOOL)animated
 {
-    
     [self unregisterJoinGameResponseNotification];
     [self unregisterNetworkConnectedNotification];
     [super viewDidDisappear:animated];

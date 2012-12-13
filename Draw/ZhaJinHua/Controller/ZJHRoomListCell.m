@@ -31,7 +31,7 @@
 }
 
 #define HEIGHT_ZJH_ROOM_LIST_CELL  ([DeviceDetection isIPAD] ? 204: 102)
-#define HEIGHT_ZJH_ROOM_LIST_CELL_DUAL  ([DeviceDetection isIPAD] ? 204: 70)
+#define HEIGHT_ZJH_ROOM_LIST_CELL_DUAL  ([DeviceDetection isIPAD] ? 131: 70)
 
 
 + (CGFloat)getCellHeight
