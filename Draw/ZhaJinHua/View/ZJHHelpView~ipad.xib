@@ -118,7 +118,7 @@
 						<reference key="IBUINormalTitleShadowColor" ref="536193249"/>
 						<object class="NSCustomResource" key="IBUINormalBackgroundImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">clean_input@2x.png</string>
+							<string key="NSResourceName">zjh_popup_view_close_btn_bg@2x.png</string>
 						</object>
 						<object class="IBUIFontDescription" key="IBUIFontDescription">
 							<int key="type">2</int>
@@ -382,8 +382,8 @@
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<object class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="NS.key.0">clean_input@2x.png</string>
-			<string key="NS.object.0">{57, 57}</string>
+			<string key="NS.key.0">zjh_popup_view_close_btn_bg@2x.png</string>
+			<string key="NS.object.0">{63, 63}</string>
 		</object>
 		<string key="IBCocoaTouchPluginVersion">1926</string>
 	</data>

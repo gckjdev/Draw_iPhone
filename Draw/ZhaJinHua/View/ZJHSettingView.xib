@@ -2,13 +2,13 @@
 <archive type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="8.00">
 	<data>
 		<int key="IBDocument.SystemTarget">1536</int>
-		<string key="IBDocument.SystemVersion">12A269</string>
-		<string key="IBDocument.InterfaceBuilderVersion">2844</string>
-		<string key="IBDocument.AppKitVersion">1187</string>
-		<string key="IBDocument.HIToolboxVersion">624.00</string>
+		<string key="IBDocument.SystemVersion">11E53</string>
+		<string key="IBDocument.InterfaceBuilderVersion">2840</string>
+		<string key="IBDocument.AppKitVersion">1138.47</string>
+		<string key="IBDocument.HIToolboxVersion">569.00</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-			<string key="NS.object.0">1930</string>
+			<string key="NS.object.0">1926</string>
 		</object>
 		<array key="IBDocument.IntegratedClassDependencies">
 			<string>IBProxyObject</string>
@@ -227,7 +227,7 @@
 								<reference key="IBUINormalTitleShadowColor" ref="47555669"/>
 								<object class="NSCustomResource" key="IBUINormalBackgroundImage">
 									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">clean_input@2x.png</string>
+									<string key="NSResourceName">zjh_popup_view_close_btn_bg@2x.png</string>
 								</object>
 								<reference key="IBUIFontDescription" ref="72491277"/>
 								<reference key="IBUIFont" ref="216995656"/>
@@ -501,13 +501,13 @@
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
 			<string key="audio_on@2x.png">{81, 75}</string>
-			<string key="clean_input@2x.png">{57, 57}</string>
 			<string key="music_on@2x.png">{81, 75}</string>
 			<string key="settingleft_selected@2x.png">{115, 59}</string>
 			<string key="settingleft_unselect@2x.png">{115, 59}</string>
 			<string key="settingright_selected@2x.png">{115, 59}</string>
 			<string key="settingright_unselect@2x.png">{115, 59}</string>
+			<string key="zjh_popup_view_close_btn_bg@2x.png">{63, 63}</string>
 		</dictionary>
-		<string key="IBCocoaTouchPluginVersion">1930</string>
+		<string key="IBCocoaTouchPluginVersion">1926</string>
 	</data>
 </archive>

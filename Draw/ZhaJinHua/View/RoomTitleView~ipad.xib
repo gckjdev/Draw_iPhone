@@ -74,6 +74,7 @@
 						<reference key="IBUIShadowColor" ref="155955942"/>
 						<string key="IBUIShadowOffset">{0, 0}</string>
 						<int key="IBUIBaselineAdjustment">0</int>
+						<float key="IBUIMinimumScaleFactor">1</float>
 						<int key="IBUITextAlignment">1</int>
 						<object class="IBUIFontDescription" key="IBUIFontDescription">
 							<int key="type">2</int>
@@ -84,7 +85,6 @@
 							<double key="NSSize">22</double>
 							<int key="NSfFlags">16</int>
 						</object>
-						<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
 					</object>
 				</array>
 				<string key="NSFrameSize">{266, 88}</string>
@@ -177,7 +177,7 @@
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<object class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
 			<string key="NS.key.0">zjh_room_title_bg@2x.png</string>
-			<string key="NS.object.0">{16, 16}</string>
+			<string key="NS.object.0">{265, 87}</string>
 		</object>
 		<string key="IBCocoaTouchPluginVersion">1926</string>
 	</data>
