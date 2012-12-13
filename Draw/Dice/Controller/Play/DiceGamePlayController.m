@@ -506,7 +506,7 @@
                                                            message:message
                                                              style:CommonDialogStyleDoubleButton 
                                                           delegate:self
-                                                             theme:CommonDialogThemeDice];
+                                           ];
         [dialog showInView:self.view];
     } else {
         [self quitDiceGame];
@@ -1554,7 +1554,7 @@
                                                            message:nil 
                                                              style:CommonDialogStyleDoubleButton 
                                                           delegate:self 
-                                                             theme:CommonDialogThemeDice];
+                                           ];
     _diceRobotDecision.tag = ROBOT_CALL_TIPS_DIALOG_TAG;
     _diceRobotDecision.disappearDelegate = self;
     
