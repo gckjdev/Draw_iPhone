@@ -298,6 +298,12 @@
     [self.friendRoomButton setBackgroundImage:[[GameApp getImageManager] roomListRightBtnUnselectedImage] forState:UIControlStateNormal];
     [self.createRoomButton setBackgroundImage:[[GameApp getImageManager] roomListCreateRoomBtnBgImage] forState:UIControlStateNormal];
     [self.fastEntryButton setBackgroundImage:[[GameApp getImageManager] roomListFastEntryBtnBgImage] forState:UIControlStateNormal];
+    
+    [self.allRoomButton setTitle:NSLS(@"kAll") forState:UIControlStateNormal];
+    [self.friendRoomButton setTitle:NSLS(@"kFriend") forState:UIControlStateNormal];
+    [self.nearByRoomButton setTitle:NSLS(@"kNearBy") forState:UIControlStateNormal];
+    [self.createRoomButton setTitle:NSLS(@"kCreateRoom") forState:UIControlStateNormal];
+    [self.fastEntryButton setTitle:NSLS(@"kFastEntry") forState:UIControlStateNormal];
 
 }
 

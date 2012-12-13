@@ -45,9 +45,10 @@
         needUpdate:(BOOL)needUpdate
            canChat:(BOOL)canChat;
 
-- (void)initView;//
+- (void)initView:(BOOL)canChat;//
 - (void)initViewWithFriend:(MyFriend *)afriend
-           superController:(PPViewController *)superController;
+           superController:(PPViewController *)superController
+                   canChat:(BOOL)canChat;
 - (void)show;
 - (void)updateInfoFromService;
 @end

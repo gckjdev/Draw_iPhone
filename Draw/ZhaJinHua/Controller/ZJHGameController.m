@@ -722,6 +722,9 @@
         }
         
         if ([userId isEqualToString:_gameService.winner]) {
+            if ([_userManager isMe:userId]) {
+                continue;
+            }
             [avatar showWinCoins:[[_gameService userPlayInfo:userId] resultAward]];
         }else {
             [avatar showLoseCoins:[[_gameService userPlayInfo:userId] totalBet]];
@@ -1236,8 +1239,11 @@
 
 #pragma mark - poker view protocol
 
-- (void)didClickPokerView:(PokerView *)pokerView
+- (void)didClickPokerView:(PokerView *)pokerView zjhPokersView:(ZJHPokerView *)zjhPokersView
 {
+    if (zjhPokersView != [self getMyPokersView]) {
+        return;
+    }
     [[self getMyPokersView] dismissButtons];
     pokerView.buttonsIsPopup ? [pokerView dismissButtons] : [pokerView popupButtons:[_ruleConfig createButtons:pokerView]  InView:self.view];
 }

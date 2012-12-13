@@ -1744,7 +1744,7 @@
 		CAC791561664AD0B009B4053 /* bbs_switch_down@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAC791481664AD0B009B4053 /* bbs_switch_down@2x.png */; };
 		CAC791571664AD0B009B4053 /* bbs_switch_right@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAC791491664AD0B009B4053 /* bbs_switch_right@2x.png */; };
 		CAC791581664AD0B009B4053 /* bbs_back@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAC7914B1664AD0B009B4053 /* bbs_back@2x.png */; };
-		CAC791591664AD0B009B4053 /* bbs_bg@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CAC7914C1664AD0B009B4053 /* bbs_bg@2x.jpg */; };
+		CAC791591664AD0B009B4053 /* bbs_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAC7914C1664AD0B009B4053 /* bbs_bg@2x.png */; };
 		CAC7915C1664AD2C009B4053 /* BBSImageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC7915B1664AD2C009B4053 /* BBSImageManager.m */; };
 		CAC791711664BCF3009B4053 /* BBSFontManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC791701664BCF3009B4053 /* BBSFontManager.m */; };
 		CAC791741664BD09009B4053 /* BBSColorManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC791731664BD09009B4053 /* BBSColorManager.m */; };
@@ -4495,7 +4495,7 @@
 		CAC791481664AD0B009B4053 /* bbs_switch_down@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bbs_switch_down@2x.png"; sourceTree = "<group>"; };
 		CAC791491664AD0B009B4053 /* bbs_switch_right@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bbs_switch_right@2x.png"; sourceTree = "<group>"; };
 		CAC7914B1664AD0B009B4053 /* bbs_back@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bbs_back@2x.png"; sourceTree = "<group>"; };
-		CAC7914C1664AD0B009B4053 /* bbs_bg@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "bbs_bg@2x.jpg"; sourceTree = "<group>"; };
+		CAC7914C1664AD0B009B4053 /* bbs_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bbs_bg@2x.png"; sourceTree = "<group>"; };
 		CAC7915A1664AD2C009B4053 /* BBSImageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBSImageManager.h; sourceTree = "<group>"; };
 		CAC7915B1664AD2C009B4053 /* BBSImageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBSImageManager.m; sourceTree = "<group>"; };
 		CAC7916F1664BCF3009B4053 /* BBSFontManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBSFontManager.h; sourceTree = "<group>"; };
@@ -9828,7 +9828,7 @@
 				CAC792AA1668D6B0009B4053 /* bbs_option_bg@2x.png */,
 				CAC792AB1668D6B0009B4053 /* bbs_option_bubble@2x.png */,
 				CAC7914B1664AD0B009B4053 /* bbs_back@2x.png */,
-				CAC7914C1664AD0B009B4053 /* bbs_bg@2x.jpg */,
+				CAC7914C1664AD0B009B4053 /* bbs_bg@2x.png */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -12567,7 +12567,7 @@
 				CAC791561664AD0B009B4053 /* bbs_switch_down@2x.png in Resources */,
 				CAC791571664AD0B009B4053 /* bbs_switch_right@2x.png in Resources */,
 				CAC791581664AD0B009B4053 /* bbs_back@2x.png in Resources */,
-				CAC791591664AD0B009B4053 /* bbs_bg@2x.jpg in Resources */,
+				CAC791591664AD0B009B4053 /* bbs_bg@2x.png in Resources */,
 				C2EE14251664CB3600ADBE2E /* dialog_bg@2x.png in Resources */,
 				C2EE14261664CB3600ADBE2E /* dialog_frame@2x.png in Resources */,
 				C2EE14271664CB3600ADBE2E /* dialog_no@2x.png in Resources */,
@@ -13768,8 +13768,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Lingzhe Peng";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Lingzhe Peng";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Lingzhe Peng (9WG829Y3AG)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Lingzhe Peng (9WG829Y3AG)";
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -13823,8 +13823,8 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "1F663AF0-A956-4FB2-B213-7040F013FE0B";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "1F663AF0-A956-4FB2-B213-7040F013FE0B";
+				PROVISIONING_PROFILE = "C6C82094-8927-4F4C-BB3D-30CD005F209D";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "C6C82094-8927-4F4C-BB3D-30CD005F209D";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -13833,8 +13833,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Lingzhe Peng";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Lingzhe Peng";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Lingzhe Peng (9WG829Y3AG)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Lingzhe Peng (9WG829Y3AG)";
 				COPY_PHASE_STRIP = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -13887,8 +13887,8 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "1F663AF0-A956-4FB2-B213-7040F013FE0B";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "1F663AF0-A956-4FB2-B213-7040F013FE0B";
+				PROVISIONING_PROFILE = "C6C82094-8927-4F4C-BB3D-30CD005F209D";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "C6C82094-8927-4F4C-BB3D-30CD005F209D";
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;
 			};

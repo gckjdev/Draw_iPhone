@@ -11,4 +11,9 @@
 
 @interface ZJHUserInfoView : CommonUserInfoView
 
++ (void)showFriend:(MyFriend*)afriend
+        infoInView:(PPViewController*)superController
+        needUpdate:(BOOL)needUpdate
+           canChat:(BOOL)canChat;
+
 @end
