@@ -163,12 +163,13 @@
     [self initBalance];
 }
 
-- (void)initView
+- (void)initView:(BOOL)canChat
 {
     [self.backgroundImageView setImage:[[GameApp getImageManager] commonDialogBgImage]];
     [self.followUserButton setBackgroundImage:[[GameApp getImageManager] userInfoFollowBtnImage] forState:UIControlStateNormal];
     [self.chatToUserButton setBackgroundImage:[[GameApp getImageManager] userInfoTalkBtnImage] forState:UIControlStateNormal];
     [self.chatToUserButton setTitle:NSLS(@"kChatToHim") forState:UIControlStateNormal];
+    [self.chatToUserButton setHidden:!canChat];
 }
 
 + (CommonUserInfoView*)createUserInfoView
@@ -227,11 +228,12 @@
 #pragma mark - main process methods.
 - (void)initViewWithFriend:(MyFriend *)afriend
            superController:(PPViewController *)superController
+                   canChat:(BOOL)canChat
 {
     self.targetFriend = afriend;
     _superViewController = superController;
     
-    [self initView];
+    [self initView:canChat];
 }
 
 
@@ -257,7 +259,7 @@
     }
     
     CommonUserInfoView *view = [CommonUserInfoView createUserInfoView];
-    [view initViewWithFriend:afriend superController:superController];
+    [view initViewWithFriend:afriend superController:superController canChat:NO];
     [view show];
     if (needUpdate) {
         [view updateInfoFromService];
@@ -285,7 +287,8 @@
     if (isZhajinhuaApp()) {
         [ZJHUserInfoView showFriend:afriend
                          infoInView:superController
-                         needUpdate:needUpdate];
+                         needUpdate:needUpdate
+                            canChat:canChat];
         return;
     }
     [CommonUserInfoView showFriend:afriend
