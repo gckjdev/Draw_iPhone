@@ -155,7 +155,7 @@
     if (self.feed.largeImage) {
         [self.drawImage setImage:self.feed.largeImage];
         [self.loadingActivity stopAnimating];
-    }else if ([feed.drawImageUrl length] != 0 && ![DeviceDetection isIPAD]) {
+    }else if ([feed.drawImageUrl length] != 0 && (![DeviceDetection isIPAD] || feed.deviceType == DeviceTypeIPad)) {
         [self.drawImage setImageWithURL:[NSURL URLWithString:feed.drawImageUrl] placeholderImage:[[ShareImageManager defaultManager] unloadBg] success:^(UIImage *image, BOOL cached) {
             PPDebug(@"<download image> %@ success", feed.drawImageUrl);
             self.feed.largeImage = image;
@@ -164,7 +164,6 @@
             PPDebug(@"<download image> %@ failure, error=%@", feed.drawImageUrl, [error description]);
             [self.loadingActivity stopAnimating];
         }];
-        
     }else{
         [self showDrawView:feed];
     }

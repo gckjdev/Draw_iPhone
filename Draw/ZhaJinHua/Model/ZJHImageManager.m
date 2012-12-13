@@ -889,4 +889,13 @@ static ZJHImageManager* shareInstance;
     return [_resService imageByName:@"zjh_dialog_btn" inResourcePackage:RESOURCE_PACKAGE_ZJH];
 }
 
+- (UIImage *)userInfoFollowBtnImage
+{
+    return [_resService imageByName:@"zjh_user_info_follow" inResourcePackage:RESOURCE_PACKAGE_ZJH];
+}
+- (UIImage *)userInfoTalkBtnImage
+{
+    return [_resService imageByName:@"zjh_user_info_talk" inResourcePackage:RESOURCE_PACKAGE_ZJH];
+}
+
 @end

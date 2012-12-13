@@ -393,6 +393,11 @@
 		C239366616522858001BD5C6 /* ZJHSettingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C239366316522858001BD5C6 /* ZJHSettingView.xib */; };
 		C239366716522858001BD5C6 /* ZJHSettingView.m in Sources */ = {isa = PBXBuildFile; fileRef = C239366516522858001BD5C6 /* ZJHSettingView.m */; };
 		C2424789167966F6008B4E14 /* ZJHUserInfoBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2424788167966F6008B4E14 /* ZJHUserInfoBackground@2x.png */; };
+		C242478C16797AD0008B4E14 /* zjh_user_info_talk@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C242478A16797AD0008B4E14 /* zjh_user_info_talk@2x.png */; };
+		C242478D16797AD0008B4E14 /* zjh_user_info_follow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C242478B16797AD0008B4E14 /* zjh_user_info_follow@2x.png */; };
+		C242479116797AE9008B4E14 /* dice_green_roy_button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C242478E16797AE9008B4E14 /* dice_green_roy_button@2x.png */; };
+		C242479216797AE9008B4E14 /* dice_yellow_roy_button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C242478F16797AE9008B4E14 /* dice_yellow_roy_button@2x.png */; };
+		C242479316797AE9008B4E14 /* dice_red_roy_button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C242479016797AE9008B4E14 /* dice_red_roy_button@2x.png */; };
 		C24339FF15AAB02400325A76 /* VendingController.m in Sources */ = {isa = PBXBuildFile; fileRef = C24339FD15AAB01D00325A76 /* VendingController.m */; };
 		C2433A0015AAB02400325A76 /* VendingController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C24339FE15AAB02000325A76 /* VendingController.xib */; };
 		C2433A0215AAB06D00325A76 /* VendingController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2433A0115AAB06C00325A76 /* VendingController~ipad.xib */; };
@@ -2687,6 +2692,11 @@
 		C239366416522858001BD5C6 /* ZJHSettingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJHSettingView.h; sourceTree = "<group>"; };
 		C239366516522858001BD5C6 /* ZJHSettingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJHSettingView.m; sourceTree = "<group>"; };
 		C2424788167966F6008B4E14 /* ZJHUserInfoBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ZJHUserInfoBackground@2x.png"; sourceTree = "<group>"; };
+		C242478A16797AD0008B4E14 /* zjh_user_info_talk@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zjh_user_info_talk@2x.png"; sourceTree = "<group>"; };
+		C242478B16797AD0008B4E14 /* zjh_user_info_follow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zjh_user_info_follow@2x.png"; sourceTree = "<group>"; };
+		C242478E16797AE9008B4E14 /* dice_green_roy_button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dice_green_roy_button@2x.png"; sourceTree = "<group>"; };
+		C242478F16797AE9008B4E14 /* dice_yellow_roy_button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dice_yellow_roy_button@2x.png"; sourceTree = "<group>"; };
+		C242479016797AE9008B4E14 /* dice_red_roy_button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dice_red_roy_button@2x.png"; sourceTree = "<group>"; };
 		C24339FC15AAB01C00325A76 /* VendingController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VendingController.h; sourceTree = "<group>"; };
 		C24339FD15AAB01D00325A76 /* VendingController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VendingController.m; sourceTree = "<group>"; };
 		C24339FE15AAB02000325A76 /* VendingController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VendingController.xib; sourceTree = "<group>"; };
@@ -6320,6 +6330,8 @@
 		C2B5375216772ECF00725802 /* dialogs */ = {
 			isa = PBXGroup;
 			children = (
+				C242478A16797AD0008B4E14 /* zjh_user_info_talk@2x.png */,
+				C242478B16797AD0008B4E14 /* zjh_user_info_follow@2x.png */,
 				C2F1DEFF167882BE002D8408 /* zjh_dialog_bg@2x.png */,
 				C2F1DF00167882BE002D8408 /* zjh_dialog_btn@2x.png */,
 				C2F1DF01167882BE002D8408 /* zjh_input_bg@2x.png */,
@@ -9042,6 +9054,9 @@
 		CA913543164E277200B6387F /* room */ = {
 			isa = PBXGroup;
 			children = (
+				C242478E16797AE9008B4E14 /* dice_green_roy_button@2x.png */,
+				C242478F16797AE9008B4E14 /* dice_yellow_roy_button@2x.png */,
+				C242479016797AE9008B4E14 /* dice_red_roy_button@2x.png */,
 				CA913544164E277200B6387F /* dice_back@2x.png */,
 				CA913545164E277200B6387F /* dice_blue_safa@2x.png */,
 				CA913546164E277200B6387F /* dice_create_room@2x.png */,
@@ -12795,6 +12810,11 @@
 				C2F1DF231678B334002D8408 /* zjh_back@2x.png in Resources */,
 				C2F1DF241678B334002D8408 /* zjh_room_item@2x.png in Resources */,
 				C2424789167966F6008B4E14 /* ZJHUserInfoBackground@2x.png in Resources */,
+				C242478C16797AD0008B4E14 /* zjh_user_info_talk@2x.png in Resources */,
+				C242478D16797AD0008B4E14 /* zjh_user_info_follow@2x.png in Resources */,
+				C242479116797AE9008B4E14 /* dice_green_roy_button@2x.png in Resources */,
+				C242479216797AE9008B4E14 /* dice_yellow_roy_button@2x.png in Resources */,
+				C242479316797AE9008B4E14 /* dice_red_roy_button@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
