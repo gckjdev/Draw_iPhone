@@ -12,6 +12,7 @@
 #import "HomeMainMenuPanel.h"
 #import "HomeBottomMenuPanel.h"
 #import "UserService.h"
+#import "StatisticManager.h"
 
 @interface SuperHomeController : PPViewController<HomeCommonViewDelegate, UserServiceDelegate>
 {

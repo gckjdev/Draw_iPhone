@@ -45,6 +45,9 @@
 
 + (NSString *)getViewIdentifier
 {
+    if ([DeviceDetection isIPhone5]) {
+//        return @"HomeMainMenuPanel_ip5";
+    }
     return @"HomeMainMenuPanel";
 }
 
@@ -75,11 +78,11 @@
     CGRect frame = view.frame;
     frame.origin = CGPointMake(x, y);
     view.frame = frame;
-    if (line == 1) {
-        view.autoresizingMask = UIViewAutoresizingFlexibleTopMargin + UIViewAutoresizingFlexibleLeftMargin;
-    }else{
-        view.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin + UIViewAutoresizingFlexibleLeftMargin;
-    }
+//    if (line == 1) {
+//        view.autoresizingMask = UIViewAutoresizingFlexibleTopMargin + UIViewAutoresizingFlexibleLeftMargin;
+//    }else{
+//        view.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin + UIViewAutoresizingFlexibleLeftMargin;
+//    }
     
     return view;
 }
