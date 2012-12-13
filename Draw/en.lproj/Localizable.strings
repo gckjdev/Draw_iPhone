@@ -911,14 +911,14 @@
 "kHomeMenuTypeDrawSetting" = "Setting";
 "kHomeMenuTypeDrawShop" = "Shop";
 
-"kCharge" = "Charge";
-"kFreeCoin" = "Free coin";
+"kCharge" = "Buy Coins";
+"kFreeCoin" = "Free Coin";
 
 "kHomeMenuTypeZJHHelp" = "Help";
-"kHomeMenuTypeZJHStart" = "Start";
+"kHomeMenuTypeZJHStart" = "Play";
 "kHomeMenuTypeZJHRichSite" = "Rich";
-"kHomeMenuTypeZJHNormalSite" = "Nomal";
-"kHomeMenuTypeZJHVSSite" = "VS";
+"kHomeMenuTypeZJHNormalSite" = "Poor";
+"kHomeMenuTypeZJHVSSite" = "One-One";
 
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
@@ -1150,7 +1150,7 @@
 "kMatureMessage" = "Mature";
 "kZJHGameTitle" = "3Card";
 
-"kZJHRoomTitle" = " R%d";
+"kZJHRoomTitle" = " Room %d";
 
 "kZJHTotalBet" = "Total:";
 "kZJHSingleBet" = "Ante:";
