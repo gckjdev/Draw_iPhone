@@ -270,10 +270,6 @@
 		A4AB18F415E359B90097CC7A /* ChatViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4AB18F215E359B90097CC7A /* ChatViewCell.xib */; };
 		A4AC51EB15C9111C0041DC86 /* DiceSelectedView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4AC51EA15C9111C0041DC86 /* DiceSelectedView.m */; };
 		A4AC51F915C911750041DC86 /* FontButton.m in Sources */ = {isa = PBXBuildFile; fileRef = A4AC51F815C911750041DC86 /* FontButton.m */; };
-		A4B45F0116786682009EA231 /* gameRules_en.html in Resources */ = {isa = PBXBuildFile; fileRef = A4B45EFC16786682009EA231 /* gameRules_en.html */; };
-		A4B45F0216786682009EA231 /* gameRules_zhs.html in Resources */ = {isa = PBXBuildFile; fileRef = A4B45EFD16786682009EA231 /* gameRules_zhs.html */; };
-		A4B45F0316786682009EA231 /* gameRules_zht.html in Resources */ = {isa = PBXBuildFile; fileRef = A4B45EFE16786682009EA231 /* gameRules_zht.html */; };
-		A4B45F0416786682009EA231 /* style.css in Resources */ = {isa = PBXBuildFile; fileRef = A4B45EFF16786682009EA231 /* style.css */; };
 		A4B45F0516786682009EA231 /* help.zip in Resources */ = {isa = PBXBuildFile; fileRef = A4B45F0016786682009EA231 /* help.zip */; };
 		A4B45F081678670C009EA231 /* CommonHelpManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B45F071678670C009EA231 /* CommonHelpManager.m */; };
 		A4B45F2E16787545009EA231 /* zjh_bg@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A4B45F2D16787545009EA231 /* zjh_bg@2x.jpg */; };
@@ -2531,10 +2527,6 @@
 		A4AC51EA15C9111C0041DC86 /* DiceSelectedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiceSelectedView.m; sourceTree = "<group>"; };
 		A4AC51F715C911750041DC86 /* FontButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FontButton.h; sourceTree = "<group>"; };
 		A4AC51F815C911750041DC86 /* FontButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FontButton.m; sourceTree = "<group>"; };
-		A4B45EFC16786682009EA231 /* gameRules_en.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = gameRules_en.html; sourceTree = "<group>"; };
-		A4B45EFD16786682009EA231 /* gameRules_zhs.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = gameRules_zhs.html; sourceTree = "<group>"; };
-		A4B45EFE16786682009EA231 /* gameRules_zht.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = gameRules_zht.html; sourceTree = "<group>"; };
-		A4B45EFF16786682009EA231 /* style.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = style.css; sourceTree = "<group>"; };
 		A4B45F0016786682009EA231 /* help.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = help.zip; sourceTree = "<group>"; };
 		A4B45F061678670C009EA231 /* CommonHelpManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonHelpManager.h; sourceTree = "<group>"; };
 		A4B45F071678670C009EA231 /* CommonHelpManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonHelpManager.m; sourceTree = "<group>"; };
@@ -5732,19 +5724,7 @@
 		A4B45EFA16786682009EA231 /* help */ = {
 			isa = PBXGroup;
 			children = (
-				A4B45EFB16786682009EA231 /* help */,
 				A4B45F0016786682009EA231 /* help.zip */,
-			);
-			path = help;
-			sourceTree = "<group>";
-		};
-		A4B45EFB16786682009EA231 /* help */ = {
-			isa = PBXGroup;
-			children = (
-				A4B45EFC16786682009EA231 /* gameRules_en.html */,
-				A4B45EFD16786682009EA231 /* gameRules_zhs.html */,
-				A4B45EFE16786682009EA231 /* gameRules_zht.html */,
-				A4B45EFF16786682009EA231 /* style.css */,
 			);
 			path = help;
 			sourceTree = "<group>";
@@ -12770,10 +12750,6 @@
 				CA12614016785F0D00DD96F4 /* zjh_home_start@2x.png in Resources */,
 				CA12614116785F0D00DD96F4 /* zjh_home_vs_site@2x.png in Resources */,
 				CA1261431678614200DD96F4 /* draw_home_opus@2x.png in Resources */,
-				A4B45F0116786682009EA231 /* gameRules_en.html in Resources */,
-				A4B45F0216786682009EA231 /* gameRules_zhs.html in Resources */,
-				A4B45F0316786682009EA231 /* gameRules_zht.html in Resources */,
-				A4B45F0416786682009EA231 /* style.css in Resources */,
 				A4B45F0516786682009EA231 /* help.zip in Resources */,
 				C2F1DEC516786E1C002D8408 /* CommonSettingView.xib in Resources */,
 				C2F1DEC616786E1C002D8408 /* CommonSettingView~ipad.xib in Resources */,

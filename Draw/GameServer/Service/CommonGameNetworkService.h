@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "CommonGameNetworkClient.h"
 
-
+#import "CommonGameSession.h"
 
 
 #define SERVER_LIST_SEPERATOR   @"$"
@@ -25,7 +25,7 @@
 
 @end*/
 
-@class CommonGameSession;
+//@class CommonGameSession;
 @class GameMessage;
 
 @interface CommonGameNetworkService : NSObject<CommonNetworkClientDelegate>

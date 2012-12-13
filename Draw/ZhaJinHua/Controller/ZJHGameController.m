@@ -305,7 +305,7 @@
     [self setBeautifulLabels];
 
     // room title.
-    [RoomTitleView showRoomTitle:[_gameService getRoomName]inView:self.view];
+    [RoomTitleView showRoomTitle:[_ruleConfig getRoomName]inView:self.view];
     
     // dealer view.
     self.dealerView.delegate = self;
@@ -755,6 +755,9 @@
     [self hideAllUserTotalBet];
     [self updateWaitGameNoteLabel];
     [self clearTotalBetAndSingleBet];
+    if ([_ruleConfig isCoinsEnough]) {
+        [self.navigationController popToRootViewControllerAnimated:YES];
+    }
 }
 
 - (void)faceupUserCards

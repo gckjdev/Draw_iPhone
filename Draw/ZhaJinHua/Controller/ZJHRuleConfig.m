@@ -10,10 +10,36 @@
 
 @implementation ZJHRuleConfig
 
+- (NSString *)getRoomName
+{
+    CommonGameSession *session = [[ZJHGameService defaultService] session];
+    if ([session.roomName length] > 0) {
+        return session.roomName;
+    }
+    
+    return [[self getRoomListTitle] stringByAppendingString:[NSString stringWithFormat:NSLS(@"kZJHRoomTitle"), session.sessionId]];
+}
+
+- (NSString *)getRoomListTitle
+{
+    return NSLS(@"kZJHGameTitle");
+}
+
+- (BOOL)isCoinsEnough
+{
+    return [[ZJHGameService defaultService] myBalance] >= [self coinsNeedToJoinGame];
+}
+
+- (int)coinsNeedToJoinGame
+{
+    return ([[[self chipValues] lastObject] intValue] * 8);
+}
+
 - (NSArray *)chipValues
 {
     return nil;
 }
+
 - (int)maxPlayerNum
 {
     return 0;

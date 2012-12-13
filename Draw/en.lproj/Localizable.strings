@@ -1150,7 +1150,7 @@
 "kMatureMessage" = "Mature";
 "kZJHGameTitle" = "3Card";
 
-"kZJHRoomTitle" = "3Card R%d";
+"kZJHRoomTitle" = " R%d";
 
 "kZJHTotalBet" = "Total:";
 "kZJHSingleBet" = "Ante:";
