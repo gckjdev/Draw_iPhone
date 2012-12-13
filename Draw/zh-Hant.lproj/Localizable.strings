@@ -1029,8 +1029,8 @@
 "kDiceMenuRoom" = "遊戲大廳";
 "kDiceMenuShop" = "道具商店";
 
-"kCoinsNotEnoughAndEnterCoinsShop" = "你當前的金幣少於%d，玩不了一局遊戲了，現在就買些金幣?";
-"kCoinsNotEnoughAndGetFreeCoins" = "你當前的金幣少於%d，玩不了一局遊戲了，現在獲取一些免費金幣?";
+"kCoinsNotEnoughAndEnterCoinsShop" = "你當前的金幣少於%d，現在就買些金幣?";
+"kCoinsNotEnoughAndGetFreeCoins" = "你當前的金幣少於%d，現在獲取一些免費金幣?";
 
 "kToolCut" = "劈";
 "kToolRollAgain" = "搖";
@@ -1144,7 +1144,7 @@
 "kMatureMessage" = "成熟";
 "kZJHGameTitle" = "詐金花";
 
-"kZJHRoomTitle" = "詐金花%d號房";
+"kZJHRoomTitle" = "%d號房";
 
 "kZJHTotalBet" = "總註:";
 "kZJHSingleBet" = "單註:";

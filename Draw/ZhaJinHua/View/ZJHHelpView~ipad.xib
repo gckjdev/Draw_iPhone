@@ -100,7 +100,7 @@
 					<object class="IBUIButton" id="807039539">
 						<reference key="NSNextResponder" ref="318438828"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{650, 3}, {62, 62}}</string>
+						<string key="NSFrame">{{650, 15}, {62, 62}}</string>
 						<reference key="NSSuperview" ref="318438828"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="403506664"/>
@@ -323,7 +323,7 @@
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
 				<object class="IBPartialClassDescription">
 					<string key="className">FontButton</string>
-					<string key="superclassName">UIGlossyButton</string>
+					<string key="superclassName">UIButton</string>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
 						<string key="minorKey">./Classes/FontButton.h</string>
@@ -369,14 +369,6 @@
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
 						<string key="minorKey">./Classes/HelpView.h</string>
-					</object>
-				</object>
-				<object class="IBPartialClassDescription">
-					<string key="className">UIGlossyButton</string>
-					<string key="superclassName">UIButton</string>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">./Classes/UIGlossyButton.h</string>
 					</object>
 				</object>
 			</array>

@@ -64,7 +64,7 @@
 
 - (NSArray *)compareUserIdList;
 
-- (NSString *)getRoomName;
+//- (NSString *)getRoomName;
 
 - (void)chargeAccount:(int)amount
                source:(BalanceSourceType)source;
@@ -73,7 +73,5 @@
 
 - (NSArray *)myReplacedCards;
 - (NSArray *)replacedCardsOfUser:(NSString *)userId;
-
-- (BOOL)coinsNeedToJoinGame;
 
 @end

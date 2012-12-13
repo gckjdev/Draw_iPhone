@@ -509,17 +509,17 @@ static ZJHGameService *_defaultService;
 {
     switch (self.rule) {
         case PBZJHRuleTypeDual:
-            return @"58.215.172.169:8030";
+            return @"58.215.184.18:8030";
             return @"192.168.1.5:8030";
             break;
             
         case PBZJHRuleTypeNormal:
-            return @"58.215.172.169:8028";
+            return @"58.215.184.18:8028";
             return @"192.168.1.5:8028";
             break;
             
         case PBZJHRuleTypeRich:
-            return @"58.215.172.169:8029";
+            return @"58.215.184.18:8029";
             return @"192.168.1.5:8029";
             break;
             
@@ -579,14 +579,14 @@ static ZJHGameService *_defaultService;
     return arr;
 }
 
-- (NSString *)getRoomName
-{
-    if ([self.session.roomName length] > 0) {
-        return self.session.roomName;
-    }
-    
-    return [NSString stringWithFormat:NSLS(@"kZJHRoomTitle"), self.session.sessionId];
-}
+//- (NSString *)getRoomName
+//{
+//    if ([self.session.roomName length] > 0) {
+//        return self.session.roomName;
+//    }
+//    
+//    return [NSString stringWithFormat:NSLS(@"kZJHRoomTitle"), self.session.sessionId];
+//}
 
 - (void)chargeAccount:(int)amount
                source:(BalanceSourceType)source
@@ -607,11 +607,6 @@ static ZJHGameService *_defaultService;
 - (NSArray *)replacedCardsOfUser:(NSString *)userId
 {
     return [[self userPlayInfo:userId] replacedPokers];
-}
-
-- (BOOL)coinsNeedToJoinGame
-{
-    return [[[self chipValues] lastObject] intValue] * 8;
 }
 
 @end
