@@ -12,6 +12,7 @@
 #import "GameApp.h"
 #import "ZJHImageManager.h"
 #import "ShareImageManager.h"
+#import "PPResourceService.h"
 
 @interface CommonSettingView ()
 
@@ -37,6 +38,7 @@ AUTO_CREATE_VIEW_BY_XIB(CommonSettingView)
 {
     self.frame = view.bounds;
     bgImageView.image = [[GameApp getImageManager] settingsBgImage];
+    [self.closeButton setBackgroundImage:[[PPResourceService defaultService] imageByName:[getGameApp() popupViewCloseBtnBgImageName] inResourcePackage:[getGameApp() resourcesPackage]]  forState:UIControlStateNormal];
     
     musicImageView.image = [[AudioManager defaultManager] isMusicOn] ? [[GameApp getImageManager] musicOn] : [[GameApp getImageManager] musicOff];
     
