@@ -291,7 +291,7 @@
 - (void)initView
 {
     [self.backgroundImageView setImage:[[GameApp getImageManager] roomListBgImage]];
-    [self.backButton setImage:[[GameApp getImageManager] roomListBackBtnImage] forState:UIControlStateNormal];
+    [self.backButton setBackgroundImage:[[GameApp getImageManager] roomListBackBtnImage] forState:UIControlStateNormal];
     [self.allRoomButton setBackgroundImage:[[GameApp getImageManager] roomListLeftBtnSelectedImage] forState:UIControlStateSelected];
     [self.allRoomButton setBackgroundImage:[[GameApp getImageManager] roomListLeftBtnUnselectedImage] forState:UIControlStateNormal];
     [self.friendRoomButton setBackgroundImage:[[GameApp getImageManager] roomListRightBtnSelectedImage] forState:UIControlStateSelected];
