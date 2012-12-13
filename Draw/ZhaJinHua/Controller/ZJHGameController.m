@@ -582,22 +582,22 @@
                                                              clickOkBlock:^{
                                                                  [_gameService quitGame];
                                                                  [self.navigationController popViewControllerAnimated:YES];
-                                                                 [_audioManager playSoundByURL:_soundManager.clickButtonSound];
+//                                                                 [_audioManager playSoundByURL:_soundManager.clickButtonSound];
                                                              } clickCancelBlock:^{
-                                                                 [_audioManager playSoundByURL:_soundManager.clickButtonSound];
+//                                                                 [_audioManager playSoundByURL:_soundManager.clickButtonSound];
                                                              }];
         [dialog showInView:self.view];
     } else {
         [_gameService quitGame];
         [self.navigationController popViewControllerAnimated:YES];
     }
-    [_audioManager playSoundByURL:_soundManager.clickButtonSound];
+//    [_audioManager playSoundByURL:_soundManager.clickButtonSound];
 }
 
 - (IBAction)clickSettingButton:(id)sender
 {
     [[CommonSettingView createSettingView] showInView:self.view];
-    [_audioManager playSoundByURL:_soundManager.clickButtonSound];
+//    [_audioManager playSoundByURL:_soundManager.clickButtonSound];
 }
 
 #pragma mark - player action response
@@ -1236,8 +1236,11 @@
 
 #pragma mark - poker view protocol
 
-- (void)didClickPokerView:(PokerView *)pokerView
+- (void)didClickPokerView:(PokerView *)pokerView zjhPokersView:(ZJHPokerView *)zjhPokersView
 {
+    if (zjhPokersView != [self getMyPokersView]) {
+        return;
+    }
     [[self getMyPokersView] dismissButtons];
     pokerView.buttonsIsPopup ? [pokerView dismissButtons] : [pokerView popupButtons:[_ruleConfig createButtons:pokerView]  InView:self.view];
 }
@@ -1245,12 +1248,14 @@
 - (void)didClickShowCardButton:(PokerView *)pokerView
 {
     PPDebug(@"didClickShowCardButton: card rank: %d, suit = %d", pokerView.poker.rank, pokerView.poker.suit);
+    [_audioManager playSoundByURL:_soundManager.clickButtonSound];
     [_gameService showCard:pokerView.poker.pokerId];
 }
 
 - (void)didClickChangeCardButton:(PokerView *)pokerView
 {
     PPDebug(@"didClickChangeCardButton: card rank: %d, suit = %d", pokerView.poker.rank, pokerView.poker.suit);
+    [_audioManager playSoundByURL:_soundManager.clickButtonSound];
     [_gameService changeCard:pokerView.poker.pokerId];
 }
 

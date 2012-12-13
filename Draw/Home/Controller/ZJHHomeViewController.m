@@ -31,7 +31,8 @@
 #import "ZJHRuleConfigFactory.h"
 #import "CoinShopController.h"
 #import "LmWallService.h"
-
+#import "AudioManager.h"
+#import "ZJHSoundManager.h"
 
 @interface ZJHHomeViewController ()
 {
@@ -143,6 +144,8 @@ ZJHHomeViewController *_staticZJHHomeViewController = nil;
         [self toRegister];
         return;
     }
+    
+    [[AudioManager defaultManager] playSoundByURL:[ZJHSoundManager defaultManager].clickButtonSound];
     
     switch (type) {
         case HomeMenuTypeZJHHelp: {
