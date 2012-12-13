@@ -13,6 +13,8 @@
 #import "ShareImageManager.h"
 #import "AnimationManager.h"
 #import "ExpressionManager.h"
+#import "ZJHSoundManager.h"
+#import "AudioManager.h"
 
 @interface ZJHAvatarView ()
 
@@ -170,6 +172,7 @@
 
 - (void)clickOnAvatar
 {
+    [[AudioManager defaultManager] playSoundByURL:[ZJHSoundManager defaultManager].clickButtonSound];
     if (_delegate && [_delegate respondsToSelector:@selector(didClickOnAvatar:)]) {
         [_delegate didClickOnAvatar:self];
     }
