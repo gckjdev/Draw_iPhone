@@ -39,17 +39,20 @@
     return ([[ZJHGameService defaultService] rule]== PBZJHRuleTypeDual ? HEIGHT_ZJH_ROOM_LIST_CELL_DUAL : HEIGHT_ZJH_ROOM_LIST_CELL);
 }
 
-- (void)setCellInfo:(PBGameSession *)session
+- (void)setCellInfo:(PBGameSession *)session roomListTitile:(NSString *)roomListTitile
 {
     [super setCellInfo:session];
     self.roomNameLabel.textColor = ([[ZJHGameService defaultService] rule]== PBZJHRuleTypeDual ? [UIColor colorWithRed:107 green:124 blue:126 alpha:1] : [UIColor colorWithRed:209 green:233 blue:219 alpha:1]);
-
+    
+    
     if (session.name == nil || session.name.length <= 0) {
-        [self.roomNameLabel setText:[NSString stringWithFormat:@"%lld",session.sessionId]];
+        [self.roomNameLabel setText:[roomListTitile stringByAppendingString:[NSString stringWithFormat:NSLS(@"kZJHRoomTitle"), session.sessionId]]];
     } else {
         [self.roomNameLabel setText:session.name];
     }
-//    [self.backgroundImageView setImage:[DiceImageManager defaultManager].roomCellBackgroundImage];
+    
+    [self.backgroundImageView setImage:[DiceImageManager defaultManager].roomCellBackgroundImage];
+    
     NSString *imageName = ([[ZJHGameService defaultService] rule]== PBZJHRuleTypeDual ?[getGameApp() roomListCellDualBgImageName] : [getGameApp() roomListCellBgImageName]);
     [self.backgroundImageView setImage:[[PPResourceService defaultService] imageByName:imageName inResourcePackage:[getGameApp() resourcesPackage]]];
 

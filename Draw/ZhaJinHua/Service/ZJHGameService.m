@@ -579,14 +579,14 @@ static ZJHGameService *_defaultService;
     return arr;
 }
 
-- (NSString *)getRoomName
-{
-    if ([self.session.roomName length] > 0) {
-        return self.session.roomName;
-    }
-    
-    return [NSString stringWithFormat:NSLS(@"kZJHRoomTitle"), self.session.sessionId];
-}
+//- (NSString *)getRoomName
+//{
+//    if ([self.session.roomName length] > 0) {
+//        return self.session.roomName;
+//    }
+//    
+//    return [NSString stringWithFormat:NSLS(@"kZJHRoomTitle"), self.session.sessionId];
+//}
 
 - (void)chargeAccount:(int)amount
                source:(BalanceSourceType)source
@@ -607,11 +607,6 @@ static ZJHGameService *_defaultService;
 - (NSArray *)replacedCardsOfUser:(NSString *)userId
 {
     return [[self userPlayInfo:userId] replacedPokers];
-}
-
-- (BOOL)coinsNeedToJoinGame
-{
-    return [[[self chipValues] lastObject] intValue] * 8;
 }
 
 @end

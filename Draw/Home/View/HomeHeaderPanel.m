@@ -16,6 +16,7 @@
 #import "FeedService.h"
 #import "Feed.h"
 #import "DrawImageManager.h"
+#import "ConfigManager.h"
 
 @interface HomeHeaderPanel ()
 {
@@ -241,10 +242,12 @@
     
     //coin
     NSInteger coin = [[AccountService defaultService] getBalance];//[[AccountManager defaultManager] account].balance.intValue;
-    NSString *coinString = [NSString stringWithFormat:@"%d",coin];
+    NSString *coinString = [NSString stringWithFormat:@"x%d",coin];
     [self.coin setText:coinString];
     
     //charge button
+    self.freeCoin.hidden = [ConfigManager wallEnabled] ? NO : YES;
+    
     [self.chargeButton setTitle:NSLS(@"kCharge") forState:UIControlStateNormal];
     [self.freeCoin setTitle:NSLS(@"kFreeCoin") forState:UIControlStateNormal];
     

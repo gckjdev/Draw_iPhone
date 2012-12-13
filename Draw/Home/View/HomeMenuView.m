@@ -247,12 +247,12 @@ int *getDrawBottomMenuTypeList()
 int *getZJHMainMenuTypeList()
 {
     int static list[] = {
-        HomeMenuTypeZJHHelp,
         HomeMenuTypeZJHStart,
-        HomeMenuTypeDrawBBS,
-        HomeMenuTypeZJHRichSite,
         HomeMenuTypeZJHNormalSite,
+        HomeMenuTypeZJHRichSite,
         HomeMenuTypeZJHVSSite,
+        HomeMenuTypeDrawBBS,
+        HomeMenuTypeZJHHelp,
         HomeMenuTypeEnd
     };
     return list;
