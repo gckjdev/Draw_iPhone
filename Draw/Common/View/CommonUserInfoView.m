@@ -166,6 +166,9 @@
 - (void)initView
 {
     [self.backgroundImageView setImage:[[GameApp getImageManager] commonDialogBgImage]];
+    [self.followUserButton setBackgroundImage:[[GameApp getImageManager] userInfoFollowBtnImage] forState:UIControlStateNormal];
+    [self.chatToUserButton setBackgroundImage:[[GameApp getImageManager] userInfoTalkBtnImage] forState:UIControlStateNormal];
+    [self.chatToUserButton setTitle:NSLS(@"kChatToHim") forState:UIControlStateNormal];
 }
 
 + (CommonUserInfoView*)createUserInfoView

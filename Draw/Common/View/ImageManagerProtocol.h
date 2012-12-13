@@ -40,6 +40,7 @@
 - (UIImage *)roomListCellBgImage;
 - (UIImage *)roomListCreateRoomBtnBgImage;
 - (UIImage *)roomListFastEntryBtnBgImage;
-
+- (UIImage *)userInfoFollowBtnImage;
+- (UIImage *)userInfoTalkBtnImage;
 
 @end
