@@ -247,14 +247,13 @@ ZJHHomeViewController *_staticZJHHomeViewController = nil;
             [self.navigationController pushViewController:settings animated:YES];
             [settings release];
         }
-            
             break;
         case HomeMenuTypeDrawFriend:
         {
             FriendController *mfc = [[FriendController alloc] init];
             [self.navigationController pushViewController:mfc animated:YES];
             [mfc release];
-            [menu updateBadge:0];
+            [[StatisticManager defaultManager] setFanCount:0];
         }
             break;
         case HomeMenuTypeDrawMessage:
@@ -262,8 +261,7 @@ ZJHHomeViewController *_staticZJHHomeViewController = nil;
             ChatListController *controller = [[ChatListController alloc] init];
             [self.navigationController pushViewController:controller animated:YES];
             [controller release];
-            [menu updateBadge:0];
-            
+            [[StatisticManager defaultManager] setMessageCount:0];
         }
             break;
         case HomeMenuTypeDrawMore:
@@ -278,6 +276,7 @@ ZJHHomeViewController *_staticZJHHomeViewController = nil;
         default:
             break;
     }
+    [menu updateBadge:0];
 }
 
 - (void)handleJoinGameResponse

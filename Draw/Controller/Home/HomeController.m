@@ -622,7 +622,7 @@
         case HomeMenuTypeDrawTimeline:
         {
             [MyFeedController enterControllerWithIndex:0 fromController:self animated:YES];
-            [menu updateBadge:0];
+            [[StatisticManager defaultManager] setFeedCount:0];
         }
             break;
         case HomeMenuTypeDrawShop:
@@ -657,7 +657,7 @@
         default:
             break;
     }
-    
+    [menu updateBadge:0];
 }
 
 - (void)homeBottomMenuPanel:(HomeBottomMenuPanel *)bottomMenuPanel
@@ -695,7 +695,7 @@
             FriendController *mfc = [[FriendController alloc] init];
             [self.navigationController pushViewController:mfc animated:YES];
             [mfc release];
-            [menu updateBadge:0];
+            [[StatisticManager defaultManager] setFanCount:0];
         }
             break;
         case HomeMenuTypeDrawMessage:
@@ -703,7 +703,7 @@
             ChatListController *controller = [[ChatListController alloc] init];
             [self.navigationController pushViewController:controller animated:YES];
             [controller release];
-            [menu updateBadge:0];
+            [[StatisticManager defaultManager] setMessageCount:0];
             
         }
             break;
@@ -712,13 +712,13 @@
             FeedbackController* feedBack = [[FeedbackController alloc] init];
             [self.navigationController pushViewController:feedBack animated:YES];
             [feedBack release];
-            
         }
             break;
 
         default:
             break;
     }
+    [menu updateBadge:0];
 }
 
 - (void)homeHeaderPanel:(HomeHeaderPanel *)headerPanel
