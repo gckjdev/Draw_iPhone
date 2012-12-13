@@ -158,8 +158,7 @@
 {
     switch (direction) {
         case DispatcherAppearDirectionTop:
-            CGPointMake(self.frame.size.width/2, 0);
-            break;
+            return CGPointMake(self.frame.size.width/2, 0);
         case DispatcherAppearDirectionLeft:
             return CGPointMake(0, self.frame.size.height/2);
         case DispatcherAppearDirectionDown:
