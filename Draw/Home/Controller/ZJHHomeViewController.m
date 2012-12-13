@@ -25,6 +25,7 @@
 #import "NotificationName.h"
 #import "ZJHGameController.h"
 #import "UserManager+DiceUserManager.h"
+#import "RegisterUserController.h"
 
 @interface ZJHHomeViewController ()
 {
@@ -128,10 +129,27 @@ ZJHHomeViewController *_staticZJHHomeViewController = nil;
 
 #pragma mark Panel delegate
 
+- (BOOL)isRegistered
+{
+    return [[UserManager defaultManager] hasUser];
+}
+
+- (void)toRegister
+{
+    RegisterUserController *ruc = [[RegisterUserController alloc] init];
+    [self.navigationController pushViewController:ruc animated:YES];
+    [ruc release];
+}
+
 - (void)homeMainMenuPanel:(HomeMainMenuPanel *)mainMenuPanel
              didClickMenu:(HomeMenuView *)menu
                  menuType:(HomeMenuType)type
 {
+    if (![self isRegistered]) {
+        [self toRegister];
+        return;
+    }
+    
     switch (type) {
         case HomeMenuTypeZJHHelp: {
             HelpView *view = [HelpView createHelpView:@"ZJHHelpView"];

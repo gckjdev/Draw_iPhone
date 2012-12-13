@@ -825,11 +825,11 @@ static ZJHImageManager* shareInstance;
 }
 - (UIImage*)commonDialogLeftBtnImage
 {
-    return [_resService imageByName:@"zjh_dialog_btn" inResourcePackage:RESOURCE_PACKAGE_ZJH];
+    return [UIImage strectchableImageName:@"zjh_dialog_btn"];
 }
 - (UIImage*)commonDialogRightBtnImage
 {
-    return [_resService imageByName:@"zjh_dialog_btn" inResourcePackage:RESOURCE_PACKAGE_ZJH];
+    return [UIImage strectchableImageName:@"zjh_dialog_btn"];
 }
 
 - (UIImage *)inputDialogBgImage
@@ -844,11 +844,11 @@ static ZJHImageManager* shareInstance;
 }
 - (UIImage*)inputDialogLeftBtnImage
 {
-    return [_resService imageByName:@"zjh_dialog_btn" inResourcePackage:RESOURCE_PACKAGE_ZJH];
+    return [UIImage strectchableImageName:@"zjh_dialog_btn"];
 }
 - (UIImage*)inputDialogRightBtnImage
 {
-    return [_resService imageByName:@"zjh_dialog_btn" inResourcePackage:RESOURCE_PACKAGE_ZJH];
+    return [UIImage strectchableImageName:@"zjh_dialog_btn"];
 }
 
 - (UIImage *)roomListBgImage
@@ -882,11 +882,11 @@ static ZJHImageManager* shareInstance;
 
 - (UIImage *)roomListCreateRoomBtnBgImage
 {
-    return [_resService imageByName:@"zjh_dialog_btn" inResourcePackage:RESOURCE_PACKAGE_ZJH];
+    return [UIImage strectchableImageName:@"zjh_dialog_btn"];
 }
 - (UIImage *)roomListFastEntryBtnBgImage
 {
-    return [_resService imageByName:@"zjh_dialog_btn" inResourcePackage:RESOURCE_PACKAGE_ZJH];
+    return [UIImage strectchableImageName:@"zjh_dialog_btn"];
 }
 
 - (UIImage *)userInfoFollowBtnImage
