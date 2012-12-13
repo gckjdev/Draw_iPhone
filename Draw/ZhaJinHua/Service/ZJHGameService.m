@@ -579,14 +579,14 @@ static ZJHGameService *_defaultService;
     return arr;
 }
 
-- (NSString *)getRoomName
-{
-    if ([self.session.roomName length] > 0) {
-        return self.session.roomName;
-    }
-    
-    return [NSString stringWithFormat:NSLS(@"kZJHRoomTitle"), self.session.sessionId];
-}
+//- (NSString *)getRoomName
+//{
+//    if ([self.session.roomName length] > 0) {
+//        return self.session.roomName;
+//    }
+//    
+//    return [NSString stringWithFormat:NSLS(@"kZJHRoomTitle"), self.session.sessionId];
+//}
 
 - (void)chargeAccount:(int)amount
                source:(BalanceSourceType)source

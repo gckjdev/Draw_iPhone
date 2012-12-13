@@ -64,7 +64,7 @@
 
 - (NSArray *)compareUserIdList;
 
-- (NSString *)getRoomName;
+//- (NSString *)getRoomName;
 
 - (void)chargeAccount:(int)amount
                source:(BalanceSourceType)source;

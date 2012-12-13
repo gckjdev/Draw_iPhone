@@ -19,6 +19,6 @@
 @property (retain, nonatomic) IBOutlet UILabel *roomNameLabel;
 @property (retain, nonatomic) IBOutlet UIImageView *backgroundImageView;
 
-- (void)setCellInfo:(PBGameSession *)session;
+- (void)setCellInfo:(PBGameSession *)session roomListTitile:(NSString *)roomListTitile;
 
 @end

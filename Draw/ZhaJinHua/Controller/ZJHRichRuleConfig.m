@@ -13,6 +13,11 @@
 
 @implementation ZJHRichRuleConfig
 
+- (NSString *)getRoomListTitle
+{
+    return NSLS(@"kHomeMenuTypeZJHRichSite");
+}
+
 - (NSArray *)chipValues
 {
     return [NSArray arrayWithObjects:[NSNumber numberWithInt:25], [NSNumber numberWithInt:50], [NSNumber numberWithInt:100], [NSNumber numberWithInt:250], nil];

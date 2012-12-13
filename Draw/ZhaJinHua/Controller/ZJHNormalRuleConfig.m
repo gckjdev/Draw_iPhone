@@ -13,6 +13,11 @@
 
 @implementation ZJHNormalRuleConfig
 
+- (NSString *)getRoomListTitle
+{
+    return NSLS(@"kHomeMenuTypeZJHNormalSite");
+}
+
 - (NSArray *)chipValues
 {
     return [NSArray arrayWithObjects:[NSNumber numberWithInt:5], [NSNumber numberWithInt:10], [NSNumber numberWithInt:25], [NSNumber numberWithInt:50], nil];

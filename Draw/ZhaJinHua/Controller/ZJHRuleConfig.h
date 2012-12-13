@@ -42,6 +42,8 @@
 @interface ZJHRuleConfig : NSObject
 
 // methods may be need to be replaced in sub class.
+- (NSString *)getRoomName;
+- (NSString *)getRoomListTitle;
 - (BOOL)isCoinsEnough;
 - (int)coinsNeedToJoinGame;
 - (NSArray *)chipValues;

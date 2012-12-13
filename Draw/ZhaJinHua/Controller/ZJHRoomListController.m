@@ -13,10 +13,13 @@
 #import "ZJHGameController.h"
 #import "DiceColorManager.h"
 #import "ZJHUserInfoView.h"
+#import "ZJHRuleConfigFactory.h"
 
 #define BUTTON_FONT_SIZE ([DeviceDetection isIPAD] ? 40 : 20)
 
 @interface ZJHRoomListController ()
+
+@property (retain, nonatomic) ZJHRuleConfig *ruleConfig;
 
 @end
 
@@ -49,14 +52,19 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.ruleConfig = [ZJHRuleConfigFactory createRuleConfig];
+
     [self initButtons];
+    
+    [self handleUpdateOnlineUserCount];
+
     
     // Do any additional setup after loading the view from its nib.
 }
 
 - (NSString*)title
 {
-    return NSLS(@"kZJHGameTitle");
+    return [_ruleConfig getRoomListTitle];
 }
 
 #pragma mark - TableView delegate methods
@@ -74,7 +82,7 @@
         cell = [ZJHRoomListCell createCell:[ZJHRoomListCell getCellIdentifier]];
     }
     PBGameSession* session = [_gameService.roomList objectAtIndex:indexPath.row];
-    [cell setCellInfo:session];
+    [cell setCellInfo:session roomListTitile:[_ruleConfig getRoomListTitle]];
     cell.delegate = self;
     return cell;
 }
@@ -177,7 +185,7 @@
 }
 
 - (void)dealloc {
-    
+    [_ruleConfig release];
     [super dealloc];
 }
 - (void)viewDidUnload {

@@ -946,8 +946,6 @@
 "kHomeMenuTypeZJHNormalSite" = "普通场";
 "kHomeMenuTypeZJHVSSite" = "单挑场";
 
-"kIKnow" = "我知道了";
-
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 
@@ -1048,8 +1046,8 @@
 "kDiceMenuRoom" = "游戏大厅"; 
 "kDiceMenuShop" = "道具商店"; 
 
-"kCoinsNotEnoughAndEnterCoinsShop" = "你当前的金币少于%d，玩不了一局游戏了，现在就买些金币？";
-"kCoinsNotEnoughAndGetFreeCoins" = "你当前的金币少于%d，玩不了一局游戏了，现在获取一些免费金币？";
+"kCoinsNotEnoughAndEnterCoinsShop" = "你当前的金币少于%d，现在就买些金币？";
+"kCoinsNotEnoughAndGetFreeCoins" = "你当前的金币少于%d，现在获取一些免费金币？";
 
 "kToolCut" = "劈";
 "kToolRollAgain" = "摇";
@@ -1168,7 +1166,7 @@
 "kMatureMessage" = "成熟";
 "kZJHGameTitle" = "诈金花";
 
-"kZJHRoomTitle" = "诈金花%d号房";
+"kZJHRoomTitle" = "%d号房";
 
 "kZJHTotalBet" = "总注:";
 "kZJHSingleBet" = "单注:";
