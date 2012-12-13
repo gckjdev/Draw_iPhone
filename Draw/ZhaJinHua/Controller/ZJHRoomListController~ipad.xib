@@ -126,13 +126,13 @@
 							<int key="NSColorSpace">3</int>
 							<bytes key="NSWhite">MC41AA</bytes>
 						</object>
-						<object class="IBUIFontDescription" key="IBUIFontDescription" id="412315543">
+						<object class="IBUIFontDescription" key="IBUIFontDescription" id="879630193">
 							<int key="type">2</int>
-							<double key="pointSize">40</double>
+							<double key="pointSize">36</double>
 						</object>
-						<object class="NSFont" key="IBUIFont" id="313963852">
+						<object class="NSFont" key="IBUIFont" id="26358721">
 							<string key="NSName">Helvetica-Bold</string>
-							<double key="NSSize">40</double>
+							<double key="NSSize">36</double>
 							<int key="NSfFlags">16</int>
 						</object>
 					</object>
@@ -155,8 +155,8 @@
 							<bytes key="NSRGB">MC45NDkwMTk2MDc4IDAuOTQ5MDE5NjA3OCAwLjkxMzcyNTQ5MDIAA</bytes>
 						</object>
 						<reference key="IBUINormalTitleShadowColor" ref="993983616"/>
-						<reference key="IBUIFontDescription" ref="412315543"/>
-						<reference key="IBUIFont" ref="313963852"/>
+						<reference key="IBUIFontDescription" ref="879630193"/>
+						<reference key="IBUIFont" ref="26358721"/>
 					</object>
 					<object class="IBUIButton" id="657076153">
 						<reference key="NSNextResponder" ref="25482459"/>
@@ -230,8 +230,15 @@
 							<bytes key="NSRGB">MC45NDkwMTk2MDc4IDAuOTQ5MDE5NjA3OCAwLjkxMzcyNTQ5MDIAA</bytes>
 						</object>
 						<reference key="IBUINormalTitleShadowColor" ref="993983616"/>
-						<reference key="IBUIFontDescription" ref="412315543"/>
-						<reference key="IBUIFont" ref="313963852"/>
+						<object class="IBUIFontDescription" key="IBUIFontDescription">
+							<int key="type">2</int>
+							<double key="pointSize">38</double>
+						</object>
+						<object class="NSFont" key="IBUIFont">
+							<string key="NSName">Helvetica-Bold</string>
+							<double key="NSSize">38</double>
+							<int key="NSfFlags">16</int>
+						</object>
 					</object>
 					<object class="IBUIButton" id="703224615">
 						<reference key="NSNextResponder" ref="25482459"/>
@@ -811,25 +818,6 @@
 				<object class="IBPartialClassDescription">
 					<string key="className">ZJHRoomListController</string>
 					<string key="superclassName">CommonRoomListController</string>
-					<dictionary class="NSMutableDictionary" key="actions">
-						<string key="clickAll:">id</string>
-						<string key="clickFriendRoom:">id</string>
-						<string key="clickNearBy:">id</string>
-					</dictionary>
-					<dictionary class="NSMutableDictionary" key="actionInfosByName">
-						<object class="IBActionInfo" key="clickAll:">
-							<string key="name">clickAll:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-						<object class="IBActionInfo" key="clickFriendRoom:">
-							<string key="name">clickFriendRoom:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-						<object class="IBActionInfo" key="clickNearBy:">
-							<string key="name">clickNearBy:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-					</dictionary>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
 						<string key="minorKey">./Classes/ZJHRoomListController.h</string>
