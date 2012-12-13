@@ -23,12 +23,7 @@
 
 + (ZJHUserInfoView*)createUserInfoView
 {
-    return (ZJHUserInfoView*)[self createInfoViewByXibName:@"CommonUserInfoView"];
-}
-
-- (void)initView
-{
-    
+    return (ZJHUserInfoView*)[self createInfoViewByXibName:@"ZJHUserInfoView"];
 }
 
 + (void)showFriend:(MyFriend*)afriend
@@ -41,7 +36,6 @@
     
     ZJHUserInfoView *view = [ZJHUserInfoView createUserInfoView];
     [view initViewWithFriend:afriend superController:superController];
-    [view.backgroundImageView setImage:[ZJHImageManager defaultManager].ZJHUserInfoBackgroundImage];
     [view show];
     if (needUpdate) {
         [view updateInfoFromService];
