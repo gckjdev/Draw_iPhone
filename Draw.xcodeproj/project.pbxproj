@@ -392,6 +392,7 @@
 		C22E21871608664F00DE3035 /* DiceRobotItemAction.m in Sources */ = {isa = PBXBuildFile; fileRef = C22E21861608664F00DE3035 /* DiceRobotItemAction.m */; };
 		C239366616522858001BD5C6 /* ZJHSettingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C239366316522858001BD5C6 /* ZJHSettingView.xib */; };
 		C239366716522858001BD5C6 /* ZJHSettingView.m in Sources */ = {isa = PBXBuildFile; fileRef = C239366516522858001BD5C6 /* ZJHSettingView.m */; };
+		C2424789167966F6008B4E14 /* ZJHUserInfoBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2424788167966F6008B4E14 /* ZJHUserInfoBackground@2x.png */; };
 		C24339FF15AAB02400325A76 /* VendingController.m in Sources */ = {isa = PBXBuildFile; fileRef = C24339FD15AAB01D00325A76 /* VendingController.m */; };
 		C2433A0015AAB02400325A76 /* VendingController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C24339FE15AAB02000325A76 /* VendingController.xib */; };
 		C2433A0215AAB06D00325A76 /* VendingController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2433A0115AAB06C00325A76 /* VendingController~ipad.xib */; };
@@ -407,7 +408,6 @@
 		C25C079F15D5F11700E8DD8D /* UIImage+FiltrrCompositions.m in Sources */ = {isa = PBXBuildFile; fileRef = C25C079B15D5F11700E8DD8D /* UIImage+FiltrrCompositions.m */; };
 		C25C07A015D5F11700E8DD8D /* UIImage+Scale.m in Sources */ = {isa = PBXBuildFile; fileRef = C25C079D15D5F11700E8DD8D /* UIImage+Scale.m */; };
 		C26224CE1670849C008BF3FB /* ZJHUserInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = C26224CD1670849C008BF3FB /* ZJHUserInfoView.m */; };
-		C26EBE6016719B6B00E8B38D /* ZJHUserInfoBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = C26EBE5F16719B6B00E8B38D /* ZJHUserInfoBackground.png */; };
 		C28207E31552D974006FBB0F /* AudioManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C28207E21552D974006FBB0F /* AudioManager.m */; };
 		C284E87F1531D89800DD5B77 /* AboutUsController.m in Sources */ = {isa = PBXBuildFile; fileRef = C284E87D1531D89800DD5B77 /* AboutUsController.m */; };
 		C284E8801531D89800DD5B77 /* AboutUsController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C284E87E1531D89800DD5B77 /* AboutUsController.xib */; };
@@ -2686,6 +2686,7 @@
 		C239366316522858001BD5C6 /* ZJHSettingView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZJHSettingView.xib; sourceTree = "<group>"; };
 		C239366416522858001BD5C6 /* ZJHSettingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJHSettingView.h; sourceTree = "<group>"; };
 		C239366516522858001BD5C6 /* ZJHSettingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJHSettingView.m; sourceTree = "<group>"; };
+		C2424788167966F6008B4E14 /* ZJHUserInfoBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ZJHUserInfoBackground@2x.png"; sourceTree = "<group>"; };
 		C24339FC15AAB01C00325A76 /* VendingController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VendingController.h; sourceTree = "<group>"; };
 		C24339FD15AAB01D00325A76 /* VendingController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VendingController.m; sourceTree = "<group>"; };
 		C24339FE15AAB02000325A76 /* VendingController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VendingController.xib; sourceTree = "<group>"; };
@@ -2710,7 +2711,6 @@
 		C25C079D15D5F11700E8DD8D /* UIImage+Scale.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Scale.m"; sourceTree = "<group>"; };
 		C26224CC1670849C008BF3FB /* ZJHUserInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJHUserInfoView.h; sourceTree = "<group>"; };
 		C26224CD1670849C008BF3FB /* ZJHUserInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJHUserInfoView.m; sourceTree = "<group>"; };
-		C26EBE5F16719B6B00E8B38D /* ZJHUserInfoBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ZJHUserInfoBackground.png; sourceTree = "<group>"; };
 		C28207E11552D974006FBB0F /* AudioManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioManager.h; sourceTree = "<group>"; };
 		C28207E21552D974006FBB0F /* AudioManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioManager.m; sourceTree = "<group>"; };
 		C284E87C1531D89800DD5B77 /* AboutUsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutUsController.h; sourceTree = "<group>"; };
@@ -5299,6 +5299,7 @@
 		A405C82E165B874500E7610F /* room */ = {
 			isa = PBXGroup;
 			children = (
+				C2424788167966F6008B4E14 /* ZJHUserInfoBackground@2x.png */,
 				C2F1DF191678B334002D8408 /* zjh_tabright_selected@2x.png */,
 				C2F1DF1A1678B334002D8408 /* zjh_tableft_selected@2x.png */,
 				C2F1DF1B1678B334002D8408 /* zjh_tabright_unselect@2x.png */,
@@ -5322,7 +5323,6 @@
 				A4D6A774167593D8008DC151 /* zjh_game_bg_dual_ipad@2x.jpg */,
 				A4D6A76716759201008DC151 /* avatar_default_big@2x.png */,
 				A4D6A76816759201008DC151 /* zjh_game_bg_dual@2x.jpg */,
-				C26EBE5F16719B6B00E8B38D /* ZJHUserInfoBackground.png */,
 				A49A0837166D95EF003E0F75 /* show_card_button_bg@2x.png */,
 				A49A0838166D95EF003E0F75 /* show_card_button_popup_bg@2x.png */,
 				A49A0839166D95EF003E0F75 /* show_change_card_button_popup_bg@2x.png */,
@@ -12613,7 +12613,6 @@
 				CAA27FB6166E083500513F58 /* bbs_board_mine@2x.png in Resources */,
 				CAA27FB8166E661500513F58 /* ShowImageController~ipad.xib in Resources */,
 				A4A4F8EA1671982B00EFC465 /* ZJHGameController_dual.xib in Resources */,
-				C26EBE6016719B6B00E8B38D /* ZJHUserInfoBackground.png in Resources */,
 				CA1DA914167322BE0078B5A9 /* bm_chat@2x.png in Resources */,
 				CA1DA915167322BE0078B5A9 /* bm_feedback@2x.png in Resources */,
 				CA1DA916167322BE0078B5A9 /* bm_friend@2x.png in Resources */,
@@ -12795,6 +12794,7 @@
 				C2F1DF221678B334002D8408 /* zjh_tableft_unselect@2x.png in Resources */,
 				C2F1DF231678B334002D8408 /* zjh_back@2x.png in Resources */,
 				C2F1DF241678B334002D8408 /* zjh_room_item@2x.png in Resources */,
+				C2424789167966F6008B4E14 /* ZJHUserInfoBackground@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

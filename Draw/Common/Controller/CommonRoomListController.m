@@ -18,7 +18,7 @@
 #import "LmWallService.h"
 #import "CommonRoomListCell.h"
 #import "UserManager.h"
-#import "DrawUserInfoView.h"
+#import "CommonUserInfoView.h"
 #import "MyFriend.h"
 #import "PPViewController+StarryLoadingView.h"
 #import "CommonDialog.h"
@@ -523,7 +523,7 @@
                                         avatar:nil
                                         gender:nil
                                          level:1];
-    [DrawUserInfoView showFriend:friend infoInView:self needUpdate:YES];
+    [CommonUserInfoView showFriend:friend inController:self needUpdate:YES canChat:YES];
 }
 
 
