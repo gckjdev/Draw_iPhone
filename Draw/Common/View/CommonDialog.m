@@ -168,7 +168,7 @@
     [self.contentBackground setImage:[[GameApp getImageManager] commonDialogBgImage]];
     
     [self.oKButton setBackgroundImage:[[GameApp getImageManager] commonDialogRightBtnImage] forState:UIControlStateNormal];
-    [self.backButton setBackgroundImage:[[GameApp getImageManager] commonDialogRightBtnImage] forState:UIControlStateNormal];
+    [self.backButton setBackgroundImage:[[GameApp getImageManager] commonDialogLeftBtnImage] forState:UIControlStateNormal];
 }
 
 - (void)initButtonsWithStyle:(CommonDialogStyle)aStyle

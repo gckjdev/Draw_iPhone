@@ -9,6 +9,7 @@
 #import "DrawGameApp.h"
 #import "MobClickUtils.h"
 #import "ConfigManager.h"
+#import "ShareImageManager.h"
 
 
 @implementation DrawGameApp
@@ -180,6 +181,26 @@
     return @"DrawHomeHeaderPanel";
 }
 
+- (NSString*)getCommonDialogXibName
+{
+    return @"CommonDialog";
+}
+- (NSString*)getInputDialogXibName
+{
+    return @"InputDialog";
+}
+- (NSString*)getPasswordDialogXibName
+{
+    return @"PassWordDialog";
+}
+- (NSString*)getRoomPasswordDialogXibName
+{
+    return @"RoomPasswordDialog";
+}
 
+- (id<ImageManagerProtocol>)getImageManager
+{
+    return [ShareImageManager defaultManager];
+}
 
 @end

@@ -350,6 +350,8 @@
 //                                             selector:@selector(roomsDidUpdate:)
 //                                                 name:ROOMS_DID_UPDATE
 //                                               object:nil];
+    [self.fastEntryButton setBackgroundImage:[DiceImageManager defaultManager].fastGameBtnBgImage  forState:UIControlStateNormal];
+    [self.createRoomButton setBackgroundImage:[DiceImageManager defaultManager].createRoomBtnBgImage forState:UIControlStateNormal];
 }
 
 - (void)viewDidUnload
