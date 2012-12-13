@@ -165,7 +165,7 @@
 
 - (void)initView
 {
-    
+    [self.backgroundImageView setImage:[[GameApp getImageManager] commonDialogBgImage]];
 }
 
 + (CommonUserInfoView*)createUserInfoView

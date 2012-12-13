@@ -759,7 +759,7 @@ static ZJHImageManager* shareInstance;
 
 - (UIImage*)ZJHUserInfoBackgroundImage
 {
-    return [UIImage strectchableImageName:@"ZJHUserInfoBackground.png"];
+    return [UIImage strectchableImageName:@"ZJHUserInfoBackground"];
 }
 
 - (UIImage *)dialogBgImage
