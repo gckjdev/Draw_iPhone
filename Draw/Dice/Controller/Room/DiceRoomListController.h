@@ -15,6 +15,7 @@
 #import "DiceConfigManager.h"
 #import "CommonSearchView.h"
 #import "DiceRoomListCell.h"
+#import "CommonRoomListController.h"
 
 typedef enum {
     allRoom = 0,
