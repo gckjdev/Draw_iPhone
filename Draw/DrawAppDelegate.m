@@ -240,6 +240,7 @@ NSString* GlobalGetBoardServerURL()
     }
     
     // TODO Check whether this is required or not?
+    /*
     NSArray* drawSoundArray = [NSArray arrayWithObjects:
                                 @"ding.m4a", 
                                 @"dingding.mp3", 
@@ -255,6 +256,7 @@ NSString* GlobalGetBoardServerURL()
     else{
         [[AudioManager defaultManager] initSounds:[drawSoundArray arrayByAddingObjectsFromArray:diceArray]];        
     }
+    */
         
     // init mob click 
     [MobClick startWithAppkey:[GameApp umengId]

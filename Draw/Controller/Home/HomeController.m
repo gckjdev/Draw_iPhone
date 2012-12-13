@@ -220,7 +220,7 @@
 - (void)registerDrawGameNotification
 {
     /*
-    [self registerNotificationWithName:BOARD_UPDATE_NOTIFICATION // TODO set right name here
+    [self registerNotificationWithName:BOARD_UPDATE_NOTIFICATION 
                                 object:nil
                                  queue:[NSOperationQueue mainQueue]
                             usingBlock:^(NSNotification *note) {

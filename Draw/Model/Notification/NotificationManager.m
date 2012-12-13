@@ -144,7 +144,6 @@ NotificationManager *_staticNotificationManager = nil;
     [statueBar changeMessge:statusMessage.description];
     [[AudioManager defaultManager] playSoundById:CLICK_WORD];
     [[AudioManager defaultManager] vibrate];
- //TODO resave   
 }
 
 - (void)hideNotification

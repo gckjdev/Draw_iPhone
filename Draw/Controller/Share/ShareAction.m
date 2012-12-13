@@ -147,7 +147,6 @@
 - (void)shareViaEmail
 {
     if ([MFMailComposeViewController canSendMail] == NO){
-        // TODO 
         return;
     }
     

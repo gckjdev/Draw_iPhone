@@ -656,7 +656,6 @@
         [self receiveFlower];
     }
     
-    // TODO show animation here
 }
 
 #pragma mark - LevelServiceDelegate
@@ -695,7 +694,6 @@
     }
     
     if([[ItemManager defaultManager] hasEnoughItem:toolView.itemType] == NO){
-        //TODO go the shopping page.
         CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kNoItemTitle") message:NSLS(@"kNoItemMessage") style:CommonDialogStyleDoubleButton delegate:self];
         dialog.tag = ITEM_TAG_OFFSET + toolView.itemType;
         [dialog showInView:self.view];
@@ -780,7 +778,6 @@
     {
         [[CommonMessageCenter defaultCenter]postMessageWithText:NSLS(@"kNotEnoughCoin") delayTime:1 isHappy:NO];
     }
-    //TODO : add other situation deal method
 }
 
 

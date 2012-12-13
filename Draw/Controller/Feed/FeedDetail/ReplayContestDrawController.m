@@ -292,7 +292,6 @@
     {
         [[CommonMessageCenter defaultCenter]postMessageWithText:NSLS(@"kNotEnoughCoin") delayTime:1 isHappy:NO];
     }
-    //TODO : add other situation deal method
 }
 
 @end

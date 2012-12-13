@@ -47,8 +47,6 @@ static UserService* _defaultUserService;
       viewController:(PPViewController<UserServiceDelegate, InputDialogDelegate>*)viewController
 {
     
-    // TODO send device id later
-    
     NSString* deviceToken = [[UserManager defaultManager] deviceToken];
     NSString* deviceId = [[UIDevice currentDevice] uniqueGlobalDeviceIdentifier];
     
