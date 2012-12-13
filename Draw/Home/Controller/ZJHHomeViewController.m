@@ -189,6 +189,7 @@ ZJHHomeViewController *_staticZJHHomeViewController = nil;
     switch (type) {
             //For Bottom Menus
         case HomeMenuTypeDrawSetting:
+        case HomeMenuTypeDrawMe:
         {
             UserSettingController *settings = [[UserSettingController alloc] init];
             [self.navigationController pushViewController:settings animated:YES];
