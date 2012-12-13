@@ -203,4 +203,9 @@
     return [ShareImageManager defaultManager];
 }
 
+- (UIColor*)popupMessageDialogFontColor
+{
+    return [UIColor blackColor];
+}
+
 @end

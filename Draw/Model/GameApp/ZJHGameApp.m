@@ -249,7 +249,8 @@
 
 - (NSString *)popupMessageDialogBackgroundImage
 {
-    return @"dialogue@2x.png";
+//    return @"dialogue@2x.png";
+    return @"zjh_dialog_bg@2x.png";
 }
 
 - (BOOL)supportWeixin
@@ -272,5 +273,9 @@
     return @"zjh_room_list_cell_bg_dual";
 }
 
+- (UIColor*)popupMessageDialogFontColor
+{
+    return [UIColor whiteColor];
+}
 
 @end

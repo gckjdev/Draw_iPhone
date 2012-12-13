@@ -83,4 +83,6 @@
 - (NSString *)roomListCellBgImageName;
 - (NSString *)roomListCellDualBgImageName;
 
+- (UIColor*)popupMessageDialogFontColor;
+
 @end

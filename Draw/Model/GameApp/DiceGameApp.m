@@ -288,4 +288,9 @@
     return @"";
 }
 
+- (UIColor*)popupMessageDialogFontColor
+{
+    return [UIColor blackColor];
+}
+
 @end
