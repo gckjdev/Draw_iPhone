@@ -657,34 +657,34 @@ static UIImage* _whitePaperImage;
 
 - (UIImage*)commonDialogBgImage
 {
-    return nil;
+    return [UIImage imageNamed:@"logout.png"];
 }
 - (UIImage*)commonDialogLeftBtnImage
 {
-    return nil;
+    return [self greenImage];
 }
 - (UIImage*)commonDialogRightBtnImage
 {
-    return nil;
+    return [self redImage];
 }
 
 - (UIImage *)inputDialogBgImage
 {
-    return nil;
+    return [UIImage imageNamed:@"logout.png"];
 }
 
 - (UIImage*)inputDialogInputBgImage
 {
     //    return [UIImage strectchableImageName:@"zjh_input_bg.png" leftCapWidth:15 topCapHeight:15];
-    return nil;
+    return [self inputImage];
 }
 - (UIImage*)inputDialogLeftBtnImage
 {
-    return nil;
+    return [self greenImage];
 }
 - (UIImage*)inputDialogRightBtnImage
 {
-    return nil;
+    return [self redImage];
 }
 
 - (UIImage *)roomListBgImage
