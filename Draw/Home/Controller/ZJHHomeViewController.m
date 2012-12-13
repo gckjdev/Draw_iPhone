@@ -135,18 +135,6 @@ ZJHHomeViewController *_staticZJHHomeViewController = nil;
 
 #pragma mark Panel delegate
 
-- (BOOL)isRegistered
-{
-    return [[UserManager defaultManager] hasUser];
-}
-
-- (void)toRegister
-{
-    RegisterUserController *ruc = [[RegisterUserController alloc] init];
-    [self.navigationController pushViewController:ruc animated:YES];
-    [ruc release];
-}
-
 - (void)homeMainMenuPanel:(HomeMainMenuPanel *)mainMenuPanel
              didClickMenu:(HomeMenuView *)menu
                  menuType:(HomeMenuType)type
