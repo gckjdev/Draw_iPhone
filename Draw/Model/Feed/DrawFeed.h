@@ -27,6 +27,7 @@ typedef enum{
     NSSet *_timesSet;
     UIImage *_largeImage;
     PBDraw *_pbDraw;
+    DeviceType _deviceType;
 }
 
 
@@ -37,6 +38,7 @@ typedef enum{
 @property (nonatomic, retain) NSString *drawImageUrl;
 @property (nonatomic, retain) NSSet *timesSet;
 @property (nonatomic, retain) PBDraw *pbDraw;
+@property (nonatomic, assign) DeviceType deviceType;
 
 - (id)initWithPBFeed:(PBFeed *)pbFeed;
 

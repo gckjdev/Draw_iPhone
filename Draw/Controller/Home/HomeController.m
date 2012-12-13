@@ -671,8 +671,10 @@
     }
 
     switch (type) {
-            //For Bottom Menus
+        
+        //For Bottom Menus
         case HomeMenuTypeDrawMe:
+        case HomeMenuTypeDrawSetting:
         {
             UserSettingController *settings = [[UserSettingController alloc] init];
             [self.navigationController pushViewController:settings animated:YES];

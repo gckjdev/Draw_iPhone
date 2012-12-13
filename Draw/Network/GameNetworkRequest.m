@@ -1339,6 +1339,9 @@
         str = [str stringByAddQueryParameter:PARA_WORD value:word];                
         str = [str stringByAddQueryParameter:PARA_LEVEL intValue:level];
         str = [str stringByAddQueryParameter:PARA_LANGUAGE intValue:lang];
+        
+        str = [str stringByAddQueryParameter:PARA_DEVICETYPE intValue:[DeviceDetection deviceType]];
+        
         if ([targetUid length] != 0) {
             str = [str stringByAddQueryParameter:PARA_TARGETUSERID value:targetUid];            
         }

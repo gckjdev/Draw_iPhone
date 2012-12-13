@@ -22,6 +22,7 @@
 @synthesize wordText = _wordText;
 @synthesize largeImage = _largeImage;
 @synthesize pbDraw = _pbDraw;
+@synthesize deviceType = _deviceType;
 
 - (void)initTimeList:(NSArray *)feedTimesList
 {
@@ -70,6 +71,7 @@
         //set draw info
         self.wordText = pbFeed.opusWord;
         [self initDrawInfo:pbFeed.opusImage drawData:pbFeed.drawData];
+        self.deviceType = pbFeed.deviceType;
     }
     return self;
 }
