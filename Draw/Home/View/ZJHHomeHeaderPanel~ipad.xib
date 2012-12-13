@@ -125,11 +125,11 @@
 							<string key="NSClassName">NSImage</string>
 							<string key="NSResourceName">zjh_home_charge_bg@2x.png</string>
 						</object>
-						<object class="IBUIFontDescription" key="IBUIFontDescription" id="1008108839">
+						<object class="IBUIFontDescription" key="IBUIFontDescription" id="161959910">
 							<int key="type">2</int>
 							<double key="pointSize">19</double>
 						</object>
-						<object class="NSFont" key="IBUIFont" id="1017436972">
+						<object class="NSFont" key="IBUIFont" id="438441900">
 							<string key="NSName">Helvetica-Bold</string>
 							<double key="NSSize">19</double>
 							<int key="NSfFlags">16</int>
@@ -157,8 +157,8 @@
 							<string key="NSClassName">NSImage</string>
 							<string key="NSResourceName">zjh_home_freecoin_bg@2x.png</string>
 						</object>
-						<reference key="IBUIFontDescription" ref="1008108839"/>
-						<reference key="IBUIFont" ref="1017436972"/>
+						<reference key="IBUIFontDescription" ref="161959910"/>
+						<reference key="IBUIFont" ref="438441900"/>
 					</object>
 					<object class="IBUILabel" id="1006200176">
 						<reference key="NSNextResponder" ref="191373211"/>
@@ -213,11 +213,11 @@
 						</object>
 						<nil key="IBUIHighlightedColor"/>
 						<int key="IBUIBaselineAdjustment">0</int>
-						<object class="IBUIFontDescription" key="IBUIFontDescription" id="717329082">
+						<object class="IBUIFontDescription" key="IBUIFontDescription" id="744172532">
 							<int key="type">2</int>
 							<double key="pointSize">20</double>
 						</object>
-						<object class="NSFont" key="IBUIFont" id="636476845">
+						<object class="NSFont" key="IBUIFont" id="878698855">
 							<string key="NSName">Helvetica-Bold</string>
 							<double key="NSSize">20</double>
 							<int key="NSfFlags">16</int>
@@ -244,8 +244,8 @@
 						</object>
 						<nil key="IBUIHighlightedColor"/>
 						<int key="IBUIBaselineAdjustment">0</int>
-						<reference key="IBUIFontDescription" ref="717329082"/>
-						<reference key="IBUIFont" ref="636476845"/>
+						<reference key="IBUIFontDescription" ref="744172532"/>
+						<reference key="IBUIFont" ref="878698855"/>
 						<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
 					</object>
 					<object class="IBUIImageView" id="536620801">
