@@ -114,7 +114,7 @@
 
 - (void)initBalance
 {
-    [self.coinsLabel setText:[NSString stringWithInt:_targetFriend.coins]];
+    [self.coinsLabel setText:[NSString stringWithFormat:@" x%ld", _targetFriend.coins]];
 }
 
 - (void)initSNSInfo
