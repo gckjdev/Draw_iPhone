@@ -33,6 +33,7 @@
 #import "LmWallService.h"
 #import "AudioManager.h"
 #import "ZJHSoundManager.h"
+#import "Reachability.h"
 
 @interface ZJHHomeViewController ()
 {
@@ -70,6 +71,7 @@ ZJHHomeViewController *_staticZJHHomeViewController = nil;
     // Do any additional setup after loading the view from its nib.
     
     [self registerNetworkDisconnectedNotification];
+    [self registerUIApplicationWillEnterForegroundNotification];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -84,6 +86,16 @@ ZJHHomeViewController *_staticZJHHomeViewController = nil;
     [self unregisterJoinGameResponseNotification];
     [self unregisterNetworkConnectedNotification];
     [super viewDidDisappear:animated];
+}
+
+- (void)registerUIApplicationWillEnterForegroundNotification{
+    [self registerNotificationWithName:UIApplicationWillEnterForegroundNotification usingBlock:^(NSNotification *note) {
+        
+        if (![_gameService isConnected]) {
+                [self.navigationController popToRootViewControllerAnimated:YES];
+                [self popupUnhappyMessage:NSLS(@"kNetworkBroken") title:@""];
+        }
+    }];
 }
 
 - (void)registerJoinGameResponseNotification

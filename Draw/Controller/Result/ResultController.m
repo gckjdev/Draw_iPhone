@@ -208,7 +208,13 @@
                        correct:correct 
                      isMyPaint:isMyPaint 
                 drawActionList:drawActionList];
-    _feed = feed;
+    
+    if ([feed isKindOfClass:[DrawFeed class]]){
+        _feed = (DrawFeed*)feed;
+    }
+    else{
+        PPDebug(@"WARN : Feed is not DrawFeed");
+    }
     return self;
 }
 

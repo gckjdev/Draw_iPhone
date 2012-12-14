@@ -57,7 +57,7 @@
 {
     _helpManager = [CommonHelpManager defaultManager];
     _resService = [PPResourceService defaultService];
-    
+    self.webView.backgroundColor = [UIColor clearColor];
     bgImageView.image = [[_resService imageByName:[getGameApp() helpViewBgImageName] inResourcePackage:[getGameApp() resourcesPackage]] stretchableImageWithLeftCapWidth:20 topCapHeight:20];
     
     [self.closeButton setBackgroundImage:[_resService imageByName:[getGameApp() popupViewCloseBtnBgImageName] inResourcePackage:[getGameApp() resourcesPackage]]  forState:UIControlStateNormal];

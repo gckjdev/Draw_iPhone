@@ -352,6 +352,7 @@ NSString* GlobalGetBoardServerURL()
     
 //    [GameConfigDataManager createTestConfigData];  
 //    [GameConfigDataManager defaultInstance];
+
     
     return YES;
 }

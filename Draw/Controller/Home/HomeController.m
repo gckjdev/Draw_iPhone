@@ -78,7 +78,7 @@
 }
 - (void)playBackgroundMusic;
 - (void)enterNextControllerWityType:(NotificationType) type;
-- (void)updateBoardPanelWithBoards:(NSArray *)boards;
+//- (void)updateBoardPanelWithBoards:(NSArray *)boards;
 @end
 
 @implementation HomeController
@@ -546,7 +546,7 @@
     }
 }
 
-+ (void)startOfflineGuessDraw:(Feed *)feed from:(UIViewController *)viewController
++ (void)startOfflineGuessDraw:(DrawFeed *)feed from:(UIViewController *)viewController
 {
     
     if (viewController) {        
