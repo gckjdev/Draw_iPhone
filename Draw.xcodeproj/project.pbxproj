@@ -13768,7 +13768,6 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/iFly\"",
-					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/LmmobAdWallSDK\"",
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/LmmobSDK\"",
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/MangoAd/AdsMOGO_iOS_SDK_1.1.9/AdsMoGoLib/AdNetworkLibs/MobWin\"",
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/WAPS_IOS_1.0.2\"",
@@ -13833,7 +13832,6 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/iFly\"",
-					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/LmmobAdWallSDK\"",
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/LmmobSDK\"",
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/MangoAd/AdsMOGO_iOS_SDK_1.1.9/AdsMoGoLib/AdNetworkLibs/MobWin\"",
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/WAPS_IOS_1.0.2\"",
