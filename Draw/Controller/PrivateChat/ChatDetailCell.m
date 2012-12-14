@@ -215,7 +215,7 @@ CGRect CGRectFrom(CGPoint origin, CGSize size){
 }
 - (void)updateTime:(NSDate *)date
 {
-    NSString *dateString = dateToLocaleString(date);
+    NSString *dateString = dateToTimeLineString(date);
     
     [self.timeButton setTitle:dateString forState:UIControlStateNormal];
     CGSize textSize = [dateString sizeWithFont:self.timeButton.titleLabel.font
@@ -229,7 +229,6 @@ CGRect CGRectFrom(CGPoint origin, CGSize size){
 
 - (void)updateSendingFlag:(MessageStatus)status
 {
-//    SPACE_CONTENT_FLAG
     [self.loadingView setHidden:YES];
     [self.failureView setHidden:YES];
     UIView *view = nil;
