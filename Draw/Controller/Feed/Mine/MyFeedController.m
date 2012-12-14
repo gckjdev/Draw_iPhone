@@ -83,7 +83,7 @@ typedef enum{
 }
 
 
-- (void)didGetFeed:(DrawFeed *)feed resultCode:(NSInteger)resultCode
+- (void)didGetFeed:(DrawFeed *)feed resultCode:(NSInteger)resultCode fromCache:(BOOL)fromCache
 {
     [self hideActivity];
     if (resultCode == 0) {

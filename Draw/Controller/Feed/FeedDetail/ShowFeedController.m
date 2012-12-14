@@ -59,6 +59,7 @@ typedef enum{
 - (void)dealloc
 {
     _feed.drawData = nil;
+    _feed.pbDraw = nil;
     PPRelease(_feed);
     PPRelease(_drawCell);
     PPRelease(_userCell);

@@ -39,7 +39,7 @@
 
 #import "OfflineGuessDrawController.h"
 #import "SelectWordController.h"
-
+#import "UseItemScene.h"
 
 #import "ChatListController.h"
 #import "LevelService.h"
@@ -728,7 +728,9 @@
         [self toRegister];
         return;
     }
-    ShowFeedController *sf = [[ShowFeedController alloc] initWithFeed:drawFeed];
+    UseItemScene *scene = [UseItemScene createSceneByType:UseSceneTypeShowFeedDetail feed:drawFeed];
+    ShowFeedController *sf = [[ShowFeedController alloc] initWithFeed:drawFeed
+                                                                scene:scene];
     [self.navigationController pushViewController:sf animated:YES];
     [sf release];
 }

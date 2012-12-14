@@ -210,13 +210,16 @@
 #define TRY_GET_FEED_TIMES 3
 - (void)didGetFeed:(DrawFeed *)feed
         resultCode:(NSInteger)resultCode
+         fromCache:(BOOL)fromCache
 {
     _isLoading = NO;
     if (resultCode == 0 && feed != nil) {        
         
         PPDebug(@"get draw feed succ: feedId = %@, image url = %@",feed.feedId,
                 feed.drawImageUrl);
-        self.feed.timesSet = feed.timesSet;
+        if (!fromCache) {
+            self.feed.timesSet = feed.timesSet;
+        }
         self.feed.pbDraw = feed.pbDraw;
         self.feed.feedUser = feed.feedUser;
             

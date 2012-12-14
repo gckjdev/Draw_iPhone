@@ -129,7 +129,7 @@
 
 - (HomeMenuView *)getMenuViewWithType:(HomeMenuType)type
 {
-    for (HomeMenuView *view in self.subviews) {
+    for (HomeMenuView *view in self.scrollView.subviews) {
         if ([view isKindOfClass:[HomeMenuView class]] && view.type == type) {
             return view;
         }

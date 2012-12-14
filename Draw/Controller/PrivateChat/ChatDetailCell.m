@@ -384,7 +384,6 @@ CGRect CGRectFrom(CGPoint origin, CGSize size){
     CGFloat startY = [ChatDetailCell contentStartY:showTime];
     NSArray *updateViews = [NSArray arrayWithObjects:self.avatarButton,self.contentButton, nil];
     [self setViews:updateViews yOrigin:startY];
-    
     if (showTime) {
         [self updateTime:message.createDate];
     }
@@ -421,7 +420,8 @@ CGRect CGRectFrom(CGPoint origin, CGSize size){
                                             gender:_messageStat.friendGenderString 
                                              level:1];
         [CommonUserInfoView showFriend:friend inController:self.superController needUpdate:YES canChat:YES];
-    }}
+    }
+}
 
 - (IBAction)clickContentButton:(id)sender {
     //show the action sheet to show the options
