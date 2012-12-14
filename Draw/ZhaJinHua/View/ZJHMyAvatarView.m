@@ -83,7 +83,7 @@
 // 自己的头像用这个方法。
 - (void)update{
     self.coinsImageView.hidden = NO;
-    [self.levelLabel setText:[NSString stringWithFormat:@"LV.%d",[[LevelService defaultService] levelForSource:LevelSourceZhajinhua]]];
+    [self.levelLabel setText:[NSString stringWithFormat:@"LV.%d",[[LevelService defaultService] level]]];
     [self.coinsLabel setText:[NSString stringWithFormat:@"x%d",[ZJHGameService defaultService].myBalance]];
 }
 

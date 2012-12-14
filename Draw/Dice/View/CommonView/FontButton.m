@@ -10,6 +10,8 @@
 #import "DiceFontManager.h"
 #import "HKGirlFontLabel.h"
 
+#define DEFAULT_FONT    ([DeviceDetection isIPAD]?32:16)
+
 @implementation FontButton
 
 @synthesize fontLable = _fontLable;
@@ -43,8 +45,8 @@
     if (self) {
         // Initialization code
         self.fontLable = [[[FontLabel alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)
-                                                  fontName:@"fzkatjw"
-                                                 pointSize:self.titleLabel.font.pointSize] autorelease];;
+                                                  fontName:[[DiceFontManager defaultManager] fontName]
+                                                 pointSize:DEFAULT_FONT] autorelease];;
         _fontLable.backgroundColor = [UIColor clearColor];
         _fontLable.textAlignment = UITextAlignmentCenter;
         [self addSubview:_fontLable];
@@ -72,12 +74,34 @@
 
 - (void)setTitle:(NSString *)title forState:(UIControlState)state
 {
+    [super setTitle:nil forState:state];
+    [self.titleLabel setText:nil];
     [self.fontLable setText:title];
+    
+    // add by Benson for ZJH , maybe need to be changed for Dice
+    if (isZhajinhuaApp()){
+        [super setTitle:title forState:state];
+    }
+}
+
+- (void)setTitleColor:(UIColor *)color forState:(UIControlState)state
+{
+    [self.fontLable setTextColor:color];
 }
 
 - (UILabel*)titleLabel
 {
     return self.fontLable;
+}
+
+- (NSString*)titleForState:(UIControlState)state
+{
+    return self.fontLable.text;
+}
+
+- (UIColor*)titleColorForState:(UIControlState)state
+{
+    return self.fontLable.textColor;
 }
 
 

@@ -70,6 +70,7 @@ typedef enum {
 
 //- (void)initLevelDict;
 //methods below for the one
+/*
 - (int)levelForSource:(LevelSource)source;
 - (long)experienceForSource:(LevelSource)source;
 
@@ -89,6 +90,7 @@ typedef enum {
               forSource:(LevelSource)source;
 - (void)syncExpAndLevel:(int)type awardExp:(long)awardExp
               forSource:(LevelSource)source;
+*/
 
 - (void)setExperience:(long)experience;
 - (void)setLevel:(NSInteger)level;

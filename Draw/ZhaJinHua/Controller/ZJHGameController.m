@@ -748,8 +748,7 @@
     [self performSelector:@selector(showAllUserGameResult) withObject:nil afterDelay:3.0];
     [self performSelector:@selector(resetGame) withObject:nil afterDelay:9.0];
 
-    
-    [_levelService addExp:10 delegate:self forSource:LevelSourceZhajinhua];
+    [_levelService addExp:10 delegate:self];
 }
 
 - (void)resetGame
