@@ -208,4 +208,63 @@
     return [UIColor blackColor];
 }
 
+- (NSString *)resourcesPackage
+{
+    return nil;
+}
+- (id<ChatMsgManagerProtocol>)getChatMsgManager
+{
+    return nil;
+}
+- (NSString *)chatViewBgImageName
+{
+    return nil;
+}
+
+- (NSString *)chatViewInputTextBgImageName
+{
+    return nil;
+}
+- (NSString *)popupViewCloseBtnBgImageName
+{
+    return nil;
+}
+- (NSString *)chatViewMsgBgImageName
+{
+    return nil;
+}
+- (UIColor *)chatViewMsgTextColor
+{
+    return nil;
+}
+
+- (NSString *)helpViewBgImageName
+{
+    return nil;
+}
+- (NSString *)gameRulesButtonBgImageNameForNormal
+{
+    return nil;
+}
+- (NSString *)gameRulesButtonBgImageNameForSelected
+{
+    return nil;
+}
+- (NSString *)itemsUsageButtonBgImageNameForNormal
+{
+    return nil;
+}
+- (NSString *)itemsUsageButtonBgImageNameForSelected
+{
+    return nil;
+}
+
+- (NSString *)roomListCellBgImageName
+{
+    return nil;
+}
+- (NSString *)roomListCellDualBgImageName
+{
+    return nil;
+}
 @end

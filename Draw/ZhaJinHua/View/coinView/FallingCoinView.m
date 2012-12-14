@@ -15,7 +15,8 @@
 #import <OpenGLES/ES1/gl.h>
 #import <OpenGLES/ES1/glext.h>
 #import <QuartzCore/QuartzCore.h>
-#import <AudioToolbox/AudioToolbox.h>
+#import "AudioManager.h"
+#import "ZJHSoundManager.h"
 
 @implementation FallingCoinView
 
@@ -81,10 +82,7 @@
         
         coinTimer = [NSTimer scheduledTimerWithTimeInterval:0.09 target:self selector:@selector(timerFired:) userInfo:nil repeats:YES];
         
-        NSString *path = [[NSBundle mainBundle] pathForResource:@"fallingCoinBGM" ofType:@"mp3"];
-		SystemSoundID soundID;
-		AudioServicesCreateSystemSoundID((CFURLRef)[NSURL fileURLWithPath:path], &soundID);
-		AudioServicesPlaySystemSound (soundID);
+        [[AudioManager defaultManager] playSoundByURL:[ZJHSoundManager defaultManager].fallingCoins];
 //        self.userInteractionEnabled = NO;
     }
     return self;
