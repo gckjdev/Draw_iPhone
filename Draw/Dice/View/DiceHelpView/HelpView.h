@@ -41,8 +41,8 @@ typedef enum {
 @property (retain, nonatomic) IBOutlet UIImageView *bgImageView;
 @property (retain, nonatomic) IBOutlet UIWebView *webView;
 
-@property (retain, nonatomic) IBOutlet FontButton *gameRulesButton;
-@property (retain, nonatomic) IBOutlet FontButton *itemsUsageButton;
+@property (retain, nonatomic) IBOutlet UIButton *gameRulesButton;
+@property (retain, nonatomic) IBOutlet UIButton *itemsUsageButton;
 @property (retain, nonatomic) IBOutlet UIActivityIndicatorView *indicator;
 
 @end

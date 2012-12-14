@@ -2,13 +2,13 @@
 <archive type="com.apple.InterfaceBuilder3.CocoaTouch.iPad.XIB" version="8.00">
 	<data>
 		<int key="IBDocument.SystemTarget">1536</int>
-		<string key="IBDocument.SystemVersion">12A269</string>
-		<string key="IBDocument.InterfaceBuilderVersion">2840</string>
-		<string key="IBDocument.AppKitVersion">1187</string>
-		<string key="IBDocument.HIToolboxVersion">624.00</string>
+		<string key="IBDocument.SystemVersion">12C60</string>
+		<string key="IBDocument.InterfaceBuilderVersion">2844</string>
+		<string key="IBDocument.AppKitVersion">1187.34</string>
+		<string key="IBDocument.HIToolboxVersion">625.00</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-			<string key="NS.object.0">1926</string>
+			<string key="NS.object.0">1930</string>
 		</object>
 		<array key="IBDocument.IntegratedClassDependencies">
 			<string>IBProxyObject</string>
@@ -57,7 +57,7 @@
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{87, 45}, {594, 934}}</string>
 						<reference key="NSSuperview" ref="318438828"/>
-						<reference key="NSNextKeyView" ref="807039539"/>
+						<reference key="NSNextKeyView" ref="403506664"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
@@ -67,7 +67,7 @@
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{292, 69}, {184, 58}}</string>
 						<reference key="NSSuperview" ref="318438828"/>
-						<reference key="NSNextKeyView" ref="947317011"/>
+						<reference key="NSNextKeyView" ref="807039539"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
@@ -99,7 +99,7 @@
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{650, 15}, {62, 62}}</string>
 						<reference key="NSSuperview" ref="318438828"/>
-						<reference key="NSNextKeyView" ref="403506664"/>
+						<reference key="NSNextKeyView" ref="947317011"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<int key="IBUITag">2012</int>
@@ -148,6 +148,7 @@
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{366, 441}, {37, 37}}</string>
 						<reference key="NSSuperview" ref="318438828"/>
+						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
@@ -300,10 +301,8 @@
 				<string key="3.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="4.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="5.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<string key="6.CustomClassName">FontButton</string>
 				<string key="6.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<real value="0.0" key="6.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
-				<string key="7.CustomClassName">FontButton</string>
 				<string key="7.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 			</dictionary>
 			<dictionary class="NSMutableDictionary" key="unlocalizedProperties"/>
@@ -378,6 +377,6 @@
 			<string key="NS.key.0">zjh_popup_view_close_btn_bg@2x.png</string>
 			<string key="NS.object.0">{63, 63}</string>
 		</object>
-		<string key="IBCocoaTouchPluginVersion">1926</string>
+		<string key="IBCocoaTouchPluginVersion">1930</string>
 	</data>
 </archive>
