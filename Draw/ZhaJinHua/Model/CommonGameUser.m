@@ -38,6 +38,8 @@
         self.seatId = pbGameUser.seatId;
         self.attributes = [self attributesFromKeyValuePairs:pbGameUser.attributesList];
     }
+    
+    return self;
 }
 
 + (CommonGameUser *)fromPBGameUser:(PBGameUser *)pbGameUser
@@ -57,7 +59,7 @@
 
 - (NSDictionary *)attributesFromKeyValuePairs:(NSArray *)keyValuePairs
 {
-    NSMutableDictionary *attributes = [NSMusicDirectory dictionary];
+    NSMutableDictionary *attributes = [NSMutableDictionary dictionary];
     for (PBKeyValue *keyValue in keyValuePairs) {
         [attributes setObject:keyValue.value forKey:keyValue.name];
     }

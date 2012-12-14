@@ -344,6 +344,7 @@ static LevelService* _defaultLevelService;
     [self syncExpAndLevel:type awardExp:0];
 }
 
+/*
 - (int)levelForSource:(LevelSource)source
 {
     NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
@@ -492,23 +493,25 @@ static LevelService* _defaultLevelService;
     });
 }
 
-- (NSString*)stringByInteger:(NSInteger)integer
-{
-    return [NSString stringWithFormat:@"%d",integer];
-}
+ - (NSString*)stringByInteger:(NSInteger)integer
+ {
+ return [NSString stringWithFormat:@"%d",integer];
+ }
 
 - (NSString*)getGameIdBySource:(LevelSource)source
 {
     switch (source) {
             case LevelSourceDraw:
-                return @"Draw";
+                return DRAW_GAME_ID;
             case LevelSourceDice:
-                return @"Dice";
+                return DICE_GAME_ID;
             case LevelSourceZhajinhua:
-                return @"ZhaJinHua";
+                return ZHAJINHUA_GAME_ID;
             default:
                 break;
     }
     return nil;
 }
+*/
+ 
 @end
