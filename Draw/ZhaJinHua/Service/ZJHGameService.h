@@ -69,9 +69,10 @@
 - (void)chargeAccount:(int)amount
                source:(BalanceSourceType)source;
 - (void)syncAccount:(id<AccountServiceDelegate>)delegate;
-//- (void)getAccount;
 
 - (NSArray *)myReplacedCards;
 - (NSArray *)replacedCardsOfUser:(NSString *)userId;
+
+- (void)reset;
 
 @end

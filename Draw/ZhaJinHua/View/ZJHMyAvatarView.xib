@@ -421,8 +421,8 @@
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="coin@2x.png">{16, 16}</string>
-			<string key="zjh_my_avatar_bg@2x.png">{16, 16}</string>
+			<string key="coin@2x.png">{64, 68}</string>
+			<string key="zjh_my_avatar_bg@2x.png">{222, 114}</string>
 		</dictionary>
 		<string key="IBCocoaTouchPluginVersion">1926</string>
 	</data>
