@@ -33,5 +33,6 @@
 - (NSURL*)gameOver;
 - (NSURL*)gameWin;
 - (NSURL*)getChips;
+- (NSURL*)fallingCoins;
 
 @end

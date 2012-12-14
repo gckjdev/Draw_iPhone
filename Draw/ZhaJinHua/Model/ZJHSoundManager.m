@@ -168,4 +168,9 @@ static ZJHSoundManager* shareInstance;
     return [_resourceService audioURLByName:@"get_chips.mp3" inResourcePackage:RESOURCE_PACKAGE_ZJH_AUDIO];;
 }
 
+- (NSURL*)fallingCoins
+{
+    return [_resourceService audioURLByName:@"fallingCoinBGM.mp3" inResourcePackage:RESOURCE_PACKAGE_ZJH_AUDIO];
+}
+
 @end
