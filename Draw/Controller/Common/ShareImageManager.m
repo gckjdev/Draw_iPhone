@@ -734,6 +734,43 @@ static UIImage* _whitePaperImage;
     return nil;
 }
 
+- (UIImage *)audioOff
+{
+    return nil;
+}
+- (UIImage *)audioOn
+{
+    return nil;
+}
+- (UIImage *)musicOn
+{
+    return nil;
+}
+- (UIImage *)musicOff
+{
+    return nil;
+}
+- (UIImage *)settingsBgImage
+{
+    return nil;
+}
+- (UIImage *)settingsLeftSelected
+{
+    return nil;
+}
+- (UIImage *)settingsLeftUnselected
+{
+    return nil;
+}
+- (UIImage *)settingsRightSelected
+{
+    return nil;
+}
+- (UIImage *)settingsRightUnselected
+{
+    return nil;
+}
+
 
 @end
 
