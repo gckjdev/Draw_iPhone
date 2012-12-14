@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>en</string>
+	<key>CFBundleDisplayName</key>
+	<string>${PRODUCT_NAME}</string>
+	<key>CFBundleExecutable</key>
+	<string>${EXECUTABLE_NAME}</string>
+	<key>CFBundleIconFiles</key>
+	<array>
+		<string>new_icon.png</string>
+		<string>new_icon@2x.png</string>
+		<string>new_icon_ipad1.png</string>
+		<string>new_icon_ipad2.png</string>
+	</array>
+	<key>CFBundleIdentifier</key>
+	<string>com.orange.draw</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundleName</key>
+	<string>${PRODUCT_NAME}</string>
+	<key>CFBundlePackageType</key>
+	<string>APPL</string>
+	<key>CFBundleShortVersionString</key>
+	<string>6.0</string>
+	<key>CFBundleSignature</key>
+	<string>????</string>
+	<key>URL types DICE</key>
+	<array>
+		<dict>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>fb451387761588871</string>
+				<string>sinaweibosso.3580615797</string>
+			</array>
+		</dict>
+	</array>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>fb352182988165711</string>
+				<string>gckjcchh</string>
+				<string>wx427a2f57bc4456d1</string>
+				<string>sinaweibosso.4285743836</string>
+			</array>
+		</dict>
+	</array>
+	<key>CFBundleVersion</key>
+	<string>6.0</string>
+	<key>CFChannelId</key>
+	<string>App Store</string>
+	<key>CFWordBaseVersion</key>
+	<integer>2</integer>
+	<key>Icon files DRAW OLD</key>
+	<array>
+		<string>57.png</string>
+		<string>57@2x.png</string>
+		<string>50.png</string>
+		<string>72.png</string>
+	</array>
+	<key>LSRequiresIPhoneOS</key>
+	<true/>
+	<key>NSMainNibFile</key>
+	<string>MainWindow</string>
+	<key>UIPrerenderedIcon</key>
+	<true/>
+	<key>UIStatusBarHidden</key>
+	<false/>
+	<key>UISupportedInterfaceOrientations</key>
+	<array>
+		<string>UIInterfaceOrientationPortrait</string>
+		<string>UIInterfaceOrientationPortraitUpsideDown</string>
+	</array>
+	<key>Launch image DICE</key>
+	<string>DiceDefault</string>
+	<key>UILaunchImageFile</key>
+	<string>Default</string>
+	<key>Icon files DICE</key>
+	<array>
+		<string>dice_icon_57.png</string>
+		<string>dice_icon_57@2x.png</string>
+		<string>dice_icon_50.png</string>
+		<string>dice_icon_72.png</string>
+	</array>
+	<key>CFResourceTest</key>
+	<true/>
+	<key>CFServerTest</key>
+	<false/>
+	<key>CFConfigVersion</key>
+	<string>1.0</string>
+</dict>
+</plist>
