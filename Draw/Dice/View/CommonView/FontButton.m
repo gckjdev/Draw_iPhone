@@ -74,12 +74,29 @@
 
 - (void)setTitle:(NSString *)title forState:(UIControlState)state
 {
+    [super setTitle:nil forState:state];
+    [self.titleLabel setText:nil];
     [self.fontLable setText:title];
+}
+
+- (void)setTitleColor:(UIColor *)color forState:(UIControlState)state
+{
+    [self.fontLable setTextColor:color];
 }
 
 - (UILabel*)titleLabel
 {
     return self.fontLable;
+}
+
+- (NSString*)titleForState:(UIControlState)state
+{
+    return self.fontLable.text;
+}
+
+- (UIColor*)titleColorForState:(UIControlState)state
+{
+    return self.fontLable.textColor;
 }
 
 
