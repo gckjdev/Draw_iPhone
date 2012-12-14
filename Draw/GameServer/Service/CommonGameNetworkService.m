@@ -255,6 +255,7 @@
 
 - (void)handleMoreOnJoinGameResponse:(GameMessage*)message
 {
+    [_userSimpleInfo  removeAllObjects];
 }
 
 - (void)handleMoreOnNextPlayerStartNotificationRequest:(GameMessage*)message
@@ -274,7 +275,6 @@
             [_session fromPBGameSession:pbSession userId:[self userId]];
             PPDebug(@"<handleJoinGameResponse> Create Session = %@", [self.session description]);
 
-            [self getAccount];
             [self handleMoreOnJoinGameResponse:message];
         }
         [self postNotification:NOTIFICATION_JOIN_GAME_RESPONSE message:message];
@@ -295,7 +295,7 @@
                     // current play session
                     [_session updateSession:sessionChanged];
                     
-                    if ([sessionChanged usersAddedList]){
+                    if (sessionChanged.usersAddedList) {
                         [self getAccount];
                     }
                 }
@@ -595,7 +595,7 @@
 
 - (void)getAccount
 {
-    [_userSimpleInfo removeAllObjects];
+//    [_userSimpleInfo removeAllObjects];
     NSArray* userArray = [self.session userList];
     dispatch_async(_getUserInfoQueue, ^{
         

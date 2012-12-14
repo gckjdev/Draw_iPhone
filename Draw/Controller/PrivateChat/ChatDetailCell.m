@@ -215,7 +215,7 @@ CGRect CGRectFrom(CGPoint origin, CGSize size){
 }
 - (void)updateTime:(NSDate *)date
 {
-    NSString *dateString = dateToLocaleString(date);
+    NSString *dateString = dateToTimeLineString(date);
     
     [self.timeButton setTitle:dateString forState:UIControlStateNormal];
     CGSize textSize = [dateString sizeWithFont:self.timeButton.titleLabel.font
@@ -229,7 +229,6 @@ CGRect CGRectFrom(CGPoint origin, CGSize size){
 
 - (void)updateSendingFlag:(MessageStatus)status
 {
-//    SPACE_CONTENT_FLAG
     [self.loadingView setHidden:YES];
     [self.failureView setHidden:YES];
     UIView *view = nil;
@@ -385,7 +384,6 @@ CGRect CGRectFrom(CGPoint origin, CGSize size){
     CGFloat startY = [ChatDetailCell contentStartY:showTime];
     NSArray *updateViews = [NSArray arrayWithObjects:self.avatarButton,self.contentButton, nil];
     [self setViews:updateViews yOrigin:startY];
-    
     if (showTime) {
         [self updateTime:message.createDate];
     }
@@ -422,7 +420,8 @@ CGRect CGRectFrom(CGPoint origin, CGSize size){
                                             gender:_messageStat.friendGenderString 
                                              level:1];
         [CommonUserInfoView showFriend:friend inController:self.superController needUpdate:YES canChat:YES];
-    }}
+    }
+}
 
 - (IBAction)clickContentButton:(id)sender {
     //show the action sheet to show the options
