@@ -74,12 +74,34 @@
 
 - (void)setTitle:(NSString *)title forState:(UIControlState)state
 {
+    [super setTitle:nil forState:state];
+    [self.titleLabel setText:nil];
     [self.fontLable setText:title];
+    
+    // add by Benson for ZJH , maybe need to be changed for Dice
+    if (isZhajinhuaApp()){
+        [super setTitle:title forState:state];
+    }
+}
+
+- (void)setTitleColor:(UIColor *)color forState:(UIControlState)state
+{
+    [self.fontLable setTextColor:color];
 }
 
 - (UILabel*)titleLabel
 {
     return self.fontLable;
+}
+
+- (NSString*)titleForState:(UIControlState)state
+{
+    return self.fontLable.text;
+}
+
+- (UIColor*)titleColorForState:(UIControlState)state
+{
+    return self.fontLable.textColor;
 }
 
 

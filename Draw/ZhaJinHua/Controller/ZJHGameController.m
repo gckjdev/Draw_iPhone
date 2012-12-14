@@ -293,7 +293,6 @@
     self.ruleConfig = [ZJHRuleConfigFactory createRuleConfig];
     _gameService.chipValues = [_ruleConfig chipValues];
     [_gameService syncAccount:self];
-    [_gameService getAccount];
 
     // Do any additional setup after loading the view from its nib.
     
@@ -694,6 +693,8 @@
 - (void)gameStart
 {
     PPDebug(@"########################### Game Start :%@ ####################", self.description);
+    [_gameService getAccount];
+
     [self updateAllUsersAvatar];
     
     [self updateWaitGameNoteLabel];
@@ -732,27 +733,33 @@
         
         [[self getAvatarViewByUserId:userId] updateByPBGameUser:[_gameService.session getUserByUserId:userId]];
     }
-    
-    [_gameService syncAccount:self];
-    [_gameService getAccount];
 }
 
 - (void)gameOver
 {
     [self updateZJHButtons];
     [self clearAllAvatarReciprocals];
+    
+    [self updateAllUsersAvatar];
 
     [self someoneWon:[_gameService winner]];
 
     [self faceupUserCards];
     [self performSelector:@selector(showAllUserGameResult) withObject:nil afterDelay:3.0];
     [self performSelector:@selector(resetGame) withObject:nil afterDelay:9.0];
-    [_levelService addExp:10 delegate:self forSource:LevelSourceZhajinhua];
+
+    [_levelService addExp:[ConfigManager getZhajinhuaExp] delegate:self];
+}
+
+- (void)levelUp:(int)newLevel
+{
+    PPDebug(@"Level Up to %d level", newLevel);
 }
 
 - (void)resetGame
 {
     self.autoBetButton.selected = NO;
+    [_gameService reset];
     [self hideMyCardType];
     [self clearAllUserPokers];
     [self hideAllUserTotalBet];
@@ -761,6 +768,8 @@
     if (![_ruleConfig isCoinsEnough]) {
         [self.navigationController popToRootViewControllerAnimated:YES];
     }
+    
+    [_gameService syncAccount:self];
 }
 
 - (void)faceupUserCards
@@ -934,6 +943,9 @@
 - (void)balanceUpdated
 {
     for (PBGameUser *user in _gameService.session.userList) {
+        if ([_userManager isMe:user.userId]) {
+            continue;
+        }
         [[self getAvatarViewByUserId:user.userId] updateByPBGameUser:user];
     }
 }

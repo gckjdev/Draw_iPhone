@@ -327,7 +327,7 @@ NSString* GlobalGetBoardServerURL()
     self.window.rootViewController = navigationController;
     
     // Init Resource Service
-    [self initResourceService];
+//    [self initResourceService];
     
     // Init SNS service
     [self initSNSService];    
