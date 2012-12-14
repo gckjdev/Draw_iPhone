@@ -23,6 +23,7 @@
 @property(nonatomic, retain)HomeMainMenuPanel *homeMainMenuPanel;
 @property(nonatomic, retain)HomeBottomMenuPanel *homeBottomMenuPanel;
 
+- (void)updateAllBadge;
 - (BOOL)isRegistered;
 - (void)toRegister;
 

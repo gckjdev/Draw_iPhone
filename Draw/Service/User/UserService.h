@@ -18,13 +18,8 @@
 - (void)didSendFeedback:(int)resultCode;
 - (void)didUserLogined:(int)resultCode;
 
-- (void)didGetStatistic:(int)resultCode 
-              feedCount:(long)feedCount 
-              messageCount:(long)messageCount 
-               fanCount:(long)fanCount 
-              roomCount:(long)roomCount
-           commentCount:(long)commentCount
-          drawToMeCount:(long)drawToMeCount;
+
+- (void)didSyncStatisticWithResultCode:(int)resultCode;
 
 
 

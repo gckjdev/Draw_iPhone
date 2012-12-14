@@ -244,7 +244,7 @@ ZJHHomeViewController *_staticZJHHomeViewController = nil;
             FriendController *mfc = [[FriendController alloc] init];
             [self.navigationController pushViewController:mfc animated:YES];
             [mfc release];
-            [[StatisticManager defaultManager] setFanCount:0];
+//            [[StatisticManager defaultManager] setFanCount:0];
         }
             break;
         case HomeMenuTypeDrawMessage:
@@ -252,7 +252,7 @@ ZJHHomeViewController *_staticZJHHomeViewController = nil;
             ChatListController *controller = [[ChatListController alloc] init];
             [self.navigationController pushViewController:controller animated:YES];
             [controller release];
-            [[StatisticManager defaultManager] setMessageCount:0];
+//            [[StatisticManager defaultManager] setMessageCount:0];
         }
             break;
         case HomeMenuTypeDrawMore:

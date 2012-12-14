@@ -372,6 +372,9 @@
 "kMyFriends" = "我的好友";
 "kFollow" = "关注";
 "kFans" = "粉丝";
+"kFollowNumber" = "关注(%d)";
+"kFansNumber" = "粉丝(%d)";
+
 "kNoFollow" = "还没有关注任何好友，点击下面的搜索用户按钮查找和关注你的好友。";
 "kNoFans" = "暂未有粉丝";
 "kEdit" = "编辑";

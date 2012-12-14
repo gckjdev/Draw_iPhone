@@ -357,6 +357,9 @@
 "kMyFriends" = "My Friends";
 "kFollow" = "Followers";
 "kFans" = "Fans";
+"kFollowNumber" = "Followers(%d)";
+"kFansNumber" = "Fans(%d)";
+
 "kNoFollow" = "No follower yet. Click 'Search User' button below to follow your friends.";
 "kNoFans" = "No fan";
 "kEdit" = "Edit";

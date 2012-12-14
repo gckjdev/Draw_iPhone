@@ -15,15 +15,18 @@
 @protocol FriendServiceDelegate <NSObject>
 
 @optional
+
+#pragma mark - old friend protocal
 - (void)didfindFriendsByType:(int)type friendList:(NSArray *)friendList result:(int)resultCode;
 - (void)didSearchUsers:(NSArray *)userList result:(int)resultCode;
 - (void)didFollowUser:(int)resultCode;
 - (void)didUnFollowUser:(int)resultCode;
 
-//new methods
+#pragma mark - new friend protocal
 - (void)didFollowFriend:(MyFriend *)myFriend resultCode:(int)resultCode;
 - (void)didUnFollowFriend:(MyFriend *)myFriend resultCode:(int)resultCode;
 - (void)didRemoveFan:(MyFriend *)fan resultCode:(NSInteger)resultCode;
+- (void)didGetFanCount:(NSInteger)fanCount followCount:(NSInteger)followCount resultCode:(NSInteger)resultCode;;
 
 @end
 
@@ -40,12 +43,13 @@ typedef enum{
 
 + (FriendService*)defaultService;
 
-//- (void)findFriendsByType:(int)type viewController:(PPViewController<FriendServiceDelegate>*)viewController;
-//- (void)searchUsersByString:(NSString*)searchString viewController:(PPViewController<FriendServiceDelegate>*)viewController;
-//- (void)followUser:(NSString*)targetUserId viewController:(PPViewController<FriendServiceDelegate>*)viewController;
-//- (void)unFollowUser:(NSString*)targetUserId viewController:(PPViewController<FriendServiceDelegate>*)viewController;
-//- (void)followUser:(NSString*)targetUserId 
-//      withDelegate:(id<FriendServiceDelegate>)aDelegate;
+#pragma mark - old friend methods 
+- (void)findFriendsByType:(int)type viewController:(PPViewController<FriendServiceDelegate>*)viewController;
+- (void)searchUsersByString:(NSString*)searchString viewController:(PPViewController<FriendServiceDelegate>*)viewController;
+- (void)followUser:(NSString*)targetUserId viewController:(PPViewController<FriendServiceDelegate>*)viewController;
+- (void)unFollowUser:(NSString*)targetUserId viewController:(PPViewController<FriendServiceDelegate>*)viewController;
+- (void)followUser:(NSString*)targetUserId
+      withDelegate:(id<FriendServiceDelegate>)aDelegate;
 
 #pragma mark - new friend methods 
 
@@ -71,4 +75,5 @@ typedef enum{
 - (void)followUser:(NSString*)targetUserId 
       withDelegate:(id<FriendServiceDelegate>)aDelegate;
 
+- (void)getRelationCount:(id<FriendServiceDelegate>)delegate;
 @end

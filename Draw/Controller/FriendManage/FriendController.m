@@ -28,6 +28,8 @@
 #import "FriendService.h"
 #import "MyFriend.h"
 #import "CommonUserInfoView.h"
+#import "StatisticManager.h"
+
 
 @interface FriendController ()
 {
@@ -68,6 +70,7 @@ typedef enum{
     PPRelease(_invitedFidSet);
     PPRelease(_inviteText);
     PPRelease(inviteButton);
+    [_newFanNumber release];
     [super dealloc];
 }
 
@@ -173,14 +176,26 @@ typedef enum{
             break;
     }
 
-    
+}
 
+- (void)updateBadge
+{
+    long badge = [[StatisticManager defaultManager] fanCount];
+    NSString *string = [StatisticManager badgeStringFromLongValue:badge];
+    if (string) {
+        [self.newFanNumber setHidden:NO];
+        [self.newFanNumber setTitle:string forState:UIControlStateNormal];
+    }else{
+        [self.newFanNumber setHidden:YES];
+    }
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     [self initTabButton];
+    self.newFanNumber.hidden = YES;
+    [[FriendService defaultService] getRelationCount:self];
     [self clickTabButton:self.currentTabButton];
 }
 
@@ -188,6 +203,7 @@ typedef enum{
 {
     [[NotificationManager defaultManager] hideNotificationForType:NotificationTypeFan];
     [super viewDidAppear:animated];
+    [self updateBadge];
 }
 
 - (void)viewDidUnload
@@ -197,6 +213,7 @@ typedef enum{
     [self setTipsLabel:nil];
     [self setInviteButton:nil];
     [_selectedSet removeAllObjects];
+    [self setNewFanNumber:nil];
     [super viewDidUnload];
 
     // Release any retained subviews of the main view.
@@ -443,20 +460,15 @@ typedef enum{
 
 
 
-- (void)updateFriendsCount
-{
-    //todo get the count from server.
-}
-
-
-
-
-
 #pragma mark - FriendServiceDelegate Method
 - (void)didfindFriendsByType:(int)type friendList:(NSArray *)friendList result:(int)resultCode
 {
     if (resultCode == 0) {
         [self finishLoadDataForTabID:type resultList:friendList];
+        if (type == TabTypeFan) {
+            [[StatisticManager defaultManager] setFanCount:0];
+            [self updateBadge];
+        }
     }else{
         [self failLoadDataForTabID:type];
     }
@@ -540,7 +552,20 @@ typedef enum{
     }
 }
 
-
+- (void)didGetFanCount:(NSInteger)fanCount followCount:(NSInteger)followCount resultCode:(NSInteger)resultCode
+{
+    if (resultCode == 0) {
+        //update fan Count and follow count
+        
+        UIButton *fButton = (UIButton *)[self.view viewWithTag:TabTypeFan];
+        NSString *fTitle = [NSString stringWithFormat:NSLS(@"kFansNumber"), fanCount];
+        [fButton setTitle:fTitle forState:UIControlStateNormal];
+        
+        fButton = (UIButton *)[self.view viewWithTag:TabTypeFollow];
+        fTitle = [NSString stringWithFormat:NSLS(@"kFollowNumber"), followCount];
+        [fButton setTitle:fTitle forState:UIControlStateNormal];
+    }
+}
 
 #pragma mark - invite with SMS and Weixin
 enum {

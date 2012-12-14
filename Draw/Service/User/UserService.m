@@ -29,6 +29,7 @@
 #import "PPSNSStorageService.h"
 #import "PPNetworkRequest.h"
 #import "MyFriend.h"
+#import "StatisticManager.h"
 
 @implementation UserService
 
@@ -847,29 +848,30 @@ static UserService* _defaultUserService;
         
         dispatch_async(dispatch_get_main_queue(), ^{
             
-            long messageCount = 0;
-            long feedCount = 0;
-            long fanCount = 0;
-            long roomCount = 0;
-            long commentCount = 0;
-            long drawToMeCount = 0;
             
             if (output.resultCode == ERROR_SUCCESS) {
-                NSNumber *count = [output.jsonDataDict objectForKey:PARA_FEED_COUNT];
-                feedCount = [count longValue];
-                count = [output.jsonDataDict objectForKey:PARA_COMMENT_COUNT];
-                commentCount = [count longValue];
-                count = [output.jsonDataDict objectForKey:PARA_DRAWTOME_COUNT];
-                drawToMeCount = [count longValue];
-                count = [output.jsonDataDict objectForKey:PARA_FAN_COUNT];
-                fanCount = [count longValue];
-                count = [output.jsonDataDict objectForKey:PARA_MESSAGE_COUNT];
-                messageCount = [count longValue];            
-                count = [output.jsonDataDict objectForKey:PARA_ROOM_COUNT];
-                roomCount = [count longValue];            
+                long messageCount = [[output.jsonDataDict objectForKey:PARA_MESSAGE_COUNT] longValue];
+                long feedCount = [[output.jsonDataDict objectForKey:PARA_FEED_COUNT] longValue];
+                long fanCount = [[output.jsonDataDict objectForKey:PARA_FAN_COUNT] longValue];
+                long roomCount = [[output.jsonDataDict objectForKey:PARA_ROOM_COUNT] longValue];
+                long commentCount = [[output.jsonDataDict objectForKey:PARA_COMMENT_COUNT] longValue];
+                long drawToMeCount = [[output.jsonDataDict objectForKey:PARA_DRAWTOME_COUNT] longValue];
+                long bbsActionCount = [[output.jsonDataDict objectForKey:PARA_BBS_ACTION_COUNT] longValue];
+                
+                PPDebug(@"<didGetStatistic>:feedCount = %ld, messageCount = %ld, fanCount = %ld", feedCount,messageCount,fanCount);
+                
+                //store the counts.
+                StatisticManager *manager = [StatisticManager defaultManager];
+                [manager setFeedCount:feedCount];
+                [manager setMessageCount:messageCount];
+                [manager setFanCount:fanCount];
+                [manager setRoomCount:roomCount];
+                [manager setCommentCount:commentCount];
+                [manager setDrawToMeCount:drawToMeCount];
+                [manager setBbsActionCount:bbsActionCount];
             }
-            if (viewController && [viewController respondsToSelector:@selector(didGetStatistic:feedCount:messageCount:fanCount:roomCount:commentCount:drawToMeCount:)]) {
-                [viewController didGetStatistic:output.resultCode feedCount:feedCount messageCount:messageCount fanCount:fanCount roomCount:roomCount commentCount:commentCount drawToMeCount:drawToMeCount];
+            if (viewController && [viewController respondsToSelector:@selector(didSyncStatisticWithResultCode:)]) {
+                [viewController didSyncStatisticWithResultCode:output.resultCode];
             }
         });
     });

@@ -165,6 +165,11 @@
                                offset:(NSInteger)offset 
                                 limit:(NSInteger)limit;
 
++ (CommonNetworkOutput*)getRelationCount:(NSString*)baseURL
+                                   appId:(NSString*)appId
+                                  gameId:(NSString*)gameId
+                                  userId:(NSString*)userId;
+
 + (CommonNetworkOutput*)searchUsers:(NSString*)baseURL
                               appId:(NSString*)appId 
                              gameId:(NSString*)gameId

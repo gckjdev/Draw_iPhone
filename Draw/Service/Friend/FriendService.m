@@ -319,6 +319,34 @@ FriendService* globalGetFriendService()
         }); 
     });
 }
+
+- (void)getRelationCount:(id<FriendServiceDelegate>)delegate
+{
+    
+    dispatch_async(workingQueue, ^{
+        
+        NSString *userId = [[UserManager defaultManager] userId];
+        CommonNetworkOutput* output = [GameNetworkRequest getRelationCount:SERVER_URL
+                                                                     appId:[ConfigManager appId]
+                                                                    gameId:[ConfigManager gameId]
+                                                                    userId:userId];
+        NSInteger resultCode = output.resultCode;
+        NSInteger fanCount = 0;
+        NSInteger followCount = 0;
+        if (resultCode == ERROR_SUCCESS) {
+            fanCount = [[output.jsonDataDict objectForKey:PARA_RELATION_FAN_COUNT] integerValue];
+            followCount = [[output.jsonDataDict objectForKey:PARA_RELATION_FOLLOW_COUNT] integerValue];
+        }else{
+            PPDebug(@"warning:<getFriendList> error code = %d", resultCode);
+        }
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (delegate && [delegate respondsToSelector:@selector(didGetFanCount:followCount:resultCode:)]) {
+                [delegate didGetFanCount:fanCount followCount:followCount resultCode:resultCode];
+            }
+        });
+    });
+}
+
 - (void)searchUsersWithKey:(NSString*)key
                     offset:(NSInteger)offset 
                      limit:(NSInteger)limit

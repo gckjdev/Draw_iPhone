@@ -367,6 +367,9 @@
 "kMyFriends" = "我的好友";
 "kFollow" = "關注";
 "kFans" = "粉絲";
+"kFollowNumber" = "關注(%d)";
+"kFansNumber" = "粉絲(%d)";
+
 "kNoFollow" = "還沒有關注任何好友，點擊下面的搜索用戶按鈕查找和關注你的好友吧。";
 "kNoFans" = "暫未有粉絲";
 "kEdit" = "編輯";

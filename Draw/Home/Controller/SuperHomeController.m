@@ -134,32 +134,15 @@
     
     [self.homeBottomMenuPanel updateMenu:HomeMenuTypeDrawMessage badge:manager.messageCount];
     [self.homeBottomMenuPanel updateMenu:HomeMenuTypeDrawFriend badge:manager.fanCount];
+    [self.homeMainMenuPanel updateMenu:HomeMenuTypeDrawBBS badge:manager.bbsActionCount];
     
     long timelineCount = manager.feedCount + manager.commentCount + manager.drawToMeCount;
     [self.homeMainMenuPanel updateMenu:HomeMenuTypeDrawTimeline badge:timelineCount];
     
 }
-
-- (void)didGetStatistic:(int)resultCode
-              feedCount:(long)feedCount
-           messageCount:(long)messageCount
-               fanCount:(long)fanCount
-              roomCount:(long)roomCount
-           commentCount:(long)commentCount
-          drawToMeCount:(long)drawToMeCount
+- (void)didSyncStatisticWithResultCode:(int)resultCode
 {
-    if (resultCode == 0) {
-        PPDebug(@"<didGetStatistic>:feedCount = %ld, messageCount = %ld, fanCount = %ld", feedCount,messageCount,fanCount);
-        
-        //store the counts.
-        StatisticManager *manager = [StatisticManager defaultManager];
-        [manager setFeedCount:feedCount];
-        [manager setMessageCount:messageCount];
-        [manager setFanCount:fanCount];
-        [manager setRoomCount:roomCount];
-        [manager setCommentCount:commentCount];
-        [manager setDrawToMeCount:drawToMeCount];
-        
+    if (resultCode == 0) {        
         [self updateAllBadge];
     }
 }
