@@ -33,6 +33,7 @@
 #import "LmWallService.h"
 #import "AudioManager.h"
 #import "ZJHSoundManager.h"
+#import "Reachability.h"
 
 @interface ZJHHomeViewController ()
 {
