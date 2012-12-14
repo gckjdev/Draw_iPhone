@@ -419,8 +419,7 @@
         [self checkAndJoinGame:self.currentSession.sessionId];
     } else {
         InputDialog *inputDialog = [InputDialog dialogWith:NSLS(@"kPassword") 
-                                                  delegate:self 
-                                                     theme:CommonDialogThemeDice];
+                                                  delegate:self];
         inputDialog.targetTextField.text = nil;
         inputDialog.targetTextField.placeholder = NSLS(@"kEnterPassword");
         [inputDialog showInView:self.view]; 
@@ -454,7 +453,7 @@
 {
     RoomPasswordDialog *inputDialog = [RoomPasswordDialog dialogWith:NSLS(@"kCreateRoom") 
                                                             delegate:self 
-                                                               theme:CommonDialogThemeDice];
+                                           ];
     inputDialog.targetTextField.text = [[UserManager defaultManager] defaultUserRoomName];
     inputDialog.targetTextField.placeholder = NSLS(@"kInputWordPlaceholder");
     inputDialog.passwordField.placeholder = NSLS(@"kDiceEnterPassword");
@@ -464,7 +463,7 @@
 
 - (void)showCoinsNotEnoughView
 {
-    CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"kNotEnoughCoin") message:[DiceConfigManager coinsNotEnoughNoteWithRuleType:_diceGameService.ruleType] style:CommonDialogStyleDoubleButton delegate:self theme:CommonDialogThemeDice];
+    CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"kNotEnoughCoin") message:[DiceConfigManager coinsNotEnoughNoteWithRuleType:_diceGameService.ruleType] style:CommonDialogStyleDoubleButton delegate:self];
     [dialog showInView:self.view];
 }
 

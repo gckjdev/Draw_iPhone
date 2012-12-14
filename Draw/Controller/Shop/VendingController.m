@@ -525,7 +525,7 @@ static VendingController* staticVendingController = nil;
         CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"kItemTips") 
                                                            message:[Item getItemTips:anItem.type] 
                                                              style:CommonDialogStyleDoubleButton 
-                                                          delegate:self theme:CommonDialogThemeDice];
+                                                          delegate:self];
         dialog.tag = ITEM_TIPS_DIALOG_TAG;
         [dialog.oKButton.fontLable setText:NSLS(@"kNoMoreShowIt")];
         [dialog.oKButton.fontLable setAdjustsFontSizeToFitWidth:YES];

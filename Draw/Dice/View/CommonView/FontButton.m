@@ -8,6 +8,7 @@
 
 #import "FontButton.h"
 #import "DiceFontManager.h"
+#import "HKGirlFontLabel.h"
 
 @implementation FontButton
 
@@ -28,6 +29,22 @@
         self.fontLable = [[[FontLabel alloc] initWithFrame:self.bounds
                                                   fontName:fontName
                                                  pointSize:pointSize] autorelease];;
+        _fontLable.backgroundColor = [UIColor clearColor];
+        _fontLable.textAlignment = UITextAlignmentCenter;
+        [self addSubview:_fontLable];
+    }
+    
+    return self;
+}
+
+- (id)initWithCoder:(NSCoder *)aDecoder
+{
+    self = [super initWithCoder:aDecoder];
+    if (self) {
+        // Initialization code
+        self.fontLable = [[[FontLabel alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)
+                                                  fontName:@"fzkatjw"
+                                                 pointSize:self.titleLabel.font.pointSize] autorelease];;
         _fontLable.backgroundColor = [UIColor clearColor];
         _fontLable.textAlignment = UITextAlignmentCenter;
         [self addSubview:_fontLable];

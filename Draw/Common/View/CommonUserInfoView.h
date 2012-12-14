@@ -36,6 +36,7 @@
 
 @property (retain, nonatomic) IBOutlet UIImageView *backgroundImageView;
 @property (retain, nonatomic) IBOutlet UILabel *coinsLabel;
+@property (retain, nonatomic) IBOutlet UIImageView *coinImageView;
 
 //use MyFriend as the model
 @property (retain, nonatomic) MyFriend* targetFriend;

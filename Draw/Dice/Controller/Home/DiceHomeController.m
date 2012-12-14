@@ -433,7 +433,7 @@
                                                        message:[DiceConfigManager coinsNotEnoughNoteWithRuleType:DiceGameRuleTypeRuleNormal]
                                                          style:CommonDialogStyleDoubleButton 
                                                       delegate:self 
-                                                         theme:CommonDialogThemeDice];
+                                           ];
     [dialog showInView:self.view];
 }
 

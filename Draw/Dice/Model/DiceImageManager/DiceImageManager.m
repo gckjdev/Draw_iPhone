@@ -496,33 +496,33 @@ static DiceImageManager *_defaultManager = nil;
 
 - (UIImage*)commonDialogBgImage
 {
-    return [UIImage strectchableImageName:@"dice_help_bg.png" leftCapWidth:50 topCapHeight:50];
+    return [UIImage strectchableImageName:@"dice_popup_bg.png"];
 }
 - (UIImage*)commonDialogLeftBtnImage
 {
-    return [UIImage imageNamed:@"dice_yellow_roy_button.png"];
+    return [UIImage strectchableImageName:@"dice_yellow_roy_button"];
 }
 - (UIImage*)commonDialogRightBtnImage
 {
-    return [UIImage imageNamed:@"dice_red_roy_button.png"];
+    return [UIImage strectchableImageName:@"dice_red_roy_button"];
 }
 
 - (UIImage *)inputDialogBgImage
 {
-    return [UIImage strectchableImageName:@"dice_input_bg.png" leftCapWidth:15 topCapHeight:15];
+    return [UIImage strectchableImageName:@"dice_help_bg"];
 }
 
 - (UIImage*)inputDialogInputBgImage
 {
-    return [UIImage strectchableImageName:@"input_text_bg.png"];
+    return [UIImage strectchableImageName:@"dice_input_bg"];
 }
 - (UIImage*)inputDialogLeftBtnImage
 {
-    return [UIImage imageNamed:@"dice_yellow_roy_button.png"];
+    return [UIImage strectchableImageName:@"dice_yellow_roy_button"];
 }
 - (UIImage*)inputDialogRightBtnImage
 {
-    return [UIImage imageNamed:@"dice_red_roy_button.png"];
+    return [UIImage strectchableImageName:@"dice_red_roy_button"];
 }
 
 - (UIImage *)audioOff
@@ -581,20 +581,20 @@ static DiceImageManager *_defaultManager = nil;
 
 - (UIImage *)roomListCreateRoomBtnBgImage
 {
-    return [UIImage imageNamed:@"dice_yellow_roy_button.png"];
+    return [UIImage strectchableImageName:@"dice_yellow_roy_button"];
 }
 - (UIImage *)roomListFastEntryBtnBgImage
 {
-    return [UIImage imageNamed:@"dice_green_roy_button.png"];
+    return [UIImage strectchableImageName:@"dice_green_roy_button"];
 }
 
 - (UIImage *)userInfoFollowBtnImage
 {
-    return [UIImage imageNamed:@"dice_red_roy_button.png"];
+    return [UIImage strectchableImageName:@"dice_red_roy_button"];
 }
 - (UIImage *)userInfoTalkBtnImage
 {
-    return [UIImage imageNamed:@"dice_yellow_roy_button.png"];
+    return [UIImage strectchableImageName:@"dice_yellow_roy_button"];
 }
 
 - (UIImage *)roomListBgImage
