@@ -192,7 +192,6 @@
 
 - (void)show
 {
-    [self initView];
     self.frame = self.superViewController.view.frame;
     [self.superViewController.view addSubview:self];
 }
@@ -208,6 +207,7 @@
     DiceUserInfoView *view = [DiceUserInfoView createUserInfoView];
     [view initWithFriend:afriend infoInView:superController];
     PPDebug(@"show friend = %@", afriend);
+    [view initView];
     [view show];
     view.chatButton.hidden = !canChat;
     if (needUpdate) {
