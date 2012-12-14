@@ -973,7 +973,6 @@
 		CA67B87115E89B09002050DB /* DrawGameApp.m in Sources */ = {isa = PBXBuildFile; fileRef = CA67B87015E89B09002050DB /* DrawGameApp.m */; };
 		CA67B87415E89B19002050DB /* DiceGameApp.m in Sources */ = {isa = PBXBuildFile; fileRef = CA67B87315E89B19002050DB /* DiceGameApp.m */; };
 		CA67B87715E89B2B002050DB /* DrawGameProApp.m in Sources */ = {isa = PBXBuildFile; fileRef = CA67B87615E89B2B002050DB /* DrawGameProApp.m */; };
-		CA67B87A15E89B42002050DB /* SweetCandyApp.m in Sources */ = {isa = PBXBuildFile; fileRef = CA67B87915E89B42002050DB /* SweetCandyApp.m */; };
 		CA67B87D15E89FB0002050DB /* GameApp.m in Sources */ = {isa = PBXBuildFile; fileRef = CA67B87C15E89FB0002050DB /* GameApp.m */; };
 		CA67B8A815EB2928002050DB /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA67B8A715EB2928002050DB /* MediaPlayer.framework */; };
 		CA67B8AA15EB292E002050DB /* EventKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA67B8A915EB292E002050DB /* EventKitUI.framework */; };
@@ -3634,8 +3633,6 @@
 		CA67B87315E89B19002050DB /* DiceGameApp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiceGameApp.m; sourceTree = "<group>"; };
 		CA67B87515E89B2B002050DB /* DrawGameProApp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawGameProApp.h; sourceTree = "<group>"; };
 		CA67B87615E89B2B002050DB /* DrawGameProApp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawGameProApp.m; sourceTree = "<group>"; };
-		CA67B87815E89B42002050DB /* SweetCandyApp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SweetCandyApp.h; sourceTree = "<group>"; };
-		CA67B87915E89B42002050DB /* SweetCandyApp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SweetCandyApp.m; sourceTree = "<group>"; };
 		CA67B87B15E89B65002050DB /* GameApp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameApp.h; sourceTree = "<group>"; };
 		CA67B87C15E89FB0002050DB /* GameApp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameApp.m; sourceTree = "<group>"; };
 		CA67B8A715EB2928002050DB /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
@@ -8288,8 +8285,6 @@
 				CA67B87615E89B2B002050DB /* DrawGameProApp.m */,
 				CA67B87215E89B19002050DB /* DiceGameApp.h */,
 				CA67B87315E89B19002050DB /* DiceGameApp.m */,
-				CA67B87815E89B42002050DB /* SweetCandyApp.h */,
-				CA67B87915E89B42002050DB /* SweetCandyApp.m */,
 				CA427056161FFEA900C6CCAE /* LocateFriendApp.h */,
 				CA427057161FFEA900C6CCAE /* LocateFriendApp.m */,
 				CA427059161FFEB800C6CCAE /* PrivateSMSApp.h */,
@@ -13196,7 +13191,6 @@
 				CA67B87115E89B09002050DB /* DrawGameApp.m in Sources */,
 				CA67B87415E89B19002050DB /* DiceGameApp.m in Sources */,
 				CA67B87715E89B2B002050DB /* DrawGameProApp.m in Sources */,
-				CA67B87A15E89B42002050DB /* SweetCandyApp.m in Sources */,
 				CA67B87D15E89FB0002050DB /* GameApp.m in Sources */,
 				CACF87A415EB4D2D003FA6B6 /* DiceSettingView.m in Sources */,
 				CAC25C3515EF0740007456FA /* BottomMenu.m in Sources */,
