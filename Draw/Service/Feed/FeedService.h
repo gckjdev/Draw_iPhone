@@ -50,9 +50,10 @@
                   resultCode:(NSInteger)resultCode;
 
 - (void)didGetFeed:(DrawFeed *)feed 
-        resultCode:(NSInteger)resultCode;
+        resultCode:(NSInteger)resultCode
+         fromCache:(BOOL)fromCache;
 
-- (void)didUpdateFeedTimes:(DrawFeed *)feed 
+- (void)didUpdateFeedTimes:(DrawFeed *)feed
                 resultCode:(NSInteger)resultCode;
 
 - (void)didGetMyCommentList:(NSArray *)commentList resultCode:(NSInteger)resultCode;

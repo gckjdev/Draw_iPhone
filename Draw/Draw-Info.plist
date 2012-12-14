@@ -16,7 +16,7 @@
 		<string>new_icon_ipad2.png</string>
 	</array>
 	<key>CFBundleIdentifier</key>
-	<string>com.orange.zhajinhua</string>
+	<string>com.orange.draw</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
@@ -75,9 +75,9 @@
 		<string>UIInterfaceOrientationPortrait</string>
 		<string>UIInterfaceOrientationPortraitUpsideDown</string>
 	</array>
-	<key>UILaunchImageFile</key>
+	<key>Launch image DICE</key>
 	<string>DiceDefault</string>
-	<key>Launch image Draw</key>
+	<key>UILaunchImageFile</key>
 	<string>Default</string>
 	<key>Icon files DICE</key>
 	<array>

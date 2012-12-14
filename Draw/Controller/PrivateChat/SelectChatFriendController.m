@@ -20,8 +20,8 @@
 @property (retain, nonatomic) NSArray *myFanList;
 
 - (IBAction)clickCancel:(id)sender;
-- (void)loadMyFollow;
-- (void)loadMyFans;
+//- (void)loadMyFollow;
+//- (void)loadMyFans;
 - (void)updateFriendsCount;
 - (void)updateFriendsListFromLocal;
 - (void)setAndReloadData:(NSArray *)newDataList;
@@ -79,6 +79,7 @@
     
 }
 
+/*
 - (void)loadMyFollow
 {
     static dispatch_once_t onceToken;
@@ -101,6 +102,7 @@
     
 
 }
+*/
 
 
 - (void)didfindFriendsByType:(int)type friendList:(NSArray *)friendList result:(int)resultCode

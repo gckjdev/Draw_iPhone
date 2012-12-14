@@ -39,7 +39,7 @@
 
 #import "OfflineGuessDrawController.h"
 #import "SelectWordController.h"
-
+#import "UseItemScene.h"
 
 #import "ChatListController.h"
 #import "LevelService.h"
@@ -78,7 +78,7 @@
 }
 - (void)playBackgroundMusic;
 - (void)enterNextControllerWityType:(NotificationType) type;
-- (void)updateBoardPanelWithBoards:(NSArray *)boards;
+//- (void)updateBoardPanelWithBoards:(NSArray *)boards;
 @end
 
 @implementation HomeController
@@ -546,7 +546,7 @@
     }
 }
 
-+ (void)startOfflineGuessDraw:(Feed *)feed from:(UIViewController *)viewController
++ (void)startOfflineGuessDraw:(DrawFeed *)feed from:(UIViewController *)viewController
 {
     
     if (viewController) {        
@@ -728,7 +728,9 @@
         [self toRegister];
         return;
     }
-    ShowFeedController *sf = [[ShowFeedController alloc] initWithFeed:drawFeed];
+    UseItemScene *scene = [UseItemScene createSceneByType:UseSceneTypeShowFeedDetail feed:drawFeed];
+    ShowFeedController *sf = [[ShowFeedController alloc] initWithFeed:drawFeed
+                                                                scene:scene];
     [self.navigationController pushViewController:sf animated:YES];
     [sf release];
 }

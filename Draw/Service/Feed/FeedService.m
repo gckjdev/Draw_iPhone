@@ -308,9 +308,11 @@ static FeedService *_staticFeedService = nil;
         
         //send back to delegate
         dispatch_async(dispatch_get_main_queue(), ^{
-            if (delegate && [delegate respondsToSelector:@selector(didGetFeed:resultCode:)]) {
-                [delegate didGetFeed:(DrawFeed *)feed resultCode:resultCode];
-            }           
+            if (delegate && [delegate respondsToSelector:@selector(didGetFeed:resultCode:fromCache:)]) {
+                [delegate didGetFeed:(DrawFeed *)feed
+                          resultCode:resultCode
+                           fromCache:!loadRemoteData];
+            }
         });
         //save feed
         if (loadRemoteData) {

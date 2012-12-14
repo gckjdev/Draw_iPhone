@@ -22,7 +22,7 @@
 
 #define SHOW_COMMENT_COUNT 3
 
-#define KEY_COMMENT @"ACTION_ID"
+#define FEED_KEY_COMMENT @"ACTION_ID"
 #define KEY_COMMENT_INFO @"COMMENT_INFO"
 #define KEY_OPUS_ID @"OPUS_ID"
 #define KEY_OPUS_CREATOR @"ACTION_UID"
@@ -30,7 +30,7 @@
 - (void)encodeWithCoder:(NSCoder *)aCoder
 {
     [self encodeWithCoder:aCoder];
-    [aCoder encodeObject:_comment forKey:KEY_COMMENT];
+    [aCoder encodeObject:_comment forKey:FEED_KEY_COMMENT];
     [aCoder encodeObject:_commentInfo forKey:KEY_COMMENT_INFO];
     [aCoder encodeObject:self.opusId forKey:KEY_OPUS_ID];
     [aCoder encodeObject:self.opusCreator forKey:KEY_OPUS_CREATOR];
@@ -40,7 +40,7 @@
 {
     self = [self initWithCoder:aDecoder];
     if (self) {
-        self.comment = [aDecoder decodeObjectForKey:KEY_COMMENT];
+        self.comment = [aDecoder decodeObjectForKey:FEED_KEY_COMMENT];
         self.commentInfo = [aDecoder decodeObjectForKey:KEY_COMMENT_INFO];
         self.opusId = [aDecoder decodeObjectForKey:KEY_OPUS_ID];
         self.opusCreator = [aDecoder decodeObjectForKey:KEY_OPUS_CREATOR];

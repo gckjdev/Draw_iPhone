@@ -391,12 +391,12 @@
 
 #pragma mark -alert view delegate
 
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+- (void)alertView:(UIAlertView *)theAlertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     if (buttonIndex == 1) {
-        if (alertView.tag == ALERT_CLEAR_IMAGE_TAG) {
+        if (theAlertView.tag == ALERT_CLEAR_IMAGE_TAG) {
             [self startToDraw];
-        }else if(alertView.tag == ALERT_CLEAR_DRAW_TAG){
+        }else if(theAlertView.tag == ALERT_CLEAR_DRAW_TAG){
             [self startToSelectImage];
         }
     }

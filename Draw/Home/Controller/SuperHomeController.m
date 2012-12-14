@@ -105,7 +105,7 @@
     [super viewDidAppear:animated];
     [self.homeMainMenuPanel animatePageButtons];
     [self.homeHeaderPanel updateView];
-    [self updateAllBadge];
+    [[UserService defaultService] getStatistic:self];
 }
 
 - (void)viewDidUnload
