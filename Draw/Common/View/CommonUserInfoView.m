@@ -49,6 +49,7 @@
     [_genderImageView release];
     [_coinsLabel release];
     [_avatarView release];
+    [_coinImageView release];
     [super dealloc];
 }
 
@@ -115,6 +116,7 @@
 - (void)initBalance
 {
     [self.coinsLabel setText:[NSString stringWithFormat:@" x%ld", _targetFriend.coins]];
+    [self.coinImageView setHidden:NO];
 }
 
 - (void)initSNSInfo
@@ -161,6 +163,7 @@
     [self initAvatar];
     [self initFollowStatus];
     [self initBalance];
+    [self.contentView sendSubviewToBack:self.backgroundImageView];
 }
 
 - (void)initView:(BOOL)canChat
@@ -170,6 +173,13 @@
     [self.chatToUserButton setBackgroundImage:[[GameApp getImageManager] userInfoTalkBtnImage] forState:UIControlStateNormal];
     [self.chatToUserButton setTitle:NSLS(@"kChatToHim") forState:UIControlStateNormal];
     [self.chatToUserButton setHidden:!canChat];
+    [self.userName setText:NSLS(@"kQuerying")];
+    
+    [self.contentView bringSubviewToFront:self.backgroundImageView];
+    [self.contentView bringSubviewToFront:self.avatarView];
+    [self.contentView bringSubviewToFront:self.userName];
+    
+    
 }
 
 + (CommonUserInfoView*)createUserInfoView
@@ -304,6 +314,7 @@
         self.targetFriend = user;
         [self updateUserInfoView];
     }
+    
 }
 
 @end
