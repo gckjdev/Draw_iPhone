@@ -748,7 +748,12 @@
     [self performSelector:@selector(showAllUserGameResult) withObject:nil afterDelay:3.0];
     [self performSelector:@selector(resetGame) withObject:nil afterDelay:9.0];
 
-    [_levelService addExp:10 delegate:self];
+    [_levelService addExp:[ConfigManager getZhajinhuaExp] delegate:self];
+}
+
+- (void)levelUp:(int)newLevel
+{
+    PPDebug(@"Level Up to %d level", newLevel);
 }
 
 - (void)resetGame
