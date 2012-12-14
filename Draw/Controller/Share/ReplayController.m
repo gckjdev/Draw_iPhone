@@ -118,7 +118,7 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    MyPaint* currentPaint = self.paint;
+//    MyPaint* currentPaint = self.paint;
 
 //    NSArray* drawActionList = (NSArray*)currentData;
     

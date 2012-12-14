@@ -59,7 +59,7 @@
         self.avatar = pbDraw.avatar;
         self.languageType = pbDraw.language;
         self.date = [NSDate dateWithTimeIntervalSince1970: pbDraw.createDate];
-        self.drawActionList = [self drawActionListFromPBActions:pbDraw.drawDataList];
+        self.drawActionList = [NSMutableArray arrayWithArray:[self drawActionListFromPBActions:pbDraw.drawDataList]];
     }
     return self;
 }
@@ -75,7 +75,7 @@
     if (self) {
         self.userId = userId;
         self.nickName = nickName;
-        self.drawActionList = drawActionList;
+        self.drawActionList = [NSMutableArray arrayWithArray:drawActionList];
         self.word = word;
         self.date = date;
         self.avatar = avatar;

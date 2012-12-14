@@ -371,13 +371,13 @@ CGRect CGRectFrom(CGPoint origin, CGSize size){
 
 - (void)setCellWithMessageStat:(MessageStat *)messageStat
                        message:(PPMessage *)message 
-                     indexPath:(NSIndexPath *)indexPath 
+                     indexPath:(NSIndexPath *)theIndexPath
                       showTime:(BOOL)showTime
 {
     self.messageStat = messageStat;
     self.message = message;
     self.showTime = showTime;
-    self.indexPath = indexPath;
+    self.indexPath = theIndexPath;
     
     //adjust time label and content
     [self.timeButton setHidden:!showTime];
