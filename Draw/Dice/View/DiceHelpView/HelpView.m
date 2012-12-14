@@ -77,8 +77,8 @@
     indicator.hidesWhenStopped = YES;
     [indicator setActivityIndicatorViewStyle:UIActivityIndicatorViewStyleGray];
     
-    [self.gameRulesButton.fontLable setText:NSLS(@"kDiceGameRules")];
-    [self.itemsUsageButton.fontLable setText:NSLS(@"kDicePropDescription")];
+    [self.gameRulesButton setTitle:NSLS(@"kDiceGameRules") forState:UIControlStateNormal];
+    [self.itemsUsageButton setTitle:NSLS(@"kDicePropDescription") forState:UIControlStateNormal];
     
     [self loadHtmlFile:[_helpManager gameRulesHtmlFilePath]];
 }

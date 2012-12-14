@@ -10,6 +10,8 @@
 #import "DiceFontManager.h"
 #import "HKGirlFontLabel.h"
 
+#define DEFAULT_FONT    ([DeviceDetection isIPAD]?32:16)
+
 @implementation FontButton
 
 @synthesize fontLable = _fontLable;
@@ -43,8 +45,8 @@
     if (self) {
         // Initialization code
         self.fontLable = [[[FontLabel alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)
-                                                  fontName:@"fzkatjw"
-                                                 pointSize:self.titleLabel.font.pointSize] autorelease];;
+                                                  fontName:[[DiceFontManager defaultManager] fontName]
+                                                 pointSize:DEFAULT_FONT] autorelease];;
         _fontLable.backgroundColor = [UIColor clearColor];
         _fontLable.textAlignment = UITextAlignmentCenter;
         [self addSubview:_fontLable];
