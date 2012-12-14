@@ -16,5 +16,44 @@
          landmarkName = "-didReceiveGuessWord:guessUserId:guessCorrect:gainCoins:"
          landmarkType = "5">
       </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "../Common_iPhone_20/Core/Core-3PP/AsyncSocket/GCDAsyncSocket.m"
+         timestampString = "377164461.925716"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "2706"
+         endingLineNumber = "2706"
+         landmarkName = "-maybeClose"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "../Common_iPhone_20/Core/Core-3PP/AsyncSocket/GCDAsyncSocket.m"
+         timestampString = "377165941.185205"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "1255"
+         endingLineNumber = "1255"
+         landmarkName = "-acceptOnInterface:port:error:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "../Common_iPhone_20/Core/Core-3PP/AsyncSocket/GCDAsyncSocket.m"
+         timestampString = "377165946.866467"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "1250"
+         endingLineNumber = "1250"
+         landmarkName = "-acceptOnPort:error:"
+         landmarkType = "5">
+      </FileBreakpoint>
    </FileBreakpoints>
 </Bucket>
