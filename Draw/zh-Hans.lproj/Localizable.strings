@@ -570,6 +570,7 @@
 "kSubmitSuccTitle" = "提交成功";
 "kSubmitSuccMsg" = "恭喜！提交成功！再来一幅？";
 
+"kContestEnd" = "很抱歉，比赛已经结束，不能再提交作品了。";
 "kContestSubmitSuccMsg" = "谢谢您的参与，还可以提交%d幅作品，再来一幅？";
 "kContestSubmitSuccQuitMsg" = "谢谢您的参与！";
 

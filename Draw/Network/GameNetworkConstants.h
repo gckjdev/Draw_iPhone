@@ -563,6 +563,9 @@
 #define ERROR_BBS_TEXT_TOO_FREQUENT     30003
 #define ERROR_BBS_POST_SUPPORT_TIMES_LIMIT 30004
 
+//contest
+#define ERROR_CONTEST_END               110004
+
 #define REJECT_ASK_LOCATION             1
 #define ACCEPT_ASK_LOCATION             0
 
