@@ -76,7 +76,7 @@
                            title:nil
                         forState:UIControlStateNormal];
     [self.badge setUserInteractionEnabled:NO];
-    
+    [self.badge setHidden:YES];
     //back ground
     [self.bgImageView setImage:[_bbsImageManager bbsBGImage]];
 }
