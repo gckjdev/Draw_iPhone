@@ -87,23 +87,8 @@
 
 - (void)updateTime:(DrawFeed *)feed
 {
-    NSString *timeString = nil;
-    
-    if ([LocaleUtils isChinese]) {
-        timeString = chineseBeforeTime(feed.createDate);
-    } else {
-        timeString = englishBeforeTime(feed.createDate);
-    }
-    
-    if (timeString) {
-        [self.timeLabel setText:timeString];
-    }else {
-        NSString *formate = @"yy-MM-dd HH:mm";
-        timeString = dateToStringByFormat(feed.createDate, formate);
-        [self.timeLabel setText:timeString];
-    }
-    
-    
+    NSString *timeString = dateToTimeLineString(feed.createDate);
+    [self.timeLabel setText:timeString];    
 }
 
 
@@ -222,7 +207,7 @@
         }
         self.feed.pbDraw = feed.pbDraw;
         self.feed.feedUser = feed.feedUser;
-            
+        self.feed.createDate = feed.createDate;
         [self updateShowView:feed];
         [self updateTime:feed];
         [self updateDrawToUserInfo:feed];
