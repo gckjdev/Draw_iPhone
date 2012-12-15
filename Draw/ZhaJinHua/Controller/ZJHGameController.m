@@ -1245,8 +1245,10 @@
 - (void)reciprocalEnd:(ZJHAvatarView*)view
 {
     PPDebug(@"################# [controller: %@] TIME OUT: auto fold ##################", [self description]);
-    if ([_userManager isMe:view.userInfo.userId])
-    [self clickFoldCardButton:nil];
+    if ([_userManager isMe:view.userInfo.userId]) {
+        [self clickFoldCardButton:nil];
+        [self setAllPlayerNotComparing];
+    }
 }
 
 #pragma mark - poker view protocol

@@ -28,7 +28,8 @@ int main(int argc, char *argv[])
  － 修改URL Scheme
  － 修改Icon
  － 修改CFChannelID
- 
+ - 修改Launch image
+
  Resource
  － 删除Resource文件
  
