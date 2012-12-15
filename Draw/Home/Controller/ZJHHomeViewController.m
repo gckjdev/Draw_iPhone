@@ -93,6 +93,7 @@ ZJHHomeViewController *_staticZJHHomeViewController = nil;
         
         if (![_gameService isConnected]) {
                 [self.navigationController popToRootViewControllerAnimated:YES];
+                [_gameService reset];
                 [self popupUnhappyMessage:NSLS(@"kNetworkBroken") title:@""];
         }
     }];
@@ -336,6 +337,7 @@ ZJHHomeViewController *_staticZJHHomeViewController = nil;
     
     if (error != nil) {
         [self.navigationController popToRootViewControllerAnimated:YES];
+        [_gameService reset];
         [self popupUnhappyMessage:NSLS(@"kNetworkBroken") title:@""];
     }
 }
