@@ -559,10 +559,10 @@ static ZJHGameService *_defaultService;
 //    PPDebug(@"compareAward: %d", );
 //    PPDebug(@"resultAward: %d", );
     
-    int balance = [[self.userSimpleInfo valueForKey:userId] coins] - [[self userPlayInfo:userId] totalBet] + [[self userPlayInfo:userId] compareAward] + [[self userPlayInfo:userId] resultAward];
+    int balance = [[self.userSimpleInfo objectForKey:userId] coins] - [[self userPlayInfo:userId] totalBet] + [[self userPlayInfo:userId] compareAward] + [[self userPlayInfo:userId] resultAward];
     
     PPDebug(@"user: %@", userId);
-    PPDebug(@"coins(%d) - totalBet(%d) + compareAward(%d) + resultAward(%d) = %d", [[self.userSimpleInfo valueForKey:userId] coins], [[self userPlayInfo:userId] totalBet], [[self userPlayInfo:userId] compareAward], [[self userPlayInfo:userId] resultAward], balance);
+    PPDebug(@"coins(%d) - totalBet(%d) + compareAward(%d) + resultAward(%d) = %d", [[self.userSimpleInfo objectForKey:userId] coins], [[self userPlayInfo:userId] totalBet], [[self userPlayInfo:userId] compareAward], [[self userPlayInfo:userId] resultAward], balance);
     
     if (balance < 0) {
         return 0;
@@ -576,7 +576,7 @@ static ZJHGameService *_defaultService;
         return -1;
     }
         
-    return [[self.userSimpleInfo valueForKey:userId] level];
+    return [[self.userSimpleInfo objectForKey:userId] level];
 }
 
 - (NSArray *)compareUserIdList

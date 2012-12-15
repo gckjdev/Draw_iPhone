@@ -68,18 +68,5 @@
          landmarkName = "CFReadStreamCallback()"
          landmarkType = "7">
       </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "Yes"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "../Common_iPhone_20/Core/Core-3PP/AsyncSocket/GCDAsyncSocket.m"
-         timestampString = "377171615.104032"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "6436"
-         endingLineNumber = "6436"
-         landmarkName = "CFWriteStreamCallback()"
-         landmarkType = "7">
-      </FileBreakpoint>
    </FileBreakpoints>
 </Bucket>

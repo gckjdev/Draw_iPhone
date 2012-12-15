@@ -12,10 +12,6 @@
 
 - (void)dealloc
 {
-    [_avatar release];
-    [_pokersView release];
-    [_totalBetLabel release];
-    [_totalBetBg release];
     [super dealloc];
 }
 
