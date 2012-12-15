@@ -181,7 +181,7 @@ CGRect CGRectFrom(CGPoint origin, CGSize size){
     //create the image once...
     [self.showDrawView removeFromSuperview];
     CGRect frame = self.showDrawView.frame;
-    self.showDrawView = [[ShowDrawView alloc] initWithFrame:frame];
+    self.showDrawView = [[[ShowDrawView alloc] initWithFrame:frame] autorelease];
     [self addSubview:self.showDrawView];
 
     if (!message.thumbImage) {

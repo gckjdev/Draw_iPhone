@@ -48,13 +48,13 @@
                          totalBetLabel:(UILabel *)totalBetLabel
                             totalBetBg:(UIImageView *)totalBetBg;
 {
-    return [[ZJHUserPosInfo alloc] initWithPos:pos
+    return [[[ZJHUserPosInfo alloc] initWithPos:pos
                                         avatar:avatar
                                     pokersView:pokersView
                                      pokerSize:pokerSize
                                            gap:gap
                                  totalBetLabel:totalBetLabel
-                                    totalBetBg:totalBetBg];
+                                    totalBetBg:totalBetBg] autorelease];
 }
 
 

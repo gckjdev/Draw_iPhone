@@ -10369,8 +10369,8 @@
 					armv7,
 					armv6,
 				);
-				CODE_SIGN_IDENTITY = "iPhone Developer: Lingzhe Peng (9WG829Y3AG)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Lingzhe Peng (9WG829Y3AG)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Lingzhe Peng";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Lingzhe Peng";
 				COMPRESS_PNG_FILES = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -10384,8 +10384,8 @@
 					"../Common_iPhone_20/3PP-SDK/QWeiboSDK4iOS/**",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
-				PROVISIONING_PROFILE = "C6C82094-8927-4F4C-BB3D-30CD005F209D";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "C6C82094-8927-4F4C-BB3D-30CD005F209D";
+				PROVISIONING_PROFILE = "1F663AF0-A956-4FB2-B213-7040F013FE0B";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "1F663AF0-A956-4FB2-B213-7040F013FE0B";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -10398,8 +10398,8 @@
 					armv7,
 					armv6,
 				);
-				CODE_SIGN_IDENTITY = "iPhone Developer: Lingzhe Peng (9WG829Y3AG)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Lingzhe Peng (9WG829Y3AG)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Lingzhe Peng";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Lingzhe Peng";
 				COMPRESS_PNG_FILES = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_VERSION = "";
@@ -10411,8 +10411,8 @@
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
-				PROVISIONING_PROFILE = "C6C82094-8927-4F4C-BB3D-30CD005F209D";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "C6C82094-8927-4F4C-BB3D-30CD005F209D";
+				PROVISIONING_PROFILE = "1F663AF0-A956-4FB2-B213-7040F013FE0B";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "1F663AF0-A956-4FB2-B213-7040F013FE0B";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -10422,8 +10422,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Lingzhe Peng (9WG829Y3AG)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Lingzhe Peng (9WG829Y3AG)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Lingzhe Peng";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Lingzhe Peng";
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -10476,8 +10476,8 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "C6C82094-8927-4F4C-BB3D-30CD005F209D";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "C6C82094-8927-4F4C-BB3D-30CD005F209D";
+				PROVISIONING_PROFILE = "1F663AF0-A956-4FB2-B213-7040F013FE0B";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "1F663AF0-A956-4FB2-B213-7040F013FE0B";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -10486,8 +10486,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Lingzhe Peng (9WG829Y3AG)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Lingzhe Peng (9WG829Y3AG)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Lingzhe Peng";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Lingzhe Peng";
 				COPY_PHASE_STRIP = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -10539,8 +10539,8 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "C6C82094-8927-4F4C-BB3D-30CD005F209D";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "C6C82094-8927-4F4C-BB3D-30CD005F209D";
+				PROVISIONING_PROFILE = "1F663AF0-A956-4FB2-B213-7040F013FE0B";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "1F663AF0-A956-4FB2-B213-7040F013FE0B";
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;
 			};

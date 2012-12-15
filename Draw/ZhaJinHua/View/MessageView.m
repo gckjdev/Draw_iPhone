@@ -67,12 +67,12 @@ typedef struct{
                      bgImage:(UIImage*)bgImage
                          pos:(UserPosition)pos
 {
-    return [[MessageView alloc] initWithChatMessage:message
+    return [[[MessageView alloc] initWithChatMessage:message
                                                font:font
                                           textColor:textColor
                                       textAlignment:textAlignment
                                             bgImage:bgImage
-                                                pos:pos];
+                                                pos:pos] autorelease];
 }
 
 
