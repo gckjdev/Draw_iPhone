@@ -77,7 +77,7 @@
 	</array>
 	<key>Launch image DICE</key>
 	<string>DiceDefault</string>
-	<key>Launch image ZJH</key>
+	<key>UILaunchImageFile</key>
 	<string>ZJHDefault</string>
 	<key>CFBundleIconFiles</key>
 	<array>

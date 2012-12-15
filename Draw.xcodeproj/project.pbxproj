@@ -302,6 +302,7 @@
 		A4B7640A15C28F8E003B4E72 /* DiceGameService.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B763FE15C28F8E003B4E72 /* DiceGameService.m */; };
 		A4B7640B15C28F8E003B4E72 /* DiceNetworkClient.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B7640015C28F8E003B4E72 /* DiceNetworkClient.m */; };
 		A4B7648C15C382D6003B4E72 /* DiceImageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B7648B15C382D6003B4E72 /* DiceImageManager.m */; };
+		A4B93911167C539D00401E9C /* waiting_user@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4B93910167C539D00401E9C /* waiting_user@2x.png */; };
 		A4BE1E7016567D9000406B98 /* RoomTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4BE1E6F16567D9000406B98 /* RoomTitleView.m */; };
 		A4BE1E7216567DC500406B98 /* RoomTitleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4BE1E7116567DC400406B98 /* RoomTitleView.xib */; };
 		A4BE1E761656847100406B98 /* RoomTitleView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4BE1E751656847000406B98 /* RoomTitleView~ipad.xib */; };
@@ -1834,6 +1835,7 @@
 		A4B7640015C28F8E003B4E72 /* DiceNetworkClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiceNetworkClient.m; sourceTree = "<group>"; };
 		A4B7648A15C382D6003B4E72 /* DiceImageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiceImageManager.h; sourceTree = "<group>"; };
 		A4B7648B15C382D6003B4E72 /* DiceImageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiceImageManager.m; sourceTree = "<group>"; };
+		A4B93910167C539D00401E9C /* waiting_user@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "waiting_user@2x.png"; sourceTree = "<group>"; };
 		A4BE1E6E16567D8E00406B98 /* RoomTitleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoomTitleView.h; sourceTree = "<group>"; };
 		A4BE1E6F16567D9000406B98 /* RoomTitleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoomTitleView.m; sourceTree = "<group>"; };
 		A4BE1E7116567DC400406B98 /* RoomTitleView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RoomTitleView.xib; sourceTree = "<group>"; };
@@ -8606,6 +8608,7 @@
 		EA856C3315F0A65700178323 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				A4B93910167C539D00401E9C /* waiting_user@2x.png */,
 				CA9D72C0167885C30075CF93 /* dialogue@2x.png */,
 				CA1260F216785F0C00DD96F4 /* HomePage */,
 				A4CCE72D16771A6D00F90726 /* exps */,
@@ -9553,6 +9556,7 @@
 				A4C36D98167C4DEF00117CD9 /* ZJHDefault-568h@2x.png in Resources */,
 				A4C36D9C167C4EDF00117CD9 /* ZJHDefault@2x.png in Resources */,
 				A4C36DA0167C4EF700117CD9 /* ZJHDefault~ipad@2x.png in Resources */,
+				A4B93911167C539D00401E9C /* waiting_user@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

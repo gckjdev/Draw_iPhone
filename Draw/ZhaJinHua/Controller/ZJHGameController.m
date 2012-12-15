@@ -1258,6 +1258,11 @@
     if (zjhPokersView != [self getMyPokersView]) {
         return;
     }
+    
+    if (![_gameService isGamePlaying]) {
+        return;
+    }
+    
     [[self getMyPokersView] dismissButtons];
     pokerView.buttonsIsPopup ? [pokerView dismissButtons] : [pokerView popupButtons:[_ruleConfig createButtons:pokerView]  InView:self.view];
 }
