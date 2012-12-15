@@ -8,7 +8,7 @@
 	<string>${PRODUCT_NAME}</string>
 	<key>CFBundleExecutable</key>
 	<string>${EXECUTABLE_NAME}</string>
-	<key>CFBundleIconFiles</key>
+	<key>Icon files Draw</key>
 	<array>
 		<string>new_icon.png</string>
 		<string>new_icon@2x.png</string>
@@ -24,7 +24,7 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>6.0</string>
+	<string>1.0</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleURLTypes</key>
@@ -50,7 +50,7 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>6.0</string>
+	<string>1.0</string>
 	<key>CFChannelId</key>
 	<string>App Store</string>
 	<key>CFWordBaseVersion</key>
@@ -77,7 +77,18 @@
 	</array>
 	<key>Launch image DICE</key>
 	<string>DiceDefault</string>
-	<key>UILaunchImageFile</key>
+	<key>Launch image ZJH</key>
+	<string>ZJHDefault</string>
+	<key>CFBundleIconFiles</key>
+	<array>
+		<string>zjh_icon_57.png</string>
+		<string>zjh_icon_57@2x.png</string>
+		<string>zjh_icon_50.png</string>
+		<string>zjh_icon_72.png</string>
+	</array>
+	<key>LSApplicationCategoryType</key>
+	<string></string>
+	<key>Launch image Draw</key>
 	<string>Default</string>
 	<key>Icon files DICE</key>
 	<array>
