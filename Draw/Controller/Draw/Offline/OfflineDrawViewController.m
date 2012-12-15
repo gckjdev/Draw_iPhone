@@ -43,6 +43,7 @@
 #import "ShareController.h"
 #import "Contest.h"
 #import "ContestController.h"
+#import "GameNetworkConstants.h"
 
 @interface OfflineDrawViewController()
 {
@@ -211,6 +212,10 @@
         if ([draft.targetUserId length] != 0) {
             self.targetUid = [NSString stringWithFormat:@"%@",draft.targetUserId];    
         }
+        if ([draft.contestId length] != 0) {
+            self.contest = [[[Contest alloc] init] autorelease];
+            [self.contest setContestId:draft.contestId];
+        }
         
         PPDebug(@"draft word lelve = %@, language = %@", draft.level,draft.language);
     }
@@ -375,7 +380,7 @@ enum{
 
 - (void)initDraftButton
 {
-    if (targetType == TypeGraffiti || targetType == TypeContest) {
+    if (targetType == TypeGraffiti) {
         self.draftButton.hidden = YES;
     }
 }
@@ -764,6 +769,8 @@ enum{
             self.draft = nil;
         }
         
+    }else if(resultCode == ERROR_CONTEST_END){
+        [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kContestEnd") delayTime:1.5 isSuccessful:NO];
     }else{
         [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kSubmitFailure") delayTime:1.5 isSuccessful:NO];
     }
@@ -794,7 +801,7 @@ enum{
 
 - (void)saveDraft:(BOOL)showResult
 {
-    if (targetType == TypeGraffiti || targetType == TypeContest) {
+    if (targetType == TypeGraffiti) {
         return;
     }
     PPDebug(@"<OfflineDrawViewController> start to save draft. show result = %d",showResult);

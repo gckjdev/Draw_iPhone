@@ -17,7 +17,8 @@
                                   appId:(NSString*)appId
                                  userId:(NSString*)userId
                              deviceType:(int)deviceType
-                                 gameId:(NSString *)gameId;
+                                 gameId:(NSString *)gameId
+                               language:(int)language;
 
 
 #pragma mark - post methods

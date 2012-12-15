@@ -557,6 +557,8 @@
 "kContestSubmitSuccMsg" = "Thank you for your participation, you can submit other %d works, one more?";
 "kContestSubmitSuccQuitMsg" = "Thank you for your participation!";
 
+"kContestEnd" = "The contest is end, fail to submit.";
+
 "kContestNotRunning" = "Sorry, the contest is not running now.";
 "kContesSummitCountEnough" = "Sorry. You can only summit %d opus to one contest";
 //"kDedutCoinChangeOpusAlertMessage" = "If you change the opus, the system will deduct 1 coin.";
