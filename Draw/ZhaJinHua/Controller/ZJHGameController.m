@@ -573,7 +573,7 @@
 
 - (IBAction)clickQuitButton:(id)sender
 {
-    if (![_gameService.session isMeStandBy] && ([_gameService.session isGamePlaying])) {
+    if (![_gameService canIQuitGameDirectly]) {
         CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kQuitGameAlertTitle")
                                                            message:NSLS(@"kZJHQuitGameAlertMessage")
                                                              style:CommonDialogStyleDoubleButton

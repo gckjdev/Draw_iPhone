@@ -240,6 +240,10 @@ ZJHHomeViewController *_staticZJHHomeViewController = nil;
                    menuType:(HomeMenuType)type
 {
     PPDebug(@"<homeBottomMenuPanel>, click type = %d", type);
+    if (![self isRegistered]) {
+        [self toRegister];
+        return;
+    }
     
     switch (type) {
             //For Bottom Menus
