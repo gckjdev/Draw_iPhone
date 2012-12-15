@@ -27,7 +27,7 @@
 	<string>6.0</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
-	<key>URL types DICE</key>
+	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
 			<key>CFBundleURLSchemes</key>
@@ -37,7 +37,7 @@
 			</array>
 		</dict>
 	</array>
-	<key>CFBundleURLTypes</key>
+	<key>URL types DRAW</key>
 	<array>
 		<dict>
 			<key>CFBundleURLSchemes</key>
