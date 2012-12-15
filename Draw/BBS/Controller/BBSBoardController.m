@@ -11,7 +11,7 @@
 #import "CreatePostController.h"
 #import "BBSPostListController.h"
 #import "BBSActionListController.h"
-//#import "BBSViewManager.h"
+#import "StatisticManager.h"
 
 @interface BBSBoardController ()
 {
@@ -83,9 +83,9 @@
 
 - (void)updateBadge
 {
-    int number = 0;
+    long number = [[StatisticManager defaultManager] bbsActionCount];
     if (number > 0 ) {
-        [self.badge setTitle:[NSString stringWithFormat:@"%d",number] forState:UIControlStateNormal];
+        [self.badge setTitle:[NSString stringWithFormat:@"%ld",number] forState:UIControlStateNormal];
         self.badge.hidden = NO;
     }else{
         [self.badge setTitle:nil forState:UIControlStateNormal];
@@ -93,11 +93,16 @@
     }
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [self updateBadge];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     [self initViews];
-    [self updateBadge];
     [[BBSService defaultService] getBBSBoardList:self];
     if ([[[BBSManager defaultManager] boardList] count] != 0) {
         [self showActivityWithText:NSLS(@"kLoading")];
@@ -121,6 +126,7 @@
 }
 
 - (IBAction)clickMyAction:(id)sender {
+    [[StatisticManager defaultManager] setBbsActionCount:0];
     [BBSActionListController enterActionListControllerFromController:self animated:YES];
 }
 

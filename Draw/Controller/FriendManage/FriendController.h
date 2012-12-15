@@ -42,6 +42,7 @@ typedef enum{
 @property (retain, nonatomic) IBOutlet UIButton *editButton;
 @property (retain, nonatomic) IBOutlet UIButton *searchUserButton;
 @property (retain, nonatomic) IBOutlet UIButton *inviteButton;
+@property (retain, nonatomic) IBOutlet UIButton *newFanNumber;
 
 
 //invite a set of friends;

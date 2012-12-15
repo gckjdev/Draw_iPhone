@@ -12,8 +12,6 @@
 #import "AccountService.h"
 #import "UserService.h"
 
-
-
 @interface ZJHGameService : CommonGameNetworkService <AccountServiceDelegate, UserServiceDelegate>
 
 @property (readonly, retain, nonatomic) ZJHGameState *gameState;
@@ -64,6 +62,7 @@
 
 - (NSArray *)compareUserIdList;
 
+- (BOOL)canIQuitGameDirectly;
 //- (NSString *)getRoomName;
 
 - (void)chargeAccount:(int)amount

@@ -301,11 +301,15 @@ BBSService *_staticBBSService;
         NSString *userId = [[UserManager defaultManager] userId];
         NSString *appId = [ConfigManager appId];
         NSString *gameId = [ConfigManager gameId];
+        
+        LanguageType lang = [[UserManager defaultManager] getLanguageType];
+        
         CommonNetworkOutput *output = [BBSNetwork getBBSBoardList:TRAFFIC_SERVER_URL
                                                             appId:appId
                                                            userId:userId
                                                        deviceType:1
-                                                           gameId:gameId];
+                                                           gameId:gameId
+                                                         language:lang];
         NSInteger resultCode = [output resultCode];
         NSArray *list = nil;
         @try {

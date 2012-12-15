@@ -90,7 +90,7 @@
 #define METHOD_SEARCHUSER @"su"
 #define METHOD_FOLLOWUSER @"fu"
 #define METHOD_UNFOLLOWUSER @"ufu"
-
+#define METHOD_GET_RELATION_COUNT @"grc"
 
 //game method
 #define METHOD_FETCH_SHOPPING_LIST @"gpri"
@@ -428,7 +428,7 @@
 #define PARA_FEED_COUNT @"fec"
 #define PARA_COMMENT_COUNT @"comc"
 #define PARA_DRAWTOME_COUNT @"dtc"
-
+#define PARA_BBS_ACTION_COUNT @"bac"
 #define PARA_FAN_COUNT @"fac"
 #define PARA_MESSAGE_COUNT @"mc"
 #define PARA_ROOM_COUNT @"rc"
@@ -440,9 +440,13 @@
 #define PARA_START_INDEX    @"si"
 #define PARA_END_INDEX      @"ei"
 #define PARA_LASTMODIFIEDDATE @"lsmd"
+#define PARA_RELATION_FAN_COUNT @"rfac"
+#define PARA_RELATION_FOLLOW_COUNT @"rflc"
+
 #define PARA_RELATION @"rl"
 #define FRIENDS_TYPE_FOLLOW 0
 #define FRIENDS_TYPE_FAN    1
+
 
 //new words
 #define PARA_NEW_WORDS  @"nw"
@@ -558,6 +562,9 @@
 #define ERROR_BBS_TEXT_TOO_LONG         30002
 #define ERROR_BBS_TEXT_TOO_FREQUENT     30003
 #define ERROR_BBS_POST_SUPPORT_TIMES_LIMIT 30004
+
+//contest
+#define ERROR_CONTEST_END               110004
 
 #define REJECT_ASK_LOCATION             1
 #define ACCEPT_ASK_LOCATION             0

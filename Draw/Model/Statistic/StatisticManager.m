@@ -18,6 +18,7 @@ static StatisticManager *_globalStatisticManager;
 @synthesize messageCount;
 @synthesize fanCount;
 @synthesize roomCount;
+@synthesize bbsActionCount;
 
 + (StatisticManager *)defaultManager
 {
@@ -27,4 +28,25 @@ static StatisticManager *_globalStatisticManager;
     return _globalStatisticManager;
 }
 
++ (NSString *)badgeStringFromIntValue:(int)badge
+{
+    if(badge <= 0){
+        return nil;
+    }
+    if (badge < 100) {
+        return [NSString stringWithFormat:@"%d",badge];
+    }
+    return @"N";
+}
+
++ (NSString *)badgeStringFromLongValue:(long)badge
+{
+    if(badge <= 0){
+        return nil;
+    }
+    if (badge < 100) {
+        return [NSString stringWithFormat:@"%ld",badge];
+    }
+    return @"N";
+}
 @end

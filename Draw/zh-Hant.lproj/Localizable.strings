@@ -367,6 +367,9 @@
 "kMyFriends" = "我的好友";
 "kFollow" = "關注";
 "kFans" = "粉絲";
+"kFollowNumber" = "關注(%d)";
+"kFansNumber" = "粉絲(%d)";
+
 "kNoFollow" = "還沒有關注任何好友，點擊下面的搜索用戶按鈕查找和關注你的好友吧。";
 "kNoFans" = "暫未有粉絲";
 "kEdit" = "編輯";
@@ -560,6 +563,8 @@
 "kSubmitFailure" = "不好意思，提交失敗，請重新提交。";
 "kSubmitSuccMsg" = "恭喜！提交成功！再來一副？";
 "kSubmitSuccTitle" = "提交成功";
+
+"kContestEnd" = "很抱歉，比賽已經結束，不能再提交作品了。";
 "kContestSubmitSuccMsg" = "謝謝您的參與，還可以提交%d幅作品，再來一幅？";
 "kContestSubmitSuccQuitMsg" = "謝謝您的參與！";
 
