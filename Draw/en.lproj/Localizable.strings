@@ -644,7 +644,7 @@
 "kDrawToHim" = "Draw Something";
 "kExploreHim" = "View Opus";
 "kPlayWithHim" = "Play with him(her)";
-"kChatToHim" = "Say something";
+"kChatToHim" = "Say hi";
 
 "kUserFeedTitle" = "%@'s Timeline";
 "kUserFeed" = "Timeline";

@@ -591,6 +591,19 @@ static ZJHGameService *_defaultService;
     return arr;
 }
 
+- (BOOL)canIQuitGameDirectly
+{
+    if (!self.session.isGamePlaying) {
+        return YES;
+    }
+    
+    if (self.session.isMeStandBy) {
+        return YES;
+    }
+    
+    return [[self myPlayInfo] alreadFoldCard] || [[self myPlayInfo] alreadCompareLose];
+}
+
 //- (NSString *)getRoomName
 //{
 //    if ([self.session.roomName length] > 0) {
