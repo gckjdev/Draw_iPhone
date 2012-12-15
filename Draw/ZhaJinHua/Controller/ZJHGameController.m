@@ -579,24 +579,26 @@
                                                              style:CommonDialogStyleDoubleButton
                                                           delegate:nil
                                                              clickOkBlock:^{
-                                                                 [_gameService quitGame];
-                                                                 [self.navigationController popViewControllerAnimated:YES];
-//                                                                 [_audioManager playSoundByURL:_soundManager.clickButtonSound];
+                                                                 [self quiteGame];
                                                              } clickCancelBlock:^{
-//                                                                 [_audioManager playSoundByURL:_soundManager.clickButtonSound];
                                                              }];
         [dialog showInView:self.view];
     } else {
-        [_gameService quitGame];
-        [self.navigationController popViewControllerAnimated:YES];
+        [self quiteGame];
     }
-//    [_audioManager playSoundByURL:_soundManager.clickButtonSound];
+}
+
+- (void)quiteGame
+{
+    [_gameService quitGame];
+    [_gameService reset];
+    [self.navigationController popViewControllerAnimated:YES];
+
 }
 
 - (IBAction)clickSettingButton:(id)sender
 {
     [[CommonSettingView createSettingView] showInView:self.view];
-//    [_audioManager playSoundByURL:_soundManager.clickButtonSound];
 }
 
 #pragma mark - player action response
