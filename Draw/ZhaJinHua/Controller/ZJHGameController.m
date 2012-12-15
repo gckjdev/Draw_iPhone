@@ -641,6 +641,8 @@
 - (void)foldCardSuccess
 {
     [[self getMyAvatarView] stopReciprocal];
+    [self disableAllZJHButtons];
+
     [[self getMyPokersView] foldCards:YES];
     [_audioManager playSoundByURL:_soundManager.foldCardSoundEffect];
     [_audioManager playSoundByURL:[_soundManager foldCardHumanSound:[@"m" isEqualToString:_userManager.gender]]];
@@ -1247,7 +1249,6 @@
     PPDebug(@"################# [controller: %@] TIME OUT: auto fold ##################", [self description]);
     if ([_userManager isMe:view.userInfo.userId]) {
         [self clickFoldCardButton:nil];
-        [self setAllPlayerNotComparing];
     }
 }
 
