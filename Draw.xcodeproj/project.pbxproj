@@ -2048,6 +2048,7 @@
 		C2974D0F167F1C0000E012FC /* Bulletin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Bulletin.m; sourceTree = "<group>"; };
 		C2974D12167F1FB700E012FC /* BulletinNetwork.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BulletinNetwork.h; sourceTree = "<group>"; };
 		C2974D13167F1FB700E012FC /* BulletinNetwork.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BulletinNetwork.m; sourceTree = "<group>"; };
+		C2974D15167F267D00E012FC /* BulletinNetworkConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BulletinNetworkConstants.h; sourceTree = "<group>"; };
 		C298ECBE16547A41000B5753 /* ZJHMyAvatarView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ZJHMyAvatarView~ipad.xib"; sourceTree = "<group>"; };
 		C298ECC016547B78000B5753 /* ZJHAvatarView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ZJHAvatarView~ipad.xib"; sourceTree = "<group>"; };
 		C298ED21165603ED000B5753 /* MoneyTree.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MoneyTree.xib; sourceTree = "<group>"; };
@@ -4877,6 +4878,7 @@
 			children = (
 				C2974D12167F1FB700E012FC /* BulletinNetwork.h */,
 				C2974D13167F1FB700E012FC /* BulletinNetwork.m */,
+				C2974D15167F267D00E012FC /* BulletinNetworkConstants.h */,
 			);
 			path = Network;
 			sourceTree = "<group>";

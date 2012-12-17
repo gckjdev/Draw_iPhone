@@ -9,6 +9,13 @@
 #ifndef Draw_BulletinNetworkConstants_h
 #define Draw_BulletinNetworkConstants_h
 
+#import "GameNetworkConstants.h"
+
+#define PARA_BULLETIN_ID    @"bid"
+
+#define METHOD_GETBULLETINS @"gbltn"
+
+
 
 
 #endif
