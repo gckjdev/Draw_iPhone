@@ -19,6 +19,17 @@
     return self;
 }
 
++ (void)showBulletinInController:(PPViewController*)controller
+{
+    BulletinView* view = (BulletinView*)[BulletinView createInfoViewByXibName:@"BulletinView"];
+    [view showInView:controller.view];
+}
+
+- (IBAction)clickClose:(id)sender
+{
+    [self disappear];
+}
+
 /*
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.

@@ -7,7 +7,10 @@
 //
 
 #import "CommonInfoView.h"
+#import "PPViewController.h"
 
 @interface BulletinView : CommonInfoView
+
++ (void)showBulletinInController:(PPViewController*)controller;
 
 @end

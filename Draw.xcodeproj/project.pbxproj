@@ -430,12 +430,14 @@
 		C297078316099EC500BE0789 /* CommonSearchView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C297078216099EC500BE0789 /* CommonSearchView.xib */; };
 		C297078516099EEC00BE0789 /* CommonSearchView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C297078416099EEC00BE0789 /* CommonSearchView~ipad.xib */; };
 		C29707C5160ADBEC00BE0789 /* CustomDiceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C29707C4160ADBEC00BE0789 /* CustomDiceManager.m */; };
-		C2974CEB167EBCD000E012FC /* BulletinView.m in Sources */ = {isa = PBXBuildFile; fileRef = C2974CEA167EBCD000E012FC /* BulletinView.m */; };
-		C2974CED167EBCED00E012FC /* BulletinView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2974CEC167EBCED00E012FC /* BulletinView.xib */; };
-		C2974CEF167EBD0600E012FC /* BulletinView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2974CEE167EBD0600E012FC /* BulletinView~ipad.xib */; };
-		C2974CF2167EBD3000E012FC /* BulletinCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C2974CF1167EBD3000E012FC /* BulletinCell.m */; };
-		C2974CF6167EBD7600E012FC /* BulletinCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2974CF5167EBD7600E012FC /* BulletinCell.xib */; };
-		C2974CF8167EBD9600E012FC /* BulletinCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2974CF7167EBD9600E012FC /* BulletinCell~ipad.xib */; };
+		C2974D05167F1BB200E012FC /* BulletinCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C2974CFE167F1BB200E012FC /* BulletinCell.m */; };
+		C2974D06167F1BB200E012FC /* BulletinCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2974CFF167F1BB200E012FC /* BulletinCell.xib */; };
+		C2974D07167F1BB200E012FC /* BulletinCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2974D00167F1BB200E012FC /* BulletinCell~ipad.xib */; };
+		C2974D08167F1BB200E012FC /* BulletinView.m in Sources */ = {isa = PBXBuildFile; fileRef = C2974D02167F1BB200E012FC /* BulletinView.m */; };
+		C2974D09167F1BB200E012FC /* BulletinView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2974D03167F1BB200E012FC /* BulletinView.xib */; };
+		C2974D0A167F1BB200E012FC /* BulletinView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2974D04167F1BB200E012FC /* BulletinView~ipad.xib */; };
+		C2974D0D167F1BDF00E012FC /* BulletinService.m in Sources */ = {isa = PBXBuildFile; fileRef = C2974D0C167F1BDF00E012FC /* BulletinService.m */; };
+		C2974D10167F1C0000E012FC /* Bulletin.m in Sources */ = {isa = PBXBuildFile; fileRef = C2974D0F167F1C0000E012FC /* Bulletin.m */; };
 		C298ECBF16547A41000B5753 /* ZJHMyAvatarView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C298ECBE16547A41000B5753 /* ZJHMyAvatarView~ipad.xib */; };
 		C298ECC116547B78000B5753 /* ZJHAvatarView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C298ECC016547B78000B5753 /* ZJHAvatarView~ipad.xib */; };
 		C298ED26165603ED000B5753 /* MoneyTree.xib in Resources */ = {isa = PBXBuildFile; fileRef = C298ED21165603ED000B5753 /* MoneyTree.xib */; };
@@ -2031,14 +2033,18 @@
 		C297078416099EEC00BE0789 /* CommonSearchView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "CommonSearchView~ipad.xib"; sourceTree = "<group>"; };
 		C29707C3160ADBEC00BE0789 /* CustomDiceManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomDiceManager.h; sourceTree = "<group>"; };
 		C29707C4160ADBEC00BE0789 /* CustomDiceManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomDiceManager.m; sourceTree = "<group>"; };
-		C2974CE9167EBCD000E012FC /* BulletinView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BulletinView.h; sourceTree = "<group>"; };
-		C2974CEA167EBCD000E012FC /* BulletinView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BulletinView.m; sourceTree = "<group>"; };
-		C2974CEC167EBCED00E012FC /* BulletinView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BulletinView.xib; sourceTree = "<group>"; };
-		C2974CEE167EBD0600E012FC /* BulletinView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "BulletinView~ipad.xib"; sourceTree = "<group>"; };
-		C2974CF0167EBD3000E012FC /* BulletinCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BulletinCell.h; sourceTree = "<group>"; };
-		C2974CF1167EBD3000E012FC /* BulletinCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BulletinCell.m; sourceTree = "<group>"; };
-		C2974CF5167EBD7600E012FC /* BulletinCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BulletinCell.xib; sourceTree = "<group>"; };
-		C2974CF7167EBD9600E012FC /* BulletinCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "BulletinCell~ipad.xib"; sourceTree = "<group>"; };
+		C2974CFD167F1BB200E012FC /* BulletinCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BulletinCell.h; sourceTree = "<group>"; };
+		C2974CFE167F1BB200E012FC /* BulletinCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BulletinCell.m; sourceTree = "<group>"; };
+		C2974CFF167F1BB200E012FC /* BulletinCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BulletinCell.xib; sourceTree = "<group>"; };
+		C2974D00167F1BB200E012FC /* BulletinCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "BulletinCell~ipad.xib"; sourceTree = "<group>"; };
+		C2974D01167F1BB200E012FC /* BulletinView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BulletinView.h; sourceTree = "<group>"; };
+		C2974D02167F1BB200E012FC /* BulletinView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BulletinView.m; sourceTree = "<group>"; };
+		C2974D03167F1BB200E012FC /* BulletinView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BulletinView.xib; sourceTree = "<group>"; };
+		C2974D04167F1BB200E012FC /* BulletinView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "BulletinView~ipad.xib"; sourceTree = "<group>"; };
+		C2974D0B167F1BDF00E012FC /* BulletinService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BulletinService.h; sourceTree = "<group>"; };
+		C2974D0C167F1BDF00E012FC /* BulletinService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BulletinService.m; sourceTree = "<group>"; };
+		C2974D0E167F1C0000E012FC /* Bulletin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Bulletin.h; sourceTree = "<group>"; };
+		C2974D0F167F1C0000E012FC /* Bulletin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Bulletin.m; sourceTree = "<group>"; };
 		C298ECBE16547A41000B5753 /* ZJHMyAvatarView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ZJHMyAvatarView~ipad.xib"; sourceTree = "<group>"; };
 		C298ECC016547B78000B5753 /* ZJHAvatarView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ZJHAvatarView~ipad.xib"; sourceTree = "<group>"; };
 		C298ED21165603ED000B5753 /* MoneyTree.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MoneyTree.xib; sourceTree = "<group>"; };
@@ -4819,6 +4825,49 @@
 			path = CustomDiceManager;
 			sourceTree = "<group>";
 		};
+		C2974CF9167F1BB100E012FC /* Bulletin */ = {
+			isa = PBXGroup;
+			children = (
+				C2974CFA167F1BB200E012FC /* Model */,
+				C2974CFB167F1BB200E012FC /* Service */,
+				C2974CFC167F1BB200E012FC /* View */,
+			);
+			path = Bulletin;
+			sourceTree = "<group>";
+		};
+		C2974CFA167F1BB200E012FC /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				C2974D0E167F1C0000E012FC /* Bulletin.h */,
+				C2974D0F167F1C0000E012FC /* Bulletin.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		C2974CFB167F1BB200E012FC /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				C2974D0B167F1BDF00E012FC /* BulletinService.h */,
+				C2974D0C167F1BDF00E012FC /* BulletinService.m */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		C2974CFC167F1BB200E012FC /* View */ = {
+			isa = PBXGroup;
+			children = (
+				C2974CFD167F1BB200E012FC /* BulletinCell.h */,
+				C2974CFE167F1BB200E012FC /* BulletinCell.m */,
+				C2974CFF167F1BB200E012FC /* BulletinCell.xib */,
+				C2974D00167F1BB200E012FC /* BulletinCell~ipad.xib */,
+				C2974D01167F1BB200E012FC /* BulletinView.h */,
+				C2974D02167F1BB200E012FC /* BulletinView.m */,
+				C2974D03167F1BB200E012FC /* BulletinView.xib */,
+				C2974D04167F1BB200E012FC /* BulletinView~ipad.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		C29A300815CA176400BD0B73 /* FontLabel */ = {
 			isa = PBXGroup;
 			children = (
@@ -4980,14 +5029,6 @@
 				C2B5381E1677712300725802 /* ZJHPassWordDialog~ipad.xib */,
 				C2B5381F1677712300725802 /* ZJHRoomPasswordDialog.xib */,
 				C2B538201677712300725802 /* ZJHRoomPasswordDialog~ipad.xib */,
-				C2974CE9167EBCD000E012FC /* BulletinView.h */,
-				C2974CEA167EBCD000E012FC /* BulletinView.m */,
-				C2974CEC167EBCED00E012FC /* BulletinView.xib */,
-				C2974CEE167EBD0600E012FC /* BulletinView~ipad.xib */,
-				C2974CF0167EBD3000E012FC /* BulletinCell.h */,
-				C2974CF1167EBD3000E012FC /* BulletinCell.m */,
-				C2974CF5167EBD7600E012FC /* BulletinCell.xib */,
-				C2974CF7167EBD9600E012FC /* BulletinCell~ipad.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -6897,6 +6938,7 @@
 		CA745D281503B1B500600024 /* Draw */ = {
 			isa = PBXGroup;
 			children = (
+				C2974CF9167F1BB100E012FC /* Bulletin */,
 				C2B537E31677712300725802 /* Common */,
 				CAFEFBE816606FC100441D77 /* Components */,
 				CAFEF86B16606E4700441D77 /* 3PP-SDK */,
@@ -9579,10 +9621,10 @@
 				A4C36D9C167C4EDF00117CD9 /* ZJHDefault@2x.png in Resources */,
 				A4C36DA0167C4EF700117CD9 /* ZJHDefault~ipad@2x.png in Resources */,
 				A4B93911167C539D00401E9C /* waiting_user@2x.png in Resources */,
-				C2974CED167EBCED00E012FC /* BulletinView.xib in Resources */,
-				C2974CEF167EBD0600E012FC /* BulletinView~ipad.xib in Resources */,
-				C2974CF6167EBD7600E012FC /* BulletinCell.xib in Resources */,
-				C2974CF8167EBD9600E012FC /* BulletinCell~ipad.xib in Resources */,
+				C2974D06167F1BB200E012FC /* BulletinCell.xib in Resources */,
+				C2974D07167F1BB200E012FC /* BulletinCell~ipad.xib in Resources */,
+				C2974D09167F1BB200E012FC /* BulletinView.xib in Resources */,
+				C2974D0A167F1BB200E012FC /* BulletinView~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -10252,8 +10294,10 @@
 				CA12616F167880CE00DD96F4 /* ZJHHomeViewController.m in Sources */,
 				A4B45FCA1678C2C2009EA231 /* ZJHRichRuleConfig.m in Sources */,
 				C242479716798A2B008B4E14 /* DrawSoundManager.m in Sources */,
-				C2974CEB167EBCD000E012FC /* BulletinView.m in Sources */,
-				C2974CF2167EBD3000E012FC /* BulletinCell.m in Sources */,
+				C2974D05167F1BB200E012FC /* BulletinCell.m in Sources */,
+				C2974D08167F1BB200E012FC /* BulletinView.m in Sources */,
+				C2974D0D167F1BDF00E012FC /* BulletinService.m in Sources */,
+				C2974D10167F1C0000E012FC /* Bulletin.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -10504,8 +10548,8 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "C6C82094-8927-4F4C-BB3D-30CD005F209D";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "C6C82094-8927-4F4C-BB3D-30CD005F209D";
+				PROVISIONING_PROFILE = "15E61AF7-360B-473A-9B03-A207BE758197";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "15E61AF7-360B-473A-9B03-A207BE758197";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -10567,8 +10611,8 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "C6C82094-8927-4F4C-BB3D-30CD005F209D";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "C6C82094-8927-4F4C-BB3D-30CD005F209D";
+				PROVISIONING_PROFILE = "15E61AF7-360B-473A-9B03-A207BE758197";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "15E61AF7-360B-473A-9B03-A207BE758197";
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;
 			};
