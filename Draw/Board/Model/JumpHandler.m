@@ -12,6 +12,11 @@
 #import "ContestController.h"
 #import "HotController.h"
 #import "MyFeedController.h"
+#import "StringUtil.h"
+
+#define FUNC_FEED    @"feed"
+#define FUNC_CONTEST    @"contest"
+#define FUNC_TOP    @"top"
 
 @implementation JumpHandler
 + (JumpHandler *)createJumpHandlerWithType:(JumpType)type
@@ -45,6 +50,26 @@
         controller:(UIViewController *)controller 
                URL:(NSURL *)URL
 {
+    
+}
+
++ (void)handleJump:(UIViewController*)controller
+            gameId:(NSString*)gameId
+              func:(NSString*)func
+{
+    UIViewController* jumpController = nil;
+    if ([gameId isEqualToString:DRAW_GAME_ID ignoreCapital:YES]) {
+        if ([func isEqualToString:FUNC_FEED ignoreCapital:YES]) {
+            jumpController = [[[MyFeedController alloc] init] autorelease];
+        }else if([func isEqualToString:FUNC_CONTEST ignoreCapital:YES]){
+            jumpController = [[[ContestController alloc] init] autorelease];
+        }else if([func isEqualToString:FUNC_TOP ignoreCapital:YES]){
+            jumpController = [[[HotController alloc] init] autorelease];
+        }else{
+            PPDebug(@"<controllerForGameId>:warnning:function is unexpected. gameId = %@, func = %@", gameId, func);
+        }
+    }
+    [controller.navigationController pushViewController:jumpController animated:YES];
     
 }
 

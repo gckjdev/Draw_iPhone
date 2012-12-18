@@ -15,6 +15,10 @@
 #import "BulletinNetworkConstants.h"
 #import "PPNetworkRequest.h"
 #import "Bulletin.h"
+#import "NotificationManager.h"
+#import "StatisticManager.h"
+
+
 
 @implementation BulletinService
 
@@ -23,6 +27,16 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(BulletinService)
 + (BulletinService*)defaultService
 {
     return [BulletinService sharedBulletinService];
+}
+
+- (void)postNotification:(NSString*)name withCount:(int)count
+{
+    [[NSNotificationCenter defaultCenter]
+     postNotificationName:name
+     object:self
+     userInfo:nil];
+    
+    PPDebug(@"<%@> post notification %@", [self description], name);
 }
 
 - (void)syncBulletins
@@ -63,9 +77,9 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(BulletinService)
         dispatch_async(dispatch_get_main_queue(), ^{
             if (errorCode == 0) {
                 [[BulletinManager defaultManager] saveBulletinList:bulletinList];
-                
+                [[StatisticManager defaultManager] setBulletinCount:bulletinList.count];
                 // post notifcation here, for UI to update
-//                [self postNotification:BOARD_UPDATE_NOTIFICATION];
+                [self postNotification:BULLETIN_UPDATE_NOTIFICATION];
 //                [self stopLoadBoardTimer];
             }else {
                 // failure, do nothing

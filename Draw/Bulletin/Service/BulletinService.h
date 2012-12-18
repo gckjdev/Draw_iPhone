@@ -8,6 +8,8 @@
 
 #import "CommonService.h"
 
+#define BULLETIN_UPDATE_NOTIFICATION    @"BULLETIN_UPDATE_NOTIFICATION"
+
 @interface BulletinService : CommonService
 
 + (BulletinService*)defaultService;
