@@ -12,7 +12,8 @@
 
 + (BulletinService*)defaultService;
 
-
 - (void)syncBulletins;
+
+- (NSArray*)bulletins;
 
 @end

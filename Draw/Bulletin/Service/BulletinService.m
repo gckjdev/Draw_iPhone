@@ -14,6 +14,7 @@
 #import "BulletinManager.h"
 #import "BulletinNetworkConstants.h"
 #import "PPNetworkRequest.h"
+#import "Bulletin.h"
 
 @implementation BulletinService
 
@@ -27,7 +28,6 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(BulletinService)
 - (void)syncBulletins
 {
     dispatch_async(workingQueue, ^{
-        DeviceType deviceType = [DeviceDetection deviceType];
         NSString *appId = [ConfigManager appId];
         NSString *gameId = [ConfigManager gameId];
         NSString *userId = [[UserManager defaultManager] userId];
@@ -42,12 +42,20 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(BulletinService)
         NSArray *bulletinList = nil;
         PPDebug(@"<didGetBoards> result code = %d", errorCode);
         if (errorCode == ERROR_SUCCESS && [output.jsonDataArray count] != 0) {
-            NSMutableArray * unSortedBoardList = [NSMutableArray array];
+            NSMutableArray* unSortedBulletinList = [[[NSMutableArray alloc] initWithCapacity:10] autorelease];
             for (NSDictionary *dict in output.jsonDataArray) {
-                
+                Bulletin* bulletin = [[[Bulletin alloc] initWithDict:dict] autorelease];
+                [[BulletinManager defaultManager] pushBulletin:bulletin];
             }
             //sort the boardList by the index
-            bulletinList = [unSortedBoardList sortedArrayUsingComparator:^(id obj1,id obj2){
+            bulletinList = [unSortedBulletinList sortedArrayUsingComparator:^(id obj1,id obj2){
+                Bulletin* bulletin1 = (Bulletin*)obj1;
+                Bulletin* bulletin2 = (Bulletin*)obj2;
+                if (bulletin1.date.timeIntervalSince1970 > bulletin2.date.timeIntervalSince1970) {
+                    return NSOrderedAscending;
+                } else if (bulletin1.date.timeIntervalSince1970 > bulletin2.date.timeIntervalSince1970) {
+                    return NSOrderedDescending;
+                }
                 return NSOrderedSame;
             }];
         }
@@ -65,6 +73,11 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(BulletinService)
         });
         
     });
+}
+
+- (NSArray*)bulletins
+{
+    return [BulletinManager defaultManager].bulletins;
 }
 
 @end

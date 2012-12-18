@@ -8,9 +8,23 @@
 
 #import "BulletinManager.h"
 #import "SynthesizeSingleton.h"
+#import "NSMutableArray+Stack.h"
+#import "Bulletin.h"
+
+#define MAX_CACHE_BULLETIN_COUNT    10
 
 @implementation BulletinManager
 SYNTHESIZE_SINGLETON_FOR_CLASS(BulletinManager)
+
+- (id)init
+{
+    self = [super init];
+    if (self) {
+        _bulletinStack = [[[NSMutableArray alloc] initWithCapacity:MAX_CACHE_BULLETIN_COUNT] autorelease];
+        [self loadLocalBulletinList];
+    }
+    return self;
+}
 
 + (BulletinManager*)defaultManager
 {
@@ -19,12 +33,52 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(BulletinManager)
 
 - (NSString*)latestBulletinId
 {
-    return nil;
+    return [(Bulletin*)[_bulletinStack peek] bulletinId];
 }
 
 - (void)saveBulletinList:(NSArray*)bulletinList
 {
-    
+    for (Bulletin* bulletin in bulletinList) {
+        [_bulletinStack push:bulletin];
+    }
+    [self saveBulletins];
 }
+
+- (void)pushBulletin:(Bulletin*)bulletin
+{
+    [_bulletinStack push:bulletin];
+    if (_bulletinStack.count > MAX_CACHE_BULLETIN_COUNT) {
+        [_bulletinStack removeObjectAtIndex:0];
+    }
+}
+
+- (NSArray*)bulletins
+{
+    return _bulletinStack;
+}
+
+#define BULLETIN_LIST_KEY @"bulletinList"
+- (NSArray *)loadLocalBulletinList
+{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSData *data = [defaults objectForKey:BULLETIN_LIST_KEY];
+    if (data) {
+        [_bulletinStack setArray:[NSKeyedUnarchiver unarchiveObjectWithData:data]];
+        PPDebug(@"get Local bulletin list, count = %d", [_bulletinStack count]);
+        return _bulletinStack;
+    }
+    PPDebug(@"get Local bulletin list = nil");
+    return nil;
+}
+
+- (void)saveBulletins
+{
+    NSData* reData = [NSKeyedArchiver archivedDataWithRootObject:_bulletinStack];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:reData forKey:BULLETIN_LIST_KEY];
+    [defaults synchronize];
+    PPDebug(@"save boardList!, new board count = %d",[_bulletinStack count]);
+}
+
 
 @end

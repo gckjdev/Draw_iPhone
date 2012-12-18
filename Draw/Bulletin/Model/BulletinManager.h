@@ -7,12 +7,16 @@
 //
 
 #import <Foundation/Foundation.h>
+@class Bulletin;
 
-@interface BulletinManager : NSObject
+@interface BulletinManager : NSObject {
+    NSMutableArray* _bulletinStack;
+}
 
 + (BulletinManager*)defaultManager;
 
 - (NSString*)latestBulletinId;
 - (void)saveBulletinList:(NSArray*)bulletinList;
-
+- (void)pushBulletin:(Bulletin*)bulletin;
+- (NSArray*)bulletins;
 @end
