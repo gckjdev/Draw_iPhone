@@ -439,6 +439,7 @@
 		C2974D0D167F1BDF00E012FC /* BulletinService.m in Sources */ = {isa = PBXBuildFile; fileRef = C2974D0C167F1BDF00E012FC /* BulletinService.m */; };
 		C2974D10167F1C0000E012FC /* Bulletin.m in Sources */ = {isa = PBXBuildFile; fileRef = C2974D0F167F1C0000E012FC /* Bulletin.m */; };
 		C2974D14167F1FB700E012FC /* BulletinNetwork.m in Sources */ = {isa = PBXBuildFile; fileRef = C2974D13167F1FB700E012FC /* BulletinNetwork.m */; };
+		C2974D18167F6CB200E012FC /* BulletinManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C2974D17167F6CB200E012FC /* BulletinManager.m */; };
 		C298ECBF16547A41000B5753 /* ZJHMyAvatarView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C298ECBE16547A41000B5753 /* ZJHMyAvatarView~ipad.xib */; };
 		C298ECC116547B78000B5753 /* ZJHAvatarView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C298ECC016547B78000B5753 /* ZJHAvatarView~ipad.xib */; };
 		C298ED26165603ED000B5753 /* MoneyTree.xib in Resources */ = {isa = PBXBuildFile; fileRef = C298ED21165603ED000B5753 /* MoneyTree.xib */; };
@@ -2049,6 +2050,8 @@
 		C2974D12167F1FB700E012FC /* BulletinNetwork.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BulletinNetwork.h; sourceTree = "<group>"; };
 		C2974D13167F1FB700E012FC /* BulletinNetwork.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BulletinNetwork.m; sourceTree = "<group>"; };
 		C2974D15167F267D00E012FC /* BulletinNetworkConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BulletinNetworkConstants.h; sourceTree = "<group>"; };
+		C2974D16167F6CB200E012FC /* BulletinManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BulletinManager.h; sourceTree = "<group>"; };
+		C2974D17167F6CB200E012FC /* BulletinManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BulletinManager.m; sourceTree = "<group>"; };
 		C298ECBE16547A41000B5753 /* ZJHMyAvatarView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ZJHMyAvatarView~ipad.xib"; sourceTree = "<group>"; };
 		C298ECC016547B78000B5753 /* ZJHAvatarView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ZJHAvatarView~ipad.xib"; sourceTree = "<group>"; };
 		C298ED21165603ED000B5753 /* MoneyTree.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MoneyTree.xib; sourceTree = "<group>"; };
@@ -4845,6 +4848,8 @@
 			children = (
 				C2974D0E167F1C0000E012FC /* Bulletin.h */,
 				C2974D0F167F1C0000E012FC /* Bulletin.m */,
+				C2974D16167F6CB200E012FC /* BulletinManager.h */,
+				C2974D17167F6CB200E012FC /* BulletinManager.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -10314,6 +10319,7 @@
 				C2974D0D167F1BDF00E012FC /* BulletinService.m in Sources */,
 				C2974D10167F1C0000E012FC /* Bulletin.m in Sources */,
 				C2974D14167F1FB700E012FC /* BulletinNetwork.m in Sources */,
+				C2974D18167F6CB200E012FC /* BulletinManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -10,4 +10,9 @@
 
 @interface BulletinManager : NSObject
 
++ (BulletinManager*)defaultManager;
+
+- (NSString*)latestBulletinId;
+- (void)saveBulletinList:(NSArray*)bulletinList;
+
 @end

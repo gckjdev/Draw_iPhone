@@ -10,4 +10,9 @@
 
 @interface BulletinService : CommonService
 
++ (BulletinService*)defaultService;
+
+
+- (void)syncBulletins;
+
 @end
