@@ -793,7 +793,7 @@ static UIImage* _whitePaperImage;
 }
 - (UIImage *)bulletinBackgroundImage
 {
-    return [_resService imageByName:@"bulletin_bg" inResourcePackage:RESOURCE_PACKAGE_DRAW];
+    return [_resService stretchableImageWithImageName:@"bulletin_bg" inResourcePackage:RESOURCE_PACKAGE_DRAW];
 }
 - (UIImage *)bulletinButtomImage
 {
@@ -805,7 +805,7 @@ static UIImage* _whitePaperImage;
 }
 - (UIImage *)bulletinTimeBackgroundImage
 {
-    return [_resService imageByName:@"bulletin_time_bg" inResourcePackage:RESOURCE_PACKAGE_DRAW];
+    return [_resService stretchableImageWithImageName:@"bulletin_bg" inResourcePackage:RESOURCE_PACKAGE_DRAW];
 }
 - (UIImage *)bulletinTopImage
 {

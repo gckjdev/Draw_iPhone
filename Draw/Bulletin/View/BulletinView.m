@@ -74,6 +74,10 @@
 - (void)dealloc {
     [_bulletinsTableView release];
     [_downCloseButton release];
+    [_titleLabel release];
+    [_closeButton release];
+    [_topImageView release];
+    [_downImageView release];
     [super dealloc];
 }
 @end
