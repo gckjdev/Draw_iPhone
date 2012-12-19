@@ -7,7 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PPTableViewCell.h"
 
-@interface BulletinCell : UITableViewCell
+@class Bulletin;
+
+@interface BulletinCell : PPTableViewCell
+@property (retain, nonatomic) IBOutlet UILabel *messageLabel;
+
++ (BulletinCell*)createCell:(id)delegate;
+- (void)setCellByBulletin:(Bulletin*)bulletin;
 
 @end

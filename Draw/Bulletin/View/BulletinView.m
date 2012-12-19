@@ -7,6 +7,8 @@
 //
 
 #import "BulletinView.h"
+#import "BulletinService.h"
+#import "BulletinCell.h"
 
 @implementation BulletinView
 
@@ -19,9 +21,16 @@
     return self;
 }
 
+- (void)initView
+{
+    self.bulletinsTableView.dataSource = self;
+    self.bulletinsTableView.delegate = self;
+}
+
 + (void)showBulletinInController:(PPViewController*)controller
 {
     BulletinView* view = (BulletinView*)[BulletinView createInfoViewByXibName:@"BulletinView"];
+    [view initView];
     [view showInView:controller.view];
 }
 
@@ -29,6 +38,29 @@
 {
     [self disappear];
 }
+
+#pragma mark - tableView delegate and dataSource
+
+- (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSString *CellIdentifier = [BulletinCell getCellIdentifier];
+	BulletinCell *cell = [_bulletinsTableView dequeueReusableCellWithIdentifier:CellIdentifier];
+	if (cell == nil) {
+		cell = [BulletinCell createCell:self];
+	}
+    if (indexPath.row < [BulletinService defaultService].bulletins.count) {
+        [cell setCellByBulletin:[[BulletinService defaultService].bulletins objectAtIndex:indexPath.row]];
+    }
+    
+	return cell;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return [BulletinService defaultService].bulletins.count;
+}
+
+
 
 /*
 // Only override drawRect: if you perform custom drawing.
@@ -39,4 +71,10 @@
 }
 */
 
+- (void)dealloc {
+    [_bulletinsTableView release];
+    [_downCloseButton release];
+    [_crossButton release];
+    [super dealloc];
+}
 @end

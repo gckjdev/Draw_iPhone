@@ -29,7 +29,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(BulletinService)
     return [BulletinService sharedBulletinService];
 }
 
-- (void)postNotification:(NSString*)name withCount:(int)count
+- (void)postNotification:(NSString*)name
 {
     [[NSNotificationCenter defaultCenter]
      postNotificationName:name
@@ -54,9 +54,9 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(BulletinService)
                                                          bulletinId:bulletinId];
         NSInteger errorCode = output.resultCode;
         NSArray *bulletinList = nil;
-        PPDebug(@"<didGetBoards> result code = %d", errorCode);
+        PPDebug(@"<didGetBulletins> result code = %d", errorCode);
         if (errorCode == ERROR_SUCCESS && [output.jsonDataArray count] != 0) {
-            NSMutableArray* unSortedBulletinList = [[[NSMutableArray alloc] initWithCapacity:10] autorelease];
+            NSMutableArray* unSortedBulletinList = [[[NSMutableArray alloc] initWithCapacity:MAX_CACHE_BULLETIN_COUNT] autorelease];
             for (NSDictionary *dict in output.jsonDataArray) {
                 Bulletin* bulletin = [[[Bulletin alloc] initWithDict:dict] autorelease];
                 [[BulletinManager defaultManager] pushBulletin:bulletin];
@@ -72,19 +72,20 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(BulletinService)
                 }
                 return NSOrderedSame;
             }];
+            
         }
         
         dispatch_async(dispatch_get_main_queue(), ^{
-            if (errorCode == 0) {
+            if (errorCode == ERROR_SUCCESS) {
                 [[BulletinManager defaultManager] saveBulletinList:bulletinList];
                 [[StatisticManager defaultManager] setBulletinCount:bulletinList.count];
-                // post notifcation here, for UI to update
-                [self postNotification:BULLETIN_UPDATE_NOTIFICATION];
-//                [self stopLoadBoardTimer];
+                
             }else {
                 // failure, do nothing
             }
         });
+        
+//        [self postNotification:BULLETIN_UPDATE_NOTIFICATION];
         
     });
 }

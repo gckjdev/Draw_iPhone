@@ -7,8 +7,12 @@
 //
 
 #import "BulletinCell.h"
+#import "Bulletin.h"
+#import "AutoCreateViewByXib.h"
 
 @implementation BulletinCell
+
+AUTO_CREATE_VIEW_BY_XIB(Bulletin)
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -26,4 +30,23 @@
     // Configure the view for the selected state
 }
 
++ (NSString*)getCellIdentifier
+{
+    return @"BulletinCell";
+}
+
++ (BulletinCell*)createCell:(id)delegate
+{
+    return (BulletinCell*)[BulletinCell createView];
+}
+
+- (void)setCellByBulletin:(Bulletin *)bulletin
+{
+    [self.messageLabel setText:bulletin.message];
+}
+
+- (void)dealloc {
+    [_messageLabel release];
+    [super dealloc];
+}
 @end

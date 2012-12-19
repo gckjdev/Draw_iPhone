@@ -11,7 +11,7 @@
 #import "NSMutableArray+Stack.h"
 #import "Bulletin.h"
 
-#define MAX_CACHE_BULLETIN_COUNT    10
+
 
 @implementation BulletinManager
 SYNTHESIZE_SINGLETON_FOR_CLASS(BulletinManager)

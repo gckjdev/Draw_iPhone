@@ -220,14 +220,14 @@
 
 - (void)registerDrawGameNotification
 {
-    [self registerNotificationWithName:BULLETIN_UPDATE_NOTIFICATION
-                                object:nil
-                                 queue:[NSOperationQueue mainQueue]
-                            usingBlock:^(NSNotification *note) {
-                                
-                                [self updateAllBadge];
-                                
-                            }];
+//    [self registerNotificationWithName:BULLETIN_UPDATE_NOTIFICATION
+//                                object:nil
+//                                 queue:[NSOperationQueue mainQueue]
+//                            usingBlock:^(NSNotification *note) {
+//                                
+//                                [self updateAllBadge];
+//                                
+//                            }];
     /*
     [self registerNotificationWithName:BOARD_UPDATE_NOTIFICATION 
                                 object:nil
