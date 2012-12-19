@@ -8,6 +8,8 @@
 
 #import "Bulletin.h"
 #import "BulletinNetworkConstants.h"
+#import "TimeUtils.h"
+
 
 #define CODE_KEY_TYPE   @"type"
 #define CODE_KEY_DATE   @"date"
@@ -28,7 +30,8 @@
 {
     self = [super init];
     if (self) {
-        self.date = [dict objectForKey:PARA_BULLETIN_DATE];
+        NSString* dateStr = [dict objectForKey:PARA_BULLETIN_DATE];
+        self.date = dateFromStringByFormat(dateStr, DEFAULT_DATE_FORMAT);
         self.bulletinId = [dict objectForKey:PARA_BULLETIN_ID];
         self.message = [dict objectForKey:PARA_BULLETIN_MESSAGE];
         self.gameId = [dict objectForKey:PARA_BULLETIN_GAME_ID];

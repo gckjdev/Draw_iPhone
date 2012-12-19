@@ -9,6 +9,13 @@
 #import "ShareImageManager.h"
 #import "UIImageUtil.h"
 #import "FileUtil.h"
+#import "PPResourceService.h"
+
+@interface ShareImageManager () {
+    PPResourceService *_resService;
+}
+
+@end
 
 
 @implementation ShareImageManager
@@ -29,6 +36,15 @@ static UIImage* _whitePaperImage;
     }
     
     return _defaultManager;
+}
+
+- (id)init
+{
+    self = [super init];
+    if (self) {
+        _resService = [PPResourceService defaultService];
+    }
+    return self;
 }
 
 - (UIImage*)woodImage
@@ -771,6 +787,37 @@ static UIImage* _whitePaperImage;
     return nil;
 }
 
-
+- (UIImage *)bulletinAccessoryImage
+{
+    return [_resService imageByName:@"bulletin_accessory" inResourcePackage:RESOURCE_PACKAGE_DRAW];
+}
+- (UIImage *)bulletinBackgroundImage
+{
+    return [_resService imageByName:@"bulletin_bg" inResourcePackage:RESOURCE_PACKAGE_DRAW];
+}
+- (UIImage *)bulletinButtomImage
+{
+    return [_resService imageByName:@"bulletin_buttom" inResourcePackage:RESOURCE_PACKAGE_DRAW];
+}
+- (UIImage *)bulletinDateBackgroundImage
+{
+    return [_resService imageByName:@"bulletin_date_bg" inResourcePackage:RESOURCE_PACKAGE_DRAW];
+}
+- (UIImage *)bulletinTimeBackgroundImage
+{
+    return [_resService imageByName:@"bulletin_time_bg" inResourcePackage:RESOURCE_PACKAGE_DRAW];
+}
+- (UIImage *)bulletinTopImage
+{
+    return [_resService imageByName:@"bulletin_top" inResourcePackage:RESOURCE_PACKAGE_DRAW];
+}
+- (UIImage *)bulletinCloseImage
+{
+    return [_resService imageByName:@"close_bulletin" inResourcePackage:RESOURCE_PACKAGE_DRAW];
+}
+- (UIImage *)bulletinNewImage
+{
+    return [_resService imageByName:@"new_bulletin" inResourcePackage:RESOURCE_PACKAGE_DRAW];
+}
 @end
 

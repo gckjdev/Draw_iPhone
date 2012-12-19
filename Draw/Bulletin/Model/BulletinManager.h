@@ -21,4 +21,6 @@
 - (void)saveBulletinList:(NSArray*)bulletinList;
 - (void)pushBulletin:(Bulletin*)bulletin;
 - (NSArray*)bulletins;
+- (void)readAllBulletins;
+- (NSInteger)unreadBulletinCount;
 @end

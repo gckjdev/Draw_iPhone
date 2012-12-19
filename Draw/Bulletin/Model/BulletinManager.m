@@ -16,11 +16,17 @@
 @implementation BulletinManager
 SYNTHESIZE_SINGLETON_FOR_CLASS(BulletinManager)
 
+- (void)dealloc
+{
+    [_bulletinStack release];
+    [super dealloc];
+}
+
 - (id)init
 {
     self = [super init];
     if (self) {
-        _bulletinStack = [[[NSMutableArray alloc] initWithCapacity:MAX_CACHE_BULLETIN_COUNT] autorelease];
+        _bulletinStack = [[NSMutableArray alloc] initWithCapacity:MAX_CACHE_BULLETIN_COUNT];
         [self loadLocalBulletinList];
     }
     return self;
@@ -39,7 +45,8 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(BulletinManager)
 - (void)saveBulletinList:(NSArray*)bulletinList
 {
     for (Bulletin* bulletin in bulletinList) {
-        [_bulletinStack push:bulletin];
+        PPDebug(@"<test>pushing bullitin %@",bulletin.message);
+        [_bulletinStack addObject:bulletin];
     }
     [self saveBulletins];
 }
@@ -55,6 +62,25 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(BulletinManager)
 - (NSArray*)bulletins
 {
     return _bulletinStack;
+}
+
+- (void)readAllBulletins
+{
+    for (Bulletin* bulletin in _bulletinStack) {
+        bulletin.hasRead = YES;
+    }
+    [self saveBulletins];
+}
+
+- (NSInteger)unreadBulletinCount
+{
+    int count = 0;
+    for (Bulletin* bulletin in _bulletinStack) {
+        if (!bulletin.hasRead) {
+            count++;
+        }
+    }
+    return count;
 }
 
 #define BULLETIN_LIST_KEY @"bulletinList"

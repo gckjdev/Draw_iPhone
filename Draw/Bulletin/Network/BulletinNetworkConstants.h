@@ -12,9 +12,10 @@
 #import "GameNetworkConstants.h"
 
 #define PARA_BULLETIN_ID    @"bid"
-#define PARA_BULLETIN_DATE    @"date"
+#define PARA_LATEST_BULLETIN_ID @"lbid"
+#define PARA_BULLETIN_DATE    @"cd"
 #define PARA_BULLETIN_MESSAGE    @"content"
-#define PARA_BULLETIN_TYPE    @"type"
+#define PARA_BULLETIN_TYPE    @"tp"
 #define PARA_BULLETIN_GAME_ID    @"gid"
 #define PARA_BULLETIN_FUNCTION    @"function"
 

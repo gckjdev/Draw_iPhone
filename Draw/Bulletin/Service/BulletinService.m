@@ -59,7 +59,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(BulletinService)
             NSMutableArray* unSortedBulletinList = [[[NSMutableArray alloc] initWithCapacity:MAX_CACHE_BULLETIN_COUNT] autorelease];
             for (NSDictionary *dict in output.jsonDataArray) {
                 Bulletin* bulletin = [[[Bulletin alloc] initWithDict:dict] autorelease];
-                [[BulletinManager defaultManager] pushBulletin:bulletin];
+                [unSortedBulletinList addObject:bulletin];
             }
             //sort the boardList by the index
             bulletinList = [unSortedBulletinList sortedArrayUsingComparator:^(id obj1,id obj2){
@@ -78,7 +78,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(BulletinService)
         dispatch_async(dispatch_get_main_queue(), ^{
             if (errorCode == ERROR_SUCCESS) {
                 [[BulletinManager defaultManager] saveBulletinList:bulletinList];
-                [[StatisticManager defaultManager] setBulletinCount:bulletinList.count];
+                [[StatisticManager defaultManager] setBulletinCount:[self unreadBulletinCount]];
                 
             }else {
                 // failure, do nothing
@@ -93,6 +93,15 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(BulletinService)
 - (NSArray*)bulletins
 {
     return [BulletinManager defaultManager].bulletins;
+}
+
+- (void)readAllBulletins
+{
+    [[BulletinManager defaultManager] readAllBulletins];
+}
+- (NSInteger)unreadBulletinCount
+{
+    return [[BulletinManager defaultManager] unreadBulletinCount];
 }
 
 @end

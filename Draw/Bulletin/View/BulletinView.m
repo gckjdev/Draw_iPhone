@@ -74,7 +74,6 @@
 - (void)dealloc {
     [_bulletinsTableView release];
     [_downCloseButton release];
-    [_crossButton release];
     [super dealloc];
 }
 @end

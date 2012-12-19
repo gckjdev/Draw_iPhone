@@ -18,4 +18,7 @@
 
 - (NSArray*)bulletins;
 
+- (void)readAllBulletins;
+- (NSInteger)unreadBulletinCount;
+
 @end
