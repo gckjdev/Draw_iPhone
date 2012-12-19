@@ -45,7 +45,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(BulletinManager)
 - (void)saveBulletinList:(NSArray*)bulletinList
 {
     for (Bulletin* bulletin in bulletinList) {
-        PPDebug(@"<test>pushing bullitin %@",bulletin.message);
+        PPDebug(@"<test>pushing bullitin %@",bulletin.date);
         [_bulletinStack addObject:bulletin];
     }
     [self saveBulletins];

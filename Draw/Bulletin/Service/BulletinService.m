@@ -66,9 +66,9 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(BulletinService)
                 Bulletin* bulletin1 = (Bulletin*)obj1;
                 Bulletin* bulletin2 = (Bulletin*)obj2;
                 if (bulletin1.date.timeIntervalSince1970 > bulletin2.date.timeIntervalSince1970) {
-                    return NSOrderedAscending;
-                } else if (bulletin1.date.timeIntervalSince1970 > bulletin2.date.timeIntervalSince1970) {
                     return NSOrderedDescending;
+                } else if (bulletin1.date.timeIntervalSince1970 < bulletin2.date.timeIntervalSince1970) {
+                    return NSOrderedAscending;
                 }
                 return NSOrderedSame;
             }];
@@ -78,7 +78,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(BulletinService)
         dispatch_async(dispatch_get_main_queue(), ^{
             if (errorCode == ERROR_SUCCESS) {
                 [[BulletinManager defaultManager] saveBulletinList:bulletinList];
-                [[StatisticManager defaultManager] setBulletinCount:[self unreadBulletinCount]];
+                [[StatisticManager defaultManager] setBulletinCount:[[BulletinManager defaultManager] unreadBulletinCount]];
                 
             }else {
                 // failure, do nothing
