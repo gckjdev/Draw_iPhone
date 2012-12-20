@@ -79,8 +79,6 @@ AUTO_CREATE_VIEW_BY_XIB(BulletinCell)
 
 - (void)setCellByBulletin:(Bulletin *)bulletin
 {
-    
-    
     [self.messageLabel setText:bulletin.message];
     [self.newBulletinFlag setHidden:bulletin.hasRead];
 
