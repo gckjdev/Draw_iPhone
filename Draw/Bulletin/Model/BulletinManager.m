@@ -54,7 +54,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(BulletinManager)
 - (void)pushBulletin:(Bulletin*)bulletin
 {
     [_bulletinStack push:bulletin];
-    if (_bulletinStack.count > MAX_CACHE_BULLETIN_COUNT) {
+    while (_bulletinStack.count > MAX_CACHE_BULLETIN_COUNT) {
         [_bulletinStack removeObjectAtIndex:0];
     }
 }

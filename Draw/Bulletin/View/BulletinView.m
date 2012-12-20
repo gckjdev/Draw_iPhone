@@ -9,6 +9,7 @@
 #import "BulletinView.h"
 #import "BulletinService.h"
 #import "BulletinCell.h"
+#import "Bulletin.h"
 
 @implementation BulletinView
 
@@ -36,6 +37,7 @@
 
 - (IBAction)clickClose:(id)sender
 {
+    [[BulletinService defaultService] readAllBulletins];
     [self disappear];
 }
 
@@ -49,7 +51,7 @@
 		cell = [BulletinCell createCell:self];
 	}
     if (indexPath.row < [BulletinService defaultService].bulletins.count) {
-        [cell setCellByBulletin:[[BulletinService defaultService].bulletins objectAtIndex:indexPath.row]];
+        [cell setCellByBulletin:[[BulletinService defaultService].bulletins objectAtIndex:([BulletinService defaultService].bulletins.count - indexPath.row - 1)]];
     }
     
 	return cell;
@@ -58,6 +60,13 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return [BulletinService defaultService].bulletins.count;
+}
+
+- (float)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    Bulletin* bulletin = [[BulletinService defaultService].bulletins objectAtIndex:([BulletinService defaultService].bulletins.count - indexPath.row - 1)];
+    return [BulletinCell cellSizeForContent:bulletin.message].height;
+
 }
 
 

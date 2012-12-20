@@ -13,17 +13,15 @@
 #import "HotController.h"
 #import "MyFeedController.h"
 #import "StringUtil.h"
-
-#define FUNC_FEED    @"feed"
-#define FUNC_CONTEST    @"contest"
-#define FUNC_TOP    @"top"
+#import "GameApp.h"
 
 @implementation JumpHandler
 + (JumpHandler *)createJumpHandlerWithType:(JumpType)type
 {
     switch (type) {
         case JumpTypeGame:
-            return [[[GameJumpHandler alloc] init]autorelease];
+//            return [[[GameJumpHandler alloc] init]autorelease];
+            return [GameApp getGameJumpHandler];
             
         case JumpTypeIntegral:
             return [[[IntergralJumpHandler alloc] init]autorelease];
@@ -53,48 +51,28 @@
     
 }
 
-+ (void)handleJump:(UIViewController*)controller
-            gameId:(NSString*)gameId
-              func:(NSString*)func
-{
-    UIViewController* jumpController = nil;
-    if ([gameId isEqualToString:DRAW_GAME_ID ignoreCapital:YES]) {
-        if ([func isEqualToString:FUNC_FEED ignoreCapital:YES]) {
-            jumpController = [[[MyFeedController alloc] init] autorelease];
-        }else if([func isEqualToString:FUNC_CONTEST ignoreCapital:YES]){
-            jumpController = [[[ContestController alloc] init] autorelease];
-        }else if([func isEqualToString:FUNC_TOP ignoreCapital:YES]){
-            jumpController = [[[HotController alloc] init] autorelease];
-        }else{
-            PPDebug(@"<controllerForGameId>:warnning:function is unexpected. gameId = %@, func = %@", gameId, func);
-        }
-    }
-    [controller.navigationController pushViewController:jumpController animated:YES];
-    
-}
-
 @end
 
 
 #pragma mark - GameJumpHandler
 @implementation GameJumpHandler
 
-- (UIViewController *)controllerForGameId:(NSString *)gameId func:(NSString *)func
-{    
-    if ([gameId isEqualToString:@"draw"]) {
-        if ([func isEqualToString:@"feed"]) {
-            return [[[MyFeedController alloc] init] autorelease];            
-        }else if([func isEqualToString:@"contest"]){
-            return [[[ContestController alloc] init] autorelease];            
-        }else if([func isEqualToString:@"top"]){
-            return [[[HotController alloc] init] autorelease];            
-        }else{
-            PPDebug(@"<controllerForGameId>:warnning:function is unexpected. gameId = %@, func = %@", gameId, func);            
-            return nil;//[[[HomeController alloc] init] autorelease];               
-        }
-    }
-    return nil;
-}
+//- (UIViewController *)controllerForGameId:(NSString *)gameId func:(NSString *)func
+//{    
+//    if ([gameId isEqualToString:@"draw"]) {
+//        if ([func isEqualToString:@"feed"]) {
+//            return [[[MyFeedController alloc] init] autorelease];            
+//        }else if([func isEqualToString:@"contest"]){
+//            return [[[ContestController alloc] init] autorelease];            
+//        }else if([func isEqualToString:@"top"]){
+//            return [[[HotController alloc] init] autorelease];            
+//        }else{
+//            PPDebug(@"<controllerForGameId>:warnning:function is unexpected. gameId = %@, func = %@", gameId, func);            
+//            return nil;//[[[HomeController alloc] init] autorelease];               
+//        }
+//    }
+//    return nil;
+//}
 
 //override by sub classes
 - (void)handleJump:(BoardView *)boardView 
@@ -105,7 +83,7 @@
 
     NSString *gameId = [URL.queryComponents objectForKey:BOARD_PARA_GAME];
     NSString *func = [URL.queryComponents objectForKey:BOARD_PARA_FUNC];
-    UIViewController *gameController = [self controllerForGameId:gameId func:func];
+    UIViewController *gameController = [[GameApp getGameJumpHandler] controllerForGameId:gameId func:func fromController:nil];
     if (gameController) {
         [controller.navigationController pushViewController:gameController animated:YES];
     }

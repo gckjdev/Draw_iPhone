@@ -44,11 +44,6 @@ typedef enum{
 - (void)handleJump:(BoardView *)boardView 
         controller:(UIViewController *)controller 
                URL:(NSURL *)URL;
-
-+ (void)handleJump:(UIViewController*)controller
-            gameId:(NSString*)gameId
-              func:(NSString*)func;
-
 @end
 
 

@@ -18,8 +18,10 @@
 @property (retain, nonatomic) IBOutlet UIImageView *dateBgView;
 @property (retain, nonatomic) IBOutlet UIButton *timeButton;
 @property (retain, nonatomic) IBOutlet UILabel *dateLabel;
+@property (retain, nonatomic) IBOutlet UIImageView *newBulletinFlag;
 
 + (BulletinCell*)createCell:(id)delegate;
 - (void)setCellByBulletin:(Bulletin*)bulletin;
++ (CGSize)cellSizeForContent:(NSString*)content;
 
 @end

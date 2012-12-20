@@ -448,6 +448,9 @@
 		C2974D27168163AC00E012FC /* bulletin_top@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2974D1F168163AC00E012FC /* bulletin_top@2x.png */; };
 		C2974D28168163AC00E012FC /* close_bulletin@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2974D20168163AC00E012FC /* close_bulletin@2x.png */; };
 		C2974D29168163AC00E012FC /* new_bulletin@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2974D21168163AC00E012FC /* new_bulletin@2x.png */; };
+		C2974D2C1682AEFA00E012FC /* DrawGameJumpHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = C2974D2B1682AEF900E012FC /* DrawGameJumpHandler.m */; };
+		C2974D301682AF7800E012FC /* DiceGameJumpHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = C2974D2F1682AF7700E012FC /* DiceGameJumpHandler.m */; };
+		C2974D331682AF9100E012FC /* ZJHGameJumpHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = C2974D321682AF9000E012FC /* ZJHGameJumpHandler.m */; };
 		C298ECBF16547A41000B5753 /* ZJHMyAvatarView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C298ECBE16547A41000B5753 /* ZJHMyAvatarView~ipad.xib */; };
 		C298ECC116547B78000B5753 /* ZJHAvatarView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C298ECC016547B78000B5753 /* ZJHAvatarView~ipad.xib */; };
 		C298ED26165603ED000B5753 /* MoneyTree.xib in Resources */ = {isa = PBXBuildFile; fileRef = C298ED21165603ED000B5753 /* MoneyTree.xib */; };
@@ -2068,6 +2071,13 @@
 		C2974D1F168163AC00E012FC /* bulletin_top@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bulletin_top@2x.png"; sourceTree = "<group>"; };
 		C2974D20168163AC00E012FC /* close_bulletin@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "close_bulletin@2x.png"; sourceTree = "<group>"; };
 		C2974D21168163AC00E012FC /* new_bulletin@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "new_bulletin@2x.png"; sourceTree = "<group>"; };
+		C2974D2A1682AEF700E012FC /* DrawGameJumpHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawGameJumpHandler.h; sourceTree = "<group>"; };
+		C2974D2B1682AEF900E012FC /* DrawGameJumpHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawGameJumpHandler.m; sourceTree = "<group>"; };
+		C2974D2D1682AF2500E012FC /* GameJumpHandlerProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameJumpHandlerProtocol.h; sourceTree = "<group>"; };
+		C2974D2E1682AF7700E012FC /* DiceGameJumpHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiceGameJumpHandler.h; sourceTree = "<group>"; };
+		C2974D2F1682AF7700E012FC /* DiceGameJumpHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiceGameJumpHandler.m; sourceTree = "<group>"; };
+		C2974D311682AF8F00E012FC /* ZJHGameJumpHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJHGameJumpHandler.h; sourceTree = "<group>"; };
+		C2974D321682AF9000E012FC /* ZJHGameJumpHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJHGameJumpHandler.m; sourceTree = "<group>"; };
 		C298ECBE16547A41000B5753 /* ZJHMyAvatarView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ZJHMyAvatarView~ipad.xib"; sourceTree = "<group>"; };
 		C298ECC016547B78000B5753 /* ZJHAvatarView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ZJHAvatarView~ipad.xib"; sourceTree = "<group>"; };
 		C298ED21165603ED000B5753 /* MoneyTree.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MoneyTree.xib; sourceTree = "<group>"; };
@@ -4866,6 +4876,13 @@
 				C2974D0F167F1C0000E012FC /* Bulletin.m */,
 				C2974D16167F6CB200E012FC /* BulletinManager.h */,
 				C2974D17167F6CB200E012FC /* BulletinManager.m */,
+				C2974D2A1682AEF700E012FC /* DrawGameJumpHandler.h */,
+				C2974D2B1682AEF900E012FC /* DrawGameJumpHandler.m */,
+				C2974D2E1682AF7700E012FC /* DiceGameJumpHandler.h */,
+				C2974D2F1682AF7700E012FC /* DiceGameJumpHandler.m */,
+				C2974D311682AF8F00E012FC /* ZJHGameJumpHandler.h */,
+				C2974D321682AF9000E012FC /* ZJHGameJumpHandler.m */,
+				C2974D2D1682AF2500E012FC /* GameJumpHandlerProtocol.h */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -10360,6 +10377,9 @@
 				C2974D10167F1C0000E012FC /* Bulletin.m in Sources */,
 				C2974D14167F1FB700E012FC /* BulletinNetwork.m in Sources */,
 				C2974D18167F6CB200E012FC /* BulletinManager.m in Sources */,
+				C2974D2C1682AEFA00E012FC /* DrawGameJumpHandler.m in Sources */,
+				C2974D301682AF7800E012FC /* DiceGameJumpHandler.m in Sources */,
+				C2974D331682AF9100E012FC /* ZJHGameJumpHandler.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
