@@ -155,6 +155,7 @@
 
     CGContextSetStrokeColorWithColor(context, cgColor);
     CGContextStrokePath(context);
+    
     self.curImage = nil;
 }
 
@@ -212,6 +213,8 @@
     if ([_currentDrawAction isDrawAction]) {
         [_curImage drawAtPoint:CGPointMake(0, 0)];
         CGColorRef color = _currentDrawAction.paint.color.CGColor;
+//        UIImage *image = [UIImage imageNamed:@"brush1.jpg"];
+//        CGColorRef color = [UIColor colorWithPatternImage:image].CGColor;
         CGFloat width = _currentDrawAction.paint.width;
         [self drawPoint:width color:color];
         [super drawRect:rect];

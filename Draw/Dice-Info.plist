@@ -8,15 +8,8 @@
 	<string>${PRODUCT_NAME}</string>
 	<key>CFBundleExecutable</key>
 	<string>${EXECUTABLE_NAME}</string>
-	<key>Icon files bak</key>
-	<array>
-		<string>new_icon.png</string>
-		<string>new_icon@2x.png</string>
-		<string>new_icon_ipad1.png</string>
-		<string>new_icon_ipad2.png</string>
-	</array>
 	<key>CFBundleIdentifier</key>
-	<string>com.orange.draw</string>
+	<string>com.orange.dice</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
@@ -24,44 +17,44 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>4.8</string>
+	<string>1.0</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
-	<key>URL types Dice</key>
-	<array>
-		<dict>
-			<key>CFBundleURLSchemes</key>
-			<array>
-				<string>fb451387761588871</string>
-			</array>
-		</dict>
-	</array>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>fb352182988165711</string>
-				<string>gckjcchh</string>
-				<string>wx427a2f57bc4456d1</string>
+				<string>fb451387761588871</string>
+				<string>sinaweibosso.3580615797</string>
 			</array>
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>4.8</string>
+	<string>1.0</string>
 	<key>CFChannelId</key>
 	<string>App Store</string>
+	<key>CFConfigVersion</key>
+	<string>1.0</string>
+	<key>CFResourceTest</key>
+	<true/>
+	<key>CFServerTest</key>
+	<false/>
 	<key>CFWordBaseVersion</key>
-	<integer>1</integer>
+	<integer>2</integer>
 	<key>CFBundleIconFiles</key>
 	<array>
-		<string>57.png</string>
-		<string>57@2x.png</string>
-		<string>50.png</string>
-		<string>72.png</string>
+		<string>dice_icon_57.png</string>
+		<string>dice_icon_57@2x.png</string>
+		<string>dice_icon_50.png</string>
+		<string>dice_icon_72.png</string>
 	</array>
+	<key>LSApplicationCategoryType</key>
+	<string></string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>UILaunchImageFile</key>
+	<string>DiceDefault</string>
 	<key>NSMainNibFile</key>
 	<string>MainWindow</string>
 	<key>UIPrerenderedIcon</key>
@@ -72,17 +65,6 @@
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
 		<string>UIInterfaceOrientationPortraitUpsideDown</string>
-	</array>
-	<key>Launch image (iPhone) Dice</key>
-	<string>DiceDefault.jpg</string>
-	<key>Launch image (iPad) Dice</key>
-	<string>DiceDefault_ipad.jpg</string>
-	<key>Icon files Dice</key>
-	<array>
-		<string>dice_icon_57.png</string>
-		<string>dice_icon_57@2x.png</string>
-		<string>dice_icon_50.png</string>
-		<string>dice_icon_72.png</string>
 	</array>
 </dict>
 </plist>
