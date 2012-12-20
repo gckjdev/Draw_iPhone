@@ -7,6 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
+
+#define MAX_CACHE_BULLETIN_COUNT    10
 @class Bulletin;
 
 @interface BulletinManager : NSObject {
@@ -19,4 +21,6 @@
 - (void)saveBulletinList:(NSArray*)bulletinList;
 - (void)pushBulletin:(Bulletin*)bulletin;
 - (NSArray*)bulletins;
+- (void)readAllBulletins;
+- (NSInteger)unreadBulletinCount;
 @end

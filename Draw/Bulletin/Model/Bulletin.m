@@ -8,6 +8,8 @@
 
 #import "Bulletin.h"
 #import "BulletinNetworkConstants.h"
+#import "TimeUtils.h"
+
 
 #define CODE_KEY_TYPE   @"type"
 #define CODE_KEY_DATE   @"date"
@@ -15,6 +17,7 @@
 #define CODE_KEY_MESSAGE    @"message"
 #define CODE_KEY_GAME_ID    @"gameId"
 #define CODE_KEY_FUNCTION   @"function"
+#define CODE_KEY_HAS_READ   @"hasRead"
 
 
 @interface Bulletin (PrivateMethod)
@@ -28,7 +31,8 @@
 {
     self = [super init];
     if (self) {
-        self.date = [dict objectForKey:PARA_BULLETIN_DATE];
+        NSString* dateStr = [dict objectForKey:PARA_BULLETIN_DATE];
+        self.date = dateFromUTCStringByFormat(dateStr, DEFAULT_DATE_FORMAT);
         self.bulletinId = [dict objectForKey:PARA_BULLETIN_ID];
         self.message = [dict objectForKey:PARA_BULLETIN_MESSAGE];
         self.gameId = [dict objectForKey:PARA_BULLETIN_GAME_ID];
@@ -46,6 +50,7 @@
     [aCoder encodeObject:_gameId forKey:CODE_KEY_GAME_ID];
     [aCoder encodeObject:_date forKey:CODE_KEY_DATE];
     [aCoder encodeObject:_function forKey:CODE_KEY_FUNCTION];
+    [aCoder encodeBool:_hasRead forKey:CODE_KEY_HAS_READ];
 }
 - (id)initWithCoder:(NSCoder *)aDecoder
 {
@@ -57,6 +62,7 @@
         self.gameId = [aDecoder decodeObjectForKey:CODE_KEY_GAME_ID];
         self.date = [aDecoder decodeObjectForKey:CODE_KEY_DATE];
         self.function = [aDecoder decodeObjectForKey:CODE_KEY_FUNCTION];
+        self.hasRead = [aDecoder decodeBoolForKey:CODE_KEY_HAS_READ];
         
     }
     return self;

@@ -11,6 +11,7 @@
 #import "ZJHChatMsgManager.h"
 #import "ConfigManager.h"
 #import "ZJHImageManager.h"
+#import "ZJHGameJumpHandler.h"
 
 @implementation ZJHGameApp
 
@@ -276,6 +277,11 @@
 - (UIColor*)popupMessageDialogFontColor
 {
     return [UIColor whiteColor];
+}
+
+- (id<GameJumpHandlerProtocol>)getGameJumpHandler
+{
+    return [ZJHGameJumpHandler defaultHandler];
 }
 
 @end

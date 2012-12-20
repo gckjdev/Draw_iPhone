@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "ChatMsgManagerProtocol.h"
 #import "ImageManagerProtocol.h"
+#import "GameJumpHandlerProtocol.h"
 
 @protocol GameAppProtocol <NSObject>
 
@@ -84,5 +85,7 @@
 - (NSString *)roomListCellDualBgImageName;
 
 - (UIColor*)popupMessageDialogFontColor;
+
+- (id<GameJumpHandlerProtocol>)getGameJumpHandler;
 
 @end

@@ -62,6 +62,7 @@
 
 #import "GameConfigDataManager.h"
 #import "ZJHHomeViewController.h"
+#import "BulletinService.h"
 
 NSString* GlobalGetServerURL()
 {    
@@ -445,6 +446,7 @@ NSString* GlobalGetBoardServerURL()
      */
     
     [[BoardService defaultService] syncBoards];
+    [[BulletinService defaultService] syncBulletins];
     
     if ([ConfigManager wallEnabled]){
         [[LmWallService defaultService] queryScore];            

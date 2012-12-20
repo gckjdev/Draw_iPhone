@@ -43,4 +43,13 @@
 - (UIImage *)userInfoFollowBtnImage;
 - (UIImage *)userInfoTalkBtnImage;
 
+- (UIImage *)bulletinAccessoryImage;
+- (UIImage *)bulletinBackgroundImage;
+- (UIImage *)bulletinButtomImage;
+- (UIImage *)bulletinDateBackgroundImage;
+- (UIImage *)bulletinTimeBackgroundImage;
+- (UIImage *)bulletinTopImage;
+- (UIImage *)bulletinCloseImage;
+- (UIImage *)bulletinNewImage;
+
 @end

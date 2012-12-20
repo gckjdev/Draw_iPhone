@@ -33,7 +33,7 @@
         str = [str stringByAddQueryParameter:PARA_APPID value:appId];
         str = [str stringByAddQueryParameter:PARA_GAME_ID value:gameId];
         str = [str stringByAddQueryParameter:PARA_USERID value:userId];
-        str = [str stringByAddQueryParameter:PARA_BULLETIN_ID value:bulletinId];
+        str = [str stringByAddQueryParameter:PARA_LATEST_BULLETIN_ID value:bulletinId];
         
         
         return str;

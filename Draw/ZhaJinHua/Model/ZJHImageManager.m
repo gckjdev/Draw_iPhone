@@ -900,4 +900,38 @@ static ZJHImageManager* shareInstance;
     return [UIImage strectchableImageName:@"zjh_dialog_btn"];
 }
 
+- (UIImage *)bulletinAccessoryImage
+{
+    return [_resService imageByName:@"" inResourcePackage:RESOURCE_PACKAGE_ZJH];
+}
+- (UIImage *)bulletinBackgroundImage
+{
+    return [_resService imageByName:@"" inResourcePackage:RESOURCE_PACKAGE_ZJH];
+}
+- (UIImage *)bulletinButtomImage
+{
+    return [_resService imageByName:@"" inResourcePackage:RESOURCE_PACKAGE_ZJH];
+}
+- (UIImage *)bulletinDateBackgroundImage
+{
+    return [_resService imageByName:@"" inResourcePackage:RESOURCE_PACKAGE_ZJH];
+}
+- (UIImage *)bulletinTimeBackgroundImage
+{
+    return [_resService imageByName:@"" inResourcePackage:RESOURCE_PACKAGE_ZJH];
+}
+- (UIImage *)bulletinTopImage
+{
+    return [_resService imageByName:@"" inResourcePackage:RESOURCE_PACKAGE_ZJH];
+}
+- (UIImage *)bulletinCloseImage
+{
+    return [_resService imageByName:@"" inResourcePackage:RESOURCE_PACKAGE_ZJH];
+}
+- (UIImage *)bulletinNewImage
+{
+    return [_resService imageByName:@"" inResourcePackage:RESOURCE_PACKAGE_ZJH];
+}
+
+
 @end

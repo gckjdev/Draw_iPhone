@@ -44,7 +44,6 @@ typedef enum{
 - (void)handleJump:(BoardView *)boardView 
         controller:(UIViewController *)controller 
                URL:(NSURL *)URL;
-
 @end
 
 

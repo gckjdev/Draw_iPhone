@@ -15,6 +15,10 @@
 #import "BulletinNetworkConstants.h"
 #import "PPNetworkRequest.h"
 #import "Bulletin.h"
+#import "NotificationManager.h"
+#import "StatisticManager.h"
+
+
 
 @implementation BulletinService
 
@@ -23,6 +27,16 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(BulletinService)
 + (BulletinService*)defaultService
 {
     return [BulletinService sharedBulletinService];
+}
+
+- (void)postNotification:(NSString*)name
+{
+    [[NSNotificationCenter defaultCenter]
+     postNotificationName:name
+     object:self
+     userInfo:nil];
+    
+    PPDebug(@"<%@> post notification %@", [self description], name);
 }
 
 - (void)syncBulletins
@@ -40,37 +54,38 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(BulletinService)
                                                          bulletinId:bulletinId];
         NSInteger errorCode = output.resultCode;
         NSArray *bulletinList = nil;
-        PPDebug(@"<didGetBoards> result code = %d", errorCode);
+        PPDebug(@"<didGetBulletins> result code = %d", errorCode);
         if (errorCode == ERROR_SUCCESS && [output.jsonDataArray count] != 0) {
-            NSMutableArray* unSortedBulletinList = [[[NSMutableArray alloc] initWithCapacity:10] autorelease];
+            NSMutableArray* unSortedBulletinList = [[[NSMutableArray alloc] initWithCapacity:MAX_CACHE_BULLETIN_COUNT] autorelease];
             for (NSDictionary *dict in output.jsonDataArray) {
                 Bulletin* bulletin = [[[Bulletin alloc] initWithDict:dict] autorelease];
-                [[BulletinManager defaultManager] pushBulletin:bulletin];
+                [unSortedBulletinList addObject:bulletin];
             }
             //sort the boardList by the index
             bulletinList = [unSortedBulletinList sortedArrayUsingComparator:^(id obj1,id obj2){
                 Bulletin* bulletin1 = (Bulletin*)obj1;
                 Bulletin* bulletin2 = (Bulletin*)obj2;
                 if (bulletin1.date.timeIntervalSince1970 > bulletin2.date.timeIntervalSince1970) {
-                    return NSOrderedAscending;
-                } else if (bulletin1.date.timeIntervalSince1970 > bulletin2.date.timeIntervalSince1970) {
                     return NSOrderedDescending;
+                } else if (bulletin1.date.timeIntervalSince1970 < bulletin2.date.timeIntervalSince1970) {
+                    return NSOrderedAscending;
                 }
                 return NSOrderedSame;
             }];
+            
         }
         
         dispatch_async(dispatch_get_main_queue(), ^{
-            if (errorCode == 0) {
+            if (errorCode == ERROR_SUCCESS) {
                 [[BulletinManager defaultManager] saveBulletinList:bulletinList];
+                [[StatisticManager defaultManager] setBulletinCount:[[BulletinManager defaultManager] unreadBulletinCount]];
                 
-                // post notifcation here, for UI to update
-//                [self postNotification:BOARD_UPDATE_NOTIFICATION];
-//                [self stopLoadBoardTimer];
             }else {
                 // failure, do nothing
             }
         });
+        
+//        [self postNotification:BULLETIN_UPDATE_NOTIFICATION];
         
     });
 }
@@ -78,6 +93,15 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(BulletinService)
 - (NSArray*)bulletins
 {
     return [BulletinManager defaultManager].bulletins;
+}
+
+- (void)readAllBulletins
+{
+    [[BulletinManager defaultManager] readAllBulletins];
+}
+- (NSInteger)unreadBulletinCount
+{
+    return [[BulletinManager defaultManager] unreadBulletinCount];
 }
 
 @end
