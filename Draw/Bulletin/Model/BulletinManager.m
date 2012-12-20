@@ -46,7 +46,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(BulletinManager)
 {
     for (Bulletin* bulletin in bulletinList) {
         PPDebug(@"<test>pushing bullitin %@",bulletin.date);
-        [_bulletinStack addObject:bulletin];
+        [self pushBulletin:bulletin];
     }
     [self saveBulletins];
 }

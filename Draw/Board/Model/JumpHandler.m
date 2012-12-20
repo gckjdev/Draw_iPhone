@@ -51,6 +51,13 @@
     
 }
 
++ (void)handleGameJump:(UIViewController*)controller
+                gameId:(NSString*)gameId
+              function:(NSString*)function
+{
+    [[GameApp getGameJumpHandler] controllerForGameId:gameId func:function fromController:controller];
+}
+
 @end
 
 

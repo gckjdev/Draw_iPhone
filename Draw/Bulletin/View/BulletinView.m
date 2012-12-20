@@ -10,6 +10,7 @@
 #import "BulletinService.h"
 #import "BulletinCell.h"
 #import "Bulletin.h"
+#import "JumpHandler.h"
 
 @implementation BulletinView
 
@@ -26,12 +27,16 @@
 {
     self.bulletinsTableView.dataSource = self;
     self.bulletinsTableView.delegate = self;
+    
+    [self.titleLabel setText:NSLS(@"kBulletin")];
+    [self.closeButton setTitle:NSLS(@"kClose") forState:UIControlStateNormal];
 }
 
 + (void)showBulletinInController:(PPViewController*)controller
 {
     BulletinView* view = (BulletinView*)[BulletinView createInfoViewByXibName:@"BulletinView"];
     [view initView];
+    view.superController = controller;
     [view showInView:controller.view];
 }
 
@@ -64,9 +69,25 @@
 
 - (float)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    Bulletin* bulletin = [[BulletinService defaultService].bulletins objectAtIndex:([BulletinService defaultService].bulletins.count - indexPath.row - 1)];
+    BulletinService* service = [BulletinService defaultService];
+    Bulletin* bulletin;
+    if (indexPath.row < service.bulletins.count) {
+        bulletin = [[BulletinService defaultService].bulletins objectAtIndex:([BulletinService defaultService].bulletins.count - indexPath.row - 1)];
+        
+    }
     return [BulletinCell cellSizeForContent:bulletin.message].height;
+}
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    BulletinService* service = [BulletinService defaultService];
+    Bulletin* bulletin;
+    if (indexPath.row < service.bulletins.count) {
+        bulletin = [service.bulletins objectAtIndex:([BulletinService defaultService].bulletins.count - indexPath.row - 1)];
+        bulletin.hasRead = YES;
+        [self.bulletinsTableView reloadData];
+        [JumpHandler handleGameJump:self.superController gameId:bulletin.gameId function:bulletin.function];
+    }
 }
 
 

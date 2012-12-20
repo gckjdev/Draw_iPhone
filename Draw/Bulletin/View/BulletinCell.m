@@ -12,10 +12,10 @@
 #import "GameApp.h"
 #import "TimeUtils.h"
 
-#define TOTAL_SEPERATOR 45
-#define MAX_CONTENT_LABEL_HEIGHT    150
-#define CONTENT_FONT_SIZE   13
-#define CONTENT_LABEL_WIDTH 165
+#define TOTAL_SEPERATOR ([DeviceDetection isIPAD]?90:45)
+#define MAX_CONTENT_LABEL_HEIGHT    ([DeviceDetection isIPAD]?300:150)
+#define CONTENT_FONT_SIZE   ([DeviceDetection isIPAD]?26:13)
+#define CONTENT_LABEL_WIDTH ([DeviceDetection isIPAD]?330:165)
 
 @implementation BulletinCell
 
@@ -54,8 +54,11 @@ AUTO_CREATE_VIEW_BY_XIB(BulletinCell)
 
 - (void)initView
 {
+    
     [self.backgroundImageView setImage:[[GameApp getImageManager] bulletinBackgroundImage]];
-    [self setAccessoryView:[[[UIImageView alloc] initWithImage:[[GameApp getImageManager] bulletinAccessoryImage]] autorelease]];
+//    [self setAccessoryView:[[[UIImageView alloc] initWithImage:[[GameApp getImageManager] bulletinAccessoryImage]] autorelease]];
+    [self setAccessoryType:UITableViewCellAccessoryNone];
+    [self.customAccessoryImageView setImage:[[GameApp getImageManager] bulletinAccessoryImage]];
     [self resize];
 }
 
@@ -95,6 +98,7 @@ AUTO_CREATE_VIEW_BY_XIB(BulletinCell)
     [_timeButton release];
     [_dateLabel release];
     [_newBulletinFlag release];
+    [_customAccessoryImageView release];
     [super dealloc];
 }
 @end

@@ -16,6 +16,7 @@
 @property (retain, nonatomic) IBOutlet UIButton *closeButton;
 @property (retain, nonatomic) IBOutlet UIImageView *topImageView;
 @property (retain, nonatomic) IBOutlet UIImageView *downImageView;
+@property (assign, nonatomic) UIViewController* superController;
 
 + (void)showBulletinInController:(PPViewController*)controller;
 
