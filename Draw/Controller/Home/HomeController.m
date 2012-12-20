@@ -69,6 +69,8 @@
 
 #import "BBSBoardController.h"
 
+#import "BulletinView.h"
+
 //#import "DrawHomeViewController.h"
 
 @interface HomeController()
@@ -172,6 +174,7 @@
         self.recommendButton.hidden = YES;
     }
     
+    
     [super viewDidLoad];
     /*
     [self loadMainMenu];
@@ -202,7 +205,7 @@
 //    }
 
     [self enterNextControllerWityType:self.notificationType];
-        
+     [self.view bringSubviewToFront:self.testBulletin];   
 }
 
 
@@ -289,6 +292,7 @@
     [self setRecommendButton:nil];
     [self setFacetimeButton:nil];
     [self setMenuPanel:nil];
+    [self setTestBulletin:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -527,6 +531,7 @@
     PPRelease(_menuPanel);
     PPRelease(_bottomMenuPanel);
 //    PPRelease(_adView);
+    [_testBulletin release];
     [super dealloc];
 }
 
@@ -754,6 +759,11 @@
 //    [self.navigationController pushViewController:vc animated:YES];
     
 //    [[DiceGameService defaultService] joinGameRequest];
+}
+
+- (IBAction)clickTestBulletin:(id)sender
+{
+    [BulletinView showBulletinInController:self];
 }
 
 
