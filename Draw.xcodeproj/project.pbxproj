@@ -422,6 +422,23 @@
 		C28E7C141602E5FC00F4B6A5 /* SkipItemAction.m in Sources */ = {isa = PBXBuildFile; fileRef = C28E7C131602E5F900F4B6A5 /* SkipItemAction.m */; };
 		C2916CC01606B9DD00B0996E /* DiceRobotManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C2916CBF1606B9DD00B0996E /* DiceRobotManager.m */; };
 		C292CD4D1647966500BDE772 /* MoneyTree.m in Sources */ = {isa = PBXBuildFile; fileRef = C292CD4C1647966500BDE772 /* MoneyTree.m */; };
+		C295B911168571C2005B3559 /* DiceGameJumpHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = C295B90C168571C2005B3559 /* DiceGameJumpHandler.m */; };
+		C295B912168571C2005B3559 /* DrawGameJumpHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = C295B90E168571C2005B3559 /* DrawGameJumpHandler.m */; };
+		C295B913168571C2005B3559 /* ZJHGameJumpHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = C295B90F168571C2005B3559 /* ZJHGameJumpHandler.m */; };
+		C295B91416857428005B3559 /* GameJumpHandlerProtocol.h in Sources */ = {isa = PBXBuildFile; fileRef = C295B90A168571C2005B3559 /* GameJumpHandlerProtocol.h */; };
+		C295B91516857428005B3559 /* ZJHGameJumpHandler.h in Sources */ = {isa = PBXBuildFile; fileRef = C295B90B168571C2005B3559 /* ZJHGameJumpHandler.h */; };
+		C295B91616857428005B3559 /* DiceGameJumpHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = C295B90C168571C2005B3559 /* DiceGameJumpHandler.m */; };
+		C295B91716857428005B3559 /* DrawGameJumpHandler.h in Sources */ = {isa = PBXBuildFile; fileRef = C295B90D168571C2005B3559 /* DrawGameJumpHandler.h */; };
+		C295B91816857428005B3559 /* DrawGameJumpHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = C295B90E168571C2005B3559 /* DrawGameJumpHandler.m */; };
+		C295B91916857428005B3559 /* ZJHGameJumpHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = C295B90F168571C2005B3559 /* ZJHGameJumpHandler.m */; };
+		C295B91A16857428005B3559 /* DiceGameJumpHandler.h in Sources */ = {isa = PBXBuildFile; fileRef = C295B910168571C2005B3559 /* DiceGameJumpHandler.h */; };
+		C295B91B16857D11005B3559 /* GameJumpHandlerProtocol.h in Sources */ = {isa = PBXBuildFile; fileRef = C295B90A168571C2005B3559 /* GameJumpHandlerProtocol.h */; };
+		C295B91C16857D12005B3559 /* ZJHGameJumpHandler.h in Sources */ = {isa = PBXBuildFile; fileRef = C295B90B168571C2005B3559 /* ZJHGameJumpHandler.h */; };
+		C295B91D16857D12005B3559 /* DiceGameJumpHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = C295B90C168571C2005B3559 /* DiceGameJumpHandler.m */; };
+		C295B91E16857D12005B3559 /* DrawGameJumpHandler.h in Sources */ = {isa = PBXBuildFile; fileRef = C295B90D168571C2005B3559 /* DrawGameJumpHandler.h */; };
+		C295B91F16857D12005B3559 /* DrawGameJumpHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = C295B90E168571C2005B3559 /* DrawGameJumpHandler.m */; };
+		C295B92016857D12005B3559 /* ZJHGameJumpHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = C295B90F168571C2005B3559 /* ZJHGameJumpHandler.m */; };
+		C295B92116857D12005B3559 /* DiceGameJumpHandler.h in Sources */ = {isa = PBXBuildFile; fileRef = C295B910168571C2005B3559 /* DiceGameJumpHandler.h */; };
 		C296872B15DCE03F006968BA /* DiceItemInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = C296872115DCE03F006968BA /* DiceItemInfoView.m */; };
 		C296872C15DCE03F006968BA /* DiceItemInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C296872215DCE03F006968BA /* DiceItemInfoView.xib */; };
 		C296872D15DCE03F006968BA /* DiceUserInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = C296872515DCE03F006968BA /* DiceUserInfoView.m */; };
@@ -440,9 +457,6 @@
 		C2974D10167F1C0000E012FC /* Bulletin.m in Sources */ = {isa = PBXBuildFile; fileRef = C2974D0F167F1C0000E012FC /* Bulletin.m */; };
 		C2974D14167F1FB700E012FC /* BulletinNetwork.m in Sources */ = {isa = PBXBuildFile; fileRef = C2974D13167F1FB700E012FC /* BulletinNetwork.m */; };
 		C2974D18167F6CB200E012FC /* BulletinManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C2974D17167F6CB200E012FC /* BulletinManager.m */; };
-		C2974D4F1683024800E012FC /* DrawGameJumpHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = C2974D491683024800E012FC /* DrawGameJumpHandler.m */; };
-		C2974D501683024800E012FC /* DiceGameJumpHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = C2974D4B1683024800E012FC /* DiceGameJumpHandler.m */; };
-		C2974D511683024800E012FC /* ZJHGameJumpHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = C2974D4C1683024800E012FC /* ZJHGameJumpHandler.m */; };
 		C2974D5B168302DE00E012FC /* bulletin_accessory@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2974D53168302DE00E012FC /* bulletin_accessory@2x.png */; };
 		C2974D5C168302DE00E012FC /* bulletin_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2974D54168302DE00E012FC /* bulletin_bg@2x.png */; };
 		C2974D5D168302DE00E012FC /* bulletin_buttom@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2974D55168302DE00E012FC /* bulletin_buttom@2x.png */; };
@@ -4844,6 +4858,13 @@
 		C2916CBF1606B9DD00B0996E /* DiceRobotManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiceRobotManager.m; sourceTree = "<group>"; };
 		C292CD4B1647966500BDE772 /* MoneyTree.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoneyTree.h; sourceTree = "<group>"; };
 		C292CD4C1647966500BDE772 /* MoneyTree.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoneyTree.m; sourceTree = "<group>"; };
+		C295B90A168571C2005B3559 /* GameJumpHandlerProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameJumpHandlerProtocol.h; sourceTree = "<group>"; };
+		C295B90B168571C2005B3559 /* ZJHGameJumpHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJHGameJumpHandler.h; sourceTree = "<group>"; };
+		C295B90C168571C2005B3559 /* DiceGameJumpHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiceGameJumpHandler.m; sourceTree = "<group>"; };
+		C295B90D168571C2005B3559 /* DrawGameJumpHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawGameJumpHandler.h; sourceTree = "<group>"; };
+		C295B90E168571C2005B3559 /* DrawGameJumpHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawGameJumpHandler.m; sourceTree = "<group>"; };
+		C295B90F168571C2005B3559 /* ZJHGameJumpHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJHGameJumpHandler.m; sourceTree = "<group>"; };
+		C295B910168571C2005B3559 /* DiceGameJumpHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiceGameJumpHandler.h; sourceTree = "<group>"; };
 		C296872015DCE03F006968BA /* DiceItemInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiceItemInfoView.h; sourceTree = "<group>"; };
 		C296872115DCE03F006968BA /* DiceItemInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiceItemInfoView.m; sourceTree = "<group>"; };
 		C296872215DCE03F006968BA /* DiceItemInfoView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DiceItemInfoView.xib; sourceTree = "<group>"; };
@@ -4873,13 +4894,6 @@
 		C2974D15167F267D00E012FC /* BulletinNetworkConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BulletinNetworkConstants.h; sourceTree = "<group>"; };
 		C2974D16167F6CB200E012FC /* BulletinManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BulletinManager.h; sourceTree = "<group>"; };
 		C2974D17167F6CB200E012FC /* BulletinManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BulletinManager.m; sourceTree = "<group>"; };
-		C2974D481683024800E012FC /* DiceGameJumpHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiceGameJumpHandler.h; sourceTree = "<group>"; };
-		C2974D491683024800E012FC /* DrawGameJumpHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawGameJumpHandler.m; sourceTree = "<group>"; };
-		C2974D4A1683024800E012FC /* ZJHGameJumpHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJHGameJumpHandler.h; sourceTree = "<group>"; };
-		C2974D4B1683024800E012FC /* DiceGameJumpHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiceGameJumpHandler.m; sourceTree = "<group>"; };
-		C2974D4C1683024800E012FC /* ZJHGameJumpHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJHGameJumpHandler.m; sourceTree = "<group>"; };
-		C2974D4D1683024800E012FC /* GameJumpHandlerProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameJumpHandlerProtocol.h; sourceTree = "<group>"; };
-		C2974D4E1683024800E012FC /* DrawGameJumpHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawGameJumpHandler.h; sourceTree = "<group>"; };
 		C2974D53168302DE00E012FC /* bulletin_accessory@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bulletin_accessory@2x.png"; sourceTree = "<group>"; };
 		C2974D54168302DE00E012FC /* bulletin_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bulletin_bg@2x.png"; sourceTree = "<group>"; };
 		C2974D55168302DE00E012FC /* bulletin_buttom@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bulletin_buttom@2x.png"; sourceTree = "<group>"; };
@@ -7776,13 +7790,13 @@
 		C2974CFA167F1BB200E012FC /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				C2974D481683024800E012FC /* DiceGameJumpHandler.h */,
-				C2974D491683024800E012FC /* DrawGameJumpHandler.m */,
-				C2974D4A1683024800E012FC /* ZJHGameJumpHandler.h */,
-				C2974D4B1683024800E012FC /* DiceGameJumpHandler.m */,
-				C2974D4C1683024800E012FC /* ZJHGameJumpHandler.m */,
-				C2974D4D1683024800E012FC /* GameJumpHandlerProtocol.h */,
-				C2974D4E1683024800E012FC /* DrawGameJumpHandler.h */,
+				C295B90A168571C2005B3559 /* GameJumpHandlerProtocol.h */,
+				C295B90B168571C2005B3559 /* ZJHGameJumpHandler.h */,
+				C295B90C168571C2005B3559 /* DiceGameJumpHandler.m */,
+				C295B90D168571C2005B3559 /* DrawGameJumpHandler.h */,
+				C295B90E168571C2005B3559 /* DrawGameJumpHandler.m */,
+				C295B90F168571C2005B3559 /* ZJHGameJumpHandler.m */,
+				C295B910168571C2005B3559 /* DiceGameJumpHandler.h */,
 				C2974D0E167F1C0000E012FC /* Bulletin.h */,
 				C2974D0F167F1C0000E012FC /* Bulletin.m */,
 				C2974D16167F6CB200E012FC /* BulletinManager.h */,
@@ -14149,6 +14163,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C295B91416857428005B3559 /* GameJumpHandlerProtocol.h in Sources */,
+				C295B91516857428005B3559 /* ZJHGameJumpHandler.h in Sources */,
+				C295B91616857428005B3559 /* DiceGameJumpHandler.m in Sources */,
+				C295B91716857428005B3559 /* DrawGameJumpHandler.h in Sources */,
+				C295B91816857428005B3559 /* DrawGameJumpHandler.m in Sources */,
+				C295B91916857428005B3559 /* ZJHGameJumpHandler.m in Sources */,
+				C295B91A16857428005B3559 /* DiceGameJumpHandler.h in Sources */,
 				CA16B9681682FAD900F81B47 /* main.m in Sources */,
 				CA16B9691682FAD900F81B47 /* DrawAppDelegate.m in Sources */,
 				CA16B96A1682FAD900F81B47 /* CommonService.m in Sources */,
@@ -14796,6 +14817,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C295B91B16857D11005B3559 /* GameJumpHandlerProtocol.h in Sources */,
+				C295B91C16857D12005B3559 /* ZJHGameJumpHandler.h in Sources */,
+				C295B91D16857D12005B3559 /* DiceGameJumpHandler.m in Sources */,
+				C295B91E16857D12005B3559 /* DrawGameJumpHandler.h in Sources */,
+				C295B91F16857D12005B3559 /* DrawGameJumpHandler.m in Sources */,
+				C295B92016857D12005B3559 /* ZJHGameJumpHandler.m in Sources */,
+				C295B92116857D12005B3559 /* DiceGameJumpHandler.h in Sources */,
 				CA16BEEE1682FAE300F81B47 /* main.m in Sources */,
 				CA16BEEF1682FAE300F81B47 /* DrawAppDelegate.m in Sources */,
 				CA16BEF01682FAE300F81B47 /* CommonService.m in Sources */,
@@ -16083,9 +16111,9 @@
 				C2974D10167F1C0000E012FC /* Bulletin.m in Sources */,
 				C2974D14167F1FB700E012FC /* BulletinNetwork.m in Sources */,
 				C2974D18167F6CB200E012FC /* BulletinManager.m in Sources */,
-				C2974D4F1683024800E012FC /* DrawGameJumpHandler.m in Sources */,
-				C2974D501683024800E012FC /* DiceGameJumpHandler.m in Sources */,
-				C2974D511683024800E012FC /* ZJHGameJumpHandler.m in Sources */,
+				C295B911168571C2005B3559 /* DiceGameJumpHandler.m in Sources */,
+				C295B912168571C2005B3559 /* DrawGameJumpHandler.m in Sources */,
+				C295B913168571C2005B3559 /* ZJHGameJumpHandler.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
