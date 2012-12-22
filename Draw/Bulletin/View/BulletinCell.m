@@ -11,6 +11,7 @@
 #import "AutoCreateViewByXib.h"
 #import "GameApp.h"
 #import "TimeUtils.h"
+#import "JumpHandler.h"
 
 #define TOTAL_SEPERATOR ([DeviceDetection isIPAD]?90:45)
 #define MAX_CONTENT_LABEL_HEIGHT    ([DeviceDetection isIPAD]?300:150)
@@ -84,7 +85,7 @@ AUTO_CREATE_VIEW_BY_XIB(BulletinCell)
 
     [self.dateLabel setText:dateToLocaleStringWithFormat(bulletin.date, @"yyyy.MM.dd")];
     [self.timeButton setTitle:dateToLocaleStringWithFormat(bulletin.date, @"HH:mm") forState:UIControlStateNormal];
-    
+    [self.customAccessoryImageView setHidden:!([JumpHandler canJump:bulletin.type] && [[GameApp getGameJumpHandler] isFunctionAvailable:bulletin.function])];
     [self initView];
 }
 

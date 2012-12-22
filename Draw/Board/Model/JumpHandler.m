@@ -58,6 +58,11 @@
     [[GameApp getGameJumpHandler] controllerForGameId:gameId func:function fromController:controller];
 }
 
++ (BOOL)canJump:(JumpType)type
+{
+    return (type == JumpTypeCanotJump)?NO:YES;
+}
+
 @end
 
 

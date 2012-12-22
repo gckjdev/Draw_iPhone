@@ -25,4 +25,9 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(DiceGameJumpHandler)
     return nil;
 }
 
+- (BOOL)isFunctionAvailable:(NSString*)func
+{
+    return NO;
+}
+
 @end
