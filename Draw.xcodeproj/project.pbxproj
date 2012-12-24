@@ -4038,6 +4038,14 @@
 		CAD9C7121574CCFA00F2C8E1 /* fireworks1.png in Resources */ = {isa = PBXBuildFile; fileRef = CAD9C7101574CCF900F2C8E1 /* fireworks1.png */; };
 		CAD9C7131574CCFA00F2C8E1 /* fireworks2.png in Resources */ = {isa = PBXBuildFile; fileRef = CAD9C7111574CCFA00F2C8E1 /* fireworks2.png */; };
 		CAD9C7151574D02A00F2C8E1 /* snow.png in Resources */ = {isa = PBXBuildFile; fileRef = CAD9C7141574D02A00F2C8E1 /* snow.png */; };
+		CADD263616883FDA00BDCDCF /* DrawToolPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = CADD263516883FDA00BDCDCF /* DrawToolPanel.m */; };
+		CADD26381688400600BDCDCF /* DrawToolPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = CADD26371688400600BDCDCF /* DrawToolPanel.xib */; };
+		CADD26391688400600BDCDCF /* DrawToolPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = CADD26371688400600BDCDCF /* DrawToolPanel.xib */; };
+		CADD263A1688400600BDCDCF /* DrawToolPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = CADD26371688400600BDCDCF /* DrawToolPanel.xib */; };
+		CADD263B1688404900BDCDCF /* DrawToolPanel.h in Sources */ = {isa = PBXBuildFile; fileRef = CADD263416883FDA00BDCDCF /* DrawToolPanel.h */; };
+		CADD263C1688404900BDCDCF /* DrawToolPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = CADD263516883FDA00BDCDCF /* DrawToolPanel.m */; };
+		CADD263D1688407D00BDCDCF /* DrawToolPanel.h in Sources */ = {isa = PBXBuildFile; fileRef = CADD263416883FDA00BDCDCF /* DrawToolPanel.h */; };
+		CADD263E1688407D00BDCDCF /* DrawToolPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = CADD263516883FDA00BDCDCF /* DrawToolPanel.m */; };
 		CADD7FCD1510C9700075C739 /* GameConstants.pb.m in Sources */ = {isa = PBXBuildFile; fileRef = CADD7FCB1510C9700075C739 /* GameConstants.pb.m */; };
 		CADD7FCF1510DC530075C739 /* GameConstants.proto in Resources */ = {isa = PBXBuildFile; fileRef = CADD7FCE1510DC530075C739 /* GameConstants.proto */; };
 		CADD7FD71511BA240075C739 /* GameNetworkClient.m in Sources */ = {isa = PBXBuildFile; fileRef = CADD7FD51511BA240075C739 /* GameNetworkClient.m */; };
@@ -6095,6 +6103,9 @@
 		CAD9C7101574CCF900F2C8E1 /* fireworks1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fireworks1.png; sourceTree = "<group>"; };
 		CAD9C7111574CCFA00F2C8E1 /* fireworks2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fireworks2.png; sourceTree = "<group>"; };
 		CAD9C7141574D02A00F2C8E1 /* snow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = snow.png; sourceTree = "<group>"; };
+		CADD263416883FDA00BDCDCF /* DrawToolPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawToolPanel.h; sourceTree = "<group>"; };
+		CADD263516883FDA00BDCDCF /* DrawToolPanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawToolPanel.m; sourceTree = "<group>"; };
+		CADD26371688400600BDCDCF /* DrawToolPanel.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DrawToolPanel.xib; sourceTree = "<group>"; };
 		CADD7FCB1510C9700075C739 /* GameConstants.pb.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameConstants.pb.m; sourceTree = "<group>"; };
 		CADD7FCC1510C9700075C739 /* GameConstants.pb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameConstants.pb.h; sourceTree = "<group>"; };
 		CADD7FCE1510DC530075C739 /* GameConstants.proto */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = GameConstants.proto; sourceTree = "<group>"; };
@@ -9091,6 +9102,7 @@
 		CA1041D61509B6E700F60C03 /* Draw */ = {
 			isa = PBXGroup;
 			children = (
+				CADD263316883F0D00BDCDCF /* Common */,
 				CA06BE4115522F2F00B94FB1 /* SuperGameViewController.h */,
 				CA06BE4215522F2F00B94FB1 /* SuperGameViewController.m */,
 				CA22DCD5157CB009009C95CB /* Offline */,
@@ -10753,6 +10765,16 @@
 				EA6916BD15ECCF4C0001CB5A /* DiceSettingView~ipad.xib */,
 			);
 			path = DiceSettingView;
+			sourceTree = "<group>";
+		};
+		CADD263316883F0D00BDCDCF /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				CADD263416883FDA00BDCDCF /* DrawToolPanel.h */,
+				CADD263516883FDA00BDCDCF /* DrawToolPanel.m */,
+				CADD26371688400600BDCDCF /* DrawToolPanel.xib */,
+			);
+			path = Common;
 			sourceTree = "<group>";
 		};
 		CAE0C8941591A2D5008CDA62 /* Notification */ = {
@@ -12652,6 +12674,7 @@
 				CA16BEE31682FAD900F81B47 /* BulletinCell~ipad.xib in Resources */,
 				CA16BEE41682FAD900F81B47 /* BulletinView.xib in Resources */,
 				CA16BEE51682FAD900F81B47 /* BulletinView~ipad.xib in Resources */,
+				CADD26391688400600BDCDCF /* DrawToolPanel.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -13385,6 +13408,7 @@
 				CA16C4691682FAE300F81B47 /* BulletinCell~ipad.xib in Resources */,
 				CA16C46A1682FAE300F81B47 /* BulletinView.xib in Resources */,
 				CA16C46B1682FAE300F81B47 /* BulletinView~ipad.xib in Resources */,
+				CADD263A1688400600BDCDCF /* DrawToolPanel.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -14128,6 +14152,7 @@
 				C2974D60168302DE00E012FC /* bulletin_top@2x.png in Resources */,
 				C2974D61168302DE00E012FC /* close_bulletin@2x.png in Resources */,
 				C2974D62168302DE00E012FC /* new_bulletin@2x.png in Resources */,
+				CADD26381688400600BDCDCF /* DrawToolPanel.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -14163,6 +14188,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CADD263B1688404900BDCDCF /* DrawToolPanel.h in Sources */,
+				CADD263C1688404900BDCDCF /* DrawToolPanel.m in Sources */,
 				C295B91416857428005B3559 /* GameJumpHandlerProtocol.h in Sources */,
 				C295B91516857428005B3559 /* ZJHGameJumpHandler.h in Sources */,
 				C295B91616857428005B3559 /* DiceGameJumpHandler.m in Sources */,
@@ -14817,6 +14844,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CADD263D1688407D00BDCDCF /* DrawToolPanel.h in Sources */,
+				CADD263E1688407D00BDCDCF /* DrawToolPanel.m in Sources */,
 				C295B91B16857D11005B3559 /* GameJumpHandlerProtocol.h in Sources */,
 				C295B91C16857D12005B3559 /* ZJHGameJumpHandler.h in Sources */,
 				C295B91D16857D12005B3559 /* DiceGameJumpHandler.m in Sources */,
@@ -16114,6 +16143,7 @@
 				C295B911168571C2005B3559 /* DiceGameJumpHandler.m in Sources */,
 				C295B912168571C2005B3559 /* DrawGameJumpHandler.m in Sources */,
 				C295B913168571C2005B3559 /* ZJHGameJumpHandler.m in Sources */,
+				CADD263616883FDA00BDCDCF /* DrawToolPanel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
