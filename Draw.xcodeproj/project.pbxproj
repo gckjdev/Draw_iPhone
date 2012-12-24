@@ -4046,6 +4046,9 @@
 		CADD263C1688404900BDCDCF /* DrawToolPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = CADD263516883FDA00BDCDCF /* DrawToolPanel.m */; };
 		CADD263D1688407D00BDCDCF /* DrawToolPanel.h in Sources */ = {isa = PBXBuildFile; fileRef = CADD263416883FDA00BDCDCF /* DrawToolPanel.h */; };
 		CADD263E1688407D00BDCDCF /* DrawToolPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = CADD263516883FDA00BDCDCF /* DrawToolPanel.m */; };
+		CADD26421688421600BDCDCF /* PPStack.m in Sources */ = {isa = PBXBuildFile; fileRef = CADD26411688421600BDCDCF /* PPStack.m */; };
+		CADD26431688421600BDCDCF /* PPStack.m in Sources */ = {isa = PBXBuildFile; fileRef = CADD26411688421600BDCDCF /* PPStack.m */; };
+		CADD26441688421600BDCDCF /* PPStack.m in Sources */ = {isa = PBXBuildFile; fileRef = CADD26411688421600BDCDCF /* PPStack.m */; };
 		CADD7FCD1510C9700075C739 /* GameConstants.pb.m in Sources */ = {isa = PBXBuildFile; fileRef = CADD7FCB1510C9700075C739 /* GameConstants.pb.m */; };
 		CADD7FCF1510DC530075C739 /* GameConstants.proto in Resources */ = {isa = PBXBuildFile; fileRef = CADD7FCE1510DC530075C739 /* GameConstants.proto */; };
 		CADD7FD71511BA240075C739 /* GameNetworkClient.m in Sources */ = {isa = PBXBuildFile; fileRef = CADD7FD51511BA240075C739 /* GameNetworkClient.m */; };
@@ -6106,6 +6109,8 @@
 		CADD263416883FDA00BDCDCF /* DrawToolPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawToolPanel.h; sourceTree = "<group>"; };
 		CADD263516883FDA00BDCDCF /* DrawToolPanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawToolPanel.m; sourceTree = "<group>"; };
 		CADD26371688400600BDCDCF /* DrawToolPanel.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DrawToolPanel.xib; sourceTree = "<group>"; };
+		CADD26401688421600BDCDCF /* PPStack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPStack.h; sourceTree = "<group>"; };
+		CADD26411688421600BDCDCF /* PPStack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPStack.m; sourceTree = "<group>"; };
 		CADD7FCB1510C9700075C739 /* GameConstants.pb.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameConstants.pb.m; sourceTree = "<group>"; };
 		CADD7FCC1510C9700075C739 /* GameConstants.pb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameConstants.pb.h; sourceTree = "<group>"; };
 		CADD7FCE1510DC530075C739 /* GameConstants.proto */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = GameConstants.proto; sourceTree = "<group>"; };
@@ -8193,6 +8198,7 @@
 		CA103B391509A56000F60C03 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				CADD263F168841ED00BDCDCF /* Core-Utils-DataStructure */,
 				C28A23B9166C90E2007C9EA5 /* Core-Utils-OpenGL */,
 				C2A3CC04161590FF00663271 /* Core-Utils-Animation */,
 				CA103F491509A9FD00F60C03 /* Core-3PP */,
@@ -10775,6 +10781,15 @@
 				CADD26371688400600BDCDCF /* DrawToolPanel.xib */,
 			);
 			path = Common;
+			sourceTree = "<group>";
+		};
+		CADD263F168841ED00BDCDCF /* Core-Utils-DataStructure */ = {
+			isa = PBXGroup;
+			children = (
+				CADD26401688421600BDCDCF /* PPStack.h */,
+				CADD26411688421600BDCDCF /* PPStack.m */,
+			);
+			path = "Core-Utils-DataStructure";
 			sourceTree = "<group>";
 		};
 		CAE0C8941591A2D5008CDA62 /* Notification */ = {
@@ -14837,6 +14852,7 @@
 				CA16BBE51682FAD900F81B47 /* Bulletin.m in Sources */,
 				CA16BBE61682FAD900F81B47 /* BulletinNetwork.m in Sources */,
 				CA16BBE71682FAD900F81B47 /* BulletinManager.m in Sources */,
+				CADD26431688421600BDCDCF /* PPStack.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -15493,6 +15509,7 @@
 				CA16C16B1682FAE300F81B47 /* Bulletin.m in Sources */,
 				CA16C16C1682FAE300F81B47 /* BulletinNetwork.m in Sources */,
 				CA16C16D1682FAE300F81B47 /* BulletinManager.m in Sources */,
+				CADD26441688421600BDCDCF /* PPStack.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -16144,6 +16161,7 @@
 				C295B912168571C2005B3559 /* DrawGameJumpHandler.m in Sources */,
 				C295B913168571C2005B3559 /* ZJHGameJumpHandler.m in Sources */,
 				CADD263616883FDA00BDCDCF /* DrawToolPanel.m in Sources */,
+				CADD26421688421600BDCDCF /* PPStack.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
