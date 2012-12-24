@@ -30,6 +30,8 @@
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
+			<key>CFBundleURLName</key>
+			<string>com.orange.draw</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>fb352182988165711</string>
