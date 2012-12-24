@@ -56,7 +56,8 @@ message PBFeed {
   optional string targetUserId = 32;
   optional string targetUserNickName = 33;
   optional double historyScore = 34;    // 指示该作品的历史总得分
-  
+  optional string desc = 35;
+
   // for user guess
   optional string opusId = 41;          // 猜作品的ID
   optional bool   isCorrect = 42;
