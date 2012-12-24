@@ -11,6 +11,7 @@
 #import "XQueryComponents.h"
 
 typedef enum{
+    JumpTypeCanotJump = 0,
     JumpTypeGame = 1, // game page
     JumpTypeIntegral = 2, // Integral
     JumpTypeWeb = 3, //webview
@@ -45,6 +46,10 @@ typedef enum{
         controller:(UIViewController *)controller 
                URL:(NSURL *)URL;
 
++ (void)handleGameJump:(UIViewController*)controller
+                gameId:(NSString*)gameId
+              function:(NSString*)function;
++ (BOOL)canJump:(JumpType)type;
 @end
 
 

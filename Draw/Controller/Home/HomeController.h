@@ -37,6 +37,7 @@
 @property (retain, nonatomic) IBOutlet UIButton *facetimeButton;
 //@property (retain, nonatomic) UIView  *adView;
 @property (nonatomic, assign) NotificationType notificationType; 
+@property (retain, nonatomic) IBOutlet UIButton *testBulletin;
 
 
 

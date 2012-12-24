@@ -46,7 +46,8 @@
 #import "LmWallService.h"
 #import "AdService.h"
 #import "VendingController.h"
-#import "ShowFeedController.h"
+#import "ShowFeedController.h" 
+#import "BulletinService.h"
 
 //#import "RecommendedAppsController.h"
 //#import "FacetimeMainController.h"
@@ -67,6 +68,8 @@
 #import "FriendController.h"
 
 #import "BBSBoardController.h"
+
+#import "BulletinView.h"
 
 //#import "DrawHomeViewController.h"
 
@@ -171,6 +174,7 @@
         self.recommendButton.hidden = YES;
     }
     
+    
     [super viewDidLoad];
     /*
     [self loadMainMenu];
@@ -201,7 +205,7 @@
 //    }
 
     [self enterNextControllerWityType:self.notificationType];
-        
+     [self.view bringSubviewToFront:self.testBulletin];   
 }
 
 
@@ -219,6 +223,14 @@
 
 - (void)registerDrawGameNotification
 {
+//    [self registerNotificationWithName:BULLETIN_UPDATE_NOTIFICATION
+//                                object:nil
+//                                 queue:[NSOperationQueue mainQueue]
+//                            usingBlock:^(NSNotification *note) {
+//                                
+//                                [self updateAllBadge];
+//                                
+//                            }];
     /*
     [self registerNotificationWithName:BOARD_UPDATE_NOTIFICATION 
                                 object:nil
@@ -280,6 +292,7 @@
     [self setRecommendButton:nil];
     [self setFacetimeButton:nil];
     [self setMenuPanel:nil];
+    [self setTestBulletin:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -518,6 +531,7 @@
     PPRelease(_menuPanel);
     PPRelease(_bottomMenuPanel);
 //    PPRelease(_adView);
+    [_testBulletin release];
     [super dealloc];
 }
 
@@ -745,6 +759,11 @@
 //    [self.navigationController pushViewController:vc animated:YES];
     
 //    [[DiceGameService defaultService] joinGameRequest];
+}
+
+- (IBAction)clickTestBulletin:(id)sender
+{
+    [BulletinView showBulletinInController:self];
 }
 
 

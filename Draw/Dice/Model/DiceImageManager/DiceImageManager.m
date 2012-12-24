@@ -10,8 +10,15 @@
 #import "UIImageUtil.h"
 #import "HKGirlFontLabel.h"
 #import "LocaleUtils.h"
+#import "PPResourceService.h"
 
 static DiceImageManager *_defaultManager = nil;
+
+@interface DiceImageManager () {
+    PPResourceService* _resService;
+}
+
+@end
 
 @implementation DiceImageManager
 
@@ -23,6 +30,8 @@ static DiceImageManager *_defaultManager = nil;
     
     return _defaultManager;
 }
+
+
 
 - (UIImage *)diceNormalRoomListBgImage
 {
@@ -617,5 +626,39 @@ static DiceImageManager *_defaultManager = nil;
 {
     return nil;
 }
+
+- (UIImage *)bulletinAccessoryImage
+{
+    return [_resService imageByName:@"" inResourcePackage:RESOURCE_PACKAGE_DICE];
+}
+- (UIImage *)bulletinBackgroundImage
+{
+    return [_resService imageByName:@"" inResourcePackage:RESOURCE_PACKAGE_DICE];
+}
+- (UIImage *)bulletinButtomImage
+{
+    return [_resService imageByName:@"" inResourcePackage:RESOURCE_PACKAGE_DICE];
+}
+- (UIImage *)bulletinDateBackgroundImage
+{
+    return [_resService imageByName:@"" inResourcePackage:RESOURCE_PACKAGE_DICE];
+}
+- (UIImage *)bulletinTimeBackgroundImage
+{
+    return [_resService imageByName:@"" inResourcePackage:RESOURCE_PACKAGE_DICE];
+}
+- (UIImage *)bulletinTopImage
+{
+    return [_resService imageByName:@"" inResourcePackage:RESOURCE_PACKAGE_DICE];
+}
+- (UIImage *)bulletinCloseImage
+{
+    return [_resService imageByName:@"" inResourcePackage:RESOURCE_PACKAGE_DICE];
+}
+- (UIImage *)bulletinNewImage
+{
+    return [_resService imageByName:@"" inResourcePackage:RESOURCE_PACKAGE_DICE];
+}
+
 
 @end

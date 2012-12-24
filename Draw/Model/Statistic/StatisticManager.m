@@ -19,6 +19,7 @@ static StatisticManager *_globalStatisticManager;
 @synthesize fanCount;
 @synthesize roomCount;
 @synthesize bbsActionCount;
+@synthesize bulletinCount;
 
 + (StatisticManager *)defaultManager
 {
