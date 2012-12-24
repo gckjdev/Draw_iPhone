@@ -425,20 +425,12 @@
 		C295B911168571C2005B3559 /* DiceGameJumpHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = C295B90C168571C2005B3559 /* DiceGameJumpHandler.m */; };
 		C295B912168571C2005B3559 /* DrawGameJumpHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = C295B90E168571C2005B3559 /* DrawGameJumpHandler.m */; };
 		C295B913168571C2005B3559 /* ZJHGameJumpHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = C295B90F168571C2005B3559 /* ZJHGameJumpHandler.m */; };
-		C295B91416857428005B3559 /* GameJumpHandlerProtocol.h in Sources */ = {isa = PBXBuildFile; fileRef = C295B90A168571C2005B3559 /* GameJumpHandlerProtocol.h */; };
-		C295B91516857428005B3559 /* ZJHGameJumpHandler.h in Sources */ = {isa = PBXBuildFile; fileRef = C295B90B168571C2005B3559 /* ZJHGameJumpHandler.h */; };
 		C295B91616857428005B3559 /* DiceGameJumpHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = C295B90C168571C2005B3559 /* DiceGameJumpHandler.m */; };
-		C295B91716857428005B3559 /* DrawGameJumpHandler.h in Sources */ = {isa = PBXBuildFile; fileRef = C295B90D168571C2005B3559 /* DrawGameJumpHandler.h */; };
 		C295B91816857428005B3559 /* DrawGameJumpHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = C295B90E168571C2005B3559 /* DrawGameJumpHandler.m */; };
 		C295B91916857428005B3559 /* ZJHGameJumpHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = C295B90F168571C2005B3559 /* ZJHGameJumpHandler.m */; };
-		C295B91A16857428005B3559 /* DiceGameJumpHandler.h in Sources */ = {isa = PBXBuildFile; fileRef = C295B910168571C2005B3559 /* DiceGameJumpHandler.h */; };
-		C295B91B16857D11005B3559 /* GameJumpHandlerProtocol.h in Sources */ = {isa = PBXBuildFile; fileRef = C295B90A168571C2005B3559 /* GameJumpHandlerProtocol.h */; };
-		C295B91C16857D12005B3559 /* ZJHGameJumpHandler.h in Sources */ = {isa = PBXBuildFile; fileRef = C295B90B168571C2005B3559 /* ZJHGameJumpHandler.h */; };
 		C295B91D16857D12005B3559 /* DiceGameJumpHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = C295B90C168571C2005B3559 /* DiceGameJumpHandler.m */; };
-		C295B91E16857D12005B3559 /* DrawGameJumpHandler.h in Sources */ = {isa = PBXBuildFile; fileRef = C295B90D168571C2005B3559 /* DrawGameJumpHandler.h */; };
 		C295B91F16857D12005B3559 /* DrawGameJumpHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = C295B90E168571C2005B3559 /* DrawGameJumpHandler.m */; };
 		C295B92016857D12005B3559 /* ZJHGameJumpHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = C295B90F168571C2005B3559 /* ZJHGameJumpHandler.m */; };
-		C295B92116857D12005B3559 /* DiceGameJumpHandler.h in Sources */ = {isa = PBXBuildFile; fileRef = C295B910168571C2005B3559 /* DiceGameJumpHandler.h */; };
 		C296872B15DCE03F006968BA /* DiceItemInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = C296872115DCE03F006968BA /* DiceItemInfoView.m */; };
 		C296872C15DCE03F006968BA /* DiceItemInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C296872215DCE03F006968BA /* DiceItemInfoView.xib */; };
 		C296872D15DCE03F006968BA /* DiceUserInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = C296872515DCE03F006968BA /* DiceUserInfoView.m */; };
@@ -4042,9 +4034,7 @@
 		CADD26381688400600BDCDCF /* DrawToolPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = CADD26371688400600BDCDCF /* DrawToolPanel.xib */; };
 		CADD26391688400600BDCDCF /* DrawToolPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = CADD26371688400600BDCDCF /* DrawToolPanel.xib */; };
 		CADD263A1688400600BDCDCF /* DrawToolPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = CADD26371688400600BDCDCF /* DrawToolPanel.xib */; };
-		CADD263B1688404900BDCDCF /* DrawToolPanel.h in Sources */ = {isa = PBXBuildFile; fileRef = CADD263416883FDA00BDCDCF /* DrawToolPanel.h */; };
 		CADD263C1688404900BDCDCF /* DrawToolPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = CADD263516883FDA00BDCDCF /* DrawToolPanel.m */; };
-		CADD263D1688407D00BDCDCF /* DrawToolPanel.h in Sources */ = {isa = PBXBuildFile; fileRef = CADD263416883FDA00BDCDCF /* DrawToolPanel.h */; };
 		CADD263E1688407D00BDCDCF /* DrawToolPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = CADD263516883FDA00BDCDCF /* DrawToolPanel.m */; };
 		CADD26421688421600BDCDCF /* PPStack.m in Sources */ = {isa = PBXBuildFile; fileRef = CADD26411688421600BDCDCF /* PPStack.m */; };
 		CADD26431688421600BDCDCF /* PPStack.m in Sources */ = {isa = PBXBuildFile; fileRef = CADD26411688421600BDCDCF /* PPStack.m */; };
@@ -14203,15 +14193,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CADD263B1688404900BDCDCF /* DrawToolPanel.h in Sources */,
 				CADD263C1688404900BDCDCF /* DrawToolPanel.m in Sources */,
-				C295B91416857428005B3559 /* GameJumpHandlerProtocol.h in Sources */,
-				C295B91516857428005B3559 /* ZJHGameJumpHandler.h in Sources */,
 				C295B91616857428005B3559 /* DiceGameJumpHandler.m in Sources */,
-				C295B91716857428005B3559 /* DrawGameJumpHandler.h in Sources */,
 				C295B91816857428005B3559 /* DrawGameJumpHandler.m in Sources */,
 				C295B91916857428005B3559 /* ZJHGameJumpHandler.m in Sources */,
-				C295B91A16857428005B3559 /* DiceGameJumpHandler.h in Sources */,
 				CA16B9681682FAD900F81B47 /* main.m in Sources */,
 				CA16B9691682FAD900F81B47 /* DrawAppDelegate.m in Sources */,
 				CA16B96A1682FAD900F81B47 /* CommonService.m in Sources */,
@@ -14860,15 +14845,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CADD263D1688407D00BDCDCF /* DrawToolPanel.h in Sources */,
 				CADD263E1688407D00BDCDCF /* DrawToolPanel.m in Sources */,
-				C295B91B16857D11005B3559 /* GameJumpHandlerProtocol.h in Sources */,
-				C295B91C16857D12005B3559 /* ZJHGameJumpHandler.h in Sources */,
 				C295B91D16857D12005B3559 /* DiceGameJumpHandler.m in Sources */,
-				C295B91E16857D12005B3559 /* DrawGameJumpHandler.h in Sources */,
 				C295B91F16857D12005B3559 /* DrawGameJumpHandler.m in Sources */,
 				C295B92016857D12005B3559 /* ZJHGameJumpHandler.m in Sources */,
-				C295B92116857D12005B3559 /* DiceGameJumpHandler.h in Sources */,
 				CA16BEEE1682FAE300F81B47 /* main.m in Sources */,
 				CA16BEEF1682FAE300F81B47 /* DrawAppDelegate.m in Sources */,
 				CA16BEF01682FAE300F81B47 /* CommonService.m in Sources */,
