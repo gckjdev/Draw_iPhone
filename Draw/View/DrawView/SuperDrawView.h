@@ -20,8 +20,9 @@ typedef enum{
     DrawRectTypeRedraw = 3,//show the previous action list
     DrawRectTypeChangeBack = 4,//show the previous action list
     DrawRectTypeRevoke = 5,//show the previous action list
+    DrawRectTypeRedo = 6,//show the last action list
     
-    DrawRectTypeShowImage = 6, //implement by show draw view
+    DrawRectTypeShowImage = 7, //implement by show draw view
 }DrawRectType;
 
 

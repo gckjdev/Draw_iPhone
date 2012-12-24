@@ -954,6 +954,11 @@ enum{
         
     }
 }
+
+- (IBAction)clickRedoButton:(id)sender {
+    [drawView redo];
+}
+
 - (void)clickBackButton:(id)sender
 {
     if (targetType == TypeGraffiti) {
