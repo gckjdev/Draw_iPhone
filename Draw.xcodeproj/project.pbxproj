@@ -3780,6 +3780,15 @@
 		CA25C401168968070064C05D /* draw_undo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA25C3BE168968070064C05D /* draw_undo@2x.png */; };
 		CA25C402168968070064C05D /* draw_undo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA25C3BE168968070064C05D /* draw_undo@2x.png */; };
 		CA25C403168968070064C05D /* draw_undo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA25C3BE168968070064C05D /* draw_undo@2x.png */; };
+		CA25C416168995820064C05D /* ColorPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = CA25C415168995820064C05D /* ColorPoint.m */; };
+		CA25C417168995820064C05D /* ColorPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = CA25C415168995820064C05D /* ColorPoint.m */; };
+		CA25C418168995820064C05D /* ColorPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = CA25C415168995820064C05D /* ColorPoint.m */; };
+		CA25C42616899E080064C05D /* DrawTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA25C42316899E080064C05D /* DrawTestViewController.m */; };
+		CA25C42716899E080064C05D /* DrawTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA25C42316899E080064C05D /* DrawTestViewController.m */; };
+		CA25C42816899E080064C05D /* DrawTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA25C42316899E080064C05D /* DrawTestViewController.m */; };
+		CA25C42916899E080064C05D /* DrawTestViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA25C42516899E080064C05D /* DrawTestViewController.xib */; };
+		CA25C42A16899E080064C05D /* DrawTestViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA25C42516899E080064C05D /* DrawTestViewController.xib */; };
+		CA25C42B16899E080064C05D /* DrawTestViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA25C42516899E080064C05D /* DrawTestViewController.xib */; };
 		CA322102151B6A670039A384 /* GameNetworkRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = CA322101151B6A670039A384 /* GameNetworkRequest.m */; };
 		CA322105151B6BE60039A384 /* UserService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA322104151B6BE60039A384 /* UserService.m */; };
 		CA322109151B6C6F0039A384 /* CompleteUserInfoController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA322107151B6C6F0039A384 /* CompleteUserInfoController.m */; };
@@ -5712,6 +5721,11 @@
 		CA25C3BC168968070064C05D /* draw_oil@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "draw_oil@2x.png"; sourceTree = "<group>"; };
 		CA25C3BD168968070064C05D /* draw_redo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "draw_redo@2x.png"; sourceTree = "<group>"; };
 		CA25C3BE168968070064C05D /* draw_undo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "draw_undo@2x.png"; sourceTree = "<group>"; };
+		CA25C414168995820064C05D /* ColorPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorPoint.h; sourceTree = "<group>"; };
+		CA25C415168995820064C05D /* ColorPoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorPoint.m; sourceTree = "<group>"; };
+		CA25C42316899E080064C05D /* DrawTestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawTestViewController.m; sourceTree = "<group>"; };
+		CA25C42416899E080064C05D /* DrawTestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawTestViewController.h; sourceTree = "<group>"; };
+		CA25C42516899E080064C05D /* DrawTestViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DrawTestViewController.xib; sourceTree = "<group>"; };
 		CA322100151B6A670039A384 /* GameNetworkRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameNetworkRequest.h; sourceTree = "<group>"; };
 		CA322101151B6A670039A384 /* GameNetworkRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameNetworkRequest.m; sourceTree = "<group>"; };
 		CA322103151B6BE60039A384 /* UserService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserService.h; sourceTree = "<group>"; };
@@ -9402,6 +9416,9 @@
 		CA1041F41509BC8700F60C03 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				CA25C42416899E080064C05D /* DrawTestViewController.h */,
+				CA25C42316899E080064C05D /* DrawTestViewController.m */,
+				CA25C42516899E080064C05D /* DrawTestViewController.xib */,
 				CAC25C2315EF0740007456FA /* Menu */,
 				CAC25C2C15EF0740007456FA /* Panel */,
 				CA1041F51509BC9700F60C03 /* HomeController.h */,
@@ -10931,6 +10948,8 @@
 				CADD263416883FDA00BDCDCF /* DrawToolPanel.h */,
 				CADD263516883FDA00BDCDCF /* DrawToolPanel.m */,
 				CADD26371688400600BDCDCF /* DrawToolPanel.xib */,
+				CA25C414168995820064C05D /* ColorPoint.h */,
+				CA25C415168995820064C05D /* ColorPoint.m */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -12866,6 +12885,7 @@
 				CA25C3FC168968070064C05D /* draw_oil@2x.png in Resources */,
 				CA25C3FF168968070064C05D /* draw_redo@2x.png in Resources */,
 				CA25C402168968070064C05D /* draw_undo@2x.png in Resources */,
+				CA25C42A16899E080064C05D /* DrawTestViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -13623,6 +13643,7 @@
 				CA25C3FD168968070064C05D /* draw_oil@2x.png in Resources */,
 				CA25C400168968070064C05D /* draw_redo@2x.png in Resources */,
 				CA25C403168968070064C05D /* draw_undo@2x.png in Resources */,
+				CA25C42B16899E080064C05D /* DrawTestViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -14390,6 +14411,7 @@
 				CA25C3FB168968070064C05D /* draw_oil@2x.png in Resources */,
 				CA25C3FE168968070064C05D /* draw_redo@2x.png in Resources */,
 				CA25C401168968070064C05D /* draw_undo@2x.png in Resources */,
+				CA25C42916899E080064C05D /* DrawTestViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -15070,6 +15092,8 @@
 				CA16BBE61682FAD900F81B47 /* BulletinNetwork.m in Sources */,
 				CA16BBE71682FAD900F81B47 /* BulletinManager.m in Sources */,
 				CADD26431688421600BDCDCF /* PPStack.m in Sources */,
+				CA25C417168995820064C05D /* ColorPoint.m in Sources */,
+				CA25C42716899E080064C05D /* DrawTestViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -15722,6 +15746,8 @@
 				CA16C16C1682FAE300F81B47 /* BulletinNetwork.m in Sources */,
 				CA16C16D1682FAE300F81B47 /* BulletinManager.m in Sources */,
 				CADD26441688421600BDCDCF /* PPStack.m in Sources */,
+				CA25C418168995820064C05D /* ColorPoint.m in Sources */,
+				CA25C42816899E080064C05D /* DrawTestViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -16374,6 +16400,8 @@
 				C295B913168571C2005B3559 /* ZJHGameJumpHandler.m in Sources */,
 				CADD263616883FDA00BDCDCF /* DrawToolPanel.m in Sources */,
 				CADD26421688421600BDCDCF /* PPStack.m in Sources */,
+				CA25C416168995820064C05D /* ColorPoint.m in Sources */,
+				CA25C42616899E080064C05D /* DrawTestViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

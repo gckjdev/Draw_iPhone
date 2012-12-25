@@ -70,8 +70,8 @@
 #import "BBSBoardController.h"
 
 #import "BulletinView.h"
+#import "DrawTestViewController.h"
 
-//#import "DrawHomeViewController.h"
 
 @interface HomeController()
 {
@@ -205,7 +205,9 @@
 //    }
 
     [self enterNextControllerWityType:self.notificationType];
-     [self.view bringSubviewToFront:self.testBulletin];   
+     [self.view bringSubviewToFront:self.testBulletin];
+
+    [DrawTestViewController enterWithController:self];
 }
 
 
