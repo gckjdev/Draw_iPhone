@@ -8,6 +8,25 @@
 
 #import "DrawToolPanel.h"
 
+@interface DrawToolPanel ()
+{
+    
+}
+- (IBAction)clickUndo:(id)sender;
+- (IBAction)clickRedo:(id)sender;
+
+- (IBAction)clickPen:(id)sender;
+- (IBAction)clickEraser:(id)sender;
+- (IBAction)clickAddColor:(id)sender;
+- (IBAction)clickColorPicker:(id)sender;
+
+@property (retain, nonatomic) IBOutlet UIView *widthSlider;
+@property (retain, nonatomic) IBOutlet UIView *alphaSlider;
+@property (retain, nonatomic) IBOutlet UILabel *penWidth;
+@property (retain, nonatomic) IBOutlet UILabel *colorAlpha;
+
+@end
+
 @implementation DrawToolPanel
 
 - (id)initWithFrame:(CGRect)frame
@@ -19,13 +38,28 @@
     return self;
 }
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect
-{
-    // Drawing code
+- (IBAction)clickUndo:(id)sender {
 }
-*/
 
+- (IBAction)clickRedo:(id)sender {
+}
+
+- (IBAction)clickPen:(id)sender {
+}
+
+- (IBAction)clickEraser:(id)sender {
+}
+
+- (IBAction)clickAddColor:(id)sender {
+}
+
+- (IBAction)clickColorPicker:(id)sender {
+}
+- (void)dealloc {
+    [_widthSlider release];
+    [_alphaSlider release];
+    [_penWidth release];
+    [_colorAlpha release];
+    [super dealloc];
+}
 @end

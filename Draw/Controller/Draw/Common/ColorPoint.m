@@ -15,7 +15,7 @@
 #define WIDTH VALUE(26.0)
 #define HEIGHT VALUE(27.0)
 #define CIRCLE_WIDTH VALUE(23.0)
-#define SELECTED_CIRCLE_WIDTH VALUE(6.0)
+#define SELECTED_CIRCLE_WIDTH VALUE(8.0)
 
 @interface ColorPoint()
 {
@@ -25,6 +25,7 @@
 
 @implementation ColorPoint
 @synthesize color = _color;
+@synthesize delegate = _delegate;
 
 - (void)dealloc
 {
@@ -41,7 +42,11 @@
     if (self) {
         self.color = color;
         self.backgroundColor = [UIColor clearColor];
-        _selectedPointColor = [[UIColor lightGrayColor] retain];
+        _selectedPointColor = [[UIColor colorWithRed:163/255.0
+                                              green:163/255.0
+                                               blue:163/255.0
+                                              alpha:1] retain];
+        [self addTarget:self action:@selector(clickColorPoint:) forControlEvents:UIControlEventTouchUpInside];
     }
     return self;
 }
@@ -71,8 +76,7 @@
     
     CGFloat edge = (WIDTH - CIRCLE_WIDTH)/2.0;
     CGSize offset = CGSizeMake(edge, edge);
-//    CGContextSetShadowWithColor(context, offset, edge/2.0, [UIColor blackColor].CGColor);
-    CGContextSetShadow(context, offset, edge/2.0);
+    CGContextSetShadowWithColor(context, offset, edge/2.0, [UIColor blackColor].CGColor);
     CGRect circle = CGRectMake(edge, edge, CIRCLE_WIDTH, CIRCLE_WIDTH);
     CGContextFillEllipseInRect(context, circle);
     
@@ -89,5 +93,12 @@
     [super drawRect:rect];
 }
 
+- (void)clickColorPoint:(id)sender
+{
+    [self setSelected:!self.selected];
+    if (self.delegate && [self.delegate respondsToSelector:@selector(didSelectColorPoint:)]) {
+        [self.delegate didSelectColorPoint:self];
+    }
+}
 
 @end

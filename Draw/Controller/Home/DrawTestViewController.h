@@ -11,5 +11,6 @@
 @interface DrawTestViewController : UIViewController
 
 + (DrawTestViewController *)enterWithController:(UIViewController *)controller;
+@property (retain, nonatomic) IBOutlet UISlider *slider;
 
 @end

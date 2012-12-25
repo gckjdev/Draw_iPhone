@@ -3905,6 +3905,7 @@
 		CA745D4D1503B1B500600024 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CA745D4B1503B1B500600024 /* InfoPlist.strings */; };
 		CA745D501503B1B500600024 /* DrawTests.h in Resources */ = {isa = PBXBuildFile; fileRef = CA745D4F1503B1B500600024 /* DrawTests.h */; };
 		CA745D521503B1B500600024 /* DrawTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CA745D511503B1B500600024 /* DrawTests.m */; };
+		CA7871881689AE6100B28A2E /* DrawSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = CA7871871689AE6100B28A2E /* DrawSlider.m */; };
 		CA7ACA6C16367548001B273C /* ZhaJinHua.pb.m in Sources */ = {isa = PBXBuildFile; fileRef = CA7ACA6B16367548001B273C /* ZhaJinHua.pb.m */; };
 		CA7AFD04164E05A10039E07F /* ImplicitDownloadService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA7AFCF3164E05A10039E07F /* ImplicitDownloadService.m */; };
 		CA7AFD05164E05A10039E07F /* PPResourcePackage.m in Sources */ = {isa = PBXBuildFile; fileRef = CA7AFCF6164E05A10039E07F /* PPResourcePackage.m */; };
@@ -5912,6 +5913,8 @@
 		CA745D4E1503B1B500600024 /* DrawTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DrawTests-Prefix.pch"; sourceTree = "<group>"; };
 		CA745D4F1503B1B500600024 /* DrawTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DrawTests.h; sourceTree = "<group>"; };
 		CA745D511503B1B500600024 /* DrawTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DrawTests.m; sourceTree = "<group>"; };
+		CA7871861689AE6100B28A2E /* DrawSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawSlider.h; sourceTree = "<group>"; };
+		CA7871871689AE6100B28A2E /* DrawSlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawSlider.m; sourceTree = "<group>"; };
 		CA7ACA6A16367548001B273C /* ZhaJinHua.pb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZhaJinHua.pb.h; sourceTree = "<group>"; };
 		CA7ACA6B16367548001B273C /* ZhaJinHua.pb.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZhaJinHua.pb.m; sourceTree = "<group>"; };
 		CA7AFCF2164E05A10039E07F /* ImplicitDownloadService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImplicitDownloadService.h; sourceTree = "<group>"; };
@@ -10950,6 +10953,8 @@
 				CADD26371688400600BDCDCF /* DrawToolPanel.xib */,
 				CA25C414168995820064C05D /* ColorPoint.h */,
 				CA25C415168995820064C05D /* ColorPoint.m */,
+				CA7871861689AE6100B28A2E /* DrawSlider.h */,
+				CA7871871689AE6100B28A2E /* DrawSlider.m */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -16402,6 +16407,7 @@
 				CADD26421688421600BDCDCF /* PPStack.m in Sources */,
 				CA25C416168995820064C05D /* ColorPoint.m in Sources */,
 				CA25C42616899E080064C05D /* DrawTestViewController.m in Sources */,
+				CA7871881689AE6100B28A2E /* DrawSlider.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
