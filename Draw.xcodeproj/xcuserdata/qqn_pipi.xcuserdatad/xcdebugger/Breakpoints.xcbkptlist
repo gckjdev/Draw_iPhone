@@ -31,5 +31,18 @@
          landmarkName = "-displayComposerSheetTo:ccRecipients:bccRecipients:subject:body:isHTML:delegate:"
          landmarkType = "5">
       </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "../Common_iPhone_20/Core/Core-Utils-Misc/Audio/AudioManager.m"
+         timestampString = "378099579.011939"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "41"
+         endingLineNumber = "41"
+         landmarkName = "-setBackGroundMusicWithName:"
+         landmarkType = "5">
+      </FileBreakpoint>
    </FileBreakpoints>
 </Bucket>

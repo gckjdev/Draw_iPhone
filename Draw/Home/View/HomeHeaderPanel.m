@@ -21,6 +21,7 @@
 @interface HomeHeaderPanel ()
 {
     NSMutableArray *_feedList;
+    NSTimer *_scrollTimer;
 }
 @property (retain, nonatomic) IBOutlet UIImageView *displayBG;
 @property (retain, nonatomic) IBOutlet UIImageView *avatar;
@@ -66,19 +67,23 @@
 #define SPACE_IMAGE (ISIPAD ? 4 * 2 : 4)
 #define DISPLAY_SIZE (self.displayScrollView.frame.size)
 #define SCROLL_INTERVAL 10
+
 #define TOP_DRAW_NUMBER 6
+
+#define REFRESH_INTERVAL (3600 * 2)
 
 - (void)updateDisplayView
 {
-    if ([self.feedList count] == 0) {
-        //get top 6 draw feed.
-        [[FeedService defaultService] getFeedList:FeedListTypeHot
-                                           offset:0
-                                            limit:TOP_DRAW_NUMBER + 3
-                                         delegate:self];        
-    }else{
-        [self.displayScrollView setHidden:NO];
-    }
+    PPDebug(@"updateDisplayView");
+    [[FeedService defaultService] getFeedList:FeedListTypeHot
+                                       offset:0
+                                        limit:TOP_DRAW_NUMBER + 3
+                                     delegate:self];        
+}
+
+- (void)handleRefreshTimer:(NSTimer *)theTimer
+{
+    [self updateDisplayView];
 }
 
 - (CGFloat)imageWidth
@@ -122,7 +127,10 @@
 
 - (void)startDisplayAnimation
 {
-    [NSTimer scheduledTimerWithTimeInterval:SCROLL_INTERVAL target:self selector:@selector(handleTimer:) userInfo:nil repeats:YES];
+    if (_scrollTimer == nil) {
+        PPDebug(@"<startDisplayAnimation>");
+        _scrollTimer = [NSTimer scheduledTimerWithTimeInterval:SCROLL_INTERVAL target:self selector:@selector(handleTimer:) userInfo:nil repeats:YES];        
+    }
 }
 
 - (void)clickDrawImage:(id)sender
@@ -177,6 +185,7 @@
           feedListType:(FeedListType)type
             resultCode:(NSInteger)resultCode
 {
+
     if (resultCode == 0 && [feedList count] != 0) {
 
         //get Top 6 feed
@@ -257,6 +266,8 @@
     //update display view.
     if (isDrawApp()) {
         [self updateDisplayView];
+        [NSTimer scheduledTimerWithTimeInterval:REFRESH_INTERVAL target:self selector:@selector(handleRefreshTimer:) userInfo:nil repeats:YES];
+        
         self.displayBG.image = [[DrawImageManager defaultManager] drawHomeDisplayBG];
         [self.chargeButton.layer setTransform:CATransform3DMakeRotation(0.12, 0, 0, 1)];
     }else{
@@ -278,7 +289,7 @@
     PPRelease(_coin);
     PPRelease(_displayScrollView);
     PPRelease(_feedList);
-    [_freeCoin release];
+    PPRelease(_freeCoin);
     [super dealloc];
 }
 - (IBAction)clickFreeCoinButton:(id)sender {
