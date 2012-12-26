@@ -305,14 +305,24 @@
 {
     switch (type) {
         case NotificationTypeFeed:
-            [self didClickMenuButton:[self.menuPanel getMenuButtonByType:MenuButtonTypeTimeline]];
+        {
+            HomeMenuView *menu = [self.homeMainMenuPanel getMenuViewWithType:HomeMenuTypeDrawTimeline];
+            [self homeMainMenuPanel:self.homeMainMenuPanel didClickMenu:menu menuType:menu.type];
             break;
-        case NotificationTypeRoom:
-            [self didClickMenuButton:[self.menuPanel getMenuButtonByType:MenuButtonTypeFriendPlay]];
+        }
+            
+        case NotificationTypeRoom:{
+            //no friend room menu in 5.2 version
             break;
+        }
+
         case NotificationTypeMessage:
-            [self didClickMenuButton:[self.bottomMenuPanel getMenuButtonByType:MenuButtonTypeChat]];
-            break;
+        {
+            HomeMenuView *menu = [self.homeBottomMenuPanel getMenuViewWithType:HomeMenuTypeDrawMessage];
+            [self homeBottomMenuPanel:self.homeBottomMenuPanel didClickMenu:menu menuType:menu.type];
+            break;            
+        }
+
         case NotificationTypeComment:
         case NotificationTypeFlower:
         case NotificationTypeReply:
@@ -685,7 +695,6 @@
         [self toRegister];
         return;
     }
-
     switch (type) {
         
         //For Bottom Menus
