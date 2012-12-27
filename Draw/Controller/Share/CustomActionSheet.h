@@ -11,7 +11,7 @@
 
 @protocol CustomActionSheetDelegate <NSObject>
 
-- (void)actionSheet:(CustomActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex;
+- (void)customActionSheet:(CustomActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex;
 
 
 @end
@@ -22,6 +22,7 @@
 @property(nonatomic,assign) id<CustomActionSheetDelegate> delegate;    // weak reference
 //@property(nonatomic,copy) NSString *title;
 @property(nonatomic,readonly) NSInteger numberOfButtons;
+@property (nonatomic, assign) BOOL isVisable;
 
 - (id)initWithTitle:(NSString *)title
            delegate:(id<CustomActionSheetDelegate>)delegate
@@ -37,9 +38,9 @@
 // UIActionSheetStyleDefault if automatic style set
 
 - (void)showFromRect:(CGRect)rect inView:(UIView *)view animated:(BOOL)animated NS_AVAILABLE_IOS(3_2);
-- (void)showInView:(UIView *)view;
-
-
+- (void)showInView:(UIView *)view onView:(UIView*)onView;
+- (void)hideActionSheet;
+- (void)setImage:(UIImage*)image forTitle:(NSString*)title;
 @end
 
 
