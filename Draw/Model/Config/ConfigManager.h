@@ -33,6 +33,9 @@ typedef enum{
 + (int)getBalanceDeviation;
 
 + (int)getGuessRewardNormal;
+
++ (NSInteger)historyRankNumber;
+
 + (NSString*)getChannelId;
 
 + (NSString*)defaultEnglishServer;
@@ -51,6 +54,7 @@ typedef enum{
 + (NSString*)getAPIServerURL;
 + (NSString*)getTrafficAPIServerURL;
 + (NSString*)getMusicDownloadHomeURL;
+
 
 + (BOOL)isInReview;
 + (BOOL)isInReviewVersion;

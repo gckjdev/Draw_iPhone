@@ -202,6 +202,7 @@
                             respondsToSelector:@selector(didStartedTouch:)]) {
             [self.delegate didStartedTouch:_currentDrawAction.paint];
     }
+    [self clearRedoStack];
 }
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
@@ -342,15 +343,10 @@
 {
     DrawAction *action = [_redoStack pop];
     if (action) {
-//        if ([action isCleanAction]) {
-//            [self addCleanActionAndClearRedoStack:NO];
-//        }else if ([action isChangeBackAction]) {
-//            [self addChangeBackAction:action clearRedoStack:NO];
-//        }else{
-            [self.drawActionList addObject:action];
-            _drawRectType = DrawRectTypeRedo;
-            [self setNeedsDisplay];
-//        }
+        [self.drawActionList addObject:action];
+        _drawRectType = DrawRectTypeRedo;
+        [self setNeedsDisplay];
+
     }
 }
 - (void)clearRedoStack

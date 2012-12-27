@@ -73,6 +73,13 @@
     }
 }
 
+
++ (NSInteger)historyRankNumber
+{
+    return [MobClickUtils getIntValueByKey:@"HISTORY_RANK_NUMBER" defaultValue:300];
+}
+
+
 + (int)getGuessRewardNormal
 {
     return [MobClickUtils getIntValueByKey:@"REWARD_GUESS_1" defaultValue:3];

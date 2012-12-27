@@ -79,6 +79,7 @@ typedef enum{
 + (HomeMenuView *)menuViewWithType:(HomeMenuType)type
                              badge:(NSInteger)badge
                           delegate:(id<HomeCommonViewDelegate>)delegate;
++ (NSString *)titleForType:(HomeMenuType)type;
 
 @end
 

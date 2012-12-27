@@ -7,6 +7,8 @@
 //
 
 #import "DrawToolPanel.h"
+#import "DrawColor.h"
+
 
 @interface DrawToolPanel ()
 {
@@ -20,8 +22,8 @@
 - (IBAction)clickAddColor:(id)sender;
 - (IBAction)clickColorPicker:(id)sender;
 
-@property (retain, nonatomic) IBOutlet UIView *widthSlider;
-@property (retain, nonatomic) IBOutlet UIView *alphaSlider;
+@property (retain, nonatomic) IBOutlet DrawSlider *widthSlider;
+@property (retain, nonatomic) IBOutlet DrawSlider *alphaSlider;
 @property (retain, nonatomic) IBOutlet UILabel *penWidth;
 @property (retain, nonatomic) IBOutlet UILabel *colorAlpha;
 
@@ -29,13 +31,80 @@
 
 @implementation DrawToolPanel
 
-- (id)initWithFrame:(CGRect)frame
+#define MAX_COLOR_NUMBER 8
+#define VALUE(x) (ISIPAD ? x*2 : x)
+
+#define SPACE_COLOR_LEFT VALUE(8)
+#define SPACE_COLOR_COLOR VALUE(2)
+#define SPACE_COLOR_UP VALUE(10)
+
+
+- (void)updateSliders
 {
-    self = [super initWithFrame:frame];
-    if (self) {
-        // Initialization code
+    CGPoint center = self.widthSlider.center;
+    [self.widthSlider removeFromSuperview];
+    self.widthSlider = [[[DrawSlider alloc] initWithDrawSliderStyle:DrawSliderStyleLarge] autorelease];
+    self.widthSlider.center = center;
+    self.widthSlider.delegate = self;
+    
+    [self.widthSlider setMaxValue:40];
+    [self.widthSlider setMinValue:2];
+    [self.widthSlider setValue:10];
+    
+    [self addSubview:self.widthSlider];
+    
+    center = self.alphaSlider.center;
+    [self.alphaSlider removeFromSuperview];
+    self.alphaSlider = [[[DrawSlider alloc] initWithDrawSliderStyle:DrawSliderStyleLarge] autorelease];
+    self.alphaSlider.center = center;
+    [self.alphaSlider setValue:1.0];
+    self.alphaSlider.delegate = self;
+    [self addSubview:self.alphaSlider];
+
+}
+
+
+- (void)updateView
+{
+    //update color
+    NSArray *list = [DrawColor getRecentColorList];
+    NSInteger i = 0;
+    for (DrawColor *color in list) {
+        ColorPoint *point = [ColorPoint pointWithColor:color];
+        [self addSubview:point];
+        CGRect frame = point.frame;
+        CGFloat x = SPACE_COLOR_LEFT + i * (CGRectGetWidth(point.frame) + SPACE_COLOR_COLOR);
+        
+        frame.origin = CGPointMake(x, SPACE_COLOR_UP);
+        point.frame = frame;
+        point.delegate = self;
+        if (++i >= MAX_COLOR_NUMBER) {
+            break;
+        }
     }
-    return self;
+    
+    
+    //update width and alpha
+    [self updateSliders];
+}
+
+
++ (id)createViewWithdelegate:(id)delegate
+{
+    NSString *identifier = @"DrawToolPanel";
+    NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:identifier
+                                                             owner:self options:nil];
+    
+    if (topLevelObjects == nil || [topLevelObjects count] <= 0){
+        NSLog(@"create %@ but cannot find cell object from Nib", identifier);
+        return nil;
+    }
+    
+    DrawToolPanel  *view = (DrawToolPanel *)[topLevelObjects objectAtIndex:0];
+    view.delegate = delegate;
+    [view updateView];
+    return view;
+    
 }
 
 - (IBAction)clickUndo:(id)sender {
@@ -55,6 +124,47 @@
 
 - (IBAction)clickColorPicker:(id)sender {
 }
+
+
+
+#pragma mark - Color Point Delegate
+- (void)didSelectColorPoint:(ColorPoint *)colorPoint
+{
+    for (ColorPoint *point in [self subviews]) {
+        if ([point isKindOfClass:[ColorPoint class]] && colorPoint != point) {
+            [point setSelected:NO];
+        }
+    }
+}
+
+
+#pragma mark - DrawSlider delegate
+
+
+- (void)drawSlider:(DrawSlider *)drawSlider
+    didValueChange:(CGFloat)value
+{
+    NSString *v = [NSString stringWithFormat:@"%.1f",value];
+    UILabel *label = (UILabel *)drawSlider.contentView;
+    [label setText:v];
+}
+
+
+- (void)drawSlider:(DrawSlider *)drawSlider didFinishChangeValue:(CGFloat)value
+{
+    [drawSlider dismissPopupView];
+}
+
+- (void)drawSlider:(DrawSlider *)drawSlider didStartToChangeValue:(CGFloat)value
+{
+    
+    NSString *v = [NSString stringWithFormat:@"%.1f",value];
+    UILabel *label = [[[UILabel alloc] initWithFrame:CGRectMake(0, 0, 40, 20)] autorelease];
+    [label setText:v];
+    [drawSlider popupWithContenView:label];
+    [label setBackgroundColor:[UIColor clearColor]];
+}
+
 - (void)dealloc {
     [_widthSlider release];
     [_alphaSlider release];

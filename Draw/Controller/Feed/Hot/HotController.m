@@ -13,6 +13,8 @@
 #import "DrawUserInfoView.h"
 #import "UseItemScene.h"
 #import "MyFriend.h"
+#import "ConfigManager.h"
+
 typedef enum{
 
     RankTypePlayer = FeedListTypeTopPlayer,
@@ -22,7 +24,7 @@ typedef enum{
     
 }RankType;
 
-#define  HISTORY_RANK_NUMBER 120
+#define  HISTORY_RANK_NUMBER [ConfigManager historyRankNumber]
 
 @implementation HotController
 //@synthesize titleLabel = _tipsLabel;

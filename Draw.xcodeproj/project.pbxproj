@@ -4052,6 +4052,12 @@
 		CAC371511611E86B002CB837 /* ContestView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAC3714D1611E869002CB837 /* ContestView~ipad.xib */; };
 		CAC371521611E86B002CB837 /* StatementController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAC3714E1611E86A002CB837 /* StatementController~ipad.xib */; };
 		CAC371531611E86B002CB837 /* StatementView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAC3714F1611E86A002CB837 /* StatementView~ipad.xib */; };
+		CAC448F5168C4666004441EB /* ColorPickingBox.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC448F4168C4666004441EB /* ColorPickingBox.m */; };
+		CAC448F7168C4686004441EB /* ColorPickingBox.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAC448F6168C4685004441EB /* ColorPickingBox.xib */; };
+		CAC448F8168C4686004441EB /* ColorPickingBox.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAC448F6168C4685004441EB /* ColorPickingBox.xib */; };
+		CAC448F9168C4686004441EB /* ColorPickingBox.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAC448F6168C4685004441EB /* ColorPickingBox.xib */; };
+		CAC448FA168C469B004441EB /* ColorPickingBox.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC448F4168C4666004441EB /* ColorPickingBox.m */; };
+		CAC448FB168C469C004441EB /* ColorPickingBox.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC448F4168C4666004441EB /* ColorPickingBox.m */; };
 		CAC4DCE215450E8F00A42CF2 /* StoreKitUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC4DCE115450E8F00A42CF2 /* StoreKitUtils.m */; };
 		CAC4DCE81545286C00A42CF2 /* TransactionReceiptManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC4DCE71545286B00A42CF2 /* TransactionReceiptManager.m */; };
 		CAC4DCEB154542A200A42CF2 /* TransactionReceipt.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC4DCEA154542A200A42CF2 /* TransactionReceipt.m */; };
@@ -6136,6 +6142,9 @@
 		CAC3714D1611E869002CB837 /* ContestView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ContestView~ipad.xib"; sourceTree = "<group>"; };
 		CAC3714E1611E86A002CB837 /* StatementController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "StatementController~ipad.xib"; sourceTree = "<group>"; };
 		CAC3714F1611E86A002CB837 /* StatementView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "StatementView~ipad.xib"; sourceTree = "<group>"; };
+		CAC448F3168C4665004441EB /* ColorPickingBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorPickingBox.h; sourceTree = "<group>"; };
+		CAC448F4168C4666004441EB /* ColorPickingBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorPickingBox.m; sourceTree = "<group>"; };
+		CAC448F6168C4685004441EB /* ColorPickingBox.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ColorPickingBox.xib; sourceTree = "<group>"; };
 		CAC4DCE015450E8F00A42CF2 /* StoreKitUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoreKitUtils.h; sourceTree = "<group>"; };
 		CAC4DCE115450E8F00A42CF2 /* StoreKitUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoreKitUtils.m; sourceTree = "<group>"; };
 		CAC4DCE61545286B00A42CF2 /* TransactionReceiptManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransactionReceiptManager.h; sourceTree = "<group>"; };
@@ -10960,6 +10969,9 @@
 				CA25C415168995820064C05D /* ColorPoint.m */,
 				CA7871861689AE6100B28A2E /* DrawSlider.h */,
 				CA7871871689AE6100B28A2E /* DrawSlider.m */,
+				CAC448F3168C4665004441EB /* ColorPickingBox.h */,
+				CAC448F4168C4666004441EB /* ColorPickingBox.m */,
+				CAC448F6168C4685004441EB /* ColorPickingBox.xib */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -12896,6 +12908,7 @@
 				CA25C3FF168968070064C05D /* draw_redo@2x.png in Resources */,
 				CA25C402168968070064C05D /* draw_undo@2x.png in Resources */,
 				CA25C42A16899E080064C05D /* DrawTestViewController.xib in Resources */,
+				CAC448F8168C4686004441EB /* ColorPickingBox.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -13654,6 +13667,7 @@
 				CA25C400168968070064C05D /* draw_redo@2x.png in Resources */,
 				CA25C403168968070064C05D /* draw_undo@2x.png in Resources */,
 				CA25C42B16899E080064C05D /* DrawTestViewController.xib in Resources */,
+				CAC448F9168C4686004441EB /* ColorPickingBox.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -14422,6 +14436,7 @@
 				CA25C3FE168968070064C05D /* draw_redo@2x.png in Resources */,
 				CA25C401168968070064C05D /* draw_undo@2x.png in Resources */,
 				CA25C42916899E080064C05D /* DrawTestViewController.xib in Resources */,
+				CAC448F7168C4686004441EB /* ColorPickingBox.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -15104,6 +15119,7 @@
 				CADD26431688421600BDCDCF /* PPStack.m in Sources */,
 				CA25C417168995820064C05D /* ColorPoint.m in Sources */,
 				CA25C42716899E080064C05D /* DrawTestViewController.m in Sources */,
+				CAC448FA168C469B004441EB /* ColorPickingBox.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -15758,6 +15774,7 @@
 				CADD26441688421600BDCDCF /* PPStack.m in Sources */,
 				CA25C418168995820064C05D /* ColorPoint.m in Sources */,
 				CA25C42816899E080064C05D /* DrawTestViewController.m in Sources */,
+				CAC448FB168C469C004441EB /* ColorPickingBox.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -16414,6 +16431,7 @@
 				CA25C42616899E080064C05D /* DrawTestViewController.m in Sources */,
 				CA7871881689AE6100B28A2E /* DrawSlider.m in Sources */,
 				C20E7154168AE0A400E37127 /* CustomActionSheet.m in Sources */,
+				CAC448F5168C4666004441EB /* ColorPickingBox.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
