@@ -42,7 +42,7 @@
     NSString *v = [NSString stringWithFormat:@"%.1f",value];
     UILabel *label = (UILabel *)drawSlider.contentView;
     [label setText:v];
-    PPDebug(@"CMPopTipView retain count = %d",drawSlider.popTipView.retainCount);
+//    PPDebug(@"CMPopTipView retain count = %d",drawSlider.popTipView.retainCount);
 }
 
 
@@ -58,6 +58,7 @@
     UILabel *label = [[[UILabel alloc] initWithFrame:CGRectMake(0, 0, 30, 20)] autorelease];
     [label setText:v];
     [drawSlider popupWithContenView:label];
+    [label setBackgroundColor:[UIColor clearColor]];
 }
 
 
@@ -70,20 +71,21 @@
 //    point.selected = YES;
 //    [self.view addSubview:point];
 
+
     slider2 = [[DrawSlider alloc] initWithDrawSliderStyle:DrawSliderStyleSmall];
     slider2.center = self.view.center;
     [self.view addSubview:slider2];
     
     slider1 = [[DrawSlider alloc] initWithDrawSliderStyle:DrawSliderStyleLarge];
-    slider1.center = CGPointMake(30, 250);
-    slider2.center = CGPointMake(200, 250);
+    slider1.center = CGPointMake(80, 250);
+    slider2.center = CGPointMake(240, 250);
     slider1.delegate = self;
     slider2.delegate = self;
     [self.view addSubview:slider1];
 
     
     DrawToolPanel *panel = [DrawToolPanel createViewWithdelegate:nil];
-    panel.center = CGPointMake(160, 400);
+    panel.center = CGPointMake(160, 407.5);
     [self.view addSubview:panel];
     
 //    UIImage *bg = [UIImage imageNamed:@"draw_slider2_bg"];

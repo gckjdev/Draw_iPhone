@@ -22,8 +22,8 @@
 - (IBAction)clickAddColor:(id)sender;
 - (IBAction)clickColorPicker:(id)sender;
 
-@property (retain, nonatomic) IBOutlet UIView *widthSlider;
-@property (retain, nonatomic) IBOutlet UIView *alphaSlider;
+@property (retain, nonatomic) IBOutlet DrawSlider *widthSlider;
+@property (retain, nonatomic) IBOutlet DrawSlider *alphaSlider;
 @property (retain, nonatomic) IBOutlet UILabel *penWidth;
 @property (retain, nonatomic) IBOutlet UILabel *colorAlpha;
 
@@ -37,6 +37,32 @@
 #define SPACE_COLOR_LEFT VALUE(8)
 #define SPACE_COLOR_COLOR VALUE(2)
 #define SPACE_COLOR_UP VALUE(10)
+
+
+- (void)updateSliders
+{
+    CGPoint center = self.widthSlider.center;
+    [self.widthSlider removeFromSuperview];
+    self.widthSlider = [[[DrawSlider alloc] initWithDrawSliderStyle:DrawSliderStyleLarge] autorelease];
+    self.widthSlider.center = center;
+    self.widthSlider.delegate = self;
+    
+    [self.widthSlider setMaxValue:40];
+    [self.widthSlider setMinValue:2];
+    [self.widthSlider setValue:10];
+    
+    [self addSubview:self.widthSlider];
+    
+    center = self.alphaSlider.center;
+    [self.alphaSlider removeFromSuperview];
+    self.alphaSlider = [[[DrawSlider alloc] initWithDrawSliderStyle:DrawSliderStyleLarge] autorelease];
+    self.alphaSlider.center = center;
+    [self.alphaSlider setValue:1.0];
+    self.alphaSlider.delegate = self;
+    [self addSubview:self.alphaSlider];
+
+}
+
 
 - (void)updateView
 {
@@ -59,8 +85,9 @@
     
     
     //update width and alpha
-    
+    [self updateSliders];
 }
+
 
 + (id)createViewWithdelegate:(id)delegate
 {
@@ -108,6 +135,34 @@
             [point setSelected:NO];
         }
     }
+}
+
+
+#pragma mark - DrawSlider delegate
+
+
+- (void)drawSlider:(DrawSlider *)drawSlider
+    didValueChange:(CGFloat)value
+{
+    NSString *v = [NSString stringWithFormat:@"%.1f",value];
+    UILabel *label = (UILabel *)drawSlider.contentView;
+    [label setText:v];
+}
+
+
+- (void)drawSlider:(DrawSlider *)drawSlider didFinishChangeValue:(CGFloat)value
+{
+    [drawSlider dismissPopupView];
+}
+
+- (void)drawSlider:(DrawSlider *)drawSlider didStartToChangeValue:(CGFloat)value
+{
+    
+    NSString *v = [NSString stringWithFormat:@"%.1f",value];
+    UILabel *label = [[[UILabel alloc] initWithFrame:CGRectMake(0, 0, 40, 20)] autorelease];
+    [label setText:v];
+    [drawSlider popupWithContenView:label];
+    [label setBackgroundColor:[UIColor clearColor]];
 }
 
 - (void)dealloc {

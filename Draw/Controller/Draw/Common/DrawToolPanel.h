@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "ColorPoint.h"
+#import "DrawSlider.h"
 
 @protocol DrawToolPanelDelegate <NSObject>
 
@@ -15,7 +16,7 @@
 
 @end
 
-@interface DrawToolPanel : UIView<ColorPointDelegate>
+@interface DrawToolPanel : UIView<ColorPointDelegate, DrawSliderDelegate>
 {
     
 }

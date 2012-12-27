@@ -21,12 +21,13 @@
 #define LOAD_START_Y VALUE([self loadStartY])
 #define LOAD_HEIGHT VALUE([self loadHeight])
 #define LOAD_WIDTH (WIDTH - LOAD_START_X*2)
-#define POINT_X ([self xFromValue:self.value] - POINT_WIDTH/2)
+#define POINT_X ([self xFromPercent:_percent] - POINT_WIDTH/2)
 
 @interface DrawSlider()
 {
     CGPoint currentPoint;
     UIColor *loadColor;
+    CGFloat _percent;
 }
 @property(nonatomic, retain) UIImage *bgImage;
 @property(nonatomic, retain) UIImage *pointImage;
@@ -56,29 +57,58 @@
         
         currentPoint = CGPointZero;
         self.style = style;
-        [self setValue:0.5];
         [self addTarget:self action:@selector(changeValue:) forControlEvents:UIControlEventValueChanged];
+        [self setMaxValue:1.0];
+        [self setMinValue:0.0];
+        _percent = 0.5;
+//        [self setValue:0.5];
     }
     return self;
 }
 
+- (CGFloat)value
+{
+    return (_percent * (_maxValue - _minValue)) + _minValue;
+}
+
+- (void)setValue:(CGFloat)value
+{
+    if (value >= _maxValue) {
+        _percent = 1.0;
+    }else if(value <= _minValue){
+        _percent = 0.0;
+    }else{
+        _percent = (value - _minValue) / (_maxValue - _minValue);
+    }
+    //update the point
+    [self setNeedsDisplay];
+}
+
+- (void)setMinValue:(CGFloat)minValue
+{
+    _minValue = minValue;
+}
+
+- (void)setMaxValue:(CGFloat)maxValue
+{
+    _maxValue = maxValue;
+}
+
 - (void)changeValue:(id)sender
 {
-    if (self.delegate && [self.delegate respondsToSelector:@selector(drawSlider:didValueChange:pointCenter:)]) {
-        CGPoint center = CGPointMake(POINT_X + POINT_WIDTH/2.0, POINT_HEIGHT/2.0);
-        [self.delegate drawSlider:self didValueChange:self.value pointCenter:center];
+    if (self.delegate && [self.delegate respondsToSelector:@selector(drawSlider:didValueChange:)]) {
+        [self.delegate drawSlider:self didValueChange:self.value];
     }
-//    PPDebug(@"value = %f",self.value);
 }
 
 - (CGFloat)loadStartX
 {
-    return DrawSliderStyleLarge == self.style ? 4.0 : 4.5;
+    return DrawSliderStyleLarge == self.style ? 3.8 : 4.2;
 }
 
 - (CGFloat)loadStartY
 {
-    return DrawSliderStyleLarge == self.style ? 4.8 : 4.8;
+    return DrawSliderStyleLarge == self.style ? 4.5 : 4.5;
 }
 
 - (CGFloat)loadHeight
@@ -97,7 +127,7 @@
 }
 
 
-- (CGFloat)valueFromX:(CGFloat)x
+- (CGFloat)percentFromX:(CGFloat)x
 {
     if (x <= [self loadMinX]) {
         return 0;
@@ -108,15 +138,15 @@
     return (x-[self loadMinX])/LOAD_WIDTH;
 }
 
-- (CGFloat)xFromValue:(CGFloat)value
+- (CGFloat)xFromPercent:(CGFloat)percent
 {
-    if (value >= 1.0) {
+    if (percent >= 1.0) {
         return [self loadMaxX];
     }
-    if (value <= 0.0) {
+    if (percent <= 0.0) {
         return [self loadMinX];
     }
-    return [self loadMinX] + value * LOAD_WIDTH;
+    return [self loadMinX] + percent * LOAD_WIDTH;
 }
 
 
@@ -133,19 +163,9 @@
         self.pointImage = [UIImage imageNamed:@"draw_slider1_point"];
     }else{
         return;
-    }
-    
+    }    
     [self setNeedsDisplay];
 }
-
-- (void)setValue:(CGFloat)value
-{
-    _value = MAX(value, 0.0);
-    _value = MIN(value, 1.0);
-    currentPoint = CGPointMake([self xFromValue:value], self.center.y);
-    [self setNeedsDisplay];
-}
-
 
 
 // Only override drawRect: if you perform custom drawing.
@@ -171,7 +191,7 @@
 
 - (void)updateValueWithCurrentPoint
 {
-    self.value = [self valueFromX:currentPoint.x];
+    _percent = [self percentFromX:currentPoint.x];
 }
 
 
@@ -219,15 +239,14 @@
     if (poptipView == nil) {
         poptipView = [[[CMPopTipView alloc] initWithCustomView:contentView] autorelease];
         poptipView.tag = POPTIPVIEW_TAG;
+        [poptipView setBackgroundColor:[UIColor lightGrayColor]];
     }else{
         if (poptipView.customView != contentView) {
             [poptipView.customView removeFromSuperview];
             [poptipView setCustomView:contentView];
         }
     }
-    PPDebug(@"1。 poptipView retain count = %d",[poptipView retainCount]);
     [poptipView presentPointingAtView:self inView:inView animated:NO];
-    PPDebug(@"2。 poptipView retain count = %d",[poptipView retainCount]);    
 }
 - (void)dismissPopupView
 {
