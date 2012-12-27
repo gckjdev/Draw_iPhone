@@ -7,6 +7,7 @@
 //
 
 #import "DrawSlider.h"
+#import "CMPopTipView.h"
 
 #define VALUE(x) (ISIPAD ? x*2 : x)
 
@@ -25,9 +26,9 @@
 @interface DrawSlider()
 {
     CGPoint currentPoint;
+    UIColor *loadColor;
 }
 @property(nonatomic, retain) UIImage *bgImage;
-@property(nonatomic, retain) UIImage *loadImage;
 @property(nonatomic, retain) UIImage *pointImage;
 
 
@@ -39,8 +40,8 @@
 - (void)dealloc
 {
     PPRelease(_bgImage);
-    PPRelease(_loadImage);
     PPRelease(_pointImage);
+    PPRelease(loadColor);
     [super dealloc];
 }
 
@@ -49,6 +50,10 @@
     self = [super initWithFrame:CGRectMake(0, 0, WIDTH, HEIGHT)];
     if (self) {
         self.backgroundColor = [UIColor clearColor];
+        
+        //171 123 98
+        loadColor = [[UIColor colorWithRed:171/255.0 green:123/255.0 blue:98/255.0 alpha:1] retain];
+        
         currentPoint = CGPointZero;
         self.style = style;
         [self setValue:0.5];
@@ -63,7 +68,7 @@
         CGPoint center = CGPointMake(POINT_X + POINT_WIDTH/2.0, POINT_HEIGHT/2.0);
         [self.delegate drawSlider:self didValueChange:self.value pointCenter:center];
     }
-    PPDebug(@"value = %f",self.value);
+//    PPDebug(@"value = %f",self.value);
 }
 
 - (CGFloat)loadStartX
@@ -73,12 +78,12 @@
 
 - (CGFloat)loadStartY
 {
-    return DrawSliderStyleLarge == self.style ? 5.0 : 5.5;
+    return DrawSliderStyleLarge == self.style ? 4.8 : 4.8;
 }
 
 - (CGFloat)loadHeight
 {
-    return DrawSliderStyleLarge == self.style ? 2.0 : 1;
+    return DrawSliderStyleLarge == self.style ? 2.0 : 2.0;
 }
 
 - (CGFloat)loadMinX
@@ -122,11 +127,9 @@
     
     if (style == DrawSliderStyleLarge) {
         self.bgImage = [UIImage imageNamed:@"draw_slider2_bg"];
-        self.loadImage = [UIImage imageNamed:@"draw_slider2_load"];
         self.pointImage = [UIImage imageNamed:@"draw_slider2_point"];
     }else if (style == DrawSliderStyleSmall){
         self.bgImage = [UIImage imageNamed:@"draw_slider1_bg"];
-        self.loadImage = [UIImage imageNamed:@"draw_slider1_load"];
         self.pointImage = [UIImage imageNamed:@"draw_slider1_point"];
     }else{
         return;
@@ -150,7 +153,7 @@
 - (void)drawRect:(CGRect)rect
 {
     CGContextRef context = UIGraphicsGetCurrentContext();
-    CGContextSetFillColorWithColor(context, [UIColor blackColor].CGColor);
+    CGContextSetFillColorWithColor(context, loadColor.CGColor);
     
     // Drawing code
     //Draw bg
@@ -202,4 +205,48 @@
 
 }
 
+@end
+
+
+@implementation DrawSlider (PopupView)
+
+#define POPTIPVIEW_TAG 201212271
+
+- (void)popupWithContenView:(UIView *)contentView
+{
+    UIView *inView = [self superview];
+    CMPopTipView *poptipView = (CMPopTipView *)[inView viewWithTag:POPTIPVIEW_TAG];
+    if (poptipView == nil) {
+        poptipView = [[[CMPopTipView alloc] initWithCustomView:contentView] autorelease];
+        poptipView.tag = POPTIPVIEW_TAG;
+    }else{
+        if (poptipView.customView != contentView) {
+            [poptipView.customView removeFromSuperview];
+            [poptipView setCustomView:contentView];
+        }
+    }
+    PPDebug(@"1。 poptipView retain count = %d",[poptipView retainCount]);
+    [poptipView presentPointingAtView:self inView:inView animated:NO];
+    PPDebug(@"2。 poptipView retain count = %d",[poptipView retainCount]);    
+}
+- (void)dismissPopupView
+{
+    UIView *inView = [self superview];
+    CMPopTipView *poptipView = (CMPopTipView *)[inView viewWithTag:POPTIPVIEW_TAG];
+    PPDebug(@"3。 poptipView retain count = %d",[poptipView retainCount]);
+    [poptipView dismissAnimated:NO];
+}
+
+- (UIView *)contentView
+{
+    UIView *inView = [self superview];
+    CMPopTipView *poptipView = (CMPopTipView *)[inView viewWithTag:POPTIPVIEW_TAG];
+    return poptipView.customView;
+}
+- (CMPopTipView *)popTipView
+{
+    UIView *inView = [self superview];
+    CMPopTipView *poptipView = (CMPopTipView *)[inView viewWithTag:POPTIPVIEW_TAG];
+    return poptipView;
+}
 @end

@@ -42,3 +42,13 @@ typedef enum{
 @property(nonatomic, assign)id<DrawSliderDelegate> delegate;
 
 @end
+
+@class CMPopTipView;
+
+@interface DrawSlider (PopupView)
+
+- (void)popupWithContenView:(UIView *)contentView;
+- (void)dismissPopupView;
+- (UIView *)contentView;
+- (CMPopTipView *)popTipView;
+@end
