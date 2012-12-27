@@ -373,6 +373,11 @@
 		C20D4B2515E1D78800074885 /* CommonInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = C20D4B2415E1D78800074885 /* CommonInfoView.m */; };
 		C20D4B4F15E3274E00074885 /* DiceGamePlayController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C20D4B4E15E3274E00074885 /* DiceGamePlayController~ipad.xib */; };
 		C20E7154168AE0A400E37127 /* CustomActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = C20E7153168AE0A400E37127 /* CustomActionSheet.m */; };
+		C20E7184168C584600E37127 /* email@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C20E717F168C584600E37127 /* email@2x.png */; };
+		C20E7185168C584600E37127 /* favorite@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C20E7180168C584600E37127 /* favorite@2x.png */; };
+		C20E7186168C584600E37127 /* gallery@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C20E7181168C584600E37127 /* gallery@2x.png */; };
+		C20E7188168C584600E37127 /* wechat@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C20E7183168C584600E37127 /* wechat@2x.png */; };
+		C20E718A168C590C00E37127 /* wechat_friend@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C20E7189168C590C00E37127 /* wechat_friend@2x.png */; };
 		C213091B15E349E20072A18E /* DiceUserInfoView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C213091A15E349E20072A18E /* DiceUserInfoView~ipad.xib */; };
 		C21309FB15E774390072A18E /* DiceColorManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C21309FA15E774390072A18E /* DiceColorManager.m */; };
 		C223232D165C659E00D7ECE4 /* ZJHSettingView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C223232C165C659E00D7ECE4 /* ZJHSettingView~ipad.xib */; };
@@ -4878,6 +4883,11 @@
 		C20D4B4E15E3274E00074885 /* DiceGamePlayController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "DiceGamePlayController~ipad.xib"; sourceTree = "<group>"; };
 		C20E7152168AE0A400E37127 /* CustomActionSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomActionSheet.h; sourceTree = "<group>"; };
 		C20E7153168AE0A400E37127 /* CustomActionSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomActionSheet.m; sourceTree = "<group>"; };
+		C20E717F168C584600E37127 /* email@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "email@2x.png"; sourceTree = "<group>"; };
+		C20E7180168C584600E37127 /* favorite@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "favorite@2x.png"; sourceTree = "<group>"; };
+		C20E7181168C584600E37127 /* gallery@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gallery@2x.png"; sourceTree = "<group>"; };
+		C20E7183168C584600E37127 /* wechat@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wechat@2x.png"; sourceTree = "<group>"; };
+		C20E7189168C590C00E37127 /* wechat_friend@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wechat_friend@2x.png"; sourceTree = "<group>"; };
 		C213091A15E349E20072A18E /* DiceUserInfoView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "DiceUserInfoView~ipad.xib"; sourceTree = "<group>"; };
 		C21309F915E774390072A18E /* DiceColorManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiceColorManager.h; sourceTree = "<group>"; };
 		C21309FA15E774390072A18E /* DiceColorManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiceColorManager.m; sourceTree = "<group>"; };
@@ -11951,6 +11961,11 @@
 		EA856C3315F0A65700178323 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				C20E7189168C590C00E37127 /* wechat_friend@2x.png */,
+				C20E717F168C584600E37127 /* email@2x.png */,
+				C20E7180168C584600E37127 /* favorite@2x.png */,
+				C20E7181168C584600E37127 /* gallery@2x.png */,
+				C20E7183168C584600E37127 /* wechat@2x.png */,
 				CA25C3A2168968070064C05D /* DrawPage */,
 				C2974D52168302DE00E012FC /* Bulletin */,
 				A4B93910167C539D00401E9C /* waiting_user@2x.png */,
@@ -14496,6 +14511,11 @@
 				CA25C401168968070064C05D /* draw_undo@2x.png in Resources */,
 				CA25C42916899E080064C05D /* DrawTestViewController.xib in Resources */,
 				CAC448F7168C4686004441EB /* ColorPickingBox.xib in Resources */,
+				C20E7184168C584600E37127 /* email@2x.png in Resources */,
+				C20E7185168C584600E37127 /* favorite@2x.png in Resources */,
+				C20E7186168C584600E37127 /* gallery@2x.png in Resources */,
+				C20E7188168C584600E37127 /* wechat@2x.png in Resources */,
+				C20E718A168C590C00E37127 /* wechat_friend@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

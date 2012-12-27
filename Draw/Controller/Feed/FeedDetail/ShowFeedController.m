@@ -33,6 +33,7 @@
 #import "MyFriend.h"
 #import "FeedClasses.h"
 #import "ShareAction.h"
+#import "SDImageCache.h"
 
 @interface ShowFeedController () {
     ShareAction* _shareAction;
@@ -577,7 +578,8 @@ enum{
 //        //save
         UIImage *image = self.feed.largeImage;
         if(image == nil){
-           image =  [self.drawCell.showView createImage];   
+//           image =  [self.drawCell.showView createImage];
+            [[SDImageCache sharedImageCache] imageFromKey:self.feed.drawImageUrl];
         }
 //
 //        [self showActivityWithText:NSLS(@"kSaving")];

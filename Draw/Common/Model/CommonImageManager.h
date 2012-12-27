@@ -30,4 +30,14 @@
 
 - (UIImage *)maleImage;
 - (UIImage *)femaleImage;
+
+- (UIImage *)albumImage;
+- (UIImage *)emailImage;
+- (UIImage *)sinaImage;
+- (UIImage *)qqWeiboImage;
+- (UIImage *)facebookImage;
+- (UIImage *)favoriteImage;
+- (UIImage *)wechatImage;
+- (UIImage *)wechatFriendsImage;
+
 @end

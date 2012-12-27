@@ -89,7 +89,7 @@
 
 - (void)showInView:(UIView *)view onView:(UIView*)onView
 {
-    self.backgroundColor = [UIColor clearColor];
+    self.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.8];
     float actionViewWidth = WIDTH/COLUMN;
     
     
@@ -126,6 +126,7 @@
                                         alpha:1.0];
         lbl.font = [UIFont systemFontOfSize:12.0f];
         [lbl setTextAlignment:UITextAlignmentCenter];
+        [lbl setTextColor:[UIColor whiteColor]];
         lbl.backgroundColor = [UIColor clearColor];
         lbl.text = (NSString*)[self.buttonTitles objectAtIndex:i];
         [actionView addSubview:lbl];
