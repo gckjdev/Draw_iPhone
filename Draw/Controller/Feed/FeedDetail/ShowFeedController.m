@@ -32,6 +32,7 @@
 
 #import "MyFriend.h"
 #import "FeedClasses.h"
+#import "ShareAction.h"
 
 @implementation ShowFeedController
 @synthesize titleLabel = _titleLabel;
@@ -566,27 +567,34 @@ enum{
     }else if(button == self.saveButton){
         
         
-        //save
+//        //save
         UIImage *image = self.feed.largeImage;
         if(image == nil){
            image =  [self.drawCell.showView createImage];   
         }
+//
+//        [self showActivityWithText:NSLS(@"kSaving")];
+//        
+//        [[ShareService defaultService] shareWithImage:image 
+//                                           drawUserId:_feed.feedUser.userId
+//                                           isDrawByMe:[_feed isMyOpus] 
+//                                             drawWord:_feed.wordText];    
+//        [self.feed increaseSaveTimes];
+//        
+//        //TODO save pbdraw data instead of drawActionList
+////        [_feed parseDrawData];
+//        [[DrawDataService defaultService] savePaintWithPBDraw:_feed.pbDraw
+//                                                        image:image
+//                                                     delegate:self];
+//
+//        button.userInteractionEnabled = NO;
         
-        [self showActivityWithText:NSLS(@"kSaving")];
+        //TODO---kira
         
-        [[ShareService defaultService] shareWithImage:image 
-                                           drawUserId:_feed.feedUser.userId
-                                           isDrawByMe:[_feed isMyOpus] 
-                                             drawWord:_feed.wordText];    
-        [self.feed increaseSaveTimes];
+        ShareAction* _shareAction = [[ShareAction alloc] initWithFeed:_feed
+                                                                image:image];
         
-        //TODO save pbdraw data instead of drawActionList
-//        [_feed parseDrawData];
-        [[DrawDataService defaultService] savePaintWithPBDraw:_feed.pbDraw
-                                                        image:image
-                                                     delegate:self];
-        
-        button.userInteractionEnabled = NO;
+        [_shareAction displayMoreWithViewController:self];
         
     }else if(button == self.flowerButton){
         Item *item = [Item flower];
@@ -763,6 +771,12 @@ enum{
 //        [_commentHeader updateTimes:feed];
         [_commentHeader setViewInfo:feed];
     }
+}
+
+#pragma mark - UIActionsheet delegate
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    
 }
 
 

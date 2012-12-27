@@ -16,6 +16,10 @@
 #import "UIImageExt.h"
 #import "MyPaintManager.h"
 #import "PPDebug.h"
+#import "DrawFeed.h"
+#import "StringUtil.h"
+#import "DrawDataService.h"
+#import "CustomActionSheet.h"
 
 @interface ShareAction ()
 {
@@ -26,6 +30,7 @@
     NSInteger buttonIndexSinaWeibo;
     NSInteger buttonIndexQQWeibo;
     NSInteger buttonIndexFacebook;
+    NSInteger buttonIndexFavorite;
 }
 @end
 
@@ -80,6 +85,26 @@
     return self; 
 }
 
+- (id)initWithFeed:(DrawFeed*)feed
+             image:(UIImage*)image
+{
+    self= [super init];
+    if (self) {
+        self.isDrawByMe = ([[UserManager defaultManager] isMe:feed.author.userId]);
+        self.isGIF = NO;
+        self.drawUserId = feed.author.userId;
+        NSString* path = [NSString stringWithFormat:@"%@/%@.png", NSTemporaryDirectory(), [NSString GetUUID]];
+        BOOL result=[[image data] writeToFile:path atomically:YES];
+        if (result) {
+            self.imageFilePath = path;
+        }
+        self.feed = feed;
+        self.image = image;
+        
+    }
+    return self;
+}
+
 - (void)displayWithViewController:(UIViewController*)superViewController;
 {
     buttonIndexAlbum = -1;
@@ -90,24 +115,24 @@
     buttonIndexQQWeibo = -1;
     buttonIndexFacebook = -1;
     
-    UIActionSheet* shareOptions = [[UIActionSheet alloc] initWithTitle:NSLS(@"kShare_Options") 
-                                                              delegate:self 
-                                                     cancelButtonTitle:nil 
-                                                destructiveButtonTitle:NSLS(@"kSave_to_album") 
+    UIActionSheet* shareOptions = [[UIActionSheet alloc] initWithTitle:NSLS(@"kShare_Options")
+                                                              delegate:self
+                                                     cancelButtonTitle:nil
+                                                destructiveButtonTitle:NSLS(@"kSave_to_album")
                                                      otherButtonTitles:NSLS(@"kShare_via_Email"), nil];
     buttonIndexAlbum = 0;
     buttonIndexEmail = 1;
-
+    
     int buttonIndex = buttonIndexEmail;
     if (self.isGIF == NO) {
         buttonIndex ++;
         [shareOptions addButtonWithTitle:NSLS(@"kShare_via_Weixin_Timeline")];
         buttonIndexWeixinTimeline = buttonIndex;
-
+        
         buttonIndex ++;
         [shareOptions addButtonWithTitle:NSLS(@"kShare_via_Weixin_Friend")];
         buttonIndexWeixinFriend = buttonIndex;
-    
+        
     }
     
     if ([[UserManager defaultManager] hasBindSinaWeibo]){
@@ -126,7 +151,7 @@
         buttonIndex ++;
         [shareOptions addButtonWithTitle:NSLS(@"kShare_via_Facebook")];
         buttonIndexFacebook = buttonIndex;
-    }                
+    }
     
     buttonIndex ++;
     [shareOptions addButtonWithTitle:NSLS(@"kCancel")];
@@ -135,6 +160,66 @@
     self.superViewController = superViewController;
     [shareOptions showInView:superViewController.view];
     [shareOptions release];
+}
+
+
+- (void)displayMoreWithViewController:(UIViewController*)superViewController
+{
+    buttonIndexAlbum = -1;
+    buttonIndexEmail = -1;
+    buttonIndexWeixinTimeline = -1;
+    buttonIndexWeixinFriend = -1;
+    buttonIndexSinaWeibo = -1;
+    buttonIndexQQWeibo = -1;
+    buttonIndexFacebook = -1;
+    buttonIndexFavorite = -1;
+    
+    CustomActionSheet* shareOptions = [[CustomActionSheet alloc] initWithTitle:NSLS(@"kShare_Options")
+                                                              delegate:self 
+                                                     buttonTitles:NSLS(@"kSave_to_album"), NSLS(@"kShare_via_Email"), nil];
+    buttonIndexAlbum = 0;
+    buttonIndexEmail = 1;
+
+    int buttonIndex = buttonIndexEmail;
+    if (self.isGIF == NO) {
+        buttonIndex ++;
+        [shareOptions addButtonWithTitle:NSLS(@"kShare_via_Weixin_Timeline") image:nil];
+        buttonIndexWeixinTimeline = buttonIndex;
+
+        buttonIndex ++;
+        [shareOptions addButtonWithTitle:NSLS(@"kShare_via_Weixin_Friend") image:nil];
+        buttonIndexWeixinFriend = buttonIndex;
+    
+    }
+    
+    if ([[UserManager defaultManager] hasBindSinaWeibo]){
+        buttonIndex ++;
+        [shareOptions addButtonWithTitle:NSLS(@"kShare_via_Sina_weibo") image:[UIImage imageNamed:@"sina.png"]];
+        buttonIndexSinaWeibo = buttonIndex;
+    }
+    
+    if ([[UserManager defaultManager] hasBindQQWeibo]){
+        buttonIndex ++;
+        [shareOptions addButtonWithTitle:NSLS(@"kShare_via_tencent_weibo") image:nil];
+        buttonIndexQQWeibo = buttonIndex;
+    }
+    
+    if ([[UserManager defaultManager] hasBindFacebook]){
+        buttonIndex ++;
+        [shareOptions addButtonWithTitle:NSLS(@"kShare_via_Facebook") image:nil];
+        buttonIndexFacebook = buttonIndex;
+    }                
+    
+    buttonIndex ++;
+    [shareOptions addButtonWithTitle:NSLS(@"buttonIndexFavorite") image:nil];
+    buttonIndexFavorite = buttonIndex;
+    
+    
+    
+    self.superViewController = superViewController;
+    [shareOptions showInView:superViewController.view];
+    [shareOptions release];
+    
 }
 
 - (void)mailComposeController:(MFMailComposeViewController *)controller 
@@ -236,6 +321,13 @@
     }
 }
 
+- (void)favorite
+{
+    [[DrawDataService defaultService] savePaintWithPBDraw:self.feed.pbDraw
+                                                    image:self.image
+                                                 delegate:nil];
+}
+
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     if (buttonIndex == actionSheet.cancelButtonIndex) {
@@ -261,6 +353,8 @@
         [self shareViaSNS:QQ_WEIBO];
     } else if (buttonIndex == buttonIndexFacebook) {
         [self shareViaSNS:FACEBOOK];
+    } else if (buttonIndex == buttonIndexFavorite) {
+        [self favorite];
     }
 }
 

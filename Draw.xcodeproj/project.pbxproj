@@ -372,6 +372,7 @@
 		A4F6712F166C878100FF85CA /* ArrowView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4F6712E166C878100FF85CA /* ArrowView.m */; };
 		C20D4B2515E1D78800074885 /* CommonInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = C20D4B2415E1D78800074885 /* CommonInfoView.m */; };
 		C20D4B4F15E3274E00074885 /* DiceGamePlayController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C20D4B4E15E3274E00074885 /* DiceGamePlayController~ipad.xib */; };
+		C20E7154168AE0A400E37127 /* CustomActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = C20E7153168AE0A400E37127 /* CustomActionSheet.m */; };
 		C213091B15E349E20072A18E /* DiceUserInfoView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C213091A15E349E20072A18E /* DiceUserInfoView~ipad.xib */; };
 		C21309FB15E774390072A18E /* DiceColorManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C21309FA15E774390072A18E /* DiceColorManager.m */; };
 		C223232D165C659E00D7ECE4 /* ZJHSettingView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C223232C165C659E00D7ECE4 /* ZJHSettingView~ipad.xib */; };
@@ -4854,6 +4855,8 @@
 		C20D4B2315E1D78800074885 /* CommonInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonInfoView.h; sourceTree = "<group>"; };
 		C20D4B2415E1D78800074885 /* CommonInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonInfoView.m; sourceTree = "<group>"; };
 		C20D4B4E15E3274E00074885 /* DiceGamePlayController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "DiceGamePlayController~ipad.xib"; sourceTree = "<group>"; };
+		C20E7152168AE0A400E37127 /* CustomActionSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomActionSheet.h; sourceTree = "<group>"; };
+		C20E7153168AE0A400E37127 /* CustomActionSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomActionSheet.m; sourceTree = "<group>"; };
 		C213091A15E349E20072A18E /* DiceUserInfoView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "DiceUserInfoView~ipad.xib"; sourceTree = "<group>"; };
 		C21309F915E774390072A18E /* DiceColorManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiceColorManager.h; sourceTree = "<group>"; };
 		C21309FA15E774390072A18E /* DiceColorManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiceColorManager.m; sourceTree = "<group>"; };
@@ -9293,6 +9296,8 @@
 				C2B3E93F1553740400CCF52C /* ReplayController~ipad.xib */,
 				CACC084C1532B02600D9F8E9 /* ShareAction.h */,
 				CACC084D1532B02600D9F8E9 /* ShareAction.m */,
+				C20E7152168AE0A400E37127 /* CustomActionSheet.h */,
+				C20E7153168AE0A400E37127 /* CustomActionSheet.m */,
 				C2FA6E6E1535352200EEB530 /* MyPaintButton.h */,
 				C2FA6E6F1535352200EEB530 /* MyPaintButton.m */,
 				C2FA6E711535358100EEB530 /* MyPaintButton.xib */,
@@ -16408,6 +16413,7 @@
 				CA25C416168995820064C05D /* ColorPoint.m in Sources */,
 				CA25C42616899E080064C05D /* DrawTestViewController.m in Sources */,
 				CA7871881689AE6100B28A2E /* DrawSlider.m in Sources */,
+				C20E7154168AE0A400E37127 /* CustomActionSheet.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

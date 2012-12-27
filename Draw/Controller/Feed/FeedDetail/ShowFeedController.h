@@ -24,7 +24,7 @@
 @class UseItemScene;
 //@class ToolView;
 
-@interface ShowFeedController : PPTableViewController<FeedServiceDelegate, DrawDataServiceDelegate,CommonDialogDelegate, CommentHeaderViewDelegate, CommentCellDelegate>
+@interface ShowFeedController : PPTableViewController<FeedServiceDelegate, DrawDataServiceDelegate,CommonDialogDelegate, CommentHeaderViewDelegate, CommentCellDelegate, UIActionSheetDelegate>
 {
     DrawFeed *_feed;
     UserInfoCell *_userCell;
