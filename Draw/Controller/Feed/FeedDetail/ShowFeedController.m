@@ -34,6 +34,12 @@
 #import "FeedClasses.h"
 #import "ShareAction.h"
 
+@interface ShowFeedController () {
+    ShareAction* _shareAction;
+}
+
+@end
+
 @implementation ShowFeedController
 @synthesize titleLabel = _titleLabel;
 @synthesize guessButton = _guessButton;
@@ -74,6 +80,7 @@ typedef enum{
     PPRelease(_tomatoButton);
     PPRelease(_replayButton);
     PPRelease(_useItemScene);
+    PPRelease(_shareAction);
     [super dealloc];
 }
 
@@ -588,13 +595,12 @@ enum{
 //                                                     delegate:self];
 //
 //        button.userInteractionEnabled = NO;
-        
-        //TODO---kira
-        
-        ShareAction* _shareAction = [[ShareAction alloc] initWithFeed:_feed
-                                                                image:image];
-        
-        [_shareAction displayMoreWithViewController:self];
+
+        if (_shareAction == nil) {
+            _shareAction = [[ShareAction alloc] initWithFeed:_feed
+                                                       image:image];
+        }
+        [_shareAction displayWithViewController:self onView:self.saveButton];
         
     }else if(button == self.flowerButton){
         Item *item = [Item flower];

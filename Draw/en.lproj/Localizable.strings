@@ -927,6 +927,11 @@
 
 "kBulletin" = "Bulletin";
 
+"kShareTo" = "Share via...";
+"kEmail" = "E-mail";
+"kWeChatTimeline" = "WeChat";
+"kWeChatFriends" = "WeChat Friends";
+"kFavorite" = "Favorite";
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 

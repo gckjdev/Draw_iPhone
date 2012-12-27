@@ -937,6 +937,12 @@
 
 "kBulletin" = "公告";
 
+"kShareTo" = "分享到...";
+"kEmail" = "郵件";
+"kWeChatTimeline" = "微信";
+"kWeChatFriends" = "微信";
+"kFavorite" = "收藏";
+
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 

@@ -8,9 +8,11 @@
 
 #import "CustomActionSheet.h"
 #import <UIKit/UIKit.h>
+#import "CMPopTipView.h"
 
-#define COLUMN 4
+#define COLUMN 3
 #define ACTION_BTN_TAG_OFFSET   20121226
+#define WIDTH   280
 
 @interface CustomActionSheet () {
     UIImage* _defaultImage;
@@ -18,10 +20,18 @@
 
 @property (retain, nonatomic) NSMutableDictionary* buttonImagesDict;
 @property (retain, nonatomic) NSMutableArray* buttonTitles;
+@property (retain, nonatomic) CMPopTipView* popView;
 
 @end
 
 @implementation CustomActionSheet
+
+- (void)dealloc
+{
+    [_buttonImagesDict release];
+    [_buttonTitles release];
+    [super dealloc];
+}
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -50,6 +60,13 @@
     return self.buttonTitles.count;
 }
 
+- (void)setImage:(UIImage*)image forTitle:(NSString*)title
+{
+    if (image != nil && title != nil) {
+        [self.buttonImagesDict setObject:image forKey:title];
+    }
+}
+
 - (NSString *)buttonTitleAtIndex:(NSInteger)buttonIndex
 {
     if (buttonIndex < self.buttonTitles.count) {
@@ -69,61 +86,79 @@
 {
     
 }
-- (void)showInView:(UIView *)view
+
+- (void)showInView:(UIView *)view onView:(UIView*)onView
 {
-    self.backgroundColor = [UIColor blackColor];
-    [self setFrame:CGRectMake(0, 0, 320, 320)];
+    self.backgroundColor = [UIColor clearColor];
+    float actionViewWidth = WIDTH/COLUMN;
+    
     
     // init cates show
     int total = self.buttonTitles.count;
-#define ROWHEIHT 70
+#define ROWHEIHT 80
     int rows = (total / COLUMN) + ((total % COLUMN) > 0 ? 1 : 0);
     
     for (int i=0; i<total; i++) {
         int row = i / COLUMN;
         int column = i % COLUMN;
         
-        UIView *view = [[[UIView alloc] initWithFrame:CGRectMake(80*column, ROWHEIHT*row, 80, ROWHEIHT)] autorelease];
-        view.backgroundColor = [UIColor clearColor];
+        UIView *actionView = [[[UIView alloc] initWithFrame:CGRectMake(actionViewWidth*column, ROWHEIHT*row, actionViewWidth, ROWHEIHT)] autorelease];
+        actionView.backgroundColor = [UIColor clearColor];
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
         btn.frame = CGRectMake(15, 15, 50, 50);
         btn.tag = i + ACTION_BTN_TAG_OFFSET;
         [btn addTarget:self
                 action:@selector(subCateBtnAction:)
       forControlEvents:UIControlEventTouchUpInside];
+        [btn setCenter:CGPointMake(actionViewWidth/2, btn.center.y)];
         
         
         [btn setBackgroundImage:(UIImage*)[self.buttonImagesDict objectForKey:[self.buttonTitles objectAtIndex:i]]
                        forState:UIControlStateNormal];
         
-        [view addSubview:btn];
+        [actionView addSubview:btn];
         
-        UILabel *lbl = [[[UILabel alloc] initWithFrame:CGRectMake(0, 65, 80, 14)] autorelease];
+        UILabel *lbl = [[[UILabel alloc] initWithFrame:CGRectMake(0, 65, actionViewWidth, 14)] autorelease];
         lbl.textAlignment = UITextAlignmentCenter;
         lbl.textColor = [UIColor colorWithRed:204/255.0
                                         green:204/255.0
                                          blue:204/255.0
                                         alpha:1.0];
         lbl.font = [UIFont systemFontOfSize:12.0f];
+        [lbl setTextAlignment:UITextAlignmentCenter];
         lbl.backgroundColor = [UIColor clearColor];
         lbl.text = (NSString*)[self.buttonTitles objectAtIndex:i];
-        [view addSubview:lbl];
+        [actionView addSubview:lbl];
         
-        [self addSubview:view];
+        [self addSubview:actionView];
     }
     
     CGRect viewFrame = self.frame;
     viewFrame.size.height = ROWHEIHT * rows + 19;
+    viewFrame.size.width = WIDTH;
     self.frame = viewFrame;
     
-    [view addSubview:self];
+    if (_popView == nil) {
+        _popView = [[CMPopTipView alloc] initWithCustomView:self needBubblePath:NO];
+        [_popView setBackgroundColor:[UIColor grayColor]];
+    }
+    _popView.hidden = NO;
+    [_popView presentPointingAtView:onView inView:view animated:YES];
+    self.isVisable = YES;
+    
+}
+
+- (void)hideActionSheet
+{
+    _popView.hidden = YES;
+    self.isVisable = NO;
 }
 
 - (void)subCateBtnAction:(id)sender
 {
     UIButton* btn = (UIButton*)sender;
-    if (_delegate && [_delegate respondsToSelector:@selector(actionSheet:clickedButtonAtIndex:)]) {
-        [_delegate actionSheet:self
+    if (_delegate && [_delegate respondsToSelector:@selector(customActionSheet:clickedButtonAtIndex:)]) {
+        [_delegate customActionSheet:self
           clickedButtonAtIndex:btn.tag - ACTION_BTN_TAG_OFFSET];
         
     }

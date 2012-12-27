@@ -30,5 +30,5 @@
 - (id)initWithFeed:(DrawFeed*)feed
              image:(UIImage*)image;
 - (void)displayWithViewController:(UIViewController*)superViewController;
-- (void)displayMoreWithViewController:(UIViewController*)superViewController;
+- (void)displayWithViewController:(UIViewController*)superViewController onView:(UIView*)view;
 @end
