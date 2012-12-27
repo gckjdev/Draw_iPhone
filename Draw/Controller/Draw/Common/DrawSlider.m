@@ -10,12 +10,17 @@
 
 #define VALUE(x) (ISIPAD ? x*2 : x)
 
-#define WIDTH VALUE(96.0)
+#define WIDTH VALUE(92.5)
 #define HEIGHT VALUE(12.0)
 
 #define POINT_WIDTH VALUE(11.0)
 #define POINT_HEIGHT VALUE(12.0)
 
+#define LOAD_START_X VALUE([self loadStartX])
+#define LOAD_START_Y VALUE([self loadStartY])
+#define LOAD_HEIGHT VALUE([self loadHeight])
+#define LOAD_WIDTH (WIDTH - LOAD_START_X*2)
+#define POINT_X ([self xFromValue:self.value] - POINT_WIDTH/2)
 
 @interface DrawSlider()
 {
@@ -46,10 +51,69 @@
         self.backgroundColor = [UIColor clearColor];
         currentPoint = CGPointZero;
         self.style = style;
+        [self setValue:0.5];
+        [self addTarget:self action:@selector(changeValue:) forControlEvents:UIControlEventValueChanged];
     }
     return self;
-
 }
+
+- (void)changeValue:(id)sender
+{
+    if (self.delegate && [self.delegate respondsToSelector:@selector(drawSlider:didValueChange:pointCenter:)]) {
+        CGPoint center = CGPointMake(POINT_X + POINT_WIDTH/2.0, POINT_HEIGHT/2.0);
+        [self.delegate drawSlider:self didValueChange:self.value pointCenter:center];
+    }
+    PPDebug(@"value = %f",self.value);
+}
+
+- (CGFloat)loadStartX
+{
+    return DrawSliderStyleLarge == self.style ? 4.0 : 4.5;
+}
+
+- (CGFloat)loadStartY
+{
+    return DrawSliderStyleLarge == self.style ? 5.0 : 5.5;
+}
+
+- (CGFloat)loadHeight
+{
+    return DrawSliderStyleLarge == self.style ? 2.0 : 1;
+}
+
+- (CGFloat)loadMinX
+{
+    return LOAD_START_X;
+}
+
+- (CGFloat)loadMaxX
+{
+    return WIDTH - LOAD_START_X;
+}
+
+
+- (CGFloat)valueFromX:(CGFloat)x
+{
+    if (x <= [self loadMinX]) {
+        return 0;
+    }
+    if (x >= [self loadMaxX]) {
+        return 1.0;
+    }
+    return (x-[self loadMinX])/LOAD_WIDTH;
+}
+
+- (CGFloat)xFromValue:(CGFloat)value
+{
+    if (value >= 1.0) {
+        return [self loadMaxX];
+    }
+    if (value <= 0.0) {
+        return [self loadMinX];
+    }
+    return [self loadMinX] + value * LOAD_WIDTH;
+}
+
 
 - (void)setStyle:(DrawSliderStyle)style
 {
@@ -73,35 +137,38 @@
 
 - (void)setValue:(CGFloat)value
 {
-    _value = value;
-    currentPoint = CGPointMake(value * CGRectGetWidth(self.bounds), self.center.y);
+    _value = MAX(value, 0.0);
+    _value = MIN(value, 1.0);
+    currentPoint = CGPointMake([self xFromValue:value], self.center.y);
     [self setNeedsDisplay];
 }
+
+
 
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.
 - (void)drawRect:(CGRect)rect
 {
-//    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextSetFillColorWithColor(context, [UIColor blackColor].CGColor);
     
     // Drawing code
     //Draw bg
-    [self.bgImage drawInRect:self.bounds];
-    
+    [self.bgImage drawAtPoint:CGPointMake(0, 0)];
+
     //Draw load
-    CGRect r = CGRectMake(10, 0, currentPoint.x, CGRectGetHeight(self.bounds));
-    [self.loadImage drawInRect:r];
+    CGRect r = CGRectMake(LOAD_START_X, LOAD_START_Y, POINT_X, LOAD_HEIGHT);
+    CGContextFillRect(context, r);
+    
     //draw point
-    CGFloat x = currentPoint.x - POINT_WIDTH/2.0;
-    r = CGRectMake(x, 0, POINT_WIDTH, POINT_HEIGHT);
-    [self.pointImage drawInRect:r];
+    [self.pointImage drawAtPoint:CGPointMake(POINT_X, 0)];
     
     [super drawRect:rect];
 }
 
 - (void)updateValueWithCurrentPoint
 {
-    self.value = currentPoint.x / CGRectGetWidth(self.bounds);
+    self.value = [self valueFromX:currentPoint.x];
 }
 
 
@@ -111,6 +178,9 @@
     currentPoint = [touch locationInView:self];
     [self updateValueWithCurrentPoint];
     [self setNeedsDisplay];
+    if (self.delegate && [self.delegate respondsToSelector:@selector(drawSlider:didStartToChangeValue:)]) {
+        [self.delegate drawSlider:self didStartToChangeValue:self.value];
+    }
     return YES;
 }
 - (BOOL)continueTrackingWithTouch:(UITouch *)touch withEvent:(UIEvent *)event
@@ -118,6 +188,7 @@
     currentPoint = [touch locationInView:self];
     [self updateValueWithCurrentPoint];
     [self setNeedsDisplay];
+    [self sendActionsForControlEvents:UIControlEventValueChanged];
     return YES;
 }
 - (void)endTrackingWithTouch:(UITouch *)touch withEvent:(UIEvent *)event
@@ -125,6 +196,10 @@
     currentPoint = [touch locationInView:self];
     [self updateValueWithCurrentPoint];
     [self setNeedsDisplay];
+    if (self.delegate && [self.delegate respondsToSelector:@selector(drawSlider:didFinishChangeValue:)]) {
+        [self.delegate drawSlider:self didFinishChangeValue:self.value];
+    }
+
 }
 
 @end

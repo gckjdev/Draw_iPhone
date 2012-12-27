@@ -7,9 +7,18 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ColorPoint.h"
 
-@interface DrawToolPanel : UIView
+@protocol DrawToolPanelDelegate <NSObject>
 
+@optional
 
+@end
 
+@interface DrawToolPanel : UIView<ColorPointDelegate>
+{
+    
+}
+@property(nonatomic, assign)id<DrawToolPanelDelegate>delegate;
++ (id)createViewWithdelegate:(id)delegate;
 @end

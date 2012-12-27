@@ -554,76 +554,7 @@
 			<nil key="sourceID"/>
 			<int key="maxID">36</int>
 		</object>
-		<object class="IBClassDescriber" key="IBDocument.Classes">
-			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
-				<object class="IBPartialClassDescription">
-					<string key="className">DrawToolPanel</string>
-					<string key="superclassName">UIView</string>
-					<dictionary class="NSMutableDictionary" key="actions">
-						<string key="clickAddColor:">id</string>
-						<string key="clickColorPicker:">id</string>
-						<string key="clickEraser:">id</string>
-						<string key="clickPen:">id</string>
-						<string key="clickRedo:">id</string>
-						<string key="clickUndo:">id</string>
-					</dictionary>
-					<dictionary class="NSMutableDictionary" key="actionInfosByName">
-						<object class="IBActionInfo" key="clickAddColor:">
-							<string key="name">clickAddColor:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-						<object class="IBActionInfo" key="clickColorPicker:">
-							<string key="name">clickColorPicker:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-						<object class="IBActionInfo" key="clickEraser:">
-							<string key="name">clickEraser:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-						<object class="IBActionInfo" key="clickPen:">
-							<string key="name">clickPen:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-						<object class="IBActionInfo" key="clickRedo:">
-							<string key="name">clickRedo:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-						<object class="IBActionInfo" key="clickUndo:">
-							<string key="name">clickUndo:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-					</dictionary>
-					<dictionary class="NSMutableDictionary" key="outlets">
-						<string key="alphaSlider">UIView</string>
-						<string key="colorAlpha">UILabel</string>
-						<string key="penWidth">UILabel</string>
-						<string key="widthSlider">UIView</string>
-					</dictionary>
-					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
-						<object class="IBToOneOutletInfo" key="alphaSlider">
-							<string key="name">alphaSlider</string>
-							<string key="candidateClassName">UIView</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="colorAlpha">
-							<string key="name">colorAlpha</string>
-							<string key="candidateClassName">UILabel</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="penWidth">
-							<string key="name">penWidth</string>
-							<string key="candidateClassName">UILabel</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="widthSlider">
-							<string key="name">widthSlider</string>
-							<string key="candidateClassName">UIView</string>
-						</object>
-					</dictionary>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">./Classes/DrawToolPanel.h</string>
-					</object>
-				</object>
-			</array>
-		</object>
+		<object class="IBClassDescriber" key="IBDocument.Classes"/>
 		<int key="IBDocument.localizationMode">0</int>
 		<string key="IBDocument.TargetRuntimeIdentifier">IBCocoaTouchFramework</string>
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
@@ -636,8 +567,8 @@
 			<string key="draw_oil@2x.png">{71, 92}</string>
 			<string key="draw_pen5@2x.png">{47, 95}</string>
 			<string key="draw_redo@2x.png">{63, 65}</string>
-			<string key="draw_slider1_bg@2x.png">{191, 24}</string>
-			<string key="draw_slider2_bg@2x.png">{191, 24}</string>
+			<string key="draw_slider1_bg@2x.png">{185, 24}</string>
+			<string key="draw_slider2_bg@2x.png">{185, 24}</string>
 			<string key="draw_undo@2x.png">{63, 65}</string>
 		</dictionary>
 		<string key="IBCocoaTouchPluginVersion">1926</string>

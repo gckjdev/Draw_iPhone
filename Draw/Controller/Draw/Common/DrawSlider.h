@@ -15,6 +15,21 @@ typedef enum{
     
 }DrawSliderStyle;
 
+@class DrawSlider;
+
+@protocol DrawSliderDelegate <NSObject>
+
+@optional
+- (void)drawSlider:(DrawSlider *)drawSlider
+    didValueChange:(CGFloat)value
+       pointCenter:(CGPoint)center;
+
+- (void)drawSlider:(DrawSlider *)drawSlider didStartToChangeValue:(CGFloat)value;
+- (void)drawSlider:(DrawSlider *)drawSlider didFinishChangeValue:(CGFloat)value;
+
+
+@end
+
 @interface DrawSlider : UIControl
 {
     
@@ -24,6 +39,6 @@ typedef enum{
 
 @property(nonatomic, assign)CGFloat value;
 @property(nonatomic, assign)DrawSliderStyle style;
-
+@property(nonatomic, assign)id<DrawSliderDelegate> delegate;
 
 @end
