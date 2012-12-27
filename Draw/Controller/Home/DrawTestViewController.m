@@ -10,7 +10,7 @@
 #import "ColorPoint.h"
 #import "DrawSlider.h"
 #import "DrawToolPanel.h"
-
+#import "ColorPickingBox.h"
 
 @interface DrawTestViewController ()
 
@@ -88,6 +88,10 @@
     panel.center = CGPointMake(160, 407.5);
     [self.view addSubview:panel];
     
+    
+    ColorPickingBox *pickBox = [ColorPickingBox createViewWithdelegate:nil];
+    
+    [self.view addSubview:pickBox];
 //    UIImage *bg = [UIImage imageNamed:@"draw_slider2_bg"];
 //    UIImage *load = [UIImage imageNamed:@"draw_slider2_load"];
 //    UIImage *p = [UIImage imageNamed:@"draw_slider2_point@2x.png"];

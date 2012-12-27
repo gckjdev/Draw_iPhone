@@ -4058,6 +4058,21 @@
 		CAC448F9168C4686004441EB /* ColorPickingBox.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAC448F6168C4685004441EB /* ColorPickingBox.xib */; };
 		CAC448FA168C469B004441EB /* ColorPickingBox.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC448F4168C4666004441EB /* ColorPickingBox.m */; };
 		CAC448FB168C469C004441EB /* ColorPickingBox.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC448F4168C4666004441EB /* ColorPickingBox.m */; };
+		CAC44909168C4DCC004441EB /* UIColor+GetHSB.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC448FF168C4DCC004441EB /* UIColor+GetHSB.m */; };
+		CAC4490A168C4DCC004441EB /* UIColor+GetHSB.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC448FF168C4DCC004441EB /* UIColor+GetHSB.m */; };
+		CAC4490B168C4DCC004441EB /* UIColor+GetHSB.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC448FF168C4DCC004441EB /* UIColor+GetHSB.m */; };
+		CAC4490C168C4DCC004441EB /* ILColorPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC44902168C4DCC004441EB /* ILColorPickerView.m */; };
+		CAC4490D168C4DCC004441EB /* ILColorPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC44902168C4DCC004441EB /* ILColorPickerView.m */; };
+		CAC4490E168C4DCC004441EB /* ILColorPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC44902168C4DCC004441EB /* ILColorPickerView.m */; };
+		CAC4490F168C4DCC004441EB /* ILHuePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC44904168C4DCC004441EB /* ILHuePickerView.m */; };
+		CAC44910168C4DCC004441EB /* ILHuePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC44904168C4DCC004441EB /* ILHuePickerView.m */; };
+		CAC44911168C4DCC004441EB /* ILHuePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC44904168C4DCC004441EB /* ILHuePickerView.m */; };
+		CAC44912168C4DCC004441EB /* ILSaturationBrightnessPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC44906168C4DCC004441EB /* ILSaturationBrightnessPickerView.m */; };
+		CAC44913168C4DCC004441EB /* ILSaturationBrightnessPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC44906168C4DCC004441EB /* ILSaturationBrightnessPickerView.m */; };
+		CAC44914168C4DCC004441EB /* ILSaturationBrightnessPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC44906168C4DCC004441EB /* ILSaturationBrightnessPickerView.m */; };
+		CAC44915168C4DCC004441EB /* ILView.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC44908168C4DCC004441EB /* ILView.m */; };
+		CAC44916168C4DCC004441EB /* ILView.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC44908168C4DCC004441EB /* ILView.m */; };
+		CAC44917168C4DCC004441EB /* ILView.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC44908168C4DCC004441EB /* ILView.m */; };
 		CAC4DCE215450E8F00A42CF2 /* StoreKitUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC4DCE115450E8F00A42CF2 /* StoreKitUtils.m */; };
 		CAC4DCE81545286C00A42CF2 /* TransactionReceiptManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC4DCE71545286B00A42CF2 /* TransactionReceiptManager.m */; };
 		CAC4DCEB154542A200A42CF2 /* TransactionReceipt.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC4DCEA154542A200A42CF2 /* TransactionReceipt.m */; };
@@ -6145,6 +6160,16 @@
 		CAC448F3168C4665004441EB /* ColorPickingBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorPickingBox.h; sourceTree = "<group>"; };
 		CAC448F4168C4666004441EB /* ColorPickingBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorPickingBox.m; sourceTree = "<group>"; };
 		CAC448F6168C4685004441EB /* ColorPickingBox.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ColorPickingBox.xib; sourceTree = "<group>"; };
+		CAC448FE168C4DCC004441EB /* UIColor+GetHSB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+GetHSB.h"; sourceTree = "<group>"; };
+		CAC448FF168C4DCC004441EB /* UIColor+GetHSB.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+GetHSB.m"; sourceTree = "<group>"; };
+		CAC44901168C4DCC004441EB /* ILColorPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ILColorPickerView.h; sourceTree = "<group>"; };
+		CAC44902168C4DCC004441EB /* ILColorPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ILColorPickerView.m; sourceTree = "<group>"; };
+		CAC44903168C4DCC004441EB /* ILHuePickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ILHuePickerView.h; sourceTree = "<group>"; };
+		CAC44904168C4DCC004441EB /* ILHuePickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ILHuePickerView.m; sourceTree = "<group>"; };
+		CAC44905168C4DCC004441EB /* ILSaturationBrightnessPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ILSaturationBrightnessPickerView.h; sourceTree = "<group>"; };
+		CAC44906168C4DCC004441EB /* ILSaturationBrightnessPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ILSaturationBrightnessPickerView.m; sourceTree = "<group>"; };
+		CAC44907168C4DCC004441EB /* ILView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ILView.h; sourceTree = "<group>"; };
+		CAC44908168C4DCC004441EB /* ILView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ILView.m; sourceTree = "<group>"; };
 		CAC4DCE015450E8F00A42CF2 /* StoreKitUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoreKitUtils.h; sourceTree = "<group>"; };
 		CAC4DCE115450E8F00A42CF2 /* StoreKitUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoreKitUtils.m; sourceTree = "<group>"; };
 		CAC4DCE61545286B00A42CF2 /* TransactionReceiptManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransactionReceiptManager.h; sourceTree = "<group>"; };
@@ -10769,6 +10794,39 @@
 			path = Home;
 			sourceTree = "<group>";
 		};
+		CAC448FC168C4DCC004441EB /* ILColorPicker */ = {
+			isa = PBXGroup;
+			children = (
+				CAC448FD168C4DCC004441EB /* Categories */,
+				CAC44900168C4DCC004441EB /* Views */,
+			);
+			path = ILColorPicker;
+			sourceTree = "<group>";
+		};
+		CAC448FD168C4DCC004441EB /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				CAC448FE168C4DCC004441EB /* UIColor+GetHSB.h */,
+				CAC448FF168C4DCC004441EB /* UIColor+GetHSB.m */,
+			);
+			path = Categories;
+			sourceTree = "<group>";
+		};
+		CAC44900168C4DCC004441EB /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				CAC44901168C4DCC004441EB /* ILColorPickerView.h */,
+				CAC44902168C4DCC004441EB /* ILColorPickerView.m */,
+				CAC44903168C4DCC004441EB /* ILHuePickerView.h */,
+				CAC44904168C4DCC004441EB /* ILHuePickerView.m */,
+				CAC44905168C4DCC004441EB /* ILSaturationBrightnessPickerView.h */,
+				CAC44906168C4DCC004441EB /* ILSaturationBrightnessPickerView.m */,
+				CAC44907168C4DCC004441EB /* ILView.h */,
+				CAC44908168C4DCC004441EB /* ILView.m */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		CAC7912416635F91009B4053 /* Common */ = {
 			isa = PBXGroup;
 			children = (
@@ -11823,6 +11881,7 @@
 		CAFEFDB316606FC100441D77 /* Component-View */ = {
 			isa = PBXGroup;
 			children = (
+				CAC448FC168C4DCC004441EB /* ILColorPicker */,
 				CAFEFDB416606FC100441D77 /* DACircularProgress */,
 				CAFEFDB716606FC100441D77 /* FontLabel */,
 				CAFEFDDA16606FC100441D77 /* UIGlossyButton */,
@@ -15120,6 +15179,11 @@
 				CA25C417168995820064C05D /* ColorPoint.m in Sources */,
 				CA25C42716899E080064C05D /* DrawTestViewController.m in Sources */,
 				CAC448FA168C469B004441EB /* ColorPickingBox.m in Sources */,
+				CAC4490A168C4DCC004441EB /* UIColor+GetHSB.m in Sources */,
+				CAC4490D168C4DCC004441EB /* ILColorPickerView.m in Sources */,
+				CAC44910168C4DCC004441EB /* ILHuePickerView.m in Sources */,
+				CAC44913168C4DCC004441EB /* ILSaturationBrightnessPickerView.m in Sources */,
+				CAC44916168C4DCC004441EB /* ILView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -15775,6 +15839,11 @@
 				CA25C418168995820064C05D /* ColorPoint.m in Sources */,
 				CA25C42816899E080064C05D /* DrawTestViewController.m in Sources */,
 				CAC448FB168C469C004441EB /* ColorPickingBox.m in Sources */,
+				CAC4490B168C4DCC004441EB /* UIColor+GetHSB.m in Sources */,
+				CAC4490E168C4DCC004441EB /* ILColorPickerView.m in Sources */,
+				CAC44911168C4DCC004441EB /* ILHuePickerView.m in Sources */,
+				CAC44914168C4DCC004441EB /* ILSaturationBrightnessPickerView.m in Sources */,
+				CAC44917168C4DCC004441EB /* ILView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -16432,6 +16501,11 @@
 				CA7871881689AE6100B28A2E /* DrawSlider.m in Sources */,
 				C20E7154168AE0A400E37127 /* CustomActionSheet.m in Sources */,
 				CAC448F5168C4666004441EB /* ColorPickingBox.m in Sources */,
+				CAC44909168C4DCC004441EB /* UIColor+GetHSB.m in Sources */,
+				CAC4490C168C4DCC004441EB /* ILColorPickerView.m in Sources */,
+				CAC4490F168C4DCC004441EB /* ILHuePickerView.m in Sources */,
+				CAC44912168C4DCC004441EB /* ILSaturationBrightnessPickerView.m in Sources */,
+				CAC44915168C4DCC004441EB /* ILView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
