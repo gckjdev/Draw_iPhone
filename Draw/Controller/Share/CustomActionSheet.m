@@ -87,11 +87,10 @@
     
 }
 
-- (void)showInView:(UIView *)view onView:(UIView*)onView
+- (void)initView
 {
-    self.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.8];
+    self.backgroundColor = [UIColor clearColor];
     float actionViewWidth = WIDTH/COLUMN;
-    
     
     // init cates show
     int total = self.buttonTitles.count;
@@ -138,10 +137,15 @@
     viewFrame.size.height = ROWHEIHT * rows + 19;
     viewFrame.size.width = WIDTH;
     self.frame = viewFrame;
+}
+
+- (void)showInView:(UIView *)view onView:(UIView*)onView
+{
+    [self initView];
     
     if (_popView == nil) {
         _popView = [[CMPopTipView alloc] initWithCustomView:self needBubblePath:NO];
-        [_popView setBackgroundColor:[UIColor grayColor]];
+        [_popView setBackgroundColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:0.8]];
     }
     _popView.hidden = NO;
     [_popView presentPointingAtView:onView inView:view animated:YES];

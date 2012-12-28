@@ -11,11 +11,12 @@
 #import "PPViewController.h"
 #import "CommonDialog.h"
 #import "UserService.h"
+#import "PPSNSConstants.h"
 
 typedef enum {
-    SINA_WEIBO = 0,
-    QQ_WEIBO,
-    FACEBOOK,
+    SINA_WEIBO = TYPE_SINA,
+    QQ_WEIBO = TYPE_QQ,
+    FACEBOOK = TYPE_FACEBOOK,
 }SnsType;
 
 //@class SynthesisView;

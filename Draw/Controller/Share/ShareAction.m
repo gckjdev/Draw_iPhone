@@ -21,6 +21,9 @@
 #import "DrawDataService.h"
 #import "CustomActionSheet.h"
 #import "CommonImageManager.h"
+#import "PPSNSIntegerationService.h"
+#import "PPSNSConstants.h"
+#import "GameSNSService.h"
 
 @interface ShareAction ()
 {
@@ -286,8 +289,8 @@
 - (void)shareViaSNS:(SnsType)type
 {
     NSString* text = nil;
-    if (self.feed != nil && self.feed.hasGuessed) {
-        _drawWord = self.feed.wordText;
+    if (self.feed != nil) {
+        _drawWord = [self.feed hasGuessed]?self.feed.wordText:@"";
     }
     if (_isDrawByMe){
         if (_isGIF){
@@ -344,6 +347,79 @@
                                                  delegate:nil];
 }
 
+- (void)bindSNS:(int)snsType
+{
+    PPViewController* viewController = nil;    
+    if ([self.superViewController isKindOfClass:[PPViewController class]]){
+        viewController = (PPViewController*)self.superViewController;
+    }
+    
+    PPSNSCommonService* service = [[PPSNSIntegerationService defaultService] snsServiceByType:snsType];
+    NSString* name = [service snsName];
+    
+    [service logout];
+    
+    [service login:^(NSDictionary *userInfo) {
+        PPDebug(@"%@ Login Success", name);
+        
+        [viewController showActivityWithText:NSLS(@"Loading")];
+        
+        [service readMyUserInfo:^(NSDictionary *userInfo) {
+            [viewController hideActivity];
+            PPDebug(@"%@ readMyUserInfo Success, userInfo=%@", name, [userInfo description]);
+            UserManager* userManager = [UserManager defaultManager];
+            [[UserService defaultService] updateUserWithSNSUserInfo:[userManager userId]
+                                                           userInfo:userInfo
+                                                     viewController:nil];
+            
+            // ask follow official weibo account here
+            // [GameSNSService askFollow:snsType snsWeiboId:[service officialWeiboId]];
+
+            // share weibo here
+            [self shareViaSNS:snsType];
+            
+        } failureBlock:^(NSError *error) {
+            [viewController hideActivity];
+            PPDebug(@"%@ readMyUserInfo Failure", name);
+        }];
+        
+    } failureBlock:^(NSError *error) {
+        PPDebug(@"%@ Login Failure", name);
+        [viewController popupMessage:NSLS(@"kUserBindFail") title:nil];
+    }];
+}
+
+
+
+
+- (void)bindSinaWeibo
+{
+    //TODO:bind sina weibo here
+    [self bindSNS:TYPE_SINA];
+}
+
+- (void)bindQQWeibo
+{
+    //TODO:bind qq weibo here
+    [self bindSNS:TYPE_QQ];
+}
+
+- (void)bindFacebook
+{
+    //TODO:bind facebook here
+    [self bindSNS:TYPE_FACEBOOK];
+}
+
+- (void)actionOnShareSina
+{
+    if ([[UserManager defaultManager] hasBindSinaWeibo] == NO ||
+        [[[PPSNSIntegerationService defaultService] snsServiceByType:TYPE_SINA] isAuthorizeExpired]){
+        [self bindSinaWeibo];
+    } else {
+        [self shareViaSNS:SINA_WEIBO];
+    }
+}
+
 - (void)actionByButtonIndex:(NSInteger)buttonIndex
 {
     if (buttonIndex == buttonIndexAlbum){
@@ -360,11 +436,19 @@
     }
     else if (buttonIndex == buttonIndexSinaWeibo)
     {
-        [self shareViaSNS:SINA_WEIBO];
+        [self actionOnShareSina];        
     } else if (buttonIndex == buttonIndexQQWeibo) {
-        [self shareViaSNS:QQ_WEIBO];
+        if ([[UserManager defaultManager] hasBindQQWeibo] == NO || [[[PPSNSIntegerationService defaultService] snsServiceByType:TYPE_QQ] isAuthorizeExpired]){
+            [self bindQQWeibo];
+        } else {
+            [self shareViaSNS:TYPE_QQ];
+        }
     } else if (buttonIndex == buttonIndexFacebook) {
-        [self shareViaSNS:FACEBOOK];
+        if ([[UserManager defaultManager] hasBindFacebook] == NO || [[[PPSNSIntegerationService defaultService] snsServiceByType:TYPE_FACEBOOK] isAuthorizeExpired]){
+            [self bindFacebook];
+        } else {
+            [self shareViaSNS:TYPE_FACEBOOK];
+        }
     } else if (buttonIndex == buttonIndexFavorite) {
         [self favorite];
     }

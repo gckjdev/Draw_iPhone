@@ -20,6 +20,7 @@
 #import "MyFriend.h"
 #import "PPSNSIntegerationService.h"
 #import "PPSNSConstants.h"
+#import "PPSNSCommonService.h"
 
 #define PATTERN_TAG_OFFSET 20120403
 #define IPAD_INFUSEVIEW_FRAME CGRectMake(31*2.4,130*2.13,259*2.4,259*2.13)
@@ -169,6 +170,31 @@ enum {
 
 - (void)publishWeibo:(NSString*)text imagePath:(NSString*)imagePath
 {
+    PPSNSCommonService* snsService = [[PPSNSIntegerationService defaultService] snsServiceByType:_snsType];
+    
+    [snsService publishWeibo:text imageFilePath:imagePath successBlock:^(NSDictionary *userInfo) {
+        PPDebug(@"%@ publish weibo succ", [snsService snsName]);
+        
+        [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kPublishWeiboSucc") delayTime:1 isHappy:YES];
+        
+        int earnCoins = [[AccountService defaultService] rewardForShareWeibo];
+        if (earnCoins > 0){
+            NSString* msg = [NSString stringWithFormat:NSLS(@"kPublishWeiboSuccAndEarnCoins"), earnCoins];
+            [self popupMessage:msg title:nil];
+        }
+        else{
+            //[self popupMessage:NSLS(@"kPublishWeiboSucc") title:nil];
+            [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kPublishWeiboSucc") delayTime:1 isHappy:YES];
+        }
+        [self.navigationController popViewControllerAnimated:YES];
+
+    } failureBlock:^(NSError *error) {
+        PPDebug(@"%@ publish weibo failure", [snsService snsName]);
+        [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kPublishWeiboFail") delayTime:1 isHappy:NO];
+    }];
+    
+    return;
+    
     [[PPSNSIntegerationService defaultService] publishWeiboToAll:text
                                                    imageFilePath:imagePath
                                                     successBlock:^(int snsType, PPSNSCommonService *snsService, NSDictionary *userInfo) {

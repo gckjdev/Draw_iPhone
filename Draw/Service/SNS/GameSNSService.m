@@ -12,6 +12,9 @@
 #import "AccountService.h"
 #import "Account.h"
 #import "ConfigManager.h"
+#import "PPViewController.h"
+#import "UserService.h"
+#import "UserManager.h"
 
 @implementation GameSNSService
 
@@ -77,5 +80,38 @@
     }];
     
 }
+
+//+ (void)bindSNS:(int)snsType viewController:(PPViewController<UserServiceDelegate>*)viewController
+//{
+//    PPSNSCommonService* service = [[PPSNSIntegerationService defaultService] snsServiceByType:snsType];
+//    NSString* name = [service snsName];
+//    
+//    [service logout];
+//    
+//    [service login:^(NSDictionary *userInfo) {
+//        PPDebug(@"%@ Login Success", name);
+//        
+//        [viewController showActivityWithText:NSLS(@"Loading")];
+//        
+//        [service readMyUserInfo:^(NSDictionary *userInfo) {
+//            [viewController hideActivity];
+//            PPDebug(@"%@ readMyUserInfo Success, userInfo=%@", name, [userInfo description]);
+//            UserManager* userManager = [UserManager defaultManager];
+//            [[UserService defaultService] updateUserWithSNSUserInfo:[userManager userId]
+//                                                           userInfo:userInfo
+//                                                     viewController:viewController];
+//            
+//            // ask follow official weibo account here
+//            [GameSNSService askFollow:snsType snsWeiboId:[service officialWeiboId]];
+//            
+//        } failureBlock:^(NSError *error) {
+//            [viewController hideActivity];
+//            PPDebug(@"%@ readMyUserInfo Failure", name);
+//        }];
+//        
+//    } failureBlock:^(NSError *error) {
+//        PPDebug(@"%@ Login Failure", name);
+//    }];
+//}
 
 @end
