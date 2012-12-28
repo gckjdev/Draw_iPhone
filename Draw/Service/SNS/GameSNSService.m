@@ -52,6 +52,8 @@
 + (void)askFollow:(PPSNSType)snsType snsWeiboId:(NSString*)weiboId
 {
     PPSNSCommonService* snsService = [[PPSNSIntegerationService defaultService] snsServiceByType:snsType];
+    if ([snsService supportFollow] == NO)
+        return;
     
     [snsService askFollowWithTitle:[GameApp askFollowTitle]
                     displayMessage:[GameApp askFollowMessage]

@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface WidthView : UIButton
+@interface WidthView : UIControl
 {
     
 }

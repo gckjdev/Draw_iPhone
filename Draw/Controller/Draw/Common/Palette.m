@@ -6,10 +6,10 @@
 //
 //
 
-#import "ColorPickingBox.h"
+#import "Palette.h"
 #import "DrawColor.h"
 
-@interface ColorPickingBox ()
+@interface Palette ()
 {
     
 }
@@ -20,7 +20,7 @@
 
 @end
 
-@implementation ColorPickingBox
+@implementation Palette
 
 - (void)dealloc
 {
@@ -50,7 +50,7 @@
 
 + (id)createViewWithdelegate:(id)delegate
 {
-    NSString *identifier = @"ColorPickingBox";
+    NSString *identifier = @"Palette";
     NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:identifier
                                                              owner:self options:nil];
     
@@ -59,7 +59,7 @@
         return nil;
     }
     
-    ColorPickingBox  *view = (ColorPickingBox *)[topLevelObjects objectAtIndex:0];
+    Palette  *view = (Palette *)[topLevelObjects objectAtIndex:0];
     view.delegate = delegate;
     [view setCurrentColor:[DrawColor greenColor]];
     [view updateView];
@@ -87,8 +87,8 @@
     
     _colorChip.backgroundColor = newColor;
     [self updateCurrentColorWithColor:newColor];
-    if (self.delegate && [self.delegate respondsToSelector:@selector(colorPickingBox:didPickColor:)]) {
-        [self.delegate colorPickingBox:self didPickColor:self.currentColor];
+    if (self.delegate && [self.delegate respondsToSelector:@selector(palette:didPickColor:)]) {
+        [self.delegate palette:self didPickColor:self.currentColor];
     }
 }
 

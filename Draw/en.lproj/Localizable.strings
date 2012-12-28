@@ -907,7 +907,7 @@
 "kHomeMenuTypeDrawGuess" = "Guess";
 "kHomeMenuTypeDrawGame" = "Game";
 "kHomeMenuTypeDrawTimeline" = "Timeline";
-"kHomeMenuTypeDrawRank" = "Rank";
+"kHomeMenuTypeDrawRank" = "Top";
 "kHomeMenuTypeDrawContest" = "Contest";
 "kHomeMenuTypeDrawBBS" = "Forum";
 "kHomeMenuTypeDrawHome" = "Home";

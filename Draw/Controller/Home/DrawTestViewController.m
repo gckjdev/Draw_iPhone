@@ -10,7 +10,7 @@
 #import "ColorPoint.h"
 #import "DrawSlider.h"
 #import "DrawToolPanel.h"
-#import "ColorPickingBox.h"
+#import "Palette.h"
 
 @interface DrawTestViewController ()
 
@@ -89,7 +89,7 @@
     [self.view addSubview:panel];
     
     
-    ColorPickingBox *pickBox = [ColorPickingBox createViewWithdelegate:nil];
+    Palette *pickBox = [Palette createViewWithdelegate:nil];
     
     [self.view addSubview:pickBox];
 //    UIImage *bg = [UIImage imageNamed:@"draw_slider2_bg"];

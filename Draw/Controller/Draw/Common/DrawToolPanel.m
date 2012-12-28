@@ -8,7 +8,7 @@
 
 #import "DrawToolPanel.h"
 #import "DrawColor.h"
-
+#import "WidthView.h"
 
 @interface DrawToolPanel ()
 {
@@ -47,10 +47,10 @@
     self.widthSlider.center = center;
     self.widthSlider.delegate = self;
     
-    [self.widthSlider setMaxValue:40];
+    [self.widthSlider setMaxValue:27];
     [self.widthSlider setMinValue:2];
-    [self.widthSlider setValue:10];
-    
+    [self.widthSlider setValue:6];
+
     [self addSubview:self.widthSlider];
     
     center = self.alphaSlider.center;
@@ -144,9 +144,14 @@
 - (void)drawSlider:(DrawSlider *)drawSlider
     didValueChange:(CGFloat)value
 {
-    NSString *v = [NSString stringWithFormat:@"%.1f",value];
-    UILabel *label = (UILabel *)drawSlider.contentView;
-    [label setText:v];
+    if (self.widthSlider == drawSlider) {
+        WidthView *widthView = (WidthView *)drawSlider.contentView;
+        [widthView setWidth:value];
+    }else if(self.alphaSlider == drawSlider){
+        NSString *v = [NSString stringWithFormat:@"%.1f",value];
+        UILabel *label = (UILabel *)drawSlider.contentView;
+        [label setText:v];
+    }
 }
 
 
@@ -157,12 +162,19 @@
 
 - (void)drawSlider:(DrawSlider *)drawSlider didStartToChangeValue:(CGFloat)value
 {
-    
-    NSString *v = [NSString stringWithFormat:@"%.1f",value];
-    UILabel *label = [[[UILabel alloc] initWithFrame:CGRectMake(0, 0, 40, 20)] autorelease];
-    [label setText:v];
-    [drawSlider popupWithContenView:label];
-    [label setBackgroundColor:[UIColor clearColor]];
+    if (drawSlider == self.alphaSlider) {
+        NSString *v = [NSString stringWithFormat:@"%.1f",value];
+        UILabel *label = [[[UILabel alloc] initWithFrame:CGRectMake(0, 0, 40, 20)] autorelease];
+        [label setTextAlignment:NSTextAlignmentCenter];
+        [label setText:v];
+        [drawSlider popupWithContenView:label];
+        [label setBackgroundColor:[UIColor clearColor]];
+    }else if(drawSlider == self.widthSlider){
+        WidthView *width = [WidthView viewWithWidth:value];
+        [drawSlider popupWithContenView:width];
+        [width setSelected:YES];
+        [width setNeedsDisplay];
+    }
 }
 
 - (void)dealloc {
