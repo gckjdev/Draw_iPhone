@@ -4578,6 +4578,8 @@
 		CAC4496B168D58F3004441EB /* ColorBox.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAC4496A168D58F2004441EB /* ColorBox.xib */; };
 		CAC4496C168D58F3004441EB /* ColorBox.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAC4496A168D58F2004441EB /* ColorBox.xib */; };
 		CAC4496D168D58F3004441EB /* ColorBox.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAC4496A168D58F2004441EB /* ColorBox.xib */; };
+		CAC44998168D9FFE004441EB /* PenBox.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC44997168D9FF3004441EB /* PenBox.m */; };
+		CAC4499A168DA01B004441EB /* PenBox.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAC44999168DA019004441EB /* PenBox.xib */; };
 		CAC4DCE215450E8F00A42CF2 /* StoreKitUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC4DCE115450E8F00A42CF2 /* StoreKitUtils.m */; };
 		CAC4DCE81545286C00A42CF2 /* TransactionReceiptManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC4DCE71545286B00A42CF2 /* TransactionReceiptManager.m */; };
 		CAC4DCEB154542A200A42CF2 /* TransactionReceipt.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC4DCEA154542A200A42CF2 /* TransactionReceipt.m */; };
@@ -7591,6 +7593,9 @@
 		CAC44965168D58C1004441EB /* ColorBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorBox.h; sourceTree = "<group>"; };
 		CAC44966168D58C2004441EB /* ColorBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorBox.m; sourceTree = "<group>"; };
 		CAC4496A168D58F2004441EB /* ColorBox.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ColorBox.xib; sourceTree = "<group>"; };
+		CAC44996168D9FED004441EB /* PenBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PenBox.h; sourceTree = "<group>"; };
+		CAC44997168D9FF3004441EB /* PenBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PenBox.m; sourceTree = "<group>"; };
+		CAC44999168DA019004441EB /* PenBox.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PenBox.xib; sourceTree = "<group>"; };
 		CAC4DCE015450E8F00A42CF2 /* StoreKitUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoreKitUtils.h; sourceTree = "<group>"; };
 		CAC4DCE115450E8F00A42CF2 /* StoreKitUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoreKitUtils.m; sourceTree = "<group>"; };
 		CAC4DCE61545286B00A42CF2 /* TransactionReceiptManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransactionReceiptManager.h; sourceTree = "<group>"; };
@@ -13713,6 +13718,9 @@
 				CA25C415168995820064C05D /* ColorPoint.m */,
 				CA7871861689AE6100B28A2E /* DrawSlider.h */,
 				CA7871871689AE6100B28A2E /* DrawSlider.m */,
+				CAC44996168D9FED004441EB /* PenBox.h */,
+				CAC44997168D9FF3004441EB /* PenBox.m */,
+				CAC44999168DA019004441EB /* PenBox.xib */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -17687,6 +17695,7 @@
 				CA7D4327168D7588009F43F7 /* pushMessage.mp3 in Resources */,
 				CA7D4328168D7588009F43F7 /* wrong.wav in Resources */,
 				C2117B93168D8FD5000F36EE /* detail_share@2x.png in Resources */,
+				CAC4499A168DA01B004441EB /* PenBox.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -19700,6 +19709,7 @@
 				CAC44915168C4DCC004441EB /* ILView.m in Sources */,
 				CAC44962168D57C8004441EB /* Palette.m in Sources */,
 				CAC44967168D58C3004441EB /* ColorBox.m in Sources */,
+				CAC44998168D9FFE004441EB /* PenBox.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
