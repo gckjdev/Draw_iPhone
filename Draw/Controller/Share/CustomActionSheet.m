@@ -167,6 +167,7 @@
           clickedButtonAtIndex:btn.tag - ACTION_BTN_TAG_OFFSET];
         
     }
+    [self hideActionSheet];
 }
 
 - (id)initWithTitle:(NSString *)title

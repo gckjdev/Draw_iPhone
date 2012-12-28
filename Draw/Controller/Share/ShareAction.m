@@ -24,6 +24,7 @@
 #import "PPSNSIntegerationService.h"
 #import "PPSNSConstants.h"
 #import "GameSNSService.h"
+#import "CommonMessageCenter.h"
 
 @interface ShareAction ()
 {
@@ -190,13 +191,13 @@
         
         _customActionSheet = [[CustomActionSheet alloc] initWithTitle:NSLS(@"kShareTo")
                                                              delegate:self
-                                                         buttonTitles:NSLS(@"kSave_to_album"), NSLS(@"kEmail"), nil];
+                                                         buttonTitles:NSLS(@"kAlbum"), NSLS(@"kEmail"), nil];
     
     
         buttonIndexAlbum = 0;
         buttonIndexEmail = 1;
         
-        [_customActionSheet setImage:imageManager.albumImage forTitle:NSLS(@"kSave_to_album")];
+        [_customActionSheet setImage:imageManager.albumImage forTitle:NSLS(@"kAlbum")];
         [_customActionSheet setImage:imageManager.emailImage forTitle:NSLS(@"kEmail")];
 
         int buttonIndex = buttonIndexEmail;
@@ -216,7 +217,7 @@
         buttonIndexSinaWeibo = buttonIndex;
     
         buttonIndex ++;
-        [_customActionSheet addButtonWithTitle:NSLS(@"kQQWeibo") image:imageManager.qqWeiboImage];
+        [_customActionSheet addButtonWithTitle:NSLS(@"kTencentWeibo") image:imageManager.qqWeiboImage];
         buttonIndexQQWeibo = buttonIndex;
     
         buttonIndex ++;
@@ -345,6 +346,7 @@
     [[DrawDataService defaultService] savePaintWithPBDraw:self.feed.pbDraw
                                                     image:self.image
                                                  delegate:nil];
+    [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kSaveToLocalSuccess") delayTime:2 isHappy:YES];
 }
 
 - (void)bindSNS:(int)snsType
@@ -424,6 +426,7 @@
 {
     if (buttonIndex == buttonIndexAlbum){
         [[MyPaintManager defaultManager] savePhoto:_imageFilePath];
+        [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kSaveToAlbumSuccess") delayTime:1.5 isHappy:YES];
     }
     else if (buttonIndex == buttonIndexEmail) {
         [self shareViaEmail];
