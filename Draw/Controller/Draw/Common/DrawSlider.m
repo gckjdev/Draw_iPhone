@@ -239,7 +239,7 @@
     if (poptipView == nil) {
         poptipView = [[[CMPopTipView alloc] initWithCustomView:contentView] autorelease];
         poptipView.tag = POPTIPVIEW_TAG;
-        [poptipView setBackgroundColor:[UIColor lightGrayColor]];
+        [poptipView setBackgroundColor:[UIColor colorWithRed:168./255. green:168./255. blue:168./255. alpha:0.4]];
     }else{
         if (poptipView.customView != contentView) {
             [poptipView.customView removeFromSuperview];
@@ -247,12 +247,12 @@
         }
     }
     [poptipView presentPointingAtView:self inView:inView animated:NO];
+    [poptipView setPointerSize:6.0];
 }
 - (void)dismissPopupView
 {
     UIView *inView = [self superview];
     CMPopTipView *poptipView = (CMPopTipView *)[inView viewWithTag:POPTIPVIEW_TAG];
-    PPDebug(@"3。 poptipView retain count = %d",[poptipView retainCount]);
     [poptipView dismissAnimated:NO];
 }
 

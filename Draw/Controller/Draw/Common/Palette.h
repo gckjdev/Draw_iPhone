@@ -12,18 +12,18 @@
 #import "ILSaturationBrightnessPickerView.h"
 #import "ILHuePickerView.h"
 
-@class ColorPickingBox;
+@class Palette;
 @class DrawColor;
 
 @protocol ColorPickingBoxDelegate <NSObject>
 
 @optional
-- (void)colorPickingBox:(ColorPickingBox *)pickingBox didPickColor:(DrawColor *)color;
+- (void)palette:(Palette *)palette didPickColor:(DrawColor *)color;
 
 @end
 
 
-@interface ColorPickingBox : UIView<ILSaturationBrightnessPickerViewDelegate>
+@interface Palette : UIView<ILSaturationBrightnessPickerViewDelegate>
 {
     
 }

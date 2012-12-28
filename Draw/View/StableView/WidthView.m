@@ -94,6 +94,12 @@
     return self;
 }
 
+- (void)setWidth:(CGFloat)width
+{
+    _width = width;
+    [self setNeedsDisplay];
+}
+
 - (void)setSelected:(BOOL)selected
 {
     [super setSelected:selected];
@@ -110,7 +116,7 @@
     }
 
     CGFloat showWidth = self.width;
-    showWidth = [WidthView showWidthForValue:showWidth];
+//    showWidth = [WidthView showWidthForValue:showWidth];
     CGFloat x = (SIZE - showWidth) / 2;
     CGRect r = CGRectMake(x, x, showWidth, showWidth);
     CGContextFillEllipseInRect(context, r);
