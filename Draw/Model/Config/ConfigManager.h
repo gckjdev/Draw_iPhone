@@ -82,6 +82,8 @@ typedef enum{
 + (int)flowerAwardFordLevelUp;
 + (int)diceCutAwardForLevelUp;
 
++ (NSString*)getSystemUserId;
+
 /*
 + (NSString*)getRecommendAppLinkZh;
 + (NSString*)getRecommendAppLinkZht;

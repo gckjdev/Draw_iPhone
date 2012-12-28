@@ -103,10 +103,13 @@
         self.isDrawByMe = ([[UserManager defaultManager] isMe:feed.author.userId]);
         self.isGIF = NO;
         self.drawUserId = feed.author.userId;
-        NSString* path = [NSString stringWithFormat:@"%@/%@.png", NSTemporaryDirectory(), [NSString GetUUID]];
+        NSString* path = [NSString stringWithFormat:@"%@/%@.jpg", NSTemporaryDirectory(), [NSString GetUUID]];
         BOOL result=[[image data] writeToFile:path atomically:YES];
         if (result) {
             self.imageFilePath = path;
+        }
+        else{
+            PPDebug(@"<initWithFeed> fail to create image file at %@", path);
         }
         self.feed = feed;
         self.image = image;
@@ -180,13 +183,13 @@
     
     if (_customActionSheet == nil) {
         
-        buttonIndexAlbum = 6;
-        buttonIndexEmail = 5;
-        buttonIndexWeixinTimeline = 3;
-        buttonIndexWeixinFriend = 4;
         buttonIndexSinaWeibo = 0;
         buttonIndexQQWeibo = 1;
         buttonIndexFacebook = 2;
+        buttonIndexWeixinFriend = 3;
+        buttonIndexWeixinTimeline = 4;
+        buttonIndexEmail = 5;
+        buttonIndexAlbum = 6;
         buttonIndexFavorite = 7;
         
         _customActionSheet = [[CustomActionSheet alloc] initWithTitle:NSLS(@"kShareTo")
@@ -310,7 +313,7 @@
         UIImage *thumbImage = [image imageByScalingAndCroppingForSize:CGSizeMake(250, 250)];
         [message setThumbImage:thumbImage];
         WXImageObject *ext = [WXImageObject object];
-        ext.imageData = [NSData dataWithContentsOfFile:_imageFilePath] ;
+        ext.imageData = [NSData dataWithContentsOfFile:_imageFilePath];
         
         message.mediaObject = ext;
         
