@@ -174,7 +174,30 @@
     }
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    [_replayView resume];
+    [super viewDidAppear:animated];
+}
 
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [_replayView stop];
+    [super viewDidDisappear:animated];
+}
+
+
+//- (void)viewWillDisappear:(BOOL)animated
+//{
+//    [super viewWillDisappear:animated];
+//    [_replayView pause];
+//}
+//
+//- (void)viewDidAppear:(BOOL)animated
+//{
+//    [super viewDidAppear:animated];
+//    [_replayView resume];
+//}
 
 - (void)viewDidUnload
 {   

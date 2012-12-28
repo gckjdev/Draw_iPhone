@@ -288,15 +288,17 @@
 
 "kCreating_gif" = "Creating GIF Files...";
 
-"kShareOtherTextAuto" = "%@ What An Awesome Drawing - %@ %@ ";
+"kShareOtherTextAuto" = "What An Awesome Drawing - %@ %@ ";
 "kShareMeTextAuto" = "%@ My Awesome Drawing for %@";
 
 "kShareOtherText" = "What An Awesome Drawing - %@ ";
-"kShareMeText" = "My Awesome Drawing for %@ ";
+"kShareMeText" = "My Awesome Drawing for %@ %@";
+
 "kShareGIFOtherText" = "What An Awesome Drawing - %@ ";
 "kShareGIFMeText" = "My Awesome Drawing for %@ ";
 "kShareSend" = "Send";
 
+"kPublishingWeibo" = "Sending Message...";
 "kPublishWeiboSucc" = "Message Sent";
 "kPublishWeiboFail" = "Fail to send message, please try again later.";
 

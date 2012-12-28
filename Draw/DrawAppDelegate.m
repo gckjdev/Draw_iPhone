@@ -190,7 +190,7 @@ NSString* GlobalGetBoardServerURL()
     PPFacebookService* facebookService = [[[PPFacebookService alloc] initWithAppKey:[GameApp facebookAppKey]
                                                                          appSecret:[GameApp facebookAppSecret]
                                                                     appRedirectURI:nil
-                                                                   officialWeiboId:nil] autorelease];
+                                                                   officialWeiboId:[UIUtils getAppName]] autorelease];
     
     
     [[PPSNSIntegerationService defaultService] addSNS:sinaWeiboService];
