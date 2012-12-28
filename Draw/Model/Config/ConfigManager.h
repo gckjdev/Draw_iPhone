@@ -35,7 +35,7 @@ typedef enum{
 + (int)getGuessRewardNormal;
 
 + (NSInteger)historyRankNumber;
-
++ (NSInteger)drawAutoSavePaintInterval;//DRAFT_PAINT_COUNT
 + (NSString*)getChannelId;
 
 + (NSString*)defaultEnglishServer;
