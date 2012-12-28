@@ -87,6 +87,7 @@
     
     _colorChip.backgroundColor = newColor;
     [self updateCurrentColorWithColor:newColor];
+//    PPDebug(@"<colorPicked> picker = %@",picker);
     if (self.delegate && [self.delegate respondsToSelector:@selector(palette:didPickColor:)]) {
         [self.delegate palette:self didPickColor:self.currentColor];
     }
