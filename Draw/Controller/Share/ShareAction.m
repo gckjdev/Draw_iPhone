@@ -180,54 +180,31 @@
     
     if (_customActionSheet == nil) {
         
-        buttonIndexAlbum = -1;
-        buttonIndexEmail = -1;
-        buttonIndexWeixinTimeline = -1;
-        buttonIndexWeixinFriend = -1;
-        buttonIndexSinaWeibo = -1;
-        buttonIndexQQWeibo = -1;
-        buttonIndexFacebook = -1;
-        buttonIndexFavorite = -1;
+        buttonIndexAlbum = 6;
+        buttonIndexEmail = 5;
+        buttonIndexWeixinTimeline = 3;
+        buttonIndexWeixinFriend = 4;
+        buttonIndexSinaWeibo = 0;
+        buttonIndexQQWeibo = 1;
+        buttonIndexFacebook = 2;
+        buttonIndexFavorite = 7;
         
         _customActionSheet = [[CustomActionSheet alloc] initWithTitle:NSLS(@"kShareTo")
                                                              delegate:self
-                                                         buttonTitles:NSLS(@"kAlbum"), NSLS(@"kEmail"), nil];
-    
-    
-        buttonIndexAlbum = 0;
-        buttonIndexEmail = 1;
+                                                         buttonTitles:nil];
         
-        [_customActionSheet setImage:imageManager.albumImage forTitle:NSLS(@"kAlbum")];
-        [_customActionSheet setImage:imageManager.emailImage forTitle:NSLS(@"kEmail")];
-
-        int buttonIndex = buttonIndexEmail;
-        if (self.isGIF == NO) {
-            buttonIndex ++;
-            [_customActionSheet addButtonWithTitle:NSLS(@"kWeChatTimeline") image:imageManager.wechatImage];
-            buttonIndexWeixinTimeline = buttonIndex;
-
-            buttonIndex ++;
-            [_customActionSheet addButtonWithTitle:NSLS(@"kWeChatFriends") image:imageManager.wechatFriendsImage];
-            buttonIndexWeixinFriend = buttonIndex;
-    
-        }
-    
-        buttonIndex ++;
         [_customActionSheet addButtonWithTitle:NSLS(@"kSinaWeibo") image:imageManager.sinaImage];
-        buttonIndexSinaWeibo = buttonIndex;
-    
-        buttonIndex ++;
         [_customActionSheet addButtonWithTitle:NSLS(@"kTencentWeibo") image:imageManager.qqWeiboImage];
-        buttonIndexQQWeibo = buttonIndex;
-    
-        buttonIndex ++;
         [_customActionSheet addButtonWithTitle:NSLS(@"kFacebook") image:imageManager.facebookImage];
-        buttonIndexFacebook = buttonIndex;
-    
-        buttonIndex ++;
+        [_customActionSheet addButtonWithTitle:NSLS(@"kWeChatTimeline") image:imageManager.wechatImage];
+        [_customActionSheet addButtonWithTitle:NSLS(@"kWeChatFriends") image:imageManager.wechatFriendsImage];
+        [_customActionSheet addButtonWithTitle:NSLS(@"kEmail") image:imageManager.emailImage];
+//        
+//        [_customActionSheet setImage:imageManager.albumImage forTitle:NSLS(@"kAlbum")];
+//        [_customActionSheet setImage:imageManager.emailImage forTitle:NSLS(@"kEmail")];
+        [_customActionSheet addButtonWithTitle:NSLS(@"kAlbum") image:imageManager.albumImage];
         [_customActionSheet addButtonWithTitle:NSLS(@"kFavorite") image:imageManager.favoriteImage];
-        buttonIndexFavorite = buttonIndex;
-    
+
     }
     
     self.superViewController = superViewController;
