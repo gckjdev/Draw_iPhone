@@ -172,11 +172,11 @@ enum {
 {
     PPSNSCommonService* snsService = [[PPSNSIntegerationService defaultService] snsServiceByType:_snsType];
     
+    [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kPublishingWeibo") delayTime:3 isHappy:YES];
     [snsService publishWeibo:text imageFilePath:imagePath successBlock:^(NSDictionary *userInfo) {
+        
+        
         PPDebug(@"%@ publish weibo succ", [snsService snsName]);
-        
-        [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kPublishWeiboSucc") delayTime:1 isHappy:YES];
-        
         int earnCoins = [[AccountService defaultService] rewardForShareWeibo];
         if (earnCoins > 0){
             NSString* msg = [NSString stringWithFormat:NSLS(@"kPublishWeiboSuccAndEarnCoins"), earnCoins];
@@ -189,6 +189,7 @@ enum {
         [self.navigationController popViewControllerAnimated:YES];
 
     } failureBlock:^(NSError *error) {
+        [self hideActivity];
         PPDebug(@"%@ publish weibo failure", [snsService snsName]);
         [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kPublishWeiboFail") delayTime:1 isHappy:NO];
     }];
@@ -300,6 +301,10 @@ enum {
         }
         
     } else {
+        
+        path = self.imageFilePath;
+        
+        /* rem by Benson, share image directly, improve compose image later
         UIImage* background = [UIImage imageNamed:@"share_bg.png"];
         UIImage* title = [UIImage imageNamed:@"name.png"];
         UILabel* label = [[[UILabel alloc] initWithFrame:CGRectMake(48, 90, 224, 25)] autorelease];
@@ -326,6 +331,7 @@ enum {
             [self popupMessage:NSLS(@"kPublishWeiboFail") title:nil];
             return;
         }
+        */
     }
     
     [self publishWeibo:self.shareTextField.text imagePath:path];

@@ -15,6 +15,7 @@
 #import "PPNetworkRequest.h"
 #import "PPSNSConstants.h"
 #import "PPSNSIntegerationService.h"
+#import "GameSNSService.h"
 
 @implementation ShareService
 
@@ -35,20 +36,7 @@ static ShareService* _defaultService;
                isDrawByMe:(BOOL)isDrawByMe 
                  drawWord:(NSString*)drawWord
 {
-    NSString* appNick = @"";
-    switch (snsType) {
-        case TYPE_SINA:
-            appNick = @"@猜猜画画手机版";
-            break;
-            
-        case TYPE_QQ:
-            appNick = @"@drawlively";
-            break;
-            
-        default:
-            break;
-    }       
-    
+    NSString* appNick = [GameSNSService snsOfficialNick:snsType];    
     if (appNick == nil)
         appNick = @"";
     
@@ -70,7 +58,7 @@ static ShareService* _defaultService;
         else{
             nick = @"";
         }
-        text = [NSString stringWithFormat:NSLS(@"kShareOtherTextAuto"), appNick, drawWord, nick];                
+        text = [NSString stringWithFormat:NSLS(@"kShareOtherTextAuto"), appNick, nick];
     }                
     
     PPDebug(@"Share Weibo Text=%@", text); 

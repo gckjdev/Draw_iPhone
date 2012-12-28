@@ -288,16 +288,22 @@
 
 - (void)shareViaSNS:(SnsType)type
 {
+    NSString* snsOfficialNick = [GameSNSService snsOfficialNick:type];
     NSString* text = nil;
     if (self.feed != nil) {
-        _drawWord = [self.feed hasGuessed]?self.feed.wordText:@"";
+        if (_isDrawByMe){
+            _drawWord = self.feed.wordText;            
+        }
+        else{
+            _drawWord = [self.feed hasGuessed]?self.feed.wordText:@"";
+        }        
     }
     if (_isDrawByMe){
         if (_isGIF){
             text = [NSString stringWithFormat:NSLS(@"kShareGIFMeText"), _drawWord];
         }
         else{
-            text = [NSString stringWithFormat:NSLS(@"kShareMeText"), _drawWord];            
+            text = [NSString stringWithFormat:NSLS(@"kShareMeText"), snsOfficialNick, _drawWord];
         }
     }
     else{
@@ -305,7 +311,7 @@
             text = [NSString stringWithFormat:NSLS(@"kShareGIFOtherText"), _drawWord];            
         }
         else{
-            text = [NSString stringWithFormat:NSLS(@"kShareOtherText"), _drawWord];
+            text = [NSString stringWithFormat:NSLS(@"kShareOtherText"), snsOfficialNick];
         }
     }
     ShareEditController* controller = [[ShareEditController alloc] initWithImageFile:_imageFilePath

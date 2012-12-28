@@ -13,5 +13,6 @@
 
 + (void)askFollow:(PPSNSType)snsType snsWeiboId:(NSString*)weiboId;
 + (void)askFollowOfficialWeibo:(PPSNSType)snsType;
++ (NSString*)snsOfficialNick:(int)type;
 
 @end
