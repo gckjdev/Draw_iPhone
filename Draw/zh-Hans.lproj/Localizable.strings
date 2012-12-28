@@ -179,9 +179,9 @@
 
 "kPassword" = "密码";
 "kNickname" = "昵称";
-"kSinaWeibo" = "绑定新浪微博";  
-"kQQWeibo" = "绑定腾讯微博";           
-"kFacebook" = "绑定Facebook";
+"kBindSinaWeibo" = "绑定新浪微博";  
+"kBindQQWeibo" = "绑定腾讯微博";
+"kBindFacebook" = "绑定Facebook";
 "kBind" = "已绑定";
 "kUnBind" = "未绑定";
 "kFailToConnectIAPServer" = "连接苹果购买服务器失败，请稍候再试。";
@@ -281,27 +281,26 @@
 "kSay something..." = "";
 "kShare_via_SMS" = "短信分享给朋友";
 
-"kShare_message_body" = "推荐一款好玩的iPhone/iPad画画娱乐应用［%@］ %@";
+"kShare_message_body" = "推荐一款好玩的iPhone/iPad画画娱乐应用［%@］，AppStore下载链接是 %@";
 
-"kEmail_subject" = "分享［猜猜画画］移动版游戏";
+"kEmail_subject" = "分享［猜猜画画］iPhone/iPad版";
 
 "kCreating_gif" = "正在生成GIF动画文件中... 文件可能比较大，请耐心等待";
 
-"kShareOtherTextAuto" = "我在玩%@，TA画的是［%@］，没想到吧~！我也木有想到！果断围观啊！%@ #猜猜画画美图分享# http://itunes.apple.com/cn/app/cai-cai-hua-hua/id513819630?mt=8";
+"kShareOtherTextAuto" = "我在玩%@，猜猜TA画的是什么？快来围观! %@ #猜猜画画美图分享# http://itunes.apple.com/cn/app/cai-cai-hua-hua/id513819630?mt=8";
 
-"kShareMeTextAuto" = "我在玩%@，快来围观我画了什么吧！画的词是［%@］，看来我画工还不错！#猜猜画画美图分享#  http://itunes.apple.com/cn/app/cai-cai-hua-hua/id513819630?mt=8";
+"kShareMeTextAuto" = "我在玩%@，快来围观我画的［%@］ #猜猜画画美图分享# http://itunes.apple.com/cn/app/cai-cai-hua-hua/id513819630?mt=8";
 
-"kShareOtherText" = "我在玩@猜猜画画手机版，TA画的是［%@］，没想到吧~！我也木有想到！果断围观啊! #猜猜画画美图分享# http://itunes.apple.com/cn/app/cai-cai-hua-hua/id513819630?mt=8";
+"kShareOtherText" = "我在玩%@，猜猜TA画的是什么？快来围观! #猜猜画画美图分享# http://itunes.apple.com/cn/app/cai-cai-hua-hua/id513819630?mt=8";
 
-"kShareMeText" = "我在玩@猜猜画画手机版，快来围观我画了什么吧！画的词是［%@］，看来我画工还不错！#猜猜画画美图分享#  http://itunes.apple.com/cn/app/cai-cai-hua-hua/id513819630?mt=8";
-
-//"kShareMeText" = "我在玩@猜猜画画手机版，快来围观我画了什么吧！画的词是［%@］，看来我画工还不错！#猜猜画画美图分享#  http://itunes.apple.com/cn/app/cai-cai-hua-hua/id513819630?mt=8";
+"kShareMeText" = "我在玩%@，快来围观我画的［%@］ #猜猜画画美图分享# http://itunes.apple.com/cn/app/cai-cai-hua-hua/id513819630?mt=8";
 
 "kShareGIFOtherText" = "我在玩@猜猜画画手机版，TA画的是［%@］，没想到吧~！我也木有想到！果断围观啊！#猜猜画画动画炫图分享# http://itunes.apple.com/cn/app/cai-cai-hua-hua/id513819630?mt=8";
 "kShareGIFMeText" = "我在玩@猜猜画画手机版，快来围观我的动画炫图！画的词是［%@］，看来我画工还不错！#猜猜画画动画炫图分享#  http://itunes.apple.com/cn/app/cai-cai-hua-hua/id513819630?mt=8";
 
 "kShareSend" = "发送微博";
 
+"kPublishingWeibo" = "发送微博中...";
 "kPublishWeiboSucc" = "微博已成功发送";
 "kPublishWeiboFail" = "微博发送失败，请稍候再试。";
 
@@ -955,9 +954,15 @@
 "kShareTo" = "分享到...";
 "kEmail" = "邮件";
 "kWeChatTimeline" = "微信";
-"kWeChatFriends" = "微信";
-"kFavorite" = "收藏";
+"kWeChatFriends" = "微信朋友圈";
+"kFavorite" = "保存";
+"kAlbum" = "相册";
+"kSinaWeibo" = "新浪微博";
+"kTencentWeibo" = "腾讯微博";
+"kFacebook" = "Facebook";
 
+"kSaveToAlbumSuccess" = "成功保存到相册!";
+"kSaveToLocalSuccess" = "成功保存到本地，您可以在作品页面查看该作品。";
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 

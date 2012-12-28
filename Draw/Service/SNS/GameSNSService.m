@@ -83,6 +83,15 @@
     
 }
 
++ (NSString*)snsOfficialNick:(int)type
+{
+    PPSNSCommonService* snsService = [[PPSNSIntegerationService defaultService] snsServiceByType:type];
+    if (snsService == nil)
+        return @"";
+    
+    return [NSString stringWithFormat:@"@%@", [snsService officialWeiboId]];
+}
+
 //+ (void)bindSNS:(int)snsType viewController:(PPViewController<UserServiceDelegate>*)viewController
 //{
 //    PPSNSCommonService* service = [[PPSNSIntegerationService defaultService] snsServiceByType:snsType];
