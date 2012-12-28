@@ -605,10 +605,21 @@
 - (void)showShareAction
 {
     if (_shareAction == nil) {
-        _shareAction = [[ShareAction alloc] initWithFeed:_feed
-                                                   image:_image];
+        [self showActivityWithText:NSLS(@"kSaving")];
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+            _shareAction = [[ShareAction alloc] initWithFeed:_feed
+                                                       image:_image];
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self hideActivity];
+                [_shareAction displayWithViewController:self onView:self.saveButton];
+            });
+            
+        });        
     }
-    [_shareAction displayWithViewController:self onView:self.saveButton];
+    else{
+        [_shareAction displayWithViewController:self onView:self.saveButton];
+    }
 }
 - (void)saveToLocal
 {
