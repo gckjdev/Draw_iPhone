@@ -13,6 +13,7 @@
 #import "ItemType.h"
 #import "Palette.h"
 #import "CMPopTipView.h"
+#import "PenBox.h"
 
 @class DrawToolPanel;
 
@@ -30,7 +31,7 @@
 
 @end
 
-@interface DrawToolPanel : UIView<ColorPointDelegate, DrawSliderDelegate, CMPopTipViewDelegate>
+@interface DrawToolPanel : UIView<ColorPointDelegate, DrawSliderDelegate, CMPopTipViewDelegate, PenBoxDelegate>
 {
     
 }
