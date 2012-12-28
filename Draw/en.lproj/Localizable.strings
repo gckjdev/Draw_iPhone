@@ -178,9 +178,9 @@
 "kLanguageSelection" = "Language Selection";
 "kPassword" = "Password";
 "kNickname" = "Nickname";
-"kSinaWeibo" = "Sina Weibo";              
-"kQQWeibo" = "QQ Weibo";           
-"kFacebook" = "Facebook"; 
+"kBindSinaWeibo" = "Sina Weibo";
+"kBindQQWeibo" = "QQ Weibo";
+"kBindFacebook" = "Facebook";
 "kBind" = "Connected";
 "kUnBind" = "Unconnected";
 "kClickTooFast" = "You click too frequently. Please take a break.";
@@ -933,7 +933,14 @@
 "kEmail" = "E-mail";
 "kWeChatTimeline" = "WeChat";
 "kWeChatFriends" = "WeChat Friends";
-"kFavorite" = "Favorite";
+"kFavorite" = "Save";
+"kAlbum" = "Album";
+"kSinaWeibo" = "Sina";
+"kTencentWeibo" = "Tencent";
+"kFacebook" = "Facebook";
+
+"kSaveToAlbumSuccess" = "Save to album successfully!";
+"kSaveToLocalSuccess" = "Save to local successfully!";
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 

@@ -179,9 +179,9 @@
 
 "kPassword" = "密码";
 "kNickname" = "昵称";
-"kSinaWeibo" = "绑定新浪微博";  
-"kQQWeibo" = "绑定腾讯微博";           
-"kFacebook" = "绑定Facebook";
+"kBindSinaWeibo" = "绑定新浪微博";  
+"kBindQQWeibo" = "绑定腾讯微博";
+"kBindFacebook" = "绑定Facebook";
 "kBind" = "已绑定";
 "kUnBind" = "未绑定";
 "kFailToConnectIAPServer" = "连接苹果购买服务器失败，请稍候再试。";
@@ -954,9 +954,15 @@
 "kShareTo" = "分享到...";
 "kEmail" = "邮件";
 "kWeChatTimeline" = "微信";
-"kWeChatFriends" = "微信";
-"kFavorite" = "收藏";
+"kWeChatFriends" = "微信朋友圈";
+"kFavorite" = "保存";
+"kAlbum" = "相册";
+"kSinaWeibo" = "新浪微博";
+"kTencentWeibo" = "腾讯微博";
+"kFacebook" = "Facebook";
 
+"kSaveToAlbumSuccess" = "成功保存到相册!";
+"kSaveToLocalSuccess" = "成功保存到本地，您可以在作品页面查看该作品。";
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 
