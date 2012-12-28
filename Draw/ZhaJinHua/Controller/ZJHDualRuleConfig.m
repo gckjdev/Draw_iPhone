@@ -42,7 +42,7 @@
     CGSize pokerSize = CGSizeMake(BIG_POKER_VIEW_WIDTH, BIG_POKER_VIEW_HEIGHT);
     CGFloat gap = BIG_POKER_GAP;
 
-    [dic setValue:[ZJHUserPosInfo userPosInfoWithPos:UserPositionCenter
+    [dic setObject:[ZJHUserPosInfo userPosInfoWithPos:UserPositionCenter
                                               avatar:myAvatar
                                           pokersView:controller.centerPokers
                                            pokerSize:pokerSize
@@ -55,7 +55,7 @@
 
     gap = SMALL_POKER_GAP;
     
-    [dic setValue:[ZJHUserPosInfo userPosInfoWithPos:UserPositionCenterUp
+    [dic setObject:[ZJHUserPosInfo userPosInfoWithPos:UserPositionCenterUp
                                               avatar:heAvatar
                                           pokersView:controller.centerUpPokers
                                            pokerSize:pokerSize

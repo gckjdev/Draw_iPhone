@@ -306,7 +306,7 @@
     point.y = -point.y;
     
     NSString *path = [[NSBundle mainBundle] pathForResource:@"fallingstars" ofType:@"png"];
-	OpenGLTexture3D *texture = [[OpenGLTexture3D alloc] initWithFilename:path width:16 height:16];
+	OpenGLTexture3D *texture = [[[OpenGLTexture3D alloc] initWithFilename:path width:16 height:16] autorelease];
 	ParticleEmitter3D *pEmitter = [[ParticleEmitter3D alloc] initWithName:@"jj"
                                                      position:Vertex3DMake(point.x,point.y, -2.0)
                                                      rotation:Rotation3DMake(0.0, 0.0, 0.0)
@@ -327,7 +327,7 @@
                                                          mode:ParticleEmitter3DDrawTextureMap
                                                  particleSize:2.0f
                                          particleSizeVariance:2.0f
-                                                      texture:texture] ;
+                                                      texture:texture];
     
     
     [pEmitter startEmitting];

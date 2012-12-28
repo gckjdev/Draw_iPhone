@@ -17,6 +17,7 @@
 #import "ConfigManager.h"
 
 #import "FileUtil.h"
+#import "DiceGameJumpHandler.h"
 
 
 
@@ -291,6 +292,11 @@
 - (UIColor*)popupMessageDialogFontColor
 {
     return [UIColor blackColor];
+}
+
+- (id<GameJumpHandlerProtocol>)getGameJumpHandler
+{
+    return [DiceGameJumpHandler defaultHandler];
 }
 
 @end

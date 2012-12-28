@@ -377,6 +377,7 @@ pbNoCompressDrawData:(PBNoCompressDrawData*)pbNoCompressDrawData
               image:(UIImage *)image
     pbNoCompressDrawData:(PBNoCompressDrawData *)pbNoCompressDrawData
 {
+    BOOL needSave = NO;
     if (draft) {
         NSString *imageFileName = [draft image];
         NSString *pbDataFileName = [draft dataFilePath];
@@ -387,6 +388,7 @@ pbNoCompressDrawData:(PBNoCompressDrawData*)pbNoCompressDrawData
             NSString *imageFileName = [self imageFileName];
             [_imageManager saveImage:image forKey:imageFileName];
             [draft setImage:imageFileName];
+            needSave = YES;
         }
         //update draw data.
         if ([pbDataFileName length] != 0) {
@@ -400,14 +402,19 @@ pbNoCompressDrawData:(PBNoCompressDrawData*)pbNoCompressDrawData
                 pbDataFileName = [self pbNoCompressDrawDataFileName];
                 [_drawDataManager saveData:[pbNoCompressDrawData data] forKey:pbDataFileName];
                 [draft setDataFilePath:pbDataFileName];
+                needSave = YES;
             }
 
         }else{
             pbDataFileName = [self pbNoCompressDrawDataFileName];
             [_drawDataManager saveData:[pbNoCompressDrawData data] forKey:pbDataFileName];
             [draft setDataFilePath:pbDataFileName];
+            needSave = YES;
         }
-        [self save];
+        if (needSave) {
+            [self save];            
+        }
+
     }
     return YES;
 }

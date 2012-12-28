@@ -62,6 +62,7 @@
 
 #import "GameConfigDataManager.h"
 #import "ZJHHomeViewController.h"
+#import "BulletinService.h"
 
 NSString* GlobalGetServerURL()
 {    
@@ -73,7 +74,7 @@ NSString* GlobalGetServerURL()
 NSString* GlobalGetTrafficServerURL()
 {
     return [ConfigManager getTrafficAPIServerURL];
-//    return @"http://192.168.1.9:8100/api/i?";
+//    return @"http://192.168.1.5:8100/api/i?";
 //    return @"http://192.168.1.198:8100/api/i?";
 }
 
@@ -445,6 +446,7 @@ NSString* GlobalGetBoardServerURL()
      */
     
     [[BoardService defaultService] syncBoards];
+    [[BulletinService defaultService] syncBulletins];
     
     if ([ConfigManager wallEnabled]){
         [[LmWallService defaultService] queryScore];            

@@ -10,6 +10,7 @@
 #import "MobClickUtils.h"
 #import "ConfigManager.h"
 #import "ShareImageManager.h"
+#import "DrawGameJumpHandler.h"
 
 
 @implementation DrawGameApp
@@ -266,5 +267,10 @@
 - (NSString *)roomListCellDualBgImageName
 {
     return nil;
+}
+
+- (id<GameJumpHandlerProtocol>)getGameJumpHandler
+{
+    return [DrawGameJumpHandler defaultHandler];
 }
 @end

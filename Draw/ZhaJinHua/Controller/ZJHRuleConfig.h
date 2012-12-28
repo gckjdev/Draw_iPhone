@@ -33,7 +33,7 @@
 #define CHANGE_CARD_BUTTON_X_OFFSET ([DeviceDetection isIPAD] ? 120 : 60)
 #define CHANGE_CARD_BUTTON_Y_OFFSET ([DeviceDetection isIPAD] ? 20 : 10)
 
-#define BUTTON_FONT ([DeviceDetection isIPAD] ? [UIFont systemFontOfSize:18] : [UIFont systemFontOfSize:12])
+
 
 
 #define TEXT_COLOR_ENABLED [UIColor colorWithRed:199.0/255.0 green:252.0/255.0 blue:254.0/255.0 alpha:1]

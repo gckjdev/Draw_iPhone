@@ -93,6 +93,7 @@ ZJHHomeViewController *_staticZJHHomeViewController = nil;
         
         if (![_gameService isConnected]) {
                 [self.navigationController popToRootViewControllerAnimated:YES];
+                [_gameService reset];
                 [self popupUnhappyMessage:NSLS(@"kNetworkBroken") title:@""];
         }
     }];
@@ -240,6 +241,10 @@ ZJHHomeViewController *_staticZJHHomeViewController = nil;
                    menuType:(HomeMenuType)type
 {
     PPDebug(@"<homeBottomMenuPanel>, click type = %d", type);
+    if (![self isRegistered]) {
+        [self toRegister];
+        return;
+    }
     
     switch (type) {
             //For Bottom Menus
@@ -332,6 +337,7 @@ ZJHHomeViewController *_staticZJHHomeViewController = nil;
     
     if (error != nil) {
         [self.navigationController popToRootViewControllerAnimated:YES];
+        [_gameService reset];
         [self popupUnhappyMessage:NSLS(@"kNetworkBroken") title:@""];
     }
 }

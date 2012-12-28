@@ -12,10 +12,6 @@
 
 - (void)dealloc
 {
-    [_avatar release];
-    [_pokersView release];
-    [_totalBetLabel release];
-    [_totalBetBg release];
     [super dealloc];
 }
 
@@ -48,13 +44,13 @@
                          totalBetLabel:(UILabel *)totalBetLabel
                             totalBetBg:(UIImageView *)totalBetBg;
 {
-    return [[ZJHUserPosInfo alloc] initWithPos:pos
+    return [[[ZJHUserPosInfo alloc] initWithPos:pos
                                         avatar:avatar
                                     pokersView:pokersView
                                      pokerSize:pokerSize
                                            gap:gap
                                  totalBetLabel:totalBetLabel
-                                    totalBetBg:totalBetBg];
+                                    totalBetBg:totalBetBg] autorelease];
 }
 
 

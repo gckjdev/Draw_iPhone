@@ -206,7 +206,7 @@
 						<string key="NSFrame">{{281, 299}, {28, 33}}</string>
 						<reference key="NSSuperview" ref="774585933"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="211539955"/>
+						<reference key="NSNextKeyView" ref="204940874"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<int key="IBUIContentHorizontalAlignment">0</int>
@@ -231,6 +231,7 @@
 						<string key="NSFrame">{{0, 425}, {320, 30}}</string>
 						<reference key="NSSuperview" ref="774585933"/>
 						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView" ref="166568445"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -340,7 +341,7 @@
 						<string key="NSFrame">{{161, 375}, {38, 38}}</string>
 						<reference key="NSSuperview" ref="774585933"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="172150538"/>
+						<reference key="NSNextKeyView" ref="211539955"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<int key="IBUIContentHorizontalAlignment">0</int>
@@ -387,7 +388,7 @@
 						<string key="NSFrame">{{214, 376}, {31, 34}}</string>
 						<reference key="NSSuperview" ref="774585933"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="204940874"/>
+						<reference key="NSNextKeyView" ref="172150538"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<int key="IBUIContentHorizontalAlignment">0</int>
@@ -403,6 +404,28 @@
 							<string key="NSClassName">NSImage</string>
 							<string key="NSResourceName">revoke@2x.png</string>
 						</object>
+						<reference key="IBUIFontDescription" ref="300407582"/>
+						<reference key="IBUIFont" ref="812508533"/>
+					</object>
+					<object class="IBUIButton" id="166568445">
+						<reference key="NSNextResponder" ref="774585933"/>
+						<int key="NSvFlags">292</int>
+						<string key="NSFrame">{{245, 416}, {73, 44}}</string>
+						<reference key="NSSuperview" ref="774585933"/>
+						<reference key="NSWindow"/>
+						<string key="NSReuseIdentifierKey">_NS:9</string>
+						<bool key="IBUIOpaque">NO</bool>
+						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+						<int key="IBUIContentHorizontalAlignment">0</int>
+						<int key="IBUIContentVerticalAlignment">0</int>
+						<int key="IBUIButtonType">1</int>
+						<string key="IBUINormalTitle">Redo</string>
+						<reference key="IBUIHighlightedTitleColor" ref="373991744"/>
+						<object class="NSColor" key="IBUINormalTitleColor">
+							<int key="NSColorSpace">1</int>
+							<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
+						</object>
+						<reference key="IBUINormalTitleShadowColor" ref="309240068"/>
 						<reference key="IBUIFontDescription" ref="300407582"/>
 						<reference key="IBUIFont" ref="812508533"/>
 					</object>
@@ -579,6 +602,15 @@
 					</object>
 					<int key="connectionID">142</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">clickRedoButton:</string>
+						<reference key="source" ref="166568445"/>
+						<reference key="destination" ref="372490531"/>
+						<int key="IBEventType">7</int>
+					</object>
+					<int key="connectionID">146</int>
+				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<object class="NSArray" key="orderedObjects">
@@ -623,6 +655,7 @@
 							<reference ref="172150538"/>
 							<reference ref="211539955"/>
 							<reference ref="70881159"/>
+							<reference ref="166568445"/>
 						</object>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -706,6 +739,11 @@
 						<reference key="object" ref="211539955"/>
 						<reference key="parent" ref="774585933"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">144</int>
+						<reference key="object" ref="166568445"/>
+						<reference key="parent" ref="774585933"/>
+					</object>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="flattenedProperties">
@@ -725,6 +763,7 @@
 					<string>136.IBPluginDependency</string>
 					<string>138.IBPluginDependency</string>
 					<string>140.IBPluginDependency</string>
+					<string>144.IBPluginDependency</string>
 					<string>17.IBPluginDependency</string>
 					<string>39.IBPluginDependency</string>
 					<string>41.CustomClassName</string>
@@ -745,6 +784,7 @@
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>ColorView</string>
+					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -775,7 +815,7 @@
 				<reference key="dict.values" ref="0"/>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">143</int>
+			<int key="maxID">146</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -1394,12 +1434,14 @@
 							<string>clickDraftButton:</string>
 							<string>clickEraserButton:</string>
 							<string>clickPenButton:</string>
+							<string>clickRedoButton:</string>
 							<string>clickRedraw:</string>
 							<string>clickRevokeButton:</string>
 							<string>clickSubmitButton:</string>
 						</object>
 						<object class="NSArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>id</string>
 							<string>id</string>
 							<string>id</string>
 							<string>id</string>
@@ -1419,6 +1461,7 @@
 							<string>clickDraftButton:</string>
 							<string>clickEraserButton:</string>
 							<string>clickPenButton:</string>
+							<string>clickRedoButton:</string>
 							<string>clickRedraw:</string>
 							<string>clickRevokeButton:</string>
 							<string>clickSubmitButton:</string>
@@ -1443,6 +1486,10 @@
 							</object>
 							<object class="IBActionInfo">
 								<string key="name">clickPenButton:</string>
+								<string key="candidateClassName">id</string>
+							</object>
+							<object class="IBActionInfo">
+								<string key="name">clickRedoButton:</string>
 								<string key="candidateClassName">id</string>
 							</object>
 							<object class="IBActionInfo">

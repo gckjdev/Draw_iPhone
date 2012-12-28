@@ -8,15 +8,8 @@
 	<string>${PRODUCT_NAME}</string>
 	<key>CFBundleExecutable</key>
 	<string>${EXECUTABLE_NAME}</string>
-	<key>CFBundleIconFiles</key>
-	<array>
-		<string>new_icon.png</string>
-		<string>new_icon@2x.png</string>
-		<string>new_icon_ipad1.png</string>
-		<string>new_icon_ipad2.png</string>
-	</array>
 	<key>CFBundleIdentifier</key>
-	<string>com.orange.draw</string>
+	<string>com.orange.zhajinhua</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
@@ -24,42 +17,25 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>5.2</string>
+	<string>1.0</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
-	<key>URL types DICE</key>
-	<array>
-		<dict>
-			<key>CFBundleURLSchemes</key>
-			<array>
-				<string>fb451387761588871</string>
-			</array>
-		</dict>
-	</array>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>fb352182988165711</string>
-				<string>gckjcchh</string>
-				<string>wx427a2f57bc4456d1</string>
+				<string>fb451387761588871</string>
+				<string>sinaweibosso.3580615797</string>
 			</array>
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>5.2</string>
+	<string>1.0</string>
 	<key>CFChannelId</key>
 	<string>App Store</string>
 	<key>CFWordBaseVersion</key>
 	<integer>2</integer>
-	<key>Icon files DRAW OLD</key>
-	<array>
-		<string>57.png</string>
-		<string>57@2x.png</string>
-		<string>50.png</string>
-		<string>72.png</string>
-	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSMainNibFile</key>
@@ -73,20 +49,22 @@
 		<string>UIInterfaceOrientationPortrait</string>
 		<string>UIInterfaceOrientationPortraitUpsideDown</string>
 	</array>
-	<key>Launch image Dice</key>
-	<string>DiceDefault</string>
 	<key>UILaunchImageFile</key>
-	<string>Default</string>
-	<key>Icon files (DICE)</key>
+	<string>ZJHDefault</string>
+	<key>CFBundleIconFiles</key>
 	<array>
-		<string>dice_icon_57.png</string>
-		<string>dice_icon_57@2x.png</string>
-		<string>dice_icon_50.png</string>
-		<string>dice_icon_72.png</string>
+		<string>zjh_icon_57.png</string>
+		<string>zjh_icon_57@2x.png</string>
+		<string>zjh_icon_50.png</string>
+		<string>zjh_icon_72.png</string>
 	</array>
+	<key>LSApplicationCategoryType</key>
+	<string></string>
 	<key>CFResourceTest</key>
-	<false/>
+	<true/>
 	<key>CFServerTest</key>
 	<false/>
+	<key>CFConfigVersion</key>
+	<string>1.0</string>
 </dict>
 </plist>

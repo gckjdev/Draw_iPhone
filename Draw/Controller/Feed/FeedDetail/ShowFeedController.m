@@ -32,6 +32,14 @@
 
 #import "MyFriend.h"
 #import "FeedClasses.h"
+#import "ShareAction.h"
+#import "SDImageCache.h"
+
+@interface ShowFeedController () {
+    ShareAction* _shareAction;
+}
+
+@end
 
 @implementation ShowFeedController
 @synthesize titleLabel = _titleLabel;
@@ -73,6 +81,7 @@ typedef enum{
     PPRelease(_tomatoButton);
     PPRelease(_replayButton);
     PPRelease(_useItemScene);
+    PPRelease(_shareAction);
     [super dealloc];
 }
 
@@ -566,27 +575,34 @@ enum{
     }else if(button == self.saveButton){
         
         
-        //save
+//        //save
         UIImage *image = self.feed.largeImage;
         if(image == nil){
-           image =  [self.drawCell.showView createImage];   
+//           image =  [self.drawCell.showView createImage];
+            [[SDImageCache sharedImageCache] imageFromKey:self.feed.drawImageUrl];
         }
-        
-        [self showActivityWithText:NSLS(@"kSaving")];
-        
-        [[ShareService defaultService] shareWithImage:image 
-                                           drawUserId:_feed.feedUser.userId
-                                           isDrawByMe:[_feed isMyOpus] 
-                                             drawWord:_feed.wordText];    
-        [self.feed increaseSaveTimes];
-        
-        //TODO save pbdraw data instead of drawActionList
-//        [_feed parseDrawData];
-        [[DrawDataService defaultService] savePaintWithPBDraw:_feed.pbDraw
-                                                        image:image
-                                                     delegate:self];
-        
-        button.userInteractionEnabled = NO;
+//
+//        [self showActivityWithText:NSLS(@"kSaving")];
+//        
+//        [[ShareService defaultService] shareWithImage:image 
+//                                           drawUserId:_feed.feedUser.userId
+//                                           isDrawByMe:[_feed isMyOpus] 
+//                                             drawWord:_feed.wordText];    
+//        [self.feed increaseSaveTimes];
+//        
+//        //TODO save pbdraw data instead of drawActionList
+////        [_feed parseDrawData];
+//        [[DrawDataService defaultService] savePaintWithPBDraw:_feed.pbDraw
+//                                                        image:image
+//                                                     delegate:self];
+//
+//        button.userInteractionEnabled = NO;
+
+        if (_shareAction == nil) {
+            _shareAction = [[ShareAction alloc] initWithFeed:_feed
+                                                       image:image];
+        }
+        [_shareAction displayWithViewController:self onView:self.saveButton];
         
     }else if(button == self.flowerButton){
         Item *item = [Item flower];
@@ -763,6 +779,12 @@ enum{
 //        [_commentHeader updateTimes:feed];
         [_commentHeader setViewInfo:feed];
     }
+}
+
+#pragma mark - UIActionsheet delegate
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    
 }
 
 

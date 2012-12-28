@@ -97,7 +97,8 @@
     }
     
     [NSTimer scheduledTimerWithTimeInterval:300 target:self selector:@selector(handleStaticTimer:) userInfo:nil repeats:YES];
-
+    
+    [self updateAllBadge];//for bulletins
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -138,6 +139,8 @@
     
     long timelineCount = manager.feedCount + manager.commentCount + manager.drawToMeCount;
     [self.homeMainMenuPanel updateMenu:HomeMenuTypeDrawTimeline badge:timelineCount];
+    
+    PPDebug(@"<test> update bulletin badge, count = %d", manager.bulletinCount);
     
 }
 - (void)didSyncStatisticWithResultCode:(int)resultCode

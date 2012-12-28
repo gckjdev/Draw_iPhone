@@ -46,7 +46,8 @@
 #import "LmWallService.h"
 #import "AdService.h"
 #import "VendingController.h"
-#import "ShowFeedController.h"
+#import "ShowFeedController.h" 
+#import "BulletinService.h"
 
 //#import "RecommendedAppsController.h"
 //#import "FacetimeMainController.h"
@@ -68,7 +69,9 @@
 
 #import "BBSBoardController.h"
 
-//#import "DrawHomeViewController.h"
+#import "BulletinView.h"
+#import "DrawTestViewController.h"
+
 
 @interface HomeController()
 {
@@ -171,6 +174,7 @@
         self.recommendButton.hidden = YES;
     }
     
+    
     [super viewDidLoad];
     /*
     [self loadMainMenu];
@@ -201,7 +205,9 @@
 //    }
 
     [self enterNextControllerWityType:self.notificationType];
-        
+//     [self.view bringSubviewToFront:self.testBulletin];
+
+//    [DrawTestViewController enterWithController:self];
 }
 
 
@@ -219,6 +225,14 @@
 
 - (void)registerDrawGameNotification
 {
+//    [self registerNotificationWithName:BULLETIN_UPDATE_NOTIFICATION
+//                                object:nil
+//                                 queue:[NSOperationQueue mainQueue]
+//                            usingBlock:^(NSNotification *note) {
+//                                
+//                                [self updateAllBadge];
+//                                
+//                            }];
     /*
     [self registerNotificationWithName:BOARD_UPDATE_NOTIFICATION 
                                 object:nil
@@ -280,6 +294,7 @@
     [self setRecommendButton:nil];
     [self setFacetimeButton:nil];
     [self setMenuPanel:nil];
+    [self setTestBulletin:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -290,14 +305,24 @@
 {
     switch (type) {
         case NotificationTypeFeed:
-            [self didClickMenuButton:[self.menuPanel getMenuButtonByType:MenuButtonTypeTimeline]];
+        {
+            HomeMenuView *menu = [self.homeMainMenuPanel getMenuViewWithType:HomeMenuTypeDrawTimeline];
+            [self homeMainMenuPanel:self.homeMainMenuPanel didClickMenu:menu menuType:menu.type];
             break;
-        case NotificationTypeRoom:
-            [self didClickMenuButton:[self.menuPanel getMenuButtonByType:MenuButtonTypeFriendPlay]];
+        }
+            
+        case NotificationTypeRoom:{
+            //no friend room menu in 5.2 version
             break;
+        }
+
         case NotificationTypeMessage:
-            [self didClickMenuButton:[self.bottomMenuPanel getMenuButtonByType:MenuButtonTypeChat]];
-            break;
+        {
+            HomeMenuView *menu = [self.homeBottomMenuPanel getMenuViewWithType:HomeMenuTypeDrawMessage];
+            [self homeBottomMenuPanel:self.homeBottomMenuPanel didClickMenu:menu menuType:menu.type];
+            break;            
+        }
+
         case NotificationTypeComment:
         case NotificationTypeFlower:
         case NotificationTypeReply:
@@ -518,6 +543,7 @@
     PPRelease(_menuPanel);
     PPRelease(_bottomMenuPanel);
 //    PPRelease(_adView);
+    [_testBulletin release];
     [super dealloc];
 }
 
@@ -669,7 +695,6 @@
         [self toRegister];
         return;
     }
-
     switch (type) {
         
         //For Bottom Menus
@@ -745,6 +770,11 @@
 //    [self.navigationController pushViewController:vc animated:YES];
     
 //    [[DiceGameService defaultService] joinGameRequest];
+}
+
+- (IBAction)clickTestBulletin:(id)sender
+{
+    [BulletinView showBulletinInController:self];
 }
 
 

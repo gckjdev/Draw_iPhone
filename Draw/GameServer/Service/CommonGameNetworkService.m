@@ -613,7 +613,7 @@
             dispatch_group_async(queueGroup, aQueue, ^{
                 MyFriend *userInfo = [[UserService defaultService] getUserSimpleInfo:user.userId];
                 dispatch_async(dispatch_get_main_queue(), ^{
-                    [_userSimpleInfo setValue:userInfo forKey:user.userId];
+                    [_userSimpleInfo setObject:userInfo forKey:user.userId];
                     PPDebug(@"<getUserInfo> complete %@ %@ %ld", user.userId, userInfo.nickName, userInfo.coins);
                 });
             });

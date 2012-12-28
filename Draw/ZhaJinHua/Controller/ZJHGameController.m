@@ -84,65 +84,49 @@
 
 - (void)dealloc
 {
-    [_betTable release];
-    [_dealerView release];
-    [_betButton release];
-    [_raiseBetButton release];
-    [_autoBetButton release];
-    [_compareCardButton release];
-    [_checkCardButton release];
-    [_foldCardButton release];
-    [_totalBetLabel release];
-    [_singleBetLabel release];
-    [_moneyTreeHolder release];
-    [_vsImageView release];
-    [_gameBgImageView release];
-    [_totalBetBgImageView release];
-    [_buttonsHolderBgImageView release];
-    [_runawayButton release];
-    [_settingButton release];
-    [_chatButton release];
-    [_totalBetNoteLabel release];
-    [_singleBetNoteLabel release];
-
-    [_moneyTreeView release];
-
-    [_cardTypeLabel release];
-    [_roomNameLabel release];
-
-    [_cardTypeBgImageView release];
-    [_cardTypeButton release];
-    [_waitGameNoteLabel release];
-    [_ruleConfig release];
-    [_userPosInfoDic release];
-
+    PPRelease(_settingButton);
+    PPRelease(_chatButton);
+    PPRelease(_totalBetNoteLabel);
+    PPRelease(_singleBetNoteLabel);
     
-    [_rightTopAvatar release];
-    [_rightAvatar release];
-    [_centerAvatar release];
-    [_leftAvatar release];
-    [_leftTopAvatar release];
-    [_leftTopPokers release];
-    [_rightTopPokers release];
-    [_leftPokers release];
-    [_rightPokers release];
-    [_centerPokers release];
-    [_centerTotalBetBg release];
-    [_leftTotalBetBg release];
-    [_rightTopTotalBetBg release];
-    [_rightTotalBetBg release];
-    [_leftTopTotalBetBg release];
-    [_centerTotalBet release];
-    [_leftTotalBet release];
-    [_rightTotalBet release];
-    [_rightTopTotalBet release];
-    [_leftTopTotalBet release];
+    PPRelease(_moneyTreeView);
     
-    [_centerUpPokers release];
-    [_centerUpTotalBetBg release];
-    [_centerUpTotalBet release];
-    [_centerUpAvatar release];
-    [_chatView release];
+    PPRelease(_cardTypeLabel);
+    PPRelease(_roomNameLabel);
+    
+    PPRelease(_cardTypeBgImageView);
+    PPRelease(_cardTypeButton);
+    PPRelease(_waitGameNoteLabel);
+    PPRelease(_ruleConfig);
+    PPRelease(_userPosInfoDic);
+    
+    
+    PPRelease(_rightTopAvatar);
+    PPRelease(_rightAvatar);
+    PPRelease(_centerAvatar);
+    PPRelease(_leftAvatar);
+    PPRelease(_leftTopAvatar);
+    PPRelease(_leftTopPokers);
+    PPRelease(_rightTopPokers);
+    PPRelease(_leftPokers);
+    PPRelease(_rightPokers);
+    PPRelease(_centerPokers);
+    PPRelease(_centerTotalBetBg);
+    PPRelease(_leftTotalBetBg);
+    PPRelease(_rightTopTotalBetBg);
+    PPRelease(_rightTotalBetBg);
+    PPRelease(_leftTopTotalBetBg);
+    PPRelease(_centerTotalBet);
+    PPRelease(_leftTotalBet);
+    PPRelease(_rightTotalBet);
+    PPRelease(_rightTopTotalBet);
+    PPRelease(_leftTopTotalBet);
+    
+    PPRelease(_centerUpPokers);
+    PPRelease(_centerUpTotalBetBg);
+    PPRelease(_centerUpTotalBet);
+    PPRelease(_centerUpAvatar);
+    PPRelease(_chatView);
     [super dealloc];
 }
 
@@ -187,24 +171,10 @@
 - (void)initAllAvatars
 {
     self.userPosInfoDic = [_ruleConfig initAllAvatar:self];
-    for (ZJHUserPosInfo *userPosInfo in [_userPosInfoDic allValues]) {
-        [self.view addSubview:userPosInfo.avatar];
+    
+    for (NSString *key in [_userPosInfoDic allKeys]) {
+        [self.view addSubview:[(ZJHUserPosInfo*)[_userPosInfoDic objectForKey:key] avatar]];
     }
-//    for (int i = UserPositionCenter; i < [_ruleConfig maxPlayerNum]; i ++) {
-//        UIView* placeView = [self.view viewWithTag:(i + AVATAR_PLACE_VIEW_OFFSET)];
-//        if (i == UserPositionCenter) {
-//            ZJHMyAvatarView* myAvatar = [ZJHMyAvatarView createZJHMyAvatarView];
-//            [myAvatar setFrame:placeView.frame];
-//            [self.view addSubview:myAvatar];
-//            myAvatar.tag = AVATAR_VIEW_TAG_OFFSET + i;
-//            [myAvatar update];
-//            continue;
-//        }
-//        ZJHAvatarView* anAvatar = [ZJHAvatarView createZJHAvatarView];
-//        [anAvatar setFrame:placeView.frame];
-//        [self.view addSubview:anAvatar];
-//        anAvatar.tag = AVATAR_VIEW_TAG_OFFSET + i;
-//    }
 }
 
 - (void)setImages
@@ -573,30 +543,32 @@
 
 - (IBAction)clickQuitButton:(id)sender
 {
-    if (![_gameService.session isMeStandBy] && ([_gameService.session isGamePlaying])) {
+    if (![_gameService canIQuitGameDirectly]) {
         CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kQuitGameAlertTitle")
                                                            message:NSLS(@"kZJHQuitGameAlertMessage")
                                                              style:CommonDialogStyleDoubleButton
                                                           delegate:nil
                                                              clickOkBlock:^{
-                                                                 [_gameService quitGame];
-                                                                 [self.navigationController popViewControllerAnimated:YES];
-//                                                                 [_audioManager playSoundByURL:_soundManager.clickButtonSound];
+                                                                 [self quiteGame];
                                                              } clickCancelBlock:^{
-//                                                                 [_audioManager playSoundByURL:_soundManager.clickButtonSound];
                                                              }];
         [dialog showInView:self.view];
     } else {
-        [_gameService quitGame];
-        [self.navigationController popViewControllerAnimated:YES];
+        [self quiteGame];
     }
-//    [_audioManager playSoundByURL:_soundManager.clickButtonSound];
+}
+
+- (void)quiteGame
+{
+    [_gameService quitGame];
+    [_gameService reset];
+    [self.navigationController popViewControllerAnimated:YES];
+
 }
 
 - (IBAction)clickSettingButton:(id)sender
 {
     [[CommonSettingView createSettingView] showInView:self.view];
-//    [_audioManager playSoundByURL:_soundManager.clickButtonSound];
 }
 
 #pragma mark - player action response
@@ -641,6 +613,8 @@
 - (void)foldCardSuccess
 {
     [[self getMyAvatarView] stopReciprocal];
+    [self disableAllZJHButtons];
+
     [[self getMyPokersView] foldCards:YES];
     [_audioManager playSoundByURL:_soundManager.foldCardSoundEffect];
     [_audioManager playSoundByURL:[_soundManager foldCardHumanSound:[@"m" isEqualToString:_userManager.gender]]];
@@ -1053,8 +1027,8 @@
 
 - (void)setAllPlayerNotComparing
 {
-    for (ZJHUserPosInfo *userPosInfo in [_userPosInfoDic allValues]) {
-        [userPosInfo.pokersView clearBomb];
+    for (NSString *key in [_userPosInfoDic allKeys]) {
+        [[(ZJHUserPosInfo*)[_userPosInfoDic objectForKey:key] pokersView] clearBomb];
     }
 }
 
@@ -1076,8 +1050,8 @@
 
 - (void)updateAllUsersAvatar
 {
-    for (ZJHUserPosInfo *userPosInfo in [_userPosInfoDic allValues]) {
-        [userPosInfo.avatar resetAvatar];
+    for (NSString *key in [_userPosInfoDic allKeys]) {
+        [[(ZJHUserPosInfo*)[_userPosInfoDic objectForKey:key] avatar] resetAvatar];
     }
 
     // set user on seat
@@ -1160,16 +1134,19 @@
 
 - (ZJHUserPosInfo *)getUserPosInfoByPos:(UserPosition)pos
 {
-    return [_userPosInfoDic valueForKey:[NSString stringWithFormat:@"%d", pos]];
+    return [_userPosInfoDic objectForKey:[NSString stringWithFormat:@"%d", pos]];
 }
 
 - (ZJHUserPosInfo *)getUserPosInfoByUserId:(NSString *)userId
 {
-    for (ZJHUserPosInfo *userPosInfo in [_userPosInfoDic allValues]) {
+    for (NSString *key in [_userPosInfoDic allKeys]) {
+        
+        ZJHUserPosInfo *userPosInfo = (ZJHUserPosInfo*)[_userPosInfoDic objectForKey:key];
         if ([userPosInfo.avatar.userInfo.userId isEqualToString:userId]) {
             return userPosInfo;
         }
     }
+    
     return nil;
 }
 
@@ -1245,8 +1222,9 @@
 - (void)reciprocalEnd:(ZJHAvatarView*)view
 {
     PPDebug(@"################# [controller: %@] TIME OUT: auto fold ##################", [self description]);
-    if ([_userManager isMe:view.userInfo.userId])
-    [self clickFoldCardButton:nil];
+    if ([_userManager isMe:view.userInfo.userId]) {
+        [self clickFoldCardButton:nil];
+    }
 }
 
 #pragma mark - poker view protocol
@@ -1256,6 +1234,11 @@
     if (zjhPokersView != [self getMyPokersView]) {
         return;
     }
+    
+    if (![_gameService isGamePlaying]) {
+        return;
+    }
+    
     [[self getMyPokersView] dismissButtons];
     pokerView.buttonsIsPopup ? [pokerView dismissButtons] : [pokerView popupButtons:[_ruleConfig createButtons:pokerView]  InView:self.view];
 }
@@ -1276,16 +1259,17 @@
 
 - (void)didClickBombButton:(ZJHPokerView *)zjhPokerView
 {
-    __block ZJHUserPosInfo *userPosInfo = nil;
-    [[_userPosInfoDic allValues] enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-        if ([((ZJHUserPosInfo *)obj) pokersView] == zjhPokerView) {
-            userPosInfo = (ZJHUserPosInfo *)obj;
-            *stop = YES;
+    ZJHUserPosInfo *userPosInfo = nil;
+    for (NSString *key in [_userPosInfoDic allKeys]) {
+        if ([[_userPosInfoDic objectForKey:key] pokersView] == zjhPokerView) {
+            userPosInfo = [_userPosInfoDic objectForKey:key];
         }
-    }];
+    }
     
+    if (userPosInfo == nil) {
+        return;
+    }
     
-//    ZJHAvatarView* avatar = (ZJHAvatarView*)[self.view viewWithTag:(AVATAR_VIEW_TAG_OFFSET+zjhPokerView.tag - POKERS_VIEW_TAG_OFFSET)];
     [[self getMyAvatarView] stopReciprocal];
     [self disableAllZJHButtons];
     [self compareToUser:userPosInfo.avatar.userInfo.userId];
@@ -1442,24 +1426,16 @@
 
 - (void)clearAllUserPokers
 {
-    for (ZJHUserPosInfo *userPosInfo in [_userPosInfoDic allValues]) {
-        [userPosInfo.pokersView clear];
+    for (NSString *key in [_userPosInfoDic allKeys]) {
+        [[(ZJHUserPosInfo*)[_userPosInfoDic objectForKey:key] pokersView] clear];
     }
-    
-//    for (int i = UserPositionCenter; i < [_ruleConfig maxPlayerNum]; i ++){
-//        [[self getPokersViewByPosition:i] clear];
-//    }
 }
 
 - (void)clearAllAvatarReciprocals
 {
-    for (ZJHUserPosInfo *userPosInfo in [_userPosInfoDic allValues]) {
-        [userPosInfo.avatar stopReciprocal];
+    for (NSString *key in [_userPosInfoDic allKeys]) {
+        [[(ZJHUserPosInfo*)[_userPosInfoDic objectForKey:key] avatar] stopReciprocal];
     }
-    
-//    for (int i = UserPositionCenter; i < [_ruleConfig maxPlayerNum]; i ++){
-//        [[self getAvatarViewByPosition:i] stopReciprocal];
-//    }
 }
 
 #pragma mark - pravite methods, update bet.
@@ -1492,14 +1468,10 @@
 
 - (void)hideAllUserTotalBet
 {
-    for (ZJHUserPosInfo *userPosInfo in [_userPosInfoDic allValues]) {
-        userPosInfo.totalBetBg.hidden = YES;
-        userPosInfo.totalBetLabel.hidden = YES;
+    for (NSString *key in [_userPosInfoDic allKeys]) {
+        [[(ZJHUserPosInfo*)[_userPosInfoDic objectForKey:key] totalBetBg] setHidden:YES];
+        [[(ZJHUserPosInfo*)[_userPosInfoDic objectForKey:key] totalBetLabel] setHidden:YES];
     }
-    
-//    for (int pos = UserPositionCenter; pos < [_ruleConfig maxPlayerNum]; pos ++) {
-//        [self hideTotalBetOfPosition:pos];
-//    }
 }
 
 - (void)hideTotalBetOfPosition:(UserPosition)position
