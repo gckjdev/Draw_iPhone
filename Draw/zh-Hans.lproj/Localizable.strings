@@ -679,7 +679,7 @@
 "kSetFacebook" = "Facebook";
 "kInputEmail" = "请输入电子邮件地址";
 "kUserBindSucc" = "成功绑定了用户帐号";
-"kUserBindFail" = "绑定用户帐号失败，请检查网络是否可用，稍候再试，或者联系我们的技术支持";
+"kUserBindFail" = "绑定用户帐号失败";
 "kWeiboExpired" = "授权已过期";
 "kSaveAndShare" = "保存分享";
 
