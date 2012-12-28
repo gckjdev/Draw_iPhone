@@ -9,23 +9,39 @@
 #import "DrawToolPanel.h"
 #import "DrawColor.h"
 #import "WidthView.h"
+#import "CMPopTipView.h"
+
+
 
 @interface DrawToolPanel ()
 {
-    
+//    CMPopTipView *_penPopTipView;
+//    CMPopTipView *_colorBoxPopTipView;
+//    CMPopTipView *_palettePopTipView;
 }
+
+#pragma mark - click actions
 - (IBAction)clickUndo:(id)sender;
 - (IBAction)clickRedo:(id)sender;
 
 - (IBAction)clickPen:(id)sender;
 - (IBAction)clickEraser:(id)sender;
 - (IBAction)clickAddColor:(id)sender;
-- (IBAction)clickColorPicker:(id)sender;
+- (IBAction)clickPalette:(id)sender;
+- (IBAction)clickPaintBucket:(id)sender;
 
 @property (retain, nonatomic) IBOutlet DrawSlider *widthSlider;
 @property (retain, nonatomic) IBOutlet DrawSlider *alphaSlider;
 @property (retain, nonatomic) IBOutlet UILabel *penWidth;
 @property (retain, nonatomic) IBOutlet UILabel *colorAlpha;
+
+
+@property (retain, nonatomic) CMPopTipView *penPopTipView;
+@property (retain, nonatomic) CMPopTipView *colorBoxPopTipView;
+@property (retain, nonatomic) CMPopTipView *palettePopTipView;
+
+
+
 
 @end
 
@@ -38,6 +54,13 @@
 #define SPACE_COLOR_COLOR VALUE(2)
 #define SPACE_COLOR_UP VALUE(10)
 
+
+- (void)updatePopTipView:(CMPopTipView *)popTipView
+{
+    [popTipView setBackgroundColor:[UIColor colorWithRed:168./255. green:168./255. blue:168./255. alpha:0.4]];
+    [popTipView setPointerSize:6.0];
+    [self.palettePopTipView setDelegate:self];
+}
 
 - (void)updateSliders
 {
@@ -107,24 +130,61 @@
     
 }
 
+- (void)dismissAllPopTipViews
+{
+    [self.penPopTipView dismissAnimated:NO];
+    [self.colorBoxPopTipView dismissAnimated:NO];
+    [self.palettePopTipView dismissAnimated:NO];
+}
+
+#pragma mark - click actions
 - (IBAction)clickUndo:(id)sender {
+    if (self.delegate && [self.delegate respondsToSelector:@selector(drawToolPanel:didClickUndoButton:)]) {
+        [self.delegate drawToolPanel:self didClickUndoButton:sender];
+    }
 }
 
 - (IBAction)clickRedo:(id)sender {
+    if (self.delegate && [self.delegate respondsToSelector:@selector(drawToolPanel:didClickRedoButton:)]) {
+        [self.delegate drawToolPanel:self didClickRedoButton:sender];
+    }
 }
 
-- (IBAction)clickPen:(id)sender {
-}
 
 - (IBAction)clickEraser:(id)sender {
+    if (self.delegate && [self.delegate respondsToSelector:@selector(drawToolPanel:didClickEraserButton:)]) {
+        [self.delegate drawToolPanel:self didClickEraserButton:sender];
+    }
+}
+
+
+- (IBAction)clickPaintBucket:(id)sender {
+    if (self.delegate && [self.delegate respondsToSelector:@selector(drawToolPanel:didClickPaintBucket:)]) {
+        [self.delegate drawToolPanel:self didClickPaintBucket:sender];
+    }
 }
 
 - (IBAction)clickAddColor:(id)sender {
+    //Pop up add color box
 }
 
-- (IBAction)clickColorPicker:(id)sender {
+- (IBAction)clickPalette:(id)sender {
+
+    if (self.palettePopTipView == nil) {
+        //pop up palette
+        Palette *palette = [Palette createViewWithdelegate:self];
+        self.palettePopTipView = [[[CMPopTipView alloc] initWithCustomView:palette] autorelease];
+        [self.palettePopTipView presentPointingAtView:sender inView:self.superview animated:NO];
+        [self updatePopTipView:self.palettePopTipView];
+    }else{
+        [self.palettePopTipView dismissAnimated:NO];
+        self.palettePopTipView = nil;
+    }
 }
 
+- (IBAction)clickPen:(id)sender {
+    //pop up pen box.
+}
 
 
 #pragma mark - Color Point Delegate
@@ -177,11 +237,32 @@
     }
 }
 
+
+#pragma mark - CMPopTipView Delegate
+
+- (void)popTipViewWasDismissedByUser:(CMPopTipView *)popTipView
+{
+    PPDebug(@"<popTipViewWasDismissedByUser> popTipView retain Count = %d", [popTipView retainCount]);
+    if (popTipView == self.palettePopTipView) {
+        self.palettePopTipView = nil;
+    }
+}
+- (void)popTipViewWasDismissedByCallingDismissAnimatedMethod:(CMPopTipView *)popTipView
+{
+    
+}
+
+
 - (void)dealloc {
-    [_widthSlider release];
-    [_alphaSlider release];
-    [_penWidth release];
-    [_colorAlpha release];
+    PPRelease(_colorBoxPopTipView);
+    PPRelease(_penPopTipView);
+    PPRelease(_palettePopTipView);
+    
+    PPRelease(_widthSlider);
+    PPRelease(_alphaSlider);
+    PPRelease(_penWidth);
+    PPRelease(_colorAlpha);
+    
     [super dealloc];
 }
 @end

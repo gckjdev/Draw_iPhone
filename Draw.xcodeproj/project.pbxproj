@@ -3927,9 +3927,6 @@
 		CA7C7E071587214300406BFB /* FeedManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA7C7E061587214300406BFB /* FeedManager.m */; };
 		CA7C7E0B158721B200406BFB /* FeedService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA7C7E0A158721B200406BFB /* FeedService.m */; };
 		CA7D4293168D7588009F43F7 /* TraditionalChineseWord.strings in Resources */ = {isa = PBXBuildFile; fileRef = CA7D41DF168D7588009F43F7 /* TraditionalChineseWord.strings */; };
-		CA7D4294168D7588009F43F7 /* CN_Words_Dict.plist in Resources */ = {isa = PBXBuildFile; fileRef = CA7D41E1168D7588009F43F7 /* CN_Words_Dict.plist */; };
-		CA7D4295168D7588009F43F7 /* EN_Words_Dict.plist in Resources */ = {isa = PBXBuildFile; fileRef = CA7D41E2168D7588009F43F7 /* EN_Words_Dict.plist */; };
-		CA7D4296168D7588009F43F7 /* words.plist in Resources */ = {isa = PBXBuildFile; fileRef = CA7D41E3168D7588009F43F7 /* words.plist */; };
 		CA7D4297168D7588009F43F7 /* wordbase.zip in Resources */ = {isa = PBXBuildFile; fileRef = CA7D41E4168D7588009F43F7 /* wordbase.zip */; };
 		CA7D4298168D7588009F43F7 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA7D41E5168D7588009F43F7 /* Default-568h@2x.png */; };
 		CA7D4299168D7588009F43F7 /* Default-Portrait.png in Resources */ = {isa = PBXBuildFile; fileRef = CA7D41E7168D7588009F43F7 /* Default-Portrait.png */; };
@@ -6130,9 +6127,6 @@
 		CA7C7E09158721B200406BFB /* FeedService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedService.h; sourceTree = "<group>"; };
 		CA7C7E0A158721B200406BFB /* FeedService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedService.m; sourceTree = "<group>"; };
 		CA7D41DF168D7588009F43F7 /* TraditionalChineseWord.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = TraditionalChineseWord.strings; sourceTree = "<group>"; };
-		CA7D41E1168D7588009F43F7 /* CN_Words_Dict.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = CN_Words_Dict.plist; sourceTree = "<group>"; };
-		CA7D41E2168D7588009F43F7 /* EN_Words_Dict.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = EN_Words_Dict.plist; sourceTree = "<group>"; };
-		CA7D41E3168D7588009F43F7 /* words.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = words.plist; sourceTree = "<group>"; };
 		CA7D41E4168D7588009F43F7 /* wordbase.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = wordbase.zip; sourceTree = "<group>"; };
 		CA7D41E6168D7588009F43F7 /* en */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = en; path = "en.lproj/Default-568h@2x.png"; sourceTree = "<group>"; };
 		CA7D41E8168D7588009F43F7 /* en */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = en; path = "en.lproj/Default-Portrait.png"; sourceTree = "<group>"; };
@@ -10613,20 +10607,9 @@
 			isa = PBXGroup;
 			children = (
 				CA7D41DF168D7588009F43F7 /* TraditionalChineseWord.strings */,
-				CA7D41E0168D7588009F43F7 /* wordbase */,
 				CA7D41E4168D7588009F43F7 /* wordbase.zip */,
 			);
 			path = Data;
-			sourceTree = "<group>";
-		};
-		CA7D41E0168D7588009F43F7 /* wordbase */ = {
-			isa = PBXGroup;
-			children = (
-				CA7D41E1168D7588009F43F7 /* CN_Words_Dict.plist */,
-				CA7D41E2168D7588009F43F7 /* EN_Words_Dict.plist */,
-				CA7D41E3168D7588009F43F7 /* words.plist */,
-			);
-			path = wordbase;
 			sourceTree = "<group>";
 		};
 		CA7D41EB168D7588009F43F7 /* Icons */ = {
@@ -15108,9 +15091,6 @@
 				C20E718A168C590C00E37127 /* wechat_friend@2x.png in Resources */,
 				CAC4496B168D58F3004441EB /* ColorBox.xib in Resources */,
 				CA7D4293168D7588009F43F7 /* TraditionalChineseWord.strings in Resources */,
-				CA7D4294168D7588009F43F7 /* CN_Words_Dict.plist in Resources */,
-				CA7D4295168D7588009F43F7 /* EN_Words_Dict.plist in Resources */,
-				CA7D4296168D7588009F43F7 /* words.plist in Resources */,
 				CA7D4297168D7588009F43F7 /* wordbase.zip in Resources */,
 				CA7D4298168D7588009F43F7 /* Default-568h@2x.png in Resources */,
 				CA7D4299168D7588009F43F7 /* Default-Portrait.png in Resources */,
