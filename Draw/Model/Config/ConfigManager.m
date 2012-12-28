@@ -79,6 +79,10 @@
     return [MobClickUtils getIntValueByKey:@"HISTORY_RANK_NUMBER" defaultValue:300];
 }
 
++ (NSInteger)drawAutoSavePaintInterval
+{
+    return [MobClickUtils getIntValueByKey:@"DRAFT_PAINT_COUNT" defaultValue:50];
+}
 
 + (int)getGuessRewardNormal
 {
