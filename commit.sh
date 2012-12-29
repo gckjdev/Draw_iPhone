@@ -1,7 +1,7 @@
 #!/bin/bash
 
 echo 'add files'
-git add *.h *.m *.xib
+git add *.h *.m *.xib *.strings *.plist *.png *.jpg *.txt *.sh
 
 echo 'checkout unuse files'
 git checkout *.xcuserstate *DS_Store

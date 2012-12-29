@@ -208,7 +208,7 @@
 
 //     [self.view bringSubviewToFront:self.testBulletin];
 
-//    [DrawTestViewController enterWithController:self];
+    [DrawTestViewController enterWithController:self];
 }
 
 

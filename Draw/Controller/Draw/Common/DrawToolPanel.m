@@ -276,6 +276,10 @@
     PPDebug(@"<popTipViewWasDismissedByUser> popTipView retain Count = %d", [popTipView retainCount]);
     if (popTipView == self.palettePopTipView) {
         self.palettePopTipView = nil;
+    }else if(popTipView == self.penPopTipView){
+        self.penPopTipView = nil;
+    }else if(popTipView == self.colorBoxPopTipView){
+        self.colorBoxPopTipView = nil;
     }
 }
 - (void)popTipViewWasDismissedByCallingDismissAnimatedMethod:(CMPopTipView *)popTipView
