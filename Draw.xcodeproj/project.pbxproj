@@ -19414,8 +19414,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Lingzhe Peng (4JW9JNLMWA)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Lingzhe Peng (4JW9JNLMWA)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Lingzhe Peng";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Lingzhe Peng";
 				COPY_PHASE_STRIP = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -19467,8 +19467,8 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = Dice;
-				PROVISIONING_PROFILE = "6BD5DDE0-93BE-4DAA-9304-EF7BEA2DF182";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "6BD5DDE0-93BE-4DAA-9304-EF7BEA2DF182";
+				PROVISIONING_PROFILE = "15D57303-26BC-4ED9-8C04-7F886B871932";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "15D57303-26BC-4ED9-8C04-7F886B871932";
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;
 			};
@@ -19542,8 +19542,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Lingzhe Peng (9WG829Y3AG)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Lingzhe Peng (9WG829Y3AG)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Lingzhe Peng";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Lingzhe Peng";
 				COPY_PHASE_STRIP = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -19595,8 +19595,8 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = Zhajinhua;
-				PROVISIONING_PROFILE = "CD3984EB-4737-4FFC-B8F0-CD685022B308";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "CD3984EB-4737-4FFC-B8F0-CD685022B308";
+				PROVISIONING_PROFILE = "1F663AF0-A956-4FB2-B213-7040F013FE0B";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "1F663AF0-A956-4FB2-B213-7040F013FE0B";
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;
 			};
@@ -19726,8 +19726,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Lingzhe Peng (9WG829Y3AG)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Lingzhe Peng (9WG829Y3AG)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Lingzhe Peng";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Lingzhe Peng";
 				COPY_PHASE_STRIP = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -19779,8 +19779,8 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "90954517-754F-4976-BBF0-58802195B7AE";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "90954517-754F-4976-BBF0-58802195B7AE";
+				PROVISIONING_PROFILE = "71F47996-5EDE-4316-8BF3-4EA4DFF96536";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "71F47996-5EDE-4316-8BF3-4EA4DFF96536";
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;
 			};
