@@ -248,10 +248,11 @@
     [self.nickName setTextColor:borderColor];
     
     UserManager *userManager = [UserManager defaultManager];
-    if ([userManager avatarImage]) {
-        [self.avatar setImage:[userManager avatarImage]];
-    }else if([[userManager avatarURL] length] != 0){
+    if([[userManager avatarURL] length] > 0){
         [self.avatar setImageWithURL:[NSURL URLWithString:[userManager avatarURL]]];
+    }
+    else {
+        [self.avatar setImage:[userManager avatarImage]];
     }
     
     UIButton *mask = [UIButton buttonWithType:UIControlStateNormal];

@@ -39,7 +39,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(BulletinService)
     PPDebug(@"<%@> post notification %@", [self description], name);
 }
 
-- (void)syncBulletins
+- (void)syncBulletins:(BulletinServiceCallbackBlock)block
 {
     dispatch_async(workingQueue, ^{
         NSString *appId = [ConfigManager appId];
@@ -78,10 +78,12 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(BulletinService)
         dispatch_async(dispatch_get_main_queue(), ^{
             if (errorCode == ERROR_SUCCESS) {
                 [[BulletinManager defaultManager] saveBulletinList:bulletinList];
-                [[StatisticManager defaultManager] setBulletinCount:[[BulletinManager defaultManager] unreadBulletinCount]];
-                
             }else {
                 // failure, do nothing
+            }
+            
+            if (block != NULL){
+                block(errorCode);
             }
         });
         

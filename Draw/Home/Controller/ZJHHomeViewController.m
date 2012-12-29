@@ -102,6 +102,8 @@ ZJHHomeViewController *_staticZJHHomeViewController = nil;
                 [_gameService reset];
                 [self popupUnhappyMessage:NSLS(@"kNetworkBroken") title:@""];
         }
+        
+        [self.homeHeaderPanel updateView];
     }];
 }
 

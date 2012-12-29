@@ -17,9 +17,11 @@
 @property (assign, nonatomic) long fanCount;
 @property (assign, nonatomic) long roomCount;
 @property (assign, nonatomic) long bbsActionCount;
-@property (assign, nonatomic) long bulletinCount;
+//@property (assign, nonatomic) long bulletinCount;
 + (StatisticManager *)defaultManager;
 
 + (NSString *)badgeStringFromIntValue:(int)badge;
 + (NSString *)badgeStringFromLongValue:(long)badge;
+- (int)bulletinCount;
+
 @end

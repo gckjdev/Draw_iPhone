@@ -141,7 +141,7 @@
     long timelineCount = manager.feedCount + manager.commentCount + manager.drawToMeCount;
     [self.homeMainMenuPanel updateMenu:HomeMenuTypeDrawTimeline badge:timelineCount];
     
-    [self.homeHeaderPanel updateBulletinBadge:manager.bulletinCount];
+    [self.homeHeaderPanel updateBulletinBadge:[manager bulletinCount]];
     
 }
 - (void)didSyncStatisticWithResultCode:(int)resultCode

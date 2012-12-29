@@ -7,6 +7,7 @@
 //
 
 #import "StatisticManager.h"
+#import "BulletinManager.h"
 
 static StatisticManager *_globalStatisticManager;
 
@@ -19,7 +20,7 @@ static StatisticManager *_globalStatisticManager;
 @synthesize fanCount;
 @synthesize roomCount;
 @synthesize bbsActionCount;
-@synthesize bulletinCount;
+//@synthesize bulletinCount;
 
 + (StatisticManager *)defaultManager
 {
@@ -50,4 +51,10 @@ static StatisticManager *_globalStatisticManager;
     }
     return @"N";
 }
+
+- (int)bulletinCount
+{
+    return [[BulletinManager defaultManager] unreadBulletinCount];
+}
+
 @end

@@ -205,15 +205,22 @@
 //    }
 
     [self enterNextControllerWityType:self.notificationType];
+    [self registerUIApplicationWillEnterForegroundNotification];
+
 
 //     [self.view bringSubviewToFront:self.testBulletin];
 
 //    [DrawTestViewController enterWithController:self];
 }
 
+- (void)registerUIApplicationWillEnterForegroundNotification{
+    
+    [self registerNotificationWithName:UIApplicationWillEnterForegroundNotification usingBlock:^(NSNotification *note) {        
+        [self.homeHeaderPanel updateView];
+    }];
+}
 
-
-- (void)registerDrawGameNotificationWithName:(NSString *)name 
+- (void)registerDrawGameNotificationWithName:(NSString *)name
                                   usingBlock:(void (^)(NSNotification *note))block
 {
     /*
@@ -267,6 +274,10 @@
     [self registerDrawGameNotification];
     
     [[UserService defaultService] getStatistic:self];
+    [[BulletinService defaultService] syncBulletins:^(int resultCode) {
+        [self updateAllBadge];
+    }];
+
     [UIApplication sharedApplication].idleTimerDisabled = NO;
     [[DrawGameService defaultService] registerObserver:self];
 //    [self loadBoards];

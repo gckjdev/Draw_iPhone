@@ -446,7 +446,6 @@ NSString* GlobalGetBoardServerURL()
      */
     
     [[BoardService defaultService] syncBoards];
-    [[BulletinService defaultService] syncBulletins];
     
     if ([ConfigManager wallEnabled]){
         [[LmWallService defaultService] queryScore];            

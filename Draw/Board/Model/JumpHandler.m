@@ -60,7 +60,7 @@
 
 + (BOOL)canJump:(JumpType)type
 {
-    return (type == JumpTypeCanotJump)?NO:YES;
+    return (type != JumpTypeCanotJump);
 }
 
 @end

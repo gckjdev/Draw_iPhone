@@ -187,6 +187,14 @@ enum {
             //[self popupMessage:NSLS(@"kPublishWeiboSucc") title:nil];
             [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kPublishWeiboSucc") delayTime:1 isHappy:YES];
         }
+
+        // report action, doesn't work here, need to fix later
+        /*
+        if (_delegate && [_delegate respondsToSelector:@selector(didPublishSnsMessage:)]) {
+            [_delegate didPublishSnsMessage:_snsType];
+        }
+        */
+        
         [self.navigationController popViewControllerAnimated:YES];
 
     } failureBlock:^(NSError *error) {

@@ -13,6 +13,7 @@
 
 
 
+
 @implementation BulletinManager
 SYNTHESIZE_SINGLETON_FOR_CLASS(BulletinManager)
 

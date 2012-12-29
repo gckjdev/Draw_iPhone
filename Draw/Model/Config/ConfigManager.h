@@ -84,6 +84,8 @@ typedef enum{
 
 + (NSString*)getSystemUserId;
 
++ (int)maxCacheBulletinCount;
+
 /*
 + (NSString*)getRecommendAppLinkZh;
 + (NSString*)getRecommendAppLinkZht;

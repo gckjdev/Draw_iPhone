@@ -17,6 +17,11 @@
 
 @implementation ConfigManager
 
++ (int)maxCacheBulletinCount
+{
+    return [MobClickUtils getIntValueByKey:@"MAX_CACHE_BULLETIN_COUNT" defaultValue:20];
+}
+
 + (NSString*)getSystemUserId
 {
     return [MobClickUtils getStringValueByKey:@"SYSTEM_USER_ID" defaultValue:@"888888888888888888888888"];
