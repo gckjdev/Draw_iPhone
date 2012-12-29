@@ -196,6 +196,7 @@ enum {
     
     return;
     
+    /*
     [[PPSNSIntegerationService defaultService] publishWeiboToAll:text
                                                    imageFilePath:imagePath
                                                     successBlock:^(int snsType, PPSNSCommonService *snsService, NSDictionary *userInfo) {
@@ -221,6 +222,7 @@ enum {
                                                         [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kPublishWeiboFail") delayTime:1 isHappy:NO];
                                                         
                                                     }];
+     */
 }
 
 - (void)clickOk:(CommonDialog *)dialog
