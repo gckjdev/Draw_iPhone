@@ -152,9 +152,9 @@ enum{
 //    }
     for (NSInteger tag = ActionTagGuess; tag < ActionTagEnd; ++ tag) {
         UIButton *button = (UIButton *)[self.view viewWithTag:tag];            
-        button.enabled = ([self.feed hasDrawActions]);
+        button.enabled = ([self.feed hasDrawActions] && _didLoadDrawPicture);
     }
-    self.saveButton.enabled = !_didSave && [self.feed hasDrawActions];
+    self.saveButton.enabled = !_didSave && [self.feed hasDrawActions] && _didLoadDrawPicture;
 //    if (![self.feed canSave]) {
 //        self.saveButton.enabled = NO;
 //    }
@@ -182,6 +182,7 @@ enum{
     if (self.drawCell == nil) {
         self.drawCell = [DrawInfoCell createCell:self];
         [self.drawCell setCellInfo:self.feed];
+        self.drawCell.delegate = self;
     }
     return self.drawCell;
 
@@ -787,6 +788,12 @@ enum{
     
 }
 
+#pragma mark - DrawInfoCell delegate
 
+- (void)didLoadDrawPicture
+{
+    _didLoadDrawPicture = YES;
+    [self updateActionButtons];
+}
 
 @end
