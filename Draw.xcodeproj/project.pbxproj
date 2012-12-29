@@ -203,6 +203,7 @@
 		C20E7188168C584600E37127 /* wechat@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C20E7183168C584600E37127 /* wechat@2x.png */; };
 		C20E718A168C590C00E37127 /* wechat_friend@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C20E7189168C590C00E37127 /* wechat_friend@2x.png */; };
 		C2117B93168D8FD5000F36EE /* detail_share@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2117B92168D8FD5000F36EE /* detail_share@2x.png */; };
+		C2117BE5168EEEFB000F36EE /* draw_home_bulletin@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2117BE4168EEEFB000F36EE /* draw_home_bulletin@2x.png */; };
 		C213091B15E349E20072A18E /* DiceUserInfoView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C213091A15E349E20072A18E /* DiceUserInfoView~ipad.xib */; };
 		C21309FB15E774390072A18E /* DiceColorManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C21309FA15E774390072A18E /* DiceColorManager.m */; };
 		C223232D165C659E00D7ECE4 /* ZJHSettingView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C223232C165C659E00D7ECE4 /* ZJHSettingView~ipad.xib */; };
@@ -5064,6 +5065,7 @@
 		C20E7183168C584600E37127 /* wechat@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wechat@2x.png"; sourceTree = "<group>"; };
 		C20E7189168C590C00E37127 /* wechat_friend@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wechat_friend@2x.png"; sourceTree = "<group>"; };
 		C2117B92168D8FD5000F36EE /* detail_share@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "detail_share@2x.png"; sourceTree = "<group>"; };
+		C2117BE4168EEEFB000F36EE /* draw_home_bulletin@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "draw_home_bulletin@2x.png"; sourceTree = "<group>"; };
 		C213091A15E349E20072A18E /* DiceUserInfoView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "DiceUserInfoView~ipad.xib"; sourceTree = "<group>"; };
 		C21309F915E774390072A18E /* DiceColorManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiceColorManager.h; sourceTree = "<group>"; };
 		C21309FA15E774390072A18E /* DiceColorManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiceColorManager.m; sourceTree = "<group>"; };
@@ -10344,6 +10346,7 @@
 		CA12610516785F0D00DD96F4 /* Draw */ = {
 			isa = PBXGroup;
 			children = (
+				C2117BE4168EEEFB000F36EE /* draw_home_bulletin@2x.png */,
 				CA1261421678614200DD96F4 /* draw_home_opus@2x.png */,
 				CA12610616785F0D00DD96F4 /* draw_home_banner@2x.png */,
 				CA12610716785F0D00DD96F4 /* draw_home_charge@2x.png */,
@@ -17057,6 +17060,7 @@
 				C2117B93168D8FD5000F36EE /* detail_share@2x.png in Resources */,
 				CAC4499A168DA01B004441EB /* PenBox.xib in Resources */,
 				CAB3ADC2168EA6E500916C97 /* color_box_split@2x.png in Resources */,
+				C2117BE5168EEEFB000F36EE /* draw_home_bulletin@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

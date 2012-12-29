@@ -17,6 +17,7 @@
 #import "Feed.h"
 #import "DrawImageManager.h"
 #import "ConfigManager.h"
+#import "BulletinView.h"
 
 @interface HomeHeaderPanel ()
 {
@@ -28,15 +29,18 @@
 @property (retain, nonatomic) IBOutlet UILabel *nickName;
 @property (retain, nonatomic) IBOutlet UILabel *level;
 @property (retain, nonatomic) IBOutlet UIButton *chargeButton;
+@property (retain, nonatomic) IBOutlet UIButton *bulletinButton;
 @property (retain, nonatomic) IBOutlet UILabel *coin;
 @property (retain, nonatomic) IBOutlet UIScrollView *displayScrollView;
 @property (retain, nonatomic) IBOutlet UIButton *freeCoin;
+@property (retain, nonatomic) IBOutlet UIButton *bulletinBadge;
 
 @property (retain, nonatomic) NSMutableArray *feedList;
 
 - (IBAction)clickFreeCoinButton:(id)sender;
 - (IBAction)clickChargeButton:(id)sender;
 - (IBAction)clickAvatarButton:(id)sender;
+- (IBAction)clickBulletinButton:(id)sender;
 
 @end
 
@@ -271,6 +275,7 @@
     self.freeCoin.hidden = [ConfigManager wallEnabled] ? NO : YES;
     
     [self.chargeButton setTitle:NSLS(@"kCharge") forState:UIControlStateNormal];
+    [self.bulletinButton setTitle:NSLS(@"kBulletin") forState:UIControlStateNormal];
     [self.freeCoin setTitle:NSLS(@"kFreeCoin") forState:UIControlStateNormal];
     
     [self.displayScrollView setHidden:YES];
@@ -285,7 +290,8 @@
             [self didGetFeedList:self.feedList feedListType:0 resultCode:0];
         }
         self.displayBG.image = [[DrawImageManager defaultManager] drawHomeDisplayBG];
-        [self.chargeButton.layer setTransform:CATransform3DMakeRotation(0.12, 0, 0, 1)];
+        [self.chargeButton.layer setTransform:CATransform3DMakeRotation(-0.12, 0, 0, 1)];
+        [self.bulletinButton.layer setTransform:CATransform3DMakeRotation(0.12, 0, 0, 1)];
     }else{
         self.displayBG.hidden = YES;
         DrawImageManager *imageManager = [DrawImageManager defaultManager];
@@ -302,6 +308,7 @@
     PPRelease(_nickName);
     PPRelease(_level);
     PPRelease(_chargeButton);
+    PPRelease(_bulletinButton);
     PPRelease(_coin);
     PPRelease(_displayScrollView);
     PPRelease(_feedList);
@@ -322,6 +329,24 @@
 - (IBAction)clickAvatarButton:(id)sender {
     if (self.delegate && [self.delegate respondsToSelector:@selector(homeHeaderPanel:didClickAvatarButton:)]) {
         [self.delegate homeHeaderPanel:self didClickAvatarButton:sender];
+    }
+}
+
+- (IBAction)clickBulletinButton:(id)sender
+{
+    if (self.delegate && [self.delegate respondsToSelector:@selector(homeHeaderPanel:didClickBulletinButton:)]) {
+        [self.delegate homeHeaderPanel:self didClickBulletinButton:sender];
+    }
+    [self updateBulletinBadge:0];
+}
+
+- (void)updateBulletinBadge:(int)count
+{
+    [self.bulletinBadge setTitle:[NSString stringWithFormat:@"%d",count] forState:UIControlStateNormal];
+    if (count > 0) {
+        [self.bulletinBadge setHidden:NO];
+    } else {
+        [self.bulletinBadge setHidden:YES];
     }
 }
 
