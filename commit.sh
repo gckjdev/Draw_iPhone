@@ -18,5 +18,7 @@ echo ''
 
 echo '========== wow, push code to server =================================='
 git push
+
+echo ''
 echo '========== congratulations! hope there is no conflict! ==============='
 echo ''
