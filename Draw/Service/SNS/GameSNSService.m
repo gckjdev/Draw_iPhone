@@ -49,6 +49,30 @@
     
 }
 
++ (NSString*)followKey:(PPSNSCommonService*)snsService
+{
+    NSString* key = [NSString stringWithFormat:@"FOLLOW_SNS_%@_KEY", [snsService snsName]];
+    return key;
+}
+
++ (BOOL)hasFollowOfficialWeibo:(PPSNSCommonService*)snsService
+{
+    NSString* followKey = [self followKey:snsService];
+    NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
+    BOOL value = [userDefaults boolForKey:followKey];
+    return value;
+}
+
++ (void)updateFollowOfficialWeibo:(PPSNSCommonService*)snsService
+{
+    NSString* followKey = [self followKey:snsService];
+    NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
+    [[AccountService defaultService] chargeAccount:[ConfigManager getFollowReward] source:FollowReward];
+    [userDefaults setBool:YES forKey:followKey];
+    [userDefaults synchronize];
+    return;
+}
+
 + (void)askFollow:(PPSNSType)snsType snsWeiboId:(NSString*)weiboId
 {
     PPSNSCommonService* snsService = [[PPSNSIntegerationService defaultService] snsServiceByType:snsType];
@@ -60,17 +84,9 @@
                            weiboId:weiboId
                       successBlock:^(NSDictionary *userInfo) {
 
-        NSString* followKey = [NSString stringWithFormat:@"FOLLOW_SNS_%@_KEY", [snsService snsName]];
-        
-                          
-        NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
-        BOOL key = [userDefaults boolForKey:followKey];
-        
-        if (key == NO){
+        if ([self hasFollowOfficialWeibo:snsService] == NO){
             PPDebug(@"follow user %@ and reward success", weiboId);
-            [[AccountService defaultService] chargeAccount:[ConfigManager getFollowReward] source:FollowReward];
-            [userDefaults setBool:YES forKey:followKey];
-            [userDefaults synchronize];
+            [self updateFollowOfficialWeibo:snsService];
         }
         else{
             PPDebug(@"follow user %@ but already reward", weiboId);

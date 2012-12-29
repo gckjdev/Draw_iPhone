@@ -3262,6 +3262,7 @@
 		CA42FE4B165F2FF30097453A /* BBSUserActionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA42FE49165F2FF30097453A /* BBSUserActionCell.m */; };
 		CA42FE4C165F2FF30097453A /* BBSUserActionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA42FE4A165F2FF30097453A /* BBSUserActionCell.xib */; };
 		CA42FE861660B73A0097453A /* DrawGameAnimationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA42FE851660B73A0097453A /* DrawGameAnimationManager.m */; };
+		CA479468168E986400D4AF55 /* AnalyticsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA479467168E986400D4AF55 /* AnalyticsManager.m */; };
 		CA4FF001152AEFDF00F0AC88 /* ColorGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = CA4FF000152AEFDF00F0AC88 /* ColorGroup.m */; };
 		CA4FF00A152AF21900F0AC88 /* ColorShopCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA4FF008152AF21900F0AC88 /* ColorShopCell.m */; };
 		CA4FF00B152AF21900F0AC88 /* ColorShopCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA4FF009152AF21900F0AC88 /* ColorShopCell.xib */; };
@@ -6026,6 +6027,8 @@
 		CA42FE4A165F2FF30097453A /* BBSUserActionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BBSUserActionCell.xib; sourceTree = "<group>"; };
 		CA42FE841660B73A0097453A /* DrawGameAnimationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawGameAnimationManager.h; sourceTree = "<group>"; };
 		CA42FE851660B73A0097453A /* DrawGameAnimationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawGameAnimationManager.m; sourceTree = "<group>"; };
+		CA479466168E986400D4AF55 /* AnalyticsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnalyticsManager.h; sourceTree = "<group>"; };
+		CA479467168E986400D4AF55 /* AnalyticsManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnalyticsManager.m; sourceTree = "<group>"; };
 		CA4AF8C015D23A4E00734FAC /* MainDataModel 7.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "MainDataModel 7.xcdatamodel"; sourceTree = "<group>"; };
 		CA4F066F1546F66500A38C84 /* MainDataModel 3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "MainDataModel 3.xcdatamodel"; sourceTree = "<group>"; };
 		CA4FEFFF152AEFDF00F0AC88 /* ColorGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorGroup.h; sourceTree = "<group>"; };
@@ -10834,6 +10837,15 @@
 			path = Animation;
 			sourceTree = "<group>";
 		};
+		CA479465168E984A00D4AF55 /* Analytics */ = {
+			isa = PBXGroup;
+			children = (
+				CA479466168E986400D4AF55 /* AnalyticsManager.h */,
+				CA479467168E986400D4AF55 /* AnalyticsManager.m */,
+			);
+			path = Analytics;
+			sourceTree = "<group>";
+		};
 		CA51816A15A2D79700AD5A78 /* CustomStatueBar */ = {
 			isa = PBXGroup;
 			children = (
@@ -13298,6 +13310,7 @@
 		CAECE0291503B25500BC2404 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				CA479465168E984A00D4AF55 /* Analytics */,
 				C2424794167989FD008B4E14 /* DrawSoundManager */,
 				CA1DA8FE167320EA0078B5A9 /* DrawUIManager */,
 				CA42FE831660B7390097453A /* Animation */,
@@ -19055,6 +19068,7 @@
 				CAC44962168D57C8004441EB /* Palette.m in Sources */,
 				CAC44967168D58C3004441EB /* ColorBox.m in Sources */,
 				CAC44998168D9FFE004441EB /* PenBox.m in Sources */,
+				CA479468168E986400D4AF55 /* AnalyticsManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

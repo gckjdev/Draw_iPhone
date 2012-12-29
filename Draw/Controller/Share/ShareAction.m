@@ -360,9 +360,6 @@
                                                            userInfo:userInfo
                                                      viewController:nil];
             
-            // ask follow official weibo account here
-            // [GameSNSService askFollow:snsType snsWeiboId:[service officialWeiboId]];
-
             // share weibo here
             [self shareViaSNS:snsType];
             
@@ -371,6 +368,17 @@
             PPDebug(@"%@ readMyUserInfo Failure", name);
         }];
         
+        // follow weibo if NOT followed
+        if ([GameSNSService hasFollowOfficialWeibo:service] == NO){            
+            [service followUser:[service officialWeiboId]
+                         userId:[service officialWeiboId]
+                   successBlock:^(NSDictionary *userInfo) {
+                [GameSNSService updateFollowOfficialWeibo:service];
+            } failureBlock:^(NSError *error) {
+                PPDebug(@"follow weibo but error=%@", [error description]);
+            }];            
+        }
+     
     } failureBlock:^(NSError *error) {
         PPDebug(@"%@ Login Failure", name);
         [viewController popupMessage:NSLS(@"kUserBindFail") title:nil];
@@ -382,19 +390,16 @@
 
 - (void)bindSinaWeibo
 {
-    //TODO:bind sina weibo here
     [self bindSNS:TYPE_SINA];
 }
 
 - (void)bindQQWeibo
 {
-    //TODO:bind qq weibo here
     [self bindSNS:TYPE_QQ];
 }
 
 - (void)bindFacebook
 {
-    //TODO:bind facebook here
     [self bindSNS:TYPE_FACEBOOK];
 }
 
