@@ -8,7 +8,7 @@ echo '=========== auto checkout unuse files (*.xcuserstate *DS_Store)  ====='
 git checkout *.xcuserstate *DS_Store
 echo ''
 
-echo '========== oh, commit files. Comment:'"$1"" ====================="
+echo '========== oh, commit files. comment: '"$1"" ====================="
 git commit -m "$1"
 echo ''
 
@@ -18,5 +18,7 @@ echo ''
 
 echo '========== wow, push code to server =================================='
 git push
+
+echo ''
 echo '========== congratulations! hope there is no conflict! ==============='
 echo ''

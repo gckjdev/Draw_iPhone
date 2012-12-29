@@ -3107,6 +3107,10 @@
 		CA1DA96D1673320C0078B5A9 /* HomeCommonView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1DA96C1673320A0078B5A9 /* HomeCommonView.m */; };
 		CA1DA9701673437A0078B5A9 /* HomeMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1DA96F167343770078B5A9 /* HomeMenuView.m */; };
 		CA1DAA31167583130078B5A9 /* DrawHomeHeaderPanel~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA1DAA30167583120078B5A9 /* DrawHomeHeaderPanel~ipad.xib */; };
+		CA220A36168EC4CD0054FA91 /* PenBox.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAC44999168DA019004441EB /* PenBox.xib */; };
+		CA220A3E168EC56D0054FA91 /* CustomActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = C20E7153168AE0A400E37127 /* CustomActionSheet.m */; };
+		CA220A3F168EC5760054FA91 /* PenBox.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC44997168D9FF3004441EB /* PenBox.m */; };
+		CA220A40168EC57D0054FA91 /* DrawSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = CA7871871689AE6100B28A2E /* DrawSlider.m */; };
 		CA22DCD2157CAFFD009C95CB /* ResultController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA22DCCF157CAFFD009C95CB /* ResultController.m */; };
 		CA22DCD3157CAFFD009C95CB /* ResultController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA22DCD0157CAFFD009C95CB /* ResultController.xib */; };
 		CA22DCED157CB00A009C95CB /* OnlineDrawViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA22DCE0157CB00A009C95CB /* OnlineDrawViewController.m */; };
@@ -15580,6 +15584,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CA220A36168EC4CD0054FA91 /* PenBox.xib in Resources */,
 				CA16C1961682FAE300F81B47 /* InfoPlist.strings in Resources */,
 				CA16C1971682FAE300F81B47 /* MainWindow.xib in Resources */,
 				CA16C1981682FAE300F81B47 /* donedown.png in Resources */,
@@ -17766,6 +17771,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CA220A40168EC57D0054FA91 /* DrawSlider.m in Sources */,
+				CA220A3F168EC5760054FA91 /* PenBox.m in Sources */,
+				CA220A3E168EC56D0054FA91 /* CustomActionSheet.m in Sources */,
 				CADD263E1688407D00BDCDCF /* DrawToolPanel.m in Sources */,
 				C295B91D16857D12005B3559 /* DiceGameJumpHandler.m in Sources */,
 				C295B91F16857D12005B3559 /* DrawGameJumpHandler.m in Sources */,

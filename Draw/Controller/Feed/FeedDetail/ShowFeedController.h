@@ -13,6 +13,7 @@
 #import "DrawGameAnimationManager.h"
 #import "CommentHeaderView.h"
 #import "CommentCell.h"
+#import "DrawInfoCell.h"
 
 @class Feed;
 @class DrawFeed;
@@ -24,7 +25,7 @@
 @class UseItemScene;
 //@class ToolView;
 
-@interface ShowFeedController : PPTableViewController<FeedServiceDelegate, DrawDataServiceDelegate,CommonDialogDelegate, CommentHeaderViewDelegate, CommentCellDelegate, UIActionSheetDelegate>
+@interface ShowFeedController : PPTableViewController<FeedServiceDelegate, DrawDataServiceDelegate,CommonDialogDelegate, CommentHeaderViewDelegate, CommentCellDelegate, UIActionSheetDelegate, DrawInfoCellDelegate>
 {
     DrawFeed *_feed;
     UserInfoCell *_userCell;
@@ -32,6 +33,7 @@
     CommentHeaderView *_commentHeader;
     TableTabManager *_tabManager;
     BOOL _didSave;
+    BOOL _didLoadDrawPicture;
     UIImageView* _throwingItem;
 }
 @property (retain, nonatomic) IBOutlet UILabel *titleLabel;
