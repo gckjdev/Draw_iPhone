@@ -19,6 +19,7 @@
 - (void)didGetAllPaints:(NSArray *)paints;
 - (void)didGetMyPaints:(NSArray *)paints;
 - (void)didGetAllDrafts:(NSArray *)paints;
+- (void)didSaveToAlbumSuccess:(BOOL)succ;
 @end
 
 @class MyPaint;
@@ -54,7 +55,7 @@
 - (BOOL)deleteMyPaint:(MyPaint*)paint;
 - (BOOL)deleteAllPaints:(BOOL)onlyDrawnByMe;
 - (BOOL)deleteAllDrafts;
-- (void)savePhoto:(NSString*)filePath;
+- (void)savePhoto:(NSString*)filePath delegate:(id<MyPaintManagerDelegate>)delegate;
 - (BOOL)save;
 - (BOOL)deleteMyPaint:(MyPaint *)paint;
 
