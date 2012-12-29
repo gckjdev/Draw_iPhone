@@ -17,6 +17,11 @@
 
 @implementation ConfigManager
 
++ (NSString*)getSystemUserId
+{
+    return [MobClickUtils getStringValueByKey:@"SYSTEM_USER_ID" defaultValue:@"888888888888888888888888"];
+}
+
 + (BOOL)isLiarDice
 {
     return [[GameApp appId] isEqualToString:DICE_APP_ID];
