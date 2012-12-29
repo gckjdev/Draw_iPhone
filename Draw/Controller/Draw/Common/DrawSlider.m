@@ -106,17 +106,17 @@
 
 - (CGFloat)loadStartX
 {
-    return DrawSliderStyleLarge == self.style ? 3.8 : 4.2;
+    return DrawSliderStyleLarge == self.style ? 4.0 : 4.2;
 }
 
 - (CGFloat)loadStartY
 {
-    return DrawSliderStyleLarge == self.style ? 4.5 : 4.5;
+    return DrawSliderStyleLarge == self.style ? 3.8 : 4.5;
 }
 
 - (CGFloat)loadHeight
 {
-    return DrawSliderStyleLarge == self.style ? 2.0 : 2.0;
+    return DrawSliderStyleLarge == self.style ? 2.6 : 2.0;
 }
 
 - (CGFloat)loadMinX
@@ -158,15 +158,15 @@
     _style = style;
     //set the image according to the style
     
-    if (style == DrawSliderStyleLarge) {
-        self.bgImage = [UIImage imageNamed:@"draw_slider2_bg"];
-        self.pointImage = [UIImage imageNamed:@"draw_slider2_point"];
-    }else if (style == DrawSliderStyleSmall){
-        self.bgImage = [UIImage imageNamed:@"draw_slider1_bg"];
-        self.pointImage = [UIImage imageNamed:@"draw_slider1_point"];
-    }else{
-        return;
-    }    
+//    if (style == DrawSliderStyleLarge) {
+    self.bgImage = [UIImage imageNamed:@"draw_slider2_bg"];
+    self.pointImage = [UIImage imageNamed:@"draw_slider2_point"];
+//    }else if (style == DrawSliderStyleSmall){
+//        self.bgImage = [UIImage imageNamed:@"draw_slider1_bg"];
+//        self.pointImage = [UIImage imageNamed:@"draw_slider1_point"];
+//    }else{
+//        return;
+//    }    
     [self setNeedsDisplay];
 }
 

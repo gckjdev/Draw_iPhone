@@ -198,18 +198,21 @@
                   atView:(UIView *)atView
                   setter:(SEL)setter
 {
-    CMPopTipView *newView = popView;
-    if (newView == nil) {
+//    CMPopTipView *newView = popView;
+    if (popView == nil) {
         UIView *customView = contentView();
-        newView = [[[CMPopTipView alloc] initWithCustomView:customView] autorelease];
+        CMPopTipView *newView = [[[CMPopTipView alloc] initWithCustomView:customView] autorelease];
         [self performSelector:setter withObject: newView];
+        newView.delegate = self;
         [newView presentPointingAtView:atView inView:self.superview animated:NO];
         [self updatePopTipView:newView];
+        [self dismissPopTipViewsWithout:newView];
     }else{
-        [newView dismissAnimated:NO];
+        [popView dismissAnimated:NO];
         [self performSelector:setter withObject:nil];
+        [self dismissPopTipViewsWithout:popView];
     }
-    [self dismissPopTipViewsWithout:newView];
+
 }
 
 - (IBAction)clickAddColor:(id)sender {
