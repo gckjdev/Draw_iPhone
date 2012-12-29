@@ -8,6 +8,20 @@
 
 #import "ColorBox.h"
 
+@interface ColorBox ()
+{
+    
+}
+
+@property (retain, nonatomic) IBOutlet UIView *defaultColorView;
+@property (retain, nonatomic) IBOutlet UITableView *colorTableView;
+
+- (IBAction)clickCloseButton:(id)sender;
+- (IBAction)clickMoreButton:(id)sender;
+
+
+@end
+
 @implementation ColorBox
 
 - (id)initWithFrame:(CGRect)frame
@@ -28,4 +42,16 @@
 }
 */
 
+- (IBAction)clickCloseButton:(id)sender {
+    
+}
+
+- (IBAction)clickMoreButton:(id)sender {
+    
+}
+- (void)dealloc {
+    [_defaultColorView release];
+    [_colorTableView release];
+    [super dealloc];
+}
 @end
