@@ -23,6 +23,9 @@
 #define LOAD_WIDTH (WIDTH - LOAD_START_X*2)
 #define POINT_X ([self xFromPercent:_percent] - POINT_WIDTH/2)
 
+#define POP_POINT_SIZE VALUE(6.0)
+
+
 @interface DrawSlider()
 {
     CGPoint currentPoint;
@@ -247,7 +250,7 @@
         }
     }
     [poptipView presentPointingAtView:self inView:inView animated:NO];
-    [poptipView setPointerSize:6.0];
+    [poptipView setPointerSize:POP_POINT_SIZE];
 }
 - (void)dismissPopupView
 {

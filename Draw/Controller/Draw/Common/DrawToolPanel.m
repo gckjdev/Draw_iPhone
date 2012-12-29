@@ -9,23 +9,40 @@
 #import "DrawToolPanel.h"
 #import "DrawColor.h"
 #import "WidthView.h"
+#import "CMPopTipView.h"
+#import "PenBox.h"
+
 
 @interface DrawToolPanel ()
 {
-    
+//    CMPopTipView *_penPopTipView;
+//    CMPopTipView *_colorBoxPopTipView;
+//    CMPopTipView *_palettePopTipView;
 }
+
+#pragma mark - click actions
 - (IBAction)clickUndo:(id)sender;
 - (IBAction)clickRedo:(id)sender;
 
 - (IBAction)clickPen:(id)sender;
 - (IBAction)clickEraser:(id)sender;
 - (IBAction)clickAddColor:(id)sender;
-- (IBAction)clickColorPicker:(id)sender;
+- (IBAction)clickPalette:(id)sender;
+- (IBAction)clickPaintBucket:(id)sender;
 
 @property (retain, nonatomic) IBOutlet DrawSlider *widthSlider;
 @property (retain, nonatomic) IBOutlet DrawSlider *alphaSlider;
 @property (retain, nonatomic) IBOutlet UILabel *penWidth;
 @property (retain, nonatomic) IBOutlet UILabel *colorAlpha;
+@property (retain, nonatomic) IBOutlet UIButton *pen;
+
+
+@property (retain, nonatomic) CMPopTipView *penPopTipView;
+@property (retain, nonatomic) CMPopTipView *colorBoxPopTipView;
+@property (retain, nonatomic) CMPopTipView *palettePopTipView;
+
+
+
 
 @end
 
@@ -38,6 +55,14 @@
 #define SPACE_COLOR_COLOR VALUE(2)
 #define SPACE_COLOR_UP VALUE(10)
 
+#define ALPHA_FONT_SIZE VALUE(14.0)
+
+- (void)updatePopTipView:(CMPopTipView *)popTipView
+{
+    [popTipView setBackgroundColor:[UIColor colorWithRed:168./255. green:168./255. blue:168./255. alpha:0.4]];
+    [popTipView setPointerSize:8.0];
+    [self.palettePopTipView setDelegate:self];
+}
 
 - (void)updateSliders
 {
@@ -107,24 +132,78 @@
     
 }
 
+- (void)dismissAllPopTipViews
+{
+    [self.penPopTipView dismissAnimated:NO];
+    [self.colorBoxPopTipView dismissAnimated:NO];
+    [self.palettePopTipView dismissAnimated:NO];
+}
+
+#pragma mark - click actions
 - (IBAction)clickUndo:(id)sender {
+    if (self.delegate && [self.delegate respondsToSelector:@selector(drawToolPanel:didClickUndoButton:)]) {
+        [self.delegate drawToolPanel:self didClickUndoButton:sender];
+    }
 }
 
 - (IBAction)clickRedo:(id)sender {
+    if (self.delegate && [self.delegate respondsToSelector:@selector(drawToolPanel:didClickRedoButton:)]) {
+        [self.delegate drawToolPanel:self didClickRedoButton:sender];
+    }
 }
 
-- (IBAction)clickPen:(id)sender {
-}
 
 - (IBAction)clickEraser:(id)sender {
+    if (self.delegate && [self.delegate respondsToSelector:@selector(drawToolPanel:didClickEraserButton:)]) {
+        [self.delegate drawToolPanel:self didClickEraserButton:sender];
+    }
+}
+
+
+- (IBAction)clickPaintBucket:(id)sender {
+    if (self.delegate && [self.delegate respondsToSelector:@selector(drawToolPanel:didClickPaintBucket:)]) {
+        [self.delegate drawToolPanel:self didClickPaintBucket:sender];
+    }
+}
+
+- (void)handlePopTipView:(CMPopTipView *)popView
+             contentView:(UIView *(^)(void))contentView
+                  atView:(UIView *)atView
+                  setter:(SEL)setter
+{
+    if (popView == nil) {
+        UIView *customView = contentView();
+        CMPopTipView *newView = [[[CMPopTipView alloc] initWithCustomView:customView] autorelease];
+        [self performSelector:setter withObject: newView];
+        [newView presentPointingAtView:atView inView:self.superview animated:NO];
+        [self updatePopTipView:newView];
+    }else{
+        [popView dismissAnimated:NO];
+        [self performSelector:setter withObject:nil];
+    }
+
 }
 
 - (IBAction)clickAddColor:(id)sender {
+    //Pop up add color box
 }
 
-- (IBAction)clickColorPicker:(id)sender {
+- (IBAction)clickPalette:(id)sender {
+
+    [self handlePopTipView:_palettePopTipView contentView:^UIView *{
+        PPDebug(@"<block> [Palette createViewWithdelegate:self]");
+        return [Palette createViewWithdelegate:self];
+    } atView:sender setter:@selector(setPalettePopTipView:)];
 }
 
+- (IBAction)clickPen:(id)sender {
+    //pop up pen box.
+    [self handlePopTipView:_penPopTipView contentView:^UIView *{
+        PenBox *penBox = [PenBox createViewWithdelegate:self];
+        penBox.delegate = self;
+        return penBox;
+    } atView:sender setter:@selector(setPenPopTipView:)];
+}
 
 
 #pragma mark - Color Point Delegate
@@ -141,6 +220,12 @@
 #pragma mark - DrawSlider delegate
 
 
+- (void)updateLabel:(UILabel *)label value:(CGFloat)value
+{
+    NSString *v = [NSString stringWithFormat:@"%.0f%%",value*100];
+    [label setText:v];
+}
+
 - (void)drawSlider:(DrawSlider *)drawSlider
     didValueChange:(CGFloat)value
 {
@@ -148,9 +233,8 @@
         WidthView *widthView = (WidthView *)drawSlider.contentView;
         [widthView setWidth:value];
     }else if(self.alphaSlider == drawSlider){
-        NSString *v = [NSString stringWithFormat:@"%.1f",value];
         UILabel *label = (UILabel *)drawSlider.contentView;
-        [label setText:v];
+        [self updateLabel:label value:value];
     }
 }
 
@@ -163,25 +247,58 @@
 - (void)drawSlider:(DrawSlider *)drawSlider didStartToChangeValue:(CGFloat)value
 {
     if (drawSlider == self.alphaSlider) {
-        NSString *v = [NSString stringWithFormat:@"%.1f",value];
         UILabel *label = [[[UILabel alloc] initWithFrame:CGRectMake(0, 0, 40, 20)] autorelease];
         [label setTextAlignment:NSTextAlignmentCenter];
-        [label setText:v];
         [drawSlider popupWithContenView:label];
         [label setBackgroundColor:[UIColor clearColor]];
+        [label setFont:[UIFont boldSystemFontOfSize:ALPHA_FONT_SIZE]];
+        [self updateLabel:label value:value];
+        
     }else if(drawSlider == self.widthSlider){
         WidthView *width = [WidthView viewWithWidth:value];
         [drawSlider popupWithContenView:width];
         [width setSelected:YES];
-        [width setNeedsDisplay];
     }
 }
 
+- (void)penBox:(PenBox *)penBox didSelectPen:(ItemType)penType penImage:(UIImage *)image
+{
+    [self.pen setImage:image forState:UIControlStateNormal];
+    [self.pen setTag:penType];
+    [self.penPopTipView dismissAnimated:NO];
+    self.penPopTipView = nil;
+}
+
+#pragma mark - CMPopTipView Delegate
+
+- (void)popTipViewWasDismissedByUser:(CMPopTipView *)popTipView
+{
+    PPDebug(@"<popTipViewWasDismissedByUser> popTipView retain Count = %d", [popTipView retainCount]);
+    if (popTipView == self.palettePopTipView) {
+        self.palettePopTipView = nil;
+    }else if(popTipView == self.penPopTipView){
+        self.penPopTipView = nil;
+    }else if(popTipView == self.colorBoxPopTipView){
+        self.colorBoxPopTipView = nil;
+    }
+}
+- (void)popTipViewWasDismissedByCallingDismissAnimatedMethod:(CMPopTipView *)popTipView
+{
+    
+}
+
+
 - (void)dealloc {
-    [_widthSlider release];
-    [_alphaSlider release];
-    [_penWidth release];
-    [_colorAlpha release];
+    PPRelease(_colorBoxPopTipView);
+    PPRelease(_penPopTipView);
+    PPRelease(_palettePopTipView);
+    
+    PPRelease(_widthSlider);
+    PPRelease(_alphaSlider);
+    PPRelease(_penWidth);
+    PPRelease(_colorAlpha);
+    
+    [_pen release];
     [super dealloc];
 }
 @end

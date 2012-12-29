@@ -8,13 +8,14 @@
 
 #import "Palette.h"
 #import "DrawColor.h"
+#import "ColorPoint.h"
 
 @interface Palette ()
 {
     
 }
 
-@property(nonatomic, retain) IBOutlet UIView *colorChip;
+@property(nonatomic, retain) IBOutlet ColorPoint *colorChip;
 @property(nonatomic, retain) IBOutlet ILSaturationBrightnessPickerView *colorPicker;
 @property(nonatomic, retain) IBOutlet ILHuePickerView *huePicker;
 
@@ -32,6 +33,8 @@
 
 - (void)updateView
 {
+    [self setCurrentColor:[DrawColor greenColor]]; //for test
+    [_colorChip setBackgroundColor:[UIColor clearColor]];
     [self.colorPicker setDelegate:self];
     [self.huePicker setDelegate:_colorPicker];
 }
@@ -42,7 +45,7 @@
         PPRelease(_currentColor);
         _currentColor = [currentColor retain];
         UIColor *c = [_currentColor color];
-        _colorChip.backgroundColor = c;
+        [_colorChip setColor:currentColor];
         _colorPicker.color = c;
         _huePicker.color = c;
     }
@@ -61,7 +64,6 @@
     
     Palette  *view = (Palette *)[topLevelObjects objectAtIndex:0];
     view.delegate = delegate;
-    [view setCurrentColor:[DrawColor greenColor]];
     [view updateView];
     return view;
     
@@ -84,10 +86,7 @@
 
 -(void)colorPicked:(UIColor *)newColor forPicker:(ILSaturationBrightnessPickerView *)picker
 {
-    
-    _colorChip.backgroundColor = newColor;
     [self updateCurrentColorWithColor:newColor];
-//    PPDebug(@"<colorPicked> picker = %@",picker);
     if (self.delegate && [self.delegate respondsToSelector:@selector(palette:didPickColor:)]) {
         [self.delegate palette:self didPickColor:self.currentColor];
     }

@@ -180,6 +180,14 @@
 }
 
 
+- (void)clearOldDisplayImages
+{
+    for (UIImageView *imageView in [self.displayScrollView subviews]) {
+        if ([imageView isKindOfClass:[UIImageView class]]) {
+            [imageView removeFromSuperview];
+        }
+    }
+}
 
 - (void)didGetFeedList:(NSArray *)feedList
           feedListType:(FeedListType)type
@@ -189,10 +197,15 @@
     if (resultCode == 0 && [feedList count] != 0) {
 
         //get Top 6 feed
-        self.feedList = [NSMutableArray arrayWithArray:feedList];
-        
+        if (self.feedList != feedList) {
+            self.feedList = [NSMutableArray arrayWithArray:feedList];
+        }
+
+
         PPDebug(@"<didGetFeedList> ready to display images");
         [self.displayScrollView setHidden:NO];
+        
+        [self clearOldDisplayImages];
         //display image.
         NSInteger i = 0;
         for (DrawFeed *feed in feedList) {
@@ -265,9 +278,12 @@
 
     //update display view.
     if (isDrawApp()) {
-        [self updateDisplayView];
-        [NSTimer scheduledTimerWithTimeInterval:REFRESH_INTERVAL target:self selector:@selector(handleRefreshTimer:) userInfo:nil repeats:YES];
-        
+        if ([self.feedList count] <= 0) {
+            [self updateDisplayView];
+            [NSTimer scheduledTimerWithTimeInterval:REFRESH_INTERVAL target:self selector:@selector(handleRefreshTimer:) userInfo:nil repeats:YES];
+        }else{
+            [self didGetFeedList:self.feedList feedListType:0 resultCode:0];
+        }
         self.displayBG.image = [[DrawImageManager defaultManager] drawHomeDisplayBG];
         [self.chargeButton.layer setTransform:CATransform3DMakeRotation(0.12, 0, 0, 1)];
     }else{

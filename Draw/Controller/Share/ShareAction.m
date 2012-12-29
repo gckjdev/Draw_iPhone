@@ -103,10 +103,13 @@
         self.isDrawByMe = ([[UserManager defaultManager] isMe:feed.author.userId]);
         self.isGIF = NO;
         self.drawUserId = feed.author.userId;
-        NSString* path = [NSString stringWithFormat:@"%@/%@.png", NSTemporaryDirectory(), [NSString GetUUID]];
+        NSString* path = [NSString stringWithFormat:@"%@/%@.jpg", NSTemporaryDirectory(), [NSString GetUUID]];
         BOOL result=[[image data] writeToFile:path atomically:YES];
         if (result) {
             self.imageFilePath = path;
+        }
+        else{
+            PPDebug(@"<initWithFeed> fail to create image file at %@", path);
         }
         self.feed = feed;
         self.image = image;
@@ -180,13 +183,13 @@
     
     if (_customActionSheet == nil) {
         
-        buttonIndexAlbum = 6;
-        buttonIndexEmail = 5;
-        buttonIndexWeixinTimeline = 3;
-        buttonIndexWeixinFriend = 4;
         buttonIndexSinaWeibo = 0;
         buttonIndexQQWeibo = 1;
         buttonIndexFacebook = 2;
+        buttonIndexWeixinFriend = 3;
+        buttonIndexWeixinTimeline = 4;
+        buttonIndexEmail = 5;
+        buttonIndexAlbum = 6;
         buttonIndexFavorite = 7;
         
         _customActionSheet = [[CustomActionSheet alloc] initWithTitle:NSLS(@"kShareTo")
@@ -310,7 +313,7 @@
         UIImage *thumbImage = [image imageByScalingAndCroppingForSize:CGSizeMake(250, 250)];
         [message setThumbImage:thumbImage];
         WXImageObject *ext = [WXImageObject object];
-        ext.imageData = [NSData dataWithContentsOfFile:_imageFilePath] ;
+        ext.imageData = [NSData dataWithContentsOfFile:_imageFilePath];
         
         message.mediaObject = ext;
         
@@ -357,9 +360,6 @@
                                                            userInfo:userInfo
                                                      viewController:nil];
             
-            // ask follow official weibo account here
-            // [GameSNSService askFollow:snsType snsWeiboId:[service officialWeiboId]];
-
             // share weibo here
             [self shareViaSNS:snsType];
             
@@ -368,6 +368,17 @@
             PPDebug(@"%@ readMyUserInfo Failure", name);
         }];
         
+        // follow weibo if NOT followed
+        if ([GameSNSService hasFollowOfficialWeibo:service] == NO){            
+            [service followUser:[service officialWeiboId]
+                         userId:[service officialWeiboId]
+                   successBlock:^(NSDictionary *userInfo) {
+                [GameSNSService updateFollowOfficialWeibo:service];
+            } failureBlock:^(NSError *error) {
+                PPDebug(@"follow weibo but error=%@", [error description]);
+            }];            
+        }
+     
     } failureBlock:^(NSError *error) {
         PPDebug(@"%@ Login Failure", name);
         [viewController popupMessage:NSLS(@"kUserBindFail") title:nil];
@@ -379,19 +390,16 @@
 
 - (void)bindSinaWeibo
 {
-    //TODO:bind sina weibo here
     [self bindSNS:TYPE_SINA];
 }
 
 - (void)bindQQWeibo
 {
-    //TODO:bind qq weibo here
     [self bindSNS:TYPE_QQ];
 }
 
 - (void)bindFacebook
 {
-    //TODO:bind facebook here
     [self bindSNS:TYPE_FACEBOOK];
 }
 

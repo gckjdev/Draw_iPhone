@@ -316,7 +316,6 @@
 						<string key="NSFrame">{{221, 80}, {92, 12}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<reference key="IBUIBackgroundColor" ref="1057924229"/>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -372,6 +371,14 @@
 					<int key="connectionID">40</int>
 				</object>
 				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">pen</string>
+						<reference key="source" ref="191373211"/>
+						<reference key="destination" ref="1065372799"/>
+					</object>
+					<int key="connectionID">44</int>
+				</object>
+				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">clickUndo:</string>
 						<reference key="source" ref="587674421"/>
@@ -409,6 +416,15 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">clickPaintBucket:</string>
+						<reference key="source" ref="140804943"/>
+						<reference key="destination" ref="191373211"/>
+						<int key="IBEventType">7</int>
+					</object>
+					<int key="connectionID">43</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">clickAddColor:</string>
 						<reference key="source" ref="1041540627"/>
 						<reference key="destination" ref="191373211"/>
@@ -418,12 +434,12 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
-						<string key="label">clickColorPicker:</string>
+						<string key="label">clickPalette:</string>
 						<reference key="source" ref="476021577"/>
 						<reference key="destination" ref="191373211"/>
 						<int key="IBEventType">7</int>
 					</object>
-					<int key="connectionID">32</int>
+					<int key="connectionID">42</int>
 				</object>
 			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -552,7 +568,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">40</int>
+			<int key="maxID">44</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -569,8 +585,9 @@
 					<string key="superclassName">UIView</string>
 					<dictionary class="NSMutableDictionary" key="actions">
 						<string key="clickAddColor:">id</string>
-						<string key="clickColorPicker:">id</string>
 						<string key="clickEraser:">id</string>
+						<string key="clickPaintBucket:">id</string>
+						<string key="clickPalette:">id</string>
 						<string key="clickPen:">id</string>
 						<string key="clickRedo:">id</string>
 						<string key="clickUndo:">id</string>
@@ -580,12 +597,16 @@
 							<string key="name">clickAddColor:</string>
 							<string key="candidateClassName">id</string>
 						</object>
-						<object class="IBActionInfo" key="clickColorPicker:">
-							<string key="name">clickColorPicker:</string>
-							<string key="candidateClassName">id</string>
-						</object>
 						<object class="IBActionInfo" key="clickEraser:">
 							<string key="name">clickEraser:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="clickPaintBucket:">
+							<string key="name">clickPaintBucket:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="clickPalette:">
+							<string key="name">clickPalette:</string>
 							<string key="candidateClassName">id</string>
 						</object>
 						<object class="IBActionInfo" key="clickPen:">
@@ -604,6 +625,7 @@
 					<dictionary class="NSMutableDictionary" key="outlets">
 						<string key="alphaSlider">DrawSlider</string>
 						<string key="colorAlpha">UILabel</string>
+						<string key="pen">UIButton</string>
 						<string key="penWidth">UILabel</string>
 						<string key="widthSlider">DrawSlider</string>
 					</dictionary>
@@ -615,6 +637,10 @@
 						<object class="IBToOneOutletInfo" key="colorAlpha">
 							<string key="name">colorAlpha</string>
 							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="pen">
+							<string key="name">pen</string>
+							<string key="candidateClassName">UIButton</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="penWidth">
 							<string key="name">penWidth</string>

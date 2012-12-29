@@ -71,7 +71,7 @@
 //    point.selected = YES;
 //    [self.view addSubview:point];
 
-
+/*
     slider2 = [[DrawSlider alloc] initWithDrawSliderStyle:DrawSliderStyleSmall];
     slider2.center = self.view.center;
     [self.view addSubview:slider2];
@@ -83,15 +83,16 @@
     slider2.delegate = self;
     [self.view addSubview:slider1];
 
-    
+   */ 
     DrawToolPanel *panel = [DrawToolPanel createViewWithdelegate:nil];
     panel.center = CGPointMake(160, 407.5);
     [self.view addSubview:panel];
     
-    
+    /*
     Palette *pickBox = [Palette createViewWithdelegate:nil];
     
     [self.view addSubview:pickBox];
+     */
 //    UIImage *bg = [UIImage imageNamed:@"draw_slider2_bg"];
 //    UIImage *load = [UIImage imageNamed:@"draw_slider2_load"];
 //    UIImage *p = [UIImage imageNamed:@"draw_slider2_point@2x.png"];
