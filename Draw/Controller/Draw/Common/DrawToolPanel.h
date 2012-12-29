@@ -14,6 +14,9 @@
 #import "Palette.h"
 #import "CMPopTipView.h"
 #import "PenBox.h"
+#import "ColorBox.h"
+#import "ColorShopView.h"
+
 
 @class DrawToolPanel;
 
@@ -23,7 +26,6 @@
 - (void)drawToolPanel:(DrawToolPanel *)toolPanel didClickRedoButton:(UIButton *)button;
 - (void)drawToolPanel:(DrawToolPanel *)toolPanel didClickUndoButton:(UIButton *)button;
 - (void)drawToolPanel:(DrawToolPanel *)toolPanel didClickEraserButton:(UIButton *)button;
-
 - (void)drawToolPanel:(DrawToolPanel *)toolPanel didClickPaintBucket:(UIButton *)button;
 - (void)drawToolPanel:(DrawToolPanel *)toolPanel didSelectPen:(PenView *)penView;
 - (void)drawToolPanel:(DrawToolPanel *)toolPanel didSelectWidth:(CGFloat)width;
@@ -31,12 +33,18 @@
 
 @end
 
-@interface DrawToolPanel : UIView<ColorPointDelegate, DrawSliderDelegate, CMPopTipViewDelegate, PenBoxDelegate>
+@interface DrawToolPanel : UIView<ColorPointDelegate, DrawSliderDelegate, CMPopTipViewDelegate, PenBoxDelegate, ColorBoxDelegate, ColorShopViewDelegate>
 {
     
 }
 @property(nonatomic, assign)id<DrawToolPanelDelegate>delegate;
+@property(nonatomic, retain)DrawColor *color;
+@property(nonatomic, assign)CGFloat width;
+@property(nonatomic, assign)CGFloat alpha;
+@property(nonatomic, assign)ItemType penType;
+
 + (id)createViewWithdelegate:(id)delegate;
 - (void)dismissAllPopTipViews;
+
 
 @end
