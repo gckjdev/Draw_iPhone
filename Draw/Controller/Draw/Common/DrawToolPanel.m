@@ -9,9 +9,8 @@
 #import "DrawToolPanel.h"
 #import "DrawColor.h"
 #import "WidthView.h"
-#import "CMPopTipView.h"
 #import "PenBox.h"
-
+#import "ColorView.h"
 
 @interface DrawToolPanel ()
 {
@@ -56,6 +55,15 @@
 #define SPACE_COLOR_UP VALUE(10)
 
 #define ALPHA_FONT_SIZE VALUE(14.0)
+
+
+#pragma mark - setter methods
+
+
+//@property(nonatomic, retain)DrawColor *color;
+//@property(nonatomic, assign)CGFloat width;
+//@property(nonatomic, assign)CGFloat alpha;
+//@property(nonatomic, assign)ItemType penType;
 
 - (void)updatePopTipView:(CMPopTipView *)popTipView
 {
@@ -132,21 +140,38 @@
     
 }
 
+- (void)dismissPopTipViewsWithout:(CMPopTipView *)popView
+{
+    if (self.penPopTipView != popView) {
+        [self.penPopTipView dismissAnimated:NO];
+        self.penPopTipView = nil;
+    }
+    if (self.colorBoxPopTipView != popView) {
+        [self.colorBoxPopTipView dismissAnimated:NO];
+        self.colorBoxPopTipView = nil;
+    }
+
+    if (self.palettePopTipView != popView) {
+        [self.palettePopTipView dismissAnimated:NO];
+        self.palettePopTipView = nil;
+    }
+}
+
 - (void)dismissAllPopTipViews
 {
-    [self.penPopTipView dismissAnimated:NO];
-    [self.colorBoxPopTipView dismissAnimated:NO];
-    [self.palettePopTipView dismissAnimated:NO];
+    [self dismissPopTipViewsWithout:nil];
 }
 
 #pragma mark - click actions
 - (IBAction)clickUndo:(id)sender {
+    [self dismissAllPopTipViews];
     if (self.delegate && [self.delegate respondsToSelector:@selector(drawToolPanel:didClickUndoButton:)]) {
         [self.delegate drawToolPanel:self didClickUndoButton:sender];
     }
 }
 
 - (IBAction)clickRedo:(id)sender {
+    [self dismissAllPopTipViews];
     if (self.delegate && [self.delegate respondsToSelector:@selector(drawToolPanel:didClickRedoButton:)]) {
         [self.delegate drawToolPanel:self didClickRedoButton:sender];
     }
@@ -154,6 +179,7 @@
 
 
 - (IBAction)clickEraser:(id)sender {
+    [self dismissAllPopTipViews];    
     if (self.delegate && [self.delegate respondsToSelector:@selector(drawToolPanel:didClickEraserButton:)]) {
         [self.delegate drawToolPanel:self didClickEraserButton:sender];
     }
@@ -161,6 +187,7 @@
 
 
 - (IBAction)clickPaintBucket:(id)sender {
+    [self dismissAllPopTipViews];    
     if (self.delegate && [self.delegate respondsToSelector:@selector(drawToolPanel:didClickPaintBucket:)]) {
         [self.delegate drawToolPanel:self didClickPaintBucket:sender];
     }
@@ -171,21 +198,27 @@
                   atView:(UIView *)atView
                   setter:(SEL)setter
 {
-    if (popView == nil) {
+    CMPopTipView *newView = popView;
+    if (newView == nil) {
         UIView *customView = contentView();
-        CMPopTipView *newView = [[[CMPopTipView alloc] initWithCustomView:customView] autorelease];
+        newView = [[[CMPopTipView alloc] initWithCustomView:customView] autorelease];
         [self performSelector:setter withObject: newView];
         [newView presentPointingAtView:atView inView:self.superview animated:NO];
         [self updatePopTipView:newView];
     }else{
-        [popView dismissAnimated:NO];
+        [newView dismissAnimated:NO];
         [self performSelector:setter withObject:nil];
     }
-
+    [self dismissPopTipViewsWithout:newView];
 }
 
 - (IBAction)clickAddColor:(id)sender {
     //Pop up add color box
+    [self handlePopTipView:_colorBoxPopTipView contentView:^UIView *{
+        return [ColorBox createViewWithdelegate:self];
+    } atView:sender setter:@selector(setColorBoxPopTipView:)];
+//    [self dismissPopTipViewsWithout:self.colorBoxPopTipView];
+
 }
 
 - (IBAction)clickPalette:(id)sender {
@@ -194,6 +227,7 @@
         PPDebug(@"<block> [Palette createViewWithdelegate:self]");
         return [Palette createViewWithdelegate:self];
     } atView:sender setter:@selector(setPalettePopTipView:)];
+//    [self dismissPopTipViewsWithout:self.palettePopTipView];
 }
 
 - (IBAction)clickPen:(id)sender {
@@ -203,8 +237,18 @@
         penBox.delegate = self;
         return penBox;
     } atView:sender setter:@selector(setPenPopTipView:)];
+//    [self dismissPopTipViewsWithout:self.penPopTipView];
 }
 
+
+- (void)handleSelectColorDelegateWithColor:(DrawColor *)color
+{
+    if (self.delegate && [self.delegate respondsToSelector:@selector(drawToolPanel:didSelectColor:)]) {
+        [self.delegate drawToolPanel:self didSelectColor:color];
+    }
+    
+    //update show list;
+}
 
 #pragma mark - Color Point Delegate
 - (void)didSelectColorPoint:(ColorPoint *)colorPoint
@@ -214,6 +258,8 @@
             [point setSelected:NO];
         }
     }
+    [self dismissAllPopTipViews];
+    [self handleSelectColorDelegateWithColor:colorPoint.color];
 }
 
 
@@ -259,6 +305,7 @@
         [drawSlider popupWithContenView:width];
         [width setSelected:YES];
     }
+    [self dismissAllPopTipViews];
 }
 
 - (void)penBox:(PenBox *)penBox didSelectPen:(ItemType)penType penImage:(UIImage *)image
@@ -273,7 +320,6 @@
 
 - (void)popTipViewWasDismissedByUser:(CMPopTipView *)popTipView
 {
-    PPDebug(@"<popTipViewWasDismissedByUser> popTipView retain Count = %d", [popTipView retainCount]);
     if (popTipView == self.palettePopTipView) {
         self.palettePopTipView = nil;
     }else if(popTipView == self.penPopTipView){
@@ -284,9 +330,46 @@
 }
 - (void)popTipViewWasDismissedByCallingDismissAnimatedMethod:(CMPopTipView *)popTipView
 {
-    
+    if (popTipView == self.palettePopTipView) {
+        self.palettePopTipView = nil;
+    }else if(popTipView == self.penPopTipView){
+        self.penPopTipView = nil;
+    }else if(popTipView == self.colorBoxPopTipView){
+        self.colorBoxPopTipView = nil;
+    }
 }
 
+
+#pragma mark - Color Box delegate
+
+- (void)dismissColorBoxPopTipView
+{
+    [self.colorBoxPopTipView dismissAnimated:NO];
+    self.colorBoxPopTipView = nil;
+}
+
+- (void)colorBox:(ColorBox *)colorBox didSelectColor:(DrawColor *)color
+{
+    [self handleSelectColorDelegateWithColor:color];
+    [self dismissColorBoxPopTipView];
+}
+- (void)didClickCloseButtonOnColorBox:(ColorBox *)colorBox
+{
+    [self dismissColorBoxPopTipView];
+}
+- (void)didClickMoreButtonOnColorBox:(ColorBox *)colorBox
+{
+    ColorShopView *colorShop = [ColorShopView colorShopViewWithFrame:self.superview.bounds];
+    colorShop.delegate  = self;
+    [colorShop showInView:self.superview animated:YES];
+}
+
+#pragma mark - ColorShopView Delegate
+
+- (void)didPickedColorView:(ColorView *)colorView{
+    [self handleSelectColorDelegateWithColor:colorView.drawColor];
+    [self dismissColorBoxPopTipView];
+}
 
 - (void)dealloc {
     PPRelease(_colorBoxPopTipView);

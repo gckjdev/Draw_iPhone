@@ -39,6 +39,7 @@
 {
     ZJHGameService *_gameService;
     BOOL _isConnecting;
+    BOOL _connectState;
 }
 @end
 
@@ -89,9 +90,14 @@ ZJHHomeViewController *_staticZJHHomeViewController = nil;
 }
 
 - (void)registerUIApplicationWillEnterForegroundNotification{
+    
+    [self registerNotificationWithName:UIApplicationDidEnterBackgroundNotification usingBlock:^(NSNotification *note) {        
+        _connectState = [_gameService isConnected];
+    }];
+    
     [self registerNotificationWithName:UIApplicationWillEnterForegroundNotification usingBlock:^(NSNotification *note) {
         
-        if (![_gameService isConnected]) {
+        if (_connectState && ![_gameService isConnected]) {
                 [self.navigationController popToRootViewControllerAnimated:YES];
                 [_gameService reset];
                 [self popupUnhappyMessage:NSLS(@"kNetworkBroken") title:@""];

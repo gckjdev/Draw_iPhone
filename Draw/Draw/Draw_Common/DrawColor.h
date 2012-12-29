@@ -53,6 +53,7 @@
 + (DrawColor *)brownColor;      // 0.6, 0.4, 0.2 RGB 
 + (DrawColor *)clearColor;      // 0.0 white, 0.0 alpha 
 
++ (DrawColor *)rankColor;
 
 //- (id)initWithRed:(CGFloat)red 
 

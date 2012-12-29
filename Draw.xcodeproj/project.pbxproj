@@ -2548,10 +2548,6 @@
 		CA16C1991682FAE300F81B47 /* doneup.png in Resources */ = {isa = PBXBuildFile; fileRef = CA103CD61509A56100F60C03 /* doneup.png */; };
 		CA16C19A1682FAE300F81B47 /* TestPPViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA103CDA1509A56100F60C03 /* TestPPViewController.xib */; };
 		CA16C19B1682FAE300F81B47 /* ReviewRequest.strings in Resources */ = {isa = PBXBuildFile; fileRef = CA103CFD1509A56100F60C03 /* ReviewRequest.strings */; };
-		CA16C19C1682FAE300F81B47 /* Documentation.html in Resources */ = {isa = PBXBuildFile; fileRef = CA103F601509A9FD00F60C03 /* Documentation.html */; };
-		CA16C19D1682FAE300F81B47 /* LICENSE.txt in Resources */ = {isa = PBXBuildFile; fileRef = CA1040501509A9FD00F60C03 /* LICENSE.txt */; };
-		CA16C19E1682FAE300F81B47 /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = CA1040511509A9FD00F60C03 /* README.txt */; };
-		CA16C19F1682FAE300F81B47 /* Source.zip in Resources */ = {isa = PBXBuildFile; fileRef = CA1040691509A9FD00F60C03 /* Source.zip */; };
 		CA16C1A01682FAE300F81B47 /* TapkuLibrary.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CA1040D01509A9FD00F60C03 /* TapkuLibrary.bundle */; };
 		CA16C1A11682FAE300F81B47 /* HomeController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA1041F71509BC9700F60C03 /* HomeController.xib */; };
 		CA16C1A21682FAE300F81B47 /* RegisterUserController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA1041FC1509BF4700F60C03 /* RegisterUserController.xib */; };
@@ -2573,7 +2569,6 @@
 		CA16C1B21682FAE300F81B47 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = CA1377F01525A7CB00B5790B /* Localizable.strings */; };
 		CA16C1B31682FAE300F81B47 /* ShareCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C29C12DD152AE23D009B9E5F /* ShareCell.xib */; };
 		CA16C1B41682FAE300F81B47 /* ColorShopCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA4FF009152AF21900F0AC88 /* ColorShopCell.xib */; };
-		CA16C1B51682FAE300F81B47 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA8D602C1531C98400E016ED /* Default@2x.png */; };
 		CA16C1B61682FAE300F81B47 /* AboutUsController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C284E87E1531D89800DD5B77 /* AboutUsController.xib */; };
 		CA16C1B71682FAE300F81B47 /* ReplayController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA8D60621531EC5500E016ED /* ReplayController.xib */; };
 		CA16C1B81682FAE300F81B47 /* UFPController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2F947D11533D91E0034C895 /* UFPController.xib */; };
@@ -2622,9 +2617,6 @@
 		CA16C1E31682FAE300F81B47 /* MessageCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A461C94015662BC30076FD9C /* MessageCell~ipad.xib */; };
 		CA16C1E41682FAE300F81B47 /* MusicSettingCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAE8A5601567ECE9002508D1 /* MusicSettingCell~ipad.xib */; };
 		CA16C1E51682FAE300F81B47 /* FriendRoomController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAB9D0581568B96800D4F249 /* FriendRoomController~ipad.xib */; };
-		CA16C1E61682FAE300F81B47 /* fireworks1.png in Resources */ = {isa = PBXBuildFile; fileRef = CAD9C7101574CCF900F2C8E1 /* fireworks1.png */; };
-		CA16C1E71682FAE300F81B47 /* fireworks2.png in Resources */ = {isa = PBXBuildFile; fileRef = CAD9C7111574CCFA00F2C8E1 /* fireworks2.png */; };
-		CA16C1E81682FAE300F81B47 /* snow.png in Resources */ = {isa = PBXBuildFile; fileRef = CAD9C7141574D02A00F2C8E1 /* snow.png */; };
 		CA16C1E91682FAE300F81B47 /* ResultController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA22DCD0157CAFFD009C95CB /* ResultController.xib */; };
 		CA16C1EA1682FAE300F81B47 /* OnlineDrawViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA22DCE1157CB00A009C95CB /* OnlineDrawViewController.xib */; };
 		CA16C1EB1682FAE300F81B47 /* OnlineDrawViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA22DCE2157CB00A009C95CB /* OnlineDrawViewController~ipad.xib */; };
@@ -3480,8 +3472,7 @@
 		CA7D4430168DBDB1009F43F7 /* help.zip in Resources */ = {isa = PBXBuildFile; fileRef = CA7D4342168DBDB0009F43F7 /* help.zip */; };
 		CA7D4431168DBDB1009F43F7 /* ZJHDefault-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA7D4344168DBDB0009F43F7 /* ZJHDefault-568h@2x.png */; };
 		CA7D4432168DBDB1009F43F7 /* ZJHDefault@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA7D4346168DBDB0009F43F7 /* ZJHDefault@2x.png */; };
-		CA7D4433168DBDB1009F43F7 /* ZJHDefault~ipad@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA7D4348168DBDB0009F43F7 /* ZJHDefault~ipad@2x.png */; };
-		CA7D4434168DBDB1009F43F7 /* icon512.png in Resources */ = {isa = PBXBuildFile; fileRef = CA7D434A168DBDB0009F43F7 /* icon512.png */; };
+		CA7D4433168DBDB1009F43F7 /* ZJHDefault~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = CA7D4348168DBDB0009F43F7 /* ZJHDefault~ipad.png */; };
 		CA7D4435168DBDB1009F43F7 /* zjh_icon_50.png in Resources */ = {isa = PBXBuildFile; fileRef = CA7D434E168DBDB0009F43F7 /* zjh_icon_50.png */; };
 		CA7D4436168DBDB1009F43F7 /* zjh_icon_57.png in Resources */ = {isa = PBXBuildFile; fileRef = CA7D434F168DBDB0009F43F7 /* zjh_icon_57.png */; };
 		CA7D4437168DBDB1009F43F7 /* zjh_icon_57@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA7D4350168DBDB0009F43F7 /* zjh_icon_57@2x.png */; };
@@ -6292,11 +6283,11 @@
 		CA7D4342168DBDB0009F43F7 /* help.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = help.zip; sourceTree = "<group>"; };
 		CA7D4345168DBDB0009F43F7 /* en */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = en; path = "en.lproj/ZJHDefault-568h@2x.png"; sourceTree = "<group>"; };
 		CA7D4347168DBDB0009F43F7 /* en */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = en; path = "en.lproj/ZJHDefault@2x.png"; sourceTree = "<group>"; };
-		CA7D4349168DBDB0009F43F7 /* en */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = en; path = "en.lproj/ZJHDefault~ipad@2x.png"; sourceTree = "<group>"; };
+		CA7D4349168DBDB0009F43F7 /* en */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = en; path = "en.lproj/ZJHDefault~ipad.png"; sourceTree = "<group>"; };
 		CA7D434A168DBDB0009F43F7 /* icon512.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon512.png; sourceTree = "<group>"; };
 		CA7D434B168DBDB0009F43F7 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "zh-Hans"; path = "zh-Hans.lproj/ZJHDefault-568h@2x.png"; sourceTree = "<group>"; };
 		CA7D434C168DBDB0009F43F7 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "zh-Hans"; path = "zh-Hans.lproj/ZJHDefault@2x.png"; sourceTree = "<group>"; };
-		CA7D434D168DBDB0009F43F7 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "zh-Hans"; path = "zh-Hans.lproj/ZJHDefault~ipad@2x.png"; sourceTree = "<group>"; };
+		CA7D434D168DBDB0009F43F7 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "zh-Hans"; path = "zh-Hans.lproj/ZJHDefault~ipad.png"; sourceTree = "<group>"; };
 		CA7D434E168DBDB0009F43F7 /* zjh_icon_50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = zjh_icon_50.png; sourceTree = "<group>"; };
 		CA7D434F168DBDB0009F43F7 /* zjh_icon_57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = zjh_icon_57.png; sourceTree = "<group>"; };
 		CA7D4350168DBDB0009F43F7 /* zjh_icon_57@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zjh_icon_57@2x.png"; sourceTree = "<group>"; };
@@ -11379,7 +11370,7 @@
 			children = (
 				CA7D4344168DBDB0009F43F7 /* ZJHDefault-568h@2x.png */,
 				CA7D4346168DBDB0009F43F7 /* ZJHDefault@2x.png */,
-				CA7D4348168DBDB0009F43F7 /* ZJHDefault~ipad@2x.png */,
+				CA7D4348168DBDB0009F43F7 /* ZJHDefault~ipad.png */,
 				CA7D434A168DBDB0009F43F7 /* icon512.png */,
 				CA7D434E168DBDB0009F43F7 /* zjh_icon_50.png */,
 				CA7D434F168DBDB0009F43F7 /* zjh_icon_57.png */,
@@ -15591,10 +15582,6 @@
 				CA16C1991682FAE300F81B47 /* doneup.png in Resources */,
 				CA16C19A1682FAE300F81B47 /* TestPPViewController.xib in Resources */,
 				CA16C19B1682FAE300F81B47 /* ReviewRequest.strings in Resources */,
-				CA16C19C1682FAE300F81B47 /* Documentation.html in Resources */,
-				CA16C19D1682FAE300F81B47 /* LICENSE.txt in Resources */,
-				CA16C19E1682FAE300F81B47 /* README.txt in Resources */,
-				CA16C19F1682FAE300F81B47 /* Source.zip in Resources */,
 				CA16C1A01682FAE300F81B47 /* TapkuLibrary.bundle in Resources */,
 				CA16C1A11682FAE300F81B47 /* HomeController.xib in Resources */,
 				CA16C1A21682FAE300F81B47 /* RegisterUserController.xib in Resources */,
@@ -15616,7 +15603,6 @@
 				CA16C1B21682FAE300F81B47 /* Localizable.strings in Resources */,
 				CA16C1B31682FAE300F81B47 /* ShareCell.xib in Resources */,
 				CA16C1B41682FAE300F81B47 /* ColorShopCell.xib in Resources */,
-				CA16C1B51682FAE300F81B47 /* Default@2x.png in Resources */,
 				CA16C1B61682FAE300F81B47 /* AboutUsController.xib in Resources */,
 				CA16C1B71682FAE300F81B47 /* ReplayController.xib in Resources */,
 				CA16C1B81682FAE300F81B47 /* UFPController.xib in Resources */,
@@ -15665,9 +15651,6 @@
 				CA16C1E31682FAE300F81B47 /* MessageCell~ipad.xib in Resources */,
 				CA16C1E41682FAE300F81B47 /* MusicSettingCell~ipad.xib in Resources */,
 				CA16C1E51682FAE300F81B47 /* FriendRoomController~ipad.xib in Resources */,
-				CA16C1E61682FAE300F81B47 /* fireworks1.png in Resources */,
-				CA16C1E71682FAE300F81B47 /* fireworks2.png in Resources */,
-				CA16C1E81682FAE300F81B47 /* snow.png in Resources */,
 				CA16C1E91682FAE300F81B47 /* ResultController.xib in Resources */,
 				CA16C1EA1682FAE300F81B47 /* OnlineDrawViewController.xib in Resources */,
 				CA16C1EB1682FAE300F81B47 /* OnlineDrawViewController~ipad.xib in Resources */,
@@ -16142,8 +16125,7 @@
 				CA7D4430168DBDB1009F43F7 /* help.zip in Resources */,
 				CA7D4431168DBDB1009F43F7 /* ZJHDefault-568h@2x.png in Resources */,
 				CA7D4432168DBDB1009F43F7 /* ZJHDefault@2x.png in Resources */,
-				CA7D4433168DBDB1009F43F7 /* ZJHDefault~ipad@2x.png in Resources */,
-				CA7D4434168DBDB1009F43F7 /* icon512.png in Resources */,
+				CA7D4433168DBDB1009F43F7 /* ZJHDefault~ipad.png in Resources */,
 				CA7D4435168DBDB1009F43F7 /* zjh_icon_50.png in Resources */,
 				CA7D4436168DBDB1009F43F7 /* zjh_icon_57.png in Resources */,
 				CA7D4437168DBDB1009F43F7 /* zjh_icon_57@2x.png in Resources */,
@@ -19262,13 +19244,13 @@
 			name = "ZJHDefault@2x.png";
 			sourceTree = "<group>";
 		};
-		CA7D4348168DBDB0009F43F7 /* ZJHDefault~ipad@2x.png */ = {
+		CA7D4348168DBDB0009F43F7 /* ZJHDefault~ipad.png */ = {
 			isa = PBXVariantGroup;
 			children = (
 				CA7D4349168DBDB0009F43F7 /* en */,
 				CA7D434D168DBDB0009F43F7 /* zh-Hans */,
 			);
-			name = "ZJHDefault~ipad@2x.png";
+			name = "ZJHDefault~ipad.png";
 			sourceTree = "<group>";
 		};
 		CA7D45B6168DBDCB009F43F7 /* DiceDefault-568h@2x.png */ = {
@@ -19414,8 +19396,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Lingzhe Peng (4JW9JNLMWA)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Lingzhe Peng (4JW9JNLMWA)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Lingzhe Peng";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Lingzhe Peng";
 				COPY_PHASE_STRIP = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -19467,8 +19449,8 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = Dice;
-				PROVISIONING_PROFILE = "6BD5DDE0-93BE-4DAA-9304-EF7BEA2DF182";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "6BD5DDE0-93BE-4DAA-9304-EF7BEA2DF182";
+				PROVISIONING_PROFILE = "15D57303-26BC-4ED9-8C04-7F886B871932";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "15D57303-26BC-4ED9-8C04-7F886B871932";
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;
 			};
@@ -19542,8 +19524,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Lingzhe Peng (9WG829Y3AG)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Lingzhe Peng (9WG829Y3AG)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Lingzhe Peng";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Lingzhe Peng";
 				COPY_PHASE_STRIP = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -19595,8 +19577,8 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = Zhajinhua;
-				PROVISIONING_PROFILE = "CD3984EB-4737-4FFC-B8F0-CD685022B308";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "CD3984EB-4737-4FFC-B8F0-CD685022B308";
+				PROVISIONING_PROFILE = "1F663AF0-A956-4FB2-B213-7040F013FE0B";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "1F663AF0-A956-4FB2-B213-7040F013FE0B";
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;
 			};
@@ -19726,8 +19708,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Lingzhe Peng (9WG829Y3AG)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Lingzhe Peng (9WG829Y3AG)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Lingzhe Peng";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Lingzhe Peng";
 				COPY_PHASE_STRIP = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -19779,8 +19761,8 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "90954517-754F-4976-BBF0-58802195B7AE";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "90954517-754F-4976-BBF0-58802195B7AE";
+				PROVISIONING_PROFILE = "71F47996-5EDE-4316-8BF3-4EA4DFF96536";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "71F47996-5EDE-4316-8BF3-4EA4DFF96536";
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;
 			};
