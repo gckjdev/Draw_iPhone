@@ -154,7 +154,7 @@ enum{
         UIButton *button = (UIButton *)[self.view viewWithTag:tag];            
         button.enabled = ([self.feed hasDrawActions] && _didLoadDrawPicture);
     }
-    self.saveButton.enabled = !_didSave && [self.feed hasDrawActions] && _didLoadDrawPicture;
+//    self.saveButton.enabled = !_didSave && [self.feed hasDrawActions] && _didLoadDrawPicture;
 //    if (![self.feed canSave]) {
 //        self.saveButton.enabled = NO;
 //    }

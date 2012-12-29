@@ -20,6 +20,11 @@ typedef enum {
 }SnsType;
 
 //@class SynthesisView;
+@protocol ShareEditControllerDelegate <NSObject>
+ @optional
+- (void)didPublishSnsMessage:(int)snsType;
+
+@end
 
 @interface ShareEditController : PPViewController <UIActionSheetDelegate, MFMailComposeViewControllerDelegate, CommonDialogDelegate, UserServiceDelegate> {
     SnsType _snsType;
@@ -41,6 +46,7 @@ typedef enum {
 @property (retain, nonatomic) IBOutlet UILabel *shareTitleLabel;
 @property (assign, nonatomic) BOOL isDrawByMe;
 @property (retain, nonatomic) NSString* drawUserId;
+@property (assign, nonatomic) id<ShareEditControllerDelegate>delegate;
 
 - (id)initWithImageFile:(NSString*)imageFile
                    text:(NSString*)text 

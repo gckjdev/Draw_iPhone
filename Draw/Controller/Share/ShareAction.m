@@ -10,7 +10,6 @@
 #import "LocaleUtils.h"
 #import "UserManager.h"
 #import "PPDebug.h"
-#import "ShareEditController.h"
 #import "MyPaintManager.h"
 #import "WXApi.h"
 #import "UIImageExt.h"
@@ -18,13 +17,14 @@
 #import "PPDebug.h"
 #import "DrawFeed.h"
 #import "StringUtil.h"
-#import "DrawDataService.h"
 #import "CustomActionSheet.h"
 #import "CommonImageManager.h"
 #import "PPSNSIntegerationService.h"
 #import "PPSNSConstants.h"
 #import "GameSNSService.h"
 #import "CommonMessageCenter.h"
+#import "FeedService.h"
+#import "PPViewController.h"
 
 @interface ShareAction ()
 {
@@ -117,7 +117,7 @@
     return self;
 }
 
-- (void)displayWithViewController:(UIViewController*)superViewController;
+- (void)displayWithViewController:(PPViewController*)superViewController;
 {
     buttonIndexAlbum = -1;
     buttonIndexEmail = -1;
@@ -175,7 +175,7 @@
 }
 
 
-- (void)displayWithViewController:(UIViewController*)superViewController onView:(UIView*)view
+- (void)displayWithViewController:(PPViewController*)superViewController onView:(UIView*)view
 {
     
     
@@ -219,11 +219,12 @@
     
 }
 
-- (void)mailComposeController:(MFMailComposeViewController *)controller 
-          didFinishWithResult:(MFMailComposeResult)result 
-                        error:(NSError *)error 
+- (void)reportActionToServer:(NSString*)actionName
 {
-	[self.superViewController dismissModalViewControllerAnimated:YES];
+    if (![[UserManager defaultManager] isMe:_feed.author.userId]) {
+        [[FeedService defaultService] actionSaveOpus:_feed.feedId
+                                          actionName:actionName];
+    }
 }
 
 - (void)shareViaEmail
@@ -297,6 +298,7 @@
     }
     ShareEditController* controller = [[ShareEditController alloc] initWithImageFile:_imageFilePath
                                                                                 text:text drawUserId:self.drawUserId snsType:type];
+    controller.delegate = self;
     [self.superViewController.navigationController pushViewController:controller animated:YES];
     [controller release];    
 }
@@ -331,8 +333,7 @@
 {
     [[DrawDataService defaultService] savePaintWithPBDraw:self.feed.pbDraw
                                                     image:self.image
-                                                 delegate:nil];
-    [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kSaveToLocalSuccess") delayTime:2 isHappy:YES];
+                                                 delegate:self];
 }
 
 - (void)bindSNS:(int)snsType
@@ -416,8 +417,8 @@
 - (void)actionByButtonIndex:(NSInteger)buttonIndex
 {
     if (buttonIndex == buttonIndexAlbum){
-        [[MyPaintManager defaultManager] savePhoto:_imageFilePath];
-        [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kSaveToAlbumSuccess") delayTime:1.5 isHappy:YES];
+        [[MyPaintManager defaultManager] savePhoto:_imageFilePath delegate:self];
+        [self.superViewController showActivityWithText:NSLS(@"kSaving")];
     }
     else if (buttonIndex == buttonIndexEmail) {
         [self shareViaEmail];
@@ -445,6 +446,7 @@
         }
     } else if (buttonIndex == buttonIndexFavorite) {
         [self favorite];
+        [self.superViewController showActivityWithText:NSLS(@"kSaving")];
     }
 }
 
@@ -463,4 +465,58 @@
 {
     [self actionByButtonIndex:buttonIndex];
 }
+
+#pragma shareEditController delegate
+- (void)didPublishSnsMessage:(int)snsType
+{
+    switch (snsType) {
+        case SINA_WEIBO: {
+            [self reportActionToServer:DB_FIELD_ACTION_SHARE_SINA];
+        } break;
+        case QQ_WEIBO: {
+            [self reportActionToServer:DB_FIELD_ACTION_SHARE_QQ];
+        } break;
+        case FACEBOOK: {
+            [self reportActionToServer:DB_FIELD_ACTION_SHARE_FACEBOOK];
+        } break;
+        default:
+            break;
+    }
+}
+
+#pragma mark - DrawDataService delegate
+- (void)didSaveOpus:(BOOL)succ
+{
+    [self.superViewController hideActivity];
+    if (succ) {
+         [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kSaveToLocalSuccess") delayTime:2 isHappy:YES];
+        [self reportActionToServer:DB_FIELD_ACTION_SAVE_TIMES];
+    }
+}
+
+#pragma mark - MyPaintManager delegater
+- (void)didSaveToAlbumSuccess:(BOOL)succ
+{
+    [self.superViewController hideActivity];
+    if (succ) {
+        [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kSaveToAlbumSuccess") delayTime:1.5 isHappy:YES];
+        [self reportActionToServer:DB_FIELD_ACTION_SAVE_ALBUM];
+    }
+}
+
+#pragma mark - mail compose delegate
+
+- (void)mailComposeController:(MFMailComposeViewController *)controller
+          didFinishWithResult:(MFMailComposeResult)result
+                        error:(NSError *)error
+{
+    [self.superViewController hideActivity];
+	[self.superViewController dismissModalViewControllerAnimated:YES];
+    if (error == nil) {
+        [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kShareByEmailSuccess") delayTime:1.5 isHappy:YES];
+        [self reportActionToServer:DB_FIELD_ACTION_SHARE_EMAIL];
+    }
+    
+}
+
 @end

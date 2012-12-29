@@ -21,6 +21,7 @@
 #import "PPSNSIntegerationService.h"
 #import "PPSNSConstants.h"
 #import "PPSNSCommonService.h"
+#import "FeedService.h"
 
 #define PATTERN_TAG_OFFSET 20120403
 #define IPAD_INFUSEVIEW_FRAME CGRectMake(31*2.4,130*2.13,259*2.4,259*2.13)
@@ -370,6 +371,7 @@ enum {
      */
 }
 
+
 - (void)didPublishWeibo:(int)result
 {
     [self hideActivity];
@@ -384,6 +386,9 @@ enum {
             [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kPublishWeiboSucc") delayTime:1 isHappy:YES];
         }
         [self.navigationController popViewControllerAnimated:YES];
+        if (_delegate && [_delegate respondsToSelector:@selector(didPublishSnsMessage:)]) {
+            [_delegate didPublishSnsMessage:_snsType];
+        }
     }
     else{
         //[self popupMessage:NSLS(@"kPublishWeiboFail") title:nil];
@@ -454,9 +459,6 @@ enum {
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-//    [self initPatternsWithImagesName:[NSArray arrayWithObjects:@"pic_template3", @"pic_template2", @"pic_template1",  @"pic_template4", @"pic_template5", nil]];
-//    [self initPattenrsGallery];
-    
     
     self.shareTitleLabel.text = NSLS(@"kShareWeiboTitle");
     [self.shareButton setTitle:NSLS(@"kShareSend") forState:UIControlStateNormal];
@@ -471,24 +473,10 @@ enum {
         [self.paperBackground setHidden:NO];
         [self.view addSubview:view];
         [view release];
-        //[self putUpInputDialog];
-        //[self performSelector:@selector(putUpInputDialog) withObject:nil afterDelay:0.1];
-        //[view setFrame:CGRectMake(10, 170, 300, 300)];
-        //[self.myImageBackground setFrame:CGRectMake(10, 170, 300, 300)];
         
     }
     else{
-//        _infuseImageView = [[SynthesisView alloc] init];
-//        [self.infuseImageView setFrame:INFUSE_VIEW_FRAME];   
-//        [self.infuseImageView setBackgroundColor:[UIColor clearColor]];
-//        [self.infuseImageView setDrawImage:self.myImage];
-//        if (self.patternsArray) {
-//            [self.infuseImageView setPatternImage:[self.patternsArray objectAtIndex:0]];
-//        }
-//        //[self.view addSubview:self.infuseImageView];
         [self.myImageView setImage:self.myImage];
-//        [self.infuseImageView setNeedsDisplay];
-        
     }        
     [self initShareText];
         

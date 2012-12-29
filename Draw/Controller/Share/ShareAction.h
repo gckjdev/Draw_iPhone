@@ -9,11 +9,14 @@
 #import <Foundation/Foundation.h>
 #import <MessageUI/MessageUI.h>
 #import "CustomActionSheet.h"
+#import "ShareEditController.h"
+#import "DrawDataService.h"
+#import "MyPaintManager.h"
 @class DrawFeed;
 
-@interface ShareAction : NSObject<UIActionSheetDelegate, MFMailComposeViewControllerDelegate, CustomActionSheetDelegate>
+@interface ShareAction : NSObject<UIActionSheetDelegate, MFMailComposeViewControllerDelegate, CustomActionSheetDelegate, ShareEditControllerDelegate, DrawDataServiceDelegate, MyPaintManagerDelegate>
 
-@property (nonatomic, retain) UIViewController* superViewController;
+@property (nonatomic, retain) PPViewController* superViewController;
 @property (nonatomic, copy) NSString* drawWord;
 @property (nonatomic, copy) NSString* imageFilePath;
 @property (nonatomic, assign) BOOL isDrawByMe;
@@ -29,6 +32,6 @@
                  drawUserId:(NSString*)drawUserId;
 - (id)initWithFeed:(DrawFeed*)feed
              image:(UIImage*)image;
-- (void)displayWithViewController:(UIViewController*)superViewController;
-- (void)displayWithViewController:(UIViewController*)superViewController onView:(UIView*)view;
+- (void)displayWithViewController:(PPViewController*)superViewController;
+- (void)displayWithViewController:(PPViewController*)superViewController onView:(UIView*)view;
 @end
