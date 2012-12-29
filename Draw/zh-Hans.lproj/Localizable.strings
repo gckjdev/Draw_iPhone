@@ -311,8 +311,8 @@
 
 "kPaymentCannotMake" = "对不起，你的设备或者iOS版本未接受应用内程序购买功能。";
 
-"kSharePhotoEmailSubject" = "分享有趣的画画";
-"kSharePhotoEmailBody" = "Hi，分享一幅有趣的画，能猜到画的是什么吗？\n\n- 来自%@";
+"kSharePhotoEmailSubject" = "画画分享";
+"kSharePhotoEmailBody" = "\n\n- 来自iPhone/iPad上的免费画画应用［%@］";
 "kShareWeiboTitle" = "微博分享";
 
 "kFeedbackSucc" = "感谢您的反馈";
