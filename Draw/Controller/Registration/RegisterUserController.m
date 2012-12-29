@@ -214,8 +214,12 @@
         [self showActivityWithText:NSLS(@"Loading")];
         
         [service readMyUserInfo:^(NSDictionary *userInfo) {
-            PPDebug(@"%@ readMyUserInfo Success, userInfo=%@", name, [userInfo description]);
             [self hideActivity];
+            PPDebug(@"%@ readMyUserInfo Success, userInfo=%@", name, [userInfo description]);
+            if (userInfo == nil){
+                return;
+            }
+            
             [[UserService defaultService] registerUserWithSNSUserInfo:userInfo viewController:self];
         }
         failureBlock:^(NSError *error) {
