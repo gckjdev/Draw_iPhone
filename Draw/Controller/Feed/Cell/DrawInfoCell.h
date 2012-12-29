@@ -19,6 +19,7 @@
 @optional
 - (void)didUpdateShowView;
 - (void)didClickDrawToUser:(NSString *)userId nickName:(NSString *)nickName;
+- (void)didLoadDrawPicture;
 @end
 
 @interface DrawInfoCell : PPTableViewCell<FeedServiceDelegate, ShowDrawViewDelegate>//, HJManagedImageVDelegate>
