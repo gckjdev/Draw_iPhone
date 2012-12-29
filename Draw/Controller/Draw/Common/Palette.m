@@ -87,7 +87,6 @@
 -(void)colorPicked:(UIColor *)newColor forPicker:(ILSaturationBrightnessPickerView *)picker
 {
     [self updateCurrentColorWithColor:newColor];
-//    [_colorChip setColor:self.currentColor];
     if (self.delegate && [self.delegate respondsToSelector:@selector(palette:didPickColor:)]) {
         [self.delegate palette:self didPickColor:self.currentColor];
     }
