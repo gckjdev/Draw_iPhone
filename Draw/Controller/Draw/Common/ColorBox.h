@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ColorBox : UIView
+@interface ColorBox : UIView<UITableViewDataSource, UITableViewDelegate>
+{
+    
+}
 
 @end

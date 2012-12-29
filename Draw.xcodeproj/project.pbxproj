@@ -4364,6 +4364,9 @@
 		CAB15E8715AD41C300502106 /* PickPenView.m in Sources */ = {isa = PBXBuildFile; fileRef = CAB15E8215AD41C300502106 /* PickPenView.m */; };
 		CAB15E8815AD41C300502106 /* PickView.m in Sources */ = {isa = PBXBuildFile; fileRef = CAB15E8415AD41C300502106 /* PickView.m */; };
 		CAB15E8B15AD41E600502106 /* PickToolView.m in Sources */ = {isa = PBXBuildFile; fileRef = CAB15E8A15AD41E600502106 /* PickToolView.m */; };
+		CAB3ADC2168EA6E500916C97 /* color_box_split@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAB3ADC1168EA6E500916C97 /* color_box_split@2x.png */; };
+		CAB3ADC3168EA6E500916C97 /* color_box_split@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAB3ADC1168EA6E500916C97 /* color_box_split@2x.png */; };
+		CAB3ADC4168EA6E500916C97 /* color_box_split@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAB3ADC1168EA6E500916C97 /* color_box_split@2x.png */; };
 		CAB3DBDD1516DACD00E7DBC4 /* SelectWordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CAB3DBDB1516DACD00E7DBC4 /* SelectWordCell.m */; };
 		CAB3DBDE1516DACD00E7DBC4 /* SelectWordCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAB3DBDC1516DACD00E7DBC4 /* SelectWordCell.xib */; };
 		CAB5DE531669FF7600A23011 /* bbs_create_draw_disable@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAB5DE4B1669FF7600A23011 /* bbs_create_draw_disable@2x.png */; };
@@ -7235,6 +7238,7 @@
 		CAB15E8415AD41C300502106 /* PickView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PickView.m; sourceTree = "<group>"; };
 		CAB15E8915AD41E600502106 /* PickToolView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PickToolView.h; sourceTree = "<group>"; };
 		CAB15E8A15AD41E600502106 /* PickToolView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PickToolView.m; sourceTree = "<group>"; };
+		CAB3ADC1168EA6E500916C97 /* color_box_split@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "color_box_split@2x.png"; sourceTree = "<group>"; };
 		CAB3DBDA1516DACD00E7DBC4 /* SelectWordCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectWordCell.h; sourceTree = "<group>"; };
 		CAB3DBDB1516DACD00E7DBC4 /* SelectWordCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectWordCell.m; sourceTree = "<group>"; };
 		CAB3DBDC1516DACD00E7DBC4 /* SelectWordCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SelectWordCell.xib; sourceTree = "<group>"; };
@@ -10573,6 +10577,7 @@
 		CA25C3A2168968070064C05D /* DrawPage */ = {
 			isa = PBXGroup;
 			children = (
+				CAB3ADC0168EA6E500916C97 /* ColorBox */,
 				CA25C3A3168968070064C05D /* BG */,
 				CA25C3A6168968070064C05D /* Header */,
 				CA25C3AA168968070064C05D /* Pen */,
@@ -12898,6 +12903,14 @@
 				CAB15E8A15AD41E600502106 /* PickToolView.m */,
 			);
 			path = PickView;
+			sourceTree = "<group>";
+		};
+		CAB3ADC0168EA6E500916C97 /* ColorBox */ = {
+			isa = PBXGroup;
+			children = (
+				CAB3ADC1168EA6E500916C97 /* color_box_split@2x.png */,
+			);
+			path = ColorBox;
 			sourceTree = "<group>";
 		};
 		CAB5DE4A1669FF7600A23011 /* Creation */ = {
@@ -15559,6 +15572,7 @@
 				CA7D4AE6168DBDCD009F43F7 /* openDice_M.m4a in Resources */,
 				CA7D4AE7168DBDCD009F43F7 /* scrambleToOpenDice_F.m4a in Resources */,
 				CA7D4AE8168DBDCD009F43F7 /* scrambleToOpenDice_M.m4a in Resources */,
+				CAB3ADC3168EA6E500916C97 /* color_box_split@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -16333,6 +16347,7 @@
 				CA7D4502168DBDB1009F43F7 /* raise_bet.mp3 in Resources */,
 				CA7D4503168DBDB1009F43F7 /* raise_bet1_F.mp3 in Resources */,
 				CA7D4504168DBDB1009F43F7 /* raise_bet1_M.mp3 in Resources */,
+				CAB3ADC4168EA6E500916C97 /* color_box_split@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -17054,6 +17069,7 @@
 				CA7D4328168D7588009F43F7 /* wrong.wav in Resources */,
 				C2117B93168D8FD5000F36EE /* detail_share@2x.png in Resources */,
 				CAC4499A168DA01B004441EB /* PenBox.xib in Resources */,
+				CAB3ADC2168EA6E500916C97 /* color_box_split@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
