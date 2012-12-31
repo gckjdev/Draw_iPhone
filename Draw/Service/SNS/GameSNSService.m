@@ -12,6 +12,9 @@
 #import "AccountService.h"
 #import "Account.h"
 #import "ConfigManager.h"
+#import "PPViewController.h"
+#import "UserService.h"
+#import "UserManager.h"
 
 @implementation GameSNSService
 
@@ -46,26 +49,44 @@
     
 }
 
++ (NSString*)followKey:(PPSNSCommonService*)snsService
+{
+    NSString* key = [NSString stringWithFormat:@"FOLLOW_SNS_%@_KEY", [snsService snsName]];
+    return key;
+}
+
++ (BOOL)hasFollowOfficialWeibo:(PPSNSCommonService*)snsService
+{
+    NSString* followKey = [self followKey:snsService];
+    NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
+    BOOL value = [userDefaults boolForKey:followKey];
+    return value;
+}
+
++ (void)updateFollowOfficialWeibo:(PPSNSCommonService*)snsService
+{
+    NSString* followKey = [self followKey:snsService];
+    NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
+    [[AccountService defaultService] chargeAccount:[ConfigManager getFollowReward] source:FollowReward];
+    [userDefaults setBool:YES forKey:followKey];
+    [userDefaults synchronize];
+    return;
+}
+
 + (void)askFollow:(PPSNSType)snsType snsWeiboId:(NSString*)weiboId
 {
     PPSNSCommonService* snsService = [[PPSNSIntegerationService defaultService] snsServiceByType:snsType];
+    if ([snsService supportFollow] == NO)
+        return;
     
     [snsService askFollowWithTitle:[GameApp askFollowTitle]
                     displayMessage:[GameApp askFollowMessage]
                            weiboId:weiboId
                       successBlock:^(NSDictionary *userInfo) {
 
-        NSString* followKey = [NSString stringWithFormat:@"FOLLOW_SNS_%@_KEY", [snsService snsName]];
-        
-                          
-        NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
-        BOOL key = [userDefaults boolForKey:followKey];
-        
-        if (key == NO){
+        if ([self hasFollowOfficialWeibo:snsService] == NO){
             PPDebug(@"follow user %@ and reward success", weiboId);
-            [[AccountService defaultService] chargeAccount:[ConfigManager getFollowReward] source:FollowReward];
-            [userDefaults setBool:YES forKey:followKey];
-            [userDefaults synchronize];
+            [self updateFollowOfficialWeibo:snsService];
         }
         else{
             PPDebug(@"follow user %@ but already reward", weiboId);
@@ -77,5 +98,47 @@
     }];
     
 }
+
++ (NSString*)snsOfficialNick:(int)type
+{
+    PPSNSCommonService* snsService = [[PPSNSIntegerationService defaultService] snsServiceByType:type];
+    if (snsService == nil)
+        return @"";
+    
+    return [NSString stringWithFormat:@"@%@", [snsService officialWeiboId]];
+}
+
+//+ (void)bindSNS:(int)snsType viewController:(PPViewController<UserServiceDelegate>*)viewController
+//{
+//    PPSNSCommonService* service = [[PPSNSIntegerationService defaultService] snsServiceByType:snsType];
+//    NSString* name = [service snsName];
+//    
+//    [service logout];
+//    
+//    [service login:^(NSDictionary *userInfo) {
+//        PPDebug(@"%@ Login Success", name);
+//        
+//        [viewController showActivityWithText:NSLS(@"Loading")];
+//        
+//        [service readMyUserInfo:^(NSDictionary *userInfo) {
+//            [viewController hideActivity];
+//            PPDebug(@"%@ readMyUserInfo Success, userInfo=%@", name, [userInfo description]);
+//            UserManager* userManager = [UserManager defaultManager];
+//            [[UserService defaultService] updateUserWithSNSUserInfo:[userManager userId]
+//                                                           userInfo:userInfo
+//                                                     viewController:viewController];
+//            
+//            // ask follow official weibo account here
+//            [GameSNSService askFollow:snsType snsWeiboId:[service officialWeiboId]];
+//            
+//        } failureBlock:^(NSError *error) {
+//            [viewController hideActivity];
+//            PPDebug(@"%@ readMyUserInfo Failure", name);
+//        }];
+//        
+//    } failureBlock:^(NSError *error) {
+//        PPDebug(@"%@ Login Failure", name);
+//    }];
+//}
 
 @end

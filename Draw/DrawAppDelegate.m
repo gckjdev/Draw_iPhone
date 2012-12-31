@@ -74,7 +74,7 @@ NSString* GlobalGetServerURL()
 NSString* GlobalGetTrafficServerURL()
 {
     return [ConfigManager getTrafficAPIServerURL];
-//    return @"http://192.168.1.7:8100/api/i?";
+//    return @"http://192.168.1.5:8100/api/i?";
 //    return @"http://192.168.1.198:8100/api/i?";
 }
 
@@ -190,7 +190,7 @@ NSString* GlobalGetBoardServerURL()
     PPFacebookService* facebookService = [[[PPFacebookService alloc] initWithAppKey:[GameApp facebookAppKey]
                                                                          appSecret:[GameApp facebookAppSecret]
                                                                     appRedirectURI:nil
-                                                                   officialWeiboId:nil] autorelease];
+                                                                   officialWeiboId:[UIUtils getAppName]] autorelease];
     
     
     [[PPSNSIntegerationService defaultService] addSNS:sinaWeiboService];
@@ -446,7 +446,6 @@ NSString* GlobalGetBoardServerURL()
      */
     
     [[BoardService defaultService] syncBoards];
-    [[BulletinService defaultService] syncBulletins];
     
     if ([ConfigManager wallEnabled]){
         [[LmWallService defaultService] queryScore];            

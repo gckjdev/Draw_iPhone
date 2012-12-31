@@ -12,6 +12,14 @@
 #import "PPViewController.h"
 
 #define DB_FIELD_ACTION_SAVE_TIMES      @"save_times"
+#define DB_FIELD_ACTION_SHARE_SINA      @"share_sina"
+#define DB_FIELD_ACTION_SHARE_QQ        @"share_qq"
+#define DB_FIELD_ACTION_SHARE_FACEBOOK  @"share_facebook"
+#define DB_FIELD_ACTION_SHARE_EMAIL     @"share_email"
+#define DB_FIELD_ACTION_SHARE_WECHAT    @"share_wechat"
+#define DB_FIELD_ACTION_SHARE_WECHAT_FRIENDS      @"share_wechat_friends"
+#define DB_FIELD_ACTION_SAVE_ALBUM      @"save_album"
+
 
 @protocol FeedServiceDelegate <NSObject>
 

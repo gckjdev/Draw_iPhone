@@ -17,25 +17,30 @@
 #import "Feed.h"
 #import "DrawImageManager.h"
 #import "ConfigManager.h"
+#import "BulletinView.h"
 
 @interface HomeHeaderPanel ()
 {
     NSMutableArray *_feedList;
+    NSTimer *_scrollTimer;
 }
 @property (retain, nonatomic) IBOutlet UIImageView *displayBG;
 @property (retain, nonatomic) IBOutlet UIImageView *avatar;
 @property (retain, nonatomic) IBOutlet UILabel *nickName;
 @property (retain, nonatomic) IBOutlet UILabel *level;
 @property (retain, nonatomic) IBOutlet UIButton *chargeButton;
+@property (retain, nonatomic) IBOutlet UIButton *bulletinButton;
 @property (retain, nonatomic) IBOutlet UILabel *coin;
 @property (retain, nonatomic) IBOutlet UIScrollView *displayScrollView;
 @property (retain, nonatomic) IBOutlet UIButton *freeCoin;
+@property (retain, nonatomic) IBOutlet UIButton *bulletinBadge;
 
 @property (retain, nonatomic) NSMutableArray *feedList;
 
 - (IBAction)clickFreeCoinButton:(id)sender;
 - (IBAction)clickChargeButton:(id)sender;
 - (IBAction)clickAvatarButton:(id)sender;
+- (IBAction)clickBulletinButton:(id)sender;
 
 @end
 
@@ -66,19 +71,23 @@
 #define SPACE_IMAGE (ISIPAD ? 4 * 2 : 4)
 #define DISPLAY_SIZE (self.displayScrollView.frame.size)
 #define SCROLL_INTERVAL 10
+
 #define TOP_DRAW_NUMBER 6
+
+#define REFRESH_INTERVAL (3600 * 2)
 
 - (void)updateDisplayView
 {
-    if ([self.feedList count] == 0) {
-        //get top 6 draw feed.
-        [[FeedService defaultService] getFeedList:FeedListTypeHot
-                                           offset:0
-                                            limit:TOP_DRAW_NUMBER + 3
-                                         delegate:self];        
-    }else{
-        [self.displayScrollView setHidden:NO];
-    }
+    PPDebug(@"updateDisplayView");
+    [[FeedService defaultService] getFeedList:FeedListTypeHot
+                                       offset:0
+                                        limit:TOP_DRAW_NUMBER + 3
+                                     delegate:self];        
+}
+
+- (void)handleRefreshTimer:(NSTimer *)theTimer
+{
+    [self updateDisplayView];
 }
 
 - (CGFloat)imageWidth
@@ -122,7 +131,10 @@
 
 - (void)startDisplayAnimation
 {
-    [NSTimer scheduledTimerWithTimeInterval:SCROLL_INTERVAL target:self selector:@selector(handleTimer:) userInfo:nil repeats:YES];
+    if (_scrollTimer == nil) {
+        PPDebug(@"<startDisplayAnimation>");
+        _scrollTimer = [NSTimer scheduledTimerWithTimeInterval:SCROLL_INTERVAL target:self selector:@selector(handleTimer:) userInfo:nil repeats:YES];        
+    }
 }
 
 - (void)clickDrawImage:(id)sender
@@ -172,18 +184,32 @@
 }
 
 
+- (void)clearOldDisplayImages
+{
+    for (UIImageView *imageView in [self.displayScrollView subviews]) {
+        if ([imageView isKindOfClass:[UIImageView class]]) {
+            [imageView removeFromSuperview];
+        }
+    }
+}
 
 - (void)didGetFeedList:(NSArray *)feedList
           feedListType:(FeedListType)type
             resultCode:(NSInteger)resultCode
 {
+
     if (resultCode == 0 && [feedList count] != 0) {
 
         //get Top 6 feed
-        self.feedList = [NSMutableArray arrayWithArray:feedList];
-        
+        if (self.feedList != feedList) {
+            self.feedList = [NSMutableArray arrayWithArray:feedList];
+        }
+
+
         PPDebug(@"<didGetFeedList> ready to display images");
         [self.displayScrollView setHidden:NO];
+        
+        [self clearOldDisplayImages];
         //display image.
         NSInteger i = 0;
         for (DrawFeed *feed in feedList) {
@@ -222,10 +248,11 @@
     [self.nickName setTextColor:borderColor];
     
     UserManager *userManager = [UserManager defaultManager];
-    if ([userManager avatarImage]) {
-        [self.avatar setImage:[userManager avatarImage]];
-    }else if([[userManager avatarURL] length] != 0){
+    if([[userManager avatarURL] length] > 0){
         [self.avatar setImageWithURL:[NSURL URLWithString:[userManager avatarURL]]];
+    }
+    else {
+        [self.avatar setImage:[userManager avatarImage]];
     }
     
     UIButton *mask = [UIButton buttonWithType:UIControlStateNormal];
@@ -249,6 +276,7 @@
     self.freeCoin.hidden = [ConfigManager wallEnabled] ? NO : YES;
     
     [self.chargeButton setTitle:NSLS(@"kCharge") forState:UIControlStateNormal];
+    [self.bulletinButton setTitle:NSLS(@"kBulletin") forState:UIControlStateNormal];
     [self.freeCoin setTitle:NSLS(@"kFreeCoin") forState:UIControlStateNormal];
     
     [self.displayScrollView setHidden:YES];
@@ -256,9 +284,15 @@
 
     //update display view.
     if (isDrawApp()) {
-        [self updateDisplayView];
+        if ([self.feedList count] <= 0) {
+            [self updateDisplayView];
+            [NSTimer scheduledTimerWithTimeInterval:REFRESH_INTERVAL target:self selector:@selector(handleRefreshTimer:) userInfo:nil repeats:YES];
+        }else{
+            [self didGetFeedList:self.feedList feedListType:0 resultCode:0];
+        }
         self.displayBG.image = [[DrawImageManager defaultManager] drawHomeDisplayBG];
-        [self.chargeButton.layer setTransform:CATransform3DMakeRotation(0.12, 0, 0, 1)];
+        [self.chargeButton.layer setTransform:CATransform3DMakeRotation(-0.12, 0, 0, 1)];
+        [self.bulletinButton.layer setTransform:CATransform3DMakeRotation(0.12, 0, 0, 1)];
     }else{
         self.displayBG.hidden = YES;
         DrawImageManager *imageManager = [DrawImageManager defaultManager];
@@ -275,10 +309,11 @@
     PPRelease(_nickName);
     PPRelease(_level);
     PPRelease(_chargeButton);
+    PPRelease(_bulletinButton);
     PPRelease(_coin);
     PPRelease(_displayScrollView);
     PPRelease(_feedList);
-    [_freeCoin release];
+    PPRelease(_freeCoin);
     [super dealloc];
 }
 - (IBAction)clickFreeCoinButton:(id)sender {
@@ -295,6 +330,24 @@
 - (IBAction)clickAvatarButton:(id)sender {
     if (self.delegate && [self.delegate respondsToSelector:@selector(homeHeaderPanel:didClickAvatarButton:)]) {
         [self.delegate homeHeaderPanel:self didClickAvatarButton:sender];
+    }
+}
+
+- (IBAction)clickBulletinButton:(id)sender
+{
+    if (self.delegate && [self.delegate respondsToSelector:@selector(homeHeaderPanel:didClickBulletinButton:)]) {
+        [self.delegate homeHeaderPanel:self didClickBulletinButton:sender];
+    }
+    [self updateBulletinBadge:0];
+}
+
+- (void)updateBulletinBadge:(int)count
+{
+    [self.bulletinBadge setTitle:[NSString stringWithFormat:@"%d",count] forState:UIControlStateNormal];
+    if (count > 0) {
+        [self.bulletinBadge setHidden:NO];
+    } else {
+        [self.bulletinBadge setHidden:YES];
     }
 }
 

@@ -7,8 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "ConfigManager.h"
 
-#define MAX_CACHE_BULLETIN_COUNT    10
+#define MAX_CACHE_BULLETIN_COUNT    ([ConfigManager maxCacheBulletinCount])
+
 @class Bulletin;
 
 @interface BulletinManager : NSObject {

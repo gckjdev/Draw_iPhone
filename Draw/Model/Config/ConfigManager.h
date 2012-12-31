@@ -33,6 +33,9 @@ typedef enum{
 + (int)getBalanceDeviation;
 
 + (int)getGuessRewardNormal;
+
++ (NSInteger)historyRankNumber;
++ (NSInteger)drawAutoSavePaintInterval;//DRAFT_PAINT_COUNT
 + (NSString*)getChannelId;
 
 + (NSString*)defaultEnglishServer;
@@ -51,6 +54,7 @@ typedef enum{
 + (NSString*)getAPIServerURL;
 + (NSString*)getTrafficAPIServerURL;
 + (NSString*)getMusicDownloadHomeURL;
+
 
 + (BOOL)isInReview;
 + (BOOL)isInReviewVersion;
@@ -77,6 +81,10 @@ typedef enum{
 
 + (int)flowerAwardFordLevelUp;
 + (int)diceCutAwardForLevelUp;
+
++ (NSString*)getSystemUserId;
+
++ (int)maxCacheBulletinCount;
 
 /*
 + (NSString*)getRecommendAppLinkZh;

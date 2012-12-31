@@ -179,9 +179,9 @@
 
 "kPassword" = "密碼";
 "kNickname" = "暱稱";
-"kSinaWeibo" = "綁定新浪微博";
-"kQQWeibo" = "綁定騰訊微博";
-"kFacebook" = "綁定Facebook";
+"kBindSinaWeibo" = "綁定新浪微博";
+"kBindQQWeibo" = "綁定騰訊微博";
+"kBindFacebook" = "綁定Facebook";
 "kBind" = "已綁定";
 "kUnBind" = "未綁定";
 "kFailToConnectIAPServer" = "連接蘋果購買服務器失敗，請稍候再試。";
@@ -281,24 +281,34 @@
 "kSay something..." = "";
 "kShare_via_SMS" = "短信分享給朋友";
 
-"kShare_message_body" = "推荐一款好玩的iPhone/iPad畫畫娛樂應用［%@］ %@";
+"kShare_message_body" = "推荐一款好玩的iPhone/iPad畫畫娛樂應用［%@］AppStore Link: %@";
 
 "kEmail_subject" = "分享［猜猜畫畫］iPhone/iPad版遊戲";
 
 "kCreating_gif" = "正在生成GIF動畫文件中... 文件可能比較大，請耐心等待";
 
-"kShareOtherTextAuto" = "我在玩%@，TA畫的是［%@］，沒想到吧~！我也木有想到！果斷圍觀啊！%@ #猜猜畫畫美圖分享# http://itunes.apple.com/cn/app/cai-cai-hua-hua/id513819630?mt=8";
+"kShareOtherTextAuto" = "我在玩%@，猜猜TA畫的是什麼？快來圍觀! %@ #猜猜畫畫美圖分享# http://itunes.apple.com/cn/app/cai- cai-hua-hua/id513819630?mt=8";
 
-"kShareMeTextAuto" = "我在玩%@，快來圍觀我畫了什麼吧！畫的詞是［%@］，看來我畫工還不錯！#猜猜畫畫美圖分享# http://itunes .apple.com/cn/app/cai-cai-hua-hua/id513819630?mt=8";
+"kShareMeTextAuto" = "我在玩%@，快來圍觀我畫的［%@］ #猜猜畫畫美圖分享# http://itunes.apple.com/cn/app/cai-cai-hua-hua/ id513819630?mt=8";
 
-"kShareOtherText" = "我在玩@猜猜畫畫手機版，TA畫的是［%@］，沒想到吧~！我也木有想到！果斷圍觀啊！#猜猜畫畫美圖分享# http://caicaihuahua.me";
-"kShareMeText" = "我在玩@猜猜畫畫手機版，快來圍觀我畫了什麼吧！畫的詞是［%@］，看來我畫工還不錯！#猜猜畫畫美圖分享# http://caicaihuahua.me";
+"kShareOtherText" = "我在玩%@，猜猜TA畫的是什麼？快來圍觀! #猜猜畫畫美圖分享# http://itunes.apple.com/cn/app/cai-cai- hua-hua/id513819630?mt=8";
+
+"kShareMeText" = "我在玩%@，快來圍觀我畫的［%@］ #猜猜畫畫美圖分享# http://itunes.apple.com/cn/app/cai-cai-hua-hua/ id513819630?mt=8";
+
+//"kShareOtherTextAuto" = "我在玩%@，TA畫的是［%@］，沒想到吧~！我也木有想到！果斷圍觀啊！%@ #猜猜畫畫美圖分享# http://itunes.apple.com/cn/app/cai-cai-hua-hua/id513819630?mt=8";
+//
+//"kShareMeTextAuto" = "我在玩%@，快來圍觀我畫了什麼吧！畫的詞是［%@］，看來我畫工還不錯！#猜猜畫畫美圖分享# http://itunes .apple.com/cn/app/cai-cai-hua-hua/id513819630?mt=8";
+//
+//"kShareOtherText" = "我在玩@猜猜畫畫手機版，TA畫的是［%@］，沒想到吧~！我也木有想到！果斷圍觀啊！#猜猜畫畫美圖分享# http://caicaihuahua.me";
+//"kShareMeText" = "我在玩@猜猜畫畫手機版，快來圍觀我畫了什麼吧！畫的詞是［%@］，看來我畫工還不錯！#猜猜畫畫美圖分享# http://caicaihuahua.me";
+
 
 "kShareGIFOtherText" = "我在玩@猜猜畫畫手機版，TA畫的是［%@］，沒想到吧~！我也木有想到！果斷圍觀啊！#猜猜畫畫動畫炫圖分享# http://caicaihuahua.me";
 "kShareGIFMeText" = "我在玩@猜猜畫畫手機版，快來圍觀我的動畫炫圖！畫的詞是［%@］，看來我畫工還不錯！#猜猜畫畫動畫炫圖分享# http://caicaihuahua.me";
 
 "kShareSend" = "發送微博";
 
+"kPublishingWeibo" = "發送微博中...";
 "kPublishWeiboSucc" = "微博已成功發送";
 "kPublishWeiboFail" = "微博發送失敗，請稍候再試。";
 
@@ -936,6 +946,19 @@
 "kHomeMenuTypeZJHVSSite" = "單挑場";
 
 "kBulletin" = "公告";
+
+"kShareTo" = "分享到...";
+"kEmail" = "郵件";
+"kWeChatTimeline" = "微信";
+"kWeChatFriends" = "微信朋友圈";
+"kFavorite" = "保存";
+"kAlbum" = "相冊";
+"kSinaWeibo" = "新浪微博";
+"kTencentWeibo" = "騰訊微博";
+"kFacebook" = "Facebook";
+
+"kSaveToAlbumSuccess" = "成功保存到相冊!";
+"kSaveToLocalSuccess" = "成功保存到本地，您可以在作品頁面查看該作品。";
 
 /*********************** 猜猜画画国际化字符串结束 *************************/
 

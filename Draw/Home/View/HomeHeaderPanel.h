@@ -28,11 +28,16 @@
 - (void)homeHeaderPanel:(HomeHeaderPanel *)headerPanel
    didClickDrawImage:(DrawFeed *)drawFeed;
 
+- (void)homeHeaderPanel:(HomeHeaderPanel *)headerPanel
+   didClickBulletinButton:(UIButton *)button;
+
 @end
 
 @interface HomeHeaderPanel : HomeCommonView<HomeCommonViewProtocol, FeedServiceDelegate>
 {
     
 }
+
+- (void)updateBulletinBadge:(int)count;
 
 @end

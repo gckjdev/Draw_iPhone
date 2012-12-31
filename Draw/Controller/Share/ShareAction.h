@@ -8,21 +8,30 @@
 
 #import <Foundation/Foundation.h>
 #import <MessageUI/MessageUI.h>
+#import "CustomActionSheet.h"
+#import "ShareEditController.h"
+#import "DrawDataService.h"
+#import "MyPaintManager.h"
+@class DrawFeed;
 
-@interface ShareAction : NSObject<UIActionSheetDelegate, MFMailComposeViewControllerDelegate>
+@interface ShareAction : NSObject<UIActionSheetDelegate, MFMailComposeViewControllerDelegate, CustomActionSheetDelegate, ShareEditControllerDelegate, DrawDataServiceDelegate, MyPaintManagerDelegate>
 
-@property (nonatomic, retain) UIViewController* superViewController;
+@property (nonatomic, retain) PPViewController* superViewController;
 @property (nonatomic, copy) NSString* drawWord;
 @property (nonatomic, copy) NSString* imageFilePath;
 @property (nonatomic, assign) BOOL isDrawByMe;
 @property (nonatomic, assign) BOOL isGIF;
 @property (nonatomic, retain) NSString* drawUserId;
+@property (nonatomic, retain) DrawFeed* feed;
+@property (nonatomic, retain) UIImage* image;
 
 - (id)initWithDrawImageFile:(NSString*)imageFilePath isGIF:(BOOL)isGIF drawWord:(NSString*)drawWord isMe:(BOOL)isDrawByMe;
 - (id)initWithDrawImageFile:(NSString*)imageFilePath 
                       isGIF:(BOOL)isGIF 
                    drawWord:(NSString*)drawWord 
                  drawUserId:(NSString*)drawUserId;
-- (void)displayWithViewController:(UIViewController*)superViewController;
-
+- (id)initWithFeed:(DrawFeed*)feed
+             image:(UIImage*)image;
+- (void)displayWithViewController:(PPViewController*)superViewController;
+- (void)displayWithViewController:(PPViewController*)superViewController onView:(UIView*)view;
 @end

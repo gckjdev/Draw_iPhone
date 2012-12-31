@@ -139,20 +139,29 @@
 //    self.feed.largeImage = [[FeedManager defaultManager] largeImageForFeedId:feed.feedId];
     if (self.feed.largeImage) {
         [self.drawImage setImage:self.feed.largeImage];
-        [self.loadingActivity stopAnimating];
+        [self loadImageFinish];
     }else if ([feed.drawImageUrl length] != 0 && (![DeviceDetection isIPAD] || feed.deviceType == DeviceTypeIPad)) {
         [self.drawImage setImageWithURL:[NSURL URLWithString:feed.drawImageUrl] placeholderImage:[[ShareImageManager defaultManager] unloadBg] success:^(UIImage *image, BOOL cached) {
             PPDebug(@"<download image> %@ success", feed.drawImageUrl);
             self.feed.largeImage = image;
-            [self.loadingActivity stopAnimating];
+            [self loadImageFinish];
         } failure:^(NSError *error) {
             PPDebug(@"<download image> %@ failure, error=%@", feed.drawImageUrl, [error description]);
             [self.loadingActivity stopAnimating];
         }];
     }else{
         [self showDrawView:feed];
+        [self loadImageFinish];
     }
 
+}
+
+- (void)loadImageFinish
+{
+    [self.loadingActivity stopAnimating];
+    if (_delegate && [_delegate respondsToSelector:@selector(didLoadDrawPicture)]) {
+        [_delegate didLoadDrawPicture];
+    }
 }
 
 

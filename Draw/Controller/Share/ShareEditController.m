@@ -20,6 +20,8 @@
 #import "MyFriend.h"
 #import "PPSNSIntegerationService.h"
 #import "PPSNSConstants.h"
+#import "PPSNSCommonService.h"
+#import "FeedService.h"
 
 #define PATTERN_TAG_OFFSET 20120403
 #define IPAD_INFUSEVIEW_FRAME CGRectMake(31*2.4,130*2.13,259*2.4,259*2.13)
@@ -169,6 +171,41 @@ enum {
 
 - (void)publishWeibo:(NSString*)text imagePath:(NSString*)imagePath
 {
+    PPSNSCommonService* snsService = [[PPSNSIntegerationService defaultService] snsServiceByType:_snsType];
+    
+    [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kPublishingWeibo") delayTime:5 isHappy:YES];
+    [snsService publishWeibo:text imageFilePath:imagePath successBlock:^(NSDictionary *userInfo) {
+        
+        
+        PPDebug(@"%@ publish weibo succ", [snsService snsName]);
+        int earnCoins = [[AccountService defaultService] rewardForShareWeibo];
+        if (earnCoins > 0){
+            NSString* msg = [NSString stringWithFormat:NSLS(@"kPublishWeiboSuccAndEarnCoins"), earnCoins];
+            [self popupMessage:msg title:nil];
+        }
+        else{
+            //[self popupMessage:NSLS(@"kPublishWeiboSucc") title:nil];
+            [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kPublishWeiboSucc") delayTime:1 isHappy:YES];
+        }
+
+        // report action, doesn't work here, need to fix later
+        /*
+        if (_delegate && [_delegate respondsToSelector:@selector(didPublishSnsMessage:)]) {
+            [_delegate didPublishSnsMessage:_snsType];
+        }
+        */
+        
+        [self.navigationController popViewControllerAnimated:YES];
+
+    } failureBlock:^(NSError *error) {
+        [self hideActivity];
+        PPDebug(@"%@ publish weibo failure", [snsService snsName]);
+        [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kPublishWeiboFail") delayTime:1 isHappy:NO];
+    }];
+    
+    return;
+    
+    /*
     [[PPSNSIntegerationService defaultService] publishWeiboToAll:text
                                                    imageFilePath:imagePath
                                                     successBlock:^(int snsType, PPSNSCommonService *snsService, NSDictionary *userInfo) {
@@ -194,6 +231,7 @@ enum {
                                                         [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kPublishWeiboFail") delayTime:1 isHappy:NO];
                                                         
                                                     }];
+     */
 }
 
 - (void)clickOk:(CommonDialog *)dialog
@@ -274,6 +312,10 @@ enum {
         }
         
     } else {
+        
+        path = self.imageFilePath;
+        
+        /* rem by Benson, share image directly, improve compose image later
         UIImage* background = [UIImage imageNamed:@"share_bg.png"];
         UIImage* title = [UIImage imageNamed:@"name.png"];
         UILabel* label = [[[UILabel alloc] initWithFrame:CGRectMake(48, 90, 224, 25)] autorelease];
@@ -300,6 +342,7 @@ enum {
             [self popupMessage:NSLS(@"kPublishWeiboFail") title:nil];
             return;
         }
+        */
     }
     
     [self publishWeibo:self.shareTextField.text imagePath:path];
@@ -336,6 +379,7 @@ enum {
      */
 }
 
+
 - (void)didPublishWeibo:(int)result
 {
     [self hideActivity];
@@ -350,6 +394,9 @@ enum {
             [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kPublishWeiboSucc") delayTime:1 isHappy:YES];
         }
         [self.navigationController popViewControllerAnimated:YES];
+        if (_delegate && [_delegate respondsToSelector:@selector(didPublishSnsMessage:)]) {
+            [_delegate didPublishSnsMessage:_snsType];
+        }
     }
     else{
         //[self popupMessage:NSLS(@"kPublishWeiboFail") title:nil];
@@ -420,9 +467,6 @@ enum {
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-//    [self initPatternsWithImagesName:[NSArray arrayWithObjects:@"pic_template3", @"pic_template2", @"pic_template1",  @"pic_template4", @"pic_template5", nil]];
-//    [self initPattenrsGallery];
-    
     
     self.shareTitleLabel.text = NSLS(@"kShareWeiboTitle");
     [self.shareButton setTitle:NSLS(@"kShareSend") forState:UIControlStateNormal];
@@ -437,24 +481,10 @@ enum {
         [self.paperBackground setHidden:NO];
         [self.view addSubview:view];
         [view release];
-        //[self putUpInputDialog];
-        //[self performSelector:@selector(putUpInputDialog) withObject:nil afterDelay:0.1];
-        //[view setFrame:CGRectMake(10, 170, 300, 300)];
-        //[self.myImageBackground setFrame:CGRectMake(10, 170, 300, 300)];
         
     }
     else{
-//        _infuseImageView = [[SynthesisView alloc] init];
-//        [self.infuseImageView setFrame:INFUSE_VIEW_FRAME];   
-//        [self.infuseImageView setBackgroundColor:[UIColor clearColor]];
-//        [self.infuseImageView setDrawImage:self.myImage];
-//        if (self.patternsArray) {
-//            [self.infuseImageView setPatternImage:[self.patternsArray objectAtIndex:0]];
-//        }
-//        //[self.view addSubview:self.infuseImageView];
         [self.myImageView setImage:self.myImage];
-//        [self.infuseImageView setNeedsDisplay];
-        
     }        
     [self initShareText];
         

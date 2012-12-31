@@ -10,12 +10,21 @@
 #import "LocaleUtils.h"
 #import "UserManager.h"
 #import "PPDebug.h"
-#import "ShareEditController.h"
 #import "MyPaintManager.h"
 #import "WXApi.h"
 #import "UIImageExt.h"
 #import "MyPaintManager.h"
 #import "PPDebug.h"
+#import "DrawFeed.h"
+#import "StringUtil.h"
+#import "CustomActionSheet.h"
+#import "CommonImageManager.h"
+#import "PPSNSIntegerationService.h"
+#import "PPSNSConstants.h"
+#import "GameSNSService.h"
+#import "CommonMessageCenter.h"
+#import "FeedService.h"
+#import "PPViewController.h"
 
 @interface ShareAction ()
 {
@@ -26,6 +35,9 @@
     NSInteger buttonIndexSinaWeibo;
     NSInteger buttonIndexQQWeibo;
     NSInteger buttonIndexFacebook;
+    NSInteger buttonIndexFavorite;
+
+    CustomActionSheet* _customActionSheet;
 }
 @end
 
@@ -45,6 +57,9 @@
     [_drawWord release];
     [_imageFilePath release];
     [_drawUserId release];
+    [_image release];
+    [_feed release];
+    PPRelease(_customActionSheet);
     [super dealloc];
 }
 
@@ -80,7 +95,29 @@
     return self; 
 }
 
-- (void)displayWithViewController:(UIViewController*)superViewController;
+- (id)initWithFeed:(DrawFeed*)feed
+             image:(UIImage*)image
+{
+    self= [super init];
+    if (self) {
+        self.isDrawByMe = ([[UserManager defaultManager] isMe:feed.author.userId]);
+        self.isGIF = NO;
+        self.drawUserId = feed.author.userId;
+        NSString* path = [NSString stringWithFormat:@"%@/%@.jpg", NSTemporaryDirectory(), [NSString GetUUID]];
+        BOOL result=[[image data] writeToFile:path atomically:YES];
+        if (result) {
+            self.imageFilePath = path;
+        }
+        else{
+            PPDebug(@"<initWithFeed> fail to create image file at %@", path);
+        }
+        self.feed = feed;
+        self.image = image;
+    }
+    return self;
+}
+
+- (void)displayWithViewController:(PPViewController*)superViewController;
 {
     buttonIndexAlbum = -1;
     buttonIndexEmail = -1;
@@ -90,24 +127,24 @@
     buttonIndexQQWeibo = -1;
     buttonIndexFacebook = -1;
     
-    UIActionSheet* shareOptions = [[UIActionSheet alloc] initWithTitle:NSLS(@"kShare_Options") 
-                                                              delegate:self 
-                                                     cancelButtonTitle:nil 
-                                                destructiveButtonTitle:NSLS(@"kSave_to_album") 
+    UIActionSheet* shareOptions = [[UIActionSheet alloc] initWithTitle:NSLS(@"kShare_Options")
+                                                              delegate:self
+                                                     cancelButtonTitle:nil
+                                                destructiveButtonTitle:NSLS(@"kSave_to_album")
                                                      otherButtonTitles:NSLS(@"kShare_via_Email"), nil];
     buttonIndexAlbum = 0;
     buttonIndexEmail = 1;
-
+    
     int buttonIndex = buttonIndexEmail;
     if (self.isGIF == NO) {
         buttonIndex ++;
         [shareOptions addButtonWithTitle:NSLS(@"kShare_via_Weixin_Timeline")];
         buttonIndexWeixinTimeline = buttonIndex;
-
+        
         buttonIndex ++;
         [shareOptions addButtonWithTitle:NSLS(@"kShare_via_Weixin_Friend")];
         buttonIndexWeixinFriend = buttonIndex;
-    
+        
     }
     
     if ([[UserManager defaultManager] hasBindSinaWeibo]){
@@ -126,7 +163,7 @@
         buttonIndex ++;
         [shareOptions addButtonWithTitle:NSLS(@"kShare_via_Facebook")];
         buttonIndexFacebook = buttonIndex;
-    }                
+    }
     
     buttonIndex ++;
     [shareOptions addButtonWithTitle:NSLS(@"kCancel")];
@@ -137,11 +174,57 @@
     [shareOptions release];
 }
 
-- (void)mailComposeController:(MFMailComposeViewController *)controller 
-          didFinishWithResult:(MFMailComposeResult)result 
-                        error:(NSError *)error 
+
+- (void)displayWithViewController:(PPViewController*)superViewController onView:(UIView*)view
 {
-	[self.superViewController dismissModalViewControllerAnimated:YES];
+    
+    
+    CommonImageManager* imageManager = [CommonImageManager defaultManager];
+    
+    if (_customActionSheet == nil) {
+        
+        buttonIndexSinaWeibo = 0;
+        buttonIndexQQWeibo = 1;
+        buttonIndexFacebook = 2;
+        buttonIndexWeixinFriend = 3;
+        buttonIndexWeixinTimeline = 4;
+        buttonIndexEmail = 5;
+        buttonIndexAlbum = 6;
+        buttonIndexFavorite = 7;
+        
+        _customActionSheet = [[CustomActionSheet alloc] initWithTitle:NSLS(@"kShareTo")
+                                                             delegate:self
+                                                         buttonTitles:nil];
+        
+        [_customActionSheet addButtonWithTitle:NSLS(@"kSinaWeibo") image:imageManager.sinaImage];
+        [_customActionSheet addButtonWithTitle:NSLS(@"kTencentWeibo") image:imageManager.qqWeiboImage];
+        [_customActionSheet addButtonWithTitle:NSLS(@"kFacebook") image:imageManager.facebookImage];
+        [_customActionSheet addButtonWithTitle:NSLS(@"kWeChatTimeline") image:imageManager.wechatImage];
+        [_customActionSheet addButtonWithTitle:NSLS(@"kWeChatFriends") image:imageManager.wechatFriendsImage];
+        [_customActionSheet addButtonWithTitle:NSLS(@"kEmail") image:imageManager.emailImage];
+//        
+//        [_customActionSheet setImage:imageManager.albumImage forTitle:NSLS(@"kAlbum")];
+//        [_customActionSheet setImage:imageManager.emailImage forTitle:NSLS(@"kEmail")];
+        [_customActionSheet addButtonWithTitle:NSLS(@"kAlbum") image:imageManager.albumImage];
+        [_customActionSheet addButtonWithTitle:NSLS(@"kFavorite") image:imageManager.favoriteImage];
+
+    }
+    
+    self.superViewController = superViewController;
+    if (!_customActionSheet.isVisable) {
+        [_customActionSheet showInView:superViewController.view onView:view];
+    } else {
+        [_customActionSheet hideActionSheet];
+    }
+    
+}
+
+- (void)reportActionToServer:(NSString*)actionName
+{
+    if (![[UserManager defaultManager] isMe:_feed.author.userId]) {
+        [[FeedService defaultService] actionSaveOpus:_feed.feedId
+                                          actionName:actionName];
+    }
 }
 
 - (void)shareViaEmail
@@ -187,13 +270,22 @@
 
 - (void)shareViaSNS:(SnsType)type
 {
+    NSString* snsOfficialNick = [GameSNSService snsOfficialNick:type];
     NSString* text = nil;
+    if (self.feed != nil) {
+        if (_isDrawByMe){
+            _drawWord = self.feed.wordText;            
+        }
+        else{
+            _drawWord = [self.feed hasGuessed]?self.feed.wordText:@"";
+        }        
+    }
     if (_isDrawByMe){
         if (_isGIF){
             text = [NSString stringWithFormat:NSLS(@"kShareGIFMeText"), _drawWord];
         }
         else{
-            text = [NSString stringWithFormat:NSLS(@"kShareMeText"), _drawWord];            
+            text = [NSString stringWithFormat:NSLS(@"kShareMeText"), snsOfficialNick, _drawWord];
         }
     }
     else{
@@ -201,11 +293,12 @@
             text = [NSString stringWithFormat:NSLS(@"kShareGIFOtherText"), _drawWord];            
         }
         else{
-            text = [NSString stringWithFormat:NSLS(@"kShareOtherText"), _drawWord];
+            text = [NSString stringWithFormat:NSLS(@"kShareOtherText"), snsOfficialNick];
         }
     }
     ShareEditController* controller = [[ShareEditController alloc] initWithImageFile:_imageFilePath
                                                                                 text:text drawUserId:self.drawUserId snsType:type];
+    controller.delegate = self;
     [self.superViewController.navigationController pushViewController:controller animated:YES];
     [controller release];    
 }
@@ -222,7 +315,7 @@
         UIImage *thumbImage = [image imageByScalingAndCroppingForSize:CGSizeMake(250, 250)];
         [message setThumbImage:thumbImage];
         WXImageObject *ext = [WXImageObject object];
-        ext.imageData = [NSData dataWithContentsOfFile:_imageFilePath] ;
+        ext.imageData = [NSData dataWithContentsOfFile:_imageFilePath];
         
         message.mediaObject = ext;
         
@@ -236,33 +329,194 @@
     }
 }
 
-- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+- (void)favorite
 {
-    if (buttonIndex == actionSheet.cancelButtonIndex) {
-        PPDebug(@"<ShareAction> Click Cancel");
-        return;
-    }    
-    else if (buttonIndex == buttonIndexAlbum){
-        [[MyPaintManager defaultManager] savePhoto:_imageFilePath];
+    [[DrawDataService defaultService] savePaintWithPBDraw:self.feed.pbDraw
+                                                    image:self.image
+                                                 delegate:self];
+}
+
+- (void)bindSNS:(int)snsType
+{
+    PPViewController* viewController = nil;    
+    if ([self.superViewController isKindOfClass:[PPViewController class]]){
+        viewController = (PPViewController*)self.superViewController;
+    }
+    
+    PPSNSCommonService* service = [[PPSNSIntegerationService defaultService] snsServiceByType:snsType];
+    NSString* name = [service snsName];
+    
+    [service logout];
+    
+    [service login:^(NSDictionary *userInfo) {
+        PPDebug(@"%@ Login Success", name);
+        
+        [viewController showActivityWithText:NSLS(@"Loading")];
+        
+        [service readMyUserInfo:^(NSDictionary *userInfo) {
+            [viewController hideActivity];
+            PPDebug(@"%@ readMyUserInfo Success, userInfo=%@", name, [userInfo description]);
+            UserManager* userManager = [UserManager defaultManager];
+            [[UserService defaultService] updateUserWithSNSUserInfo:[userManager userId]
+                                                           userInfo:userInfo
+                                                     viewController:nil];
+            
+            // share weibo here
+            [self shareViaSNS:snsType];
+            
+        } failureBlock:^(NSError *error) {
+            [viewController hideActivity];
+            PPDebug(@"%@ readMyUserInfo Failure", name);
+        }];
+        
+        // follow weibo if NOT followed
+        if ([GameSNSService hasFollowOfficialWeibo:service] == NO){            
+            [service followUser:[service officialWeiboId]
+                         userId:[service officialWeiboId]
+                   successBlock:^(NSDictionary *userInfo) {
+                [GameSNSService updateFollowOfficialWeibo:service];
+            } failureBlock:^(NSError *error) {
+                PPDebug(@"follow weibo but error=%@", [error description]);
+            }];            
+        }
+     
+    } failureBlock:^(NSError *error) {
+        PPDebug(@"%@ Login Failure", name);
+        [viewController popupMessage:NSLS(@"kUserBindFail") title:nil];
+    }];
+}
+
+
+
+
+- (void)bindSinaWeibo
+{
+    [self bindSNS:TYPE_SINA];
+}
+
+- (void)bindQQWeibo
+{
+    [self bindSNS:TYPE_QQ];
+}
+
+- (void)bindFacebook
+{
+    [self bindSNS:TYPE_FACEBOOK];
+}
+
+- (void)actionOnShareSina
+{
+    if ([[UserManager defaultManager] hasBindSinaWeibo] == NO ||
+        [[[PPSNSIntegerationService defaultService] snsServiceByType:TYPE_SINA] isAuthorizeExpired]){
+        [self bindSinaWeibo];
+    } else {
+        [self shareViaSNS:SINA_WEIBO];
+    }
+}
+
+- (void)actionByButtonIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == buttonIndexAlbum){
+        [[MyPaintManager defaultManager] savePhoto:_imageFilePath delegate:self];
+        [self.superViewController showActivityWithText:NSLS(@"kSaving")];
     }
     else if (buttonIndex == buttonIndexEmail) {
-         [self shareViaEmail];
+        [self shareViaEmail];
     }
     else if (buttonIndex == buttonIndexWeixinTimeline){
         [self shareViaWeixin:WXSceneTimeline];
     }
     else if (buttonIndex == buttonIndexWeixinFriend){
         [self shareViaWeixin:WXSceneSession];
-    }    
+    }
     else if (buttonIndex == buttonIndexSinaWeibo)
     {
-        [self shareViaSNS:SINA_WEIBO];
+        [self actionOnShareSina];        
     } else if (buttonIndex == buttonIndexQQWeibo) {
-        [self shareViaSNS:QQ_WEIBO];
+        if ([[UserManager defaultManager] hasBindQQWeibo] == NO || [[[PPSNSIntegerationService defaultService] snsServiceByType:TYPE_QQ] isAuthorizeExpired]){
+            [self bindQQWeibo];
+        } else {
+            [self shareViaSNS:TYPE_QQ];
+        }
     } else if (buttonIndex == buttonIndexFacebook) {
-        [self shareViaSNS:FACEBOOK];
+        if ([[UserManager defaultManager] hasBindFacebook] == NO || [[[PPSNSIntegerationService defaultService] snsServiceByType:TYPE_FACEBOOK] isAuthorizeExpired]){
+            [self bindFacebook];
+        } else {
+            [self shareViaSNS:TYPE_FACEBOOK];
+        }
+    } else if (buttonIndex == buttonIndexFavorite) {
+        [self favorite];
+        [self.superViewController showActivityWithText:NSLS(@"kSaving")];
     }
 }
 
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == actionSheet.cancelButtonIndex) {
+        PPDebug(@"<ShareAction> Click Cancel");
+        return;
+    }    
+    else {
+        [self actionByButtonIndex:buttonIndex];
+    }
+}
+
+- (void)customActionSheet:(CustomActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    [self actionByButtonIndex:buttonIndex];
+}
+
+#pragma shareEditController delegate
+- (void)didPublishSnsMessage:(int)snsType
+{
+    switch (snsType) {
+        case SINA_WEIBO: {
+            [self reportActionToServer:DB_FIELD_ACTION_SHARE_SINA];
+        } break;
+        case QQ_WEIBO: {
+            [self reportActionToServer:DB_FIELD_ACTION_SHARE_QQ];
+        } break;
+        case FACEBOOK: {
+            [self reportActionToServer:DB_FIELD_ACTION_SHARE_FACEBOOK];
+        } break;
+        default:
+            break;
+    }
+}
+
+#pragma mark - DrawDataService delegate
+- (void)didSaveOpus:(BOOL)succ
+{
+    [self.superViewController hideActivity];
+    if (succ) {
+         [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kSaveToLocalSuccess") delayTime:2 isHappy:YES];
+        [self reportActionToServer:DB_FIELD_ACTION_SAVE_TIMES];
+    }
+}
+
+#pragma mark - MyPaintManager delegater
+- (void)didSaveToAlbumSuccess:(BOOL)succ
+{
+    [self.superViewController hideActivity];
+    if (succ) {
+        [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kSaveToAlbumSuccess") delayTime:1.5 isHappy:YES];
+        [self reportActionToServer:DB_FIELD_ACTION_SAVE_ALBUM];
+    }
+}
+
+#pragma mark - mail compose delegate
+
+- (void)mailComposeController:(MFMailComposeViewController *)controller
+          didFinishWithResult:(MFMailComposeResult)result
+                        error:(NSError *)error
+{
+    [self.superViewController hideActivity];
+	[self.superViewController dismissModalViewControllerAnimated:YES];
+    if (error == nil) {
+        [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kShareByEmailSuccess") delayTime:1.5 isHappy:YES];
+        [self reportActionToServer:DB_FIELD_ACTION_SHARE_EMAIL];
+    }
+    
+}
 
 @end

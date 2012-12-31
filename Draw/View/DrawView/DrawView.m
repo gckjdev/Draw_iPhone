@@ -7,6 +7,7 @@
 //
 
 #import "DrawView.h"
+#import "PPStack.h"
 #import <QuartzCore/QuartzCore.h>
 
 #pragma mark - revoke image.
@@ -46,12 +47,13 @@
 @interface DrawView()
 {
 //    BOOL _drawFullRect;
+    PPStack *_redoStack;
     
-
 }
 #pragma mark Private Helper function
 - (void)revokeRect:(CGRect)rect;
-
+- (void)redoRect:(CGRect)rect;
+- (void)clearRedoStack;
 @end
 
 #define DEFAULT_PLAY_SPEED (1/40.0)
@@ -92,26 +94,40 @@
     return rImage.index;
 }
 
-- (void)addCleanAction
+- (void)addCleanActionAndClearRedoStack:(BOOL)clear
 {
     DrawAction *cleanAction = [DrawAction actionWithType:DRAW_ACTION_TYPE_CLEAN paint:nil];
     [self.drawActionList addObject:cleanAction];
     _startDrawActionIndex = [self.drawActionList count];
     _drawRectType = DrawRectTypeClean;
     [self setNeedsDisplay];
-//    [self addRevocationImage];
+    if (clear) {
+        [_redoStack clear];
+    }
+}
+- (DrawAction *)addChangeBackAction:(DrawAction *)action clearRedoStack:(BOOL)clear
+{
+//    DrawAction *action = [DrawAction changeBackgroundActionWithColor:color];
+    [self.drawActionList addObject:action];
+    _startDrawActionIndex = [self.drawActionList count] - 1;
+    _drawRectType = DrawRectTypeChangeBack;
+    _changeBackColor = action.paint.color.CGColor; //color.CGColor;
+    [self setNeedsDisplay];
+    if (clear) {
+        [_redoStack clear];
+    }
+    return action;
+}
+
+- (void)addCleanAction
+{
+    [self addCleanActionAndClearRedoStack:YES];
 }
 
 - (DrawAction *)addChangeBackAction:(DrawColor *)color
 {
     DrawAction *action = [DrawAction changeBackgroundActionWithColor:color];
-    [self.drawActionList addObject:action];
-    _startDrawActionIndex = [self.drawActionList count] - 1;
-    _drawRectType = DrawRectTypeChangeBack;
-    _changeBackColor = color.CGColor;
-    [self setNeedsDisplay];
-//    [self addRevocationImage];
-    return action;
+    return [self addChangeBackAction:action clearRedoStack:YES];
 }
 
 
@@ -172,6 +188,7 @@
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+
     
 //    PPDebug(@"touch began");
     UITouch *touch = [touches anyObject];
@@ -185,6 +202,7 @@
                             respondsToSelector:@selector(didStartedTouch:)]) {
             [self.delegate didStartedTouch:_currentDrawAction.paint];
     }
+    [self clearRedoStack];
 }
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
@@ -257,6 +275,8 @@
     [super drawRect:rect];
     if (_drawRectType == DrawRectTypeRevoke) {
         [self revokeRect:rect];
+    }else if(_drawRectType == DrawRectTypeRedo){
+        [self redoRect:rect];
     }
 }
 
@@ -274,6 +294,7 @@
         _drawActionList = [[NSMutableArray alloc] init];
         self.backgroundColor = [UIColor whiteColor];        
         _startDrawActionIndex = 0;
+        _redoStack = [[PPStack alloc] init];
     }
     
     
@@ -286,6 +307,7 @@
     PPRelease(_drawActionList);
     PPRelease(_revokeImageList);
     PPRelease(_lineColor);
+    PPRelease(_redoStack);
     [super dealloc];
 }
 
@@ -300,7 +322,11 @@
 - (void)revoke
 {
     if ([self canRevoke]) {
+        
+        id obj = [_drawActionList lastObject];
+        [_redoStack push:obj];
         [_drawActionList removeLastObject];
+        
         if ([self currentRevokeImageIndex] >= [_drawActionList count]) {
             [_revokeImageList removeLastObject];
         }
@@ -309,9 +335,28 @@
     }
 }
 
+- (BOOL)canRedo
+{
+    return [_redoStack isEmpty];
+}
+- (void)redo
+{
+    DrawAction *action = [_redoStack pop];
+    if (action) {
+        [self.drawActionList addObject:action];
+        _drawRectType = DrawRectTypeRedo;
+        [self setNeedsDisplay];
 
+    }
+}
+- (void)clearRedoStack
+{
+    if (![_redoStack isEmpty]) {
+        [_redoStack clear];
+    }
+}
 
-- (void)revokeRect:(CGRect)rect
+- (void)showAllDrawActions:(CGRect)rect
 {
     RevokeImage *rImage = [_revokeImageList lastObject];
     [rImage.image drawInRect:self.bounds];
@@ -325,12 +370,37 @@
         }else if([drawAction isChangeBackAction]){
             CGContextSetFillColorWithColor(context, drawAction.paint.color.CGColor);
             CGContextFillRect(context, self.bounds);
-        }else if ([drawAction isDrawAction]) {      
+        }else if ([drawAction isDrawAction]) {
             Paint *paint = drawAction.paint;
             [self drawPaint:paint];
         }
-    }
+    }    
 }
+
+
+- (void)revokeRect:(CGRect)rect
+{
+    [self showAllDrawActions:rect];
+}
+
+- (void)redoRect:(CGRect)rect
+{
+    
+    [self showAllDrawActions:rect];
+//    DrawAction *drawAction = [self.drawActionList lastObject];
+//    CGContextRef context = UIGraphicsGetCurrentContext();
+//    if ([drawAction isCleanAction]) {
+//        CGContextSetFillColorWithColor(context, self.backgroundColor.CGColor);
+//        CGContextFillRect(context, self.bounds);
+//    }else if([drawAction isChangeBackAction]){
+//        CGContextSetFillColorWithColor(context, drawAction.paint.color.CGColor);
+//        CGContextFillRect(context, self.bounds);
+//    }else if ([drawAction isDrawAction]) {
+//        Paint *paint = drawAction.paint;
+//        [self drawPaint:paint];
+//    }
+}
+
 
 - (void)showDraft:(MyPaint *)draft
 {

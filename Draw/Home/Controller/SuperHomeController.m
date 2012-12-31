@@ -15,6 +15,7 @@
 #import "UserSettingController.h"
 #import "LmWallService.h"
 #import "UIUtils.h"
+#import "BulletinView.h"
 
 @interface SuperHomeController ()
 {
@@ -140,7 +141,7 @@
     long timelineCount = manager.feedCount + manager.commentCount + manager.drawToMeCount;
     [self.homeMainMenuPanel updateMenu:HomeMenuTypeDrawTimeline badge:timelineCount];
     
-    PPDebug(@"<test> update bulletin badge, count = %d", manager.bulletinCount);
+    [self.homeHeaderPanel updateBulletinBadge:[manager bulletinCount]];
     
 }
 - (void)didSyncStatisticWithResultCode:(int)resultCode
@@ -184,6 +185,12 @@
     UserSettingController *us = [[UserSettingController alloc] init];
     [self.navigationController pushViewController:us animated:YES];
     [us release];
+}
+
+- (void)homeHeaderPanel:(HomeHeaderPanel *)headerPanel
+   didClickBulletinButton:(UIButton *)button
+{
+    [BulletinView showBulletinInController:self];
 }
 
 #pragma mark register

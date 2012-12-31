@@ -178,9 +178,9 @@
 "kLanguageSelection" = "Language Selection";
 "kPassword" = "Password";
 "kNickname" = "Nickname";
-"kSinaWeibo" = "Sina Weibo";              
-"kQQWeibo" = "QQ Weibo";           
-"kFacebook" = "Facebook"; 
+"kBindSinaWeibo" = "Sina Weibo";
+"kBindQQWeibo" = "QQ Weibo";
+"kBindFacebook" = "Facebook";
 "kBind" = "Connected";
 "kUnBind" = "Unconnected";
 "kClickTooFast" = "You click too frequently. Please take a break.";
@@ -288,15 +288,17 @@
 
 "kCreating_gif" = "Creating GIF Files...";
 
-"kShareOtherTextAuto" = "%@ What An Awesome Drawing - %@ %@ ";
+"kShareOtherTextAuto" = "What An Awesome Drawing - %@ %@ ";
 "kShareMeTextAuto" = "%@ My Awesome Drawing for %@";
 
 "kShareOtherText" = "What An Awesome Drawing - %@ ";
-"kShareMeText" = "My Awesome Drawing for %@ ";
+"kShareMeText" = "My Awesome Drawing for %@ %@";
+
 "kShareGIFOtherText" = "What An Awesome Drawing - %@ ";
 "kShareGIFMeText" = "My Awesome Drawing for %@ ";
 "kShareSend" = "Send";
 
+"kPublishingWeibo" = "Sending Message...";
 "kPublishWeiboSucc" = "Message Sent";
 "kPublishWeiboFail" = "Fail to send message, please try again later.";
 
@@ -907,7 +909,7 @@
 "kHomeMenuTypeDrawGuess" = "Guess";
 "kHomeMenuTypeDrawGame" = "Game";
 "kHomeMenuTypeDrawTimeline" = "Timeline";
-"kHomeMenuTypeDrawRank" = "Rank";
+"kHomeMenuTypeDrawRank" = "Top";
 "kHomeMenuTypeDrawContest" = "Contest";
 "kHomeMenuTypeDrawBBS" = "Forum";
 "kHomeMenuTypeDrawHome" = "Home";
@@ -927,6 +929,18 @@
 
 "kBulletin" = "Bulletin";
 
+"kShareTo" = "Share via...";
+"kEmail" = "E-mail";
+"kWeChatTimeline" = "WeChat";
+"kWeChatFriends" = "WeChat Friends";
+"kFavorite" = "Save";
+"kAlbum" = "Album";
+"kSinaWeibo" = "Sina";
+"kTencentWeibo" = "Tencent";
+"kFacebook" = "Facebook";
+
+"kSaveToAlbumSuccess" = "Save to album successfully!";
+"kSaveToLocalSuccess" = "Save to local successfully!";
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 

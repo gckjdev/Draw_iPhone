@@ -44,6 +44,7 @@
 #import "Contest.h"
 #import "ContestController.h"
 #import "GameNetworkConstants.h"
+#import "ConfigManager.h"
 
 @interface OfflineDrawViewController()
 {
@@ -400,8 +401,7 @@ enum{
     pickEraserView.hidden = NO;
     [self.view bringSubviewToFront:pickEraserView];
     _unDraftPaintCount = 0;
-    _isAutoSave = [ConfigManager isAutoSave];
-//    [self restartDraftTimer];
+    _isAutoSave = YES;
 }
 
 
@@ -712,7 +712,7 @@ enum{
     [self disMissAllPickViews:YES];
 }
 
-#define DRAFT_PAINT_COUNT 30
+#define DRAFT_PAINT_COUNT [ConfigManager drawAutoSavePaintInterval]
 
 - (void)didDrawedPaint:(Paint *)paint
 {
@@ -722,7 +722,8 @@ enum{
     
     ++ _unDraftPaintCount;
     if (_unDraftPaintCount >= DRAFT_PAINT_COUNT) {
-        [self saveDraft:NO];        
+        PPDebug(@"<didDrawedPaint> start to auto save...");
+        [self saveDraft:NO];
     }
 }
 
@@ -809,17 +810,20 @@ enum{
 
     UIImage *image = [drawView createImage];    
     
-    BOOL result = NO;
+    __block BOOL result = NO;
 
     @try {
-        
         MyPaintManager *pManager = [MyPaintManager defaultManager];
         if (self.draft) {
-            NSLog(@"<Draw Log>update old draft");
-            result = [pManager updateDraft:self.draft
-                                     image:image
-                      pbNoCompressDrawData:self.noCompressDrawData];
+            result = YES;
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                PPDebug(@"<saveDraft> bg update draft");
+                result = [pManager updateDraft:self.draft
+                                         image:image
+                          pbNoCompressDrawData:self.noCompressDrawData];
+            });
         }else{
+            PPDebug(@"<saveDraft> create core data draft");
             UserManager *userManager = [UserManager defaultManager];
             self.draft = [pManager createDraft:image
                           pbNoCompressDrawData:self.noCompressDrawData
@@ -829,6 +833,7 @@ enum{
                                       nickName:[userManager nickName]
                                           word:_word
                                       language:languageType];
+
             
             if (self.draft) {
                 result = YES;
@@ -954,6 +959,11 @@ enum{
         
     }
 }
+
+- (IBAction)clickRedoButton:(id)sender {
+    [drawView redo];
+}
+
 - (void)clickBackButton:(id)sender
 {
     if (targetType == TypeGraffiti) {

@@ -17,6 +17,16 @@
 
 @implementation ConfigManager
 
++ (int)maxCacheBulletinCount
+{
+    return [MobClickUtils getIntValueByKey:@"MAX_CACHE_BULLETIN_COUNT" defaultValue:20];
+}
+
++ (NSString*)getSystemUserId
+{
+    return [MobClickUtils getStringValueByKey:@"SYSTEM_USER_ID" defaultValue:@"888888888888888888888888"];
+}
+
 + (BOOL)isLiarDice
 {
     return [[GameApp appId] isEqualToString:DICE_APP_ID];
@@ -71,6 +81,17 @@
     else{
         return [MobClickUtils getStringValueByKey:@"MUSIC_HOME_EN" defaultValue:@"http://mp3skull.com/"];
     }
+}
+
+
++ (NSInteger)historyRankNumber
+{
+    return [MobClickUtils getIntValueByKey:@"HISTORY_RANK_NUMBER" defaultValue:300];
+}
+
++ (NSInteger)drawAutoSavePaintInterval
+{
+    return [MobClickUtils getIntValueByKey:@"DRAFT_PAINT_COUNT" defaultValue:50];
 }
 
 + (int)getGuessRewardNormal

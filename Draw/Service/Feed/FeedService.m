@@ -36,6 +36,11 @@ static FeedService *_staticFeedService = nil;
 {
     
     NSString *userId = [[UserManager defaultManager] userId];
+    if (userId  == nil){
+        // this is mainly for HOME display
+        userId = [ConfigManager getSystemUserId];
+    }
+    
     LanguageType lang = UnknowType;
     lang = [[UserManager defaultManager] getLanguageType];
     

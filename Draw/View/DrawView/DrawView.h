@@ -41,6 +41,10 @@
 - (void)setDrawEnabled:(BOOL)enabled;
 - (BOOL)canRevoke;
 - (void)revoke;
+
+- (BOOL)canRedo;
+- (void)redo;
+
 - (void)showDraft:(MyPaint *)draft;
 //- (void)revoke;
 //- (void)clearAllActions; //remove all the actions

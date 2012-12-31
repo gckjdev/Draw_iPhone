@@ -192,6 +192,14 @@
     return [DrawColor colorWithRed:1 green:1 blue:1 alpha:0];
 }
 
++ (DrawColor *)rankColor
+{
+    CGFloat R = (rand()%255)/255.0;
+    CGFloat G = (rand()%255)/255.0;
+    CGFloat B = (rand()%255)/255.0;    
+    return [DrawColor colorWithRed:R green:G blue:B alpha:1];
+}
+
 #define RECENT_COLOR_LIST_KEY @"RecentColorList"
 
 + (NSArray *)getRecentColorList

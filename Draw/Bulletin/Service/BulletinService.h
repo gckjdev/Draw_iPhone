@@ -8,13 +8,15 @@
 
 #import "CommonService.h"
 
+typedef void(^BulletinServiceCallbackBlock)(int resultCode);
+
 #define BULLETIN_UPDATE_NOTIFICATION    @"BULLETIN_UPDATE_NOTIFICATION"
 
 @interface BulletinService : CommonService
 
 + (BulletinService*)defaultService;
 
-- (void)syncBulletins;
+- (void)syncBulletins:(BulletinServiceCallbackBlock)block;
 
 - (NSArray*)bulletins;
 

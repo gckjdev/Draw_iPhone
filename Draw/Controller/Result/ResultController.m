@@ -44,6 +44,7 @@
 #import "ShowFeedController.h"
 #import "UseItemScene.h"
 #import "DrawSoundManager.h"
+#import "ShareAction.h"
 
 #define CONTINUE_TIME 10
 
@@ -53,7 +54,9 @@
 #define ITEM_FRAME  ([DeviceDetection isIPAD]?CGRectMake(0, 0, 122, 122):CGRectMake(0, 0, 61, 61))
 
 
-@interface ResultController()
+@interface ResultController(){
+    ShareAction* _shareAction;
+}
 
 //- (BOOL)fromShowFeedController;
 - (BOOL)throwItem:(ToolView*)toolView;
@@ -599,17 +602,36 @@
 
 }
 
-- (IBAction)clickSaveButton:(id)sender {
-
+- (void)showShareAction
+{
+    if (_shareAction == nil) {
+        [self showActivityWithText:NSLS(@"kSaving")];
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+            _shareAction = [[ShareAction alloc] initWithFeed:_feed
+                                                       image:_image];
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self hideActivity];
+                [_shareAction displayWithViewController:self onView:self.saveButton];
+            });
+            
+        });        
+    }
+    else{
+        [_shareAction displayWithViewController:self onView:self.saveButton];
+    }
+}
+- (void)saveToLocal
+{
     if (_isMyPaint == NO){
         [[FeedService defaultService] actionSaveOpus:_feed.feedId
                                           actionName:DB_FIELD_ACTION_SAVE_TIMES];
     }
     
     [[ShareService defaultService] shareWithImage:_image
-                                       drawUserId:_drawUserId 
+                                       drawUserId:_drawUserId
                                        isDrawByMe:_isMyPaint
-                                         drawWord:wordText];    
+                                         drawWord:wordText];
     
     PBDraw *pbDraw = [[DrawDataService defaultService]
                       buildPBDraw:_drawUserId
@@ -618,12 +640,23 @@
                       drawActionList:self.drawActionList
                       drawWord:[Word wordWithText:self.wordText level:1]
                       language:1];
-
+    
     [[DrawDataService defaultService ] savePaintWithPBDraw:pbDraw
                                                      image:_image
                                                   delegate:self];
     self.saveButton.enabled = NO;
     self.saveButton.selected = YES;
+}
+
+- (IBAction)clickSaveButton:(id)sender {
+    
+    if ([self isOffline]) {
+        [self showShareAction];
+    } else {
+        [self saveToLocal];
+    }
+
+    
 }
 
 - (void)didSaveOpus:(BOOL)succ

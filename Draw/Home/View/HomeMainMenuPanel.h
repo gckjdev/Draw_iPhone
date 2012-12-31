@@ -27,4 +27,5 @@
 }
 - (void)updateMenu:(HomeMenuType)type badge:(NSInteger)badge;
 - (void)animatePageButtons;
+- (HomeMenuView *)getMenuViewWithType:(HomeMenuType)type;
 @end

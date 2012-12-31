@@ -61,6 +61,7 @@
 - (IBAction)clickPenButton:(id)sender;
 - (IBAction)clickColorButton:(id)sender;
 - (IBAction)clickSubmitButton:(id)sender;
+- (IBAction)clickRedoButton:(id)sender;
 
 @property (retain, nonatomic) IBOutlet UIButton *submitButton;
 @property (retain, nonatomic) IBOutlet UIButton *eraserButton;

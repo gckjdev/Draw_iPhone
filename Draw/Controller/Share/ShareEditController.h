@@ -11,14 +11,20 @@
 #import "PPViewController.h"
 #import "CommonDialog.h"
 #import "UserService.h"
+#import "PPSNSConstants.h"
 
 typedef enum {
-    SINA_WEIBO = 0,
-    QQ_WEIBO,
-    FACEBOOK,
+    SINA_WEIBO = TYPE_SINA,
+    QQ_WEIBO = TYPE_QQ,
+    FACEBOOK = TYPE_FACEBOOK,
 }SnsType;
 
 //@class SynthesisView;
+@protocol ShareEditControllerDelegate <NSObject>
+ @optional
+- (void)didPublishSnsMessage:(int)snsType;
+
+@end
 
 @interface ShareEditController : PPViewController <UIActionSheetDelegate, MFMailComposeViewControllerDelegate, CommonDialogDelegate, UserServiceDelegate> {
     SnsType _snsType;
@@ -40,6 +46,7 @@ typedef enum {
 @property (retain, nonatomic) IBOutlet UILabel *shareTitleLabel;
 @property (assign, nonatomic) BOOL isDrawByMe;
 @property (retain, nonatomic) NSString* drawUserId;
+@property (assign, nonatomic) id<ShareEditControllerDelegate>delegate;
 
 - (id)initWithImageFile:(NSString*)imageFile
                    text:(NSString*)text 

@@ -70,8 +70,8 @@
 #import "BBSBoardController.h"
 
 #import "BulletinView.h"
+#import "DrawTestViewController.h"
 
-//#import "DrawHomeViewController.h"
 
 @interface HomeController()
 {
@@ -205,12 +205,22 @@
 //    }
 
     [self enterNextControllerWityType:self.notificationType];
-     [self.view bringSubviewToFront:self.testBulletin];   
+    [self registerUIApplicationWillEnterForegroundNotification];
+
+
+//     [self.view bringSubviewToFront:self.testBulletin];
+
+//    [DrawTestViewController enterWithController:self];
 }
 
+- (void)registerUIApplicationWillEnterForegroundNotification{
+    
+    [self registerNotificationWithName:UIApplicationWillEnterForegroundNotification usingBlock:^(NSNotification *note) {        
+        [self.homeHeaderPanel updateView];
+    }];
+}
 
-
-- (void)registerDrawGameNotificationWithName:(NSString *)name 
+- (void)registerDrawGameNotificationWithName:(NSString *)name
                                   usingBlock:(void (^)(NSNotification *note))block
 {
     /*
@@ -264,6 +274,10 @@
     [self registerDrawGameNotification];
     
     [[UserService defaultService] getStatistic:self];
+    [[BulletinService defaultService] syncBulletins:^(int resultCode) {
+        [self updateAllBadge];
+    }];
+
     [UIApplication sharedApplication].idleTimerDisabled = NO;
     [[DrawGameService defaultService] registerObserver:self];
 //    [self loadBoards];
@@ -303,14 +317,24 @@
 {
     switch (type) {
         case NotificationTypeFeed:
-            [self didClickMenuButton:[self.menuPanel getMenuButtonByType:MenuButtonTypeTimeline]];
+        {
+            HomeMenuView *menu = [self.homeMainMenuPanel getMenuViewWithType:HomeMenuTypeDrawTimeline];
+            [self homeMainMenuPanel:self.homeMainMenuPanel didClickMenu:menu menuType:menu.type];
             break;
-        case NotificationTypeRoom:
-            [self didClickMenuButton:[self.menuPanel getMenuButtonByType:MenuButtonTypeFriendPlay]];
+        }
+            
+        case NotificationTypeRoom:{
+            //no friend room menu in 5.2 version
             break;
+        }
+
         case NotificationTypeMessage:
-            [self didClickMenuButton:[self.bottomMenuPanel getMenuButtonByType:MenuButtonTypeChat]];
-            break;
+        {
+            HomeMenuView *menu = [self.homeBottomMenuPanel getMenuViewWithType:HomeMenuTypeDrawMessage];
+            [self homeBottomMenuPanel:self.homeBottomMenuPanel didClickMenu:menu menuType:menu.type];
+            break;            
+        }
+
         case NotificationTypeComment:
         case NotificationTypeFlower:
         case NotificationTypeReply:
@@ -683,7 +707,6 @@
         [self toRegister];
         return;
     }
-
     switch (type) {
         
         //For Bottom Menus

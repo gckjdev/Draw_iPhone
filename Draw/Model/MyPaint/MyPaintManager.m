@@ -23,6 +23,7 @@
 #define SUFFIX_NUMBER 100
 @interface MyPaintManager()
 {
+    id<MyPaintManagerDelegate> _savePhotoToAlbumDelegate;
 }
 //- (void)deletePaintImage:(NSString *)paintImage sync:(BOOL)sync;
 - (void)deletePaintData:(NSString *)path;
@@ -247,9 +248,12 @@ static MyPaintManager* _defaultManager;
 - (void)image:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo;
 {
     PPDebug(@"Save Photo, Result=%@", [error description]);
+    if (_savePhotoToAlbumDelegate && [_savePhotoToAlbumDelegate respondsToSelector:@selector(didSaveToAlbumSuccess:)]) {
+        [_savePhotoToAlbumDelegate didSaveToAlbumSuccess:YES];
+    }
 }
 
-- (void)savePhoto:(NSString*)filePath
+- (void)savePhoto:(NSString*)filePath delegate:(id<MyPaintManagerDelegate>)delegate
 {
     PPDebug(@"Save Photo, File=%@", filePath);
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0);
@@ -259,10 +263,12 @@ static MyPaintManager* _defaultManager;
     
     dispatch_async(queue, ^{
         UIImage* image = [[UIImage alloc] initWithContentsOfFile:filePath];
-        UIImageWriteToSavedPhotosAlbum(image, 
+        
+        UIImageWriteToSavedPhotosAlbum(image,
                                        self, 
-                                       @selector(image:didFinishSavingWithError:contextInfo:), 
+                                       @selector(image:didFinishSavingWithError:contextInfo:),
                                        nil);
+        _savePhotoToAlbumDelegate = delegate;
         [image release];    
     });
 }
@@ -377,6 +383,7 @@ pbNoCompressDrawData:(PBNoCompressDrawData*)pbNoCompressDrawData
               image:(UIImage *)image
     pbNoCompressDrawData:(PBNoCompressDrawData *)pbNoCompressDrawData
 {
+    BOOL needSave = NO;
     if (draft) {
         NSString *imageFileName = [draft image];
         NSString *pbDataFileName = [draft dataFilePath];
@@ -387,6 +394,7 @@ pbNoCompressDrawData:(PBNoCompressDrawData*)pbNoCompressDrawData
             NSString *imageFileName = [self imageFileName];
             [_imageManager saveImage:image forKey:imageFileName];
             [draft setImage:imageFileName];
+            needSave = YES;
         }
         //update draw data.
         if ([pbDataFileName length] != 0) {
@@ -400,14 +408,19 @@ pbNoCompressDrawData:(PBNoCompressDrawData*)pbNoCompressDrawData
                 pbDataFileName = [self pbNoCompressDrawDataFileName];
                 [_drawDataManager saveData:[pbNoCompressDrawData data] forKey:pbDataFileName];
                 [draft setDataFilePath:pbDataFileName];
+                needSave = YES;
             }
 
         }else{
             pbDataFileName = [self pbNoCompressDrawDataFileName];
             [_drawDataManager saveData:[pbNoCompressDrawData data] forKey:pbDataFileName];
             [draft setDataFilePath:pbDataFileName];
+            needSave = YES;
         }
-        [self save];
+        if (needSave) {
+            [self save];            
+        }
+
     }
     return YES;
 }

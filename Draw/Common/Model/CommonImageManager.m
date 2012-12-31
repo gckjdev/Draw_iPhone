@@ -78,4 +78,37 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(CommonImageManager)
     return [_resService imageByName:@"femaleImage" inResourcePackage:RESOURCE_PACKAGE_COMMON];
 }
 
+- (UIImage *)albumImage
+{
+    return [_resService imageByName:@"gallery" inResourcePackage:RESOURCE_PACKAGE_COMMON];
+}
+- (UIImage *)emailImage
+{
+    return [_resService imageByName:@"email" inResourcePackage:RESOURCE_PACKAGE_COMMON];
+}
+- (UIImage *)sinaImage
+{
+    return [_resService imageByName:@"sina" inResourcePackage:RESOURCE_PACKAGE_COMMON];
+}
+- (UIImage *)qqWeiboImage
+{
+    return [_resService imageByName:@"qq" inResourcePackage:RESOURCE_PACKAGE_COMMON];
+}
+- (UIImage *)facebookImage
+{
+    return [_resService imageByName:@"facebook" inResourcePackage:RESOURCE_PACKAGE_COMMON];
+}
+- (UIImage *)favoriteImage
+{
+    return [_resService imageByName:@"favorite" inResourcePackage:RESOURCE_PACKAGE_COMMON];
+}
+- (UIImage *)wechatImage
+{
+    return [_resService imageByName:@"wechat" inResourcePackage:RESOURCE_PACKAGE_COMMON];
+}
+- (UIImage *)wechatFriendsImage
+{
+    return [_resService imageByName:@"wechat_friend" inResourcePackage:RESOURCE_PACKAGE_COMMON];
+}
+
 @end
