@@ -72,6 +72,7 @@
 #import "BulletinView.h"
 #import "DrawTestViewController.h"
 
+#import "SynthesizeSingleton.h"
 
 @interface HomeController()
 {

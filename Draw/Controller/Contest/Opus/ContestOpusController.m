@@ -126,6 +126,7 @@ typedef enum{
     [view setViewInfo:feed];
     [cell.contentView addSubview:view];
     [view updateViewInfoForContestOpus];
+    [view.title setHidden:YES];
 }
 
 #define NORMAL_CELL_VIEW_NUMBER 3
@@ -146,6 +147,8 @@ typedef enum{
     
     CGFloat x2 = WIDTH_SPACE + [RankView widthForRankViewType:RankViewTypeSecond];
     view2.frame = CGRectMake(x2, 0, view2.frame.size.width, view2.frame.size.height);
+    [view1.title setHidden:YES];
+    [view2.title setHidden:YES];
 }
 
 
@@ -164,6 +167,7 @@ typedef enum{
         rankView.frame = CGRectMake(x, y, width, height);
         x += width + space;
         [rankView updateViewInfoForContestOpus];
+        [rankView.title setHidden:YES];
     }
 }
 
@@ -215,7 +219,7 @@ typedef enum{
     TableTab *tab = [self currentTab];
     if (tab.tabID == OpusTypeRank) {
         if (indexPath.row == 0) {
-            DrawFeed *feed = (DrawFeed *)[self saveGetObjectForIndex:0];  
+            DrawFeed *feed = (DrawFeed *)[self saveGetObjectForIndex:0];
             [self setFirstRankCell:cell WithFeed:feed];
         }else if(indexPath.row == 1){
             DrawFeed *feed1 = (DrawFeed *)[self saveGetObjectForIndex:1];  
@@ -245,7 +249,7 @@ typedef enum{
         [self setNormalRankCell:cell WithFeeds:list];
         
     }
-    
+
     return cell;
 }
 
