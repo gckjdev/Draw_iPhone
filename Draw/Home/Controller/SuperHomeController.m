@@ -16,6 +16,7 @@
 #import "LmWallService.h"
 #import "UIUtils.h"
 #import "BulletinView.h"
+#import "AnalyticsManager.h"
 
 @interface SuperHomeController ()
 {
@@ -156,6 +157,8 @@
 - (void)homeHeaderPanel:(HomeHeaderPanel *)headerPanel
    didClickChargeButton:(UIButton *)button
 {
+    [[AnalyticsManager sharedAnalyticsManager] reportClickHomeElements:HOME_TOP_COINS];
+    
     if ([self isRegistered] == NO) {
         [self toRegister];
         return;
@@ -169,6 +172,8 @@
 - (void)homeHeaderPanel:(HomeHeaderPanel *)headerPanel
  didClickFreeCoinButton:(UIButton *)button
 {
+    [[AnalyticsManager sharedAnalyticsManager] reportClickHomeElements:HOME_TOP_FREE_COINS];
+
     [UIUtils alertWithTitle:@"免费金币获取提示" msg:@"下载免费应用即可获取金币！下载完应用一定要打开才可以获得奖励哦！"];
     [[LmWallService defaultService] show:self];
 
@@ -177,6 +182,8 @@
 - (void)homeHeaderPanel:(HomeHeaderPanel *)headerPanel
    didClickAvatarButton:(UIButton *)button
 {
+    [[AnalyticsManager sharedAnalyticsManager] reportClickHomeElements:HOME_TOP_AVATAR];
+    
     if ([self isRegistered] == NO) {
         [self toRegister];
         return;
@@ -190,6 +197,8 @@
 - (void)homeHeaderPanel:(HomeHeaderPanel *)headerPanel
    didClickBulletinButton:(UIButton *)button
 {
+    [[AnalyticsManager sharedAnalyticsManager] reportClickHomeElements:HOME_TOP_BULLETIN];
+    
     [BulletinView showBulletinInController:self];
 }
 

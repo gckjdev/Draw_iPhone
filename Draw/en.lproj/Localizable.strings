@@ -1230,4 +1230,7 @@
 "kClearDrawData" = "The draw data will be clear, continue?";
 "kSaveImageSuccess" = "Save image successfully.";
 
+"kShareByEmailSuccess" = "Share email successfully.";
+
+
 /*********************** BBS国际化字符串结束 *************************/

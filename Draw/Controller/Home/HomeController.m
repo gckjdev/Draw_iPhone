@@ -48,6 +48,7 @@
 #import "VendingController.h"
 #import "ShowFeedController.h" 
 #import "BulletinService.h"
+#import "AnalyticsManager.h"
 
 //#import "RecommendedAppsController.h"
 //#import "FacetimeMainController.h"
@@ -612,6 +613,8 @@
     switch (type) {
         case HomeMenuTypeDrawGame:
         {
+            [[AnalyticsManager sharedAnalyticsManager] reportClickHomeMenu:HOME_ACTION_ONLINE];
+            
             [self showActivityWithText:NSLS(@"kJoiningGame")];
             NSString* userId = [_userManager userId];
             NSString* nickName = [_userManager nickName];
@@ -645,6 +648,9 @@
             break;
         case HomeMenuTypeDrawDraw:
         {
+            [[AnalyticsManager sharedAnalyticsManager] reportClickHomeMenu:HOME_ACTION_DRAW];
+
+            
             SelectWordController *sc = [[SelectWordController alloc] initWithType:OfflineDraw];
             [self.navigationController pushViewController:sc animated:YES];
             [sc release];
@@ -652,6 +658,8 @@
             break;
         case HomeMenuTypeDrawGuess:
         {
+            [[AnalyticsManager sharedAnalyticsManager] reportClickHomeMenu:HOME_ACTION_GUESS];
+            
             [self showActivityWithText:NSLS(@"kLoading")];
             [[DrawDataService defaultService] matchDraw:self];
         }
@@ -659,12 +667,16 @@
             
         case HomeMenuTypeDrawTimeline:
         {
+            [[AnalyticsManager sharedAnalyticsManager] reportClickHomeMenu:HOME_ACTION_TIMELINE];
+            
             [MyFeedController enterControllerWithIndex:0 fromController:self animated:YES];
             [[StatisticManager defaultManager] setFeedCount:0];
         }
             break;
         case HomeMenuTypeDrawShop:
         {
+            [[AnalyticsManager sharedAnalyticsManager] reportClickHomeMenu:HOME_ACTION_SHOP];
+            
             VendingController* vc = [[VendingController alloc] init];
             [self.navigationController pushViewController:vc animated:YES];
             [vc release];
@@ -672,12 +684,16 @@
             break;
         case HomeMenuTypeDrawContest:
         {
+            [[AnalyticsManager sharedAnalyticsManager] reportClickHomeMenu:HOME_ACTION_CONTEST];
+            
             ContestController *cc = [[ContestController alloc] init];
             [self.navigationController pushViewController:cc animated:YES];
             [cc release];
         }
             break;
         case HomeMenuTypeDrawBBS:{
+            [[AnalyticsManager sharedAnalyticsManager] reportClickHomeMenu:HOME_ACTION_BBS];
+            
             BBSBoardController *bbs = [[BBSBoardController alloc] init];
             [self.navigationController pushViewController:bbs animated:YES];
             [bbs release];
@@ -686,6 +702,7 @@
             break;
         case HomeMenuTypeDrawRank:
         {
+            [[AnalyticsManager sharedAnalyticsManager] reportClickHomeMenu:HOME_ACTION_TOP];
             HotController *hc = [[HotController alloc] init];
             [self.navigationController pushViewController:hc animated:YES];
             [hc release];
@@ -713,6 +730,13 @@
         case HomeMenuTypeDrawMe:
         case HomeMenuTypeDrawSetting:
         {
+            if (type == HomeMenuTypeDrawSetting){
+                [[AnalyticsManager sharedAnalyticsManager] reportClickHomeElements:HOME_BOTTOM_USER];
+            }
+            else{
+                [[AnalyticsManager sharedAnalyticsManager] reportClickHomeElements:HOME_TOP_AVATAR];
+            }
+            
             UserSettingController *settings = [[UserSettingController alloc] init];
             [self.navigationController pushViewController:settings animated:YES];
             [settings release];
@@ -721,6 +745,8 @@
             break;
         case HomeMenuTypeDrawOpus:
         {
+            [[AnalyticsManager sharedAnalyticsManager] reportClickHomeElements:HOME_BOTTOM_OPUS];
+            
             ShareController* share = [[ShareController alloc] init ];
             [self.navigationController pushViewController:share animated:YES];
             [share release];
@@ -729,6 +755,8 @@
             break;
         case HomeMenuTypeDrawFriend:
         {
+            [[AnalyticsManager sharedAnalyticsManager] reportClickHomeElements:HOME_BOTTOM_FRIEND];
+
             FriendController *mfc = [[FriendController alloc] init];
             [self.navigationController pushViewController:mfc animated:YES];
             [mfc release];
@@ -737,6 +765,8 @@
             break;
         case HomeMenuTypeDrawMessage:
         {
+            [[AnalyticsManager sharedAnalyticsManager] reportClickHomeElements:HOME_BOTTOM_CHAT];
+            
             ChatListController *controller = [[ChatListController alloc] init];
             [self.navigationController pushViewController:controller animated:YES];
             [controller release];
@@ -746,6 +776,8 @@
             break;
         case HomeMenuTypeDrawMore:
         {
+            [[AnalyticsManager sharedAnalyticsManager] reportClickHomeElements:HOME_BOTTOM_MORE];
+            
             FeedbackController* feedBack = [[FeedbackController alloc] init];
             [self.navigationController pushViewController:feedBack animated:YES];
             [feedBack release];
@@ -761,6 +793,8 @@
 - (void)homeHeaderPanel:(HomeHeaderPanel *)headerPanel
       didClickDrawImage:(DrawFeed *)drawFeed
 {
+    [[AnalyticsManager sharedAnalyticsManager] reportClickHomeElements:HOME_HOT_DRAW];
+    
     if ([self isRegistered] == NO) {
         [self toRegister];
         return;

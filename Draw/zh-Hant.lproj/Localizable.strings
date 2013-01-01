@@ -1235,3 +1235,5 @@
 "kClearDrawData" = "之前的畫畫數據將被清除，妳要繼續嗎？";
 "kSaveImageSuccess" = "保存成功";
 /*********************** BBS国际化字符串结束 *************************/
+
+"kShareByEmailSuccess" = "郵件分享成功";

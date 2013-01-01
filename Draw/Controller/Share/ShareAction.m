@@ -25,6 +25,7 @@
 #import "CommonMessageCenter.h"
 #import "FeedService.h"
 #import "PPViewController.h"
+#import "AnalyticsManager.h"
 
 @interface ShareAction ()
 {
@@ -417,34 +418,42 @@
 - (void)actionByButtonIndex:(NSInteger)buttonIndex
 {
     if (buttonIndex == buttonIndexAlbum){
+        [[AnalyticsManager sharedAnalyticsManager] reportShareActionClicks:SHARE_ACTION_ALBUM];
         [[MyPaintManager defaultManager] savePhoto:_imageFilePath delegate:self];
         [self.superViewController showActivityWithText:NSLS(@"kSaving")];
     }
     else if (buttonIndex == buttonIndexEmail) {
+        [[AnalyticsManager sharedAnalyticsManager] reportShareActionClicks:SHARE_ACTION_EMAIL];
         [self shareViaEmail];
     }
     else if (buttonIndex == buttonIndexWeixinTimeline){
+        [[AnalyticsManager sharedAnalyticsManager] reportShareActionClicks:SHARE_ACTION_WEIXIN_TIMELINE];
         [self shareViaWeixin:WXSceneTimeline];
     }
     else if (buttonIndex == buttonIndexWeixinFriend){
+        [[AnalyticsManager sharedAnalyticsManager] reportShareActionClicks:SHARE_ACTION_WEIXIN_FRIEND];
         [self shareViaWeixin:WXSceneSession];
     }
     else if (buttonIndex == buttonIndexSinaWeibo)
     {
-        [self actionOnShareSina];        
+        [[AnalyticsManager sharedAnalyticsManager] reportShareActionClicks:SHARE_ACTION_SINA];
+        [self actionOnShareSina];
     } else if (buttonIndex == buttonIndexQQWeibo) {
+        [[AnalyticsManager sharedAnalyticsManager] reportShareActionClicks:SHARE_ACTION_QQ];
         if ([[UserManager defaultManager] hasBindQQWeibo] == NO || [[[PPSNSIntegerationService defaultService] snsServiceByType:TYPE_QQ] isAuthorizeExpired]){
             [self bindQQWeibo];
         } else {
             [self shareViaSNS:TYPE_QQ];
         }
     } else if (buttonIndex == buttonIndexFacebook) {
+        [[AnalyticsManager sharedAnalyticsManager] reportShareActionClicks:SHARE_ACTION_FACEBOOK];
         if ([[UserManager defaultManager] hasBindFacebook] == NO || [[[PPSNSIntegerationService defaultService] snsServiceByType:TYPE_FACEBOOK] isAuthorizeExpired]){
             [self bindFacebook];
         } else {
             [self shareViaSNS:TYPE_FACEBOOK];
         }
     } else if (buttonIndex == buttonIndexFavorite) {
+        [[AnalyticsManager sharedAnalyticsManager] reportShareActionClicks:SHARE_ACTION_SAVE];
         [self favorite];
         [self.superViewController showActivityWithText:NSLS(@"kSaving")];
     }
