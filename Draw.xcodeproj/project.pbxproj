@@ -60,6 +60,7 @@
 		A41CF57916578D0B0011AE45 /* ZJHCardTypesView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A41CF57716578D0B0011AE45 /* ZJHCardTypesView.xib */; };
 		A41CF58316578EF90011AE45 /* ZJHCardTypesView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A41CF58216578EF90011AE45 /* ZJHCardTypesView~ipad.xib */; };
 		A41CF58B165790380011AE45 /* RRSGlowLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = A41CF58A165790380011AE45 /* RRSGlowLabel.m */; };
+		A422DB931693DD0D00914A48 /* HotWordManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A422DB921693DD0D00914A48 /* HotWordManager.m */; };
 		A42C520615E614D2001D8208 /* CommonChatMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = A42C520315E614D2001D8208 /* CommonChatMessage.m */; };
 		A42C520715E614D2001D8208 /* DiceChatMsgManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A42C520515E614D2001D8208 /* DiceChatMsgManager.m */; };
 		A42C520B15E614E5001D8208 /* DiceSoundManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A42C520A15E614E5001D8208 /* DiceSoundManager.m */; };
@@ -4834,6 +4835,8 @@
 		A41CF58216578EF90011AE45 /* ZJHCardTypesView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ZJHCardTypesView~ipad.xib"; sourceTree = "<group>"; };
 		A41CF589165790380011AE45 /* RRSGlowLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RRSGlowLabel.h; sourceTree = "<group>"; };
 		A41CF58A165790380011AE45 /* RRSGlowLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RRSGlowLabel.m; sourceTree = "<group>"; };
+		A422DB911693DD0C00914A48 /* HotWordManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HotWordManager.h; sourceTree = "<group>"; };
+		A422DB921693DD0D00914A48 /* HotWordManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HotWordManager.m; sourceTree = "<group>"; };
 		A42C520215E614D2001D8208 /* CommonChatMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonChatMessage.h; sourceTree = "<group>"; };
 		A42C520315E614D2001D8208 /* CommonChatMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonChatMessage.m; sourceTree = "<group>"; };
 		A42C520415E614D2001D8208 /* DiceChatMsgManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiceChatMsgManager.h; sourceTree = "<group>"; };
@@ -12830,6 +12833,8 @@
 				A359848B157C977100745BAB /* CustomWord.m */,
 				A3598487157C7B2700745BAB /* CustomWordManager.h */,
 				A3598488157C7B2700745BAB /* CustomWordManager.m */,
+				A422DB911693DD0C00914A48 /* HotWordManager.h */,
+				A422DB921693DD0D00914A48 /* HotWordManager.m */,
 			);
 			path = Word;
 			sourceTree = "<group>";
@@ -19079,6 +19084,7 @@
 				CAC44967168D58C3004441EB /* ColorBox.m in Sources */,
 				CAC44998168D9FFE004441EB /* PenBox.m in Sources */,
 				CA479468168E986400D4AF55 /* AnalyticsManager.m in Sources */,
+				A422DB931693DD0D00914A48 /* HotWordManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

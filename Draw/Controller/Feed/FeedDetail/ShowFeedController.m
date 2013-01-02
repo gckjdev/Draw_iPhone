@@ -31,6 +31,7 @@
 #import "FeedClasses.h"
 #import "ShareAction.h"
 #import "SDImageCache.h"
+#import "SDWebImageManager.h"
 
 @interface ShowFeedController () {
     ShareAction* _shareAction;
@@ -571,36 +572,29 @@ enum{
         [cc release];
         [_commentHeader setSeletType:CommentTypeComment];       
     }else if(button == self.saveButton){
-        
-        
-//        //save
-        UIImage *image = self.feed.largeImage;
-        if(image == nil){
-//           image =  [self.drawCell.showView createImage];
-            [[SDImageCache sharedImageCache] imageFromKey:self.feed.drawImageUrl];
-        }
-//
-//        [self showActivityWithText:NSLS(@"kSaving")];
-//        
-//        [[ShareService defaultService] shareWithImage:image 
-//                                           drawUserId:_feed.feedUser.userId
-//                                           isDrawByMe:[_feed isMyOpus] 
-//                                             drawWord:_feed.wordText];    
-//        [self.feed increaseSaveTimes];
-//        
-//        //TODO save pbdraw data instead of drawActionList
-////        [_feed parseDrawData];
-//        [[DrawDataService defaultService] savePaintWithPBDraw:_feed.pbDraw
-//                                                        image:image
-//                                                     delegate:self];
-//
-//        button.userInteractionEnabled = NO;
+                        
+//        [self showActivity];
+//        [[SDWebImageManager sharedManager] downloadWithURL:[NSURL URLWithString:_feed.drawImageUrl] delegate:nil options:SDWebImageProgressiveDownload success:^(UIImage *image, BOOL cached) {
+//            [self hideActivity];
+//            if (_shareAction == nil) {
+//                _shareAction = [[ShareAction alloc] initWithFeed:_feed
+//                                                           image:image];
+//            }
+//            [_shareAction displayWithViewController:self onView:self.saveButton];
+//        } failure:^(NSError *error) {
+            [self hideActivity];
+            UIImage* image = [[SDImageCache sharedImageCache] imageFromKey:self.feed.drawImageUrl];
+            if (image == nil){
+                image = self.feed.largeImage;
+            }
+            if (_shareAction == nil) {
+                _shareAction = [[ShareAction alloc] initWithFeed:_feed
+                                                           image:image];
+            }
+            [_shareAction displayWithViewController:self onView:self.saveButton];
+//        }];
 
-        if (_shareAction == nil) {
-            _shareAction = [[ShareAction alloc] initWithFeed:_feed
-                                                       image:image];
-        }
-        [_shareAction displayWithViewController:self onView:self.saveButton];
+
         
     }else if(button == self.flowerButton){
         Item *item = [Item flower];
