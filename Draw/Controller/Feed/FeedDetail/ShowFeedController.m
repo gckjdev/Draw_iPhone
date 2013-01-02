@@ -23,9 +23,6 @@
 #import "ShareImageManager.h"
 #import "CommonMessageCenter.h"
 #import "ReplayView.h"
-#import "CommentFeed.h"
-
-#import "AnimationPlayer.h"
 
 #import "ReplayContestDrawController.h"
 #import "UseItemScene.h"
