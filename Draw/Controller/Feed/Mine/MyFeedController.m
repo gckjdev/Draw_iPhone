@@ -707,12 +707,11 @@ typedef enum{
 - (void)didClickRankView:(RankView *)rankView
 {
     TableTab *tab = [self currentTab];
-    if(tab.tabID == MyTypeOpus){
+    if(tab.tabID == MyTypeOpus && ![rankView.feed isContestFeed]){
         //action sheet
         _selectRanView = rankView;
         [rankView setRankViewSelected:YES];
         [self showActionSheetForType:MyTypeOpus];
-        
     }else{
         [self enterDetailFeed:rankView.feed];
     }

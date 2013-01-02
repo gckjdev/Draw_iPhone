@@ -170,6 +170,9 @@
     {
         return YES;
     }
+    if ([self isContestFeed]) {
+        return YES;
+    }
     return NO;
 }
 
