@@ -121,6 +121,8 @@
 @class PBGameSession_Builder;
 @class PBGameUser;
 @class PBGameUser_Builder;
+@class PBHotWord;
+@class PBHotWord_Builder;
 @class PBKeyValue;
 @class PBKeyValue_Builder;
 @class PBMessage;
@@ -139,6 +141,10 @@
 @class PBSNSUser_Builder;
 @class PBUserDice;
 @class PBUserDice_Builder;
+@class PBUserItem;
+@class PBUserItemList;
+@class PBUserItemList_Builder;
+@class PBUserItem_Builder;
 @class PBUserResult;
 @class PBUserResult_Builder;
 @class PBZJHGameResult;
