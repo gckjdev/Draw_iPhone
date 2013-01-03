@@ -22,6 +22,7 @@
 	CommonMessageView *_messageView;
 	CGRect _messageFrame;
     int _horizon;
+    NSTimer* _dismissTimer;
 }
 @property(nonatomic, retain)NSMutableArray *messages;
 @property(nonatomic, assign)id<CommonMessageCenterDelegate>delegate;

@@ -230,11 +230,7 @@ CommonMessageViewTheme globalGetTheme() {
 	}
 	
 //	_active = YES;
-	
-	_messageView.transform = CGAffineTransformIdentity;
-	_messageView.alpha = 0;
-	[[UIApplication sharedApplication].keyWindow addSubview:_messageView];
-    
+
 	NSArray *ar = [_messages objectAtIndex:0];
 	
 	UIImage *img = nil;
@@ -248,13 +244,29 @@ CommonMessageViewTheme globalGetTheme() {
     }
 	    
 	if([ar count] > 0) [_messageView setMessageText:[[_messages objectAtIndex:0] objectAtIndex:INDEX_OF_WORDS]];
+    
+    
 	
-	
+	if (_dismissTimer) {
+        if ([_dismissTimer isValid]) {
+            [_dismissTimer invalidate];
+            [_dismissTimer release];
+            _dismissTimer = nil;
+        }
+    }
+    NSNumber* delayTime = [[_messages objectAtIndex:0] objectAtIndex:INDEX_OF_DELAY_TIME];
+    _dismissTimer = [[NSTimer scheduledTimerWithTimeInterval:delayTime.floatValue target:self selector:@selector(animationStep2) userInfo:nil repeats:NO] retain];
 	
 	
 	
 	if (!_active) {
+        _active = YES;
+        _horizon = horizon;
         
+        [[UIApplication sharedApplication].keyWindow addSubview:_messageView];
+        _messageView.transform = CGAffineTransformIdentity;
+        _messageView.alpha = 0;
+
         _messageView.center = CGPointMake(_messageFrame.origin.x+_messageFrame.size.width/2, _messageFrame.origin.y+_horizon+_messageFrame.size.height/2);
         
         
@@ -274,16 +286,14 @@ CommonMessageViewTheme globalGetTheme() {
         [UIView beginAnimations:nil context:nil];
         [UIView setAnimationDuration:0.15];
         [UIView setAnimationDelegate:self];
-        [UIView setAnimationDidStopSelector:@selector(animationStep2)];
+//        [UIView setAnimationDidStopSelector:@selector(animationStep2)];
         
         _messageView.transform = CGAffineTransformMakeRotation(degrees * M_PI / 180);
         _messageView.frame = CGRectMake((int)_messageView.frame.origin.x, (int)_messageView.frame.origin.y, _messageView.frame.size.width, _messageView.frame.size.height);
         _messageView.alpha = 1;
         
         [UIView commitAnimations];
-        _active = YES;
-        _horizon = horizon;
-    }
+            }
 
 	
 }
@@ -294,11 +304,11 @@ CommonMessageViewTheme globalGetTheme() {
 	// change the animation duration accordingly
 	// avg person reads 200 words per minute
 	//NSArray * words = [[[_messages objectAtIndex:0] objectAtIndex:0] componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-    NSNumber* delayTime = [[_messages objectAtIndex:0] objectAtIndex:INDEX_OF_DELAY_TIME];
+//    NSNumber* delayTime = [[_messages objectAtIndex:0] objectAtIndex:INDEX_OF_DELAY_TIME];
 	//double duration = MAX(((double)[words count]*60.0/200.0),1);
-    double duration = delayTime.floatValue;
+//    double duration = delayTime.floatValue;
 	
-	[UIView setAnimationDelay:duration];
+	[UIView setAnimationDelay:0];
 	[UIView setAnimationDelegate:self];
 	[UIView setAnimationDidStopSelector:@selector(animationStep3)];
 	
@@ -322,8 +332,8 @@ CommonMessageViewTheme globalGetTheme() {
     if ([self.delegate respondsToSelector:@selector(didShowedAlert)]) {
         [self.delegate didShowedAlert];
     }
-    
-	[self showAlertsAtHorizon:_horizon];
+    _active = NO;
+//	[self showAlertsAtHorizon:_horizon];
 	
 }
 - (void)postMessageWithText:(NSString *)text 
