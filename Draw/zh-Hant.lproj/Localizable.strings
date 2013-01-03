@@ -761,6 +761,9 @@
 "kReceiveTomatoMessage" = "憤怒的觀眾朝你扔了個番茄，你被扣了%d點經驗，%d個金幣";
 "kReceiveFlowerMessage" = "瘋狂的粉絲給你送了朵鮮花，你額外得到%d點經驗，%d個金幣";
 
+"kThrowTomatoWithCoinsMessage" = "你花費了%d個金幣給作者扔了個番茄，讓TA扣了%d點經驗, %d個金幣";
+"kSendFlowerWithCoinsMessage" = "你花費了%d個金幣給作者送了朵鮮花，讓TA額外增加了%d點經驗，%d個金幣";
+
 "kCoinsForShareToFriends" = "+%d金幣";
 "kAddCoins" = "+%d金幣";
 "kFollowWeibo" = "關注官方微博";
