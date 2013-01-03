@@ -295,6 +295,26 @@
 
 + (Item *)itemWithType:(ItemType)type amount:(NSInteger)amount
 {
+    switch (type) {
+        case ItemTypeFlower:
+            return [Item flower];
+        case ItemTypeTomato:
+            return[Item tomato];
+        case ItemTypeColor:
+            return [Item colors];
+        case ItemTypeRemoveAd:
+            return [Item removeAd];
+        case ItemTypeTips:
+            return [Item tips];
+        case IcePen:
+            return [Item iceCreamPen];
+        case Quill:
+            return [Item featherPen];
+        case WaterPen:
+            return [Item waterPen];
+        default:
+            break;
+    }
     return [[[Item alloc] initWithType:type amount:amount]autorelease];
 }
 

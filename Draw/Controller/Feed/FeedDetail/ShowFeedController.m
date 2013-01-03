@@ -32,6 +32,8 @@
 #import "ShareAction.h"
 #import "SDImageCache.h"
 #import "SDWebImageManager.h"
+#import "AccountService.h"
+#import "ConfigManager.h"
 
 @interface ShowFeedController () {
     ShareAction* _shareAction;
@@ -496,41 +498,41 @@ enum{
         [[CommonMessageCenter defaultCenter] postMessageWithText:self.canotSendItemPopup delayTime:1.5 isHappy:YES];
         return;
     }
+
+    BOOL isFree = [_useItemScene isItemFree:item.type];
+    BOOL itemEnough = YES;
     
-
-    if (!_feed.isContestFeed && item.amount <= 0) {
-        CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kNoItemTitle") message:NSLS(@"kNoItemMessage") style:CommonDialogStyleDoubleButton delegate:self];
-        dialog.tag = ITEM_TAG_OFFSET + item.type;
-        [dialog showInView:self.view];
-
+    if (!_feed.isContestFeed && item.amount <= 0 && !isFree) {
+//        CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kNoItemTitle") message:NSLS(@"kNoItemMessage") style:CommonDialogStyleDoubleButton delegate:self];
+//        dialog.tag = ITEM_TAG_OFFSET + item.type;
+//        [dialog showInView:self.view];
+        [[AccountService defaultService] buyItem:item.type itemCount:1 itemCoins:(item.price/item.buyAmountForOnce)];
+        itemEnough = NO;
+    }
+    [[ItemService defaultService] sendItemAward:item.type
+                                   targetUserId:_feed.author.userId
+                                      isOffline:YES
+                                     feedOpusId:_feed.feedId
+                                     feedAuthor:_feed.author.userId
+                                        forFree:isFree];
+    
+    ShareImageManager *imageManager = [ShareImageManager defaultManager];
+    if (item.type == ItemTypeFlower) {
+        UIImageView* throwItem = [[[UIImageView alloc] initWithFrame:self.flowerButton.frame] autorelease];
+        [throwItem setImage:[imageManager flower]];
+        [DrawGameAnimationManager showThrowFlower:throwItem animInController:self rolling:YES itemEnough:itemEnough completion:^(BOOL finished) {
+            [self clickRefresh:nil];
+        }];
+        [_commentHeader setSeletType:CommentTypeFlower];
+        [self.feed increaseLocalFlowerTimes];
     }else{
-        //throw animation
-        BOOL isFree = [_useItemScene isItemFree:item.type];
-        [[ItemService defaultService] sendItemAward:item.type
-                                       targetUserId:_feed.author.userId
-                                          isOffline:YES
-                                         feedOpusId:_feed.feedId
-                                         feedAuthor:_feed.author.userId 
-                                            forFree:isFree];
-        
-        ShareImageManager *imageManager = [ShareImageManager defaultManager];
-        if (item.type == ItemTypeFlower) {
-            UIImageView* throwItem = [[[UIImageView alloc] initWithFrame:self.flowerButton.frame] autorelease];
-            [throwItem setImage:[imageManager flower]];
-            [DrawGameAnimationManager showThrowFlower:throwItem animInController:self rolling:YES completion:^(BOOL finished) {
-                [self clickRefresh:nil];
-            }];
-            [_commentHeader setSeletType:CommentTypeFlower];
-            [self.feed increaseLocalFlowerTimes];
-        }else{
-            UIImageView* throwItem = [[[UIImageView alloc] initWithFrame:self.tomatoButton.frame] autorelease];
-            [throwItem setImage:[imageManager tomato]];
-            [DrawGameAnimationManager showThrowTomato:throwItem animInController:self rolling:YES completion:^(BOOL finished) {
-                [self clickRefresh:nil];
-            }];         
-            [_commentHeader setSeletType:CommentTypeTomato];
-            [self.feed increaseLocalTomatoTimes];
-        }
+        UIImageView* throwItem = [[[UIImageView alloc] initWithFrame:self.tomatoButton.frame] autorelease];
+        [throwItem setImage:[imageManager tomato]];
+        [DrawGameAnimationManager showThrowTomato:throwItem animInController:self rolling:YES itemEnough:itemEnough completion:^(BOOL finished) {
+            [self clickRefresh:nil];
+        }];
+        [_commentHeader setSeletType:CommentTypeTomato];
+        [self.feed increaseLocalTomatoTimes];
     }
 }
 

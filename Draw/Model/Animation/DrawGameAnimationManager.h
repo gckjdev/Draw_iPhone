@@ -38,11 +38,13 @@
 
 + (void)showThrowTomato:(UIImageView*)tomatoImageView 
        animInController:(UIViewController*)superController
-                rolling:(BOOL)rolling 
+                rolling:(BOOL)rolling
+             itemEnough:(BOOL)enough
              completion:(void (^)(BOOL finished))completion;
 + (void)showThrowFlower:(UIImageView*)flowerImageView 
        animInController:(UIViewController*)superController
-                rolling:(BOOL)rolling 
+                rolling:(BOOL)rolling
+             itemEnough:(BOOL)enough
              completion:(void (^)(BOOL finished))completion;
 
 @end

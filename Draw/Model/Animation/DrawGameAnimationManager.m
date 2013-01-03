@@ -12,6 +12,8 @@
 #import "CommonMessageCenter.h"
 #import "LocaleUtils.h"
 #import "AnimationPlayer.h"
+#import "ConfigManager.h"
+#import "Item.h"
 
 #define THROW_ITEM_TAG  20120713
 #define RECIEVE_ITEM_TAG    120120713
@@ -30,7 +32,7 @@
 #define ANIM_KEY_THROW_TOMATO   @"ThrowTomato"
 #define ANIM_KEY_SEND_FLOWER    @"SendFlower"
 
-#define POP_MESSAGE_HORIZON_OFFSET  ([DeviceDetection isIPAD]?-300:-150)
+#define POP_MESSAGE_HORIZON_OFFSET  (0)
 
 #define ANIM_GROUP @"AnimationGroup"
 
@@ -79,10 +81,17 @@
 
 + (void)showThrowTomato:(UIImageView*)tomatoImageView 
        animInController:(UIViewController*)superController
-                rolling:(BOOL)rolling 
-             completion:(void (^)(BOOL finished))completion
+                rolling:(BOOL)rolling
+             itemEnough:(BOOL)enough
+             completion:(void (^)(BOOL))completion
 {
-    completion(YES);//TODO:still has some problem to solve, this block should be excute in animationplayer's block
+    NSString* msg;
+    if (enough) {
+        msg = [NSString stringWithFormat:NSLS(@"kThrowTomatoMessage"),[ConfigManager getFlowerAwardExp], [ConfigManager getFlowerAwardAmount]];
+    } else {
+        Item* flower = [Item flower];
+        msg = [NSString stringWithFormat:NSLS(@"kThrowTomatoWithCoinsMessage"), flower.price/flower.buyAmountForOnce, [ConfigManager getFlowerAwardExp], [ConfigManager getFlowerAwardAmount]];
+    }
     CAAnimationGroup* animationGroup = nil;
     if (rolling) {
         animationGroup =  [DrawGameAnimationManager createThrowItemAnimation:tomatoImageView inViewController:superController];   
@@ -92,16 +101,23 @@
     }
     //    [animationGroup setValue:ANIM_KEY_THROW_TOMATO forKey:DRAW_ANIM];
     [AnimationPlayer showView:tomatoImageView inView:superController.view animation:animationGroup completion:^(BOOL finished) {
-        
-        [[CommonMessageCenter defaultCenter] postMessageWithText:[NSString stringWithFormat:NSLS(@"kThrowTomatoMessage"),REWARD_EXP, REWARD_COINS] delayTime:2 isHappy:YES atHorizon:POP_MESSAGE_HORIZON_OFFSET];
+        completion(finished);
+        [[CommonMessageCenter defaultCenter] postMessageWithText:msg delayTime:2 isHappy:YES atHorizon:POP_MESSAGE_HORIZON_OFFSET];
     }];
 }
 + (void)showThrowFlower:(UIImageView*)flowerImageView 
        animInController:(UIViewController*)superController
-                rolling:(BOOL)rolling 
-             completion:(void (^)(BOOL finished))completion
+                rolling:(BOOL)rolling
+             itemEnough:(BOOL)enough
+             completion:(void (^)(BOOL))completion
 {
-    completion(YES);//TODO:still has some problem to solve, this block should be excute in animationplayer's block
+    NSString* msg;
+    if (enough) {
+        msg = [NSString stringWithFormat:NSLS(@"kSendFlowerMessage"),[ConfigManager getFlowerAwardExp], [ConfigManager getFlowerAwardAmount]];
+    } else {
+        Item* flower = [Item flower];
+        msg = [NSString stringWithFormat:NSLS(@"kSendFlowerWithCoinsMessage"), flower.price/flower.buyAmountForOnce, [ConfigManager getFlowerAwardExp], [ConfigManager getFlowerAwardAmount]];
+    }
     CAAnimationGroup* animationGroup = nil;
     if (rolling) {
         animationGroup =  [DrawGameAnimationManager createThrowItemAnimation:flowerImageView inViewController:superController];        
@@ -111,9 +127,10 @@
     
     //    [animationGroup setValue:ANIM_KEY_SEND_FLOWER forKey:DRAW_ANIM];
     [AnimationPlayer showView:flowerImageView inView:superController.view animation:animationGroup completion:^(BOOL finished) {
-        
-        [[CommonMessageCenter defaultCenter] postMessageWithText:[NSString stringWithFormat:NSLS(@"kSendFlowerMessage"),REWARD_EXP, REWARD_COINS] delayTime:2 isHappy:YES atHorizon:POP_MESSAGE_HORIZON_OFFSET];
+        completion(finished);
+        [[CommonMessageCenter defaultCenter] postMessageWithText:msg delayTime:2 isHappy:YES atHorizon:POP_MESSAGE_HORIZON_OFFSET];
     }];
+    
 }
 
 
@@ -122,7 +139,7 @@
        animInController:(UIViewController*)superController
                 rolling:(BOOL)rolling
 {
-    [self showThrowTomato:tomatoImageView animInController:superController rolling:rolling completion:^(BOOL finished) {
+    [self showThrowTomato:tomatoImageView animInController:superController rolling:rolling itemEnough:YES completion:^(BOOL finished) {
         
     }];
 }
@@ -132,7 +149,7 @@
                 rolling:(BOOL)rolling
 {
     
-    [self showThrowFlower:flowerImageView animInController:superController rolling:rolling completion:^(BOOL finished) {
+    [self showThrowFlower:flowerImageView animInController:superController rolling:rolling itemEnough:YES completion:^(BOOL finished) {
         
     }];
 }
