@@ -121,8 +121,8 @@
     [self.colorAlpha setText:NSLS(@"kColorAlpha")];
     
     //TODO implement color alpha
-//    self.alphaSlider.hidden = YES;
-//    self.colorAlpha.hidden = YES;
+    self.alphaSlider.hidden = YES;
+    self.colorAlpha.hidden = YES;
 }
 
 
