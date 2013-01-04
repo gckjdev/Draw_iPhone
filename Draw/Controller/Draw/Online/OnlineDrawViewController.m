@@ -111,7 +111,6 @@
     [self.drawToolPanel setPanelForOnline:YES];
     [self.drawToolPanel setTimerDuration:60];
     [self.drawToolPanel startTimer];
-    
 }
 
 - (void)initDrawView
@@ -153,13 +152,20 @@
 }
 
 
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [_drawToolPanel stopTimer];
+    [super viewDidDisappear:animated];
+}
+
 - (void)viewDidUnload
 {
     drawView.delegate = nil;
-    
     [self setWord:nil];
     [self setPopupButton:nil];
     [self setTurnNumberButton:nil];
+    [_drawToolPanel stopTimer];
+    [self setDrawToolPanel:nil];
     [super viewDidUnload];
 }
 
@@ -364,5 +370,9 @@
     [self showGroupChatView];
 }
 
+- (void)drawToolPanelDidTimeout:(DrawToolPanel *)toolPanel
+{
+    
+}
 
 @end

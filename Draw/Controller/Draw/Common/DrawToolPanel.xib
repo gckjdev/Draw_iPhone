@@ -322,7 +322,7 @@
 					</object>
 					<object class="IBUIButton" id="510518648">
 						<reference key="NSNextResponder" ref="191373211"/>
-						<int key="NSvFlags">292</int>
+						<int key="NSvFlags">-2147483356</int>
 						<string key="NSFrame">{{4, 49}, {33, 34}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
@@ -355,7 +355,7 @@
 					</object>
 					<object class="IBUIButton" id="96719713">
 						<reference key="NSNextResponder" ref="191373211"/>
-						<int key="NSvFlags">292</int>
+						<int key="NSvFlags">-2147483356</int>
 						<string key="NSFrame">{{45, 49}, {33, 34}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
@@ -749,6 +749,7 @@
 						<string key="alphaSlider">DrawSlider</string>
 						<string key="chat">UIButton</string>
 						<string key="colorAlpha">UILabel</string>
+						<string key="colorBGImageView">UIImageView</string>
 						<string key="pen">UIButton</string>
 						<string key="penWidth">UILabel</string>
 						<string key="redo">UIButton</string>
@@ -768,6 +769,10 @@
 						<object class="IBToOneOutletInfo" key="colorAlpha">
 							<string key="name">colorAlpha</string>
 							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="colorBGImageView">
+							<string key="name">colorBGImageView</string>
+							<string key="candidateClassName">UIImageView</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="pen">
 							<string key="name">pen</string>

@@ -15,9 +15,6 @@
 
 @interface DrawToolPanel ()
 {
-//    CMPopTipView *_penPopTipView;
-//    CMPopTipView *_colorBoxPopTipView;
-//    CMPopTipView *_palettePopTipView;
     NSTimer *timer;
     NSInteger _retainTime;
 }
@@ -65,6 +62,7 @@
 #define SPACE_COLOR_UP VALUE(9)
 
 #define ALPHA_FONT_SIZE VALUE(14.0)
+#define TIMESET_FONT_SIZE VALUE(15.0)
 
 #define LINE_MIN_WIDTH VALUE(1.0)
 #define LINE_MAX_WIDTH VALUE(27.0)
@@ -73,7 +71,6 @@
 #define COLOR_MIN_ALPHA 0.1
 #define COLOR_MAX_ALPHA 1.0
 #define COLOR_DEFAULT_ALPHA 1.0
-
 
 #define POP_POINTER_SIZE VALUE(8.0)
 
@@ -139,7 +136,7 @@
         point.delegate = self;
     }
     
-    [self.timeSet.titleLabel setFont:[UIFont fontWithName:@"DBLCDTempBlack" size:15]];
+    [self.timeSet.titleLabel setFont:[UIFont fontWithName:@"DBLCDTempBlack" size:TIMESET_FONT_SIZE]];
     [self.colorBGImageView setImage:[[ShareImageManager defaultManager] drawColorBG]];
 
     //update width and alpha
