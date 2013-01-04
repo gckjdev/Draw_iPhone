@@ -17,6 +17,8 @@
 //    CMPopTipView *_penPopTipView;
 //    CMPopTipView *_colorBoxPopTipView;
 //    CMPopTipView *_palettePopTipView;
+    NSTimer *timer;
+    NSInteger _retainTime;
 }
 
 #pragma mark - click actions
@@ -28,24 +30,31 @@
 - (IBAction)clickAddColor:(id)sender;
 - (IBAction)clickPalette:(id)sender;
 - (IBAction)clickPaintBucket:(id)sender;
+- (IBAction)clickChat:(id)sender;
 
 @property (retain, nonatomic) IBOutlet DrawSlider *widthSlider;
 @property (retain, nonatomic) IBOutlet DrawSlider *alphaSlider;
 @property (retain, nonatomic) IBOutlet UILabel *penWidth;
 @property (retain, nonatomic) IBOutlet UILabel *colorAlpha;
 @property (retain, nonatomic) IBOutlet UIButton *pen;
+@property (retain, nonatomic) IBOutlet UIButton *chat;
+@property (retain, nonatomic) IBOutlet UIButton *timeSet;
+@property (retain, nonatomic) IBOutlet UIButton *redo;
+@property (retain, nonatomic) IBOutlet UIButton *undo;
 
 
 @property (retain, nonatomic) CMPopTipView *penPopTipView;
 @property (retain, nonatomic) CMPopTipView *colorBoxPopTipView;
 @property (retain, nonatomic) CMPopTipView *palettePopTipView;
 
-
+@property (retain, nonatomic) NSTimer *timer;
 
 
 @end
 
 @implementation DrawToolPanel
+@synthesize timer = _timer;
+
 
 #define MAX_COLOR_NUMBER 8
 #define VALUE(x) (ISIPAD ? x*2 : x)
@@ -99,11 +108,8 @@
 
 - (void)updateView
 {
-    //update color
-    NSArray *list = [DrawColor getRecentColorList];
-    NSInteger i = 0;
-    for (DrawColor *color in list) {
-        ColorPoint *point = [ColorPoint pointWithColor:color];
+    for (NSInteger i = 0; i < MAX_COLOR_NUMBER; ++ i) {
+        ColorPoint *point = [ColorPoint pointWithColor:[DrawColor rankColor]];
         [self addSubview:point];
         CGRect frame = point.frame;
         CGFloat x = SPACE_COLOR_LEFT + i * (CGRectGetWidth(point.frame) + SPACE_COLOR_COLOR);
@@ -111,11 +117,9 @@
         frame.origin = CGPointMake(x, SPACE_COLOR_UP);
         point.frame = frame;
         point.delegate = self;
-        if (++i >= MAX_COLOR_NUMBER) {
-            break;
-        }
     }
     
+    [self.timeSet.titleLabel setFont:[UIFont fontWithName:@"DBLCDTempBlack" size:15]];
     
     //update width and alpha
     [self updateSliders];
@@ -162,6 +166,19 @@
     [self dismissPopTipViewsWithout:nil];
 }
 
+- (void)disableAllTools
+{
+    for (UIControl *control in self.subviews) {
+        [control setEnabled:NO];
+    }
+}
+
+- (void)setPanelForOnline:(BOOL)isOnline
+{
+    self.redo.hidden = self.undo.hidden = isOnline;
+    self.timeSet.hidden = self.chat.hidden = !isOnline;
+}
+
 #pragma mark - click actions
 - (IBAction)clickUndo:(id)sender {
     [self dismissAllPopTipViews];
@@ -176,6 +193,14 @@
         [self.delegate drawToolPanel:self didClickRedoButton:sender];
     }
 }
+
+- (IBAction)clickChat:(id)sender {
+    [self dismissAllPopTipViews];
+    if (self.delegate && [self.delegate respondsToSelector:@selector(drawToolPanel:didClickChatButton:)]) {
+        [self.delegate drawToolPanel:self didClickChatButton:sender];
+    }    
+}
+
 
 
 - (IBAction)clickEraser:(id)sender {
@@ -192,6 +217,7 @@
         [self.delegate drawToolPanel:self didClickPaintBucket:sender];
     }
 }
+
 
 - (void)handlePopTipView:(CMPopTipView *)popView
              contentView:(UIView *(^)(void))contentView
@@ -405,8 +431,52 @@
     PPRelease(_alphaSlider);
     PPRelease(_penWidth);
     PPRelease(_colorAlpha);
+    PPRelease(_timer);
     
     [_pen release];
+    [_chat release];
+    [_timeSet release];
+    [_redo release];
+    [_undo release];
     [super dealloc];
 }
+
+#pragma mark - timer methods
+
+- (void)handleTimer:(NSTimer *)timer
+{
+    PPDebug(@"panel <handleTimer>: retain time = %d",_retainTime);
+    if (_retainTime >= 0) {
+        NSString *title = [NSString stringWithFormat:@"%d", _retainTime];
+        [self.timeSet setTitle:title forState:UIControlStateNormal];
+        _retainTime --;
+    }
+    if (_retainTime < 0) {
+        [self stopTimer];
+        //enable all the tools
+        [self dismissAllPopTipViews];
+        [self disableAllTools];
+        if (_delegate && [_delegate respondsToSelector:@selector(drawToolPanelDidTimeout:)]) {
+            [_delegate drawToolPanelDidTimeout:self];
+        }
+    }
+}
+
+- (void)startTimer
+{
+    [self stopTimer];
+    _retainTime = self.timerDuration;
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(handleTimer:) userInfo:nil repeats:YES];
+    [self handleTimer:self.timer];
+}
+- (void)stopTimer
+{
+    PPDebug(@"panel <stopTimer>: retain time = %d",_retainTime);
+    if ([self.timer isValid]) {
+        [self.timer invalidate];
+    }
+    self.timer = nil;
+}
+
 @end
+

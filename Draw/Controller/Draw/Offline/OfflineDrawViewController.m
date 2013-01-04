@@ -337,6 +337,7 @@ enum{
     [self.drawToolPenel setBackgroundColor:[UIColor clearColor]];
     [self.drawToolPenel setColor:self.penColor];
     [self.view addSubview:self.drawToolPenel];
+    [self.drawToolPenel setPanelForOnline:NO];
 }
 
 
@@ -789,7 +790,7 @@ enum{
 }
 
 
-#pragma mark - Drawo Tool Panel Delegate
+#pragma mark - Draw Tool Panel Delegate
 
 - (void)drawToolPanel:(DrawToolPanel *)toolPanel didClickRedoButton:(UIButton *)button
 {
@@ -825,9 +826,7 @@ enum{
 {
 
     [self.penColor setAlpha:alpha];
-    [drawView setLineColor:self.penColor];
-//    [drawView setLineColor:color];
-    
+    [drawView setLineColor:self.penColor];    
 }
 
 @end
