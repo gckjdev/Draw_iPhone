@@ -12,6 +12,8 @@
 #import "PenBox.h"
 #import "ColorView.h"
 #import "ShareImageManager.h"
+#import "ItemManager.h"
+#import "ItemType.h"
 
 @interface DrawToolPanel ()
 {

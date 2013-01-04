@@ -25,6 +25,8 @@ typedef enum
     PenCount,
     
     Eraser = 1100,
+    PaletteItem = 1101,
+    ColorAlphaItem = 1102,
     
     //Liar dice.
 //    ItemTypeChangeDice = 2000,
