@@ -23,7 +23,7 @@
 @property(nonatomic, readonly)CGFloat red;
 @property(nonatomic, readonly)CGFloat green;
 @property(nonatomic, readonly)CGFloat blue;
-@property(nonatomic, readonly)CGFloat alpha;
+@property(nonatomic, assign)CGFloat alpha;
 //@property(nonatomic, retain)UIColor color;
 
 - (id)initWithRed:(CGFloat)red green:(CGFloat)green blue:(CGFloat)blue alpha:(CGFloat)alpha;
