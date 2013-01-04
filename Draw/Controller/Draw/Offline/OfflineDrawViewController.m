@@ -82,7 +82,7 @@
 
 @property (retain, nonatomic) DrawColor* eraserColor;
 @property (retain, nonatomic) DrawColor* penColor;
-@property (retain, nonatomic) DrawToolPanel *drawToolPenel;
+@property (retain, nonatomic) DrawToolPanel *drawToolPanel;
 
 - (void)initDrawView;
 
@@ -331,13 +331,13 @@ enum{
 
 - (void)initDrawToolPanel
 {
-    self.drawToolPenel = [DrawToolPanel createViewWithdelegate:nil];
-    self.drawToolPenel.center = CGPointMake(160, 415);
-    self.drawToolPenel.delegate = self;
-    [self.drawToolPenel setBackgroundColor:[UIColor clearColor]];
-    [self.drawToolPenel setColor:self.penColor];
-    [self.view addSubview:self.drawToolPenel];
-    [self.drawToolPenel setPanelForOnline:NO];
+    self.drawToolPanel = [DrawToolPanel createViewWithdelegate:self];
+    CGFloat x = self.view.center.x;
+    CGFloat y = CGRectGetHeight(self.view.bounds) - CGRectGetHeight(self.drawToolPanel.bounds) / 2;
+    self.drawToolPanel.center = CGPointMake(x, y);
+    [self.drawToolPanel setBackgroundColor:[UIColor clearColor]];
+    [self.view addSubview:self.drawToolPanel];
+    [self.drawToolPanel setPanelForOnline:NO];
 }
 
 
@@ -566,7 +566,7 @@ enum{
 
 - (void)didStartedTouch:(Paint *)paint
 {
-    [self.drawToolPenel dismissAllPopTipViews];
+    [self.drawToolPanel dismissAllPopTipViews];
 }
 
 #define DRAFT_PAINT_COUNT [ConfigManager drawAutoSavePaintInterval]
@@ -824,7 +824,6 @@ enum{
 }
 - (void)drawToolPanel:(DrawToolPanel *)toolPanel didSelectAlpha:(CGFloat)alpha
 {
-
     [self.penColor setAlpha:alpha];
     [drawView setLineColor:self.penColor];    
 }

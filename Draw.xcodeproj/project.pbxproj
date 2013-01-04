@@ -3266,6 +3266,18 @@
 		CA4FF00B152AF21900F0AC88 /* ColorShopCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA4FF009152AF21900F0AC88 /* ColorShopCell.xib */; };
 		CA50A01515B938B700CAB603 /* UserStatusService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA50A01415B9389600CAB603 /* UserStatusService.m */; };
 		CA50A01715BA5BF400CAB603 /* ResultController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA50A01615BA5BF300CAB603 /* ResultController~ipad.xib */; };
+		CA50D26B1696BFE100A7BE14 /* ColorBox~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA50D2671696BFE000A7BE14 /* ColorBox~ipad.xib */; };
+		CA50D26C1696BFE100A7BE14 /* ColorBox~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA50D2671696BFE000A7BE14 /* ColorBox~ipad.xib */; };
+		CA50D26D1696BFE100A7BE14 /* ColorBox~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA50D2671696BFE000A7BE14 /* ColorBox~ipad.xib */; };
+		CA50D26E1696BFE100A7BE14 /* DrawToolPanel~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA50D2681696BFE000A7BE14 /* DrawToolPanel~ipad.xib */; };
+		CA50D26F1696BFE100A7BE14 /* DrawToolPanel~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA50D2681696BFE000A7BE14 /* DrawToolPanel~ipad.xib */; };
+		CA50D2701696BFE100A7BE14 /* DrawToolPanel~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA50D2681696BFE000A7BE14 /* DrawToolPanel~ipad.xib */; };
+		CA50D2711696BFE100A7BE14 /* Palette~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA50D2691696BFE000A7BE14 /* Palette~ipad.xib */; };
+		CA50D2721696BFE100A7BE14 /* Palette~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA50D2691696BFE000A7BE14 /* Palette~ipad.xib */; };
+		CA50D2731696BFE100A7BE14 /* Palette~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA50D2691696BFE000A7BE14 /* Palette~ipad.xib */; };
+		CA50D2741696BFE100A7BE14 /* PenBox~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA50D26A1696BFE100A7BE14 /* PenBox~ipad.xib */; };
+		CA50D2751696BFE100A7BE14 /* PenBox~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA50D26A1696BFE100A7BE14 /* PenBox~ipad.xib */; };
+		CA50D2761696BFE100A7BE14 /* PenBox~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA50D26A1696BFE100A7BE14 /* PenBox~ipad.xib */; };
 		CA51816D15A2D79700AD5A78 /* CustomStatueBar.m in Sources */ = {isa = PBXBuildFile; fileRef = CA51816C15A2D79700AD5A78 /* CustomStatueBar.m */; };
 		CA51BD731525DED100C77E50 /* RewardManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA51BD721525DED100C77E50 /* RewardManager.m */; };
 		CA51BD761525DEDE00C77E50 /* Reward.m in Sources */ = {isa = PBXBuildFile; fileRef = CA51BD751525DEDE00C77E50 /* Reward.m */; };
@@ -6042,6 +6054,10 @@
 		CA50A01315B9388A00CAB603 /* UserStatusService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserStatusService.h; sourceTree = "<group>"; };
 		CA50A01415B9389600CAB603 /* UserStatusService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserStatusService.m; sourceTree = "<group>"; };
 		CA50A01615BA5BF300CAB603 /* ResultController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ResultController~ipad.xib"; sourceTree = "<group>"; };
+		CA50D2671696BFE000A7BE14 /* ColorBox~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ColorBox~ipad.xib"; sourceTree = "<group>"; };
+		CA50D2681696BFE000A7BE14 /* DrawToolPanel~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "DrawToolPanel~ipad.xib"; sourceTree = "<group>"; };
+		CA50D2691696BFE000A7BE14 /* Palette~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "Palette~ipad.xib"; sourceTree = "<group>"; };
+		CA50D26A1696BFE100A7BE14 /* PenBox~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "PenBox~ipad.xib"; sourceTree = "<group>"; };
 		CA51816B15A2D79700AD5A78 /* CustomStatueBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomStatueBar.h; sourceTree = "<group>"; };
 		CA51816C15A2D79700AD5A78 /* CustomStatueBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomStatueBar.m; sourceTree = "<group>"; };
 		CA51BD711525DED100C77E50 /* RewardManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RewardManager.h; sourceTree = "<group>"; };
@@ -13228,12 +13244,15 @@
 				CAC44960168D57C7004441EB /* Palette.h */,
 				CAC44961168D57C8004441EB /* Palette.m */,
 				CAC448F6168C4685004441EB /* Palette.xib */,
+				CA50D2691696BFE000A7BE14 /* Palette~ipad.xib */,
 				CAC44965168D58C1004441EB /* ColorBox.h */,
 				CAC44966168D58C2004441EB /* ColorBox.m */,
 				CAC4496A168D58F2004441EB /* ColorBox.xib */,
+				CA50D2671696BFE000A7BE14 /* ColorBox~ipad.xib */,
 				CADD263416883FDA00BDCDCF /* DrawToolPanel.h */,
 				CADD263516883FDA00BDCDCF /* DrawToolPanel.m */,
 				CADD26371688400600BDCDCF /* DrawToolPanel.xib */,
+				CA50D2681696BFE000A7BE14 /* DrawToolPanel~ipad.xib */,
 				CA25C414168995820064C05D /* ColorPoint.h */,
 				CA25C415168995820064C05D /* ColorPoint.m */,
 				CA7871861689AE6100B28A2E /* DrawSlider.h */,
@@ -13241,6 +13260,7 @@
 				CAC44996168D9FED004441EB /* PenBox.h */,
 				CAC44997168D9FF3004441EB /* PenBox.m */,
 				CAC44999168DA019004441EB /* PenBox.xib */,
+				CA50D26A1696BFE100A7BE14 /* PenBox~ipad.xib */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -15576,6 +15596,10 @@
 				CA7D4AE7168DBDCD009F43F7 /* scrambleToOpenDice_F.m4a in Resources */,
 				CA7D4AE8168DBDCD009F43F7 /* scrambleToOpenDice_M.m4a in Resources */,
 				CAB3ADC3168EA6E500916C97 /* color_box_split@2x.png in Resources */,
+				CA50D26C1696BFE100A7BE14 /* ColorBox~ipad.xib in Resources */,
+				CA50D26F1696BFE100A7BE14 /* DrawToolPanel~ipad.xib in Resources */,
+				CA50D2721696BFE100A7BE14 /* Palette~ipad.xib in Resources */,
+				CA50D2751696BFE100A7BE14 /* PenBox~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -16343,6 +16367,10 @@
 				CA7D4503168DBDB1009F43F7 /* raise_bet1_F.mp3 in Resources */,
 				CA7D4504168DBDB1009F43F7 /* raise_bet1_M.mp3 in Resources */,
 				CAB3ADC4168EA6E500916C97 /* color_box_split@2x.png in Resources */,
+				CA50D26D1696BFE100A7BE14 /* ColorBox~ipad.xib in Resources */,
+				CA50D2701696BFE100A7BE14 /* DrawToolPanel~ipad.xib in Resources */,
+				CA50D2731696BFE100A7BE14 /* Palette~ipad.xib in Resources */,
+				CA50D2761696BFE100A7BE14 /* PenBox~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -17066,6 +17094,10 @@
 				CAC4499A168DA01B004441EB /* PenBox.xib in Resources */,
 				CAB3ADC2168EA6E500916C97 /* color_box_split@2x.png in Resources */,
 				C2117BE5168EEEFB000F36EE /* draw_home_bulletin@2x.png in Resources */,
+				CA50D26B1696BFE100A7BE14 /* ColorBox~ipad.xib in Resources */,
+				CA50D26E1696BFE100A7BE14 /* DrawToolPanel~ipad.xib in Resources */,
+				CA50D2711696BFE100A7BE14 /* Palette~ipad.xib in Resources */,
+				CA50D2741696BFE100A7BE14 /* PenBox~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
