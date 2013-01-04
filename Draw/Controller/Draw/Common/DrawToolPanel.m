@@ -220,7 +220,6 @@
     [self handlePopTipView:_colorBoxPopTipView contentView:^UIView *{
         return [ColorBox createViewWithdelegate:self];
     } atView:sender setter:@selector(setColorBoxPopTipView:)];
-//    [self dismissPopTipViewsWithout:self.colorBoxPopTipView];
 
 }
 
@@ -228,9 +227,12 @@
 
     [self handlePopTipView:_palettePopTipView contentView:^UIView *{
         PPDebug(@"<block> [Palette createViewWithdelegate:self]");
-        return [Palette createViewWithdelegate:self];
+        Palette *pallete = [Palette createViewWithdelegate:self];
+        if (self.color) {
+            pallete.currentColor = self.color;
+        }
+        return pallete;
     } atView:sender setter:@selector(setPalettePopTipView:)];
-//    [self dismissPopTipViewsWithout:self.palettePopTipView];
 }
 
 - (IBAction)clickPen:(id)sender {
@@ -240,16 +242,16 @@
         penBox.delegate = self;
         return penBox;
     } atView:sender setter:@selector(setPenPopTipView:)];
-//    [self dismissPopTipViewsWithout:self.penPopTipView];
 }
 
 
 - (void)handleSelectColorDelegateWithColor:(DrawColor *)color
 {
+    self.color = color;
     if (self.delegate && [self.delegate respondsToSelector:@selector(drawToolPanel:didSelectColor:)]) {
         [self.delegate drawToolPanel:self didSelectColor:color];
     }
-    
+    [self.alphaSlider setValue:1.0];
     //update show list;
 }
 
@@ -291,6 +293,18 @@
 - (void)drawSlider:(DrawSlider *)drawSlider didFinishChangeValue:(CGFloat)value
 {
     [drawSlider dismissPopupView];
+    if (drawSlider == self.widthSlider) {
+        self.width = value;
+        if (self.delegate && [self.delegate respondsToSelector:@selector(drawToolPanel:didSelectWidth:)]) {
+            [self.delegate drawToolPanel:self didSelectWidth:value];
+        }
+    }else if(drawSlider == self.alphaSlider){
+        self.alpha = value;
+        if(self.delegate && [self.delegate respondsToSelector:@selector(drawToolPanel:didSelectAlpha:)])
+        {
+            [self.delegate drawToolPanel:self didSelectAlpha:value];
+        }
+    }
 }
 
 - (void)drawSlider:(DrawSlider *)drawSlider didStartToChangeValue:(CGFloat)value
@@ -317,6 +331,9 @@
     [self.pen setTag:penType];
     [self.penPopTipView dismissAnimated:NO];
     self.penPopTipView = nil;
+    if (self.delegate && [self.delegate respondsToSelector:@selector(drawToolPanel:didSelectPen:)]) {
+        [self.delegate drawToolPanel:self didSelectPen:penType];
+    }
 }
 
 #pragma mark - CMPopTipView Delegate
@@ -372,6 +389,11 @@
 - (void)didPickedColorView:(ColorView *)colorView{
     [self handleSelectColorDelegateWithColor:colorView.drawColor];
     [self dismissColorBoxPopTipView];
+}
+
+- (void)palette:(Palette *)palette didPickColor:(DrawColor *)color
+{
+    [self handleSelectColorDelegateWithColor:color];    
 }
 
 - (void)dealloc {

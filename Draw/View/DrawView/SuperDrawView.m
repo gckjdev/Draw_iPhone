@@ -128,6 +128,10 @@
 
 - (void)drawPoint:(CGFloat)width color:(CGColorRef)cgColor
 {
+    
+    //use UIBezierPath
+    
+    
     CGPoint mid1 = [DrawUtils midPoint1:_previousPoint1
                                  point2:_previousPoint2];
     
@@ -147,28 +151,46 @@
 
 
     [self.layer renderInContext:context];
+    
+//    CGContextMoveToPoint(context, _previousPoint1.x, _previousPoint1.y);
+//    CGContextAddLineToPoint(context, _currentPoint.x, _currentPoint.y);
+//    CGContextAddQuadCurveToPoint(context, _previousPoint1.x, _previousPoint1.y, mid2.x,
+    
     CGContextMoveToPoint(context, mid1.x, mid1.y);
-    CGContextAddQuadCurveToPoint(context, _previousPoint1.x, _previousPoint1.y, mid2.x, mid2.y); 
-    CGContextSetLineCap(context, kCGLineCapRound);
+    CGContextAddQuadCurveToPoint(context, _previousPoint1.x, _previousPoint1.y, mid2.x, mid2.y);
+//    const CGPoint plist[] = {mid1,mid2};
+//    CGContextAddLines(context, plist, 2);
+//    if (_edge) {
+        CGContextSetLineCap(context, kCGLineCapRound);
+//    }
+    
+    
+    
     CGContextSetLineJoin(context, kCGLineJoinRound);
     CGContextSetLineWidth(context, width);    
 
     CGContextSetStrokeColorWithColor(context, cgColor);
     CGContextStrokePath(context);
-    
+
     self.curImage = nil;
 }
 
+
+
 - (void)drawPaint:(Paint *)paint
 { 
-//    PPDebug(@"<SuperDrawView> draw paint");
+    PPDebug(@"<SuperDrawView> draw paint,alpha = %f",paint.color.alpha);
     
-    CGContextRef context = UIGraphicsGetCurrentContext(); 
+    CGContextRef context = UIGraphicsGetCurrentContext();
+
+//    UIColor *color = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.2];
+    
     CGContextSetStrokeColorWithColor(context, paint.color.CGColor);
-    CGContextSetFillColorWithColor(context, paint.color.CGColor);
-    CGContextSetLineWidth(context, paint.width);    
+//    CGContextSetFillColorWithColor(context, paint.color.CGColor);
+    CGContextSetLineWidth(context, paint.width);
     CGContextSetLineCap(context, kCGLineCapRound);
     CGContextSetLineJoin(context, kCGLineJoinRound);
+    CGContextSetAlpha(context, paint.color.alpha);
     self.curImage = nil;
     if ([paint pointCount] != 0) {
         
@@ -206,17 +228,33 @@
     }
 }
 
+- (void)drawBezierPointLine:(CGFloat)width color:(UIColor*)color
+{
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    [self.layer renderInContext:context];
+    [color set];
+    UIBezierPath *path = [UIBezierPath bezierPath];
+    [path setLineWidth:width];
+    [path setLineJoinStyle:kCGLineJoinRound];
+    [path setLineCapStyle:kCGLineCapRound];
+//    [path moveToPoint:_previousPoint2];
+//    [path addQuadCurveToPoint:<#(CGPoint)#> controlPoint:<#(CGPoint)#>
+    [path moveToPoint:_previousPoint1];
+    [path addLineToPoint:_currentPoint];
+    PPDebug(@"previousPoint1 = %@, currentPoint = %@", NSStringFromCGPoint(_previousPoint1),NSStringFromCGPoint(_currentPoint));
+    [path stroke];
+}
+
 - (void)drawRectLine:(CGRect)rect
 {
 //    PPDebug(@"<SuperDrawView> draw line,rect = %@",NSStringFromCGRect(rect));
     
     if ([_currentDrawAction isDrawAction]) {
         [_curImage drawAtPoint:CGPointMake(0, 0)];
-        CGColorRef color = _currentDrawAction.paint.color.CGColor;
-//        UIImage *image = [UIImage imageNamed:@"brush1.jpg"];
-//        CGColorRef color = [UIColor colorWithPatternImage:image].CGColor;
         CGFloat width = _currentDrawAction.paint.width;
+        CGColorRef color = _currentDrawAction.paint.color.CGColor;
         [self drawPoint:width color:color];
+//        [self drawBezierPointLine:width color:_currentDrawAction.paint.color.color];
         [super drawRect:rect];
     }
 }
@@ -252,7 +290,6 @@
     switch (_drawRectType) {
         case DrawRectTypeLine:
         {
-//            PPDebug(@"<SuperDrawView> drawRectLine");
             [self drawRectLine:rect];
         }
             break;

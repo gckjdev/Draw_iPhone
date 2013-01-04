@@ -56,7 +56,16 @@
     return self;
 }
 
+- (void)updateColor
+{
+    self.color = [UIColor colorWithRed:self.red green:self.green blue:self.blue alpha:self.alpha];
+}
 
+- (void)setAlpha:(CGFloat)alpha
+{
+    _alpha = alpha;
+    [self updateColor];
+}
 
 - (id)initWithRed:(CGFloat)red green:(CGFloat)green blue:(CGFloat)blue alpha:(CGFloat)alpha
 {
