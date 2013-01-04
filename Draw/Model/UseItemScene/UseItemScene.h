@@ -17,6 +17,7 @@ typedef enum {
     UseSceneTypeOfflineGuessResult,
     UseSceneTypeShowFeedDetail,
     UseSceneTypeDrawMatch,
+    UseSceneTypeMatchRank,
 }UseSceneType;
 
 @interface UseItemScene : NSObject {
@@ -30,6 +31,7 @@ typedef enum {
 }
 
 @property (nonatomic, retain) DrawFeed* feed;
+@property (nonatomic, assign) UseSceneType sceneType;
 
 + (UseItemScene*)createSceneByType:(UseSceneType)type
                               feed:(DrawFeed*)feed;
@@ -38,7 +40,8 @@ typedef enum {
               maxFlowerCount:(int)maxFlowerCount 
                         feed:(DrawFeed*)feed 
                 isTomatoFree:(BOOL)isTomatoFree 
-                isFlowerFree:(BOOL)isFlowerFree;
+                isFlowerFree:(BOOL)isFlowerFree
+                        type:(UseSceneType)type;
 - (BOOL)canThrowTomato;
 - (BOOL)canThrowFlower;
 - (BOOL)isFlowerFree;
@@ -47,4 +50,5 @@ typedef enum {
 - (void)throwAFlower;
 - (int)itemLimitForType:(ItemType)type;
 - (BOOL)isItemFree:(ItemType)type;
+- (NSString *)unavailableItemMessage;
 @end

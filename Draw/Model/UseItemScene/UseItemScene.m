@@ -28,42 +28,56 @@
                                                   maxFlowerCount:ONLINE_FLOWER
                                                             feed:nil
                                                     isTomatoFree:NO
-                                                    isFlowerFree:NO] autorelease];
+                                                    isFlowerFree:NO
+                                                            type:UseSceneTypeOnlineGuess] autorelease];
         }break;
         case UseSceneTypeOnlineGuessResult: {
             return [[[UseItemScene alloc] initWithMaxTomatoCount:ONLINE_TOMATO
                                                   maxFlowerCount:ONLINE_FLOWER
                                                             feed:nil
                                                     isTomatoFree:NO
-                                                    isFlowerFree:NO] autorelease];
+                                                    isFlowerFree:NO
+                                                            type:UseSceneTypeOnlineGuessResult] autorelease];
         }break;
         case UseSceneTypeOfflineGuess: {
             return [[[UseItemScene alloc] initWithMaxTomatoCount:DEFAULT_MAX_TOMATO
                                                   maxFlowerCount:DEFAULT_MAX_FLOWER
                                                             feed:feed
                                                     isTomatoFree:NO
-                                                    isFlowerFree:NO] autorelease];
+                                                    isFlowerFree:NO
+                                                            type:UseSceneTypeOfflineGuess] autorelease];
         }break;
         case UseSceneTypeOfflineGuessResult: {
             return [[[UseItemScene alloc] initWithMaxTomatoCount:DEFAULT_MAX_TOMATO
                                                   maxFlowerCount:DEFAULT_MAX_FLOWER
                                                             feed:feed
                                                     isTomatoFree:NO
-                                                    isFlowerFree:NO] autorelease];
+                                                    isFlowerFree:NO
+                                                            type:UseSceneTypeOfflineGuessResult] autorelease];
         }break;
         case UseSceneTypeShowFeedDetail: {
             return [[[UseItemScene alloc] initWithMaxTomatoCount:DEFAULT_MAX_TOMATO
                                                   maxFlowerCount:DEFAULT_MAX_FLOWER
                                                             feed:feed
                                                     isTomatoFree:NO
-                                                    isFlowerFree:NO] autorelease];
+                                                    isFlowerFree:NO
+                                                            type:UseSceneTypeShowFeedDetail] autorelease];
         }break;
         case UseSceneTypeDrawMatch: {
             return [[[UseItemScene alloc] initWithMaxTomatoCount:DEFAULT_MAX_TOMATO
                                                   maxFlowerCount:DEFAULT_MAX_FLOWER
                                                             feed:feed
                                                     isTomatoFree:YES
-                                                    isFlowerFree:YES] autorelease];
+                                                    isFlowerFree:YES
+                                                            type:UseSceneTypeDrawMatch] autorelease];
+        }break;
+        case UseSceneTypeMatchRank: {
+            return [[[UseItemScene alloc] initWithMaxTomatoCount:0
+                                                  maxFlowerCount:0
+                                                            feed:feed
+                                                    isTomatoFree:NO
+                                                    isFlowerFree:NO
+                                                            type:UseSceneTypeMatchRank] autorelease];
         }break;
         default:
             break;
@@ -72,14 +86,16 @@
                                           maxFlowerCount:DEFAULT_MAX_FLOWER
                                                     feed:nil
                                             isTomatoFree:NO
-                                            isFlowerFree:NO] autorelease];
+                                            isFlowerFree:NO
+                                                    type:UseSceneTypeOfflineGuess] autorelease];
 }
 
 - (id)initWithMaxTomatoCount:(int)maxTomatoCount 
               maxFlowerCount:(int)maxFlowerCount 
                         feed:(DrawFeed*)feed 
                 isTomatoFree:(BOOL)isTomatoFree 
-                isFlowerFree:(BOOL)isFlowerFree 
+                isFlowerFree:(BOOL)isFlowerFree
+                        type:(UseSceneType)type
 {
     self = [super init];
     if (self) {
@@ -90,20 +106,21 @@
         _canThrowTomatoCount = maxTomatoCount;
         _isFlowerFree = isFlowerFree;
         _isTomatoFree = isTomatoFree;
+        _sceneType = type;
     }
     return self;
 }
 - (BOOL)canThrowTomato
 {
     if (_feed) {
-        return [_feed canThrowTomato]; 
+        return [_feed canThrowTomato] && (_maxTomatoCount > 0);
     }
     return (_canThrowTomatoCount > 0);
 }
 - (BOOL)canThrowFlower
 {
     if (_feed) {
-        return [_feed canSendFlower];
+        return [_feed canSendFlower] && (_maxFlowerCount > 0);
     }
     return (_canThrowFlowerCount > 0);
 }
@@ -160,6 +177,17 @@
         return _maxFlowerCount;
     }
     return 0;
+}
+
+- (NSString *)unavailableItemMessage
+{
+    if (_sceneType == UseSceneTypeMatchRank) {
+        return  [NSString stringWithFormat:NSLS(@"kCanotSendItemToContestOpus")];
+    }
+    if ([self.feed isContestFeed]) {
+        return  [NSString stringWithFormat:NSLS(@"kCanotSendItemToContestOpus"),self.feed.itemLimit];
+    }
+    return [NSString stringWithFormat:NSLS(@"kCanotSendItemToOpus"),self.feed.itemLimit];
 }
 
 @end

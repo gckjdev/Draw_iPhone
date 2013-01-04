@@ -478,15 +478,6 @@ enum{
 
 #define ITEM_TAG_OFFSET 20120728
 
-- (NSString *)canotSendItemPopup
-{
-    if ([self.feed isContestFeed]) {
-        return  [NSString stringWithFormat:NSLS(@"kCanotSendItemToContestOpus"),self.feed.itemLimit];        
-    }
-    return [NSString stringWithFormat:NSLS(@"kCanotSendItemToOpus"),self.feed.itemLimit];
-}
-
-
 - (void)throwItem:(Item *)item
 {
     
@@ -495,7 +486,7 @@ enum{
         return;
     }
     if ((item.type == ItemTypeTomato && ![_useItemScene canThrowTomato]) || (item.type == ItemTypeFlower && ![_useItemScene canThrowFlower])) {
-        [[CommonMessageCenter defaultCenter] postMessageWithText:self.canotSendItemPopup delayTime:1.5 isHappy:YES];
+        [[CommonMessageCenter defaultCenter] postMessageWithText:[self.useItemScene unavailableItemMessage] delayTime:1.5 isHappy:YES];
         return;
     }
 
