@@ -946,6 +946,11 @@
 "kSaveToLocalSuccess" = "Save to local successfully!";
 
 "kCanotSendItemToContestOpus" = "Contest is over, can not send item again";
+
+"kPenWidth" = "Width";
+"kColorAlpha" = "Alpha";
+
+
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 

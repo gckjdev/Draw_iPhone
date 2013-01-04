@@ -11,6 +11,7 @@
 #import "WidthView.h"
 #import "PenBox.h"
 #import "ColorView.h"
+#import "ShareImageManager.h"
 
 @interface DrawToolPanel ()
 {
@@ -82,10 +83,7 @@
 #pragma mark - setter methods
 
 
-//@property(nonatomic, retain)DrawColor *color;
-//@property(nonatomic, assign)CGFloat width;
-//@property(nonatomic, assign)CGFloat alpha;
-//@property(nonatomic, assign)ItemType penType;
+
 
 - (void)updatePopTipView:(CMPopTipView *)popTipView
 {
@@ -119,6 +117,9 @@
     self.alphaSlider.delegate = self;
     [self addSubview:self.alphaSlider];
 
+    [self.penWidth setText:NSLS(@"kPenWidth")];
+    [self.colorAlpha setText:NSLS(@"kColorAlpha")];
+    
     //TODO implement color alpha
 //    self.alphaSlider.hidden = YES;
 //    self.colorAlpha.hidden = YES;
@@ -139,7 +140,8 @@
     }
     
     [self.timeSet.titleLabel setFont:[UIFont fontWithName:@"DBLCDTempBlack" size:15]];
-    
+    [self.colorBGImageView setImage:[[ShareImageManager defaultManager] drawColorBG]];
+
     //update width and alpha
     [self updateSliders];
 }
@@ -457,6 +459,7 @@
     [_timeSet release];
     [_redo release];
     [_undo release];
+    [_colorBGImageView release];
     [super dealloc];
 }
 

@@ -8,6 +8,7 @@
 
 #import "DrawSlider.h"
 #import "CMPopTipView.h"
+#import "ShareImageManager.h"
 
 #define VALUE(x) (ISIPAD ? x*2 : x)
 
@@ -24,7 +25,7 @@
 #define LOAD_HEIGHT VALUE(2.6)
 #define LOAD_WIDTH (WIDTH - LOAD_START_X*2)
 #define LOAD_MIN_X (LOAD_START_X)
-#define LOAD_MAX_X (WIDTH - LOAD_START_X)
+#define LOAD_MAX_X (WIDTH - LOAD_START_X*1.4)
 
 #define POINT_X ([self xFromPercent:_percent] - POINT_WIDTH/2)
 
@@ -69,8 +70,8 @@
         [self setMinValue:0.01];
         _percent = 0.5;
 
-        self.bgImage = [UIImage imageNamed:@"draw_slider2_bg"];
-        self.pointImage = [UIImage imageNamed:@"draw_slider2_point"];
+        self.bgImage = [[ShareImageManager defaultManager] drawSliderBG];
+        self.pointImage = [[ShareImageManager defaultManager] drawSliderPoint];
 
     }
     return self;
