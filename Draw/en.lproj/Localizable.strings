@@ -754,6 +754,9 @@
 "kReceiveTomatoMessage" = "Someone have threw you a tomato, your experience decrease by %d, your coins decrease by %d";
 "kReceiveFlowerMessage" = "Someone have sent you a flower, your experience increase by %d, your coins decrease by %d";
 
+"kThrowTomatoWithCoinsMessage" = "You threw a tomato to the painter, which cost you %d coins, and his/her experience decrease by %d, his/her coins decrease by %d";
+"kSendFlowerWithCoinsMessage" = "ou sent a flower to the painter, which cost you %d coins, and his/her experience increase by %d, his/her coins decrease by %d";
+
 "kCoinsForShareToFriends" = "+%d coins";
 "kAddCoins" = "+%d coins";
 "kFollowWeibo" = "Follow Weibo";
@@ -1229,5 +1232,8 @@
 "kClearImageData" = "The selected image will be clear, continue?";
 "kClearDrawData" = "The draw data will be clear, continue?";
 "kSaveImageSuccess" = "Save image successfully.";
+
+"kShareByEmailSuccess" = "Share email successfully.";
+
 
 /*********************** BBS国际化字符串结束 *************************/

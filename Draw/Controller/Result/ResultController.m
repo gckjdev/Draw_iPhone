@@ -45,6 +45,7 @@
 #import "UseItemScene.h"
 #import "DrawSoundManager.h"
 #import "ShareAction.h"
+#import "Item.h"
 
 #define CONTINUE_TIME 10
 
@@ -723,6 +724,7 @@
 #define ITEM_TAG_OFFSET 20120728
 - (BOOL)throwItem:(ToolView*)toolView
 {
+    Item* item = [Item itemWithType:toolView.itemType amount:1];
     if ((toolView.itemType == ItemTypeTomato
          && ![_useItemScene canThrowTomato])
         || (toolView.itemType == ItemTypeFlower
@@ -733,24 +735,44 @@
         return NO;
     }
     
+    BOOL itemEnough = YES;
+    
     if([[ItemManager defaultManager] hasEnoughItem:toolView.itemType] == NO){
-        CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kNoItemTitle") message:NSLS(@"kNoItemMessage") style:CommonDialogStyleDoubleButton delegate:self];
-        dialog.tag = ITEM_TAG_OFFSET + toolView.itemType;
-        [dialog showInView:self.view];
-        return NO;
+//        CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kNoItemTitle") message:NSLS(@"kNoItemMessage") style:CommonDialogStyleDoubleButton delegate:self];
+//        dialog.tag = ITEM_TAG_OFFSET + toolView.itemType;
+//        [dialog showInView:self.view];
+//        return NO;
+
+        [[AccountService defaultService] buyItem:toolView.itemType itemCount:1 itemCoins:(item.price/item.buyAmountForOnce)];
+        itemEnough = NO;
     }
     UIImageView* throwingItem= [[[UIImageView alloc] initWithFrame:toolView.frame] autorelease];
     [throwingItem setImage:toolView.imageView.image];
     if (toolView.itemType == ItemTypeTomato) {
-        [DrawGameAnimationManager showThrowTomato:throwingItem animInController:self rolling:YES];
+        [DrawGameAnimationManager showThrowTomato:throwingItem animInController:self rolling:YES itemEnough:itemEnough completion:^(BOOL finished) {
+            //
+        }];
         [_useItemScene throwATomato];
     }
     if (toolView.itemType == ItemTypeFlower) {
-        [DrawGameAnimationManager showThrowFlower:throwingItem animInController:self rolling:YES];
+        [DrawGameAnimationManager showThrowFlower:throwingItem animInController:self rolling:YES itemEnough:itemEnough completion:^(BOOL finished) {
+            //
+        }];
         [_useItemScene throwAFlower];
+    }
+    
+    
+    if ([self isOffline] && _feed != nil) {
+        [[ItemService defaultService] sendItemAward:item.type
+                                       targetUserId:_feed.author.userId
+                                          isOffline:YES
+                                         feedOpusId:_feed.feedId
+                                         feedAuthor:_feed.author.userId
+                                            forFree:NO];//why NO? because only if guess contest opus cost free item, and contest opus can not be guessed
     }
     return YES;
 }
+
 
 - (void)receiveFlower
 {

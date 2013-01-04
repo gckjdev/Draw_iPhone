@@ -120,3 +120,20 @@ message PBNoCompressDrawData
 {
   repeated PBNoCompressDrawAction drawActionList = 1;
 }
+
+
+
+message PBHotWord
+{
+  required int wordId = 1;
+  required string word = 2;
+  required int coins = 3;
+  
+  optional string source = 10;
+}
+
+
+
+
+
+

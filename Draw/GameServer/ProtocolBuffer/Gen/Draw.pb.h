@@ -22,6 +22,8 @@
 @class PBGameSession_Builder;
 @class PBGameUser;
 @class PBGameUser_Builder;
+@class PBHotWord;
+@class PBHotWord_Builder;
 @class PBKeyValue;
 @class PBKeyValue_Builder;
 @class PBMessage;
@@ -36,6 +38,10 @@
 @class PBPoint_Builder;
 @class PBSNSUser;
 @class PBSNSUser_Builder;
+@class PBUserItem;
+@class PBUserItemList;
+@class PBUserItemList_Builder;
+@class PBUserItem_Builder;
 @class PBUserResult;
 @class PBUserResult_Builder;
 
@@ -951,5 +957,80 @@
 - (PBNoCompressDrawData_Builder*) addDrawActionList:(PBNoCompressDrawAction*) value;
 - (PBNoCompressDrawData_Builder*) addAllDrawActionList:(NSArray*) values;
 - (PBNoCompressDrawData_Builder*) clearDrawActionListList;
+@end
+
+@interface PBHotWord : PBGeneratedMessage {
+@private
+  BOOL hasWordId_:1;
+  BOOL hasCoins_:1;
+  BOOL hasWord_:1;
+  BOOL hasSource_:1;
+  int32_t wordId;
+  int32_t coins;
+  NSString* word;
+  NSString* source;
+}
+- (BOOL) hasWordId;
+- (BOOL) hasWord;
+- (BOOL) hasCoins;
+- (BOOL) hasSource;
+@property (readonly) int32_t wordId;
+@property (readonly, retain) NSString* word;
+@property (readonly) int32_t coins;
+@property (readonly, retain) NSString* source;
+
++ (PBHotWord*) defaultInstance;
+- (PBHotWord*) defaultInstance;
+
+- (BOOL) isInitialized;
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
+- (PBHotWord_Builder*) builder;
++ (PBHotWord_Builder*) builder;
++ (PBHotWord_Builder*) builderWithPrototype:(PBHotWord*) prototype;
+
++ (PBHotWord*) parseFromData:(NSData*) data;
++ (PBHotWord*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBHotWord*) parseFromInputStream:(NSInputStream*) input;
++ (PBHotWord*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBHotWord*) parseFromCodedInputStream:(PBCodedInputStream*) input;
++ (PBHotWord*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+@end
+
+@interface PBHotWord_Builder : PBGeneratedMessage_Builder {
+@private
+  PBHotWord* result;
+}
+
+- (PBHotWord*) defaultInstance;
+
+- (PBHotWord_Builder*) clear;
+- (PBHotWord_Builder*) clone;
+
+- (PBHotWord*) build;
+- (PBHotWord*) buildPartial;
+
+- (PBHotWord_Builder*) mergeFrom:(PBHotWord*) other;
+- (PBHotWord_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (PBHotWord_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+
+- (BOOL) hasWordId;
+- (int32_t) wordId;
+- (PBHotWord_Builder*) setWordId:(int32_t) value;
+- (PBHotWord_Builder*) clearWordId;
+
+- (BOOL) hasWord;
+- (NSString*) word;
+- (PBHotWord_Builder*) setWord:(NSString*) value;
+- (PBHotWord_Builder*) clearWord;
+
+- (BOOL) hasCoins;
+- (int32_t) coins;
+- (PBHotWord_Builder*) setCoins:(int32_t) value;
+- (PBHotWord_Builder*) clearCoins;
+
+- (BOOL) hasSource;
+- (NSString*) source;
+- (PBHotWord_Builder*) setSource:(NSString*) value;
+- (PBHotWord_Builder*) clearSource;
 @end
 

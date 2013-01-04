@@ -27,6 +27,7 @@
 #import "PPSNSIntegerationService.h"
 #import "PPSNSConstants.h"
 #import "GameSNSService.h"
+#import "AnalyticsManager.h"
 
 @implementation RegisterUserController
 @synthesize backgroundImageView;
@@ -191,7 +192,9 @@
 
 
 - (IBAction)clickSubmit:(id)sender
-{    
+{
+    [[AnalyticsManager sharedAnalyticsManager] reportRegistration:REGISTRATION_EMAIL];
+    
     _currentLoginType = REGISTER_TYPE_EMAIL;
     
     NSString* userId = self.userIdTextField.text;    
@@ -205,8 +208,11 @@
 
 - (void)snsLogin:(PPSNSType)snsType
 {
+    
     PPSNSCommonService* service = [[PPSNSIntegerationService defaultService] snsServiceByType:snsType];
     NSString* name = [service snsName];
+
+    [[AnalyticsManager sharedAnalyticsManager] reportRegistration:name];
     
     [service login:^(NSDictionary *userInfo) {
         PPDebug(@"%@ Login Success", name);
@@ -226,10 +232,15 @@
             PPDebug(@"%@ readMyUserInfo Failure", name);
             [self hideActivity];
             [self.navigationController popViewControllerAnimated:YES];
+            
+            [[AnalyticsManager sharedAnalyticsManager] reportRegistrationResult:[error code]];
+            
         }];
         
     } failureBlock:^(NSError *error) {
         PPDebug(@"%@ Login Failure", name);
+        [[AnalyticsManager sharedAnalyticsManager] reportRegistrationResult:[error code]];
+        
     }];
 }
 
@@ -298,6 +309,8 @@
 
 - (void)didUserRegistered:(int)resultCode
 {
+    [[AnalyticsManager sharedAnalyticsManager] reportRegistrationResult:resultCode];
+    
     self.navigationController.navigationBarHidden = YES;
 
     // go to next view

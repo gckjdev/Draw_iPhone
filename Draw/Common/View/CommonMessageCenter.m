@@ -228,13 +228,9 @@ CommonMessageViewTheme globalGetTheme() {
 		_active = NO;
 		return;
 	}
-	_horizon = horizon;
-	_active = YES;
 	
-	_messageView.transform = CGAffineTransformIdentity;
-	_messageView.alpha = 0;
-	[[UIApplication sharedApplication].keyWindow addSubview:_messageView];
-    
+//	_active = YES;
+
 	NSArray *ar = [_messages objectAtIndex:0];
 	
 	UIImage *img = nil;
@@ -248,38 +244,57 @@ CommonMessageViewTheme globalGetTheme() {
     }
 	    
 	if([ar count] > 0) [_messageView setMessageText:[[_messages objectAtIndex:0] objectAtIndex:INDEX_OF_WORDS]];
-	
-	
-	
-	_messageView.center = CGPointMake(_messageFrame.origin.x+_messageFrame.size.width/2, _messageFrame.origin.y+_horizon+_messageFrame.size.height/2);
+    
     
 	
-	CGRect rr = _messageView.frame;
-	rr.origin.x = (int)rr.origin.x;
-	rr.origin.y = (int)rr.origin.y;
-	_messageView.frame = rr;
-	
-	UIInterfaceOrientation o = [UIApplication sharedApplication].statusBarOrientation;
-	CGFloat degrees = 0;
-	if(o == UIInterfaceOrientationLandscapeLeft ) degrees = -90;
-	else if(o == UIInterfaceOrientationLandscapeRight ) degrees = 90;
-	else if(o == UIInterfaceOrientationPortraitUpsideDown) degrees = 180;
-	_messageView.transform = CGAffineTransformMakeRotation(degrees * M_PI / 180);
-	_messageView.transform = CGAffineTransformScale(_messageView.transform, 2, 2);
+	if (_dismissTimer) {
+        if ([_dismissTimer isValid]) {
+            [_dismissTimer invalidate];
+            [_dismissTimer release];
+            _dismissTimer = nil;
+        }
+    }
+    NSNumber* delayTime = [[_messages objectAtIndex:0] objectAtIndex:INDEX_OF_DELAY_TIME];
+    _dismissTimer = [[NSTimer scheduledTimerWithTimeInterval:delayTime.floatValue target:self selector:@selector(animationStep2) userInfo:nil repeats:NO] retain];
 	
 	
 	
-	[UIView beginAnimations:nil context:nil];
-	[UIView setAnimationDuration:0.15];
-	[UIView setAnimationDelegate:self];
-	[UIView setAnimationDidStopSelector:@selector(animationStep2)];
-	
-	_messageView.transform = CGAffineTransformMakeRotation(degrees * M_PI / 180);
-	_messageView.frame = CGRectMake((int)_messageView.frame.origin.x, (int)_messageView.frame.origin.y, _messageView.frame.size.width, _messageView.frame.size.height);
-	_messageView.alpha = 1;
-	
-	[UIView commitAnimations];
-	
+	if (!_active) {
+        _active = YES;
+        _horizon = horizon;
+        
+        [[UIApplication sharedApplication].keyWindow addSubview:_messageView];
+        _messageView.transform = CGAffineTransformIdentity;
+        _messageView.alpha = 0;
+
+        _messageView.center = CGPointMake(_messageFrame.origin.x+_messageFrame.size.width/2, _messageFrame.origin.y+_horizon+_messageFrame.size.height/2);
+        
+        
+        CGRect rr = _messageView.frame;
+        rr.origin.x = (int)rr.origin.x;
+        rr.origin.y = (int)rr.origin.y;
+        _messageView.frame = rr;
+        
+        UIInterfaceOrientation o = [UIApplication sharedApplication].statusBarOrientation;
+        CGFloat degrees = 0;
+        if(o == UIInterfaceOrientationLandscapeLeft ) degrees = -90;
+        else if(o == UIInterfaceOrientationLandscapeRight ) degrees = 90;
+        else if(o == UIInterfaceOrientationPortraitUpsideDown) degrees = 180;
+        _messageView.transform = CGAffineTransformMakeRotation(degrees * M_PI / 180);
+        _messageView.transform = CGAffineTransformScale(_messageView.transform, 2, 2);
+        
+        [UIView beginAnimations:nil context:nil];
+        [UIView setAnimationDuration:0.15];
+        [UIView setAnimationDelegate:self];
+//        [UIView setAnimationDidStopSelector:@selector(animationStep2)];
+        
+        _messageView.transform = CGAffineTransformMakeRotation(degrees * M_PI / 180);
+        _messageView.frame = CGRectMake((int)_messageView.frame.origin.x, (int)_messageView.frame.origin.y, _messageView.frame.size.width, _messageView.frame.size.height);
+        _messageView.alpha = 1;
+        
+        [UIView commitAnimations];
+            }
+
 	
 }
 - (void) animationStep2{
@@ -289,11 +304,11 @@ CommonMessageViewTheme globalGetTheme() {
 	// change the animation duration accordingly
 	// avg person reads 200 words per minute
 	//NSArray * words = [[[_messages objectAtIndex:0] objectAtIndex:0] componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-    NSNumber* delayTime = [[_messages objectAtIndex:0] objectAtIndex:INDEX_OF_DELAY_TIME];
+//    NSNumber* delayTime = [[_messages objectAtIndex:0] objectAtIndex:INDEX_OF_DELAY_TIME];
 	//double duration = MAX(((double)[words count]*60.0/200.0),1);
-    double duration = delayTime.floatValue;
+//    double duration = delayTime.floatValue;
 	
-	[UIView setAnimationDelay:duration];
+	[UIView setAnimationDelay:0];
 	[UIView setAnimationDelegate:self];
 	[UIView setAnimationDidStopSelector:@selector(animationStep3)];
 	
@@ -317,15 +332,15 @@ CommonMessageViewTheme globalGetTheme() {
     if ([self.delegate respondsToSelector:@selector(didShowedAlert)]) {
         [self.delegate didShowedAlert];
     }
-    
-	[self showAlertsAtHorizon:_horizon];
+    _active = NO;
+//	[self showAlertsAtHorizon:_horizon];
 	
 }
 - (void)postMessageWithText:(NSString *)text 
                       image:(UIImage *)image 
                   delayTime:(float)delayTime{
-	[_messages addObject:[NSArray arrayWithObjects:text, [NSNumber numberWithFloat:delayTime], image, nil]];
-	if(!_active) [self showAlertsAtHorizon:0];
+	[_messages setObject:[NSArray arrayWithObjects:text, [NSNumber numberWithFloat:delayTime], image, nil] atIndexedSubscript:0];
+	[self showAlertsAtHorizon:0];
 }
 - (void)postMessageWithText:(NSString *)text 
                   delayTime:(float)delayTime{
@@ -367,8 +382,8 @@ CommonMessageViewTheme globalGetTheme() {
                       image:(UIImage *)image 
                   delayTime:(float)delayTime 
                   atHorizon:(int)horizon{
-	[_messages addObject:[NSArray arrayWithObjects:text, [NSNumber numberWithFloat:delayTime], image, nil]];
-	if(!_active) [self showAlertsAtHorizon:horizon];
+	[_messages setObject:[NSArray arrayWithObjects:text, [NSNumber numberWithFloat:delayTime], image, nil] atIndexedSubscript:0];
+	[self showAlertsAtHorizon:horizon];
 }
 - (void)postMessageWithText:(NSString *)text 
                   delayTime:(float)delayTime 

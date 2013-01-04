@@ -356,7 +356,7 @@ static AdService* _defaultService;
     // create view
     adView = [AdMoGoView requestAdMoGoViewWithDelegate:self 
                                              AndAdType:AdViewTypeNormalBanner
-                                           ExpressMode:NO];            
+                                           ExpressMode:YES];
     
     // set view frame
     if ([DeviceDetection isIPAD]){
