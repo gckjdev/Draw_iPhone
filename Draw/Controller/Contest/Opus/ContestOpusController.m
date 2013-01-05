@@ -346,7 +346,13 @@ typedef enum{
 #pragma mark Rank View delegate
 - (void)didClickRankView:(RankView *)rankView
 {
-    ShowFeedController *sc = [[ShowFeedController alloc] initWithFeed:rankView.feed scene:[UseItemScene createSceneByType:UseSceneTypeDrawMatch feed:rankView.feed]];
+    UseItemScene* scene ;
+    if ([self.contest isRunning]) {
+        scene = [UseItemScene createSceneByType:UseSceneTypeDrawMatch feed:rankView.feed];
+    } else {
+        scene = [UseItemScene createSceneByType:UseSceneTypeMatchRank feed:rankView.feed];
+    }
+    ShowFeedController *sc = [[ShowFeedController alloc] initWithFeed:rankView.feed scene:scene];
     [self.navigationController pushViewController:sc animated:YES];
     [sc release];
 }

@@ -766,6 +766,9 @@
 "kReceiveTomatoMessage" = "愤怒的观众朝你扔了个番茄，你被扣了%d点经验，%d个金币";
 "kReceiveFlowerMessage" = "疯狂的粉丝给你送了朵鲜花，你额外得到%d点经验，%d个金币";
 
+"kThrowTomatoWithCoinsMessage" = "你花费了%d个金币给作者扔了个番茄，让TA扣了%d点经验, %d个金币";
+"kSendFlowerWithCoinsMessage" = "你花费了%d个金币给作者送了朵鲜花，让TA额外增加了%d点经验，%d个金币";
+
 "kCoinsForShareToFriends" = "+%d金币";
 "kAddCoins" = "+%d金币";
 "kFollowWeibo" = "关注官方微博";
@@ -963,6 +966,13 @@
 
 "kSaveToAlbumSuccess" = "成功保存到相册!";
 "kSaveToLocalSuccess" = "成功保存到本地，您可以在作品页面查看该作品。";
+
+"kCanotSendItemToContestOpus" = "比赛已经结束， 不能再丢东西了哦！";
+
+
+"kPenWidth" = "粗细";
+"kColorAlpha" = "透明度";
+
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 
@@ -1245,5 +1255,7 @@
 "kClearImageData" = "之前选择的图像将被清除，你要继续吗？";
 "kClearDrawData" = "之前的画画数据将被清除，你要继续吗？";
 "kSaveImageSuccess" = "保存成功";
+
+"kShareByEmailSuccess" = "邮件分享成功";
 
 /*********************** BBS国际化字符串结束 *************************/

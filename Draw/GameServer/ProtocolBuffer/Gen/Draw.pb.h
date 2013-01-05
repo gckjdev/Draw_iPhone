@@ -23,8 +23,11 @@
 @class PBGameUser;
 @class PBGameUser_Builder;
 @class PBHotWord;
+<<<<<<< HEAD
 @class PBHotWordList;
 @class PBHotWordList_Builder;
+=======
+>>>>>>> 3dc7e83f0d06d8041b4f23241a56444fc3f84ba6
 @class PBHotWord_Builder;
 @class PBKeyValue;
 @class PBKeyValue_Builder;
@@ -40,6 +43,10 @@
 @class PBPoint_Builder;
 @class PBSNSUser;
 @class PBSNSUser_Builder;
+@class PBUserItem;
+@class PBUserItemList;
+@class PBUserItemList_Builder;
+@class PBUserItem_Builder;
 @class PBUserResult;
 @class PBUserResult_Builder;
 
@@ -1032,6 +1039,7 @@
 - (PBHotWord_Builder*) clearSource;
 @end
 
+<<<<<<< HEAD
 @interface PBHotWordList : PBGeneratedMessage {
 @private
   NSMutableArray* mutableWordsList;
@@ -1081,3 +1089,5 @@
 - (PBHotWordList_Builder*) clearWordsList;
 @end
 
+=======
+>>>>>>> 3dc7e83f0d06d8041b4f23241a56444fc3f84ba6

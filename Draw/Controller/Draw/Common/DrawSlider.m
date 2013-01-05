@@ -8,6 +8,7 @@
 
 #import "DrawSlider.h"
 #import "CMPopTipView.h"
+#import "ShareImageManager.h"
 
 #define VALUE(x) (ISIPAD ? x*2 : x)
 
@@ -17,10 +18,15 @@
 #define POINT_WIDTH VALUE(11.0)
 #define POINT_HEIGHT VALUE(12.0)
 
-#define LOAD_START_X VALUE([self loadStartX])
-#define LOAD_START_Y VALUE([self loadStartY])
-#define LOAD_HEIGHT VALUE([self loadHeight])
+
+
+#define LOAD_START_X VALUE(4.0)
+#define LOAD_START_Y VALUE(3.8)
+#define LOAD_HEIGHT VALUE(2.6)
 #define LOAD_WIDTH (WIDTH - LOAD_START_X*2)
+#define LOAD_MIN_X (LOAD_START_X)
+#define LOAD_MAX_X (WIDTH - LOAD_START_X*1.4)
+
 #define POINT_X ([self xFromPercent:_percent] - POINT_WIDTH/2)
 
 #define POP_POINT_SIZE VALUE(6.0)
@@ -49,7 +55,7 @@
     [super dealloc];
 }
 
-- (id)initWithDrawSliderStyle:(DrawSliderStyle)style
+- (id)init
 {
     self = [super initWithFrame:CGRectMake(0, 0, WIDTH, HEIGHT)];
     if (self) {
@@ -59,12 +65,14 @@
         loadColor = [[UIColor colorWithRed:171/255.0 green:123/255.0 blue:98/255.0 alpha:1] retain];
         
         currentPoint = CGPointZero;
-        self.style = style;
         [self addTarget:self action:@selector(changeValue:) forControlEvents:UIControlEventValueChanged];
         [self setMaxValue:1.0];
-        [self setMinValue:0.0];
+        [self setMinValue:0.01];
         _percent = 0.5;
-//        [self setValue:0.5];
+
+        self.bgImage = [[ShareImageManager defaultManager] drawSliderBG];
+        self.pointImage = [[ShareImageManager defaultManager] drawSliderPoint];
+
     }
     return self;
 }
@@ -104,72 +112,53 @@
     }
 }
 
-- (CGFloat)loadStartX
-{
-    return DrawSliderStyleLarge == self.style ? 4.0 : 4.2;
-}
-
-- (CGFloat)loadStartY
-{
-    return DrawSliderStyleLarge == self.style ? 3.8 : 4.5;
-}
-
-- (CGFloat)loadHeight
-{
-    return DrawSliderStyleLarge == self.style ? 2.6 : 2.0;
-}
-
-- (CGFloat)loadMinX
-{
-    return LOAD_START_X;
-}
-
-- (CGFloat)loadMaxX
-{
-    return WIDTH - LOAD_START_X;
-}
+//- (CGFloat)loadStartX
+//{
+//    return 4.0;
+//}
+//
+//- (CGFloat)loadStartY
+//{
+//    return 3.8;
+//}
+//
+//- (CGFloat)loadHeight
+//{
+//    return 2.6;
+//}
+//
+//- (CGFloat)loadMinX
+//{
+//    return LOAD_START_X;
+//}
+//
+//- (CGFloat)loadMaxX
+//{
+//    return WIDTH - LOAD_START_X;
+//}
 
 
 - (CGFloat)percentFromX:(CGFloat)x
 {
-    if (x <= [self loadMinX]) {
+    if (x <= LOAD_MIN_X) {
         return 0;
     }
-    if (x >= [self loadMaxX]) {
+    if (x >= LOAD_MAX_X) {
         return 1.0;
     }
-    return (x-[self loadMinX])/LOAD_WIDTH;
+    return (x-LOAD_MIN_X)/LOAD_WIDTH;
 }
 
 - (CGFloat)xFromPercent:(CGFloat)percent
 {
     if (percent >= 1.0) {
-        return [self loadMaxX];
+        return LOAD_MAX_X;
     }
     if (percent <= 0.0) {
-        return [self loadMinX];
+        return LOAD_MIN_X;
     }
-    return [self loadMinX] + percent * LOAD_WIDTH;
+    return LOAD_MIN_X + percent * LOAD_WIDTH;
 }
-
-
-- (void)setStyle:(DrawSliderStyle)style
-{
-    _style = style;
-    //set the image according to the style
-    
-//    if (style == DrawSliderStyleLarge) {
-    self.bgImage = [UIImage imageNamed:@"draw_slider2_bg"];
-    self.pointImage = [UIImage imageNamed:@"draw_slider2_point"];
-//    }else if (style == DrawSliderStyleSmall){
-//        self.bgImage = [UIImage imageNamed:@"draw_slider1_bg"];
-//        self.pointImage = [UIImage imageNamed:@"draw_slider1_point"];
-//    }else{
-//        return;
-//    }    
-    [self setNeedsDisplay];
-}
-
 
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.
@@ -180,15 +169,15 @@
     
     // Drawing code
     //Draw bg
-    [self.bgImage drawAtPoint:CGPointMake(0, 0)];
+    [self.bgImage drawInRect:self.bounds];
 
     //Draw load
     CGRect r = CGRectMake(LOAD_START_X, LOAD_START_Y, POINT_X, LOAD_HEIGHT);
     CGContextFillRect(context, r);
     
     //draw point
-    [self.pointImage drawAtPoint:CGPointMake(POINT_X, 0)];
-    
+    r = CGRectMake(POINT_X, 0, POINT_WIDTH, POINT_HEIGHT);
+    [self.pointImage drawInRect:r];
     [super drawRect:rect];
 }
 

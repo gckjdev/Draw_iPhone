@@ -36,6 +36,10 @@
 @class PBMessage_Builder;
 @class PBSNSUser;
 @class PBSNSUser_Builder;
+@class PBUserItem;
+@class PBUserItemList;
+@class PBUserItemList_Builder;
+@class PBUserItem_Builder;
 @class PBUserResult;
 @class PBUserResult_Builder;
 

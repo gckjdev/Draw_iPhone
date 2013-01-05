@@ -187,45 +187,8 @@
 
 }
 
-- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-
-    
-//    PPDebug(@"touch began");
-    UITouch *touch = [touches anyObject];
-    
-    _previousPoint1 = [touch previousLocationInView:self];
-    _previousPoint2 = [touch previousLocationInView:self];
-    _currentPoint = [touch locationInView:self];
-    [self addNewPaint];
-    [self touchesMoved:touches withEvent:event];
-    if (self.delegate && [self.delegate 
-                            respondsToSelector:@selector(didStartedTouch:)]) {
-            [self.delegate didStartedTouch:_currentDrawAction.paint];
-    }
-    [self clearRedoStack];
-}
-
-- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
-    [self touchesMoved:touches withEvent:event];
-    if (self.delegate && [self.delegate respondsToSelector:@selector(didDrawedPaint:)]) {
-        [self.delegate didDrawedPaint:_currentDrawAction.paint];
-    }
-    
-    if (![self isRevocationSupported]) {
-        return;
-    }
-    
-    //save revoke image
-    if ([_drawActionList count] - [self currentRevokeImageIndex] >= 
-        REVOKE_PAINT_COUNT) {
-        [self addRevocationImage];
-    }
-}
-
-
-- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
-
-    
+- (void)handleTouches:(NSSet *)touches withEvent:(UIEvent *)event
+{
     UITouch *touch  = [touches anyObject];
     
     _previousPoint2  = _previousPoint1;
@@ -239,7 +202,7 @@
     
     CGPoint mid2 = [DrawUtils midPoint1:_currentPoint
                                  point2:_previousPoint1];
-            
+    
     CGMutablePathRef path = CGPathCreateMutable();
     CGPathMoveToPoint(path, NULL, mid1.x, mid1.y);
     CGPathAddQuadCurveToPoint(path, NULL, _previousPoint1.x, _previousPoint1.y, mid2.x, mid2.y);
@@ -259,16 +222,58 @@
     [self.layer renderInContext:UIGraphicsGetCurrentContext()];
     self.curImage = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
-            
+    
     _currentPoint.x = [self correctValue:_currentPoint.x max:self.bounds.size.width min:0];
     _currentPoint.y = [self correctValue:_currentPoint.y max:self.bounds.size.height min:0];
     [self addPoint:_currentPoint toDrawAction:_currentDrawAction];
-
+    
     _drawRectType = DrawRectTypeLine;
     
-    [self setNeedsDisplayInRect:drawBox];
-    
+//    [self setNeedsDisplayInRect:drawBox];
+    [self setNeedsDisplay];
+}
 
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+
+    
+//    PPDebug(@"touch began");
+    UITouch *touch = [touches anyObject];
+    
+    _previousPoint1 = [touch previousLocationInView:self];
+    _previousPoint2 = [touch previousLocationInView:self];
+    _currentPoint = [touch locationInView:self];
+    [self addNewPaint];
+    _edge = YES;
+    [self handleTouches:touches withEvent:event];
+    if (self.delegate && [self.delegate
+                            respondsToSelector:@selector(didStartedTouch:)]) {
+            [self.delegate didStartedTouch:_currentDrawAction.paint];
+    }
+    [self clearRedoStack];
+}
+
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
+    _edge = YES;
+    [self handleTouches:touches withEvent:event];
+    if (self.delegate && [self.delegate respondsToSelector:@selector(didDrawedPaint:)]) {
+        [self.delegate didDrawedPaint:_currentDrawAction.paint];
+    }
+    
+    if (![self isRevocationSupported]) {
+        return;
+    }
+    
+    //save revoke image
+    if ([_drawActionList count] - [self currentRevokeImageIndex] >= 
+        REVOKE_PAINT_COUNT) {
+        [self addRevocationImage];
+    }
+}
+
+
+- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
+    _edge = NO;
+    [self handleTouches:touches withEvent:event];
 }
 - (void)drawRect:(CGRect)rect
 {
@@ -406,12 +411,12 @@
 {
     self.drawActionList = draft.drawActionList;
     _revokeBaseIndex = [self.drawActionList count];
-    if(draft.thumbImage)
-    {
-        [self showImage:draft.thumbImage];
-    }else{
-        [self show];
-    }
+//    if(draft.thumbImage)
+//    {
+//        [self showImage:draft.thumbImage];
+//    }else{
+    [self show];
+//    }
     [self addRevocationImage];
 }
 

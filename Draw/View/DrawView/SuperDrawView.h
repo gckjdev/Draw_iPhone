@@ -40,6 +40,7 @@ typedef enum{
     CGPoint _currentPoint;
     CGPoint _previousPoint1;
     CGPoint _previousPoint2;
+    BOOL _edge;
     UIImage *_curImage;
     CGColorRef _changeBackColor;
     

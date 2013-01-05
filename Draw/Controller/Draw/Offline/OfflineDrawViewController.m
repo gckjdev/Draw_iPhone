@@ -27,9 +27,6 @@
 #import "WordManager.h"
 #import "DrawUtils.h"
 #import "DeviceDetection.h"
-#import "PickColorView.h"
-#import "PickEraserView.h"
-#import "PickPenView.h"
 #import "ShoppingManager.h"
 #import "DrawDataService.h"
 #import "CommonMessageCenter.h"
@@ -45,38 +42,54 @@
 #import "ContestController.h"
 #import "GameNetworkConstants.h"
 #import "ConfigManager.h"
+<<<<<<< HEAD
 #import "SelectHotWordController.h"
+=======
+#import "DrawToolPanel.h"
+
+>>>>>>> 3dc7e83f0d06d8041b4f23241a56444fc3f84ba6
 
 @interface OfflineDrawViewController()
 {
     DrawView *drawView;
-    PickColorView *pickColorView;
-    PickColorView *pickBGColorView;
-    PickEraserView *pickEraserView;
-    PickPenView *pickPenView;
     
     NSInteger penWidth;
-    NSInteger eraserWidth;
     PenView *_willBuyPen;
     ShareImageManager *shareImageManager;
     MyPaint *_draft;
     
     NSInteger _unDraftPaintCount;
-//    NSTimer *_draftTimer;
+
+    Word *_word;
+    LanguageType languageType;
+    TargetType targetType;
+    
+    NSString*_targetUid;
+    
+    DrawColor *_penColor;
+    DrawColor *_eraserColor;
+    
+    
+    Contest *_contest;
+    
+    BOOL _isAutoSave;
+    
+    
 
 }
 
 @property(nonatomic, retain)MyPaint *draft;
+@property (retain, nonatomic) IBOutlet UILabel *wordLabel;
+@property (retain, nonatomic) IBOutlet UILabel *titleLabel;
+@property (retain, nonatomic) IBOutlet UIButton *draftButton;
+@property (retain, nonatomic) IBOutlet UIButton *submitButton;
 
-- (void)initEraser;
-- (void)initPens;
+@property (retain, nonatomic) DrawColor* eraserColor;
+@property (retain, nonatomic) DrawColor* penColor;
+@property (retain, nonatomic) DrawToolPanel *drawToolPanel;
+
 - (void)initDrawView;
 
-/*
-- (void)restartDraftTimer;
-- (void)stopDraftTimer;
-- (void)handleDraftTimer:(NSTimer *)theTimer;
-*/
 - (void)saveDraft:(BOOL)showResult;
 - (PBDraw *)pbDraw;
 @end
@@ -85,20 +98,16 @@
 @implementation OfflineDrawViewController
 
 @synthesize draft = _draft;
-@synthesize submitButton;
-@synthesize eraserButton;
-@synthesize wordButton;
-@synthesize cleanButton;
-@synthesize penButton;
-@synthesize colorButton;
+@synthesize wordLabel;
 @synthesize word = _word;
 @synthesize titleLabel;
 @synthesize draftButton;
 @synthesize delegate;
 @synthesize targetUid = _targetUid;
 @synthesize eraserColor = _eraserColor;
-@synthesize bgColor = _bgColor;
+//@synthesize bgColor = _bgColor;
 @synthesize contest = _contest;
+@synthesize penColor = _penColor;
 
 #define PAPER_VIEW_TAG 20120403 
 
@@ -143,25 +152,18 @@
 
 - (void)dealloc
 {
-    PPRelease(eraserButton);
-    PPRelease(wordButton);
-    PPRelease(cleanButton);
-    PPRelease(penButton);
-    PPRelease(colorButton);
-    PPRelease(pickColorView);
+
+    PPRelease(wordLabel);
     PPRelease(drawView);
-    PPRelease(pickEraserView);
-    PPRelease(pickPenView);
     PPRelease(_word);
     PPRelease(_targetUid);
     PPRelease(titleLabel);
-    PPRelease(submitButton);
-    PPRelease(_bgColor);
+    PPRelease(_penColor);
     PPRelease(_eraserColor);
-    PPRelease(pickBGColorView);
     PPRelease(_draft);
     PPRelease(_contest);
     PPRelease(draftButton);
+    PPRelease(_submitButton);
     [super dealloc];
 }
 
@@ -251,36 +253,10 @@
     return self;
 }
 
-#define PICK_ERASER_VIEW_TAG 2012053101
-#define PICK_PEN_VIEW_TAG 2012053102
-#define PICK_COLOR_VIEW_TAG 2012053103
-#define PICK_BGCOLOR_VIEW_TAG 2012008041
 
 #define DEFAULT_COLOR_NUMBER 5
-- (void)initPickView
-{
 
-//init pick pen view    
-    pickPenView = [[PickPenView alloc] initWithFrame:PICK_PEN_VIEW];        
-    [pickPenView setDelegate:self];
 
-//init pick eraser view    
-    pickEraserView = [[PickEraserView alloc] initWithFrame:PICK_ERASER_VIEW];
-    [pickEraserView setDelegate:self];
-    pickEraserView.tag = PICK_ERASER_VIEW_TAG;
-    
-//init pick color view
-    pickColorView = [[PickColorView alloc] initWithFrame:PICK_COLOR_VIEW type:PickColorViewTypePen];
-    pickColorView.delegate = self;
-    pickColorView.tag = PICK_COLOR_VIEW_TAG;
- 
-//init pick bg color View    
-    pickBGColorView = [[PickColorView alloc] initWithFrame:PICK_BACKGROUND_COLOR_VIEW type:PickColorViewTypeBackground];
-    pickBGColorView.delegate = self;
-    pickBGColorView.tag = PICK_BGCOLOR_VIEW_TAG;
-    [pickBGColorView setColorViews:[pickColorView colorViews]];
-    
-}
 
 
 
@@ -314,25 +290,6 @@ enum{
 
 
 
-- (void)initEraser
-{
-    eraserWidth = ERASER_WIDTH;
-}
-- (void)initPens
-{
-    if (targetType == TypeGraffiti) {
-        penButton.hidden = YES;
-    }
-        
-    [self initPickView];
-    DrawColor *randColor = [self randColor];
-    [drawView setLineColor:randColor];
-    [colorButton setDrawColor:randColor];
-    [penButton setPenType:[PenView lastPenType]];
-    [drawView setLineWidth:pickColorView.currentWidth];
-    penWidth = pickColorView.currentWidth;
-}
-
 - (void)initDrawView
 {
     UIView *paperView = [self.view viewWithTag:PAPER_VIEW_TAG];
@@ -348,61 +305,59 @@ enum{
         self.draft.thumbImage = nil;
     }
     [self.view insertSubview:drawView aboveSubview:paperView];
-    self.bgColor = self.eraserColor = [DrawColor whiteColor];
+    self.eraserColor = [DrawColor whiteColor];
+    self.penColor = [DrawColor blackColor];
 }
 
 - (void)initWordLabel
 {
     if (targetType == TypeGraffiti) {
-        self.wordButton.hidden = YES;
+        self.wordLabel.hidden = YES;
     }else {
-        self.wordButton.hidden = NO;
+        self.wordLabel.hidden = NO;
         NSString *wordText = self.word.text;
         if (targetType == TypeContest) {
             wordText = NSLS(@"kContestOpus");
         }
-        [self.wordButton setTitle:wordText forState:UIControlStateNormal];
-    }
-}
-
-- (void)initTitleLabel
-{
-    if (targetType == TypeGraffiti) {
-        [self.titleLabel setText:NSLS(@"kGraffiti")]; 
-    }else {
-        [self.titleLabel setText:NSLS(@"kDrawing")]; 
+        [self.wordLabel setText:wordText];
     }
 }
 
 - (void)initSubmitButton
 {
     [self.submitButton setTitle:NSLS(@"kSubmit") forState:UIControlStateNormal];
-    [self.submitButton setBackgroundImage:[shareImageManager orangeImage] forState:UIControlStateNormal];
-}
-
-- (void)initDraftButton
-{
+    [self.draftButton setTitle:NSLS(@"kSave") forState:UIControlStateNormal];
     if (targetType == TypeGraffiti) {
         self.draftButton.hidden = YES;
     }
 }
+
+#define STATUSBAR_HEIGHT 20.0
+
+- (void)initDrawToolPanel
+{
+    self.drawToolPanel = [DrawToolPanel createViewWithdelegate:self];
+    CGFloat x = self.view.center.x;
+    CGFloat y = CGRectGetHeight([[UIScreen mainScreen] bounds]) - CGRectGetHeight(self.drawToolPanel.bounds) / 2.0 - STATUSBAR_HEIGHT;
+    self.drawToolPanel.center = CGPointMake(x, y);
+    [self.drawToolPanel setBackgroundColor:[UIColor clearColor]];
+    [self.view addSubview:self.drawToolPanel];
+    [self.drawToolPanel setPanelForOnline:NO];
+}
+
 
 #pragma mark - View lifecycle
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self initTitleLabel];
     [self initDrawView];
-    [self initEraser];
-    [self initPens];
     [self initWordLabel];
     [self initSubmitButton];
-    [self initDraftButton];
-    pickEraserView.hidden = NO;
-    [self.view bringSubviewToFront:pickEraserView];
     _unDraftPaintCount = 0;
     _isAutoSave = YES;
+    [self initDrawToolPanel];
+
 }
 
 
@@ -412,11 +367,7 @@ enum{
     drawView.delegate = nil;
     
     [self setWord:nil];
-    [self setEraserButton:nil];
-    [self setWordButton:nil];
-    [self setCleanButton:nil];
-    [self setPenButton:nil];
-    [self setColorButton:nil];
+    [self setWordLabel:nil];
     [self setTitleLabel:nil];
     [self setSubmitButton:nil];
     [self setDraftButton:nil];
@@ -426,17 +377,6 @@ enum{
 - (void)viewDidDisappear:(BOOL)animated
 {
     [super viewDidDisappear:animated];
-    //save the recent draw color
-    if ([pickColorView.colorViews count] > DEFAULT_COLOR_NUMBER) {
-        NSMutableArray *array = [NSMutableArray array];
-        NSInteger count = MIN([pickColorView.colorViews count], DEFAULT_COLOR_NUMBER * 3-1);
-        for (int i = DEFAULT_COLOR_NUMBER; i < count; ++ i) {
-            ColorView *view = [pickColorView.colorViews objectAtIndex:i];
-            [array addObject:view.drawColor];
-        }
-        [DrawColor setRecentColorList:array];
-    }
-    
 }
 
 #define ESCAPE_DEDUT_COIN 1
@@ -447,103 +387,37 @@ enum{
 #define DIALOG_TAG_COMMIT_OPUS 201208111
 
 
-- (void)disMissAllPickViews:(BOOL)animated
-{
-    [pickPenView dismissAnimated:animated];
-    [pickEraserView dismissAnimated:animated];
-    [pickColorView dismissAnimated:animated];
-    [pickBGColorView dismissAnimated:animated];
-}
-
-
-#pragma mark - Pick view delegate
-- (void)didPickedPickView:(PickView *)pickView colorView:(ColorView *)colorView
-{
-    if (pickView == pickColorView) {
-        [drawView setLineColor:colorView.drawColor];
-        [drawView setLineWidth:penWidth];
-        [colorButton setDrawColor:colorView.drawColor];
-        [pickColorView updatePickColorView:colorView];
-    }else if(pickView == pickBGColorView)
-    {
-        self.bgColor = colorView.drawColor;
-        //show tips.
-        CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kChangeBackgroundTitle") message:NSLS(@"kChangeBackgroundMessage") style:CommonDialogStyleDoubleButton delegate:self];
-        dialog.tag = DIALOG_TAG_CHANGE_BACK;
-        [dialog showInView:self.view];
-        
-        [pickBGColorView updatePickColorView:colorView];
-    }
-    [self disMissAllPickViews:YES];
-}
-
-- (void)didPickedColorView:(ColorView *)colorView
-{
-    if (!pickColorView.dismiss) {
-        [self didPickedPickView:pickColorView colorView:colorView];        
-        [drawView setLineColor:colorView.drawColor];
-        [drawView setLineWidth:penWidth];
-        [colorButton setDrawColor:colorView.drawColor];
-        [pickColorView updatePickColorView:colorView];
-    }else if(!pickBGColorView.dismiss)
-    {
-        [self didPickedPickView:pickBGColorView colorView:colorView];        
-        [pickBGColorView updatePickColorView:colorView];
-    }
-
-    [self disMissAllPickViews:YES];
-}
-
-
-- (void)didPickedPickView:(PickView *)pickView lineWidth:(NSInteger)width
-{
-    if (pickView.tag == PICK_COLOR_VIEW_TAG) {
-        [drawView setLineWidth:width];
-        penWidth = width;   
-    }else if(pickView.tag == PICK_ERASER_VIEW_TAG)
-    {
-        [drawView setLineWidth:width];
-        eraserWidth = width;
-    }
-    [self disMissAllPickViews:YES];
-}
-- (void)didPickedMoreColor
-{
-    ColorShopView *colorShop = [ColorShopView colorShopViewWithFrame:self.view.bounds];
-    colorShop.delegate = self;
-    [colorShop showInView:self.view animated:YES];    
-}
 
 #define NO_COIN_TAG 201204271
 #define BUY_CONFIRM_TAG 201204272
-
-- (void)didPickedPickView:(PickView *)pickView penView:(PenView *)penView
-{
-    if (penView) {
-        _willBuyPen = nil;
-        if ([penView isDefaultPen] || [[AccountService defaultService]hasEnoughItemAmount:penView.penType amount:1]) {
-            [self.penButton setPenType:penView.penType];
-            [drawView setPenType:penView.penType];       
-            [PenView savePenType:penView.penType];
-        }else{
-            AccountService *service = [AccountService defaultService];
-            if (![service hasEnoughCoins:penView.price]) {
-                NSString *message = [NSString stringWithFormat:NSLS(@"kCoinsNotEnoughTips"), penView.price];
-                CommonDialog *noMoneyDialog = [CommonDialog createDialogWithTitle:NSLS(@"kCoinsNotEnoughTitle") message:message style:CommonDialogStyleSingleButton delegate:self];
-                noMoneyDialog.tag = NO_COIN_TAG;
-                [noMoneyDialog showInView:self.view];
-            }else{
-                NSString *message = [NSString stringWithFormat:NSLS(@"kBuyPenDialogMessage"),penView.price];
-                CommonDialog *buyConfirmDialog = [CommonDialog createDialogWithTitle:NSLS(@"kBuyPenDialogTitle") message:message style:CommonDialogStyleDoubleButton delegate:self];
-                buyConfirmDialog.tag = BUY_CONFIRM_TAG;
-                [buyConfirmDialog showInView:self.view];
-                _willBuyPen = penView;
-            }
-
-        }
-    }
-    [self disMissAllPickViews:YES];
-}
+//
+//- (void)didPickedPickView:(PickView *)pickView penView:(PenView *)penView
+//{
+//    if (penView) {
+//        _willBuyPen = nil;
+//        if ([penView isDefaultPen] || [[AccountService defaultService]hasEnoughItemAmount:penView.penType amount:1]) {
+//            [self.penButton setPenType:penView.penType];
+//            [drawView setPenType:penView.penType];       
+//            [PenView savePenType:penView.penType];
+//        }else{
+//            AccountService *service = [AccountService defaultService];
+//            if (![service hasEnoughCoins:penView.price]) {
+//                NSString *message = [NSString stringWithFormat:NSLS(@"kCoinsNotEnoughTips"), penView.price];
+//                CommonDialog *noMoneyDialog = [CommonDialog createDialogWithTitle:NSLS(@"kCoinsNotEnoughTitle") message:message style:CommonDialogStyleSingleButton delegate:self];
+//                noMoneyDialog.tag = NO_COIN_TAG;
+//                [noMoneyDialog showInView:self.view];
+//            }else{
+//                NSString *message = [NSString stringWithFormat:NSLS(@"kBuyPenDialogMessage"),penView.price];
+//                CommonDialog *buyConfirmDialog = [CommonDialog createDialogWithTitle:NSLS(@"kBuyPenDialogTitle") message:message style:CommonDialogStyleDoubleButton delegate:self];
+//                buyConfirmDialog.tag = BUY_CONFIRM_TAG;
+//                [buyConfirmDialog showInView:self.view];
+//                _willBuyPen = penView;
+//            }
+//
+//        }
+//    }
+//    [self disMissAllPickViews:YES];
+//}
 
 #pragma mark - Common Dialog Delegate
 
@@ -598,10 +472,7 @@ enum{
 }
 - (void)clickOk:(CommonDialog *)dialog
 {
-    if (dialog.tag == DIALOG_TAG_CLEAN_DRAW) {
-        [drawView addCleanAction];
-        self.bgColor = self.eraserColor = [DrawColor whiteColor];
-    }else if(dialog.tag == DIALOG_TAG_COMMIT_OPUS)
+    if(dialog.tag == DIALOG_TAG_COMMIT_OPUS)
     {
         [self showActivityWithText:NSLS(@"kSending")];
         self.submitButton.userInteractionEnabled = NO;
@@ -622,19 +493,9 @@ enum{
         [self quit];
     }else if(dialog.tag == BUY_CONFIRM_TAG){
         [[AccountService defaultService] buyItem:_willBuyPen.penType itemCount:1 itemCoins:_willBuyPen.price];
-        [self.penButton setPenType:_willBuyPen.penType];
         [_willBuyPen setAlpha:1];
         [drawView setPenType:_willBuyPen.penType];   
         [PenView savePenType:_willBuyPen.penType];
-        [pickPenView updatePenViews];
-    }else if(dialog.tag == DIALOG_TAG_CHANGE_BACK)
-    {
-        [drawView addChangeBackAction:self.bgColor];
-        self.eraserColor = self.bgColor;
-        if (drawView.penType == Eraser) {
-            drawView.lineColor = self.eraserColor;
-        }
-                
     }
     else if(dialog.tag == DIALOG_TAG_SUBMIT){
         
@@ -710,7 +571,7 @@ enum{
 
 - (void)didStartedTouch:(Paint *)paint
 {
-    [self disMissAllPickViews:YES];
+    [self.drawToolPanel dismissAllPopTipViews];
 }
 
 #define DRAFT_PAINT_COUNT [ConfigManager drawAutoSavePaintInterval]
@@ -871,66 +732,6 @@ enum{
     [self performSelector:@selector(saveDraftAndShowResult) withObject:nil afterDelay:0.01];
 }
 
-- (IBAction)clickRevokeButton:(id)sender {
-    if ([drawView canRevoke]) {
-        [drawView revoke];
-    }
-}
-
-- (IBAction)changeBackground:(id)sender {
-    BOOL show = pickBGColorView.dismiss;
-    [self disMissAllPickViews:YES];
-    if (show) {
-        [pickBGColorView updatePickColorView];
-        [pickBGColorView popupAtView:(UIButton *)sender inView:self.view animated:YES];
-    }    
-}
-
-
-- (IBAction)clickRedraw:(id)sender {
-
-    [self disMissAllPickViews:YES];
-    CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kCleanDrawTitle") message:NSLS(@"kCleanDrawMessage") style:CommonDialogStyleDoubleButton delegate:self];
-    dialog.tag = DIALOG_TAG_CLEAN_DRAW;
-    [dialog showInView:self.view];
-}
-
-- (IBAction)clickEraserButton:(id)sender {
-    BOOL show = pickEraserView.dismiss;
-    [self disMissAllPickViews:YES];
-    if (show) {
-        [pickEraserView popupAtView:sender inView:self.view animated:YES];        
-    }
-
-    [drawView setPenType:Eraser];
-    [drawView setLineColor:self.eraserColor];
-    [drawView setLineWidth:eraserWidth];
-}
-
-- (IBAction)clickPenButton:(id)sender {
-    BOOL show = pickPenView.dismiss;
-    [self disMissAllPickViews:YES];
-    if (show) {
-        [pickPenView popupAtView:sender inView:self.view animated:YES];
-    }
-    
-    [drawView setPenType:penButton.penType];
-    [drawView setLineColor:colorButton.drawColor];
-    [drawView setLineWidth:penWidth];
-}
-
-- (IBAction)clickColorButton:(id)sender {
-    BOOL show = pickColorView.dismiss;
-    [self disMissAllPickViews:YES];
-    if (show) {
-        [pickColorView updatePickColorView];
-        [pickColorView popupAtView:(UIButton *)sender inView:self.view animated:YES];
-    }    
-    
-    [drawView setLineColor:colorButton.drawColor];
-    [drawView setLineWidth:penWidth];
-    [drawView setPenType:penButton.penType];
-}
 
 - (NSMutableArray *)compressActionList:(NSArray *)drawActionList
 {
@@ -961,9 +762,6 @@ enum{
     }
 }
 
-- (IBAction)clickRedoButton:(id)sender {
-    [drawView redo];
-}
 
 - (void)clickBackButton:(id)sender
 {
@@ -996,5 +794,43 @@ enum{
 //    [[CommonMessageCenter defaultCenter] postMessageWithText:[NSString stringWithFormat:NSLS(@"kUpgradeMsg"),level] delayTime:1.5 isHappy:YES];
 }
 
+
+#pragma mark - Draw Tool Panel Delegate
+
+- (void)drawToolPanel:(DrawToolPanel *)toolPanel didClickRedoButton:(UIButton *)button
+{
+    [drawView redo];
+}
+- (void)drawToolPanel:(DrawToolPanel *)toolPanel didClickUndoButton:(UIButton *)button
+{
+    [drawView revoke];
+}
+- (void)drawToolPanel:(DrawToolPanel *)toolPanel didClickEraserButton:(UIButton *)button
+{
+    [drawView setLineColor:self.eraserColor];
+}
+- (void)drawToolPanel:(DrawToolPanel *)toolPanel didClickPaintBucket:(UIButton *)button
+{
+    [drawView addChangeBackAction:self.penColor];
+    self.eraserColor = self.penColor;
+}
+- (void)drawToolPanel:(DrawToolPanel *)toolPanel didSelectPen:(ItemType)penType
+{
+    drawView.penType = penType;
+}
+- (void)drawToolPanel:(DrawToolPanel *)toolPanel didSelectWidth:(CGFloat)width
+{
+    drawView.lineWidth = width;
+}
+- (void)drawToolPanel:(DrawToolPanel *)toolPanel didSelectColor:(DrawColor *)color
+{
+    self.penColor = color;
+    [drawView setLineColor:color];
+}
+- (void)drawToolPanel:(DrawToolPanel *)toolPanel didSelectAlpha:(CGFloat)alpha
+{
+    [self.penColor setAlpha:alpha];
+    [drawView setLineColor:self.penColor];    
+}
 
 @end

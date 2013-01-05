@@ -2,11 +2,12 @@
 //  DrawColorManager.h
 //  Draw
 //
-//  Created by gamy on 12-12-8.
+//  Created by gamy on 13-1-5.
 //
 //
 
 #import <Foundation/Foundation.h>
+#import "DrawColor.h"
 
 @interface DrawColorManager : NSObject
 

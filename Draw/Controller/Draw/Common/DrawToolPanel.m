@@ -11,12 +11,14 @@
 #import "WidthView.h"
 #import "PenBox.h"
 #import "ColorView.h"
+#import "ShareImageManager.h"
+#import "ItemManager.h"
+#import "ItemType.h"
 
 @interface DrawToolPanel ()
 {
-//    CMPopTipView *_penPopTipView;
-//    CMPopTipView *_colorBoxPopTipView;
-//    CMPopTipView *_palettePopTipView;
+    NSTimer *timer;
+    NSInteger _retainTime;
 }
 
 #pragma mark - click actions
@@ -28,47 +30,64 @@
 - (IBAction)clickAddColor:(id)sender;
 - (IBAction)clickPalette:(id)sender;
 - (IBAction)clickPaintBucket:(id)sender;
+- (IBAction)clickChat:(id)sender;
 
 @property (retain, nonatomic) IBOutlet DrawSlider *widthSlider;
 @property (retain, nonatomic) IBOutlet DrawSlider *alphaSlider;
 @property (retain, nonatomic) IBOutlet UILabel *penWidth;
 @property (retain, nonatomic) IBOutlet UILabel *colorAlpha;
 @property (retain, nonatomic) IBOutlet UIButton *pen;
+@property (retain, nonatomic) IBOutlet UIButton *chat;
+@property (retain, nonatomic) IBOutlet UIButton *timeSet;
+@property (retain, nonatomic) IBOutlet UIButton *redo;
+@property (retain, nonatomic) IBOutlet UIButton *undo;
 
 
 @property (retain, nonatomic) CMPopTipView *penPopTipView;
 @property (retain, nonatomic) CMPopTipView *colorBoxPopTipView;
 @property (retain, nonatomic) CMPopTipView *palettePopTipView;
 
-
+@property (retain, nonatomic) NSTimer *timer;
 
 
 @end
 
 @implementation DrawToolPanel
+@synthesize timer = _timer;
+
 
 #define MAX_COLOR_NUMBER 8
 #define VALUE(x) (ISIPAD ? x*2 : x)
 
-#define SPACE_COLOR_LEFT VALUE(8)
-#define SPACE_COLOR_COLOR VALUE(2)
-#define SPACE_COLOR_UP VALUE(10)
+#define SPACE_COLOR_LEFT (ISIPAD ? 40 : 8)
+#define SPACE_COLOR_COLOR (ISIPAD ? 14 : ((ISIPHONE5) ? 7 :2))
+#define SPACE_COLOR_UP (ISIPHONE5 ? 20 : VALUE(9))
 
 #define ALPHA_FONT_SIZE VALUE(14.0)
+#define TIMESET_FONT_SIZE VALUE(15.0)
+
+#define LINE_MIN_WIDTH VALUE(1.0)
+#define LINE_MAX_WIDTH VALUE(27.0)
+#define LINE_DEFAULT_WIDTH VALUE(3.0)
+
+#define COLOR_MIN_ALPHA 0.1
+#define COLOR_MAX_ALPHA 1.0
+#define COLOR_DEFAULT_ALPHA 1.0
+
+#define POP_POINTER_SIZE VALUE(8.0)
+
+#define ALPHA_LABEL_FRAME (ISIPAD ? CGRectMake(0, 0, 40*2, 20*2) : CGRectMake(0, 0, 40, 20))
 
 
 #pragma mark - setter methods
 
 
-//@property(nonatomic, retain)DrawColor *color;
-//@property(nonatomic, assign)CGFloat width;
-//@property(nonatomic, assign)CGFloat alpha;
-//@property(nonatomic, assign)ItemType penType;
+
 
 - (void)updatePopTipView:(CMPopTipView *)popTipView
 {
     [popTipView setBackgroundColor:[UIColor colorWithRed:168./255. green:168./255. blue:168./255. alpha:0.4]];
-    [popTipView setPointerSize:8.0];
+    [popTipView setPointerSize:POP_POINTER_SIZE];
     [self.palettePopTipView setDelegate:self];
 }
 
@@ -76,34 +95,41 @@
 {
     CGPoint center = self.widthSlider.center;
     [self.widthSlider removeFromSuperview];
-    self.widthSlider = [[[DrawSlider alloc] initWithDrawSliderStyle:DrawSliderStyleLarge] autorelease];
+    self.widthSlider = [[[DrawSlider alloc] init] autorelease];
     self.widthSlider.center = center;
     self.widthSlider.delegate = self;
     
-    [self.widthSlider setMaxValue:27];
-    [self.widthSlider setMinValue:2];
-    [self.widthSlider setValue:6];
+    [self.widthSlider setMaxValue:LINE_MAX_WIDTH];
+    [self.widthSlider setMinValue:LINE_MIN_WIDTH];
+    [self.widthSlider setValue:LINE_DEFAULT_WIDTH];
 
     [self addSubview:self.widthSlider];
     
     center = self.alphaSlider.center;
     [self.alphaSlider removeFromSuperview];
-    self.alphaSlider = [[[DrawSlider alloc] initWithDrawSliderStyle:DrawSliderStyleLarge] autorelease];
+    self.alphaSlider = [[[DrawSlider alloc] init] autorelease];
     self.alphaSlider.center = center;
-    [self.alphaSlider setValue:1.0];
+    [self.alphaSlider setMaxValue:COLOR_MAX_ALPHA];
+    [self.alphaSlider setMinValue:COLOR_MIN_ALPHA];
+    [self.alphaSlider setValue:COLOR_DEFAULT_ALPHA];
+    
     self.alphaSlider.delegate = self;
     [self addSubview:self.alphaSlider];
 
+    [self.penWidth setText:NSLS(@"kPenWidth")];
+    [self.colorAlpha setText:NSLS(@"kColorAlpha")];
+    
+    //TODO implement color alpha
+    self.alphaSlider.hidden = YES;
+    self.colorAlpha.hidden = YES;
 }
 
 
 - (void)updateView
 {
-    //update color
-    NSArray *list = [DrawColor getRecentColorList];
-    NSInteger i = 0;
-    for (DrawColor *color in list) {
-        ColorPoint *point = [ColorPoint pointWithColor:color];
+    ColorPoint *firstPoint = nil;
+    for (NSInteger i = 0; i < MAX_COLOR_NUMBER; ++ i) {
+        ColorPoint *point = [ColorPoint pointWithColor:[DrawColor rankColor]];
         [self addSubview:point];
         CGRect frame = point.frame;
         CGFloat x = SPACE_COLOR_LEFT + i * (CGRectGetWidth(point.frame) + SPACE_COLOR_COLOR);
@@ -111,12 +137,15 @@
         frame.origin = CGPointMake(x, SPACE_COLOR_UP);
         point.frame = frame;
         point.delegate = self;
-        if (++i >= MAX_COLOR_NUMBER) {
-            break;
+        if (i == 0) {
+            firstPoint = point;
         }
-    }
+    }    
+    [firstPoint sendActionsForControlEvents:UIControlEventTouchUpInside];
     
-    
+    [self.timeSet.titleLabel setFont:[UIFont fontWithName:@"DBLCDTempBlack" size:TIMESET_FONT_SIZE]];
+    [self.colorBGImageView setImage:[[ShareImageManager defaultManager] drawColorBG]];
+
     //update width and alpha
     [self updateSliders];
 }
@@ -125,6 +154,9 @@
 + (id)createViewWithdelegate:(id)delegate
 {
     NSString *identifier = @"DrawToolPanel";
+    if (ISIPHONE5) {
+        identifier = @"DrawToolPanel_ip5";
+    }
     NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:identifier
                                                              owner:self options:nil];
     
@@ -162,6 +194,19 @@
     [self dismissPopTipViewsWithout:nil];
 }
 
+- (void)disableAllTools
+{
+    for (UIControl *control in self.subviews) {
+        [control setEnabled:NO];
+    }
+}
+
+- (void)setPanelForOnline:(BOOL)isOnline
+{
+    self.redo.hidden = self.undo.hidden = isOnline;
+    self.timeSet.hidden = self.chat.hidden = !isOnline;
+}
+
 #pragma mark - click actions
 - (IBAction)clickUndo:(id)sender {
     [self dismissAllPopTipViews];
@@ -176,6 +221,14 @@
         [self.delegate drawToolPanel:self didClickRedoButton:sender];
     }
 }
+
+- (IBAction)clickChat:(id)sender {
+    [self dismissAllPopTipViews];
+    if (self.delegate && [self.delegate respondsToSelector:@selector(drawToolPanel:didClickChatButton:)]) {
+        [self.delegate drawToolPanel:self didClickChatButton:sender];
+    }    
+}
+
 
 
 - (IBAction)clickEraser:(id)sender {
@@ -192,6 +245,7 @@
         [self.delegate drawToolPanel:self didClickPaintBucket:sender];
     }
 }
+
 
 - (void)handlePopTipView:(CMPopTipView *)popView
              contentView:(UIView *(^)(void))contentView
@@ -220,7 +274,6 @@
     [self handlePopTipView:_colorBoxPopTipView contentView:^UIView *{
         return [ColorBox createViewWithdelegate:self];
     } atView:sender setter:@selector(setColorBoxPopTipView:)];
-//    [self dismissPopTipViewsWithout:self.colorBoxPopTipView];
 
 }
 
@@ -228,9 +281,12 @@
 
     [self handlePopTipView:_palettePopTipView contentView:^UIView *{
         PPDebug(@"<block> [Palette createViewWithdelegate:self]");
-        return [Palette createViewWithdelegate:self];
+        Palette *pallete = [Palette createViewWithdelegate:self];
+        if (self.color) {
+            pallete.currentColor = self.color;
+        }
+        return pallete;
     } atView:sender setter:@selector(setPalettePopTipView:)];
-//    [self dismissPopTipViewsWithout:self.palettePopTipView];
 }
 
 - (IBAction)clickPen:(id)sender {
@@ -240,16 +296,16 @@
         penBox.delegate = self;
         return penBox;
     } atView:sender setter:@selector(setPenPopTipView:)];
-//    [self dismissPopTipViewsWithout:self.penPopTipView];
 }
 
 
 - (void)handleSelectColorDelegateWithColor:(DrawColor *)color
 {
+    self.color = color;
     if (self.delegate && [self.delegate respondsToSelector:@selector(drawToolPanel:didSelectColor:)]) {
         [self.delegate drawToolPanel:self didSelectColor:color];
     }
-    
+    [self.alphaSlider setValue:1.0];
     //update show list;
 }
 
@@ -261,6 +317,7 @@
             [point setSelected:NO];
         }
     }
+    [colorPoint setSelected:YES];
     [self dismissAllPopTipViews];
     [self handleSelectColorDelegateWithColor:colorPoint.color];
 }
@@ -291,12 +348,24 @@
 - (void)drawSlider:(DrawSlider *)drawSlider didFinishChangeValue:(CGFloat)value
 {
     [drawSlider dismissPopupView];
+    if (drawSlider == self.widthSlider) {
+        self.width = value;
+        if (self.delegate && [self.delegate respondsToSelector:@selector(drawToolPanel:didSelectWidth:)]) {
+            [self.delegate drawToolPanel:self didSelectWidth:value];
+        }
+    }else if(drawSlider == self.alphaSlider){
+        self.alpha = value;
+        if(self.delegate && [self.delegate respondsToSelector:@selector(drawToolPanel:didSelectAlpha:)])
+        {
+            [self.delegate drawToolPanel:self didSelectAlpha:value];
+        }
+    }
 }
 
 - (void)drawSlider:(DrawSlider *)drawSlider didStartToChangeValue:(CGFloat)value
 {
     if (drawSlider == self.alphaSlider) {
-        UILabel *label = [[[UILabel alloc] initWithFrame:CGRectMake(0, 0, 40, 20)] autorelease];
+        UILabel *label = [[[UILabel alloc] initWithFrame:ALPHA_LABEL_FRAME] autorelease];
         [label setTextAlignment:NSTextAlignmentCenter];
         [drawSlider popupWithContenView:label];
         [label setBackgroundColor:[UIColor clearColor]];
@@ -317,6 +386,9 @@
     [self.pen setTag:penType];
     [self.penPopTipView dismissAnimated:NO];
     self.penPopTipView = nil;
+    if (self.delegate && [self.delegate respondsToSelector:@selector(drawToolPanel:didSelectPen:)]) {
+        [self.delegate drawToolPanel:self didSelectPen:penType];
+    }
 }
 
 #pragma mark - CMPopTipView Delegate
@@ -374,6 +446,11 @@
     [self dismissColorBoxPopTipView];
 }
 
+- (void)palette:(Palette *)palette didPickColor:(DrawColor *)color
+{
+    [self handleSelectColorDelegateWithColor:color];    
+}
+
 - (void)dealloc {
     PPRelease(_colorBoxPopTipView);
     PPRelease(_penPopTipView);
@@ -383,8 +460,53 @@
     PPRelease(_alphaSlider);
     PPRelease(_penWidth);
     PPRelease(_colorAlpha);
+    PPRelease(_timer);
     
     [_pen release];
+    [_chat release];
+    [_timeSet release];
+    [_redo release];
+    [_undo release];
+    [_colorBGImageView release];
     [super dealloc];
 }
+
+#pragma mark - timer methods
+
+- (void)handleTimer:(NSTimer *)timer
+{
+    PPDebug(@"panel <handleTimer>: retain time = %d",_retainTime);
+    if (_retainTime >= 0) {
+        NSString *title = [NSString stringWithFormat:@"%d", _retainTime];
+        [self.timeSet setTitle:title forState:UIControlStateNormal];
+        _retainTime --;
+    }
+    if (_retainTime < 0) {
+        [self stopTimer];
+        //enable all the tools
+        [self dismissAllPopTipViews];
+        [self disableAllTools];
+        if (_delegate && [_delegate respondsToSelector:@selector(drawToolPanelDidTimeout:)]) {
+            [_delegate drawToolPanelDidTimeout:self];
+        }
+    }
+}
+
+- (void)startTimer
+{
+    [self stopTimer];
+    _retainTime = self.timerDuration;
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(handleTimer:) userInfo:nil repeats:YES];
+    [self handleTimer:self.timer];
+}
+- (void)stopTimer
+{
+    PPDebug(@"panel <stopTimer>: retain time = %d",_retainTime);
+    if ([self.timer isValid]) {
+        [self.timer invalidate];
+    }
+    self.timer = nil;
+}
+
 @end
+
