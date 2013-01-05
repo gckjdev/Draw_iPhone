@@ -124,6 +124,8 @@ typedef enum{
 {
     RankView *view = [RankView createRankView:self type:RankViewTypeFirst];
     [view setViewInfo:feed];
+    [view.cupFlag setImage:[ShareImageManager defaultManager].goldenCupImage];
+    view.cupFlag.hidden = NO;
     [cell.contentView addSubview:view];
     [view updateViewInfoForContestOpus];
     [view.title setHidden:YES];
@@ -138,8 +140,12 @@ typedef enum{
 {
     RankView *view1 = [RankView createRankView:self type:RankViewTypeSecond];
     [view1 setViewInfo:feed1];
+    [view1.cupFlag setImage:[ShareImageManager defaultManager].silverCupImage];
+    view1.cupFlag.hidden = NO;
     RankView *view2 = [RankView createRankView:self type:RankViewTypeSecond];
     [view2 setViewInfo:feed2];
+    [view2.cupFlag setImage:[ShareImageManager defaultManager].copperCupImage];
+    view2.cupFlag.hidden = NO;
     [view1 updateViewInfoForContestOpus];
     [view2 updateViewInfoForContestOpus];
     [cell.contentView addSubview:view1];

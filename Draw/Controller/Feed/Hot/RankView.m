@@ -67,6 +67,7 @@
     PPRelease(_drawImage);
     [_drawFlag release];
     [_maskButton release];
+    [_cupFlag release];
     [super dealloc];
 }
 
