@@ -509,7 +509,7 @@ static UIImage* _whitePaperImage;
 
 - (UIImage *)rightImage
 {
-    return [UIImage strectchableImageName:@"guessed@2x.png"];
+    return [UIImage imageNamed:@"guessed@2x.png"];
 }
 - (UIImage *)myPaintImage
 {
