@@ -136,19 +136,18 @@
 
 - (void)updateShowView:(DrawFeed *)feed
 {
-//    self.feed.largeImage = [[FeedManager defaultManager] largeImageForFeedId:feed.feedId];
-    if (self.feed.largeImage) {
-        [self.drawImage setImage:self.feed.largeImage];
-        [self loadImageFinish];
-    }else if ([feed.drawImageUrl length] != 0 /*&& (![DeviceDetection isIPAD] || feed.deviceType == DeviceTypeIPad)*/) {
+    if ([feed.drawImageUrl length] != 0 /*&& (![DeviceDetection isIPAD] || feed.deviceType == DeviceTypeIPad)*/) {
         [self.drawImage setImageWithURL:[NSURL URLWithString:feed.drawImageUrl] placeholderImage:[[ShareImageManager defaultManager] unloadBg] success:^(UIImage *image, BOOL cached) {
             PPDebug(@"<download image> %@ success", feed.drawImageUrl);
-            self.feed.largeImage = image;
+            self.feed.largeImage = nil;
             [self loadImageFinish];
         } failure:^(NSError *error) {
             PPDebug(@"<download image> %@ failure, error=%@", feed.drawImageUrl, [error description]);
             [self.loadingActivity stopAnimating];
         }];
+    }else if (self.feed.largeImage) {
+        [self.drawImage setImage:self.feed.largeImage];
+        [self loadImageFinish];
     }else{
         [self showDrawView:feed];
         [self loadImageFinish];
@@ -187,12 +186,12 @@
     } 
     PPDebug(@"<setCellInfo>:DrawInfoCell have no drawData. start to load data");
     
-    if (self.feed.largeImage == nil) {
-        self.feed.largeImage = [[FeedManager defaultManager] largeImageForFeedId:self.feed.feedId];
-        if(self.feed.largeImage){
-            [self.drawImage setImage:self.feed.largeImage];
-        }
-    }
+//    if (self.feed.largeImage == nil) {
+//        self.feed.largeImage = [[FeedManager defaultManager] largeImageForFeedId:self.feed.feedId];
+//        if(self.feed.largeImage){
+//            [self.drawImage setImage:self.feed.largeImage];
+//        }
+//    }
     if (!_isLoading) {
         _getTimes = 1;
         [[FeedService defaultService] getFeedByFeedId:feed.feedId delegate:self];
