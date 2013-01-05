@@ -42,8 +42,8 @@
 #import "ContestController.h"
 #import "GameNetworkConstants.h"
 #import "ConfigManager.h"
+#import "SelectHotWordController.h"
 #import "DrawToolPanel.h"
-
 
 @interface OfflineDrawViewController()
 {

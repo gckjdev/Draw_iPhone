@@ -66,12 +66,24 @@
     }
 }
 
+
 - (void)setViewInfo:(Contest *)contest
 {
-    self.contest = contest;    
+    self.contest = contest;
     [self refreshRequest];
     [self refreshCount];
-    [self.webView.scrollView setScrollEnabled:NO];
+    if ([DeviceDetection isOS5]) {
+        [self.webView.scrollView setScrollEnabled:NO];
+    }
+    else{
+        self.webView.scalesPageToFit = NO;
+
+        for (UIScrollView *view in self.webView.subviews) {
+            if ([view isKindOfClass:[UIScrollView class]]) {
+                view.scrollEnabled = NO;
+            }
+        }
+    }
     [self.detailLabel setText:NSLS(@"kContestRule")];
 }
 

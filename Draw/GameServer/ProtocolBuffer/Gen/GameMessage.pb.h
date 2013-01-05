@@ -122,6 +122,8 @@
 @class PBGameUser;
 @class PBGameUser_Builder;
 @class PBHotWord;
+@class PBHotWordList;
+@class PBHotWordList_Builder;
 @class PBHotWord_Builder;
 @class PBKeyValue;
 @class PBKeyValue_Builder;

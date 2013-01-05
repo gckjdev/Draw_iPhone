@@ -1,9 +1,14 @@
 #!/bin/bash
 
 line=' ========= '
+if [ -z "$1" ]; then
+    echo "$line"" Commit message is empty. Can  not be comitted ""$line"
+    exit 1
+fi
+
 echo ""
-echo $line' add files (*.h *.m *.xib *.strings *.plist *.png *.jpg *.txt *.sh *.pbxproj)  '$line
-git add *.h *.m *.xib *.strings *.plist *.png *.jpg *.txt *.sh *.pbxproj
+echo $line' add files (*.h *.m *.xib *.strings *.plist *.png *.jpg *.txt *.sh *.pbxproj *.proto)  '$line
+git add *.proto *.h *.m *.xib *.strings *.plist *.png *.jpg *.txt *.sh *.pbxproj
 echo ''
 
 echo $line' auto checkout unuse files (*.xcuserstate *DS_Store)  '$line

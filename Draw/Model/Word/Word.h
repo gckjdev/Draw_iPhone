@@ -19,14 +19,19 @@ typedef enum
 {
     NSString *_text; 
     WordLevel _level;
+    int _score;
 }
 
 @property(nonatomic, retain)NSString *text;
 @property(nonatomic, assign)WordLevel level;
 
 - (id)initWithText:(NSString *)text level:(WordLevel)level;
+- (id)initWithText:(NSString *)text level:(WordLevel)level score:(int)score;
++ (Word *)wordWithText:(NSString *)text level:(WordLevel)level;
++ (Word *)wordWithText:(NSString *)text level:(WordLevel)level score:(int)score;
+
 - (NSInteger)score;
 - (NSString *)levelDesc;
-+ (Word *)wordWithText:(NSString *)text level:(WordLevel)level;
 - (NSInteger)length;
+
 @end

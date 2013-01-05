@@ -23,6 +23,8 @@
 @class PBGameUser;
 @class PBGameUser_Builder;
 @class PBHotWord;
+@class PBHotWordList;
+@class PBHotWordList_Builder;
 @class PBHotWord_Builder;
 @class PBKeyValue;
 @class PBKeyValue_Builder;
@@ -1032,5 +1034,54 @@
 - (NSString*) source;
 - (PBHotWord_Builder*) setSource:(NSString*) value;
 - (PBHotWord_Builder*) clearSource;
+@end
+
+@interface PBHotWordList : PBGeneratedMessage {
+@private
+  NSMutableArray* mutableWordsList;
+}
+- (NSArray*) wordsList;
+- (PBHotWord*) wordsAtIndex:(int32_t) index;
+
++ (PBHotWordList*) defaultInstance;
+- (PBHotWordList*) defaultInstance;
+
+- (BOOL) isInitialized;
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
+- (PBHotWordList_Builder*) builder;
++ (PBHotWordList_Builder*) builder;
++ (PBHotWordList_Builder*) builderWithPrototype:(PBHotWordList*) prototype;
+
++ (PBHotWordList*) parseFromData:(NSData*) data;
++ (PBHotWordList*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBHotWordList*) parseFromInputStream:(NSInputStream*) input;
++ (PBHotWordList*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBHotWordList*) parseFromCodedInputStream:(PBCodedInputStream*) input;
++ (PBHotWordList*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+@end
+
+@interface PBHotWordList_Builder : PBGeneratedMessage_Builder {
+@private
+  PBHotWordList* result;
+}
+
+- (PBHotWordList*) defaultInstance;
+
+- (PBHotWordList_Builder*) clear;
+- (PBHotWordList_Builder*) clone;
+
+- (PBHotWordList*) build;
+- (PBHotWordList*) buildPartial;
+
+- (PBHotWordList_Builder*) mergeFrom:(PBHotWordList*) other;
+- (PBHotWordList_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (PBHotWordList_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+
+- (NSArray*) wordsList;
+- (PBHotWord*) wordsAtIndex:(int32_t) index;
+- (PBHotWordList_Builder*) replaceWordsAtIndex:(int32_t) index with:(PBHotWord*) value;
+- (PBHotWordList_Builder*) addWords:(PBHotWord*) value;
+- (PBHotWordList_Builder*) addAllWords:(NSArray*) values;
+- (PBHotWordList_Builder*) clearWordsList;
 @end
 

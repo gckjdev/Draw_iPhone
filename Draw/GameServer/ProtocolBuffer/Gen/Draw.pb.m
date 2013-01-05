@@ -4206,3 +4206,204 @@ static PBHotWord* defaultPBHotWordInstance = nil;
 }
 @end
 
+@interface PBHotWordList ()
+@property (retain) NSMutableArray* mutableWordsList;
+@end
+
+@implementation PBHotWordList
+
+@synthesize mutableWordsList;
+- (void) dealloc {
+  self.mutableWordsList = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+  }
+  return self;
+}
+static PBHotWordList* defaultPBHotWordListInstance = nil;
++ (void) initialize {
+  if (self == [PBHotWordList class]) {
+    defaultPBHotWordListInstance = [[PBHotWordList alloc] init];
+  }
+}
++ (PBHotWordList*) defaultInstance {
+  return defaultPBHotWordListInstance;
+}
+- (PBHotWordList*) defaultInstance {
+  return defaultPBHotWordListInstance;
+}
+- (NSArray*) wordsList {
+  return mutableWordsList;
+}
+- (PBHotWord*) wordsAtIndex:(int32_t) index {
+  id value = [mutableWordsList objectAtIndex:index];
+  return value;
+}
+- (BOOL) isInitialized {
+  for (PBHotWord* element in self.wordsList) {
+    if (!element.isInitialized) {
+      return NO;
+    }
+  }
+  return YES;
+}
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
+  for (PBHotWord* element in self.wordsList) {
+    [output writeMessage:1 value:element];
+  }
+  [self.unknownFields writeToCodedOutputStream:output];
+}
+- (int32_t) serializedSize {
+  int32_t size = memoizedSerializedSize;
+  if (size != -1) {
+    return size;
+  }
+
+  size = 0;
+  for (PBHotWord* element in self.wordsList) {
+    size += computeMessageSize(1, element);
+  }
+  size += self.unknownFields.serializedSize;
+  memoizedSerializedSize = size;
+  return size;
+}
++ (PBHotWordList*) parseFromData:(NSData*) data {
+  return (PBHotWordList*)[[[PBHotWordList builder] mergeFromData:data] build];
+}
++ (PBHotWordList*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBHotWordList*)[[[PBHotWordList builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+}
++ (PBHotWordList*) parseFromInputStream:(NSInputStream*) input {
+  return (PBHotWordList*)[[[PBHotWordList builder] mergeFromInputStream:input] build];
+}
++ (PBHotWordList*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBHotWordList*)[[[PBHotWordList builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (PBHotWordList*) parseFromCodedInputStream:(PBCodedInputStream*) input {
+  return (PBHotWordList*)[[[PBHotWordList builder] mergeFromCodedInputStream:input] build];
+}
++ (PBHotWordList*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBHotWordList*)[[[PBHotWordList builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (PBHotWordList_Builder*) builder {
+  return [[[PBHotWordList_Builder alloc] init] autorelease];
+}
++ (PBHotWordList_Builder*) builderWithPrototype:(PBHotWordList*) prototype {
+  return [[PBHotWordList builder] mergeFrom:prototype];
+}
+- (PBHotWordList_Builder*) builder {
+  return [PBHotWordList builder];
+}
+@end
+
+@interface PBHotWordList_Builder()
+@property (retain) PBHotWordList* result;
+@end
+
+@implementation PBHotWordList_Builder
+@synthesize result;
+- (void) dealloc {
+  self.result = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.result = [[[PBHotWordList alloc] init] autorelease];
+  }
+  return self;
+}
+- (PBGeneratedMessage*) internalGetResult {
+  return result;
+}
+- (PBHotWordList_Builder*) clear {
+  self.result = [[[PBHotWordList alloc] init] autorelease];
+  return self;
+}
+- (PBHotWordList_Builder*) clone {
+  return [PBHotWordList builderWithPrototype:result];
+}
+- (PBHotWordList*) defaultInstance {
+  return [PBHotWordList defaultInstance];
+}
+- (PBHotWordList*) build {
+  [self checkInitialized];
+  return [self buildPartial];
+}
+- (PBHotWordList*) buildPartial {
+  PBHotWordList* returnMe = [[result retain] autorelease];
+  self.result = nil;
+  return returnMe;
+}
+- (PBHotWordList_Builder*) mergeFrom:(PBHotWordList*) other {
+  if (other == [PBHotWordList defaultInstance]) {
+    return self;
+  }
+  if (other.mutableWordsList.count > 0) {
+    if (result.mutableWordsList == nil) {
+      result.mutableWordsList = [NSMutableArray array];
+    }
+    [result.mutableWordsList addObjectsFromArray:other.mutableWordsList];
+  }
+  [self mergeUnknownFields:other.unknownFields];
+  return self;
+}
+- (PBHotWordList_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
+  return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
+}
+- (PBHotWordList_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
+  while (YES) {
+    int32_t tag = [input readTag];
+    switch (tag) {
+      case 0:
+        [self setUnknownFields:[unknownFields build]];
+        return self;
+      default: {
+        if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
+          [self setUnknownFields:[unknownFields build]];
+          return self;
+        }
+        break;
+      }
+      case 10: {
+        PBHotWord_Builder* subBuilder = [PBHotWord builder];
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self addWords:[subBuilder buildPartial]];
+        break;
+      }
+    }
+  }
+}
+- (NSArray*) wordsList {
+  if (result.mutableWordsList == nil) { return [NSArray array]; }
+  return result.mutableWordsList;
+}
+- (PBHotWord*) wordsAtIndex:(int32_t) index {
+  return [result wordsAtIndex:index];
+}
+- (PBHotWordList_Builder*) replaceWordsAtIndex:(int32_t) index with:(PBHotWord*) value {
+  [result.mutableWordsList replaceObjectAtIndex:index withObject:value];
+  return self;
+}
+- (PBHotWordList_Builder*) addAllWords:(NSArray*) values {
+  if (result.mutableWordsList == nil) {
+    result.mutableWordsList = [NSMutableArray array];
+  }
+  [result.mutableWordsList addObjectsFromArray:values];
+  return self;
+}
+- (PBHotWordList_Builder*) clearWordsList {
+  result.mutableWordsList = nil;
+  return self;
+}
+- (PBHotWordList_Builder*) addWords:(PBHotWord*) value {
+  if (result.mutableWordsList == nil) {
+    result.mutableWordsList = [NSMutableArray array];
+  }
+  [result.mutableWordsList addObject:value];
+  return self;
+}
+@end
+
