@@ -85,5 +85,7 @@ enum{
         colorViewList:(NSArray *)colorViewList 
             hasBought:(BOOL)hasBought;
 
++ (NSArray *)colorListForGroupId:(NSInteger)groupId;
+
 + (NSMutableArray *)colorGroupList;
 @end

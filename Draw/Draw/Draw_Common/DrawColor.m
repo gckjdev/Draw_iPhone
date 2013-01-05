@@ -8,6 +8,7 @@
 
 #import "DrawColor.h"
 #import "Draw.pb.h"
+#import "DrawUtils.h"
 
 @implementation DrawColor
 @synthesize red = _red;
@@ -35,7 +36,7 @@
 {
     if (_color != color) {
         if (_color) {
-            [_color release];
+            PPRelease(_color);
         }
         _color = color;
         [_color retain];
@@ -112,17 +113,19 @@
     return _color;
 }
 
+- (NSUInteger)hash
+{
+    NSInteger value = [DrawUtils compressDrawColor:self];
+    return value;
+}
+
 - (BOOL)isEqual:(id)object
 {
     if ([super isEqual:object]) {
         return YES;
     }else
-//    }else if([object isKindOfClass:[DrawColor class]])
     {
-        DrawColor *other = (DrawColor *)object;
-        if (other.red == self.red && other.green == self.green && other.blue == self.blue && other.alpha == self.alpha) {
-            return YES;
-        }
+        return [self hash] == [object hash];
     }
     return NO;
 }

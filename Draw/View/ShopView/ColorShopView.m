@@ -19,7 +19,7 @@
 #import "ShoppingManager.h"
 #import "AccountManager.h"
 #import "DeviceDetection.h"
-
+#import "DrawColorManager.h"
 
 @implementation ColorShopView
 @synthesize titleLabel;
@@ -213,6 +213,8 @@
         [dataTableView endUpdates];
         
         [dataTableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:YES];
+        NSArray * colorList = [ColorGroup colorListForGroupId:willBuyGroup.groupId];
+        [[DrawColorManager sharedDrawColorManager] addBoughtColorList:colorList];
         willBuyGroup = nil;
     }
 }

@@ -53,8 +53,9 @@
 
 + (id)createViewWithdelegate:(id)delegate;
 - (void)dismissAllPopTipViews;
-
 - (void)setPanelForOnline:(BOOL)isOnline;
+
+- (void)updateRecentColorViewWithColor:(DrawColor *)color;
 
 #pragma mark - Timer
 

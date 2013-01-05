@@ -8,15 +8,18 @@
 
 #import "ColorBox.h"
 #import "DrawColor.h"
+#import "DrawColorManager.h"
 
 #define VALUE(x) (ISIPAD?(2*x):x)
 #define SPACE_POINT_POINT VALUE(3.8)
 #define CELL_HEIGHT VALUE(35)
 #define DISPLAY_MAX_ROW 5
 
+#define COLOR_NUMBER_FOR_ROW 10
+
 @interface ColorBox ()
 {
-
+    DrawColorManager *drawColorManager;
 }
 
 @property (retain, nonatomic) IBOutlet UIView *defaultColorView;
@@ -37,15 +40,15 @@
 }
 
 
-- (NSArray *)rankColorList:(NSInteger)number
-{
-    NSMutableArray *list = [NSMutableArray arrayWithCapacity:number];
-    int i = 0;
-    while (i++ < number) {
-        [list addObject:[DrawColor rankColor]];
-    }
-    return list;
-}
+//- (NSArray *)rankColorList:(NSInteger)number
+//{
+//    NSMutableArray *list = [NSMutableArray arrayWithCapacity:number];
+//    int i = 0;
+//    while (i++ < number) {
+//        [list addObject:[DrawColor rankColor]];
+//    }
+//    return list;
+//}
 
 
 - (void)updateView:(UIView *)view addColorList:(NSArray *)list
@@ -75,7 +78,15 @@
 
 - (void)updateView
 {
-    [self updateView:self.defaultColorView addColorList:[self rankColorList:10]];
+    drawColorManager = [DrawColorManager sharedDrawColorManager];
+    NSInteger count = [[drawColorManager boughtColorList] count];
+    self.colorRow = count / COLOR_NUMBER_FOR_ROW;
+    if (count % COLOR_NUMBER_FOR_ROW != 0) {
+        self.colorRow ++;
+    }
+    
+    [self updateView:self.defaultColorView addColorList:[[DrawColorManager sharedDrawColorManager]
+                                                         recentColorList]];
 
     //resize tableView size
     NSInteger row = MIN(DISPLAY_MAX_ROW, self.colorRow);
@@ -98,7 +109,7 @@
     }
     ColorBox  *view = (ColorBox *)[topLevelObjects objectAtIndex:0];
     view.delegate = delegate;
-    view.colorRow = (rand()%12) + 1;
+
     PPDebug(@"<createViewWithdelegate> color row = %d", view.colorRow);
     [view updateView];
     return view;
@@ -132,7 +143,9 @@
         [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
         [cell setBackgroundColor:[UIColor clearColor]];
     }
-    [self updateView:cell.contentView addColorList:[self rankColorList:10]];
+    NSUInteger offset = indexPath.row * COLOR_NUMBER_FOR_ROW;
+    NSArray *list = [drawColorManager boughtColorListWithOffset:offset limit:COLOR_NUMBER_FOR_ROW];
+    [self updateView:cell.contentView addColorList:list];
     return cell;
 }
 
