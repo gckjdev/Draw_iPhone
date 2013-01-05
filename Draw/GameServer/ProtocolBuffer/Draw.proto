@@ -125,9 +125,9 @@ message PBNoCompressDrawData
 
 message PBHotWord
 {
-  required int wordId = 1;
+  required int32 wordId = 1;
   required string word = 2;
-  required int coins = 3;
+  required int32 coins = 3;
   
   optional string source = 10;
 }
