@@ -8,9 +8,10 @@
 
 #import "WordSelectCell.h"
 #import "AutoCreateViewByXib.h"
+#import "DeviceDetection.h"
 
-#define SMALL_FONT [UIFont systemFontOfSize:14]
-#define LAG_FONT [UIFont systemFontOfSize:20]
+#define SMALL_FONT [UIFont systemFontOfSize:([DeviceDetection isIPAD] ? 28 : 14)]
+#define LAG_FONT [UIFont systemFontOfSize:([DeviceDetection isIPAD] ? 40 : 20)]
 
 #define WORD_BUTTON_TAG_OFFSET 200
 #define COIN_IMAGE_VIEW_TAG_OFFSET 210
