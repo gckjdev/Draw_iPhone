@@ -69,12 +69,15 @@
 
 - (void)setViewInfo:(Contest *)contest
 {
-    self.contest = contest;    
+    self.contest = contest;
     [self refreshRequest];
     [self refreshCount];
     if ([DeviceDetection isOS5]) {
         [self.webView.scrollView setScrollEnabled:NO];
-    }else{
+    }
+    else{
+        self.webView.scalesPageToFit = NO;
+
         for (UIScrollView *view in self.webView.subviews) {
             if ([view isKindOfClass:[UIScrollView class]]) {
                 view.scrollEnabled = NO;
