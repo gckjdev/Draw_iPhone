@@ -4206,7 +4206,6 @@ static PBHotWord* defaultPBHotWordInstance = nil;
 }
 @end
 
-<<<<<<< HEAD
 @interface PBHotWordList ()
 @property (retain) NSMutableArray* mutableWordsList;
 @end
@@ -4408,5 +4407,3 @@ static PBHotWordList* defaultPBHotWordListInstance = nil;
 }
 @end
 
-=======
->>>>>>> 3dc7e83f0d06d8041b4f23241a56444fc3f84ba6
