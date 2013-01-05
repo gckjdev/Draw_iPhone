@@ -87,7 +87,14 @@
 }
 
 - (IBAction)clickAllMyWordsButton:(id)sender {
-    
+    SelectCustomWordView *customWordView = [SelectCustomWordView createView:self];
+    [customWordView showInView:self.view];
+}
+
+- (void)didSelecCustomWord:(NSString *)word
+{
+    Word *myWord = [Word wordWithText:word level:WordLeveLMedium];
+    [OfflineDrawViewController startDraw:myWord fromController:self];
 }
 
 - (IBAction)clickDraftButton:(id)sender {

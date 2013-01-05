@@ -49,8 +49,8 @@
     
     view.dataList = [[CustomWordManager defaultManager] findAllWords];
     
-    ShareImageManager *imageManager = [ShareImageManager defaultManager];
-    [view.closeButton setBackgroundImage:[imageManager redImage] forState:UIControlStateNormal];
+//    ShareImageManager *imageManager = [ShareImageManager defaultManager];
+//    [view.closeButton setBackgroundImage:[imageManager redImage] forState:UIControlStateNormal];
     [view.closeButton setTitle:NSLS(@"kClose") forState:UIControlStateNormal];
     
     return view;
