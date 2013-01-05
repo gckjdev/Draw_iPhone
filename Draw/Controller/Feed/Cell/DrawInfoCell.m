@@ -216,7 +216,10 @@
         self.feed.pbDraw = feed.pbDraw;
         self.feed.feedUser = feed.feedUser;
         self.feed.createDate = feed.createDate;
-        [self updateShowView:feed];
+        if ([feed.drawImageUrl length] != 0) {
+            self.feed.drawImageUrl = feed.drawImageUrl;
+        }
+       [self updateShowView:feed];
         [self updateTime:feed];
         [self updateDrawToUserInfo:feed];
         if (self.delegate && [self.delegate respondsToSelector:@selector(didUpdateShowView)]) {
