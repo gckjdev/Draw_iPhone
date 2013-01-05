@@ -1,5 +1,10 @@
 #!/bin/bash
 
+if [ -z $1 ]; then
+    echo " Commit message is empty. Can  not be comitted "
+    exit 1
+fi
+
 line=' ========= '
 echo ""
 echo $line' add files (*.h *.m *.xib *.strings *.plist *.png *.jpg *.txt *.sh *.pbxproj)  '$line
