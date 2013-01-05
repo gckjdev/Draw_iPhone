@@ -3266,6 +3266,9 @@
 		CA50D2741696BFE100A7BE14 /* PenBox~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA50D26A1696BFE100A7BE14 /* PenBox~ipad.xib */; };
 		CA50D2751696BFE100A7BE14 /* PenBox~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA50D26A1696BFE100A7BE14 /* PenBox~ipad.xib */; };
 		CA50D2761696BFE100A7BE14 /* PenBox~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA50D26A1696BFE100A7BE14 /* PenBox~ipad.xib */; };
+		CA50D28D1697C6ED00A7BE14 /* DrawColorManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA50D28C1697C6EC00A7BE14 /* DrawColorManager.m */; };
+		CA50D28E1697C6ED00A7BE14 /* DrawColorManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA50D28C1697C6EC00A7BE14 /* DrawColorManager.m */; };
+		CA50D28F1697C6ED00A7BE14 /* DrawColorManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA50D28C1697C6EC00A7BE14 /* DrawColorManager.m */; };
 		CA51816D15A2D79700AD5A78 /* CustomStatueBar.m in Sources */ = {isa = PBXBuildFile; fileRef = CA51816C15A2D79700AD5A78 /* CustomStatueBar.m */; };
 		CA51BD731525DED100C77E50 /* RewardManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA51BD721525DED100C77E50 /* RewardManager.m */; };
 		CA51BD761525DEDE00C77E50 /* Reward.m in Sources */ = {isa = PBXBuildFile; fileRef = CA51BD751525DEDE00C77E50 /* Reward.m */; };
@@ -6042,6 +6045,8 @@
 		CA50D2681696BFE000A7BE14 /* DrawToolPanel~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "DrawToolPanel~ipad.xib"; sourceTree = "<group>"; };
 		CA50D2691696BFE000A7BE14 /* Palette~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "Palette~ipad.xib"; sourceTree = "<group>"; };
 		CA50D26A1696BFE100A7BE14 /* PenBox~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "PenBox~ipad.xib"; sourceTree = "<group>"; };
+		CA50D28B1697C6EC00A7BE14 /* DrawColorManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawColorManager.h; sourceTree = "<group>"; };
+		CA50D28C1697C6EC00A7BE14 /* DrawColorManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawColorManager.m; sourceTree = "<group>"; };
 		CA51816B15A2D79700AD5A78 /* CustomStatueBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomStatueBar.h; sourceTree = "<group>"; };
 		CA51816C15A2D79700AD5A78 /* CustomStatueBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomStatueBar.m; sourceTree = "<group>"; };
 		CA51BD711525DED100C77E50 /* RewardManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RewardManager.h; sourceTree = "<group>"; };
@@ -14157,6 +14162,8 @@
 				CAFEFEF8166072AB00441D77 /* DrawColor.m */,
 				CAFEFEF9166072AB00441D77 /* DrawUtils.h */,
 				CAFEFEFA166072AB00441D77 /* DrawUtils.m */,
+				CA50D28B1697C6EC00A7BE14 /* DrawColorManager.h */,
+				CA50D28C1697C6EC00A7BE14 /* DrawColorManager.m */,
 			);
 			path = Draw_Common;
 			sourceTree = "<group>";
@@ -17755,6 +17762,7 @@
 				CAC44916168C4DCC004441EB /* ILView.m in Sources */,
 				CAC44963168D57D6004441EB /* Palette.m in Sources */,
 				CAC44968168D58C3004441EB /* ColorBox.m in Sources */,
+				CA50D28E1697C6ED00A7BE14 /* DrawColorManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -18419,6 +18427,7 @@
 				CAC44917168C4DCC004441EB /* ILView.m in Sources */,
 				CAC44964168D57D7004441EB /* Palette.m in Sources */,
 				CAC44969168D58C3004441EB /* ColorBox.m in Sources */,
+				CA50D28F1697C6ED00A7BE14 /* DrawColorManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -19085,6 +19094,7 @@
 				CAC44998168D9FFE004441EB /* PenBox.m in Sources */,
 				CA479468168E986400D4AF55 /* AnalyticsManager.m in Sources */,
 				A422DB931693DD0D00914A48 /* HotWordManager.m in Sources */,
+				CA50D28D1697C6ED00A7BE14 /* DrawColorManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
