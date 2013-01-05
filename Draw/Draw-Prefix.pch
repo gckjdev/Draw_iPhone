@@ -17,5 +17,5 @@
     #import "GameApp.h"
     #import "GameResource.h"
     #define ISIPAD [DeviceDetection isIPAD]
-
+    #define ISIPHONE5 [DeviceDetection isIPhone5]
 #endif
