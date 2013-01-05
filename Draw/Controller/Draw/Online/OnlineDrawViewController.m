@@ -45,6 +45,7 @@
 @property (retain, nonatomic) DrawColor* eraserColor;
 @property (retain, nonatomic) DrawColor* bgColor;
 @property (retain, nonatomic) DrawColor* penColor;
+@property (retain, nonatomic) IBOutlet UIImageView *wordLabelBGView;
 
 @end
 
@@ -75,6 +76,7 @@
     PPRelease(drawView);
     PPRelease(_gameCompleteMessage);
     
+    [_wordLabelBGView release];
     [super dealloc];
 }
 
@@ -99,18 +101,18 @@
     return self;
 }
 
-
+#define STATUSBAR_HEIGHT 20.0
 - (void)initDrawToolPanel
 {
-    self.drawToolPanel = [DrawToolPanel createViewWithdelegate:nil];
-    self.drawToolPanel.center = CGPointMake(160, 415);
-    self.drawToolPanel.delegate = self;
+    self.drawToolPanel = [DrawToolPanel createViewWithdelegate:self];
+    CGFloat x = self.view.center.x;
+    CGFloat y = CGRectGetHeight([[UIScreen mainScreen] bounds]) - CGRectGetHeight(self.drawToolPanel.bounds) / 2 - STATUSBAR_HEIGHT;
+    self.drawToolPanel.center = CGPointMake(x, y);
     [self.drawToolPanel setBackgroundColor:[UIColor clearColor]];
     [self.view addSubview:self.drawToolPanel];
     [self.drawToolPanel setPanelForOnline:YES];
     [self.drawToolPanel setTimerDuration:60];
     [self.drawToolPanel startTimer];
-    
 }
 
 - (void)initDrawView
@@ -127,6 +129,7 @@
 {
     NSString *wordText = self.word.text;
     [self.wordLabel setText:wordText];
+    [self.wordLabelBGView setImage:[shareImageManager drawColorBG]];
 }
 
 
@@ -152,13 +155,21 @@
 }
 
 
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [_drawToolPanel stopTimer];
+    [super viewDidDisappear:animated];
+}
+
 - (void)viewDidUnload
 {
     drawView.delegate = nil;
-    
     [self setWord:nil];
     [self setPopupButton:nil];
     [self setTurnNumberButton:nil];
+    [_drawToolPanel stopTimer];
+    [self setDrawToolPanel:nil];
+    [self setWordLabelBGView:nil];
     [super viewDidUnload];
 }
 
@@ -363,5 +374,9 @@
     [self showGroupChatView];
 }
 
+- (void)drawToolPanelDidTimeout:(DrawToolPanel *)toolPanel
+{
+    
+}
 
 @end

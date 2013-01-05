@@ -8,12 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-typedef enum{
-    
-    DrawSliderStyleSmall = 1,
-    DrawSliderStyleLarge = 2,
-    
-}DrawSliderStyle;
 
 @class DrawSlider;
 
@@ -35,12 +29,10 @@ typedef enum{
     
 }
 
-- (id)initWithDrawSliderStyle:(DrawSliderStyle)style;
 
 //@property(nonatomic, assign)CGFloat value;
 @property(nonatomic, assign)CGFloat maxValue;
 @property(nonatomic, assign)CGFloat minValue;
-@property(nonatomic, assign)DrawSliderStyle style;
 @property(nonatomic, assign)id<DrawSliderDelegate> delegate;
 - (CGFloat)value;
 - (void)setValue:(CGFloat)value;

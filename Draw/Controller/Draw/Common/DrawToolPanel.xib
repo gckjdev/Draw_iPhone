@@ -243,7 +243,7 @@
 					<object class="IBUILabel" id="911486829">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{186, 46}, {33, 21}}</string>
+						<string key="NSFrame">{{186, 43}, {33, 21}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="514999650"/>
@@ -276,7 +276,7 @@
 					<object class="IBUILabel" id="499817777">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{186, 69}, {33, 21}}</string>
+						<string key="NSFrame">{{186, 66}, {33, 21}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="811436835"/>
@@ -298,7 +298,7 @@
 					<object class="IBUIView" id="514999650">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">274</int>
-						<string key="NSFrame">{{221, 51}, {92, 11}}</string>
+						<string key="NSFrame">{{221, 48}, {92, 11}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="499817777"/>
@@ -313,17 +313,16 @@
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
 						<array class="NSMutableArray" key="NSSubviews"/>
-						<string key="NSFrame">{{221, 74}, {92, 12}}</string>
+						<string key="NSFrame">{{221, 71}, {92, 12}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<reference key="IBUIBackgroundColor" ref="1057924229"/>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 					</object>
 					<object class="IBUIButton" id="510518648">
 						<reference key="NSNextResponder" ref="191373211"/>
-						<int key="NSvFlags">292</int>
+						<int key="NSvFlags">-2147483356</int>
 						<string key="NSFrame">{{4, 49}, {33, 34}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
@@ -356,7 +355,7 @@
 					</object>
 					<object class="IBUIButton" id="96719713">
 						<reference key="NSNextResponder" ref="191373211"/>
-						<int key="NSvFlags">292</int>
+						<int key="NSvFlags">-2147483356</int>
 						<string key="NSFrame">{{45, 49}, {33, 34}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
@@ -465,6 +464,14 @@
 						<reference key="destination" ref="587674421"/>
 					</object>
 					<int key="connectionID">52</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">colorBGImageView</string>
+						<reference key="source" ref="191373211"/>
+						<reference key="destination" ref="914431066"/>
+					</object>
+					<int key="connectionID">54</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
@@ -679,7 +686,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">53</int>
+			<int key="maxID">54</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -742,6 +749,7 @@
 						<string key="alphaSlider">DrawSlider</string>
 						<string key="chat">UIButton</string>
 						<string key="colorAlpha">UILabel</string>
+						<string key="colorBGImageView">UIImageView</string>
 						<string key="pen">UIButton</string>
 						<string key="penWidth">UILabel</string>
 						<string key="redo">UIButton</string>
@@ -761,6 +769,10 @@
 						<object class="IBToOneOutletInfo" key="colorAlpha">
 							<string key="name">colorAlpha</string>
 							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="colorBGImageView">
+							<string key="name">colorBGImageView</string>
+							<string key="candidateClassName">UIImageView</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="pen">
 							<string key="name">pen</string>

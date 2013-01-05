@@ -53,6 +53,17 @@ static CustomWordManager *_customWordManager = nil;
     return [dataManager execute:@"findAllWords" sortBy:@"createDate" ascending:NO];
 }
 
+- (NSArray *)wordsFromCustomWords
+{
+    NSMutableArray *words = [NSMutableArray array];
+    for (CustomWord *cusWord in [self findAllWords]) {
+        Word *word = [Word wordWithText:cusWord.word level:WordLeveLMedium];
+        [words addObject:word];
+    }
+    
+    return words;
+}
+
 - (BOOL)isExist:(NSString *)word
 {
     NSArray *array = [self findAllWords];

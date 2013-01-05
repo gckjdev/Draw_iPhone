@@ -74,6 +74,7 @@
 #import "DrawTestViewController.h"
 
 #import "SynthesizeSingleton.h"
+#import "SelectHotWordController.h"
 
 @interface HomeController()
 {
@@ -533,7 +534,8 @@
     if (viewController) {        
         HomeController *home = [HomeController defaultInstance];
         [viewController.navigationController popToViewController:home animated:NO];
-        SelectWordController *sc = [[SelectWordController alloc] initWithType:OfflineDraw];
+//        SelectWordController *sc = [[SelectWordController alloc] initWithType:OfflineDraw];
+        SelectHotWordController *sc = [[SelectHotWordController alloc] init];
         [home.navigationController pushViewController:sc animated:NO];
         [sc release];
     }    
@@ -651,8 +653,10 @@
         {
             [[AnalyticsManager sharedAnalyticsManager] reportClickHomeMenu:HOME_ACTION_DRAW];
 
+//            SelectWordController *sc = [[SelectWordController alloc] initWithType:OfflineDraw];
             
-            SelectWordController *sc = [[SelectWordController alloc] initWithType:OfflineDraw];
+            SelectHotWordController *sc = [[SelectHotWordController alloc] init];
+
             [self.navigationController pushViewController:sc animated:YES];
             [sc release];
         }

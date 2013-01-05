@@ -48,6 +48,7 @@
 @property(nonatomic, assign)CGFloat alpha;
 @property(nonatomic, assign)ItemType penType;
 @property(nonatomic, assign)NSInteger timerDuration;
+@property (retain, nonatomic) IBOutlet UIImageView *colorBGImageView;
 
 
 + (id)createViewWithdelegate:(id)delegate;

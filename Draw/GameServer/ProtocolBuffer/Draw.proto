@@ -132,8 +132,10 @@ message PBHotWord
   optional string source = 10;
 }
 
-
-
+message PBHotWordList
+{
+  repeated PBHotWord words = 1;
+}
 
 
 

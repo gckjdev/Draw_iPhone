@@ -30,10 +30,6 @@
 @class PBSNSUser_Builder;
 @class PBUserDice;
 @class PBUserDice_Builder;
-@class PBUserItem;
-@class PBUserItemList;
-@class PBUserItemList_Builder;
-@class PBUserItem_Builder;
 @class PBUserResult;
 @class PBUserResult_Builder;
 typedef enum {

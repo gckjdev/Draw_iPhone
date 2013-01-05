@@ -132,7 +132,6 @@
         if (self.gameType == OnlineDraw) {
             [OnlineDrawViewController startDraw:word fromController:self];            
         }else{
-//            [OfflineDrawViewController startDraw:word fromController:self];
             [OfflineDrawViewController startDraw:word fromController:self targetUid:self.targetUid];
         }
     }

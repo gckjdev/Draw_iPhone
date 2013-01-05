@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Word.h"
 
 typedef enum
 { 
@@ -23,7 +24,11 @@ typedef enum
                     language:(NSNumber *)language 
                        level:(NSNumber *)level;
 
+// return an array containing CustomWord objects.
 - (NSArray *)findAllWords;
+
+// return an array containing Word objects.
+- (NSArray *)wordsFromCustomWords;
 
 - (BOOL)deleteWord:(NSString *)word;
 

@@ -384,6 +384,17 @@ static UIImage* _whitePaperImage;
     return [UIImage imageNamed:temp];
 }
 
+- (UIImage *)fixedAndStrectchableImageNamed:(NSString *)name
+{
+    NSString *temp = name;
+    if ([DeviceDetection isIPAD]) {
+        temp = [NSString stringWithFormat:@"%@@2x.png",name];
+    }else{
+        temp = [NSString stringWithFormat:@"%@.png",name];
+    }
+    return [UIImage strectchableImageName:temp];
+}
+
 //for tool
 - (UIImage*)colorBuyedImage
 {
@@ -555,6 +566,20 @@ static UIImage* _whitePaperImage;
 {
     return [UIImage strectchableImageName:@"popuptools_bg.png"];    
 }
+
+- (UIImage *)drawColorBG; //draw_color_bg@2x.png
+{
+    return [self fixedAndStrectchableImageNamed:@"draw_color_bg"];
+}
+- (UIImage *)drawSliderBG
+{
+    return [self fixedImageNamed:@"draw_slider_bg"];
+}
+- (UIImage *)drawSliderPoint
+{
+    return [self fixedImageNamed:@"draw_slider_point"];
+}
+
 
 //for dice main menu
 - (UIImage*)diceShopImage

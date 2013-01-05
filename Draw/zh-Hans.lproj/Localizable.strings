@@ -968,6 +968,11 @@
 "kSaveToLocalSuccess" = "成功保存到本地，您可以在作品页面查看该作品。";
 
 "kCanotSendItemToContestOpus" = "比赛已经结束， 不能再丢东西了哦！";
+
+
+"kPenWidth" = "粗细";
+"kColorAlpha" = "透明度";
+
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 

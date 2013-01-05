@@ -411,12 +411,12 @@
 {
     self.drawActionList = draft.drawActionList;
     _revokeBaseIndex = [self.drawActionList count];
-    if(draft.thumbImage)
-    {
-        [self showImage:draft.thumbImage];
-    }else{
-        [self show];
-    }
+//    if(draft.thumbImage)
+//    {
+//        [self showImage:draft.thumbImage];
+//    }else{
+    [self show];
+//    }
     [self addRevocationImage];
 }
 

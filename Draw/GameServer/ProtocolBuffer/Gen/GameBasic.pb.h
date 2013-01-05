@@ -18,10 +18,6 @@
 @class PBMessage_Builder;
 @class PBSNSUser;
 @class PBSNSUser_Builder;
-@class PBUserItem;
-@class PBUserItemList;
-@class PBUserItemList_Builder;
-@class PBUserItem_Builder;
 @class PBUserResult;
 @class PBUserResult_Builder;
 
@@ -91,38 +87,26 @@
 @interface PBSNSUser : PBGeneratedMessage {
 @private
   BOOL hasType_:1;
-  BOOL hasExpireTime_:1;
   BOOL hasUserId_:1;
   BOOL hasNickName_:1;
   BOOL hasAccessToken_:1;
   BOOL hasAccessTokenSecret_:1;
-  BOOL hasRefreshToken_:1;
-  BOOL hasQqOpenId_:1;
   int32_t type;
-  int32_t expireTime;
   NSString* userId;
   NSString* nickName;
   NSString* accessToken;
   NSString* accessTokenSecret;
-  NSString* refreshToken;
-  NSString* qqOpenId;
 }
 - (BOOL) hasType;
 - (BOOL) hasUserId;
 - (BOOL) hasNickName;
 - (BOOL) hasAccessToken;
 - (BOOL) hasAccessTokenSecret;
-- (BOOL) hasRefreshToken;
-- (BOOL) hasExpireTime;
-- (BOOL) hasQqOpenId;
 @property (readonly) int32_t type;
 @property (readonly, retain) NSString* userId;
 @property (readonly, retain) NSString* nickName;
 @property (readonly, retain) NSString* accessToken;
 @property (readonly, retain) NSString* accessTokenSecret;
-@property (readonly, retain) NSString* refreshToken;
-@property (readonly) int32_t expireTime;
-@property (readonly, retain) NSString* qqOpenId;
 
 + (PBSNSUser*) defaultInstance;
 - (PBSNSUser*) defaultInstance;
@@ -182,136 +166,6 @@
 - (NSString*) accessTokenSecret;
 - (PBSNSUser_Builder*) setAccessTokenSecret:(NSString*) value;
 - (PBSNSUser_Builder*) clearAccessTokenSecret;
-
-- (BOOL) hasRefreshToken;
-- (NSString*) refreshToken;
-- (PBSNSUser_Builder*) setRefreshToken:(NSString*) value;
-- (PBSNSUser_Builder*) clearRefreshToken;
-
-- (BOOL) hasExpireTime;
-- (int32_t) expireTime;
-- (PBSNSUser_Builder*) setExpireTime:(int32_t) value;
-- (PBSNSUser_Builder*) clearExpireTime;
-
-- (BOOL) hasQqOpenId;
-- (NSString*) qqOpenId;
-- (PBSNSUser_Builder*) setQqOpenId:(NSString*) value;
-- (PBSNSUser_Builder*) clearQqOpenId;
-@end
-
-@interface PBUserItem : PBGeneratedMessage {
-@private
-  BOOL hasItemId_:1;
-  BOOL hasCount_:1;
-  int32_t itemId;
-  int32_t count;
-}
-- (BOOL) hasItemId;
-- (BOOL) hasCount;
-@property (readonly) int32_t itemId;
-@property (readonly) int32_t count;
-
-+ (PBUserItem*) defaultInstance;
-- (PBUserItem*) defaultInstance;
-
-- (BOOL) isInitialized;
-- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
-- (PBUserItem_Builder*) builder;
-+ (PBUserItem_Builder*) builder;
-+ (PBUserItem_Builder*) builderWithPrototype:(PBUserItem*) prototype;
-
-+ (PBUserItem*) parseFromData:(NSData*) data;
-+ (PBUserItem*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
-+ (PBUserItem*) parseFromInputStream:(NSInputStream*) input;
-+ (PBUserItem*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
-+ (PBUserItem*) parseFromCodedInputStream:(PBCodedInputStream*) input;
-+ (PBUserItem*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
-@end
-
-@interface PBUserItem_Builder : PBGeneratedMessage_Builder {
-@private
-  PBUserItem* result;
-}
-
-- (PBUserItem*) defaultInstance;
-
-- (PBUserItem_Builder*) clear;
-- (PBUserItem_Builder*) clone;
-
-- (PBUserItem*) build;
-- (PBUserItem*) buildPartial;
-
-- (PBUserItem_Builder*) mergeFrom:(PBUserItem*) other;
-- (PBUserItem_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
-- (PBUserItem_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
-
-- (BOOL) hasItemId;
-- (int32_t) itemId;
-- (PBUserItem_Builder*) setItemId:(int32_t) value;
-- (PBUserItem_Builder*) clearItemId;
-
-- (BOOL) hasCount;
-- (int32_t) count;
-- (PBUserItem_Builder*) setCount:(int32_t) value;
-- (PBUserItem_Builder*) clearCount;
-@end
-
-@interface PBUserItemList : PBGeneratedMessage {
-@private
-  BOOL hasUserId_:1;
-  NSString* userId;
-  NSMutableArray* mutableItemsList;
-}
-- (BOOL) hasUserId;
-@property (readonly, retain) NSString* userId;
-- (NSArray*) itemsList;
-- (PBUserItem*) itemsAtIndex:(int32_t) index;
-
-+ (PBUserItemList*) defaultInstance;
-- (PBUserItemList*) defaultInstance;
-
-- (BOOL) isInitialized;
-- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
-- (PBUserItemList_Builder*) builder;
-+ (PBUserItemList_Builder*) builder;
-+ (PBUserItemList_Builder*) builderWithPrototype:(PBUserItemList*) prototype;
-
-+ (PBUserItemList*) parseFromData:(NSData*) data;
-+ (PBUserItemList*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
-+ (PBUserItemList*) parseFromInputStream:(NSInputStream*) input;
-+ (PBUserItemList*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
-+ (PBUserItemList*) parseFromCodedInputStream:(PBCodedInputStream*) input;
-+ (PBUserItemList*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
-@end
-
-@interface PBUserItemList_Builder : PBGeneratedMessage_Builder {
-@private
-  PBUserItemList* result;
-}
-
-- (PBUserItemList*) defaultInstance;
-
-- (PBUserItemList_Builder*) clear;
-- (PBUserItemList_Builder*) clone;
-
-- (PBUserItemList*) build;
-- (PBUserItemList*) buildPartial;
-
-- (PBUserItemList_Builder*) mergeFrom:(PBUserItemList*) other;
-- (PBUserItemList_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
-- (PBUserItemList_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
-
-- (BOOL) hasUserId;
-- (NSString*) userId;
-- (PBUserItemList_Builder*) setUserId:(NSString*) value;
-- (PBUserItemList_Builder*) clearUserId;
-
-- (NSArray*) itemsList;
-- (PBUserItem*) itemsAtIndex:(int32_t) index;
-- (PBUserItemList_Builder*) replaceItemsAtIndex:(int32_t) index with:(PBUserItem*) value;
-- (PBUserItemList_Builder*) addItems:(PBUserItem*) value;
-- (PBUserItemList_Builder*) addAllItems:(NSArray*) values;
-- (PBUserItemList_Builder*) clearItemsList;
 @end
 
 @interface PBGameUser : PBGeneratedMessage {
@@ -319,37 +173,24 @@
   BOOL hasGender_:1;
   BOOL hasIsPlaying_:1;
   BOOL hasIsTakenOver_:1;
-  BOOL hasExperience_:1;
-  BOOL hasDiamondBalance_:1;
-  BOOL hasCoinBalance_:1;
-  BOOL hasLevel_:1;
   BOOL hasUserLevel_:1;
   BOOL hasSeatId_:1;
-  BOOL hasPassword_:1;
-  BOOL hasEmail_:1;
-  BOOL hasFacetimeId_:1;
-  BOOL hasLocation_:1;
-  BOOL hasAvatar_:1;
-  BOOL hasNickName_:1;
   BOOL hasUserId_:1;
+  BOOL hasNickName_:1;
+  BOOL hasAvatar_:1;
+  BOOL hasLocation_:1;
+  BOOL hasFacetimeId_:1;
   BOOL gender_:1;
   BOOL isPlaying_:1;
   BOOL isTakenOver_:1;
-  int64_t experience;
-  int32_t diamondBalance;
-  int32_t coinBalance;
-  int32_t level;
   int32_t userLevel;
   int32_t seatId;
-  NSString* password;
-  NSString* email;
-  NSString* facetimeId;
-  NSString* location;
-  NSString* avatar;
-  NSString* nickName;
   NSString* userId;
+  NSString* nickName;
+  NSString* avatar;
+  NSString* location;
+  NSString* facetimeId;
   NSMutableArray* mutableSnsUsersList;
-  NSMutableArray* mutableItemsList;
   NSMutableArray* mutableAttributesList;
 }
 - (BOOL) hasUserId;
@@ -362,12 +203,6 @@
 - (BOOL) hasSeatId;
 - (BOOL) hasIsPlaying;
 - (BOOL) hasIsTakenOver;
-- (BOOL) hasEmail;
-- (BOOL) hasPassword;
-- (BOOL) hasLevel;
-- (BOOL) hasExperience;
-- (BOOL) hasCoinBalance;
-- (BOOL) hasDiamondBalance;
 @property (readonly, retain) NSString* userId;
 @property (readonly, retain) NSString* nickName;
 @property (readonly, retain) NSString* avatar;
@@ -378,16 +213,8 @@
 @property (readonly) int32_t seatId;
 - (BOOL) isPlaying;
 - (BOOL) isTakenOver;
-@property (readonly, retain) NSString* email;
-@property (readonly, retain) NSString* password;
-@property (readonly) int32_t level;
-@property (readonly) int64_t experience;
-@property (readonly) int32_t coinBalance;
-@property (readonly) int32_t diamondBalance;
 - (NSArray*) snsUsersList;
 - (PBSNSUser*) snsUsersAtIndex:(int32_t) index;
-- (NSArray*) itemsList;
-- (PBUserItem*) itemsAtIndex:(int32_t) index;
 - (NSArray*) attributesList;
 - (PBKeyValue*) attributesAtIndex:(int32_t) index;
 
@@ -481,43 +308,6 @@
 - (BOOL) isTakenOver;
 - (PBGameUser_Builder*) setIsTakenOver:(BOOL) value;
 - (PBGameUser_Builder*) clearIsTakenOver;
-
-- (BOOL) hasEmail;
-- (NSString*) email;
-- (PBGameUser_Builder*) setEmail:(NSString*) value;
-- (PBGameUser_Builder*) clearEmail;
-
-- (BOOL) hasPassword;
-- (NSString*) password;
-- (PBGameUser_Builder*) setPassword:(NSString*) value;
-- (PBGameUser_Builder*) clearPassword;
-
-- (BOOL) hasLevel;
-- (int32_t) level;
-- (PBGameUser_Builder*) setLevel:(int32_t) value;
-- (PBGameUser_Builder*) clearLevel;
-
-- (BOOL) hasExperience;
-- (int64_t) experience;
-- (PBGameUser_Builder*) setExperience:(int64_t) value;
-- (PBGameUser_Builder*) clearExperience;
-
-- (BOOL) hasCoinBalance;
-- (int32_t) coinBalance;
-- (PBGameUser_Builder*) setCoinBalance:(int32_t) value;
-- (PBGameUser_Builder*) clearCoinBalance;
-
-- (BOOL) hasDiamondBalance;
-- (int32_t) diamondBalance;
-- (PBGameUser_Builder*) setDiamondBalance:(int32_t) value;
-- (PBGameUser_Builder*) clearDiamondBalance;
-
-- (NSArray*) itemsList;
-- (PBUserItem*) itemsAtIndex:(int32_t) index;
-- (PBGameUser_Builder*) replaceItemsAtIndex:(int32_t) index with:(PBUserItem*) value;
-- (PBGameUser_Builder*) addItems:(PBUserItem*) value;
-- (PBGameUser_Builder*) addAllItems:(NSArray*) values;
-- (PBGameUser_Builder*) clearItemsList;
 
 - (NSArray*) attributesList;
 - (PBKeyValue*) attributesAtIndex:(int32_t) index;
