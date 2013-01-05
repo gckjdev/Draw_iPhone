@@ -651,18 +651,12 @@
             break;
         case HomeMenuTypeDrawDraw:
         {
-<<<<<<< HEAD
-//            SelectWordController *sc = [[SelectWordController alloc] initWithType:OfflineDraw];
-//            [self.navigationController pushViewController:sc animated:YES];
-//            [sc release];
-            
-            SelectHotWordController *sc = [[SelectHotWordController alloc] init];
-=======
             [[AnalyticsManager sharedAnalyticsManager] reportClickHomeMenu:HOME_ACTION_DRAW];
 
+//            SelectWordController *sc = [[SelectWordController alloc] initWithType:OfflineDraw];
             
-            SelectWordController *sc = [[SelectWordController alloc] initWithType:OfflineDraw];
->>>>>>> 3dc7e83f0d06d8041b4f23241a56444fc3f84ba6
+            SelectHotWordController *sc = [[SelectHotWordController alloc] init];
+
             [self.navigationController pushViewController:sc animated:YES];
             [sc release];
         }
