@@ -1,11 +1,11 @@
 #!/bin/bash
 
-if [ -z $1 ]; then
-    echo " Commit message is empty. Can  not be comitted "
+line=' ========= '
+if [ -z "$1" ]; then
+    echo "$line"" Commit message is empty. Can  not be comitted ""$line"
     exit 1
 fi
 
-line=' ========= '
 echo ""
 echo $line' add files (*.h *.m *.xib *.strings *.plist *.png *.jpg *.txt *.sh *.pbxproj)  '$line
 git add *.h *.m *.xib *.strings *.plist *.png *.jpg *.txt *.sh *.pbxproj
