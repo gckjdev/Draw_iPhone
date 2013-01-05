@@ -3098,6 +3098,14 @@
 		CA1BF47C1697CD49004ABCFA /* DrawToolPanel_ip5.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA1BF47B1697CD49004ABCFA /* DrawToolPanel_ip5.xib */; };
 		CA1BF47D1697CD49004ABCFA /* DrawToolPanel_ip5.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA1BF47B1697CD49004ABCFA /* DrawToolPanel_ip5.xib */; };
 		CA1BF47E1697CD49004ABCFA /* DrawToolPanel_ip5.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA1BF47B1697CD49004ABCFA /* DrawToolPanel_ip5.xib */; };
+		CA1CA3081698728C00A9FC57 /* AnalyticsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA479467168E986400D4AF55 /* AnalyticsManager.m */; };
+		CA1CA3091698728C00A9FC57 /* AnalyticsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA479467168E986400D4AF55 /* AnalyticsManager.m */; };
+		CA1CA30A169872B000A9FC57 /* SelectHotWordController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4DE14261697DBC000841940 /* SelectHotWordController.m */; };
+		CA1CA30B169872B100A9FC57 /* SelectHotWordController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4DE14261697DBC000841940 /* SelectHotWordController.m */; };
+		CA1CA30C169872DC00A9FC57 /* WordSelectCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A4DE142A1697DBC000841940 /* WordSelectCell.m */; };
+		CA1CA30D169872DD00A9FC57 /* WordSelectCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A4DE142A1697DBC000841940 /* WordSelectCell.m */; };
+		CA1CA30E1698731400A9FC57 /* HotWordManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A422DB921693DD0D00914A48 /* HotWordManager.m */; };
+		CA1CA30F1698731500A9FC57 /* HotWordManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A422DB921693DD0D00914A48 /* HotWordManager.m */; };
 		CA1DA9081673211E0078B5A9 /* DrawFontManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1DA9071673211E0078B5A9 /* DrawFontManager.m */; };
 		CA1DA90B1673213A0078B5A9 /* DrawImageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1DA90A1673213A0078B5A9 /* DrawImageManager.m */; };
 		CA1DA90E167321480078B5A9 /* DrawViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1DA90D167321480078B5A9 /* DrawViewManager.m */; };
@@ -17809,6 +17817,10 @@
 				CA50D28E1697C6ED00A7BE14 /* DrawColorManager.m in Sources */,
 				CA1BF4761697CB19004ABCFA /* PickToolView.m in Sources */,
 				CA1BF4791697CB19004ABCFA /* PickView.m in Sources */,
+				CA1CA3091698728C00A9FC57 /* AnalyticsManager.m in Sources */,
+				CA1CA30A169872B000A9FC57 /* SelectHotWordController.m in Sources */,
+				CA1CA30C169872DC00A9FC57 /* WordSelectCell.m in Sources */,
+				CA1CA30E1698731400A9FC57 /* HotWordManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -18470,6 +18482,10 @@
 				CA50D28F1697C6ED00A7BE14 /* DrawColorManager.m in Sources */,
 				CA1BF4771697CB19004ABCFA /* PickToolView.m in Sources */,
 				CA1BF47A1697CB19004ABCFA /* PickView.m in Sources */,
+				CA1CA3081698728C00A9FC57 /* AnalyticsManager.m in Sources */,
+				CA1CA30B169872B100A9FC57 /* SelectHotWordController.m in Sources */,
+				CA1CA30D169872DD00A9FC57 /* WordSelectCell.m in Sources */,
+				CA1CA30F1698731500A9FC57 /* HotWordManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

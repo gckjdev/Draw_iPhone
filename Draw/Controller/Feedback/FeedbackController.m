@@ -82,7 +82,12 @@
         rowOfReportBug = count++;
         rowOfFeedback = count++;
         rowOfMoreApp = count++;
-        rowOfGiveReview = count++;
+        if ([ConfigManager isInReviewVersion] == NO){
+            rowOfGiveReview = count++;
+        }
+        else{
+            rowOfGiveReview = -1;
+        }
         rowOfAbout = count++;
         numberOfRows = count;
         
@@ -93,7 +98,12 @@
         rowOfReportBug = count++;
         rowOfFeedback = count++;
         rowOfMoreApp = count++;
-        rowOfGiveReview = count++;
+        if ([ConfigManager isInReviewVersion] == NO){
+            rowOfGiveReview = count++;
+        }
+        else{
+            rowOfGiveReview = -1;
+        }
         rowOfAbout = count++;
         numberOfRows = count;
         

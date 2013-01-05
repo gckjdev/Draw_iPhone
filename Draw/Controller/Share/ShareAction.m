@@ -26,6 +26,7 @@
 #import "FeedService.h"
 #import "PPViewController.h"
 #import "AnalyticsManager.h"
+#import "StorageManager.h"
 
 @interface ShareAction ()
 {
@@ -104,6 +105,7 @@
         self.isDrawByMe = ([[UserManager defaultManager] isMe:feed.author.userId]);
         self.isGIF = NO;
         self.drawUserId = feed.author.userId;
+        
         NSString* path = [NSString stringWithFormat:@"%@/%@.jpg", NSTemporaryDirectory(), [NSString GetUUID]];
         BOOL result=[[image data] writeToFile:path atomically:YES];
         if (result) {
