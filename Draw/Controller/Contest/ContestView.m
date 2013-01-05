@@ -81,7 +81,6 @@
             }
         }
     }
-
     [self.detailLabel setText:NSLS(@"kContestRule")];
 }
 
