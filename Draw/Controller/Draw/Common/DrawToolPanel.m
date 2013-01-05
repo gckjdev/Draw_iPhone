@@ -127,6 +127,7 @@
 
 - (void)updateView
 {
+    ColorPoint *firstPoint = nil;
     for (NSInteger i = 0; i < MAX_COLOR_NUMBER; ++ i) {
         ColorPoint *point = [ColorPoint pointWithColor:[DrawColor rankColor]];
         [self addSubview:point];
@@ -136,7 +137,11 @@
         frame.origin = CGPointMake(x, SPACE_COLOR_UP);
         point.frame = frame;
         point.delegate = self;
-    }
+        if (i == 0) {
+            firstPoint = point;
+        }
+    }    
+    [firstPoint sendActionsForControlEvents:UIControlEventTouchUpInside];
     
     [self.timeSet.titleLabel setFont:[UIFont fontWithName:@"DBLCDTempBlack" size:TIMESET_FONT_SIZE]];
     [self.colorBGImageView setImage:[[ShareImageManager defaultManager] drawColorBG]];
@@ -312,6 +317,7 @@
             [point setSelected:NO];
         }
     }
+    [colorPoint setSelected:YES];
     [self dismissAllPopTipViews];
     [self handleSelectColorDelegateWithColor:colorPoint.color];
 }
