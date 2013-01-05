@@ -53,5 +53,6 @@ typedef enum{
 
 
 @property (retain, nonatomic) IBOutlet UIImageView *drawFlag;
+@property (retain, nonatomic) IBOutlet UIImageView *cupFlag;
 @property (retain, nonatomic) IBOutlet UIButton *maskButton;
 @end

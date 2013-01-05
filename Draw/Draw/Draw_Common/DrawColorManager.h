@@ -11,4 +11,9 @@
 
 @interface DrawColorManager : NSObject
 
+
+- (NSArray *)getRecentColorList;
+- (void)setRecentColorList:(NSArray *)list;
+- (void)updateColorListWithColor:(DrawColor *)color;
+
 @end
