@@ -60,8 +60,8 @@
 #define VALUE(x) (ISIPAD ? x*2 : x)
 
 #define SPACE_COLOR_LEFT (ISIPAD ? 40 : 8)
-#define SPACE_COLOR_COLOR (ISIPAD ? 14 : 2)
-#define SPACE_COLOR_UP VALUE(9)
+#define SPACE_COLOR_COLOR (ISIPAD ? 14 : ((ISIPHONE5) ? 7 :2))
+#define SPACE_COLOR_UP (ISIPHONE5 ? 20 : VALUE(9))
 
 #define ALPHA_FONT_SIZE VALUE(14.0)
 #define TIMESET_FONT_SIZE VALUE(15.0)
@@ -149,6 +149,9 @@
 + (id)createViewWithdelegate:(id)delegate
 {
     NSString *identifier = @"DrawToolPanel";
+    if (ISIPHONE5) {
+        identifier = @"DrawToolPanel_ip5";
+    }
     NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:identifier
                                                              owner:self options:nil];
     

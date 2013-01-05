@@ -3079,6 +3079,9 @@
 		CA1BF4781697CB19004ABCFA /* PickView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1BF46B1697CB19004ABCFA /* PickView.m */; };
 		CA1BF4791697CB19004ABCFA /* PickView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1BF46B1697CB19004ABCFA /* PickView.m */; };
 		CA1BF47A1697CB19004ABCFA /* PickView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1BF46B1697CB19004ABCFA /* PickView.m */; };
+		CA1BF47C1697CD49004ABCFA /* DrawToolPanel_ip5.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA1BF47B1697CD49004ABCFA /* DrawToolPanel_ip5.xib */; };
+		CA1BF47D1697CD49004ABCFA /* DrawToolPanel_ip5.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA1BF47B1697CD49004ABCFA /* DrawToolPanel_ip5.xib */; };
+		CA1BF47E1697CD49004ABCFA /* DrawToolPanel_ip5.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA1BF47B1697CD49004ABCFA /* DrawToolPanel_ip5.xib */; };
 		CA1DA9081673211E0078B5A9 /* DrawFontManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1DA9071673211E0078B5A9 /* DrawFontManager.m */; };
 		CA1DA90B1673213A0078B5A9 /* DrawImageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1DA90A1673213A0078B5A9 /* DrawImageManager.m */; };
 		CA1DA90E167321480078B5A9 /* DrawViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1DA90D167321480078B5A9 /* DrawViewManager.m */; };
@@ -5842,6 +5845,7 @@
 		CA1BF4691697CB19004ABCFA /* PickToolView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PickToolView.m; sourceTree = "<group>"; };
 		CA1BF46A1697CB19004ABCFA /* PickView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PickView.h; sourceTree = "<group>"; };
 		CA1BF46B1697CB19004ABCFA /* PickView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PickView.m; sourceTree = "<group>"; };
+		CA1BF47B1697CD49004ABCFA /* DrawToolPanel_ip5.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DrawToolPanel_ip5.xib; sourceTree = "<group>"; };
 		CA1DA9061673211E0078B5A9 /* DrawFontManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawFontManager.h; sourceTree = "<group>"; };
 		CA1DA9071673211E0078B5A9 /* DrawFontManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawFontManager.m; sourceTree = "<group>"; };
 		CA1DA9091673213A0078B5A9 /* DrawImageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawImageManager.h; sourceTree = "<group>"; };
@@ -13203,6 +13207,7 @@
 				CADD263416883FDA00BDCDCF /* DrawToolPanel.h */,
 				CADD263516883FDA00BDCDCF /* DrawToolPanel.m */,
 				CADD26371688400600BDCDCF /* DrawToolPanel.xib */,
+				CA1BF47B1697CD49004ABCFA /* DrawToolPanel_ip5.xib */,
 				CA50D2681696BFE000A7BE14 /* DrawToolPanel~ipad.xib */,
 				CA25C414168995820064C05D /* ColorPoint.h */,
 				CA25C415168995820064C05D /* ColorPoint.m */,
@@ -15550,6 +15555,7 @@
 				CA50D2721696BFE100A7BE14 /* Palette~ipad.xib in Resources */,
 				CA50D2751696BFE100A7BE14 /* PenBox~ipad.xib in Resources */,
 				CA1BF45F1697C94E004ABCFA /* unloadbg@2x.png in Resources */,
+				CA1BF47D1697CD49004ABCFA /* DrawToolPanel_ip5.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -16318,6 +16324,7 @@
 				CA50D2731696BFE100A7BE14 /* Palette~ipad.xib in Resources */,
 				CA50D2761696BFE100A7BE14 /* PenBox~ipad.xib in Resources */,
 				CA1BF4601697C94E004ABCFA /* unloadbg@2x.png in Resources */,
+				CA1BF47E1697CD49004ABCFA /* DrawToolPanel_ip5.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -17041,6 +17048,7 @@
 				CA50D2711696BFE100A7BE14 /* Palette~ipad.xib in Resources */,
 				CA50D2741696BFE100A7BE14 /* PenBox~ipad.xib in Resources */,
 				CA1BF45E1697C94E004ABCFA /* unloadbg@2x.png in Resources */,
+				CA1BF47C1697CD49004ABCFA /* DrawToolPanel_ip5.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

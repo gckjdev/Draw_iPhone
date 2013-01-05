@@ -104,7 +104,7 @@
 {
     self.drawToolPanel = [DrawToolPanel createViewWithdelegate:self];
     CGFloat x = self.view.center.x;
-    CGFloat y = CGRectGetHeight(self.view.bounds) - CGRectGetHeight(self.drawToolPanel.bounds) / 2;
+    CGFloat y = CGRectGetHeight([[UIScreen mainScreen] bounds]) - CGRectGetHeight(self.drawToolPanel.bounds) / 2;
     self.drawToolPanel.center = CGPointMake(x, y);
     [self.drawToolPanel setBackgroundColor:[UIColor clearColor]];
     [self.view addSubview:self.drawToolPanel];
