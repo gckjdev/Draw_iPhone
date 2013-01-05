@@ -23,6 +23,29 @@
     return self;
 }
 
+- (id)initWithText:(NSString *)text level:(WordLevel)level score:(int)score
+{
+    self = [super init];
+    if(self)
+    {
+        self.text = text;
+        self.level = level;
+        _score = score;
+    }
+    
+    return self;
+}
+
++ (Word *)wordWithText:(NSString *)text level:(WordLevel)level
+{
+    return [[[Word alloc] initWithText:text level:level] autorelease];
+}
+
++ (Word *)wordWithText:(NSString *)text level:(WordLevel)level score:(int)score
+{
+    return [[[Word alloc] initWithText:text level:level score:score] autorelease];
+}
+
 - (void)dealloc
 {
     [_text release];
@@ -31,6 +54,10 @@
 
 - (NSInteger)score
 {
+    if (_score != 0) {
+        return _score;
+    }
+    
     switch (self.level) {
         case WordLevelHigh:
             return 5;
@@ -54,10 +81,7 @@
             return NSLS(@"kEasy");
     }
 }
-+ (Word *)wordWithText:(NSString *)text level:(WordLevel)level
-{
-    return [[[Word alloc] initWithText:text level:level]autorelease];
-}
+
 
 - (NSInteger)length
 {

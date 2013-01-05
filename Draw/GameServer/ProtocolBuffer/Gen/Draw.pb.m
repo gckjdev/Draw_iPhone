@@ -3904,3 +3904,506 @@ static PBNoCompressDrawData* defaultPBNoCompressDrawDataInstance = nil;
 }
 @end
 
+@interface PBHotWord ()
+@property int32_t wordId;
+@property (retain) NSString* word;
+@property int32_t coins;
+@property (retain) NSString* source;
+@end
+
+@implementation PBHotWord
+
+- (BOOL) hasWordId {
+  return !!hasWordId_;
+}
+- (void) setHasWordId:(BOOL) value {
+  hasWordId_ = !!value;
+}
+@synthesize wordId;
+- (BOOL) hasWord {
+  return !!hasWord_;
+}
+- (void) setHasWord:(BOOL) value {
+  hasWord_ = !!value;
+}
+@synthesize word;
+- (BOOL) hasCoins {
+  return !!hasCoins_;
+}
+- (void) setHasCoins:(BOOL) value {
+  hasCoins_ = !!value;
+}
+@synthesize coins;
+- (BOOL) hasSource {
+  return !!hasSource_;
+}
+- (void) setHasSource:(BOOL) value {
+  hasSource_ = !!value;
+}
+@synthesize source;
+- (void) dealloc {
+  self.word = nil;
+  self.source = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.wordId = 0;
+    self.word = @"";
+    self.coins = 0;
+    self.source = @"";
+  }
+  return self;
+}
+static PBHotWord* defaultPBHotWordInstance = nil;
++ (void) initialize {
+  if (self == [PBHotWord class]) {
+    defaultPBHotWordInstance = [[PBHotWord alloc] init];
+  }
+}
++ (PBHotWord*) defaultInstance {
+  return defaultPBHotWordInstance;
+}
+- (PBHotWord*) defaultInstance {
+  return defaultPBHotWordInstance;
+}
+- (BOOL) isInitialized {
+  if (!self.hasWordId) {
+    return NO;
+  }
+  if (!self.hasWord) {
+    return NO;
+  }
+  if (!self.hasCoins) {
+    return NO;
+  }
+  return YES;
+}
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
+  if (self.hasWordId) {
+    [output writeInt32:1 value:self.wordId];
+  }
+  if (self.hasWord) {
+    [output writeString:2 value:self.word];
+  }
+  if (self.hasCoins) {
+    [output writeInt32:3 value:self.coins];
+  }
+  if (self.hasSource) {
+    [output writeString:10 value:self.source];
+  }
+  [self.unknownFields writeToCodedOutputStream:output];
+}
+- (int32_t) serializedSize {
+  int32_t size = memoizedSerializedSize;
+  if (size != -1) {
+    return size;
+  }
+
+  size = 0;
+  if (self.hasWordId) {
+    size += computeInt32Size(1, self.wordId);
+  }
+  if (self.hasWord) {
+    size += computeStringSize(2, self.word);
+  }
+  if (self.hasCoins) {
+    size += computeInt32Size(3, self.coins);
+  }
+  if (self.hasSource) {
+    size += computeStringSize(10, self.source);
+  }
+  size += self.unknownFields.serializedSize;
+  memoizedSerializedSize = size;
+  return size;
+}
++ (PBHotWord*) parseFromData:(NSData*) data {
+  return (PBHotWord*)[[[PBHotWord builder] mergeFromData:data] build];
+}
++ (PBHotWord*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBHotWord*)[[[PBHotWord builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+}
++ (PBHotWord*) parseFromInputStream:(NSInputStream*) input {
+  return (PBHotWord*)[[[PBHotWord builder] mergeFromInputStream:input] build];
+}
++ (PBHotWord*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBHotWord*)[[[PBHotWord builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (PBHotWord*) parseFromCodedInputStream:(PBCodedInputStream*) input {
+  return (PBHotWord*)[[[PBHotWord builder] mergeFromCodedInputStream:input] build];
+}
++ (PBHotWord*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBHotWord*)[[[PBHotWord builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (PBHotWord_Builder*) builder {
+  return [[[PBHotWord_Builder alloc] init] autorelease];
+}
++ (PBHotWord_Builder*) builderWithPrototype:(PBHotWord*) prototype {
+  return [[PBHotWord builder] mergeFrom:prototype];
+}
+- (PBHotWord_Builder*) builder {
+  return [PBHotWord builder];
+}
+@end
+
+@interface PBHotWord_Builder()
+@property (retain) PBHotWord* result;
+@end
+
+@implementation PBHotWord_Builder
+@synthesize result;
+- (void) dealloc {
+  self.result = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.result = [[[PBHotWord alloc] init] autorelease];
+  }
+  return self;
+}
+- (PBGeneratedMessage*) internalGetResult {
+  return result;
+}
+- (PBHotWord_Builder*) clear {
+  self.result = [[[PBHotWord alloc] init] autorelease];
+  return self;
+}
+- (PBHotWord_Builder*) clone {
+  return [PBHotWord builderWithPrototype:result];
+}
+- (PBHotWord*) defaultInstance {
+  return [PBHotWord defaultInstance];
+}
+- (PBHotWord*) build {
+  [self checkInitialized];
+  return [self buildPartial];
+}
+- (PBHotWord*) buildPartial {
+  PBHotWord* returnMe = [[result retain] autorelease];
+  self.result = nil;
+  return returnMe;
+}
+- (PBHotWord_Builder*) mergeFrom:(PBHotWord*) other {
+  if (other == [PBHotWord defaultInstance]) {
+    return self;
+  }
+  if (other.hasWordId) {
+    [self setWordId:other.wordId];
+  }
+  if (other.hasWord) {
+    [self setWord:other.word];
+  }
+  if (other.hasCoins) {
+    [self setCoins:other.coins];
+  }
+  if (other.hasSource) {
+    [self setSource:other.source];
+  }
+  [self mergeUnknownFields:other.unknownFields];
+  return self;
+}
+- (PBHotWord_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
+  return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
+}
+- (PBHotWord_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
+  while (YES) {
+    int32_t tag = [input readTag];
+    switch (tag) {
+      case 0:
+        [self setUnknownFields:[unknownFields build]];
+        return self;
+      default: {
+        if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
+          [self setUnknownFields:[unknownFields build]];
+          return self;
+        }
+        break;
+      }
+      case 8: {
+        [self setWordId:[input readInt32]];
+        break;
+      }
+      case 18: {
+        [self setWord:[input readString]];
+        break;
+      }
+      case 24: {
+        [self setCoins:[input readInt32]];
+        break;
+      }
+      case 82: {
+        [self setSource:[input readString]];
+        break;
+      }
+    }
+  }
+}
+- (BOOL) hasWordId {
+  return result.hasWordId;
+}
+- (int32_t) wordId {
+  return result.wordId;
+}
+- (PBHotWord_Builder*) setWordId:(int32_t) value {
+  result.hasWordId = YES;
+  result.wordId = value;
+  return self;
+}
+- (PBHotWord_Builder*) clearWordId {
+  result.hasWordId = NO;
+  result.wordId = 0;
+  return self;
+}
+- (BOOL) hasWord {
+  return result.hasWord;
+}
+- (NSString*) word {
+  return result.word;
+}
+- (PBHotWord_Builder*) setWord:(NSString*) value {
+  result.hasWord = YES;
+  result.word = value;
+  return self;
+}
+- (PBHotWord_Builder*) clearWord {
+  result.hasWord = NO;
+  result.word = @"";
+  return self;
+}
+- (BOOL) hasCoins {
+  return result.hasCoins;
+}
+- (int32_t) coins {
+  return result.coins;
+}
+- (PBHotWord_Builder*) setCoins:(int32_t) value {
+  result.hasCoins = YES;
+  result.coins = value;
+  return self;
+}
+- (PBHotWord_Builder*) clearCoins {
+  result.hasCoins = NO;
+  result.coins = 0;
+  return self;
+}
+- (BOOL) hasSource {
+  return result.hasSource;
+}
+- (NSString*) source {
+  return result.source;
+}
+- (PBHotWord_Builder*) setSource:(NSString*) value {
+  result.hasSource = YES;
+  result.source = value;
+  return self;
+}
+- (PBHotWord_Builder*) clearSource {
+  result.hasSource = NO;
+  result.source = @"";
+  return self;
+}
+@end
+
+@interface PBHotWordList ()
+@property (retain) NSMutableArray* mutableWordsList;
+@end
+
+@implementation PBHotWordList
+
+@synthesize mutableWordsList;
+- (void) dealloc {
+  self.mutableWordsList = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+  }
+  return self;
+}
+static PBHotWordList* defaultPBHotWordListInstance = nil;
++ (void) initialize {
+  if (self == [PBHotWordList class]) {
+    defaultPBHotWordListInstance = [[PBHotWordList alloc] init];
+  }
+}
++ (PBHotWordList*) defaultInstance {
+  return defaultPBHotWordListInstance;
+}
+- (PBHotWordList*) defaultInstance {
+  return defaultPBHotWordListInstance;
+}
+- (NSArray*) wordsList {
+  return mutableWordsList;
+}
+- (PBHotWord*) wordsAtIndex:(int32_t) index {
+  id value = [mutableWordsList objectAtIndex:index];
+  return value;
+}
+- (BOOL) isInitialized {
+  for (PBHotWord* element in self.wordsList) {
+    if (!element.isInitialized) {
+      return NO;
+    }
+  }
+  return YES;
+}
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
+  for (PBHotWord* element in self.wordsList) {
+    [output writeMessage:1 value:element];
+  }
+  [self.unknownFields writeToCodedOutputStream:output];
+}
+- (int32_t) serializedSize {
+  int32_t size = memoizedSerializedSize;
+  if (size != -1) {
+    return size;
+  }
+
+  size = 0;
+  for (PBHotWord* element in self.wordsList) {
+    size += computeMessageSize(1, element);
+  }
+  size += self.unknownFields.serializedSize;
+  memoizedSerializedSize = size;
+  return size;
+}
++ (PBHotWordList*) parseFromData:(NSData*) data {
+  return (PBHotWordList*)[[[PBHotWordList builder] mergeFromData:data] build];
+}
++ (PBHotWordList*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBHotWordList*)[[[PBHotWordList builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+}
++ (PBHotWordList*) parseFromInputStream:(NSInputStream*) input {
+  return (PBHotWordList*)[[[PBHotWordList builder] mergeFromInputStream:input] build];
+}
++ (PBHotWordList*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBHotWordList*)[[[PBHotWordList builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (PBHotWordList*) parseFromCodedInputStream:(PBCodedInputStream*) input {
+  return (PBHotWordList*)[[[PBHotWordList builder] mergeFromCodedInputStream:input] build];
+}
++ (PBHotWordList*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBHotWordList*)[[[PBHotWordList builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (PBHotWordList_Builder*) builder {
+  return [[[PBHotWordList_Builder alloc] init] autorelease];
+}
++ (PBHotWordList_Builder*) builderWithPrototype:(PBHotWordList*) prototype {
+  return [[PBHotWordList builder] mergeFrom:prototype];
+}
+- (PBHotWordList_Builder*) builder {
+  return [PBHotWordList builder];
+}
+@end
+
+@interface PBHotWordList_Builder()
+@property (retain) PBHotWordList* result;
+@end
+
+@implementation PBHotWordList_Builder
+@synthesize result;
+- (void) dealloc {
+  self.result = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.result = [[[PBHotWordList alloc] init] autorelease];
+  }
+  return self;
+}
+- (PBGeneratedMessage*) internalGetResult {
+  return result;
+}
+- (PBHotWordList_Builder*) clear {
+  self.result = [[[PBHotWordList alloc] init] autorelease];
+  return self;
+}
+- (PBHotWordList_Builder*) clone {
+  return [PBHotWordList builderWithPrototype:result];
+}
+- (PBHotWordList*) defaultInstance {
+  return [PBHotWordList defaultInstance];
+}
+- (PBHotWordList*) build {
+  [self checkInitialized];
+  return [self buildPartial];
+}
+- (PBHotWordList*) buildPartial {
+  PBHotWordList* returnMe = [[result retain] autorelease];
+  self.result = nil;
+  return returnMe;
+}
+- (PBHotWordList_Builder*) mergeFrom:(PBHotWordList*) other {
+  if (other == [PBHotWordList defaultInstance]) {
+    return self;
+  }
+  if (other.mutableWordsList.count > 0) {
+    if (result.mutableWordsList == nil) {
+      result.mutableWordsList = [NSMutableArray array];
+    }
+    [result.mutableWordsList addObjectsFromArray:other.mutableWordsList];
+  }
+  [self mergeUnknownFields:other.unknownFields];
+  return self;
+}
+- (PBHotWordList_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
+  return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
+}
+- (PBHotWordList_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
+  while (YES) {
+    int32_t tag = [input readTag];
+    switch (tag) {
+      case 0:
+        [self setUnknownFields:[unknownFields build]];
+        return self;
+      default: {
+        if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
+          [self setUnknownFields:[unknownFields build]];
+          return self;
+        }
+        break;
+      }
+      case 10: {
+        PBHotWord_Builder* subBuilder = [PBHotWord builder];
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self addWords:[subBuilder buildPartial]];
+        break;
+      }
+    }
+  }
+}
+- (NSArray*) wordsList {
+  if (result.mutableWordsList == nil) { return [NSArray array]; }
+  return result.mutableWordsList;
+}
+- (PBHotWord*) wordsAtIndex:(int32_t) index {
+  return [result wordsAtIndex:index];
+}
+- (PBHotWordList_Builder*) replaceWordsAtIndex:(int32_t) index with:(PBHotWord*) value {
+  [result.mutableWordsList replaceObjectAtIndex:index withObject:value];
+  return self;
+}
+- (PBHotWordList_Builder*) addAllWords:(NSArray*) values {
+  if (result.mutableWordsList == nil) {
+    result.mutableWordsList = [NSMutableArray array];
+  }
+  [result.mutableWordsList addObjectsFromArray:values];
+  return self;
+}
+- (PBHotWordList_Builder*) clearWordsList {
+  result.mutableWordsList = nil;
+  return self;
+}
+- (PBHotWordList_Builder*) addWords:(PBHotWord*) value {
+  if (result.mutableWordsList == nil) {
+    result.mutableWordsList = [NSMutableArray array];
+  }
+  [result.mutableWordsList addObject:value];
+  return self;
+}
+@end
+

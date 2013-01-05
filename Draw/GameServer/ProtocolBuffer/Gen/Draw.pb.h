@@ -22,6 +22,10 @@
 @class PBGameSession_Builder;
 @class PBGameUser;
 @class PBGameUser_Builder;
+@class PBHotWord;
+@class PBHotWordList;
+@class PBHotWordList_Builder;
+@class PBHotWord_Builder;
 @class PBKeyValue;
 @class PBKeyValue_Builder;
 @class PBMessage;
@@ -951,5 +955,129 @@
 - (PBNoCompressDrawData_Builder*) addDrawActionList:(PBNoCompressDrawAction*) value;
 - (PBNoCompressDrawData_Builder*) addAllDrawActionList:(NSArray*) values;
 - (PBNoCompressDrawData_Builder*) clearDrawActionListList;
+@end
+
+@interface PBHotWord : PBGeneratedMessage {
+@private
+  BOOL hasWordId_:1;
+  BOOL hasCoins_:1;
+  BOOL hasWord_:1;
+  BOOL hasSource_:1;
+  int32_t wordId;
+  int32_t coins;
+  NSString* word;
+  NSString* source;
+}
+- (BOOL) hasWordId;
+- (BOOL) hasWord;
+- (BOOL) hasCoins;
+- (BOOL) hasSource;
+@property (readonly) int32_t wordId;
+@property (readonly, retain) NSString* word;
+@property (readonly) int32_t coins;
+@property (readonly, retain) NSString* source;
+
++ (PBHotWord*) defaultInstance;
+- (PBHotWord*) defaultInstance;
+
+- (BOOL) isInitialized;
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
+- (PBHotWord_Builder*) builder;
++ (PBHotWord_Builder*) builder;
++ (PBHotWord_Builder*) builderWithPrototype:(PBHotWord*) prototype;
+
++ (PBHotWord*) parseFromData:(NSData*) data;
++ (PBHotWord*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBHotWord*) parseFromInputStream:(NSInputStream*) input;
++ (PBHotWord*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBHotWord*) parseFromCodedInputStream:(PBCodedInputStream*) input;
++ (PBHotWord*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+@end
+
+@interface PBHotWord_Builder : PBGeneratedMessage_Builder {
+@private
+  PBHotWord* result;
+}
+
+- (PBHotWord*) defaultInstance;
+
+- (PBHotWord_Builder*) clear;
+- (PBHotWord_Builder*) clone;
+
+- (PBHotWord*) build;
+- (PBHotWord*) buildPartial;
+
+- (PBHotWord_Builder*) mergeFrom:(PBHotWord*) other;
+- (PBHotWord_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (PBHotWord_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+
+- (BOOL) hasWordId;
+- (int32_t) wordId;
+- (PBHotWord_Builder*) setWordId:(int32_t) value;
+- (PBHotWord_Builder*) clearWordId;
+
+- (BOOL) hasWord;
+- (NSString*) word;
+- (PBHotWord_Builder*) setWord:(NSString*) value;
+- (PBHotWord_Builder*) clearWord;
+
+- (BOOL) hasCoins;
+- (int32_t) coins;
+- (PBHotWord_Builder*) setCoins:(int32_t) value;
+- (PBHotWord_Builder*) clearCoins;
+
+- (BOOL) hasSource;
+- (NSString*) source;
+- (PBHotWord_Builder*) setSource:(NSString*) value;
+- (PBHotWord_Builder*) clearSource;
+@end
+
+@interface PBHotWordList : PBGeneratedMessage {
+@private
+  NSMutableArray* mutableWordsList;
+}
+- (NSArray*) wordsList;
+- (PBHotWord*) wordsAtIndex:(int32_t) index;
+
++ (PBHotWordList*) defaultInstance;
+- (PBHotWordList*) defaultInstance;
+
+- (BOOL) isInitialized;
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
+- (PBHotWordList_Builder*) builder;
++ (PBHotWordList_Builder*) builder;
++ (PBHotWordList_Builder*) builderWithPrototype:(PBHotWordList*) prototype;
+
++ (PBHotWordList*) parseFromData:(NSData*) data;
++ (PBHotWordList*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBHotWordList*) parseFromInputStream:(NSInputStream*) input;
++ (PBHotWordList*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBHotWordList*) parseFromCodedInputStream:(PBCodedInputStream*) input;
++ (PBHotWordList*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+@end
+
+@interface PBHotWordList_Builder : PBGeneratedMessage_Builder {
+@private
+  PBHotWordList* result;
+}
+
+- (PBHotWordList*) defaultInstance;
+
+- (PBHotWordList_Builder*) clear;
+- (PBHotWordList_Builder*) clone;
+
+- (PBHotWordList*) build;
+- (PBHotWordList*) buildPartial;
+
+- (PBHotWordList_Builder*) mergeFrom:(PBHotWordList*) other;
+- (PBHotWordList_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (PBHotWordList_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+
+- (NSArray*) wordsList;
+- (PBHotWord*) wordsAtIndex:(int32_t) index;
+- (PBHotWordList_Builder*) replaceWordsAtIndex:(int32_t) index with:(PBHotWord*) value;
+- (PBHotWordList_Builder*) addWords:(PBHotWord*) value;
+- (PBHotWordList_Builder*) addAllWords:(NSArray*) values;
+- (PBHotWordList_Builder*) clearWordsList;
 @end
 
