@@ -11,8 +11,8 @@ echo $line' add files (*.h *.m *.xib *.strings *.plist *.png *.jpg *.txt *.sh *.
 git add *.proto *.h *.m *.xib *.strings *.plist *.png *.jpg *.txt *.sh *.pbxproj
 echo ''
 
-echo $line' auto checkout unuse files (*.xcuserstate *DS_Store)  '$line
-git checkout *.xcuserstate *DS_Store
+echo $line' auto checkout unuse files (*xcbkptlist *xcuserstate *DS_Store)  '$line
+git checkout *xcbkptlist *xcuserstate *DS_Store
 echo ''
 
 echo $line' oh, commit files. comment: '"$1"" "$line
