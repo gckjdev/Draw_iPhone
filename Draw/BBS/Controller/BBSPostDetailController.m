@@ -293,6 +293,7 @@ typedef enum{
                 NSString *CellIdentifier = [BBSPostDetailCell getCellIdentifier];
                 BBSPostDetailCell *cell = [self getTableViewCell:theTableView cellIdentifier:CellIdentifier cellClass:[BBSPostDetailCell class]];
                 [cell updateCellWithBBSPost:self.post];
+                cell.delegate = self;
                 return cell;
             }
         case SectionActionList:
@@ -543,6 +544,13 @@ typedef enum{
     [[BBSService defaultService] getBBSDrawDataWithPostId:nil
                                                  actionId:action.actionId
                                                  delegate:self];
+}
+
+- (void)didClickDrawImageWithPost:(PBBBSPost *)post
+{
+    [[BBSService defaultService] getBBSDrawDataWithPostId:post.postId
+                                                 actionId:nil
+                                                 delegate:self];    
 }
 
 - (void)viewDidUnload {

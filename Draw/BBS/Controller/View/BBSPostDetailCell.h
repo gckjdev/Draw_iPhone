@@ -21,12 +21,12 @@
 @interface BBSPostDetailCell : BBSTableViewCell
 {
     PBBBSPost *_post;
-    id<BBSPostDetailCellDelegate> _delegate;
+//    id<BBSPostDetailCellDelegate> _delegate;
 }
 
 @property (retain, nonatomic) IBOutlet UIButton *reward;
 @property (retain, nonatomic) PBBBSPost *post;
-
+//@property (retain, assign) id<BBSPostDetailCellDelegate> delegate;
 
 
 + (id)createCell:(id)delegate;
