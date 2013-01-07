@@ -112,21 +112,24 @@
 //for tool
 - (UIImage*)colorBuyedImage;
 - (UIImage *)buyedImage;
-- (UIImage *)brushPen;
 - (UIImage *)removeAd;
-- (UIImage *)icePen;
 - (UIImage *)flower;
+
+//- (UIImage *)brushPen;
+//- (UIImage *)icePen;
+- (UIImage *)printOil;
+//- (UIImage *)quillPen;
+//- (UIImage*)waterPen;
+
 - (UIImage *)itemOut;
 - (UIImage *)itemShadow;
-- (UIImage *)printOil;
-- (UIImage *)quillPen;
 - (UIImage *)rewardCoin;
 - (UIImage *)shopShelf;
 - (UIImage *)shoppingBackground;
 - (UIImage *)tipBag;
 - (UIImage *)tomato;
 - (UIImage *)smallCoin;
-- (UIImage*)waterPen;
+
 - (UIImage *)pickToolBackground;
 - (UIImage *)unloadBg;
 - (UIImage*)backButtonImage;

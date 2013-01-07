@@ -44,6 +44,8 @@
 #import "ConfigManager.h"
 #import "SelectHotWordController.h"
 #import "DrawToolPanel.h"
+#import "DrawColorManager.h"
+
 
 @interface OfflineDrawViewController()
 {
@@ -64,7 +66,7 @@
     
     DrawColor *_penColor;
     DrawColor *_eraserColor;
-    
+    DrawColor *_tempColor;
     
     Contest *_contest;
     
@@ -88,6 +90,8 @@
 
 - (void)saveDraft:(BOOL)showResult;
 - (PBDraw *)pbDraw;
+
+- (void)updateRecentColors;
 @end
 
 
@@ -568,6 +572,7 @@ enum{
 - (void)didStartedTouch:(Paint *)paint
 {
     [self.drawToolPanel dismissAllPopTipViews];
+    [self updateRecentColors];
 }
 
 #define DRAFT_PAINT_COUNT [ConfigManager drawAutoSavePaintInterval]
@@ -655,7 +660,9 @@ enum{
 }
 - (PBNoCompressDrawData *)noCompressDrawData
 {
-    return [DrawAction drawActionListToPBNoCompressDrawData:drawView.drawActionList];
+    NSMutableArray *temp = [NSMutableArray arrayWithArray:drawView.drawActionList];
+    return [DrawAction drawActionListToPBNoCompressDrawData:temp];
+    PPRelease(temp);
 }
 
 - (void)saveDraft:(BOOL)showResult
@@ -804,14 +811,20 @@ enum{
 - (void)drawToolPanel:(DrawToolPanel *)toolPanel didClickEraserButton:(UIButton *)button
 {
     [drawView setLineColor:self.eraserColor];
+    [drawView setPenType:Eraser];
 }
 - (void)drawToolPanel:(DrawToolPanel *)toolPanel didClickPaintBucket:(UIButton *)button
 {
     [drawView addChangeBackAction:self.penColor];
     self.eraserColor = self.penColor;
+    self.penColor = drawView.lineColor = [DrawColor blackColor];
+    [toolPanel setColor:self.penColor];
+    [self updateRecentColors];
+    [_drawToolPanel updateRecentColorViewWithColor:[DrawColor blackColor]];
 }
 - (void)drawToolPanel:(DrawToolPanel *)toolPanel didSelectPen:(ItemType)penType
 {
+    PPDebug(@"<didSelectPen> pen type = %d",penType);
     drawView.penType = penType;
 }
 - (void)drawToolPanel:(DrawToolPanel *)toolPanel didSelectWidth:(CGFloat)width
@@ -822,11 +835,23 @@ enum{
 {
     self.penColor = color;
     [drawView setLineColor:color];
+    _tempColor = color;
 }
 - (void)drawToolPanel:(DrawToolPanel *)toolPanel didSelectAlpha:(CGFloat)alpha
 {
-    [self.penColor setAlpha:alpha];
-    [drawView setLineColor:self.penColor];    
+    [drawView.lineColor setAlpha:alpha];
+}
+
+
+#pragma mark - Recent Color
+
+- (void)updateRecentColors
+{
+    if (_tempColor) {
+        [[DrawColorManager sharedDrawColorManager] updateColorListWithColor:_tempColor];
+        [_drawToolPanel updateRecentColorViewWithColor:_tempColor];
+        _tempColor = nil;
+    }
 }
 
 @end

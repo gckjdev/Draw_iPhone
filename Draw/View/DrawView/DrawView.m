@@ -296,6 +296,7 @@
         
         self.lineColor = [DrawColor blackColor];
         self.lineWidth = DEFAULT_LINE_WIDTH;
+        self.penType = Pencil;
         _drawActionList = [[NSMutableArray alloc] init];
         self.backgroundColor = [UIColor whiteColor];        
         _startDrawActionIndex = 0;

@@ -165,6 +165,8 @@
 - (void)drawRect:(CGRect)rect
 {
     CGContextRef context = UIGraphicsGetCurrentContext();
+    
+    
     CGContextSetFillColorWithColor(context, loadColor.CGColor);
     
     // Drawing code
@@ -178,6 +180,15 @@
     //draw point
     r = CGRectMake(POINT_X, 0, POINT_WIDTH, POINT_HEIGHT);
     [self.pointImage drawInRect:r];
+
+    if (!self.enabled) {
+        CGContextSetAlpha(context, 0.1);
+        CGContextSetFillColorWithColor(context, [UIColor whiteColor].CGColor);
+        CGContextFillRect(context, self.bounds);
+    }
+    
+
+    
     [super drawRect:rect];
 }
 

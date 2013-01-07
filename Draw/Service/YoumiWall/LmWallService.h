@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <immobSDK/immobView.h>
 
+
 @interface LmWallService : NSObject<immobViewDelegate>
 {
     UIViewController* _viewController;
@@ -21,5 +22,6 @@
 - (void)show:(UIViewController*)viewController;
 - (void)show:(UIViewController*)viewController isForRemoveAd:(BOOL)isForRemoveAd;
 - (void)queryScore;
++ (void)showWallOnController:(UIViewController*)controller;
 
 @end

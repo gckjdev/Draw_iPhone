@@ -796,6 +796,7 @@
 "kBuySuccess" = "購買成功";
 "kLoadingComments" = "加載評論中...";
 "kNotEnoughCoin" = "金幣不足";
+"kNotEnoughCoinOrItem" = "道具和金幣都不夠了，充充值吧";
 
 "kParsingData" = "解析數據中...";
 

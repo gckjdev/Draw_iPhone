@@ -61,6 +61,34 @@
 
 //the value size should be 5 * 3 = 15
 #define COLOR_VALUE_SIZE 15
+
++ (NSArray *)drawColorListWithColorValues:(NSInteger *)values
+{
+    NSMutableArray *array = [[[NSMutableArray alloc] initWithCapacity:5]autorelease];
+    for (int i = 0; i < COLOR_VALUE_SIZE; i += 3) {
+        NSInteger red = values[i];
+        NSInteger green = values[i + 1];
+        NSInteger blue = values[i + 2];
+        DrawColor *color = [DrawColor colorWithRed:red/255. green:green/255. blue:blue/255. alpha:1];
+        [array addObject:color];
+    }
+    return array;
+}
+
++ (NSArray *)colorListForGroupId:(NSInteger)groupId
+{
+    NSArray *colors = [ColorGroup colorValueForGroupId:groupId];
+    if (colors) {
+        NSInteger colorArray[COLOR_VALUE_COUNT];
+        for (NSInteger j = 0; j < COLOR_VALUE_COUNT; ++ j) {
+            colorArray[j] = [(NSNumber *)[colors objectAtIndex:j] intValue];
+        }
+        NSArray *array = [ColorGroup drawColorListWithColorValues:colorArray];
+        return array;
+    }
+    return nil;
+}
+
 + (NSArray *)colorViewListWithColorValues:(NSInteger *)values
 {
     NSMutableArray *array = [[[NSMutableArray alloc] initWithCapacity:5]autorelease];
@@ -268,6 +296,9 @@
             colorValues = values;
             break;//brown
         }   
+    }
+    if (colorValues == NULL) {
+        return nil;
     }
     NSMutableArray* array = [[[NSMutableArray alloc] initWithCapacity:COLOR_VALUE_COUNT] autorelease];
     for (int i = 0; i<COLOR_VALUE_COUNT; i++) {

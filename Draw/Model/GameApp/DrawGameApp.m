@@ -73,43 +73,50 @@
 - (NSString*)sinaAppKey
 {
 //    return @"2831348933";
-    return @"4285743836";
+    return [MobClickUtils getStringValueByKey:@"DRAW_SINA_APP_KEY" defaultValue:@"4285743836"];
 }
 
 - (NSString*)sinaAppSecret
 {
 //    return @"ff89c2f5667b0199ee7a8bad6c44b265";    
-    return @"7a88336d7290279aef4112fda83708fd";
+//    return @"7a88336d7290279aef4112fda83708fd";
+    return [MobClickUtils getStringValueByKey:@"DRAW_SINA_APP_SECRET" defaultValue:@"7a88336d7290279aef4112fda83708fd"];
 }
 
 - (NSString*)sinaAppRedirectURI
 {
-    return @"http://www.drawlively.com/draw";
+//    return @"http://www.drawlively.com/draw";
+    return [MobClickUtils getStringValueByKey:@"DRAW_SINA_APP_REDIRECT_URI" defaultValue:@"http://www.drawlively.com/draw"];
 }
 
 - (NSString*)qqAppKey
 {
-    return @"801123669";    
+    return [MobClickUtils getStringValueByKey:@"DRAW_QQ_APP_KEY" defaultValue:@"801123669"];
+//    return @"801123669";
 }
 
 - (NSString*)qqAppSecret
 {
-    return @"30169d80923b984109ee24ade9914a5c";    
+    return [MobClickUtils getStringValueByKey:@"DRAW_QQ_APP_SECRET" defaultValue:@"30169d80923b984109ee24ade9914a5c"];
+//    return @"30169d80923b984109ee24ade9914a5c";
 }
 
 - (NSString*)qqAppRedirectURI
 {
-    return @"http://caicaihuahua.me";    
+    return [MobClickUtils getStringValueByKey:@"DRAW_QQ_REDIRECT_URI" defaultValue:@"http://caicaihuahua.me"];
+//    return @"http://caicaihuahua.me";
 }
 
 - (NSString*)facebookAppKey
 {
-    return @"352182988165711";    
+    return [MobClickUtils getStringValueByKey:@"DRAW_FACEBOOK_APP_SECRET" defaultValue:@"352182988165711"];
+//    return @"352182988165711";
 }
 
 - (NSString*)facebookAppSecret
 {
-    return @"51c65d7fbef9858a5d8bc60014d33ce2";
+    return [MobClickUtils getStringValueByKey:@"DRAW_FACEBOOK_APP_SECRET" defaultValue:@"51c65d7fbef9858a5d8bc60014d33ce2"];
+//    return @"51c65d7fbef9858a5d8bc60014d33ce2";
 }
 
 - (NSString*)wanpuAdPublisherId
@@ -134,12 +141,14 @@
 
 - (NSString*)sinaWeiboId
 {
-    return @"猜猜画画手机版";
+    return [MobClickUtils getStringValueByKey:@"DRAW_SINA_WEIBO_NICKNAME" defaultValue:@"猜猜画画手机版"];
+//    return @"猜猜画画手机版";
 }
 
 - (NSString*)qqWeiboId
 {
-    return @"drawlively";
+    return [MobClickUtils getStringValueByKey:@"DRAW_QQ_WEIBO_ID" defaultValue:@"drawlively"];
+//    return @"drawlively";
 }
 
 - (NSString*)feedbackTips

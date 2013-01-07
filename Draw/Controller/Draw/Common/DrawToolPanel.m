@@ -14,11 +14,14 @@
 #import "ShareImageManager.h"
 #import "ItemManager.h"
 #import "ItemType.h"
+#import "DrawColorManager.h"
+
 
 @interface DrawToolPanel ()
 {
     NSTimer *timer;
     NSInteger _retainTime;
+    DrawColorManager *drawColorManager;
 }
 
 #pragma mark - click actions
@@ -86,7 +89,7 @@
 
 - (void)updatePopTipView:(CMPopTipView *)popTipView
 {
-    [popTipView setBackgroundColor:[UIColor colorWithRed:168./255. green:168./255. blue:168./255. alpha:0.4]];
+    [popTipView setBackgroundColor:[UIColor colorWithRed:168./255. green:168./255. blue:168./255. alpha:0.8]];
     [popTipView setPointerSize:POP_POINTER_SIZE];
     [self.palettePopTipView setDelegate:self];
 }
@@ -120,32 +123,52 @@
     [self.colorAlpha setText:NSLS(@"kColorAlpha")];
     
     //TODO implement color alpha
-    self.alphaSlider.hidden = YES;
-    self.colorAlpha.hidden = YES;
+//    self.alphaSlider.hidden = YES;
+//    self.colorAlpha.hidden = YES;
+    [self.alphaSlider setEnabled:NO];
+}
+
+- (void)updateRecentColorViewWithColor:(DrawColor *)color
+{
+    for (ColorPoint *p in self.subviews) {
+        if ([p isKindOfClass:[ColorPoint class]]) {
+            [p removeFromSuperview];
+        }
+    }
+    drawColorManager = [DrawColorManager sharedDrawColorManager];
+    NSInteger i = 0;
+    ColorPoint *selectedPoint = nil;
+    
+    for (DrawColor *c in [drawColorManager recentColorList]) {
+        ColorPoint *point = [ColorPoint pointWithColor:c];
+        CGRect frame = point.frame;
+        CGFloat x = SPACE_COLOR_LEFT + i * (CGRectGetWidth(point.frame) + SPACE_COLOR_COLOR);
+        frame.origin = CGPointMake(x, SPACE_COLOR_UP);
+        point.frame = frame;
+        point.delegate = self;
+        [self addSubview:point];
+        [point setSelected:NO];
+        if (i == 0 ||  [color isEqual:c]) {
+            selectedPoint = point;
+        }
+        i ++;
+        if (i >= MAX_COLOR_NUMBER) {
+            break;
+        }
+    }
+    [selectedPoint setSelected:YES];
+}
+- (void)updateRecentColorViews
+{
+    [self updateRecentColorViewWithColor:[DrawColor blackColor]];
 }
 
 
 - (void)updateView
 {
-    ColorPoint *firstPoint = nil;
-    for (NSInteger i = 0; i < MAX_COLOR_NUMBER; ++ i) {
-        ColorPoint *point = [ColorPoint pointWithColor:[DrawColor rankColor]];
-        [self addSubview:point];
-        CGRect frame = point.frame;
-        CGFloat x = SPACE_COLOR_LEFT + i * (CGRectGetWidth(point.frame) + SPACE_COLOR_COLOR);
-        
-        frame.origin = CGPointMake(x, SPACE_COLOR_UP);
-        point.frame = frame;
-        point.delegate = self;
-        if (i == 0) {
-            firstPoint = point;
-        }
-    }    
-    [firstPoint sendActionsForControlEvents:UIControlEventTouchUpInside];
-    
+    [self updateRecentColorViews];
     [self.timeSet.titleLabel setFont:[UIFont fontWithName:@"DBLCDTempBlack" size:TIMESET_FONT_SIZE]];
     [self.colorBGImageView setImage:[[ShareImageManager defaultManager] drawColorBG]];
-
     //update width and alpha
     [self updateSliders];
 }
@@ -205,6 +228,14 @@
 {
     self.redo.hidden = self.undo.hidden = isOnline;
     self.timeSet.hidden = self.chat.hidden = !isOnline;
+}
+
+- (void)setColor:(DrawColor *)color
+{
+    if (_color != color) {
+        PPRelease(_color);
+        _color = [color retain];
+    }
 }
 
 #pragma mark - click actions
@@ -452,6 +483,8 @@
 }
 
 - (void)dealloc {
+    
+    [drawColorManager syncRecentList];
     PPRelease(_colorBoxPopTipView);
     PPRelease(_penPopTipView);
     PPRelease(_palettePopTipView);
@@ -462,12 +495,13 @@
     PPRelease(_colorAlpha);
     PPRelease(_timer);
     
-    [_pen release];
-    [_chat release];
-    [_timeSet release];
-    [_redo release];
-    [_undo release];
-    [_colorBGImageView release];
+    PPRelease(_pen);
+    PPRelease(_chat);
+    PPRelease(_timeSet);
+    PPRelease(_redo);
+    PPRelease(_undo);
+    PPRelease(_colorBGImageView);
+
     [super dealloc];
 }
 

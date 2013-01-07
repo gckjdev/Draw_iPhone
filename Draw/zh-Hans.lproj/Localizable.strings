@@ -802,7 +802,7 @@
 
 "kLoadingComments" = "加载评论中...";
 "kNotEnoughCoin" = "金币不足";
-
+"kNotEnoughCoinOrItem" = "道具和金币都不够了，充充值吧";
 
 "kParsingData" = "解析数据中...";
 

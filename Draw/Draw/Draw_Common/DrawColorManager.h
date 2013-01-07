@@ -11,9 +11,13 @@
 
 @interface DrawColorManager : NSObject
 
-
-- (NSArray *)getRecentColorList;
-- (void)setRecentColorList:(NSArray *)list;
++ (id)sharedDrawColorManager;
+- (NSArray *)recentColorList;
 - (void)updateColorListWithColor:(DrawColor *)color;
+- (void)syncRecentList;
 
+
+- (NSArray *)boughtColorList;
+- (void)addBoughtColorList:(NSArray *)list;
+- (NSArray *)boughtColorListWithOffset:(NSUInteger)offset limit:(NSUInteger)limit;
 @end
