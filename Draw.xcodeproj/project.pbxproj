@@ -3145,6 +3145,10 @@
 		CA22B78F169AD58D00DAB1C3 /* draw_slider_disable@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA22B78D169AD58D00DAB1C3 /* draw_slider_disable@2x.png */; };
 		CA22B790169AD58D00DAB1C3 /* draw_slider_disable@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA22B78D169AD58D00DAB1C3 /* draw_slider_disable@2x.png */; };
 		CA22B791169AD58D00DAB1C3 /* draw_slider_disable@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA22B78D169AD58D00DAB1C3 /* draw_slider_disable@2x.png */; };
+		CA22B793169AD65300DAB1C3 /* draw_palette@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA22B792169AD65300DAB1C3 /* draw_palette@2x.png */; };
+		CA22B794169AD65300DAB1C3 /* draw_palette@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA22B792169AD65300DAB1C3 /* draw_palette@2x.png */; };
+		CA22B795169AD65300DAB1C3 /* draw_palette@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA22B792169AD65300DAB1C3 /* draw_palette@2x.png */; };
+		CA22B796169AD65300DAB1C3 /* draw_palette@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA22B792169AD65300DAB1C3 /* draw_palette@2x.png */; };
 		CA22DCD2157CAFFD009C95CB /* ResultController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA22DCCF157CAFFD009C95CB /* ResultController.m */; };
 		CA22DCD3157CAFFD009C95CB /* ResultController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA22DCD0157CAFFD009C95CB /* ResultController.xib */; };
 		CA22DCED157CB00A009C95CB /* OnlineDrawViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA22DCE0157CB00A009C95CB /* OnlineDrawViewController.m */; };
@@ -7367,6 +7371,7 @@
 		CA1DAA30167583120078B5A9 /* DrawHomeHeaderPanel~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "DrawHomeHeaderPanel~ipad.xib"; sourceTree = "<group>"; };
 		CA22B788169AD58000DAB1C3 /* draw_palette_unbuy@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "draw_palette_unbuy@2x.png"; sourceTree = "<group>"; };
 		CA22B78D169AD58D00DAB1C3 /* draw_slider_disable@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "draw_slider_disable@2x.png"; sourceTree = "<group>"; };
+		CA22B792169AD65300DAB1C3 /* draw_palette@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "draw_palette@2x.png"; sourceTree = "<group>"; };
 		CA22DCCE157CAFFD009C95CB /* ResultController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResultController.h; sourceTree = "<group>"; };
 		CA22DCCF157CAFFD009C95CB /* ResultController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResultController.m; sourceTree = "<group>"; };
 		CA22DCD0157CAFFD009C95CB /* ResultController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ResultController.xib; sourceTree = "<group>"; };
@@ -12200,6 +12205,7 @@
 		CA25C3B7168968070064C05D /* Tool */ = {
 			isa = PBXGroup;
 			children = (
+				CA22B792169AD65300DAB1C3 /* draw_palette@2x.png */,
 				CA22B788169AD58000DAB1C3 /* draw_palette_unbuy@2x.png */,
 				CA25C3B8168968070064C05D /* draw_add@2x.png */,
 				CA25C3B9168968070064C05D /* draw_color_bg@2x.png */,
@@ -17156,6 +17162,7 @@
 				CA1BF47D1697CD49004ABCFA /* DrawToolPanel_ip5.xib in Resources */,
 				CA22B78A169AD58000DAB1C3 /* draw_palette_unbuy@2x.png in Resources */,
 				CA22B78F169AD58D00DAB1C3 /* draw_slider_disable@2x.png in Resources */,
+				CA22B794169AD65300DAB1C3 /* draw_palette@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -17926,6 +17933,7 @@
 				CA1BF47E1697CD49004ABCFA /* DrawToolPanel_ip5.xib in Resources */,
 				CA22B78B169AD58000DAB1C3 /* draw_palette_unbuy@2x.png in Resources */,
 				CA22B790169AD58D00DAB1C3 /* draw_slider_disable@2x.png in Resources */,
+				CA22B795169AD65300DAB1C3 /* draw_palette@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -18672,6 +18680,7 @@
 				A4DE148F169ABF0400841940 /* SelectCustomWordCell~ipad.xib in Resources */,
 				CA22B789169AD58000DAB1C3 /* draw_palette_unbuy@2x.png in Resources */,
 				CA22B78E169AD58D00DAB1C3 /* draw_slider_disable@2x.png in Resources */,
+				CA22B793169AD65300DAB1C3 /* draw_palette@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -19420,6 +19429,7 @@
 				CAB5CC9516994F0200A4CE3B /* WordSelectCell.xib in Resources */,
 				CA22B78C169AD58000DAB1C3 /* draw_palette_unbuy@2x.png in Resources */,
 				CA22B791169AD58D00DAB1C3 /* draw_slider_disable@2x.png in Resources */,
+				CA22B796169AD65300DAB1C3 /* draw_palette@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

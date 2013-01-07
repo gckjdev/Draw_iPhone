@@ -834,7 +834,7 @@
 			<string key="draw_color_bg@2x.png">{627, 88}</string>
 			<string key="draw_eraser@2x.png">{47, 95}</string>
 			<string key="draw_oil@2x.png">{71, 92}</string>
-			<string key="draw_palette@2x.png">{16, 16}</string>
+			<string key="draw_palette@2x.png">{85, 71}</string>
 			<string key="draw_palette_unbuy@2x.png">{85, 71}</string>
 			<string key="draw_pen1@2x.png">{47, 95}</string>
 			<string key="draw_redo@2x.png">{63, 65}</string>
