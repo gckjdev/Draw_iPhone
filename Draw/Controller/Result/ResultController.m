@@ -743,8 +743,12 @@
 //        [dialog showInView:self.view];
 //        return NO;
 
-        [[AccountService defaultService] buyItem:toolView.itemType itemCount:1 itemCoins:(item.price/item.buyAmountForOnce)];
+        int result = [[AccountService defaultService] buyItem:toolView.itemType itemCount:1 itemCoins:(item.price/item.buyAmountForOnce)];
         itemEnough = NO;
+        if (result == ERROR_COINS_NOT_ENOUGH) {
+            [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kNotEnoughCoinOrItem") delayTime:1];
+            return NO;
+        }
     }
     UIImageView* throwingItem= [[[UIImageView alloc] initWithFrame:toolView.frame] autorelease];
     [throwingItem setImage:toolView.imageView.image];

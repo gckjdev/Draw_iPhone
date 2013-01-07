@@ -791,7 +791,7 @@
 "kLoadingComments" = "Loading comments...";
 
 "kNotEnoughCoin" = "Coins not enough";
-
+"kNotEnoughCoinOrItem" = "No enough coin or item";
 
 "kParsingData" = "Parsing data...";
 

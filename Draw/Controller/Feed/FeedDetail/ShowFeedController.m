@@ -34,6 +34,9 @@
 #import "SDWebImageManager.h"
 #import "AccountService.h"
 #import "ConfigManager.h"
+#import "CoinShopController.h"
+
+#import "LmWallService.h"
 
 @interface ShowFeedController () {
     ShareAction* _shareAction;
@@ -478,6 +481,16 @@ enum{
 
 #define ITEM_TAG_OFFSET 20120728
 
+- (void)showCoinsNotEnoughView
+{
+    CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"kNotEnoughCoin")
+                                                       message:NSLS(@"kCoinsNotEnough")
+                                                         style:CommonDialogStyleDoubleButton
+                                                      delegate:self
+                            ];
+    [dialog showInView:self.view];
+}
+
 - (void)throwItem:(Item *)item
 {
     
@@ -497,8 +510,13 @@ enum{
 //        CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kNoItemTitle") message:NSLS(@"kNoItemMessage") style:CommonDialogStyleDoubleButton delegate:self];
 //        dialog.tag = ITEM_TAG_OFFSET + item.type;
 //        [dialog showInView:self.view];
-        [[AccountService defaultService] buyItem:item.type itemCount:1 itemCoins:(item.price/item.buyAmountForOnce)];
+        int result = [[AccountService defaultService] buyItem:item.type itemCount:1 itemCoins:(item.price/item.buyAmountForOnce)];
         itemEnough = NO;
+        if (result == ERROR_COINS_NOT_ENOUGH) {
+            [self showCoinsNotEnoughView];
+            return;
+        }
+        
     }
     [[ItemService defaultService] sendItemAward:item.type
                                    targetUserId:_feed.author.userId
@@ -530,16 +548,12 @@ enum{
 
 - (void)clickOk:(CommonDialog *)dialog
 {
-    switch (dialog.tag) {
-        case (ItemTypeTomato + ITEM_TAG_OFFSET): {
-            [CommonItemInfoView showItem:[Item tomato] infoInView:self];
-        } break;
-        case (ItemTypeFlower + ITEM_TAG_OFFSET): {
-            [CommonItemInfoView showItem:[Item flower] infoInView:self];
-        } break;
-        default:
-            break;
-    }    
+    if ([ConfigManager wallEnabled]) {
+        [LmWallService showWallOnController:self];
+    }else {
+        CoinShopController* controller = [[[CoinShopController alloc] init] autorelease];
+        [self.navigationController pushViewController:controller animated:YES];
+    }
 }
 
 - (void)clickBack:(CommonDialog *)dialog
