@@ -45,7 +45,7 @@
 #import "SelectHotWordController.h"
 #import "DrawToolPanel.h"
 #import "DrawColorManager.h"
-
+#import "VendingController.h"
 
 @interface OfflineDrawViewController()
 {
@@ -377,6 +377,12 @@ enum{
 - (void)viewDidDisappear:(BOOL)animated
 {
     [super viewDidDisappear:animated];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [self.drawToolPanel updateView];
 }
 
 #define ESCAPE_DEDUT_COIN 1
@@ -842,6 +848,11 @@ enum{
     [drawView.lineColor setAlpha:alpha];
 }
 
+- (void)drawToolPanel:(DrawToolPanel *)toolPanel startToBuyItem:(ItemType)type
+{
+    VendingController *vend = [VendingController instance];
+    [self.navigationController pushViewController:vend animated:YES];
+}
 
 #pragma mark - Recent Color
 

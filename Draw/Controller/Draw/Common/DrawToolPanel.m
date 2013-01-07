@@ -15,7 +15,8 @@
 #import "ItemManager.h"
 #import "ItemType.h"
 #import "DrawColorManager.h"
-
+#import "AccountService.h"
+#import "ItemType.h"
 
 @interface DrawToolPanel ()
 {
@@ -44,6 +45,7 @@
 @property (retain, nonatomic) IBOutlet UIButton *timeSet;
 @property (retain, nonatomic) IBOutlet UIButton *redo;
 @property (retain, nonatomic) IBOutlet UIButton *undo;
+@property (retain, nonatomic) IBOutlet UIButton *palette;
 
 
 @property (retain, nonatomic) CMPopTipView *penPopTipView;
@@ -85,8 +87,6 @@
 #pragma mark - setter methods
 
 
-
-
 - (void)updatePopTipView:(CMPopTipView *)popTipView
 {
     [popTipView setBackgroundColor:[UIColor colorWithRed:168./255. green:168./255. blue:168./255. alpha:0.8]];
@@ -121,11 +121,14 @@
 
     [self.penWidth setText:NSLS(@"kPenWidth")];
     [self.colorAlpha setText:NSLS(@"kColorAlpha")];
-    
+
+    if (![[AccountService defaultService] hasEnoughItemAmount:ColorAlphaItem amount:1]) {
+        [self.alphaSlider setSelected:YES];
+    }
     //TODO implement color alpha
 //    self.alphaSlider.hidden = YES;
 //    self.colorAlpha.hidden = YES;
-    [self.alphaSlider setEnabled:NO];
+//    [self.alphaSlider setEnabled:NO];
 }
 
 - (void)updateRecentColorViewWithColor:(DrawColor *)color
@@ -169,8 +172,13 @@
     [self updateRecentColorViews];
     [self.timeSet.titleLabel setFont:[UIFont fontWithName:@"DBLCDTempBlack" size:TIMESET_FONT_SIZE]];
     [self.colorBGImageView setImage:[[ShareImageManager defaultManager] drawColorBG]];
+
     //update width and alpha
     [self updateSliders];
+    
+    if (![[AccountService defaultService] hasEnoughItemAmount:PaletteItem amount:1]) {
+        [self.palette setSelected:YES];
+    }
 }
 
 
@@ -310,6 +318,13 @@
 
 - (IBAction)clickPalette:(id)sender {
 
+    if (self.palette.selected) {
+        if (_delegate && [_delegate respondsToSelector:@selector(drawToolPanel:startToBuyItem:)]) {
+            [_delegate drawToolPanel:self startToBuyItem:PaletteItem];
+        }
+        return;
+    }
+
     [self handlePopTipView:_palettePopTipView contentView:^UIView *{
         PPDebug(@"<block> [Palette createViewWithdelegate:self]");
         Palette *pallete = [Palette createViewWithdelegate:self];
@@ -370,6 +385,10 @@
         WidthView *widthView = (WidthView *)drawSlider.contentView;
         [widthView setWidth:value];
     }else if(self.alphaSlider == drawSlider){
+        if ([self.alphaSlider isSelected]) {
+            return;
+        }
+
         UILabel *label = (UILabel *)drawSlider.contentView;
         [self updateLabel:label value:value];
     }
@@ -385,6 +404,10 @@
             [self.delegate drawToolPanel:self didSelectWidth:value];
         }
     }else if(drawSlider == self.alphaSlider){
+        if ([self.alphaSlider isSelected]) {
+            return;
+        }
+
         self.alpha = value;
         if(self.delegate && [self.delegate respondsToSelector:@selector(drawToolPanel:didSelectAlpha:)])
         {
@@ -396,6 +419,12 @@
 - (void)drawSlider:(DrawSlider *)drawSlider didStartToChangeValue:(CGFloat)value
 {
     if (drawSlider == self.alphaSlider) {
+        if ([self.alphaSlider isSelected]) {
+            if (_delegate && [_delegate respondsToSelector:@selector(drawToolPanel:startToBuyItem:)]) {
+                [_delegate drawToolPanel:self startToBuyItem:ColorAlphaItem];
+            }
+            return;
+        }
         UILabel *label = [[[UILabel alloc] initWithFrame:ALPHA_LABEL_FRAME] autorelease];
         [label setTextAlignment:NSTextAlignmentCenter];
         [drawSlider popupWithContenView:label];
@@ -502,6 +531,7 @@
     PPRelease(_undo);
     PPRelease(_colorBGImageView);
 
+    [_palette release];
     [super dealloc];
 }
 

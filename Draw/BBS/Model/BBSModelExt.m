@@ -157,8 +157,9 @@
         if ([self isCommet]) {
             return self.content.text;
         }else if([self isReply]){
+            
             return [NSString stringWithFormat:NSLS(@"kReplyUserPost"),
-                    self.createUser.showNick,
+                    self.source.replyNick,
                     self.content.text];
         }
     }

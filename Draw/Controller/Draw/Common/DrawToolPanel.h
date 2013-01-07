@@ -32,6 +32,8 @@
 - (void)drawToolPanel:(DrawToolPanel *)toolPanel didSelectAlpha:(CGFloat)alpha;
 - (void)drawToolPanel:(DrawToolPanel *)toolPanel didSelectColor:(DrawColor *)color;
 
+- (void)drawToolPanel:(DrawToolPanel *)toolPanel startToBuyItem:(ItemType)type;
+
 
 //online
 - (void)drawToolPanel:(DrawToolPanel *)toolPanel didClickChatButton:(UIButton *)button;
@@ -52,9 +54,9 @@
 
 
 + (id)createViewWithdelegate:(id)delegate;
+- (void)updateView;
 - (void)dismissAllPopTipViews;
 - (void)setPanelForOnline:(BOOL)isOnline;
-
 - (void)updateRecentColorViewWithColor:(DrawColor *)color;
 
 #pragma mark - Timer

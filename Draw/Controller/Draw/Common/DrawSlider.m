@@ -164,30 +164,26 @@
 // An empty implementation adversely affects performance during animation.
 - (void)drawRect:(CGRect)rect
 {
-    CGContextRef context = UIGraphicsGetCurrentContext();
-    
-    
-    CGContextSetFillColorWithColor(context, loadColor.CGColor);
-    
-    // Drawing code
-    //Draw bg
-    [self.bgImage drawInRect:self.bounds];
+    if (self.selected) {
+        [[[ShareImageManager defaultManager] drawSliderDisableImage] drawInRect:self.bounds];
+    }else{
+        CGContextRef context = UIGraphicsGetCurrentContext();
+        
+        CGContextSetFillColorWithColor(context, loadColor.CGColor);
+        
+        // Drawing code
+        //Draw bg
+        [self.bgImage drawInRect:self.bounds];
 
-    //Draw load
-    CGRect r = CGRectMake(LOAD_START_X, LOAD_START_Y, POINT_X, LOAD_HEIGHT);
-    CGContextFillRect(context, r);
-    
-    //draw point
-    r = CGRectMake(POINT_X, 0, POINT_WIDTH, POINT_HEIGHT);
-    [self.pointImage drawInRect:r];
-
-    if (!self.enabled) {
-        CGContextSetAlpha(context, 0.1);
-        CGContextSetFillColorWithColor(context, [UIColor whiteColor].CGColor);
-        CGContextFillRect(context, self.bounds);
+        //Draw load
+        CGRect r = CGRectMake(LOAD_START_X, LOAD_START_Y, POINT_X, LOAD_HEIGHT);
+        CGContextFillRect(context, r);
+        
+        //draw point
+        r = CGRectMake(POINT_X, 0, POINT_WIDTH, POINT_HEIGHT);
+        
+        [self.pointImage drawInRect:r];
     }
-    
-
     
     [super drawRect:rect];
 }

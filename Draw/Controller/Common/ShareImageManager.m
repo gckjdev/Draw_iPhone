@@ -579,6 +579,10 @@ static UIImage* _whitePaperImage;
 {
     return [self fixedImageNamed:@"draw_slider_point"];
 }
+- (UIImage *)drawSliderDisableImage
+{
+    return [self fixedImageNamed:@"draw_slider_disable"];
+}
 
 
 //for dice main menu
