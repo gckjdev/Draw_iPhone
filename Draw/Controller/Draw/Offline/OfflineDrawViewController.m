@@ -821,6 +821,7 @@ enum{
 }
 - (void)drawToolPanel:(DrawToolPanel *)toolPanel didSelectPen:(ItemType)penType
 {
+    PPDebug(@"<didSelectPen> pen type = %d",penType);
     drawView.penType = penType;
 }
 - (void)drawToolPanel:(DrawToolPanel *)toolPanel didSelectWidth:(CGFloat)width

@@ -135,13 +135,15 @@
         case ItemTypeTips:
             return manager.tipBag;
         case Pen:
-            return manager.brushPen;
+            return manager.penImage;
         case IcePen:
-            return manager.icePen;
+            return manager.iceImage;
         case Quill:
-            return manager.quillPen;
+            return manager.quillImage;
         case WaterPen:
-            return manager.waterPen;
+            return manager.waterPenImage;
+        case Pencil:
+            return manager.pencilImage;
         case ItemTypeRollAgain: 
             return [diceManager toShopImage:diceManager.diceToolRollAgainImage];
         case ItemTypeCut: 

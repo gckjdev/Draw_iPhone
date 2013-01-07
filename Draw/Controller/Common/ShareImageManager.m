@@ -341,27 +341,27 @@ static UIImage* _whitePaperImage;
 
 - (UIImage *)pencilImage
 {
-    return [UIImage imageNamed:@"pen1.png"];    
+    return [UIImage imageNamed:@"draw_pen1"];    
 }
 - (UIImage *)waterPenImage
 {
-    return [UIImage imageNamed:@"pen2.png"];        
+    return [UIImage imageNamed:@"draw_pen2"];
 }
 - (UIImage *)penImage
 {
-    return [UIImage imageNamed:@"pen3.png"];
+    return [UIImage imageNamed:@"draw_pen3"];
 }
 - (UIImage *)iceImage
 {
-    return [UIImage imageNamed:@"pen4.png"];    
+    return [UIImage imageNamed:@"draw_pen4"];
 }
 - (UIImage *)quillImage
 {
-    return [UIImage imageNamed:@"pen5.png"];    
+    return [UIImage imageNamed:@"draw_pen5"];    
 }
 - (UIImage *)eraserImage
 {
-    return [UIImage imageNamed:@"eraser.png"];    
+    return [UIImage imageNamed:@"draw_eraser.png"];
 }
 - (UIImage *)friendDetailBgImage
 {
@@ -404,18 +404,18 @@ static UIImage* _whitePaperImage;
 {
     return [UIImage imageNamed:@"buyed.png"];
 }
-- (UIImage *)brushPen
-{
-    return [self fixedImageNamed:@"brush_pen"];
-}
+//- (UIImage *)brushPen
+//{
+//    return [self fixedImageNamed:@"draw_pen1"];
+//}
 - (UIImage *)removeAd
 {
     return [self fixedImageNamed:@"clean_ad"];
 }
-- (UIImage *)icePen
-{
-    return [self fixedImageNamed:@"cones_pen"];
-}
+//- (UIImage *)icePen
+//{
+//    return [self fixedImageNamed:@"draw_pen3"];
+//}
 //set button image not background image.
 - (UIImage *)flower
 {
@@ -442,10 +442,10 @@ static UIImage* _whitePaperImage;
 {
     return [self fixedImageNamed:@"print_oil"];
 }
-- (UIImage *)quillPen
-{
-    return [self fixedImageNamed:@"quill_pen"];
-}
+//- (UIImage *)quillPen
+//{
+//    return [self fixedImageNamed:@"draw_pen4"];
+//}
 
 - (UIImage *)rewardCoin
 {
@@ -464,10 +464,10 @@ static UIImage* _whitePaperImage;
     return [UIImage imageNamed:@"small_coin.png"];
 }
 
-- (UIImage*)waterPen
-{
-    return [self fixedImageNamed:@"mike_pen"];
-}
+//- (UIImage*)waterPen
+//{
+//    return [self fixedImageNamed:@"draw_pen2"];
+//}
 
 - (UIImage*)dice
 {
