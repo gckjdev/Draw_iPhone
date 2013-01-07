@@ -9,6 +9,7 @@
 #import "CustomWordManager.h"
 #import "CoreDataUtil.h"
 #import "CustomWord.h"
+#import "UserManager.h"
 
 @interface CustomWordManager()
 
@@ -44,6 +45,23 @@ static CustomWordManager *_customWordManager = nil;
     [newCustomWord setCreateDate:[NSDate date]];
     [newCustomWord setLastUseDate:[NSDate date]];
     [newCustomWord setLevel:level];
+    return [dataManager save];
+}
+
+- (BOOL)createCustomWord:(NSString *)word
+{
+    if ([self isExist:word]) {
+        return YES;
+    }
+    
+    CoreDataManager *dataManager = [CoreDataManager defaultManager];
+    CustomWord *newCustomWord = [dataManager insert:@"CustomWord"];
+    [newCustomWord setType:[NSNumber numberWithInt:WordTypeCustom]];
+    [newCustomWord setWord:word];
+    [newCustomWord setLanguage:[NSNumber numberWithInt:ChineseType]];
+    [newCustomWord setCreateDate:[NSDate date]];
+    [newCustomWord setLastUseDate:[NSDate date]];
+    [newCustomWord setLevel:[NSNumber numberWithInt:WordLeveLMedium]];
     return [dataManager save];
 }
 

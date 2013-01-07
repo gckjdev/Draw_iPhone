@@ -206,6 +206,15 @@
 		A4DE142E1697DBC000841940 /* SelectHotWordController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4DE14281697DBC000841940 /* SelectHotWordController~ipad.xib */; };
 		A4DE142F1697DBC000841940 /* WordSelectCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A4DE142A1697DBC000841940 /* WordSelectCell.m */; };
 		A4DE14301697DBC000841940 /* WordSelectCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4DE142B1697DBC000841940 /* WordSelectCell.xib */; };
+		A4DE144716981AA500841940 /* DraftsView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4DE144616981AA300841940 /* DraftsView.m */; };
+		A4DE144916981AC900841940 /* DraftsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4DE144816981AC800841940 /* DraftsView.xib */; };
+		A4DE1482169A776700841940 /* add_new_word_btn_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4DE147E169A776700841940 /* add_new_word_btn_bg@2x.png */; };
+		A4DE1483169A776700841940 /* all_my_words_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4DE147F169A776700841940 /* all_my_words_bg@2x.png */; };
+		A4DE1484169A776700841940 /* all_my_words_seprator@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4DE1480169A776700841940 /* all_my_words_seprator@2x.png */; };
+		A4DE1485169A776700841940 /* close_all_my_words_btn_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4DE1481169A776700841940 /* close_all_my_words_btn_bg@2x.png */; };
+		A4DE148B169AB1B600841940 /* SelectCustomWordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A4DE148A169AB1B300841940 /* SelectCustomWordCell.m */; };
+		A4DE148D169AB41C00841940 /* SelectCustomWordCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4DE148C169AB41800841940 /* SelectCustomWordCell.xib */; };
+		A4DE148F169ABF0400841940 /* SelectCustomWordCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4DE148E169ABF0000841940 /* SelectCustomWordCell~ipad.xib */; };
 		A4DF0556160C25B400246A40 /* ReverseItemAction.m in Sources */ = {isa = PBXBuildFile; fileRef = A4DF0555160C25B400246A40 /* ReverseItemAction.m */; };
 		A4DF0589160D735E00246A40 /* CutItemAction.m in Sources */ = {isa = PBXBuildFile; fileRef = A4DF0588160D735E00246A40 /* CutItemAction.m */; };
 		A4E7876A16366FF8003557AD /* ZhaJinHua.proto in Resources */ = {isa = PBXBuildFile; fileRef = A4E7876916366FF8003557AD /* ZhaJinHua.proto */; };
@@ -5078,6 +5087,17 @@
 		A4DE14291697DBC000841940 /* WordSelectCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WordSelectCell.h; sourceTree = "<group>"; };
 		A4DE142A1697DBC000841940 /* WordSelectCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WordSelectCell.m; sourceTree = "<group>"; };
 		A4DE142B1697DBC000841940 /* WordSelectCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WordSelectCell.xib; sourceTree = "<group>"; };
+		A4DE144516981AA100841940 /* DraftsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DraftsView.h; sourceTree = "<group>"; };
+		A4DE144616981AA300841940 /* DraftsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DraftsView.m; sourceTree = "<group>"; };
+		A4DE144816981AC800841940 /* DraftsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DraftsView.xib; sourceTree = "<group>"; };
+		A4DE147E169A776700841940 /* add_new_word_btn_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "add_new_word_btn_bg@2x.png"; sourceTree = "<group>"; };
+		A4DE147F169A776700841940 /* all_my_words_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "all_my_words_bg@2x.png"; sourceTree = "<group>"; };
+		A4DE1480169A776700841940 /* all_my_words_seprator@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "all_my_words_seprator@2x.png"; sourceTree = "<group>"; };
+		A4DE1481169A776700841940 /* close_all_my_words_btn_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "close_all_my_words_btn_bg@2x.png"; sourceTree = "<group>"; };
+		A4DE1489169AB1B000841940 /* SelectCustomWordCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectCustomWordCell.h; sourceTree = "<group>"; };
+		A4DE148A169AB1B300841940 /* SelectCustomWordCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectCustomWordCell.m; sourceTree = "<group>"; };
+		A4DE148C169AB41800841940 /* SelectCustomWordCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SelectCustomWordCell.xib; sourceTree = "<group>"; };
+		A4DE148E169ABF0000841940 /* SelectCustomWordCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "SelectCustomWordCell~ipad.xib"; sourceTree = "<group>"; };
 		A4DF0554160C25B400246A40 /* ReverseItemAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReverseItemAction.h; sourceTree = "<group>"; };
 		A4DF0555160C25B400246A40 /* ReverseItemAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReverseItemAction.m; sourceTree = "<group>"; };
 		A4DF0587160D735E00246A40 /* CutItemAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CutItemAction.h; sourceTree = "<group>"; };
@@ -8473,6 +8493,10 @@
 		A4DE14101697DBA900841940 /* wordSelected */ = {
 			isa = PBXGroup;
 			children = (
+				A4DE147E169A776700841940 /* add_new_word_btn_bg@2x.png */,
+				A4DE147F169A776700841940 /* all_my_words_bg@2x.png */,
+				A4DE1480169A776700841940 /* all_my_words_seprator@2x.png */,
+				A4DE1481169A776700841940 /* close_all_my_words_btn_bg@2x.png */,
 				A4DE14111697DBA900841940 /* hot_words_bg@2x.png */,
 				A4DE14121697DBA900841940 /* load_from_draft_btn@2x.png */,
 				A4DE14131697DBA900841940 /* more_words_btn@2x.png */,
@@ -10180,6 +10204,9 @@
 				C2FA6E6F1535352200EEB530 /* MyPaintButton.m */,
 				C2FA6E711535358100EEB530 /* MyPaintButton.xib */,
 				C2B3E9411553741600CCF52C /* MyPaintButton~ipad.xib */,
+				A4DE144516981AA100841940 /* DraftsView.h */,
+				A4DE144616981AA300841940 /* DraftsView.m */,
+				A4DE144816981AC800841940 /* DraftsView.xib */,
 			);
 			path = Share;
 			sourceTree = "<group>";
@@ -10252,6 +10279,10 @@
 				A31B5EF2157E1BE8003DDBF1 /* SelectCustomWordView.m */,
 				A31B5EF3157E1BE8003DDBF1 /* SelectCustomWordView.xib */,
 				A31B5EF4157E1BE8003DDBF1 /* SelectCustomWordView~ipad.xib */,
+				A4DE1489169AB1B000841940 /* SelectCustomWordCell.h */,
+				A4DE148A169AB1B300841940 /* SelectCustomWordCell.m */,
+				A4DE148C169AB41800841940 /* SelectCustomWordCell.xib */,
+				A4DE148E169ABF0000841940 /* SelectCustomWordCell~ipad.xib */,
 			);
 			path = SelectWord;
 			sourceTree = "<group>";
@@ -17123,6 +17154,13 @@
 				A4DE142D1697DBC000841940 /* SelectHotWordController.xib in Resources */,
 				A4DE142E1697DBC000841940 /* SelectHotWordController~ipad.xib in Resources */,
 				A4DE14301697DBC000841940 /* WordSelectCell.xib in Resources */,
+				A4DE144916981AC900841940 /* DraftsView.xib in Resources */,
+				A4DE1482169A776700841940 /* add_new_word_btn_bg@2x.png in Resources */,
+				A4DE1483169A776700841940 /* all_my_words_bg@2x.png in Resources */,
+				A4DE1484169A776700841940 /* all_my_words_seprator@2x.png in Resources */,
+				A4DE1485169A776700841940 /* close_all_my_words_btn_bg@2x.png in Resources */,
+				A4DE148D169AB41C00841940 /* SelectCustomWordCell.xib in Resources */,
+				A4DE148F169ABF0400841940 /* SelectCustomWordCell~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -19135,6 +19173,8 @@
 				CA1BF4781697CB19004ABCFA /* PickView.m in Sources */,
 				A4DE142C1697DBC000841940 /* SelectHotWordController.m in Sources */,
 				A4DE142F1697DBC000841940 /* WordSelectCell.m in Sources */,
+				A4DE144716981AA500841940 /* DraftsView.m in Sources */,
+				A4DE148B169AB1B600841940 /* SelectCustomWordCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

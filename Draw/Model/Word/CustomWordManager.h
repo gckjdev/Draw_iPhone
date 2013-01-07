@@ -24,6 +24,8 @@ typedef enum
                     language:(NSNumber *)language 
                        level:(NSNumber *)level;
 
+- (BOOL)createCustomWord:(NSString *)word;
+
 // return an array containing CustomWord objects.
 - (NSArray *)findAllWords;
 
