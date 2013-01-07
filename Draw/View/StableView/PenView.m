@@ -51,10 +51,10 @@
 
 - (BOOL)isRightDownRotate
 {
-    if (self.penType == Pencil || self.penType == WaterPen || self.penType == Eraser || self.penType == IcePen) {
-        return YES;
+    if (self.penType == Pencil || self.penType == WaterPen || self.penType == Eraser) {
+        return NO;
     }
-    return NO;
+    return YES;
 }
 - (BOOL)isDefaultPen
 {

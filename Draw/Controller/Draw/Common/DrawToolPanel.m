@@ -89,7 +89,7 @@
 
 - (void)updatePopTipView:(CMPopTipView *)popTipView
 {
-    [popTipView setBackgroundColor:[UIColor colorWithRed:168./255. green:168./255. blue:168./255. alpha:0.4]];
+    [popTipView setBackgroundColor:[UIColor colorWithRed:168./255. green:168./255. blue:168./255. alpha:0.8]];
     [popTipView setPointerSize:POP_POINTER_SIZE];
     [self.palettePopTipView setDelegate:self];
 }

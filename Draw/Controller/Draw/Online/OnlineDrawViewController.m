@@ -345,6 +345,7 @@
 - (void)drawToolPanel:(DrawToolPanel *)toolPanel didClickEraserButton:(UIButton *)button
 {
     [drawView setLineColor:self.eraserColor];
+    [drawView setPenType:Eraser];
 }
 - (void)drawToolPanel:(DrawToolPanel *)toolPanel didClickPaintBucket:(UIButton *)button
 {
