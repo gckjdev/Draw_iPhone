@@ -660,7 +660,9 @@ enum{
 }
 - (PBNoCompressDrawData *)noCompressDrawData
 {
-    return [DrawAction drawActionListToPBNoCompressDrawData:drawView.drawActionList];
+    NSMutableArray *temp = [NSMutableArray arrayWithArray:drawView.drawActionList];
+    return [DrawAction drawActionListToPBNoCompressDrawData:temp];
+    PPRelease(temp);
 }
 
 - (void)saveDraft:(BOOL)showResult
