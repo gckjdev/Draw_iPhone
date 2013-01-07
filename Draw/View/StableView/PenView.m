@@ -51,7 +51,7 @@
 
 - (BOOL)isRightDownRotate
 {
-    if (self.penType == Pen || self.penType == Pencil || self.penType == WaterPen || self.penType == Eraser) {
+    if (self.penType == Pencil || self.penType == WaterPen || self.penType == Eraser || self.penType == IcePen) {
         return YES;
     }
     return NO;

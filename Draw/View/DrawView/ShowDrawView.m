@@ -72,10 +72,11 @@
             }
             if (_playingPointIndex == 0 && pen.penType != _currentDrawAction.paint.penType) {                
                 [pen setPenType:_currentDrawAction.paint.penType];
+                PPDebug(@"penType = %d",pen.penType);
                 if ([pen isRightDownRotate]) {
-                    [pen.layer setTransform:CATransform3DMakeRotation(-0.8, 0, 0, 1)];        
-                }else{
                     [pen.layer setTransform:CATransform3DMakeRotation(0.8, 0, 0, 1)];        
+                }else{
+                    [pen.layer setTransform:CATransform3DMakeRotation(4, 0, 0, 1)];
                 }
             }
             CGPoint point = [_currentDrawAction.paint pointAtIndex:_playingPointIndex];
@@ -85,7 +86,7 @@
                 point.x += xOffset;
                 point.y += yOffset;
                 if ([pen isRightDownRotate]) {                    
-                    pen.center = CGPointMake(point.x + pen.frame.size.width / 3.1, point.y + pen.frame.size.height / 3.3);                    
+                    pen.center = CGPointMake(point.x + pen.frame.size.width / 3.1, point.y + pen.frame.size.height / 10.3);
                 }else{
                     pen.center = CGPointMake(point.x + pen.frame.size.width / 2.5, point.y - pen.frame.size.height / 4.3);                                        
                 }
