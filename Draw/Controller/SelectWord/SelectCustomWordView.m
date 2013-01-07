@@ -13,6 +13,12 @@
 #import "ShareImageManager.h"
 #import "DeviceDetection.h"
 #import "PPDebug.h"
+#import "CommonMessageCenter.h"
+#import "UserService.h"
+#import "StringUtil.h"
+#import "SelectCustomWordCell.h"
+
+#define INPUTDIALOG_ADD_WORD_TAG 200
 
 @interface SelectCustomWordView ()
 {
@@ -49,10 +55,6 @@
     
     view.dataList = [[CustomWordManager defaultManager] findAllWords];
     
-//    ShareImageManager *imageManager = [ShareImageManager defaultManager];
-//    [view.closeButton setBackgroundImage:[imageManager redImage] forState:UIControlStateNormal];
-    [view.closeButton setTitle:NSLS(@"kClose") forState:UIControlStateNormal];
-    
     return view;
 }
 
@@ -87,6 +89,11 @@
 }
 
 #pragma mark -  UITableViewDataSource
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return [SelectCustomWordCell getCellHeight];
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return [dataList count];
@@ -94,20 +101,15 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSString *identifier = @"selectCustomWordCell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
+    SelectCustomWordCell *cell = [tableView dequeueReusableCellWithIdentifier:[SelectCustomWordCell getCellIdentifier]];
     if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier] autorelease];
+        cell = [SelectCustomWordCell createCell:nil];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     
     CustomWord *word = [dataList objectAtIndex:[indexPath row]];
     
-    cell.textLabel.text = word.word;
-    if ([DeviceDetection isIPAD]) {
-        [cell.textLabel setFont:[UIFont systemFontOfSize:40]];
-    }else {
-        [cell.textLabel setFont:[UIFont systemFontOfSize:20]];
-    }
+    [cell setWord:word.word];
     
     return cell;
 }
@@ -144,4 +146,47 @@
     PPRelease(closeButton);
     [super dealloc];
 }
+
+
+- (IBAction)clickAddWordButton:(id)sender {
+    InputDialog *inputDialog = [InputDialog dialogWith:NSLS(@"kInputWord") delegate:self];
+    inputDialog.tag = INPUTDIALOG_ADD_WORD_TAG;
+    inputDialog.targetTextField.placeholder = NSLS(@"kInputWordPlaceholder");
+    [inputDialog showInView:self];
+}
+
+#pragma mark - InputDialogDelegate
+- (void)didClickOk:(InputDialog *)dialog targetText:(NSString *)targetText
+{
+    if ([targetText length] == 0) {
+        [[CommonMessageCenter defaultCenter] postMessageWithText:[NSString stringWithFormat:NSLS(@"kInputWordEmpty"),targetText] delayTime:2 isHappy:NO];
+        return;
+    }
+    
+    if ([targetText length] > 7) {
+        [[CommonMessageCenter defaultCenter] postMessageWithText:[NSString stringWithFormat:NSLS(@"kWordTooLong"),targetText] delayTime:2 isHappy:NO];
+        return;
+    }
+    
+    if (!NSStringIsValidChinese(targetText)){
+        [[CommonMessageCenter defaultCenter] postMessageWithText:[NSString stringWithFormat:NSLS(@"kIllegalCharacter"),targetText] delayTime:2 isHappy:NO];
+        return;
+    }
+    
+    
+    if (dialog.tag == INPUTDIALOG_ADD_WORD_TAG) {
+        if ([[CustomWordManager defaultManager] isExist:targetText]) {
+            [[CommonMessageCenter defaultCenter] postMessageWithText:[NSString stringWithFormat:NSLS(@"kExistWord"),targetText] delayTime:2 isHappy:NO];
+            return;
+        }
+        [[CustomWordManager defaultManager] createCustomWord:targetText];
+        
+        [[UserService defaultService] commitWords:targetText viewController:nil];
+    }
+    
+    self.dataList = [[CustomWordManager defaultManager] findAllWords];
+    [dataTableView reloadData];
+}
+
+
 @end
