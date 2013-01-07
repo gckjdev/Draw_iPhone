@@ -120,7 +120,7 @@
 						<reference key="IBUINormalTitleShadowColor" ref="231337641"/>
 						<object class="NSCustomResource" key="IBUINormalImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">draw_pen5@2x.png</string>
+							<string key="NSResourceName">draw_pen1@2x.png</string>
 						</object>
 						<reference key="IBUIFontDescription" ref="36910274"/>
 						<reference key="IBUIFont" ref="728644454"/>
@@ -316,6 +316,7 @@
 						<string key="NSFrame">{{556, 158}, {184, 24}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<reference key="IBUIBackgroundColor" ref="1057924229"/>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -816,7 +817,7 @@
 			<string key="draw_color_selector@2x.png">{85, 71}</string>
 			<string key="draw_eraser@2x.png">{47, 95}</string>
 			<string key="draw_oil@2x.png">{71, 92}</string>
-			<string key="draw_pen5@2x.png">{47, 95}</string>
+			<string key="draw_pen1@2x.png">{47, 95}</string>
 			<string key="draw_redo@2x.png">{63, 65}</string>
 			<string key="draw_undo@2x.png">{63, 65}</string>
 			<string key="group_message@2x.png">{74, 74}</string>
