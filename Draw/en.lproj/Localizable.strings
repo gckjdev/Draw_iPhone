@@ -534,6 +534,10 @@
 
 "kCustomWordManage" = "My Words";
 "kAddCustomWord" = "Add Word";
+"kHotWords" = "Hot";
+"kHotWordsNote" = "Cost 1 Tip";
+"kSystemWords" = "Random";
+
 "kInputWord" = "Input Words";
 "kInputWordPlaceholder" = "Please input a new word";
 "kMyWords" = "My Words";
@@ -950,10 +954,16 @@
 "kPenWidth" = "Width";
 "kColorAlpha" = "Alpha";
 "kMoreColor" = "More";
+
 "kPaletteItem" = "Palette";
 "kColorAlphaItem" = "Custom Alpha";
 "kPaletteItemDescription" = "You can custom any color with the palette.";
 "kColorAlphaItemDescription" = "You can custom alpha of your paint.";
+
+
+"kDraftsBox" = "Drafts Box";
+"kIWantToDraw..." = "I want to draw...";
+
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 

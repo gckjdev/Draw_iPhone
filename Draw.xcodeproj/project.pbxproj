@@ -157,6 +157,12 @@
 		A4BE1E7216567DC500406B98 /* RoomTitleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4BE1E7116567DC400406B98 /* RoomTitleView.xib */; };
 		A4BE1E761656847100406B98 /* RoomTitleView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4BE1E751656847000406B98 /* RoomTitleView~ipad.xib */; };
 		A4C1123915D4B621009B3E8D /* DiceAnimationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A4C1123815D4B621009B3E8D /* DiceAnimationManager.m */; };
+		A4C1E919169BE85E00644682 /* DraftCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A4C1E912169BE85E00644682 /* DraftCell.m */; };
+		A4C1E91A169BE85E00644682 /* DraftCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4C1E913169BE85E00644682 /* DraftCell.xib */; };
+		A4C1E91B169BE85E00644682 /* DraftCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4C1E914169BE85E00644682 /* DraftCell~ipad.xib */; };
+		A4C1E91C169BE85E00644682 /* DraftsView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4C1E916169BE85E00644682 /* DraftsView.m */; };
+		A4C1E91D169BE85E00644682 /* DraftsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4C1E917169BE85E00644682 /* DraftsView.xib */; };
+		A4C1E91E169BE85E00644682 /* DraftsView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4C1E918169BE85E00644682 /* DraftsView~ipad.xib */; };
 		A4C516A915DE40A800E4F735 /* DiceItemListView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4C516A815DE40A800E4F735 /* DiceItemListView.m */; };
 		A4C516AF15DE40F100E4F735 /* DiceItem.m in Sources */ = {isa = PBXBuildFile; fileRef = A4C516AC15DE40F100E4F735 /* DiceItem.m */; };
 		A4C516B015DE40F100E4F735 /* DiceItemManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A4C516AE15DE40F100E4F735 /* DiceItemManager.m */; };
@@ -206,8 +212,6 @@
 		A4DE142E1697DBC000841940 /* SelectHotWordController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4DE14281697DBC000841940 /* SelectHotWordController~ipad.xib */; };
 		A4DE142F1697DBC000841940 /* WordSelectCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A4DE142A1697DBC000841940 /* WordSelectCell.m */; };
 		A4DE14301697DBC000841940 /* WordSelectCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4DE142B1697DBC000841940 /* WordSelectCell.xib */; };
-		A4DE144716981AA500841940 /* DraftsView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4DE144616981AA300841940 /* DraftsView.m */; };
-		A4DE144916981AC900841940 /* DraftsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4DE144816981AC800841940 /* DraftsView.xib */; };
 		A4DE1482169A776700841940 /* add_new_word_btn_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4DE147E169A776700841940 /* add_new_word_btn_bg@2x.png */; };
 		A4DE1483169A776700841940 /* all_my_words_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4DE147F169A776700841940 /* all_my_words_bg@2x.png */; };
 		A4DE1484169A776700841940 /* all_my_words_seprator@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4DE1480169A776700841940 /* all_my_words_seprator@2x.png */; };
@@ -6469,6 +6473,14 @@
 		A4BE1E751656847000406B98 /* RoomTitleView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "RoomTitleView~ipad.xib"; sourceTree = "<group>"; };
 		A4C1123715D4B621009B3E8D /* DiceAnimationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiceAnimationManager.h; sourceTree = "<group>"; };
 		A4C1123815D4B621009B3E8D /* DiceAnimationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiceAnimationManager.m; sourceTree = "<group>"; };
+		A4C1E911169BE85E00644682 /* DraftCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DraftCell.h; sourceTree = "<group>"; };
+		A4C1E912169BE85E00644682 /* DraftCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DraftCell.m; sourceTree = "<group>"; };
+		A4C1E913169BE85E00644682 /* DraftCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DraftCell.xib; sourceTree = "<group>"; };
+		A4C1E914169BE85E00644682 /* DraftCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "DraftCell~ipad.xib"; sourceTree = "<group>"; };
+		A4C1E915169BE85E00644682 /* DraftsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DraftsView.h; sourceTree = "<group>"; };
+		A4C1E916169BE85E00644682 /* DraftsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DraftsView.m; sourceTree = "<group>"; };
+		A4C1E917169BE85E00644682 /* DraftsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DraftsView.xib; sourceTree = "<group>"; };
+		A4C1E918169BE85E00644682 /* DraftsView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "DraftsView~ipad.xib"; sourceTree = "<group>"; };
 		A4C516A715DE40A800E4F735 /* DiceItemListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiceItemListView.h; sourceTree = "<group>"; };
 		A4C516A815DE40A800E4F735 /* DiceItemListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiceItemListView.m; sourceTree = "<group>"; };
 		A4C516AB15DE40F100E4F735 /* DiceItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiceItem.h; sourceTree = "<group>"; };
@@ -6534,9 +6546,6 @@
 		A4DE14291697DBC000841940 /* WordSelectCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WordSelectCell.h; sourceTree = "<group>"; };
 		A4DE142A1697DBC000841940 /* WordSelectCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WordSelectCell.m; sourceTree = "<group>"; };
 		A4DE142B1697DBC000841940 /* WordSelectCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WordSelectCell.xib; sourceTree = "<group>"; };
-		A4DE144516981AA100841940 /* DraftsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DraftsView.h; sourceTree = "<group>"; };
-		A4DE144616981AA300841940 /* DraftsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DraftsView.m; sourceTree = "<group>"; };
-		A4DE144816981AC800841940 /* DraftsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DraftsView.xib; sourceTree = "<group>"; };
 		A4DE147E169A776700841940 /* add_new_word_btn_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "add_new_word_btn_bg@2x.png"; sourceTree = "<group>"; };
 		A4DE147F169A776700841940 /* all_my_words_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "all_my_words_bg@2x.png"; sourceTree = "<group>"; };
 		A4DE1480169A776700841940 /* all_my_words_seprator@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "all_my_words_seprator@2x.png"; sourceTree = "<group>"; };
@@ -11700,9 +11709,6 @@
 				C2FA6E6F1535352200EEB530 /* MyPaintButton.m */,
 				C2FA6E711535358100EEB530 /* MyPaintButton.xib */,
 				C2B3E9411553741600CCF52C /* MyPaintButton~ipad.xib */,
-				A4DE144516981AA100841940 /* DraftsView.h */,
-				A4DE144616981AA300841940 /* DraftsView.m */,
-				A4DE144816981AC800841940 /* DraftsView.xib */,
 			);
 			path = Share;
 			sourceTree = "<group>";
@@ -11756,6 +11762,14 @@
 		CA1041E21509B6E700F60C03 /* SelectWord */ = {
 			isa = PBXGroup;
 			children = (
+				A4C1E911169BE85E00644682 /* DraftCell.h */,
+				A4C1E912169BE85E00644682 /* DraftCell.m */,
+				A4C1E913169BE85E00644682 /* DraftCell.xib */,
+				A4C1E914169BE85E00644682 /* DraftCell~ipad.xib */,
+				A4C1E915169BE85E00644682 /* DraftsView.h */,
+				A4C1E916169BE85E00644682 /* DraftsView.m */,
+				A4C1E917169BE85E00644682 /* DraftsView.xib */,
+				A4C1E918169BE85E00644682 /* DraftsView~ipad.xib */,
 				A4DE14251697DBC000841940 /* SelectHotWordController.h */,
 				A4DE14261697DBC000841940 /* SelectHotWordController.m */,
 				A4DE14271697DBC000841940 /* SelectHotWordController.xib */,
@@ -18677,7 +18691,6 @@
 				A4DE142D1697DBC000841940 /* SelectHotWordController.xib in Resources */,
 				A4DE142E1697DBC000841940 /* SelectHotWordController~ipad.xib in Resources */,
 				A4DE14301697DBC000841940 /* WordSelectCell.xib in Resources */,
-				A4DE144916981AC900841940 /* DraftsView.xib in Resources */,
 				A4DE1482169A776700841940 /* add_new_word_btn_bg@2x.png in Resources */,
 				A4DE1483169A776700841940 /* all_my_words_bg@2x.png in Resources */,
 				A4DE1484169A776700841940 /* all_my_words_seprator@2x.png in Resources */,
@@ -18688,6 +18701,10 @@
 				CA22B78E169AD58D00DAB1C3 /* draw_slider_disable@2x.png in Resources */,
 				CA22B793169AD65300DAB1C3 /* draw_palette@2x.png in Resources */,
 				CA22B7AD169BCB3700DAB1C3 /* DrawPro-Info.plist in Resources */,
+				A4C1E91A169BE85E00644682 /* DraftCell.xib in Resources */,
+				A4C1E91B169BE85E00644682 /* DraftCell~ipad.xib in Resources */,
+				A4C1E91D169BE85E00644682 /* DraftsView.xib in Resources */,
+				A4C1E91E169BE85E00644682 /* DraftsView~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -21449,8 +21466,9 @@
 				CA1BF4781697CB19004ABCFA /* PickView.m in Sources */,
 				A4DE142C1697DBC000841940 /* SelectHotWordController.m in Sources */,
 				A4DE142F1697DBC000841940 /* WordSelectCell.m in Sources */,
-				A4DE144716981AA500841940 /* DraftsView.m in Sources */,
 				A4DE148B169AB1B600841940 /* SelectCustomWordCell.m in Sources */,
+				A4C1E919169BE85E00644682 /* DraftCell.m in Sources */,
+				A4C1E91C169BE85E00644682 /* DraftsView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

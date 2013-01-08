@@ -547,7 +547,7 @@
 "kFreeGetCoins" = "免费金币";
 
 "kCustomWordManage" = "词库管理";
-"kAddCustomWord" = "添加词语";
+"kAddCustomWord" = "添加新词";
 "kInputWord" = "输入词语";
 "kInputWordPlaceholder" = "请输入新词语";
 "kUpdateWord" = "更新词语";
@@ -974,10 +974,18 @@
 "kColorAlpha" = "透明度";
 "kMoreColor" = "更多";
 
+
 "kPaletteItem" = "调色板";
 "kColorAlphaItem" = "透明度";
 "kPaletteItemDescription" = "买了这个，你可以自已调出任何颜色！";
 "kColorAlphaItemDescription" = "买了它，可以画出半透明的笔画。";
+
+"kDraftsBox" = "草稿箱";
+"kIWantToDraw..." = "我想画...";
+"kHotWords" = "热门词库";
+"kHotWordsNote" = "消费一个锦囊";
+"kSystemWords" = "系统词库";
+
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 
