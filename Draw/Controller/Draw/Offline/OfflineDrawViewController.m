@@ -71,9 +71,6 @@
     Contest *_contest;
     
     BOOL _isAutoSave;
-    
-    
-
 }
 
 @property(nonatomic, retain)MyPaint *draft;
@@ -93,6 +90,8 @@
 - (void)updateRecentColors;
 @end
 
+
+#define BUTTON_FONT_SIZE_ENGLISH (ISIPAD ? 25 : 12)
 
 @implementation OfflineDrawViewController
 
@@ -324,6 +323,12 @@ enum{
 {
     [self.submitButton setTitle:NSLS(@"kSubmit") forState:UIControlStateNormal];
     [self.draftButton setTitle:NSLS(@"kSave") forState:UIControlStateNormal];
+    if (![LocaleUtils isChinese]) {
+        UIFont *font = [UIFont boldSystemFontOfSize:BUTTON_FONT_SIZE_ENGLISH];
+        [self.submitButton.titleLabel setFont:font];
+        [self.draftButton.titleLabel setFont:font];
+    }
+    
     if (targetType == TypeGraffiti) {
         self.draftButton.hidden = YES;
     }
