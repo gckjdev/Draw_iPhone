@@ -56,8 +56,6 @@
     _hotWordsCell.delegate = self;
     _systemWordsCell.delegate = self;
     _myWordsCell.delegate = self;
-    
-    
 }
 
 - (void)viewDidLoad
@@ -114,6 +112,11 @@
 {
     Word *myWord = [Word wordWithText:word level:WordLeveLMedium];
     [OfflineDrawViewController startDraw:myWord fromController:self];
+}
+
+- (void)didCloseSelectCustomWordView:(SelectCustomWordView *)view
+{
+    [_myWordsCell setWords:[[CustomWordManager defaultManager] wordsFromCustomWords]];
 }
 
 - (IBAction)clickDraftButton:(id)sender {

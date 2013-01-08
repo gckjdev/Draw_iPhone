@@ -78,11 +78,11 @@
 #import "NotificationName.h"
 #import "CommonGameNetworkService.h"
 
+
 @interface HomeController()
 {
     BoardPanel *_boardPanel;
     NSTimeInterval interval;
-
 }
 - (void)playBackgroundMusic;
 - (void)enterNextControllerWityType:(NotificationType) type;
@@ -199,6 +199,7 @@
     [[DrawGameService defaultService] setAvatar:[[UserManager defaultManager] avatarURL]];    
     
     [self enterNextControllerWityType:self.notificationType];
+
     [self registerUIApplicationNotification];
     [self registerNetworkDisconnectedNotification];
 }
@@ -525,6 +526,7 @@
     PPRelease(_facetimeButton);
     PPRelease(_menuPanel);
     PPRelease(_bottomMenuPanel);
+    [self.timer invalidate];
 //    PPRelease(_adView);
     [_testBulletin release];
     [super dealloc];
@@ -819,4 +821,6 @@
 }
 
 */
+
+
 @end
