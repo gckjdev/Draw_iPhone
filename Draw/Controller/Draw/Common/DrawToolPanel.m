@@ -125,6 +125,8 @@
 
     if (![[AccountService defaultService] hasEnoughItemAmount:ColorAlphaItem amount:1]) {
         [self.alphaSlider setSelected:YES];
+    }else{
+        [self.alphaSlider setSelected:NO];
     }
     //TODO implement color alpha
 //    self.alphaSlider.hidden = YES;
@@ -179,7 +181,10 @@
     
     if (![[AccountService defaultService] hasEnoughItemAmount:PaletteItem amount:1]) {
         [self.palette setSelected:YES];
+    }else{
+        [self.palette setSelected:NO];
     }
+    [self setPenType:Pencil];
 }
 
 
@@ -453,7 +458,7 @@
 {
     [self.penPopTipView dismissAnimated:NO];
     self.penPopTipView = nil;
-    BOOL hasBought = [[AccountService defaultService] hasEnoughItemAmount:penType amount:1];
+    BOOL hasBought = penType == Pencil || [[AccountService defaultService] hasEnoughItemAmount:penType amount:1] ;
     if (hasBought) {
         [self setPenType:penType];
     }

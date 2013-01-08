@@ -866,7 +866,7 @@ enum{
         PPDebug(@"<didSelectPen> pen type = %d",penType);
         drawView.penType = penType;
     }else{
-        [CommonItemInfoView showItem:[Item itemWithType:penType amount:1] infoInView:self canBuyAgain:NO];
+        [CommonItemInfoView showItem:[Item itemWithType:penType amount:1] infoInView:self canBuyAgain:!bought];
     }
 }
 - (void)drawToolPanel:(DrawToolPanel *)toolPanel didSelectWidth:(CGFloat)width
@@ -886,8 +886,9 @@ enum{
 
 - (void)drawToolPanel:(DrawToolPanel *)toolPanel startToBuyItem:(ItemType)type
 {
-    VendingController *vend = [VendingController instance];
-    [self.navigationController pushViewController:vend animated:YES];
+//    VendingController *vend = [VendingController instance];
+//    [self.navigationController pushViewController:vend animated:YES];
+    [CommonItemInfoView showItem:[Item itemWithType:type amount:1] infoInView:self canBuyAgain:YES];
 }
 
 #pragma mark - Recent Color

@@ -327,6 +327,10 @@
             return [Item featherPen];
         case WaterPen:
             return [Item waterPen];
+        case PaletteItem:
+            return [Item PaletteItem];
+        case ColorAlphaItem:
+            return [Item ColorAlphaItem];
         default:
             break;
     }

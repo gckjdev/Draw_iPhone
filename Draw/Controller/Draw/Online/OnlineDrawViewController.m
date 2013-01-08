@@ -424,7 +424,10 @@
 {
     
 }
-
+- (void)drawToolPanel:(DrawToolPanel *)toolPanel startToBuyItem:(ItemType)type
+{
+    [CommonItemInfoView showItem:[Item itemWithType:type amount:1] infoInView:self canBuyAgain:NO];
+}
 #pragma mark - Recent Color
 
 - (void)updateRecentColors
