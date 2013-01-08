@@ -448,6 +448,9 @@
 "kFollowMe" = "關注";
 "kFollowed" = "已關注";
 
+"kDraftsBox" = "草稿箱";
+"kIWantToDraw..." = "我想畫...";
+
 "kChatDialogTitle" = "和【%@】聊天中";
 "kAllUser" = "所有人";
 "kInputWhatYouWantToSay" = "輸入你想對TA說的話";
@@ -553,7 +556,7 @@
 "kFreeGetCoins" = "免費金幣";
 
 "kCustomWordManage" = "詞庫管理";
-"kAddCustomWord" = "添加詞語";
+"kAddCustomWord" = "添加新詞";
 "kInputWord" = "輸入詞語";
 "kInputWordPlaceholder" = "請輸入新詞語";
 "kUpdateWord" = "更新詞語";
@@ -963,6 +966,11 @@
 
 "kSaveToAlbumSuccess" = "成功保存到相冊!";
 "kSaveToLocalSuccess" = "成功保存到本地，您可以在作品頁面查看該作品。";
+
+"kHotWords" = "熱門詞庫";
+"kHotWordsNote" = "消費一個錦囊";
+"kSystemWords" = "系統詞庫";
+
 
 /*********************** 猜猜画画国际化字符串结束 *************************/
 

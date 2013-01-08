@@ -45,8 +45,6 @@
 								<int key="NSvFlags">274</int>
 								<string key="NSFrame">{{0.5, 40}, {211, 2}}</string>
 								<reference key="NSSuperview" ref="396655291"/>
-								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -60,7 +58,6 @@
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{0, 2}, {211, 36}}</string>
 								<reference key="NSSuperview" ref="396655291"/>
-								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="897879867"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<object class="NSColor" key="IBUIBackgroundColor" id="529282422">
@@ -94,7 +91,6 @@
 						</array>
 						<string key="NSFrameSize">{211, 44}</string>
 						<reference key="NSSuperview" ref="772221495"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="519299017"/>
 						<string key="NSReuseIdentifierKey">_NS:11</string>
 						<reference key="IBUIBackgroundColor" ref="529282422"/>
@@ -107,7 +103,6 @@
 				</array>
 				<string key="NSFrameSize">{211, 45}</string>
 				<reference key="NSSuperview"/>
-				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="396655291"/>
 				<string key="NSReuseIdentifierKey">_NS:9</string>
 				<string key="IBUIRestorationIdentifier">SelectCustomWordCell</string>
