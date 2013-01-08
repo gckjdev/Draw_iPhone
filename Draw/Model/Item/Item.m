@@ -14,6 +14,7 @@
 #import "ShoppingManager.h"
 #import "ConfigManager.h"
 #import "DiceImageManager.h"
+#import "UIImageUtil.h"
 
 @implementation Item
 @synthesize amount = _amount;
@@ -135,15 +136,15 @@
         case ItemTypeTips:
             return manager.tipBag;
         case Pen:
-            return manager.penImage;
+            return [UIImage adjustImage:manager.penImage toRatio:1];
         case IcePen:
-            return manager.iceImage;
+            return [UIImage adjustImage:manager.iceImage toRatio:1];
         case Quill:
-            return manager.quillImage;
+            return [UIImage adjustImage:manager.quillImage toRatio:1];
         case WaterPen:
-            return manager.waterPenImage;
+            return [UIImage adjustImage:manager.waterPenImage toRatio:1];
         case Pencil:
-            return manager.pencilImage;
+            return [UIImage adjustImage:manager.pencilImage toRatio:1];
         case ItemTypeRollAgain: 
             return [diceManager toShopImage:diceManager.diceToolRollAgainImage];
         case ItemTypeCut: 
