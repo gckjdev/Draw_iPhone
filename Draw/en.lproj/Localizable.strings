@@ -514,8 +514,8 @@
 "kVolume" = "Volume";
 "kAddWords" = "Submit words";
 "kAddWordsTips" = "Using blank to seperator words...";
-"kAddWordsSucc" = "Sumit successfully,thanks ";
-"kAddWordsFail" = "Sumit failed, tray again later";
+"kAddWordsSucc" = "Submit successfully,thanks ";
+"kAddWordsFail" = "Submit failed, tray again later";
 "kContentFormatError" = "Words format error";
 "kWordTooLong" = "\"%@\" is too long";
 "kIllegalCharacter" = "\"%@\" contains illegal character";
@@ -949,7 +949,7 @@
 
 "kPenWidth" = "Width";
 "kColorAlpha" = "Alpha";
-
+"kMoreColor" = "More";
 
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
