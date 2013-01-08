@@ -182,15 +182,11 @@
     PPDebug(@"<SuperDrawView> draw paint,alpha = %f",paint.color.alpha);
     
     CGContextRef context = UIGraphicsGetCurrentContext();
-
-//    UIColor *color = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.2];
     
     CGContextSetStrokeColorWithColor(context, paint.color.CGColor);
-//    CGContextSetFillColorWithColor(context, paint.color.CGColor);
     CGContextSetLineWidth(context, paint.width);
     CGContextSetLineCap(context, kCGLineCapRound);
     CGContextSetLineJoin(context, kCGLineJoinRound);
-    CGContextSetAlpha(context, paint.color.alpha);
     self.curImage = nil;
     if ([paint pointCount] != 0) {
         
