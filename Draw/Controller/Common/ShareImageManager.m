@@ -341,23 +341,23 @@ static UIImage* _whitePaperImage;
 
 - (UIImage *)pencilImage
 {
-    return [UIImage imageNamed:@"draw_pen1"];    
+    return [UIImage imageNamed:@"draw_pen1@2x"];    
 }
 - (UIImage *)waterPenImage
 {
-    return [UIImage imageNamed:@"draw_pen2"];
+    return [UIImage imageNamed:@"draw_pen2@2x"];
 }
 - (UIImage *)penImage
 {
-    return [UIImage imageNamed:@"draw_pen3"];
+    return [UIImage imageNamed:@"draw_pen3@2x"];
 }
 - (UIImage *)iceImage
 {
-    return [UIImage imageNamed:@"draw_pen4"];
+    return [UIImage imageNamed:@"draw_pen4@2x"];
 }
 - (UIImage *)quillImage
 {
-    return [UIImage imageNamed:@"draw_pen5"];    
+    return [UIImage imageNamed:@"draw_pen5@2x"];    
 }
 - (UIImage *)eraserImage
 {
@@ -578,6 +578,10 @@ static UIImage* _whitePaperImage;
 - (UIImage *)drawSliderPoint
 {
     return [self fixedImageNamed:@"draw_slider_point"];
+}
+- (UIImage *)drawSliderDisableImage
+{
+    return [self fixedImageNamed:@"draw_slider_disable"];
 }
 
 

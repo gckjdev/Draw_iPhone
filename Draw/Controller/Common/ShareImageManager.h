@@ -137,6 +137,7 @@
 - (UIImage *)drawColorBG; //draw_color_bg@2x.png
 - (UIImage *)drawSliderBG;
 - (UIImage *)drawSliderPoint;
+- (UIImage *)drawSliderDisableImage;
 
 //top player cup
 

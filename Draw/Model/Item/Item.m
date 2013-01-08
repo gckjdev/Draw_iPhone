@@ -14,6 +14,7 @@
 #import "ShoppingManager.h"
 #import "ConfigManager.h"
 #import "DiceImageManager.h"
+#import "UIImageUtil.h"
 
 @implementation Item
 @synthesize amount = _amount;
@@ -135,15 +136,19 @@
         case ItemTypeTips:
             return manager.tipBag;
         case Pen:
-            return manager.penImage;
+            return [UIImage adjustImage:manager.penImage toRatio:1];
         case IcePen:
-            return manager.iceImage;
+            return [UIImage adjustImage:manager.iceImage toRatio:1];
         case Quill:
-            return manager.quillImage;
+            return [UIImage adjustImage:manager.quillImage toRatio:1];
         case WaterPen:
-            return manager.waterPenImage;
+            return [UIImage adjustImage:manager.waterPenImage toRatio:1];
         case Pencil:
-            return manager.pencilImage;
+            return [UIImage adjustImage:manager.pencilImage toRatio:1];
+        case PaletteItem:
+            return [UIImage adjustImage:manager.drawColorBG toRatio:1];
+        case ColorAlphaItem:
+            return [UIImage adjustImage:manager.drawSliderBG toRatio:1];
         case ItemTypeRollAgain: 
             return [diceManager toShopImage:diceManager.diceToolRollAgainImage];
         case ItemTypeCut: 
@@ -209,6 +214,10 @@
             return NSLS(@"kQuill"); 
         case WaterPen:
             return NSLS(@"kWaterPen");
+        case PaletteItem:
+            return NSLS(@"kPaletteItem");
+        case ColorAlphaItem:
+            return NSLS(@"kColorAlphaItem");
         case ItemTypeRollAgain:
             return NSLS(@"kRollAgain");
         case ItemTypeCut:
@@ -240,6 +249,10 @@
             return NSLS(@"kQuillDescription");  
         case WaterPen:
             return NSLS(@"kWaterPenDescription");
+        case PaletteItem:
+            return NSLS(@"kPaletteItemDescription");
+        case ColorAlphaItem:
+            return NSLS(@"kColorAlphaItemDescription");
         default:
             return nil;
     }
@@ -314,6 +327,10 @@
             return [Item featherPen];
         case WaterPen:
             return [Item waterPen];
+        case PaletteItem:
+            return [Item PaletteItem];
+        case ColorAlphaItem:
+            return [Item ColorAlphaItem];
         default:
             break;
     }
@@ -428,7 +445,25 @@
                                 amount:[[ItemManager defaultManager] amountForItem:WaterPen]] autorelease];
 }
 
++ (Item*)PaletteItem
+{
+    return [[[Item alloc] initWithType:PaletteItem
+                                 image:[Item imageForItemType:PaletteItem]
+                                  name:[Item nameForItemType:PaletteItem]
+                           description:[Item descriptionForItemType:PaletteItem]
+                      buyAmountForOnce:1
+                                 price:[[ShoppingManager defaultManager] getPenPrice]
+                                amount:[[ItemManager defaultManager] amountForItem:PaletteItem]] autorelease];
+}
 
-
-
++ (Item*)ColorAlphaItem
+{
+    return [[[Item alloc] initWithType:ColorAlphaItem
+                                 image:[Item imageForItemType:ColorAlphaItem]
+                                  name:[Item nameForItemType:ColorAlphaItem]
+                           description:[Item descriptionForItemType:ColorAlphaItem]
+                      buyAmountForOnce:1
+                                 price:[[ShoppingManager defaultManager] getPenPrice]
+                                amount:[[ItemManager defaultManager] amountForItem:ColorAlphaItem]] autorelease];
+}
 @end

@@ -70,6 +70,7 @@
     [cell.content setLineBreakMode:NSLineBreakByTruncatingTail];
     cell.content.font = CONTENT_FONT;
     [BBSPostDetailCell updateViews:cell];
+    cell.delegate = delegate;
     return cell;
 }
 

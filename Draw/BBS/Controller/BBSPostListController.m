@@ -87,7 +87,7 @@
     NSString *titleName = nil;
     
     if (self.bbsBoard) {
-        titleName = self.bbsBoard.fullName;
+        titleName = self.bbsBoard.name;
         [self.createPostButton setImage:[_bbsImageManager bbsPostEditImage]
                                forState:UIControlStateNormal];
         [self.rankButton setImage:[_bbsImageManager bbsPostNewImage]
@@ -100,7 +100,7 @@
         if ([self.bbsUser isMe]) {
             titleName = NSLS(@"kMyPost");
         }else{
-            titleName = self.nibName;
+            titleName = self.bbsUser.nickName;
         }
         self.createPostButton.hidden = YES;
         self.rankButton.hidden = YES;
