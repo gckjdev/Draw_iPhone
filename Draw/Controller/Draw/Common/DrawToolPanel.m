@@ -106,28 +106,37 @@
     [self.widthSlider setMaxValue:LINE_MAX_WIDTH];
     [self.widthSlider setMinValue:LINE_MIN_WIDTH];
     [self.widthSlider setValue:LINE_DEFAULT_WIDTH];
-
-    [self addSubview:self.widthSlider];
+    [self.penWidth setText:NSLS(@"kPenWidth")];
     
+    [self addSubview:self.widthSlider];
+
     center = self.alphaSlider.center;
     [self.alphaSlider removeFromSuperview];
-    self.alphaSlider = [[[DrawSlider alloc] init] autorelease];
-    self.alphaSlider.center = center;
-    [self.alphaSlider setMaxValue:COLOR_MAX_ALPHA];
-    [self.alphaSlider setMinValue:COLOR_MIN_ALPHA];
-    [self.alphaSlider setValue:COLOR_DEFAULT_ALPHA];
     
-    self.alphaSlider.delegate = self;
-    [self addSubview:self.alphaSlider];
+    if ([DeviceDetection isIPhone5] || [DeviceDetection isIPAD]) {
+        self.alphaSlider = [[[DrawSlider alloc] init] autorelease];
+        self.alphaSlider.center = center;
+        [self.alphaSlider setMaxValue:COLOR_MAX_ALPHA];
+        [self.alphaSlider setMinValue:COLOR_MIN_ALPHA];
+        [self.alphaSlider setValue:COLOR_DEFAULT_ALPHA];
+        
+        self.alphaSlider.delegate = self;
+        [self addSubview:self.alphaSlider];
+        
 
-    [self.penWidth setText:NSLS(@"kPenWidth")];
-    [self.colorAlpha setText:NSLS(@"kColorAlpha")];
-
-    if (![[AccountService defaultService] hasEnoughItemAmount:ColorAlphaItem amount:1]) {
-        [self.alphaSlider setSelected:YES];
+        [self.colorAlpha setText:NSLS(@"kColorAlpha")];
+        
+        if (![[AccountService defaultService] hasEnoughItemAmount:ColorAlphaItem amount:1]) {
+            [self.alphaSlider setSelected:YES];
+        }else{
+            [self.alphaSlider setSelected:NO];
+        }
     }else{
-        [self.alphaSlider setSelected:NO];
+        [self.colorAlpha removeFromSuperview];
+        self.alphaSlider = nil;
+        self.colorAlpha = nil;
     }
+    
     //TODO implement color alpha
 //    self.alphaSlider.hidden = YES;
 //    self.colorAlpha.hidden = YES;

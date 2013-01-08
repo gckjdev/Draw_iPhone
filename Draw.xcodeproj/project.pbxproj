@@ -3157,6 +3157,8 @@
 		CA22B7AE169BCB3700DAB1C3 /* DrawPro-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CA22B7AC169BCB3600DAB1C3 /* DrawPro-Info.plist */; };
 		CA22B7AF169BCB3700DAB1C3 /* DrawPro-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CA22B7AC169BCB3600DAB1C3 /* DrawPro-Info.plist */; };
 		CA22B7B0169BCB3700DAB1C3 /* DrawPro-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CA22B7AC169BCB3600DAB1C3 /* DrawPro-Info.plist */; };
+		CA22B7DB169C193300DAB1C3 /* DrawSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = CA7871871689AE6100B28A2E /* DrawSlider.m */; };
+		CA22B7DC169C194600DAB1C3 /* PenBox.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC44997168D9FF3004441EB /* PenBox.m */; };
 		CA22DCD2157CAFFD009C95CB /* ResultController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA22DCCF157CAFFD009C95CB /* ResultController.m */; };
 		CA22DCD3157CAFFD009C95CB /* ResultController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA22DCD0157CAFFD009C95CB /* ResultController.xib */; };
 		CA22DCED157CB00A009C95CB /* OnlineDrawViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA22DCE0157CB00A009C95CB /* OnlineDrawViewController.m */; };
@@ -20136,6 +20138,8 @@
 				CA1CA30A169872B000A9FC57 /* SelectHotWordController.m in Sources */,
 				CA1CA30C169872DC00A9FC57 /* WordSelectCell.m in Sources */,
 				CA1CA30E1698731400A9FC57 /* HotWordManager.m in Sources */,
+				CA22B7DB169C193300DAB1C3 /* DrawSlider.m in Sources */,
+				CA22B7DC169C194600DAB1C3 /* PenBox.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
