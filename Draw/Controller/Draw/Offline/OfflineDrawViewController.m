@@ -66,7 +66,8 @@
     
     DrawColor *_penColor;
     DrawColor *_eraserColor;
-    DrawColor *_tempColor;
+
+    CGFloat _alpha;
     
     Contest *_contest;
     
@@ -81,6 +82,7 @@
 @property (retain, nonatomic) DrawColor* eraserColor;
 @property (retain, nonatomic) DrawColor* penColor;
 @property (retain, nonatomic) DrawToolPanel *drawToolPanel;
+@property (retain, nonatomic) DrawColor *tempColor;
 
 - (void)initDrawView;
 
@@ -160,6 +162,7 @@
     PPRelease(_contest);
     PPRelease(draftButton);
     PPRelease(_submitButton);
+    PPRelease(_tempColor);
     [super dealloc];
 }
 
@@ -303,6 +306,7 @@ enum{
     [self.view insertSubview:drawView aboveSubview:paperView];
     self.eraserColor = [DrawColor whiteColor];
     self.penColor = [DrawColor blackColor];
+    _alpha = 1.0;
 }
 
 - (void)initWordLabel
@@ -852,10 +856,12 @@ enum{
 }
 - (void)drawToolPanel:(DrawToolPanel *)toolPanel didClickPaintBucket:(UIButton *)button
 {
+    self.penColor.alpha = 1.0;
     [drawView addChangeBackAction:self.penColor];
     self.eraserColor = self.penColor;
     self.penColor = drawView.lineColor = [DrawColor blackColor];
     [toolPanel setColor:self.penColor];
+    [drawView.lineColor setAlpha:_alpha];
     [self updateRecentColors];
     [_drawToolPanel updateRecentColorViewWithColor:[DrawColor blackColor]];
 }
@@ -875,12 +881,14 @@ enum{
 }
 - (void)drawToolPanel:(DrawToolPanel *)toolPanel didSelectColor:(DrawColor *)color
 {
+    self.tempColor = color;
     self.penColor = color;
-    [drawView setLineColor:color];
-    _tempColor = color;
+    [drawView setLineColor:[DrawColor colorWithColor:color]];
+    [drawView.lineColor setAlpha:_alpha];
 }
 - (void)drawToolPanel:(DrawToolPanel *)toolPanel didSelectAlpha:(CGFloat)alpha
 {
+    _alpha = alpha;
     [drawView.lineColor setAlpha:alpha];
 }
 
@@ -898,7 +906,7 @@ enum{
     if (_tempColor) {
         [[DrawColorManager sharedDrawColorManager] updateColorListWithColor:_tempColor];
         [_drawToolPanel updateRecentColorViewWithColor:_tempColor];
-        _tempColor = nil;
+        self.tempColor = nil;
     }
 }
 

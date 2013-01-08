@@ -143,6 +143,11 @@
 {
     return [[[DrawColor alloc] initWithRed:red green:green blue:blue alpha:alpha]autorelease];
 }
+
++ (DrawColor *)colorWithColor:(DrawColor *)color
+{
+    return [[[DrawColor alloc] initWithRed:color.red green:color.green blue:color.blue alpha:color.alpha] autorelease];
+}
 + (DrawColor *)blackColor      // 0.0 white 
 {
     return [DrawColor colorWithRed:0 green:0 blue:0 alpha:1];
