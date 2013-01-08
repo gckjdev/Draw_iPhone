@@ -967,10 +967,15 @@
 "kSaveToAlbumSuccess" = "成功保存到相冊!";
 "kSaveToLocalSuccess" = "成功保存到本地，您可以在作品頁面查看該作品。";
 
+"kPaletteItem" = "調色板";
+"kColorAlphaItem" = "透明度";
+"kPaletteItemDescription" = "買了這個，你可以自已調出任何顏色！";
+"kColorAlphaItemDescription" = "買了它，可以畫出半透明的筆劃。";
+
+
 "kHotWords" = "熱門詞庫";
 "kHotWordsNote" = "[消耗一個錦囊]";
 "kSystemWords" = "系統詞庫";
-
 
 /*********************** 猜猜画画国际化字符串结束 *************************/
 

@@ -365,7 +365,7 @@
     if (self.delegate && [self.delegate respondsToSelector:@selector(drawToolPanel:didSelectColor:)]) {
         [self.delegate drawToolPanel:self didSelectColor:color];
     }
-    [self.alphaSlider setValue:1.0];
+//    [self.alphaSlider setValue:1.0];
     //update show list;
 }
 

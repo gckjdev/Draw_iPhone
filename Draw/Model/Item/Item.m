@@ -452,7 +452,7 @@
                                   name:[Item nameForItemType:PaletteItem]
                            description:[Item descriptionForItemType:PaletteItem]
                       buyAmountForOnce:1
-                                 price:[[ShoppingManager defaultManager] getPenPrice]
+                                 price:[[ShoppingManager defaultManager] getPaletteItemPrice]
                                 amount:[[ItemManager defaultManager] amountForItem:PaletteItem]] autorelease];
 }
 
@@ -463,7 +463,7 @@
                                   name:[Item nameForItemType:ColorAlphaItem]
                            description:[Item descriptionForItemType:ColorAlphaItem]
                       buyAmountForOnce:1
-                                 price:[[ShoppingManager defaultManager] getPenPrice]
+                                 price:[[ShoppingManager defaultManager] getColorAlphaItemPrice]
                                 amount:[[ItemManager defaultManager] amountForItem:ColorAlphaItem]] autorelease];
 }
 @end

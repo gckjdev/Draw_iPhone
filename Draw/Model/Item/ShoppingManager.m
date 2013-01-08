@@ -196,6 +196,9 @@ static ShoppingManager *staticShoppingManager = nil;
 #define DEFAULT_CRYSAL_DICE_PRICE  20000
 #define DEFAULT_DIAMOND_DICE_PRICE  20000
 
+#define DEFAULT_PALETTE_PRICE   4000
+#define DEFAULT_ALPHA_PRICE     3000
+
 - (NSInteger)getColorPrice
 {
     NSString* price = [MobClick getConfigParams:@"COLOR_PRICE"];
@@ -217,6 +220,30 @@ static ShoppingManager *staticShoppingManager = nil;
     }
     NSInteger retPrice = [price integerValue];
     PPDebug(@"<getPenPrice>: price string = %@,price value = %d",price,retPrice);
+    return retPrice;
+}
+
+- (NSInteger)getPaletteItemPrice
+{
+    NSString* price = [MobClick getConfigParams:@"PALETTE_PRICE"];
+    if (price == nil) {
+        PPDebug(@"<getpalettePrice>: price is nil, return default price = %d",DEFAULT_PALETTE_PRICE);
+        return DEFAULT_PALETTE_PRICE;
+    }
+    NSInteger retPrice = [price integerValue];
+    PPDebug(@"<getpalettePrice>: price string = %@,price value = %d",price,retPrice);
+    return retPrice;
+}
+
+- (NSInteger)getColorAlphaItemPrice
+{
+    NSString* price = [MobClick getConfigParams:@"ALPHA_PRICE"];
+    if (price == nil) {
+        PPDebug(@"<getAlphaPrice>: price is nil, return default price = %d",DEFAULT_ALPHA_PRICE);
+        return DEFAULT_ALPHA_PRICE;
+    }
+    NSInteger retPrice = [price integerValue];
+    PPDebug(@"<getAlphaPrice>: price string = %@,price value = %d",price,retPrice);
     return retPrice;
 }
 

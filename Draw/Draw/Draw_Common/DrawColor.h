@@ -26,6 +26,8 @@
 @property(nonatomic, assign)CGFloat alpha;
 //@property(nonatomic, retain)UIColor color;
 
+
+
 - (id)initWithRed:(CGFloat)red green:(CGFloat)green blue:(CGFloat)blue alpha:(CGFloat)alpha;
 - (id)initWithPBColor:(PBColor *)color;
 - (PBColor *)toPBColor;
@@ -36,6 +38,9 @@
 - (NSString *)toString;
 
 + (DrawColor *)colorWithRed:(CGFloat)red green:(CGFloat)green blue:(CGFloat)blue alpha:(CGFloat)alpha;
+
++ (DrawColor *)colorWithColor:(DrawColor *)color;
+
 + (DrawColor *)blackColor;      // 0.0 white 
 + (DrawColor *)whiteColor;      // 1.0 white 
 + (DrawColor *)redColor;        // 1.0, 0.0, 0.0 RGB 

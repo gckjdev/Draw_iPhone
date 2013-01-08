@@ -973,11 +973,19 @@
 "kPenWidth" = "粗细";
 "kColorAlpha" = "透明度";
 "kMoreColor" = "更多";
+
+
+"kPaletteItem" = "调色板";
+"kColorAlphaItem" = "透明度";
+"kPaletteItemDescription" = "买了这个，你可以自已调出任何颜色！";
+"kColorAlphaItemDescription" = "买了它，可以画出半透明的笔画。";
+
 "kDraftsBox" = "草稿箱";
 "kIWantToDraw..." = "我想画...";
 "kHotWords" = "热门词库";
 "kHotWordsNote" = "[消耗一个锦囊]";
 "kSystemWords" = "系统词库";
+
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 
