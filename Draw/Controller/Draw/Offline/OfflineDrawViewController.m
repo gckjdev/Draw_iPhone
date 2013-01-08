@@ -304,16 +304,17 @@ enum{
     [drawView setDrawEnabled:YES];
     [drawView setRevocationSupported:YES];
     drawView.delegate = self;
+    _isNewDraft = YES;
+    _userSaved = NO;
     if (self.draft) {
         [drawView showDraft:self.draft];
         self.draft.thumbImage = nil;
+        _userSaved = YES;
     }
     [self.view insertSubview:drawView aboveSubview:paperView];
     self.eraserColor = [DrawColor whiteColor];
     self.penColor = [DrawColor blackColor];
     _alpha = 1.0;
-    _isNewDraft = YES;
-    _userSaved = NO;
 }
 
 - (void)initWordLabel
