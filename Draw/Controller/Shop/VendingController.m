@@ -406,7 +406,7 @@ static VendingController* staticVendingController = nil;
         }
         else{
             if (isDrawApp()) {
-                _itemList = [[NSMutableArray alloc] initWithObjects:[Item removeAd], [Item tips], [Item colors], [Item tomato], [Item flower], [Item iceCreamPen], [Item brushPen], [Item featherPen], [Item waterPen], nil];
+                _itemList = [[NSMutableArray alloc] initWithObjects:[Item removeAd], [Item tips], [Item colors], [Item tomato], [Item flower], [Item iceCreamPen], [Item brushPen], [Item featherPen], [Item waterPen], [Item PaletteItem], [Item ColorAlphaItem], nil];
             }
             
             if (isDiceApp() || isZhajinhuaApp()) {

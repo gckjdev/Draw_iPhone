@@ -145,6 +145,10 @@
             return [UIImage adjustImage:manager.waterPenImage toRatio:1];
         case Pencil:
             return [UIImage adjustImage:manager.pencilImage toRatio:1];
+        case PaletteItem:
+            return [UIImage adjustImage:manager.drawColorBG toRatio:1];
+        case ColorAlphaItem:
+            return [UIImage adjustImage:manager.drawSliderBG toRatio:1];
         case ItemTypeRollAgain: 
             return [diceManager toShopImage:diceManager.diceToolRollAgainImage];
         case ItemTypeCut: 
@@ -210,6 +214,10 @@
             return NSLS(@"kQuill"); 
         case WaterPen:
             return NSLS(@"kWaterPen");
+        case PaletteItem:
+            return NSLS(@"kPaletteItem");
+        case ColorAlphaItem:
+            return NSLS(@"kColorAlphaItem");
         case ItemTypeRollAgain:
             return NSLS(@"kRollAgain");
         case ItemTypeCut:
@@ -241,6 +249,10 @@
             return NSLS(@"kQuillDescription");  
         case WaterPen:
             return NSLS(@"kWaterPenDescription");
+        case PaletteItem:
+            return NSLS(@"kPaletteItemDescription");
+        case ColorAlphaItem:
+            return NSLS(@"kColorAlphaItemDescription");
         default:
             return nil;
     }
@@ -429,7 +441,25 @@
                                 amount:[[ItemManager defaultManager] amountForItem:WaterPen]] autorelease];
 }
 
++ (Item*)PaletteItem
+{
+    return [[[Item alloc] initWithType:PaletteItem
+                                 image:[Item imageForItemType:PaletteItem]
+                                  name:[Item nameForItemType:PaletteItem]
+                           description:[Item descriptionForItemType:PaletteItem]
+                      buyAmountForOnce:1
+                                 price:[[ShoppingManager defaultManager] getPenPrice]
+                                amount:[[ItemManager defaultManager] amountForItem:PaletteItem]] autorelease];
+}
 
-
-
++ (Item*)ColorAlphaItem
+{
+    return [[[Item alloc] initWithType:ColorAlphaItem
+                                 image:[Item imageForItemType:ColorAlphaItem]
+                                  name:[Item nameForItemType:ColorAlphaItem]
+                           description:[Item descriptionForItemType:ColorAlphaItem]
+                      buyAmountForOnce:1
+                                 price:[[ShoppingManager defaultManager] getPenPrice]
+                                amount:[[ItemManager defaultManager] amountForItem:ColorAlphaItem]] autorelease];
+}
 @end
