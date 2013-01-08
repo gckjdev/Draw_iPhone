@@ -119,10 +119,11 @@
     [tableView deselectRowAtIndexPath:[tableView indexPathForSelectedRow] animated:YES];
     
     selectedRow = indexPath.row;
-    CustomWord *customWord = [dataList objectAtIndex:selectedRow];
-    NSString *word = customWord.word;
-    CommonDialog *dialog = [CommonDialog createDialogWithTitle:nil message:[NSString stringWithFormat:NSLS(@"kSureUseThisWord"),word] style:CommonDialogStyleDoubleButton delegate:self];
-    [dialog showInView:self];
+//    CustomWord *customWord = [dataList objectAtIndex:selectedRow];
+//    NSString *word = customWord.word;
+//    CommonDialog *dialog = [CommonDialog createDialogWithTitle:nil message:[NSString stringWithFormat:NSLS(@"kSureUseThisWord"),word] style:CommonDialogStyleDoubleButton delegate:self];
+//    [dialog showInView:self];
+    [self clickOk:nil];
 }
 
 - (void)clickOk:(CommonDialog *)dialog

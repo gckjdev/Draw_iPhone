@@ -9,8 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "WordSelectCell.h"
 #import "SelectCustomWordView.h"
+#import "DraftsView.h"
 
-@interface SelectHotWordController : UIViewController <WordSelectCellDelegate, SelectCustomWordViewDelegate>
+@interface SelectHotWordController : UIViewController <WordSelectCellDelegate, SelectCustomWordViewDelegate, DraftsViewDelegate>
 @property (retain, nonatomic) IBOutlet UIView *hotWordsView;
 @property (retain, nonatomic) IBOutlet UIView *systemWordsView;
 @property (retain, nonatomic) IBOutlet UIView *myWordsView;

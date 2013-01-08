@@ -8,19 +8,23 @@
 
 #import <UIKit/UIKit.h>
 #import "MyPaint.h"
+#import "MyPaintManager.h"
+#import "DraftCell.h"
 
 @protocol DraftsViewDelegate <NSObject>
 
-@optional
+@required
 - (void)didSelectDraft:(MyPaint *)draft;
 
 @end
 
 
-@interface DraftsView : UIView<UITableViewDataSource, UITableViewDelegate>
+@interface DraftsView : UIView<UITableViewDataSource, UITableViewDelegate, MyPaintManagerDelegate, DraftCellDelegate>
+@property (retain, nonatomic) IBOutlet UILabel *titleLabel;
+@property (assign, nonatomic) id<DraftsViewDelegate> delegate;
 @property (retain, nonatomic) IBOutlet UITableView *tableView;
+@property (retain, nonatomic) NSArray *drafts;
 
-+ (id)createView;
-
++ (void)showInView:(UIView *)view delegate:(id<DraftsViewDelegate>)delegate;
 
 @end

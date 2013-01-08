@@ -98,12 +98,18 @@
 }
 
 - (IBAction)clickDraftButton:(id)sender {
-    
+    [DraftsView showInView:self.view delegate:self];
 }
 
 - (void)didSelectWord:(Word *)word
 {
     [OfflineDrawViewController startDraw:word fromController:self];
+}
+
+- (void)didSelectDraft:(MyPaint *)draft
+{
+    OfflineDrawViewController *vc = [[[OfflineDrawViewController alloc] initWithDraft:draft] autorelease];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 @end
