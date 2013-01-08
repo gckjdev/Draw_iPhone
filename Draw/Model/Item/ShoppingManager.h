@@ -52,5 +52,7 @@
 - (NSInteger)getCrystalDicePrice;                                       
 - (NSInteger)getDiamondDicePrice;          
 
+- (NSInteger)getPaletteItemPrice;
+- (NSInteger)getColorAlphaItemPrice;
 
 @end
