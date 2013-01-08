@@ -534,6 +534,10 @@
 
 "kCustomWordManage" = "My Words";
 "kAddCustomWord" = "Add Word";
+"kHotWords" = "Hot";
+"kHotWordsNote" = "Cost 1 Tip";
+"kSystemWords" = "Random";
+
 "kInputWord" = "Input Words";
 "kInputWordPlaceholder" = "Please input a new word";
 "kMyWords" = "My Words";
@@ -951,6 +955,8 @@
 "kColorAlpha" = "Alpha";
 "kMoreColor" = "More";
 
+"kDraftsBox" = "Drafts Box";
+"kIWantToDraw..." = "I want to draw...";
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 

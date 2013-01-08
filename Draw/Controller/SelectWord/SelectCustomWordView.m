@@ -51,6 +51,8 @@
         return nil;
     }
     SelectCustomWordView* view =  (SelectCustomWordView*)[topLevelObjects objectAtIndex:0];
+    view.titleLabel.text = NSLS(@"kMyWords");
+    [view.addWordButton setTitle:NSLS(@"kAddCustomWord") forState:UIControlStateNormal];
     view.delegate = aDelegate;
     
     view.dataList = [[CustomWordManager defaultManager] findAllWords];
@@ -145,6 +147,8 @@
     PPRelease(dataTableView);
     PPRelease(dataList);
     PPRelease(closeButton);
+    [_titleLabel release];
+    [_addWordButton release];
     [super dealloc];
 }
 
