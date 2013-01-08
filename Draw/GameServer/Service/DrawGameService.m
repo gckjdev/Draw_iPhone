@@ -17,6 +17,8 @@
 #import "GameTurn.h"
 #import "Word.h"
 #import "UserManager.h"
+#import "CommonGameNetworkService.h"
+#import "NotificationName.h"
 
 @implementation DrawGameService
 
@@ -548,6 +550,26 @@ static DrawGameService* _defaultService;
     });
 }
 
+- (void)postNotification:(NSString*)name error:(NSError*)error
+{
+    [[NSNotificationCenter defaultCenter]
+     postNotificationName:name
+     object:self
+     userInfo:[CommonGameNetworkService errorToUserInfo:error]];
+    
+    PPDebug(@"<%@> post notification %@ with error", [self description], name);
+}
+
+- (void)didBroken:(NSError *)error
+{
+    dispatch_sync(dispatch_get_main_queue(), ^{
+        
+        [self clearKeepAliveTimer];
+        [self postNotification:NOTIFICATION_NETWORK_DISCONNECTED error:error];
+    });
+    
+}
+
 - (void)didBroken
 {    
     if (_connectionDelegate == nil)
@@ -557,9 +579,13 @@ static DrawGameService* _defaultService;
         
         [self clearKeepAliveTimer];
         
+        /*
         if ([_connectionDelegate respondsToSelector:@selector(didBroken)]){
             [_connectionDelegate didBroken];
         }
+        */
+        
+        [self postNotification:NOTIFICATION_NETWORK_DISCONNECTED error:nil];
     });
 }
 
@@ -608,6 +634,9 @@ static DrawGameService* _defaultService;
 {
     
     PPDebug(@"<startGame> %@ at %d", _userId, [_session sessionId]);
+    if ([_networkClient isConnected] == NO){
+        return;
+    }
     
     [_networkClient sendStartGameRequest:_userId sessionId:[_session sessionId]];    
     

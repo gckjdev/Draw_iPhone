@@ -654,6 +654,12 @@
 
 - (void)startGame
 {
+    if ([[DrawGameService defaultService] isConnected] == NO){
+        [self popupMessage:NSLS(@"kNetworkBroken") title:nil];
+        [self.navigationController popViewControllerAnimated:YES];
+        return;
+    }
+    
     if (_hasClickStartGame){
         return;
     }

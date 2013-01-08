@@ -27,6 +27,7 @@
 {
     BOOL        _isTryJoinGame;  
     UserManager *_userManager;
+    BOOL        _connectState;
 }
 
 
