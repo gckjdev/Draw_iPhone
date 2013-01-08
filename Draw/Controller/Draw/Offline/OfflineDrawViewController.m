@@ -666,7 +666,7 @@ enum{
 }
 - (PBNoCompressDrawData *)noCompressDrawData
 {
-    NSMutableArray *temp = [NSMutableArray arrayWithArray:drawView.drawActionList];
+    NSMutableArray *temp = [[NSMutableArray alloc] initWithArray:drawView.drawActionList];
     return [DrawAction drawActionListToPBNoCompressDrawData:temp];
     PPRelease(temp);
 }
