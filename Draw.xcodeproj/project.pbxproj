@@ -15977,10 +15977,10 @@
 			projectRoot = "";
 			targets = (
 				CA745D1D1503B1B400600024 /* Draw */,
+				CAB5C6FF16994F0200A4CE3B /* DrawPro */,
 				CA16B9661682FAD900F81B47 /* Dice */,
 				CA16BEEC1682FAE300F81B47 /* Zhajinhua */,
 				CA745D411503B1B500600024 /* DrawTests */,
-				CAB5C6FF16994F0200A4CE3B /* DrawPro */,
 			);
 		};
 /* End PBXProject section */
