@@ -78,7 +78,6 @@
 
 @property(nonatomic, retain)MyPaint *draft;
 @property (retain, nonatomic) IBOutlet UILabel *wordLabel;
-@property (retain, nonatomic) IBOutlet UILabel *titleLabel;
 @property (retain, nonatomic) IBOutlet UIButton *draftButton;
 @property (retain, nonatomic) IBOutlet UIButton *submitButton;
 
@@ -100,7 +99,6 @@
 @synthesize draft = _draft;
 @synthesize wordLabel;
 @synthesize word = _word;
-@synthesize titleLabel;
 @synthesize draftButton;
 @synthesize delegate;
 @synthesize targetUid = _targetUid;
@@ -157,7 +155,6 @@
     PPRelease(drawView);
     PPRelease(_word);
     PPRelease(_targetUid);
-    PPRelease(titleLabel);
     PPRelease(_penColor);
     PPRelease(_eraserColor);
     PPRelease(_draft);
@@ -368,7 +365,6 @@ enum{
     
     [self setWord:nil];
     [self setWordLabel:nil];
-    [self setTitleLabel:nil];
     [self setSubmitButton:nil];
     [self setDraftButton:nil];
     [super viewDidUnload];
