@@ -71,14 +71,10 @@
     Contest *_contest;
     
     BOOL _isAutoSave;
-    
-    
-
 }
 
 @property(nonatomic, retain)MyPaint *draft;
 @property (retain, nonatomic) IBOutlet UILabel *wordLabel;
-@property (retain, nonatomic) IBOutlet UILabel *titleLabel;
 @property (retain, nonatomic) IBOutlet UIButton *draftButton;
 @property (retain, nonatomic) IBOutlet UIButton *submitButton;
 
@@ -95,12 +91,13 @@
 @end
 
 
+#define BUTTON_FONT_SIZE_ENGLISH (ISIPAD ? 25 : 12)
+
 @implementation OfflineDrawViewController
 
 @synthesize draft = _draft;
 @synthesize wordLabel;
 @synthesize word = _word;
-@synthesize titleLabel;
 @synthesize draftButton;
 @synthesize delegate;
 @synthesize targetUid = _targetUid;
@@ -157,7 +154,6 @@
     PPRelease(drawView);
     PPRelease(_word);
     PPRelease(_targetUid);
-    PPRelease(titleLabel);
     PPRelease(_penColor);
     PPRelease(_eraserColor);
     PPRelease(_draft);
@@ -327,6 +323,12 @@ enum{
 {
     [self.submitButton setTitle:NSLS(@"kSubmit") forState:UIControlStateNormal];
     [self.draftButton setTitle:NSLS(@"kSave") forState:UIControlStateNormal];
+    if (![LocaleUtils isChinese]) {
+        UIFont *font = [UIFont boldSystemFontOfSize:BUTTON_FONT_SIZE_ENGLISH];
+        [self.submitButton.titleLabel setFont:font];
+        [self.draftButton.titleLabel setFont:font];
+    }
+    
     if (targetType == TypeGraffiti) {
         self.draftButton.hidden = YES;
     }
@@ -368,7 +370,6 @@ enum{
     
     [self setWord:nil];
     [self setWordLabel:nil];
-    [self setTitleLabel:nil];
     [self setSubmitButton:nil];
     [self setDraftButton:nil];
     [super viewDidUnload];
@@ -666,7 +667,7 @@ enum{
 }
 - (PBNoCompressDrawData *)noCompressDrawData
 {
-    NSMutableArray *temp = [NSMutableArray arrayWithArray:drawView.drawActionList];
+    NSMutableArray *temp = [[NSMutableArray alloc] initWithArray:drawView.drawActionList];
     return [DrawAction drawActionListToPBNoCompressDrawData:temp];
     PPRelease(temp);
 }

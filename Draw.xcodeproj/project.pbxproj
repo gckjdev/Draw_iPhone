@@ -3149,6 +3149,10 @@
 		CA22B794169AD65300DAB1C3 /* draw_palette@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA22B792169AD65300DAB1C3 /* draw_palette@2x.png */; };
 		CA22B795169AD65300DAB1C3 /* draw_palette@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA22B792169AD65300DAB1C3 /* draw_palette@2x.png */; };
 		CA22B796169AD65300DAB1C3 /* draw_palette@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA22B792169AD65300DAB1C3 /* draw_palette@2x.png */; };
+		CA22B7AD169BCB3700DAB1C3 /* DrawPro-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CA22B7AC169BCB3600DAB1C3 /* DrawPro-Info.plist */; };
+		CA22B7AE169BCB3700DAB1C3 /* DrawPro-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CA22B7AC169BCB3600DAB1C3 /* DrawPro-Info.plist */; };
+		CA22B7AF169BCB3700DAB1C3 /* DrawPro-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CA22B7AC169BCB3600DAB1C3 /* DrawPro-Info.plist */; };
+		CA22B7B0169BCB3700DAB1C3 /* DrawPro-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CA22B7AC169BCB3600DAB1C3 /* DrawPro-Info.plist */; };
 		CA22DCD2157CAFFD009C95CB /* ResultController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA22DCCF157CAFFD009C95CB /* ResultController.m */; };
 		CA22DCD3157CAFFD009C95CB /* ResultController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA22DCD0157CAFFD009C95CB /* ResultController.xib */; };
 		CA22DCED157CB00A009C95CB /* OnlineDrawViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA22DCE0157CB00A009C95CB /* OnlineDrawViewController.m */; };
@@ -7372,6 +7376,7 @@
 		CA22B788169AD58000DAB1C3 /* draw_palette_unbuy@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "draw_palette_unbuy@2x.png"; sourceTree = "<group>"; };
 		CA22B78D169AD58D00DAB1C3 /* draw_slider_disable@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "draw_slider_disable@2x.png"; sourceTree = "<group>"; };
 		CA22B792169AD65300DAB1C3 /* draw_palette@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "draw_palette@2x.png"; sourceTree = "<group>"; };
+		CA22B7AC169BCB3600DAB1C3 /* DrawPro-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "DrawPro-Info.plist"; sourceTree = "<group>"; };
 		CA22DCCE157CAFFD009C95CB /* ResultController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResultController.h; sourceTree = "<group>"; };
 		CA22DCCF157CAFFD009C95CB /* ResultController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResultController.m; sourceTree = "<group>"; };
 		CA22DCD0157CAFFD009C95CB /* ResultController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ResultController.xib; sourceTree = "<group>"; };
@@ -8733,7 +8738,6 @@
 		CAB3DBDB1516DACD00E7DBC4 /* SelectWordCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectWordCell.m; sourceTree = "<group>"; };
 		CAB3DBDC1516DACD00E7DBC4 /* SelectWordCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SelectWordCell.xib; sourceTree = "<group>"; };
 		CAB5CC9916994F0200A4CE3B /* Draw copy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Draw copy.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		CAB5CC9B16994F0200A4CE3B /* DrawPro-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "DrawPro-Info.plist"; path = "/gitdata/Draw_iPhone/DrawPro-Info.plist"; sourceTree = "<absolute>"; };
 		CAB5DE4B1669FF7600A23011 /* bbs_create_draw_disable@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bbs_create_draw_disable@2x.png"; sourceTree = "<group>"; };
 		CAB5DE4C1669FF7600A23011 /* bbs_create_draw_enable@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bbs_create_draw_enable@2x.png"; sourceTree = "<group>"; };
 		CAB5DE4D1669FF7600A23011 /* bbs_create_image_disable@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bbs_create_image_disable@2x.png"; sourceTree = "<group>"; };
@@ -12572,8 +12576,8 @@
 			isa = PBXGroup;
 			children = (
 				CA1377F01525A7CB00B5790B /* Localizable.strings */,
+				CA22B7AC169BCB3600DAB1C3 /* DrawPro-Info.plist */,
 				CA745D2A1503B1B500600024 /* Draw-Info.plist */,
-				CAB5CC9B16994F0200A4CE3B /* DrawPro-Info.plist */,
 				CA16C4741682FFDA00F81B47 /* Dice-Info.plist */,
 				CA16C4721682FFCC00F81B47 /* Zhajinhua-Info.plist */,
 				CA745D2B1503B1B500600024 /* InfoPlist.strings */,
@@ -15973,10 +15977,10 @@
 			projectRoot = "";
 			targets = (
 				CA745D1D1503B1B400600024 /* Draw */,
+				CAB5C6FF16994F0200A4CE3B /* DrawPro */,
 				CA16B9661682FAD900F81B47 /* Dice */,
 				CA16BEEC1682FAE300F81B47 /* Zhajinhua */,
 				CA745D411503B1B500600024 /* DrawTests */,
-				CAB5C6FF16994F0200A4CE3B /* DrawPro */,
 			);
 		};
 /* End PBXProject section */
@@ -17163,6 +17167,7 @@
 				CA22B78A169AD58000DAB1C3 /* draw_palette_unbuy@2x.png in Resources */,
 				CA22B78F169AD58D00DAB1C3 /* draw_slider_disable@2x.png in Resources */,
 				CA22B794169AD65300DAB1C3 /* draw_palette@2x.png in Resources */,
+				CA22B7AE169BCB3700DAB1C3 /* DrawPro-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -17934,6 +17939,7 @@
 				CA22B78B169AD58000DAB1C3 /* draw_palette_unbuy@2x.png in Resources */,
 				CA22B790169AD58D00DAB1C3 /* draw_slider_disable@2x.png in Resources */,
 				CA22B795169AD65300DAB1C3 /* draw_palette@2x.png in Resources */,
+				CA22B7AF169BCB3700DAB1C3 /* DrawPro-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -18681,6 +18687,7 @@
 				CA22B789169AD58000DAB1C3 /* draw_palette_unbuy@2x.png in Resources */,
 				CA22B78E169AD58D00DAB1C3 /* draw_slider_disable@2x.png in Resources */,
 				CA22B793169AD65300DAB1C3 /* draw_palette@2x.png in Resources */,
+				CA22B7AD169BCB3700DAB1C3 /* DrawPro-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -19430,6 +19437,7 @@
 				CA22B78C169AD58000DAB1C3 /* draw_palette_unbuy@2x.png in Resources */,
 				CA22B791169AD58D00DAB1C3 /* draw_slider_disable@2x.png in Resources */,
 				CA22B796169AD65300DAB1C3 /* draw_palette@2x.png in Resources */,
+				CA22B7B0169BCB3700DAB1C3 /* DrawPro-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -22863,7 +22871,7 @@
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Draw/Draw-Prefix.pch";
-				INFOPLIST_FILE = "DrawPro-Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Draw/DrawPro-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/MobClick\"",
@@ -22926,7 +22934,7 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Draw/Draw-Prefix.pch";
-				INFOPLIST_FILE = "DrawPro-Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Draw/DrawPro-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/MobClick\"",
