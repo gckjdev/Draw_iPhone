@@ -30,6 +30,4 @@
 
 - (void)showInView:(UIView *)superview;
 
-- (IBAction)clickCloseButton:(id)sender;
-
 @end

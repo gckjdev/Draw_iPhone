@@ -535,7 +535,7 @@
 "kCustomWordManage" = "My Words";
 "kAddCustomWord" = "Add Word";
 "kHotWords" = "Hot";
-"kHotWordsNote" = "Cost 1 Tip";
+"kHotWordsNote" = "[Cost 1 Tip]";
 "kSystemWords" = "Random";
 
 "kInputWord" = "Input Words";
