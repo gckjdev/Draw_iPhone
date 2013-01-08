@@ -199,7 +199,7 @@
     [[DrawGameService defaultService] setAvatar:[[UserManager defaultManager] avatarURL]];    
     
     [self enterNextControllerWityType:self.notificationType];
-    [self registerUIApplicationWillEnterForegroundNotification];
+
     [self registerUIApplicationNotification];
     [self registerNetworkDisconnectedNotification];
 }
