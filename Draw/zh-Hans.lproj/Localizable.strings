@@ -102,7 +102,7 @@
 "kQuitGameAlertMessage" = "确定要退出游戏吗?";
 "kQuitGameAlertTitle" = "退出游戏";
 
-"kQuitDrawAlertMessage" = "退出绘画后，未完成的作品将保存在草稿箱，以后可以继续编辑。确定要退出吗？";
+"kQuitDrawAlertMessage" = "是否保存对作品所作的更改？";
 "kQuitDrawAlertTitle" = "退出绘画";
 
 
@@ -967,13 +967,13 @@
 "kSaveToAlbumSuccess" = "成功保存到相册!";
 "kSaveToLocalSuccess" = "成功保存到本地，您可以在作品页面查看该作品。";
 
-"kCanotSendItemToContestOpus" = "比赛已经结束， 不能再丢东西了哦！";
+"kCanotSendItemToContestOpus" = "比赛已经结束，不能再丢东西了哦！";
 
 
 "kPenWidth" = "粗细";
 "kColorAlpha" = "透明度";
 "kMoreColor" = "更多";
-
+"kDonotSave" = "不保存";
 
 "kPaletteItem" = "调色板";
 "kColorAlphaItem" = "透明度";
@@ -985,6 +985,7 @@
 "kHotWords" = "热门词库";
 "kHotWordsNote" = "[消耗一个锦囊]";
 "kSystemWords" = "系统词库";
+
 
 /*********************** 猜猜画画国际化字符串结束 *************************/
 

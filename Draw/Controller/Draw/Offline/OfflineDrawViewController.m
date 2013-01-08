@@ -46,6 +46,8 @@
 #import "DrawToolPanel.h"
 #import "DrawColorManager.h"
 #import "VendingController.h"
+#import "FontButton.h"
+
 
 @interface OfflineDrawViewController()
 {
@@ -72,6 +74,9 @@
     Contest *_contest;
     
     BOOL _isAutoSave;
+    
+    BOOL _userSaved;
+    BOOL _isNewDraft;
 }
 
 @property(nonatomic, retain)MyPaint *draft;
@@ -201,7 +206,7 @@
         targetType = TypeContest;
     }
     return self;
-        
+    
 }
 
 - (id)initWithDraft:(MyPaint *)draft
@@ -307,6 +312,8 @@ enum{
     self.eraserColor = [DrawColor whiteColor];
     self.penColor = [DrawColor blackColor];
     _alpha = 1.0;
+    _isNewDraft = YES;
+    _userSaved = NO;
 }
 
 - (void)initWordLabel
@@ -393,6 +400,7 @@ enum{
 #define ESCAPE_DEDUT_COIN 1
 #define DIALOG_TAG_CLEAN_DRAW 201204081
 #define DIALOG_TAG_ESCAPE 201204082
+#define DIALOG_TAG_SAVETIP 201204083
 #define DIALOG_TAG_SUBMIT 201206071
 #define DIALOG_TAG_CHANGE_BACK 201207281
 #define DIALOG_TAG_COMMIT_OPUS 201208111
@@ -498,11 +506,14 @@ enum{
 
     }
     else if (dialog.tag == DIALOG_TAG_ESCAPE ){
-        if ([drawView.drawActionList count] > 0 && _isAutoSave) {
-            [self saveDraft:NO];            
-        }
         [self quit];
-    }else if(dialog.tag == BUY_CONFIRM_TAG){
+    }
+    else if (dialog.tag == DIALOG_TAG_SAVETIP)
+    {
+        [self saveDraft:NO];
+        [self quit];
+    }
+    else if(dialog.tag == BUY_CONFIRM_TAG){
         [[AccountService defaultService] buyItem:_willBuyPen.penType itemCount:1 itemCoins:_willBuyPen.price];
         [_willBuyPen setAlpha:1];
         [drawView setPenType:_willBuyPen.penType];   
@@ -567,6 +578,13 @@ enum{
         [[DrawDataService defaultService] savePaintWithPBDraw:self.pbDraw image:drawView.createImage delegate:self];
         [self quit];
     }
+    else if (dialog.tag == DIALOG_TAG_SAVETIP)
+    {
+        if (!_userSaved) {
+            [[MyPaintManager defaultManager] deleteMyPaint:self.draft];
+        }
+        [self quit];
+    }
 }
 
 
@@ -584,6 +602,7 @@ enum{
 {
     [self.drawToolPanel dismissAllPopTipViews];
     [self updateRecentColors];
+    _isNewDraft = NO;
 }
 
 #define DRAFT_PAINT_COUNT [ConfigManager drawAutoSavePaintInterval]
@@ -683,7 +702,7 @@ enum{
     }
     PPDebug(@"<OfflineDrawViewController> start to save draft. show result = %d",showResult);
     _unDraftPaintCount = 0;
-
+    _isNewDraft = YES;
     UIImage *image = [drawView createImage];    
     
     __block BOOL result = NO;
@@ -742,6 +761,7 @@ enum{
 }
 
 - (IBAction)clickDraftButton:(id)sender {
+    _userSaved = YES;
     [self showActivityWithText:NSLS(@"kSaving")];
     [self performSelector:@selector(saveDraftAndShowResult) withObject:nil afterDelay:0.01];
 }
@@ -777,6 +797,26 @@ enum{
 }
 
 
+- (void)alertExit
+{
+    CommonDialog *dialog = [CommonDialog createDialogWithTitle:nil message:nil style:CommonDialogStyleDoubleButton delegate:self];
+    
+    if (_isNewDraft || [drawView.drawActionList count] == 0 || !_isAutoSave) {
+        [dialog setTitle:NSLS(@"kQuitGameAlertTitle")];
+        [dialog setMessage:NSLS(@"kQuitGameAlertMessage")];
+        dialog.tag = DIALOG_TAG_ESCAPE;
+    }else{
+        [dialog setTitle:NSLS(@"kQuitDrawAlertTitle")];
+        [dialog setMessage:NSLS(@"kQuitDrawAlertMessage")];
+        [dialog.backButton setTitle:NSLS(@"kDonotSave") forState:UIControlStateNormal];
+        [dialog.oKButton setTitle:NSLS(@"kSave") forState:UIControlStateNormal];
+
+        dialog.tag = DIALOG_TAG_SAVETIP;
+    }
+    
+    [dialog showInView:self.view];
+}
+
 - (void)clickBackButton:(id)sender
 {
     if (targetType == TypeGraffiti) {
@@ -784,21 +824,22 @@ enum{
             [delegate didControllerClickBack:self];
         }
     }else {
-        CommonDialog *dialog = nil;
-        if ([drawView.drawActionList count] == 0 || !_isAutoSave) {
-            dialog = [CommonDialog createDialogWithTitle:NSLS(@"kQuitGameAlertTitle")
-                                                 message:NSLS(@"kQuitGameAlertMessage")
-                                                   style:CommonDialogStyleDoubleButton 
-                                                delegate:self];
-        }else{
-            dialog = [CommonDialog createDialogWithTitle:NSLS(@"kQuitDrawAlertTitle") 
-                                                 message:NSLS(@"kQuitDrawAlertMessage") 
-                                                   style:CommonDialogStyleDoubleButton 
-                                                delegate:self];
-        }
-        
-        dialog.tag = DIALOG_TAG_ESCAPE;
-        [dialog showInView:self.view];
+        [self alertExit];
+//        CommonDialog *dialog = nil;
+//        if ([drawView.drawActionList count] == 0 || !_isAutoSave) {
+//            dialog = [CommonDialog createDialogWithTitle:NSLS(@"kQuitGameAlertTitle")
+//                                                 message:NSLS(@"kQuitGameAlertMessage")
+//                                                   style:CommonDialogStyleDoubleButton 
+//                                                delegate:self];
+//        }else{
+//            dialog = [CommonDialog createDialogWithTitle:NSLS(@"kQuitDrawAlertTitle") 
+//                                                 message:NSLS(@"kQuitDrawAlertMessage") 
+//                                                   style:CommonDialogStyleDoubleButton 
+//                                                delegate:self];
+//        }
+//        
+//        dialog.tag = DIALOG_TAG_ESCAPE;
+//        [dialog showInView:self.view];
     }
 }
 
@@ -843,11 +884,17 @@ enum{
 
 - (void)drawToolPanel:(DrawToolPanel *)toolPanel didClickRedoButton:(UIButton *)button
 {
-    [drawView redo];
+    if ([drawView canRedo]) {
+        [drawView redo];
+        _isNewDraft = NO;
+    }
 }
 - (void)drawToolPanel:(DrawToolPanel *)toolPanel didClickUndoButton:(UIButton *)button
 {
-    [drawView revoke];
+    if ([drawView canRevoke]) {
+        _isNewDraft = NO;
+        [drawView revoke];
+    }
 }
 - (void)drawToolPanel:(DrawToolPanel *)toolPanel didClickEraserButton:(UIButton *)button
 {
@@ -856,6 +903,7 @@ enum{
 }
 - (void)drawToolPanel:(DrawToolPanel *)toolPanel didClickPaintBucket:(UIButton *)button
 {
+    _isNewDraft = NO;
     self.penColor.alpha = 1.0;
     [drawView addChangeBackAction:self.penColor];
     self.eraserColor = self.penColor;
