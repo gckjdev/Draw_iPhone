@@ -804,6 +804,36 @@ enum{
 //    [[CommonMessageCenter defaultCenter] postMessageWithText:[NSString stringWithFormat:NSLS(@"kUpgradeMsg"),level] delayTime:1.5 isHappy:YES];
 }
 
+#pragma mark - CommonItemInfoView Delegate
+
+- (void)didBuyItem:(Item*)anItem
+            result:(int)result
+{
+    if (result == 0) {
+        switch (anItem.type) {
+            case PaletteItem:
+            case ColorAlphaItem:
+                [self.drawToolPanel updateView];
+                break;
+            case Pen:
+            case Pencil:
+            case IcePen:
+            case Quill:
+            case WaterPen:
+            {
+                [self.drawToolPanel setPenType:anItem.type];
+                [drawView setPenType:anItem.type];
+                break;
+            }
+            default:
+                break;
+
+        }
+    }else
+    {
+        [self popupMessage:NSLS(@"kNotEnoughCoin") title:nil];
+    }
+}
 
 #pragma mark - Draw Tool Panel Delegate
 
@@ -830,9 +860,14 @@ enum{
     [_drawToolPanel updateRecentColorViewWithColor:[DrawColor blackColor]];
 }
 - (void)drawToolPanel:(DrawToolPanel *)toolPanel didSelectPen:(ItemType)penType
+               bought:(BOOL)bought
 {
-    PPDebug(@"<didSelectPen> pen type = %d",penType);
-    drawView.penType = penType;
+    if (bought) {
+        PPDebug(@"<didSelectPen> pen type = %d",penType);
+        drawView.penType = penType;
+    }else{
+        [CommonItemInfoView showItem:[Item itemWithType:penType amount:1] infoInView:self canBuyAgain:NO];
+    }
 }
 - (void)drawToolPanel:(DrawToolPanel *)toolPanel didSelectWidth:(CGFloat)width
 {

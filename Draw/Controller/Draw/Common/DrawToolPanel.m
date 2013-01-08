@@ -16,7 +16,8 @@
 #import "ItemType.h"
 #import "DrawColorManager.h"
 #import "AccountService.h"
-#import "ItemType.h"
+#import "CommonItemInfoView.h"
+#import "Item.h"
 
 @interface DrawToolPanel ()
 {
@@ -246,6 +247,14 @@
     }
 }
 
+- (void)setPenType:(ItemType)penType
+{
+    _penType = penType;
+    self.pen.tag = penType;
+    [self.pen setImage:[Item imageForItemType:penType] forState:UIControlStateNormal];
+    
+}
+
 #pragma mark - click actions
 - (IBAction)clickUndo:(id)sender {
     [self dismissAllPopTipViews];
@@ -442,12 +451,15 @@
 
 - (void)penBox:(PenBox *)penBox didSelectPen:(ItemType)penType penImage:(UIImage *)image
 {
-    [self.pen setImage:image forState:UIControlStateNormal];
-    [self.pen setTag:penType];
     [self.penPopTipView dismissAnimated:NO];
     self.penPopTipView = nil;
-    if (self.delegate && [self.delegate respondsToSelector:@selector(drawToolPanel:didSelectPen:)]) {
-        [self.delegate drawToolPanel:self didSelectPen:penType];
+    BOOL hasBought = [[AccountService defaultService] hasEnoughItemAmount:penType amount:1];
+    if (hasBought) {
+        [self setPenType:penType];
+    }
+    
+    if (self.delegate && [self.delegate respondsToSelector:@selector(drawToolPanel:didSelectPen:bought:)]) {
+        [self.delegate drawToolPanel:self didSelectPen:penType bought:hasBought];
     }
 }
 
@@ -530,8 +542,8 @@
     PPRelease(_redo);
     PPRelease(_undo);
     PPRelease(_colorBGImageView);
-
-    [_palette release];
+    PPRelease(_palette);
+    
     [super dealloc];
 }
 
