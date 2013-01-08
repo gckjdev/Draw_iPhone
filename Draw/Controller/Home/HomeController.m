@@ -76,11 +76,11 @@
 #import "SynthesizeSingleton.h"
 #import "SelectHotWordController.h"
 
+
 @interface HomeController()
 {
     BoardPanel *_boardPanel;
     NSTimeInterval interval;
-
 }
 - (void)playBackgroundMusic;
 - (void)enterNextControllerWityType:(NotificationType) type;
@@ -210,10 +210,9 @@
     [self enterNextControllerWityType:self.notificationType];
     [self registerUIApplicationWillEnterForegroundNotification];
 
-
-//     [self.view bringSubviewToFront:self.testBulletin];
-
-//    [DrawTestViewController enterWithController:self];
+//    self.timer = [NSTimer scheduledTimerWithTimeInterval:65 target:self selector:@selector(timeout:) userInfo:nil repeats:YES];
+//    
+//    [shengmengsdk playad:SHENGMENG_APP_ID];
 }
 
 - (void)registerUIApplicationWillEnterForegroundNotification{
@@ -558,6 +557,7 @@
     PPRelease(_facetimeButton);
     PPRelease(_menuPanel);
     PPRelease(_bottomMenuPanel);
+    [self.timer invalidate];
 //    PPRelease(_adView);
     [_testBulletin release];
     [super dealloc];
@@ -852,4 +852,6 @@
 }
 
 */
+
+
 @end

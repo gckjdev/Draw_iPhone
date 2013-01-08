@@ -10,10 +10,14 @@
 #import "CommonDialog.h"
 #import "InputDialog.h"
 
+@class SelectCustomWordView;
+
 @protocol SelectCustomWordViewDelegate <NSObject>
 
-@optional
+@required
 - (void)didSelecCustomWord:(NSString *)word;
+- (void)didCloseSelectCustomWordView:(SelectCustomWordView *)view;
+
 @end
 
 

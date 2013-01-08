@@ -87,6 +87,10 @@
 }
 
 - (IBAction)clickCloseButton:(id)sender {
+    if ([delegate respondsToSelector:@selector(didCloseSelectCustomWordView:)]) {
+        [delegate didCloseSelectCustomWordView:self];
+    }
+
     [self startRunOutAnimation];
 }
 
