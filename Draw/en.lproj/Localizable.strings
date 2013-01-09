@@ -100,8 +100,8 @@
 "kQuitGameAlertTitle" = "Quit Game";
 "kQuitGameAlertMessage" = "Are you sure to quit the game?";
 
-"kQuitDrawAlertMessage" = "Are you going to give the drawing?";
-"kQuitDrawAlertTitle" = "Give Up";
+"kQuitDrawAlertMessage" = "Are you going to save the drawing?";
+"kQuitDrawAlertTitle" = "Quit";
 
 
 "kDedutCoinQuitGameAlertMessage" = "If you quit the game, the system will deduct %d coin.";
@@ -964,6 +964,7 @@
 "kDraftsBox" = "Drafts Box";
 "kIWantToDraw..." = "I want to draw...";
 
+"kDonotSave" = "Don't Save";
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 
