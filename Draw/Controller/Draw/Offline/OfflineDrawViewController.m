@@ -77,7 +77,7 @@
     
     BOOL _userSaved;
     BOOL _isNewDraft;
-    NSString *_desc;
+
 }
 
 @property(nonatomic, retain)MyPaint *draft;
@@ -89,6 +89,8 @@
 @property (retain, nonatomic) DrawColor* penColor;
 @property (retain, nonatomic) DrawToolPanel *drawToolPanel;
 @property (retain, nonatomic) DrawColor *tempColor;
+@property (retain, nonatomic) NSString *desc;
+
 
 - (void)initDrawView;
 
@@ -169,6 +171,7 @@
     PPRelease(draftButton);
     PPRelease(_submitButton);
     PPRelease(_tempColor);
+    PPRelease(_desc);
     [super dealloc];
 }
 
@@ -929,6 +932,7 @@ enum{
 - (void)drawToolPanel:(DrawToolPanel *)toolPanel didSelectWidth:(CGFloat)width
 {
     drawView.lineWidth = width;
+    PPDebug(@"<didSelectWidth> width = %f",width);
 }
 - (void)drawToolPanel:(DrawToolPanel *)toolPanel didSelectColor:(DrawColor *)color
 {

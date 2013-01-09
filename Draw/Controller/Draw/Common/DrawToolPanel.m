@@ -72,7 +72,7 @@
 #define ALPHA_FONT_SIZE VALUE(14.0)
 #define TIMESET_FONT_SIZE VALUE(15.0)
 
-#define LINE_MIN_WIDTH VALUE(1.0)
+#define LINE_MIN_WIDTH VALUE(1.01)
 #define LINE_MAX_WIDTH VALUE(27.0)
 #define LINE_DEFAULT_WIDTH VALUE(3.0)
 
@@ -422,9 +422,10 @@
 {
     [drawSlider dismissPopupView];
     if (drawSlider == self.widthSlider) {
-        self.width = value;
+        NSInteger intValue = value;
+        self.width = intValue;
         if (self.delegate && [self.delegate respondsToSelector:@selector(drawToolPanel:didSelectWidth:)]) {
-            [self.delegate drawToolPanel:self didSelectWidth:value];
+            [self.delegate drawToolPanel:self didSelectWidth:intValue];
         }
     }else if(drawSlider == self.alphaSlider){
         if ([self.alphaSlider isSelected]) {
