@@ -373,7 +373,7 @@ enum{
     [self initWordLabel];
     [self initSubmitButton];
     _unDraftPaintCount = 0;
-    _isAutoSave = YES;
+    _isAutoSave = NO;               // set by Benson, disable this due to complicate multi-thread issue
     [self initDrawToolPanel];
 
 }
@@ -694,11 +694,13 @@ enum{
                       language:languageType];
     return pbDraw;
 }
-- (PBNoCompressDrawData *)noCompressDrawData
+
+- (PBNoCompressDrawData *)drawDataSnapshot
 {
     NSMutableArray *temp = [[NSMutableArray alloc] initWithArray:drawView.drawActionList];
-    return [DrawAction drawActionListToPBNoCompressDrawData:temp];
+    PBNoCompressDrawData* data = [DrawAction drawActionListToPBNoCompressDrawData:temp];
     PPRelease(temp);
+    return data;
 }
 
 - (void)saveDraft:(BOOL)showResult
@@ -717,17 +719,17 @@ enum{
         MyPaintManager *pManager = [MyPaintManager defaultManager];
         if (self.draft) {
             result = YES;
-            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                PPDebug(@"<saveDraft> bg update draft");
-                result = [pManager updateDraft:self.draft
-                                         image:image
-                          pbNoCompressDrawData:self.noCompressDrawData];
-            });
+//            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            PPDebug(@"<saveDraft> save draft");
+            result = [pManager updateDraft:self.draft
+                                     image:image
+                      pbNoCompressDrawData:[self drawDataSnapshot]];
+//            });
         }else{
             PPDebug(@"<saveDraft> create core data draft");
             UserManager *userManager = [UserManager defaultManager];
             self.draft = [pManager createDraft:image
-                          pbNoCompressDrawData:self.noCompressDrawData
+                          pbNoCompressDrawData:[self drawDataSnapshot]
                                      targetUid:_targetUid
                                      contestId:self.contest.contestId
                                         userId:[userManager userId]
