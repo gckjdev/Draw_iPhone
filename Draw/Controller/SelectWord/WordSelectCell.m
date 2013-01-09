@@ -45,6 +45,8 @@ AUTO_CREATE_VIEW_BY_XIB(WordSelectCell)
 
 - (void)setWord:(Word *)word index:(int)index
 {
+    [[self wordButton:index] addTarget:self action:@selector(clickWordBtn:) forControlEvents:UIControlEventTouchUpInside];
+
     if (word == nil) {
         [self wordLabel:index].text = @"";
         [self coinImageView:index].hidden = YES;
@@ -58,7 +60,6 @@ AUTO_CREATE_VIEW_BY_XIB(WordSelectCell)
     [self wordLabel:index].text = word.text;
     [self coinImageView:index].hidden = NO;
     [self wordScoreLabel:index].text = [NSString stringWithFormat:@"x %d", word.score];
-    [[self wordButton:index] addTarget:self action:@selector(clickWordBtn:) forControlEvents:UIControlEventTouchUpInside];
 }
 
 - (void)setWords:(NSArray *)words
@@ -85,11 +86,11 @@ AUTO_CREATE_VIEW_BY_XIB(WordSelectCell)
     
     int index = ((UIButton *)sender).tag - WORD_BUTTON_TAG_OFFSET;
     
-    if (index < 0 || index >= [_words count]) {
-        return;
-    }
+    Word *word = nil;
     
-    Word *word = [_words objectAtIndex:index];
+    if (index >=0 && index < [_words count]) {
+        word = [_words objectAtIndex:index];
+    }
 
     if([_delegate respondsToSelector:@selector(didSelectWord:)]){
         [_delegate didSelectWord:word];
