@@ -208,8 +208,8 @@
     _isLoading = NO;
     if (resultCode == 0 && feed != nil) {        
         
-        PPDebug(@"get draw feed succ: feedId = %@, image url = %@",feed.feedId,
-                feed.drawImageUrl);
+        PPDebug(@"get draw feed succ: feedId = %@, image url = %@, desc = %@",feed.feedId,
+                feed.drawImageUrl, feed.desc);
         if (!fromCache) {
             self.feed.timesSet = feed.timesSet;
         }

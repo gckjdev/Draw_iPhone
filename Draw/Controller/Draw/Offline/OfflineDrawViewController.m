@@ -77,6 +77,7 @@
     
     BOOL _userSaved;
     BOOL _isNewDraft;
+    NSString *_desc;
 }
 
 @property(nonatomic, retain)MyPaint *draft;
@@ -503,6 +504,7 @@ enum{
                                                    language:languageType 
                                                   targetUid:self.targetUid 
                                                   contestId:_contest.contestId
+                                                       desc:_desc//@"元芳，你怎么看？"
                                                    delegate:self];
 
     }

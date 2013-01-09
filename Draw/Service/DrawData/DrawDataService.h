@@ -45,6 +45,7 @@
                  language:(LanguageType)language 
                 targetUid:(NSString *)targetUid 
                 contestId:(NSString *)contestId
+                     desc:(NSString *)desc
                  delegate:(PPViewController<DrawDataServiceDelegate>*)viewController;
 
 - (void)matchDraw:(PPViewController<DrawDataServiceDelegate>*)viewController;

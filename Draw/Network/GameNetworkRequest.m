@@ -1350,6 +1350,7 @@
                          imageData:(NSData *)imageData
                          targetUid:(NSString *)targetUid 
                          contestId:(NSString *)contestId
+                              desc:(NSString *)desc
 {
     CommonNetworkOutput* output = [[[CommonNetworkOutput alloc] init] autorelease];
     
@@ -1369,7 +1370,7 @@
         str = [str stringByAddQueryParameter:PARA_WORD value:word];                
         str = [str stringByAddQueryParameter:PARA_LEVEL intValue:level];
         str = [str stringByAddQueryParameter:PARA_LANGUAGE intValue:lang];
-        
+        str = [str stringByAddQueryParameter:PARA_DESC value:desc];
         str = [str stringByAddQueryParameter:PARA_DEVICETYPE intValue:[DeviceDetection deviceType]];
         
         if ([targetUid length] != 0) {

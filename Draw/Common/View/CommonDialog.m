@@ -308,6 +308,15 @@
     [self disappear];
 }
 
+- (IBAction)clickMask:(id)sender {
+    
+    if (_delegate && [_delegate respondsToSelector:@selector(clickMask:)]) {
+        [_delegate clickMask:self];
+    }
+    [self disappear];
+}
+
+
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
