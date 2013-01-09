@@ -167,34 +167,12 @@
 #pragma mark - InputDialogDelegate
 - (void)didClickOk:(InputDialog *)dialog targetText:(NSString *)targetText
 {
-    if ([targetText length] == 0) {
-        [[CommonMessageCenter defaultCenter] postMessageWithText:[NSString stringWithFormat:NSLS(@"kInputWordEmpty"),targetText] delayTime:2 isHappy:NO];
-        return;
-    }
-    
-    if ([targetText length] > 7) {
-        [[CommonMessageCenter defaultCenter] postMessageWithText:[NSString stringWithFormat:NSLS(@"kWordTooLong"),targetText] delayTime:2 isHappy:NO];
-        return;
-    }
-    
-    if (!NSStringIsValidChinese(targetText)){
-        [[CommonMessageCenter defaultCenter] postMessageWithText:[NSString stringWithFormat:NSLS(@"kIllegalCharacter"),targetText] delayTime:2 isHappy:NO];
-        return;
-    }
-    
-    
-    if (dialog.tag == INPUTDIALOG_ADD_WORD_TAG) {
-        if ([[CustomWordManager defaultManager] isExist:targetText]) {
-            [[CommonMessageCenter defaultCenter] postMessageWithText:[NSString stringWithFormat:NSLS(@"kExistWord"),targetText] delayTime:2 isHappy:NO];
-            return;
-        }
+    if ([CustomWordManager isValidWord:targetText]) {
         [[CustomWordManager defaultManager] createCustomWord:targetText];
-        
         [[UserService defaultService] commitWords:targetText viewController:nil];
+        self.dataList = [[CustomWordManager defaultManager] findAllWords];
+        [dataTableView reloadData];
     }
-    
-    self.dataList = [[CustomWordManager defaultManager] findAllWords];
-    [dataTableView reloadData];
 }
 
 @end
