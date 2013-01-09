@@ -160,6 +160,7 @@ static DrawDataService* _defaultDrawDataService = nil;
                  language:(LanguageType)language 
                 targetUid:(NSString *)targetUid 
                 contestId:(NSString *)contestId
+                     desc:(NSString *)desc
                  delegate:(PPViewController<DrawDataServiceDelegate>*)viewController;
 {
 
@@ -193,7 +194,8 @@ static DrawDataService* _defaultDrawDataService = nil;
                                                                 data:[draw data] 
                                                            imageData:imageData 
                                                            targetUid:targetUid 
-                                                           contestId:contestId];
+                                                           contestId:contestId
+                                                                desc:desc];
 
         dispatch_async(dispatch_get_main_queue(), ^{
             if ([viewController respondsToSelector:@selector(didCreateDraw:)]){
