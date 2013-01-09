@@ -191,7 +191,7 @@
 		A4D3B15B1560E4B50013C882 /* ExpressionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A4D3B1591560E4B50013C882 /* ExpressionManager.m */; };
 		A4D3B15E1560E4F80013C882 /* MessageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A4D3B15D1560E4F80013C882 /* MessageManager.m */; };
 		A4D4ECD1169C154200079C88 /* iOS-shengmeng-releasenote.html in Resources */ = {isa = PBXBuildFile; fileRef = A4D4ECCD169C154200079C88 /* iOS-shengmeng-releasenote.html */; };
-		A4D4ECD2169C154200079C88 /* iOS声盟SDK开发指南.html in Resources */ = {isa = PBXBuildFile; fileRef = A4D4ECCE169C154200079C88 /* iOS声盟SDK开发指南.html */; };
+		A4D4ECD2169C154200079C88 /* iOS-shengmeng-SDK-help.html in Resources */ = {isa = PBXBuildFile; fileRef = A4D4ECCE169C154200079C88 /* iOS-shengmeng-SDK-help.html */; };
 		A4D4ECD3169C154200079C88 /* libshengmengsdk_1.1.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A4D4ECCF169C154200079C88 /* libshengmengsdk_1.1.0.a */; };
 		A4D6A763167591D3008DC151 /* ZJHDualRuleConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = A4D6A75C167591D3008DC151 /* ZJHDualRuleConfig.m */; };
 		A4D6A764167591D3008DC151 /* ZJHNormalRuleConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = A4D6A75E167591D3008DC151 /* ZJHNormalRuleConfig.m */; };
@@ -6524,7 +6524,7 @@
 		A4D3B15C1560E4F80013C882 /* MessageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageManager.h; sourceTree = "<group>"; };
 		A4D3B15D1560E4F80013C882 /* MessageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageManager.m; sourceTree = "<group>"; };
 		A4D4ECCD169C154200079C88 /* iOS-shengmeng-releasenote.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "iOS-shengmeng-releasenote.html"; sourceTree = "<group>"; };
-		A4D4ECCE169C154200079C88 /* iOS声盟SDK开发指南.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "iOS声盟SDK开发指南.html"; sourceTree = "<group>"; };
+		A4D4ECCE169C154200079C88 /* iOS-shengmeng-SDK-help.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "iOS-shengmeng-SDK-help.html"; sourceTree = "<group>"; };
 		A4D4ECCF169C154200079C88 /* libshengmengsdk_1.1.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libshengmengsdk_1.1.0.a; sourceTree = "<group>"; };
 		A4D4ECD0169C154200079C88 /* shengmengsdk.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = shengmengsdk.h; sourceTree = "<group>"; };
 		A4D6A75B167591D3008DC151 /* ZJHDualRuleConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJHDualRuleConfig.h; sourceTree = "<group>"; };
@@ -10009,7 +10009,7 @@
 			isa = PBXGroup;
 			children = (
 				A4D4ECCD169C154200079C88 /* iOS-shengmeng-releasenote.html */,
-				A4D4ECCE169C154200079C88 /* iOS声盟SDK开发指南.html */,
+				A4D4ECCE169C154200079C88 /* iOS-shengmeng-SDK-help.html */,
 				A4D4ECCF169C154200079C88 /* libshengmengsdk_1.1.0.a */,
 				A4D4ECD0169C154200079C88 /* shengmengsdk.h */,
 			);
@@ -18728,7 +18728,7 @@
 				A4C1E91D169BE85E00644682 /* DraftsView.xib in Resources */,
 				A4C1E91E169BE85E00644682 /* DraftsView~ipad.xib in Resources */,
 				A4D4ECD1169C154200079C88 /* iOS-shengmeng-releasenote.html in Resources */,
-				A4D4ECD2169C154200079C88 /* iOS声盟SDK开发指南.html in Resources */,
+				A4D4ECD2169C154200079C88 /* iOS-shengmeng-SDK-help.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

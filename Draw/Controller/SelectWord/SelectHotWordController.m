@@ -62,7 +62,7 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-//    [HotWordManager createTestData];
+    [HotWordManager createTestData];
     [self initWordCells];
     self.titleLabel.text = NSLS(@"kIWantToDraw...");
     self.hotWordsLabel.text = NSLS(@"kHotWords");

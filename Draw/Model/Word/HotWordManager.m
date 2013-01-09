@@ -55,17 +55,17 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(HotWordManager)
 + (void)createTestData
 {
     PBHotWord_Builder *worder1 = [[[PBHotWord_Builder alloc] init] autorelease];
-    [worder1 setWordId:1];
+    [worder1 setWordId:@"1"];
     [worder1 setWord:@"电脑"];
     [worder1 setCoins:2];
     
     PBHotWord_Builder *worder2 = [[[PBHotWord_Builder alloc] init] autorelease];
-    [worder2 setWordId:2];
+    [worder2 setWordId:@"2"];
     [worder2 setWord:@"二逼青年快乐多"];
     [worder2 setCoins:3];
     
     PBHotWord_Builder *worder3 = [[[PBHotWord_Builder alloc] init] autorelease];
-    [worder3 setWordId:3];
+    [worder3 setWordId:@"3"];
     [worder3 setWord:@"苹果牌"];
     [worder3 setCoins:5];
     

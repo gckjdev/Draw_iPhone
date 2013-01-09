@@ -963,12 +963,12 @@
 
 @interface PBHotWord : PBGeneratedMessage {
 @private
-  BOOL hasWordId_:1;
   BOOL hasCoins_:1;
+  BOOL hasWordId_:1;
   BOOL hasWord_:1;
   BOOL hasSource_:1;
-  int32_t wordId;
   int32_t coins;
+  NSString* wordId;
   NSString* word;
   NSString* source;
 }
@@ -976,7 +976,7 @@
 - (BOOL) hasWord;
 - (BOOL) hasCoins;
 - (BOOL) hasSource;
-@property (readonly) int32_t wordId;
+@property (readonly, retain) NSString* wordId;
 @property (readonly, retain) NSString* word;
 @property (readonly) int32_t coins;
 @property (readonly, retain) NSString* source;
@@ -1016,8 +1016,8 @@
 - (PBHotWord_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 
 - (BOOL) hasWordId;
-- (int32_t) wordId;
-- (PBHotWord_Builder*) setWordId:(int32_t) value;
+- (NSString*) wordId;
+- (PBHotWord_Builder*) setWordId:(NSString*) value;
 - (PBHotWord_Builder*) clearWordId;
 
 - (BOOL) hasWord;
