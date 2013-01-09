@@ -16,7 +16,8 @@
 #import "ItemType.h"
 #import "DrawColorManager.h"
 #import "AccountService.h"
-#import "ItemType.h"
+#import "CommonItemInfoView.h"
+#import "Item.h"
 
 @interface DrawToolPanel ()
 {
@@ -105,26 +106,37 @@
     [self.widthSlider setMaxValue:LINE_MAX_WIDTH];
     [self.widthSlider setMinValue:LINE_MIN_WIDTH];
     [self.widthSlider setValue:LINE_DEFAULT_WIDTH];
-
-    [self addSubview:self.widthSlider];
+    [self.penWidth setText:NSLS(@"kPenWidth")];
     
+    [self addSubview:self.widthSlider];
+
     center = self.alphaSlider.center;
     [self.alphaSlider removeFromSuperview];
-    self.alphaSlider = [[[DrawSlider alloc] init] autorelease];
-    self.alphaSlider.center = center;
-    [self.alphaSlider setMaxValue:COLOR_MAX_ALPHA];
-    [self.alphaSlider setMinValue:COLOR_MIN_ALPHA];
-    [self.alphaSlider setValue:COLOR_DEFAULT_ALPHA];
     
-    self.alphaSlider.delegate = self;
-    [self addSubview:self.alphaSlider];
+    if ([DeviceDetection isIPhone5] || [DeviceDetection isIPAD]) {
+        self.alphaSlider = [[[DrawSlider alloc] init] autorelease];
+        self.alphaSlider.center = center;
+        [self.alphaSlider setMaxValue:COLOR_MAX_ALPHA];
+        [self.alphaSlider setMinValue:COLOR_MIN_ALPHA];
+        [self.alphaSlider setValue:COLOR_DEFAULT_ALPHA];
+        
+        self.alphaSlider.delegate = self;
+        [self addSubview:self.alphaSlider];
+        
 
-    [self.penWidth setText:NSLS(@"kPenWidth")];
-    [self.colorAlpha setText:NSLS(@"kColorAlpha")];
-
-    if (![[AccountService defaultService] hasEnoughItemAmount:ColorAlphaItem amount:1]) {
-        [self.alphaSlider setSelected:YES];
+        [self.colorAlpha setText:NSLS(@"kColorAlpha")];
+        
+        if (![[AccountService defaultService] hasEnoughItemAmount:ColorAlphaItem amount:1]) {
+            [self.alphaSlider setSelected:YES];
+        }else{
+            [self.alphaSlider setSelected:NO];
+        }
+    }else{
+        [self.colorAlpha removeFromSuperview];
+        self.alphaSlider = nil;
+        self.colorAlpha = nil;
     }
+    
     //TODO implement color alpha
 //    self.alphaSlider.hidden = YES;
 //    self.colorAlpha.hidden = YES;
@@ -178,7 +190,10 @@
     
     if (![[AccountService defaultService] hasEnoughItemAmount:PaletteItem amount:1]) {
         [self.palette setSelected:YES];
+    }else{
+        [self.palette setSelected:NO];
     }
+    [self setPenType:Pencil];
 }
 
 
@@ -244,6 +259,14 @@
         PPRelease(_color);
         _color = [color retain];
     }
+}
+
+- (void)setPenType:(ItemType)penType
+{
+    _penType = penType;
+    self.pen.tag = penType;
+    [self.pen setImage:[Item imageForItemType:penType] forState:UIControlStateNormal];
+    
 }
 
 #pragma mark - click actions
@@ -351,7 +374,7 @@
     if (self.delegate && [self.delegate respondsToSelector:@selector(drawToolPanel:didSelectColor:)]) {
         [self.delegate drawToolPanel:self didSelectColor:color];
     }
-    [self.alphaSlider setValue:1.0];
+//    [self.alphaSlider setValue:1.0];
     //update show list;
 }
 
@@ -442,12 +465,15 @@
 
 - (void)penBox:(PenBox *)penBox didSelectPen:(ItemType)penType penImage:(UIImage *)image
 {
-    [self.pen setImage:image forState:UIControlStateNormal];
-    [self.pen setTag:penType];
     [self.penPopTipView dismissAnimated:NO];
     self.penPopTipView = nil;
-    if (self.delegate && [self.delegate respondsToSelector:@selector(drawToolPanel:didSelectPen:)]) {
-        [self.delegate drawToolPanel:self didSelectPen:penType];
+    BOOL hasBought = penType == Pencil || [[AccountService defaultService] hasEnoughItemAmount:penType amount:1] ;
+    if (hasBought) {
+        [self setPenType:penType];
+    }
+    
+    if (self.delegate && [self.delegate respondsToSelector:@selector(drawToolPanel:didSelectPen:bought:)]) {
+        [self.delegate drawToolPanel:self didSelectPen:penType bought:hasBought];
     }
 }
 
@@ -530,8 +556,8 @@
     PPRelease(_redo);
     PPRelease(_undo);
     PPRelease(_colorBGImageView);
-
-    [_palette release];
+    PPRelease(_palette);
+    
     [super dealloc];
 }
 

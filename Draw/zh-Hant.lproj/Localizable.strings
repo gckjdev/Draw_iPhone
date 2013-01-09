@@ -103,7 +103,7 @@
 "kQuitGameAlertMessage" = "確定要退出遊戲嗎?";
 "kQuitGameAlertTitle" = "退出遊戲";
 
-"kQuitDrawAlertMessage" = "退出繪畫後，未完成的作品將保存在草稿箱，以後可以繼續編輯。確定要退出嗎？";
+"kQuitDrawAlertMessage" = "是否保存對作品所作的更改？";
 "kQuitDrawAlertTitle" = "退出繪畫";
 
 "kDedutCoinQuitGameAlertMessage" = "遊戲進行中，如果這時退出遊戲，系統將會扣除%d個金幣哦。";
@@ -448,6 +448,9 @@
 "kFollowMe" = "關注";
 "kFollowed" = "已關注";
 
+"kDraftsBox" = "草稿箱";
+"kIWantToDraw..." = "我想畫...";
+
 "kChatDialogTitle" = "和【%@】聊天中";
 "kAllUser" = "所有人";
 "kInputWhatYouWantToSay" = "輸入你想對TA說的話";
@@ -553,7 +556,7 @@
 "kFreeGetCoins" = "免費金幣";
 
 "kCustomWordManage" = "詞庫管理";
-"kAddCustomWord" = "添加詞語";
+"kAddCustomWord" = "添加新詞";
 "kInputWord" = "輸入詞語";
 "kInputWordPlaceholder" = "請輸入新詞語";
 "kUpdateWord" = "更新詞語";
@@ -964,6 +967,23 @@
 "kSaveToAlbumSuccess" = "成功保存到相冊!";
 "kSaveToLocalSuccess" = "成功保存到本地，您可以在作品頁面查看該作品。";
 
+
+"kPenWidth" = "粗細";
+"kColorAlpha" = "透明度";
+"kMoreColor" = "更多";
+"kDonotSave" = "不保存";
+
+
+"kPaletteItem" = "調色板";
+"kColorAlphaItem" = "透明度";
+"kPaletteItemDescription" = "買了這個，你可以自已調出任何顏色！";
+"kColorAlphaItemDescription" = "買了它，可以畫出半透明的筆劃。";
+
+
+"kHotWords" = "熱門詞庫";
+"kHotWordsNote" = "[消耗一個錦囊]";
+"kSystemWords" = "系統詞庫";
+
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 
@@ -1164,6 +1184,7 @@
 
 "kPenWidth" = "粗細";
 "kColorAlpha" = "透明度";
+"kMoreColor" = "更多";
 /*********************** 大话骰子国际化字符串结束 *************************/
 
 

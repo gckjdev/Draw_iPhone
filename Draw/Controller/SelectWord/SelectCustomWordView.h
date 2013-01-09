@@ -10,15 +10,22 @@
 #import "CommonDialog.h"
 #import "InputDialog.h"
 
+@class SelectCustomWordView;
+
 @protocol SelectCustomWordViewDelegate <NSObject>
 
-@optional
+@required
 - (void)didSelecCustomWord:(NSString *)word;
+- (void)didCloseSelectCustomWordView:(SelectCustomWordView *)view;
+
 @end
 
 
 @interface SelectCustomWordView : UIView<UITableViewDataSource,UITableViewDelegate, CommonDialogDelegate, InputDialogDelegate>
 
+
+@property (retain, nonatomic) IBOutlet UILabel *titleLabel;
+@property (retain, nonatomic) IBOutlet UIButton *addWordButton;
 @property (retain, nonatomic) IBOutlet UITableView *dataTableView;
 @property (retain, nonatomic) IBOutlet UIButton *closeButton;
 @property (assign, nonatomic) id<SelectCustomWordViewDelegate> delegate;
@@ -26,7 +33,5 @@
 + (SelectCustomWordView *)createView:(id<SelectCustomWordViewDelegate>)aDelegate;
 
 - (void)showInView:(UIView *)superview;
-
-- (IBAction)clickCloseButton:(id)sender;
 
 @end

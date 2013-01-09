@@ -245,7 +245,7 @@
 							<object class="IBUIView" id="1017143316">
 								<reference key="NSNextResponder" ref="1025706843"/>
 								<int key="NSvFlags">301</int>
-								<string key="NSFrame">{{24, 71}, {490, 150}}</string>
+								<string key="NSFrame">{{24, 69}, {490, 150}}</string>
 								<reference key="NSSuperview" ref="1025706843"/>
 								<reference key="NSNextKeyView" ref="108978499"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
@@ -301,7 +301,7 @@
 							<object class="IBUIView" id="52054984">
 								<reference key="NSNextResponder" ref="108978499"/>
 								<int key="NSvFlags">301</int>
-								<string key="NSFrame">{{22, 84}, {490, 150}}</string>
+								<string key="NSFrame">{{20, 75}, {490, 150}}</string>
 								<reference key="NSSuperview" ref="108978499"/>
 								<reference key="NSNextKeyView" ref="568080761"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
@@ -469,6 +469,54 @@
 					<int key="connectionID">108</int>
 				</object>
 				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">draftsBoxButton</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="930106739"/>
+					</object>
+					<int key="connectionID">109</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">hotWordsLabel</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="586078704"/>
+					</object>
+					<int key="connectionID">110</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">hotWordsNoteLabel</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="237617699"/>
+					</object>
+					<int key="connectionID">111</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">systemWordsLabel</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="666264939"/>
+					</object>
+					<int key="connectionID">112</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">myWordsLabel</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="622120619"/>
+					</object>
+					<int key="connectionID">113</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">titleLabel</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="372472716"/>
+					</object>
+					<int key="connectionID">114</int>
+				</object>
+				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">clickDraftButton:</string>
 						<reference key="source" ref="930106739"/>
@@ -580,8 +628,8 @@
 						<reference key="object" ref="108978499"/>
 						<array class="NSMutableArray" key="children">
 							<reference ref="961610392"/>
-							<reference ref="52054984"/>
 							<reference ref="666264939"/>
+							<reference ref="52054984"/>
 						</array>
 						<reference key="parent" ref="191373211"/>
 					</object>
@@ -670,7 +718,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">108</int>
+			<int key="maxID">114</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes"/>
 		<int key="IBDocument.localizationMode">0</int>

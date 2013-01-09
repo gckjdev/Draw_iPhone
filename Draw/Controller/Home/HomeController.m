@@ -75,12 +75,14 @@
 
 #import "SynthesizeSingleton.h"
 #import "SelectHotWordController.h"
+#import "NotificationName.h"
+#import "CommonGameNetworkService.h"
+
 
 @interface HomeController()
 {
     BoardPanel *_boardPanel;
     NSTimeInterval interval;
-
 }
 - (void)playBackgroundMusic;
 - (void)enterNextControllerWityType:(NotificationType) type;
@@ -177,7 +179,6 @@
         self.recommendButton.hidden = YES;
     }
     
-    
     [super viewDidLoad];
     /*
     [self loadMainMenu];
@@ -186,13 +187,7 @@
      */
     [self playBackgroundMusic];
     
-    // set text
-
     [self initRecommendButton];
-    
-    
-    
-
     self.view.backgroundColor = [UIColor whiteColor];
     
     // Do any additional setup after loading the view from its nib.
@@ -203,79 +198,60 @@
     [[DrawGameService defaultService] setNickName:[[UserManager defaultManager] nickName]];    
     [[DrawGameService defaultService] setAvatar:[[UserManager defaultManager] avatarURL]];    
     
-//    if ([ConfigManager isInReviewVersion] == NO && ([LocaleUtils isChina] || [LocaleUtils isOtherChina])){
-//        //[self.shopButton setTitle:NSLS(@"kFreeGetCoins") forState:UIControlStateNormal];
-//    }
-
     [self enterNextControllerWityType:self.notificationType];
-    [self registerUIApplicationWillEnterForegroundNotification];
 
-
-//     [self.view bringSubviewToFront:self.testBulletin];
-
-//    [DrawTestViewController enterWithController:self];
+    [self registerUIApplicationNotification];
+    [self registerNetworkDisconnectedNotification];
 }
 
-- (void)registerUIApplicationWillEnterForegroundNotification{
+- (void)registerNetworkDisconnectedNotification
+{
+    [self registerNotificationWithName:NOTIFICATION_NETWORK_DISCONNECTED
+                            usingBlock:^(NSNotification *note) {
+                                [self handleDisconnectWithError:[CommonGameNetworkService userInfoToError:note.userInfo]];
+                            }];
+}
+
+- (void)unregisterNetworkDisconnectedNotification
+{
+    [self unregisterNotificationWithName:NOTIFICATION_NETWORK_DISCONNECTED];
+}
+
+- (void)registerUIApplicationNotification
+{
     
-    [self registerNotificationWithName:UIApplicationWillEnterForegroundNotification usingBlock:^(NSNotification *note) {        
+    [self registerNotificationWithName:UIApplicationDidEnterBackgroundNotification usingBlock:^(NSNotification *note) {
+        _connectState = [[DrawGameService defaultService] isConnected];
+    }];
+    
+    [self registerNotificationWithName:UIApplicationWillEnterForegroundNotification usingBlock:^(NSNotification *note) {
+        
+        if (_connectState && [[DrawGameService defaultService] isConnected] == NO) {
+            [[DrawGameService defaultService] setSession:nil];
+            [self.navigationController popToRootViewControllerAnimated:YES];
+            [self popupUnhappyMessage:NSLS(@"kNetworkBroken") title:@""];
+        }
+        
         [self.homeHeaderPanel updateView];
     }];
 }
 
-- (void)registerDrawGameNotificationWithName:(NSString *)name
-                                  usingBlock:(void (^)(NSNotification *note))block
+- (void)handleDisconnectWithError:(NSError *)error
 {
-    /*
-    [self registerNotificationWithName:name 
-                                object:nil 
-                                 queue:[NSOperationQueue mainQueue] 
-                            usingBlock:block];
-     */
-}
-
-- (void)registerDrawGameNotification
-{
-//    [self registerNotificationWithName:BULLETIN_UPDATE_NOTIFICATION
-//                                object:nil
-//                                 queue:[NSOperationQueue mainQueue]
-//                            usingBlock:^(NSNotification *note) {
-//                                
-//                                [self updateAllBadge];
-//                                
-//                            }];
-    /*
-    [self registerNotificationWithName:BOARD_UPDATE_NOTIFICATION 
-                                object:nil
-                                 queue:[NSOperationQueue mainQueue]
-                            usingBlock:^(NSNotification *note) {
-                                
-                                [self updateBoardPanelWithBoards:[[BoardManager defaultManager] boardList]];
-                                
-                            }];  
+    PPDebug(@"diconnect error: %@", [error description]);
     
-    [self registerNotificationWithName:UIApplicationDidEnterBackgroundNotification
-                                object:nil
-                                 queue:[NSOperationQueue mainQueue]
-                            usingBlock:^(NSNotification *note) {
-                                PPDebug(@"enter background and clear ads.");
-                                //clear the ad.
-                                [_boardPanel clearAds];
-                                [_boardPanel stopTimer];                                
-                                
-                            }]; 
- */
-}
-
-- (void)unregisterDrawGameNotification
-{        
-    [self unregisterAllNotifications];
+    _isTryJoinGame = NO;
+    [self hideActivity];
+    
+    if (error != nil) {
+        [[DrawGameService defaultService] setSession:nil];
+        [self.navigationController popToRootViewControllerAnimated:YES];
+        [self popupUnhappyMessage:NSLS(@"kNetworkBroken") title:@""];
+    }
 }
 
 - (void)viewDidAppear:(BOOL)animated
-{    
-    [self registerDrawGameNotification];
-    
+{        
     [[UserService defaultService] getStatistic:self];
     [[BulletinService defaultService] syncBulletins:^(int resultCode) {
         [self updateAllBadge];
@@ -290,7 +266,6 @@
 
 - (void)viewDidDisappear:(BOOL)animated
 {
-    [self unregisterDrawGameNotification];
     /*
     [_boardPanel clearAds];
     [_boardPanel stopTimer];
@@ -407,14 +382,7 @@
     PPDebug(@"<didBroken>");
     [self hideActivity];
     
-//    [self popupUnhappyMessage:NSLS(@"kNetworkBroken") title:@""];
     [self.navigationController popToRootViewControllerAnimated:NO];
-    
-    //        // disable this policy at this moment...
-//    if ([[Reachability reachabilityForInternetConnection] currentReachabilityStatus] != NotReachable){
-//        [[RouterService defaultService] putServerInFailureList:[[DrawGameService defaultService] serverAddress]
-//                                                          port:[[DrawGameService defaultService] serverPort]];
-//    }
 }
 
 - (void)didConnected
@@ -480,8 +448,8 @@
 //    [[DrawGameService defaultService] setServerAddress:@"192.168.1.101"];
 //    [[DrawGameService defaultService] setServerPort:8080];   
 
-//    [[DrawGameService defaultService] setServerAddress:@"192.168.1.198"];
-//    [[DrawGameService defaultService] setServerPort:8080];   
+    [[DrawGameService defaultService] setServerAddress:@"192.168.1.198"];
+    [[DrawGameService defaultService] setServerPort:8080];   
 
 
 //    [[DrawGameService defaultService] setServerAddress:@"58.215.188.215"];
@@ -558,6 +526,7 @@
     PPRelease(_facetimeButton);
     PPRelease(_menuPanel);
     PPRelease(_bottomMenuPanel);
+    [self.timer invalidate];
 //    PPRelease(_adView);
     [_testBulletin release];
     [super dealloc];
@@ -852,4 +821,6 @@
 }
 
 */
+
+
 @end

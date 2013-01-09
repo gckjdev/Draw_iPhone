@@ -68,7 +68,7 @@ AUTO_CREATE_VIEW_BY_XIB(WordSelectCell)
     _words = [words retain];
     
     int index = 0;
-    for (; index < [words count]; index ++) {
+    for (; index < [words count] && index < WORD_MAX_COUNT; index ++) {
         [self setWord:[words objectAtIndex:index] index:index];
     }
     

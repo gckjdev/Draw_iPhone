@@ -67,6 +67,8 @@
 + (Item*)brushPen;
 + (Item*)iceCreamPen;
 + (Item*)waterPen;
++ (Item*)PaletteItem;
++ (Item*)ColorAlphaItem;
 
 + (UIImage *)imageForItemType:(ItemType)type;
 + (NSString *)nameForItemType:(ItemType)type;

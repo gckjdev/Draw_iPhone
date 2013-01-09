@@ -27,6 +27,8 @@
 @property (assign, nonatomic) NSInteger colorRow;
 - (IBAction)clickCloseButton:(id)sender;
 - (IBAction)clickMoreButton:(id)sender;
+@property (retain, nonatomic) IBOutlet UIButton *closeButton;
+@property (retain, nonatomic) IBOutlet UIButton *moreButton;
 
 
 @end
@@ -36,6 +38,8 @@
 - (void)dealloc {
     [_defaultColorView release];
     [_colorTableView release];
+    [_closeButton release];
+    [_moreButton release];
     [super dealloc];
 }
 
@@ -96,6 +100,9 @@
     CGRect frame = self.frame;
     frame.size.height = viewHeiht;
     self.frame = frame;
+    
+    [self.closeButton setTitle:NSLS(@"kClose") forState:UIControlStateNormal];
+    [self.moreButton setTitle:NSLS(@"kMoreColor") forState:UIControlStateNormal];
 }
 
 + (id)createViewWithdelegate:(id)delegate

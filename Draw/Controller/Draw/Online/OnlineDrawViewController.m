@@ -40,12 +40,15 @@
 
 @interface OnlineDrawViewController ()
 {
-    DrawColor *_tempColor;
+
+    CGFloat _alpha;
 }
 @property(nonatomic, retain)DrawToolPanel *drawToolPanel;
 @property (retain, nonatomic) DrawColor* eraserColor;
 @property (retain, nonatomic) DrawColor* bgColor;
 @property (retain, nonatomic) DrawColor* penColor;
+@property (retain, nonatomic) DrawColor *tempColor;
+
 @property (retain, nonatomic) IBOutlet UIImageView *wordLabelBGView;
 
 @end
@@ -76,7 +79,7 @@
     PPRelease(wordLabel);
     PPRelease(drawView);
     PPRelease(_gameCompleteMessage);
-    
+    PPRelease(_tempColor);
     [_wordLabelBGView release];
     [super dealloc];
 }
@@ -124,6 +127,7 @@
     drawView.delegate = self;
     [self.view insertSubview:drawView aboveSubview:paperView];
     self.eraserColor = self.bgColor = [DrawColor whiteColor];
+    _alpha = 1.0;
 }
 
 - (void)initWordLabel
@@ -331,6 +335,36 @@
 {
     
 }
+#pragma mark - CommonItemInfoView Delegate
+
+- (void)didBuyItem:(Item*)anItem
+            result:(int)result
+{
+    if (result == 0) {
+        switch (anItem.type) {
+            case PaletteItem:
+            case ColorAlphaItem:
+                [self.drawToolPanel updateView];
+                break;
+            case Pen:
+            case Pencil:
+            case IcePen:
+            case Quill:
+            case WaterPen:
+            {
+                [self.drawToolPanel setPenType:anItem.type];
+                [drawView setPenType:anItem.type];
+                break;
+            }
+            default:
+                break;
+                
+        }
+    }else
+    {
+        [self popupMessage:NSLS(@"kNotEnoughCoin") title:nil];
+    }
+}
 
 #pragma mark - Draw Tool Panel Delegate
 
@@ -349,20 +383,27 @@
 }
 - (void)drawToolPanel:(DrawToolPanel *)toolPanel didClickPaintBucket:(UIButton *)button
 {
+    self.penColor.alpha = 1.0;
     DrawAction *drawAction = [drawView addChangeBackAction:self.penColor];
     [self didDrawedPaint:drawAction.paint];
-    
     [drawView addChangeBackAction:self.penColor];
     self.eraserColor = self.penColor;
     self.penColor = drawView.lineColor = [DrawColor blackColor];
+    [drawView.lineColor setAlpha:_alpha];
     [toolPanel setColor:self.penColor];
     [self updateRecentColors];
     [_drawToolPanel updateRecentColorViewWithColor:[DrawColor blackColor]];
 
 }
 - (void)drawToolPanel:(DrawToolPanel *)toolPanel didSelectPen:(ItemType)penType
+               bought:(BOOL)bought
 {
-    drawView.penType = penType;
+    if (bought) {
+        PPDebug(@"<didSelectPen> pen type = %d",penType);
+        drawView.penType = penType;
+    }else{
+        [CommonItemInfoView showItem:[Item itemWithType:penType amount:1] infoInView:self canBuyAgain:NO];
+    }
 }
 - (void)drawToolPanel:(DrawToolPanel *)toolPanel didSelectWidth:(CGFloat)width
 {
@@ -370,12 +411,15 @@
 }
 - (void)drawToolPanel:(DrawToolPanel *)toolPanel didSelectColor:(DrawColor *)color
 {
+    self.tempColor = color;
     self.penColor = color;
-    [drawView setLineColor:color];
-    _tempColor = color;
+    [drawView setLineColor:[DrawColor colorWithColor:color]];
+    [drawView.lineColor setAlpha:_alpha];
+
 }
 - (void)drawToolPanel:(DrawToolPanel *)toolPanel didSelectAlpha:(CGFloat)alpha
 {
+    _alpha = _alpha;
     [drawView.lineColor setAlpha:alpha];
 }
 
@@ -388,7 +432,10 @@
 {
     
 }
-
+- (void)drawToolPanel:(DrawToolPanel *)toolPanel startToBuyItem:(ItemType)type
+{
+    [CommonItemInfoView showItem:[Item itemWithType:type amount:1] infoInView:self canBuyAgain:NO];
+}
 #pragma mark - Recent Color
 
 - (void)updateRecentColors
@@ -396,7 +443,7 @@
     if (_tempColor) {
         [[DrawColorManager sharedDrawColorManager] updateColorListWithColor:_tempColor];
         [_drawToolPanel updateRecentColorViewWithColor:_tempColor];
-        _tempColor = nil;
+        self.tempColor = nil;
     }
 }
 

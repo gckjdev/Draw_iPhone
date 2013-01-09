@@ -51,6 +51,8 @@
         return nil;
     }
     SelectCustomWordView* view =  (SelectCustomWordView*)[topLevelObjects objectAtIndex:0];
+    view.titleLabel.text = NSLS(@"kMyWords");
+    [view.addWordButton setTitle:NSLS(@"kAddCustomWord") forState:UIControlStateNormal];
     view.delegate = aDelegate;
     
     view.dataList = [[CustomWordManager defaultManager] findAllWords];
@@ -85,6 +87,10 @@
 }
 
 - (IBAction)clickCloseButton:(id)sender {
+    if ([delegate respondsToSelector:@selector(didCloseSelectCustomWordView:)]) {
+        [delegate didCloseSelectCustomWordView:self];
+    }
+
     [self startRunOutAnimation];
 }
 
@@ -119,10 +125,11 @@
     [tableView deselectRowAtIndexPath:[tableView indexPathForSelectedRow] animated:YES];
     
     selectedRow = indexPath.row;
-    CustomWord *customWord = [dataList objectAtIndex:selectedRow];
-    NSString *word = customWord.word;
-    CommonDialog *dialog = [CommonDialog createDialogWithTitle:nil message:[NSString stringWithFormat:NSLS(@"kSureUseThisWord"),word] style:CommonDialogStyleDoubleButton delegate:self];
-    [dialog showInView:self];
+//    CustomWord *customWord = [dataList objectAtIndex:selectedRow];
+//    NSString *word = customWord.word;
+//    CommonDialog *dialog = [CommonDialog createDialogWithTitle:nil message:[NSString stringWithFormat:NSLS(@"kSureUseThisWord"),word] style:CommonDialogStyleDoubleButton delegate:self];
+//    [dialog showInView:self];
+    [self clickOk:nil];
 }
 
 - (void)clickOk:(CommonDialog *)dialog
@@ -144,6 +151,8 @@
     PPRelease(dataTableView);
     PPRelease(dataList);
     PPRelease(closeButton);
+    [_titleLabel release];
+    [_addWordButton release];
     [super dealloc];
 }
 
@@ -187,6 +196,5 @@
     self.dataList = [[CustomWordManager defaultManager] findAllWords];
     [dataTableView reloadData];
 }
-
 
 @end

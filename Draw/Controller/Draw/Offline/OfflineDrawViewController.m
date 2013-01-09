@@ -46,6 +46,8 @@
 #import "DrawToolPanel.h"
 #import "DrawColorManager.h"
 #import "VendingController.h"
+#import "FontButton.h"
+
 
 @interface OfflineDrawViewController()
 {
@@ -66,25 +68,26 @@
     
     DrawColor *_penColor;
     DrawColor *_eraserColor;
-    DrawColor *_tempColor;
+
+    CGFloat _alpha;
     
     Contest *_contest;
     
     BOOL _isAutoSave;
     
-    
-
+    BOOL _userSaved;
+    BOOL _isNewDraft;
 }
 
 @property(nonatomic, retain)MyPaint *draft;
 @property (retain, nonatomic) IBOutlet UILabel *wordLabel;
-@property (retain, nonatomic) IBOutlet UILabel *titleLabel;
 @property (retain, nonatomic) IBOutlet UIButton *draftButton;
 @property (retain, nonatomic) IBOutlet UIButton *submitButton;
 
 @property (retain, nonatomic) DrawColor* eraserColor;
 @property (retain, nonatomic) DrawColor* penColor;
 @property (retain, nonatomic) DrawToolPanel *drawToolPanel;
+@property (retain, nonatomic) DrawColor *tempColor;
 
 - (void)initDrawView;
 
@@ -95,12 +98,13 @@
 @end
 
 
+#define BUTTON_FONT_SIZE_ENGLISH (ISIPAD ? 25 : 12)
+
 @implementation OfflineDrawViewController
 
 @synthesize draft = _draft;
 @synthesize wordLabel;
 @synthesize word = _word;
-@synthesize titleLabel;
 @synthesize draftButton;
 @synthesize delegate;
 @synthesize targetUid = _targetUid;
@@ -157,13 +161,13 @@
     PPRelease(drawView);
     PPRelease(_word);
     PPRelease(_targetUid);
-    PPRelease(titleLabel);
     PPRelease(_penColor);
     PPRelease(_eraserColor);
     PPRelease(_draft);
     PPRelease(_contest);
     PPRelease(draftButton);
     PPRelease(_submitButton);
+    PPRelease(_tempColor);
     [super dealloc];
 }
 
@@ -202,7 +206,7 @@
         targetType = TypeContest;
     }
     return self;
-        
+    
 }
 
 - (id)initWithDraft:(MyPaint *)draft
@@ -300,13 +304,17 @@ enum{
     [drawView setDrawEnabled:YES];
     [drawView setRevocationSupported:YES];
     drawView.delegate = self;
+    _isNewDraft = YES;
+    _userSaved = NO;
     if (self.draft) {
         [drawView showDraft:self.draft];
         self.draft.thumbImage = nil;
+        _userSaved = YES;
     }
     [self.view insertSubview:drawView aboveSubview:paperView];
     self.eraserColor = [DrawColor whiteColor];
     self.penColor = [DrawColor blackColor];
+    _alpha = 1.0;
 }
 
 - (void)initWordLabel
@@ -327,6 +335,12 @@ enum{
 {
     [self.submitButton setTitle:NSLS(@"kSubmit") forState:UIControlStateNormal];
     [self.draftButton setTitle:NSLS(@"kSave") forState:UIControlStateNormal];
+    if (![LocaleUtils isChinese]) {
+        UIFont *font = [UIFont boldSystemFontOfSize:BUTTON_FONT_SIZE_ENGLISH];
+        [self.submitButton.titleLabel setFont:font];
+        [self.draftButton.titleLabel setFont:font];
+    }
+    
     if (targetType == TypeGraffiti) {
         self.draftButton.hidden = YES;
     }
@@ -368,7 +382,6 @@ enum{
     
     [self setWord:nil];
     [self setWordLabel:nil];
-    [self setTitleLabel:nil];
     [self setSubmitButton:nil];
     [self setDraftButton:nil];
     [super viewDidUnload];
@@ -388,6 +401,7 @@ enum{
 #define ESCAPE_DEDUT_COIN 1
 #define DIALOG_TAG_CLEAN_DRAW 201204081
 #define DIALOG_TAG_ESCAPE 201204082
+#define DIALOG_TAG_SAVETIP 201204083
 #define DIALOG_TAG_SUBMIT 201206071
 #define DIALOG_TAG_CHANGE_BACK 201207281
 #define DIALOG_TAG_COMMIT_OPUS 201208111
@@ -493,11 +507,14 @@ enum{
 
     }
     else if (dialog.tag == DIALOG_TAG_ESCAPE ){
-        if ([drawView.drawActionList count] > 0 && _isAutoSave) {
-            [self saveDraft:NO];            
-        }
         [self quit];
-    }else if(dialog.tag == BUY_CONFIRM_TAG){
+    }
+    else if (dialog.tag == DIALOG_TAG_SAVETIP)
+    {
+        [self saveDraft:NO];
+        [self quit];
+    }
+    else if(dialog.tag == BUY_CONFIRM_TAG){
         [[AccountService defaultService] buyItem:_willBuyPen.penType itemCount:1 itemCoins:_willBuyPen.price];
         [_willBuyPen setAlpha:1];
         [drawView setPenType:_willBuyPen.penType];   
@@ -562,6 +579,13 @@ enum{
         [[DrawDataService defaultService] savePaintWithPBDraw:self.pbDraw image:drawView.createImage delegate:self];
         [self quit];
     }
+    else if (dialog.tag == DIALOG_TAG_SAVETIP)
+    {
+        if (!_userSaved) {
+            [[MyPaintManager defaultManager] deleteMyPaint:self.draft];
+        }
+        [self quit];
+    }
 }
 
 
@@ -579,6 +603,7 @@ enum{
 {
     [self.drawToolPanel dismissAllPopTipViews];
     [self updateRecentColors];
+    _isNewDraft = NO;
 }
 
 #define DRAFT_PAINT_COUNT [ConfigManager drawAutoSavePaintInterval]
@@ -666,7 +691,7 @@ enum{
 }
 - (PBNoCompressDrawData *)noCompressDrawData
 {
-    NSMutableArray *temp = [NSMutableArray arrayWithArray:drawView.drawActionList];
+    NSMutableArray *temp = [[NSMutableArray alloc] initWithArray:drawView.drawActionList];
     return [DrawAction drawActionListToPBNoCompressDrawData:temp];
     PPRelease(temp);
 }
@@ -678,7 +703,7 @@ enum{
     }
     PPDebug(@"<OfflineDrawViewController> start to save draft. show result = %d",showResult);
     _unDraftPaintCount = 0;
-
+    _isNewDraft = YES;
     UIImage *image = [drawView createImage];    
     
     __block BOOL result = NO;
@@ -737,6 +762,7 @@ enum{
 }
 
 - (IBAction)clickDraftButton:(id)sender {
+    _userSaved = YES;
     [self showActivityWithText:NSLS(@"kSaving")];
     [self performSelector:@selector(saveDraftAndShowResult) withObject:nil afterDelay:0.01];
 }
@@ -772,6 +798,26 @@ enum{
 }
 
 
+- (void)alertExit
+{
+    CommonDialog *dialog = [CommonDialog createDialogWithTitle:nil message:nil style:CommonDialogStyleDoubleButton delegate:self];
+    
+    if (_isNewDraft || [drawView.drawActionList count] == 0 || !_isAutoSave) {
+        [dialog setTitle:NSLS(@"kQuitGameAlertTitle")];
+        [dialog setMessage:NSLS(@"kQuitGameAlertMessage")];
+        dialog.tag = DIALOG_TAG_ESCAPE;
+    }else{
+        [dialog setTitle:NSLS(@"kQuitDrawAlertTitle")];
+        [dialog setMessage:NSLS(@"kQuitDrawAlertMessage")];
+        [dialog.backButton setTitle:NSLS(@"kDonotSave") forState:UIControlStateNormal];
+        [dialog.oKButton setTitle:NSLS(@"kSave") forState:UIControlStateNormal];
+
+        dialog.tag = DIALOG_TAG_SAVETIP;
+    }
+    
+    [dialog showInView:self.view];
+}
+
 - (void)clickBackButton:(id)sender
 {
     if (targetType == TypeGraffiti) {
@@ -779,21 +825,22 @@ enum{
             [delegate didControllerClickBack:self];
         }
     }else {
-        CommonDialog *dialog = nil;
-        if ([drawView.drawActionList count] == 0 || !_isAutoSave) {
-            dialog = [CommonDialog createDialogWithTitle:NSLS(@"kQuitGameAlertTitle")
-                                                 message:NSLS(@"kQuitGameAlertMessage")
-                                                   style:CommonDialogStyleDoubleButton 
-                                                delegate:self];
-        }else{
-            dialog = [CommonDialog createDialogWithTitle:NSLS(@"kQuitDrawAlertTitle") 
-                                                 message:NSLS(@"kQuitDrawAlertMessage") 
-                                                   style:CommonDialogStyleDoubleButton 
-                                                delegate:self];
-        }
-        
-        dialog.tag = DIALOG_TAG_ESCAPE;
-        [dialog showInView:self.view];
+        [self alertExit];
+//        CommonDialog *dialog = nil;
+//        if ([drawView.drawActionList count] == 0 || !_isAutoSave) {
+//            dialog = [CommonDialog createDialogWithTitle:NSLS(@"kQuitGameAlertTitle")
+//                                                 message:NSLS(@"kQuitGameAlertMessage")
+//                                                   style:CommonDialogStyleDoubleButton 
+//                                                delegate:self];
+//        }else{
+//            dialog = [CommonDialog createDialogWithTitle:NSLS(@"kQuitDrawAlertTitle") 
+//                                                 message:NSLS(@"kQuitDrawAlertMessage") 
+//                                                   style:CommonDialogStyleDoubleButton 
+//                                                delegate:self];
+//        }
+//        
+//        dialog.tag = DIALOG_TAG_ESCAPE;
+//        [dialog showInView:self.view];
     }
 }
 
@@ -803,16 +850,52 @@ enum{
 //    [[CommonMessageCenter defaultCenter] postMessageWithText:[NSString stringWithFormat:NSLS(@"kUpgradeMsg"),level] delayTime:1.5 isHappy:YES];
 }
 
+#pragma mark - CommonItemInfoView Delegate
+
+- (void)didBuyItem:(Item*)anItem
+            result:(int)result
+{
+    if (result == 0) {
+        switch (anItem.type) {
+            case PaletteItem:
+            case ColorAlphaItem:
+                [self.drawToolPanel updateView];
+                break;
+            case Pen:
+            case Pencil:
+            case IcePen:
+            case Quill:
+            case WaterPen:
+            {
+                [self.drawToolPanel setPenType:anItem.type];
+                [drawView setPenType:anItem.type];
+                break;
+            }
+            default:
+                break;
+
+        }
+    }else
+    {
+        [self popupMessage:NSLS(@"kNotEnoughCoin") title:nil];
+    }
+}
 
 #pragma mark - Draw Tool Panel Delegate
 
 - (void)drawToolPanel:(DrawToolPanel *)toolPanel didClickRedoButton:(UIButton *)button
 {
-    [drawView redo];
+    if ([drawView canRedo]) {
+        [drawView redo];
+        _isNewDraft = NO;
+    }
 }
 - (void)drawToolPanel:(DrawToolPanel *)toolPanel didClickUndoButton:(UIButton *)button
 {
-    [drawView revoke];
+    if ([drawView canRevoke]) {
+        _isNewDraft = NO;
+        [drawView revoke];
+    }
 }
 - (void)drawToolPanel:(DrawToolPanel *)toolPanel didClickEraserButton:(UIButton *)button
 {
@@ -821,17 +904,25 @@ enum{
 }
 - (void)drawToolPanel:(DrawToolPanel *)toolPanel didClickPaintBucket:(UIButton *)button
 {
+    _isNewDraft = NO;
+    self.penColor.alpha = 1.0;
     [drawView addChangeBackAction:self.penColor];
     self.eraserColor = self.penColor;
     self.penColor = drawView.lineColor = [DrawColor blackColor];
     [toolPanel setColor:self.penColor];
+    [drawView.lineColor setAlpha:_alpha];
     [self updateRecentColors];
     [_drawToolPanel updateRecentColorViewWithColor:[DrawColor blackColor]];
 }
 - (void)drawToolPanel:(DrawToolPanel *)toolPanel didSelectPen:(ItemType)penType
+               bought:(BOOL)bought
 {
-    PPDebug(@"<didSelectPen> pen type = %d",penType);
-    drawView.penType = penType;
+    if (bought) {
+        PPDebug(@"<didSelectPen> pen type = %d",penType);
+        drawView.penType = penType;
+    }else{
+        [CommonItemInfoView showItem:[Item itemWithType:penType amount:1] infoInView:self canBuyAgain:!bought];
+    }
 }
 - (void)drawToolPanel:(DrawToolPanel *)toolPanel didSelectWidth:(CGFloat)width
 {
@@ -839,19 +930,22 @@ enum{
 }
 - (void)drawToolPanel:(DrawToolPanel *)toolPanel didSelectColor:(DrawColor *)color
 {
+    self.tempColor = color;
     self.penColor = color;
-    [drawView setLineColor:color];
-    _tempColor = color;
+    [drawView setLineColor:[DrawColor colorWithColor:color]];
+    [drawView.lineColor setAlpha:_alpha];
 }
 - (void)drawToolPanel:(DrawToolPanel *)toolPanel didSelectAlpha:(CGFloat)alpha
 {
+    _alpha = alpha;
     [drawView.lineColor setAlpha:alpha];
 }
 
 - (void)drawToolPanel:(DrawToolPanel *)toolPanel startToBuyItem:(ItemType)type
 {
-    VendingController *vend = [VendingController instance];
-    [self.navigationController pushViewController:vend animated:YES];
+//    VendingController *vend = [VendingController instance];
+//    [self.navigationController pushViewController:vend animated:YES];
+    [CommonItemInfoView showItem:[Item itemWithType:type amount:1] infoInView:self canBuyAgain:YES];
 }
 
 #pragma mark - Recent Color
@@ -861,7 +955,7 @@ enum{
     if (_tempColor) {
         [[DrawColorManager sharedDrawColorManager] updateColorListWithColor:_tempColor];
         [_drawToolPanel updateRecentColorViewWithColor:_tempColor];
-        _tempColor = nil;
+        self.tempColor = nil;
     }
 }
 

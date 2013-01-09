@@ -406,7 +406,7 @@ static VendingController* staticVendingController = nil;
         }
         else{
             if (isDrawApp()) {
-                _itemList = [[NSMutableArray alloc] initWithObjects:[Item removeAd], [Item tips], [Item colors], [Item tomato], [Item flower], [Item iceCreamPen], [Item brushPen], [Item featherPen], [Item waterPen], nil];
+                _itemList = [[NSMutableArray alloc] initWithObjects:[Item removeAd], [Item tips], [Item colors], [Item tomato], [Item flower], [Item iceCreamPen], [Item brushPen], [Item featherPen], [Item waterPen], [Item PaletteItem], [Item ColorAlphaItem], nil];
             }
             
             if (isDiceApp() || isZhajinhuaApp()) {
@@ -422,6 +422,8 @@ static VendingController* staticVendingController = nil;
 {
     self.pageControl.hidden = (_itemList.count > LINE_PER_PAGE*ITEM_COUNT_PER_LINE)?NO:YES;
     self.pageControl.hidesForSinglePage = YES;
+    int pageCount = (_itemList.count-1)/(LINE_PER_PAGE*ITEM_COUNT_PER_LINE) + 1;
+    [self.pageControl setNumberOfPages:pageCount];
     
     [self.pageControl setPageIndicatorImageForCurrentPage:[[ShareImageManager defaultManager] pointForCurrentSelectedPage] forNotCurrentPage:[[ShareImageManager defaultManager] pointForUnSelectedPage]];
     

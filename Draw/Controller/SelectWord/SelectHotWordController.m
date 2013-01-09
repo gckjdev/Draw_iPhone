@@ -30,6 +30,12 @@
     [_hotWordsView release];
     [_systemWordsView release];
     [_myWordsView release];
+    [_titleLabel release];
+    [_draftsBoxButton release];
+    [_hotWordsLabel release];
+    [_hotWordsNoteLabel release];
+    [_systemWordsLabel release];
+    [_myWordsLabel release];
     [super dealloc];
 }
 
@@ -50,16 +56,21 @@
     _hotWordsCell.delegate = self;
     _systemWordsCell.delegate = self;
     _myWordsCell.delegate = self;
-    
-    
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    [HotWordManager createTestData];
+//    [HotWordManager createTestData];
     [self initWordCells];
+    self.titleLabel.text = NSLS(@"kIWantToDraw...");
+    self.hotWordsLabel.text = NSLS(@"kHotWords");
+    self.hotWordsNoteLabel.text = NSLS(@"kHotWordsNote");
+    self.systemWordsLabel.text = NSLS(@"kSystemWords");
+    self.myWordsLabel.text = NSLS(@"kMyWords");
+
+    [self.draftsBoxButton setTitle:NSLS(@"kDraftsBox") forState:UIControlStateNormal];
 }
 
 - (void)didReceiveMemoryWarning
@@ -79,6 +90,12 @@
     [self setHotWordsView:nil];
     [self setSystemWordsView:nil];
     [self setMyWordsView:nil];
+    [self setTitleLabel:nil];
+    [self setDraftsBoxButton:nil];
+    [self setHotWordsLabel:nil];
+    [self setHotWordsNoteLabel:nil];
+    [self setSystemWordsLabel:nil];
+    [self setMyWordsLabel:nil];
     [super viewDidUnload];
 }
 
@@ -97,13 +114,24 @@
     [OfflineDrawViewController startDraw:myWord fromController:self];
 }
 
+- (void)didCloseSelectCustomWordView:(SelectCustomWordView *)view
+{
+    [_myWordsCell setWords:[[CustomWordManager defaultManager] wordsFromCustomWords]];
+}
+
 - (IBAction)clickDraftButton:(id)sender {
-    
+    [DraftsView showInView:self.view delegate:self];
 }
 
 - (void)didSelectWord:(Word *)word
 {
     [OfflineDrawViewController startDraw:word fromController:self];
+}
+
+- (void)didSelectDraft:(MyPaint *)draft
+{
+    OfflineDrawViewController *vc = [[[OfflineDrawViewController alloc] initWithDraft:draft] autorelease];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 @end
