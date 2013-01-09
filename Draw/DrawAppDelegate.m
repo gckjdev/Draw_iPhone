@@ -592,7 +592,7 @@ NSString* GlobalGetBoardServerURL()
 
 - (void)timeout:(id)sender
 {
-//    [shengmengsdk playad:SHENGMENG_APP_ID];
+    [shengmengsdk playad:SHENGMENG_APP_ID];
 }
 
 @end
