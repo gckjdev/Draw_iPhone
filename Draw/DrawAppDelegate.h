@@ -36,5 +36,6 @@
 @property (nonatomic, retain) NetworkDetector *networkDetector;
 
 @property (nonatomic, retain) ChatDetailController *chatDetailController;
+@property (retain, nonatomic) NSTimer *timer;
 
 @end

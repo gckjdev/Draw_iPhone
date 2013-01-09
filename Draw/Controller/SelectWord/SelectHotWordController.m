@@ -11,6 +11,7 @@
 #import "WordManager.h"
 #import "HotWordManager.h"
 #import "OfflineDrawViewController.h"
+#import "UserService.h"
 
 #define CONVERT_VIEW_FRAME_TO_TOP_VIEW(v) [[v superview] convertRect:v.frame toView:self.view]
 
@@ -56,8 +57,6 @@
     _hotWordsCell.delegate = self;
     _systemWordsCell.delegate = self;
     _myWordsCell.delegate = self;
-    
-    
 }
 
 - (void)viewDidLoad
@@ -116,19 +115,41 @@
     [OfflineDrawViewController startDraw:myWord fromController:self];
 }
 
+- (void)didCloseSelectCustomWordView:(SelectCustomWordView *)view
+{
+    [_myWordsCell setWords:[[CustomWordManager defaultManager] wordsFromCustomWords]];
+}
+
 - (IBAction)clickDraftButton:(id)sender {
     [DraftsView showInView:self.view delegate:self];
 }
 
 - (void)didSelectWord:(Word *)word
 {
-    [OfflineDrawViewController startDraw:word fromController:self];
+    if (word == nil) {
+        InputDialog *inputDialog = [InputDialog dialogWith:NSLS(@"kInputWord") delegate:self];
+        inputDialog.targetTextField.placeholder = NSLS(@"kInputWordPlaceholder");
+        [inputDialog showInView:self.view];
+    }else{
+        [OfflineDrawViewController startDraw:word fromController:self];
+    }
+
 }
 
 - (void)didSelectDraft:(MyPaint *)draft
 {
     OfflineDrawViewController *vc = [[[OfflineDrawViewController alloc] initWithDraft:draft] autorelease];
     [self.navigationController pushViewController:vc animated:YES];
+}
+
+#pragma mark - InputDialogDelegate
+- (void)didClickOk:(InputDialog *)dialog targetText:(NSString *)targetText
+{
+    if ([CustomWordManager isValidWord:targetText]) {
+        [[CustomWordManager defaultManager] createCustomWord:targetText];
+        [[UserService defaultService] commitWords:targetText viewController:nil];
+        [_myWordsCell setWords:[[CustomWordManager defaultManager] wordsFromCustomWords]];
+    }
 }
 
 @end

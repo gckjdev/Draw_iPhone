@@ -3905,7 +3905,7 @@ static PBNoCompressDrawData* defaultPBNoCompressDrawDataInstance = nil;
 @end
 
 @interface PBHotWord ()
-@property int32_t wordId;
+@property (retain) NSString* wordId;
 @property (retain) NSString* word;
 @property int32_t coins;
 @property (retain) NSString* source;
@@ -3942,13 +3942,14 @@ static PBNoCompressDrawData* defaultPBNoCompressDrawDataInstance = nil;
 }
 @synthesize source;
 - (void) dealloc {
+  self.wordId = nil;
   self.word = nil;
   self.source = nil;
   [super dealloc];
 }
 - (id) init {
   if ((self = [super init])) {
-    self.wordId = 0;
+    self.wordId = @"";
     self.word = @"";
     self.coins = 0;
     self.source = @"";
@@ -3981,7 +3982,7 @@ static PBHotWord* defaultPBHotWordInstance = nil;
 }
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
   if (self.hasWordId) {
-    [output writeInt32:1 value:self.wordId];
+    [output writeString:1 value:self.wordId];
   }
   if (self.hasWord) {
     [output writeString:2 value:self.word];
@@ -4002,7 +4003,7 @@ static PBHotWord* defaultPBHotWordInstance = nil;
 
   size = 0;
   if (self.hasWordId) {
-    size += computeInt32Size(1, self.wordId);
+    size += computeStringSize(1, self.wordId);
   }
   if (self.hasWord) {
     size += computeStringSize(2, self.word);
@@ -4121,8 +4122,8 @@ static PBHotWord* defaultPBHotWordInstance = nil;
         }
         break;
       }
-      case 8: {
-        [self setWordId:[input readInt32]];
+      case 10: {
+        [self setWordId:[input readString]];
         break;
       }
       case 18: {
@@ -4143,17 +4144,17 @@ static PBHotWord* defaultPBHotWordInstance = nil;
 - (BOOL) hasWordId {
   return result.hasWordId;
 }
-- (int32_t) wordId {
+- (NSString*) wordId {
   return result.wordId;
 }
-- (PBHotWord_Builder*) setWordId:(int32_t) value {
+- (PBHotWord_Builder*) setWordId:(NSString*) value {
   result.hasWordId = YES;
   result.wordId = value;
   return self;
 }
 - (PBHotWord_Builder*) clearWordId {
   result.hasWordId = NO;
-  result.wordId = 0;
+  result.wordId = @"";
   return self;
 }
 - (BOOL) hasWord {

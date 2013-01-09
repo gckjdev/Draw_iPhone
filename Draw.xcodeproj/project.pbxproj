@@ -190,6 +190,9 @@
 		A4CE58E616324998003DB23A /* ChatView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4CE58E516324998003DB23A /* ChatView~ipad.xib */; };
 		A4D3B15B1560E4B50013C882 /* ExpressionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A4D3B1591560E4B50013C882 /* ExpressionManager.m */; };
 		A4D3B15E1560E4F80013C882 /* MessageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A4D3B15D1560E4F80013C882 /* MessageManager.m */; };
+		A4D4ECD1169C154200079C88 /* iOS-shengmeng-releasenote.html in Resources */ = {isa = PBXBuildFile; fileRef = A4D4ECCD169C154200079C88 /* iOS-shengmeng-releasenote.html */; };
+		A4D4ECD2169C154200079C88 /* iOS-shengmeng-SDK-help.html in Resources */ = {isa = PBXBuildFile; fileRef = A4D4ECCE169C154200079C88 /* iOS-shengmeng-SDK-help.html */; };
+		A4D4ECD3169C154200079C88 /* libshengmengsdk_1.1.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A4D4ECCF169C154200079C88 /* libshengmengsdk_1.1.0.a */; };
 		A4D6A763167591D3008DC151 /* ZJHDualRuleConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = A4D6A75C167591D3008DC151 /* ZJHDualRuleConfig.m */; };
 		A4D6A764167591D3008DC151 /* ZJHNormalRuleConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = A4D6A75E167591D3008DC151 /* ZJHNormalRuleConfig.m */; };
 		A4D6A765167591D3008DC151 /* ZJHRuleConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = A4D6A760167591D3008DC151 /* ZJHRuleConfig.m */; };
@@ -3157,6 +3160,8 @@
 		CA22B7AE169BCB3700DAB1C3 /* DrawPro-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CA22B7AC169BCB3600DAB1C3 /* DrawPro-Info.plist */; };
 		CA22B7AF169BCB3700DAB1C3 /* DrawPro-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CA22B7AC169BCB3600DAB1C3 /* DrawPro-Info.plist */; };
 		CA22B7B0169BCB3700DAB1C3 /* DrawPro-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CA22B7AC169BCB3600DAB1C3 /* DrawPro-Info.plist */; };
+		CA22B7DB169C193300DAB1C3 /* DrawSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = CA7871871689AE6100B28A2E /* DrawSlider.m */; };
+		CA22B7DC169C194600DAB1C3 /* PenBox.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC44997168D9FF3004441EB /* PenBox.m */; };
 		CA22DCD2157CAFFD009C95CB /* ResultController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA22DCCF157CAFFD009C95CB /* ResultController.m */; };
 		CA22DCD3157CAFFD009C95CB /* ResultController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA22DCD0157CAFFD009C95CB /* ResultController.xib */; };
 		CA22DCED157CB00A009C95CB /* OnlineDrawViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA22DCE0157CB00A009C95CB /* OnlineDrawViewController.m */; };
@@ -6518,6 +6523,10 @@
 		A4D3B1591560E4B50013C882 /* ExpressionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExpressionManager.m; sourceTree = "<group>"; };
 		A4D3B15C1560E4F80013C882 /* MessageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageManager.h; sourceTree = "<group>"; };
 		A4D3B15D1560E4F80013C882 /* MessageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageManager.m; sourceTree = "<group>"; };
+		A4D4ECCD169C154200079C88 /* iOS-shengmeng-releasenote.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "iOS-shengmeng-releasenote.html"; sourceTree = "<group>"; };
+		A4D4ECCE169C154200079C88 /* iOS-shengmeng-SDK-help.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "iOS-shengmeng-SDK-help.html"; sourceTree = "<group>"; };
+		A4D4ECCF169C154200079C88 /* libshengmengsdk_1.1.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libshengmengsdk_1.1.0.a; sourceTree = "<group>"; };
+		A4D4ECD0169C154200079C88 /* shengmengsdk.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = shengmengsdk.h; sourceTree = "<group>"; };
 		A4D6A75B167591D3008DC151 /* ZJHDualRuleConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJHDualRuleConfig.h; sourceTree = "<group>"; };
 		A4D6A75C167591D3008DC151 /* ZJHDualRuleConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJHDualRuleConfig.m; sourceTree = "<group>"; };
 		A4D6A75D167591D3008DC151 /* ZJHNormalRuleConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJHNormalRuleConfig.h; sourceTree = "<group>"; };
@@ -9391,6 +9400,7 @@
 				CAFEFBD716606E4900441D77 /* libUMUFP.a in Frameworks */,
 				CAFEFBD916606E4900441D77 /* WapsOffer.framework in Frameworks */,
 				CAFEFBDA16606E4900441D77 /* libWeChatSDK.a in Frameworks */,
+				A4D4ECD3169C154200079C88 /* libshengmengsdk_1.1.0.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -9993,6 +10003,17 @@
 				A4D3B15D1560E4F80013C882 /* MessageManager.m */,
 			);
 			path = Message;
+			sourceTree = "<group>";
+		};
+		A4D4ECCC169C154200079C88 /* shengmeng_iOS_SDK_1.1.0 */ = {
+			isa = PBXGroup;
+			children = (
+				A4D4ECCD169C154200079C88 /* iOS-shengmeng-releasenote.html */,
+				A4D4ECCE169C154200079C88 /* iOS-shengmeng-SDK-help.html */,
+				A4D4ECCF169C154200079C88 /* libshengmengsdk_1.1.0.a */,
+				A4D4ECD0169C154200079C88 /* shengmengsdk.h */,
+			);
+			path = shengmeng_iOS_SDK_1.1.0;
 			sourceTree = "<group>";
 		};
 		A4DE14101697DBA900841940 /* wordSelected */ = {
@@ -15100,6 +15121,7 @@
 		CAFEF86B16606E4700441D77 /* 3PP-SDK */ = {
 			isa = PBXGroup;
 			children = (
+				A4D4ECCC169C154200079C88 /* shengmeng_iOS_SDK_1.1.0 */,
 				CAFEF87316606E4700441D77 /* FacebookSDK */,
 				CAFEF89D16606E4800441D77 /* LmmobSDK */,
 				CAFEF8A016606E4800441D77 /* MangoAd */,
@@ -18705,6 +18727,8 @@
 				A4C1E91B169BE85E00644682 /* DraftCell~ipad.xib in Resources */,
 				A4C1E91D169BE85E00644682 /* DraftsView.xib in Resources */,
 				A4C1E91E169BE85E00644682 /* DraftsView~ipad.xib in Resources */,
+				A4D4ECD1169C154200079C88 /* iOS-shengmeng-releasenote.html in Resources */,
+				A4D4ECD2169C154200079C88 /* iOS-shengmeng-SDK-help.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -20136,6 +20160,8 @@
 				CA1CA30A169872B000A9FC57 /* SelectHotWordController.m in Sources */,
 				CA1CA30C169872DC00A9FC57 /* WordSelectCell.m in Sources */,
 				CA1CA30E1698731400A9FC57 /* HotWordManager.m in Sources */,
+				CA22B7DB169C193300DAB1C3 /* DrawSlider.m in Sources */,
+				CA22B7DC169C194600DAB1C3 /* PenBox.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -22743,6 +22769,7 @@
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/MangoAd/AdsMOGO_iOS_SDK_1.1.9/AdsMoGoLib/AdsMoGoSDK\"",
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/DomobAdSDK\"",
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/GoogleAdMobAdsSDK\"",
+					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/shengmeng_iOS_SDK_1.1.0\"",
 				);
 				OTHER_LDFLAGS = (
 					"-all_load",
@@ -22806,6 +22833,7 @@
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/MangoAd/AdsMOGO_iOS_SDK_1.1.9/AdsMoGoLib/AdsMoGoSDK\"",
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/DomobAdSDK\"",
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/GoogleAdMobAdsSDK\"",
+					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/shengmeng_iOS_SDK_1.1.0\"",
 				);
 				OTHER_LDFLAGS = (
 					"-all_load",

@@ -13,7 +13,10 @@
 #define VALUE(x) (ISIPAD ? x*2 : x)
 
 #define WIDTH VALUE(92.5)
-#define HEIGHT VALUE(12.0)
+
+
+#define SPACE_EDGE_CONTENT VALUE(5)
+#define HEIGHT (VALUE(12.0)+SPACE_EDGE_CONTENT*2)
 
 #define POINT_WIDTH VALUE(11.0)
 #define POINT_HEIGHT VALUE(12.0)
@@ -21,7 +24,7 @@
 
 
 #define LOAD_START_X VALUE(4.0)
-#define LOAD_START_Y VALUE(3.8)
+#define LOAD_START_Y (VALUE(3.8)+SPACE_EDGE_CONTENT)
 #define LOAD_HEIGHT VALUE(2.6)
 #define LOAD_WIDTH (WIDTH - LOAD_START_X*2)
 #define LOAD_MIN_X (LOAD_START_X)
@@ -162,10 +165,16 @@
 
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.
+
+
+
 - (void)drawRect:(CGRect)rect
 {
+    
+    CGRect contentRect = CGRectMake(0, SPACE_EDGE_CONTENT, WIDTH, HEIGHT-SPACE_EDGE_CONTENT*2);
+    
     if (self.selected) {
-        [[[ShareImageManager defaultManager] drawSliderDisableImage] drawInRect:self.bounds];
+        [[[ShareImageManager defaultManager] drawSliderDisableImage] drawInRect:contentRect];
     }else{
         CGContextRef context = UIGraphicsGetCurrentContext();
         
@@ -173,14 +182,14 @@
         
         // Drawing code
         //Draw bg
-        [self.bgImage drawInRect:self.bounds];
+        [self.bgImage drawInRect:contentRect];
 
         //Draw load
         CGRect r = CGRectMake(LOAD_START_X, LOAD_START_Y, POINT_X, LOAD_HEIGHT);
         CGContextFillRect(context, r);
         
         //draw point
-        r = CGRectMake(POINT_X, 0, POINT_WIDTH, POINT_HEIGHT);
+        r = CGRectMake(POINT_X, SPACE_EDGE_CONTENT, POINT_WIDTH, POINT_HEIGHT);
         
         [self.pointImage drawInRect:r];
     }
@@ -192,7 +201,6 @@
 {
     _percent = [self percentFromX:currentPoint.x];
 }
-
 
 
 - (BOOL)beginTrackingWithTouch:(UITouch *)touch withEvent:(UIEvent *)event
