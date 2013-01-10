@@ -7,11 +7,18 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "PPSNSCommonService.h"
 
 @interface ShareService : NSObject
 
 + (ShareService*)defaultService;
 
 - (void)shareWithImage:(UIImage*)image drawUserId:(NSString*)drawUserId isDrawByMe:(BOOL)isDrawByMe drawWord:(NSString*)drawWord;
-
+- (UIImage*)synthesisWeiboImage:(UIImage*)srcImage text:(NSString*)text;
+- (void)shareImage:(UIImage*)srcImage
+              text:(NSString*)text
+         waterMark:(NSString*)waterMark
+            viaSNS:(int)snsType
+      successBlock:(PPSNSSuccessBlock)successBlock
+      failureBlock:(PPSNSFailureBlock)failureBlock;
 @end
