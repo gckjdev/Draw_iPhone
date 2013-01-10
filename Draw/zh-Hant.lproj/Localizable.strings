@@ -281,7 +281,7 @@
 "kSay something..." = "";
 "kShare_via_SMS" = "短信分享給朋友";
 
-"kShare_message_body" = "推荐一款好玩的iPhone/iPad畫畫娛樂應用［%@］AppStore Link: %@";
+"kShare_message_body" = "推荐一款好玩的iPhone/iPad畫畫娛樂應用［%@］AppStore Link: %@ %@";
 
 "kEmail_subject" = "分享［猜猜畫畫］iPhone/iPad版遊戲";
 
@@ -985,6 +985,8 @@
 "kHotWords" = "熱門詞庫";
 "kHotWordsNote" = "[消耗一個錦囊]";
 "kSystemWords" = "系統詞庫";
+
+"kDefaultWaterMark" = "@猜猜畫畫";
 
 /*********************** 猜猜画画国际化字符串结束 *************************/
 

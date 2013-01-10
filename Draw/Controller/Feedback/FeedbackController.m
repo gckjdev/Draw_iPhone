@@ -181,12 +181,20 @@ enum {
     }
     
     
-    NSString *shareBodyModel =nil;
-    
-    shareBodyModel = [GameApp shareMessageBody];
-    
+    NSString *shareBodyModel = [GameApp shareMessageBody];
 
-    NSString *shareBody = [NSString stringWithFormat:shareBodyModel, NSLocalizedStringFromTable(@"CFBundleDisplayName", @"InfoPlist", @""),[UIUtils getAppLink:[ConfigManager appId]]];
+    NSString* weiboId = @"";
+    if (buttonIndex == buttonIndexQQWeibo){
+        weiboId = [NSString stringWithFormat:@"@%@", [GameApp qqWeiboId]];
+    }
+    else if (buttonIndex == buttonIndexSinaWeibo) {
+        weiboId = [NSString stringWithFormat:@"@%@", [GameApp sinaWeiboId]];
+    }
+
+    NSString *shareBody = [NSString stringWithFormat:shareBodyModel,
+                           NSLocalizedStringFromTable(@"CFBundleDisplayName", @"InfoPlist", @""),
+                           [UIUtils getAppLink:[ConfigManager appId]],
+                           weiboId];
     
     if (buttonIndex == buttonIndexSMS) {
         [self sendSms:nil body:shareBody];
@@ -195,7 +203,6 @@ enum {
 
         [self sendEmailTo:nil ccRecipients:nil bccRecipients:nil subject:emailSubject body:shareBody isHTML:NO delegate:self];
     } else if (buttonIndex == buttonIndexSinaWeibo) {
-        
         [[[PPSNSIntegerationService defaultService] snsServiceByType:TYPE_SINA] publishWeibo:shareBody
                                                                                imageFilePath:nil
                                                                                 successBlock:NULL

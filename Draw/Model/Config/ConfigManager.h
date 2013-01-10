@@ -155,4 +155,5 @@ typedef enum{
 + (int)getBBSCommentMaxLength;
 + (int)getBBSTextMinLength;
 
++ (NSString*)getShareImageWaterMark;
 @end

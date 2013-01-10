@@ -278,7 +278,7 @@
 "kHave_problems?" = "";
 "kSay something..." = "";
 "kShare_via_SMS" = "Share via SMS";
-"kShare_message_body" = "I found a very funny game recently. Its name is '%@'.\nHere is the AppStore download URL:\n%@";
+"kShare_message_body" = "I found a very funny game recently. Its name is '%@'.\nHere is the AppStore download URL:\n%@ %@";
 "kEmail_subject" = "Share a funny iOS game - Draw Lively";
 "kAbout_us_title" = "About us";
 "kFeedbackSucc" = "Thanks for your feedback";
@@ -967,6 +967,8 @@
 "kIWantToDraw..." = "I want to draw...";
 
 "kDonotSave" = "Don't Save";
+
+"kDefaultWaterMark" = "@Draw Lively";
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 

@@ -488,6 +488,11 @@
                               defaultValue:5];
 }
 
++ (NSString*)getShareImageWaterMark
+{
+    return [MobClickUtils getStringValueByKey:@"SNS_IMAGE_WATER_MARK" defaultValue:NSLS(@"kDefaultWaterMark")];
+}
+
 
 #define KEY_AUTO_SAVE @"AutoSave"
 + (BOOL)isAutoSave
