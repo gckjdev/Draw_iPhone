@@ -848,5 +848,13 @@ static UIImage* _whitePaperImage;
 {
     return [_resService imageByName:@"new_bulletin" inResourcePackage:RESOURCE_PACKAGE_DRAW];
 }
+- (UIImage *)shopItemAlphaImage
+{
+    return [self fixedAndStrectchableImageNamed:@"shop_item_alpha"];
+}
+- (UIImage *)shopItemPaletteImage
+{
+    return [self fixedAndStrectchableImageNamed:@"shop_item_palette"];
+}
 @end
 

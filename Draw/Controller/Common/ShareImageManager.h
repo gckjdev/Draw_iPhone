@@ -192,7 +192,8 @@
 - (UIImage *)pointForCurrentSelectedPage;
 - (UIImage *)pointForUnSelectedPage;
 
-
+- (UIImage *)shopItemAlphaImage;
+- (UIImage *)shopItemPaletteImage;
 
 
 @end

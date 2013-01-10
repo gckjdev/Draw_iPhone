@@ -14,7 +14,7 @@
 
 #define HOT_WORD_FILE @"hot_word.pb"
 #define BUNDLE_PATH @"hot_word.pb"
-#define HOT_WORD_VERSION_KEY @"1.2"
+#define HOT_WORD_VERSION_KEY @"1.0"
 
 @interface HotWordManager() {
 }

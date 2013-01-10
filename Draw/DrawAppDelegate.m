@@ -63,9 +63,7 @@
 #import "GameConfigDataManager.h"
 #import "ZJHHomeViewController.h"
 #import "BulletinService.h"
-#import "shengmengsdk.h"
 
-#define SHENGMENG_APP_ID @"90386ecaab5c85559c569ab7c79a61e2"
 
 NSString* GlobalGetServerURL()
 {    
@@ -107,8 +105,6 @@ NSString* GlobalGetBoardServerURL()
     [_window release];
     [_viewController release];
     [_chatDetailController release];
-    [_timer invalidate];
-    [_timer release];
     [super dealloc];
 }
 
@@ -359,9 +355,6 @@ NSString* GlobalGetBoardServerURL()
 //    [GameConfigDataManager createTestConfigData];  
 //    [GameConfigDataManager defaultInstance];
 
-//    self.timer = [NSTimer scheduledTimerWithTimeInterval:80 target:self selector:@selector(timeout:) userInfo:nil repeats:YES];
-//    
-//    [shengmengsdk playad:SHENGMENG_APP_ID];
 
     return YES;
 }
@@ -588,11 +581,6 @@ NSString* GlobalGetBoardServerURL()
             PPDebug(@"<onResp> weixin response fail");
         }
     }
-}
-
-- (void)timeout:(id)sender
-{
-    [shengmengsdk playad:SHENGMENG_APP_ID];
 }
 
 @end
