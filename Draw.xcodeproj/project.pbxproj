@@ -127,15 +127,14 @@
 		A461C94115662BC30076FD9C /* ChatController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A461C93F15662BC30076FD9C /* ChatController~ipad.xib */; };
 		A461C94215662BC30076FD9C /* MessageCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A461C94015662BC30076FD9C /* MessageCell~ipad.xib */; };
 		A47FF99E15DB9ADB00EE8125 /* DiceItemService.m in Sources */ = {isa = PBXBuildFile; fileRef = A47FF99D15DB9ADB00EE8125 /* DiceItemService.m */; };
-		A48B093C169D5A7500B56975 /* plus_image@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A48B093B169D5A7500B56975 /* plus_image@2x.png */; };
-		A48B0957169E5C6100B56975 /* libUMAppNetwork.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A48B094E169E5C6100B56975 /* libUMAppNetwork.a */; };
-		A48B0958169E5C6100B56975 /* UMUFP.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A48B094F169E5C6100B56975 /* UMUFP.bundle */; };
-		A48B0959169E5C6F00B56975 /* libUMAppNetwork.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A48B094E169E5C6100B56975 /* libUMAppNetwork.a */; };
-		A48B095D169E5C7800B56975 /* libUMAppNetwork.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A48B094E169E5C6100B56975 /* libUMAppNetwork.a */; };
-		A48B095E169E5C7900B56975 /* libUMAppNetwork.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A48B094E169E5C6100B56975 /* libUMAppNetwork.a */; };
-		A48B095F169E5C7C00B56975 /* UMUFP.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A48B094F169E5C6100B56975 /* UMUFP.bundle */; };
-		A48B0960169E5C7D00B56975 /* UMUFP.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A48B094F169E5C6100B56975 /* UMUFP.bundle */; };
-		A48B0961169E5C7E00B56975 /* UMUFP.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A48B094F169E5C6100B56975 /* UMUFP.bundle */; };
+		A48B0981169E664600B56975 /* libUMAppNetwork.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A48B0978169E664600B56975 /* libUMAppNetwork.a */; };
+		A48B0982169E664600B56975 /* UMUFP.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A48B0979169E664600B56975 /* UMUFP.bundle */; };
+		A48B0983169E674D00B56975 /* libUMAppNetwork.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A48B0978169E664600B56975 /* libUMAppNetwork.a */; };
+		A48B0984169E674F00B56975 /* libUMAppNetwork.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A48B0978169E664600B56975 /* libUMAppNetwork.a */; };
+		A48B0985169E675000B56975 /* libUMAppNetwork.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A48B0978169E664600B56975 /* libUMAppNetwork.a */; };
+		A48B0986169E675500B56975 /* UMUFP.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A48B0979169E664600B56975 /* UMUFP.bundle */; };
+		A48B0987169E675600B56975 /* UMUFP.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A48B0979169E664600B56975 /* UMUFP.bundle */; };
+		A48B0988169E675700B56975 /* UMUFP.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A48B0979169E664600B56975 /* UMUFP.bundle */; };
 		A48E827615E8AB1B002DB480 /* ChatView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A48E827515E8AB1A002DB480 /* ChatView.xib */; };
 		A49A083F166DA68D003E0F75 /* ReplacedPoker.m in Sources */ = {isa = PBXBuildFile; fileRef = A49A083E166DA68D003E0F75 /* ReplacedPoker.m */; };
 		A4A132651650E86900665109 /* MessageView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4A132641650E86900665109 /* MessageView.m */; };
@@ -2051,7 +2050,6 @@
 		CA16BF821682FAE300F81B47 /* HomeController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1041F61509BC9700F60C03 /* HomeController.m */; };
 		CA16BF831682FAE300F81B47 /* RegisterUserController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1041FB1509BF4700F60C03 /* RegisterUserController.m */; };
 		CA16BF841682FAE300F81B47 /* RoomController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1042001509C06E00F60C03 /* RoomController.m */; };
-		CA16BF851682FAE300F81B47 /* SelectWordController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA754BB150A02EA00B9391E /* SelectWordController.m */; };
 		CA16BF861682FAE300F81B47 /* GameSession.m in Sources */ = {isa = PBXBuildFile; fileRef = CA96E26D150DE4FD00292335 /* GameSession.m */; };
 		CA16BF871682FAE300F81B47 /* GameSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA96E270150DE56400292335 /* GameSessionManager.m */; };
 		CA16BF881682FAE300F81B47 /* GameBasic.pb.m in Sources */ = {isa = PBXBuildFile; fileRef = CA96E35C150E107800292335 /* GameBasic.pb.m */; };
@@ -2581,11 +2579,9 @@
 		CA16C1A11682FAE300F81B47 /* HomeController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA1041F71509BC9700F60C03 /* HomeController.xib */; };
 		CA16C1A21682FAE300F81B47 /* RegisterUserController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA1041FC1509BF4700F60C03 /* RegisterUserController.xib */; };
 		CA16C1A31682FAE300F81B47 /* RoomController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA1042011509C06E00F60C03 /* RoomController.xib */; };
-		CA16C1A41682FAE300F81B47 /* SelectWordController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAA754BC150A02EA00B9391E /* SelectWordController.xib */; };
 		CA16C1A51682FAE300F81B47 /* GameBasic.proto in Resources */ = {isa = PBXBuildFile; fileRef = CA96E275150DE8AA00292335 /* GameBasic.proto */; };
 		CA16C1A61682FAE300F81B47 /* GameMessage.proto in Resources */ = {isa = PBXBuildFile; fileRef = CA96E34F150DFBFA00292335 /* GameMessage.proto */; };
 		CA16C1A71682FAE300F81B47 /* GameConstants.proto in Resources */ = {isa = PBXBuildFile; fileRef = CADD7FCE1510DC530075C739 /* GameConstants.proto */; };
-		CA16C1A81682FAE300F81B47 /* SelectWordCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAB3DBDC1516DACD00E7DBC4 /* SelectWordCell.xib */; };
 		CA16C1A91682FAE300F81B47 /* CompleteUserInfoController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA322108151B6C6F0039A384 /* CompleteUserInfoController.xib */; };
 		CA16C1AA1682FAE300F81B47 /* CoinShopController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA322184151F62C00039A384 /* CoinShopController.xib */; };
 		CA16C1AB1682FAE300F81B47 /* FeedbackController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA3221A3151F657F0039A384 /* FeedbackController.xib */; };
@@ -2604,8 +2600,6 @@
 		CA16C1B91682FAE300F81B47 /* MyPaintButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2FA6E711535358100EEB530 /* MyPaintButton.xib */; };
 		CA16C1BA1682FAE300F81B47 /* ColorShopView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA051DCD1546808500D0A00A /* ColorShopView.xib */; };
 		CA16C1BB1682FAE300F81B47 /* HomeController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAA361DA15529F530081D3EB /* HomeController~ipad.xib */; };
-		CA16C1BC1682FAE300F81B47 /* SelectWordCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA0378211553696100CF41E3 /* SelectWordCell~ipad.xib */; };
-		CA16C1BD1682FAE300F81B47 /* SelectWordController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA0378221553696100CF41E3 /* SelectWordController~ipad.xib */; };
 		CA16C1BE1682FAE300F81B47 /* RoomController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3FAE0D915536E8D008B5827 /* RoomController~ipad.xib */; };
 		CA16C1BF1682FAE300F81B47 /* UserSettingController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3FAE0DB15536EBB008B5827 /* UserSettingController~ipad.xib */; };
 		CA16C1C01682FAE300F81B47 /* RegisterUserController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3FAE0E51553701B008B5827 /* RegisterUserController~ipad.xib */; };
@@ -2657,8 +2651,6 @@
 		CA16C1F11682FAE300F81B47 /* OfflineGuessDrawController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA22DD02157CB440009C95CB /* OfflineGuessDrawController~ipad.xib */; };
 		CA16C1F21682FAE300F81B47 /* MyWordsController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A35984B0157CCAB900745BAB /* MyWordsController.xib */; };
 		CA16C1F31682FAE300F81B47 /* MyWordsController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A35984B1157CCAB900745BAB /* MyWordsController~ipad.xib */; };
-		CA16C1F41682FAE300F81B47 /* SelectCustomWordView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A31B5EF3157E1BE8003DDBF1 /* SelectCustomWordView.xib */; };
-		CA16C1F51682FAE300F81B47 /* SelectCustomWordView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A31B5EF4157E1BE8003DDBF1 /* SelectCustomWordView~ipad.xib */; };
 		CA16C1F61682FAE300F81B47 /* ChatCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A30A28471580C2AE006CA3CC /* ChatCell.xib */; };
 		CA16C1F71682FAE300F81B47 /* ChatCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A30A28481580C2AE006CA3CC /* ChatCell~ipad.xib */; };
 		CA16C1F81682FAE300F81B47 /* ChatDetailController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A30A284B1580C2AE006CA3CC /* ChatDetailController.xib */; };
@@ -3355,6 +3347,49 @@
 		CA67B87D15E89FB0002050DB /* GameApp.m in Sources */ = {isa = PBXBuildFile; fileRef = CA67B87C15E89FB0002050DB /* GameApp.m */; };
 		CA67B8A815EB2928002050DB /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA67B8A715EB2928002050DB /* MediaPlayer.framework */; };
 		CA67B8AA15EB292E002050DB /* EventKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA67B8A915EB292E002050DB /* EventKitUI.framework */; };
+		CA6877AF169D1B9C0006E489 /* libshengmengsdk_1.1.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A4D4ECCF169C154200079C88 /* libshengmengsdk_1.1.0.a */; };
+		CA6877B0169D1B9D0006E489 /* libshengmengsdk_1.1.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A4D4ECCF169C154200079C88 /* libshengmengsdk_1.1.0.a */; };
+		CA6877B1169D1B9E0006E489 /* libshengmengsdk_1.1.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A4D4ECCF169C154200079C88 /* libshengmengsdk_1.1.0.a */; };
+		CA6877B2169D1BD60006E489 /* DraftsView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4C1E916169BE85E00644682 /* DraftsView.m */; };
+		CA6877B4169D1BD80006E489 /* DraftsView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4C1E916169BE85E00644682 /* DraftsView.m */; };
+		CA6877B5169D1BD90006E489 /* DraftsView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4C1E916169BE85E00644682 /* DraftsView.m */; };
+		CA6877B6169D1BED0006E489 /* SelectCustomWordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A4DE148A169AB1B300841940 /* SelectCustomWordCell.m */; };
+		CA6877B7169D1BED0006E489 /* SelectCustomWordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A4DE148A169AB1B300841940 /* SelectCustomWordCell.m */; };
+		CA6877B8169D1BEE0006E489 /* SelectCustomWordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A4DE148A169AB1B300841940 /* SelectCustomWordCell.m */; };
+		CA6877BF169D1C310006E489 /* DraftCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A4C1E912169BE85E00644682 /* DraftCell.m */; };
+		CA6877C0169D1C330006E489 /* DraftCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A4C1E912169BE85E00644682 /* DraftCell.m */; };
+		CA6877C2169D1C4E0006E489 /* DraftCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4C1E913169BE85E00644682 /* DraftCell.xib */; };
+		CA6877C3169D1C7F0006E489 /* DraftCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4C1E914169BE85E00644682 /* DraftCell~ipad.xib */; };
+		CA6877C4169D1C7F0006E489 /* DraftsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4C1E917169BE85E00644682 /* DraftsView.xib */; };
+		CA6877C5169D1C7F0006E489 /* DraftsView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4C1E918169BE85E00644682 /* DraftsView~ipad.xib */; };
+		CA6877C6169D1C7F0006E489 /* SelectCustomWordCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4DE148C169AB41800841940 /* SelectCustomWordCell.xib */; };
+		CA6877C7169D1C7F0006E489 /* SelectCustomWordCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4DE148E169ABF0000841940 /* SelectCustomWordCell~ipad.xib */; };
+		CA6877C8169D1C850006E489 /* DraftCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4C1E913169BE85E00644682 /* DraftCell.xib */; };
+		CA6877C9169D1C850006E489 /* DraftCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4C1E914169BE85E00644682 /* DraftCell~ipad.xib */; };
+		CA6877CA169D1C850006E489 /* DraftsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4C1E917169BE85E00644682 /* DraftsView.xib */; };
+		CA6877CB169D1C850006E489 /* DraftsView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4C1E918169BE85E00644682 /* DraftsView~ipad.xib */; };
+		CA6877CC169D1C850006E489 /* SelectHotWordController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4DE14271697DBC000841940 /* SelectHotWordController.xib */; };
+		CA6877CD169D1C850006E489 /* SelectHotWordController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4DE14281697DBC000841940 /* SelectHotWordController~ipad.xib */; };
+		CA6877CE169D1C850006E489 /* WordSelectCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4DE142B1697DBC000841940 /* WordSelectCell.xib */; };
+		CA6877CF169D1C850006E489 /* SelectCustomWordCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4DE148C169AB41800841940 /* SelectCustomWordCell.xib */; };
+		CA6877D0169D1C850006E489 /* SelectCustomWordCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4DE148E169ABF0000841940 /* SelectCustomWordCell~ipad.xib */; };
+		CA6877DA169D1C8A0006E489 /* DraftCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A4C1E912169BE85E00644682 /* DraftCell.m */; };
+		CA6877DB169D1C8A0006E489 /* DraftCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4C1E913169BE85E00644682 /* DraftCell.xib */; };
+		CA6877DC169D1C8A0006E489 /* DraftCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4C1E914169BE85E00644682 /* DraftCell~ipad.xib */; };
+		CA6877DD169D1C8A0006E489 /* DraftsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4C1E917169BE85E00644682 /* DraftsView.xib */; };
+		CA6877DE169D1C8A0006E489 /* DraftsView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4C1E918169BE85E00644682 /* DraftsView~ipad.xib */; };
+		CA6877DF169D1C8A0006E489 /* SelectHotWordController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4DE14271697DBC000841940 /* SelectHotWordController.xib */; };
+		CA6877E0169D1C8A0006E489 /* SelectHotWordController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4DE14281697DBC000841940 /* SelectHotWordController~ipad.xib */; };
+		CA6877E1169D1C8A0006E489 /* WordSelectCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4DE142B1697DBC000841940 /* WordSelectCell.xib */; };
+		CA6877E2169D1C8A0006E489 /* SelectWordController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA754BB150A02EA00B9391E /* SelectWordController.m */; };
+		CA6877E3169D1C8A0006E489 /* SelectWordController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAA754BC150A02EA00B9391E /* SelectWordController.xib */; };
+		CA6877E4169D1C8A0006E489 /* SelectWordController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA0378221553696100CF41E3 /* SelectWordController~ipad.xib */; };
+		CA6877E5169D1C8A0006E489 /* SelectWordCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAB3DBDC1516DACD00E7DBC4 /* SelectWordCell.xib */; };
+		CA6877E6169D1C8A0006E489 /* SelectWordCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA0378211553696100CF41E3 /* SelectWordCell~ipad.xib */; };
+		CA6877E7169D1C8A0006E489 /* SelectCustomWordView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A31B5EF3157E1BE8003DDBF1 /* SelectCustomWordView.xib */; };
+		CA6877E8169D1C8A0006E489 /* SelectCustomWordView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A31B5EF4157E1BE8003DDBF1 /* SelectCustomWordView~ipad.xib */; };
+		CA6877E9169D1C8A0006E489 /* SelectCustomWordCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4DE148C169AB41800841940 /* SelectCustomWordCell.xib */; };
+		CA6877EA169D1C8A0006E489 /* SelectCustomWordCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4DE148E169ABF0000841940 /* SelectCustomWordCell~ipad.xib */; };
 		CA6D352115F71574004DC293 /* bottom_menubg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA6D351F15F71574004DC293 /* bottom_menubg@2x.png */; };
 		CA6D352215F71574004DC293 /* small_setting@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA6D352015F71574004DC293 /* small_setting@2x.png */; };
 		CA6D353415F71918004DC293 /* clean_ad@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA6D353215F71918004DC293 /* clean_ad@2x.png */; };
@@ -6436,16 +6471,15 @@
 		A461C94015662BC30076FD9C /* MessageCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "MessageCell~ipad.xib"; sourceTree = "<group>"; };
 		A47FF99C15DB9ADB00EE8125 /* DiceItemService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiceItemService.h; sourceTree = "<group>"; };
 		A47FF99D15DB9ADB00EE8125 /* DiceItemService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiceItemService.m; sourceTree = "<group>"; };
-		A48B093B169D5A7500B56975 /* plus_image@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "plus_image@2x.png"; sourceTree = "<group>"; };
-		A48B094E169E5C6100B56975 /* libUMAppNetwork.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libUMAppNetwork.a; sourceTree = "<group>"; };
-		A48B094F169E5C6100B56975 /* UMUFP.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = UMUFP.bundle; sourceTree = "<group>"; };
-		A48B0950169E5C6100B56975 /* UMUFPBannerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMUFPBannerView.h; sourceTree = "<group>"; };
-		A48B0951169E5C6100B56975 /* UMUFPGridCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMUFPGridCell.h; sourceTree = "<group>"; };
-		A48B0952169E5C6100B56975 /* UMUFPGridView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMUFPGridView.h; sourceTree = "<group>"; };
-		A48B0953169E5C6100B56975 /* UMUFPHandleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMUFPHandleView.h; sourceTree = "<group>"; };
-		A48B0954169E5C6100B56975 /* UMUFPImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMUFPImageView.h; sourceTree = "<group>"; };
-		A48B0955169E5C6100B56975 /* UMUFPTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMUFPTableView.h; sourceTree = "<group>"; };
-		A48B0956169E5C6100B56975 /* UMUFPWebView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMUFPWebView.h; sourceTree = "<group>"; };
+		A48B0978169E664600B56975 /* libUMAppNetwork.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libUMAppNetwork.a; sourceTree = "<group>"; };
+		A48B0979169E664600B56975 /* UMUFP.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = UMUFP.bundle; sourceTree = "<group>"; };
+		A48B097A169E664600B56975 /* UMUFPBannerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMUFPBannerView.h; sourceTree = "<group>"; };
+		A48B097B169E664600B56975 /* UMUFPGridCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMUFPGridCell.h; sourceTree = "<group>"; };
+		A48B097C169E664600B56975 /* UMUFPGridView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMUFPGridView.h; sourceTree = "<group>"; };
+		A48B097D169E664600B56975 /* UMUFPHandleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMUFPHandleView.h; sourceTree = "<group>"; };
+		A48B097E169E664600B56975 /* UMUFPImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMUFPImageView.h; sourceTree = "<group>"; };
+		A48B097F169E664600B56975 /* UMUFPTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMUFPTableView.h; sourceTree = "<group>"; };
+		A48B0980169E664600B56975 /* UMUFPWebView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMUFPWebView.h; sourceTree = "<group>"; };
 		A48E827515E8AB1A002DB480 /* ChatView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChatView.xib; sourceTree = "<group>"; };
 		A49A083D166DA68D003E0F75 /* ReplacedPoker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReplacedPoker.h; sourceTree = "<group>"; };
 		A49A083E166DA68D003E0F75 /* ReplacedPoker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReplacedPoker.m; sourceTree = "<group>"; };
@@ -9317,7 +9351,8 @@
 				CA16BC0B1682FAD900F81B47 /* libMobClickLibrary.a in Frameworks */,
 				CA16BC0D1682FAD900F81B47 /* WapsOffer.framework in Frameworks */,
 				CA16BC0E1682FAD900F81B47 /* libWeChatSDK.a in Frameworks */,
-				A48B095E169E5C7900B56975 /* libUMAppNetwork.a in Frameworks */,
+				CA6877B0169D1B9D0006E489 /* libshengmengsdk_1.1.0.a in Frameworks */,
+				A48B0984169E674F00B56975 /* libUMAppNetwork.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -9362,7 +9397,8 @@
 				CA16C1911682FAE300F81B47 /* libMobClickLibrary.a in Frameworks */,
 				CA16C1931682FAE300F81B47 /* WapsOffer.framework in Frameworks */,
 				CA16C1941682FAE300F81B47 /* libWeChatSDK.a in Frameworks */,
-				A48B095D169E5C7800B56975 /* libUMAppNetwork.a in Frameworks */,
+				CA6877B1169D1B9E0006E489 /* libshengmengsdk_1.1.0.a in Frameworks */,
+				A48B0985169E675000B56975 /* libUMAppNetwork.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -9408,7 +9444,7 @@
 				CAFEFBD916606E4900441D77 /* WapsOffer.framework in Frameworks */,
 				CAFEFBDA16606E4900441D77 /* libWeChatSDK.a in Frameworks */,
 				A4D4ECD3169C154200079C88 /* libshengmengsdk_1.1.0.a in Frameworks */,
-				A48B0957169E5C6100B56975 /* libUMAppNetwork.a in Frameworks */,
+				A48B0981169E664600B56975 /* libUMAppNetwork.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -9463,7 +9499,8 @@
 				CAB5C9B616994F0200A4CE3B /* libMobClickLibrary.a in Frameworks */,
 				CAB5C9B816994F0200A4CE3B /* WapsOffer.framework in Frameworks */,
 				CAB5C9B916994F0200A4CE3B /* libWeChatSDK.a in Frameworks */,
-				A48B0959169E5C6F00B56975 /* libUMAppNetwork.a in Frameworks */,
+				CA6877AF169D1B9C0006E489 /* libshengmengsdk_1.1.0.a in Frameworks */,
+				A48B0983169E674D00B56975 /* libUMAppNetwork.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -9809,18 +9846,18 @@
 			path = ChatMessageView;
 			sourceTree = "<group>";
 		};
-		A48B094D169E5C6100B56975 /* UMAppNetwork_SDK_3.5.2 */ = {
+		A48B0977169E664600B56975 /* UMAppNetwork_SDK_3.5.2 */ = {
 			isa = PBXGroup;
 			children = (
-				A48B094E169E5C6100B56975 /* libUMAppNetwork.a */,
-				A48B094F169E5C6100B56975 /* UMUFP.bundle */,
-				A48B0950169E5C6100B56975 /* UMUFPBannerView.h */,
-				A48B0951169E5C6100B56975 /* UMUFPGridCell.h */,
-				A48B0952169E5C6100B56975 /* UMUFPGridView.h */,
-				A48B0953169E5C6100B56975 /* UMUFPHandleView.h */,
-				A48B0954169E5C6100B56975 /* UMUFPImageView.h */,
-				A48B0955169E5C6100B56975 /* UMUFPTableView.h */,
-				A48B0956169E5C6100B56975 /* UMUFPWebView.h */,
+				A48B0978169E664600B56975 /* libUMAppNetwork.a */,
+				A48B0979169E664600B56975 /* UMUFP.bundle */,
+				A48B097A169E664600B56975 /* UMUFPBannerView.h */,
+				A48B097B169E664600B56975 /* UMUFPGridCell.h */,
+				A48B097C169E664600B56975 /* UMUFPGridView.h */,
+				A48B097D169E664600B56975 /* UMUFPHandleView.h */,
+				A48B097E169E664600B56975 /* UMUFPImageView.h */,
+				A48B097F169E664600B56975 /* UMUFPTableView.h */,
+				A48B0980169E664600B56975 /* UMUFPWebView.h */,
 			);
 			path = UMAppNetwork_SDK_3.5.2;
 			sourceTree = "<group>";
@@ -10043,7 +10080,6 @@
 		A4DE14101697DBA900841940 /* wordSelected */ = {
 			isa = PBXGroup;
 			children = (
-				A48B093B169D5A7500B56975 /* plus_image@2x.png */,
 				A4DE147E169A776700841940 /* add_new_word_btn_bg@2x.png */,
 				A4DE147F169A776700841940 /* all_my_words_bg@2x.png */,
 				A4DE1480169A776700841940 /* all_my_words_seprator@2x.png */,
@@ -15146,7 +15182,7 @@
 		CAFEF86B16606E4700441D77 /* 3PP-SDK */ = {
 			isa = PBXGroup;
 			children = (
-				A48B094D169E5C6100B56975 /* UMAppNetwork_SDK_3.5.2 */,
+				A48B0977169E664600B56975 /* UMAppNetwork_SDK_3.5.2 */,
 				A4D4ECCC169C154200079C88 /* shengmeng_iOS_SDK_1.1.0 */,
 				CAFEF87316606E4700441D77 /* FacebookSDK */,
 				CAFEF89D16606E4800441D77 /* LmmobSDK */,
@@ -17215,7 +17251,16 @@
 				CA22B78F169AD58D00DAB1C3 /* draw_slider_disable@2x.png in Resources */,
 				CA22B794169AD65300DAB1C3 /* draw_palette@2x.png in Resources */,
 				CA22B7AE169BCB3700DAB1C3 /* DrawPro-Info.plist in Resources */,
-				A48B0960169E5C7D00B56975 /* UMUFP.bundle in Resources */,
+				CA6877C8169D1C850006E489 /* DraftCell.xib in Resources */,
+				CA6877C9169D1C850006E489 /* DraftCell~ipad.xib in Resources */,
+				CA6877CA169D1C850006E489 /* DraftsView.xib in Resources */,
+				CA6877CB169D1C850006E489 /* DraftsView~ipad.xib in Resources */,
+				CA6877CC169D1C850006E489 /* SelectHotWordController.xib in Resources */,
+				CA6877CD169D1C850006E489 /* SelectHotWordController~ipad.xib in Resources */,
+				CA6877CE169D1C850006E489 /* WordSelectCell.xib in Resources */,
+				CA6877CF169D1C850006E489 /* SelectCustomWordCell.xib in Resources */,
+				CA6877D0169D1C850006E489 /* SelectCustomWordCell~ipad.xib in Resources */,
+				A48B0987169E675600B56975 /* UMUFP.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -17234,11 +17279,9 @@
 				CA16C1A11682FAE300F81B47 /* HomeController.xib in Resources */,
 				CA16C1A21682FAE300F81B47 /* RegisterUserController.xib in Resources */,
 				CA16C1A31682FAE300F81B47 /* RoomController.xib in Resources */,
-				CA16C1A41682FAE300F81B47 /* SelectWordController.xib in Resources */,
 				CA16C1A51682FAE300F81B47 /* GameBasic.proto in Resources */,
 				CA16C1A61682FAE300F81B47 /* GameMessage.proto in Resources */,
 				CA16C1A71682FAE300F81B47 /* GameConstants.proto in Resources */,
-				CA16C1A81682FAE300F81B47 /* SelectWordCell.xib in Resources */,
 				CA16C1A91682FAE300F81B47 /* CompleteUserInfoController.xib in Resources */,
 				CA16C1AA1682FAE300F81B47 /* CoinShopController.xib in Resources */,
 				CA16C1AB1682FAE300F81B47 /* FeedbackController.xib in Resources */,
@@ -17257,8 +17300,6 @@
 				CA16C1B91682FAE300F81B47 /* MyPaintButton.xib in Resources */,
 				CA16C1BA1682FAE300F81B47 /* ColorShopView.xib in Resources */,
 				CA16C1BB1682FAE300F81B47 /* HomeController~ipad.xib in Resources */,
-				CA16C1BC1682FAE300F81B47 /* SelectWordCell~ipad.xib in Resources */,
-				CA16C1BD1682FAE300F81B47 /* SelectWordController~ipad.xib in Resources */,
 				CA16C1BE1682FAE300F81B47 /* RoomController~ipad.xib in Resources */,
 				CA16C1BF1682FAE300F81B47 /* UserSettingController~ipad.xib in Resources */,
 				CA16C1C01682FAE300F81B47 /* RegisterUserController~ipad.xib in Resources */,
@@ -17310,8 +17351,6 @@
 				CA16C1F11682FAE300F81B47 /* OfflineGuessDrawController~ipad.xib in Resources */,
 				CA16C1F21682FAE300F81B47 /* MyWordsController.xib in Resources */,
 				CA16C1F31682FAE300F81B47 /* MyWordsController~ipad.xib in Resources */,
-				CA16C1F41682FAE300F81B47 /* SelectCustomWordView.xib in Resources */,
-				CA16C1F51682FAE300F81B47 /* SelectCustomWordView~ipad.xib in Resources */,
 				CA16C1F61682FAE300F81B47 /* ChatCell.xib in Resources */,
 				CA16C1F71682FAE300F81B47 /* ChatCell~ipad.xib in Resources */,
 				CA16C1F81682FAE300F81B47 /* ChatDetailController.xib in Resources */,
@@ -17988,7 +18027,22 @@
 				CA22B790169AD58D00DAB1C3 /* draw_slider_disable@2x.png in Resources */,
 				CA22B795169AD65300DAB1C3 /* draw_palette@2x.png in Resources */,
 				CA22B7AF169BCB3700DAB1C3 /* DrawPro-Info.plist in Resources */,
-				A48B0961169E5C7E00B56975 /* UMUFP.bundle in Resources */,
+				CA6877DB169D1C8A0006E489 /* DraftCell.xib in Resources */,
+				CA6877DC169D1C8A0006E489 /* DraftCell~ipad.xib in Resources */,
+				CA6877DD169D1C8A0006E489 /* DraftsView.xib in Resources */,
+				CA6877DE169D1C8A0006E489 /* DraftsView~ipad.xib in Resources */,
+				CA6877DF169D1C8A0006E489 /* SelectHotWordController.xib in Resources */,
+				CA6877E0169D1C8A0006E489 /* SelectHotWordController~ipad.xib in Resources */,
+				CA6877E1169D1C8A0006E489 /* WordSelectCell.xib in Resources */,
+				CA6877E3169D1C8A0006E489 /* SelectWordController.xib in Resources */,
+				CA6877E4169D1C8A0006E489 /* SelectWordController~ipad.xib in Resources */,
+				CA6877E5169D1C8A0006E489 /* SelectWordCell.xib in Resources */,
+				CA6877E6169D1C8A0006E489 /* SelectWordCell~ipad.xib in Resources */,
+				CA6877E7169D1C8A0006E489 /* SelectCustomWordView.xib in Resources */,
+				CA6877E8169D1C8A0006E489 /* SelectCustomWordView~ipad.xib in Resources */,
+				CA6877E9169D1C8A0006E489 /* SelectCustomWordCell.xib in Resources */,
+				CA6877EA169D1C8A0006E489 /* SelectCustomWordCell~ipad.xib in Resources */,
+				A48B0988169E675700B56975 /* UMUFP.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -18742,8 +18796,7 @@
 				A4C1E91E169BE85E00644682 /* DraftsView~ipad.xib in Resources */,
 				A4D4ECD1169C154200079C88 /* iOS-shengmeng-releasenote.html in Resources */,
 				A4D4ECD2169C154200079C88 /* iOS-shengmeng-SDK-help.html in Resources */,
-				A48B093C169D5A7500B56975 /* plus_image@2x.png in Resources */,
-				A48B0958169E5C6100B56975 /* UMUFP.bundle in Resources */,
+				A48B0982169E664600B56975 /* UMUFP.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -19494,7 +19547,13 @@
 				CA22B791169AD58D00DAB1C3 /* draw_slider_disable@2x.png in Resources */,
 				CA22B796169AD65300DAB1C3 /* draw_palette@2x.png in Resources */,
 				CA22B7B0169BCB3700DAB1C3 /* DrawPro-Info.plist in Resources */,
-				A48B095F169E5C7C00B56975 /* UMUFP.bundle in Resources */,
+				CA6877C2169D1C4E0006E489 /* DraftCell.xib in Resources */,
+				CA6877C3169D1C7F0006E489 /* DraftCell~ipad.xib in Resources */,
+				CA6877C4169D1C7F0006E489 /* DraftsView.xib in Resources */,
+				CA6877C5169D1C7F0006E489 /* DraftsView~ipad.xib in Resources */,
+				CA6877C6169D1C7F0006E489 /* SelectCustomWordCell.xib in Resources */,
+				CA6877C7169D1C7F0006E489 /* SelectCustomWordCell~ipad.xib in Resources */,
+				A48B0986169E675500B56975 /* UMUFP.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -20178,6 +20237,9 @@
 				CA1CA30E1698731400A9FC57 /* HotWordManager.m in Sources */,
 				CA22B7DB169C193300DAB1C3 /* DrawSlider.m in Sources */,
 				CA22B7DC169C194600DAB1C3 /* PenBox.m in Sources */,
+				CA6877B4169D1BD80006E489 /* DraftsView.m in Sources */,
+				CA6877B7169D1BED0006E489 /* SelectCustomWordCell.m in Sources */,
+				CA6877BF169D1C310006E489 /* DraftCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -20343,7 +20405,6 @@
 				CA16BF821682FAE300F81B47 /* HomeController.m in Sources */,
 				CA16BF831682FAE300F81B47 /* RegisterUserController.m in Sources */,
 				CA16BF841682FAE300F81B47 /* RoomController.m in Sources */,
-				CA16BF851682FAE300F81B47 /* SelectWordController.m in Sources */,
 				CA16BF861682FAE300F81B47 /* GameSession.m in Sources */,
 				CA16BF871682FAE300F81B47 /* GameSessionManager.m in Sources */,
 				CA16BF881682FAE300F81B47 /* GameBasic.pb.m in Sources */,
@@ -20843,6 +20904,10 @@
 				CA1CA30B169872B100A9FC57 /* SelectHotWordController.m in Sources */,
 				CA1CA30D169872DD00A9FC57 /* WordSelectCell.m in Sources */,
 				CA1CA30F1698731500A9FC57 /* HotWordManager.m in Sources */,
+				CA6877B5169D1BD90006E489 /* DraftsView.m in Sources */,
+				CA6877B8169D1BEE0006E489 /* SelectCustomWordCell.m in Sources */,
+				CA6877DA169D1C8A0006E489 /* DraftCell.m in Sources */,
+				CA6877E2169D1C8A0006E489 /* SelectWordController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -22184,6 +22249,9 @@
 				CAB5C99016994F0200A4CE3B /* PickView.m in Sources */,
 				CAB5C99116994F0200A4CE3B /* SelectHotWordController.m in Sources */,
 				CAB5C99216994F0200A4CE3B /* WordSelectCell.m in Sources */,
+				CA6877B2169D1BD60006E489 /* DraftsView.m in Sources */,
+				CA6877B6169D1BED0006E489 /* SelectCustomWordCell.m in Sources */,
+				CA6877C0169D1C330006E489 /* DraftCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -22473,6 +22541,7 @@
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/MangoAd/AdsMOGO_iOS_SDK_1.1.9/AdsMoGoLib/AdsMoGoSDK\"",
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/DomobAdSDK\"",
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/GoogleAdMobAdsSDK\"",
+					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/shengmeng_iOS_SDK_1.1.0\"",
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/UMAppNetwork_SDK_3.5.2\"",
 				);
 				OTHER_LDFLAGS = (
@@ -22537,6 +22606,7 @@
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/MangoAd/AdsMOGO_iOS_SDK_1.1.9/AdsMoGoLib/AdsMoGoSDK\"",
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/DomobAdSDK\"",
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/GoogleAdMobAdsSDK\"",
+					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/shengmeng_iOS_SDK_1.1.0\"",
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/UMAppNetwork_SDK_3.5.2\"",
 				);
 				OTHER_LDFLAGS = (
@@ -22603,6 +22673,7 @@
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/MangoAd/AdsMOGO_iOS_SDK_1.1.9/AdsMoGoLib/AdsMoGoSDK\"",
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/DomobAdSDK\"",
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/GoogleAdMobAdsSDK\"",
+					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/shengmeng_iOS_SDK_1.1.0\"",
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/UMAppNetwork_SDK_3.5.2\"",
 				);
 				OTHER_LDFLAGS = (
@@ -22667,6 +22738,7 @@
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/MangoAd/AdsMOGO_iOS_SDK_1.1.9/AdsMoGoLib/AdsMoGoSDK\"",
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/DomobAdSDK\"",
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/GoogleAdMobAdsSDK\"",
+					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/shengmeng_iOS_SDK_1.1.0\"",
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/UMAppNetwork_SDK_3.5.2\"",
 				);
 				OTHER_LDFLAGS = (
@@ -22973,6 +23045,7 @@
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/MangoAd/AdsMOGO_iOS_SDK_1.1.9/AdsMoGoLib/AdsMoGoSDK\"",
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/DomobAdSDK\"",
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/GoogleAdMobAdsSDK\"",
+					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/shengmeng_iOS_SDK_1.1.0\"",
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/UMAppNetwork_SDK_3.5.2\"",
 				);
 				OTHER_LDFLAGS = (
@@ -23037,6 +23110,7 @@
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/MangoAd/AdsMOGO_iOS_SDK_1.1.9/AdsMoGoLib/AdsMoGoSDK\"",
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/DomobAdSDK\"",
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/GoogleAdMobAdsSDK\"",
+					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/shengmeng_iOS_SDK_1.1.0\"",
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/UMAppNetwork_SDK_3.5.2\"",
 				);
 				OTHER_LDFLAGS = (

@@ -363,7 +363,7 @@
   BOOL hasNickName_:1;
   BOOL hasAvatar_:1;
   BOOL hasOpusId_:1;
-  BOOL hasDesc_:1;
+  BOOL hasOpusDesc_:1;
   BOOL hasTargetUserNickName_:1;
   BOOL hasTargetUserId_:1;
   BOOL hasCommentInfo_:1;
@@ -396,7 +396,7 @@
   NSString* nickName;
   NSString* avatar;
   NSString* opusId;
-  NSString* desc;
+  NSString* opusDesc;
   NSString* targetUserNickName;
   NSString* targetUserId;
   PBCommentInfo* commentInfo;
@@ -418,7 +418,7 @@
 - (BOOL) hasTargetUserId;
 - (BOOL) hasTargetUserNickName;
 - (BOOL) hasHistoryScore;
-- (BOOL) hasDesc;
+- (BOOL) hasOpusDesc;
 - (BOOL) hasOpusId;
 - (BOOL) hasIsCorrect;
 - (BOOL) hasScore;
@@ -451,7 +451,7 @@
 @property (readonly, retain) NSString* targetUserId;
 @property (readonly, retain) NSString* targetUserNickName;
 @property (readonly) Float64 historyScore;
-@property (readonly, retain) NSString* desc;
+@property (readonly, retain) NSString* opusDesc;
 @property (readonly, retain) NSString* opusId;
 - (BOOL) isCorrect;
 @property (readonly) int32_t score;
@@ -581,10 +581,10 @@
 - (PBFeed_Builder*) setHistoryScore:(Float64) value;
 - (PBFeed_Builder*) clearHistoryScore;
 
-- (BOOL) hasDesc;
-- (NSString*) desc;
-- (PBFeed_Builder*) setDesc:(NSString*) value;
-- (PBFeed_Builder*) clearDesc;
+- (BOOL) hasOpusDesc;
+- (NSString*) opusDesc;
+- (PBFeed_Builder*) setOpusDesc:(NSString*) value;
+- (PBFeed_Builder*) clearOpusDesc;
 
 - (BOOL) hasOpusId;
 - (NSString*) opusId;

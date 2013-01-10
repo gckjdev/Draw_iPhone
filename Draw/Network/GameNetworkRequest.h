@@ -254,7 +254,8 @@
                               data:(NSData*)data 
                          imageData:(NSData *)imageData
                          targetUid:(NSString *)targetUid
-                         contestId:(NSString *)contestId;
+                         contestId:(NSString *)contestId
+                              desc:(NSString *)desc;
 
 + (CommonNetworkOutput*)updateOpus:(NSString*)baseURL
                              appId:(NSString*)appId

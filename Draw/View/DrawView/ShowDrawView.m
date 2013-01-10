@@ -120,18 +120,12 @@
     
     CGFloat lineWidth = [_currentDrawAction.paint width];
     
-    //Pad our values so the bounding box respects our line width
-//    drawBox.origin.x        -= lineWidth * 1;
-//    drawBox.origin.y        -= lineWidth * 1;
-//    drawBox.size.width      += lineWidth * 2;
-//    drawBox.size.height     += lineWidth * 2;
     
     drawBox.origin.x        = (NSInteger)(drawBox.origin.x - lineWidth * 1) - 1;
     drawBox.origin.y        = (NSInteger)(drawBox.origin.y - lineWidth * 1) - 1;
     drawBox.size.width      = (NSInteger)(drawBox.size.width + lineWidth * 2) + 1;
     drawBox.size.height     = (NSInteger)(drawBox.size.height + lineWidth * 2) + 1;
 
-//    PPDebug(@"rect = %@", NSStringFromCGRect(drawBox));
     
     UIGraphicsBeginImageContext(drawBox.size);
     [self.layer renderInContext:UIGraphicsGetCurrentContext()];

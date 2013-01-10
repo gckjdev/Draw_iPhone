@@ -72,6 +72,7 @@
         self.wordText = pbFeed.opusWord;
         [self initDrawInfo:pbFeed.opusImage drawData:pbFeed.drawData];
         self.deviceType = pbFeed.deviceType;
+        self.opusDesc = pbFeed.opusDesc;
     }
     return self;
 }
@@ -409,6 +410,7 @@
     PPRelease(_timesSet);    
     PPRelease(_largeImage);
     PPRelease(_pbDraw);
+    PPRelease(_opusDesc);
     [super dealloc];
 }
 

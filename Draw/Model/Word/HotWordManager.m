@@ -83,8 +83,16 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(HotWordManager)
 - (void)readData
 {
     PPDebug(@"hot word file path : %@", _smartData.dataFilePath);
-    NSData *data = [NSData dataWithContentsOfFile:_smartData.dataFilePath];
-    self.words = [[PBHotWordList parseFromData:data] wordsList];
+    @try {
+        NSData *data = [NSData dataWithContentsOfFile:_smartData.dataFilePath];
+        self.words = [[PBHotWordList parseFromData:data] wordsList];        
+    }
+    @catch (NSException *exception) {
+        PPDebug(@"<readData>exception: %@",[exception description]);
+    }
+    @finally {
+        
+    }
 }
 
 

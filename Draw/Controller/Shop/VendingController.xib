@@ -976,15 +976,15 @@
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="back@2x.png">{74, 74}</string>
-			<string key="item_out@2x.png">{229, 91}</string>
-			<string key="orange_button@2x.png">{71, 84}</string>
+			<string key="back@2x.png">{16, 16}</string>
+			<string key="item_out@2x.png">{16, 16}</string>
+			<string key="orange_button@2x.png">{16, 16}</string>
 			<string key="reward_coin.png">{16, 16}</string>
-			<string key="shop_icon@2x.png">{317, 66}</string>
-			<string key="shop_shelf@2x.png">{570, 108}</string>
-			<string key="small_coin@2x.png">{27, 27}</string>
-			<string key="tomato@2x.png">{122, 122}</string>
-			<string key="wood_shop_bg@2x.png">{640, 960}</string>
+			<string key="shop_icon@2x.png">{16, 16}</string>
+			<string key="shop_shelf@2x.png">{16, 16}</string>
+			<string key="small_coin@2x.png">{16, 16}</string>
+			<string key="tomato@2x.png">{16, 16}</string>
+			<string key="wood_shop_bg@2x.png">{16, 16}</string>
 		</dictionary>
 		<string key="IBCocoaTouchPluginVersion">1926</string>
 	</data>
