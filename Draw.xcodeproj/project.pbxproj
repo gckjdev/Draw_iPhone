@@ -135,6 +135,10 @@
 		A48B0986169E675500B56975 /* UMUFP.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A48B0979169E664600B56975 /* UMUFP.bundle */; };
 		A48B0987169E675600B56975 /* UMUFP.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A48B0979169E664600B56975 /* UMUFP.bundle */; };
 		A48B0988169E675700B56975 /* UMUFP.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A48B0979169E664600B56975 /* UMUFP.bundle */; };
+		A48B098D169E97DB00B56975 /* FreeCoinsControllerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A48B098B169E97DB00B56975 /* FreeCoinsControllerViewController.m */; };
+		A48B098E169E97DC00B56975 /* FreeCoinsControllerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A48B098C169E97DB00B56975 /* FreeCoinsControllerViewController.xib */; };
+		A48B0991169E9C0A00B56975 /* draw_home_apps@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A48B098F169E9C0A00B56975 /* draw_home_apps@2x.png */; };
+		A48B0992169E9C0A00B56975 /* draw_home_free_coins@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A48B0990169E9C0A00B56975 /* draw_home_free_coins@2x.png */; };
 		A48E827615E8AB1B002DB480 /* ChatView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A48E827515E8AB1A002DB480 /* ChatView.xib */; };
 		A49A083F166DA68D003E0F75 /* ReplacedPoker.m in Sources */ = {isa = PBXBuildFile; fileRef = A49A083E166DA68D003E0F75 /* ReplacedPoker.m */; };
 		A4A132651650E86900665109 /* MessageView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4A132641650E86900665109 /* MessageView.m */; };
@@ -6480,6 +6484,11 @@
 		A48B097E169E664600B56975 /* UMUFPImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMUFPImageView.h; sourceTree = "<group>"; };
 		A48B097F169E664600B56975 /* UMUFPTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMUFPTableView.h; sourceTree = "<group>"; };
 		A48B0980169E664600B56975 /* UMUFPWebView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMUFPWebView.h; sourceTree = "<group>"; };
+		A48B098A169E97DB00B56975 /* FreeCoinsControllerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FreeCoinsControllerViewController.h; sourceTree = "<group>"; };
+		A48B098B169E97DB00B56975 /* FreeCoinsControllerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FreeCoinsControllerViewController.m; sourceTree = "<group>"; };
+		A48B098C169E97DB00B56975 /* FreeCoinsControllerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FreeCoinsControllerViewController.xib; sourceTree = "<group>"; };
+		A48B098F169E9C0A00B56975 /* draw_home_apps@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "draw_home_apps@2x.png"; sourceTree = "<group>"; };
+		A48B0990169E9C0A00B56975 /* draw_home_free_coins@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "draw_home_free_coins@2x.png"; sourceTree = "<group>"; };
 		A48E827515E8AB1A002DB480 /* ChatView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChatView.xib; sourceTree = "<group>"; };
 		A49A083D166DA68D003E0F75 /* ReplacedPoker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReplacedPoker.h; sourceTree = "<group>"; };
 		A49A083E166DA68D003E0F75 /* ReplacedPoker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReplacedPoker.m; sourceTree = "<group>"; };
@@ -9862,6 +9871,16 @@
 			path = UMAppNetwork_SDK_3.5.2;
 			sourceTree = "<group>";
 		};
+		A48B0989169E976600B56975 /* FreeCoins */ = {
+			isa = PBXGroup;
+			children = (
+				A48B098A169E97DB00B56975 /* FreeCoinsControllerViewController.h */,
+				A48B098B169E97DB00B56975 /* FreeCoinsControllerViewController.m */,
+				A48B098C169E97DB00B56975 /* FreeCoinsControllerViewController.xib */,
+			);
+			path = FreeCoins;
+			sourceTree = "<group>";
+		};
 		A48E827115E871BB002DB480 /* CommonHelpManager */ = {
 			isa = PBXGroup;
 			children = (
@@ -12021,6 +12040,8 @@
 		CA12610516785F0D00DD96F4 /* Draw */ = {
 			isa = PBXGroup;
 			children = (
+				A48B098F169E9C0A00B56975 /* draw_home_apps@2x.png */,
+				A48B0990169E9C0A00B56975 /* draw_home_free_coins@2x.png */,
 				C2117BE4168EEEFB000F36EE /* draw_home_bulletin@2x.png */,
 				CA1261421678614200DD96F4 /* draw_home_opus@2x.png */,
 				CA12610616785F0D00DD96F4 /* draw_home_banner@2x.png */,
@@ -14964,6 +14985,7 @@
 		CAECE0271503B25500BC2404 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				A48B0989169E976600B56975 /* FreeCoins */,
 				CA89747F16087BBD003A95F7 /* Contest */,
 				CA8973F51607230E003A95F7 /* Feed */,
 				CA22DCCD157CAFFC009C95CB /* Result */,
@@ -18797,6 +18819,9 @@
 				A4D4ECD1169C154200079C88 /* iOS-shengmeng-releasenote.html in Resources */,
 				A4D4ECD2169C154200079C88 /* iOS-shengmeng-SDK-help.html in Resources */,
 				A48B0982169E664600B56975 /* UMUFP.bundle in Resources */,
+				A48B098E169E97DC00B56975 /* FreeCoinsControllerViewController.xib in Resources */,
+				A48B0991169E9C0A00B56975 /* draw_home_apps@2x.png in Resources */,
+				A48B0992169E9C0A00B56975 /* draw_home_free_coins@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -21576,6 +21601,7 @@
 				A4DE148B169AB1B600841940 /* SelectCustomWordCell.m in Sources */,
 				A4C1E919169BE85E00644682 /* DraftCell.m in Sources */,
 				A4C1E91C169BE85E00644682 /* DraftsView.m in Sources */,
+				A48B098D169E97DB00B56975 /* FreeCoinsControllerViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -133,13 +133,13 @@ static DrawImageManager * _staticDrawImageManager;
 
 - (UIImage *)drawAppsRecommand
 {
-    NSString *imageName = nil;
+    NSString *imageName = [self fixImageName:@"draw_home_apps"];
     return [UIImage imageNamed:imageName];
 }
 
 - (UIImage *)drawFreeCoins
 {
-    NSString *imageName = nil;
+    NSString *imageName = [self fixImageName:@"draw_home_free_coins"];
     return [UIImage imageNamed:imageName];
 }
 
