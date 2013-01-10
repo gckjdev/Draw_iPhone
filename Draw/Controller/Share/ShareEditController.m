@@ -22,6 +22,8 @@
 #import "PPSNSConstants.h"
 #import "PPSNSCommonService.h"
 #import "FeedService.h"
+#import "ShareService.h"
+#import "ConfigManager.h"
 
 #define PATTERN_TAG_OFFSET 20120403
 #define IPAD_INFUSEVIEW_FRAME CGRectMake(31*2.4,130*2.13,259*2.4,259*2.13)
@@ -174,9 +176,13 @@ enum {
     PPSNSCommonService* snsService = [[PPSNSIntegerationService defaultService] snsServiceByType:_snsType];
     
     [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kPublishingWeibo") delayTime:5 isHappy:YES];
-    [snsService publishWeibo:text imageFilePath:imagePath successBlock:^(NSDictionary *userInfo) {
-        
-        
+    UIImage* srcImage = [UIImage imageWithContentsOfFile:imagePath];
+    ShareService* service = [ShareService defaultService];
+    [service shareImage:srcImage
+                   text:text
+              waterMark:[ConfigManager getShareImageWaterMark]
+                 viaSNS:_snsType
+           successBlock:^(NSDictionary *userInfo) {
         PPDebug(@"%@ publish weibo succ", [snsService snsName]);
         int earnCoins = [[AccountService defaultService] rewardForShareWeibo];
         if (earnCoins > 0){
@@ -187,16 +193,15 @@ enum {
             //[self popupMessage:NSLS(@"kPublishWeiboSucc") title:nil];
             [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kPublishWeiboSucc") delayTime:1 isHappy:YES];
         }
-
+        
         // report action, doesn't work here, need to fix later
         /*
-        if (_delegate && [_delegate respondsToSelector:@selector(didPublishSnsMessage:)]) {
-            [_delegate didPublishSnsMessage:_snsType];
-        }
-        */
+         if (_delegate && [_delegate respondsToSelector:@selector(didPublishSnsMessage:)]) {
+         [_delegate didPublishSnsMessage:_snsType];
+         }
+         */
         
         [self.navigationController popViewControllerAnimated:YES];
-
     } failureBlock:^(NSError *error) {
         [self hideActivity];
         PPDebug(@"%@ publish weibo failure", [snsService snsName]);

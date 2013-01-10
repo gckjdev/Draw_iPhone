@@ -16,6 +16,7 @@
 #import "PPSNSConstants.h"
 #import "PPSNSIntegerationService.h"
 #import "GameSNSService.h"
+#import "UIImageExt.h"
 
 @implementation ShareService
 
@@ -139,25 +140,26 @@ static ShareService* _defaultService;
 
 - (void)shareWithImage:(UIImage*)image drawUserId:(NSString*)drawUserId isDrawByMe:(BOOL)isDrawByMe drawWord:(NSString*)drawWord
 {
-    PPDebug(@"<shareWithImage> word=%@", drawWord);
-    
-    UIImage* background = [UIImage imageNamed:@"share_bg.png"];
-    UIImage* title = [UIImage imageNamed:@"name.png"];
-    UILabel* label = [[[UILabel alloc] initWithFrame:CGRectMake(48, 90, 224, 25)] autorelease];
-    if (isDrawByMe) {
-        [label setText:NSLS(@"kGuessWhatIDraw")];
-    } else {
-        [label setText:NSLS(@"kGuessWhatTheyDraw")];
-    }
-    
-    [label setTextAlignment:UITextAlignmentCenter];
-    UIGraphicsBeginImageContext(background.size);  
-    
-    [background drawInRect:CGRectMake(0, 0, background.size.width, background.size.height)];
-    [title drawInRect:CGRectMake(48, 8, 224, 95)];
-    [label drawTextInRect:CGRectMake(48, 90, 224, 25)];
-    [image drawInRect:CGRectMake(32, 136, 256, 245)];        
-    UIImage *resultingImage = UIGraphicsGetImageFromCurrentImageContext(); 
+//    PPDebug(@"<shareWithImage> word=%@", drawWord);
+//    
+//    UIImage* background = [UIImage imageNamed:@"share_bg.png"];
+//    UIImage* title = [UIImage imageNamed:@"name.png"];
+//    UILabel* label = [[[UILabel alloc] initWithFrame:CGRectMake(48, 90, 224, 25)] autorelease];
+//    if (isDrawByMe) {
+//        [label setText:NSLS(@"kGuessWhatIDraw")];
+//    } else {
+//        [label setText:NSLS(@"kGuessWhatTheyDraw")];
+//    }
+//    
+//    [label setTextAlignment:UITextAlignmentCenter];
+//    UIGraphicsBeginImageContext(background.size);  
+//    
+//    [background drawInRect:CGRectMake(0, 0, background.size.width, background.size.height)];
+//    [title drawInRect:CGRectMake(48, 8, 224, 95)];
+//    [label drawTextInRect:CGRectMake(48, 90, 224, 25)];
+//    [image drawInRect:CGRectMake(32, 136, 256, 245)];        
+//    UIImage *resultingImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIImage* resultingImage = [self synthesisWeiboImage:image text:@"@猜猜画画"];
     
     NSData* imageData = UIImagePNGRepresentation(resultingImage);
     NSString* path = [NSString stringWithFormat:@"%@/%@.png", NSTemporaryDirectory(), [NSString GetUUID]];
@@ -168,6 +170,69 @@ static ShareService* _defaultService;
     }
     
     [self shareWeiboWithDrawUserId:drawUserId isDrawByMe:isDrawByMe drawWord:drawWord imagePath:path];    
+}
+
+#define SHADOW_WIDTH 5
+#define SHADOW_BLUR  5
+
+- (UIImage*)synthesisWeiboImage:(UIImage*)srcImage text:(NSString*)text
+{
+    float labelHeight = srcImage.size.height*0.07;
+    int labelFontSize = (int)labelHeight;
+    
+    UILabel* label = [[[UILabel alloc] initWithFrame:CGRectMake(0, 0, srcImage.size.width + shadow*2, labelHeight)] autorelease];
+    [label setText:text];
+    [label setAdjustsFontSizeToFitWidth:YES];
+    [label setMinimumFontSize:3];
+    [label setShadowColor:[UIColor whiteColor]];
+    [label setShadowOffset:CGSizeMake(1, 1)];
+    
+    [label setFont:[UIFont boldSystemFontOfSize:labelFontSize]];
+    [label setTextAlignment:UITextAlignmentCenter];
+    
+    UIGraphicsBeginImageContext(CGSizeMake(srcImage.size.width+SHADOW_WIDTH*2, srcImage.size.height + SHADOW_WIDTH + labelHeight));
+
+    CGContextRef ref = UIGraphicsGetCurrentContext();
+    CGContextSetShadowWithColor(ref, CGSizeMake(0, SHADOW_WIDTH), SHADOW_BLUR, [UIColor blackColor].CGColor);
+    
+    CGRect rect = CGRectMake(SHADOW_WIDTH, 0, srcImage.size.width, srcImage.size.height);
+    [srcImage drawInRect:rect];
+    
+    //line of left
+    CGContextSetShadow(ref, CGSizeMake(-SHADOW_WIDTH, 0), SHADOW_BLUR);
+
+    //right line
+    CGContextSetShadow(ref, CGSizeMake(SHADOW_WIDTH, 0), SHADOW_BLUR);
+
+    CGContextSaveGState(ref);
+    
+    [label drawTextInRect:CGRectMake(0, srcImage.size.height+SHADOW_WIDTH, srcImage.size.width, labelHeight)];
+
+    
+    UIImage *resultingImage = UIGraphicsGetImageFromCurrentImageContext();
+    CGContextRestoreGState(ref);
+    return resultingImage;
+}
+
+- (void)shareImage:(UIImage*)srcImage
+              text:(NSString*)text
+         waterMark:(NSString*)waterMark
+            viaSNS:(int)snsType
+      successBlock:(PPSNSSuccessBlock)successBlock
+      failureBlock:(PPSNSFailureBlock)failureBlock
+{
+    PPSNSCommonService* snsService = [[PPSNSIntegerationService defaultService] snsServiceByType:snsType];
+
+    NSString* path = [NSString stringWithFormat:@"%@/%@.jpg", NSTemporaryDirectory(), [NSString GetUUID]];
+    UIImage* image = [[ShareService defaultService] synthesisWeiboImage:srcImage text:waterMark];
+    BOOL result=[[image data] writeToFile:path atomically:YES];
+    if (result) {
+        [snsService publishWeibo:text imageFilePath:path successBlock:successBlock failureBlock:failureBlock];
+    } else {
+        PPDebug(@"<ShareService> Save image to tempory file failed!");
+    }
+
+    return;
 }
 
 @end

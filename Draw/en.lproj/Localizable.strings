@@ -967,6 +967,8 @@
 "kIWantToDraw..." = "I want to draw...";
 
 "kDonotSave" = "Don't Save";
+
+"kDefaultWaterMark" = "@Draw Lively";
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 
