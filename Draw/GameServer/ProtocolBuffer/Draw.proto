@@ -16,6 +16,8 @@ message PBDraw {
   optional string nickName = 6;
   optional string avatar = 7;
   optional bool   gender = 8;
+  
+  optional int32 version = 9 [default=0];      // draw data version
 
   repeated PBDrawAction drawData = 10;  
   optional string opusId = 11;

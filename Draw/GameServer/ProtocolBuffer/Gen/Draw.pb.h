@@ -59,6 +59,7 @@
   BOOL hasLevel_:1;
   BOOL hasLanguage_:1;
   BOOL hasCreateDate_:1;
+  BOOL hasVersion_:1;
   BOOL hasUserId_:1;
   BOOL hasWord_:1;
   BOOL hasNickName_:1;
@@ -68,6 +69,7 @@
   int32_t level;
   int32_t language;
   int32_t createDate;
+  int32_t version;
   NSString* userId;
   NSString* word;
   NSString* nickName;
@@ -83,6 +85,7 @@
 - (BOOL) hasNickName;
 - (BOOL) hasAvatar;
 - (BOOL) hasGender;
+- (BOOL) hasVersion;
 - (BOOL) hasOpusId;
 @property (readonly, retain) NSString* userId;
 @property (readonly, retain) NSString* word;
@@ -92,6 +95,7 @@
 @property (readonly, retain) NSString* nickName;
 @property (readonly, retain) NSString* avatar;
 - (BOOL) gender;
+@property (readonly) int32_t version;
 @property (readonly, retain) NSString* opusId;
 - (NSArray*) drawDataList;
 - (PBDrawAction*) drawDataAtIndex:(int32_t) index;
@@ -169,6 +173,11 @@
 - (BOOL) gender;
 - (PBDraw_Builder*) setGender:(BOOL) value;
 - (PBDraw_Builder*) clearGender;
+
+- (BOOL) hasVersion;
+- (int32_t) version;
+- (PBDraw_Builder*) setVersion:(int32_t) value;
+- (PBDraw_Builder*) clearVersion;
 
 - (NSArray*) drawDataList;
 - (PBDrawAction*) drawDataAtIndex:(int32_t) index;
