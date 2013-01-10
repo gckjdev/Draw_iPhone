@@ -759,10 +759,16 @@ enum{
 
 #pragma mark - Actions
 
-- (void)saveDraftAndShowResult
+- (void)performSaveDraft
 {
     [self saveDraft:YES];
     [self hideActivity];
+}
+
+- (void)saveDraftAndShowResult
+{
+    [self showActivityWithText:NSLS(@"kSaving")];
+    [self performSelector:@selector(performSaveDraft) withObject:nil afterDelay:0.1f];
 }
 
 - (IBAction)clickDraftButton:(id)sender {
