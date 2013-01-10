@@ -19,7 +19,8 @@
 - (UIImage *)drawHomeShop;
 - (UIImage *)drawHomeTimeline;
 - (UIImage *)drawHomeTop;
-
+- (UIImage *)drawAppsRecommand;
+- (UIImage *)drawFreeCoins;
 
 - (UIImage *)drawHomeHome;
 - (UIImage *)drawHomeMessage;

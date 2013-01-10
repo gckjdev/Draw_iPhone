@@ -98,6 +98,10 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(HotWordManager)
         [words addObject:word];
     }
     
+    [words sortUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+        return (rand() % 2 == 0) ? NSOrderedAscending : NSOrderedDescending;
+    }];
+    
     return words;
 }
 

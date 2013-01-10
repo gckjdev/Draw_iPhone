@@ -127,6 +127,15 @@
 		A461C94115662BC30076FD9C /* ChatController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A461C93F15662BC30076FD9C /* ChatController~ipad.xib */; };
 		A461C94215662BC30076FD9C /* MessageCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A461C94015662BC30076FD9C /* MessageCell~ipad.xib */; };
 		A47FF99E15DB9ADB00EE8125 /* DiceItemService.m in Sources */ = {isa = PBXBuildFile; fileRef = A47FF99D15DB9ADB00EE8125 /* DiceItemService.m */; };
+		A48B093C169D5A7500B56975 /* plus_image@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A48B093B169D5A7500B56975 /* plus_image@2x.png */; };
+		A48B0957169E5C6100B56975 /* libUMAppNetwork.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A48B094E169E5C6100B56975 /* libUMAppNetwork.a */; };
+		A48B0958169E5C6100B56975 /* UMUFP.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A48B094F169E5C6100B56975 /* UMUFP.bundle */; };
+		A48B0959169E5C6F00B56975 /* libUMAppNetwork.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A48B094E169E5C6100B56975 /* libUMAppNetwork.a */; };
+		A48B095D169E5C7800B56975 /* libUMAppNetwork.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A48B094E169E5C6100B56975 /* libUMAppNetwork.a */; };
+		A48B095E169E5C7900B56975 /* libUMAppNetwork.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A48B094E169E5C6100B56975 /* libUMAppNetwork.a */; };
+		A48B095F169E5C7C00B56975 /* UMUFP.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A48B094F169E5C6100B56975 /* UMUFP.bundle */; };
+		A48B0960169E5C7D00B56975 /* UMUFP.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A48B094F169E5C6100B56975 /* UMUFP.bundle */; };
+		A48B0961169E5C7E00B56975 /* UMUFP.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A48B094F169E5C6100B56975 /* UMUFP.bundle */; };
 		A48E827615E8AB1B002DB480 /* ChatView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A48E827515E8AB1A002DB480 /* ChatView.xib */; };
 		A49A083F166DA68D003E0F75 /* ReplacedPoker.m in Sources */ = {isa = PBXBuildFile; fileRef = A49A083E166DA68D003E0F75 /* ReplacedPoker.m */; };
 		A4A132651650E86900665109 /* MessageView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4A132641650E86900665109 /* MessageView.m */; };
@@ -1362,7 +1371,6 @@
 		CA16BC091682FAD900F81B47 /* libGoogleAdMobAds.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CAFEF8DE16606E4800441D77 /* libGoogleAdMobAds.a */; };
 		CA16BC0A1682FAD900F81B47 /* libAdMoGo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CAFEF9F216606E4800441D77 /* libAdMoGo.a */; };
 		CA16BC0B1682FAD900F81B47 /* libMobClickLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CAFEF9F616606E4800441D77 /* libMobClickLibrary.a */; };
-		CA16BC0C1682FAD900F81B47 /* libUMUFP.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CAFEFACC16606E4800441D77 /* libUMUFP.a */; };
 		CA16BC0D1682FAD900F81B47 /* WapsOffer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAFEFAD516606E4800441D77 /* WapsOffer.framework */; };
 		CA16BC0E1682FAD900F81B47 /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CAFEFAD716606E4800441D77 /* libWeChatSDK.a */; };
 		CA16BC101682FAD900F81B47 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CA745D2B1503B1B500600024 /* InfoPlist.strings */; };
@@ -2561,7 +2569,6 @@
 		CA16C18F1682FAE300F81B47 /* libGoogleAdMobAds.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CAFEF8DE16606E4800441D77 /* libGoogleAdMobAds.a */; };
 		CA16C1901682FAE300F81B47 /* libAdMoGo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CAFEF9F216606E4800441D77 /* libAdMoGo.a */; };
 		CA16C1911682FAE300F81B47 /* libMobClickLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CAFEF9F616606E4800441D77 /* libMobClickLibrary.a */; };
-		CA16C1921682FAE300F81B47 /* libUMUFP.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CAFEFACC16606E4800441D77 /* libUMUFP.a */; };
 		CA16C1931682FAE300F81B47 /* WapsOffer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAFEFAD516606E4800441D77 /* WapsOffer.framework */; };
 		CA16C1941682FAE300F81B47 /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CAFEFAD716606E4800441D77 /* libWeChatSDK.a */; };
 		CA16C1961682FAE300F81B47 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CA745D2B1503B1B500600024 /* InfoPlist.strings */; };
@@ -5110,7 +5117,6 @@
 		CAB5C9B416994F0200A4CE3B /* libGoogleAdMobAds.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CAFEF8DE16606E4800441D77 /* libGoogleAdMobAds.a */; };
 		CAB5C9B516994F0200A4CE3B /* libAdMoGo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CAFEF9F216606E4800441D77 /* libAdMoGo.a */; };
 		CAB5C9B616994F0200A4CE3B /* libMobClickLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CAFEF9F616606E4800441D77 /* libMobClickLibrary.a */; };
-		CAB5C9B716994F0200A4CE3B /* libUMUFP.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CAFEFACC16606E4800441D77 /* libUMUFP.a */; };
 		CAB5C9B816994F0200A4CE3B /* WapsOffer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAFEFAD516606E4800441D77 /* WapsOffer.framework */; };
 		CAB5C9B916994F0200A4CE3B /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CAFEFAD716606E4800441D77 /* libWeChatSDK.a */; };
 		CAB5C9BB16994F0200A4CE3B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CA745D2B1503B1B500600024 /* InfoPlist.strings */; };
@@ -6053,7 +6059,6 @@
 		CAFEFBD416606E4900441D77 /* TCWBAuthorizeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFEFAC316606E4800441D77 /* TCWBAuthorizeViewController.m */; };
 		CAFEFBD516606E4900441D77 /* TCWBEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFEFAC516606E4800441D77 /* TCWBEngine.m */; };
 		CAFEFBD616606E4900441D77 /* TCWBRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFEFAC816606E4800441D77 /* TCWBRequest.m */; };
-		CAFEFBD716606E4900441D77 /* libUMUFP.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CAFEFACC16606E4800441D77 /* libUMUFP.a */; };
 		CAFEFBD916606E4900441D77 /* WapsOffer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAFEFAD516606E4800441D77 /* WapsOffer.framework */; };
 		CAFEFBDA16606E4900441D77 /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CAFEFAD716606E4800441D77 /* libWeChatSDK.a */; };
 		CAFEFE2816606FC200441D77 /* ANGifEncoder.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFEFC4B16606FC100441D77 /* ANGifEncoder.m */; };
@@ -6431,6 +6436,16 @@
 		A461C94015662BC30076FD9C /* MessageCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "MessageCell~ipad.xib"; sourceTree = "<group>"; };
 		A47FF99C15DB9ADB00EE8125 /* DiceItemService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiceItemService.h; sourceTree = "<group>"; };
 		A47FF99D15DB9ADB00EE8125 /* DiceItemService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiceItemService.m; sourceTree = "<group>"; };
+		A48B093B169D5A7500B56975 /* plus_image@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "plus_image@2x.png"; sourceTree = "<group>"; };
+		A48B094E169E5C6100B56975 /* libUMAppNetwork.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libUMAppNetwork.a; sourceTree = "<group>"; };
+		A48B094F169E5C6100B56975 /* UMUFP.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = UMUFP.bundle; sourceTree = "<group>"; };
+		A48B0950169E5C6100B56975 /* UMUFPBannerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMUFPBannerView.h; sourceTree = "<group>"; };
+		A48B0951169E5C6100B56975 /* UMUFPGridCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMUFPGridCell.h; sourceTree = "<group>"; };
+		A48B0952169E5C6100B56975 /* UMUFPGridView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMUFPGridView.h; sourceTree = "<group>"; };
+		A48B0953169E5C6100B56975 /* UMUFPHandleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMUFPHandleView.h; sourceTree = "<group>"; };
+		A48B0954169E5C6100B56975 /* UMUFPImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMUFPImageView.h; sourceTree = "<group>"; };
+		A48B0955169E5C6100B56975 /* UMUFPTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMUFPTableView.h; sourceTree = "<group>"; };
+		A48B0956169E5C6100B56975 /* UMUFPWebView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMUFPWebView.h; sourceTree = "<group>"; };
 		A48E827515E8AB1A002DB480 /* ChatView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChatView.xib; sourceTree = "<group>"; };
 		A49A083D166DA68D003E0F75 /* ReplacedPoker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReplacedPoker.h; sourceTree = "<group>"; };
 		A49A083E166DA68D003E0F75 /* ReplacedPoker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReplacedPoker.m; sourceTree = "<group>"; };
@@ -9050,13 +9065,6 @@
 		CAFEFAC816606E4800441D77 /* TCWBRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCWBRequest.m; sourceTree = "<group>"; };
 		CAFEFAC916606E4800441D77 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Language.strings"; sourceTree = "<group>"; };
 		CAFEFACA16606E4800441D77 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Language.strings"; sourceTree = "<group>"; };
-		CAFEFACC16606E4800441D77 /* libUMUFP.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libUMUFP.a; sourceTree = "<group>"; };
-		CAFEFACD16606E4800441D77 /* UMImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMImageView.h; sourceTree = "<group>"; };
-		CAFEFACE16606E4800441D77 /* UMUFPBannerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMUFPBannerView.h; sourceTree = "<group>"; };
-		CAFEFACF16606E4800441D77 /* UMUFPHandleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMUFPHandleView.h; sourceTree = "<group>"; };
-		CAFEFAD016606E4800441D77 /* UMUFPTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMUFPTableView.h; sourceTree = "<group>"; };
-		CAFEFAD116606E4800441D77 /* UMUFPTextLinkView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMUFPTextLinkView.h; sourceTree = "<group>"; };
-		CAFEFAD216606E4800441D77 /* UMUFPWebView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMUFPWebView.h; sourceTree = "<group>"; };
 		CAFEFAD516606E4800441D77 /* WapsOffer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = WapsOffer.framework; sourceTree = "<group>"; };
 		CAFEFAD716606E4800441D77 /* libWeChatSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeChatSDK.a; sourceTree = "<group>"; };
 		CAFEFAD816606E4800441D77 /* WXApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApi.h; sourceTree = "<group>"; };
@@ -9307,9 +9315,9 @@
 				CA16BC091682FAD900F81B47 /* libGoogleAdMobAds.a in Frameworks */,
 				CA16BC0A1682FAD900F81B47 /* libAdMoGo.a in Frameworks */,
 				CA16BC0B1682FAD900F81B47 /* libMobClickLibrary.a in Frameworks */,
-				CA16BC0C1682FAD900F81B47 /* libUMUFP.a in Frameworks */,
 				CA16BC0D1682FAD900F81B47 /* WapsOffer.framework in Frameworks */,
 				CA16BC0E1682FAD900F81B47 /* libWeChatSDK.a in Frameworks */,
+				A48B095E169E5C7900B56975 /* libUMAppNetwork.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -9352,9 +9360,9 @@
 				CA16C18F1682FAE300F81B47 /* libGoogleAdMobAds.a in Frameworks */,
 				CA16C1901682FAE300F81B47 /* libAdMoGo.a in Frameworks */,
 				CA16C1911682FAE300F81B47 /* libMobClickLibrary.a in Frameworks */,
-				CA16C1921682FAE300F81B47 /* libUMUFP.a in Frameworks */,
 				CA16C1931682FAE300F81B47 /* WapsOffer.framework in Frameworks */,
 				CA16C1941682FAE300F81B47 /* libWeChatSDK.a in Frameworks */,
+				A48B095D169E5C7800B56975 /* libUMAppNetwork.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -9397,10 +9405,10 @@
 				CAFEFB1016606E4900441D77 /* libGoogleAdMobAds.a in Frameworks */,
 				CAFEFB7216606E4900441D77 /* libAdMoGo.a in Frameworks */,
 				CAFEFB7516606E4900441D77 /* libMobClickLibrary.a in Frameworks */,
-				CAFEFBD716606E4900441D77 /* libUMUFP.a in Frameworks */,
 				CAFEFBD916606E4900441D77 /* WapsOffer.framework in Frameworks */,
 				CAFEFBDA16606E4900441D77 /* libWeChatSDK.a in Frameworks */,
 				A4D4ECD3169C154200079C88 /* libshengmengsdk_1.1.0.a in Frameworks */,
+				A48B0957169E5C6100B56975 /* libUMAppNetwork.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -9453,9 +9461,9 @@
 				CAB5C9B416994F0200A4CE3B /* libGoogleAdMobAds.a in Frameworks */,
 				CAB5C9B516994F0200A4CE3B /* libAdMoGo.a in Frameworks */,
 				CAB5C9B616994F0200A4CE3B /* libMobClickLibrary.a in Frameworks */,
-				CAB5C9B716994F0200A4CE3B /* libUMUFP.a in Frameworks */,
 				CAB5C9B816994F0200A4CE3B /* WapsOffer.framework in Frameworks */,
 				CAB5C9B916994F0200A4CE3B /* libWeChatSDK.a in Frameworks */,
+				A48B0959169E5C6F00B56975 /* libUMAppNetwork.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -9801,6 +9809,22 @@
 			path = ChatMessageView;
 			sourceTree = "<group>";
 		};
+		A48B094D169E5C6100B56975 /* UMAppNetwork_SDK_3.5.2 */ = {
+			isa = PBXGroup;
+			children = (
+				A48B094E169E5C6100B56975 /* libUMAppNetwork.a */,
+				A48B094F169E5C6100B56975 /* UMUFP.bundle */,
+				A48B0950169E5C6100B56975 /* UMUFPBannerView.h */,
+				A48B0951169E5C6100B56975 /* UMUFPGridCell.h */,
+				A48B0952169E5C6100B56975 /* UMUFPGridView.h */,
+				A48B0953169E5C6100B56975 /* UMUFPHandleView.h */,
+				A48B0954169E5C6100B56975 /* UMUFPImageView.h */,
+				A48B0955169E5C6100B56975 /* UMUFPTableView.h */,
+				A48B0956169E5C6100B56975 /* UMUFPWebView.h */,
+			);
+			path = UMAppNetwork_SDK_3.5.2;
+			sourceTree = "<group>";
+		};
 		A48E827115E871BB002DB480 /* CommonHelpManager */ = {
 			isa = PBXGroup;
 			children = (
@@ -10019,6 +10043,7 @@
 		A4DE14101697DBA900841940 /* wordSelected */ = {
 			isa = PBXGroup;
 			children = (
+				A48B093B169D5A7500B56975 /* plus_image@2x.png */,
 				A4DE147E169A776700841940 /* add_new_word_btn_bg@2x.png */,
 				A4DE147F169A776700841940 /* all_my_words_bg@2x.png */,
 				A4DE1480169A776700841940 /* all_my_words_seprator@2x.png */,
@@ -15121,6 +15146,7 @@
 		CAFEF86B16606E4700441D77 /* 3PP-SDK */ = {
 			isa = PBXGroup;
 			children = (
+				A48B094D169E5C6100B56975 /* UMAppNetwork_SDK_3.5.2 */,
 				A4D4ECCC169C154200079C88 /* shengmeng_iOS_SDK_1.1.0 */,
 				CAFEF87316606E4700441D77 /* FacebookSDK */,
 				CAFEF89D16606E4800441D77 /* LmmobSDK */,
@@ -15128,7 +15154,6 @@
 				CAFEF9F416606E4800441D77 /* MobClick */,
 				CAFEFA9416606E4800441D77 /* SinaWeiBoSDK_SSO */,
 				CAFEFAA016606E4800441D77 /* TCWeiBoSDK_20 */,
-				CAFEFACB16606E4800441D77 /* UMUFP_iPhone_SDK */,
 				CAFEFAD316606E4800441D77 /* WAPS_IOS_1.0.2 */,
 				CAFEFAD616606E4800441D77 /* WeixinSDK */,
 			);
@@ -15395,20 +15420,6 @@
 				CAFEFAC816606E4800441D77 /* TCWBRequest.m */,
 			);
 			path = TCWBEngine;
-			sourceTree = "<group>";
-		};
-		CAFEFACB16606E4800441D77 /* UMUFP_iPhone_SDK */ = {
-			isa = PBXGroup;
-			children = (
-				CAFEFACC16606E4800441D77 /* libUMUFP.a */,
-				CAFEFACD16606E4800441D77 /* UMImageView.h */,
-				CAFEFACE16606E4800441D77 /* UMUFPBannerView.h */,
-				CAFEFACF16606E4800441D77 /* UMUFPHandleView.h */,
-				CAFEFAD016606E4800441D77 /* UMUFPTableView.h */,
-				CAFEFAD116606E4800441D77 /* UMUFPTextLinkView.h */,
-				CAFEFAD216606E4800441D77 /* UMUFPWebView.h */,
-			);
-			path = UMUFP_iPhone_SDK;
 			sourceTree = "<group>";
 		};
 		CAFEFAD316606E4800441D77 /* WAPS_IOS_1.0.2 */ = {
@@ -17204,6 +17215,7 @@
 				CA22B78F169AD58D00DAB1C3 /* draw_slider_disable@2x.png in Resources */,
 				CA22B794169AD65300DAB1C3 /* draw_palette@2x.png in Resources */,
 				CA22B7AE169BCB3700DAB1C3 /* DrawPro-Info.plist in Resources */,
+				A48B0960169E5C7D00B56975 /* UMUFP.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -17976,6 +17988,7 @@
 				CA22B790169AD58D00DAB1C3 /* draw_slider_disable@2x.png in Resources */,
 				CA22B795169AD65300DAB1C3 /* draw_palette@2x.png in Resources */,
 				CA22B7AF169BCB3700DAB1C3 /* DrawPro-Info.plist in Resources */,
+				A48B0961169E5C7E00B56975 /* UMUFP.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -18729,6 +18742,8 @@
 				A4C1E91E169BE85E00644682 /* DraftsView~ipad.xib in Resources */,
 				A4D4ECD1169C154200079C88 /* iOS-shengmeng-releasenote.html in Resources */,
 				A4D4ECD2169C154200079C88 /* iOS-shengmeng-SDK-help.html in Resources */,
+				A48B093C169D5A7500B56975 /* plus_image@2x.png in Resources */,
+				A48B0958169E5C6100B56975 /* UMUFP.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -19479,6 +19494,7 @@
 				CA22B791169AD58D00DAB1C3 /* draw_slider_disable@2x.png in Resources */,
 				CA22B796169AD65300DAB1C3 /* draw_palette@2x.png in Resources */,
 				CA22B7B0169BCB3700DAB1C3 /* DrawPro-Info.plist in Resources */,
+				A48B095F169E5C7C00B56975 /* UMUFP.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -22457,6 +22473,7 @@
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/MangoAd/AdsMOGO_iOS_SDK_1.1.9/AdsMoGoLib/AdsMoGoSDK\"",
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/DomobAdSDK\"",
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/GoogleAdMobAdsSDK\"",
+					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/UMAppNetwork_SDK_3.5.2\"",
 				);
 				OTHER_LDFLAGS = (
 					"-all_load",
@@ -22520,6 +22537,7 @@
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/MangoAd/AdsMOGO_iOS_SDK_1.1.9/AdsMoGoLib/AdsMoGoSDK\"",
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/DomobAdSDK\"",
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/GoogleAdMobAdsSDK\"",
+					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/UMAppNetwork_SDK_3.5.2\"",
 				);
 				OTHER_LDFLAGS = (
 					"-all_load",
@@ -22585,6 +22603,7 @@
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/MangoAd/AdsMOGO_iOS_SDK_1.1.9/AdsMoGoLib/AdsMoGoSDK\"",
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/DomobAdSDK\"",
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/GoogleAdMobAdsSDK\"",
+					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/UMAppNetwork_SDK_3.5.2\"",
 				);
 				OTHER_LDFLAGS = (
 					"-all_load",
@@ -22648,6 +22667,7 @@
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/MangoAd/AdsMOGO_iOS_SDK_1.1.9/AdsMoGoLib/AdsMoGoSDK\"",
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/DomobAdSDK\"",
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/GoogleAdMobAdsSDK\"",
+					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/UMAppNetwork_SDK_3.5.2\"",
 				);
 				OTHER_LDFLAGS = (
 					"-all_load",
@@ -22770,6 +22790,7 @@
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/DomobAdSDK\"",
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/GoogleAdMobAdsSDK\"",
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/shengmeng_iOS_SDK_1.1.0\"",
+					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/UMAppNetwork_SDK_3.5.2\"",
 				);
 				OTHER_LDFLAGS = (
 					"-all_load",
@@ -22834,6 +22855,7 @@
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/DomobAdSDK\"",
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/GoogleAdMobAdsSDK\"",
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/shengmeng_iOS_SDK_1.1.0\"",
+					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/UMAppNetwork_SDK_3.5.2\"",
 				);
 				OTHER_LDFLAGS = (
 					"-all_load",
@@ -22951,6 +22973,7 @@
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/MangoAd/AdsMOGO_iOS_SDK_1.1.9/AdsMoGoLib/AdsMoGoSDK\"",
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/DomobAdSDK\"",
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/GoogleAdMobAdsSDK\"",
+					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/UMAppNetwork_SDK_3.5.2\"",
 				);
 				OTHER_LDFLAGS = (
 					"-all_load",
@@ -23014,6 +23037,7 @@
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/MangoAd/AdsMOGO_iOS_SDK_1.1.9/AdsMoGoLib/AdsMoGoSDK\"",
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/DomobAdSDK\"",
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/GoogleAdMobAdsSDK\"",
+					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/UMAppNetwork_SDK_3.5.2\"",
 				);
 				OTHER_LDFLAGS = (
 					"-all_load",

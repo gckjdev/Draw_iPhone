@@ -8,14 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
-@class UMImageView;
+@class UMUFPImageView;
 
 @interface UMTableViewCell : UITableViewCell {
 @private
-	UMImageView* _mImageView;
+	UMUFPImageView* _mImageView;
 }
 
-@property (nonatomic, retain) UMImageView* mImageView;
+@property (nonatomic, retain) UMUFPImageView* mImageView;
 
 - (void)setImageURL:(NSString*)urlStr;
 

@@ -917,6 +917,8 @@
 "kHomeMenuTypeDrawGame" = "Game";
 "kHomeMenuTypeDrawTimeline" = "Timeline";
 "kHomeMenuTypeDrawRank" = "Top";
+"HomeMenuTypeDrawApps" = "Apps";
+"HomeMenuTypeDrawFreeCoins" = "Free Coins";
 "kHomeMenuTypeDrawContest" = "Contest";
 "kHomeMenuTypeDrawBBS" = "Forum";
 "kHomeMenuTypeDrawHome" = "Home";

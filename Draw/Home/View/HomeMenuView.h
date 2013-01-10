@@ -23,6 +23,8 @@ typedef enum{
     HomeMenuTypeDrawContest,
     HomeMenuTypeDrawBBS,
     HomeMenuTypeDrawShop,
+    HomeMenuTypeDrawFreeCoins,
+    HomeMenuTypeDrawApps,
     
     //draw bottom menu
     HomeMenuTypeDrawBottomBegin = 1500,
