@@ -937,6 +937,8 @@
 "kHomeMenuTypeDrawRank" = "畫榜";
 "kHomeMenuTypeDrawContest" = "比賽";
 "kHomeMenuTypeDrawBBS" = "論壇";
+"HomeMenuTypeDrawApps" = "應用推薦";
+"HomeMenuTypeDrawFreeCoins" = "免費金幣";
 "kHomeMenuTypeDrawHome" = "主頁";
 "kHomeMenuTypeDrawOpus" = "作品";
 "kHomeMenuTypeDrawMessage" = "消息";

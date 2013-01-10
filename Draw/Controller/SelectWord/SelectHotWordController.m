@@ -133,7 +133,6 @@
     }else{
         [OfflineDrawViewController startDraw:word fromController:self];
     }
-
 }
 
 - (void)didSelectDraft:(MyPaint *)draft

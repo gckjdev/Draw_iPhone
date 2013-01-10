@@ -287,7 +287,8 @@
 
 + (double)calculateSpeed:(NSArray *)actionList
 {
-    return [DrawAction calculateSpeed:actionList defaultSpeed:1.0/80.0 maxSecond:32];
+//    return [DrawAction calculateSpeed:actionList defaultSpeed:1.0/40.0 maxSecond:32];
+    return 0.015;
 }
 
 + (double)calculateSpeed:(NSArray *)actionList defaultSpeed:(double)defaultSpeed maxSecond:(NSInteger)second
