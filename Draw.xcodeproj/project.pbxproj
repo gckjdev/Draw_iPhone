@@ -139,6 +139,8 @@
 		A48B098E169E97DC00B56975 /* FreeCoinsControllerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A48B098C169E97DB00B56975 /* FreeCoinsControllerViewController.xib */; };
 		A48B0991169E9C0A00B56975 /* draw_home_apps@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A48B098F169E9C0A00B56975 /* draw_home_apps@2x.png */; };
 		A48B0992169E9C0A00B56975 /* draw_home_free_coins@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A48B0990169E9C0A00B56975 /* draw_home_free_coins@2x.png */; };
+		A48B099E169EA35C00B56975 /* TapjoyPublisherLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A48B099A169EA35C00B56975 /* TapjoyPublisherLibrary.a */; };
+		A48B099F169EA35C00B56975 /* TapjoyResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A48B099B169EA35C00B56975 /* TapjoyResources.bundle */; };
 		A48E827615E8AB1B002DB480 /* ChatView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A48E827515E8AB1A002DB480 /* ChatView.xib */; };
 		A49A083F166DA68D003E0F75 /* ReplacedPoker.m in Sources */ = {isa = PBXBuildFile; fileRef = A49A083E166DA68D003E0F75 /* ReplacedPoker.m */; };
 		A4A132651650E86900665109 /* MessageView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4A132641650E86900665109 /* MessageView.m */; };
@@ -6489,6 +6491,12 @@
 		A48B098C169E97DB00B56975 /* FreeCoinsControllerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FreeCoinsControllerViewController.xib; sourceTree = "<group>"; };
 		A48B098F169E9C0A00B56975 /* draw_home_apps@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "draw_home_apps@2x.png"; sourceTree = "<group>"; };
 		A48B0990169E9C0A00B56975 /* draw_home_free_coins@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "draw_home_free_coins@2x.png"; sourceTree = "<group>"; };
+		A48B0998169EA35C00B56975 /* TapjoyConnect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TapjoyConnect.h; sourceTree = "<group>"; };
+		A48B0999169EA35C00B56975 /* TapjoyConnectConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TapjoyConnectConstants.h; sourceTree = "<group>"; };
+		A48B099A169EA35C00B56975 /* TapjoyPublisherLibrary.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = TapjoyPublisherLibrary.a; sourceTree = "<group>"; };
+		A48B099B169EA35C00B56975 /* TapjoyResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = TapjoyResources.bundle; sourceTree = "<group>"; };
+		A48B099C169EA35C00B56975 /* TJCAdDelegateProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJCAdDelegateProtocol.h; sourceTree = "<group>"; };
+		A48B099D169EA35C00B56975 /* TJCVideoAdProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJCVideoAdProtocol.h; sourceTree = "<group>"; };
 		A48E827515E8AB1A002DB480 /* ChatView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChatView.xib; sourceTree = "<group>"; };
 		A49A083D166DA68D003E0F75 /* ReplacedPoker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReplacedPoker.h; sourceTree = "<group>"; };
 		A49A083E166DA68D003E0F75 /* ReplacedPoker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReplacedPoker.m; sourceTree = "<group>"; };
@@ -9454,6 +9462,7 @@
 				CAFEFBDA16606E4900441D77 /* libWeChatSDK.a in Frameworks */,
 				A4D4ECD3169C154200079C88 /* libshengmengsdk_1.1.0.a in Frameworks */,
 				A48B0981169E664600B56975 /* libUMAppNetwork.a in Frameworks */,
+				A48B099E169EA35C00B56975 /* TapjoyPublisherLibrary.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -9879,6 +9888,19 @@
 				A48B098C169E97DB00B56975 /* FreeCoinsControllerViewController.xib */,
 			);
 			path = FreeCoins;
+			sourceTree = "<group>";
+		};
+		A48B0997169EA35C00B56975 /* TapjoyPublisherLibrary */ = {
+			isa = PBXGroup;
+			children = (
+				A48B0998169EA35C00B56975 /* TapjoyConnect.h */,
+				A48B0999169EA35C00B56975 /* TapjoyConnectConstants.h */,
+				A48B099A169EA35C00B56975 /* TapjoyPublisherLibrary.a */,
+				A48B099B169EA35C00B56975 /* TapjoyResources.bundle */,
+				A48B099C169EA35C00B56975 /* TJCAdDelegateProtocol.h */,
+				A48B099D169EA35C00B56975 /* TJCVideoAdProtocol.h */,
+			);
+			path = TapjoyPublisherLibrary;
 			sourceTree = "<group>";
 		};
 		A48E827115E871BB002DB480 /* CommonHelpManager */ = {
@@ -15204,6 +15226,7 @@
 		CAFEF86B16606E4700441D77 /* 3PP-SDK */ = {
 			isa = PBXGroup;
 			children = (
+				A48B0997169EA35C00B56975 /* TapjoyPublisherLibrary */,
 				A48B0977169E664600B56975 /* UMAppNetwork_SDK_3.5.2 */,
 				A4D4ECCC169C154200079C88 /* shengmeng_iOS_SDK_1.1.0 */,
 				CAFEF87316606E4700441D77 /* FacebookSDK */,
@@ -18822,6 +18845,7 @@
 				A48B098E169E97DC00B56975 /* FreeCoinsControllerViewController.xib in Resources */,
 				A48B0991169E9C0A00B56975 /* draw_home_apps@2x.png in Resources */,
 				A48B0992169E9C0A00B56975 /* draw_home_free_coins@2x.png in Resources */,
+				A48B099F169EA35C00B56975 /* TapjoyResources.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -22889,6 +22913,7 @@
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/GoogleAdMobAdsSDK\"",
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/shengmeng_iOS_SDK_1.1.0\"",
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/UMAppNetwork_SDK_3.5.2\"",
+					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/TapjoyPublisherLibrary\"",
 				);
 				OTHER_LDFLAGS = (
 					"-all_load",
@@ -22954,6 +22979,7 @@
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/GoogleAdMobAdsSDK\"",
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/shengmeng_iOS_SDK_1.1.0\"",
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/UMAppNetwork_SDK_3.5.2\"",
+					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/TapjoyPublisherLibrary\"",
 				);
 				OTHER_LDFLAGS = (
 					"-all_load",

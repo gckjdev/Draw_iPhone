@@ -78,7 +78,7 @@
 #import "NotificationName.h"
 #import "CommonGameNetworkService.h"
 #import "UFPController.h"
-
+#import "FreeCoinsControllerViewController.h"
 
 @interface HomeController()
 {
@@ -687,6 +687,8 @@
             
         case HomeMenuTypeDrawApps:
         {
+            [[AnalyticsManager sharedAnalyticsManager] reportClickHomeMenu:HOME_ACTION_APPS];
+            
             UFPController *vc = [[[UFPController alloc] init] autorelease];
             [self.navigationController pushViewController:vc animated:YES];
         }
@@ -694,8 +696,10 @@
             
         case HomeMenuTypeDrawFreeCoins:
         {
-            [UIUtils alertWithTitle:@"免费金币获取提示" msg:@"下载免费应用即可获取金币！下载完应用一定要打开才可以获得奖励哦！"];
-            [[LmWallService defaultService] show:self];
+            [[AnalyticsManager sharedAnalyticsManager] reportClickHomeMenu:HOME_ACTION_FREE_COINS];
+
+            FreeCoinsControllerViewController *vc = [[[FreeCoinsControllerViewController alloc] init] autorelease];
+            [self.navigationController pushViewController:vc animated:YES];
         }
             break;
             
