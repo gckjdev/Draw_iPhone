@@ -229,8 +229,8 @@
     
     _drawRectType = DrawRectTypeLine;
     
-//    [self setNeedsDisplayInRect:drawBox];
-    [self setNeedsDisplay];
+    [self setNeedsDisplayInRect:drawBox];
+//    [self setNeedsDisplay];
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {

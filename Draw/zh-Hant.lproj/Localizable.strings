@@ -281,7 +281,7 @@
 "kSay something..." = "";
 "kShare_via_SMS" = "短信分享給朋友";
 
-"kShare_message_body" = "推荐一款好玩的iPhone/iPad畫畫娛樂應用［%@］AppStore Link: %@";
+"kShare_message_body" = "推荐一款好玩的iPhone/iPad畫畫娛樂應用［%@］AppStore Link: %@ %@";
 
 "kEmail_subject" = "分享［猜猜畫畫］iPhone/iPad版遊戲";
 
@@ -937,6 +937,8 @@
 "kHomeMenuTypeDrawRank" = "畫榜";
 "kHomeMenuTypeDrawContest" = "比賽";
 "kHomeMenuTypeDrawBBS" = "論壇";
+"HomeMenuTypeDrawApps" = "應用推薦";
+"HomeMenuTypeDrawFreeCoins" = "免費金幣";
 "kHomeMenuTypeDrawHome" = "主頁";
 "kHomeMenuTypeDrawOpus" = "作品";
 "kHomeMenuTypeDrawMessage" = "消息";

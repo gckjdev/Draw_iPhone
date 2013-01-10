@@ -379,6 +379,7 @@ pbNoCompressDrawData:(PBNoCompressDrawData*)pbNoCompressDrawData
     return newMyPaint;
 }
 
+
 - (BOOL)updateDraft:(MyPaint *)draft
               image:(UIImage *)image
     pbNoCompressDrawData:(PBNoCompressDrawData *)pbNoCompressDrawData

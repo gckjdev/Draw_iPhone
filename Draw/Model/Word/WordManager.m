@@ -479,4 +479,6 @@ WordManager *GlobalGetWordManager()
     return ret;
 }
 
+
+
 @end

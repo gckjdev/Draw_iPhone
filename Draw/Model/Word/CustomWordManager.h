@@ -38,4 +38,6 @@ typedef enum
 
 - (BOOL)isExist:(NSString *)word;
 
++ (BOOL)isValidWord:(NSString *)word;
+
 @end

@@ -122,8 +122,8 @@
 
 //    NSArray* drawActionList = (NSArray*)currentData;
     
-    CGFloat xScale = self.showHolderView.frame.size.width/DRAW_VIEW_FRAME.size.width;
-    CGFloat yScale = self.showHolderView.frame.size.height/DRAW_VIEW_FRAME.size.height;
+//    CGFloat xScale = self.showHolderView.frame.size.width/DRAW_VIEW_FRAME.size.width;
+//    CGFloat yScale = self.showHolderView.frame.size.height/DRAW_VIEW_FRAME.size.height;
     
     self.replayView = [[[ShowDrawView alloc]initWithFrame:
                                 self.showHolderView.frame] autorelease];
@@ -131,10 +131,10 @@
         [_replayView setShowPenHidden:YES];
     }
     
-    NSMutableArray *actionList = [DrawAction scaleActionList:self.paint.drawActionList
-                                                      xScale:xScale 
-                                                      yScale:yScale];
-    [_replayView setDrawActionList:actionList];
+//    NSMutableArray *actionList = [DrawAction scaleActionList:self.paint.drawActionList
+//                                                      xScale:xScale 
+//                                                      yScale:yScale];
+    [_replayView setDrawActionList:self.paint.drawActionList];
     _replayView.backgroundColor = [UIColor whiteColor];
     _replayView.tag = REPLAY_TAG;
     

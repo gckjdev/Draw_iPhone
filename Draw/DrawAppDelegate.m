@@ -359,9 +359,9 @@ NSString* GlobalGetBoardServerURL()
 //    [GameConfigDataManager createTestConfigData];  
 //    [GameConfigDataManager defaultInstance];
 
-    self.timer = [NSTimer scheduledTimerWithTimeInterval:80 target:self selector:@selector(timeout:) userInfo:nil repeats:YES];
-    
-    [shengmengsdk playad:SHENGMENG_APP_ID];
+//    self.timer = [NSTimer scheduledTimerWithTimeInterval:80 target:self selector:@selector(timeout:) userInfo:nil repeats:YES];
+//    
+//    [shengmengsdk playad:SHENGMENG_APP_ID];
 
     return YES;
 }
@@ -592,7 +592,7 @@ NSString* GlobalGetBoardServerURL()
 
 - (void)timeout:(id)sender
 {
-//    [shengmengsdk playad:SHENGMENG_APP_ID];
+    [shengmengsdk playad:SHENGMENG_APP_ID];
 }
 
 @end

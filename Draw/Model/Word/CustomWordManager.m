@@ -10,6 +10,8 @@
 #import "CoreDataUtil.h"
 #import "CustomWord.h"
 #import "UserManager.h"
+#import "CommonMessageCenter.h"
+#import "StringUtil.h"
 
 @interface CustomWordManager()
 
@@ -116,6 +118,32 @@ static CustomWordManager *_customWordManager = nil;
         }
     }
     return [dataManager save];
+}
+
+
++ (BOOL)isValidWord:(NSString *)word
+{
+    if ([word length] == 0) {
+        [[CommonMessageCenter defaultCenter] postMessageWithText:[NSString stringWithFormat:NSLS(@"kInputWordEmpty"),word] delayTime:2 isHappy:NO];
+        return NO;
+    }
+    
+    if ([word length] > 7) {
+        [[CommonMessageCenter defaultCenter] postMessageWithText:[NSString stringWithFormat:NSLS(@"kWordTooLong"),word] delayTime:2 isHappy:NO];
+        return NO;
+    }
+    
+    if (!NSStringIsValidChinese(word)){
+        [[CommonMessageCenter defaultCenter] postMessageWithText:[NSString stringWithFormat:NSLS(@"kIllegalCharacter"),word] delayTime:2 isHappy:NO];
+        return NO;
+    }
+    
+    if ([[self defaultManager] isExist:word]) {
+        [[CommonMessageCenter defaultCenter] postMessageWithText:[NSString stringWithFormat:NSLS(@"kExistWord"),word] delayTime:2 isHappy:NO];
+        return NO;
+    }
+    
+    return YES;
 }
 
 @end

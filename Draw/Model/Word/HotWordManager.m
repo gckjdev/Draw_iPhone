@@ -83,8 +83,16 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(HotWordManager)
 - (void)readData
 {
     PPDebug(@"hot word file path : %@", _smartData.dataFilePath);
-    NSData *data = [NSData dataWithContentsOfFile:_smartData.dataFilePath];
-    self.words = [[PBHotWordList parseFromData:data] wordsList];
+    @try {
+        NSData *data = [NSData dataWithContentsOfFile:_smartData.dataFilePath];
+        self.words = [[PBHotWordList parseFromData:data] wordsList];        
+    }
+    @catch (NSException *exception) {
+        PPDebug(@"<readData>exception: %@",[exception description]);
+    }
+    @finally {
+        
+    }
 }
 
 
@@ -97,6 +105,10 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(HotWordManager)
         Word *word = [Word wordWithText:hotWord.word level:WordLeveLMedium score:hotWord.coins];
         [words addObject:word];
     }
+    
+    [words sortUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+        return (rand() % 2 == 0) ? NSOrderedAscending : NSOrderedDescending;
+    }];
     
     return words;
 }

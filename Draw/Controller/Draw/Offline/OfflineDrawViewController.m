@@ -77,6 +77,7 @@
     
     BOOL _userSaved;
     BOOL _isNewDraft;
+
 }
 
 @property(nonatomic, retain)MyPaint *draft;
@@ -88,6 +89,8 @@
 @property (retain, nonatomic) DrawColor* penColor;
 @property (retain, nonatomic) DrawToolPanel *drawToolPanel;
 @property (retain, nonatomic) DrawColor *tempColor;
+@property (retain, nonatomic) NSString *desc;
+
 
 - (void)initDrawView;
 
@@ -168,6 +171,7 @@
     PPRelease(draftButton);
     PPRelease(_submitButton);
     PPRelease(_tempColor);
+    PPRelease(_desc);
     [super dealloc];
 }
 
@@ -369,7 +373,7 @@ enum{
     [self initWordLabel];
     [self initSubmitButton];
     _unDraftPaintCount = 0;
-    _isAutoSave = YES;
+    _isAutoSave = NO;               // set by Benson, disable this due to complicate multi-thread issue
     [self initDrawToolPanel];
 
 }
@@ -503,6 +507,7 @@ enum{
                                                    language:languageType 
                                                   targetUid:self.targetUid 
                                                   contestId:_contest.contestId
+                                                       desc:_desc//@"元芳，你怎么看？"
                                                    delegate:self];
 
     }
@@ -689,11 +694,13 @@ enum{
                       language:languageType];
     return pbDraw;
 }
-- (PBNoCompressDrawData *)noCompressDrawData
+
+- (PBNoCompressDrawData *)drawDataSnapshot
 {
     NSMutableArray *temp = [[NSMutableArray alloc] initWithArray:drawView.drawActionList];
-    return [DrawAction drawActionListToPBNoCompressDrawData:temp];
+    PBNoCompressDrawData* data = [DrawAction drawActionListToPBNoCompressDrawData:temp];
     PPRelease(temp);
+    return data;
 }
 
 - (void)saveDraft:(BOOL)showResult
@@ -712,17 +719,17 @@ enum{
         MyPaintManager *pManager = [MyPaintManager defaultManager];
         if (self.draft) {
             result = YES;
-            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                PPDebug(@"<saveDraft> bg update draft");
-                result = [pManager updateDraft:self.draft
-                                         image:image
-                          pbNoCompressDrawData:self.noCompressDrawData];
-            });
+//            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            PPDebug(@"<saveDraft> save draft");
+            result = [pManager updateDraft:self.draft
+                                     image:image
+                      pbNoCompressDrawData:[self drawDataSnapshot]];
+//            });
         }else{
             PPDebug(@"<saveDraft> create core data draft");
             UserManager *userManager = [UserManager defaultManager];
             self.draft = [pManager createDraft:image
-                          pbNoCompressDrawData:self.noCompressDrawData
+                          pbNoCompressDrawData:[self drawDataSnapshot]
                                      targetUid:_targetUid
                                      contestId:self.contest.contestId
                                         userId:[userManager userId]
@@ -755,10 +762,16 @@ enum{
 
 #pragma mark - Actions
 
-- (void)saveDraftAndShowResult
+- (void)performSaveDraft
 {
     [self saveDraft:YES];
     [self hideActivity];
+}
+
+- (void)saveDraftAndShowResult
+{
+    [self showActivityWithText:NSLS(@"kSaving")];
+    [self performSelector:@selector(performSaveDraft) withObject:nil afterDelay:0.1f];
 }
 
 - (IBAction)clickDraftButton:(id)sender {
@@ -927,6 +940,7 @@ enum{
 - (void)drawToolPanel:(DrawToolPanel *)toolPanel didSelectWidth:(CGFloat)width
 {
     drawView.lineWidth = width;
+    PPDebug(@"<didSelectWidth> width = %f",width);
 }
 - (void)drawToolPanel:(DrawToolPanel *)toolPanel didSelectColor:(DrawColor *)color
 {

@@ -30,6 +30,7 @@ typedef void (^DialogSelectionBlock)(void);
  @optional
 - (void)clickOk:(CommonDialog *)dialog;
 - (void)clickBack:(CommonDialog *)dialog;
+- (void)clickMask:(CommonDialog *)dialog;
 @end
 
 @interface CommonDialog : CommonInfoView {
@@ -46,6 +47,7 @@ typedef void (^DialogSelectionBlock)(void);
 @property (retain, nonatomic) IBOutlet UIImageView *frontBackgroundImageView;
 @property (assign, nonatomic) id<CommonDialogDelegate> delegate;
 @property (retain, nonatomic) IBOutlet UIImageView *contentBackground;
+- (IBAction)clickMask:(id)sender;
 + (CommonDialog *)createDialogWithTitle:(NSString *)title 
                                 message:(NSString *)message 
                                   style:(CommonDialogStyle)aStyle 

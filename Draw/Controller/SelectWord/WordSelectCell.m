@@ -17,6 +17,7 @@
 #define COIN_IMAGE_VIEW_TAG_OFFSET 210
 #define WORD_LABEL_TAG_OFFSET 220
 #define WORD_SCORE_LABEL_TAG_OFFSET 230
+#define PLUS_IMAGE_VIEW_TAG_OFFSET 400
 
 #define WORD_MAX_COUNT 3
 
@@ -45,10 +46,13 @@ AUTO_CREATE_VIEW_BY_XIB(WordSelectCell)
 
 - (void)setWord:(Word *)word index:(int)index
 {
+    [[self wordButton:index] addTarget:self action:@selector(clickWordBtn:) forControlEvents:UIControlEventTouchUpInside];
+
     if (word == nil) {
         [self wordLabel:index].text = @"";
         [self coinImageView:index].hidden = YES;
         [self wordScoreLabel:index].text = @"";
+        [self plusImageView:index].hidden = NO;
         return;
     }
 
@@ -58,7 +62,7 @@ AUTO_CREATE_VIEW_BY_XIB(WordSelectCell)
     [self wordLabel:index].text = word.text;
     [self coinImageView:index].hidden = NO;
     [self wordScoreLabel:index].text = [NSString stringWithFormat:@"x %d", word.score];
-    [[self wordButton:index] addTarget:self action:@selector(clickWordBtn:) forControlEvents:UIControlEventTouchUpInside];
+    [self plusImageView:index].hidden = YES;
 }
 
 - (void)setWords:(NSArray *)words
@@ -85,11 +89,11 @@ AUTO_CREATE_VIEW_BY_XIB(WordSelectCell)
     
     int index = ((UIButton *)sender).tag - WORD_BUTTON_TAG_OFFSET;
     
-    if (index < 0 || index >= [_words count]) {
-        return;
-    }
+    Word *word = nil;
     
-    Word *word = [_words objectAtIndex:index];
+    if (index >=0 && index < [_words count]) {
+        word = [_words objectAtIndex:index];
+    }
 
     if([_delegate respondsToSelector:@selector(didSelectWord:)]){
         [_delegate didSelectWord:word];
@@ -134,6 +138,17 @@ AUTO_CREATE_VIEW_BY_XIB(WordSelectCell)
     if (index >= 0 && index <=2) {
         UIView *view  = [self viewWithTag:(WORD_SCORE_LABEL_TAG_OFFSET + index)];
         return [view isKindOfClass:[UILabel class]] ? (UILabel *)view : nil;
+    }else{
+        PPDebug(@"assert( index >= 0 && index <= 2);");
+        return nil;
+    }
+}
+
+- (UIImageView *)plusImageView:(int)index
+{
+    if (index >= 0 && index <=2) {
+        UIView *view  = [self viewWithTag:(PLUS_IMAGE_VIEW_TAG_OFFSET + index)];
+        return [view isKindOfClass:[UIImageView class]] ? (UIImageView *)view : nil;
     }else{
         PPDebug(@"assert( index >= 0 && index <= 2);");
         return nil;

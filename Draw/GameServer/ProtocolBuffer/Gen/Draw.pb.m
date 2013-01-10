@@ -1202,7 +1202,7 @@ static PBCommentInfo* defaultPBCommentInfoInstance = nil;
 @property (retain) NSString* targetUserId;
 @property (retain) NSString* targetUserNickName;
 @property Float64 historyScore;
-@property (retain) NSString* desc;
+@property (retain) NSString* opusDesc;
 @property (retain) NSString* opusId;
 @property BOOL isCorrect;
 @property int32_t score;
@@ -1330,13 +1330,13 @@ static PBCommentInfo* defaultPBCommentInfoInstance = nil;
   hasHistoryScore_ = !!value;
 }
 @synthesize historyScore;
-- (BOOL) hasDesc {
-  return !!hasDesc_;
+- (BOOL) hasOpusDesc {
+  return !!hasOpusDesc_;
 }
-- (void) setHasDesc:(BOOL) value {
-  hasDesc_ = !!value;
+- (void) setHasOpusDesc:(BOOL) value {
+  hasOpusDesc_ = !!value;
 }
-@synthesize desc;
+@synthesize opusDesc;
 - (BOOL) hasOpusId {
   return !!hasOpusId_;
 }
@@ -1485,7 +1485,7 @@ static PBCommentInfo* defaultPBCommentInfoInstance = nil;
   self.drawData = nil;
   self.targetUserId = nil;
   self.targetUserNickName = nil;
-  self.desc = nil;
+  self.opusDesc = nil;
   self.opusId = nil;
   self.mutableGuessWordsList = nil;
   self.comment = nil;
@@ -1515,7 +1515,7 @@ static PBCommentInfo* defaultPBCommentInfoInstance = nil;
     self.targetUserId = @"";
     self.targetUserNickName = @"";
     self.historyScore = 0;
-    self.desc = @"";
+    self.opusDesc = @"";
     self.opusId = @"";
     self.isCorrect = NO;
     self.score = 0;
@@ -1636,8 +1636,8 @@ static PBFeed* defaultPBFeedInstance = nil;
   if (self.hasHistoryScore) {
     [output writeDouble:34 value:self.historyScore];
   }
-  if (self.hasDesc) {
-    [output writeString:35 value:self.desc];
+  if (self.hasOpusDesc) {
+    [output writeString:35 value:self.opusDesc];
   }
   if (self.hasOpusId) {
     [output writeString:41 value:self.opusId];
@@ -1750,8 +1750,8 @@ static PBFeed* defaultPBFeedInstance = nil;
   if (self.hasHistoryScore) {
     size += computeDoubleSize(34, self.historyScore);
   }
-  if (self.hasDesc) {
-    size += computeStringSize(35, self.desc);
+  if (self.hasOpusDesc) {
+    size += computeStringSize(35, self.opusDesc);
   }
   if (self.hasOpusId) {
     size += computeStringSize(41, self.opusId);
@@ -1935,8 +1935,8 @@ static PBFeed* defaultPBFeedInstance = nil;
   if (other.hasHistoryScore) {
     [self setHistoryScore:other.historyScore];
   }
-  if (other.hasDesc) {
-    [self setDesc:other.desc];
+  if (other.hasOpusDesc) {
+    [self setOpusDesc:other.opusDesc];
   }
   if (other.hasOpusId) {
     [self setOpusId:other.opusId];
@@ -2087,7 +2087,7 @@ static PBFeed* defaultPBFeedInstance = nil;
         break;
       }
       case 282: {
-        [self setDesc:[input readString]];
+        [self setOpusDesc:[input readString]];
         break;
       }
       case 330: {
@@ -2418,20 +2418,20 @@ static PBFeed* defaultPBFeedInstance = nil;
   result.historyScore = 0;
   return self;
 }
-- (BOOL) hasDesc {
-  return result.hasDesc;
+- (BOOL) hasOpusDesc {
+  return result.hasOpusDesc;
 }
-- (NSString*) desc {
-  return result.desc;
+- (NSString*) opusDesc {
+  return result.opusDesc;
 }
-- (PBFeed_Builder*) setDesc:(NSString*) value {
-  result.hasDesc = YES;
-  result.desc = value;
+- (PBFeed_Builder*) setOpusDesc:(NSString*) value {
+  result.hasOpusDesc = YES;
+  result.opusDesc = value;
   return self;
 }
-- (PBFeed_Builder*) clearDesc {
-  result.hasDesc = NO;
-  result.desc = @"";
+- (PBFeed_Builder*) clearOpusDesc {
+  result.hasOpusDesc = NO;
+  result.opusDesc = @"";
   return self;
 }
 - (BOOL) hasOpusId {
