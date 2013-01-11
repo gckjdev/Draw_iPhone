@@ -173,6 +173,8 @@ enum {
 
 - (void)publishWeibo:(NSString*)text imagePath:(NSString*)imagePath
 {
+    
+    //test
     PPSNSCommonService* snsService = [[PPSNSIntegerationService defaultService] snsServiceByType:_snsType];
     
     [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kPublishingWeibo") delayTime:5 isHappy:YES];
