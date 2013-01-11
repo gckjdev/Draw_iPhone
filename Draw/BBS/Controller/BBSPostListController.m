@@ -13,6 +13,8 @@
 #import "BBSPostDetailController.h"
 #import "ReplayGraffitiController.h"
 #import "ShowImageController.h"
+#import "MyFriend.h"
+#import "DrawUserInfoView.h"
 
 @interface BBSPostListController ()
 {
@@ -369,6 +371,12 @@
 {
     //TODO show user info
     PPDebug(@"<didClickUserAvatar>, userId = %@",user.userId);
+    MyFriend *friend = [MyFriend friendWithFid:user.userId
+                                      nickName:user.nickName
+                                        avatar:user.avatar
+                                        gender:user.gender?@"m":@"f"
+                                         level:1];
+    [DrawUserInfoView showFriend:friend infoInView:self needUpdate:YES];
 }
 
 - (void)didClickImageWithURL:(NSURL *)url
