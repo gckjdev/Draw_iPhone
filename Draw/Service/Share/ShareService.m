@@ -159,7 +159,7 @@ static ShareService* _defaultService;
 //    [label drawTextInRect:CGRectMake(48, 90, 224, 25)];
 //    [image drawInRect:CGRectMake(32, 136, 256, 245)];        
 //    UIImage *resultingImage = UIGraphicsGetImageFromCurrentImageContext();
-    UIImage* resultingImage = [self synthesisWeiboImage:image text:@"@猜猜画画"];
+    UIImage* resultingImage = [self synthesisImage:image waterMarkText:[ConfigManager getShareImageWaterMark]];
     
     NSData* imageData = UIImagePNGRepresentation(resultingImage);
     NSString* path = [NSString stringWithFormat:@"%@/%@.png", NSTemporaryDirectory(), [NSString GetUUID]];
