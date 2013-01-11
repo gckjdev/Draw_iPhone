@@ -98,40 +98,32 @@
             return;
         }
 
-        [feed parseDrawData];
-        CGRect frame = self.drawImage.frame;
-        self.showView = [[[ShowDrawView alloc] initWithFrame:frame] autorelease];
-        self.showView.playSpeed = 1.0/50.0;
-        [self.showView setShowPenHidden:YES];
-        self.showView.delegate = self;
-        [self.showView setBackgroundColor:[UIColor whiteColor]];
-        [self.showView cleanAllActions];
-        [self addSubview:self.showView];
+    if (self.showView == nil) {
         [self.drawImage setHidden:YES];
+        [feed parseDrawData];
+        self.showView = [ShowDrawView showView];
+        self.showView.center = self.drawImage.center;
+        [self.showView resetFrameSize:self.drawImage.frame.size];
+        [self.showView setShowPenHidden:YES];
+        self.showView.drawActionList = feed.drawData.drawActionList;
+        [self addSubview:self.showView];
         
-        CGRect normalFrame = DRAW_VIEW_FRAME;
-        
-        CGFloat xScale = frame.size.width / normalFrame.size.width;
-        CGFloat yScale = frame.size.height / normalFrame.size.height;
-        if (xScale == 1 && yScale == 1) {
-            self.showView.drawActionList = [NSMutableArray arrayWithArray:feed.drawData.drawActionList];
-        }else{
-            self.showView.drawActionList = [DrawAction scaleActionList:feed.drawData.drawActionList xScale:xScale yScale:yScale];
-        }
         [self.showView show];
-        UIImage *image = [self.showView createImage];
-        //remove the show view after create the image.
-        [self.showView removeFromSuperview];
-        self.showView = nil;
-        self.feed.largeImage = image;
-        [self.drawImage setImage:self.feed.largeImage];
-        [self.drawImage setHidden:NO];
 
+        UIImage *image = [self.showView createImage];
+        self.feed.largeImage = image;
+        [self.drawImage setImage:image];
+        [self.drawImage setHidden:NO];
+        [[FeedManager defaultManager] saveFeed:self.feed.feedId largeImage:image];
+        
+        [self.showView removeFromSuperview];
         [self.loadingActivity stopAnimating];
-    
-        //cache image
-        [[FeedManager defaultManager] saveFeed:feed.feedId largeImage:image];
+
+        self.showView.drawActionList = nil;
         feed.drawData = nil;
+        self.showView = nil;
+    }
+
 }
 
 - (void)updateShowView:(DrawFeed *)feed
@@ -145,10 +137,17 @@
             PPDebug(@"<download image> %@ failure, error=%@", feed.drawImageUrl, [error description]);
             [self.loadingActivity stopAnimating];
         }];
-    }else if (self.feed.largeImage) {
+    }
+    else if (self.feed.largeImage) {
         [self.drawImage setImage:self.feed.largeImage];
         [self loadImageFinish];
-    }else{
+    }
+    else if (feed.largeImage){
+        self.feed.largeImage = feed.largeImage;
+        [self.drawImage setImage:feed.largeImage];
+        [self loadImageFinish];        
+    }
+    else{
         [self showDrawView:feed];
         [self loadImageFinish];
     }

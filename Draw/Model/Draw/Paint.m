@@ -23,28 +23,25 @@ CGPoint midPoint(CGPoint p1, CGPoint p2)
 @synthesize penType = _penType;
 
 
-//- (CGPathRef)path
-//{
-//    CGPathRef path = CGPathCreateMutable();
-//    if ([self pointCount] != 0) {
-//        CGPoint currentPoint = [self pointAtIndex:0];
-//        CGPoint previousPoint1 = currentPoint;
-//        CGPoint previousPoint2 = currentPoint;
-//        NSInteger i = 0;
-//        for (NSValue *value in self.pointList) {
-//            if (i == 0) {
-//                CGPoint mid1    = midPoint(previousPoint1, previousPoint2);
-//                CGPathMoveToPoint(_path, NULL, mid1.x, mid1.y);
-//            }else{
-//                CGPoint mid2    = midPoint(currentPoint, previousPoint1);
-//                CGPathAddQuadCurveToPoint(_path, NULL, previousPoint1.x, previousPoint1.y, mid2.x, mid2.y);    
-//            }
-//            ++ i;
-//        }
-//
-//    }
-//    return NULL;
-//}
+- (void)constructPath
+{
+    if (self.pointCount > 0) {
+        if (_path == NULL) {
+            _path = CGPathCreateMutable();
+        }
+        CGPoint p1, p2;
+        p1 = p2 = [self pointAtIndex:0];
+        CGPathMoveToPoint(_path, NULL, p1.x, p1.y);
+        CGPathAddQuadCurveToPoint(_path, NULL, p1.x, p1.y, p1.x, p1.y);
+        NSInteger count = self.pointCount;
+        for (int i = 1; i < count; ++ i) {
+            p2 = p1;
+            p1 = [self pointAtIndex:i];
+            CGPoint mid = midPoint(p1, p2);
+            CGPathAddQuadCurveToPoint(_path, NULL, p2.x, p2.y, mid.x, mid.y);
+        }
+    }
+}
 
 - (id)initWithCoder:(NSCoder *)aDecoder
 {
@@ -175,21 +172,21 @@ CGPoint midPoint(CGPoint p1, CGPoint p2)
         if ([self pointCount] == 0) {
             CGPathMoveToPoint(_path, NULL, point.x, point.y);
             CGPathAddQuadCurveToPoint(_path, NULL, point.x, point.y, point.x, point.y);
-            PPDebug(@"move to point = %@",NSStringFromCGPoint(point));
         }else{
             CGPoint lastPoint = [[_pointList lastObject] CGPointValue];
             CGPoint mid = midPoint(lastPoint, point);
             CGPathAddQuadCurveToPoint(_path, NULL, lastPoint.x, lastPoint.y, mid.x, mid.y);
-            PPDebug(@"add point1 = %@ to point2 = %@",NSStringFromCGPoint(lastPoint), NSStringFromCGPoint(mid));
         }
     }
     NSValue *pointValue = [NSValue valueWithCGPoint:point];
     [self.pointList addObject:pointValue];
-
 }
 
 - (CGPathRef)path
 {
+    if (_path == NULL && self.pointCount > 0) {
+        [self constructPath];
+    }
     return _path;
 }
 
@@ -231,7 +228,9 @@ CGPoint midPoint(CGPoint p1, CGPoint p2)
 {
     PPRelease(_color);
     PPRelease(_pointList);
-    CGPathRelease(_path), _path = NULL;
+    if (_path != NULL) {
+        CGPathRelease(_path), _path = NULL;
+    }
     [super dealloc];
 }
 @end

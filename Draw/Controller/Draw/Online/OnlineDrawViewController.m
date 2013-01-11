@@ -384,9 +384,8 @@
 - (void)drawToolPanel:(DrawToolPanel *)toolPanel didClickPaintBucket:(UIButton *)button
 {
     self.penColor.alpha = 1.0;
-    DrawAction *drawAction = [drawView addChangeBackAction:self.penColor];
-    [self didDrawedPaint:drawAction.paint];
-    [drawView addChangeBackAction:self.penColor];
+    [drawView changeBackWithColor:self.penColor];
+    [self didDrawedPaint:[DrawAction changeBackgroundActionWithColor:self.penColor].paint];
     self.eraserColor = self.penColor;
     self.penColor = drawView.lineColor = [DrawColor blackColor];
     [drawView.lineColor setAlpha:_alpha];

@@ -27,47 +27,42 @@ typedef enum{
 }DrawRectType;
 
 
-@class DrawColor;
-@class DrawAction;
-
 
 @interface SuperDrawView : UIView
 {
     NSMutableArray *_drawActionList;
-    DrawAction *_currentDrawAction;
-    NSInteger _startDrawActionIndex;
-    
-    DrawRectType _drawRectType;
-    CGPoint _currentPoint;
-    CGPoint _previousPoint1;
-    CGPoint _previousPoint2;
-    BOOL _edge;
-    UIImage *_curImage;
-    CGColorRef _changeBackColor;
-    
-    UIImage *_image;
-
-    
-//    CALayer *cacheLayer, *showLayer;
     
     CGLayerRef cacheLayerRef, showLayerRef;
     CGContextRef cacheContext, showContext;
+    
     BOOL showCacheLayer;
+    
+    
+    //used by subclass
+    DrawAction *_currentAction;
+
+
 }
 
 @property (nonatomic, retain) NSMutableArray *drawActionList;
-@property (nonatomic, retain) UIImage *curImage;
+
 
 //public method
+#pragma mark - util methods
 - (BOOL)isViewBlank;
-- (void)show;
-- (void)showImage:(UIImage *)image;
 - (UIImage*)createImage;
+- (void)showImage:(UIImage *)image;
+
+
+#pragma mark -show && stroke
+- (void)show;
 - (void)cleanAllActions;
+- (void)addDrawAction:(DrawAction *)drawAction;
+- (void)drawAction:(DrawAction *)action inContext:(CGContextRef)context;
+- (void)setStrokeColor:(DrawColor *)color lineWidth:(CGFloat)width inContext:(CGContextRef)context;
+- (void)strokePaint:(Paint *)paint inContext:(CGContextRef)context clear:(BOOL)clear;
 
-//use for sub classes
-- (void)resetStartIndex;
-- (void)drawPoint:(CGFloat)width color:(CGColorRef)cgColor;
+#pragma mark - refresh view
+- (void)setNeedsDisplayShowCacheLayer:(BOOL)show;
 
-- (void)drawPaint:(Paint *)paint;
 @end

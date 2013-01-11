@@ -202,7 +202,7 @@
 
             drawFeed.drawData = nil;
 
-            [[FeedManager defaultManager] saveFeed:[self opusIdForFeed:feed] thumbImage:drawFeed.drawImage];
+            [[FeedManager defaultManager] saveFeed:[self opusIdForFeed:feed] largeImage:drawFeed.drawImage];
 
         }
     }
