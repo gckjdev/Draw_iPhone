@@ -24,6 +24,7 @@
 #import "FeedService.h"
 #import "ShareService.h"
 #import "ConfigManager.h"
+#import "UIImageExt.h"
 
 #define PATTERN_TAG_OFFSET 20120403
 #define IPAD_INFUSEVIEW_FRAME CGRectMake(31*2.4,130*2.13,259*2.4,259*2.13)
@@ -176,66 +177,66 @@ enum {
     PPSNSCommonService* snsService = [[PPSNSIntegerationService defaultService] snsServiceByType:_snsType];
     
     [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kPublishingWeibo") delayTime:5 isHappy:YES];
-    UIImage* srcImage = [UIImage imageWithContentsOfFile:imagePath];
-    ShareService* service = [ShareService defaultService];
-    [service shareImage:srcImage
-                   text:text
-              waterMark:[ConfigManager getShareImageWaterMark]
-                 viaSNS:_snsType
-           successBlock:^(NSDictionary *userInfo) {
-        PPDebug(@"%@ publish weibo succ", [snsService snsName]);
-        int earnCoins = [[AccountService defaultService] rewardForShareWeibo];
-        if (earnCoins > 0){
-            NSString* msg = [NSString stringWithFormat:NSLS(@"kPublishWeiboSuccAndEarnCoins"), earnCoins];
-            [self popupMessage:msg title:nil];
-        }
-        else{
-            //[self popupMessage:NSLS(@"kPublishWeiboSucc") title:nil];
-            [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kPublishWeiboSucc") delayTime:1 isHappy:YES];
-        }
-        
-        // report action, doesn't work here, need to fix later
-        /*
-         if (_delegate && [_delegate respondsToSelector:@selector(didPublishSnsMessage:)]) {
-         [_delegate didPublishSnsMessage:_snsType];
-         }
-         */
-        
-        [self.navigationController popViewControllerAnimated:YES];
-    } failureBlock:^(NSError *error) {
-        [self hideActivity];
-        PPDebug(@"%@ publish weibo failure", [snsService snsName]);
-        [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kPublishWeiboFail") delayTime:1 isHappy:NO];
-    }];
+    NSString* synthesisImagePath = [[ShareService defaultService] synthesisImageFile:imagePath waterMarkText:[ConfigManager getShareImageWaterMark]];
+    if (synthesisImagePath != nil) {
+        [snsService publishWeibo:text imageFilePath:synthesisImagePath successBlock:^(NSDictionary *userInfo) {
+            
+            
+            PPDebug(@"%@ publish weibo succ", [snsService snsName]);
+            int earnCoins = [[AccountService defaultService] rewardForShareWeibo];
+            if (earnCoins > 0){
+                NSString* msg = [NSString stringWithFormat:NSLS(@"kPublishWeiboSuccAndEarnCoins"), earnCoins];
+                [self popupMessage:msg title:nil];
+            }
+            else{
+                //[self popupMessage:NSLS(@"kPublishWeiboSucc") title:nil];
+                [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kPublishWeiboSucc") delayTime:1 isHappy:YES];
+            }
+            
+            // report action, doesn't work here, need to fix later
+            /*
+             if (_delegate && [_delegate respondsToSelector:@selector(didPublishSnsMessage:)]) {
+             [_delegate didPublishSnsMessage:_snsType];
+             }
+             */
+            
+            [self.navigationController popViewControllerAnimated:YES];
+            
+        } failureBlock:^(NSError *error) {
+            [self hideActivity];
+            PPDebug(@"%@ publish weibo failure", [snsService snsName]);
+            [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kPublishWeiboFail") delayTime:1 isHappy:NO];
+        }];
+    }
     
     return;
     
     /*
-    [[PPSNSIntegerationService defaultService] publishWeiboToAll:text
-                                                   imageFilePath:imagePath
-                                                    successBlock:^(int snsType, PPSNSCommonService *snsService, NSDictionary *userInfo) {
-                                                        PPDebug(@"%@ publish weibo succ", [snsService snsName]);
-                                                        
-                                                        [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kPublishWeiboSucc") delayTime:1 isHappy:YES];
-                                                        
-                                                        int earnCoins = [[AccountService defaultService] rewardForShareWeibo];
-                                                        if (earnCoins > 0){
-                                                            NSString* msg = [NSString stringWithFormat:NSLS(@"kPublishWeiboSuccAndEarnCoins"), earnCoins];
-                                                            [self popupMessage:msg title:nil];
-                                                        }
-                                                        else{
-                                                            //[self popupMessage:NSLS(@"kPublishWeiboSucc") title:nil];
-                                                            [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kPublishWeiboSucc") delayTime:1 isHappy:YES];
-                                                        }
-                                                        [self.navigationController popViewControllerAnimated:YES];
-                                                        
-                                                    }
-                                                    failureBlock:^(int snsType, PPSNSCommonService *snsService, NSError *error) {
-                                                        
-                                                        PPDebug(@"%@ publish weibo failure", [snsService snsName]);
-                                                        [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kPublishWeiboFail") delayTime:1 isHappy:NO];
-                                                        
-                                                    }];
+     [[PPSNSIntegerationService defaultService] publishWeiboToAll:text
+     imageFilePath:imagePath
+     successBlock:^(int snsType, PPSNSCommonService *snsService, NSDictionary *userInfo) {
+     PPDebug(@"%@ publish weibo succ", [snsService snsName]);
+     
+     [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kPublishWeiboSucc") delayTime:1 isHappy:YES];
+     
+     int earnCoins = [[AccountService defaultService] rewardForShareWeibo];
+     if (earnCoins > 0){
+     NSString* msg = [NSString stringWithFormat:NSLS(@"kPublishWeiboSuccAndEarnCoins"), earnCoins];
+     [self popupMessage:msg title:nil];
+     }
+     else{
+     //[self popupMessage:NSLS(@"kPublishWeiboSucc") title:nil];
+     [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kPublishWeiboSucc") delayTime:1 isHappy:YES];
+     }
+     [self.navigationController popViewControllerAnimated:YES];
+     
+     }
+     failureBlock:^(int snsType, PPSNSCommonService *snsService, NSError *error) {
+     
+     PPDebug(@"%@ publish weibo failure", [snsService snsName]);
+     [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kPublishWeiboFail") delayTime:1 isHappy:NO];
+     
+     }];
      */
 }
 
@@ -267,7 +268,7 @@ enum {
     if ([[UserManager defaultManager] hasBindQQWeibo] && _snsType == QQ_WEIBO){
 //        [self showActivityWithText:NSLS(@"kSendingRequest")];
         PPDebug(@"publish to qq!");
-        [[QQWeiboService defaultService] publishWeibo:self.shareTextField.text 
+        [[QQWeiboService defaultService] publishWeibo:self.shareTextField.text
                                         imageFilePath:self.imageFilePath 
                                              delegate:nil];        
         [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kPublishWeiboSucc") delayTime:1 isHappy:YES];

@@ -14,6 +14,8 @@
 #import "CreatePostController.h"
 #import "BBSPostDetailController.h"
 #import "BBSManager.h"
+#import "DrawUserInfoView.h"
+#import "MyFriend.h"
 
 @interface BBSActionListController ()
 {
@@ -213,6 +215,8 @@
 {
     //TODO show user info
     PPDebug(@"<didClickUserAvatar>, userId = %@",user.userId);
+
+    [DrawUserInfoView showPBBBSUser:user infoInView:self needUpdate:YES];
 }
 
 - (void)didClickImageWithURL:(NSURL *)url
