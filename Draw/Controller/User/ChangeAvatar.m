@@ -73,7 +73,7 @@
             [_superViewController didImageSelected:image];
             
     }
-    if ([DeviceDetection isIPAD]) {
+    if (_popoverController != nil) {
         [_popoverController dismissPopoverAnimated:YES];
     }else{
         [picker dismissModalViewControllerAnimated:YES];
@@ -83,7 +83,7 @@
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
 {
-    if ([DeviceDetection isIPAD]) {
+    if (_popoverController != nil) {
         [_popoverController dismissPopoverAnimated:YES];
     }else{
         [picker dismissModalViewControllerAnimated:YES];
