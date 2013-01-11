@@ -9,6 +9,7 @@
 #import "SuperDrawView.h"
 #import <QuartzCore/QuartzCore.h>
 
+
 @interface SuperDrawView()
 
 
@@ -34,13 +35,54 @@
     PPRelease(_drawActionList);
     PPRelease(_curImage);
     PPRelease(_image);
+    
+    CGLayerRelease(cacheLayerRef), cacheLayerRef = NULL;
+    CGLayerRelease(showLayerRef), showLayerRef = NULL;
+    
     [super dealloc];
+}
+
+
+- (CGLayerRef)createLayer
+{
+    CGFloat width = CGRectGetWidth(self.bounds);
+    CGFloat height = CGRectGetHeight(self.bounds);
+    CGColorSpaceRef colorSpace =  CGColorSpaceCreateDeviceRGB();
+    
+    CGContextRef context = CGBitmapContextCreate(
+                                         NULL,
+                                         width,
+                                         height,
+                                         8, // 每个通道8位
+                                         width * 4,
+                                         colorSpace,
+                                         kCGImageAlphaPremultipliedLast);
+    //    showCacheLayer
+    CGColorSpaceRelease(colorSpace);
+    CGLayerRef layer = CGLayerCreateWithContext(context, self.bounds.size, NULL);
+    CGContextRelease(context);
+    return layer;
+}
+
+- (void)setupCGLayer
+{
+    cacheLayerRef = [self createLayer];
+    showLayerRef = [self createLayer];
+    cacheContext = CGLayerGetContext(cacheLayerRef);
+    showContext = CGLayerGetContext(showLayerRef);
+
+    CGContextSetLineJoin(showContext, kCGLineJoinRound);
+    CGContextSetLineCap(showContext, kCGLineCapRound);
+
+    CGContextSetLineJoin(cacheContext, kCGLineJoinRound);
+    CGContextSetLineCap(cacheContext, kCGLineCapRound);
 }
 
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
     if (self) {
+        [self setupCGLayer];
         // Initialization code
 //        self.backgroundColor = [UIColor whiteColor];
     }
@@ -152,20 +194,9 @@
 
     [self.layer renderInContext:context];
     
-//    CGContextMoveToPoint(context, _previousPoint1.x, _previousPoint1.y);
-//    CGContextAddLineToPoint(context, _currentPoint.x, _currentPoint.y);
-//    CGContextAddQuadCurveToPoint(context, _previousPoint1.x, _previousPoint1.y, mid2.x,
-    
     CGContextMoveToPoint(context, mid1.x, mid1.y);
     CGContextAddQuadCurveToPoint(context, _previousPoint1.x, _previousPoint1.y, mid2.x, mid2.y);
-//    const CGPoint plist[] = {mid1,mid2};
-//    CGContextAddLines(context, plist, 2);
-//    if (_edge) {
-        CGContextSetLineCap(context, kCGLineCapRound);
-//    }
-    
-    
-    
+    CGContextSetLineCap(context, kCGLineCapRound);
     CGContextSetLineJoin(context, kCGLineJoinRound);
     CGContextSetLineWidth(context, width);    
 
@@ -176,6 +207,10 @@
 }
 
 
+- (void)drawPaint:(Paint *)paint inLayer:(CGLayerRef)layer
+{
+    
+}
 
 - (void)drawPaint:(Paint *)paint
 { 
@@ -282,6 +317,18 @@
 
 - (void)drawRect:(CGRect)rect
 {
+    
+    
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    if (showCacheLayer) {
+        CGContextDrawLayerInRect(context, rect, showLayerRef);
+        CGContextDrawLayerInRect(context, rect, cacheLayerRef);
+    }else{
+        CGContextDrawLayerInRect(context, rect, showLayerRef);
+    }
+    
+    [super drawRect:rect];
+    return;
     
     switch (_drawRectType) {
         case DrawRectTypeLine:

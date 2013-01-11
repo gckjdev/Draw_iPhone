@@ -946,7 +946,9 @@ enum{
 - (void)drawToolPanel:(DrawToolPanel *)toolPanel didSelectAlpha:(CGFloat)alpha
 {
     _alpha = alpha;
-    [drawView.lineColor setAlpha:alpha];
+    DrawColor *color = [DrawColor colorWithColor:drawView.lineColor];
+    color.alpha = alpha;
+    drawView.lineColor = color;
 }
 
 - (void)drawToolPanel:(DrawToolPanel *)toolPanel startToBuyItem:(ItemType)type

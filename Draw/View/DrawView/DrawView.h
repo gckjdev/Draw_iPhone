@@ -27,6 +27,9 @@
     
     NSMutableArray *_revokeImageList;
     NSInteger _revokeBaseIndex;
+    
+    CGMutablePathRef tempPath;
+    
 }
 
 //@property (nonatomic, retain) NSMutableArray *drawActionList;

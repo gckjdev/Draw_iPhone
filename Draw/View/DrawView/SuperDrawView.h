@@ -12,6 +12,7 @@
 #import "DrawColor.h"
 #import "DrawAction.h"
 #import "ItemType.h"
+#import <QuartzCore/QuartzCore.h>
 
 typedef enum{
     DrawRectTypeNo = 0,
@@ -44,7 +45,14 @@ typedef enum{
     UIImage *_curImage;
     CGColorRef _changeBackColor;
     
-    UIImage *_image; 
+    UIImage *_image;
+
+    
+//    CALayer *cacheLayer, *showLayer;
+    
+    CGLayerRef cacheLayerRef, showLayerRef;
+    CGContextRef cacheContext, showContext;
+    BOOL showCacheLayer;
 }
 
 @property (nonatomic, retain) NSMutableArray *drawActionList;

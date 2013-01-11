@@ -187,6 +187,96 @@
 
 }
 
+typedef enum {
+    TouchTypeBegin = 0,
+    TouchTypeMove = 1,
+    TouchTypeEnd = 2,
+}TouchType;
+
+- (void)strokePathWithMid:(CGPoint)mid2
+{
+    
+    PPDebug(@"temp path add point: %@",NSStringFromCGPoint(mid2));
+//    CGPathAddQuadCurveToPoint(tempPath, NULL, _previousPoint1.x, _previousPoint1.y, mid2.x, mid2.y);
+//    CGContextClearRect(cacheContext, self.bounds);
+    
+//    for (DrawAction *action in self.drawActionList) {
+//        Paint *paint = action.paint;
+//        if (paint.path != NULL) {
+    
+//        }
+//    }
+//    
+//    CGRect rect =  CGPathGetBoundingBox(_currentDrawAction.paint.path);
+//    rect.origin.x -= self.lineWidth;
+//    rect.origin.y -= self.lineWidth;
+//    rect.size.width += self.lineWidth*2;
+//    rect.size.height += self.lineWidth*2;
+
+
+    
+
+    CGContextClearRect(cacheContext, self.bounds);
+    
+    CGContextSetLineWidth(cacheContext, _currentDrawAction.paint.width);
+    CGContextSetStrokeColorWithColor(cacheContext, _currentDrawAction.paint.color.CGColor);
+    CGContextAddPath(cacheContext, _currentDrawAction.paint.path);
+    CGContextStrokePath(cacheContext);
+
+    
+    [self setNeedsDisplay];
+//    CGContextAddPath(cacheContext, path);
+//    CGContextStrokePath(cacheContext);
+//    CGContextAddPath(cacheContext, tempPath);
+//    CGContextStrokePath(cacheContext);
+    //    [self setNeedsDisplay];
+    
+}
+
+- (void)handleTouches:(NSSet *)touches withEvent:(UIEvent *)event type:(TouchType)type
+{
+
+    UITouch *touch  = [touches anyObject];
+    
+    _previousPoint2  = _previousPoint1;
+    _previousPoint1  = _currentPoint;
+    _currentPoint    = [touch locationInView:self];
+
+    [self addPoint:_currentPoint toDrawAction:_currentDrawAction];
+    
+    CGPoint mid1    = midPoint(_previousPoint1, _previousPoint2);
+    CGPoint mid2    = midPoint(_currentPoint, _previousPoint1);
+    
+
+    if (type == TouchTypeBegin) {
+        
+//        tempPath = CGPathCreateMutable();
+//        CGPathMoveToPoint(tempPath, NULL, mid1.x, mid1.y);
+        CGContextSetStrokeColorWithColor(cacheContext, self.lineColor.CGColor);
+        CGContextSetLineWidth(cacheContext, self.lineWidth);
+        [self strokePathWithMid:mid2];
+        showCacheLayer = YES;
+    }else if(type == TouchTypeMove){
+        
+        [self strokePathWithMid:mid2];
+        showCacheLayer = YES;
+    }else{
+//        [self strokePathWithMid:mid2];
+//        CGPathRelease(tempPath);
+//        [self strokePathWithMid:mid2];
+        showCacheLayer = NO;
+
+        CGContextSetLineWidth(showContext, _currentDrawAction.paint.width);
+        CGContextSetStrokeColorWithColor(showContext, _currentDrawAction.paint.color.CGColor);
+        CGContextAddPath(showContext, _currentDrawAction.paint.path);
+        CGContextStrokePath(showContext);
+
+        
+        [self setNeedsDisplay];
+    }
+
+}
+
 - (void)handleTouches:(NSSet *)touches withEvent:(UIEvent *)event
 {
     UITouch *touch  = [touches anyObject];
@@ -233,6 +323,8 @@
 //    [self setNeedsDisplay];
 }
 
+
+
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
 
     
@@ -244,7 +336,10 @@
     _currentPoint = [touch locationInView:self];
     [self addNewPaint];
     _edge = YES;
-    [self handleTouches:touches withEvent:event];
+//    [self handleTouches:touches withEvent:event];
+    
+    [self handleTouches:touches withEvent:event type:TouchTypeBegin];
+    
     if (self.delegate && [self.delegate
                             respondsToSelector:@selector(didStartedTouch:)]) {
             [self.delegate didStartedTouch:_currentDrawAction.paint];
@@ -254,7 +349,7 @@
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
     _edge = YES;
-    [self handleTouches:touches withEvent:event];
+    [self handleTouches:touches withEvent:event type:TouchTypeEnd];
     if (self.delegate && [self.delegate respondsToSelector:@selector(didDrawedPaint:)]) {
         [self.delegate didDrawedPaint:_currentDrawAction.paint];
     }
@@ -273,11 +368,14 @@
 
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
     _edge = NO;
-    [self handleTouches:touches withEvent:event];
+    [self handleTouches:touches withEvent:event type:TouchTypeMove];
 }
 - (void)drawRect:(CGRect)rect
 {
+
     [super drawRect:rect];
+    return;
+    
     if (_drawRectType == DrawRectTypeRevoke) {
         [self revokeRect:rect];
     }else if(_drawRectType == DrawRectTypeRedo){
