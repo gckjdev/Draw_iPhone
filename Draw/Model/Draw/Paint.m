@@ -10,11 +10,38 @@
 #import "DrawUtils.h"
 #import "GameMessage.pb.h"
 #import "DeviceDetection.h"
+
+CGPoint midPoint(CGPoint p1, CGPoint p2)
+{
+    return CGPointMake((p1.x + p2.x) * 0.5, (p1.y + p2.y) * 0.5);
+}
+
 @implementation Paint
 @synthesize width = _width;
 @synthesize color = _color;
 @synthesize pointList = _pointList;
 @synthesize penType = _penType;
+
+
+- (void)constructPath
+{
+    if (self.pointCount > 0) {
+        if (_path == NULL) {
+            _path = CGPathCreateMutable();
+        }
+        CGPoint p1, p2;
+        p1 = p2 = [self pointAtIndex:0];
+        CGPathMoveToPoint(_path, NULL, p1.x, p1.y);
+        CGPathAddQuadCurveToPoint(_path, NULL, p1.x, p1.y, p1.x, p1.y);
+        NSInteger count = self.pointCount;
+        for (int i = 1; i < count; ++ i) {
+            p2 = p1;
+            p1 = [self pointAtIndex:i];
+            CGPoint mid = midPoint(p1, p2);
+            CGPathAddQuadCurveToPoint(_path, NULL, p2.x, p2.y, mid.x, mid.y);
+        }
+    }
+}
 
 - (id)initWithCoder:(NSCoder *)aDecoder
 {
@@ -43,6 +70,7 @@
         self.width = width;
         self.color = color;
         _pointList = [[NSMutableArray alloc] init];
+        _path = CGPathCreateMutable();
     }
     return self;
 }
@@ -138,8 +166,28 @@
 
 - (void)addPoint:(CGPoint)point
 {
+    
+    if (_path != NULL) {
+    
+        if ([self pointCount] == 0) {
+            CGPathMoveToPoint(_path, NULL, point.x, point.y);
+            CGPathAddQuadCurveToPoint(_path, NULL, point.x, point.y, point.x, point.y);
+        }else{
+            CGPoint lastPoint = [[_pointList lastObject] CGPointValue];
+            CGPoint mid = midPoint(lastPoint, point);
+            CGPathAddQuadCurveToPoint(_path, NULL, lastPoint.x, lastPoint.y, mid.x, mid.y);
+        }
+    }
     NSValue *pointValue = [NSValue valueWithCGPoint:point];
     [self.pointList addObject:pointValue];
+}
+
+- (CGPathRef)path
+{
+    if (_path == NULL && self.pointCount > 0) {
+        [self constructPath];
+    }
+    return _path;
 }
 
 - (NSInteger)pointCount
@@ -178,8 +226,11 @@
 
 - (void)dealloc
 {
-    [_color release];
-    [_pointList release];
+    PPRelease(_color);
+    PPRelease(_pointList);
+    if (_path != NULL) {
+        CGPathRelease(_path), _path = NULL;
+    }
     [super dealloc];
 }
 @end

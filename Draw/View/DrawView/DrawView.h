@@ -19,33 +19,35 @@
 @end
 
 
-@interface DrawView : SuperDrawView<UIGestureRecognizerDelegate>
+@interface DrawView : SuperDrawView
 {
-    CGFloat _lineWidth;
-    DrawColor* _lineColor;    
-    ItemType _penType;
+    CGMutablePathRef tempPath;
     
-    NSMutableArray *_revokeImageList;
-    NSInteger _revokeBaseIndex;
 }
 
 //@property (nonatomic, retain) NSMutableArray *drawActionList;
 @property(nonatomic, assign) CGFloat lineWidth; //default is 5.0
 @property(nonatomic, retain) DrawColor* lineColor; //default is black
-@property(nonatomic, assign) id<DrawViewDelegate>delegate;
 @property(nonatomic, assign) ItemType penType;
-@property(nonatomic, assign, getter = isRevocationSupported) BOOL revocationSupported;
+@property(nonatomic, assign) id<DrawViewDelegate>delegate;
 
-- (void)addCleanAction;
-- (DrawAction *)addChangeBackAction:(DrawColor *)color;
+
+//@property(nonatomic, assign, getter = isRevocationSupported) BOOL revocationSupported;
+
+//- (void)addCleanAction;
+//- (DrawAction *)addChangeBackAction:(DrawColor *)color;
+
+
+
+- (void)clearScreen;
+- (void)changeBackWithColor:(DrawColor *)color;
+
 - (void)setDrawEnabled:(BOOL)enabled;
-- (BOOL)canRevoke;
-- (void)revoke;
 
+- (BOOL)canRevoke;
+- (void)revoke; //undo
 - (BOOL)canRedo;
 - (void)redo;
 
 - (void)showDraft:(MyPaint *)draft;
-//- (void)revoke;
-//- (void)clearAllActions; //remove all the actions
 @end

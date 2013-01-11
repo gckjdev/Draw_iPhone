@@ -125,6 +125,11 @@
     return [DrawAction actionWithType:DRAW_ACTION_TYPE_DRAW paint:paint];
 }
 
++ (DrawAction *)clearScreenAction
+{
+    return [DrawAction actionWithType:DRAW_ACTION_TYPE_CLEAN paint:nil];
+}
+
 - (BOOL)isChangeBackAction
 {
     //for changing from integer to float.

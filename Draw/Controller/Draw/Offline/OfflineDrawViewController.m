@@ -306,7 +306,7 @@ enum{
     
     
     [drawView setDrawEnabled:YES];
-    [drawView setRevocationSupported:YES];
+//    [drawView setRevocationSupported:YES];
     drawView.delegate = self;
     _isNewDraft = YES;
     _userSaved = NO;
@@ -898,7 +898,8 @@ enum{
 
 - (void)drawToolPanel:(DrawToolPanel *)toolPanel didClickRedoButton:(UIButton *)button
 {
-    if ([drawView canRedo]) {
+    BOOL canRedo = [drawView canRedo];
+    if (canRedo) {
         [drawView redo];
         _isNewDraft = NO;
     }
@@ -919,7 +920,7 @@ enum{
 {
     _isNewDraft = NO;
     self.penColor.alpha = 1.0;
-    [drawView addChangeBackAction:self.penColor];
+    [drawView changeBackWithColor:self.penColor];
     self.eraserColor = self.penColor;
     self.penColor = drawView.lineColor = [DrawColor blackColor];
     [toolPanel setColor:self.penColor];
@@ -952,7 +953,9 @@ enum{
 - (void)drawToolPanel:(DrawToolPanel *)toolPanel didSelectAlpha:(CGFloat)alpha
 {
     _alpha = alpha;
-    [drawView.lineColor setAlpha:alpha];
+    DrawColor *color = [DrawColor colorWithColor:drawView.lineColor];
+    color.alpha = alpha;
+    drawView.lineColor = color;
 }
 
 - (void)drawToolPanel:(DrawToolPanel *)toolPanel startToBuyItem:(ItemType)type
