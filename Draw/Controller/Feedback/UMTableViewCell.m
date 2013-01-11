@@ -7,7 +7,7 @@
 //
 
 #import "UMTableViewCell.h"
-#import "UMImageView.h"
+#import "UMUFPImageView.h"
 #import "DeviceDetection.h"
 #import <QuartzCore/QuartzCore.h>
 
@@ -32,7 +32,7 @@
         self.textLabel.backgroundColor = [UIColor clearColor];        
         self.detailTextLabel.backgroundColor = [UIColor clearColor];
         
-        _mImageView = [[UMImageView alloc] initWithPlaceholderImage:[UIImage imageNamed:@"placeholder.png"]];
+        _mImageView = [[UMUFPImageView alloc] initWithPlaceholderImage:[UIImage imageNamed:@"placeholder.png"]];
         
         if ([DeviceDetection isIPAD]){
             self.mImageView.frame = CGRectMake(20.0f * 2, 6.0f * 2, 48.0f * 2, 48.0f * 2);

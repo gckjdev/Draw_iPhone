@@ -69,6 +69,12 @@
         case HomeMenuTypeDrawShop:{
             return NSLS(@"kHomeMenuTypeDrawShop");
         }
+        case HomeMenuTypeDrawApps:{
+            return NSLS(@"kMore_apps");
+        }
+        case HomeMenuTypeDrawFreeCoins:{
+            return NSLS(@"kFreeGetCoins");
+        }
 
         //ZJH
         case HomeMenuTypeZJHHelp:{
@@ -119,6 +125,12 @@
         }
         case HomeMenuTypeDrawShop:{
             return [imageManager drawHomeShop];
+        }
+        case HomeMenuTypeDrawApps:{
+            return [imageManager drawAppsRecommand];
+        }
+        case HomeMenuTypeDrawFreeCoins:{
+            return [imageManager drawFreeCoins];
         }
             //draw bottom menu
         case HomeMenuTypeDrawHome :{
@@ -228,6 +240,8 @@ int *getDrawMainMenuTypeList()
         HomeMenuTypeDrawContest,
         HomeMenuTypeDrawBBS,
         HomeMenuTypeDrawShop,
+        HomeMenuTypeDrawApps,
+        HomeMenuTypeDrawFreeCoins,
         HomeMenuTypeEnd
     };
     return list;

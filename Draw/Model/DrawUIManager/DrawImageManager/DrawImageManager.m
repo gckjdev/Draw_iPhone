@@ -131,6 +131,18 @@ static DrawImageManager * _staticDrawImageManager;
     return [UIImage imageNamed:imageName];
 }
 
+- (UIImage *)drawAppsRecommand
+{
+    NSString *imageName = [self fixImageName:@"draw_home_apps"];
+    return [UIImage imageNamed:imageName];
+}
+
+- (UIImage *)drawFreeCoins
+{
+    NSString *imageName = [self fixImageName:@"draw_home_free_coins"];
+    return [UIImage imageNamed:imageName];
+}
+
 //stretcable
 - (UIImage *)drawHomeSplitline{
     return [self stretchableImageWithImageName:@"common_home_splitline"

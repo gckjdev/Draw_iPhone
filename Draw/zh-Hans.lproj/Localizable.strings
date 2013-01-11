@@ -217,7 +217,7 @@
 "kReport_problems" = "报告问题";
 "kGive_some_advice" = "反馈意见";
 "kAbout_us" = "关于我们";
-"kMore_apps" = "更多应用";
+"kMore_apps" = "应用推荐";
 "kGive_a_5-star_review" = "给个好评";
 "kSure_delete" = "删除作品";
 "kAre_you_sure" = "确定删除?";
@@ -281,7 +281,7 @@
 "kSay something..." = "";
 "kShare_via_SMS" = "短信分享给朋友";
 
-"kShare_message_body" = "推荐一款好玩的iPhone/iPad画画娱乐应用［%@］，AppStore下载链接是 %@";
+"kShare_message_body" = "推荐一款好玩的iPhone/iPad画画娱乐应用［%@］，AppStore下载链接是 %@ %@";
 
 "kEmail_subject" = "分享［猜猜画画］iPhone/iPad版";
 
@@ -319,7 +319,7 @@
 "kFeedbackFail" = "发送失败，稍后再试试。";
 "kSendingFeedback" = "正在发送...";
 "kNoTipItem" = "对不起，你没有锦囊了，请去商店购买。";
-"kMore_apps" = "更多应用";
+"kMore_apps" = "应用推荐";
 "kNextStep" = "下一步";
 "kWordLengthTip" = "温馨小提示：当前猜词的字数为［%d］";
 "kContentNull" = "搜索条件不能为空";
@@ -936,12 +936,14 @@
 "kHomeMenuTypeDrawTimeline" = "动态";
 "kHomeMenuTypeDrawRank" = "画榜";
 "kHomeMenuTypeDrawContest" = "比赛";
-"kHomeMenuTypeDrawBBS" = "论坛";
+"kHomeMenuTypeDrawBBS" = "玩家论坛";
+"HomeMenuTypeDrawApps" = "应用推荐";
+"HomeMenuTypeDrawFreeCoins" = "免费金币";
 "kHomeMenuTypeDrawHome" = "主页";
 "kHomeMenuTypeDrawOpus" = "作品";
 "kHomeMenuTypeDrawMessage" = "消息";
 "kHomeMenuTypeDrawSetting" = "设置";
-"kHomeMenuTypeDrawShop" = "商店";
+"kHomeMenuTypeDrawShop" = "道具商店";
 
 "kCharge" = "充值";
 "kFreeCoin" = "免费金币";
@@ -986,7 +988,7 @@
 "kHotWordsNote" = "[消耗一个锦囊]";
 "kSystemWords" = "系统词库";
 
-
+"kDefaultWaterMark" = "@猜猜画画";
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 

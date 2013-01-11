@@ -146,9 +146,9 @@
         case Pencil:
             return [UIImage adjustImage:manager.pencilImage toRatio:1];
         case PaletteItem:
-            return [UIImage adjustImage:manager.drawColorBG toRatio:1];
+            return [UIImage adjustImage:manager.shopItemPaletteImage toRatio:1];
         case ColorAlphaItem:
-            return [UIImage adjustImage:manager.drawSliderBG toRatio:1];
+            return [UIImage adjustImage:manager.shopItemAlphaImage toRatio:1];
         case ItemTypeRollAgain: 
             return [diceManager toShopImage:diceManager.diceToolRollAgainImage];
         case ItemTypeCut: 

@@ -77,7 +77,8 @@
 #import "SelectHotWordController.h"
 #import "NotificationName.h"
 #import "CommonGameNetworkService.h"
-
+#import "UFPController.h"
+#import "FreeCoinsControllerViewController.h"
 
 @interface HomeController()
 {
@@ -674,12 +675,31 @@
             
         }
             break;
+            
         case HomeMenuTypeDrawRank:
         {
             [[AnalyticsManager sharedAnalyticsManager] reportClickHomeMenu:HOME_ACTION_TOP];
             HotController *hc = [[HotController alloc] init];
             [self.navigationController pushViewController:hc animated:YES];
             [hc release];
+        }
+            break;
+            
+        case HomeMenuTypeDrawApps:
+        {
+            [[AnalyticsManager sharedAnalyticsManager] reportClickHomeMenu:HOME_ACTION_APPS];
+            
+            UFPController *vc = [[[UFPController alloc] init] autorelease];
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+            break;
+            
+        case HomeMenuTypeDrawFreeCoins:
+        {
+            [[AnalyticsManager sharedAnalyticsManager] reportClickHomeMenu:HOME_ACTION_FREE_COINS];
+
+            FreeCoinsControllerViewController *vc = [[[FreeCoinsControllerViewController alloc] init] autorelease];
+            [self.navigationController pushViewController:vc animated:YES];
         }
             break;
             

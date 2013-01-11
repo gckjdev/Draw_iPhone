@@ -14,7 +14,7 @@
 
 #define HOT_WORD_FILE @"hot_word.pb"
 #define BUNDLE_PATH @"hot_word.pb"
-#define HOT_WORD_VERSION_KEY @"1.2"
+#define HOT_WORD_VERSION_KEY @"1.0"
 
 @interface HotWordManager() {
 }
@@ -105,6 +105,10 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(HotWordManager)
         Word *word = [Word wordWithText:hotWord.word level:WordLeveLMedium score:hotWord.coins];
         [words addObject:word];
     }
+    
+    [words sortUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+        return (rand() % 2 == 0) ? NSOrderedAscending : NSOrderedDescending;
+    }];
     
     return words;
 }

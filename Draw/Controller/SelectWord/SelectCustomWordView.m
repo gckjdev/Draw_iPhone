@@ -25,7 +25,7 @@
     NSInteger selectedRow;
 }
 
-@property (retain, nonatomic) NSArray *dataList;
+@property (retain, nonatomic) NSMutableArray *dataList;
 @end
 
 @implementation SelectCustomWordView
@@ -55,7 +55,7 @@
     [view.addWordButton setTitle:NSLS(@"kAddCustomWord") forState:UIControlStateNormal];
     view.delegate = aDelegate;
     
-    view.dataList = [[CustomWordManager defaultManager] findAllWords];
+    view.dataList = [NSMutableArray arrayWithArray:[[CustomWordManager defaultManager] findAllWords]];
     
     return view;
 }
@@ -125,11 +125,15 @@
     [tableView deselectRowAtIndexPath:[tableView indexPathForSelectedRow] animated:YES];
     
     selectedRow = indexPath.row;
-//    CustomWord *customWord = [dataList objectAtIndex:selectedRow];
-//    NSString *word = customWord.word;
-//    CommonDialog *dialog = [CommonDialog createDialogWithTitle:nil message:[NSString stringWithFormat:NSLS(@"kSureUseThisWord"),word] style:CommonDialogStyleDoubleButton delegate:self];
-//    [dialog showInView:self];
     [self clickOk:nil];
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
+    CustomWord *customWord = [dataList objectAtIndex:indexPath.row];
+    [[CustomWordManager defaultManager] deleteWord:customWord.word];
+    
+    [dataList removeObjectAtIndex:indexPath.row];
+    [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
 }
 
 - (void)clickOk:(CommonDialog *)dialog
@@ -141,11 +145,6 @@
         [self.delegate didSelecCustomWord:word];
     }
 }
-
-//- (void)clickBack:(CommonDialog *)dialog
-//{
-//    
-//}
 
 - (void)dealloc {
     PPRelease(dataTableView);
@@ -170,7 +169,7 @@
     if ([CustomWordManager isValidWord:targetText]) {
         [[CustomWordManager defaultManager] createCustomWord:targetText];
         [[UserService defaultService] commitWords:targetText viewController:nil];
-        self.dataList = [[CustomWordManager defaultManager] findAllWords];
+        [self.dataList addObject:targetText];
         [dataTableView reloadData];
     }
 }
