@@ -11,6 +11,7 @@
 #import "UserService.h"
 @class PPViewController;
 @class MyFriend;
+@class PBBBSUser;
 
 @interface DrawUserInfoView : UIView<FriendServiceDelegate, UserServiceDelegate>
 {
@@ -20,7 +21,9 @@
 + (void)showFriend:(MyFriend*)afriend 
         infoInView:(UIViewController*)superController
         needUpdate:(BOOL)needUpdate; //if need update the info from service.
-
++ (void)showPBBBSUser:(PBBBSUser*)user
+           infoInView:(PPViewController*)superController
+           needUpdate:(BOOL)needUpdate;
 
 @property (retain, nonatomic) IBOutlet UIButton *mask;
 @property (retain, nonatomic) IBOutlet UIView *contentView;

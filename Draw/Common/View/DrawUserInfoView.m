@@ -23,6 +23,7 @@
 #import "CommonSnsInfoView.h"
 #import "MessageStat.h"
 #import "GameApp.h"
+#import "Bbs.pb.h"
 
 #define RUN_OUT_TIME 0.2
 #define RUN_IN_TIME 0.4
@@ -349,6 +350,18 @@
     if (needUpdate) {
         [view updateInfoFromService];
     }
+}
+
++ (void)showPBBBSUser:(PBBBSUser *)user
+           infoInView:(PPViewController *)superController
+           needUpdate:(BOOL)needUpdate //if need update the info from service.
+{
+    MyFriend *friend = [MyFriend friendWithFid:user.userId
+                                      nickName:user.nickName
+                                        avatar:user.avatar
+                                        gender:user.gender?@"m":@"f"
+                                         level:1];
+    [self showFriend:friend infoInView:superController needUpdate:needUpdate];
 }
 
 #pragma mark - user service delegate

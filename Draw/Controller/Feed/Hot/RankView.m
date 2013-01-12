@@ -80,12 +80,11 @@
     }
     self.feed = feed;
     if(feed.drawImage){
-//        self.drawImage.alpha = 0;
         [self.drawImage setImage:feed.drawImage];
-//        [UIView animateWithDuration:1 animations:^{
-//            self.drawImage.alpha = 1.0;
-//        }];
-    }else if ([feed.drawImageUrl length] != 0) {
+    }else if(feed.largeImage){
+        [self.drawImage setImage:feed.largeImage];
+    }
+    else if ([feed.drawImageUrl length] != 0) {
         NSURL *url = [NSURL URLWithString:feed.drawImageUrl];
         UIImage *defaultImage = [[ShareImageManager defaultManager] unloadBg];
 
@@ -105,25 +104,29 @@
         PPDebug(@"<setViewInfo> show draw view. feedId=%@,word=%@", 
                 feed.feedId,feed.wordText);
         
-        ShowDrawView *showView = [[ShowDrawView alloc] initWithFrame:self.drawImage.frame];
-        CGFloat xScale = self.bounds.size.width / DRAW_VIEW_FRAME.size.width;
-        CGFloat yScale = self.bounds.size.height / DRAW_VIEW_FRAME.size.height;
+        ShowDrawView *showView = [ShowDrawView showView];
+        showView.center = self.drawImage.center;
+        [showView resetFrameSize:self.drawImage.frame.size];
         [feed parseDrawData];
-        NSMutableArray *list = [DrawAction scaleActionList:feed.drawData.drawActionList xScale:xScale yScale:yScale];
-        [showView setDrawActionList:list];
+        [showView setDrawActionList:feed.drawData.drawActionList];
         [self insertSubview:showView aboveSubview:self.drawImage];
-        [showView release];
+//        [showView release];
         [showView show];
-        UIImage *image = [showView createImage];
         
+        UIImage *image = [showView createImage];
+
         [self.drawImage setImage:image];
         feed.drawImage = image;
+        self.drawImage.hidden = NO;
+        
+        showView.drawActionList = nil;
         [showView removeFromSuperview];
-        feed.drawData = nil;        
-
+        showView = nil;
         //save image.
-        [[FeedManager defaultManager] saveFeed:feed.feedId thumbImage:image];
+        [[FeedManager defaultManager] saveFeed:feed.feedId largeImage:image];
     }
+    feed.drawData = nil;
+    feed.pbDraw = nil;
 
     
     if (feed.showAnswer) {

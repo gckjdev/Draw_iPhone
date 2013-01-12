@@ -217,7 +217,7 @@
 "kReport_problems" = "報告問題";
 "kGive_some_advice" = "反饋意見";
 "kAbout_us" = "關於我們";
-"kMore_apps" = "更多應用";
+"kMore_apps" = "應用推薦";
 "kGive_a_5-star_review" = "給個好評";
 "kSure_delete" = "刪除作品";
 "kAre_you_sure" = "確定刪除?";
@@ -327,7 +327,7 @@
 "kFeedbackFail" = "發送失敗，稍後再試試。";
 "kSendingFeedback" = "正在發送...";
 "kNoTipItem" = "對不起，你沒有錦囊了，請去商店購買。";
-"kMore_apps" = "更多應用";
+"kMore_apps" = "應用推薦";
 "kNextStep" = "下一步";
 "kWordLengthTip" = "溫馨小提示：當前猜詞的字數為［%d］";
 "kContentNull" = "搜索條件不能為空";
@@ -936,14 +936,14 @@
 "kHomeMenuTypeDrawTimeline" = "動態";
 "kHomeMenuTypeDrawRank" = "畫榜";
 "kHomeMenuTypeDrawContest" = "比賽";
-"kHomeMenuTypeDrawBBS" = "論壇";
+"kHomeMenuTypeDrawBBS" = "玩家論壇";
 "HomeMenuTypeDrawApps" = "應用推薦";
 "HomeMenuTypeDrawFreeCoins" = "免費金幣";
 "kHomeMenuTypeDrawHome" = "主頁";
 "kHomeMenuTypeDrawOpus" = "作品";
 "kHomeMenuTypeDrawMessage" = "消息";
 "kHomeMenuTypeDrawSetting" = "設置";
-"kHomeMenuTypeDrawShop" = "商店";
+"kHomeMenuTypeDrawShop" = "道具商店";
 
 "kCharge" = "充值";
 "kFreeCoin" = "免費金幣";

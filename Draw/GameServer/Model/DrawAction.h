@@ -36,6 +36,8 @@ typedef enum {
 
 + (DrawAction *)actionWithType:(DRAW_ACTION_TYPE)aType paint:(Paint*)aPaint;
 + (DrawAction *)changeBackgroundActionWithColor:(DrawColor *)color;
++ (DrawAction *)clearScreenAction;
+
 
 + (BOOL)isDrawActionListBlank:(NSArray *)actionList;
 + (NSMutableArray *)getTheLastActionListWithoutClean:(NSArray *)actionList;

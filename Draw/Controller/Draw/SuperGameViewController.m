@@ -409,17 +409,21 @@
     [ChatMessageView showExpression:expression title:title origin:origin superView:self.view];
 }
 
-- (void)throwTool:(ToolView*)toolView
+- (void)showAnimationThrowTool:(ToolView*)toolView isItemEnough:(BOOL)itemEnough
 {
     UIImageView* throwItem = [[[UIImageView alloc] initWithFrame:ITEM_FRAME] autorelease];
     throwItem.center = self.view.center;
     [self.view addSubview:throwItem];
     [throwItem setImage:toolView.imageView.image];
     if (toolView.itemType == ItemTypeTomato) {
-        [DrawGameAnimationManager showThrowTomato:throwItem animInController:self rolling:NO];
+        [DrawGameAnimationManager showThrowTomato:throwItem animInController:self rolling:NO itemEnough:itemEnough completion:^(BOOL finished) {
+            //
+        }];
     }
     if (toolView.itemType == ItemTypeFlower) {
-        [DrawGameAnimationManager showThrowFlower:throwItem animInController:self rolling:NO];
+        [DrawGameAnimationManager showThrowFlower:throwItem animInController:self rolling:NO itemEnough:itemEnough completion:^(BOOL finished) {
+            //
+        }];
     }
 }
 

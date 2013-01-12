@@ -104,7 +104,7 @@
 }
 
 #pragma mark - throw item animation
-- (void)throwTool:(ToolView*)toolView
+- (void)showAnimationThrowTool:(ToolView*)toolView isItemEnough:(BOOL)itemEnough
 {
     _throwingItem = [[[UIImageView alloc] initWithFrame:ITEM_FRAME] autorelease];
     [self.view addSubview:_throwingItem];
@@ -112,13 +112,13 @@
     _throwingItem.center = self.view.center;
     
     if (toolView.itemType == ItemTypeTomato) {
-        [DrawGameAnimationManager showThrowTomato:_throwingItem 
-                                 animInController:self
-                                          rolling:NO];
+        [DrawGameAnimationManager showThrowTomato:_throwingItem animInController:self rolling:NO itemEnough:itemEnough completion:^(BOOL finished) {
+            //
+        }];
     }else if (toolView.itemType == ItemTypeFlower) {
-        [DrawGameAnimationManager showThrowFlower:_throwingItem
-                                 animInController:self 
-                                          rolling:NO];
+        [DrawGameAnimationManager showThrowFlower:_throwingItem animInController:self rolling:NO itemEnough:itemEnough completion:^(BOOL finished) {
+            //
+        }];
     }
 }
 
@@ -709,7 +709,7 @@
 
 
 
-- (BOOL)bomb:(ToolView *)toolView
+- (BOOL)bomb:(ToolView *)toolView isItemEnough:(BOOL)itemEnough
 {
     if ([self.candidateString length] == 0) {
         return NO;
@@ -718,14 +718,19 @@
     NSString *result  = [WordManager bombCandidateString:self.candidateString word:self.word];
     [self updateCandidateViewsWithText:result];
     [toolView setEnabled:NO];
+    
+    if (!itemEnough) {
+        [[CommonMessageCenter defaultCenter] postMessageWithText:[NSString stringWithFormat:NSLS(@"kBuyABagAndUse"), 11] delayTime:1];
+    }
+    
     return YES;
 }
 
 
-- (BOOL)throwFlower:(ToolView *)toolView
+- (BOOL)throwFlower:(ToolView *)toolView isItemEnough:(BOOL)itemEnough
 {
     // add throw animation
-    [self throwTool:toolView];
+    [self showAnimationThrowTool:toolView isItemEnough:itemEnough];
     
     // send request for item usage and award
     [[ItemService defaultService] sendItemAward:toolView.itemType 
@@ -739,10 +744,10 @@
     return NO;
 }
 
-- (BOOL)throwTomato:(ToolView *)toolView
+- (BOOL)throwTomato:(ToolView *)toolView isItemEnough:(BOOL)itemEnough
 {
     // throw animation
-    [self throwTool:toolView];
+    [self showAnimationThrowTool:toolView isItemEnough:itemEnough];
     
     // send request for item usage and award
     [[ItemService defaultService] sendItemAward:toolView.itemType 
@@ -767,25 +772,33 @@
         }
     
     NSInteger amout = [[ItemManager defaultManager] amountForItem:toolView.itemType];
+    BOOL itemEnough = YES;
     if(amout <= 0){
-        CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kNoItemTitle") message:NSLS(@"kNoItemMessage") style:CommonDialogStyleDoubleButton delegate:self];
-        dialog.tag = ITEM_TAG_OFFSET + toolView.itemType;
-        [dialog showInView:self.view];
-        return;
+        //        CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kNoItemTitle") message:NSLS(@"kNoItemMessage") style:CommonDialogStyleDoubleButton delegate:self];
+        //        dialog.tag = ITEM_TAG_OFFSET + toolView.itemType;
+        //        [dialog showInView:self.view];
+        //        return;
+        Item* item = [Item itemWithType:toolView.itemType amount:1];
+        int result = [[AccountService defaultService] buyItem:toolView.itemType itemCount:1 itemCoins:(item.price/item.buyAmountForOnce)];
+        itemEnough = NO;
+        if (result == ERROR_COINS_NOT_ENOUGH) {
+            [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kNotEnoughCoinOrItem") delayTime:1];
+            return;
+        }
     }
     BOOL flag = NO;
     if (toolView.itemType == ItemTypeTips) {
-        flag = [self bomb:toolView];
+        flag = [self bomb:toolView isItemEnough:itemEnough];
     }else if(toolView.itemType == ItemTypeFlower)
     {
-        flag = [self throwFlower:toolView];
+        flag = [self throwFlower:toolView isItemEnough:itemEnough];
     }else if(toolView.itemType == ItemTypeTomato)
     {
-        flag = [self throwTomato:toolView];
+        flag = [self throwTomato:toolView isItemEnough:itemEnough];
     }
     if (flag) {
-        [[AccountService defaultService] consumeItem:ItemTypeTips 
-                                              amount:toolView.itemType];        
+        [[AccountService defaultService] consumeItem:ItemTypeTips
+                                              amount:toolView.itemType];
         [toolView decreaseNumber];
     }
 

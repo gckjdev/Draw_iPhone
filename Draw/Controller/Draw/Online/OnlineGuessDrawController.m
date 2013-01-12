@@ -39,6 +39,8 @@
 #import "VendingController.h"
 #import "UseItemScene.h"
 #import "DrawSoundManager.h"
+#import "AccountService.h"
+#import "Item.h"
 
 #define PAPER_VIEW_TAG 20120403
 #define TOOLVIEW_CENTER (([DeviceDetection isIPAD]) ? CGPointMake(695, 920):CGPointMake(284, 424))
@@ -642,7 +644,7 @@
     [drawGameService guess:answer guessUserId:drawGameService.session.userId];
 }
 
-- (BOOL)bomb:(ToolView *)toolView
+- (BOOL)bomb:(ToolView *)toolView isItemEnough:(BOOL)itemEnough
 {
     if ([self.candidateString length] == 0) {
         return NO;
@@ -651,14 +653,19 @@
     NSString *result  = [WordManager bombCandidateString:self.candidateString word:self.word];
     [self updateCandidateViewsWithText:result];
     [toolView setEnabled:NO];
+    
+    if (!itemEnough) {
+        [[CommonMessageCenter defaultCenter] postMessageWithText:[NSString stringWithFormat:NSLS(@"kBuyABagAndUse"), 11] delayTime:1];
+    }
+    
     return YES;
 }
 
-
-- (BOOL)throwFlower:(ToolView *)toolView
+ 
+- (BOOL)throwFlower:(ToolView *)toolView isItemEnough:(BOOL)itemEnough
 {
 //    [[DrawGameService defaultService] rankGameResult:RANK_FLOWER];
-    [self throwTool:toolView];
+    [self showAnimationThrowTool:toolView isItemEnough:itemEnough];
     [_scene throwAFlower];
     // send request for item usage and award
     [[ItemService defaultService] sendItemAward:toolView.itemType 
@@ -676,12 +683,12 @@
     return NO;
 }
 
-- (BOOL)throwTomato:(ToolView *)toolView
+- (BOOL)throwTomato:(ToolView *)toolView isItemEnough:(BOOL)itemEnough
 {
 //    [[DrawGameService defaultService] rankGameResult:RANK_TOMATO];
 
     [toolView decreaseNumber];
-    [self throwTool:toolView];
+    [self showAnimationThrowTool:toolView isItemEnough:itemEnough];
     [_scene throwATomato];
     // send request for item usage and award
     [[ItemService defaultService] sendItemAward:toolView.itemType 
@@ -701,21 +708,29 @@
 - (void)didPickedPickView:(PickView *)pickView toolView:(ToolView *)toolView
 {
     NSInteger amout = [[ItemManager defaultManager] amountForItem:toolView.itemType];
+    BOOL itemEnough = YES;
     if(amout <= 0){
-        CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kNoItemTitle") message:NSLS(@"kNoItemMessage") style:CommonDialogStyleDoubleButton delegate:self];
-        dialog.tag = ITEM_TAG_OFFSET + toolView.itemType;
-        [dialog showInView:self.view];
-        return;
+//        CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kNoItemTitle") message:NSLS(@"kNoItemMessage") style:CommonDialogStyleDoubleButton delegate:self];
+//        dialog.tag = ITEM_TAG_OFFSET + toolView.itemType;
+//        [dialog showInView:self.view];
+//        return;
+        Item* item = [Item itemWithType:toolView.itemType amount:1];
+        int result = [[AccountService defaultService] buyItem:toolView.itemType itemCount:1 itemCoins:(item.price/item.buyAmountForOnce)];
+        itemEnough = NO;
+        if (result == ERROR_COINS_NOT_ENOUGH) {
+            [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kNotEnoughCoinOrItem") delayTime:1];
+            return;
+        }
     }
     BOOL flag = NO;
     if (toolView.itemType == ItemTypeTips) {
-        flag = [self bomb:toolView];
+        flag = [self bomb:toolView isItemEnough:itemEnough];
     }else if(toolView.itemType == ItemTypeFlower)
     {
-        flag = [self throwFlower:toolView];
+        flag = [self throwFlower:toolView isItemEnough:itemEnough];
     }else if(toolView.itemType == ItemTypeTomato)
     {
-        flag = [self throwTomato:toolView];
+        flag = [self throwTomato:toolView isItemEnough:itemEnough];
     }
     if (flag) {
         [[AccountService defaultService] consumeItem:ItemTypeTips 

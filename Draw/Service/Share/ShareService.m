@@ -159,7 +159,7 @@ static ShareService* _defaultService;
 //    [label drawTextInRect:CGRectMake(48, 90, 224, 25)];
 //    [image drawInRect:CGRectMake(32, 136, 256, 245)];        
 //    UIImage *resultingImage = UIGraphicsGetImageFromCurrentImageContext();
-    UIImage* resultingImage = [self synthesisWeiboImage:image text:@"@猜猜画画"];
+    UIImage* resultingImage = [self synthesisImage:image waterMarkText:[ConfigManager getShareImageWaterMark]];
     
     NSData* imageData = UIImagePNGRepresentation(resultingImage);
     NSString* path = [NSString stringWithFormat:@"%@/%@.png", NSTemporaryDirectory(), [NSString GetUUID]];
@@ -175,8 +175,11 @@ static ShareService* _defaultService;
 #define SHADOW_WIDTH 5
 #define SHADOW_BLUR  5
 
-- (UIImage*)synthesisWeiboImage:(UIImage*)srcImage text:(NSString*)text
+- (UIImage*)synthesisImage:(UIImage*)srcImage waterMarkText:(NSString*)text
 {
+    if (text == nil) {
+        return srcImage;
+    }
     float labelHeight = srcImage.size.height*0.07;
     int labelFontSize = (int)labelHeight;
     
@@ -214,25 +217,15 @@ static ShareService* _defaultService;
     return resultingImage;
 }
 
-- (void)shareImage:(UIImage*)srcImage
-              text:(NSString*)text
-         waterMark:(NSString*)waterMark
-            viaSNS:(int)snsType
-      successBlock:(PPSNSSuccessBlock)successBlock
-      failureBlock:(PPSNSFailureBlock)failureBlock
+- (NSString*)synthesisImageFile:(NSString*)filePath waterMarkText:(NSString*)text
 {
-    PPSNSCommonService* snsService = [[PPSNSIntegerationService defaultService] snsServiceByType:snsType];
-
     NSString* path = [NSString stringWithFormat:@"%@/%@.jpg", NSTemporaryDirectory(), [NSString GetUUID]];
-    UIImage* image = [[ShareService defaultService] synthesisWeiboImage:srcImage text:waterMark];
+    UIImage* image = [self synthesisImage:[UIImage imageWithContentsOfFile:filePath] waterMarkText:text];
     BOOL result=[[image data] writeToFile:path atomically:YES];
     if (result) {
-        [snsService publishWeibo:text imageFilePath:path successBlock:successBlock failureBlock:failureBlock];
-    } else {
-        PPDebug(@"<ShareService> Save image to tempory file failed!");
+        return path;
     }
-
-    return;
+    return nil;
 }
 
 @end

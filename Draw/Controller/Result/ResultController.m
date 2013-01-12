@@ -555,12 +555,12 @@
         
     // send request
     
-    [[ItemService defaultService] sendItemAward:toolView.itemType
-                                   targetUserId:_drawUserId
-                                      isOffline:[self isOffline] 
-                                     feedOpusId:_feed.feedId
-                                     feedAuthor:_feed.author.userId];  
-     
+//    [[ItemService defaultService] sendItemAward:toolView.itemType
+//                                   targetUserId:_drawUserId
+//                                      isOffline:[self isOffline] 
+//                                     feedOpusId:_feed.feedId
+//                                     feedAuthor:_feed.author.userId];  
+    
     // update UI
 //    [self setUpAndDownButtonEnabled:NO];
     [toolView decreaseNumber];
@@ -575,11 +575,11 @@
         return;
 
     // send request
-    [[ItemService defaultService] sendItemAward:toolView.itemType
-                                   targetUserId:_drawUserId
-                                      isOffline:[self isOffline]
-                                     feedOpusId:_feed.feedId
-                                     feedAuthor:_feed.author.userId];
+//    [[ItemService defaultService] sendItemAward:toolView.itemType
+//                                   targetUserId:_drawUserId
+//                                      isOffline:[self isOffline]
+//                                     feedOpusId:_feed.feedId
+//                                     feedAuthor:_feed.author.userId];
     
     // update UI
 //    [self setUpAndDownButtonEnabled:NO];
@@ -766,14 +766,14 @@
     }
     
     
-    if ([self isOffline] && _feed != nil) {
-        [[ItemService defaultService] sendItemAward:item.type
-                                       targetUserId:_feed.author.userId
-                                          isOffline:YES
-                                         feedOpusId:_feed.feedId
-                                         feedAuthor:_feed.author.userId
-                                            forFree:NO];//why NO? because only if guess contest opus cost free item, and contest opus can not be guessed
-    }
+    
+    [[ItemService defaultService] sendItemAward:item.type
+                                   targetUserId:_feed.author.userId
+                                      isOffline:[self isOffline]
+                                     feedOpusId:((_feed != nil)?_feed.feedId:nil)
+                                     feedAuthor:((_feed != nil)?_feed.author.userId:nil)
+                                        forFree:NO];//why NO? because only if guess contest opus cost free item, and contest opus can not be guessed
+     
     return YES;
 }
 

@@ -117,13 +117,13 @@
 {
     _number = number;
     NSString *numberString = nil;
-    numberButton.hidden = YES;
     if (number >= 0) {
         numberString = @"N";
         if (number < 100) {
             numberString = [NSString stringWithFormat:@"%d",number];                
         }
-        numberButton.hidden = NO;
+    } else {
+        numberString = @"0";
     }
     [numberButton setTitle:numberString forState:UIControlStateNormal];
 }

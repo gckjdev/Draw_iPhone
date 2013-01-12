@@ -29,6 +29,7 @@ static PBExtensionRegistry* extensionRegistry = nil;
 @property (retain) NSString* nickName;
 @property (retain) NSString* avatar;
 @property BOOL gender;
+@property int32_t version;
 @property (retain) NSMutableArray* mutableDrawDataList;
 @property (retain) NSString* opusId;
 @end
@@ -96,6 +97,13 @@ static PBExtensionRegistry* extensionRegistry = nil;
 - (void) setGender:(BOOL) value {
   gender_ = !!value;
 }
+- (BOOL) hasVersion {
+  return !!hasVersion_;
+}
+- (void) setHasVersion:(BOOL) value {
+  hasVersion_ = !!value;
+}
+@synthesize version;
 @synthesize mutableDrawDataList;
 - (BOOL) hasOpusId {
   return !!hasOpusId_;
@@ -123,6 +131,7 @@ static PBExtensionRegistry* extensionRegistry = nil;
     self.nickName = @"";
     self.avatar = @"";
     self.gender = NO;
+    self.version = 0;
     self.opusId = @"";
   }
   return self;
@@ -191,6 +200,9 @@ static PBDraw* defaultPBDrawInstance = nil;
   if (self.hasGender) {
     [output writeBool:8 value:self.gender];
   }
+  if (self.hasVersion) {
+    [output writeInt32:9 value:self.version];
+  }
   for (PBDrawAction* element in self.drawDataList) {
     [output writeMessage:10 value:element];
   }
@@ -229,6 +241,9 @@ static PBDraw* defaultPBDrawInstance = nil;
   }
   if (self.hasGender) {
     size += computeBoolSize(8, self.gender);
+  }
+  if (self.hasVersion) {
+    size += computeInt32Size(9, self.version);
   }
   for (PBDrawAction* element in self.drawDataList) {
     size += computeMessageSize(10, element);
@@ -335,6 +350,9 @@ static PBDraw* defaultPBDrawInstance = nil;
   if (other.hasGender) {
     [self setGender:other.gender];
   }
+  if (other.hasVersion) {
+    [self setVersion:other.version];
+  }
   if (other.mutableDrawDataList.count > 0) {
     if (result.mutableDrawDataList == nil) {
       result.mutableDrawDataList = [NSMutableArray array];
@@ -395,6 +413,10 @@ static PBDraw* defaultPBDrawInstance = nil;
       }
       case 64: {
         [self setGender:[input readBool]];
+        break;
+      }
+      case 72: {
+        [self setVersion:[input readInt32]];
         break;
       }
       case 82: {
@@ -536,6 +558,22 @@ static PBDraw* defaultPBDrawInstance = nil;
 - (PBDraw_Builder*) clearGender {
   result.hasGender = NO;
   result.gender = NO;
+  return self;
+}
+- (BOOL) hasVersion {
+  return result.hasVersion;
+}
+- (int32_t) version {
+  return result.version;
+}
+- (PBDraw_Builder*) setVersion:(int32_t) value {
+  result.hasVersion = YES;
+  result.version = value;
+  return self;
+}
+- (PBDraw_Builder*) clearVersion {
+  result.hasVersion = NO;
+  result.version = 0;
   return self;
 }
 - (NSArray*) drawDataList {

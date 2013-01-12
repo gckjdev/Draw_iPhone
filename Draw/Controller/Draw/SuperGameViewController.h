@@ -62,8 +62,7 @@
 - (void)addScore:(NSInteger)score toUser:(NSString *)userId;
 
 - (void)showGroupChatView;
-
-- (void)throwTool:(ToolView*)toolView;
+- (void)showAnimationThrowTool:(ToolView*)toolView isItemEnough:(BOOL)itemEnough;
 - (void)recieveFlower;
 - (void)recieveTomato;
 
