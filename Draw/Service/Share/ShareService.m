@@ -17,6 +17,7 @@
 #import "PPSNSIntegerationService.h"
 #import "GameSNSService.h"
 #import "UIImageExt.h"
+#import "RoundLineLabel.h"
 
 @implementation ShareService
 
@@ -173,43 +174,49 @@ static ShareService* _defaultService;
 }
 
 #define SHADOW_WIDTH 5
-#define SHADOW_BLUR  5
+#define SHADOW_BLUR  10
 
 - (UIImage*)synthesisImage:(UIImage*)srcImage waterMarkText:(NSString*)text
 {
     if (text == nil) {
         return srcImage;
     }
-    float labelHeight = srcImage.size.height*0.07;
+    float labelHeight = srcImage.size.height*0.05;
     int labelFontSize = (int)labelHeight;
+    UIColor* imageShadowColor = [UIColor colorWithRed:112/255.0 green:109/255.0 blue:109/255.0 alpha:1.0];
+    UIColor* labelShadowColor = [UIColor colorWithRed:108/255.0 green:107/255.0 blue:107/255.0 alpha:1.0];
     
-    UILabel* label = [[[UILabel alloc] initWithFrame:CGRectMake(0, 0, srcImage.size.width + shadow*2, labelHeight)] autorelease];
+    RoundLineLabel* label = [[[RoundLineLabel alloc] initWithFrame:CGRectMake(0, 0, srcImage.size.width + shadow*2, labelHeight)] autorelease];
     [label setText:text];
     [label setAdjustsFontSizeToFitWidth:YES];
     [label setMinimumFontSize:3];
-    [label setShadowColor:[UIColor whiteColor]];
-    [label setShadowOffset:CGSizeMake(1, 1)];
+    [label setTextColor:[UIColor colorWithRed:123/255.0 green:123/255.0 blue:123/255.0 alpha:1.0]];
     
     [label setFont:[UIFont boldSystemFontOfSize:labelFontSize]];
     [label setTextAlignment:UITextAlignmentCenter];
     
-    UIGraphicsBeginImageContext(CGSizeMake(srcImage.size.width+SHADOW_WIDTH*2, srcImage.size.height + SHADOW_WIDTH + labelHeight));
+    UIGraphicsBeginImageContext(CGSizeMake(srcImage.size.width+SHADOW_WIDTH*2, srcImage.size.height + SHADOW_WIDTH*3 + labelHeight));
 
     CGContextRef ref = UIGraphicsGetCurrentContext();
-    CGContextSetShadowWithColor(ref, CGSizeMake(0, SHADOW_WIDTH), SHADOW_BLUR, [UIColor blackColor].CGColor);
+    
+    //line of left
+    CGContextSetShadowWithColor(ref, CGSizeMake(-SHADOW_WIDTH, 0), SHADOW_BLUR, imageShadowColor.CGColor);
+    
+    //right line
+    CGContextSetShadowWithColor(ref, CGSizeMake(SHADOW_WIDTH, 0), SHADOW_BLUR, imageShadowColor.CGColor);
+    
+    CGContextSetShadowWithColor(ref, CGSizeMake(0, SHADOW_WIDTH), SHADOW_BLUR, imageShadowColor.CGColor);
     
     CGRect rect = CGRectMake(SHADOW_WIDTH, 0, srcImage.size.width, srcImage.size.height);
     [srcImage drawInRect:rect];
     
-    //line of left
-    CGContextSetShadow(ref, CGSizeMake(-SHADOW_WIDTH, 0), SHADOW_BLUR);
-
-    //right line
-    CGContextSetShadow(ref, CGSizeMake(SHADOW_WIDTH, 0), SHADOW_BLUR);
+    
 
     CGContextSaveGState(ref);
     
-    [label drawTextInRect:CGRectMake(0, srcImage.size.height+SHADOW_WIDTH, srcImage.size.width, labelHeight)];
+//    [label drawTextInRect:CGRectMake(0, srcImage.size.height+SHADOW_WIDTH*2, srcImage.size.width, labelHeight)];
+    [label drawTextInRect:CGRectMake(0, srcImage.size.height+SHADOW_WIDTH*2, srcImage.size.width, labelHeight)];
+    
 
     
     UIImage *resultingImage = UIGraphicsGetImageFromCurrentImageContext();

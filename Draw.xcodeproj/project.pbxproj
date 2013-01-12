@@ -253,6 +253,7 @@
 		C2117BE5168EEEFB000F36EE /* draw_home_bulletin@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2117BE4168EEEFB000F36EE /* draw_home_bulletin@2x.png */; };
 		C213091B15E349E20072A18E /* DiceUserInfoView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C213091A15E349E20072A18E /* DiceUserInfoView~ipad.xib */; };
 		C21309FB15E774390072A18E /* DiceColorManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C21309FA15E774390072A18E /* DiceColorManager.m */; };
+		C2183E7116A119C9003DAA11 /* RoundLineLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = C2183E7016A119C9003DAA11 /* RoundLineLabel.m */; };
 		C223232D165C659E00D7ECE4 /* ZJHSettingView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C223232C165C659E00D7ECE4 /* ZJHSettingView~ipad.xib */; };
 		C223396A164E3CA100D2C123 /* AppleOpenALSupport.c in Sources */ = {isa = PBXBuildFile; fileRef = C2233961164E3CA100D2C123 /* AppleOpenALSupport.c */; };
 		C223396B164E3CA100D2C123 /* CMOpenALSound.m in Sources */ = {isa = PBXBuildFile; fileRef = C2233964164E3CA100D2C123 /* CMOpenALSound.m */; };
@@ -6655,6 +6656,8 @@
 		C213091A15E349E20072A18E /* DiceUserInfoView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "DiceUserInfoView~ipad.xib"; sourceTree = "<group>"; };
 		C21309F915E774390072A18E /* DiceColorManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiceColorManager.h; sourceTree = "<group>"; };
 		C21309FA15E774390072A18E /* DiceColorManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiceColorManager.m; sourceTree = "<group>"; };
+		C2183E6F16A119C9003DAA11 /* RoundLineLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoundLineLabel.h; sourceTree = "<group>"; };
+		C2183E7016A119C9003DAA11 /* RoundLineLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoundLineLabel.m; sourceTree = "<group>"; };
 		C223232C165C659E00D7ECE4 /* ZJHSettingView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ZJHSettingView~ipad.xib"; sourceTree = "<group>"; };
 		C2233961164E3CA100D2C123 /* AppleOpenALSupport.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = AppleOpenALSupport.c; sourceTree = "<group>"; };
 		C2233962164E3CA100D2C123 /* AppleOpenALSupport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppleOpenALSupport.h; sourceTree = "<group>"; };
@@ -10312,6 +10315,15 @@
 			path = DiceColorManager;
 			sourceTree = "<group>";
 		};
+		C2183E6E16A119A5003DAA11 /* RoundLineLabel */ = {
+			isa = PBXGroup;
+			children = (
+				C2183E6F16A119C9003DAA11 /* RoundLineLabel.h */,
+				C2183E7016A119C9003DAA11 /* RoundLineLabel.m */,
+			);
+			path = RoundLineLabel;
+			sourceTree = "<group>";
+		};
 		C2233960164E3CA100D2C123 /* SoundEngine */ = {
 			isa = PBXGroup;
 			children = (
@@ -10998,6 +11010,7 @@
 		CA103D061509A56100F60C03 /* Core-Components-View */ = {
 			isa = PBXGroup;
 			children = (
+				C2183E6E16A119A5003DAA11 /* RoundLineLabel */,
 				A41CF588165790380011AE45 /* RRSGlowLabel */,
 				A40D71DA16553575000CC598 /* FXLabel */,
 				C20D4B2215E1D77100074885 /* CommonInfoView */,
@@ -21634,6 +21647,7 @@
 				A4C1E919169BE85E00644682 /* DraftCell.m in Sources */,
 				A4C1E91C169BE85E00644682 /* DraftsView.m in Sources */,
 				A48B098D169E97DB00B56975 /* FreeCoinsControllerViewController.m in Sources */,
+				C2183E7116A119C9003DAA11 /* RoundLineLabel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
