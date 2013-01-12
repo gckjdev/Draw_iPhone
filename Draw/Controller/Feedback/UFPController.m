@@ -9,6 +9,9 @@
 #import "UFPController.h"
 #import "UMTableViewCell.h"
 #import "DeviceDetection.h"
+#import "UIImageView+WebCache.h"
+
+#define TABLE_VIEW_FRAME ([DeviceDetection isIPAD] ? CGRectMake(0, 110, 768, 1004-110) : CGRectMake(0, 44, 320, 460-44))
 
 @interface UFPController ()
 
@@ -27,6 +30,7 @@
     [_mPromoterDatas release];
     _mPromoterDatas = nil;
     [_backgroundImageView release];
+    [_mGridView release];
     [super dealloc];
 }
 
@@ -44,13 +48,9 @@
     [super viewDidLoad];
     
     [self.backgroundImageView setImage:[UIImage imageNamed:[GameApp background]]];
-    
     [self.titleLabel setText:NSLS(@"kMore_apps")];
-    if ([DeviceDetection isIPAD]) {
-        self.mTableView = [[[UMUFPTableView alloc] initWithFrame:CGRectMake(0, 110, 768, 1004-110) style:UITableViewStylePlain appkey:@"4e2d3cc0431fe371c3000029" slotId:@"" currentViewController:self] autorelease]; 
-    } else {
-        self.mTableView = [[[UMUFPTableView alloc] initWithFrame:CGRectMake(0, 44, 320, 460-44) style:UITableViewStylePlain appkey:@"4e2d3cc0431fe371c3000029" slotId:@"" currentViewController:self] autorelease]; 
-    }    
+    
+    self.mTableView = [[[UMUFPTableView alloc] initWithFrame:TABLE_VIEW_FRAME style:UITableViewStylePlain appkey:@"4e2d3cc0431fe371c3000029" slotId:@"" currentViewController:self] autorelease];
     self.mTableView.dataSource = self;
     self.mTableView.delegate = self;
     self.mTableView.dataLoadDelegate = self; 
@@ -62,11 +62,26 @@
     | UIViewAutoresizingFlexibleWidth
     | UIViewAutoresizingFlexibleHeight;
     
-    [self.view addSubview:self.mTableView]; 
-    //[self.view insertSubview:maskView aboveSubview:self.mTableView]; 
+    [self.view addSubview:self.mTableView];
+
     [self showActivityWithText:NSLS(@"kLoading")];
     [self.mTableView requestPromoterDataInBackground];
-    // Do any additional setup after loading the view from its nib.
+    
+//    self.mGridView = [[[UMUFPGridView alloc] initWithFrame:TABLE_VIEW_FRAME appkey:@"4e2d3cc0431fe371c3000029" slotId:@"" currentViewController:self] autorelease];
+//    self.mGridView.datasource = self;
+//    self.mGridView.delegate = self;
+//    self.mGridView.dataLoadDelegate = self;
+//    [self.mGridView setBackgroundColor:[UIColor clearColor]];
+//    self.mGridView.autoresizingMask = !UIViewAutoresizingFlexibleBottomMargin
+//    | !UIViewAutoresizingFlexibleTopMargin
+//    | !UIViewAutoresizingFlexibleLeftMargin
+//    | !UIViewAutoresizingFlexibleRightMargin
+//    | UIViewAutoresizingFlexibleWidth
+//    | UIViewAutoresizingFlexibleHeight;
+//    
+//    [self.view addSubview:self.mGridView];
+//    [self showActivityWithText:NSLS(@"kLoading")];
+//    [self.mGridView requestPromoterDataInBackground];
 }
 
 - (void)viewDidUnload
@@ -139,7 +154,7 @@
     {
         self.mPromoterDatas = promoters;
         [self.mTableView reloadData];
-    }  
+    }
 }
 
 - (void)UMUFPTableViewActionDidFinish:(UMUFPTableView *)tableview promoterIndex:(NSInteger)promoterIndex {
@@ -150,6 +165,54 @@
 - (void)UMUFPTableView:(UMUFPTableView *)tableview didLoadDataFailWithError:(NSError *)error {
     
     NSLog(@"%s", __PRETTY_FUNCTION__);
+    
+}
+
+
+
+#pragma mark - GridViewDelegate
+
+- (void)gridView:(UMUFPGridView *)gridView didSelectRowAtIndexPath:(IndexPath *)indexPath;    //called when item at indexPath clicked
+{
+    
+}
+
+- (CGFloat)gridView:(UMUFPGridView *)gridView heightForRowAtIndexPath:(IndexPath *)indexPath; //default is 80.0f
+{
+    return 80;
+}
+
+#pragma mark - GridViewDataSource
+
+- (NSInteger)numberOfColumsInGridView:(UMUFPGridView *)gridView; //number of columns per page
+{
+    return 3;
+}
+
+- (UIView *)gridView:(UMUFPGridView *)gridView cellForRowAtIndexPath:(IndexPath *)indexPath; //view for indexPath, has reuse mechanism
+{
+    return nil;
+}
+
+- (void)gridView:(UMUFPGridView *)gridView relayoutCellSubview:(UIView *)view withIndexPath:(IndexPath *)indexPath; //content for the releated cell
+{
+    
+}
+
+- (NSInteger)numberOfAppsPerPage:(UMUFPGridView *)gridView;
+{
+    return 15;
+}
+
+#pragma mark - GridViewDataLoadDelegate@protocol 
+
+- (void)UMUFPGridViewDidLoadDataFinish:(UMUFPGridView *)gridView promotersAmount:(NSInteger)promotersAmount; //called when promoter list loaded, [Attention:reloadData will called automaticlly on this point]
+{
+
+}
+
+- (void)UMUFPGridView:(UMUFPGridView *)gridView didLoadDataFailWithError:(NSError *)error; //called when promoter list loaded failed for some reason
+{
     
 }
 

@@ -28,7 +28,7 @@ typedef enum{
 
 
 
-@interface SuperDrawView : UIView
+@interface SuperDrawView : UIControl
 {
     NSMutableArray *_drawActionList;
     

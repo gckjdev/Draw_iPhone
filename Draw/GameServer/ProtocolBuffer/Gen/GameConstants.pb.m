@@ -206,3 +206,13 @@ BOOL DiceGameRuleTypeIsValidValue(DiceGameRuleType value) {
       return NO;
   }
 }
+BOOL PBWordTypeIsValidValue(PBWordType value) {
+  switch (value) {
+    case PBWordTypeSystem:
+    case PBWordTypeCustom:
+    case PBWordTypeHot:
+      return YES;
+    default:
+      return NO;
+  }
+}

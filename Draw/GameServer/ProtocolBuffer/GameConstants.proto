@@ -261,3 +261,11 @@ enum DiceGameRuleType {
     RULE_HIGH = 1;
     RULE_SUPER_HIGH = 2;
 }
+
+
+enum PBWordType {
+    SYSTEM = 1;
+    CUSTOM = 2;
+    HOT = 3;
+}
+

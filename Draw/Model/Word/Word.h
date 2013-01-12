@@ -7,9 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "GameConstants.pb.h"
 
 typedef enum
-{ 
+{
+    WordLevelUnknow = 0,
     WordLevelLow = 1,
     WordLeveLMedium = 2,
     WordLevelHigh = 3
@@ -17,21 +19,37 @@ typedef enum
 
 @interface Word : NSObject<NSCoding>
 {
-    NSString *_text; 
+    NSString *_wordId;
+    PBWordType _wordType;
     WordLevel _level;
     int _score;
 }
 
-@property(nonatomic, retain)NSString *text;
-@property(nonatomic, assign)WordLevel level;
+@property (copy, nonatomic) NSString *text;
 
-- (id)initWithText:(NSString *)text level:(WordLevel)level;
-- (id)initWithText:(NSString *)text level:(WordLevel)level score:(int)score;
-+ (Word *)wordWithText:(NSString *)text level:(WordLevel)level;
-+ (Word *)wordWithText:(NSString *)text level:(WordLevel)level score:(int)score;
+// For Default
++ (Word *)wordWithText:(NSString *)text
+                 level:(WordLevel)level;
 
+// For system word
++ (Word *)sysWordWithText:(NSString *)text
+                    level:(WordLevel)level;
+
+// For my word
++ (Word *)cusWordWithText:(NSString *)text;
+
+// For hot word
++ (Word *)hotWordWithId:(NSString *)wordId
+                   text:(NSString *)text
+                  score:(int)score;
+
+- (NSString *)wordId;
+- (PBWordType)wordType;
+- (WordLevel)level;
 - (NSInteger)score;
+
 - (NSString *)levelDesc;
 - (NSInteger)length;
 
 @end
+

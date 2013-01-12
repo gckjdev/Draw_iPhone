@@ -12,6 +12,7 @@
 #import "LmWallService.h"
 #import "BBSBoardController.h"
 #import "AnalyticsManager.h"
+#import "UMGridViewController.h"
 
 #define SHENGMENG_APP_ID @"90386ecaab5c85559c569ab7c79a61e2"
 #define TAPJOY_APP_ID @"54f9ea4b-beee-4fac-84ee-a34522e67b34"
@@ -76,8 +77,12 @@
 }
 
 - (IBAction)clickDownloadAppsButton:(id)sender {
-    [UIUtils alertWithTitle:@"免费金币获取提示" msg:@"下载免费应用即可获取金币！下载完应用一定要打开才可以获得奖励哦！"];
-    [[LmWallService defaultService] show:self];
+//    [UIUtils alertWithTitle:@"免费金币获取提示" msg:@"下载免费应用即可获取金币！下载完应用一定要打开才可以获得奖励哦！"];
+//    [[LmWallService defaultService] show:self];
+    UMGridViewController *controller = [[UMGridViewController alloc] init];
+    [self.navigationController pushViewController:controller animated:YES];
+    [controller release];
+    
 }
 
 - (IBAction)clickHelpButton:(id)sender {

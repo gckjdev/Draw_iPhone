@@ -12,6 +12,9 @@
 #import "HotWordManager.h"
 #import "OfflineDrawViewController.h"
 #import "UserService.h"
+#import "AccountService.h"
+#import "Item.h"
+#import "CommonMessageCenter.h"
 
 #define CONVERT_VIEW_FRAME_TO_TOP_VIEW(v) [[v superview] convertRect:v.frame toView:self.view]
 
@@ -111,7 +114,7 @@
 
 - (void)didSelecCustomWord:(NSString *)word
 {
-    Word *myWord = [Word wordWithText:word level:WordLeveLMedium];
+    Word *myWord = [Word cusWordWithText:word];
     [OfflineDrawViewController startDraw:myWord fromController:self];
 }
 
@@ -131,6 +134,18 @@
         inputDialog.targetTextField.placeholder = NSLS(@"kInputWordPlaceholder");
         [inputDialog showInView:self.view];
     }else{
+        if (word.wordType == PBWordTypeHot) {
+            PPDebug(@"Hot Word Selected!");
+            if ([[AccountService defaultService] consumeItem:ItemTypeTips amount:1] ==  ERROR_ITEM_NOT_ENOUGH) {
+                if ([[AccountService defaultService] buyItem:ItemTypeTips itemCount:1 itemCoins:[[Item tips] unitPrice]] == ERROR_COINS_NOT_ENOUGH) {
+                    [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kNotEnoughCoin") delayTime:1 isHappy:NO];
+                    return;
+                }else {
+                    [[AccountService defaultService] consumeItem:ItemTypeTips amount:1];
+                }
+            }
+        }
+        
         [OfflineDrawViewController startDraw:word fromController:self];
     }
 }

@@ -501,7 +501,7 @@
 {
     if (wordText) {
         PPDebug(@"<ShowDrawController> ReceiveWord:%@", wordText);
-        Word *word = [[[Word alloc] initWithText:wordText level:wordLevel]autorelease];
+        Word *word = [Word wordWithText:wordText level:wordLevel];
         [self updateTargetViews:word];
         [self updateCandidateViews:word lang:language];
     }else{

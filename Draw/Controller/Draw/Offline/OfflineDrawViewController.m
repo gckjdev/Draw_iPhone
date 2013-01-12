@@ -127,8 +127,6 @@
     OfflineDrawViewController *vc = [[OfflineDrawViewController alloc] initWithWord:word lang:language];
     [fromController.navigationController pushViewController:vc animated:YES];   
     [vc release];
-    
-
 }
 
 + (void)startDraw:(Word *)word 
@@ -263,11 +261,6 @@
 
 
 #define DEFAULT_COLOR_NUMBER 5
-
-
-
-
-
 
 #pragma mark - Update Data
 

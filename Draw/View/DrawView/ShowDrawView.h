@@ -26,18 +26,12 @@ typedef enum{
 - (void)didLongClickShowDrawView:(ShowDrawView *)showDrawView;
 @end
 
-//@class DrawColor;
-//@class DrawAction;
+
 @class PenView;
 
 @interface ShowDrawView : SuperDrawView<UIGestureRecognizerDelegate>
 {
     
-    NSInteger _playingActionIndex;
-    NSInteger _playingPointIndex;
-    
-    BOOL _showPenHidden;
-    PenView *pen;
 
 
 }

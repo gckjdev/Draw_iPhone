@@ -254,12 +254,11 @@ typedef enum {
 
 - (BOOL)canRevoke
 {
-    return YES;
+    return [_drawActionList count] > 0;
 }
 - (void)revoke
 {
     if ([self canRevoke]) {
-        
         id obj = [_drawActionList lastObject];
         [_redoStack push:obj];
         [_drawActionList removeLastObject];
@@ -273,11 +272,13 @@ typedef enum {
 }
 - (void)redo
 {
-    DrawAction *action = [_redoStack pop];
-    if (action) {
-        [self.drawActionList addObject:action];
-        [self drawAction:action inContext:showContext];
-        [self setNeedsDisplayShowCacheLayer:NO];
+    if ([self canRedo]) {
+        DrawAction *action = [_redoStack pop];
+        if (action) {
+            [self.drawActionList addObject:action];
+            [self drawAction:action inContext:showContext];
+            [self setNeedsDisplayShowCacheLayer:NO];
+        }        
     }
 }
 - (void)clearRedoStack

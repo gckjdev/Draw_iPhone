@@ -466,4 +466,11 @@
                                  price:[[ShoppingManager defaultManager] getColorAlphaItemPrice]
                                 amount:[[ItemManager defaultManager] amountForItem:ColorAlphaItem]] autorelease];
 }
+
+
+- (int)unitPrice
+{
+    return (self.price / self.buyAmountForOnce);
+}
+
 @end
