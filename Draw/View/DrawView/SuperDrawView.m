@@ -105,7 +105,7 @@
     for (DrawAction *action in self.drawActionList) {
         [self drawAction:action inContext:showContext];
     }
-    [self setNeedsDisplayShowCacheLayer:NO];
+    [self setNeedsDisplayInRect:self.bounds showCacheLayer:NO];
 }
 
 
@@ -116,7 +116,7 @@
     [self.drawActionList removeAllObjects];
     CGContextClearRect(showContext, self.bounds);
 //    showCacheLayer = NO;
-    [self setNeedsDisplayShowCacheLayer:NO];
+    [self setNeedsDisplayInRect:self.bounds showCacheLayer:NO];
 }
 
 - (void)addDrawAction:(DrawAction *)drawAction
@@ -141,7 +141,8 @@
 - (void)strokePaint:(Paint *)paint inContext:(CGContextRef)context clear:(BOOL)clear
 {
     if (clear) {
-        CGContextClearRect(context, self.bounds);
+        CGRect drawBox = [DrawUtils rectForPath:paint.path withWidth:paint.width];
+        CGContextClearRect(context, drawBox);
     }
     CGContextAddPath(context, paint.path);
     CGContextStrokePath(context);
@@ -156,25 +157,28 @@
 - (void)drawRect:(CGRect)rect
 {
     CGContextRef context = UIGraphicsGetCurrentContext();
+    
+    CGContextDrawLayerAtPoint(context, CGPointZero, showLayerRef);
     if (showCacheLayer) {
-        CGContextDrawLayerInRect(context, rect, showLayerRef);
-        CGContextDrawLayerInRect(context, rect, cacheLayerRef);
-    }else{
-        CGContextDrawLayerInRect(context, rect, showLayerRef);
+        CGContextDrawLayerAtPoint(context, CGPointZero, cacheLayerRef);
     }
     
     [super drawRect:rect];
 }
 
 
-- (void)setNeedsDisplayShowCacheLayer:(BOOL)show
+//- (void)setNeedsDisplayShowCacheLayer:(BOOL)show
+//{
+//    showCacheLayer = show;
+//    [self setNeedsDisplay];
+//}
+
+
+- (void)setNeedsDisplayInRect:(CGRect)rect showCacheLayer:(BOOL)show
 {
     showCacheLayer = show;
-    [self setNeedsDisplay];
+    [self setNeedsDisplayInRect:rect];
 }
-
-
-
 
 - (UIImage*)createImage
 {
@@ -203,7 +207,7 @@
 {
     if (image) {
         CGContextDrawImage(showContext, self.bounds, image.CGImage);
-        [self setNeedsDisplayShowCacheLayer:NO];
+        [self setNeedsDisplayInRect:self.bounds showCacheLayer:NO];
     }
 }
 @end

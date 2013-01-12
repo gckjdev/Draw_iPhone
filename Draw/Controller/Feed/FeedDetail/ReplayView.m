@@ -73,8 +73,7 @@
                                      arrayWithArray:
                                      self.feed.drawData.drawActionList];            
             [self.showView setDrawActionList:list];
-            double speed = [DrawAction calculateSpeed:self.showView.drawActionList];
-            self.showView.playSpeed = speed;
+//            self.showView.speed = PlaySpeedTypeNormal;
             [self addSubview:self.showView];
             [self.showView play];
         }

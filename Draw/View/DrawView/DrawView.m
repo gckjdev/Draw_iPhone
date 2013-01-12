@@ -10,37 +10,7 @@
 #import "PPStack.h"
 #import <QuartzCore/QuartzCore.h>
 
-#pragma mark - revoke image.
-@interface RevokeImage : NSObject {
-    NSInteger _index;
-    UIImage *_image;
-}
-@property(nonatomic, assign)NSInteger index;
-@property(nonatomic, retain)UIImage *image;
-+ (RevokeImage *)revokeImageWithImage:(UIImage *)image 
-                                index:(NSInteger)index;
-@end
 
-@implementation RevokeImage
-@synthesize index = _index;
-@synthesize image = _image;
-- (void)dealloc
-{
-    PPDebug(@"%@ dealloc", [self description]);
-    PPRelease(_image);
-    [super dealloc];
-}
-
-+ (RevokeImage *)revokeImageWithImage:(UIImage *)image 
-                                index:(NSInteger)index
-{
-    RevokeImage *rImage = [[[RevokeImage alloc] init] autorelease];
-    rImage.image = image;
-    rImage.index = index;
-    return rImage;
-}
-
-@end
 
 #pragma mark - draw view implementation
 
@@ -58,8 +28,6 @@
 
 #define DEFAULT_LINE_WIDTH (ISIPAD ? 6 : 3)
 
-#define REVOKE_PAINT_COUNT 30
-#define REVOKE_CACHE_COUNT 10
 
 @implementation DrawView
 
@@ -129,7 +97,8 @@
     DrawAction *cleanAction = [DrawAction clearScreenAction];
     [self.drawActionList addObject:cleanAction];
     [self drawAction:cleanAction inContext:showContext];
-    [self setNeedsDisplayShowCacheLayer:NO];
+    [self setNeedsDisplayInRect:self.bounds showCacheLayer:NO];
+    
 }
 - (void)changeBackWithColor:(DrawColor *)color
 {
@@ -137,7 +106,7 @@
     DrawAction *cleanAction = [DrawAction changeBackgroundActionWithColor:color];
     [self.drawActionList addObject:cleanAction];
     [self drawAction:cleanAction inContext:showContext];
-    [self setNeedsDisplayShowCacheLayer:NO];    
+    [self setNeedsDisplayInRect:self.bounds showCacheLayer:NO];    
 }
 
 - (void)setDrawEnabled:(BOOL)enabled
@@ -168,17 +137,19 @@ typedef enum {
     
     Paint *paint = [_currentAction paint];
     
+    CGRect drawBox = [DrawUtils rectForPath:paint.path withWidth:paint.width];
+    
     if (type == TouchTypeBegin) {
         [self setStrokeColor:paint.color lineWidth:paint.width inContext:cacheContext];
         [self strokePaint:paint inContext:cacheContext clear:YES];
-        [self setNeedsDisplayShowCacheLayer:YES];
+        [self setNeedsDisplayInRect:drawBox showCacheLayer:YES];
     }else if(type == TouchTypeMove){
         [self strokePaint:paint inContext:cacheContext clear:YES];
-        [self setNeedsDisplayShowCacheLayer:YES];
+        [self setNeedsDisplayInRect:drawBox showCacheLayer:YES];
     }else{
         [self setStrokeColor:paint.color lineWidth:paint.width inContext:showContext];
         [self strokePaint:paint inContext:showContext clear:NO];
-        [self setNeedsDisplayShowCacheLayer:NO];
+        [self setNeedsDisplayInRect:drawBox showCacheLayer:NO];
     }
 
 }
@@ -277,7 +248,7 @@ typedef enum {
         if (action) {
             [self.drawActionList addObject:action];
             [self drawAction:action inContext:showContext];
-            [self setNeedsDisplayShowCacheLayer:NO];
+            [self setNeedsDisplayInRect:self.bounds showCacheLayer:NO];
         }        
     }
 }

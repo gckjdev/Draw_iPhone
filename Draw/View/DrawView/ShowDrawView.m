@@ -13,7 +13,7 @@
 #import "PenView.h"
 #import "Paint.h"
 
-#define DEFAULT_PLAY_SPEED (1/30.0)
+#define DEFAULT_PLAY_SPEED (1/50.0)
 
 @interface ShowDrawView ()
 {
@@ -30,7 +30,7 @@
 
 
 @implementation ShowDrawView
-@synthesize playSpeed= _playSpeed;
+@synthesize speed = _speed;
 @synthesize delegate = _delegate;
 @synthesize status = _status;
 
@@ -113,8 +113,6 @@
     self.status = Stop;
 }
 
-
-
 - (void)show
 {
     PPDebug(@"<ShowDrawView> show");
@@ -137,25 +135,17 @@
 
 - (void)addDrawAction:(DrawAction *)action play:(BOOL)play
 {
-    PPDebug(@"<addDrawAction> is play = %d",play);
     [self.drawActionList addObject:action];
     if (play) {
         if (self.status == Playing) {
             return;
         }else if(self.status == Stop){
-//            if ([action isCleanAction] || [action isChangeBackAction]) {
-//                PPDebug(@"is clean or change back action");
-//                [self drawAction:action inContext:showContext];
-//                [self setNeedsDisplayShowCacheLayer:NO];
-//            }else{
-            PPDebug(@"play from index = %d",[self.drawActionList count] -1);
             [self playFromDrawActionIndex:[self.drawActionList count] -1];
-//            }
         }
     }else{
         self.status = Stop;
         [self drawAction:action inContext:showContext];
-        [self setNeedsDisplayShowCacheLayer:NO];
+        [self setNeedsDisplayInRect:self.bounds showCacheLayer:NO];
     }
 }
 
@@ -166,7 +156,7 @@
     self = [super initWithFrame:frame];
     if (self) {
         self.status = Stop;
-        self.playSpeed = DEFAULT_PLAY_SPEED;
+        self.speed = PlaySpeedTypeNormal;
         _drawActionList = [[NSMutableArray alloc] init];
         self.backgroundColor = [UIColor whiteColor];      
         
@@ -200,9 +190,9 @@
 {
     PPDebug(@"%@ dealloc", [self description]);
     [self stop];
-    
     PPRelease(_drawActionList);
     PPRelease(pen);
+    PPRelease(_tempPaint);
     [super dealloc];
 }
 
@@ -233,6 +223,7 @@
 {
     if ( ++_playingPointIndex >= [_currentAction.paint pointCount]) {
         _playingPointIndex = 0;
+
         //next action
         if (++ _playingActionIndex < [self.drawActionList count]) {
             _currentAction = [self.drawActionList objectAtIndex:_playingActionIndex];
@@ -240,6 +231,8 @@
             _currentAction = nil;
             _status = Stop;
         }
+    }else{
+        _playingPointIndex = MIN([_currentAction pointCount]-1, _playingPointIndex + self.speed);
     }
 }
 
@@ -247,11 +240,16 @@
 {
     Paint *cPaint = _currentAction.paint;
     if (cPaint != nil &&  _playingPointIndex < [cPaint pointCount]) {
-        if (_playingPointIndex == 0) {
-            self.tempPaint = [Paint paintWithWidth:cPaint.width color:cPaint.color];
+        if (cPaint.pointCount > 0) {
+            if (self.tempPaint == nil) {
+                self.tempPaint = [Paint paintWithWidth:cPaint.width color:cPaint.color];
+            }
+            NSInteger i = [self.tempPaint pointCount];
+            for (; i <= _playingPointIndex; ++ i) {
+                CGPoint p = [cPaint pointAtIndex:i];
+                [self.tempPaint addPoint:p];
+            }            
         }
-        CGPoint p = [cPaint pointAtIndex:_playingPointIndex];
-        [self.tempPaint addPoint:p];
     }else{
         self.tempPaint = nil;
     }
@@ -262,25 +260,23 @@
     [self updateTempPaint];
     if (self.status == Playing) {
         if (self.tempPaint) {
-            //last point or only one point
+            CGRect drawBox = [DrawUtils rectForPath:_tempPaint.path withWidth:_tempPaint.width];
             if ([self.tempPaint pointCount] == [_currentAction.paint pointCount]) {
-                PPDebug(@"draw action At index = %d",_playingActionIndex);
+                self.tempPaint = nil;
                 [self drawAction:_currentAction inContext:showContext];
-                [self setNeedsDisplayShowCacheLayer:NO];
-            }else if ([self.tempPaint pointCount] == 1) {
-                //first point
+                [self setNeedsDisplayInRect:drawBox showCacheLayer:NO];
+            }else
+            {
                 [self setStrokeColor:self.tempPaint.color lineWidth:self.tempPaint.width inContext:cacheContext];
                 [self strokePaint:self.tempPaint inContext:cacheContext clear:YES];
-                [self setNeedsDisplayShowCacheLayer:YES];
-            }else{
-                [self strokePaint:self.tempPaint inContext:cacheContext clear:YES];
-                [self setNeedsDisplayShowCacheLayer:YES];
+                [self setNeedsDisplayInRect:drawBox showCacheLayer:YES];
             }
         }else{
             [self drawAction:_currentAction inContext:showContext];
-            [self setNeedsDisplayShowCacheLayer:NO];
+            [self setNeedsDisplayInRect:self.bounds showCacheLayer:NO];
         }
     }
+
 }
 
 - (void)playNextFrame
@@ -292,9 +288,27 @@
 - (void)drawRect:(CGRect)rect
 {
     [super drawRect:rect];
-    if (Playing == self.status && self.playSpeed > 0) {
-        [self performSelector:@selector(playNextFrame) withObject:nil afterDelay:0.08];//self.playSpeed];
+    if (Playing == self.status) {
+        [self performSelector:@selector(playNextFrame) withObject:nil afterDelay:DEFAULT_PLAY_SPEED];
     }
+}
+
+#define LEVEL_TIMES 50
+
+- (void)setDrawActionList:(NSMutableArray *)drawActionList
+{
+    [super setDrawActionList:drawActionList];
+    NSInteger count = [self.drawActionList count];
+    if (count < PlaySpeedTypeNormal * LEVEL_TIMES) {
+        self.speed = PlaySpeedTypeLow;
+    }else if(count < PlaySpeedTypeHigh * LEVEL_TIMES){
+        self.speed = PlaySpeedTypeNormal;
+    }else if(count < PlaySpeedTypeSuper* LEVEL_TIMES){
+        self.speed = PlaySpeedTypeHigh;
+    }else{
+        self.speed = PlaySpeedTypeSuper;
+    }
+    PPDebug(@"<setDrawActionList>auto set speed: %d,actionCount = %d",self.speed, count);
 }
 
 @end
