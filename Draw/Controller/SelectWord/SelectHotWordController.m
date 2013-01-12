@@ -134,7 +134,7 @@
         inputDialog.targetTextField.placeholder = NSLS(@"kInputWordPlaceholder");
         [inputDialog showInView:self.view];
     }else{
-        if (word.wordType == WordTypeHot) {
+        if (word.wordType == PBWordTypeHot) {
             PPDebug(@"Hot Word Selected!");
             if ([[AccountService defaultService] consumeItem:ItemTypeTips amount:1] ==  ERROR_ITEM_NOT_ENOUGH) {
                 if ([[AccountService defaultService] buyItem:ItemTypeTips itemCount:1 itemCoins:[[Item tips] unitPrice]] == ERROR_COINS_NOT_ENOUGH) {

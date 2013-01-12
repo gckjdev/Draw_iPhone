@@ -12,18 +12,21 @@
 
 - (void)dealloc
 {
+    [_wordId release];
     [_text release];
     [super dealloc];
 }
 
-- (id)initWithText:(NSString *)text
-              type:(WordType)type
-             level:(WordLevel)level
-             score:(int)score
+- (id)initWithWordId:(NSString *)wordId
+                text:(NSString *)text
+                type:(PBWordType)type
+               level:(WordLevel)level
+               score:(int)score
 {
     self = [super init];
     if(self)
     {
+        _wordId = [wordId copy];
         self.text = text;
         _wordType = type;
         _level = level;
@@ -36,7 +39,7 @@
 + (Word *)wordWithText:(NSString *)text
                  level:(WordLevel)level
 {
-    return [[[Word alloc] initWithText:text type:WordTypeUnknow level:level score:[self scoreWithLevel:level]] autorelease];
+    return [[[Word alloc] initWithWordId:nil text:text type:PBWordTypeSystem level:level score:[self scoreWithLevel:level]] autorelease];
 }
 
 // For system word
@@ -44,23 +47,29 @@
                     level:(WordLevel)level
 {
     
-    return [[[Word alloc] initWithText:text type:WordTypeSystem level:level score:[self scoreWithLevel:level]] autorelease];
+    return [[[Word alloc] initWithWordId:nil text:text type:PBWordTypeSystem level:level score:[self scoreWithLevel:level]] autorelease];
 }
 
 // For my word
 + (Word *)cusWordWithText:(NSString *)text
 {
-    return [[[Word alloc] initWithText:text type:WordTypeCustom level:WordLeveLMedium score:4] autorelease];
+    return [[[Word alloc] initWithWordId:nil text:text type:PBWordTypeCustom level:WordLeveLMedium score:4] autorelease];
 }
 
 // For hot word
-+ (Word *)hotWordWithText:(NSString *)text
-                    score:(int)score
++ (Word *)hotWordWithId:(NSString *)wordId
+                   text:(NSString *)text
+                  score:(int)score;
 {
-    return [[[Word alloc] initWithText:text type:WordTypeHot level:WordLeveLMedium score:score] autorelease];
+    return [[[Word alloc] initWithWordId:nil text:text type:PBWordTypeHot level:WordLeveLMedium score:score] autorelease];
 }
 
-- (WordType)wordType{
+- (NSString *)wordId
+{
+    return _wordId;
+}
+
+- (PBWordType)wordType{
     return _wordType;
 }
 

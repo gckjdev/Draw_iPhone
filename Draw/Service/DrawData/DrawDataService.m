@@ -187,9 +187,12 @@ static DrawDataService* _defaultDrawDataService = nil;
                                                               userId:userId 
                                                                 nick:nick 
                                                               avatar:avatar 
-                                                              gender:gender 
-                                                                word:drawWord.text 
-                                                               level:drawWord.level 
+                                                              gender:gender
+                                                              wordId:drawWord.wordId
+                                                                word:drawWord.text
+                                                            wordType:drawWord.wordType
+                                                               level:drawWord.level
+                                                               score:drawWord.score
                                                                 lang:language                                      
                                                                 data:[draw data] 
                                                            imageData:imageData 
