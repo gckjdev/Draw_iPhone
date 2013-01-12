@@ -351,6 +351,7 @@
 		C296872C15DCE03F006968BA /* DiceItemInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C296872215DCE03F006968BA /* DiceItemInfoView.xib */; };
 		C296872D15DCE03F006968BA /* DiceUserInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = C296872515DCE03F006968BA /* DiceUserInfoView.m */; };
 		C296872E15DCE03F006968BA /* DiceUserInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C296872615DCE03F006968BA /* DiceUserInfoView.xib */; };
+		C297004E16A1363500A61521 /* RoundLineLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = C297004D16A1363500A61521 /* RoundLineLabel.m */; };
 		C297078116099DB600BE0789 /* CommonSearchView.m in Sources */ = {isa = PBXBuildFile; fileRef = C297078016099DB600BE0789 /* CommonSearchView.m */; };
 		C297078316099EC500BE0789 /* CommonSearchView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C297078216099EC500BE0789 /* CommonSearchView.xib */; };
 		C297078516099EEC00BE0789 /* CommonSearchView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C297078416099EEC00BE0789 /* CommonSearchView~ipad.xib */; };
@@ -6658,7 +6659,7 @@
 		A4D6A762167591D3008DC151 /* ZJHRuleConfigFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJHRuleConfigFactory.m; sourceTree = "<group>"; };
 		A4D6A76F16759321008DC151 /* ZJHGameController_dual~ip5.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ZJHGameController_dual~ip5.xib"; sourceTree = "<group>"; };
 		A4D6A7771675B4C3008DC151 /* ZJHGameController_dual~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ZJHGameController_dual~ipad.xib"; sourceTree = "<group>"; };
-		A4DE140E1697DB7B00841940 /* hot_word.pb */ = {isa = PBXFileReference; lastKnownFileType = file; path = hot_word.pb; sourceTree = "<group>"; };
+		A4DE140E1697DB7B00841940 /* hot_word.pb */ = {isa = PBXFileReference; lastKnownFileType = text; path = hot_word.pb; sourceTree = "<group>"; };
 		A4DE14111697DBA900841940 /* hot_words_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hot_words_bg@2x.png"; sourceTree = "<group>"; };
 		A4DE14121697DBA900841940 /* load_from_draft_btn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "load_from_draft_btn@2x.png"; sourceTree = "<group>"; };
 		A4DE14131697DBA900841940 /* more_words_btn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "more_words_btn@2x.png"; sourceTree = "<group>"; };
@@ -6798,6 +6799,8 @@
 		C296872415DCE03F006968BA /* DiceUserInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiceUserInfoView.h; sourceTree = "<group>"; };
 		C296872515DCE03F006968BA /* DiceUserInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiceUserInfoView.m; sourceTree = "<group>"; };
 		C296872615DCE03F006968BA /* DiceUserInfoView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DiceUserInfoView.xib; sourceTree = "<group>"; };
+		C297004C16A1363500A61521 /* RoundLineLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoundLineLabel.h; sourceTree = "<group>"; };
+		C297004D16A1363500A61521 /* RoundLineLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoundLineLabel.m; sourceTree = "<group>"; };
 		C297077F16099DB600BE0789 /* CommonSearchView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonSearchView.h; sourceTree = "<group>"; };
 		C297078016099DB600BE0789 /* CommonSearchView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonSearchView.m; sourceTree = "<group>"; };
 		C297078216099EC500BE0789 /* CommonSearchView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommonSearchView.xib; sourceTree = "<group>"; };
@@ -10566,6 +10569,15 @@
 			path = DiceUserInfoView;
 			sourceTree = "<group>";
 		};
+		C297004B16A1363500A61521 /* RoundLineLabel */ = {
+			isa = PBXGroup;
+			children = (
+				C297004C16A1363500A61521 /* RoundLineLabel.h */,
+				C297004D16A1363500A61521 /* RoundLineLabel.m */,
+			);
+			path = RoundLineLabel;
+			sourceTree = "<group>";
+		};
 		C29707C2160ADBD200BE0789 /* CustomDiceManager */ = {
 			isa = PBXGroup;
 			children = (
@@ -11116,6 +11128,7 @@
 		CA103D061509A56100F60C03 /* Core-Components-View */ = {
 			isa = PBXGroup;
 			children = (
+				C297004B16A1363500A61521 /* RoundLineLabel */,
 				A41CF588165790380011AE45 /* RRSGlowLabel */,
 				A40D71DA16553575000CC598 /* FXLabel */,
 				C20D4B2215E1D77100074885 /* CommonInfoView */,
@@ -21776,6 +21789,7 @@
 				A48B09D4169FAAC500B56975 /* UMTableViewCell.m in Sources */,
 				A48B09D5169FAAC500B56975 /* UMTableViewController.m in Sources */,
 				A48B09D6169FAAC500B56975 /* UMWebViewController.m in Sources */,
+				C297004E16A1363500A61521 /* RoundLineLabel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
