@@ -12,7 +12,7 @@
 typedef enum{
     Stop = 0x1,
     Playing = 0x1 << 1,
-    Pause = 0x1 << 2
+    Pause = 0x1 << 2,
 }DrawViewStatus;
 
 typedef enum {
@@ -61,4 +61,12 @@ typedef enum {
 
 + (ShowDrawView *)showView;
 - (void)resetFrameSize:(CGSize)size;
+@end
+
+
+
+@interface ShowDrawView (PressAction) <UIGestureRecognizerDelegate>
+
+- (void)setPressEnable:(BOOL)enable; //default is disable.
+
 @end

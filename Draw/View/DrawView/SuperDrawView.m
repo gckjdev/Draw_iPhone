@@ -143,7 +143,8 @@
 - (void)strokePaint:(Paint *)paint inContext:(CGContextRef)context clear:(BOOL)clear
 {
     if (clear) {
-        CGRect drawBox = [DrawUtils rectForPath:paint.path withWidth:paint.width];
+        CGRect drawBox = self.bounds;
+        //[DrawUtils rectForPath:paint.path withWidth:paint.width];
         CGContextClearRect(context, drawBox);
     }
     CGContextAddPath(context, paint.path);
@@ -185,10 +186,10 @@
 - (UIImage*)createImage
 {
     
-    PPDebug(@"<createImage> image frame = %@", NSStringFromCGRect(self.frame));
+    PPDebug(@"<createImage> image bounds = %@", NSStringFromCGRect(self.bounds));
     CGContextRef context = [self createBitmapContext];
     CGContextScaleCTM(context, 1, -1);
-    CGContextTranslateCTM(context, 0, -CGRectGetHeight(DRAW_VIEW_FRAME));
+    CGContextTranslateCTM(context, 0, -CGRectGetHeight(self.bounds));
     
     CGContextDrawLayerInRect(context, self.bounds, showLayerRef);
 
@@ -199,7 +200,8 @@
     }else{
         UIImage *img = [UIImage imageWithCGImage:image];
         CGImageRelease(image);
-        PPDebug(@"<createImage> image size = %@",NSStringFromCGSize(img.size));
+//        PPDebug(@"<createImage> image size = %@",NSStringFromCGSize(img.size));
+//        UIImageWriteToSavedPhotosAlbum(img, nil, NULL, nil);
         return img;
     }
 
@@ -208,7 +210,12 @@
 - (void)showImage:(UIImage *)image
 {
     if (image) {
+        PPDebug(@"draw image in bounds = %@",NSStringFromCGRect(self.bounds));
+//        CGContextSaveGState(showContext);
+//        CGContextScaleCTM(showContext, 1.0, -1.0);
+//        CGContextTranslateCTM(showContext, 0.0, CGRectGetWidth(self.bounds));
         CGContextDrawImage(showContext, self.bounds, image.CGImage);
+//        CGContextRestoreGState(showContext);
         [self setNeedsDisplayInRect:self.bounds showCacheLayer:NO];
     }
 }

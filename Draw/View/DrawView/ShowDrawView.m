@@ -321,3 +321,52 @@
 }
 
 @end
+
+
+
+@implementation ShowDrawView (PressAction)
+
+- (void)handlePress:(id)sender
+{
+    PPDebug(@"<handlePress>");
+    if(_delegate && [self.delegate respondsToSelector:@selector(didClickShowDrawView:)])
+    {
+        [_delegate didClickShowDrawView:self];
+    }
+}
+
+- (void)handleLongPress:(UILongPressGestureRecognizer *)lp
+{
+    if (lp.state == UIGestureRecognizerStateEnded) {
+        PPDebug(@"<handleLongPress>");
+        if (_delegate && [_delegate respondsToSelector:@selector(didLongClickShowDrawView:)]) {
+            [_delegate didLongClickShowDrawView:self];
+        }
+    }
+}
+
+- (void)setPressEnable:(BOOL)enable
+{
+
+    self.userInteractionEnabled = enable;
+    PPDebug(@"gesture recognizer count = %d",[self.gestureRecognizers count]);
+    if (enable == YES ) {
+        [self addTarget:self action:@selector(handlePress:) forControlEvents:UIControlEventTouchUpInside];
+        if ([self.gestureRecognizers count] == 0) {
+            //add long press gesture
+            UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongPress:)];
+            [self addGestureRecognizer:longPress];
+            [longPress release];
+        }
+
+    }else{
+        [self removeTarget:self action:@selector(handlePress:) forControlEvents:UIControlEventTouchUpInside];
+    }
+    
+}
+
+- (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer
+{
+    return  gestureRecognizer.view == self;
+}
+@end
