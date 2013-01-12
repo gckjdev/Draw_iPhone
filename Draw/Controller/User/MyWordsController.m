@@ -184,7 +184,7 @@
             [[CommonMessageCenter defaultCenter] postMessageWithText:[NSString stringWithFormat:NSLS(@"kExistWord"),targetText] delayTime:2 isHappy:NO];
             return;
         }
-        [[CustomWordManager defaultManager] createCustomWordWithType:[NSNumber numberWithInt:WordTypeCustom] word:targetText language:[NSNumber numberWithInt:ChineseType] level:[NSNumber numberWithInt:WordLeveLMedium]];
+        [[CustomWordManager defaultManager] createCustomWordWithType:[NSNumber numberWithInt:PBWordTypeCustom] word:targetText language:[NSNumber numberWithInt:ChineseType] level:[NSNumber numberWithInt:WordLeveLMedium]];
         
         [[UserService defaultService] commitWords:targetText viewController:nil];
     }

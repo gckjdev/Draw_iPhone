@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "GameConstants.pb.h"
 
 typedef enum
 {
@@ -16,18 +17,10 @@ typedef enum
     WordLevelHigh = 3
 }WordLevel;
 
-
-typedef enum
-{
-    WordTypeUnknow = 0,
-    WordTypeSystem = 1,
-    WordTypeCustom= 2,
-    WordTypeHot = 3
-}WordType;
-
 @interface Word : NSObject<NSCoding>
 {
-    WordType _wordType;
+    NSString *_wordId;
+    PBWordType _wordType;
     WordLevel _level;
     int _score;
 }
@@ -46,10 +39,12 @@ typedef enum
 + (Word *)cusWordWithText:(NSString *)text;
 
 // For hot word
-+ (Word *)hotWordWithText:(NSString *)text
-                    score:(int)score;
++ (Word *)hotWordWithId:(NSString *)wordId
+                   text:(NSString *)text
+                  score:(int)score;
 
-- (WordType)wordType;
+- (NSString *)wordId;
+- (PBWordType)wordType;
 - (WordLevel)level;
 - (NSInteger)score;
 

@@ -58,7 +58,7 @@ static CustomWordManager *_customWordManager = nil;
     
     CoreDataManager *dataManager = [CoreDataManager defaultManager];
     CustomWord *newCustomWord = [dataManager insert:@"CustomWord"];
-    [newCustomWord setType:[NSNumber numberWithInt:WordTypeCustom]];
+    [newCustomWord setType:[NSNumber numberWithInt:PBWordTypeCustom]];
     [newCustomWord setWord:word];
     [newCustomWord setLanguage:[NSNumber numberWithInt:ChineseType]];
     [newCustomWord setCreateDate:[NSDate date]];

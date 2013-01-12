@@ -1343,14 +1343,17 @@
                               nick:(NSString*)nick
                             avatar:(NSString*)avatar
                             gender:(NSString*)gender
+                            wordId:(NSString*)wordId
                               word:(NSString *)word
+                          wordType:(PBWordType)wordType
                              level:(NSInteger)level
+                             score:(int)score
                               lang:(NSInteger)lang
-                              data:(NSData*)data 
+                              data:(NSData*)data
                          imageData:(NSData *)imageData
-                         targetUid:(NSString *)targetUid 
+                         targetUid:(NSString *)targetUid
                          contestId:(NSString *)contestId
-                              desc:(NSString *)desc
+                              desc:(NSString *)desc;
 {
     CommonNetworkOutput* output = [[[CommonNetworkOutput alloc] init] autorelease];
     
@@ -1367,8 +1370,11 @@
         str = [str stringByAddQueryParameter:PARA_NICKNAME value:nick];
         str = [str stringByAddQueryParameter:PARA_AVATAR value:avatar];                
         str = [str stringByAddQueryParameter:PARA_GENDER value:gender];
-        str = [str stringByAddQueryParameter:PARA_WORD value:word];                
-        str = [str stringByAddQueryParameter:PARA_LEVEL intValue:level];
+        str = [str stringByAddQueryParameter:PARA_WORD_ID value:wordId];
+        str = [str stringByAddQueryParameter:PARA_WORD value:word];
+        str = [str stringByAddQueryParameter:PARA_WORD_TYPE intValue:wordType];
+        str = [str stringByAddQueryParameter:PARA_WORD_LEVEL intValue:level];
+        str = [str stringByAddQueryParameter:PARA_WORD_SCORE intValue:score];
         str = [str stringByAddQueryParameter:PARA_LANGUAGE intValue:lang];
         str = [str stringByAddQueryParameter:PARA_DESC value:desc];
         str = [str stringByAddQueryParameter:PARA_DEVICETYPE intValue:[DeviceDetection deviceType]];
@@ -1514,7 +1520,7 @@
             
         str = [str stringByAddQueryParameter:PARA_OPUS_ID value:opusId];
         str = [str stringByAddQueryParameter:PARA_OPUS_CREATOR_UID value:opusCreatorUId];
-        str = [str stringByAddQueryParameter:PARA_SCORE intValue:score];
+        str = [str stringByAddQueryParameter:PARA_WORD_SCORE intValue:score];
         if (isCorrect) {
             str = [str stringByAddQueryParameter:PARA_CORRECT boolValue:isCorrect];            
         }

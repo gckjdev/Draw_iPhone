@@ -149,6 +149,39 @@
 		A48B09D4169FAAC500B56975 /* UMTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A48B09C9169FAAC500B56975 /* UMTableViewCell.m */; };
 		A48B09D5169FAAC500B56975 /* UMTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A48B09CB169FAAC500B56975 /* UMTableViewController.m */; };
 		A48B09D6169FAAC500B56975 /* UMWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A48B09CE169FAAC500B56975 /* UMWebViewController.m */; };
+		A48B09F016A1303B00B56975 /* FreeCoinsControllerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A48B098B169E97DB00B56975 /* FreeCoinsControllerViewController.m */; };
+		A48B09F116A1303C00B56975 /* FreeCoinsControllerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A48B098B169E97DB00B56975 /* FreeCoinsControllerViewController.m */; };
+		A48B09F216A1303D00B56975 /* FreeCoinsControllerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A48B098B169E97DB00B56975 /* FreeCoinsControllerViewController.m */; };
+		A48B09F316A130FF00B56975 /* GridViewCellDemo.m in Sources */ = {isa = PBXBuildFile; fileRef = A48B09BF169FAAC500B56975 /* GridViewCellDemo.m */; };
+		A48B09F416A1310000B56975 /* GridViewCellDemo.m in Sources */ = {isa = PBXBuildFile; fileRef = A48B09BF169FAAC500B56975 /* GridViewCellDemo.m */; };
+		A48B09F516A1310100B56975 /* GridViewCellDemo.m in Sources */ = {isa = PBXBuildFile; fileRef = A48B09BF169FAAC500B56975 /* GridViewCellDemo.m */; };
+		A48B09F616A1310800B56975 /* UMGridViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A48B09C1169FAAC500B56975 /* UMGridViewController.m */; };
+		A48B09F716A1310900B56975 /* UMGridViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A48B09C1169FAAC500B56975 /* UMGridViewController.m */; };
+		A48B09F816A1310A00B56975 /* UMGridViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A48B09C1169FAAC500B56975 /* UMGridViewController.m */; };
+		A48B09F916A1310F00B56975 /* UMBannerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A48B09BC169FAAC500B56975 /* UMBannerViewController.m */; };
+		A48B09FA16A1311100B56975 /* UMBannerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A48B09BC169FAAC500B56975 /* UMBannerViewController.m */; };
+		A48B09FB16A1311200B56975 /* UMBannerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A48B09BC169FAAC500B56975 /* UMBannerViewController.m */; };
+		A48B09FC16A1312100B56975 /* UMHandleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A48B09C4169FAAC500B56975 /* UMHandleViewController.m */; };
+		A48B09FD16A1312100B56975 /* UMHandleViewController_New.m in Sources */ = {isa = PBXBuildFile; fileRef = A48B09C6169FAAC500B56975 /* UMHandleViewController_New.m */; };
+		A48B09FE16A1312600B56975 /* UMHandleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A48B09C4169FAAC500B56975 /* UMHandleViewController.m */; };
+		A48B09FF16A1312600B56975 /* UMHandleViewController_New.m in Sources */ = {isa = PBXBuildFile; fileRef = A48B09C6169FAAC500B56975 /* UMHandleViewController_New.m */; };
+		A48B0A0016A1312800B56975 /* UMHandleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A48B09C4169FAAC500B56975 /* UMHandleViewController.m */; };
+		A48B0A0116A1312800B56975 /* UMHandleViewController_New.m in Sources */ = {isa = PBXBuildFile; fileRef = A48B09C6169FAAC500B56975 /* UMHandleViewController_New.m */; };
+		A48B0A0216A1319600B56975 /* UMTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A48B09C9169FAAC500B56975 /* UMTableViewCell.m */; };
+		A48B0A0316A1319600B56975 /* UMTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A48B09C9169FAAC500B56975 /* UMTableViewCell.m */; };
+		A48B0A0416A1319700B56975 /* UMTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A48B09C9169FAAC500B56975 /* UMTableViewCell.m */; };
+		A48B0A0516A1319A00B56975 /* UMTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A48B09CB169FAAC500B56975 /* UMTableViewController.m */; };
+		A48B0A0616A1319B00B56975 /* UMTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A48B09CB169FAAC500B56975 /* UMTableViewController.m */; };
+		A48B0A0716A1319C00B56975 /* UMTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A48B09CB169FAAC500B56975 /* UMTableViewController.m */; };
+		A48B0A0816A131A200B56975 /* UMWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A48B09CE169FAAC500B56975 /* UMWebViewController.m */; };
+		A48B0A0916A131A300B56975 /* UMWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A48B09CE169FAAC500B56975 /* UMWebViewController.m */; };
+		A48B0A0A16A131A400B56975 /* UMWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A48B09CE169FAAC500B56975 /* UMWebViewController.m */; };
+		A48B0A0B16A1327D00B56975 /* TapjoyPublisherLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A48B099A169EA35C00B56975 /* TapjoyPublisherLibrary.a */; };
+		A48B0A0C16A1327E00B56975 /* TapjoyPublisherLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A48B099A169EA35C00B56975 /* TapjoyPublisherLibrary.a */; };
+		A48B0A0E16A1331800B56975 /* TapjoyPublisherLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A48B099A169EA35C00B56975 /* TapjoyPublisherLibrary.a */; };
+		A48B0A0F16A1331C00B56975 /* TapjoyResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A48B099B169EA35C00B56975 /* TapjoyResources.bundle */; };
+		A48B0A1016A1331D00B56975 /* TapjoyResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A48B099B169EA35C00B56975 /* TapjoyResources.bundle */; };
+		A48B0A1116A1331D00B56975 /* TapjoyResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A48B099B169EA35C00B56975 /* TapjoyResources.bundle */; };
 		A48E827615E8AB1B002DB480 /* ChatView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A48E827515E8AB1A002DB480 /* ChatView.xib */; };
 		A49A083F166DA68D003E0F75 /* ReplacedPoker.m in Sources */ = {isa = PBXBuildFile; fileRef = A49A083E166DA68D003E0F75 /* ReplacedPoker.m */; };
 		A4A132651650E86900665109 /* MessageView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4A132641650E86900665109 /* MessageView.m */; };
@@ -318,6 +351,7 @@
 		C296872C15DCE03F006968BA /* DiceItemInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C296872215DCE03F006968BA /* DiceItemInfoView.xib */; };
 		C296872D15DCE03F006968BA /* DiceUserInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = C296872515DCE03F006968BA /* DiceUserInfoView.m */; };
 		C296872E15DCE03F006968BA /* DiceUserInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C296872615DCE03F006968BA /* DiceUserInfoView.xib */; };
+		C297004E16A1363500A61521 /* RoundLineLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = C297004D16A1363500A61521 /* RoundLineLabel.m */; };
 		C297078116099DB600BE0789 /* CommonSearchView.m in Sources */ = {isa = PBXBuildFile; fileRef = C297078016099DB600BE0789 /* CommonSearchView.m */; };
 		C297078316099EC500BE0789 /* CommonSearchView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C297078216099EC500BE0789 /* CommonSearchView.xib */; };
 		C297078516099EEC00BE0789 /* CommonSearchView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C297078416099EEC00BE0789 /* CommonSearchView~ipad.xib */; };
@@ -6625,7 +6659,7 @@
 		A4D6A762167591D3008DC151 /* ZJHRuleConfigFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJHRuleConfigFactory.m; sourceTree = "<group>"; };
 		A4D6A76F16759321008DC151 /* ZJHGameController_dual~ip5.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ZJHGameController_dual~ip5.xib"; sourceTree = "<group>"; };
 		A4D6A7771675B4C3008DC151 /* ZJHGameController_dual~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ZJHGameController_dual~ipad.xib"; sourceTree = "<group>"; };
-		A4DE140E1697DB7B00841940 /* hot_word.pb */ = {isa = PBXFileReference; lastKnownFileType = file; path = hot_word.pb; sourceTree = "<group>"; };
+		A4DE140E1697DB7B00841940 /* hot_word.pb */ = {isa = PBXFileReference; lastKnownFileType = text; path = hot_word.pb; sourceTree = "<group>"; };
 		A4DE14111697DBA900841940 /* hot_words_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hot_words_bg@2x.png"; sourceTree = "<group>"; };
 		A4DE14121697DBA900841940 /* load_from_draft_btn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "load_from_draft_btn@2x.png"; sourceTree = "<group>"; };
 		A4DE14131697DBA900841940 /* more_words_btn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "more_words_btn@2x.png"; sourceTree = "<group>"; };
@@ -6765,6 +6799,8 @@
 		C296872415DCE03F006968BA /* DiceUserInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiceUserInfoView.h; sourceTree = "<group>"; };
 		C296872515DCE03F006968BA /* DiceUserInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiceUserInfoView.m; sourceTree = "<group>"; };
 		C296872615DCE03F006968BA /* DiceUserInfoView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DiceUserInfoView.xib; sourceTree = "<group>"; };
+		C297004C16A1363500A61521 /* RoundLineLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoundLineLabel.h; sourceTree = "<group>"; };
+		C297004D16A1363500A61521 /* RoundLineLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoundLineLabel.m; sourceTree = "<group>"; };
 		C297077F16099DB600BE0789 /* CommonSearchView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonSearchView.h; sourceTree = "<group>"; };
 		C297078016099DB600BE0789 /* CommonSearchView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonSearchView.m; sourceTree = "<group>"; };
 		C297078216099EC500BE0789 /* CommonSearchView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommonSearchView.xib; sourceTree = "<group>"; };
@@ -9392,6 +9428,7 @@
 				CA16BC0E1682FAD900F81B47 /* libWeChatSDK.a in Frameworks */,
 				CA6877B0169D1B9D0006E489 /* libshengmengsdk_1.1.0.a in Frameworks */,
 				A48B0984169E674F00B56975 /* libUMAppNetwork.a in Frameworks */,
+				A48B0A0C16A1327E00B56975 /* TapjoyPublisherLibrary.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -9438,6 +9475,7 @@
 				CA16C1941682FAE300F81B47 /* libWeChatSDK.a in Frameworks */,
 				CA6877B1169D1B9E0006E489 /* libshengmengsdk_1.1.0.a in Frameworks */,
 				A48B0985169E675000B56975 /* libUMAppNetwork.a in Frameworks */,
+				A48B0A0E16A1331800B56975 /* TapjoyPublisherLibrary.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -9541,6 +9579,7 @@
 				CAB5C9B916994F0200A4CE3B /* libWeChatSDK.a in Frameworks */,
 				CA6877AF169D1B9C0006E489 /* libshengmengsdk_1.1.0.a in Frameworks */,
 				A48B0983169E674D00B56975 /* libUMAppNetwork.a in Frameworks */,
+				A48B0A0B16A1327D00B56975 /* TapjoyPublisherLibrary.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -10530,6 +10569,15 @@
 			path = DiceUserInfoView;
 			sourceTree = "<group>";
 		};
+		C297004B16A1363500A61521 /* RoundLineLabel */ = {
+			isa = PBXGroup;
+			children = (
+				C297004C16A1363500A61521 /* RoundLineLabel.h */,
+				C297004D16A1363500A61521 /* RoundLineLabel.m */,
+			);
+			path = RoundLineLabel;
+			sourceTree = "<group>";
+		};
 		C29707C2160ADBD200BE0789 /* CustomDiceManager */ = {
 			isa = PBXGroup;
 			children = (
@@ -11080,6 +11128,7 @@
 		CA103D061509A56100F60C03 /* Core-Components-View */ = {
 			isa = PBXGroup;
 			children = (
+				C297004B16A1363500A61521 /* RoundLineLabel */,
 				A41CF588165790380011AE45 /* RRSGlowLabel */,
 				A40D71DA16553575000CC598 /* FXLabel */,
 				C20D4B2215E1D77100074885 /* CommonInfoView */,
@@ -17392,6 +17441,7 @@
 				CA6877CF169D1C850006E489 /* SelectCustomWordCell.xib in Resources */,
 				CA6877D0169D1C850006E489 /* SelectCustomWordCell~ipad.xib in Resources */,
 				A48B0987169E675600B56975 /* UMUFP.bundle in Resources */,
+				A48B0A1016A1331D00B56975 /* TapjoyResources.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -18174,6 +18224,7 @@
 				CA6877E9169D1C8A0006E489 /* SelectCustomWordCell.xib in Resources */,
 				CA6877EA169D1C8A0006E489 /* SelectCustomWordCell~ipad.xib in Resources */,
 				A48B0988169E675700B56975 /* UMUFP.bundle in Resources */,
+				A48B0A1116A1331D00B56975 /* TapjoyResources.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -19691,6 +19742,7 @@
 				CA6877C6169D1C7F0006E489 /* SelectCustomWordCell.xib in Resources */,
 				CA6877C7169D1C7F0006E489 /* SelectCustomWordCell~ipad.xib in Resources */,
 				A48B0986169E675500B56975 /* UMUFP.bundle in Resources */,
+				A48B0A0F16A1331C00B56975 /* TapjoyResources.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -20376,6 +20428,15 @@
 				CA6877B4169D1BD80006E489 /* DraftsView.m in Sources */,
 				CA6877B7169D1BED0006E489 /* SelectCustomWordCell.m in Sources */,
 				CA6877BF169D1C310006E489 /* DraftCell.m in Sources */,
+				A48B09F116A1303C00B56975 /* FreeCoinsControllerViewController.m in Sources */,
+				A48B09F416A1310000B56975 /* GridViewCellDemo.m in Sources */,
+				A48B09F716A1310900B56975 /* UMGridViewController.m in Sources */,
+				A48B09FA16A1311100B56975 /* UMBannerViewController.m in Sources */,
+				A48B09FE16A1312600B56975 /* UMHandleViewController.m in Sources */,
+				A48B09FF16A1312600B56975 /* UMHandleViewController_New.m in Sources */,
+				A48B0A0316A1319600B56975 /* UMTableViewCell.m in Sources */,
+				A48B0A0616A1319B00B56975 /* UMTableViewController.m in Sources */,
+				A48B0A0916A131A300B56975 /* UMWebViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -21043,6 +21104,15 @@
 				CA6877B8169D1BEE0006E489 /* SelectCustomWordCell.m in Sources */,
 				CA6877DA169D1C8A0006E489 /* DraftCell.m in Sources */,
 				CA6877E2169D1C8A0006E489 /* SelectWordController.m in Sources */,
+				A48B09F216A1303D00B56975 /* FreeCoinsControllerViewController.m in Sources */,
+				A48B09F516A1310100B56975 /* GridViewCellDemo.m in Sources */,
+				A48B09F816A1310A00B56975 /* UMGridViewController.m in Sources */,
+				A48B09FB16A1311200B56975 /* UMBannerViewController.m in Sources */,
+				A48B0A0016A1312800B56975 /* UMHandleViewController.m in Sources */,
+				A48B0A0116A1312800B56975 /* UMHandleViewController_New.m in Sources */,
+				A48B0A0416A1319700B56975 /* UMTableViewCell.m in Sources */,
+				A48B0A0716A1319C00B56975 /* UMTableViewController.m in Sources */,
+				A48B0A0A16A131A400B56975 /* UMWebViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -21719,6 +21789,7 @@
 				A48B09D4169FAAC500B56975 /* UMTableViewCell.m in Sources */,
 				A48B09D5169FAAC500B56975 /* UMTableViewController.m in Sources */,
 				A48B09D6169FAAC500B56975 /* UMWebViewController.m in Sources */,
+				C297004E16A1363500A61521 /* RoundLineLabel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -22394,6 +22465,15 @@
 				CA6877B2169D1BD60006E489 /* DraftsView.m in Sources */,
 				CA6877B6169D1BED0006E489 /* SelectCustomWordCell.m in Sources */,
 				CA6877C0169D1C330006E489 /* DraftCell.m in Sources */,
+				A48B09F016A1303B00B56975 /* FreeCoinsControllerViewController.m in Sources */,
+				A48B09F316A130FF00B56975 /* GridViewCellDemo.m in Sources */,
+				A48B09F616A1310800B56975 /* UMGridViewController.m in Sources */,
+				A48B09F916A1310F00B56975 /* UMBannerViewController.m in Sources */,
+				A48B09FC16A1312100B56975 /* UMHandleViewController.m in Sources */,
+				A48B09FD16A1312100B56975 /* UMHandleViewController_New.m in Sources */,
+				A48B0A0216A1319600B56975 /* UMTableViewCell.m in Sources */,
+				A48B0A0516A1319A00B56975 /* UMTableViewController.m in Sources */,
+				A48B0A0816A131A200B56975 /* UMWebViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -22685,6 +22765,7 @@
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/GoogleAdMobAdsSDK\"",
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/shengmeng_iOS_SDK_1.1.0\"",
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/UMAppNetwork_SDK_3.5.2\"",
+					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/TapjoyPublisherLibrary\"",
 				);
 				OTHER_LDFLAGS = (
 					"-all_load",
@@ -22750,6 +22831,7 @@
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/GoogleAdMobAdsSDK\"",
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/shengmeng_iOS_SDK_1.1.0\"",
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/UMAppNetwork_SDK_3.5.2\"",
+					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/TapjoyPublisherLibrary\"",
 				);
 				OTHER_LDFLAGS = (
 					"-all_load",
@@ -22785,7 +22867,6 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/MobClick\"",
-					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/UMUFP_iPhone_SDK\"",
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/WeixinSDK\"",
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/YoumiSDK\"",
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/MangoAd/AdsMOGO_iOS_SDK_1.1.9/AdsMoGoLib/AdNetworkLibs/AdChina\"",
@@ -22817,6 +22898,7 @@
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/GoogleAdMobAdsSDK\"",
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/shengmeng_iOS_SDK_1.1.0\"",
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/UMAppNetwork_SDK_3.5.2\"",
+					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/TapjoyPublisherLibrary\"",
 				);
 				OTHER_LDFLAGS = (
 					"-all_load",
@@ -22850,7 +22932,6 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/MobClick\"",
-					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/UMUFP_iPhone_SDK\"",
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/WeixinSDK\"",
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/YoumiSDK\"",
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/MangoAd/AdsMOGO_iOS_SDK_1.1.9/AdsMoGoLib/AdNetworkLibs/AdChina\"",
@@ -22882,6 +22963,7 @@
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/GoogleAdMobAdsSDK\"",
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/shengmeng_iOS_SDK_1.1.0\"",
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/UMAppNetwork_SDK_3.5.2\"",
+					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/TapjoyPublisherLibrary\"",
 				);
 				OTHER_LDFLAGS = (
 					"-all_load",
@@ -23189,6 +23271,7 @@
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/GoogleAdMobAdsSDK\"",
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/shengmeng_iOS_SDK_1.1.0\"",
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/UMAppNetwork_SDK_3.5.2\"",
+					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/TapjoyPublisherLibrary\"",
 				);
 				OTHER_LDFLAGS = (
 					"-all_load",
@@ -23254,6 +23337,7 @@
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/GoogleAdMobAdsSDK\"",
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/shengmeng_iOS_SDK_1.1.0\"",
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/UMAppNetwork_SDK_3.5.2\"",
+					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/TapjoyPublisherLibrary\"",
 				);
 				OTHER_LDFLAGS = (
 					"-all_load",

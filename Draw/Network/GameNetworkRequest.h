@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "GameConstants.pb.h"
 
 @class CommonNetworkOutput;
 
@@ -242,20 +243,26 @@
                                            feedId:(NSString *)feedId;
 
 
+
 + (CommonNetworkOutput*)createOpus:(NSString*)baseURL
                              appId:(NSString*)appId
                             userId:(NSString*)userId
                               nick:(NSString*)nick
                             avatar:(NSString*)avatar
                             gender:(NSString*)gender
+                            wordId:(NSString*)wordId
                               word:(NSString *)word
+                          wordType:(PBWordType)wordType
                              level:(NSInteger)level
+                             score:(int)score
                               lang:(NSInteger)lang
-                              data:(NSData*)data 
+                              data:(NSData*)data
                          imageData:(NSData *)imageData
                          targetUid:(NSString *)targetUid
                          contestId:(NSString *)contestId
                               desc:(NSString *)desc;
+
+
 
 + (CommonNetworkOutput*)updateOpus:(NSString*)baseURL
                              appId:(NSString*)appId

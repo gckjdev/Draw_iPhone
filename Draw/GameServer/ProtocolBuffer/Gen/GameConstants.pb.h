@@ -179,6 +179,14 @@ typedef enum {
 
 BOOL DiceGameRuleTypeIsValidValue(DiceGameRuleType value);
 
+typedef enum {
+  PBWordTypeSystem = 1,
+  PBWordTypeCustom = 2,
+  PBWordTypeHot = 3,
+} PBWordType;
+
+BOOL PBWordTypeIsValidValue(PBWordType value);
+
 
 @interface GameConstantsRoot : NSObject {
 }
