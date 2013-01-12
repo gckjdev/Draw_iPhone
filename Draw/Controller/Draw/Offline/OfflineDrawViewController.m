@@ -127,8 +127,6 @@
     OfflineDrawViewController *vc = [[OfflineDrawViewController alloc] initWithWord:word lang:language];
     [fromController.navigationController pushViewController:vc animated:YES];   
     [vc release];
-    
-
 }
 
 + (void)startDraw:(Word *)word 
