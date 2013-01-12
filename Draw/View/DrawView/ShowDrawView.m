@@ -17,7 +17,12 @@
 
 @interface ShowDrawView ()
 {
+    NSInteger _playingActionIndex;
+    NSInteger _playingPointIndex;
     
+    BOOL _showPenHidden;
+    PenView *pen;
+
 }
 @property (nonatomic, retain) Paint *tempPaint;
 
@@ -94,7 +99,7 @@
     _playingPointIndex = 0;
     _currentAction = [self.drawActionList objectAtIndex:index];
     self.status = Playing;
-    [self setNeedsDisplayShowCacheLayer:NO];
+    [self playCurrentFrame];
 }
 
 - (void)play
@@ -126,21 +131,31 @@
 - (void)resume
 {
     self.status = Playing;
+    [self playCurrentFrame];
 }
 
 
 - (void)addDrawAction:(DrawAction *)action play:(BOOL)play
 {
+    PPDebug(@"<addDrawAction> is play = %d",play);
+    [self.drawActionList addObject:action];
     if (play) {
-        [self.drawActionList addObject:action];
         if (self.status == Playing) {
             return;
-        }else{
+        }else if(self.status == Stop){
+//            if ([action isCleanAction] || [action isChangeBackAction]) {
+//                PPDebug(@"is clean or change back action");
+//                [self drawAction:action inContext:showContext];
+//                [self setNeedsDisplayShowCacheLayer:NO];
+//            }else{
+            PPDebug(@"play from index = %d",[self.drawActionList count] -1);
             [self playFromDrawActionIndex:[self.drawActionList count] -1];
+//            }
         }
     }else{
-        [self.drawActionList addObject:action];
-        [self show];
+        self.status = Stop;
+        [self drawAction:action inContext:showContext];
+        [self setNeedsDisplayShowCacheLayer:NO];
     }
 }
 
@@ -242,9 +257,8 @@
     }
 }
 
-- (void)playNextFrame
+- (void)playCurrentFrame
 {
-    [self updateNextPlayIndex];
     [self updateTempPaint];
     if (self.status == Playing) {
         if (self.tempPaint) {
@@ -269,11 +283,17 @@
     }
 }
 
+- (void)playNextFrame
+{
+    [self updateNextPlayIndex];
+    [self playCurrentFrame];
+}
+
 - (void)drawRect:(CGRect)rect
 {
     [super drawRect:rect];
     if (Playing == self.status && self.playSpeed > 0) {
-        [self performSelector:@selector(playNextFrame) withObject:nil afterDelay:0.001];//self.playSpeed];
+        [self performSelector:@selector(playNextFrame) withObject:nil afterDelay:0.08];//self.playSpeed];
     }
 }
 
