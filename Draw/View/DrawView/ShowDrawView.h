@@ -11,7 +11,8 @@
 
 typedef enum{
     Stop = 0x1,
-    Playing = 0x1 << 1 
+    Playing = 0x1 << 1,
+    Pause = 0x1 << 2
 }DrawViewStatus;
 
 typedef enum {

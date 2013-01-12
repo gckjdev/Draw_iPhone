@@ -121,15 +121,24 @@
 }
 - (void)pause
 {
-    PPDebug(@"<ShowDrawView> pause");
-    self.status = Stop;
+    if(self.status == Playing){
+        PPDebug(@"<ShowDrawView> pause");
+        self.status = Pause;        
+    }else{
+        PPDebug(@"<ShowDrawView> not playing, pause failed");
+    }
 }
 
 
 - (void)resume
 {
-    self.status = Playing;
-    [self playCurrentFrame];
+    if (self.status == Pause) {
+        PPDebug(@"<ShowDrawView> resume");
+        self.status = Playing;
+        [self playCurrentFrame];
+    }else{
+        PPDebug(@"<ShowDrawView> not pause, resume failed");
+    }
 }
 
 
