@@ -289,7 +289,7 @@
 
 - (void)didSelecCustomWord:(NSString *)aWord
 {
-    Word *word = [Word wordWithText:aWord level:WordLeveLMedium];
+    Word *word = [Word cusWordWithText:aWord];
     [self startGameWithWord:word];
 }
 

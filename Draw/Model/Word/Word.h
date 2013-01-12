@@ -9,29 +9,52 @@
 #import <Foundation/Foundation.h>
 
 typedef enum
-{ 
+{
+    WordLevelUnknow = 0,
     WordLevelLow = 1,
     WordLeveLMedium = 2,
     WordLevelHigh = 3
 }WordLevel;
 
+
+typedef enum
+{
+    WordTypeUnknow = 0,
+    WordTypeSystem = 1,
+    WordTypeCustom= 2,
+    WordTypeHot = 3
+}WordType;
+
 @interface Word : NSObject<NSCoding>
 {
-    NSString *_text; 
+    WordType _wordType;
     WordLevel _level;
     int _score;
 }
 
-@property(nonatomic, retain)NSString *text;
-@property(nonatomic, assign)WordLevel level;
+@property (copy, nonatomic) NSString *text;
 
-- (id)initWithText:(NSString *)text level:(WordLevel)level;
-- (id)initWithText:(NSString *)text level:(WordLevel)level score:(int)score;
-+ (Word *)wordWithText:(NSString *)text level:(WordLevel)level;
-+ (Word *)wordWithText:(NSString *)text level:(WordLevel)level score:(int)score;
+// For Default
++ (Word *)wordWithText:(NSString *)text
+                 level:(WordLevel)level;
 
+// For system word
++ (Word *)sysWordWithText:(NSString *)text
+                    level:(WordLevel)level;
+
+// For my word
++ (Word *)cusWordWithText:(NSString *)text;
+
+// For hot word
++ (Word *)hotWordWithText:(NSString *)text
+                    score:(int)score;
+
+- (WordType)wordType;
+- (WordLevel)level;
 - (NSInteger)score;
+
 - (NSString *)levelDesc;
 - (NSInteger)length;
 
 @end
+

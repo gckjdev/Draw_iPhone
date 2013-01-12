@@ -34,7 +34,6 @@
 @property (nonatomic, retain) NSString* itemDescription;
 @property (nonatomic, assign) int buyAmountForOnce;
 @property (nonatomic, assign) int price;
-//@property (nonatomic, assign) UseScene useScene;
 
 - (id)initWithType:(ItemType)type amount:(NSInteger)amount;
 - (id)initWithType:(ItemType)type 
@@ -53,9 +52,6 @@
   buyAmountForOnce:(int)amount 
              price:(int)aPrice 
             amount:(int)currentAmount;
-//          useScene:(UseScene)useScene;
-
-//- (BOOL)canUseInScene:(UseScene)scene;
 
 + (Item *)itemWithType:(ItemType)type amount:(NSInteger)amount;
 + (Item*)tomato;
@@ -77,4 +73,7 @@
 + (BOOL)isItemCountable:(ItemType)type;
 + (NSString*)getItemTips:(ItemType)type;
 + (BOOL)isCustomDice:(ItemType)type;
+
+- (int)unitPrice;
+
 @end

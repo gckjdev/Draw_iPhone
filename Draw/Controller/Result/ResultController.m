@@ -639,7 +639,7 @@
                       nick:_drawUserNickName
                       avatar:nil
                       drawActionList:self.drawActionList
-                      drawWord:[Word wordWithText:self.wordText level:1]
+                      drawWord:[Word wordWithText:self.wordText level:WordLevelLow]
                       language:1];
     
     [[DrawDataService defaultService ] savePaintWithPBDraw:pbDraw

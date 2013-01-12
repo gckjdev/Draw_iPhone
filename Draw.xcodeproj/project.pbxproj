@@ -141,6 +141,14 @@
 		A48B0992169E9C0A00B56975 /* draw_home_free_coins@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A48B0990169E9C0A00B56975 /* draw_home_free_coins@2x.png */; };
 		A48B099E169EA35C00B56975 /* TapjoyPublisherLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A48B099A169EA35C00B56975 /* TapjoyPublisherLibrary.a */; };
 		A48B099F169EA35C00B56975 /* TapjoyResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A48B099B169EA35C00B56975 /* TapjoyResources.bundle */; };
+		A48B09CF169FAAC500B56975 /* UMBannerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A48B09BC169FAAC500B56975 /* UMBannerViewController.m */; };
+		A48B09D0169FAAC500B56975 /* GridViewCellDemo.m in Sources */ = {isa = PBXBuildFile; fileRef = A48B09BF169FAAC500B56975 /* GridViewCellDemo.m */; };
+		A48B09D1169FAAC500B56975 /* UMGridViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A48B09C1169FAAC500B56975 /* UMGridViewController.m */; };
+		A48B09D2169FAAC500B56975 /* UMHandleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A48B09C4169FAAC500B56975 /* UMHandleViewController.m */; };
+		A48B09D3169FAAC500B56975 /* UMHandleViewController_New.m in Sources */ = {isa = PBXBuildFile; fileRef = A48B09C6169FAAC500B56975 /* UMHandleViewController_New.m */; };
+		A48B09D4169FAAC500B56975 /* UMTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A48B09C9169FAAC500B56975 /* UMTableViewCell.m */; };
+		A48B09D5169FAAC500B56975 /* UMTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A48B09CB169FAAC500B56975 /* UMTableViewController.m */; };
+		A48B09D6169FAAC500B56975 /* UMWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A48B09CE169FAAC500B56975 /* UMWebViewController.m */; };
 		A48E827615E8AB1B002DB480 /* ChatView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A48E827515E8AB1A002DB480 /* ChatView.xib */; };
 		A49A083F166DA68D003E0F75 /* ReplacedPoker.m in Sources */ = {isa = PBXBuildFile; fileRef = A49A083E166DA68D003E0F75 /* ReplacedPoker.m */; };
 		A4A132651650E86900665109 /* MessageView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4A132641650E86900665109 /* MessageView.m */; };
@@ -443,7 +451,6 @@
 		C2F2CFB3163932C000995DCB /* ZJHAvatarView.m in Sources */ = {isa = PBXBuildFile; fileRef = C2F2CFB2163932C000995DCB /* ZJHAvatarView.m */; };
 		C2F947D21533D91E0034C895 /* UFPController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2F947D01533D91E0034C895 /* UFPController.m */; };
 		C2F947D31533D91E0034C895 /* UFPController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2F947D11533D91E0034C895 /* UFPController.xib */; };
-		C2F947D61533E2570034C895 /* UMTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C2F947D51533E2560034C895 /* UMTableViewCell.m */; };
 		C2FA6E701535352200EEB530 /* MyPaintButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C2FA6E6F1535352200EEB530 /* MyPaintButton.m */; };
 		C2FA6E721535358100EEB530 /* MyPaintButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2FA6E711535358100EEB530 /* MyPaintButton.xib */; };
 		CA02B52815AC241800B2A3E2 /* ItemService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA02B52715AC241800B2A3E2 /* ItemService.m */; };
@@ -915,7 +922,6 @@
 		CA16BA351682FAD900F81B47 /* ReplayController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA8D60611531EC5500E016ED /* ReplayController.m */; };
 		CA16BA361682FAD900F81B47 /* ShareAction.m in Sources */ = {isa = PBXBuildFile; fileRef = CACC084D1532B02600D9F8E9 /* ShareAction.m */; };
 		CA16BA371682FAD900F81B47 /* UFPController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2F947D01533D91E0034C895 /* UFPController.m */; };
-		CA16BA381682FAD900F81B47 /* UMTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C2F947D51533E2560034C895 /* UMTableViewCell.m */; };
 		CA16BA391682FAD900F81B47 /* MyPaintButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C2FA6E6F1535352200EEB530 /* MyPaintButton.m */; };
 		CA16BA3A1682FAD900F81B47 /* StoreKitUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC4DCE115450E8F00A42CF2 /* StoreKitUtils.m */; };
 		CA16BA3B1682FAD900F81B47 /* TransactionReceiptManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC4DCE71545286B00A42CF2 /* TransactionReceiptManager.m */; };
@@ -2112,7 +2118,6 @@
 		CA16BFBB1682FAE300F81B47 /* ReplayController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA8D60611531EC5500E016ED /* ReplayController.m */; };
 		CA16BFBC1682FAE300F81B47 /* ShareAction.m in Sources */ = {isa = PBXBuildFile; fileRef = CACC084D1532B02600D9F8E9 /* ShareAction.m */; };
 		CA16BFBD1682FAE300F81B47 /* UFPController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2F947D01533D91E0034C895 /* UFPController.m */; };
-		CA16BFBE1682FAE300F81B47 /* UMTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C2F947D51533E2560034C895 /* UMTableViewCell.m */; };
 		CA16BFBF1682FAE300F81B47 /* MyPaintButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C2FA6E6F1535352200EEB530 /* MyPaintButton.m */; };
 		CA16BFC01682FAE300F81B47 /* StoreKitUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC4DCE115450E8F00A42CF2 /* StoreKitUtils.m */; };
 		CA16BFC11682FAE300F81B47 /* TransactionReceiptManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC4DCE71545286B00A42CF2 /* TransactionReceiptManager.m */; };
@@ -4673,7 +4678,6 @@
 		CAB5C7CE16994F0200A4CE3B /* ReplayController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA8D60611531EC5500E016ED /* ReplayController.m */; };
 		CAB5C7CF16994F0200A4CE3B /* ShareAction.m in Sources */ = {isa = PBXBuildFile; fileRef = CACC084D1532B02600D9F8E9 /* ShareAction.m */; };
 		CAB5C7D016994F0200A4CE3B /* UFPController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2F947D01533D91E0034C895 /* UFPController.m */; };
-		CAB5C7D116994F0200A4CE3B /* UMTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C2F947D51533E2560034C895 /* UMTableViewCell.m */; };
 		CAB5C7D216994F0200A4CE3B /* MyPaintButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C2FA6E6F1535352200EEB530 /* MyPaintButton.m */; };
 		CAB5C7D316994F0200A4CE3B /* StoreKitUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC4DCE115450E8F00A42CF2 /* StoreKitUtils.m */; };
 		CAB5C7D416994F0200A4CE3B /* TransactionReceiptManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC4DCE71545286B00A42CF2 /* TransactionReceiptManager.m */; };
@@ -6497,6 +6501,22 @@
 		A48B099B169EA35C00B56975 /* TapjoyResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = TapjoyResources.bundle; sourceTree = "<group>"; };
 		A48B099C169EA35C00B56975 /* TJCAdDelegateProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJCAdDelegateProtocol.h; sourceTree = "<group>"; };
 		A48B099D169EA35C00B56975 /* TJCVideoAdProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJCVideoAdProtocol.h; sourceTree = "<group>"; };
+		A48B09BB169FAAC500B56975 /* UMBannerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMBannerViewController.h; sourceTree = "<group>"; };
+		A48B09BC169FAAC500B56975 /* UMBannerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UMBannerViewController.m; sourceTree = "<group>"; };
+		A48B09BE169FAAC500B56975 /* GridViewCellDemo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GridViewCellDemo.h; sourceTree = "<group>"; };
+		A48B09BF169FAAC500B56975 /* GridViewCellDemo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GridViewCellDemo.m; sourceTree = "<group>"; };
+		A48B09C0169FAAC500B56975 /* UMGridViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMGridViewController.h; sourceTree = "<group>"; };
+		A48B09C1169FAAC500B56975 /* UMGridViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UMGridViewController.m; sourceTree = "<group>"; };
+		A48B09C3169FAAC500B56975 /* UMHandleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMHandleViewController.h; sourceTree = "<group>"; };
+		A48B09C4169FAAC500B56975 /* UMHandleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UMHandleViewController.m; sourceTree = "<group>"; };
+		A48B09C5169FAAC500B56975 /* UMHandleViewController_New.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMHandleViewController_New.h; sourceTree = "<group>"; };
+		A48B09C6169FAAC500B56975 /* UMHandleViewController_New.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UMHandleViewController_New.m; sourceTree = "<group>"; };
+		A48B09C8169FAAC500B56975 /* UMTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMTableViewCell.h; sourceTree = "<group>"; };
+		A48B09C9169FAAC500B56975 /* UMTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UMTableViewCell.m; sourceTree = "<group>"; };
+		A48B09CA169FAAC500B56975 /* UMTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMTableViewController.h; sourceTree = "<group>"; };
+		A48B09CB169FAAC500B56975 /* UMTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UMTableViewController.m; sourceTree = "<group>"; };
+		A48B09CD169FAAC500B56975 /* UMWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMWebViewController.h; sourceTree = "<group>"; };
+		A48B09CE169FAAC500B56975 /* UMWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UMWebViewController.m; sourceTree = "<group>"; };
 		A48E827515E8AB1A002DB480 /* ChatView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChatView.xib; sourceTree = "<group>"; };
 		A49A083D166DA68D003E0F75 /* ReplacedPoker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReplacedPoker.h; sourceTree = "<group>"; };
 		A49A083E166DA68D003E0F75 /* ReplacedPoker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReplacedPoker.m; sourceTree = "<group>"; };
@@ -6928,8 +6948,6 @@
 		C2F947CF1533D91E0034C895 /* UFPController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UFPController.h; sourceTree = "<group>"; };
 		C2F947D01533D91E0034C895 /* UFPController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UFPController.m; sourceTree = "<group>"; };
 		C2F947D11533D91E0034C895 /* UFPController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UFPController.xib; sourceTree = "<group>"; };
-		C2F947D41533E2560034C895 /* UMTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMTableViewCell.h; sourceTree = "<group>"; };
-		C2F947D51533E2560034C895 /* UMTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UMTableViewCell.m; sourceTree = "<group>"; };
 		C2FA6E6E1535352200EEB530 /* MyPaintButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyPaintButton.h; sourceTree = "<group>"; };
 		C2FA6E6F1535352200EEB530 /* MyPaintButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyPaintButton.m; sourceTree = "<group>"; };
 		C2FA6E711535358100EEB530 /* MyPaintButton.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyPaintButton.xib; sourceTree = "<group>"; };
@@ -9867,6 +9885,7 @@
 		A48B0977169E664600B56975 /* UMAppNetwork_SDK_3.5.2 */ = {
 			isa = PBXGroup;
 			children = (
+				A48B09B9169FAAC500B56975 /* Demo */,
 				A48B0978169E664600B56975 /* libUMAppNetwork.a */,
 				A48B0979169E664600B56975 /* UMUFP.bundle */,
 				A48B097A169E664600B56975 /* UMUFPBannerView.h */,
@@ -9901,6 +9920,69 @@
 				A48B099D169EA35C00B56975 /* TJCVideoAdProtocol.h */,
 			);
 			path = TapjoyPublisherLibrary;
+			sourceTree = "<group>";
+		};
+		A48B09B9169FAAC500B56975 /* Demo */ = {
+			isa = PBXGroup;
+			children = (
+				A48B09BA169FAAC500B56975 /* Banner */,
+				A48B09BD169FAAC500B56975 /* GridView */,
+				A48B09C2169FAAC500B56975 /* Handle */,
+				A48B09C7169FAAC500B56975 /* TableView */,
+				A48B09CC169FAAC500B56975 /* Wap */,
+			);
+			path = Demo;
+			sourceTree = "<group>";
+		};
+		A48B09BA169FAAC500B56975 /* Banner */ = {
+			isa = PBXGroup;
+			children = (
+				A48B09BB169FAAC500B56975 /* UMBannerViewController.h */,
+				A48B09BC169FAAC500B56975 /* UMBannerViewController.m */,
+			);
+			path = Banner;
+			sourceTree = "<group>";
+		};
+		A48B09BD169FAAC500B56975 /* GridView */ = {
+			isa = PBXGroup;
+			children = (
+				A48B09BE169FAAC500B56975 /* GridViewCellDemo.h */,
+				A48B09BF169FAAC500B56975 /* GridViewCellDemo.m */,
+				A48B09C0169FAAC500B56975 /* UMGridViewController.h */,
+				A48B09C1169FAAC500B56975 /* UMGridViewController.m */,
+			);
+			path = GridView;
+			sourceTree = "<group>";
+		};
+		A48B09C2169FAAC500B56975 /* Handle */ = {
+			isa = PBXGroup;
+			children = (
+				A48B09C3169FAAC500B56975 /* UMHandleViewController.h */,
+				A48B09C4169FAAC500B56975 /* UMHandleViewController.m */,
+				A48B09C5169FAAC500B56975 /* UMHandleViewController_New.h */,
+				A48B09C6169FAAC500B56975 /* UMHandleViewController_New.m */,
+			);
+			path = Handle;
+			sourceTree = "<group>";
+		};
+		A48B09C7169FAAC500B56975 /* TableView */ = {
+			isa = PBXGroup;
+			children = (
+				A48B09C8169FAAC500B56975 /* UMTableViewCell.h */,
+				A48B09C9169FAAC500B56975 /* UMTableViewCell.m */,
+				A48B09CA169FAAC500B56975 /* UMTableViewController.h */,
+				A48B09CB169FAAC500B56975 /* UMTableViewController.m */,
+			);
+			path = TableView;
+			sourceTree = "<group>";
+		};
+		A48B09CC169FAAC500B56975 /* Wap */ = {
+			isa = PBXGroup;
+			children = (
+				A48B09CD169FAAC500B56975 /* UMWebViewController.h */,
+				A48B09CE169FAAC500B56975 /* UMWebViewController.m */,
+			);
+			path = Wap;
 			sourceTree = "<group>";
 		};
 		A48E827115E871BB002DB480 /* CommonHelpManager */ = {
@@ -11783,8 +11865,6 @@
 		CA1041DE1509B6E700F60C03 /* Feedback */ = {
 			isa = PBXGroup;
 			children = (
-				C2F947D41533E2560034C895 /* UMTableViewCell.h */,
-				C2F947D51533E2560034C895 /* UMTableViewCell.m */,
 				CA3221A1151F657F0039A384 /* FeedbackController.h */,
 				CA3221A2151F657F0039A384 /* FeedbackController.m */,
 				CA3221A3151F657F0039A384 /* FeedbackController.xib */,
@@ -19841,7 +19921,6 @@
 				CA16BA351682FAD900F81B47 /* ReplayController.m in Sources */,
 				CA16BA361682FAD900F81B47 /* ShareAction.m in Sources */,
 				CA16BA371682FAD900F81B47 /* UFPController.m in Sources */,
-				CA16BA381682FAD900F81B47 /* UMTableViewCell.m in Sources */,
 				CA16BA391682FAD900F81B47 /* MyPaintButton.m in Sources */,
 				CA16BA3A1682FAD900F81B47 /* StoreKitUtils.m in Sources */,
 				CA16BA3B1682FAD900F81B47 /* TransactionReceiptManager.m in Sources */,
@@ -20510,7 +20589,6 @@
 				CA16BFBB1682FAE300F81B47 /* ReplayController.m in Sources */,
 				CA16BFBC1682FAE300F81B47 /* ShareAction.m in Sources */,
 				CA16BFBD1682FAE300F81B47 /* UFPController.m in Sources */,
-				CA16BFBE1682FAE300F81B47 /* UMTableViewCell.m in Sources */,
 				CA16BFBF1682FAE300F81B47 /* MyPaintButton.m in Sources */,
 				CA16BFC01682FAE300F81B47 /* StoreKitUtils.m in Sources */,
 				CA16BFC11682FAE300F81B47 /* TransactionReceiptManager.m in Sources */,
@@ -21172,7 +21250,6 @@
 				CA8D60631531EC5500E016ED /* ReplayController.m in Sources */,
 				CACC084E1532B02600D9F8E9 /* ShareAction.m in Sources */,
 				C2F947D21533D91E0034C895 /* UFPController.m in Sources */,
-				C2F947D61533E2570034C895 /* UMTableViewCell.m in Sources */,
 				C2FA6E701535352200EEB530 /* MyPaintButton.m in Sources */,
 				CAC4DCE215450E8F00A42CF2 /* StoreKitUtils.m in Sources */,
 				CAC4DCE81545286C00A42CF2 /* TransactionReceiptManager.m in Sources */,
@@ -21626,6 +21703,14 @@
 				A4C1E919169BE85E00644682 /* DraftCell.m in Sources */,
 				A4C1E91C169BE85E00644682 /* DraftsView.m in Sources */,
 				A48B098D169E97DB00B56975 /* FreeCoinsControllerViewController.m in Sources */,
+				A48B09CF169FAAC500B56975 /* UMBannerViewController.m in Sources */,
+				A48B09D0169FAAC500B56975 /* GridViewCellDemo.m in Sources */,
+				A48B09D1169FAAC500B56975 /* UMGridViewController.m in Sources */,
+				A48B09D2169FAAC500B56975 /* UMHandleViewController.m in Sources */,
+				A48B09D3169FAAC500B56975 /* UMHandleViewController_New.m in Sources */,
+				A48B09D4169FAAC500B56975 /* UMTableViewCell.m in Sources */,
+				A48B09D5169FAAC500B56975 /* UMTableViewController.m in Sources */,
+				A48B09D6169FAAC500B56975 /* UMWebViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -21849,7 +21934,6 @@
 				CAB5C7CE16994F0200A4CE3B /* ReplayController.m in Sources */,
 				CAB5C7CF16994F0200A4CE3B /* ShareAction.m in Sources */,
 				CAB5C7D016994F0200A4CE3B /* UFPController.m in Sources */,
-				CAB5C7D116994F0200A4CE3B /* UMTableViewCell.m in Sources */,
 				CAB5C7D216994F0200A4CE3B /* MyPaintButton.m in Sources */,
 				CAB5C7D316994F0200A4CE3B /* StoreKitUtils.m in Sources */,
 				CAB5C7D416994F0200A4CE3B /* TransactionReceiptManager.m in Sources */,
@@ -22881,7 +22965,6 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/MobClick\"",
-					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/UMUFP_iPhone_SDK\"",
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/WeixinSDK\"",
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/YoumiSDK\"",
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/MangoAd/AdsMOGO_iOS_SDK_1.1.9/AdsMoGoLib/AdNetworkLibs/AdChina\"",
@@ -22947,7 +23030,6 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/MobClick\"",
-					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/UMUFP_iPhone_SDK\"",
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/WeixinSDK\"",
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/YoumiSDK\"",
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/MangoAd/AdsMOGO_iOS_SDK_1.1.9/AdsMoGoLib/AdNetworkLibs/AdChina\"",

@@ -9,42 +9,6 @@
 #import "Word.h"
 #import "LocaleUtils.h"
 @implementation Word
-@synthesize level = _level;
-@synthesize text = _text;
-
-- (id)initWithText:(NSString *)text level:(WordLevel)level
-{
-    self = [super init];
-    if(self)
-    {
-        self.text = text;
-        self.level = level;
-    }
-    return self;
-}
-
-- (id)initWithText:(NSString *)text level:(WordLevel)level score:(int)score
-{
-    self = [super init];
-    if(self)
-    {
-        self.text = text;
-        self.level = level;
-        _score = score;
-    }
-    
-    return self;
-}
-
-+ (Word *)wordWithText:(NSString *)text level:(WordLevel)level
-{
-    return [[[Word alloc] initWithText:text level:level] autorelease];
-}
-
-+ (Word *)wordWithText:(NSString *)text level:(WordLevel)level score:(int)score
-{
-    return [[[Word alloc] initWithText:text level:level score:score] autorelease];
-}
 
 - (void)dealloc
 {
@@ -52,56 +16,127 @@
     [super dealloc];
 }
 
-- (NSInteger)score
+- (id)initWithText:(NSString *)text
+              type:(WordType)type
+             level:(WordLevel)level
+             score:(int)score
 {
-    if (_score != 0) {
-        return _score;
+    self = [super init];
+    if(self)
+    {
+        self.text = text;
+        _wordType = type;
+        _level = level;
+        _score = score;
     }
     
-    switch (self.level) {
-        case WordLevelHigh:
-            return 5;
-        case WordLeveLMedium:
-            return 4;
-        case WordLevelLow:
-        default:
-            return 3;
-    }
+    return self;
+}
+
++ (Word *)wordWithText:(NSString *)text
+                 level:(WordLevel)level
+{
+    return [[[Word alloc] initWithText:text type:WordTypeUnknow level:level score:[self scoreWithLevel:level]] autorelease];
+}
+
+// For system word
++ (Word *)sysWordWithText:(NSString *)text
+                    level:(WordLevel)level
+{
+    
+    return [[[Word alloc] initWithText:text type:WordTypeSystem level:level score:[self scoreWithLevel:level]] autorelease];
+}
+
+// For my word
++ (Word *)cusWordWithText:(NSString *)text
+{
+    return [[[Word alloc] initWithText:text type:WordTypeCustom level:WordLeveLMedium score:4] autorelease];
+}
+
+// For hot word
++ (Word *)hotWordWithText:(NSString *)text
+                    score:(int)score
+{
+    return [[[Word alloc] initWithText:text type:WordTypeHot level:WordLeveLMedium score:score] autorelease];
+}
+
+- (WordType)wordType{
+    return _wordType;
+}
+
+- (WordLevel)level{
+    return _level;
+}
+
+- (NSInteger)score
+{
+    return _score;
 }
 
 - (NSString *)levelDesc
 {
-    switch (self.level) {
+    switch (_level) {
         case WordLevelHigh:
             return NSLS(@"kHard");
         case WordLeveLMedium:
             return NSLS(@"kNormal");
         case WordLevelLow:
-        default:
             return NSLS(@"kEasy");
+        case WordLevelUnknow:
+            return NSLS(@"");
+        default:
+            return NSLS(@"");
     }
 }
 
 
 - (NSInteger)length
 {
-    return self.text.length;
+    return _text.length;
 }
+
++ (int)scoreWithLevel:(WordLevel)level{
+    switch (level) {
+        case WordLevelHigh:
+            return 5;
+            break;
+            
+        case WordLeveLMedium:
+            return 4;
+            break;
+            
+        case WordLevelLow:
+            return 3;
+            break;
+            
+        default:
+            return 0;
+            break;
+    }
+}
+
 
 #define TEXT @"text"
 #define LEVEL @"level"
+#define WORDTYPE @"wordType"
+#define SCORE @"score"
 
 - (void)encodeWithCoder:(NSCoder *)aCoder
 {
     [aCoder encodeObject:_text forKey:TEXT];
     [aCoder encodeInt:_level forKey:LEVEL];
+    [aCoder encodeInt:_wordType forKey:WORDTYPE];
+    [aCoder encodeInt: _score forKey:SCORE];
 }
+
 - (id)initWithCoder:(NSCoder *)aDecoder
 {
     self = [super init];
     if (self) {
         self.text = [aDecoder decodeObjectForKey:TEXT];
-        self.level = [aDecoder decodeIntForKey:LEVEL];
+        _level = [aDecoder decodeIntForKey:LEVEL];
+        _wordType = [aDecoder decodeIntForKey:WORDTYPE];
+        _score = [aDecoder decodeIntForKey:SCORE];
     }
     return self;
 }

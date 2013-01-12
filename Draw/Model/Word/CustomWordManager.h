@@ -9,12 +9,6 @@
 #import <Foundation/Foundation.h>
 #import "Word.h"
 
-typedef enum
-{ 
-    WordTypeCustom = 1,
-    WordTypeSystem = 2,
-}WordType;
-
 @interface CustomWordManager : NSObject
 
 + (CustomWordManager *)defaultManager;

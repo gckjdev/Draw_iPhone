@@ -264,11 +264,6 @@
 
 #define DEFAULT_COLOR_NUMBER 5
 
-
-
-
-
-
 #pragma mark - Update Data
 
 enum{

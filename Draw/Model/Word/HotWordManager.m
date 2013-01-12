@@ -102,7 +102,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(HotWordManager)
     
     NSMutableArray *words = [NSMutableArray array];
     for (PBHotWord *hotWord in _words) {
-        Word *word = [Word wordWithText:hotWord.word level:WordLeveLMedium score:hotWord.coins];
+        Word *word = [Word hotWordWithText:hotWord.word score:hotWord.coins];
         [words addObject:word];
     }
     

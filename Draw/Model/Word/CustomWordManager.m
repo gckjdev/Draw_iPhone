@@ -77,7 +77,7 @@ static CustomWordManager *_customWordManager = nil;
 {
     NSMutableArray *words = [NSMutableArray array];
     for (CustomWord *cusWord in [self findAllWords]) {
-        Word *word = [Word wordWithText:cusWord.word level:WordLeveLMedium];
+        Word *word = [Word cusWordWithText:cusWord.word];
         [words addObject:word];
     }
     

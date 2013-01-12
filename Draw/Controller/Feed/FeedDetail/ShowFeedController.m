@@ -507,16 +507,12 @@ enum{
     BOOL itemEnough = YES;
     
     if (!_feed.isContestFeed && item.amount <= 0 && !isFree) {
-//        CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kNoItemTitle") message:NSLS(@"kNoItemMessage") style:CommonDialogStyleDoubleButton delegate:self];
-//        dialog.tag = ITEM_TAG_OFFSET + item.type;
-//        [dialog showInView:self.view];
         int result = [[AccountService defaultService] buyItem:item.type itemCount:1 itemCoins:(item.price/item.buyAmountForOnce)];
         itemEnough = NO;
         if (result == ERROR_COINS_NOT_ENOUGH) {
             [self showCoinsNotEnoughView];
             return;
         }
-        
     }
     [[ItemService defaultService] sendItemAward:item.type
                                    targetUserId:_feed.author.userId
