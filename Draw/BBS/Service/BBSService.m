@@ -310,24 +310,24 @@ BBSService *_staticBBSService;
                                                        deviceType:1
                                                            gameId:gameId
                                                          language:lang];
-        NSInteger resultCode = [output resultCode];
-        NSArray *list = nil;
-        @try {
-            if (output.resultCode == ERROR_SUCCESS && [output.responseData length] > 0) {
-                DataQueryResponse *response = [DataQueryResponse parseFromData:output.responseData];
-                resultCode = [response resultCode];
-                list = [response bbsBoardList];
-                [[BBSManager defaultManager] setBoardList:list];
-            }
-        }
-        @catch (NSException *exception) {
-            PPDebug(@"<getBBSBoardList>exception = %@",[exception debugDescription]);
-            list = nil;
-        }
-        @finally {
-            
-        }
         dispatch_async(dispatch_get_main_queue(), ^{
+            NSInteger resultCode = [output resultCode];
+            NSArray *list = nil;
+            @try {
+                if (output.resultCode == ERROR_SUCCESS && [output.responseData length] > 0) {
+                    DataQueryResponse *response = [DataQueryResponse parseFromData:output.responseData];
+                    resultCode = [response resultCode];
+                    list = [response bbsBoardList];
+                    [[BBSManager defaultManager] setBoardList:list];
+                }
+            }
+            @catch (NSException *exception) {
+                PPDebug(@"<getBBSBoardList>exception = %@",[exception debugDescription]);
+                list = nil;
+            }
+            @finally {
+                
+            }
             if (delegate && [delegate respondsToSelector:@selector(didGetBBSBoardList:resultCode:)]) {
                 [delegate didGetBBSBoardList:list resultCode:resultCode];
             }
@@ -472,24 +472,24 @@ BBSService *_staticBBSService;
                                                        offset:offset
                                                         limit:limit];
         
-        NSInteger resultCode = [output resultCode];
-        NSArray *list = nil;
-        @try {
-            if (output.resultCode == ERROR_SUCCESS && [output.responseData length] > 0) {
-                DataQueryResponse *response = [DataQueryResponse parseFromData:output.responseData];
-                resultCode = [response resultCode];
-                list = [response bbsPostList];
-            }
-        }
-        @catch (NSException *exception) {
-            PPDebug(@"<getBBSBoardList>exception = %@",[exception debugDescription]);
-            list = nil;
-        }
-        @finally {
-
-        }
-
         dispatch_async(dispatch_get_main_queue(), ^{
+            NSInteger resultCode = [output resultCode];
+            NSArray *list = nil;
+            @try {
+                if (output.resultCode == ERROR_SUCCESS && [output.responseData length] > 0) {
+                    DataQueryResponse *response = [DataQueryResponse parseFromData:output.responseData];
+                    resultCode = [response resultCode];
+                    list = [response bbsPostList];
+                }
+            }
+            @catch (NSException *exception) {
+                PPDebug(@"<getBBSBoardList>exception = %@",[exception debugDescription]);
+                list = nil;
+            }
+            @finally {
+
+            }
+
             if (delegate) {
                 if (boardId != nil && [delegate respondsToSelector:@selector(didGetBBSBoard:postList:rangeType:resultCode:)]) {
                     

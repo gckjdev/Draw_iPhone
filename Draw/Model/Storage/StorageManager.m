@@ -66,9 +66,12 @@ static StorageManager *_staticStorageManager = nil;
 
 + (id)defaultManager
 {
-    if (_staticStorageManager == nil) {
-        _staticStorageManager = [[StorageManager alloc] init];
-    }
+    static dispatch_once_t onceStorageManagerToken;
+    dispatch_once(&onceStorageManagerToken, ^{
+        if (_staticStorageManager == nil) {
+            _staticStorageManager = [[StorageManager alloc] init];
+        }        
+    });
     [_staticStorageManager setStorageType:StorageTypeCache];
     [_staticStorageManager setDirectoryName:DEFAULT_DIR];
     return _staticStorageManager;
