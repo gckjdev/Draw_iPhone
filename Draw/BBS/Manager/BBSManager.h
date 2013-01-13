@@ -21,8 +21,11 @@
     StorageManager *_storageManager;
     NSMutableArray *_tempPostList;
 }
-@property(nonatomic, retain)NSArray *boardList;
-@property(nonatomic, retain)NSMutableArray *tempPostList;
+
+@property(atomic, retain) NSArray *boardList;
+@property(atomic, retain) NSMutableArray *tempPostList;
+@property(atomic, retain) NSMutableDictionary *boardDict;
+@property(atomic, retain) StorageManager *storageManager;
 
 +(BBSManager *)defaultManager;
 -(NSArray *)parentBoardList;
