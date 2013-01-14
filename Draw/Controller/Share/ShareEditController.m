@@ -531,14 +531,14 @@ enum {
         && [[UserManager defaultManager] hasBindQQWeibo]
         && [[[PPSNSIntegerationService defaultService] snsServiceByType:TYPE_QQ] isAuthorizeExpired] == NO
         && _snsType == QQ_WEIBO){
-        publishText = [publishText stringByAppendingFormat:@" @%@",user.qqId];       
+        publishText = [publishText stringByAppendingFormat:@" (via@%@)",user.qqId];       
     }
     
     if (user.isSinaUser 
         && [[UserManager defaultManager] hasBindSinaWeibo]
         && [[[PPSNSIntegerationService defaultService] snsServiceByType:TYPE_SINA] isAuthorizeExpired] == NO
         && _snsType == SINA_WEIBO){
-        publishText = [publishText stringByAppendingFormat:@" @%@",user.sinaNick];
+        publishText = [publishText stringByAppendingFormat:@" (via@%@)",user.sinaNick];
     }
     
     if (user.isFacebookUser 

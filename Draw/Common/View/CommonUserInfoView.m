@@ -178,6 +178,10 @@
     [self.contentView bringSubviewToFront:self.backgroundImageView];
     [self.contentView bringSubviewToFront:self.avatarView];
     [self.contentView bringSubviewToFront:self.userName];
+    [self.contentView bringSubviewToFront:self.coinImageView];
+    [self.contentView bringSubviewToFront:self.coinsLabel];
+    [self.contentView bringSubviewToFront:self.genderImageView];
+    [self.contentView bringSubviewToFront:self.genderLabel];
     
     
 }

@@ -18,6 +18,8 @@
 #import "GameSNSService.h"
 #import "UIImageExt.h"
 #import "RoundLineLabel.h"
+#import "WordManager.h"
+#import "Word.h"
 
 @implementation ShareService
 
@@ -33,11 +35,14 @@ static ShareService* _defaultService;
 }
 
 
-- (NSString*)getWeiboText:(int)snsType 
+- (NSString*)getWeiboText:(int)snsType
          drawUserNickName:(NSString*)drawUserNickName 
                isDrawByMe:(BOOL)isDrawByMe 
                  drawWord:(NSString*)drawWord
 {
+    NSArray* wordArray = [[WordManager defaultManager] randDrawWordList];
+    NSMutableArray* array2 = [NSMutableArray arrayWithArray:wordArray];
+    [array2 insertObject:[Word wordWithText:drawWord level:0] atIndex:(rand()%3)];
     NSString* appNick = [GameSNSService snsOfficialNick:snsType];    
     if (appNick == nil)
         appNick = @"";
@@ -50,7 +55,7 @@ static ShareService* _defaultService;
     
     NSString* text = @"";
     if (isDrawByMe){
-        text = [NSString stringWithFormat:NSLS(@"kShareMeTextAuto"), appNick, drawWord];
+//        text = [NSString stringWithFormat:NSLS(@"kShareMeTextAuto"), appNick, drawWord];
     }
     else{
         NSString* nick = nil;
@@ -60,8 +65,9 @@ static ShareService* _defaultService;
         else{
             nick = @"";
         }
-        text = [NSString stringWithFormat:NSLS(@"kShareOtherTextAuto"), appNick, nick];
-    }                
+//        text = [NSString stringWithFormat:NSLS(@"kShareOtherTextAuto"), appNick, nick];
+    }
+    text = [NSString stringWithFormat:NSLS(@"kWeiboShareMessage"), ((Word*)[array2 objectAtIndex:0]).text, ((Word*)[array2 objectAtIndex:1]).text, ((Word*)[array2 objectAtIndex:2]).text, ((Word*)[array2 objectAtIndex:3]).text];
     
     PPDebug(@"Share Weibo Text=%@", text); 
     return text;

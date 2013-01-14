@@ -989,6 +989,8 @@
 "kSystemWords" = "系统词库";
 
 "kDefaultWaterMark" = "@猜猜画画";
+
+"kWeiboShareMessage" = "猜猜这幅是神马？A、[%@] B、[%@] C、[%@] D、[%@] E、[以上皆不是]#猜猜画画动画炫图分享#  http://itunes.apple.com/cn/app/cai-cai-hua-hua/id513819630?mt=8";
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 
