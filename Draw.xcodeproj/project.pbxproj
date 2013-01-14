@@ -187,6 +187,10 @@
 		A4A132651650E86900665109 /* MessageView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4A132641650E86900665109 /* MessageView.m */; };
 		A4A4F8EA1671982B00EFC465 /* ZJHGameController_dual.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4A4F8E71671982A00EFC465 /* ZJHGameController_dual.xib */; };
 		A4A4F8EB1671982B00EFC465 /* ZJHUserPosInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = A4A4F8E91671982B00EFC465 /* ZJHUserPosInfo.m */; };
+		A4A9521816A3F15200598149 /* FreeCoinsControllerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A48B098C169E97DB00B56975 /* FreeCoinsControllerViewController.xib */; };
+		A4A9521916A3F15300598149 /* FreeCoinsControllerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A48B098C169E97DB00B56975 /* FreeCoinsControllerViewController.xib */; };
+		A4A9521A16A3F15400598149 /* FreeCoinsControllerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A48B098C169E97DB00B56975 /* FreeCoinsControllerViewController.xib */; };
+		A4A9521B16A3F21E00598149 /* draw_home_free_coins@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A48B0990169E9C0A00B56975 /* draw_home_free_coins@2x.png */; };
 		A4AB18F315E359B90097CC7A /* ChatViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A4AB18F115E359B90097CC7A /* ChatViewCell.m */; };
 		A4AB18F415E359B90097CC7A /* ChatViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4AB18F215E359B90097CC7A /* ChatViewCell.xib */; };
 		A4AC51EB15C9111C0041DC86 /* DiceSelectedView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4AC51EA15C9111C0041DC86 /* DiceSelectedView.m */; };
@@ -17507,6 +17511,7 @@
 				CA53292716A3E1E000E9E96B /* PenBox~ipad.xib in Resources */,
 				CA53293316A3E50E00E9E96B /* InputAlertView.xib in Resources */,
 				CA53293816A3E51F00E9E96B /* InputAlertView~ipad.xib in Resources */,
+				A4A9521916A3F15300598149 /* FreeCoinsControllerViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -18293,6 +18298,8 @@
 				CA53292816A3E1E000E9E96B /* PenBox~ipad.xib in Resources */,
 				CA53293416A3E50E00E9E96B /* InputAlertView.xib in Resources */,
 				CA53293916A3E51F00E9E96B /* InputAlertView~ipad.xib in Resources */,
+				A4A9521816A3F15200598149 /* FreeCoinsControllerViewController.xib in Resources */,
+				A4A9521B16A3F21E00598149 /* draw_home_free_coins@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -19825,6 +19832,7 @@
 				CA53297116A3E64B00E9E96B /* input_alert_button@2x.png in Resources */,
 				CA53297316A3E64B00E9E96B /* input_alert_content_bg@2x.png in Resources */,
 				CA53297516A3E64B00E9E96B /* input_alert_frame@2x.png in Resources */,
+				A4A9521A16A3F15400598149 /* FreeCoinsControllerViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

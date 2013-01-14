@@ -34,6 +34,8 @@
 #import "AudioManager.h"
 #import "ZJHSoundManager.h"
 #import "Reachability.h"
+#import "AnalyticsManager.h"
+#import "FreeCoinsControllerViewController.h"
 
 @interface ZJHHomeViewController ()
 {
@@ -239,6 +241,27 @@ ZJHHomeViewController *_staticZJHHomeViewController = nil;
             [self.navigationController pushViewController:vc animated:YES];
             break;
         }
+        case HomeMenuTypeZJHShop:{
+            [[AnalyticsManager sharedAnalyticsManager] reportClickHomeElements:HOME_TOP_COINS];
+            
+            if ([self isRegistered] == NO) {
+                [self toRegister];
+                return;
+            }
+            
+            CoinShopController* controller = [[[CoinShopController alloc] init] autorelease];
+            [self.navigationController pushViewController:controller animated:YES];
+        }
+            break;
+        case HomeMenuTypeDrawFreeCoins:
+        {
+            [[AnalyticsManager sharedAnalyticsManager] reportClickHomeMenu:HOME_ACTION_FREE_COINS];
+            
+            FreeCoinsControllerViewController *vc = [[[FreeCoinsControllerViewController alloc] init] autorelease];
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+            break;
+            
         default:
             break;
     }

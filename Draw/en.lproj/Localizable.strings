@@ -935,6 +935,7 @@
 "kHomeMenuTypeZJHRichSite" = "Rich";
 "kHomeMenuTypeZJHNormalSite" = "Poor";
 "kHomeMenuTypeZJHVSSite" = "One-One";
+"kHomeMenuTypeZJHShop" = "Shop";
 
 "kBulletin" = "Bulletin";
 
