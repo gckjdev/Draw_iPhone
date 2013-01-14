@@ -184,7 +184,7 @@
 
 + (ShowDrawView *)showView
 {
-    return [[ShowDrawView alloc] initWithFrame:DRAW_VIEW_FRAME];
+    return [[[ShowDrawView alloc] initWithFrame:DRAW_VIEW_FRAME] autorelease];
 }
 
 - (void)resetFrameSize:(CGSize)size
