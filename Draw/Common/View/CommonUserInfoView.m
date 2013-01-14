@@ -29,6 +29,7 @@
 #import "DrawUserInfoView.h"
 #import "DiceUserInfoView.h"
 #import "ZJHUserInfoView.h"
+#import "Bbs.pb.h"
 
 #define RUN_OUT_TIME 0.2
 #define RUN_IN_TIME 0.4
@@ -178,10 +179,6 @@
     [self.contentView bringSubviewToFront:self.backgroundImageView];
     [self.contentView bringSubviewToFront:self.avatarView];
     [self.contentView bringSubviewToFront:self.userName];
-    [self.contentView bringSubviewToFront:self.coinImageView];
-    [self.contentView bringSubviewToFront:self.coinsLabel];
-    [self.contentView bringSubviewToFront:self.genderImageView];
-    [self.contentView bringSubviewToFront:self.genderLabel];
     
     
 }
@@ -309,6 +306,37 @@
                         infoInView:superController
                         needUpdate:needUpdate];
 }
+
++ (void)showPBBBSUser:(PBBBSUser *)user
+         inController:(PPViewController *)superController
+           needUpdate:(BOOL)needUpdate
+              canChat:(BOOL)canChat
+{
+    MyFriend *friend = [MyFriend friendWithFid:user.userId
+                                      nickName:user.nickName
+                                        avatar:user.avatar
+                                        gender:user.gender?@"m":@"f"
+                                         level:1];
+//    if (isDiceApp()) {
+//        [DiceUserInfoView showFriend:afriend
+//                          infoInView:superController
+//                             canChat:canChat
+//                          needUpdate:needUpdate];
+//        return;
+//    }
+//    if (isZhajinhuaApp()) {
+//        [ZJHUserInfoView showFriend:afriend
+//                         infoInView:superController
+//                         needUpdate:needUpdate
+//                            canChat:canChat];
+//        return;
+//    }
+    [CommonUserInfoView showFriend:friend
+                      inController:superController
+                        needUpdate:needUpdate
+                           canChat:canChat];
+}
+
 
 #pragma mark - user service delegate
 

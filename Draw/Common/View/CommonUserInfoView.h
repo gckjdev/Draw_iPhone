@@ -15,6 +15,7 @@
 @class PPViewController;
 @class MyFriend;
 @class CommonRoundAvatarView;
+@class PBBBSUser;
 
 @interface CommonUserInfoView : CommonInfoView<FriendServiceDelegate, UserServiceDelegate>
 {
@@ -45,6 +46,10 @@
       inController:(PPViewController *)superController
         needUpdate:(BOOL)needUpdate
            canChat:(BOOL)canChat;
++ (void)showPBBBSUser:(PBBBSUser *)user
+         inController:(PPViewController *)superController
+           needUpdate:(BOOL)needUpdate
+              canChat:(BOOL)canChat;
 
 - (void)initView:(BOOL)canChat;//
 - (void)initViewWithFriend:(MyFriend *)afriend
