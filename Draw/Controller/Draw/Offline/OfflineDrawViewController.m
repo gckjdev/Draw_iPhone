@@ -76,7 +76,7 @@
     
     BOOL _isAutoSave;
     
-    BOOL _userSaved;
+//    BOOL _userSaved;
     BOOL _isNewDraft;
 
 }
@@ -304,11 +304,11 @@ enum{
 //    [drawView setRevocationSupported:YES];
     drawView.delegate = self;
     _isNewDraft = YES;
-    _userSaved = NO;
+//    _userSaved = NO;
     if (self.draft) {
         [drawView showDraft:self.draft];
         self.draft.thumbImage = nil;
-        _userSaved = YES;
+//        _userSaved = YES;
     }
     [self.view insertSubview:drawView aboveSubview:paperView];
     self.eraserColor = [DrawColor whiteColor];
@@ -566,9 +566,6 @@ enum{
     }
     else if (dialog.tag == DIALOG_TAG_SAVETIP)
     {
-        if (!_userSaved) {
-            [[MyPaintManager defaultManager] deleteMyPaint:self.draft];
-        }
         [self quit];
     }
 }
@@ -756,7 +753,6 @@ enum{
 }
 
 - (IBAction)clickDraftButton:(id)sender {
-    _userSaved = YES;
     [self showActivityWithText:NSLS(@"kSaving")];
     [self performSelector:@selector(saveDraftAndShowResult) withObject:nil afterDelay:0.01];
 }
@@ -809,11 +805,7 @@ enum{
             }];            
         }
         [self.inputAlert showInView:self.view animated:YES];
-        
-//        CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kCommitOpusTitle") message:NSLS(@"kCommitOpusMessage") style:CommonDialogStyleDoubleButton delegate:self];
-//        [dialog showInView:self.view];
-//        dialog.tag = DIALOG_TAG_COMMIT_OPUS;
-        
+    
     }
 }
 
@@ -822,7 +814,7 @@ enum{
 {
     CommonDialog *dialog = [CommonDialog createDialogWithTitle:nil message:nil style:CommonDialogStyleDoubleButton delegate:self];
     
-    if (_isNewDraft || [drawView.drawActionList count] == 0 || !_isAutoSave) {
+    if (_isNewDraft || [drawView.drawActionList count] == 0 /*|| !_isAutoSave*/) {
         [dialog setTitle:NSLS(@"kQuitGameAlertTitle")];
         [dialog setMessage:NSLS(@"kQuitGameAlertMessage")];
         dialog.tag = DIALOG_TAG_ESCAPE;
