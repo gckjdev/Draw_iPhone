@@ -982,6 +982,10 @@
 "kColorAlphaItemDescription" = "買了它，可以畫出半透明的筆劃。";
 
 
+"kAddOpusDesc" = "您可以為作品添加壹段描述...";
+"kTwoSpaceCancel" = "取  消";
+"kTwoSpaceConfirm" = "確  定";
+
 "kHotWords" = "熱門詞庫";
 "kHotWordsNote" = "[消耗一個錦囊]";
 "kSystemWords" = "系統詞庫";
@@ -1186,9 +1190,7 @@
 "kOnlineUser" = "在線%d人";
 "kCanotSendItemToContestOpus" = "比賽已經結束， 不能再丟東西了哦！";
 
-"kPenWidth" = "粗細";
-"kColorAlpha" = "透明度";
-"kMoreColor" = "更多";
+
 /*********************** 大话骰子国际化字符串结束 *************************/
 
 

@@ -970,6 +970,10 @@
 
 "kDefaultWaterMark" = "@Draw Lively";
 "kWeiboShareMessage" = "Guess what's this？A、[%@]B、[%@]C、[%@]D、[%@]";
+
+"kAddOpusDesc" = "Add some words to the opus?";
+"kTwoSpaceCancel" = "Cancel";
+"kTwoSpaceConfirm" = "Confirm";
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 

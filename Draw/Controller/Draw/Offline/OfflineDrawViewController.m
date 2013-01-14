@@ -48,6 +48,7 @@
 #import "VendingController.h"
 #import "FontButton.h"
 
+#import "InputAlertView.h"
 
 @interface OfflineDrawViewController()
 {
@@ -90,7 +91,7 @@
 @property (retain, nonatomic) DrawToolPanel *drawToolPanel;
 @property (retain, nonatomic) DrawColor *tempColor;
 @property (retain, nonatomic) NSString *desc;
-
+@property (retain, nonatomic) InputAlertView *inputAlert;
 
 - (void)initDrawView;
 
@@ -170,6 +171,7 @@
     PPRelease(_submitButton);
     PPRelease(_tempColor);
     PPRelease(_desc);
+    PPRelease(_inputAlert);
     [super dealloc];
 }
 
@@ -489,22 +491,7 @@ enum{
 }
 - (void)clickOk:(CommonDialog *)dialog
 {
-    if(dialog.tag == DIALOG_TAG_COMMIT_OPUS)
-    {
-        [self showActivityWithText:NSLS(@"kSending")];
-        self.submitButton.userInteractionEnabled = NO;
-        UIImage *image = [drawView createImage];
-        [[DrawDataService defaultService] createOfflineDraw:drawView.drawActionList 
-                                                      image:image 
-                                                   drawWord:self.word 
-                                                   language:languageType 
-                                                  targetUid:self.targetUid 
-                                                  contestId:_contest.contestId
-                                                       desc:_desc//@"元芳，你怎么看？"
-                                                   delegate:self];
-
-    }
-    else if (dialog.tag == DIALOG_TAG_ESCAPE ){
+    if (dialog.tag == DIALOG_TAG_ESCAPE ){
         [self quit];
     }
     else if (dialog.tag == DIALOG_TAG_SAVETIP)
@@ -624,6 +611,7 @@ enum{
     [self hideActivity];
     self.submitButton.userInteractionEnabled = YES;
     if (resultCode == 0) {
+        [self.inputAlert dismiss:NO];
         CommonDialog *dialog = nil;
         if (self.contest) {
             self.contest.opusCount ++;
@@ -779,6 +767,21 @@ enum{
     return  [DrawAction scaleActionList:drawActionList xScale:1.0 / IPAD_WIDTH_SCALE yScale:1.0 / IPAD_HEIGHT_SCALE];
 }
 
+- (void)commitOpus
+{
+    [self showActivityWithText:NSLS(@"kSending")];
+    self.submitButton.userInteractionEnabled = NO;
+    UIImage *image = [drawView createImage];
+    [[DrawDataService defaultService] createOfflineDraw:drawView.drawActionList
+                                                  image:image
+                                               drawWord:self.word
+                                               language:languageType
+                                              targetUid:self.targetUid
+                                              contestId:_contest.contestId
+                                                   desc:_desc//@"元芳，你怎么看？"
+                                               delegate:self];
+}
+
 - (IBAction)clickSubmitButton:(id)sender {
     
     BOOL isBlank = [DrawAction isDrawActionListBlank:drawView.drawActionList];
@@ -795,10 +798,21 @@ enum{
             [delegate didController:self submitActionList:drawView.drawActionList drawImage:image];
         }
     }else {
+        if (self.inputAlert == nil) {
+            self.inputAlert = [InputAlertView inputAlertViewWith:NSLS(@"kAddOpusDesc") content:nil clickBlock:^BOOL(NSString *contentText, BOOL confirm) {
+                _desc = contentText;
+                PPDebug(@"opus desc = %@,confirm = %d",contentText,confirm);
+                if (confirm) {
+                    [self commitOpus];
+                }
+                return !confirm;
+            }];            
+        }
+        [self.inputAlert showInView:self.view animated:YES];
         
-        CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kCommitOpusTitle") message:NSLS(@"kCommitOpusMessage") style:CommonDialogStyleDoubleButton delegate:self];
-        [dialog showInView:self.view];
-        dialog.tag = DIALOG_TAG_COMMIT_OPUS;
+//        CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kCommitOpusTitle") message:NSLS(@"kCommitOpusMessage") style:CommonDialogStyleDoubleButton delegate:self];
+//        [dialog showInView:self.view];
+//        dialog.tag = DIALOG_TAG_COMMIT_OPUS;
         
     }
 }
@@ -968,5 +982,28 @@ enum{
         self.tempColor = nil;
     }
 }
+
+
+#pragma mark -- super method
+
+- (void)keyboardWillShowWithRect:(CGRect)keyboardRect
+{
+    PPDebug(@"keyboardWillShowWithRect rect = %@", NSStringFromCGRect(keyboardRect));
+    [self.inputAlert adjustWithKeyBoardRect:keyboardRect];
+}
+
+//- (void)keyboardWillHideWithRect:(CGRect)keyboardRect
+//{
+//    PPDebug(@"keyboardWillHideWithRect rect = %@", NSStringFromCGRect(keyboardRect));
+//    [self.inputAlert adjustWithKeyBoardRect:CGRectZero];
+//}
+
+//- (void)keyboardDidShowWithRect:(CGRect)keyboardRect
+//{
+//}
+//
+//- (void)keyboardDidHideWithRect:(CGRect)keyboardRect
+//{
+//}
 
 @end
