@@ -3,12 +3,12 @@
 	<data>
 		<int key="IBDocument.SystemTarget">1536</int>
 		<string key="IBDocument.SystemVersion">12C60</string>
-		<string key="IBDocument.InterfaceBuilderVersion">2840</string>
+		<string key="IBDocument.InterfaceBuilderVersion">2844</string>
 		<string key="IBDocument.AppKitVersion">1187.34</string>
 		<string key="IBDocument.HIToolboxVersion">625.00</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-			<string key="NS.object.0">1926</string>
+			<string key="NS.object.0">1930</string>
 		</object>
 		<array key="IBDocument.IntegratedClassDependencies">
 			<string>IBProxyObject</string>
@@ -174,7 +174,7 @@
 					</object>
 					<object class="IBUIButton" id="11651035">
 						<reference key="NSNextResponder" ref="191373211"/>
-						<int key="NSvFlags">292</int>
+						<int key="NSvFlags">268</int>
 						<string key="NSFrame">{{71, 426}, {68, 28}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSNextKeyView" ref="389474762"/>
@@ -207,7 +207,7 @@
 					</object>
 					<object class="IBUIButton" id="389474762">
 						<reference key="NSNextResponder" ref="191373211"/>
-						<int key="NSvFlags">292</int>
+						<int key="NSvFlags">268</int>
 						<string key="NSFrame">{{183, 426}, {68, 28}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
@@ -473,13 +473,13 @@
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="bbs_back@2x.png">{60, 53}</string>
+			<string key="bbs_back@2x.png">{16, 16}</string>
 			<string key="bbs_bg@2x.jpg">{640, 960}</string>
-			<string key="bbs_detail_comment@2x.png">{132, 56}</string>
-			<string key="bbs_detail_support@2x.png">{132, 56}</string>
-			<string key="bbs_detail_toolbar@2x.jpg">{640, 80}</string>
-			<string key="bbs_refresh@2x.png">{52, 48}</string>
+			<string key="bbs_detail_comment@2x.png">{16, 16}</string>
+			<string key="bbs_detail_support@2x.png">{16, 16}</string>
+			<string key="bbs_detail_toolbar@2x.jpg">{16, 16}</string>
+			<string key="bbs_refresh@2x.png">{16, 16}</string>
 		</dictionary>
-		<string key="IBCocoaTouchPluginVersion">1926</string>
+		<string key="IBCocoaTouchPluginVersion">1930</string>
 	</data>
 </archive>

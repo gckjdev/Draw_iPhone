@@ -187,10 +187,6 @@
 		A4A132651650E86900665109 /* MessageView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4A132641650E86900665109 /* MessageView.m */; };
 		A4A4F8EA1671982B00EFC465 /* ZJHGameController_dual.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4A4F8E71671982A00EFC465 /* ZJHGameController_dual.xib */; };
 		A4A4F8EB1671982B00EFC465 /* ZJHUserPosInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = A4A4F8E91671982B00EFC465 /* ZJHUserPosInfo.m */; };
-		A4A9521816A3F15200598149 /* FreeCoinsControllerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A48B098C169E97DB00B56975 /* FreeCoinsControllerViewController.xib */; };
-		A4A9521916A3F15300598149 /* FreeCoinsControllerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A48B098C169E97DB00B56975 /* FreeCoinsControllerViewController.xib */; };
-		A4A9521A16A3F15400598149 /* FreeCoinsControllerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A48B098C169E97DB00B56975 /* FreeCoinsControllerViewController.xib */; };
-		A4A9521B16A3F21E00598149 /* draw_home_free_coins@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A48B0990169E9C0A00B56975 /* draw_home_free_coins@2x.png */; };
 		A4AB18F315E359B90097CC7A /* ChatViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A4AB18F115E359B90097CC7A /* ChatViewCell.m */; };
 		A4AB18F415E359B90097CC7A /* ChatViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4AB18F215E359B90097CC7A /* ChatViewCell.xib */; };
 		A4AC51EB15C9111C0041DC86 /* DiceSelectedView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4AC51EA15C9111C0041DC86 /* DiceSelectedView.m */; };
@@ -306,6 +302,18 @@
 		C223397F164E41C900D2C123 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C223397E164E41C800D2C123 /* OpenAL.framework */; };
 		C225866E15EF5AA4009D686D /* GCServer.m in Sources */ = {isa = PBXBuildFile; fileRef = C225866D15EF5AA4009D686D /* GCServer.m */; };
 		C22E21871608664F00DE3035 /* DiceRobotItemAction.m in Sources */ = {isa = PBXBuildFile; fileRef = C22E21861608664F00DE3035 /* DiceRobotItemAction.m */; };
+		C235C61816A3F43600D80BA4 /* coins@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C235C61516A3F43600D80BA4 /* coins@2x.png */; };
+		C235C61916A3F43600D80BA4 /* femaleImage.png in Resources */ = {isa = PBXBuildFile; fileRef = C235C61616A3F43600D80BA4 /* femaleImage.png */; };
+		C235C61A16A3F43600D80BA4 /* maleImage.png in Resources */ = {isa = PBXBuildFile; fileRef = C235C61716A3F43600D80BA4 /* maleImage.png */; };
+		C235C61B16A3F45400D80BA4 /* coins@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C235C61516A3F43600D80BA4 /* coins@2x.png */; };
+		C235C61C16A3F45500D80BA4 /* coins@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C235C61516A3F43600D80BA4 /* coins@2x.png */; };
+		C235C61D16A3F45600D80BA4 /* coins@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C235C61516A3F43600D80BA4 /* coins@2x.png */; };
+		C235C61E16A3F45900D80BA4 /* femaleImage.png in Resources */ = {isa = PBXBuildFile; fileRef = C235C61616A3F43600D80BA4 /* femaleImage.png */; };
+		C235C61F16A3F45A00D80BA4 /* femaleImage.png in Resources */ = {isa = PBXBuildFile; fileRef = C235C61616A3F43600D80BA4 /* femaleImage.png */; };
+		C235C62016A3F45C00D80BA4 /* femaleImage.png in Resources */ = {isa = PBXBuildFile; fileRef = C235C61616A3F43600D80BA4 /* femaleImage.png */; };
+		C235C62116A3F46100D80BA4 /* maleImage.png in Resources */ = {isa = PBXBuildFile; fileRef = C235C61716A3F43600D80BA4 /* maleImage.png */; };
+		C235C62216A3F46200D80BA4 /* maleImage.png in Resources */ = {isa = PBXBuildFile; fileRef = C235C61716A3F43600D80BA4 /* maleImage.png */; };
+		C235C62316A3F46300D80BA4 /* maleImage.png in Resources */ = {isa = PBXBuildFile; fileRef = C235C61716A3F43600D80BA4 /* maleImage.png */; };
 		C239366616522858001BD5C6 /* ZJHSettingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C239366316522858001BD5C6 /* ZJHSettingView.xib */; };
 		C239366716522858001BD5C6 /* ZJHSettingView.m in Sources */ = {isa = PBXBuildFile; fileRef = C239366516522858001BD5C6 /* ZJHSettingView.m */; };
 		C242479716798A2B008B4E14 /* DrawSoundManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C242479616798A2B008B4E14 /* DrawSoundManager.m */; };
@@ -6755,6 +6763,9 @@
 		C225866D15EF5AA4009D686D /* GCServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCServer.m; sourceTree = "<group>"; };
 		C22E21851608664F00DE3035 /* DiceRobotItemAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiceRobotItemAction.h; sourceTree = "<group>"; };
 		C22E21861608664F00DE3035 /* DiceRobotItemAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiceRobotItemAction.m; sourceTree = "<group>"; };
+		C235C61516A3F43600D80BA4 /* coins@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "coins@2x.png"; sourceTree = "<group>"; };
+		C235C61616A3F43600D80BA4 /* femaleImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = femaleImage.png; sourceTree = "<group>"; };
+		C235C61716A3F43600D80BA4 /* maleImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = maleImage.png; sourceTree = "<group>"; };
 		C239366316522858001BD5C6 /* ZJHSettingView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZJHSettingView.xib; sourceTree = "<group>"; };
 		C239366416522858001BD5C6 /* ZJHSettingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJHSettingView.h; sourceTree = "<group>"; };
 		C239366516522858001BD5C6 /* ZJHSettingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJHSettingView.m; sourceTree = "<group>"; };
@@ -16061,6 +16072,9 @@
 		EA856C3315F0A65700178323 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				C235C61516A3F43600D80BA4 /* coins@2x.png */,
+				C235C61616A3F43600D80BA4 /* femaleImage.png */,
+				C235C61716A3F43600D80BA4 /* maleImage.png */,
 				C20E7189168C590C00E37127 /* wechat_friend@2x.png */,
 				C20E717F168C584600E37127 /* email@2x.png */,
 				C20E7180168C584600E37127 /* favorite@2x.png */,
@@ -17511,7 +17525,9 @@
 				CA53292716A3E1E000E9E96B /* PenBox~ipad.xib in Resources */,
 				CA53293316A3E50E00E9E96B /* InputAlertView.xib in Resources */,
 				CA53293816A3E51F00E9E96B /* InputAlertView~ipad.xib in Resources */,
-				A4A9521916A3F15300598149 /* FreeCoinsControllerViewController.xib in Resources */,
+				C235C61C16A3F45500D80BA4 /* coins@2x.png in Resources */,
+				C235C61F16A3F45A00D80BA4 /* femaleImage.png in Resources */,
+				C235C62216A3F46200D80BA4 /* maleImage.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -18298,8 +18314,9 @@
 				CA53292816A3E1E000E9E96B /* PenBox~ipad.xib in Resources */,
 				CA53293416A3E50E00E9E96B /* InputAlertView.xib in Resources */,
 				CA53293916A3E51F00E9E96B /* InputAlertView~ipad.xib in Resources */,
-				A4A9521816A3F15200598149 /* FreeCoinsControllerViewController.xib in Resources */,
-				A4A9521B16A3F21E00598149 /* draw_home_free_coins@2x.png in Resources */,
+				C235C61D16A3F45600D80BA4 /* coins@2x.png in Resources */,
+				C235C62016A3F45C00D80BA4 /* femaleImage.png in Resources */,
+				C235C62316A3F46300D80BA4 /* maleImage.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -19067,6 +19084,9 @@
 				CA53297016A3E64B00E9E96B /* input_alert_button@2x.png in Resources */,
 				CA53297216A3E64B00E9E96B /* input_alert_content_bg@2x.png in Resources */,
 				CA53297416A3E64B00E9E96B /* input_alert_frame@2x.png in Resources */,
+				C235C61816A3F43600D80BA4 /* coins@2x.png in Resources */,
+				C235C61916A3F43600D80BA4 /* femaleImage.png in Resources */,
+				C235C61A16A3F43600D80BA4 /* maleImage.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -19832,7 +19852,9 @@
 				CA53297116A3E64B00E9E96B /* input_alert_button@2x.png in Resources */,
 				CA53297316A3E64B00E9E96B /* input_alert_content_bg@2x.png in Resources */,
 				CA53297516A3E64B00E9E96B /* input_alert_frame@2x.png in Resources */,
-				A4A9521A16A3F15400598149 /* FreeCoinsControllerViewController.xib in Resources */,
+				C235C61B16A3F45400D80BA4 /* coins@2x.png in Resources */,
+				C235C61E16A3F45900D80BA4 /* femaleImage.png in Resources */,
+				C235C62116A3F46100D80BA4 /* maleImage.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
