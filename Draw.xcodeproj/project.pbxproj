@@ -3427,6 +3427,14 @@
 		CA53293716A3E51F00E9E96B /* InputAlertView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA53293516A3E51F00E9E96B /* InputAlertView~ipad.xib */; };
 		CA53293816A3E51F00E9E96B /* InputAlertView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA53293516A3E51F00E9E96B /* InputAlertView~ipad.xib */; };
 		CA53293916A3E51F00E9E96B /* InputAlertView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA53293516A3E51F00E9E96B /* InputAlertView~ipad.xib */; };
+		CA53296E16A3E64B00E9E96B /* input_alert_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA53296A16A3E64B00E9E96B /* input_alert_bg@2x.png */; };
+		CA53296F16A3E64B00E9E96B /* input_alert_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA53296A16A3E64B00E9E96B /* input_alert_bg@2x.png */; };
+		CA53297016A3E64B00E9E96B /* input_alert_button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA53296B16A3E64B00E9E96B /* input_alert_button@2x.png */; };
+		CA53297116A3E64B00E9E96B /* input_alert_button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA53296B16A3E64B00E9E96B /* input_alert_button@2x.png */; };
+		CA53297216A3E64B00E9E96B /* input_alert_content_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA53296C16A3E64B00E9E96B /* input_alert_content_bg@2x.png */; };
+		CA53297316A3E64B00E9E96B /* input_alert_content_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA53296C16A3E64B00E9E96B /* input_alert_content_bg@2x.png */; };
+		CA53297416A3E64B00E9E96B /* input_alert_frame@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA53296D16A3E64B00E9E96B /* input_alert_frame@2x.png */; };
+		CA53297516A3E64B00E9E96B /* input_alert_frame@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA53296D16A3E64B00E9E96B /* input_alert_frame@2x.png */; };
 		CA639117152FEA3D007564C6 /* RouterTrafficServer.m in Sources */ = {isa = PBXBuildFile; fileRef = CA639116152FEA3D007564C6 /* RouterTrafficServer.m */; };
 		CA63911A152FEA4F007564C6 /* PriceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CA639119152FEA4F007564C6 /* PriceModel.m */; };
 		CA659774166BD41F00A239E1 /* BBSActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = CA659773166BD41E00A239E1 /* BBSActionSheet.m */; };
@@ -7734,6 +7742,10 @@
 		CA53292B16A3E4FA00E9E96B /* InputAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InputAlertView.m; sourceTree = "<group>"; };
 		CA53293016A3E50D00E9E96B /* InputAlertView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InputAlertView.xib; sourceTree = "<group>"; };
 		CA53293516A3E51F00E9E96B /* InputAlertView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "InputAlertView~ipad.xib"; sourceTree = "<group>"; };
+		CA53296A16A3E64B00E9E96B /* input_alert_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "input_alert_bg@2x.png"; sourceTree = "<group>"; };
+		CA53296B16A3E64B00E9E96B /* input_alert_button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "input_alert_button@2x.png"; sourceTree = "<group>"; };
+		CA53296C16A3E64B00E9E96B /* input_alert_content_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "input_alert_content_bg@2x.png"; sourceTree = "<group>"; };
+		CA53296D16A3E64B00E9E96B /* input_alert_frame@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "input_alert_frame@2x.png"; sourceTree = "<group>"; };
 		CA639115152FEA3D007564C6 /* RouterTrafficServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RouterTrafficServer.h; sourceTree = "<group>"; };
 		CA639116152FEA3D007564C6 /* RouterTrafficServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RouterTrafficServer.m; sourceTree = "<group>"; };
 		CA639118152FEA4F007564C6 /* PriceModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PriceModel.h; sourceTree = "<group>"; };
@@ -12782,6 +12794,17 @@
 			path = InputAlertView;
 			sourceTree = "<group>";
 		};
+		CA53296916A3E64B00E9E96B /* InputAlert */ = {
+			isa = PBXGroup;
+			children = (
+				CA53296A16A3E64B00E9E96B /* input_alert_bg@2x.png */,
+				CA53296B16A3E64B00E9E96B /* input_alert_button@2x.png */,
+				CA53296C16A3E64B00E9E96B /* input_alert_content_bg@2x.png */,
+				CA53296D16A3E64B00E9E96B /* input_alert_frame@2x.png */,
+			);
+			path = InputAlert;
+			sourceTree = "<group>";
+		};
 		CA65C1E6152DD03B00462C96 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -13039,6 +13062,7 @@
 		CA7D41F6168D7588009F43F7 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				CA53296916A3E64B00E9E96B /* InputAlert */,
 				C297BFDE169ED04500E00258 /* shop_item_alpha@2x.png */,
 				C297BFDF169ED04500E00258 /* shop_item_palette@2x.png */,
 				A4DE14101697DBA900841940 /* wordSelected */,
@@ -19032,6 +19056,10 @@
 				CA53292516A3E1E000E9E96B /* PenBox~ipad.xib in Resources */,
 				CA53293116A3E50E00E9E96B /* InputAlertView.xib in Resources */,
 				CA53293616A3E51F00E9E96B /* InputAlertView~ipad.xib in Resources */,
+				CA53296E16A3E64B00E9E96B /* input_alert_bg@2x.png in Resources */,
+				CA53297016A3E64B00E9E96B /* input_alert_button@2x.png in Resources */,
+				CA53297216A3E64B00E9E96B /* input_alert_content_bg@2x.png in Resources */,
+				CA53297416A3E64B00E9E96B /* input_alert_frame@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -19793,6 +19821,10 @@
 				CA53292616A3E1E000E9E96B /* PenBox~ipad.xib in Resources */,
 				CA53293216A3E50E00E9E96B /* InputAlertView.xib in Resources */,
 				CA53293716A3E51F00E9E96B /* InputAlertView~ipad.xib in Resources */,
+				CA53296F16A3E64B00E9E96B /* input_alert_bg@2x.png in Resources */,
+				CA53297116A3E64B00E9E96B /* input_alert_button@2x.png in Resources */,
+				CA53297316A3E64B00E9E96B /* input_alert_content_bg@2x.png in Resources */,
+				CA53297516A3E64B00E9E96B /* input_alert_frame@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
