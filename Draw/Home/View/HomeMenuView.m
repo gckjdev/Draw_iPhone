@@ -92,6 +92,9 @@
         case HomeMenuTypeZJHVSSite:{
             return NSLS(@"kHomeMenuTypeZJHVSSite");
         }
+        case HomeMenuTypeZJHShop:{
+            return NSLS(@"kHomeMenuTypeZJHShop");
+        }
 
         default:
         return nil;
@@ -170,6 +173,9 @@
         }
         case HomeMenuTypeZJHVSSite:{
             return [imageManager zjhHomeVSSite];
+        }
+        case HomeMenuTypeZJHShop:{
+            return [imageManager drawHomeShop];
         }
         default:
             return nil;
@@ -265,6 +271,8 @@ int *getZJHMainMenuTypeList()
         HomeMenuTypeZJHNormalSite,
         HomeMenuTypeZJHRichSite,
         HomeMenuTypeZJHVSSite,
+        HomeMenuTypeDrawFreeCoins,
+        HomeMenuTypeZJHShop,
         HomeMenuTypeDrawBBS,
         HomeMenuTypeZJHHelp,
         HomeMenuTypeEnd

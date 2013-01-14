@@ -54,7 +54,7 @@
 										 // If you are not using Tapjoy Managed currency, you would set your own user ID here.
 										 //@"A_UNIQUE_USER_ID", TJC_OPTION_USER_ID,
 										 nil]];
-    
+        
     [[AdService defaultService] createAdInView:self.view frame:CGRectMake(0, self.view.frame.size.height-50, self.view.frame.size.width, 50) iPadFrame:CGRectMake(0, self.view.frame.size.height-100, self.view.frame.size.width, 100)];
 }
 
@@ -102,4 +102,5 @@
     [timer invalidate];
     [self.navigationController popViewControllerAnimated:YES];
 }
+
 @end

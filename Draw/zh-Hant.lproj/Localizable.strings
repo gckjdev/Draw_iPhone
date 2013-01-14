@@ -953,6 +953,7 @@
 "kHomeMenuTypeZJHRichSite" = "富豪場";
 "kHomeMenuTypeZJHNormalSite" = "普通場";
 "kHomeMenuTypeZJHVSSite" = "單挑場";
+"kHomeMenuTypeZJHShop" = "充值";
 
 "kBulletin" = "公告";
 
