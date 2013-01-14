@@ -592,6 +592,9 @@ enum{
 
 - (void)didDrawedPaint:(Paint *)paint
 {
+    
+    return; //Cancel auto save function now. by Gamy.
+    
     if (targetType == TypeGraffiti || !_isAutoSave) {
         return;
     }
@@ -980,8 +983,10 @@ enum{
 
 - (void)keyboardWillShowWithRect:(CGRect)keyboardRect
 {
-    PPDebug(@"keyboardWillShowWithRect rect = %@", NSStringFromCGRect(keyboardRect));
-    [self.inputAlert adjustWithKeyBoardRect:keyboardRect];
+    if (!ISIPAD) {
+        PPDebug(@"keyboardWillShowWithRect rect = %@", NSStringFromCGRect(keyboardRect));
+        [self.inputAlert adjustWithKeyBoardRect:keyboardRect];        
+    }
 }
 
 //- (void)keyboardWillHideWithRect:(CGRect)keyboardRect
