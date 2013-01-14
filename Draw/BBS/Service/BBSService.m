@@ -194,7 +194,7 @@ BBSService *_staticBBSService;
     return post;
 }
 
-- (PBBBSDraw *)buildBBSDraw:(NSArray *)drawActionList
++ (PBBBSDraw *)buildBBSDraw:(NSArray *)drawActionList
 {
     PBBBSDraw *bbsDraw = nil;
     NSMutableArray *pbDrawActionList = [NSMutableArray arrayWithCapacity:drawActionList.count];
@@ -310,24 +310,24 @@ BBSService *_staticBBSService;
                                                        deviceType:1
                                                            gameId:gameId
                                                          language:lang];
-        NSInteger resultCode = [output resultCode];
-        NSArray *list = nil;
-        @try {
-            if (output.resultCode == ERROR_SUCCESS && [output.responseData length] > 0) {
-                DataQueryResponse *response = [DataQueryResponse parseFromData:output.responseData];
-                resultCode = [response resultCode];
-                list = [response bbsBoardList];
-                [[BBSManager defaultManager] setBoardList:list];
-            }
-        }
-        @catch (NSException *exception) {
-            PPDebug(@"<getBBSBoardList>exception = %@",[exception debugDescription]);
-            list = nil;
-        }
-        @finally {
-            
-        }
         dispatch_async(dispatch_get_main_queue(), ^{
+            NSInteger resultCode = [output resultCode];
+            NSArray *list = nil;
+            @try {
+                if (output.resultCode == ERROR_SUCCESS && [output.responseData length] > 0) {
+                    DataQueryResponse *response = [DataQueryResponse parseFromData:output.responseData];
+                    resultCode = [response resultCode];
+                    list = [response bbsBoardList];
+                    [[BBSManager defaultManager] setBoardList:list];
+                }
+            }
+            @catch (NSException *exception) {
+                PPDebug(@"<getBBSBoardList>exception = %@",[exception debugDescription]);
+                list = nil;
+            }
+            @finally {
+                
+            }
             if (delegate && [delegate respondsToSelector:@selector(didGetBBSBoardList:resultCode:)]) {
                 [delegate didGetBBSBoardList:list resultCode:resultCode];
             }
@@ -351,7 +351,7 @@ BBSService *_staticBBSService;
     dispatch_async(workingQueue, ^{
         
         NSString *nText = text;
-        PBBBSPost *post = nil;
+        
         
         BBSPostContentType type = ContentTypeText;
         
@@ -360,7 +360,7 @@ BBSService *_staticBBSService;
             type = ContentTypeImage;
         }else if (drawImage) {
             type = ContentTypeDraw;
-            PBBBSDraw *bbsDraw = [self buildBBSDraw:drawActionList];
+            PBBBSDraw *bbsDraw = [BBSService buildBBSDraw:drawActionList];
             drawData = [bbsDraw data];
         }
         
@@ -399,37 +399,38 @@ BBSService *_staticBBSService;
             
 
             resultCode = output.resultCode;
-            
-            if (resultCode == ERROR_SUCCESS) {
-                NSString *postId = [output.jsonDataDict objectForKey:PARA_POSTID];
-                NSString *imageURL = [output.jsonDataDict objectForKey:PARA_IMAGE];
-                NSString *thumbURL = [output.jsonDataDict objectForKey:PARA_THUMB_IMAGE];
-                NSString *drawImageURL = [output.jsonDataDict objectForKey:PARA_DRAW_IMAGE];
-                NSString *drawThumbURL = [output.jsonDataDict objectForKey:PARA_DRAW_THUMB];
-                post = [self buildPBBBSPostWithPostId:postId
-                                                appId:appId
-                                           deviceType:deviceType
-                                               userId:userId
-                                             nickName:nickName
-                                               gender:gender
-                                               avatar:avatar
-                                              boradId:boardId
-                                          contentType:type
-                                                 text:nText
-                                             imageUrl:imageURL
-                                        thumbImageUrl:thumbURL
-                                         drawImageUrl:drawImageURL
-                                    drawImageThumbUrl:drawThumbURL
-                                                bonus:bonus];
-                [[BBSManager defaultManager] updateLastCreationDate];
-            }
-        }
+            dispatch_async(dispatch_get_main_queue(), ^{
+                PBBBSPost *post = nil;
+                if (resultCode == ERROR_SUCCESS) {
+                    NSString *postId = [output.jsonDataDict objectForKey:PARA_POSTID];
+                    NSString *imageURL = [output.jsonDataDict objectForKey:PARA_IMAGE];
+                    NSString *thumbURL = [output.jsonDataDict objectForKey:PARA_THUMB_IMAGE];
+                    NSString *drawImageURL = [output.jsonDataDict objectForKey:PARA_DRAW_IMAGE];
+                    NSString *drawThumbURL = [output.jsonDataDict objectForKey:PARA_DRAW_THUMB];
+                    post = [self buildPBBBSPostWithPostId:postId
+                                                    appId:appId
+                                               deviceType:deviceType
+                                                   userId:userId
+                                                 nickName:nickName
+                                                   gender:gender
+                                                   avatar:avatar
+                                                  boradId:boardId
+                                              contentType:type
+                                                     text:nText
+                                                 imageUrl:imageURL
+                                            thumbImageUrl:thumbURL
+                                             drawImageUrl:drawImageURL
+                                        drawImageThumbUrl:drawThumbURL
+                                                    bonus:bonus];
+                    [[BBSManager defaultManager] updateLastCreationDate];
+                }
         
-        dispatch_async(dispatch_get_main_queue(), ^{
-            if (delegate && [delegate respondsToSelector:@selector(didCreatePost:resultCode:)]) {
-                [delegate didCreatePost:post resultCode:resultCode];
-            }
-        });
+
+                if (delegate && [delegate respondsToSelector:@selector(didCreatePost:resultCode:)]) {
+                    [delegate didCreatePost:post resultCode:resultCode];
+                }
+            });
+        }
     });
 }
 
@@ -472,24 +473,24 @@ BBSService *_staticBBSService;
                                                        offset:offset
                                                         limit:limit];
         
-        NSInteger resultCode = [output resultCode];
-        NSArray *list = nil;
-        @try {
-            if (output.resultCode == ERROR_SUCCESS && [output.responseData length] > 0) {
-                DataQueryResponse *response = [DataQueryResponse parseFromData:output.responseData];
-                resultCode = [response resultCode];
-                list = [response bbsPostList];
-            }
-        }
-        @catch (NSException *exception) {
-            PPDebug(@"<getBBSBoardList>exception = %@",[exception debugDescription]);
-            list = nil;
-        }
-        @finally {
-
-        }
-
         dispatch_async(dispatch_get_main_queue(), ^{
+            NSInteger resultCode = [output resultCode];
+            NSArray *list = nil;
+            @try {
+                if (output.resultCode == ERROR_SUCCESS && [output.responseData length] > 0) {
+                    DataQueryResponse *response = [DataQueryResponse parseFromData:output.responseData];
+                    resultCode = [response resultCode];
+                    list = [response bbsPostList];
+                }
+            }
+            @catch (NSException *exception) {
+                PPDebug(@"<getBBSBoardList>exception = %@",[exception debugDescription]);
+                list = nil;
+            }
+            @finally {
+
+            }
+
             if (delegate) {
                 if (boardId != nil && [delegate respondsToSelector:@selector(didGetBBSBoard:postList:rangeType:resultCode:)]) {
                     
@@ -524,11 +525,10 @@ BBSService *_staticBBSService;
                      drawImage:(UIImage *)drawImage
                       delegate:(id<BBSServiceDelegate>)delegate
 {
-    dispatch_async(workingQueue, ^{
+
         
         NSString *nText = text;
-        NSInteger resultCode = ERROR_SUCCESS;
-        PBBBSAction *action = nil;
+        __block NSInteger resultCode = ERROR_SUCCESS;
     
         
         BBSPostContentType contentType = ContentTypeNo;
@@ -547,7 +547,7 @@ BBSService *_staticBBSService;
                 contentType = ContentTypeImage;
             }else if (drawImage) {
                 contentType = ContentTypeDraw;
-                PBBBSDraw *bbsDraw = [self buildBBSDraw:drawActionList];
+                PBBBSDraw *bbsDraw = [BBSService buildBBSDraw:drawActionList];
                 drawData = [bbsDraw data];
             }else if([text length] != 0){
                 contentType = ContentTypeText;
@@ -581,73 +581,76 @@ BBSService *_staticBBSService;
             if ([briefText length] > BRIEF_TEXT_LENGTH) {
                 briefText = [briefText substringToIndex:BRIEF_TEXT_LENGTH];
             }
-            CommonNetworkOutput *output = [BBSNetwork createAction:TRAFFIC_SERVER_URL
-                                                             appId:appId
-                                                        deviceType:deviceType
-                                                            userId:userId
-                                                          nickName:nickName
-                                                            gender:gender
-                                                            avatar:avatar
-                                           //source
-                                                      sourcePostId:postId
-                                                     sourcePostUid:postUid
-                                                     sourceAtionId:sourceAction.actionId
-                                                   sourceActionUid:sourceAction.createUser.userId
-                                              sourceActionNickName:sourceAction.createUser.nickName
-                                                  sourceActionType:sourceAction.type
-                                                         briefText:briefText
-                                           //content
-                                                       contentType:contentType
-                                                        actionType:actionType
-                                                              text:nText
-                                                             image:[image data]
-                                                          drawData:drawData
-                                                         drawImage:[drawImage data]];
-            resultCode = [output resultCode];
-            if (resultCode == ERROR_SUCCESS) {
-                [[BBSManager defaultManager] increasePostSupportTimes:postId];
-                NSString *actionId = [output.jsonDataDict objectForKey:PARA_ACTIONID];
-                NSString *imageURL = [output.jsonDataDict objectForKey:PARA_IMAGE];
-                NSString *thumbURL = [output.jsonDataDict objectForKey:PARA_THUMB_IMAGE];
-                NSString *drawImageURL = [output.jsonDataDict objectForKey:PARA_DRAW_IMAGE];
-                NSString *drawThumbURL = [output.jsonDataDict objectForKey:PARA_DRAW_THUMB];
+            
+            dispatch_async(workingQueue, ^{            
+                CommonNetworkOutput *output = [BBSNetwork createAction:TRAFFIC_SERVER_URL
+                                                                 appId:appId
+                                                            deviceType:deviceType
+                                                                userId:userId
+                                                              nickName:nickName
+                                                                gender:gender
+                                                                avatar:avatar
+                                               //source
+                                                          sourcePostId:postId
+                                                         sourcePostUid:postUid
+                                                         sourceAtionId:sourceAction.actionId
+                                                       sourceActionUid:sourceAction.createUser.userId
+                                                  sourceActionNickName:sourceAction.createUser.nickName
+                                                      sourceActionType:sourceAction.type
+                                                             briefText:briefText
+                                               //content
+                                                           contentType:contentType
+                                                            actionType:actionType
+                                                                  text:nText
+                                                                 image:[image data]
+                                                              drawData:drawData
+                                                             drawImage:[drawImage data]];
+                resultCode = [output resultCode];
+                dispatch_async(dispatch_get_main_queue(), ^{
                 
-                action = [self buildActionWithActionId:actionId
-                                                  type:actionType
-                                                 appId:appId
-                                            deviceType:deviceType
-                                                userId:userId
-                                              nickName:nickName
-                                                gender:gender
-                                                avatar:avatar
-                                            createDate:[NSDate date]
-                                            replyCount:0
-                                           contentType:contentType
-                                                  text:nText
-                                              imageUrl:imageURL
-                                         thumbImageUrl:thumbURL
-                                          drawImageUrl:drawImageURL
-                                     drawImageThumbUrl:drawThumbURL
-                                          sourcePostId:postId
-                                         sourcePostUid:postUid
-                                        sourceActionId:sourceAction.actionId
-                                       sourceActionUid:sourceAction.createUser.userId
-                                  sourceActionNickName:sourceAction.createUser.nickName
-                                      sourceActionType:sourceAction.type
-                                       sourceBriefText:briefText];
-                [[BBSManager defaultManager] updateLastCreationDate];
-            }
-        }
+                    __block PBBBSAction *action = nil;
+                    if (resultCode == ERROR_SUCCESS) {
+                        [[BBSManager defaultManager] increasePostSupportTimes:postId];
+                        NSString *actionId = [output.jsonDataDict objectForKey:PARA_ACTIONID];
+                        NSString *imageURL = [output.jsonDataDict objectForKey:PARA_IMAGE];
+                        NSString *thumbURL = [output.jsonDataDict objectForKey:PARA_THUMB_IMAGE];
+                        NSString *drawImageURL = [output.jsonDataDict objectForKey:PARA_DRAW_IMAGE];
+                        NSString *drawThumbURL = [output.jsonDataDict objectForKey:PARA_DRAW_THUMB];
+                        
+                        action = [self buildActionWithActionId:actionId
+                                                          type:actionType
+                                                         appId:appId
+                                                    deviceType:deviceType
+                                                        userId:userId
+                                                      nickName:nickName
+                                                        gender:gender
+                                                        avatar:avatar
+                                                    createDate:[NSDate date]
+                                                    replyCount:0
+                                                   contentType:contentType
+                                                          text:nText
+                                                      imageUrl:imageURL
+                                                 thumbImageUrl:thumbURL
+                                                  drawImageUrl:drawImageURL
+                                             drawImageThumbUrl:drawThumbURL
+                                                  sourcePostId:postId
+                                                 sourcePostUid:postUid
+                                                sourceActionId:sourceAction.actionId
+                                               sourceActionUid:sourceAction.createUser.userId
+                                          sourceActionNickName:sourceAction.createUser.nickName
+                                              sourceActionType:sourceAction.type
+                                               sourceBriefText:briefText];
+                        [[BBSManager defaultManager] updateLastCreationDate];
+                    }
         
-        dispatch_async(dispatch_get_main_queue(), ^{
-            if (delegate && [delegate respondsToSelector:@selector(didCreateAction:atPost:replyAction:resultCode:)]) {
-                [delegate didCreateAction:action atPost:postId
-                              replyAction:sourceAction
-                               resultCode:resultCode];
-            }
-        });
-    });
-
+                    if (delegate && [delegate respondsToSelector:@selector(didCreateAction:atPost:replyAction:resultCode:)]) {
+                        [delegate didCreateAction:action atPost:postId
+                                      replyAction:sourceAction
+                                       resultCode:resultCode];
+                    }
+                });
+            });
+        }
 }
 
 
@@ -782,13 +785,12 @@ BBSService *_staticBBSService;
                         actionId:(NSString *)actionId
                         delegate:(id<BBSServiceDelegate>)delegate
 {
-    dispatch_async(workingQueue, ^{
         NSString *userId = [[UserManager defaultManager] userId];
         NSString *appId = [ConfigManager appId];
         
         BOOL fromRemote = NO;
-        NSInteger resultCode = ERROR_SUCCESS;
-        NSMutableArray *drawActionList = nil;
+        __block NSInteger resultCode = ERROR_SUCCESS;
+        __block NSMutableArray *drawActionList = nil;
         
         //load from local data
         BBSManager *_bbsManager = [BBSManager defaultManager];
@@ -796,7 +798,7 @@ BBSService *_staticBBSService;
         if ([key length] == 0) {
             key = actionId;
         }
-        PBBBSDraw *draw = [_bbsManager loadBBSDrawDataFromCacheWithKey:key];
+        __block PBBBSDraw *draw = [_bbsManager loadBBSDrawDataFromCacheWithKey:key];
         
         //load from remote
         if (draw == nil) {
@@ -804,43 +806,46 @@ BBSService *_staticBBSService;
             PPDebug(@"<getBBSDrawDataWithPostId> load data from remote service");
             
             fromRemote = YES;
-            CommonNetworkOutput *output = [BBSNetwork getBBSDrawData:TRAFFIC_SERVER_URL
-                                                               appId:appId
-                                                          deviceType:[DeviceDetection deviceType]
-                                                              userId:userId
-                                                              postId:postId
-                                                            actionId:actionId];
-            resultCode = [output resultCode];
-            @try {
-                if (output.resultCode == ERROR_SUCCESS && [output.responseData length] > 0) {
-                    DataQueryResponse *response = [DataQueryResponse parseFromData:output.responseData];
-                    resultCode = [response resultCode];
-                    draw = [response bbsDrawData];
-                    [_bbsManager cacheBBSDrawData:draw forKey:key];
-                }
-            }
-            @catch (NSException *exception) {
-                PPDebug(@"<getBBSBoardList>exception = %@",[exception debugDescription]);
-                drawActionList = nil;
-            }
-            @finally {
+            dispatch_async(workingQueue, ^{
+            
+                CommonNetworkOutput *output = [BBSNetwork getBBSDrawData:TRAFFIC_SERVER_URL
+                                                                   appId:appId
+                                                              deviceType:[DeviceDetection deviceType]
+                                                                  userId:userId
+                                                                  postId:postId
+                                                                actionId:actionId];
+                resultCode = [output resultCode];
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    @try {
+                        if (output.resultCode == ERROR_SUCCESS && [output.responseData length] > 0) {
+                            DataQueryResponse *response = [DataQueryResponse parseFromData:output.responseData];
+                            resultCode = [response resultCode];
+                            draw = [response bbsDrawData];
+                            [_bbsManager cacheBBSDrawData:draw forKey:key];
+                        }
+                    }
+                    @catch (NSException *exception) {
+                        PPDebug(@"<getBBSBoardList>exception = %@",[exception debugDescription]);
+                        drawActionList = nil;
+                    }
+                    @finally {
+                        
+                    }
+                    //parse draw data
+                    NSArray *list = [draw drawActionListList];
+                    drawActionList = [DrawManager parseFromPBDrawActionList:list];
                 
-            }
+                    if (delegate && [delegate respondsToSelector:@selector(didGetBBSDrawActionList:postId:actionId:fromRemote:resultCode:)]) {
+                        [delegate didGetBBSDrawActionList:drawActionList
+                                                   postId:postId
+                                                 actionId:actionId
+                                               fromRemote:fromRemote
+                                               resultCode:resultCode];
+                    }
+                });
+            });
         }
-        //parse draw data
-        NSArray *list = [draw drawActionListList];
-        drawActionList = [DrawManager parseFromPBDrawActionList:list];
-        
-        dispatch_async(dispatch_get_main_queue(), ^{
-            if (delegate && [delegate respondsToSelector:@selector(didGetBBSDrawActionList:postId:actionId:fromRemote:resultCode:)]) {
-                [delegate didGetBBSDrawActionList:drawActionList
-                                           postId:postId
-                                         actionId:actionId
-                                       fromRemote:fromRemote
-                                       resultCode:resultCode];
-            }
-        });
-    });
+
 }
 
 - (void)getBBSPostWithPostId:(NSString *)postId

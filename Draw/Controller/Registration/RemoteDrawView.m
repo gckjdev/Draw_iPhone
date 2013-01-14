@@ -114,7 +114,7 @@
     [drawActionList release];
     
     
-    showDrawView.playSpeed = 1/40.0;
+//    showDrawView.speed = PlaySpeedTypeNormal;
 }
 
 

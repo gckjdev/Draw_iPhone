@@ -70,8 +70,11 @@
         ColorPoint *point = [ColorPoint pointWithColor:color];
         CGFloat pWidth = CGRectGetWidth(point.bounds);
         CGFloat x = (pWidth/2.0) + i*(pWidth + SPACE_POINT_POINT);
+
         CGFloat y = CGRectGetMidY(view.bounds);
         point.center = CGPointMake(x, y);
+        PPDebug(@"view.bounds = %@, center = %@", NSStringFromCGRect(view.bounds), NSStringFromCGPoint(point.center));
+        
         point.delegate = self;
         ++ i;
         [view addSubview:point];
@@ -95,7 +98,7 @@
     //resize tableView size
     NSInteger row = MIN(DISPLAY_MAX_ROW, self.colorRow);
     CGFloat tableHeight = row * CELL_HEIGHT;
-    CGFloat viewHeiht = CGRectGetMinY(self.colorTableView.frame) + tableHeight;
+    CGFloat viewHeiht = self.colorTableView.frame.origin.y + tableHeight;
     //update view height
     CGRect frame = self.frame;
     frame.size.height = viewHeiht;
@@ -149,9 +152,11 @@
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier] autorelease];
         [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
         [cell setBackgroundColor:[UIColor clearColor]];
+        cell.contentView.frame = CGRectMake(0, 0, CGRectGetWidth(tableView.bounds), CELL_HEIGHT);
     }
     NSUInteger offset = indexPath.row * COLOR_NUMBER_FOR_ROW;
     NSArray *list = [drawColorManager boughtColorListWithOffset:offset limit:COLOR_NUMBER_FOR_ROW];
+    PPDebug(@"Cell Row = %d",indexPath.row);
     [self updateView:cell.contentView addColorList:list];
     return cell;
 }

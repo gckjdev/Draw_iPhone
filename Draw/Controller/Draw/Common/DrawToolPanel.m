@@ -90,7 +90,7 @@
 
 - (void)updatePopTipView:(CMPopTipView *)popTipView
 {
-    [popTipView setBackgroundColor:[UIColor colorWithRed:168./255. green:168./255. blue:168./255. alpha:0.8]];
+    [popTipView setBackgroundColor:[UIColor colorWithRed:239./255. green:239./255. blue:239./255. alpha:1]];
     [popTipView setPointerSize:POP_POINTER_SIZE];
     [self.palettePopTipView setDelegate:self];
 }
@@ -369,10 +369,15 @@
 
 
 - (void)handleSelectColorDelegateWithColor:(DrawColor *)color
+                         updateRecentColor:(BOOL)updateRecentColor
 {
     self.color = color;
     if (self.delegate && [self.delegate respondsToSelector:@selector(drawToolPanel:didSelectColor:)]) {
         [self.delegate drawToolPanel:self didSelectColor:color];
+    }
+    if (updateRecentColor && color != nil) {
+        [[DrawColorManager sharedDrawColorManager] updateColorListWithColor:color];
+        [self updateRecentColorViewWithColor:color];
     }
 //    [self.alphaSlider setValue:1.0];
     //update show list;
@@ -388,7 +393,7 @@
     }
     [colorPoint setSelected:YES];
     [self dismissAllPopTipViews];
-    [self handleSelectColorDelegateWithColor:colorPoint.color];
+    [self handleSelectColorDelegateWithColor:colorPoint.color updateRecentColor:NO];
 }
 
 
@@ -454,6 +459,8 @@
         [drawSlider popupWithContenView:label];
         [label setBackgroundColor:[UIColor clearColor]];
         [label setFont:[UIFont boldSystemFontOfSize:ALPHA_FONT_SIZE]];
+        UIColor *textColor = [UIColor colorWithRed:23./255. green:21./255. blue:20./255. alpha:1];
+        [label setTextColor:textColor];
         [self updateLabel:label value:value];
         
     }else if(drawSlider == self.widthSlider){
@@ -512,7 +519,7 @@
 
 - (void)colorBox:(ColorBox *)colorBox didSelectColor:(DrawColor *)color
 {
-    [self handleSelectColorDelegateWithColor:color];
+    [self handleSelectColorDelegateWithColor:color updateRecentColor:YES];
     [self dismissColorBoxPopTipView];
 }
 - (void)didClickCloseButtonOnColorBox:(ColorBox *)colorBox
@@ -529,13 +536,13 @@
 #pragma mark - ColorShopView Delegate
 
 - (void)didPickedColorView:(ColorView *)colorView{
-    [self handleSelectColorDelegateWithColor:colorView.drawColor];
+    [self handleSelectColorDelegateWithColor:colorView.drawColor updateRecentColor:YES];
     [self dismissColorBoxPopTipView];
 }
 
 - (void)palette:(Palette *)palette didPickColor:(DrawColor *)color
 {
-    [self handleSelectColorDelegateWithColor:color];    
+    [self handleSelectColorDelegateWithColor:color updateRecentColor:NO];
 }
 
 - (void)dealloc {

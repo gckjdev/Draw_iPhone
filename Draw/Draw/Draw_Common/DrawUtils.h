@@ -58,5 +58,5 @@
 
 
 + (CGPoint)midPoint1:(CGPoint)p1 point2:(CGPoint) p2;
-
++ (CGRect)rectForPath:(CGPathRef)path withWidth:(CGFloat)width;
 @end

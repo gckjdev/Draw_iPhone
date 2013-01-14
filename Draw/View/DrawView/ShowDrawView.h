@@ -11,8 +11,16 @@
 
 typedef enum{
     Stop = 0x1,
-    Playing = 0x1 << 1 
+    Playing = 0x1 << 1,
+    Pause = 0x1 << 2,
 }DrawViewStatus;
+
+typedef enum {
+    PlaySpeedTypeLow = 0, // 1/30.0
+    PlaySpeedTypeNormal = 1, // x2
+    PlaySpeedTypeHigh = 4, //x3
+    PlaySpeedTypeSuper= 8,//x4
+}PlaySpeedType;
 
 @class ShowDrawView;
 @protocol ShowDrawViewDelegate <NSObject>
@@ -36,7 +44,8 @@ typedef enum{
 
 }
 
-@property(nonatomic, assign) double playSpeed; //default is 1/30.0;
+@property(nonatomic, assign) PlaySpeedType speed; //default is Normal;
+//@property(nonatomic, assign) double playSpeed; //default is 1/30.0;
 @property(nonatomic, assign) id<ShowDrawViewDelegate>delegate;
 @property(nonatomic, assign) DrawViewStatus status;
 
@@ -52,4 +61,12 @@ typedef enum{
 
 + (ShowDrawView *)showView;
 - (void)resetFrameSize:(CGSize)size;
+@end
+
+
+
+@interface ShowDrawView (PressAction) <UIGestureRecognizerDelegate>
+
+- (void)setPressEnable:(BOOL)enable; //default is disable.
+
 @end
