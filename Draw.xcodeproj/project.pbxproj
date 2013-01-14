@@ -3374,6 +3374,10 @@
 		CA51816D15A2D79700AD5A78 /* CustomStatueBar.m in Sources */ = {isa = PBXBuildFile; fileRef = CA51816C15A2D79700AD5A78 /* CustomStatueBar.m */; };
 		CA51BD731525DED100C77E50 /* RewardManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA51BD721525DED100C77E50 /* RewardManager.m */; };
 		CA51BD761525DEDE00C77E50 /* Reward.m in Sources */ = {isa = PBXBuildFile; fileRef = CA51BD751525DEDE00C77E50 /* Reward.m */; };
+		CA5328BE16A3ADE700E9E96B /* color_box_button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA5328BD16A3ADE700E9E96B /* color_box_button@2x.png */; };
+		CA5328BF16A3ADE700E9E96B /* color_box_button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA5328BD16A3ADE700E9E96B /* color_box_button@2x.png */; };
+		CA5328C016A3ADE700E9E96B /* color_box_button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA5328BD16A3ADE700E9E96B /* color_box_button@2x.png */; };
+		CA5328C116A3ADE700E9E96B /* color_box_button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA5328BD16A3ADE700E9E96B /* color_box_button@2x.png */; };
 		CA639117152FEA3D007564C6 /* RouterTrafficServer.m in Sources */ = {isa = PBXBuildFile; fileRef = CA639116152FEA3D007564C6 /* RouterTrafficServer.m */; };
 		CA63911A152FEA4F007564C6 /* PriceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CA639119152FEA4F007564C6 /* PriceModel.m */; };
 		CA659774166BD41F00A239E1 /* BBSActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = CA659773166BD41E00A239E1 /* BBSActionSheet.m */; };
@@ -7698,6 +7702,7 @@
 		CA51BD721525DED100C77E50 /* RewardManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RewardManager.m; sourceTree = "<group>"; };
 		CA51BD741525DEDE00C77E50 /* Reward.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reward.h; sourceTree = "<group>"; };
 		CA51BD751525DEDE00C77E50 /* Reward.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reward.m; sourceTree = "<group>"; };
+		CA5328BD16A3ADE700E9E96B /* color_box_button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "color_box_button@2x.png"; sourceTree = "<group>"; };
 		CA639115152FEA3D007564C6 /* RouterTrafficServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RouterTrafficServer.h; sourceTree = "<group>"; };
 		CA639116152FEA3D007564C6 /* RouterTrafficServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RouterTrafficServer.m; sourceTree = "<group>"; };
 		CA639118152FEA4F007564C6 /* PriceModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PriceModel.h; sourceTree = "<group>"; };
@@ -14749,6 +14754,7 @@
 		CAB3ADC0168EA6E500916C97 /* ColorBox */ = {
 			isa = PBXGroup;
 			children = (
+				CA5328BD16A3ADE700E9E96B /* color_box_button@2x.png */,
 				CAB3ADC1168EA6E500916C97 /* color_box_split@2x.png */,
 			);
 			path = ColorBox;
@@ -17444,6 +17450,7 @@
 				CA6877D0169D1C850006E489 /* SelectCustomWordCell~ipad.xib in Resources */,
 				A48B0987169E675600B56975 /* UMUFP.bundle in Resources */,
 				A48B0A1016A1331D00B56975 /* TapjoyResources.bundle in Resources */,
+				CA5328C016A3ADE700E9E96B /* color_box_button@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -18227,6 +18234,7 @@
 				CA6877EA169D1C8A0006E489 /* SelectCustomWordCell~ipad.xib in Resources */,
 				A48B0988169E675700B56975 /* UMUFP.bundle in Resources */,
 				A48B0A1116A1331D00B56975 /* TapjoyResources.bundle in Resources */,
+				CA5328C116A3ADE700E9E96B /* color_box_button@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -18987,6 +18995,7 @@
 				A48B099F169EA35C00B56975 /* TapjoyResources.bundle in Resources */,
 				C297BFE0169ED04500E00258 /* shop_item_alpha@2x.png in Resources */,
 				C297BFE1169ED04500E00258 /* shop_item_palette@2x.png in Resources */,
+				CA5328BE16A3ADE700E9E96B /* color_box_button@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -19745,6 +19754,7 @@
 				CA6877C7169D1C7F0006E489 /* SelectCustomWordCell~ipad.xib in Resources */,
 				A48B0986169E675500B56975 /* UMUFP.bundle in Resources */,
 				A48B0A0F16A1331C00B56975 /* TapjoyResources.bundle in Resources */,
+				CA5328BF16A3ADE700E9E96B /* color_box_button@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

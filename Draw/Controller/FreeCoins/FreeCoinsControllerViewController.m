@@ -13,6 +13,7 @@
 #import "BBSBoardController.h"
 #import "AnalyticsManager.h"
 #import "UMGridViewController.h"
+#import "AdService.h"
 
 #define SHENGMENG_APP_ID @"90386ecaab5c85559c569ab7c79a61e2"
 #define TAPJOY_APP_ID @"54f9ea4b-beee-4fac-84ee-a34522e67b34"
@@ -54,6 +55,7 @@
 										 //@"A_UNIQUE_USER_ID", TJC_OPTION_USER_ID,
 										 nil]];
     
+    [[AdService defaultService] createAdInView:self.view frame:CGRectMake(0, self.view.frame.size.height-50, self.view.frame.size.width, 50) iPadFrame:CGRectMake(0, self.view.frame.size.height-100, self.view.frame.size.width, 100)];
 }
 
 - (void)didReceiveMemoryWarning

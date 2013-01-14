@@ -138,8 +138,7 @@
     _replayView.backgroundColor = [UIColor whiteColor];
     _replayView.tag = REPLAY_TAG;
     
-    double speed = [DrawAction calculateSpeed:self.replayView.drawActionList];
-    self.replayView.playSpeed = speed;
+//    self.replayView.speed = PlaySpeedTypeNormal;
 
     _replayView.delegate = self;    
     if (_replayForCreateGif){

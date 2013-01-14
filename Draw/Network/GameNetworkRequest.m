@@ -1372,8 +1372,8 @@
         str = [str stringByAddQueryParameter:PARA_GENDER value:gender];
         str = [str stringByAddQueryParameter:PARA_WORD_ID value:wordId];
         str = [str stringByAddQueryParameter:PARA_WORD value:word];
+        str = [str stringByAddQueryParameter:PARA_LEVEL intValue:level];
         str = [str stringByAddQueryParameter:PARA_WORD_TYPE intValue:wordType];
-        str = [str stringByAddQueryParameter:PARA_WORD_LEVEL intValue:level];
         str = [str stringByAddQueryParameter:PARA_WORD_SCORE intValue:score];
         str = [str stringByAddQueryParameter:PARA_LANGUAGE intValue:lang];
         str = [str stringByAddQueryParameter:PARA_DESC value:desc];

@@ -174,5 +174,13 @@
     return CGPointMake((p1.x + p2.x) * 0.5, (p1.y + p2.y) * 0.5);
 }
 
-
++ (CGRect)rectForPath:(CGPathRef)path withWidth:(CGFloat)width
+{
+    CGRect rect = CGPathGetBoundingBox(path);
+    rect.origin.x = (NSInteger)(rect.origin.x - width) - 1;
+    rect.origin.y = (NSInteger)(rect.origin.y - width) - 1;;
+    rect.size.width = (NSInteger)(rect.size.width + width * 2) + 2;
+    rect.size.height = (NSInteger)(rect.size.height + width * 2) + 2;
+    return rect; //make sure all the values are integer
+}
 @end

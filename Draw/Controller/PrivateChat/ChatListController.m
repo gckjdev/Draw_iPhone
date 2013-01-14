@@ -53,10 +53,12 @@
 
 - (void)bgRunBlock:(dispatch_block_t)block
 {
-    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-    if (queue) {
-        dispatch_async(queue, block);
-    }
+    block();
+    
+//    dispatch_queue_t queue = dispatch_get_main_queue();  //dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+//    if (queue) {
+//        dispatch_async(queue, block);
+//    }
 }
 - (void)bgSaveMessageStatList
 {
@@ -69,7 +71,7 @@
 {
     [self bgRunBlock:^{
         [PPMessageManager deleteLocalFriendMessageList:messageStat.friendId];
-    }];    
+    }];
 }
 
 - (void)viewDidDisappear:(BOOL)animated

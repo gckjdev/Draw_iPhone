@@ -74,9 +74,11 @@
 
     CGContextSetLineJoin(showContext, kCGLineJoinRound);
     CGContextSetLineCap(showContext, kCGLineCapRound);
+    CGContextSetFlatness(showContext, 0.6f);
 
     CGContextSetLineJoin(cacheContext, kCGLineJoinRound);
     CGContextSetLineCap(cacheContext, kCGLineCapRound);
+    CGContextSetFlatness(cacheContext, 0.6f);
 }
 
 - (id)initWithFrame:(CGRect)frame
@@ -105,7 +107,7 @@
     for (DrawAction *action in self.drawActionList) {
         [self drawAction:action inContext:showContext];
     }
-    [self setNeedsDisplayShowCacheLayer:NO];
+    [self setNeedsDisplayInRect:self.bounds showCacheLayer:NO];
 }
 
 
@@ -116,7 +118,7 @@
     [self.drawActionList removeAllObjects];
     CGContextClearRect(showContext, self.bounds);
 //    showCacheLayer = NO;
-    [self setNeedsDisplayShowCacheLayer:NO];
+    [self setNeedsDisplayInRect:self.bounds showCacheLayer:NO];
 }
 
 - (void)addDrawAction:(DrawAction *)drawAction
@@ -141,7 +143,9 @@
 - (void)strokePaint:(Paint *)paint inContext:(CGContextRef)context clear:(BOOL)clear
 {
     if (clear) {
-        CGContextClearRect(context, self.bounds);
+        CGRect drawBox = self.bounds;
+        //[DrawUtils rectForPath:paint.path withWidth:paint.width];
+        CGContextClearRect(context, drawBox);
     }
     CGContextAddPath(context, paint.path);
     CGContextStrokePath(context);
@@ -156,33 +160,36 @@
 - (void)drawRect:(CGRect)rect
 {
     CGContextRef context = UIGraphicsGetCurrentContext();
+    
+    CGContextDrawLayerAtPoint(context, CGPointZero, showLayerRef);
     if (showCacheLayer) {
-        CGContextDrawLayerInRect(context, rect, showLayerRef);
-        CGContextDrawLayerInRect(context, rect, cacheLayerRef);
-    }else{
-        CGContextDrawLayerInRect(context, rect, showLayerRef);
+        CGContextDrawLayerAtPoint(context, CGPointZero, cacheLayerRef);
     }
     
     [super drawRect:rect];
 }
 
 
-- (void)setNeedsDisplayShowCacheLayer:(BOOL)show
+//- (void)setNeedsDisplayShowCacheLayer:(BOOL)show
+//{
+//    showCacheLayer = show;
+//    [self setNeedsDisplay];
+//}
+
+
+- (void)setNeedsDisplayInRect:(CGRect)rect showCacheLayer:(BOOL)show
 {
     showCacheLayer = show;
-    [self setNeedsDisplay];
+    [self setNeedsDisplayInRect:rect];
 }
-
-
-
 
 - (UIImage*)createImage
 {
     
-    PPDebug(@"<createImage> image frame = %@", NSStringFromCGRect(self.frame));
+    PPDebug(@"<createImage> image bounds = %@", NSStringFromCGRect(self.bounds));
     CGContextRef context = [self createBitmapContext];
     CGContextScaleCTM(context, 1, -1);
-    CGContextTranslateCTM(context, 0, -CGRectGetHeight(DRAW_VIEW_FRAME));
+    CGContextTranslateCTM(context, 0, -CGRectGetHeight(self.bounds));
     
     CGContextDrawLayerInRect(context, self.bounds, showLayerRef);
 
@@ -193,7 +200,8 @@
     }else{
         UIImage *img = [UIImage imageWithCGImage:image];
         CGImageRelease(image);
-        PPDebug(@"<createImage> image size = %@",NSStringFromCGSize(img.size));
+//        PPDebug(@"<createImage> image size = %@",NSStringFromCGSize(img.size));
+//        UIImageWriteToSavedPhotosAlbum(img, nil, NULL, nil);
         return img;
     }
 
@@ -202,8 +210,13 @@
 - (void)showImage:(UIImage *)image
 {
     if (image) {
+        PPDebug(@"draw image in bounds = %@",NSStringFromCGRect(self.bounds));
+//        CGContextSaveGState(showContext);
+//        CGContextScaleCTM(showContext, 1.0, -1.0);
+//        CGContextTranslateCTM(showContext, 0.0, CGRectGetWidth(self.bounds));
         CGContextDrawImage(showContext, self.bounds, image.CGImage);
-        [self setNeedsDisplayShowCacheLayer:NO];
+//        CGContextRestoreGState(showContext);
+        [self setNeedsDisplayInRect:self.bounds showCacheLayer:NO];
     }
 }
 @end

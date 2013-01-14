@@ -181,25 +181,23 @@ CGRect CGRectFrom(CGPoint origin, CGSize size){
     //create the image once...
     [self.showDrawView removeFromSuperview];
     CGRect frame = self.showDrawView.frame;
-    self.showDrawView = [[[ShowDrawView alloc] initWithFrame:frame] autorelease];
+//    self.showDrawView = [[[ShowDrawView alloc] initWithFrame:frame] autorelease];
+    self.showDrawView = [ShowDrawView showView];
+    self.showDrawView.center = CGPointMake(CGRectGetMidX(frame), CGRectGetMidY(frame));
     [self addSubview:self.showDrawView];
-
+    [self.showDrawView resetFrameSize:frame.size];
+    [self.showDrawView setDelegate:self];
+    [self.showDrawView setPressEnable:YES];
+    
     if (!message.thumbImage) {
-        CGFloat xs = DRAW_VIEW_SIZE.width / DRAW_VIEW_FRAME.size.width;
-        CGFloat ys = DRAW_VIEW_SIZE.height / DRAW_VIEW_FRAME.size.height;
-
-        NSMutableArray *drawList = [DrawAction scaleActionList:message.drawActionList xScale:xs yScale:ys];
-
-    
-        [self.showDrawView setDrawActionList:drawList];
+        self.showDrawView.drawActionList = message.drawActionList;
         [self.showDrawView show];
-        message.thumbImage = [self.showDrawView createImage];
-        [self.showDrawView cleanAllActions];
+//        message.thumbImage = [self.showDrawView createImage];
+    }else{
+        [self.showDrawView showImage:message.thumbImage];        
     }
-    
-    [self.showDrawView setDelegate:self];            
-    [self.showDrawView showImage:message.thumbImage];
-    
+
+
 }
 - (void)didClickShowDrawView:(ShowDrawView *)showDrawView
 {

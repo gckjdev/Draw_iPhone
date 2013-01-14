@@ -517,9 +517,7 @@
         
         NSMutableArray *list =  [NSMutableArray arrayWithArray:_draw.drawActionList];            
         [self.showView setDrawActionList:list];
-        double speed = [DrawAction calculateSpeed:self.showView.drawActionList];
-        self.showView.playSpeed = speed;
-//        [self.showView play];
+//        self.showView.speed = PlaySpeedTypeNormal;
         [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(startPlay:) userInfo:nil repeats:NO];
     }
     
@@ -843,7 +841,7 @@
 {
     showView = [[ShowDrawView alloc] initWithFrame:DRAW_VIEW_FRAME];  
     [self.view insertSubview:showView aboveSubview:drawBackground];
-    showView.playSpeed = 1.0/45.0;
+//    self.showView.speed = PlaySpeedTypeNormal;
 }
 
 - (void)setButton:(UIButton *)button title:(NSString *)title enabled:(BOOL)enabled

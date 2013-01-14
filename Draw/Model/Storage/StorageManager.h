@@ -21,8 +21,8 @@ typedef enum
     NSString *_directoryName;
 }
 
-@property(nonatomic, assign)StorageType storageType; //default type is StorageTypeCache
-@property(nonatomic, retain)NSString *directoryName;
+@property(atomic, assign)StorageType storageType; //default type is StorageTypeCache
+@property(atomic, retain)NSString *directoryName;
 
 + (id)defaultManager; //StorageTypeCache type, dir name is default
 

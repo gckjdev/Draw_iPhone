@@ -42,11 +42,8 @@
 
 - (ShowDrawView *)createShowDrawView:(NSArray *)drawActionList
 {
-    ShowDrawView *showDrawView = [[[ShowDrawView alloc] init] autorelease];
-    showDrawView.frame = DRAW_VIEW_FRAME;
-    NSMutableArray *scaleActionList = nil;
-    
-    scaleActionList = [NSMutableArray arrayWithArray:drawActionList];
+    ShowDrawView *showDrawView = [ShowDrawView showView];
+    NSMutableArray *scaleActionList = [NSMutableArray arrayWithArray:drawActionList];
     [showDrawView setDrawActionList:scaleActionList]; 
     [showDrawView setShowPenHidden:NO];
     
@@ -58,11 +55,11 @@
 {
     [super viewDidLoad];
     [self.titleLabel setText:NSLS(@"kGraffitiMessage")];
-    
+
+    [self.showDrawView removeFromSuperview];
     self.showDrawView = [self createShowDrawView:_drawActionList];
     self.showDrawView.center = self.view.center;
     [self.showDrawView setShowPenHidden:YES];
-    [self.showDrawView setPlaySpeed:1.0/80.0];
     [self.view addSubview:self.showDrawView];
     [self.showDrawView play];
     
