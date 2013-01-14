@@ -6658,7 +6658,7 @@
 		A4D6A762167591D3008DC151 /* ZJHRuleConfigFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJHRuleConfigFactory.m; sourceTree = "<group>"; };
 		A4D6A76F16759321008DC151 /* ZJHGameController_dual~ip5.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ZJHGameController_dual~ip5.xib"; sourceTree = "<group>"; };
 		A4D6A7771675B4C3008DC151 /* ZJHGameController_dual~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ZJHGameController_dual~ipad.xib"; sourceTree = "<group>"; };
-		A4DE140E1697DB7B00841940 /* hot_word.pb */ = {isa = PBXFileReference; lastKnownFileType = file; path = hot_word.pb; sourceTree = "<group>"; };
+		A4DE140E1697DB7B00841940 /* hot_word.pb */ = {isa = PBXFileReference; lastKnownFileType = text; path = hot_word.pb; sourceTree = "<group>"; };
 		A4DE14111697DBA900841940 /* hot_words_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hot_words_bg@2x.png"; sourceTree = "<group>"; };
 		A4DE14121697DBA900841940 /* load_from_draft_btn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "load_from_draft_btn@2x.png"; sourceTree = "<group>"; };
 		A4DE14131697DBA900841940 /* more_words_btn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "more_words_btn@2x.png"; sourceTree = "<group>"; };

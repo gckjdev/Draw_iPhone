@@ -10,14 +10,11 @@
 
 @implementation ReplacedPoker
 
-//@synthesize oldPoker = _oldPoker;
-//@synthesize newPoker = _newPoker;
-
 - (void)dealloc
 {
-    [super dealloc];
     [_oldPoker release];
     [_newPoker release];
+    [super dealloc];
 }
 
 - (id)initWithOldPoker:(Poker *)oldPoker
@@ -35,6 +32,6 @@
                                     newPoker:(Poker *)newPoker
 {
     return [[[ReplacedPoker alloc] initWithOldPoker:oldPoker newPoker:newPoker] autorelease];
-}
+} 
 
 @end
