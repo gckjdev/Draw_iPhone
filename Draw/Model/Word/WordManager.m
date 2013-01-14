@@ -360,6 +360,40 @@ WordManager *GlobalGetWordManager()
     return wordArray;
 }
 
+- (NSArray *)randGuessWordList:(NSString*)drawWord
+{
+    NSMutableArray *wordArray = [[[NSMutableArray alloc] initWithCapacity:3]autorelease];
+    for (int i = WordLevelLow; i <= WordLevelHigh; ++i) {
+        NSArray *array = [self wordArrayOfLevel:i];
+        if ([array count] == 0) {
+            return nil;
+        }
+        Word* word;
+        do {
+            NSInteger index = rand() % array.count;
+            word = [array objectAtIndex:index];
+        } while ([word.text isEqualToString:drawWord]);
+        [wordArray addObject:word];
+    }
+    if (drawWord && [drawWord length] > 0) {
+        [wordArray insertObject:[Word wordWithText:drawWord level:0] atIndex:rand()%4];
+    } else {
+        NSArray *array = [self wordArrayOfLevel:(rand()%3+1)];
+        if ([array count] == 0) {
+            return nil;
+        }
+        NSSet* set = [NSSet setWithArray:wordArray];
+        Word* word;
+        do {
+            NSInteger index = rand() % array.count;
+            word = [array objectAtIndex:index];
+        } while ([set containsObject:word]);
+        [wordArray addObject:word];
+    }
+    
+    return wordArray;
+}
+
 - (NSString *)randEnglishStringWithWord:(Word *)word count:(NSInteger)count
 {
     if (word == nil || [word.text length] == 0) {

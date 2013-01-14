@@ -27,6 +27,7 @@
 #import "PPViewController.h"
 #import "AnalyticsManager.h"
 #import "StorageManager.h"
+#import "WordManager.h"
 
 @interface ShareAction ()
 {
@@ -299,6 +300,8 @@
             text = [NSString stringWithFormat:NSLS(@"kShareOtherText"), snsOfficialNick];
         }
     }
+    NSArray* array = [[WordManager defaultManager] randGuessWordList:_drawWord];
+    text = [NSString stringWithFormat:NSLS(@"kWeiboShareMessage"), ((Word*)[array objectAtIndex:0]).text, ((Word*)[array objectAtIndex:1]).text, ((Word*)[array objectAtIndex:2]).text, ((Word*)[array objectAtIndex:3]).text];
     ShareEditController* controller = [[ShareEditController alloc] initWithImageFile:_imageFilePath
                                                                                 text:text drawUserId:self.drawUserId snsType:type];
     controller.delegate = self;
