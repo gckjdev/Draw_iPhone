@@ -393,9 +393,9 @@
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="man1@2x.png">{128, 125}</string>
-			<string key="sent_message@2x.png">{141, 50}</string>
-			<string key="wrong@2x.png">{74, 74}</string>
+			<string key="man1@2x.png">{16, 16}</string>
+			<string key="sent_message@2x.png">{16, 16}</string>
+			<string key="wrong@2x.png">{16, 16}</string>
 		</dictionary>
 		<string key="IBCocoaTouchPluginVersion">1926</string>
 	</data>

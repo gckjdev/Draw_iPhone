@@ -63,5 +63,9 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(AnalyticsManager)
     [MobClick event:CONTEST_HOME_CLICK label:name acc:1];    
 }
 
+- (void)reportFreeCoins:(NSString*)freeCoinTypeName
+{
+    [MobClick event:FREE_COIN_CLICK label:freeCoinTypeName acc:1];    
+}
 
 @end
