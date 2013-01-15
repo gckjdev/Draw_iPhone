@@ -247,6 +247,7 @@
                      fromRemote:(BOOL)fromRemote
                      resultCode:(NSInteger)resultCode
 {
+    [self hideActivity];
     if (resultCode == 0) {
         ReplayGraffitiController *pg = [[ReplayGraffitiController alloc]
                                         initWithDrawActionList:drawActionList];
@@ -349,11 +350,21 @@
 #pragma mark - BBSPost cell delegate
 - (void)didClickSupportButtonWithPost:(PBBBSPost *)post
 {
-    //TODO ENTER DETAIL CONTROLLER
+    // ENTER DETAIL CONTROLLER
+   BBSPostDetailController *bbsDetail = [[BBSPostDetailController alloc]initWithDefaultTabIndex:0];
+    bbsDetail.post = post;
+    [self.navigationController pushViewController:bbsDetail animated:YES];
+    [bbsDetail release];
+
 }
 - (void)didClickReplyButtonWithPost:(PBBBSPost *)post
 {
-    //TODO ENTER DETAIL CONTROLLER
+    // ENTER DETAIL CONTROLLER
+    BBSPostDetailController *bbsDetail = [[BBSPostDetailController alloc]initWithDefaultTabIndex:1];
+    bbsDetail.post = post;
+    [self.navigationController pushViewController:bbsDetail animated:YES];
+    [bbsDetail release];
+
 }
 
 - (void)didController:(CreatePostController *)controller
@@ -383,6 +394,7 @@
 
 - (void)didClickDrawImageWithPost:(PBBBSPost *)post
 {
+    [self showActivityWithText:NSLS(@"kLoading")];
     [[BBSService defaultService] getBBSDrawDataWithPostId:post.postId actionId:nil delegate:self];
 }
 

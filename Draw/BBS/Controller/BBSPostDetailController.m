@@ -24,7 +24,7 @@
     BBSPostActionHeaderView *_header;
     PBBBSAction *_selectedAction;
 }
-@property (nonatomic, retain)PBBBSPost *post;
+
 @property (retain, nonatomic) IBOutlet UIButton *backButton;
 @property (retain, nonatomic) IBOutlet UIImageView *bgImageView;
 @property (retain, nonatomic) IBOutlet UIImageView *toolBarBG;
@@ -127,12 +127,17 @@ typedef enum{
 
 }
 
+- (NSInteger)defaultTabID
+{
+    return _defaultTabIndex + Support;
+}
+
 - (void)viewDidLoad
 {
     [self setPullRefreshType:PullRefreshTypeFooter];
     [super viewDidLoad];
     [self initViews];
-    [self clickTab:Comment];
+    [self clickTab:[self defaultTabID]];
 //    [self clickTabButton:self.currentTabButton];
 }
 
@@ -465,6 +470,8 @@ typedef enum{
                      fromRemote:(BOOL)fromRemote
                      resultCode:(NSInteger)resultCode
 {
+    PPDebug(@"<didGetBBSDrawActionList> resultCode = %d, list count = %d",resultCode, [drawActionList count]);
+    [self hideActivity];
     if (resultCode == 0) {
         ReplayGraffitiController *pg = [[ReplayGraffitiController alloc]
                                         initWithDrawActionList:drawActionList];
@@ -553,6 +560,7 @@ typedef enum{
 
 - (void)didClickDrawImageWithPost:(PBBBSPost *)post
 {
+    [self showActivityWithText:NSLS(@"kLoading")];
     [[BBSService defaultService] getBBSDrawDataWithPostId:post.postId
                                                  actionId:nil
                                                  delegate:self];    
