@@ -274,7 +274,7 @@
 
 - (void)shareViaSNS:(SnsType)type
 {
-//    NSString* snsOfficialNick = [GameSNSService snsOfficialNick:type];
+    NSString* snsOfficialNick = [GameSNSService snsOfficialNick:type];
     NSString* text = nil;
 //    if (self.feed != nil) {
 //        if (_isDrawByMe){
@@ -302,7 +302,7 @@
 //    }
     NSArray* array = [[WordManager defaultManager] randGuessWordList:(rand()%10 == 0)?nil:self.feed.wordText];
     if (array.count >= 4) {
-        text = [NSString stringWithFormat:NSLS(@"kWeiboShareMessage"), ((Word*)[array objectAtIndex:0]).text, ((Word*)[array objectAtIndex:1]).text, ((Word*)[array objectAtIndex:2]).text, ((Word*)[array objectAtIndex:3]).text];
+        text = [NSString stringWithFormat:NSLS(@"kWeiboShareMessage"), snsOfficialNick, ((Word*)[array objectAtIndex:0]).text, ((Word*)[array objectAtIndex:1]).text, ((Word*)[array objectAtIndex:2]).text, ((Word*)[array objectAtIndex:3]).text];
     }
     ShareEditController* controller = [[ShareEditController alloc] initWithImageFile:_imageFilePath
                                                                                 text:text drawUserId:self.drawUserId snsType:type];
