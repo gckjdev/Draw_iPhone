@@ -20,6 +20,7 @@
 #import "AccountService.h"
 #import "PPSNSIntegerationService.h"
 #import "PPSNSConstants.h"
+#import "UMGridViewController.h"
 
 #define HEIGHT_FOR_IPHONE   50
 #define HEIGHT_FOR_IPHONE5  60
@@ -32,7 +33,7 @@
 @property (assign, nonatomic) int rowOfAddWords;
 @property (assign, nonatomic) int rowOfReportBug;
 @property (assign, nonatomic) int rowOfFeedback;
-//@property (assign, nonatomic) int rowOfMoreApp;
+@property (assign, nonatomic) int rowOfMoreApp;
 @property (assign, nonatomic) int rowOfGiveReview;
 @property (assign, nonatomic) int rowOfAbout;
 @property (assign, nonatomic) int numberOfRows;
@@ -51,7 +52,7 @@
 @synthesize rowOfAddWords;
 @synthesize rowOfReportBug;
 @synthesize rowOfFeedback;
-//@synthesize rowOfMoreApp;
+@synthesize rowOfMoreApp;
 @synthesize rowOfGiveReview;
 @synthesize rowOfAbout;
 @synthesize numberOfRows;
@@ -81,7 +82,7 @@
         rowOfAddWords = count++;
         rowOfReportBug = count++;
         rowOfFeedback = count++;
-//        rowOfMoreApp = count++;
+        rowOfMoreApp = count++;
         if ([ConfigManager isInReviewVersion] == NO){
             rowOfGiveReview = count++;
         }
@@ -97,7 +98,7 @@
         rowOfFollow = count++;
         rowOfReportBug = count++;
         rowOfFeedback = count++;
-//        rowOfMoreApp = count++;
+        rowOfMoreApp = count++;
         if ([ConfigManager isInReviewVersion] == NO){
             rowOfGiveReview = count++;
         }
@@ -133,8 +134,8 @@
         [aCell.textLabel setText:NSLS(@"kReport_problems")];
     } else if (anIndex == rowOfFeedback) {
         [aCell.textLabel setText:NSLS(@"kGive_some_advice")];
-//    } else if (anIndex == rowOfMoreApp) {
-//        [aCell.textLabel setText:NSLS(@"kMore_apps")];
+    } else if (anIndex == rowOfMoreApp) {
+        [aCell.textLabel setText:NSLS(@"kMore_apps")];
     } else if (anIndex == rowOfGiveReview) {
         [aCell.textLabel setText:NSLS(@"kGive_a_5-star_review")];
     } else if (anIndex == rowOfAbout) {
@@ -321,11 +322,14 @@ enum {
         [rc release];
     } 
     
-//    else if (indexPath.row  == rowOfMoreApp) {
+    else if (indexPath.row  == rowOfMoreApp) {
 //        UFPController* rc = [[UFPController alloc] init];
 //        [self.navigationController pushViewController:rc animated:YES];
 //        [rc release];
-//    } 
+        UMGridViewController *controller = [[UMGridViewController alloc] init];
+        [self.navigationController pushViewController:controller animated:YES];
+        [controller release];
+    }
     
     else if (indexPath.row  == rowOfGiveReview) {
         PPDebug(@"<FeedbackController>appId :%@", [ConfigManager appId]);

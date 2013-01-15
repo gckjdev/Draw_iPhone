@@ -40,6 +40,15 @@
 {
     [super viewDidLoad];
     [self.navigationController setNavigationBarHidden:YES];
+    
+    
+    self.moneyTreeView = [MoneyTreeView createMoneyTreeView];
+    self.moneyTreeView.center = self.moneyTreePlaceHolder.center;
+    self.moneyTreeView.growthTime = 60;
+    self.moneyTreeView.gainTime = 30;
+    self.moneyTreeView.coinValue = 50;
+    [self.view addSubview:_moneyTreeView];
+    [self.moneyTreeView startGrowing];
 
     // Do any additional setup after loading the view from its nib.
     self.timer = [NSTimer scheduledTimerWithTimeInterval:80 target:self selector:@selector(timeout:) userInfo:nil repeats:YES];
@@ -66,11 +75,13 @@
 
 - (void)dealloc {
     [_titleTlabel release];
-//    [shengmengsdk stopad];
+    [_moneyTreePlaceHolder release];
+    [_moneyTreeView release];
     [super dealloc];
 }
 - (void)viewDidUnload {
     [self setTitleTlabel:nil];
+    [self setMoneyTreePlaceHolder:nil];
     [super viewDidUnload];
 }
 
@@ -79,12 +90,11 @@
 }
 
 - (IBAction)clickDownloadAppsButton:(id)sender {
-//    [UIUtils alertWithTitle:@"免费金币获取提示" msg:@"下载免费应用即可获取金币！下载完应用一定要打开才可以获得奖励哦！"];
-//    [[LmWallService defaultService] show:self];
-    UMGridViewController *controller = [[UMGridViewController alloc] init];
-    [self.navigationController pushViewController:controller animated:YES];
-    [controller release];
-    
+    [UIUtils alertWithTitle:@"免费金币获取提示" msg:@"下载免费应用即可获取金币！下载完应用一定要打开才可以获得奖励哦！"];
+    [[LmWallService defaultService] show:self];
+//    UMGridViewController *controller = [[UMGridViewController alloc] init];
+//    [self.navigationController pushViewController:controller animated:YES];
+//    [controller release];
 }
 
 - (IBAction)clickHelpButton:(id)sender {
