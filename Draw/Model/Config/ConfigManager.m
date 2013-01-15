@@ -379,6 +379,19 @@
     return [MobClickUtils getStringValueByKey:@"DICE_SERVER_LIST_SUPER_HIGHT" defaultValue:@"58.215.164.153:8020"];
 }
 
++ (NSString*)getZJHServerListStringWithNormal
+{
+    return [MobClickUtils getStringValueByKey:@"ZJH_SERVER_LIST_NORMAL" defaultValue:@"58.215.184.18:8028"];
+}
++ (NSString *)getZJHServerListStringWithRich
+{
+    return [MobClickUtils getStringValueByKey:@"ZJH_SERVER_LIST_RICH" defaultValue:@"58.215.184.18:8029"];
+}
++ (NSString *)getZJHServerListStringWithDual
+{
+    return [MobClickUtils getStringValueByKey:@"ZJH_SERVER_LIST_DUAL" defaultValue:@"58.215.184.18:8030"];
+}
+
 + (int)getBetAnteWithNormalRule
 {
     return [MobClickUtils getIntValueByKey:@"DICE_BET_ANTE_COIN_NORMAL" defaultValue:50];

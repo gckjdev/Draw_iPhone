@@ -115,6 +115,10 @@ typedef enum{
 + (NSString *)getDiceServerListStringWithHightRule;
 + (NSString *)getDiceServerListStringWithSuperHightRule;
 
++ (NSString*)getZJHServerListStringWithNormal;
++ (NSString *)getZJHServerListStringWithRich;
++ (NSString *)getZJHServerListStringWithDual;
+
 + (int)getBetAnteWithNormalRule;
 + (int)getBetAnteWithHighRule;
 + (int)getBetAnteWithSuperHighRule;
