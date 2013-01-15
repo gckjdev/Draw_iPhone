@@ -57,7 +57,6 @@ typedef enum {
 - (void)addDrawAction:(DrawAction *)action play:(BOOL)play;
 
 - (void)setShowPenHidden:(BOOL)showPenHidden;
-- (BOOL)isShowPenHidden;
 
 + (ShowDrawView *)showView;
 - (void)resetFrameSize:(CGSize)size;

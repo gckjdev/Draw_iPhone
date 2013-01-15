@@ -92,8 +92,6 @@
 
 - (void)appendMessageList:(NSArray *)list
 {
-    
-//    PPDebug(@"", <#...#>)
     if ([list count] == 0) {
         return;
     }
@@ -132,6 +130,7 @@
     return NO;
 }
 - (void)dealloc {
+    PPDebug(@"%@ dealloc",self);
     PPRelease(titleLabel);
     PPRelease(inputTextView);
     PPRelease(inputBackgroundView);
@@ -151,6 +150,7 @@
         self.messageStat = messageStat;
         _messageList = [[NSMutableArray alloc] init];
     }
+    PPDebug(@"%@<initWithMessageStat>", self);
     return self;
 }
 
@@ -203,11 +203,15 @@
 
 - (void)viewDidLoad
 {
+    PPDebug(@"<viewDidLoad1> %@, retain count = %d,",self,[self retainCount]);
     [self setSupportRefreshHeader:YES];
     [super viewDidLoad];
-    [self initViews];  
+    [self initViews];
+    PPDebug(@"<initViews> %@, retain count = %d,",self,[self retainCount]);
     [self initListWithLocalData];
+    PPDebug(@"<initListWithLocalData> %@, retain count = %d,",self,[self retainCount]);
     [self loadNewMessage];
+    PPDebug(@"<viewDidLoad2> %@, retain count = %d,",self,[self retainCount]);
 }
 
 
@@ -228,6 +232,7 @@
     
     DrawAppDelegate *drawAppDelegate = (DrawAppDelegate *)[[UIApplication sharedApplication] delegate];
     drawAppDelegate.chatDetailController = self;
+    PPDebug(@"<viewDidAppear> %@, retain count = %d,",self,[self retainCount]);
     [super viewDidAppear:animated];
 }
 
@@ -237,7 +242,12 @@
     
     DrawAppDelegate *drawAppDelegate = (DrawAppDelegate *)[[UIApplication sharedApplication] delegate];
     drawAppDelegate.chatDetailController = nil;
+//    [self deregsiterKeyboardNotification];
+    PPDebug(@"<viewDidDisappear1> %@, retain count = %d,",self,[self retainCount]);
+
     [super viewDidDisappear:animated];
+    PPDebug(@"<viewDidDisappear2> %@, retain count = %d,",self,[self retainCount]);
+
 }
 
 
@@ -247,7 +257,8 @@
             resultCode:(int)resultCode
 {
     [self hideActivity];
-    [self dataSourceDidFinishLoadingNewData];   
+    [self dataSourceDidFinishLoadingNewData];
+    PPDebug(@"<didGetMessages> %@, retain count = %d,",self,[self retainCount]);
     if (resultCode == 0) {
         PPDebug(@"<didGetMessages>, count = %d", [list count]);
         if (!forward && [list count] < [self loadMoreDataCount]) {
@@ -358,7 +369,9 @@
 #pragma mark - button action
 - (IBAction)clickBack:(id)sender 
 {
-    for (UIViewController* controller in self.navigationController.viewControllers){
+    NSArray *viewControllers = self.navigationController.viewControllers;
+//    PPDebug(@"<clickBack>viewControllers = %@",viewControllers);
+    for (UIViewController* controller in viewControllers){
         if ([controller isKindOfClass:[ChatListController class]]){
             [self.navigationController popToViewController:controller animated:YES];
             return;
@@ -389,16 +402,13 @@
 //设定view底部，整个view保持起始点不变，整个view往上缩
 - (void)updateTableView:(UITableView *)tableView withBottomLine:(CGFloat)yLine
 {
+    PPDebug(@"<updateTableView> %@, retain count = %d,",self,[self retainCount]);
     CGRect frame = tableView.frame;
     frame.size.height = yLine - CGRectGetMinY(frame);
     tableView.frame = frame;
-//    CGPoint origin = tableView.frame.origin;
-//    CGSize size = tableView.frame.size;
-//    size.height = yLine - origin.y;
-//    tableView.frame = CGRectMake(origin.x, origin.y, size.width, size.height);
-//    [self tableViewScrollToBottom];
     [tableView reloadData];
-
+    [self tableViewScrollToBottom];
+//    [self performSelector:@selector(tableViewScrollToBottom) withObject:nil afterDelay:0.2];
 }
 
 //设定view底部，整个view保持起始点不变，整个view膨胀
@@ -434,11 +444,11 @@
 
 - (void)keyboardWillShowWithRect:(CGRect)keyboardRect
 {
-    PPDebug(@"<keyboardWillShowWithRect> keyboardRect = %@",NSStringFromCGRect(keyboardRect));
+    PPDebug(@"<keyboardWillShowWithRect> keyboardRect = %@, receiver = %@",NSStringFromCGRect(keyboardRect), self);
     
     CGFloat yLine = CGRectGetMaxY(self.view.frame) - CGRectGetHeight(keyboardRect);
     [self updateInputPanel:self.inputBackgroundView withBottomLine:yLine];
-    yLine -= self.inputBackgroundView.frame.size.height;
+    yLine -= CGRectGetHeight(self.inputBackgroundView.frame);
     [self updateTableView:self.dataTableView withBottomLine:yLine];
     [self addMaskView];
 }
@@ -721,11 +731,13 @@
 - (void)loadNewMessage
 {
     [self showActivityWithText:NSLS(@"kLoading")];
+    PPDebug(@"<loadNewMessage> %@, retain count = %d,",self,[self retainCount]);
     [[ChatService defaultService] getMessageList:self 
                                     friendUserId:self.fid
                                  offsetMessageId:self.lastMessageId 
                                          forward:YES 
                                            limit:[self loadNewDataCount]];
+    PPDebug(@"<getMessageList> %@, retain count = %d,",self,[self retainCount]);
 }
 - (void)loadMoreMessage
 {
@@ -748,13 +760,17 @@
 }
 - (void)tableViewScrollToBottom
 {
+    PPDebug(@"<tableViewScrollToBottom1> %@, retain count = %d,",self,[self retainCount]);
+
     if ([self.messageList count] > 0) {
         NSInteger row = [self.messageList count] - 1;
         NSIndexPath *indexPath = [NSIndexPath indexPathForRow:row inSection:0];
         [self.dataTableView scrollToRowAtIndexPath:indexPath 
                                   atScrollPosition:UITableViewScrollPositionBottom 
                                           animated:YES];        
-    }    
+    }
+    PPDebug(@"<tableViewScrollToBottom2> %@, retain count = %d,",self,[self retainCount]);
+
 }
 
 

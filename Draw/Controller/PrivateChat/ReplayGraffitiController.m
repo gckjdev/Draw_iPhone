@@ -43,8 +43,12 @@
 - (ShowDrawView *)createShowDrawView:(NSArray *)drawActionList
 {
     ShowDrawView *showDrawView = [ShowDrawView showView];
-    NSMutableArray *scaleActionList = [NSMutableArray arrayWithArray:drawActionList];
-    [showDrawView setDrawActionList:scaleActionList]; 
+    if ([drawActionList isKindOfClass:[NSMutableArray class]]) {
+        [showDrawView setDrawActionList:(NSMutableArray *)drawActionList];
+    }else{
+        NSMutableArray *scaleActionList = [NSMutableArray arrayWithArray:drawActionList];
+        [showDrawView setDrawActionList:scaleActionList];
+    }
     [showDrawView setShowPenHidden:NO];
     
     return showDrawView;

@@ -497,7 +497,7 @@
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
 			<string key="logout.png">{16, 16}</string>
-			<string key="white_paper@2x.png">{480, 168}</string>
+			<string key="white_paper@2x.png">{16, 16}</string>
 		</dictionary>
 		<string key="IBCocoaTouchPluginVersion">1926</string>
 	</data>
