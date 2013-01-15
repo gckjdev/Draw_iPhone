@@ -227,13 +227,14 @@ typedef enum {
 {
     return [_drawActionList count] > 0;
 }
-- (void)revoke
+
+- (void)revoke:(dispatch_block_t)finishBlock
 {
     if ([self canRevoke]) {
         id obj = [_drawActionList lastObject];
         [_redoStack push:obj];
         [_drawActionList removeLastObject];
-        [self show];
+        [self showForRevoke:obj finishBlock:finishBlock];
     }
 }
 

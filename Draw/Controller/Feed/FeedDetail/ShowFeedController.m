@@ -283,8 +283,10 @@ enum{
     switch (indexPath.section) {
         case SectionUserInfo:
             return [UserInfoCell getCellHeight];
-        case SectionDrawInfo:
-            return [DrawInfoCell getCellHeight];
+        case SectionDrawInfo:{
+            return [DrawInfoCell cellHeightWithDesc:self.feed.opusDesc];
+        }
+//            return [DrawInfoCell getCellHeight];
         case SectionCommentInfo:
         {
             if (indexPath.row == 0) {

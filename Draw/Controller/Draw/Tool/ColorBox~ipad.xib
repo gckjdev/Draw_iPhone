@@ -40,7 +40,7 @@
 					<object class="IBUIButton" id="456282737">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{0, 4}, {120, 60}}</string>
+						<string key="NSFrame">{{2, 4}, {140, 60}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="549416781"/>
@@ -83,7 +83,7 @@
 					<object class="IBUIButton" id="549416781">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{470, 4}, {120, 58}}</string>
+						<string key="NSFrame">{{450, 4}, {140, 58}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="543607329"/>
@@ -93,7 +93,7 @@
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<int key="IBUIContentHorizontalAlignment">0</int>
 						<int key="IBUIContentVerticalAlignment">0</int>
-						<string key="IBUINormalTitle">更多</string>
+						<string key="IBUINormalTitle">购买颜色</string>
 						<reference key="IBUIHighlightedTitleColor" ref="879689341"/>
 						<reference key="IBUINormalTitleColor" ref="81321448"/>
 						<reference key="IBUINormalTitleShadowColor" ref="431494755"/>

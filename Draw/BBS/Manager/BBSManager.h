@@ -22,7 +22,7 @@
     NSMutableArray *_tempPostList;
 }
 
-@property(atomic, retain) NSArray *boardList;
+@property(nonatomic, retain) NSArray *boardList;
 @property(atomic, retain) NSMutableArray *tempPostList;
 @property(atomic, retain) NSMutableDictionary *boardDict;
 @property(atomic, retain) StorageManager *storageManager;
