@@ -243,6 +243,11 @@
 - (void)playCurrentFrame
 {
     [self updateTempPaint];
+    
+    PPDebug(@"====<playCurrentFrame>(actionIndex: %d, total Point: %d, pointIndex: %d, tempPaint count: %d)====",_playingActionIndex,_currentAction.pointCount, _playingPointIndex, self.tempPaint.pointCount);
+    if (_playingActionIndex == 139 && _playingPointIndex == 0) {
+        PPDebug(@"debug point!");
+    }
     if (self.status == Playing) {
         if (self.tempPaint) {
             CGRect drawBox = [DrawUtils rectForPath:_tempPaint.path withWidth:_tempPaint.width];
