@@ -65,6 +65,11 @@
 #define CONTEST_HOME_OPUS                   @"CONTEST_HOME_OPUS"
 #define CONTEST_HOME_JOIN                   @"CONTEST_HOME_JOIN"
 
+#define FREE_COIN_CLICK                     @"FREE_COIN_CLICK"
+#define FREE_COIN_TYPE_JIFENQIANG           @"JI_FEN_QIANG"
+#define FREE_COIN_TYPE_VIDEO                @"VIDEO"
+#define FREE_COIN_TYPE_MONEYTREE            @"MONEY_TREE"
+
 @interface AnalyticsManager : NSObject
 
 + (AnalyticsManager*)sharedAnalyticsManager;
@@ -83,5 +88,6 @@
 
 - (void)reportContestHomeClicks:(NSString*)name;
 
+- (void)reportFreeCoins:(NSString*)freeCoinName;
 
 @end

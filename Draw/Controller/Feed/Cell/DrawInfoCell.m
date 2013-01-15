@@ -17,6 +17,11 @@
 #import "UIImageView+WebCache.h"
 #import "DrawUserInfoView.h"
 
+#define DESC_FONT_SIZE (ISIPAD ? 20 : 11)
+#define DESC_WIDTH (ISIPAD ? 481 : 220)
+#define CELL_HEIGHT_BASE (ISIPAD ? 520 : 252)
+#define DESC_HEIGHT_SPACE (ISIPAD ? 18 : 8)
+
 @implementation DrawInfoCell
 @synthesize drawImage;
 @synthesize timeLabel;
@@ -45,14 +50,40 @@
 {
     return @"DrawInfoCell";
 }
+//+ (void)
 
-+ (CGFloat)getCellHeight
+//+ (CGSize)labelSizeWithText:(NSString *)text font:(UIFont *)font width:(CGFloat)width
+//{
+//    [text sizeWithFont:font forWidth:width lineBreakMode:<#(NSLineBreakMode)#>
+//}
+
++ (CGSize)labelSizeWithText:(NSString *)desc
 {
-    if ([DeviceDetection isIPAD]) {
-        return 520.0f;
+    if ([desc length] == 0) {
+        return CGSizeZero;
     }
-    return 252.0f;
+    CGSize size = [desc sizeWithFont:[UIFont systemFontOfSize:DESC_FONT_SIZE] constrainedToSize:CGSizeMake(DESC_WIDTH, 9999999) lineBreakMode:NSLineBreakByCharWrapping];
+    size.height += DESC_HEIGHT_SPACE;
+    return size;
 }
+
++ (CGFloat)cellHeightWithDesc:(NSString *)desc
+{
+    if ([desc length] == 0) {
+        return CELL_HEIGHT_BASE;
+    }else{
+        CGSize size = [DrawInfoCell labelSizeWithText:desc];
+        return CELL_HEIGHT_BASE + size.height;
+    }
+}
+
+//+ (CGFloat)getCellHeight
+//{
+//    if ([DeviceDetection isIPAD]) {
+//        return 520.0f;
+//    }
+//    return 252.0f;
+//}
 
 - (void)initTargetUser:(NSString *)userId nickName:(NSString *)nickName
 {
@@ -91,6 +122,11 @@
     [self.timeLabel setText:timeString];    
 }
 
+
+- (void)updateDesc:(NSString *)desc
+{
+    [self.opusDesc setText:desc];
+}
 
 - (void)showDrawView:(DrawFeed *)feed
 {
@@ -176,6 +212,7 @@
     [self setFeed:feed];
     [self updateTime:self.feed];
     [self updateDrawToUserInfo:feed];
+    [self updateDesc:feed.opusDesc];
     [self.loadingActivity setCenter:self.drawImage.center];
     if ([feed hasDrawActions]) {
         PPDebug(@"<setCellInfo>:DrawInfoCell have drawData. start to showView");
@@ -215,6 +252,7 @@
         self.feed.pbDraw = feed.pbDraw;
         self.feed.feedUser = feed.feedUser;
         self.feed.createDate = feed.createDate;
+        self.feed.opusDesc = feed.opusDesc;
         if ([feed.drawImageUrl length] != 0) {
             self.feed.drawImageUrl = feed.drawImageUrl;
         }
@@ -245,6 +283,7 @@
     PPRelease(_feed);
     PPRelease(_drawToButton);
     PPRelease(_targetUser);
+    [_opusDesc release];
     [super dealloc];
 }
 @end

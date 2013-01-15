@@ -906,11 +906,21 @@ enum{
         _isNewDraft = NO;
     }
 }
+
+- (void)performRevoke
+{
+    [drawView revoke:^{
+        [self hideActivity];
+    }];
+}
+
 - (void)drawToolPanel:(DrawToolPanel *)toolPanel didClickUndoButton:(UIButton *)button
 {
     if ([drawView canRevoke]) {
         _isNewDraft = NO;
-        [drawView revoke];
+        
+        [self showActivityWithText:NSLS(@"kRevoking")];
+        [self performSelector:@selector(performRevoke) withObject:nil afterDelay:0.1f];
     }
 }
 - (void)drawToolPanel:(DrawToolPanel *)toolPanel didClickEraserButton:(UIButton *)button

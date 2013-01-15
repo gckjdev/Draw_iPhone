@@ -39,7 +39,9 @@
 @property (retain, nonatomic) IBOutlet UILabel *timeLabel;
 @property (retain, nonatomic) IBOutlet UIButton *drawToButton;
 @property (retain, nonatomic) IBOutlet UIActivityIndicatorView *loadingActivity;
+@property (retain, nonatomic) IBOutlet UILabel *opusDesc;
 - (void)setCellInfo:(DrawFeed *)feed;
 + (NSString*)getCellIdentifier;
++ (CGFloat)cellHeightWithDesc:(NSString *)desc;
 @end
 

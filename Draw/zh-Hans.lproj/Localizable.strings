@@ -935,7 +935,7 @@
 "kHomeMenuTypeDrawGame" = "游戏";
 "kHomeMenuTypeDrawTimeline" = "动态";
 "kHomeMenuTypeDrawRank" = "画榜";
-"kHomeMenuTypeDrawContest" = "比赛";
+"kHomeMenuTypeDrawContest" = "画画大赛";
 "kHomeMenuTypeDrawBBS" = "玩家论坛";
 "HomeMenuTypeDrawApps" = "应用推荐";
 "HomeMenuTypeDrawFreeCoins" = "免费金币";
@@ -943,7 +943,7 @@
 "kHomeMenuTypeDrawOpus" = "作品";
 "kHomeMenuTypeDrawMessage" = "消息";
 "kHomeMenuTypeDrawSetting" = "设置";
-"kHomeMenuTypeDrawShop" = "道具商店";
+"kHomeMenuTypeDrawShop" = "商店";
 
 "kCharge" = "充值";
 "kFreeCoin" = "免费金币";
@@ -991,12 +991,14 @@
 
 "kDefaultWaterMark" = "@猜猜画画";
 
-"kWeiboShareMessage" = "我在玩%@，快来猜猜这幅是神马？A、[%@] B、[%@] C、[%@] D、[%@] E、[以上皆不是]#猜猜画画美图分享# http://itunes.apple.com/cn/app/cai-cai-hua-hua/id513819630?mt=8";
+"kWeiboShareMessage" = "我在玩%@，快来猜猜这幅是神马？A、[%@] B、[%@] C、[%@] D、[%@] E、[以上皆不是] #猜猜画画美图分享# http://itunes.apple.com/cn/app/cai-cai-hua-hua/id513819630?mt=8";
 
 
 "kAddOpusDesc" = "您可以为作品添加一段描述...";
 "kTwoSpaceCancel" = "取  消";
 "kTwoSpaceConfirm" = "确  定";
+
+"kRevoking" = "撤销上一笔中...";
 
 /*********************** 猜猜画画国际化字符串结束 *************************/
 

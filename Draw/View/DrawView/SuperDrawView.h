@@ -55,6 +55,7 @@ typedef enum{
 
 
 #pragma mark -show && stroke
+- (void)showForRevoke:(DrawAction*)lastAction finishBlock:(dispatch_block_t)finishiBlock;
 - (void)show;
 - (void)cleanAllActions;
 - (void)addDrawAction:(DrawAction *)drawAction;
