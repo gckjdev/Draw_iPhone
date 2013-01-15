@@ -54,7 +54,7 @@
     self.moneyTreeView.gainTime = 30;
     self.moneyTreeView.coinValue = 50;
     self.moneyTreeView.delegate = self;
-    [self.view addSubview:_moneyTreeView];
+    [self.moneyTreeHolderView addSubview:_moneyTreeView];
     [self.moneyTreeView startGrowing];
     self.moneyTreeView.isAlwaysShowMessage = YES;
 
@@ -63,8 +63,6 @@
     [shengmengsdk playad:SHENGMENG_APP_ID];
     
     // NOTE: This must be replaced by your App ID. It is Retrieved from the Tapjoy website, in your account.
-    
-    
 
 	[TapjoyConnect requestTapjoyConnect:TAPJOY_APP_ID
 							  secretKey:TAPJOY_APP_SECRET_KEY
