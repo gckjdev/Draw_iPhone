@@ -48,6 +48,7 @@
 #import "VendingController.h"
 #import "FontButton.h"
 
+#import "InputAlertView.h"
 
 @interface OfflineDrawViewController()
 {
@@ -75,7 +76,7 @@
     
     BOOL _isAutoSave;
     
-    BOOL _userSaved;
+//    BOOL _userSaved;
     BOOL _isNewDraft;
 
 }
@@ -90,7 +91,7 @@
 @property (retain, nonatomic) DrawToolPanel *drawToolPanel;
 @property (retain, nonatomic) DrawColor *tempColor;
 @property (retain, nonatomic) NSString *desc;
-
+@property (retain, nonatomic) InputAlertView *inputAlert;
 
 - (void)initDrawView;
 
@@ -170,6 +171,7 @@
     PPRelease(_submitButton);
     PPRelease(_tempColor);
     PPRelease(_desc);
+    PPRelease(_inputAlert);
     [super dealloc];
 }
 
@@ -302,11 +304,11 @@ enum{
 //    [drawView setRevocationSupported:YES];
     drawView.delegate = self;
     _isNewDraft = YES;
-    _userSaved = NO;
+//    _userSaved = NO;
     if (self.draft) {
         [drawView showDraft:self.draft];
         self.draft.thumbImage = nil;
-        _userSaved = YES;
+//        _userSaved = YES;
     }
     [self.view insertSubview:drawView aboveSubview:paperView];
     self.eraserColor = [DrawColor whiteColor];
@@ -489,22 +491,7 @@ enum{
 }
 - (void)clickOk:(CommonDialog *)dialog
 {
-    if(dialog.tag == DIALOG_TAG_COMMIT_OPUS)
-    {
-        [self showActivityWithText:NSLS(@"kSending")];
-        self.submitButton.userInteractionEnabled = NO;
-        UIImage *image = [drawView createImage];
-        [[DrawDataService defaultService] createOfflineDraw:drawView.drawActionList 
-                                                      image:image 
-                                                   drawWord:self.word 
-                                                   language:languageType 
-                                                  targetUid:self.targetUid 
-                                                  contestId:_contest.contestId
-                                                       desc:_desc//@"元芳，你怎么看？"
-                                                   delegate:self];
-
-    }
-    else if (dialog.tag == DIALOG_TAG_ESCAPE ){
+    if (dialog.tag == DIALOG_TAG_ESCAPE ){
         [self quit];
     }
     else if (dialog.tag == DIALOG_TAG_SAVETIP)
@@ -579,9 +566,6 @@ enum{
     }
     else if (dialog.tag == DIALOG_TAG_SAVETIP)
     {
-        if (!_userSaved) {
-            [[MyPaintManager defaultManager] deleteMyPaint:self.draft];
-        }
         [self quit];
     }
 }
@@ -608,6 +592,9 @@ enum{
 
 - (void)didDrawedPaint:(Paint *)paint
 {
+    
+    return; //Cancel auto save function now. by Gamy.
+    
     if (targetType == TypeGraffiti || !_isAutoSave) {
         return;
     }
@@ -624,6 +611,7 @@ enum{
     [self hideActivity];
     self.submitButton.userInteractionEnabled = YES;
     if (resultCode == 0) {
+        [self.inputAlert dismiss:NO];
         CommonDialog *dialog = nil;
         if (self.contest) {
             self.contest.opusCount ++;
@@ -768,7 +756,6 @@ enum{
 }
 
 - (IBAction)clickDraftButton:(id)sender {
-    _userSaved = YES;
     [self showActivityWithText:NSLS(@"kSaving")];
     [self performSelector:@selector(saveDraftAndShowResult) withObject:nil afterDelay:0.01];
 }
@@ -777,6 +764,21 @@ enum{
 - (NSMutableArray *)compressActionList:(NSArray *)drawActionList
 {
     return  [DrawAction scaleActionList:drawActionList xScale:1.0 / IPAD_WIDTH_SCALE yScale:1.0 / IPAD_HEIGHT_SCALE];
+}
+
+- (void)commitOpus
+{
+    [self showActivityWithText:NSLS(@"kSending")];
+    self.submitButton.userInteractionEnabled = NO;
+    UIImage *image = [drawView createImage];
+    [[DrawDataService defaultService] createOfflineDraw:drawView.drawActionList
+                                                  image:image
+                                               drawWord:self.word
+                                               language:languageType
+                                              targetUid:self.targetUid
+                                              contestId:_contest.contestId
+                                                   desc:_desc//@"元芳，你怎么看？"
+                                               delegate:self];
 }
 
 - (IBAction)clickSubmitButton:(id)sender {
@@ -795,11 +797,18 @@ enum{
             [delegate didController:self submitActionList:drawView.drawActionList drawImage:image];
         }
     }else {
-        
-        CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kCommitOpusTitle") message:NSLS(@"kCommitOpusMessage") style:CommonDialogStyleDoubleButton delegate:self];
-        [dialog showInView:self.view];
-        dialog.tag = DIALOG_TAG_COMMIT_OPUS;
-        
+        if (self.inputAlert == nil) {
+            self.inputAlert = [InputAlertView inputAlertViewWith:NSLS(@"kAddOpusDesc") content:nil clickBlock:^BOOL(NSString *contentText, BOOL confirm) {
+                _desc = contentText;
+                PPDebug(@"opus desc = %@,confirm = %d",contentText,confirm);
+                if (confirm) {
+                    [self commitOpus];
+                }
+                return !confirm;
+            }];            
+        }
+        [self.inputAlert showInView:self.view animated:YES];
+    
     }
 }
 
@@ -808,7 +817,7 @@ enum{
 {
     CommonDialog *dialog = [CommonDialog createDialogWithTitle:nil message:nil style:CommonDialogStyleDoubleButton delegate:self];
     
-    if (_isNewDraft || [drawView.drawActionList count] == 0 || !_isAutoSave) {
+    if (_isNewDraft || [drawView.drawActionList count] == 0 /*|| !_isAutoSave*/) {
         [dialog setTitle:NSLS(@"kQuitGameAlertTitle")];
         [dialog setMessage:NSLS(@"kQuitGameAlertMessage")];
         dialog.tag = DIALOG_TAG_ESCAPE;
@@ -968,5 +977,30 @@ enum{
         self.tempColor = nil;
     }
 }
+
+
+#pragma mark -- super method
+
+- (void)keyboardWillShowWithRect:(CGRect)keyboardRect
+{
+    if (!ISIPAD) {
+        PPDebug(@"keyboardWillShowWithRect rect = %@", NSStringFromCGRect(keyboardRect));
+        [self.inputAlert adjustWithKeyBoardRect:keyboardRect];        
+    }
+}
+
+//- (void)keyboardWillHideWithRect:(CGRect)keyboardRect
+//{
+//    PPDebug(@"keyboardWillHideWithRect rect = %@", NSStringFromCGRect(keyboardRect));
+//    [self.inputAlert adjustWithKeyBoardRect:CGRectZero];
+//}
+
+//- (void)keyboardDidShowWithRect:(CGRect)keyboardRect
+//{
+//}
+//
+//- (void)keyboardDidHideWithRect:(CGRect)keyboardRect
+//{
+//}
 
 @end

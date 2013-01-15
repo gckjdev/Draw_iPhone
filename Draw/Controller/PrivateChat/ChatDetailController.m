@@ -55,6 +55,9 @@
 @end
 
 
+#define TABLEVIEW_HEIGHT (ISIPAD ? 819 : 368)
+
+
 @implementation ChatDetailController
 @synthesize titleLabel;
 @synthesize inputBackgroundView;
@@ -386,11 +389,14 @@
 //设定view底部，整个view保持起始点不变，整个view往上缩
 - (void)updateTableView:(UITableView *)tableView withBottomLine:(CGFloat)yLine
 {
-    CGPoint origin = tableView.frame.origin;
-    CGSize size = tableView.frame.size;
-    size.height = yLine - origin.y;
-    tableView.frame = CGRectMake(origin.x, origin.y, size.width, size.height);
-    [self tableViewScrollToBottom];
+    CGRect frame = tableView.frame;
+    frame.size.height = yLine - CGRectGetMinY(frame);
+    tableView.frame = frame;
+//    CGPoint origin = tableView.frame.origin;
+//    CGSize size = tableView.frame.size;
+//    size.height = yLine - origin.y;
+//    tableView.frame = CGRectMake(origin.x, origin.y, size.width, size.height);
+//    [self tableViewScrollToBottom];
     [tableView reloadData];
 
 }
@@ -430,7 +436,7 @@
 {
     PPDebug(@"<keyboardWillShowWithRect> keyboardRect = %@",NSStringFromCGRect(keyboardRect));
     
-    CGFloat yLine = keyboardRect.origin.y - STATUS_BAR_HEIGHT;
+    CGFloat yLine = CGRectGetMaxY(self.view.frame) - CGRectGetHeight(keyboardRect);
     [self updateInputPanel:self.inputBackgroundView withBottomLine:yLine];
     yLine -= self.inputBackgroundView.frame.size.height;
     [self updateTableView:self.dataTableView withBottomLine:yLine];

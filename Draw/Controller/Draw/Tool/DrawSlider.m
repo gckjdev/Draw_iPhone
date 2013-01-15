@@ -246,7 +246,7 @@
     if (poptipView == nil) {
         poptipView = [[[CMPopTipView alloc] initWithCustomView:contentView] autorelease];
         poptipView.tag = POPTIPVIEW_TAG;
-        [poptipView setBackgroundColor:[UIColor colorWithRed:239./255. green:239./255. blue:239./255. alpha:1]];
+        [poptipView setBackgroundColor:[UIColor colorWithRed:255./255. green:255./255. blue:255./255. alpha:0.95]];
     }else{
         if (poptipView.customView != contentView) {
             [poptipView.customView removeFromSuperview];

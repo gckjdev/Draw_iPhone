@@ -40,7 +40,7 @@
 					<object class="IBUIButton" id="456282737">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{2, 2}, {62, 30}}</string>
+						<string key="NSFrame">{{0, 2}, {85, 30}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="549416781"/>
@@ -83,7 +83,7 @@
 					<object class="IBUIButton" id="549416781">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{240, 2}, {54, 29}}</string>
+						<string key="NSFrame">{{210, 2}, {85, 29}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="543607329"/>
@@ -93,7 +93,7 @@
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<int key="IBUIContentHorizontalAlignment">0</int>
 						<int key="IBUIContentVerticalAlignment">0</int>
-						<string key="IBUINormalTitle">More</string>
+						<string key="IBUINormalTitle">Buy Color</string>
 						<reference key="IBUIHighlightedTitleColor" ref="879689341"/>
 						<reference key="IBUINormalTitleColor" ref="1038145913"/>
 						<reference key="IBUINormalTitleShadowColor" ref="431494755"/>
@@ -360,7 +360,7 @@
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="color_box_button@2x.png">{175, 60}</string>
+			<string key="color_box_button@2x.png">{164, 56}</string>
 			<string key="color_box_split@2x.png">{590, 1}</string>
 		</dictionary>
 		<string key="IBCocoaTouchPluginVersion">1926</string>

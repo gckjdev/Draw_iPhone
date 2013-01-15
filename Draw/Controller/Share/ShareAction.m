@@ -274,34 +274,36 @@
 
 - (void)shareViaSNS:(SnsType)type
 {
-    NSString* snsOfficialNick = [GameSNSService snsOfficialNick:type];
+//    NSString* snsOfficialNick = [GameSNSService snsOfficialNick:type];
     NSString* text = nil;
-    if (self.feed != nil) {
-        if (_isDrawByMe){
-            _drawWord = self.feed.wordText;            
-        }
-        else{
-            _drawWord = [self.feed hasGuessed]?self.feed.wordText:@"";
-        }        
+//    if (self.feed != nil) {
+//        if (_isDrawByMe){
+//            _drawWord = self.feed.wordText;            
+//        }
+//        else{
+//            _drawWord = [self.feed hasGuessed]?self.feed.wordText:@"";
+//        }        
+//    }
+//    if (_isDrawByMe){
+//        if (_isGIF){
+//            text = [NSString stringWithFormat:NSLS(@"kShareGIFMeText"), _drawWord];
+//        }
+//        else{
+//            text = [NSString stringWithFormat:NSLS(@"kShareMeText"), snsOfficialNick, _drawWord];
+//        }
+//    }
+//    else{
+//        if (_isGIF){
+//            text = [NSString stringWithFormat:NSLS(@"kShareGIFOtherText"), _drawWord];            
+//        }
+//        else{
+//            text = [NSString stringWithFormat:NSLS(@"kShareOtherText"), snsOfficialNick];
+//        }
+//    }
+    NSArray* array = [[WordManager defaultManager] randGuessWordList:(rand()%10 == 0)?nil:self.feed.wordText];
+    if (array.count >= 4) {
+        text = [NSString stringWithFormat:NSLS(@"kWeiboShareMessage"), ((Word*)[array objectAtIndex:0]).text, ((Word*)[array objectAtIndex:1]).text, ((Word*)[array objectAtIndex:2]).text, ((Word*)[array objectAtIndex:3]).text];
     }
-    if (_isDrawByMe){
-        if (_isGIF){
-            text = [NSString stringWithFormat:NSLS(@"kShareGIFMeText"), _drawWord];
-        }
-        else{
-            text = [NSString stringWithFormat:NSLS(@"kShareMeText"), snsOfficialNick, _drawWord];
-        }
-    }
-    else{
-        if (_isGIF){
-            text = [NSString stringWithFormat:NSLS(@"kShareGIFOtherText"), _drawWord];            
-        }
-        else{
-            text = [NSString stringWithFormat:NSLS(@"kShareOtherText"), snsOfficialNick];
-        }
-    }
-    NSArray* array = [[WordManager defaultManager] randGuessWordList:_drawWord];
-    text = [NSString stringWithFormat:NSLS(@"kWeiboShareMessage"), ((Word*)[array objectAtIndex:0]).text, ((Word*)[array objectAtIndex:1]).text, ((Word*)[array objectAtIndex:2]).text, ((Word*)[array objectAtIndex:3]).text];
     ShareEditController* controller = [[ShareEditController alloc] initWithImageFile:_imageFilePath
                                                                                 text:text drawUserId:self.drawUserId snsType:type];
     controller.delegate = self;

@@ -94,6 +94,11 @@
     return [MobClickUtils getIntValueByKey:@"DRAFT_PAINT_COUNT_1" defaultValue:50];
 }
 
++ (NSInteger)opusDescMaxLength
+{
+    return [MobClickUtils getIntValueByKey:@"OPUS_DESC_MAX_LENGTH" defaultValue:140];
+}
+
 + (int)getGuessRewardNormal
 {
     return [MobClickUtils getIntValueByKey:@"REWARD_GUESS_1" defaultValue:3];
