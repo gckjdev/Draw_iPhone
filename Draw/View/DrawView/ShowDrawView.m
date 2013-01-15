@@ -66,7 +66,7 @@
             CGPoint point = [_currentAction.paint pointAtIndex:_playingPointIndex];
             
 //            cg
-            CGRect rect = CGRectMake(point.x, point.y-VALUE(56), VALUE(34), VALUE(56));
+            CGRect rect = CGRectMake(point.x, point.y-VALUE(55.5), VALUE(35.5), VALUE(56));
             pen.frame = [pen.superview convertRect:rect fromView:self];
         }
     
