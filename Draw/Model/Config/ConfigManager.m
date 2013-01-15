@@ -247,7 +247,7 @@
 
 + (int)getFollowReward
 {
-    return [MobClickUtils getIntValueByKey:@"FOLLOW_AWARD_COIN" defaultValue:1000];
+    return [MobClickUtils getIntValueByKey:@"FOLLOW_AWARD_COIN" defaultValue:400];
 }
 
 + (int)getShareWeiboReward
