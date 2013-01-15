@@ -79,6 +79,8 @@
     [self.badge setHidden:YES];
     //back ground
     [self.bgImageView setImage:[_bbsImageManager bbsBGImage]];
+    
+    [self.refreshHeaderView setBackgroundColor:[UIColor clearColor]];
 }
 
 - (void)updateBadge
@@ -99,15 +101,21 @@
     [self updateBadge];
 }
 
-- (void)viewDidLoad
+- (void)updateBoardList
 {
-    [super viewDidLoad];
-    [self initViews];
     [[BBSService defaultService] getBBSBoardList:self];
     if ([[[BBSManager defaultManager] boardList] count] != 0) {
         [self showActivityWithText:NSLS(@"kLoading")];
     }
-    // Do any additional setup after loading the view from its nib.
+}
+
+- (void)viewDidLoad
+{
+    [self setSupportRefreshHeader:YES];
+    [super viewDidLoad];
+    [self initViews];
+    [self updateBoardList];
+//    // Do any additional setup after loading the view from its nib.
 }
 
 - (void)didReceiveMemoryWarning
@@ -136,6 +144,7 @@
                resultCode:(NSInteger)resultCode
 {
     [self hideActivity];
+    [self dataSourceDidFinishLoadingNewData];   
     if (resultCode == 0) {
         self.parentBoardList = [_bbsManager parentBoardList];
         [_openBoardSet removeAllObjects];
@@ -282,5 +291,12 @@
     [self setTitleLabel:nil];
     [self setBgImageView:nil];
     [super viewDidUnload];
+}
+
+
+#pragma mark - header pulling refresh
+- (void)reloadTableViewDataSource
+{
+    [self updateBoardList];
 }
 @end

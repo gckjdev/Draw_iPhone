@@ -799,10 +799,25 @@ BBSService *_staticBBSService;
             key = actionId;
         }
         __block PBBBSDraw *draw = [_bbsManager loadBBSDrawDataFromCacheWithKey:key];
-        
+    
+    
+        dispatch_block_t callBackBlock = ^{
+            //parse draw data
+            NSArray *list = [draw drawActionListList];
+            drawActionList = [DrawManager parseFromPBDrawActionList:list];
+            
+            if (delegate && [delegate respondsToSelector:@selector(didGetBBSDrawActionList:postId:actionId:fromRemote:resultCode:)]) {
+                [delegate didGetBBSDrawActionList:drawActionList
+                                           postId:postId
+                                         actionId:actionId
+                                       fromRemote:fromRemote
+                                       resultCode:resultCode];
+            }
+
+        };
+    
         //load from remote
         if (draw == nil) {
-            
             PPDebug(@"<getBBSDrawDataWithPostId> load data from remote service");
             
             fromRemote = YES;
@@ -831,21 +846,12 @@ BBSService *_staticBBSService;
                     @finally {
                         
                     }
-                    //parse draw data
-                    NSArray *list = [draw drawActionListList];
-                    drawActionList = [DrawManager parseFromPBDrawActionList:list];
-                
-                    if (delegate && [delegate respondsToSelector:@selector(didGetBBSDrawActionList:postId:actionId:fromRemote:resultCode:)]) {
-                        [delegate didGetBBSDrawActionList:drawActionList
-                                                   postId:postId
-                                                 actionId:actionId
-                                               fromRemote:fromRemote
-                                               resultCode:resultCode];
-                    }
+                    callBackBlock();
                 });
             });
+        }else{
+            callBackBlock();
         }
-
 }
 
 - (void)getBBSPostWithPostId:(NSString *)postId
