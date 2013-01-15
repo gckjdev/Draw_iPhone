@@ -94,7 +94,7 @@ AUTO_CREATE_VIEW_BY_XIB(MoneyTreeView)
 {
     [self killTreeTimer];
     _remainTime = remainTime;
-    self.popMessageBody.layer.opacity = 0;
+    self.popMessageBody.layer.opacity = (self.isAlwaysShowMessage)?1:0;
     _timer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(update:) userInfo:nil repeats:YES];
     [_timer retain];
 }
@@ -112,6 +112,7 @@ AUTO_CREATE_VIEW_BY_XIB(MoneyTreeView)
 
 - (void)startGrowingCoin
 {
+    if (self.isAlwaysShowMessage) self.popMessageBody.layer.opacity = 1;
     [self startTreeTimerWithRemainTime:self.gainTime];
 }
 
@@ -157,6 +158,11 @@ AUTO_CREATE_VIEW_BY_XIB(MoneyTreeView)
 }
 - (void)treeDidMature:(MoneyTree*)tree
 {
-    [self popupMatureMessage];
+    if (self.isAlwaysShowMessage) {
+        self.popMessageBody.layer.opacity = 0;
+    } else {
+        [self popupMatureMessage];
+    }
+    
 }
 @end
