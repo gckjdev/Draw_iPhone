@@ -65,18 +65,18 @@
     ShareImageManager *imageManager = [ShareImageManager defaultManager];
     switch (type) {
         case Pen:
-            return [imageManager penImage];            
+            return [UIImage imageNamed:@"pen-brush"];//[imageManager penImage];
         case Quill:
-            return [imageManager quillImage];            
+            return [UIImage imageNamed:@"pen-feather"];//[imageManager quillImage];
         case WaterPen:
-            return [imageManager waterPenImage];            
+            return [UIImage imageNamed:@"pen-star"];//[imageManager waterPenImage];
         case IcePen:
-            return [imageManager iceImage];            
+            return [UIImage imageNamed:@"pen-sugar"];//[imageManager iceImage];
         case Eraser:
             return [imageManager eraserImage];            
         case Pencil:
             default:
-            return [imageManager pencilImage];            
+            return [UIImage imageNamed:@"pen-feather"];//[imageManager pencilImage];
     }
     
 }

@@ -89,7 +89,7 @@
 //    return ILLEGAL_POINT;
 //}
 
-#pragma mark -- paint action
+#pragma mark - paint action
 
 - (void)clearScreen
 {
@@ -222,6 +222,27 @@ typedef enum {
 
 
 #pragma mark - Revoke
+- (void)showForRevoke:(DrawAction*)lastAction finishBlock:(dispatch_block_t)finishiBlock
+{
+    // draw on show context, this takes a lot of performance if the draw
+    CGContextClearRect(showContext, self.bounds);
+    for (DrawAction *action in self.drawActionList) {
+        [self drawAction:action inContext:showContext];
+    }
+    
+    // refresh screen
+    CGRect rect = self.bounds;
+    if (lastAction.paint != nil){
+        rect = [DrawUtils rectForPath:lastAction.paint.path withWidth:lastAction.paint.width];
+    }
+    [self setNeedsDisplayInRect:rect showCacheLayer:NO];
+    
+    // call block
+    if (finishiBlock != NULL){
+        finishiBlock();
+    }
+    
+}
 
 - (BOOL)canRevoke
 {

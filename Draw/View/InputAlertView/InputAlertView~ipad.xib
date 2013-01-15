@@ -109,11 +109,11 @@
 									<string key="NSClassName">NSImage</string>
 									<string key="NSResourceName">input_alert_button@2x.png</string>
 								</object>
-								<object class="IBUIFontDescription" key="IBUIFontDescription" id="791607143">
+								<object class="IBUIFontDescription" key="IBUIFontDescription" id="109073739">
 									<int key="type">2</int>
 									<double key="pointSize">30</double>
 								</object>
-								<object class="NSFont" key="IBUIFont" id="277450155">
+								<object class="NSFont" key="IBUIFont" id="384851566">
 									<string key="NSName">Helvetica-Bold</string>
 									<double key="NSSize">30</double>
 									<int key="NSfFlags">16</int>
@@ -142,8 +142,8 @@
 								<reference key="IBUINormalTitleColor" ref="68144682"/>
 								<reference key="IBUINormalTitleShadowColor" ref="997956618"/>
 								<reference key="IBUINormalBackgroundImage" ref="995289781"/>
-								<reference key="IBUIFontDescription" ref="791607143"/>
-								<reference key="IBUIFont" ref="277450155"/>
+								<reference key="IBUIFontDescription" ref="109073739"/>
+								<reference key="IBUIFont" ref="384851566"/>
 							</object>
 							<object class="IBUILabel" id="872794827">
 								<reference key="NSNextResponder" ref="378699580"/>
@@ -211,7 +211,6 @@
 								<string key="IBUIText"/>
 								<object class="IBUITextInputTraits" key="IBUITextInputTraits">
 									<int key="IBUIAutocapitalizationType">2</int>
-									<int key="IBUIReturnKeyType">9</int>
 									<bool key="IBUIEnablesReturnKeyAutomatically">YES</bool>
 									<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								</object>
