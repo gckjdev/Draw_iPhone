@@ -720,13 +720,13 @@
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="hot_words_bg@2x.png">{542, 226}</string>
-			<string key="load_from_draft_btn@2x.png">{165, 77}</string>
-			<string key="more_words_btn@2x.png">{58, 59}</string>
-			<string key="my_words_bg@2x.png">{541, 227}</string>
-			<string key="select_word_back_btn@2x.png">{86, 56}</string>
-			<string key="selected_words_bg@2x.png">{640, 960}</string>
-			<string key="system_words_bg@2x.png">{540, 226}</string>
+			<string key="hot_words_bg@2x.png">{16, 16}</string>
+			<string key="load_from_draft_btn@2x.png">{16, 16}</string>
+			<string key="more_words_btn@2x.png">{16, 16}</string>
+			<string key="my_words_bg@2x.png">{16, 16}</string>
+			<string key="select_word_back_btn@2x.png">{16, 16}</string>
+			<string key="selected_words_bg@2x.png">{16, 16}</string>
+			<string key="system_words_bg@2x.png">{16, 16}</string>
 		</dictionary>
 		<string key="IBCocoaTouchPluginVersion">1926</string>
 	</data>

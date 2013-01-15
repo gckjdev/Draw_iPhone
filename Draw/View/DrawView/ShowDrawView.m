@@ -47,49 +47,29 @@
     [super cleanAllActions];
 }
 
+#define VALUE(x) (ISIPAD ? 2*x : x)
 
 - (void)movePen
 {
     if (pen.superview == nil) {
         [self.superview addSubview:pen];
     }
-    if (!_showPenHidden) {
-        if ([_currentAction isCleanAction] || 
+        if (_currentAction == nil || [_currentAction isCleanAction] ||
             [_currentAction isChangeBackAction]) {
-            if (pen.hidden == NO) {
-                pen.hidden = YES;                
-            }
+            pen.hidden = YES;
         }else{
-            if (pen.hidden) {
-                pen.hidden = NO;                
-            }
-            if (_playingPointIndex == 0 && pen.penType != _currentAction.paint.penType) {                
+            pen.hidden = NO;
+            if (_playingPointIndex == 0 && pen.penType != _currentAction.paint.penType) {
+                //reset pen type
                 [pen setPenType:_currentAction.paint.penType];
-                PPDebug(@"penType = %d",pen.penType);
-                if ([pen isRightDownRotate]) {
-                    pen.layer.anchorPoint = CGPointMake(0.5, 1);
-                    [pen.layer setTransform:CATransform3DMakeRotation(0.8, 0, 0, 1)];
-                }else{
-                    pen.layer.anchorPoint = CGPointMake(0.5, 0);
-                    [pen.layer setTransform:CATransform3DMakeRotation(4, 0, 0, 1)];
-                }
             }
             CGPoint point = [_currentAction.paint pointAtIndex:_playingPointIndex];
             
-            if (![DrawUtils isIllegalPoint:point]) {
-                CGFloat xOffset = self.frame.origin.x - self.superview.frame.origin.x;        
-                CGFloat yOffset = self.frame.origin.y - self.superview.frame.origin.y;                
-                point.x += xOffset;
-                point.y += yOffset;
-                pen.center = point;
-//                if ([pen isRightDownRotate]) {                    
-//                    pen.center = CGPointMake(point.x + pen.frame.size.width / 3.1, point.y );//+ pen.frame.size.height / 3.3);
-//                }else{
-//                    pen.center = CGPointMake(point.x + pen.frame.size.width / 2.5, point.y - pen.frame.size.height / 4.3);                                        
-//                }
-            }
+//            cg
+            CGRect rect = CGRectMake(point.x, point.y-VALUE(56), VALUE(34), VALUE(56));
+            pen.frame = [pen.superview convertRect:rect fromView:self];
         }
-    }
+    
 }
 
 
@@ -223,10 +203,6 @@
     _showPenHidden = showPenHidden;
     pen.hidden = showPenHidden;
 }
-- (BOOL)isShowPenHidden
-{
-    return _showPenHidden;
-}
 
 - (void)updateNextPlayIndex
 {
@@ -285,7 +261,9 @@
             [self setNeedsDisplayInRect:self.bounds showCacheLayer:NO];
         }
     }
-
+    if(!_showPenHidden){
+        [self movePen];
+    }
 }
 
 - (void)playNextFrame
