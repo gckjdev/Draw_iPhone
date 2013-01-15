@@ -50,6 +50,7 @@
     self.moneyTreeView.delegate = self;
     [self.view addSubview:_moneyTreeView];
     [self.moneyTreeView startGrowing];
+    self.moneyTreeView.isAlwaysShowMessage = YES;
 
     // Do any additional setup after loading the view from its nib.
     self.timer = [NSTimer scheduledTimerWithTimeInterval:80 target:self selector:@selector(timeout:) userInfo:nil repeats:YES];
