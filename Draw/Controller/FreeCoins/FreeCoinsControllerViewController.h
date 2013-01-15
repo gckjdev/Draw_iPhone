@@ -7,8 +7,10 @@
 //
 
 #import "PPViewController.h"
+#import "MoneyTreeView.h"
 
-@interface FreeCoinsControllerViewController : PPViewController
-
+@interface FreeCoinsControllerViewController : PPViewController 
 @property (retain, nonatomic) IBOutlet UILabel *titleTlabel;
+@property (retain, nonatomic) IBOutlet UIButton *moneyTreePlaceHolder;
+@property (retain, nonatomic) MoneyTreeView *moneyTreeView;
 @end
