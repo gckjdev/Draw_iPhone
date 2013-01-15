@@ -139,11 +139,11 @@ typedef enum{
     [self setPullRefreshType:PullRefreshTypeFooter];
     [super viewDidLoad];
     [self initViews];
-    if ([self defaultTabID] == Support) {
-        [_header clickSupport:_header.support];
-    }else{
-        [_header clickComment:_header.comment];
-    }
+//    if ([self defaultTabID] == Support) {
+//        [_header clickSupport:_header.support];
+//    }else{
+//        [_header clickComment:_header.comment];
+//    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -327,8 +327,13 @@ typedef enum{
         {
             if (_header == nil) {
                 _header = [[BBSPostActionHeaderView createView:self] retain];
+                [_header updateViewWithPost:self.post];
+                if([self defaultTabID] == Support){
+                    [_header clickSupport:_header.support];
+                }else{
+                    [_header clickComment:_header.comment];
+                }
             }
-            [_header updateViewWithPost:self.post];
             return _header;
         }
         default:
