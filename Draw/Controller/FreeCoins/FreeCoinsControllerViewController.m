@@ -47,8 +47,10 @@
     self.moneyTreeView.growthTime = 60;
     self.moneyTreeView.gainTime = 30;
     self.moneyTreeView.coinValue = 50;
+    self.moneyTreeView.delegate = self;
     [self.view addSubview:_moneyTreeView];
     [self.moneyTreeView startGrowing];
+    self.moneyTreeView.isAlwaysShowMessage = YES;
 
     // Do any additional setup after loading the view from its nib.
     self.timer = [NSTimer scheduledTimerWithTimeInterval:80 target:self selector:@selector(timeout:) userInfo:nil repeats:YES];
@@ -111,6 +113,11 @@
 - (IBAction)clickBackButton:(id)sender {
     [timer invalidate];
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (void)didGainMoney:(int)money fromTree:(MoneyTreeView *)treeView
+{
+    [[AccountService defaultService] chargeAccount:money source:MoneyTreeAward];
 }
 
 @end
