@@ -85,7 +85,7 @@ typedef enum{
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-        _defaultTabIndex = 0;
+        _defaultTabIndex = 1;
         
         _bbsImageManager = [BBSImageManager defaultManager];
         _bbsFontManager = [BBSFontManager defaultManager];
@@ -125,6 +125,7 @@ typedef enum{
                            title:NSLS(@"kBBSReply")
                         forState:UIControlStateNormal];
 
+
 }
 
 - (NSInteger)defaultTabID
@@ -132,13 +133,17 @@ typedef enum{
     return _defaultTabIndex + Support;
 }
 
+
 - (void)viewDidLoad
 {
     [self setPullRefreshType:PullRefreshTypeFooter];
     [super viewDidLoad];
     [self initViews];
-    [self clickTab:[self defaultTabID]];
-//    [self clickTabButton:self.currentTabButton];
+    if ([self defaultTabID] == Support) {
+        [_header clickSupport:_header.support];
+    }else{
+        [_header clickComment:_header.comment];
+    }
 }
 
 - (void)didReceiveMemoryWarning
