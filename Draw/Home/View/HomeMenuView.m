@@ -243,9 +243,9 @@ int *getDrawMainMenuTypeList()
         HomeMenuTypeDrawGame,
         HomeMenuTypeDrawTimeline,
         HomeMenuTypeDrawRank,
-        HomeMenuTypeDrawBBS,
-        HomeMenuTypeDrawContest,
         HomeMenuTypeDrawShop,
+        HomeMenuTypeDrawContest,
+        HomeMenuTypeDrawBBS,
         HomeMenuTypeDrawApps,
         HomeMenuTypeDrawFreeCoins,
         HomeMenuTypeEnd
