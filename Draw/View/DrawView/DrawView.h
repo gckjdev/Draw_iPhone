@@ -45,7 +45,7 @@
 - (void)setDrawEnabled:(BOOL)enabled;
 
 - (BOOL)canRevoke;
-- (void)revoke; //undo
+- (void)revoke:(dispatch_block_t)finishBlock; //undo
 - (BOOL)canRedo;
 - (void)redo;
 
