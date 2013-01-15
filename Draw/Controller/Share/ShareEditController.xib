@@ -55,7 +55,7 @@
 					<object class="IBUIImageView" id="895911494">
 						<reference key="NSNextResponder" ref="16498322"/>
 						<int key="NSvFlags">277</int>
-						<string key="NSFrame">{{0, 123}, {320, 337}}</string>
+						<string key="NSFrame">{{0, 137}, {320, 323}}</string>
 						<reference key="NSSuperview" ref="16498322"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="362225906"/>
@@ -83,7 +83,7 @@
 					<object class="IBUIImageView" id="534871332">
 						<reference key="NSNextResponder" ref="16498322"/>
 						<int key="NSvFlags">277</int>
-						<string key="NSFrame">{{0, 123}, {321, 324}}</string>
+						<string key="NSFrame">{{0, 137}, {321, 310}}</string>
 						<reference key="NSSuperview" ref="16498322"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="895911494"/>
@@ -98,7 +98,7 @@
 					<object class="IBUIImageView" id="901217268">
 						<reference key="NSNextResponder" ref="16498322"/>
 						<int key="NSvFlags">293</int>
-						<string key="NSFrame">{{7, 49}, {307, 71}}</string>
+						<string key="NSFrame">{{7, 49}, {307, 84}}</string>
 						<reference key="NSSuperview" ref="16498322"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="732961774"/>
@@ -166,7 +166,7 @@
 					<object class="IBUITextView" id="732961774">
 						<reference key="NSNextResponder" ref="16498322"/>
 						<int key="NSvFlags">277</int>
-						<string key="NSFrame">{{7, 49}, {306, 71}}</string>
+						<string key="NSFrame">{{7, 49}, {306, 80}}</string>
 						<reference key="NSSuperview" ref="16498322"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="534871332"/>
@@ -195,10 +195,9 @@
 					<object class="IBUIImageView" id="362225906">
 						<reference key="NSNextResponder" ref="16498322"/>
 						<int key="NSvFlags">261</int>
-						<string key="NSFrame">{{14, 134}, {293, 293}}</string>
+						<string key="NSFrame">{{14, 144}, {293, 293}}</string>
 						<reference key="NSSuperview" ref="16498322"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 					</object>
