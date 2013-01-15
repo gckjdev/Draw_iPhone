@@ -39,6 +39,7 @@ AUTO_CREATE_VIEW_BY_XIB(MoneyTreeView)
 - (void)showInView:(UIView *)view
 {
     self.frame = CGRectMake(0, 0, view.bounds.size.width, view.bounds.size.height);
+    [self popupNotMatureMessage];
     [view addSubview:self];
 }
 
@@ -60,7 +61,7 @@ AUTO_CREATE_VIEW_BY_XIB(MoneyTreeView)
         self.popMessageBody.layer.opacity = 0.99;
     } completion:^(BOOL finished) {
         [UIView animateWithDuration:1 animations:^{
-            self.popMessageBody.layer.opacity = 0;
+            self.popMessageBody.layer.opacity = self.isAlwaysShowMessage?1:0;
         } completion:^(BOOL finished) {
             
         }];

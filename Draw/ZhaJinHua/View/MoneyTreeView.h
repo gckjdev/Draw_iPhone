@@ -30,6 +30,7 @@
 @property (assign, nonatomic) CFTimeInterval gainTime;
 @property (assign, nonatomic) NSInteger      coinValue;
 @property (assign, nonatomic) id<MoneyTreeViewDelegate> delegate;
+@property (assign, nonatomic) BOOL isAlwaysShowMessage;
 
 + (MoneyTreeView*)createMoneyTreeView;
 - (void)showInView:(UIView *)view;
