@@ -518,6 +518,10 @@
     return [MobClickUtils getStringValueByKey:@"SNS_IMAGE_WATER_MARK" defaultValue:NSLS(@"kDefaultWaterMark")];
 }
 
++ (int)getMaxCountForFetchFreeCoinsOneDay
+{
+    return  [MobClickUtils getIntValueByKey:@"MAX_COINT_FOR_FETCH_FREE_COINS_ONE_DAY" defaultValue:20];
+}
 
 + (int)getFreeCoinsAward
 {

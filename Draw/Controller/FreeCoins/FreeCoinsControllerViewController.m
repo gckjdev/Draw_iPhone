@@ -18,12 +18,16 @@
 #import "CommonMessageCenter.h"
 #import "ItemType.h"
 #import "ConfigManager.h"
+#import "TimeUtils.h"
 
 #define SHENGMENG_APP_ID @"90386ecaab5c85559c569ab7c79a61e2"
-#define TAPJOY_APP_ID @"54f9ea4b-beee-4fac-84ee-a34522e67b34"
-#define TAPJOY_APP_SECRET_KEY @"huXKYqkwpxlKbgrIxOIT"
-#define TAPJOY_APP_ID_TEST @"93e78102-cbd7-4ebf-85cc-315ba83ef2d5"
-#define TAPJOY_APP_SECRET_KEY_TEST @"JWxgS26URM0XotaghqGn"
+//#define TAPJOY_APP_ID @"54f9ea4b-beee-4fac-84ee-a34522e67b34"
+//#define TAPJOY_APP_SECRET_KEY @"huXKYqkwpxlKbgrIxOIT"
+//#define TAPJOY_APP_ID_TEST @"93e78102-cbd7-4ebf-85cc-315ba83ef2d5"
+//#define TAPJOY_APP_SECRET_KEY_TEST @"JWxgS26URM0XotaghqGn"
+
+#define KEY_ENTER_FREE_COINS_CONTROLLER_TIMES "KEY_ENTER_FREE_COINS_CONTROLLER_TIMES"
+#define KEY_LAST_ENTER_FREE_COINS_CONTROLLER_DATE "KEY_LAST_ENTER_FREE_COINS_CONTROLLER_DATE"
 
 @interface FreeCoinsControllerViewController ()
 
@@ -43,6 +47,21 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    int times = [[NSUserDefaults standardUserDefaults] integerForKey:KEY_ENTER_FREE_COINS_CONTROLLER_TIMES];
+    NSDate *lastDate = [[NSUserDefaults standardUserDefaults] objectForKey:KEY_LAST_ENTER_FREE_COINS_CONTROLLER_DATE];
+    
+    if (isToday(lastDate)) {
+        times ++;
+    }else{
+        times = 1;
+        lastDate = [NSDate date];
+    }
+    
+    [[NSUserDefaults standardUserDefaults] setInteger:times forKey:KEY_ENTER_FREE_COINS_CONTROLLER_TIMES];
+    [[NSUserDefaults standardUserDefaults] setObject:lastDate forKey:KEY_LAST_ENTER_FREE_COINS_CONTROLLER_DATE];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    
     [self.navigationController setNavigationBarHidden:YES];
     
     if (![ConfigManager wallEnabled]) {
@@ -50,37 +69,29 @@
         self.helpBtnHolderView.frame = self.lmWallBtnHolderView.frame;
     }
     
-    self.noteLabel.text = NSLS(@"kWaitForMoneyTreeGrowUp");
+    if (times > [ConfigManager getMaxCountForFetchFreeCoinsOneDay]) {
+        self.noteLabel.hidden = YES;
     
-    self.moneyTreeView = [MoneyTreeView createMoneyTreeView];
-    self.moneyTreeView.center = self.moneyTreePlaceHolder.center;
-    self.moneyTreeView.growthTime = 30;
-    self.moneyTreeView.gainTime = 30;
-    self.moneyTreeView.coinValue = [ConfigManager getFreeCoinsAward];
-
-    self.moneyTreeView.delegate = self;
-    [self.moneyTreeHolderView addSubview:_moneyTreeView];
-    self.moneyTreeView.isAlwaysShowMessage = YES;
-    [self.moneyTreeView startGrowing];
+    }else{
+        self.noteLabel.text = NSLS(@"kWaitForMoneyTreeGrowUp");
+        
+        self.moneyTreeView = [MoneyTreeView createMoneyTreeView];
+        self.moneyTreeView.center = self.moneyTreePlaceHolder.center;
+        self.moneyTreeView.growthTime = 30;
+        self.moneyTreeView.gainTime = 30;
+        self.moneyTreeView.coinValue = [ConfigManager getFreeCoinsAward];
+        
+        self.moneyTreeView.delegate = self;
+        [self.moneyTreeHolderView addSubview:_moneyTreeView];
+        self.moneyTreeView.isAlwaysShowMessage = YES;
+        [self.moneyTreeView startGrowing];
+    }
     
-
-    // Do any additional setup after loading the view from its nib.
+    // shengmeng sdk
     self.timer = [NSTimer scheduledTimerWithTimeInterval:80 target:self selector:@selector(timeout:) userInfo:nil repeats:YES];
     [shengmengsdk playad:SHENGMENG_APP_ID];
     
     // NOTE: This must be replaced by your App ID. It is Retrieved from the Tapjoy website, in your account.
-
-	[TapjoyConnect requestTapjoyConnect:TAPJOY_APP_ID
-							  secretKey:TAPJOY_APP_SECRET_KEY
-								options:[NSDictionary dictionaryWithObjectsAndKeys:
-										 [NSNumber numberWithInt:TJCTransitionExpand], TJC_OPTION_TRANSITION_EFFECT,
-										 [NSNumber numberWithBool:YES], TJC_OPTION_ENABLE_LOGGING,
-										 // If you are not using Tapjoy Managed currency, you would set your own user ID here.
-										 //@"A_UNIQUE_USER_ID", TJC_OPTION_USER_ID,
-										 nil]];
-    
-//    [TapjoyConnect cacheVideosWithDelegate:self];
-
     
     [[AdService defaultService] createAdInView:self.view frame:CGRectMake(0, self.view.frame.size.height-50, self.view.frame.size.width, 50) iPadFrame:CGRectMake(0, self.view.frame.size.height-100, self.view.frame.size.width, 100)];
 }
@@ -99,6 +110,7 @@
     [_lmWallBtnHolderView release];
     [_helpBtnHolderView release];
     [_noteLabel release];
+    [_remainTimesLabel release];
     [super dealloc];
 }
 - (void)viewDidUnload {
@@ -108,6 +120,7 @@
     [self setLmWallBtnHolderView:nil];
     [self setHelpBtnHolderView:nil];
     [self setNoteLabel:nil];
+    [self setRemainTimesLabel:nil];
     [super viewDidUnload];
 }
 

@@ -164,6 +164,7 @@ typedef enum{
 
 + (NSString*)getShareImageWaterMark;
 
++ (int)getMaxCountForFetchFreeCoinsOneDay;
 + (int)getFreeCoinsAward;
 + (int)getFreeFlowersAward;
 + (int)getFreeTipsAward;
