@@ -190,6 +190,7 @@ static UserService* _defaultUserService;
             qqTokenSecret = [userInfo objectForKey:SNS_OAUTH_TOKEN_SECRET];
             qqExpireDate = [userInfo objectForKey:SNS_EXPIRATION_DATE];
             qqRefreshToken = [userInfo objectForKey:SNS_REFRESH_TOKEN];
+            qqOpenId = [userInfo objectForKey:SNS_QQ_OPEN_ID];
             break;
             
         case REGISTER_TYPE_FACEBOOK:

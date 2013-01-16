@@ -96,7 +96,7 @@
 
 + (NSInteger)opusDescMaxLength
 {
-    return [MobClickUtils getIntValueByKey:@"OPUS_DESC_MAX_LENGTH" defaultValue:140];
+    return [MobClickUtils getIntValueByKey:@"OPUS_DESC_MAX_LENGTH" defaultValue:500];
 }
 
 + (int)getGuessRewardNormal

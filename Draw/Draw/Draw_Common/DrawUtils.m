@@ -24,6 +24,79 @@
     return NO;
 }
 
+// This method is NOT used yet, reservered for future analysis
+CGPoint midPoint1(CGPoint p1, CGPoint p2)
+{
+    if (p1.x == p2.x){
+        return CGPointMake(p1.x, (p1.y+p2.y)/2.0f);
+    }
+    
+    if (p1.y == p2.y){
+        return CGPointMake((p1.x+p2.x)/2.0f, p1.y);
+    }
+    
+    CGPoint p3;
+    
+    if (p1.x < p2.x){
+        p3.x = p2.x;
+    }
+    else{
+        p3.x = p1.x;
+    }
+    
+    if (p1.y < p2.y){
+        p3.y = p1.y;
+    }
+    else{
+        p3.y = p2.y;
+    }
+    
+    return p3;
+}
+
+// this method is NOT used, just reserver for future analysis
++ (void)addSmoothPath:(CGMutablePathRef)pathRef startPoint:(CGPoint)startPoint endPoint:(CGPoint)endPoint
+{
+    return [DrawUtils addSmoothPath1:pathRef startPoint:startPoint endPoint:endPoint];
+    
+    if (pathRef == NULL)
+        return;
+    
+    static const int TOTAL_POINTS = 1;
+    static const int horizontalWiggle = 1;
+    
+    CGFloat stepChangeX = (endPoint.x - startPoint.x) / TOTAL_POINTS;
+    CGFloat stepChangeY = (endPoint.y - startPoint.y) / TOTAL_POINTS;
+    
+    for(int i = 0; i < TOTAL_POINTS; i++) {
+        CGFloat startX = (startPoint.x + i * stepChangeX);
+        CGFloat startY = (startPoint.y + i * stepChangeY);
+        
+        CGFloat endX = (startPoint.x + (i+1) * stepChangeX);
+        CGFloat endY = (startPoint.y + (i+1) * stepChangeY);
+        
+        CGFloat cpX1 = (startPoint.x + (i+0.25) * stepChangeX);
+        if((i+1)%2) {
+            cpX1 -= horizontalWiggle;
+        } else {
+            cpX1 += horizontalWiggle;
+        }
+        CGFloat cpY1 = (startPoint.y + (i+0.25) * stepChangeY);
+        
+        CGFloat cpX2 = (startPoint.x + (i+0.75) * stepChangeX);
+        if((i+1)%2) {
+            cpX2 -= horizontalWiggle;
+        } else {
+            cpX2 += horizontalWiggle;
+        }
+        CGFloat cpY2 = (startPoint.y + (i+0.75) * stepChangeY);
+        
+//        CGPathMoveToPoint(pathRef, NULL, startX, startY);
+        CGPathAddCurveToPoint(pathRef, NULL, cpX1, cpY1, cpX2, cpY2, endX, endY);
+    }
+}
+
+
 + (CGRect)constructWithPoint1:(CGPoint)point1 point2:(CGPoint)point2
 {
     CGFloat x = MIN(point1.x, point2.x);

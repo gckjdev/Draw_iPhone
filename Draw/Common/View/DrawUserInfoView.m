@@ -341,6 +341,7 @@
         needUpdate:(BOOL)needUpdate //if need update the info from service.
 {
     if ([[UserManager defaultManager] isMe:afriend.friendUserId]) {
+        [superController popupMessage:NSLS(@"kCannotShowYourself") title:nil];
         return;
     }
     
