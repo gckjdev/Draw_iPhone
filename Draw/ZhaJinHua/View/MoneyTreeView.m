@@ -163,6 +163,16 @@ AUTO_CREATE_VIEW_BY_XIB(MoneyTreeView)
     } else {
         [self popupMatureMessage];
     }
+    if (_delegate && [_delegate respondsToSelector:@selector(moneyTreeDidMature:)]) {
+        [_delegate moneyTreeDidMature:self];
+    }
     
+}
+
+- (void)treeFullCoins:(MoneyTree *)tree
+{
+    if (_delegate && [_delegate respondsToSelector:@selector(moneyTreeFullCoins:)]) {
+        [_delegate moneyTreeFullCoins:self];
+    }
 }
 @end

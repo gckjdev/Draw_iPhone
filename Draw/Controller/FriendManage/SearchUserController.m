@@ -148,6 +148,7 @@
         self.currentTab.offset = 0;
         [self startToLoadDataForTabID:tabID];
         [self serviceLoadDataForTabID:tabID];
+        [self showActivityWithText:NSLS(@"kSearching")];
     }
 }
 
@@ -157,7 +158,7 @@
 #pragma -mark FriendServiceDelegate Method
 - (void)didSearchUsers:(NSArray *)userList result:(int)resultCode
 {
-    
+    [self hideActivity];
     if (resultCode == 0)
     {
         PPDebug(@"<didSearchUsers> count = %d", [userList count]);
@@ -215,6 +216,7 @@
 
 - (void)serviceLoadDataForTabID:(NSInteger)tabID
 {
+    
     TableTab *tab = [_tabManager tabForID:tabID];
     [[FriendService defaultService] searchUsersWithKey:inputTextField.text
                                                 offset:tab.offset 

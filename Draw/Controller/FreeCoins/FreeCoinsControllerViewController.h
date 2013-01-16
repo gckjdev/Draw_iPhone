@@ -20,5 +20,6 @@
 @property (retain, nonatomic) IBOutlet UIView *lmWallBtnHolderView;
 
 @property (retain, nonatomic) IBOutlet UIView *helpBtnHolderView;
+@property (retain, nonatomic) IBOutlet UILabel *noteLabel;
 
 @end

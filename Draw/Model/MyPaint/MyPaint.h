@@ -35,4 +35,8 @@
 @property (nonatomic, retain) NSString *imageFilePath; //full path
 @property (nonatomic, retain) NSMutableArray *drawActionList;
 
+@property (nonatomic, retain) NSNumber *isRecovery;
+@property (nonatomic, retain) NSData * drawWordData;
+
+
 @end

@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1810" systemVersion="12A269" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="ChatMessage" representedClassName="ChatMessage" syncable="YES">
+        <attribute name="createDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="drawData" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="from" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="latitude" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="longitude" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="messageId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="replyResult" optional="YES" attributeType="Integer 32" defaultValueString="-1" syncable="YES"/>
+        <attribute name="reqMessageId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="status" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="text" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="to" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="type" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+    </entity>
+    <entity name="CustomWord" representedClassName="CustomWord" syncable="YES">
+        <attribute name="createDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="language" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="lastUseDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="level" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="type" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="word" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="Friend" representedClassName="Friend" syncable="YES">
+        <attribute name="avatar" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="createDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="deleteFlag" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="facebookId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="facebookNick" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="friendUserId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="gender" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="lastModifiedDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="level" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="location" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="nickName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="onlineStatus" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="qqId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="qqNick" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="sinaId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="sinaNick" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="type" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <compoundIndexes>
+            <compoundIndex>
+                <index value="friendUserId"/>
+                <index value="type"/>
+            </compoundIndex>
+        </compoundIndexes>
+    </entity>
+    <entity name="MessageTotal" representedClassName="MessageTotal" syncable="YES">
+        <attribute name="friendAvatar" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="friendGender" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="friendNickName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="friendUserId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="latestCreateDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="latestDrawData" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="latestFrom" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="latestText" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="latestTo" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="totalMessage" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="totalNewMessage" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="userId" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="MyPaint" representedClassName="MyPaint" syncable="YES">
+        <attribute name="contestId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="createDate" optional="YES" attributeType="Date" indexed="YES" syncable="YES"/>
+        <attribute name="data" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="dataFilePath" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="deleteFlag" optional="YES" attributeType="Boolean" defaultValueString="NO" indexed="YES" syncable="YES"/>
+        <attribute name="draft" optional="YES" attributeType="Boolean" defaultValueString="NO" indexed="YES" syncable="YES"/>
+        <attribute name="drawByMe" optional="YES" attributeType="Boolean" defaultValueString="NO" indexed="YES" syncable="YES"/>
+        <attribute name="drawThumbnailData" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="drawUserId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="drawUserNickName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="drawWord" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="drawWordData" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="image" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="isRecovery" optional="YES" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
+        <attribute name="language" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="level" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="targetUserId" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="PriceModel" representedClassName="PriceModel" syncable="YES">
+        <attribute name="count" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="price" optional="YES" attributeType="Double" defaultValueString="0" syncable="YES"/>
+        <attribute name="productId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="savePercent" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="seq" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="type" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+    </entity>
+    <entity name="RouterTrafficServer" representedClassName="RouterTrafficServer" syncable="YES">
+        <attribute name="address" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="capacity" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="createDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="language" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="lastModified" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="port" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="serverKey" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="usage" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+    </entity>
+    <entity name="TransactionReceipt" representedClassName="TransactionReceipt" syncable="YES">
+        <attribute name="amount" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="createDate" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="isVerified" optional="YES" attributeType="Boolean" indexed="YES" syncable="YES"/>
+        <attribute name="lastRetryDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="productId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="retryTimes" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="transactionId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="transactionReceipt" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="verifyDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="verifyStatus" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+    </entity>
+    <entity name="UserItem" representedClassName="UserItem" syncable="YES">
+        <attribute name="amount" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="itemType" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+    </entity>
+    <fetchRequest name="findAllDeletedFriends" entity="Friend" predicateString="deleteFlag == 1"/>
+    <fetchRequest name="findAllDeletedPaints" entity="MyPaint" predicateString="deleteFlag == 1"/>
+    <fetchRequest name="findAllDrafts" entity="MyPaint" predicateString="draft == 1 AND (deleteFlag == 0 OR  deleteFlag == NULL) "/>
+    <fetchRequest name="findAllFanFriends" entity="Friend" predicateString="type == 2 AND deleteFlag == 0"/>
+    <fetchRequest name="findAllFollowFriends" entity="Friend" predicateString="type == 1 AND deleteFlag == 0"/>
+    <fetchRequest name="findAllMessageTotals" entity="MessageTotal"/>
+    <fetchRequest name="findAllMyPaints" entity="MyPaint" predicateString=" (draft == NULL OR draft == 0) AND (deleteFlag == 0 OR  deleteFlag == NULL) "/>
+    <fetchRequest name="findAllTrafficServers" entity="RouterTrafficServer"/>
+    <fetchRequest name="findAllUnverfiedReceipts" entity="TransactionReceipt" predicateString="isVerified == 0"/>
+    <fetchRequest name="findAllWords" entity="CustomWord"/>
+    <fetchRequest name="findFanByFriendUserId" entity="Friend" predicateString="friendUserId == $FRIEND_USER_ID AND type == 2 AND deleteFlag == 0"/>
+    <fetchRequest name="findFollowByFriendUserId" entity="Friend" predicateString="friendUserId == $FRIEND_USER_ID AND type == 1 AND deleteFlag == 0"/>
+    <fetchRequest name="findMessageByMessageId" entity="ChatMessage" predicateString="messageId == $MESSAGE_ID"/>
+    <fetchRequest name="findMessagesByFriend" entity="ChatMessage" predicateString="from == $FRIEND_USER_ID OR to == $FRIEND_USER_ID"/>
+    <fetchRequest name="findMessageTotalByFriendUserId" entity="MessageTotal" predicateString="userId == $USER_ID AND friendUserId == $FRIEND_USER_ID"/>
+    <fetchRequest name="findMyPaintById" entity="MyPaint" predicateString="createDate == $CREATE_DATE AND drawWord == $DRAW_WORD"/>
+    <fetchRequest name="findOnlyMyPaints" entity="MyPaint" predicateString="drawByMe == 1 AND (deleteFlag == 0 OR  deleteFlag == NULL) AND (draft == NULL OR draft ==0 )"/>
+    <fetchRequest name="findPriceListByType" entity="PriceModel" predicateString="type == $TYPE"/>
+    <fetchRequest name="findUserItemByType" entity="UserItem" predicateString="itemType == $ITEM_TYPE"/>
+    <elements>
+        <element name="ChatMessage" positionX="160" positionY="192" width="128" height="225"/>
+        <element name="CustomWord" positionX="160" positionY="192" width="128" height="135"/>
+        <element name="Friend" positionX="160" positionY="192" width="128" height="300"/>
+        <element name="MessageTotal" positionX="160" positionY="192" width="128" height="225"/>
+        <element name="MyPaint" positionX="160" positionY="192" width="128" height="300"/>
+        <element name="PriceModel" positionX="160" positionY="192" width="128" height="135"/>
+        <element name="RouterTrafficServer" positionX="160" positionY="192" width="128" height="165"/>
+        <element name="TransactionReceipt" positionX="160" positionY="192" width="128" height="195"/>
+        <element name="UserItem" positionX="160" positionY="192" width="128" height="75"/>
+    </elements>
+</model>

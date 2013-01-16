@@ -15,6 +15,7 @@
 #import "AccountService.h"
 #import "Item.h"
 #import "CommonMessageCenter.h"
+#import "AnalyticsManager.h"
 
 #define CONVERT_VIEW_FRAME_TO_TOP_VIEW(v) [[v superview] convertRect:v.frame toView:self.view]
 
@@ -108,6 +109,8 @@
 }
 
 - (IBAction)clickAllMyWordsButton:(id)sender {
+    [[AnalyticsManager sharedAnalyticsManager] reportSelectWord:SELECT_WORD_TYPE_CUSTOM];
+
     SelectCustomWordView *customWordView = [SelectCustomWordView createView:self];
     [customWordView showInView:self.view];
 }
@@ -124,6 +127,7 @@
 }
 
 - (IBAction)clickDraftButton:(id)sender {
+    [[AnalyticsManager sharedAnalyticsManager] reportSelectWord:SELECT_WORD_TYPE_DRAFT];
     [DraftsView showInView:self.view delegate:self];
 }
 

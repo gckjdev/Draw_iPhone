@@ -70,6 +70,13 @@
 #define FREE_COIN_TYPE_VIDEO                @"VIDEO"
 #define FREE_COIN_TYPE_MONEYTREE            @"MONEY_TREE"
 
+#define SELECT_WORD_CLICK                   @"SELECT_WORD_CLICK"
+#define SELECT_WORD_TYPE_HOT                @"HOT_WORD"
+#define SELECT_WORD_TYPE_CUSTOM             @"CUSTOM_WORD"
+#define SELECT_WORD_TYPE_SYSTEM             @"SYSTEM_WORD"
+#define SELECT_WORD_TYPE_DRAFT              @"DRAFT"
+#define ADD_CUSTOM_WORD                     @"ADD_CUSTOM_WORD"
+
 @interface AnalyticsManager : NSObject
 
 + (AnalyticsManager*)sharedAnalyticsManager;
@@ -89,5 +96,6 @@
 - (void)reportContestHomeClicks:(NSString*)name;
 
 - (void)reportFreeCoins:(NSString*)freeCoinName;
+- (void)reportSelectWord:(NSString*)wordType;
 
 @end

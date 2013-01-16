@@ -138,7 +138,7 @@
         case Pen:
             return [UIImage adjustImage:manager.penImage toRatio:1];
         case IcePen:
-            return [UIImage adjustImage:manager.iceImage toRatio:1];
+            return [UIImage shrinkImage:[UIImage adjustImage:manager.iceImage toRatio:1] withRate:1.3] ;
         case Quill:
             return [UIImage adjustImage:manager.quillImage toRatio:1];
         case WaterPen:
@@ -321,6 +321,8 @@
             return [Item removeAd];
         case ItemTypeTips:
             return [Item tips];
+        case Pen:
+            return [Item brushPen];
         case IcePen:
             return [Item iceCreamPen];
         case Quill:

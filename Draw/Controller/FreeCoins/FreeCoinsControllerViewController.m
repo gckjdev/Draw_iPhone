@@ -47,10 +47,11 @@
         self.helpBtnHolderView.frame = self.lmWallBtnHolderView.frame;
     }
     
+    self.noteLabel.text = NSLS(@"kWaitForMoneyNote");
     
     self.moneyTreeView = [MoneyTreeView createMoneyTreeView];
     self.moneyTreeView.center = self.moneyTreePlaceHolder.center;
-    self.moneyTreeView.growthTime = 60;
+    self.moneyTreeView.growthTime = 30;
     self.moneyTreeView.gainTime = 30;
     self.moneyTreeView.coinValue = 50;
     self.moneyTreeView.delegate = self;
@@ -93,6 +94,7 @@
     [_moneyTreeHolderView release];
     [_lmWallBtnHolderView release];
     [_helpBtnHolderView release];
+    [_noteLabel release];
     [super dealloc];
 }
 - (void)viewDidUnload {
@@ -101,6 +103,7 @@
     [self setMoneyTreeHolderView:nil];
     [self setLmWallBtnHolderView:nil];
     [self setHelpBtnHolderView:nil];
+    [self setNoteLabel:nil];
     [super viewDidUnload];
 }
 
@@ -142,19 +145,11 @@
     [[AccountService defaultService] chargeAccount:money source:MoneyTreeAward];
 }
 
-//- (void)videoAdBegan
-//{
-//    PPDebug(@"videoAdBegan");
-//}
-//
-//- (void)videoAdClosed
-//{
-//    PPDebug(@"videoAdClosed");  
-//}
-//
-//- (void)videoAdError:(NSString *)errorMsg
-//{
-//    PPDebug(@"videoAdError");   
-//}
+- (void)didGrowUp:(MoneyTreeView *)treeView
+{
+    self.noteLabel.text = NSLS(@"kMoneyTreeGrowUp");
+    [self.noteLabel performSelector:@selector(setText:) withObject:NSLS(@"kWaitForMoneyAndFlowsAndTips") afterDelay:1];
+}
+
 
 @end

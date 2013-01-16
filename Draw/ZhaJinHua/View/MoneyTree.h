@@ -17,6 +17,8 @@
 - (void)coinDidRaiseUp:(MoneyTree*)tree;
 - (void)treeDidMature:(MoneyTree*)tree;
 
+- (void)treeFullCoins:(MoneyTree*)tree;
+
 @end
 
 @interface MoneyTree : UIButton {

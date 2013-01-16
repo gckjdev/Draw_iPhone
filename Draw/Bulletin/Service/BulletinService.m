@@ -24,11 +24,6 @@
 
 SYNTHESIZE_SINGLETON_FOR_CLASS(BulletinService)
 
-+ (BulletinService*)defaultService
-{
-    return [BulletinService sharedBulletinService];
-}
-
 - (void)postNotification:(NSString*)name
 {
     [[NSNotificationCenter defaultCenter]

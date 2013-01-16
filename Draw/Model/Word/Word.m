@@ -129,6 +129,7 @@
 #define LEVEL @"level"
 #define WORDTYPE @"wordType"
 #define SCORE @"score"
+#define WORDID @"wordId"
 
 - (void)encodeWithCoder:(NSCoder *)aCoder
 {
@@ -136,6 +137,10 @@
     [aCoder encodeInt:_level forKey:LEVEL];
     [aCoder encodeInt:_wordType forKey:WORDTYPE];
     [aCoder encodeInt: _score forKey:SCORE];
+    
+    if (_wordId != nil){
+        [aCoder encodeObject:_wordId forKey:WORDID];
+    }
 }
 
 - (id)initWithCoder:(NSCoder *)aDecoder
@@ -146,9 +151,29 @@
         _level = [aDecoder decodeIntForKey:LEVEL];
         _wordType = [aDecoder decodeIntForKey:WORDTYPE];
         _score = [aDecoder decodeIntForKey:SCORE];
+        _wordId = [aDecoder decodeObjectForKey:WORDID];
     }
     return self;
 }
 
+- (NSData*)data
+{
+    NSData* drawWordData = [NSKeyedArchiver archivedDataWithRootObject:self];
+    return drawWordData;
+}
+
++ (Word*)wordFromData:(NSData*)data
+{
+    if (data == nil)
+        return nil;
+    
+    return [NSKeyedUnarchiver unarchiveObjectWithData:data];
+}
+
+- (NSString*)description
+{
+    return [NSString stringWithFormat:@"[level=%d, type=%d, score=%d, word=%@, id=%@]",
+            _level, _wordType, _score, _text, _wordId];
+}
 
 @end
