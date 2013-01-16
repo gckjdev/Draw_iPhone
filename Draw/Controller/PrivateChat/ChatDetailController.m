@@ -203,15 +203,11 @@
 
 - (void)viewDidLoad
 {
-    PPDebug(@"<viewDidLoad1> %@, retain count = %d,",self,[self retainCount]);
     [self setSupportRefreshHeader:YES];
     [super viewDidLoad];
     [self initViews];
-    PPDebug(@"<initViews> %@, retain count = %d,",self,[self retainCount]);
     [self initListWithLocalData];
-    PPDebug(@"<initListWithLocalData> %@, retain count = %d,",self,[self retainCount]);
     [self loadNewMessage];
-    PPDebug(@"<viewDidLoad2> %@, retain count = %d,",self,[self retainCount]);
 }
 
 
@@ -232,7 +228,6 @@
     
     DrawAppDelegate *drawAppDelegate = (DrawAppDelegate *)[[UIApplication sharedApplication] delegate];
     drawAppDelegate.chatDetailController = self;
-    PPDebug(@"<viewDidAppear> %@, retain count = %d,",self,[self retainCount]);
     [super viewDidAppear:animated];
 }
 
@@ -242,12 +237,7 @@
     
     DrawAppDelegate *drawAppDelegate = (DrawAppDelegate *)[[UIApplication sharedApplication] delegate];
     drawAppDelegate.chatDetailController = nil;
-//    [self deregsiterKeyboardNotification];
-    PPDebug(@"<viewDidDisappear1> %@, retain count = %d,",self,[self retainCount]);
-
     [super viewDidDisappear:animated];
-    PPDebug(@"<viewDidDisappear2> %@, retain count = %d,",self,[self retainCount]);
-
 }
 
 
@@ -258,9 +248,7 @@
 {
     [self hideActivity];
     [self dataSourceDidFinishLoadingNewData];
-    PPDebug(@"<didGetMessages> %@, retain count = %d,",self,[self retainCount]);
     if (resultCode == 0) {
-        PPDebug(@"<didGetMessages>, count = %d", [list count]);
         if (!forward && [list count] < [self loadMoreDataCount]) {
             [self.refreshHeaderView setHidden:YES];
             self.dataTableView.tableHeaderView.hidden = YES;
@@ -354,7 +342,6 @@
     ChatDetailCell *cell = [tableView dequeueReusableCellWithIdentifier:indentifier];
     if (cell == nil) {
         cell = [ChatDetailCell createCell:self isReceive:isReceive];
-        cell.superController = self;
     }
     BOOL flag = [self messageShowTime:message];
     [cell setCellWithMessageStat:self.messageStat 
@@ -402,7 +389,6 @@
 //设定view底部，整个view保持起始点不变，整个view往上缩
 - (void)updateTableView:(UITableView *)tableView withBottomLine:(CGFloat)yLine
 {
-    PPDebug(@"<updateTableView> %@, retain count = %d,",self,[self retainCount]);
     CGRect frame = tableView.frame;
     frame.size.height = yLine - CGRectGetMinY(frame);
     tableView.frame = frame;
@@ -515,22 +501,10 @@
 }
 
 
-#pragma mark - chat cell delegate
-- (void)didClickAvatarButton:(NSIndexPath *)aIndexPath
+- (void)showFriendProfile:(MyFriend *)aFriend
 {
-    PPMessage *message = [self messageOfIndex:aIndexPath.row];
-    NSString *fromUserId = message.friendId;
-    
-    if (![[UserManager defaultManager] isMe:fromUserId]) {
-        MyFriend *friend = [MyFriend friendWithFid:_messageStat.friendId 
-                                          nickName:_messageStat.friendNickName 
-                                            avatar:_messageStat.friendAvatar
-                                            gender:_messageStat.friendGenderString 
-                                             level:1];
-        [CommonUserInfoView showFriend:friend inController:self needUpdate:YES canChat:YES];
-    }
+    [CommonUserInfoView showFriend:aFriend inController:self needUpdate:YES canChat:YES];
 }
-
 
 #pragma mark textview delegate
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text  
@@ -731,13 +705,11 @@
 - (void)loadNewMessage
 {
     [self showActivityWithText:NSLS(@"kLoading")];
-    PPDebug(@"<loadNewMessage> %@, retain count = %d,",self,[self retainCount]);
     [[ChatService defaultService] getMessageList:self 
                                     friendUserId:self.fid
                                  offsetMessageId:self.lastMessageId 
                                          forward:YES 
                                            limit:[self loadNewDataCount]];
-    PPDebug(@"<getMessageList> %@, retain count = %d,",self,[self retainCount]);
 }
 - (void)loadMoreMessage
 {
@@ -760,8 +732,6 @@
 }
 - (void)tableViewScrollToBottom
 {
-    PPDebug(@"<tableViewScrollToBottom1> %@, retain count = %d,",self,[self retainCount]);
-
     if ([self.messageList count] > 0) {
         NSInteger row = [self.messageList count] - 1;
         NSIndexPath *indexPath = [NSIndexPath indexPathForRow:row inSection:0];
@@ -769,8 +739,6 @@
                                   atScrollPosition:UITableViewScrollPositionBottom 
                                           animated:YES];        
     }
-    PPDebug(@"<tableViewScrollToBottom2> %@, retain count = %d,",self,[self retainCount]);
-
 }
 
 
