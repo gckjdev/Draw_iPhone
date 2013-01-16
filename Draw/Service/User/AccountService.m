@@ -471,6 +471,10 @@ static AccountService* _defaultAccountService;
 {
     PPDebug(@"<buyItem> type=%d, count=%d, cost coins=%d", itemType, itemCount, itemCoins);
     
+    if (itemCount <= 0) {
+        return 0;
+    }
+    
     if ([self hasEnoughCoins:itemCoins] == NO){
         PPDebug(@"<buyItem> but balance(%d) not enough, item cost(%d)", 
                 [[AccountManager defaultManager] getBalance], itemCoins);

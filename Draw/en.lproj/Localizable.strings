@@ -1195,6 +1195,8 @@
 "kOpusNew" = "Latest";
 "kOnlineUser" = "%d online";
 
+"kGainFreeCoinsNote" = "Got %d Coins";
+
 /*********************** 大话骰子国际化字符串结束 *************************/
 
 "kCardTypeHighCard" = "散牌";
