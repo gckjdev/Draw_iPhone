@@ -46,9 +46,10 @@
 #import "LmWallService.h"
 #import "AdService.h"
 #import "VendingController.h"
-#import "ShowFeedController.h" 
+#import "ShowFeedController.h"
 #import "BulletinService.h"
 #import "AnalyticsManager.h"
+#import "DrawRecoveryService.h"
 
 //#import "RecommendedAppsController.h"
 //#import "FacetimeMainController.h"
@@ -204,6 +205,8 @@
 
     [self registerUIApplicationNotification];
     [self registerNetworkDisconnectedNotification];
+    
+    PPDebug(@"recovery data count=%d", [[DrawRecoveryService defaultService] recoveryDrawCount]);
 }
 
 - (void)registerNetworkDisconnectedNotification
@@ -258,6 +261,9 @@
     [[BulletinService defaultService] syncBulletins:^(int resultCode) {
         [self updateAllBadge];
     }];
+
+    [self.homeBottomMenuPanel updateMenu:HomeMenuTypeDrawOpus badge:[[DrawRecoveryService defaultService] recoveryDrawCount]];
+
 
     [UIApplication sharedApplication].idleTimerDisabled = NO;
     [[DrawGameService defaultService] registerObserver:self];

@@ -458,6 +458,8 @@ NSString* GlobalGetBoardServerURL()
     
     [[UserStatusService defaultService] start];
     
+    PPDebug(@"");
+    
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application

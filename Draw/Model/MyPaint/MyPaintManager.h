@@ -92,6 +92,6 @@ pbNoCompressDrawData:(PBNoCompressDrawData*)pbNoCompressDrawData;
 - (NSMutableArray *)drawActionListForPaint:(MyPaint *)paint;
 - (NSString *)imagePathForPaint:(MyPaint *)paint;
 
-
+- (NSString*)fullDataPath:(NSString*)dataFileName;
 
 @end

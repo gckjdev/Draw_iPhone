@@ -163,4 +163,8 @@ typedef enum{
 + (int)getBBSTextMinLength;
 
 + (NSString*)getShareImageWaterMark;
+
++ (int)supportRecovery;
++ (int)recoveryBackupInterval;
+
 @end

@@ -456,6 +456,7 @@ pbNoCompressDrawData:(PBNoCompressDrawData*)pbNoCompressDrawData
             needSave = YES;
         }
         if (needSave) {
+            [draft setIsRecovery:[NSNumber numberWithBool:NO]];
             [self save];            
         }
 
@@ -485,6 +486,14 @@ pbNoCompressDrawData:(PBNoCompressDrawData*)pbNoCompressDrawData
         drawData = paint.data;
     }
     return [NSKeyedUnarchiver unarchiveObjectWithData:drawData];
+}
+
+- (NSString*)fullDataPath:(NSString*)dataFileName
+{
+    if (dataFileName == nil)
+        return nil;
+    
+    return [_drawDataManager pathWithKey:dataFileName];
 }
 
 - (NSString *)imagePathForPaint:(MyPaint *)paint
