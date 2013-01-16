@@ -447,9 +447,10 @@ enum{
                        opusId:(NSString *)opusId 
                          type:(int)type
                    resultCode:(NSInteger)resultCode
+                       offset:(int)offset
 {
 //    [self hideActivity];
-    [self dataSourceDidFinishLoadingMoreData];
+//    [self dataSourceDidFinishLoadingMoreData];
     [self dataSourceDidFinishLoadingMoreData];
     
     TableTab *tab = [_tabManager tabForID:type];
@@ -464,7 +465,7 @@ enum{
         }else{
             self.noMoreData = NO;
             tab.hasMoreData = YES;
-            if (tab.offset == 0) {
+            if (offset == 0) {
                 [_tabManager setDataList:feedList ForTabID:type];
             }else{
                 [_tabManager addDataList:feedList toTab:type];

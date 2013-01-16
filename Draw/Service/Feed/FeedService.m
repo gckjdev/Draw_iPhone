@@ -229,8 +229,8 @@ static FeedService *_staticFeedService = nil;
         }
         
         dispatch_async(dispatch_get_main_queue(), ^{
-            if (delegate && [delegate respondsToSelector:@selector(didGetFeedCommentList:opusId:type:resultCode:)]) {
-                [delegate didGetFeedCommentList:list opusId:opusId type:type resultCode:resultCode];
+            if (delegate && [delegate respondsToSelector:@selector(didGetFeedCommentList:opusId:type:resultCode:offset:)]) {
+                [delegate didGetFeedCommentList:list opusId:opusId type:type resultCode:resultCode offset:offset];
             }            
         });
     });
