@@ -85,8 +85,8 @@ CGRect CGRectFrom(CGPoint origin, CGSize size){
 
 #define DRAW_VIEW_SIZE (([DeviceDetection isIPAD])?CGSizeMake(155,150):CGSizeMake(64,67))
 
-#define BUBBLE_TIP_WIDTH   (([DeviceDetection isIPAD])?(38):(25)) //尖尖的部分距离文字的距离
-#define BUBBLE_NOT_TIP_WIDTH    (([DeviceDetection isIPAD])?(25):(12))//不尖部分和文字的距离
+#define BUBBLE_TIP_WIDTH   (([DeviceDetection isIPAD])?(30):(20)) //尖尖的部分距离文字的距离
+#define BUBBLE_NOT_TIP_WIDTH    (([DeviceDetection isIPAD])?(21):(10))//不尖部分和文字的距离
 
 
 
@@ -166,38 +166,41 @@ CGRect CGRectFrom(CGPoint origin, CGSize size){
     [self updateView:self.contentButton size:size];
 }
 
-- (void)updateDrawMessageView:(DrawMessage *)message
+
+- (void)updateContentButtonFrame
 {
-    [self.showDrawView setHidden:NO];
     [self.contentButton setTitle:nil forState:UIControlStateNormal];
     CGFloat width = DRAW_VIEW_SIZE.width + BUBBLE_TIP_WIDTH + BUBBLE_NOT_TIP_WIDTH;
     CGFloat height = (DRAW_VIEW_SIZE.height + TEXT_VERTICAL_EDGE * 2);
-    [self updateView:self.contentButton size:CGSizeMake(width, height)];
-    
-    CGPoint contentOrigin = self.contentButton.frame.origin;
-    CGPoint origin = CGPointMake(contentOrigin.x + BUBBLE_TIP_WIDTH, contentOrigin.y + TEXT_VERTICAL_EDGE);
-    [self updateView:self.showDrawView origin:origin];
+    [self updateView:self.contentButton size:CGSizeMake(width, height)];    
+}
+- (CGRect)showViewFrame
+{
+//    CGPoint contentOrigin = self.contentButton.frame.origin;
+    CGPoint origin = CGPointMake(CGRectGetMinX(self.contentButton.frame) + BUBBLE_TIP_WIDTH, CGRectGetMinY(self.contentButton.frame) + TEXT_VERTICAL_EDGE);
+    CGRect rect = CGRectZero;
+    rect.origin = origin;
+    rect.size = DRAW_VIEW_SIZE;
+    return rect;
+//    [self updateView:self.showDrawView origin:origin];
+}
 
+- (void)updateDrawMessageView:(DrawMessage *)message
+{
     //create the image once...
-    [self.showDrawView removeFromSuperview];
-    CGRect frame = self.showDrawView.frame;
-//    self.showDrawView = [[[ShowDrawView alloc] initWithFrame:frame] autorelease];
-    self.showDrawView = [ShowDrawView showView];
-    self.showDrawView.center = CGPointMake(CGRectGetMidX(frame), CGRectGetMidY(frame));
-    [self addSubview:self.showDrawView];
-    [self.showDrawView resetFrameSize:frame.size];
-    [self.showDrawView setDelegate:self];
-    [self.showDrawView setPressEnable:YES];
-    
-    if (!message.thumbImage) {
-        self.showDrawView.drawActionList = message.drawActionList;
-        [self.showDrawView show];
-//        message.thumbImage = [self.showDrawView createImage];
-    }else{
-        [self.showDrawView showImage:message.thumbImage];        
+//    [self.showDrawView removeFromSuperview];
+    [self updateContentButtonFrame];
+    if (self.showDrawView == nil) {
+        CGRect frame = [self showViewFrame];
+        self.showDrawView = [ShowDrawView showViewWithFrame:frame drawActionList:message.drawActionList delegate:self];
+        [self addSubview:self.showDrawView];
+        [self.showDrawView setPressEnable:YES];        
     }
-
-
+    if (!message.thumbImage) {
+        [self.showDrawView show];
+        message.thumbImage = [self.showDrawView createImage];
+    }
+    [self.showDrawView showImage:message.thumbImage];
 }
 - (void)didClickShowDrawView:(ShowDrawView *)showDrawView
 {

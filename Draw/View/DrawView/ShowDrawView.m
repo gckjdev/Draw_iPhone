@@ -77,9 +77,14 @@
 {
     _playingActionIndex = index;
     _playingPointIndex = 0;
-    _currentAction = [self.drawActionList objectAtIndex:index];
-    self.status = Playing;
-    [self playCurrentFrame];
+    if (index < [self.drawActionList count]) {
+        _currentAction = [self.drawActionList objectAtIndex:index];
+        self.status = Playing;
+        [self playCurrentFrame];
+    }else{
+        self.status = Stop;
+        PPDebug(@"<playFromDrawActionIndex> index out of action array bounds. Stop");
+    }
 }
 
 - (void)play
@@ -165,6 +170,22 @@
 + (ShowDrawView *)showView
 {
     return [[[ShowDrawView alloc] initWithFrame:DRAW_VIEW_FRAME] autorelease];
+}
+
++ (ShowDrawView *)showViewWithFrame:(CGRect)frame
+                drawActionList:(NSArray *)actionList
+                      delegate:(id<ShowDrawViewDelegate>)delegate
+{
+    ShowDrawView *showView = [ShowDrawView showView];
+    if ([actionList isKindOfClass:[NSMutableArray class]]) {
+        showView.drawActionList = (NSMutableArray *)actionList;
+    }else{
+        showView = [NSMutableArray arrayWithArray:actionList];
+    }
+    showView.delegate = delegate;
+    [showView resetFrameSize:frame.size];
+    showView.center = CGPointMake(CGRectGetMidX(frame), CGRectGetMidY(frame));
+    return showView;
 }
 
 - (void)resetFrameSize:(CGSize)size
