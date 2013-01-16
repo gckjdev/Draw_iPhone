@@ -3272,6 +3272,7 @@
 		CA29EA9016A52721003B1434 /* dialog_yes@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2EE14201664CB3600ADBE2E /* dialog_yes@2x.png */; };
 		CA29EA9116A52721003B1434 /* loading_planet@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2EE14231664CB3600ADBE2E /* loading_planet@2x.png */; };
 		CA29EA9216A52721003B1434 /* starryBg.png in Resources */ = {isa = PBXBuildFile; fileRef = C2EE14241664CB3600ADBE2E /* starryBg.png */; };
+		CA29EB0616A69E7D003B1434 /* DrawRecoveryService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA29EB0516A69E7D003B1434 /* DrawRecoveryService.m */; };
 		CA322102151B6A670039A384 /* GameNetworkRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = CA322101151B6A670039A384 /* GameNetworkRequest.m */; };
 		CA322105151B6BE60039A384 /* UserService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA322104151B6BE60039A384 /* UserService.m */; };
 		CA322109151B6C6F0039A384 /* CompleteUserInfoController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA322107151B6C6F0039A384 /* CompleteUserInfoController.m */; };
@@ -7592,6 +7593,8 @@
 		CA25C42416899E080064C05D /* DrawTestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawTestViewController.h; sourceTree = "<group>"; };
 		CA25C42516899E080064C05D /* DrawTestViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DrawTestViewController.xib; sourceTree = "<group>"; };
 		CA29EB0216A6941E003B1434 /* MainDataModel 14.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MainDataModel 14.xcdatamodel"; sourceTree = "<group>"; };
+		CA29EB0416A69E7D003B1434 /* DrawRecoveryService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawRecoveryService.h; sourceTree = "<group>"; };
+		CA29EB0516A69E7D003B1434 /* DrawRecoveryService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawRecoveryService.m; sourceTree = "<group>"; };
 		CA322100151B6A670039A384 /* GameNetworkRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameNetworkRequest.h; sourceTree = "<group>"; };
 		CA322101151B6A670039A384 /* GameNetworkRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameNetworkRequest.m; sourceTree = "<group>"; };
 		CA322103151B6BE60039A384 /* UserService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserService.h; sourceTree = "<group>"; };
@@ -11007,6 +11010,7 @@
 		CA103B371509A55000F60C03 /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				CA29EB0316A69E6A003B1434 /* DrawRecovery */,
 				CAEE45E2165F5590001E02F1 /* SNS */,
 				CA89747B16087678003A95F7 /* Contest */,
 				CA02B52515AC240700B2A3E2 /* Item */,
@@ -12558,6 +12562,15 @@
 				CA25C3BE168968070064C05D /* draw_undo@2x.png */,
 			);
 			path = Tool;
+			sourceTree = "<group>";
+		};
+		CA29EB0316A69E6A003B1434 /* DrawRecovery */ = {
+			isa = PBXGroup;
+			children = (
+				CA29EB0416A69E7D003B1434 /* DrawRecoveryService.h */,
+				CA29EB0516A69E7D003B1434 /* DrawRecoveryService.m */,
+			);
+			path = DrawRecovery;
 			sourceTree = "<group>";
 		};
 		CA2F81E015C0D62E002038A6 /* Dice */ = {
@@ -21905,6 +21918,7 @@
 				CA53291116A3E1E000E9E96B /* Palette.m in Sources */,
 				CA53291D16A3E1E000E9E96B /* PenBox.m in Sources */,
 				CA53292C16A3E4FA00E9E96B /* InputAlertView.m in Sources */,
+				CA29EB0616A69E7D003B1434 /* DrawRecoveryService.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
