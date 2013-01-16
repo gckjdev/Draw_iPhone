@@ -58,8 +58,13 @@ typedef enum {
 
 - (void)setShowPenHidden:(BOOL)showPenHidden;
 
-+ (ShowDrawView *)showView;
 - (void)resetFrameSize:(CGSize)size;
+
++ (ShowDrawView *)showView;
++ (ShowDrawView *)showViewWithFrame:(CGRect)frame
+                drawActionList:(NSArray *)actionList
+                      delegate:(id<ShowDrawViewDelegate>)delegate;
+
 @end
 
 
