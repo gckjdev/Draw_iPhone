@@ -163,4 +163,9 @@ typedef enum{
 + (int)getBBSTextMinLength;
 
 + (NSString*)getShareImageWaterMark;
+
++ (int)getFreeCoinsAward;
++ (int)getFreeFlowersAward;
++ (int)getFreeTipsAward;
+
 @end

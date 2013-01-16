@@ -15,6 +15,9 @@
 #import "AdService.h"
 #import "AnalyticsManager.h"
 #import "ConfigManager.h"
+#import "CommonMessageCenter.h"
+#import "ItemType.h"
+#import "ConfigManager.h"
 
 #define SHENGMENG_APP_ID @"90386ecaab5c85559c569ab7c79a61e2"
 #define TAPJOY_APP_ID @"54f9ea4b-beee-4fac-84ee-a34522e67b34"
@@ -47,13 +50,14 @@
         self.helpBtnHolderView.frame = self.lmWallBtnHolderView.frame;
     }
     
-    self.noteLabel.text = NSLS(@"kWaitForMoneyNote");
+    self.noteLabel.text = NSLS(@"kWaitForMoneyTreeGrowUp");
     
     self.moneyTreeView = [MoneyTreeView createMoneyTreeView];
     self.moneyTreeView.center = self.moneyTreePlaceHolder.center;
     self.moneyTreeView.growthTime = 30;
     self.moneyTreeView.gainTime = 30;
-    self.moneyTreeView.coinValue = 50;
+    self.moneyTreeView.coinValue = [ConfigManager getFreeCoinsAward];
+
     self.moneyTreeView.delegate = self;
     [self.moneyTreeHolderView addSubview:_moneyTreeView];
     self.moneyTreeView.isAlwaysShowMessage = YES;
@@ -142,10 +146,26 @@
 {
     [[AnalyticsManager sharedAnalyticsManager] reportFreeCoins:FREE_COIN_TYPE_MONEYTREE];
 
+    int tipsAward = [ConfigManager getFreeTipsAward];
+    int flowersAward = [ConfigManager getFreeFlowersAward];
+
     [[AccountService defaultService] chargeAccount:money source:MoneyTreeAward];
+    [[AccountService defaultService] buyItem:ItemTypeTips itemCount:tipsAward itemCoins:0];
+    [[AccountService defaultService] buyItem:ItemTypeFlower itemCount:flowersAward itemCoins:0];
+   
+    
+    NSString *moneyStr = (money <= 0) ? @"" : [NSString stringWithFormat:NSLS(@"kGainFreeCoinsNote"), money];
+    NSString *flowersStr = (flowersAward == 0) ? @"" : [[NSString stringWithFormat:NSLS(@"+%d")] stringByAppendingString:NSLS(@"kFlower")];
+    NSString *TipsStr = (tipsAward == 0) ? @"" : [[NSString stringWithFormat:NSLS(@"+%d")] stringByAppendingString:NSLS(@"kTips")];
+    
+    NSString *note = [[moneyStr stringByAppendingString:flowersStr] stringByAppendingString:TipsStr];
+
+    if (note != nil && ![note isEqualToString:@""]) {
+        [[CommonMessageCenter defaultCenter] postMessageWithText:note delayTime:1.5 isHappy:YES];
+    }
 }
 
-- (void)didGrowUp:(MoneyTreeView *)treeView
+- (void)moneyTreeDidMature:(MoneyTreeView*)treeView;
 {
     self.noteLabel.text = NSLS(@"kMoneyTreeGrowUp");
     [self.noteLabel performSelector:@selector(setText:) withObject:NSLS(@"kWaitForMoneyAndFlowsAndTips") afterDelay:1];
